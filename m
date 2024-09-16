@@ -2,66 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6205979FDA
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Sep 2024 13:01:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C835979FDE
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Sep 2024 13:01:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C47F510E309;
-	Mon, 16 Sep 2024 11:01:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C97F10E348;
+	Mon, 16 Sep 2024 11:01:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="EjYnroXb";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="dAGpzON8";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6183F10E309
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Sep 2024 11:00:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D64AA10E345
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Sep 2024 11:01:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1726484458;
+ s=mimecast20190719; t=1726484462;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=itSh3IrUxrdCZUhjcuF+BB5F77vjj4OFkn+g9OgH098=;
- b=EjYnroXbxwG388Kj/WlpGG6QOEXMMcA/Bsf2sSzd9yWTuRhyoN9idOiW3fIwVrqJZTCKmQ
- OM91+1m2GsNfnFUK0RwVDjFNbjicGMZ0f1gAyIqRPtLKqWhdFz5xeuDGNZnqMdCXS6xF+x
- PWGOlRUmMkNzMnzwBnMgSHn8RGRmECY=
-Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
- [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=eEjIF7qtpeO5gdAg8m1MkAHfmOzMzhqhggl+Nd1IK9g=;
+ b=dAGpzON8Q5kaPH8cE/rPoBS2sY72pwINs5CcovcngEJlYtnS/qU7H1DpdZ2DF5o/fkAtrW
+ XZCQ/iAIkNtRbq/RtXNNfvcWVaq5TiImUWfvKesRVW8/sWe3FVm0gLzmkTRMd062JJ2ybX
+ 2iaHNRw83PkP19mCbxor63itQ2Yh/fQ=
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
+ [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-647-ep6A7EESOjmjykZTG7VNog-1; Mon, 16 Sep 2024 07:00:57 -0400
-X-MC-Unique: ep6A7EESOjmjykZTG7VNog-1
-Received: by mail-wm1-f70.google.com with SMTP id
- 5b1f17b1804b1-42cb2c5d634so21521585e9.0
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Sep 2024 04:00:57 -0700 (PDT)
+ us-mta-637-HUW-3V2GNlmddnOempCiug-1; Mon, 16 Sep 2024 07:00:59 -0400
+X-MC-Unique: HUW-3V2GNlmddnOempCiug-1
+Received: by mail-wm1-f72.google.com with SMTP id
+ 5b1f17b1804b1-42cb89fbb8cso27763785e9.0
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Sep 2024 04:00:58 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1726484456; x=1727089256;
+ d=1e100.net; s=20230601; t=1726484458; x=1727089258;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=itSh3IrUxrdCZUhjcuF+BB5F77vjj4OFkn+g9OgH098=;
- b=foEiHLR/MtDjaSi9ZFiDMyIMBQlp7RV6ZoHx4ZQACbzt2jBSa79hAXxQt5a4o8Srmu
- t4lymWDyBHpIOtd9fbRWjll2Jqkd4PgwWIUDY09s767Mz47W3yMgpThMFyWaoepcsy06
- 20a/qGcTKEsTBLTCHOS8XS/0A+3+ewn3AzL6ga1Grxb8EuuHutGOzLh0Sm3yoToirBkZ
- laA6S/262IiVMOtQ/RAgryMcT43oFisdJYFBWWKWUBskK6arC8qaK5DOhZEkBIO7N54c
- fxsfsTVg6DcyW5Ndb28WIxIAJe7Y6Ie262AkYZWmqGWSwbur38p06T8NipyNjQdwBJlT
- 70TQ==
+ bh=eEjIF7qtpeO5gdAg8m1MkAHfmOzMzhqhggl+Nd1IK9g=;
+ b=GKrn0ILeWCJ5D1DQ/xMP0pwAtIAdZdj6QqFDK3kuWNNgH3gb0YnYCI7Has1K4chX7j
+ EerYDAYZPCdIdfrv6b0YOCLkkNjpE5Q66rKvyWRw7OOq0I+Uql8lhBVyV7SpaJEu1/8D
+ NuA5nXFzhgxooiphLFPZ2dnqnnTrJ2ZW0fJNZrhucxrft4ZYxm7F54NPVYBrI1nJsCbm
+ Ih8PXsS5qRj+cOYATSrj0y24pExnGkPRP5GqWwpTxoPc0GLni+7yzyUQu8BP9ooEpq4q
+ 0+fcOwH2+6twsBMe2A7iZfxXn+X9EcXC2g6vEbwijVIWLO6qG3H8iKrty1j/R0y+ZTW9
+ yqSA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCX6GLhiP/es9MG4qHmgB0z5nr3ZbGSBP6bLbarFZBrZ9dILh3HRGqIWMYV8g8xJ/cbDnQak24loMII=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yz3v7K63MTPf0piX26WaLhN0n0d+Kx/7I8fH2lTWp/YfoPp8xbs
- PKUS2dtZoAhgs4zvwLqMJm7HY2779J81LnVMQfoFG9dO/F7qlD9mUs2dzo+CmCaEQQTtqgsSkz2
- L5TV71WMPmmW5TrsyVxHHKvxz5BJZbTYRlhp5O57SuruwjGXYQJX8HAsllu0jkyj6fA==
-X-Received: by 2002:a05:600c:310a:b0:42b:892d:54c0 with SMTP id
- 5b1f17b1804b1-42d907221b4mr59983045e9.12.1726484455962; 
- Mon, 16 Sep 2024 04:00:55 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHsgWHRJR4aKx2ppVUW3nxaeapfH3oj46/SJkQvNinWOePbqW+Lc2YXP1lXrRnZng63+W2aKg==
-X-Received: by 2002:a05:600c:310a:b0:42b:892d:54c0 with SMTP id
- 5b1f17b1804b1-42d907221b4mr59982735e9.12.1726484455424; 
- Mon, 16 Sep 2024 04:00:55 -0700 (PDT)
+ AJvYcCWYF/CVPwBZk90tg2wDC0s1dMVNM27zwquhSvD9uZNQZJ1TQ7tHS1lSAg63ckZk+b7meApyKNqiaUc=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzIxlh7r2/IwanFD4xwJhcJjnG5wpRMmu3gs8hWL7zuAr3KEX4L
+ 7yVEv/zuTwmkGJHnzepeRwiB31PkpJLY2UHuXbl6GjvZWSR9LHB4BvjIP7IqjzZ43ksEEBDjmZg
+ olLf5+AYeScw/gGrMyqLDzkEmSVuOYL/zscvuuGXwYzvSCoM61LccPdud2aqpSMRjlA==
+X-Received: by 2002:a05:600c:21d1:b0:42c:de2f:da27 with SMTP id
+ 5b1f17b1804b1-42cde2fdb54mr105453565e9.2.1726484457615; 
+ Mon, 16 Sep 2024 04:00:57 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGuoN48esuPwjXdzhGeiLsvhSvLtwnfWmyh0YiWdZ01XdL7xeFl8Crpz10A2XtyhhYWXONvEQ==
+X-Received: by 2002:a05:600c:21d1:b0:42c:de2f:da27 with SMTP id
+ 5b1f17b1804b1-42cde2fdb54mr105453355e9.2.1726484457174; 
+ Mon, 16 Sep 2024 04:00:57 -0700 (PDT)
 Received: from localhost ([195.166.127.210]) by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-42d9b055069sm110260975e9.6.2024.09.16.04.00.54
+ 5b1f17b1804b1-42cc137556esm200901665e9.1.2024.09.16.04.00.56
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 16 Sep 2024 04:00:55 -0700 (PDT)
+ Mon, 16 Sep 2024 04:00:56 -0700 (PDT)
 From: Javier Martinez Canillas <javierm@redhat.com>
 To: linux-kernel@vger.kernel.org
 Cc: Brian Norris <briannorris@chromium.org>, dri-devel@lists.freedesktop.org,
@@ -69,13 +69,11 @@ Cc: Brian Norris <briannorris@chromium.org>, dri-devel@lists.freedesktop.org,
  Thomas Zimmermann <tzimmermann@suse.de>, chrome-platform@lists.linux.dev,
  intel-gfx@lists.freedesktop.org, Hugues Bruant <hugues.bruant@gmail.com>,
  Javier Martinez Canillas <javierm@redhat.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Dan Carpenter <dan.carpenter@linaro.org>, Helge Deller <deller@gmx.de>,
- Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v4 1/2] firmware: sysfb: Add a sysfb_handles_screen_info()
- helper function
-Date: Mon, 16 Sep 2024 13:00:25 +0200
-Message-ID: <20240916110040.1688511-2-javierm@redhat.com>
+ Tzung-Bi Shih <tzungbi@kernel.org>
+Subject: [PATCH v4 2/2] firmware: coreboot: Don't register a pdev if
+ screen_info data is present
+Date: Mon, 16 Sep 2024 13:00:26 +0200
+Message-ID: <20240916110040.1688511-3-javierm@redhat.com>
 X-Mailer: git-send-email 2.46.0
 In-Reply-To: <20240916110040.1688511-1-javierm@redhat.com>
 References: <20240916110040.1688511-1-javierm@redhat.com>
@@ -99,77 +97,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-That can be used by drivers to check if the Generic System Framebuffers
-(sysfb) support can handle the data contained in the global screen_info.
+On coreboot platforms, a system framebuffer may be provided to the Linux
+kernel by filling a LB_TAG_FRAMEBUFFER entry in the coreboot table. But
+a coreboot payload (e.g: SeaBIOS) could also provide its own framebuffer
+information to the Linux kernel.
 
-Drivers might need this information to know if have to setup the system
-framebuffer, or if they have to delegate this action to sysfb instead.
+If that's the case, arch x86 boot code will fill the global screen_info
+data and this used by the Generic System Framebuffers (sysfb) framework,
+to register a platform device with pdata about the system's framebuffer.
 
-Suggested-by: Thomas Zimmermann <tzimmermann@suse.de>
+But later, the framebuffer_coreboot driver will try to do the same and
+attempt to register a "simple-framebuffer" platform device (using the
+information from the coreboot table), which will lead to an error due a
+device with the same name already being registered:
+
+    sysfs: cannot create duplicate filename '/bus/platform/devices/simple-framebuffer.0'
+    ...
+    coreboot: could not register framebuffer
+    framebuffer coreboot8: probe with driver framebuffer failed with error -17
+
+To prevent this issue, make the framebuffer_core driver to not register
+a platform device if the global struct screen_info data has been filled.
+
+Reported-by: Brian Norris <briannorris@chromium.org>
+Closes: https://lore.kernel.org/all/ZuCG-DggNThuF4pj@b20ea791c01f/T/#ma7fb65acbc1a56042258adac910992bb225a20d2
+Suggested-by: Julius Werner <jwerner@chromium.org>
 Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
+Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
+Reviewed-by: Brian Norris <briannorris@chromium.org>
+Reviewed-by: Julius Werner <jwerner@chromium.org>
 ---
 
 Changes in v4:
-- New patch to add sysfb_handles_screen_info() helper (Thomas Zimmermann).
+- Use a sysfb_handles_screen_info() helper instead of screen_info_video_type()
+  to fix build errors on platforms that don't define a struct screen_info
+  (Thomas Zimmermann).
 
- drivers/firmware/sysfb.c | 19 +++++++++++++++++++
- include/linux/sysfb.h    |  7 +++++++
- 2 files changed, 26 insertions(+)
+Changes in v3:
+- Fix coreboot spelling to be all in lowercase (Julius Werner).
 
-diff --git a/drivers/firmware/sysfb.c b/drivers/firmware/sysfb.c
-index 02a07d3d0d40..770e74be14f3 100644
---- a/drivers/firmware/sysfb.c
-+++ b/drivers/firmware/sysfb.c
-@@ -77,6 +77,25 @@ void sysfb_disable(struct device *dev)
- }
- EXPORT_SYMBOL_GPL(sysfb_disable);
+Changes in v2:
+- Declare the struct screen_info as constant variable (Thomas Zimmermann).
+- Use screen_info_video_type() instead of checking the screen_info video
+  types directly (Thomas Zimmermann).
+- Fix missing "device" word in a comment (Brian Norris).
+- Fix some mispellings in a comment (Brian Norris).
+- Change error code returned from -EINVAL to -ENODEV (Brian Norris).
+
+ drivers/firmware/google/framebuffer-coreboot.c | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+
+diff --git a/drivers/firmware/google/framebuffer-coreboot.c b/drivers/firmware/google/framebuffer-coreboot.c
+index daadd71d8ddd..c68c9f56370f 100644
+--- a/drivers/firmware/google/framebuffer-coreboot.c
++++ b/drivers/firmware/google/framebuffer-coreboot.c
+@@ -15,6 +15,7 @@
+ #include <linux/module.h>
+ #include <linux/platform_data/simplefb.h>
+ #include <linux/platform_device.h>
++#include <linux/sysfb.h>
  
-+/**
-+ * sysfb_handles_screen_info() - reports if sysfb handles the global screen_info
-+ *
-+ * Callers can use sysfb_handles_screen_info() to determine whether the Generic
-+ * System Framebuffers (sysfb) can handle the global screen_info data structure
-+ * or not. Drivers might need this information to know if they have to setup the
-+ * system framebuffer, or if they have to delegate this action to sysfb instead.
-+ *
-+ * Returns:
-+ * True if sysfb handles the global screen_info data structure.
-+ */
-+bool sysfb_handles_screen_info(void)
-+{
-+	const struct screen_info *si = &screen_info;
+ #include "coreboot_table.h"
+ 
+@@ -36,6 +37,19 @@ static int framebuffer_probe(struct coreboot_device *dev)
+ 		.format = NULL,
+ 	};
+ 
++	/*
++	 * On coreboot systems, the advertised LB_TAG_FRAMEBUFFER entry
++	 * in the coreboot table should only be used if the payload did
++	 * not pass a framebuffer information to the Linux kernel.
++	 *
++	 * If the global screen_info data has been filled, the Generic
++	 * System Framebuffers (sysfb) will already register a platform
++	 * device and pass that screen_info as platform_data to a driver
++	 * that can scan-out using the system provided framebuffer.
++	 */
++	if (sysfb_handles_screen_info())
++		return -ENODEV;
 +
-+	return !!screen_info_video_type(si);
-+}
-+EXPORT_SYMBOL_GPL(sysfb_handles_screen_info);
-+
- #if defined(CONFIG_PCI)
- static bool sysfb_pci_dev_is_enabled(struct pci_dev *pdev)
- {
-diff --git a/include/linux/sysfb.h b/include/linux/sysfb.h
-index bef5f06a91de..07cbab516942 100644
---- a/include/linux/sysfb.h
-+++ b/include/linux/sysfb.h
-@@ -60,12 +60,19 @@ struct efifb_dmi_info {
+ 	if (!fb->physical_address)
+ 		return -ENODEV;
  
- void sysfb_disable(struct device *dev);
- 
-+bool sysfb_handles_screen_info(void);
-+
- #else /* CONFIG_SYSFB */
- 
- static inline void sysfb_disable(struct device *dev)
- {
- }
- 
-+static inline bool sysfb_handles_screen_info(void)
-+{
-+	return false;
-+}
-+
- #endif /* CONFIG_SYSFB */
- 
- #ifdef CONFIG_EFI
 -- 
 2.46.0
 
