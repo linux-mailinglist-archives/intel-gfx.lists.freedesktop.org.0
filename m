@@ -2,74 +2,137 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D35D397A27F
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Sep 2024 14:46:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA34C979B17
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Sep 2024 08:24:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B018F10E356;
-	Mon, 16 Sep 2024 12:46:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 48E9210E050;
+	Mon, 16 Sep 2024 06:24:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=googlemail.com header.i=@googlemail.com header.b="jTJ3UW8t";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="TeT4bSS/";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="/Pr3pY4M";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="TeT4bSS/";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="/Pr3pY4M";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com
- [209.85.214.178])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 91DB010E301;
- Sun, 15 Sep 2024 19:35:50 +0000 (UTC)
-Received: by mail-pl1-f178.google.com with SMTP id
- d9443c01a7336-205722ba00cso31354745ad.0; 
- Sun, 15 Sep 2024 12:35:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=googlemail.com; s=20230601; t=1726428950; x=1727033750;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=New3rH6yb16RO+F7ZmxoIv5gWT8XEiNExKpmL8xStLI=;
- b=jTJ3UW8tZInCpJXdXDp3nuoGHsn1d7qOZLBDdM0Qifmz9Mz03XTDUuj4ykgji1Mkd3
- M+eWuARLHY/4ESn7kMlJqsmBY3Jti0fUDMuu0mcRpJNByHhZKi2qjBQxiBmbfNhdDmyB
- OiFxaw2bzwD/mTvTyWixuPhKGSOkfGLG4Omio0rFmtOvDQGMWqQ7M71e6ArGjYQHhoim
- OoNRxhdoYrNy78qDhGBL5lZNmwQ926LEia2poFn8SKQPnxZQrrMBZPHdOccKn60mFJeR
- xRI3DOznmr9kl0EVnBd4Z3Y9IpoWP9CBPaGWTHQmi7W6Hs/BTx6iNwiBdG6Mqn/Mv0v/
- Jobw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1726428950; x=1727033750;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=New3rH6yb16RO+F7ZmxoIv5gWT8XEiNExKpmL8xStLI=;
- b=pG+9BTv1KgMnTvaRb/Ag4+LCj6Xbjh57PKR0ehDsia7iOcbQ/ptDJYcCidi2gKHI6y
- mCgUSgUm+j7G1qp64IQlB8DvidrF/MKwNH5DMQAu22vhLKJHxkUI7cJ9Ge6QiYflgcu7
- ROAOpvYescX65vcPjY3DB48MYKO77FlZkSuMn+BbuEY/FygoGINAoQZVlmuCiU8aOZqL
- 2Hi2nbENCr9AtXtQydsX1qtRP/I0WzfYODPu5mL5uVaQCRdaViUc+2c+gOn2QYH+4ZI+
- q7cMiEna74kneZVWmCbJQy9IjP+8eQxO8R5aZYEFJIVUaKOvQJjdnDe2W/Qnvkka91Fd
- Cgrw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCU1d3RlWKPlTPJjncO/nt7twTKWr8MLcQNOyAmxaSRk3kOrbV1tpAnt41mzjKcs3AN4PEgFxadsK5A=@lists.freedesktop.org,
- AJvYcCVWoDDbjjxcdT3DRd6GKdaWlneZHjchheZE+Q2nPkQs7oZyDw/p2OVocV68Fg604flfrvR6zOLOhCo=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Ywd2C+/LUpMDdtoDbrixooptR8C/haXGICfHF9m1JNOkjZIAE+Q
- Nd0SgjBshq/WKC3OgizhaFnZFunZAzRQz85mbiqSgIyK6wK+gW5OedcJidMXlgZ9orY3B8R7NYn
- FUD3S5MaviULVWQFd1/shYqGYpoU=
-X-Google-Smtp-Source: AGHT+IEeEBWXAkvZAos6gb/1nBcqfIooFzWaDaf/vow493N7u4RygEa1Dt72D3/O8Hf0ci8+dAfBbMiVeaB8K6wpuVU=
-X-Received: by 2002:a17:902:eb8a:b0:206:ca91:1dda with SMTP id
- d9443c01a7336-2076e39c56bmr163749985ad.17.1726428950005; Sun, 15 Sep 2024
- 12:35:50 -0700 (PDT)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1267910E00E;
+ Mon, 16 Sep 2024 06:24:34 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 47A2B21B81;
+ Mon, 16 Sep 2024 06:24:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1726467872; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=L4g5cruqrqLQWR5w/6wAbgDivSZv0wvOPKF6a/G3LMU=;
+ b=TeT4bSS/FwFf77VzOZ+QJTOltaJWMmeRPi7v9UdEauetXp7M6KKIPVjWQ9iI2p9gOkAQWx
+ uWW4UDKyCSeFvpeAC4HAC5+9qcBEpBI+CcHDBV4Doc6t7BNKqNjsiauk+PVbqkFHcVmxE5
+ eTuVmBBgXNFx55TJuozjkZBX/o0bOe4=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1726467872;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=L4g5cruqrqLQWR5w/6wAbgDivSZv0wvOPKF6a/G3LMU=;
+ b=/Pr3pY4MIq3ZxgCH5I4TB1UtZNL3m+djNRbTRYMC4CXAfOOZr8MF/2XMkadfoKGkMi1OaQ
+ W51F5hdYqAP3uZDw==
+Authentication-Results: smtp-out1.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1726467872; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=L4g5cruqrqLQWR5w/6wAbgDivSZv0wvOPKF6a/G3LMU=;
+ b=TeT4bSS/FwFf77VzOZ+QJTOltaJWMmeRPi7v9UdEauetXp7M6KKIPVjWQ9iI2p9gOkAQWx
+ uWW4UDKyCSeFvpeAC4HAC5+9qcBEpBI+CcHDBV4Doc6t7BNKqNjsiauk+PVbqkFHcVmxE5
+ eTuVmBBgXNFx55TJuozjkZBX/o0bOe4=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1726467872;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=L4g5cruqrqLQWR5w/6wAbgDivSZv0wvOPKF6a/G3LMU=;
+ b=/Pr3pY4MIq3ZxgCH5I4TB1UtZNL3m+djNRbTRYMC4CXAfOOZr8MF/2XMkadfoKGkMi1OaQ
+ W51F5hdYqAP3uZDw==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id DAB4E139CE;
+ Mon, 16 Sep 2024 06:24:31 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id kZgTNB/P52YGGgAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Mon, 16 Sep 2024 06:24:31 +0000
+Message-ID: <eeac1c3c-4a21-4cd5-b513-8e55cffe0bae@suse.de>
+Date: Mon, 16 Sep 2024 08:24:31 +0200
 MIME-Version: 1.0
-References: <cover.1725962479.git.jani.nikula@intel.com>
- <fdc82abdabed667fc85d278cfb03d19e5c472d7b.1725962479.git.jani.nikula@intel.com>
-In-Reply-To: <fdc82abdabed667fc85d278cfb03d19e5c472d7b.1725962479.git.jani.nikula@intel.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sun, 15 Sep 2024 21:35:39 +0200
-Message-ID: <CAFBinCDQzHkvo1tQxa2pcgBHngtiXyCgdbnr=9nW7xDHy0RLdg@mail.gmail.com>
-Subject: Re: [PATCH 6/8] drm/meson: dw-hdmi: annotate dw_hdmi_dwc_write_bits()
- with __maybe_unused
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, Nathan Chancellor <nathan@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, linux-amlogic@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Mon, 16 Sep 2024 12:46:50 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3] firmware: coreboot: Don't register a pdev if
+ screen_info data is present
+To: kernel test robot <lkp@intel.com>,
+ Javier Martinez Canillas <javierm@redhat.com>, linux-kernel@vger.kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+ Julius Werner <jwerner@chromium.org>, Hugues Bruant
+ <hugues.bruant@gmail.com>, intel-gfx@lists.freedesktop.org,
+ Brian Norris <briannorris@chromium.org>, dri-devel@lists.freedesktop.org,
+ Borislav Petkov <bp@alien8.de>, chrome-platform@lists.linux.dev,
+ Tzung-Bi Shih <tzungbi@kernel.org>
+References: <20240913213246.1549213-1-javierm@redhat.com>
+ <202409151528.CIWZRPBq-lkp@intel.com>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <202409151528.CIWZRPBq-lkp@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Level: 
+X-Spamd-Result: default: False [-2.80 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ SUSPICIOUS_RECIPS(1.50)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ RCVD_TLS_ALL(0.00)[]; TAGGED_RCPT(0.00)[];
+ MIME_TRACE(0.00)[0:+]; RCPT_COUNT_TWELVE(0.00)[13];
+ ARC_NA(0.00)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
+ MID_RHS_MATCH_FROM(0.00)[]; FREEMAIL_ENVRCPT(0.00)[gmail.com];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FROM_HAS_DN(0.00)[];
+ FREEMAIL_CC(0.00)[lists.linux.dev,chromium.org,gmail.com,lists.freedesktop.org,alien8.de,kernel.org];
+ TO_DN_SOME(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
+ RCVD_COUNT_TWO(0.00)[2]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ FUZZY_BLOCKED(0.00)[rspamd.com];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid,imap1.dmz-prg2.suse.org:helo]
+X-Spam-Score: -2.80
+X-Spam-Flag: NO
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,20 +148,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Jani,
+Hi
 
-On Tue, Sep 10, 2024 at 12:08=E2=80=AFPM Jani Nikula <jani.nikula@intel.com=
-> wrote:
+Am 15.09.24 um 09:44 schrieb kernel test robot:
+> Hi Javier,
 >
-> Building with clang and and W=3D1 leads to warning about unused
-> dw_hdmi_dwc_write_bits(). Fix by annotating it with __maybe_unused.
+> kernel test robot noticed the following build errors:
 >
-> See also commit 6863f5643dd7 ("kbuild: allow Clang to find unused static
-> inline functions for W=3D1 build").
+> [auto build test ERROR on chrome-platform/for-next]
+> [also build test ERROR on chrome-platform/for-firmware-next linus/master v6.11-rc7 next-20240913]
+> [If your patch is applied to the wrong git tree, kindly drop us a note.
+> And when submitting patch, we suggest to use '--base' as documented in
+> https://git-scm.com/docs/git-format-patch#_base_tree_information]
 >
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-I prefer dropping this function for which there's a patch already: [0]
+> url:    https://github.com/intel-lab-lkp/linux/commits/Javier-Martinez-Canillas/firmware-coreboot-Don-t-register-a-pdev-if-screen_info-data-is-present/20240914-053323
+> base:   https://git.kernel.org/pub/scm/linux/kernel/git/chrome-platform/linux.git for-next
+> patch link:    https://lore.kernel.org/r/20240913213246.1549213-1-javierm%40redhat.com
+> patch subject: [PATCH v3] firmware: coreboot: Don't register a pdev if screen_info data is present
+> config: riscv-randconfig-001-20240915 (https://download.01.org/0day-ci/archive/20240915/202409151528.CIWZRPBq-lkp@intel.com/config)
+> compiler: clang version 15.0.7 (https://github.com/llvm/llvm-project 8dfdcc7b7bf66834a761bd8de445840ef68e4d1a)
+> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240915/202409151528.CIWZRPBq-lkp@intel.com/reproduce)
+>
+> If you fix the issue in a separate patch/commit (i.e. not just a new version of
+> the same patch/commit), kindly add following tags
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Closes: https://lore.kernel.org/oe-kbuild-all/202409151528.CIWZRPBq-lkp@intel.com/
+>
+> All errors (new ones prefixed by >>):
+>
+>>> ld.lld: error: undefined symbol: screen_info
+>     >>> referenced by framebuffer-coreboot.c:27 (drivers/firmware/google/framebuffer-coreboot.c:27)
+>     >>>               drivers/firmware/google/framebuffer-coreboot.o:(framebuffer_probe) in archive vmlinux.a
+>     >>> referenced by framebuffer-coreboot.c:27 (drivers/firmware/google/framebuffer-coreboot.c:27)
+>     >>>               drivers/firmware/google/framebuffer-coreboot.o:(framebuffer_probe) in archive vmlinux.a
 
+Not all platforms define screen_info. Maybe fix this by following 
+Tzung-Bi's advice of removing the local variables and then guard the 
+test by CONFIG_SYSFB. If SYSFB has been defined, screen_info has to be 
+there. It's not a super pretty solution, though.
 
-[0] https://lore.kernel.org/linux-amlogic/20240908-regmap-config-const-v1-1=
--28f349004811@linaro.org/
+Best regards
+Thomas
+
+>
+
+-- 
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
+
