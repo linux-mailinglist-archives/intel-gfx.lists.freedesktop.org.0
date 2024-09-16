@@ -2,47 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 082F9979D60
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Sep 2024 10:57:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2587B979D6D
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Sep 2024 10:57:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 575A310E182;
-	Mon, 16 Sep 2024 08:57:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C047E10E313;
+	Mon, 16 Sep 2024 08:57:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="b1I807zE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D1VcLLkb";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F6CF10E182;
- Mon, 16 Sep 2024 08:57:13 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id B2A78A414A4;
- Mon, 16 Sep 2024 08:57:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 387CBC4CEC4;
- Mon, 16 Sep 2024 08:57:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1726477032;
- bh=PcBTAwXOWPj47CjUgTUY9x+/PCIpKzX5I+Fb50RUGH8=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=b1I807zEv2QNBqhK00UPY0QSDLzVfjXcjoQ66JeOO9pQtEmZedwg8ZRP1sPDAEkz7
- St24H0/TohUxUQr8OCq3v/ic1b6KeKs2wEXmtqbUfRgGHxo875DkggBaOA1VG4HYBO
- FXuu4BYyrScj6FsZLeb+h7gdiVQVRRmFRFasQ7bIg1gls7dD62YnHKGZQdacMG9UzM
- eBb+f0fyKc2nsyNBGlVPBPsUbTLldtkeNR25lHQlAVAU2BIfF3xhEwNcBGb4EScPvN
- odvFY2gKWfqYUFfKATW6edPjc5AQmZfgwJ9FWGTfGaetlOW5fHYfybv9a7kXh80Qd2
- CZobHmyRxM2wA==
-Date: Mon, 16 Sep 2024 10:57:05 +0200
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Zhang He <zhanghe9702@163.com>
-Cc: andi.shyti@linux.intel.com, intel-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 2/2] drm/i915/gt: Fixed an typo
-Message-ID: <d7ofced5jycyryh3su6qmv7wrait243rnznapcsfh3nawngeag@s6eqm4kiqufy>
-References: <20240913140721.31165-1-zhanghe9702@163.com>
- <20240914013146.65757-1-zhanghe9702@163.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B6A8910E313
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Sep 2024 08:57:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1726477044; x=1758013044;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=hB59liQfS15HZBzEXxzRqCWK03WB9JVUwT7CX7EEC54=;
+ b=D1VcLLkbgSO7ZhUQwLfeVC1/I/EJ5Qc2Pe64hviIXAypU+brS/igM8YH
+ rl0L7TeIFEkLnSX53tgvX6ym+WDfpqijRE8jWDO/QohWexmirNnkMFFp5
+ 7ps4/iTJlf59siSV9C5CcA+D6/gRv5DvPpmpLgGPMfzOUMf88QGkORW7/
+ PCktc32X+ea5wYgHSSGBQTXLqRQw1aUTHnWdbTcV8b21la6Vgs7THiOEK
+ wlZ8gkF/T/3bU0BlTlfUWbmHz5ONE7g2YaQXXWFNB9UJP5rbZBxQGqf+b
+ A+pybfTvqH1ZEwHVfFSTYBjU95k0u1samh9mA7c5xjZWyo+j28fObg5Mq Q==;
+X-CSE-ConnectionGUID: DdnS+EkyTO+mlsw9PQihKA==
+X-CSE-MsgGUID: pbLNOvNbSCKlFVSzc0KCZw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11196"; a="50711736"
+X-IronPort-AV: E=Sophos;i="6.10,232,1719903600"; d="scan'208";a="50711736"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Sep 2024 01:57:24 -0700
+X-CSE-ConnectionGUID: wudURmosSSeQqXxDkWGI5Q==
+X-CSE-MsgGUID: rB5h6HE5TQCcQDmiDC8vIg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,232,1719903600"; d="scan'208";a="73187436"
+Received: from dneilan-mobl1.ger.corp.intel.com (HELO jhogande-mobl1..)
+ ([10.245.244.28])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Sep 2024 01:57:20 -0700
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: [PATCH] drm/i915/psr: eDP Panel Replay is not supported on pipes
+ other than A and B
+Date: Mon, 16 Sep 2024 11:57:06 +0300
+Message-Id: <20240916085706.2160511-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240914013146.65757-1-zhanghe9702@163.com>
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,55 +69,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Zhang He,
+Do not allow Panel Replay if pipe is other than A or B.
 
-I merged your previous patch so that you don't need to resend it
-anymore.
+Bspec: 68920
 
-I already asked you not to resend it in the past version. Please,
-read carefully the comments you receive.
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2736
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_psr.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-I repeat: add the versioning. When you do:
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 1a4ef231a53ca..699892b8c967a 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -1582,6 +1582,10 @@ _panel_replay_compute_config(struct intel_dp *intel_dp,
+ 
+ 	/* Remaining checks are for eDP only */
+ 
++	if (to_intel_crtc(crtc_state->uapi.crtc)->pipe != PIPE_A &&
++	    to_intel_crtc(crtc_state->uapi.crtc)->pipe != PIPE_B)
++		return false;
++
+ 	/* 128b/132b Panel Replay is not supported on eDP */
+ 	if (intel_dp_is_uhbr(crtc_state)) {
+ 		drm_dbg_kms(display->drm,
+-- 
+2.34.1
 
-   git format patch ...
-
-you get:
-
-   [PATCH 1/1] drm/....
-
-if you do
-
-   git format patch -v 2 ...
-
-you get:
-
-   [PATCH v2 1/1] drm/....
-
-This is what I asked you to do.
-
-The 1/1 or 2/2 is the patch counter for multi patch series, not
-the version. The version is given by "-v 2" from the git
-format-patch command.
-
-Please read the SubmittingPatches document, it's essential for
-sending patches.
-
-On Sat, Sep 14, 2024 at 09:31:46AM GMT, Zhang He wrote:
-> column header should be GPU, not CPU
-> 
-> ---
-> ChangeLog:
->     v1: use correct name as Author and Signer
->     v2: change one line in drivers/gpu/drm/i915/gt/intel_gt_pm_debugfs.c,
->         LLC's information header from "Effective CPU freq" to "Effective GPU freq"
-
-Good that the changelog is here. The v2, though, is not a
-changelog, but a description.
-
-> Signed-off-by: Zhang He <zhanghe9702@163.com>
-
-The signature goes above the "---" section, otherwise it doesn't
-show up when I apply the patch.
-
-Thanks for your patch,
-Andi
