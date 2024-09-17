@@ -2,29 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6902697B177
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Sep 2024 16:33:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FD3E97B191
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Sep 2024 16:48:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9BBBA10E484;
-	Tue, 17 Sep 2024 14:33:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80A7A10E1C9;
+	Tue, 17 Sep 2024 14:48:35 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DP22kXEf";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 350C410E484;
- Tue, 17 Sep 2024 14:33:54 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5257585135968931169=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB0C710E1C9;
+ Tue, 17 Sep 2024 14:48:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1726584514; x=1758120514;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=eHG5TwE1nj4X7HJQ+oqALhPubtSeIWW9MKHm3OL3QYg=;
+ b=DP22kXEfjT32IPLCvCH6d3iLdJSLm4MGGy4gMAu3NWAlSwagaa6DQhWH
+ fV1XX8TghANZgV+BNZbhp9SYXBTgelRBFfb+3QEymKCs5jUcfWOsgMZ9C
+ OW6hbFxhWo1jd+n8O171DnShvG9Vbbi+wJjR9m7c1SHn4hrb/8iN/P5OK
+ DmJCv5fBuB2ct/ka1IXvW0GgLRXw3rJKObQi2Aj6gVjGRX7J4/NcSbBd3
+ 1carPboIkrZ7ZmWrVYT0CD7jRn2046sFKC7nsTDSrT0hdE+Kd5v2qst1c
+ ThOFXyHhW7gdFOHjHgTRFJmkvfk29sAgePU6sI6bqBl5ZcrFSR629uzAT A==;
+X-CSE-ConnectionGUID: BE3/StvzS2+UWpMAy8zyJA==
+X-CSE-MsgGUID: Rz0+o8kZT92HdCsjrPRGrQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11198"; a="36015405"
+X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="36015405"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2024 07:48:33 -0700
+X-CSE-ConnectionGUID: 24DMVO7pQrqtwaL3tlDXhg==
+X-CSE-MsgGUID: HRaxeM83SlK4hTbfP4YKiw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="69311931"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 17 Sep 2024 07:48:30 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 17 Sep 2024 17:48:29 +0300
+Date: Tue, 17 Sep 2024 17:48:29 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 1/2] drm/i915/display: remove small micro-optimizations
+ in irq handling
+Message-ID: <ZumWvdwTNqfIZuk6@intel.com>
+References: <20240408125445.3227678-1-jani.nikula@intel.com>
+ <lh5rutbeu54tjlp2o477nb4xuqyblgjh7nemgecizqrceidabc@hcuihs4fxh6n>
+ <875xwfxapf.fsf@intel.com>
+ <52605aa7-7067-4ba2-aed8-feeb7aa67032@ursulin.net>
+ <877cbaczsk.fsf@intel.com> <ZumL60VMIs2Jf0w7@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/gvt=3A_use_macros_?=
- =?utf-8?q?from_drm=5Fdp=2Eh_instead_of_duplication?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 17 Sep 2024 14:33:54 -0000
-Message-ID: <172658363420.1022256.13979469651129245642@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240917105226.768276-1-jani.nikula@intel.com>
-In-Reply-To: <20240917105226.768276-1-jani.nikula@intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZumL60VMIs2Jf0w7@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,211 +74,136 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5257585135968931169==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, Sep 17, 2024 at 10:02:19AM -0400, Rodrigo Vivi wrote:
+> On Tue, Sep 17, 2024 at 01:58:19PM +0300, Jani Nikula wrote:
+> > On Thu, 18 Apr 2024, Tvrtko Ursulin <tursulin@ursulin.net> wrote:
+> > > On 18/04/2024 10:49, Jani Nikula wrote:
+> > >> On Wed, 17 Apr 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> > >>> On Mon, Apr 08, 2024 at 03:54:44PM GMT, Jani Nikula wrote:
+> > >>>> The raw register reads/writes are there as micro-optimizations to avoid
+> > >>>> multiple pointer indirections on uncore->regs. Presumably this is useful
+> > >>>> when there are plenty of register reads/writes in the same
+> > >>>> function. However, the display irq handling only has a few raw
+> > >>>> reads/writes. Remove them for simplification.
+> > >>>
+> > >>> I think that comment didn't age well. Not to say there's something wrong
+> > >>> with this commit, but just to make sure we are aware of the additional
+> > >>> stuff going on and we if we are ok with that.
+> > >>>
+> > >>> using intel_de_read() in place of raw_reg_read() will do (for newer
+> > >>> platforms):
+> > >>>
+> > >>> 	1) Read FPGA_DBG to detect unclaimed access before the actual read
+> > >>> 	2) Find the relevant forcewake for that register, acquire and wait for ack
+> > >>> 	3) readl(reg)
+> > >>> 	4) Read FPGA_DBG to detect unclaimed access after the actual read
+> > >>> 	5) Trace reg rw
+> > >>>
+> > >>> That's much more than a pointer indirection. Are we ok with that in the
+> > >>> irq?  Also, I don't know why but we have variants to skip tracing (step
+> > >>> 5 above), but on my books a disabled tracepoint is order of magnitudes
+> > >>> less overhead than 1, 2 and 4.
+> > >> 
+> > >> Honestly, I don't really know.
+> > >> 
+> > >> The thing is, we have these ad hoc optimizations all over the place. Why
+> > >> do we have the raw access in two places, but not everywhere in irq
+> > >> handling? The pointer indirection thing really only makes sense if you
+> > >> have a lot of access in a function, but that's not the case. You do have
+> > >> a point about everything else.
+> > >
+> > > The "why only two" places is I think simply an artefact of refactoring 
+> > > and code evolution. Initially all IRQ handling was in one function, then 
+> > > later gen11 and display parts got split out as more platforms were 
+> > > added. For example a3265d851e28 ("drm/i915/irq: Refactor gen11 display 
+> > > interrupt handling").
+> > >
+> > > As for the original rationale, it was described in commits like:
+> > >
+> > > 2e4a5b25886c ("drm/i915: Prune gen8_gt_irq_handler")
+> 
+> Looking at this one it looks that the raw usage came in place to fix
+> a macro issue, that we don't have anymore anyway.
+> 
+> > > c48a798a7447 ("drm/i915: Trim the ironlake+ irq handler")
+> 
+> Then, looking at this one, it sounds a good optimization.
+> 
+> > >
+> > > Obviosuly, once a portion of a handler was/is extracted, pointer caching 
+> > > to avoid uncore->regs reloads may not make full sense any more due 
+> > > function calls potentially overshadowing that cost.
+> > >
+> > > As for unclaimed debug, I would say it is probably okay to not burden 
+> > > the irq handlers with it, but if the display folks think a little bit of 
+> > > extra cost in this sub-handlers is fine that would sound plausible to me 
+> > > given the frequency of display related interrupts is low. 
+> 
+> Well, looking at the optimization above I always had the initial thought
+> on the low frequency of display interrupts, because I thought about hotplugs.
+> But perhaps an optimization in vblank ones would be desireable?
+> 
+> > > So for me 
+> > > patch is fine if it makes the display decoupling easier.
+> > >
+> > >> What would the interface be like if display were its own module? We
+> > >> couldn't just wrap it all in a bunch of macros and static inlines. Is
+> > >> the end result that display irq handling needs to call functions via
+> > >> pointers in another module? Or do we need to move the register level irq
+> > >> handling to xe and i915 cores, and handle the display parts at a higher
+> > >> abstraction level?
+> > >
+> > > AFAIR no trace variants were not for performance but to avoid log spam 
+> > > when debugging stuff. From things like busy/polling loops.
+> > 
+> > Bumping a forgotten topic.
+> > 
+> > Ville, Rodrigo, are we okay with the changes here?
+> 
+> I am in favor of this patch. Let's unify things. But perhaps study if
+> we need as a follow-up some optimization in vblank or any other display
+> irq and get that done inside intel_de_ mmio helpers?!
 
-== Series Details ==
+There are probaly a lot of things to think about wrt. 
+the register accessors:
+- FPGA_DBG only detects display registers IIRC, so
+  could perhaps avoid that stuff at build time for GT regs
+- forcewake only affects GT so could avoid that 
+  completely at build time for display regs
+- the gsi_offset stuff could again be bypassed at build
+  time for display regs. it generates rather ugly assembly
+  with an extra branch for every mmio access. It should really
+  be part of the register offset macros, but I guess no one wanted
+  to update all of them?
+- tracepoints generate a lot of extra junk so all the display
+  functions that write a lot of registers look pretty horrendous
+  on asm level, and often the compiler just emits a non-inline
+  version of intel_de_write_fw() anyway, so you end up with a
+  copy in pretty much every compilation unit, in which case it
+  would be better to just not have it as a static inline.
+- the "access to same cacheline hangs the machine" hw
+  issues on hsw era hw needs the spinlock to serialize,
+  but I'm not sure if this even affects all the registers
+  or just some subset of them
 
-Series: drm/i915/gvt: use macros from drm_dp.h instead of duplication
-URL   : https://patchwork.freedesktop.org/series/138760/
-State : success
+But yeah, if we want to optimize things I think it'd be nice
+if we could achieve most of it without so many diffrent ways
+of doing this stuff, especially as we've not take any kind of
+consistent approach of when to use which mechanism.
 
-== Summary ==
+I have occasionally thought that maybe all irq handlers should
+stick to unlocked accesses as an optimization, but again, not
+100% sure if that's safe wrt. the hsw hang issue. It'd also
+mean not detecting unclaimed register accesses directly from
+irq handlers. I suppose one option would be to the checks
+just once around the irq handler?
 
-CI Bug Log - changes from CI_DRM_15429 -> Patchwork_138760v1
-====================================================
+Anyways, IMO plow ahead for now.
+Acked-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138760v1/index.html
-
-Participating hosts (40 -> 36)
-------------------------------
-
-  Missing    (4): fi-kbl-8809g bat-jsl-1 fi-snb-2520m fi-pnv-d510 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_138760v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@fbdev@write:
-    - bat-arls-1:         [PASS][1] -> [FAIL][2] ([i915#12030])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15429/bat-arls-1/igt@fbdev@write.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138760v1/bat-arls-1/igt@fbdev@write.html
-
-  * igt@i915_selftest@live:
-    - bat-arls-2:         [PASS][3] -> [DMESG-WARN][4] ([i915#10341] / [i915#12133])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15429/bat-arls-2/igt@i915_selftest@live.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138760v1/bat-arls-2/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-arls-2:         [PASS][5] -> [DMESG-WARN][6] ([i915#11349])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15429/bat-arls-2/igt@i915_selftest@live@hangcheck.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138760v1/bat-arls-2/igt@i915_selftest@live@hangcheck.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc:
-    - bat-arls-5:         [PASS][7] -> [INCOMPLETE][8] ([i915#11320])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15429/bat-arls-5/igt@kms_pipe_crc_basic@nonblocking-crc.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138760v1/bat-arls-5/igt@kms_pipe_crc_basic@nonblocking-crc.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-d-edp-1:
-    - {bat-arlh-3}:       [INCOMPLETE][9] ([i915#12219]) -> [PASS][10] +1 other test pass
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15429/bat-arlh-3/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-d-edp-1.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138760v1/bat-arlh-3/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-d-edp-1.html
-
-  
-#### Warnings ####
-
-  * igt@fbdev@read:
-    - bat-arls-1:         [DMESG-WARN][11] ([i915#12102]) -> [FAIL][12] ([i915#12030])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15429/bat-arls-1/igt@fbdev@read.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138760v1/bat-arls-1/igt@fbdev@read.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#10196]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10196
-  [i915#10341]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10341
-  [i915#11320]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11320
-  [i915#11346]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11346
-  [i915#11349]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11349
-  [i915#11671]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11671
-  [i915#11681]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11681
-  [i915#11723]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11723
-  [i915#11726]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11726
-  [i915#12030]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12030
-  [i915#12102]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12102
-  [i915#12133]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133
-  [i915#12219]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12219
-  [i915#8809]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8809
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15429 -> Patchwork_138760v1
-
-  CI-20190529: 20190529
-  CI_DRM_15429: 38e1b615fb395b928e514108e908cd6edf3d34c3 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8022: 2d82f767a959d58c04ff3876d59d67924208d4ef @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_138760v1: 38e1b615fb395b928e514108e908cd6edf3d34c3 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138760v1/index.html
-
---===============5257585135968931169==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/gvt: use macros from drm_dp.h instead of duplication</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/138760/">https://patchwork.freedesktop.org/series/138760/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138760v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138760v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_15429 -&gt; Patchwork_138760v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138760v1/index.html</p>
-<h2>Participating hosts (40 -&gt; 36)</h2>
-<p>Missing    (4): fi-kbl-8809g bat-jsl-1 fi-snb-2520m fi-pnv-d510 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_138760v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@fbdev@write:</p>
-<ul>
-<li>bat-arls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15429/bat-arls-1/igt@fbdev@write.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138760v1/bat-arls-1/igt@fbdev@write.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12030">i915#12030</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-arls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15429/bat-arls-2/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138760v1/bat-arls-2/igt@i915_selftest@live.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10341">i915#10341</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133">i915#12133</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>bat-arls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15429/bat-arls-2/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138760v1/bat-arls-2/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11349">i915#11349</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc:</p>
-<ul>
-<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15429/bat-arls-5/igt@kms_pipe_crc_basic@nonblocking-crc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138760v1/bat-arls-5/igt@kms_pipe_crc_basic@nonblocking-crc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11320">i915#11320</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-d-edp-1:<ul>
-<li>{bat-arlh-3}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15429/bat-arlh-3/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-d-edp-1.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12219">i915#12219</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138760v1/bat-arlh-3/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-d-edp-1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@fbdev@read:<ul>
-<li>bat-arls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15429/bat-arls-1/igt@fbdev@read.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12102">i915#12102</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138760v1/bat-arls-1/igt@fbdev@read.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12030">i915#12030</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_15429 -&gt; Patchwork_138760v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_15429: 38e1b615fb395b928e514108e908cd6edf3d34c3 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8022: 2d82f767a959d58c04ff3876d59d67924208d4ef @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_138760v1: 38e1b615fb395b928e514108e908cd6edf3d34c3 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============5257585135968931169==--
+-- 
+Ville Syrjälä
+Intel
