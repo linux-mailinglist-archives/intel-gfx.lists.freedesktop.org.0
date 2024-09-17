@@ -2,62 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8401597B55A
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Sep 2024 23:53:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ADA3997B5A1
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Sep 2024 00:15:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3963010E501;
-	Tue, 17 Sep 2024 21:53:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E08710E1E2;
+	Tue, 17 Sep 2024 22:15:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kfhmRnuY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KK6XeQUh";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C170110E501;
- Tue, 17 Sep 2024 21:53:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B22DF10E02A;
+ Tue, 17 Sep 2024 22:15:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726609984; x=1758145984;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=pzXpENcW9KA3MoSrt3kWA05vqESBRdLJIRMtZKJxZhE=;
- b=kfhmRnuYFSwGYKJ/8IJcJWj5TVmf2Mn0p6wIoWXqcj7in98wgLk9PMrp
- Vfq9v/QUjgQXNLzMkjwsqqa31uGcv0/x+sVre6zEJXlcvucb4YvPYLTXd
- dkPnrS0EI6DoheZqFJ1cIg32Xo71gsPjuJ8ouo4PvBHBDei9rv8tSuGZ1
- JCEMZti+g8zm0aq61OvV12RZlIsgOHN6RI/JAg8JLzud1vsdGZ43bpvGP
- /pB2R9TvvhLrV4GZKfIs8XTg2gc3Bq3OC6h6RhSIOdrvxqVDOH2NeAN8g
- udarGCWFX+fqNM2YkX/FWe3hwFTejSQCw9gKBh1y3zHZ9P87V8CFe7lgP g==;
-X-CSE-ConnectionGUID: dgWx5b+0T/yBVYVcd0cwzA==
-X-CSE-MsgGUID: 1APecg7HQM6d6oArUPnWfg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11198"; a="36067300"
-X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="36067300"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2024 14:53:03 -0700
-X-CSE-ConnectionGUID: ZBhyhHm0QQ2bXUT9I0H/+A==
-X-CSE-MsgGUID: lHK0w2gaTgyH9/JRT8BfxQ==
+ t=1726611309; x=1758147309;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=P5WFfwZzkAYklouxdgtYq3K+vJjCTJn2RRne7SyovsA=;
+ b=KK6XeQUhfzHgIMlwoqjQ+wqU7y+xNUiKsZR5306a1E9Encp6rvBxelfv
+ 4hz7LD8xKHXEm9snVyXHjSoVQYvHU1RlwzBdpGJznVpImG984NwpwXip7
+ wJIYxu7X4jsXLOCwMgQoxzUvMYZDxMtoeQu8PUtHTr7TanBTyCVmxkcMM
+ ChnLqtItLLDTGqpYrYxJgTXCqpnICE8ydZ5YjsbJfkkuJLBg9dhkqiFqV
+ Uz0HweBVioddL0KRBkI1Y3Qirxn87cRnAQzILPQjNDrax+KY8L5UtpDG0
+ t3hc7MSpMiqjgkrfukWup/kEBjNtP1Dbj7R8CRnGyFSaEYXhc/dvyTps6 A==;
+X-CSE-ConnectionGUID: 8ytlWTEsTIyDStDosPxbQA==
+X-CSE-MsgGUID: HWxe7+gcQcyp5/8XsN629w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11198"; a="25657336"
+X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="25657336"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2024 15:15:09 -0700
+X-CSE-ConnectionGUID: 8sNniQVsRYKobJmeaI8deQ==
+X-CSE-MsgGUID: eML0wqRWRsmXVmgwpsnIHA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="73683575"
-Received: from dneilan-mobl1.ger.corp.intel.com (HELO [10.245.245.78])
- ([10.245.245.78])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2024 14:53:01 -0700
-Message-ID: <708d6a07-3ea7-4c4d-9f28-3bf8c9443779@linux.intel.com>
-Date: Tue, 17 Sep 2024 23:53:07 +0200
+X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="69433331"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 17 Sep 2024 15:15:05 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 18 Sep 2024 01:15:05 +0300
+Date: Wed, 18 Sep 2024 01:15:05 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 1/2] drm/xe: Fix DSB buffer coherency
+Message-ID: <Zun_aTQbrUtmj490@intel.com>
+References: <20240913114754.7956-1-maarten.lankhorst@linux.intel.com>
+ <20240913114754.7956-2-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 22/22] drm/xe: eradicate -Ddrm_i915_gem_object=xe_bo
-To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: rodrigo.vivi@intel.com, lucas.demarchi@intel.com,
- ville.syrjala@linux.intel.com
-References: <cover.1726589119.git.jani.nikula@intel.com>
- <0eae2b62b635acafe5dc97dc4b205aaa34ce1e53.1726589119.git.jani.nikula@intel.com>
-Content-Language: en-US
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-In-Reply-To: <0eae2b62b635acafe5dc97dc4b205aaa34ce1e53.1726589119.git.jani.nikula@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240913114754.7956-2-maarten.lankhorst@linux.intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,29 +71,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-For the whole series, with the comment addressed:
-Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-
-Den 2024-09-17 kl. 18:14, skrev Jani Nikula:
-> We've now completely stopped using drm_i915_gem_object in display code
-> that gets built for xe. Kill off the -Ddrm_i915_gem_object=xe_bo
-> hack. Good riddance.
+On Fri, Sep 13, 2024 at 01:47:53PM +0200, Maarten Lankhorst wrote:
+> Add the scanout flag to force WC caching, and add the memory barrier
+> where needed.
 > 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 > ---
->  drivers/gpu/drm/xe/Makefile | 1 -
->  1 file changed, 1 deletion(-)
+>  drivers/gpu/drm/xe/display/xe_dsb_buffer.c | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-> index e1ab68d3e066..ae245fbd91ee 100644
-> --- a/drivers/gpu/drm/xe/Makefile
-> +++ b/drivers/gpu/drm/xe/Makefile
-> @@ -149,7 +149,6 @@ subdir-ccflags-$(CONFIG_DRM_XE_DISPLAY) += \
->  	-I$(src)/display/ext \
->  	-I$(src)/compat-i915-headers \
->  	-I$(srctree)/drivers/gpu/drm/i915/display/ \
-> -	-Ddrm_i915_gem_object=xe_bo \
->  	-Ddrm_i915_private=xe_device
+> diff --git a/drivers/gpu/drm/xe/display/xe_dsb_buffer.c b/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
+> index f99d901a3214f..f7949bf5426af 100644
+> --- a/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
+> +++ b/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
+> @@ -48,11 +48,12 @@ bool intel_dsb_buffer_create(struct intel_crtc *crtc, struct intel_dsb_buffer *d
+>  	if (!vma)
+>  		return false;
 >  
->  # Rule to build SOC code shared with i915
+> +	/* Set scanout flag for WC mapping */
+>  	obj = xe_bo_create_pin_map(xe, xe_device_get_root_tile(xe),
+>  				   NULL, PAGE_ALIGN(size),
+>  				   ttm_bo_type_kernel,
+>  				   XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(xe)) |
+> -				   XE_BO_FLAG_GGTT);
+> +				   XE_BO_FLAG_SCANOUT | XE_BO_FLAG_GGTT);
+>  	if (IS_ERR(obj)) {
+>  		kfree(vma);
+>  		return false;
+> @@ -73,5 +74,5 @@ void intel_dsb_buffer_cleanup(struct intel_dsb_buffer *dsb_buf)
+>  
+>  void intel_dsb_buffer_flush_map(struct intel_dsb_buffer *dsb_buf)
+>  {
+> -	/* TODO: add xe specific flush_map() for dsb buffer object. */
+> +	xe_device_wmb(dsb_buf->vma->bo->tile->xe);
 
+With some kind of comment added that this may be needed on
+!x86 architectures to flush the WC buffer:
+
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+
+>  }
+> -- 
+> 2.45.2
+
+-- 
+Ville Syrjälä
+Intel
