@@ -2,56 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4ED1F97B2B7
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Sep 2024 18:14:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A4BDF97B2B8
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Sep 2024 18:14:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DFC1910E4A9;
-	Tue, 17 Sep 2024 16:14:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 45B8710E4AA;
+	Tue, 17 Sep 2024 16:14:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OBacW9rf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hY9GVQcX";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 478E110E4A2;
- Tue, 17 Sep 2024 16:14:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 478FA10E4AC;
+ Tue, 17 Sep 2024 16:14:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726589683; x=1758125683;
+ t=1726589689; x=1758125689;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=zU7TZ8T7UPSdlqoYGw2Vm2OFw5cglWriua0cRsSY7jA=;
- b=OBacW9rfy6lFUbUNuQTZZcWQCGWAELBTMbTLFdj7/nSzijpB3X4KZ8Ud
- Bie3hF/ugcPszpMlywoDBbQSsGXbkIi6YtbFw3e4ime+Nhnx37yLWlYJ/
- 0K5OxnrwBdIrmkyO5frKRHwiHwUoE6dHMqA2xdRPQALYb4mdzHMUadzer
- Iymz3kAmdPdfMYP+tGSWhGR7CjXqADPYp23Xfhrong+xbTJFKU6QkR00d
- LB/AEXQjBhokQWB/zgIqyx1rqKZroGiGFTe7+MdQPhv/2IbR9XdMO0/ow
- QX9E7JUNaVeQ8sgXVmUi1Ei5wSeh/Vlub4kn0JmHMIvVDFzy0vYKyYBYq w==;
-X-CSE-ConnectionGUID: MKhehnZcT8aZs/pgY0GAEw==
-X-CSE-MsgGUID: liS3AacUSq6v0EKUQEFxSg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11198"; a="42933906"
-X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="42933906"
+ bh=B3ZIWLMFmu/ipF4jV44uYAF2E+9yKkbnBGy4z61vevs=;
+ b=hY9GVQcX/IRznrhsc9AqJqCty/EVV87snZHxxeg3ygSjS39oSOUi1Otx
+ zIcqZBredA8B6yQHjBE49tZ6XX7RfpoDbOYPqpH1RNYzbhnYfFRDeVMkt
+ HMA8aMlDPPsXvdLaD7POQuFEp+Y3zM/5P2CWJsbR5dx0UEbrgAVaigo5v
+ VlgvkHXYRZi+ZGF9bWxyXAbFnjU8QJupjnoKDSM1s6Bcbp3vuWdfpPg6w
+ tpRnLlqzqCUEWwTeiQBovzL9GkCdemOqhf693yZjknmwBIndHFKCPwe9y
+ /K1LaPP0D5MTATmZ3ZgO7FTOF1jr+aZx67eHyCANfe5VhfHdOM0pCa4ok g==;
+X-CSE-ConnectionGUID: P+jjO3nDTGG5FR/x0tk41Q==
+X-CSE-MsgGUID: Lhp3+YqATb+VZkY3qdVP/w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11198"; a="42933939"
+X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="42933939"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2024 09:14:42 -0700
-X-CSE-ConnectionGUID: c063qrbBSKKElxZH07HVRw==
-X-CSE-MsgGUID: 5J3a8HhnQ4Gn6ZWi4EZJww==
+ 17 Sep 2024 09:14:48 -0700
+X-CSE-ConnectionGUID: S1xV4z2LTuqLzwUFVpy/wA==
+X-CSE-MsgGUID: UmrcxHySRQCqHNFM3MGfQw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="69717887"
+X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="69717904"
 Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.102])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2024 09:14:40 -0700
+ 17 Sep 2024 09:14:46 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: rodrigo.vivi@intel.com, lucas.demarchi@intel.com,
  ville.syrjala@linux.intel.com, maarten.lankhorst@linux.intel.com,
  jani.nikula@intel.com
-Subject: [PATCH 05/22] drm/i915/display: convert skl_universal_plane.c to
- struct drm_gem_object
-Date: Tue, 17 Sep 2024 19:13:44 +0300
-Message-Id: <0a6d2bec50764efaae4322c9cfa33eefbfe1c054.1726589119.git.jani.nikula@intel.com>
+Subject: [PATCH 06/22] drm/i915/fb: convert intel_framebuffer_init() to struct
+ drm_gem_object
+Date: Tue, 17 Sep 2024 19:13:45 +0300
+Message-Id: <1b14bb0719c172304f38dfe59ea7240b3f42ed73.1726589119.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1726589119.git.jani.nikula@intel.com>
 References: <cover.1726589119.git.jani.nikula@intel.com>
@@ -74,172 +74,111 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Prefer the driver agnostic struct drm_gem_object over i915 specific
-struct drm_i915_gem_object. Add new intel_bo_* functions as
-needed. Convert intel_pxp_key_check() to struct drm_gem_object.
+struct drm_i915_gem_object.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bo.c                |  5 +++++
- drivers/gpu/drm/i915/display/intel_bo.h                |  1 +
- drivers/gpu/drm/i915/display/skl_universal_plane.c     |  5 +++--
- drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c         |  2 +-
- drivers/gpu/drm/i915/pxp/intel_pxp.c                   |  4 +++-
- drivers/gpu/drm/i915/pxp/intel_pxp.h                   |  4 ++--
- drivers/gpu/drm/xe/compat-i915-headers/pxp/intel_pxp.h | 10 ++--------
- drivers/gpu/drm/xe/display/intel_bo.c                  |  5 +++++
- 8 files changed, 22 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/i915/display/intel_fb.c            | 14 +++++++-------
+ drivers/gpu/drm/i915/display/intel_fb.h            |  2 +-
+ drivers/gpu/drm/i915/display/intel_plane_initial.c |  2 +-
+ drivers/gpu/drm/xe/display/xe_plane_initial.c      |  2 +-
+ 4 files changed, 10 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bo.c b/drivers/gpu/drm/i915/display/intel_bo.c
-index c0d050cec4ad..681970cf8701 100644
---- a/drivers/gpu/drm/i915/display/intel_bo.c
-+++ b/drivers/gpu/drm/i915/display/intel_bo.c
-@@ -20,6 +20,11 @@ bool intel_bo_is_shmem(struct drm_gem_object *obj)
- 	return i915_gem_object_is_shmem(to_intel_bo(obj));
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+index eb8dc3dd21ee..d863550021a0 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb.c
++++ b/drivers/gpu/drm/i915/display/intel_fb.c
+@@ -1963,20 +1963,20 @@ static const struct drm_framebuffer_funcs intel_fb_funcs = {
+ };
  
-+bool intel_bo_is_protected(struct drm_gem_object *obj)
-+{
-+	return i915_gem_object_is_protected(to_intel_bo(obj));
-+}
-+
- void intel_bo_flush_if_display(struct drm_gem_object *obj)
+ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+-			   struct drm_i915_gem_object *obj,
++			   struct drm_gem_object *obj,
+ 			   struct drm_mode_fb_cmd2 *mode_cmd)
  {
- 	i915_gem_object_flush_if_display(to_intel_bo(obj));
-diff --git a/drivers/gpu/drm/i915/display/intel_bo.h b/drivers/gpu/drm/i915/display/intel_bo.h
-index 410f285d2ea1..222a12283a5a 100644
---- a/drivers/gpu/drm/i915/display/intel_bo.h
-+++ b/drivers/gpu/drm/i915/display/intel_bo.h
-@@ -12,6 +12,7 @@ struct vm_area_struct;
- bool intel_bo_is_tiled(struct drm_gem_object *obj);
- bool intel_bo_is_userptr(struct drm_gem_object *obj);
- bool intel_bo_is_shmem(struct drm_gem_object *obj);
-+bool intel_bo_is_protected(struct drm_gem_object *obj);
- void intel_bo_flush_if_display(struct drm_gem_object *obj);
- int intel_bo_fb_mmap(struct drm_gem_object *obj, struct vm_area_struct *vma);
+-	struct drm_i915_private *dev_priv = to_i915(intel_bo_to_drm_bo(obj)->dev);
++	struct drm_i915_private *dev_priv = to_i915(obj->dev);
+ 	struct drm_framebuffer *fb = &intel_fb->base;
+ 	u32 max_stride;
+ 	int ret = -EINVAL;
+ 	int i;
  
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 17d4c880ecc4..fdb141cfa427 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -11,6 +11,7 @@
- #include "i915_drv.h"
- #include "i915_reg.h"
- #include "intel_atomic_plane.h"
-+#include "intel_bo.h"
- #include "intel_de.h"
- #include "intel_display_irq.h"
- #include "intel_display_types.h"
-@@ -2084,13 +2085,13 @@ static void check_protection(struct intel_plane_state *plane_state)
- 	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
- 	struct drm_i915_private *i915 = to_i915(plane->base.dev);
- 	const struct drm_framebuffer *fb = plane_state->hw.fb;
--	struct drm_i915_gem_object *obj = intel_fb_obj(fb);
-+	struct drm_gem_object *obj = intel_fb_bo(fb);
+-	ret = intel_fb_bo_framebuffer_init(intel_fb, obj, mode_cmd);
++	ret = intel_fb_bo_framebuffer_init(intel_fb, to_intel_bo(obj), mode_cmd);
+ 	if (ret)
+ 		return ret;
  
- 	if (DISPLAY_VER(i915) < 11)
- 		return;
+-	intel_fb->frontbuffer = intel_frontbuffer_get(obj);
++	intel_fb->frontbuffer = intel_frontbuffer_get(to_intel_bo(obj));
+ 	if (!intel_fb->frontbuffer) {
+ 		ret = -ENOMEM;
+ 		goto err;
+@@ -2042,7 +2042,7 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+ 			}
+ 		}
  
- 	plane_state->decrypt = intel_pxp_key_check(i915->pxp, obj, false) == 0;
--	plane_state->force_black = i915_gem_object_is_protected(obj) &&
-+	plane_state->force_black = intel_bo_is_protected(obj) &&
- 		!plane_state->decrypt;
+-		fb->obj[i] = intel_bo_to_drm_bo(obj);
++		fb->obj[i] = obj;
+ 	}
+ 
+ 	ret = intel_fill_fb_info(dev_priv, intel_fb);
+@@ -2076,7 +2076,7 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+ err_frontbuffer_put:
+ 	intel_frontbuffer_put(intel_fb->frontbuffer);
+ err:
+-	intel_fb_bo_framebuffer_fini(obj);
++	intel_fb_bo_framebuffer_fini(to_intel_bo(obj));
+ 	return ret;
  }
  
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index a3b83cfe1726..f151640c1d13 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -915,7 +915,7 @@ static struct i915_vma *eb_lookup_vma(struct i915_execbuffer *eb, u32 handle)
- 		 */
- 		if (i915_gem_context_uses_protected_content(eb->gem_context) &&
- 		    i915_gem_object_is_protected(obj)) {
--			err = intel_pxp_key_check(eb->i915->pxp, obj, true);
-+			err = intel_pxp_key_check(eb->i915->pxp, intel_bo_to_drm_bo(obj), true);
- 			if (err) {
- 				i915_gem_object_put(obj);
- 				return ERR_PTR(err);
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c
-index 75278e78ca90..3a40e4ece925 100644
---- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
-@@ -461,9 +461,11 @@ void intel_pxp_fini_hw(struct intel_pxp *pxp)
- }
+@@ -2111,7 +2111,7 @@ intel_framebuffer_create(struct drm_i915_gem_object *obj,
+ 	if (!intel_fb)
+ 		return ERR_PTR(-ENOMEM);
  
- int intel_pxp_key_check(struct intel_pxp *pxp,
--			struct drm_i915_gem_object *obj,
-+			struct drm_gem_object *_obj,
- 			bool assign)
- {
-+	struct drm_i915_gem_object *obj = to_intel_bo(_obj);
-+
- 	if (!intel_pxp_is_active(pxp))
- 		return -ENODEV;
+-	ret = intel_framebuffer_init(intel_fb, obj, mode_cmd);
++	ret = intel_framebuffer_init(intel_fb, intel_bo_to_drm_bo(obj), mode_cmd);
+ 	if (ret)
+ 		goto err;
  
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.h b/drivers/gpu/drm/i915/pxp/intel_pxp.h
-index d9372f6f7797..4ed97db5e7c6 100644
---- a/drivers/gpu/drm/i915/pxp/intel_pxp.h
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp.h
-@@ -9,7 +9,7 @@
- #include <linux/errno.h>
- #include <linux/types.h>
+diff --git a/drivers/gpu/drm/i915/display/intel_fb.h b/drivers/gpu/drm/i915/display/intel_fb.h
+index 2ca919bdbd7d..fef1f713dab0 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb.h
++++ b/drivers/gpu/drm/i915/display/intel_fb.h
+@@ -85,7 +85,7 @@ void intel_fb_fill_view(const struct intel_framebuffer *fb, unsigned int rotatio
+ int intel_plane_compute_gtt(struct intel_plane_state *plane_state);
  
--struct drm_i915_gem_object;
-+struct drm_gem_object;
- struct drm_i915_private;
- struct intel_pxp;
+ int intel_framebuffer_init(struct intel_framebuffer *ifb,
+-			   struct drm_i915_gem_object *obj,
++			   struct drm_gem_object *obj,
+ 			   struct drm_mode_fb_cmd2 *mode_cmd);
+ struct drm_framebuffer *
+ intel_user_framebuffer_create(struct drm_device *dev,
+diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.c b/drivers/gpu/drm/i915/display/intel_plane_initial.c
+index ada1792df5b3..62401f6a04e4 100644
+--- a/drivers/gpu/drm/i915/display/intel_plane_initial.c
++++ b/drivers/gpu/drm/i915/display/intel_plane_initial.c
+@@ -302,7 +302,7 @@ intel_alloc_initial_plane_obj(struct intel_crtc *crtc,
+ 	mode_cmd.flags = DRM_MODE_FB_MODIFIERS;
  
-@@ -32,7 +32,7 @@ int intel_pxp_start(struct intel_pxp *pxp);
- void intel_pxp_end(struct intel_pxp *pxp);
+ 	if (intel_framebuffer_init(to_intel_framebuffer(fb),
+-				   vma->obj, &mode_cmd)) {
++				   intel_bo_to_drm_bo(vma->obj), &mode_cmd)) {
+ 		drm_dbg_kms(&dev_priv->drm, "intel fb init failed\n");
+ 		goto err_vma;
+ 	}
+diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+index a50ab9eae40a..1b10ea499d8c 100644
+--- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
++++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+@@ -170,7 +170,7 @@ intel_alloc_initial_plane_obj(struct intel_crtc *crtc,
+ 		return false;
  
- int intel_pxp_key_check(struct intel_pxp *pxp,
--			struct drm_i915_gem_object *obj,
-+			struct drm_gem_object *obj,
- 			bool assign);
- 
- void intel_pxp_invalidate(struct intel_pxp *pxp);
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/pxp/intel_pxp.h b/drivers/gpu/drm/xe/compat-i915-headers/pxp/intel_pxp.h
-index c2c30ece8f77..5dfc587c8237 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/pxp/intel_pxp.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/pxp/intel_pxp.h
-@@ -9,20 +9,14 @@
- #include <linux/errno.h>
- #include <linux/types.h>
- 
--struct drm_i915_gem_object;
-+struct drm_gem_object;
- struct intel_pxp;
- 
- static inline int intel_pxp_key_check(struct intel_pxp *pxp,
--				      struct drm_i915_gem_object *obj,
-+				      struct drm_gem_object *obj,
- 				      bool assign)
- {
- 	return -ENODEV;
- }
- 
--static inline bool
--i915_gem_object_is_protected(const struct drm_i915_gem_object *obj)
--{
--	return false;
--}
--
- #endif
-diff --git a/drivers/gpu/drm/xe/display/intel_bo.c b/drivers/gpu/drm/xe/display/intel_bo.c
-index 2549f88115df..0b4dfa6a0344 100644
---- a/drivers/gpu/drm/xe/display/intel_bo.c
-+++ b/drivers/gpu/drm/xe/display/intel_bo.c
-@@ -23,6 +23,11 @@ bool intel_bo_is_shmem(struct drm_gem_object *obj)
- 	return false;
- }
- 
-+bool intel_bo_is_protected(struct drm_gem_object *obj)
-+{
-+	return false;
-+}
-+
- void intel_bo_flush_if_display(struct drm_gem_object *obj)
- {
- }
+ 	if (intel_framebuffer_init(to_intel_framebuffer(fb),
+-				   bo, &mode_cmd)) {
++				   &bo->ttm.base, &mode_cmd)) {
+ 		drm_dbg_kms(&xe->drm, "intel fb init failed\n");
+ 		goto err_bo;
+ 	}
 -- 
 2.39.2
 
