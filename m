@@ -2,61 +2,76 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC9E297B01A
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Sep 2024 14:27:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C1CB97EB98
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Sep 2024 14:40:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C89510E478;
-	Tue, 17 Sep 2024 12:27:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1439310E3EB;
+	Mon, 23 Sep 2024 12:40:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OxpdhwjS";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="OD8/CcQ9";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B96210E489;
- Tue, 17 Sep 2024 12:27:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726576051; x=1758112051;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=C388/p0KkfFSczWDhC+oM8+M0fwsTF4om3mrCuBaRCQ=;
- b=OxpdhwjSTl1d59oNGEJVEm84pBESewZ6YE91z6oeqQLkX5KI/QmuIshx
- AG/Y3sPXBzhbjvsw6EDpFCZa9D2TK/m0rhj/0CS5d4UayCO9mI1yKe1QQ
- /aiJrBx99yDB8HH3KoZt+qU+Zl6U3R0iXMUs7o+0gd5aWtBk5tOxDENgL
- aGVzxHFM06IQMjk3OsDlAEMWT3CL+Z+wLv2J//1MUqxazI628GFcAh3yq
- qoc+Xd7zcQQEbojs2YSq3F2z+aGHBN2NQdPhcCeAWJXtMlLe+d1puTCKR
- n/rqEe/eKGRB/ZS5XUGCy4rY1CXPN3sr+n0NHJk3U5VGyQBX3JKM9HZK4 A==;
-X-CSE-ConnectionGUID: SEYPk8ktQKWKJ7myAk/Yfg==
-X-CSE-MsgGUID: whlmkhi4QHWkweRPRurtLw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11197"; a="50840167"
-X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="50840167"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2024 05:27:31 -0700
-X-CSE-ConnectionGUID: iOU+OWzsQZeK/qDa10Fu0g==
-X-CSE-MsgGUID: O5ppqt9eRHiWE6YrR15YZQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="69264104"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 17 Sep 2024 05:27:28 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 17 Sep 2024 15:27:28 +0300
-Date: Tue, 17 Sep 2024 15:27:28 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- suraj.kandpal@intel.com
-Subject: Re: [PATCH 1/2] drm/i915: Add some essential functionality for joiners
-Message-ID: <Zul1sJjHUEyCWa_b@intel.com>
-References: <20240917082359.2383204-1-ankit.k.nautiyal@intel.com>
- <20240917082359.2383204-2-ankit.k.nautiyal@intel.com>
+Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com
+ [209.85.210.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E819910E3CF;
+ Tue, 17 Sep 2024 12:44:57 +0000 (UTC)
+Received: by mail-pf1-f172.google.com with SMTP id
+ d2e1a72fcca58-71971d20a95so706113b3a.3; 
+ Tue, 17 Sep 2024 05:44:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1726577097; x=1727181897; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=PuR2oEx7UOd4jtIaDKowFjYpkaW0nFWhgHvIpNqBCnA=;
+ b=OD8/CcQ9/OKsuHE0BeKboW0Ftw1sKJhOiAWEMG/xZ2l9MMuwbEPWRBrFli1sS7GcBe
+ GjWZBwdByqJ0FysNx3NzVJba6x7QpxFfe7WmFGvP+vQ6uKS36gB7gWMJvJCGa5fNXzIr
+ UZ5b+NuheLt+KztlEhLcmalAIzhob2fq/psJmA2ofFuFZVOR921UHexyIb2GD8Cxiimg
+ DB9HA5Brk75IYL+EfcDzpi3N54CPZuxAZc14MXf6DG/+qT22VlnGzvMu/CRW/OuNZDCi
+ im3DTajAbKUkUlQ/gkw44+N/hPVWnGQ9+KS1XDQMy18Dty3t1iSGf9hbmw2DAnUCrC9d
+ BDOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1726577097; x=1727181897;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=PuR2oEx7UOd4jtIaDKowFjYpkaW0nFWhgHvIpNqBCnA=;
+ b=HKPglcKBnvPNnazZVPcA93gk+pxqiQBuRykNqQV0RDJGTWk9fw2ALCImhR8VzfucrQ
+ perqoJQLaIP5YVAGF9K+1lKiuLuNsdNNFUMReiVI79f7bGK1c1eOVSXtw6ovvJXQbtx3
+ YU5BudaPdK1NeGuTccc4cmrfsQOci38LrueUu8iLwFacxMovZBFgGCJn4+Hj504i8xDG
+ 5nmidjbrtJplT1cxV6tZvVRnr014zph2HGPsmQQQIeid2lsmBVcAGxtxDtOTO7PHUrRI
+ f1Yqyi+Id8r6mAhgBIezIKr9Zonf9RSmkNj/CZwD+XsNLOualseaIBeAq8N8BqOKASXe
+ plCw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWvW3SPf38+1463xLx04bu0La+D5pRIPVMNn+zXA5YRMMu7/eaWsRxsKERBxxFOnAgPMA2cxX8aXOg=@lists.freedesktop.org,
+ AJvYcCX1YUxH8u4u1qFffc0Wa493pA/DUjMuRvcULyukF2sYmKUMPOHBb/IV2m5ZcMQRUTwgiJoN94dO1A4=@lists.freedesktop.org,
+ AJvYcCX6ro5T2sQqDsBEBjJlX+krA720PnbOuKlhPgqM59vCkX5253A/XHHE4NNU/4nL72QV414klcgu2FIM@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxrGjwWQexYNpX3hlrtV0I5ECAOauxoPmMbpdDpieWlqFd6fMmu
+ LyAQsrej3GFTSxOnkdJwJSAnGWd64JcbvpX3JirpUUgmPvyDCptw
+X-Google-Smtp-Source: AGHT+IElrNVLMYeSdPugu8LX32nYuMCgAY1uSEYXmKx1Xd1xFBDpCzFzwKVITNzv1ITogJ2layOxZg==
+X-Received: by 2002:a05:6a00:27a0:b0:714:20a8:d79f with SMTP id
+ d2e1a72fcca58-71936a60409mr23039083b3a.14.1726577097122; 
+ Tue, 17 Sep 2024 05:44:57 -0700 (PDT)
+Received: from fedora.. ([2405:201:d007:50c2:4888:86b4:6f32:9ae])
+ by smtp.gmail.com with ESMTPSA id
+ d2e1a72fcca58-71944a973d7sm5117415b3a.6.2024.09.17.05.44.52
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 17 Sep 2024 05:44:56 -0700 (PDT)
+From: Vamsi Krishna Brahmajosyula <vamsikrishna.brahmajosyula@gmail.com>
+To: gustavo.sousa@intel.com, jani.nikula@linux.intel.com,
+ rodrigo.vivi@intel.com, joonas.lahtinen@linux.intel.com,
+ tursulin@ursulin.net, airlied@gmail.com, daniel@ffwll.ch
+Cc: skhan@linuxfoundation.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH v3] drm/i915/cx0: Set power state to ready only on owned PHY
+ lanes
+Date: Tue, 17 Sep 2024 18:14:49 +0530
+Message-ID: <20240917124449.223206-1-vamsikrishna.brahmajosyula@gmail.com>
+X-Mailer: git-send-email 2.46.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240917082359.2383204-2-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
+X-Mailman-Approved-At: Mon, 23 Sep 2024 12:39:59 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,131 +87,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Sep 17, 2024 at 01:53:57PM +0530, Ankit Nautiyal wrote:
-> From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> 
-> In most of the cases we now try to avoid mentioning things like
-> "bigjoiner" or "ultrajoiner" trying to unify the API and refer
-> mostly to all this functionality as "joiner".
-> In majority cases that should be way to go.
-> However in some cases we still need to distinguish between
-> bigjoiner primaries and secondaries(such as DSC register programming).
-> 
-> Create correspondent helper functions and start using them,
-> in order be prepared for adding ultrajoiner functionality.
-> 
-> v2: Fixed checkpatch warnings (Ankit)
-> v3: Introduce ultrajoiner helpers in next patch.
-> v4: Streamline the helpers and add few more. (Ville)
-> 
-> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 41 ++++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_display.h |  2 +
->  drivers/gpu/drm/i915/display/intel_vdsc.c    |  4 +-
->  3 files changed, 45 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index d4a371edfcdd..deacdf82e143 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -254,6 +254,47 @@ static enum pipe joiner_primary_pipe(const struct intel_crtc_state *crtc_state)
->  	return ffs(crtc_state->joiner_pipes) - 1;
->  }
->  
-> +static bool is_bigjoiner(const struct intel_crtc_state *crtc_state)
-> +{
-> +	return hweight8(crtc_state->joiner_pipes) >= 2;
-> +}
-> +
-> +static u8 bigjoiner_primary_pipes(const struct intel_crtc_state *crtc_state)
-> +{
-> +	if (!is_bigjoiner(crtc_state))
-> +		return 0;
-> +
-> +	return crtc_state->joiner_pipes & (0b01010101 << joiner_primary_pipe(crtc_state));
-> +}
-> +
-> +static unsigned int bigjoiner_secondary_pipes(const struct intel_crtc_state *crtc_state)
-> +{
-> +	if (!is_bigjoiner(crtc_state))
-> +		return 0;
-> +
-> +	return crtc_state->joiner_pipes & (0b10101010 << joiner_primary_pipe(crtc_state));
-> +}
-> +
-> +bool intel_crtc_is_bigjoiner_primary(const struct intel_crtc_state *crtc_state)
-> +{
-> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> +
-> +	if (!is_bigjoiner(crtc_state))
-> +		return false;
-> +
-> +	return BIT(crtc->pipe) & bigjoiner_primary_pipes(crtc_state);
-> +}
-> +
-> +bool intel_crtc_is_bigjoiner_secondary(const struct intel_crtc_state *crtc_state)
-> +{
-> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> +
-> +	if (!is_bigjoiner(crtc_state))
-> +		return false;
-> +
-> +	return BIT(crtc->pipe) & bigjoiner_secondary_pipes(crtc_state);
-> +}
+In DP alt mode, when pin assignment is D, only one PHY lane is owned
+by the display. intel_cx0pll_enable currently performs a power state
+ready on both the lanes in all cases.
 
-We probably want a comment around these somewhere indicating that
-(despite the name) these apply to both bigjoiner and uncompressed
-joiner.
+Address the todo to perfom power state ready on owned lanes.
 
-Unless someone can come up with a better term to use instead of
-"bigjoiner" in these? I'm drawing a blank myself.
+Tested on Meteor Lake-P [Intel Arc Graphics] with DP alt mode.
 
-Anyways, with some clarification added this is
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+v2 -> v3:
+- Fix changelog per Jani Nikula's feedback
+v1 -> v2: Address Gustavo Sousa's feedback
+- Use owned lanes mask to set Phy power state to Ready, instead of
+  maxpclk_lane with DP alt mode check.
+- Owned lanes are obtained from intel_cx0_get_owned_lane_mask().
 
->  u8 intel_crtc_joiner_secondary_pipes(const struct intel_crtc_state *crtc_state)
->  {
->  	if (crtc_state->joiner_pipes)
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-> index 7ca26e5cb20e..894f58ead279 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display.h
-> @@ -426,6 +426,8 @@ bool is_trans_port_sync_master(const struct intel_crtc_state *state);
->  u8 intel_crtc_joined_pipe_mask(const struct intel_crtc_state *crtc_state);
->  bool intel_crtc_is_joiner_secondary(const struct intel_crtc_state *crtc_state);
->  bool intel_crtc_is_joiner_primary(const struct intel_crtc_state *crtc_state);
-> +bool intel_crtc_is_bigjoiner_primary(const struct intel_crtc_state *crtc_state);
-> +bool intel_crtc_is_bigjoiner_secondary(const struct intel_crtc_state *crtc_state);
->  u8 intel_crtc_joiner_secondary_pipes(const struct intel_crtc_state *crtc_state);
->  struct intel_crtc *intel_primary_crtc(const struct intel_crtc_state *crtc_state);
->  bool intel_crtc_get_pipe_config(struct intel_crtc_state *crtc_state);
-> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> index 2e849b015e74..8158e3702ed5 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-> @@ -742,7 +742,7 @@ void intel_uncompressed_joiner_enable(const struct intel_crtc_state *crtc_state)
->  	u32 dss_ctl1_val = 0;
->  
->  	if (crtc_state->joiner_pipes && !crtc_state->dsc.compression_enable) {
-> -		if (intel_crtc_is_joiner_secondary(crtc_state))
-> +		if (intel_crtc_is_bigjoiner_secondary(crtc_state))
->  			dss_ctl1_val |= UNCOMPRESSED_JOINER_SECONDARY;
->  		else
->  			dss_ctl1_val |= UNCOMPRESSED_JOINER_PRIMARY;
-> @@ -771,7 +771,7 @@ void intel_dsc_enable(const struct intel_crtc_state *crtc_state)
->  	}
->  	if (crtc_state->joiner_pipes) {
->  		dss_ctl1_val |= BIG_JOINER_ENABLE;
-> -		if (!intel_crtc_is_joiner_secondary(crtc_state))
-> +		if (intel_crtc_is_bigjoiner_primary(crtc_state))
->  			dss_ctl1_val |= PRIMARY_BIG_JOINER_ENABLE;
->  	}
->  	intel_de_write(dev_priv, dss_ctl1_reg(crtc, crtc_state->cpu_transcoder), dss_ctl1_val);
-> -- 
-> 2.45.2
+Signed-off-by: Vamsi Krishna Brahmajosyula <vamsikrishna.brahmajosyula@gmail.com>
+---
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index 4a6c3040ca15..cbed53d3b250 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -2934,6 +2934,7 @@ static void intel_cx0pll_enable(struct intel_encoder *encoder,
+ 	enum phy phy = intel_encoder_to_phy(encoder);
+ 	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+ 	bool lane_reversal = dig_port->saved_port_bits & DDI_BUF_PORT_REVERSAL;
++	u8 owned_lane_mask = intel_cx0_get_owned_lane_mask(encoder);
+ 	u8 maxpclk_lane = lane_reversal ? INTEL_CX0_LANE1 :
+ 					  INTEL_CX0_LANE0;
+ 	intel_wakeref_t wakeref = intel_cx0_phy_transaction_begin(encoder);
+@@ -2948,10 +2949,9 @@ static void intel_cx0pll_enable(struct intel_encoder *encoder,
+ 	intel_cx0_phy_lane_reset(encoder, lane_reversal);
+ 
+ 	/*
+-	 * 3. Change Phy power state to Ready.
+-	 * TODO: For DP alt mode use only one lane.
++	 * 3. Change Phy power state to Ready on owned lanes.
+ 	 */
+-	intel_cx0_powerdown_change_sequence(encoder, INTEL_CX0_BOTH_LANES,
++	intel_cx0_powerdown_change_sequence(encoder, owned_lane_mask,
+ 					    CX0_P2_STATE_READY);
+ 
+ 	/*
+
+base-commit: ad060dbbcfcfcba624ef1a75e1d71365a98b86d8
 -- 
-Ville Syrjälä
-Intel
+2.46.0
+
