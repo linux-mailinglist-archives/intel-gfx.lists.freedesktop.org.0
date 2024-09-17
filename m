@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5235097B2D2
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Sep 2024 18:16:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 84AD097B2D3
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Sep 2024 18:16:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E125810E4B8;
-	Tue, 17 Sep 2024 16:16:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2BAFB10E4B1;
+	Tue, 17 Sep 2024 16:16:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KIwFlprP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GeV0arQk";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CEC3410E4B6;
- Tue, 17 Sep 2024 16:16:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D7BB10E4B9;
+ Tue, 17 Sep 2024 16:16:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726589767; x=1758125767;
+ t=1726589773; x=1758125773;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=bnucQMXXRqv3nxcGDfsZTA0DU+u7g56oOeTIjYeeiuc=;
- b=KIwFlprPRJp34/TsNaczwKHi6+O/1YSyzYcq654K9hdIaD07MIsMm/y1
- HaSkFaom/KSftFCEHb9SNqwJtYK6SMx1jIp+csN9Pk+An2FhFxm+xHfHc
- KDmbSJ9VVY1XkWCUcSnVvhMGJzbp5fROTxYgThT8CvkCfObWjvLmBCQTE
- yjCJeFw5errgCt7QLKGwRhEJfBcyLN/u8o2bSxOOP6MaTDFyG3Y9KJWFU
- LFiWjE6gIDDB5Ns2ubHpfhR7U7YwsxrRUbXT6bu0xFGCBF6mMe6uGSelH
- f6UXKn7kTL8i/1/YpkT5UNwuck/0SXaJU57WQiwQa7fVb2VQxhxXhs12X w==;
-X-CSE-ConnectionGUID: xfoE7lToTR2q0LFSBeKpSQ==
-X-CSE-MsgGUID: 8Ie5xRoxSHibD2YYvCT0/Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11198"; a="25343568"
-X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="25343568"
+ bh=cHsB6SpmE2/ozgqqP6jnJs4pUKYA+gEFphBGavIU1Zs=;
+ b=GeV0arQkQjhcqvWkukpddeKviKAEu7IvJKs5GqtjhjbbbKwES93I6+LO
+ Hr7pzVqNKSkGoW/UJJb/egkqkI1ha/MEZDY6Wp5NEV4DW1F2ygBF5Dny/
+ XAlfnycaAavotHg7Dl4UFSM85jmkyLxdHBuEzvK1iZKXyPWwBd6X2iCba
+ ZWL+LStnPvsLSGR6fA20WVO23P/zW3aWJg1tZgZV/CnGxBbnxXjcxwFpF
+ 24OfQi9WxFtnqx5nL7jMIWJ6fU5TWB1egGeg8S1jgHdYmzDZYa6GoCGOb
+ Rr0Se/uJi9s6Yxi+lS/hLNgmGljzgp/WP/YWJhSwGIJ1x+ofD0dI/sLmu A==;
+X-CSE-ConnectionGUID: 7v+VL6MKTNCsJdcDIbj1AQ==
+X-CSE-MsgGUID: dCnVtztoQ2Gr8LqHAKiWQQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11198"; a="25343592"
+X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="25343592"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2024 09:16:07 -0700
-X-CSE-ConnectionGUID: 7cDqu5/kRgWQNn26Po/ieQ==
-X-CSE-MsgGUID: vUEUorL4QDSMpLJImdZWTQ==
+ 17 Sep 2024 09:16:13 -0700
+X-CSE-ConnectionGUID: OMI9mMgVSvelwhYwomGz0w==
+X-CSE-MsgGUID: qYH/cI+5T3ivEI8s3QtXQQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="73989320"
+X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="73989339"
 Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.102])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2024 09:16:04 -0700
+ 17 Sep 2024 09:16:11 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: rodrigo.vivi@intel.com, lucas.demarchi@intel.com,
  ville.syrjala@linux.intel.com, maarten.lankhorst@linux.intel.com,
  jani.nikula@intel.com
-Subject: [PATCH 19/22] drm/i915/display: clean up some gem/ includes
-Date: Tue, 17 Sep 2024 19:13:58 +0300
-Message-Id: <afd2917cc0a943660886937bb5f45c277132e147.1726589119.git.jani.nikula@intel.com>
+Subject: [PATCH 20/22] drm/xe/compat: remove a bunch of compat gem headers
+Date: Tue, 17 Sep 2024 19:13:59 +0300
+Message-Id: <2ac115c5dd5f68da9172e9b5bd3a7eb4e10fce60.1726589119.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1726589119.git.jani.nikula@intel.com>
 References: <cover.1726589119.git.jani.nikula@intel.com>
@@ -73,67 +73,128 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Drop some unnecessary gem/ includes.
-
-We seem to include xe_device.h through some compat gem headers, so we
-need to include it directly in compat i915_drv.h to get
-xe_device_has_flat_ccs().
+Now that we've switched to struct drm_gem_object and the intel_bo_*
+interfaces, we no longer need most of the compat gem headers. Remove.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cursor.c       | 2 --
- drivers/gpu/drm/i915/display/intel_fb.c           | 9 ++++-----
- drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h | 1 +
- 3 files changed, 5 insertions(+), 7 deletions(-)
+ .../compat-i915-headers/gem/i915_gem_lmem.h   |  1 -
+ .../compat-i915-headers/gem/i915_gem_mman.h   | 17 ----------
+ .../compat-i915-headers/gem/i915_gem_object.h | 34 -------------------
+ .../gem/i915_gem_object_frontbuffer.h         | 12 -------
+ .../gem/i915_gem_object_types.h               | 11 ------
+ 5 files changed, 75 deletions(-)
+ delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_lmem.h
+ delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_mman.h
+ delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h
+ delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object_frontbuffer.h
+ delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object_types.h
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index 805e0af21a45..050eacc709cc 100644
---- a/drivers/gpu/drm/i915/display/intel_cursor.c
-+++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -27,8 +27,6 @@
- #include "intel_vblank.h"
- #include "skl_watermark.h"
- 
--#include "gem/i915_gem_object.h"
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_lmem.h b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_lmem.h
+deleted file mode 100644
+index 710cecca972d..000000000000
+--- a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_lmem.h
++++ /dev/null
+@@ -1 +0,0 @@
+-/* Empty */
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_mman.h b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_mman.h
+deleted file mode 100644
+index 650ea2803a97..000000000000
+--- a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_mman.h
++++ /dev/null
+@@ -1,17 +0,0 @@
+-/* SPDX-License-Identifier: MIT */
+-/*
+- * Copyright © 2023 Intel Corporation
+- */
 -
- /* Cursor formats */
- static const u32 intel_cursor_formats[] = {
- 	DRM_FORMAT_ARGB8888,
-diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-index eb5ff3ba156c..c03060e5e503 100644
---- a/drivers/gpu/drm/i915/display/intel_fb.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb.c
-@@ -3,14 +3,13 @@
-  * Copyright © 2021 Intel Corporation
-  */
- 
--#include <drm/drm_blend.h>
--#include <drm/drm_modeset_helper.h>
+-#ifndef _I915_GEM_MMAN_H_
+-#define _I915_GEM_MMAN_H_
 -
- #include <linux/dma-fence.h>
- #include <linux/dma-resv.h>
- 
--#include "gem/i915_gem_object.h"
--#include "gem/i915_gem_object_types.h"
-+#include <drm/drm_blend.h>
-+#include <drm/drm_gem.h>
-+#include <drm/drm_modeset_helper.h>
-+
- #include "i915_drv.h"
- #include "intel_atomic_plane.h"
- #include "intel_bo.h"
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-index f27a2c75b56d..00d492f907d8 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-@@ -14,6 +14,7 @@
- 
- #include "i915_utils.h"
- #include "intel_runtime_pm.h"
-+#include "xe_device.h" /* for xe_device_has_flat_ccs() */
- #include "xe_device_types.h"
- 
- static inline struct drm_i915_private *to_i915(const struct drm_device *dev)
+-#include "xe_bo_types.h"
+-#include <drm/drm_prime.h>
+-
+-static inline int i915_gem_fb_mmap(struct xe_bo *bo, struct vm_area_struct *vma)
+-{
+-	return drm_gem_prime_mmap(&bo->ttm.base, vma);
+-}
+-
+-#endif
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h
+deleted file mode 100644
+index 9de90013bae3..000000000000
+--- a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h
++++ /dev/null
+@@ -1,34 +0,0 @@
+-/* SPDX-License-Identifier: MIT */
+-/*
+- * Copyright © 2022 Intel Corporation
+- */
+-
+-#ifndef _I915_GEM_OBJECT_H_
+-#define _I915_GEM_OBJECT_H_
+-
+-#include <linux/types.h>
+-
+-#include "xe_bo.h"
+-
+-#define i915_gem_object_is_shmem(obj) (0) /* We don't use shmem */
+-
+-static inline dma_addr_t i915_gem_object_get_dma_address(const struct xe_bo *bo, pgoff_t n)
+-{
+-	/* Should never be called */
+-	WARN_ON(1);
+-	return n;
+-}
+-
+-static inline bool i915_gem_object_is_tiled(const struct xe_bo *bo)
+-{
+-	/* legacy tiling is unused */
+-	return false;
+-}
+-
+-static inline bool i915_gem_object_is_userptr(const struct xe_bo *bo)
+-{
+-	/* legacy tiling is unused */
+-	return false;
+-}
+-
+-#endif
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object_frontbuffer.h b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object_frontbuffer.h
+deleted file mode 100644
+index 2a3f12d2978c..000000000000
+--- a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object_frontbuffer.h
++++ /dev/null
+@@ -1,12 +0,0 @@
+-/* SPDX-License-Identifier: MIT */
+-/*
+- * Copyright © 2022 Intel Corporation
+- */
+-
+-#ifndef _I915_GEM_OBJECT_FRONTBUFFER_H_
+-#define _I915_GEM_OBJECT_FRONTBUFFER_H_
+-
+-#define i915_gem_object_get_frontbuffer(obj)		NULL
+-#define i915_gem_object_set_frontbuffer(obj, front)	(front)
+-
+-#endif
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object_types.h b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object_types.h
+deleted file mode 100644
+index 7d6bb1abab73..000000000000
+--- a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object_types.h
++++ /dev/null
+@@ -1,11 +0,0 @@
+-/* SPDX-License-Identifier: MIT */
+-/* Copyright © 2024 Intel Corporation */
+-
+-#ifndef __I915_GEM_OBJECT_TYPES_H__
+-#define __I915_GEM_OBJECT_TYPES_H__
+-
+-#include "xe_bo.h"
+-
+-#define to_intel_bo(x) gem_to_xe_bo((x))
+-
+-#endif
 -- 
 2.39.2
 
