@@ -2,61 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB44A97B403
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Sep 2024 20:15:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 40F9E97B419
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Sep 2024 20:22:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E73B10E064;
-	Tue, 17 Sep 2024 18:15:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4582A10E4ED;
+	Tue, 17 Sep 2024 18:22:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Pp5QPWT+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LxGaWGQB";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 60C1A10E064
- for <intel-gfx@lists.freedesktop.org>; Tue, 17 Sep 2024 18:15:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E667E10E4EC;
+ Tue, 17 Sep 2024 18:22:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726596912; x=1758132912;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=EQXDv7cmxImDM4iiM+isdRLb/CLdWYIQBTg1w/daQjQ=;
- b=Pp5QPWT+etOWj84pWo039pDhDDWg7xw3vrR61zbnACNUOc9HTS+0AGne
- TSU+y3MDcUKFXZQUdfdTnwW2GK0ME1Ll5RE5wzk3a5me42pxjc5Sae/ng
- vpdeXo+Gw4GpdOVD5/CbCDb21CQGoYw1I1pdN79L7aVZ8nmSHdRUTv1pj
- u+3RO7rTgw2KHw8XL/WniFkqRM53jVajfmRP5Vzm0jleaO/r92IjoG+tw
- PO57dIcW6kLOKMak4l1oMGtHyG4sT4ifUp0zGAm3dUY5jOXshnonudTpF
- 2ANEM3BBlDn7d1WOGrx/vHqChMejButvBo5BDU7e8wN+9e+TmZzOChG91 A==;
-X-CSE-ConnectionGUID: +W3vC+AYSgKs6sskK+Ruag==
-X-CSE-MsgGUID: KWQbR0tQTkiXfp8m2FPB/Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11198"; a="36042854"
-X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="36042854"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Sep 2024 11:15:11 -0700
-X-CSE-ConnectionGUID: t8RXzH6VS2uHSBY1CvhC6Q==
-X-CSE-MsgGUID: 3tW5Et98T+yInExFptrOuQ==
+ t=1726597364; x=1758133364;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=v56C9kqJJChS5KaB7qCGxfBXnJb89clsMbChSms7YtE=;
+ b=LxGaWGQB+Q9do67+Egf8QgySP0Eh12oyirA1t0pbsw4qQTYjE4U/aX8A
+ m7mpPnT+hC/f39efFYUZzfnirwhHsq9T2nFRMSQ6NQORs7ch1fcWfN9UZ
+ kqanxR6hbMwtdmBs7AVY/XWYzKpqmmUFPDJW3c2v9YMQwW7a4u2zHueJK
+ q9D3B24yzv3IAwkls0sPKCYs/x/Kd4iAkx5D8mGDEEXYnzYRiHR/RCoUq
+ CeGNLqKVqyc9dbANXPnoZN6XCUbicI4EkjO6ndBEHDz9Vd5V0AushYR2o
+ KXOcy5d0CgKCE/pvfS/F1V5kzXt9L0yAg5sEISC4lsv4FUtx7KcbwNdqp Q==;
+X-CSE-ConnectionGUID: FZHCIAvVTU67vVAhXSyh4Q==
+X-CSE-MsgGUID: nZLr9iGoTg2OG8wqEvRvcQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11198"; a="25595803"
+X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="25595803"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2024 11:22:43 -0700
+X-CSE-ConnectionGUID: vUI+zHKCR5mqz87mAmPE9w==
+X-CSE-MsgGUID: n/1tNjgMR3qUMM547jzC/A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="69377357"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 17 Sep 2024 11:15:08 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 17 Sep 2024 21:15:07 +0300
-Date: Tue, 17 Sep 2024 21:15:07 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH v3 2/2] drm/i915/display: Prevent DC6 while vblank is
- enabled for Panel Replay
-Message-ID: <ZunHK2ZvWyRECCxF@intel.com>
-References: <20240917063600.3086259-1-jouni.hogander@intel.com>
- <20240917063600.3086259-3-jouni.hogander@intel.com>
+X-IronPort-AV: E=Sophos;i="6.10,235,1719903600"; d="scan'208";a="74030530"
+Received: from olympicsflex3.amr.corp.intel.com (HELO [10.245.245.31])
+ ([10.245.245.31])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Sep 2024 11:22:41 -0700
+Message-ID: <2ddf117d-8007-47ba-b7e8-b7d2d58d1573@linux.intel.com>
+Date: Tue, 17 Sep 2024 20:22:46 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240917063600.3086259-3-jouni.hogander@intel.com>
-X-Patchwork-Hint: comment
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 03/22] drm/i915/fb: convert parts of intel_fb.c to struct
+ drm_gem_object
+To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: rodrigo.vivi@intel.com, lucas.demarchi@intel.com,
+ ville.syrjala@linux.intel.com
+References: <cover.1726589119.git.jani.nikula@intel.com>
+ <2751dd56c9b45e0ace9b57b861aa0a78d75e779c.1726589119.git.jani.nikula@intel.com>
+Content-Language: en-US
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+In-Reply-To: <2751dd56c9b45e0ace9b57b861aa0a78d75e779c.1726589119.git.jani.nikula@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,127 +74,172 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Sep 17, 2024 at 09:36:00AM +0300, Jouni Högander wrote:
-> We need to block DC6 entry in case of Panel Replay as enabling VBI doesn't
-> prevent DC6 in case of Panel Replay. This causes problems if user-space is
-> polling for vblank events.
+
+
+Den 2024-09-17 kl. 18:13, skrev Jani Nikula:
+> Prefer the driver agnostic struct drm_gem_object over i915 specific
+> struct drm_i915_gem_object. Add new intel_bo_* functions as needed.
 > 
-> Fix this by setting target DC state as DC_STATE_EN_UPTO_DC5 when both
-> source and sink are supporting eDP Panel Replay and VBI is enabled.
-> 
-> v2:
->   - use READ_ONCE in intel_display_vblank_work
->   - use DC_STATE_DISABLE instead of DC_STATE_EN_UPTO_DC6
->   - use intel_crtc->block_dc6_needed
-> 
-> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2296
-> Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 > ---
->  .../gpu/drm/i915/display/intel_display_core.h |  2 ++
->  .../gpu/drm/i915/display/intel_display_irq.c  | 28 +++++++++++++++++++
->  2 files changed, 30 insertions(+)
+>  drivers/gpu/drm/i915/display/intel_bo.c | 10 +++++++++
+>  drivers/gpu/drm/i915/display/intel_bo.h |  2 ++
+>  drivers/gpu/drm/i915/display/intel_fb.c | 29 +++++++++++++------------
+>  drivers/gpu/drm/xe/display/intel_bo.c   | 10 +++++++++
+>  4 files changed, 37 insertions(+), 14 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-> index 0a711114ff2b4..0707bc2047931 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_core.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-> @@ -457,6 +457,8 @@ struct intel_display {
->  		/* For i915gm/i945gm vblank irq workaround */
->  		u8 vblank_enabled;
->  
-> +		struct work_struct vblank_work;
-> +
->  		u32 de_irq_mask[I915_MAX_PIPES];
->  		u32 pipestat_irq_mask[I915_MAX_PIPES];
->  	} irq;
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-> index 8f13f148c73e3..4bdc67e1baa31 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-> @@ -1361,16 +1361,38 @@ static bool gen11_dsi_configure_te(struct intel_crtc *intel_crtc,
->  	return true;
+> diff --git a/drivers/gpu/drm/i915/display/intel_bo.c b/drivers/gpu/drm/i915/display/intel_bo.c
+> index fede0a545951..5708d9bab1ab 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bo.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bo.c
+> @@ -8,3 +8,13 @@ bool intel_bo_is_tiled(struct drm_gem_object *obj)
+>  {
+>  	return i915_gem_object_is_tiled(to_intel_bo(obj));
 >  }
->  
-> +static void intel_display_vblank_work(struct work_struct *work)
-> +{
-> +	struct intel_display *display =
-> +		container_of(work, typeof(*display), irq.vblank_work);
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
-> +	u8 vblank_enabled = READ_ONCE(display->irq.vblank_enabled);
-
-Could be a bool since you don't use the numeric value for anything.
-Or could just not have a local variable since you only use it once
-anyway.
-
 > +
-> +	/*
-> +	 * NOTE: intel_display_power_set_target_dc_state is used only by PSR
-> +	 * code for DC3CO handling. DC3CO target state is currently disabled in
-> +	 * PSR code. If DC3CO is taken into use we need take that into account
-> +	 * here as well.
-> +	 */
-> +	intel_display_power_set_target_dc_state(i915, vblank_enabled ? DC_STATE_DISABLE :
-> +						DC_STATE_EN_UPTO_DC6);
+> +bool intel_bo_is_userptr(struct drm_gem_object *obj)
+> +{
+> +	return i915_gem_object_is_userptr(to_intel_bo(obj));
 > +}
 > +
->  int bdw_enable_vblank(struct drm_crtc *_crtc)
->  {
->  	struct intel_crtc *crtc = to_intel_crtc(_crtc);
-> +	struct intel_display *display = to_intel_display(crtc);
->  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
->  	enum pipe pipe = crtc->pipe;
->  	unsigned long irqflags;
-> +	u8 block_dc6_needed = READ_ONCE(crtc->block_dc6_needed);
-
-This doesn't really need the read once dance IMO since this
-will never change between vblank on/off.
-
-Feels like the introduction of that flag should also be part of
-this patch, and this should be the first patch, and the second
-patch would then just figure out when to set said flag.
-
+> +void intel_bo_flush_if_display(struct drm_gem_object *obj)
+> +{
+> +	i915_gem_object_flush_if_display(to_intel_bo(obj));
+> +}
+> diff --git a/drivers/gpu/drm/i915/display/intel_bo.h b/drivers/gpu/drm/i915/display/intel_bo.h
+> index f5dfcc16d33e..0fa29211a9d0 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bo.h
+> +++ b/drivers/gpu/drm/i915/display/intel_bo.h
+> @@ -9,5 +9,7 @@
+>  struct drm_gem_object;
 >  
->  	if (gen11_dsi_configure_te(crtc, true))
->  		return 0;
+>  bool intel_bo_is_tiled(struct drm_gem_object *obj);
+> +bool intel_bo_is_userptr(struct drm_gem_object *obj);
+> +void intel_bo_flush_if_display(struct drm_gem_object *obj);
 >  
-> +	if (display->irq.vblank_enabled++ == 0 && block_dc6_needed)
-> +		schedule_work(&display->irq.vblank_work);
-> +
->  	spin_lock_irqsave(&dev_priv->irq_lock, irqflags);
->  	bdw_enable_pipe_irq(dev_priv, pipe, GEN8_PIPE_VBLANK);
->  	spin_unlock_irqrestore(&dev_priv->irq_lock, irqflags);
-> @@ -1436,6 +1458,7 @@ void ilk_disable_vblank(struct drm_crtc *crtc)
->  void bdw_disable_vblank(struct drm_crtc *_crtc)
+>  #endif /* __INTEL_BO__ */
+> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+> index 834a49395638..eb8dc3dd21ee 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fb.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
+> @@ -13,6 +13,7 @@
+>  #include "gem/i915_gem_object_types.h"
+>  #include "i915_drv.h"
+>  #include "intel_atomic_plane.h"
+> +#include "intel_bo.h"
+>  #include "intel_display.h"
+>  #include "intel_display_types.h"
+>  #include "intel_dpt.h"
+> @@ -1225,7 +1226,7 @@ static bool intel_plane_needs_remap(const struct intel_plane_state *plane_state)
+>  static int convert_plane_offset_to_xy(const struct intel_framebuffer *fb, int color_plane,
+>  				      int plane_width, int *x, int *y)
 >  {
->  	struct intel_crtc *crtc = to_intel_crtc(_crtc);
-> +	struct intel_display *display = to_intel_display(crtc);
->  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
->  	enum pipe pipe = crtc->pipe;
->  	unsigned long irqflags;
-> @@ -1446,6 +1469,9 @@ void bdw_disable_vblank(struct drm_crtc *_crtc)
->  	spin_lock_irqsave(&dev_priv->irq_lock, irqflags);
->  	bdw_disable_pipe_irq(dev_priv, pipe, GEN8_PIPE_VBLANK);
->  	spin_unlock_irqrestore(&dev_priv->irq_lock, irqflags);
-> +
-> +	if (--display->irq.vblank_enabled == 0)
-
-This one seems to be missing the block_dc6_needed check.
-
-> +		schedule_work(&display->irq.vblank_work);
+> -	struct drm_i915_gem_object *obj = intel_fb_obj(&fb->base);
+> +	struct drm_gem_object *obj = intel_fb_bo(&fb->base);
+>  	int ret;
+>  
+>  	ret = intel_fb_offset_to_xy(x, y, &fb->base, color_plane);
+> @@ -1249,7 +1250,7 @@ static int convert_plane_offset_to_xy(const struct intel_framebuffer *fb, int co
+>  	 * fb layout agrees with the fence layout. We already check that the
+>  	 * fb stride matches the fence stride elsewhere.
+>  	 */
+> -	if (color_plane == 0 && i915_gem_object_is_tiled(obj) &&
+> +	if (color_plane == 0 && intel_bo_is_tiled(obj) &&
+>  	    (*x + plane_width) * fb->base.format->cpp[color_plane] > fb->base.pitches[color_plane]) {
+>  		drm_dbg_kms(fb->base.dev,
+>  			    "bad fb plane %d offset: 0x%x\n",
+> @@ -1569,7 +1570,7 @@ static unsigned int intel_fb_min_alignment(const struct drm_framebuffer *fb)
+>  
+>  int intel_fill_fb_info(struct drm_i915_private *i915, struct intel_framebuffer *fb)
+>  {
+> -	struct drm_i915_gem_object *obj = intel_fb_obj(&fb->base);
+> +	struct drm_gem_object *obj = intel_fb_bo(&fb->base);
+>  	u32 gtt_offset_rotated = 0;
+>  	u32 gtt_offset_remapped = 0;
+>  	unsigned int max_size = 0;
+> @@ -1642,10 +1643,10 @@ int intel_fill_fb_info(struct drm_i915_private *i915, struct intel_framebuffer *
+>  		max_size = max(max_size, offset + size);
+>  	}
+>  
+> -	if (mul_u32_u32(max_size, tile_size) > intel_bo_to_drm_bo(obj)->size) {
+> +	if (mul_u32_u32(max_size, tile_size) > obj->size) {
+>  		drm_dbg_kms(&i915->drm,
+>  			    "fb too big for bo (need %llu bytes, have %zu bytes)\n",
+> -			    mul_u32_u32(max_size, tile_size), intel_bo_to_drm_bo(obj)->size);
+> +			    mul_u32_u32(max_size, tile_size), obj->size);
+>  		return -EINVAL;
+>  	}
+>  
+> @@ -1878,16 +1879,16 @@ static int intel_user_framebuffer_create_handle(struct drm_framebuffer *fb,
+>  						struct drm_file *file,
+>  						unsigned int *handle)
+>  {
+> -	struct drm_i915_gem_object *obj = intel_fb_obj(fb);
+> -	struct drm_i915_private *i915 = to_i915(intel_bo_to_drm_bo(obj)->dev);
+> +	struct drm_gem_object *obj = intel_fb_bo(fb);
+> +	struct intel_display *display = to_intel_display(obj->dev);
+>  
+> -	if (i915_gem_object_is_userptr(obj)) {
+> -		drm_dbg(&i915->drm,
+> +	if (intel_bo_is_userptr(obj)) {
+> +		drm_dbg(display->drm,
+>  			"attempting to use a userptr for a framebuffer, denied\n");
+>  		return -EINVAL;
+>  	}
+>  
+> -	return drm_gem_handle_create(file, intel_bo_to_drm_bo(obj), handle);
+> +	return drm_gem_handle_create(file, obj, handle);
 >  }
 >  
->  void vlv_display_irq_reset(struct drm_i915_private *dev_priv)
-> @@ -1871,4 +1897,6 @@ void intel_display_irq_init(struct drm_i915_private *i915)
->  		i915->display.irq.display_irqs_enabled = false;
+>  struct frontbuffer_fence_cb {
+> @@ -1911,7 +1912,7 @@ static int intel_user_framebuffer_dirty(struct drm_framebuffer *fb,
+>  					struct drm_clip_rect *clips,
+>  					unsigned int num_clips)
+>  {
+> -	struct drm_i915_gem_object *obj = intel_fb_obj(fb);
+> +	struct drm_gem_object *obj = intel_fb_bo(fb);
+>  	struct intel_frontbuffer *front = to_intel_frontbuffer(fb);
+>  	struct dma_fence *fence;
+>  	struct frontbuffer_fence_cb *cb;
+> @@ -1920,10 +1921,10 @@ static int intel_user_framebuffer_dirty(struct drm_framebuffer *fb,
+>  	if (!atomic_read(&front->bits))
+>  		return 0;
 >  
->  	intel_hotplug_irq_init(i915);
+> -	if (dma_resv_test_signaled(intel_bo_to_drm_bo(obj)->resv, dma_resv_usage_rw(false)))
+> +	if (dma_resv_test_signaled(obj->resv, dma_resv_usage_rw(false)))
+>  		goto flush;
+>  
+> -	ret = dma_resv_get_singleton(intel_bo_to_drm_bo(obj)->resv, dma_resv_usage_rw(false),
+> +	ret = dma_resv_get_singleton(obj->resv, dma_resv_usage_rw(false),
+>  				     &fence);
+>  	if (ret || !fence)
+>  		goto flush;
+> @@ -1950,7 +1951,7 @@ static int intel_user_framebuffer_dirty(struct drm_framebuffer *fb,
+>  	return ret;
+>  
+>  flush:
+> -	i915_gem_object_flush_if_display(obj);
+> +	intel_bo_flush_if_display(obj);
+>  	intel_frontbuffer_flush(front, ORIGIN_DIRTYFB);
+>  	return ret;
+>  }
+> diff --git a/drivers/gpu/drm/xe/display/intel_bo.c b/drivers/gpu/drm/xe/display/intel_bo.c
+> index d564fb7d85e5..f57b684050da 100644
+> --- a/drivers/gpu/drm/xe/display/intel_bo.c
+> +++ b/drivers/gpu/drm/xe/display/intel_bo.c
+> @@ -10,3 +10,13 @@ bool intel_bo_is_tiled(struct drm_gem_object *obj)
+>  	/* legacy tiling is unused */
+>  	return false;
+>  }
 > +
-> +	INIT_WORK(&i915->display.irq.vblank_work, intel_display_vblank_work);
+> +bool intel_bo_is_userptr(struct drm_gem_object *obj)
+> +{
+> +	/* legacy tiling is unused */
+This comment should be 'xe does not have userptr bos'. :)
+> +	return false;
+> +}
+> +
+> +void intel_bo_flush_if_display(struct drm_gem_object *obj)
+> +{
+> +}
 
-I'd probably also toss in a flush_work() at the end of
-intel_vblank_off() to make sure the work doesn't linger
-past its due date.
-
--- 
-Ville Syrjälä
-Intel
