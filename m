@@ -2,61 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E227497BE9E
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Sep 2024 17:29:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AD0A97BEA5
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Sep 2024 17:30:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B67310E113;
-	Wed, 18 Sep 2024 15:29:44 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a6dO8Oev";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id D24C810E26E;
+	Wed, 18 Sep 2024 15:30:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D0D4410E113;
- Wed, 18 Sep 2024 15:29:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726673383; x=1758209383;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=b/1VrQYm3TU6FBjsewqbK2HKShBl4GYcqw0r/OxPbVM=;
- b=a6dO8OevEYmigDfi1LoBvXkZnt1dMf+f2LHtDoiRt8XfuEzR97vq3mdb
- sKtydBpDpHAQc2jEUignZQuGqtUFb+GneBbnMWLxou2oPQaMR180YifbQ
- cE0ReI7QreZsDJFiPa1J/iNi1YHGod2dMYLcQ4uf1Q7L4tO+jWvw2WNVf
- ts0uLcApRFdIxlp3af9h6TPhhj951TVf0o54vbXtMNOb+3qXf4+b+qk/W
- 8L2lhWPir7e/bKOErXkhAz3JvZe9By8ciTfNon6F7Ioy4T771CWJLsRfQ
- jBWDAFC84G2okNxMg/z1wh3QMjvaeevAmgINJPuTNsjDqk2CAp39ZkPOF A==;
-X-CSE-ConnectionGUID: znqx/EQoS9q3WpojQ15VMQ==
-X-CSE-MsgGUID: cwVEws/bT4uq3JgkDIAhdQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11199"; a="25687824"
-X-IronPort-AV: E=Sophos;i="6.10,239,1719903600"; d="scan'208";a="25687824"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2024 08:29:43 -0700
-X-CSE-ConnectionGUID: EU3P0K4pT822PFacLrmJ9Q==
-X-CSE-MsgGUID: vmsZaeNQSfKogSYaGzGKHw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,239,1719903600"; d="scan'208";a="69900117"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.202])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2024 08:29:41 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Nemesa Garg <nemesa.garg@intel.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: Nemesa Garg <nemesa.garg@intel.com>
-Subject: Re: [PATCH v3 2/5] drm/i915/display: Compute the scaler filter
- coefficients
-In-Reply-To: <20240917092634.1109572-3-nemesa.garg@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240917092634.1109572-1-nemesa.garg@intel.com>
- <20240917092634.1109572-3-nemesa.garg@intel.com>
-Date: Wed, 18 Sep 2024 18:29:37 +0300
-Message-ID: <871q1haske.fsf@intel.com>
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1CAFF10E26E;
+ Wed, 18 Sep 2024 15:30:57 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7811230272910948733=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_Ultrajoiner_basic_functiona?=
+ =?utf-8?q?lity_series_=28rev9=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 18 Sep 2024 15:30:57 -0000
+Message-ID: <172667345710.1027157.1473562542869878874@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240918144343.2876184-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20240918144343.2876184-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,325 +37,196 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 17 Sep 2024, Nemesa Garg <nemesa.garg@intel.com> wrote:
-> The sharpness property requires the use of one of the scaler
-> so need to set the sharpness scaler coefficient values.
-> These values are based on experiments and vary for different
-> tap value/win size. These values are normalized by taking the
-> sum of all values and then dividing each value with a sum.
->
-> v2: Fix ifndef header naming issue reported by kernel test robot
-> v3: Rename file name[Arun]
->     Replace array size number with macro[Arun]
->
-> Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
-> ---
->  drivers/gpu/drm/i915/Makefile                 |   1 +
->  drivers/gpu/drm/i915/display/intel_display.c  |   2 +
->  .../drm/i915/display/intel_display_types.h    |   2 +
->  .../drm/i915/display/intel_sharpness_filter.c | 106 ++++++++++++++++++
->  .../drm/i915/display/intel_sharpness_filter.h |  38 +++++++
->  drivers/gpu/drm/i915/i915_reg.h               |   2 +
->  drivers/gpu/drm/xe/Makefile                   |   1 +
->  7 files changed, 152 insertions(+)
->  create mode 100644 drivers/gpu/drm/i915/display/intel_sharpness_filter.c
->  create mode 100644 drivers/gpu/drm/i915/display/intel_sharpness_filter.h
->
-> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-> index c63fa2133ccb..28e5f3b95371 100644
-> --- a/drivers/gpu/drm/i915/Makefile
-> +++ b/drivers/gpu/drm/i915/Makefile
-> @@ -280,6 +280,7 @@ i915-y +=3D \
->  	display/intel_pmdemand.o \
->  	display/intel_psr.o \
->  	display/intel_quirks.o \
-> +	display/intel_sharpness_filter.o \
->  	display/intel_sprite.o \
->  	display/intel_sprite_uapi.o \
->  	display/intel_tc.o \
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index b4ef4d59da1a..e447a316ec38 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -5917,6 +5917,8 @@ static int intel_atomic_check_planes(struct intel_a=
-tomic_state *state)
->  		if (ret)
->  			return ret;
->=20=20
-> +		intel_sharpness_scaler_compute_config(new_crtc_state);
-> +
->  		/*
->  		 * On some platforms the number of active planes affects
->  		 * the planes' minimum cdclk calculation. Add such planes
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
-/gpu/drm/i915/display/intel_display_types.h
-> index f29e5dc3db91..5636f9b60d5d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -56,6 +56,7 @@
->  #include "intel_display_power.h"
->  #include "intel_dpll_mgr.h"
->  #include "intel_wm_types.h"
-> +#include "intel_sharpness_filter.h"
+--===============7811230272910948733==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-There are probably very few places that actually need the sharpness
-filter interfaces. Yet this is the only place where you include the
-header, and expose those interfaces to all modules in display.
+== Series Details ==
 
->=20=20
->  struct drm_printer;
->  struct __intel_global_objs_state;
-> @@ -1072,6 +1073,7 @@ struct intel_crtc_state {
->  		struct drm_property_blob *degamma_lut, *gamma_lut, *ctm;
->  		struct drm_display_mode mode, pipe_mode, adjusted_mode;
->  		enum drm_scaling_filter scaling_filter;
-> +		struct intel_sharpness_filter casf_params;
+Series: Ultrajoiner basic functionality series (rev9)
+URL   : https://patchwork.freedesktop.org/series/133800/
+State : success
 
-And it's all because of this. I think it's actually better to hoist the
-struct definition in this file, and drop the include. Yes, this file is
-already massive, but that's a tradeoff I prefer over making the includes
-harder to track.
+== Summary ==
 
-Also, I'm guessing I know what "casf" means, but it's used in the series
-with zero explanation.
+CI Bug Log - changes from CI_DRM_15435 -> Patchwork_133800v9
+====================================================
 
->  	} hw;
->=20=20
->  	/* actual state of LUTs */
-> diff --git a/drivers/gpu/drm/i915/display/intel_sharpness_filter.c b/driv=
-ers/gpu/drm/i915/display/intel_sharpness_filter.c
-> new file mode 100644
-> index 000000000000..e5fbffbe0428
-> --- /dev/null
-> +++ b/drivers/gpu/drm/i915/display/intel_sharpness_filter.c
-> @@ -0,0 +1,106 @@
-> +// SPDX-License-Identifier: MIT
-> +/*
-> + * Copyright =C2=A9 2024 Intel Corporation
-> + *
-> + */
-> +
+Summary
+-------
 
-Please add a brief comment here, describing what this file is about, and
-explain "casf".
+  **SUCCESS**
 
-> +#include "i915_reg.h"
-> +#include "intel_de.h"
-> +#include "intel_display_types.h"
-> +#include "skl_scaler.h"
-> +
-> +#define MAX_NUM_UNIQUE_COEF_FOR_SHARPNESS_FILTER 7
-> +#define SCALER_FILTER_NUM_TAPS 7
+  No regressions found.
 
-This is a duplicate definition.
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v9/index.html
 
-> +#define SCALER_FILTER_NUM_PHASES 17
-> +#define FILTER_COEFF_0_125 125
-> +#define FILTER_COEFF_0_25 250
-> +#define FILTER_COEFF_0_5 500
-> +#define FILTER_COEFF_1_0 1000
-> +#define FILTER_COEFF_0_0 0
-> +
-> +const u16 filtercoeff_1[] =3D {FILTER_COEFF_0_0, FILTER_COEFF_0_0,
-> +FILTER_COEFF_0_5, FILTER_COEFF_1_0, FILTER_COEFF_0_5, FILTER_COEFF_0_0, =
-FILTER_COEFF_0_0};
-> +
-> +const u16 filtercoeff_2[] =3D {FILTER_COEFF_0_0, FILTER_COEFF_0_25,
-> +FILTER_COEFF_0_5, FILTER_COEFF_1_0, FILTER_COEFF_0_5, FILTER_COEFF_0_25,=
- FILTER_COEFF_0_0};
-> +
-> +const u16 filtercoeff_3[] =3D {FILTER_COEFF_0_125, FILTER_COEFF_0_25,
-> +FILTER_COEFF_0_5, FILTER_COEFF_1_0, FILTER_COEFF_0_5, FILTER_COEFF_0_25,=
- FILTER_COEFF_0_125};
-> +
-> +void intel_sharpness_filter_enable(struct intel_crtc_state *crtc_state)
-> +{
-> +	struct intel_display *display =3D to_intel_display(crtc);
-> +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
-> +	int id =3D crtc_state->scaler_state.scaler_id;
-> +
-> +	intel_de_write_fw(display, GLK_PS_COEF_INDEX_SET(crtc->pipe, id, 0),
-> +			  PS_COEF_INDEX_AUTO_INC);
-> +
-> +	intel_de_write_fw(display, GLK_PS_COEF_INDEX_SET(crtc->pipe, id, 1),
-> +			  PS_COEF_INDEX_AUTO_INC);
-> +
-> +	for (int index =3D 0; index < 60; index++) {
+Participating hosts (37 -> 35)
+------------------------------
 
-Magic 60?
+  Additional (1): fi-pnv-d510 
+  Missing    (3): bat-dg2-9 fi-snb-2520m fi-kbl-8809g 
 
-> +		intel_de_write_fw(display, GLK_PS_COEF_DATA_SET(crtc->pipe, id, 0),
-> +				  crtc_state->hw.casf_params.scaler_coefficient[index]);
-> +		intel_de_write_fw(display, GLK_PS_COEF_DATA_SET(crtc->pipe, id, 1),
-> +				  crtc_state->hw.casf_params. scaler_coefficient[index]);
+Known issues
+------------
 
-This is the place to convert some other data to register format, not
-before.
+  Here are the changes found in Patchwork_133800v9 that come from known issues:
 
-> +	}
-> +}
-> +
-> +static void convert_sharpness_coef_binary(struct scaler_filter_coeff *co=
-eff,
-> +					  u16 coefficient)
-> +{
-> +	if (coefficient < 25) {
-> +		coeff->mantissa =3D (coefficient * 2048) / 100;
-> +		coeff->exp =3D 3;
-> +	} else if (coefficient < 50) {
-> +		coeff->mantissa =3D (coefficient * 1024) / 100;
-> +		coeff->exp =3D 2;
-> +	} else if (coefficient < 100) {
-> +		coeff->mantissa =3D (coefficient * 512) / 100;
-> +		coeff->exp =3D 1;
-> +	} else {
-> +		coeff->mantissa =3D (coefficient * 256) / 100;
-> +		coeff->exp =3D 0;
-> +	}
-> +}
-> +
-> +static void intel_sharpness_filter_coeff(struct intel_crtc_state *crtc_s=
-tate)
-> +{
-> +	const u16 *filtercoeff;
-> +	u16 filter_coeff[MAX_NUM_UNIQUE_COEF_FOR_SHARPNESS_FILTER];
-> +	u16 sumcoeff =3D 0;
-> +	u8 i;
-> +
-> +	if (crtc_state->hw.casf_params.win_size =3D=3D 0)
-> +		filtercoeff =3D filtercoeff_1;
-> +	else if (crtc_state->hw.casf_params.win_size =3D=3D 1)
-> +		filtercoeff =3D filtercoeff_2;
-> +	else
-> +		filtercoeff =3D filtercoeff_3;
-> +
-> +	for (i =3D 0; i < MAX_NUM_UNIQUE_COEF_FOR_SHARPNESS_FILTER; i++)
-> +		sumcoeff +=3D *(filtercoeff + i);
-> +
-> +	for (i =3D 0; i < MAX_NUM_UNIQUE_COEF_FOR_SHARPNESS_FILTER; i++) {
-> +		filter_coeff[i] =3D (*(filtercoeff + i) * 100 / sumcoeff);
-> +		convert_sharpness_coef_binary(&crtc_state->hw.casf_params.coeff[i],
-> +					      filter_coeff[i]);
-> +	}
-> +}
-> +
-> +void intel_sharpness_scaler_compute_config(struct intel_crtc_state *crtc=
-_state)
-> +{
-> +	u16 phase, tapindex, phaseoffset;
-> +	u16 *coeff =3D (u16 *)crtc_state->hw.casf_params.scaler_coefficient;
+### IGT changes ###
 
-It's an u32 array. Do not hide this, do not cast it. (It probably
-shouldn't be u32, or u16, but rather a higher level abstraction at this
-stage.)
+#### Issues hit ####
 
-> +
-> +	intel_sharpness_filter_coeff(crtc_state);
-> +
-> +	for (phase =3D 0; phase < SCALER_FILTER_NUM_PHASES; phase++) {
-> +		phaseoffset =3D SCALER_FILTER_NUM_TAPS * phase;
-> +		for (tapindex =3D 0; tapindex < SCALER_FILTER_NUM_TAPS; tapindex++) {
-> +			coeff[phaseoffset + tapindex] =3D
-> +				SHARP_COEFF_TO_REG_FORMAT(crtc_state->hw.casf_params.coeff[tapindex]=
-);
-> +		}
-> +	}
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12:
+    - fi-pnv-d510:        NOTRUN -> [SKIP][1] +33 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v9/fi-pnv-d510/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12.html
 
-Why does compute config need to convert to register format? We don't
-generally store register values in crtc state.
+  
+#### Possible fixes ####
 
-> +}
-> diff --git a/drivers/gpu/drm/i915/display/intel_sharpness_filter.h b/driv=
-ers/gpu/drm/i915/display/intel_sharpness_filter.h
-> new file mode 100644
-> index 000000000000..d1dc65e747fe
-> --- /dev/null
-> +++ b/drivers/gpu/drm/i915/display/intel_sharpness_filter.h
-> @@ -0,0 +1,38 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright =C2=A9 2024 Intel Corporation
-> + */
-> +
-> +#ifndef __INTEL_SHARPNESS_FILTER_H__
-> +#define __INTEL_SHARPNESS_FILTER_H__
-> +
-> +#include <linux/types.h>
-> +
-> +#define SHARP_COEFF_TO_REG_FORMAT(coefficient) ((u16)(coefficient.sign <=
-< 15 | \
-> +			coefficient.exp << 12 | coefficient.mantissa << 3))
+  * igt@i915_selftest@live:
+    - bat-mtlp-8:         [ABORT][2] ([i915#12061]) -> [PASS][3] +1 other test pass
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15435/bat-mtlp-8/igt@i915_selftest@live.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v9/bat-mtlp-8/igt@i915_selftest@live.html
 
-No. Define the registers in terms of the masks and fields. Use the
-register macros to fill in the contents.
+  
+#### Warnings ####
 
-> +
-> +struct intel_crtc;
+  * igt@i915_module_load@reload:
+    - fi-kbl-7567u:       [DMESG-WARN][4] ([i915#180] / [i915#9925]) -> [DMESG-WARN][5] ([i915#180] / [i915#1982] / [i915#9925])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15435/fi-kbl-7567u/igt@i915_module_load@reload.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v9/fi-kbl-7567u/igt@i915_module_load@reload.html
+    - bat-arls-5:         [DMESG-WARN][6] ([i915#11637] / [i915#1982]) -> [DMESG-WARN][7] ([i915#11637])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15435/bat-arls-5/igt@i915_module_load@reload.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v9/bat-arls-5/igt@i915_module_load@reload.html
 
-Unused.
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - fi-kbl-7567u:       [DMESG-WARN][8] ([i915#180] / [i915#1982] / [i915#9925]) -> [DMESG-WARN][9] ([i915#180] / [i915#9925])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15435/fi-kbl-7567u/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v9/fi-kbl-7567u/igt@kms_flip@basic-flip-vs-wf_vblank.html
 
-> +struct intel_crtc_state;
-> +struct intel_atomic_state;
+  * igt@kms_flip@basic-flip-vs-wf_vblank@a-dp1:
+    - fi-kbl-7567u:       [DMESG-WARN][10] ([i915#11621] / [i915#180] / [i915#1982] / [i915#9925]) -> [DMESG-WARN][11] ([i915#11621] / [i915#180] / [i915#9925])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15435/fi-kbl-7567u/igt@kms_flip@basic-flip-vs-wf_vblank@a-dp1.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v9/fi-kbl-7567u/igt@kms_flip@basic-flip-vs-wf_vblank@a-dp1.html
 
-Unused.
+  
+  [i915#11621]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11621
+  [i915#11637]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11637
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#180]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/180
+  [i915#1982]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982
+  [i915#9925]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9925
 
-> +
-> +struct scaler_filter_coeff {
-> +	u16 sign;
-> +	u16 exp;
-> +	u16 mantissa;
-> +};
-> +
-> +struct intel_sharpness_filter {
-> +#defines SCALER_FILTER_NUM_TAPS 7
-> +#define SCLAER_FILTER_COEFF 119
-> +	struct scaler_filter_coeff coeff[SCALER_FILTER_NUM_TAPS];
-> +	u32 scaler_coefficient[SCLAER_FILTER_COEFF];
 
-Why do you need both? Isn't the latter something that's calculated from
-the former?
+Build changes
+-------------
 
-> +	bool strength_changed;
-> +	u8 win_size;
-> +	bool need_scaler;
-> +	u8 strength;
-> +};
-> +
-> +void intel_sharpness_filter_enable(struct intel_crtc_state *crtc_state);
-> +void intel_sharpness_scaler_compute_config(struct intel_crtc_state *crtc=
-_state);
-> +
-> +#endif /* __INTEL_SHARPEN_FILTER_H__ */
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
-reg.h
-> index 41f4350a7c6c..84b05b57ad52 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -2257,6 +2257,8 @@
->  #define   PS_VERT_INT_INVERT_FIELD		REG_BIT(20)
->  #define   PS_PROG_SCALE_FACTOR			REG_BIT(19) /* tgl+ */
->  #define   PS_PWRUP_PROGRESS			REG_BIT(17)
-> +#define   PS_BYPASS_ARMING			REG_BIT(10)
-> +#define   PS_DB_STALL				REG_BIT(9)
->  #define   PS_V_FILTER_BYPASS			REG_BIT(8)
->  #define   PS_VADAPT_EN				REG_BIT(7) /* skl/bxt */
->  #define   PS_VADAPT_MODE_MASK			REG_GENMASK(6, 5) /* skl/bxt */
-> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-> index 8f1c5c329f79..26b4b516c9ec 100644
-> --- a/drivers/gpu/drm/xe/Makefile
-> +++ b/drivers/gpu/drm/xe/Makefile
-> @@ -254,6 +254,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) +=3D \
->  	i915-display/intel_psr.o \
->  	i915-display/intel_qp_tables.o \
->  	i915-display/intel_quirks.o \
-> +	i915-display/intel_sharpness_filter.o \
->  	i915-display/intel_snps_phy.o \
->  	i915-display/intel_tc.o \
->  	i915-display/intel_vblank.o \
+  * IGT: IGT_8024 -> IGTPW_11755
+  * Linux: CI_DRM_15435 -> Patchwork_133800v9
 
---=20
-Jani Nikula, Intel
+  CI-20190529: 20190529
+  CI_DRM_15435: 3abb1f2faac15a9f09824d692d1a38e0c485dc6b @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGTPW_11755: 406ba93e99bbbe39aecf3dad3c6a58ff7a76d816 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8024: 15f8ad0bce184e96d171dfe19c06bdef93e7cf72 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_133800v9: 3abb1f2faac15a9f09824d692d1a38e0c485dc6b @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v9/index.html
+
+--===============7811230272910948733==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Ultrajoiner basic functionality series (rev9)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/133800/">https://patchwork.freedesktop.org/series/133800/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v9/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v9/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_15435 -&gt; Patchwork_133800v9</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v9/index.html</p>
+<h2>Participating hosts (37 -&gt; 35)</h2>
+<p>Additional (1): fi-pnv-d510 <br />
+  Missing    (3): bat-dg2-9 fi-snb-2520m fi-kbl-8809g </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_133800v9 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12:<ul>
+<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v9/fi-pnv-d510/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12.html">SKIP</a> +33 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live:<ul>
+<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15435/bat-mtlp-8/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v9/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@i915_module_load@reload:</p>
+<ul>
+<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15435/fi-kbl-7567u/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/180">i915#180</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9925">i915#9925</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v9/fi-kbl-7567u/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/180">i915#180</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9925">i915#9925</a>)</li>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15435/bat-arls-5/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11637">i915#11637</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982">i915#1982</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v9/bat-arls-5/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11637">i915#11637</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank:</p>
+<ul>
+<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15435/fi-kbl-7567u/igt@kms_flip@basic-flip-vs-wf_vblank.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/180">i915#180</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9925">i915#9925</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v9/fi-kbl-7567u/igt@kms_flip@basic-flip-vs-wf_vblank.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/180">i915#180</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9925">i915#9925</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank@a-dp1:</p>
+<ul>
+<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15435/fi-kbl-7567u/igt@kms_flip@basic-flip-vs-wf_vblank@a-dp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11621">i915#11621</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/180">i915#180</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982">i915#1982</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9925">i915#9925</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_133800v9/fi-kbl-7567u/igt@kms_flip@basic-flip-vs-wf_vblank@a-dp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11621">i915#11621</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/180">i915#180</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9925">i915#9925</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8024 -&gt; IGTPW_11755</li>
+<li>Linux: CI_DRM_15435 -&gt; Patchwork_133800v9</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_15435: 3abb1f2faac15a9f09824d692d1a38e0c485dc6b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGTPW_11755: 406ba93e99bbbe39aecf3dad3c6a58ff7a76d816 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8024: 15f8ad0bce184e96d171dfe19c06bdef93e7cf72 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_133800v9: 3abb1f2faac15a9f09824d692d1a38e0c485dc6b @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============7811230272910948733==--
