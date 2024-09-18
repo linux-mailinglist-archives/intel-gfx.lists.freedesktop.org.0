@@ -2,59 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA48997BE3D
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Sep 2024 16:50:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 60A6C97BE5F
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Sep 2024 17:05:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5590A10E5D2;
-	Wed, 18 Sep 2024 14:50:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20DB610E5E4;
+	Wed, 18 Sep 2024 15:05:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fqLT3Fr1";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="fi1GILGD";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C812E10E5D2;
- Wed, 18 Sep 2024 14:50:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726671054; x=1758207054;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=nxtUSAilqt610FlTdSbHUvcaxE++4IxwzkdBgud2H8I=;
- b=fqLT3Fr1fWieTprMYauWkCCAYkIU3Ozmmbp5/R3BZ32p+yrdWGNh1cAZ
- Uo8q3r7QBflYPC3MzkETEdOResWiaB/waTuLd8KR5OHd6fTlGto0mOAr7
- jy8oYWeqSWRQMr3C0TT6M0qJv7bIFwbQmTNMSRpwfroYt6lJ79zA1EdTl
- p3Qg4lXL//aUia+OCyxLzVh4M2etBH8dB7tEiyEHt2wAIB4/u2GsKtCmJ
- MSTfaTkEURTw4sCPMxzrPWt9cWJYiJGsJBiJVlkdTJpMWv2u1+bcLYvNX
- 8nucO+Hr4njNUbaR9u3fxoWCEuY+tRPplo+0RuTpdl//tUQ9pefnROkcW w==;
-X-CSE-ConnectionGUID: NdoTZp6qSIid2AjGXNq92w==
-X-CSE-MsgGUID: jB9zHwk7QFejkQ0zlMuTRQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11199"; a="29330600"
-X-IronPort-AV: E=Sophos;i="6.10,239,1719903600"; d="scan'208";a="29330600"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2024 07:50:53 -0700
-X-CSE-ConnectionGUID: Ax/A/SLHRU6FYVZgNlkScQ==
-X-CSE-MsgGUID: ThBmuCVrREa8Hk8e40LM+w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,239,1719903600"; d="scan'208";a="74148694"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.202])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2024 07:50:50 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH 2/2] drm/i915/soc: stop using IS_GEN9_LP() and IS_GEN9_BC()
-Date: Wed, 18 Sep 2024 17:50:42 +0300
-Message-Id: <20240918145042.1447857-2-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240918145042.1447857-1-jani.nikula@intel.com>
-References: <20240918145042.1447857-1-jani.nikula@intel.com>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C860F10E5D9;
+ Wed, 18 Sep 2024 15:05:45 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 5389C5C0643;
+ Wed, 18 Sep 2024 15:05:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41C37C4CEC2;
+ Wed, 18 Sep 2024 15:05:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1726671944;
+ bh=NEbsoDGarkF9DcJ1oPB0XKgElHrM+/7uFjvxWCETW0Q=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=fi1GILGDGqdRw5CBleFgjz4TidR4S1TdejI62SRowk6vuJvj9pjXHpSAGdlPfuI1M
+ c3oeEEdj1SqjpjawyCLABhDqu1sCnDS+03+xoA9DYwRWke5QOxrKvgrb+NF/fYtMsY
+ VIFXPeamYNM2JkxHyIaU6Nil5kCJ8iYR+Iv9rNBh7BCaujHbYFPWR64ho6UDyUrYsT
+ 9ckVpjAZHZVEqjv9mYDoOZXB1Xlag32yFPdhICgUt8BNTKeqYMYHlaQr17xMflUtaf
+ 8/vEFafIFhm2kX5+RPV1NTouAhBw/rsvEdF4mDTTC/ita6U5rdLUV5bviZlp7H4KZO
+ KkWckROIB9C4w==
+Date: Wed, 18 Sep 2024 08:05:42 -0700
+From: Nathan Chancellor <nathan@kernel.org>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Matthew Auld <matthew.auld@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Anshuman Gupta <anshuman.gupta@intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>, stable@vger.kernel.org
+Subject: Re: [PATCH 1/5] drm/i915/gem: fix bitwise and logical AND mixup
+Message-ID: <20240918150542.GA4049109@thelio-3990X>
+References: <cover.1726658138.git.jani.nikula@intel.com>
+ <dec5992d78db5bc556600c64ce72aa9b19c96c77.1726658138.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <dec5992d78db5bc556600c64ce72aa9b19c96c77.1726658138.git.jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,73 +61,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Replace IS_GEN9_LP() and IS_GEN9_BC() with direct platform checks. This
-lets us remove their compat counterparts, as neither soc/ nor /display
-now no longer needs them.
+On Wed, Sep 18, 2024 at 02:17:44PM +0300, Jani Nikula wrote:
+> CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND is an int, defaulting to 250. When
+> the wakeref is non-zero, it's either -1 or a dynamically allocated
+> pointer, depending on CONFIG_DRM_I915_DEBUG_RUNTIME_PM. It's likely that
+> the code works by coincidence with the bitwise AND, but with
+> CONFIG_DRM_I915_DEBUG_RUNTIME_PM=y, there's the off chance that the
+> condition evaluates to false, and intel_wakeref_auto() doesn't get
+> called. Switch to the intended logical AND.
+> 
+> Fixes: ad74457a6b5a ("drm/i915/dgfx: Release mmap on rpm suspend")
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Anshuman Gupta <anshuman.gupta@intel.com>
+> Cc: Andi Shyti <andi.shyti@linux.intel.com>
+> Cc: <stable@vger.kernel.org> # v6.1+
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> index 5c72462d1f57..c157ade48c39 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+> @@ -1131,7 +1131,7 @@ static vm_fault_t vm_fault_ttm(struct vm_fault *vmf)
+>  		GEM_WARN_ON(!i915_ttm_cpu_maps_iomem(bo->resource));
+>  	}
+>  
+> -	if (wakeref & CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND)
+> +	if (wakeref && CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND)
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/soc/intel_dram.c             | 4 ++--
- drivers/gpu/drm/i915/soc/intel_pch.c              | 9 ++++++---
- drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h | 3 ---
- 3 files changed, 8 insertions(+), 8 deletions(-)
+This is going to result in a clang warning:
 
-diff --git a/drivers/gpu/drm/i915/soc/intel_dram.c b/drivers/gpu/drm/i915/soc/intel_dram.c
-index 4aba47bccc63..9e310f4099f4 100644
---- a/drivers/gpu/drm/i915/soc/intel_dram.c
-+++ b/drivers/gpu/drm/i915/soc/intel_dram.c
-@@ -714,7 +714,7 @@ void intel_dram_detect(struct drm_i915_private *i915)
- 	 * Assume level 0 watermark latency adjustment is needed until proven
- 	 * otherwise, this w/a is not needed by bxt/glk.
- 	 */
--	dram_info->wm_lv_0_adjust_needed = !IS_GEN9_LP(i915);
-+	dram_info->wm_lv_0_adjust_needed = !IS_BROXTON(i915) && !IS_GEMINILAKE(i915);
- 
- 	if (DISPLAY_VER(i915) >= 14)
- 		ret = xelpdp_get_dram_info(i915);
-@@ -722,7 +722,7 @@ void intel_dram_detect(struct drm_i915_private *i915)
- 		ret = gen12_get_dram_info(i915);
- 	else if (GRAPHICS_VER(i915) >= 11)
- 		ret = gen11_get_dram_info(i915);
--	else if (IS_GEN9_LP(i915))
-+	else if (IS_BROXTON(i915) || IS_GEMINILAKE(i915))
- 		ret = bxt_get_dram_info(i915);
- 	else
- 		ret = skl_get_dram_info(i915);
-diff --git a/drivers/gpu/drm/i915/soc/intel_pch.c b/drivers/gpu/drm/i915/soc/intel_pch.c
-index 542eea50093c..f7e3745bb1dc 100644
---- a/drivers/gpu/drm/i915/soc/intel_pch.c
-+++ b/drivers/gpu/drm/i915/soc/intel_pch.c
-@@ -122,9 +122,12 @@ intel_pch_type(const struct drm_i915_private *dev_priv, unsigned short id)
- 	case INTEL_PCH_TGP_DEVICE_ID_TYPE:
- 	case INTEL_PCH_TGP2_DEVICE_ID_TYPE:
- 		drm_dbg_kms(&dev_priv->drm, "Found Tiger Lake LP PCH\n");
--		drm_WARN_ON(&dev_priv->drm, !IS_TIGERLAKE(dev_priv) &&
--			    !IS_ROCKETLAKE(dev_priv) &&
--			    !IS_GEN9_BC(dev_priv));
-+		drm_WARN_ON(&dev_priv->drm, !(IS_TIGERLAKE(dev_priv) ||
-+					      IS_ROCKETLAKE(dev_priv) ||
-+					      IS_SKYLAKE(dev_priv) ||
-+					      IS_KABYLAKE(dev_priv) ||
-+					      IS_COFFEELAKE(dev_priv) ||
-+					      IS_COMETLAKE(dev_priv)));
- 		return PCH_TGP;
- 	case INTEL_PCH_JSP_DEVICE_ID_TYPE:
- 		drm_dbg_kms(&dev_priv->drm, "Found Jasper Lake PCH\n");
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-index c43673bcecde..684e7a25e3ef 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-@@ -75,9 +75,6 @@ static inline struct drm_i915_private *to_i915(const struct drm_device *dev)
- 
- #define IS_MOBILE(xe) (xe && 0)
- 
--#define IS_GEN9_LP(xe) ((xe) && 0)
--#define IS_GEN9_BC(xe) ((xe) && 0)
--
- #define IS_TIGERLAKE_UY(xe) (xe && 0)
- #define IS_COMETLAKE_ULX(xe) (xe && 0)
- #define IS_COFFEELAKE_ULX(xe) (xe && 0)
--- 
-2.39.2
+  drivers/gpu/drm/i915/gem/i915_gem_ttm.c:1134:14: error: use of logical '&&' with constant operand [-Werror,-Wconstant-logical-operand]
+   1134 |         if (wakeref && CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND)
+        |                     ^  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  drivers/gpu/drm/i915/gem/i915_gem_ttm.c:1134:14: note: use '&' for a bitwise operation
+   1134 |         if (wakeref && CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND)
+        |                     ^~
+        |                     &
+  drivers/gpu/drm/i915/gem/i915_gem_ttm.c:1134:14: note: remove constant to silence this warning
+   1134 |         if (wakeref && CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND)
+        |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  1 error generated.
 
+Consider adding the explicit '!= 0' to make it clear this should be a
+boolean expression.
+
+Cheers,
+Nathan
+
+>  		intel_wakeref_auto(&to_i915(obj->base.dev)->runtime_pm.userfault_wakeref,
+>  				   msecs_to_jiffies_timeout(CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND));
+>  
+> -- 
+> 2.39.2
+> 
