@@ -2,56 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64D6F97BE32
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Sep 2024 16:45:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A9DB97BE3C
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Sep 2024 16:50:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C72C10E5CE;
-	Wed, 18 Sep 2024 14:45:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C07F710E5CF;
+	Wed, 18 Sep 2024 14:50:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KBqeLCes";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GW1zaQV7";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9DCD410E5CE
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Sep 2024 14:45:07 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 282D510E5CF;
+ Wed, 18 Sep 2024 14:50:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726670708; x=1758206708;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=ddjvBPcGAKLTOxowU4etL/8NNcdA7a+Fus/PO493u9Q=;
- b=KBqeLCesMM2RLm9EKmL4Jw5ulO23jdhZSjCiONP712ykcCUpuGs3epFe
- kcCcbw1RfY+BwpIx8JNLIeQ/h/JqiRq1utx0uNuk2/3NWKDyLThpBcVY2
- AdWwaFi7vY/TbqJJZpe7TMOgTdPD8Ld2RFZZQ4Idtdr1GV48TPpyvOEQJ
- LSJmozTZ/afOCjgfVW65iHEOFBe6CNWiA+IVbHHV9GLbfCHbCzbXrisK8
- S98yVjvn+Sngayx8U8F7DyyN7XyfgpJzpH+5RdZQr2U2kZZiI4ouHFquL
- 9U2LC2VyqDj10615ZK9ew8EFRPrp5WneePCIBnuXIGJkUqKc5/lvfdqCP A==;
-X-CSE-ConnectionGUID: +owOYk1USKaK4U4vMGjQkA==
-X-CSE-MsgGUID: GSjUK5g2QlWQBMwNXFwzhg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11199"; a="36963618"
-X-IronPort-AV: E=Sophos;i="6.10,239,1719903600"; d="scan'208";a="36963618"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2024 07:45:08 -0700
-X-CSE-ConnectionGUID: VJDbWfNJQgKJpNQAbRCz8A==
-X-CSE-MsgGUID: EW0wA+4jS+CmgeTbD6RK4A==
+ t=1726671049; x=1758207049;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=m4ybgkEB7ZT/U+WeAIEHrW9RLo/fr2lyRHD5BPqZK/U=;
+ b=GW1zaQV72+1B4XFkme71c+ySlF78kmVPxygt5RQS9LSx0DkLnT36k8q1
+ zrwLkptTIEmQBVGi/wt+2sziJjK7BXVySVnt7di7Un+Xp/vtNUqwnSj1P
+ BQdLY8jf9KoE7zwoSSamReC0Dw29xYDufNbTdv/66Q7oFdbP1a01h6PRq
+ 5ZZqrNlFVN31ISBbgmXEQq7rSpJyf1wfYKT2zs6fTcgae/YVFmbpoLqdt
+ jTz/nZbemVmRCELrAy7aHRXMXxV+PX9Wu0mJJhZcphxc4fK6GxZ+Qa2zt
+ VpGGKskkwER2c3pw7tUIs52StEzcMOGvuRViXgHj0Di33dEUBitMijxN4 w==;
+X-CSE-ConnectionGUID: EkoNbeaSSXKFsnnUwr+wSQ==
+X-CSE-MsgGUID: xPG1AloKQQCTDVZmdFjfYg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11199"; a="29330591"
+X-IronPort-AV: E=Sophos;i="6.10,239,1719903600"; d="scan'208";a="29330591"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2024 07:50:48 -0700
+X-CSE-ConnectionGUID: xNrROfyDSEG2QbFG1l7Dcg==
+X-CSE-MsgGUID: UXsfhwCmRPKj1zNWJpXMlA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,239,1719903600"; d="scan'208";a="69711361"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 18 Sep 2024 07:45:05 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 18 Sep 2024 17:45:05 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 7/7] drm/i915: s/gen12/tgl/ in the universal plane code
-Date: Wed, 18 Sep 2024 17:44:45 +0300
-Message-ID: <20240918144445.5716-8-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.44.2
-In-Reply-To: <20240918144445.5716-1-ville.syrjala@linux.intel.com>
-References: <20240918144445.5716-1-ville.syrjala@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.10,239,1719903600"; d="scan'208";a="74148683"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.202])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2024 07:50:46 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH 1/2] drm/i915: remove IS_LP()
+Date: Wed, 18 Sep 2024 17:50:41 +0300
+Message-Id: <20240918145042.1447857-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,77 +68,157 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+The .is_lp member of struct intel_device_info and its wrapper IS_LP()
+are used to identify just four platforms, VLV/CHV/BXT/GLK. It didn't
+become as important as it was perhaps originally planned. Just remove
+it, and replace with exact platform identification. In a few places this
+becomes slightly verbose, but in many places it improves clarity to
+immediately see the exact platforms.
 
-Using "gen12" in display code is not desirable. Replace
-it with "tgl" to match how we talk about other platforms
-in the same code.
+Additionally, this lets us remove the xe compat macro.
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- .../gpu/drm/i915/display/skl_universal_plane.c   | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_device.h | 2 +-
+ drivers/gpu/drm/i915/display/intel_dpll.c           | 7 +++++--
+ drivers/gpu/drm/i915/display/intel_pps.c            | 4 +++-
+ drivers/gpu/drm/i915/gem/i915_gem_stolen.c          | 2 +-
+ drivers/gpu/drm/i915/i915_drv.h                     | 5 ++---
+ drivers/gpu/drm/i915/i915_pci.c                     | 3 ---
+ drivers/gpu/drm/i915/intel_device_info.h            | 1 -
+ drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h   | 1 -
+ 8 files changed, 12 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index f56d679b0143..a82297fb4213 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -2355,8 +2355,8 @@ static bool icl_plane_format_mod_supported(struct drm_plane *_plane,
- 	}
- }
- 
--static bool gen12_plane_format_mod_supported(struct drm_plane *_plane,
--					     u32 format, u64 modifier)
-+static bool tgl_plane_format_mod_supported(struct drm_plane *_plane,
-+					   u32 format, u64 modifier)
- {
- 	struct intel_plane *plane = to_intel_plane(_plane);
- 
-@@ -2425,13 +2425,13 @@ static const struct drm_plane_funcs icl_plane_funcs = {
- 	.format_mod_supported = icl_plane_format_mod_supported,
- };
- 
--static const struct drm_plane_funcs gen12_plane_funcs = {
-+static const struct drm_plane_funcs tgl_plane_funcs = {
- 	.update_plane = drm_atomic_helper_update_plane,
- 	.disable_plane = drm_atomic_helper_disable_plane,
- 	.destroy = intel_plane_destroy,
- 	.atomic_duplicate_state = intel_plane_duplicate_state,
- 	.atomic_destroy_state = intel_plane_destroy_state,
--	.format_mod_supported = gen12_plane_format_mod_supported,
-+	.format_mod_supported = tgl_plane_format_mod_supported,
- };
- 
- static void
-@@ -2473,8 +2473,8 @@ static bool skl_plane_has_rc_ccs(struct drm_i915_private *i915,
- 		(plane_id == PLANE_1 || plane_id == PLANE_2);
- }
- 
--static bool gen12_plane_has_mc_ccs(struct drm_i915_private *i915,
--				   enum plane_id plane_id)
-+static bool tgl_plane_has_mc_ccs(struct drm_i915_private *i915,
-+				 enum plane_id plane_id)
- {
- 	if (DISPLAY_VER(i915) < 12)
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+index 5306bbd13e59..54dc95f7535b 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.h
++++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+@@ -150,7 +150,7 @@ enum intel_display_subplatform {
+ #define HAS_PSR(i915)			(DISPLAY_INFO(i915)->has_psr)
+ #define HAS_PSR_HW_TRACKING(i915)	(DISPLAY_INFO(i915)->has_psr_hw_tracking)
+ #define HAS_PSR2_SEL_FETCH(i915)	(DISPLAY_VER(i915) >= 12)
+-#define HAS_SAGV(i915)			(DISPLAY_VER(i915) >= 9 && !IS_LP(i915))
++#define HAS_SAGV(i915)			(DISPLAY_VER(i915) >= 9 && !IS_BROXTON(i915) && !IS_GEMINILAKE(i915))
+ #define HAS_TRANSCODER(i915, trans)	((DISPLAY_RUNTIME_INFO(i915)->cpu_transcoder_mask & \
+ 					  BIT(trans)) != 0)
+ #define HAS_UNCOMPRESSED_JOINER(i915)	(DISPLAY_VER(i915) >= 13)
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
+index 38e34b72bc4e..b679c5391fe6 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll.c
+@@ -589,11 +589,14 @@ static bool intel_pll_is_valid(struct drm_i915_private *dev_priv,
+ 	if (clock->m1 < limit->m1.min || limit->m1.max < clock->m1)
  		return false;
-@@ -2512,7 +2512,7 @@ static u8 skl_get_plane_caps(struct drm_i915_private *i915,
- 			caps |= INTEL_PLANE_CAP_CCS_RC_CC;
- 	}
  
--	if (gen12_plane_has_mc_ccs(i915, plane_id))
-+	if (tgl_plane_has_mc_ccs(i915, plane_id))
- 		caps |= INTEL_PLANE_CAP_CCS_MC;
+-	if (!IS_PINEVIEW(dev_priv) && !IS_LP(dev_priv))
++	if (!IS_PINEVIEW(dev_priv) &&
++	    !IS_VALLEYVIEW(dev_priv) && !IS_CHERRYVIEW(dev_priv) &&
++	    !IS_BROXTON(dev_priv) && !IS_GEMINILAKE(dev_priv))
+ 		if (clock->m1 <= clock->m2)
+ 			return false;
  
- 	if (DISPLAY_VER(i915) >= 14 && IS_DGFX(i915))
-@@ -2603,7 +2603,7 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
- 						plane_id, &num_formats);
+-	if (!IS_LP(dev_priv)) {
++	if (!IS_VALLEYVIEW(dev_priv) && !IS_CHERRYVIEW(dev_priv) &&
++	    !IS_BROXTON(dev_priv) && !IS_GEMINILAKE(dev_priv)) {
+ 		if (clock->p < limit->p.min || limit->p.max < clock->p)
+ 			return false;
+ 		if (clock->m < limit->m.min || limit->m.max < clock->m)
+diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
+index cdbac9f5a14c..cb1e0992b759 100644
+--- a/drivers/gpu/drm/i915/display/intel_pps.c
++++ b/drivers/gpu/drm/i915/display/intel_pps.c
+@@ -453,7 +453,9 @@ void intel_pps_reset_all(struct intel_display *display)
+ 	struct drm_i915_private *dev_priv = to_i915(display->drm);
+ 	struct intel_encoder *encoder;
  
- 	if (DISPLAY_VER(dev_priv) >= 12)
--		plane_funcs = &gen12_plane_funcs;
-+		plane_funcs = &tgl_plane_funcs;
- 	else if (DISPLAY_VER(dev_priv) == 11)
- 		plane_funcs = &icl_plane_funcs;
- 	else
+-	if (drm_WARN_ON(display->drm, !IS_LP(dev_priv)))
++	if (drm_WARN_ON(display->drm,
++			!IS_VALLEYVIEW(dev_priv) && !IS_CHERRYVIEW(dev_priv) &&
++			!IS_BROXTON(dev_priv) && !IS_GEMINILAKE(dev_priv)))
+ 		return;
+ 
+ 	if (!HAS_DISPLAY(display))
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+index d29005980806..9d958a6f377e 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
+@@ -457,7 +457,7 @@ static int init_reserved_stolen(struct drm_i915_private *i915)
+ 		icl_get_stolen_reserved(i915, uncore,
+ 					&reserved_base, &reserved_size);
+ 	} else if (GRAPHICS_VER(i915) >= 8) {
+-		if (IS_LP(i915))
++		if (IS_CHERRYVIEW(i915) || IS_BROXTON(i915) || IS_GEMINILAKE(i915))
+ 			chv_get_stolen_reserved(i915, uncore,
+ 						&reserved_base, &reserved_size);
+ 		else
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index def3ca135406..3c4b106cc7a0 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -612,9 +612,8 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+ #define IS_TIGERLAKE_UY(i915) \
+ 	IS_SUBPLATFORM(i915, INTEL_TIGERLAKE, INTEL_SUBPLATFORM_UY)
+ 
+-#define IS_LP(i915)		(INTEL_INFO(i915)->is_lp)
+-#define IS_GEN9_LP(i915)	(GRAPHICS_VER(i915) == 9 && IS_LP(i915))
+-#define IS_GEN9_BC(i915)	(GRAPHICS_VER(i915) == 9 && !IS_LP(i915))
++#define IS_GEN9_LP(i915)	(IS_BROXTON(i915) || IS_GEMINILAKE(i915))
++#define IS_GEN9_BC(i915)	(GRAPHICS_VER(i915) == 9 && !IS_GEN9_LP(i915))
+ 
+ #define __HAS_ENGINE(engine_mask, id) ((engine_mask) & BIT(id))
+ #define HAS_ENGINE(gt, id) __HAS_ENGINE((gt)->info.engine_mask, id)
+diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
+index 617f411feb8c..eaf8a098e1c5 100644
+--- a/drivers/gpu/drm/i915/i915_pci.c
++++ b/drivers/gpu/drm/i915/i915_pci.c
+@@ -367,7 +367,6 @@ static const struct intel_device_info ivb_q_info = {
+ static const struct intel_device_info vlv_info = {
+ 	PLATFORM(INTEL_VALLEYVIEW),
+ 	GEN(7),
+-	.is_lp = 1,
+ 	.has_runtime_pm = 1,
+ 	.has_rc6 = 1,
+ 	.has_reset_engine = true,
+@@ -451,7 +450,6 @@ static const struct intel_device_info bdw_gt3_info = {
+ static const struct intel_device_info chv_info = {
+ 	PLATFORM(INTEL_CHERRYVIEW),
+ 	GEN(8),
+-	.is_lp = 1,
+ 	.platform_engine_mask = BIT(RCS0) | BIT(VCS0) | BIT(BCS0) | BIT(VECS0),
+ 	.has_64bit_reloc = 1,
+ 	.has_runtime_pm = 1,
+@@ -512,7 +510,6 @@ static const struct intel_device_info skl_gt4_info = {
+ 
+ #define GEN9_LP_FEATURES \
+ 	GEN(9), \
+-	.is_lp = 1, \
+ 	.platform_engine_mask = BIT(RCS0) | BIT(VCS0) | BIT(BCS0) | BIT(VECS0), \
+ 	.has_3d_pipeline = 1, \
+ 	.has_64bit_reloc = 1, \
+diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
+index 643ff1bf74ee..4f4aa4ff9963 100644
+--- a/drivers/gpu/drm/i915/intel_device_info.h
++++ b/drivers/gpu/drm/i915/intel_device_info.h
+@@ -138,7 +138,6 @@ enum intel_ppgtt_type {
+ 
+ #define DEV_INFO_FOR_EACH_FLAG(func) \
+ 	func(is_mobile); \
+-	func(is_lp); \
+ 	func(require_force_probe); \
+ 	func(is_dgfx); \
+ 	/* Keep has_* in alphabetical order */ \
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+index f27a2c75b56d..c43673bcecde 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+@@ -75,7 +75,6 @@ static inline struct drm_i915_private *to_i915(const struct drm_device *dev)
+ 
+ #define IS_MOBILE(xe) (xe && 0)
+ 
+-#define IS_LP(xe) ((xe) && 0)
+ #define IS_GEN9_LP(xe) ((xe) && 0)
+ #define IS_GEN9_BC(xe) ((xe) && 0)
+ 
 -- 
-2.44.2
+2.39.2
 
