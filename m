@@ -2,62 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E86A997BCFF
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Sep 2024 15:25:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 18D0897BD0F
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Sep 2024 15:33:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 86BCD10E265;
-	Wed, 18 Sep 2024 13:25:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 515FD10E59D;
+	Wed, 18 Sep 2024 13:33:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UvIylYbe";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="JaFpgDg+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6557510E19B;
- Wed, 18 Sep 2024 13:24:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726665899; x=1758201899;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=/LAA4EJIg52bKSE0rQfIY4l8Ih6Jw/u/MwRTL4ohXFU=;
- b=UvIylYbea839UyE65CtgPvtgikVFuHna4SpDARyRQnwO6nEKrjVIzni6
- C9feaRujljQLAyvERvFayAh3dEwCbU9wFrQbftnmdqiz4yqW6uP1SDet2
- OsciJsN/hMNecnAyA+3gpF0nVuPlu6iLvQXap4uJ45u0Mw/0zUwTvOUey
- 7T8sOpUuEUV+aqSpbIdCa+vhp5x9F2jjRcfbA3MVfGGOJBsWZgE8UaLO+
- bH4QWYUPVeDdbMC4jxvARPwYi8Ds+kAKkqAHqyRxU0lIMYbwRvH2yjuza
- sDEeLdA3S+lj6kSeMcC2KptO4t9QjGGfpUwyBcsG66lPUDCqqzT3dBISh w==;
-X-CSE-ConnectionGUID: 1YRmWFy5Qsax5fkAKPOfKQ==
-X-CSE-MsgGUID: kwjdAUErQwejEF3uKlFxow==
-X-IronPort-AV: E=McAfee;i="6700,10204,11199"; a="25517027"
-X-IronPort-AV: E=Sophos;i="6.10,238,1719903600"; d="scan'208";a="25517027"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2024 06:24:46 -0700
-X-CSE-ConnectionGUID: aztiQoaPT/ChmChtGyZM4w==
-X-CSE-MsgGUID: lbYSVQ79RjCVlgS+T5epHA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,238,1719903600"; d="scan'208";a="73708488"
-Received: from ksztyber-mobl2.ger.corp.intel.com (HELO intel.com)
- ([10.245.246.223])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2024 06:24:43 -0700
-Date: Wed, 18 Sep 2024 15:24:40 +0200
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Matthew Auld <matthew.auld@intel.com>,
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A37D310E59B;
+ Wed, 18 Sep 2024 13:33:12 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id 71CA4A438F1;
+ Wed, 18 Sep 2024 13:33:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C5A0C4CEC3;
+ Wed, 18 Sep 2024 13:33:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1726666390;
+ bh=kRkUS7LO6EHDAgc6dBBV50sa5FPk23bEBsz9c+ckCac=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=JaFpgDg+fkD7VkuP8VmJqFyRKHCnEG1BWCXiezqQ67NNt1XGXE6+JMr0kMdoGzDqK
+ KiF6h3eLM9t9YfLLf72JimYMHXzkHcv78uahqXPZdKxklDaaw7a//+OFZOdUkTtuXj
+ v3BIka+rHr5fcYAkOogqWB2OGkt4IEfU3pQE5asdasKULjXrBF/y4+zULMPzlTaJMO
+ bXOg1H9bGK/8m4HFSuoQAFu0a1kJVlUuzvf/mEURtUoTW9Jkc5VPbMeda0FK8eK3Jn
+ FYv04z5LPRie7kr3ErbMIhKxkCVTf4CLT1ZyhwNM7I9KE3E+nnjCFp/xT+OmhAJ0TI
+ WN2xxaVoFjJZA==
+Date: Wed, 18 Sep 2024 15:33:07 +0200
+From: Mark Brown <broonie@kernel.org>
+To: Alexander Usyskin <alexander.usyskin@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Anshuman Gupta <anshuman.gupta@intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>, stable@vger.kernel.org
-Subject: Re: [PATCH 1/5] drm/i915/gem: fix bitwise and logical AND mixup
-Message-ID: <ZurUmA5D04FgV2v6@ashyti-mobl2.lan>
-References: <cover.1726658138.git.jani.nikula@intel.com>
- <dec5992d78db5bc556600c64ce72aa9b19c96c77.1726658138.git.jani.nikula@intel.com>
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Tomas Winkler <tomas.winkler@intel.com>,
+ Vitaly Lubart <vitaly.lubart@intel.com>,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-spi@vger.kernel.org, intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH v6 01/12] spi: add driver for intel graphics on-die spi
+ device
+Message-ID: <ZurWk_eXSQndgA4Y@finisterre.sirena.org.uk>
+References: <20240916134928.3654054-1-alexander.usyskin@intel.com>
+ <20240916134928.3654054-2-alexander.usyskin@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="5JWxWqEiot4+TAHg"
 Content-Disposition: inline
-In-Reply-To: <dec5992d78db5bc556600c64ce72aa9b19c96c77.1726658138.git.jani.nikula@intel.com>
+In-Reply-To: <20240916134928.3654054-2-alexander.usyskin@intel.com>
+X-Cookie: Editing is a rewording activity.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,47 +74,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Jani,
 
-On Wed, Sep 18, 2024 at 02:17:44PM +0300, Jani Nikula wrote:
-> CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND is an int, defaulting to 250. When
-> the wakeref is non-zero, it's either -1 or a dynamically allocated
-> pointer, depending on CONFIG_DRM_I915_DEBUG_RUNTIME_PM. It's likely that
-> the code works by coincidence with the bitwise AND, but with
-> CONFIG_DRM_I915_DEBUG_RUNTIME_PM=y, there's the off chance that the
-> condition evaluates to false, and intel_wakeref_auto() doesn't get
-> called. Switch to the intended logical AND.
-> 
-> Fixes: ad74457a6b5a ("drm/i915/dgfx: Release mmap on rpm suspend")
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Anshuman Gupta <anshuman.gupta@intel.com>
-> Cc: Andi Shyti <andi.shyti@linux.intel.com>
-> Cc: <stable@vger.kernel.org> # v6.1+
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> index 5c72462d1f57..c157ade48c39 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-> @@ -1131,7 +1131,7 @@ static vm_fault_t vm_fault_ttm(struct vm_fault *vmf)
->  		GEM_WARN_ON(!i915_ttm_cpu_maps_iomem(bo->resource));
->  	}
->  
-> -	if (wakeref & CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND)
-> +	if (wakeref && CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND)
+--5JWxWqEiot4+TAHg
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-ops!
+On Mon, Sep 16, 2024 at 04:49:17PM +0300, Alexander Usyskin wrote:
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+> Add auxiliary driver for intel discrete graphics
+> on-die spi device.
 
-Andi
+This doesn't actually do anything AFAICT?  It doesn't register with any
+subsystem or anything.  Please don't submit empty boilerplate like this,
+submit a driver that is at least minimally useful - assuming some other
+patches in the series add functionality squash at least a basic set of
+functionality into this.  This makes review and test easier.
 
->  		intel_wakeref_auto(&to_i915(obj->base.dev)->runtime_pm.userfault_wakeref,
->  				   msecs_to_jiffies_timeout(CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND));
->  
-> -- 
-> 2.39.2
+> +++ b/drivers/spi/spi-intel-dg.c
+> @@ -0,0 +1,142 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright(c) 2019-2024, Intel Corporation. All rights reserved.
+> + */
+
+Please make the entire comment a C++ one so things look more
+intentional.
+
+> +struct intel_dg_spi {
+> +	struct kref refcnt;
+> +	void __iomem *base;
+> +	size_t size;
+> +	unsigned int nregions;
+> +	struct {
+> +		const char *name;
+> +		u8 id;
+> +		u64 offset;
+> +		u64 size;
+> +	} regions[];
+
+Use __counted_by() for the benefit of the static checkers.
+
+> +	size = sizeof(*spi) + sizeof(spi->regions[0]) * nregions;
+> +	spi = kzalloc(size, GFP_KERNEL);
+
+Use at least array_size().
+
+> +	kref_init(&spi->refcnt);
+
+This refcount feels more complex than just freeing in the error and
+release paths, it's not a common pattern for drivers.
+
+> +	spi->nregions = nregions;
+> +	for (n = 0, i = 0; i < INTEL_DG_SPI_REGIONS; i++) {
+> +		if (ispi->regions[i].name) {
+> +			name_size = strlen(dev_name(&aux_dev->dev)) +
+> +				    strlen(ispi->regions[i].name) + 2; /* for point */
+> +			name = kzalloc(name_size, GFP_KERNEL);
+> +			if (!name)
+> +				continue;
+> +			snprintf(name, name_size, "%s.%s",
+> +				 dev_name(&aux_dev->dev), ispi->regions[i].name);
+
+kasprintf().
+
+> +static void intel_dg_spi_remove(struct auxiliary_device *aux_dev)
+> +{
+> +	struct intel_dg_spi *spi = dev_get_drvdata(&aux_dev->dev);
+> +
+> +	if (!spi)
+> +		return;
+> +
+> +	dev_set_drvdata(&aux_dev->dev, NULL);
+
+If the above is doing anything there's a problem...
+
+--5JWxWqEiot4+TAHg
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmbq1pIACgkQJNaLcl1U
+h9CHrAf+JYhpq4Fp7x6uc7TfLF7AbQh05EwZ+QlXdvKTdHZx82S8xbGy0SWmWK8u
++goH59ZuQvxCI1ZoDFsY9AeCyigxOKr9eqYREJLG1mQnx11zN/u6lJ+Fouv1bxXt
+/vpIuFX4MMdknEs7FIESPYi2bCFetdlT48+3VEIla0MOgqnT8Dd9TTDt4eRJtmKe
+kYAwMuZm49cUgaxTYeR7WU3jTmriqf9MKbIE///CXs53G3BuM7dwunwBpi6I4eG3
+nswuncC3MUT/cZx+gjg6p4H/7Q28g+zuAZj34cUwUjhVCztrsjsZEKP6FU6WsL14
+AQgc9yXj6lqL4izjKjJfwNNKqOqwTA==
+=6UK8
+-----END PGP SIGNATURE-----
+
+--5JWxWqEiot4+TAHg--
