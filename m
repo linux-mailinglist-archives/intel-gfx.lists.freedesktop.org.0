@@ -2,35 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B4A997BD27
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Sep 2024 15:38:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2815C97BD40
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Sep 2024 15:45:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F24910E5A1;
-	Wed, 18 Sep 2024 13:38:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C15610E5B4;
+	Wed, 18 Sep 2024 13:45:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Sr881fBs";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="hDOpX9Cj";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16CD510E1AE;
- Wed, 18 Sep 2024 13:38:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A55710E5AC;
+ Wed, 18 Sep 2024 13:45:15 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id 73A28A438D4;
- Wed, 18 Sep 2024 13:38:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49985C4CEC3;
- Wed, 18 Sep 2024 13:38:46 +0000 (UTC)
+ by nyc.source.kernel.org (Postfix) with ESMTP id 79C0EA40446;
+ Wed, 18 Sep 2024 13:45:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B95F5C4CEC2;
+ Wed, 18 Sep 2024 13:45:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1726666729;
- bh=yRPq43EYLk/2EzyDM6tG0c8iqpX450B91OXwoyOimAc=;
+ s=k20201202; t=1726667114;
+ bh=cL6lpSz/kdR6T4KeqPH7EEkrh+WFPe2uL9PykCNsqqY=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=Sr881fBs+dGrmaBALleXBYM+IUQ9mG5hugrO//ONmJXr4DUIShArn1NXHSbUP5AIn
- uQpfwbInbK3PvcGjrGts+InBaRSv+dsjJ3kOSStZKmRRyCPi4TGjCr1A8PgMSPWS27
- LgQ5D8hiKFSXj7s/1noF4MbJ1q67H/K5roJE0vw5Of2+1N4wBXgEhEaM+hKGXGFNwR
- kGbr25WPzBuXBsi+oYCVYUQzQtvvecFgHLPmPyeEgQCcDKRHNrCGnUPEgPIkRjdLD0
- AGj7Oe+7k5UCzUKAr1Elfep6IJsmMyyx3Wm+a5gIW0/FbqaTm8akh8ah+vGruMQvDw
- k30EeF6xvYdug==
-Date: Wed, 18 Sep 2024 15:38:43 +0200
+ b=hDOpX9CjSUgIJakr6qUKjN5axzMtd8hgKuof/Sdcp5Nycftg8xK/C7FXXdSYEJ6RY
+ rF2arMHrM5eHns0mgfL4ag/MTKsKgc8bHXAPzT/bwILqhw7OWKPCSpqmhl5goy5eQD
+ hT6dXCh+UzloN+FYe2OOvJ9dDuAWDqU7HUHjUpDQJTz656Vkk2127KpSVstIOuLy+4
+ 1od+pJwL/MAl+H3aQkoplS5sDz2Pr1NSVmwiqDCNyjehCVY2Ikd36bl9rg6wAlac/g
+ l47uTubbe1Tb/5G9HJXfJYSR+HzceovEWL+4R47XpkaxIewKWeOnfEjv8qjahUGwb2
+ PTufLyENcV4gw==
+Date: Wed, 18 Sep 2024 15:45:11 +0200
 From: Mark Brown <broonie@kernel.org>
 To: Alexander Usyskin <alexander.usyskin@intel.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
@@ -48,15 +48,14 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
  Vitaly Lubart <vitaly.lubart@intel.com>,
  intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  linux-spi@vger.kernel.org, intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH v6 04/12] spi: intel-dg: spi register with mtd
-Message-ID: <ZurX4xcy7TK45Omq@finisterre.sirena.org.uk>
+Subject: Re: [PATCH v6 00/12] spi: add driver for Intel discrete graphics
+Message-ID: <ZurZZ1pzmbWifjAD@finisterre.sirena.org.uk>
 References: <20240916134928.3654054-1-alexander.usyskin@intel.com>
- <20240916134928.3654054-5-alexander.usyskin@intel.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="BOpsQOSM3Yla4fmU"
+ protocol="application/pgp-signature"; boundary="Bs8sGvs52rAy0duI"
 Content-Disposition: inline
-In-Reply-To: <20240916134928.3654054-5-alexander.usyskin@intel.com>
+In-Reply-To: <20240916134928.3654054-1-alexander.usyskin@intel.com>
 X-Cookie: Editing is a rewording activity.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -74,55 +73,40 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
---BOpsQOSM3Yla4fmU
+--Bs8sGvs52rAy0duI
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Mon, Sep 16, 2024 at 04:49:20PM +0300, Alexander Usyskin wrote:
+On Mon, Sep 16, 2024 at 04:49:16PM +0300, Alexander Usyskin wrote:
+> Add driver for access to Intel discrete graphics card
+> internal SPI device.
+> Expose device on auxiliary bus by i915 and Xe drivers and
+> provide spi driver to register this device with MTD framework.
 
-> From: Tomas Winkler <tomas.winkler@intel.com>
->=20
-> Register the on-die spi device with the mtd subsystem.
-> Refcount spi object on _get and _put mtd callbacks.
+As far as I can tell this does not actually provide a SPI driver, there
+is no call to any SPI API that I've noticed here.  The SPI framework
+does have support for SPI controllers with specific flash support via
+spi_controller_mem_ops but this does not appear to use them.  Either it
+should do that or it should just be a MTD driver.
 
-This is a MTD driver, it should be in drivers/mtd.
+The series is also split up into too many patches with minimal
+explanation, making it hard to follow what's going on.  I would
+recommend making the first patch be a minimal functional driver and then
+building on top of that.
 
-> +static int intel_dg_spi_erase(struct mtd_info *mtd, struct erase_info *i=
-nfo)
-> +{
-> +	return 0;
-> +}
-> +
-> +static int intel_dg_spi_read(struct mtd_info *mtd, loff_t from, size_t l=
-en,
-> +			     size_t *retlen, u_char *buf)
-> +{
-> +	return 0;
-> +}
-> +
-> +static int intel_dg_spi_write(struct mtd_info *mtd, loff_t to, size_t le=
-n,
-> +			      size_t *retlen, const u_char *buf)
-> +{
-> +	return 0;
-> +}
-
-If these functions can legitimately be empty they should be removed.
-
---BOpsQOSM3Yla4fmU
+--Bs8sGvs52rAy0duI
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmbq1+MACgkQJNaLcl1U
-h9Ayagf9GPGo4W57/efjC84ILvNOGI01XOT5VcydyCnDW7yLFbLVZx4itXNHOQdo
-FxDfbUojjK/z4006rT0QARLDtVZASgEy27GwNRwNvbVCFHghZbjx4YA8PWuj0dFx
-QuN1M0gGrzkXlDIjdKfv521VwYjzvcxjGFKjFJu3qP10UkhL57dS/0Do/Wpdxy0I
-lTPf0CiK9k4qKoLBRMnQQl3Zu31EtVI2fIHd9K+2ZAiWodDEW+RlO/v/ScCLd8jT
-otJ2YUe+jBVaUZrMVhZxazYCOGAhhGXIfY5HRe5KyKFaDaVBUvjKFtgREomKPh8y
-dyFiKCPztQSgFSPjfD8lr5D+5Usd9A==
-=lK/X
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmbq2WYACgkQJNaLcl1U
+h9BCZgf/W29Rkg31k8d/BbDhUYZW8jjlXYf12ChmIOuQyLVOpr4YRUpMoFKl1KGz
+iu+tQ3AK35GqadvAzuEC3U4cyrM0bdthCUNFlH2I7zC5gMFFutdGumdF9D7EYke7
+ygehHFnVZ/bHZg+Nt7zCqPpJtlboc8Tf130goHxzBougrUA4+HCH0r00lPgnVwJP
+pOOAFgyYXEhvUKbZffE4jTorrTGcWGZm17TnTA6VtDL+KYBYls2ltLbB1pseRelB
+tmGZMqJmU7cyJY1tVl4Hh4wsnziLPCyi/JAzZnS5WwFWgq3si4ZV1V9mTXkq6MM/
+JqOpqfUJbVvxSSXkYUVoFFqqwjjcWQ==
+=JQuG
 -----END PGP SIGNATURE-----
 
---BOpsQOSM3Yla4fmU--
+--Bs8sGvs52rAy0duI--
