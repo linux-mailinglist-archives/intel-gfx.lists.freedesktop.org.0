@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39C7B97BB79
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Sep 2024 13:18:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F1D097BB7A
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Sep 2024 13:18:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC3AE10E57E;
-	Wed, 18 Sep 2024 11:18:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F035F10E57F;
+	Wed, 18 Sep 2024 11:18:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n+6p0ofg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z8YCFKhT";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95CDD10E57C;
- Wed, 18 Sep 2024 11:18:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6EB5210E1D0;
+ Wed, 18 Sep 2024 11:18:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726658286; x=1758194286;
+ t=1726658291; x=1758194291;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=8zb8SLIdREhtRl/HyOPrNlhoLmtAblhU0yWCQWTXNbE=;
- b=n+6p0ofgYokLPs22CPTfMBB+/0Lx8aoVpAe7dDJ0GlWmMKtM2PmM9hFG
- +SoErZ95a+Q1IukbzcfK4K2vCedpvnTgcKOAT4t8TwRnXbNYAXMeyQxIR
- WYZTwG/hq+Xi4q1b2lHK0mahsDUDtsPp/PwRH4WTAy0DqFRYQnRR9Q0PJ
- cqomnFo3fqalD00xxR0FqkufjsBbAQv5iTpYGfe0oiQJiGUMB4CWCuPkP
- FdPTATKa+8BXP7DHR3q2XvSDc7k4j5N8Xf1UB0X89TgK080NnPXKVp3O3
- TZjuUjDwdiUxp4eO9KoqXI49n9msCaIo+yAS1vKnvEBTRP5dgmYvvmFet A==;
-X-CSE-ConnectionGUID: at3DdAaRRuuzVwNyaBG3yA==
-X-CSE-MsgGUID: 1540GxpsSMqd8GWHtk1Xdw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11198"; a="25048948"
-X-IronPort-AV: E=Sophos;i="6.10,238,1719903600"; d="scan'208";a="25048948"
+ bh=SwxD8pZNKaETy/NOwkxlbhBThuXJGHcD6ewLScvnJxU=;
+ b=Z8YCFKhTzah9DSwl+jrtDW0DXbQo4Oz7FbiVIBqJS5JixRM7kDKNsh6v
+ d/z3ucVjDhsH2ub4GTIINEMF6i0PJlTyYQYVCjamgfgLF4w2DnTgCNpSb
+ UDFji55oC303+G86lkk5xf0nZO212OInx1/c5ybq7/utxEY5F3IJk6ZUD
+ HRHKfNsPznq1dknM5GGwEQ5v+3rblRJRmjqr7ImgZDNwrbEoRMZZ0HfYG
+ cK5uVbbRX5gMgxpFS58TNdyOwUeWDhDMMecq3UcF2QkCADKAAqGdOwQB4
+ nhQTi96c+TwGuBnxvxmW/RT+/q1ZZF0UVfAC1AAfSpZeMcGpZcnsiWYmK w==;
+X-CSE-ConnectionGUID: V6FfVvbhQK2/hShP6xkivg==
+X-CSE-MsgGUID: 0NBgFwpuTYeJSduOUgXIDQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11198"; a="25048954"
+X-IronPort-AV: E=Sophos;i="6.10,238,1719903600"; d="scan'208";a="25048954"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2024 04:18:06 -0700
-X-CSE-ConnectionGUID: LdzXOnOGQRW5xi+E2EEf7Q==
-X-CSE-MsgGUID: PoZmT5OjR1argmg2oBOICg==
+ 18 Sep 2024 04:18:11 -0700
+X-CSE-ConnectionGUID: mFgXb4BjRnCVjy4vLznmkQ==
+X-CSE-MsgGUID: 6XVFkuPyTEe0VFaVMTSBGQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,238,1719903600"; d="scan'208";a="69839487"
+X-IronPort-AV: E=Sophos;i="6.10,238,1719903600"; d="scan'208";a="69839506"
 Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.202])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2024 04:18:05 -0700
+ 18 Sep 2024 04:18:09 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 2/5] drm/i915: use INTEL_WAKEREF_DEF instead of magic -1 for
- intel_wakeref_t
-Date: Wed, 18 Sep 2024 14:17:45 +0300
-Message-Id: <be578387b1789431509686a6e818c889e8b6d5a8.1726658138.git.jani.nikula@intel.com>
+Subject: [PATCH 3/5] drm/i915/gt: add a macro for mock gt wakeref special
+ value and use it
+Date: Wed, 18 Sep 2024 14:17:46 +0300
+Message-Id: <a8ab747b0f03d650ffc0bdedd2263a15017b9ac1.1726658138.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1726658138.git.jani.nikula@intel.com>
 References: <cover.1726658138.git.jani.nikula@intel.com>
@@ -71,139 +71,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-A number of places rely on the magic -1 to denote
-INTEL_WAKEREF_DEF. Switch to the macro. Define it for xe as well.
+Add a dedicated macro for the special mock gt wakeref value, with a cast
+to intel_wakeref_t, instead of assuming you can assign or compare the
+wakeref to -ENODEV directly.
+
+Arguably the whole thing is a hack that should not exist, but at least
+make it slightly less hacky.
+
+Side note: If this value were to ever end up in
+intel_ref_tracker_free(), it would wreak havoc.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_power.c        | 2 +-
- drivers/gpu/drm/i915/display/intel_display_power.h        | 4 ++--
- drivers/gpu/drm/i915/intel_runtime_pm.c                   | 6 +++---
- drivers/gpu/drm/i915/intel_wakeref.h                      | 2 +-
- drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h | 7 ++++---
- drivers/gpu/drm/xe/compat-i915-headers/intel_wakeref.h    | 2 ++
- 6 files changed, 13 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_gt_pm.h            | 6 +++++-
+ drivers/gpu/drm/i915/gt/intel_tlb.c              | 2 +-
+ drivers/gpu/drm/i915/selftests/mock_gem_device.c | 2 +-
+ 3 files changed, 7 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index ecabb674644b..40727a22f18b 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -895,7 +895,7 @@ intel_display_power_put_mask_in_set(struct drm_i915_private *i915,
- 		    !bitmap_subset(mask->bits, power_domain_set->mask.bits, POWER_DOMAIN_NUM));
+diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.h b/drivers/gpu/drm/i915/gt/intel_gt_pm.h
+index 911fd0160221..fef8d5d288f8 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gt_pm.h
++++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.h
+@@ -105,9 +105,13 @@ int intel_gt_runtime_resume(struct intel_gt *gt);
  
- 	for_each_power_domain(domain, mask) {
--		intel_wakeref_t __maybe_unused wf = -1;
-+		intel_wakeref_t __maybe_unused wf = INTEL_WAKEREF_DEF;
+ ktime_t intel_gt_get_awake_time(const struct intel_gt *gt);
  
- #if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
- 		wf = fetch_and_zero(&power_domain_set->wakerefs[domain]);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
-index 425452c5a469..3b7c1a0bb1de 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-@@ -232,7 +232,7 @@ intel_display_power_put_async(struct drm_i915_private *i915,
- 			      enum intel_display_power_domain domain,
- 			      intel_wakeref_t wakeref)
- {
--	__intel_display_power_put_async(i915, domain, -1, -1);
-+	__intel_display_power_put_async(i915, domain, INTEL_WAKEREF_DEF, -1);
- }
- 
- static inline void
-@@ -241,7 +241,7 @@ intel_display_power_put_async_delay(struct drm_i915_private *i915,
- 				    intel_wakeref_t wakeref,
- 				    int delay_ms)
- {
--	__intel_display_power_put_async(i915, domain, -1, delay_ms);
-+	__intel_display_power_put_async(i915, domain, INTEL_WAKEREF_DEF, delay_ms);
- }
- #endif
- 
-diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.c b/drivers/gpu/drm/i915/intel_runtime_pm.c
-index 2d0647aca964..a21f5a1c89bc 100644
---- a/drivers/gpu/drm/i915/intel_runtime_pm.c
-+++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
-@@ -66,7 +66,7 @@ static intel_wakeref_t
- track_intel_runtime_pm_wakeref(struct intel_runtime_pm *rpm)
- {
- 	if (!rpm->available || rpm->no_wakeref_tracking)
--		return -1;
-+		return INTEL_WAKEREF_DEF;
- 
- 	return intel_ref_tracker_alloc(&rpm->debug);
- }
-@@ -114,7 +114,7 @@ static void init_intel_runtime_pm_wakeref(struct intel_runtime_pm *rpm)
- static intel_wakeref_t
- track_intel_runtime_pm_wakeref(struct intel_runtime_pm *rpm)
- {
--	return -1;
-+	return INTEL_WAKEREF_DEF;
- }
- 
- static void untrack_intel_runtime_pm_wakeref(struct intel_runtime_pm *rpm,
-@@ -336,7 +336,7 @@ intel_runtime_pm_put_raw(struct intel_runtime_pm *rpm, intel_wakeref_t wref)
-  */
- void intel_runtime_pm_put_unchecked(struct intel_runtime_pm *rpm)
- {
--	__intel_runtime_pm_put(rpm, -1, true);
-+	__intel_runtime_pm_put(rpm, INTEL_WAKEREF_DEF, true);
- }
- 
- #if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
-diff --git a/drivers/gpu/drm/i915/intel_wakeref.h b/drivers/gpu/drm/i915/intel_wakeref.h
-index 68aa3be48251..3944587a5e78 100644
---- a/drivers/gpu/drm/i915/intel_wakeref.h
-+++ b/drivers/gpu/drm/i915/intel_wakeref.h
-@@ -314,7 +314,7 @@ static inline void intel_wakeref_untrack(struct intel_wakeref *wf,
- 
- static inline intel_wakeref_t intel_wakeref_track(struct intel_wakeref *wf)
- {
--	return -1;
-+	return INTEL_WAKEREF_DEF;
- }
- 
- static inline void intel_wakeref_untrack(struct intel_wakeref *wf,
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h b/drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h
-index 8c7b315aa8ac..380d25428bdb 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h
-@@ -24,14 +24,14 @@ static inline intel_wakeref_t intel_runtime_pm_get(struct xe_runtime_pm *pm)
- {
- 	struct xe_device *xe = container_of(pm, struct xe_device, runtime_pm);
- 
--	return xe_pm_runtime_resume_and_get(xe);
-+	return xe_pm_runtime_resume_and_get(xe) ? INTEL_WAKEREF_DEF : 0;
- }
- 
- static inline intel_wakeref_t intel_runtime_pm_get_if_in_use(struct xe_runtime_pm *pm)
- {
- 	struct xe_device *xe = container_of(pm, struct xe_device, runtime_pm);
- 
--	return xe_pm_runtime_get_if_in_use(xe);
-+	return xe_pm_runtime_get_if_in_use(xe) ? INTEL_WAKEREF_DEF : 0;
- }
- 
- static inline intel_wakeref_t intel_runtime_pm_get_noresume(struct xe_runtime_pm *pm)
-@@ -39,7 +39,8 @@ static inline intel_wakeref_t intel_runtime_pm_get_noresume(struct xe_runtime_pm
- 	struct xe_device *xe = container_of(pm, struct xe_device, runtime_pm);
- 
- 	xe_pm_runtime_get_noresume(xe);
--	return true;
++#define INTEL_WAKEREF_MOCK_GT ((intel_wakeref_t)-ENODEV)
 +
-+	return INTEL_WAKEREF_DEF;
+ static inline bool is_mock_gt(const struct intel_gt *gt)
+ {
+-	return I915_SELFTEST_ONLY(gt->awake == -ENODEV);
++	BUILD_BUG_ON(INTEL_WAKEREF_DEF == INTEL_WAKEREF_MOCK_GT);
++
++	return I915_SELFTEST_ONLY(gt->awake == INTEL_WAKEREF_MOCK_GT);
  }
  
- static inline void intel_runtime_pm_put_unchecked(struct xe_runtime_pm *pm)
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_wakeref.h b/drivers/gpu/drm/xe/compat-i915-headers/intel_wakeref.h
-index ecb1c0707706..5c139ba144a6 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/intel_wakeref.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_wakeref.h
-@@ -6,3 +6,5 @@
- #include <linux/types.h>
+ #endif /* INTEL_GT_PM_H */
+diff --git a/drivers/gpu/drm/i915/gt/intel_tlb.c b/drivers/gpu/drm/i915/gt/intel_tlb.c
+index 756e9ebbc725..2487768bc230 100644
+--- a/drivers/gpu/drm/i915/gt/intel_tlb.c
++++ b/drivers/gpu/drm/i915/gt/intel_tlb.c
+@@ -122,7 +122,7 @@ void intel_gt_invalidate_tlb_full(struct intel_gt *gt, u32 seqno)
+ {
+ 	intel_wakeref_t wakeref;
  
- typedef unsigned long intel_wakeref_t;
-+
-+#define INTEL_WAKEREF_DEF ((intel_wakeref_t)(-1))
+-	if (I915_SELFTEST_ONLY(gt->awake == -ENODEV))
++	if (is_mock_gt(gt))
+ 		return;
+ 
+ 	if (intel_gt_is_wedged(gt))
+diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+index 70f3d7bf47d0..ae57eb03dfca 100644
+--- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
++++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+@@ -203,7 +203,7 @@ struct drm_i915_private *mock_gem_device(void)
+ 	intel_root_gt_init_early(i915);
+ 	mock_uncore_init(&i915->uncore, i915);
+ 	atomic_inc(&to_gt(i915)->wakeref.count); /* disable; no hw support */
+-	to_gt(i915)->awake = -ENODEV;
++	to_gt(i915)->awake = INTEL_WAKEREF_MOCK_GT;
+ 	mock_gt_probe(i915);
+ 
+ 	ret = intel_region_ttm_device_init(i915);
 -- 
 2.39.2
 
