@@ -2,57 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34BB197C049
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Sep 2024 21:04:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 079DF97C059
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Sep 2024 21:13:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB53010E627;
-	Wed, 18 Sep 2024 19:04:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E712510E295;
+	Wed, 18 Sep 2024 19:13:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BLrW+EnY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nkWwd+U8";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F18810E626
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Sep 2024 19:04:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 68F1C10E295;
+ Wed, 18 Sep 2024 19:13:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726686290; x=1758222290;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=RtQgLkxVcXSJf9PtjKUB1g6Ks5CIi5i0MkQGYM/KttY=;
- b=BLrW+EnYkNIXthI+lJEZVMivWYhMT3svaGkGWwsHpOMoGk0VrXJN5yPh
- 3nYJYKTdDTi418PkFBozSKPF3ACVCyKvh426fYSxEZvdv9stfinE4aJbQ
- pkzyb1ej6BixeuIgMxHtyDQAxQFOJ3dlkJCzRpaclsCm8X/gMrdy5tFkk
- sRtG1QNy7qhkXt/3CDyMY3JxGdfBcrBgx/B/vutMIqyAqZQn1KaDnPL2E
- biQBKP/br1VI2gM97woSh16htaCqgJMRBb1BtPpMQ++MjhJYRQ8ePUbEX
- 3imAzOywJQFRPS5IPANybjOYyNidHXjbYg0H57ACKIotB+LA3u6jJvaw6 Q==;
-X-CSE-ConnectionGUID: 3G7FGF2USNykcdNopXskhA==
-X-CSE-MsgGUID: Z0Hc+nfMR7yCblC6UjDH8Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11199"; a="48147717"
-X-IronPort-AV: E=Sophos;i="6.10,239,1719903600"; d="scan'208";a="48147717"
+ t=1726686818; x=1758222818;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=eNBnYslySoOGoXOYuYo2s42wWDyOwKG5VmXAOIOY/60=;
+ b=nkWwd+U829MTrO0LzT6GxvRy/NaXk6kvW+R86dcX1FDZBb+ZS5yTlvKa
+ RydNHpOP8YsXvF091S5hMTPRwNRW/S3v1FdBhOT7xpqZIHVSLdxXPyKnX
+ F0M+hM8vRdxdGWCxi4YlPbZ7PKAnD9fkXDEGJWIX+xLoWWVfTusNRdfvo
+ WbMgGKiuuPqKSEmHTfrK9lSMmwwpSQwDY3dN8PSVu/MCUmtGb9bcayrYp
+ H4oCfk3hdp1E4Q0Lbum626qhDXM00T+qK712iiE+exHJUHVnF7S9iX3IX
+ TZOlC/NRAzmXSB+MXCrvnFfttWUp8NSracMpmfavf+uRXdHWCYq61A+kl w==;
+X-CSE-ConnectionGUID: h9C8ZQhpS7SMT/cUXzKpnw==
+X-CSE-MsgGUID: ncksOOFsRp+d9Ut88hUcsg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11199"; a="25817713"
+X-IronPort-AV: E=Sophos;i="6.10,239,1719903600"; d="scan'208";a="25817713"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2024 12:04:50 -0700
-X-CSE-ConnectionGUID: PwmIATHASdG3czP0xgQJGQ==
-X-CSE-MsgGUID: 1ISGeq64Th+pbpkmAR7Waw==
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2024 12:13:38 -0700
+X-CSE-ConnectionGUID: hNdPKWzNRPelIkJF4KUB4Q==
+X-CSE-MsgGUID: UmAadNHxT/6c3vY+VlyxGA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,239,1719903600"; d="scan'208";a="69786648"
+X-IronPort-AV: E=Sophos;i="6.10,239,1719903600"; d="scan'208";a="69788121"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 18 Sep 2024 12:04:48 -0700
+ by fmviesa008.fm.intel.com with SMTP; 18 Sep 2024 12:13:36 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 18 Sep 2024 22:04:47 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 3/3] drm/i915/dp: Extract intel_edp_set_sink_rates()
-Date: Wed, 18 Sep 2024 22:04:41 +0300
-Message-ID: <20240918190441.29071-3-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.44.2
-In-Reply-To: <20240918190441.29071-1-ville.syrjala@linux.intel.com>
-References: <20240918190441.29071-1-ville.syrjala@linux.intel.com>
+ Wed, 18 Sep 2024 22:13:35 +0300
+Date: Wed, 18 Sep 2024 22:13:35 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v3 3/9] drm/i915/pps: only touch the vlv_ members on
+ VLV/CHV
+Message-ID: <ZusmX8cRJHIKRAx8@intel.com>
+References: <cover.1726681620.git.jani.nikula@intel.com>
+ <158c7b30e56d22aa3f9c9e51e87b9d89687d74d5.1726681620.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <158c7b30e56d22aa3f9c9e51e87b9d89687d74d5.1726681620.git.jani.nikula@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,110 +72,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
+On Wed, Sep 18, 2024 at 08:47:43PM +0300, Jani Nikula wrote:
+> While the struct intel_pps vlv_pps_pipe and vlv_active_pipe members are
+> only relevant for VLV/CHV, we still initialize them on all platforms and
+> check them on BXT/GLK. Wrap all access inside VLV/CHV checks for
+> consistency.
+> 
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c  |  6 +++---
+>  drivers/gpu/drm/i915/display/intel_pps.c | 11 ++++++-----
+>  2 files changed, 9 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 9dd86523012f..9f908dbd45ea 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -6867,8 +6867,6 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
+>  		return false;
+>  
+>  	intel_dp->reset_link_params = true;
+> -	intel_dp->pps.vlv_pps_pipe = INVALID_PIPE;
+> -	intel_dp->pps.vlv_active_pipe = INVALID_PIPE;
+>  
+>  	/* Preserve the current hw state. */
+>  	intel_dp->DP = intel_de_read(dev_priv, intel_dp->output_reg);
+> @@ -6895,8 +6893,10 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
+>  	intel_dp_set_default_sink_rates(intel_dp);
+>  	intel_dp_set_default_max_sink_lane_count(intel_dp);
+>  
+> -	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
+> +	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) {
+> +		intel_dp->pps.vlv_pps_pipe = INVALID_PIPE;
+>  		intel_dp->pps.vlv_active_pipe = vlv_active_pipe(intel_dp);
+> +	}
+>  
+>  	intel_dp_aux_init(intel_dp);
+>  	intel_connector->dp.dsc_decompression_aux = &intel_dp->aux;
+> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
+> index 2d8d911988ab..649dc6ad2278 100644
+> --- a/drivers/gpu/drm/i915/display/intel_pps.c
+> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
+> @@ -472,16 +472,17 @@ void intel_pps_reset_all(struct intel_display *display)
+>  	for_each_intel_dp(display->drm, encoder) {
+>  		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+>  
+> -		drm_WARN_ON(display->drm,
+> -			    intel_dp->pps.vlv_active_pipe != INVALID_PIPE);
+> +		if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
+> +			drm_WARN_ON(display->drm,
+> +				    intel_dp->pps.vlv_active_pipe != INVALID_PIPE);
 
-Declutter intel_edp_init_dpcd() a bit by extracting the sink
-rates probing into its own function.
+Might make sense to just split this whole function
+into vlv/chv vs. bxt/glk versions. It's called from
+platform specific code only so each caller knows
+which one it wants.
 
-Signed-off-by: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 76 +++++++++++++------------
- 1 file changed, 40 insertions(+), 36 deletions(-)
+Series is
+Reviewed-by: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 6a1b0e93a1fc..ae3f242fa925 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -4066,6 +4066,45 @@ static void intel_edp_mso_init(struct intel_dp *intel_dp)
- 	intel_dp->mso_pixel_overlap = mso ? info->mso_pixel_overlap : 0;
- }
- 
-+static void
-+intel_edp_set_sink_rates(struct intel_dp *intel_dp)
-+{
-+	intel_dp->num_sink_rates = 0;
-+
-+	if (intel_dp->edp_dpcd[0] >= DP_EDP_14) {
-+		__le16 sink_rates[DP_MAX_SUPPORTED_RATES];
-+		int i;
-+
-+		drm_dp_dpcd_read(&intel_dp->aux, DP_SUPPORTED_LINK_RATES,
-+				 sink_rates, sizeof(sink_rates));
-+
-+		for (i = 0; i < ARRAY_SIZE(sink_rates); i++) {
-+			int val = le16_to_cpu(sink_rates[i]);
-+
-+			if (val == 0)
-+				break;
-+
-+			/* Value read multiplied by 200kHz gives the per-lane
-+			 * link rate in kHz. The source rates are, however,
-+			 * stored in terms of LS_Clk kHz. The full conversion
-+			 * back to symbols is
-+			 * (val * 200kHz)*(8/10 ch. encoding)*(1/8 bit to Byte)
-+			 */
-+			intel_dp->sink_rates[i] = (val * 200) / 10;
-+		}
-+		intel_dp->num_sink_rates = i;
-+	}
-+
-+	/*
-+	 * Use DP_LINK_RATE_SET if DP_SUPPORTED_LINK_RATES are available,
-+	 * default to DP_MAX_LINK_RATE and DP_LINK_BW_SET otherwise.
-+	 */
-+	if (intel_dp->num_sink_rates)
-+		intel_dp->use_rate_select = true;
-+	else
-+		intel_dp_set_sink_rates(intel_dp);
-+}
-+
- static bool
- intel_edp_init_dpcd(struct intel_dp *intel_dp, struct intel_connector *connector)
- {
-@@ -4110,42 +4149,7 @@ intel_edp_init_dpcd(struct intel_dp *intel_dp, struct intel_connector *connector
- 	 */
- 	intel_psr_init_dpcd(intel_dp);
- 
--	/* Clear the default sink rates */
--	intel_dp->num_sink_rates = 0;
--
--	/* Read the eDP 1.4+ supported link rates. */
--	if (intel_dp->edp_dpcd[0] >= DP_EDP_14) {
--		__le16 sink_rates[DP_MAX_SUPPORTED_RATES];
--		int i;
--
--		drm_dp_dpcd_read(&intel_dp->aux, DP_SUPPORTED_LINK_RATES,
--				sink_rates, sizeof(sink_rates));
--
--		for (i = 0; i < ARRAY_SIZE(sink_rates); i++) {
--			int val = le16_to_cpu(sink_rates[i]);
--
--			if (val == 0)
--				break;
--
--			/* Value read multiplied by 200kHz gives the per-lane
--			 * link rate in kHz. The source rates are, however,
--			 * stored in terms of LS_Clk kHz. The full conversion
--			 * back to symbols is
--			 * (val * 200kHz)*(8/10 ch. encoding)*(1/8 bit to Byte)
--			 */
--			intel_dp->sink_rates[i] = (val * 200) / 10;
--		}
--		intel_dp->num_sink_rates = i;
--	}
--
--	/*
--	 * Use DP_LINK_RATE_SET if DP_SUPPORTED_LINK_RATES are available,
--	 * default to DP_MAX_LINK_RATE and DP_LINK_BW_SET otherwise.
--	 */
--	if (intel_dp->num_sink_rates)
--		intel_dp->use_rate_select = true;
--	else
--		intel_dp_set_sink_rates(intel_dp);
-+	intel_edp_set_sink_rates(intel_dp);
- 	intel_dp_set_max_sink_lane_count(intel_dp);
- 
- 	/* Read the eDP DSC DPCD registers */
+>  
+>  		if (encoder->type != INTEL_OUTPUT_EDP)
+>  			continue;
+>  
+> -		if (DISPLAY_VER(display) >= 9)
+> -			intel_dp->pps.bxt_pps_reset = true;
+> -		else
+> +		if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
+>  			intel_dp->pps.vlv_pps_pipe = INVALID_PIPE;
+> +		else
+> +			intel_dp->pps.bxt_pps_reset = true;
+>  	}
+>  }
+>  
+> -- 
+> 2.39.2
+
 -- 
-2.44.2
-
+Ville Syrj‰l‰
+Intel
