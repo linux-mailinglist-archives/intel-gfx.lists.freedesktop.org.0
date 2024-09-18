@@ -2,67 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4FCF97BC48
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Sep 2024 14:34:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B9C797BC4B
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Sep 2024 14:34:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AACDC10E155;
-	Wed, 18 Sep 2024 12:34:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 39A0F10E58E;
+	Wed, 18 Sep 2024 12:34:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OnCIt62M";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V/93vq+8";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D48D410E155;
- Wed, 18 Sep 2024 12:34:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 31B5310E58E;
+ Wed, 18 Sep 2024 12:34:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726662871; x=1758198871;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=bZbV7ze0i1dB7v5BDyvTK4JJd7HVSRJeS0x/d1Wd2Hk=;
- b=OnCIt62MM2qkdjZFJHmSYKtrmmjA4OLhHTizeS4pMdxJIla2jJlkL1av
- 6RJvyd4MWGq+yRJ6F4OZ1qkJbaji/D9m/4tmQjUsVplsYRlltRINRcbWk
- mXvRqcXf6j9wSrlu9GUSZY3wL8IdiNrPDabYew03GQv25KsXRCXnoB9BY
- CqymMk4QdSokLjVjdBLqJoVuGk8qtTLcrjyCbkK1RKw/oVJxYzna7yPe5
- oUlNyMg/5mbmyJ60Gxr5mFFoL+vits1kDyXX+T3hWAb/HH2QFPpwCkL1Y
- I6cQVxBf/kd4u0ZrXyICqeekdcn5pz1KNV299v4gApzsZmCrpok7b+Xua A==;
-X-CSE-ConnectionGUID: 7AqMeKCMQ669AFCwqj1FRQ==
-X-CSE-MsgGUID: 7ZWCayBgSZyulrJGFTxk7Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11199"; a="36237861"
-X-IronPort-AV: E=Sophos;i="6.10,238,1719903600"; d="scan'208";a="36237861"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2024 05:34:31 -0700
-X-CSE-ConnectionGUID: ZTeNLq2IQpG0/jAfu09X1w==
-X-CSE-MsgGUID: 3yHErZuyS/eQ9cnbMe4SdA==
+ t=1726662891; x=1758198891;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=1fO0zEJdsJ9GjfNqIZCofpTkr6EaBJsW2Sl8ZSyhmxc=;
+ b=V/93vq+8k21Y0mJZy03QZiBK80UpENz9ltO/0J4alFyWIJZL6RlCYKme
+ f+OgQfZDlXyjWIl7IFcaJq2kjKXaOnAIrN1qM1g5OShrlpdrWIiNpzF8r
+ YH8V7ggjpZvCTNSyLxy4d45CFwEuO0AaVhnwWkWLTlIVdVEIxBmRS/lws
+ SnIXLnA5G6oAWMQKYnAc3jKSeZi1h43mLUPJLsUy3RcoNjCnayiFnwOLp
+ YquQ5i/1C4wC0jAWe0uQcjOPnf7tZ5wqYMPgvMb7I+RihikbPX02Vyz+5
+ Q5SHM3pZBBujfMjnVDhwNkHbfsuuQcfcwyszaYBa7hp8eCDLsMqBj2OyA g==;
+X-CSE-ConnectionGUID: y4guCDcWTVCmcr52cmnHgQ==
+X-CSE-MsgGUID: lTgZd00oSUW3Uv2kUUggEw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11199"; a="43090425"
+X-IronPort-AV: E=Sophos;i="6.10,238,1719903600"; d="scan'208";a="43090425"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2024 05:34:51 -0700
+X-CSE-ConnectionGUID: uNwog8V4Sz++l4AYfhRAZg==
+X-CSE-MsgGUID: 6aeqwr01RN+EgunpD0ES3g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,238,1719903600"; d="scan'208";a="70021600"
-Received: from dhhellew-desk2.ger.corp.intel.com.ger.corp.intel.com (HELO
- [10.245.245.230]) ([10.245.245.230])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2024 05:34:28 -0700
-Message-ID: <a97c5f63053000b5fcfc14cb56c79c8ff976b4ad.camel@linux.intel.com>
-Subject: RESEND Re: [RFC PATCH] dma-buf/dma-fence: Use a successful
- read_trylock() annotation for dma_fence_begin_signalling()
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Christian Koenig <christian.koenig@amd.com>
-Cc: dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>, 
- linaro-mm-sig@lists.linaro.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org
-Date: Wed, 18 Sep 2024 14:34:26 +0200
-In-Reply-To: <0d406a89b1b63ebf53c5d0848843c72299c1ff75.camel@linux.intel.com>
-References: <20230428125233.228353-1-thomas.hellstrom@linux.intel.com>
- <be9b192a-a125-6774-bb4f-8b9fb517ce0d@linux.intel.com>
- <ZrxYdIDdEJXRTFrn@phenom.ffwll.local>
- <0d406a89b1b63ebf53c5d0848843c72299c1ff75.camel@linux.intel.com>
-Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
- keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
+X-IronPort-AV: E=Sophos;i="6.10,238,1719903600"; d="scan'208";a="74108630"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.202])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2024 05:34:48 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: rodrigo.vivi@intel.com, lucas.demarchi@intel.com,
+ ville.syrjala@linux.intel.com, maarten.lankhorst@linux.intel.com
+Subject: Re: [PATCH 00/22] drm/i915 & drm/xe: kill off
+ -Ddrm_i915_gem_object=xe_bo
+In-Reply-To: <cover.1726589119.git.jani.nikula@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1726589119.git.jani.nikula@intel.com>
+Date: Wed, 18 Sep 2024 15:34:45 +0300
+Message-ID: <87jzf9b0nu.fsf@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,147 +70,128 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Christian,
+On Tue, 17 Sep 2024, Jani Nikula <jani.nikula@intel.com> wrote:
+> The xe Makefile defines -Ddrm_i915_gem_object=xe_bo to build i915
+> display for xe. This lengthy series removes that hack.
+>
+> This is based on two ideas:
+>
+> 1) Always use struct drm_gem_object instead of struct
+>    drm_i915_gem_object or xe_bo in code that gets built for both i915
+>    and xe.
+>
+> 2) Add intel_bo_*() abstraction functions for things that need i915 and
+>    xe specific implementations. There's one shared intel_bo.h in i915
+>    display, and separate intel_bo.c in i915 and xe. Also these functions
+>    operate on struct drm_gem_object.
+>
+> The rest is just gradual conversion and cleanup.
+>
+> There'll still be some code remaining in i915 display that gets only
+> built for i915, and continues to use struct drm_i915_gem_object. Maybe
+> we'll want to continue the conversion with them too.
+>
+> The most important end result is that there's no longer confusion what
+> struct drm_i915_gem_object actually means. It means just that, you can't
+> accidentally use it in xe code, and it's never xe_bo anymore.
 
-Ping?
+Rodrigo, Lucas, ack for merging this via drm-intel-next?
+
+BR,
+Jani.
 
 
-On Wed, 2024-08-14 at 10:37 +0200, Thomas Hellstr=C3=B6m wrote:
-> Christian,
->=20
-> Ack to merge this through drm-misc-next, or do you want to pick it up
-> for dma-buf?
->=20
-> Thanks,
-> Thomas
->=20
->=20
-> On Wed, 2024-08-14 at 09:10 +0200, Daniel Vetter wrote:
-> > On Fri, May 26, 2023 at 01:11:28PM +0200, Thomas Hellstr=C3=B6m wrote:
-> > > Daniel,
-> > >=20
-> > > On 4/28/23 14:52, Thomas Hellstr=C3=B6m wrote:
-> > > > Condsider the following call sequence:
-> > > >=20
-> > > > /* Upper layer */
-> > > > dma_fence_begin_signalling();
-> > > > lock(tainted_shared_lock);
-> > > > /* Driver callback */
-> > > > dma_fence_begin_signalling();
-> > > > ...
-> > > >=20
-> > > > The driver might here use a utility that is annotated as
-> > > > intended
-> > > > for the
-> > > > dma-fence signalling critical path. Now if the upper layer
-> > > > isn't
-> > > > correctly
-> > > > annotated yet for whatever reason, resulting in
-> > > >=20
-> > > > /* Upper layer */
-> > > > lock(tainted_shared_lock);
-> > > > /* Driver callback */
-> > > > dma_fence_begin_signalling();
-> > > >=20
-> > > > We will receive a false lockdep locking order violation
-> > > > notification from
-> > > > dma_fence_begin_signalling(). However entering a dma-fence
-> > > > signalling
-> > > > critical section itself doesn't block and could not cause a
-> > > > deadlock.
-> > > >=20
-> > > > So use a successful read_trylock() annotation instead for
-> > > > dma_fence_begin_signalling(). That will make sure that the
-> > > > locking order
-> > > > is correctly registered in the first case, and doesn't register
-> > > > any
-> > > > locking order in the second case.
-> > > >=20
-> > > > The alternative is of course to make sure that the "Upper
-> > > > layer"
-> > > > is always
-> > > > correctly annotated. But experience shows that's not easily
-> > > > achievable
-> > > > in all cases.
-> > > >=20
-> > > > Signed-off-by: Thomas Hellstr=C3=B6m
-> > > > <thomas.hellstrom@linux.intel.com>
-> > >=20
-> > > Resurrecting the discussion on this one. I can't see a situation
-> > > where we
-> > > would miss *relevant* locking
-> > > order violation warnings with this patch. Ofc if we have a
-> > > scheduler
-> > > annotation patch that would work fine as well, but the lack of
-> > > annotation in
-> > > the scheduler callbacks is really starting to hurt us.
-> >=20
-> > Yeah this is just a bit too brain-melting to review, but I concur
-> > now.
-> >=20
-> > Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
->=20
->=20
->=20
->=20
->=20
->=20
->=20
->=20
->=20
->=20
-> >=20
-> > I think what would help is some lockdep selftests to check that we
-> > both
-> > catch the stuff we want to, and don't incur false positives. Maybe
-> > with a
-> > plea that lockdep should have some native form of cross-release
-> > annotations ...
-> >=20
-> > But definitely seperate patch set, since it might take a few rounds
-> > of
-> > review by lockdep folks.
-> > -Sima
-> >=20
-> > >=20
-> > > Thanks,
-> > >=20
-> > > Thomas
-> > >=20
-> > >=20
-> > >=20
-> > > > ---
-> > > > =C2=A0 drivers/dma-buf/dma-fence.c | 6 +++---
-> > > > =C2=A0 1 file changed, 3 insertions(+), 3 deletions(-)
-> > > >=20
-> > > > diff --git a/drivers/dma-buf/dma-fence.c b/drivers/dma-buf/dma-
-> > > > fence.c
-> > > > index f177c56269bb..17f632768ef9 100644
-> > > > --- a/drivers/dma-buf/dma-fence.c
-> > > > +++ b/drivers/dma-buf/dma-fence.c
-> > > > @@ -308,8 +308,8 @@ bool dma_fence_begin_signalling(void)
-> > > > =C2=A0=C2=A0	if (in_atomic())
-> > > > =C2=A0=C2=A0		return true;
-> > > > -	/* ... and non-recursive readlock */
-> > > > -	lock_acquire(&dma_fence_lockdep_map, 0, 0, 1, 1, NULL,
-> > > > _RET_IP_);
-> > > > +	/* ... and non-recursive successful read_trylock */
-> > > > +	lock_acquire(&dma_fence_lockdep_map, 0, 1, 1, 1, NULL,
-> > > > _RET_IP_);
-> > > > =C2=A0=C2=A0	return false;
-> > > > =C2=A0 }
-> > > > @@ -340,7 +340,7 @@ void __dma_fence_might_wait(void)
-> > > > =C2=A0=C2=A0	lock_map_acquire(&dma_fence_lockdep_map);
-> > > > =C2=A0=C2=A0	lock_map_release(&dma_fence_lockdep_map);
-> > > > =C2=A0=C2=A0	if (tmp)
-> > > > -		lock_acquire(&dma_fence_lockdep_map, 0, 0, 1,
-> > > > 1,
-> > > > NULL, _THIS_IP_);
-> > > > +		lock_acquire(&dma_fence_lockdep_map, 0, 1, 1,
-> > > > 1,
-> > > > NULL, _THIS_IP_);
-> > > > =C2=A0 }
-> > > > =C2=A0 #endif
-> >=20
->=20
+>
+>
+> BR,
+> Jani.
+>
+> Jani Nikula (22):
+>   drm/i915/display: start a buffer object abstraction layer
+>   drm/i915/display: convert intel_atomic_plane.c to struct
+>     drm_gem_object
+>   drm/i915/fb: convert parts of intel_fb.c to struct drm_gem_object
+>   drm/i915/fbdev: convert intel_fbdev.c to struct drm_gem_object
+>   drm/i915/display: convert skl_universal_plane.c to struct
+>     drm_gem_object
+>   drm/i915/fb: convert intel_framebuffer_init() to struct drm_gem_object
+>   drm/i915/fb: convert intel_fb_bo_lookup_valid_bo() to struct
+>     drm_gem_object
+>   drm/i915/fb: convert intel_fb_bo_framebuffer_init() to struct
+>     drm_i915_gem_object
+>   drm/i915/fb: convert intel_fb_bo_framebuffer_fini() to struct
+>     drm_i915_gem_object
+>   drm/xe/display: use correct bo type in intel_fbdev_fb_alloc()
+>   drm/i915/fb: convert intel_framebuffer_create() to struct
+>     drm_gem_object
+>   drm/xe/display: stop using intel_fb_obj() in xe_fb_pin.c
+>   drm/i915/display: add intel_bo_read_from_page() and use it
+>   drm/i915/display: add intel_bo_get/set_frontbuffer() and use them
+>   drm/i915/frontbuffer: convert intel_frontbuffer_get() to struct
+>     drm_gem_object
+>   drm/i915/frontbuffer: convert frontbuffer->obj to struct
+>     drm_gem_object
+>   drm/i915/display: add intel_bo_describe() and use it
+>   drm/i915/fb: remove intel_fb_obj()
+>   drm/i915/display: clean up some gem/ includes
+>   drm/xe/compat: remove a bunch of compat gem headers
+>   drm/xe: remove a number of superfluous compat macros
+>   drm/xe: eradicate -Ddrm_i915_gem_object=xe_bo
+>
+>  drivers/gpu/drm/i915/Makefile                 |  1 +
+>  drivers/gpu/drm/i915/display/i9xx_wm.c        |  7 +-
+>  .../gpu/drm/i915/display/intel_atomic_plane.c | 12 +--
+>  drivers/gpu/drm/i915/display/intel_bo.c       | 59 +++++++++++++
+>  drivers/gpu/drm/i915/display/intel_bo.h       | 27 ++++++
+>  drivers/gpu/drm/i915/display/intel_cursor.c   |  2 -
+>  drivers/gpu/drm/i915/display/intel_display.c  | 12 ++-
+>  drivers/gpu/drm/i915/display/intel_display.h  |  4 -
+>  .../drm/i915/display/intel_display_debugfs.c  |  6 +-
+>  drivers/gpu/drm/i915/display/intel_dpt.c      |  2 +-
+>  drivers/gpu/drm/i915/display/intel_fb.c       | 56 ++++++-------
+>  drivers/gpu/drm/i915/display/intel_fb.h       |  8 +-
+>  drivers/gpu/drm/i915/display/intel_fb_bo.c    |  9 +-
+>  drivers/gpu/drm/i915/display/intel_fb_bo.h    | 10 +--
+>  drivers/gpu/drm/i915/display/intel_fb_pin.c   | 14 ++--
+>  drivers/gpu/drm/i915/display/intel_fbdev.c    | 28 +++----
+>  drivers/gpu/drm/i915/display/intel_fbdev_fb.c |  6 +-
+>  drivers/gpu/drm/i915/display/intel_fbdev_fb.h |  4 +-
+>  .../gpu/drm/i915/display/intel_frontbuffer.c  | 63 +++++++-------
+>  .../gpu/drm/i915/display/intel_frontbuffer.h  |  5 +-
+>  drivers/gpu/drm/i915/display/intel_overlay.c  |  2 +-
+>  .../drm/i915/display/intel_plane_initial.c    |  2 +-
+>  .../drm/i915/display/skl_universal_plane.c    |  5 +-
+>  .../gpu/drm/i915/gem/i915_gem_execbuffer.c    |  2 +-
+>  drivers/gpu/drm/i915/pxp/intel_pxp.c          |  4 +-
+>  drivers/gpu/drm/i915/pxp/intel_pxp.h          |  4 +-
+>  drivers/gpu/drm/xe/Makefile                   |  2 +-
+>  .../compat-i915-headers/gem/i915_gem_lmem.h   |  1 -
+>  .../compat-i915-headers/gem/i915_gem_mman.h   | 17 ----
+>  .../compat-i915-headers/gem/i915_gem_object.h | 64 --------------
+>  .../gem/i915_gem_object_frontbuffer.h         | 12 ---
+>  .../gem/i915_gem_object_types.h               | 11 ---
+>  .../drm/xe/compat-i915-headers/i915_debugfs.h | 14 ----
+>  .../gpu/drm/xe/compat-i915-headers/i915_drv.h |  1 +
+>  .../xe/compat-i915-headers/pxp/intel_pxp.h    | 10 +--
+>  drivers/gpu/drm/xe/display/intel_bo.c         | 84 +++++++++++++++++++
+>  drivers/gpu/drm/xe/display/intel_fb_bo.c      | 19 +++--
+>  drivers/gpu/drm/xe/display/intel_fb_bo.h      | 24 ------
+>  drivers/gpu/drm/xe/display/intel_fbdev_fb.c   | 12 +--
+>  drivers/gpu/drm/xe/display/xe_fb_pin.c        | 12 ++-
+>  drivers/gpu/drm/xe/display/xe_plane_initial.c |  2 +-
+>  drivers/gpu/drm/xe/xe_bo.h                    |  2 -
+>  drivers/gpu/drm/xe/xe_bo_types.h              |  3 -
+>  43 files changed, 341 insertions(+), 303 deletions(-)
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_bo.c
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_bo.h
+>  delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_lmem.h
+>  delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_mman.h
+>  delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h
+>  delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object_frontbuffer.h
+>  delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object_types.h
+>  delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_debugfs.h
+>  create mode 100644 drivers/gpu/drm/xe/display/intel_bo.c
+>  delete mode 100644 drivers/gpu/drm/xe/display/intel_fb_bo.h
 
+-- 
+Jani Nikula, Intel
