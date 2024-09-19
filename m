@@ -2,71 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82B9D97CA54
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Sep 2024 15:45:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 14CD497CB0B
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Sep 2024 16:36:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D41E10E6F6;
-	Thu, 19 Sep 2024 13:45:37 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aKm5Lt2/";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6203710E713;
+	Thu, 19 Sep 2024 14:36:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E813210E6F6;
- Thu, 19 Sep 2024 13:45:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726753536; x=1758289536;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=Afo0g08Q3Kxo1z9GMWGN318I9nnn7rzi/dNRfZGeOYw=;
- b=aKm5Lt2/0RfUVl4lgwzbdwkPW08haVRn2BHzRC7EYCq7iVGXqo+bKaJE
- 4FmEZ1y9uBImg1wLEaM5sqGs22Uc8bvLOZO2gqiRcgw74avcHtHjQLekp
- ec4j/fsa8uA7iS4XIKMCe/2OghMjqV0a/9Xl1F/gm9DIpDneCbkhi1fn1
- yhAlixypZ4Tecvvw9w/6t5KSlJiiNI9LDPDkH2fai4MxNWoMUsk573VYe
- ChgcdwF3lnjqhILYnZkWgByd6omqxLARO5KsJ8x5t5NcUaP0uJ+oVWWAD
- H2JkE88ZeHjHy9g2xkkLOYfUVYqTbBDin4qGtCdj8fwr5h+MdzOUCK4IX Q==;
-X-CSE-ConnectionGUID: Y4/bid+hQjuPHes0OKkXeQ==
-X-CSE-MsgGUID: pZ7GvnTDQu6LMZlqp5v0zg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11199"; a="25865654"
-X-IronPort-AV: E=Sophos;i="6.10,241,1719903600"; d="scan'208";a="25865654"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2024 06:45:36 -0700
-X-CSE-ConnectionGUID: VPukWU1XTROyE0MKnz49qA==
-X-CSE-MsgGUID: Xs8lIWRzQoSVavrJqy5ogg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,241,1719903600"; d="scan'208";a="74721962"
-Received: from smile.fi.intel.com ([10.237.72.54])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2024 06:45:32 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
- (envelope-from <andriy.shevchenko@linux.intel.com>)
- id 1srHTM-0000000AXxQ-25pc; Thu, 19 Sep 2024 16:45:28 +0300
-Date: Thu, 19 Sep 2024 16:45:28 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Raag Jadav <raag.jadav@intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, airlied@gmail.com,
- simona@ffwll.ch, lucas.demarchi@intel.com,
- thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
- joonas.lahtinen@linux.intel.com, tursulin@ursulin.net,
- lina@asahilina.net, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- himal.prasad.ghimiray@intel.com, francois.dugast@intel.com,
- aravind.iddamsetty@linux.intel.com, anshuman.gupta@intel.com,
- andi.shyti@linux.intel.com, matthew.d.roper@intel.com
-Subject: Re: [PATCH v5 2/4] drm: Expose wedge recovery methods
-Message-ID: <Zuwq-NOtgr2E1R5S@smile.fi.intel.com>
-References: <20240917040235.197019-1-raag.jadav@intel.com>
- <20240917040235.197019-3-raag.jadav@intel.com>
- <87msk6d8jw.fsf@intel.com> <ZuujCuVxFnOAKdgR@black.fi.intel.com>
- <87r09g9jp0.fsf@intel.com> <ZuvjGpIdOgGpbBQu@black.fi.intel.com>
+Received: from exchange.fintech.ru (exchange.fintech.ru [195.54.195.159])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 758F110E712;
+ Thu, 19 Sep 2024 14:36:14 +0000 (UTC)
+Received: from Ex16-01.fintech.ru (10.0.10.18) by exchange.fintech.ru
+ (195.54.195.159) with Microsoft SMTP Server (TLS) id 14.3.498.0; Thu, 19 Sep
+ 2024 17:36:10 +0300
+Received: from localhost (10.0.253.138) by Ex16-01.fintech.ru (10.0.10.18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Thu, 19 Sep
+ 2024 17:36:10 +0300
+From: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
+To: <stable@vger.kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC: Nikita Zhandarovich <n.zhandarovich@fintech.ru>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ "Joonas Lahtinen" <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ <intel-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <linux-kernel@vger.kernel.org>, <lvc-project@linuxtesting.org>,
+ <lvc-patches@linuxtesting.org>
+Subject: [PATCH 5.10/5.15 0/1] drm/i915: Fix possible int overflow in
+ skl_ddi_calculate_wrpll()
+Date: Thu, 19 Sep 2024 07:36:06 -0700
+Message-ID: <20240919143607.14178-1-n.zhandarovich@fintech.ru>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZuvjGpIdOgGpbBQu@black.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.0.253.138]
+X-ClientProxiedBy: Ex16-02.fintech.ru (10.0.10.19) To Ex16-01.fintech.ru
+ (10.0.10.18)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,18 +54,16 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 19, 2024 at 11:38:50AM +0300, Raag Jadav wrote:
-> On Thu, Sep 19, 2024 at 10:38:51AM +0300, Jani Nikula wrote:
+This patch addresses issues of integer overflow and possibly erroneous
+integer promotion in skl_ddi_calculate_wrpll() and
+skl_ddi_hdmi_pll_dividers() in kernel versions 5.10 and 5.15.
 
-...
+The problem has been fixed in upstream and stable versions up to 6.1
+with commit:
+5b5115726601 ("drm/i915: Fix possible int overflow in skl_ddi_calculate_wrpll()")
 
-> Anyway, would you prefer strlcat instead?
-
-FYI: strl*() are subject to remove. They are bad, no-one should really prefer
-them in the Linux kernel.
-
--- 
-With Best Regards,
-Andy Shevchenko
+Due to changes to skl_ddi_calculate_wrpll() return value the patch had
+to be slightly modified during cherry-picking, leaving the original
+fix intact, and can now be cleanly applied to 5.10 and 5.15 kernels.
 
 
