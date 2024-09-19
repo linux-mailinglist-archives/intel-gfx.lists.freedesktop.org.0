@@ -2,58 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 999B197CD9F
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Sep 2024 20:34:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A1F0397CDC5
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Sep 2024 20:42:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30CBE10E750;
-	Thu, 19 Sep 2024 18:34:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D28610E761;
+	Thu, 19 Sep 2024 18:42:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kIVxUA5t";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YOAB/NUe";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE25110E750
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Sep 2024 18:34:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 36A2710E761;
+ Thu, 19 Sep 2024 18:42:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726770854; x=1758306854;
+ t=1726771367; x=1758307367;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=3B9ZrlWo7AV0EkKeEA7I+qVk5ZH1nYSnq84KrgyWQtU=;
- b=kIVxUA5tCtxel9a7xuyVQKt5v5BWaicKcQBro9Y1vImECQ6NR5ot4kvq
- c/4VGUZRK/i1dXAxkqm/EEYCp3L3bjmn7N6zoa8dQa95T0uddCuOI6eop
- e1ZmQQyjVQgm8Zb1iQRyG6FpWHl5sqO/usCZpqf17vlBY7+tRhseZWe2f
- PEO3xXkW+EfgGNjICz0oyVtDIxJGeQSVb65SutYZJQAGfzXP9qlpBYFtu
- tNmOZmCuCgbZl9Ae2t0RxL7018eYTQMPoPNy6VkSnWVz4LhPZdSJCSv2f
- 5Iw0YFT6VwuqdJm/xXojhHZHxmbNVgxc/aF7Mt4qpdQUXJFpM7HCWVGJZ g==;
-X-CSE-ConnectionGUID: xWhUfPWhSWGkop0b+HEfxA==
-X-CSE-MsgGUID: qzcQI9B+ThSRzjc070wNdQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11200"; a="25235451"
-X-IronPort-AV: E=Sophos;i="6.10,242,1719903600"; d="scan'208";a="25235451"
+ bh=uXFvK9JaQcZiW0iJyiy185Pxi5lPeR6y9UqBsr5hUYg=;
+ b=YOAB/NUeSw6sebC07XJGbrwMpYvszb6BIMBL0zLi4CmPhfoPdnxA6hb4
+ 9caB1ZsqFU1fbC0167S4Yps8BLtT72ExIz1h2RnKYDcxlzr777cHs6dR4
+ cR/kOiekrgD6Jkg8f8bk/lZFCbWMmUttJXqwktjijMH19EMdaXO+Lue2x
+ GX10ezJAAeA0gbbuilA4o2MToCGvUBIAXsD8hZIluiQau5aGF5mqOrTbx
+ HZOZ5jsC4BIssiAjNl7WE4Njhk+mvFQoadzyflOpOfAFQ1h5MiZceLPGm
+ IPH9SLcXJmH0gE7MeBf0EzCuOUMiBzVBZjSBgwz8aaC4Kz3gfez/JV/C/ g==;
+X-CSE-ConnectionGUID: +dT9V7npRFSP4x83DyqZmA==
+X-CSE-MsgGUID: GuFaqQFyQx2la7qzf7VWjA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11200"; a="51169021"
+X-IronPort-AV: E=Sophos;i="6.10,242,1719903600"; d="scan'208";a="51169021"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2024 11:34:13 -0700
-X-CSE-ConnectionGUID: ydGJT/ouTKemvHaOV43RYA==
-X-CSE-MsgGUID: 02Z6KvfQRDSqZDiPSBpVmA==
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Sep 2024 11:42:47 -0700
+X-CSE-ConnectionGUID: tWIE4sYsS/ejNtNlRFmWIg==
+X-CSE-MsgGUID: 4BgPGuTLS/OmCYxB2FK5FA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,242,1719903600"; d="scan'208";a="70159152"
+X-IronPort-AV: E=Sophos;i="6.10,242,1719903600"; d="scan'208";a="70160669"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 19 Sep 2024 11:34:11 -0700
+ by fmviesa008.fm.intel.com with SMTP; 19 Sep 2024 11:42:44 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 19 Sep 2024 21:34:10 +0300
-Date: Thu, 19 Sep 2024 21:34:10 +0300
+ Thu, 19 Sep 2024 21:42:43 +0300
+Date: Thu, 19 Sep 2024 21:42:43 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915/quirks: make intel_dpcd_quirks const
-Message-ID: <ZuxuouVHVBIRZwAW@intel.com>
-References: <20240919153354.1269295-1-jani.nikula@intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ suraj.kandpal@intel.com
+Subject: Re: [PATCH 14/15] drm/i915/display: Consider ultrajoiner for
+ computing maxdotclock
+Message-ID: <ZuxwoxdVfnd9oviN@intel.com>
+References: <20240918144343.2876184-1-ankit.k.nautiyal@intel.com>
+ <20240918144343.2876184-15-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240919153354.1269295-1-jani.nikula@intel.com>
+In-Reply-To: <20240918144343.2876184-15-ankit.k.nautiyal@intel.com>
 X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,41 +73,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 19, 2024 at 06:33:54PM +0300, Jani Nikula wrote:
-> The array can be in rodate, make it const.
+On Wed, Sep 18, 2024 at 08:13:42PM +0530, Ankit Nautiyal wrote:
+> Use the check for ultrajoiner while computing maxdotclock.
 > 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_quirks.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_display.c | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
-> index 29b56d53a340..28f497ae785b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_quirks.c
-> +++ b/drivers/gpu/drm/i915/display/intel_quirks.c
-> @@ -231,7 +231,7 @@ static struct intel_quirk intel_quirks[] = {
->  	{ 0x0f31, 0x103c, 0x220f, quirk_invert_brightness },
->  };
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 044f91359c42..b1dc44f9fa88 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -8197,8 +8197,11 @@ static int max_dotclock(struct drm_i915_private *i915)
+>  {
+>  	int max_dotclock = i915->display.cdclk.max_dotclk_freq;
 >  
-> -static struct intel_dpcd_quirk intel_dpcd_quirks[] = {
-> +static const struct intel_dpcd_quirk intel_dpcd_quirks[] = {
->  	/* Dell Precision 5490 */
->  	{
->  		.device = 0x7d55,
-> @@ -272,7 +272,7 @@ void intel_init_dpcd_quirks(struct intel_dp *intel_dp,
->  	int i;
+> +	if (HAS_ULTRAJOINER(i915))
+> +		max_dotclock *= 4;
+> +
+>  	/* icl+ might use joiner */
+> -	if (HAS_BIGJOINER(i915))
+> +	else if (HAS_BIGJOINER(i915))
+
+I'd probably write that as 'HAS_BIGJOINER || HAS_UNCOMPRESSED_JOINER'
+just to reduce our dependency on the subtle detail that all current
+uncompressed joiner capable hardware is also bigjoiner capable.
+
+In fact, technically that isn't even true because bigjoiner
+depends on dsc which can (at least theoretically) be fused
+odd. Perhaps we also want to include a has_dsc check in
+HAS_BIGJOINER() and HAS_ULTRAJOINER()...
+
+
+>  		max_dotclock *= 2;
 >  
->  	for (i = 0; i < ARRAY_SIZE(intel_dpcd_quirks); i++) {
-> -		struct intel_dpcd_quirk *q = &intel_dpcd_quirks[i];
-> +		const struct intel_dpcd_quirk *q = &intel_dpcd_quirks[i];
->  
->  		if (d->device == q->device &&
->  		    (d->subsystem_vendor == q->subsystem_vendor ||
+>  	return max_dotclock;
 > -- 
-> 2.39.2
+> 2.45.2
 
 -- 
 Ville Syrjälä
