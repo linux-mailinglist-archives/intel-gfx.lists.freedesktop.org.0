@@ -2,57 +2,84 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E02A97C5CD
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Sep 2024 10:27:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F70397C5CE
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Sep 2024 10:27:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED47110E144;
-	Thu, 19 Sep 2024 08:27:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F26F810E2BB;
+	Thu, 19 Sep 2024 08:27:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KRIYYmmp";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="YvwJvwUs";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC4FC10E144
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Sep 2024 08:27:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726734453; x=1758270453;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=oJMB6e2bmgyH5+IzzBY5YiQo51Nu+3v9YWhrzMCAUvY=;
- b=KRIYYmmpPHxoFiA6CEDJ/8ee0HgR1q0WGgKWZjvKHnV9oVoQB35wUUAs
- c3+4n5uS5x8pFFzH/7UelRY3M6OwnbI7P7d47rTt7JZX32Ftj5BgSTDvF
- gfN/wsOvOvvX1Dnoole7i1Hp4p8wRBSQCIo/1SODOS+m/6opikk/vVM0R
- 1KYKgLjtNatfapcUuZ/6LmcEevxu3CkkV6zUL7yksmN+BJzj3SONTlAls
- TEhG7OnSHBn2HXnGhWC3bNDxJlVQDTA+WWjMgJ9AxsKVnrqmEEsH/8b5d
- R1+d6Y+gS5/kCj9EKarTvdyksDd+jdbj00Neat6i+bEgXyzG4Vw+tg9SV g==;
-X-CSE-ConnectionGUID: fEfU/n96T+uMfCRzWZxtBA==
-X-CSE-MsgGUID: Vzaj0CrmRhqUN62u8BqwQg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11199"; a="25203101"
-X-IronPort-AV: E=Sophos;i="6.10,241,1719903600"; d="scan'208";a="25203101"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2024 01:27:33 -0700
-X-CSE-ConnectionGUID: LF2a+K4YS6OmxnSch1wM8Q==
-X-CSE-MsgGUID: ylA2gmkzQ2mAm2p0KqLYaw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,241,1719903600"; d="scan'208";a="69467723"
-Received: from anirban-z690i-a-ultra-plus.iind.intel.com ([10.145.169.150])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2024 01:27:31 -0700
-From: Sk Anirban <sk.anirban@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	anshuman.gupta@intel.com
-Cc: karthik.poosa@intel.com, sai.teja.pottumuttu@intel.com,
- Sk Anirban <sk.anirban@intel.com>
-Subject: [PATCH v3] drm/i915/selftests: Implement frequency check for energy
- reading validation
-Date: Thu, 19 Sep 2024 13:53:39 +0530
-Message-Id: <20240919082339.1310635-1-sk.anirban@intel.com>
-X-Mailer: git-send-email 2.34.1
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A671E10E6A2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Sep 2024 08:27:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1726734457;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=lArsEJUM9CVWI7GJs9U6NCil92cWLLEKF6YZxDN2YT0=;
+ b=YvwJvwUspxT2qCy3dB1yESS6IVJJpz4dXrrVkaQZxKpZFBVJuwVVqZSVLqlduguPAeQ/9C
+ XqTzcckSiKOTn52cDZ+YcKuEWmYK/FuGOlqeQ8u7wcinqDLgoq+OwHAiRQsgnVUPhs+Gd8
+ N9Ju3tzodkZ4I4Cd5SIuGs8rR+DuJBw=
+Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
+ [209.85.221.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-230-HtKrJI6DNWGbTjdqsLbDrQ-1; Thu, 19 Sep 2024 04:27:36 -0400
+X-MC-Unique: HtKrJI6DNWGbTjdqsLbDrQ-1
+Received: by mail-wr1-f69.google.com with SMTP id
+ ffacd0b85a97d-374c90d24e3so399237f8f.0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Sep 2024 01:27:35 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1726734455; x=1727339255;
+ h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+ :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=lArsEJUM9CVWI7GJs9U6NCil92cWLLEKF6YZxDN2YT0=;
+ b=exbO7NjFoaf7pyBNUOJeo3Y6UH1hL4b95JCAr3CSp+wa55PnPN3oE0+h3FyK+GyYeY
+ +MqhUveIBREOzkwaQoc2tznSZLG3qEWZIwMEvPQurTFAPdM4FyN5f0C6IH41fXigpkko
+ DSYjSr7zHblnASmB3nYosE2YAwaAYsWQBnZSa1A5r+RrtvbmoUosEk1W7t/WgnvO6gRV
+ w5apC34iWkxPoctxt+gRdqwfqG0M17EhKE7IZ6f/rku0j6HDvopPppZV/VzYAh1vDInN
+ 5SGNu6dLmQkfpLgdKJRqkbxKiLi+OwyQVG+PGBFUoVBxxoFN6G9W5UbKUO7worC8gZ+l
+ wr9g==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCU9aJr+KpYj585gzLCpoa1YL9dhpOU11Az1vxxiYD01LoarEGqE0D7pbL5I3M2LAKWcUD4Ftfv0kTs=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yxpgv5aAZn4UvyV+9hjkZcHizxvmgYIC+ZhbvvGRNRGr0rJHCge
+ GHMEEsPb39R+KU5TJ6PzMYnx6eNmLFXwSZWvX9bYgHGoUrc1ttCxcWXHE3s2+xoKqzTQJSJaEA2
+ ZGsKNUXmuplsp+KODVPlDU5YgdnVEfKEzepGXEwrZXeZsSEoUkKqhojYB5i54vaxmxw==
+X-Received: by 2002:a5d:6348:0:b0:374:c6b8:50b5 with SMTP id
+ ffacd0b85a97d-378d61e26bemr15418157f8f.17.1726734454758; 
+ Thu, 19 Sep 2024 01:27:34 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEmvESs/4+ZH+exTPNQkONx+oj5rCX6nhIeWJM9Ry/Lu9oxFoPa8CRU7XyqEcFx+oZrT/mAWw==
+X-Received: by 2002:a5d:6348:0:b0:374:c6b8:50b5 with SMTP id
+ ffacd0b85a97d-378d61e26bemr15418133f8f.17.1726734454291; 
+ Thu, 19 Sep 2024 01:27:34 -0700 (PDT)
+Received: from localhost ([90.167.95.6]) by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-378e780578csm14623798f8f.109.2024.09.19.01.27.33
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 19 Sep 2024 01:27:33 -0700 (PDT)
+From: Javier Martinez Canillas <javierm@redhat.com>
+To: Tzung-Bi Shih <tzungbi@kernel.org>
+Cc: linux-kernel@vger.kernel.org, Brian Norris <briannorris@chromium.org>,
+ dri-devel@lists.freedesktop.org, Borislav Petkov <bp@alien8.de>, Julius
+ Werner <jwerner@chromium.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ chrome-platform@lists.linux.dev, intel-gfx@lists.freedesktop.org, Hugues
+ Bruant <hugues.bruant@gmail.com>, Alex Deucher
+ <alexander.deucher@amd.com>, Dan Carpenter <dan.carpenter@linaro.org>,
+ Helge Deller <deller@gmx.de>, Jani Nikula <jani.nikula@intel.com>
+Subject: Re: [PATCH v4 0/2] firmware: Avoid coreboot and sysfb to register a
+ pdev for same framebuffer
+In-Reply-To: <ZuvVf5XRMqjD8G9T@google.com>
+References: <20240916110040.1688511-1-javierm@redhat.com>
+ <ZuvVf5XRMqjD8G9T@google.com>
+Date: Thu, 19 Sep 2024 10:27:32 +0200
+Message-ID: <878qvojbez.fsf@minerva.mail-host-address-is-not-set>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,67 +95,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This commit introduces a frequency check mechanism aimed at ensuring
-the accuracy of energy readings.
+Tzung-Bi Shih <tzungbi@kernel.org> writes:
 
-v2:
-  - Improved commit message.
-v3:
-  - Used pr_err log to display frequency. (Anshuman)
-  - Sorted headers alphabetically. (Sai Teja)
+Hello Tzung-Bi,
 
-Signed-off-by: Sk Anirban <sk.anirban@intel.com>
----
- drivers/gpu/drm/i915/gt/selftest_rc6.c | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+> On Mon, Sep 16, 2024 at 01:00:24PM +0200, Javier Martinez Canillas wrote:
+>> The patches have only been compiled tested because I don't have access to
+>> a coreboot machine. Please let me know if you plan to merge both patches
+>> through the chrome-platforms tree or if you prefer to get merged through
+>> the drm-misc tree.
+>> 
+>> [...]
+>> Javier Martinez Canillas (2):
+>>   firmware: sysfb: Add a sysfb_handles_screen_info() helper function
+>>   firmware: coreboot: Don't register a pdev if screen_info data is
+>>     present
+>
+> I'll queue both patches through the chrome-platform tree for v6.13 if there is
+> no objections.
+>
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_rc6.c b/drivers/gpu/drm/i915/gt/selftest_rc6.c
-index 1aa1446c8fb0..8fd6be7b826e 100644
---- a/drivers/gpu/drm/i915/gt/selftest_rc6.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_rc6.c
-@@ -8,6 +8,7 @@
- #include "intel_gpu_commands.h"
- #include "intel_gt_requests.h"
- #include "intel_ring.h"
-+#include "intel_rps.h"
- #include "selftest_rc6.h"
- 
- #include "selftests/i915_random.h"
-@@ -38,6 +39,8 @@ int live_rc6_manual(void *arg)
- 	ktime_t dt;
- 	u64 res[2];
- 	int err = 0;
-+	u32 rc0_freq, rc6_freq;
-+	struct intel_rps *rps = &gt->rps;
- 
- 	/*
- 	 * Our claim is that we can "encourage" the GPU to enter rc6 at will.
-@@ -66,6 +69,7 @@ int live_rc6_manual(void *arg)
- 	rc0_power = librapl_energy_uJ() - rc0_power;
- 	dt = ktime_sub(ktime_get(), dt);
- 	res[1] = rc6_residency(rc6);
-+	rc0_freq = intel_rps_read_actual_frequency(rps);
- 	if ((res[1] - res[0]) >> 10) {
- 		pr_err("RC6 residency increased by %lldus while disabled for 1000ms!\n",
- 		       (res[1] - res[0]) >> 10);
-@@ -91,6 +95,7 @@ int live_rc6_manual(void *arg)
- 	dt = ktime_get();
- 	rc6_power = librapl_energy_uJ();
- 	msleep(100);
-+	rc6_freq = intel_rps_read_actual_frequency(rps);
- 	rc6_power = librapl_energy_uJ() - rc6_power;
- 	dt = ktime_sub(ktime_get(), dt);
- 	res[1] = rc6_residency(rc6);
-@@ -108,7 +113,8 @@ int live_rc6_manual(void *arg)
- 		pr_info("GPU consumed %llduW in RC0 and %llduW in RC6\n",
- 			rc0_power, rc6_power);
- 		if (2 * rc6_power > rc0_power) {
--			pr_err("GPU leaked energy while in RC6!\n");
-+			pr_err("GPU leaked energy while in RC6!\nGPU Freq: %u in RC6 and %u in RC0\n",
-+			       rc6_freq, rc0_freq);
- 			err = -EINVAL;
- 			goto out_unlock;
- 		}
+That works for me. Thanks a lot.
+
 -- 
-2.34.1
+Best regards,
+
+Javier Martinez Canillas
+Core Platforms
+Red Hat
 
