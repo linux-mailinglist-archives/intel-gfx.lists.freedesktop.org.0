@@ -2,61 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8547E97C6B2
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Sep 2024 11:13:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1385E97C706
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Sep 2024 11:24:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 106C710E6B0;
-	Thu, 19 Sep 2024 09:13:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76E1410E6AD;
+	Thu, 19 Sep 2024 09:24:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ePOuJtpK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UCUhKSBo";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC42910E1C6;
- Thu, 19 Sep 2024 09:13:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC53410E6B6;
+ Thu, 19 Sep 2024 09:24:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726737232; x=1758273232;
+ t=1726737859; x=1758273859;
  h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=AAHKYo2xqlS5QDr7EsW1MvQT5h+QFZ71xaQMSh1Dug4=;
- b=ePOuJtpKywgPv3wMOClE7SuXgEAcKT55PIgL6GyCMIAfRGid6jCyYUl/
- UEHwpk7lC7wrcem9BtdiBVia3le3dj4MvfQW+9ky815Csb3ew+hy81egg
- /qBskNy9BAgUjI6vfU+NwDhaZtkfSWzSAcKebwy224MQWyzWJ/s7rmUQ+
- cjFIXQBcVZr99nugnjenPqLwCpll7iZGI1qevICjmzK2zMr5SwBB2mq8e
- iox6ZcD7BCPSgMN9o8fRuI/YdsZ5wdxxclxna5lPG2sQVY+WjKkr3Opbv
- tiDDX40ZIlNEmQmcJ4I2m0tcW59P10vU2GsrXdaoPy7kGcgLdEXTynrmC A==;
-X-CSE-ConnectionGUID: A8R2BkgSTZi457c4KnuopA==
-X-CSE-MsgGUID: YGX5h7I4R6uL7ArgDJYShA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11199"; a="36817493"
-X-IronPort-AV: E=Sophos;i="6.10,241,1719903600"; d="scan'208";a="36817493"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2024 02:13:51 -0700
-X-CSE-ConnectionGUID: QxZLjtygTCKbA9m+g2a59A==
-X-CSE-MsgGUID: FJHqK2IwRHqjRHU6VH5CBQ==
+ message-id:mime-version;
+ bh=Q+itF1pibq9H7Z4mTEQZlz5fG7sbs0aLTXQCSID35bU=;
+ b=UCUhKSBoYaXxWshghkYsyLYNTooBO1Ae35n1dwt8EZJW1UkB3n7YwJW+
+ 3CjqdOqwS7vln3LYDBgabWB9E3oSmh84t7Ts3PE5c5Sqe4pwoq+PgTmz1
+ GyVaSI0lSeJ+mapGrcpBp+cqOgZOdwxOL6LlUT4xbxZWG49+pm/yS1QqO
+ bOBOKWSn4fYZVYTU8n683DtaO07mOqhfi1bxobnaGEig4A0ZDD+ezOcgJ
+ TiGZFc74WzFJ14ejTFKg+WAs0pq4E5TJgbFWTcZa38SMwB45iUyT7whuZ
+ D7eV3Ee3x3AL9AJkvGEi/n8mdyDhFidvDppq1JWTjKMJTG9hWhSv9Wl2L g==;
+X-CSE-ConnectionGUID: rHGu3DeBQzCSXiAn0l2afw==
+X-CSE-MsgGUID: olVaJLdRRHiB0oh3frpZXQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11199"; a="25882533"
+X-IronPort-AV: E=Sophos;i="6.10,241,1719903600"; d="scan'208";a="25882533"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Sep 2024 02:24:18 -0700
+X-CSE-ConnectionGUID: Cre5BtJ+Qg6RNbHoRFE2Yg==
+X-CSE-MsgGUID: kKfolhReSya2QVEZTg9KcQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,241,1719903600"; d="scan'208";a="74662641"
+X-IronPort-AV: E=Sophos;i="6.10,241,1719903600"; d="scan'208";a="74233600"
 Received: from sschumil-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.59])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2024 02:13:50 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v3 3/9] drm/i915/pps: only touch the vlv_ members on
- VLV/CHV
-In-Reply-To: <ZusmX8cRJHIKRAx8@intel.com>
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Sep 2024 02:24:12 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Raag Jadav <raag.jadav@intel.com>
+Cc: airlied@gmail.com, simona@ffwll.ch, lucas.demarchi@intel.com,
+ thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
+ joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, lina@asahilina.net,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
+ francois.dugast@intel.com, aravind.iddamsetty@linux.intel.com,
+ anshuman.gupta@intel.com, andi.shyti@linux.intel.com,
+ andriy.shevchenko@linux.intel.com, matthew.d.roper@intel.com
+Subject: Re: [PATCH v5 2/4] drm: Expose wedge recovery methods
+In-Reply-To: <ZuvjGpIdOgGpbBQu@black.fi.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1726681620.git.jani.nikula@intel.com>
- <158c7b30e56d22aa3f9c9e51e87b9d89687d74d5.1726681620.git.jani.nikula@intel.com>
- <ZusmX8cRJHIKRAx8@intel.com>
-Date: Thu, 19 Sep 2024 12:13:46 +0300
-Message-ID: <87jzf89fat.fsf@intel.com>
+References: <20240917040235.197019-1-raag.jadav@intel.com>
+ <20240917040235.197019-3-raag.jadav@intel.com> <87msk6d8jw.fsf@intel.com>
+ <ZuujCuVxFnOAKdgR@black.fi.intel.com> <87r09g9jp0.fsf@intel.com>
+ <ZuvjGpIdOgGpbBQu@black.fi.intel.com>
+Date: Thu, 19 Sep 2024 12:24:09 +0300
+Message-ID: <87ikus9eti.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,43 +78,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 18 Sep 2024, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Wed, Sep 18, 2024 at 08:47:43PM +0300, Jani Nikula wrote:
->> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/=
-i915/display/intel_pps.c
->> index 2d8d911988ab..649dc6ad2278 100644
->> --- a/drivers/gpu/drm/i915/display/intel_pps.c
->> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
->> @@ -472,16 +472,17 @@ void intel_pps_reset_all(struct intel_display *dis=
-play)
->>  	for_each_intel_dp(display->drm, encoder) {
->>  		struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
->>=20=20
->> -		drm_WARN_ON(display->drm,
->> -			    intel_dp->pps.vlv_active_pipe !=3D INVALID_PIPE);
->> +		if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
->> +			drm_WARN_ON(display->drm,
->> +				    intel_dp->pps.vlv_active_pipe !=3D INVALID_PIPE);
+On Thu, 19 Sep 2024, Raag Jadav <raag.jadav@intel.com> wrote:
+> On Thu, Sep 19, 2024 at 10:38:51AM +0300, Jani Nikula wrote:
+>> On Thu, 19 Sep 2024, Raag Jadav <raag.jadav@intel.com> wrote:
+>> > On Tue, Sep 17, 2024 at 10:49:07AM +0300, Jani Nikula wrote:
+>> >> On Tue, 17 Sep 2024, Raag Jadav <raag.jadav@intel.com> wrote:
+>> >> >  
+>> >> > +extern const char *const wedge_recovery_opts[];
+>> >> 
+>> >> Data is not an interface. Please add a function for this.
+>> >
+>> > For a single user?
+>> 
+>> Yes.
+>> 
+>> Well, you kind of have two, and both places need to do bounds checking
+>> on indexing the array. You also need to do bounds checking on the string
+>> manipulation, you can't just strcat and assume it'll be all right.
 >
-> Might make sense to just split this whole function
-> into vlv/chv vs. bxt/glk versions. It's called from
-> platform specific code only so each caller knows
-> which one it wants.
+> Which would be true if we were to receive an unknown string. Here we sorta
+> know it offhand so we're not gonna shoot in our foot :D
 
-Agreed. Patch on the list [1].
+The thing about long term code maintenance is that "we know" often turns
+into "not too obvious" and "probably" somewhere down the line, as
+features get added and code gets refactored and moved about.
 
-> Series is
-> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+Here, it only takes a new, longer string, and failure to manually check
+that the lengths don't exceed the magic 32 bytes. Just be safe from the
+start, and you don't have to worry about it later.
 
-Many thanks, pushed to din.
+> Anyway, would you prefer strlcat instead?
+
+I think the cleaner option is:
+
+	char event_string[32];
+
+	snprintf(event_string, sizeof(event_string), "WEDGED=%s", wedge_name(method));
+
+which is also what most other code constructing environments for
+kobject_uevent_env() do.
 
 BR,
 Jani.
 
 
-[1] https://lore.kernel.org/r/20240919090427.1859032-1-jani.nikula@intel.com
-
-
---=20
+-- 
 Jani Nikula, Intel
