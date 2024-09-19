@@ -2,45 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35D7197CB0D
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Sep 2024 16:36:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F38F97CB4C
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Sep 2024 17:04:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1513E10E715;
-	Thu, 19 Sep 2024 14:36:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 66FB210E2BE;
+	Thu, 19 Sep 2024 15:04:31 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dI+NjL2u";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from exchange.fintech.ru (exchange.fintech.ru [195.54.195.159])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8306010E714;
- Thu, 19 Sep 2024 14:36:16 +0000 (UTC)
-Received: from Ex16-01.fintech.ru (10.0.10.18) by exchange.fintech.ru
- (195.54.195.159) with Microsoft SMTP Server (TLS) id 14.3.498.0; Thu, 19 Sep
- 2024 17:36:15 +0300
-Received: from localhost (10.0.253.138) by Ex16-01.fintech.ru (10.0.10.18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Thu, 19 Sep
- 2024 17:36:14 +0300
-From: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
-To: <stable@vger.kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC: Nikita Zhandarovich <n.zhandarovich@fintech.ru>, Jani Nikula
- <jani.nikula@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- "Joonas Lahtinen" <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- <intel-gfx@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <linux-kernel@vger.kernel.org>, <lvc-project@linuxtesting.org>,
- <lvc-patches@linuxtesting.org>, Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH 5.10/5.15 1/1] drm/i915: Fix possible int overflow in
- skl_ddi_calculate_wrpll()
-Date: Thu, 19 Sep 2024 07:36:07 -0700
-Message-ID: <20240919143607.14178-2-n.zhandarovich@fintech.ru>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240919143607.14178-1-n.zhandarovich@fintech.ru>
-References: <20240919143607.14178-1-n.zhandarovich@fintech.ru>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 49BCB10E09C;
+ Thu, 19 Sep 2024 15:04:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1726758269; x=1758294269;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=qUPT5xAMUq1NazD/3XsQW89gmeL3mCERxRxC9rLlNU0=;
+ b=dI+NjL2ufBy6hR6YRKef7qK2uOp9QYMiDvScvriiAJ7faSPRSooTvJ3B
+ PP639rzO+nOMYzsoa4eBVT21d9Kz3Y3MOfcEEyC2ZlJEhhgYvbzyFSVmB
+ Rp47cZYBvylfOp1o5YP00UtraR6N9gmedvvoXG8z0OXAtaLSEDfPQbmtu
+ ZzY8rDpxDJhwKElwlbhTrh0K17T7MtbExkvyUjjdamVG+mGAMxtFbgty1
+ d9McNVYijJEl9FLVWjbElevetJzmKAyIIycWsmcwpW1/++EuxmBkJ08tT
+ 23cw5QhSmmxZYaJ7AJm/3RjP10H/rQk4V+BMZsOZ/CMjuKc3GSO4v0gVt w==;
+X-CSE-ConnectionGUID: /ZRxD6AVTyqZUkJu3sGrwA==
+X-CSE-MsgGUID: fgt6bBh+S3yXDfrPgCOkvA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11200"; a="25870909"
+X-IronPort-AV: E=Sophos;i="6.10,242,1719903600"; d="scan'208";a="25870909"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Sep 2024 08:04:14 -0700
+X-CSE-ConnectionGUID: ASgwTtEMQ4exx6Lg7PEjKw==
+X-CSE-MsgGUID: JSeWO7A3TJe4bWMJEWkRqg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,242,1719903600"; d="scan'208";a="70089654"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 19 Sep 2024 08:04:12 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 19 Sep 2024 18:04:11 +0300
+Date: Thu, 19 Sep 2024 18:04:11 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ suraj.kandpal@intel.com
+Subject: Re: [PATCH 03/15] drm/i915/display_debugfs: Allow force joiner only
+ if supported
+Message-ID: <Zuw9a6MqrbQ-qcL4@intel.com>
+References: <20240918144343.2876184-1-ankit.k.nautiyal@intel.com>
+ <20240918144343.2876184-4-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.0.253.138]
-X-ClientProxiedBy: Ex16-02.fintech.ru (10.0.10.19) To Ex16-01.fintech.ru
- (10.0.10.18)
+In-Reply-To: <20240918144343.2876184-4-ankit.k.nautiyal@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,63 +73,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
+On Wed, Sep 18, 2024 at 08:13:31PM +0530, Ankit Nautiyal wrote:
+> Currently we support joiner only for DP encoder.
+> Do not create the debugfs for joiner if DP does not support the joiner.
+> This will also help avoiding cases where config has eDP MSO, with which
+> we do not support joiner.
+> 
+> v2: Check for intel_dp_has_joiner and avoid creating debugfs if not
+> supported. (Ville)
+> 
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display_debugfs.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> index 86403a9318b0..cda3f6cf724d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> @@ -1516,6 +1516,7 @@ void intel_connector_debugfs_add(struct intel_connector *connector)
+>  	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+>  	struct dentry *root = connector->base.debugfs_entry;
+>  	int connector_type = connector->base.connector_type;
+> +	struct intel_dp *intel_dp = intel_attached_dp(connector);
+>  
+>  	/* The connector must have been registered beforehands. */
+>  	if (!root)
+> @@ -1550,7 +1551,7 @@ void intel_connector_debugfs_add(struct intel_connector *connector)
+>  				    connector, &i915_dsc_fractional_bpp_fops);
+>  	}
+>  
+> -	if (HAS_BIGJOINER(i915) &&
+> +	if (HAS_BIGJOINER(i915) && intel_dp_has_joiner(intel_dp) &&
 
-commit 5b511572660190db1dc8ba412efd0be0d3781ab6 upstream.
+Can't we drop the HAS_BIGJOINER() check now?
 
-On the off chance that clock value ends up being too high (by means
-of skl_ddi_calculate_wrpll() having been called with big enough
-value of crtc_state->port_clock * 1000), one possible consequence
-may be that the result will not be able to fit into signed int.
+>  	    (connector_type == DRM_MODE_CONNECTOR_DisplayPort ||
+>  	     connector_type == DRM_MODE_CONNECTOR_eDP)) {
+>  		debugfs_create_bool("i915_bigjoiner_force_enable", 0644, root,
+> -- 
+> 2.45.2
 
-Fix this issue by moving conversion of clock parameter from kHz to Hz
-into the body of skl_ddi_calculate_wrpll(), as well as casting the
-same parameter to u64 type while calculating the value for AFE clock.
-This both mitigates the overflow problem and avoids possible erroneous
-integer promotion mishaps.
-
-Found by Linux Verification Center (linuxtesting.org) with static
-analysis tool SVACE.
-
-Fixes: 82d354370189 ("drm/i915/skl: Implementation of SKL DPLL programming")
-Signed-off-by: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-[Nikita: This patch had to be cherry-picked due to function
-skl_ddi_calculate_wrpll() having had bool return value instead of
-an int one in 5.15 and earlier kernel versions.]
-Signed-off-by: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
----
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index 91b37b76618d..40c392b7ce75 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -1465,11 +1465,11 @@ static void skl_wrpll_params_populate(struct skl_wrpll_params *params,
- }
- 
- static bool
--skl_ddi_calculate_wrpll(int clock /* in Hz */,
-+skl_ddi_calculate_wrpll(int clock,
- 			int ref_clock,
- 			struct skl_wrpll_params *wrpll_params)
- {
--	u64 afe_clock = clock * 5; /* AFE Clock is 5x Pixel clock */
-+	u64 afe_clock = (u64)clock * 1000 * 5; /* AFE Clock is 5x Pixel clock, in HZ */
- 	u64 dco_central_freq[3] = { 8400000000ULL,
- 				    9000000000ULL,
- 				    9600000000ULL };
-@@ -1552,7 +1552,7 @@ static bool skl_ddi_hdmi_pll_dividers(struct intel_crtc_state *crtc_state)
- 
- 	ctrl1 |= DPLL_CTRL1_HDMI_MODE(0);
- 
--	if (!skl_ddi_calculate_wrpll(crtc_state->port_clock * 1000,
-+	if (!skl_ddi_calculate_wrpll(crtc_state->port_clock,
- 				     i915->dpll.ref_clks.nssc,
- 				     &wrpll_params))
- 		return false;
 -- 
-2.25.1
-
+Ville Syrjälä
+Intel
