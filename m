@@ -2,66 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 698E297C81F
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Sep 2024 12:43:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D226397C873
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Sep 2024 13:18:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FE9410E6A7;
-	Thu, 19 Sep 2024 10:43:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1AE9D10E046;
+	Thu, 19 Sep 2024 11:18:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="sU7zbATy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bTghTI9Q";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B3A4D10E171;
- Thu, 19 Sep 2024 10:43:26 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id 05F52A43C2E;
- Thu, 19 Sep 2024 10:43:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2292DC4CEC4;
- Thu, 19 Sep 2024 10:43:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1726742605;
- bh=EHtny0pChaI3F5c8aTKE+T8QjpjMZEXc+nsAx7uwenA=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=sU7zbATy/klDP0d68H+TlJgnIWUgGVSiTim/rxcCaqr+Gefv4swwBqM9CJ2Nw/G6V
- sgZVCQyRDgPMcK6bq213wrEVossqlxrS+I+47Y5bMP2VSPMQvioeaOzElhZOfge9mj
- F2J4oQo88ngYsmE8SPnSVGVVRiiY18UsyMG7KkOzFlsiirtPhmkmOHglz+7LwDEafq
- Rpz2i+bAXp2pbs73KZH0WexL5Nd4X2OVu3yLD2RK2AB7GsXeXTRRk8Hwizd2P5aLQf
- JkN1qm336+osA/IFZYVw+FycXvYRDTnHQTXFUZlYZczIH1mkPFmDT6KhlOC/ca/iki
- FNFj3wKShba1w==
-Date: Thu, 19 Sep 2024 12:43:22 +0200
-From: Mark Brown <broonie@kernel.org>
-To: "Winkler, Tomas" <tomas.winkler@intel.com>
-Cc: "Usyskin, Alexander" <alexander.usyskin@intel.com>,
- "De Marchi, Lucas" <lucas.demarchi@intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- "Lubart, Vitaly" <vitaly.lubart@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH v6 04/12] spi: intel-dg: spi register with mtd
-Message-ID: <ZuwASoMtyWvZIFNg@finisterre.sirena.org.uk>
-References: <20240916134928.3654054-1-alexander.usyskin@intel.com>
- <20240916134928.3654054-5-alexander.usyskin@intel.com>
- <ZurX4xcy7TK45Omq@finisterre.sirena.org.uk>
- <PH7PR11MB7605B60D43732A60C0A32D46E5632@PH7PR11MB7605.namprd11.prod.outlook.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6396A10E046
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Sep 2024 11:18:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1726744689; x=1758280689;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=3Bw4ddd4OIj1N2Qp4L2Bf9TB57FKZ1A1dGzipZBQdFc=;
+ b=bTghTI9QeKaWT8ab7oVHtibarQZk/mko7/GUH4oE5roEDQ57QxFPCISQ
+ Gf00jeCkmoQjGOwup/igUB+L/pk3jsde164ES7SGcm2CH4R3jlgnF7/b3
+ LKwWqA7klX03Hz8w6CqgmPKsWeBVDbatSwAGlEzdUP35+DDfOhtMAioeN
+ KUT64UfLIWLk+el5iLyj6f2UD4DZQMHnLKM3fPPaRA0OTaVPLFw4k3r3m
+ bvR9K8l7Hx1zyippGtcO29FXldbl0SHiOX2OYaFu4b6MHBwaIRkOeQT96
+ jCObpacThLB0IyN1wN48Hpqvd9sz3fkF8XZeOHo97605cW4Le97Mm5Ug+ w==;
+X-CSE-ConnectionGUID: 4Vz+YGX+Q+m+sSGbBVnbQA==
+X-CSE-MsgGUID: dqn/gckURsWJhDH57Ic0Jg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11199"; a="29441787"
+X-IronPort-AV: E=Sophos;i="6.10,241,1719903600"; d="scan'208";a="29441787"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Sep 2024 04:17:51 -0700
+X-CSE-ConnectionGUID: vSNuo7suRjmnKcP9Ip2wKw==
+X-CSE-MsgGUID: 9NeTEGMmTOqV54AnNGp+nw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,241,1719903600"; d="scan'208";a="70028516"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 19 Sep 2024 04:17:48 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 19 Sep 2024 14:17:48 +0300
+Date: Thu, 19 Sep 2024 14:17:48 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Luca Coelho <luca@coelho.fi>
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 2/2] drm/i915: Extract
+ intel_post_plane_update_after_readout()
+Message-ID: <ZuwIXLS25AcYaQis@intel.com>
+References: <20240916152958.17332-1-ville.syrjala@linux.intel.com>
+ <20240916152958.17332-3-ville.syrjala@linux.intel.com>
+ <781573ba655d53c930b3db98319bc9831c15f2b4.camel@coelho.fi>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="tIkx8wPTo++rhvtv"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <PH7PR11MB7605B60D43732A60C0A32D46E5632@PH7PR11MB7605.namprd11.prod.outlook.com>
-X-Cookie: Editing is a rewording activity.
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <781573ba655d53c930b3db98319bc9831c15f2b4.camel@coelho.fi>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,45 +73,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Thu, Sep 19, 2024 at 10:53:15AM +0300, Luca Coelho wrote:
+> On Mon, 2024-09-16 at 18:29 +0300, Ville Syrjala wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > 
+> > Clean up the main commit_tail() codepath a bit by pulling
+> > the post plane update steps that need to performed after
+> > readout into their own little function
+> > (intel_post_plane_update_after_readout()).
+> > 
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> 
+> This looks fine, but what is the exact motivation here? Is it just to
+> reduce the size of intel_atomic_commit_tail()?
 
---tIkx8wPTo++rhvtv
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+That, and I guess some kind of attempt to keep the pre vs. post
+update code mostly in sync (might be easier to remember to update
+both sides if they are named somewhat consistently).
 
-On Thu, Sep 19, 2024 at 10:01:06AM +0000, Winkler, Tomas wrote:
-> > On Mon, Sep 16, 2024 at 04:49:20PM +0300, Alexander Usyskin wrote:
+> 
+> Regardless:
+> 
+> Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 
-> > > +static int intel_dg_spi_write(struct mtd_info *mtd, loff_t to, size_t len,
-> > > +			      size_t *retlen, const u_char *buf) {
-> > > +	return 0;
-> > > +}
+Ta.
 
-> > If these functions can legitimately be empty they should be removed.
-
-> Those are place holder so the code will compile and implemented in following patches, this is compromise on not making too big changes.
-> It use dot be acceptable compromise in past.
-
-If you omit the functions you should obviously entirely omit them
-entirely, including putting them in relevant ops struct.  As things
-stand this just makes the code look buggy which doesn't help review,
-you're adding functions which obviously don't work properly and not even
-noting that in the changelog or code.  Just add the assignment of the
-ops when you add the implementation of the ops, that way there's no
-partially implemented step.
-
---tIkx8wPTo++rhvtv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmbsAEkACgkQJNaLcl1U
-h9BZlQf9EIUQoyUf37isOsOSa9SY28Yxwp4HgDn+oa/Vitp0xd1jVdZLhUs/Z0df
-9gGnJBY8ih/cUYS0B5lfsO3xn2GYshDXgKext4X/F+WuCSs0LVJ19ZWJo/C0JcaR
-2MPUQ+h3QjpL26Ug0vq08iXnZCWo5/dXYbYMZJB/Oj6ReSG4rDF8m8WsqYr4JcPn
-nUkMM60rId1d59bb7dvgneR+ljIEnBvrc1QfzM7xwmkKZ2ftx/z4zhh4JaCYTkdS
-aGbxDDXFauHdx6H/n0RgfUOKnRbl8TKWYJwG2SS6XBqXGaBO66u4oTlYjQD6RdTG
-8jpm3WiJW3j3MAvX8gy/gUFUOyJeiQ==
-=+4K1
------END PGP SIGNATURE-----
-
---tIkx8wPTo++rhvtv--
+-- 
+Ville Syrjälä
+Intel
