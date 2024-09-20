@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 237D397D510
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Sep 2024 13:57:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF3C297D511
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Sep 2024 13:57:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BBB7D10E81E;
-	Fri, 20 Sep 2024 11:57:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C87110E81B;
+	Fri, 20 Sep 2024 11:57:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OzZJgX+8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="REe5YI8u";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AEE8610E81C;
- Fri, 20 Sep 2024 11:57:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9519910E81B;
+ Fri, 20 Sep 2024 11:57:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1726833455; x=1758369455;
+ t=1726833460; x=1758369460;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Y9LMjrej2pDCEtRnb+xc6t7Gv0h1sAr4B2Fz9otmeLI=;
- b=OzZJgX+87gQPa0lAkk/Z66FXBwvT4Mpbjbva2HHPfQ8yldnYi/fKHaEE
- /Qd55/SUNTzn/1S0ow5oe+KcktWAFGFCiku4WptomZAaxlOlDadAVo7Cc
- JPE7cPQhXw61G6/YYsQKf/wgJPzSAktpzucUJHFaNzxtMASwj3l066cGx
- FqT3BVLv8NuOHJloVpLuOE3imHIhROo+P7M3MAx2yDoGtD6l6mhy/BFAc
- UaMeYJQ8eD3u4jRHxwTI6OKmPtA87BpQz90uiaV6OLfIkyGuLgPfUAddF
- zWQPFTGCVvSdY6YRT792VVaMIv7bPgtEkqDZpBqgqqnlHP1wRPlLhB7jR g==;
-X-CSE-ConnectionGUID: 71KkZo62REaTa3q6jmBk+w==
-X-CSE-MsgGUID: BuU2VUVtTZuTRV44o9GkDQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11200"; a="25984583"
-X-IronPort-AV: E=Sophos;i="6.10,244,1719903600"; d="scan'208";a="25984583"
+ bh=S4PuY3Uw+ml/rmGJrewtYdbsnj9j5KScmEovLYU8TPo=;
+ b=REe5YI8uUDOrHcXVCCndbaAPotMoh4KQWdlOsIb9fTUEueflyyrwcbF3
+ bBjBFjf5dj9jTNnHpyywU7iNfKdjoVbP3LukNWTV/G6vqXqNJD7bIHNw8
+ 2ocAlgpfr54xzxartop4gNDhGDMb0kYmwy+1utD7v938QZPjNAtLlRofv
+ mwB0QDlgqSnpQVZhwbloYhucy21qrLvU6yK6hUJafcKRjSQ4azyON9zvU
+ HdmB9PdjnYCAwSwjKU3h8ypPWPqZG/MASG/wC2AFS3NnHHLDmenyRqCac
+ oDfZlyv6UHf8Ee8Lc+MNYkmPc3WWuveaRpScM+dGMmN1q9u/EmQ21ALOm A==;
+X-CSE-ConnectionGUID: YqiZamimSCCwqRcY5mGyCQ==
+X-CSE-MsgGUID: U+Dp5CWbQyiKWcgxVHbtpg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11200"; a="25984594"
+X-IronPort-AV: E=Sophos;i="6.10,244,1719903600"; d="scan'208";a="25984594"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2024 04:57:35 -0700
-X-CSE-ConnectionGUID: leqjY3tGQuGbdcnbl3SO1A==
-X-CSE-MsgGUID: xrvaRgKJRhGE1m8gsL1fNA==
+ 20 Sep 2024 04:57:40 -0700
+X-CSE-ConnectionGUID: UJHpIk+dSSucx8YY5jpTdg==
+X-CSE-MsgGUID: +t65QyoHQWy505eqs4QECA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,244,1719903600"; d="scan'208";a="70519183"
+X-IronPort-AV: E=Sophos;i="6.10,244,1719903600"; d="scan'208";a="70519223"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.155])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2024 04:57:32 -0700
+ 20 Sep 2024 04:57:37 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 7/9] drm/i915/display: remove the loop in fifo underrun
- debugfs file creation
-Date: Fri, 20 Sep 2024 14:56:49 +0300
-Message-Id: <bd74ff250075c599163c988ae6fb5316f92bf192.1726833193.git.jani.nikula@intel.com>
+Subject: [PATCH 8/9] drm/i915/dp: convert DP test debugfs to struct
+ intel_display
+Date: Fri, 20 Sep 2024 14:56:50 +0300
+Message-Id: <4d29cf43c7067e910fdf1127afcc35dd558b4b0b.1726833193.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1726833193.git.jani.nikula@intel.com>
 References: <cover.1726833193.git.jani.nikula@intel.com>
@@ -71,47 +71,116 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-No need for the loop for a single file, and no more files should be
-added here, but rather in functionality specific source files.
+Prefer struct intel_display over struct drm_i915_private. Do some
+drive-by logging conversions to kms category.
+
+Observe that i915_displayport_test_active_write() was using the wrong
+type for m->private, but it has worked because struct drm_i915_private
+has struct drm_device at offset 0.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- .../drm/i915/display/intel_display_debugfs.c    | 17 ++---------------
- 1 file changed, 2 insertions(+), 15 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp_test.c | 25 ++++++++++----------
+ 1 file changed, 12 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index 484be08048cf..890ef7067b77 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -866,26 +866,13 @@ static const struct drm_info_list intel_display_debugfs_list[] = {
- 	{"i915_lpsp_status", i915_lpsp_status, 0},
- };
- 
--static const struct {
--	const char *name;
--	const struct file_operations *fops;
--} intel_display_debugfs_files[] = {
--	{"i915_fifo_underrun_reset", &i915_fifo_underrun_reset_ops},
--};
--
- void intel_display_debugfs_register(struct drm_i915_private *i915)
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_test.c b/drivers/gpu/drm/i915/display/intel_dp_test.c
+index f086f6854bf0..8426c8ef947e 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_test.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_test.c
+@@ -514,16 +514,15 @@ static ssize_t i915_displayport_test_active_write(struct file *file,
+ 						  const char __user *ubuf,
+ 						  size_t len, loff_t *offp)
  {
- 	struct intel_display *display = &i915->display;
- 	struct drm_minor *minor = i915->drm.primary;
--	int i;
++	struct seq_file *m = file->private_data;
++	struct intel_display *display = m->private;
+ 	char *input_buffer;
+ 	int status = 0;
+-	struct drm_device *dev;
+ 	struct drm_connector *connector;
+ 	struct drm_connector_list_iter conn_iter;
+ 	struct intel_dp *intel_dp;
+ 	int val = 0;
  
--	for (i = 0; i < ARRAY_SIZE(intel_display_debugfs_files); i++) {
--		debugfs_create_file(intel_display_debugfs_files[i].name,
--				    0644,
--				    minor->debugfs_root,
+-	dev = ((struct seq_file *)file->private_data)->private;
+-
+ 	if (len == 0)
+ 		return 0;
+ 
+@@ -531,9 +530,9 @@ static ssize_t i915_displayport_test_active_write(struct file *file,
+ 	if (IS_ERR(input_buffer))
+ 		return PTR_ERR(input_buffer);
+ 
+-	drm_dbg(dev, "Copied %d bytes from user\n", (unsigned int)len);
++	drm_dbg_kms(display->drm, "Copied %d bytes from user\n", (unsigned int)len);
+ 
+-	drm_connector_list_iter_begin(dev, &conn_iter);
++	drm_connector_list_iter_begin(display->drm, &conn_iter);
+ 	drm_for_each_connector_iter(connector, &conn_iter) {
+ 		struct intel_encoder *encoder;
+ 
+@@ -550,7 +549,7 @@ static ssize_t i915_displayport_test_active_write(struct file *file,
+ 			status = kstrtoint(input_buffer, 10, &val);
+ 			if (status < 0)
+ 				break;
+-			drm_dbg(dev, "Got %d for test active\n", val);
++			drm_dbg_kms(display->drm, "Got %d for test active\n", val);
+ 			/* To prevent erroneous activation of the compliance
+ 			 * testing code, only accept an actual value of 1 here
+ 			 */
+@@ -571,12 +570,12 @@ static ssize_t i915_displayport_test_active_write(struct file *file,
+ 
+ static int i915_displayport_test_active_show(struct seq_file *m, void *data)
+ {
+-	struct drm_i915_private *dev_priv = m->private;
++	struct intel_display *display = m->private;
+ 	struct drm_connector *connector;
+ 	struct drm_connector_list_iter conn_iter;
+ 	struct intel_dp *intel_dp;
+ 
+-	drm_connector_list_iter_begin(&dev_priv->drm, &conn_iter);
++	drm_connector_list_iter_begin(display->drm, &conn_iter);
+ 	drm_for_each_connector_iter(connector, &conn_iter) {
+ 		struct intel_encoder *encoder;
+ 
+@@ -621,12 +620,12 @@ static const struct file_operations i915_displayport_test_active_fops = {
+ 
+ static int i915_displayport_test_data_show(struct seq_file *m, void *data)
+ {
+-	struct drm_i915_private *dev_priv = m->private;
++	struct intel_display *display = m->private;
+ 	struct drm_connector *connector;
+ 	struct drm_connector_list_iter conn_iter;
+ 	struct intel_dp *intel_dp;
+ 
+-	drm_connector_list_iter_begin(&dev_priv->drm, &conn_iter);
++	drm_connector_list_iter_begin(display->drm, &conn_iter);
+ 	drm_for_each_connector_iter(connector, &conn_iter) {
+ 		struct intel_encoder *encoder;
+ 
+@@ -675,12 +674,12 @@ DEFINE_SHOW_ATTRIBUTE(i915_displayport_test_data);
+ 
+ static int i915_displayport_test_type_show(struct seq_file *m, void *data)
+ {
+-	struct drm_i915_private *dev_priv = m->private;
++	struct intel_display *display = m->private;
+ 	struct drm_connector *connector;
+ 	struct drm_connector_list_iter conn_iter;
+ 	struct intel_dp *intel_dp;
+ 
+-	drm_connector_list_iter_begin(&dev_priv->drm, &conn_iter);
++	drm_connector_list_iter_begin(display->drm, &conn_iter);
+ 	drm_for_each_connector_iter(connector, &conn_iter) {
+ 		struct intel_encoder *encoder;
+ 
+@@ -723,7 +722,7 @@ void intel_dp_test_debugfs_register(struct intel_display *display)
+ 		debugfs_create_file(intel_display_debugfs_files[i].name,
+ 				    0644,
+ 				    minor->debugfs_root,
 -				    to_i915(minor->dev),
--				    intel_display_debugfs_files[i].fops);
--	}
-+	debugfs_create_file("i915_fifo_underrun_reset", 0644, minor->debugfs_root,
-+			    to_i915(minor->dev), &i915_fifo_underrun_reset_ops);
- 
- 	drm_debugfs_create_files(intel_display_debugfs_list,
- 				 ARRAY_SIZE(intel_display_debugfs_list),
++				    display,
+ 				    intel_display_debugfs_files[i].fops);
+ 	}
+ }
 -- 
 2.39.2
 
