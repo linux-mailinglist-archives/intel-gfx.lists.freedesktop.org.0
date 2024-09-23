@@ -2,62 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE58A97F0A6
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Sep 2024 20:30:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1708E97F0A7
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Sep 2024 20:31:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DB0B10E455;
-	Mon, 23 Sep 2024 18:30:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B50D910E45B;
+	Mon, 23 Sep 2024 18:30:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l6cGgMIQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hYx4doce";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F0F010E455;
- Mon, 23 Sep 2024 18:30:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 636B510E45B;
+ Mon, 23 Sep 2024 18:30:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727116220; x=1758652220;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=znIsCdAmo+9KBBzq7RU+cc3FDPcR4jNJo0ZsE3rP+lE=;
- b=l6cGgMIQcgcPiuqW8Rkeg3fT/XwEpPvGE9YRgLIyjOmXQmXeQKvAOHjL
- vRHsljU5gUw7V5JbMzQaTIl6Ppg/ixOTP6vv6+opKBVS50ZQiX5BMH1Pe
- AdA2yQTkq8bPBpGaJ1dBZOChyV3IPqGMgUfymkheO9y0tN4gw0fqW0sxE
- itdtem4Vbu6+lKoXkfS9voL8XYM33taxfCT16ID68RnX94zGOHZYJ8QCI
- dbihERqndHFZGvbt9VS0R07F1KnxcE3VnloW6D1KEn+q/oEMSi+N9Vr3v
- l49vgtWzJnO+74JaWLFiE2FT0O0tHCd+wymSR7jeT0L0M2sGQ/Xl3yys1 Q==;
-X-CSE-ConnectionGUID: bNuc9UCkQcaBUOfwWif+LA==
-X-CSE-MsgGUID: B6utiB68RA2eb4yurBoYqQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11204"; a="26035118"
-X-IronPort-AV: E=Sophos;i="6.10,252,1719903600"; d="scan'208";a="26035118"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2024 11:30:20 -0700
-X-CSE-ConnectionGUID: zBQQS6DvR0qjtQmzaM5QJg==
-X-CSE-MsgGUID: rhyNtlL0R8eTixb9TLHtBw==
+ t=1727116258; x=1758652258;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=wyd6CZrS2B2EIrTLwfWwcVwz6V5YbiAR+JZhS83uNds=;
+ b=hYx4doceae9WZ26Ksnn+1qkKDqjfe+RemNEOojma/+RYnMXVOFwPhsKm
+ l45DbL8osSXlgk6rrUp5TQRBXV6LWOlnaoteFogpsYS56oPbpTwbREuXp
+ YixnKxcaRJZbRIypBnQi9ieYngcY9HYJ3vm0DcCYXdEaeN5j/cskBsY0s
+ ZEaDWEfcmw/iTOIhONTLcVWbFHT8GZ0DvvQbVYuX1wowax94H0vWD00VX
+ KjJ0MEBcjHYB3s1xQr76w6dGVtn7B9yQlGXZhspal2aqeGV2AA++w6tpg
+ E+mi6ZyMcaLlkG3HU6n5plGlcKGnzTNBz6Ev3SPQRYQqyAyD8c1hrwk6S w==;
+X-CSE-ConnectionGUID: +022k8IdRtizERARvsQmHQ==
+X-CSE-MsgGUID: 6NfT5ETqTGehqJEkmtZEEA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11204"; a="51499481"
+X-IronPort-AV: E=Sophos;i="6.10,252,1719903600"; d="scan'208";a="51499481"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2024 11:30:58 -0700
+X-CSE-ConnectionGUID: jK4zcz6fQ2+ebNd29Wzuvw==
+X-CSE-MsgGUID: VAqnjBhYTX+XcPuuGT8Lyg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,252,1719903600"; d="scan'208";a="71298150"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 23 Sep 2024 11:30:17 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 23 Sep 2024 21:30:16 +0300
-Date: Mon, 23 Sep 2024 21:30:16 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- suraj.kandpal@intel.com
-Subject: Re: [PATCH 01/16] drm/i915/display_device: Add Check HAS_DSC for
- bigjoiner
-Message-ID: <ZvGzuPi9L5Kh824W@intel.com>
-References: <20240923181336.3303940-1-ankit.k.nautiyal@intel.com>
- <20240923181336.3303940-2-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.10,252,1719903600"; d="scan'208";a="71059109"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2024 11:30:57 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: [PATCH 12/16] drm/i915/dp: Modify compressed bpp limitations for
+ ultrajoiner
+Date: Tue, 24 Sep 2024 00:02:48 +0530
+Message-ID: <20240923183248.3324009-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20240923181336.3303940-13-ankit.k.nautiyal@intel.com>
+References: <20240923181336.3303940-13-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240923181336.3303940-2-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,36 +68,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 23, 2024 at 11:43:21PM +0530, Ankit Nautiyal wrote:
-> Bigjoiner needs DSC, add a check to reflect that.
+Add compressed bpp limitations for ultrajoiner.
 
-Might want to point out here that DSC can be fused off, hence
-the platform check itself is not sufficient.
+v2: Fix the case for 1 pipe. (Ankit)
 
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c | 27 +++++++++++++++++++------
+ 1 file changed, 21 insertions(+), 6 deletions(-)
 
-> 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display_device.h | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-> index 5306bbd13e59..6a5bee59e6aa 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_device.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-> @@ -118,7 +118,7 @@ enum intel_display_subplatform {
->  
->  #define HAS_4TILE(i915)			(IS_DG2(i915) || DISPLAY_VER(i915) >= 14)
->  #define HAS_ASYNC_FLIPS(i915)		(DISPLAY_VER(i915) >= 5)
-> -#define HAS_BIGJOINER(i915)		(DISPLAY_VER(i915) >= 11)
-> +#define HAS_BIGJOINER(i915)		(DISPLAY_VER(i915) >= 11 && HAS_DSC(i915))
->  #define HAS_CDCLK_CRAWL(i915)		(DISPLAY_INFO(i915)->has_cdclk_crawl)
->  #define HAS_CDCLK_SQUASH(i915)		(DISPLAY_INFO(i915)->has_cdclk_squash)
->  #define HAS_CUR_FBC(i915)		(!HAS_GMCH(i915) && IS_DISPLAY_VER(i915, 7, 13))
-> -- 
-> 2.45.2
-
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index e4b6594d870e..b359d2e808aa 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -865,24 +865,39 @@ u32 get_max_compressed_bpp_with_joiner(struct drm_i915_private *i915,
+ 				       int num_joined_pipes)
+ {
+ 	u32 max_bpp_small_joiner_ram;
++	u32 max_bpp_bigjoiner;
++	u32 max_bpp;
+ 
+ 	/* Small Joiner Check: output bpp <= joiner RAM (bits) / Horiz. width */
+ 	max_bpp_small_joiner_ram = small_joiner_ram_size_bits(i915) / mode_hdisplay;
+ 
+-	if (num_joined_pipes == 2) {
++	if (num_joined_pipes == 1)
++		return max_bpp_small_joiner_ram;
++
++	if (num_joined_pipes > 1) {
+ 		int bigjoiner_interface_bits = DISPLAY_VER(i915) >= 14 ? 36 : 24;
+ 		/* With bigjoiner multiple dsc engines are used in parallel so PPC is 2 */
+ 		int ppc = 2;
+-		u32 max_bpp_bigjoiner =
+-			i915->display.cdclk.max_cdclk_freq * ppc * bigjoiner_interface_bits /
++		int num_bigjoiners = num_joined_pipes / 2;
++
++		max_bpp_bigjoiner =
++			i915->display.cdclk.max_cdclk_freq * ppc * bigjoiner_interface_bits *
+ 			intel_dp_mode_to_fec_clock(mode_clock);
+ 
+-		max_bpp_small_joiner_ram *= 2;
++		max_bpp_bigjoiner *= num_bigjoiners;
++
++		max_bpp_small_joiner_ram *= num_joined_pipes;
++	}
++
++	max_bpp = min(max_bpp_small_joiner_ram, max_bpp_bigjoiner);
++
++	if (num_joined_pipes == 4) {
++		u32 max_bpp_ultrajoiner_ram = (4 * 72 * 512) / mode_hdisplay;
+ 
+-		return min(max_bpp_small_joiner_ram, max_bpp_bigjoiner);
++		max_bpp = min(max_bpp, max_bpp_ultrajoiner_ram);
+ 	}
+ 
+-	return max_bpp_small_joiner_ram;
++	return max_bpp;
+ }
+ 
+ u16 intel_dp_dsc_get_max_compressed_bpp(struct drm_i915_private *i915,
 -- 
-Ville Syrjälä
-Intel
+2.45.2
+
