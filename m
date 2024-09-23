@@ -2,61 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EBD897F0D3
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Sep 2024 20:45:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ABF3C97F0DC
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Sep 2024 20:52:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D41010E469;
-	Mon, 23 Sep 2024 18:45:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E995910E46C;
+	Mon, 23 Sep 2024 18:52:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="URssmGMJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GPndJvc+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30B3A10E293;
- Mon, 23 Sep 2024 18:45:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D417410E46B;
+ Mon, 23 Sep 2024 18:52:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727117101; x=1758653101;
+ t=1727117557; x=1758653557;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=krSrjK7p8PtJw+K+mb6KvBtXBAxeijc6/5PJ9ziffuY=;
- b=URssmGMJHsOgPjq6B5ltCU+d1xZk/ZNU313iw202xbqj8vRcPLpRT9Mo
- 10arX7h024HxxQ6IaS4wdVCO1QAuAhCvf0SkUjXuf7mqUP7K5aYKNqKvh
- VQHnprDoV42IGWHpO1s990i1TU5OJwF2lS1smcD+X0m7oramT9hRI/HHn
- PAG2Atw6ZMQDxZ3tSRN71nO3srs2E/mnOp7fLvrKqbUx3mLs8D8JyHnu2
- EeFTetFr/0IHZmkTZEqFHWvJVbSdZg+/tMpp9thJf7aYna5fR8aitbroN
- mE3XgZp1rF/sUp+TkbIqsSQ71AAHdNsvVEiP94m97qDSBtklBSR41Oa5f A==;
-X-CSE-ConnectionGUID: ApDVxyYLSX6Z8+zBN2OiWw==
-X-CSE-MsgGUID: GM++xTufS0OXHP6hdeXNjg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11204"; a="13713290"
-X-IronPort-AV: E=Sophos;i="6.10,252,1719903600"; d="scan'208";a="13713290"
+ bh=mG3iTEEJGLZuHXkc9VbSE6Sw6l3J/ozLhm7bsWsEyoM=;
+ b=GPndJvc+OvyXMDsa1rPwBx5WjjsFCzk1WZQaRW490v4MJucSPaeAiwzv
+ m28Aa4r8ZfOLTQWj2ApsDbpUPvOww+JNsJyMELdUfYZpx9QpqmuwPKcep
+ SGFU/IN14rFpNkWwqItXTTOCjBnaAi+Ml8IY1t9l9aqrFJgBahyQymjLu
+ XXoqAzoL/CDaHKK+/R8Ke6ekktiIFR8mQnaX8n/FMWjrDmPExf2puAkRx
+ zeHzD7azm7wqaHaY1YPdVuqICUVikmfY7xorO9EjWKgGDIbrxeJZ40gDe
+ 46/cO2dqu781Xd3UFamC4YiJx7PFo/9JwkXzBDNS8qB+GP3rsF4yUp9e1 A==;
+X-CSE-ConnectionGUID: d6HYft+jSfiNwYIZWaDrGA==
+X-CSE-MsgGUID: eAuxsXM4Sp+RMk21qSBooQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11204"; a="13713854"
+X-IronPort-AV: E=Sophos;i="6.10,252,1719903600"; d="scan'208";a="13713854"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2024 11:45:01 -0700
-X-CSE-ConnectionGUID: apuDDBGASdqgbgAr8x8rrg==
-X-CSE-MsgGUID: aXX+tLYDRjaVbYU2LuobGQ==
+ 23 Sep 2024 11:52:32 -0700
+X-CSE-ConnectionGUID: tYZ4rFgeRP+OIA9AGSXIPg==
+X-CSE-MsgGUID: rRSKM59IRaazJ3H1ZC1L3A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,252,1719903600"; d="scan'208";a="71300393"
+X-IronPort-AV: E=Sophos;i="6.10,252,1719903600"; d="scan'208";a="71300972"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 23 Sep 2024 11:44:58 -0700
+ by fmviesa008.fm.intel.com with SMTP; 23 Sep 2024 11:52:29 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 23 Sep 2024 21:44:57 +0300
-Date: Mon, 23 Sep 2024 21:44:57 +0300
+ Mon, 23 Sep 2024 21:52:28 +0300
+Date: Mon, 23 Sep 2024 21:52:28 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  suraj.kandpal@intel.com
-Subject: Re: [PATCH 09/16] drm/i915: Implement hw state readout and checks
- for ultrajoiner
-Message-ID: <ZvG3KSKtMp-ckptU@intel.com>
+Subject: Re: [PATCH 10/16] drm/i915/display: Refactor enable_joiner_pipes
+Message-ID: <ZvG47MoTIBJOO4EV@intel.com>
 References: <20240923181336.3303940-1-ankit.k.nautiyal@intel.com>
- <20240923181336.3303940-10-ankit.k.nautiyal@intel.com>
+ <20240923181336.3303940-11-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240923181336.3303940-10-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20240923181336.3303940-11-ankit.k.nautiyal@intel.com>
 X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -73,174 +72,172 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 23, 2024 at 11:43:29PM +0530, Ankit Nautiyal wrote:
-> From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+On Mon, Sep 23, 2024 at 11:43:30PM +0530, Ankit Nautiyal wrote:
+> Pass the current pipe into enabled_joiner_pipes(), and let it figure out
+> the proper bitmasks for us.
 > 
-> Ultrajoiner mode has some new bits and states to be
-> read out from the hw. Lets make changes accordingly.
+> v2:
+> -Simplify helper get_joiner_primary_pipes. (Ville)
+> -Nuke get_joiner_secondary_pipes. (Ville)
+> -Add more drm_WARNs and checks for final primary/secondary pipes.
+> (Ville)
 > 
-> v2: Fix checkpatch warnings. (Ankit)
-> v3: Add separate functions for computing expected secondary_big/ultrajoiner
-> pipes. (Ankit)
-> v4:
-> -Streamline the helpers for ultrajoiner. (Ville)
-> -Add fixup to accommodate PIPED check for ultrajoiner. (Ville)
-> -Add more Ultrajoiner drm_WARNs. (Ville)
-> v5: Remove spurious newline. (Ville)
-> 
-> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 > Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_display.c  | 87 ++++++++++++++++---
->  .../gpu/drm/i915/display/intel_vdsc_regs.h    |  2 +
->  2 files changed, 79 insertions(+), 10 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_display.c | 85 +++++++++++---------
+>  1 file changed, 48 insertions(+), 37 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index ee57e1e544af..c42ba377d247 100644
+> index c42ba377d247..f35d1e1fdb8a 100644
 > --- a/drivers/gpu/drm/i915/display/intel_display.c
 > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -3663,13 +3663,58 @@ static u8 expected_bigjoiner_secondary_pipes(u8 bigjoiner_primary_pipes)
->  	return expected_secondary_pipes(bigjoiner_primary_pipes, 2);
+> @@ -3706,7 +3706,14 @@ static void enabled_ultrajoiner_pipes(struct drm_i915_private *i915,
+>  	}
 >  }
 >  
-> +static u8 expected_ultrajoiner_secondary_pipes(u8 ultrajoiner_primary_pipes)
+> -static void enabled_joiner_pipes(struct drm_i915_private *dev_priv,
+> +static u8 get_joiner_primary_pipe(enum pipe pipe, u8 primary_pipes)
 > +{
-> +	return expected_secondary_pipes(ultrajoiner_primary_pipes, 4);
+> +	primary_pipes &= GENMASK(pipe, 0);
+> +
+> +	return primary_pipes ? BIT(fls(primary_pipes) - 1) : 0;
 > +}
 > +
-> +static u8 fixup_ultrajoiner_secondary_pipes(u8 ultrajoiner_primary_pipes,
-> +					    u8 ultrajoiner_secondary_pipes)
-> +{
-> +	return ultrajoiner_secondary_pipes | ultrajoiner_primary_pipes << 3;
-> +}
-> +
-> +static void enabled_ultrajoiner_pipes(struct drm_i915_private *i915,
-> +				      u8 *primary_pipes, u8 *secondary_pipes)
-> +{
-> +	struct intel_crtc *crtc;
-> +
-> +	*primary_pipes = 0;
-> +	*secondary_pipes = 0;
-> +
-> +	if (!HAS_ULTRAJOINER(i915))
-> +		return;
-> +
-> +	for_each_intel_crtc_in_pipe_mask(&i915->drm, crtc,
-> +					 joiner_pipes(i915)) {
-> +		enum intel_display_power_domain power_domain;
-> +		enum pipe pipe = crtc->pipe;
-> +		intel_wakeref_t wakeref;
-> +
-> +		power_domain = intel_dsc_power_domain(crtc, (enum transcoder)pipe);
-> +		with_intel_display_power_if_enabled(i915, power_domain, wakeref) {
-> +			u32 tmp = intel_de_read(i915, ICL_PIPE_DSS_CTL1(pipe));
-> +
-> +			if (!(tmp & ULTRA_JOINER_ENABLE))
-> +				continue;
-> +
-> +			if (tmp & PRIMARY_ULTRA_JOINER_ENABLE)
-> +				*primary_pipes |= BIT(pipe);
-> +			else
-> +				*secondary_pipes |= BIT(pipe);
-> +		}
-> +	}
-> +}
-> +
->  static void enabled_joiner_pipes(struct drm_i915_private *dev_priv,
+> +static void enabled_joiner_pipes(struct drm_i915_private *dev_priv, enum pipe pipe,
 >  				 u8 *primary_pipes, u8 *secondary_pipes)
 >  {
 >  	struct intel_display *display = to_intel_display(&dev_priv->drm);
->  	u8 primary_uncompressed_joiner_pipes, primary_bigjoiner_pipes;
-> +	u8 primary_ultrajoiner_pipes;
->  	u8 secondary_uncompressed_joiner_pipes, secondary_bigjoiner_pipes;
-> -	u8 uncompressed_joiner_pipes, bigjoiner_pipes;
-> +	u8 secondary_ultrajoiner_pipes;
-> +	u8 uncompressed_joiner_pipes, bigjoiner_pipes, ultrajoiner_pipes;
+> @@ -3774,41 +3781,47 @@ static void enabled_joiner_pipes(struct drm_i915_private *dev_priv,
+>  		 expected_ultrajoiner_secondary_pipes(primary_ultrajoiner_pipes),
+>  		 secondary_ultrajoiner_pipes);
 >  
->  	enabled_uncompressed_joiner_pipes(display, &primary_uncompressed_joiner_pipes,
->  					  &secondary_uncompressed_joiner_pipes);
-> @@ -3683,14 +3728,35 @@ static void enabled_joiner_pipes(struct drm_i915_private *dev_priv,
->  	drm_WARN_ON(display->drm,
->  		    (primary_bigjoiner_pipes & secondary_bigjoiner_pipes) != 0);
->  
-> +	enabled_ultrajoiner_pipes(dev_priv, &primary_ultrajoiner_pipes,
-> +				  &secondary_ultrajoiner_pipes);
-> +	/*
-> +	 * For some strange reason the last pipe in the set of four
-> +	 * shouldn't have ultrajoiner enable bit set in hardware.
-> +	 * Set the bit anyway to make life easier.
-> +	 */
-> +	drm_WARN_ON(&dev_priv->drm,
-> +		    expected_secondary_pipes(primary_ultrajoiner_pipes, 3) !=
-> +		    secondary_ultrajoiner_pipes);
-> +	secondary_ultrajoiner_pipes =
-> +		fixup_ultrajoiner_secondary_pipes(primary_ultrajoiner_pipes,
-> +						  secondary_ultrajoiner_pipes);
-> +
-> +	drm_WARN_ON(&dev_priv->drm, (primary_ultrajoiner_pipes & secondary_ultrajoiner_pipes) != 0);
-> +
->  	uncompressed_joiner_pipes = primary_uncompressed_joiner_pipes |
->  				    secondary_uncompressed_joiner_pipes;
->  	bigjoiner_pipes = primary_bigjoiner_pipes | secondary_bigjoiner_pipes;
-> +	ultrajoiner_pipes = primary_ultrajoiner_pipes | secondary_ultrajoiner_pipes;
->  
->  	drm_WARN(display->drm, (uncompressed_joiner_pipes & bigjoiner_pipes) != 0,
->  		 "Uncomressed joiner pipes(%#x) and bigjoiner pipes(%#x) can't intersect\n",
->  		 uncompressed_joiner_pipes, bigjoiner_pipes);
->  
-> +	drm_WARN(display->drm, (ultrajoiner_pipes & bigjoiner_pipes) != ultrajoiner_pipes,
-> +		 "Ultrajoiner pipes(%#x) should be bigjoiner pipes(%#x)\n",
-> +		 ultrajoiner_pipes, bigjoiner_pipes);
-> +
->  	drm_WARN(display->drm, secondary_bigjoiner_pipes !=
->  		 expected_bigjoiner_secondary_pipes(primary_bigjoiner_pipes),
->  		 "Wrong secondary bigjoiner pipes(expected %#x, current %#x)\n",
-> @@ -3702,15 +3768,16 @@ static void enabled_joiner_pipes(struct drm_i915_private *dev_priv,
->  		 "Wrong secondary uncompressed joiner pipes(expected %#x, current %#x)\n",
->  		 expected_uncompressed_joiner_secondary_pipes(primary_uncompressed_joiner_pipes),
->  		 secondary_uncompressed_joiner_pipes);
+> -	*primary_pipes = primary_uncompressed_joiner_pipes | primary_bigjoiner_pipes |
+> -			 primary_ultrajoiner_pipes;
+> -	*secondary_pipes = secondary_uncompressed_joiner_pipes | secondary_bigjoiner_pipes |
+> -			 secondary_ultrajoiner_pipes;
+> -}
 > -
-> -	*primary_pipes = primary_uncompressed_joiner_pipes | primary_bigjoiner_pipes;
+> -static enum pipe get_joiner_primary_pipe(enum pipe pipe, u8 primary_pipes, u8 secondary_pipes)
+> -{
+> -	if ((secondary_pipes & BIT(pipe)) == 0)
+> -		return pipe;
 > -
-> -	*secondary_pipes = secondary_uncompressed_joiner_pipes | secondary_bigjoiner_pipes;
+> -	/* ignore everything above our pipe */
+> -	primary_pipes &= ~GENMASK(7, pipe);
 > -
-> -	/* Joiner pipes should always be consecutive primary and secondary */
-> -	drm_WARN(display->drm, *secondary_pipes != *primary_pipes << 1,
-> -		 "Joiner misconfigured (primary pipes %#x, secondary pipes %#x)\n",
-> -		 *primary_pipes, *secondary_pipes);
-> +	drm_WARN(display->drm, secondary_ultrajoiner_pipes !=
-> +		 expected_ultrajoiner_secondary_pipes(primary_ultrajoiner_pipes),
-> +		 "Wrong secondary ultrajoiner pipes(expected %x, current %x)\n",
-> +		 expected_ultrajoiner_secondary_pipes(primary_ultrajoiner_pipes),
-> +		 secondary_ultrajoiner_pipes);
-> +
-> +	*primary_pipes = primary_uncompressed_joiner_pipes | primary_bigjoiner_pipes |
-> +			 primary_ultrajoiner_pipes;
-> +	*secondary_pipes = secondary_uncompressed_joiner_pipes | secondary_bigjoiner_pipes |
-> +			 secondary_ultrajoiner_pipes;
+> -	/* highest remaining bit should be our primary pipe */
+> -	return fls(primary_pipes) - 1;
+> -}
+> +	*primary_pipes = 0;
+> +	*secondary_pipes = 0;
+>  
+> -static u8 get_joiner_secondary_pipes(enum pipe pipe, u8 primary_pipes, u8 secondary_pipes)
+> -{
+> -	enum pipe primary_pipe, next_primary_pipe;
+> +	if (ultrajoiner_pipes & BIT(pipe)) {
+> +		*primary_pipes = get_joiner_primary_pipe(pipe, primary_ultrajoiner_pipes);
+> +		*secondary_pipes = secondary_ultrajoiner_pipes &
+> +				   expected_ultrajoiner_secondary_pipes(primary_ultrajoiner_pipes);
+                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+That should be '*primary_pipes'.
 
-I think these masks will turn to utter nonsense if ultrajoiner
-is enabled. So we really need to adjust how we derive the
-final primary/secondary pipes *before* we add ultrajoiner into
-the mix. Looks like you have that stuff in the next patch, so
-you should reverse these two patches.
+This branch is missing the final WARN_ON you have in the
+bigjoiner uncompressed joiner branches below.
+
+> +		return;
+> +	}
+>  
+> -	primary_pipe = get_joiner_primary_pipe(pipe, primary_pipes, secondary_pipes);
+> +	if (uncompressed_joiner_pipes & BIT(pipe)) {
+> +		*primary_pipes = get_joiner_primary_pipe(pipe, primary_uncompressed_joiner_pipes);
+> +		*secondary_pipes =
+> +			secondary_uncompressed_joiner_pipes &
+> +			expected_uncompressed_joiner_secondary_pipes(primary_uncompressed_joiner_pipes);
+> +	} else if (bigjoiner_pipes & BIT(pipe)) {
+> +		*primary_pipes = get_joiner_primary_pipe(pipe, primary_bigjoiner_pipes);
+> +		*secondary_pipes = secondary_bigjoiner_pipes &
+> +				   expected_bigjoiner_secondary_pipes(primary_bigjoiner_pipes);
+
+Same '*primary_pipes' thing in these two.
+
+> +	}
+
+I would probably get rid of the if-else construct here, and just
+handle each joiner type completely independently, just like ultrajoiner
+above. Makes the code more regular and thus easier to reason about.
+
+>  
+> -	if ((primary_pipes & BIT(primary_pipe)) == 0)
+> -		return 0;
+> +	drm_WARN(display->drm,
+> +		 expected_bigjoiner_secondary_pipes(*primary_pipes) != *secondary_pipes,
+> +		 "Wrong bigjoiner secondary pipes for primary_pipes %#x (expected %#x, current %#x for)\n",
+> +		 *primary_pipes,
+> +		 expected_bigjoiner_secondary_pipes(*primary_pipes),
+> +		 *secondary_pipes);
+>  
+> -	/* ignore our primary pipe and everything below it */
+> -	primary_pipes &= ~GENMASK(primary_pipe, 0);
+> -	/* make sure a high bit is set for the ffs() */
+> -	primary_pipes |= BIT(7);
+> -	/* lowest remaining bit should be the next primary pipe */
+> -	next_primary_pipe = ffs(primary_pipes) - 1;
+> +	drm_WARN(display->drm,
+> +		 expected_uncompressed_joiner_secondary_pipes(*primary_pipes) != *secondary_pipes,
+> +		 "Wrong uncompressed joiner secondary pipes for primary_pipes %#x (expected %#x, current %#x for)\n",
+> +		 *primary_pipes,
+> +		 expected_uncompressed_joiner_secondary_pipes(*primary_pipes),
+> +		 *secondary_pipes);
+>  
+> -	return secondary_pipes & GENMASK(next_primary_pipe - 1, primary_pipe);
+> +	drm_WARN(display->drm,
+> +		 expected_ultrajoiner_secondary_pipes(*primary_pipes) != *secondary_pipes,
+> +		 "Wrong ultrajoiner secondary pipes for primary_pipes %#x (expected %#x, current %#x for)\n",
+> +		 *primary_pipes,
+> +		 expected_ultrajoiner_secondary_pipes(*primary_pipes),
+> +		 *secondary_pipes);
+
+I'm not quite sure what's happening here. We already bailed out for
+ultrajoiner earlier.
+
+The patch is pretty hard to read. Did you try --patience vs. not when
+generating it in case one or the other makes for a more readalbe end
+result?
 
 >  }
 >  
->  static enum pipe get_joiner_primary_pipe(enum pipe pipe, u8 primary_pipes, u8 secondary_pipes)
-> diff --git a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-> index f921ad67b587..bf32a3b46fb1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-> @@ -37,6 +37,8 @@
->  #define  SPLITTER_CONFIGURATION_MASK		REG_GENMASK(26, 25)
->  #define  SPLITTER_CONFIGURATION_2_SEGMENT	REG_FIELD_PREP(SPLITTER_CONFIGURATION_MASK, 0)
->  #define  SPLITTER_CONFIGURATION_4_SEGMENT	REG_FIELD_PREP(SPLITTER_CONFIGURATION_MASK, 1)
-> +#define  ULTRA_JOINER_ENABLE			REG_BIT(23)
-> +#define  PRIMARY_ULTRA_JOINER_ENABLE		REG_BIT(22)
->  #define  UNCOMPRESSED_JOINER_PRIMARY		(1 << 21)
->  #define  UNCOMPRESSED_JOINER_SECONDARY		(1 << 20)
+>  static u8 hsw_panel_transcoders(struct drm_i915_private *i915)
+> @@ -3880,10 +3893,10 @@ static u8 hsw_enabled_transcoders(struct intel_crtc *crtc)
+>  		enabled_transcoders |= BIT(cpu_transcoder);
 >  
+>  	/* joiner secondary -> consider the primary pipe's transcoder as well */
+> -	enabled_joiner_pipes(dev_priv, &primary_pipes, &secondary_pipes);
+> +	enabled_joiner_pipes(dev_priv, crtc->pipe, &primary_pipes, &secondary_pipes);
+>  	if (secondary_pipes & BIT(crtc->pipe)) {
+>  		cpu_transcoder = (enum transcoder)
+> -			get_joiner_primary_pipe(crtc->pipe, primary_pipes, secondary_pipes);
+> +			ffs(get_joiner_primary_pipe(crtc->pipe, primary_pipes)) - 1;
+>  		if (transcoder_ddi_func_is_enabled(dev_priv, cpu_transcoder))
+>  			enabled_transcoders |= BIT(cpu_transcoder);
+>  	}
+> @@ -4017,14 +4030,12 @@ static void intel_joiner_get_config(struct intel_crtc_state *crtc_state)
+>  	u8 primary_pipes, secondary_pipes;
+>  	enum pipe pipe = crtc->pipe;
+>  
+> -	enabled_joiner_pipes(i915, &primary_pipes, &secondary_pipes);
+> +	enabled_joiner_pipes(i915, pipe, &primary_pipes, &secondary_pipes);
+>  
+>  	if (((primary_pipes | secondary_pipes) & BIT(pipe)) == 0)
+>  		return;
+>  
+> -	crtc_state->joiner_pipes =
+> -		BIT(get_joiner_primary_pipe(pipe, primary_pipes, secondary_pipes)) |
+> -		get_joiner_secondary_pipes(pipe, primary_pipes, secondary_pipes);
+> +	crtc_state->joiner_pipes = primary_pipes | secondary_pipes;
+>  }
+>  
+>  static bool hsw_get_pipe_config(struct intel_crtc *crtc,
 > -- 
 > 2.45.2
 
