@@ -2,56 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0909997E6A8
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Sep 2024 09:33:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E762997E6A9
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Sep 2024 09:33:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1326010E0E2;
-	Mon, 23 Sep 2024 07:33:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93C8C10E20C;
+	Mon, 23 Sep 2024 07:33:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K1Xiismh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ktG4s/0y";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 97C3810E0E2
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Sep 2024 07:33:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4112810E090;
+ Mon, 23 Sep 2024 07:33:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727076807; x=1758612807;
+ t=1727076833; x=1758612833;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version:content-transfer-encoding;
- bh=/kIxIu7Sp4PXYxM3RR8XIOxLACydO8rTad771bUES9w=;
- b=K1XiismhUEzaIr7Fnrrr8m8JioHFWdIDW+DXCkY0RaIzIgxUmTA0FjGc
- OfJt4cwh1XfUVxy3X4H81QBtBjujyN0eS7NpmRF+kMmulCHiu8IiReHGN
- ayCCl/JW3hkTlxe0ja683gK8gTsAxC0f0Nrbnm+H9Tng1yMRzbBgDUTmG
- nD4n01BwldIdu24PK1qTtEQFnt38JnSa8z6bzO6sBMoW+k03Cz6wWxFkM
- 5iFLIgcPX0zJF/tQiKuUub8W/E1jIwLekynRB3ZEz9w3BZAkm+sfEgLv3
- yGemhnYPJCLgHbUsOpaYULtl+RrZFdUvjZ/wCc0zfuJgrEYLD3HkbJQsQ Q==;
-X-CSE-ConnectionGUID: i5OF/Qx4RXSS+htxU/gy6Q==
-X-CSE-MsgGUID: bWT09/QURw66GQOK5HWKyA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11202"; a="25960452"
-X-IronPort-AV: E=Sophos;i="6.10,250,1719903600"; d="scan'208";a="25960452"
+ bh=P9Sc0aNK2NGpSOm2oBtbGjnEwQ7R/RgBxYoQKZF4ZlE=;
+ b=ktG4s/0ywiQhIy0TcZH0JXCrRBFrwboJ3q+F0IbOpefq1laxQnpg9Rmo
+ remYPBqfB/c89ZIOLsAZLm/CZ8jWoQPYPum6Di5+6hCSVVRFIeDpQ9Zcp
+ dj2Z6pjD1fA8hGShca+Ddmn2aWdOlVN59Lc6Ufrp6mD5KehJmodPAjE49
+ OEsKUrntbkeMY5HuPQHbAetKum9yAqcySBuYRO1EdInnpZyRMuYja5QiE
+ PlDtaF2ajltK7P7OvQZ+OxG9b/6OEg+aZmfRaJIzT3ABfxWJQIwplalDO
+ 3Ze1lJq6kBonCAQOGjv8ogc+4USOMfY1W2FTfsO1LT/tjnenidDWM/b9K w==;
+X-CSE-ConnectionGUID: t4+eLZm8QsWecBf3b2wWLw==
+X-CSE-MsgGUID: l1sK3wzBSna8SRvuJ2zP/w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11202"; a="25960535"
+X-IronPort-AV: E=Sophos;i="6.10,250,1719903600"; d="scan'208";a="25960535"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2024 00:33:20 -0700
-X-CSE-ConnectionGUID: p7MpF/caRGK3fvhhBtXktQ==
-X-CSE-MsgGUID: DRmdI6cDRbej7iWov0P9uQ==
+ 23 Sep 2024 00:33:46 -0700
+X-CSE-ConnectionGUID: fD4Tnt0ORK6ipDDv5vEUBg==
+X-CSE-MsgGUID: 9RxMNozLQ7O+I+Jl9fOT6g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,250,1719903600"; d="scan'208";a="75745758"
+X-IronPort-AV: E=Sophos;i="6.10,250,1719903600"; d="scan'208";a="75745829"
 Received: from sschumil-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.65])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2024 00:33:20 -0700
+ 23 Sep 2024 00:33:46 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915/quirks: make intel_dpcd_quirks const
-In-Reply-To: <ZuxuouVHVBIRZwAW@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 0/9] drm/i915/dp: clean up DP testing
+In-Reply-To: <Zu16AP_oUcWOWpAl@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240919153354.1269295-1-jani.nikula@intel.com>
- <ZuxuouVHVBIRZwAW@intel.com>
-Date: Mon, 23 Sep 2024 10:33:16 +0300
-Message-ID: <87tte67rk3.fsf@intel.com>
+References: <cover.1726833193.git.jani.nikula@intel.com>
+ <Zu16AP_oUcWOWpAl@intel.com>
+Date: Mon, 23 Sep 2024 10:33:42 +0300
+Message-ID: <87r09a7rjd.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -70,13 +70,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 19 Sep 2024, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+On Fri, 20 Sep 2024, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
 > wrote:
-> On Thu, Sep 19, 2024 at 06:33:54PM +0300, Jani Nikula wrote:
->> The array can be in rodate, make it const.
+> On Fri, Sep 20, 2024 at 02:56:42PM +0300, Jani Nikula wrote:
+>> Whenever I look at doing anything in intel_dp.c I think it's grown too
+>> big. It's over 7k lines.
 >>=20
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> The DP test functionality is fairly isolated, and mostly irrelevant for
+>> normal operation. Move it all to its own file. This reduces intel_dp.c
+>> by about 500 lines, and intel_display_debugfs.c by about 200 lines. And
+>> intel_dp->compliance is now fully handled within intel_dp_test.c.
+>>=20
+>> BR,
+>> Jani.
+>>=20
+>> Jani Nikula (9):
+>>   drm/i915/dp: split out intel_dp_test.[ch] to a dedicated file
+>>   drm/i915/dp: fix style issues in intel_dp_test.c
+>>   drm/i915/dp: convert intel_dp_test.c struct intel_display
+>>   drm/i915/dp: clean up intel_dp_test.[ch] interface
+>>   drm/i915/dp: move DP test debugfs files next to the functionality
+>>   drm/i915/dp: fix style issues in DP test debugfs
+>>   drm/i915/display: remove the loop in fifo underrun debugfs file
+>>     creation
+>>   drm/i915/dp: convert DP test debugfs to struct intel_display
+>>   drm/i915/dp: add intel_dp_test_reset() and intel_dp_test_short_pulse()
 >
+> Gave this a quick once over, didn't see anything obviously wrong.
+>
+> Series is
 > Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
 Thanks, pushed to din.
@@ -85,34 +107,21 @@ BR,
 Jani.
 
 >
->> ---
->>  drivers/gpu/drm/i915/display/intel_quirks.c | 4 ++--
->>  1 file changed, 2 insertions(+), 2 deletions(-)
 >>=20
->> diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/d=
-rm/i915/display/intel_quirks.c
->> index 29b56d53a340..28f497ae785b 100644
->> --- a/drivers/gpu/drm/i915/display/intel_quirks.c
->> +++ b/drivers/gpu/drm/i915/display/intel_quirks.c
->> @@ -231,7 +231,7 @@ static struct intel_quirk intel_quirks[] =3D {
->>  	{ 0x0f31, 0x103c, 0x220f, quirk_invert_brightness },
->>  };
->>=20=20
->> -static struct intel_dpcd_quirk intel_dpcd_quirks[] =3D {
->> +static const struct intel_dpcd_quirk intel_dpcd_quirks[] =3D {
->>  	/* Dell Precision 5490 */
->>  	{
->>  		.device =3D 0x7d55,
->> @@ -272,7 +272,7 @@ void intel_init_dpcd_quirks(struct intel_dp *intel_d=
-p,
->>  	int i;
->>=20=20
->>  	for (i =3D 0; i < ARRAY_SIZE(intel_dpcd_quirks); i++) {
->> -		struct intel_dpcd_quirk *q =3D &intel_dpcd_quirks[i];
->> +		const struct intel_dpcd_quirk *q =3D &intel_dpcd_quirks[i];
->>=20=20
->>  		if (d->device =3D=3D q->device &&
->>  		    (d->subsystem_vendor =3D=3D q->subsystem_vendor ||
+>>  drivers/gpu/drm/i915/Makefile                 |   1 +
+>>  drivers/gpu/drm/i915/display/g4x_dp.c         |   7 +-
+>>  drivers/gpu/drm/i915/display/intel_ddi.c      |   7 +-
+>>  .../drm/i915/display/intel_display_debugfs.c  | 214 +----
+>>  drivers/gpu/drm/i915/display/intel_dp.c       | 520 +-----------
+>>  drivers/gpu/drm/i915/display/intel_dp.h       |   9 +-
+>>  drivers/gpu/drm/i915/display/intel_dp_mst.c   |   5 +-
+>>  drivers/gpu/drm/i915/display/intel_dp_test.c  | 765 ++++++++++++++++++
+>>  drivers/gpu/drm/i915/display/intel_dp_test.h  |  23 +
+>>  drivers/gpu/drm/xe/Makefile                   |   1 +
+>>  10 files changed, 816 insertions(+), 736 deletions(-)
+>>  create mode 100644 drivers/gpu/drm/i915/display/intel_dp_test.c
+>>  create mode 100644 drivers/gpu/drm/i915/display/intel_dp_test.h
+>>=20
 >> --=20
 >> 2.39.2
 
