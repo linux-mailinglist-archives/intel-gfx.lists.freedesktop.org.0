@@ -2,58 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52ADC97F101
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Sep 2024 21:03:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C342697F106
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Sep 2024 21:04:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A1DC10E47E;
-	Mon, 23 Sep 2024 19:03:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FBBD10E477;
+	Mon, 23 Sep 2024 19:04:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J16gRbr0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B2B12MX+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC74C10E482
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Sep 2024 19:03:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6232810E477;
+ Mon, 23 Sep 2024 19:04:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727118222; x=1758654222;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=SPeSkUsca97in+33Z3Uf5gxOgoab40VMPuWmDg4SyZA=;
- b=J16gRbr0Rkkhj9UktHcaWrVyKmxVmHkJalcG2zzxFnjcS2OqP+S+f45B
- 493eZbUOSMn5iTiS/GudKv9dnQ4ufKACmg5ox8ukM3NQqrhZTE44HEW+p
- MsdUI21BbR0oftTPYXe3sOg+IQK6DxhcDd442o0uhePxtlsO5EsiM4PrK
- 2vk/gwVeezXhsWOb91qTt77fb5QUWiuq6FqQaiIfChpWeLJ2o7vTkjh2d
- RUzRss3QLW7CPhxjaO4TTPrAvCZS69O5N3uIux0yoPmc/ISPX7sNDJqpo
- tUXVw+fDEVJtyTbBslu0zxOeakdlAaEUOZ8LXHRg0u1Dzo/miBeV+dnpu g==;
-X-CSE-ConnectionGUID: kNMrHFLHS4uZEmNiXkWC2w==
-X-CSE-MsgGUID: cj1gkoKuRaqAE56q5CB+PA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11204"; a="43601330"
-X-IronPort-AV: E=Sophos;i="6.10,252,1719903600"; d="scan'208";a="43601330"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2024 12:03:41 -0700
-X-CSE-ConnectionGUID: vrJpfdJVQ9yY1jK3PuAeJQ==
-X-CSE-MsgGUID: jNstL9UBQxyPUuTgCslcMg==
+ t=1727118247; x=1758654247;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=RbDWB6lag25YV8nVt/YDv8EebCCgSQ8m1Pn+aoruszI=;
+ b=B2B12MX+ZARWF3JB9748oxR+mJdLUxRVsB1XauYopkB9TjZ080DP19y5
+ NSB/0XF/XtCIxiVAPoFVyOUA9fEe4hA3rf+OpTbfbTonMlDJEHIR7BsOm
+ hsWPWH1fkcuoFBrDvbK5eJ/n/5swLWAFFRBPT8prd+ATy/lI4bQuWASks
+ AQh2DWHMMngaHCSMH/U6BNur08PdYdIIZPqmacj+yCUFE36ESggfmNbRj
+ tFeKXBhvWD+B1G2j0a0eyNdLTbVSW+YFqxYH4AIJy+OWABIALcIMPNL8Q
+ nXAvBUcVMjyJ+BGAu9QbXaC9h4faM/xlEK/ooOHqK/uCgyhGP9nrSWsLu Q==;
+X-CSE-ConnectionGUID: EXAWpijUTZqAGBMEyQ4VWw==
+X-CSE-MsgGUID: wFG5O9AXRk2eTmdsrUmMJQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11204"; a="13715478"
+X-IronPort-AV: E=Sophos;i="6.10,252,1719903600"; d="scan'208";a="13715478"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2024 12:04:07 -0700
+X-CSE-ConnectionGUID: FLQDlI7RRra+JUukarIT8w==
+X-CSE-MsgGUID: KDuidBbvQQijeytUgclOLw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,252,1719903600"; d="scan'208";a="71997416"
-Received: from bmurrell-mobl.amr.corp.intel.com (HELO gjsousa-mobl2.intel.com)
- ([10.125.110.180])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2024 12:03:41 -0700
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH v2 5/5] drm/i915/display: Cover all possible pipes in
- TP_printk()
-Date: Mon, 23 Sep 2024 16:02:54 -0300
-Message-ID: <20240923190324.83013-6-gustavo.sousa@intel.com>
-X-Mailer: git-send-email 2.46.1
-In-Reply-To: <20240923190324.83013-1-gustavo.sousa@intel.com>
-References: <20240923190324.83013-1-gustavo.sousa@intel.com>
+X-IronPort-AV: E=Sophos;i="6.10,252,1719903600"; d="scan'208";a="71303393"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 23 Sep 2024 12:04:05 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 23 Sep 2024 22:04:04 +0300
+Date: Mon, 23 Sep 2024 22:04:04 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ suraj.kandpal@intel.com
+Subject: Re: [PATCH 13/16] drm/i915/dp: Modify helper to get slice count for
+ ultrajoiner
+Message-ID: <ZvG7pAe-OojFoLIq@intel.com>
+References: <20240923181336.3303940-1-ankit.k.nautiyal@intel.com>
+ <20240923181336.3303940-14-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240923181336.3303940-14-ankit.k.nautiyal@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,101 +73,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Tracepoints that display frame and scanline counters for all pipes were
-added with commit 1489bba82433 ("drm/i915: Add cxsr toggle tracepoint")
-and commit 0b2599a43ca9 ("drm/i915: Add pipe enable/disable
-tracepoints"). At that time, we only had pipes A, B and C. Now that we
-can also have pipe D, the TP_printk() calls are missing it.
+On Mon, Sep 23, 2024 at 11:43:33PM +0530, Ankit Nautiyal wrote:
+> From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> 
+> ultrajoiner needs 2 bigjoiners to be enabled, so modify the helper
+> intel_dp_dsc_get_slice_count for ultrajoiner.
+> 
+> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 7 +++++--
+>  1 file changed, 5 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index a853f975bda1..115d8468bb91 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -996,8 +996,11 @@ u8 intel_dp_dsc_get_slice_count(const struct intel_connector *connector,
+>  		    drm_dp_dsc_sink_max_slice_count(connector->dp.dsc_dpcd, false))
+>  			break;
+>  
+> -		/* big joiner needs small joiner to be enabled */
+> -		if (num_joined_pipes == 2 && test_slice_count < 4)
+> +		/*
+> +		 * big joiner needs small joiner to be enabled,
+> +		 * and ultrajoiner needs 2 bigjoiners to be enabled
+> +		 */
+> +		if (num_joined_pipes > 1 && test_slice_count < num_joined_pipes * 2)
 
-As a quick and dirty fix for that, let's define two common macros to be
-used for the format and values respectively, and also ensure we raise a
-build bug if more pipes are added to enum pipe.
+This is now
 
-In the future, we should probably have a way of printing information for
-available pipes only.
+u8 test_slice_count = valid_dsc_slicecount[i] * num_joined_pipes;
+if (num_joined_pipes > 1 && test_slice_count < num_joined_pipes * 2)
+	continue;
 
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
----
- .../drm/i915/display/intel_display_trace.h    | 43 +++++++++++++------
- 1 file changed, 29 insertions(+), 14 deletions(-)
+which we could simply to just
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_trace.h b/drivers/gpu/drm/i915/display/intel_display_trace.h
-index eec9aeddad96..9bd8f1e505b0 100644
---- a/drivers/gpu/drm/i915/display/intel_display_trace.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_trace.h
-@@ -31,6 +31,29 @@
- #define _TRACE_PIPE_A	0
- #define _TRACE_PIPE_B	1
- #define _TRACE_PIPE_C	2
-+#define _TRACE_PIPE_D	3
-+
-+/*
-+ * FIXME: Several TP_printk() calls below display frame and scanline numbers for
-+ * all possible pipes (regardless of whether they are available) and that is
-+ * done with a constant format string. A better approach would be to generate
-+ * that info dynamically based on available pipes, but, while we do not have
-+ * that implemented yet, let's assert that the constant format string indeed
-+ * covers all possible pipes.
-+ */
-+static_assert(I915_MAX_PIPES - 1 == _TRACE_PIPE_D);
-+
-+#define _PIPES_FRAME_AND_SCANLINE_FMT		\
-+	"pipe A: frame=%u, scanline=%u"		\
-+	", pipe B: frame=%u, scanline=%u"	\
-+	", pipe C: frame=%u, scanline=%u"	\
-+	", pipe D: frame=%u, scanline=%u"
-+
-+#define _PIPES_FRAME_AND_SCANLINE_VALUES					\
-+	__entry->frame[_TRACE_PIPE_A], __entry->scanline[_TRACE_PIPE_A]		\
-+	, __entry->frame[_TRACE_PIPE_B], __entry->scanline[_TRACE_PIPE_B]	\
-+	, __entry->frame[_TRACE_PIPE_C], __entry->scanline[_TRACE_PIPE_C]	\
-+	, __entry->frame[_TRACE_PIPE_D], __entry->scanline[_TRACE_PIPE_D]
- 
- /*
-  * Paranoid sanity check that at least the enumeration starts at the
-@@ -63,11 +86,8 @@ TRACE_EVENT(intel_pipe_enable,
- 			   __entry->pipe_name = pipe_name(crtc->pipe);
- 			   ),
- 
--	    TP_printk("dev %s, pipe %c enable, pipe A: frame=%u, scanline=%u, pipe B: frame=%u, scanline=%u, pipe C: frame=%u, scanline=%u",
--		      __get_str(dev), __entry->pipe_name,
--		      __entry->frame[_TRACE_PIPE_A], __entry->scanline[_TRACE_PIPE_A],
--		      __entry->frame[_TRACE_PIPE_B], __entry->scanline[_TRACE_PIPE_B],
--		      __entry->frame[_TRACE_PIPE_C], __entry->scanline[_TRACE_PIPE_C])
-+	    TP_printk("dev %s, pipe %c enable, " _PIPES_FRAME_AND_SCANLINE_FMT,
-+		      __get_str(dev), __entry->pipe_name, _PIPES_FRAME_AND_SCANLINE_VALUES)
- );
- 
- TRACE_EVENT(intel_pipe_disable,
-@@ -96,11 +116,8 @@ TRACE_EVENT(intel_pipe_disable,
- 			   __entry->pipe_name = pipe_name(crtc->pipe);
- 			   ),
- 
--	    TP_printk("dev %s, pipe %c disable, pipe A: frame=%u, scanline=%u, pipe B: frame=%u, scanline=%u, pipe C: frame=%u, scanline=%u",
--		      __get_str(dev), __entry->pipe_name,
--		      __entry->frame[_TRACE_PIPE_A], __entry->scanline[_TRACE_PIPE_A],
--		      __entry->frame[_TRACE_PIPE_B], __entry->scanline[_TRACE_PIPE_B],
--		      __entry->frame[_TRACE_PIPE_C], __entry->scanline[_TRACE_PIPE_C])
-+	    TP_printk("dev %s, pipe %c disable, " _PIPES_FRAME_AND_SCANLINE_FMT,
-+		      __get_str(dev), __entry->pipe_name, _PIPES_FRAME_AND_SCANLINE_VALUES)
- );
- 
- TRACE_EVENT(intel_crtc_flip_done,
-@@ -230,11 +247,9 @@ TRACE_EVENT(intel_memory_cxsr,
- 			   __entry->new = new;
- 			   ),
- 
--	    TP_printk("dev %s, cxsr %s->%s, pipe A: frame=%u, scanline=%u, pipe B: frame=%u, scanline=%u, pipe C: frame=%u, scanline=%u",
-+	    TP_printk("dev %s, cxsr %s->%s, " _PIPES_FRAME_AND_SCANLINE_FMT,
- 		      __get_str(dev), str_on_off(__entry->old), str_on_off(__entry->new),
--		      __entry->frame[_TRACE_PIPE_A], __entry->scanline[_TRACE_PIPE_A],
--		      __entry->frame[_TRACE_PIPE_B], __entry->scanline[_TRACE_PIPE_B],
--		      __entry->frame[_TRACE_PIPE_C], __entry->scanline[_TRACE_PIPE_C])
-+		      _PIPES_FRAME_AND_SCANLINE_VALUES)
- );
- 
- TRACE_EVENT(g4x_wm,
+if (num_joined_pipes > 1 && valid_dsc_slicecount[i] < 2)
+	continue;
+
+which might more clearly reflect what the original comment
+"big joiner needs small joiner to be enabled" seems to
+be trying to say (basically that we need at least two slices
+per pipe) whenever bigjoiner is enabled. Ultrajoiner presumably
+does not really change that fact in any way?
+
+>  			continue;
+>  
+>  		if (min_slice_count <= test_slice_count)
+> -- 
+> 2.45.2
+
 -- 
-2.46.1
-
+Ville Syrjälä
+Intel
