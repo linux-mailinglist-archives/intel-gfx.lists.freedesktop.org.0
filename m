@@ -2,65 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AE0897EAF5
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Sep 2024 13:45:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4F4697EBB4
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Sep 2024 14:49:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CBF710E3E4;
-	Mon, 23 Sep 2024 11:45:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D128D10E3F5;
+	Mon, 23 Sep 2024 12:49:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h3gRqgDj";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="sst8rmym";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 64AE910E3DF;
- Mon, 23 Sep 2024 11:45:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727091950; x=1758627950;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=o8vaZJxrTmZYJGBdKLHx7iRkXj/VX32aWDMQkxVqdpI=;
- b=h3gRqgDjcwucGRMTrjW/+C8v1PDhPGCL3h5RPtQsGy4d1n0p4Qk6pOG+
- imy5YVQyZeAgy9/ITu6i9po6Q4S0jcaxwW73v5evdXx026Td2S/jqTs3q
- JE19cLUykxTdX+sAqXRY2l0SYaMVociziSfQoPBv2OfKfebyWR69bQUwp
- 0bYjnwpgkUgz2ZLyF+jv250l/ijW/26wjaZ+AfVixeLX8PVCFjFb/H83A
- WQbdCzn1fftVG8IjPE+EmyOaRRV+vngBVUl6lRr4AcwvzYuOQZELpoNZu
- Cp801WxTptAzZ5j+IPZ2JBzzGKpoPmdI4qNsM1Oh61GMXVy7ZZW8vnX3C A==;
-X-CSE-ConnectionGUID: ZfLMyAzsSDyxvmLCUZJJtA==
-X-CSE-MsgGUID: VQIu+xX6TqiqLE4Zg9acQA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11202"; a="28929705"
-X-IronPort-AV: E=Sophos;i="6.10,251,1719903600"; d="scan'208";a="28929705"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2024 04:45:50 -0700
-X-CSE-ConnectionGUID: E+xTNmH4RIaCctGj0993IA==
-X-CSE-MsgGUID: DhNPIzcbQy6ld2OGfF65sw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,251,1719903600"; d="scan'208";a="71074762"
-Received: from sschumil-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.65])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2024 04:45:47 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Srikanth V, NagaVenkata" <nagavenkata.srikanth.v@intel.com>, "Kandpal,
- Suraj" <suraj.kandpal@intel.com>, "Murthy, Arun R"
- <arun.r.murthy@intel.com>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Cc: "Murthy, Arun R" <arun.r.murthy@intel.com>
-Subject: RE: [PATCH 3/3] drm/i915/dp: Include the time taken by AUX Tx for
- timeout
-In-Reply-To: <CH0PR11MB550828F237C40440851BA923C26F2@CH0PR11MB5508.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240912050552.779356-1-arun.r.murthy@intel.com>
- <20240912050552.779356-4-arun.r.murthy@intel.com>
- <SN7PR11MB6750FF1460FA59B579B93954E36F2@SN7PR11MB6750.namprd11.prod.outlook.com>
- <CH0PR11MB550828F237C40440851BA923C26F2@CH0PR11MB5508.namprd11.prod.outlook.com>
-Date: Mon, 23 Sep 2024 14:45:44 +0300
-Message-ID: <87ldzi61av.fsf@intel.com>
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E88110E260;
+ Mon, 23 Sep 2024 12:49:35 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id 53AFDA41B78;
+ Mon, 23 Sep 2024 12:49:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 287D7C4CEC4;
+ Mon, 23 Sep 2024 12:49:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1727095774;
+ bh=RN6cjzHoWo7KzeRWo61xbecp6Jcoh0ocYmVzmQxu00s=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=sst8rmym1KIpZMVpE922IY6DCc92c9SKEyh32z3FChhDrHzEjbGGx5ElG0aFTEoKO
+ aWxoys4vBUlsffvSINxEFrvXvAKlReionrFgc77eCTtR5kF13ybMuo7ISnDKUblHUa
+ YN8ZTvhQ+iySyZ8vd53HuK5YSKqMz/Ac2hHw1CDduijlWruv5UlEaXa1PtgQtkgnyn
+ xiFwLzEUI39EZSdaCeVJzRnJ8C4UuFlDos15YCBbzHgt3u0o6S/1RsrmU9i32MrK/9
+ AtT9PnO4qEhUk9K/SnB2vk0u33aX8TSv310RMdQ+IPxbjmJLQ98qDdTk0buLqGDzRp
+ C9T9J3TTfcb3Q==
+Date: Mon, 23 Sep 2024 14:49:27 +0200
+From: Mark Brown <broonie@kernel.org>
+To: "Winkler, Tomas" <tomas.winkler@intel.com>
+Cc: "Usyskin, Alexander" <alexander.usyskin@intel.com>,
+ "De Marchi, Lucas" <lucas.demarchi@intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ "Lubart, Vitaly" <vitaly.lubart@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH v6 01/12] spi: add driver for intel graphics on-die spi
+ device
+Message-ID: <ZvFj1zyzSYmbNwmH@finisterre.sirena.org.uk>
+References: <20240916134928.3654054-1-alexander.usyskin@intel.com>
+ <20240916134928.3654054-2-alexander.usyskin@intel.com>
+ <ZurWk_eXSQndgA4Y@finisterre.sirena.org.uk>
+ <PH7PR11MB76057D2326D436CA9749A113E5632@PH7PR11MB7605.namprd11.prod.outlook.com>
+ <Zuv9qsWJQhx7rbhJ@finisterre.sirena.org.uk>
+ <PH7PR11MB760505A11C7A41DAB0359184E56D2@PH7PR11MB7605.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="6k/Yl5pMjIb7rFw2"
+Content-Disposition: inline
+In-Reply-To: <PH7PR11MB760505A11C7A41DAB0359184E56D2@PH7PR11MB7605.namprd11.prod.outlook.com>
+X-Cookie: Editing is a rewording activity.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,74 +80,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 23 Sep 2024, "Srikanth V, NagaVenkata" <nagavenkata.srikanth.v@intel.com> wrote:
->> > -----Original Message-----
->> > From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of
->> > Arun R Murthy
->> > Sent: Thursday, September 12, 2024 10:36 AM
->> > To: intel-xe@lists.freedesktop.org; intel-gfx@lists.freedesktop.org
->> > Cc: Murthy, Arun R <arun.r.murthy@intel.com>; Srikanth V, NagaVenkata
->> > <nagavenkata.srikanth.v@intel.com>
->> > Subject: [PATCH 3/3] drm/i915/dp: Include the time taken by AUX Tx for
->> > timeout
->> >
->> > As per DP spec the timeout for LANE_CHANNEL_EQ_DONE is 400ms. But this
->> 
->> Adding where in DP spec example dp2.1 section x.x is a good idea
->> 
-> Please refer to section 3.5.2.16.1 128b/132b DP LANEx_CHANNEL_EQ_DONE Sequnce
-> and Figure3-51: 128b/132b DP EQ Time Budget Illustration of DP2.1a spec.
->
->> > timeout value is exclusively for the Aux RD Interval and excludes the
->> > time consumed for the AUX Tx (i.e reading/writing FFE presets). Add
->> > another 50ms for these AUX Tx to the 400ms timeout.
->> 
->> Is this something we came up with by trial and error or is this also a part of spec
->> 
-> It's not by trail and erros. Timeout value of 450ms is part of DP.
 
-It's a very poorly written spec, and contradicts itself. The only place
-where I see 450 ms even mentioned is Figure 3-52. But everywhere else it
-seems to say many times 400 ms is the max, without a hint that it would
-be exclusive of aux. It does not say anything about the sum of rd
-interval being related to the max of 400 ms either.
+--6k/Yl5pMjIb7rFw2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Regardless, I have no qualms about relaxing the timeout by 50 ms.
+On Sat, Sep 21, 2024 at 01:00:52PM +0000, Winkler, Tomas wrote:
+> > On Thu, Sep 19, 2024 at 09:54:24AM +0000, Winkler, Tomas wrote:
+> > > > On Mon, Sep 16, 2024 at 04:49:17PM +0300, Alexander Usyskin wrote:
 
-With the commit message explaining the above, with references,
+> > Just do normal open coded allocations, the reference counting is just
+> > obscure.
 
-Acked-by: Jani Nikula <jani.nikula@intel.com>
+> The kref here is for reason so we don't need to hunt the close open, I fr=
+ankly don't understand
+> what is wrong with it,=20
 
+It's locking/refcounting stuff that looks nothing like any other SPI
+controller driver.  Even if it works it's obviously fragile since the
+driver does surprising things which break assumptions that will be made
+by people not looking at this specific driver, and causes people to have
+to spend more effort figuring out what you're doing.  If there is any
+benefit to doing this then open coding it in one specific driver is
+clearly not the right place to do it.
 
->
->> Regards,
->> Suraj Kandpal
->> >
->> > Signed-off-by: Srikanth V NagaVenkata
->> > <nagavenkata.srikanth.v@intel.com>
->> > Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
->> > ---
->> >  drivers/gpu/drm/i915/display/intel_dp_link_training.c | 2 +-
->> >  1 file changed, 1 insertion(+), 1 deletion(-)
->> >
->> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
->> > b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
->> > index ca179bed46ad..b6573934c6dd 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
->> > @@ -1414,7 +1414,7 @@ intel_dp_128b132b_lane_eq(struct intel_dp
->> > *intel_dp,
->> >  	}
->> >
->> >  	/* Time budget for the LANEx_EQ_DONE Sequence */
->> > -	deadline = jiffies + msecs_to_jiffies_timeout(400);
->> > +	deadline = jiffies + msecs_to_jiffies_timeout(450);
->> >
->> >  	for (try = 0; try < max_tries; try++) {
->> >  		fsleep(delay_us);
->> > --
->> > 2.25.1
->
+> > > > > +static void intel_dg_spi_remove(struct auxiliary_device *aux_dev=
+) {
+> > > > > +	struct intel_dg_spi *spi =3D dev_get_drvdata(&aux_dev->dev);
 
--- 
-Jani Nikula, Intel
+> > > > > +	if (!spi)
+> > > > > +		return;
+
+> > > > > +	dev_set_drvdata(&aux_dev->dev, NULL);
+
+> > > > If the above is doing anything there's a problem...
+> > o
+> > > It makes sure the data is set to NULL.
+
+> > Which is needed because...?
+
+> This is a boilerplate part, the content is consequent patches.=20
+
+Which would come back to the issues created by the random splitting of
+the series were it not for the fact that if anything tries to look at
+the driver data of a removed device it's buggy, the reference is gone
+and the device may have been deallocated and it's certainly freed from
+the perspective of this user.  Notice how other drivers don't do this.
+The driver core will also overwrite the driver data of released
+devices...
+
+At a high level a lot of the issues with this series is that both in
+terms of how it's been sent and what it's doing there's a bunch of
+things that look nothing like how we normally handle things.  At best
+this means that problems are being solved at the wrong level, but it's
+hard to see that this is the case.
+
+--6k/Yl5pMjIb7rFw2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmbxY9AACgkQJNaLcl1U
+h9BFsAf/ehMj/p+H4ADxV87IKVdY07z0di6q7euT4MTbH/WOB6XOKpN1Oj1FHsSB
+v1VhH+buYMk50UT6BKOTtL3naCweQGxZPGrbmwj8ny1ge1MGVMNyZDKuAIZciO+O
+M7fqs6fzTHSsxO97j7Rtw8FponO3u3rifubo1K2+zNiPfhqdJo2B+L5AcLkFbpyn
+ysP7QDcEC1Nljp5BwYr2iVPynGEHHU8ZI2Ql+F504yOcYLOAJZAm38FJogVct1x9
+z2kTT2na9/or4xAvarDW/4OnALdrV+Zrmq4wvQ5BqimyDz3UciBgIfxzyGxj7CUy
+1c5xIQ9lVIVLndjsAzj6oKcPNTBmqA==
+=OAaN
+-----END PGP SIGNATURE-----
+
+--6k/Yl5pMjIb7rFw2--
