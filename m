@@ -2,94 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F64A97E715
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Sep 2024 10:02:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 20D2797E776
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Sep 2024 10:22:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 081BA10E3A2;
-	Mon, 23 Sep 2024 08:02:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F28810E3A5;
+	Mon, 23 Sep 2024 08:22:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="KO3ZPs8Q";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="myHH60Bc";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com
- [209.85.128.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47C6510E3A0
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Sep 2024 08:02:49 +0000 (UTC)
-Received: by mail-wm1-f41.google.com with SMTP id
- 5b1f17b1804b1-42cb6f3a5bcso51974565e9.2
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Sep 2024 01:02:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1727078567; x=1727683367;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=fC3Bk5dw1/gGRftPXPJ3V4u4Vjqap92J4A7d7sdxGEM=;
- b=KO3ZPs8QfEBn0LAhjh5PXt4Ph7xghAUj8nMrY4e05To3ip7Eypis6xn2bCE2ER344U
- veGatJmr/PePkZI4fXphLLN2hvLp1JMKQG2Vb/hCtrnHYRv8hjTiAw/AFHrHQgimMtJi
- VT+aZCJjxADPDKZXVO4oj+3c0zJI+HVHuqDRXI9a3EK6zPBy7cIGk/GF8Q+Pu1JqVjkv
- 6reQEQfLzJDnNF1I3hQ5Whda/TGCeoOSyljaSNeguWKrROX62so2mKxxhnlTEbczISok
- ewy3j5ALM5MsWUb3twzRzVNqP/XNToHb9kch58LjWbREGilQXQtvk0MgoZ4aOhZWLN/z
- 77/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1727078567; x=1727683367;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=fC3Bk5dw1/gGRftPXPJ3V4u4Vjqap92J4A7d7sdxGEM=;
- b=Acym8r8WnxLF8zr8FCF5LCvaOkUZav1ZZkS9O3Cu87PhksWAxuphtyJ8ZwWpxUeJK5
- AofmnoAZ1LMwU0FAn5joa+1mObSnoWkpd7EZikr70/b09ODmkxQ4C30I9R1roOUoIc9u
- 5d6cn9t8LsW728CUfXrsOXlb3M1YskmPFF9k2KLpKGLPu785sb9QKgtMTb0LHW1/lBCX
- vesFnxfwimRuOthq8jHj6XgGg/cm6RNf7zLyVtD0A2xlDFWckdVsrGsdxvhX7VcyYqNX
- xMNqwNxenBSnEzke/RBHjYZVWuVY8gfr8UJEJ9nCh/B4dTcWt+vyWg2/WLsYAWtmA/B8
- /Twg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWnEjASSviyWJCm3WKb1HzaSbrZUOJ+evc4GOIpl2vYyQBsmxvffp65CWUeVQqJgHUBSSufdNT6Hm8=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzcuP/1wY34YIPOOEVLC/2E++R9X8vqtG7aI9Du529t6DHEqebv
- 1Gr+KWU2JtZZCstpGHUk/KfZhicjPT07nNubAeQQRYYYOb1P6myhZiMF7jw8wBo=
-X-Google-Smtp-Source: AGHT+IFh8B1YgLhKe+4RstOPDzr4ZktChxPzie9lMCmzjGXOU/dpCtHs6ZgyG/jWqji4/p+lC75vhw==
-X-Received: by 2002:a05:600c:4ed2:b0:42c:bbd5:727b with SMTP id
- 5b1f17b1804b1-42e7adc01a5mr122382395e9.25.1727078567470; 
- Mon, 23 Sep 2024 01:02:47 -0700 (PDT)
-Received: from [192.168.0.101] ([90.241.98.187])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-378e780da68sm23800022f8f.111.2024.09.23.01.02.46
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 23 Sep 2024 01:02:47 -0700 (PDT)
-Message-ID: <1b824cfe-2006-4f5f-a34e-3496c259cd90@ursulin.net>
-Date: Mon, 23 Sep 2024 09:02:45 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6505710E3A8
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Sep 2024 08:22:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1727079747; x=1758615747;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=INowjXpqjfwnrfufBlU9VCdeyM4ND/GmstPsINqM1S4=;
+ b=myHH60Bc4bUc5xcvZ4WHx7jpnIa0qnKfVWHR6SFx8hhPE6VVkEV97Rkn
+ 7j9+5LdvI2Ky8axI74BOAnEHAg78FfJLpc820BnXdHVTkokCNRm5m6ie3
+ mZK4XHSlqfIyc/K01hSGIponhJdJtfDzcaewzTxxyo2hLhwFMNiovmKyy
+ VHhq1+dDomAUb1lXyws4jz76E5f65VLwY8aPF/1eg2luio9X6qumUra54
+ 1bGMdlQwNeGdJ8J5rv6+ZCgl8Aqh7vYA2OMlgtuf5zHxhg+Bh2k311ym6
+ 657QMseeG3i46wAbJzUFGWyB/OXkKhFXU1t1KJ0ovDIPmrWT8IBcdsewX A==;
+X-CSE-ConnectionGUID: UxSnxIgfTB+jm6SZvCMWLg==
+X-CSE-MsgGUID: E/4QLaXTSLukazRMzGBVfQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11202"; a="43532191"
+X-IronPort-AV: E=Sophos;i="6.10,250,1719903600"; d="scan'208";a="43532191"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2024 01:22:27 -0700
+X-CSE-ConnectionGUID: SISIAQ8lQ4elLk6U6KaNhQ==
+X-CSE-MsgGUID: b18rNouVRaK9en50s2rTiQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,250,1719903600"; d="scan'208";a="108424632"
+Received: from sschumil-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.65])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2024 01:22:25 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH] drm/i915/pps: split intel_pps_reset_all() to vlv and
+ bxt variants
+In-Reply-To: <ZuwJ2Htfhbgk4bGW@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240919090427.1859032-1-jani.nikula@intel.com>
+ <ZuwJ2Htfhbgk4bGW@intel.com>
+Date: Mon, 23 Sep 2024 11:22:22 +0300
+Message-ID: <87o74e7pa9.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 01/12] spi: add driver for intel graphics on-die spi
- device
-To: "Winkler, Tomas" <tomas.winkler@intel.com>, Mark Brown <broonie@kernel.org>
-Cc: "Usyskin, Alexander" <alexander.usyskin@intel.com>,
- "De Marchi, Lucas" <lucas.demarchi@intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- "Lubart, Vitaly" <vitaly.lubart@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-References: <20240916134928.3654054-1-alexander.usyskin@intel.com>
- <20240916134928.3654054-2-alexander.usyskin@intel.com>
- <ZurWk_eXSQndgA4Y@finisterre.sirena.org.uk>
- <PH7PR11MB76057D2326D436CA9749A113E5632@PH7PR11MB7605.namprd11.prod.outlook.com>
- <Zuv9qsWJQhx7rbhJ@finisterre.sirena.org.uk>
- <PH7PR11MB760505A11C7A41DAB0359184E56D2@PH7PR11MB7605.namprd11.prod.outlook.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tursulin@ursulin.net>
-In-Reply-To: <PH7PR11MB760505A11C7A41DAB0359184E56D2@PH7PR11MB7605.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,42 +71,164 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Thu, 19 Sep 2024, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Thu, Sep 19, 2024 at 12:04:27PM +0300, Jani Nikula wrote:
+>> The intel_pps_reset_all() function does similar but not quite the same
+>> things for VLV/CHV and BXT/GLK. Observe that it's called from platform
+>> specific code only, and a split to two functions vlv_pps_reset_all() and
+>> bxt_pps_reset_all() is natural.
+>>=20
+>> Remove the platform checks and warnings from the functions. We don't
+>> usually have them, unless we're unsure. To make this easier to reason
+>> about for BXT/GLK, change the condition on caller side from "!PCH" to
+>> "BXT || GLK".
+>>=20
+>> Suggested-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-On 21/09/2024 14:00, Winkler, Tomas wrote:
-> 
-> 
->>
->> On Thu, Sep 19, 2024 at 09:54:24AM +0000, Winkler, Tomas wrote:
->>>> On Mon, Sep 16, 2024 at 04:49:17PM +0300, Alexander Usyskin wrote:
->>
->>>>> @@ -0,0 +1,142 @@
->>>>> +// SPDX-License-Identifier: GPL-2.0
->>>>> +/*
->>>>> + * Copyright(c) 2019-2024, Intel Corporation. All rights reserved.
->>>>> + */
->>
->>>> Please make the entire comment a C++ one so things look more
->> intentional.
->>
->>> This is how it is required by Linux spdx checker,
->>
->> There is no incompatibility between SPDX and what I'm asking for...
->>
->>>>> +	size = sizeof(*spi) + sizeof(spi->regions[0]) * nregions;
->>>>> +	spi = kzalloc(size, GFP_KERNEL);
->>
->>>> Use at least array_size().
->>
->>> Regions is not fixed size array, it will not work.
->>
->> Yes, that's the wrong helper - there is a relevent one though which I'm not
->> remembering right now.
-> 
-> 
-> I don't think there is one, you can allocate arrays but this is not the case here.
+Thanks, pushed to din.
 
-struct_size() probably.
+BR,
+Jani.
 
-Regards,
+>
+>> ---
+>>  .../i915/display/intel_display_power_well.c   | 11 +++---
+>>  drivers/gpu/drm/i915/display/intel_pps.c      | 34 +++++++++++--------
+>>  drivers/gpu/drm/i915/display/intel_pps.h      |  3 +-
+>>  3 files changed, 27 insertions(+), 21 deletions(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/d=
+rivers/gpu/drm/i915/display/intel_display_power_well.c
+>> index 1898aff50ac4..adaf7cf3a33b 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+>> @@ -879,12 +879,11 @@ void bxt_enable_dc9(struct intel_display *display)
+>>=20=20
+>>  	drm_dbg_kms(display->drm, "Enabling DC9\n");
+>>  	/*
+>> -	 * Power sequencer reset is not needed on
+>> -	 * platforms with South Display Engine on PCH,
+>> -	 * because PPS registers are always on.
+>> +	 * Power sequencer reset is needed on BXT/GLK, because the PPS registe=
+rs
+>> +	 * aren't always on, unlike with South Display Engine on PCH.
+>>  	 */
+>> -	if (!HAS_PCH_SPLIT(dev_priv))
+>> -		intel_pps_reset_all(display);
+>> +	if (IS_BROXTON(dev_priv) || IS_GEMINILAKE(dev_priv))
+>> +		bxt_pps_reset_all(display);
+>>  	gen9_set_dc_state(display, DC_STATE_EN_DC9);
+>>  }
+>>=20=20
+>> @@ -1270,7 +1269,7 @@ static void vlv_display_power_well_deinit(struct d=
+rm_i915_private *dev_priv)
+>>  	/* make sure we're done processing display irqs */
+>>  	intel_synchronize_irq(dev_priv);
+>>=20=20
+>> -	intel_pps_reset_all(display);
+>> +	vlv_pps_reset_all(display);
+>>=20=20
+>>  	/* Prevent us from re-enabling polling on accident in late suspend */
+>>  	if (!dev_priv->drm.dev->power.is_suspended)
+>> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/=
+i915/display/intel_pps.c
+>> index 819b2843946f..88abc4c7cda1 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_pps.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
+>> @@ -70,7 +70,7 @@ intel_wakeref_t intel_pps_lock(struct intel_dp *intel_=
+dp)
+>>  	intel_wakeref_t wakeref;
+>>=20=20
+>>  	/*
+>> -	 * See intel_pps_reset_all() why we need a power domain reference here.
+>> +	 * See vlv_pps_reset_all() why we need a power domain reference here.
+>>  	 */
+>>  	wakeref =3D intel_display_power_get(dev_priv, POWER_DOMAIN_DISPLAY_COR=
+E);
+>>  	mutex_lock(&display->pps.mutex);
+>> @@ -448,14 +448,10 @@ pps_initial_setup(struct intel_dp *intel_dp)
+>>  	return intel_pps_is_valid(intel_dp);
+>>  }
+>>=20=20
+>> -void intel_pps_reset_all(struct intel_display *display)
+>> +void vlv_pps_reset_all(struct intel_display *display)
+>>  {
+>> -	struct drm_i915_private *dev_priv =3D to_i915(display->drm);
+>>  	struct intel_encoder *encoder;
+>>=20=20
+>> -	if (drm_WARN_ON(display->drm, !IS_LP(dev_priv)))
+>> -		return;
+>> -
+>>  	if (!HAS_DISPLAY(display))
+>>  		return;
+>>=20=20
+>> @@ -472,16 +468,26 @@ void intel_pps_reset_all(struct intel_display *dis=
+play)
+>>  	for_each_intel_dp(display->drm, encoder) {
+>>  		struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
+>>=20=20
+>> -		if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
+>> -			drm_WARN_ON(display->drm,
+>> -				    intel_dp->pps.vlv_active_pipe !=3D INVALID_PIPE);
+>> -
+>> -		if (encoder->type !=3D INTEL_OUTPUT_EDP)
+>> -			continue;
+>> +		drm_WARN_ON(display->drm, intel_dp->pps.vlv_active_pipe !=3D INVALID_=
+PIPE);
+>>=20=20
+>> -		if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
+>> +		if (encoder->type =3D=3D INTEL_OUTPUT_EDP)
+>>  			intel_dp->pps.vlv_pps_pipe =3D INVALID_PIPE;
+>> -		else
+>> +	}
+>> +}
+>> +
+>> +void bxt_pps_reset_all(struct intel_display *display)
+>> +{
+>> +	struct intel_encoder *encoder;
+>> +
+>> +	if (!HAS_DISPLAY(display))
+>> +		return;
+>> +
+>> +	/* See vlv_pps_reset_all() for why we can't grab pps_mutex here. */
+>> +
+>> +	for_each_intel_dp(display->drm, encoder) {
+>> +		struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
+>> +
+>> +		if (encoder->type =3D=3D INTEL_OUTPUT_EDP)
+>>  			intel_dp->pps.bxt_pps_reset =3D true;
+>>  	}
+>>  }
+>> diff --git a/drivers/gpu/drm/i915/display/intel_pps.h b/drivers/gpu/drm/=
+i915/display/intel_pps.h
+>> index a5339a65485d..bc5046d53626 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_pps.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_pps.h
+>> @@ -43,7 +43,6 @@ void intel_pps_wait_power_cycle(struct intel_dp *intel=
+_dp);
+>>  bool intel_pps_init(struct intel_dp *intel_dp);
+>>  void intel_pps_init_late(struct intel_dp *intel_dp);
+>>  void intel_pps_encoder_reset(struct intel_dp *intel_dp);
+>> -void intel_pps_reset_all(struct intel_display *display);
+>>=20=20
+>>  void vlv_pps_pipe_init(struct intel_dp *intel_dp);
+>>  void vlv_pps_pipe_reset(struct intel_dp *intel_dp);
+>> @@ -52,6 +51,8 @@ void vlv_pps_port_enable_unlocked(struct intel_encoder=
+ *encoder,
+>>  				  const struct intel_crtc_state *crtc_state);
+>>  void vlv_pps_port_disable(struct intel_encoder *encoder,
+>>  			  const struct intel_crtc_state *crtc_state);
+>> +void vlv_pps_reset_all(struct intel_display *display);
+>> +void bxt_pps_reset_all(struct intel_display *display);
+>>=20=20
+>>  void intel_pps_unlock_regs_wa(struct intel_display *display);
+>>  void intel_pps_setup(struct intel_display *display);
+>> --=20
+>> 2.39.2
 
-Tvrtko
+--=20
+Jani Nikula, Intel
