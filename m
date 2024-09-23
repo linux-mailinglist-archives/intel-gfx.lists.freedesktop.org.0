@@ -2,59 +2,186 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66D9A97EE14
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Sep 2024 17:25:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BDDF697EFA5
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Sep 2024 18:55:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E18E410E41B;
-	Mon, 23 Sep 2024 15:25:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 33DFA10E28E;
+	Mon, 23 Sep 2024 16:55:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dH2Ucet9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HxdeyozZ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7BC1310E421;
- Mon, 23 Sep 2024 15:25:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DDD3710E1A9
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Sep 2024 16:55:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727105115; x=1758641115;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=qhTCaHLWOVHaKSW0ANE9vyjG9VvTgEnw2EnVKyPjURg=;
- b=dH2Ucet9+aRUoZfFCRMCG+IYgrIx7FX5QHTsggKQTATGCB0ZgwucbWJP
- pso4zw56JcPKOyo9pxZGvpphF+aZnPNpuICaFNIoKtKlitU4wBQGiXup2
- DOQmNrmC2STZ46uCwDaRSYq04nTLOmiAuouuw9iEp/7iVTdkFyr89TOZF
- iawojfoVKtOx+HnUdtIolmJA6KpdcUsI87aJpXXeyfWRWhDrDgVv111R6
- 2M949GBspovElUlNYzVvX4E2Hs2Zj3eV50R52eUPYB+5zf5+W67mmqTn/
- SZG9GyT3dU2Y1Vx1iZDI6NeDKd+Uaeaswg1I38UvphgCSibshL6U/kkxs Q==;
-X-CSE-ConnectionGUID: m5Gu0x6ySsq2XimDBjcKBA==
-X-CSE-MsgGUID: qwYr9CpJTJqpVg2wI5BDtA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11204"; a="26013513"
-X-IronPort-AV: E=Sophos;i="6.10,251,1719903600"; d="scan'208";a="26013513"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2024 08:25:15 -0700
-X-CSE-ConnectionGUID: WqPubCsPRAq7aBOlMWMr9w==
-X-CSE-MsgGUID: RsqX0LwxTgy2Yih+XP1fcg==
+ t=1727110516; x=1758646516;
+ h=content-transfer-encoding:in-reply-to:references:subject:
+ from:cc:to:date:message-id:mime-version;
+ bh=YO/c55ZctMzu7OSPYsnOIklF3ZIq36QlBgMhISoi0fg=;
+ b=HxdeyozZNp2DwbXA8VGG+9XyY9sf7HuRFT0nhE+p5cS7nJAL3krijwn8
+ LjOFjVrXLLQ2Z8MJeBQnjvaeODAQnKsxw9Wn5QeqvQ+4ZLXVX//PN60N2
+ b3LaUqHsQ+xIgGgTdj1wtEgCRxheZ5seEGwZOGRfBKgqmQfyipWppdO0y
+ 0s27vorXghZ0JkxBZ/tnompded7HvtfPBS3S3KgQbb7nwPPbHOjV5yEEf
+ Ao6IR3zGlVoKfEhSJnMLllvZrAd3D1avlg/0+ELKIQVGcOV3E44RFx+10
+ Ewscxj4nlNYoyJIO0DdF38RrQjSIlWGWqvcoiSt988FNZkJ6dKivWZLbm g==;
+X-CSE-ConnectionGUID: hPJNZFqBRcCxMSdQReU/qw==
+X-CSE-MsgGUID: XHgaAbIjQNWqTZqJwS4Odw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11204"; a="43587707"
+X-IronPort-AV: E=Sophos;i="6.10,251,1719903600"; d="scan'208";a="43587707"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Sep 2024 09:55:15 -0700
+X-CSE-ConnectionGUID: wBpELyh5SB6S/M6CyUsPXw==
+X-CSE-MsgGUID: SMvlCvp/T/ObfnrMYhwmhA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,251,1719903600"; d="scan'208";a="71239981"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 23 Sep 2024 08:25:12 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 23 Sep 2024 18:25:12 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org,
-	Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v2 6/6] drm/i915/bios: Extract soc/intel_rom.c
-Date: Mon, 23 Sep 2024 18:24:53 +0300
-Message-ID: <20240923152453.11230-7-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.44.2
-In-Reply-To: <20240923152453.11230-1-ville.syrjala@linux.intel.com>
-References: <20240923152453.11230-1-ville.syrjala@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.10,251,1719903600"; d="scan'208";a="71961477"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orviesa008.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 23 Sep 2024 09:55:16 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Mon, 23 Sep 2024 09:55:14 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Mon, 23 Sep 2024 09:55:14 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Mon, 23 Sep 2024 09:55:14 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.176)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Mon, 23 Sep 2024 09:55:14 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=JC1NzDOmgbh6GQYDNigIjfJHZS1gZSuCCPOtectC348HcSAUS3HKWNCIiIEx6Vv7RVL1H9FjyekMVguGSDzsjDE4VfzCxG1cngmXkrWKUjiTwyBslgSNP+tM5h9fWt/G60dRbqY2Cb5T029qD10obMInOquurF2/TPZWJ+yrGQVLi5XyqeXJ36XnOzzgZRYLu1tzzxiq6yQEG9UTRS0PdhqnCqXlWdtnc7hLezOjGSIszv8Bcq+MzCVzsMpbYdVMk5hh/HRgEetu+0VlnyjrjlsdVyqeIj8n7QI4RmPF4HWjZRxPavwNu9FmraOArjRDxgYntftFE0Z6DHqjx2ZI/A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/x+g/TMfHiTsalpv7EwY1b6I2MIXmWW7hVAVz5QyYI8=;
+ b=pOTBGA4hmM4ePglHEx+JSaGammFZVAVOZJrZVuxfdd6+pWQwecDhIXwI/rZih6IGVvBwuZiMdLXNkbUxtHsOYlu4/q6ffHbOXNriVECqIEpwxoDl1wJASP0h14fmpN3ND1EiMmaOwqAJw12WOPW94Ai4Vs1u93rddzCWrk5ezz+eF4sdY4jA+fg8W0x7SXxZlD/0i01pYet4dN7KCLEZfFlFJ2HN6cgh256AQltzjj21lXiVbg3Cb2oU9yCzLAZBi9NE4X1Lxo+fWPvX8Rmz57QkBF86axomrO9+O85dp5ok1WL3M1abulntQDfPH1y9b6P1x2vPT2DwFXqVOh9RBg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
+ by CYXPR11MB8732.namprd11.prod.outlook.com (2603:10b6:930:d6::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7982.25; Mon, 23 Sep
+ 2024 16:55:11 +0000
+Received: from PH8PR11MB8287.namprd11.prod.outlook.com
+ ([fe80::7e8b:2e5:8ce4:2350]) by PH8PR11MB8287.namprd11.prod.outlook.com
+ ([fe80::7e8b:2e5:8ce4:2350%6]) with mapi id 15.20.7982.022; Mon, 23 Sep 2024
+ 16:55:11 +0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240918224927.GU5091@mdroper-desk1.amr.corp.intel.com>
+References: <20240829220106.80449-1-gustavo.sousa@intel.com>
+ <20240829220106.80449-5-gustavo.sousa@intel.com>
+ <20240918224927.GU5091@mdroper-desk1.amr.corp.intel.com>
+Subject: Re: [PATCH 4/4] drm/i915/display: Cover all possible pipes in
+ TP_printk()
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+CC: <intel-gfx@lists.freedesktop.org>
+To: Matt Roper <matthew.d.roper@intel.com>
+Date: Mon, 23 Sep 2024 13:55:05 -0300
+Message-ID: <172711050548.3259.9140188922248043495@gjsousa-mobl2>
+User-Agent: alot/0.10
+X-ClientProxiedBy: MW4PR03CA0314.namprd03.prod.outlook.com
+ (2603:10b6:303:dd::19) To PH8PR11MB8287.namprd11.prod.outlook.com
+ (2603:10b6:510:1c7::14)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|CYXPR11MB8732:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3743aad7-aed4-461e-7e57-08dcdbf07cd7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?NnZubDdZY01zZlA5cDRxOGRFNXg2QUJTQVVwcE83QTVBVzhXbTl1YmpESHdU?=
+ =?utf-8?B?cWFSbkZwRjk0QnNLUUJZS3JoZkNrRklqTm5XbXUrMFhEN2J4aVB1VEV3bGxw?=
+ =?utf-8?B?LzRjeVVHUXdCL1lvY3hidUdQbDBqMUVQbFJBVm1hV3RtcXpTMGxkUTB0bXR3?=
+ =?utf-8?B?elo1UjJickxlLzYvdkIyelFFRm1pQTJUTktKYTRpNmx2R3FOMmRQdVIrVzc1?=
+ =?utf-8?B?NTJRdXNwck4zTktEYXdDY2lSNG50b2lvbWxkTnBZNWtwbTlZRVprclZsd0xN?=
+ =?utf-8?B?V3E2cVhJemNlMkFjcjk5NmZiaWlPd3JvWENNV0o5a1YxRWt0UWUxc2ZZRjIz?=
+ =?utf-8?B?bGRRZGFCWmNWYzVYZVlxUUFkYWhIZmZnQmw0RmI5bnpNVmVUejZhZnd6bmRr?=
+ =?utf-8?B?bEZrMHMzb3ZTNmxxelM5b3JMYmwrSDZGY05ZblJSU2xjWFliODhYcnJOcXRi?=
+ =?utf-8?B?ZUtKT21SUUovK0t2alg2THFONk9KRURwWmwremxFcFBPNnVsajduMnk1cXdk?=
+ =?utf-8?B?QVl5YjI1SHUwaVZPcWIrdHBMQS9vRlRIMUVZRmdTemxLMGo3OEs3SXJuT1ps?=
+ =?utf-8?B?RHJEQitnaUVVM0k5Vk9rSGE5SVlLTUY2OU5kSFRRSmg2SmRndjVtODh6YkYx?=
+ =?utf-8?B?aXF6ZkVQTnBzaDk3Zy9yUTFRLzNhaC9xU1Y1SlFlTjNuQlRyelFXZ3F4Y0s3?=
+ =?utf-8?B?Q3JGSThHSS9mUWIyNXEyTmc2K0cyamhIVHhsVFQ4aHMwQ01IMGtYU05mN05T?=
+ =?utf-8?B?bU45NTZ3bEhrejhraVRYOW1DY2Yvd3U5OXZHNXNwaUFMOEllcFhqT3dGaGl5?=
+ =?utf-8?B?TytKS3pkNmlQVHUyQzhvU1Bka1VqdW1NS2daZWdEdWMvVVk0YWkxVTBrRWRh?=
+ =?utf-8?B?ZGtmSi9CajhHUUZ2Vkthc1JmWGQyb29NRnZMMTZ3Y3JEVExyN2lXZ3NRaElN?=
+ =?utf-8?B?dkFxWFFydVAxR3lHN3crNUNkN241allUbWY4V2hOUjdWSHlLdHRad21sNm5I?=
+ =?utf-8?B?akgvK0dUeWZJaXJLcHpHMHdLdm5jdk1UQUEzamw2WXhUTGZJT1ZZWnc0dEFL?=
+ =?utf-8?B?K2hzcDgzcEs2S0w3KzNuenNrSUNaMlFpRG1kL1I5NE5tSnkrb2NxR1RjMzJ5?=
+ =?utf-8?B?OWhYTlA2QzhVclZqTjZRL1JmTXFadWpmMmRVTE01NSs4dUJHYmYzczhLZGhY?=
+ =?utf-8?B?NWtXSktiMDZXeVdiOUszZGZjbjIwQ1d3YkRrZWZIK0prekhCOWRMb2Z2M0hB?=
+ =?utf-8?B?NTNCTzVZeStmNFhqR3BYR1dQYTd0eGdvcHZQeVdoQmxBQTAvdlI0N0FNUTJw?=
+ =?utf-8?B?U0JmYzRrWEthTkJQbk5BWlFhbnZSNXNlcExWYUo3cGxnS1ZwbmxxZkVrZG5E?=
+ =?utf-8?B?NlczMjlFMWNreGIxR2JPWUZWbEpzb3U2QUo3Y094dzN2OUNPMGFkTmdsMXRu?=
+ =?utf-8?B?SWcyWGt4K25nd2xXRDVYY2RWeGZ4TkNYdi9ndEpxVnJvMW85cTQwL3BYYmtp?=
+ =?utf-8?B?NUFNSmJXS1VGWE5ZMSsyejA5VUV4dzg4WDhsYVJuZ2hpN3JsZWI1ZTBVUmR6?=
+ =?utf-8?B?eTlJdzBUQnBFQVBZa2tSUTUyd1h2S1RQbktSUCtOb3VCMzFwS09lSWNMeEpO?=
+ =?utf-8?B?L0F4Ly9qTEQzVC9sT3V1b0h2R2p1aGJjMThRV0VFN29ucytvdWJrdjY2OG5N?=
+ =?utf-8?B?azJTeEdIZ2E5YkY5QWxTRll2Q0VDZURwTVpFTi9mempKSFR2aW85cWx3PT0=?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VEVyTUxuU24rSVNnS1ZCbElHL3RyMUlnSURaSUowQU9OQW5qRXh0d0YzcjhV?=
+ =?utf-8?B?SkdhaFZUTVRMN3dVRmFsK01Fa2pUbFg1UTdGS0VoMk9uNThqR2RQNGNsY0g4?=
+ =?utf-8?B?bmdUMEJFYTNJM0NRbm96ZTNTeHdwazVNRUo4bkJZclBFQUwzWjdlVHl0ZDE3?=
+ =?utf-8?B?L1dlbmpHWjRzUGVabzFhdU54ZnBDMGZSSlhkeWFUQ1ZvbE9RZ1ZQTjlJOU14?=
+ =?utf-8?B?ai9NUDlZbVRZY2Z2aTRRanl0aDJ2WmY2amdKSkVRTU14R1RrcDJkdW44OU1o?=
+ =?utf-8?B?OWw1Zlh3WkpRcUxGU05TVUM2eWY1alRIK25TQzdjNGEzSDIzdHUvMHpDeEly?=
+ =?utf-8?B?RjRtSW1jejhQbEJ2bTFqRXhRcitDNDlRZUVYNDF4cU1McDlxSjhGSmRKOTN5?=
+ =?utf-8?B?S2h0cVNHZmJLN21Bc3QyRWU1VkF6STYyVjdFUFJvZ3p1UDRNMldOYm5jMjVr?=
+ =?utf-8?B?c3lpdUJRWnNPOFZCUklvZUVFdzUvVzJ6dmpxL2NXU05JUFBCL0h5bDQyRmlr?=
+ =?utf-8?B?YUdaWnZxRTNEYW5vcmRKZ0VnRVFRTXBXU0lhbmRDQ1NpS1h1dXdFOHhCL2RE?=
+ =?utf-8?B?Vk1BYkJXYkFtR2ErejM0ZWtmUFNkend0bU1jYTRaVjNhYlRBZTI5c0tTUU00?=
+ =?utf-8?B?MXpUQ1ZjUklkTFNseDhaYTlLZy9Tcjh0REpZeG00N0o4UEZXMVZZanJQc01D?=
+ =?utf-8?B?Rko1Q2I5R3JGekZBTFI1di90TnRJdWF6OXdqaVhCeEZWbGQ5ODNEUC82YVYx?=
+ =?utf-8?B?czJyclhDR2RiMDRCUURrRm9LNXAydVRSTFhJblBYK2FpZUF4NUJ2MElXUEU1?=
+ =?utf-8?B?aW13ZTI4UkI2bWNxWUpSalNDeWVGS1NjRDMrdnZub08rQkxWUFJTaVZHd2Ix?=
+ =?utf-8?B?SHlEKzBIOGZYK2V3cm5ySzBycEtzNDFkd3ZlSWQrWkR3YXdiem9xM2dKbXdj?=
+ =?utf-8?B?eS9zRkFBVEpIa2tzOTMyV0JESFVZOEdmNHgzaDU3OVJycURISytyQ1ZMbHB1?=
+ =?utf-8?B?TWRYclFZT1htNURpV2sxSnJTTDJvYXpDWGJ3VktpWkRaUysrZjZpWTVER3g4?=
+ =?utf-8?B?amRTNW1jVnEwV3g4WTdFdWtGRVZLbjRoVVZZVHNZK2l2SE1XSzlaMFBBTFpY?=
+ =?utf-8?B?MTBBU3gxUWpTb2JVaW5jWTJ6anZwMXd0M3RUTGYxRnNEaTZHc1VvK3YyYitj?=
+ =?utf-8?B?R2dHeEV0SHQ0ZkVLdG41cXQ2M2Vxam9YSWxVam1aSzlnSEVhYmVFbjB6dTA3?=
+ =?utf-8?B?T0dtQUR3LytoT1dpeWlrd1B2TVJwSUcxUEx6U21SM2wweExmcTBaYVVsTUpx?=
+ =?utf-8?B?L1VsbUdROVpJdlpKUXZ0NURFQWl6VVZQbUd0KzJjZHBtcWh3L0xaQXYzWmt1?=
+ =?utf-8?B?aVk4ZHBXTmIwQ3N5cXY1bkNYVE1BSXVpdVlmTEdUUlJ6MXc0YXExV0gxalZw?=
+ =?utf-8?B?MTZSVHpwSE1Sb3VFQytrMmE4SzNBeW1KWXlublFuM3dwMExmbGllT0xWczE1?=
+ =?utf-8?B?aUp3b0Y4TWs4R3g2eStjYUIxbTUvRHoyREt0MnlNd0pRZXFtREYySEtEYUov?=
+ =?utf-8?B?enZhbWx0cjBEUFJxSjBxSDFDaHB5YWozZFozUi9sSXZyOFpWRStrUFZFVENZ?=
+ =?utf-8?B?MEp2TnhQYnZDRkJKVGYycVJSVEpvUm51eWlkUFZtZUdDQ2hXNmRybWt4bld3?=
+ =?utf-8?B?RnJUQStnclhTOEl1dUxTeUcwNkVWVHFpa1k2U0x3bUROdnUzdEZVV3pOUkZB?=
+ =?utf-8?B?VTRzei84VDVORGFYQzVTQVJ1M2NsVjhBbjNzRXFwQjBGVS9sZ2lacFJQcHky?=
+ =?utf-8?B?RklnclVRNHViZ3k5c0NwS0NLVVV4RjNVOXNUUnRRNTBhQ1F1ckF0NnBJTFB2?=
+ =?utf-8?B?TE9ITUlhSXp5S1BUYkUxaXowclJKOHBpeW53Nm11SDYzb1pRS2pXYzFRQng1?=
+ =?utf-8?B?SDJrMjBIbi9kTVRzTlROUjZZbGJJY2UrVzltQW9FbDF1aXQzajYxc2hMYjNx?=
+ =?utf-8?B?UmJDWUhUUk1yTkxHOWhZd0NpbFg2eVdRMFFHL2grZ1daUG1UbUNjdmx6c2Mv?=
+ =?utf-8?B?ZE5XUzZ6dnl4QlNrZUxPdStQWUN1bTNIL08xTDE4RFJRcEhodFE2ZjZuaUYv?=
+ =?utf-8?B?QXRYcjlYcSthcXVoSVhlc1lqaVFDSVRjTGVpOG44ekpjRHJlU0JYUGFGWHd4?=
+ =?utf-8?B?Y1E9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3743aad7-aed4-461e-7e57-08dcdbf07cd7
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Sep 2024 16:55:11.6204 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: w23811asQpXu8VZvsETeibiEVroVxU491oI9sUdRZd4otWZ9M0SHdhpWczqP2vLtNd+/mhVZxkMyeDE/z6ctkw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYXPR11MB8732
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,481 +197,184 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Quoting Matt Roper (2024-09-18 19:49:27-03:00)
+>On Thu, Aug 29, 2024 at 07:00:47PM -0300, Gustavo Sousa wrote:
+>> Tracepoints that display frame and scanline counters for all pipes were
+>> added with commit 1489bba82433 ("drm/i915: Add cxsr toggle tracepoint")
+>> and commit 0b2599a43ca9 ("drm/i915: Add pipe enable/disable
+>> tracepoints"). At that time, we only had pipes A, B and C. Now that we
+>> can also have pipe D, the TP_printk() calls are missing it.
+>>=20
+>> As a quick and dirty fix for that, let's define two common macros to be
+>> used for the format and values respectively, and also ensure we raise a
+>> build bug if more pipes are added to enum pipe.
+>>=20
+>> In the future, we should probably have a way of printing information for
+>> available pipes only.
+>>=20
+>> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+>
+>I didn't did through the details of the tracepoint system, but I'm
+>assuming you checked that the underlying structure is zero-allocated so
+>that anything we don't specifically assign in TP_fast_assign will be 0
+>rather than uninitialized garbage?  E.g., on an ICL platform with only
+>three pipes the pipe D output is guaranteed to be zero?
 
-Abstract away the nuts and bolts of the SPI vs. PCI ROM
-stuff, and hide it all in soc/intel_rom.c so that the
-VBT code doesn't have to care about this stuff.
+That's a good point. I actually missed doing this check. I just verified
+this on a MTL machine by making the driver think pipe D is fused off and
+I got some garbage in the trace data:
 
-This leaves intel_bios.c with a single codepath that
-can focus on the details related to the VBT layout.
+  $ trace-cmd report -F 'i915/intel_pipe_\(enable\|disable\)' | grep -o 'pi=
+pe D: frame=3D.*' | sort | uniq -c
+       57 pipe D: frame=3D0, scanline=3D0
+        1 pipe D: frame=3D1752461056, scanline=3D11
+        1 pipe D: frame=3D4294936705, scanline=3D1752461056
+        1 pipe D: frame=3D48, scanline=3D0
+        1 pipe D: frame=3D740, scanline=3D6
+        2 pipe D: frame=3D808333872, scanline=3D0
+        1 pipe D: frame=3D976236602, scanline=3D66670
 
-This should have no functional changes.
+Then adding a patch to memset() the arrays to zero before the loop fixes
+the issue:
 
-v2: Rebase due to vbt_signature changes
-    Drop unnecessary cast (Jani)
+  $ trace-cmd report -F 'i915/intel_pipe_\(enable\|disable\)' | grep -o 'pi=
+pe D: frame=3D.*' | sort | uniq -c
+       64 pipe D: frame=3D0, scanline=3D0
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/Makefile                 |   3 +-
- drivers/gpu/drm/i915/display/intel_bios.c     | 149 +++-------------
- drivers/gpu/drm/i915/soc/intel_rom.c          | 160 ++++++++++++++++++
- drivers/gpu/drm/i915/soc/intel_rom.h          |  25 +++
- drivers/gpu/drm/xe/Makefile                   |   3 +-
- .../xe/compat-i915-headers/soc/intel_rom.h    |   6 +
- 6 files changed, 223 insertions(+), 123 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/soc/intel_rom.c
- create mode 100644 drivers/gpu/drm/i915/soc/intel_rom.h
- create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/soc/intel_rom.h
+Since this issue would be observed for fused-off pipes as well and not
+only for platforms with less than 4 pipes, I'll send a v2 of this series
+with such a patch. Such a patch will come before this one.
 
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index 70771e521b1c..e033bcaef4f3 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -51,7 +51,8 @@ i915-y += \
- i915-y += \
- 	soc/intel_dram.o \
- 	soc/intel_gmch.o \
--	soc/intel_pch.o
-+	soc/intel_pch.o \
-+	soc/intel_rom.o
- 
- # core library code
- i915-y += \
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index c57426940cf8..9967b65e3cf6 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -33,12 +33,12 @@
- #include <drm/drm_edid.h>
- #include <drm/drm_fixed.h>
- 
-+#include "soc/intel_rom.h"
-+
- #include "i915_drv.h"
--#include "i915_reg.h"
- #include "intel_display.h"
- #include "intel_display_types.h"
- #include "intel_gmbus.h"
--#include "intel_uncore.h"
- 
- #define _INTEL_BIOS_PRIVATE
- #include "intel_vbt_defs.h"
-@@ -3056,152 +3056,59 @@ static struct vbt_header *firmware_get_vbt(struct intel_display *display,
- 	return vbt;
- }
- 
--static u32 intel_spi_read32(struct intel_uncore *uncore, u32 offset)
-+static struct vbt_header *oprom_get_vbt(struct intel_display *display,
-+					struct intel_rom *rom,
-+					size_t *size, const char *type)
- {
--	intel_uncore_write(uncore, PRIMARY_SPI_ADDRESS, offset);
-+	struct vbt_header *vbt;
-+	size_t vbt_size;
-+	loff_t offset;
- 
--	return intel_uncore_read(uncore, PRIMARY_SPI_TRIGGER);
--}
--
--static u16 intel_spi_read16(struct intel_uncore *uncore, u32 offset)
--{
--	return intel_spi_read32(uncore, offset) & 0xffff;
--}
--
--static struct vbt_header *spi_oprom_get_vbt(struct intel_display *display,
--					    size_t *size)
--{
--	struct drm_i915_private *i915 = to_i915(display->drm);
--	u32 count, data, found, store = 0;
--	u32 static_region, oprom_offset;
--	u32 oprom_size = 0x200000;
--	u16 vbt_size;
--	u32 *vbt;
--
--	static_region = intel_uncore_read(&i915->uncore, SPI_STATIC_REGIONS);
--	static_region &= OPTIONROM_SPI_REGIONID_MASK;
--	intel_uncore_write(&i915->uncore, PRIMARY_SPI_REGIONID, static_region);
--
--	oprom_offset = intel_uncore_read(&i915->uncore, OROM_OFFSET);
--	oprom_offset &= OROM_OFFSET_MASK;
-+	if (!rom)
-+		return NULL;
- 
- 	BUILD_BUG_ON(vbt_signature_len != sizeof(vbt_signature) - 1);
- 	BUILD_BUG_ON(vbt_signature_len != sizeof(u32));
- 
--	for (count = 0; count < oprom_size; count += 4) {
--		data = intel_spi_read32(&i915->uncore, oprom_offset + count);
--		if (data == *((const u32 *)vbt_signature)) {
--			found = oprom_offset + count;
--			break;
--		}
--	}
-+	offset = intel_rom_find(rom, *(const u32 *)vbt_signature);
-+	if (offset < 0)
-+		goto err_free_rom;
- 
--	if (count >= oprom_size)
--		goto err_not_found;
--
--	if (sizeof(struct vbt_header) > oprom_size - count) {
-+	if (sizeof(struct vbt_header) > intel_rom_size(rom) - offset) {
- 		drm_dbg_kms(display->drm, "VBT header incomplete\n");
--		goto err_not_found;
-+		goto err_free_rom;
- 	}
- 
--	/* Get VBT size and allocate space for the VBT */
--	vbt_size = intel_spi_read16(&i915->uncore,
--				    found + offsetof(struct vbt_header, vbt_size));
-+	BUILD_BUG_ON(sizeof(vbt->vbt_size) != sizeof(u16));
- 
--	if (vbt_size > oprom_size - count) {
--		drm_dbg_kms(display->drm,
--			    "VBT incomplete (vbt_size overflows)\n");
--		goto err_not_found;
-+	vbt_size = intel_rom_read16(rom, offset + offsetof(struct vbt_header, vbt_size));
-+	if (vbt_size > intel_rom_size(rom) - offset) {
-+		drm_dbg_kms(display->drm, "VBT incomplete (vbt_size overflows)\n");
-+		goto err_free_rom;
- 	}
- 
- 	vbt = kzalloc(round_up(vbt_size, 4), GFP_KERNEL);
- 	if (!vbt)
--		goto err_not_found;
-+		goto err_free_rom;
- 
--	for (count = 0; count < vbt_size; count += 4)
--		*(vbt + store++) = intel_spi_read32(&i915->uncore, found + count);
-+	intel_rom_read_block(rom, vbt, offset, vbt_size);
- 
- 	if (!intel_bios_is_valid_vbt(display, vbt, vbt_size))
- 		goto err_free_vbt;
- 
--	drm_dbg_kms(display->drm, "Found valid VBT in SPI flash\n");
-+	drm_dbg_kms(display->drm, "Found valid VBT in %s\n", type);
- 
- 	if (size)
- 		*size = vbt_size;
- 
--	return (struct vbt_header *)vbt;
--
--err_free_vbt:
--	kfree(vbt);
--err_not_found:
--	return NULL;
--}
--
--static struct vbt_header *oprom_get_vbt(struct intel_display *display,
--					size_t *sizep)
--{
--	struct pci_dev *pdev = to_pci_dev(display->drm->dev);
--	void __iomem *p = NULL, *oprom;
--	struct vbt_header *vbt;
--	u16 vbt_size;
--	size_t i, size;
--
--	oprom = pci_map_rom(pdev, &size);
--	if (!oprom)
--		return NULL;
--
--	BUILD_BUG_ON(vbt_signature_len != sizeof(vbt_signature) - 1);
--	BUILD_BUG_ON(vbt_signature_len != sizeof(u32));
--
--	/* Scour memory looking for the VBT signature. */
--	for (i = 0; i + 4 < size; i += 4) {
--		if (ioread32(oprom + i) != *((const u32 *)vbt_signature))
--			continue;
--
--		p = oprom + i;
--		size -= i;
--		break;
--	}
--
--	if (!p)
--		goto err_unmap_oprom;
--
--	if (sizeof(struct vbt_header) > size) {
--		drm_dbg_kms(display->drm, "VBT header incomplete\n");
--		goto err_unmap_oprom;
--	}
--
--	vbt_size = ioread16(p + offsetof(struct vbt_header, vbt_size));
--	if (vbt_size > size) {
--		drm_dbg_kms(display->drm,
--			    "VBT incomplete (vbt_size overflows)\n");
--		goto err_unmap_oprom;
--	}
--
--	/* The rest will be validated by intel_bios_is_valid_vbt() */
--	vbt = kmalloc(round_up(vbt_size, 4), GFP_KERNEL);
--	if (!vbt)
--		goto err_unmap_oprom;
--
--	memcpy_fromio(vbt, p, vbt_size);
--
--	if (!intel_bios_is_valid_vbt(display, vbt, vbt_size))
--		goto err_free_vbt;
--
--	pci_unmap_rom(pdev, oprom);
--
--	if (sizep)
--		*sizep = vbt_size;
--
--	drm_dbg_kms(display->drm, "Found valid VBT in PCI ROM\n");
-+	intel_rom_free(rom);
- 
- 	return vbt;
- 
- err_free_vbt:
- 	kfree(vbt);
--err_unmap_oprom:
--	pci_unmap_rom(pdev, oprom);
--
-+err_free_rom:
-+	intel_rom_free(rom);
- 	return NULL;
- }
- 
-@@ -3223,11 +3130,11 @@ static const struct vbt_header *intel_bios_get_vbt(struct intel_display *display
- 	 */
- 	if (!vbt && IS_DGFX(i915))
- 		with_intel_runtime_pm(&i915->runtime_pm, wakeref)
--			vbt = spi_oprom_get_vbt(display, sizep);
-+			vbt = oprom_get_vbt(display, intel_rom_spi(i915), sizep, "SPI flash");
- 
- 	if (!vbt)
- 		with_intel_runtime_pm(&i915->runtime_pm, wakeref)
--			vbt = oprom_get_vbt(display, sizep);
-+			vbt = oprom_get_vbt(display, intel_rom_pci(i915), sizep, "PCI ROM");
- 
- 	return vbt;
- }
-diff --git a/drivers/gpu/drm/i915/soc/intel_rom.c b/drivers/gpu/drm/i915/soc/intel_rom.c
-new file mode 100644
-index 000000000000..243d98cab8c3
---- /dev/null
-+++ b/drivers/gpu/drm/i915/soc/intel_rom.c
-@@ -0,0 +1,160 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#include "i915_drv.h"
-+#include "i915_reg.h"
-+
-+#include "intel_rom.h"
-+#include "intel_uncore.h"
-+
-+struct intel_rom {
-+	/* for PCI ROM */
-+	struct pci_dev *pdev;
-+	void __iomem *oprom;
-+
-+	/* for SPI */
-+	struct intel_uncore *uncore;
-+	loff_t offset;
-+
-+	size_t size;
-+
-+	u32 (*read32)(struct intel_rom *rom, loff_t offset);
-+	u16 (*read16)(struct intel_rom *rom, loff_t offset);
-+	void (*read_block)(struct intel_rom *rom, void *data, loff_t offset, size_t size);
-+	void (*free)(struct intel_rom *rom);
-+};
-+
-+static u32 spi_read32(struct intel_rom *rom, loff_t offset)
-+{
-+	intel_uncore_write(rom->uncore, PRIMARY_SPI_ADDRESS,
-+			   rom->offset + offset);
-+
-+	return intel_uncore_read(rom->uncore, PRIMARY_SPI_TRIGGER);
-+}
-+
-+static u16 spi_read16(struct intel_rom *rom, loff_t offset)
-+{
-+	return spi_read32(rom, offset) & 0xffff;
-+}
-+
-+struct intel_rom *intel_rom_spi(struct drm_i915_private *i915)
-+{
-+	struct intel_rom *rom;
-+	u32 static_region;
-+
-+	rom = kzalloc(sizeof(*rom), GFP_KERNEL);
-+	if (!rom)
-+		return NULL;
-+
-+	rom->uncore = &i915->uncore;
-+
-+	static_region = intel_uncore_read(rom->uncore, SPI_STATIC_REGIONS);
-+	static_region &= OPTIONROM_SPI_REGIONID_MASK;
-+	intel_uncore_write(rom->uncore, PRIMARY_SPI_REGIONID, static_region);
-+
-+	rom->offset = intel_uncore_read(rom->uncore, OROM_OFFSET) & OROM_OFFSET_MASK;
-+
-+	rom->size = 0x200000;
-+
-+	rom->read32 = spi_read32;
-+	rom->read16 = spi_read16;
-+
-+	return rom;
-+}
-+
-+static u32 pci_read32(struct intel_rom *rom, loff_t offset)
-+{
-+	return ioread32(rom->oprom + offset);
-+}
-+
-+static u16 pci_read16(struct intel_rom *rom, loff_t offset)
-+{
-+	return ioread16(rom->oprom + offset);
-+}
-+
-+static void pci_read_block(struct intel_rom *rom, void *data,
-+			   loff_t offset, size_t size)
-+{
-+	memcpy_fromio(data, rom->oprom + offset, size);
-+}
-+
-+static void pci_free(struct intel_rom *rom)
-+{
-+	pci_unmap_rom(rom->pdev, rom->oprom);
-+}
-+
-+struct intel_rom *intel_rom_pci(struct drm_i915_private *i915)
-+{
-+	struct intel_rom *rom;
-+
-+	rom = kzalloc(sizeof(*rom), GFP_KERNEL);
-+	if (!rom)
-+		return NULL;
-+
-+	rom->pdev = to_pci_dev(i915->drm.dev);
-+
-+	rom->oprom = pci_map_rom(rom->pdev, &rom->size);
-+	if (!rom->oprom) {
-+		kfree(rom);
-+		return NULL;
-+	}
-+
-+	rom->read32 = pci_read32;
-+	rom->read16 = pci_read16;
-+	rom->read_block = pci_read_block;
-+	rom->free = pci_free;
-+
-+	return rom;
-+}
-+
-+u32 intel_rom_read32(struct intel_rom *rom, loff_t offset)
-+{
-+	return rom->read32(rom, offset);
-+}
-+
-+u16 intel_rom_read16(struct intel_rom *rom, loff_t offset)
-+{
-+	return rom->read16(rom, offset);
-+}
-+
-+void intel_rom_read_block(struct intel_rom *rom, void *data,
-+			  loff_t offset, size_t size)
-+{
-+	u32 *ptr = data;
-+	loff_t index;
-+
-+	if (rom->read_block) {
-+		rom->read_block(rom, data, offset, size);
-+		return;
-+	}
-+
-+	for (index = 0; index < size; index += 4)
-+		*ptr++ = rom->read32(rom, offset + index);
-+}
-+
-+loff_t intel_rom_find(struct intel_rom *rom, u32 needle)
-+{
-+	loff_t offset;
-+
-+	for (offset = 0; offset < rom->size; offset += 4) {
-+		if (rom->read32(rom, offset) == needle)
-+			return offset;
-+	}
-+
-+	return -ENOENT;
-+}
-+
-+size_t intel_rom_size(struct intel_rom *rom)
-+{
-+	return rom->size;
-+}
-+
-+void intel_rom_free(struct intel_rom *rom)
-+{
-+	if (rom && rom->free)
-+		rom->free(rom);
-+
-+	kfree(rom);
-+}
-diff --git a/drivers/gpu/drm/i915/soc/intel_rom.h b/drivers/gpu/drm/i915/soc/intel_rom.h
-new file mode 100644
-index 000000000000..fb2979c8ef7f
---- /dev/null
-+++ b/drivers/gpu/drm/i915/soc/intel_rom.h
-@@ -0,0 +1,25 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#ifndef __INTEL_ROM_H__
-+#define __INTEL_ROM_H__
-+
-+#include <linux/types.h>
-+
-+struct drm_i915_private;
-+struct intel_rom;
-+
-+struct intel_rom *intel_rom_spi(struct drm_i915_private *i915);
-+struct intel_rom *intel_rom_pci(struct drm_i915_private *i915);
-+
-+u32 intel_rom_read32(struct intel_rom *rom, loff_t offset);
-+u16 intel_rom_read16(struct intel_rom *rom, loff_t offset);
-+void intel_rom_read_block(struct intel_rom *rom, void *data,
-+			  loff_t offset, size_t size);
-+loff_t intel_rom_find(struct intel_rom *rom, u32 needle);
-+size_t intel_rom_size(struct intel_rom *rom);
-+void intel_rom_free(struct intel_rom *rom);
-+
-+#endif /* __INTEL_ROM_H__ */
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 1122765c711d..26cd21bc7189 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -181,7 +181,8 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
- # SOC code shared with i915
- xe-$(CONFIG_DRM_XE_DISPLAY) += \
- 	i915-soc/intel_dram.o \
--	i915-soc/intel_pch.o
-+	i915-soc/intel_pch.o \
-+	i915-soc/intel_rom.o
- 
- # Display code shared with i915
- xe-$(CONFIG_DRM_XE_DISPLAY) += \
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/soc/intel_rom.h b/drivers/gpu/drm/xe/compat-i915-headers/soc/intel_rom.h
-new file mode 100644
-index 000000000000..05cbfb697b2b
---- /dev/null
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/soc/intel_rom.h
-@@ -0,0 +1,6 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#include "../../../i915/soc/intel_rom.h"
--- 
-2.44.2
+Thanks for catching this.
 
+--
+Gustavo Sousa
+
+>
+>Assuming that's the case,
+>
+>Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+>
+>> ---
+>>  .../drm/i915/display/intel_display_trace.h    | 43 +++++++++++++------
+>>  1 file changed, 29 insertions(+), 14 deletions(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_trace.h b/driver=
+s/gpu/drm/i915/display/intel_display_trace.h
+>> index 759b985c84a9..2ce66dffdfa5 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_trace.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_trace.h
+>> @@ -30,6 +30,29 @@
+>>  #define _TRACE_PIPE_A        0
+>>  #define _TRACE_PIPE_B        1
+>>  #define _TRACE_PIPE_C        2
+>> +#define _TRACE_PIPE_D        3
+>> +
+>> +/*
+>> + * FIXME: Several TP_printk() calls below display frame and scanline nu=
+mbers for
+>> + * all possible pipes (regardless of whether they are available) and th=
+at is
+>> + * done with a constant format string. A better approach would be to ge=
+nerate
+>> + * that info dynamically based on available pipes, but, while we do not=
+ have
+>> + * that implemented yet, let's assert that the constant format string i=
+ndeed
+>> + * covers all possible pipes.
+>> + */
+>> +static_assert(I915_MAX_PIPES - 1 =3D=3D _TRACE_PIPE_D);
+>> +
+>> +#define _PIPES_FRAME_AND_SCANLINE_FMT                \
+>> +        "pipe A: frame=3D%u, scanline=3D%u"                \
+>> +        ", pipe B: frame=3D%u, scanline=3D%u"        \
+>> +        ", pipe C: frame=3D%u, scanline=3D%u"        \
+>> +        ", pipe D: frame=3D%u, scanline=3D%u"
+>> +
+>> +#define _PIPES_FRAME_AND_SCANLINE_VALUES                               =
+         \
+>> +        __entry->frame[_TRACE_PIPE_A], __entry->scanline[_TRACE_PIPE_A]=
+                \
+>> +        , __entry->frame[_TRACE_PIPE_B], __entry->scanline[_TRACE_PIPE_=
+B]        \
+>> +        , __entry->frame[_TRACE_PIPE_C], __entry->scanline[_TRACE_PIPE_=
+C]        \
+>> +        , __entry->frame[_TRACE_PIPE_D], __entry->scanline[_TRACE_PIPE_=
+D]
+>> =20
+>>  TRACE_EVENT(intel_pipe_enable,
+>>              TP_PROTO(struct intel_crtc *crtc),
+>> @@ -52,11 +75,8 @@ TRACE_EVENT(intel_pipe_enable,
+>>                             __entry->pipe_name =3D pipe_name(crtc->pipe)=
+;
+>>                             ),
+>> =20
+>> -            TP_printk("dev %s, pipe %c enable, pipe A: frame=3D%u, scan=
+line=3D%u, pipe B: frame=3D%u, scanline=3D%u, pipe C: frame=3D%u, scanline=
+=3D%u",
+>> -                      __get_str(dev), __entry->pipe_name,
+>> -                      __entry->frame[_TRACE_PIPE_A], __entry->scanline[=
+_TRACE_PIPE_A],
+>> -                      __entry->frame[_TRACE_PIPE_B], __entry->scanline[=
+_TRACE_PIPE_B],
+>> -                      __entry->frame[_TRACE_PIPE_C], __entry->scanline[=
+_TRACE_PIPE_C])
+>> +            TP_printk("dev %s, pipe %c enable, " _PIPES_FRAME_AND_SCANL=
+INE_FMT,
+>> +                      __get_str(dev), __entry->pipe_name, _PIPES_FRAME_=
+AND_SCANLINE_VALUES)
+>>  );
+>> =20
+>>  TRACE_EVENT(intel_pipe_disable,
+>> @@ -81,11 +101,8 @@ TRACE_EVENT(intel_pipe_disable,
+>>                             __entry->pipe_name =3D pipe_name(crtc->pipe)=
+;
+>>                             ),
+>> =20
+>> -            TP_printk("dev %s, pipe %c disable, pipe A: frame=3D%u, sca=
+nline=3D%u, pipe B: frame=3D%u, scanline=3D%u, pipe C: frame=3D%u, scanline=
+=3D%u",
+>> -                      __get_str(dev), __entry->pipe_name,
+>> -                      __entry->frame[_TRACE_PIPE_A], __entry->scanline[=
+_TRACE_PIPE_A],
+>> -                      __entry->frame[_TRACE_PIPE_B], __entry->scanline[=
+_TRACE_PIPE_B],
+>> -                      __entry->frame[_TRACE_PIPE_C], __entry->scanline[=
+_TRACE_PIPE_C])
+>> +            TP_printk("dev %s, pipe %c disable, " _PIPES_FRAME_AND_SCAN=
+LINE_FMT,
+>> +                      __get_str(dev), __entry->pipe_name, _PIPES_FRAME_=
+AND_SCANLINE_VALUES)
+>>  );
+>> =20
+>>  TRACE_EVENT(intel_crtc_flip_done,
+>> @@ -211,11 +228,9 @@ TRACE_EVENT(intel_memory_cxsr,
+>>                             __entry->new =3D new;
+>>                             ),
+>> =20
+>> -            TP_printk("dev %s, cxsr %s->%s, pipe A: frame=3D%u, scanlin=
+e=3D%u, pipe B: frame=3D%u, scanline=3D%u, pipe C: frame=3D%u, scanline=3D%=
+u",
+>> +            TP_printk("dev %s, cxsr %s->%s, " _PIPES_FRAME_AND_SCANLINE=
+_FMT,
+>>                        __get_str(dev), str_on_off(__entry->old), str_on_=
+off(__entry->new),
+>> -                      __entry->frame[_TRACE_PIPE_A], __entry->scanline[=
+_TRACE_PIPE_A],
+>> -                      __entry->frame[_TRACE_PIPE_B], __entry->scanline[=
+_TRACE_PIPE_B],
+>> -                      __entry->frame[_TRACE_PIPE_C], __entry->scanline[=
+_TRACE_PIPE_C])
+>> +                      _PIPES_FRAME_AND_SCANLINE_VALUES)
+>>  );
+>> =20
+>>  TRACE_EVENT(g4x_wm,
+>> --=20
+>> 2.46.0
+>>=20
+>
+>--=20
+>Matt Roper
+>Graphics Software Engineer
+>Linux GPU Platform Enablement
+>Intel Corporation
