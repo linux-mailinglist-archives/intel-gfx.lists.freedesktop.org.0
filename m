@@ -2,55 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D271097E4F3
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Sep 2024 05:12:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E6F9A97E529
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Sep 2024 05:59:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D1E8410E361;
-	Mon, 23 Sep 2024 03:12:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFE3810E368;
+	Mon, 23 Sep 2024 03:59:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JdFKtzjw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T7pRj/fV";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86A8E10E35F
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Sep 2024 03:12:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B4FE910E367;
+ Mon, 23 Sep 2024 03:59:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727061170; x=1758597170;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Os+asMlziseSqaTpxcygTo6mzkYzD6y0fT5NONbSOcY=;
- b=JdFKtzjw1VivxHUkh42mOM++XzbjlpyMULcw2qvUcLw4woXtV7lDaSRn
- Sr6yu+qfkwrnEisMKUYa6cR3+/UydMhIsCah5GFCuVkEfKKf+QUidlMWO
- c52jsURFGYHf30YKwAA/WUDUGgR6/aVJzj5wNC4T0m5ZWm+qzP/GWclnn
- sjj6XCHFJXfhaC/5QVP2H4fnn4RC1uIdXKWokMupProKOIBt1dqvQ4Y40
- 6y7JTD/CBH43v0kklrsuQTJ/q6iCv/l0Uv5gfEBYKP0XRwyE8QzcR6h6H
- LIx/LbGYBpLjb1rXRK9sPx4HXGhjJHoZz8dxm9cGnSRo77wT9/UMToUSg w==;
-X-CSE-ConnectionGUID: 69cic56fS7yWIoOkxZ78Xw==
-X-CSE-MsgGUID: JIjM+Ip9SJCZ5UAQaIVX1w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11202"; a="26110937"
-X-IronPort-AV: E=Sophos;i="6.10,250,1719903600"; d="scan'208";a="26110937"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Sep 2024 20:12:50 -0700
-X-CSE-ConnectionGUID: 1GKUyuJlQoeTqdXasjQdUg==
-X-CSE-MsgGUID: WibXxybRTiWfmFz9mUNWRA==
+ t=1727063967; x=1758599967;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=qZET6bH34bdgo7kUCnMJt1I/FomkDh6SVUhEX0kdyU4=;
+ b=T7pRj/fVlvvDTguDA2UcD38K0b0pBzosDuwZSm0mww7BYiwq1f2p7smm
+ FbPlmfOQ/q5t36Qy+K0Ix70YkRKKzdZ+6TOS1sYkurLVEMAiyGNtpLXSO
+ 54SIukkSKTDyhcZ1OpgcWaQHe9C/hhCksaat4mjL0qOxs3VwyDbuVNVIg
+ Qobsg4Xf8PQLcHwRpqRfaRbMaL8ZuRTGitu7a/YsHjmoiei4GahWLQeHX
+ xSYwDr/hK/qT+Q+NnpPtAy+VNsRXhdkebdU9BrTgOmz9lmzrlZZuaUQbK
+ SFQZ+OZlWovR+vEDWEDDXYQZcBq+fJnWx23RRTG6exVvr649X+7gpmMj0 g==;
+X-CSE-ConnectionGUID: I/xlFDESSaO+/NoH6Bg6+A==
+X-CSE-MsgGUID: RyhI1l5qS22pjzJAgNutGA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11202"; a="29718231"
+X-IronPort-AV: E=Sophos;i="6.10,250,1719903600"; d="scan'208";a="29718231"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Sep 2024 20:59:27 -0700
+X-CSE-ConnectionGUID: sdwObKmnQF2S0A1u4jaJJg==
+X-CSE-MsgGUID: bWwODathQUWe9OV0WMjgLg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,250,1719903600"; d="scan'208";a="70510769"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by fmviesa007.fm.intel.com with ESMTP; 22 Sep 2024 20:12:48 -0700
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: uma.shankar@intel.com, matthew.d.roper@intel.com,
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 2/2] drm/i915/hotplug: Add comment for XE_LPD+ SHPD_FILTER_CNT
- value
-Date: Mon, 23 Sep 2024 08:40:08 +0530
-Message-ID: <20240923031007.1058072-4-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240923031007.1058072-2-suraj.kandpal@intel.com>
-References: <20240923031007.1058072-2-suraj.kandpal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.10,250,1719903600"; d="scan'208";a="101667432"
+Received: from jraag-nuc8i7beh.iind.intel.com ([10.145.169.79])
+ by orviesa002.jf.intel.com with ESMTP; 22 Sep 2024 20:59:21 -0700
+From: Raag Jadav <raag.jadav@intel.com>
+To: airlied@gmail.com, simona@ffwll.ch, lucas.demarchi@intel.com,
+ thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
+ jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ tursulin@ursulin.net, lina@asahilina.net
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
+ francois.dugast@intel.com, aravind.iddamsetty@linux.intel.com,
+ anshuman.gupta@intel.com, andi.shyti@linux.intel.com,
+ andriy.shevchenko@linux.intel.com, matthew.d.roper@intel.com,
+ Raag Jadav <raag.jadav@intel.com>
+Subject: [PATCH v6 0/4] Introduce DRM device wedged event
+Date: Mon, 23 Sep 2024 09:28:22 +0530
+Message-Id: <20240923035826.624196-1-raag.jadav@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -68,33 +72,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add the reason for having SHPD_FILTER_CNT value for XE_LPD+ and
-above as 250us instead of 500us.
+This series introduces device wedged event in DRM subsystem and uses
+it in xe and i915 drivers. Detailed description in commit message.
 
---v2
--Update commit message [Matt]
+This was earlier attempted as xe specific uevent in v1 and v2.
+https://patchwork.freedesktop.org/series/136909/
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/i915/display/intel_hotplug_irq.c | 4 ++++
- 1 file changed, 4 insertions(+)
+v2: Change authorship to Himal (Aravind)
+    Add uevent for all device wedged cases (Aravind)
+v3: Generic re-implementation in DRM subsystem (Lucas)
+v4: s/drm_dev_wedged/drm_dev_wedged_event
+    Use drm_info() (Jani)
+    Kernel doc adjustment (Aravind)
+    Change authorship to Raag (Aravind)
+v5: Send recovery method with uevent (Lina)
+    Expose supported recovery methods via sysfs (Lucas)
+v6: Access wedge_recovery_opts[] using helper function (Jani)
+    Use snprintf() (Jani)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hotplug_irq.c b/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
-index 8427386132e6..f28f35121e5a 100644
---- a/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
-+++ b/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
-@@ -1064,6 +1064,10 @@ static void mtp_hpd_irq_setup(struct drm_i915_private *i915)
- 	enabled_irqs = intel_hpd_enabled_irqs(i915, i915->display.hotplug.pch_hpd);
- 	hotplug_irqs = intel_hpd_hotplug_irqs(i915, i915->display.hotplug.pch_hpd);
- 
-+	/*
-+	 * Use 250us here to align with the DP1.4a(Table 3-4) spec as to what the
-+	 * SHPD_FILTER_CNT value should be.
-+	 */
- 	intel_de_write(i915, SHPD_FILTER_CNT, SHPD_FILTER_CNT_250);
- 
- 	mtp_hpd_invert(i915);
+Raag Jadav (4):
+  drm: Introduce device wedged event
+  drm: Expose wedge recovery methods
+  drm/xe: Use device wedged event
+  drm/i915: Use device wedged event
+
+ drivers/gpu/drm/drm_drv.c             | 41 +++++++++++++++++++++++++++
+ drivers/gpu/drm/drm_sysfs.c           | 22 ++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_reset.c |  2 ++
+ drivers/gpu/drm/i915/i915_driver.c    | 10 +++++++
+ drivers/gpu/drm/xe/xe_device.c        | 17 +++++++++--
+ drivers/gpu/drm/xe/xe_device.h        |  1 +
+ drivers/gpu/drm/xe/xe_pci.c           |  2 ++
+ include/drm/drm_device.h              | 24 ++++++++++++++++
+ include/drm/drm_drv.h                 | 18 ++++++++++++
+ 9 files changed, 135 insertions(+), 2 deletions(-)
+
 -- 
-2.43.2
+2.34.1
 
