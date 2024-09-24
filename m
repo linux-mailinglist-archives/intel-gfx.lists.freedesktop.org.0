@@ -2,28 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72BF398A52B
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Sep 2024 15:31:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C5A998A529
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Sep 2024 15:31:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A93E110E4DB;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94C3E10E4D9;
 	Mon, 30 Sep 2024 13:30:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from MSK-MAILEDGE.securitycode.ru (msk-mailedge.securitycode.ru
  [195.133.217.143])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 031B410E6BE;
- Tue, 24 Sep 2024 11:20:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 799C510E6A7;
+ Tue, 24 Sep 2024 11:40:34 +0000 (UTC)
 From: George Rurikov <g.ryurikov@securitycode.ru>
 To: Jani Nikula <jani.nikula@linux.intel.com>
 CC: George Rurikov <g.ryurikov@securitycode.ru>, Rodrigo Vivi
  <rodrigo.vivi@intel.com>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
  Simona Vetter <simona@ffwll.ch>, <intel-gfx@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.og>,
+ <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
  <linux-kernel@vger.kernel.org>, <stable@vger.kernel.org>
 Subject: [PATCH] drm: Add check for encoder in intel_get_crtc_new_encoder()
-Date: Tue, 24 Sep 2024 14:20:23 +0300
-Message-ID: <20240924112023.1071395-1-g.ryurikov@securitycode.ru>
+Date: Tue, 24 Sep 2024 14:40:04 +0300
+Message-ID: <20240924114004.1084283-1-g.ryurikov@securitycode.ru>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
