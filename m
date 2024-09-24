@@ -2,58 +2,76 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47614983FD5
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Sep 2024 10:05:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6231B984254
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Sep 2024 11:38:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9866110E29C;
-	Tue, 24 Sep 2024 08:05:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A1DEF10E690;
+	Tue, 24 Sep 2024 09:38:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="CvuFzrI0";
+	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="c0Zepdzg";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com
- [148.251.105.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D29ED10E29C;
- Tue, 24 Sep 2024 08:05:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1727165105;
- bh=bkob+FdVbT5JvRwKp/3RFu5HC+yR0/AGxmQWAMBAfxw=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=CvuFzrI0AhizshttZzgCNh2wASf80PcmQTwldXXkfRp3FLPhvWPKcfrWEvbKo1Xfl
- pYUdAvUXHnxCiRj+ansAs1Y/4qEBT2Zw5XVVCJNP0uIbVQ8vrmon7R8FFrcoXCUH6s
- 9pJCTeDwuMeOV60sdTU3fT/wzcFnRngPhHowoQrpxGM+RtY4qCuVp/9cxh0gpJy1qA
- vosjvZo289g0RSv045JmPKfysGhGUkc9uWvpxbNbbTk4ORi2A8gXcPDYXBJXyeGyMz
- H+BP1y/ML/KeP7+lTIDUgycgFbxCGaC693LhuQAEtPJhFvvXYKON7YacpsDKrw3Ovw
- 10HNVyTURjyPg==
-Received: from [192.168.50.250] (unknown [171.76.80.125])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested) (Authenticated sender: vignesh)
- by bali.collaboradmins.com (Postfix) with ESMTPSA id 3D1CC17E1045;
- Tue, 24 Sep 2024 10:05:02 +0200 (CEST)
-Message-ID: <58a9334d-26eb-4106-806a-59e5e728aed5@collabora.com>
-Date: Tue, 24 Sep 2024 13:35:00 +0530
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com
+ [209.85.218.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E9A310E1C6
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Sep 2024 09:38:03 +0000 (UTC)
+Received: by mail-ej1-f50.google.com with SMTP id
+ a640c23a62f3a-a8d6d0fe021so875552966b.1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 24 Sep 2024 02:38:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ffwll.ch; s=google; t=1727170681; x=1727775481; darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=pA/jBwAO5XXfuYXOO0xB58A0oVBWtnFMR/8BfOS2NXA=;
+ b=c0ZepdzgH5OSey+otzCb589GXUsviU8woK9z+HFgkG1QwI9K1pXZYmUd4DflPjdTfe
+ eXR7GdF2CEMPm2OKX6SeyhayIezggOb9O1p5/gQO9TadUpfMBhkdbiSxcZElBJw97ilH
+ xpQmzGLPiWOpBjbR88ahaRGK1z5zREfD0ooEU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1727170681; x=1727775481;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=pA/jBwAO5XXfuYXOO0xB58A0oVBWtnFMR/8BfOS2NXA=;
+ b=K1D2Kx+Qz/Lgp/ww6sheSXiWwCXtGCmkFIBLgxPZVGjv/TIMznMMFY67qLq8RBuxAj
+ dDhF37M+rgZsxWrtHofl6PIOtRkeh5dXDPNTtNBzO/F9x8EfKGow4Jl23OvOYGpI+zZg
+ AM80LmX/ziPKMCe9J9c17ahYyvgVq9aQREU/ASUBZpSJA5o7EavwUbpWdRrBs1o83ZXi
+ koxRau9vKc1Oi0HjIUl5u6MqiDJVoskeccR3JAl+8wB5Vn6svBHfdbLDJTGRjyd9ou2v
+ OcsZ1KXZRgu3k/x+jglTEPadFNArAtkai2FrhDs13rJEmjPUarr4/YJXkYHc3AdX7wcy
+ /RGw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXPS2Qg/BfKww30mkhpB8aq2A4Gq4t2IMVjkI+KYI2/lDi1Sqpw2FnwdQXSmD4eNQTQIAVKpUGGVhU=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzPpy97AciZviReDHwPeYDy+51KZCexuPg2CumLI/Iwg5ekBBaQ
+ RfSUGb6vch3AkcrFdsKkb6+BYYrHedOwwYU3hWMaNcEmIBtnZck59VAAf44ZDIeZsAA7qCsYm/W
+ r
+X-Google-Smtp-Source: AGHT+IFB+hBloJRj69I6H+/qBWvK2CLUjJ9ANVe9W838Pqm/Q5PF/DYz9NFMty68lYFF3U6E4XpF3g==
+X-Received: by 2002:a17:907:a088:b0:a8d:2faf:d337 with SMTP id
+ a640c23a62f3a-a90d4fdec72mr1574167266b.7.1727170681494; 
+ Tue, 24 Sep 2024 02:38:01 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
+ by smtp.gmail.com with ESMTPSA id
+ a640c23a62f3a-a9392f355bbsm63471766b.1.2024.09.24.02.38.00
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 24 Sep 2024 02:38:01 -0700 (PDT)
+Date: Tue, 24 Sep 2024 11:37:59 +0200
+From: Simona Vetter <simona.vetter@ffwll.ch>
+To: Raag Jadav <raag.jadav@intel.com>
+Cc: airlied@gmail.com, daniel@ffwll.ch, lucas.demarchi@intel.com,
+ thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
+ jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ tursulin@ursulin.net, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ himal.prasad.ghimiray@intel.com, francois.dugast@intel.com,
+ aravind.iddamsetty@linux.intel.com, anshuman.gupta@intel.com
+Subject: Re: [PATCH v4 1/3] drm: Introduce device wedged event
+Message-ID: <ZvKId2EDVXiwrRJT@phenom.ffwll.local>
+References: <20240906094225.3082162-1-raag.jadav@intel.com>
+ <20240906094225.3082162-2-raag.jadav@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] docs/gpu: ci: update flake tests requirements
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com,
- helen.koike@collabora.com, airlied@gmail.com, daniel@ffwll.ch,
- robdclark@gmail.com, guilherme.gallo@collabora.com,
- sergi.blanch.torne@collabora.com, deborah.brouwer@collabora.com,
- mripard@kernel.org, rodrigo.vivi@intel.com,
- linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-rockchip@lists.infradead.org, amd-gfx@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- virtualization@lists.linux.dev, linux-kernel@vger.kernel.org
-References: <20240924022600.1441969-1-vignesh.raman@collabora.com>
- <CAA8EJprUUUc0iDph-HPrW1anrdnzYju7+JERQdHbwxvznq=H4w@mail.gmail.com>
-Content-Language: en-US
-From: Vignesh Raman <vignesh.raman@collabora.com>
-In-Reply-To: <CAA8EJprUUUc0iDph-HPrW1anrdnzYju7+JERQdHbwxvznq=H4w@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240906094225.3082162-2-raag.jadav@intel.com>
+X-Operating-System: Linux phenom 6.10.6-amd64 
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,67 +87,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dmitry,
-
-On 24/09/24 11:46, Dmitry Baryshkov wrote:
-> On Tue, 24 Sept 2024 at 04:26, Vignesh Raman
-> <vignesh.raman@collabora.com> wrote:
->>
->> Update the documentation to require linking to a relevant GitLab
->> issue for each new flake entry instead of an email report. Added
->> specific GitLab issue URLs for i915, xe and other drivers.
->>
->> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
->> ---
->>   Documentation/gpu/automated_testing.rst | 15 ++++++++++-----
->>   1 file changed, 10 insertions(+), 5 deletions(-)
->>
->> diff --git a/Documentation/gpu/automated_testing.rst b/Documentation/gpu/automated_testing.rst
->> index 2d5a28866afe..f73b8939dc3a 100644
->> --- a/Documentation/gpu/automated_testing.rst
->> +++ b/Documentation/gpu/automated_testing.rst
->> @@ -67,20 +67,25 @@ Lists the tests that for a given driver on a specific hardware revision are
->>   known to behave unreliably. These tests won't cause a job to fail regardless of
->>   the result. They will still be run.
->>
->> -Each new flake entry must be associated with a link to the email reporting the
->> -bug to the author of the affected driver, the board name or Device Tree name of
->> -the board, the first kernel version affected, the IGT version used for tests,
->> -and an approximation of the failure rate.
->> +Each new flake entry must include a link to the relevant GitLab issue, the board
->> +name or Device Tree name, the first kernel version affected, the IGT version used
->> +for tests and an approximation of the failure rate.
->>
->>   They should be provided under the following format::
->>
->> -  # Bug Report: $LORE_OR_PATCHWORK_URL
->> +  # Bug Report: $GITLAB_ISSUE
->>     # Board Name: broken-board.dtb
->>     # Linux Version: 6.6-rc1
->>     # IGT Version: 1.28-gd2af13d9f
->>     # Failure Rate: 100
->>     flaky-test
->>
->> +The GitLab issue must include the logs and the pipeline link. Use the appropriate
->> +link below to create an issue.
->> +https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/ for i915 drivers
->> +https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/ for xe drivers
+On Fri, Sep 06, 2024 at 03:12:23PM +0530, Raag Jadav wrote:
+> Introduce device wedged event, which will notify userspace of wedged
+> (hanged/unusable) state of the DRM device through a uevent. This is
+> useful especially in cases where the device is in unrecoverable state
+> and requires userspace intervention for recovery.
 > 
-> drm/msm for msm driver, please. Otherwise we can easily miss such issues.
-
-Sure, will add it in v2. Thanks.
-
+> Purpose of this implementation is to be vendor agnostic. Userspace
+> consumers (sysadmin) can define udev rules to parse this event and
+> take respective action to recover the device.
 > 
->> +https://gitlab.freedesktop.org/drm/misc/kernel/-/issues for other drivers
->> +
->>   drivers/gpu/drm/ci/${DRIVER_NAME}-${HW_REVISION}-skips.txt
->>   -----------------------------------------------------------
->>
->> --
->> 2.43.0
->>
+> Consumer expectations:
+> ----------------------
+> 1) Unbind driver
+> 2) Reset bus device
+> 3) Re-bind driver
 > 
+> v4: s/drm_dev_wedged/drm_dev_wedged_event
+>     Use drm_info() (Jani)
+>     Kernel doc adjustment (Aravind)
+> 
+> Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+
+I think explicit documentation in the drm-uapi.rst file that links to this
+function and explains a bit what's going on would be really good here.
+
+At least judging by the discussion thread here ...
+-Sima
+
+> ---
+>  drivers/gpu/drm/drm_drv.c | 20 ++++++++++++++++++++
+>  include/drm/drm_drv.h     |  1 +
+>  2 files changed, 21 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
+> index 93543071a500..cca5d8295eb7 100644
+> --- a/drivers/gpu/drm/drm_drv.c
+> +++ b/drivers/gpu/drm/drm_drv.c
+> @@ -499,6 +499,26 @@ void drm_dev_unplug(struct drm_device *dev)
+>  }
+>  EXPORT_SYMBOL(drm_dev_unplug);
+>  
+> +/**
+> + * drm_dev_wedged_event - generate a device wedged uevent
+> + * @dev: DRM device
+> + *
+> + * This generates a device wedged uevent for the DRM device specified by @dev,
+> + * on the basis of which, userspace may take respective action to recover the
+> + * device. Currently we only set WEDGED=1 in the uevent environment, but this
+> + * can be expanded in the future.
+> + */
+> +void drm_dev_wedged_event(struct drm_device *dev)
+> +{
+> +	char *event_string = "WEDGED=1";
+> +	char *envp[] = { event_string, NULL };
+> +
+> +	drm_info(dev, "device wedged, generating uevent\n");
+> +
+> +	kobject_uevent_env(&dev->primary->kdev->kobj, KOBJ_CHANGE, envp);
+> +}
+> +EXPORT_SYMBOL(drm_dev_wedged_event);
+> +
+>  /*
+>   * DRM internal mount
+>   * We want to be able to allocate our own "struct address_space" to control
+> diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
+> index cd37936c3926..eed5e54c74fd 100644
+> --- a/include/drm/drm_drv.h
+> +++ b/include/drm/drm_drv.h
+> @@ -489,6 +489,7 @@ void drm_put_dev(struct drm_device *dev);
+>  bool drm_dev_enter(struct drm_device *dev, int *idx);
+>  void drm_dev_exit(int idx);
+>  void drm_dev_unplug(struct drm_device *dev);
+> +void drm_dev_wedged_event(struct drm_device *dev);
+>  
+>  /**
+>   * drm_dev_is_unplugged - is a DRM device unplugged
+> -- 
+> 2.34.1
 > 
 
-Regards,
-Vignesh
+-- 
+Simona Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
