@@ -2,61 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B64D69848B8
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Sep 2024 17:30:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BF119848E5
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Sep 2024 17:56:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A9C210E09C;
-	Tue, 24 Sep 2024 15:30:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB41510E060;
+	Tue, 24 Sep 2024 15:56:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ccYg9uXq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Bnz1SJdl";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E33310E09C;
- Tue, 24 Sep 2024 15:30:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9BD8510E060;
+ Tue, 24 Sep 2024 15:56:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727191830; x=1758727830;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=g2jlVVm2KKdyQP7qu5G8AnJ8GI8bsFkMhfe7xGywr+A=;
- b=ccYg9uXqiXpXY1d2KnJWyArzW1d9Unj+X9RKn+azSdGMjW/ArLKMV3qy
- fi7kbW2oBoBwKynYqI0LeJo1DpzjEnfXuZtLEIGx1jr5lBP2AStW8UyH8
- Pz2TBHZKDACD81xgG7q+Ct6JtYjBFZBSv4guqeD+oug+6vTGWr7aIY1wE
- iTGb3Ft647jL2lySLIb+0X8SrTKVPMQ6SnLSg78msUiURWJHXvmcDEqH4
- 39Uu1hvu4JwmgT8yckT9Akkshon0uCn1GMQAkkK+47C0JE+FxmGzpJL57
- gsWj3eSIGmGdVOC6EqNtxo/pPMGW+gU4TqRK2G+0ptysosagdSfB8et7p g==;
-X-CSE-ConnectionGUID: PKoGkm55Q4K4cLOSP4T4Og==
-X-CSE-MsgGUID: fhfuCxgYRcC2H/gtIs28OA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11205"; a="26342270"
-X-IronPort-AV: E=Sophos;i="6.10,254,1719903600"; d="scan'208";a="26342270"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2024 08:30:29 -0700
-X-CSE-ConnectionGUID: okIg7rJ0SsWykAqkdoK+3A==
-X-CSE-MsgGUID: FdwetQDOQU+tTI7AFHXXFQ==
+ t=1727193409; x=1758729409;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=lrEd6i6i7xgPntzRbEX0QK0P0YV1nArIBR9sQYZmzeo=;
+ b=Bnz1SJdlnW63ZhHkJiU94zhwtwUJG99IjfvtgOQyETfKuVd4YGyDVcub
+ IsXl8vDuuJnyDh0aPgpukmalJteKG7ji6NUW07640z8uivvD2ITrUJCpV
+ DSajizF/dX6P1wZ1Ob/XEXo/yV6gLf4BJ5kJSXb2a79MYmaMAPKwV6sC9
+ aU44P8FB4d1XYJKeylvXh6l7fKlWOynAo5i2quVGmeFdHhH+61OahkoaF
+ mnC93I1vFS0Z22iK4kAx45F5HHdEBc1iTjV1P88FARnLSioDA4cT3C/sK
+ +HH7hGps3/75h6/DU/vB6Bfq8xPQe96SFlHeSfcPV93dHjo1xKV5AXvVt w==;
+X-CSE-ConnectionGUID: tljmpSzBRZGdV88YNUI1kw==
+X-CSE-MsgGUID: 7WkvNlq4Q3e1V2M21Ry0cA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11205"; a="51612160"
+X-IronPort-AV: E=Sophos;i="6.10,255,1719903600"; d="scan'208";a="51612160"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2024 08:56:33 -0700
+X-CSE-ConnectionGUID: dZ4aipcrTwCN1P7GFqMi7w==
+X-CSE-MsgGUID: +L+2VjvvRruUgDl8uf3dFA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,254,1719903600"; d="scan'208";a="102214715"
+X-IronPort-AV: E=Sophos;i="6.10,255,1719903600"; d="scan'208";a="75852164"
 Received: from sschumil-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.183])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2024 08:30:27 -0700
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2024 08:56:30 -0700
 From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com, Sean Paul <seanpaul@chromium.org>,
- Suraj Kandpal <suraj.kandpal@intel.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- stable@vger.kernel.org
-Subject: [PATCH] drm/i915/hdcp: fix connector refcounting
-Date: Tue, 24 Sep 2024 18:30:22 +0300
-Message-Id: <20240924153022.2255299-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+To: Guenter Roeck <linux@roeck-us.net>, Maxime Ripard <mripard@kernel.org>
+Cc: Simona Vetter <simona.vetter@ffwll.ch>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, Carlos Eduardo Gallo Filho
+ <gcarlos@disroot.org>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, Jeff Johnson <quic_jjohnson@quicinc.com>
+Subject: Re: [PATCH 0/2] drm: revert some framebuffer API tests
+In-Reply-To: <4accd038-9624-43de-96ad-7ecd0876b607@roeck-us.net>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+References: <cover.1726594684.git.jani.nikula@intel.com>
+ <ZvKPJGQyZmdWNOmd@phenom.ffwll.local>
+ <20240924-refined-nocturnal-starfish-2947b8@houat>
+ <f3f8bec1-884b-46ac-82a6-6e5cb8840146@roeck-us.net>
+ <20240924-handsome-labrador-of-shopping-b1dce5@houat>
+ <4accd038-9624-43de-96ad-7ecd0876b607@roeck-us.net>
+Date: Tue, 24 Sep 2024 18:56:26 +0300
+Message-ID: <87ed593v11.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,65 +77,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We acquire a connector reference before scheduling an HDCP prop work,
-and expect the work function to release the reference.
+On Tue, 24 Sep 2024, Guenter Roeck <linux@roeck-us.net> wrote:
+>>>> On Tue, Sep 24, 2024 at 12:06:28PM GMT, Simona Vetter wrote:
+>>>>> Yeah I think long-term we might want a kunit framework so that we can
+>>>>> catch dmesg warnings we expect and test for those, without those warnings
+>>>>> actually going to dmesg. Similar to how the lockdep tests also reroute
+>>>>> locking validation, so that the expected positive tests don't wreak
+>>>>> lockdep for real.
+>>>>>
+>>>>> But until that exists, we can't have tests that splat in dmesg when they
+>>>>> work as intended.
+>
+> FWIW, that is arguable. More and more tests are added which do add such splats,
+> and I don't see any hesitance by developers to adding more. So far I counted
+> two alone in this commit window, and that does not include new splats from
+> tests which I had already disabled. I simply disable those tests or don't
+> enable them in the first place if they are new. I did the same with the drm
+> unit tests due to the splats generated by the scaling unit tests, so any
+> additional drm unit test splats don't make a difference for me since the
+> tests are already disabled.
 
-However, if the work was already queued, it won't be queued multiple
-times, and the reference is not dropped.
+What's the point of having unit tests that CI systems routinely have to
+filter out of test runs? Or filter warnings generated by the tests,
+potentially missing new warnings. Who is going to run the tests if the
+existing CI systems choose to ignore them?
 
-Release the reference immediately if the work was already queued.
+Automation on a massive scale is key here, and making that harder is
+counter-productive.
 
-Fixes: a6597faa2d59 ("drm/i915: Protect workers against disappearing connectors")
-Cc: Sean Paul <seanpaul@chromium.org>
-Cc: Suraj Kandpal <suraj.kandpal@intel.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: <stable@vger.kernel.org> # v5.10+
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
----
+BR,
+Jani.
 
-I don't know that we have any bugs open about this. Or how it would
-manifest itself. Memory leak on driver unload? I just spotted this while
-reading the code for other reasons.
----
- drivers/gpu/drm/i915/display/intel_hdcp.c | 10 +++++++---
- 1 file changed, 7 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index 2afa92321b08..cad309602617 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -1097,7 +1097,8 @@ static void intel_hdcp_update_value(struct intel_connector *connector,
- 	hdcp->value = value;
- 	if (update_property) {
- 		drm_connector_get(&connector->base);
--		queue_work(i915->unordered_wq, &hdcp->prop_work);
-+		if (!queue_work(i915->unordered_wq, &hdcp->prop_work))
-+			drm_connector_put(&connector->base);
- 	}
- }
- 
-@@ -2531,7 +2532,8 @@ void intel_hdcp_update_pipe(struct intel_atomic_state *state,
- 		mutex_lock(&hdcp->mutex);
- 		hdcp->value = DRM_MODE_CONTENT_PROTECTION_DESIRED;
- 		drm_connector_get(&connector->base);
--		queue_work(i915->unordered_wq, &hdcp->prop_work);
-+		if (!queue_work(i915->unordered_wq, &hdcp->prop_work))
-+			drm_connector_put(&connector->base);
- 		mutex_unlock(&hdcp->mutex);
- 	}
- 
-@@ -2548,7 +2550,9 @@ void intel_hdcp_update_pipe(struct intel_atomic_state *state,
- 		 */
- 		if (!desired_and_not_enabled && !content_protection_type_changed) {
- 			drm_connector_get(&connector->base);
--			queue_work(i915->unordered_wq, &hdcp->prop_work);
-+			if (!queue_work(i915->unordered_wq, &hdcp->prop_work))
-+				drm_connector_put(&connector->base);
-+
- 		}
- 	}
- 
 -- 
-2.39.2
-
+Jani Nikula, Intel
