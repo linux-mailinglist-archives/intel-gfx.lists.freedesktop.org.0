@@ -2,69 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96498983976
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Sep 2024 00:02:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 93A79983B2D
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Sep 2024 04:26:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB5A410E1A4;
-	Mon, 23 Sep 2024 22:02:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A2A410E4C2;
+	Tue, 24 Sep 2024 02:26:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Eew3I3sG";
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="I6FlfQQJ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A76A898F0;
- Mon, 23 Sep 2024 22:01:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727128919; x=1758664919;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=jzjx/LT74DT5bwVFGjZkIuVYgVUY5JBAmgIOCgW1jkc=;
- b=Eew3I3sGEJ4nVUiX751210W0LdBMRfIe+u/CVMPBEpL/f1BkeV649xqz
- 9DDeow8u222KTtQfLxJXHrqvqmNwWCHBX/S4SxTmLQ8JDwFarvL1Q4F00
- 5PvdsQZlMxubZFRmhMl0Di6XZc8wN1b9i9EvphyYwE/wLNt0c7RpcVfl4
- B7pACjxMSbVOMhwojaiQYurAM7Egsrx6+Qg1c3UDc/0jZSZ1GnN5rg5Aw
- 5i5AbPnFsPeaoZ7Ag4S01q3mqC82RElH2tl/neryGBEoIr74oSTk8wpDE
- +Foowo28sOnbcxzmX6j1ZFKNuGtVpTto3VFItCt6NkZ/BXISrTv3o4ZVq w==;
-X-CSE-ConnectionGUID: fm3dALW1QJKR777eO73eTw==
-X-CSE-MsgGUID: pWbAGXNiRHmL0npkCCi/DA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11204"; a="29816911"
-X-IronPort-AV: E=Sophos;i="6.10,252,1719903600"; d="scan'208";a="29816911"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2024 15:01:59 -0700
-X-CSE-ConnectionGUID: GqNDcfhmQaqUbYKXZlqbpQ==
-X-CSE-MsgGUID: Q/I7vIAaRf6MhR2wPMN5pg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,252,1719903600"; d="scan'208";a="75732875"
-Received: from sschumil-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.65])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2024 15:01:51 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Raag Jadav
- <raag.jadav@intel.com>
-Cc: airlied@gmail.com, simona@ffwll.ch, lucas.demarchi@intel.com,
- thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
- joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, lina@asahilina.net,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
- francois.dugast@intel.com, aravind.iddamsetty@linux.intel.com,
- anshuman.gupta@intel.com, andi.shyti@linux.intel.com,
- matthew.d.roper@intel.com
-Subject: Re: [PATCH v6 1/4] drm: Introduce device wedged event
-In-Reply-To: <ZvGB9P_JdXcnTfW2@smile.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240923035826.624196-1-raag.jadav@intel.com>
- <20240923035826.624196-2-raag.jadav@intel.com>
- <ZvEpH_po4bYmEISh@smile.fi.intel.com>
- <ZvF8q7xkbEegPzc9@black.fi.intel.com>
- <ZvGB9P_JdXcnTfW2@smile.fi.intel.com>
-Date: Tue, 24 Sep 2024 01:01:48 +0300
-Message-ID: <874j6658s3.fsf@intel.com>
+Received: from bali.collaboradmins.com (bali.collaboradmins.com
+ [148.251.105.195])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95CF210E1F1;
+ Tue, 24 Sep 2024 02:26:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1727144777;
+ bh=bVBlh+fY6Ig9uXlKnweewNbRdJcBCdmmmBM3MYgyfkc=;
+ h=From:To:Cc:Subject:Date:From;
+ b=I6FlfQQJLJgS0B4GYHreTcgkphmT0mtS/izy2z6fKSS7SM/YLiUDuQFlVGy/mj+BV
+ LAJ5Z6OzVK7XlKTu8ty7d5B8lKWjrOvTfhYxuS2lGgxDMgwRhHeUh7zm+vBW/smVbC
+ Lh9cVPMXsPLsFyyrDTIyHDkgs2vabkhVEfSxOnu4vKWN/Wk5xbz+iG7hP43duNJhhq
+ RDxF4v0iGL0s4K00QMKKfxunJksIA+2M8LnIE854C+pIIKC3EfPWYcizvciDBHaP69
+ s0b33b7a0NOtNEuAz5lPT4Chepeo/Zztl/y2h8GLSNs+QJry4OgRR2BW0VhQ/VipCC
+ MEAHSNEfkemDA==
+Received: from localhost.localdomain (unknown [171.76.80.125])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested) (Authenticated sender: vignesh)
+ by bali.collaboradmins.com (Postfix) with ESMTPSA id 1187A17E0EC1;
+ Tue, 24 Sep 2024 04:26:13 +0200 (CEST)
+From: Vignesh Raman <vignesh.raman@collabora.com>
+To: dri-devel@lists.freedesktop.org
+Cc: daniels@collabora.com, helen.koike@collabora.com, airlied@gmail.com,
+ daniel@ffwll.ch, robdclark@gmail.com, guilherme.gallo@collabora.com,
+ sergi.blanch.torne@collabora.com, deborah.brouwer@collabora.com,
+ dmitry.baryshkov@linaro.org, mripard@kernel.org, rodrigo.vivi@intel.com,
+ linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, amd-gfx@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ virtualization@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: [PATCH v1] docs/gpu: ci: update flake tests requirements
+Date: Tue, 24 Sep 2024 07:55:58 +0530
+Message-ID: <20240924022600.1441969-1-vignesh.raman@collabora.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,30 +63,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 23 Sep 2024, Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
-> On Mon, Sep 23, 2024 at 05:35:23PM +0300, Raag Jadav wrote:
->> On Mon, Sep 23, 2024 at 11:38:55AM +0300, Andy Shevchenko wrote:
->> > On Mon, Sep 23, 2024 at 09:28:23AM +0530, Raag Jadav wrote:
->
-> ...
->
->> > > +extern const char *const wedge_recovery_opts[];
->> > 
->> > It's not NULL terminated. How users will know that they have an index valid?
->> 
->> It's expected to be accessed using recovery_*() helpers.
->
-> If so, this has to be static then.
+Update the documentation to require linking to a relevant GitLab
+issue for each new flake entry instead of an email report. Added
+specific GitLab issue URLs for i915, xe and other drivers.
 
-Yeah, please make the helpers regular functions. Static inlines are just
-harmful here.
+Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
+---
+ Documentation/gpu/automated_testing.rst | 15 ++++++++++-----
+ 1 file changed, 10 insertions(+), 5 deletions(-)
 
-BR,
-Jani.
-
->
->> > Either you NULL-terminate that, or export the size as well (personally I would
->> > go with the first approach).
-
+diff --git a/Documentation/gpu/automated_testing.rst b/Documentation/gpu/automated_testing.rst
+index 2d5a28866afe..f73b8939dc3a 100644
+--- a/Documentation/gpu/automated_testing.rst
++++ b/Documentation/gpu/automated_testing.rst
+@@ -67,20 +67,25 @@ Lists the tests that for a given driver on a specific hardware revision are
+ known to behave unreliably. These tests won't cause a job to fail regardless of
+ the result. They will still be run.
+ 
+-Each new flake entry must be associated with a link to the email reporting the
+-bug to the author of the affected driver, the board name or Device Tree name of
+-the board, the first kernel version affected, the IGT version used for tests,
+-and an approximation of the failure rate.
++Each new flake entry must include a link to the relevant GitLab issue, the board
++name or Device Tree name, the first kernel version affected, the IGT version used
++for tests and an approximation of the failure rate.
+ 
+ They should be provided under the following format::
+ 
+-  # Bug Report: $LORE_OR_PATCHWORK_URL
++  # Bug Report: $GITLAB_ISSUE
+   # Board Name: broken-board.dtb
+   # Linux Version: 6.6-rc1
+   # IGT Version: 1.28-gd2af13d9f
+   # Failure Rate: 100
+   flaky-test
+ 
++The GitLab issue must include the logs and the pipeline link. Use the appropriate
++link below to create an issue.
++https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/ for i915 drivers
++https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/ for xe drivers
++https://gitlab.freedesktop.org/drm/misc/kernel/-/issues for other drivers
++
+ drivers/gpu/drm/ci/${DRIVER_NAME}-${HW_REVISION}-skips.txt
+ -----------------------------------------------------------
+ 
 -- 
-Jani Nikula, Intel
+2.43.0
+
