@@ -2,52 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B01C8984542
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Sep 2024 13:54:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DFAD98457B
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Sep 2024 14:06:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5326210E892;
-	Tue, 24 Sep 2024 11:54:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FD1C10E89E;
+	Tue, 24 Sep 2024 12:06:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="M+6//Uds";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gUMI3jKA";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1080A10E892;
- Tue, 24 Sep 2024 11:54:25 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 55C3F5C5BE5;
- Tue, 24 Sep 2024 11:54:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99332C4CEC7;
- Tue, 24 Sep 2024 11:54:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1727178863;
- bh=2/NtPKQe1oXyvLZXdWqc7DQrRq/Lus4Wr+gPXFADaes=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=M+6//UdsncVPD+Us3ug8fxLIRowu+753YsdGkDVpBq8z3Zcm8O/WuHHZ52aUa0TrN
- XxYr2IfPY2nlhPaRY1Ks0nZ3Y7PIQb4cmfnORlwuIoth5uXjlpeuKyqEdv0y5gikw9
- TiDDq+xClMcYPQS+KwIxAhQUdY4ARtezEo2/3GyNTFck4ykIGqVoP1M6OKLQpduFKy
- XxzcU9Oc/L9SWdocO6wiGJIYxh/Y/QM59rwjxImpdm0RBaP4DBaK0FthY/es+Ifoaz
- Pf1I6KktesupuJRdlAsenj+AcydHf5IaJ8FAsAVKQztjuPKwoh/vD2GrtfCl7H4NIX
- chcyq2OXBYMig==
-Date: Tue, 24 Sep 2024 13:54:21 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Simona Vetter <simona.vetter@ffwll.ch>, Guenter Roeck <linux@roeck-us.net>
-Cc: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org,
- Carlos Eduardo Gallo Filho <gcarlos@disroot.org>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, 
- Jeff Johnson <quic_jjohnson@quicinc.com>
-Subject: Re: [PATCH 0/2] drm: revert some framebuffer API tests
-Message-ID: <20240924-refined-nocturnal-starfish-2947b8@houat>
-References: <cover.1726594684.git.jani.nikula@intel.com>
- <ZvKPJGQyZmdWNOmd@phenom.ffwll.local>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6906210E89C;
+ Tue, 24 Sep 2024 12:06:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1727179561; x=1758715561;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=jBzztolWxxyRZbyW759j16y1GaCdbozTCQJIVGF6EcY=;
+ b=gUMI3jKA9MicKA24TPRISC2J5eN0mKlkFsmLDv93Ozd8aC8vIHPS2PZI
+ le+PbToxkULvfyk85FZ2GPcBVASasuA1wzKBnOZWB2M6aAY8fYp+GySxQ
+ lXZdDp8MZAAPKLLMrd+imhm5PRhvfscr1EX2GRIZXILES8EJyggN5xCEr
+ 7roCPhG54NVYMUv//JWOz0uzRT368/V08qwAWUzG1Q7YtoGB46VNnuVXj
+ DvsJTDD6vlgZS/62NkeEkoXr4jeyvcDAixq0bhId21sA8Lh745VIjdCMj
+ U7a9JltlP0gHW1QMZ1IcDPXkKALsiu55W/CRFxVO7u1R/v+pQBSXqmRhR A==;
+X-CSE-ConnectionGUID: rTHamEVUQ9utocUqRSJv/w==
+X-CSE-MsgGUID: N+TzDe+dRl+Y0aVjA6jTgw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11204"; a="43639107"
+X-IronPort-AV: E=Sophos;i="6.10,254,1719903600"; d="scan'208";a="43639107"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2024 05:06:00 -0700
+X-CSE-ConnectionGUID: HTk05PvZTlGR1w7fN80MBw==
+X-CSE-MsgGUID: gzyOwvxvTTWtIyv1JhkQ5g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,254,1719903600"; d="scan'208";a="71387986"
+Received: from sschumil-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.183])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2024 05:05:55 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: George Rurikov <g.ryurikov@securitycode.ru>
+Cc: George Rurikov <g.ryurikov@securitycode.ru>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org
+Subject: Re: [PATCH] drm: Add check for encoder in intel_get_crtc_new_encoder()
+In-Reply-To: <20240924114004.1084283-1-g.ryurikov@securitycode.ru>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240924114004.1084283-1-g.ryurikov@securitycode.ru>
+Date: Tue, 24 Sep 2024 15:05:51 +0300
+Message-ID: <87tte545pc.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="4ruyy6fj22peke3j"
-Content-Disposition: inline
-In-Reply-To: <ZvKPJGQyZmdWNOmd@phenom.ffwll.local>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,58 +75,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
---4ruyy6fj22peke3j
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-+Guenter
-
-On Tue, Sep 24, 2024 at 12:06:28PM GMT, Simona Vetter wrote:
-> On Tue, Sep 17, 2024 at 08:43:50PM +0300, Jani Nikula wrote:
-> > The tests consistently trigger WARNs in drm_framebuffer code. I'm not
-> > sure what the point is with type of belts and suspenders tests. The
-> > warnings *are* the way to flag erroneous API usage.
-> >=20
-> > Warnings in turn trigger failures in CI. Filtering the warnings are
-> > error prone, and, crucially, would also filter actual errors in case the
-> > kunit tests are not run.
-> >=20
-> > I acknowledge there may be complex test cases where you'd end up
-> > triggering warnings somewhere deep, but these are not it. These are
-> > simple.
-> >=20
-> > Revert the tests, back to the drawing board.
->=20
-> Yeah I think long-term we might want a kunit framework so that we can
-> catch dmesg warnings we expect and test for those, without those warnings
-> actually going to dmesg. Similar to how the lockdep tests also reroute
-> locking validation, so that the expected positive tests don't wreak
-> lockdep for real.
->=20
-> But until that exists, we can't have tests that splat in dmesg when they
-> work as intended.
-
-It should be pretty soon:
-https://lore.kernel.org/dri-devel/20240403131936.787234-1-linux@roeck-us.ne=
-t/
-
-I'm not sure what happened to that series, but it looks like everybody
-was mostly happy with it?
-
-Maxime
-
---4ruyy6fj22peke3j
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZvKoZAAKCRAnX84Zoj2+
-dgUlAX0c20gM8WfZzRdIc0P60Fy9Bx6Kn26LtlfREuDwlrMZffPRkv6id+ojL1ED
-UoDtqH8BfRmUoRm6bC3FwIE1tG8R95eq7QqNyu8dh+Ef+wr+nrJoqttkbXVsOGLo
-2Tbqs85egg==
-=becj
------END PGP SIGNATURE-----
-
---4ruyy6fj22peke3j--
+T24gVHVlLCAyNCBTZXAgMjAyNCwgR2VvcmdlIFJ1cmlrb3YgPGcucnl1cmlrb3ZAc2VjdXJpdHlj
+b2RlLnJ1PiB3cm90ZToNCj4gSWYgdGhlIHZpZGVvIGNhcmQgZHJpdmVyIGNvdWxkIG5vdCBmaW5k
+IHRoZSBjb25uZWN0b3IgYXNzaWduZWQgdG8gdGhlDQo+IGN1cnJlbnQgdmlkZW8gY29udHJvbGxl
+ciwgb3IgaWYgdGhlIGhhcmR3YXJlIHN0YXR1cyBoYXMgY2hhbmdlZCBzbyB0aGF0DQo+IGEgcHJl
+LWV4aXN0aW5nIGNvbm5lY3RvciBpcyBubyBsb25nZXIgYWN0aXZlLCBub25lIG9mIHRoZSBzdGF0
+ZQ0KPiBjb25uZWN0b3JzIHdpbGwgbWVldCB0aGUgYXNzaWdubWVudCBjcml0ZXJpYSBmb3IgdGhl
+IGN1cnJlbnQgY3J0YyB2aWRlbw0KPiBjb250cm9sbGVyLg0KPg0KPiBJbiB0aGUgZHJtX1dBUk4g
+ZnVuY3Rpb24sIGVuY29kZXItPmJhc2UuZGV2IGlzIGNhbGxlZCwgc28NCj4gJyZlbmNvZGVyLT5i
+YXNlLmRldicgd2lsbCBiZSBkZXJlZmVyZW5jZWQgc2luY2UgZW5jb2RlciB3aWxsIHN0aWxsIGJl
+DQo+IGluaXRpYWxpemVkIE5VTEwuDQoNCmVuY29kZXIgaXMgbm90IGRlcmVmZXJlbmNlZCB0aGVy
+ZS4NCg0KPiBGb3VuZCBieSBMaW51eCBWZXJpZmljYXRpb24gQ2VudGVyIChsaW51eHRlc3Rpbmcu
+b3JnKSB3aXRoIFNWQUNFLg0KPg0KPiBGaXhlczogZTEyZDYyMThmZGEyICgiZHJtL2k5MTU6IFJl
+ZHVjZSBiaWdqb2luZXIgc3BlY2lhbCBjYXNpbmciKQ0KPiBDYzogc3RhYmxlQHZnZXIua2VybmVs
+Lm9yZw0KPiBTaWduZWQtb2ZmLWJ5OiBHZW9yZ2UgUnVyaWtvdiA8Zy5yeXVyaWtvdkBzZWN1cml0
+eWNvZGUucnU+DQo+IC0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9k
+aXNwbGF5LmMgfCA0ICsrKy0NCj4gIDEgZmlsZSBjaGFuZ2VkLCAzIGluc2VydGlvbnMoKyksIDEg
+ZGVsZXRpb24oLSkNCj4NCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
+YXkvaW50ZWxfZGlzcGxheS5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9k
+aXNwbGF5LmMNCj4gaW5kZXggYjRlZjRkNTlkYTFhLi4xZjI1YjEyZTVmNjcgMTAwNjQ0DQo+IC0t
+LSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jDQo+ICsrKyBi
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jDQo+IEBAIC04MTks
+OSArODE5LDExIEBAIGludGVsX2dldF9jcnRjX25ld19lbmNvZGVyKGNvbnN0IHN0cnVjdCBpbnRl
+bF9hdG9taWNfc3RhdGUgKnN0YXRlLA0KPiAgICAgICAgICAgICAgICAgbnVtX2VuY29kZXJzKys7
+DQo+ICAgICAgICAgfQ0KPg0KPiAtICAgICAgIGRybV9XQVJOKHN0YXRlLT5iYXNlLmRldiwgbnVt
+X2VuY29kZXJzICE9IDEsDQo+ICsgICAgICAgaWYgKGVuY29kZXIpIHsNCj4gKyAgICAgICAgICAg
+ICAgIGRybV9XQVJOKHN0YXRlLT5iYXNlLmRldiwgbnVtX2VuY29kZXJzICE9IDEsDQo+ICAgICAg
+ICAgICAgICAgICAgIiVkIGVuY29kZXJzIGZvciBwaXBlICVjXG4iLA0KPiAgICAgICAgICAgICAg
+ICAgIG51bV9lbmNvZGVycywgcGlwZV9uYW1lKHByaW1hcnlfY3J0Yy0+cGlwZSkpOw0KPiArICAg
+ICAgIH0NCj4NCj4gICAgICAgICByZXR1cm4gZW5jb2RlcjsNCj4gIH0NCj4gLS0NCj4gMi4zNC4x
+DQo+DQo+INCX0LDRj9Cy0LvQtdC90LjQtSDQviDQutC+0L3RhNC40LTQtdC90YbQuNCw0LvRjNC9
+0L7RgdGC0LgNCj4NCj4g0JTQsNC90L3QvtC1INGN0LvQtdC60YLRgNC+0L3QvdC+0LUg0L/QuNGB
+0YzQvNC+INC4INC70Y7QsdGL0LUg0L/RgNC40LvQvtC20LXQvdC40Y8g0Log0L3QtdC80YMg0Y/Q
+stC70Y/RjtGC0YHRjyDQutC+0L3RhNC40LTQtdC90YbQuNCw0LvRjNC90YvQvNC4INC4INC/0YDQ
+tdC00L3QsNC30L3QsNGH0LXQvdGLINC40YHQutC70Y7Rh9C40YLQtdC70YzQvdC+INC00LvRjyDQ
+sNC00YDQtdGB0LDRgtCwLiDQldGB0LvQuCDQktGLINC90LUg0Y/QstC70Y/QtdGC0LXRgdGMINCw
+0LTRgNC10YHQsNGC0L7QvCDQtNCw0L3QvdC+0LPQviDQv9C40YHRjNC80LAsINC/0L7QttCw0LvR
+g9C50YHRgtCwLCDRg9Cy0LXQtNC+0LzQuNGC0LUg0L3QtdC80LXQtNC70LXQvdC90L4g0L7RgtC/
+0YDQsNCy0LjRgtC10LvRjywg0L3QtSDRgNCw0YHQutGA0YvQstCw0LnRgtC1INGB0L7QtNC10YDQ
+ttCw0L3QuNC1INC00YDRg9Cz0LjQvCDQu9C40YbQsNC8LCDQvdC1INC40YHQv9C+0LvRjNC30YPQ
+udGC0LUg0LXQs9C+INCyINC60LDQutC40YUt0LvQuNCx0L4g0YbQtdC70Y/RhSwg0L3QtSDRhdGA
+0LDQvdC40YLQtSDQuCDQvdC1INC60L7Qv9C40YDRg9C50YLQtSDQuNC90YTQvtGA0LzQsNGG0LjR
+jiDQu9GO0LHRi9C8INGB0L/QvtGB0L7QsdC+0LwuDQoNClNvcnJ5LCB3ZSBjYW4ndCBhY2NlcHQg
+cGF0Y2hlcyB3aXRoIHRoYXQgYm9pbGVycGxhdGUgYW55d2F5Lg0KDQpCUiwNCkphbmkuDQoNCg0K
+LS0gDQpKYW5pIE5pa3VsYSwgSW50ZWwNCg==
