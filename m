@@ -2,53 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8D6E983D4B
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Sep 2024 08:46:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 06995983D4C
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Sep 2024 08:46:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 615B710E4E1;
-	Tue, 24 Sep 2024 06:46:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A460A10E1BE;
+	Tue, 24 Sep 2024 06:46:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O4lX2Gma";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YeYy+IIJ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 937DF10E4DE;
- Tue, 24 Sep 2024 06:46:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A97B10E1BE;
+ Tue, 24 Sep 2024 06:46:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727160363; x=1758696363;
+ t=1727160392; x=1758696392;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=eo1G0p4Zf50OOnDRONamumkYyVdXOPbY+AZkurm8Bec=;
- b=O4lX2Gma4298oJZjk+Y1ZQBqamixZcyJfc4WWUtTJx+CfZvEAYA95A0l
- goazyynpGdYPgiZktvl9H3JVugN0YU0UWtKusyszXmBCvYZ33GM0a5LFR
- LKQ9PKIqRIA9TzLoXEg3Z6r6gk17DqyxiG3AhWaOfWXE7VKqPU9i9vTxm
- lvrl3ADQQ4/5wOHkuZLQ0xShrLS5tnMTRMMoGB6UzBm28SimjPCPUKnNQ
- 1O1y68S0RmylYHXIuZVS8DeSCNgeO5KEJ+4AbZc0skgJBnGHIP+lw0CCY
- B4QCUiNVx66PW4yC2N/nkTKQqr6rbsVdFyD2OJQ+0GOEA9KDHGLIc9o++ g==;
-X-CSE-ConnectionGUID: +BybTZhaRzuRw7Hw5GXpOA==
-X-CSE-MsgGUID: O9t5ludASOeYOWeGuYUeOA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11204"; a="25610977"
-X-IronPort-AV: E=Sophos;i="6.10,253,1719903600"; d="scan'208";a="25610977"
+ bh=ZjTrM7atK559NeNWom3xCSv0LB4ProkECmvc+HX/JIw=;
+ b=YeYy+IIJGUb1BPKZoZb6ftE8zEF7JZujyN31isE9OJXea7CgPUVcObrc
+ wmfW5JfbNheJaLqn2rBd3q1Q5mmaerIC1Zx+f2PHB+jui01uUt3VKlK5R
+ zaPVrCPnuTFrscBqIXNnmuRMtj/o7y9qTW1I14HWJjX4t2CSet3aoD9HI
+ PJZXXT8MIpsKdPd6XKw4ncf4ByoIjgFiBmY+ZmObqr3uN+Z0DzhyfiGbt
+ 7WPSSvR8/03V77f5KUeQsx0QWWm3sagKq7HRBs7S0W4LEgG8pkwhsf8u4
+ XNdo5+Dehy+pBgmonj/fb8n0WS248zrII+M+qHfK25V8MSTWlIFJwF1Ir w==;
+X-CSE-ConnectionGUID: nJodRWWwS2+YOF/Xsegr7g==
+X-CSE-MsgGUID: k7P/BGkCRoGTnAc21nfnKA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11204"; a="25610982"
+X-IronPort-AV: E=Sophos;i="6.10,253,1719903600"; d="scan'208";a="25610982"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2024 23:46:03 -0700
-X-CSE-ConnectionGUID: +1479r6YQfG+ePZha3xswA==
-X-CSE-MsgGUID: +UkVYzwDQVubFifGhg1Opg==
+ 23 Sep 2024 23:46:05 -0700
+X-CSE-ConnectionGUID: GjPf2atOQrOhDV7naalP4Q==
+X-CSE-MsgGUID: edowLvR+TxeoezBUWnYKRA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,253,1719903600"; d="scan'208";a="102058160"
+X-IronPort-AV: E=Sophos;i="6.10,253,1719903600"; d="scan'208";a="102058168"
 Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by orviesa002.jf.intel.com with ESMTP; 23 Sep 2024 23:46:02 -0700
+ by orviesa002.jf.intel.com with ESMTP; 23 Sep 2024 23:46:04 -0700
 From: Arun R Murthy <arun.r.murthy@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: Arun R Murthy <arun.r.murthy@intel.com>,
- Srikanth V NagaVenkata <nagavenkata.srikanth.v@intel.com>
-Subject: [PATCHv3 2/3] drm/i915/dp: read Aux RD interval just before setting
- the FFE preset
-Date: Tue, 24 Sep 2024 12:06:15 +0530
-Message-Id: <20240924063616.1726369-3-arun.r.murthy@intel.com>
+ Srikanth V NagaVenkata <nagavenkata.srikanth.v@intel.com>,
+ Suraj Kandpal <suraj.kandpal@intel.com>,
+ Jani Nikula <jani.nikula@intel.com>
+Subject: [PATCHv2 3/3] drm/i915/dp: Include the time taken by AUX Tx for
+ timeout
+Date: Tue, 24 Sep 2024 12:06:16 +0530
+Message-Id: <20240924063616.1726369-4-arun.r.murthy@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240924063616.1726369-1-arun.r.murthy@intel.com>
 References: <20240924063616.1726369-1-arun.r.murthy@intel.com>
@@ -69,54 +71,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Figure 3-52: 128b132b DP DPTC LANEx_CHANNEL_EQ_DONE Sequence of
+As per DP spec the timeout for LANE_CHANNEL_EQ_DONE is 400ms. But this
+timeout value is exclusively for the Aux RD Interval and excludes the
+time consumed for the AUX Tx (i.e reading/writing FFE presets). Add
+another 50ms for these AUX Tx to the 400ms timeout.
+Ref: "Figure 3-52: 128b132b DP DPTC LANEx_CHANNEL_EQ_DONE Sequence" of
 DP2.1a spec.
-After reading LANEx_CHANNEL_EQ_DONE, read the FFE presets.
-AUX_RD_INTERVAL and then write the new FFE presets.
 
 Co-developed-by: Srikanth V NagaVenkata <nagavenkata.srikanth.v@intel.com>
 Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-
-squash 2
-
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+Acked-by: Jani Nikula <jani.nikula@intel.com>
 ---
- .../gpu/drm/i915/display/intel_dp_link_training.c  | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp_link_training.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-index f41b69840ad9..ec6c323a49c0 100644
+index ec6c323a49c0..ddf91b3533a4 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-@@ -1419,12 +1419,6 @@ intel_dp_128b132b_lane_eq(struct intel_dp *intel_dp,
+@@ -1414,7 +1414,7 @@ intel_dp_128b132b_lane_eq(struct intel_dp *intel_dp,
+ 	}
+ 
+ 	/* Time budget for the LANEx_EQ_DONE Sequence */
+-	deadline = jiffies + msecs_to_jiffies_timeout(400);
++	deadline = jiffies + msecs_to_jiffies_timeout(450);
+ 
  	for (try = 0; try < max_tries; try++) {
  		fsleep(delay_us);
- 
--		/*
--		 * The delay may get updated. The transmitter shall read the
--		 * delay before link status during link training.
--		 */
--		delay_us = drm_dp_128b132b_read_aux_rd_interval(&intel_dp->aux);
--
- 		if (drm_dp_dpcd_read_link_status(&intel_dp->aux, link_status) < 0) {
- 			lt_err(intel_dp, DP_PHY_DPRX, "Failed to read link status\n");
- 			return false;
-@@ -1451,8 +1445,14 @@ intel_dp_128b132b_lane_eq(struct intel_dp *intel_dp,
- 		if (time_after(jiffies, deadline))
- 			timeout = true; /* try one last time after deadline */
- 
--		/* Update signal levels and training set as requested. */
- 		intel_dp_get_adjust_train(intel_dp, crtc_state, DP_PHY_DPRX, link_status);
-+		/*
-+		 * During LT, Tx shall read DPCD 02216h before DPCD 00202h to 00207h and
-+		 * 0200Ch through 0200Fh.
-+		 */
-+		delay_us = drm_dp_128b132b_read_aux_rd_interval(&intel_dp->aux);
-+
-+		/* Update signal levels and training set as requested. */
- 		if (!intel_dp_update_link_train(intel_dp, crtc_state, DP_PHY_DPRX)) {
- 			lt_err(intel_dp, DP_PHY_DPRX, "Failed to update TX FFE settings\n");
- 			return false;
 -- 
 2.25.1
 
