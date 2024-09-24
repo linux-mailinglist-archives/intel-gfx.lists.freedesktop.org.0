@@ -2,19 +2,17 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2422398A53C
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Sep 2024 15:31:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 72BF398A52B
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Sep 2024 15:31:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 669FA10E4E8;
-	Mon, 30 Sep 2024 13:31:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A93E110E4DB;
+	Mon, 30 Sep 2024 13:30:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 903 seconds by postgrey-1.36 at gabe;
- Tue, 24 Sep 2024 11:03:00 UTC
 Received: from MSK-MAILEDGE.securitycode.ru (msk-mailedge.securitycode.ru
  [195.133.217.143])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9925410E6BF;
- Tue, 24 Sep 2024 11:03:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 031B410E6BE;
+ Tue, 24 Sep 2024 11:20:53 +0000 (UTC)
 From: George Rurikov <g.ryurikov@securitycode.ru>
 To: Jani Nikula <jani.nikula@linux.intel.com>
 CC: George Rurikov <g.ryurikov@securitycode.ru>, Rodrigo Vivi
@@ -24,8 +22,8 @@ CC: George Rurikov <g.ryurikov@securitycode.ru>, Rodrigo Vivi
  <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.og>,
  <linux-kernel@vger.kernel.org>, <stable@vger.kernel.org>
 Subject: [PATCH] drm: Add check for encoder in intel_get_crtc_new_encoder()
-Date: Tue, 24 Sep 2024 13:47:22 +0300
-Message-ID: <20240924104722.1049588-1-g.ryurikov@securitycode.ru>
+Date: Tue, 24 Sep 2024 14:20:23 +0300
+Message-ID: <20240924112023.1071395-1-g.ryurikov@securitycode.ru>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
@@ -64,26 +62,25 @@ Fixes: e12d6218fda2 ("drm/i915: Reduce bigjoiner special casing")
 Cc: stable@vger.kernel.org
 Signed-off-by: George Rurikov <g.ryurikov@securitycode.ru>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm=
 /i915/display/intel_display.c
-index b4ef4d59da1a..a5e24d64f909 100644
+index b4ef4d59da1a..1f25b12e5f67 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -819,9 +819,10 @@ intel_get_crtc_new_encoder(const struct intel_atomic_s=
+@@ -819,9 +819,11 @@ intel_get_crtc_new_encoder(const struct intel_atomic_s=
 tate *state,
                 num_encoders++;
         }
 
 -       drm_WARN(state->base.dev, num_encoders !=3D 1,
--                "%d encoders for pipe %c\n",
--                num_encoders, pipe_name(primary_crtc->pipe));
-+       if (encoder)
++       if (encoder) {
 +               drm_WARN(state->base.dev, num_encoders !=3D 1,
-+                       "%d encoders for pipe %c\n",
-+                       num_encoders, pipe_name(primary_crtc->pipe));
+                 "%d encoders for pipe %c\n",
+                 num_encoders, pipe_name(primary_crtc->pipe));
++       }
 
         return encoder;
  }
