@@ -2,126 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15B1D9846DB
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Sep 2024 15:38:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BB3A9846F8
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Sep 2024 15:44:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81C4410E6EB;
-	Tue, 24 Sep 2024 13:38:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC5CF10E6EC;
+	Tue, 24 Sep 2024 13:43:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Ra8AyNpx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E27z2yWM";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com
- [209.85.210.175])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 660B710E6E5;
- Tue, 24 Sep 2024 13:38:03 +0000 (UTC)
-Received: by mail-pf1-f175.google.com with SMTP id
- d2e1a72fcca58-718d704704aso4871656b3a.3; 
- Tue, 24 Sep 2024 06:38:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1727185083; x=1727789883; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:autocrypt:from
- :content-language:references:cc:to:subject:user-agent:mime-version
- :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
- bh=9wsi/EYErs3wSK6Qpj4Nu7hgB2ma1UwFapYWcWsDBWM=;
- b=Ra8AyNpxIF4K4VSQ+G/HvNQlaGpYBqTQZ0d10Ych6XIrVqhnNGwgILjvEQMW4YaPQv
- QgEqEcCZdLDeU/GBHAjPMdUdMPzRsfU3MMHYnuUCj6jBH2b8xMNjWBwRWJK43FYXEu4M
- V2ZLlRHCgHd6ZdJoJvJ/lkjPH9D+wZMVWY69NyGp2pCPJMoQiUZQaNO5lGmBvV/rk/JN
- ckEYZ0Q/Q3bRj8lqiV1owfyhPFkWRAE5w7IlsociLOHL+9HL3bcO9xeRqfsTivxB7ohF
- eprLOCjEnV9cL50VUBk0tdYcwY4K3bk2glVvi/Ymwso/N2FyIVQcJDQzan2dvxO1CKPf
- GZRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1727185083; x=1727789883;
- h=content-transfer-encoding:in-reply-to:autocrypt:from
- :content-language:references:cc:to:subject:user-agent:mime-version
- :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=9wsi/EYErs3wSK6Qpj4Nu7hgB2ma1UwFapYWcWsDBWM=;
- b=CSapTqhZ4zMFLP4BJ4EjqBxjmsUUfPmjrykTHwNgZnTacvc5ypLZkn96jIUnnRGD4v
- jbdJgqrKd7vM0GioQj/FVWHIPeyhBVRW5BACIhj1tTIKH6jbiJF90wIuoGOa/i8Jusjy
- XN8TSiGp7uEYUv4r69cpsbymGBu4MUIxE/a7fk+YKztiS6CgISU+YAw3ehelGGlV4mmD
- OK9ZZKYjGdlob+ShBb2GNH/8fG/MzO8LbqJuYklNBRoY2zGytlb5h5Qu1kzAw4rTFFJM
- 2/11ryIHq+e+6k9ncNPpl4pexM+Eb91bZRIAyOdugp6c5DeEVM23w1wncAB2HYLbHSSr
- tSBQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUtddHno72ywsw90tm9bwFOhBciuQMQ3QIYsTAGoofALXhIooFHnpRBMJ2f1E83LH2hLj1lR20gvTk=@lists.freedesktop.org,
- AJvYcCVwdcye7XYHRB1acQXNnF5G4pPQwsTfkCUMDLI4dXp9uE9y7IMi50nvv15hMTiOvDo37pAhhqHoOY6h@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyTXMewuzltzO4jkUctCb6tuShH8PlPtsVZ91wRXs53RjRmj1vW
- xoH22srU9qyFOFmaeTNKJ6m/nPbC+uyVO+4g1P0QSsBrZP60I4qc
-X-Google-Smtp-Source: AGHT+IErG+toQo3H9ixHw9tja9luKMML1dQa6uz2GYgsLd4KvFGpAndP91jNeELOYqFDYsVaQRRNXg==
-X-Received: by 2002:a05:6a00:a90:b0:718:dd80:c2bc with SMTP id
- d2e1a72fcca58-7199c9df5c5mr24512742b3a.19.1727185082723; 
- Tue, 24 Sep 2024 06:38:02 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c?
- ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
- by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-71afc835402sm1202366b3a.44.2024.09.24.06.38.00
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 24 Sep 2024 06:38:01 -0700 (PDT)
-Message-ID: <f3f8bec1-884b-46ac-82a6-6e5cb8840146@roeck-us.net>
-Date: Tue, 24 Sep 2024 06:37:59 -0700
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E9C810E6EC;
+ Tue, 24 Sep 2024 13:43:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1727185439; x=1758721439;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=avoZf59BDJUzY4KodOduyh1KNAaJlZp9OFsA2P8vNLg=;
+ b=E27z2yWM1vU4fnLju9vw2aXKzJa7AIarRhhoxhpMcydmZEC4JO5EUSoQ
+ Q/hVCrxTv8vtncPYWuiYidMquLiWcpfyfWXpNp4b9B6t029fB3XPaG7FC
+ ztVnGQKP6psKrHDOdWlgncQSgRKDDKvI1sWE//+efQTkQPzIVwzqC+6T2
+ GU5n3F5kf4fgQtxYHr2WZdFRYw5/QtBxAV7iKCrx20FDPof2GoQ0AdCWs
+ 6gRTfuAk/vXAMF3V7Ko+SRMie1mvOj/mY2/EvoBUQRUAwr3Lz3Tg7vRlf
+ k9BPsf1r8mDo9iMV/G8gOml/Gy7xeXWjbYmA3XaK3LqHtDmVcNMR304ok w==;
+X-CSE-ConnectionGUID: xnU8Nn01R6O8mzs2UmAIDQ==
+X-CSE-MsgGUID: Lr4pJZkbSqaY+/cROLhH1w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11205"; a="26275533"
+X-IronPort-AV: E=Sophos;i="6.10,254,1719903600"; d="scan'208";a="26275533"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2024 06:43:59 -0700
+X-CSE-ConnectionGUID: ZJoteYFsQMuesaOBKJGUEg==
+X-CSE-MsgGUID: E2+37tTFTfWkXR2LGgSqjg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,254,1719903600"; d="scan'208";a="71560721"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 24 Sep 2024 06:43:56 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 24 Sep 2024 16:43:55 +0300
+Date: Tue, 24 Sep 2024 16:43:55 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v2 0/9] drm/i915/display: platform identification with
+ display->is.<PLATFORM>
+Message-ID: <ZvLCG3fRYoblouwd@intel.com>
+References: <cover.1724092799.git.jani.nikula@intel.com>
+ <Zs-LdJYx_lVDt9PC@intel.com> <ZtCb5yc6KCy1S6bo@intel.com>
+ <87wmj14c0q.fsf@intel.com>
+ <m4uj2hvgkcuingb6rqqth7jc3qpa4g77xebi2wtyyt3a6hadqg@fufb76wcea6j>
+ <87ldzh41hb.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/2] drm: revert some framebuffer API tests
-To: Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org,
- Carlos Eduardo Gallo Filho <gcarlos@disroot.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Jeff Johnson <quic_jjohnson@quicinc.com>
-References: <cover.1726594684.git.jani.nikula@intel.com>
- <ZvKPJGQyZmdWNOmd@phenom.ffwll.local>
- <20240924-refined-nocturnal-starfish-2947b8@houat>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <20240924-refined-nocturnal-starfish-2947b8@houat>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <87ldzh41hb.fsf@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -137,43 +77,113 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 9/24/24 04:54, Maxime Ripard wrote:
-> +Guenter
+On Tue, Sep 24, 2024 at 04:37:04PM +0300, Jani Nikula wrote:
+> On Tue, 24 Sep 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> > On Tue, Sep 24, 2024 at 12:49:25PM GMT, Jani Nikula wrote:
+> >>On Thu, 29 Aug 2024, Ville Syrjälä <ville.syrjala@linux.intel.com> wrote:
+> >>> On Wed, Aug 28, 2024 at 04:41:24PM -0400, Rodrigo Vivi wrote:
+> >>>> On Mon, Aug 19, 2024 at 09:44:27PM +0300, Jani Nikula wrote:
+> >>>> > v2 of [1]. Please read the cover letter there.
+> >>>> >
+> >>>> > This addresses review comments and adds a few more commits on top, in particular
+> >>>> > the last one showcasing the approach.
+> >>>> >
+> >>>> > The main question remains, is this what we want?
+> >>>>
+> >>>> I don't know why, but the 'is' thing is still strange.
+> >>>>
+> >>>> I know I know... I'm bad with naming myself.
+> >>>>
+> >>>> I think about 'platform' but that get too big
+> >>>>
+> >>>> if (display->platform.BROADWELL)
+> >>>>
+> >>>> I think about 'gen' but then it is overloaded....
+> >>>>
+> >>>> then I think about 'ip' is worse...
+> >>>>
+> >>>> 'version'?
+> >>>>
+> >>>> 'name'?
+> >>>>
+> >>>> if (display->name.HASWELL)...
+> >>>>
+> >>>> ....
+> >>>>
+> >>>> But well, I like the overall simplification here in general.
+> >>>> Without a better name to suggest, I guess let's just move ahead...
+> >>>
+> >>> One slight concern with the is.foo is whether it complicates finding
+> >>> things with eg. cscope. But I suppose for platforms that doesn't matter
+> >>> all that much. For the has_foo stuff it'd be much more relevant.
+> >>
+> >>It does make finding things harder with cscope and gnu global, but git
+> >>grep for is.FOO is pretty accurate.
+> >>
+> >>> Anyways, can't think of anything particularly elegant myself either,
+> >>> so go ahead I guess.
+> >>
+> >>So I haven't yet. I just still have that slightly uneasy feeling about
+> >>whether this is a good thing or not. That doesn't usually make me shy
+> >>away from things, because you can fix stuff later, but getting this
+> >>wrong causes so much churn everywhere.
+> >>
+> >>The fact that it's not a macro makes it less flexible for future
+> >>changes. The display->is.FOO is somewhat legible, but could be
+> >>better. Would all lowercase make it better? I don't know.
+> >>
+> >>More alternatives? Not elegant for sure, but just alternatives:
+> >>
+> >>- Lowercase names:
+> >>
+> >>	if (display->is.rocketlake)
+> >
+> > what I really dislike is a struct named "is". Going full mesa-way would
+> > be slightly better IMO:
+> >
+> > 	if (display->is_rockelake)
+> >
+> > or
+> >
+> > 	if (display->platform_rocketlake)
+> >
+> > or
+> >
+> > 	if (display->platform.rocketlake)
 > 
-> On Tue, Sep 24, 2024 at 12:06:28PM GMT, Simona Vetter wrote:
->> On Tue, Sep 17, 2024 at 08:43:50PM +0300, Jani Nikula wrote:
->>> The tests consistently trigger WARNs in drm_framebuffer code. I'm not
->>> sure what the point is with type of belts and suspenders tests. The
->>> warnings *are* the way to flag erroneous API usage.
->>>
->>> Warnings in turn trigger failures in CI. Filtering the warnings are
->>> error prone, and, crucially, would also filter actual errors in case the
->>> kunit tests are not run.
->>>
->>> I acknowledge there may be complex test cases where you'd end up
->>> triggering warnings somewhere deep, but these are not it. These are
->>> simple.
->>>
->>> Revert the tests, back to the drawing board.
->>
->> Yeah I think long-term we might want a kunit framework so that we can
->> catch dmesg warnings we expect and test for those, without those warnings
->> actually going to dmesg. Similar to how the lockdep tests also reroute
->> locking validation, so that the expected positive tests don't wreak
->> lockdep for real.
->>
->> But until that exists, we can't have tests that splat in dmesg when they
->> work as intended.
+> Fair enough.
 > 
-> It should be pretty soon:
-> https://lore.kernel.org/dri-devel/20240403131936.787234-1-linux@roeck-us.net/
+> >From implementation POV having a sub-struct is easier than not.
 > 
-> I'm not sure what happened to that series, but it looks like everybody
-> was mostly happy with it?
+> >>
+> >>  Does not help with flexibility or cscope.
+> >>
+> >>- Lowercase macros for display, e.g. is_rocketlake().
+> >>
+> >>	if (is_rocketlake(display))
+> >>
+> >>- Macros based on just the platform name, e.g. ROCKETLAKE().
+> >>
+> >>	if (ROCKETLAKE(display))
+> >>
+> >>  or change IS_ to something else e.g. PLATFORM_ROCKETLAKE().
+> >>
+> >>	if (PLATFORM_ROCKETLAKE(display))
+> >>
+> >>  But that can get a bit long in some if ladders etc.
+> >
+> > Does it matter much? I think those would be the exception, particularly
+> > because platform checks are kind of rare these days.
 > 
+> Well, they're maybe the exception for new platforms, but i915 display
+> does have to deal with a lot of legacy with a lot of platform checks.
 
-Major subsystem maintainers did not provide any feedback at all, and then
-there came the "it is not perfect enough" feedback, so I gave up on it.
+There are a lot of annoying exceptions for new platforms
+as well. Feels like most features are doing some kind
+of weird leap frogging between integrated vs. discrete
+these days. So most new features seem to require an
+exception one way or the other :(
 
-Guenter
-
+-- 
+Ville Syrjälä
+Intel
