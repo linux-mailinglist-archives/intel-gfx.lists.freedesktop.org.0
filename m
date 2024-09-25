@@ -2,60 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EEBB986150
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Sep 2024 16:45:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C15339862ED
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Sep 2024 17:18:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 379F210EA2E;
-	Wed, 25 Sep 2024 14:45:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BDA110EA2D;
+	Wed, 25 Sep 2024 15:18:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IuUQVAla";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HGTALtUZ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F56110EA29
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Sep 2024 14:45:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A467910E14D;
+ Wed, 25 Sep 2024 15:18:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727275552; x=1758811552;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=QJ3Ia74trw6e9yYEHquXCksV/8nYF89J6fDR+nXnoMA=;
- b=IuUQVAlaV0BCeRpdRVu4nY3NoUPEXwsPHH+bwII+r2SqheaEerk7tPiQ
- hW2lp2mRTErzpUnGCStIQvAOjJUIR+8fHqEfD3YpMi3k5WDmha7yimLWC
- qkvcxcb29aZVh9dD1GpYjYM+7ZdoxHih84LzPXNzm4G6cRs2syaJZnLlh
- ab+lLSgtJD5p0lHzrbntuAkOGW7y+2s2iCaZRmyeAeOeWXnRx6zsxiO1f
- //bGSN9CyUQErRJYnvV3DgYR11fcUKfjb2EKvPDDxwNjnuECRUlVaasXo
- x+U+Oh7lTdLzOt1KwEAHAQzIzWnxCCzo0QuHG7WD+Dh6KuZLmbaRh7Jns Q==;
-X-CSE-ConnectionGUID: PXa7LdILQSK2ydzJVTFeAg==
-X-CSE-MsgGUID: 2rEda6t5R+2De5GD68LrbQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11206"; a="26470675"
-X-IronPort-AV: E=Sophos;i="6.10,257,1719903600"; d="scan'208";a="26470675"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2024 07:45:51 -0700
-X-CSE-ConnectionGUID: 1S1T/O/4ScSwwg1OZYtJjQ==
-X-CSE-MsgGUID: sD11GR1LQRKVZKq3DnI9vA==
+ t=1727277485; x=1758813485;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=I0suoG7GHmfD73CrkUDPKjvZhFICcm/G9SkkiX/7+F0=;
+ b=HGTALtUZ7WB7B+76WMXvx5W3yTTFR4q6fqBHeiEC4pWBmjUZM33vsPm8
+ Djtix+v3fYr151JeQ95ISNTJGTl4NF/sfoVolV/SJbCWqg4VAGCTL/047
+ Rm98WDahgmi5pE8XOkEVTJLha1g/DvbsFwWmoFwzt1mJinis9w7WeLnPK
+ txiduiGb5DbWfgXBcSCGMRSc0Z0cFsBWCR7teNK10ylkj4QFLohR55MPu
+ Wl8GjG0AKVHBvhEtipHRlEXYSiGG1p8XAA9ZoqsRIAVOPsa4g3dCTUYtF
+ zM1zPrC05cRuojnj+zGMLFk5+jKiQMfyIhFo9Gu70Oykagl6G+J1iIJsh Q==;
+X-CSE-ConnectionGUID: LxVd0eLBR46Pm+lcMMlPrw==
+X-CSE-MsgGUID: X1+2vKUzSg+bmsKJgD+dKw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11206"; a="48866834"
+X-IronPort-AV: E=Sophos;i="6.10,257,1719903600"; d="scan'208";a="48866834"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2024 08:17:47 -0700
+X-CSE-ConnectionGUID: qMS2JHUfSuGtYHRf6gc3bw==
+X-CSE-MsgGUID: ZeNS2yKoTBeMD+USkhYlNA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,257,1719903600"; d="scan'208";a="71941659"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 25 Sep 2024 07:45:48 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 25 Sep 2024 17:45:47 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: Bjorn Helgaas <bhelgaas@google.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-pci@vger.kernel.org
-Subject: [PATCH 6/6] drm/i915/pm: Use pci_dev->skip_bus_pm for hibernate vs.
- D3 workaround
-Date: Wed, 25 Sep 2024 17:45:26 +0300
-Message-ID: <20240925144526.2482-7-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.44.2
-In-Reply-To: <20240925144526.2482-1-ville.syrjala@linux.intel.com>
-References: <20240925144526.2482-1-ville.syrjala@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.10,257,1719903600"; d="scan'208";a="76612928"
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by orviesa003.jf.intel.com with ESMTP; 25 Sep 2024 08:17:45 -0700
+From: Arun R Murthy <arun.r.murthy@intel.com>
+To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: Arun R Murthy <arun.r.murthy@intel.com>
+Subject: [PATCHv4 0/7] Display Global Histogram
+Date: Wed, 25 Sep 2024 20:37:47 +0530
+Message-Id: <20240925150754.1876893-1-arun.r.murthy@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,76 +65,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Display histogram is a hardware functionality where a statistics for 'x'
+number of frames is generated to form a histogram data. This is notified
+to the user via histogram event. Compositor will then upon sensing the
+histogram event will read the histogram data from KMD via crtc property.
+A library can be developed to take this generated histogram as an
+input and apply some algorithm to generate an Image EnhancemenT(IET).
+This is further fed back to the KMD via crtc property. KMD will use this
+IET as a multiplicand factor to multiply with the incoming pixels at the
+end of the pipe which is then pushed onto the display.
 
-On some older laptops we have to leave the device in D0
-during hibernation, or else the BIOS just hangs and never
-finishes the hibernation.
+One such library Global Histogram Enhancement(GHE) will take the histogram
+as input and applied the algorithm to enhance the density and then
+return the enhanced factor. This library can be located @
+https://github.com/intel/ghe
 
-Currently we are achieving that by skipping the
-pci_set_power_state(D3). However we also need to call
-pci_save_state() ahead of time, or else
-pci_pm_suspend_noirq() will do the pci_set_power_state(D3)
-anyway.
+The corresponding mutter changes to enable/disable histogram, read the
+histogram data, communicate with the library and write the enhanced data
+back to the KMD is also pushed for review at https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3873
+The IGT changes for validating the histogram event and reading the
+histogram is also pushed for review at https://patchwork.freedesktop.org/series/135789/
 
-This is all rather ugly, and might cause us to deviate from
-standard pci pm behaviour in unknown ways since we always
-call pci_save_state() for any kind of suspend operation.
+Test-with: 20240705091333.328322-1-mohammed.thasleem@intel.com
 
-Stop calling pci_save_state()+pci_set_power_state() entirely
-(apart from the switcheroo paths) and instead set
-pci_dev->skip_bus_pm=true to prevent the D3 during hibernation
-on old machines. Apart from that we'll just let the normal
-pci pm code take care of everything for us.
+Arun R Murthy (7):
+  drm/i915/histogram: Define registers for histogram
+  drm/i915/histogram: Add support for histogram
+  drm/xe: Add histogram support to Xe builds
+  drm/i915/histogram: histogram interrupt handling
+  drm/i915/histogram: Add crtc properties for global histogram
+  drm/i915/histogram: histogram delay counter doesnt reset
+  drm/i915/histogram: Histogram changes for Display 20+
 
-Cc: Bjorn Helgaas <bhelgaas@google.com>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: linux-pci@vger.kernel.org
-Cc: intel-gfx@lists.freedesktop.org
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/i915_driver.c | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ drivers/gpu/drm/i915/display/intel_atomic.c   |   5 +
+ drivers/gpu/drm/i915/display/intel_crtc.c     | 169 ++++++++-
+ drivers/gpu/drm/i915/display/intel_crtc.h     |   5 +
+ drivers/gpu/drm/i915/display/intel_display.c  |  13 +
+ .../gpu/drm/i915/display/intel_display_irq.c  |   6 +-
+ .../drm/i915/display/intel_display_types.h    |  15 +
+ .../gpu/drm/i915/display/intel_histogram.c    | 352 ++++++++++++++++++
+ .../gpu/drm/i915/display/intel_histogram.h    |  38 ++
+ .../drm/i915/display/intel_histogram_reg.h    |  80 ++++
+ drivers/gpu/drm/i915/i915_reg.h               |   5 +-
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ 12 files changed, 686 insertions(+), 4 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_histogram.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_histogram.h
+ create mode 100644 drivers/gpu/drm/i915/display/intel_histogram_reg.h
 
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index c3e7225ea1ba..05948d00a874 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -1123,13 +1123,9 @@ static int i915_drm_suspend_noirq(struct drm_device *dev, bool hibernation)
- 	 * Lenovo Thinkpad X301, X61s, X60, T60, X41
- 	 * Fujitsu FSC S7110
- 	 * Acer Aspire 1830T
--	 *
--	 * pci_save_state() is needed to prevent driver/pci from
--	 * automagically putting the device into D3.
- 	 */
--	pci_save_state(pdev);
--	if (!(hibernation && GRAPHICS_VER(dev_priv) < 6))
--		pci_set_power_state(pdev, PCI_D3hot);
-+	if (hibernation && GRAPHICS_VER(dev_priv) < 6)
-+		pdev->skip_bus_pm = true;
- 
- 	return 0;
- }
-@@ -1137,6 +1133,7 @@ static int i915_drm_suspend_noirq(struct drm_device *dev, bool hibernation)
- int i915_driver_suspend_switcheroo(struct drm_i915_private *i915,
- 				   pm_message_t state)
- {
-+	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
- 	int error;
- 
- 	if (drm_WARN_ON_ONCE(&i915->drm, state.event != PM_EVENT_SUSPEND &&
-@@ -1158,6 +1155,9 @@ int i915_driver_suspend_switcheroo(struct drm_i915_private *i915,
- 	if (error)
- 		return error;
- 
-+	pci_save_state(pdev);
-+	pci_set_power_state(pdev, PCI_D3hot);
-+
- 	return 0;
- }
- 
 -- 
-2.44.2
+2.25.1
 
