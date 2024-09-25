@@ -2,54 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CA1A985357
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Sep 2024 08:59:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B0E5985569
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Sep 2024 10:25:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B966510E028;
-	Wed, 25 Sep 2024 06:59:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF65F10E7BB;
+	Wed, 25 Sep 2024 08:25:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HrMLNPAh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OrEGRPzL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 616D110E028
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Sep 2024 06:59:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 956B910E7BB;
+ Wed, 25 Sep 2024 08:25:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727247579; x=1758783579;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=3cl0/Q8fR9N6KX6Bi7HEaPyBT9ZqbuJVfhNn2vvM1To=;
- b=HrMLNPAhkgbHKqXV9P6m6FV+3xBq7QLmj4QnQ4a4VdZ/ABgVGghAuOjm
- ZoDmItVfTWlVa9yJ0kwrTHxPHiDKKeeXvPivUfoOvISf2+3l0u4wgSgtZ
- dcr61fmwoYNms5Nv0b4IhbRY8cky1rB5/F7bsSXuohOdzn3B6aZUVMFX0
- riPNGTOCB0aH9J9xki4eaiF2/8oQHC8Wqw7925ur9l4BJ6QuCMnQwNWB7
- 6xrBcuxWMqh0zI/cI1iMrzCcimarh708mv5kNKGHfKETc3c2ExLemd32c
- 9hC3aVZkzPQi33Gm+eZKvXIxUIuP1E+KoHnRMp/UmxI/X24yxhm4juPPV A==;
-X-CSE-ConnectionGUID: bSd7VUGRQry5PAw1iF2FdA==
-X-CSE-MsgGUID: oh3416yvRPO93Db14QFzPg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11205"; a="48809159"
-X-IronPort-AV: E=Sophos;i="6.10,256,1719903600"; d="scan'208";a="48809159"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2024 23:59:24 -0700
-X-CSE-ConnectionGUID: SiiV4Pg8QEu5g/YH4P4Mug==
-X-CSE-MsgGUID: lkh8lbsQRYCRDUqXZE60vQ==
+ t=1727252752; x=1758788752;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=SAJ16mz+DDaQ++pt/h+jvlEfdXUK7e8PqJ5E1/ivQ2E=;
+ b=OrEGRPzL8j9wgQO2+XBI2yk8ExdrM5FidhOLqpQC1JiBKtyLb9ZxDum7
+ 7LQ2gm7eoypX+Lx+vDNLoMbOuHVah+sotQFneiuqfSvc0Nu2P7AlG1nzr
+ KSH6ktkF/v67bQz87sP8IijOR8us6IvD0pGH5QkPbh/PRR8olynbrLVUo
+ PZrj047E/YNdLrOb/H/JptG7oHESnB/5FMfh6zW159zgeQcC0/9sd7VZo
+ 5bpdXGBUtP2DkM7yCT+92axtFMvPz7buxm+Oq8e6hNNGuJeLlboQteHXb
+ I8GVatrtzRFASvu1zkFVq3YEnFW9MhSjQSkXQliJD0Y3TiLdMqexKWRka g==;
+X-CSE-ConnectionGUID: VXtunTH+QYyimZYpXqegdg==
+X-CSE-MsgGUID: HJrumJDvQwijaC0AjVyYKg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11205"; a="30174746"
+X-IronPort-AV: E=Sophos;i="6.10,256,1719903600"; d="scan'208";a="30174746"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2024 01:25:39 -0700
+X-CSE-ConnectionGUID: TMGhIv2wSN+SUhcA/a/TPQ==
+X-CSE-MsgGUID: cU6azY/9Q4i16DBCN3jsPg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,256,1719903600"; d="scan'208";a="71548371"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by orviesa010.jf.intel.com with ESMTP; 24 Sep 2024 23:59:22 -0700
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com,
-	Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH] drm/i915/hdcp: Retry first read and writes to downstream
-Date: Wed, 25 Sep 2024 12:26:58 +0530
-Message-ID: <20240925065658.1269767-1-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.43.2
+X-IronPort-AV: E=Sophos;i="6.10,256,1719903600"; d="scan'208";a="75801746"
+Received: from sschumil-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.16])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2024 01:25:37 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: "Srikanth V, NagaVenkata" <nagavenkata.srikanth.v@intel.com>
+Subject: RE: [PATCHv2 2/3] drm/i915/dp: read Aux RD interval just before
+ reading the FFE preset
+In-Reply-To: <IA0PR11MB730764C8A2E8453527F25CFABA692@IA0PR11MB7307.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240924061358.1725306-1-arun.r.murthy@intel.com>
+ <20240924061358.1725306-3-arun.r.murthy@intel.com>
+ <871q195w77.fsf@intel.com>
+ <IA0PR11MB730764C8A2E8453527F25CFABA692@IA0PR11MB7307.namprd11.prod.outlook.com>
+Date: Wed, 25 Sep 2024 11:25:33 +0300
+Message-ID: <877cb03zsy.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,66 +74,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Retry the first read and write to downstream at least 10 times
-with a 50ms delay if not hdcp2 capable. The reason being that
-during suspend resume Dock usually keep the HDCP2 registers inaccesible
-causing AUX error. This wouldn't be a big problem if the userspace
-just kept retrying with some delay while it continues to play low
-values content but most userpace applications end up throwing an error
-when it receives one from KMD. This makes sure we give the dock
-and the sink devices to complete its power cycle and then try HDCP
-authentication.
+On Wed, 25 Sep 2024, "Murthy, Arun R" <arun.r.murthy@intel.com> wrote:
+>> > +		/*
+>> > +		 * During LT, Tx shall read DPCD 02216h before DPCD 00202h
+>> to 00207h and
+>> > +		 * 0200Ch through 0200Fh.
+>> > +		 */
+>> 
+>> I really like comments that are actual helpful sentences. Why do I I need to look
+>> up what 02216h and 00202h-00207h are? What's wrong with the original
+>> comment?
+>> 
+> Original comment was wrong "read delay before reading link status"
+> In the updated comment will replace the registers with meaningful name.
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_hdcp.c | 26 +++++++++++++++++------
- 1 file changed, 19 insertions(+), 7 deletions(-)
+If you replace the registers with meaningful names, won't you end up
+with "DPCD 02216h" -> "delay" and "DPCD 00202h to 00207h" -> "link
+status"?
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index 2afa92321b08..5f2383c219e8 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -1512,7 +1512,7 @@ static int hdcp2_authentication_key_exchange(struct intel_connector *connector)
- 	} msgs;
- 	const struct intel_hdcp_shim *shim = hdcp->shim;
- 	size_t size;
--	int ret;
-+	int ret, i;
- 
- 	/* Init for seq_num */
- 	hdcp->seq_num_v = 0;
-@@ -1522,13 +1522,25 @@ static int hdcp2_authentication_key_exchange(struct intel_connector *connector)
- 	if (ret < 0)
- 		return ret;
- 
--	ret = shim->write_2_2_msg(connector, &msgs.ake_init,
--				  sizeof(msgs.ake_init));
--	if (ret < 0)
--		return ret;
-+	for (i = 0; i <= 10; i++) {
-+		if (!intel_hdcp2_get_capability(connector)) {
-+			msleep(50);
-+			continue;
-+		}
-+
-+		ret = shim->write_2_2_msg(connector, &msgs.ake_init,
-+					  sizeof(msgs.ake_init));
-+		if (ret < 0)
-+			continue;
-+
-+		ret = shim->read_2_2_msg(connector, HDCP_2_2_AKE_SEND_CERT,
-+					 &msgs.send_cert, sizeof(msgs.send_cert));
-+		if (ret < 0)
-+			continue;
-+		else
-+			break;
-+	}
- 
--	ret = shim->read_2_2_msg(connector, HDCP_2_2_AKE_SEND_CERT,
--				 &msgs.send_cert, sizeof(msgs.send_cert));
- 	if (ret < 0)
- 		return ret;
- 
+BR,
+Jani.
+
+
+
+
+>
+> Thanks and Regards,
+> Arun R Murthy
+> --------------------
+
 -- 
-2.43.2
-
+Jani Nikula, Intel
