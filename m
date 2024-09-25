@@ -2,71 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E77E8985D81
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Sep 2024 15:13:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF1B1985FA9
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Sep 2024 16:03:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E194010E82B;
-	Wed, 25 Sep 2024 13:12:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCDCB10E0EC;
+	Wed, 25 Sep 2024 14:03:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Rpai7kFb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V6D8Own2";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B3D0F10E0CD;
- Wed, 25 Sep 2024 13:12:58 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id EBFD65C5D54;
- Wed, 25 Sep 2024 13:12:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0B5AC4CEC3;
- Wed, 25 Sep 2024 13:12:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1727269977;
- bh=OIMDdFTlJsnASVoAp+EsACgQsHVl7LYIUb3s9QES22A=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=Rpai7kFbFqJK/A+vqcqiNbzZxs0SldalIRrJJmUA9Yrc9qDKst6yf4d6o2YvgNZ2J
- f2E46JrVHU2bKSaHqSOMWNrmar8Jlloba+dyEEoEslAuxAdqL8rjSe2S8ELqQuz2Ar
- 8uHw1dg9ET4dgRa92IbAhmZ6cxtwsHNFQ6qSBtmmP+idnXaWsP0S9y19RH2/IfvMNs
- Sv0KQJV7tUKvwzaoqkEAI0WJDcNKxGR8OwDkH2tkneJozns29Rbtwbg16mGzzpjtII
- XCINibq//ur9JlBWBMYb+q1CJsBnv2eUkU3NgSD1Z/NplIN6nVfjX+xNTEcgJPmFzg
- wKYQ6D1lLkOug==
-Date: Wed, 25 Sep 2024 15:12:53 +0200
-From: Mark Brown <broonie@kernel.org>
-To: "Usyskin, Alexander" <alexander.usyskin@intel.com>
-Cc: "Winkler, Tomas" <tomas.winkler@intel.com>,
- "De Marchi, Lucas" <lucas.demarchi@intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- "Lubart, Vitaly" <vitaly.lubart@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH v6 01/12] spi: add driver for intel graphics on-die spi
- device
-Message-ID: <ZvQMVeO4ACk5BNT1@finisterre.sirena.org.uk>
-References: <20240916134928.3654054-1-alexander.usyskin@intel.com>
- <20240916134928.3654054-2-alexander.usyskin@intel.com>
- <ZurWk_eXSQndgA4Y@finisterre.sirena.org.uk>
- <PH7PR11MB76057D2326D436CA9749A113E5632@PH7PR11MB7605.namprd11.prod.outlook.com>
- <Zuv9qsWJQhx7rbhJ@finisterre.sirena.org.uk>
- <PH7PR11MB760505A11C7A41DAB0359184E56D2@PH7PR11MB7605.namprd11.prod.outlook.com>
- <ZvFj1zyzSYmbNwmH@finisterre.sirena.org.uk>
- <CY5PR11MB6366C8C6AB07CFEAC20323F1ED692@CY5PR11MB6366.namprd11.prod.outlook.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93DD910E0EC
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Sep 2024 14:03:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1727272990; x=1758808990;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=HqUXs0SOrYLk59+zUjMubuB6HmbW1noD7MjXOuhYOz0=;
+ b=V6D8Own2R/MzLRq7tekwCb4t1XE2Z01D93kyV1dWS8l8DU7jG0hGulqq
+ VDVk7o5jFnlfJQF3aMuImsol5PSNUOcfPIQcDBejKXAsyZJdKEYU1UsWO
+ 0dgbtHPuH7ffaSLAKHfcBqvAbmdEOj/xIlV5yqXZwKRgB1kMJMbkiUUul
+ CbNPeyR7/hkYADvtQ8g3BbyZ/TZILgV6B21UF+JFKvr5JMYJim8gwX1Mg
+ HEfJ2YHMPK7HJ2STEM/awWTF/+XCNyJb48zN7RqynURk3Y3K580Ykp234
+ 8WH73wR1GTkmKxtwuKA2OC0pRQcsUS5B0vgCzUW4BfLhcOBGwMrbH/7uG Q==;
+X-CSE-ConnectionGUID: MUH1fMdCR+yiPv+KN50mXw==
+X-CSE-MsgGUID: 2ykXDa2DRUqBj79k0URWUw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11206"; a="51738313"
+X-IronPort-AV: E=Sophos;i="6.10,257,1719903600"; d="scan'208";a="51738313"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2024 07:03:09 -0700
+X-CSE-ConnectionGUID: A2VIUam+SpC8MyuidwqZUg==
+X-CSE-MsgGUID: yV5ZpzBvQ4imqq/TPTBKCA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,257,1719903600"; d="scan'208";a="71929434"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 25 Sep 2024 07:03:06 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 25 Sep 2024 17:03:06 +0300
+Date: Wed, 25 Sep 2024 17:03:06 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, matthew.d.roper@intel.com
+Subject: Re: [PATCH] drm/i915: Remove unused underrun interrupt bits
+Message-ID: <ZvQYGgYQcJnXl_wg@intel.com>
+References: <20240925111802.2227604-1-sai.teja.pottumuttu@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="IxLYBwv9klWVSM8K"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <CY5PR11MB6366C8C6AB07CFEAC20323F1ED692@CY5PR11MB6366.namprd11.prod.outlook.com>
-X-Cookie: Editing is a rewording activity.
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240925111802.2227604-1-sai.teja.pottumuttu@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,48 +70,126 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Wed, Sep 25, 2024 at 04:48:02PM +0530, Sai Teja Pottumuttu wrote:
+> Underrun recovery was defeatured and was never brought into usage.
+> Thus we can safely remove the interrupt register bits introduced by the
+> feature for detecting soft and hard underruns.
+> 
+> Signed-off-by: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
+> ---
+>  .../gpu/drm/i915/display/intel_display_irq.c  | 19 +++----------------
+>  .../gpu/drm/i915/display/intel_display_irq.h  |  1 -
+>  .../drm/i915/display/intel_fifo_underrun.c    |  5 ++---
 
---IxLYBwv9klWVSM8K
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+There's a lot more related stuff in that file.
 
-On Wed, Sep 25, 2024 at 12:31:34PM +0000, Usyskin, Alexander wrote:
+>  drivers/gpu/drm/i915/i915_reg.h               |  2 --
+>  4 files changed, 5 insertions(+), 22 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
+> index 6878dde85031..9d8a101b2415 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
+> @@ -1031,17 +1031,6 @@ static u32 gen8_de_pipe_flip_done_mask(struct drm_i915_private *i915)
+>  		return GEN8_PIPE_PRIMARY_FLIP_DONE;
+>  }
+>  
+> -u32 gen8_de_pipe_underrun_mask(struct drm_i915_private *dev_priv)
+> -{
+> -	u32 mask = GEN8_PIPE_FIFO_UNDERRUN;
+> -
+> -	if (DISPLAY_VER(dev_priv) >= 13)
+> -		mask |= XELPD_PIPE_SOFT_UNDERRUN |
+> -			XELPD_PIPE_HARD_UNDERRUN;
+> -
+> -	return mask;
+> -}
+> -
+>  static void gen8_read_and_ack_pch_irqs(struct drm_i915_private *i915, u32 *pch_iir, u32 *pica_iir)
+>  {
+>  	u32 pica_ier = 0;
+> @@ -1187,7 +1176,7 @@ void gen8_de_irq_handler(struct drm_i915_private *dev_priv, u32 master_ctl)
+>  		if (iir & GEN8_PIPE_CDCLK_CRC_DONE)
+>  			hsw_pipe_crc_irq_handler(dev_priv, pipe);
+>  
+> -		if (iir & gen8_de_pipe_underrun_mask(dev_priv))
+> +		if (iir & GEN8_PIPE_FIFO_UNDERRUN)
+>  			intel_cpu_fifo_underrun_irq_handler(dev_priv, pipe);
+>  
+>  		fault_errors = iir & gen8_de_pipe_fault_mask(dev_priv);
+> @@ -1607,8 +1596,7 @@ void gen8_irq_power_well_post_enable(struct drm_i915_private *dev_priv,
+>  				     u8 pipe_mask)
+>  {
+>  	struct intel_uncore *uncore = &dev_priv->uncore;
+> -	u32 extra_ier = GEN8_PIPE_VBLANK |
+> -		gen8_de_pipe_underrun_mask(dev_priv) |
+> +	u32 extra_ier = GEN8_PIPE_VBLANK | GEN8_PIPE_FIFO_UNDERRUN |
+>  		gen8_de_pipe_flip_done_mask(dev_priv);
+>  	enum pipe pipe;
+>  
+> @@ -1797,8 +1785,7 @@ void gen8_de_irq_postinstall(struct drm_i915_private *dev_priv)
+>  			GEN12_DSB_INT(INTEL_DSB_2);
+>  
+>  	de_pipe_enables = de_pipe_masked |
+> -		GEN8_PIPE_VBLANK |
+> -		gen8_de_pipe_underrun_mask(dev_priv) |
+> +		GEN8_PIPE_VBLANK | GEN8_PIPE_FIFO_UNDERRUN |
+>  		gen8_de_pipe_flip_done_mask(dev_priv);
+>  
+>  	de_port_enables = de_port_masked;
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.h b/drivers/gpu/drm/i915/display/intel_display_irq.h
+> index 093e356a2894..1b3f559a0638 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_irq.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.h
+> @@ -33,7 +33,6 @@ void ibx_disable_display_interrupt(struct drm_i915_private *i915, u32 bits);
+>  
+>  void gen8_irq_power_well_post_enable(struct drm_i915_private *i915, u8 pipe_mask);
+>  void gen8_irq_power_well_pre_disable(struct drm_i915_private *i915, u8 pipe_mask);
+> -u32 gen8_de_pipe_underrun_mask(struct drm_i915_private *i915);
+>  
+>  int i8xx_enable_vblank(struct drm_crtc *crtc);
+>  int i915gm_enable_vblank(struct drm_crtc *crtc);
+> diff --git a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
+> index 745ce22afb89..fb01c128e1c5 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
+> @@ -209,7 +209,6 @@ static void bdw_set_fifo_underrun_reporting(struct drm_device *dev,
+>  					    enum pipe pipe, bool enable)
+>  {
+>  	struct drm_i915_private *dev_priv = to_i915(dev);
+> -	u32 mask = gen8_de_pipe_underrun_mask(dev_priv);
+>  
+>  	if (enable) {
+>  		if (DISPLAY_VER(dev_priv) >= 11)
+> @@ -217,9 +216,9 @@ static void bdw_set_fifo_underrun_reporting(struct drm_device *dev,
+>  				       ICL_PIPESTATUS(dev_priv, pipe),
+>  				       icl_pipe_status_underrun_mask(dev_priv));
+>  
+> -		bdw_enable_pipe_irq(dev_priv, pipe, mask);
+> +		bdw_enable_pipe_irq(dev_priv, pipe, GEN8_PIPE_FIFO_UNDERRUN);
+>  	} else {
+> -		bdw_disable_pipe_irq(dev_priv, pipe, mask);
+> +		bdw_disable_pipe_irq(dev_priv, pipe, GEN8_PIPE_FIFO_UNDERRUN);
+>  	}
+>  }
+>  
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index 7396fc630e29..c379d875f432 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -2491,9 +2491,7 @@
+>  #define  GEN12_PIPEDMC_INTERRUPT	REG_BIT(26) /* tgl+ */
+>  #define  GEN12_PIPEDMC_FAULT		REG_BIT(25) /* tgl+ */
+>  #define  MTL_PIPEDMC_ATS_FAULT		REG_BIT(24) /* mtl+ */
+> -#define  XELPD_PIPE_SOFT_UNDERRUN	REG_BIT(22) /* adl/dg2+ */
+>  #define  GEN11_PIPE_PLANE7_FAULT	REG_BIT(22) /* icl/tgl */
+> -#define  XELPD_PIPE_HARD_UNDERRUN	REG_BIT(21) /* adl/dg2+ */
+>  #define  GEN11_PIPE_PLANE6_FAULT	REG_BIT(21) /* icl/tgl */
+>  #define  GEN11_PIPE_PLANE5_FAULT	REG_BIT(20) /* icl+ */
+>  #define  GEN12_PIPE_VBLANK_UNMOD	REG_BIT(19) /* tgl+ */
+> -- 
+> 2.34.1
 
-> > It's locking/refcounting stuff that looks nothing like any other SPI
-> > controller driver.  Even if it works it's obviously fragile since the
-> > driver does surprising things which break assumptions that will be made
-> > by people not looking at this specific driver, and causes people to have
-> > to spend more effort figuring out what you're doing.  If there is any
-> > benefit to doing this then open coding it in one specific driver is
-> > clearly not the right place to do it.
-
-> The reason for all this refcounting that the device itself is discrete card and
-> the SPI memory backend can disappear at any moment leaving open connections dangling.
-> Refcount ensures that object behind the MTD device will be freed only
-> when the last user-space is disconnected.
-
-> Is there any other model that can keep the object alive in this situation?
-
-If devices connected to the SPI controller can be hotplugged then those
-devices should be registered and unregistered like any other spi_device
-would be, the driver core and relevant subsystems will deal with the
-lifetime issues.  This is all invisible to the SPI controllers, the fact
-that things are being open coded in the driver should be a big warning
-sign.
-
---IxLYBwv9klWVSM8K
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmb0DFQACgkQJNaLcl1U
-h9DEjAf/SC1Qnce4ii9z5NTgI51Ab3JxA+Hpd+Z77geEqUhtXlgSSAuXqgD/LKV1
-iUxsI88Kuio6T0Lz/aQggw7O013vRdDteKwc24O1QN4EZU7XUEpDxZould5tZNT1
-2QU4ALZjCmukRxO9f9Kztzrnqwc6q198uTpZ8OImX88+AaJLnJYiYlOmWE5mIquV
-b6vo5T3SCpZ1w2SSoTRD15pgmKsNfkeErx1XKaRLILFW54Nixc62t5yY+vy9l+9N
-p3jlZlQB3w/iHKMmsQCq5EEoFoO73AClsyRadGK25wbAVRDpCxzAWEvVHR0OSJbn
-fHRwpLhklHU+xwrEBTkBbLhdlUl5Og==
-=U0pV
------END PGP SIGNATURE-----
-
---IxLYBwv9klWVSM8K--
+-- 
+Ville Syrjälä
+Intel
