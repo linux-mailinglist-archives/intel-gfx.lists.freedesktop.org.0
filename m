@@ -2,66 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC3F998512D
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Sep 2024 05:04:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE8439851A8
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Sep 2024 05:54:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4692610E2C7;
-	Wed, 25 Sep 2024 03:04:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9309710E73E;
+	Wed, 25 Sep 2024 03:54:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fp5EHASl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jCfMYs8Z";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02D8010E128;
- Wed, 25 Sep 2024 03:04:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 297A810E2C8;
+ Wed, 25 Sep 2024 03:54:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727233496; x=1758769496;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=U6xk5S9p06NkLyiZ381kdyNXkjsHk/mkRAUSZhnbqEA=;
- b=Fp5EHASlSIGsF768iUgsBjKxAdSDbE9qQ5LnaHz2YUdm3v0PEGPQsE13
- Og76bEnkMiJWOx8qlDZXNHFTCI7O9VnksMk0Sv3O8rDEAIutQlkn8stoN
- YWLo2av0mgG6SorsDW6EMZXyZcP5mdLUj7kz4SGeCdlgTRdlsmDlwHdsW
- alHpNrhrB9CyjTakroaRFyYoZtEF7I2vTsdOHLoxEstaPNsNNJ+BDaTtW
- vQq5wsgYLLQP6UcGVQzWg7kS3fMtNroYG1koqnObWvn6gV818vwbNr8s3
- +Va+tDcfDGIoIUOgLWkBv7eCbXep5t6fn1t0kNeQIdr77gNLRFZXYybQg Q==;
-X-CSE-ConnectionGUID: BonIcugIRyqoNM0057wx2A==
-X-CSE-MsgGUID: FebXmvLkSBig7Zc3wf6arg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11205"; a="29150160"
-X-IronPort-AV: E=Sophos;i="6.10,256,1719903600"; d="scan'208";a="29150160"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2024 20:04:55 -0700
-X-CSE-ConnectionGUID: qCa+3aFTTa6G0+uEJ0k+AA==
-X-CSE-MsgGUID: EnDJRUkkTly9Azaj8w6/zw==
+ t=1727236456; x=1758772456;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ebE+qg9dfnIbblvp5YNb6QkYkUu8WDLu0Q013ZYzUYU=;
+ b=jCfMYs8Zk+HYJNXCPMD0aqWn5c7O234dTseFV1SkAPjB8F4fR7tKUjdj
+ +xOcjAqbqVogr7LQhJrF/6tZek+Lyv68Vu0lm1qQlNDFI1YaGU08wr/UY
+ 4qG9wQv8WudYPgSV5yiJnpfOF9l+ahpZF5Kmba6x2Mteb1fDydKMOEx5E
+ CCVkH3QdOC7XnC8Qa+ay7ldjr3kmpSVEhRR8HY03zi/3yoAKjIRIDBCxt
+ hF8EQEl9BDuPVbd3WQQYM17W5f3lnjG2IjtQ86yVMCFH4KTNNViLIKXWx
+ V4mSvvN4hf2+ePg6oOoLMdXvpRML15Hn/O96wp9iYT2BoqePFUprZlRF3 A==;
+X-CSE-ConnectionGUID: wkWwi8FvQ4OaoQVXTxbNEw==
+X-CSE-MsgGUID: B15Ir/34RZu4ZxT5qBbLKA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11205"; a="37640815"
+X-IronPort-AV: E=Sophos;i="6.10,256,1719903600"; d="scan'208";a="37640815"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2024 20:54:15 -0700
+X-CSE-ConnectionGUID: gD7ydhkETJut01Bde+6rJw==
+X-CSE-MsgGUID: bOyo3blDSj+LsUbIcExnLQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,256,1719903600"; d="scan'208";a="102391754"
-Received: from black.fi.intel.com ([10.237.72.28])
- by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Sep 2024 20:04:47 -0700
-Date: Wed, 25 Sep 2024 06:04:43 +0300
-From: Raag Jadav <raag.jadav@intel.com>
-To: Simona Vetter <simona.vetter@ffwll.ch>
-Cc: airlied@gmail.com, simona@ffwll.ch, lucas.demarchi@intel.com,
- thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
- jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- tursulin@ursulin.net, lina@asahilina.net,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
- francois.dugast@intel.com, aravind.iddamsetty@linux.intel.com,
- anshuman.gupta@intel.com, andi.shyti@linux.intel.com,
- andriy.shevchenko@linux.intel.com, matthew.d.roper@intel.com
-Subject: Re: [PATCH v6 1/4] drm: Introduce device wedged event
-Message-ID: <ZvN9yw5AYtxudNne@black.fi.intel.com>
-References: <20240923035826.624196-1-raag.jadav@intel.com>
- <20240923035826.624196-2-raag.jadav@intel.com>
- <ZvKhIQGnGrcPURhD@phenom.ffwll.local>
+X-IronPort-AV: E=Sophos;i="6.10,256,1719903600"; d="scan'208";a="71781142"
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by fmviesa008.fm.intel.com with ESMTP; 24 Sep 2024 20:54:14 -0700
+From: Arun R Murthy <arun.r.murthy@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: Arun R Murthy <arun.r.murthy@intel.com>
+Subject: [PATCHv2 0/3] Some correction in the DP Link Training sequence
+Date: Wed, 25 Sep 2024 09:14:29 +0530
+Message-Id: <20240925034432.1777029-1-arun.r.murthy@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZvKhIQGnGrcPURhD@phenom.ffwll.local>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,46 +65,15 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Sep 24, 2024 at 01:23:13PM +0200, Simona Vetter wrote:
-> On Mon, Sep 23, 2024 at 09:28:23AM +0530, Raag Jadav wrote:
-> > Introduce device wedged event, which will notify userspace of wedged
-> > (hanged/unusable) state of the DRM device through a uevent. This is
-> > useful especially in cases where the device is no longer operating as
-> > expected and has become unrecoverable from driver context.
-> > 
-> > Purpose of this implementation is to provide drivers a way to recover
-> > through userspace intervention. Different drivers may have different
-> > ideas of a "wedged device" depending on their hardware implementation,
-> > and hence the vendor agnostic nature of the event. It is up to the drivers
-> > to decide when they see the need for recovery and how they want to recover
-> > from the available methods.
-> > 
-> > Current implementation defines three recovery methods, out of which,
-> > drivers can choose to support any one or multiple of them. Preferred
-> > recovery method will be sent in the uevent environment as WEDGED=<method>.
-> > Userspace consumers (sysadmin) can define udev rules to parse this event
-> > and take respective action to recover the device.
-> > 
-> >  Method    | Consumer expectations
-> > -----------|-----------------------------------
-> >  rebind    | unbind + rebind driver
-> >  bus-reset | unbind + reset bus device + rebind
-> >  reboot    | reboot system
-> > 
-> > v4: s/drm_dev_wedged/drm_dev_wedged_event
-> >     Use drm_info() (Jani)
-> >     Kernel doc adjustment (Aravind)
-> > v5: Send recovery method with uevent (Lina)
-> > v6: Access wedge_recovery_opts[] using helper function (Jani)
-> >     Use snprintf() (Jani)
-> > 
-> > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-> 
-> Finally caught up on mail, so dropping this here again: Please also add a
-> small section to drm-uapi.rst, pointing at these functions. Just the
-> kerneldoc for developers is kinda not enough I think.
 
-Would you prefer a new section or have the existing one (Device reset which
-looks somewhat similar but not entirely) modified?
+Arun R Murthy (3):
+  drm/i915/dp: use fsleep instead of usleep_range for LT
+  drm/i915/dp: read Aux RD interval just before setting the FFE preset
+  drm/i915/dp: Include the time taken by AUX Tx for timeout
 
-Raag
+ .../drm/i915/display/intel_dp_link_training.c | 22 +++++++++----------
+ 1 file changed, 11 insertions(+), 11 deletions(-)
+
+-- 
+2.25.1
+
