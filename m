@@ -2,73 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20584985594
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Sep 2024 10:36:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F6249855D3
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Sep 2024 10:48:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38AD710E023;
-	Wed, 25 Sep 2024 08:36:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DCB0D10E7CC;
+	Wed, 25 Sep 2024 08:48:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="XMduDt/6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kZ/1p5/i";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com
- [209.85.221.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 173B110E7C7
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Sep 2024 08:36:49 +0000 (UTC)
-Received: by mail-wr1-f52.google.com with SMTP id
- ffacd0b85a97d-374c4d4f219so3550741f8f.1
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Sep 2024 01:36:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1727253407; x=1727858207; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
- :to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=24TAtbArscHpN8Q5Ya3k/SGwY5zHz1+8qMhqhIxqNPQ=;
- b=XMduDt/60IKOf5K01QG6TXpME3WFJ4UFi0mcJv4ST8+R6tgE8uNo6KXn68prKQVCf/
- x+4R1uzWCoH3aVn1BpOi097mg01mkZSN3r48LXJ5x4RlD47m0rguFpJ7tje+Ag05B4HQ
- H7K33BXHfmJ6j5xL16eRC/EdDvTDdoFF4/itZ7LO1tX8EdbTqz1yc4jLkBZgRLgqv0H6
- T88Tcl3KoBPU71+ozdZuhFuH5w+6g+GKx7m6ZRXK4the6oxjeYcDt7/iQ03KPv9Sme8a
- Y1giEtHBy+UOhsmOKCEU4Kzsjzp8H9BCsdZfO43drJ2CqVD2Cl4ZqQJejRUlIXIenfmg
- z6iA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1727253407; x=1727858207;
- h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
- :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=24TAtbArscHpN8Q5Ya3k/SGwY5zHz1+8qMhqhIxqNPQ=;
- b=uc5d7v5jl9473HcUou9aNjmotsaLrzgJzkI68mmTYFqyQGDaQjEiQH9Sz3hKv86cU+
- 6WWSj9qeFyu/JLqDyNPORRrEHahcaCE6mcI3VlXCTGa8Fv5RMtN49kCt+G+qWfpf9iAd
- ISRqXBiQMJEXAZWo9+/1eMpEfmZRMTMjFyYsGtUtmZAIORMVvLg76Hf63CN2n10VCqWD
- cVUVAYxnxyBbcXBqSFf9+/9NaA/Y89VlQSbLKAeH3uLcjxOMFiBKa2HwGUFKrL942ceX
- VLQ875Rp6gLw+c8eZhH4WS7u8tb4kHXKfUbqsFeBx6tfEM40LNh0mevI9qhVGd5GUbi7
- hfrA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVRcmSQTaW9XbA8E1MwksSo+CdVhHksikYAMx0tTmNclj+Hlxaf+kx7wkyvmsfe/iFpsIR23eZUvL4=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YztrnmRqaKQlmUw9sjxqcaObZwBI1lxLsOLcmHtBMk8Y2TCDrRP
- JYmGVzMv/WZVnxC2QAjnT+JHA5nvh5lyoWPn9xT80AwyAubB2bAKcwkL1pnbyAM=
-X-Google-Smtp-Source: AGHT+IGxLktfoNE2e2EE4CrdWmjS2fFk7LgFAgB99YMRslWo9edoYR8GVryJlZM+pVzqAnkQDLGUXA==
-X-Received: by 2002:a5d:4946:0:b0:374:c1a9:b989 with SMTP id
- ffacd0b85a97d-37cc2464e4fmr1398488f8f.1.1727253407268; 
- Wed, 25 Sep 2024 01:36:47 -0700 (PDT)
-Received: from localhost ([196.207.164.177]) by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-37cbc31f33bsm3383526f8f.97.2024.09.25.01.36.46
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 25 Sep 2024 01:36:46 -0700 (PDT)
-Date: Wed, 25 Sep 2024 11:36:42 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: oe-kbuild@lists.linux.dev, Fangzhi Zuo <Jerry.Zuo@amd.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, lyude@redhat.com,
- jani.nikula@intel.com, imre.deak@intel.com, simona@ffwll.ch,
- wayne.lin@amd.com, Harry.Wentland@amd.com, rodrigo.siqueira@amd.com
-Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
- Fangzhi Zuo <Jerry.Zuo@amd.com>
-Subject: Re: [PATCH] drm/display/dsc: Refactor MST DSC Determination Policy
-Message-ID: <e817b705-2147-4c69-a43c-704eaf07eeee@stanley.mountain>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4FF0B10E7CC;
+ Wed, 25 Sep 2024 08:48:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1727254098; x=1758790098;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=FAcNzIrdLOsfUhH4+Fk6qzG2qe0hhL14R7S4IrWd6m0=;
+ b=kZ/1p5/it6fjp2THGbOh3gco+JKhKMN6YQbTtp0mLQMmK5TLG2md0d8I
+ L9V7YANoRg0dqZr1Jx+GhGPIBPT13aDGUJuYVTiugdCRgdaSMc8V8/Wf5
+ bWL9HBZf2mGWrrgXCiGKAjjBNIBHsSGEpLIRrGLqVPEAC4/DlZRQInyhE
+ lVplBIqIh5rlJEdO0qjqlQs7cgnm5joFV/zZj4Ibv2FfcNlqtwxn5dZ3C
+ PAafZkwjD8XnP3fIIbyz9DbBz3UUmQDjIqyHHIv8Agz1w+bchOKNx58Xi
+ 2NrkDapsnRYLgfihdcN5ZGuNvro5cUt7SXORRN6ytw4NdwWMkEbFZ4VkK A==;
+X-CSE-ConnectionGUID: wCaqDDlATsy4SNtkk5Tt2g==
+X-CSE-MsgGUID: 6VpGV5fWT3iNcCLgLXE/dA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11205"; a="30079339"
+X-IronPort-AV: E=Sophos;i="6.10,256,1719903600"; d="scan'208";a="30079339"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2024 01:48:18 -0700
+X-CSE-ConnectionGUID: pbcZfBfdT3+bF9cT4IVESg==
+X-CSE-MsgGUID: qykcfqIESgCopI5kXrVroA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,256,1719903600"; d="scan'208";a="71787939"
+Received: from sschumil-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.16])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2024 01:48:14 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Arun R Murthy <arun.r.murthy@intel.com>, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Cc: Arun R Murthy <arun.r.murthy@intel.com>, Srikanth V NagaVenkata
+ <nagavenkata.srikanth.v@intel.com>, Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: Re: [PATCHv3 2/3] drm/i915/dp: read Aux RD interval just before
+ setting the FFE preset
+In-Reply-To: <20240925034432.1777029-3-arun.r.murthy@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240925034432.1777029-1-arun.r.murthy@intel.com>
+ <20240925034432.1777029-3-arun.r.murthy@intel.com>
+Date: Wed, 25 Sep 2024 11:48:11 +0300
+Message-ID: <874j643yr8.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240919173944.256887-1-Jerry.Zuo@amd.com>
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,51 +72,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Fangzhi,
+On Wed, 25 Sep 2024, Arun R Murthy <arun.r.murthy@intel.com> wrote:
+> Figure 3-52: 128b132b DP DPTC LANEx_CHANNEL_EQ_DONE Sequence of
+> DP2.1a spec.
+> After reading LANEx_CHANNEL_EQ_DONE, read the FFE presets.
+> AUX_RD_INTERVAL and then write the new FFE presets.
 
-kernel test robot noticed the following build warnings:
+Nope. That's just not what the figure has.
 
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> Co-developed-by: Srikanth V NagaVenkata <nagavenkata.srikanth.v@intel.com>
+> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> ---
+>  .../gpu/drm/i915/display/intel_dp_link_training.c  | 14 +++++++-------
+>  1 file changed, 7 insertions(+), 7 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> index f41b69840ad9..1bac00e46533 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> @@ -1419,12 +1419,6 @@ intel_dp_128b132b_lane_eq(struct intel_dp *intel_dp,
+>  	for (try = 0; try < max_tries; try++) {
+>  		fsleep(delay_us);
+>  
+> -		/*
+> -		 * The delay may get updated. The transmitter shall read the
+> -		 * delay before link status during link training.
+> -		 */
+> -		delay_us = drm_dp_128b132b_read_aux_rd_interval(&intel_dp->aux);
+> -
+>  		if (drm_dp_dpcd_read_link_status(&intel_dp->aux, link_status) < 0) {
+>  			lt_err(intel_dp, DP_PHY_DPRX, "Failed to read link status\n");
+>  			return false;
+> @@ -1451,8 +1445,14 @@ intel_dp_128b132b_lane_eq(struct intel_dp *intel_dp,
+>  		if (time_after(jiffies, deadline))
+>  			timeout = true; /* try one last time after deadline */
+>  
+> -		/* Update signal levels and training set as requested. */
+>  		intel_dp_get_adjust_train(intel_dp, crtc_state, DP_PHY_DPRX, link_status);
+> +		/*
+> +		 * During LT, Tx shall read AUX_RD_INTERVAL just before writing the new FFE
+> +		 * presets.
+> +		 */
+> +		delay_us = drm_dp_128b132b_read_aux_rd_interval(&intel_dp->aux);
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Fangzhi-Zuo/drm-display-dsc-Refactor-MST-DSC-Determination-Policy/20240920-014114
-base:   git://anongit.freedesktop.org/drm-intel for-linux-next
-patch link:    https://lore.kernel.org/r/20240919173944.256887-1-Jerry.Zuo%40amd.com
-patch subject: [PATCH] drm/display/dsc: Refactor MST DSC Determination Policy
-config: microblaze-randconfig-r071-20240922 (https://download.01.org/0day-ci/archive/20240923/202409231002.bMP89Ipm-lkp@intel.com/config)
-compiler: microblaze-linux-gcc (GCC) 14.1.0
+I said this should be put *above* intel_dp_get_adjust_train(), and you
+agreed. There was even a patch to that effect, and that's what I thought
+we were going by.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
-| Closes: https://lore.kernel.org/r/202409231002.bMP89Ipm-lkp@intel.com/
+It's both logical and per spec to keep the TX FFE PRESET read and write
+together, and AUX RD INTERVAL read *before* them.
 
-smatch warnings:
-drivers/gpu/drm/display/drm_dp_mst_topology.c:6046 drm_dp_mst_dsc_aux_for_port() warn: variable dereferenced before check 'port' (see line 6035)
+Where does the spec say, "read AUX_RD_INTERVAL just before writing the
+new FFE presets"? I don't think it does.
 
-vim +/port +6046 drivers/gpu/drm/display/drm_dp_mst_topology.c
+The box in figure 3-52 has:
 
-cc707186414576 drivers/gpu/drm/display/drm_dp_mst_topology.c Fangzhi Zuo      2024-09-19  6033  void drm_dp_mst_dsc_aux_for_port(struct drm_dp_mst_port *port)
-c2bc1b6eabe65d drivers/gpu/drm/drm_dp_mst_topology.c         David Francis    2019-08-26  6034  {
-cc707186414576 drivers/gpu/drm/display/drm_dp_mst_topology.c Fangzhi Zuo      2024-09-19 @6035  	struct drm_dp_mst_topology_mgr *mgr = port->mgr;
-                                                                                                                                              ^^^^^^^^^
-The patch adds an unchecked dereference
+- Read AUX_RD_INTERVAL value
 
-cc707186414576 drivers/gpu/drm/display/drm_dp_mst_topology.c Fangzhi Zuo      2024-09-19  6036  	struct drm_dp_mst_port *immediate_upstream_port = NULL;
-cc707186414576 drivers/gpu/drm/display/drm_dp_mst_topology.c Fangzhi Zuo      2024-09-19  6037  	struct drm_dp_mst_port *fec_port = NULL;
-cc707186414576 drivers/gpu/drm/display/drm_dp_mst_topology.c Fangzhi Zuo      2024-09-19  6038  	struct drm_dp_mst_port *dsc_port = NULL;
-cc707186414576 drivers/gpu/drm/display/drm_dp_mst_topology.c Fangzhi Zuo      2024-09-19  6039  	struct drm_dp_aux *upstream_aux;
-53965dbe5396d2 drivers/gpu/drm/drm_dp_mst_topology.c         Paul E. McKenney 2020-02-19  6040  	struct drm_dp_desc desc = {};
-cc707186414576 drivers/gpu/drm/display/drm_dp_mst_topology.c Fangzhi Zuo      2024-09-19  6041  	bool end_has_dpcd = (port->dpcd_rev > 0);
-cc707186414576 drivers/gpu/drm/display/drm_dp_mst_topology.c Fangzhi Zuo      2024-09-19  6042  	u8 endpoint_dsc = 0;
-cc707186414576 drivers/gpu/drm/display/drm_dp_mst_topology.c Fangzhi Zuo      2024-09-19  6043  	u8 upstream_dsc;
-cc707186414576 drivers/gpu/drm/display/drm_dp_mst_topology.c Fangzhi Zuo      2024-09-19  6044  	u8 fec_cap;
-c2bc1b6eabe65d drivers/gpu/drm/drm_dp_mst_topology.c         David Francis    2019-08-26  6045  
-c2bc1b6eabe65d drivers/gpu/drm/drm_dp_mst_topology.c         David Francis    2019-08-26 @6046  	if (!port)
-                                                                                                            ^^^^^
-But the old code assumed port could be NULL.
+- Adjust the TX_FFE_PRESET_VALUE setting as requested by a
+  DPRX/LTTPR_UFP
+
+The "as requested by" part involves reading TX FFE PRESET to know what
+the DPRX requested.
+
+I don't see anything wrong in the original comment, just the placement
+of the read.
+
+There have been a multitude of different patches with random version
+numbers with no changelog and I don't even know what I'm supposed to be
+reviewing anymore.
+
+BR,
+Jani.
+
+
+> +
+> +		/* Update signal levels and training set as requested. */
+>  		if (!intel_dp_update_link_train(intel_dp, crtc_state, DP_PHY_DPRX)) {
+>  			lt_err(intel_dp, DP_PHY_DPRX, "Failed to update TX FFE settings\n");
+>  			return false;
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
-
+Jani Nikula, Intel
