@@ -2,48 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D53798589E
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Sep 2024 13:45:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E861B9858EB
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Sep 2024 13:48:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1467110E80D;
-	Wed, 25 Sep 2024 11:45:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8383410E949;
+	Wed, 25 Sep 2024 11:48:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="epD2qNIc";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="rwerk5/6";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D67E10E80B;
- Wed, 25 Sep 2024 11:45:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1830B10E947;
+ Wed, 25 Sep 2024 11:48:19 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 272EF5C580D;
- Wed, 25 Sep 2024 11:45:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8330C4CEC3;
- Wed, 25 Sep 2024 11:45:22 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTP id 807B55C5B57;
+ Wed, 25 Sep 2024 11:48:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B1B1C4CEC3;
+ Wed, 25 Sep 2024 11:48:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1727264724;
- bh=4n+/Pf9FVTBvA2R2Ja+tTFoE5Fy8ivlNmeSWvPigQAQ=;
+ s=k20201202; t=1727264898;
+ bh=n90fJc+OXdT4oVyDP1R+/rKw9pp9dmoKGuJpxpmeC4k=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=epD2qNIciWGCN4xfdanRjcV4ROoLu8Ks73N4f6J10SOqns56NSj1abGOy3apQflZN
- 7qui8yGQTW2nvnVhz/vR7GT+fXO/de/sdUnxt8sS+JO2NlREIu/+gQ2nErssW2SdwM
- 8legmP/naWmFOI3IbjkuzGK1l8oW7HKShaaGfGWqEsxFybBVk7mCPWsjQ4bCb3PTfh
- QagjKSqVELTD1y+BZfxpdkfH67DtYQiNp01fkHvgw0tdLxdyVPSif4iKxxPV3oAwUS
- uN+b3nZ2obqkO9Q47rRO7Q8FTCUN+89LLBc5NAP8Ip4ZOJtdjbL8anBWO2s7SqW5nr
- jffHTSxzQO+NA==
+ b=rwerk5/643WdtttLWJYNQl3od1D8KyZOIu4L83to9YUz0WjUXSdcpeIwYnuUPJr4T
+ nkl160njbTsM8OS9BJEIPlp1QfypBOTERKr8GwlYOJs6vwcFS54rhQBDw/HRxstEQy
+ aJHuNW1znsbTw0EtiF6wZQHdRrV5dE2rjarLoLjqAu3PJYdmCpOzTERaNcoy4PJQ3Y
+ Y23ZIME82mnkk2ntfzFVOexQipI6gtjxc2BQJjWkhRQ1dTiLnV/jzZdFJWs/VKnWdq
+ 6ZcM++R4lCq39sGwqr6+QOQXyKr2sVKlwNEq5Jsq+pJyG/jGRphvr0Xs1Pyd8LWa9B
+ rDqL9Euu5kCtw==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Suraj Kandpal <suraj.kandpal@intel.com>,
- Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>,
+Cc: Uma Shankar <uma.shankar@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
  Sasha Levin <sashal@kernel.org>, jani.nikula@linux.intel.com,
- rodrigo.vivi@intel.com, lucas.demarchi@intel.com,
- thomas.hellstrom@linux.intel.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
- daniel@ffwll.ch, intel-gfx@lists.freedesktop.org,
+ rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@gmail.com, daniel@ffwll.ch, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: [PATCH AUTOSEL 6.11 141/244] drm/xe/hdcp: Check GSC structure validity
-Date: Wed, 25 Sep 2024 07:26:02 -0400
-Message-ID: <20240925113641.1297102-141-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.11 177/244] drm/xe/fbdev: Limit the usage of stolen
+ for LNL+
+Date: Wed, 25 Sep 2024 07:26:38 -0400
+Message-ID: <20240925113641.1297102-177-sashal@kernel.org>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240925113641.1297102-1-sashal@kernel.org>
 References: <20240925113641.1297102-1-sashal@kernel.org>
@@ -67,50 +67,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Suraj Kandpal <suraj.kandpal@intel.com>
+From: Uma Shankar <uma.shankar@intel.com>
 
-[ Upstream commit b4224f6bae3801d589f815672ec62800a1501b0d ]
+[ Upstream commit 775d0adc01a55fe0458139330415d86bb3533efe ]
 
-Sometimes xe_gsc is not initialized when checked at HDCP capability
-check. Add gsc structure check to avoid null pointer error.
+As per recommendation in the workarounds:
+WA_22019338487
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-Reviewed-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20240722064451.3610512-4-suraj.kandpal@intel.com
+There is an issue with accessing Stolen memory pages due a
+hardware limitation. Limit the usage of stolen memory for
+fbdev for LNL+. Don't use BIOS FB from stolen on LNL+ and
+assign the same from system memory.
+
+v2: Corrected the WA Number, limited WA to LNL and
+    Adopted XE_WA framework as suggested by Lucas and Matt.
+
+v3: Introduced the waxxx_display to implement display side
+    of WA changes on Lunarlake. Used xe_root_mmio_gt and
+    avoid the for loop (Suggested by Lucas)
+
+v4: Fixed some nits (Luca)
+
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20240717082252.3875909-1-uma.shankar@intel.com
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/gpu/drm/xe/display/xe_hdcp_gsc.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/display/intel_fbdev_fb.c   | 6 +++++-
+ drivers/gpu/drm/xe/display/xe_plane_initial.c | 6 ++++++
+ drivers/gpu/drm/xe/xe_wa_oob.rules            | 1 +
+ 3 files changed, 12 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-index 990285aa9b261..0af667ebebf98 100644
---- a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-+++ b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-@@ -40,10 +40,14 @@ bool intel_hdcp_gsc_check_status(struct xe_device *xe)
- {
- 	struct xe_tile *tile = xe_device_get_root_tile(xe);
- 	struct xe_gt *gt = tile->media_gt;
-+	struct xe_gsc *gsc = &gt->uc.gsc;
- 	bool ret = true;
+diff --git a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
+index 816ad13821a83..cd8948c08661b 100644
+--- a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
++++ b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
+@@ -10,6 +10,9 @@
+ #include "xe_bo.h"
+ #include "xe_gt.h"
+ #include "xe_ttm_stolen_mgr.h"
++#include "xe_wa.h"
++
++#include <generated/xe_wa_oob.h>
  
--	if (!xe_uc_fw_is_enabled(&gt->uc.gsc.fw))
-+	if (!gsc && !xe_uc_fw_is_enabled(&gsc->fw)) {
-+		drm_dbg_kms(&xe->drm,
-+			    "GSC Components not ready for HDCP2.x\n");
- 		return false;
-+	}
+ struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_fb_helper *helper,
+ 					       struct drm_fb_helper_surface_size *sizes)
+@@ -37,7 +40,7 @@ struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_fb_helper *helper,
+ 	size = PAGE_ALIGN(size);
+ 	obj = ERR_PTR(-ENODEV);
  
- 	xe_pm_runtime_get(xe);
- 	if (xe_force_wake_get(gt_to_fw(gt), XE_FW_GSC)) {
-@@ -53,7 +57,7 @@ bool intel_hdcp_gsc_check_status(struct xe_device *xe)
- 		goto out;
+-	if (!IS_DGFX(xe)) {
++	if (!IS_DGFX(xe) && !XE_WA(xe_root_mmio_gt(xe), 22019338487_display)) {
+ 		obj = xe_bo_create_pin_map(xe, xe_device_get_root_tile(xe),
+ 					   NULL, size,
+ 					   ttm_bo_type_kernel, XE_BO_FLAG_SCANOUT |
+@@ -48,6 +51,7 @@ struct intel_framebuffer *intel_fbdev_fb_alloc(struct drm_fb_helper *helper,
+ 		else
+ 			drm_info(&xe->drm, "Allocated fbdev into stolen failed: %li\n", PTR_ERR(obj));
  	}
++
+ 	if (IS_ERR(obj)) {
+ 		obj = xe_bo_create_pin_map(xe, xe_device_get_root_tile(xe), NULL, size,
+ 					   ttm_bo_type_kernel, XE_BO_FLAG_SCANOUT |
+diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+index 5eccd6abb3ef5..a50ab9eae40ae 100644
+--- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
++++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+@@ -18,6 +18,9 @@
+ #include "intel_frontbuffer.h"
+ #include "intel_plane_initial.h"
+ #include "xe_bo.h"
++#include "xe_wa.h"
++
++#include <generated/xe_wa_oob.h>
  
--	if (!xe_gsc_proxy_init_done(&gt->uc.gsc))
-+	if (!xe_gsc_proxy_init_done(gsc))
- 		ret = false;
+ static bool
+ intel_reuse_initial_plane_obj(struct intel_crtc *this,
+@@ -104,6 +107,9 @@ initial_plane_bo(struct xe_device *xe,
+ 		phys_base = base;
+ 		flags |= XE_BO_FLAG_STOLEN;
  
- 	xe_force_wake_put(gt_to_fw(gt), XE_FW_GSC);
++		if (XE_WA(xe_root_mmio_gt(xe), 22019338487_display))
++			return NULL;
++
+ 		/*
+ 		 * If the FB is too big, just don't use it since fbdev is not very
+ 		 * important and we should probably use that space with FBC or other
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index d4c33dbc14c7a..24a5b7d7cdcc1 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -29,6 +29,7 @@
+ 13011645652	GRAPHICS_VERSION(2004)
+ 22019338487	MEDIA_VERSION(2000)
+ 		GRAPHICS_VERSION(2001)
++22019338487_display	PLATFORM(LUNARLAKE)
+ 16023588340	GRAPHICS_VERSION(2001)
+ 14019789679	GRAPHICS_VERSION(1255)
+ 		GRAPHICS_VERSION_RANGE(1270, 2004)
 -- 
 2.43.0
 
