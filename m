@@ -2,55 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AA9F98614B
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Sep 2024 16:45:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F4DB98614C
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Sep 2024 16:45:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5CC510EA1F;
-	Wed, 25 Sep 2024 14:45:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CAF4B10EA2B;
+	Wed, 25 Sep 2024 14:45:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jth3oiSY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eHBfZpop";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D92F10EA25
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Sep 2024 14:45:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C1B0C10EA26
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Sep 2024 14:45:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727275537; x=1758811537;
+ t=1727275541; x=1758811541;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=1DnMFU1e1/0MLz85xEqNSfIRbU8roszrXvNJtr1XYtg=;
- b=jth3oiSYVu9F3NAx9EUJHwnyGIteLPQWlirnK6j+olmWAsDex585sT/+
- TNVrCjMpc4mnjJ9XptuIBD849B0GWACzdiNBOCgj1YLFF6Tbvtijde0g8
- oV5IBh9oXGYVXuET1hvAhWiynEVMXj8gF0GgvMNznXTjwlXsr1+vQdBJU
- eg7O+90CGoEiWecWZNUhTi0fse2+u6F+oUYggwc7ePOfkJvtcSKRsUmmB
- KVA/+N/kkxPW5VAtes4bglRMx8MjyuPUbWwhivJmeFPORm/bZVCIEhruC
- u60d2kM+TZnxsgPqyRG+lxgdb0IepNFvUXLLF3SBgfkLXKZ27MnFruEKt A==;
-X-CSE-ConnectionGUID: zgh4gYSCRJu6DrWOesmP4w==
-X-CSE-MsgGUID: Swf+VwPtRr2AG1waHF4wjA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11206"; a="26470596"
-X-IronPort-AV: E=Sophos;i="6.10,257,1719903600"; d="scan'208";a="26470596"
+ bh=e5g2fnzWsdbQ4Znq2+0nMCPlwsOCrNHuDaldxM9Sekk=;
+ b=eHBfZpop0kzWscOPUh8xdX4dE7DUt6A39ijzp09h85NoiZKaG0hcB5KH
+ wWps3Ujxg6DwR53MfqIRC16RIOuq6EoxhLshDDkIB+h/V+c61lYgcgbzp
+ BLTOltsiIbDN1GzSV9SOy16jZZBYo02XPtKHgp39TBx0Ru+FY3tWUKdSW
+ hgSEo+i2oVnYZBtOaLrDZl541ozroItVMJW7RL3FIVSroqtQCucr1SQq0
+ z4up+TBtxZfScXeaaDo10PJoImljtOq4qFRzQs8KksfGcJYvbKe1w8ktS
+ tr49Pq1SgfBAiGGrFUC5m5sAa1c2RexoMsQXlh0r1xiAvivuQNYQdnD4o w==;
+X-CSE-ConnectionGUID: qCnpXLKRQ76Zs6TEwmwIwg==
+X-CSE-MsgGUID: qeFOuJOhQqKC/kADnZflVw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11206"; a="26470613"
+X-IronPort-AV: E=Sophos;i="6.10,257,1719903600"; d="scan'208";a="26470613"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2024 07:45:37 -0700
-X-CSE-ConnectionGUID: QXCbu4C2R+uW/mhhhAbaCA==
-X-CSE-MsgGUID: dhzemH1wRPGMPHN23LGYZw==
+ 25 Sep 2024 07:45:41 -0700
+X-CSE-ConnectionGUID: 0Reib3ztTeGILgK0oLTj7A==
+X-CSE-MsgGUID: DwgRaTpNRFCAUyRZUhE12g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,257,1719903600"; d="scan'208";a="71941533"
+X-IronPort-AV: E=Sophos;i="6.10,257,1719903600"; d="scan'208";a="71941560"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 25 Sep 2024 07:45:34 -0700
+ by fmviesa008.fm.intel.com with SMTP; 25 Sep 2024 07:45:38 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 25 Sep 2024 17:45:33 +0300
+ Wed, 25 Sep 2024 17:45:37 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: Bjorn Helgaas <bhelgaas@google.com>,
  "Rafael J. Wysocki" <rafael@kernel.org>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-pci@vger.kernel.org
-Subject: [PATCH 2/6] drm/i915/pm: Hoist pci_save_state()+pci_set_power_state()
- to the end of pm _late() hook
-Date: Wed, 25 Sep 2024 17:45:22 +0300
-Message-ID: <20240925144526.2482-3-ville.syrjala@linux.intel.com>
+Subject: [PATCH 3/6] drm/i915/pm: Simplify pm hook documentation
+Date: Wed, 25 Sep 2024 17:45:23 +0300
+Message-ID: <20240925144526.2482-4-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.44.2
 In-Reply-To: <20240925144526.2482-1-ville.syrjala@linux.intel.com>
 References: <20240925144526.2482-1-ville.syrjala@linux.intel.com>
@@ -74,11 +73,10 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-driver/pci does the pci_save_state()+pci_set_power_state() from the
-_noirq() pm hooks. Move our manual calls (needed for the hibernate+D3
-workaround with buggy BIOSes) towards that same point. We currently
-have no _noirq() hooks, so end of _late() hooks is the best we can
-do right now.
+Stop spelling out each variant of the hook ("" vs. "_late" vs.
+"_early") and just say eg. "@thaw*" to indicate all of them.
+Avoids having to update the docs whenever we start/stop using
+one of the variants.
 
 Cc: Bjorn Helgaas <bhelgaas@google.com>
 Cc: "Rafael J. Wysocki" <rafael@kernel.org>
@@ -87,67 +85,44 @@ Cc: linux-pci@vger.kernel.org
 Cc: intel-gfx@lists.freedesktop.org
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/i915_driver.c | 19 ++++++++++++++-----
- 1 file changed, 14 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/i915_driver.c | 24 ++++++++++++------------
+ 1 file changed, 12 insertions(+), 12 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index 6dc0104a3e36..9d557ff8adf5 100644
+index 9d557ff8adf5..1e5abf72dfc4 100644
 --- a/drivers/gpu/drm/i915/i915_driver.c
 +++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -1015,7 +1015,6 @@ static int i915_drm_suspend(struct drm_device *dev)
- {
- 	struct drm_i915_private *dev_priv = to_i915(dev);
- 	struct intel_display *display = &dev_priv->display;
--	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
- 	pci_power_t opregion_target_state;
+@@ -1644,18 +1644,18 @@ const struct dev_pm_ops i915_pm_ops = {
  
- 	disable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
-@@ -1029,8 +1028,6 @@ static int i915_drm_suspend(struct drm_device *dev)
- 		intel_display_driver_disable_user_access(dev_priv);
- 	}
- 
--	pci_save_state(pdev);
--
- 	intel_display_driver_suspend(dev_priv);
- 
- 	intel_dp_mst_suspend(dev_priv);
-@@ -1090,10 +1087,16 @@ static int i915_drm_suspend_late(struct drm_device *dev, bool hibernation)
- 		drm_err(&dev_priv->drm, "Suspend complete failed: %d\n", ret);
- 		intel_power_domains_resume(dev_priv);
- 
--		goto out;
-+		goto fail;
- 	}
- 
-+	enable_rpm_wakeref_asserts(rpm);
-+
-+	if (!dev_priv->uncore.user_forcewake_count)
-+		intel_runtime_pm_driver_release(rpm);
-+
- 	pci_disable_device(pdev);
-+
  	/*
- 	 * During hibernation on some platforms the BIOS may try to access
- 	 * the device even though it's already in D3 and hang the machine. So
-@@ -1105,11 +1108,17 @@ static int i915_drm_suspend_late(struct drm_device *dev, bool hibernation)
- 	 * Lenovo Thinkpad X301, X61s, X60, T60, X41
- 	 * Fujitsu FSC S7110
- 	 * Acer Aspire 1830T
-+	 *
-+	 * pci_save_state() is needed to prevent driver/pci from
-+	 * automagically putting the device into D3.
+ 	 * S4 event handlers
+-	 * @freeze, @freeze_late    : called (1) before creating the
+-	 *                            hibernation image [PMSG_FREEZE] and
+-	 *                            (2) after rebooting, before restoring
+-	 *                            the image [PMSG_QUIESCE]
+-	 * @thaw, @thaw_early       : called (1) after creating the hibernation
+-	 *                            image, before writing it [PMSG_THAW]
+-	 *                            and (2) after failing to create or
+-	 *                            restore the image [PMSG_RECOVER]
+-	 * @poweroff, @poweroff_late: called after writing the hibernation
+-	 *                            image, before rebooting [PMSG_HIBERNATE]
+-	 * @restore, @restore_early : called after rebooting and restoring the
+-	 *                            hibernation image [PMSG_RESTORE]
++	 * @freeze*   : called (1) before creating the
++	 *              hibernation image [PMSG_FREEZE] and
++	 *              (2) after rebooting, before restoring
++	 *              the image [PMSG_QUIESCE]
++	 * @thaw*     : called (1) after creating the hibernation
++	 *              image, before writing it [PMSG_THAW]
++	 *              and (2) after failing to create or
++	 *              restore the image [PMSG_RECOVER]
++	 * @poweroff* : called after writing the hibernation
++	 *              image, before rebooting [PMSG_HIBERNATE]
++	 * @restore*  : called after rebooting and restoring the
++	 *              hibernation image [PMSG_RESTORE]
  	 */
-+	pci_save_state(pdev);
- 	if (!(hibernation && GRAPHICS_VER(dev_priv) < 6))
- 		pci_set_power_state(pdev, PCI_D3hot);
- 
--out:
-+	return 0;
-+
-+fail:
- 	enable_rpm_wakeref_asserts(rpm);
- 	if (!dev_priv->uncore.user_forcewake_count)
- 		intel_runtime_pm_driver_release(rpm);
+ 	.freeze = i915_pm_freeze,
+ 	.freeze_late = i915_pm_freeze_late,
 -- 
 2.44.2
 
