@@ -2,54 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22BD69857F1
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Sep 2024 13:22:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D53798589E
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Sep 2024 13:45:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA45D10E09E;
-	Wed, 25 Sep 2024 11:22:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1467110E80D;
+	Wed, 25 Sep 2024 11:45:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Si1jIDo9";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="epD2qNIc";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1885010E09E
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Sep 2024 11:22:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727263351; x=1758799351;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Swt12FeaShrng0+Kf7W6gsKyRlOlz1i3P9auu6uJ0Bw=;
- b=Si1jIDo9lFh9s6wzS4w6Gv7h7hD0ZekTAWp7U0V4tpA7gNr5yTVJLwY1
- 4lszOtS6TLGxJslnv59GyaSBsuQT46cA94/Xmp9zeiatZgpgGm+bXK0S/
- HqDGEbXaniu4Hws2UA4fnYydy1c0XBnK1RXzGDYSbp4ERFGkjMWZPPzC2
- 4lX8p5GxvWHOj3z+o92ArrgnzjGAZNtCSTQZZCIQdUEj5WAd5hOaAq+e9
- qNPejyrYqpXX1IADWM5m6EFSPGoHKa42ksJIwXODAiunA6ZiAGd2jNMaz
- 2+zPpUTZ1HLp4eKGDCIOsexl1lO7BrYIV5ftLAOj7IqiRvmSgOfIYhJLz g==;
-X-CSE-ConnectionGUID: a1wLVr+SSOqm3dSwr1DOCw==
-X-CSE-MsgGUID: R87JhgiPSDinR+JdXbBXDQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11205"; a="13926952"
-X-IronPort-AV: E=Sophos;i="6.10,257,1719903600"; d="scan'208";a="13926952"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2024 04:22:31 -0700
-X-CSE-ConnectionGUID: kcltNiVvTnKHx6ZoPJhdEQ==
-X-CSE-MsgGUID: VuRsEAfbT9aRKdKSIjsJ+g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,257,1719903600"; d="scan'208";a="72556412"
-Received: from spottumu-desk.iind.intel.com ([10.145.152.200])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2024 04:22:29 -0700
-From: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com,
- Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
-Subject: [PATCH] drm/i915: Remove unused underrun interrupt bits
-Date: Wed, 25 Sep 2024 16:48:02 +0530
-Message-Id: <20240925111802.2227604-1-sai.teja.pottumuttu@intel.com>
-X-Mailer: git-send-email 2.34.1
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D67E10E80B;
+ Wed, 25 Sep 2024 11:45:25 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 272EF5C580D;
+ Wed, 25 Sep 2024 11:45:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8330C4CEC3;
+ Wed, 25 Sep 2024 11:45:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1727264724;
+ bh=4n+/Pf9FVTBvA2R2Ja+tTFoE5Fy8ivlNmeSWvPigQAQ=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=epD2qNIciWGCN4xfdanRjcV4ROoLu8Ks73N4f6J10SOqns56NSj1abGOy3apQflZN
+ 7qui8yGQTW2nvnVhz/vR7GT+fXO/de/sdUnxt8sS+JO2NlREIu/+gQ2nErssW2SdwM
+ 8legmP/naWmFOI3IbjkuzGK1l8oW7HKShaaGfGWqEsxFybBVk7mCPWsjQ4bCb3PTfh
+ QagjKSqVELTD1y+BZfxpdkfH67DtYQiNp01fkHvgw0tdLxdyVPSif4iKxxPV3oAwUS
+ uN+b3nZ2obqkO9Q47rRO7Q8FTCUN+89LLBc5NAP8Ip4ZOJtdjbL8anBWO2s7SqW5nr
+ jffHTSxzQO+NA==
+From: Sasha Levin <sashal@kernel.org>
+To: linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>,
+ Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>,
+ Sasha Levin <sashal@kernel.org>, jani.nikula@linux.intel.com,
+ rodrigo.vivi@intel.com, lucas.demarchi@intel.com,
+ thomas.hellstrom@linux.intel.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
+ daniel@ffwll.ch, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Subject: [PATCH AUTOSEL 6.11 141/244] drm/xe/hdcp: Check GSC structure validity
+Date: Wed, 25 Sep 2024 07:26:02 -0400
+Message-ID: <20240925113641.1297102-141-sashal@kernel.org>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240925113641.1297102-1-sashal@kernel.org>
+References: <20240925113641.1297102-1-sashal@kernel.org>
 MIME-Version: 1.0
+X-stable: review
+X-Patchwork-Hint: Ignore
+X-stable-base: Linux 6.11
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,119 +67,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Underrun recovery was defeatured and was never brought into usage.
-Thus we can safely remove the interrupt register bits introduced by the
-feature for detecting soft and hard underruns.
+From: Suraj Kandpal <suraj.kandpal@intel.com>
 
-Signed-off-by: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
+[ Upstream commit b4224f6bae3801d589f815672ec62800a1501b0d ]
+
+Sometimes xe_gsc is not initialized when checked at HDCP capability
+check. Add gsc structure check to avoid null pointer error.
+
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+Reviewed-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20240722064451.3610512-4-suraj.kandpal@intel.com
+Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- .../gpu/drm/i915/display/intel_display_irq.c  | 19 +++----------------
- .../gpu/drm/i915/display/intel_display_irq.h  |  1 -
- .../drm/i915/display/intel_fifo_underrun.c    |  5 ++---
- drivers/gpu/drm/i915/i915_reg.h               |  2 --
- 4 files changed, 5 insertions(+), 22 deletions(-)
+ drivers/gpu/drm/xe/display/xe_hdcp_gsc.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-index 6878dde85031..9d8a101b2415 100644
---- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-@@ -1031,17 +1031,6 @@ static u32 gen8_de_pipe_flip_done_mask(struct drm_i915_private *i915)
- 		return GEN8_PIPE_PRIMARY_FLIP_DONE;
- }
- 
--u32 gen8_de_pipe_underrun_mask(struct drm_i915_private *dev_priv)
--{
--	u32 mask = GEN8_PIPE_FIFO_UNDERRUN;
--
--	if (DISPLAY_VER(dev_priv) >= 13)
--		mask |= XELPD_PIPE_SOFT_UNDERRUN |
--			XELPD_PIPE_HARD_UNDERRUN;
--
--	return mask;
--}
--
- static void gen8_read_and_ack_pch_irqs(struct drm_i915_private *i915, u32 *pch_iir, u32 *pica_iir)
+diff --git a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
+index 990285aa9b261..0af667ebebf98 100644
+--- a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
++++ b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
+@@ -40,10 +40,14 @@ bool intel_hdcp_gsc_check_status(struct xe_device *xe)
  {
- 	u32 pica_ier = 0;
-@@ -1187,7 +1176,7 @@ void gen8_de_irq_handler(struct drm_i915_private *dev_priv, u32 master_ctl)
- 		if (iir & GEN8_PIPE_CDCLK_CRC_DONE)
- 			hsw_pipe_crc_irq_handler(dev_priv, pipe);
+ 	struct xe_tile *tile = xe_device_get_root_tile(xe);
+ 	struct xe_gt *gt = tile->media_gt;
++	struct xe_gsc *gsc = &gt->uc.gsc;
+ 	bool ret = true;
  
--		if (iir & gen8_de_pipe_underrun_mask(dev_priv))
-+		if (iir & GEN8_PIPE_FIFO_UNDERRUN)
- 			intel_cpu_fifo_underrun_irq_handler(dev_priv, pipe);
+-	if (!xe_uc_fw_is_enabled(&gt->uc.gsc.fw))
++	if (!gsc && !xe_uc_fw_is_enabled(&gsc->fw)) {
++		drm_dbg_kms(&xe->drm,
++			    "GSC Components not ready for HDCP2.x\n");
+ 		return false;
++	}
  
- 		fault_errors = iir & gen8_de_pipe_fault_mask(dev_priv);
-@@ -1607,8 +1596,7 @@ void gen8_irq_power_well_post_enable(struct drm_i915_private *dev_priv,
- 				     u8 pipe_mask)
- {
- 	struct intel_uncore *uncore = &dev_priv->uncore;
--	u32 extra_ier = GEN8_PIPE_VBLANK |
--		gen8_de_pipe_underrun_mask(dev_priv) |
-+	u32 extra_ier = GEN8_PIPE_VBLANK | GEN8_PIPE_FIFO_UNDERRUN |
- 		gen8_de_pipe_flip_done_mask(dev_priv);
- 	enum pipe pipe;
- 
-@@ -1797,8 +1785,7 @@ void gen8_de_irq_postinstall(struct drm_i915_private *dev_priv)
- 			GEN12_DSB_INT(INTEL_DSB_2);
- 
- 	de_pipe_enables = de_pipe_masked |
--		GEN8_PIPE_VBLANK |
--		gen8_de_pipe_underrun_mask(dev_priv) |
-+		GEN8_PIPE_VBLANK | GEN8_PIPE_FIFO_UNDERRUN |
- 		gen8_de_pipe_flip_done_mask(dev_priv);
- 
- 	de_port_enables = de_port_masked;
-diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.h b/drivers/gpu/drm/i915/display/intel_display_irq.h
-index 093e356a2894..1b3f559a0638 100644
---- a/drivers/gpu/drm/i915/display/intel_display_irq.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_irq.h
-@@ -33,7 +33,6 @@ void ibx_disable_display_interrupt(struct drm_i915_private *i915, u32 bits);
- 
- void gen8_irq_power_well_post_enable(struct drm_i915_private *i915, u8 pipe_mask);
- void gen8_irq_power_well_pre_disable(struct drm_i915_private *i915, u8 pipe_mask);
--u32 gen8_de_pipe_underrun_mask(struct drm_i915_private *i915);
- 
- int i8xx_enable_vblank(struct drm_crtc *crtc);
- int i915gm_enable_vblank(struct drm_crtc *crtc);
-diff --git a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-index 745ce22afb89..fb01c128e1c5 100644
---- a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-+++ b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-@@ -209,7 +209,6 @@ static void bdw_set_fifo_underrun_reporting(struct drm_device *dev,
- 					    enum pipe pipe, bool enable)
- {
- 	struct drm_i915_private *dev_priv = to_i915(dev);
--	u32 mask = gen8_de_pipe_underrun_mask(dev_priv);
- 
- 	if (enable) {
- 		if (DISPLAY_VER(dev_priv) >= 11)
-@@ -217,9 +216,9 @@ static void bdw_set_fifo_underrun_reporting(struct drm_device *dev,
- 				       ICL_PIPESTATUS(dev_priv, pipe),
- 				       icl_pipe_status_underrun_mask(dev_priv));
- 
--		bdw_enable_pipe_irq(dev_priv, pipe, mask);
-+		bdw_enable_pipe_irq(dev_priv, pipe, GEN8_PIPE_FIFO_UNDERRUN);
- 	} else {
--		bdw_disable_pipe_irq(dev_priv, pipe, mask);
-+		bdw_disable_pipe_irq(dev_priv, pipe, GEN8_PIPE_FIFO_UNDERRUN);
+ 	xe_pm_runtime_get(xe);
+ 	if (xe_force_wake_get(gt_to_fw(gt), XE_FW_GSC)) {
+@@ -53,7 +57,7 @@ bool intel_hdcp_gsc_check_status(struct xe_device *xe)
+ 		goto out;
  	}
- }
  
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 7396fc630e29..c379d875f432 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -2491,9 +2491,7 @@
- #define  GEN12_PIPEDMC_INTERRUPT	REG_BIT(26) /* tgl+ */
- #define  GEN12_PIPEDMC_FAULT		REG_BIT(25) /* tgl+ */
- #define  MTL_PIPEDMC_ATS_FAULT		REG_BIT(24) /* mtl+ */
--#define  XELPD_PIPE_SOFT_UNDERRUN	REG_BIT(22) /* adl/dg2+ */
- #define  GEN11_PIPE_PLANE7_FAULT	REG_BIT(22) /* icl/tgl */
--#define  XELPD_PIPE_HARD_UNDERRUN	REG_BIT(21) /* adl/dg2+ */
- #define  GEN11_PIPE_PLANE6_FAULT	REG_BIT(21) /* icl/tgl */
- #define  GEN11_PIPE_PLANE5_FAULT	REG_BIT(20) /* icl+ */
- #define  GEN12_PIPE_VBLANK_UNMOD	REG_BIT(19) /* tgl+ */
+-	if (!xe_gsc_proxy_init_done(&gt->uc.gsc))
++	if (!xe_gsc_proxy_init_done(gsc))
+ 		ret = false;
+ 
+ 	xe_force_wake_put(gt_to_fw(gt), XE_FW_GSC);
 -- 
-2.34.1
+2.43.0
 
