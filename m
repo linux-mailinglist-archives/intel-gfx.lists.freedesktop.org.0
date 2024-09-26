@@ -2,56 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB7CB986D83
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Sep 2024 09:26:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D093986D71
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Sep 2024 09:24:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D62910EAC5;
-	Thu, 26 Sep 2024 07:26:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3471D10EA9B;
+	Thu, 26 Sep 2024 07:24:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="M2HjjNSy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XDoWwxcq";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58C1610EAAB;
- Thu, 26 Sep 2024 07:26:31 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 8E2945C5DD1;
- Thu, 26 Sep 2024 07:26:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD8D4C4CEC5;
- Thu, 26 Sep 2024 07:26:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1727335590;
- bh=ePa5u/BcnZ/dATlftydtRiE5hN7gmuT0GTtjNoDiKEg=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=M2HjjNSyNaWEZ1yenHHEyui1RPMh8RJVBscCwUg+TXnkGbJouUPm2CIehBM3+Co6X
- VedGYDOORpYZqCXP1lA+ySO90Fwuu1ocnuaf/2z42w+C0bfF8oHdF9o/oTkHsVlwdt
- Bf9nj/u01qIShO0iWrBh8GkbROFRYw53rMgHLuBCyUdr+dM6Ch0H1hEOVk1h39MPXE
- 7xLZP3vgb0rUT9712TiCXty9H7+EMJJ4XbeTqBu35iZX4CcMVSvlhmQeFt1qvfMBRR
- ugPSGU54cl34WqVGyPrygkOEOE89m5ePQQ98JoI1Rvhy/0rPTMoiMuolGmKpad2Y37
- nywPery26f36Q==
-Date: Thu, 26 Sep 2024 09:26:27 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Vignesh Raman <vignesh.raman@collabora.com>
-Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com, 
- helen.koike@collabora.com, airlied@gmail.com, daniel@ffwll.ch,
- robdclark@gmail.com, 
- guilherme.gallo@collabora.com, sergi.blanch.torne@collabora.com,
- deborah.brouwer@collabora.com, 
- dmitry.baryshkov@linaro.org, rodrigo.vivi@intel.com,
- linux-mediatek@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, 
- virtualization@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] docs/gpu: ci: update flake tests requirements
-Message-ID: <20240926-athletic-gregarious-markhor-cc78ac@houat>
-References: <20240926070653.1773597-1-vignesh.raman@collabora.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B57310EA9B;
+ Thu, 26 Sep 2024 07:24:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1727335493; x=1758871493;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=S2ZClsJJ97aOjfyBJS7p3tRJURDWZl1o3O5bNJbVfaU=;
+ b=XDoWwxcqTX3c9Kdk+viyGgbnRH5hrpNDOKBV3v0jQtAIRvbZuqKvYMj/
+ NYsbq8ia70TGW/QBq4Rp12QOSFp+FU8tyxMVM07jEKxItNGa6bw3LYM9Z
+ xgYOaIEVLtGEhnw06zpS1TprCDw3htkHKnoo1ahavS7Gg2b3h+XB1IIBT
+ W9XVb26um5Omr1MIZg33LZitYibSsOe+l08ozRtikxWYAecGK59YfhNW8
+ Lg8o18zPdmA84tL14tZdrJh/owrZNDmGzGso1DXGqO1RsKz+gOZyO2gZY
+ JRIFk/wJV91gav7ILmBzgJAI/XyJ954cJkarXsrn+vkpG7lCczdZ0PfmO A==;
+X-CSE-ConnectionGUID: u9TgPrf4SM2QqFD5zdNGcw==
+X-CSE-MsgGUID: dA0BwJY0TgGui+OxSHaNqQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11206"; a="51829447"
+X-IronPort-AV: E=Sophos;i="6.10,259,1719903600"; d="scan'208";a="51829447"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2024 00:24:53 -0700
+X-CSE-ConnectionGUID: KReFU+yPTKqbf0Ny7x3RSA==
+X-CSE-MsgGUID: +Tr7mVpvRK28Y5xGDVLiMQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.10,259,1719903600"; d="scan'208";a="72334421"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2024 00:24:52 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, suraj.kandpal@intel.com,
+ ville.syrjala@linux.intel.com
+Subject: [PATCH 05/15] drm/i915: Split current joiner hw state readout
+Date: Thu, 26 Sep 2024 12:56:28 +0530
+Message-ID: <20240926072638.3689367-6-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20240926072638.3689367-1-ankit.k.nautiyal@intel.com>
+References: <20240926072638.3689367-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="xmj2ly46kzbkkxma"
-Content-Disposition: inline
-In-Reply-To: <20240926070653.1773597-1-vignesh.raman@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,86 +69,130 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+We need to add a new sanity checks and also do
+some preparations for adding ultrajoiner hw state readout.
+Lets first split reading of the uncompressed joiner and bigjoiner
+bit masks into separate functions.
 
---xmj2ly46kzbkkxma
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+v2: Fixed checkpatch warnings (Ankit)
+v3: Use struct intel_display in the new functions. (Ankit)
+v4: Use check for bigjoiner before reading the regs. (Ville)
 
-On Thu, Sep 26, 2024 at 12:36:49PM GMT, Vignesh Raman wrote:
-> Update the documentation to require linking to a relevant GitLab
-> issue for each new flake entry instead of an email report. Added
-> specific GitLab issue URLs for i915, xe and other drivers.
->=20
-> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
-> ---
->=20
-> v2:
-> - Add gitlab issue link for msm driver.
->=20
-> ---
->  Documentation/gpu/automated_testing.rst | 16 +++++++++++-----
->  1 file changed, 11 insertions(+), 5 deletions(-)
->=20
-> diff --git a/Documentation/gpu/automated_testing.rst b/Documentation/gpu/=
-automated_testing.rst
-> index 2d5a28866afe..f918fe56f2b0 100644
-> --- a/Documentation/gpu/automated_testing.rst
-> +++ b/Documentation/gpu/automated_testing.rst
-> @@ -67,20 +67,26 @@ Lists the tests that for a given driver on a specific=
- hardware revision are
->  known to behave unreliably. These tests won't cause a job to fail regard=
-less of
->  the result. They will still be run.
-> =20
-> -Each new flake entry must be associated with a link to the email reporti=
-ng the
-> -bug to the author of the affected driver, the board name or Device Tree =
-name of
-> -the board, the first kernel version affected, the IGT version used for t=
-ests,
-> -and an approximation of the failure rate.
-> +Each new flake entry must include a link to the relevant GitLab issue, t=
-he board
-> +name or Device Tree name, the first kernel version affected, the IGT ver=
-sion used
-> +for tests and an approximation of the failure rate.
-> =20
->  They should be provided under the following format::
-> =20
-> -  # Bug Report: $LORE_OR_PATCHWORK_URL
-> +  # Bug Report: $GITLAB_ISSUE
->    # Board Name: broken-board.dtb
->    # Linux Version: 6.6-rc1
->    # IGT Version: 1.28-gd2af13d9f
->    # Failure Rate: 100
->    flaky-test
-> =20
-> +The GitLab issue must include the logs and the pipeline link. Use the ap=
-propriate
-> +link below to create an issue.
-> +https://gitlab.freedesktop.org/drm/i915/kernel/-/issues for i915 driver
-> +https://gitlab.freedesktop.org/drm/xe/kernel/-/issues for xe driver
-> +https://gitlab.freedesktop.org/drm/msm/-/issues for msm driver
-> +https://gitlab.freedesktop.org/drm/misc/kernel/-/issues for other drivers
-> +
+Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 74 +++++++++++++++-----
+ 1 file changed, 55 insertions(+), 19 deletions(-)
 
-I can't comment for the others, but drm-misc at least still requires
-reporting issues by mail, so, no, sorry, we can't switch to gitlab only
-for now.
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index f7667931f9d9..8d37973864ee 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -3580,26 +3580,57 @@ static bool transcoder_ddi_func_is_enabled(struct drm_i915_private *dev_priv,
+ 	return tmp & TRANS_DDI_FUNC_ENABLE;
+ }
+ 
+-static void enabled_joiner_pipes(struct drm_i915_private *dev_priv,
+-				 u8 *primary_pipes, u8 *secondary_pipes)
++static void enabled_uncompressed_joiner_pipes(struct intel_display *display,
++					      u8 *primary_pipes, u8 *secondary_pipes)
+ {
++	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	struct intel_crtc *crtc;
+ 
+ 	*primary_pipes = 0;
+ 	*secondary_pipes = 0;
+ 
+-	if (!HAS_BIGJOINER(dev_priv))
++	if (!HAS_UNCOMPRESSED_JOINER(display))
+ 		return;
+ 
+-	for_each_intel_crtc_in_pipe_mask(&dev_priv->drm, crtc,
+-					 joiner_pipes(dev_priv)) {
++	for_each_intel_crtc_in_pipe_mask(&i915->drm, crtc,
++					 joiner_pipes(i915)) {
+ 		enum intel_display_power_domain power_domain;
+ 		enum pipe pipe = crtc->pipe;
+ 		intel_wakeref_t wakeref;
+ 
+-		power_domain = intel_dsc_power_domain(crtc, (enum transcoder) pipe);
+-		with_intel_display_power_if_enabled(dev_priv, power_domain, wakeref) {
+-			u32 tmp = intel_de_read(dev_priv, ICL_PIPE_DSS_CTL1(pipe));
++		power_domain = POWER_DOMAIN_PIPE(pipe);
++		with_intel_display_power_if_enabled(i915, power_domain, wakeref) {
++			u32 tmp = intel_de_read(display, ICL_PIPE_DSS_CTL1(pipe));
++
++			if (tmp & UNCOMPRESSED_JOINER_PRIMARY)
++				*primary_pipes |= BIT(pipe);
++			if (tmp & UNCOMPRESSED_JOINER_SECONDARY)
++				*secondary_pipes |= BIT(pipe);
++		}
++	}
++}
++
++static void enabled_bigjoiner_pipes(struct intel_display *display,
++				    u8 *primary_pipes, u8 *secondary_pipes)
++{
++	struct drm_i915_private *i915 = to_i915(display->drm);
++	struct intel_crtc *crtc;
++
++	*primary_pipes = 0;
++	*secondary_pipes = 0;
++
++	if (!HAS_BIGJOINER(display))
++		return;
++
++	for_each_intel_crtc_in_pipe_mask(&i915->drm, crtc,
++					 joiner_pipes(i915)) {
++		enum intel_display_power_domain power_domain;
++		enum pipe pipe = crtc->pipe;
++		intel_wakeref_t wakeref;
++
++		power_domain = intel_dsc_power_domain(crtc, (enum transcoder)pipe);
++		with_intel_display_power_if_enabled(i915, power_domain, wakeref) {
++			u32 tmp = intel_de_read(display, ICL_PIPE_DSS_CTL1(pipe));
+ 
+ 			if (!(tmp & BIG_JOINER_ENABLE))
+ 				continue;
+@@ -3609,20 +3640,25 @@ static void enabled_joiner_pipes(struct drm_i915_private *dev_priv,
+ 			else
+ 				*secondary_pipes |= BIT(pipe);
+ 		}
++	}
++}
+ 
+-		if (!HAS_UNCOMPRESSED_JOINER(dev_priv))
+-			continue;
++static void enabled_joiner_pipes(struct drm_i915_private *dev_priv,
++				 u8 *primary_pipes, u8 *secondary_pipes)
++{
++	struct intel_display *display = to_intel_display(&dev_priv->drm);
++	u8 primary_uncompressed_joiner_pipes, primary_bigjoiner_pipes;
++	u8 secondary_uncompressed_joiner_pipes, secondary_bigjoiner_pipes;
+ 
+-		power_domain = POWER_DOMAIN_PIPE(pipe);
+-		with_intel_display_power_if_enabled(dev_priv, power_domain, wakeref) {
+-			u32 tmp = intel_de_read(dev_priv, ICL_PIPE_DSS_CTL1(pipe));
++	enabled_uncompressed_joiner_pipes(display, &primary_uncompressed_joiner_pipes,
++					  &secondary_uncompressed_joiner_pipes);
+ 
+-			if (tmp & UNCOMPRESSED_JOINER_PRIMARY)
+-				*primary_pipes |= BIT(pipe);
+-			if (tmp & UNCOMPRESSED_JOINER_SECONDARY)
+-				*secondary_pipes |= BIT(pipe);
+-		}
+-	}
++	enabled_bigjoiner_pipes(display, &primary_bigjoiner_pipes,
++				&secondary_bigjoiner_pipes);
++
++	*primary_pipes = primary_uncompressed_joiner_pipes | primary_bigjoiner_pipes;
++
++	*secondary_pipes = secondary_uncompressed_joiner_pipes | secondary_bigjoiner_pipes;
+ 
+ 	/* Joiner pipes should always be consecutive primary and secondary */
+ 	drm_WARN(&dev_priv->drm, *secondary_pipes != *primary_pipes << 1,
+-- 
+2.45.2
 
-Maxime
-
---xmj2ly46kzbkkxma
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZvUMowAKCRAnX84Zoj2+
-dmrwAXwJooR80dwdvsWLwVqq5T8Tn9xQ8jXG5egqf3JJs5K3KqLQK01ARZoz96es
-RPNQmi8BgI1h2/qRTFQd2zqn7QgKcGKOtkv4Yc4dQqncavbg/HkcoYrbjgDyP6za
-D5kG4mEAOg==
-=hh9h
------END PGP SIGNATURE-----
-
---xmj2ly46kzbkkxma--
