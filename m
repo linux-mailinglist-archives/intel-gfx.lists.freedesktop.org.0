@@ -2,190 +2,90 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6E55987431
+	by mail.lfdr.de (Postfix) with ESMTPS id C14CD987430
 	for <lists+intel-gfx@lfdr.de>; Thu, 26 Sep 2024 15:08:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 111DD10EB3F;
-	Thu, 26 Sep 2024 13:08:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 36F0110EB34;
+	Thu, 26 Sep 2024 13:07:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="atuL3WNL";
+	dkim=pass (1024-bit key; unprotected) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="k2UWsHwg";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 550DB10EB3C;
- Thu, 26 Sep 2024 13:07:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727356080; x=1758892080;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=LdiSOcSZ/OmKOGBIGMk1mQ74u0FrbOXtNjsZycjebyk=;
- b=atuL3WNLOkEoyra/UMrEhio8EkZDDm0HPYoF2v8KJEYZPay/6hhvuf8v
- TPHNrQT5Ver7LdHM0aqjvXtTzBr1eFWZJ/TSOidnCLAp526gDgLSwCJ1W
- vcM70iYC43PugSI2MQsJK5Mka0kNvGIq/yd6cYiiQ9Fqw1vCrLkXw/3ml
- pS4nveSMR2I0UDZ9EocOwXVSSl7EZFo9kWcpP2cWOM6wBfTPsnLZf+95z
- LRYJICfbrgubF/vIA1/E8DyXwHlzW0AN46eqrcrk4QrVR++c28jbNv5hp
- LFWhiOeKivdgr1bd3jgD/NMhnIsr5FhzT7Z4+UjqHLl9Y9fZ+RvP3v+Au A==;
-X-CSE-ConnectionGUID: f9orB6HySF+Y7KhJaLduKw==
-X-CSE-MsgGUID: mGeHhOwuSui0XCZ1rfgCDQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11207"; a="30333874"
-X-IronPort-AV: E=Sophos;i="6.11,155,1725346800"; d="scan'208";a="30333874"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2024 06:07:59 -0700
-X-CSE-ConnectionGUID: Ce4XSUBdTbquiks0f0wlTg==
-X-CSE-MsgGUID: ZeT4FrYQQsK7al/+shFpGg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,155,1725346800"; d="scan'208";a="72949322"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orviesa008.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 26 Sep 2024 06:07:59 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 26 Sep 2024 06:07:58 -0700
-Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 26 Sep 2024 06:07:58 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Thu, 26 Sep 2024 06:07:58 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.40) by
- edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Thu, 26 Sep 2024 06:07:57 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mtKZBMmTia4jb9bqLvP3202ArJtLa3ISQ4ntBNbM4HaboczicI9AhhuaY4CFaaAhJkPQwdVzPET+gd6lEb41E53HmE074HyyE00IVjCzWtzwPQE6PSaorfv2a9GVWcL15l0aACRJRfimVew1L3+m0fwfiVYEaJ8x3/FOqK9ULLMIi5JDY7l47T+GcRRp0UYYG+oXJat4W8GxS/i9uQq59m+lgqmjNcb7zlL6100stz/SmTorrSeppUXld3hYrJ1euf9wyHkIvV5ULX/y8D0WDXiNSgjossAw61cTQhTMWSIRmLMzLYstOMJNQXJ1CQSMRJFeEXzpbmPBff42rF+fWQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vsRCCu0IxdUNLHwTvh+LGlY5M2/nEFx4PS44R23Q47o=;
- b=r4vnbanynyeQEdptPOM0NqRROKb4963SVm/hiU2tmLFq+DtvOf0eDESjtsQWtMHy34sCzXg/7g2SDSiuxFj5Ub92cVjjY0fa1Ne8IN83LY92T6CAwcWvb0StxV0tkA3rruve01plsLOLmEpkUVD8+lNtpwJfSFR9jWN2+id2HYvctbfJWUcAshfMGV7Opx8tgTgBSWJrV2pwVAGW106s+Jo4wc6pmMasYRlRdKbY1mfwMNfYAHIyDSXHkC621ab8AuhbJkWys3AIFXOQS5M9SFzAzJltXp9SnkZM+xFrjnE1lUcGg99RhJkLaRqOpGrfR7bVI9q2S+l8rZ81p3OUbQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by PH7PR11MB7663.namprd11.prod.outlook.com (2603:10b6:510:27c::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7982.28; Thu, 26 Sep
- 2024 13:07:54 +0000
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::397:7566:d626:e839%4]) with mapi id 15.20.8005.020; Thu, 26 Sep 2024
- 13:07:53 +0000
-Message-ID: <a7ad897f-a6d5-4172-a46a-2683f8d3a52c@intel.com>
-Date: Thu, 26 Sep 2024 18:37:46 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 02/15] drm/i915/display_debugfs: Allow force joiner only
- if supported
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <suraj.kandpal@intel.com>
-References: <20240926072638.3689367-1-ankit.k.nautiyal@intel.com>
- <20240926072638.3689367-3-ankit.k.nautiyal@intel.com>
- <ZvVCMMoVowdWfrAz@intel.com>
-Content-Language: en-US
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <ZvVCMMoVowdWfrAz@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA1P287CA0007.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a00:35::24) To DM4PR11MB5341.namprd11.prod.outlook.com
- (2603:10b6:5:390::22)
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
+ [213.167.242.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F359810EB2C;
+ Thu, 26 Sep 2024 13:07:54 +0000 (UTC)
+Received: from [192.168.88.20] (91-156-87-48.elisa-laajakaista.fi
+ [91.156.87.48])
+ by perceval.ideasonboard.com (Postfix) with ESMTPSA id 864B4169;
+ Thu, 26 Sep 2024 15:06:25 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+ s=mail; t=1727355986;
+ bh=eh67dtCNXV3U8aT3LsVobHpkYFjKFmttr/m5eSCwtWo=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=k2UWsHwgVA/FPxAsSsH5yKXV6/Jlap+NAeNhsLKp2Ld18XpfXdvM2UrBoVV7YTfPd
+ yPtHCt/5LrVagb0iTS9+BHYIZk9pE5HhmlCtxWlNk2espq4cPKZY3kt2UIUbjArUoE
+ QA2zLmxe5iQqvbfpE8MOslQJ4r3yUdcZSfsRZk1s=
+Message-ID: <a926cc52-fe99-492c-ae36-9388c13b2738@ideasonboard.com>
+Date: Thu, 26 Sep 2024 16:07:50 +0300
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|PH7PR11MB7663:EE_
-X-MS-Office365-Filtering-Correlation-Id: 30d8f8ea-dd1f-4113-30d3-08dcde2c3b38
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?RzVwWkZCWmNNSllYelgvbmxUbGhUS3A4ZThHWk5jNkI0QmcvOXdiUWtYR0c5?=
- =?utf-8?B?WG9ucnlCVFhWQWZJNzF0RFY4UnQ0dE9reDBhVi9xZWxRZERvNnpOdVh4Y3Mw?=
- =?utf-8?B?M0ZlajltYzRWQzI5YjB5eUY3ZEdXUG9NQ1JVV3NIcmVpYXhkNFQxM1l4YVRy?=
- =?utf-8?B?eWRYMGY4V3p3T0g1VkJQSElIc0drSmgxRnRRN290eU5tMzhad0tnT0wyY2FP?=
- =?utf-8?B?d3VBTzZwRkthMGd5cG8wUThmcUwzdFNUbE1EcDkxK2FtYTBRcGVFR2Z5TEJ0?=
- =?utf-8?B?aTd5NmJZY1NWTFRyWHN6QTl2UXJIaytvckoxTWxLWW8vdm82UFFHRmthQkg5?=
- =?utf-8?B?K1Z1UUFRcDJraTlxQXFlWXJKSEtwdEdPL0FuWFdVK3o3cGl2SHhicU04eDlW?=
- =?utf-8?B?WDUxVnUyVXEyTk9rYjVOdDBXSmtzWTJmWmVieW5Mc01VNjhidWtMZWE3ckhv?=
- =?utf-8?B?bDMvOHA3aEw4RkdqNmRyOUxmbEUyeTFGdGR1RXdscjlTdDNTb3NwRklHM2NI?=
- =?utf-8?B?amZkeFJFODZpeEdpUGpzUit0UkNpNWNjTEtLczN2d3Boc0xkSTNSQVdsbW9F?=
- =?utf-8?B?S2NoZ3YvUkxOanczVVA5cWZPYkpEaU5Qbm9UQTNjeE5tVDFFZk0xYzlobUxQ?=
- =?utf-8?B?MXkxbFA2YVZzM1J3d2I2Nk1XZmZ6c2J2dEZ6d2dQMk1Wbys0eHNkQTNYWjJz?=
- =?utf-8?B?dkNHN1p6bFc3ZmpRYk1ybnU1Z2hUMC95ODMzeFpDcjNWZzlGUnRVTmF2UVBL?=
- =?utf-8?B?MmFLa1VIZXh3UEFnMG8xS0l0c3MxdW13MGdmSk96c3hkVklGQWlxRURZK3E0?=
- =?utf-8?B?ZEsrRFJUMmprcDArSVZoeTFGU2JqSE5LNDhJT2x1dlVlUno1TGlsWkdLNnBW?=
- =?utf-8?B?emg0UWczYmgzUkpNUUZVQmUvNVQ3ZTUwVVdzQ2tzZ09ZSmZjT2d2L3p1eHR3?=
- =?utf-8?B?MHlBTEtrYkZqQy9rbmdTOGpabWx1RTlINUJVdnd1RGlQTnFMbjNDaGlVRmJp?=
- =?utf-8?B?am1sdElaeElkY2hNMjJFT1duSTV4alFIRHh2T2xjdnFGS2xleXlnVzMrc0Zm?=
- =?utf-8?B?QUxnME5DcnNqRlpTZkdQQk1jeG9GNDRnYjljekJtOFYxbytFVEhSR3ZSc29Y?=
- =?utf-8?B?dUJYdy82ZHFGQlEvQ1ZESHhlNml5WVJqTXc0dmpRSTB6ckdRejJxeVlKTTk1?=
- =?utf-8?B?eERJbDMvMUxiNTdPQi9DVVF2YUhFYUpsUm9zeUFnVm40cm44cUhTRDMrQnN3?=
- =?utf-8?B?UkVacllrT2hQSkE5bjNpM2UwUXFMQ0E0QjJyTXpKazd2RUVnTG5iWHVjMWRs?=
- =?utf-8?B?MzRSbnZ3VVZ4SnhBbnJlR2xmK1pjTHRQTmhOU01BR2NYODIzQU5zTU9zNzFH?=
- =?utf-8?B?bXhvY3I4MjYwMjNSL3QwM3FYRHdHTDVGV0JsbEo3SlVsaFFXVm5Sd29VK2Mr?=
- =?utf-8?B?MUZBdkpQWXlqdXR5SlkrQkxwWjdvZG5jS0wvaDZUQ2lJeWRzYlI0V01GMHZy?=
- =?utf-8?B?ajkyV01CeDd6b205ZXdpTXEzYmkrdGpBUkV2VlRDaUZLdlI3ZlpIK0pFTEJv?=
- =?utf-8?B?YTdTUmdZMStRTzFOaFZxb2VkSEUrSUNvQWNsa3Z6MlRiakVUdldIR21LV0dl?=
- =?utf-8?B?SysyS0svYTVZZWlPWXFWbnYxY0JhbjB5RnpXNFdudTUxWm1TdzQrTlpwdnNl?=
- =?utf-8?B?OWxyb1o4cVRnSVkyZXUxb2htREpNMVY2NVZrRlByL1NUQzZnaTVRZGdIbUdP?=
- =?utf-8?B?TUJIMm42bllwQU9nWVlCMEVtZkNGZDZqMUJxVEJZOTB4aFZBbWtGZS9YQXU5?=
- =?utf-8?B?aEVsL2NBRUFpcjRmZUNhdz09?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Z2RmcFNpbW5FSEdHLytmQjVlK0VVa3YxQ1VNRmZaWWZKclFJOWUwL2R1VzE5?=
- =?utf-8?B?ZndyV2JxNUNrRE8zNVhvZDJWSmpKYVlmcXlJb1JxNU5hOUFSSVQzcG56U0E5?=
- =?utf-8?B?QU4xa3l4UmZMbWltUGlGREg2cWh0VlVPQk9lajhON1k1WVh3UlVxeHBNWjBm?=
- =?utf-8?B?ekU4akRXQmNaMk9zMkVKYmN3MDFXbGtsUHJMcHV5Y0F4TVlQdCtxcmRMVmZT?=
- =?utf-8?B?TFp6dTN2TDhNTGZCTldjL2lKbVRrK3ZSR1p2ZGd4bGplWEgvVE1HeC94bnNj?=
- =?utf-8?B?ZVl0akNjeVJkbitQU0ovSllzWHIvbFB0dEp2VGtuUitZb2t1cHVmd0tQVStP?=
- =?utf-8?B?VkJ0Q3crZGlqR2IwRC9EVWdWRTBzYm1zWTRSa2sxd2FkOC82Vk1MT0hrQWdX?=
- =?utf-8?B?WnpPYWNkOURLQytMUSs1dmVmSDlpWU9VZURKckJmV1VqcC9hM3VWaFNXMUdr?=
- =?utf-8?B?NVozSytPRTloYXpPeGpUcGJJM3k1SGVtZU96MEd5eTJZUmxQaDM3bHNGRWtv?=
- =?utf-8?B?a1pPNTF5elRhS09nU3pMaGYyWVptS213QU14WmJvNUNFSUFpWmIwZGxBazdJ?=
- =?utf-8?B?QnlQSkdaZHA3blZ2bk9EYW5mUHZEUnBDNEFXeWpaTmkzMWFOamwzVy9hNU1v?=
- =?utf-8?B?a2JOV1VhajZZaENuWFNNVzU2MXdkVEIwTFI4Ykcwemx3ZFB0M3dMUkd1Nmx1?=
- =?utf-8?B?K1BIWmRncGkzUmRMV2ZmajZYZTZWOG1FKzhXdDE2TTRXcDlJYmZYaTVKb1VM?=
- =?utf-8?B?V2hRb2Z1Vnl3N2U3cE1VWWNNTTdNSnVNODlET2ZKYmZ6QWw5a09idUFSR0VF?=
- =?utf-8?B?UHNDb25QYzRsUUVJT0wveERsUDRFYyt6UkxodDdFM0x3YnRadERLd2YxM3dl?=
- =?utf-8?B?d2t4aGx0aXJMbU43cWZsMkFLT0crOEMzWnJrUzk5ajlmbFpiMEM5cTFDSmto?=
- =?utf-8?B?Nzk0ejd6L29wWnYzUnBkL3JDR093QVJwY3RWS01pWHl2N2lyUkdqN0JmVThp?=
- =?utf-8?B?VkdLT1pIK1YvdWVhcGJjT3E1d2dTbXg0dTRBSExDb0NXZG93NFVtbFdLNDR3?=
- =?utf-8?B?L1lqa1JRTmRqK3IrM3pSeHg5TlhKbk9wQU90QlBSNDRlakR4ZHFqNTArL2N2?=
- =?utf-8?B?UEFwbXpMS1RpRFU2L0dOOVlWcEEvZHhlaVNWeTZvUUMzYjhkR2ZycjkvQkhv?=
- =?utf-8?B?OUZRcDhFd2FrQnRPdTg5RnFvVzNVK2VQWUFpdjBleW1MNjVsUnFvcyttOFN6?=
- =?utf-8?B?M3YwV2lRTnRkdldVSDlJc29wUlk4RGlOenhQZUhVZEZYMEdzWkZwcUVEWlc5?=
- =?utf-8?B?cWlJMDd0aU84TGgrVXFzWDdTdktYK0pqQkVPckZxOUNQYjArc0hEZ2RvVTJ0?=
- =?utf-8?B?UUk2R2liYjQrVCtibksyQ0p1WkJ5TjBXNDdDRWFXYVc2QjNoQThsc0NrWk0w?=
- =?utf-8?B?V3hGajVhRjJQajNnL2dYeStFOHMwdHdSR1k4UXpNT21SRmg2MjN6MURnUzY2?=
- =?utf-8?B?R2NidXNpSDZlVGMwV2g1SXkyQjIrL3g0RmExTGt4K1FYczg3SXVZWDIrdndm?=
- =?utf-8?B?cEQzclZPY2lJMUt0OS9RT1JaN3U0bXRrNGlUdTJvZEtYY0pFT25zZWxPNDBQ?=
- =?utf-8?B?VldBYmNKNUgvVlJSNFg3TzlxQkdSdkkzd0JKelRqdU5kcFlLaFNxM01qaVY4?=
- =?utf-8?B?cEN2ck1TajdndjllcGN0bHMvSC9Sd2xmYzYwcERlaHYvTGhoSWRNSnV2dUJy?=
- =?utf-8?B?RXZ4Tmh1RzJaaWVtb3QvRllNSWtKSTJtQkRQdEZmQkk4eWwyc3NReFlxWnVT?=
- =?utf-8?B?elRBZklKaUpEMkppR1JzZG5udUFOTkh6TUdqOUlvcFE0U2h5SlRsYk5idmRF?=
- =?utf-8?B?Z0tqcmlrNVVJazc4MS9iczVXMklDWStCWVYxNlZNS3ZydFVDNHErbGpiaDA4?=
- =?utf-8?B?WDB3ZnlXTDExR3Yydjh5dFhvYUtvd0JnMDM2Qkt2ZmZIRWtNTFlObGl6ZTdz?=
- =?utf-8?B?NzlTVG9wV2RiNk4xSG1ad1dha2JzMUJBOUEwMDZJNkpMd00zY09hcnpwYVJY?=
- =?utf-8?B?dURTTERiQW44QzArTDRlTW95dVdJbGFiZ2xnTFIvSnZKTE4vRE51S21idzhs?=
- =?utf-8?B?amdkaWNCenI1L0V5dTlCOVJtblVPMzF5d3N4K0RqUUtEREdTTnBvTDFMbUlk?=
- =?utf-8?B?M2c9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 30d8f8ea-dd1f-4113-30d3-08dcde2c3b38
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Sep 2024 13:07:53.7234 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: EeNg7ZR9aq5U6c7xSEzPTOzlp9shvPnv0JcxPoZdK9fcpYe3mEWZ9aqb8NVlPdmxAZzGUyzxM/jlCBK9wm4VTmoGvPkaTAVSbZ4MYdWOvyw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7663
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 80/80] drm/omapdrm: Run DRM default client setup
+To: Thomas Zimmermann <tzimmermann@suse.de>, javierm@redhat.com,
+ jfalempe@redhat.com, airlied@gmail.com, simona@ffwll.ch
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org
+References: <20240924071734.98201-1-tzimmermann@suse.de>
+ <20240924071734.98201-81-tzimmermann@suse.de>
+Content-Language: en-US
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <20240924071734.98201-81-tzimmermann@suse.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -201,68 +101,253 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On 24/09/2024 10:13, Thomas Zimmermann wrote:
+> Rework fbdev probing to support fbdev_probe in struct drm_driver
+> and remove the old fb_probe callback. Provide an initializer macro
+> for struct drm_driver that sets the callback according to the kernel
+> configuration.
+> 
+> Call drm_client_setup() to run the kernel's default client setup
+> for DRM. Set fbdev_probe in struct drm_driver, so that the client
+> setup can start the common fbdev client.
+> 
+> The omapdrm driver specifies a preferred color mode of 32. As this
+> is the default if no format has been given, leave it out entirely.
+> 
+> v5:
+> - select DRM_CLIENT_SELECTION
+> 
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+> Acked-by: Javier Martinez Canillas <javierm@redhat.com>
+> ---
+>   drivers/gpu/drm/omapdrm/Kconfig      |   1 +
+>   drivers/gpu/drm/omapdrm/omap_drv.c   |   1 +
+>   drivers/gpu/drm/omapdrm/omap_fbdev.c | 131 ++++++---------------------
+>   drivers/gpu/drm/omapdrm/omap_fbdev.h |   8 ++
+>   4 files changed, 39 insertions(+), 102 deletions(-)
 
-On 9/26/2024 4:44 PM, Ville Syrjälä wrote:
-> On Thu, Sep 26, 2024 at 12:56:25PM +0530, Ankit Nautiyal wrote:
->> Currently we support joiner only for DP encoder.
->> Do not create the debugfs for joiner if DP does not support the joiner.
->> This will also help avoiding cases where config has eDP MSO, with which
->> we do not support joiner.
->>
->> v2: Check for intel_dp_has_joiner and avoid creating debugfs if not
->> supported. (Ville)
->> v3: Remove HAS_BIGJOINER check. (Ville)
->> v4: Reverse checks for connector type and intel_dp_has_joiner(). (Ville)
->>
->> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
->> ---
->>   drivers/gpu/drm/i915/display/intel_display_debugfs.c | 7 ++++---
->>   1 file changed, 4 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
->> index 890ef7067b77..08adeaa2e87f 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
->> @@ -1328,6 +1328,7 @@ void intel_connector_debugfs_add(struct intel_connector *connector)
->>   	struct drm_i915_private *i915 = to_i915(connector->base.dev);
->>   	struct dentry *root = connector->base.debugfs_entry;
->>   	int connector_type = connector->base.connector_type;
->> +	struct intel_dp *intel_dp = intel_attached_dp(connector);
-> I'd probably drop the local variable entirely since it
-> can give us garbage for non-dp stuff.
+Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
 
-Yeah, can directly use intel_attached_dp(connector) to avoid having 
-intel_dp with some garbage values for non DP connectors.
+  Tomi
 
-Thanks for the review.
+> diff --git a/drivers/gpu/drm/omapdrm/Kconfig b/drivers/gpu/drm/omapdrm/Kconfig
+> index fbd9af758581..9d4016bd0f44 100644
+> --- a/drivers/gpu/drm/omapdrm/Kconfig
+> +++ b/drivers/gpu/drm/omapdrm/Kconfig
+> @@ -4,6 +4,7 @@ config DRM_OMAP
+>   	depends on MMU
+>   	depends on DRM && OF
+>   	depends on ARCH_OMAP2PLUS || (COMPILE_TEST && PAGE_SIZE_LESS_THAN_64KB)
+> +	select DRM_CLIENT_SELECTION
+>   	select DRM_KMS_HELPER
+>   	select DRM_DISPLAY_HELPER
+>   	select DRM_BRIDGE_CONNECTOR
+> diff --git a/drivers/gpu/drm/omapdrm/omap_drv.c b/drivers/gpu/drm/omapdrm/omap_drv.c
+> index a982378aa141..1796cd20a877 100644
+> --- a/drivers/gpu/drm/omapdrm/omap_drv.c
+> +++ b/drivers/gpu/drm/omapdrm/omap_drv.c
+> @@ -647,6 +647,7 @@ static const struct drm_driver omap_drm_driver = {
+>   	.gem_prime_import = omap_gem_prime_import,
+>   	.dumb_create = omap_gem_dumb_create,
+>   	.dumb_map_offset = omap_gem_dumb_map_offset,
+> +	OMAP_FBDEV_DRIVER_OPS,
+>   	.ioctls = ioctls,
+>   	.num_ioctls = DRM_OMAP_NUM_IOCTLS,
+>   	.fops = &omapdriver_fops,
+> diff --git a/drivers/gpu/drm/omapdrm/omap_fbdev.c b/drivers/gpu/drm/omapdrm/omap_fbdev.c
+> index 044e80403c3b..f4bd0c6e3f34 100644
+> --- a/drivers/gpu/drm/omapdrm/omap_fbdev.c
+> +++ b/drivers/gpu/drm/omapdrm/omap_fbdev.c
+> @@ -6,6 +6,7 @@
+>   
+>   #include <linux/fb.h>
+>   
+> +#include <drm/drm_client_setup.h>
+>   #include <drm/drm_drv.h>
+>   #include <drm/drm_crtc_helper.h>
+>   #include <drm/drm_fb_helper.h>
+> @@ -124,8 +125,32 @@ static const struct fb_ops omap_fb_ops = {
+>   	.fb_destroy	= omap_fbdev_fb_destroy,
+>   };
+>   
+> -static int omap_fbdev_create(struct drm_fb_helper *helper,
+> -		struct drm_fb_helper_surface_size *sizes)
+> +static int omap_fbdev_dirty(struct drm_fb_helper *helper, struct drm_clip_rect *clip)
+> +{
+> +	if (!(clip->x1 < clip->x2 && clip->y1 < clip->y2))
+> +		return 0;
+> +
+> +	if (helper->fb->funcs->dirty)
+> +		return helper->fb->funcs->dirty(helper->fb, NULL, 0, 0, clip, 1);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct drm_fb_helper_funcs omap_fbdev_helper_funcs = {
+> +	.fb_dirty = omap_fbdev_dirty,
+> +};
+> +
+> +static struct drm_fb_helper *get_fb(struct fb_info *fbi)
+> +{
+> +	if (!fbi || strcmp(fbi->fix.id, MODULE_NAME)) {
+> +		/* these are not the fb's you're looking for */
+> +		return NULL;
+> +	}
+> +	return fbi->par;
+> +}
+> +
+> +int omap_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
+> +				  struct drm_fb_helper_surface_size *sizes)
+>   {
+>   	struct drm_device *dev = helper->dev;
+>   	struct omap_drm_private *priv = dev->dev_private;
+> @@ -207,6 +232,7 @@ static int omap_fbdev_create(struct drm_fb_helper *helper,
+>   
+>   	DBG("fbi=%p, dev=%p", fbi, dev);
+>   
+> +	helper->funcs = &omap_fbdev_helper_funcs;
+>   	helper->fb = fb;
+>   
+>   	fbi->fbops = &omap_fb_ops;
+> @@ -253,94 +279,10 @@ static int omap_fbdev_create(struct drm_fb_helper *helper,
+>   	return ret;
+>   }
+>   
+> -static int omap_fbdev_dirty(struct drm_fb_helper *helper, struct drm_clip_rect *clip)
+> -{
+> -	if (!(clip->x1 < clip->x2 && clip->y1 < clip->y2))
+> -		return 0;
+> -
+> -	if (helper->fb->funcs->dirty)
+> -		return helper->fb->funcs->dirty(helper->fb, NULL, 0, 0, clip, 1);
+> -
+> -	return 0;
+> -}
+> -
+> -static const struct drm_fb_helper_funcs omap_fb_helper_funcs = {
+> -	.fb_probe = omap_fbdev_create,
+> -	.fb_dirty = omap_fbdev_dirty,
+> -};
+> -
+> -static struct drm_fb_helper *get_fb(struct fb_info *fbi)
+> -{
+> -	if (!fbi || strcmp(fbi->fix.id, MODULE_NAME)) {
+> -		/* these are not the fb's you're looking for */
+> -		return NULL;
+> -	}
+> -	return fbi->par;
+> -}
+> -
+> -/*
+> - * struct drm_client
+> - */
+> -
+> -static void omap_fbdev_client_unregister(struct drm_client_dev *client)
+> -{
+> -	struct drm_fb_helper *fb_helper = drm_fb_helper_from_client(client);
+> -
+> -	if (fb_helper->info) {
+> -		drm_fb_helper_unregister_info(fb_helper);
+> -	} else {
+> -		drm_client_release(&fb_helper->client);
+> -		drm_fb_helper_unprepare(fb_helper);
+> -		kfree(fb_helper);
+> -	}
+> -}
+> -
+> -static int omap_fbdev_client_restore(struct drm_client_dev *client)
+> -{
+> -	drm_fb_helper_lastclose(client->dev);
+> -
+> -	return 0;
+> -}
+> -
+> -static int omap_fbdev_client_hotplug(struct drm_client_dev *client)
+> -{
+> -	struct drm_fb_helper *fb_helper = drm_fb_helper_from_client(client);
+> -	struct drm_device *dev = client->dev;
+> -	int ret;
+> -
+> -	if (dev->fb_helper)
+> -		return drm_fb_helper_hotplug_event(dev->fb_helper);
+> -
+> -	ret = drm_fb_helper_init(dev, fb_helper);
+> -	if (ret)
+> -		goto err_drm_err;
+> -
+> -	ret = drm_fb_helper_initial_config(fb_helper);
+> -	if (ret)
+> -		goto err_drm_fb_helper_fini;
+> -
+> -	return 0;
+> -
+> -err_drm_fb_helper_fini:
+> -	drm_fb_helper_fini(fb_helper);
+> -err_drm_err:
+> -	drm_err(dev, "Failed to setup fbdev emulation (ret=%d)\n", ret);
+> -	return ret;
+> -}
+> -
+> -static const struct drm_client_funcs omap_fbdev_client_funcs = {
+> -	.owner		= THIS_MODULE,
+> -	.unregister	= omap_fbdev_client_unregister,
+> -	.restore	= omap_fbdev_client_restore,
+> -	.hotplug	= omap_fbdev_client_hotplug,
+> -};
+> -
+>   void omap_fbdev_setup(struct drm_device *dev)
+>   {
+>   	struct omap_drm_private *priv = dev->dev_private;
+>   	struct omap_fbdev *fbdev;
+> -	struct drm_fb_helper *helper;
+> -	int ret;
+>   
+>   	drm_WARN(dev, !dev->registered, "Device has not been registered.\n");
+>   	drm_WARN(dev, dev->fb_helper, "fb_helper is already set!\n");
+> @@ -353,20 +295,5 @@ void omap_fbdev_setup(struct drm_device *dev)
+>   
+>   	priv->fbdev = fbdev;
+>   
+> -	helper = kzalloc(sizeof(*helper), GFP_KERNEL);
+> -	if (!helper)
+> -		return;
+> -	drm_fb_helper_prepare(dev, helper, 32, &omap_fb_helper_funcs);
+> -
+> -	ret = drm_client_init(dev, &helper->client, "fbdev", &omap_fbdev_client_funcs);
+> -	if (ret)
+> -		goto err_drm_client_init;
+> -
+> -	drm_client_register(&helper->client);
+> -
+> -	return;
+> -
+> -err_drm_client_init:
+> -	drm_fb_helper_unprepare(helper);
+> -	kfree(helper);
+> +	drm_client_setup(dev, NULL);
+>   }
+> diff --git a/drivers/gpu/drm/omapdrm/omap_fbdev.h b/drivers/gpu/drm/omapdrm/omap_fbdev.h
+> index 74c691a8d45f..283e35b42ada 100644
+> --- a/drivers/gpu/drm/omapdrm/omap_fbdev.h
+> +++ b/drivers/gpu/drm/omapdrm/omap_fbdev.h
+> @@ -10,10 +10,18 @@
+>   #define __OMAPDRM_FBDEV_H__
+>   
+>   struct drm_device;
+> +struct drm_fb_helper;
+> +struct drm_fb_helper_surface_size;
+>   
+>   #ifdef CONFIG_DRM_FBDEV_EMULATION
+> +int omap_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
+> +				  struct drm_fb_helper_surface_size *sizes);
+> +#define OMAP_FBDEV_DRIVER_OPS \
+> +	.fbdev_probe = omap_fbdev_driver_fbdev_probe
+>   void omap_fbdev_setup(struct drm_device *dev);
+>   #else
+> +#define OMAP_FBDEV_DRIVER_OPS \
+> +	.fbdev_probe = NULL
+>   static inline void omap_fbdev_setup(struct drm_device *dev)
+>   {
+>   }
 
-As an aside, now that the first 4 patches (that are dealing with the 
-debugfs) are reviewed, can I send them as separate series and merge them?
-
-This will help get the IGT changes merge for debugfs changes.
-
-Thanks & Regards,
-
-Ankit
-
->
-> Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
->
->>   
->>   	/* The connector must have been registered beforehands. */
->>   	if (!root)
->> @@ -1362,9 +1363,9 @@ void intel_connector_debugfs_add(struct intel_connector *connector)
->>   				    connector, &i915_dsc_fractional_bpp_fops);
->>   	}
->>   
->> -	if (HAS_BIGJOINER(i915) &&
->> -	    (connector_type == DRM_MODE_CONNECTOR_DisplayPort ||
->> -	     connector_type == DRM_MODE_CONNECTOR_eDP)) {
->> +	if ((connector_type == DRM_MODE_CONNECTOR_DisplayPort ||
->> +	     connector_type == DRM_MODE_CONNECTOR_eDP) &&
->> +	    intel_dp_has_joiner(intel_dp)) {
->>   		debugfs_create_bool("i915_bigjoiner_force_enable", 0644, root,
->>   				    &connector->force_bigjoiner_enable);
->>   	}
->> -- 
->> 2.45.2
