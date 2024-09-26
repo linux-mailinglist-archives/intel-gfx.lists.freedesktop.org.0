@@ -2,61 +2,112 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 593049872E8
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Sep 2024 13:36:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8988198734D
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Sep 2024 14:10:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B571310EAC2;
-	Thu, 26 Sep 2024 11:36:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A1B710E88C;
+	Thu, 26 Sep 2024 12:10:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XgQIh1yu";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="jyXYjfot";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="Y/kf8SuE";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="jyXYjfot";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="Y/kf8SuE";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C44D10EABB;
- Thu, 26 Sep 2024 11:36:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727350603; x=1758886603;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=fHmYhOAmYa508Jm4yd6j89kvwHkQ+TbtMfwycE9dsHw=;
- b=XgQIh1yu63Kuumq6KcAgRNuTKizzDFZTvQB6pTtvRZAPjHzC/NhQaA46
- kD/2Nt7DSdy1cyT4bCMAt2a+WLd3e/dQEQFpsMvvAOrrkwUQEIwfwx+Zd
- OFORTG1rrdE2XrRC5BRHm1KnC7nAwxYulVW71Rexz8wOSr1mubY9L5cs7
- peVfzv0Cm3hD+fDZgjHJDgHAPrAPMZza72aBVkxTsr5+bUoc8fLEVfpZF
- wirAiN9H3ahR3DFSMgs0Rw5ZcOXZXtdxbTV4EH09QNTZEVs8E5ClFqEGt
- qfVmjxwTUwXL8tMT6JsMz4H9EMnwYrHlqf852IPANGRVkWxopZXKiA0fd g==;
-X-CSE-ConnectionGUID: 21h68YPcRgOjxn48e/DPnw==
-X-CSE-MsgGUID: h7wNLuWVQbKd0imCBry9NQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11206"; a="25909217"
-X-IronPort-AV: E=Sophos;i="6.10,155,1719903600"; d="scan'208";a="25909217"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2024 04:36:37 -0700
-X-CSE-ConnectionGUID: OF0SFb4CTNeLg+IWLALe1Q==
-X-CSE-MsgGUID: vHqYSLSyT86pLvfGX93fFA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,155,1725346800"; d="scan'208";a="76485613"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2024 04:36:34 -0700
-Date: Thu, 26 Sep 2024 14:37:01 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Benjamin Hoefs <bendhoefs@gmail.com>
-Cc: jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
- joonas.lahtinen@linux.intel.com, tursulin@ursulin.net,
- airlied@gmail.com, simona@ffwll.ch, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] i915: Fix HBLANK Expansion Quirk Causing Modeset Failure
- on Dell WD19TB Dock at 3440x1440@100Hz
-Message-ID: <ZvVHXbK2Swxpjehy@ideak-desk.fi.intel.com>
-References: <20240926002533.10153-2-bendhoefs@gmail.com>
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C579C10E315;
+ Thu, 26 Sep 2024 12:10:48 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 2DC021F871;
+ Thu, 26 Sep 2024 12:10:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1727352647; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=PysjdaUu0eBc4U+fMis6mSY9oLD35SSyBV7Sfu7nJYs=;
+ b=jyXYjfotKpAPY5aJC5tpdz6EuJ+SNBHskVIBaqjvnwOnoenniiWIB7pxkkRvXFcCFsNtUl
+ NWxRikEP3MnE1ZR9Qv/F6swCtduphpNrtHz17REM0gsc4l4K183XoCS9gtZLuascOmieF/
+ uFAtP+wwpQL6zFbW7QjSc0n3oumLpxI=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1727352647;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=PysjdaUu0eBc4U+fMis6mSY9oLD35SSyBV7Sfu7nJYs=;
+ b=Y/kf8SuE0GQomCwv9+w+tEcEiDuLIP+nQZq/cfoeG9FTGFiLwk1ENqCv5YQ7yHKlegtZ9n
+ q3BsxKK36nqFGLBA==
+Authentication-Results: smtp-out2.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=jyXYjfot;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b="Y/kf8SuE"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1727352647; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=PysjdaUu0eBc4U+fMis6mSY9oLD35SSyBV7Sfu7nJYs=;
+ b=jyXYjfotKpAPY5aJC5tpdz6EuJ+SNBHskVIBaqjvnwOnoenniiWIB7pxkkRvXFcCFsNtUl
+ NWxRikEP3MnE1ZR9Qv/F6swCtduphpNrtHz17REM0gsc4l4K183XoCS9gtZLuascOmieF/
+ uFAtP+wwpQL6zFbW7QjSc0n3oumLpxI=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1727352647;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=PysjdaUu0eBc4U+fMis6mSY9oLD35SSyBV7Sfu7nJYs=;
+ b=Y/kf8SuE0GQomCwv9+w+tEcEiDuLIP+nQZq/cfoeG9FTGFiLwk1ENqCv5YQ7yHKlegtZ9n
+ q3BsxKK36nqFGLBA==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 9238613318;
+ Thu, 26 Sep 2024 12:10:46 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id MZI2IEZP9Wa3TQAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Thu, 26 Sep 2024 12:10:46 +0000
+Date: Thu, 26 Sep 2024 14:10:45 +0200
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-fixes
+Message-ID: <20240926121045.GA561653@localhost.localdomain>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240926002533.10153-2-bendhoefs@gmail.com>
+X-Rspamd-Queue-Id: 2DC021F871
+X-Spam-Level: 
+X-Spamd-Result: default: False [-6.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ DWL_DNSWL_MED(-2.00)[suse.de:dkim];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ NEURAL_HAM_SHORT(-0.20)[-1.000];
+ R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ MIME_GOOD(-0.10)[text/plain]; MX_GOOD(-0.01)[];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; FREEMAIL_ENVRCPT(0.00)[gmail.com];
+ ARC_NA(0.00)[]; MIME_TRACE(0.00)[0:+]; MISSING_XM_UA(0.00)[];
+ RCPT_COUNT_TWELVE(0.00)[16];
+ FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
+ FUZZY_BLOCKED(0.00)[rspamd.com]; TO_DN_SOME(0.00)[];
+ FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:dkim];
+ RCVD_TLS_ALL(0.00)[]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ RCVD_COUNT_TWO(0.00)[2];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ DKIM_TRACE(0.00)[suse.de:+]
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Rspamd-Action: no action
+X-Spam-Score: -6.51
+X-Spam-Flag: NO
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,77 +120,131 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Sep 25, 2024 at 07:25:34PM -0500, Benjamin Hoefs wrote:
-> Hello,
-> 
-> I am using a Dell WD19TB dock with a 3440x1440 monitor. Using it at
-> 100Hz used to work but recently I tried it again and discovered it no longer
-> did, specifically the modeset seems to silently fail with no error message in
-> userspace utilities like kscreen-doctor and xrandr and no output in dmesg.
-> I found the problematic commit using git bisect to be
-> 55eaef164174480df6827edeac15620f3cbcd52b "Handle the Synaptics HBlank
-> expansion quirk".
-> 
-> I found the issue to be the hblank_expasion_quirk_needs_dsc function which uses
-> the following comparison in the current kernel tree:
-> 
-> if (mode_hblank_period_ns(adjusted_mode) > hblank_limit)
-> 	return false;
-> 
-> with hblank_limit being earlier set as
-> 
-> int hblank_limit = is_uhbr_sink ? 500 : 300;
-> 
-> However, my monitor's HBLANK period in the 3440x1440@100Hz mode is
-> exactly 300 ns as verified by this printk immediately before the
-> problematic comparison.
-> 
-> printk(KERN_INFO "Hello, kernel world! %i\n",
-> 	mode_hblank_period_ns(adjusted_mode));
-> [   38.429839] Hello, kernel world! 300
-> 
-> With the attached change the modeset works as expected at 100Hz. Would it be
-> acceptable to modify the comparison from > to >= here?
-> 
-> I'll do my best to provide any additional details you may need although
-> that printk and '=' sign is the only kernel code I've written, so my best may
-> not be great :).
-> 
-> Signed-off-by: Benjamin D. Hoefs <bendhoefs@gmail.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp_mst.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> index 15541932b809..052c5a67df93 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> @@ -446,7 +446,7 @@ hblank_expansion_quirk_needs_dsc(const struct intel_connector *connector,
->  	if (is_uhbr_sink && !drm_dp_is_uhbr_rate(limits->max_rate))
->  		return false;
->  
-> -	if (mode_hblank_period_ns(adjusted_mode) > hblank_limit)
-> +	if (mode_hblank_period_ns(adjusted_mode) >= hblank_limit)
->  		return false;
+Hi Dave, Sima,
 
-Disabling DSC this way could make another mode with the same hblank
-period not work. This mode would require DSC in any case if there is a
-link BW limitation, so would need to check why DSC is failing. Could you
-open a ticket at:
+this is the PR for drm-misc-fixes for this week. Mostly the usual small
+changes. That fix in the atomic-modesetting code touches UAPI code, but
+does not change the UAPI itself.
 
-https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/new
+Best regards
+Thomas
 
-attaching a dmesg log booting with drm.debug=0x15e?
+drm-misc-fixes-2024-09-26:
+Short summary of fixes pull:
 
-Thanks,
-Imre
+atomic:
+- Use correct type when reading damage rectangles
 
->  
->  	return true;
-> -- 
-> 2.46.2
-> 
+display:
+- Fix kernel docs
+
+dp-mst:
+- Fix DSC decompression detection
+
+hdmi:
+- Fix infoframe size
+
+panthor:
+- Fix locking
+
+sched:
+- Update maintainers
+- Fix race condition whne queueing up jobs
+
+sysfb:
+- Disable sysfb if framebuffer parent device is unknown
+
+vbox:
+- Fix VLA handling
+The following changes since commit 45c690aea8ee5b7d012cd593bd288540a4bfdbf0:
+
+  drm/tegra: Use iommu_paging_domain_alloc() (2024-09-10 15:40:27 -0400)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2024-09-26
+
+for you to fetch changes up to ad604f0a4c040dcb8faf44dc72db25e457c28076:
+
+  firmware/sysfb: Disable sysfb for firmware buffers with unknown parent (2024-09-26 08:22:20 +0200)
+
+----------------------------------------------------------------
+Short summary of fixes pull:
+
+atomic:
+- Use correct type when reading damage rectangles
+
+display:
+- Fix kernel docs
+
+dp-mst:
+- Fix DSC decompression detection
+
+hdmi:
+- Fix infoframe size
+
+panthor:
+- Fix locking
+
+sched:
+- Update maintainers
+- Fix race condition whne queueing up jobs
+
+sysfb:
+- Disable sysfb if framebuffer parent device is unknown
+
+vbox:
+- Fix VLA handling
+
+----------------------------------------------------------------
+Derek Foreman (1):
+      drm/connector: hdmi: Fix writing Dynamic Range Mastering infoframes
+
+Dmitry Baryshkov (1):
+      drm/display: fix kerneldocs references
+
+Hans de Goede (1):
+      drm/vboxvideo: Replace fake VLA at end of vbva_mouse_pointer_shape with real VLA
+
+Imre Deak (1):
+      drm/dp_mst: Fix DSC decompression detection in Synaptics branch devices
+
+Philipp Stanner (1):
+      MAINTAINERS: drm/sched: Add new maintainers
+
+Rob Clark (1):
+      drm/sched: Fix dynamic job-flow control race
+
+Steven Price (1):
+      drm/panthor: Fix race when converting group handle to group object
+
+Thomas Zimmermann (2):
+      drm: Consistently use struct drm_mode_rect for FB_DAMAGE_CLIPS
+      firmware/sysfb: Disable sysfb for firmware buffers with unknown parent
+
+ Documentation/gpu/drm-kms-helpers.rst           |  4 ++--
+ MAINTAINERS                                     |  2 ++
+ drivers/firmware/sysfb.c                        |  4 +++-
+ drivers/gpu/drm/display/drm_dp_mst_topology.c   | 10 ++++++++--
+ drivers/gpu/drm/display/drm_hdmi_state_helper.c |  4 +---
+ drivers/gpu/drm/drm_atomic_uapi.c               |  2 +-
+ drivers/gpu/drm/drm_debugfs.c                   |  4 +---
+ drivers/gpu/drm/panthor/panthor_sched.c         | 16 ++++++++++++++--
+ drivers/gpu/drm/scheduler/sched_entity.c        |  4 ++--
+ drivers/gpu/drm/scheduler/sched_main.c          |  7 ++-----
+ drivers/gpu/drm/vboxvideo/hgsmi_base.c          | 10 +++++++++-
+ drivers/gpu/drm/vboxvideo/vboxvideo.h           |  4 +---
+ include/drm/gpu_scheduler.h                     |  2 +-
+ include/linux/hdmi.h                            |  9 +++++++++
+ 14 files changed, 56 insertions(+), 26 deletions(-)
+
+-- 
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
