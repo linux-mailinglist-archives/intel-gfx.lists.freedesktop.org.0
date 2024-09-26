@@ -2,58 +2,80 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E28F7986D79
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Sep 2024 09:25:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8114D986D9A
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Sep 2024 09:29:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BFD210EAC0;
-	Thu, 26 Sep 2024 07:25:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6E3B10EACB;
+	Thu, 26 Sep 2024 07:29:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ik2/5p2Z";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="cyaTfnQS";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8AE9010EABB;
- Thu, 26 Sep 2024 07:25:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727335512; x=1758871512;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=1lkMhrouPwrpcncBTi4RGsOksj59dO2fBO6FMyjtqWo=;
- b=ik2/5p2Zc+C5PfaHyzdGfzFxOKFgbFUjgO7PO8YnC+886HZx54ZIU9wh
- 6jGkW+hSpTOj/vOONKCqc6hYzdN2thBjq3VFY0CXWYmOeTEAgu2e9VBwL
- NL982gwiURY7DlB+ZUEVHupgwuzPk4uIm2NduqJDUgdFN1tWuqcwAnt4L
- X7WPtZQdCWygckb2z8GiKQf4mdYcWsEhCvJlKGrjHJWvIk5usn+TCfdIB
- gA6nRJWM3Ceoqv4Hrpmvge5Z0Ai9V+2yZBfU+pIeAK17ZAtSSQoiiuMkc
- Cmzhz/AqIG6AWjWEZV27O7ZRdhHqGtXprMZfGreWngbcOrNM468BUWXMw Q==;
-X-CSE-ConnectionGUID: Yqa0dqRuQSKDniQUEduh+A==
-X-CSE-MsgGUID: dl/hlmHYRdCmJO9A3v+AEQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11206"; a="51829476"
-X-IronPort-AV: E=Sophos;i="6.10,259,1719903600"; d="scan'208";a="51829476"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2024 00:25:12 -0700
-X-CSE-ConnectionGUID: jiJj01W0T2it7uZDG/Xmnw==
-X-CSE-MsgGUID: Uyxn3dzES+yGrLKuOXpfZA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.10,259,1719903600"; d="scan'208";a="72334543"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2024 00:25:10 -0700
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, suraj.kandpal@intel.com,
- ville.syrjala@linux.intel.com
-Subject: [PATCH 15/15] drm/i915/intel_dp: Add support for forcing ultrajoiner
-Date: Thu, 26 Sep 2024 12:56:38 +0530
-Message-ID: <20240926072638.3689367-16-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240926072638.3689367-1-ankit.k.nautiyal@intel.com>
-References: <20240926072638.3689367-1-ankit.k.nautiyal@intel.com>
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com
+ [209.85.167.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C28D10EAB7
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Sep 2024 07:29:30 +0000 (UTC)
+Received: by mail-lf1-f41.google.com with SMTP id
+ 2adb3069b0e04-53654e2ed93so845667e87.0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Sep 2024 00:29:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1727335768; x=1727940568; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=qDfxbQPwiokVDYdYi9MFG3A73Xy2Dn6HJeQAftMAmZo=;
+ b=cyaTfnQSFf6ddmHIcL/dYLh9JLKQnNWcr3lcTgrjoEsSo2NpgyaAV0Egqq/bxM94pA
+ IY0MoGYkxnWZctELdO8DbkbJF7dOtaKhdOe+IyRJbrdEjY8oG9aSsbvOTVB5+M8TVyeV
+ eECK6/CkULRn3aMTp1rVzvQoLGkKds0YOu10lUGR60htY1c+WhFCavzpndE08uQvyIV4
+ PBqMPDE+uvRz4wW0Nk1VpmckdzNt6sZsH/qWmyDhhdUsGvHihJPVZhS8duTH0h4FS4mP
+ y+hySODT0SUvFX3qzcU3Z/6YtNgDBcOZi/eMIhoj1JcoypJGHCQUCHhHenRizuFpMhqK
+ C7Hg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1727335768; x=1727940568;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=qDfxbQPwiokVDYdYi9MFG3A73Xy2Dn6HJeQAftMAmZo=;
+ b=uYKP0clnLN2c6p+0NFlPKraM9+SeIL/8KZpgegrBIsTXgHymOOyEogD4RCcZ+/t5F/
+ nHYAWc1uf2Nx+mWkDppmppbnVF/QTs/2WUE3CZFLLntFyPmRT3GJftH3sAXm54fx1pn2
+ 0uN1VoT15f6d69fj8A7MRo10amGn2vKn4yxhipacFbIrTYdl+AhLSv6YIm75FgNsmajt
+ e0iExBU4oBOb6u6g07h13/+yt/mJ2lVbSmJGQ2o1ExHxH+MjqGZ6oPOR0iP0poI7dDX2
+ TSj9dhRwgAx/n9vSjhEOt+vLz5u2rlZKVyQIXKfYqA64YGs99Xdyqwoyi1DUnMccZ8bG
+ 0naQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXHV3aF7a/J06upN4xG2r7TGRo+62WElIcoKT7C7NZ/ttKoybgLiVxPvoHSyI8JuW4+0jBGXeiAGHw=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy1DBbkcRifYZaeCyUV7C++fxCLplxAQbFWyfqlzrP2egJ5nprQ
+ VM/n+MKuRpNzy0voY+1L3ocr++i/WncIWG6d6+I6e/8wouM2FCgDWSEDniOVACw=
+X-Google-Smtp-Source: AGHT+IE8t/WEuR6wLLC+FMdDPRvo5sy/HJiTMb2ns4dr6CTbA9nkOna0DOKv3ZWAngvCWp8t9wgrZg==
+X-Received: by 2002:a05:6512:2243:b0:52c:8c4d:f8d6 with SMTP id
+ 2adb3069b0e04-5387755ba36mr3075446e87.45.1727335768286; 
+ Thu, 26 Sep 2024 00:29:28 -0700 (PDT)
+Received: from eriador.lumag.spb.ru
+ (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+ by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-537a85e061dsm737595e87.44.2024.09.26.00.29.26
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 26 Sep 2024 00:29:27 -0700 (PDT)
+Date: Thu, 26 Sep 2024 10:29:24 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Vignesh Raman <vignesh.raman@collabora.com>
+Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com, 
+ helen.koike@collabora.com, airlied@gmail.com, daniel@ffwll.ch,
+ robdclark@gmail.com, 
+ guilherme.gallo@collabora.com, sergi.blanch.torne@collabora.com,
+ deborah.brouwer@collabora.com, 
+ mripard@kernel.org, rodrigo.vivi@intel.com, linux-mediatek@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, 
+ virtualization@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] docs/gpu: ci: update flake tests requirements
+Message-ID: <llzzzcfbb5gpdcldobqsl5yqgac6cpgcs4r5jh7sbbsuwhchua@avub3pj2by4z>
+References: <20240926070653.1773597-1-vignesh.raman@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240926070653.1773597-1-vignesh.raman@collabora.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,43 +91,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Allow forcing ultrajoiner through debugfs.
+On Thu, Sep 26, 2024 at 12:36:49PM GMT, Vignesh Raman wrote:
+> Update the documentation to require linking to a relevant GitLab
+> issue for each new flake entry instead of an email report. Added
+> specific GitLab issue URLs for i915, xe and other drivers.
+> 
+> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
+> ---
+> 
+> v2:
+> - Add gitlab issue link for msm driver.
+> 
+> ---
+>  Documentation/gpu/automated_testing.rst | 16 +++++++++++-----
+>  1 file changed, 11 insertions(+), 5 deletions(-)
+> 
+> diff --git a/Documentation/gpu/automated_testing.rst b/Documentation/gpu/automated_testing.rst
+> index 2d5a28866afe..f918fe56f2b0 100644
+> --- a/Documentation/gpu/automated_testing.rst
+> +++ b/Documentation/gpu/automated_testing.rst
+> @@ -67,20 +67,26 @@ Lists the tests that for a given driver on a specific hardware revision are
+>  known to behave unreliably. These tests won't cause a job to fail regardless of
+>  the result. They will still be run.
+>  
+> -Each new flake entry must be associated with a link to the email reporting the
+> -bug to the author of the affected driver, the board name or Device Tree name of
+> -the board, the first kernel version affected, the IGT version used for tests,
+> -and an approximation of the failure rate.
+> +Each new flake entry must include a link to the relevant GitLab issue, the board
+> +name or Device Tree name, the first kernel version affected, the IGT version used
+> +for tests and an approximation of the failure rate.
+>  
+>  They should be provided under the following format::
+>  
+> -  # Bug Report: $LORE_OR_PATCHWORK_URL
+> +  # Bug Report: $GITLAB_ISSUE
+>    # Board Name: broken-board.dtb
+>    # Linux Version: 6.6-rc1
+>    # IGT Version: 1.28-gd2af13d9f
+>    # Failure Rate: 100
+>    flaky-test
+>  
+> +The GitLab issue must include the logs and the pipeline link. Use the appropriate
+> +link below to create an issue.
+> +https://gitlab.freedesktop.org/drm/i915/kernel/-/issues for i915 driver
+> +https://gitlab.freedesktop.org/drm/xe/kernel/-/issues for xe driver
+> +https://gitlab.freedesktop.org/drm/msm/-/issues for msm driver
 
-v2: Minor refactoring of switch case logic. (Ville)
+Ack for the MSM part.
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_debugfs.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+> +https://gitlab.freedesktop.org/drm/misc/kernel/-/issues for other drivers
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index 14bfda9f2d5c..820c6859c9bf 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -1331,6 +1331,7 @@ static ssize_t i915_joiner_write(struct file *file,
- {
- 	struct seq_file *m = file->private_data;
- 	struct intel_connector *connector = m->private;
-+	struct drm_i915_private *i915 = to_i915(connector->base.dev);
- 	int force_joined_pipes = 0;
- 	int ret;
- 
-@@ -1347,6 +1348,13 @@ static ssize_t i915_joiner_write(struct file *file,
- 	case 2:
- 		connector->force_joined_pipes = force_joined_pipes;
- 		break;
-+	case 4:
-+		if (HAS_ULTRAJOINER(i915)) {
-+			connector->force_joined_pipes = force_joined_pipes;
-+			break;
-+		}
-+
-+		fallthrough;
- 	default:
- 		return -EINVAL;
- 	}
 -- 
-2.45.2
-
+With best wishes
+Dmitry
