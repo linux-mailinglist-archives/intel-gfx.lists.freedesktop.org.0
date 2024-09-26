@@ -2,53 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E043987498
+	by mail.lfdr.de (Postfix) with ESMTPS id 42C27987499
 	for <lists+intel-gfx@lfdr.de>; Thu, 26 Sep 2024 15:41:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B75B10EB56;
-	Thu, 26 Sep 2024 13:41:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57EFA10EB59;
+	Thu, 26 Sep 2024 13:41:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y/lh5xig";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YL9QEJsA";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6ECD10EB56;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C917B10EB55;
  Thu, 26 Sep 2024 13:41:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727358095; x=1758894095;
+ t=1727358096; x=1758894096;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=2sjriTAUTn7S8LZy2GcR9VUwakBHawDyR9Jc0GYXj1A=;
- b=Y/lh5xig0Kb+hyImI4CeXSBix77uVHBc/WyHeWGWKwvHv4eTupLC3csu
- 53mEaYozBj3D2sp9hyz1uLwGTWlU6zDlDtMMqW9UlkOkay9kZMXAoZ6Cr
- ZoKQkIqs5no1mPUMxhOeKE5AdK8kD5fwamtLEyybLE5A7ZKRTvVKyq590
- kbgpRKo9eBD/ie/3Out7mNEjGG5gDXg/c1TH6EU9BL1PlwoOaWogybxfB
- drUk0vLZoOuTCsKSoLld/ZKHyWPUPrYHozfiFGeP0uFokcwMsfQ6YFl3G
- bM2RxrLXp/neQxgwJErdcDTQRAD/Cw6/saaeKeJN9gCWPm9RvcejZiBSz w==;
-X-CSE-ConnectionGUID: R9s3dmEqTiG19p2xLwceMw==
-X-CSE-MsgGUID: IimhhXpSQ7ac+7R9B7i7wg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11207"; a="43922889"
-X-IronPort-AV: E=Sophos;i="6.11,155,1725346800"; d="scan'208";a="43922889"
+ bh=DwksM844WlFMNiveEL+yU2esxzEI2LOUnHR/Ve5mf4o=;
+ b=YL9QEJsAtJMZZbP0BtJv292pNi/KMqshKANAzczQAcNA6TISW+cgCz9i
+ 43nPX5XNxOaxJe2XcFRHoAlnkeCck31ogVAflxr8JcWFV6sGNPLufwJVg
+ xCgNoBqU4NUSJlzeUb5z4FGLxYQKn2JvLYw/0B+jLss02LV0cKNs8cS75
+ /EJRVmTdFbucENYiMsfsyOPGRbNLT545RyUgAttN+nw74eJ9x7jXu3Qcr
+ cUm5pJsRJKz5QZ+RisaX/qLOi9DNzT8rPSc48A7KdxnYGbVAXaqheZvCs
+ EHMO1s1xdQNxzSJ4VexePoxVVslRRkttutpE2A61c1W9n6PhedhH2dgK6 A==;
+X-CSE-ConnectionGUID: s2HGUhHoSQKLvi2TBkyjkA==
+X-CSE-MsgGUID: WfAxAY/3SJOjz2lf8d3miA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11207"; a="43922892"
+X-IronPort-AV: E=Sophos;i="6.11,155,1725346800"; d="scan'208";a="43922892"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2024 06:41:34 -0700
-X-CSE-ConnectionGUID: +kiJ+F28SlWkDbaHXZFNDg==
-X-CSE-MsgGUID: gKBQaywsSfeXBXzydUIyww==
+ 26 Sep 2024 06:41:35 -0700
+X-CSE-ConnectionGUID: 0kpbYPPlR4Kq1eSdrTeyew==
+X-CSE-MsgGUID: LZxbfaumQqGUW4mZfFHBkQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,155,1725346800"; d="scan'208";a="76975920"
+X-IronPort-AV: E=Sophos;i="6.11,155,1725346800"; d="scan'208";a="76975923"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2024 06:41:32 -0700
+ 26 Sep 2024 06:41:34 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, suraj.kandpal@intel.com,
  ville.syrjala@linux.intel.com
-Subject: [PATCH 3/4] drm/i915/display: Modify debugfs for joiner to force n
- pipes
-Date: Thu, 26 Sep 2024 19:13:21 +0530
-Message-ID: <20240926134322.3728021-4-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 4/4] drm/i915/dp: Add helper to compute num pipes required
+Date: Thu, 26 Sep 2024 19:13:22 +0530
+Message-ID: <20240926134322.3728021-5-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240926134322.3728021-1-ankit.k.nautiyal@intel.com>
 References: <20240926134322.3728021-1-ankit.k.nautiyal@intel.com>
@@ -70,132 +69,188 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-At the moment, the debugfs for joiner allows only to force enable/disable
-pipe joiner for 2 pipes. Modify it to force join 'n' number of pipes,
-where n is a valid pipe joiner configuration.
-This will help in case of ultra joiner where 4 pipes are joined.
+Add a helper to compute the number of pipes required.
+This will depend on whether the joiner is required or is forced through
+the debugfs. If no joiner is required the helper returns 1.
 
 v2:
--Fix commit message to state that only valid joiner config can be
-forced. (Suraj)
--Rename the identifiers to have INTEL_BIG/NONE_JOINER_PIPES. (Suraj)
-v3:
--Avoid enum for joiner pipe counts, use bare numbers for better
-readability. (Ville)
--Remove redundant prints from debugfs. (Ville)
-v4: Return -EINVAL if joiner forced to an invalid value.
-v5: Remove extra debug message. (Ville)
-v6: Minor fix in switch case. (Ville)
+-Return 1 if no joiner is required. (Ville)
+-Change the suffix from joined_pipes to num_pipes. (Ville)
+-Use number of pipes while calculating joined_pipe masks and
+max_dotclk. (Ville)
+v3: Simplify and rename the helper to intel_dp_num_joined_pipes(). Ville
+v4: Remove redundant 'fallthrough' statement. (Ville)
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- .../drm/i915/display/intel_display_debugfs.c  | 57 ++++++++++++++++++-
- .../drm/i915/display/intel_display_types.h    |  2 +-
- drivers/gpu/drm/i915/display/intel_dp.c       |  2 +-
- 3 files changed, 57 insertions(+), 4 deletions(-)
+ .../drm/i915/display/intel_display_debugfs.c  |  1 +
+ drivers/gpu/drm/i915/display/intel_dp.c       | 46 +++++++++++--------
+ drivers/gpu/drm/i915/display/intel_dp.h       |  6 +--
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   | 23 ++++------
+ 4 files changed, 40 insertions(+), 36 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index c38023b43682..ae3715f0f1d8 100644
+index ae3715f0f1d8..5923bbc232be 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -1316,6 +1316,59 @@ static int intel_crtc_pipe_show(struct seq_file *m, void *unused)
- }
- DEFINE_SHOW_ATTRIBUTE(intel_crtc_pipe);
+@@ -1343,6 +1343,7 @@ static ssize_t i915_joiner_write(struct file *file,
  
-+static int i915_joiner_show(struct seq_file *m, void *data)
-+{
-+	struct intel_connector *connector = m->private;
-+
-+	seq_printf(m, "%d\n", connector->force_joined_pipes);
-+
-+	return 0;
-+}
-+
-+static ssize_t i915_joiner_write(struct file *file,
-+				 const char __user *ubuf,
-+				 size_t len, loff_t *offp)
-+{
-+	struct seq_file *m = file->private_data;
-+	struct intel_connector *connector = m->private;
-+	int force_joined_pipes = 0;
-+	int ret;
-+
-+	if (len == 0)
-+		return 0;
-+
-+	ret = kstrtoint_from_user(ubuf, len, 0, &force_joined_pipes);
-+	if (ret < 0)
-+		return ret;
-+
-+	switch (force_joined_pipes) {
-+	case 0:
-+	case 2:
-+		connector->force_joined_pipes = force_joined_pipes;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	*offp += len;
-+
-+	return len;
-+}
-+
-+static int i915_joiner_open(struct inode *inode, struct file *file)
-+{
-+	return single_open(file, i915_joiner_show, inode->i_private);
-+}
-+
-+static const struct file_operations i915_joiner_fops = {
-+	.owner = THIS_MODULE,
-+	.open = i915_joiner_open,
-+	.read = seq_read,
-+	.llseek = seq_lseek,
-+	.release = single_release,
-+	.write = i915_joiner_write
-+};
-+
- /**
-  * intel_connector_debugfs_add - add i915 specific connector debugfs files
-  * @connector: pointer to a registered intel_connector
-@@ -1365,8 +1418,8 @@ void intel_connector_debugfs_add(struct intel_connector *connector)
- 	if ((connector_type == DRM_MODE_CONNECTOR_DisplayPort ||
- 	     connector_type == DRM_MODE_CONNECTOR_eDP) &&
- 	    intel_dp_has_joiner(intel_attached_dp(connector))) {
--		debugfs_create_bool("i915_bigjoiner_force_enable", 0644, root,
--				    &connector->force_bigjoiner_enable);
-+		debugfs_create_file("i915_joiner_force_enable", 0644, root,
-+				    connector, &i915_joiner_fops);
- 	}
- 
- 	if (connector_type == DRM_MODE_CONNECTOR_DSI ||
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 7ff97e5b83dd..7fb3eeb0e0f2 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -524,7 +524,7 @@ struct intel_connector {
- 
- 	struct intel_dp *mst_port;
- 
--	bool force_bigjoiner_enable;
-+	int force_joined_pipes;
- 
- 	struct {
- 		struct drm_dp_aux *dsc_decompression_aux;
+ 	switch (force_joined_pipes) {
+ 	case 0:
++	case 1:
+ 	case 2:
+ 		connector->force_joined_pipes = force_joined_pipes;
+ 		break;
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 16dc1d26d2a2..a1a64758d30d 100644
+index a1a64758d30d..f2a2541c1091 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1274,7 +1274,7 @@ bool intel_dp_need_joiner(struct intel_dp *intel_dp,
+@@ -1264,17 +1264,30 @@ intel_dp_mode_valid_downstream(struct intel_connector *connector,
+ 	return MODE_OK;
+ }
+ 
+-bool intel_dp_need_joiner(struct intel_dp *intel_dp,
+-			  struct intel_connector *connector,
+-			  int hdisplay, int clock)
++static
++bool intel_dp_needs_bigjoiner(struct intel_dp *intel_dp,
++			      struct intel_connector *connector,
++			      int hdisplay, int clock)
+ {
+ 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+ 
+ 	if (!intel_dp_has_joiner(intel_dp))
  		return false;
  
- 	return clock > i915->display.cdclk.max_dotclk_freq || hdisplay > 5120 ||
--	       connector->force_bigjoiner_enable;
-+	       connector->force_joined_pipes == 2;
+-	return clock > i915->display.cdclk.max_dotclk_freq || hdisplay > 5120 ||
+-	       connector->force_joined_pipes == 2;
++	return clock > i915->display.cdclk.max_dotclk_freq || hdisplay > 5120;
++}
++
++int intel_dp_num_joined_pipes(struct intel_dp *intel_dp,
++			      struct intel_connector *connector,
++			      int hdisplay, int clock)
++{
++	if (connector->force_joined_pipes)
++		return connector->force_joined_pipes;
++
++	if (intel_dp_needs_bigjoiner(intel_dp, connector, hdisplay, clock))
++		return 2;
++
++	return 1;
  }
  
  bool intel_dp_has_dsc(const struct intel_connector *connector)
+@@ -1311,7 +1324,7 @@ intel_dp_mode_valid(struct drm_connector *_connector,
+ 	u16 dsc_max_compressed_bpp = 0;
+ 	u8 dsc_slice_count = 0;
+ 	enum drm_mode_status status;
+-	bool dsc = false, joiner = false;
++	bool dsc = false;
+ 	int num_joined_pipes;
+ 
+ 	status = intel_cpu_transcoder_mode_valid(dev_priv, mode);
+@@ -1333,13 +1346,9 @@ intel_dp_mode_valid(struct drm_connector *_connector,
+ 		target_clock = fixed_mode->clock;
+ 	}
+ 
+-	if (intel_dp_need_joiner(intel_dp, connector,
+-				 mode->hdisplay, target_clock)) {
+-		joiner = true;
+-		max_dotclk *= 2;
+-	}
+-
+-	num_joined_pipes = joiner ? 2 : 1;
++	num_joined_pipes = intel_dp_num_joined_pipes(intel_dp, connector,
++						     mode->hdisplay, target_clock);
++	max_dotclk *= num_joined_pipes;
+ 
+ 	if (target_clock > max_dotclk)
+ 		return MODE_CLOCK_HIGH;
+@@ -2507,12 +2516,11 @@ intel_dp_compute_link_config(struct intel_encoder *encoder,
+ 	    !intel_dp_supports_fec(intel_dp, connector, pipe_config))
+ 		return -EINVAL;
+ 
+-	if (intel_dp_need_joiner(intel_dp, connector,
+-				 adjusted_mode->crtc_hdisplay,
+-				 adjusted_mode->crtc_clock))
+-		pipe_config->joiner_pipes = GENMASK(crtc->pipe + 1, crtc->pipe);
+-
+-	num_joined_pipes = intel_crtc_num_joined_pipes(pipe_config);
++	num_joined_pipes = intel_dp_num_joined_pipes(intel_dp, connector,
++						     adjusted_mode->crtc_hdisplay,
++						     adjusted_mode->crtc_clock);
++	if (num_joined_pipes > 1)
++		pipe_config->joiner_pipes = GENMASK(crtc->pipe + num_joined_pipes - 1, crtc->pipe);
+ 
+ 	joiner_needs_dsc = intel_dp_joiner_needs_dsc(i915, num_joined_pipes);
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
+index 3b869429e575..53d1217800ef 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.h
++++ b/drivers/gpu/drm/i915/display/intel_dp.h
+@@ -151,9 +151,9 @@ int intel_dp_dsc_sink_max_compressed_bpp(const struct intel_connector *connector
+ u8 intel_dp_dsc_get_slice_count(const struct intel_connector *connector,
+ 				int mode_clock, int mode_hdisplay,
+ 				int num_joined_pipes);
+-bool intel_dp_need_joiner(struct intel_dp *intel_dp,
+-			  struct intel_connector *connector,
+-			  int hdisplay, int clock);
++int intel_dp_num_joined_pipes(struct intel_dp *intel_dp,
++			      struct intel_connector *connector,
++			      int hdisplay, int clock);
+ 
+ static inline unsigned int intel_dp_unused_lane_mask(int lane_count)
+ {
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+index 732d7543ad06..4765bda154c1 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+@@ -581,12 +581,11 @@ static int intel_dp_mst_compute_config(struct intel_encoder *encoder,
+ 	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN)
+ 		return -EINVAL;
+ 
+-	if (intel_dp_need_joiner(intel_dp, connector,
+-				 adjusted_mode->crtc_hdisplay,
+-				 adjusted_mode->crtc_clock))
+-		pipe_config->joiner_pipes = GENMASK(crtc->pipe + 1, crtc->pipe);
+-
+-	num_joined_pipes = intel_crtc_num_joined_pipes(pipe_config);
++	num_joined_pipes = intel_dp_num_joined_pipes(intel_dp, connector,
++						     adjusted_mode->crtc_hdisplay,
++						     adjusted_mode->crtc_clock);
++	if (num_joined_pipes > 1)
++		pipe_config->joiner_pipes = GENMASK(crtc->pipe + num_joined_pipes - 1, crtc->pipe);
+ 
+ 	pipe_config->sink_format = INTEL_OUTPUT_FORMAT_RGB;
+ 	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
+@@ -1428,7 +1427,7 @@ intel_dp_mst_mode_valid_ctx(struct drm_connector *connector,
+ 	int max_dotclk = to_i915(connector->dev)->display.cdclk.max_dotclk_freq;
+ 	int max_rate, mode_rate, max_lanes, max_link_clock;
+ 	int ret;
+-	bool dsc = false, joiner = false;
++	bool dsc = false;
+ 	u16 dsc_max_compressed_bpp = 0;
+ 	u8 dsc_slice_count = 0;
+ 	int target_clock = mode->clock;
+@@ -1472,13 +1471,9 @@ intel_dp_mst_mode_valid_ctx(struct drm_connector *connector,
+ 	 *   corresponding link capabilities of the sink) in case the
+ 	 *   stream is uncompressed for it by the last branch device.
+ 	 */
+-	if (intel_dp_need_joiner(intel_dp, intel_connector,
+-				 mode->hdisplay, target_clock)) {
+-		joiner = true;
+-		max_dotclk *= 2;
+-	}
+-
+-	num_joined_pipes = joiner ? 2 : 1;
++	num_joined_pipes = intel_dp_num_joined_pipes(intel_dp, intel_connector,
++						     mode->hdisplay, target_clock);
++	max_dotclk *= num_joined_pipes;
+ 
+ 	ret = drm_modeset_lock(&mgr->base.lock, ctx);
+ 	if (ret)
 -- 
 2.45.2
 
