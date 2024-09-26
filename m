@@ -2,63 +2,91 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F17D98746E
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Sep 2024 15:28:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC788987470
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Sep 2024 15:29:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D04EC10EB46;
-	Thu, 26 Sep 2024 13:28:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E302610EB47;
+	Thu, 26 Sep 2024 13:29:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CNBR8RQk";
+	dkim=pass (1024-bit key; unprotected) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="VDgdeWpf";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACEA910EB43;
- Thu, 26 Sep 2024 13:28:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727357302; x=1758893302;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=XAJWBEYV0Eil8JoEAvVBW8adVKjVUk9n6eKGovO695M=;
- b=CNBR8RQkoD5H7PgoHsHVn9Xb/EsIUROIBKwKe8MbcyF6FuAhl4xDdyQT
- PaSPceAI6S8qFVZ5iDja4mB5R8QF+f2XOgu9kSuUYWf+6s8N1ml2tfMCX
- +UXxvt+Bn/raA2Vxhj6wSuf7xEOyRgKkAR+hCWQYDQt1+SFu2LqQa8a6G
- 0arBypm66iPr8pwUBCwrmRnturaCsruyOR3nfzylb3WSEgik8ywIOMX/H
- 0wPVKxxEsPQyE/u99Kq6ziTjQrglKLu753XVKleEJAuDhtFJebh+Wo2kk
- /bLKSDirbISrGVyQ8ldoSI7JaNTxsLYXF8w9ag57zIbdrUKHTLtb0tPtK g==;
-X-CSE-ConnectionGUID: s2MLZ/r5SzGAL5lEK0UseA==
-X-CSE-MsgGUID: 8bZewIwJS5mXELJsoYO+eg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11207"; a="37032642"
-X-IronPort-AV: E=Sophos;i="6.11,155,1725346800"; d="scan'208";a="37032642"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2024 06:28:21 -0700
-X-CSE-ConnectionGUID: lWNNxS1ASNKvgZbI1beNIA==
-X-CSE-MsgGUID: /six6z5hQXiSYIh6CykNow==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,155,1725346800"; d="scan'208";a="72295040"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 26 Sep 2024 06:28:19 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 26 Sep 2024 16:28:18 +0300
-Date: Thu, 26 Sep 2024 16:28:18 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- suraj.kandpal@intel.com
-Subject: Re: [PATCH 08/15] drm/i915/display: Refactor enable_joiner_pipes
-Message-ID: <ZvVhcj9t7rPguWUo@intel.com>
-References: <20240926072638.3689367-1-ankit.k.nautiyal@intel.com>
- <20240926072638.3689367-9-ankit.k.nautiyal@intel.com>
- <ZvVDVboKQrQwgeyc@intel.com>
- <cb3cbd18-ada2-4f86-8bf5-3e6b95010246@intel.com>
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
+ [213.167.242.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 676DC10EB47;
+ Thu, 26 Sep 2024 13:29:07 +0000 (UTC)
+Received: from [192.168.88.20] (91-156-87-48.elisa-laajakaista.fi
+ [91.156.87.48])
+ by perceval.ideasonboard.com (Postfix) with ESMTPSA id E047D169;
+ Thu, 26 Sep 2024 15:27:37 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+ s=mail; t=1727357258;
+ bh=E3uGkDNgVtNEq8rXaF4WDT0BvNJJScfqLRaphWSdWcg=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=VDgdeWpfilv/B60q2MafEy9R0e+E8Bi8+ps5TcPAEBKdrwheb2BdDuh/XXgb5kIJQ
+ WKVK9ZmszfEprtzK9uO5CWoARKrHc+t5YtH66SEin8SvmrerNd2Y6JnoksV0p6uRAh
+ 0JJjUF9WtlAOI+KyvplenW+/uwbBndMeo8viPziw=
+Message-ID: <1a4cb111-53ad-41a8-8e03-ffc5107bcc34@ideasonboard.com>
+Date: Thu, 26 Sep 2024 16:29:03 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <cb3cbd18-ada2-4f86-8bf5-3e6b95010246@intel.com>
-X-Patchwork-Hint: comment
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 42/80] drm/tilcdc: Run DRM default client setup
+To: Thomas Zimmermann <tzimmermann@suse.de>, javierm@redhat.com,
+ jfalempe@redhat.com, airlied@gmail.com, simona@ffwll.ch
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ Jyri Sarha <jyri.sarha@iki.fi>
+References: <20240924071734.98201-1-tzimmermann@suse.de>
+ <20240924071734.98201-43-tzimmermann@suse.de>
+Content-Language: en-US
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <20240924071734.98201-43-tzimmermann@suse.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,149 +102,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Sep 26, 2024 at 06:45:14PM +0530, Nautiyal, Ankit K wrote:
+On 24/09/2024 10:12, Thomas Zimmermann wrote:
+> Call drm_client_setup_with_color_mode() to run the kernel's default
+> client setup for DRM. Set fbdev_probe in struct drm_driver, so that
+> the client setup can start the common fbdev client.
 > 
-> On 9/26/2024 4:49 PM, Ville Syrjälä wrote:
-> > On Thu, Sep 26, 2024 at 12:56:31PM +0530, Ankit Nautiyal wrote:
-> >> Pass the current pipe into enabled_joiner_pipes(), and let it figure out
-> >> the proper bitmasks for us. Since the enabled_joiner_pipes now gets the
-> >> primary and secondary pipe wrt a given pipe, the helpers
-> >> to get primary pipe and secondary pipes are no longer required.
-> >>
-> >> v2:
-> >> -Simplify helper get_joiner_primary_pipes. (Ville)
-> >> -Nuke get_joiner_secondary_pipes. (Ville)
-> >> -Add more drm_WARNs final primary/secondary pipes. (Ville)
-> >> v3:
-> >> -Drop ultrajoiner stuff and add it in subsequent patches. (Ville)
-> >>
-> >> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> >> Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >> ---
-> >>   drivers/gpu/drm/i915/display/intel_display.c | 89 ++++++++++----------
-> >>   1 file changed, 44 insertions(+), 45 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> >> index 2d6260c3bca5..ea259b142786 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> >> @@ -3663,7 +3663,15 @@ static u8 expected_bigjoiner_secondary_pipes(u8 bigjoiner_primary_pipes)
-> >>   	return expected_secondary_pipes(bigjoiner_primary_pipes, 2);
-> >>   }
-> >>   
-> >> +static u8 get_joiner_primary_pipe(enum pipe pipe, u8 primary_pipes)
-> >> +{
-> >> +	primary_pipes &= GENMASK(pipe, 0);
-> >> +
-> >> +	return primary_pipes ? BIT(fls(primary_pipes) - 1) : 0;
-> >> +}
-> >> +
-> >>   static void enabled_joiner_pipes(struct drm_i915_private *dev_priv,
-> >> +				 enum pipe pipe,
-> >>   				 u8 *primary_pipes, u8 *secondary_pipes)
-> >>   {
-> >>   	struct intel_display *display = to_intel_display(&dev_priv->drm);
-> >> @@ -3703,45 +3711,38 @@ static void enabled_joiner_pipes(struct drm_i915_private *dev_priv,
-> >>   		 expected_uncompressed_joiner_secondary_pipes(primary_uncompressed_joiner_pipes),
-> >>   		 secondary_uncompressed_joiner_pipes);
-> >>   
-> >> -	*primary_pipes = primary_uncompressed_joiner_pipes | primary_bigjoiner_pipes;
-> >> -
-> >> -	*secondary_pipes = secondary_uncompressed_joiner_pipes | secondary_bigjoiner_pipes;
-> >> -
-> >> -	/* Joiner pipes should always be consecutive primary and secondary */
-> >> -	drm_WARN(display->drm, *secondary_pipes != *primary_pipes << 1,
-> >> -		 "Joiner misconfigured (primary pipes %#x, secondary pipes %#x)\n",
-> >> -		 *primary_pipes, *secondary_pipes);
-> >> -}
-> >> -
-> >> -static enum pipe get_joiner_primary_pipe(enum pipe pipe, u8 primary_pipes, u8 secondary_pipes)
-> >> -{
-> >> -	if ((secondary_pipes & BIT(pipe)) == 0)
-> >> -		return pipe;
-> >> -
-> >> -	/* ignore everything above our pipe */
-> >> -	primary_pipes &= ~GENMASK(7, pipe);
-> >> -
-> >> -	/* highest remaining bit should be our primary pipe */
-> >> -	return fls(primary_pipes) - 1;
-> >> -}
-> >> -
-> >> -static u8 get_joiner_secondary_pipes(enum pipe pipe, u8 primary_pipes, u8 secondary_pipes)
-> >> -{
-> >> -	enum pipe primary_pipe, next_primary_pipe;
-> >> -
-> >> -	primary_pipe = get_joiner_primary_pipe(pipe, primary_pipes, secondary_pipes);
-> >> -
-> >> -	if ((primary_pipes & BIT(primary_pipe)) == 0)
-> >> -		return 0;
-> >> -
-> >> -	/* ignore our primary pipe and everything below it */
-> >> -	primary_pipes &= ~GENMASK(primary_pipe, 0);
-> >> -	/* make sure a high bit is set for the ffs() */
-> >> -	primary_pipes |= BIT(7);
-> >> -	/* lowest remaining bit should be the next primary pipe */
-> >> -	next_primary_pipe = ffs(primary_pipes) - 1;
-> >> -
-> >> -	return secondary_pipes & GENMASK(next_primary_pipe - 1, primary_pipe);
-> >> +	*primary_pipes = 0;
-> >> +	*secondary_pipes = 0;
-> >> +
-> >> +	if (uncompressed_joiner_pipes & BIT(pipe)) {
-> >> +		*primary_pipes = get_joiner_primary_pipe(pipe, primary_uncompressed_joiner_pipes);
-> >> +		*secondary_pipes = secondary_uncompressed_joiner_pipes &
-> >> +				   expected_uncompressed_joiner_secondary_pipes(*primary_pipes);
-> >> +
-> >> +		drm_WARN(display->drm,
-> >> +			 expected_uncompressed_joiner_secondary_pipes(*primary_pipes) !=
-> >> +			 *secondary_pipes,
-> >> +			 "Wrong uncompressed joiner secondary pipes for primary_pipes %#x (expected %#x, current %#x)\n",
-> >> +			 *primary_pipes,
-> >> +			 expected_uncompressed_joiner_secondary_pipes(*primary_pipes),
-> >> +			 *secondary_pipes);
-> >> +		return;
-> >> +	}
-> >> +
-> >> +	if (bigjoiner_pipes & BIT(pipe)) {
-> >> +		*primary_pipes = get_joiner_primary_pipe(pipe, primary_bigjoiner_pipes);
-> >> +		*secondary_pipes = secondary_bigjoiner_pipes &
-> >> +				   expected_bigjoiner_secondary_pipes(*primary_pipes);
-> >> +
-> >> +		drm_WARN(display->drm,
-> >> +			 expected_bigjoiner_secondary_pipes(*primary_pipes) !=
-> >> +			 *secondary_pipes,
-> >> +			 "Wrong bigjoiner secondary pipes for primary_pipes %#x (expected %#x, current %#x)\n",
-> >> +			 *primary_pipes,
-> >> +			 expected_bigjoiner_secondary_pipes(*primary_pipes),
-> >> +			 *secondary_pipes);
-> >> +		return;
-> >> +	}
-> >>   }
-> >>   
-> >>   static u8 hsw_panel_transcoders(struct drm_i915_private *i915)
-> >> @@ -3813,10 +3814,10 @@ static u8 hsw_enabled_transcoders(struct intel_crtc *crtc)
-> >>   		enabled_transcoders |= BIT(cpu_transcoder);
-> >>   
-> >>   	/* joiner secondary -> consider the primary pipe's transcoder as well */
-> >> -	enabled_joiner_pipes(dev_priv, &primary_pipes, &secondary_pipes);
-> >> +	enabled_joiner_pipes(dev_priv, crtc->pipe, &primary_pipes, &secondary_pipes);
-> >>   	if (secondary_pipes & BIT(crtc->pipe)) {
-> >>   		cpu_transcoder = (enum transcoder)
-> >> -			get_joiner_primary_pipe(crtc->pipe, primary_pipes, secondary_pipes);
-> >> +			ffs(get_joiner_primary_pipe(crtc->pipe, primary_pipes)) - 1;
-> > The get_joiner_primary_pipe() shouldn't be needed here since
-> > enabled_joiner_pipes() guarantees that only one bit is set.
+> v5:
+> - select DRM_CLIENT_SELECTION
+> v3:
+> - add DRM_FBDEV_DMA_DRIVER_OPS macro
 > 
-> 
-> I agree. Additionally, I was considering changing the input variable 
-> name from `primary_pipes` to `primary_pipe` in enabled_joiner_pipes for 
-> clarity. Does that make sense?
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Jyri Sarha <jyri.sarha@iki.fi>
+> Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+> Acked-by: Javier Martinez Canillas <javierm@redhat.com>
+> ---
+>   drivers/gpu/drm/tilcdc/Kconfig      | 1 +
+>   drivers/gpu/drm/tilcdc/tilcdc_drv.c | 5 ++++-
+>   2 files changed, 5 insertions(+), 1 deletion(-)
 
-Probably a good idea. It'll be a bit weird to have it as a bitmask,
-but feels like returning just a single enum pipe could make
-things more complicated. So yeah, 'u8 *primary_pipe' seems perhaps the
-best compromise.
+Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
 
--- 
-Ville Syrjälä
-Intel
+  Tomi
+
+> diff --git a/drivers/gpu/drm/tilcdc/Kconfig b/drivers/gpu/drm/tilcdc/Kconfig
+> index d3bd2d7a181e..24f9a245ba59 100644
+> --- a/drivers/gpu/drm/tilcdc/Kconfig
+> +++ b/drivers/gpu/drm/tilcdc/Kconfig
+> @@ -2,6 +2,7 @@
+>   config DRM_TILCDC
+>   	tristate "DRM Support for TI LCDC Display Controller"
+>   	depends on DRM && OF && ARM
+> +	select DRM_CLIENT_SELECTION
+>   	select DRM_KMS_HELPER
+>   	select DRM_GEM_DMA_HELPER
+>   	select DRM_BRIDGE
+> diff --git a/drivers/gpu/drm/tilcdc/tilcdc_drv.c b/drivers/gpu/drm/tilcdc/tilcdc_drv.c
+> index cd5eefa06060..8c9f3705aa6c 100644
+> --- a/drivers/gpu/drm/tilcdc/tilcdc_drv.c
+> +++ b/drivers/gpu/drm/tilcdc/tilcdc_drv.c
+> @@ -14,6 +14,7 @@
+>   #include <linux/pm_runtime.h>
+>   
+>   #include <drm/drm_atomic_helper.h>
+> +#include <drm/drm_client_setup.h>
+>   #include <drm/drm_debugfs.h>
+>   #include <drm/drm_drv.h>
+>   #include <drm/drm_fbdev_dma.h>
+> @@ -374,7 +375,8 @@ static int tilcdc_init(const struct drm_driver *ddrv, struct device *dev)
+>   		goto init_failed;
+>   	priv->is_registered = true;
+>   
+> -	drm_fbdev_dma_setup(ddev, bpp);
+> +	drm_client_setup_with_color_mode(ddev, bpp);
+> +
+>   	return 0;
+>   
+>   init_failed:
+> @@ -472,6 +474,7 @@ DEFINE_DRM_GEM_DMA_FOPS(fops);
+>   static const struct drm_driver tilcdc_driver = {
+>   	.driver_features    = DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
+>   	DRM_GEM_DMA_DRIVER_OPS,
+> +	DRM_FBDEV_DMA_DRIVER_OPS,
+>   #ifdef CONFIG_DEBUG_FS
+>   	.debugfs_init       = tilcdc_debugfs_init,
+>   #endif
+
