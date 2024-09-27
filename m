@@ -2,60 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA47D98841D
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Sep 2024 14:22:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F345798847B
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Sep 2024 14:28:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 56A5A10E344;
-	Fri, 27 Sep 2024 12:22:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 30CB110E358;
+	Fri, 27 Sep 2024 12:28:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A07hzhiK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TK8vppN6";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF45D10E344
- for <intel-gfx@lists.freedesktop.org>; Fri, 27 Sep 2024 12:22:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A0EA10E357;
+ Fri, 27 Sep 2024 12:28:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727439734; x=1758975734;
+ t=1727440083; x=1758976083;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=QKwghZjjBHz3WWAUO43+xp5VMkhhcgGCfhKcxh3BR+M=;
- b=A07hzhiKGjsCpOVYeoGFRTl2iaKGp9qbcS5tqvVeClOwZyA0+EABnX+h
- jGXxoeMnbtaQfcTd3QRdQRuX9d5XdhJQ9pIDK28C+lLZGg2tQpKjl62QU
- 8rBX18sdRTgIwVCuDOEh4RkODtpvPHOTKCpkot0qfe+BHri6VdZHBBAkZ
- TFENnGK5xGxPDWVs1DKWJBQw+jUJZ0W5r4/+EZCRLE4kYJDVbHXqmajEO
- 0/bUp81paFc+u3dKHbXp8Kdger5nexg6vFv/oUlPIkJUWWBuvYDug65NP
- p9U8AtRrRvhRjlUdMe5HbfqtH0osLzbJ6idAyv7dYySQEbgMeoTiGZqOa w==;
-X-CSE-ConnectionGUID: n1BpcMUiTTWG3tKMjPxOig==
-X-CSE-MsgGUID: 9ywNC4LtSLm0StEn/jmFvg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11207"; a="26090573"
-X-IronPort-AV: E=Sophos;i="6.11,158,1725346800"; d="scan'208";a="26090573"
+ bh=hW6GLe4YnjveRJZc7v9lfnPRqgZEY7lf5pK2rSJ0fPM=;
+ b=TK8vppN6Grgk9CN5rbgv9+g74c9mwvU1a9xOs+V1IWB6SUsBNIK3Efpy
+ 3APLgQ+mqKC4OTyk9peISPZuJWT0yDxbDTvdaZ6N9KSKxugRzvdZc6OUh
+ LwaVf0oT7b5Ow46EYHmogKK9W4Bf4JjhDyim/jyuuDCtDXyf51vbDCNUB
+ +6yJ1cmdx5QQyby0c29r2X64FS1qFPdIBZTXFxD2RRZL/FeGDEBVTeeXo
+ 7eCBM/BcEfy504frQvGRR5Wx1EWJvvv/JJp4YjU9ULvg2XSS5jzmEbNDE
+ Kynal46258BqXVzwXS8Bp8C7DC8M+O1kOBSsauf8kUk5/miSh62CPTIAX g==;
+X-CSE-ConnectionGUID: 28/DFxRSSUGi24Z1fT+imA==
+X-CSE-MsgGUID: FMCUjCAxSUqHMR+WwwXvpg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11207"; a="26091085"
+X-IronPort-AV: E=Sophos;i="6.11,158,1725346800"; d="scan'208";a="26091085"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2024 05:22:14 -0700
-X-CSE-ConnectionGUID: f7ijNGCOTxGZHS4oxXvckg==
-X-CSE-MsgGUID: FQfqyJ7tRN+ubU5jEXjpdg==
+ 27 Sep 2024 05:28:03 -0700
+X-CSE-ConnectionGUID: RjteMfyHRkGEegORf0NHAQ==
+X-CSE-MsgGUID: jJo1O4IBTG+LP8sM76tzFg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,158,1725346800"; d="scan'208";a="72691147"
+X-IronPort-AV: E=Sophos;i="6.11,158,1725346800"; d="scan'208";a="72692011"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 27 Sep 2024 05:22:11 -0700
+ by fmviesa008.fm.intel.com with SMTP; 27 Sep 2024 05:28:00 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 27 Sep 2024 15:22:10 +0300
-Date: Fri, 27 Sep 2024 15:22:10 +0300
+ Fri, 27 Sep 2024 15:27:59 +0300
+Date: Fri, 27 Sep 2024 15:27:59 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH v5 2/2] drm/i915/display: Prevent DC6 while vblank is
- enabled for Panel Replay
-Message-ID: <ZvajclHI38JFVw4V@intel.com>
-References: <20240920062340.1333777-1-jouni.hogander@intel.com>
- <20240920062340.1333777-3-jouni.hogander@intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ suraj.kandpal@intel.com
+Subject: Re: [PATCH 11/17] drm/i915/dp: Refactor joiner max_bpp calculations
+ into separate functions
+Message-ID: <Zvakz94IAlOyLQM0@intel.com>
+References: <20240927083831.3913645-1-ankit.k.nautiyal@intel.com>
+ <20240927083831.3913645-12-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240920062340.1333777-3-jouni.hogander@intel.com>
+In-Reply-To: <20240927083831.3913645-12-ankit.k.nautiyal@intel.com>
 X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,181 +73,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Sep 20, 2024 at 09:23:40AM +0300, Jouni Högander wrote:
-> We need to block DC6 entry in case of Panel Replay as enabling VBI doesn't
-> prevent DC6 in case of Panel Replay. This causes problems if user-space is
-> polling for vblank events.
+On Fri, Sep 27, 2024 at 02:08:25PM +0530, Ankit Nautiyal wrote:
+> Currently compressed max_bpp limitations for small joiner ram, big joiner
+> and others are intermingled. Separate them into distinct functions to
+> enhance clarity and maintainability.
 > 
-> Fix this by setting target DC state as DC_STATE_EN_UPTO_DC5 when both
-> source and sink are supporting eDP Panel Replay and VBI is enabled.
-> 
-> v4:
->   - s/vblank_work/vblank_dc_work/
->   - changed type of block_dc_for_vblank to bool
-> v3:
->   - do flush_work for vblank_work on intel_crtc_vblank_off
->   - no need to use READ_ONCE in bdw_enable_vblank
->   - check crtc->block_dc_for_vblank in bdw_disable_vblank as well
->   - move adding block_dc_for_vblank into this patch
-> v2:
->   - use READ_ONCE in intel_display_vblank_work
->   - use DC_STATE_DISABLE instead of DC_STATE_EN_UPTO_DC6
->   - use intel_crtc->block_dc6_needed
-> 
-> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2296
-> Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-> Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_crtc.c     |  7 +++++
->  .../gpu/drm/i915/display/intel_display_core.h |  2 ++
->  .../gpu/drm/i915/display/intel_display_irq.c  | 28 +++++++++++++++++++
->  .../drm/i915/display/intel_display_types.h    |  2 ++
->  4 files changed, 39 insertions(+)
+>  drivers/gpu/drm/i915/display/intel_dp.c | 45 ++++++++++++++++++++-----
+>  1 file changed, 37 insertions(+), 8 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-> index f95d169fc324a..3a28d8450a384 100644
-> --- a/drivers/gpu/drm/i915/display/intel_crtc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-> @@ -124,6 +124,8 @@ void intel_crtc_vblank_on(const struct intel_crtc_state *crtc_state)
->  {
->  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
->  
-> +	crtc->block_dc_for_vblank = intel_psr_needs_block_dc_vblank(crtc_state);
-> +
->  	assert_vblank_disabled(&crtc->base);
->  	drm_crtc_set_max_vblank_count(&crtc->base,
->  				      intel_crtc_max_vblank_count(crtc_state));
-> @@ -140,6 +142,7 @@ void intel_crtc_vblank_on(const struct intel_crtc_state *crtc_state)
->  void intel_crtc_vblank_off(const struct intel_crtc_state *crtc_state)
->  {
->  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> +	struct intel_display *display = to_intel_display(crtc);
->  
->  	/*
->  	 * Should really happen exactly when we disable the pipe
-> @@ -150,6 +153,10 @@ void intel_crtc_vblank_off(const struct intel_crtc_state *crtc_state)
->  
->  	drm_crtc_vblank_off(&crtc->base);
->  	assert_vblank_disabled(&crtc->base);
-> +
-> +	crtc->block_dc_for_vblank = false;
-> +
-> +	flush_work(&display->irq.vblank_dc_work);
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index f2a2541c1091..7db037f631f7 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -859,23 +859,52 @@ u32 intel_dp_dsc_nearest_valid_bpp(struct drm_i915_private *i915, u32 bpp, u32 p
+>  	return bits_per_pixel;
 >  }
 >  
->  struct intel_crtc_state *intel_crtc_state_alloc(struct intel_crtc *crtc)
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-> index 0a711114ff2b4..ac4c005fe3489 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_core.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-> @@ -457,6 +457,8 @@ struct intel_display {
->  		/* For i915gm/i945gm vblank irq workaround */
->  		u8 vblank_enabled;
->  
-> +		struct work_struct vblank_dc_work;
-> +
->  		u32 de_irq_mask[I915_MAX_PIPES];
->  		u32 pipestat_irq_mask[I915_MAX_PIPES];
->  	} irq;
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-> index 0ccbf7a1f2bf6..6878dde85031c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-> @@ -1360,9 +1360,27 @@ static bool gen11_dsi_configure_te(struct intel_crtc *intel_crtc,
->  	return true;
->  }
->  
-> +static void intel_display_vblank_dc_work(struct work_struct *work)
+> +static int get_bigjoiner_interface_bits(struct intel_display *display)
+
+I would s/get_// in the name.
+
 > +{
-> +	struct intel_display *display =
-> +		container_of(work, typeof(*display), irq.vblank_dc_work);
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
-> +	u8 vblank_enabled = READ_ONCE(display->irq.vblank_enabled);
-> +
-> +	/*
-> +	 * NOTE: intel_display_power_set_target_dc_state is used only by PSR
-> +	 * code for DC3CO handling. DC3CO target state is currently disabled in
-> +	 * PSR code. If DC3CO is taken into use we need take that into account
-> +	 * here as well.
-> +	 */
-> +	intel_display_power_set_target_dc_state(i915, vblank_enabled ? DC_STATE_DISABLE :
-> +						DC_STATE_EN_UPTO_DC6);
+> +	return DISPLAY_VER(display) >= 14 ? 36 : 24;
 > +}
 > +
->  int bdw_enable_vblank(struct drm_crtc *_crtc)
+> +static u32 bigjoiner_bw_max_bpp(struct intel_display *display, u32 mode_clock,
+> +				int num_joined_pipes)
+> +{
+> +	struct drm_i915_private *i915 = to_i915(display->drm);
+> +	int bigjoiner_interface_bits = get_bigjoiner_interface_bits(display);
+
+You don't really need the local variable for this.
+
+> +	int num_bigjoiners = num_joined_pipes / 2;
+> +	u32 max_bpp;
+> +	/* With bigjoiner multiple dsc engines are used in parallel so PPC is 2 */
+> +	int ppc = 2;
+> +
+> +	max_bpp = i915->display.cdclk.max_cdclk_freq * ppc * bigjoiner_interface_bits /
+
+s/i915->display./display->/
+
+> +		  intel_dp_mode_to_fec_clock(mode_clock);
+> +
+> +	max_bpp *= num_bigjoiners;
+
+This thing wasn't in the original code, so should be added separately
+IMO.
+
+> +
+> +	return max_bpp;
+> +}
+> +
+> +static u32 small_joiner_ram_max_bpp(struct intel_display *display, u32 mode_hdisplay)
+> +{
+> +	struct drm_i915_private *i915 = to_i915(display->drm);
+> +	u32 max_bpp;
+> +
+> +	/* Small Joiner Check: output bpp <= joiner RAM (bits) / Horiz. width */
+> +	max_bpp = small_joiner_ram_size_bits(i915) / mode_hdisplay;
+> +
+> +	return max_bpp;
+> +}
+> +
+>  static
+>  u32 get_max_compressed_bpp_with_joiner(struct drm_i915_private *i915,
+>  				       u32 mode_clock, u32 mode_hdisplay,
+>  				       int num_joined_pipes)
 >  {
->  	struct intel_crtc *crtc = to_intel_crtc(_crtc);
-> +	struct intel_display *display = to_intel_display(crtc);
->  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
->  	enum pipe pipe = crtc->pipe;
->  	unsigned long irqflags;
-> @@ -1370,6 +1388,9 @@ int bdw_enable_vblank(struct drm_crtc *_crtc)
->  	if (gen11_dsi_configure_te(crtc, true))
->  		return 0;
+> +	struct intel_display *display = to_intel_display(&i915->drm);
+>  	u32 max_bpp_small_joiner_ram;
 >  
-> +	if (display->irq.vblank_enabled++ == 0 && crtc->block_dc_for_vblank)
-> +		schedule_work(&display->irq.vblank_dc_work);
-
-It occurred to me that this is a little bit broken. If the
-first crtc to increment the count does not need the w/a
-then we'll not enable the w/a, and it will not get enabled
-for other crtcs either until the count has dropped back down
-to 0.
-
-I think simply checking crtc->block_dc_for_vblank before
-the increment/decrement should fix it.
-
-Yes, that does mean vblank_enabled isn't actually counting
-how many crtc have their vblank enabled, but rather how
-many crtcs are applying the w/a. To avoid too much
-confusion we could simply rename it to something like
-vblank_wa_pipes/etc.
-
-> +
->  	spin_lock_irqsave(&dev_priv->irq_lock, irqflags);
->  	bdw_enable_pipe_irq(dev_priv, pipe, GEN8_PIPE_VBLANK);
->  	spin_unlock_irqrestore(&dev_priv->irq_lock, irqflags);
-> @@ -1435,6 +1456,7 @@ void ilk_disable_vblank(struct drm_crtc *crtc)
->  void bdw_disable_vblank(struct drm_crtc *_crtc)
->  {
->  	struct intel_crtc *crtc = to_intel_crtc(_crtc);
-> +	struct intel_display *display = to_intel_display(crtc);
->  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
->  	enum pipe pipe = crtc->pipe;
->  	unsigned long irqflags;
-> @@ -1445,6 +1467,9 @@ void bdw_disable_vblank(struct drm_crtc *_crtc)
->  	spin_lock_irqsave(&dev_priv->irq_lock, irqflags);
->  	bdw_disable_pipe_irq(dev_priv, pipe, GEN8_PIPE_VBLANK);
->  	spin_unlock_irqrestore(&dev_priv->irq_lock, irqflags);
-> +
-> +	if (--display->irq.vblank_enabled == 0 && crtc->block_dc_for_vblank)
-> +		schedule_work(&display->irq.vblank_dc_work);
->  }
+> -	/* Small Joiner Check: output bpp <= joiner RAM (bits) / Horiz. width */
+> -	max_bpp_small_joiner_ram = small_joiner_ram_size_bits(i915) / mode_hdisplay;
+> +	max_bpp_small_joiner_ram = small_joiner_ram_max_bpp(display, mode_hdisplay);
 >  
->  void vlv_display_irq_reset(struct drm_i915_private *dev_priv)
-> @@ -1881,4 +1906,7 @@ void intel_display_irq_init(struct drm_i915_private *i915)
->  		i915->display.irq.display_irqs_enabled = false;
+>  	if (num_joined_pipes == 2) {
+> -		int bigjoiner_interface_bits = DISPLAY_VER(i915) >= 14 ? 36 : 24;
+> -		/* With bigjoiner multiple dsc engines are used in parallel so PPC is 2 */
+> -		int ppc = 2;
+> -		u32 max_bpp_bigjoiner =
+> -			i915->display.cdclk.max_cdclk_freq * ppc * bigjoiner_interface_bits /
+> -			intel_dp_mode_to_fec_clock(mode_clock);
+> +		u32 max_bpp_bigjoiner = bigjoiner_bw_max_bpp(display, mode_clock, num_joined_pipes);
 >  
->  	intel_hotplug_irq_init(i915);
-> +
-> +	INIT_WORK(&i915->display.irq.vblank_dc_work,
-> +		  intel_display_vblank_dc_work);
->  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 3e694c1204dbf..513e843e19b9e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1413,6 +1413,8 @@ struct intel_crtc {
->  #ifdef CONFIG_DEBUG_FS
->  	struct intel_pipe_crc pipe_crc;
->  #endif
-> +
-> +	bool block_dc_for_vblank;
->  };
+>  		max_bpp_small_joiner_ram *= 2;
+
+That multiplication should be inside small_joiner_ram_max_bpp().
+
 >  
->  struct intel_plane {
 > -- 
-> 2.34.1
+> 2.45.2
 
 -- 
 Ville Syrjälä
