@@ -2,52 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DD3398872C
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Sep 2024 16:35:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A572C98872D
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Sep 2024 16:35:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D1B9110EC67;
-	Fri, 27 Sep 2024 14:35:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 219EB10EC74;
+	Fri, 27 Sep 2024 14:35:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kQhz97mL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fQEw6g6D";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86C6310EC67
- for <intel-gfx@lists.freedesktop.org>; Fri, 27 Sep 2024 14:35:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 15BF810EC74
+ for <intel-gfx@lists.freedesktop.org>; Fri, 27 Sep 2024 14:35:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727447748; x=1758983748;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=nY7KGEo5+550AdKkKlveQwG2HEYE2rOXESYVYdZEoUg=;
- b=kQhz97mLwYBYcWnkTHab2bRnlSvZaHW3cnax8f/rq0zML8PgvmjNmhEy
- nNUIKC7Ss42yJiRXB1GveVmPX/JdU179aU1lqfC08wO66Uamwu7N1paCz
- tEHnSWPzf4iT0AibmVOARrYYimrPq0NeIPpLvOJwzNd6kv0QHnPVbek1r
- 2t3i8SJCEQFvOC8tkClDUFVM8M6CN963v5hd7uSypdbSWWNQyg4tZ13Fz
- WRpYcOd59huzhmvfCGD/Myyg89HHIqcPv1B0PUSZHfYj2iyEgydWqK+vP
- kAx4X6DQBoI9f5rw32RVYWxahz5r09Lyvf6BFuT/B1KfopN2RwUIb8+pt Q==;
-X-CSE-ConnectionGUID: DiifhBucSmm5U9ywXppOcw==
-X-CSE-MsgGUID: c9Zx0NqKSOquWpsjO5D8Qg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11208"; a="26102292"
-X-IronPort-AV: E=Sophos;i="6.11,158,1725346800"; d="scan'208";a="26102292"
+ t=1727447751; x=1758983751;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=mhiI3jof4G6t9aV08wAJ7QrHsUZtTYJ650UzWAZvi2k=;
+ b=fQEw6g6D4mxQUFjpm2CFmDZ0u11TzcYdrU+lrTravTehDxL22ID8vDNg
+ bGYiz2XqlC/6U7nftfZKGwsJggq5MQkSp3XOvSWUDpMc4xCq1Q7a6NxE5
+ CtXfhmdNd4zIqj2heZFSj7Tj5DBdXwFFgDORNwc3C/IHKBSUVsfE1Y1HY
+ guGTuFiMYXbJ4KOI9QPZIT6+rzAzuUKZQ7rclH2NYf1qlugJ6aowVyZG/
+ 4jjerehXXgrUOjw2559Xp1j47SbDAF5/16zlICHwoMidnBert4Y1xpC6a
+ u400QXgMc5bnj847VoJiBjvjp5x5btOSWeYv70j/+TgTgp8odeJEU1BwY Q==;
+X-CSE-ConnectionGUID: ShhIECH7Q2uEXtiwFzKMFQ==
+X-CSE-MsgGUID: DvYyzSZ5SjKH0o86Weo+jw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11208"; a="26102293"
+X-IronPort-AV: E=Sophos;i="6.11,158,1725346800"; d="scan'208";a="26102293"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2024 07:35:48 -0700
-X-CSE-ConnectionGUID: rfIE7gzoRba7lUfW0Vkwbg==
-X-CSE-MsgGUID: LwqoSzwWSs6sO1H0ZSNl/Q==
+ 27 Sep 2024 07:35:51 -0700
+X-CSE-ConnectionGUID: DDiV83IdQ8S+TY9wzhCy4g==
+X-CSE-MsgGUID: rlwa6y2rRnWGKXYIbG5RFA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,158,1725346800"; d="scan'208";a="72712113"
+X-IronPort-AV: E=Sophos;i="6.11,158,1725346800"; d="scan'208";a="72712114"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 27 Sep 2024 07:35:46 -0700
+ by fmviesa008.fm.intel.com with SMTP; 27 Sep 2024 07:35:49 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 27 Sep 2024 17:35:45 +0300
+ Fri, 27 Sep 2024 17:35:48 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 0/4] drm/i915: Use the gen3+ irq code on gen2
-Date: Fri, 27 Sep 2024 17:35:41 +0300
-Message-ID: <20240927143545.8665-1-ville.syrjala@linux.intel.com>
+Subject: [PATCH 1/4] drm/i915: Introduce i915_has_legacy_blc_interrupt()
+Date: Fri, 27 Sep 2024 17:35:42 +0300
+Message-ID: <20240927143545.8665-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20240927143545.8665-1-ville.syrjala@linux.intel.com>
+References: <20240927143545.8665-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -68,25 +70,75 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Eliminate the special gen2 irq code by simply reusing the
-gen3+ code on gen2. Works just fine on actual hardware.
+i915_has_asle() is a bit of a mess. It does some kind of
+partial check whether the platform has the legacy BLC
+interrupt or not, and then it checks whether OpRegion
+ASLE is present.
 
-I generated the last patch with -U20 to help with review.
-Unfortunately it still didn't pick up i915_irq_handler()
-I don't suppose there's a magic knob to tell git diff
-to include a specific function wholesale in the context?
+Let's split the legacy BLC interrupt check into its
+own thing, and while at it let's make it accurate.
+Currently it misses i85x (not a problem since gen2
+never has OpRegion, nor do we currently call
+i915_enable_asle_pipestat() on gen2), and it
+doesn't reject ILK-M (not that anyone should call
+this on ILK). The exlusion of VLV/CHV (where one
+might even consider calling this, being gmch
+platforms) only happens due to .is_mobile==false.
 
-Ville Syrjälä (4):
-  drm/i915: Introduce i915_has_legacy_blc_interrupt()
-  drm/i915: Clean up gen3 hotplug irq setup
-  drm/i915: Clean up some comments in gmch irq code
-  drm/i915: Switch over to gen3 irq code on gen2
+List the platforms that actually do have the legacy
+BLC interrupt in a bit more explicit fashion.
+i915gm/i945gm/i956gm/gm45 we can cover with a
+display_ver+is_mobile check, pnv needs an exception
+due to having a variant with is_mobile==false, and
+i85x is the only relevant gen2 platform so easier to
+handle on its own.
 
- .../gpu/drm/i915/display/intel_display_irq.c  |  38 ++--
- .../gpu/drm/i915/display/intel_display_irq.h  |   1 -
- drivers/gpu/drm/i915/i915_irq.c               | 202 ++----------------
- 3 files changed, 28 insertions(+), 213 deletions(-)
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ .../gpu/drm/i915/display/intel_display_irq.c  | 20 +++++++++++++------
+ 1 file changed, 14 insertions(+), 6 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
+index 6878dde85031..ba82830c464e 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_irq.c
++++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
+@@ -272,14 +272,17 @@ void i915_disable_pipestat(struct drm_i915_private *dev_priv,
+ 	intel_uncore_posting_read(&dev_priv->uncore, reg);
+ }
+ 
+-static bool i915_has_asle(struct drm_i915_private *i915)
++static bool i915_has_legacy_blc_interrupt(struct intel_display *display)
+ {
+-	struct intel_display *display = &i915->display;
++	struct drm_i915_private *i915 = to_i915(display->drm);
+ 
+-	if (!IS_PINEVIEW(i915) && !IS_MOBILE(i915))
+-		return false;
++	if (IS_I85X(i915))
++		return true;
+ 
+-	return intel_opregion_asle_present(display);
++	if (IS_PINEVIEW(i915))
++		return true;
++
++	return IS_DISPLAY_VER(display, 3, 4) && IS_MOBILE(i915);
+ }
+ 
+ /**
+@@ -288,7 +291,12 @@ static bool i915_has_asle(struct drm_i915_private *i915)
+  */
+ void i915_enable_asle_pipestat(struct drm_i915_private *dev_priv)
+ {
+-	if (!i915_has_asle(dev_priv))
++	struct intel_display *display = &dev_priv->display;
++
++	if (!intel_opregion_asle_present(display))
++		return;
++
++	if (!i915_has_legacy_blc_interrupt(display))
+ 		return;
+ 
+ 	spin_lock_irq(&dev_priv->irq_lock);
 -- 
 2.45.2
 
