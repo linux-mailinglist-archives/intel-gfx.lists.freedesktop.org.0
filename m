@@ -2,30 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0B58988BE8
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Sep 2024 23:41:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C5403988BFE
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Sep 2024 23:49:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7AE610ED33;
-	Fri, 27 Sep 2024 21:41:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 326AF10E02B;
+	Fri, 27 Sep 2024 21:49:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1734F10ED33;
- Fri, 27 Sep 2024 21:41:45 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C422B10E02B;
+ Fri, 27 Sep 2024 21:49:02 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4167183777890985374=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_gpu=3A_drm=3A_i915=3A_dis?=
- =?utf-8?q?play=3A_Avoid_null_values_intel=5Fplane=5Fatomic=5Fcheck=5Fwith?=
- =?utf-8?q?=5Fstate?=
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/hdcp=3A_Retry_firs?=
+ =?utf-8?q?t_read_and_writes_to_downstream_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@linux.intel.com>
+To: "Suraj Kandpal" <suraj.kandpal@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 27 Sep 2024 21:41:45 -0000
-Message-ID: <172747330508.1113320.9121339400146624392@2413ebb6fbb6>
+Date: Fri, 27 Sep 2024 21:49:02 -0000
+Message-ID: <172747374279.1113328.15545585847931330977@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
-References: <20240927000146.50830-1-alessandro.zanni87@gmail.com>
-In-Reply-To: <20240927000146.50830-1-alessandro.zanni87@gmail.com>
+References: <20240925065658.1269767-1-suraj.kandpal@intel.com>
+In-Reply-To: <20240925065658.1269767-1-suraj.kandpal@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,65 +41,167 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============4167183777890985374==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
-Series: gpu: drm: i915: display: Avoid null values intel_plane_atomic_check_with_state
-URL   : https://patchwork.freedesktop.org/series/139197/
-State : failure
+Series: drm/i915/hdcp: Retry first read and writes to downstream (rev3)
+URL   : https://patchwork.freedesktop.org/series/139078/
+State : success
 
 == Summary ==
 
-Error: make failed
-  CALL    scripts/checksyscalls.sh
-  DESCEND objtool
-  INSTALL libsubcmd_headers
-  CC [M]  drivers/gpu/drm/i915/display/intel_atomic_plane.o
-In file included from ./arch/x86/include/asm/bug.h:87,
-                 from ./include/linux/bug.h:5,
-                 from ./include/linux/thread_info.h:13,
-                 from ./include/linux/spinlock.h:60,
-                 from ./include/linux/wait.h:9,
-                 from ./include/linux/dma-fence.h:17,
-                 from ./include/linux/dma-fence-chain.h:13,
-                 from drivers/gpu/drm/i915/display/intel_atomic_plane.c:34:
-drivers/gpu/drm/i915/display/intel_atomic_plane.c: In function ‘intel_plane_atomic_check_with_state’:
-drivers/gpu/drm/i915/display/intel_atomic_plane.c:632:25: error: ‘display’ undeclared (first use in this function)
-  632 |         if (drm_WARN_ON(display->drm, new_plane_state->uapi.visible && !fb))
-      |                         ^~~~~~~
-./include/asm-generic/bug.h:106:31: note: in definition of macro ‘__WARN_printf’
-  106 |                 __warn_printk(arg);                                     \
-      |                               ^~~
-./include/drm/drm_print.h:687:9: note: in expansion of macro ‘WARN’
-  687 |         WARN(condition, "%s %s: [drm] " format,                         \
-      |         ^~~~
-./include/drm/drm_print.h:697:9: note: in expansion of macro ‘drm_WARN’
-  697 |         drm_WARN((drm), (x), "%s",                                      \
-      |         ^~~~~~~~
-drivers/gpu/drm/i915/display/intel_atomic_plane.c:632:13: note: in expansion of macro ‘drm_WARN_ON’
-  632 |         if (drm_WARN_ON(display->drm, new_plane_state->uapi.visible && !fb))
-      |             ^~~~~~~~~~~
-drivers/gpu/drm/i915/display/intel_atomic_plane.c:632:25: note: each undeclared identifier is reported only once for each function it appears in
-  632 |         if (drm_WARN_ON(display->drm, new_plane_state->uapi.visible && !fb))
-      |                         ^~~~~~~
-./include/asm-generic/bug.h:106:31: note: in definition of macro ‘__WARN_printf’
-  106 |                 __warn_printk(arg);                                     \
-      |                               ^~~
-./include/drm/drm_print.h:687:9: note: in expansion of macro ‘WARN’
-  687 |         WARN(condition, "%s %s: [drm] " format,                         \
-      |         ^~~~
-./include/drm/drm_print.h:697:9: note: in expansion of macro ‘drm_WARN’
-  697 |         drm_WARN((drm), (x), "%s",                                      \
-      |         ^~~~~~~~
-drivers/gpu/drm/i915/display/intel_atomic_plane.c:632:13: note: in expansion of macro ‘drm_WARN_ON’
-  632 |         if (drm_WARN_ON(display->drm, new_plane_state->uapi.visible && !fb))
-      |             ^~~~~~~~~~~
-make[6]: *** [scripts/Makefile.build:244: drivers/gpu/drm/i915/display/intel_atomic_plane.o] Error 1
-make[5]: *** [scripts/Makefile.build:485: drivers/gpu/drm/i915] Error 2
-make[4]: *** [scripts/Makefile.build:485: drivers/gpu/drm] Error 2
-make[3]: *** [scripts/Makefile.build:485: drivers/gpu] Error 2
-make[2]: *** [scripts/Makefile.build:485: drivers] Error 2
-make[1]: *** [/home/kbuild2/kernel/Makefile:1926: .] Error 2
-make: *** [Makefile:224: __sub-make] Error 2
-Build failed, no error log produced
+CI Bug Log - changes from CI_DRM_15453 -> Patchwork_139078v3
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139078v3/index.html
+
+Participating hosts (37 -> 34)
+------------------------------
+
+  Missing    (3): bat-dg2-13 bat-arls-2 fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_139078v3 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live:
+    - bat-mtlp-8:         [PASS][1] -> [DMESG-WARN][2] ([i915#10341])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15453/bat-mtlp-8/igt@i915_selftest@live.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139078v3/bat-mtlp-8/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-mtlp-8:         [PASS][3] -> [DMESG-WARN][4] ([i915#11349])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15453/bat-mtlp-8/igt@i915_selftest@live@hangcheck.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139078v3/bat-mtlp-8/igt@i915_selftest@live@hangcheck.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live:
+    - bat-arls-1:         [DMESG-WARN][5] ([i915#10341] / [i915#12133]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15453/bat-arls-1/igt@i915_selftest@live.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139078v3/bat-arls-1/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-arls-1:         [DMESG-WARN][7] ([i915#11349]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15453/bat-arls-1/igt@i915_selftest@live@hangcheck.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139078v3/bat-arls-1/igt@i915_selftest@live@hangcheck.html
+
+  
+  [i915#10341]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10341
+  [i915#11349]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11349
+  [i915#12133]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133
 
 
+Build changes
+-------------
+
+  * Linux: CI_DRM_15453 -> Patchwork_139078v3
+
+  CI-20190529: 20190529
+  CI_DRM_15453: 1522f131505272ed86f58e937f2481e4e3e144c1 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8036: 5aa244179b574e949a07ab1c7494033081735718 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_139078v3: 1522f131505272ed86f58e937f2481e4e3e144c1 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139078v3/index.html
+
+--===============4167183777890985374==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/hdcp: Retry first read and writes to downstream (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/139078/">https://patchwork.freedesktop.org/series/139078/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139078v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139078v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_15453 -&gt; Patchwork_139078v3</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139078v3/index.html</p>
+<h2>Participating hosts (37 -&gt; 34)</h2>
+<p>Missing    (3): bat-dg2-13 bat-arls-2 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_139078v3 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15453/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139078v3/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10341">i915#10341</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15453/bat-mtlp-8/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139078v3/bat-mtlp-8/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11349">i915#11349</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-arls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15453/bat-arls-1/igt@i915_selftest@live.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10341">i915#10341</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133">i915#12133</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139078v3/bat-arls-1/igt@i915_selftest@live.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>bat-arls-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15453/bat-arls-1/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11349">i915#11349</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139078v3/bat-arls-1/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_15453 -&gt; Patchwork_139078v3</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_15453: 1522f131505272ed86f58e937f2481e4e3e144c1 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8036: 5aa244179b574e949a07ab1c7494033081735718 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_139078v3: 1522f131505272ed86f58e937f2481e4e3e144c1 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============4167183777890985374==--
