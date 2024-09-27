@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A572C98872D
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Sep 2024 16:35:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 47B4B98872F
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Sep 2024 16:35:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 219EB10EC74;
-	Fri, 27 Sep 2024 14:35:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D53DC10EC77;
+	Fri, 27 Sep 2024 14:35:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fQEw6g6D";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ltrkJ45P";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 15BF810EC74
- for <intel-gfx@lists.freedesktop.org>; Fri, 27 Sep 2024 14:35:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBECF10EC77
+ for <intel-gfx@lists.freedesktop.org>; Fri, 27 Sep 2024 14:35:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727447751; x=1758983751;
+ t=1727447754; x=1758983754;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=mhiI3jof4G6t9aV08wAJ7QrHsUZtTYJ650UzWAZvi2k=;
- b=fQEw6g6D4mxQUFjpm2CFmDZ0u11TzcYdrU+lrTravTehDxL22ID8vDNg
- bGYiz2XqlC/6U7nftfZKGwsJggq5MQkSp3XOvSWUDpMc4xCq1Q7a6NxE5
- CtXfhmdNd4zIqj2heZFSj7Tj5DBdXwFFgDORNwc3C/IHKBSUVsfE1Y1HY
- guGTuFiMYXbJ4KOI9QPZIT6+rzAzuUKZQ7rclH2NYf1qlugJ6aowVyZG/
- 4jjerehXXgrUOjw2559Xp1j47SbDAF5/16zlICHwoMidnBert4Y1xpC6a
- u400QXgMc5bnj847VoJiBjvjp5x5btOSWeYv70j/+TgTgp8odeJEU1BwY Q==;
-X-CSE-ConnectionGUID: ShhIECH7Q2uEXtiwFzKMFQ==
-X-CSE-MsgGUID: DvYyzSZ5SjKH0o86Weo+jw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11208"; a="26102293"
-X-IronPort-AV: E=Sophos;i="6.11,158,1725346800"; d="scan'208";a="26102293"
+ bh=/mlPkPEbVkVuV5rNZopFF+YZTnFsKWWrSwx0f/s4DRM=;
+ b=ltrkJ45PdQYuVBsRBrxqfhhb+2dZqjVgdbGSG6MDg7J7pEK/Lzdcy0aT
+ 7DxKuwxkMe16F3/ZW1Hcds9LccTtyHECMuDT3JxbIZP7nm95RZ2S8RPci
+ 2OVcoX60CcWF5kvGNGGzssOuFBQHllParCEMD2Lt/dAT+n+BwN8lDvVaW
+ bXFJC1DUxn8cQhBCAWHu2ANK11nkKk4ju8OPj9u4/Tv2vIXHjd04Ii3jW
+ AzCE4OVCiqAbg2l5uchG9OLQNo9u9U9O0MBj5lMnJrTq7UmcqJDDIErsN
+ kPgvJ4Pyy2G1ZykiJkFPcGSGuFbLqM9NXHgQYrfCYlM54WzUdWEbuUFGg A==;
+X-CSE-ConnectionGUID: kTPMwCEuRGWVjaoPp7B7Ag==
+X-CSE-MsgGUID: fU/jQ2khTqKu0jdY23yFhg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11208"; a="26102297"
+X-IronPort-AV: E=Sophos;i="6.11,158,1725346800"; d="scan'208";a="26102297"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2024 07:35:51 -0700
-X-CSE-ConnectionGUID: DDiV83IdQ8S+TY9wzhCy4g==
-X-CSE-MsgGUID: rlwa6y2rRnWGKXYIbG5RFA==
+ 27 Sep 2024 07:35:53 -0700
+X-CSE-ConnectionGUID: 3LI52rZiQ4ii9d5bxHQt0Q==
+X-CSE-MsgGUID: om1GluocRIOW6iww1gx+FQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,158,1725346800"; d="scan'208";a="72712114"
+X-IronPort-AV: E=Sophos;i="6.11,158,1725346800"; d="scan'208";a="72712115"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 27 Sep 2024 07:35:49 -0700
+ by fmviesa008.fm.intel.com with SMTP; 27 Sep 2024 07:35:52 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 27 Sep 2024 17:35:48 +0300
+ Fri, 27 Sep 2024 17:35:51 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 1/4] drm/i915: Introduce i915_has_legacy_blc_interrupt()
-Date: Fri, 27 Sep 2024 17:35:42 +0300
-Message-ID: <20240927143545.8665-2-ville.syrjala@linux.intel.com>
+Subject: [PATCH 2/4] drm/i915: Clean up gen3 hotplug irq setup
+Date: Fri, 27 Sep 2024 17:35:43 +0300
+Message-ID: <20240927143545.8665-3-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240927143545.8665-1-ville.syrjala@linux.intel.com>
 References: <20240927143545.8665-1-ville.syrjala@linux.intel.com>
@@ -70,75 +70,33 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-i915_has_asle() is a bit of a mess. It does some kind of
-partial check whether the platform has the legacy BLC
-interrupt or not, and then it checks whether OpRegion
-ASLE is present.
-
-Let's split the legacy BLC interrupt check into its
-own thing, and while at it let's make it accurate.
-Currently it misses i85x (not a problem since gen2
-never has OpRegion, nor do we currently call
-i915_enable_asle_pipestat() on gen2), and it
-doesn't reject ILK-M (not that anyone should call
-this on ILK). The exlusion of VLV/CHV (where one
-might even consider calling this, being gmch
-platforms) only happens due to .is_mobile==false.
-
-List the platforms that actually do have the legacy
-BLC interrupt in a bit more explicit fashion.
-i915gm/i945gm/i956gm/gm45 we can cover with a
-display_ver+is_mobile check, pnv needs an exception
-due to having a variant with is_mobile==false, and
-i85x is the only relevant gen2 platform so easier to
-handle on its own.
+For the "always on/unmasked" interrupts we initialize
+dev_priv->irq_mask first, then enable_mask. Follow the
+same order for the hotplug interrupt so that things are
+a bit less confusing.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- .../gpu/drm/i915/display/intel_display_irq.c  | 20 +++++++++++++------
- 1 file changed, 14 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/i915_irq.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-index 6878dde85031..ba82830c464e 100644
---- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-@@ -272,14 +272,17 @@ void i915_disable_pipestat(struct drm_i915_private *dev_priv,
- 	intel_uncore_posting_read(&dev_priv->uncore, reg);
- }
+diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+index a784803f709a..ee7a2a49f08e 100644
+--- a/drivers/gpu/drm/i915/i915_irq.c
++++ b/drivers/gpu/drm/i915/i915_irq.c
+@@ -1065,10 +1065,10 @@ static void i915_irq_postinstall(struct drm_i915_private *dev_priv)
+ 		I915_USER_INTERRUPT;
  
--static bool i915_has_asle(struct drm_i915_private *i915)
-+static bool i915_has_legacy_blc_interrupt(struct intel_display *display)
- {
--	struct intel_display *display = &i915->display;
-+	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	if (I915_HAS_HOTPLUG(dev_priv)) {
+-		/* Enable in IER... */
+-		enable_mask |= I915_DISPLAY_PORT_INTERRUPT;
+ 		/* and unmask in IMR */
+ 		dev_priv->irq_mask &= ~I915_DISPLAY_PORT_INTERRUPT;
++		/* Enable in IER... */
++		enable_mask |= I915_DISPLAY_PORT_INTERRUPT;
+ 	}
  
--	if (!IS_PINEVIEW(i915) && !IS_MOBILE(i915))
--		return false;
-+	if (IS_I85X(i915))
-+		return true;
- 
--	return intel_opregion_asle_present(display);
-+	if (IS_PINEVIEW(i915))
-+		return true;
-+
-+	return IS_DISPLAY_VER(display, 3, 4) && IS_MOBILE(i915);
- }
- 
- /**
-@@ -288,7 +291,12 @@ static bool i915_has_asle(struct drm_i915_private *i915)
-  */
- void i915_enable_asle_pipestat(struct drm_i915_private *dev_priv)
- {
--	if (!i915_has_asle(dev_priv))
-+	struct intel_display *display = &dev_priv->display;
-+
-+	if (!intel_opregion_asle_present(display))
-+		return;
-+
-+	if (!i915_has_legacy_blc_interrupt(display))
- 		return;
- 
- 	spin_lock_irq(&dev_priv->irq_lock);
+ 	GEN3_IRQ_INIT(uncore, GEN2_, dev_priv->irq_mask, enable_mask);
 -- 
 2.45.2
 
