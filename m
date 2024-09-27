@@ -2,53 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DC9C98881D
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Sep 2024 17:20:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 41E1F98881E
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Sep 2024 17:20:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B13D410ECBC;
-	Fri, 27 Sep 2024 15:20:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB42410ECCF;
+	Fri, 27 Sep 2024 15:20:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PYYJO87I";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LAW1+yAv";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1EB2A10E20E;
- Fri, 27 Sep 2024 15:20:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C45010E20E;
+ Fri, 27 Sep 2024 15:20:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727450446; x=1758986446;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ly6G3g+VCVBqpkoxxBUZMMMam5Kf3y1swR6hjkZpCyc=;
- b=PYYJO87IoPiRq3312RwlJfkFQfi9Y+tLOLEi2Ei+kztHiXkHrn9IJdI6
- JJBGfNSGSTELCHSvVPhgOAfk7Ua1Ku0Ua4B4UN3QIJ2SSkceYIUjriwMK
- rfvRBIEygHsT7NBIegqXb0g3bbgUV4Mhj2KS4POQpstjFYypDl/qcj4mD
- T3gzFiHL2vvLd2a4aR1UALeneBKy+RYtLqSOr1+k6/SSGZrXiHMTjJ/5D
- YzUPjiy6tPyzk2u8A6p3GzxBRavv6/g8r9hr8cBicF2GDDnHkJS5LfWwl
- nqHVFC6wdLslYQ2g4XrQbiTuqDu2TVUbnDKXNEw3PmOr2ENabDAOd/g9O g==;
-X-CSE-ConnectionGUID: MRHA3/2ZR3qYIpyP3qZaDA==
-X-CSE-MsgGUID: 7gvmVPMvTwa6tpJVsH0jwg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11208"; a="37179711"
-X-IronPort-AV: E=Sophos;i="6.11,159,1725346800"; d="scan'208";a="37179711"
+ t=1727450447; x=1758986447;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=3r+9AZCEG+iNnbCIojzijJB1HboTGnWbHdNyk8L6WwE=;
+ b=LAW1+yAvRtW+Ni7LtAVf1a6odwC/RkGiZkGdR0/23qFM8+fDVNRaakiC
+ 4n90aTPZUT3TMufnz8mDWkTz6FtaSUneIs4CzlP0Pe0wOF+OGA6o6Fh0+
+ sTkfWSE5C37wPNR61LhLK5jAjEs3lZ5CDQG6d13/qqb1sPf5PSpp9wWx7
+ CMM4olTBEPAiOuJha0fZB14YhQ6vlrqCnTqY9UMltV08Wcxj/HtU9w34/
+ /WxsoNQsn/aNWMOWS9WVTeMho2+CaPdq3aICRqjrN9hot/x4PzGxE4K27
+ 3O5vCWBpm0ueb7eXWOfXH2zF9hemB0uuHawllD1ga04IhcyPsNLHNQ70P g==;
+X-CSE-ConnectionGUID: f1ToRj5WSICYqetE3R5cnQ==
+X-CSE-MsgGUID: 4Bdbr9JzSq6MipYzmA66LQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11208"; a="37179713"
+X-IronPort-AV: E=Sophos;i="6.11,159,1725346800"; d="scan'208";a="37179713"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2024 08:20:46 -0700
-X-CSE-ConnectionGUID: zu9YiFvhRxCmf9EU9tkKUQ==
-X-CSE-MsgGUID: KLfz941CRYO32ap5iuehuA==
+ 27 Sep 2024 08:20:47 -0700
+X-CSE-ConnectionGUID: h6CmHMxuSAyx3g1iHwPjgA==
+X-CSE-MsgGUID: llCiA0ScTdKDm0sinJ5AgA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,159,1725346800"; d="scan'208";a="95896867"
+X-IronPort-AV: E=Sophos;i="6.11,159,1725346800"; d="scan'208";a="95896874"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2024 08:20:44 -0700
+ 27 Sep 2024 08:20:46 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, suraj.kandpal@intel.com,
  ville.syrjala@linux.intel.com
-Subject: [PATCH 00/17] Ultrajoiner basic functionality series 
-Date: Fri, 27 Sep 2024 20:52:24 +0530
-Message-ID: <20240927152241.4014909-1-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 01/17] drm/i915/display_device: Add Check HAS_DSC for bigjoiner
+Date: Fri, 27 Sep 2024 20:52:25 +0530
+Message-ID: <20240927152241.4014909-2-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20240927152241.4014909-1-ankit.k.nautiyal@intel.com>
+References: <20240927152241.4014909-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -67,88 +69,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This patch series attempts to implement basic support
-for Ultrajoiner functionality.
+Bigjoiner needs DSC, but DSC might be disabled on some platforms.
+The platform check itself is not sufficient, so add a check for
+DSC to reflect that.
 
-Rev6:
--Upgrade the debugfs functionality to enable the joining of a
-specified number of pipes.
--Modify the display helpers reliant on the pipe joiner mechanism
-to use number of pipes joined, instead of joiner flag.
--Checkpatch fixes.
+v2: Modify the commit message to address the DSC fuse case.
 
-Rev7:
--Use struct intel_display, minor refactoring, and rebase.
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_device.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Rev8:
--Address comments from Ville.
--Simplified debugfs for forcing joiner, and added option to disable
-joiner.
--Modified the ultra/bigjoiner helpers as suggested by Ville. 
--Split few of the bigger patches as suggested.
-
-Rev9:
-Rebase
-
-Rev10:
--Rebase
--Fix enable_joined_pipes as suggested by Ville, to avoid propagate
-is_ultrajoiner.
--Enhance the mask to iterate over joiner pipes, as suggested by Ville.
-
-Rev11:
--Address review comments from Ville
--Split changes to dsc helpers to separate patches
-
-Rev12:
--Move 'Refactor enable_joiner_pipes' earlier than 'Implement hw state
-readout and checks for ultrajoiner'.
--Few improvements as suggested in review comments.
--Use --patience for Patch #8 "drm/i915/display: Refactor
-enable_joiner_pipes"
-
-Rev13:
--Refactor get_max_compressed_bpp_with_joiner and split changes into 3
-patches.
-
-Rev14:
--Fix issues in patches#11~13 for num_joined_pipes = 1.
-
-Ankit Nautiyal (12):
-  drm/i915/display_device: Add Check HAS_DSC for bigjoiner
-  drm/i915/display_debugfs: Allow force joiner only if supported
-  drm/i915/display: Modify debugfs for joiner to force n pipes
-  drm/i915/dp: Add helper to compute num pipes required
-  drm/i915: Split current joiner hw state readout
-  drm/i915/display: Add macro HAS_ULTRAJOINER()
-  drm/i915/display: Refactor enable_joiner_pipes
-  drm/i915/dp: Refactor joiner max_bpp calculations into separate
-    functions
-  drm/i915/dp: Use num_joined_pipes in bigjoiner_bw_max_bpp
-  drm/i915/dp: Modify compressed bpp limitations for ultrajoiner
-  drm/i915/display: Consider ultrajoiner for computing maxdotclock
-  drm/i915/intel_dp: Add support for forcing ultrajoiner
-
-Stanislav Lisovskiy (5):
-  drm/i915: Add bigjoiner and uncompressed joiner hw readout sanity
-    checks
-  drm/i915: Implement hw state readout and checks for ultrajoiner
-  drm/i915/display/vdsc: Add ultrajoiner support with DSC
-  drm/i915/dp: Simplify helper to get slice count with joiner
-  drm/i915: Compute config and mode valid changes for ultrajoiner
-
- drivers/gpu/drm/i915/display/intel_display.c  | 320 +++++++++++++++---
- drivers/gpu/drm/i915/display/intel_display.h  |   3 +
- .../drm/i915/display/intel_display_debugfs.c  |  72 +++-
- .../drm/i915/display/intel_display_device.h   |   5 +-
- .../drm/i915/display/intel_display_types.h    |   2 +-
- drivers/gpu/drm/i915/display/intel_dp.c       | 141 ++++++--
- drivers/gpu/drm/i915/display/intel_dp.h       |   6 +-
- drivers/gpu/drm/i915/display/intel_dp_mst.c   |  23 +-
- drivers/gpu/drm/i915/display/intel_vdsc.c     |  11 +-
- .../gpu/drm/i915/display/intel_vdsc_regs.h    |   2 +
- 10 files changed, 472 insertions(+), 113 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+index 5306bbd13e59..6a5bee59e6aa 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.h
++++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+@@ -118,7 +118,7 @@ enum intel_display_subplatform {
+ 
+ #define HAS_4TILE(i915)			(IS_DG2(i915) || DISPLAY_VER(i915) >= 14)
+ #define HAS_ASYNC_FLIPS(i915)		(DISPLAY_VER(i915) >= 5)
+-#define HAS_BIGJOINER(i915)		(DISPLAY_VER(i915) >= 11)
++#define HAS_BIGJOINER(i915)		(DISPLAY_VER(i915) >= 11 && HAS_DSC(i915))
+ #define HAS_CDCLK_CRAWL(i915)		(DISPLAY_INFO(i915)->has_cdclk_crawl)
+ #define HAS_CDCLK_SQUASH(i915)		(DISPLAY_INFO(i915)->has_cdclk_squash)
+ #define HAS_CUR_FBC(i915)		(!HAS_GMCH(i915) && IS_DISPLAY_VER(i915, 7, 13))
 -- 
 2.45.2
 
