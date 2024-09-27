@@ -2,52 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41E1F98881E
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Sep 2024 17:20:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BA4698881F
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Sep 2024 17:20:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB42410ECCF;
-	Fri, 27 Sep 2024 15:20:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C351E10ECD0;
+	Fri, 27 Sep 2024 15:20:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LAW1+yAv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gGQojVcI";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C45010E20E;
- Fri, 27 Sep 2024 15:20:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7808E10ECCF;
+ Fri, 27 Sep 2024 15:20:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727450447; x=1758986447;
+ t=1727450449; x=1758986449;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=3r+9AZCEG+iNnbCIojzijJB1HboTGnWbHdNyk8L6WwE=;
- b=LAW1+yAvRtW+Ni7LtAVf1a6odwC/RkGiZkGdR0/23qFM8+fDVNRaakiC
- 4n90aTPZUT3TMufnz8mDWkTz6FtaSUneIs4CzlP0Pe0wOF+OGA6o6Fh0+
- sTkfWSE5C37wPNR61LhLK5jAjEs3lZ5CDQG6d13/qqb1sPf5PSpp9wWx7
- CMM4olTBEPAiOuJha0fZB14YhQ6vlrqCnTqY9UMltV08Wcxj/HtU9w34/
- /WxsoNQsn/aNWMOWS9WVTeMho2+CaPdq3aICRqjrN9hot/x4PzGxE4K27
- 3O5vCWBpm0ueb7eXWOfXH2zF9hemB0uuHawllD1ga04IhcyPsNLHNQ70P g==;
-X-CSE-ConnectionGUID: f1ToRj5WSICYqetE3R5cnQ==
-X-CSE-MsgGUID: 4Bdbr9JzSq6MipYzmA66LQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11208"; a="37179713"
-X-IronPort-AV: E=Sophos;i="6.11,159,1725346800"; d="scan'208";a="37179713"
+ bh=5+vRL/t93ned0andninRpfo6PLrtXWh7I8V/BX46VZ8=;
+ b=gGQojVcI8p2w6n8ZT7Mv4lU7T83bPdhMS0OBPU9kwj4UM1VBLLZCKohL
+ mY8RCvkj8BOgWjDCyKlQM6GSVAcnXIx8nyjf64QHuBvm7l1FUy2RTWR3R
+ YbCgMU+iOFnfTDPcMcjjrCmNmiLloK8jSCIHSa76rXOkGdFuWC56wlpl+
+ MNpIXBawD4ahDmM2hMqRHkqijv1CRmxYR4f1RSspre32mo4b3obt0f7G/
+ 5az9hZPO0L3UX604Cs8bwlrtjZkA2+17PFveU6UPa+pTq10Hdg07iFJ0v
+ gcSefBGO+ZFsa5wmF9Lw4Z6tV4VC6/Tvlml/dbGbuGpEIf2BdO4paINF6 g==;
+X-CSE-ConnectionGUID: ytBkbNeAQvqxgddd0Tuo4Q==
+X-CSE-MsgGUID: VfQ/9YqnTUWIfXvxlhtMyg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11208"; a="37179719"
+X-IronPort-AV: E=Sophos;i="6.11,159,1725346800"; d="scan'208";a="37179719"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2024 08:20:47 -0700
-X-CSE-ConnectionGUID: h6CmHMxuSAyx3g1iHwPjgA==
-X-CSE-MsgGUID: llCiA0ScTdKDm0sinJ5AgA==
+ 27 Sep 2024 08:20:49 -0700
+X-CSE-ConnectionGUID: iwp4gspRTvS4qygTRiqdCQ==
+X-CSE-MsgGUID: nAv3hzDwQDiHUrSuliiCXA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,159,1725346800"; d="scan'208";a="95896874"
+X-IronPort-AV: E=Sophos;i="6.11,159,1725346800"; d="scan'208";a="95896883"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2024 08:20:46 -0700
+ 27 Sep 2024 08:20:47 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, suraj.kandpal@intel.com,
  ville.syrjala@linux.intel.com
-Subject: [PATCH 01/17] drm/i915/display_device: Add Check HAS_DSC for bigjoiner
-Date: Fri, 27 Sep 2024 20:52:25 +0530
-Message-ID: <20240927152241.4014909-2-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 02/17] drm/i915/display_debugfs: Allow force joiner only if
+ supported
+Date: Fri, 27 Sep 2024 20:52:26 +0530
+Message-ID: <20240927152241.4014909-3-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240927152241.4014909-1-ankit.k.nautiyal@intel.com>
 References: <20240927152241.4014909-1-ankit.k.nautiyal@intel.com>
@@ -69,31 +70,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Bigjoiner needs DSC, but DSC might be disabled on some platforms.
-The platform check itself is not sufficient, so add a check for
-DSC to reflect that.
+Currently we support joiner only for DP encoder.
+Do not create the debugfs for joiner if DP does not support the joiner.
+This will also help avoiding cases where config has eDP MSO, with which
+we do not support joiner.
 
-v2: Modify the commit message to address the DSC fuse case.
+v2: Check for intel_dp_has_joiner and avoid creating debugfs if not
+supported. (Ville)
+v3: Remove HAS_BIGJOINER check. (Ville)
+v4: Reverse checks for connector type and intel_dp_has_joiner(). (Ville)
+v5: Drop the local variable intel_dp and use intel_attached_dp() directly.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_device.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_display_debugfs.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index 5306bbd13e59..6a5bee59e6aa 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -118,7 +118,7 @@ enum intel_display_subplatform {
+diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+index 890ef7067b77..c38023b43682 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
++++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+@@ -1362,9 +1362,9 @@ void intel_connector_debugfs_add(struct intel_connector *connector)
+ 				    connector, &i915_dsc_fractional_bpp_fops);
+ 	}
  
- #define HAS_4TILE(i915)			(IS_DG2(i915) || DISPLAY_VER(i915) >= 14)
- #define HAS_ASYNC_FLIPS(i915)		(DISPLAY_VER(i915) >= 5)
--#define HAS_BIGJOINER(i915)		(DISPLAY_VER(i915) >= 11)
-+#define HAS_BIGJOINER(i915)		(DISPLAY_VER(i915) >= 11 && HAS_DSC(i915))
- #define HAS_CDCLK_CRAWL(i915)		(DISPLAY_INFO(i915)->has_cdclk_crawl)
- #define HAS_CDCLK_SQUASH(i915)		(DISPLAY_INFO(i915)->has_cdclk_squash)
- #define HAS_CUR_FBC(i915)		(!HAS_GMCH(i915) && IS_DISPLAY_VER(i915, 7, 13))
+-	if (HAS_BIGJOINER(i915) &&
+-	    (connector_type == DRM_MODE_CONNECTOR_DisplayPort ||
+-	     connector_type == DRM_MODE_CONNECTOR_eDP)) {
++	if ((connector_type == DRM_MODE_CONNECTOR_DisplayPort ||
++	     connector_type == DRM_MODE_CONNECTOR_eDP) &&
++	    intel_dp_has_joiner(intel_attached_dp(connector))) {
+ 		debugfs_create_bool("i915_bigjoiner_force_enable", 0644, root,
+ 				    &connector->force_bigjoiner_enable);
+ 	}
 -- 
 2.45.2
 
