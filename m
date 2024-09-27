@@ -2,65 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CED4B988402
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Sep 2024 14:16:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA47D98841D
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Sep 2024 14:22:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F1C2710E066;
-	Fri, 27 Sep 2024 12:16:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56A5A10E344;
+	Fri, 27 Sep 2024 12:22:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Mao6Bi5x";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A07hzhiK";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F08810E066;
- Fri, 27 Sep 2024 12:16:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF45D10E344
+ for <intel-gfx@lists.freedesktop.org>; Fri, 27 Sep 2024 12:22:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727439403; x=1758975403;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=w3A1BjWhcSfirgEzQiAdug/W08sfPw9gZE3Lpnawva8=;
- b=Mao6Bi5xKEWLZpGkeSN+kmChHX1LbE0qO3X+Z+bRB5HdV8R28tkXgB+c
- NuJUBVyk2BE6dNSW7v5n+63Ob5T6ZQafy7JoqJn2kMn1MJYcwIT5IoWVB
- Fe9F9sDK+VxFlodHeMdz+P1FTPc0QLNPqLtrGDgKMM3KWRBkoeTewkf9m
- o6KPhQDZv0/8dV2ijQ6F7f3J6uYii8o7EovCtkNBt8g9q50RIteqbycEY
- L7N3Vjq4TuTqCr5NvNtecIvukroPqzEdkRGUPcZp9D6axbFMC2/5Y4bQp
- Zu598UQMn9SwDmdeb9FCglE89UILSvAHPtdFSgp80siEexdKhDJKqmNko w==;
-X-CSE-ConnectionGUID: +ExTj6e4RACvvV/u2gZwIw==
-X-CSE-MsgGUID: 3nli4du+Rm6pzJVccMp87Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11207"; a="26090137"
-X-IronPort-AV: E=Sophos;i="6.11,158,1725346800"; d="scan'208";a="26090137"
+ t=1727439734; x=1758975734;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=QKwghZjjBHz3WWAUO43+xp5VMkhhcgGCfhKcxh3BR+M=;
+ b=A07hzhiKGjsCpOVYeoGFRTl2iaKGp9qbcS5tqvVeClOwZyA0+EABnX+h
+ jGXxoeMnbtaQfcTd3QRdQRuX9d5XdhJQ9pIDK28C+lLZGg2tQpKjl62QU
+ 8rBX18sdRTgIwVCuDOEh4RkODtpvPHOTKCpkot0qfe+BHri6VdZHBBAkZ
+ TFENnGK5xGxPDWVs1DKWJBQw+jUJZ0W5r4/+EZCRLE4kYJDVbHXqmajEO
+ 0/bUp81paFc+u3dKHbXp8Kdger5nexg6vFv/oUlPIkJUWWBuvYDug65NP
+ p9U8AtRrRvhRjlUdMe5HbfqtH0osLzbJ6idAyv7dYySQEbgMeoTiGZqOa w==;
+X-CSE-ConnectionGUID: n1BpcMUiTTWG3tKMjPxOig==
+X-CSE-MsgGUID: 9ywNC4LtSLm0StEn/jmFvg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11207"; a="26090573"
+X-IronPort-AV: E=Sophos;i="6.11,158,1725346800"; d="scan'208";a="26090573"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2024 05:16:32 -0700
-X-CSE-ConnectionGUID: Y/3u0UFxQUygtsQKWF7wTA==
-X-CSE-MsgGUID: c5UPGoKsQ+CalMbh3mx8ZQ==
+ 27 Sep 2024 05:22:14 -0700
+X-CSE-ConnectionGUID: f7ijNGCOTxGZHS4oxXvckg==
+X-CSE-MsgGUID: FQfqyJ7tRN+ubU5jEXjpdg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,158,1725346800"; d="scan'208";a="72690451"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.211])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2024 05:16:29 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>, Ville
- =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2 0/9] drm/i915/display: platform identification with
- display->is.<PLATFORM>
-In-Reply-To: <ZvV2ssfgHA8jvTro@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1724092799.git.jani.nikula@intel.com>
- <Zs-LdJYx_lVDt9PC@intel.com> <ZtCb5yc6KCy1S6bo@intel.com>
- <87wmj14c0q.fsf@intel.com>
- <m4uj2hvgkcuingb6rqqth7jc3qpa4g77xebi2wtyyt3a6hadqg@fufb76wcea6j>
- <87ldzh41hb.fsf@intel.com> <ZvV2ssfgHA8jvTro@intel.com>
-Date: Fri, 27 Sep 2024 15:16:23 +0300
-Message-ID: <87zfntxpew.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,158,1725346800"; d="scan'208";a="72691147"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 27 Sep 2024 05:22:11 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 27 Sep 2024 15:22:10 +0300
+Date: Fri, 27 Sep 2024 15:22:10 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH v5 2/2] drm/i915/display: Prevent DC6 while vblank is
+ enabled for Panel Replay
+Message-ID: <ZvajclHI38JFVw4V@intel.com>
+References: <20240920062340.1333777-1-jouni.hogander@intel.com>
+ <20240920062340.1333777-3-jouni.hogander@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240920062340.1333777-3-jouni.hogander@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,222 +72,182 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 26 Sep 2024, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> On Tue, Sep 24, 2024 at 04:37:04PM +0300, Jani Nikula wrote:
->> On Tue, 24 Sep 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
->> > On Tue, Sep 24, 2024 at 12:49:25PM GMT, Jani Nikula wrote:
->> >>On Thu, 29 Aug 2024, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.inte=
-l.com> wrote:
->> >>> On Wed, Aug 28, 2024 at 04:41:24PM -0400, Rodrigo Vivi wrote:
->> >>>> On Mon, Aug 19, 2024 at 09:44:27PM +0300, Jani Nikula wrote:
->> >>>> > v2 of [1]. Please read the cover letter there.
->> >>>> >
->> >>>> > This addresses review comments and adds a few more commits on top=
-, in particular
->> >>>> > the last one showcasing the approach.
->> >>>> >
->> >>>> > The main question remains, is this what we want?
->> >>>>
->> >>>> I don't know why, but the 'is' thing is still strange.
->> >>>>
->> >>>> I know I know... I'm bad with naming myself.
->> >>>>
->> >>>> I think about 'platform' but that get too big
->> >>>>
->> >>>> if (display->platform.BROADWELL)
->> >>>>
->> >>>> I think about 'gen' but then it is overloaded....
->> >>>>
->> >>>> then I think about 'ip' is worse...
->> >>>>
->> >>>> 'version'?
->> >>>>
->> >>>> 'name'?
->> >>>>
->> >>>> if (display->name.HASWELL)...
->> >>>>
->> >>>> ....
->> >>>>
->> >>>> But well, I like the overall simplification here in general.
->> >>>> Without a better name to suggest, I guess let's just move ahead...
->> >>>
->> >>> One slight concern with the is.foo is whether it complicates finding
->> >>> things with eg. cscope. But I suppose for platforms that doesn't mat=
-ter
->> >>> all that much. For the has_foo stuff it'd be much more relevant.
->> >>
->> >>It does make finding things harder with cscope and gnu global, but git
->> >>grep for is.FOO is pretty accurate.
->> >>
->> >>> Anyways, can't think of anything particularly elegant myself either,
->> >>> so go ahead I guess.
->> >>
->> >>So I haven't yet. I just still have that slightly uneasy feeling about
->> >>whether this is a good thing or not. That doesn't usually make me shy
->> >>away from things, because you can fix stuff later, but getting this
->> >>wrong causes so much churn everywhere.
->> >>
->> >>The fact that it's not a macro makes it less flexible for future
->> >>changes. The display->is.FOO is somewhat legible, but could be
->> >>better. Would all lowercase make it better? I don't know.
->> >>
->> >>More alternatives? Not elegant for sure, but just alternatives:
->> >>
->> >>- Lowercase names:
->> >>
->> >>	if (display->is.rocketlake)
->> >
->> > what I really dislike is a struct named "is". Going full mesa-way would
->> > be slightly better IMO:
->> >
->> > 	if (display->is_rockelake)
->> >
->> > or
->> >
->> > 	if (display->platform_rocketlake)
->> >
->> > or
->> >
->> > 	if (display->platform.rocketlake)
->>=20
->> Fair enough.
->>=20
->> >From implementation POV having a sub-struct is easier than not.
->
-> how the subplatform would appear in this case?
+On Fri, Sep 20, 2024 at 09:23:40AM +0300, Jouni Högander wrote:
+> We need to block DC6 entry in case of Panel Replay as enabling VBI doesn't
+> prevent DC6 in case of Panel Replay. This causes problems if user-space is
+> polling for vblank events.
+> 
+> Fix this by setting target DC state as DC_STATE_EN_UPTO_DC5 when both
+> source and sink are supporting eDP Panel Replay and VBI is enabled.
+> 
+> v4:
+>   - s/vblank_work/vblank_dc_work/
+>   - changed type of block_dc_for_vblank to bool
+> v3:
+>   - do flush_work for vblank_work on intel_crtc_vblank_off
+>   - no need to use READ_ONCE in bdw_enable_vblank
+>   - check crtc->block_dc_for_vblank in bdw_disable_vblank as well
+>   - move adding block_dc_for_vblank into this patch
+> v2:
+>   - use READ_ONCE in intel_display_vblank_work
+>   - use DC_STATE_DISABLE instead of DC_STATE_EN_UPTO_DC6
+>   - use intel_crtc->block_dc6_needed
+> 
+> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2296
+> Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+> Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_crtc.c     |  7 +++++
+>  .../gpu/drm/i915/display/intel_display_core.h |  2 ++
+>  .../gpu/drm/i915/display/intel_display_irq.c  | 28 +++++++++++++++++++
+>  .../drm/i915/display/intel_display_types.h    |  2 ++
+>  4 files changed, 39 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+> index f95d169fc324a..3a28d8450a384 100644
+> --- a/drivers/gpu/drm/i915/display/intel_crtc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+> @@ -124,6 +124,8 @@ void intel_crtc_vblank_on(const struct intel_crtc_state *crtc_state)
+>  {
+>  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+>  
+> +	crtc->block_dc_for_vblank = intel_psr_needs_block_dc_vblank(crtc_state);
+> +
+>  	assert_vblank_disabled(&crtc->base);
+>  	drm_crtc_set_max_vblank_count(&crtc->base,
+>  				      intel_crtc_max_vblank_count(crtc_state));
+> @@ -140,6 +142,7 @@ void intel_crtc_vblank_on(const struct intel_crtc_state *crtc_state)
+>  void intel_crtc_vblank_off(const struct intel_crtc_state *crtc_state)
+>  {
+>  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> +	struct intel_display *display = to_intel_display(crtc);
+>  
+>  	/*
+>  	 * Should really happen exactly when we disable the pipe
+> @@ -150,6 +153,10 @@ void intel_crtc_vblank_off(const struct intel_crtc_state *crtc_state)
+>  
+>  	drm_crtc_vblank_off(&crtc->base);
+>  	assert_vblank_disabled(&crtc->base);
+> +
+> +	crtc->block_dc_for_vblank = false;
+> +
+> +	flush_work(&display->irq.vblank_dc_work);
+>  }
+>  
+>  struct intel_crtc_state *intel_crtc_state_alloc(struct intel_crtc *crtc)
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
+> index 0a711114ff2b4..ac4c005fe3489 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_core.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+> @@ -457,6 +457,8 @@ struct intel_display {
+>  		/* For i915gm/i945gm vblank irq workaround */
+>  		u8 vblank_enabled;
+>  
+> +		struct work_struct vblank_dc_work;
+> +
+>  		u32 de_irq_mask[I915_MAX_PIPES];
+>  		u32 pipestat_irq_mask[I915_MAX_PIPES];
+>  	} irq;
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
+> index 0ccbf7a1f2bf6..6878dde85031c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
+> @@ -1360,9 +1360,27 @@ static bool gen11_dsi_configure_te(struct intel_crtc *intel_crtc,
+>  	return true;
+>  }
+>  
+> +static void intel_display_vblank_dc_work(struct work_struct *work)
+> +{
+> +	struct intel_display *display =
+> +		container_of(work, typeof(*display), irq.vblank_dc_work);
+> +	struct drm_i915_private *i915 = to_i915(display->drm);
+> +	u8 vblank_enabled = READ_ONCE(display->irq.vblank_enabled);
+> +
+> +	/*
+> +	 * NOTE: intel_display_power_set_target_dc_state is used only by PSR
+> +	 * code for DC3CO handling. DC3CO target state is currently disabled in
+> +	 * PSR code. If DC3CO is taken into use we need take that into account
+> +	 * here as well.
+> +	 */
+> +	intel_display_power_set_target_dc_state(i915, vblank_enabled ? DC_STATE_DISABLE :
+> +						DC_STATE_EN_UPTO_DC6);
+> +}
+> +
+>  int bdw_enable_vblank(struct drm_crtc *_crtc)
+>  {
+>  	struct intel_crtc *crtc = to_intel_crtc(_crtc);
+> +	struct intel_display *display = to_intel_display(crtc);
+>  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+>  	enum pipe pipe = crtc->pipe;
+>  	unsigned long irqflags;
+> @@ -1370,6 +1388,9 @@ int bdw_enable_vblank(struct drm_crtc *_crtc)
+>  	if (gen11_dsi_configure_te(crtc, true))
+>  		return 0;
+>  
+> +	if (display->irq.vblank_enabled++ == 0 && crtc->block_dc_for_vblank)
+> +		schedule_work(&display->irq.vblank_dc_work);
 
-For example, RPL-S:
+It occurred to me that this is a little bit broken. If the
+first crtc to increment the count does not need the w/a
+then we'll not enable the w/a, and it will not get enabled
+for other crtcs either until the count has dropped back down
+to 0.
 
+I think simply checking crtc->block_dc_for_vblank before
+the increment/decrement should fix it.
 
-	if (display->platform.alderlake_s_raptorlake_s)
+Yes, that does mean vblank_enabled isn't actually counting
+how many crtc have their vblank enabled, but rather how
+many crtcs are applying the w/a. To avoid too much
+confusion we could simply rename it to something like
+vblank_wa_pipes/etc.
 
-But the main platform also matches its subplatforms:
+> +
+>  	spin_lock_irqsave(&dev_priv->irq_lock, irqflags);
+>  	bdw_enable_pipe_irq(dev_priv, pipe, GEN8_PIPE_VBLANK);
+>  	spin_unlock_irqrestore(&dev_priv->irq_lock, irqflags);
+> @@ -1435,6 +1456,7 @@ void ilk_disable_vblank(struct drm_crtc *crtc)
+>  void bdw_disable_vblank(struct drm_crtc *_crtc)
+>  {
+>  	struct intel_crtc *crtc = to_intel_crtc(_crtc);
+> +	struct intel_display *display = to_intel_display(crtc);
+>  	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+>  	enum pipe pipe = crtc->pipe;
+>  	unsigned long irqflags;
+> @@ -1445,6 +1467,9 @@ void bdw_disable_vblank(struct drm_crtc *_crtc)
+>  	spin_lock_irqsave(&dev_priv->irq_lock, irqflags);
+>  	bdw_disable_pipe_irq(dev_priv, pipe, GEN8_PIPE_VBLANK);
+>  	spin_unlock_irqrestore(&dev_priv->irq_lock, irqflags);
+> +
+> +	if (--display->irq.vblank_enabled == 0 && crtc->block_dc_for_vblank)
+> +		schedule_work(&display->irq.vblank_dc_work);
+>  }
+>  
+>  void vlv_display_irq_reset(struct drm_i915_private *dev_priv)
+> @@ -1881,4 +1906,7 @@ void intel_display_irq_init(struct drm_i915_private *i915)
+>  		i915->display.irq.display_irqs_enabled = false;
+>  
+>  	intel_hotplug_irq_init(i915);
+> +
+> +	INIT_WORK(&i915->display.irq.vblank_dc_work,
+> +		  intel_display_vblank_dc_work);
+>  }
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 3e694c1204dbf..513e843e19b9e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1413,6 +1413,8 @@ struct intel_crtc {
+>  #ifdef CONFIG_DEBUG_FS
+>  	struct intel_pipe_crc pipe_crc;
+>  #endif
+> +
+> +	bool block_dc_for_vblank;
+>  };
+>  
+>  struct intel_plane {
+> -- 
+> 2.34.1
 
-	if (display->platform.alderlake_s)
-
-This is the same as with the patches at hand. Except for the
-uppercase/lowercase difference, and s/is/platform/.
-
->> >>  Does not help with flexibility or cscope.
->> >>
->> >>- Lowercase macros for display, e.g. is_rocketlake().
->> >>
->> >>	if (is_rocketlake(display))
->> >>
->> >>- Macros based on just the platform name, e.g. ROCKETLAKE().
->> >>
->> >>	if (ROCKETLAKE(display))
->> >>
->> >>  or change IS_ to something else e.g. PLATFORM_ROCKETLAKE().
->> >>
->> >>	if (PLATFORM_ROCKETLAKE(display))
->> >>
->> >>  But that can get a bit long in some if ladders etc.
->> >
->> > Does it matter much? I think those would be the exception, particularly
->> > because platform checks are kind of rare these days.
->>=20
->> Well, they're maybe the exception for new platforms, but i915 display
->> does have to deal with a lot of legacy with a lot of platform checks.
->>=20
->> > grepping for LUNARLAKE in xe reveals only 2 users (+ few workarounds),
->> > because wherever we can we check by graphics/display version rather th=
-an
->> > platform.
->>=20
->> i915 display has only one use of IS_LUNARLAKE(), but there are 1k+ other
->> uses of IS_<PLATFORM>.
->>=20
->> Incidentally, this is the reason I'm procrastinating about the change at
->> all.
->>=20
->> > Then simply using something similar to what we already have in xe, wou=
-ld
->> > be great IMO:
->> >
->> > 	if (display->platform =3D=3D PLATFORM_LUNARLAKE)
->> >
->> > it may be verbose, but shouldn't be much used to matter in the end.
->>=20
->> The downside with that is that you can't deal with subplatforms as
->> easily. It becomes
->>=20
->> 	if (display->platform =3D=3D PLATFORM_LUNARLAKE ||
->> 	    (display->platform =3D=3D PLATFORM_ALDERLAKE_P &&
->> 	     display->subplatform =3D=3D SUBPLATFORM_ALDERLAKE_P_ALDERLAKE_N))
->>=20
->> or similar. Definitely not a fan.
->
-> unless the subplatform already includes the platform?
-
-Oh, yeah, it would.
-
-> But well, I also don't have a good suggestion here.
-> The '.is' struct is strange indeed, but at least covers all the past
-> and future strange cases.
->
-> But I also wouldn't mind if we decide to get the verbose path,
-> but try to at least making the subplatform already infering the
-> platform in a way that this case could only be:
->
->        if (display->platform =3D=3D PLATFORM_LUNARLAKE ||
->             display->subplatform =3D=3D SUBPLATFORM_ALDERLAKE_P_ALDERLAKE=
-_N)
->
->
-> or perhaps do in a way that we don't even need the subplatform struct?
->
->        if (display->platform =3D=3D PLATFORM_LUNARLAKE ||
->             display->platform =3D=3D SUBPLATFORM_ALDERLAKE_P_ALDERLAKE_N)
-
-How would that even be possible? display->platform can't be multiple
-things at the same time, unless it's a bitmask. If it's a bitmask, you
-need a way to nicely check for it instead of having it everywhere.
-
-The alternatives are using a macro, or using bitfields - which is
-exactly what the patch at hand does. We've come full circle.
-
-
-BR,
-Jani.
-
-
->
->>=20
->>=20
->> BR,
->> Jani.
->>=20
->>=20
->> >
->> > Lucas De Marchi
->> >
->> >>
->> >>- Go through the trouble of making the existing IS_FOO() macros _Gener=
-ic
->> >>  and accept either i915 or display pointer. This does postpone making
->> >>  any further changes, but fairly soon there will need to be two sets =
-of
->> >>  macros, separate for i915 and display, even though named the same.
->> >>
->> >>  Also, the _Generic thing would look up the platform definitions from
->> >>  different places, which could be error prone.
->> >>
->> >>
->> >>Yeah, procrastination...
->> >>
->> >>
->> >>BR,
->> >>Jani.
->> >>
->> >>
->> >>
->> >>
->> >>--=20
->> >>Jani Nikula, Intel
->>=20
->> --=20
->> Jani Nikula, Intel
-
---=20
-Jani Nikula, Intel
+-- 
+Ville Syrjälä
+Intel
