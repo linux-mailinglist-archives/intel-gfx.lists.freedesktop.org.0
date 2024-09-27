@@ -2,67 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 909CA9886AB
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Sep 2024 16:07:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DD3398872C
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Sep 2024 16:35:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1AB7B10EC62;
-	Fri, 27 Sep 2024 14:07:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D1B9110EC67;
+	Fri, 27 Sep 2024 14:35:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CqE19rP8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kQhz97mL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9158D10EC53;
- Fri, 27 Sep 2024 14:07:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 86C6310EC67
+ for <intel-gfx@lists.freedesktop.org>; Fri, 27 Sep 2024 14:35:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727446040; x=1758982040;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=CLo9OzVwUZsZ0uIWth/rFORlhVysacKJrF8TOBj8qI0=;
- b=CqE19rP8CrOA9YPjaYR3O37aV7RKg3nBMHh0l1Zc8wVjOi5q8OGleZie
- 3yf7lIkF/4LqVaR37DI7Kwv6l7LgQaQNIFz8t10QkiNTSidbL9rpe3CHl
- ew87t12ue6GpPNkWVp66WDtmEHvJ6C9yzvrXPevNCHFLpC7dDogzJM6on
- F1i3lOX0oax2rdCM1Pd3ubULi00qnmmxpkzfK6YcbTZX5mVL8rmm05gKI
- Ta9WI/v5ADzK0MWZ1rRr/NDV2CS0z+GueHRGmuzCnkUSKC82tPIkB+BSe
- dNEehlZk6waiKiStYVp/rwQ1HXi1l6DoeKqeeIH+sn3mL8EcGlFq5Sl6s w==;
-X-CSE-ConnectionGUID: tGchfyAlRG29jki65VaO2Q==
-X-CSE-MsgGUID: UtgDstvUT4KGiBzzzNCQog==
-X-IronPort-AV: E=McAfee;i="6700,10204,11207"; a="37262393"
-X-IronPort-AV: E=Sophos;i="6.11,158,1725346800"; d="scan'208";a="37262393"
+ t=1727447748; x=1758983748;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=nY7KGEo5+550AdKkKlveQwG2HEYE2rOXESYVYdZEoUg=;
+ b=kQhz97mLwYBYcWnkTHab2bRnlSvZaHW3cnax8f/rq0zML8PgvmjNmhEy
+ nNUIKC7Ss42yJiRXB1GveVmPX/JdU179aU1lqfC08wO66Uamwu7N1paCz
+ tEHnSWPzf4iT0AibmVOARrYYimrPq0NeIPpLvOJwzNd6kv0QHnPVbek1r
+ 2t3i8SJCEQFvOC8tkClDUFVM8M6CN963v5hd7uSypdbSWWNQyg4tZ13Fz
+ WRpYcOd59huzhmvfCGD/Myyg89HHIqcPv1B0PUSZHfYj2iyEgydWqK+vP
+ kAx4X6DQBoI9f5rw32RVYWxahz5r09Lyvf6BFuT/B1KfopN2RwUIb8+pt Q==;
+X-CSE-ConnectionGUID: DiifhBucSmm5U9ywXppOcw==
+X-CSE-MsgGUID: c9Zx0NqKSOquWpsjO5D8Qg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11208"; a="26102292"
+X-IronPort-AV: E=Sophos;i="6.11,158,1725346800"; d="scan'208";a="26102292"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2024 07:07:20 -0700
-X-CSE-ConnectionGUID: pYcf9pL4QQyGlpwN2L8OuQ==
-X-CSE-MsgGUID: xIrr8pHUQhedg+DyPQcs/g==
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Sep 2024 07:35:48 -0700
+X-CSE-ConnectionGUID: rfIE7gzoRba7lUfW0Vkwbg==
+X-CSE-MsgGUID: LwqoSzwWSs6sO1H0ZSNl/Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,158,1725346800"; d="scan'208";a="72706953"
+X-IronPort-AV: E=Sophos;i="6.11,158,1725346800"; d="scan'208";a="72712113"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 27 Sep 2024 07:07:16 -0700
+ by fmviesa008.fm.intel.com with SMTP; 27 Sep 2024 07:35:46 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 27 Sep 2024 17:07:15 +0300
-Date: Fri, 27 Sep 2024 17:07:15 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Alessandro Zanni <alessandro.zanni87@gmail.com>, rodrigo.vivi@intel.com,
- joonas.lahtinen@linux.intel.com, tursulin@ursulin.net,
- airlied@gmail.com, simona@ffwll.ch, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, skhan@linuxfoundation.org,
- anupnewsmail@gmail.com
-Subject: Re: [PATCH] gpu: drm: i915: display: Avoid null values
- intel_plane_atomic_check_with_state
-Message-ID: <Zva8E_L9yUN6IWlW@intel.com>
-References: <20240927000146.50830-1-alessandro.zanni87@gmail.com>
- <87tte1zewf.fsf@intel.com> <ZvaduhDERL-zvED3@intel.com>
- <87tte1xmqe.fsf@intel.com> <Zva3CAewBl8NBL91@intel.com>
+ Fri, 27 Sep 2024 17:35:45 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Subject: [PATCH 0/4] drm/i915: Use the gen3+ irq code on gen2
+Date: Fri, 27 Sep 2024 17:35:41 +0300
+Message-ID: <20240927143545.8665-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <Zva3CAewBl8NBL91@intel.com>
-X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,113 +66,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Sep 27, 2024 at 04:45:44PM +0300, Ville Syrj‰l‰ wrote:
-> On Fri, Sep 27, 2024 at 04:14:17PM +0300, Jani Nikula wrote:
-> > On Fri, 27 Sep 2024, Ville Syrj‰l‰ <ville.syrjala@linux.intel.com> wrote:
-> > > On Fri, Sep 27, 2024 at 11:20:32AM +0300, Jani Nikula wrote:
-> > >> On Fri, 27 Sep 2024, Alessandro Zanni <alessandro.zanni87@gmail.com> wrote:
-> > >> > This fix solves multiple Smatch errors:
-> > >> >
-> > >> > drivers/gpu/drm/i915/display/intel_atomic_plane.c:660
-> > >> > intel_plane_atomic_check_with_state() error:
-> > >> > we previously assumed 'fb' could be null (see line 648)
-> > >> >
-> > >> > drivers/gpu/drm/i915/display/intel_atomic_plane.c:664
-> > >> > intel_plane_atomic_check_with_state()
-> > >> > error: we previously assumed 'fb' could be null (see line 659)
-> > >> >
-> > >> > drivers/gpu/drm/i915/display/intel_atomic_plane.c:671
-> > >> > intel_plane_atomic_check_with_state()
-> > >> > error: we previously assumed 'fb' could be null (see line 663)
-> > >> >
-> > >> > We should check first if fb is not null before to access its properties.
-> > >> 
-> > >> new_plane_state->uapi.visible && !fb should not be possible, but it's
-> > >> probably too hard for smatch to figure out. It's not exactly trivial for
-> > >> humans to figure out either.
-> > >> 
-> > >> I'm thinking something like below to help both.
-> > >> 
-> > >> Ville, thoughts?
-> > >> 
-> > >> 
-> > >> BR,
-> > >> Jani.
-> > >> 
-> > >> 
-> > >> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> > >> index 3505a5b52eb9..d9da47aed55d 100644
-> > >> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> > >> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> > >> @@ -629,6 +629,9 @@ int intel_plane_atomic_check_with_state(const struct intel_crtc_state *old_crtc_
-> > >>  	if (ret)
-> > >>  		return ret;
-> > >>  
-> > >> +	if (drm_WARN_ON(display->drm, new_plane_state->uapi.visible && !fb))
-> > >> +		return -EINVAL;
-> > >> +
-> > >
-> > > We have probably 100 places that would need this. So it's going
-> > > to be extremely ugly.
-> > >
-> > > One approach I could maybe tolerate is something like
-> > > intel_plane_is_visible(plane_state) 
-> > > {
-> > > 	if (drm_WARN_ON(visible && !fb))
-> > > 		return false;
-> > >
-> > > 	return plane_state->visible;
-> > > }
-> > >
-> > > + s/plane_state->visible/intel_plane_is_visible(plane_state)/
-> > >
-> > > But is that going to help these obtuse tools?
-> > 
-> > That does help people, which is more important. :)
-> > 
-> > I think the problem is first checking if fb is NULL, and then
-> > dereferencing it anyway.
-> > 
-> > visible always means fb != NULL, but I forget, is the reverse true? Can
-> > we have fb != NULL and !visible? I mean could we change the fb check to
-> > visible check?
-> 
-> No, the reverse does not hold. A plane can be invisible
-> while still having a valid fb. Eg. the plane could be
-> positioned completely offscreen, or the entire crtc may
-> be inactive (DPMS off).
-> 
-> And whenever we have an fb we want to do all the check to make sure
-> it satisfies all the requirements, whether the plane is visible or
-> not. Otherwise we could end up confusing userspace with something
-> like this:
-> 
-> 1. Usespace assigns some unsupported fb to the plane
->    but positions the plane offscreen -> success
-> 2. Userspace moves the plane to somewhere onscreen -> fail
+From: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
 
+Eliminate the special gen2 irq code by simply reusing the
+gen3+ code on gen2. Works just fine on actual hardware.
 
-Basically planes should have three different "enabled" states:
+I generated the last patch with -U20 to help with review.
+Unfortunately it still didn't pick up i915_irq_handler()
+I don't suppose there's a magic knob to tell git diff
+to include a specific function wholesale in the context?
 
-logically_enabled: fb!=NULL (also the crtc must be logically enabled,
-                             but drm_atomic_plane_check() guarantees
-			     this for us)
-visible: logically_enabled && dst rectangle is at least
-         partially within pipe_src rectangle
-active: visible && crtc_is_active
+Ville Syrj√§l√§ (4):
+  drm/i915: Introduce i915_has_legacy_blc_interrupt()
+  drm/i915: Clean up gen3 hotplug irq setup
+  drm/i915: Clean up some comments in gmch irq code
+  drm/i915: Switch over to gen3 irq code on gen2
 
-Currently we try to make the proper distinction between
-logically_enabled vs. invisible, but we do not properly
-handle the visible vs. active case. That is, we currently
-mark the plane as invisible if the crtc is inactive.
-
-That means we eg. calculate watermarks as if the plane was
-invisible. That may cause a subsequent "DPMS on" operation
-to fail unexpectedly because all of a sudden we realize 
-that we don't have enough FIFO space for this particular
-plane configuration. There's a FIXME somewhere in the plane
-code about this.
+ .../gpu/drm/i915/display/intel_display_irq.c  |  38 ++--
+ .../gpu/drm/i915/display/intel_display_irq.h  |   1 -
+ drivers/gpu/drm/i915/i915_irq.c               | 202 ++----------------
+ 3 files changed, 28 insertions(+), 213 deletions(-)
 
 -- 
-Ville Syrj‰l‰
-Intel
+2.45.2
+
