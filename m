@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE9C298AA85
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Sep 2024 19:04:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B5E2B98AA86
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Sep 2024 19:04:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8733110E556;
-	Mon, 30 Sep 2024 17:04:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5AB1D10E55A;
+	Mon, 30 Sep 2024 17:04:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K9P0+Goo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hUpIbeWD";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A59610E129;
- Mon, 30 Sep 2024 17:04:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DBE910E55A;
+ Mon, 30 Sep 2024 17:04:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727715862; x=1759251862;
+ t=1727715865; x=1759251865;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=DQ0mwcngDaBEMIb9EoG9dGFhNSnsOEI/M+6gN+8EX7w=;
- b=K9P0+Goo0BXR2zh1WwlkhHxkuEdMlT5XS7JQKktjj1+1bFPYV2y3ASwh
- 2qR5C9uLqIf9N7iQN/taj15KhneaS/ud9TA1WAnSTSelKrN+IXxXlF8VE
- YcTF4WixWIUnCdA02nbDZYRb9SzmxYOjGjaYKXPNS+J9njrzI1CKrUIwm
- Ku+qHWlF0XxXluIwZkGG1ht+dJZ6J82KuGz/lWvoAfGJKP3drjo1DqhTa
- v4qnZxkaFXkDVyHks2qHndRHtqH/zfRVlTGBDiipyC7vy43iAkgsiB0B2
- xCvndPmy24BRsXIZmWUNm2OdFS0NcKWVI54KqmFwlbpoxndrDarG8JLPf Q==;
-X-CSE-ConnectionGUID: Nuuwnn+wQDmayPUsLxMaHQ==
-X-CSE-MsgGUID: 7wyIwtSjTDWj2iKZC0w1ow==
-X-IronPort-AV: E=McAfee;i="6700,10204,11211"; a="44276939"
-X-IronPort-AV: E=Sophos;i="6.11,166,1725346800"; d="scan'208";a="44276939"
+ bh=8QXTs0RD5FTwqTgbSsRFRXU0T/yYlTEY/mEOe6IVB50=;
+ b=hUpIbeWD68+MDQJhRR3DOH415PDg9cF+f5YUsV2ZEvZRDVQpRfXJ8liD
+ 7/54qGC/frVzcwbqyjEvrCiZrSqqdzO70Ms3hNeq5pyhp1FYPZlviUTP/
+ X7px+VYgCNOJ0nd4PZl3XTX4q99/R3FhH8LrwcsrHYsv/kQhetAd0V9EA
+ JjEdov1Pb5KhzwtZpvcbr+g8agl/dFrJ7y+2iDspZtViwrNYETA2h7rwB
+ 4ynvSC+XkSbXCdH2lvTXevHann5rxB+/krmMYqE9RTnZrlMga0b58Gg8+
+ cs+Hn9pcxpH4W9yQmzEgfc3W969Rat5Fx05BbKSmWEsSiPrkUC8E0FBNi A==;
+X-CSE-ConnectionGUID: nqszJ6+DQmaaxRWciAgJoQ==
+X-CSE-MsgGUID: eiKll/u8QfG5s5evPJrXQA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11211"; a="44276944"
+X-IronPort-AV: E=Sophos;i="6.11,166,1725346800"; d="scan'208";a="44276944"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2024 10:04:21 -0700
-X-CSE-ConnectionGUID: ACp4ZiNlT8i9p+BnHDEQlg==
-X-CSE-MsgGUID: umlE2o8xRg6S7lbBOqfSlQ==
+ 30 Sep 2024 10:04:25 -0700
+X-CSE-ConnectionGUID: Atg+kQrOSdyFCxQ5UCrVvw==
+X-CSE-MsgGUID: cdLZWLvASa+Z87BDQV9zqg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,166,1725346800"; d="scan'208";a="73490910"
+X-IronPort-AV: E=Sophos;i="6.11,166,1725346800"; d="scan'208";a="73490913"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 30 Sep 2024 10:04:19 -0700
+ by fmviesa008.fm.intel.com with SMTP; 30 Sep 2024 10:04:22 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 30 Sep 2024 20:04:18 +0300
+ Mon, 30 Sep 2024 20:04:21 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	Animesh Manna <animesh.manna@intel.com>
-Subject: [PATCH v2 01/13] drm/i915/dsb: Avoid reads of the DSB buffer for
- indexed register writes
-Date: Mon, 30 Sep 2024 20:04:03 +0300
-Message-ID: <20240930170415.23841-2-ville.syrjala@linux.intel.com>
+Subject: [PATCH v2 02/13] drm/i915: Prepare clear color before
+ wait_for_dependencies()
+Date: Mon, 30 Sep 2024 20:04:04 +0300
+Message-ID: <20240930170415.23841-3-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240930170415.23841-1-ville.syrjala@linux.intel.com>
 References: <20240930170415.23841-1-ville.syrjala@linux.intel.com>
@@ -73,135 +73,39 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Reading from the DSB command buffer might be somewhat expensive on
-discrete GPUs because the buffer resides in GPU local memory. Avoid
-such reads in the indexed register write handling by tracking the
-previous instruction in intel_dsb.
-
-TODO: actually measure this
+Read out the clear color as soon as fences and the transient
+data flush have finished. There is no need to wait for
+all the display specific operations that might still be
+going on. This could parallelize things a bit more effectively.
 
 Reviewed-by: Animesh Manna <animesh.manna@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dsb.c | 54 ++++++++++++++----------
- 1 file changed, 32 insertions(+), 22 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index 0f1de1b6747e..45ec56b2d50f 100644
---- a/drivers/gpu/drm/i915/display/intel_dsb.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -37,9 +37,16 @@ struct intel_dsb {
- 	unsigned int free_pos;
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index f7667931f9d9..283e0214c4a3 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -7385,6 +7385,8 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
  
- 	/*
--	 * ins_start_offset will help to store start dword of the dsb
--	 * instuction and help in identifying the batch of auto-increment
--	 * register.
-+	 * Previously emitted DSB instruction. Used to
-+	 * identify/adjust the instruction for indexed
-+	 * register writes.
-+	 */
-+	u32 ins[2];
+ 	intel_td_flush(dev_priv);
+ 
++	intel_atomic_prepare_plane_clear_colors(state);
 +
-+	/*
-+	 * Start of the previously emitted DSB instruction.
-+	 * Used to adjust the instruction for indexed
-+	 * register writes.
+ 	drm_atomic_helper_wait_for_dependencies(&state->base);
+ 	drm_dp_mst_atomic_wait_for_dependencies(&state->base);
+ 	intel_atomic_global_state_wait_for_dependencies(state);
+@@ -7418,8 +7420,6 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
  	 */
- 	unsigned int ins_start_offset;
+ 	wakeref = intel_display_power_get(dev_priv, POWER_DOMAIN_DC_OFF);
  
-@@ -215,9 +222,11 @@ static void intel_dsb_emit(struct intel_dsb *dsb, u32 ldw, u32 udw)
- 	dsb->free_pos = ALIGN(dsb->free_pos, 2);
- 
- 	dsb->ins_start_offset = dsb->free_pos;
-+	dsb->ins[0] = ldw;
-+	dsb->ins[1] = udw;
- 
--	intel_dsb_buffer_write(&dsb->dsb_buf, dsb->free_pos++, ldw);
--	intel_dsb_buffer_write(&dsb->dsb_buf, dsb->free_pos++, udw);
-+	intel_dsb_buffer_write(&dsb->dsb_buf, dsb->free_pos++, dsb->ins[0]);
-+	intel_dsb_buffer_write(&dsb->dsb_buf, dsb->free_pos++, dsb->ins[1]);
- }
- 
- static bool intel_dsb_prev_ins_is_write(struct intel_dsb *dsb,
-@@ -233,10 +242,8 @@ static bool intel_dsb_prev_ins_is_write(struct intel_dsb *dsb,
- 	if (dsb->free_pos == 0)
- 		return false;
- 
--	prev_opcode = intel_dsb_buffer_read(&dsb->dsb_buf,
--					    dsb->ins_start_offset + 1) & ~DSB_REG_VALUE_MASK;
--	prev_reg =  intel_dsb_buffer_read(&dsb->dsb_buf,
--					  dsb->ins_start_offset + 1) & DSB_REG_VALUE_MASK;
-+	prev_opcode = dsb->ins[1] & ~DSB_REG_VALUE_MASK;
-+	prev_reg =  dsb->ins[1] & DSB_REG_VALUE_MASK;
- 
- 	return prev_opcode == opcode && prev_reg == i915_mmio_reg_offset(reg);
- }
-@@ -269,8 +276,6 @@ static bool intel_dsb_prev_ins_is_indexed_write(struct intel_dsb *dsb, i915_reg_
- void intel_dsb_reg_write(struct intel_dsb *dsb,
- 			 i915_reg_t reg, u32 val)
- {
--	u32 old_val;
+-	intel_atomic_prepare_plane_clear_colors(state);
 -
- 	/*
- 	 * For example the buffer will look like below for 3 dwords for auto
- 	 * increment register:
-@@ -299,23 +304,27 @@ void intel_dsb_reg_write(struct intel_dsb *dsb,
- 
- 		/* convert to indexed write? */
- 		if (intel_dsb_prev_ins_is_mmio_write(dsb, reg)) {
--			u32 prev_val = intel_dsb_buffer_read(&dsb->dsb_buf,
--							     dsb->ins_start_offset + 0);
-+			u32 prev_val = dsb->ins[0];
- 
--			intel_dsb_buffer_write(&dsb->dsb_buf,
--					       dsb->ins_start_offset + 0, 1); /* count */
-+			dsb->ins[0] = 1; /* count */
-+			dsb->ins[1] = (DSB_OPCODE_INDEXED_WRITE << DSB_OPCODE_SHIFT) |
-+				i915_mmio_reg_offset(reg);
-+
-+			intel_dsb_buffer_write(&dsb->dsb_buf, dsb->ins_start_offset + 0,
-+					       dsb->ins[0]);
- 			intel_dsb_buffer_write(&dsb->dsb_buf, dsb->ins_start_offset + 1,
--					       (DSB_OPCODE_INDEXED_WRITE << DSB_OPCODE_SHIFT) |
--					       i915_mmio_reg_offset(reg));
--			intel_dsb_buffer_write(&dsb->dsb_buf, dsb->ins_start_offset + 2, prev_val);
-+					       dsb->ins[1]);
-+			intel_dsb_buffer_write(&dsb->dsb_buf, dsb->ins_start_offset + 2,
-+					       prev_val);
- 
- 			dsb->free_pos++;
- 		}
- 
- 		intel_dsb_buffer_write(&dsb->dsb_buf, dsb->free_pos++, val);
- 		/* Update the count */
--		old_val = intel_dsb_buffer_read(&dsb->dsb_buf, dsb->ins_start_offset);
--		intel_dsb_buffer_write(&dsb->dsb_buf, dsb->ins_start_offset, old_val + 1);
-+		dsb->ins[0]++;
-+		intel_dsb_buffer_write(&dsb->dsb_buf, dsb->ins_start_offset + 0,
-+				       dsb->ins[0]);
- 
- 		/* if number of data words is odd, then the last dword should be 0.*/
- 		if (dsb->free_pos & 0x1)
-@@ -671,6 +680,9 @@ void intel_dsb_wait(struct intel_dsb *dsb)
- 	/* Attempt to reset it */
- 	dsb->free_pos = 0;
- 	dsb->ins_start_offset = 0;
-+	dsb->ins[0] = 0;
-+	dsb->ins[1] = 0;
-+
- 	intel_de_write_fw(display, DSB_CTRL(pipe, dsb->id), 0);
- 
- 	intel_de_write_fw(display, DSB_INTERRUPT(pipe, dsb->id),
-@@ -723,8 +735,6 @@ struct intel_dsb *intel_dsb_prepare(struct intel_atomic_state *state,
- 	dsb->id = dsb_id;
- 	dsb->crtc = crtc;
- 	dsb->size = size / 4; /* in dwords */
--	dsb->free_pos = 0;
--	dsb->ins_start_offset = 0;
- 
- 	dsb->chicken = dsb_chicken(state, crtc);
- 	dsb->hw_dewake_scanline =
+ 	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
+ 					    new_crtc_state, i) {
+ 		if (intel_crtc_needs_modeset(new_crtc_state) ||
 -- 
 2.45.2
 
