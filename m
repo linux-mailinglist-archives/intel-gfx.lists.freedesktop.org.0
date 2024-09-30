@@ -2,58 +2,75 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36325992E3E
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Oct 2024 16:05:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 978BB992F4D
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Oct 2024 16:30:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2B8710E358;
-	Mon,  7 Oct 2024 14:05:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3796F10E3B0;
+	Mon,  7 Oct 2024 14:30:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l8YLC4MO";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="UIv80iqB";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4FB1B10E34C;
- Mon,  7 Oct 2024 14:05:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728309908; x=1759845908;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=C4Wmdi2c7F9qK0dxw1qoUYQ52TqvmBBdAppeS70N2XE=;
- b=l8YLC4MOmBbYUK0LGzWGSU2xDR8s2rCXQnj6vBybO5FI2UgEbvTZEdo0
- 6eGR9FipU9rq9myFYElKWBXmNroqsUjEpzWdNMhq6L+6qKtfTFTEUQQJH
- 6n+m1dweJ7KNklPDmFragMkV/DRxUWUu2vpE6bzAr3qm1Wp4DQuhXNbuN
- JV6FyAs1+D1Th9uFyNOK9cl4HvB8PDF15qly8PlsrcHl1ASnXq7CXQu96
- r3EwSMDALVjyfiiCH98cuBch+Ha27HLcgEkALHQLF6f+IjYR82KBhAozD
- dngzOUpifYiT4mXWnweyyN2gfTBSl7VB6bwdbDv3tPoTB+KZCFLPQzrN2 Q==;
-X-CSE-ConnectionGUID: kXDghJfCRd6do2hE9r7n/Q==
-X-CSE-MsgGUID: 1opu6qSLRlq0Ph+O8NqSpA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11218"; a="27336871"
-X-IronPort-AV: E=Sophos;i="6.11,184,1725346800"; d="scan'208";a="27336871"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2024 07:05:07 -0700
-X-CSE-ConnectionGUID: aTWUxERLTZmy0HB4moNd0g==
-X-CSE-MsgGUID: dbGIERwtRBSVa78Z6O8vew==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,184,1725346800"; d="scan'208";a="80461600"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Oct 2024 07:05:05 -0700
-From: Imre Deak <imre.deak@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH 2/2] drm/xe: Add missing HPD interrupt enabling during
- non-d3cold RPM resume
-Date: Mon,  7 Oct 2024 17:05:31 +0300
-Message-ID: <20241007140531.1044630-2-imre.deak@intel.com>
-X-Mailer: git-send-email 2.44.2
-In-Reply-To: <20241007140531.1044630-1-imre.deak@intel.com>
-References: <20241007140531.1044630-1-imre.deak@intel.com>
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com
+ [209.85.128.175])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61B9A10E0CD;
+ Mon, 30 Sep 2024 16:22:11 +0000 (UTC)
+Received: by mail-yw1-f175.google.com with SMTP id
+ 00721157ae682-6e2346f164cso33923037b3.3; 
+ Mon, 30 Sep 2024 09:22:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1727713330; x=1728318130; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=uERoXlKgvrIzow4kr39O2y7mJ6EyY4bi7R1vZimkEKo=;
+ b=UIv80iqB8p/00gh4dUfosW5Zswi8eHEYYVksB/nsmXux89jsr06veFxWDFlfgTrKdH
+ sHIxVNs6qZBP2r4QQHti+kv19pr6XPrLMr3QL5dd16NeR9F8ZZV35t1dQwGMvrD9bFuX
+ +DNC0nxfCJYQNs3cNHgI7fJujYO+6Ql+b5EtRHl4eS3b3TKWQc0HbVxWbGdmizQJnSf4
+ K3hlAdckfiXtvjVXR/D1A+rJvloMccCoQB8jNuIBqCpfMOWd8wBW9NbeJZoVffx2rVsV
+ IpRcfmbm06XXZZBQpEFTubG4EF9WS8Sittyy1t51rUZf5LBPy7AT0zcdKG1TJufsg6Zl
+ nP5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1727713330; x=1728318130;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=uERoXlKgvrIzow4kr39O2y7mJ6EyY4bi7R1vZimkEKo=;
+ b=o4YLSWZKsPnltd3jb2/TcxJspP0t7vYahZJTkZ5WacbewGQSb9tQiuJP3qMOuAQGgI
+ Q8PeBiU/t0qSTRtidCm12YqWnsG+BM80+w94laYs32a+fyM60K/oiAcphOBMAsjuLKm6
+ 2jT9QWBZh1WjG11+5gUAA/X9BpUfK/V4GKt0XloqRfVyHmjiEI2BckLg4qwLFu0lgtll
+ 8PTSpJxzx5aOH6KivZxuM2i8obLaSXsaAEiZWh4/OerYwqWG75Qu51q1cREDnlMA0YWX
+ UoWdmQ9I1jnCMA4G3ZPQqJpBaFUfaMRLy0EL7GCL6inkoCEhn0AS2cqUukMPxG1pHdAf
+ 5VIA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVhacqlRaiwYqxJ8bKZXOmou1sixQcAUXCzdraDEpHt/RMYTWeEsm51qhjIgrsIPId1QU97dEOS6BLE@lists.freedesktop.org,
+ AJvYcCWVI1TH3vnCQsrv8l3EgNz1fRX8ihX/dAhdLY+3pEwuseZHIpMfv/47OCaAUaVGabVw6F98+T8/5CUt@lists.freedesktop.org,
+ AJvYcCWyP92iGPnEV6k4vwP8KaqnRR4jAeAXKE1gYtVkSfDovaKIO5MS41Yz9ecaVx/Y9NQLInVhh6eX@lists.freedesktop.org,
+ AJvYcCX/5IfquGtvjyMp+oV/XnrrDTmp7l6e0yntb/gq0KvMwb6bs3yFZ5nEDFl/OvrQhCqhLiXv2NCCKVE=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxQ/coJAgzC4elF4RwoqLxpPHgYAu12yCM3zbLdPvBXoVZBVGXi
+ 5d+a3a0hpldOboMpkrJ2+j2/mRiJ+EE5dh73s+fNHBbAez9fWQqVy+21QEScycrnZa+GBg7Vh7n
+ zFOZeBULc8O492B2k/ePbOkSmV20=
+X-Google-Smtp-Source: AGHT+IH6LGQfRVLoHTpEHgoURLnMbGsh/FhCxNdlE2uAdXWKaqJ3XT+orFnkiDAnokgolLQak1eShauNoxWdW6nGLQM=
+X-Received: by 2002:a05:690c:6612:b0:6e0:447:f257 with SMTP id
+ 00721157ae682-6e24757caf8mr95415027b3.22.1727713330446; Mon, 30 Sep 2024
+ 09:22:10 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240930130921.689876-1-tzimmermann@suse.de>
+ <20240930130921.689876-7-tzimmermann@suse.de>
+In-Reply-To: <20240930130921.689876-7-tzimmermann@suse.de>
+From: Deepak Rawat <drawat.floss@gmail.com>
+Date: Mon, 30 Sep 2024 09:22:00 -0700
+Message-ID: <CAHFnvW0TqYDzbay_wtvC5QK7SMgXxC3sKfWQ3z7Q3eXYN9VPZA@mail.gmail.com>
+Subject: Re: [PATCH 06/28] drm/hyperv-drm: Use video aperture helpers
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: javierm@redhat.com, airlied@gmail.com, simona@ffwll.ch, 
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Mon, 07 Oct 2024 14:30:08 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,28 +86,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Atm the display HPD interrupts that got disabled during runtime
-suspend, are re-enabled only if d3cold is enabled. Fix things by
-also re-enabling the interrupts if d3cold is disabled.
+On Mon, Sep 30, 2024 at 6:09=E2=80=AFAM Thomas Zimmermann <tzimmermann@suse=
+.de> wrote:
+>
+> DRM's aperture functions have long been implemented as helpers
+> under drivers/video/ for use with fbdev. Avoid the DRM wrappers by
+> calling the video functions directly.
+>
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Deepak Rawat <drawat.floss@gmail.com>
+> ---
+>  drivers/gpu/drm/hyperv/hyperv_drm_drv.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/hyperv/hyperv_drm_drv.c b/drivers/gpu/drm/hy=
+perv/hyperv_drm_drv.c
+> index 3077ce5470f6..e0953777a206 100644
+> --- a/drivers/gpu/drm/hyperv/hyperv_drm_drv.c
+> +++ b/drivers/gpu/drm/hyperv/hyperv_drm_drv.c
+> @@ -3,12 +3,12 @@
+>   * Copyright 2021 Microsoft
+>   */
+>
+> +#include <linux/aperture.h>
+>  #include <linux/efi.h>
+>  #include <linux/hyperv.h>
+>  #include <linux/module.h>
+>  #include <linux/pci.h>
+>
+> -#include <drm/drm_aperture.h>
+>  #include <drm/drm_atomic_helper.h>
+>  #include <drm/drm_client_setup.h>
+>  #include <drm/drm_drv.h>
+> @@ -126,7 +126,7 @@ static int hyperv_vmbus_probe(struct hv_device *hdev,
+>                 goto err_hv_set_drv_data;
+>         }
+>
+> -       drm_aperture_remove_framebuffers(&hyperv_driver);
+> +       aperture_remove_all_conflicting_devices(hyperv_driver.name);
+>
+>         ret =3D hyperv_setup_vram(hv, hdev);
+>         if (ret)
+> --
+> 2.46.0
+>
 
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Imre Deak <imre.deak@intel.com>
----
- drivers/gpu/drm/xe/display/xe_display.c | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index cb2449b7921ac..695c27ac6b0f8 100644
---- a/drivers/gpu/drm/xe/display/xe_display.c
-+++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -486,6 +486,7 @@ void xe_display_pm_runtime_resume(struct xe_device *xe)
- 		return;
- 	}
- 
-+	intel_hpd_init(xe);
- 	intel_hpd_poll_disable(xe);
- }
- 
--- 
-2.44.2
-
+Reviewed-by: Deepak Rawat <drawat.floss@gmail.com>
