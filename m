@@ -2,53 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5434798A9DC
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Sep 2024 18:34:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 42D6B98A9DD
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Sep 2024 18:34:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0171F10E563;
-	Mon, 30 Sep 2024 16:34:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D30AC10E558;
+	Mon, 30 Sep 2024 16:34:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aXvSQs67";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mBnaxVg+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5712310E560;
- Mon, 30 Sep 2024 16:34:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3794E10E562;
+ Mon, 30 Sep 2024 16:34:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727714054; x=1759250054;
+ t=1727714056; x=1759250056;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=rUQVqVvTExMb1/whoLhjFBo21UZDEUsyMqdB7KVtst8=;
- b=aXvSQs67g+XJi1HWf8W6QtwFZ9Rbf8+zraHfmtm3fsIDHA4l/p+ChL58
- mAxHzG30f3E8kw4ZaQ42FaPl2eHMvDmrS2hw4gAXJ5z1gwqUpzzdLVOEx
- WJ2xsYLt3h6MXLMisud05o6UC8yZImRzMgPS31bIbwNyqKnsllZxGxWYe
- bQVzt5UFuSWAtCactz0C78+d4mkrm7v9zQfUcqfx5l9UW70GIsdkd4Y34
- bj7WmO4ofYQtVvFE4ktCGRErb3d0piODpV0AdkE0jJ1TGZi8fKRoWkXsH
- 5omaAlcepihKEjDSFqdB1nTL6m3I4MXwonfOyoJCxtIyvPDUsi573UkSP g==;
-X-CSE-ConnectionGUID: cpoJTXk/Rm2Ceb/xr5V8/A==
-X-CSE-MsgGUID: la33ntdSTqadJATjw160Zw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11211"; a="30700557"
-X-IronPort-AV: E=Sophos;i="6.11,166,1725346800"; d="scan'208";a="30700557"
+ bh=M5ZBjptxzjMVNIeISweshh8wpmjz6tDfEkhllClmHww=;
+ b=mBnaxVg+6Eg8uBp7vm/OK6qHvgDxt9elKtMUHII3hTdJAQ/yFEkwNAhq
+ 5prYY/3x5rOA1YYAEe3ubcanKegN/95gCM/rvUuUHclUABuqcaPvDW6SP
+ ctViTYYb9PNpVVknB6FnNUpQCWIpd2CnWapXjoOtltR7od9FLpEId99Cu
+ 2SMEpuKlZQ7aNsuOVebNve3hRqaCbhvYMaMDMk7dCC7aD/wAE3Yp4R4cv
+ D6RvZAD3/WiTeybUpFlkSTHFIQyYfiAi5zNvR1rFme5Ew8CdHm8aIaAi+
+ GzFoW+e25Zpq/oMhQ9Upgn2jCoTmjGG507HIVIFhU0DbiEf14p7yloeFH Q==;
+X-CSE-ConnectionGUID: xD+uMEtZQ2y3bS0wJtcY5Q==
+X-CSE-MsgGUID: l3PimGj9Suqs77F/tY6c4A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11211"; a="30700559"
+X-IronPort-AV: E=Sophos;i="6.11,166,1725346800"; d="scan'208";a="30700559"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2024 09:34:14 -0700
-X-CSE-ConnectionGUID: +7lYBMMsSba1h9tzntue3Q==
-X-CSE-MsgGUID: 2c0MWf8vTkyj5TtiaoO42w==
+ 30 Sep 2024 09:34:16 -0700
+X-CSE-ConnectionGUID: D3qpWr8PQtmWAIuRbUJhdw==
+X-CSE-MsgGUID: IS3mm+qsRiG2BrP2cGdkqQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,166,1725346800"; d="scan'208";a="110839267"
+X-IronPort-AV: E=Sophos;i="6.11,166,1725346800"; d="scan'208";a="110839276"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2024 09:34:13 -0700
+ 30 Sep 2024 09:34:14 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, suraj.kandpal@intel.com,
  ville.syrjala@linux.intel.com
-Subject: [PATCH 12/13] drm/i915/display: Consider ultrajoiner for computing
- maxdotclock
-Date: Mon, 30 Sep 2024 22:05:48 +0530
-Message-ID: <20240930163549.416410-13-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 13/13] drm/i915/intel_dp: Add support for forcing ultrajoiner
+Date: Mon, 30 Sep 2024 22:05:49 +0530
+Message-ID: <20240930163549.416410-14-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240930163549.416410-1-ankit.k.nautiyal@intel.com>
 References: <20240930163549.416410-1-ankit.k.nautiyal@intel.com>
@@ -70,33 +69,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use the check for ultrajoiner while computing maxdotclock.
+Allow forcing ultrajoiner through debugfs.
 
-v2: Add Check for HAS_UNCOMPRESSED_JOINER. (Ville)
-v3: Remove extraneous newline. (Ville)
+v2: Minor refactoring of switch case logic. (Ville)
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_debugfs.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 40ad3fdaab10..74311bb9d290 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -8186,8 +8186,9 @@ static int max_dotclock(struct drm_i915_private *i915)
+diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+index 5923bbc232be..11aff485d8fa 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
++++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+@@ -1331,6 +1331,7 @@ static ssize_t i915_joiner_write(struct file *file,
  {
- 	int max_dotclock = i915->display.cdclk.max_dotclk_freq;
+ 	struct seq_file *m = file->private_data;
+ 	struct intel_connector *connector = m->private;
++	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+ 	int force_joined_pipes = 0;
+ 	int ret;
  
--	/* icl+ might use joiner */
--	if (HAS_BIGJOINER(i915))
-+	if (HAS_ULTRAJOINER(i915))
-+		max_dotclock *= 4;
-+	else if (HAS_UNCOMPRESSED_JOINER(i915) || HAS_BIGJOINER(i915))
- 		max_dotclock *= 2;
- 
- 	return max_dotclock;
+@@ -1347,6 +1348,13 @@ static ssize_t i915_joiner_write(struct file *file,
+ 	case 2:
+ 		connector->force_joined_pipes = force_joined_pipes;
+ 		break;
++	case 4:
++		if (HAS_ULTRAJOINER(i915)) {
++			connector->force_joined_pipes = force_joined_pipes;
++			break;
++		}
++
++		fallthrough;
+ 	default:
+ 		return -EINVAL;
+ 	}
 -- 
 2.45.2
 
