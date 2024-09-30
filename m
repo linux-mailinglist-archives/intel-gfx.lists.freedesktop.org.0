@@ -2,58 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4832989B7D
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Sep 2024 09:32:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 723DF989BAE
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Sep 2024 09:39:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 465B610E10C;
-	Mon, 30 Sep 2024 07:32:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F3D110E3AB;
+	Mon, 30 Sep 2024 07:39:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="Oz0MJoD/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H5XL8ZUy";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com
- [148.251.105.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED1C510E10C;
- Mon, 30 Sep 2024 07:32:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1727681531;
- bh=M3ZGR3m5dE/OcpAuJgNW07sMzVd9xcG6hbRIN3GQi5s=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=Oz0MJoD/WjoceXAqgBvUNpAstd9dV0jBR191CXDs3DaHEQv8fB6tEEkb3khrgiisE
- nh7tdsJ05/IcW/muYpcMYD2UbZ59bvLNKjDb7A7RsthSIIYy9ISk7EtNcjZZJJ/j4b
- 46HY0ZSLujeCZ2Euue+8cxgFYaU/00AGdTSqrFGu+tvTdK4XrGCbrxAmA25H//DWD1
- gnBnOgQkZjyB3Rxtdykg0mDYBmcB8VRkDHDSZOdUCxlY8BYcGNoed0Ur7HnpY3zSJe
- +ONzA6kcS7zMAeoKr1mZ7/oMykf0KM1jTOBErKvVlvh8ykoNrOxERefW/OQ7/gJea/
- VGMkeeuORJQXg==
-Received: from [192.168.50.250] (unknown [171.76.80.165])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested) (Authenticated sender: vignesh)
- by bali.collaboradmins.com (Postfix) with ESMTPSA id 9E73717E1047;
- Mon, 30 Sep 2024 09:32:07 +0200 (CEST)
-Message-ID: <5fd48673-571a-4750-9704-e172f7ea372f@collabora.com>
-Date: Mon, 30 Sep 2024 13:01:55 +0530
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8CA2810E3AA;
+ Mon, 30 Sep 2024 07:39:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1727681971; x=1759217971;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=zzcV/MURheDv805dA75DK4s9HfKM8QhpVufUnMGxx0g=;
+ b=H5XL8ZUygjzrugIYOsv4JjD42Q8cVMzEPwVt/B2/LA8sC29/PYO43fFt
+ icFsH5dfBwS4wZ1/ANr1kB1lHe5JtizmwDyIf284ffPprBPSA1B3TJxLR
+ R45GeW06Ug7Qreq6PKPglJQ+HC4vdYwPu2oUT9C2aOf/wDTvL1UZPt4Ed
+ e2j+qzzpd35VFDPyzaIgME95d6n+4qqmClKb3S758Z3LlPqHjhzgohBmb
+ iDtYoxCmDOpqUov0DZijq3lwE7s9B8USwSrKnbCdkRN/nN96KB0ivgz9Q
+ SIbjG8lLjUpMVivuSsqf9O63wWj+nHJpi46/gJ3ByQrdMjiiCelCTWW8i w==;
+X-CSE-ConnectionGUID: M2qt9dnUTmuM3YnKgbmxLQ==
+X-CSE-MsgGUID: ucpUwbOXTie3CKno2w0Haw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11210"; a="37315433"
+X-IronPort-AV: E=Sophos;i="6.11,165,1725346800"; d="scan'208";a="37315433"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2024 00:39:31 -0700
+X-CSE-ConnectionGUID: yD1JMvQQTH6y3rwA/HbwjQ==
+X-CSE-MsgGUID: rA6d/g2VRWijnpD1X/r0aA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,165,1725346800"; d="scan'208";a="72797392"
+Received: from jraag-nuc8i7beh.iind.intel.com ([10.145.169.79])
+ by fmviesa006.fm.intel.com with ESMTP; 30 Sep 2024 00:39:25 -0700
+From: Raag Jadav <raag.jadav@intel.com>
+To: airlied@gmail.com, simona@ffwll.ch, lucas.demarchi@intel.com,
+ thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
+ jani.nikula@linux.intel.com, andriy.shevchenko@linux.intel.com,
+ joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, lina@asahilina.net
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
+ francois.dugast@intel.com, aravind.iddamsetty@linux.intel.com,
+ anshuman.gupta@intel.com, andi.shyti@linux.intel.com,
+ matthew.d.roper@intel.com, Raag Jadav <raag.jadav@intel.com>
+Subject: [PATCH v7 0/5] Introduce DRM device wedged event
+Date: Mon, 30 Sep 2024 13:08:40 +0530
+Message-Id: <20240930073845.347326-1-raag.jadav@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] docs/gpu: ci: update flake tests requirements
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com,
- helen.koike@collabora.com, airlied@gmail.com, daniel@ffwll.ch,
- robdclark@gmail.com, guilherme.gallo@collabora.com,
- sergi.blanch.torne@collabora.com, deborah.brouwer@collabora.com,
- dmitry.baryshkov@linaro.org, mripard@kernel.org, quic_abhinavk@quicinc.com,
- linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-rockchip@lists.infradead.org, amd-gfx@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- virtualization@lists.linux.dev, linux-kernel@vger.kernel.org
-References: <20240927052416.1833889-1-vignesh.raman@collabora.com>
- <ZvbCzqvyeTI_j2cD@intel.com>
-Content-Language: en-US
-From: Vignesh Raman <vignesh.raman@collabora.com>
-In-Reply-To: <ZvbCzqvyeTI_j2cD@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,78 +71,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Rodrigo,
+This series introduces device wedged event in DRM subsystem and uses
+it in xe and i915 drivers. Detailed description in commit message.
 
-On 27/09/24 20:05, Rodrigo Vivi wrote:
-> On Fri, Sep 27, 2024 at 10:54:14AM +0530, Vignesh Raman wrote:
->> Update the documentation to specify linking to a relevant GitLab
->> issue or email report for each new flake entry. Added specific
->> GitLab issue urls for i915, msm and amdgpu driver.
->>
->> Acked-by: Abhinav Kumar <quic_abhinavk@quicinc.com> # msm
->> Acked-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org> # msm
->> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
->> ---
->>
->> v2:
->> - Add gitlab issue link for msm driver.
->>
->> v3:
->> - Update docs to specify we use email reporting or GitLab issues for flake entries.
->>
->> ---
->>   Documentation/gpu/automated_testing.rst | 13 +++++++++----
->>   1 file changed, 9 insertions(+), 4 deletions(-)
->>
->> diff --git a/Documentation/gpu/automated_testing.rst b/Documentation/gpu/automated_testing.rst
->> index 2d5a28866afe..03769b4a17cf 100644
->> --- a/Documentation/gpu/automated_testing.rst
->> +++ b/Documentation/gpu/automated_testing.rst
->> @@ -68,19 +68,24 @@ known to behave unreliably. These tests won't cause a job to fail regardless of
->>   the result. They will still be run.
->>   
->>   Each new flake entry must be associated with a link to the email reporting the
->> -bug to the author of the affected driver, the board name or Device Tree name of
->> -the board, the first kernel version affected, the IGT version used for tests,
->> -and an approximation of the failure rate.
->> +bug to the author of the affected driver or the relevant GitLab issue. The entry
->> +must also include the board name or Device Tree name, the first kernel version
->> +affected, the IGT version used for tests, and an approximation of the failure rate.
->>   
->>   They should be provided under the following format::
->>   
->> -  # Bug Report: $LORE_OR_PATCHWORK_URL
->> +  # Bug Report: $LORE_URL_OR_GITLAB_ISSUE
->>     # Board Name: broken-board.dtb
->>     # Linux Version: 6.6-rc1
->>     # IGT Version: 1.28-gd2af13d9f
->>     # Failure Rate: 100
->>     flaky-test
->>   
->> +Use the appropriate link below to create a GitLab issue:
->> +amdgpu driver: https://gitlab.freedesktop.org/drm/amd/-/issues
->> +i915 driver: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues
-> 
-> Probably good to add:
-> 
-> xe driver: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues
+This was earlier attempted as xe specific uevent in v1 and v2.
+https://patchwork.freedesktop.org/series/136909/
 
-Sure, will add it.
+v2: Change authorship to Himal (Aravind)
+    Add uevent for all device wedged cases (Aravind)
 
-> 
-> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+v3: Generic re-implementation in DRM subsystem (Lucas)
 
-Thanks.
+v4: s/drm_dev_wedged/drm_dev_wedged_event
+    Use drm_info() (Jani)
+    Kernel doc adjustment (Aravind)
+    Change authorship to Raag (Aravind)
 
-> 
->> +msm driver: https://gitlab.freedesktop.org/drm/msm/-/issues
->> +
->>   drivers/gpu/drm/ci/${DRIVER_NAME}-${HW_REVISION}-skips.txt
->>   -----------------------------------------------------------
->>   
->> -- 
->> 2.43.0
->>
+v5: Send recovery method with uevent (Lina)
+    Expose supported recovery methods via sysfs (Lucas)
 
-Regards,
-Vignesh
+v6: Access wedge_recovery_opts[] using helper function (Jani)
+    Use snprintf() (Jani)
+
+v7: Convert recovery helpers into regular functions (Andy, Jani)
+    Aesthetic adjustments (Andy)
+    Handle invalid method cases
+    Add documentation to drm-uapi.rst (Sima)
+
+Raag Jadav (5):
+  drm: Introduce device wedged event
+  drm: Expose wedge recovery methods
+  drm/doc: Document device wedged event
+  drm/xe: Use device wedged event
+  drm/i915: Use device wedged event
+
+ Documentation/gpu/drm-uapi.rst        | 42 +++++++++++++++
+ drivers/gpu/drm/drm_drv.c             | 77 +++++++++++++++++++++++++++
+ drivers/gpu/drm/drm_sysfs.c           | 22 ++++++++
+ drivers/gpu/drm/i915/gt/intel_reset.c |  2 +
+ drivers/gpu/drm/i915/i915_driver.c    | 10 ++++
+ drivers/gpu/drm/xe/xe_device.c        | 17 +++++-
+ drivers/gpu/drm/xe/xe_device.h        |  1 +
+ drivers/gpu/drm/xe/xe_pci.c           |  2 +
+ include/drm/drm_device.h              | 23 ++++++++
+ include/drm/drm_drv.h                 |  3 ++
+ 10 files changed, 197 insertions(+), 2 deletions(-)
+
+-- 
+2.34.1
+
