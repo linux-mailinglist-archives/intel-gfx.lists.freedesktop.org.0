@@ -2,62 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8086989BBB
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Sep 2024 09:40:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DDC20989BD8
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Sep 2024 09:49:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 659C310E3B5;
-	Mon, 30 Sep 2024 07:40:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E31B810E3BD;
+	Mon, 30 Sep 2024 07:48:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KcsHX4NM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SFxsZCR1";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8297410E3BC;
- Mon, 30 Sep 2024 07:39:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADF9610E3BB;
+ Mon, 30 Sep 2024 07:48:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727681999; x=1759217999;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Sl6Qv8wOCtprWGv2/+M1HJjrHpTQPyogDzqG/JnxWnc=;
- b=KcsHX4NM97jBUZaKU8zINU5v733oNdNRSgp1mP4uqL17YRN0N/7CkLoC
- PtbKuTXg8udUXtOzm9g20tWzcW5CEHP//AZ/3tX4DKUgbXtVTbUGULOd+
- Goy1Rgy0besVF1smYklUzB8GYXR4jIWjj/abvM2+HiTfpPm41MMafbFZ2
- 34aQzZGLQT89x1GUqwtW+pVDCQlfk5iLE0eNRRV5yt96cKzoWOq9OSJ8F
- wvaKXu3YiUX4dPijp70rlYdueKyg3WDM5uFQvmMSb9gXq1YTvA86G+RoJ
- Q6EcBMQv/d2jIK4GJH6S3Lgnd3bLUUuIb1N7gB0hQkbEOJWQ4ghqkXIJh w==;
-X-CSE-ConnectionGUID: MmgkMwuiRgOsqfnGKBU28A==
-X-CSE-MsgGUID: fq5L/kSeSlKT0WgNGU0z8g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11210"; a="37315523"
-X-IronPort-AV: E=Sophos;i="6.11,165,1725346800"; d="scan'208";a="37315523"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2024 00:39:59 -0700
-X-CSE-ConnectionGUID: hKsre1f4TCWB1TBWmBPQ5w==
-X-CSE-MsgGUID: n/16mOQaQGW+WCpR5FkaKA==
+ t=1727682538; x=1759218538;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=zvzbxn+mDopH60Mg8MZIR09IClL8g+7ALytdl8oKYhA=;
+ b=SFxsZCR15Pd1BydibTuQVB48JNwGQjasDY5/luddq6+hq60Tfua+WkyU
+ GhjetdiNeoU3j/oH1Oh+MsL/9XLEz/y7vJpEsFkZJZu7/MgQdb6Tuossm
+ QMwnbyYUIB2ognLkBqzITphW7Q7UuSb9cd3yoPlvcej+zvbCs+4DLvZl/
+ VFl2fWv+DcxbTLB2h+X1TMuFtoNVfkLY3W4k38yKF9xWqaebHZnrgrgTR
+ juFIodYny8x4q6uz9Px2m+hnbFiGR1SXPc2mfpN9C0P21J/ODvnBRiygZ
+ 0kIvEtzrcdj2UPtrxVV/7VueYOlm/xRX/VROTrplBjrLvCmrplCgEKWDa g==;
+X-CSE-ConnectionGUID: kBCYx99tT5GoNA11TIacwA==
+X-CSE-MsgGUID: UVT0C4rQSHOX3qnOmxUijA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11210"; a="52169362"
+X-IronPort-AV: E=Sophos;i="6.11,165,1725346800"; d="scan'208";a="52169362"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2024 00:48:57 -0700
+X-CSE-ConnectionGUID: O4A1Vo/LSOKMYlzFkVkL/g==
+X-CSE-MsgGUID: 7hVfw1pkS5e4+GPyCYIeGg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,165,1725346800"; d="scan'208";a="72797481"
-Received: from jraag-nuc8i7beh.iind.intel.com ([10.145.169.79])
- by fmviesa006.fm.intel.com with ESMTP; 30 Sep 2024 00:39:53 -0700
-From: Raag Jadav <raag.jadav@intel.com>
-To: airlied@gmail.com, simona@ffwll.ch, lucas.demarchi@intel.com,
- thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
- jani.nikula@linux.intel.com, andriy.shevchenko@linux.intel.com,
- joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, lina@asahilina.net
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
- francois.dugast@intel.com, aravind.iddamsetty@linux.intel.com,
- anshuman.gupta@intel.com, andi.shyti@linux.intel.com,
- matthew.d.roper@intel.com, Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v7 5/5] drm/i915: Use device wedged event
-Date: Mon, 30 Sep 2024 13:08:45 +0530
-Message-Id: <20240930073845.347326-6-raag.jadav@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240930073845.347326-1-raag.jadav@intel.com>
-References: <20240930073845.347326-1-raag.jadav@intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,165,1725346800"; d="scan'208";a="78172226"
+Received: from mklonows-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.93])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2024 00:48:53 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
+Cc: linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH] drm/i915/backlight: Remove a useless kstrdup_const()
+In-Reply-To: <3b3d3af8739e3016f3f80df0aa85b3c06230a385.1727533674.git.christophe.jaillet@wanadoo.fr>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <3b3d3af8739e3016f3f80df0aa85b3c06230a385.1727533674.git.christophe.jaillet@wanadoo.fr>
+Date: Mon, 30 Sep 2024 10:48:40 +0300
+Message-ID: <875xqdy42v.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,58 +74,103 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Now that we have device wedged event provided by DRM core, make use
-of it and support both driver rebind and bus-reset based recovery.
-With this in place, userspace will be notified of wedged device on
-gt reset failure.
+On Sat, 28 Sep 2024, Christophe JAILLET <christophe.jaillet@wanadoo.fr> wrote:
+> "name" is allocated and freed in intel_backlight_device_register().
+> The initial allocation just duplicates "intel_backlight".
+>
+> Later, if a device with this name has already been registered, another
+> dynamically generated one is allocated using kasprintf().
+>
+> So at the end of the function, when "name" is freed, it can point either to
+> the initial static literal "intel_backlight" or to the kasprintf()'ed one.
+>
+> So kfree_const() is used.
+>
+> However, when built as a module, kstrdup_const() and kfree_const() don't
+> work as one would expect and are just plain kstrdup() and kfree().
+>
+>
+> Slightly change the logic and introduce a new variable to hold the
+> address returned by kasprintf() should it be used.
+>
+> This saves a memory allocation/free and avoids these _const functions,
+> which names can be confusing when used with code built as module.
 
-Signed-off-by: Raag Jadav <raag.jadav@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_reset.c |  2 ++
- drivers/gpu/drm/i915/i915_driver.c    | 10 ++++++++++
- 2 files changed, 12 insertions(+)
+Okay, I'd rather revert your earlier commit 379b63e7e682
+("drm/i915/display: Save a few bytes of memory in
+intel_backlight_device_register()") than add this.
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-index 8f1ea95471ef..02f357d4e4fb 100644
---- a/drivers/gpu/drm/i915/gt/intel_reset.c
-+++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-@@ -1418,6 +1418,8 @@ static void intel_gt_reset_global(struct intel_gt *gt,
- 
- 	if (!test_bit(I915_WEDGED, &gt->reset.flags))
- 		kobject_uevent_env(kobj, KOBJ_CHANGE, reset_done_event);
-+	else
-+		drm_dev_wedged_event(&gt->i915->drm, DRM_WEDGE_RECOVERY_BUS_RESET);
- }
- 
- /**
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index fe905d65ddf7..389d9fc67eeb 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -711,6 +711,15 @@ static void i915_welcome_messages(struct drm_i915_private *dev_priv)
- 			 "DRM_I915_DEBUG_RUNTIME_PM enabled\n");
- }
- 
-+static void i915_setup_wedge_recovery(struct drm_i915_private *i915)
-+{
-+	struct drm_device *dev = &i915->drm;
-+
-+	/* Support both driver rebind and bus-reset based recovery. */
-+	set_bit(DRM_WEDGE_RECOVERY_REBIND, &dev->wedge_recovery);
-+	set_bit(DRM_WEDGE_RECOVERY_BUS_RESET, &dev->wedge_recovery);
-+}
-+
- static struct drm_i915_private *
- i915_driver_create(struct pci_dev *pdev, const struct pci_device_id *ent)
- {
-@@ -812,6 +821,7 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 
- 	enable_rpm_wakeref_asserts(&i915->runtime_pm);
- 
-+	i915_setup_wedge_recovery(i915);
- 	i915_welcome_messages(i915);
- 
- 	i915->do_release = true;
+The code simplicity is much more important than saving a few bytes.
+
+BR,
+Jani.
+
+
+
+>
+> Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+> ---
+> Compile tested only.
+>
+> For the records, this patch is a clean-up effort related to discussions at:
+>   - https://lore.kernel.org/all/ZvHurCYlCoi1ZTCX@skv.local/
+>   - https://lore.kernel.org/all/20240924050937.697118-1-senozhatsky@chromium.org/
+> ---
+>  drivers/gpu/drm/i915/display/intel_backlight.c | 17 +++++++----------
+>  1 file changed, 7 insertions(+), 10 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
+> index 9e05745d797d..bf7686aa044f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_backlight.c
+> +++ b/drivers/gpu/drm/i915/display/intel_backlight.c
+> @@ -914,9 +914,9 @@ int intel_backlight_device_register(struct intel_connector *connector)
+>  {
+>  	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+>  	struct intel_panel *panel = &connector->panel;
+> +	const char *name, *new_name = NULL;
+>  	struct backlight_properties props;
+>  	struct backlight_device *bd;
+> -	const char *name;
+>  	int ret = 0;
+>  
+>  	if (WARN_ON(panel->backlight.device))
+> @@ -949,10 +949,7 @@ int intel_backlight_device_register(struct intel_connector *connector)
+>  	else
+>  		props.power = BACKLIGHT_POWER_OFF;
+>  
+> -	name = kstrdup_const("intel_backlight", GFP_KERNEL);
+> -	if (!name)
+> -		return -ENOMEM;
+> -
+> +	name = "intel_backlight";
+>  	bd = backlight_device_get_by_name(name);
+>  	if (bd) {
+>  		put_device(&bd->dev);
+> @@ -963,11 +960,11 @@ int intel_backlight_device_register(struct intel_connector *connector)
+>  		 * compatibility. Use unique names for subsequent backlight devices as a
+>  		 * fallback when the default name already exists.
+>  		 */
+> -		kfree_const(name);
+> -		name = kasprintf(GFP_KERNEL, "card%d-%s-backlight",
+> -				 i915->drm.primary->index, connector->base.name);
+> -		if (!name)
+> +		new_name = kasprintf(GFP_KERNEL, "card%d-%s-backlight",
+> +				     i915->drm.primary->index, connector->base.name);
+> +		if (!new_name)
+>  			return -ENOMEM;
+> +		name = new_name;
+>  	}
+>  	bd = backlight_device_register(name, connector->base.kdev, connector,
+>  				       &intel_backlight_device_ops, &props);
+> @@ -987,7 +984,7 @@ int intel_backlight_device_register(struct intel_connector *connector)
+>  		    connector->base.base.id, connector->base.name, name);
+>  
+>  out:
+> -	kfree_const(name);
+> +	kfree(new_name);
+>  
+>  	return ret;
+>  }
+
 -- 
-2.34.1
-
+Jani Nikula, Intel
