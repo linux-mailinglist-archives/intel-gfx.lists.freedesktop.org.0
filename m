@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0505D98A9D8
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Sep 2024 18:34:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 510E498A9D9
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Sep 2024 18:34:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9287810E55C;
-	Mon, 30 Sep 2024 16:34:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBD3A10E55E;
+	Mon, 30 Sep 2024 16:34:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j3En1jrI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UJpeplpn";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2062C10E557;
- Mon, 30 Sep 2024 16:34:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D795A10E557;
+ Mon, 30 Sep 2024 16:34:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727714047; x=1759250047;
+ t=1727714049; x=1759250049;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=pPeHneq7T86xWhb4GzlyWdwEkyOWGlRwoTpTRsDtw88=;
- b=j3En1jrIjn1SBu3CkTU/sbgB/MuDnjzk6QA36sxrl97NZOMk12G2lZeq
- uaVGD2qfdKoufk/LPb9Bgy33edkYimspviZfCrf4OUVcV6KtomE6BdYaC
- R1ajdkAKw1mB8kpVx8li9Jj4ORwNO10foD9w9TGRn+7ZhdTl+ta+HD1L5
- 2G0RDKAohuPeEFFI5+5gjtwlnv3BOyUm2xKAnQTS01I+wKt0RgZ15en48
- nMRbk7o3uu8sJBb13+0UCsybyXVwzWGh2plquXRshxU+NbnMYPtQdpnR3
- CWfUs3SmxBKfK49xc5L9qNq2ILuIx6MY0n5sbjTxiL10huG6Hii4/9uVw w==;
-X-CSE-ConnectionGUID: BeZjYmlVShWS//8vVcnHDg==
-X-CSE-MsgGUID: XLgn1jMeR9OYyBOKhOyHjA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11211"; a="30700541"
-X-IronPort-AV: E=Sophos;i="6.11,166,1725346800"; d="scan'208";a="30700541"
+ bh=AZpHndGzg32BuKtyBNPNW2BzAqGFg79BL4oiKMoVenM=;
+ b=UJpeplpnyqUilELlCuOHCmWWgvZNdyUkXBHDAkKBz9YJGGKcXI+wvYEf
+ EFzEZrmiZ9+ybyJosyuW5SgiXIig9r0utlsE1iJXcBNBA7iNcA+nzBQw4
+ VhVn7E91VU3pEPJBxZmn/I7PHMxCVPBxz0p7b9obG0iriS8tJ/MXcxH/e
+ nfP2LjYaImluLhGexpJuC4UNVA6x0/UQ0Vw1wJDdko8wmdQ+s9cQIk7l1
+ Ry/N9GPT8DRJjmLMSh274B1FJvWlqkFBqJeXIMrNsCES8StLfY8wvqBjk
+ ipuRTbXXuDGXWMdus2h5il0lmfcwCHxzwldqy5rT4KOwjWNi6rZnf2g1w Q==;
+X-CSE-ConnectionGUID: e7mAW+OGRX61Hi3eCx5Jaw==
+X-CSE-MsgGUID: aWiggqzOSJaI6TkIMZPD8w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11211"; a="30700542"
+X-IronPort-AV: E=Sophos;i="6.11,166,1725346800"; d="scan'208";a="30700542"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2024 09:34:07 -0700
-X-CSE-ConnectionGUID: x5LotZ04Q2qw8XwOLNdiXg==
-X-CSE-MsgGUID: RaK3g5uQR5WxJHXYHvzISg==
+ 30 Sep 2024 09:34:08 -0700
+X-CSE-ConnectionGUID: k0Xql/jIQBmBTPAYuvtMGQ==
+X-CSE-MsgGUID: u4fVLZ8iSKy9fAGWQ3iY8A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,166,1725346800"; d="scan'208";a="110839214"
+X-IronPort-AV: E=Sophos;i="6.11,166,1725346800"; d="scan'208";a="110839234"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2024 09:34:05 -0700
+ 30 Sep 2024 09:34:07 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, suraj.kandpal@intel.com,
  ville.syrjala@linux.intel.com
-Subject: [PATCH 08/13] drm/i915/dp: Use num_joined_pipes in
- bigjoiner_bw_max_bpp
-Date: Mon, 30 Sep 2024 22:05:44 +0530
-Message-ID: <20240930163549.416410-9-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 09/13] drm/i915/dp: Modify compressed bpp limitations for
+ ultrajoiner
+Date: Mon, 30 Sep 2024 22:05:45 +0530
+Message-ID: <20240930163549.416410-10-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240930163549.416410-1-ankit.k.nautiyal@intel.com>
 References: <20240930163549.416410-1-ankit.k.nautiyal@intel.com>
@@ -70,53 +70,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Streamline the helper to get max compressed bpp for bigjoiner case, to
-effectively use num of pipes joined. This will make the addition of
-ultrajoiner limitations easier and improve redability.
+Add compressed bpp limitations for ultrajoiner.
+
+v2: Fix the case for 1 pipe. (Ankit)
+v3: Refactor existing helper separately and add only ultrajoiner
+limitation. (Ville)
+v4: Separate out function for ultrajoiner_ram_bits.
+v5: Make the helper function more concise. (Ville)
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 10 ++++++++--
- 1 file changed, 8 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 28 +++++++++++++++----------
+ 1 file changed, 17 insertions(+), 11 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 29f8cb9c4dd0..a85527a55dc0 100644
+index a85527a55dc0..d8a4a6fa1514 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -864,16 +864,21 @@ static int bigjoiner_interface_bits(struct intel_display *display)
- 	return DISPLAY_VER(display) >= 14 ? 36 : 24;
- }
- 
--static u32 bigjoiner_bw_max_bpp(struct intel_display *display, u32 mode_clock)
-+static u32 bigjoiner_bw_max_bpp(struct intel_display *display, u32 mode_clock,
-+				int num_joined_pipes)
- {
- 	u32 max_bpp;
- 	/* With bigjoiner multiple dsc engines are used in parallel so PPC is 2 */
- 	int ppc = 2;
-+	int num_big_joiners = num_joined_pipes / 2;
- 
- 	max_bpp = display->cdclk.max_cdclk_freq * ppc * bigjoiner_interface_bits(display) /
- 		  intel_dp_mode_to_fec_clock(mode_clock);
- 
-+	max_bpp *= num_big_joiners;
-+
+@@ -896,25 +896,31 @@ static u32 small_joiner_ram_max_bpp(struct intel_display *display,
  	return max_bpp;
-+
  }
  
- static u32 small_joiner_ram_max_bpp(struct intel_display *display,
-@@ -903,7 +908,8 @@ u32 get_max_compressed_bpp_with_joiner(struct drm_i915_private *i915,
- 							    num_joined_pipes);
++static int ultrajoiner_ram_bits(void)
++{
++	return 4 * 72 * 512;
++}
++
++static u32 ultrajoiner_ram_max_bpp(u32 mode_hdisplay)
++{
++	return ultrajoiner_ram_bits() / mode_hdisplay;
++}
++
+ static
+ u32 get_max_compressed_bpp_with_joiner(struct drm_i915_private *i915,
+ 				       u32 mode_clock, u32 mode_hdisplay,
+ 				       int num_joined_pipes)
+ {
+ 	struct intel_display *display = to_intel_display(&i915->drm);
+-	u32 max_bpp_small_joiner_ram;
++	u32 max_bpp = small_joiner_ram_max_bpp(display, mode_hdisplay, num_joined_pipes);
  
- 	if (num_joined_pipes == 2) {
--		u32 max_bpp_bigjoiner = bigjoiner_bw_max_bpp(display, mode_clock);
-+		u32 max_bpp_bigjoiner = bigjoiner_bw_max_bpp(display, mode_clock,
-+							     num_joined_pipes);
+-	max_bpp_small_joiner_ram = small_joiner_ram_max_bpp(display, mode_hdisplay,
+-							    num_joined_pipes);
+-
+-	if (num_joined_pipes == 2) {
+-		u32 max_bpp_bigjoiner = bigjoiner_bw_max_bpp(display, mode_clock,
+-							     num_joined_pipes);
+-
+-		return min(max_bpp_small_joiner_ram, max_bpp_bigjoiner);
+-	}
++	if (num_joined_pipes > 1)
++		max_bpp = min(max_bpp, bigjoiner_bw_max_bpp(display, mode_clock,
++							    num_joined_pipes));
++	if (num_joined_pipes == 4)
++		max_bpp = min(max_bpp, ultrajoiner_ram_max_bpp(mode_hdisplay));
  
- 		return min(max_bpp_small_joiner_ram, max_bpp_bigjoiner);
- 	}
+-	return max_bpp_small_joiner_ram;
++	return max_bpp;
+ }
+ 
+ u16 intel_dp_dsc_get_max_compressed_bpp(struct drm_i915_private *i915,
 -- 
 2.45.2
 
