@@ -2,61 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2840A98A542
+	by mail.lfdr.de (Postfix) with ESMTPS id CC88298A544
 	for <lists+intel-gfx@lfdr.de>; Mon, 30 Sep 2024 15:31:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B121810E4EC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2C5610E4ED;
 	Mon, 30 Sep 2024 13:31:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="J5gpSkVZ";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Ddb6UUmj";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com
- [209.85.128.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 047A610E40F;
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com
+ [209.85.221.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D35A910E40F;
  Mon, 30 Sep 2024 12:37:19 +0000 (UTC)
-Received: by mail-wm1-f51.google.com with SMTP id
- 5b1f17b1804b1-42cc8782869so39888675e9.2; 
- Mon, 30 Sep 2024 05:37:18 -0700 (PDT)
+Received: by mail-wr1-f50.google.com with SMTP id
+ ffacd0b85a97d-37ccdc0d7f6so2206333f8f.0; 
+ Mon, 30 Sep 2024 05:37:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1727699837; x=1728304637; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1727699838; x=1728304638; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=TTtABT1rYfIzK3Apk8cuoRmJAsuypkLox4BN8k8T5lM=;
- b=J5gpSkVZ/ZdrtFNZKD2og5tL9brqiG0hmeBerztF8xYem2E8hO2hwcYz/hEhIxLEuy
- yTj8QAMm6erBOVLvbCbr5ToTEYssaVzqqAwli5RiEOehgpXImdPKXx9NiftCivK/KkB3
- hvOCuuOcc+Iadqt0DeYyHk+XOMqtgOCxql2+ZRawE99no/HD5Xt8u1K6YuYMTr7otjZq
- gKxf1C4G9aK1gBpivdZ8PrDSxXuvx2zsLmjqjzavHwkuHwHI20MUpgPmTURL4WC0eNV2
- w9qivUlY/w5FVU2V9SdnHkhZibqPyd+DvvoCvkqbTCdHrcbhhmdVHhpQtIqwnB43JHv8
- ZcdQ==
+ bh=jzOLLRPC71jtL2OjNuAlvY4gjd1poR9VKDBddhyc4rA=;
+ b=Ddb6UUmjUjel80GJLaFrEcpPvUrBh2J9LJ6rTMy140Gto5xMFsx4kuTwr1wxhnG6fz
+ rNccTbx0CvLR6At785YzaXKsP/tRX/irXZHDZeuQyjBi0e8x0YSOl2M0SBN/WDUBlc/7
+ YJO3+9oioS1XY2FV++LrZt6J+p1dwL4EP9Qj3nkF2sYjSyDUxujArLf6zF1G2FIXGrg9
+ izwZmBrTnX7OdGcSlf6KCD4l9vEeFvf09u7JWawuvSz2Rmg0zsOmASu73PPlW2Ip0Ci+
+ 5aX8s5PKvCBp7rCYtYLnnbLYcR9Zsn7EPeLvleIa3J7wbrx1wlrQxn4dZuIdbhvj+H1J
+ jvPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1727699837; x=1728304637;
+ d=1e100.net; s=20230601; t=1727699838; x=1728304638;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=TTtABT1rYfIzK3Apk8cuoRmJAsuypkLox4BN8k8T5lM=;
- b=ZedRt57VCwStnqEQrYA6GgJDiK2UhKFX+u37Hf5Vee2o9RR6Fv8RZyz/tG1u7ZSKUD
- PEE48FyzMeagMt0n/ZfMWVJpmUIJT5wxLr2FSQe95D064UjN1OpAQPP8Mdy2uctztqJM
- 14IS+ShBsZ5BuvYsM7kGDP6Ox0hp+hkgIXaADoqfiCADsKfn9kln9rikjxBybDa1vX5F
- NfDCcjFpQh1t6To9HYUA7CM2t5WoV/MDVLSV6PJ441RU/hYVRl0fzDEbM6zKl6CxJCJH
- uk4jdYTRJSijSNPE9G4GG2ee0vLHUh3XCCnJyAkzso2qEyeAYBnp9LcVLtUfh8qWvnIm
- uZBA==
+ bh=jzOLLRPC71jtL2OjNuAlvY4gjd1poR9VKDBddhyc4rA=;
+ b=kBa5Wz/Uo+0DDCn10FFGV3Y+ldtr7ga1n/Sxso0QUOC5870aDkTiAQWhp6I6LEh3Ve
+ DxCeatYxi5MvNQZSSr3sYMRinE/d+ownlbqs2IutPsJesn1YmjkWkcqVUgze/uerg4sl
+ iUOCx31AIzqFFKNKaq5Yitc7lAuVY7DdpUj91GY4wFXjhNc/Hz4NB/pmc6D1FvSNmjC8
+ TAvj/tH8NdHakmUeW5glQbpDLvm41xdKNzxlvAH+jy0pNJdaSFSDyRlO2v1yM1Qbetb+
+ dgZ52eenEQ+m6dU4KqGvFlpMjNhOgvn+cOq2jOWq9IZ1k4nEFtIBe4yn40P6635MDiW0
+ 5j+A==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUafJirsMEKdtGChrCVZXFTUoIXBWiBXVvvQiY6WgLaK1cOL1N+yfR5lkbQKtIgqPvUb2quVveoBhef@lists.freedesktop.org,
- AJvYcCXeRw1x2Zo7Kozr/kU++4veBxmrVETA3bG5GBlA17aAecOMtZ5lq2eDFkqBMsKAQNolj+Z8jPMI6ds=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwU7nMoUTIgOl/d6qLAF7mPVfjXlPoVKxCc5nqyODJ/1vrJIlDf
- ergSYKcXPJ05ScIhVK+N18Wx3UiUDFgcJNFezSV6LGjPkXaLBdNS2e3Df9RWf88=
-X-Google-Smtp-Source: AGHT+IHBiyuHQnT3ULO5RBx3Lp6OpesRYqemaXFPJxpMx4yYeqmrbcmToiuf+tr1+RXNDEzbJ1b58w==
-X-Received: by 2002:a05:600c:4f86:b0:42c:bae0:f066 with SMTP id
- 5b1f17b1804b1-42f58434768mr79576095e9.13.1727699837034; 
+ AJvYcCV8P+AGrjWCsm6zFqiCyEmJPCnxTEqrq6+T/nCq7XCkYJBUEziHqtD+XkUsqzZT8xlffqlUi+MT/3bf@lists.freedesktop.org,
+ AJvYcCVyW8BtV7TtvY+iGAi3gqY638PTD0bGAEnCKHWMTkjs3DeXdUPXvLVxQEJ4/6U2cu7RdgZsM6GWJnE=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YySj8F4ULr6JjyWYXFcxSyCMEWuNoYMuFG0PKbHhS4fzxkEIgvr
+ T7j9xEhDqABXQjaObSOXvx1Fj34PHhcNH3wBx/FLcHIz5XaJe7YX
+X-Google-Smtp-Source: AGHT+IGh71qi0qyayzgI7eFDFpBLWxTr/OTyditWnrNY5k5QUB6Kmr2d+RBqzeFs+cdbH+f8p3vxFQ==
+X-Received: by 2002:a05:6000:108f:b0:37c:cd0d:3437 with SMTP id
+ ffacd0b85a97d-37cd5b09c91mr5194049f8f.58.1727699837996; 
  Mon, 30 Sep 2024 05:37:17 -0700 (PDT)
 Received: from fedora.iskraemeco.si ([193.77.86.250])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-42e96a52308sm149011355e9.43.2024.09.30.05.37.15
+ 5b1f17b1804b1-42e96a52308sm149011355e9.43.2024.09.30.05.37.17
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 30 Sep 2024 05:37:16 -0700 (PDT)
+ Mon, 30 Sep 2024 05:37:17 -0700 (PDT)
 From: Uros Bizjak <ubizjak@gmail.com>
 To: x86@kernel.org, linux-crypto@vger.kernel.org,
  intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
@@ -64,12 +64,12 @@ To: x86@kernel.org, linux-crypto@vger.kernel.org,
  linux-fscrypt@vger.kernel.org, linux-scsi@vger.kernel.org,
  bpf@vger.kernel.org, linux-kselftest@vger.kernel.org,
  kunit-dev@googlegroups.com, linux-kernel@vger.kernel.org
-Cc: Uros Bizjak <ubizjak@gmail.com>, Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>
-Subject: [PATCH v3 06/19] mtd: tests: Include <linux/prandom.h> instead of
- <linux/random.h>
-Date: Mon, 30 Sep 2024 14:33:17 +0200
-Message-ID: <20240930123702.803617-7-ubizjak@gmail.com>
+Cc: Uros Bizjak <ubizjak@gmail.com>, Eric Biggers <ebiggers@kernel.org>,
+ "Theodore Y. Ts'o" <tytso@mit.edu>, Jaegeuk Kim <jaegeuk@kernel.org>
+Subject: [PATCH v3 07/19] fscrypt: Include <linux/once.h> in
+ fs/crypto/keyring.c
+Date: Mon, 30 Sep 2024 14:33:18 +0200
+Message-ID: <20240930123702.803617-8-ubizjak@gmail.com>
 X-Mailer: git-send-email 2.46.2
 In-Reply-To: <20240930123702.803617-1-ubizjak@gmail.com>
 References: <20240930123702.803617-1-ubizjak@gmail.com>
@@ -91,59 +91,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Substitute the inclusion of <linux/random.h> header with
-<linux/prandom.h> to allow the removal of legacy inclusion
-of <linux/prandom.h> from <linux/random.h>.
+Include <linux/once.h> header to allow the removal of legacy
+inclusion of <linux/prandom.h> from <linux/random.h>.
 
 Signed-off-by: Uros Bizjak <ubizjak@gmail.com>
-Acked-by: Miquel Raynal <miquel.raynal@bootlin.com>
-Cc: Richard Weinberger <richard@nod.at>
-Cc: Vignesh Raghavendra <vigneshr@ti.com>
+Acked-by: Eric Biggers <ebiggers@kernel.org>
+Cc: "Theodore Y. Ts'o" <tytso@mit.edu>
+Cc: Jaegeuk Kim <jaegeuk@kernel.org>
 ---
- drivers/mtd/tests/oobtest.c     | 2 +-
- drivers/mtd/tests/pagetest.c    | 2 +-
- drivers/mtd/tests/subpagetest.c | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+v2: Include <linux/once.h> instead of <linux/prandom.h>
+---
+ fs/crypto/keyring.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/mtd/tests/oobtest.c b/drivers/mtd/tests/oobtest.c
-index 13fed398937e..e1ee68f8b8f8 100644
---- a/drivers/mtd/tests/oobtest.c
-+++ b/drivers/mtd/tests/oobtest.c
-@@ -17,7 +17,7 @@
- #include <linux/mtd/mtd.h>
- #include <linux/slab.h>
- #include <linux/sched.h>
--#include <linux/random.h>
-+#include <linux/prandom.h>
+diff --git a/fs/crypto/keyring.c b/fs/crypto/keyring.c
+index 6681a71625f0..82fcc5683649 100644
+--- a/fs/crypto/keyring.c
++++ b/fs/crypto/keyring.c
+@@ -22,6 +22,7 @@
+ #include <crypto/skcipher.h>
+ #include <linux/key-type.h>
+ #include <linux/random.h>
++#include <linux/once.h>
+ #include <linux/seq_file.h>
  
- #include "mtd_test.h"
- 
-diff --git a/drivers/mtd/tests/pagetest.c b/drivers/mtd/tests/pagetest.c
-index 8eb40b6e6dfa..6878700d2fc0 100644
---- a/drivers/mtd/tests/pagetest.c
-+++ b/drivers/mtd/tests/pagetest.c
-@@ -17,7 +17,7 @@
- #include <linux/mtd/mtd.h>
- #include <linux/slab.h>
- #include <linux/sched.h>
--#include <linux/random.h>
-+#include <linux/prandom.h>
- 
- #include "mtd_test.h"
- 
-diff --git a/drivers/mtd/tests/subpagetest.c b/drivers/mtd/tests/subpagetest.c
-index 05250a080139..f34bbf033c4d 100644
---- a/drivers/mtd/tests/subpagetest.c
-+++ b/drivers/mtd/tests/subpagetest.c
-@@ -15,7 +15,7 @@
- #include <linux/mtd/mtd.h>
- #include <linux/slab.h>
- #include <linux/sched.h>
--#include <linux/random.h>
-+#include <linux/prandom.h>
- 
- #include "mtd_test.h"
- 
+ #include "fscrypt_private.h"
 -- 
 2.46.2
 
