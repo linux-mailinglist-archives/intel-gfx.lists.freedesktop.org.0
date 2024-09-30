@@ -2,61 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60CA5989ADD
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Sep 2024 08:48:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A4832989B7D
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Sep 2024 09:32:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BD0E10E38D;
-	Mon, 30 Sep 2024 06:48:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 465B610E10C;
+	Mon, 30 Sep 2024 07:32:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ST5n3TOF";
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="Oz0MJoD/";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F3A110E38B
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Sep 2024 06:48:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727678897; x=1759214897;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=96+Xi/49v/8qov6pU+Ff/BOKdAwUnr6yFHB10p9+i9k=;
- b=ST5n3TOFT91VhE6VhTDQpV/Y6ukVONzTMneetcHvnfrzmp4JsfS6hdbR
- WeYWygTQxTVIhelj4bzFVhMzGgmh72KUJ+hrjHU4OU4F9uKAl/KqIcB8M
- R028WoLlmmbYVKw9VhUVJtlJu6DWUEz0B2ZzpBEwh7P9GMUysH+JUryXK
- 5BzbvbSZaIa7jTU33uSSMHzWDrVihXCpsCdk2vEzQIQuD6c3YOBu2BEiI
- VoTGxfCBi+FHolwI+WF0NCmBXiuf3CJivWRySl9sL4iFsk/93mU7ra47w
- WYigD/907gWJGJfyuWH3bXpaFFHpgZil16zNiQQZI+HuoczTZaQbL9Z+R Q==;
-X-CSE-ConnectionGUID: ZPOkYQvXRtSLyLaGyQjEkA==
-X-CSE-MsgGUID: TnzxJnyyRgGveKhcrpd+xw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11210"; a="14376380"
-X-IronPort-AV: E=Sophos;i="6.11,165,1725346800"; d="scan'208";a="14376380"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2024 23:48:17 -0700
-X-CSE-ConnectionGUID: hYF15bmlSq2+Hz46FZ2hIQ==
-X-CSE-MsgGUID: Zav9qNpsQiCzKoQbv31p9A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,165,1725346800"; d="scan'208";a="73064505"
-Received: from ettammin-desk.ger.corp.intel.com (HELO jhogande-mobl1..)
- ([10.245.244.213])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2024 23:48:16 -0700
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com,
- =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH 2/2] drm/i915/display: Fix Panel Replay vblank enable
- workaround
-Date: Mon, 30 Sep 2024 09:47:52 +0300
-Message-Id: <20240930064752.1602148-2-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240930064752.1602148-1-jouni.hogander@intel.com>
-References: <20240930064752.1602148-1-jouni.hogander@intel.com>
+Received: from bali.collaboradmins.com (bali.collaboradmins.com
+ [148.251.105.195])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED1C510E10C;
+ Mon, 30 Sep 2024 07:32:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1727681531;
+ bh=M3ZGR3m5dE/OcpAuJgNW07sMzVd9xcG6hbRIN3GQi5s=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=Oz0MJoD/WjoceXAqgBvUNpAstd9dV0jBR191CXDs3DaHEQv8fB6tEEkb3khrgiisE
+ nh7tdsJ05/IcW/muYpcMYD2UbZ59bvLNKjDb7A7RsthSIIYy9ISk7EtNcjZZJJ/j4b
+ 46HY0ZSLujeCZ2Euue+8cxgFYaU/00AGdTSqrFGu+tvTdK4XrGCbrxAmA25H//DWD1
+ gnBnOgQkZjyB3Rxtdykg0mDYBmcB8VRkDHDSZOdUCxlY8BYcGNoed0Ur7HnpY3zSJe
+ +ONzA6kcS7zMAeoKr1mZ7/oMykf0KM1jTOBErKvVlvh8ykoNrOxERefW/OQ7/gJea/
+ VGMkeeuORJQXg==
+Received: from [192.168.50.250] (unknown [171.76.80.165])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested) (Authenticated sender: vignesh)
+ by bali.collaboradmins.com (Postfix) with ESMTPSA id 9E73717E1047;
+ Mon, 30 Sep 2024 09:32:07 +0200 (CEST)
+Message-ID: <5fd48673-571a-4750-9704-e172f7ea372f@collabora.com>
+Date: Mon, 30 Sep 2024 13:01:55 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3] docs/gpu: ci: update flake tests requirements
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com,
+ helen.koike@collabora.com, airlied@gmail.com, daniel@ffwll.ch,
+ robdclark@gmail.com, guilherme.gallo@collabora.com,
+ sergi.blanch.torne@collabora.com, deborah.brouwer@collabora.com,
+ dmitry.baryshkov@linaro.org, mripard@kernel.org, quic_abhinavk@quicinc.com,
+ linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, amd-gfx@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ virtualization@lists.linux.dev, linux-kernel@vger.kernel.org
+References: <20240927052416.1833889-1-vignesh.raman@collabora.com>
+ <ZvbCzqvyeTI_j2cD@intel.com>
+Content-Language: en-US
+From: Vignesh Raman <vignesh.raman@collabora.com>
+In-Reply-To: <ZvbCzqvyeTI_j2cD@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,40 +69,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently workaround is not applied when vblank is enabled on crtc that
-needs the workaround if vblank is already enabled for another crtc that
-doesn't need the workaround. Fix this by increasing counter only if crtc
-needs the workaround.
+Hi Rodrigo,
 
-Fixes: aa451abcffb5 ("drm/i915/display: Prevent DC6 while vblank is enabled for Panel Replay")
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_irq.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+On 27/09/24 20:05, Rodrigo Vivi wrote:
+> On Fri, Sep 27, 2024 at 10:54:14AM +0530, Vignesh Raman wrote:
+>> Update the documentation to specify linking to a relevant GitLab
+>> issue or email report for each new flake entry. Added specific
+>> GitLab issue urls for i915, msm and amdgpu driver.
+>>
+>> Acked-by: Abhinav Kumar <quic_abhinavk@quicinc.com> # msm
+>> Acked-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org> # msm
+>> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
+>> ---
+>>
+>> v2:
+>> - Add gitlab issue link for msm driver.
+>>
+>> v3:
+>> - Update docs to specify we use email reporting or GitLab issues for flake entries.
+>>
+>> ---
+>>   Documentation/gpu/automated_testing.rst | 13 +++++++++----
+>>   1 file changed, 9 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/Documentation/gpu/automated_testing.rst b/Documentation/gpu/automated_testing.rst
+>> index 2d5a28866afe..03769b4a17cf 100644
+>> --- a/Documentation/gpu/automated_testing.rst
+>> +++ b/Documentation/gpu/automated_testing.rst
+>> @@ -68,19 +68,24 @@ known to behave unreliably. These tests won't cause a job to fail regardless of
+>>   the result. They will still be run.
+>>   
+>>   Each new flake entry must be associated with a link to the email reporting the
+>> -bug to the author of the affected driver, the board name or Device Tree name of
+>> -the board, the first kernel version affected, the IGT version used for tests,
+>> -and an approximation of the failure rate.
+>> +bug to the author of the affected driver or the relevant GitLab issue. The entry
+>> +must also include the board name or Device Tree name, the first kernel version
+>> +affected, the IGT version used for tests, and an approximation of the failure rate.
+>>   
+>>   They should be provided under the following format::
+>>   
+>> -  # Bug Report: $LORE_OR_PATCHWORK_URL
+>> +  # Bug Report: $LORE_URL_OR_GITLAB_ISSUE
+>>     # Board Name: broken-board.dtb
+>>     # Linux Version: 6.6-rc1
+>>     # IGT Version: 1.28-gd2af13d9f
+>>     # Failure Rate: 100
+>>     flaky-test
+>>   
+>> +Use the appropriate link below to create a GitLab issue:
+>> +amdgpu driver: https://gitlab.freedesktop.org/drm/amd/-/issues
+>> +i915 driver: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues
+> 
+> Probably good to add:
+> 
+> xe driver: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-index d71f4b0ee7357..728605b99e77e 100644
---- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-@@ -1388,7 +1388,7 @@ int bdw_enable_vblank(struct drm_crtc *_crtc)
- 	if (gen11_dsi_configure_te(crtc, true))
- 		return 0;
- 
--	if (display->irq.vblank_wa_pipes++ == 0 && crtc->block_dc_for_vblank)
-+	if (crtc->block_dc_for_vblank && display->irq.vblank_wa_pipes++ == 0)
- 		schedule_work(&display->irq.vblank_dc_work);
- 
- 	spin_lock_irqsave(&dev_priv->irq_lock, irqflags);
-@@ -1468,7 +1468,7 @@ void bdw_disable_vblank(struct drm_crtc *_crtc)
- 	bdw_disable_pipe_irq(dev_priv, pipe, GEN8_PIPE_VBLANK);
- 	spin_unlock_irqrestore(&dev_priv->irq_lock, irqflags);
- 
--	if (--display->irq.vblank_wa_pipes == 0 && crtc->block_dc_for_vblank)
-+	if (crtc->block_dc_for_vblank && --display->irq.vblank_wa_pipes == 0)
- 		schedule_work(&display->irq.vblank_dc_work);
- }
- 
--- 
-2.34.1
+Sure, will add it.
 
+> 
+> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+
+Thanks.
+
+> 
+>> +msm driver: https://gitlab.freedesktop.org/drm/msm/-/issues
+>> +
+>>   drivers/gpu/drm/ci/${DRIVER_NAME}-${HW_REVISION}-skips.txt
+>>   -----------------------------------------------------------
+>>   
+>> -- 
+>> 2.43.0
+>>
+
+Regards,
+Vignesh
