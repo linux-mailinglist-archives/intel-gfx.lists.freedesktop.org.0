@@ -2,52 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AFE098A9D6
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Sep 2024 18:34:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AD5A98A9D7
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Sep 2024 18:34:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE1A410E55B;
-	Mon, 30 Sep 2024 16:34:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D080410E547;
+	Mon, 30 Sep 2024 16:34:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D7u0BNKq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SRhAZ4m1";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C2DF10E559;
- Mon, 30 Sep 2024 16:34:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA07E10E55C;
+ Mon, 30 Sep 2024 16:34:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727714043; x=1759250043;
+ t=1727714045; x=1759250045;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=grTheZg0PaBfcWRFYZfgtE6oSwwzwej4Q0XahNZ4vjg=;
- b=D7u0BNKquC2BYSUTMO9xMKK3LJxmtX/buOeJEZnwbfpdGH2PCA5IB46k
- FQcySojSTLhdqA313F/QUSP8+pwgNqJAdFawNCZYj8T0XGAD6ejn7v+dc
- Xf/tirykoWP/syhfZApgmvdvhXJpqB9634EyaNXbh5ALlrON84aeHokZ+
- 5ofQMwDKrpfmv4ZbnMjDhCX4f5e6RmcuGqbOUM2xX+yCkifLioEGXQCcy
- VMqqxBqX15DomHPSYykcSwMfRJ1YAvF25YDU2RlVXy0j+PfZK3+PjGHCm
- ymf1bPGnz2crgclKsU87f9WHX+3MyDB+Er1rJ92N0749tpywb+d5M8jwQ g==;
-X-CSE-ConnectionGUID: /xFSyd0pRRaglbAcbwXsOQ==
-X-CSE-MsgGUID: viJUetu5Q1aaMaZKnHhR5A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11211"; a="30700535"
-X-IronPort-AV: E=Sophos;i="6.11,166,1725346800"; d="scan'208";a="30700535"
+ bh=ROf/Fva5BmxhwyX/q5zwGm6PSe1GuqLge5+GmoTMg2U=;
+ b=SRhAZ4m1UfFrAYRqHsFkpXxAQHr2qsNgFsSP+v+skLFTWNq0ZYt2W+nm
+ XnIvAPFMkwSuuoeh/xoR7W3L6U/zt4ddnj3CAKMqClRLzR3RZRvRTdZQo
+ xmcPGprLB2hOMNkmQlFmFwGAwXmIdwWirOrzQ6vQ5BmCttGGe1CEkDptg
+ UFWXimzi4E1jpfM8ShaqcqMujM82JbGaHmAuhR01FjSs6ajGptKt93ptK
+ 5+P6SCaD7aMW1t0qkeOXKkp2nxJyFoJSCtmZbE4mxaRYyJRzJRCoNZxHw
+ 6+PKRDbJbx52vpK2R+H2FLi8Rsjw2nCV32yL/xXH4p6FOh/Hkn6+4MSmx A==;
+X-CSE-ConnectionGUID: tKUAl56lTjy4WJwLQWFb3A==
+X-CSE-MsgGUID: W32z1zbuSPmMWhSXEnqaiQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11211"; a="30700538"
+X-IronPort-AV: E=Sophos;i="6.11,166,1725346800"; d="scan'208";a="30700538"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2024 09:34:03 -0700
-X-CSE-ConnectionGUID: XWgVo7kGQLy6GP7h8b40NQ==
-X-CSE-MsgGUID: aaDWh8qpQuO3gJP9yFCtMQ==
+ 30 Sep 2024 09:34:05 -0700
+X-CSE-ConnectionGUID: RbsiVOL1QpObI5tp2wvnog==
+X-CSE-MsgGUID: Ygao3KjoS7yA0fi3yAU2/w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,166,1725346800"; d="scan'208";a="110839177"
+X-IronPort-AV: E=Sophos;i="6.11,166,1725346800"; d="scan'208";a="110839190"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2024 09:34:01 -0700
+ 30 Sep 2024 09:34:03 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, suraj.kandpal@intel.com,
  ville.syrjala@linux.intel.com
-Subject: [PATCH 06/13] drm/i915/display/vdsc: Add ultrajoiner support with DSC
-Date: Mon, 30 Sep 2024 22:05:42 +0530
-Message-ID: <20240930163549.416410-7-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 07/13] drm/i915/dp: Refactor joiner max_bpp calculations into
+ separate functions
+Date: Mon, 30 Sep 2024 22:05:43 +0530
+Message-ID: <20240930163549.416410-8-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240930163549.416410-1-ankit.k.nautiyal@intel.com>
 References: <20240930163549.416410-1-ankit.k.nautiyal@intel.com>
@@ -69,125 +70,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Currently compressed max_bpp limitations for small joiner ram, big joiner
+etc are intermingled. Seprate these limitations into separate functions.
 
-Add changes to DSC which are required for Ultrajoiner.
+v2: Use num_joined_pipes in small joiner ram helper and other minor
+fixes. (Ville)
 
-v2:
--Use correct helper for setting bits for bigjoiner secondary. (Ankit)
--Use primary/secondary instead of master/slave. (Suraj)
-v3: Add the ultrajoiner helpers and use it for setting ultrajoiner
-bits (Ankit)
-v4: Use num_vdsc_instances *= num_joined_pipes (Ville)
-v5: Align the helper to get ultrajoiner enabled pipes with other helpers
-(Ville)
-
-Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 42 ++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_display.h |  3 ++
- drivers/gpu/drm/i915/display/intel_vdsc.c    | 11 ++++-
- 3 files changed, 54 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 46 +++++++++++++++++++------
+ 1 file changed, 36 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 099304a74203..40ad3fdaab10 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -312,6 +312,48 @@ u8 _intel_modeset_secondary_pipes(const struct intel_crtc_state *crtc_state)
- 	return bigjoiner_secondary_pipes(crtc_state);
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index f2a2541c1091..29f8cb9c4dd0 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -859,25 +859,51 @@ u32 intel_dp_dsc_nearest_valid_bpp(struct drm_i915_private *i915, u32 bpp, u32 p
+ 	return bits_per_pixel;
  }
  
-+bool intel_crtc_is_ultrajoiner(const struct intel_crtc_state *crtc_state)
++static int bigjoiner_interface_bits(struct intel_display *display)
 +{
-+	return intel_crtc_num_joined_pipes(crtc_state) >= 4;
++	return DISPLAY_VER(display) >= 14 ? 36 : 24;
 +}
 +
-+static u8 ultrajoiner_primary_pipes(const struct intel_crtc_state *crtc_state)
++static u32 bigjoiner_bw_max_bpp(struct intel_display *display, u32 mode_clock)
 +{
-+	if (!intel_crtc_is_ultrajoiner(crtc_state))
-+		return 0;
++	u32 max_bpp;
++	/* With bigjoiner multiple dsc engines are used in parallel so PPC is 2 */
++	int ppc = 2;
 +
-+	return crtc_state->joiner_pipes & (0b00010001 << joiner_primary_pipe(crtc_state));
++	max_bpp = display->cdclk.max_cdclk_freq * ppc * bigjoiner_interface_bits(display) /
++		  intel_dp_mode_to_fec_clock(mode_clock);
++
++	return max_bpp;
 +}
 +
-+bool intel_crtc_is_ultrajoiner_primary(const struct intel_crtc_state *crtc_state)
++static u32 small_joiner_ram_max_bpp(struct intel_display *display,
++				    u32 mode_hdisplay,
++				    int num_joined_pipes)
 +{
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++	struct drm_i915_private *i915 = to_i915(display->drm);
++	u32 max_bpp;
 +
-+	return intel_crtc_is_ultrajoiner(crtc_state) &&
-+	       BIT(crtc->pipe) & ultrajoiner_primary_pipes(crtc_state);
++	/* Small Joiner Check: output bpp <= joiner RAM (bits) / Horiz. width */
++	max_bpp = small_joiner_ram_size_bits(i915) / mode_hdisplay;
++
++	max_bpp *= num_joined_pipes;
++
++	return max_bpp;
 +}
 +
-+/*
-+ * The ultrajoiner enable bit doesn't seem to follow primary/secondary logic or
-+ * any other logic, so lets just add helper function to
-+ * at least hide this hassle..
-+ */
-+static u8 ultrajoiner_enable_pipes(const struct intel_crtc_state *crtc_state)
-+{
-+	if (!intel_crtc_is_ultrajoiner(crtc_state))
-+		return 0;
-+
-+	return crtc_state->joiner_pipes & (0b01110111 << joiner_primary_pipe(crtc_state));
-+}
-+
-+bool intel_crtc_ultrajoiner_enable_needed(const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-+
-+	return intel_crtc_is_ultrajoiner(crtc_state) &&
-+	       BIT(crtc->pipe) & ultrajoiner_enable_pipes(crtc_state);
-+}
-+
- u8 intel_crtc_joiner_secondary_pipes(const struct intel_crtc_state *crtc_state)
+ static
+ u32 get_max_compressed_bpp_with_joiner(struct drm_i915_private *i915,
+ 				       u32 mode_clock, u32 mode_hdisplay,
+ 				       int num_joined_pipes)
  {
- 	if (crtc_state->joiner_pipes)
-diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-index 1f0fed5ea7bc..61e1df878de9 100644
---- a/drivers/gpu/drm/i915/display/intel_display.h
-+++ b/drivers/gpu/drm/i915/display/intel_display.h
-@@ -441,6 +441,9 @@ bool intel_crtc_is_joiner_secondary(const struct intel_crtc_state *crtc_state);
- bool intel_crtc_is_joiner_primary(const struct intel_crtc_state *crtc_state);
- bool intel_crtc_is_bigjoiner_primary(const struct intel_crtc_state *crtc_state);
- bool intel_crtc_is_bigjoiner_secondary(const struct intel_crtc_state *crtc_state);
-+bool intel_crtc_is_ultrajoiner(const struct intel_crtc_state *crtc_state);
-+bool intel_crtc_is_ultrajoiner_primary(const struct intel_crtc_state *crtc_state);
-+bool intel_crtc_ultrajoiner_enable_needed(const struct intel_crtc_state *crtc_state);
- u8 intel_crtc_joiner_secondary_pipes(const struct intel_crtc_state *crtc_state);
- u8 _intel_modeset_primary_pipes(const struct intel_crtc_state *crtc_state);
- u8 _intel_modeset_secondary_pipes(const struct intel_crtc_state *crtc_state);
-diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-index 208f117ece57..40525f5c4c42 100644
---- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-+++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-@@ -385,9 +385,9 @@ static int intel_dsc_get_vdsc_per_pipe(const struct intel_crtc_state *crtc_state
- int intel_dsc_get_num_vdsc_instances(const struct intel_crtc_state *crtc_state)
- {
- 	int num_vdsc_instances = intel_dsc_get_vdsc_per_pipe(crtc_state);
-+	int num_joined_pipes = intel_crtc_num_joined_pipes(crtc_state);
++	struct intel_display *display = to_intel_display(&i915->drm);
+ 	u32 max_bpp_small_joiner_ram;
  
--	if (crtc_state->joiner_pipes)
--		num_vdsc_instances *= 2;
-+	num_vdsc_instances *= num_joined_pipes;
+-	/* Small Joiner Check: output bpp <= joiner RAM (bits) / Horiz. width */
+-	max_bpp_small_joiner_ram = small_joiner_ram_size_bits(i915) / mode_hdisplay;
++	max_bpp_small_joiner_ram = small_joiner_ram_max_bpp(display, mode_hdisplay,
++							    num_joined_pipes);
  
- 	return num_vdsc_instances;
- }
-@@ -776,7 +776,14 @@ void intel_dsc_enable(const struct intel_crtc_state *crtc_state)
- 		dss_ctl1_val |= JOINER_ENABLE;
- 	}
- 	if (crtc_state->joiner_pipes) {
-+		if (intel_crtc_ultrajoiner_enable_needed(crtc_state))
-+			dss_ctl1_val |= ULTRA_JOINER_ENABLE;
-+
-+		if (intel_crtc_is_ultrajoiner_primary(crtc_state))
-+			dss_ctl1_val |= PRIMARY_ULTRA_JOINER_ENABLE;
-+
- 		dss_ctl1_val |= BIG_JOINER_ENABLE;
-+
- 		if (intel_crtc_is_bigjoiner_primary(crtc_state))
- 			dss_ctl1_val |= PRIMARY_BIG_JOINER_ENABLE;
+ 	if (num_joined_pipes == 2) {
+-		int bigjoiner_interface_bits = DISPLAY_VER(i915) >= 14 ? 36 : 24;
+-		/* With bigjoiner multiple dsc engines are used in parallel so PPC is 2 */
+-		int ppc = 2;
+-		u32 max_bpp_bigjoiner =
+-			i915->display.cdclk.max_cdclk_freq * ppc * bigjoiner_interface_bits /
+-			intel_dp_mode_to_fec_clock(mode_clock);
+-
+-		max_bpp_small_joiner_ram *= 2;
++		u32 max_bpp_bigjoiner = bigjoiner_bw_max_bpp(display, mode_clock);
+ 
+ 		return min(max_bpp_small_joiner_ram, max_bpp_bigjoiner);
  	}
 -- 
 2.45.2
