@@ -2,77 +2,139 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4290898A54B
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Sep 2024 15:31:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FFB698A25E
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Sep 2024 14:27:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF10A10E4F5;
-	Mon, 30 Sep 2024 13:31:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A809C10E413;
+	Mon, 30 Sep 2024 12:27:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="mm+Xm1jp";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="TwheZz3C";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="V6QOYYmC";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="jEslQWuM";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="CKWMhcuM";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com
- [209.85.218.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CB0C10E03B;
- Fri, 27 Sep 2024 00:01:53 +0000 (UTC)
-Received: by mail-ej1-f53.google.com with SMTP id
- a640c23a62f3a-a8d29b7edc2so192119766b.1; 
- Thu, 26 Sep 2024 17:01:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1727395312; x=1728000112; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=U4DmHwZhZIQSDJ1IAkiV7HNtDx5RPl1Sb5duaMbxKCs=;
- b=mm+Xm1jplZ6F5ysHMOcpx6D08hbhqGsSHlVH9CM/QODFvbyS1lLMrlrCY8z3+2DhtH
- CLFleft9VXeMLfh8ARcmjVRzGS7iDnQVNJQqJqmb7/aqW7c6GMQki9596k9QfENeTzRo
- Eg9Rs7F9gv26P6ksnKVgrPfTiKoeZ8P/vfsTu/CnocKYga0hbYepWdBd8PpVE+VOBotK
- ZLcaG1Fk2/OAFqlDKHM4m5mxA2M7UlV4ttd5WsEXmpT1p3mchjOVZoogoKAjJMmZmegz
- ybjA1uCNzuybkSFXPYjL+RiaQBbJwYztnl6pDwGU0rOYapZsbn33GvXIxJghy7yMuTl1
- clKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1727395312; x=1728000112;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=U4DmHwZhZIQSDJ1IAkiV7HNtDx5RPl1Sb5duaMbxKCs=;
- b=OLMU2d1MZr5hOvw/ciPXckNWSH51XBpwIqeAa8Wv7xvOeJzpBzBvPfVpnw6AtCr/26
- APEBjG/iYfrs2/gwVBaqOVljCgr0pydh+rlX8qV+6sxeC0j/2EVX6cRwALxB/CvfF1kc
- CUR7slIBNtsPbD+5DGukl6pwTLhKF1iii4mPXyJ3bMTwh9KyXngIKcuEpOiV/2T3T7/0
- Ekp2dcwTnQcBv1tgJ3/Jvaua+/82STUgN6lGCI4CatZgrcjJ+yXWG/N/bdh/2zm84Yzo
- iy7t8jCIPwoijeBtBcYoc03HlzXtjbRLvvKvRPkRpQZQWV2I0gwXJfhRroWz6Q4UWGoH
- jZQg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVp6ozfFyIQ4p1AaP57f/72PAHKvfJDXl/nxtRGgyKuCvnLhL5O1RQqUanCisgJaAEsSv8ZrmYlUeM=@lists.freedesktop.org,
- AJvYcCWnvu9wpZgI4t4htylpJFsxVN2jpjUXRcjJce26PFtHyohSiqEDs8iDCkXsY9DOIvZV1sH8xoSrhl0=@lists.freedesktop.org,
- AJvYcCX+b+h7FGHKK/GjMnnfz1meeu4zA0r9zD8TDavd0GELyGj9gOeoE3/rUzZPEZCiLmUOtGETfMhIk9x2@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwAzZSw5M6HR01qI8TLC91jB7uCxBb26iaRaEda2A9KIDTMePDu
- qtkVz7Qrwqm3KCdzHYU5knrmveARPtKZPIaYQmW9WzHeZjP4wqna
-X-Google-Smtp-Source: AGHT+IEe+4qv/gH8mKQLQOBF/U3++C2ZiNBlIGNXsVrwjBIzuzBkLAg83454FCfI+dydv3Tdevl6sg==
-X-Received: by 2002:a17:907:9492:b0:a7a:8da1:eb00 with SMTP id
- a640c23a62f3a-a93c48f6ea4mr88816366b.7.1727395311367; 
- Thu, 26 Sep 2024 17:01:51 -0700 (PDT)
-Received: from alessandro-pc.station (net-37-119-37-200.cust.vodafonedsl.it.
- [37.119.37.200]) by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-a93c2979d88sm52566666b.156.2024.09.26.17.01.50
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 26 Sep 2024 17:01:50 -0700 (PDT)
-From: Alessandro Zanni <alessandro.zanni87@gmail.com>
-To: jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
- joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, airlied@gmail.com,
- simona@ffwll.ch
-Cc: Alessandro Zanni <alessandro.zanni87@gmail.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- skhan@linuxfoundation.org, anupnewsmail@gmail.com
-Subject: [PATCH] gpu: drm: i915: display: Avoid null values
- intel_plane_atomic_check_with_state
-Date: Fri, 27 Sep 2024 02:01:44 +0200
-Message-ID: <20240927000146.50830-1-alessandro.zanni87@gmail.com>
-X-Mailer: git-send-email 2.43.0
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B8E4010E40E;
+ Mon, 30 Sep 2024 12:27:15 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id CD07C1F454;
+ Mon, 30 Sep 2024 12:27:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1727699234; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=DSHLFYat01spGIAJcA0fyxzkyXsxsWO/waV8jL7U7HI=;
+ b=TwheZz3CbkaxslHWU7u705qPhBSn/jqSSpVfngrZxoxZlv5LwqM8qFDz9RhKSeC+/VOWvg
+ XEdvAtHaWG/JHQkl16XUwfoEfu/KXnjwwHigua141KSuEbSjBNYS37zbFB+GZ7aY6iPy0A
+ uLQ+aqFUNNRKGiNuOcmiaqCJXclI438=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1727699234;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=DSHLFYat01spGIAJcA0fyxzkyXsxsWO/waV8jL7U7HI=;
+ b=V6QOYYmCWxbyX9T4LdGriYFR0kGT0Cwo/182nnuNwPa5SzHg52A3yTmdEOZFNa+/+52Ul5
+ xplHwHULzyH4YzAA==
+Authentication-Results: smtp-out2.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=jEslQWuM;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=CKWMhcuM
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1727699233; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=DSHLFYat01spGIAJcA0fyxzkyXsxsWO/waV8jL7U7HI=;
+ b=jEslQWuM/LoINUsfDQ2hAS5ip8xJOr+A5j1zJs8cWrsWhSx76S3cDiQSdPM4PXj+HAIvY0
+ vHLo+OEQ9zd0jInJQ3Uj7eAeEZ3DnpFIsf5h1bFvgrzzLjl6kntnUQA+zOpvEu+2mGRj5F
+ 8Y6zhRnKckJbwlF66T7/skktNx9MWtQ=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1727699233;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=DSHLFYat01spGIAJcA0fyxzkyXsxsWO/waV8jL7U7HI=;
+ b=CKWMhcuMiwznvLuZCFv4C2JaZOTeHCQMg/ZbkybEJakrZDhwbphcu4QILWdKyvt8Mt8maR
+ /CMamiDGRUZZsEDQ==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 95A9913A8B;
+ Mon, 30 Sep 2024 12:27:13 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id eTwxIyGZ+ma5ZwAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Mon, 30 Sep 2024 12:27:13 +0000
+Message-ID: <06004431-4d17-459f-a09d-7b792b27fc1c@suse.de>
+Date: Mon, 30 Sep 2024 14:27:13 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 30 Sep 2024 13:30:58 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/5] drm: Introduce DRM client library
+To: Jocelyn Falempe <jfalempe@redhat.com>, simona@ffwll.ch,
+ airlied@gmail.com, javierm@redhat.com
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+References: <20240927144252.31813-1-tzimmermann@suse.de>
+ <9c025c92-36f2-4358-af24-b699bfa84b43@redhat.com>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <9c025c92-36f2-4358-af24-b699bfa84b43@redhat.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: CD07C1F454
+X-Spam-Score: -4.51
+X-Rspamd-Action: no action
+X-Spamd-Result: default: False [-4.51 / 50.00]; BAYES_HAM(-3.00)[99.99%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ MX_GOOD(-0.01)[];
+ FREEMAIL_TO(0.00)[redhat.com,ffwll.ch,gmail.com];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com]; RCVD_VIA_SMTP_AUTH(0.00)[];
+ RCPT_COUNT_SEVEN(0.00)[8]; MIME_TRACE(0.00)[0:+];
+ ARC_NA(0.00)[]; MID_RHS_MATCH_FROM(0.00)[];
+ FUZZY_BLOCKED(0.00)[rspamd.com];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ TO_DN_SOME(0.00)[]; RCVD_TLS_ALL(0.00)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid,suse.de:dkim,imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo];
+ RCVD_COUNT_TWO(0.00)[2]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ DKIM_TRACE(0.00)[suse.de:+]
+X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
+X-Spam-Flag: NO
+X-Spam-Level: 
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,53 +150,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This fix solves multiple Smatch errors:
+Hi
 
-drivers/gpu/drm/i915/display/intel_atomic_plane.c:660
-intel_plane_atomic_check_with_state() error:
-we previously assumed 'fb' could be null (see line 648)
+Am 30.09.24 um 13:46 schrieb Jocelyn Falempe:
+> On 27/09/2024 16:37, Thomas Zimmermann wrote:
+>> With the next DRM client coming soon (drm_log) and most of DRM's
+>> fbdev emulation consolidated in a few places, it's time to provide
+>> a single place for the clients.
+>>
+>> The new module drm_client_lib.ko stores most of the common client
+>> code. It's designed such that drivers can opt into client support,
+>> but the presence of the client module depends on the user's kernel
+>> configuration. Without selected clients, no client module will be
+>> build.
+>
+> Thanks for this work, I've rebased drm_log on top of this, and it 
+> works great.
 
-drivers/gpu/drm/i915/display/intel_atomic_plane.c:664
-intel_plane_atomic_check_with_state()
-error: we previously assumed 'fb' could be null (see line 659)
+I got a warning from some CI script about a circular module dependency. 
+I need to investigate this before I can merge it, but I'll do soon-ish.
 
-drivers/gpu/drm/i915/display/intel_atomic_plane.c:671
-intel_plane_atomic_check_with_state()
-error: we previously assumed 'fb' could be null (see line 663)
+>
+> My only nitpick is I would prefer it to be called drm_client.ko, to be 
+> a little shorter. So that the kernel parameter to change the default 
+> client can be "drm_client.default=fbdev".
 
-We should check first if fb is not null before to access its properties.
+Yeah, naming is a bit unfortunate. There's drm_client.o (from 
+drm_client.c) already, which would conflict with drm_client.ko. And 
+there's no better name for drm_client.c either. Hence drm_client_lib.ko. 
+I also thought about drm_client_helper and drm_client_mod. Neither 
+seemed better.
 
-Signed-off-by: Alessandro Zanni <alessandro.zanni87@gmail.com>
----
- drivers/gpu/drm/i915/display/intel_atomic_plane.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+Thanks for looking over it.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-index e979786aa5cf..1606f79b39e6 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-@@ -656,18 +656,18 @@ int intel_plane_atomic_check_with_state(const struct intel_crtc_state *old_crtc_
- 	    intel_plane_is_scaled(new_plane_state))
- 		new_crtc_state->scaled_planes |= BIT(plane->id);
- 
--	if (new_plane_state->uapi.visible &&
-+	if (new_plane_state->uapi.visible && fb &&
- 	    intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier))
- 		new_crtc_state->nv12_planes |= BIT(plane->id);
- 
--	if (new_plane_state->uapi.visible &&
-+	if (new_plane_state->uapi.visible && fb &&
- 	    fb->format->format == DRM_FORMAT_C8)
- 		new_crtc_state->c8_planes |= BIT(plane->id);
- 
- 	if (new_plane_state->uapi.visible || old_plane_state->uapi.visible)
- 		new_crtc_state->update_planes |= BIT(plane->id);
- 
--	if (new_plane_state->uapi.visible &&
-+	if (new_plane_state->uapi.visible && fb &&
- 	    intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier)) {
- 		new_crtc_state->data_rate_y[plane->id] =
- 			intel_plane_data_rate(new_crtc_state, new_plane_state, 0);
+Best regards
+Thomas
+
+
+>
+> Best regards,
+>
+
 -- 
-2.43.0
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
 
