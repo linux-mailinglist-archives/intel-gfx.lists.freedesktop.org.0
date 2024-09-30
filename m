@@ -2,54 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 492FE989FF0
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Sep 2024 12:57:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C6D7F98A050
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Sep 2024 13:23:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D2DC5892F8;
-	Mon, 30 Sep 2024 10:57:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C33210E311;
+	Mon, 30 Sep 2024 11:23:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a0smBli4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MgrGefUt";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 63AAF892F8
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Sep 2024 10:57:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64F3410E311
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Sep 2024 11:23:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727693846; x=1759229846;
+ t=1727695396; x=1759231396;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=Be5EMjoHVZQwtUJe+/pxvv8ZPEa09XxYRTKXQ4STnbw=;
- b=a0smBli4I3mffAHPh8cwTiEe+2WV78ERqyfuaiQ5Pu0kEjUWxG+O7EwB
- 4a8D5+GCDC7SuI7FIydtr0piJ+4ubVplKz1V5Wveman4FgW3i767m3Aan
- GslIlAVLPs4d33AltsPx+Ots1fLQnwqjvg4809OA/cfwi3wOLXmSg0hJK
- iPZUVj9zd78GOOsW6Ol1AlAdRRksJp/j+HWntLlzCMPh8SNpymWdPZvZS
- APYLyfhCg5iimhQEv0lysX0WPSXr1mbe8mvSRv8WorcEFPXFjTutnYP7X
- wRYuBnzlSx5z6nYo88phJs7TYNzArFPrMN1zVGSstcU8sgI2j710JqAOr A==;
-X-CSE-ConnectionGUID: tAIVV+ohRfGCZbhFG1ABeQ==
-X-CSE-MsgGUID: wdyH+5mfQU6mK+jUhzgSBg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11210"; a="26284061"
-X-IronPort-AV: E=Sophos;i="6.11,165,1725346800"; d="scan'208";a="26284061"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2024 03:57:26 -0700
-X-CSE-ConnectionGUID: hfHW8PTpQb+TU51e4SLxLw==
-X-CSE-MsgGUID: y8YP37ohSeO3+c8js5EctA==
+ bh=XTRdgdUmdv7JH3G1us1ufDpxGXV3aFLRxrCEhwdUt7o=;
+ b=MgrGefUtk6yVl6caEm3Riwx16QCG1EamKV8wUc0USx3+XitprccpoYob
+ DCoM6P4+yIYnSGLv0/NV9GNqK25FlxhE9ik0hns6RlFkm+ZW8SHR8yV6f
+ QGbSWI4ImzIqMKgVzgvZPj3pxQxjC22qbKxJmOS9FCpwaRPMCXgrX9RVQ
+ bb440sZCInL3d+oBxM6zQ0eq8HtIjyaa0oH/M977E+jJaTPkOKbBoIBBt
+ mVO4zZxyVYa3qlucNCMnyfWfp5a+ntwicdhDJasBcrbdiBWLY818+QKcl
+ pygfI+l87N/EWj1XTJz/MvDZHX9qOqfqesf8s0Rrv8vavXsT7l6b8kFU9 Q==;
+X-CSE-ConnectionGUID: vln1gexkSl6RhFVlwottFw==
+X-CSE-MsgGUID: nYjXlx9xTo+ilbWsfthv3A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11210"; a="37918846"
+X-IronPort-AV: E=Sophos;i="6.11,165,1725346800"; d="scan'208";a="37918846"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2024 04:23:15 -0700
+X-CSE-ConnectionGUID: PNzXOC4HQzy04lAq0QGGPQ==
+X-CSE-MsgGUID: hNd6wYQHQxefp1ivT8OCOA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,165,1725346800"; d="scan'208";a="74057105"
-Received: from anirban-z690i-a-ultra-plus.iind.intel.com ([10.145.169.150])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2024 03:57:24 -0700
-From: sk.anirban@intel.com
+X-IronPort-AV: E=Sophos;i="6.11,165,1725346800"; d="scan'208";a="78224836"
+Received: from nemesa.iind.intel.com ([10.190.239.22])
+ by orviesa004.jf.intel.com with ESMTP; 30 Sep 2024 04:23:15 -0700
+From: Nemesa Garg <nemesa.garg@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: anshuman.gupta@intel.com, Sk Anirban <sk.anirban@intel.com>,
- Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
-Subject: [PATCH v5] drm/i915/selftests: Implement frequency logging for energy
- reading validation
-Date: Mon, 30 Sep 2024 16:22:45 +0530
-Message-Id: <20240930105245.1557736-1-sk.anirban@intel.com>
-X-Mailer: git-send-email 2.34.1
+Cc: Nemesa Garg <nemesa.garg@intel.com>
+Subject: [PATCH] drm/i915/display: Workaround for odd panning for planar yuv
+Date: Mon, 30 Sep 2024 16:53:43 +0530
+Message-Id: <20240930112343.2673244-1-nemesa.garg@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -67,74 +64,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Sk Anirban <sk.anirban@intel.com>
+Disable the support for odd x pan for even xsize for NV12 format as underrun
+issue is seen.
 
-Introduce RC6 & RC0 frequency logging mechanism aimed at ensuring
-the accuracy of energy readings in case of GPU energy leak.
+WA: 16024459452
 
-v2:
-  - Improved commit message.
-v3:
-  - Used pr_err log to display frequency. (Anshuman)
-  - Sorted headers alphabetically. (Sai Teja)
-v4:
-  - Improved commit message.
-  - Fix pr_err log. (Sai Teja)
+v2: Replace HSD with WA in commit message [Suraj]
+    Modified the condition for handling odd panning
 
-Signed-off-by: Sk Anirban <sk.anirban@intel.com>
-Reviewed-by: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
+v3: Simplified the condition for checking hsub
+    Using older framework for wa as rev1[Jani]
 
+v4: Modify the condition for hsub [Sai Teja]
+    Initialize hsub in else path [Dan]
+
+v5: Replace IS_LUNARLAKE with display version.
+    Resolve nitpicks[Jani]
+
+Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
 ---
- drivers/gpu/drm/i915/gt/selftest_rc6.c | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_atomic_plane.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_rc6.c b/drivers/gpu/drm/i915/gt/selftest_rc6.c
-index 1aa1446c8fb0..cf7d38d10dc2 100644
---- a/drivers/gpu/drm/i915/gt/selftest_rc6.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_rc6.c
-@@ -8,6 +8,7 @@
- #include "intel_gpu_commands.h"
- #include "intel_gt_requests.h"
- #include "intel_ring.h"
-+#include "intel_rps.h"
- #include "selftest_rc6.h"
- 
- #include "selftests/i915_random.h"
-@@ -38,6 +39,8 @@ int live_rc6_manual(void *arg)
- 	ktime_t dt;
- 	u64 res[2];
- 	int err = 0;
-+	u32 rc0_freq, rc6_freq;
-+	struct intel_rps *rps = &gt->rps;
- 
- 	/*
- 	 * Our claim is that we can "encourage" the GPU to enter rc6 at will.
-@@ -66,6 +69,7 @@ int live_rc6_manual(void *arg)
- 	rc0_power = librapl_energy_uJ() - rc0_power;
- 	dt = ktime_sub(ktime_get(), dt);
- 	res[1] = rc6_residency(rc6);
-+	rc0_freq = intel_rps_read_actual_frequency(rps);
- 	if ((res[1] - res[0]) >> 10) {
- 		pr_err("RC6 residency increased by %lldus while disabled for 1000ms!\n",
- 		       (res[1] - res[0]) >> 10);
-@@ -91,6 +95,7 @@ int live_rc6_manual(void *arg)
- 	dt = ktime_get();
- 	rc6_power = librapl_energy_uJ();
- 	msleep(100);
-+	rc6_freq = intel_rps_read_actual_frequency(rps);
- 	rc6_power = librapl_energy_uJ() - rc6_power;
- 	dt = ktime_sub(ktime_get(), dt);
- 	res[1] = rc6_residency(rc6);
-@@ -108,7 +113,8 @@ int live_rc6_manual(void *arg)
- 		pr_info("GPU consumed %llduW in RC0 and %llduW in RC6\n",
- 			rc0_power, rc6_power);
- 		if (2 * rc6_power > rc0_power) {
--			pr_err("GPU leaked energy while in RC6!\n");
-+			pr_err("GPU leaked energy while in RC6! GPU Freq: %u in RC6 and %u in RC0\n",
-+			       rc6_freq, rc0_freq);
- 			err = -EINVAL;
- 			goto out_unlock;
- 		}
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+index e979786aa5cf..e3401a4f7992 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
++++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+@@ -1029,6 +1029,14 @@ int intel_plane_check_src_coordinates(struct intel_plane_state *plane_state)
+ 		 * This allows NV12 and P0xx formats to have odd size and/or odd
+ 		 * source coordinates on DISPLAY_VER(i915) >= 20
+ 		 */
++		/*
++		 *  Wa_16023981245 for display version 20.
++		 *  Do not support odd x-panning for even xsize for NV12.
++		 */
++		if (DISPLAY_VER(i915) == 20 && fb->format->format == DRM_FORMAT_NV12 &&
++		    src_x % 2 != 0 && src_w % 2 == 0)
++			return -EINVAL;
++
+ 		hsub = 1;
+ 		vsub = 1;
+ 	} else {
 -- 
-2.34.1
+2.25.1
 
