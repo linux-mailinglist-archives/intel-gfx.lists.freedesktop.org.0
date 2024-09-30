@@ -2,61 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDC20989BD8
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Sep 2024 09:49:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D582989C1F
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Sep 2024 10:02:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E31B810E3BD;
-	Mon, 30 Sep 2024 07:48:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E782110E3C0;
+	Mon, 30 Sep 2024 08:02:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SFxsZCR1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E/uMA1VV";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ADF9610E3BB;
- Mon, 30 Sep 2024 07:48:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 26E6910E3C0;
+ Mon, 30 Sep 2024 08:02:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727682538; x=1759218538;
+ t=1727683346; x=1759219346;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=zvzbxn+mDopH60Mg8MZIR09IClL8g+7ALytdl8oKYhA=;
- b=SFxsZCR15Pd1BydibTuQVB48JNwGQjasDY5/luddq6+hq60Tfua+WkyU
- GhjetdiNeoU3j/oH1Oh+MsL/9XLEz/y7vJpEsFkZJZu7/MgQdb6Tuossm
- QMwnbyYUIB2ognLkBqzITphW7Q7UuSb9cd3yoPlvcej+zvbCs+4DLvZl/
- VFl2fWv+DcxbTLB2h+X1TMuFtoNVfkLY3W4k38yKF9xWqaebHZnrgrgTR
- juFIodYny8x4q6uz9Px2m+hnbFiGR1SXPc2mfpN9C0P21J/ODvnBRiygZ
- 0kIvEtzrcdj2UPtrxVV/7VueYOlm/xRX/VROTrplBjrLvCmrplCgEKWDa g==;
-X-CSE-ConnectionGUID: kBCYx99tT5GoNA11TIacwA==
-X-CSE-MsgGUID: UVT0C4rQSHOX3qnOmxUijA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11210"; a="52169362"
-X-IronPort-AV: E=Sophos;i="6.11,165,1725346800"; d="scan'208";a="52169362"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2024 00:48:57 -0700
-X-CSE-ConnectionGUID: O4A1Vo/LSOKMYlzFkVkL/g==
-X-CSE-MsgGUID: 7hVfw1pkS5e4+GPyCYIeGg==
+ bh=F+wvVLejjLbClhrDWaZbyontWZRu9R2jSyAC1divVsU=;
+ b=E/uMA1VVfwG5F9Rpxq211ZQNi/4sVJ2CuvtTv6k8G0vGAsoHombBuwxF
+ yagHgKM4PnrWCbVf8+IPbP3l44I2zsHtTD0VbkYBerOfwLatjYvTwZaa7
+ 1254LFNDfoqbQjv4FXbGlKSv4TMtZE3lUJwpHVwn/7dDISjobLQx3WRtg
+ Yjk7UDNboLvE/Lx6aLLdQT4CLzkKnodrF/vSTqxNHnqGL9mPxHMRIQv0y
+ QxRbcjGGRzQxLO5zArIuEYNZbfa6xsizDXJ+wc+5CP+fjfKLwd/oBRWZu
+ mrWzBkskBawluk6zDqbopeuuLT6QzHw21g5FLd0sziaKFue6TxMJ+48y4 Q==;
+X-CSE-ConnectionGUID: tz4i5RPxS0CER2QRbPt6ww==
+X-CSE-MsgGUID: zxNtdu1ASSGR5ZydfspVzQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11210"; a="37318150"
+X-IronPort-AV: E=Sophos;i="6.11,165,1725346800"; d="scan'208";a="37318150"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2024 01:01:31 -0700
+X-CSE-ConnectionGUID: B+wkQQ3WTxOdr5WC8DIb9g==
+X-CSE-MsgGUID: HY5Q1k5nTL2hPKQ4+bKXZw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,165,1725346800"; d="scan'208";a="78172226"
+X-IronPort-AV: E=Sophos;i="6.11,165,1725346800"; d="scan'208";a="73619565"
 Received: from mklonows-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.93])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2024 00:48:53 -0700
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2024 01:01:29 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
-Cc: linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org,
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915/backlight: Remove a useless kstrdup_const()
-In-Reply-To: <3b3d3af8739e3016f3f80df0aa85b3c06230a385.1727533674.git.christophe.jaillet@wanadoo.fr>
+To: Arun R Murthy <arun.r.murthy@intel.com>, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Cc: Arun R Murthy <arun.r.murthy@intel.com>
+Subject: Re: [PATCH] drm/i915/dp: Guarantee a minimum HBlank time
+In-Reply-To: <20240930055416.2112473-1-arun.r.murthy@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <3b3d3af8739e3016f3f80df0aa85b3c06230a385.1727533674.git.christophe.jaillet@wanadoo.fr>
-Date: Mon, 30 Sep 2024 10:48:40 +0300
-Message-ID: <875xqdy42v.fsf@intel.com>
+References: <20240930055416.2112473-1-arun.r.murthy@intel.com>
+Date: Mon, 30 Sep 2024 11:01:16 +0300
+Message-ID: <8734lhy3hv.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -74,103 +69,130 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, 28 Sep 2024, Christophe JAILLET <christophe.jaillet@wanadoo.fr> wrote:
-> "name" is allocated and freed in intel_backlight_device_register().
-> The initial allocation just duplicates "intel_backlight".
->
-> Later, if a device with this name has already been registered, another
-> dynamically generated one is allocated using kasprintf().
->
-> So at the end of the function, when "name" is freed, it can point either to
-> the initial static literal "intel_backlight" or to the kasprintf()'ed one.
->
-> So kfree_const() is used.
->
-> However, when built as a module, kstrdup_const() and kfree_const() don't
-> work as one would expect and are just plain kstrdup() and kfree().
->
->
-> Slightly change the logic and introduce a new variable to hold the
-> address returned by kasprintf() should it be used.
->
-> This saves a memory allocation/free and avoids these _const functions,
-> which names can be confusing when used with code built as module.
+On Mon, 30 Sep 2024, Arun R Murthy <arun.r.murthy@intel.com> wrote:
+> Mandate a minimum Hblank symbol cycle count between BS and BE in 8b/10b
+> MST and 12b/132b mode.
+> Spec: DP2.1a
 
-Okay, I'd rather revert your earlier commit 379b63e7e682
-("drm/i915/display: Save a few bytes of memory in
-intel_backlight_device_register()") than add this.
+Why send patches on top of a baseline that's 20 days old? Please rebase
+and build before sending. Always.
 
-The code simplicity is much more important than saving a few bytes.
-
-BR,
-Jani.
-
-
-
->
-> Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
 > ---
-> Compile tested only.
+>  drivers/gpu/drm/i915/display/intel_display.c       | 6 ++++++
+>  drivers/gpu/drm/i915/display/intel_display_types.h | 1 +
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c        | 9 +++++++++
+>  drivers/gpu/drm/i915/i915_reg.h                    | 3 +++
+>  4 files changed, 19 insertions(+)
 >
-> For the records, this patch is a clean-up effort related to discussions at:
->   - https://lore.kernel.org/all/ZvHurCYlCoi1ZTCX@skv.local/
->   - https://lore.kernel.org/all/20240924050937.697118-1-senozhatsky@chromium.org/
-> ---
->  drivers/gpu/drm/i915/display/intel_backlight.c | 17 +++++++----------
->  1 file changed, 7 insertions(+), 10 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
-> index 9e05745d797d..bf7686aa044f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_backlight.c
-> +++ b/drivers/gpu/drm/i915/display/intel_backlight.c
-> @@ -914,9 +914,9 @@ int intel_backlight_device_register(struct intel_connector *connector)
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 78ce402a5cd0..027ab45d4d38 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -2095,6 +2095,7 @@ void intel_modeset_put_crtc_power_domains(struct intel_crtc *crtc,
+>  static void i9xx_configure_cpu_transcoder(const struct intel_crtc_state *crtc_state)
 >  {
->  	struct drm_i915_private *i915 = to_i915(connector->base.dev);
->  	struct intel_panel *panel = &connector->panel;
-> +	const char *name, *new_name = NULL;
->  	struct backlight_properties props;
->  	struct backlight_device *bd;
-> -	const char *name;
->  	int ret = 0;
+>  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> +	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+
+struct intel_display.
+
+>  	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
 >  
->  	if (WARN_ON(panel->backlight.device))
-> @@ -949,10 +949,7 @@ int intel_backlight_device_register(struct intel_connector *connector)
->  	else
->  		props.power = BACKLIGHT_POWER_OFF;
->  
-> -	name = kstrdup_const("intel_backlight", GFP_KERNEL);
-> -	if (!name)
-> -		return -ENOMEM;
-> -
-> +	name = "intel_backlight";
->  	bd = backlight_device_get_by_name(name);
->  	if (bd) {
->  		put_device(&bd->dev);
-> @@ -963,11 +960,11 @@ int intel_backlight_device_register(struct intel_connector *connector)
->  		 * compatibility. Use unique names for subsequent backlight devices as a
->  		 * fallback when the default name already exists.
->  		 */
-> -		kfree_const(name);
-> -		name = kasprintf(GFP_KERNEL, "card%d-%s-backlight",
-> -				 i915->drm.primary->index, connector->base.name);
-> -		if (!name)
-> +		new_name = kasprintf(GFP_KERNEL, "card%d-%s-backlight",
-> +				     i915->drm.primary->index, connector->base.name);
-> +		if (!new_name)
->  			return -ENOMEM;
-> +		name = new_name;
+>  	if (intel_crtc_has_dp_encoder(crtc_state)) {
+> @@ -2102,6 +2103,11 @@ static void i9xx_configure_cpu_transcoder(const struct intel_crtc_state *crtc_st
+>  					       &crtc_state->dp_m_n);
+>  		intel_cpu_transcoder_set_m2_n2(crtc, cpu_transcoder,
+>  					       &crtc_state->dp_m2_n2);
+> +
+> +		if (DISPLAY_VER(i915) >= 20 && crtc_state->dp_m_n.min_hblank)
+> +			intel_de_write(i915,
+> +				       DP_MIN_HBLANK_CTL(i915, cpu_transcoder),
+> +				       crtc_state->dp_m_n.min_hblank);
+
+Doesn't feel right programming this here. Doesn't feel right having DP
+checks here.
+
+Where is this cleared?
+
+The state readout and verification is missing.
+
 >  	}
->  	bd = backlight_device_register(name, connector->base.kdev, connector,
->  				       &intel_backlight_device_ops, &props);
-> @@ -987,7 +984,7 @@ int intel_backlight_device_register(struct intel_connector *connector)
->  		    connector->base.base.id, connector->base.name, name);
 >  
->  out:
-> -	kfree_const(name);
-> +	kfree(new_name);
+>  	intel_set_transcoder_timings(crtc_state);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index fa03157554b2..8d18545a369f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1028,6 +1028,7 @@ struct intel_link_m_n {
+>  	u32 data_n;
+>  	u32 link_m;
+>  	u32 link_n;
+> +	u32 min_hblank;
+
+Doesn't feel right adding this here, not much to do with M/N.
+
+>  };
 >  
->  	return ret;
+>  struct intel_csc_matrix {
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> index 15541932b809..c8f045142881 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> @@ -130,6 +130,8 @@ static void intel_dp_mst_compute_m_n(const struct intel_crtc_state *crtc_state,
+>  {
+>  	const struct drm_display_mode *adjusted_mode =
+>  		&crtc_state->hw.adjusted_mode;
+> +	u8 symbol_size = intel_dp_is_uhbr(crtc_state) ? 32 : 8;
+
+Just use int.
+
+> +	u32 hblank;
+>  
+>  	/* TODO: Check WA 14013163432 to set data M/N for full BW utilization. */
+>  	intel_link_compute_m_n(bpp_x16, crtc_state->lane_count,
+> @@ -139,6 +141,13 @@ static void intel_dp_mst_compute_m_n(const struct intel_crtc_state *crtc_state,
+>  			       m_n);
+>  
+>  	m_n->tu = DIV_ROUND_UP_ULL(mul_u32_u32(m_n->data_m, 64), m_n->data_n);
+> +
+> +	/* Calculate min Hblank Link Layer Symbol Cycle Count for 8b/10b MST & 128b/132b */
+> +	hblank = DIV_ROUND_UP((DIV_ROUND_UP(adjusted_mode->htotal - adjusted_mode->hdisplay, 4) * bpp_x16), symbol_size);
+> +	if (intel_dp_is_uhbr(crtc_state))
+> +		m_n->min_hblank = hblank > 5 ? hblank : 5;
+> +	else
+> +		m_n->min_hblank = hblank > 3 ? hblank : 3;
 >  }
+>  
+>  static int intel_dp_mst_calc_pbn(int pixel_clock, int bpp_x16, int bw_overhead)
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index 41f4350a7c6c..65133efe728c 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -1109,6 +1109,7 @@
+>  #define _BCLRPAT_A		0x60020
+>  #define _TRANS_VSYNCSHIFT_A	0x60028
+>  #define _TRANS_MULT_A		0x6002c
+> +#define _DP_MIN_HBLANK_CTL_A	0x600ac
+>  
+>  /* Pipe/transcoder B timing regs */
+>  #define _TRANS_HTOTAL_B		0x61000
+> @@ -1121,6 +1122,7 @@
+>  #define _BCLRPAT_B		0x61020
+>  #define _TRANS_VSYNCSHIFT_B	0x61028
+>  #define _TRANS_MULT_B		0x6102c
+> +#define _DP_MIN_HBLANK_CTL_B	0x610ac
+>  
+>  /* DSI 0 timing regs */
+>  #define _TRANS_HTOTAL_DSI0	0x6b000
+> @@ -1146,6 +1148,7 @@
+>  #define TRANS_VSYNCSHIFT(dev_priv, trans)	_MMIO_TRANS2(dev_priv, (trans), _TRANS_VSYNCSHIFT_A)
+>  #define PIPESRC(dev_priv, pipe)		_MMIO_TRANS2(dev_priv, (pipe), _PIPEASRC)
+>  #define TRANS_MULT(dev_priv, trans)	_MMIO_TRANS2(dev_priv, (trans), _TRANS_MULT_A)
+> +#define DP_MIN_HBLANK_CTL(dev_priv, trans)	_MMIO_TRANS2(dev_priv, (trans), _DP_MIN_HBLANK_CTL_A)
+>  
+>  /* VGA port control */
+>  #define ADPA			_MMIO(0x61100)
 
 -- 
 Jani Nikula, Intel
