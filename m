@@ -2,65 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F10798A6EB
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Sep 2024 16:24:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2D5598A6EE
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Sep 2024 16:25:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E380610E4FB;
-	Mon, 30 Sep 2024 14:24:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 88F0010E3F6;
+	Mon, 30 Sep 2024 14:25:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kt3yD4HG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SLR6G5gY";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA86B10E3F6;
- Mon, 30 Sep 2024 14:24:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D905910E3F6
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Sep 2024 14:25:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727706244; x=1759242244;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=+AT0cDoqlMSbjyS9IijBKjMnEZchu8U/6VUciEy9GXw=;
- b=kt3yD4HGm0NHZYF5cHi5JOzgFgno6xZBaswLDZUwlnHBZnSw8gayT3qY
- TNpXj/fFLqQd+4ALj6zsnK8gcO6ysyY/mNI67joK8hsU1HuHOyCnCABtC
- ha4+318urbf4Pga2lqERRzr+BhF1NPVRoMBGux2+whQigRA+NDBEMc9gb
- CAaG24uQ4ukg5UP99pKTsUJdX0P5zvAoy9zfPCJbgHuZ3P3TGmpo5KYEo
- b/0jMEGTsNXZPKDFziAVEZpSjLEtMsZsiO2fu6i58rRsMU//zj+Kr4Nuh
- MbCTU6uSmQnG6X7VNGHEVcsUTW1k32R8C81sKRqpgS6uPuRAEjF3mNd02 w==;
-X-CSE-ConnectionGUID: M8+nlrCfQG2cIREiyw+emA==
-X-CSE-MsgGUID: gdOUMygRSTeKL8WTr6goyg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11211"; a="26975019"
-X-IronPort-AV: E=Sophos;i="6.11,165,1725346800"; d="scan'208";a="26975019"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2024 07:24:03 -0700
-X-CSE-ConnectionGUID: fIX7myOtTxmoTcYrOaTItQ==
-X-CSE-MsgGUID: c/llip9tQqOgPBrSxgoMRg==
+ t=1727706348; x=1759242348;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=xlx9ng+SGWhoyXszQASns3w/pnrrmuhkwoxSAq1/jrE=;
+ b=SLR6G5gYjP9ATPFL3ByLufsZzicvEZwIFc9pMq9gj/9fqLWA5G6rdh6C
+ RtqY90WcU1RY9XttFkODh9Vf6lZOeSwAi3m2/TPA15714iAa0GYM3qElJ
+ OtebYemXP4/vytYRCNFmLZVONHV4dD7N5YQ+wIX19TyQV8niChTVFpNod
+ OVBwNKVTwfosZdmq0n5t+f8h/nb1QJsWhebfYbaSwmOGfkRJfetjSb4QU
+ Fw1mhRAkurtw1Ouxxs6YSOcLab+6onicSCwhcTx2qx8tFRGgbY6fC2/fA
+ eGPYTLxDvX177RDKIswuwJ/urG45rzs5JLK21c8g5G0CIL0eDNg+JECjC A==;
+X-CSE-ConnectionGUID: Ujhbsmf4RfOPxmLKjHWjOA==
+X-CSE-MsgGUID: +lljKJ2NSnW5JAJTvq4aHg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11211"; a="38183632"
+X-IronPort-AV: E=Sophos;i="6.11,165,1725346800"; d="scan'208";a="38183632"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2024 07:25:48 -0700
+X-CSE-ConnectionGUID: 2TidyluLQQeGSnk+I7owhg==
+X-CSE-MsgGUID: rSUfcTFvS9qcWFmUh3XEVw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,165,1725346800"; d="scan'208";a="73290205"
-Received: from apaszkie-mobl2.apaszkie-mobl2 (HELO [10.245.244.244])
- ([10.245.244.244])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2024 07:24:01 -0700
-Message-ID: <11901d29-f211-46a9-96ee-cf52558e4eeb@intel.com>
-Date: Mon, 30 Sep 2024 15:23:58 +0100
+X-IronPort-AV: E=Sophos;i="6.11,165,1725346800"; d="scan'208";a="73590055"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2024 07:25:47 -0700
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Subject: [PATCH 1/2] drm/i915/dp: Track source OUI validity explicitly
+Date: Mon, 30 Sep 2024 17:26:11 +0300
+Message-ID: <20240930142612.214061-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.44.2
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/6] drm/i915/gem: fix bitwise and logical AND mixup
-To: Jani Nikula <jani.nikula@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Anshuman Gupta <anshuman.gupta@intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>,
- Nathan Chancellor <nathan@kernel.org>, stable@vger.kernel.org
-References: <cover.1726680898.git.jani.nikula@intel.com>
- <643cc0a4d12f47fd8403d42581e83b1e9c4543c7.1726680898.git.jani.nikula@intel.com>
- <ZvXGwFBbOa7-035L@intel.com> <87r095ze2i.fsf@intel.com>
- <87wmitw8kc.fsf@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <87wmitw8kc.fsf@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,75 +64,155 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 30/09/2024 14:54, Jani Nikula wrote:
-> On Fri, 27 Sep 2024, Jani Nikula <jani.nikula@intel.com> wrote:
->> On Thu, 26 Sep 2024, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
->>> On Wed, Sep 18, 2024 at 08:35:43PM +0300, Jani Nikula wrote:
->>>> CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND is an int, defaulting to 250. When
->>>> the wakeref is non-zero, it's either -1 or a dynamically allocated
->>>> pointer, depending on CONFIG_DRM_I915_DEBUG_RUNTIME_PM. It's likely that
->>>> the code works by coincidence with the bitwise AND, but with
->>>> CONFIG_DRM_I915_DEBUG_RUNTIME_PM=y, there's the off chance that the
->>>> condition evaluates to false, and intel_wakeref_auto() doesn't get
->>>> called. Switch to the intended logical AND.
->>>>
->>>> v2: Use != to avoid clang -Wconstant-logical-operand (Nathan)
->>>
->>> oh, this is ugly!
->>>
->>> Wouldn't it be better then to use IS_ENABLED() macro?
->>
->> It's an int config option, not a bool. (Yes, the name is misleading.)
->>
->> IS_ENABLED(CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND) would be the same as
->> CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND == 1.
->>
->> We're actually checking if the int value != 0, so IMO the patch at hand
->> is fine.
-> 
-> Ping, r-b on this one too?
+While updating the source OUI on the sink the driver should avoid
+writing the OUI if it's already up-to-date to prevent the sink from
+resetting itself in response to the update. On eDP - the only output
+type where the OUI was updated so far - the driver ensured this by
+comparing the current source OUI DPCD register values with the expected
+Intel OUI value, skipping the update in case of a match. On some non-eDP
+sinks - at least on Synaptics branch devices - this method doesn't work,
+since the source OUI DPCD registers read back as all 0, even after
+updating the registers.
 
-r-b still holds for v2, fwiw.
+Handle the above kind of sinks by tracking when the OUI was updated and
+so should be valid, regardless of what the DPCD registers contain.
 
-> 
-> BR,
-> Jani.
-> 
->>
->> BR,
->> Jani.
->>
->>
->>>
->>>>
->>>> Fixes: ad74457a6b5a ("drm/i915/dgfx: Release mmap on rpm suspend")
->>>> Cc: Matthew Auld <matthew.auld@intel.com>
->>>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->>>> Cc: Anshuman Gupta <anshuman.gupta@intel.com>
->>>> Cc: Andi Shyti <andi.shyti@linux.intel.com>
->>>> Cc: Nathan Chancellor <nathan@kernel.org>
->>>> Cc: <stable@vger.kernel.org> # v6.1+
->>>> Reviewed-by: Matthew Auld <matthew.auld@intel.com> # v1
->>>> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com> # v1
->>>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->>>> ---
->>>>   drivers/gpu/drm/i915/gem/i915_gem_ttm.c | 2 +-
->>>>   1 file changed, 1 insertion(+), 1 deletion(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
->>>> index 5c72462d1f57..b22e2019768f 100644
->>>> --- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
->>>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
->>>> @@ -1131,7 +1131,7 @@ static vm_fault_t vm_fault_ttm(struct vm_fault *vmf)
->>>>   		GEM_WARN_ON(!i915_ttm_cpu_maps_iomem(bo->resource));
->>>>   	}
->>>>   
->>>> -	if (wakeref & CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND)
->>>> +	if (wakeref && CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND != 0)
->>>>   		intel_wakeref_auto(&to_i915(obj->base.dev)->runtime_pm.userfault_wakeref,
->>>>   				   msecs_to_jiffies_timeout(CONFIG_DRM_I915_USERFAULT_AUTOSUSPEND));
->>>>   
->>>> -- 
->>>> 2.39.2
->>>>
-> 
+This is required by the next patch updating the source OUI on non-eDP
+sink types as well.
+
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+---
+ drivers/gpu/drm/i915/display/g4x_dp.c         |  1 +
+ drivers/gpu/drm/i915/display/intel_ddi.c      |  1 +
+ .../drm/i915/display/intel_display_types.h    |  1 +
+ drivers/gpu/drm/i915/display/intel_dp.c       | 25 ++++++++++++++-----
+ drivers/gpu/drm/i915/display/intel_dp.h       |  1 +
+ 5 files changed, 23 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915/display/g4x_dp.c
+index 440fb3002f286..596e926ef0894 100644
+--- a/drivers/gpu/drm/i915/display/g4x_dp.c
++++ b/drivers/gpu/drm/i915/display/g4x_dp.c
+@@ -1251,6 +1251,7 @@ static void intel_dp_encoder_reset(struct drm_encoder *encoder)
+ 	intel_dp->DP = intel_de_read(display, intel_dp->output_reg);
+ 
+ 	intel_dp->reset_link_params = true;
++	intel_dp_invalidate_source_oui(intel_dp);
+ 
+ 	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
+ 		vlv_pps_pipe_reset(intel_dp);
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index fe1ded6707f90..465f245a53c48 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -4392,6 +4392,7 @@ static void intel_ddi_encoder_reset(struct drm_encoder *encoder)
+ 	struct intel_digital_port *dig_port = enc_to_dig_port(to_intel_encoder(encoder));
+ 
+ 	intel_dp->reset_link_params = true;
++	intel_dp_invalidate_source_oui(intel_dp);
+ 
+ 	intel_pps_encoder_reset(intel_dp);
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 7ff97e5b83dd5..ad84ffa31c97f 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1757,6 +1757,7 @@ struct intel_dp {
+ 
+ 	/* When we last wrote the OUI for eDP */
+ 	unsigned long last_oui_write;
++	bool oui_valid;
+ 
+ 	bool colorimetry_support;
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 16dc1d26d2a25..ab6c917052b5c 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -3335,28 +3335,40 @@ void intel_dp_sink_disable_decompression(struct intel_atomic_state *state,
+ }
+ 
+ static void
+-intel_edp_init_source_oui(struct intel_dp *intel_dp, bool careful)
++intel_dp_init_source_oui(struct intel_dp *intel_dp)
+ {
+ 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+ 	u8 oui[] = { 0x00, 0xaa, 0x01 };
+ 	u8 buf[3] = {};
+ 
++	if (!intel_dp_is_edp(intel_dp))
++		return;
++
+ 	/*
+ 	 * During driver init, we want to be careful and avoid changing the source OUI if it's
+ 	 * already set to what we want, so as to avoid clearing any state by accident
+ 	 */
+-	if (careful) {
++	if (!intel_dp->oui_valid) {
+ 		if (drm_dp_dpcd_read(&intel_dp->aux, DP_SOURCE_OUI, buf, sizeof(buf)) < 0)
+ 			drm_err(&i915->drm, "Failed to read source OUI\n");
+ 
+ 		if (memcmp(oui, buf, sizeof(oui)) == 0)
+-			return;
++			intel_dp->oui_valid = true;
+ 	}
+ 
++	if (intel_dp->oui_valid)
++		return;
++
+ 	if (drm_dp_dpcd_write(&intel_dp->aux, DP_SOURCE_OUI, oui, sizeof(oui)) < 0)
+ 		drm_err(&i915->drm, "Failed to write source OUI\n");
+ 
+ 	intel_dp->last_oui_write = jiffies;
++	intel_dp->oui_valid = true;
++}
++
++void intel_dp_invalidate_source_oui(struct intel_dp *intel_dp)
++{
++	intel_dp->oui_valid = false;
+ }
+ 
+ void intel_dp_wait_source_oui(struct intel_dp *intel_dp)
+@@ -3387,6 +3399,8 @@ void intel_dp_set_power(struct intel_dp *intel_dp, u8 mode)
+ 		if (downstream_hpd_needs_d0(intel_dp))
+ 			return;
+ 
++		intel_dp_invalidate_source_oui(intel_dp);
++
+ 		ret = drm_dp_dpcd_writeb(&intel_dp->aux, DP_SET_POWER, mode);
+ 	} else {
+ 		struct intel_lspcon *lspcon = dp_to_lspcon(intel_dp);
+@@ -3394,8 +3408,7 @@ void intel_dp_set_power(struct intel_dp *intel_dp, u8 mode)
+ 		lspcon_resume(dp_to_dig_port(intel_dp));
+ 
+ 		/* Write the source OUI as early as possible */
+-		if (intel_dp_is_edp(intel_dp))
+-			intel_edp_init_source_oui(intel_dp, false);
++		intel_dp_init_source_oui(intel_dp);
+ 
+ 		/*
+ 		 * When turning on, we need to retry for 1ms to give the sink
+@@ -4112,7 +4125,7 @@ intel_edp_init_dpcd(struct intel_dp *intel_dp, struct intel_connector *connector
+ 	 * If needed, program our source OUI so we can make various Intel-specific AUX services
+ 	 * available (such as HDR backlight controls)
+ 	 */
+-	intel_edp_init_source_oui(intel_dp, true);
++	intel_dp_init_source_oui(intel_dp);
+ 
+ 	return true;
+ }
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
+index 3b869429e5756..0449d1d3f175d 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.h
++++ b/drivers/gpu/drm/i915/display/intel_dp.h
+@@ -189,6 +189,7 @@ void intel_dp_check_frl_training(struct intel_dp *intel_dp);
+ void intel_dp_pcon_dsc_configure(struct intel_dp *intel_dp,
+ 				 const struct intel_crtc_state *crtc_state);
+ 
++void intel_dp_invalidate_source_oui(struct intel_dp *intel_dp);
+ void intel_dp_wait_source_oui(struct intel_dp *intel_dp);
+ int intel_dp_output_bpp(enum intel_output_format output_format, int bpp);
+ 
+-- 
+2.44.2
+
