@@ -2,63 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F463989FB2
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Sep 2024 12:47:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 492FE989FF0
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Sep 2024 12:57:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ADDC610E0B1;
-	Mon, 30 Sep 2024 10:47:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D2DC5892F8;
+	Mon, 30 Sep 2024 10:57:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G5Q8l62u";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a0smBli4";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 36C6B10E0B1;
- Mon, 30 Sep 2024 10:47:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 63AAF892F8
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Sep 2024 10:57:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727693270; x=1759229270;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=EywysO1eN+llUtmGag2KSla9shOaZj59Tn/dzpG1SH8=;
- b=G5Q8l62uiVq5bjjh0bnbp/UQbRWM/XASmrHiemsg17tmWECGzEfvXBjv
- OstvSVDR43Sexaiiv6W2G8e88wc+qqh8+ymcBj5Of5Bo6v5mvTx/3+XvG
- 5He4QLWMUAhTM63cWB8YXQ3HDPC/VKXUT8LXNZj1bRSLb9GaqIWnCuhr8
- 8be4hYhCuCpGiBrenJ0p++US8ZPxcO4Y1QbcPD6Ud6BllmrMg6ab6dbij
- q2cIOjuhp8PKsWiw6dEHd2iAQj3qt+DNbS3DkNkrqZ3SSQPb23Z9Xc5Ic
- m0ZGFvirPUvEv5jb6oD+b2Lwjp5PxXkR2etvrVqYjBJpA3fbpblSBbKSl Q==;
-X-CSE-ConnectionGUID: B4V7Ep5gRtefkYHprBDihw==
-X-CSE-MsgGUID: hNeGcEQ8R/StXeAJRytodA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11210"; a="26949139"
-X-IronPort-AV: E=Sophos;i="6.11,165,1725346800"; d="scan'208";a="26949139"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2024 03:47:49 -0700
-X-CSE-ConnectionGUID: 9wn6+rnwTMuOvloAet/bMQ==
-X-CSE-MsgGUID: TiunbXGbROO8Vfn56ZNVPA==
+ t=1727693846; x=1759229846;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Be5EMjoHVZQwtUJe+/pxvv8ZPEa09XxYRTKXQ4STnbw=;
+ b=a0smBli4I3mffAHPh8cwTiEe+2WV78ERqyfuaiQ5Pu0kEjUWxG+O7EwB
+ 4a8D5+GCDC7SuI7FIydtr0piJ+4ubVplKz1V5Wveman4FgW3i767m3Aan
+ GslIlAVLPs4d33AltsPx+Ots1fLQnwqjvg4809OA/cfwi3wOLXmSg0hJK
+ iPZUVj9zd78GOOsW6Ol1AlAdRRksJp/j+HWntLlzCMPh8SNpymWdPZvZS
+ APYLyfhCg5iimhQEv0lysX0WPSXr1mbe8mvSRv8WorcEFPXFjTutnYP7X
+ wRYuBnzlSx5z6nYo88phJs7TYNzArFPrMN1zVGSstcU8sgI2j710JqAOr A==;
+X-CSE-ConnectionGUID: tAIVV+ohRfGCZbhFG1ABeQ==
+X-CSE-MsgGUID: wdyH+5mfQU6mK+jUhzgSBg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11210"; a="26284061"
+X-IronPort-AV: E=Sophos;i="6.11,165,1725346800"; d="scan'208";a="26284061"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2024 03:57:26 -0700
+X-CSE-ConnectionGUID: hfHW8PTpQb+TU51e4SLxLw==
+X-CSE-MsgGUID: y8YP37ohSeO3+c8js5EctA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,165,1725346800"; d="scan'208";a="73227626"
-Received: from morganmc-mobl.ger.corp.intel.com (HELO [10.213.199.177])
- ([10.213.199.177])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2024 03:47:48 -0700
-Message-ID: <918f0645-c079-49e0-b17a-96dec3a35793@linux.intel.com>
-Date: Mon, 30 Sep 2024 12:47:45 +0200
+X-IronPort-AV: E=Sophos;i="6.11,165,1725346800"; d="scan'208";a="74057105"
+Received: from anirban-z690i-a-ultra-plus.iind.intel.com ([10.145.169.150])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Sep 2024 03:57:24 -0700
+From: sk.anirban@intel.com
+To: intel-gfx@lists.freedesktop.org
+Cc: anshuman.gupta@intel.com, Sk Anirban <sk.anirban@intel.com>,
+ Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
+Subject: [PATCH v5] drm/i915/selftests: Implement frequency logging for energy
+ reading validation
+Date: Mon, 30 Sep 2024 16:22:45 +0530
+Message-Id: <20240930105245.1557736-1-sk.anirban@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] tests: drm_fdinfo: Fix zero tolerance checks
-To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- igt-dev@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org,
- Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Chris Wilson <chris.p.wilson@linux.intel.com>
-References: <20240916090329.5279-1-janusz.krzysztofik@linux.intel.com>
-Content-Language: en-US
-From: Peter Senna Tschudin <peter.senna@linux.intel.com>
-In-Reply-To: <20240916090329.5279-1-janusz.krzysztofik@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,147 +67,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+From: Sk Anirban <sk.anirban@intel.com>
 
+Introduce RC6 & RC0 frequency logging mechanism aimed at ensuring
+the accuracy of energy readings in case of GPU energy leak.
 
-On 16.09.2024 11:03, Janusz Krzysztofik wrote:
-> When we expect an engine to be busy, we check if its reported busy time
-> falls within a +/-5% tolerance range of measurement time period.
-> However, when we expect the engine to be idle, we compare its reported
-> busy time against zero, still with a +/-5% tolerance range, but now
-> calculated against the zero value, then no tolerance at all.  Obviously,
-> such check fails when the reported busy time is not exactly zero.
-> 
-> Compare engine idle time against measurement time period instead of
-> comparing its busy time against zero when we expect the busy time to be
-> close to zero.  As a debugging aid, display messages with the compared
-> values when requested via --debug option or when a failure occurs.
-> 
+v2:
+  - Improved commit message.
+v3:
+  - Used pr_err log to display frequency. (Anshuman)
+  - Sorted headers alphabetically. (Sai Teja)
+v4:
+  - Improved commit message.
+  - Fix pr_err log. (Sai Teja)
 
-Reviewed-by: Peter Senna Tschudin <peter.senna@linux.intel.com>
-> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7742
-> Suggested-by: Chris Wilson <chris.p.wilson@linux.intel.com>
-> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> ---
->  tests/intel/drm_fdinfo.c | 51 ++++++++++++++++++++--------------------
->  1 file changed, 25 insertions(+), 26 deletions(-)
-> 
-> diff --git a/tests/intel/drm_fdinfo.c b/tests/intel/drm_fdinfo.c
-> index 43216a64e..45d17aaaa 100644
-> --- a/tests/intel/drm_fdinfo.c
-> +++ b/tests/intel/drm_fdinfo.c
-> @@ -107,12 +107,18 @@ static const char *engine_map[] = {
->  };
->  
->  #define __assert_within_epsilon(x, ref, tol_up, tol_down) \
-> -	igt_assert_f((double)(x) <= (1.0 + (tol_up)) * (double)(ref) && \
-> -		     (double)(x) >= (1.0 - (tol_down)) * (double)(ref), \
-> -		     "'%s' != '%s' (%f not within +%.1f%%/-%.1f%% tolerance of %f)\n",\
-> -		     #x, #ref, (double)(x), \
-> -		     (tol_up) * 100.0, (tol_down) * 100.0, \
-> -		     (double)(ref))
-> +	do { \
-> +		igt_assert_f((double)(x) <= (1.0 + (tol_up)) * (double)(ref) && \
-> +			     (double)(x) >= (1.0 - (tol_down)) * (double)(ref), \
-> +			     "'%s' != '%s' (%f not within +%.1f%%/-%.1f%% tolerance of %f)\n",\
-> +			     #x, #ref, (double)(x), \
-> +			     (tol_up) * 100.0, (tol_down) * 100.0, \
-> +			     (double)(ref)); \
-> +		igt_debug("%f within +%.1f%%/-%.1f%% tolerance of %f\n",\
-> +			  (double)(x), \
-> +			  (tol_up) * 100.0, (tol_down) * 100.0, \
-> +			  (double)(ref)); \
-> +	} while (0)
->  
->  #define assert_within_epsilon(x, ref, tolerance) \
->  	__assert_within_epsilon(x, ref, tolerance, tolerance)
-> @@ -241,10 +247,8 @@ single(int gem_fd, const intel_ctx_t *ctx,
->  	else
->  		end_spin(spin_fd, spin, FLAG_SYNC);
->  
-> -	assert_within_epsilon(val,
-> -			      (flags & TEST_BUSY) && !(flags & TEST_ISOLATION) ?
-> -			      slept : 0.0f,
-> -			      tolerance);
-> +	assert_within_epsilon((flags & TEST_BUSY) && !(flags & TEST_ISOLATION) ? val : slept - val,
-> +			      slept, tolerance);
->  
->  	/* Check for idle after hang. */
->  	if (flags & FLAG_HANG) {
-> @@ -255,7 +259,7 @@ single(int gem_fd, const intel_ctx_t *ctx,
->  		slept = measured_usleep(batch_duration_ns / 1000);
->  		val = read_engine_time(gem_fd, e->class) - val;
->  
-> -		assert_within_epsilon(val, 0, tolerance);
-> +		assert_within_epsilon(slept - val, slept, tolerance);
->  	}
->  
->  	igt_spin_free(spin_fd, spin);
-> @@ -328,11 +332,8 @@ busy_check_all(int gem_fd, const intel_ctx_t *ctx,
->  
->  	log_busy(num_classes, val);
->  
-> -	for (i = 0; i < num_classes; i++) {
-> -		double target = i == e->class ? slept : 0.0f;
-> -
-> -		assert_within_epsilon(val[i], target, tolerance);
-> -	}
-> +	for (i = 0; i < num_classes; i++)
-> +		assert_within_epsilon(i == e->class ? val[i] : slept - val[i], slept, tolerance);
->  
->  	gem_quiescent_gpu(gem_fd);
->  }
-> @@ -405,9 +406,9 @@ most_busy_check_all(int gem_fd, const intel_ctx_t *ctx,
->  	log_busy(num_classes, val);
->  
->  	for (i = 0; i < num_classes; i++) {
-> -		double target = slept * busy_class[i];
-> +		double target = slept * busy_class[i] ?: slept;
->  
-> -		assert_within_epsilon(val[i], target, tolerance);
-> +		assert_within_epsilon(busy_class[i] ? val[i] : slept - val[i], target, tolerance);
->  	}
->  	gem_quiescent_gpu(gem_fd);
->  }
-> @@ -460,9 +461,9 @@ all_busy_check_all(int gem_fd, const intel_ctx_t *ctx,
->  	log_busy(num_classes, val);
->  
->  	for (i = 0; i < num_classes; i++) {
-> -		double target = slept * busy_class[i];
-> +		double target = slept * busy_class[i] ?: slept;
->  
-> -		assert_within_epsilon(val[i], target, tolerance);
-> +		assert_within_epsilon(busy_class[i] ? val[i] : slept - val[i], target, tolerance);
->  	}
->  	gem_quiescent_gpu(gem_fd);
->  }
-> @@ -601,10 +602,8 @@ virtual(int i915, const intel_ctx_cfg_t *base_cfg, unsigned int flags)
->  			else
->  				end_spin(i915, spin, FLAG_SYNC);
->  
-> -			assert_within_epsilon(val,
-> -					      flags & TEST_BUSY ?
-> -					      slept : 0.0f,
-> -					      tolerance);
-> +			assert_within_epsilon(flags & TEST_BUSY ? val : slept - val,
-> +					      slept, tolerance);
->  
->  			/* Check for idle after hang. */
->  			if (flags & FLAG_HANG) {
-> @@ -616,7 +615,7 @@ virtual(int i915, const intel_ctx_cfg_t *base_cfg, unsigned int flags)
->  							1000);
->  				val = read_engine_time(i915, class) - val;
->  
-> -				assert_within_epsilon(val, 0, tolerance);
-> +				assert_within_epsilon(slept - val, slept, tolerance);
->  			}
->  
->  			igt_spin_free(i915, spin);
-> @@ -724,7 +723,7 @@ virtual_all(int i915, const intel_ctx_cfg_t *base_cfg, unsigned int flags)
->  						1000);
->  			val = read_engine_time(i915, class) - val;
->  
-> -			assert_within_epsilon(val, 0, tolerance);
-> +			assert_within_epsilon(slept - val, slept, tolerance);
->  		}
->  
->  		igt_spin_free(i915, spin);
+Signed-off-by: Sk Anirban <sk.anirban@intel.com>
+Reviewed-by: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
+
+---
+ drivers/gpu/drm/i915/gt/selftest_rc6.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/selftest_rc6.c b/drivers/gpu/drm/i915/gt/selftest_rc6.c
+index 1aa1446c8fb0..cf7d38d10dc2 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_rc6.c
++++ b/drivers/gpu/drm/i915/gt/selftest_rc6.c
+@@ -8,6 +8,7 @@
+ #include "intel_gpu_commands.h"
+ #include "intel_gt_requests.h"
+ #include "intel_ring.h"
++#include "intel_rps.h"
+ #include "selftest_rc6.h"
+ 
+ #include "selftests/i915_random.h"
+@@ -38,6 +39,8 @@ int live_rc6_manual(void *arg)
+ 	ktime_t dt;
+ 	u64 res[2];
+ 	int err = 0;
++	u32 rc0_freq, rc6_freq;
++	struct intel_rps *rps = &gt->rps;
+ 
+ 	/*
+ 	 * Our claim is that we can "encourage" the GPU to enter rc6 at will.
+@@ -66,6 +69,7 @@ int live_rc6_manual(void *arg)
+ 	rc0_power = librapl_energy_uJ() - rc0_power;
+ 	dt = ktime_sub(ktime_get(), dt);
+ 	res[1] = rc6_residency(rc6);
++	rc0_freq = intel_rps_read_actual_frequency(rps);
+ 	if ((res[1] - res[0]) >> 10) {
+ 		pr_err("RC6 residency increased by %lldus while disabled for 1000ms!\n",
+ 		       (res[1] - res[0]) >> 10);
+@@ -91,6 +95,7 @@ int live_rc6_manual(void *arg)
+ 	dt = ktime_get();
+ 	rc6_power = librapl_energy_uJ();
+ 	msleep(100);
++	rc6_freq = intel_rps_read_actual_frequency(rps);
+ 	rc6_power = librapl_energy_uJ() - rc6_power;
+ 	dt = ktime_sub(ktime_get(), dt);
+ 	res[1] = rc6_residency(rc6);
+@@ -108,7 +113,8 @@ int live_rc6_manual(void *arg)
+ 		pr_info("GPU consumed %llduW in RC0 and %llduW in RC6\n",
+ 			rc0_power, rc6_power);
+ 		if (2 * rc6_power > rc0_power) {
+-			pr_err("GPU leaked energy while in RC6!\n");
++			pr_err("GPU leaked energy while in RC6! GPU Freq: %u in RC6 and %u in RC0\n",
++			       rc6_freq, rc0_freq);
+ 			err = -EINVAL;
+ 			goto out_unlock;
+ 		}
+-- 
+2.34.1
+
