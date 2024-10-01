@@ -2,66 +2,86 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C71C698B390
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Oct 2024 07:23:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5ECED98B445
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Oct 2024 08:26:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8746610E5D0;
-	Tue,  1 Oct 2024 05:23:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 057EE10E5D6;
+	Tue,  1 Oct 2024 06:26:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ez0fU4kF";
+	dkim=pass (2048-bit key; unprotected) header.d=oracle.com header.i=@oracle.com header.b="TLI22kcq";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A37A010E0C9;
- Tue,  1 Oct 2024 05:23:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727760209; x=1759296209;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=h+o36KzyQNytM2F5BZUn0/c6DP/8OiOTMixT5bmM0v4=;
- b=ez0fU4kFLM7PEnt79kRjJC8cj09YTZd9HnEUqUaJG/rCpPSfWRoTsys2
- Nin/tahHIq8PguLVatafKlKpoObnVQSVlMhTPiyijUYy4/O7lYuHkQuKM
- vxRhuRBx7B/xQMZwAwuduf6IAqiyWq5/zSL3W/Iyeax9ihyfkwVU/NQks
- GJezW0t3luAWV4TCfznbsJ2Dbn3ISnZVdd9O2Przyby/imT3qt5VpgxBn
- r/PYAJdgxPm4d9C+2KuR4VspsfAoj7FvIvSLCR1FZzzqkyFEavmikwmcN
- AY4pankDxeOCOTm5DGBgqmVCVF2QUbIzQl8WuCGNdv0rHfDmRZLzLVPI7 Q==;
-X-CSE-ConnectionGUID: uiTf6M5kTSap6kNFLVKwZQ==
-X-CSE-MsgGUID: TTyQivYFQjiAT5nkAof5+A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11211"; a="30667312"
-X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="30667312"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2024 22:23:28 -0700
-X-CSE-ConnectionGUID: 4WgSV8DbQ5y2x1R4o8wOZA==
-X-CSE-MsgGUID: EKfumJPpQiCe6hLIaj+NvA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="104314705"
-Received: from black.fi.intel.com ([10.237.72.28])
- by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Sep 2024 22:23:24 -0700
-Date: Tue, 1 Oct 2024 08:23:21 +0300
-From: Raag Jadav <raag.jadav@intel.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: airlied@gmail.com, simona@ffwll.ch, lucas.demarchi@intel.com,
- thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
- jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- tursulin@ursulin.net, lina@asahilina.net,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
- francois.dugast@intel.com, aravind.iddamsetty@linux.intel.com,
- anshuman.gupta@intel.com, andi.shyti@linux.intel.com,
- matthew.d.roper@intel.com
-Subject: Re: [PATCH v7 2/5] drm: Expose wedge recovery methods
-Message-ID: <ZvuHSapK96Uf6Nho@black.fi.intel.com>
-References: <20240930073845.347326-1-raag.jadav@intel.com>
- <20240930073845.347326-3-raag.jadav@intel.com>
- <ZvqhMt14GKju1B0X@smile.fi.intel.com>
+Received: from mx0a-00069f02.pphosted.com (mx0a-00069f02.pphosted.com
+ [205.220.165.32])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A7BA10E0C9;
+ Tue,  1 Oct 2024 06:26:13 +0000 (UTC)
+Received: from pps.filterd (m0333521.ppops.net [127.0.0.1])
+ by mx0b-00069f02.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4911te6b031730;
+ Tue, 1 Oct 2024 06:26:01 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=
+ from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding; s=corp-2023-11-20; bh=ynm5UubeZN8/05
+ jyHZV3Mzy9wSlSyMLNZm6kc6piD7s=; b=TLI22kcqJ2TwT43yzz/LCEqOT61md1
+ ghpl1u30R6CUd+0Jk24j5d/DhNxyXpxPzXz/uJvNAmQ1oq0OuzkIYT4OCIrWGKYH
+ V8eSUgfbhs2ZD1UO3gbDSVJkstStI3u+manIWCjOuZTyT9y+HmtpQ80qP7CI1+GN
+ xOVmOq5JBBLXCiTFrESxKUUsRzBifH5g57PAGOFlgZ1Ew55MKFR4iTKFk4BAdJzs
+ +uZyRusWP4LuFOF5mykYav+zIJgkGqbLQcG7QqIhZSnEZ4BvDRzeBcSz3bcje2Fy
+ +aCs9uBdgGSato8t8JcM4/eAIPoqJlhLElTBnwjV8R2zxL8vHOXh0Lmg==
+Received: from iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com
+ (iadpaimrmta01.appoci.oracle.com [130.35.100.223])
+ by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 41x8qb5e53-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Tue, 01 Oct 2024 06:26:01 +0000 (GMT)
+Received: from pps.filterd
+ (iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
+ by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (8.18.1.2/8.18.1.2)
+ with ESMTP id 49162Qlq012578; Tue, 1 Oct 2024 06:26:00 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+ by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTPS id
+ 41x886usvm-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Tue, 01 Oct 2024 06:26:00 +0000
+Received: from iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com
+ (iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
+ by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 4916Pxcd017923;
+ Tue, 1 Oct 2024 06:25:59 GMT
+Received: from ca-dev112.us.oracle.com (ca-dev112.us.oracle.com
+ [10.129.136.47])
+ by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTP id
+ 41x886usuf-1; Tue, 01 Oct 2024 06:25:59 +0000
+From: Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Jonathan Corbet <corbet@lwn.net>,
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: vegard.nossum@oracle.com,
+ Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>,
+ Stephen Rothwell <sfr@canb.auug.org.au>
+Subject: [PATCH] drm/i915: Rename functions in the docs to match code changes
+Date: Mon, 30 Sep 2024 23:25:54 -0700
+Message-ID: <20241001062555.1908090-1-harshit.m.mogalapalli@oracle.com>
+X-Mailer: git-send-email 2.46.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZvqhMt14GKju1B0X@smile.fi.intel.com>
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1051,Hydra:6.0.680,FMLib:17.12.62.30
+ definitions=2024-10-01_03,2024-09-30_01,2024-09-30_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=999
+ phishscore=0
+ malwarescore=0 mlxscore=0 spamscore=0 suspectscore=0 adultscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2408220000 definitions=main-2410010042
+X-Proofpoint-GUID: z_dP0EpF79RgKrDIG2aJ8fVG7AvxDQlH
+X-Proofpoint-ORIG-GUID: z_dP0EpF79RgKrDIG2aJ8fVG7AvxDQlH
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,26 +97,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 30, 2024 at 04:01:38PM +0300, Andy Shevchenko wrote:
-> On Mon, Sep 30, 2024 at 01:08:42PM +0530, Raag Jadav wrote:
-> > Now that we have device wedged event in place, add wedge_recovery sysfs
-> > attribute which will expose recovery methods supported by the DRM device.
-> > This is useful for userspace consumers in cases where the device supports
-> > multiple recovery methods which can be used as fallbacks.
-> > 
-> >   $ cat /sys/class/drm/card<N>/wedge_recovery
-> >   rebind
-> >   bus-reset
-> >   reboot
-> 
-> ...
-> 
-> > +static ssize_t wedge_recovery_show(struct device *device,
-> > +				   struct device_attribute *attr, char *buf)
-> 
-> Looking at the below line it seems you are fine with 100 limit, so, why two
-> lines above if they perfectly fit 100?
+make htmldocs is reporting:
 
-Just trying to avoid another bikeshed about conventions ;)
+drivers/gpu/drm/i915/i915_irq.c:1: warning: 'intel_runtime_pm_disable_interrupts' not found
+drivers/gpu/drm/i915/i915_irq.c:1: warning: 'intel_runtime_pm_enable_interrupts' not found
 
-Raag
+intel_runtime_pm_disable_interrupts() is renamed to intel_irq_suspend(),
+make documentation changes accordingly.
+
+Fixes: 3de5774cb8c0 ("drm/i915/irq: Rename suspend/resume functions")
+Reported-by: Stephen Rothwell <sfr@canb.auug.org.au>
+Closes: https://lore.kernel.org/all/20241001134331.7b4d4ca5@canb.auug.org.au/
+Signed-off-by: Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>
+---
+Noticed that Stephen also reported this so added a Closes URL.
+---
+ Documentation/gpu/i915.rst | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/gpu/i915.rst b/Documentation/gpu/i915.rst
+index ad59ae579237..7a469df675d8 100644
+--- a/Documentation/gpu/i915.rst
++++ b/Documentation/gpu/i915.rst
+@@ -35,10 +35,10 @@ Interrupt Handling
+    :functions: intel_irq_init intel_irq_init_hw intel_hpd_init
+ 
+ .. kernel-doc:: drivers/gpu/drm/i915/i915_irq.c
+-   :functions: intel_runtime_pm_disable_interrupts
++   :functions: intel_irq_suspend
+ 
+ .. kernel-doc:: drivers/gpu/drm/i915/i915_irq.c
+-   :functions: intel_runtime_pm_enable_interrupts
++   :functions: intel_irq_resume
+ 
+ Intel GVT-g Guest Support(vGPU)
+ -------------------------------
+-- 
+2.46.0
+
