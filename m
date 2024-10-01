@@ -2,61 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A69D98BBC1
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Oct 2024 14:02:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6382A98BBCB
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Oct 2024 14:08:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3DB010E183;
-	Tue,  1 Oct 2024 12:02:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B288110E154;
+	Tue,  1 Oct 2024 12:08:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FLILkEDN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TFWieGZG";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1773C10E154;
- Tue,  1 Oct 2024 12:02:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 19E6F10E154;
+ Tue,  1 Oct 2024 12:08:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727784149; x=1759320149;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=AoI1sQiTjWPVNmtPceslM3JGwi73Y0gaDb15s17KLcU=;
- b=FLILkEDNzHQ7Tz0iHUhCQUCA6MgkviDCTK1UEWLd3YAXfHyw2dzmLxJl
- 4aMjHVYd6uPUQVRhA5olqwNaC3N1Qq/Qu7XpKmq4/DRMcUOXhEdGpLEwL
- C44wpk5P+kFCwnG/GjRoe/n+e0QnDvdJzY2BzCYoFNjknw+qG/m0mJ+Hh
- sId18OvZqzvwSjsXuHE2YG3VyCdNdTC8bFKcFwKGTSyQK+olDtFxUmmQW
- n7AcKyU1jpC2wWcsM0Fg35lhaA1ZowEaRjIggmAfl6YTC3MagCrDlcsiP
- hdqUCzFc2CN3dsOOtshc+0GKOzNLnokdVdtj9+2VJh9dOoMFE6y9GpNss g==;
-X-CSE-ConnectionGUID: 3VUKvjoHS8ehppCeegLZng==
-X-CSE-MsgGUID: RgwhZ2FvRjGj3lFgVZPyvA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11212"; a="37589966"
-X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="37589966"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2024 05:02:28 -0700
-X-CSE-ConnectionGUID: ERScgVU4Rqukp+Dk7Xt7Wg==
-X-CSE-MsgGUID: 2LCCtC/LTTCuyLACzkUgKQ==
+ t=1727784488; x=1759320488;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=D3kQ/KMUiTV+0NS0HrW5LfZMjysK4yjbjcsTbLYtz2I=;
+ b=TFWieGZGIEX+RrdJb8EFOCf0si4Z30jLB7vnHP1ysbK8mlHUrIY7fQF/
+ usLTM80qYJwIaqe8h2BmTnPsx8lD7kGFQV9/73FWhsmmTowmoALgfOeIx
+ wuroqHDPnKzxBywVup91NPnvwEXvs63TS95wIgNfbwDUyCC+bbObn4yMt
+ nj6rwP8KB9K9t47qsbQhYT7Rm56IXuIZvyr+mC8mVGi8Lm2O5dArbmKxJ
+ TTDH6cMjVxsAlJQCD6N+zRQb9L43fPRkkAqf4XoUMc5paw8WW5XPg7rNp
+ pS3iUQEiWNpwuV1/WjhJOYopkoeEv91H436wDw87eZpurrJv0aQvwMbfl A==;
+X-CSE-ConnectionGUID: YlvGvKxXSjC3BW33cfjHxA==
+X-CSE-MsgGUID: iDFCLqwsSpymug487w8pyA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11212"; a="27043886"
+X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="27043886"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2024 05:08:07 -0700
+X-CSE-ConnectionGUID: 3FVtLNBLQjemfTG/uVzCMg==
+X-CSE-MsgGUID: 0w+cR4XPQWSA2z0KVfyj9Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="73302136"
-Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.188])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2024 05:02:27 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, suraj.kandpal@intel.com,
- ville.syrjala@linux.intel.com
-Subject: Re: [PATCH 03/13] drm/i915/display: Add macro HAS_ULTRAJOINER()
-In-Reply-To: <20240930163549.416410-4-ankit.k.nautiyal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20240930163549.416410-1-ankit.k.nautiyal@intel.com>
- <20240930163549.416410-4-ankit.k.nautiyal@intel.com>
-Date: Tue, 01 Oct 2024 15:02:12 +0300
-Message-ID: <87ldz8uj3v.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="74058422"
+Received: from smile.fi.intel.com ([10.237.72.54])
+ by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2024 05:08:03 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+ (envelope-from <andriy.shevchenko@linux.intel.com>)
+ id 1svbfb-0000000FAPw-2e3D; Tue, 01 Oct 2024 15:07:59 +0300
+Date: Tue, 1 Oct 2024 15:07:59 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Raag Jadav <raag.jadav@intel.com>
+Cc: airlied@gmail.com, simona@ffwll.ch, lucas.demarchi@intel.com,
+ thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
+ jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ tursulin@ursulin.net, lina@asahilina.net,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
+ francois.dugast@intel.com, aravind.iddamsetty@linux.intel.com,
+ anshuman.gupta@intel.com, andi.shyti@linux.intel.com,
+ matthew.d.roper@intel.com
+Subject: Re: [PATCH v7 1/5] drm: Introduce device wedged event
+Message-ID: <ZvvmH0n_y_vVSpvR@smile.fi.intel.com>
+References: <20240930073845.347326-1-raag.jadav@intel.com>
+ <20240930073845.347326-2-raag.jadav@intel.com>
+ <Zvqgz3Vpz2IS1Cua@smile.fi.intel.com>
+ <ZvuDwvtyJ4djuIQ7@black.fi.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZvuDwvtyJ4djuIQ7@black.fi.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,41 +82,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 30 Sep 2024, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
-> Add macro to check if platform supports Ultrajoiner.
->
-> v2:
-> -Use check for DISPLAY_VER >=3D 20, and add bmg as a special case. (Ville)
-> -Add check for HAS_DSC. (Ville)
->
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display_device.h | 3 +++
->  1 file changed, 3 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/driver=
-s/gpu/drm/i915/display/intel_display_device.h
-> index 6a5bee59e6aa..220cca6333ee 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_device.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-> @@ -154,6 +154,9 @@ enum intel_display_subplatform {
->  #define HAS_TRANSCODER(i915, trans)	((DISPLAY_RUNTIME_INFO(i915)->cpu_tr=
-anscoder_mask & \
->  					  BIT(trans)) !=3D 0)
->  #define HAS_UNCOMPRESSED_JOINER(i915)	(DISPLAY_VER(i915) >=3D 13)
-> +#define HAS_ULTRAJOINER(i915)		((DISPLAY_VER(i915) >=3D 20 || \
-> +					  (IS_DGFX(i915) && DISPLAY_VER(i915) =3D=3D 14)) && \
+On Tue, Oct 01, 2024 at 08:08:18AM +0300, Raag Jadav wrote:
+> On Mon, Sep 30, 2024 at 03:59:59PM +0300, Andy Shevchenko wrote:
+> > On Mon, Sep 30, 2024 at 01:08:41PM +0530, Raag Jadav wrote:
 
-Do we need to depend on IS_DGFX() here?
+...
 
-BR,
-Jani.
+> > > +static const char *const drm_wedge_recovery_opts[] = {
+> > > +	[DRM_WEDGE_RECOVERY_REBIND] = "rebind",
+> > > +	[DRM_WEDGE_RECOVERY_BUS_RESET] = "bus-reset",
+> > > +	[DRM_WEDGE_RECOVERY_REBOOT] = "reboot",
+> > > +};
+> > 
+> > Place for static_assert() is here, as it closer to the actual data we test...
+> 
+> Shouldn't it be at the point of access?
 
-> +					 HAS_DSC(i915))
->  #define HAS_VRR(i915)			(DISPLAY_VER(i915) >=3D 11)
->  #define HAS_AS_SDP(i915)		(DISPLAY_VER(i915) >=3D 13)
->  #define HAS_CMRR(i915)			(DISPLAY_VER(i915) >=3D 20)
+No, the idea of static_assert() is in word 'static', meaning it's allowed to be
+used in the global space.
 
---=20
-Jani Nikula, Intel
+> If no, why do we care about the data when it's not being used?
+
+What does this suppose to mean? The assertion is for enforcing the boundaries
+that are defined by different means (constant of the size and real size of
+an array).
+
+...
+
+> > > +static bool drm_wedge_recovery_is_valid(enum drm_wedge_recovery method)
+> > > +{
+> > > +	static_assert(ARRAY_SIZE(drm_wedge_recovery_opts) == DRM_WEDGE_RECOVERY_MAX);
+> > 
+> > ...it doesn't fully belong to this function (or only to this function).
+> 
+> The purpose of having a helper is to have a single point of access, no?
+
+What single access you are talking about? It seems you are trying to solve
+non-existing issue. There is a function that is being used exactly once
+and it's a one-liner. There is no point to have it being separated (at least
+right now).
+
+> Side note: It also goes well with is_valid() semantic IMHO.
+
+It doesn't matter at all, it's unrelated to the point.
+
+> > > +	return method >= DRM_WEDGE_RECOVERY_REBIND && method < DRM_WEDGE_RECOVERY_MAX;
+> > > +}
+> > 
+> > Why do we need this one-liner (after above comment being addressed) as a
+> > separate function?
+> 
+> I'm not sure if I'm following you. Method is not a constant here, we'll get it
+> on the stack.
+
+I elaborated above.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
