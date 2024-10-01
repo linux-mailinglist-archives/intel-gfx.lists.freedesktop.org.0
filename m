@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0117498BE3E
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Oct 2024 15:45:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EDE198BE3F
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Oct 2024 15:45:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9308C10E621;
-	Tue,  1 Oct 2024 13:45:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC51F10E620;
+	Tue,  1 Oct 2024 13:45:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WLX+J5qW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n4bi0ccz";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B325C10E620
- for <intel-gfx@lists.freedesktop.org>; Tue,  1 Oct 2024 13:45:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE7EC10E620
+ for <intel-gfx@lists.freedesktop.org>; Tue,  1 Oct 2024 13:45:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727790339; x=1759326339;
+ t=1727790341; x=1759326341;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=+KLO7BEopGl4Uhy6Bl8u4ZdqVb48IYjnLRdRf0nRDpw=;
- b=WLX+J5qW4jk8lohAUiXg3ckgUGLwbGtVLO03VmHY+gJ9iUln1CK5Gu9M
- 2LelettbqviLx/fs8fBhWcIUh2cBFat2pICxYVOhQDO5PglgcIkKEFnl5
- YEC0Ohoae+zwcJkdGMsToEtGhk3WBB0e9qK7I7BI35xXPP9WbzG90aCMi
- 1if4rVIJIjWgjzQdYxcWxfiAXgpSBH2sktH94Wv25raiX8KJFa9yOHJ5x
- wou0g1rgAEDGjbsInuPOAiAsMcZNlGB3y4FE+wwpMZOoW+mQ12z26b3MR
- lEOwKiWLvh3FA5tngSUf3wxqqTuRCSm5FZQv7lLQW9kisJ4APrQchORE8 A==;
-X-CSE-ConnectionGUID: 4/IcnEzvQzubPAZhrSm4uQ==
-X-CSE-MsgGUID: KZlzfU2oRC29/dpIPE25ew==
-X-IronPort-AV: E=McAfee;i="6700,10204,11212"; a="30810252"
-X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="30810252"
+ bh=34Ss9jujUsELI0/A47Q0927w8bSIONFITPywclTd0Zw=;
+ b=n4bi0ccz5ym8xXacwm5gf/2yAQuFh/Y33JmwifQXQn54MJ4gpT9nBPgL
+ Dow2Y81mDEwlsYkAHPUKvkULhflbfn46gny63UxOQt/9BbS429MVxrdoA
+ BoX7LPBjI6fZRlbr2fmDyspt7bP3Mr5z5E5cChv/7GQ4a8c0QMFj1DoPk
+ HMH5thj9S15SaOYNVyCWfm32rYqucsSsuLOA6R4cdAlsodXtfYl1Z7+pr
+ cod0XKVTiYQACoXzvGDrZQgUaXVKPHVUwHM5Fc/XgsLwV4aZnxNaoM5Le
+ JHKAT7trBU7RAUBdizg/BeYf2sY+L2XIYS178rbbjAxoewu8pXFapTDgO Q==;
+X-CSE-ConnectionGUID: wIPn5AutRyy9E3n9fseCwA==
+X-CSE-MsgGUID: ubjaCaWuTCyVFKTn1rEA9A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11212"; a="30810256"
+X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="30810256"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2024 06:45:38 -0700
-X-CSE-ConnectionGUID: RCSuofYlQQWqyC7EpCO5ng==
-X-CSE-MsgGUID: mu1UEeBdTjG6SO1RMHc2yQ==
+ 01 Oct 2024 06:45:40 -0700
+X-CSE-ConnectionGUID: HU+t/SCHRLCuTTg73nYO/A==
+X-CSE-MsgGUID: vV+bcs+KT6q2NUaUkXjq7Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="73336394"
+X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="73336408"
 Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by fmviesa007.fm.intel.com with ESMTP; 01 Oct 2024 06:45:36 -0700
+ by fmviesa007.fm.intel.com with ESMTP; 01 Oct 2024 06:45:38 -0700
 From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: jani.nikula@intel.com, ville.syrjala@intel.com, ankit.k.nautiyal@intel.com,
  uma.shankar@intel.com
-Subject: [PATCH v13 2/3] drm/i915/vrr: Split vrr-compute-config in two phases
-Date: Tue,  1 Oct 2024 19:17:02 +0530
-Message-ID: <20241001134703.1128487-3-mitulkumar.ajitkumar.golani@intel.com>
+Subject: [PATCH v13 3/3] drm/i915/panelreplay: Panel replay workaround with VRR
+Date: Tue,  1 Oct 2024 19:17:03 +0530
+Message-ID: <20241001134703.1128487-4-mitulkumar.ajitkumar.golani@intel.com>
 X-Mailer: git-send-email 2.46.0
 In-Reply-To: <20241001134703.1128487-1-mitulkumar.ajitkumar.golani@intel.com>
 References: <20241001134703.1128487-1-mitulkumar.ajitkumar.golani@intel.com>
@@ -69,74 +69,93 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Animesh Manna <animesh.manna@intel.com>
 
-As vrr guardband calculation is dependent on modified
-vblank start so better to compute late after all
-vblank adjustement.
+Panel Replay VSC SDP not getting sent when VRR is enabled
+and W1 and W2 are 0. So Program Set Context Latency in
+TRANS_SET_CONTEXT_LATENCY register to at least a value of 1.
+The same is applicable for PSR1/PSR2 as well.
+
+HSD: 14015406119
 
 v1: Initial version.
-v2: Split in a separate patch from panel-replay workaround. [Ankit]
-v3: Add a function for late vrr related computation. [Ville]
-v4: Use flipline instead of vrr.enable and some cosmetic changes. [Ville]
-v5: Use intel_vrr_possible helper.
+v2: Update timings stored in adjusted_mode struct. [Ville]
+v3: Add WA in compute_config(). [Ville]
+v4:
+- Add DISPLAY_VER() check and improve code comment. [Rodrigo]
+- Introduce centralized intel_crtc_vblank_delay(). [Ville]
+v5: Move to crtc_compute_config(). [Ville]
+v6: Restrict DISPLAY_VER till 14. [Mitul]
+v7:
+- Corrected code-comment. [Mitul]
+- dev_priv local variable removed. [Jani]
+v8: Introduce late_compute_config() which will take care late
+vblank-delay adjustment. [Ville]
+v9: Implementation simplified and split into multiple patches.
+v10:
+- Split vrr changes and use struct intel_display in DISPLAY_VER(). [Ankit]
+- Use for_each_new_intel_connector_in_state(). [Jani]
+v11: Remove loop and use flipline instead of vrr.enable flag. [Ville]
+v12:
+- Use intel_Vrr_possible helper.
+- Correct flag check for flipline.
 
 Signed-off-by: Animesh Manna <animesh.manna@intel.com>
 Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c |  2 ++
- drivers/gpu/drm/i915/display/intel_vrr.c     | 13 +++++++++----
- drivers/gpu/drm/i915/display/intel_vrr.h     |  1 +
- 3 files changed, 12 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 21 ++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_display.h |  1 +
+ 2 files changed, 22 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index f7667931f9d9..c59d7bffbf57 100644
+index c59d7bffbf57..a8f846b654e9 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -4836,6 +4836,8 @@ intel_modeset_pipe_config_late(struct intel_atomic_state *state,
- 	struct drm_connector *connector;
- 	int i;
+@@ -2573,6 +2573,8 @@ static int intel_crtc_compute_config(struct intel_atomic_state *state,
+ 		intel_atomic_get_new_crtc_state(state, crtc);
+ 	int ret;
  
-+	intel_vrr_compute_config_late(crtc_state);
++	intel_crtc_adjust_vblank_delay(crtc_state);
 +
- 	for_each_new_connector_in_state(&state->base, connector,
- 					conn_state, i) {
- 		struct intel_encoder *encoder =
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index 79db30e31324..734db543b90c 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -244,11 +244,16 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
- 			(crtc_state->hw.adjusted_mode.crtc_vtotal -
- 			 crtc_state->hw.adjusted_mode.vsync_end);
- 	}
-+}
-+
-+void intel_vrr_compute_config_late(struct intel_crtc_state *crtc_state)
+ 	ret = intel_dpll_crtc_compute_clock(state, crtc);
+ 	if (ret)
+ 		return ret;
+@@ -3985,6 +3987,25 @@ bool intel_crtc_get_pipe_config(struct intel_crtc_state *crtc_state)
+ 	return true;
+ }
+ 
++void intel_crtc_adjust_vblank_delay(struct intel_crtc_state *crtc_state)
 +{
 +	struct intel_display *display = to_intel_display(crtc_state);
 +	struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
 +
-+	if (!intel_vrr_possible(crtc_state))
-+		return;
- 
--	/*
--	 * For XE_LPD+, we use guardband and pipeline override
--	 * is deprecated.
--	 */
- 	if (DISPLAY_VER(display) >= 13) {
- 		crtc_state->vrr.guardband =
- 			crtc_state->vrr.vmin + 1 - adjusted_mode->crtc_vblank_start;
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.h b/drivers/gpu/drm/i915/display/intel_vrr.h
-index af921dda4619..b3b45c675020 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.h
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.h
-@@ -19,6 +19,7 @@ bool intel_vrr_possible(const struct intel_crtc_state *crtc_state);
- void intel_vrr_check_modeset(struct intel_atomic_state *state);
- void intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
- 			      struct drm_connector_state *conn_state);
-+void intel_vrr_compute_config_late(struct intel_crtc_state *crtc_state);
- void intel_vrr_set_transcoder_timings(const struct intel_crtc_state *crtc_state);
- void intel_vrr_enable(const struct intel_crtc_state *crtc_state);
- void intel_vrr_send_push(const struct intel_crtc_state *crtc_state);
++	/*
++	 * wa_14015401596 for display versions 13, 14.
++	 * Program Set Context Latency in TRANS_SET_CONTEXT_LATENCY register
++	 * to at least a value of 1 when PSR1/PSR2/Panel Replay is enabled with VRR.
++	 * Value for TRANS_SET_CONTEXT_LATENCY is calculated by substracting
++	 * crtc_vdisplay from crtc_vblank_start, so incrementing crtc_vblank_start
++	 * by 1 if both are equal.
++	 */
++	if (intel_vrr_possible(crtc_state) && crtc_state->has_psr &&
++	    adjusted_mode->crtc_vblank_start == adjusted_mode->crtc_vdisplay &&
++	    IS_DISPLAY_VER(display, 13, 14))
++		adjusted_mode->crtc_vblank_start += 1;
++}
++
+ int intel_dotclock_calculate(int link_freq,
+ 			     const struct intel_link_m_n *m_n)
+ {
+diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+index 1f0fed5ea7bc..e6bd03ef104d 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.h
++++ b/drivers/gpu/drm/i915/display/intel_display.h
+@@ -446,6 +446,7 @@ u8 _intel_modeset_primary_pipes(const struct intel_crtc_state *crtc_state);
+ u8 _intel_modeset_secondary_pipes(const struct intel_crtc_state *crtc_state);
+ struct intel_crtc *intel_primary_crtc(const struct intel_crtc_state *crtc_state);
+ bool intel_crtc_get_pipe_config(struct intel_crtc_state *crtc_state);
++void intel_crtc_adjust_vblank_delay(struct intel_crtc_state *crtc_state);
+ bool intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+ 			       const struct intel_crtc_state *pipe_config,
+ 			       bool fastset);
 -- 
 2.46.0
 
