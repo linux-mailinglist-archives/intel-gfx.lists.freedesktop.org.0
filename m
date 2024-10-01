@@ -2,56 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EDE198BE3F
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Oct 2024 15:45:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7260998BE61
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Oct 2024 15:50:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC51F10E620;
-	Tue,  1 Oct 2024 13:45:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 169AB10E627;
+	Tue,  1 Oct 2024 13:50:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n4bi0ccz";
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="YKqD4Ys/";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE7EC10E620
- for <intel-gfx@lists.freedesktop.org>; Tue,  1 Oct 2024 13:45:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727790341; x=1759326341;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=34Ss9jujUsELI0/A47Q0927w8bSIONFITPywclTd0Zw=;
- b=n4bi0ccz5ym8xXacwm5gf/2yAQuFh/Y33JmwifQXQn54MJ4gpT9nBPgL
- Dow2Y81mDEwlsYkAHPUKvkULhflbfn46gny63UxOQt/9BbS429MVxrdoA
- BoX7LPBjI6fZRlbr2fmDyspt7bP3Mr5z5E5cChv/7GQ4a8c0QMFj1DoPk
- HMH5thj9S15SaOYNVyCWfm32rYqucsSsuLOA6R4cdAlsodXtfYl1Z7+pr
- cod0XKVTiYQACoXzvGDrZQgUaXVKPHVUwHM5Fc/XgsLwV4aZnxNaoM5Le
- JHKAT7trBU7RAUBdizg/BeYf2sY+L2XIYS178rbbjAxoewu8pXFapTDgO Q==;
-X-CSE-ConnectionGUID: wIPn5AutRyy9E3n9fseCwA==
-X-CSE-MsgGUID: ubjaCaWuTCyVFKTn1rEA9A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11212"; a="30810256"
-X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="30810256"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2024 06:45:40 -0700
-X-CSE-ConnectionGUID: HU+t/SCHRLCuTTg73nYO/A==
-X-CSE-MsgGUID: vV+bcs+KT6q2NUaUkXjq7Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="73336408"
-Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by fmviesa007.fm.intel.com with ESMTP; 01 Oct 2024 06:45:38 -0700
-From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@intel.com, ville.syrjala@intel.com, ankit.k.nautiyal@intel.com,
- uma.shankar@intel.com
-Subject: [PATCH v13 3/3] drm/i915/panelreplay: Panel replay workaround with VRR
-Date: Tue,  1 Oct 2024 19:17:03 +0530
-Message-ID: <20241001134703.1128487-4-mitulkumar.ajitkumar.golani@intel.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20241001134703.1128487-1-mitulkumar.ajitkumar.golani@intel.com>
-References: <20241001134703.1128487-1-mitulkumar.ajitkumar.golani@intel.com>
+Received: from bali.collaboradmins.com (bali.collaboradmins.com
+ [148.251.105.195])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC32E10E624;
+ Tue,  1 Oct 2024 13:50:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1727790644;
+ bh=Wrdy0e1dz6T5uwCE6i2Zj6+AsBKQNypB0lnUzsj5xCI=;
+ h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+ b=YKqD4Ys/oGurqoWIOyx7Wn0hRTWDfyPPhsxJBv4liLaL79RWNITs6yYigoa9t0bYR
+ apYOKXRQwcu6+xBYSMhtRzZYX8riNbY3jwGgx54B/mqtnC6ECCMjvF74G/KjKZbgVO
+ RJzRdFANc0GPw4iUWTjgPb0VclImiN7kwj4rnOBg0+pqJjlWEITVsXj59SE2r7LUoj
+ 5BPDH1RBCLKq/QZ/2cqqNz0kemyYFg31AZl1ypfI77sHEXKV+OTQMPdPXhzsDquLmV
+ MCPct2nkHj5eYZYOGgoLbN+JW1S3vLWHHoQv7M/X9CrsLunLU6HnxNWpHM5ZiXsYda
+ Riy6fn3Jf9ZCg==
+Received: from [192.168.50.250] (unknown [171.76.80.165])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested) (Authenticated sender: vignesh)
+ by bali.collaboradmins.com (Postfix) with ESMTPSA id 6F28B17E0FC0;
+ Tue,  1 Oct 2024 15:50:39 +0200 (CEST)
+Message-ID: <87fea8ea-fe9d-4114-b03c-7ec50a4be874@collabora.com>
+Date: Tue, 1 Oct 2024 19:20:35 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4] docs/gpu: ci: update flake tests requirements
+From: Vignesh Raman <vignesh.raman@collabora.com>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ amd-gfx@lists.freedesktop.org
+Cc: daniels@collabora.com, helen.koike@collabora.com, airlied@gmail.com,
+ daniel@ffwll.ch, robdclark@gmail.com, guilherme.gallo@collabora.com,
+ sergi.blanch.torne@collabora.com, deborah.brouwer@collabora.com,
+ dmitry.baryshkov@linaro.org, mripard@kernel.org, rodrigo.vivi@intel.com,
+ quic_abhinavk@quicinc.com, linux-mediatek@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-arm-msm@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ virtualization@lists.linux.dev, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org
+References: <20240930095255.2071586-1-vignesh.raman@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20240930095255.2071586-1-vignesh.raman@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,95 +69,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Animesh Manna <animesh.manna@intel.com>
+Hi amdgpu Maintainers,
 
-Panel Replay VSC SDP not getting sent when VRR is enabled
-and W1 and W2 are 0. So Program Set Context Latency in
-TRANS_SET_CONTEXT_LATENCY register to at least a value of 1.
-The same is applicable for PSR1/PSR2 as well.
+On 30/09/24 15:22, Vignesh Raman wrote:
+> Update the documentation to specify linking to a relevant GitLab
+> issue or email report for each new flake entry. Added specific
+> GitLab issue urls for amdgpu, i915, msm and xe driver.
+> 
+> Acked-by: Maxime Ripard <mripard@kernel.org>
+> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com> #intel and xe
+> Acked-by: Abhinav Kumar <quic_abhinavk@quicinc.com> # msm
+> Acked-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org> # msm
+> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
+> ---
+> 
+> v2:
+> - Add gitlab issue link for msm driver.
+> 
+> v3:
+> - Update docs to specify we use email reporting or GitLab issues for flake entries.
+> 
+> v4:
+> - Add gitlab issue link for xe driver.
+> 
+> ---
+>   Documentation/gpu/automated_testing.rst | 14 ++++++++++----
+>   1 file changed, 10 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/gpu/automated_testing.rst b/Documentation/gpu/automated_testing.rst
+> index 2d5a28866afe..6d7c6086034d 100644
+> --- a/Documentation/gpu/automated_testing.rst
+> +++ b/Documentation/gpu/automated_testing.rst
+> @@ -68,19 +68,25 @@ known to behave unreliably. These tests won't cause a job to fail regardless of
+>   the result. They will still be run.
+>   
+>   Each new flake entry must be associated with a link to the email reporting the
+> -bug to the author of the affected driver, the board name or Device Tree name of
+> -the board, the first kernel version affected, the IGT version used for tests,
+> -and an approximation of the failure rate.
+> +bug to the author of the affected driver or the relevant GitLab issue. The entry
+> +must also include the board name or Device Tree name, the first kernel version
+> +affected, the IGT version used for tests, and an approximation of the failure rate.
+>   
+>   They should be provided under the following format::
+>   
+> -  # Bug Report: $LORE_OR_PATCHWORK_URL
+> +  # Bug Report: $LORE_URL_OR_GITLAB_ISSUE
+>     # Board Name: broken-board.dtb
+>     # Linux Version: 6.6-rc1
+>     # IGT Version: 1.28-gd2af13d9f
+>     # Failure Rate: 100
+>     flaky-test
+>   
+> +Use the appropriate link below to create a GitLab issue:
+> +amdgpu driver: https://gitlab.freedesktop.org/drm/amd/-/issues
 
-HSD: 14015406119
+Please could you ack this patch. Thanks.
 
-v1: Initial version.
-v2: Update timings stored in adjusted_mode struct. [Ville]
-v3: Add WA in compute_config(). [Ville]
-v4:
-- Add DISPLAY_VER() check and improve code comment. [Rodrigo]
-- Introduce centralized intel_crtc_vblank_delay(). [Ville]
-v5: Move to crtc_compute_config(). [Ville]
-v6: Restrict DISPLAY_VER till 14. [Mitul]
-v7:
-- Corrected code-comment. [Mitul]
-- dev_priv local variable removed. [Jani]
-v8: Introduce late_compute_config() which will take care late
-vblank-delay adjustment. [Ville]
-v9: Implementation simplified and split into multiple patches.
-v10:
-- Split vrr changes and use struct intel_display in DISPLAY_VER(). [Ankit]
-- Use for_each_new_intel_connector_in_state(). [Jani]
-v11: Remove loop and use flipline instead of vrr.enable flag. [Ville]
-v12:
-- Use intel_Vrr_possible helper.
-- Correct flag check for flipline.
+> +i915 driver: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues
+> +msm driver: https://gitlab.freedesktop.org/drm/msm/-/issues
+> +xe driver: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues
+> +
+>   drivers/gpu/drm/ci/${DRIVER_NAME}-${HW_REVISION}-skips.txt
+>   -----------------------------------------------------------
+>   
 
-Signed-off-by: Animesh Manna <animesh.manna@intel.com>
-Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 21 ++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_display.h |  1 +
- 2 files changed, 22 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index c59d7bffbf57..a8f846b654e9 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -2573,6 +2573,8 @@ static int intel_crtc_compute_config(struct intel_atomic_state *state,
- 		intel_atomic_get_new_crtc_state(state, crtc);
- 	int ret;
- 
-+	intel_crtc_adjust_vblank_delay(crtc_state);
-+
- 	ret = intel_dpll_crtc_compute_clock(state, crtc);
- 	if (ret)
- 		return ret;
-@@ -3985,6 +3987,25 @@ bool intel_crtc_get_pipe_config(struct intel_crtc_state *crtc_state)
- 	return true;
- }
- 
-+void intel_crtc_adjust_vblank_delay(struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_display *display = to_intel_display(crtc_state);
-+	struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
-+
-+	/*
-+	 * wa_14015401596 for display versions 13, 14.
-+	 * Program Set Context Latency in TRANS_SET_CONTEXT_LATENCY register
-+	 * to at least a value of 1 when PSR1/PSR2/Panel Replay is enabled with VRR.
-+	 * Value for TRANS_SET_CONTEXT_LATENCY is calculated by substracting
-+	 * crtc_vdisplay from crtc_vblank_start, so incrementing crtc_vblank_start
-+	 * by 1 if both are equal.
-+	 */
-+	if (intel_vrr_possible(crtc_state) && crtc_state->has_psr &&
-+	    adjusted_mode->crtc_vblank_start == adjusted_mode->crtc_vdisplay &&
-+	    IS_DISPLAY_VER(display, 13, 14))
-+		adjusted_mode->crtc_vblank_start += 1;
-+}
-+
- int intel_dotclock_calculate(int link_freq,
- 			     const struct intel_link_m_n *m_n)
- {
-diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-index 1f0fed5ea7bc..e6bd03ef104d 100644
---- a/drivers/gpu/drm/i915/display/intel_display.h
-+++ b/drivers/gpu/drm/i915/display/intel_display.h
-@@ -446,6 +446,7 @@ u8 _intel_modeset_primary_pipes(const struct intel_crtc_state *crtc_state);
- u8 _intel_modeset_secondary_pipes(const struct intel_crtc_state *crtc_state);
- struct intel_crtc *intel_primary_crtc(const struct intel_crtc_state *crtc_state);
- bool intel_crtc_get_pipe_config(struct intel_crtc_state *crtc_state);
-+void intel_crtc_adjust_vblank_delay(struct intel_crtc_state *crtc_state);
- bool intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 			       const struct intel_crtc_state *pipe_config,
- 			       bool fastset);
--- 
-2.46.0
-
+Regards,
+Vignesh
