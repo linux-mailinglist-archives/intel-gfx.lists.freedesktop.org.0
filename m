@@ -2,29 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 383F598B30C
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Oct 2024 06:31:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D1FFD98B329
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Oct 2024 06:56:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A221C10E5CE;
-	Tue,  1 Oct 2024 04:31:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AEF8810E5CF;
+	Tue,  1 Oct 2024 04:56:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 668FF10E5CC;
- Tue,  1 Oct 2024 04:31:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 56A3210E285;
+ Tue,  1 Oct 2024 04:56:09 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_drm=3A_Add_check_for_enco?=
- =?utf-8?q?der_in_intel=5Fget=5Fcrtc=5Fnew=5Fencoder=28=29_=28rev3=29?=
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_i915=3A_Fix_HBLANK_E?=
+ =?utf-8?q?xpansion_Quirk_Causing_Modeset_Failure_on_Dell_WD19TB_Dock_at_344?=
+ =?utf-8?q?0x1440=40100Hz?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "George Rurikov" <g.ryurikov@securitycode.ru>
+To: "Benjamin Hoefs" <bendhoefs@gmail.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 01 Oct 2024 04:31:41 -0000
-Message-ID: <172775710141.1140252.9951007732540782739@2413ebb6fbb6>
+Date: Tue, 01 Oct 2024 04:56:09 -0000
+Message-ID: <172775856933.1140299.4296976355970906082@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
-References: <20240924104722.1049588-1-g.ryurikov@securitycode.ru>
-In-Reply-To: <20240924104722.1049588-1-g.ryurikov@securitycode.ru>
+References: <20240926002533.10153-2-bendhoefs@gmail.com>
+In-Reply-To: <20240926002533.10153-2-bendhoefs@gmail.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,25 +44,24 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm: Add check for encoder in intel_get_crtc_new_encoder() (rev3)
-URL   : https://patchwork.freedesktop.org/series/139314/
-State : failure
+Series: i915: Fix HBLANK Expansion Quirk Causing Modeset Failure on Dell WD19TB Dock at 3440x1440@100Hz
+URL   : https://patchwork.freedesktop.org/series/139318/
+State : warning
 
 == Summary ==
 
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/139314/revisions/3/mbox/ not applied
-Applying: drm: Add check for encoder in intel_get_crtc_new_encoder()
-error: patch failed: drivers/gpu/drm/i915/display/intel_display.c:819
-error: drivers/gpu/drm/i915/display/intel_display.c: patch does not apply
-error: Did you hand edit your patch?
-It does not apply to blobs recorded in its index.
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Using index info to reconstruct a base tree...
-M	drivers/gpu/drm/i915/display/intel_display.c
-Patch failed at 0001 drm: Add check for encoder in intel_get_crtc_new_encoder()
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
-Build failed, no error log produced
+Error: dim checkpatch failed
+2be9337017fa i915: Fix HBLANK Expansion Quirk Causing Modeset Failure on Dell WD19TB Dock at 3440x1440@100Hz
+-:10: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#10: 
+100Hz used to work but recently I tried it again and discovered it no longer
+
+-:14: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 55eaef164174 ("drm/i915/dp_mst: Handle the Synaptics HBlank expansion quirk")'
+#14: 
+55eaef164174480df6827edeac15620f3cbcd52b "Handle the Synaptics HBlank
+
+-:56: WARNING:FROM_SIGN_OFF_MISMATCH: From:/Signed-off-by: email name mismatch: 'From: Benjamin Hoefs <bendhoefs@gmail.com>' != 'Signed-off-by: Benjamin D. Hoefs <bendhoefs@gmail.com>'
+
+total: 1 errors, 2 warnings, 0 checks, 8 lines checked
 
 
