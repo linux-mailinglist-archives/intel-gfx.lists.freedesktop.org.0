@@ -2,69 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5130998BBFC
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Oct 2024 14:20:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CDE598BC1B
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Oct 2024 14:32:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E294B10E304;
-	Tue,  1 Oct 2024 12:20:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9514210E2E8;
+	Tue,  1 Oct 2024 12:32:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eH2yHksn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IVRaeUN1";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 406E110E2E6;
- Tue,  1 Oct 2024 12:20:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 11A6F10E2E8
+ for <intel-gfx@lists.freedesktop.org>; Tue,  1 Oct 2024 12:32:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727785238; x=1759321238;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=u39Vf2xW3Sn8VrNdFBSdQK13CKiFImEoX4u5aUweK2Y=;
- b=eH2yHksnqllNvfHnPWPo3v6XeEVpFJZnkbqg/RcTKICnGg2pKGIc947t
- nqzXwn7KB3Tjiy3reYp6uIXEGGIcsubSdStWkLWOny6pgTHqY75r1+v9G
- IMgrsCCkMXxfWkui7chyEXF4r9MoCsQA3DR5eFMa9pD5uqo355ULcLQsv
- 25/whk7pR6e+3rpSqWUop2XyyZhtrGXQW0E6vGplXSa5WUpB73M5YHC2d
- 52wt4m3f9Ftd4FpJ8CfVfKMWRrF6moOGvZRTHA+R9eqwOzoi7ugaRjiEF
- lsDdpHihrPNBGMmcaqtO7dA/nMNpl+51uHuAzfL7zMZFFkaSF/a1XuvQh Q==;
-X-CSE-ConnectionGUID: IJ208xPZQH+OqiKwCGvmOA==
-X-CSE-MsgGUID: +pXcIgvmTauk0Berpj0noA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11212"; a="30802721"
-X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="30802721"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2024 05:20:37 -0700
-X-CSE-ConnectionGUID: yXddqDHvTZmRjam5sZMp1A==
-X-CSE-MsgGUID: uJfiyOVfQrGhUizPn6b8qA==
+ t=1727785953; x=1759321953;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ebkbEoBD0bmuAG/mP8rPe8vF/TiVHwdgerwLYHIe22U=;
+ b=IVRaeUN1dfkN+dC0tQUGK3gdFelaCWMKod3knAJU/L5No/Y1xyav1gf2
+ SrUE/q4irO5kcjUGYB5di8vK/JAsDJgQeZe62kh3QvXN563mJA9HFwjO/
+ 9VZrnmTxbMdIPTFuxdk3zUhNI6ndKKyOHpRl5Z0qIUDu6xtyeTmlJLHEr
+ qqvufTZRfBhYHUAAK9muqFV4aXLnPUyjAMVoHLvd8Hrlaesl3P9ezoR2c
+ hxE3SbMCndB5Hd/Ur1xMIFZuLQPCA+gTrrhUWSYAj190rRpz1I/HIobOe
+ IrqqPfwlS1wdKXenh3Ww2IvvuXCOg/vRoxgj9UgohpvOcmhXUm8wliUI6 w==;
+X-CSE-ConnectionGUID: MfptCAv4STiRKnCJpfQ3kQ==
+X-CSE-MsgGUID: ZENqSrFITzmPjvaTVp83rg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11212"; a="30624383"
+X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="30624383"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2024 05:32:33 -0700
+X-CSE-ConnectionGUID: cWh3IaJjRROAMSuixzhJFA==
+X-CSE-MsgGUID: qOdbozV6Qhyz87V/EEUnuA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="73966697"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa010.fm.intel.com with ESMTP; 01 Oct 2024 05:20:33 -0700
-Received: from [10.246.27.12] (mwajdecz-MOBL.ger.corp.intel.com [10.246.27.12])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 5D6A627BD2;
- Tue,  1 Oct 2024 13:20:30 +0100 (IST)
-Message-ID: <26f90d12-6a04-445e-96ff-aafbe3dc8132@intel.com>
-Date: Tue, 1 Oct 2024 14:20:29 +0200
+X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="74448035"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2024 05:32:32 -0700
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Subject: [PATCH v2 1/3] drm/i915/dp: Initialize the source OUI write timestamp
+ always
+Date: Tue,  1 Oct 2024 15:32:57 +0300
+Message-ID: <20241001123259.616486-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.44.2
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 1/5] drm: Introduce device wedged event
-To: Raag Jadav <raag.jadav@intel.com>, airlied@gmail.com, simona@ffwll.ch,
- lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
- rodrigo.vivi@intel.com, jani.nikula@linux.intel.com,
- andriy.shevchenko@linux.intel.com, joonas.lahtinen@linux.intel.com,
- tursulin@ursulin.net, lina@asahilina.net
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
- francois.dugast@intel.com, aravind.iddamsetty@linux.intel.com,
- anshuman.gupta@intel.com, andi.shyti@linux.intel.com,
- matthew.d.roper@intel.com
-References: <20240930073845.347326-1-raag.jadav@intel.com>
- <20240930073845.347326-2-raag.jadav@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20240930073845.347326-2-raag.jadav@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,269 +65,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+If the source OUI DPCD register value matches the expected Intel OUI
+value, the write timestamp doesn't get updated leaving it at the 0
+initial value if the OUI wasn't written before. This can lead to an
+incorrect wait duration in intel_dp_wait_source_oui(), since jiffies is
+not inited to 0 in general (on a 32 bit system INITIAL_JIFFIES is set to
+5 minutes ahead of wrap-around). Fix this by intializing the write
+timestamp in the above case as well.
 
-sorry for late comments,
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-On 30.09.2024 09:38, Raag Jadav wrote:
-> Introduce device wedged event, which will notify userspace of wedged
-> (hanged/unusable) state of the DRM device through a uevent. This is
-> useful especially in cases where the device is no longer operating as
-> expected even after a hardware reset and has become unrecoverable from
-> driver context.
-> 
-> Purpose of this implementation is to provide drivers a generic way to
-> recover with the help of userspace intervention. Different drivers may
-> have different ideas of a "wedged device" depending on their hardware
-> implementation, and hence the vendor agnostic nature of the event.
-> It is up to the drivers to decide when they see the need for recovery
-> and how they want to recover from the available methods.
-
-what about when driver just wants to tell that it is in unusable state,
-but recovery method is unknown or not possible?
-
-> 
-> Current implementation defines three recovery methods, out of which,
-> drivers can choose to support any one or multiple of them. Preferred
-> recovery method will be sent in the uevent environment as WEDGED=<method>.
-
-could this be something like below instead:
-
-	WEDGED=<reason>
-	RECOVERY=<method>[,<method>]
-
-then driver will have a chance to tell what happen _and_ additionally
-provide a hint(s) how to recover from that situation
-
-> Userspace consumers (sysadmin) can define udev rules to parse this event
-> and take respective action to recover the device.
-> 
->     =============== ==================================
->     Recovery method Consumer expectations
->     =============== ==================================
->     rebind          unbind + rebind driver
->     bus-reset       unbind + reset bus device + rebind
->     reboot          reboot system
-
-btw, what if driver detects a really broken HW, or has no clue what will
-help here, shouldn't we have a "none" method?
-
->     =============== ==================================
-> 
-> v4: s/drm_dev_wedged/drm_dev_wedged_event
->     Use drm_info() (Jani)
->     Kernel doc adjustment (Aravind)
-> v5: Send recovery method with uevent (Lina)
-> v6: Access wedge_recovery_opts[] using helper function (Jani)
->     Use snprintf() (Jani)
-> v7: Convert recovery helpers into regular functions (Andy, Jani)
->     Aesthetic adjustments (Andy)
->     Handle invalid method cases
-> 
-> Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-> ---
->  drivers/gpu/drm/drm_drv.c | 77 +++++++++++++++++++++++++++++++++++++++
->  include/drm/drm_device.h  | 23 ++++++++++++
->  include/drm/drm_drv.h     |  3 ++
->  3 files changed, 103 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
-> index ac30b0ec9d93..cfe9600da2ee 100644
-> --- a/drivers/gpu/drm/drm_drv.c
-> +++ b/drivers/gpu/drm/drm_drv.c
-> @@ -26,6 +26,8 @@
->   * DEALINGS IN THE SOFTWARE.
->   */
->  
-> +#include <linux/array_size.h>
-> +#include <linux/build_bug.h>
->  #include <linux/debugfs.h>
->  #include <linux/fs.h>
->  #include <linux/module.h>
-> @@ -33,6 +35,7 @@
->  #include <linux/mount.h>
->  #include <linux/pseudo_fs.h>
->  #include <linux/slab.h>
-> +#include <linux/sprintf.h>
->  #include <linux/srcu.h>
->  #include <linux/xarray.h>
->  
-> @@ -70,6 +73,42 @@ static struct dentry *drm_debugfs_root;
->  
->  DEFINE_STATIC_SRCU(drm_unplug_srcu);
->  
-> +/*
-> + * Available recovery methods for wedged device. To be sent along with device
-> + * wedged uevent.
-> + */
-> +static const char *const drm_wedge_recovery_opts[] = {
-> +	[DRM_WEDGE_RECOVERY_REBIND] = "rebind",
-> +	[DRM_WEDGE_RECOVERY_BUS_RESET] = "bus-reset",
-> +	[DRM_WEDGE_RECOVERY_REBOOT] = "reboot",
-> +};
-> +
-> +static bool drm_wedge_recovery_is_valid(enum drm_wedge_recovery method)
-> +{
-> +	static_assert(ARRAY_SIZE(drm_wedge_recovery_opts) == DRM_WEDGE_RECOVERY_MAX);
-> +
-> +	return method >= DRM_WEDGE_RECOVERY_REBIND && method < DRM_WEDGE_RECOVERY_MAX;
-> +}
-> +
-> +/**
-> + * drm_wedge_recovery_name - provide wedge recovery name
-> + * @method: method to be used for recovery
-> + *
-> + * This validates wedge recovery @method against the available ones in
-
-do we really need to validate an enum? maybe the problem is that there
-is MAX enumerator that just shouldn't be there?
-
-> + * drm_wedge_recovery_opts[] and provides respective recovery name in string
-> + * format if found valid.
-> + *
-> + * Returns: pointer to const recovery string on success, NULL otherwise.
-> + */
-> +const char *drm_wedge_recovery_name(enum drm_wedge_recovery method)
-> +{
-> +	if (drm_wedge_recovery_is_valid(method))
-> +		return drm_wedge_recovery_opts[method];
-
-as we only have 3 methods, maybe simple switch() will do the work?
-
-> +
-> +	return NULL;
-> +}
-> +EXPORT_SYMBOL(drm_wedge_recovery_name);
-> +
->  /*
->   * DRM Minors
->   * A DRM device can provide several char-dev interfaces on the DRM-Major. Each
-> @@ -497,6 +536,44 @@ void drm_dev_unplug(struct drm_device *dev)
->  }
->  EXPORT_SYMBOL(drm_dev_unplug);
->  
-> +/**
-> + * drm_dev_wedged_event - generate a device wedged uevent
-> + * @dev: DRM device
-> + * @method: method to be used for recovery
-> + *
-> + * This generates a device wedged uevent for the DRM device specified by @dev.
-> + * Recovery @method from drm_wedge_recovery_opts[] (if supprted by the device)
-
-typo
-
-> + * is sent in the uevent environment as WEDGED=<method>, on the basis of which,
-> + * userspace may take respective action to recover the device.
-> + *
-> + * Returns: 0 on success, or negative error code otherwise.
-> + */
-> +int drm_dev_wedged_event(struct drm_device *dev, enum drm_wedge_recovery method)
-> +{
-> +	/* Event string length up to 16+ characters with available methods */
-> +	char event_string[32] = {};
-
-magic 32 here and likely don't need to be initialized with { }
-
-> +	char *envp[] = { event_string, NULL };
-> +	const char *recovery;
-> +
-> +	recovery = drm_wedge_recovery_name(method);
-> +	if (!recovery) {
-> +		drm_err(dev, "device wedged, invalid recovery method %d\n", method);
-
-maybe use drm_WARN() to see who is abusing the API ?
-
-> +		return -EINVAL;
-
-but shouldn't we still trigger an event with "none" recovery?
-
-> +	}
-> +
-> +	if (!test_bit(method, &dev->wedge_recovery)) {
-> +		drm_err(dev, "device wedged, %s based recovery not supported\n",
-> +			drm_wedge_recovery_name(method));
-
-do we really need this kind of guard? it will be a driver code that will
-call this function, so likely it knows better what will work to recover
-
-> +		return -EOPNOTSUPP;
-> +	}
-> +
-> +	snprintf(event_string, sizeof(event_string), "WEDGED=%s", recovery);
-> +
-> +	drm_info(dev, "device wedged, generating uevent for %s based recovery\n", recovery);
-
-nit:
-	drm_info(dev, "device wedged, needs %s to recover\n", recovery);
-
-> +	return kobject_uevent_env(&dev->primary->kdev->kobj, KOBJ_CHANGE, envp);
-> +}
-> +EXPORT_SYMBOL(drm_dev_wedged_event);
-> +
->  /*
->   * DRM internal mount
->   * We want to be able to allocate our own "struct address_space" to control
-> diff --git a/include/drm/drm_device.h b/include/drm/drm_device.h
-> index c91f87b5242d..fed6f20e52fb 100644
-> --- a/include/drm/drm_device.h
-> +++ b/include/drm/drm_device.h
-> @@ -40,6 +40,26 @@ enum switch_power_state {
->  	DRM_SWITCH_POWER_DYNAMIC_OFF = 3,
->  };
->  
-> +/**
-> + * enum drm_wedge_recovery - Recovery method for wedged device in order of
-> + * severity. To be set as bit fields in drm_device.wedge_recovery variable.
-> + * Drivers can choose to support any one or multiple of them depending on
-> + * their needs.
-> + */
-> +enum drm_wedge_recovery {
-> +	/** @DRM_WEDGE_RECOVERY_REBIND: unbind + rebind driver */
-> +	DRM_WEDGE_RECOVERY_REBIND,
-> +
-> +	/** @DRM_WEDGE_RECOVERY_BUS_RESET: unbind + reset bus device + rebind */
-> +	DRM_WEDGE_RECOVERY_BUS_RESET,
-> +
-> +	/** @DRM_WEDGE_RECOVERY_REBOOT: reboot system */
-> +	DRM_WEDGE_RECOVERY_REBOOT,
-> +
-> +	/** @DRM_WEDGE_RECOVERY_MAX: for bounds checking, do not use */
-> +	DRM_WEDGE_RECOVERY_MAX
-> +};
-> +
->  /**
->   * struct drm_device - DRM device structure
->   *
-> @@ -317,6 +337,9 @@ struct drm_device {
->  	 * Root directory for debugfs files.
->  	 */
->  	struct dentry *debugfs_root;
-> +
-> +	/** @wedge_recovery: Supported recovery methods for wedged device */
-> +	unsigned long wedge_recovery;
-
-hmm, so before the driver can ask for a reboot as a recovery method from
-wedge it has to somehow add 'reboot' as available method? why it that?
-
-and if you insist that this is useful then at least document how this
-should be initialized (to not forcing developers to look at
-drm_dev_wedged_event code where it's used)
-
->  };
->  
->  #endif
-> diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
-> index 02ea4e3248fd..d8dbc77010b0 100644
-> --- a/include/drm/drm_drv.h
-> +++ b/include/drm/drm_drv.h
-> @@ -462,6 +462,9 @@ bool drm_dev_enter(struct drm_device *dev, int *idx);
->  void drm_dev_exit(int idx);
->  void drm_dev_unplug(struct drm_device *dev);
->  
-> +const char *drm_wedge_recovery_name(enum drm_wedge_recovery method);
-> +int drm_dev_wedged_event(struct drm_device *dev, enum drm_wedge_recovery method);
-> +
->  /**
->   * drm_dev_is_unplugged - is a DRM device unplugged
->   * @dev: DRM device
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 16dc1d26d2a25..b7661529f1927 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -3349,8 +3349,11 @@ intel_edp_init_source_oui(struct intel_dp *intel_dp, bool careful)
+ 		if (drm_dp_dpcd_read(&intel_dp->aux, DP_SOURCE_OUI, buf, sizeof(buf)) < 0)
+ 			drm_err(&i915->drm, "Failed to read source OUI\n");
+ 
+-		if (memcmp(oui, buf, sizeof(oui)) == 0)
++		if (memcmp(oui, buf, sizeof(oui)) == 0) {
++			/* Assume the OUI was written now. */
++			intel_dp->last_oui_write = jiffies;
+ 			return;
++		}
+ 	}
+ 
+ 	if (drm_dp_dpcd_write(&intel_dp->aux, DP_SOURCE_OUI, oui, sizeof(oui)) < 0)
+-- 
+2.44.2
 
