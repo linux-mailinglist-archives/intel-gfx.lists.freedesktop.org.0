@@ -2,56 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57EA298B178
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Oct 2024 02:37:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 44A6698B193
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Oct 2024 02:51:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 316B910E002;
-	Tue,  1 Oct 2024 00:37:17 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=hmeau.com header.i=@hmeau.com header.b="Ziv2p46J";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 77BE610E167;
+	Tue,  1 Oct 2024 00:51:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from abb.hmeau.com (abb.hmeau.com [144.6.53.87])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81B6310E002;
- Tue,  1 Oct 2024 00:37:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hmeau.com; 
- s=formenos;
- h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
- Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=RhzDv+P0yHp7rVJxU5AwpoZg82v6v7rn8wwhs8V4CzU=; b=Ziv2p46JOi78oP1BjYuks6Yetm
- BYPTN68OFOVw1HnELeFXkbO+CispyjNFaIgie9zjIcPeToUwY1gXEvHij8YwFbkPrtpVP0VnXmmtw
- VnGzMvZEKtdrK0eJNwgWNhxjCkPGD4DVdnytageTWJ1xxr5W4MC1SjZD+FvLeh2n4A78cCfxtb6EI
- 4ZKEewG8FMFGs0sQZAr6APUrd2ChcGqXi6si6ANRO7/NzuuSm7B+0uKIKQH+Z7x891CLgZedYi+Y8
- YalKRylc2TGiuiVfB4ROgOclg797c9AMK8bzg0PuYBF6v7QXrqncCDHwjpBxo11LKF60LkOBLSSlP
- Jt8FBu3A==;
-Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
- by formenos.hmeau.com with smtp (Exim 4.96 #2 (Debian))
- id 1svQj9-005w9M-38; Tue, 01 Oct 2024 08:37:10 +0800
-Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation);
- Tue, 01 Oct 2024 08:37:09 +0800
-Date: Tue, 1 Oct 2024 08:37:09 +0800
-From: Herbert Xu <herbert@gondor.apana.org.au>
-To: Uros Bizjak <ubizjak@gmail.com>
-Cc: x86@kernel.org, linux-crypto@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-media@vger.kernel.org, linux-mtd@lists.infradead.org,
- linux-fscrypt@vger.kernel.org, linux-scsi@vger.kernel.org,
- bpf@vger.kernel.org, linux-kselftest@vger.kernel.org,
- kunit-dev@googlegroups.com, linux-kernel@vger.kernel.org,
- "David S. Miller" <davem@davemloft.net>
-Subject: Re: [PATCH v3 02/19] crypto: testmgr: Include <linux/prandom.h>
- instead of <linux/random.h>
-Message-ID: <ZvtENQJvp8h1uvdU@gondor.apana.org.au>
-References: <20240930123702.803617-1-ubizjak@gmail.com>
- <20240930123702.803617-3-ubizjak@gmail.com>
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 239F910E167;
+ Tue,  1 Oct 2024 00:51:15 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240930123702.803617-3-ubizjak@gmail.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/display=3A_?=
+ =?utf-8?q?Workaround_for_odd_panning_for_planar_yuv_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nemesa Garg" <nemesa.garg@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 01 Oct 2024 00:51:15 -0000
+Message-ID: <172774387513.1139830.8477530716718963389@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20240930112343.2673244-1-nemesa.garg@intel.com>
+In-Reply-To: <20240930112343.2673244-1-nemesa.garg@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,25 +37,24 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 30, 2024 at 02:33:13PM +0200, Uros Bizjak wrote:
-> Substitute the inclusion of <linux/random.h> header with
-> <linux/prandom.h> to allow the removal of legacy inclusion
-> of <linux/prandom.h> from <linux/random.h>.
-> 
-> Signed-off-by: Uros Bizjak <ubizjak@gmail.com>
-> Cc: Herbert Xu <herbert@gondor.apana.org.au>
-> Cc: "David S. Miller" <davem@davemloft.net>
-> ---
->  crypto/testmgr.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+== Series Details ==
 
-Acked-by: Herbert Xu <herbert@gondor.apana.org.au>
+Series: drm/i915/display: Workaround for odd panning for planar yuv (rev5)
+URL   : https://patchwork.freedesktop.org/series/136416/
+State : warning
 
-Thanks,
--- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+== Summary ==
+
+Error: dim checkpatch failed
+88141b5d86a7 drm/i915/display: Workaround for odd panning for planar yuv
+-:6: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#6: 
+Disable the support for odd x pan for even xsize for NV12 format as underrun
+
+total: 0 errors, 1 warnings, 0 checks, 14 lines checked
+
+
