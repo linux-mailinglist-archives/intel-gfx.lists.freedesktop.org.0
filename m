@@ -2,51 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AEC098C65F
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Oct 2024 21:58:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C76C98C661
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Oct 2024 21:58:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D910310E67A;
-	Tue,  1 Oct 2024 19:58:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E41B210E67B;
+	Tue,  1 Oct 2024 19:58:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eSaIbDr5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q/V0+8X1";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F6AB10E67A
- for <intel-gfx@lists.freedesktop.org>; Tue,  1 Oct 2024 19:58:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 45F0110E67B
+ for <intel-gfx@lists.freedesktop.org>; Tue,  1 Oct 2024 19:58:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727812694; x=1759348694;
+ t=1727812697; x=1759348697;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=JQ3efqQO0k6i4EOrDS/1PUF9UiStPZxE4Z5gEty9b38=;
- b=eSaIbDr5AWNLlyt0y3SMHvAbB/KFuo0sZd/QaRxznPEirbV3o+TWD4Mg
- SVPFEm05DTfvE545cXyZiV0KvaNGb4tnurE4mIi8fXZ51AELoAinsYqsf
- YbjmwqxnGbEx+boQ5bGXPVKiGZeejhAmkhkvA9w+XCRkoQ4wpZJsIQIow
- iLkfh9KKVl2uXUaPWKTQuqGf8rkAWgvkLuIWXzXClbh8HxS1kU3VzvFgP
- xUCXUlkB0xlJBpEoR/XBbZq5ABUx4ie5U9PkA1+/Rc+8SPEwJxduijE0q
- wjmlM5JGTXohGEbifAkDdip3YYg4BZWkXwYzNQ9208O8R9ANVX9iam/Ye Q==;
-X-CSE-ConnectionGUID: OI2DCik8Smu+8qtdBRc95A==
-X-CSE-MsgGUID: 0YSxw6eaQhCBuwIUa2oCEw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11212"; a="26852040"
-X-IronPort-AV: E=Sophos;i="6.11,169,1725346800"; d="scan'208";a="26852040"
+ bh=2Z/zXi3X/u4dsBDtQhfTK2Z82hzMr/RsuNeGYbPpo0g=;
+ b=Q/V0+8X1AKITonwhWPe5hMl7Fpj3xXGw17PIdMc/frgiHiAQPpxB+k9U
+ U+61VRXNmk4V/O1J6gqFHGv1kmvBST5BxG/TcU17HJA2DRjg+BATWgaKN
+ Sql5fLaTD72LNA/unj4y7pym4H3Q3HAR6lpGCfs3eVArRimRd+Fn8Ck5U
+ JJo6aGfDnZIscmNrHKTjpJS7ABpCpFIalP6hAD6MuQ0DZKEbfda7037+I
+ Ai1+qqplUa21iS6pH6G4FAoAFdK8uzT2ak7O5Q1cTaoc8iPa9BIMuxZmn
+ UdppuWyja1YG0zeBCbrT1X7Px40O4XAhz9aEBLjJ1bFeO2SaZd+WwL1LZ w==;
+X-CSE-ConnectionGUID: A0eDNd+wQUykNbeXazzjXg==
+X-CSE-MsgGUID: QccR7cm/S7y3kxcJHrhQEA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11212"; a="26852043"
+X-IronPort-AV: E=Sophos;i="6.11,169,1725346800"; d="scan'208";a="26852043"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2024 12:58:14 -0700
-X-CSE-ConnectionGUID: sJAKcba+Qjyf9eZVkOHPUw==
-X-CSE-MsgGUID: whZV4c7TSyOiaDRtANiVIQ==
+ 01 Oct 2024 12:58:17 -0700
+X-CSE-ConnectionGUID: 7Juupkv2SwCCAmhAn2XhDw==
+X-CSE-MsgGUID: hqIJMOcSS0alvQgzO03R3w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,169,1725346800"; d="scan'208";a="73899368"
+X-IronPort-AV: E=Sophos;i="6.11,169,1725346800"; d="scan'208";a="73899377"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 01 Oct 2024 12:58:12 -0700
+ by fmviesa008.fm.intel.com with SMTP; 01 Oct 2024 12:58:15 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 01 Oct 2024 22:58:11 +0300
+ Tue, 01 Oct 2024 22:58:14 +0300
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 3/4] drm/i915: Extract i915gm_irq_cstate_wa_{disable, enable}()
-Date: Tue,  1 Oct 2024 22:58:02 +0300
-Message-ID: <20241001195803.3371-4-ville.syrjala@linux.intel.com>
+Subject: [PATCH 4/4] drm/i915: Apply the i915gm/i945gm irq C-state w/a to CRC
+ interrupts
+Date: Tue,  1 Oct 2024 22:58:03 +0300
+Message-ID: <20241001195803.3371-5-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241001195803.3371-1-ville.syrjala@linux.intel.com>
 References: <20241001195803.3371-1-ville.syrjala@linux.intel.com>
@@ -70,78 +71,88 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Extract the i915gm/i945gm vblank irq C-state workaround to
-separate functions. We'll need to reuse these in order to
-guarantee timely CRC interrupt delivery as well.
+Turns out CRC interrupts also fail to wake up i915gm/i945gm from
+C2+. I suppose this is a generic problem, but for most other
+interrupts the system will be busy enough already prior to
+the irq being issued. But CRC interrupts are like vblank interrupts
+and only fire once per frame, so plenty of time to fall asleep
+in between them.
 
-The irq.vblank_enabled count is currently protected by the
-drm vblanl locks, so let's assert that the innermost of those
-is held, in anticipation of other callers.
+Apply the same core clock gating trick to CRC interrupts
+that we use for vblank interrupts.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- .../gpu/drm/i915/display/intel_display_irq.c  | 34 +++++++++++++------
- 1 file changed, 24 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_irq.c | 14 +++++++++++++-
+ drivers/gpu/drm/i915/display/intel_display_irq.h |  2 ++
+ drivers/gpu/drm/i915/display/intel_pipe_crc.c    |  4 ++++
+ 3 files changed, 19 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-index 43a0b3565bc8..feeb3a29972a 100644
+index feeb3a29972a..fa5a42fc8501 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-@@ -1259,6 +1259,28 @@ void gen11_display_irq_handler(struct drm_i915_private *i915)
- 	enable_rpm_wakeref_asserts(&i915->runtime_pm);
+@@ -1264,7 +1264,7 @@ static void i915gm_irq_cstate_wa_enable(struct drm_i915_private *i915)
+ 	lockdep_assert_held(&i915->drm.vblank_time_lock);
+ 
+ 	/*
+-	 * Vblank interrupts fail to wake the device up from C2+.
++	 * Vblank/CRC interrupts fail to wake the device up from C2+.
+ 	 * Disabling render clock gating during C-states avoids
+ 	 * the problem. There is a small power cost so we do this
+ 	 * only when vblank interrupts are actually enabled.
+@@ -1281,6 +1281,18 @@ static void i915gm_irq_cstate_wa_disable(struct drm_i915_private *i915)
+ 		intel_uncore_write(&i915->uncore, SCPD0, _MASKED_BIT_DISABLE(CSTATE_RENDER_CLOCK_GATE_DISABLE));
  }
  
-+static void i915gm_irq_cstate_wa_enable(struct drm_i915_private *i915)
++void i915gm_irq_cstate_wa(struct drm_i915_private *i915, bool enable)
 +{
-+	lockdep_assert_held(&i915->drm.vblank_time_lock);
++	spin_lock_irq(&i915->drm.vblank_time_lock);
 +
-+	/*
-+	 * Vblank interrupts fail to wake the device up from C2+.
-+	 * Disabling render clock gating during C-states avoids
-+	 * the problem. There is a small power cost so we do this
-+	 * only when vblank interrupts are actually enabled.
-+	 */
-+	if (i915->display.irq.vblank_enabled++ == 0)
-+		intel_uncore_write(&i915->uncore, SCPD0, _MASKED_BIT_ENABLE(CSTATE_RENDER_CLOCK_GATE_DISABLE));
-+}
++	if (enable)
++		i915gm_irq_cstate_wa_enable(i915);
++	else
++		i915gm_irq_cstate_wa_disable(i915);
 +
-+static void i915gm_irq_cstate_wa_disable(struct drm_i915_private *i915)
-+{
-+	lockdep_assert_held(&i915->drm.vblank_time_lock);
-+
-+	if (--i915->display.irq.vblank_enabled == 0)
-+		intel_uncore_write(&i915->uncore, SCPD0, _MASKED_BIT_DISABLE(CSTATE_RENDER_CLOCK_GATE_DISABLE));
++	spin_unlock_irq(&i915->drm.vblank_time_lock);
 +}
 +
  int i8xx_enable_vblank(struct drm_crtc *crtc)
  {
  	struct drm_i915_private *dev_priv = to_i915(crtc->dev);
-@@ -1287,14 +1309,7 @@ int i915gm_enable_vblank(struct drm_crtc *crtc)
- {
- 	struct drm_i915_private *i915 = to_i915(crtc->dev);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.h b/drivers/gpu/drm/i915/display/intel_display_irq.h
+index bf9d269d0e3f..4b493cff7b8e 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_irq.h
++++ b/drivers/gpu/drm/i915/display/intel_display_irq.h
+@@ -78,4 +78,6 @@ void valleyview_pipestat_irq_handler(struct drm_i915_private *i915, u32 pipe_sta
  
--	/*
--	 * Vblank interrupts fail to wake the device up from C2+.
--	 * Disabling render clock gating during C-states avoids
--	 * the problem. There is a small power cost so we do this
--	 * only when vblank interrupts are actually enabled.
--	 */
--	if (i915->display.irq.vblank_enabled++ == 0)
--		intel_uncore_write(&i915->uncore, SCPD0, _MASKED_BIT_ENABLE(CSTATE_RENDER_CLOCK_GATE_DISABLE));
-+	i915gm_irq_cstate_wa_enable(i915);
+ void intel_display_irq_init(struct drm_i915_private *i915);
  
- 	return i8xx_enable_vblank(crtc);
- }
-@@ -1305,8 +1320,7 @@ void i915gm_disable_vblank(struct drm_crtc *crtc)
++void i915gm_irq_cstate_wa(struct drm_i915_private *i915, bool enable);
++
+ #endif /* __INTEL_DISPLAY_IRQ_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_pipe_crc.c b/drivers/gpu/drm/i915/display/intel_pipe_crc.c
+index 82ceede0b2b1..304da826dee1 100644
+--- a/drivers/gpu/drm/i915/display/intel_pipe_crc.c
++++ b/drivers/gpu/drm/i915/display/intel_pipe_crc.c
+@@ -32,6 +32,7 @@
+ #include "i915_reg.h"
+ #include "intel_atomic.h"
+ #include "intel_de.h"
++#include "intel_display_irq.h"
+ #include "intel_display_types.h"
+ #include "intel_pipe_crc.h"
+ #include "intel_pipe_crc_regs.h"
+@@ -285,6 +286,9 @@ intel_crtc_crc_setup_workarounds(struct intel_crtc *crtc, bool enable)
+ 	struct drm_modeset_acquire_ctx ctx;
+ 	int ret;
  
- 	i8xx_disable_vblank(crtc);
++	if (IS_I945GM(dev_priv) || IS_I915GM(dev_priv))
++		i915gm_irq_cstate_wa(dev_priv, enable);
++
+ 	drm_modeset_acquire_init(&ctx, 0);
  
--	if (--i915->display.irq.vblank_enabled == 0)
--		intel_uncore_write(&i915->uncore, SCPD0, _MASKED_BIT_DISABLE(CSTATE_RENDER_CLOCK_GATE_DISABLE));
-+	i915gm_irq_cstate_wa_disable(i915);
- }
- 
- int i965_enable_vblank(struct drm_crtc *crtc)
+ 	state = drm_atomic_state_alloc(&dev_priv->drm);
 -- 
 2.45.2
 
