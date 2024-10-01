@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 185D198B207
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Oct 2024 04:17:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3150F98B208
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Oct 2024 04:17:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B68B410E117;
-	Tue,  1 Oct 2024 02:15:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D8A6810E087;
+	Tue,  1 Oct 2024 02:15:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2627810E087;
- Tue,  1 Oct 2024 02:15:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C963B10E087;
+ Tue,  1 Oct 2024 02:15:36 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_series_starting_with?=
- =?utf-8?q?_=5BCI=2C1/2=5D_drm/i915=3A_remove_IS=5FLP=28=29?=
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_series_starting_with_=5B?=
+ =?utf-8?q?CI=2C1/2=5D_drm/i915=3A_remove_IS=5FLP=28=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 01 Oct 2024 02:15:34 -0000
-Message-ID: <172774893414.1140018.11570583979999278952@2413ebb6fbb6>
+Date: Tue, 01 Oct 2024 02:15:36 -0000
+Message-ID: <172774893681.1140019.12958112382283606142@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20240930124056.3541988-1-jani.nikula@intel.com>
 In-Reply-To: <20240930124056.3541988-1-jani.nikula@intel.com>
@@ -49,25 +49,6 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-0bb70631ccc4 drm/i915: remove IS_LP()
--:30: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
-#30: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:153:
-+#define HAS_SAGV(i915)			(DISPLAY_VER(i915) >= 9 && !IS_BROXTON(i915) && !IS_GEMINILAKE(i915))
-
--:30: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
-#30: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:153:
-+#define HAS_SAGV(i915)			(DISPLAY_VER(i915) >= 9 && !IS_BROXTON(i915) && !IS_GEMINILAKE(i915))
-
--:79: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
-#79: FILE: drivers/gpu/drm/i915/i915_drv.h:615:
-+#define IS_GEN9_LP(i915)	(IS_BROXTON(i915) || IS_GEMINILAKE(i915))
-
--:80: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
-#80: FILE: drivers/gpu/drm/i915/i915_drv.h:616:
-+#define IS_GEN9_BC(i915)	(GRAPHICS_VER(i915) == 9 && !IS_GEN9_LP(i915))
-
-total: 0 errors, 1 warnings, 3 checks, 78 lines checked
-464083606c4c drm/i915/soc: stop using IS_GEN9_LP() and IS_GEN9_BC()
+Error: patch https://patchwork.freedesktop.org/api/1.0/series/139304/revisions/1/mbox/ not found
 
 
