@@ -2,63 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 228DB98BD19
-	for <lists+intel-gfx@lfdr.de>; Tue,  1 Oct 2024 15:12:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BE8198BD5E
+	for <lists+intel-gfx@lfdr.de>; Tue,  1 Oct 2024 15:21:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EEAA10E325;
-	Tue,  1 Oct 2024 13:12:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 288D910E614;
+	Tue,  1 Oct 2024 13:21:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CP89qpSL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mrb0n0Eu";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 17E1810E325
- for <intel-gfx@lists.freedesktop.org>; Tue,  1 Oct 2024 13:12:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F44410E614;
+ Tue,  1 Oct 2024 13:21:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727788338; x=1759324338;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=U6s09hug6G4rlBBMcIfX4KWRZ7ox/Q/807MDp8HQr3o=;
- b=CP89qpSLRWd8vM50AiovJSlxwRkOjPWs0Lvne14ourZv1VDWXXzWOHog
- yhWt7l0nn+5wSq7RmwfEgCFpoiZs0fWK8g3oPsWD1Dh/2cZsEvrJaLm2c
- muMPtQ6cFbgudZaN3SYIlATfond5cs7ItuB1ZztfN90+izllVe7WGbmt2
- hOQoWA36cjI2bj10laupBh7E+QDTESWlJf8GJvFlcXlk1W1UTuU6Zqy59
- w5okr/ON9VXBr//7es+4vpt3oF1+ODmm6hz3ZXnZt7zdKD6RCL6b3WzNU
- usIWBLuNlwmra/ZjfvaHWptUrn1HDkzTO6qXHHZdN+sA0JOhMaq96Ga+s A==;
-X-CSE-ConnectionGUID: m0E9+59BRfCfZtw2dB7Lpg==
-X-CSE-MsgGUID: W7SN1/KYSmKd7Eek3SQ4gg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11212"; a="30715358"
-X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="30715358"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Oct 2024 06:12:18 -0700
-X-CSE-ConnectionGUID: w4CU6oWiTLiQX0LtsiM06A==
-X-CSE-MsgGUID: 1tpxS8W1RzSABe+RZfxitQ==
+ t=1727788897; x=1759324897;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=W2BhaIAzu92+mvnt2Zr4JT0pqqNewhoEnx6qRmGtcss=;
+ b=mrb0n0Eu8X6xF1qiH8DlA02RBtzdopmp0KCHHfot9CW1RyZYNP+Hz3Kj
+ LFIqoZs6q47Xvi+lTOOyl5X5iz9G//xDxPGANOXnnOb/KuOyklBIPa+7S
+ 9U66PE1/AIOwCAYWtkQlAA8d/fToITQg63Z9Wip0Q3wjD+iIIJBNlqyZr
+ G8MLq/1UhWEtmibaDptv8t5DIKmbPJWvBBAN1VuaTnqJGYXdfR5KAH6pP
+ Vl53jqjFUxa9FF/SPk8RVpRfNigVfZMsomV1+b28ydmtU6dwSWrknr5V3
+ 1rEA4krFcVcFIDGkbIZhEA99PQ0wXKi4xzpBwUzaGcSMoKx4rlp0Tw1kU g==;
+X-CSE-ConnectionGUID: OLxBRvo2S3uVU60Y+HJzXw==
+X-CSE-MsgGUID: wcdf9GEbQFmlWalPyX7ZDw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11212"; a="38311856"
+X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="38311856"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2024 06:21:36 -0700
+X-CSE-ConnectionGUID: SBu+nd1dQxGG0AMhoaLcCg==
+X-CSE-MsgGUID: 3S673DxbRJ2lAkNS4EjVLg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="73783012"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 01 Oct 2024 06:12:15 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 01 Oct 2024 16:12:14 +0300
-Date: Tue, 1 Oct 2024 16:12:14 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: intel-gfx@lists.freedesktop.org, Bjorn Helgaas <bhelgaas@google.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, linux-pci@vger.kernel.org
-Subject: Re: [PATCH 1/6] PCI/PM: Respect pci_dev->skip_bus_pm in the
- .poweroff() path
-Message-ID: <Zvv1Llm_VIWc2Tiz@intel.com>
-References: <ZvWFxLZwRWL3DCeX@intel.com>
- <20240930195009.GA188032@bhelgaas>
+X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; d="scan'208";a="73915187"
+Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.188])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Oct 2024 06:21:34 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: imre.deak@intel.com, Rodrigo Vivi <rodrigo.vivi@intel.com>, Jesse Barnes
+ <jbarnes@virtuousgeek.org>
+Subject: Re: [PATCH 02/31] drm/i915/display: Convert i915_suspend into
+ i9xx_display_sr
+In-Reply-To: <20240924204222.246862-3-rodrigo.vivi@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240924204222.246862-1-rodrigo.vivi@intel.com>
+ <20240924204222.246862-3-rodrigo.vivi@intel.com>
+Date: Tue, 01 Oct 2024 16:21:18 +0300
+Message-ID: <87ed50ufg1.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240930195009.GA188032@bhelgaas>
-X-Patchwork-Hint: comment
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,92 +73,405 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 30, 2024 at 02:50:09PM -0500, Bjorn Helgaas wrote:
-> On Thu, Sep 26, 2024 at 07:03:16PM +0300, Ville Syrjälä wrote:
-> > On Wed, Sep 25, 2024 at 02:28:42PM -0500, Bjorn Helgaas wrote:
-> > > On Wed, Sep 25, 2024 at 05:45:21PM +0300, Ville Syrjala wrote:
-> > > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > > > 
-> > > > On some older laptops i915 needs to leave the GPU in
-> > > > D0 when hibernating the system, or else the BIOS
-> > > > hangs somewhere. Currently that is achieved by calling
-> > > > pci_save_state() ahead of time, which then skips the
-> > > > whole pci_prepare_to_sleep() stuff.
-> 
-> > > If there's a general requirement to leave all devices in D0 when
-> > > hibernating, it would be nice to have have some documentation like an
-> > > ACPI spec reference.
-> > 
-> > No, IIRC the ACPI spec even says that you must (or at least
-> > should) put devices into D3. But the buggy BIOS on some old
-> > laptops keels over when you do that. Hence we need this quirk.
-> 
-> Can we include a reference to this part of the ACPI spec
+On Tue, 24 Sep 2024, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> These save & restore functions inside i915_suspend are old display
+> functions to save and restore a bunch of display related registers.
+>
+> Move it under display and rename accordantly. Just don't move it
+> entirely towards intel_display struct yet because it depends
+> on drm_i915_private for the IS_MOBILE.
 
-It's been years since I looked at that, but a quick trawl of the
-ACPI 6.3 spec (what I had at hand) landed me this:
+'git show --color-moved' has made me a huge proponent of completely
+separating code movement from any cleanups.
 
-"7.4.2.5 System \_S4 State
- ...
- - Devices states are compatible with the current Power Resource states. In
-   other words, all devices are in the D3 state when the system state is S4."
+With that, reviewing the movement part takes mere seconds rather than
+minutes. And the next patch doing independent cleanups on top is easy to
+review as well. Especially the s/dev_priv/i915/ change is easy with 'git
+show --color-words' (my MUA does something like that automagically).
 
-"16.1.6 Transitioning from the Working to the Sleeping State
- ...
- 4. OSPM places all device drivers into their respective Dx state. If the
-    device is enabled for wake, it enters the Dx state associated with the
-    wake capability. If the device is not enabled to wake the system, it
-    enters the D3 state."
+Regardless, this is
 
-> and some
-> details on which laptops have this issue?
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-The known models are listed in a comment in i915 code (added
-in the two mentioned commits), though I suspect there are
-probably more because we couldn't find any obvious pattern
-why these known models are affected.
 
-> 
-> I'm a little bit wary of changing the PCI core in a generic-looking
-> way on the basis of some unspecified buggy old BIOS.  That feels like
-> something we're likely to break in the future.
-> 
-> > > Or if this is some i915-specific thing, maybe a pointer to history
-> > > like a lore or bugzilla reference.
-> > 
-> > The two relevant commits I can find are:
-> > 
-> > commit 54875571bbfd ("drm/i915: apply the PCI_D0/D3 hibernation
-> > workaround everywhere on pre GEN6")
-> > commit ab3be73fa7b4 ("drm/i915: gen4: work around hang during
-> > hibernation")
-> 
-> Thanks, this feels like important history to include somewhere.
-> 
-> > > IIUC this is a cleanup that doesn't fix any known problem?  The
-> > > overall diffstat doesn't make it look like a simplification, although
-> > > it might certainly be cleaner somehow:
-> > 
-> > My main concern is that using pci_save_state() might cause the pci
-> > code to deviate from the normal path in more ways than just skipping
-> > the D0->D3 transition. And then we might end up constantly chasing
-> > after driver/pci changes in order to match its behaviour.
-> > 
-> > Not to mention that having the pci_save_state() in the driver code
-> > is clearly confusing a bunch of our developers.
-> 
-> I'm all in favor of removing pci_save_state() from drivers when
-> possible.  I take it that this doesn't fix a functional issue.
+BR,
+Jani.
 
-No known issue so far.
 
-But we are probably going to add eg. PME support at some point,
-and the fact that pci_save_state() also skips pci_enable_wake()
-makes me think we'd have to hand roll a lot more stuff in the
-driver code if we keep using the pci_save_state(). Though I 
-suppose we could do the pci_save_state() only on those
-old systems which won't have PME anyway. 
+>
+> While doing this conversion also update the MIT header using
+> the new SPDX ones.
+>
+> v2: Fix Makefile and include (Jani)
+>     Removed vga and gmbus (Jani, Ville)
+>
+> Cc: Jesse Barnes <jbarnes@virtuousgeek.org>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> ---
+>  drivers/gpu/drm/i915/Makefile                 |   2 +-
+>  .../gpu/drm/i915/display/i9xx_display_sr.c    |  95 ++++++++++++
+>  .../gpu/drm/i915/display/i9xx_display_sr.h    |  14 ++
+>  drivers/gpu/drm/i915/i915_driver.c            |   6 +-
+>  drivers/gpu/drm/i915/i915_suspend.c           | 135 ------------------
+>  drivers/gpu/drm/i915/i915_suspend.h           |  14 --
+>  6 files changed, 113 insertions(+), 153 deletions(-)
+>  create mode 100644 drivers/gpu/drm/i915/display/i9xx_display_sr.c
+>  create mode 100644 drivers/gpu/drm/i915/display/i9xx_display_sr.h
+>  delete mode 100644 drivers/gpu/drm/i915/i915_suspend.c
+>  delete mode 100644 drivers/gpu/drm/i915/i915_suspend.h
+>
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> index 70771e521b1c..f21c28d471e7 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -30,7 +30,6 @@ i915-y +=3D \
+>  	i915_params.o \
+>  	i915_pci.o \
+>  	i915_scatterlist.o \
+> -	i915_suspend.o \
+>  	i915_switcheroo.o \
+>  	i915_sysfs.o \
+>  	i915_utils.o \
+> @@ -219,6 +218,7 @@ i915-$(CONFIG_HWMON) +=3D \
+>  i915-y +=3D \
+>  	display/hsw_ips.o \
+>  	display/i9xx_plane.o \
+> +	display/i9xx_display_sr.o \
+>  	display/i9xx_wm.o \
+>  	display/intel_alpm.o \
+>  	display/intel_atomic.o \
+> diff --git a/drivers/gpu/drm/i915/display/i9xx_display_sr.c b/drivers/gpu=
+/drm/i915/display/i9xx_display_sr.c
+> new file mode 100644
+> index 000000000000..4dd0ce267994
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/display/i9xx_display_sr.c
+> @@ -0,0 +1,95 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright =C2=A9 2024 Intel Corporation
+> + */
+> +
+> +#include "i915_drv.h"
+> +#include "i915_reg.h"
+> +#include "i9xx_display_sr.h"
+> +#include "intel_de.h"
+> +#include "intel_gmbus.h"
+> +#include "intel_pci_config.h"
+> +
+> +static void i9xx_display_save_swf(struct drm_i915_private *i915)
+> +{
+> +	int i;
+> +
+> +	/* Scratch space */
+> +	if (GRAPHICS_VER(i915) =3D=3D 2 && IS_MOBILE(i915)) {
+> +		for (i =3D 0; i < 7; i++) {
+> +			i915->regfile.saveSWF0[i] =3D intel_de_read(i915, SWF0(i915, i));
+> +			i915->regfile.saveSWF1[i] =3D intel_de_read(i915, SWF1(i915, i));
+> +		}
+> +		for (i =3D 0; i < 3; i++)
+> +			i915->regfile.saveSWF3[i] =3D intel_de_read(i915, SWF3(i915, i));
+> +	} else if (GRAPHICS_VER(i915) =3D=3D 2) {
+> +		for (i =3D 0; i < 7; i++)
+> +			i915->regfile.saveSWF1[i] =3D intel_de_read(i915, SWF1(i915, i));
+> +	} else if (HAS_GMCH(i915)) {
+> +		for (i =3D 0; i < 16; i++) {
+> +			i915->regfile.saveSWF0[i] =3D intel_de_read(i915, SWF0(i915, i));
+> +			i915->regfile.saveSWF1[i] =3D intel_de_read(i915, SWF1(i915, i));
+> +		}
+> +		for (i =3D 0; i < 3; i++)
+> +			i915->regfile.saveSWF3[i] =3D intel_de_read(i915, SWF3(i915, i));
+> +	}
+> +}
+> +
+> +static void i9xx_display_restore_swf(struct drm_i915_private *i915)
+> +{
+> +	int i;
+> +
+> +	/* Scratch space */
+> +	if (GRAPHICS_VER(i915) =3D=3D 2 && IS_MOBILE(i915)) {
+> +		for (i =3D 0; i < 7; i++) {
+> +			intel_de_write(i915, SWF0(i915, i), i915->regfile.saveSWF0[i]);
+> +			intel_de_write(i915, SWF1(i915, i), i915->regfile.saveSWF1[i]);
+> +		}
+> +		for (i =3D 0; i < 3; i++)
+> +			intel_de_write(i915, SWF3(i915, i), i915->regfile.saveSWF3[i]);
+> +	} else if (GRAPHICS_VER(i915) =3D=3D 2) {
+> +		for (i =3D 0; i < 7; i++)
+> +			intel_de_write(i915, SWF1(i915, i), i915->regfile.saveSWF1[i]);
+> +	} else if (HAS_GMCH(i915)) {
+> +		for (i =3D 0; i < 16; i++) {
+> +			intel_de_write(i915, SWF0(i915, i), i915->regfile.saveSWF0[i]);
+> +			intel_de_write(i915, SWF1(i915, i), i915->regfile.saveSWF1[i]);
+> +		}
+> +		for (i =3D 0; i < 3; i++)
+> +			intel_de_write(i915, SWF3(i915, i), i915->regfile.saveSWF3[i]);
+> +	}
+> +}
+> +
+> +void i9xx_display_sr_save(struct drm_i915_private *i915)
+> +{
+> +	struct pci_dev *pdev =3D to_pci_dev(i915->drm.dev);
+> +
+> +	if (!HAS_DISPLAY(i915))
+> +		return;
+> +
+> +	/* Display arbitration control */
+> +	if (GRAPHICS_VER(i915) <=3D 4)
+> +		i915->regfile.saveDSPARB =3D intel_de_read(i915, DSPARB(i915));
+> +
+> +	if (GRAPHICS_VER(i915) =3D=3D 4)
+> +		pci_read_config_word(pdev, GCDGMBUS, &i915->regfile.saveGCDGMBUS);
+> +
+> +	i9xx_display_save_swf(i915);
+> +}
+> +
+> +void i9xx_display_sr_restore(struct drm_i915_private *i915)
+> +{
+> +	struct pci_dev *pdev =3D to_pci_dev(i915->drm.dev);
+> +
+> +	if (!HAS_DISPLAY(i915))
+> +		return;
+> +
+> +	i9xx_display_restore_swf(i915);
+> +
+> +	if (GRAPHICS_VER(i915) =3D=3D 4)
+> +		pci_write_config_word(pdev, GCDGMBUS, i915->regfile.saveGCDGMBUS);
+> +
+> +	/* Display arbitration */
+> +	if (GRAPHICS_VER(i915) <=3D 4)
+> +		intel_de_write(i915, DSPARB(i915), i915->regfile.saveDSPARB);
+> +}
+> diff --git a/drivers/gpu/drm/i915/display/i9xx_display_sr.h b/drivers/gpu=
+/drm/i915/display/i9xx_display_sr.h
+> new file mode 100644
+> index 000000000000..30383758f97e
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/display/i9xx_display_sr.h
+> @@ -0,0 +1,14 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright =C2=A9 2024 Intel Corporation
+> + */
+> +
+> +#ifndef __I9XX_DISPLAY_SR_H__
+> +#define __I9XX_DISPLAY_SR_H__
+> +
+> +struct drm_i915_private;
+> +
+> +void i9xx_display_sr_save(struct drm_i915_private *i915);
+> +void i9xx_display_sr_restore(struct drm_i915_private *i915);
+> +
+> +#endif
+> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i9=
+15_driver.c
+> index c5ffcf229f42..ae5906885359 100644
+> --- a/drivers/gpu/drm/i915/i915_driver.c
+> +++ b/drivers/gpu/drm/i915/i915_driver.c
+> @@ -45,6 +45,7 @@
+>  #include <drm/drm_managed.h>
+>  #include <drm/drm_probe_helper.h>
+>=20=20
+> +#include "display/i9xx_display_sr.h"
+>  #include "display/intel_acpi.h"
+>  #include "display/intel_bw.h"
+>  #include "display/intel_cdclk.h"
+> @@ -94,7 +95,6 @@
+>  #include "i915_memcpy.h"
+>  #include "i915_perf.h"
+>  #include "i915_query.h"
+> -#include "i915_suspend.h"
+>  #include "i915_switcheroo.h"
+>  #include "i915_sysfs.h"
+>  #include "i915_utils.h"
+> @@ -1048,7 +1048,7 @@ static int i915_drm_suspend(struct drm_device *dev)
+>  	intel_dpt_suspend(dev_priv);
+>  	i915_ggtt_suspend(to_gt(dev_priv)->ggtt);
+>=20=20
+> -	i915_save_display(dev_priv);
+> +	i9xx_display_sr_save(dev_priv);
+>=20=20
+>  	opregion_target_state =3D suspend_to_idle(dev_priv) ? PCI_D1 : PCI_D3co=
+ld;
+>  	intel_opregion_suspend(display, opregion_target_state);
+> @@ -1167,7 +1167,7 @@ static int i915_drm_resume(struct drm_device *dev)
+>=20=20
+>  	intel_dmc_resume(display);
+>=20=20
+> -	i915_restore_display(dev_priv);
+> +	i9xx_display_sr_restore(dev_priv);
+>=20=20
+>  	intel_vga_redisable(display);
+>=20=20
+> diff --git a/drivers/gpu/drm/i915/i915_suspend.c b/drivers/gpu/drm/i915/i=
+915_suspend.c
+> deleted file mode 100644
+> index fb67b05cd864..000000000000
+> --- a/drivers/gpu/drm/i915/i915_suspend.c
+> +++ /dev/null
+> @@ -1,135 +0,0 @@
+> -/*
+> - *
+> - * Copyright 2008 (c) Intel Corporation
+> - *   Jesse Barnes <jbarnes@virtuousgeek.org>
+> - *
+> - * Permission is hereby granted, free of charge, to any person obtaining=
+ a
+> - * copy of this software and associated documentation files (the
+> - * "Software"), to deal in the Software without restriction, including
+> - * without limitation the rights to use, copy, modify, merge, publish,
+> - * distribute, sub license, and/or sell copies of the Software, and to
+> - * permit persons to whom the Software is furnished to do so, subject to
+> - * the following conditions:
+> - *
+> - * The above copyright notice and this permission notice (including the
+> - * next paragraph) shall be included in all copies or substantial portio=
+ns
+> - * of the Software.
+> - *
+> - * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRE=
+SS
+> - * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+> - * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMEN=
+T.
+> - * IN NO EVENT SHALL TUNGSTEN GRAPHICS AND/OR ITS SUPPLIERS BE LIABLE FOR
+> - * ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRA=
+CT,
+> - * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+> - * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+> - */
+> -
+> -#include "display/intel_de.h"
+> -#include "display/intel_gmbus.h"
+> -
+> -#include "i915_drv.h"
+> -#include "i915_reg.h"
+> -#include "i915_suspend.h"
+> -#include "intel_pci_config.h"
+> -
+> -static void intel_save_swf(struct drm_i915_private *dev_priv)
+> -{
+> -	int i;
+> -
+> -	/* Scratch space */
+> -	if (GRAPHICS_VER(dev_priv) =3D=3D 2 && IS_MOBILE(dev_priv)) {
+> -		for (i =3D 0; i < 7; i++) {
+> -			dev_priv->regfile.saveSWF0[i] =3D intel_de_read(dev_priv,
+> -								      SWF0(dev_priv, i));
+> -			dev_priv->regfile.saveSWF1[i] =3D intel_de_read(dev_priv,
+> -								      SWF1(dev_priv, i));
+> -		}
+> -		for (i =3D 0; i < 3; i++)
+> -			dev_priv->regfile.saveSWF3[i] =3D intel_de_read(dev_priv,
+> -								      SWF3(dev_priv, i));
+> -	} else if (GRAPHICS_VER(dev_priv) =3D=3D 2) {
+> -		for (i =3D 0; i < 7; i++)
+> -			dev_priv->regfile.saveSWF1[i] =3D intel_de_read(dev_priv,
+> -								      SWF1(dev_priv, i));
+> -	} else if (HAS_GMCH(dev_priv)) {
+> -		for (i =3D 0; i < 16; i++) {
+> -			dev_priv->regfile.saveSWF0[i] =3D intel_de_read(dev_priv,
+> -								      SWF0(dev_priv, i));
+> -			dev_priv->regfile.saveSWF1[i] =3D intel_de_read(dev_priv,
+> -								      SWF1(dev_priv, i));
+> -		}
+> -		for (i =3D 0; i < 3; i++)
+> -			dev_priv->regfile.saveSWF3[i] =3D intel_de_read(dev_priv,
+> -								      SWF3(dev_priv, i));
+> -	}
+> -}
+> -
+> -static void intel_restore_swf(struct drm_i915_private *dev_priv)
+> -{
+> -	int i;
+> -
+> -	/* Scratch space */
+> -	if (GRAPHICS_VER(dev_priv) =3D=3D 2 && IS_MOBILE(dev_priv)) {
+> -		for (i =3D 0; i < 7; i++) {
+> -			intel_de_write(dev_priv, SWF0(dev_priv, i),
+> -				       dev_priv->regfile.saveSWF0[i]);
+> -			intel_de_write(dev_priv, SWF1(dev_priv, i),
+> -				       dev_priv->regfile.saveSWF1[i]);
+> -		}
+> -		for (i =3D 0; i < 3; i++)
+> -			intel_de_write(dev_priv, SWF3(dev_priv, i),
+> -				       dev_priv->regfile.saveSWF3[i]);
+> -	} else if (GRAPHICS_VER(dev_priv) =3D=3D 2) {
+> -		for (i =3D 0; i < 7; i++)
+> -			intel_de_write(dev_priv, SWF1(dev_priv, i),
+> -				       dev_priv->regfile.saveSWF1[i]);
+> -	} else if (HAS_GMCH(dev_priv)) {
+> -		for (i =3D 0; i < 16; i++) {
+> -			intel_de_write(dev_priv, SWF0(dev_priv, i),
+> -				       dev_priv->regfile.saveSWF0[i]);
+> -			intel_de_write(dev_priv, SWF1(dev_priv, i),
+> -				       dev_priv->regfile.saveSWF1[i]);
+> -		}
+> -		for (i =3D 0; i < 3; i++)
+> -			intel_de_write(dev_priv, SWF3(dev_priv, i),
+> -				       dev_priv->regfile.saveSWF3[i]);
+> -	}
+> -}
+> -
+> -void i915_save_display(struct drm_i915_private *dev_priv)
+> -{
+> -	struct pci_dev *pdev =3D to_pci_dev(dev_priv->drm.dev);
+> -
+> -	if (!HAS_DISPLAY(dev_priv))
+> -		return;
+> -
+> -	/* Display arbitration control */
+> -	if (GRAPHICS_VER(dev_priv) <=3D 4)
+> -		dev_priv->regfile.saveDSPARB =3D intel_de_read(dev_priv,
+> -							     DSPARB(dev_priv));
+> -
+> -	if (GRAPHICS_VER(dev_priv) =3D=3D 4)
+> -		pci_read_config_word(pdev, GCDGMBUS,
+> -				     &dev_priv->regfile.saveGCDGMBUS);
+> -
+> -	intel_save_swf(dev_priv);
+> -}
+> -
+> -void i915_restore_display(struct drm_i915_private *dev_priv)
+> -{
+> -	struct pci_dev *pdev =3D to_pci_dev(dev_priv->drm.dev);
+> -
+> -	if (!HAS_DISPLAY(dev_priv))
+> -		return;
+> -
+> -	intel_restore_swf(dev_priv);
+> -
+> -	if (GRAPHICS_VER(dev_priv) =3D=3D 4)
+> -		pci_write_config_word(pdev, GCDGMBUS,
+> -				      dev_priv->regfile.saveGCDGMBUS);
+> -
+> -	/* Display arbitration */
+> -	if (GRAPHICS_VER(dev_priv) <=3D 4)
+> -		intel_de_write(dev_priv, DSPARB(dev_priv),
+> -			       dev_priv->regfile.saveDSPARB);
+> -}
+> diff --git a/drivers/gpu/drm/i915/i915_suspend.h b/drivers/gpu/drm/i915/i=
+915_suspend.h
+> deleted file mode 100644
+> index e5a611ee3d15..000000000000
+> --- a/drivers/gpu/drm/i915/i915_suspend.h
+> +++ /dev/null
+> @@ -1,14 +0,0 @@
+> -/* SPDX-License-Identifier: MIT */
+> -/*
+> - * Copyright =C2=A9 2019 Intel Corporation
+> - */
+> -
+> -#ifndef __I915_SUSPEND_H__
+> -#define __I915_SUSPEND_H__
+> -
+> -struct drm_i915_private;
+> -
+> -void i915_save_display(struct drm_i915_private *i915);
+> -void i915_restore_display(struct drm_i915_private *i915);
+> -
+> -#endif /* __I915_SUSPEND_H__ */
 
--- 
-Ville Syrjälä
-Intel
+--=20
+Jani Nikula, Intel
