@@ -2,57 +2,78 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BA5298E22A
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Oct 2024 20:17:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C289398E23C
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Oct 2024 20:22:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECF6110E778;
-	Wed,  2 Oct 2024 18:17:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B494310E78F;
+	Wed,  2 Oct 2024 18:22:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ISXFimno";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W+oVsbec";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 72DD610E22C;
- Wed,  2 Oct 2024 18:17:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6113610E1B3;
+ Wed,  2 Oct 2024 18:22:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727893020; x=1759429020;
+ t=1727893333; x=1759429333;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=m250e0V8uuD667iMWJkLAQaVpdRayQU1FVsqhDOulz4=;
- b=ISXFimnoQ0D9Ca+5iO4KrBdShQbcvkJV38ys07tCGEg1UoN2F4jWY2uH
- OMd5cs1hTU07JuaSSpsBSv/LyXOGZSUiBZao1ps6IFQxkfBEV5PRsZHWR
- sxeosVyCMj2SBTku4jjcTvucXSj0ed/i2SNLYXKXWBojmCzKE9DUKdZZj
- OklKCzT1UXaRkCmn3ZQShyx7C1OvWEoArvRb9GNWDDGLo7f+zAPigxYsO
- CxXtBQY9L12H9VLnDOjpUI1M34nQwExkujiQ52/0mqgtaSmfVkzAf8IeB
- 3sWqB1XXiLgyJCA/MyPOv5+sFdbj5eb39QdTum8RFvbU0WzrOBJKnTyQz g==;
-X-CSE-ConnectionGUID: YcwyPXYfSAWZEFaCmzDSsQ==
-X-CSE-MsgGUID: qTNCJTwHQtynJF5y0uCgvg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11213"; a="30956252"
-X-IronPort-AV: E=Sophos;i="6.11,172,1725346800"; d="scan'208";a="30956252"
+ bh=t01JDmHT3zLNfz8gKoJAfjyhjpNElz/ODXlRagJHKXg=;
+ b=W+oVsbecELrw+JdrnSLA7fIdfKSBS6h7nz+mm3cR0FPmpJkNkz1eDQfj
+ XCDV5iwwetZriklnKQq/EIiWdWcg4MY49PykcreDpdYxeJ+2UthOcZW6a
+ 86F3pvUNjnK4Z4dsQaIUzPYwDP9M985g5AdyFQmF2r9cWPYjcEi++y9X0
+ VBuybdtrofwGDxaEPN8orMo52jhcXzr0bXY0kUDXMAf5i5X1ZsvSwTpa4
+ W9c+axJ25Eg+rnF2KLVDGjXGm5moNuSp0ey/+kzp+2NB75wR8TjNW8CKM
+ 7yMO3kV0AEazTGk12Xs+XLSoqZTUGOs1fhDgZ8tf0bM7zXyp2QipqVrOX w==;
+X-CSE-ConnectionGUID: 52H4cxGsTbe5ZZOlCVF1kA==
+X-CSE-MsgGUID: E2bho1+aTR+Mek2id2sB6A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11213"; a="26957534"
+X-IronPort-AV: E=Sophos;i="6.11,172,1725346800"; d="scan'208";a="26957534"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Oct 2024 11:17:00 -0700
-X-CSE-ConnectionGUID: djx5KzvMQBy6TuaDljPqvQ==
-X-CSE-MsgGUID: svnu+Y7GQOWYG49xeKYWuQ==
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Oct 2024 11:22:11 -0700
+X-CSE-ConnectionGUID: RuSvj+gXSm+hT8AukyUnKw==
+X-CSE-MsgGUID: k8M7o8nlSyG/VQl44AXurg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,172,1725346800"; d="scan'208";a="74201302"
-Received: from lbogdanm-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.246.49])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Oct 2024 11:16:58 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH] drm/i915: use NULL for zero wakeref_t instead of plain
- integer 0
-Date: Wed,  2 Oct 2024 21:16:55 +0300
-Message-Id: <20241002181655.582597-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
+X-IronPort-AV: E=Sophos;i="6.11,172,1725346800"; d="scan'208";a="74202322"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 02 Oct 2024 11:22:01 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 02 Oct 2024 21:22:00 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Alain Volmat <alain.volmat@foss.st.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Alexey Brodkin <abrodkin@synopsys.com>, amd-gfx@lists.freedesktop.org,
+ Andy Yan <andy.yan@rock-chips.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Danilo Krummrich <dakr@redhat.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ freedreno@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>,
+ =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
+ Inki Dae <inki.dae@samsung.com>, Jyri Sarha <jyri.sarha@iki.fi>,
+ Karol Herbst <kherbst@redhat.com>, linux-amlogic@lists.infradead.org,
+ linux-arm-msm@vger.kernel.org, linux-arm-msm@vger.kernel.orga,
+ linux-mediatek@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
+ Liviu Dudau <liviu.dudau@arm.com>, Lyude Paul <lyude@redhat.com>,
+ =?UTF-8?q?Ma=C3=ADra=20Canal?= <mairacanal@riseup.net>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ nouveau@lists.freedesktop.org, nouveau@lists.freedesktop.orga,
+ Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
+ Rob Clark <robdclark@gmail.com>, Russell King <linux@armlinux.org.uk>,
+ Sandy Huang <hjc@rock-chips.com>, Sean Paul <sean@poorly.run>,
+ spice-devel@lists.freedesktop.org, virtualization@lists.linux.dev,
+ xen-devel@lists.xenproject.org, Xinhui Pan <Xinhui.Pan@amd.com>,
+ Zack Rusin <zack.rusin@broadcom.com>
+Subject: [PATCH 0/2] drm: Treewide plane/crtc legacy state sweeping
+Date: Wed,  2 Oct 2024 21:21:58 +0300
+Message-ID: <20241002182200.15363-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,359 +90,171 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As of commit 2edc6a75f26c ("drm/i915: switch intel_wakeref_t underlying
-type to struct ref_tracker *") we gained quite a few sparse warnings
-about "Using plain integer as NULL pointer" for using 0 to initialize
-wakeref_t. Switch to NULL everywhere.
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c       |  2 +-
- drivers/gpu/drm/i915/display/intel_display_power.c |  6 +++---
- drivers/gpu/drm/i915/display/intel_display_power.h |  4 ++--
- drivers/gpu/drm/i915/display/intel_pps.c           |  2 +-
- drivers/gpu/drm/i915/gem/i915_gem_shrinker.c       |  2 +-
- drivers/gpu/drm/i915/gem/i915_gem_ttm.c            |  4 ++--
- drivers/gpu/drm/i915/gt/intel_breadcrumbs.c        |  2 +-
- drivers/gpu/drm/i915/gt/intel_gt_pm.h              |  6 +++---
- drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c  |  2 +-
- drivers/gpu/drm/i915/i915_vma.c                    |  4 ++--
- drivers/gpu/drm/i915/intel_runtime_pm.c            |  2 +-
- drivers/gpu/drm/i915/intel_runtime_pm.h            |  6 +++---
- drivers/gpu/drm/i915/intel_wakeref.c               | 14 +++++++-------
- drivers/gpu/drm/i915/pxp/intel_pxp.c               |  2 +-
- .../drm/xe/compat-i915-headers/intel_runtime_pm.h  |  6 +++---
- 15 files changed, 32 insertions(+), 32 deletions(-)
+An attempt to hide the drm_plane/crtc legacy state better.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 74311bb9d290..2864a894d399 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7589,7 +7589,7 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 	struct intel_crtc_state *new_crtc_state, *old_crtc_state;
- 	struct intel_crtc *crtc;
- 	struct intel_power_domain_mask put_domains[I915_MAX_PIPES] = {};
--	intel_wakeref_t wakeref = 0;
-+	intel_wakeref_t wakeref = NULL;
- 	int i;
- 
- 	intel_atomic_commit_fence_wait(state);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index 7b16ba1a8226..c2bc80f5bf6b 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -545,7 +545,7 @@ intel_display_power_get_if_enabled(struct drm_i915_private *dev_priv,
- 
- 	wakeref = intel_runtime_pm_get_if_in_use(&dev_priv->runtime_pm);
- 	if (!wakeref)
--		return 0;
-+		return NULL;
- 
- 	mutex_lock(&power_domains->lock);
- 
-@@ -560,7 +560,7 @@ intel_display_power_get_if_enabled(struct drm_i915_private *dev_priv,
- 
- 	if (!is_enabled) {
- 		intel_runtime_pm_put(&dev_priv->runtime_pm, wakeref);
--		wakeref = 0;
-+		wakeref = NULL;
- 	}
- 
- 	return wakeref;
-@@ -648,7 +648,7 @@ intel_display_power_put_async_work(struct work_struct *work)
- 	struct i915_power_domains *power_domains = &dev_priv->display.power.domains;
- 	struct intel_runtime_pm *rpm = &dev_priv->runtime_pm;
- 	intel_wakeref_t new_work_wakeref = intel_runtime_pm_get_raw(rpm);
--	intel_wakeref_t old_work_wakeref = 0;
-+	intel_wakeref_t old_work_wakeref = NULL;
- 
- 	mutex_lock(&power_domains->lock);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
-index 3b7c1a0bb1de..3f8f84df4733 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-@@ -297,10 +297,10 @@ void gen9_dbuf_slices_update(struct drm_i915_private *dev_priv,
- 
- #define with_intel_display_power(i915, domain, wf) \
- 	for ((wf) = intel_display_power_get((i915), (domain)); (wf); \
--	     intel_display_power_put_async((i915), (domain), (wf)), (wf) = 0)
-+	     intel_display_power_put_async((i915), (domain), (wf)), (wf) = NULL)
- 
- #define with_intel_display_power_if_enabled(i915, domain, wf) \
- 	for ((wf) = intel_display_power_get_if_enabled((i915), (domain)); (wf); \
--	     intel_display_power_put_async((i915), (domain), (wf)), (wf) = 0)
-+	     intel_display_power_put_async((i915), (domain), (wf)), (wf) = NULL)
- 
- #endif /* __INTEL_DISPLAY_POWER_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
-index 88abc4c7cda1..ffeee9daa568 100644
---- a/drivers/gpu/drm/i915/display/intel_pps.c
-+++ b/drivers/gpu/drm/i915/display/intel_pps.c
-@@ -87,7 +87,7 @@ intel_wakeref_t intel_pps_unlock(struct intel_dp *intel_dp,
- 	mutex_unlock(&display->pps.mutex);
- 	intel_display_power_put(dev_priv, POWER_DOMAIN_DISPLAY_CORE, wakeref);
- 
--	return 0;
-+	return NULL;
- }
- 
- static void
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c b/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
-index d166052eb2ce..9117e9422844 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
-@@ -117,7 +117,7 @@ i915_gem_shrink(struct i915_gem_ww_ctx *ww,
- 		},
- 		{ NULL, 0 },
- 	}, *phase;
--	intel_wakeref_t wakeref = 0;
-+	intel_wakeref_t wakeref = NULL;
- 	unsigned long count = 0;
- 	unsigned long scanned = 0;
- 	int err = 0, i = 0;
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-index b22e2019768f..abb82be0d0aa 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
-@@ -1038,7 +1038,7 @@ static vm_fault_t vm_fault_ttm(struct vm_fault *vmf)
- 	struct ttm_buffer_object *bo = area->vm_private_data;
- 	struct drm_device *dev = bo->base.dev;
- 	struct drm_i915_gem_object *obj = i915_ttm_to_gem(bo);
--	intel_wakeref_t wakeref = 0;
-+	intel_wakeref_t wakeref = NULL;
- 	vm_fault_t ret;
- 	int idx;
- 
-@@ -1195,7 +1195,7 @@ static u64 i915_ttm_mmap_offset(struct drm_i915_gem_object *obj)
- static void i915_ttm_unmap_virtual(struct drm_i915_gem_object *obj)
- {
- 	struct ttm_buffer_object *bo = i915_gem_to_ttm(obj);
--	intel_wakeref_t wakeref = 0;
-+	intel_wakeref_t wakeref = NULL;
- 
- 	assert_object_held_shared(obj);
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-index 20b9b04ec1e0..cc866773ba6f 100644
---- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-@@ -70,7 +70,7 @@ static void __intel_breadcrumbs_disarm_irq(struct intel_breadcrumbs *b)
- 	if (!--b->irq_enabled)
- 		b->irq_disable(b);
- 
--	WRITE_ONCE(b->irq_armed, 0);
-+	WRITE_ONCE(b->irq_armed, NULL);
- 	intel_gt_pm_put_async(b->irq_engine->gt, wakeref);
- }
- 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_pm.h b/drivers/gpu/drm/i915/gt/intel_gt_pm.h
-index dcbfc09194b7..6f25c747bc29 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_pm.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_pm.h
-@@ -35,7 +35,7 @@ static inline void __intel_gt_pm_get(struct intel_gt *gt)
- static inline intel_wakeref_t intel_gt_pm_get_if_awake(struct intel_gt *gt)
- {
- 	if (!intel_wakeref_get_if_active(&gt->wakeref))
--		return 0;
-+		return NULL;
- 
- 	return intel_wakeref_track(&gt->wakeref);
- }
-@@ -73,7 +73,7 @@ static inline void intel_gt_pm_put_async(struct intel_gt *gt, intel_wakeref_t ha
- }
- 
- #define with_intel_gt_pm(gt, wf) \
--	for (wf = intel_gt_pm_get(gt); wf; intel_gt_pm_put(gt, wf), wf = 0)
-+	for ((wf) = intel_gt_pm_get(gt); (wf); intel_gt_pm_put((gt), (wf)), (wf) = NULL)
- 
- /**
-  * with_intel_gt_pm_if_awake - if GT is PM awake, get a reference to prevent
-@@ -84,7 +84,7 @@ static inline void intel_gt_pm_put_async(struct intel_gt *gt, intel_wakeref_t ha
-  * @wf: pointer to a temporary wakeref.
-  */
- #define with_intel_gt_pm_if_awake(gt, wf) \
--	for (wf = intel_gt_pm_get_if_awake(gt); wf; intel_gt_pm_put_async(gt, wf), wf = 0)
-+	for ((wf) = intel_gt_pm_get_if_awake(gt); (wf); intel_gt_pm_put_async((gt), (wf)), (wf) = NULL)
- 
- static inline int intel_gt_pm_wait_for_idle(struct intel_gt *gt)
- {
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-index ed979847187f..9ede6f240d79 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-@@ -1339,7 +1339,7 @@ static ktime_t guc_engine_busyness(struct intel_engine_cs *engine, ktime_t *now)
- 	 * start_gt_clk is derived from GuC state. To get a consistent
- 	 * view of activity, we query the GuC state only if gt is awake.
- 	 */
--	wakeref = in_reset ? 0 : intel_gt_pm_get_if_awake(gt);
-+	wakeref = in_reset ? NULL : intel_gt_pm_get_if_awake(gt);
- 	if (wakeref) {
- 		stats_saved = *stats;
- 		gt_stamp_saved = guc->timestamp.gt_stamp;
-diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
-index d2f064d2525c..776f8cc51b2f 100644
---- a/drivers/gpu/drm/i915/i915_vma.c
-+++ b/drivers/gpu/drm/i915/i915_vma.c
-@@ -2157,7 +2157,7 @@ static struct dma_fence *__i915_vma_unbind_async(struct i915_vma *vma)
- int i915_vma_unbind(struct i915_vma *vma)
- {
- 	struct i915_address_space *vm = vma->vm;
--	intel_wakeref_t wakeref = 0;
-+	intel_wakeref_t wakeref = NULL;
- 	int err;
- 
- 	assert_object_held_shared(vma->obj);
-@@ -2196,7 +2196,7 @@ int i915_vma_unbind_async(struct i915_vma *vma, bool trylock_vm)
- {
- 	struct drm_i915_gem_object *obj = vma->obj;
- 	struct i915_address_space *vm = vma->vm;
--	intel_wakeref_t wakeref = 0;
-+	intel_wakeref_t wakeref = NULL;
- 	struct dma_fence *fence;
- 	int err;
- 
-diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.c b/drivers/gpu/drm/i915/intel_runtime_pm.c
-index a21f5a1c89bc..1a47ecfd3fd8 100644
---- a/drivers/gpu/drm/i915/intel_runtime_pm.c
-+++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
-@@ -250,7 +250,7 @@ static intel_wakeref_t __intel_runtime_pm_get_if_active(struct intel_runtime_pm
- 		     pm_runtime_get_if_active(rpm->kdev) <= 0) ||
- 		    (!ignore_usecount &&
- 		     pm_runtime_get_if_in_use(rpm->kdev) <= 0))
--			return 0;
-+			return NULL;
- 	}
- 
- 	intel_runtime_pm_acquire(rpm, true);
-diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.h b/drivers/gpu/drm/i915/intel_runtime_pm.h
-index 796a2dcb307e..126f8320f86e 100644
---- a/drivers/gpu/drm/i915/intel_runtime_pm.h
-+++ b/drivers/gpu/drm/i915/intel_runtime_pm.h
-@@ -188,15 +188,15 @@ intel_wakeref_t intel_runtime_pm_get_raw(struct intel_runtime_pm *rpm);
- 
- #define with_intel_runtime_pm(rpm, wf) \
- 	for ((wf) = intel_runtime_pm_get(rpm); (wf); \
--	     intel_runtime_pm_put((rpm), (wf)), (wf) = 0)
-+	     intel_runtime_pm_put((rpm), (wf)), (wf) = NULL)
- 
- #define with_intel_runtime_pm_if_in_use(rpm, wf) \
- 	for ((wf) = intel_runtime_pm_get_if_in_use(rpm); (wf); \
--	     intel_runtime_pm_put((rpm), (wf)), (wf) = 0)
-+	     intel_runtime_pm_put((rpm), (wf)), (wf) = NULL)
- 
- #define with_intel_runtime_pm_if_active(rpm, wf) \
- 	for ((wf) = intel_runtime_pm_get_if_active(rpm); (wf); \
--	     intel_runtime_pm_put((rpm), (wf)), (wf) = 0)
-+	     intel_runtime_pm_put((rpm), (wf)), (wf) = NULL)
- 
- void intel_runtime_pm_put_unchecked(struct intel_runtime_pm *rpm);
- #if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
-diff --git a/drivers/gpu/drm/i915/intel_wakeref.c b/drivers/gpu/drm/i915/intel_wakeref.c
-index dea2f63184f8..87f246047312 100644
---- a/drivers/gpu/drm/i915/intel_wakeref.c
-+++ b/drivers/gpu/drm/i915/intel_wakeref.c
-@@ -27,11 +27,11 @@ int __intel_wakeref_get_first(struct intel_wakeref *wf)
- 	if (!atomic_read(&wf->count)) {
- 		INTEL_WAKEREF_BUG_ON(wf->wakeref);
- 		wf->wakeref = wakeref;
--		wakeref = 0;
-+		wakeref = NULL;
- 
- 		ret = wf->ops->get(wf);
- 		if (ret) {
--			wakeref = xchg(&wf->wakeref, 0);
-+			wakeref = xchg(&wf->wakeref, NULL);
- 			wake_up_var(&wf->wakeref);
- 			goto unlock;
- 		}
-@@ -52,7 +52,7 @@ int __intel_wakeref_get_first(struct intel_wakeref *wf)
- 
- static void ____intel_wakeref_put_last(struct intel_wakeref *wf)
- {
--	intel_wakeref_t wakeref = 0;
-+	intel_wakeref_t wakeref = NULL;
- 
- 	INTEL_WAKEREF_BUG_ON(atomic_read(&wf->count) <= 0);
- 	if (unlikely(!atomic_dec_and_test(&wf->count)))
-@@ -61,7 +61,7 @@ static void ____intel_wakeref_put_last(struct intel_wakeref *wf)
- 	/* ops->put() must reschedule its own release on error/deferral */
- 	if (likely(!wf->ops->put(wf))) {
- 		INTEL_WAKEREF_BUG_ON(!wf->wakeref);
--		wakeref = xchg(&wf->wakeref, 0);
-+		wakeref = xchg(&wf->wakeref, NULL);
- 		wake_up_var(&wf->wakeref);
- 	}
- 
-@@ -107,7 +107,7 @@ void __intel_wakeref_init(struct intel_wakeref *wf,
- 
- 	__mutex_init(&wf->mutex, "wakeref.mutex", &key->mutex);
- 	atomic_set(&wf->count, 0);
--	wf->wakeref = 0;
-+	wf->wakeref = NULL;
- 
- 	INIT_DELAYED_WORK(&wf->work, __intel_wakeref_put_work);
- 	lockdep_init_map(&wf->work.work.lockdep_map,
-@@ -142,7 +142,7 @@ static void wakeref_auto_timeout(struct timer_list *t)
- 	if (!refcount_dec_and_lock_irqsave(&wf->count, &wf->lock, &flags))
- 		return;
- 
--	wakeref = fetch_and_zero(&wf->wakeref);
-+	wakeref = xchg(&wf->wakeref, NULL);
- 	spin_unlock_irqrestore(&wf->lock, flags);
- 
- 	intel_runtime_pm_put(&wf->i915->runtime_pm, wakeref);
-@@ -154,7 +154,7 @@ void intel_wakeref_auto_init(struct intel_wakeref_auto *wf,
- 	spin_lock_init(&wf->lock);
- 	timer_setup(&wf->timer, wakeref_auto_timeout, 0);
- 	refcount_set(&wf->count, 0);
--	wf->wakeref = 0;
-+	wf->wakeref = NULL;
- 	wf->i915 = i915;
- }
- 
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp.c b/drivers/gpu/drm/i915/pxp/intel_pxp.c
-index 3a40e4ece925..da3577149769 100644
---- a/drivers/gpu/drm/i915/pxp/intel_pxp.c
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp.c
-@@ -531,7 +531,7 @@ void intel_pxp_invalidate(struct intel_pxp *pxp)
- 		if (ctx->pxp_wakeref) {
- 			intel_runtime_pm_put(&i915->runtime_pm,
- 					     ctx->pxp_wakeref);
--			ctx->pxp_wakeref = 0;
-+			ctx->pxp_wakeref = NULL;
- 		}
- 
- 		spin_lock_irq(&i915->gem.contexts.lock);
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h b/drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h
-index 380d25428bdb..cba587ceba1b 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h
-@@ -24,14 +24,14 @@ static inline intel_wakeref_t intel_runtime_pm_get(struct xe_runtime_pm *pm)
- {
- 	struct xe_device *xe = container_of(pm, struct xe_device, runtime_pm);
- 
--	return xe_pm_runtime_resume_and_get(xe) ? INTEL_WAKEREF_DEF : 0;
-+	return xe_pm_runtime_resume_and_get(xe) ? INTEL_WAKEREF_DEF : NULL;
- }
- 
- static inline intel_wakeref_t intel_runtime_pm_get_if_in_use(struct xe_runtime_pm *pm)
- {
- 	struct xe_device *xe = container_of(pm, struct xe_device, runtime_pm);
- 
--	return xe_pm_runtime_get_if_in_use(xe) ? INTEL_WAKEREF_DEF : 0;
-+	return xe_pm_runtime_get_if_in_use(xe) ? INTEL_WAKEREF_DEF : NULL;
- }
- 
- static inline intel_wakeref_t intel_runtime_pm_get_noresume(struct xe_runtime_pm *pm)
-@@ -63,6 +63,6 @@ static inline void intel_runtime_pm_put(struct xe_runtime_pm *pm, intel_wakeref_
- 
- #define with_intel_runtime_pm(rpm, wf) \
- 	for ((wf) = intel_runtime_pm_get(rpm); (wf); \
--	     intel_runtime_pm_put((rpm), (wf)), (wf) = 0)
-+	     intel_runtime_pm_put((rpm), (wf)), (wf) = NULL)
- 
- #endif
+This also highlights the fact that a lot of supposedly
+atomic drivers are poking around in the legacy crtc state,
+which is rather questionable. For planes we did force the
+legacy state to NULL already to force drivers to behave.
+But even then it seems capable of confusing people with
+its high profile location directly under drm_plane.
+
+This might end up as some kind of conflict
+galore, but the alternative would involve trying
+to wean the atomic drivers off one by one,
+which would probably take forever. At least with
+this the issue becomes visible and shouldn't be
+forgotten as easily.
+
+The cc list was getting way out of hand, so I had
+to trim it a bit. Hopefully I didn't chop off too
+many names...
+
+Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>
+Cc: Alain Volmat <alain.volmat@foss.st.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: Alexey Brodkin <abrodkin@synopsys.com>
+Cc: amd-gfx@lists.freedesktop.org
+Cc: Andy Yan <andy.yan@rock-chips.com>
+Cc: "Christian König" <christian.koenig@amd.com>
+Cc: Danilo Krummrich <dakr@redhat.com>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: freedreno@lists.freedesktop.org
+Cc: Hans de Goede <hdegoede@redhat.com>
+Cc: "Heiko Stübner" <heiko@sntech.de>
+Cc: Inki Dae <inki.dae@samsung.com>
+Cc: Jyri Sarha <jyri.sarha@iki.fi>
+Cc: Karol Herbst <kherbst@redhat.com>
+Cc: linux-amlogic@lists.infradead.org
+Cc: linux-arm-msm@vger.kernel.org
+Cc: linux-arm-msm@vger.kernel.orga
+Cc: linux-mediatek@lists.infradead.org
+Cc: linux-renesas-soc@vger.kernel.org
+Cc: Liviu Dudau <liviu.dudau@arm.com>
+Cc: Lyude Paul <lyude@redhat.com>
+Cc: "Maíra Canal" <mairacanal@riseup.net>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>
+Cc: nouveau@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.orga
+Cc: Patrik Jakobsson <patrik.r.jakobsson@gmail.com>
+Cc: Rob Clark <robdclark@gmail.com>
+Cc: Russell King <linux@armlinux.org.uk>
+Cc: Sandy Huang <hjc@rock-chips.com>
+Cc: Sean Paul <sean@poorly.run>
+Cc: spice-devel@lists.freedesktop.org
+Cc: virtualization@lists.linux.dev
+Cc: xen-devel@lists.xenproject.org
+Cc: Xinhui Pan <Xinhui.Pan@amd.com>
+Cc: Zack Rusin <zack.rusin@broadcom.com>
+
+Ville Syrjälä (2):
+  drm: Move plane->{fb,old_fb,crtc} to legacy sub-structure
+  drm: Move crtc->{x,y,mode,enabled} to legacy sub-structure
+
+ .../gpu/drm/amd/amdgpu/amdgpu_connectors.c    |  7 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_display.c   | 20 ++---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_pll.c       |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c      |  2 +-
+ drivers/gpu/drm/amd/amdgpu/dce_v10_0.c        | 35 ++++----
+ drivers/gpu/drm/amd/amdgpu/dce_v11_0.c        | 35 ++++----
+ drivers/gpu/drm/amd/amdgpu/dce_v6_0.c         | 37 ++++-----
+ drivers/gpu/drm/amd/amdgpu/dce_v8_0.c         | 35 ++++----
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 14 ++--
+ .../amd/display/amdgpu_dm/amdgpu_dm_crtc.c    |  2 +-
+ drivers/gpu/drm/amd/pm/amdgpu_dpm_internal.c  |  4 +-
+ drivers/gpu/drm/arm/hdlcd_drv.c               |  2 +-
+ drivers/gpu/drm/arm/malidp_hw.c               |  2 +-
+ drivers/gpu/drm/armada/armada_crtc.c          | 12 ++-
+ drivers/gpu/drm/ast/ast_dp.c                  |  8 +-
+ drivers/gpu/drm/drm_atomic.c                  |  6 +-
+ drivers/gpu/drm/drm_atomic_helper.c           |  8 +-
+ drivers/gpu/drm/drm_client_modeset.c          | 10 +--
+ drivers/gpu/drm/drm_crtc.c                    | 31 +++----
+ drivers/gpu/drm/drm_crtc_helper.c             | 80 ++++++++++---------
+ drivers/gpu/drm/drm_fb_helper.c               | 12 +--
+ drivers/gpu/drm/drm_framebuffer.c             |  4 +-
+ drivers/gpu/drm/drm_plane.c                   | 69 ++++++++--------
+ drivers/gpu/drm/drm_plane_helper.c            |  6 +-
+ drivers/gpu/drm/drm_vblank.c                  |  2 +-
+ drivers/gpu/drm/exynos/exynos5433_drm_decon.c |  4 +-
+ drivers/gpu/drm/gma500/cdv_intel_display.c    |  2 +-
+ drivers/gpu/drm/gma500/cdv_intel_dp.c         |  6 +-
+ drivers/gpu/drm/gma500/cdv_intel_hdmi.c       |  3 +-
+ drivers/gpu/drm/gma500/cdv_intel_lvds.c       |  6 +-
+ drivers/gpu/drm/gma500/gma_display.c          | 22 ++---
+ drivers/gpu/drm/gma500/oaktrail_crtc.c        |  2 +-
+ drivers/gpu/drm/gma500/psb_intel_display.c    |  2 +-
+ drivers/gpu/drm/gma500/psb_intel_lvds.c       |  6 +-
+ drivers/gpu/drm/gma500/psb_intel_sdvo.c       |  8 +-
+ drivers/gpu/drm/i2c/ch7006_drv.c              |  7 +-
+ drivers/gpu/drm/i2c/sil164_drv.c              |  2 +-
+ .../drm/i915/display/intel_modeset_setup.c    |  4 +-
+ drivers/gpu/drm/imx/lcdc/imx-lcdc.c           | 31 ++++---
+ drivers/gpu/drm/mediatek/mtk_crtc.c           |  6 +-
+ drivers/gpu/drm/meson/meson_overlay.c         |  2 +-
+ drivers/gpu/drm/meson/meson_plane.c           |  8 +-
+ drivers/gpu/drm/msm/disp/dpu1/dpu_core_perf.c | 18 +++--
+ drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c       |  6 +-
+ drivers/gpu/drm/msm/disp/dpu1/dpu_plane.c     | 16 ++--
+ drivers/gpu/drm/msm/disp/mdp5/mdp5_crtc.c     |  4 +-
+ drivers/gpu/drm/nouveau/dispnv04/crtc.c       | 25 +++---
+ drivers/gpu/drm/nouveau/dispnv04/cursor.c     |  2 +-
+ drivers/gpu/drm/nouveau/dispnv04/dfp.c        |  2 +-
+ drivers/gpu/drm/nouveau/dispnv04/disp.c       |  4 +-
+ .../gpu/drm/nouveau/dispnv04/tvmodesnv17.c    |  4 +-
+ drivers/gpu/drm/nouveau/dispnv04/tvnv17.c     |  7 +-
+ drivers/gpu/drm/nouveau/nouveau_connector.c   |  6 +-
+ drivers/gpu/drm/qxl/qxl_display.c             |  6 +-
+ drivers/gpu/drm/radeon/atombios_crtc.c        | 28 +++----
+ drivers/gpu/drm/radeon/cik.c                  | 12 +--
+ drivers/gpu/drm/radeon/evergreen.c            | 16 ++--
+ drivers/gpu/drm/radeon/r100.c                 | 16 ++--
+ drivers/gpu/drm/radeon/r600_cs.c              |  2 +-
+ drivers/gpu/drm/radeon/r600_dpm.c             |  4 +-
+ drivers/gpu/drm/radeon/radeon_connectors.c    |  7 +-
+ drivers/gpu/drm/radeon/radeon_cursor.c        | 29 +++----
+ drivers/gpu/drm/radeon/radeon_device.c        |  2 +-
+ drivers/gpu/drm/radeon/radeon_display.c       | 26 +++---
+ drivers/gpu/drm/radeon/radeon_drv.c           |  2 +-
+ drivers/gpu/drm/radeon/radeon_legacy_crtc.c   | 16 ++--
+ .../gpu/drm/radeon/radeon_legacy_encoders.c   |  2 +-
+ drivers/gpu/drm/radeon/radeon_pm.c            |  2 +-
+ drivers/gpu/drm/radeon/rs600.c                | 10 +--
+ drivers/gpu/drm/radeon/rs690.c                | 22 ++---
+ drivers/gpu/drm/radeon/rs780_dpm.c            |  6 +-
+ drivers/gpu/drm/radeon/rv515.c                | 30 +++----
+ drivers/gpu/drm/radeon/rv770.c                |  2 +-
+ drivers/gpu/drm/radeon/si.c                   | 14 ++--
+ .../gpu/drm/renesas/rcar-du/rcar_du_crtc.c    |  2 +-
+ .../gpu/drm/renesas/shmobile/shmob_drm_crtc.c |  2 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_vop.c   |  6 +-
+ drivers/gpu/drm/sti/sti_crtc.c                |  4 +-
+ drivers/gpu/drm/sti/sti_cursor.c              |  2 +-
+ drivers/gpu/drm/sti/sti_gdp.c                 |  2 +-
+ drivers/gpu/drm/sti/sti_hqvdp.c               |  2 +-
+ drivers/gpu/drm/sti/sti_tvout.c               |  6 +-
+ drivers/gpu/drm/sti/sti_vid.c                 |  2 +-
+ drivers/gpu/drm/tilcdc/tilcdc_crtc.c          | 10 +--
+ drivers/gpu/drm/tiny/arcpgu.c                 |  2 +-
+ drivers/gpu/drm/vboxvideo/vbox_mode.c         |  2 +-
+ drivers/gpu/drm/vc4/vc4_dpi.c                 |  2 +-
+ drivers/gpu/drm/vc4/vc4_plane.c               |  4 +-
+ drivers/gpu/drm/virtio/virtgpu_display.c      |  4 +-
+ drivers/gpu/drm/vkms/vkms_composer.c          |  4 +-
+ drivers/gpu/drm/vkms/vkms_crtc.c              |  2 +-
+ drivers/gpu/drm/vkms/vkms_writeback.c         |  4 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_kms.c           |  8 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_ldu.c           | 18 +++--
+ drivers/gpu/drm/vmwgfx/vmwgfx_scrn.c          |  9 ++-
+ drivers/gpu/drm/vmwgfx/vmwgfx_stdu.c          |  4 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_vkms.c          |  2 +-
+ drivers/gpu/drm/xen/xen_drm_front_kms.c       |  2 +-
+ include/drm/drm_crtc.h                        | 75 ++++++++---------
+ include/drm/drm_plane.h                       | 52 ++++++------
+ 100 files changed, 599 insertions(+), 547 deletions(-)
+
 -- 
-2.39.5
+2.45.2
 
