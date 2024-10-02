@@ -2,30 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 865B498D243
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Oct 2024 13:37:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CE0D98D24F
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Oct 2024 13:45:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B96F10E6F8;
-	Wed,  2 Oct 2024 11:37:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F12FA10E33B;
+	Wed,  2 Oct 2024 11:45:22 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N5hxFosR";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CAF0010E6F8;
- Wed,  2 Oct 2024 11:37:49 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A188910E6FA;
+ Wed,  2 Oct 2024 11:45:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1727869522; x=1759405522;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=vTcIC5iYWIX8kyGe+9VaZ1HriAauQzandHaKzai+F+o=;
+ b=N5hxFosRlF3XyABv9iYlWsU69I/epxnfnYwJFUVhAgBn6pkHd8/4BlUH
+ hsUX4eTbBLNjl8Ed0wX3Ir6c8U8jyUof0v4x9qMpnzxN9TJBa99k+EvaK
+ LWw38DQaupYwTrNlrv4BYJ9fhJxQz3uEoU3CuDQcjZ4WrxUNTkgA8yxBg
+ 3uYnffrdHsj+TnEgiwHBnwjuaUoJowj+BuIyrao1wkh8mOBNNRW56sXou
+ AGN/N81yLAkrH/8F+8J/yum4g1Q0H1PG9AMn7arWY5XuZFDw+tgqq43e1
+ FicxzpZZUkAt1E9tPgPIs39t6F/yjuqn38ElgOP7BIUIKNm+qmKnFrZfj A==;
+X-CSE-ConnectionGUID: Hg1vpFy7SjWZkryVcRHxJQ==
+X-CSE-MsgGUID: CDE0ssGYRiGGyEiJeCCH2g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11212"; a="38388359"
+X-IronPort-AV: E=Sophos;i="6.11,171,1725346800"; d="scan'208";a="38388359"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Oct 2024 04:45:21 -0700
+X-CSE-ConnectionGUID: 5VVvCXsjTbqrL6m4UF3JtA==
+X-CSE-MsgGUID: MJx1Yoh2ROmzs0s9vzeNAw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,171,1725346800"; d="scan'208";a="111446338"
+Received: from cpetruta-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.245.246.61])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Oct 2024 04:45:15 -0700
+Date: Wed, 2 Oct 2024 13:45:11 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Jonathan Corbet <corbet@lwn.net>,
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ vegard.nossum@oracle.com, Stephen Rothwell <sfr@canb.auug.org.au>
+Subject: Re: [PATCH] drm/i915: Rename functions in the docs to match code
+ changes
+Message-ID: <Zv0yRyYbepSGZjFR@ashyti-mobl2.lan>
+References: <20241001062555.1908090-1-harshit.m.mogalapalli@oracle.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_series_starting_with?=
- =?utf-8?q?_=5BCI=2C1/3=5D_drm/i915/irq=3A_add_struct_i915=5Firq=5Fregs_trip?=
- =?utf-8?q?let?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 02 Oct 2024 11:37:49 -0000
-Message-ID: <172786906982.1162544.10661105520103908647@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241002102645.136155-1-jani.nikula@intel.com>
-In-Reply-To: <20241002102645.136155-1-jani.nikula@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241001062555.1908090-1-harshit.m.mogalapalli@oracle.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,34 +78,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Harshit,
 
-Series: series starting with [CI,1/3] drm/i915/irq: add struct i915_irq_regs triplet
-URL   : https://patchwork.freedesktop.org/series/139412/
-State : warning
+On Mon, Sep 30, 2024 at 11:25:54PM -0700, Harshit Mogalapalli wrote:
+> make htmldocs is reporting:
+> 
+> drivers/gpu/drm/i915/i915_irq.c:1: warning: 'intel_runtime_pm_disable_interrupts' not found
+> drivers/gpu/drm/i915/i915_irq.c:1: warning: 'intel_runtime_pm_enable_interrupts' not found
+> 
+> intel_runtime_pm_disable_interrupts() is renamed to intel_irq_suspend(),
+> make documentation changes accordingly.
+> 
+> Fixes: 3de5774cb8c0 ("drm/i915/irq: Rename suspend/resume functions")
+> Reported-by: Stephen Rothwell <sfr@canb.auug.org.au>
+> Closes: https://lore.kernel.org/all/20241001134331.7b4d4ca5@canb.auug.org.au/
+> Signed-off-by: Harshit Mogalapalli <harshit.m.mogalapalli@oracle.com>
 
-== Summary ==
+Thanks for your patch. The functions were indeed renamed here(*)
+by Rodrigo.
 
-Error: dim checkpatch failed
-e2969aacaf90 drm/i915/irq: add struct i915_irq_regs triplet
-fd3cfa650faf drm/i915/irq: remove GEN3_IRQ_RESET() and GEN3_IRQ_INIT() macros
-b1baa9f62ba5 drm/i915/irq: remove GEN8_IRQ_RESET_NDX() and GEN8_IRQ_INIT_NDX() macros
--:145: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'which' - possible side-effects?
-#145: FILE: drivers/gpu/drm/i915/i915_reg.h:2494:
-+#define GEN8_GT_IRQ_REGS(which)		I915_IRQ_REGS(GEN8_GT_IMR(which), \
-+						      GEN8_GT_IER(which), \
-+						      GEN8_GT_IIR(which))
+I'm going to remove the "Fixes:" tag as I don't think
+documentation fixes are part of it. Unless someone wants it
+strongly.
 
--:156: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
-#156: FILE: drivers/gpu/drm/i915/i915_reg.h:2549:
-+#define GEN8_DE_PIPE_IRQ_REGS(pipe)	I915_IRQ_REGS(GEN8_DE_PIPE_IMR(pipe), \
-+						      GEN8_DE_PIPE_IER(pipe), \
-+						      GEN8_DE_PIPE_IIR(pipe))
+Without the Fixes tag:
 
-total: 0 errors, 0 warnings, 2 checks, 121 lines checked
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 
+Andi
 
+(*) 3de5774cb8c0 ("drm/i915/irq: Rename suspend/resume functions")
+
+> ---
+> Noticed that Stephen also reported this so added a Closes URL.
+> ---
+>  Documentation/gpu/i915.rst | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/gpu/i915.rst b/Documentation/gpu/i915.rst
+> index ad59ae579237..7a469df675d8 100644
+> --- a/Documentation/gpu/i915.rst
+> +++ b/Documentation/gpu/i915.rst
+> @@ -35,10 +35,10 @@ Interrupt Handling
+>     :functions: intel_irq_init intel_irq_init_hw intel_hpd_init
+>  
+>  .. kernel-doc:: drivers/gpu/drm/i915/i915_irq.c
+> -   :functions: intel_runtime_pm_disable_interrupts
+> +   :functions: intel_irq_suspend
+>  
+>  .. kernel-doc:: drivers/gpu/drm/i915/i915_irq.c
+> -   :functions: intel_runtime_pm_enable_interrupts
+> +   :functions: intel_irq_resume
+>  
+>  Intel GVT-g Guest Support(vGPU)
+>  -------------------------------
+> -- 
+> 2.46.0
