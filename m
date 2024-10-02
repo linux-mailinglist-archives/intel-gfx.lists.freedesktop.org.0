@@ -2,53 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB56098E09B
-	for <lists+intel-gfx@lfdr.de>; Wed,  2 Oct 2024 18:25:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 07DBC98E11A
+	for <lists+intel-gfx@lfdr.de>; Wed,  2 Oct 2024 18:43:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A5DA610E221;
-	Wed,  2 Oct 2024 16:25:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A82F610E639;
+	Wed,  2 Oct 2024 16:43:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="Oe9i/uiB";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="Pjf08CcE";
+	dkim=pass (2048-bit key; unprotected) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="Nk1uVEjx";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 385ED10E0E7;
- Wed,  2 Oct 2024 16:25:46 +0000 (UTC)
-Date: Wed, 2 Oct 2024 18:25:43 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1727886344;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=zFdo3CQMWpewcEIaCdKavpOo/VitX3uLCH8wPUOkd3o=;
- b=Oe9i/uiBc0PHFwjsLqJ6hpGaJOij9nF6WsP2b0pPvc0xsMz+lzx4NVnjjxrGIvZ3DyAnxX
- L5RiWfpe8XK+CEkMkeTtNLOzAEb+4dKze7YEMehoOLv2IlvhebblArUe3ErS0h047bDaz2
- BUxpRsZVnCnnC/j5x1piXPsxR8sOjABuifmfJ1BZYto57pSb9z2ms1DKUx5Ew7dj3Mb4y8
- mfw8uqN7I81G8GoURfAuTEpeaIHcwJm2xRvfgPxDDTlF7KIw70TMdk0lShUvqWZ334Ve9U
- PLZQmCwl+Tz6wiaivwDQ+oTy0tLt265wuaXS+FZFItfxds8vkCB5s+86EEiAqw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1727886344;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=zFdo3CQMWpewcEIaCdKavpOo/VitX3uLCH8wPUOkd3o=;
- b=Pjf08CcEhGwnQCHkCQ3uYFYCAxbutqJCnoYfRdNHMe5n5In04C/D+xpWNYD2syxEHB5pUx
- 2wfTXC6yz50x5nAw==
-From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Gleixner <tglx@linutronix.de>, Tvrtko Ursulin <tursulin@ursulin.net>
-Subject: Re: [PATCH v3 0/8] drm/i915: PREEMPT_RT related fixups.
-Message-ID: <20241002162543.TKbd-8g0@linutronix.de>
-References: <20240628130601.1772849-1-bigeasy@linutronix.de>
+Received: from msa.smtpout.orange.fr (smtp-81.smtpout.orange.fr [80.12.242.81])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7BC010E639;
+ Wed,  2 Oct 2024 16:43:36 +0000 (UTC)
+Received: from [192.168.1.37] ([90.11.132.44]) by smtp.orange.fr with ESMTPA
+ id w2RossPGwzmbmw2RosTOhn; Wed, 02 Oct 2024 18:43:35 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+ s=t20230301; t=1727887415;
+ bh=WiQ9rEm/MZNLKkSTulKn+at0cQ54EY5swCihzKM4b7w=;
+ h=Message-ID:Date:MIME-Version:Subject:To:From;
+ b=Nk1uVEjxNTz97srXuWkEodHCeQDwJawSXbdJvq5E/vPJTLAYPRquOSfnBP7DgGfKu
+ Q+bNgdy0tcgJ4C691IEakEnP/Y0h2zGS967JAbTHRgaVjqH5YkvughNSgJwDs6Prpg
+ xe+h5LhyU2SFgv/thSpC3VTQhGlbKPkrq2wvM/GhGlIS4f7qJwhgb1aRBPDDeQGCwu
+ jBFZsUmP8sbCggKvqXDRa4POJt5uEZqUzzrjwtPJfoWtqrNUxRu7zf7sOKFM8A5/vc
+ lWokM0gjw65+gRqxNHZNh6uq3ybg2nGvgzwos/Xg9RdZqhr3TCt1mU/XEg15vC8mZe
+ JDVFKeqRkXQmg==
+X-ME-Helo: [192.168.1.37]
+X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
+X-ME-Date: Wed, 02 Oct 2024 18:43:35 +0200
+X-ME-IP: 90.11.132.44
+Message-ID: <86f6269f-e367-4192-ab71-5d82b1c88309@wanadoo.fr>
+Date: Wed, 2 Oct 2024 18:43:32 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240628130601.1772849-1-bigeasy@linutronix.de>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/i915/backlight: Remove a useless kstrdup_const()
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>
+Cc: linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+References: <3b3d3af8739e3016f3f80df0aa85b3c06230a385.1727533674.git.christophe.jaillet@wanadoo.fr>
+ <875xqdy42v.fsf@intel.com> <3c793f42-6cd1-40e7-a3f2-556b6e5b4094@wanadoo.fr>
+ <87cykiu3hk.fsf@intel.com>
+Content-Language: en-US, fr-FR
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <87cykiu3hk.fsf@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,24 +67,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2024-06-28 14:57:59 [+0200], To intel-gfx@lists.freedesktop.org wrote:
-Hi,
-
-> The following patches are from the PREEMPT_RT queue.  It is mostly about
-> disabling interrupts/preemption which leads to problems. Unfortunately
-> DRM_I915_LOW_LEVEL_TRACEPOINTS had to be disabled because it acquires locks
-> from within trace points. Making the lock a raw_spinlock_t led to higher
-> latencies during video playback
->   https://lore.kernel.org/all/20211006164628.s2mtsdd2jdbfyf7g@linutronix.de/
+Le 02/10/2024 à 13:51, Jani Nikula a écrit :
+> On Tue, 01 Oct 2024, Christophe JAILLET <christophe.jaillet@wanadoo.fr> wrote:
+>> Le 30/09/2024 à 09:48, Jani Nikula a écrit :
+>>> On Sat, 28 Sep 2024, Christophe JAILLET <christophe.jaillet@wanadoo.fr> wrote:
+>>>> "name" is allocated and freed in intel_backlight_device_register().
+>>>> The initial allocation just duplicates "intel_backlight".
+>>>>
+>>>> Later, if a device with this name has already been registered, another
+>>>> dynamically generated one is allocated using kasprintf().
+>>>>
+>>>> So at the end of the function, when "name" is freed, it can point either to
+>>>> the initial static literal "intel_backlight" or to the kasprintf()'ed one.
+>>>>
+>>>> So kfree_const() is used.
+>>>>
+>>>> However, when built as a module, kstrdup_const() and kfree_const() don't
+>>>> work as one would expect and are just plain kstrdup() and kfree().
+>>>>
+>>>>
+>>>> Slightly change the logic and introduce a new variable to hold the
+>>>> address returned by kasprintf() should it be used.
+>>>>
+>>>> This saves a memory allocation/free and avoids these _const functions,
+>>>> which names can be confusing when used with code built as module.
+>>>
+>>> Okay, I'd rather revert your earlier commit 379b63e7e682
+>>> ("drm/i915/display: Save a few bytes of memory in
+>>> intel_backlight_device_register()") than add this.
+>>
+>> Hi,
+>>
+>> that works for me. Thanks and sorry for the noise.
 > 
-> and I'm not sure if I hit the worse case here.
-> I tested it on a SandyBridge with built-in i915 by using X, OpenGL and
-> playing videos without noticing any warnings. However, some code paths
-> were not entered.
-> I carry them for some time now and most issues were reported by other
-> people and they reported that things work for them since.
+> Will you send the revert?
+> 
+> BR,
+> Jani.
+> 
+> 
 
-These patches were not picked. Did I forget something or was this just
-overseen?
+Will do.
 
-Sebastian
+CJ
