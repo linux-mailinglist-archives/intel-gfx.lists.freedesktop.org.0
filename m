@@ -2,74 +2,73 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 978BB992F4D
-	for <lists+intel-gfx@lfdr.de>; Mon,  7 Oct 2024 16:30:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D048992F4C
+	for <lists+intel-gfx@lfdr.de>; Mon,  7 Oct 2024 16:30:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3796F10E3B0;
-	Mon,  7 Oct 2024 14:30:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE47310E3AE;
+	Mon,  7 Oct 2024 14:30:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="UIv80iqB";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="kD4qUyed";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com
- [209.85.128.175])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 61B9A10E0CD;
- Mon, 30 Sep 2024 16:22:11 +0000 (UTC)
-Received: by mail-yw1-f175.google.com with SMTP id
- 00721157ae682-6e2346f164cso33923037b3.3; 
- Mon, 30 Sep 2024 09:22:11 -0700 (PDT)
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com
+ [209.85.128.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D9F6010E7E1;
+ Thu,  3 Oct 2024 08:45:52 +0000 (UTC)
+Received: by mail-wm1-f44.google.com with SMTP id
+ 5b1f17b1804b1-42cacabd2e0so5372755e9.3; 
+ Thu, 03 Oct 2024 01:45:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1727713330; x=1728318130; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=uERoXlKgvrIzow4kr39O2y7mJ6EyY4bi7R1vZimkEKo=;
- b=UIv80iqB8p/00gh4dUfosW5Zswi8eHEYYVksB/nsmXux89jsr06veFxWDFlfgTrKdH
- sHIxVNs6qZBP2r4QQHti+kv19pr6XPrLMr3QL5dd16NeR9F8ZZV35t1dQwGMvrD9bFuX
- +DNC0nxfCJYQNs3cNHgI7fJujYO+6Ql+b5EtRHl4eS3b3TKWQc0HbVxWbGdmizQJnSf4
- K3hlAdckfiXtvjVXR/D1A+rJvloMccCoQB8jNuIBqCpfMOWd8wBW9NbeJZoVffx2rVsV
- IpRcfmbm06XXZZBQpEFTubG4EF9WS8Sittyy1t51rUZf5LBPy7AT0zcdKG1TJufsg6Zl
- nP5Q==
+ d=gmail.com; s=20230601; t=1727945150; x=1728549950; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=xKrTJrxaC66IYpmC0zcPIsToT+rr6ixnJrZ/0hCTJes=;
+ b=kD4qUyedSbCXe52ciai1ZqmGx/wFCpWUOZThIQtfaM+FiSMON/dGz15qkj/VLAtYYx
+ Fol+FZP3nXwzZxGFYgXvZoANIt5u1Bq9KB8gFaj6l1I1Igk5J6iYyF56DHBQg6mzXNLm
+ +RwOuLX0djMe1yjAl6SVctMtRgwvStUkjWP0DFgiZM4txAk5g4xy2cy+m2fRcE8rUU1L
+ k7euGbyMcFg0DP5M08zwWCSMyPr+37RWtEK5t0wKgBirEOUQ7Y7fC2NwNbG6fQNcNC8Y
+ X/oSbZoit1jcws9r+MSXDLZX2zpt+cVFOGaO8LjJpbdcj3pfvpSpMFT2F5CfIIzgPi+v
+ y3jA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1727713330; x=1728318130;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=uERoXlKgvrIzow4kr39O2y7mJ6EyY4bi7R1vZimkEKo=;
- b=o4YLSWZKsPnltd3jb2/TcxJspP0t7vYahZJTkZ5WacbewGQSb9tQiuJP3qMOuAQGgI
- Q8PeBiU/t0qSTRtidCm12YqWnsG+BM80+w94laYs32a+fyM60K/oiAcphOBMAsjuLKm6
- 2jT9QWBZh1WjG11+5gUAA/X9BpUfK/V4GKt0XloqRfVyHmjiEI2BckLg4qwLFu0lgtll
- 8PTSpJxzx5aOH6KivZxuM2i8obLaSXsaAEiZWh4/OerYwqWG75Qu51q1cREDnlMA0YWX
- UoWdmQ9I1jnCMA4G3ZPQqJpBaFUfaMRLy0EL7GCL6inkoCEhn0AS2cqUukMPxG1pHdAf
- 5VIA==
+ d=1e100.net; s=20230601; t=1727945150; x=1728549950;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=xKrTJrxaC66IYpmC0zcPIsToT+rr6ixnJrZ/0hCTJes=;
+ b=s28jSjA7Cg2YIsdcbemXIRQa6ToWlMzUZ6b7sh2rYF542NFt0hOvaO8qd/RrKKeo6B
+ LOBEM4+NAoaYAJ2nRfHBbf9vYoBju0YV7FNbJ+PqW+cF6q0dR1aqN/Exf4otOGz0U/wh
+ 6AgOqLx9EdH1mhbnlKtdjwI5HZ6YeukaeUdiN3Uhgt3mWrq62MnlovssWlGFqTkwQMzP
+ s6sQChrPbARjSWqYzST3+pDwlUtegcCXO1hgaF4Mk8DDewTUSWyYtdOe/SWrVYlBUhir
+ EB132EQO6Ssq2aHiz6fUXgzxesbuEKj6NyzEfJAqJ3rsa1ePv20yrnoXlJohLdbBbLes
+ BB+A==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVhacqlRaiwYqxJ8bKZXOmou1sixQcAUXCzdraDEpHt/RMYTWeEsm51qhjIgrsIPId1QU97dEOS6BLE@lists.freedesktop.org,
- AJvYcCWVI1TH3vnCQsrv8l3EgNz1fRX8ihX/dAhdLY+3pEwuseZHIpMfv/47OCaAUaVGabVw6F98+T8/5CUt@lists.freedesktop.org,
- AJvYcCWyP92iGPnEV6k4vwP8KaqnRR4jAeAXKE1gYtVkSfDovaKIO5MS41Yz9ecaVx/Y9NQLInVhh6eX@lists.freedesktop.org,
- AJvYcCX/5IfquGtvjyMp+oV/XnrrDTmp7l6e0yntb/gq0KvMwb6bs3yFZ5nEDFl/OvrQhCqhLiXv2NCCKVE=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxQ/coJAgzC4elF4RwoqLxpPHgYAu12yCM3zbLdPvBXoVZBVGXi
- 5d+a3a0hpldOboMpkrJ2+j2/mRiJ+EE5dh73s+fNHBbAez9fWQqVy+21QEScycrnZa+GBg7Vh7n
- zFOZeBULc8O492B2k/ePbOkSmV20=
-X-Google-Smtp-Source: AGHT+IH6LGQfRVLoHTpEHgoURLnMbGsh/FhCxNdlE2uAdXWKaqJ3XT+orFnkiDAnokgolLQak1eShauNoxWdW6nGLQM=
-X-Received: by 2002:a05:690c:6612:b0:6e0:447:f257 with SMTP id
- 00721157ae682-6e24757caf8mr95415027b3.22.1727713330446; Mon, 30 Sep 2024
- 09:22:10 -0700 (PDT)
+ AJvYcCV3gawJtNIISpvhNWqbW2bRFCcxhfVgRF50QjvcBLo6zpkKzZihRff0iY+mJg0Kr3SXTsaH3iLnNJg=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwMLcO/iwwN8V645rIU+C4w00MBvnul2a2BFhSlN6P3MCIJC6WN
+ 4kyjDTVfCHJz6wg3LFCZAZKb+N1u35yRB2kpUzfJ4ClFFf95AiJaV/7icMHD
+X-Google-Smtp-Source: AGHT+IHYcJ+v3BvMh9LmMa+x7Pipzt189nt8Wq5bzwu6NOma37eD1ygcwKs6Tjm30wExRNhkHBbT7A==
+X-Received: by 2002:adf:f3c9:0:b0:371:79f2:3d5c with SMTP id
+ ffacd0b85a97d-37cfb8c84e9mr3308661f8f.31.1727945149887; 
+ Thu, 03 Oct 2024 01:45:49 -0700 (PDT)
+Received: from fedora.iskraemeco.si ([193.77.86.250])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-42f771c1401sm27262635e9.0.2024.10.03.01.45.48
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 03 Oct 2024 01:45:49 -0700 (PDT)
+From: Uros Bizjak <ubizjak@gmail.com>
+To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Cc: Uros Bizjak <ubizjak@gmail.com>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>
+Subject: [PATCH] drm/i915/active: Use try_cmpxchg() in active_fence_cb()
+Date: Thu,  3 Oct 2024 10:44:31 +0200
+Message-ID: <20241003084533.871524-1-ubizjak@gmail.com>
+X-Mailer: git-send-email 2.46.2
 MIME-Version: 1.0
-References: <20240930130921.689876-1-tzimmermann@suse.de>
- <20240930130921.689876-7-tzimmermann@suse.de>
-In-Reply-To: <20240930130921.689876-7-tzimmermann@suse.de>
-From: Deepak Rawat <drawat.floss@gmail.com>
-Date: Mon, 30 Sep 2024 09:22:00 -0700
-Message-ID: <CAHFnvW0TqYDzbay_wtvC5QK7SMgXxC3sKfWQ3z7Q3eXYN9VPZA@mail.gmail.com>
-Subject: Re: [PATCH 06/28] drm/hyperv-drm: Use video aperture helpers
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: javierm@redhat.com, airlied@gmail.com, simona@ffwll.ch, 
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 07 Oct 2024 14:30:08 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -86,49 +85,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 30, 2024 at 6:09=E2=80=AFAM Thomas Zimmermann <tzimmermann@suse=
-.de> wrote:
->
-> DRM's aperture functions have long been implemented as helpers
-> under drivers/video/ for use with fbdev. Avoid the DRM wrappers by
-> calling the video functions directly.
->
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Deepak Rawat <drawat.floss@gmail.com>
-> ---
->  drivers/gpu/drm/hyperv/hyperv_drm_drv.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/hyperv/hyperv_drm_drv.c b/drivers/gpu/drm/hy=
-perv/hyperv_drm_drv.c
-> index 3077ce5470f6..e0953777a206 100644
-> --- a/drivers/gpu/drm/hyperv/hyperv_drm_drv.c
-> +++ b/drivers/gpu/drm/hyperv/hyperv_drm_drv.c
-> @@ -3,12 +3,12 @@
->   * Copyright 2021 Microsoft
->   */
->
-> +#include <linux/aperture.h>
->  #include <linux/efi.h>
->  #include <linux/hyperv.h>
->  #include <linux/module.h>
->  #include <linux/pci.h>
->
-> -#include <drm/drm_aperture.h>
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_client_setup.h>
->  #include <drm/drm_drv.h>
-> @@ -126,7 +126,7 @@ static int hyperv_vmbus_probe(struct hv_device *hdev,
->                 goto err_hv_set_drv_data;
->         }
->
-> -       drm_aperture_remove_framebuffers(&hyperv_driver);
-> +       aperture_remove_all_conflicting_devices(hyperv_driver.name);
->
->         ret =3D hyperv_setup_vram(hv, hdev);
->         if (ret)
-> --
-> 2.46.0
->
+Replace this pattern in active_fence_cb():
 
-Reviewed-by: Deepak Rawat <drawat.floss@gmail.com>
+    cmpxchg(*ptr, old, new) == old
+
+... with the simpler and faster:
+
+    try_cmpxchg(*ptr, &old, new)
+
+The x86 CMPXCHG instruction returns success in the ZF flag,
+so this change saves a compare after the CMPXCHG.
+
+Signed-off-by: Uros Bizjak <ubizjak@gmail.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Tvrtko Ursulin <tursulin@ursulin.net>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Simona Vetter <simona@ffwll.ch>
+---
+ drivers/gpu/drm/i915/i915_active.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
+index 5ec293011d99..35319228bc51 100644
+--- a/drivers/gpu/drm/i915/i915_active.c
++++ b/drivers/gpu/drm/i915/i915_active.c
+@@ -212,7 +212,7 @@ active_fence_cb(struct dma_fence *fence, struct dma_fence_cb *cb)
+ 	struct i915_active_fence *active =
+ 		container_of(cb, typeof(*active), cb);
+ 
+-	return cmpxchg(__active_fence_slot(active), fence, NULL) == fence;
++	return try_cmpxchg(__active_fence_slot(active), &fence, NULL);
+ }
+ 
+ static void
+-- 
+2.46.2
+
