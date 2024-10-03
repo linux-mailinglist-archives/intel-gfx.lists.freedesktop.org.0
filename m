@@ -2,53 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EC9F98F56D
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Oct 2024 19:42:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 30BE098F5A2
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Oct 2024 19:58:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 56EE210E8C2;
-	Thu,  3 Oct 2024 17:42:20 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="q7OTvF1l";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5631810E8C7;
+	Thu,  3 Oct 2024 17:58:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp.smtpout.orange.fr (smtp-22.smtpout.orange.fr
- [80.12.242.22])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D54710E113;
- Thu,  3 Oct 2024 17:42:18 +0000 (UTC)
-Received: from fedora.home ([90.11.132.44]) by smtp.orange.fr with ESMTPA
- id wPq8swhqS7qAjwPq8sLNUA; Thu, 03 Oct 2024 19:42:16 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
- s=t20230301; t=1727977336;
- bh=LhnrapA1svnmlMx7xGYpTi5BLYj0TEUzRvNk0AItb2s=;
- h=From:To:Subject:Date:Message-ID:MIME-Version;
- b=q7OTvF1l62ehUvp8N5YxrlB6RCO6AOPpdfa7wRMrXMlm93JNTsppGGLP9A8sHnIb+
- TBo21exNKKTSnk8bsTG/tEfJxIs86mw/w4CCW/8LczKq5xPprFXZj0ntGDHZ4UB7Gz
- hxGNQrO9HY1sIqTZrMGrCJRkRQBxCsv0BpNr8CPPbPGHe5lg+ZFyVcuJ4W+qgz4SAv
- 4pWMJa/9P9xHm4cJfbSecW6SFoZJ7z8uyUrBwyBa5K3DIH5pCgaUWTLOJk/Qne7SA/
- l2MSKn7Q7681nyR0gSt51hlH2iXFI5ttMw7DiuM0UUKSzwjxzbbhzefjPOtVVSO06c
- ghuSldIi556sQ==
-X-ME-Helo: fedora.home
-X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
-X-ME-Date: Thu, 03 Oct 2024 19:42:16 +0200
-X-ME-IP: 90.11.132.44
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>
-Cc: linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org,
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: [PATCH] drm/i915/display: Remove kstrdup_const() and kfree_const()
- usage
-Date: Thu,  3 Oct 2024 19:41:08 +0200
-Message-ID: <f82be2ee3ac7d18dd9982b5368a88a5bf2aeb777.1727977199.git.christophe.jaillet@wanadoo.fr>
-X-Mailer: git-send-email 2.46.2
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F055510E8C7;
+ Thu,  3 Oct 2024 17:57:59 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/client=3A_Stop_u?=
+ =?utf-8?q?sing_legacy_crtc-=3Emode_and_a_bunch_of_cleanups?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 03 Oct 2024 17:57:59 -0000
+Message-ID: <172797827997.1169862.5672626249167865019@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241003113304.11700-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20241003113304.11700-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,57 +37,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-kstrdup_const() and kfree_const() can be confusing in code built as a
-module. In such a case, it does not do what one could expect from the name
-of the functions.
+== Series Details ==
 
-The code is not wrong by itself, but in such a case, it is equivalent to
-kstrdup() and kfree().
+Series: drm/client: Stop using legacy crtc->mode and a bunch of cleanups
+URL   : https://patchwork.freedesktop.org/series/139493/
+State : warning
 
-So, keep thinks simple and straightforward.
+== Summary ==
 
-This reverts commit 379b63e7e682 ("drm/i915/display: Save a few bytes of
-memory in intel_backlight_device_register()")
+Error: dim checkpatch failed
+c792344099fd drm/client: Constify modes
+dded8f971b9d drm/client: Use array notation for function arguments
+5efbfc394267 drm/client: Streamline mode selection debugs
+53b2c61a53f2 drm/client: Make copies of modes
+-:21: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit 3eadd887dbac ("drm/client: Fully protect modes[] with dev->mode_config.mutex")'
+#21: 
+And with this we can undo also commit 3eadd887dbac
+("drm/client:Fully protect modes[] with dev->mode_config.mutex")
 
-Signed-off-by: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
----
- drivers/gpu/drm/i915/display/intel_backlight.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+-:131: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#131: FILE: drivers/gpu/drm/drm_client_modeset.c:458:
++			drm_mode_copy(&modes[i], drm_connector_preferred_mode(connector, width, height));
 
-diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
-index 9e05745d797d..3f81a726cc7d 100644
---- a/drivers/gpu/drm/i915/display/intel_backlight.c
-+++ b/drivers/gpu/drm/i915/display/intel_backlight.c
-@@ -949,7 +949,7 @@ int intel_backlight_device_register(struct intel_connector *connector)
- 	else
- 		props.power = BACKLIGHT_POWER_OFF;
- 
--	name = kstrdup_const("intel_backlight", GFP_KERNEL);
-+	name = kstrdup("intel_backlight", GFP_KERNEL);
- 	if (!name)
- 		return -ENOMEM;
- 
-@@ -963,7 +963,7 @@ int intel_backlight_device_register(struct intel_connector *connector)
- 		 * compatibility. Use unique names for subsequent backlight devices as a
- 		 * fallback when the default name already exists.
- 		 */
--		kfree_const(name);
-+		kfree(name);
- 		name = kasprintf(GFP_KERNEL, "card%d-%s-backlight",
- 				 i915->drm.primary->index, connector->base.name);
- 		if (!name)
-@@ -987,7 +987,7 @@ int intel_backlight_device_register(struct intel_connector *connector)
- 		    connector->base.base.id, connector->base.name, name);
- 
- out:
--	kfree_const(name);
-+	kfree(name);
- 
- 	return ret;
- }
--- 
-2.46.2
+-:147: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#147: FILE: drivers/gpu/drm/drm_client_modeset.c:481:
++				drm_mode_copy(&modes[i], drm_connector_fallback_non_tiled_mode(connector));
+
+-:211: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#211: FILE: drivers/gpu/drm/drm_client_modeset.c:703:
++			drm_mode_copy(&modes[i], drm_connector_preferred_mode(connector, width, height));
+
+total: 1 errors, 3 warnings, 0 checks, 235 lines checked
+2c97e1fbfe26 drm/client: Stop using the legacy crtc->mode
+e690a0ca1b17 drm/client: s/new_crtc/crtc/
+761f32dfac6c drm/client: Move variables to tighter scope
+44f98be57a2b drm/client: s/unsigned int i/int i/
+
 
