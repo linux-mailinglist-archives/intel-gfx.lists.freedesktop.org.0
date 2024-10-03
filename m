@@ -2,23 +2,23 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDB3A98F2E9
+	by mail.lfdr.de (Postfix) with ESMTPS id E443098F2EC
 	for <lists+intel-gfx@lfdr.de>; Thu,  3 Oct 2024 17:44:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34A7A10E89D;
-	Thu,  3 Oct 2024 15:44:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8206010E8A0;
+	Thu,  3 Oct 2024 15:44:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EBE9410E89D;
- Thu,  3 Oct 2024 15:44:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 19DBA10E898;
+ Thu,  3 Oct 2024 15:44:27 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH v3 10/12] drm/xe: Make xe_ggtt_pt_ops private
-Date: Thu,  3 Oct 2024 17:44:19 +0200
-Message-ID: <20241003154421.33805-11-maarten.lankhorst@linux.intel.com>
+Subject: [PATCH v3 11/12] drm/xe/display: Stop dereferencing ggtt in xe_fb_pin
+Date: Thu,  3 Oct 2024 17:44:20 +0200
+Message-ID: <20241003154421.33805-12-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241003154421.33805-1-maarten.lankhorst@linux.intel.com>
 References: <20241003154421.33805-1-maarten.lankhorst@linux.intel.com>
@@ -39,184 +39,112 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The only user outside xe_ggtt.c is fb pinning, which makes sense as
-all the operations it performs can be considered part of GGTT.
-
-We could move this to xe_ggtt.c, but lets keep it inside display for
-now.
+This is the only user of the ggtt struct still there, add
+some calls to lock/unlock ggtt and remove other dereferencing.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 22 ++++++++++++----------
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 10 +++++-----
  drivers/gpu/drm/xe/xe_ggtt.c           | 24 ++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_ggtt.h           |  2 ++
- drivers/gpu/drm/xe/xe_ggtt_types.h     | 13 ++-----------
- 4 files changed, 40 insertions(+), 21 deletions(-)
+ drivers/gpu/drm/xe/xe_ggtt.h           | 10 ++++++----
+ 3 files changed, 35 insertions(+), 9 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index bddd526b33297..0ae5d917f20fe 100644
+index 0ae5d917f20fe..fcd9a519183b5 100644
 --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
 +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -20,6 +20,7 @@ write_dpt_rotated(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs, u32 bo_
- {
- 	struct xe_device *xe = xe_bo_device(bo);
- 	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
-+	xe_ggtt_pte_encode_bo_fn pte_encode_bo = xe_ggtt_get_encode_pte_bo_fn(ggtt);
- 	u32 column, row;
+@@ -198,13 +198,13 @@ static int __xe_pin_fb_vma_ggtt(const struct intel_framebuffer *fb,
+ 	/* TODO: Consider sharing framebuffer mapping?
+ 	 * embed i915_vma inside intel_framebuffer
+ 	 */
+-	xe_pm_runtime_get_noresume(tile_to_xe(ggtt->tile));
+-	ret = mutex_lock_interruptible(&ggtt->lock);
++	xe_pm_runtime_get_noresume(xe);
++	ret = xe_ggtt_lock_interruptible(ggtt);
+ 	if (ret)
+ 		goto out;
  
- 	/* TODO: Maybe rewrite so we can traverse the bo addresses sequentially,
-@@ -30,8 +31,8 @@ write_dpt_rotated(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs, u32 bo_
- 		u32 src_idx = src_stride * (height - 1) + column + bo_ofs;
+ 	align = XE_PAGE_SIZE;
+-	if (xe_bo_is_vram(bo) && ggtt->flags & XE_GGTT_FLAGS_64K)
++	if (xe_bo_is_vram(bo) && xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K)
+ 		align = max_t(u32, align, SZ_64K);
  
- 		for (row = 0; row < height; row++) {
--			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, src_idx * XE_PAGE_SIZE,
--							      xe->pat.idx[XE_CACHE_NONE]);
-+			u64 pte = pte_encode_bo(bo, src_idx * XE_PAGE_SIZE,
-+						xe->pat.idx[XE_CACHE_NONE]);
+ 	if (bo->ggtt_node && view->type == I915_GTT_VIEW_NORMAL) {
+@@ -261,9 +261,9 @@ static int __xe_pin_fb_vma_ggtt(const struct intel_framebuffer *fb,
+ 	}
  
- 			iosys_map_wr(map, *dpt_ofs, u64, pte);
- 			*dpt_ofs += 8;
-@@ -53,8 +54,7 @@ write_dpt_remapped(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs,
- {
- 	struct xe_device *xe = xe_bo_device(bo);
- 	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
--	u64 (*pte_encode_bo)(struct xe_bo *bo, u64 bo_offset, u16 pat_index)
--		= ggtt->pt_ops->pte_encode_bo;
-+	xe_ggtt_pte_encode_bo_fn pte_encode_bo = xe_ggtt_get_encode_pte_bo_fn(ggtt);
- 	u32 column, row;
+ out_unlock:
+-	mutex_unlock(&ggtt->lock);
++	xe_ggtt_unlock(ggtt);
+ out:
+-	xe_pm_runtime_put(tile_to_xe(ggtt->tile));
++	xe_pm_runtime_put(xe);
+ 	return ret;
+ }
  
- 	for (row = 0; row < height; row++) {
-@@ -120,11 +120,12 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
- 		return PTR_ERR(dpt);
- 
- 	if (view->type == I915_GTT_VIEW_NORMAL) {
-+		xe_ggtt_pte_encode_bo_fn pte_encode_bo = xe_ggtt_get_encode_pte_bo_fn(ggtt);
- 		u32 x;
- 
- 		for (x = 0; x < size / XE_PAGE_SIZE; x++) {
--			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, x * XE_PAGE_SIZE,
--							      xe->pat.idx[XE_CACHE_NONE]);
-+			u64 pte = pte_encode_bo(bo, x * XE_PAGE_SIZE,
-+						xe->pat.idx[XE_CACHE_NONE]);
- 
- 			iosys_map_wr(&dpt->vmap, x * 8, u64, pte);
- 		}
-@@ -163,14 +164,15 @@ write_ggtt_rotated(struct xe_bo *bo, struct xe_ggtt *ggtt, u32 *ggtt_ofs, u32 bo
- 		   u32 width, u32 height, u32 src_stride, u32 dst_stride)
- {
- 	struct xe_device *xe = xe_bo_device(bo);
-+	xe_ggtt_pte_encode_bo_fn pte_encode_bo = xe_ggtt_get_encode_pte_bo_fn(ggtt);
- 	u32 column, row;
- 
- 	for (column = 0; column < width; column++) {
- 		u32 src_idx = src_stride * (height - 1) + column + bo_ofs;
- 
- 		for (row = 0; row < height; row++) {
--			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, src_idx * XE_PAGE_SIZE,
--							      xe->pat.idx[XE_CACHE_NONE]);
-+			u64 pte = pte_encode_bo(bo, src_idx * XE_PAGE_SIZE,
-+						xe->pat.idx[XE_CACHE_NONE]);
- 
- 			xe_ggtt_write_pte(ggtt, *ggtt_ofs, pte);
- 			*ggtt_ofs += XE_PAGE_SIZE;
-@@ -209,6 +211,7 @@ static int __xe_pin_fb_vma_ggtt(const struct intel_framebuffer *fb,
- 		vma->node = bo->ggtt_node;
- 	} else if (view->type == I915_GTT_VIEW_NORMAL) {
- 		u32 x, size = bo->ttm.base.size;
-+		xe_ggtt_pte_encode_bo_fn pte_encode_bo = xe_ggtt_get_encode_pte_bo_fn(ggtt);
- 
- 		vma->node = xe_ggtt_node_init(ggtt);
- 		if (IS_ERR(vma->node)) {
-@@ -223,8 +226,7 @@ static int __xe_pin_fb_vma_ggtt(const struct intel_framebuffer *fb,
- 		}
- 
- 		for (x = 0; x < size; x += XE_PAGE_SIZE) {
--			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, x,
--							      xe->pat.idx[XE_CACHE_NONE]);
-+			u64 pte = pte_encode_bo(bo, x, xe->pat.idx[XE_CACHE_NONE]);
- 
- 			xe_ggtt_write_pte(ggtt, vma->node->base.start + x, pte);
- 		}
 diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 6945fbfc555ce..db6a761398064 100644
+index db6a761398064..9c4baa22ebe49 100644
 --- a/drivers/gpu/drm/xe/xe_ggtt.c
 +++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -63,6 +63,18 @@
-  * give us the correct placement for free.
-  */
- 
-+/**
-+ * struct xe_ggtt_pt_ops - GGTT Page table operations
-+ * Which can vary from platform to platform.
-+ */
-+struct xe_ggtt_pt_ops {
-+	/** @pte_encode_bo: Encode PTE address for a given BO */
-+	xe_ggtt_pte_encode_bo_fn pte_encode_bo;
-+	/** @ggtt_set_pte: Directly write into GGTT's PTE */
-+	void (*ggtt_set_pte)(struct xe_ggtt *ggtt, u64 addr, u64 pte);
-+};
-+
-+
- static u64 xelp_ggtt_pte_encode_bo(struct xe_bo *bo, u64 bo_offset,
- 				   u16 pat_index)
- {
-@@ -880,3 +892,15 @@ void xe_ggtt_write_pte(struct xe_ggtt *ggtt, u64 offset, u64 pte)
- {
- 	return ggtt->pt_ops->ggtt_set_pte(ggtt, offset, pte);
+@@ -868,6 +868,30 @@ u64 xe_ggtt_print_holes(struct xe_ggtt *ggtt, u64 alignment, struct drm_printer
+ 	return total;
  }
+ 
++/**
++ * xe_ggtt_lock_interruptible - Lock GGTT for display updates
++ * @ggtt: &xe_ggtt
++ *
++ * There's no reason to want this outside of display, and that is only
++ * there because moving to here would be a layering violation.
++ */
++int xe_ggtt_lock_interruptible(struct xe_ggtt *ggtt)
++{
++	return mutex_lock_interruptible(&ggtt->lock);
++}
 +
 +/**
-+ * xe_ggtt_write_pte - Write a PTE to the GGTT
++ * xe_ggtt_unlock - Unlock GGTT after display updates
 + * @ggtt: &xe_ggtt
-+ * @offset: the offset for which the mapping should be written.
 + *
-+ * Used by display for DPT and GGTT paths to enccode BO's.
++ * There's no reason to want this outside of display, and that is only
++ * there because moving to here would be a layering violation.
 + */
-+xe_ggtt_pte_encode_bo_fn xe_ggtt_get_encode_pte_bo_fn(struct xe_ggtt *ggtt)
++void xe_ggtt_unlock(struct xe_ggtt *ggtt)
 +{
-+	return ggtt->pt_ops->pte_encode_bo;
++	mutex_unlock(&ggtt->lock);
 +}
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
-index f83e5af0400e9..0c63cfa083c03 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.h
-+++ b/drivers/gpu/drm/xe/xe_ggtt.h
-@@ -48,6 +48,8 @@ void xe_ggtt_might_lock(struct xe_ggtt *ggtt);
- #endif
- 
- u64 xe_ggtt_read_pte(struct xe_ggtt *ggtt, u64 offset);
-+
-+xe_ggtt_pte_encode_bo_fn xe_ggtt_get_encode_pte_bo_fn(struct xe_ggtt *ggtt);
- void xe_ggtt_write_pte(struct xe_ggtt *ggtt, u64 offset, u64 pte);
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_ggtt_types.h b/drivers/gpu/drm/xe/xe_ggtt_types.h
-index cb02b7994a9ac..c142ff59c4504 100644
---- a/drivers/gpu/drm/xe/xe_ggtt_types.h
-+++ b/drivers/gpu/drm/xe/xe_ggtt_types.h
-@@ -13,6 +13,8 @@
- struct xe_bo;
- struct xe_gt;
- 
-+typedef u64 (*xe_ggtt_pte_encode_bo_fn)(struct xe_bo *bo, u64 bo_offset, u16 pat_index);
 +
  /**
-  * struct xe_ggtt - Main GGTT struct
-  *
-@@ -69,15 +71,4 @@ struct xe_ggtt_node {
- 	bool invalidate_on_remove;
- };
+  * xe_ggtt_read_pte - Read a PTE from the GGTT
+  * @ggtt: &xe_ggtt
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
+index 0c63cfa083c03..09bb1c9c0a743 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.h
++++ b/drivers/gpu/drm/xe/xe_ggtt.h
+@@ -22,8 +22,6 @@ int xe_ggtt_node_insert_balloon(struct xe_ggtt_node *node,
+ void xe_ggtt_node_remove_balloon(struct xe_ggtt_node *node);
  
--/**
-- * struct xe_ggtt_pt_ops - GGTT Page table operations
-- * Which can vary from platform to platform.
-- */
--struct xe_ggtt_pt_ops {
--	/** @pte_encode_bo: Encode PTE address for a given BO */
--	u64 (*pte_encode_bo)(struct xe_bo *bo, u64 bo_offset, u16 pat_index);
--	/** @ggtt_set_pte: Directly write into GGTT's PTE */
--	void (*ggtt_set_pte)(struct xe_ggtt *ggtt, u64 addr, u64 pte);
--};
+ int xe_ggtt_node_insert(struct xe_ggtt_node *node, u32 size, u32 align);
+-int xe_ggtt_node_insert_locked(struct xe_ggtt_node *node,
+-			       u32 size, u32 align, u32 mm_flags);
+ void xe_ggtt_node_remove(struct xe_ggtt_node *node, bool invalidate);
+ bool xe_ggtt_node_allocated(const struct xe_ggtt_node *node);
+ void xe_ggtt_map_bo_unlocked(struct xe_ggtt *ggtt, struct xe_bo *bo);
+@@ -47,9 +45,13 @@ static inline void xe_ggtt_might_lock(struct xe_ggtt *ggtt)
+ void xe_ggtt_might_lock(struct xe_ggtt *ggtt);
+ #endif
+ 
+-u64 xe_ggtt_read_pte(struct xe_ggtt *ggtt, u64 offset);
 -
++/* Display specific function calls, don't use outside of xe/display */
++int xe_ggtt_lock_interruptible(struct xe_ggtt *ggtt);
++void xe_ggtt_unlock(struct xe_ggtt *ggtt);
++int xe_ggtt_node_insert_locked(struct xe_ggtt_node *node,
++			       u32 size, u32 align, u32 mm_flags);
+ xe_ggtt_pte_encode_bo_fn xe_ggtt_get_encode_pte_bo_fn(struct xe_ggtt *ggtt);
++u64 xe_ggtt_read_pte(struct xe_ggtt *ggtt, u64 offset);
+ void xe_ggtt_write_pte(struct xe_ggtt *ggtt, u64 offset, u64 pte);
+ 
  #endif
 -- 
 2.45.2
