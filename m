@@ -2,24 +2,23 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F287998F2E2
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Oct 2024 17:44:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B33DE98F2E3
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Oct 2024 17:44:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 588E010E88F;
-	Thu,  3 Oct 2024 15:44:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 33B0810E894;
+	Thu,  3 Oct 2024 15:44:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC7DD10E170;
- Thu,  3 Oct 2024 15:44:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02F8710E88F;
+ Thu,  3 Oct 2024 15:44:19 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH v3 03/12] drm/i915/display: Use async flip when available for
- initial plane config
-Date: Thu,  3 Oct 2024 17:44:12 +0200
-Message-ID: <20241003154421.33805-4-maarten.lankhorst@linux.intel.com>
+Subject: [PATCH v3 04/12] drm/xe/display: Remove single wait for vblank
+Date: Thu,  3 Oct 2024 17:44:13 +0200
+Message-ID: <20241003154421.33805-5-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241003154421.33805-1-maarten.lankhorst@linux.intel.com>
 References: <20241003154421.33805-1-maarten.lankhorst@linux.intel.com>
@@ -40,48 +39,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-I'm planning to reorder readout in the Xe sequence in such a way that
-interrupts will not be available, so just use an async flip.
-
-Since the new FB points to the same pages, it will not tear. It also
-has the benefit of perhaps being slightly faster.
+Now that i915/display is using async flip waits, we can remove the
+vblank handling from xe. This makes the initial allocation code no
+longer require interrupts.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_universal_plane.c | 13 +++++++++++--
- 1 file changed, 11 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/display/xe_plane_initial.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index fdb141cfa4274..73a3624e34098 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -2800,7 +2800,7 @@ bool skl_fixup_initial_plane_config(struct intel_crtc *crtc,
- 		to_intel_plane_state(plane->base.state);
- 	enum plane_id plane_id = plane->id;
- 	enum pipe pipe = crtc->pipe;
--	u32 base;
-+	u32 base, plane_ctl;
+diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+index 1f5128927c07c..ddbd964dc20f5 100644
+--- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
++++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+@@ -296,8 +296,7 @@ void intel_initial_plane_config(struct drm_i915_private *i915)
+ 		 */
+ 		intel_find_initial_plane_obj(crtc, plane_configs);
  
- 	if (!plane_state->uapi.visible)
- 		return false;
-@@ -2814,7 +2814,16 @@ bool skl_fixup_initial_plane_config(struct intel_crtc *crtc,
- 	if (plane_config->base == base)
- 		return false;
+-		if (i915->display.funcs.display->fixup_initial_plane_config(crtc, plane_config))
+-			intel_crtc_wait_for_next_vblank(crtc);
++		i915->display.funcs.display->fixup_initial_plane_config(crtc, plane_config);
  
-+	/* Perform an async flip to the new surface. */
-+	plane_ctl = intel_read(i915, PLANE_CTL(pipe, plane_id));
-+	plane_ctl |= PLANE_CTL_ASYNC_FLIP;
-+
-+	intel_de_write(i915, PLANE_CTL(pipe, plane_id), plane_ctl);
- 	intel_de_write(i915, PLANE_SURF(pipe, plane_id), base);
- 
--	return true;
-+	if (intel_de_wait_custom(i915, PLANE_SURFLIVE(pipe, plane_id), ~0U, base, 0, 40, NULL) < 0)
-+		drm_warn(&i915->drm, "async flip timed out\n");
-+
-+	/* No need to vblank wait either */
-+	return false;
- }
+ 		plane_config_fini(plane_config);
+ 	}
 -- 
 2.45.2
 
