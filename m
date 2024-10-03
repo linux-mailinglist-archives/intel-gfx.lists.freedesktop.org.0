@@ -2,60 +2,85 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A5D198F45D
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Oct 2024 18:45:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC3D498F4DE
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Oct 2024 19:10:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9410D10E0DC;
-	Thu,  3 Oct 2024 16:45:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BC6F10E23A;
+	Thu,  3 Oct 2024 17:10:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Zg5wSMmM";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="TqcSFOgq";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1117210E0DC;
- Thu,  3 Oct 2024 16:45:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727973933; x=1759509933;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=tc8ZRBn72E//NYmjdcKS3uGgJe6RwbMeom5LUAtkWN8=;
- b=Zg5wSMmMRRNcW+QdtjGqZjwNXsS1hZNRwC/iU82ITmg6gJ+pA3P9hbVP
- gMVYNcLx2yHrDy57J7J6CAfqn1hrkrcVuh8/nmI23XwkcuI6vpawekFz/
- VAgavnSCW0McelvPDQ0nQ7YjfcRFO2xgQmvHrqJUttaCbxwr2EDIVpfbn
- 6q06jSOHtv3nT2Jj6sHuZTAlGbH4mM5wm4NxioaYPOw8u1lYEnPdY9i3y
- Vs+5ByrXXqB/R5y9shM39CsLXDkGV3a6ENK9YoqwGXKPm2wu7buo1Nc+Y
- s5q6OZbehwcwO5vnIjbk720t3CeCNJhIDCWQ7QhkGaBUTa3eEwqevueaZ w==;
-X-CSE-ConnectionGUID: K5ceU9KhT+a57Y3dJ7FtPA==
-X-CSE-MsgGUID: weWOd0k5SXKu/68sPlrPqQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11214"; a="27270938"
-X-IronPort-AV: E=Sophos;i="6.11,175,1725346800"; d="scan'208";a="27270938"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2024 09:45:33 -0700
-X-CSE-ConnectionGUID: 3FwYBUFNQtmw/L21EOao9g==
-X-CSE-MsgGUID: AJo+slrfSzyW1Ox/eBsmMg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,175,1725346800"; d="scan'208";a="74527084"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 03 Oct 2024 09:45:31 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 03 Oct 2024 19:45:29 +0300
-Date: Thu, 3 Oct 2024 19:45:29 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: dri-devel@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 4/8] drm/client: Make copies of modes
-Message-ID: <Zv7KKZE95lfUNFdy@intel.com>
-References: <20241003113304.11700-1-ville.syrjala@linux.intel.com>
- <20241003113304.11700-5-ville.syrjala@linux.intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50A0910E219
+ for <intel-gfx@lists.freedesktop.org>; Thu,  3 Oct 2024 17:10:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1727975438;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=3TUpUWDff61umzzNctkBT/nE/LxkaiRdHSEY2M1EV1U=;
+ b=TqcSFOgqSWDeRc1AIQ8Qoygf4RYIMLbVKYTKfJ3nVEC+kUbPpUs6eoyQ1YZbba2BFGFOtG
+ JSkwFt4noNAnIWHsRTvSiFaRX83FVQLsobOBYuYU0BVqNc/xRrzOUseDn3zcbpe2VQExS7
+ QeCC67LnqTzJYF50OQPiI/NiO5N4Mpk=
+Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
+ [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-395-PjOnZiDfM0SpRrAbC-umfQ-1; Thu, 03 Oct 2024 13:10:37 -0400
+X-MC-Unique: PjOnZiDfM0SpRrAbC-umfQ-1
+Received: by mail-wr1-f70.google.com with SMTP id
+ ffacd0b85a97d-37cd2044558so561203f8f.1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 03 Oct 2024 10:10:37 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1727975436; x=1728580236;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=3TUpUWDff61umzzNctkBT/nE/LxkaiRdHSEY2M1EV1U=;
+ b=jHLwu/zzd9Ayms37HX8t9nN33y5pYT5/23hyFJYpXKjM6jajpJWPS//1gI6fTugQu7
+ aCMJoqmAoUT/gSkoY3f0KQMUjHFlukGA+HwQO7DQgqPeCBludwEzSLrBpLAPC7Sit+rs
+ /oJG+ApggoL8J0tjzz3GNWGzrGsvRHNWrDVzFS0XkWxxFTc7/cIVU3ZRN4e5+Tn4NRSi
+ EoA9bDyFVc8tsGvRo4rz7IPdphV/qugBmMcF2pr84EyZBAcvuZCbk8zqwsAZQVrqELNk
+ 9r6sJSySLmtaYW/ByRcSKOPO0DHBLMCUey/i9Wa7W64m3aIFQFkreJ+LWeQSb6Nybbm3
+ 16GQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCW9fPMNr3VpleCskaCX34yJAqaZ9Tjw2psLXn/QyDpYKNon1zE3Ns6zJ+FdFoyxy+iatrYGcTYpmfA=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxD/BAGdwNLBJIjmAE0kkl/qNcSJaDmfdUTvCVnVyXYRj88+7ty
+ q+3FpJyF/kJJx9Fe3zEQP91WLlmNIqJtbUMwkrXPG3L+L8PrBVgfP1rOAn1aAPAbjK2B5ciSCWN
+ Vg6q3+bb6JtB6FMpv55diypLRt9/JBFKO5zcQ8YPCAicZmZa3YrGMw5OePDw/PJqF5Q==
+X-Received: by 2002:a05:6000:1243:b0:374:c64e:3fe7 with SMTP id
+ ffacd0b85a97d-37d0eaf2263mr54292f8f.59.1727975436116; 
+ Thu, 03 Oct 2024 10:10:36 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHfzUmJePTytDjbiR5l9ifWG/PuzBprmfDmMU4fpbK/E1FnN9Y2LUkOOPCbAXDDAsKb7+JrkA==
+X-Received: by 2002:a05:6000:1243:b0:374:c64e:3fe7 with SMTP id
+ ffacd0b85a97d-37d0eaf2263mr54279f8f.59.1727975435696; 
+ Thu, 03 Oct 2024 10:10:35 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:c:37e0:ced3:55bd:f454:e722?
+ ([2a01:e0a:c:37e0:ced3:55bd:f454:e722])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-37d082d230dsm1674791f8f.94.2024.10.03.10.10.34
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 03 Oct 2024 10:10:34 -0700 (PDT)
+Message-ID: <f78895ac-3d64-4ef9-bd85-c5f94e24cbac@redhat.com>
+Date: Thu, 3 Oct 2024 19:10:33 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241003113304.11700-5-ville.syrjala@linux.intel.com>
-X-Patchwork-Hint: comment
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 00/11] drm: Introduce DRM client library
+To: Thomas Zimmermann <tzimmermann@suse.de>, simona@ffwll.ch,
+ airlied@gmail.com, javierm@redhat.com
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+References: <20241002131306.288618-1-tzimmermann@suse.de>
+From: Jocelyn Falempe <jfalempe@redhat.com>
+In-Reply-To: <20241002131306.288618-1-tzimmermann@suse.de>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US, fr
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,295 +96,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 03, 2024 at 02:33:00PM +0300, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On 02/10/2024 15:04, Thomas Zimmermann wrote:
+> With the next DRM client coming soon (drm_log) and most of DRM's
+> fbdev emulation consolidated in a few places, it's time to provide
+> a single place for the clients.
 > 
-> drm_client_firmware_config() is currently picking up the current
-> mode of the crtc via the legacy crtc->mode, which is not supposed
-> to be used by atomic drivers at all. We can't simply switch over
-> to the proper crtc->state->mode because we drop the crtc->mutex
-> (which protects crtc->state) before the mode gets used.
-> 
-> The most straightforward solution to extend the lifetime of
-> modes[] seem to be to make full copies of the modes instead
-> of just storing pointers. We do have to replace the NULL checks
-> with something else though. Checking that mode->clock!=0
-> should be sufficient.
-> 
-> And with this we can undo also commit 3eadd887dbac
-> ("drm/client:Fully protect modes[] with dev->mode_config.mutex")
-> as the lifetime of modes[] no longer has anything to do with
-> that lock.
-> 
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/drm_client_modeset.c | 80 +++++++++++++++-------------
->  1 file changed, 43 insertions(+), 37 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_client_modeset.c b/drivers/gpu/drm/drm_client_modeset.c
-> index 888323137a6a..d413e119db3f 100644
-> --- a/drivers/gpu/drm/drm_client_modeset.c
-> +++ b/drivers/gpu/drm/drm_client_modeset.c
-> @@ -265,10 +265,15 @@ static void drm_client_connectors_enabled(struct drm_connector *connectors[],
->  		enabled[i] = drm_connector_enabled(connectors[i], false);
->  }
->  
-> +static bool mode_valid(const struct drm_display_mode *mode)
-> +{
-> +	return mode->clock != 0;
-> +}
-> +
->  static bool drm_client_target_cloned(struct drm_device *dev,
->  				     struct drm_connector *connectors[],
->  				     unsigned int connector_count,
-> -				     const struct drm_display_mode *modes[],
-> +				     struct drm_display_mode modes[],
->  				     struct drm_client_offset offsets[],
->  				     bool enabled[], int width, int height)
->  {
-> @@ -296,15 +301,16 @@ static bool drm_client_target_cloned(struct drm_device *dev,
->  	for (i = 0; i < connector_count; i++) {
->  		if (!enabled[i])
->  			continue;
-> -		modes[i] = drm_connector_pick_cmdline_mode(connectors[i]);
-> -		if (!modes[i]) {
-> +
-> +		drm_mode_copy(&modes[i], drm_connector_pick_cmdline_mode(connectors[i]));
+> The new module drm_client_lib.ko stores most of the in-kernel client
+> code. It is designed such that drivers can opt into client support,
+> but the presence of the client module depends on the user's kernel
+> configuration. Without selected clients, no client module will be
+> build.
 
-Apparently this guy doesn't accept NULL, so this is oops central now.
-I'll have to wrap these up a bit I guess.
+I think I would rather rename drm_client.c to drm_client_lib.c, and have 
+a drm_client.ko. Users may need to interact with module name more than 
+with C file.
 
-> +		if (!mode_valid(&modes[i])) {
->  			can_clone = false;
->  			break;
->  		}
->  		for (j = 0; j < i; j++) {
->  			if (!enabled[j])
->  				continue;
-> -			if (!drm_mode_match(modes[j], modes[i],
-> +			if (!drm_mode_match(&modes[j], &modes[i],
->  					    DRM_MODE_MATCH_TIMINGS |
->  					    DRM_MODE_MATCH_CLOCK |
->  					    DRM_MODE_MATCH_FLAGS |
-> @@ -335,9 +341,9 @@ static bool drm_client_target_cloned(struct drm_device *dev,
->  					   DRM_MODE_MATCH_CLOCK |
->  					   DRM_MODE_MATCH_FLAGS |
->  					   DRM_MODE_MATCH_3D_FLAGS))
-> -				modes[i] = mode;
-> +				drm_mode_copy(&modes[i], mode);
->  		}
-> -		if (!modes[i])
-> +		if (!mode_valid(&modes[i]))
->  			can_clone = false;
->  	}
->  	drm_mode_destroy(dev, dmt_mode);
-> @@ -354,7 +360,7 @@ static bool drm_client_target_cloned(struct drm_device *dev,
->  static int drm_client_get_tile_offsets(struct drm_device *dev,
->  				       struct drm_connector *connectors[],
->  				       unsigned int connector_count,
-> -				       const struct drm_display_mode *modes[],
-> +				       const struct drm_display_mode modes[],
->  				       struct drm_client_offset offsets[],
->  				       int idx,
->  				       int h_idx, int v_idx)
-> @@ -368,17 +374,17 @@ static int drm_client_get_tile_offsets(struct drm_device *dev,
->  		if (!connector->has_tile)
->  			continue;
->  
-> -		if (!modes[i] && (h_idx || v_idx)) {
-> +		if (!mode_valid(&modes[i]) && (h_idx || v_idx)) {
->  			drm_dbg_kms(dev,
->  				    "[CONNECTOR:%d:%s] no modes for connector tiled %d\n",
->  				    connector->base.id, connector->name, i);
->  			continue;
->  		}
->  		if (connector->tile_h_loc < h_idx)
-> -			hoffset += modes[i]->hdisplay;
-> +			hoffset += modes[i].hdisplay;
->  
->  		if (connector->tile_v_loc < v_idx)
-> -			voffset += modes[i]->vdisplay;
-> +			voffset += modes[i].vdisplay;
->  	}
->  	offsets[idx].x = hoffset;
->  	offsets[idx].y = voffset;
-> @@ -389,7 +395,7 @@ static int drm_client_get_tile_offsets(struct drm_device *dev,
->  static bool drm_client_target_preferred(struct drm_device *dev,
->  					struct drm_connector *connectors[],
->  					unsigned int connector_count,
-> -					const struct drm_display_mode *modes[],
-> +					struct drm_display_mode modes[],
->  					struct drm_client_offset offsets[],
->  					bool enabled[], int width, int height)
->  {
-> @@ -445,16 +451,16 @@ static bool drm_client_target_preferred(struct drm_device *dev,
->  		}
->  
->  		mode_type = "cmdline";
-> -		modes[i] = drm_connector_pick_cmdline_mode(connector);
-> +		drm_mode_copy(&modes[i], drm_connector_pick_cmdline_mode(connector));
->  
-> -		if (!modes[i]) {
-> +		if (!mode_valid(&modes[i])) {
->  			mode_type = "preferred";
-> -			modes[i] = drm_connector_preferred_mode(connector, width, height);
-> +			drm_mode_copy(&modes[i], drm_connector_preferred_mode(connector, width, height));
->  		}
->  
-> -		if (!modes[i]) {
-> +		if (!mode_valid(&modes[i])) {
->  			mode_type = "first";
-> -			modes[i] = drm_connector_first_mode(connector);
-> +			drm_mode_copy(&modes[i], drm_connector_first_mode(connector));
->  		}
->  
->  		/*
-> @@ -472,17 +478,17 @@ static bool drm_client_target_preferred(struct drm_device *dev,
->  			     connector->tile_v_loc == 0 &&
->  			     !drm_connector_get_tiled_mode(connector))) {
->  				mode_type = "non tiled";
-> -				modes[i] = drm_connector_fallback_non_tiled_mode(connector);
-> +				drm_mode_copy(&modes[i], drm_connector_fallback_non_tiled_mode(connector));
->  			} else {
->  				mode_type = "tiled";
-> -				modes[i] = drm_connector_get_tiled_mode(connector);
-> +				drm_mode_copy(&modes[i], drm_connector_get_tiled_mode(connector));
->  			}
->  		}
->  
-> -		if (modes[i])
-> +		if (mode_valid(&modes[i]))
->  			drm_dbg_kms(dev, "[CONNECTOR:%d:%s] found %s mode: %s\n",
->  				    connector->base.id, connector->name,
-> -				    mode_type, modes[i]->name);
-> +				    mode_type, modes[i].name);
->  		else
->  			drm_dbg_kms(dev, "[CONNECTOR:%d:%s] no mode found\n",
->  				    connector->base.id, connector->name);
-> @@ -514,7 +520,7 @@ static int drm_client_pick_crtcs(struct drm_client_dev *client,
->  				 struct drm_connector *connectors[],
->  				 unsigned int connector_count,
->  				 struct drm_crtc *best_crtcs[],
-> -				 const struct drm_display_mode *modes[],
-> +				 const struct drm_display_mode modes[],
->  				 int n, int width, int height)
->  {
->  	struct drm_device *dev = client->dev;
-> @@ -532,7 +538,7 @@ static int drm_client_pick_crtcs(struct drm_client_dev *client,
->  	best_crtcs[n] = NULL;
->  	best_score = drm_client_pick_crtcs(client, connectors, connector_count,
->  					   best_crtcs, modes, n + 1, width, height);
-> -	if (modes[n] == NULL)
-> +	if (!mode_valid(&modes[n]))
->  		return best_score;
->  
->  	crtcs = kcalloc(connector_count, sizeof(*crtcs), GFP_KERNEL);
-> @@ -566,7 +572,7 @@ static int drm_client_pick_crtcs(struct drm_client_dev *client,
->  			if (dev->mode_config.num_crtc > 1)
->  				continue;
->  
-> -			if (!drm_mode_equal(modes[o], modes[n]))
-> +			if (!drm_mode_equal(&modes[o], &modes[n]))
->  				continue;
->  		}
->  
-> @@ -589,7 +595,7 @@ static bool drm_client_firmware_config(struct drm_client_dev *client,
->  				       struct drm_connector *connectors[],
->  				       unsigned int connector_count,
->  				       struct drm_crtc *crtcs[],
-> -				       const struct drm_display_mode *modes[],
-> +				       struct drm_display_mode modes[],
->  				       struct drm_client_offset offsets[],
->  				       bool enabled[], int width, int height)
->  {
-> @@ -690,20 +696,20 @@ static bool drm_client_firmware_config(struct drm_client_dev *client,
->  		}
->  
->  		mode_type = "cmdline";
-> -		modes[i] = drm_connector_pick_cmdline_mode(connector);
-> +		drm_mode_copy(&modes[i], drm_connector_pick_cmdline_mode(connector));
->  
-> -		if (!modes[i]) {
-> +		if (!mode_valid(&modes[i])) {
->  			mode_type = "preferred";
-> -			modes[i] = drm_connector_preferred_mode(connector, width, height);
-> +			drm_mode_copy(&modes[i], drm_connector_preferred_mode(connector, width, height));
->  		}
->  
-> -		if (!modes[i]) {
-> +		if (!mode_valid(&modes[i])) {
->  			mode_type = "first";
-> -			modes[i] = drm_connector_first_mode(connector);
-> +			drm_mode_copy(&modes[i], drm_connector_first_mode(connector));
->  		}
->  
->  		/* last resort: use current mode */
-> -		if (!modes[i]) {
-> +		if (!mode_valid(&modes[i])) {
->  			/*
->  			 * IMPORTANT: We want to use the adjusted mode (i.e.
->  			 * after the panel fitter upscaling) as the initial
-> @@ -716,7 +722,7 @@ static bool drm_client_firmware_config(struct drm_client_dev *client,
->  			 * fastboot check to work correctly.
->  			 */
->  			mode_type = "current";
-> -			modes[i] = &connector->state->crtc->mode;
-> +			drm_mode_copy(&modes[i], &connector->state->crtc->mode);
->  		}
->  
->  		/*
-> @@ -726,14 +732,14 @@ static bool drm_client_firmware_config(struct drm_client_dev *client,
->  		if (connector->has_tile &&
->  		    num_tiled_conns < connector->num_h_tile * connector->num_v_tile) {
->  			mode_type = "non tiled";
-> -			modes[i] = drm_connector_fallback_non_tiled_mode(connector);
-> +			drm_mode_copy(&modes[i], drm_connector_fallback_non_tiled_mode(connector));
->  		}
->  		crtcs[i] = new_crtc;
->  
->  		drm_dbg_kms(dev, "[CONNECTOR::%d:%s] on [CRTC:%d:%s] using %s mode: %s\n",
->  			    connector->base.id, connector->name,
->  			    new_crtc->base.id, new_crtc->name,
-> -			    mode_type, modes[i]->name);
-> +			    mode_type, modes[i].name);
->  
->  		fallback = false;
->  		conn_configured |= BIT(i);
-> @@ -789,8 +795,7 @@ int drm_client_modeset_probe(struct drm_client_dev *client, unsigned int width,
->  	unsigned int total_modes_count = 0;
->  	struct drm_client_offset *offsets;
->  	unsigned int connector_count = 0;
-> -	/* points to modes protected by mode_config.mutex */
-> -	const struct drm_display_mode **modes;
-> +	struct drm_display_mode *modes;
->  	struct drm_crtc **crtcs;
->  	int i, ret = 0;
->  	bool *enabled;
-> @@ -858,10 +863,12 @@ int drm_client_modeset_probe(struct drm_client_dev *client, unsigned int width,
->  				      crtcs, modes, 0, width, height);
->  	}
->  
-> +	mutex_unlock(&dev->mode_config.mutex);
-> +
->  	drm_client_modeset_release(client);
->  
->  	for (i = 0; i < connector_count; i++) {
-> -		const struct drm_display_mode *mode = modes[i];
-> +		const struct drm_display_mode *mode = &modes[i];
->  		struct drm_crtc *crtc = crtcs[i];
->  		struct drm_client_offset *offset = &offsets[i];
->  
-> @@ -892,7 +899,6 @@ int drm_client_modeset_probe(struct drm_client_dev *client, unsigned int width,
->  			modeset->y = offset->y;
->  		}
->  	}
-> -	mutex_unlock(&dev->mode_config.mutex);
->  
->  	mutex_unlock(&client->modeset_mutex);
->  out:
-> -- 
-> 2.45.2
+> 
+> Version 2 of this patchset is a significant rework of the patches,
+> so there are no R-bs kept. The base client code and client event
+> handling remains in the DRM core. This simplifies module dependencies.
+> But suspend and resume are now handled in client helpers instead of
+> direct calls to fbdev emulation. This breaks a cyclic dependency
+> among the involved modules. It also allows any client to process
+> suspend and resume events.
+
+Thanks a lot for this work. I rebased my drm_log proof of concept on top 
+on this v2, and it works great.
+I think I can add a suspend/resume callback to drm_log, just marking the 
+console as CON_SUSPENDED should work, I will test that shortly.
+
+
+Best regards,
 
 -- 
-Ville Syrjälä
-Intel
+
+Jocelyn
+
+> 
+> v2:
+> - rework of the overall design
+> - keep base client code in DRM core.
+> 
+> Thomas Zimmermann (11):
+>    drm/i915: Select DRM_CLIENT_SELECTION
+>    drm/xe: Select DRM_CLIENT_SELECTION
+>    drm/fbdev: Select fbdev I/O helpers from modules that require them
+>    drm/fbdev: Store fbdev module parameters in separate file
+>    drm/client: Move client event handlers to drm_client_event.c
+>    drm/client: Move suspend/resume into DRM client callbacks
+>    drm/amdgpu: Suspend and resume internal clients with client helpers
+>    drm/nouveau: Suspend and resume clients with client helpers
+>    drm/radeon: Suspend and resume clients with client helpers
+>    drm/client: Make client support optional
+>    drm/client: Add client-lib module
+> 
+>   Documentation/gpu/drm-client.rst              |   3 +
+>   drivers/gpu/drm/Kconfig                       |  39 +++-
+>   drivers/gpu/drm/Makefile                      |  20 +-
+>   drivers/gpu/drm/amd/amdgpu/Kconfig            |   1 +
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    |  22 +-
+>   drivers/gpu/drm/drm_client.c                  | 121 -----------
+>   drivers/gpu/drm/drm_client_event.c            | 195 ++++++++++++++++++
+>   drivers/gpu/drm/drm_client_setup.c            |   3 +
+>   drivers/gpu/drm/drm_drv.c                     |   2 +-
+>   drivers/gpu/drm/drm_fb_helper.c               |  31 ---
+>   drivers/gpu/drm/drm_fbdev_client.c            |  30 ++-
+>   drivers/gpu/drm/drm_file.c                    |   2 +-
+>   drivers/gpu/drm/drm_internal.h                |   7 +
+>   drivers/gpu/drm/drm_kms_helper_common.c       |  38 ++++
+>   drivers/gpu/drm/drm_modeset_helper.c          |  14 +-
+>   drivers/gpu/drm/drm_probe_helper.c            |   2 +-
+>   drivers/gpu/drm/i915/Kconfig                  |   1 +
+>   .../drm/i915/display/intel_display_driver.c   |   2 +-
+>   drivers/gpu/drm/nouveau/nouveau_display.c     |   8 +-
+>   drivers/gpu/drm/nouveau/nouveau_vga.c         |   2 +-
+>   drivers/gpu/drm/radeon/radeon_device.c        |  19 +-
+>   drivers/gpu/drm/radeon/radeon_fbdev.c         |   6 -
+>   drivers/gpu/drm/radeon/radeon_mode.h          |   3 -
+>   drivers/gpu/drm/xe/Kconfig                    |   1 +
+>   include/drm/drm_client.h                      |  39 +++-
+>   include/drm/drm_client_event.h                |  27 +++
+>   26 files changed, 423 insertions(+), 215 deletions(-)
+>   create mode 100644 drivers/gpu/drm/drm_client_event.c
+>   create mode 100644 include/drm/drm_client_event.h
+> 
+
