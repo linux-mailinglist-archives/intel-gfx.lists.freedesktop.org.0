@@ -2,23 +2,23 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B33DE98F2E3
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Oct 2024 17:44:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 08F4E98F2E5
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Oct 2024 17:44:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33B0810E894;
-	Thu,  3 Oct 2024 15:44:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 97C5110E897;
+	Thu,  3 Oct 2024 15:44:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02F8710E88F;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE98710E890;
  Thu,  3 Oct 2024 15:44:19 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH v3 04/12] drm/xe/display: Remove single wait for vblank
-Date: Thu,  3 Oct 2024 17:44:13 +0200
-Message-ID: <20241003154421.33805-5-maarten.lankhorst@linux.intel.com>
+Subject: [PATCH v3 05/12] drm/xe: Move suballocator init to after display init
+Date: Thu,  3 Oct 2024 17:44:14 +0200
+Message-ID: <20241003154421.33805-6-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241003154421.33805-1-maarten.lankhorst@linux.intel.com>
 References: <20241003154421.33805-1-maarten.lankhorst@linux.intel.com>
@@ -39,29 +39,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Now that i915/display is using async flip waits, we can remove the
-vblank handling from xe. This makes the initial allocation code no
-longer require interrupts.
+No allocations should be done before we have had a chance to preserve
+the display fb.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_plane_initial.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c |  6 ++++++
+ drivers/gpu/drm/xe/xe_tile.c   | 12 ++++++++----
+ drivers/gpu/drm/xe/xe_tile.h   |  1 +
+ 3 files changed, 15 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-index 1f5128927c07c..ddbd964dc20f5 100644
---- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
-+++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-@@ -296,8 +296,7 @@ void intel_initial_plane_config(struct drm_i915_private *i915)
- 		 */
- 		intel_find_initial_plane_obj(crtc, plane_configs);
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 09a7ad830e695..e9e2946b0b53c 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -732,6 +732,12 @@ int xe_device_probe(struct xe_device *xe)
+ 	if (err)
+ 		goto err;
  
--		if (i915->display.funcs.display->fixup_initial_plane_config(crtc, plane_config))
--			intel_crtc_wait_for_next_vblank(crtc);
-+		i915->display.funcs.display->fixup_initial_plane_config(crtc, plane_config);
++	for_each_tile(tile, xe, id) {
++		err = xe_tile_init(tile);
++		if (err)
++			goto err;
++	}
++
+ 	for_each_gt(gt, xe, id) {
+ 		last_gt = id;
  
- 		plane_config_fini(plane_config);
- 	}
+diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
+index dda5268507d8e..164751bd9af22 100644
+--- a/drivers/gpu/drm/xe/xe_tile.c
++++ b/drivers/gpu/drm/xe/xe_tile.c
+@@ -167,10 +167,6 @@ int xe_tile_init_noalloc(struct xe_tile *tile)
+ 	if (err)
+ 		return err;
+ 
+-	tile->mem.kernel_bb_pool = xe_sa_bo_manager_init(tile, SZ_1M, 16);
+-	if (IS_ERR(tile->mem.kernel_bb_pool))
+-		return PTR_ERR(tile->mem.kernel_bb_pool);
+-
+ 	xe_wa_apply_tile_workarounds(tile);
+ 
+ 	err = xe_tile_sysfs_init(tile);
+@@ -178,6 +174,14 @@ int xe_tile_init_noalloc(struct xe_tile *tile)
+ 	return 0;
+ }
+ 
++int xe_tile_init(struct xe_tile *tile)
++{
++	tile->mem.kernel_bb_pool = xe_sa_bo_manager_init(tile, SZ_1M, 16);
++	if (IS_ERR(tile->mem.kernel_bb_pool))
++		return PTR_ERR(tile->mem.kernel_bb_pool);
++
++	return 0;
++}
+ void xe_tile_migrate_wait(struct xe_tile *tile)
+ {
+ 	xe_migrate_wait(tile->migrate);
+diff --git a/drivers/gpu/drm/xe/xe_tile.h b/drivers/gpu/drm/xe/xe_tile.h
+index 1c9e42ade6b05..eb939316d55b0 100644
+--- a/drivers/gpu/drm/xe/xe_tile.h
++++ b/drivers/gpu/drm/xe/xe_tile.h
+@@ -12,6 +12,7 @@ struct xe_tile;
+ 
+ int xe_tile_init_early(struct xe_tile *tile, struct xe_device *xe, u8 id);
+ int xe_tile_init_noalloc(struct xe_tile *tile);
++int xe_tile_init(struct xe_tile *tile);
+ 
+ void xe_tile_migrate_wait(struct xe_tile *tile);
+ 
 -- 
 2.45.2
 
