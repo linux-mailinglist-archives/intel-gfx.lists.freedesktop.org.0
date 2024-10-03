@@ -2,67 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A76A198F458
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Oct 2024 18:43:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A5D198F45D
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Oct 2024 18:45:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A081B10E8B9;
-	Thu,  3 Oct 2024 16:43:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9410D10E0DC;
+	Thu,  3 Oct 2024 16:45:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jtx3riQs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Zg5wSMmM";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E47F10E8B9
- for <intel-gfx@lists.freedesktop.org>; Thu,  3 Oct 2024 16:43:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1117210E0DC;
+ Thu,  3 Oct 2024 16:45:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727973819; x=1759509819;
+ t=1727973933; x=1759509933;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=KMGtE0+QCTyN2Vsk5gunK8Dyo6XRKOUufIB1IUH4Qhs=;
- b=jtx3riQsi2BF3GSFMSr8MGE+hhSEeB6FRgSF3wU9cuY5Bj1LDUYR6UmT
- +yLKCPqgmxU7xraf6qsxun3/JQSnY7+V2/UMpClbZwGlce+xq+Y22xDji
- XzxTJgZAS69jqEmlZKy9lR9BqKgUDkN9De5j1veiW2SvLUt9JPc+rvEr5
- 63ZfN6xwdNd/T/tPB3XprC6CwCVmaMvuxaNxvPoVMboWMhGb1kL8j8c3w
- A2V4csr+9qX37LlaWphijsa8XK/r31VLE3br9S4LjgojpHv21xc/v38v6
- XcFRBLj8bDObVBtt+rzZ2JYoUTAv37QZQqm+LZpN/mDe0RhahbYCurJd/ g==;
-X-CSE-ConnectionGUID: BIR6wnE+RE6MKTcmZVKH9A==
-X-CSE-MsgGUID: GlobziyVTYSpKATWT6PBXA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11214"; a="27270718"
-X-IronPort-AV: E=Sophos;i="6.11,175,1725346800"; d="scan'208";a="27270718"
+ bh=tc8ZRBn72E//NYmjdcKS3uGgJe6RwbMeom5LUAtkWN8=;
+ b=Zg5wSMmMRRNcW+QdtjGqZjwNXsS1hZNRwC/iU82ITmg6gJ+pA3P9hbVP
+ gMVYNcLx2yHrDy57J7J6CAfqn1hrkrcVuh8/nmI23XwkcuI6vpawekFz/
+ VAgavnSCW0McelvPDQ0nQ7YjfcRFO2xgQmvHrqJUttaCbxwr2EDIVpfbn
+ 6q06jSOHtv3nT2Jj6sHuZTAlGbH4mM5wm4NxioaYPOw8u1lYEnPdY9i3y
+ Vs+5ByrXXqB/R5y9shM39CsLXDkGV3a6ENK9YoqwGXKPm2wu7buo1Nc+Y
+ s5q6OZbehwcwO5vnIjbk720t3CeCNJhIDCWQ7QhkGaBUTa3eEwqevueaZ w==;
+X-CSE-ConnectionGUID: K5ceU9KhT+a57Y3dJ7FtPA==
+X-CSE-MsgGUID: weWOd0k5SXKu/68sPlrPqQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11214"; a="27270938"
+X-IronPort-AV: E=Sophos;i="6.11,175,1725346800"; d="scan'208";a="27270938"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2024 09:43:39 -0700
-X-CSE-ConnectionGUID: Fn3hcphyQJWaISV7M5LhjQ==
-X-CSE-MsgGUID: 4XbVvpvPRFGcwX7AvubhCA==
+ 03 Oct 2024 09:45:33 -0700
+X-CSE-ConnectionGUID: 3FwYBUFNQtmw/L21EOao9g==
+X-CSE-MsgGUID: AJo+slrfSzyW1Ox/eBsmMg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,175,1725346800"; d="scan'208";a="74526433"
+X-IronPort-AV: E=Sophos;i="6.11,175,1725346800"; d="scan'208";a="74527084"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 03 Oct 2024 09:43:35 -0700
+ by fmviesa008.fm.intel.com with SMTP; 03 Oct 2024 09:45:31 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 03 Oct 2024 19:43:34 +0300
-Date: Thu, 3 Oct 2024 19:43:34 +0300
+ Thu, 03 Oct 2024 19:45:29 +0300
+Date: Thu, 3 Oct 2024 19:45:29 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Cc: "Pottumuttu, Sai Teja" <sai.teja.pottumuttu@intel.com>,
- intel-gfx@lists.freedesktop.org, ville.syrjala@intel.com
-Subject: Re: [PATCH] drm/i915/icl: Update csc and gamma enable checks
-Message-ID: <Zv7JtnT-q8aQIc4d@intel.com>
-References: <20241003090341.3140997-1-sai.teja.pottumuttu@intel.com>
- <Zv57pzLX4ltH4w00@intel.com>
- <20241003142237.GK5725@mdroper-desk1.amr.corp.intel.com>
- <Zv6rGHmLiL5GrpKG@intel.com> <Zv6xBKixcWn_gJEW@intel.com>
- <a80d1e55-a294-41b9-8369-495450fa9c34@intel.com>
- <Zv68V6A_HTQihdWu@intel.com>
- <20241003160540.GL5725@mdroper-desk1.amr.corp.intel.com>
- <Zv7CeST4xjm3JKms@intel.com>
- <20241003162038.GM5725@mdroper-desk1.amr.corp.intel.com>
+To: dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 4/8] drm/client: Make copies of modes
+Message-ID: <Zv7KKZE95lfUNFdy@intel.com>
+References: <20241003113304.11700-1-ville.syrjala@linux.intel.com>
+ <20241003113304.11700-5-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241003162038.GM5725@mdroper-desk1.amr.corp.intel.com>
+In-Reply-To: <20241003113304.11700-5-ville.syrjala@linux.intel.com>
 X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -79,117 +71,294 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 03, 2024 at 09:20:38AM -0700, Matt Roper wrote:
-> On Thu, Oct 03, 2024 at 07:12:41PM +0300, Ville Syrjälä wrote:
-> > On Thu, Oct 03, 2024 at 09:05:40AM -0700, Matt Roper wrote:
-> > > On Thu, Oct 03, 2024 at 06:46:31PM +0300, Ville Syrjälä wrote:
-> > > > On Thu, Oct 03, 2024 at 09:08:53PM +0530, Pottumuttu, Sai Teja wrote:
-> > > > > 
-> > > > > On 03-10-2024 20:28, Ville Syrjälä wrote:
-> > > > > > On Thu, Oct 03, 2024 at 05:32:56PM +0300, Ville Syrjälä wrote:
-> > > > > >> On Thu, Oct 03, 2024 at 07:22:37AM -0700, Matt Roper wrote:
-> > > > > >>> On Thu, Oct 03, 2024 at 02:10:31PM +0300, Ville Syrjälä wrote:
-> > > > > >>>> On Thu, Oct 03, 2024 at 02:33:41PM +0530, Sai Teja Pottumuttu wrote:
-> > > > > >>>>> With ICL, we have a way to check if gamma and csc are enabled on
-> > > > > >>>>> a pipe using bits in GAMMA_MODE and CSC_MODE. So, use them as well
-> > > > > >>>>> along with the existing BOTTOM_COLOR checks.
-> > > > > >>>>>
-> > > > > >>>>> BSpec: 7463, 7466
-> > > > > >>>>> Signed-off-by: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
-> > > > > >>>>> ---
-> > > > > >>>>>   drivers/gpu/drm/i915/display/intel_color.c | 24 ++++++++++++++++++++--
-> > > > > >>>>>   1 file changed, 22 insertions(+), 2 deletions(-)
-> > > > > >>>>>
-> > > > > >>>>> diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-> > > > > >>>>> index 50f41aeb3c28..1bf36898dc7e 100644
-> > > > > >>>>> --- a/drivers/gpu/drm/i915/display/intel_color.c
-> > > > > >>>>> +++ b/drivers/gpu/drm/i915/display/intel_color.c
-> > > > > >>>>> @@ -1076,6 +1076,26 @@ static void skl_get_config(struct intel_crtc_state *crtc_state)
-> > > > > >>>>>   		crtc_state->csc_enable = true;
-> > > > > >>>>>   }
-> > > > > >>>>>   
-> > > > > >>>>> +static void icl_get_config(struct intel_crtc_state *crtc_state)
-> > > > > >>>>> +{
-> > > > > >>>>> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> > > > > >>>>> +	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-> > > > > >>>>> +	u32 bottom_color;
-> > > > > >>>>> +
-> > > > > >>>>> +	crtc_state->gamma_mode = hsw_read_gamma_mode(crtc);
-> > > > > >>>>> +	crtc_state->csc_mode = ilk_read_csc_mode(crtc);
-> > > > > >>>>> +
-> > > > > >>>>> +	bottom_color = intel_de_read(i915, SKL_BOTTOM_COLOR(crtc->pipe));
-> > > > > >>>>> +
-> > > > > >>>>> +	if ((bottom_color & SKL_BOTTOM_COLOR_GAMMA_ENABLE) ||
-> > > > > >>>>> +	    (crtc_state->gamma_mode & POST_CSC_GAMMA_ENABLE))
-> > > > > >>>>> +		crtc_state->gamma_enable = true;
-> > > > > >>>>> +
-> > > > > >>>>> +	if ((bottom_color & SKL_BOTTOM_COLOR_CSC_ENABLE) ||
-> > > > > >>>>> +	    (crtc_state->csc_mode & ICL_CSC_ENABLE))
-> > > > > >>>>> +		crtc_state->csc_enable = true;
-> > > > > >>>> We don't use the old per-plane/bottom color way of enabling these.
-> > > > > >>>> So this is not right.
-> > > > > >>> I think that's the reason for the patch --- today we use
-> > > > > >>> skl_get_config() which *only* checks the bottom color settings.  And
-> > > > > >>> that approach is documented as being deprecated (although still
-> > > > > >>> supported on current platforms).
-> > > > > >>>
-> > > > > >>> If we're reading out pre-OS state programmed by the vbios, we probably
-> > > > > >>> need to handle whichever approach it took, right?  Or are we sanitizing
-> > > > > >>> this away to "off" somewhere that makes it okay to miss what was
-> > > > > >>> programmed?
-> > > > > >> I think we're not doing anything. I suppose some kind of
-> > > > > >> assert_legacy_color_stuff_is_off() thing somewhere could be a
-> > > > > >> decent addition.
-> > > > > > Or maybe we don't need to do anything. The state checker will catch
-> > > > > > this problem with the current code as far as the pipe bottom color
-> > > > > > is concerned. It won't catch inconsistent plane programming though.
-> > > > > > But we also don't have such a consistency check for older platforms
-> > > > > > either.
-> > > > > 
-> > > > > So, are we essentially saying that we can completely remove BOTTOM_COLOR 
-> > > > > from here and just move to using GAMMA_MODE, CSC_MODE for setting 
-> > > > > gamma_enable and csc_enable?
-> > > > 
-> > > > No. The current code already works correctly, and pipe_csc_enable and 
-> > > > gamma_enable are not meant to be used on icl+.
-> > > 
-> > > Then does that mean icl_color_commit_arm() is wrong since we're
-> > > programming those registers there?
-> > 
-> > Not really. It just assumes those bits should never be set,
-> > which is true given how icl_color_check() operates.
+On Thu, Oct 03, 2024 at 02:33:00PM +0300, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > 
-> Hmm, this is confusing since I see icl_gamma_mode() setting up
-> pipe-level gamma enable:
+> drm_client_firmware_config() is currently picking up the current
+> mode of the crtc via the legacy crtc->mode, which is not supposed
+> to be used by atomic drivers at all. We can't simply switch over
+> to the proper crtc->state->mode because we drop the crtc->mutex
+> (which protects crtc->state) before the mode gets used.
 > 
->         if (crtc_state->hw.gamma_lut &&
->             !crtc_state->c8_planes)
->                 gamma_mode |= POST_CSC_GAMMA_ENABLE;
+> The most straightforward solution to extend the lifetime of
+> modes[] seem to be to make full copies of the modes instead
+> of just storing pointers. We do have to replace the NULL checks
+> with something else though. Checking that mode->clock!=0
+> should be sufficient.
 > 
-> and icl_csc_mode() setting up CSC enable:
+> And with this we can undo also commit 3eadd887dbac
+> ("drm/client:Fully protect modes[] with dev->mode_config.mutex")
+> as the lifetime of modes[] no longer has anything to do with
+> that lock.
 > 
->         if (crtc_state->hw.ctm)
->                 csc_mode |= ICL_CSC_ENABLE;
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/drm_client_modeset.c | 80 +++++++++++++++-------------
+>  1 file changed, 43 insertions(+), 37 deletions(-)
 > 
-> and then those eventually get programmed to hardware in
-> icl_color_commit_arm.
-> 
-> But then our get_config function doesn't read these same bits and
-> instead only reads the bottom_color bit instead (which is mutually
-> exclusive with the pipe-level control, and which will likely be removed
-> from the hardware completely at some point since it's already listed as
-> deprecated).  What am I overlooking here?
+> diff --git a/drivers/gpu/drm/drm_client_modeset.c b/drivers/gpu/drm/drm_client_modeset.c
+> index 888323137a6a..d413e119db3f 100644
+> --- a/drivers/gpu/drm/drm_client_modeset.c
+> +++ b/drivers/gpu/drm/drm_client_modeset.c
+> @@ -265,10 +265,15 @@ static void drm_client_connectors_enabled(struct drm_connector *connectors[],
+>  		enabled[i] = drm_connector_enabled(connectors[i], false);
+>  }
+>  
+> +static bool mode_valid(const struct drm_display_mode *mode)
+> +{
+> +	return mode->clock != 0;
+> +}
+> +
+>  static bool drm_client_target_cloned(struct drm_device *dev,
+>  				     struct drm_connector *connectors[],
+>  				     unsigned int connector_count,
+> -				     const struct drm_display_mode *modes[],
+> +				     struct drm_display_mode modes[],
+>  				     struct drm_client_offset offsets[],
+>  				     bool enabled[], int width, int height)
+>  {
+> @@ -296,15 +301,16 @@ static bool drm_client_target_cloned(struct drm_device *dev,
+>  	for (i = 0; i < connector_count; i++) {
+>  		if (!enabled[i])
+>  			continue;
+> -		modes[i] = drm_connector_pick_cmdline_mode(connectors[i]);
+> -		if (!modes[i]) {
+> +
+> +		drm_mode_copy(&modes[i], drm_connector_pick_cmdline_mode(connectors[i]));
 
-csc_mode and gamma_mode are read back fully.
+Apparently this guy doesn't accept NULL, so this is oops central now.
+I'll have to wrap these up a bit I guess.
 
-If we wanted to be 100% pedantic about how things work in hardware
-we'd have to duplicate csc_enable/gamma_enable into plane_state, and 
-then copy over the thing we computed for the whole crtc into those
-and use them when programming the planes. But that's quite a lot of
-extra tracking, and we haven't even implemented proper plane state
-readout so not much point at this time. And IIRC there was also
-some ordering issue in that we compute plane states before color
-state, hence the whole *_plane_ctl_crtc() stuff.
+> +		if (!mode_valid(&modes[i])) {
+>  			can_clone = false;
+>  			break;
+>  		}
+>  		for (j = 0; j < i; j++) {
+>  			if (!enabled[j])
+>  				continue;
+> -			if (!drm_mode_match(modes[j], modes[i],
+> +			if (!drm_mode_match(&modes[j], &modes[i],
+>  					    DRM_MODE_MATCH_TIMINGS |
+>  					    DRM_MODE_MATCH_CLOCK |
+>  					    DRM_MODE_MATCH_FLAGS |
+> @@ -335,9 +341,9 @@ static bool drm_client_target_cloned(struct drm_device *dev,
+>  					   DRM_MODE_MATCH_CLOCK |
+>  					   DRM_MODE_MATCH_FLAGS |
+>  					   DRM_MODE_MATCH_3D_FLAGS))
+> -				modes[i] = mode;
+> +				drm_mode_copy(&modes[i], mode);
+>  		}
+> -		if (!modes[i])
+> +		if (!mode_valid(&modes[i]))
+>  			can_clone = false;
+>  	}
+>  	drm_mode_destroy(dev, dmt_mode);
+> @@ -354,7 +360,7 @@ static bool drm_client_target_cloned(struct drm_device *dev,
+>  static int drm_client_get_tile_offsets(struct drm_device *dev,
+>  				       struct drm_connector *connectors[],
+>  				       unsigned int connector_count,
+> -				       const struct drm_display_mode *modes[],
+> +				       const struct drm_display_mode modes[],
+>  				       struct drm_client_offset offsets[],
+>  				       int idx,
+>  				       int h_idx, int v_idx)
+> @@ -368,17 +374,17 @@ static int drm_client_get_tile_offsets(struct drm_device *dev,
+>  		if (!connector->has_tile)
+>  			continue;
+>  
+> -		if (!modes[i] && (h_idx || v_idx)) {
+> +		if (!mode_valid(&modes[i]) && (h_idx || v_idx)) {
+>  			drm_dbg_kms(dev,
+>  				    "[CONNECTOR:%d:%s] no modes for connector tiled %d\n",
+>  				    connector->base.id, connector->name, i);
+>  			continue;
+>  		}
+>  		if (connector->tile_h_loc < h_idx)
+> -			hoffset += modes[i]->hdisplay;
+> +			hoffset += modes[i].hdisplay;
+>  
+>  		if (connector->tile_v_loc < v_idx)
+> -			voffset += modes[i]->vdisplay;
+> +			voffset += modes[i].vdisplay;
+>  	}
+>  	offsets[idx].x = hoffset;
+>  	offsets[idx].y = voffset;
+> @@ -389,7 +395,7 @@ static int drm_client_get_tile_offsets(struct drm_device *dev,
+>  static bool drm_client_target_preferred(struct drm_device *dev,
+>  					struct drm_connector *connectors[],
+>  					unsigned int connector_count,
+> -					const struct drm_display_mode *modes[],
+> +					struct drm_display_mode modes[],
+>  					struct drm_client_offset offsets[],
+>  					bool enabled[], int width, int height)
+>  {
+> @@ -445,16 +451,16 @@ static bool drm_client_target_preferred(struct drm_device *dev,
+>  		}
+>  
+>  		mode_type = "cmdline";
+> -		modes[i] = drm_connector_pick_cmdline_mode(connector);
+> +		drm_mode_copy(&modes[i], drm_connector_pick_cmdline_mode(connector));
+>  
+> -		if (!modes[i]) {
+> +		if (!mode_valid(&modes[i])) {
+>  			mode_type = "preferred";
+> -			modes[i] = drm_connector_preferred_mode(connector, width, height);
+> +			drm_mode_copy(&modes[i], drm_connector_preferred_mode(connector, width, height));
+>  		}
+>  
+> -		if (!modes[i]) {
+> +		if (!mode_valid(&modes[i])) {
+>  			mode_type = "first";
+> -			modes[i] = drm_connector_first_mode(connector);
+> +			drm_mode_copy(&modes[i], drm_connector_first_mode(connector));
+>  		}
+>  
+>  		/*
+> @@ -472,17 +478,17 @@ static bool drm_client_target_preferred(struct drm_device *dev,
+>  			     connector->tile_v_loc == 0 &&
+>  			     !drm_connector_get_tiled_mode(connector))) {
+>  				mode_type = "non tiled";
+> -				modes[i] = drm_connector_fallback_non_tiled_mode(connector);
+> +				drm_mode_copy(&modes[i], drm_connector_fallback_non_tiled_mode(connector));
+>  			} else {
+>  				mode_type = "tiled";
+> -				modes[i] = drm_connector_get_tiled_mode(connector);
+> +				drm_mode_copy(&modes[i], drm_connector_get_tiled_mode(connector));
+>  			}
+>  		}
+>  
+> -		if (modes[i])
+> +		if (mode_valid(&modes[i]))
+>  			drm_dbg_kms(dev, "[CONNECTOR:%d:%s] found %s mode: %s\n",
+>  				    connector->base.id, connector->name,
+> -				    mode_type, modes[i]->name);
+> +				    mode_type, modes[i].name);
+>  		else
+>  			drm_dbg_kms(dev, "[CONNECTOR:%d:%s] no mode found\n",
+>  				    connector->base.id, connector->name);
+> @@ -514,7 +520,7 @@ static int drm_client_pick_crtcs(struct drm_client_dev *client,
+>  				 struct drm_connector *connectors[],
+>  				 unsigned int connector_count,
+>  				 struct drm_crtc *best_crtcs[],
+> -				 const struct drm_display_mode *modes[],
+> +				 const struct drm_display_mode modes[],
+>  				 int n, int width, int height)
+>  {
+>  	struct drm_device *dev = client->dev;
+> @@ -532,7 +538,7 @@ static int drm_client_pick_crtcs(struct drm_client_dev *client,
+>  	best_crtcs[n] = NULL;
+>  	best_score = drm_client_pick_crtcs(client, connectors, connector_count,
+>  					   best_crtcs, modes, n + 1, width, height);
+> -	if (modes[n] == NULL)
+> +	if (!mode_valid(&modes[n]))
+>  		return best_score;
+>  
+>  	crtcs = kcalloc(connector_count, sizeof(*crtcs), GFP_KERNEL);
+> @@ -566,7 +572,7 @@ static int drm_client_pick_crtcs(struct drm_client_dev *client,
+>  			if (dev->mode_config.num_crtc > 1)
+>  				continue;
+>  
+> -			if (!drm_mode_equal(modes[o], modes[n]))
+> +			if (!drm_mode_equal(&modes[o], &modes[n]))
+>  				continue;
+>  		}
+>  
+> @@ -589,7 +595,7 @@ static bool drm_client_firmware_config(struct drm_client_dev *client,
+>  				       struct drm_connector *connectors[],
+>  				       unsigned int connector_count,
+>  				       struct drm_crtc *crtcs[],
+> -				       const struct drm_display_mode *modes[],
+> +				       struct drm_display_mode modes[],
+>  				       struct drm_client_offset offsets[],
+>  				       bool enabled[], int width, int height)
+>  {
+> @@ -690,20 +696,20 @@ static bool drm_client_firmware_config(struct drm_client_dev *client,
+>  		}
+>  
+>  		mode_type = "cmdline";
+> -		modes[i] = drm_connector_pick_cmdline_mode(connector);
+> +		drm_mode_copy(&modes[i], drm_connector_pick_cmdline_mode(connector));
+>  
+> -		if (!modes[i]) {
+> +		if (!mode_valid(&modes[i])) {
+>  			mode_type = "preferred";
+> -			modes[i] = drm_connector_preferred_mode(connector, width, height);
+> +			drm_mode_copy(&modes[i], drm_connector_preferred_mode(connector, width, height));
+>  		}
+>  
+> -		if (!modes[i]) {
+> +		if (!mode_valid(&modes[i])) {
+>  			mode_type = "first";
+> -			modes[i] = drm_connector_first_mode(connector);
+> +			drm_mode_copy(&modes[i], drm_connector_first_mode(connector));
+>  		}
+>  
+>  		/* last resort: use current mode */
+> -		if (!modes[i]) {
+> +		if (!mode_valid(&modes[i])) {
+>  			/*
+>  			 * IMPORTANT: We want to use the adjusted mode (i.e.
+>  			 * after the panel fitter upscaling) as the initial
+> @@ -716,7 +722,7 @@ static bool drm_client_firmware_config(struct drm_client_dev *client,
+>  			 * fastboot check to work correctly.
+>  			 */
+>  			mode_type = "current";
+> -			modes[i] = &connector->state->crtc->mode;
+> +			drm_mode_copy(&modes[i], &connector->state->crtc->mode);
+>  		}
+>  
+>  		/*
+> @@ -726,14 +732,14 @@ static bool drm_client_firmware_config(struct drm_client_dev *client,
+>  		if (connector->has_tile &&
+>  		    num_tiled_conns < connector->num_h_tile * connector->num_v_tile) {
+>  			mode_type = "non tiled";
+> -			modes[i] = drm_connector_fallback_non_tiled_mode(connector);
+> +			drm_mode_copy(&modes[i], drm_connector_fallback_non_tiled_mode(connector));
+>  		}
+>  		crtcs[i] = new_crtc;
+>  
+>  		drm_dbg_kms(dev, "[CONNECTOR::%d:%s] on [CRTC:%d:%s] using %s mode: %s\n",
+>  			    connector->base.id, connector->name,
+>  			    new_crtc->base.id, new_crtc->name,
+> -			    mode_type, modes[i]->name);
+> +			    mode_type, modes[i].name);
+>  
+>  		fallback = false;
+>  		conn_configured |= BIT(i);
+> @@ -789,8 +795,7 @@ int drm_client_modeset_probe(struct drm_client_dev *client, unsigned int width,
+>  	unsigned int total_modes_count = 0;
+>  	struct drm_client_offset *offsets;
+>  	unsigned int connector_count = 0;
+> -	/* points to modes protected by mode_config.mutex */
+> -	const struct drm_display_mode **modes;
+> +	struct drm_display_mode *modes;
+>  	struct drm_crtc **crtcs;
+>  	int i, ret = 0;
+>  	bool *enabled;
+> @@ -858,10 +863,12 @@ int drm_client_modeset_probe(struct drm_client_dev *client, unsigned int width,
+>  				      crtcs, modes, 0, width, height);
+>  	}
+>  
+> +	mutex_unlock(&dev->mode_config.mutex);
+> +
+>  	drm_client_modeset_release(client);
+>  
+>  	for (i = 0; i < connector_count; i++) {
+> -		const struct drm_display_mode *mode = modes[i];
+> +		const struct drm_display_mode *mode = &modes[i];
+>  		struct drm_crtc *crtc = crtcs[i];
+>  		struct drm_client_offset *offset = &offsets[i];
+>  
+> @@ -892,7 +899,6 @@ int drm_client_modeset_probe(struct drm_client_dev *client, unsigned int width,
+>  			modeset->y = offset->y;
+>  		}
+>  	}
+> -	mutex_unlock(&dev->mode_config.mutex);
+>  
+>  	mutex_unlock(&client->modeset_mutex);
+>  out:
+> -- 
+> 2.45.2
 
 -- 
 Ville Syrjälä
