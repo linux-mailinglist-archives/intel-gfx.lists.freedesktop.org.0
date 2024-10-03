@@ -2,23 +2,23 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08F4E98F2E5
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Oct 2024 17:44:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 629C898F2E6
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Oct 2024 17:44:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97C5110E897;
-	Thu,  3 Oct 2024 15:44:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4389110E895;
+	Thu,  3 Oct 2024 15:44:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE98710E890;
- Thu,  3 Oct 2024 15:44:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4AC9410E895;
+ Thu,  3 Oct 2024 15:44:22 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH v3 05/12] drm/xe: Move suballocator init to after display init
-Date: Thu,  3 Oct 2024 17:44:14 +0200
-Message-ID: <20241003154421.33805-6-maarten.lankhorst@linux.intel.com>
+Subject: [PATCH v3 06/12] drm/xe: Use xe_ggtt_map_bo_unlocked for resume
+Date: Thu,  3 Oct 2024 17:44:15 +0200
+Message-ID: <20241003154421.33805-7-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241003154421.33805-1-maarten.lankhorst@linux.intel.com>
 References: <20241003154421.33805-1-maarten.lankhorst@linux.intel.com>
@@ -39,75 +39,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-No allocations should be done before we have had a chance to preserve
-the display fb.
+This is the first step to hide the details of struct xe_ggtt.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c |  6 ++++++
- drivers/gpu/drm/xe/xe_tile.c   | 12 ++++++++----
- drivers/gpu/drm/xe/xe_tile.h   |  1 +
- 3 files changed, 15 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_bo_evict.c |  9 ++-------
+ drivers/gpu/drm/xe/xe_ggtt.c     | 16 +++++++++++++++-
+ drivers/gpu/drm/xe/xe_ggtt.h     |  2 +-
+ 3 files changed, 18 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 09a7ad830e695..e9e2946b0b53c 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -732,6 +732,12 @@ int xe_device_probe(struct xe_device *xe)
- 	if (err)
- 		goto err;
+diff --git a/drivers/gpu/drm/xe/xe_bo_evict.c b/drivers/gpu/drm/xe/xe_bo_evict.c
+index 541b49007d738..788c071af92e0 100644
+--- a/drivers/gpu/drm/xe/xe_bo_evict.c
++++ b/drivers/gpu/drm/xe/xe_bo_evict.c
+@@ -146,13 +146,8 @@ int xe_bo_restore_kernel(struct xe_device *xe)
+ 			return ret;
+ 		}
  
-+	for_each_tile(tile, xe, id) {
-+		err = xe_tile_init(tile);
-+		if (err)
-+			goto err;
-+	}
-+
- 	for_each_gt(gt, xe, id) {
- 		last_gt = id;
- 
-diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
-index dda5268507d8e..164751bd9af22 100644
---- a/drivers/gpu/drm/xe/xe_tile.c
-+++ b/drivers/gpu/drm/xe/xe_tile.c
-@@ -167,10 +167,6 @@ int xe_tile_init_noalloc(struct xe_tile *tile)
- 	if (err)
- 		return err;
- 
--	tile->mem.kernel_bb_pool = xe_sa_bo_manager_init(tile, SZ_1M, 16);
--	if (IS_ERR(tile->mem.kernel_bb_pool))
--		return PTR_ERR(tile->mem.kernel_bb_pool);
+-		if (bo->flags & XE_BO_FLAG_GGTT) {
+-			struct xe_tile *tile = bo->tile;
 -
- 	xe_wa_apply_tile_workarounds(tile);
+-			mutex_lock(&tile->mem.ggtt->lock);
+-			xe_ggtt_map_bo(tile->mem.ggtt, bo);
+-			mutex_unlock(&tile->mem.ggtt->lock);
+-		}
++		if (bo->flags & XE_BO_FLAG_GGTT)
++			xe_ggtt_map_bo_unlocked(bo->tile->mem.ggtt, bo);
  
- 	err = xe_tile_sysfs_init(tile);
-@@ -178,6 +174,14 @@ int xe_tile_init_noalloc(struct xe_tile *tile)
- 	return 0;
+ 		/*
+ 		 * We expect validate to trigger a move VRAM and our move code
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index f68af56c3f865..1ffc0917e28fe 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -579,7 +579,7 @@ bool xe_ggtt_node_allocated(const struct xe_ggtt_node *node)
+  * @ggtt: the &xe_ggtt where node will be mapped
+  * @bo: the &xe_bo to be mapped
+  */
+-void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
++static void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
+ {
+ 	u16 cache_mode = bo->flags & XE_BO_FLAG_NEEDS_UC ? XE_CACHE_NONE : XE_CACHE_WB;
+ 	u16 pat_index = tile_to_xe(ggtt->tile)->pat.idx[cache_mode];
+@@ -597,6 +597,20 @@ void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
+ 	}
  }
  
-+int xe_tile_init(struct xe_tile *tile)
++/**
++ * xe_ggtt_map_bo_unlocked - Restore a mapping of a BO into GGTT
++ * @ggtt: the &xe_ggtt where node will be mapped
++ * @bo: the &xe_bo to be mapped
++ *
++ * This is used to restore a GGTT mapping after suspend.
++ */
++void xe_ggtt_map_bo_unlocked(struct xe_ggtt *ggtt, struct xe_bo *bo)
 +{
-+	tile->mem.kernel_bb_pool = xe_sa_bo_manager_init(tile, SZ_1M, 16);
-+	if (IS_ERR(tile->mem.kernel_bb_pool))
-+		return PTR_ERR(tile->mem.kernel_bb_pool);
-+
-+	return 0;
++	mutex_lock(&ggtt->lock);
++	xe_ggtt_map_bo(ggtt, bo);
++	mutex_unlock(&ggtt->lock);
 +}
- void xe_tile_migrate_wait(struct xe_tile *tile)
++
+ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
+ 				  u64 start, u64 end)
  {
- 	xe_migrate_wait(tile->migrate);
-diff --git a/drivers/gpu/drm/xe/xe_tile.h b/drivers/gpu/drm/xe/xe_tile.h
-index 1c9e42ade6b05..eb939316d55b0 100644
---- a/drivers/gpu/drm/xe/xe_tile.h
-+++ b/drivers/gpu/drm/xe/xe_tile.h
-@@ -12,6 +12,7 @@ struct xe_tile;
- 
- int xe_tile_init_early(struct xe_tile *tile, struct xe_device *xe, u8 id);
- int xe_tile_init_noalloc(struct xe_tile *tile);
-+int xe_tile_init(struct xe_tile *tile);
- 
- void xe_tile_migrate_wait(struct xe_tile *tile);
- 
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
+index 27e7d67de0047..bdf6d0733e2ca 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.h
++++ b/drivers/gpu/drm/xe/xe_ggtt.h
+@@ -24,7 +24,7 @@ int xe_ggtt_node_insert_locked(struct xe_ggtt_node *node,
+ 			       u32 size, u32 align, u32 mm_flags);
+ void xe_ggtt_node_remove(struct xe_ggtt_node *node, bool invalidate);
+ bool xe_ggtt_node_allocated(const struct xe_ggtt_node *node);
+-void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo);
++void xe_ggtt_map_bo_unlocked(struct xe_ggtt *ggtt, struct xe_bo *bo);
+ int xe_ggtt_insert_bo(struct xe_ggtt *ggtt, struct xe_bo *bo);
+ int xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
+ 			 u64 start, u64 end);
 -- 
 2.45.2
 
