@@ -2,28 +2,85 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5393B98F2EE
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Oct 2024 17:44:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 400EE98F2F9
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Oct 2024 17:45:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E1B910E88C;
-	Thu,  3 Oct 2024 15:44:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D27010E893;
+	Thu,  3 Oct 2024 15:45:19 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="TICrwrFP";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3144410E88C;
- Thu,  3 Oct 2024 15:44:29 +0000 (UTC)
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH v3 12/12] drm/xe: Move struct xe_ggtt to xe_ggtt.c
-Date: Thu,  3 Oct 2024 17:44:21 +0200
-Message-ID: <20241003154421.33805-13-maarten.lankhorst@linux.intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241003154421.33805-1-maarten.lankhorst@linux.intel.com>
-References: <20241003154421.33805-1-maarten.lankhorst@linux.intel.com>
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net
+ [217.70.183.196])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D9F1410E139;
+ Thu,  3 Oct 2024 15:45:16 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 6E6A6E0002;
+ Thu,  3 Oct 2024 15:45:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+ t=1727970315;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=KEG391uPbET+smFrjuUd3Gbf+SfD/X5R0PGVdaNVyDQ=;
+ b=TICrwrFPqNQr0FkllJojskNhDNyxJBBjJ7p1KfIigSpe1yz5eAAGd2ZrO2BidvC6/A+Qom
+ NZAd/9RJSz1RiDd3lLdtADp5nqX9bQyWNoBMaYmxSJhOSDe0T0fZ3BzR0Se1uCIXgHLatP
+ 0EnPqF616SrgdCpZaDlShmBrP13ZbIXW9Bj7Oi5IuZvb8HSqOh6m1SReSPJmtquU99Yk9c
+ wA7Vpopy8iwsQYMzzsZgtNT4idP5iRQdLFv3pdXkbJyEmdQQR3dqplUNNyYzH1sATd/MpW
+ BCY3lPJp+f+t7R9s2mNyuYyLKxVcwMtVAupvHPO8B9IX4HLM2IwIi9MsvKSHrQ==
+Date: Thu, 3 Oct 2024 17:45:10 +0200
+From: Louis Chauvet <louis.chauvet@bootlin.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Liviu Dudau <liviu.dudau@arm.com>, Russell King <linux@armlinux.org.uk>,
+ Inki Dae <inki.dae@samsung.com>,
+ Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
+ Alain Volmat <alain.volmat@foss.st.com>,
+ Sandy Huang <hjc@rock-chips.com>, Jyri Sarha <jyri.sarha@iki.fi>,
+ Alexey Brodkin <abrodkin@synopsys.com>,
+ Hans de Goede <hdegoede@redhat.com>,
+ =?iso-8859-1?Q?Ma=EDra?= Canal <mairacanal@riseup.net>,
+ Zack Rusin <zack.rusin@broadcom.com>, amd-gfx@lists.freedesktop.org,
+ linux-mediatek@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ virtualization@lists.linux.dev, spice-devel@lists.freedesktop.org,
+ linux-renesas-soc@vger.kernel.org, xen-devel@lists.xenproject.org
+Subject: Re: [PATCH 2/2] drm: Move crtc->{x, y, mode, enabled} to legacy
+ sub-structure
+Message-ID: <Zv68Bj8UTNvRSmFj@louis-chauvet-laptop>
+Mail-Followup-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?=
+ <ville.syrjala@linux.intel.com>, 
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Liviu Dudau <liviu.dudau@arm.com>,
+ Russell King <linux@armlinux.org.uk>,
+ Inki Dae <inki.dae@samsung.com>,
+ Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
+ Alain Volmat <alain.volmat@foss.st.com>,
+ Sandy Huang <hjc@rock-chips.com>, Jyri Sarha <jyri.sarha@iki.fi>,
+ Alexey Brodkin <abrodkin@synopsys.com>,
+ Hans de Goede <hdegoede@redhat.com>,
+ =?iso-8859-1?Q?Ma=EDra?= Canal <mairacanal@riseup.net>,
+ Zack Rusin <zack.rusin@broadcom.com>, amd-gfx@lists.freedesktop.org,
+ linux-mediatek@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ virtualization@lists.linux.dev, spice-devel@lists.freedesktop.org,
+ linux-renesas-soc@vger.kernel.org, xen-devel@lists.xenproject.org
+References: <20241002182200.15363-1-ville.syrjala@linux.intel.com>
+ <20241002182200.15363-3-ville.syrjala@linux.intel.com>
+ <Zv6QF2EmIcogtlLA@louis-chauvet-laptop>
+ <Zv6gSGMXZZARf3oV@intel.com>
+ <Zv6zN7Go_XG44P2-@louis-chauvet-laptop>
+ <Zv64RktMPv2rpCZf@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <Zv64RktMPv2rpCZf@intel.com>
+X-GND-Sasl: louis.chauvet@bootlin.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,117 +96,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-No users left outside of xe_ggtt.c, so we can make the struct private.
+Le 03/10/24 - 18:29, Ville Syrjälä a écrit :
+> On Thu, Oct 03, 2024 at 05:07:35PM +0200, Louis Chauvet wrote:
+> > 
+> > > > > diff --git a/drivers/gpu/drm/vkms/vkms_crtc.c b/drivers/gpu/drm/vkms/vkms_crtc.c
+> > > > > index a40295c18b48..780681ea77e4 100644
+> > > > > --- a/drivers/gpu/drm/vkms/vkms_crtc.c
+> > > > > +++ b/drivers/gpu/drm/vkms/vkms_crtc.c
+> > > > > @@ -64,7 +64,7 @@ static int vkms_enable_vblank(struct drm_crtc *crtc)
+> > > > >  	struct drm_vblank_crtc *vblank = drm_crtc_vblank_crtc(crtc);
+> > > > >  	struct vkms_output *out = drm_crtc_to_vkms_output(crtc);
+> > > > >  
+> > > > > -	drm_calc_timestamping_constants(crtc, &crtc->mode);
+> > > > > +	drm_calc_timestamping_constants(crtc, &crtc->legacy.mode);
+> > > > 
+> > > > 	drm_calc_timestamping_constants(crtc, &crtc->state->mode);
+> > > 
+> > > This one doesn't look safe. You want to call that during your atomic
+> > > commit already.
+> > > 
+> > 
+> > This was already not safe with the previous implementation? Or it is only 
+> > unsafe because now I use state->mode instead of legacy.mode?
+> 
+> Yeah, if you want to look at obj->state then you need the corresponding
+> lock.
+> 
+> obj->state is also not necessarily the correct state you want because
+> a parallel commit could have already swapped in a new state but the
+> hardware is still on the old state.
+> 
+> Basically 99.9% of code should never even look at obj->state, and
+> instead should always use the for_each_new_<obj>_in_state()
+> and drm_atomic_get_new_<obj>_state() stuff. Currently that is a
+> pipe dream though because a lot of drivers haven't been fixed to
+> do things properly. If we ever manage to fix everything then we
+> could remove the stall hacks from drm_atomic_helper_swap_state()
+> and allow a commit pipeline of arbitrary length.
+>
+> > 
+> > After inspecting the code, I think I don't need to call it as:
+> > 
+> > In `vkms_atomic_commit_tail` (used in 
+> > `@vkms_mode_config_helpers.atomic_commit_tail`), we call 
+> > `drm_atomic_helper_commit_modeset_disables`, which call 
+> > `drm_atomic_helper_calc_timestamping_constants` which call 
+> > `drm_calc_timestamping_constants` for every CRTC.
+> 
+> Slightly odd place for it, but I think that's just because it was
+> originally part of drm_atomic_helper_update_legacy_modeset_state()
+> and I didn't bother looking for a better home for it when I split
+> it out. But seems like it should work fine as is.
 
-This prevents us from accidentally touching it before init.
+I just send a patch for this! Thanks for your help!
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_ggtt.c       | 37 ++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_ggtt_types.h | 39 +-----------------------------
- 2 files changed, 38 insertions(+), 38 deletions(-)
+[1]:https://lore.kernel.org/all/20241003-remove-legacy-v1-1-0b7db1f1a1a6@bootlin.com/
+ 
+> > 
+> > I tested kms_vblank, all of them are SUCCESS/SKIP, do you know other tests 
+> > that can trigger bugs?
+> 
+> You would explicitly have to race commits against vblank_enable.
+> Could of course sprinkle sleep()s around to widen the race window
+> if you're really keen to hit it.
+> 
+> -- 
+> Ville Syrjälä
+> Intel
 
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 9c4baa22ebe49..0ff9d25ec0172 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -74,6 +74,43 @@ struct xe_ggtt_pt_ops {
- 	void (*ggtt_set_pte)(struct xe_ggtt *ggtt, u64 addr, u64 pte);
- };
- 
-+/**
-+ * struct xe_ggtt - Main GGTT struct
-+ *
-+ * In general, each tile can contains its own Global Graphics Translation Table
-+ * (GGTT) instance.
-+ */
-+struct xe_ggtt {
-+	/** @tile: Back pointer to tile where this GGTT belongs */
-+	struct xe_tile *tile;
-+	/** @size: Total size of this GGTT */
-+	u64 size;
-+
-+#define XE_GGTT_FLAGS_64K BIT(0)
-+	/**
-+	 * @flags: Flags for this GGTT
-+	 * Acceptable flags:
-+	 * - %XE_GGTT_FLAGS_64K - if PTE size is 64K. Otherwise, regular is 4K.
-+	 */
-+	unsigned int flags;
-+	/** @scratch: Internal object allocation used as a scratch page */
-+	struct xe_bo *scratch;
-+	/** @lock: Mutex lock to protect GGTT data */
-+	struct mutex lock;
-+	/**
-+	 *  @gsm: The iomem pointer to the actual location of the translation
-+	 * table located in the GSM for easy PTE manipulation
-+	 */
-+	u64 __iomem *gsm;
-+	/** @pt_ops: Page Table operations per platform */
-+	const struct xe_ggtt_pt_ops *pt_ops;
-+	/** @mm: The memory manager used to manage individual GGTT allocations */
-+	struct drm_mm mm;
-+	/** @access_count: counts GGTT writes */
-+	unsigned int access_count;
-+	/** @wq: Dedicated unordered work queue to process node removals */
-+	struct workqueue_struct *wq;
-+};
- 
- static u64 xelp_ggtt_pte_encode_bo(struct xe_bo *bo, u64 bo_offset,
- 				   u16 pat_index)
-diff --git a/drivers/gpu/drm/xe/xe_ggtt_types.h b/drivers/gpu/drm/xe/xe_ggtt_types.h
-index c142ff59c4504..8b0fd528569d3 100644
---- a/drivers/gpu/drm/xe/xe_ggtt_types.h
-+++ b/drivers/gpu/drm/xe/xe_ggtt_types.h
-@@ -12,47 +12,10 @@
- 
- struct xe_bo;
- struct xe_gt;
-+struct xe_ggtt;
- 
- typedef u64 (*xe_ggtt_pte_encode_bo_fn)(struct xe_bo *bo, u64 bo_offset, u16 pat_index);
- 
--/**
-- * struct xe_ggtt - Main GGTT struct
-- *
-- * In general, each tile can contains its own Global Graphics Translation Table
-- * (GGTT) instance.
-- */
--struct xe_ggtt {
--	/** @tile: Back pointer to tile where this GGTT belongs */
--	struct xe_tile *tile;
--	/** @size: Total size of this GGTT */
--	u64 size;
--
--#define XE_GGTT_FLAGS_64K BIT(0)
--	/**
--	 * @flags: Flags for this GGTT
--	 * Acceptable flags:
--	 * - %XE_GGTT_FLAGS_64K - if PTE size is 64K. Otherwise, regular is 4K.
--	 */
--	unsigned int flags;
--	/** @scratch: Internal object allocation used as a scratch page */
--	struct xe_bo *scratch;
--	/** @lock: Mutex lock to protect GGTT data */
--	struct mutex lock;
--	/**
--	 *  @gsm: The iomem pointer to the actual location of the translation
--	 * table located in the GSM for easy PTE manipulation
--	 */
--	u64 __iomem *gsm;
--	/** @pt_ops: Page Table operations per platform */
--	const struct xe_ggtt_pt_ops *pt_ops;
--	/** @mm: The memory manager used to manage individual GGTT allocations */
--	struct drm_mm mm;
--	/** @access_count: counts GGTT writes */
--	unsigned int access_count;
--	/** @wq: Dedicated unordered work queue to process node removals */
--	struct workqueue_struct *wq;
--};
--
- /**
-  * struct xe_ggtt_node - A node in GGTT.
-  *
 -- 
-2.45.2
-
+Louis Chauvet, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
