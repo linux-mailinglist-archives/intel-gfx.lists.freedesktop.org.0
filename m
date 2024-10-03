@@ -2,55 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1FAE98F1F1
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Oct 2024 16:57:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D230F98F1F4
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Oct 2024 16:58:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BA7510E870;
-	Thu,  3 Oct 2024 14:57:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6FA2210E876;
+	Thu,  3 Oct 2024 14:58:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YWvCQUpL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QUPGaDhd";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4ADD10E86F;
- Thu,  3 Oct 2024 14:57:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 029C610E883
+ for <intel-gfx@lists.freedesktop.org>; Thu,  3 Oct 2024 14:58:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727967423; x=1759503423;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Z9J0QdzpwCk4Tck7jDkTbK6QduinWzX6HvPtBlkKIL4=;
- b=YWvCQUpLnEnaYh5QK2PyUlWuQ2cI6eR71MzibjqtUOY0mUu5yPPU7iuz
- zizb8i6JHBUSBya0p/eto41RivZ8rdZAKoiiBVZSeEXdcaCGl3Qt4a3hk
- s5qbsAydle7EiqvvZ66IJMNxKnRBlXgoRpkOhQ4McpT2ECtKkbOvgjv9U
- Mr+en3QJbDMkKz0JPIKhEyLmBE19T2R0jPHUp5+fqVtQ9MNJLxdAN1dUI
- Sb3D5oQFRIm0REskTbBkiBsslO6yG/MjOMY0GeaGiet1fvd2lgM+5ME4F
- GGeOVfx7HYhKnDyH27AqrL9NiQTOniXtsb40QC4cD1jZNMnrfGRsAI9ME Q==;
-X-CSE-ConnectionGUID: w5MhcmokSXaGaAwzdIW7jg==
-X-CSE-MsgGUID: cfmnjG4GR3CHfg3jLS35cQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11214"; a="30956780"
-X-IronPort-AV: E=Sophos;i="6.11,174,1725346800"; d="scan'208";a="30956780"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2024 07:57:00 -0700
-X-CSE-ConnectionGUID: /vGGZp+oSV6yt7GT429DJA==
-X-CSE-MsgGUID: r3pb85jyRx23dJDcZamXxw==
+ t=1727967504; x=1759503504;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=WYjFPBixECcAununbHMV3ZXTcHpy3nnbU4ryCcvTefQ=;
+ b=QUPGaDhdOCjSM8xp76bYxE5QZ5ysXx/YrsnulVDQkxm6naJP3PKrSPzg
+ u5op/E84wwntlg5SQI9308KpGp2aOV9EZH2jxhmR0IdbslQ894jwVMsbY
+ nNoPuZxob7bi0z2Nj60yq9z6Y1iLpzh9V/hL7weceLkmDHAqy94XYYewX
+ j2FFz0HUIL0Iogvkd0YDJh8xAul5cBzZyrXefAlDo+fslAq3rZzuXFASt
+ u+G1FJLt51u/qRf8U8UhAZ+w1cFNxsu7UufxZqO90gAFJGjuYnT6tGAWm
+ HmHd2miRG5ThGBpnRXkZrcDcplLijLQZ+nbuRPpZuq+92GjyZfmRdxNyw Q==;
+X-CSE-ConnectionGUID: e7CXKsx+SDG46c/jZUQbJg==
+X-CSE-MsgGUID: SeKAaBlCQuWPZlrjWZqKyQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11214"; a="27293917"
+X-IronPort-AV: E=Sophos;i="6.11,174,1725346800"; d="scan'208";a="27293917"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Oct 2024 07:58:16 -0700
+X-CSE-ConnectionGUID: uwNaFx8VRkSjBwaSbWL0Dg==
+X-CSE-MsgGUID: TO3F1ZWJSYOzYlSngVTmmQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,174,1725346800"; d="scan'208";a="78921284"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by fmviesa004.fm.intel.com with ESMTP; 03 Oct 2024 07:56:58 -0700
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: uma.shankar@intel.com, jouni.hogander@intel.com,
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH] drm/i915/psr: Implement WA to help reach PC10
-Date: Thu,  3 Oct 2024 20:23:38 +0530
-Message-ID: <20241003145337.1673715-2-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.43.2
+X-IronPort-AV: E=Sophos;i="6.11,174,1725346800"; d="scan'208";a="74472339"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 03 Oct 2024 07:58:13 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 03 Oct 2024 17:58:12 +0300
+Date: Thu, 3 Oct 2024 17:58:12 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Cc: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>,
+ intel-gfx@lists.freedesktop.org, ville.syrjala@intel.com
+Subject: Re: [PATCH] drm/i915/icl: Update csc and gamma enable checks
+Message-ID: <Zv6xBKixcWn_gJEW@intel.com>
+References: <20241003090341.3140997-1-sai.teja.pottumuttu@intel.com>
+ <Zv57pzLX4ltH4w00@intel.com>
+ <20241003142237.GK5725@mdroper-desk1.amr.corp.intel.com>
+ <Zv6rGHmLiL5GrpKG@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <Zv6rGHmLiL5GrpKG@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,225 +74,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-To reach PC10 when PKG_C_LATENCY is configure we must do the following
-things
-1) Enter PSR1 only when delayed_vblank < 6 lines and DC5 can be entered
-2) Allow PSR2 deep sleep when DC5 can be entered
-3) DC5 can be entered when all transocoder have either PSR1, PSR2 or
-eDP 1.5 PR ALPM enabled and VBI is disabled and flips and pushes are
-not happening.
+On Thu, Oct 03, 2024 at 05:32:56PM +0300, Ville Syrjälä wrote:
+> On Thu, Oct 03, 2024 at 07:22:37AM -0700, Matt Roper wrote:
+> > On Thu, Oct 03, 2024 at 02:10:31PM +0300, Ville Syrjälä wrote:
+> > > On Thu, Oct 03, 2024 at 02:33:41PM +0530, Sai Teja Pottumuttu wrote:
+> > > > With ICL, we have a way to check if gamma and csc are enabled on
+> > > > a pipe using bits in GAMMA_MODE and CSC_MODE. So, use them as well
+> > > > along with the existing BOTTOM_COLOR checks.
+> > > > 
+> > > > BSpec: 7463, 7466
+> > > > Signed-off-by: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
+> > > > ---
+> > > >  drivers/gpu/drm/i915/display/intel_color.c | 24 ++++++++++++++++++++--
+> > > >  1 file changed, 22 insertions(+), 2 deletions(-)
+> > > > 
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
+> > > > index 50f41aeb3c28..1bf36898dc7e 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_color.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_color.c
+> > > > @@ -1076,6 +1076,26 @@ static void skl_get_config(struct intel_crtc_state *crtc_state)
+> > > >  		crtc_state->csc_enable = true;
+> > > >  }
+> > > >  
+> > > > +static void icl_get_config(struct intel_crtc_state *crtc_state)
+> > > > +{
+> > > > +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> > > > +	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+> > > > +	u32 bottom_color;
+> > > > +
+> > > > +	crtc_state->gamma_mode = hsw_read_gamma_mode(crtc);
+> > > > +	crtc_state->csc_mode = ilk_read_csc_mode(crtc);
+> > > > +
+> > > > +	bottom_color = intel_de_read(i915, SKL_BOTTOM_COLOR(crtc->pipe));
+> > > > +
+> > > > +	if ((bottom_color & SKL_BOTTOM_COLOR_GAMMA_ENABLE) ||
+> > > > +	    (crtc_state->gamma_mode & POST_CSC_GAMMA_ENABLE))
+> > > > +		crtc_state->gamma_enable = true;
+> > > > +
+> > > > +	if ((bottom_color & SKL_BOTTOM_COLOR_CSC_ENABLE) ||
+> > > > +	    (crtc_state->csc_mode & ICL_CSC_ENABLE))
+> > > > +		crtc_state->csc_enable = true;
+> > > 
+> > > We don't use the old per-plane/bottom color way of enabling these.
+> > > So this is not right.
+> > 
+> > I think that's the reason for the patch --- today we use
+> > skl_get_config() which *only* checks the bottom color settings.  And
+> > that approach is documented as being deprecated (although still
+> > supported on current platforms).
+> > 
+> > If we're reading out pre-OS state programmed by the vbios, we probably
+> > need to handle whichever approach it took, right?  Or are we sanitizing
+> > this away to "off" somewhere that makes it okay to miss what was
+> > programmed?
+> 
+> I think we're not doing anything. I suppose some kind of
+> assert_legacy_color_stuff_is_off() thing somewhere could be a
+> decent addition.
 
-WA: 22019444797
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_ddi.c      |   3 +
- .../drm/i915/display/intel_display_types.h    |   3 +
- drivers/gpu/drm/i915/display/intel_psr.c      | 108 +++++++++++++++++-
- drivers/gpu/drm/i915/display/intel_psr.h      |   2 +
- 4 files changed, 115 insertions(+), 1 deletion(-)
+Or maybe we don't need to do anything. The state checker will catch
+this problem with the current code as far as the pipe bottom color
+is concerned. It won't catch inconsistent plane programming though.
+But we also don't have such a consistency check for older platforms
+either.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index fe1ded6707f9..cbd71c136c8d 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -4368,6 +4368,9 @@ static int intel_ddi_compute_config_late(struct intel_encoder *encoder,
- 			port_sync_transcoders & ~BIT(crtc_state->cpu_transcoder);
- 	}
- 
-+	if (intel_encoder_is_dp(encoder))
-+		intel_psr_compute_config_late(encoder, crtc_state);
-+
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 17fc21f6ae36..7fb3eeb0e0f2 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1576,6 +1576,9 @@ struct intel_psr {
- #define I915_PSR_DEBUG_PANEL_REPLAY_DISABLE	0x40
- 
- 	u32 debug;
-+	bool is_dpkgc_configured;
-+	bool is_dc5_entry_possible;
-+	bool is_wa_delayed_vblank_limit;
- 	bool sink_support;
- 	bool source_support;
- 	bool enabled;
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 8e9f068b9b2b..2136737429b4 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -26,6 +26,7 @@
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_damage_helper.h>
- #include <drm/drm_debugfs.h>
-+#include <drm/drm_vblank.h>
- 
- #include "i915_drv.h"
- #include "i915_reg.h"
-@@ -896,6 +897,76 @@ static u8 psr_compute_idle_frames(struct intel_dp *intel_dp)
- 	return idle_frames;
- }
- 
-+static bool
-+intel_psr_check_wa_delayed_vblank(const struct drm_display_mode *adjusted_mode)
-+{
-+	return (adjusted_mode->crtc_vblank_start - adjusted_mode->crtc_vdisplay) >= 6;
-+}
-+
-+/*
-+ * PKG_C_LATENCY is configured only when DISPLAY_VER >= 20 and
-+ * VRR is not enabled
-+ */
-+static bool intel_psr_is_dpkgc_configured(struct intel_display *display,
-+					  struct intel_crtc_state *crtc_state)
-+{
-+	if (DISPLAY_VER(display) < 20 || crtc_state->vrr.enable)
-+		return false;
-+
-+	return true;
-+}
-+
-+static bool wa_22019444797_psr1_check(const struct intel_crtc_state *crtc_state,
-+				      struct intel_psr *psr)
-+{
-+	struct intel_display *display = to_intel_display(crtc_state);
-+
-+	return DISPLAY_VER(display) == 20 && psr->is_dpkgc_configured &&
-+		(psr->is_wa_delayed_vblank_limit || !psr->is_dc5_entry_possible) &&
-+		!crtc_state->has_sel_update && !crtc_state->has_panel_replay;
-+}
-+
-+/*
-+ * DC5 entry is only possible if vblank interrupt is disabled
-+ * and either psr1, psr2, edp 1.5 pr alpm is enabled on all
-+ * enabled encoders.
-+ */
-+static bool
-+intel_psr_is_dc5_entry_possible(struct intel_display *display,
-+				struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_crtc *intel_crtc;
-+
-+	if ((display->power.domains.target_dc_state &
-+	     DC_STATE_EN_UPTO_DC5_DC6_MASK) == 0)
-+		return false;
-+
-+	if (!crtc_state->has_psr && !crtc_state->has_sel_update &&
-+	    !crtc_state->has_panel_replay)
-+		return false;
-+
-+	for_each_intel_crtc(display->drm, intel_crtc) {
-+		struct drm_crtc *crtc = &intel_crtc->base;
-+		struct drm_vblank_crtc *vblank;
-+		struct intel_encoder *encoder;
-+
-+		if (!intel_crtc->active)
-+			continue;
-+
-+		vblank = drm_crtc_vblank_crtc(crtc);
-+
-+		if (vblank->enabled)
-+			return false;
-+
-+		for_each_encoder_on_crtc(display->drm, crtc, encoder)
-+			if (encoder->type != INTEL_OUTPUT_EDP ||
-+			    !CAN_PSR(enc_to_intel_dp(encoder)))
-+				return false;
-+	}
-+
-+	return true;
-+}
-+
- static void hsw_activate_psr1(struct intel_dp *intel_dp)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
-@@ -1008,7 +1079,15 @@ static void hsw_activate_psr2(struct intel_dp *intel_dp)
- 	u32 val = EDP_PSR2_ENABLE;
- 	u32 psr_val = 0;
- 
--	val |= EDP_PSR2_IDLE_FRAMES(psr_compute_idle_frames(intel_dp));
-+	/*
-+	 * Wa_22019444797
-+	 * TODO: Disable idle frames when vblank gets enabled while
-+	 * PSR2 is enabled
-+	 */
-+	if (DISPLAY_VER(dev_priv) != 20 ||
-+	    !intel_dp->psr.is_dpkgc_configured ||
-+	    intel_dp->psr.is_dc5_entry_possible)
-+		val |= EDP_PSR2_IDLE_FRAMES(psr_compute_idle_frames(intel_dp));
- 
- 	if (DISPLAY_VER(display) < 14 && !IS_ALDERLAKE_P(dev_priv))
- 		val |= EDP_SU_TRACK_ENABLE;
-@@ -1686,6 +1765,24 @@ void intel_psr_compute_config(struct intel_dp *intel_dp,
- 	crtc_state->has_sel_update = intel_sel_update_config_valid(intel_dp, crtc_state);
- }
- 
-+void intel_psr_compute_config_late(struct intel_encoder *intel_encoder,
-+				   struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_display *display = to_intel_display(intel_encoder);
-+	struct intel_dp *dp = enc_to_intel_dp(intel_encoder);
-+
-+	if (DISPLAY_VER(display) == 20) {
-+		mutex_lock(&dp->psr.lock);
-+		dp->psr.is_dpkgc_configured =
-+			intel_psr_is_dpkgc_configured(display, crtc_state);
-+		dp->psr.is_dc5_entry_possible =
-+			intel_psr_is_dc5_entry_possible(display, crtc_state);
-+		dp->psr.is_wa_delayed_vblank_limit =
-+			intel_psr_check_wa_delayed_vblank(&crtc_state->hw.adjusted_mode);
-+		mutex_unlock(&dp->psr.lock);
-+	}
-+}
-+
- void intel_psr_get_config(struct intel_encoder *encoder,
- 			  struct intel_crtc_state *pipe_config)
- {
-@@ -2742,6 +2839,7 @@ void intel_psr_pre_plane_update(struct intel_atomic_state *state,
- 		 * - Changing between PSR versions
- 		 * - Region Early Transport changing
- 		 * - Display WA #1136: skl, bxt
-+		 * - Display WA_22019444797
- 		 */
- 		needs_to_disable |= intel_crtc_needs_modeset(new_crtc_state);
- 		needs_to_disable |= !new_crtc_state->has_psr;
-@@ -2751,6 +2849,8 @@ void intel_psr_pre_plane_update(struct intel_atomic_state *state,
- 			psr->su_region_et_enabled;
- 		needs_to_disable |= DISPLAY_VER(i915) < 11 &&
- 			new_crtc_state->wm_level_disabled;
-+		/* TODO: Disable PSR1 when vblank gets enabled while PSR1 is enabled */
-+		needs_to_disable |= wa_22019444797_psr1_check(new_crtc_state, psr);
- 
- 		if (psr->enabled && needs_to_disable)
- 			intel_psr_disable_locked(intel_dp);
-@@ -2791,6 +2891,12 @@ void intel_psr_post_plane_update(struct intel_atomic_state *state,
- 		keep_disabled |= DISPLAY_VER(display) < 11 &&
- 			crtc_state->wm_level_disabled;
- 
-+		/*
-+		 * Wa_22019444797
-+		 * TODO: Disable PSR1 when vblank gets enabled while PSR1 is enabled
-+		 */
-+		keep_disabled |= wa_22019444797_psr1_check(crtc_state, psr);
-+
- 		if (!psr->enabled && !keep_disabled)
- 			intel_psr_enable_locked(intel_dp, crtc_state);
- 		else if (psr->enabled && !crtc_state->wm_level_disabled)
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.h b/drivers/gpu/drm/i915/display/intel_psr.h
-index 5f26f61f82aa..e0fa04952393 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.h
-+++ b/drivers/gpu/drm/i915/display/intel_psr.h
-@@ -47,6 +47,8 @@ void intel_psr_init(struct intel_dp *intel_dp);
- void intel_psr_compute_config(struct intel_dp *intel_dp,
- 			      struct intel_crtc_state *crtc_state,
- 			      struct drm_connector_state *conn_state);
-+void intel_psr_compute_config_late(struct intel_encoder *intel_encoder,
-+				   struct intel_crtc_state *crtc_state);
- void intel_psr_get_config(struct intel_encoder *encoder,
- 			  struct intel_crtc_state *pipe_config);
- void intel_psr_irq_handler(struct intel_dp *intel_dp, u32 psr_iir);
 -- 
-2.43.2
-
+Ville Syrjälä
+Intel
