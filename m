@@ -2,65 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B7C598F3B3
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Oct 2024 18:12:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D5BCB98F3EB
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Oct 2024 18:14:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6D6210E8A9;
-	Thu,  3 Oct 2024 16:12:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 192B710E8AC;
+	Thu,  3 Oct 2024 16:14:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Oj/HujZU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="COJysxQ4";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A38310E8A9
- for <intel-gfx@lists.freedesktop.org>; Thu,  3 Oct 2024 16:12:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E43AC10E17D;
+ Thu,  3 Oct 2024 16:14:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727971965; x=1759507965;
+ t=1727972083; x=1759508083;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=XWh39LxXi4yfOEeq8dC/GLFeHPtMbDyyHtA1bbi7KFI=;
- b=Oj/HujZUq4x2qcWd/UHo07M0Hqk6aPd+8WutsKl49HX9qS3ff6q1m7oh
- zVjwwFOgmwty8mLqouUT4J8scL3Szy8zUtlucvUhbX56sZttyBCXlMSOh
- zlyaNfq2nV7Eh7gZ6Xv9763/bZbw7RF0QXVmYgc1yoOGnR8jNyWJmDXvs
- fEWtojWNlt9g0iKpA+PNloweUebmbPEegi3yNGWbUm82o19BvHxWv4xQ6
- 4kmnU2rkqUPHSVkCLb+FyLciz4LhVRFK2flzWjhvvXDUedi427n1XBKzK
- ZayIp+tqoOsG/LWK58w0kuLNc0axk5U20pCfHuM53EUuioxVF+EaHUr4X g==;
-X-CSE-ConnectionGUID: f/WL/0v4TlWMGEAfMb84Sw==
-X-CSE-MsgGUID: 1F3wFx6HRXKPtFxphhha9g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11214"; a="26647312"
-X-IronPort-AV: E=Sophos;i="6.11,174,1725346800"; d="scan'208";a="26647312"
+ bh=obvEWYz1wtOxrvDMbQqhp4Df/cZKNo3c4gnuVpDPiuQ=;
+ b=COJysxQ4Q/LtRnV/rUSRpBlflp/jls1a4FzAbVw7UohOiXYADbi3jdNa
+ Qe4RNYV1WYTi7x8AEr3ZLDKKL6/8U84LSnc6k89r0R75yMtK+CcaXPqGr
+ 7BnE4ZtpdsQzl3I1FJCB7r7TylUPAMRjETR+4wkl/9bGD6aEeV/JTE6Ta
+ 6eE2nwyiEg/22ofVwpP6NPQ1qdUDsGEeE42RO7zLXSLKnREQPQlXCt/iZ
+ bumfLQprAj0WWqIvcNogRSfiv7zKZ5084HPH/eMidKtXnYxPzMfnP6KB6
+ LXZbctz1XmOjYb92lI9BglATFvyWdQM7uesBrwvuTiKmaJAyQCMT94Hrh A==;
+X-CSE-ConnectionGUID: ekKzPVTbTZmj+j+Em/dzXg==
+X-CSE-MsgGUID: nr7a1JaXTgm2tQLAGgSvIQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11214"; a="26647546"
+X-IronPort-AV: E=Sophos;i="6.11,174,1725346800"; d="scan'208";a="26647546"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2024 09:12:45 -0700
-X-CSE-ConnectionGUID: 5GcTMNrYTd2f3K3quG+ypw==
-X-CSE-MsgGUID: HlViHgmWQBKIQiMfEapdMQ==
+ 03 Oct 2024 09:14:43 -0700
+X-CSE-ConnectionGUID: xeRSRItUShyMcUGy6AS0vQ==
+X-CSE-MsgGUID: ihSVHHmFRkCRjQGquJmVCQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,174,1725346800"; d="scan'208";a="74517700"
+X-IronPort-AV: E=Sophos;i="6.11,174,1725346800"; d="scan'208";a="74518544"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 03 Oct 2024 09:12:42 -0700
+ by fmviesa008.fm.intel.com with SMTP; 03 Oct 2024 09:14:40 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 03 Oct 2024 19:12:41 +0300
-Date: Thu, 3 Oct 2024 19:12:41 +0300
+ Thu, 03 Oct 2024 19:14:39 +0300
+Date: Thu, 3 Oct 2024 19:14:39 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Cc: "Pottumuttu, Sai Teja" <sai.teja.pottumuttu@intel.com>,
- intel-gfx@lists.freedesktop.org, ville.syrjala@intel.com
-Subject: Re: [PATCH] drm/i915/icl: Update csc and gamma enable checks
-Message-ID: <Zv7CeST4xjm3JKms@intel.com>
-References: <20241003090341.3140997-1-sai.teja.pottumuttu@intel.com>
- <Zv57pzLX4ltH4w00@intel.com>
- <20241003142237.GK5725@mdroper-desk1.amr.corp.intel.com>
- <Zv6rGHmLiL5GrpKG@intel.com> <Zv6xBKixcWn_gJEW@intel.com>
- <a80d1e55-a294-41b9-8369-495450fa9c34@intel.com>
- <Zv68V6A_HTQihdWu@intel.com>
- <20241003160540.GL5725@mdroper-desk1.amr.corp.intel.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH v3 03/12] drm/i915/display: Use async flip when available
+ for initial plane config
+Message-ID: <Zv7C7-H3sb053fje@intel.com>
+References: <20241003154421.33805-1-maarten.lankhorst@linux.intel.com>
+ <20241003154421.33805-4-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241003160540.GL5725@mdroper-desk1.amr.corp.intel.com>
+In-Reply-To: <20241003154421.33805-4-maarten.lankhorst@linux.intel.com>
 X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -77,83 +72,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 03, 2024 at 09:05:40AM -0700, Matt Roper wrote:
-> On Thu, Oct 03, 2024 at 06:46:31PM +0300, Ville Syrjälä wrote:
-> > On Thu, Oct 03, 2024 at 09:08:53PM +0530, Pottumuttu, Sai Teja wrote:
-> > > 
-> > > On 03-10-2024 20:28, Ville Syrjälä wrote:
-> > > > On Thu, Oct 03, 2024 at 05:32:56PM +0300, Ville Syrjälä wrote:
-> > > >> On Thu, Oct 03, 2024 at 07:22:37AM -0700, Matt Roper wrote:
-> > > >>> On Thu, Oct 03, 2024 at 02:10:31PM +0300, Ville Syrjälä wrote:
-> > > >>>> On Thu, Oct 03, 2024 at 02:33:41PM +0530, Sai Teja Pottumuttu wrote:
-> > > >>>>> With ICL, we have a way to check if gamma and csc are enabled on
-> > > >>>>> a pipe using bits in GAMMA_MODE and CSC_MODE. So, use them as well
-> > > >>>>> along with the existing BOTTOM_COLOR checks.
-> > > >>>>>
-> > > >>>>> BSpec: 7463, 7466
-> > > >>>>> Signed-off-by: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
-> > > >>>>> ---
-> > > >>>>>   drivers/gpu/drm/i915/display/intel_color.c | 24 ++++++++++++++++++++--
-> > > >>>>>   1 file changed, 22 insertions(+), 2 deletions(-)
-> > > >>>>>
-> > > >>>>> diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-> > > >>>>> index 50f41aeb3c28..1bf36898dc7e 100644
-> > > >>>>> --- a/drivers/gpu/drm/i915/display/intel_color.c
-> > > >>>>> +++ b/drivers/gpu/drm/i915/display/intel_color.c
-> > > >>>>> @@ -1076,6 +1076,26 @@ static void skl_get_config(struct intel_crtc_state *crtc_state)
-> > > >>>>>   		crtc_state->csc_enable = true;
-> > > >>>>>   }
-> > > >>>>>   
-> > > >>>>> +static void icl_get_config(struct intel_crtc_state *crtc_state)
-> > > >>>>> +{
-> > > >>>>> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> > > >>>>> +	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-> > > >>>>> +	u32 bottom_color;
-> > > >>>>> +
-> > > >>>>> +	crtc_state->gamma_mode = hsw_read_gamma_mode(crtc);
-> > > >>>>> +	crtc_state->csc_mode = ilk_read_csc_mode(crtc);
-> > > >>>>> +
-> > > >>>>> +	bottom_color = intel_de_read(i915, SKL_BOTTOM_COLOR(crtc->pipe));
-> > > >>>>> +
-> > > >>>>> +	if ((bottom_color & SKL_BOTTOM_COLOR_GAMMA_ENABLE) ||
-> > > >>>>> +	    (crtc_state->gamma_mode & POST_CSC_GAMMA_ENABLE))
-> > > >>>>> +		crtc_state->gamma_enable = true;
-> > > >>>>> +
-> > > >>>>> +	if ((bottom_color & SKL_BOTTOM_COLOR_CSC_ENABLE) ||
-> > > >>>>> +	    (crtc_state->csc_mode & ICL_CSC_ENABLE))
-> > > >>>>> +		crtc_state->csc_enable = true;
-> > > >>>> We don't use the old per-plane/bottom color way of enabling these.
-> > > >>>> So this is not right.
-> > > >>> I think that's the reason for the patch --- today we use
-> > > >>> skl_get_config() which *only* checks the bottom color settings.  And
-> > > >>> that approach is documented as being deprecated (although still
-> > > >>> supported on current platforms).
-> > > >>>
-> > > >>> If we're reading out pre-OS state programmed by the vbios, we probably
-> > > >>> need to handle whichever approach it took, right?  Or are we sanitizing
-> > > >>> this away to "off" somewhere that makes it okay to miss what was
-> > > >>> programmed?
-> > > >> I think we're not doing anything. I suppose some kind of
-> > > >> assert_legacy_color_stuff_is_off() thing somewhere could be a
-> > > >> decent addition.
-> > > > Or maybe we don't need to do anything. The state checker will catch
-> > > > this problem with the current code as far as the pipe bottom color
-> > > > is concerned. It won't catch inconsistent plane programming though.
-> > > > But we also don't have such a consistency check for older platforms
-> > > > either.
-> > > 
-> > > So, are we essentially saying that we can completely remove BOTTOM_COLOR 
-> > > from here and just move to using GAMMA_MODE, CSC_MODE for setting 
-> > > gamma_enable and csc_enable?
-> > 
-> > No. The current code already works correctly, and pipe_csc_enable and 
-> > gamma_enable are not meant to be used on icl+.
+On Thu, Oct 03, 2024 at 05:44:12PM +0200, Maarten Lankhorst wrote:
+> I'm planning to reorder readout in the Xe sequence in such a way that
+> interrupts will not be available, so just use an async flip.
 > 
-> Then does that mean icl_color_commit_arm() is wrong since we're
-> programming those registers there?
+> Since the new FB points to the same pages, it will not tear. It also
+> has the benefit of perhaps being slightly faster.
+> 
+> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/skl_universal_plane.c | 13 +++++++++++--
+>  1 file changed, 11 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> index fdb141cfa4274..73a3624e34098 100644
+> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> @@ -2800,7 +2800,7 @@ bool skl_fixup_initial_plane_config(struct intel_crtc *crtc,
+>  		to_intel_plane_state(plane->base.state);
+>  	enum plane_id plane_id = plane->id;
+>  	enum pipe pipe = crtc->pipe;
+> -	u32 base;
+> +	u32 base, plane_ctl;
+>  
+>  	if (!plane_state->uapi.visible)
+>  		return false;
+> @@ -2814,7 +2814,16 @@ bool skl_fixup_initial_plane_config(struct intel_crtc *crtc,
+>  	if (plane_config->base == base)
+>  		return false;
+>  
+> +	/* Perform an async flip to the new surface. */
+> +	plane_ctl = intel_read(i915, PLANE_CTL(pipe, plane_id));
+> +	plane_ctl |= PLANE_CTL_ASYNC_FLIP;
+> +
 
-Not really. It just assumes those bits should never be set,
-which is true given how icl_color_check() operates.
+No async flips!
+
+> +	intel_de_write(i915, PLANE_CTL(pipe, plane_id), plane_ctl);
+>  	intel_de_write(i915, PLANE_SURF(pipe, plane_id), base);
+>  
+> -	return true;
+> +	if (intel_de_wait_custom(i915, PLANE_SURFLIVE(pipe, plane_id), ~0U, base, 0, 40, NULL) < 0)
+> +		drm_warn(&i915->drm, "async flip timed out\n");
+> +
+> +	/* No need to vblank wait either */
+> +	return false;
+>  }
+> -- 
+> 2.45.2
 
 -- 
 Ville Syrjälä
