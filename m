@@ -2,58 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C650398EE38
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Oct 2024 13:33:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F10A698EEB3
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Oct 2024 14:04:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6521110E81F;
-	Thu,  3 Oct 2024 11:33:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6049210E823;
+	Thu,  3 Oct 2024 12:04:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cL/f57Lr";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Y8eEhYWi";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16BE010E821;
- Thu,  3 Oct 2024 11:33:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1727955212; x=1759491212;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=PGZLCcVIH9CT89YkamNILT79DNR60PJ7u1AA9UGz0F8=;
- b=cL/f57LreOOAq8MJH/ScZ8BPk8NvOh7qdGeWaaG8gfnA6cDr6I72DRVR
- BPCRxW/0KNivGbcXQjYfVCVjt28zdEpeZanMz7ZSrk/Y43NTI2O1wLmkm
- LzqccX7ggutrsWyuYvA66QLRNg/l066O/JBMiB7txMYhr2SKbaXYrygdj
- wSdLr4Wrfvsiq4hzszaUJ53v67XsWJGXoxAhvstRy8WAQQV2Vp2mx1P/R
- 5HcK8mog8GrKbKBxwLEdnXQyJxt1tXiKQTFtaiL8lVT1/ygo6w0knGj1k
- uprxtIbGJ2n1kkmbS6GDQhktev3/J0SmlkKnCFNb2+imZoBW6fSOAuHJe Q==;
-X-CSE-ConnectionGUID: DtqQTXzkQ+mwMgjs1556HA==
-X-CSE-MsgGUID: uNvbvoj6RTimeChqAuw2Dg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11214"; a="38503021"
-X-IronPort-AV: E=Sophos;i="6.11,174,1725346800"; d="scan'208";a="38503021"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2024 04:33:32 -0700
-X-CSE-ConnectionGUID: 70JAljCWQH2HkfiFo64EQw==
-X-CSE-MsgGUID: ner3WqVYQZOpa5PWkpW/Mw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,174,1725346800"; d="scan'208";a="74426565"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 03 Oct 2024 04:33:30 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 03 Oct 2024 14:33:29 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: dri-devel@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 8/8] drm/client: s/unsigned int i/int i/
-Date: Thu,  3 Oct 2024 14:33:04 +0300
-Message-ID: <20241003113304.11700-9-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241003113304.11700-1-ville.syrjala@linux.intel.com>
-References: <20241003113304.11700-1-ville.syrjala@linux.intel.com>
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4E4810E823;
+ Thu,  3 Oct 2024 12:04:45 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id 0D8B0A43AAD;
+ Thu,  3 Oct 2024 12:04:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCD7BC4CEC5;
+ Thu,  3 Oct 2024 12:04:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1727957084;
+ bh=l2qOB5bl/9CRgqx517deY3hmN7M+QwBoi2iW6qTBoFc=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=Y8eEhYWiT32jJkM3mv6h+o/eaRwiy1ZBiGYnitOaTvTYYHrhoIQKrRhpGHTMHIs30
+ 52eKGRom3/zJm6fbioGefOc/DpqtcAASPWAjlwysnjR0igNhchd1h6Wkw1fB6pADYx
+ jWWzdpAjhIW1vKj/nWRZyyW8cY1hPz+j6dMQy0/RuKwo5FdIu6XGUljKeJ6FDoulJM
+ 8XyoDHQ6lotOKq5SU8tHQFwCMPCXBQO/oiiQvOX0C8pVUtFt+XtjTn4wbmpF9nPqzF
+ F3JvROx5M1VTJPEDGgu00fL4R4Jx/cH3JcaYQtXolaSs4mRkb8x39/wkuh+G6+cg43
+ njvTv/ZSHhygg==
+Date: Thu, 3 Oct 2024 14:04:41 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: Simona Vetter <simona.vetter@ffwll.ch>, 
+ Guenter Roeck <linux@roeck-us.net>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, 
+ Carlos Eduardo Gallo Filho <gcarlos@disroot.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Jeff Johnson <quic_jjohnson@quicinc.com>
+Subject: Re: [PATCH 0/2] drm: revert some framebuffer API tests
+Message-ID: <20241003-sexy-awesome-gecko-c9e8dc@houat>
+References: <cover.1726594684.git.jani.nikula@intel.com>
+ <ZvKPJGQyZmdWNOmd@phenom.ffwll.local>
+ <20240924-refined-nocturnal-starfish-2947b8@houat>
+ <f3f8bec1-884b-46ac-82a6-6e5cb8840146@roeck-us.net>
+ <20240924-handsome-labrador-of-shopping-b1dce5@houat>
+ <4accd038-9624-43de-96ad-7ecd0876b607@roeck-us.net>
+ <ZvP5YhON49Z5TMI7@phenom.ffwll.local>
+ <20240925-fresh-artichoke-boa-1a673f@houat>
+ <877caqu2mx.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="vcakatqfudz5lpi5"
+Content-Disposition: inline
+In-Reply-To: <877caqu2mx.fsf@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,48 +71,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Replace the 'unsigned int i' footguns with plain old signed
-int. Avoids accidents if/when someone decides they need
-to iterate backwards.
+--vcakatqfudz5lpi5
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/drm_client_modeset.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+On Wed, Oct 02, 2024 at 03:10:14PM GMT, Jani Nikula wrote:
+> On Wed, 25 Sep 2024, Maxime Ripard <mripard@kernel.org> wrote:
+> > On Wed, Sep 25, 2024 at 01:52:02PM GMT, Simona Vetter wrote:
+> >> I think for at least drm the consensus is clear, we won't have kunit t=
+ests
+> >> that splat.
+> >
+> > Where was that ever discussed?
+>=20
+> Well, where was it ever agreed that it's okay for drm kunit tests to
+> emit warnings? :p
 
-diff --git a/drivers/gpu/drm/drm_client_modeset.c b/drivers/gpu/drm/drm_client_modeset.c
-index ccf5c9b5537b..875d517fa8f2 100644
---- a/drivers/gpu/drm/drm_client_modeset.c
-+++ b/drivers/gpu/drm/drm_client_modeset.c
-@@ -39,7 +39,7 @@ int drm_client_modeset_create(struct drm_client_dev *client)
- 	unsigned int max_connector_count = 1;
- 	struct drm_mode_set *modeset;
- 	struct drm_crtc *crtc;
--	unsigned int i = 0;
-+	int i = 0;
- 
- 	/* Add terminating zero entry to enable index less iteration */
- 	client->modesets = kcalloc(num_crtc + 1, sizeof(*client->modesets), GFP_KERNEL);
-@@ -75,7 +75,7 @@ static void drm_client_modeset_release(struct drm_client_dev *client)
- 	struct drm_mode_set *modeset;
- 
- 	drm_client_for_each_modeset(modeset, client) {
--		unsigned int i;
-+		int i;
- 
- 		drm_mode_destroy(client->dev, modeset->mode);
- 		modeset->mode = NULL;
-@@ -925,7 +925,7 @@ bool drm_client_rotation(struct drm_mode_set *modeset, unsigned int *rotation)
- 	struct drm_plane *plane = modeset->crtc->primary;
- 	struct drm_cmdline_mode *cmdline;
- 	u64 valid_mask = 0;
--	unsigned int i;
-+	int i;
- 
- 	if (!modeset->num_connectors)
- 		return false;
--- 
-2.45.2
+One policy is upstream, the other isn't. And it does seem like the
+consensus towards downstream patches and policies is pretty well
+established.
 
+And I wasn't the one claiming that there's a consensus to begin with, so
+I don't see why I should prove anything?
+
+> >> Personally I really don't see the point of unit tests that are
+> >> somewhere between unecessarily hard or outright too much pain to
+> >> deploy in a test rig: Either you don't run them (not great), or you
+> >> filter splats and might filter too much (not great either) or you
+> >> filter as little as possible and fight false positives (also kinda
+> >> suboptimal).
+> >
+> > Or you don't do any of that, and just rely on the canonical way to run
+> > kunit test and trust it's going to pass tests that do indeed pass, and
+> > fail / warn on those that don't.
+>=20
+> That still doesn't address code being tested emitting *unexpected*
+> warnings.
+
+Then make kunit report a warning / failure when there's an unexpected
+warning splat.
+
+
+At the end of the day, the discussion is that we already require for for
+each committer to:
+
+  - Apply patches
+  - Check for checkpatch issues
+  - Solve potential conflicts
+  - Make sure it compiles on three different architectures, with huge defco=
+nfigs
+  - Make sure the unit tests still pass
+
+I'm not going to add "and grep through the output of those 1000-ish
+tests for a warning" to that list.
+
+Maxime
+
+--vcakatqfudz5lpi5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZv6IVAAKCRAnX84Zoj2+
+dt3BAX9HoNiqIeE6RAh39967u7dyuQuDhjUUAyANlP2ojd0HiFAJo2j8spn3syXv
+IuGWrFgBgK0r3rWyNBNFj6oRC/TKzfLrT1t2THtDuqhL6Cr2/2azp4mbbk/s2v50
+1E7SC1Np3w==
+=EBOV
+-----END PGP SIGNATURE-----
+
+--vcakatqfudz5lpi5--
