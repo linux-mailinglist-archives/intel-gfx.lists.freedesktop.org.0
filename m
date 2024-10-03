@@ -2,29 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7B7F98F2E4
-	for <lists+intel-gfx@lfdr.de>; Thu,  3 Oct 2024 17:44:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F287998F2E2
+	for <lists+intel-gfx@lfdr.de>; Thu,  3 Oct 2024 17:44:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D3CA10E890;
-	Thu,  3 Oct 2024 15:44:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 588E010E88F;
+	Thu,  3 Oct 2024 15:44:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F3E3C10E170;
- Thu,  3 Oct 2024 15:44:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC7DD10E170;
+ Thu,  3 Oct 2024 15:44:17 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
-Subject: [PATCH v3 02/12] drm/xe: Remove double pageflip
-Date: Thu,  3 Oct 2024 17:44:11 +0200
-Message-ID: <20241003154421.33805-3-maarten.lankhorst@linux.intel.com>
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Subject: [PATCH v3 03/12] drm/i915/display: Use async flip when available for
+ initial plane config
+Date: Thu,  3 Oct 2024 17:44:12 +0200
+Message-ID: <20241003154421.33805-4-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241003154421.33805-1-maarten.lankhorst@linux.intel.com>
 References: <20241003154421.33805-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -41,42 +40,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This is already handled below by fixup_initial_plane_config.
+I'm planning to reorder readout in the Xe sequence in such a way that
+interrupts will not be available, so just use an async flip.
+
+Since the new FB points to the same pages, it will not tear. It also
+has the benefit of perhaps being slightly faster.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Fixes: a8153627520a ("drm/i915: Try to relocate the BIOS fb to the start of ggtt")
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_plane_initial.c | 9 ---------
- 1 file changed, 9 deletions(-)
+ drivers/gpu/drm/i915/display/skl_universal_plane.c | 13 +++++++++++--
+ 1 file changed, 11 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-index cf139921e7817..1f5128927c07c 100644
---- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
-+++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-@@ -197,8 +197,6 @@ intel_find_initial_plane_obj(struct intel_crtc *crtc,
- 		to_intel_plane(crtc->base.primary);
- 	struct intel_plane_state *plane_state =
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index fdb141cfa4274..73a3624e34098 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -2800,7 +2800,7 @@ bool skl_fixup_initial_plane_config(struct intel_crtc *crtc,
  		to_intel_plane_state(plane->base.state);
--	struct intel_crtc_state *crtc_state =
--		to_intel_crtc_state(crtc->base.state);
- 	struct drm_framebuffer *fb;
- 	struct i915_vma *vma;
+ 	enum plane_id plane_id = plane->id;
+ 	enum pipe pipe = crtc->pipe;
+-	u32 base;
++	u32 base, plane_ctl;
  
-@@ -245,13 +243,6 @@ intel_find_initial_plane_obj(struct intel_crtc *crtc,
+ 	if (!plane_state->uapi.visible)
+ 		return false;
+@@ -2814,7 +2814,16 @@ bool skl_fixup_initial_plane_config(struct intel_crtc *crtc,
+ 	if (plane_config->base == base)
+ 		return false;
  
- 	plane_config->vma = vma;
++	/* Perform an async flip to the new surface. */
++	plane_ctl = intel_read(i915, PLANE_CTL(pipe, plane_id));
++	plane_ctl |= PLANE_CTL_ASYNC_FLIP;
++
++	intel_de_write(i915, PLANE_CTL(pipe, plane_id), plane_ctl);
+ 	intel_de_write(i915, PLANE_SURF(pipe, plane_id), base);
  
--	/*
--	 * Flip to the newly created mapping ASAP, so we can re-use the
--	 * first part of GGTT for WOPCM, prevent flickering, and prevent
--	 * the lookup of sysmem scratch pages.
--	 */
--	plane->check_plane(crtc_state, plane_state);
--	plane->async_flip(plane, crtc_state, plane_state, true);
- 	return;
- 
- nofb:
+-	return true;
++	if (intel_de_wait_custom(i915, PLANE_SURFLIVE(pipe, plane_id), ~0U, base, 0, 40, NULL) < 0)
++		drm_warn(&i915->drm, "async flip timed out\n");
++
++	/* No need to vblank wait either */
++	return false;
+ }
 -- 
 2.45.2
 
