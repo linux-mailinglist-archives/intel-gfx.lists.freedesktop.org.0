@@ -2,61 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BD9D991377
-	for <lists+intel-gfx@lfdr.de>; Sat,  5 Oct 2024 02:20:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E873E9913C7
+	for <lists+intel-gfx@lfdr.de>; Sat,  5 Oct 2024 03:34:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4049D10E27B;
-	Sat,  5 Oct 2024 00:20:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 04F9310E2A6;
+	Sat,  5 Oct 2024 01:34:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oER8DirD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RbMK47WD";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2EF6310E27B;
- Sat,  5 Oct 2024 00:20:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 62C7610E1BC;
+ Sat,  5 Oct 2024 01:34:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728087649; x=1759623649;
+ t=1728092092; x=1759628092;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=S1gqrePsiGPVWs/qXReG4B7NMlMBTe3cwP3ZHwYZFHk=;
- b=oER8DirDq77iWJqnVbgWIdwYNAf1o8nmt6DH5SgVRwn8ynlSmHaLIR+D
- gJjMTZQU8S/GPF6ecrnUPIi4V4EqYZOV6dvdxi1dLwp6pZnaMBLAy42/j
- dN5Rhyrr5LDNx02S8lNUM/A3q6Eg7Njyu6ylcLXZL4WTVo9xi3UiyDV83
- AKyrYXgY757p5OJs8H+eFtIOEM7uIO+tm9fOKWp43WQxpSHeGnQJiyTbv
- QiuKp/if8DWH5duu4FbpZc3BF/AEhw6MtCMwv5CrIMc+YujjP4txNlYHW
- pnbsUrRLgQ1ZPIF/pJweaPn4FHA9zSt/Ii5prHsAJajtsBpl/WgzaVRQ0 w==;
-X-CSE-ConnectionGUID: xZsfSnbzRjKdEfVPXGEd3w==
-X-CSE-MsgGUID: uzIS2u7STI2Mkwbq8RhJJQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11215"; a="14944339"
-X-IronPort-AV: E=Sophos;i="6.11,178,1725346800"; d="scan'208";a="14944339"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Oct 2024 17:20:49 -0700
-X-CSE-ConnectionGUID: 1uJDoom6RzKocxLhlpQL9Q==
-X-CSE-MsgGUID: HqzTRn8fTraWi5RczqsQDw==
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=w6pcQTbhlGfWE5x6wUvif9Ojx1S6o87achHEvIFDUFY=;
+ b=RbMK47WDX9TER62UhUrZUXteBJWow/OQx16e/pZmmekKs7ZvU46VqQC1
+ Da//O9uOImdJh11/Gq8EeQ0CNodG3n2mTG2LU/b9iBiakqKP3IxZt7ivP
+ fWem5ip7HZuCi4fu8cWFkzBMA63E3XfGiw5OtnI0ieiVTFp9euqcJ1NqN
+ U+5b6emPPpB4mtEp0JbFEA6mcS3VBMmzvveZPtz15UhZNFKvzih2F55ay
+ pyjUAALk16Oqu1WRvg3791vxTTfbMbP88pxZ/TLm7SwXZ5CBq8ELIJJpD
+ lkzJXkLY7f8BaiyP0iNZkThRTuPlxCw8I43DTmeDZG4z6D98KRclI/zl/ w==;
+X-CSE-ConnectionGUID: hH6Nf42yT+exz37GwExmkQ==
+X-CSE-MsgGUID: dUwXHbkNSICGxS5WI5/SxQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11215"; a="27202467"
+X-IronPort-AV: E=Sophos;i="6.11,179,1725346800"; d="scan'208";a="27202467"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Oct 2024 18:34:52 -0700
+X-CSE-ConnectionGUID: 74QCdmyNS5WnKD0Tr1O8Dg==
+X-CSE-MsgGUID: 7/2YLGGiTsucy7yMMdTBeg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,178,1725346800"; d="scan'208";a="74692676"
+X-IronPort-AV: E=Sophos;i="6.11,179,1725346800"; d="scan'208";a="79704271"
 Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
- by orviesa010.jf.intel.com with ESMTP; 04 Oct 2024 17:20:47 -0700
+ by orviesa003.jf.intel.com with ESMTP; 04 Oct 2024 18:34:49 -0700
 Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1swsXM-0002Mc-1G;
- Sat, 05 Oct 2024 00:20:44 +0000
-Date: Sat, 5 Oct 2024 08:19:59 +0800
+ (envelope-from <lkp@intel.com>) id 1swth0-0002QG-2C;
+ Sat, 05 Oct 2024 01:34:46 +0000
+Date: Sat, 5 Oct 2024 09:34:09 +0800
 From: kernel test robot <lkp@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- dri-devel@lists.freedesktop.org
-Cc: oe-kbuild-all@lists.linux.dev, intel-gfx@lists.freedesktop.org,
- Jani Nikula <jani.nikula@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>
-Subject: Re: [PATCH 1/8] drm/client: Constify modes
-Message-ID: <202410050841.RWs2VIP5-lkp@intel.com>
-References: <20241003113304.11700-2-ville.syrjala@linux.intel.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>, simona@ffwll.ch,
+ airlied@gmail.com, javierm@redhat.com, jfalempe@redhat.com
+Cc: oe-kbuild-all@lists.linux.dev, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Xinhui Pan <Xinhui.Pan@amd.com>
+Subject: Re: [PATCH v2 10/11] drm/client: Make client support optional
+Message-ID: <202410050927.Hgk0Kazl-lkp@intel.com>
+References: <20241002131306.288618-11-tzimmermann@suse.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20241003113304.11700-2-ville.syrjala@linux.intel.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241002131306.288618-11-tzimmermann@suse.de>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,71 +76,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Ville,
+Hi Thomas,
 
-kernel test robot noticed the following build warnings:
+kernel test robot noticed the following build errors:
 
-[auto build test WARNING on drm-misc/drm-misc-next]
-[also build test WARNING on next-20241004]
-[cannot apply to drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm/drm-next drm-exynos/exynos-drm-next linus/master v6.12-rc1]
+[auto build test ERROR on next-20241002]
+[cannot apply to drm-xe/drm-xe-next drm/drm-next drm-exynos/exynos-drm-next drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-misc/drm-misc-next drm-tip/drm-tip linus/master v6.12-rc1 v6.11 v6.11-rc7 v6.12-rc1]
 [If your patch is applied to the wrong git tree, kindly drop us a note.
 And when submitting patch, we suggest to use '--base' as documented in
 https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Ville-Syrjala/drm-client-Constify-modes/20241004-061843
-base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
-patch link:    https://lore.kernel.org/r/20241003113304.11700-2-ville.syrjala%40linux.intel.com
-patch subject: [PATCH 1/8] drm/client: Constify modes
-config: alpha-allyesconfig (https://download.01.org/0day-ci/archive/20241005/202410050841.RWs2VIP5-lkp@intel.com/config)
-compiler: alpha-linux-gcc (GCC) 13.3.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241005/202410050841.RWs2VIP5-lkp@intel.com/reproduce)
+url:    https://github.com/intel-lab-lkp/linux/commits/Thomas-Zimmermann/drm-i915-Select-DRM_CLIENT_SELECTION/20241002-211520
+base:   next-20241002
+patch link:    https://lore.kernel.org/r/20241002131306.288618-11-tzimmermann%40suse.de
+patch subject: [PATCH v2 10/11] drm/client: Make client support optional
+config: nios2-randconfig-r051-20241005 (https://download.01.org/0day-ci/archive/20241005/202410050927.Hgk0Kazl-lkp@intel.com/config)
+compiler: nios2-linux-gcc (GCC) 14.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241005/202410050927.Hgk0Kazl-lkp@intel.com/reproduce)
 
 If you fix the issue in a separate patch/commit (i.e. not just a new version of
 the same patch/commit), kindly add following tags
 | Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202410050841.RWs2VIP5-lkp@intel.com/
+| Closes: https://lore.kernel.org/oe-kbuild-all/202410050927.Hgk0Kazl-lkp@intel.com/
 
-All warnings (new ones prefixed by >>):
+All errors (new ones prefixed by >>):
 
-   In file included from drivers/gpu/drm/drm_client_modeset.c:1266:
-   drivers/gpu/drm/tests/drm_client_modeset_test.c: In function 'drm_test_pick_cmdline_res_1920_1080_60':
->> drivers/gpu/drm/tests/drm_client_modeset_test.c:108:14: warning: assignment discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
-     108 |         mode = drm_connector_pick_cmdline_mode(connector);
-         |              ^
+   nios2-linux-ld: drivers/gpu/drm/drm_debugfs.o: in function `drm_debugfs_dev_register':
+>> drivers/gpu/drm/drm_debugfs.c:313:(.text+0x1240): undefined reference to `drm_client_debugfs_init'
+>> drivers/gpu/drm/drm_debugfs.c:313:(.text+0x1240): relocation truncated to fit: R_NIOS2_CALL26 against `drm_client_debugfs_init'
+
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for GET_FREE_REGION
+   Depends on [n]: SPARSEMEM [=n]
+   Selected by [y]:
+   - RESOURCE_KUNIT_TEST [=y] && RUNTIME_TESTING_MENU [=y] && KUNIT [=y]
 
 
-vim +/const +108 drivers/gpu/drm/tests/drm_client_modeset_test.c
+vim +313 drivers/gpu/drm/drm_debugfs.c
 
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14   84  
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14   85  static void drm_test_pick_cmdline_res_1920_1080_60(struct kunit *test)
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14   86  {
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14   87  	struct drm_client_modeset_test_priv *priv = test->priv;
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14   88  	struct drm_device *drm = priv->drm;
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14   89  	struct drm_connector *connector = &priv->connector;
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14   90  	struct drm_cmdline_mode *cmdline_mode = &connector->cmdline_mode;
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14   91  	struct drm_display_mode *expected_mode, *mode;
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14   92  	const char *cmdline = "1920x1080@60";
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14   93  	int ret;
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14   94  
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14   95  	expected_mode = drm_mode_find_dmt(priv->drm, 1920, 1080, 60, false);
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14   96  	KUNIT_ASSERT_NOT_NULL(test, expected_mode);
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14   97  
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14   98  	KUNIT_ASSERT_TRUE(test,
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14   99  			  drm_mode_parse_command_line_for_connector(cmdline,
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14  100  								    connector,
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14  101  								    cmdline_mode));
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14  102  
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14  103  	mutex_lock(&drm->mode_config.mutex);
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14  104  	ret = drm_helper_probe_single_connector_modes(connector, 1920, 1080);
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14  105  	mutex_unlock(&drm->mode_config.mutex);
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14  106  	KUNIT_ASSERT_GT(test, ret, 0);
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14  107  
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14 @108  	mode = drm_connector_pick_cmdline_mode(connector);
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14  109  	KUNIT_ASSERT_NOT_NULL(test, mode);
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14  110  
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14  111  	KUNIT_EXPECT_TRUE(test, drm_mode_equal(expected_mode, mode));
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14  112  }
-8fc0380f6ba7e9 Maxime Ripard 2022-11-14  113  
+0b30d57acafcaa Christian König  2023-08-29  306  
+0b30d57acafcaa Christian König  2023-08-29  307  void drm_debugfs_dev_register(struct drm_device *dev)
+0b30d57acafcaa Christian König  2023-08-29  308  {
+0b30d57acafcaa Christian König  2023-08-29  309  	drm_debugfs_add_files(dev, drm_debugfs_list, DRM_DEBUGFS_ENTRIES);
+0b30d57acafcaa Christian König  2023-08-29  310  
+0b30d57acafcaa Christian König  2023-08-29  311  	if (drm_core_check_feature(dev, DRIVER_MODESET)) {
+0b30d57acafcaa Christian König  2023-08-29  312  		drm_framebuffer_debugfs_init(dev);
+0b30d57acafcaa Christian König  2023-08-29 @313  		drm_client_debugfs_init(dev);
+0b30d57acafcaa Christian König  2023-08-29  314  	}
+d0b3c318e04cc6 Dmitry Baryshkov 2023-12-03  315  	if (drm_drv_uses_atomic_modeset(dev))
+0b30d57acafcaa Christian König  2023-08-29  316  		drm_atomic_debugfs_init(dev);
+0b30d57acafcaa Christian König  2023-08-29  317  }
+0b30d57acafcaa Christian König  2023-08-29  318  
 
 -- 
 0-DAY CI Kernel Test Service
