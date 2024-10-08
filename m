@@ -2,165 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E919E995BC9
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Oct 2024 01:38:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EAD35995BE4
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Oct 2024 01:51:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 919D610E264;
-	Tue,  8 Oct 2024 23:38:11 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j8RttUGU";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id BAAEF10E0B0;
+	Tue,  8 Oct 2024 23:51:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE8B510E264;
- Tue,  8 Oct 2024 23:38:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728430689; x=1759966689;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=r307WdzngAVPm2qUF03akYJuxy2xLbyQ9KIURq/6UFw=;
- b=j8RttUGU8cgjNrbvVJBZo9aM3N/5Tlgpx+73Yj9F9ZndqGJtPuGb22Jq
- 2+w1ZvshQuYIMK90LQCpjDjQ8XaVOjj+LBbecQs7GLUQspoU0MtpfXnEV
- Sje/pPkwIvJ4wxW4XEoQKpDeM8niXRrXtXK7racIX+VA9pGJx7Pi8fhOJ
- kTv0PabsTzaxSoYJqcS7iQRunqlD8Dmt4eiuCUIeYw1T5ZIZp4VJhY2wg
- s+U1x0kkq2oZjkz5EKtsolBCzdA7wN/APAToM1OupERDsmAwXV8aLPWn6
- tWaQQ5MzHNIsRoFacqYTVr2I7DmoxMPIF5h+duVhvqK8tAyKwjv8dWhWv w==;
-X-CSE-ConnectionGUID: nUs/FDxHTfOPSfywpXaQQw==
-X-CSE-MsgGUID: l2brTuicQb2J/vQLphkm3g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11219"; a="27171852"
-X-IronPort-AV: E=Sophos;i="6.11,188,1725346800"; d="scan'208";a="27171852"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2024 16:38:09 -0700
-X-CSE-ConnectionGUID: H+96MTQFSUaSdFoPrJXlGQ==
-X-CSE-MsgGUID: YeyEUXq6Qvu1BHq7IJA/Gg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,188,1725346800"; d="scan'208";a="80020518"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmviesa003.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 08 Oct 2024 16:38:09 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Tue, 8 Oct 2024 16:38:08 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Tue, 8 Oct 2024 16:38:08 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.41) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Tue, 8 Oct 2024 16:37:37 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=iLsEachqynO7s8ljN/CpzTmjx6U6+sHKf/7F89rRAENGVKwA3GLyRB6/WK2zkIAPRTz1Faa1eaFm8lBRZbvqUNwA4Rg3GLHAVgONu4uu044s54z0L8+8ylpflf8BUJ6uMbJxrIxO1+OIVc/zvmEZzqlFlATECxTteNUX0ND7pzU7oj4RpHFFbdR0BxNnJJO6hyVtDEzvSoS6UKXHlWk77Pu32F107JXWpBEp1ayYGUDGG8bhTS5Jo9jmoBDg5ld3SXBNxvgiP0KACCfBosz1CFPURcJzU7QksvXJoCahshaYRwOQtz7pCWxKIBQagNZhwJPOtJ3TnrfC7bFhlQgsSw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cZzahxeE4mITODFxGrzKpsNFTOViJen4H3mG3s4eVgk=;
- b=rgFGukYDRRHXp3QU86efKDNLCUgoRbCic/6IZn8nGyIm2lUivp84vf1P6UNR+YJUYbp0U0Zl6qUnJ4UK9fHRDng8Ud93ohvRXJeuc0Y6TMqJgndR1xOQwkA3uhAhv+yHo4jRWQN5WxOXrvfu7P0wE08Vws7+q+s+q+Z9ys3MH9OorpRKSN+NE5i2lG3eifbruPVS0RQkZ7jp693FzrQy8aR13EKq8jNyW2ab7Ss741yjvts9qpd50r1HJ4OKGIBLmx4HySyEuff6X1x6oxsMBIm6XrnYmcIYtxQi+CfLg5rggjrWgkxYDlJ+pHi7UYN1xA7VDLxC7KzXPqn8Kpuz5Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
- by DS0PR11MB7630.namprd11.prod.outlook.com (2603:10b6:8:149::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.23; Tue, 8 Oct
- 2024 23:37:30 +0000
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::8dd1:f169:5266:e16e]) by DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::8dd1:f169:5266:e16e%6]) with mapi id 15.20.8026.020; Tue, 8 Oct 2024
- 23:37:30 +0000
-Date: Tue, 8 Oct 2024 16:37:27 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Matt Atwood <matthew.s.atwood@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
- "Suraj Kandpal" <suraj.kandpal@intel.com>
-Subject: Re: [PATCH 06/10] drm/i915/xe3lpd: Add macro to choose
- HDCP_LINE_REKEY bit
-Message-ID: <20241008233727.GO4891@mdroper-desk1.amr.corp.intel.com>
-References: <20241008223741.82790-1-matthew.s.atwood@intel.com>
- <20241008223741.82790-7-matthew.s.atwood@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20241008223741.82790-7-matthew.s.atwood@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0282.namprd03.prod.outlook.com
- (2603:10b6:a03:39e::17) To DS0PR11MB8182.namprd11.prod.outlook.com
- (2603:10b6:8:163::17)
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A4A410E0B0;
+ Tue,  8 Oct 2024 23:51:36 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|DS0PR11MB7630:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3b89bb54-456b-41b8-68ac-08dce7f22d02
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?SVn6CZO0U1WQZKhZbKUtS1MqUJRGuNdiFtbR0ZU5N623/qRWz0bw6g9YBH86?=
- =?us-ascii?Q?YbntlFZEJDiDESJ4H5JiHvEQ77EXg+vkFaItvvLMaKET5/n5rbwfRny+N+dO?=
- =?us-ascii?Q?SgYQ+R3SwHdNW5EdelQfI2Y9ujJcdZTM2JitU4XucvcKw7SQvajLHPEOCxUE?=
- =?us-ascii?Q?oa9+OWgLVh4/qEU4/3mzTMImklola1heSVxh4tKeaAtdMrl/UDMML5jVpJnE?=
- =?us-ascii?Q?Zp0um+xAeVPiTMG7mUVECH8PSKTRR0UITAuMUqm3yuWS7DkR3gCE5xoAtYui?=
- =?us-ascii?Q?oX2+JH79/Z13lJHcliRS+4nwfrezUG6UlkdSKJiCmFdjG18Nl3nMR11MQHwF?=
- =?us-ascii?Q?0AgIqS1eMV2ZtN9ndowb6JF32Iz4bzXPp3uXp5bq+VZ/32+inDg3/9hL0S93?=
- =?us-ascii?Q?M9xpS/tRAOGfkDvWxtb1FZoGNvnRjmeOr3M3B30CVUPXRiGnha4w9uXkIjA/?=
- =?us-ascii?Q?fGOkM/ORji8D8hibLcHNKf1aQaaAFvwBJRa7/EdwVxDL3fiQPuW1xIH0283k?=
- =?us-ascii?Q?M1zsiyMK0hmGJM4t2NsTdndgqiSyljFSQZWSqLgV/TUXreThMqWL65lrAHYn?=
- =?us-ascii?Q?E/zEKi8UOcfWC8jdn5xXDdxLItbgfTbLXNexYbz/7vddp/EFZ1GXrV/qpk1L?=
- =?us-ascii?Q?QDJ/S59glePJUD7CHU9Wxx75gRRb3zPDN07H4LErNWhgrRbgV+Dpzy9IsatJ?=
- =?us-ascii?Q?nih92KeVoz3vYU98BbBiHWkEjqMwbWx7oaSFmOLTxKwxc81O3E8glnyYDNCy?=
- =?us-ascii?Q?HsGJb7wwo1vpoWsswVyZy6/+TVNfOCJjDgIP7v2qcLB+e17t2hMRu3t/Pgjm?=
- =?us-ascii?Q?MCSpiJI8GobY8emg2o1mrpqvbZidSHdU7X4FetmlleC8ITak77bJYlpuhy/a?=
- =?us-ascii?Q?7r45ulxPV42zD2EkO7RgwLW/yTKGpWCVfCSf+voRPvyXGb1RWusKPLglci+C?=
- =?us-ascii?Q?hzjfjt9qmaugIidIaP0kuGfP6hqmAcTfwLy2kzQrmXkrnk1o5UTa0oLFGt16?=
- =?us-ascii?Q?zB1Bvc3u8y4DoEcLEi4nkPQOxJPS0rIc1lrH5zY7t19WxGXW9eofe+TwxAoV?=
- =?us-ascii?Q?KEvNkNvJOepAB9sHzJSHqGwTRlUUnz8norWIlTOP2dkV9xNP2uW4kQy/Hqip?=
- =?us-ascii?Q?+IEgLzg4plnxQSojrzVONjstLTTFcBnajX/67p/mQEixz0aF6JGww+E9nxr4?=
- =?us-ascii?Q?m9Tp+VMNb0O+lILk02b4tHA4Uh/qk8LbpcvLXfNJKD0tVqai9LlP6dLd4YZ4?=
- =?us-ascii?Q?MkWRhd6uxOAr6dNoJITPvVqqTnRJFvh4fDKt1gBIIw=3D=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?/fTZM6owyKY2vTEgpRIDhl9g+27VGjs/wdrJCd08wR1wz9uOB4LOvr9hIDbg?=
- =?us-ascii?Q?+t/7BYe6adiSE4nE71m7kDxP2lPhGsqwDQWdWQ21RAuN0+wOQMixdJDctyXp?=
- =?us-ascii?Q?7Ib5dwBe/RPXNaeWhmVuRNhiUlbGW3TuBrc1gOjkPETv0HhEpYTRPkgPAOgT?=
- =?us-ascii?Q?n6fgo5HGPxMn2YL/A90uXXYiMA5ESPp7gFNyodx652ShUaqqi5yEvSkXXJcG?=
- =?us-ascii?Q?iTsRCe3yJDvspRifgMADFc7Xu4QYB2Pj4O/IMRKsvYQSncGWBkOH6Amt+xZh?=
- =?us-ascii?Q?S1Ygbr6HPZK43VJDVWNzROfc4Blqf/HG9wBGsYaDHs2tQwr3FymG396H+Zc2?=
- =?us-ascii?Q?ZdyJkVo+lnGqc5zwLwozQl4RUQVNLQLybM1+j2L1NO3Ro9mhrMdZ00PTmZ1b?=
- =?us-ascii?Q?dthl66qjG4SmaSh6z6StJLvTKO25lXCv/2vlSjJuLqoaQPJ3KV5HG9OBqT85?=
- =?us-ascii?Q?TExaKCpLJfQvz5I4kJdVQ6sS55QJSa1tC0cTLPjK/8LUDyCP6aoze2F+F7zl?=
- =?us-ascii?Q?j/7g1XWymfLDNTBcFnFUNJAobZPwBKLra3IDON+LhdUwKhlS2Bb/MmUolJMY?=
- =?us-ascii?Q?keuPUbThLfuikridH2VzAugxFLYcPPHTECkZl2D6jJbbhMorZLiJ09Ag2e5C?=
- =?us-ascii?Q?UTI/pq5eNntvJ5RgzPPfxdN2ooqkJ8oiAu85tXo2+/6+8+lgYjcbJWvh+6J3?=
- =?us-ascii?Q?fbt4MBzS1/VUI+rxKC4F0MuLbVD29AS/EH4tFnqSOY4Q5RIy9kMGqlXi0kYB?=
- =?us-ascii?Q?e45EkBAo1JaLesc2yXPx+DuI+42gdbUdj+RlJbFANXmSr4h3MMoBu1IkwfSj?=
- =?us-ascii?Q?OIObHstqKwUdGSaMZzhdJyOKs5JTDhEf6O3LlupPkswiJBrYbOR9H9yEa+HL?=
- =?us-ascii?Q?lZZgOUoXUpM++da3rObpEf7T9U8Te9lCUZHHOF6c8jOFmPR8p4wsVsquB2MB?=
- =?us-ascii?Q?49nPhs3mK7ZKwZSDdnleuYPGtHQPXE/xivLvQUfEKiBX0zV5X2laooVV3eae?=
- =?us-ascii?Q?0tCCRkBAnLlY0A/FZ/+dA8dxSPcsPQgJ2w2GWxxLEFoCCOWK/qTb2Drm3+xn?=
- =?us-ascii?Q?oEWABDwLxKRI31i816Pgs4FVU4balz+URVqdzfG5+x9A31uf8WHd+0UZ1gN+?=
- =?us-ascii?Q?D+xbZd/D6IwZPc7D4PeT21srjx2NWNaLzc8y5lD772zep//Yg9rQmN1DUCCc?=
- =?us-ascii?Q?okq7WLVYgNepTpgryNLaFUZqj3WTABd99SSvcUZHWO61SWtDi6NoIF72RFpd?=
- =?us-ascii?Q?DNJG29Q8rgy1MuDf0eFVJiaf8An4Ev4/5h0zWRVSTHQwVvtmF1GyasTif1sZ?=
- =?us-ascii?Q?5+Qz+JwPRGMEuRDrOe/E6XdDYkYjtJwPLW7hUcFVRadURBsgahWRgQT2hOs2?=
- =?us-ascii?Q?p6itI+iB51N1g21dJltmdgAAx5iyDYQO/lkUFS7US4eHnKcScUtvgWg7NZEG?=
- =?us-ascii?Q?86QbvdMdcr7E5ohe7q1xc4y3PzLoLtvaNrwaclOugSS+vpKMpf593D1PEyET?=
- =?us-ascii?Q?MewwGg90ybLkswky6GBPGjXYKk+VwEeRvM7jw3uzhpWikO9+djPVnBuxn8Ce?=
- =?us-ascii?Q?lekBdG5DZv3zKB74YAvz8+zrlmCQwMM/YlJ4KGOaeZZHXR/cyiBvKaVTtCBF?=
- =?us-ascii?Q?LQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3b89bb54-456b-41b8-68ac-08dce7f22d02
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Oct 2024 23:37:30.4255 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qMfbyM/cSYfNYy7kxvWCWSR7ubWQylJcJmjiau+8y6RuXG4810Bc7H24Tp5npHgfsGsijPolCIqKURrQCFQYvUXzqTv07crTLcOlA0AFHGY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7630
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Add_xe3lpd_edp_enabl?=
+ =?utf-8?q?ing?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Atwood" <matthew.s.atwood@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 08 Oct 2024 23:51:36 -0000
+Message-ID: <172843149636.1206586.15239856131688637995@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241008223741.82790-1-matthew.s.atwood@intel.com>
+In-Reply-To: <20241008223741.82790-1-matthew.s.atwood@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -173,76 +37,143 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 08, 2024 at 03:37:37PM -0700, Matt Atwood wrote:
-> From: Suraj Kandpal <suraj.kandpal@intel.com>
-> 
-> DISPLAY_VER() >= 30 has the HDCP_LINE_REKEY bit redefined from
-> bit 12 to bit 14. Create a macro to choose the correct bit based
+== Series Details ==
 
-Typo?  The actual bit moved to 15, not 14.
+Series: Add xe3lpd edp enabling
+URL   : https://patchwork.freedesktop.org/series/139731/
+State : warning
 
-> on DISPLAY_VER().
-> 
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_hdcp.c | 5 +++--
->  drivers/gpu/drm/i915/i915_reg.h           | 2 +-
->  2 files changed, 4 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> index ed6aa87403e2..e9b0414590ce 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> @@ -47,10 +47,11 @@ intel_hdcp_disable_hdcp_line_rekeying(struct intel_encoder *encoder,
->  			intel_de_rmw(display, MTL_CHICKEN_TRANS(hdcp->cpu_transcoder),
->  				     0, HDCP_LINE_REKEY_DISABLE);
->  		else if (IS_DISPLAY_VER_STEP(display, IP_VER(14, 1), STEP_B0, STEP_FOREVER) ||
-> -			 IS_DISPLAY_VER_STEP(display, IP_VER(20, 0), STEP_B0, STEP_FOREVER))
-> +			 IS_DISPLAY_VER_STEP(display, IP_VER(20, 0), STEP_B0, STEP_FOREVER) ||
-> +			 DISPLAY_VER(display) >= 30)
+== Summary ==
 
-Is this correct?  The programming here is to account for Wa_16021352814
-which applies to MTL, LNL, and BMG (but gives different direction for
-different steppings of each platform).  The workaround does not apply to
-PTL, so is there something else in the spec indicating that we need to
-disable the rekeying?
+Error: dim checkpatch failed
+b37e76d7e831 drm/i915/xe3lpd: reuse xe2lpd definition
+-:67: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#67: FILE: include/drm/intel/i915_pciids.h:798:
++#define INTEL_PTL_IDS(MACRO__, ...) \
++	MACRO__(0xB080, ## __VA_ARGS__), \
++	MACRO__(0xB081, ## __VA_ARGS__), \
++	MACRO__(0xB082, ## __VA_ARGS__), \
++	MACRO__(0xB090, ## __VA_ARGS__), \
++	MACRO__(0xB091, ## __VA_ARGS__), \
++	MACRO__(0xB092, ## __VA_ARGS__), \
++	MACRO__(0xB0A0, ## __VA_ARGS__), \
++	MACRO__(0xB0A1, ## __VA_ARGS__), \
++	MACRO__(0xB0A2, ## __VA_ARGS__)
 
-Also, the commit message doesn't say anything about this change, only
-about the disable bit switching spots in the register.
+-:67: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'MACRO__' - possible side-effects?
+#67: FILE: include/drm/intel/i915_pciids.h:798:
++#define INTEL_PTL_IDS(MACRO__, ...) \
++	MACRO__(0xB080, ## __VA_ARGS__), \
++	MACRO__(0xB081, ## __VA_ARGS__), \
++	MACRO__(0xB082, ## __VA_ARGS__), \
++	MACRO__(0xB090, ## __VA_ARGS__), \
++	MACRO__(0xB091, ## __VA_ARGS__), \
++	MACRO__(0xB092, ## __VA_ARGS__), \
++	MACRO__(0xB0A0, ## __VA_ARGS__), \
++	MACRO__(0xB0A1, ## __VA_ARGS__), \
++	MACRO__(0xB0A2, ## __VA_ARGS__)
+
+total: 1 errors, 0 warnings, 1 checks, 48 lines checked
+a637248b3bb8 drm/i915/xe3lpd: Adjust watermark calculations
+e520e7565407 drm/i915/xe3lpd: Add new display power wells
+-:41: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#41: FILE: drivers/gpu/drm/i915/display/intel_display_power_map.c:1602:
++#define XE3LPD_PW_C_POWER_DOMAINS \
++	POWER_DOMAIN_PIPE_C, \
++	POWER_DOMAIN_PIPE_PANEL_FITTER_C
+
+-:45: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#45: FILE: drivers/gpu/drm/i915/display/intel_display_power_map.c:1606:
++#define XE3LPD_PW_D_POWER_DOMAINS \
++	POWER_DOMAIN_PIPE_D, \
++	POWER_DOMAIN_PIPE_PANEL_FITTER_D
+
+-:49: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#49: FILE: drivers/gpu/drm/i915/display/intel_display_power_map.c:1610:
++#define XE3LPD_PW_2_POWER_DOMAINS \
++	XE3LPD_PW_C_POWER_DOMAINS, \
++	XE3LPD_PW_D_POWER_DOMAINS, \
++	POWER_DOMAIN_TRANSCODER_C, \
++	POWER_DOMAIN_TRANSCODER_D, \
++	POWER_DOMAIN_VGA, \
++	POWER_DOMAIN_PORT_DDI_LANES_TC1, \
++	POWER_DOMAIN_PORT_DDI_LANES_TC2, \
++	POWER_DOMAIN_PORT_DDI_LANES_TC3, \
++	POWER_DOMAIN_PORT_DDI_LANES_TC4
+
+-:79: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#79: FILE: drivers/gpu/drm/i915/display/intel_display_power_map.c:1640:
++		.instances = &I915_PW_INSTANCES(
+
+-:88: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#88: FILE: drivers/gpu/drm/i915/display/intel_display_power_map.c:1649:
++		.instances = &I915_PW_INSTANCES(
+
+-:96: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#96: FILE: drivers/gpu/drm/i915/display/intel_display_power_map.c:1657:
++		.instances = &I915_PW_INSTANCES(
+
+-:104: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#104: FILE: drivers/gpu/drm/i915/display/intel_display_power_map.c:1665:
++		.instances = &I915_PW_INSTANCES(
+
+-:112: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#112: FILE: drivers/gpu/drm/i915/display/intel_display_power_map.c:1673:
++		.instances = &I915_PW_INSTANCES(
+
+-:120: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#120: FILE: drivers/gpu/drm/i915/display/intel_display_power_map.c:1681:
++		.instances = &I915_PW_INSTANCES(
+
+-:133: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#133: FILE: drivers/gpu/drm/i915/display/intel_display_power_map.c:1694:
++I915_DECL_PW_DOMAINS(xe3lpd_pwdoms_dc_off,
++	POWER_DOMAIN_DC_OFF,
+
+-:142: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#142: FILE: drivers/gpu/drm/i915/display/intel_display_power_map.c:1703:
++		.instances = &I915_PW_INSTANCES(
+
+-:150: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#150: FILE: drivers/gpu/drm/i915/display/intel_display_power_map.c:1711:
++
++
+
+total: 3 errors, 0 warnings, 9 checks, 147 lines checked
+da2a35cfc7ac drm/i915/xe3lpd: Update pmdemand programming
+d8f572374294 drm/i915/xe3lpd: Add cdclk changes
+9055734b8617 drm/i915/xe3lpd: Add macro to choose HDCP_LINE_REKEY bit
+-:40: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
+#40: FILE: drivers/gpu/drm/i915/i915_reg.h:3835:
++#define  TRANS_DDI_HDCP_LINE_REKEY_DISABLE(display)	(DISPLAY_VER(display) >= 30 ? REG_BIT(15) : REG_BIT(12))
+
+total: 0 errors, 1 warnings, 0 checks, 21 lines checked
+8ff4cc5b3ef2 drm/i915/xe3lpd: Add C20 Phy consolidated programming table
+b03a021c1a52 drm/i915/xe3lpd: Add new bit range of MAX swing setup
+-:36: WARNING:LONG_LINE: line length of 160 exceeds 100 columns
+#36: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:303:
++#define  PORT_ALPM_CTL_MAX_PHY_SWING_SETUP(display, val)	(DISPLAY_VER(display) >= 30 ? REG_FIELD_PREP(PTL_PORT_ALPM_CTL_MAX_PHY_SWING_SETUP_MASK, val) :\
+
+-:36: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'val' - possible side-effects?
+#36: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:303:
++#define  PORT_ALPM_CTL_MAX_PHY_SWING_SETUP(display, val)	(DISPLAY_VER(display) >= 30 ? REG_FIELD_PREP(PTL_PORT_ALPM_CTL_MAX_PHY_SWING_SETUP_MASK, val) :\
++							 REG_FIELD_PREP(PORT_ALPM_CTL_MAX_PHY_SWING_SETUP_MASK, val))
+
+-:37: WARNING:LONG_LINE: line length of 117 exceeds 100 columns
+#37: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:304:
++							 REG_FIELD_PREP(PORT_ALPM_CTL_MAX_PHY_SWING_SETUP_MASK, val))
+
+total: 0 errors, 2 warnings, 1 checks, 18 lines checked
+4dd2162af137 drm/i915/xe3lpd: Add check to see if edp over type c is allowed
+-:81: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#81: FILE: drivers/gpu/drm/i915/i915_reg.h:4586:
++#define PICA_PHY_CONFIG_CONTROL ^I_MMIO(0x16FE68)$
+
+total: 0 errors, 1 warnings, 0 checks, 50 lines checked
+dc2b39126319 drm/i915/xe3lpd: Add powerdown value of eDP over type c
 
 
-Matt
-
->  			intel_de_rmw(display,
->  				     TRANS_DDI_FUNC_CTL(display, hdcp->cpu_transcoder),
-> -				     0, TRANS_DDI_HDCP_LINE_REKEY_DISABLE);
-> +				     0, TRANS_DDI_HDCP_LINE_REKEY_DISABLE(display));
->  	}
->  }
->  
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index d30459f8d1cb..da65500cd0c8 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -3832,7 +3832,7 @@ enum skl_power_gate {
->  #define  TRANS_DDI_EDP_INPUT_B_ONOFF	(5 << 12)
->  #define  TRANS_DDI_EDP_INPUT_C_ONOFF	(6 << 12)
->  #define  TRANS_DDI_EDP_INPUT_D_ONOFF	(7 << 12)
-> -#define  TRANS_DDI_HDCP_LINE_REKEY_DISABLE	REG_BIT(12)
-> +#define  TRANS_DDI_HDCP_LINE_REKEY_DISABLE(display)	(DISPLAY_VER(display) >= 30 ? REG_BIT(15) : REG_BIT(12))
->  #define  TRANS_DDI_MST_TRANSPORT_SELECT_MASK	REG_GENMASK(11, 10)
->  #define  TRANS_DDI_MST_TRANSPORT_SELECT(trans)	\
->  	REG_FIELD_PREP(TRANS_DDI_MST_TRANSPORT_SELECT_MASK, trans)
-> -- 
-> 2.45.0
-> 
-
--- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
