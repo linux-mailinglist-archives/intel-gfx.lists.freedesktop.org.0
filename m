@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F29D9953D9
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Oct 2024 17:57:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 85FA0995463
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Oct 2024 18:27:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29CA210E188;
-	Tue,  8 Oct 2024 15:57:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D06EA10E20B;
+	Tue,  8 Oct 2024 16:27:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N10shJPi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AOloNdOC";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0599A10E188;
- Tue,  8 Oct 2024 15:57:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6BB5B10E20B;
+ Tue,  8 Oct 2024 16:27:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728403038; x=1759939038;
+ t=1728404827; x=1759940827;
  h=date:from:to:cc:subject:message-id:reply-to:references:
  mime-version:in-reply-to;
- bh=srzuIaZht5fonmsy7SA5mLQ1bp2uerDCsI3n+4fce5o=;
- b=N10shJPinNtoUO93jLqH7twaoXfveCbuKueuibL9qrGWgGyAVLTMfC7G
- BZk7lPNKmfFvEcNafLRdYttG7JdsxTECkewiOsxpkZQhuXsvHJbhtzz3n
- XKRkFfTKsTcfTdckQ6LP1+BaJkag9vANZ5mYZqrc7LcqiopJduYmDRcoy
- oNlpoXmpXWey/w7JCjLBc6wJbYMojDQrx6ud0a2PJafYelv9L0zcggczA
- Ge7Jp49SBDfpDaC9F94wveBY/h79KlQxcFzuEkOqKIFR6l8VsJ8/A3xhb
- fpathlb66FM8qvZKrOENHe9maGWiSb09MDDrVbTljQNAiYPxGkW5AkpNT A==;
-X-CSE-ConnectionGUID: mQOdqNt2T2GP+t3yzffpKQ==
-X-CSE-MsgGUID: CQ+gutxwTHmPRUI4+9OJoA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11219"; a="50146547"
-X-IronPort-AV: E=Sophos;i="6.11,187,1725346800"; d="scan'208";a="50146547"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2024 08:57:18 -0700
-X-CSE-ConnectionGUID: ES9kL7BMQBuJVmBZGiPW7A==
-X-CSE-MsgGUID: GYOSc3J/R6CrsbrynSDhTg==
+ bh=tfKV+k7ZhUYGwZA9AsEEnK610AwkOjy9RSBi0Uz42Sg=;
+ b=AOloNdOCqg7EIiYY0MkWRH4YRhgTk8urr+cz4fVSjN0wpzLVqHFFtEEk
+ DyyyS+CbMHu+KEauKHluzkJzcBi2YtJ9yyKMSQetAf3QoIiv09VLxKFB8
+ Wv1c6pz5QiS0Ska/oH2tzHuzmAU8yjZs9/Zg2c3AtvF7uOO3/mQsjVmDu
+ aSkHKvQujSvYkN2SJwqqB7or9YeVVOWM0EW2kaBcnIoRcCwfivTa4bJJX
+ 3J1WwKBp6ZFvk3uwXWL/Oj47GFl2IiU46nwKNvNucqaBpTPki4BaAvibA
+ 1pnlcg/GlhypfA9nDZD0JcZQu3HmFnZ6hOy++k6mHU0W0vxUTMVCYyuJY Q==;
+X-CSE-ConnectionGUID: w2ToVmNpR1u1hzgEOatphg==
+X-CSE-MsgGUID: AbKcmKr7Qt+REjFUEuo2tw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11219"; a="27750816"
+X-IronPort-AV: E=Sophos;i="6.11,187,1725346800"; d="scan'208";a="27750816"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Oct 2024 09:27:07 -0700
+X-CSE-ConnectionGUID: Kht/89t9Qvm9wtByYK0xIQ==
+X-CSE-MsgGUID: F0wAC0iwSSO10XMTBfpFEw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,187,1725346800"; d="scan'208";a="75885662"
+X-IronPort-AV: E=Sophos;i="6.11,187,1725346800"; d="scan'208";a="75996009"
 Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2024 08:57:16 -0700
-Date: Tue, 8 Oct 2024 18:57:45 +0300
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Oct 2024 09:27:05 -0700
+Date: Tue, 8 Oct 2024 19:27:34 +0300
 From: Imre Deak <imre.deak@intel.com>
 To: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 04/31] drm/i915/display: Move shutdown sequences under
- display driver
-Message-ID: <ZwVWebPv34TyHMgt@ideak-desk.fi.intel.com>
+Subject: Re: [PATCH 10/31] drm/xe/display: Spin-off xe_display runtime/d3cold
+ sequences
+Message-ID: <ZwVddnF8yDxvdFM1@ideak-desk.fi.intel.com>
 References: <20240924204222.246862-1-rodrigo.vivi@intel.com>
- <20240924204222.246862-5-rodrigo.vivi@intel.com>
+ <20240924204222.246862-11-rodrigo.vivi@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240924204222.246862-5-rodrigo.vivi@intel.com>
+In-Reply-To: <20240924204222.246862-11-rodrigo.vivi@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,144 +70,173 @@ Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Sep 24, 2024 at 04:35:25PM -0400, Rodrigo Vivi wrote:
-> Move display related shutdown sequences from i915_driver to
-> intel_display_driver.
-> 
-> No functional change. Just taking the right ownership and
-> start some reconciliation of them between i915 and Xe.
+On Tue, Sep 24, 2024 at 04:35:31PM -0400, Rodrigo Vivi wrote:
+> No functional change. This patch only splits the xe_display_pm
+> suspend/resume functions in the regular suspend/resume from the
+> runtime/d3cold ones.
 > 
 > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 > ---
->  .../drm/i915/display/intel_display_driver.c   | 40 +++++++++++++++++++
->  .../drm/i915/display/intel_display_driver.h   |  3 ++
->  drivers/gpu/drm/i915/i915_driver.c            | 29 ++------------
->  3 files changed, 47 insertions(+), 25 deletions(-)
+>  drivers/gpu/drm/xe/display/xe_display.c | 68 ++++++++++++++++---------
+>  1 file changed, 45 insertions(+), 23 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-> index c106fb2dd20b..e40b1105168e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-> @@ -39,6 +39,7 @@
->  #include "intel_dp_tunnel.h"
->  #include "intel_dpll.h"
->  #include "intel_dpll_mgr.h"
-> +#include "intel_encoder.h"
->  #include "intel_fb.h"
->  #include "intel_fbc.h"
->  #include "intel_fbdev.h"
-> @@ -755,3 +756,42 @@ void intel_display_driver_resume(struct drm_i915_private *i915)
->  	if (state)
->  		drm_atomic_state_put(state);
+> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+> index be431d9907df..a4705a452adb 100644
+> --- a/drivers/gpu/drm/xe/display/xe_display.c
+> +++ b/drivers/gpu/drm/xe/display/xe_display.c
+> @@ -308,8 +308,41 @@ static void xe_display_flush_cleanup_work(struct xe_device *xe)
+>  	}
 >  }
-> +
-> +void intel_display_driver_shutdown(struct drm_i915_private *i915)
-> +{
-> +	intel_power_domains_disable(i915);
-> +
-> +	intel_fbdev_set_suspend(&i915->drm, FBINFO_STATE_SUSPENDED, true);
-> +	if (HAS_DISPLAY(i915)) {
-> +		drm_kms_helper_poll_disable(&i915->drm);
-> +		intel_display_driver_disable_user_access(i915);
-> +
-> +		drm_atomic_helper_shutdown(&i915->drm);
-> +	}
-> +
-> +	intel_dp_mst_suspend(i915);
-> +}
-> +
-> +void intel_display_driver_shutdown_noirq(struct drm_i915_private *i915)
-> +{
-> +	intel_hpd_cancel_work(i915);
-> +
-> +	if (HAS_DISPLAY(i915))
-> +		intel_display_driver_suspend_access(i915);
-> +
-> +	intel_encoder_suspend_all(&i915->display);
-> +	intel_encoder_shutdown_all(&i915->display);
-> +
-> +	intel_dmc_suspend(&i915->display);
-> +}
-> +
-> +void intel_display_driver_shutdown_nogem(struct drm_i915_private *i915)
-> +{
-> +	/*
-> +	 * The only requirement is to reboot with display DC states disabled,
-> +	 * for now leaving all display power wells in the INIT power domain
-> +	 * enabled.
-> +	 */
-> +
-> +	intel_power_domains_driver_remove(i915);
-> +}
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.h b/drivers/gpu/drm/i915/display/intel_display_driver.h
-> index 42cc4af6d3fd..1ee37fb58d38 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_driver.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.h
-> @@ -26,6 +26,9 @@ void intel_display_driver_remove_nogem(struct drm_i915_private *i915);
->  void intel_display_driver_unregister(struct drm_i915_private *i915);
->  int intel_display_driver_suspend(struct drm_i915_private *i915);
->  void intel_display_driver_resume(struct drm_i915_private *i915);
-> +void intel_display_driver_shutdown(struct drm_i915_private *i915);
-> +void intel_display_driver_shutdown_noirq(struct drm_i915_private *i915);
-> +void intel_display_driver_shutdown_nogem(struct drm_i915_private *i915);
 >  
->  /* interface for intel_display_reset.c */
->  int __intel_display_driver_resume(struct drm_i915_private *i915,
-> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-> index ae5906885359..38c845ad86e5 100644
-> --- a/drivers/gpu/drm/i915/i915_driver.c
-> +++ b/drivers/gpu/drm/i915/i915_driver.c
-> @@ -939,43 +939,22 @@ void i915_driver_shutdown(struct drm_i915_private *i915)
+> -/* TODO: System and runtime suspend/resume sequences will be sanitized as a follow-up. */
+> -static void __xe_display_pm_suspend(struct xe_device *xe, bool runtime)
+> +static void xe_display_to_d3cold(struct xe_device *xe)
+> +{
+> +	struct intel_display *display = &xe->display;
+> +
+> +	/* We do a lot of poking in a lot of registers, make sure they work properly. */
+> +	intel_power_domains_disable(xe);
+> +
+> +	xe_display_flush_cleanup_work(xe);
+> +
+> +	intel_hpd_cancel_work(xe);
+
+This cancels a work synchronously that takes a runtime PM reference, so
+it could dead-lock. I know that xe adds a way to get an RPM reference in
+the runtime suspend/resume handlers, not sure if that's a good approach
+in general. Also, not sure if it's ok to to drop all interrupts - in
+intel_hpd_cancel_work() - here that got raised before runtime suspend,
+instead of handling them as expected. So I think intel_hpd_cancel_work()
+shouldn't be called here.
+
+> +
+> +	intel_opregion_suspend(display, PCI_D3cold);
+> +
+> +	intel_dmc_suspend(display);
+> +}
+> +
+> +static void xe_display_from_d3cold(struct xe_device *xe)
+> +{
+> +	struct intel_display *display = &xe->display;
+> +
+> +	intel_dmc_resume(display);
+> +
+> +	if (has_display(xe))
+> +		drm_mode_config_reset(&xe->drm);
+
+The above is the counterpart of intel_encoder_suspend_all() which is
+only called during system suspend.
+
+> +
+> +	intel_display_driver_init_hw(xe);
+> +
+> +	intel_hpd_init(xe);
+> +
+> +	intel_opregion_resume(display);
+> +
+> +	intel_power_domains_enable(xe);
+> +}
+> +
+> +void xe_display_pm_suspend(struct xe_device *xe)
 >  {
->  	disable_rpm_wakeref_asserts(&i915->runtime_pm);
->  	intel_runtime_pm_disable(&i915->runtime_pm);
-> -	intel_power_domains_disable(i915);
->  
-> -	intel_fbdev_set_suspend(&i915->drm, FBINFO_STATE_SUSPENDED, true);
-> -	if (HAS_DISPLAY(i915)) {
-> -		drm_kms_helper_poll_disable(&i915->drm);
-> -		intel_display_driver_disable_user_access(i915);
-> -
-> -		drm_atomic_helper_shutdown(&i915->drm);
-> -	}
-> -
-> -	intel_dp_mst_suspend(i915);
-> +	intel_display_driver_shutdown(i915);
->  
->  	intel_irq_suspend(i915);
-> -	intel_hpd_cancel_work(i915);
-> -
-> -	if (HAS_DISPLAY(i915))
-> -		intel_display_driver_suspend_access(i915);
->  
-> -	intel_encoder_suspend_all(&i915->display);
-> -	intel_encoder_shutdown_all(&i915->display);
-> -
-> -	intel_dmc_suspend(&i915->display);
-> +	intel_display_driver_shutdown_noirq(i915);
->  
->  	i915_gem_suspend(i915);
->  
-> -	/*
-> -	 * The only requirement is to reboot with display DC states disabled,
-> -	 * for now leaving all display power wells in the INIT power domain
-> -	 * enabled.
-> -	 *
-> -	 * TODO:
-> +	/* TODO:
->  	 * - unify the pci_driver::shutdown sequence here with the
->  	 *   pci_driver.driver.pm.poweroff,poweroff_late sequence.
->  	 * - unify the driver remove and system/runtime suspend sequences with
->  	 *   the above unified shutdown/poweroff sequence.
+>  	struct intel_display *display = &xe->display;
+>  	bool s2idle = suspend_to_idle();
+> @@ -321,10 +354,10 @@ static void __xe_display_pm_suspend(struct xe_device *xe, bool runtime)
+>  	 * properly.
 >  	 */
-> -	intel_power_domains_driver_remove(i915);
-> +
-
-Should intel_display_driver_shutdown_nogem() be called here?
-
->  	enable_rpm_wakeref_asserts(&i915->runtime_pm);
+>  	intel_power_domains_disable(xe);
+> -	if (!runtime)
+> -		intel_fbdev_set_suspend(&xe->drm, FBINFO_STATE_SUSPENDED, true);
 >  
->  	intel_runtime_pm_driver_last_release(&i915->runtime_pm);
+> -	if (!runtime && has_display(xe)) {
+> +	intel_fbdev_set_suspend(&xe->drm, FBINFO_STATE_SUSPENDED, true);
+> +
+> +	if (has_display(xe)) {
+>  		drm_kms_helper_poll_disable(&xe->drm);
+>  		intel_display_driver_disable_user_access(xe);
+>  		intel_display_driver_suspend(xe);
+> @@ -334,7 +367,7 @@ static void __xe_display_pm_suspend(struct xe_device *xe, bool runtime)
+>  
+>  	intel_hpd_cancel_work(xe);
+>  
+> -	if (!runtime && has_display(xe)) {
+> +	if (has_display(xe)) {
+>  		intel_display_driver_suspend_access(xe);
+>  		intel_encoder_suspend_all(&xe->display);
+>  	}
+> @@ -344,11 +377,6 @@ static void __xe_display_pm_suspend(struct xe_device *xe, bool runtime)
+>  	intel_dmc_suspend(display);
+>  }
+>  
+> -void xe_display_pm_suspend(struct xe_device *xe)
+> -{
+> -	__xe_display_pm_suspend(xe, false);
+> -}
+> -
+>  void xe_display_pm_shutdown(struct xe_device *xe)
+>  {
+>  	if (!xe->info.probe_display)
+> @@ -379,7 +407,7 @@ void xe_display_pm_runtime_suspend(struct xe_device *xe)
+>  		return;
+>  
+>  	if (xe->d3cold.allowed)
+> -		__xe_display_pm_suspend(xe, true);
+> +		xe_display_to_d3cold(xe);
+>  
+>  	intel_hpd_poll_enable(xe);
+>  }
+> @@ -405,7 +433,7 @@ void xe_display_pm_resume_early(struct xe_device *xe)
+>  	intel_power_domains_resume(xe);
+>  }
+>  
+> -static void __xe_display_pm_resume(struct xe_device *xe, bool runtime)
+> +void xe_display_pm_resume(struct xe_device *xe)
+>  {
+>  	struct intel_display *display = &xe->display;
+>  
+> @@ -419,12 +447,12 @@ static void __xe_display_pm_resume(struct xe_device *xe, bool runtime)
+>  
+>  	intel_display_driver_init_hw(xe);
+>  
+> -	if (!runtime && has_display(xe))
+> +	if (has_display(xe))
+>  		intel_display_driver_resume_access(xe);
+>  
+>  	intel_hpd_init(xe);
+>  
+> -	if (!runtime && has_display(xe)) {
+> +	if (has_display(xe)) {
+>  		intel_display_driver_resume(xe);
+>  		drm_kms_helper_poll_enable(&xe->drm);
+>  		intel_display_driver_enable_user_access(xe);
+> @@ -433,17 +461,11 @@ static void __xe_display_pm_resume(struct xe_device *xe, bool runtime)
+>  
+>  	intel_opregion_resume(display);
+>  
+> -	if (!runtime)
+> -		intel_fbdev_set_suspend(&xe->drm, FBINFO_STATE_RUNNING, false);
+> +	intel_fbdev_set_suspend(&xe->drm, FBINFO_STATE_RUNNING, false);
+>  
+>  	intel_power_domains_enable(xe);
+>  }
+>  
+> -void xe_display_pm_resume(struct xe_device *xe)
+> -{
+> -	__xe_display_pm_resume(xe, false);
+> -}
+> -
+>  void xe_display_pm_runtime_resume(struct xe_device *xe)
+>  {
+>  	if (!xe->info.probe_display)
+> @@ -452,7 +474,7 @@ void xe_display_pm_runtime_resume(struct xe_device *xe)
+>  	intel_hpd_poll_disable(xe);
+>  
+>  	if (xe->d3cold.allowed)
+> -		__xe_display_pm_resume(xe, true);
+> +		xe_display_from_d3cold(xe);
+>  }
+>  
+>  
 > -- 
 > 2.46.0
 > 
