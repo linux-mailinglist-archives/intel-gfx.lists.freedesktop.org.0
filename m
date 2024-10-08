@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10D45995A1C
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Oct 2024 00:37:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ED967995A1E
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Oct 2024 00:37:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5303C10E5FF;
-	Tue,  8 Oct 2024 22:37:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD69C10E605;
+	Tue,  8 Oct 2024 22:37:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XChdVHWe";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WRg9fa2x";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BBC110E260;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BBA0310E287;
  Tue,  8 Oct 2024 22:37:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728427066; x=1759963066;
+ t=1728427067; x=1759963067;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=PuMuOZHGpetAAR0hpYL9i17GXiT1WxUXVgVYHF17tmQ=;
- b=XChdVHWeh2v3MjgMyT0LUZnMTKYf//Sk+PF58RZvQF1P2KJDvUt8HWj1
- 94YomkqPstZryC84yoAH/T8IL6L83oCpAxGpyLL2R/T2Vu4pHoZDiw+p8
- mmVI0XmYVWxyTd4bpcEHNPetxfO+TIWdFsiIoTI+lxxCy49tvQlmTE7wM
- Sarx1wvTbnryvpSI+Kada4JC5GtQr9NgkqbM97Tu6QLWr7hRfwVQ/ILzS
- rSIwtM0nFglcPeL6hjiXXoN6c7AX1gctZoBhdoAawdNb1KlVi5aqxpI+e
- BUutYa5It6Vh/1ZWmZ0mqVVV/1D8roj3sG/bASGWgH6pxwH2UFf23VfL5 A==;
-X-CSE-ConnectionGUID: 5d+umG1tSDm5z0Onpr7qGw==
-X-CSE-MsgGUID: DDPHIvDMQQm0TX7HAk54aw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11219"; a="39037281"
-X-IronPort-AV: E=Sophos;i="6.11,188,1725346800"; d="scan'208";a="39037281"
+ bh=X4yFoYG09nBDCVGDiZa3j9lk+3PKGtYPHU6d9kBAYt8=;
+ b=WRg9fa2xQBc8P74jkVoeJbKTOYS5fJQkVgw01aI7CXaFMFJJkjsWbqlU
+ 6SG5xsr+18G5oy3trPwZUdEn9Ssfl/ocjV3lMfdvHmFWPI8flpgelOOCo
+ sp6Z+jQntCzCKFgiyBw6Ahj9CGORZcRa+M+PUDJhGE3luOGKmsavOK0k8
+ ZQG4+9VBWvcpkAjSatwftL2xR6P0XwT2zWFp/0WD0CV+VYnPNp6GpDGD/
+ 2PD0fvYZOvO6PLHW4w/6LzXFhH7ZeZoy6aYwY6VXcBpwjNljzKlX2DsHF
+ WazAToh2099RDvBDf6+FmTMwosoFsRG1EJBTd5JuAmBQRDEirNwZng3ji w==;
+X-CSE-ConnectionGUID: UwQvN7+jRUGhUf61Z3EJrg==
+X-CSE-MsgGUID: qX2/x22KTPq+bisS3bNoUA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11219"; a="39037282"
+X-IronPort-AV: E=Sophos;i="6.11,188,1725346800"; d="scan'208";a="39037282"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  08 Oct 2024 15:37:46 -0700
-X-CSE-ConnectionGUID: Hc7mFkpWTC+USoidqP/GHw==
-X-CSE-MsgGUID: PMl9ZEkQTf2N0VjJIhTAoA==
+X-CSE-ConnectionGUID: 0+8QxvPDS66j3AlNm/7ksg==
+X-CSE-MsgGUID: waNaBbhjSpCpS9rp8s7Lqg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,188,1725346800"; d="scan'208";a="80811828"
+X-IronPort-AV: E=Sophos;i="6.11,188,1725346800"; d="scan'208";a="80811832"
 Received: from msatwood-mobl.jf.intel.com ([10.24.12.132])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2024 15:37:45 -0700
+ 08 Oct 2024 15:37:46 -0700
 From: Matt Atwood <matthew.s.atwood@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Cc: Clint Taylor <clinton.a.taylor@intel.com>,
+Cc: Matt Roper <matthew.d.roper@intel.com>,
  Matt Atwood <matthew.s.atwood@intel.com>
-Subject: [PATCH 01/10] drm/i915/xe3lpd: reuse xe2lpd definition
-Date: Tue,  8 Oct 2024 15:37:32 -0700
-Message-ID: <20241008223741.82790-2-matthew.s.atwood@intel.com>
+Subject: [PATCH 02/10] drm/i915/xe3lpd: Adjust watermark calculations
+Date: Tue,  8 Oct 2024 15:37:33 -0700
+Message-ID: <20241008223741.82790-3-matthew.s.atwood@intel.com>
 X-Mailer: git-send-email 2.45.0
 In-Reply-To: <20241008223741.82790-1-matthew.s.atwood@intel.com>
 References: <20241008223741.82790-1-matthew.s.atwood@intel.com>
@@ -69,85 +69,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Clint Taylor <clinton.a.taylor@intel.com>
+From: Matt Roper <matthew.d.roper@intel.com>
 
-xe3_lpd display is functionally identical to xe2_lpd for now so reuse
-the device description.  A separate xe3 definition will be added in the
-future if/when new feature flags are required.
+Xe3 makes a couple minor tweaks to the watermark algorithm's block count
+calculations.
 
-Signed-off-by: Clint Taylor <clinton.a.taylor@intel.com>
+Bspec: 68985
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_device.c |  6 ++++++
- drivers/gpu/drm/i915/display/intel_display_device.h |  2 ++
- include/drm/intel/i915_pciids.h                     | 12 ++++++++++++
- 3 files changed, 20 insertions(+)
+ drivers/gpu/drm/i915/display/skl_watermark.c | 18 ++++++++++++------
+ 1 file changed, 12 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
-index f33062322c66..aa22189e3853 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-@@ -1252,6 +1252,10 @@ static const struct platform_desc bmg_desc = {
- 	PLATFORM(BATTLEMAGE),
- };
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index 6e1f04d5ef47..31de33e868df 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -718,7 +718,7 @@ static int skl_compute_wm_params(const struct intel_crtc_state *crtc_state,
+ 				 int width, const struct drm_format_info *format,
+ 				 u64 modifier, unsigned int rotation,
+ 				 u32 plane_pixel_rate, struct skl_wm_params *wp,
+-				 int color_plane);
++				 int color_plane, unsigned int pan_x);
  
-+static const struct platform_desc ptl_desc = {
-+	PLATFORM(PANTHERLAKE),
-+};
+ static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
+ 				 struct intel_plane *plane,
+@@ -765,7 +765,7 @@ skl_cursor_allocation(const struct intel_crtc_state *crtc_state,
+ 				    drm_format_info(DRM_FORMAT_ARGB8888),
+ 				    DRM_FORMAT_MOD_LINEAR,
+ 				    DRM_MODE_ROTATE_0,
+-				    crtc_state->pixel_rate, &wp, 0);
++				    crtc_state->pixel_rate, &wp, 0, 0);
+ 	drm_WARN_ON(&i915->drm, ret);
+ 
+ 	for (level = 0; level < i915->display.wm.num_levels; level++) {
+@@ -1742,7 +1742,7 @@ skl_compute_wm_params(const struct intel_crtc_state *crtc_state,
+ 		      int width, const struct drm_format_info *format,
+ 		      u64 modifier, unsigned int rotation,
+ 		      u32 plane_pixel_rate, struct skl_wm_params *wp,
+-		      int color_plane)
++		      int color_plane, unsigned int pan_x)
+ {
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+@@ -1803,7 +1803,9 @@ skl_compute_wm_params(const struct intel_crtc_state *crtc_state,
+ 					   wp->y_min_scanlines,
+ 					   wp->dbuf_block_size);
+ 
+-		if (DISPLAY_VER(i915) >= 10)
++		if (DISPLAY_VER(i915) >= 30)
++			interm_pbpl += (pan_x != 0);
++		else if (DISPLAY_VER(i915) >= 10)
+ 			interm_pbpl++;
+ 
+ 		wp->plane_blocks_per_line = div_fixed16(interm_pbpl,
+@@ -1845,7 +1847,8 @@ skl_compute_plane_wm_params(const struct intel_crtc_state *crtc_state,
+ 				     fb->format, fb->modifier,
+ 				     plane_state->hw.rotation,
+ 				     intel_plane_pixel_rate(crtc_state, plane_state),
+-				     wp, color_plane);
++				     wp, color_plane,
++				     plane_state->uapi.src.x1);
+ }
+ 
+ static bool skl_wm_has_lines(struct drm_i915_private *i915, int level)
+@@ -1909,7 +1912,10 @@ static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
+ 		}
+ 	}
+ 
+-	blocks = fixed16_to_u32_round_up(selected_result) + 1;
++	blocks = fixed16_to_u32_round_up(selected_result);
++	if (DISPLAY_VER(i915) < 30)
++		blocks++;
 +
- __diag_pop();
- 
- /*
-@@ -1322,6 +1326,7 @@ static const struct {
- 	INTEL_MTL_IDS(INTEL_DISPLAY_DEVICE, &mtl_desc),
- 	INTEL_LNL_IDS(INTEL_DISPLAY_DEVICE, &lnl_desc),
- 	INTEL_BMG_IDS(INTEL_DISPLAY_DEVICE, &bmg_desc),
-+	INTEL_PTL_IDS(INTEL_DISPLAY_DEVICE, &ptl_desc),
- };
- 
- static const struct {
-@@ -1332,6 +1337,7 @@ static const struct {
- 	{ 14,  0, &xe_lpdp_display },
- 	{ 14,  1, &xe2_hpd_display },
- 	{ 20,  0, &xe2_lpd_display },
-+	{ 30,  0, &xe2_lpd_display },
- };
- 
- static const struct intel_display_device_info *
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index 3ef537fa551a..071a36b51f79 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -70,6 +70,8 @@ enum intel_display_platform {
- 	INTEL_DISPLAY_LUNARLAKE,
- 	/* Display ver 14.1 (based on GMD ID) */
- 	INTEL_DISPLAY_BATTLEMAGE,
-+	/* Display ver 30 (based on GMD ID) */
-+	INTEL_DISPLAY_PANTHERLAKE,
- };
- 
- enum intel_display_subplatform {
-diff --git a/include/drm/intel/i915_pciids.h b/include/drm/intel/i915_pciids.h
-index 02156c6f79b6..6b92f8c3731b 100644
---- a/include/drm/intel/i915_pciids.h
-+++ b/include/drm/intel/i915_pciids.h
-@@ -794,4 +794,16 @@
- 	MACRO__(0xE20D, ## __VA_ARGS__), \
- 	MACRO__(0xE212, ## __VA_ARGS__)
- 
-+/* PTL */
-+#define INTEL_PTL_IDS(MACRO__, ...) \
-+	MACRO__(0xB080, ## __VA_ARGS__), \
-+	MACRO__(0xB081, ## __VA_ARGS__), \
-+	MACRO__(0xB082, ## __VA_ARGS__), \
-+	MACRO__(0xB090, ## __VA_ARGS__), \
-+	MACRO__(0xB091, ## __VA_ARGS__), \
-+	MACRO__(0xB092, ## __VA_ARGS__), \
-+	MACRO__(0xB0A0, ## __VA_ARGS__), \
-+	MACRO__(0xB0A1, ## __VA_ARGS__), \
-+	MACRO__(0xB0A2, ## __VA_ARGS__)
-+
- #endif /* _I915_PCIIDS_H */
+ 	/*
+ 	 * Lets have blocks at minimum equivalent to plane_blocks_per_line
+ 	 * as there will be at minimum one line for lines configuration. This
 -- 
 2.45.0
 
