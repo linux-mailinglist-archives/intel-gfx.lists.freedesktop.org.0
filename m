@@ -2,58 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85FA0995463
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Oct 2024 18:27:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 612E9995592
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Oct 2024 19:24:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D06EA10E20B;
-	Tue,  8 Oct 2024 16:27:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CABD310E17D;
+	Tue,  8 Oct 2024 17:24:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AOloNdOC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mRTnO616";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BB5B10E20B;
- Tue,  8 Oct 2024 16:27:07 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E201B10E17D
+ for <intel-gfx@lists.freedesktop.org>; Tue,  8 Oct 2024 17:24:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728404827; x=1759940827;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=tfKV+k7ZhUYGwZA9AsEEnK610AwkOjy9RSBi0Uz42Sg=;
- b=AOloNdOCqg7EIiYY0MkWRH4YRhgTk8urr+cz4fVSjN0wpzLVqHFFtEEk
- DyyyS+CbMHu+KEauKHluzkJzcBi2YtJ9yyKMSQetAf3QoIiv09VLxKFB8
- Wv1c6pz5QiS0Ska/oH2tzHuzmAU8yjZs9/Zg2c3AtvF7uOO3/mQsjVmDu
- aSkHKvQujSvYkN2SJwqqB7or9YeVVOWM0EW2kaBcnIoRcCwfivTa4bJJX
- 3J1WwKBp6ZFvk3uwXWL/Oj47GFl2IiU46nwKNvNucqaBpTPki4BaAvibA
- 1pnlcg/GlhypfA9nDZD0JcZQu3HmFnZ6hOy++k6mHU0W0vxUTMVCYyuJY Q==;
-X-CSE-ConnectionGUID: w2ToVmNpR1u1hzgEOatphg==
-X-CSE-MsgGUID: AbKcmKr7Qt+REjFUEuo2tw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11219"; a="27750816"
-X-IronPort-AV: E=Sophos;i="6.11,187,1725346800"; d="scan'208";a="27750816"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2024 09:27:07 -0700
-X-CSE-ConnectionGUID: Kht/89t9Qvm9wtByYK0xIQ==
-X-CSE-MsgGUID: F0wAC0iwSSO10XMTBfpFEw==
+ t=1728408290; x=1759944290;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=ZZ3ZQeUy/ot4cpt9fLL3WojdjwOUYne12JYOii7D1ks=;
+ b=mRTnO616b7Ms7Hzow7V8xvXL9bQmhsQM+AtJeeHshAFjdLCasnr23LIb
+ 1zf+ySw35iyLSXszxS6OiASLi4CTbVA/xLVKa1XVIAUDIIcW/OQ1T0NYf
+ xjFqL3FEs/0pIYTwm05LbdfsrU+CdjBdkVogzo+iydmrgwh5LhrDGnP3w
+ zfZyMbweIBng3qAgLlUWHtNY+yOG2NDhyxXMgN7h4/kSnzMzpf5BU88NG
+ biSAuUJPzHEEqB+Ot2Bkfi4vMB4d8VJkeFk47RFD4JwQ0U9CQnaJtOJ95
+ ZSHYpkfYWi87aTiTXyCsb2wdKV/B8hevBrgQjdJAjDRXjx3tgJKhDc4E5 w==;
+X-CSE-ConnectionGUID: P5jMavFuRRK+lXS312D7dQ==
+X-CSE-MsgGUID: THOipunOSGCpnvrAec9bkw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11219"; a="30509578"
+X-IronPort-AV: E=Sophos;i="6.11,187,1725346800"; d="scan'208";a="30509578"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Oct 2024 10:24:49 -0700
+X-CSE-ConnectionGUID: Ue5c1QsfRNWR79bbTwb4tQ==
+X-CSE-MsgGUID: 2DUmV1fpQw2ypo3SyYVBQQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,187,1725346800"; d="scan'208";a="75996009"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2024 09:27:05 -0700
-Date: Tue, 8 Oct 2024 19:27:34 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 10/31] drm/xe/display: Spin-off xe_display runtime/d3cold
- sequences
-Message-ID: <ZwVddnF8yDxvdFM1@ideak-desk.fi.intel.com>
-References: <20240924204222.246862-1-rodrigo.vivi@intel.com>
- <20240924204222.246862-11-rodrigo.vivi@intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,187,1725346800"; d="scan'208";a="75593941"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.41])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Oct 2024 10:24:46 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Raag Jadav <raag.jadav@intel.com>, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, matthew.d.roper@intel.com,
+ andi.shyti@linux.intel.com
+Cc: intel-gfx@lists.freedesktop.org, anshuman.gupta@intel.com,
+ badal.nilawar@intel.com, riana.tauro@intel.com, Raag Jadav
+ <raag.jadav@intel.com>
+Subject: Re: [PATCH v1] drm/i915/dg2: enable G8 with a workaround
+In-Reply-To: <20241007122424.642796-1-raag.jadav@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20241007122424.642796-1-raag.jadav@intel.com>
+Date: Tue, 08 Oct 2024 20:24:42 +0300
+Message-ID: <87ttdmbj8l.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240924204222.246862-11-rodrigo.vivi@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,177 +69,127 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Sep 24, 2024 at 04:35:31PM -0400, Rodrigo Vivi wrote:
-> No functional change. This patch only splits the xe_display_pm
-> suspend/resume functions in the regular suspend/resume from the
-> runtime/d3cold ones.
-> 
-> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+On Mon, 07 Oct 2024, Raag Jadav <raag.jadav@intel.com> wrote:
+> Host BIOS doesn't enable G8 power mode due to an issue on DG2, so we
+> enable it from kernel with Wa_14022698589. Currently it is enabled for
+> all DG2 devices with the exception of a few, for which, it is enabled
+> only when paired with whitelisted CPU models.
+
+In commit messages "currently" and the present tense usually refer to
+the status quo before the patch has been merged. Doesn't seem to be the
+case here, and it confuses what we have now and what the patch changes.
+
+>
+> Signed-off-by: Raag Jadav <raag.jadav@intel.com>
 > ---
->  drivers/gpu/drm/xe/display/xe_display.c | 68 ++++++++++++++++---------
->  1 file changed, 45 insertions(+), 23 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-> index be431d9907df..a4705a452adb 100644
-> --- a/drivers/gpu/drm/xe/display/xe_display.c
-> +++ b/drivers/gpu/drm/xe/display/xe_display.c
-> @@ -308,8 +308,41 @@ static void xe_display_flush_cleanup_work(struct xe_device *xe)
->  	}
+>  drivers/gpu/drm/i915/gt/intel_workarounds.c | 43 +++++++++++++++++++++
+>  drivers/gpu/drm/i915/i915_reg.h             |  1 +
+>  2 files changed, 44 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> index e539a656cfc3..b2db51377488 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> @@ -14,11 +14,30 @@
+>  #include "intel_gt_mcr.h"
+>  #include "intel_gt_print.h"
+>  #include "intel_gt_regs.h"
+> +#include "intel_pcode.h"
+>  #include "intel_ring.h"
+>  #include "intel_workarounds.h"
+>  
+>  #include "display/intel_fbc_regs.h"
+>  
+> +#ifdef CONFIG_X86
+> +#include <asm/cpu_device_id.h>
+> +#include <asm/intel-family.h>
+> +
+> +static const struct x86_cpu_id g8_cpu_ids[] = {
+> +	X86_MATCH_VFM(INTEL_ALDERLAKE,		NULL),
+> +	X86_MATCH_VFM(INTEL_ALDERLAKE_L,	NULL),
+> +	X86_MATCH_VFM(INTEL_COMETLAKE,		NULL),
+> +	X86_MATCH_VFM(INTEL_KABYLAKE,		NULL),
+> +	X86_MATCH_VFM(INTEL_KABYLAKE_L,		NULL),
+> +	X86_MATCH_VFM(INTEL_RAPTORLAKE,		NULL),
+> +	X86_MATCH_VFM(INTEL_RAPTORLAKE_P,	NULL),
+> +	X86_MATCH_VFM(INTEL_RAPTORLAKE_S,	NULL),
+> +	X86_MATCH_VFM(INTEL_ROCKETLAKE,		NULL),
+> +	{}
+> +};
+> +#endif
+> +
+>  /**
+>   * DOC: Hardware workarounds
+>   *
+> @@ -1770,9 +1789,33 @@ static void wa_list_apply(const struct i915_wa_list *wal)
+>  	intel_gt_mcr_unlock(gt, flags);
 >  }
 >  
-> -/* TODO: System and runtime suspend/resume sequences will be sanitized as a follow-up. */
-> -static void __xe_display_pm_suspend(struct xe_device *xe, bool runtime)
-> +static void xe_display_to_d3cold(struct xe_device *xe)
+> +#define DG2_G8_WA_RANGE_1		0x56A0 ... 0x56AF
+> +#define DG2_G8_WA_RANGE_2		0x56B0 ... 0x56B9
+
+Absolutely not.
+
+> +
+> +/* Wa_14022698589:dg2 */
+> +static void intel_enable_g8(struct intel_uncore *uncore)
 > +{
-> +	struct intel_display *display = &xe->display;
-> +
-> +	/* We do a lot of poking in a lot of registers, make sure they work properly. */
-> +	intel_power_domains_disable(xe);
-> +
-> +	xe_display_flush_cleanup_work(xe);
-> +
-> +	intel_hpd_cancel_work(xe);
+> +	if (IS_DG2(uncore->i915)) {
+> +		switch (INTEL_DEVID(uncore->i915)) {
 
-This cancels a work synchronously that takes a runtime PM reference, so
-it could dead-lock. I know that xe adds a way to get an RPM reference in
-the runtime suspend/resume handlers, not sure if that's a good approach
-in general. Also, not sure if it's ok to to drop all interrupts - in
-intel_hpd_cancel_work() - here that got raised before runtime suspend,
-instead of handling them as expected. So I think intel_hpd_cancel_work()
-shouldn't be called here.
+Even using INTEL_DEVID() is a no-go. There are currently four users, and
+even some of them are too much.
 
+We try hard to abstract this stuff at a higher level, and there must be
+zero direct PCI ID checks in code other than the table driven device
+identification. Otherwise it's just impossible to figure out where we do
+platform specific stuff for each platform.
+
+I understand those ranges above are a PITA to deal with, because they
+span across DG2 subplatforms.
+
+BR,
+Jani.
+
+
+
+> +		case DG2_G8_WA_RANGE_1:
+> +		case DG2_G8_WA_RANGE_2:
+> +#ifdef CONFIG_X86
+> +			if (!x86_match_cpu(g8_cpu_ids))
+> +#endif
+> +				return;
+> +		}
 > +
-> +	intel_opregion_suspend(display, PCI_D3cold);
-> +
-> +	intel_dmc_suspend(display);
+> +		snb_pcode_write_p(uncore, PCODE_POWER_SETUP,
+> +				  POWER_SETUP_SUBCOMMAND_G8_ENABLE, 0, 0);
+> +	}
 > +}
 > +
-> +static void xe_display_from_d3cold(struct xe_device *xe)
-> +{
-> +	struct intel_display *display = &xe->display;
+>  void intel_gt_apply_workarounds(struct intel_gt *gt)
+>  {
+>  	wa_list_apply(&gt->wa_list);
 > +
-> +	intel_dmc_resume(display);
-> +
-> +	if (has_display(xe))
-> +		drm_mode_config_reset(&xe->drm);
+> +	/* Special case for pcode mailbox which can't be on wa_list */
+> +	intel_enable_g8(gt->uncore);
+>  }
+>  
+>  static bool wa_list_verify(struct intel_gt *gt,
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index 41f4350a7c6c..e948b194550c 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -3568,6 +3568,7 @@
+>  #define   PCODE_POWER_SETUP			0x7C
+>  #define     POWER_SETUP_SUBCOMMAND_READ_I1	0x4
+>  #define     POWER_SETUP_SUBCOMMAND_WRITE_I1	0x5
+> +#define     POWER_SETUP_SUBCOMMAND_G8_ENABLE	0x6
+>  #define	    POWER_SETUP_I1_WATTS		REG_BIT(31)
+>  #define	    POWER_SETUP_I1_SHIFT		6	/* 10.6 fixed point format */
+>  #define	    POWER_SETUP_I1_DATA_MASK		REG_GENMASK(15, 0)
 
-The above is the counterpart of intel_encoder_suspend_all() which is
-only called during system suspend.
-
-> +
-> +	intel_display_driver_init_hw(xe);
-> +
-> +	intel_hpd_init(xe);
-> +
-> +	intel_opregion_resume(display);
-> +
-> +	intel_power_domains_enable(xe);
-> +}
-> +
-> +void xe_display_pm_suspend(struct xe_device *xe)
->  {
->  	struct intel_display *display = &xe->display;
->  	bool s2idle = suspend_to_idle();
-> @@ -321,10 +354,10 @@ static void __xe_display_pm_suspend(struct xe_device *xe, bool runtime)
->  	 * properly.
->  	 */
->  	intel_power_domains_disable(xe);
-> -	if (!runtime)
-> -		intel_fbdev_set_suspend(&xe->drm, FBINFO_STATE_SUSPENDED, true);
->  
-> -	if (!runtime && has_display(xe)) {
-> +	intel_fbdev_set_suspend(&xe->drm, FBINFO_STATE_SUSPENDED, true);
-> +
-> +	if (has_display(xe)) {
->  		drm_kms_helper_poll_disable(&xe->drm);
->  		intel_display_driver_disable_user_access(xe);
->  		intel_display_driver_suspend(xe);
-> @@ -334,7 +367,7 @@ static void __xe_display_pm_suspend(struct xe_device *xe, bool runtime)
->  
->  	intel_hpd_cancel_work(xe);
->  
-> -	if (!runtime && has_display(xe)) {
-> +	if (has_display(xe)) {
->  		intel_display_driver_suspend_access(xe);
->  		intel_encoder_suspend_all(&xe->display);
->  	}
-> @@ -344,11 +377,6 @@ static void __xe_display_pm_suspend(struct xe_device *xe, bool runtime)
->  	intel_dmc_suspend(display);
->  }
->  
-> -void xe_display_pm_suspend(struct xe_device *xe)
-> -{
-> -	__xe_display_pm_suspend(xe, false);
-> -}
-> -
->  void xe_display_pm_shutdown(struct xe_device *xe)
->  {
->  	if (!xe->info.probe_display)
-> @@ -379,7 +407,7 @@ void xe_display_pm_runtime_suspend(struct xe_device *xe)
->  		return;
->  
->  	if (xe->d3cold.allowed)
-> -		__xe_display_pm_suspend(xe, true);
-> +		xe_display_to_d3cold(xe);
->  
->  	intel_hpd_poll_enable(xe);
->  }
-> @@ -405,7 +433,7 @@ void xe_display_pm_resume_early(struct xe_device *xe)
->  	intel_power_domains_resume(xe);
->  }
->  
-> -static void __xe_display_pm_resume(struct xe_device *xe, bool runtime)
-> +void xe_display_pm_resume(struct xe_device *xe)
->  {
->  	struct intel_display *display = &xe->display;
->  
-> @@ -419,12 +447,12 @@ static void __xe_display_pm_resume(struct xe_device *xe, bool runtime)
->  
->  	intel_display_driver_init_hw(xe);
->  
-> -	if (!runtime && has_display(xe))
-> +	if (has_display(xe))
->  		intel_display_driver_resume_access(xe);
->  
->  	intel_hpd_init(xe);
->  
-> -	if (!runtime && has_display(xe)) {
-> +	if (has_display(xe)) {
->  		intel_display_driver_resume(xe);
->  		drm_kms_helper_poll_enable(&xe->drm);
->  		intel_display_driver_enable_user_access(xe);
-> @@ -433,17 +461,11 @@ static void __xe_display_pm_resume(struct xe_device *xe, bool runtime)
->  
->  	intel_opregion_resume(display);
->  
-> -	if (!runtime)
-> -		intel_fbdev_set_suspend(&xe->drm, FBINFO_STATE_RUNNING, false);
-> +	intel_fbdev_set_suspend(&xe->drm, FBINFO_STATE_RUNNING, false);
->  
->  	intel_power_domains_enable(xe);
->  }
->  
-> -void xe_display_pm_resume(struct xe_device *xe)
-> -{
-> -	__xe_display_pm_resume(xe, false);
-> -}
-> -
->  void xe_display_pm_runtime_resume(struct xe_device *xe)
->  {
->  	if (!xe->info.probe_display)
-> @@ -452,7 +474,7 @@ void xe_display_pm_runtime_resume(struct xe_device *xe)
->  	intel_hpd_poll_disable(xe);
->  
->  	if (xe->d3cold.allowed)
-> -		__xe_display_pm_resume(xe, true);
-> +		xe_display_from_d3cold(xe);
->  }
->  
->  
-> -- 
-> 2.46.0
-> 
+-- 
+Jani Nikula, Intel
