@@ -2,80 +2,80 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95C089958D7
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Oct 2024 22:56:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EB6149958F7
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Oct 2024 23:11:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34B7410E5C3;
-	Tue,  8 Oct 2024 20:56:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9581610E259;
+	Tue,  8 Oct 2024 21:11:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LRdaSx31";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="joSBiOiY";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DF4310E5C1;
- Tue,  8 Oct 2024 20:56:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B137210E259;
+ Tue,  8 Oct 2024 21:11:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728420998; x=1759956998;
+ t=1728421892; x=1759957892;
  h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=RUiguDdP1FCGlKKd3FI/gj36gfK3Dp7+01Mlrj81BRY=;
- b=LRdaSx31xoubRt2ADxpwQOrh2CSBRu94kF0xdWzfvQqGgC4nFZ+eljH0
- a6wKBcXQhUnadfjx/39JYuO7a0bXZexKSv2BE+/ycKkJ8huehQaZDKVUq
- RE4Q+kOhdMgECWWHh1TMjBGoODtCjzVI6rLUh27DyPh2fSa/D4Bucj8UQ
- S3rxl93IVk+cTQLEc4WvZqMycCIyW+EzesP38cBcpZg2dxwZME1woU+xI
- h90euhp4FNVN2gnkXAeWLSZZ3awoulKvxu6AFBUzZJog6h1o1XIhW6xb0
- u40ktrv/4B0BhFSuG5onB3kmeoeHA7Pki22xmF0bHspTSUAYj171fMLw3 Q==;
-X-CSE-ConnectionGUID: AFBhslKyTf67C+u8w2KS2Q==
-X-CSE-MsgGUID: pf0PsnljTLiTUOtvZQeVlg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11219"; a="31366756"
-X-IronPort-AV: E=Sophos;i="6.11,188,1725346800"; d="scan'208";a="31366756"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2024 13:56:37 -0700
-X-CSE-ConnectionGUID: Dune7ZP4RDicfoPq66W7fA==
-X-CSE-MsgGUID: qVAgK1cHSfW2TV4Mb2SyhA==
+ bh=y4KXtkwz+Z/GRQ4kCNo0IaGKgOVHOIikEplcL+Wwvoc=;
+ b=joSBiOiYly3NM8WK5qbEMNXMpaTN7rzOPRpyLPCBSVY8DImZFfyi/cmk
+ MjHkQN/mhosF5CJHfmbIDva68k3OiRpyTEG4Wuk3gk64DU8ecTjM8C6vS
+ D/LcTfqnxXu36jVCGhoO/iIsxsniAPeR5miO2qcFu/SDpAlDDmPkzUlUU
+ l2A0RgmEQGdLWsOKo0bzydWKTe9YEy8Ofc3n+xaYwNiFf7kMS4KIuyeTM
+ A6jXCxAdfriMHkDQOGfgfqQY8RQwrXUYdy/F8VZd++x+VojphHr4fAhhH
+ FlgZzAA4acq81XVefwlH9uuId7ibnPZ0+aPf5Ba6p9A3sLHuBWbLpERUQ w==;
+X-CSE-ConnectionGUID: uU2TNJBPTf+qqT+uNqI+4g==
+X-CSE-MsgGUID: ljr7eS8uTjyNd/S6B3seDQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11219"; a="27797064"
+X-IronPort-AV: E=Sophos;i="6.11,188,1725346800"; d="scan'208";a="27797064"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Oct 2024 14:11:32 -0700
+X-CSE-ConnectionGUID: 6RvZG9IZTs+efK5dnAihYA==
+X-CSE-MsgGUID: s5JTHC/ITlW/KbgXx1Vu2A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,188,1725346800"; d="scan'208";a="75953407"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orviesa009.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 08 Oct 2024 13:56:38 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.11,188,1725346800"; d="scan'208";a="76409257"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orviesa007.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 08 Oct 2024 14:11:31 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Tue, 8 Oct 2024 13:56:37 -0700
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.1.2507.39; Tue, 8 Oct 2024 14:11:30 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Tue, 8 Oct 2024 13:56:37 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ 15.1.2507.39; Tue, 8 Oct 2024 14:11:30 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Tue, 8 Oct 2024 13:56:37 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.49) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Tue, 8 Oct 2024 14:11:30 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.47) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Tue, 8 Oct 2024 13:56:37 -0700
+ 15.1.2507.39; Tue, 8 Oct 2024 14:11:30 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=v7oRXVL8zY13buEYK8Is3NOo/PWbP9WZo633vAgMdJ6htrfrS3d1k3Ebhstpd2uSnQOnPxknaA2vA+Fo/GvAcIN8XxMLly+mc2xC6ndsQAjfJCKz+iSFO2tWrVd2vApLWszkIsjrooDf27SPlxsW7uNUpGXoViz0aso9u93adkaReg5442jhY/Lz2cKdW4seYxr2qEiCw1kAe0vAVavOKHZSgXyi2N6UzISKRi033k+IN7p5I+g1uWCB8HgPEvjx/EJJLgfm20DZf4X6kBYsU6QleR7UdgeWdLOhyGilq1uQA1ZrZh5zmVnb9ulTI2XXOUNmvLlzJZPEuqlw2stY2g==
+ b=HatDzmd3bIZQxbircSoYkfzjDT1yGTchTwmMKkCt6uA4SP3c1zQjR0Drj3+CrcN5QZYPDYrHHzEdKve8U69zO63/Jof90MJfPbBCvKiXl69NLHu0uw2U6bZ8idXz97xoxCxkqA2FZQVhKi7Zxz5PBSy4Xx+DpjXO+sdluFjsi5qlMHiz1asrK1LUJ+fX55kPrs8EMNZjjf/mDW9P3VLAjTK2Hs2UkzH2DDv7iXXCAiHBtmeUzXBp2vOgvxVNh8vmfpBnRsWWs/K44hRu8pqhLAuZxtgBfMzdcf/ylCJi2S8mB9zEw9fIgOifvl4xYJn/TpEUccRaqA5+kL5WutgoCA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bKoOC8RPsWg4/ihP4o3QzvWsePLIfs8p0MhlIX6/kek=;
- b=VvfPMZdm734gzyPT5DVqnCjtmmxM6Z6SJIwlzzBwTDkStRjzd4D5Upmnm5C+En8YR9g95KbeykOQtU9rwPpFklAH4x0lS1KIEh9TkJwV7/LC4yYALZ27lAMVK/hvm1wGMi+S7NFAA6ba/E5F+cuq0q7M+tN7IR7/CWLJXci4J+c88WkZZ24MjFP10sfveoRje8e7Jrs38RrWrrQJHKgKv4UgE+isE4ShAzDM4aBnPPk6u8dfhHln6IMMp1rWSgzzKK7ujNqaEjo1qMWhWNN8X/307FFvQ7H7gJRPpULdz6J/zbRQvfsumqLNJJ4t7+wL65IxCGrChNoavcQBBdnNcA==
+ bh=X4l3kaEjEwqk9Cj51VSbdojs3L+d0eU6HWcMeai3nYg=;
+ b=SDzdcxXMTHtT1zrx23oucLOdITL6vIk22jr6Xby3LhdJZnoUS2+2Iy0xEH0eQIroI7WRd9tS+0ryVjjdDPy4CxBkBJnSi6RyhypOtrOReQ3NGqUXNoRM2W3UbwvfVgOLy6WOEFp3rCJsi2z7WHOk147G9DnuxyjLl2/52xa73FKEUhCmNNBU9byNzGK0uPeg9FZiS9wJWDnjKnZYYurag95AKV+7LcR4m2JTBr2Z0g2nRy1Iese3k9GB1QeYEDT4FeeBnyf+BG3nAAZFUswj7lvS4ET8onkMf7BmpfQ382kNMF4e8BWdemUIFgiPTwpKMg6vA8s0Oe42YBPHflTV6Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Received: from CH0PR11MB5444.namprd11.prod.outlook.com (2603:10b6:610:d3::13)
- by MW4PR11MB6620.namprd11.prod.outlook.com (2603:10b6:303:1ea::6)
+ by PH7PR11MB6606.namprd11.prod.outlook.com (2603:10b6:510:1b1::12)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.23; Tue, 8 Oct
- 2024 20:56:34 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.22; Tue, 8 Oct
+ 2024 21:11:27 +0000
 Received: from CH0PR11MB5444.namprd11.prod.outlook.com
  ([fe80::5f89:ba81:ff70:bace]) by CH0PR11MB5444.namprd11.prod.outlook.com
  ([fe80::5f89:ba81:ff70:bace%4]) with mapi id 15.20.8026.020; Tue, 8 Oct 2024
- 20:56:34 +0000
+ 21:11:27 +0000
 From: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
 To: Thomas Zimmermann <tzimmermann@suse.de>, "simona@ffwll.ch"
  <simona@ffwll.ch>, "airlied@gmail.com" <airlied@gmail.com>,
@@ -84,18 +84,22 @@ To: Thomas Zimmermann <tzimmermann@suse.de>, "simona@ffwll.ch"
 CC: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
  "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
  "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Cavitt,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Jani
+ Nikula" <jani.nikula@linux.intel.com>, "Vivi, Rodrigo"
+ <rodrigo.vivi@intel.com>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Karol Herbst <kherbst@redhat.com>,
+ Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@redhat.com>, "Cavitt,
  Jonathan" <jonathan.cavitt@intel.com>
-Subject: RE: [PATCH v3 05/12] drm/fbdev: Store fbdev module parameters in
- separate file
-Thread-Topic: [PATCH v3 05/12] drm/fbdev: Store fbdev module parameters in
- separate file
-Thread-Index: AQHbGXqnMfodoT1rREe+yQhCw3muqbJ9SAEQ
-Date: Tue, 8 Oct 2024 20:56:34 +0000
-Message-ID: <CH0PR11MB5444D40788A148682C007795E57E2@CH0PR11MB5444.namprd11.prod.outlook.com>
+Subject: RE: [PATCH v3 06/12] drm/client: Move client event handlers to
+ drm_client_event.c
+Thread-Topic: [PATCH v3 06/12] drm/client: Move client event handlers to
+ drm_client_event.c
+Thread-Index: AQHbGXqo6oUoOJnV5USMDsfhArXxKLJ9RygQ
+Date: Tue, 8 Oct 2024 21:11:27 +0000
+Message-ID: <CH0PR11MB5444BBF09BE59AFFCCE0E73AE57E2@CH0PR11MB5444.namprd11.prod.outlook.com>
 References: <20241008120652.159190-1-tzimmermann@suse.de>
- <20241008120652.159190-6-tzimmermann@suse.de>
-In-Reply-To: <20241008120652.159190-6-tzimmermann@suse.de>
+ <20241008120652.159190-7-tzimmermann@suse.de>
+In-Reply-To: <20241008120652.159190-7-tzimmermann@suse.de>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -103,77 +107,82 @@ X-MS-TNEF-Correlator:
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CH0PR11MB5444:EE_|MW4PR11MB6620:EE_
-x-ms-office365-filtering-correlation-id: 56d82d5f-4fe7-4314-60f8-08dce7dbb1d3
+x-ms-traffictypediagnostic: CH0PR11MB5444:EE_|PH7PR11MB6606:EE_
+x-ms-office365-filtering-correlation-id: e8115fbc-a5a6-4478-d87b-08dce7ddc608
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|1800799024|376014|366016|38070700018;
-x-microsoft-antispam-message-info: =?us-ascii?Q?GG1xnnXdPd//QaAG7jYj/t6BCjndP/6Zs73JdQJk5R4RNLZadYQM+DbCh5zo?=
- =?us-ascii?Q?Z7svjYsoIbY9O0r9ImJ3SyYXfF9E49E6s5jX6HOMa5FwZjzWvhR5Gls0K0ak?=
- =?us-ascii?Q?K7y7G8gtvK9J2FAmNAXz17Pg54h2cocty/MIAZ2CkH2EJJUrGY4dF+cAuC1w?=
- =?us-ascii?Q?Tyneel5639FnnJLky99FVu+f3vw6f5dfKGWV+XcDGthCVZS6l+by7Do5Aq2R?=
- =?us-ascii?Q?qmfU1nunTGJiKkblPjnQZWX0L2DC0udCzVl4II6cvDmNBhT3rk5mGReiDvg0?=
- =?us-ascii?Q?QDTRsr4xMB+TeDiJLW0QhmBT6Q4uqStVEpihQ3DRACvJEOI54wXmKHhM3cl1?=
- =?us-ascii?Q?0bbCfptawXp0msqVi+09OMRoG3bh8FVnnXp9YBV6hLJ5eAluw0JctqGcnpai?=
- =?us-ascii?Q?xaNiv6WN1XeNu/whs8OYOOkBYjavmujWSxaedbmj0Qy+R1sl2dQUP6EUUXK8?=
- =?us-ascii?Q?9S78hkyR7pReW2C9/1yN5g/lYVt1AE66IUtMaIUIYBvbfmW9Dk0mCK4bE5ho?=
- =?us-ascii?Q?gH5BcpECRWVsvNTNPipgN6s3cv1zpNDGkrPDPqBcNQcpXwYC7Rgy0Sj5E0B9?=
- =?us-ascii?Q?yqTQ0o59mVDTSNmtMHknhLZ79u2qcH/9TD4X4CBD1IqGNX37z3sOCE52FFri?=
- =?us-ascii?Q?FPpgsGxYiMEvwTsIYrmJOEzWWpsxr6i/W04KN0wi3CFMa3UkYMnX2kewSrkY?=
- =?us-ascii?Q?/p//I8yP8cmWGdclAErv+uj3h+K5bQ4GJ8EUZv0V7mad8wP0ZYVVK8Khpgau?=
- =?us-ascii?Q?pfDzU+hRNCjQ4ITlVUomLS0z1AcG31KWqvHFiy2pMb0mOzx1QFUQYE+avs2H?=
- =?us-ascii?Q?ac3pRgBUdSjWQro5d57lrguMfY/sa+IwFjVM8fun1PcwcFCyO27kDBXJtWGB?=
- =?us-ascii?Q?V3P2kzAGXncTXVfvZt8bmB5zRwGvqUo1Vtuid2qXkpqorX8EjtRC+qIUzViu?=
- =?us-ascii?Q?/byVcApC8sjZ5/MMHZaO/IRWfzbUvkCJkKZClRONmiha8sO20VPuGEz26s5l?=
- =?us-ascii?Q?sDZzVxIvBHkl00YD/nUv2sdZNozHmbjQkYWEi9CtqENmHA5QqNhd9jOGAhIv?=
- =?us-ascii?Q?1NZpHMiM/XaASVy9th0cPf2jNnDJHODILnOd0cFoExZtblZBmdzbQZhLABa2?=
- =?us-ascii?Q?yOfI5WKiSQGQcbz2QZIKyMa+1CjuxiSIseB4+RzKoaG+HPxlwayu4mgqqQnd?=
- =?us-ascii?Q?iiFZQTMfJuAd4CS1JcbvzjZMi8kCqgdbsAx4b4lpnmSRs0a+dr4TdYPZGzov?=
- =?us-ascii?Q?2ZY9jyinp7Z/EBYW0Ngg8oLn/PKEG0qHvPlOdccMzng0xoFNI/2Tix8ryieQ?=
- =?us-ascii?Q?MtsyC2/MPQjN1A5BuLzYW2rcMozLeW1WzqlLFmTiut1Cew=3D=3D?=
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|366016|376014|7416014|1800799024|38070700018; 
+x-microsoft-antispam-message-info: =?iso-8859-1?Q?CgptdVP+FvOKkayWe+EJFHC8Tz28xcIWGOPAyIDLFP1ssE76rm8JyL3Ieu?=
+ =?iso-8859-1?Q?yvQ803RFm4U3q1zN1Q19JTJrBvO6tlDpzC5hHqnvdxcUjjgyejsOm5CgA9?=
+ =?iso-8859-1?Q?yWZ1wFFPVvQ8QfGphMhZD2B3DnH1nUW1FvFQQtowvbI7/uK+WOdgOjiR9m?=
+ =?iso-8859-1?Q?bvN6LxufCJUxWp5MXoVDcLPxGmJVlT2pbSx2EYt7nEBJQXYe8mddWistRG?=
+ =?iso-8859-1?Q?EAdWeX95mlLbRvHccY9ecgU+i88QPm6+X8ECkKX9PZJ5SzLgo7tlXPzFSn?=
+ =?iso-8859-1?Q?dhQhT35cc5WPA1tYWzSZ0gyZDSB+tHQZfZFUqlutKCe4ZE6q3oJAYkcJVM?=
+ =?iso-8859-1?Q?v/jbd8Hv5CthH4srnco/0w3PH6QmMNC6btbI7TvSQVDMwDpnFOhI+r/7Wi?=
+ =?iso-8859-1?Q?vNjvYTrqTbtwxJwblPFGz6X0k0Rm6ZMa2ziUVcPc5YYc9YGYZ3K7R3nfOZ?=
+ =?iso-8859-1?Q?ylnH82b6SPWLbi8ijnefOTy8lf2sAwmwMw1O2lcoyJya15TYK7mEYCeUSp?=
+ =?iso-8859-1?Q?RR+kazRvb206ePmOcVdO10XnjIyfNDyu5Vj8CV94QmBWz0GD8cD/zIJJgw?=
+ =?iso-8859-1?Q?IKJZi6FRrWb/bMN8f1Iaoiqo+ZfjcJCRuxp9phZLKPiNrBsWSSL4+NcZJs?=
+ =?iso-8859-1?Q?EsroXY7R+wcWNDEuzCaxGpk1mejSjT5EYD/S7Ux89g4rTKLW1euOieNZBD?=
+ =?iso-8859-1?Q?07Zz5LVfxVrmPNjm6dtLKr5vHFSfKuaJcbAhb5fuEslnbFDZb4zqB7E3xA?=
+ =?iso-8859-1?Q?Q8hzTIsEvK1W/MZ6OW5PvXtlql2Okg98nohXErtGA54MlWmKhEOX/+7MYh?=
+ =?iso-8859-1?Q?vrvn3Uu1LyWDokVHiLYGeUF6rJF+gqgMDTGK0NQQuScAZzAS3dGheyzf55?=
+ =?iso-8859-1?Q?SFg2ndrj0jAT2MsNCXw8083LO9e8q3HoQ9h8g9vFlc4NlfoCv6geThwam+?=
+ =?iso-8859-1?Q?5tT5phiT6sUjIZYOEBooJ9rVPs6d3wvs/AniMgogkZ66QvgZvYd3ErpuMQ?=
+ =?iso-8859-1?Q?cEJ/wYMOKNdVYyjcMQuwQyr0H+je7Clr0jBNVwwXsdoLuI7AlYZLXP5VFV?=
+ =?iso-8859-1?Q?rhJpjUAvtaBb6uFQllgbB2EMIySWg6yWm6UP33UWqPF80L+DF8/utU+rOO?=
+ =?iso-8859-1?Q?2O1B4/yyB+7UlzERdFv2MLd+mmZKQ3BdqiILqwP9slM56qNvh4WHuu9whU?=
+ =?iso-8859-1?Q?6lzxATcO3d20jMW8l6Jag7JdegerveXu51jsHIaw6mcyiven6MlUrxQ86N?=
+ =?iso-8859-1?Q?98LNxzO//ln1RPJs204W4PZCMm0sU9RGvixQEzYUGTR0X9k/AYAaTgwgTN?=
+ =?iso-8859-1?Q?JrT9PahDqQ9cYubCNoyrmHb7Aqal0c2be+N/0wfZC/tlkbtsneUKIbUb6D?=
+ =?iso-8859-1?Q?mB5F20xvDdXYDtPikypgkWahzqr46jgg=3D=3D?=
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CH0PR11MB5444.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(38070700018); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(366016)(376014)(7416014)(1800799024)(38070700018); DIR:OUT;
+ SFP:1101; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?bKxMtWj7cwXNTB6LBEHz6dOU2v2A+nCKyC+4jkExd0LxjeZDf272gx9mb0F2?=
- =?us-ascii?Q?o8FIdEZnV901/1aAyLTHcdEW6p+aZypPw42zTG+iaJn77OfOjwc+bbNBebFa?=
- =?us-ascii?Q?iiv3FnpbRoKyVXAiqYEvmcpUtNif4QaVrQTSxqGRPq7Z+L4rgG7qKxgPN2ge?=
- =?us-ascii?Q?A9zbcF33GI/dxljPAcZNuNHRqSJH7yr7HIBzWbMro9dO5iwc5eeiTWQuC5bc?=
- =?us-ascii?Q?xJ5NauzsUMB9zMfSisCJivFXNh9C4KKfdouIPG+4NMgtxBa3YKHoWyPFy42n?=
- =?us-ascii?Q?fb7l2AtPu2IVj1IA874eDMTwHDGNxEYSccaXoKmjDx/31mpT26XFfavMKVt9?=
- =?us-ascii?Q?b736XJxPsH4OM5f5RH6Ic0HdCB5gj2ZJxJcKWtQrOKaJhk+zXC8gZkDpat1o?=
- =?us-ascii?Q?jGL20LHlLylBqhOzNpMZJ+fXY1dMJryHfHJegKG2UZr7HH765+UHhwYgZSUI?=
- =?us-ascii?Q?LuFH02U9NiP5YGb7AetBjDAddusxM5rBf5qdndYCH8sZXXc6ThgCc3MUJd6A?=
- =?us-ascii?Q?pthipZIXPxIhx8GNF0sFyCNs8gJCAzQT4ju3aSmr+TiUBtoNEoEHbnAEjwK2?=
- =?us-ascii?Q?lPiWsOr8ckqZpaI1iVFZpV+U+ly2sflXto0Ch5FWzDC8MprzF3uB96CNW87w?=
- =?us-ascii?Q?WGHrSrQ3BaLU3p49End02+9ppiBWYt6cGV2QzuVAuvlMwCWBoc1+ppvNgRWG?=
- =?us-ascii?Q?S2ASxB/RmdzBuQnr2hXPAmMdmUZJPKSeiWgzluj0sTu4aYPfYN2AYTRZDAuk?=
- =?us-ascii?Q?+2/LgylgyXZbg/baD+Vi7UAeIgi6UeCupkoVc6TS+mWO95BuFLJSrv3d2PCP?=
- =?us-ascii?Q?vg2C8PbOVsmimVgU8VsrqhPZ0fSJLmYt7l6eoornOFSZTnpCDsfKSpDP9t//?=
- =?us-ascii?Q?XrS3ZUBa1ZtaPPQC4bkQNNoCX8gyp4M7aMIx4a2RVBzEOkL0uj6HFCqWzBZw?=
- =?us-ascii?Q?L/Qrt0HUuQUzbh7kAWL0oCKZNKRgIYPl7DbLOLecPzUxgUKG0OUU9e8+CDNM?=
- =?us-ascii?Q?xPWNyeF/SkCHsk72u/A9bLRHxXzEDvhaPuFC9sq5+1lNNJ12ihapanhTxL1c?=
- =?us-ascii?Q?GccnOeRjqa5HB28iQ6Bz0fl3q5ehshhmZMIhmhllw4xDmOBdBbCM2RDCLLF7?=
- =?us-ascii?Q?HYTFnPaKNYGY9eRdZ/K75z8qxaG9yugPKQLZC2jKFTbQ+jvALr0HwUuaT3v7?=
- =?us-ascii?Q?Ke2py9Ue20RcOljky3rOBSmnEpeCPtMpJJs7NserDA6ZrlLXuIp/AjscYWe5?=
- =?us-ascii?Q?ORu6r705WfS6+LM0nDJwptrnw4076s0lh6U9e+qsFnFuy8ZHDgqrcOi/k9Bj?=
- =?us-ascii?Q?V9toVSlBIUgeIg9e1wsMBfmltHT+arQWSqrarFxDYGSG+5tMIEv2VNuHOo+Y?=
- =?us-ascii?Q?gvpx1JQvFt8anrgLfkilNWphAriJxsiAE8pFkdMIakjJQ3rXfyCucrJV3zw7?=
- =?us-ascii?Q?imvKNL/4kjw3BbPiHUMXPsRDGVVZb5/Nmlqw+VRzod386LNs6QwSGovV2yKR?=
- =?us-ascii?Q?GRleCJIb8RtVxHqI+TkbwZNvkSwSREtdkVK451qR/WJ8bI/blWkoTXqI0v9R?=
- =?us-ascii?Q?X4NsuF4MeVd4YjzRf8zw/aLsvskgCy8V7SRqonGJ?=
-Content-Type: text/plain; charset="us-ascii"
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?utzZVB/zW49VjMVyez+VeIP9BL8JbzHZqCSxZoeEU1bdgRxJlY8HPcyiIi?=
+ =?iso-8859-1?Q?BsrLP4D6OewL1Ps2iH7tAOGvfkI7I0y/gU3XPd/Uoy9y9QT3ZUxXLahq8o?=
+ =?iso-8859-1?Q?c95Uu4n0mVaXIDWvZQygw7d1qWKakoxX0/0Fbo38bH9RiveJyb3Lfi4Tsb?=
+ =?iso-8859-1?Q?5BIb6lzDd/Kt92BzGcFIPNcrkg4BeWaLchOpN8dxeTYcdPopTg4Ld/FnLk?=
+ =?iso-8859-1?Q?G45AInFlwlWdtBPhngZq4HR3M/pi5JKo5XT+314QIsXI1hCxaU1GPkDkcw?=
+ =?iso-8859-1?Q?epX9xWA3epd2J/sUsxzjyhGoUH0v0xzCnq9LarYu9ImyD/gQMJSLMY7M1u?=
+ =?iso-8859-1?Q?1/0vuQzhK8I+T2r1bZ2uOELMQxG6UYBPLD6ZxPuM0eC5PPtjNShwngiDui?=
+ =?iso-8859-1?Q?kEs6jqqPIuEJjqCHb3epxV9PVwHPTn7L7ESWZlcnXDwPy9SaPvfzA4L8Ec?=
+ =?iso-8859-1?Q?rxO841fci9wWHKud/iUj+LwHfk/cHZEHWYrAQtYXUIfP0nJOwUurM4r/1V?=
+ =?iso-8859-1?Q?advOMXSoNVyOCb4gQZj6PNchpB4RJ6YhRr4SRVskC4Ld3RJeTJ8R84hoDO?=
+ =?iso-8859-1?Q?PkwIEvpP5WhjEscTfL887ohIZ/nuTkcnCK1xVcrdGFw5WyL+ZyN6BZ1qIj?=
+ =?iso-8859-1?Q?yyfKu96Gcv/KVNhakw2y2SbC2F+veuQ3FA+iI+2PR6R2tilPshYv4xAWLi?=
+ =?iso-8859-1?Q?hXU1KsgqVL7nz8s+fCK8lflgX/SGi7xBATLfHedfpMlnkyv1/p1GYGSkAL?=
+ =?iso-8859-1?Q?D4FCEFk6Blj/rQH+nTaGYxjD+oWPzAYGdjbRqx+SRWYSaAu2b2TUihoCA3?=
+ =?iso-8859-1?Q?tNiX1sz5hH0MxtPyMhM3LxIkv/Dc7GR6DSH0BxHtevmc+xAdDt/4S0633v?=
+ =?iso-8859-1?Q?UHUfxDm3nTqq3e4s311C5KuP/XS3cKHr1pmDAyEzncbsiXivAzQPmM1b3t?=
+ =?iso-8859-1?Q?+CMxIo+WZVeOrdnU0Am6J39Ad0TLdN3SS1d+K5ObN5qH5WZ8f+Q3JTQY+E?=
+ =?iso-8859-1?Q?UA5ssoc862RT9qARcidqQuhlCmiwpoP1lX6jVLMEXrO9j0LBNUl76FDStJ?=
+ =?iso-8859-1?Q?1ciwLA7uoZJjjMHb0rYf7AniBtkaIaDCNPql0Sqz+ily4TON3sr2RRgJf0?=
+ =?iso-8859-1?Q?22EPoVw3dwgmo0/72he2l81hJLkSiEiGQrHGkl791L0GdJGVMCEkKEVSaO?=
+ =?iso-8859-1?Q?5fQnJzhvdOjITMO1CD1/ZlQ3kRsEj3PGj5LWge+Y6lunjl1+EJGI0wuuXu?=
+ =?iso-8859-1?Q?GEdfZfiyhrLfHzwozWBceRbyIlaVVXSXrXd1/5b4vOuZflthmaltNdwoSi?=
+ =?iso-8859-1?Q?6MfWom1Mo0HBiNdnYIqSW6mKCgt/VrYqp0qC7Bse0zbaPtB0mM8HFik8SW?=
+ =?iso-8859-1?Q?B7Abr9tVECVzXP+gMLVQdsQ5irAyDUaFWF9bCojNtryGNna1LoVkQzQQhX?=
+ =?iso-8859-1?Q?D4jrKrkW1vDVIYXdWo+h1J6PgKuWHGTVxX7MbgNITctXi29QgF5QaE3SBp?=
+ =?iso-8859-1?Q?rUbkKckNx385R/m993o95IFBAdlgloAABOa4ZKZs/jOz+jZ6IqDX8m91Gg?=
+ =?iso-8859-1?Q?tnBTzpz5Dt5WQfRjnWveFi27JgfOANLZ3pmPSB7X1hB+8SjRrmndCEWatY?=
+ =?iso-8859-1?Q?V3iSIpzG91Y76p9TGODlpsqcMmWIheyWUqm1+tYNwrCdiWyc71N2D78g?=
+ =?iso-8859-1?Q?=3D=3D?=
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: CH0PR11MB5444.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 56d82d5f-4fe7-4314-60f8-08dce7dbb1d3
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Oct 2024 20:56:34.6760 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e8115fbc-a5a6-4478-d87b-08dce7ddc608
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Oct 2024 21:11:27.5575 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: rTgIZmI8EXIXwJ8KtxkYtNJtGqPesBw8MJHL3SC0HhaccOVmUUcrI/9CFdD5/IJhB+keSR0ydWK70fZ0sVgguM/0V85VkhSDCp1A80QJQj8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB6620
+X-MS-Exchange-CrossTenant-userprincipalname: G51jSuvjCx/Tgh5+H/rrHb6XoEe3lMkxxs7qHqqolMjYAHLkyn2IKQPYhqm175YQPg3ipCOqd6fSJiNRcx9EcSUI2AHR7HvVFJPMo3rwIMY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6606
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -198,20 +207,30 @@ To: simona@ffwll.ch; airlied@gmail.com; javierm@redhat.com; jfalempe@redhat=
 .com
 Cc: dri-devel@lists.freedesktop.org; amd-gfx@lists.freedesktop.org; intel-g=
 fx@lists.freedesktop.org; intel-xe@lists.freedesktop.org; Thomas Zimmermann=
- <tzimmermann@suse.de>
-Subject: [PATCH v3 05/12] drm/fbdev: Store fbdev module parameters in separ=
-ate file
+ <tzimmermann@suse.de>; Jani Nikula <jani.nikula@linux.intel.com>; Vivi, Ro=
+drigo <rodrigo.vivi@intel.com>; Joonas Lahtinen <joonas.lahtinen@linux.inte=
+l.com>; Tvrtko Ursulin <tursulin@ursulin.net>; Karol Herbst <kherbst@redhat=
+.com>; Lyude Paul <lyude@redhat.com>; Danilo Krummrich <dakr@redhat.com>
+Subject: [PATCH v3 06/12] drm/client: Move client event handlers to drm_cli=
+ent_event.c
 >=20
-> The fbdev code does not really belong into drm_kms_helper.ko. But
-> there are module parameters that control the behavior of the fbdev
-> emulation. It is not possible to remove them from the module without
-> breaking someone's installation.
+> A number of DRM-client functions serve as entry points from device
+> operations to client code. Moving them info a separate file will later
+> allow for a more fine-grained kernel configuration. For most of the
+> users it is sufficient to include <drm/drm_client_event.h> instead of
+> the full driver-side interface in <drm/drm_client.h>
 >=20
-> Therefore move the fbdev module parameters to drm_kms_helper_common.c,
-> so that the actual fbdev implementaton can later go into a separate
-> module.
+> v2:
+> - rename new files to drm_client_event.{c,h}
 >=20
 > Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Tvrtko Ursulin <tursulin@ursulin.net>
+> Cc: Karol Herbst <kherbst@redhat.com>
+> Cc: Lyude Paul <lyude@redhat.com>
+> Cc: Danilo Krummrich <dakr@redhat.com>
 
 LGTM.
 
@@ -219,131 +238,445 @@ Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 -Jonathan Cavitt
 
 > ---
->  drivers/gpu/drm/drm_fb_helper.c         | 31 ----------------------
->  drivers/gpu/drm/drm_internal.h          |  7 +++++
->  drivers/gpu/drm/drm_kms_helper_common.c | 35 +++++++++++++++++++++++++
->  3 files changed, 42 insertions(+), 31 deletions(-)
+>  Documentation/gpu/drm-client.rst              |   3 +
+>  drivers/gpu/drm/Makefile                      |   1 +
+>  drivers/gpu/drm/drm_client.c                  | 121 ----------------
+>  drivers/gpu/drm/drm_client_event.c            | 135 ++++++++++++++++++
+>  drivers/gpu/drm/drm_drv.c                     |   2 +-
+>  drivers/gpu/drm/drm_file.c                    |   2 +-
+>  drivers/gpu/drm/drm_probe_helper.c            |   2 +-
+>  .../drm/i915/display/intel_display_driver.c   |   2 +-
+>  drivers/gpu/drm/nouveau/nouveau_vga.c         |   2 +-
+>  include/drm/drm_client.h                      |   4 -
+>  include/drm/drm_client_event.h                |  12 ++
+>  11 files changed, 156 insertions(+), 130 deletions(-)
+>  create mode 100644 drivers/gpu/drm/drm_client_event.c
+>  create mode 100644 include/drm/drm_client_event.h
 >=20
-> diff --git a/drivers/gpu/drm/drm_fb_helper.c b/drivers/gpu/drm/drm_fb_hel=
-per.c
-> index d5e8994345bb..004f7c437897 100644
-> --- a/drivers/gpu/drm/drm_fb_helper.c
-> +++ b/drivers/gpu/drm/drm_fb_helper.c
-> @@ -46,37 +46,6 @@
->  #include "drm_internal.h"
->  #include "drm_crtc_internal.h"
+> diff --git a/Documentation/gpu/drm-client.rst b/Documentation/gpu/drm-cli=
+ent.rst
+> index 58b5a1d1219d..cbcfe30de777 100644
+> --- a/Documentation/gpu/drm-client.rst
+> +++ b/Documentation/gpu/drm-client.rst
+> @@ -13,3 +13,6 @@ Kernel clients
 > =20
-> -static bool drm_fbdev_emulation =3D true;
-> -module_param_named(fbdev_emulation, drm_fbdev_emulation, bool, 0600);
-> -MODULE_PARM_DESC(fbdev_emulation,
-> -		 "Enable legacy fbdev emulation [default=3Dtrue]");
-> -
-> -static int drm_fbdev_overalloc =3D CONFIG_DRM_FBDEV_OVERALLOC;
-> -module_param(drm_fbdev_overalloc, int, 0444);
-> -MODULE_PARM_DESC(drm_fbdev_overalloc,
-> -		 "Overallocation of the fbdev buffer (%) [default=3D"
-> -		 __MODULE_STRING(CONFIG_DRM_FBDEV_OVERALLOC) "]");
-> -
-> -/*
-> - * In order to keep user-space compatibility, we want in certain use-cas=
-es
-> - * to keep leaking the fbdev physical address to the user-space program
-> - * handling the fbdev buffer.
+>  .. kernel-doc:: drivers/gpu/drm/drm_client_modeset.c
+>     :export:
+> +
+> +.. kernel-doc:: drivers/gpu/drm/drm_client_event.c
+> +   :export:
+> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
+> index 3894f43f6d47..6b7d168ca790 100644
+> --- a/drivers/gpu/drm/Makefile
+> +++ b/drivers/gpu/drm/Makefile
+> @@ -42,6 +42,7 @@ drm-y :=3D \
+>  	drm_bridge.o \
+>  	drm_cache.o \
+>  	drm_client.o \
+> +	drm_client_event.o \
+>  	drm_client_modeset.o \
+>  	drm_color_mgmt.o \
+>  	drm_connector.o \
+> diff --git a/drivers/gpu/drm/drm_client.c b/drivers/gpu/drm/drm_client.c
+> index bfedcbf516db..549b28a5918c 100644
+> --- a/drivers/gpu/drm/drm_client.c
+> +++ b/drivers/gpu/drm/drm_client.c
+> @@ -10,7 +10,6 @@
+>  #include <linux/slab.h>
+> =20
+>  #include <drm/drm_client.h>
+> -#include <drm/drm_debugfs.h>
+>  #include <drm/drm_device.h>
+>  #include <drm/drm_drv.h>
+>  #include <drm/drm_file.h>
+> @@ -172,99 +171,6 @@ void drm_client_release(struct drm_client_dev *clien=
+t)
+>  }
+>  EXPORT_SYMBOL(drm_client_release);
+> =20
+> -/**
+> - * drm_client_dev_unregister - Unregister clients
+> - * @dev: DRM device
 > - *
-> - * This is a bad habit, essentially kept to support closed-source OpenGL
-> - * drivers that should really be moved into open-source upstream project=
-s
-> - * instead of using legacy physical addresses in user space to communica=
-te
-> - * with other out-of-tree kernel modules.
+> - * This function releases all clients by calling each client's
+> - * &drm_client_funcs.unregister callback. The callback function
+> - * is responsibe for releaseing all resources including the client
+> - * itself.
 > - *
-> - * This module_param *should* be removed as soon as possible and be
-> - * considered as a broken and legacy behaviour from a modern fbdev devic=
-e.
+> - * The helper drm_dev_unregister() calls this function. Drivers
+> - * that use it don't need to call this function themselves.
 > - */
-> -static bool drm_leak_fbdev_smem;
-> -#if IS_ENABLED(CONFIG_DRM_FBDEV_LEAK_PHYS_SMEM)
-> -module_param_unsafe(drm_leak_fbdev_smem, bool, 0600);
-> -MODULE_PARM_DESC(drm_leak_fbdev_smem,
-> -		 "Allow unsafe leaking fbdev physical smem address [default=3Dfalse]")=
-;
-> -#endif
+> -void drm_client_dev_unregister(struct drm_device *dev)
+> -{
+> -	struct drm_client_dev *client, *tmp;
 > -
->  static LIST_HEAD(kernel_fb_helper_list);
->  static DEFINE_MUTEX(kernel_fb_helper_lock);
-> =20
-> diff --git a/drivers/gpu/drm/drm_internal.h b/drivers/gpu/drm/drm_interna=
-l.h
-> index 1705bfc90b1e..9af72bab86d1 100644
-> --- a/drivers/gpu/drm/drm_internal.h
-> +++ b/drivers/gpu/drm/drm_internal.h
-> @@ -54,6 +54,13 @@ bool drm_dev_needs_global_mutex(struct drm_device *dev=
-);
->  struct drm_file *drm_file_alloc(struct drm_minor *minor);
->  void drm_file_free(struct drm_file *file);
-> =20
-> +/* drm_kms_helper_common.c */
-> +#if defined(CONFIG_DRM_FBDEV_EMULATION)
-> +extern bool drm_fbdev_emulation;
-> +extern int drm_fbdev_overalloc;
-> +extern bool drm_leak_fbdev_smem;
-> +#endif
-> +
->  #ifdef CONFIG_PCI
-> =20
->  /* drm_pci.c */
-> diff --git a/drivers/gpu/drm/drm_kms_helper_common.c b/drivers/gpu/drm/dr=
-m_kms_helper_common.c
-> index 0c7550c0462b..cfdbc1ac88dc 100644
-> --- a/drivers/gpu/drm/drm_kms_helper_common.c
-> +++ b/drivers/gpu/drm/drm_kms_helper_common.c
-> @@ -27,6 +27,41 @@
-> =20
->  #include <linux/module.h>
-> =20
-> +#include "drm_internal.h"
-> +
-> +#if defined(CONFIG_DRM_FBDEV_EMULATION)
-> +bool drm_fbdev_emulation =3D true;
-> +module_param_named(fbdev_emulation, drm_fbdev_emulation, bool, 0600);
-> +MODULE_PARM_DESC(fbdev_emulation,
-> +		 "Enable legacy fbdev emulation [default=3Dtrue]");
-> +
-> +int drm_fbdev_overalloc =3D CONFIG_DRM_FBDEV_OVERALLOC;
-> +module_param(drm_fbdev_overalloc, int, 0444);
-> +MODULE_PARM_DESC(drm_fbdev_overalloc,
-> +		 "Overallocation of the fbdev buffer (%) [default=3D"
-> +		 __MODULE_STRING(CONFIG_DRM_FBDEV_OVERALLOC) "]");
-> +
+> -	if (!drm_core_check_feature(dev, DRIVER_MODESET))
+> -		return;
+> -
+> -	mutex_lock(&dev->clientlist_mutex);
+> -	list_for_each_entry_safe(client, tmp, &dev->clientlist, list) {
+> -		list_del(&client->list);
+> -		if (client->funcs && client->funcs->unregister) {
+> -			client->funcs->unregister(client);
+> -		} else {
+> -			drm_client_release(client);
+> -			kfree(client);
+> -		}
+> -	}
+> -	mutex_unlock(&dev->clientlist_mutex);
+> -}
+> -EXPORT_SYMBOL(drm_client_dev_unregister);
+> -
+> -/**
+> - * drm_client_dev_hotplug - Send hotplug event to clients
+> - * @dev: DRM device
+> - *
+> - * This function calls the &drm_client_funcs.hotplug callback on the att=
+ached clients.
+> - *
+> - * drm_kms_helper_hotplug_event() calls this function, so drivers that u=
+se it
+> - * don't need to call this function themselves.
+> - */
+> -void drm_client_dev_hotplug(struct drm_device *dev)
+> -{
+> -	struct drm_client_dev *client;
+> -	int ret;
+> -
+> -	if (!drm_core_check_feature(dev, DRIVER_MODESET))
+> -		return;
+> -
+> -	if (!dev->mode_config.num_connector) {
+> -		drm_dbg_kms(dev, "No connectors found, will not send hotplug events!\n=
+");
+> -		return;
+> -	}
+> -
+> -	mutex_lock(&dev->clientlist_mutex);
+> -	list_for_each_entry(client, &dev->clientlist, list) {
+> -		if (!client->funcs || !client->funcs->hotplug)
+> -			continue;
+> -
+> -		if (client->hotplug_failed)
+> -			continue;
+> -
+> -		ret =3D client->funcs->hotplug(client);
+> -		drm_dbg_kms(dev, "%s: ret=3D%d\n", client->name, ret);
+> -		if (ret)
+> -			client->hotplug_failed =3D true;
+> -	}
+> -	mutex_unlock(&dev->clientlist_mutex);
+> -}
+> -EXPORT_SYMBOL(drm_client_dev_hotplug);
+> -
+> -void drm_client_dev_restore(struct drm_device *dev)
+> -{
+> -	struct drm_client_dev *client;
+> -	int ret;
+> -
+> -	if (!drm_core_check_feature(dev, DRIVER_MODESET))
+> -		return;
+> -
+> -	mutex_lock(&dev->clientlist_mutex);
+> -	list_for_each_entry(client, &dev->clientlist, list) {
+> -		if (!client->funcs || !client->funcs->restore)
+> -			continue;
+> -
+> -		ret =3D client->funcs->restore(client);
+> -		drm_dbg_kms(dev, "%s: ret=3D%d\n", client->name, ret);
+> -		if (!ret) /* The first one to return zero gets the privilege to restor=
+e */
+> -			break;
+> -	}
+> -	mutex_unlock(&dev->clientlist_mutex);
+> -}
+> -
+>  static void drm_client_buffer_delete(struct drm_client_buffer *buffer)
+>  {
+>  	if (buffer->gem) {
+> @@ -584,30 +490,3 @@ int drm_client_framebuffer_flush(struct drm_client_b=
+uffer *buffer, struct drm_re
+>  					0, 0, NULL, 0);
+>  }
+>  EXPORT_SYMBOL(drm_client_framebuffer_flush);
+> -
+> -#ifdef CONFIG_DEBUG_FS
+> -static int drm_client_debugfs_internal_clients(struct seq_file *m, void =
+*data)
+> -{
+> -	struct drm_debugfs_entry *entry =3D m->private;
+> -	struct drm_device *dev =3D entry->dev;
+> -	struct drm_printer p =3D drm_seq_file_printer(m);
+> -	struct drm_client_dev *client;
+> -
+> -	mutex_lock(&dev->clientlist_mutex);
+> -	list_for_each_entry(client, &dev->clientlist, list)
+> -		drm_printf(&p, "%s\n", client->name);
+> -	mutex_unlock(&dev->clientlist_mutex);
+> -
+> -	return 0;
+> -}
+> -
+> -static const struct drm_debugfs_info drm_client_debugfs_list[] =3D {
+> -	{ "internal_clients", drm_client_debugfs_internal_clients, 0 },
+> -};
+> -
+> -void drm_client_debugfs_init(struct drm_device *dev)
+> -{
+> -	drm_debugfs_add_files(dev, drm_client_debugfs_list,
+> -			      ARRAY_SIZE(drm_client_debugfs_list));
+> -}
+> -#endif
+> diff --git a/drivers/gpu/drm/drm_client_event.c b/drivers/gpu/drm/drm_cli=
+ent_event.c
+> new file mode 100644
+> index 000000000000..d13d44320c5c
+> --- /dev/null
+> +++ b/drivers/gpu/drm/drm_client_event.c
+> @@ -0,0 +1,135 @@
+> +// SPDX-License-Identifier: GPL-2.0 or MIT
 > +/*
-> + * In order to keep user-space compatibility, we want in certain use-cas=
-es
-> + * to keep leaking the fbdev physical address to the user-space program
-> + * handling the fbdev buffer.
-> + *
-> + * This is a bad habit, essentially kept to support closed-source OpenGL
-> + * drivers that should really be moved into open-source upstream project=
-s
-> + * instead of using legacy physical addresses in user space to communica=
-te
-> + * with other out-of-tree kernel modules.
-> + *
-> + * This module_param *should* be removed as soon as possible and be
-> + * considered as a broken and legacy behaviour from a modern fbdev devic=
-e.
+> + * Copyright 2018 Noralf Tr=F8nnes
 > + */
-> +bool drm_leak_fbdev_smem;
-> +#if IS_ENABLED(CONFIG_DRM_FBDEV_LEAK_PHYS_SMEM)
-> +module_param_unsafe(drm_leak_fbdev_smem, bool, 0600);
-> +MODULE_PARM_DESC(drm_leak_fbdev_smem,
-> +		 "Allow unsafe leaking fbdev physical smem address [default=3Dfalse]")=
-;
-> +#endif
-> +#endif
 > +
->  MODULE_AUTHOR("David Airlie, Jesse Barnes");
->  MODULE_DESCRIPTION("DRM KMS helper");
->  MODULE_LICENSE("GPL and additional rights");
+> +#include <linux/list.h>
+> +#include <linux/mutex.h>
+> +#include <linux/seq_file.h>
+> +
+> +#include <drm/drm_client.h>
+> +#include <drm/drm_client_event.h>
+> +#include <drm/drm_debugfs.h>
+> +#include <drm/drm_device.h>
+> +#include <drm/drm_drv.h>
+> +#include <drm/drm_print.h>
+> +
+> +/**
+> + * drm_client_dev_unregister - Unregister clients
+> + * @dev: DRM device
+> + *
+> + * This function releases all clients by calling each client's
+> + * &drm_client_funcs.unregister callback. The callback function
+> + * is responsibe for releaseing all resources including the client
+> + * itself.
+> + *
+> + * The helper drm_dev_unregister() calls this function. Drivers
+> + * that use it don't need to call this function themselves.
+> + */
+> +void drm_client_dev_unregister(struct drm_device *dev)
+> +{
+> +	struct drm_client_dev *client, *tmp;
+> +
+> +	if (!drm_core_check_feature(dev, DRIVER_MODESET))
+> +		return;
+> +
+> +	mutex_lock(&dev->clientlist_mutex);
+> +	list_for_each_entry_safe(client, tmp, &dev->clientlist, list) {
+> +		list_del(&client->list);
+> +		if (client->funcs && client->funcs->unregister) {
+> +			client->funcs->unregister(client);
+> +		} else {
+> +			drm_client_release(client);
+> +			kfree(client);
+> +		}
+> +	}
+> +	mutex_unlock(&dev->clientlist_mutex);
+> +}
+> +EXPORT_SYMBOL(drm_client_dev_unregister);
+> +
+> +/**
+> + * drm_client_dev_hotplug - Send hotplug event to clients
+> + * @dev: DRM device
+> + *
+> + * This function calls the &drm_client_funcs.hotplug callback on the att=
+ached clients.
+> + *
+> + * drm_kms_helper_hotplug_event() calls this function, so drivers that u=
+se it
+> + * don't need to call this function themselves.
+> + */
+> +void drm_client_dev_hotplug(struct drm_device *dev)
+> +{
+> +	struct drm_client_dev *client;
+> +	int ret;
+> +
+> +	if (!drm_core_check_feature(dev, DRIVER_MODESET))
+> +		return;
+> +
+> +	if (!dev->mode_config.num_connector) {
+> +		drm_dbg_kms(dev, "No connectors found, will not send hotplug events!\n=
+");
+> +		return;
+> +	}
+> +
+> +	mutex_lock(&dev->clientlist_mutex);
+> +	list_for_each_entry(client, &dev->clientlist, list) {
+> +		if (!client->funcs || !client->funcs->hotplug)
+> +			continue;
+> +
+> +		if (client->hotplug_failed)
+> +			continue;
+> +
+> +		ret =3D client->funcs->hotplug(client);
+> +		drm_dbg_kms(dev, "%s: ret=3D%d\n", client->name, ret);
+> +		if (ret)
+> +			client->hotplug_failed =3D true;
+> +	}
+> +	mutex_unlock(&dev->clientlist_mutex);
+> +}
+> +EXPORT_SYMBOL(drm_client_dev_hotplug);
+> +
+> +void drm_client_dev_restore(struct drm_device *dev)
+> +{
+> +	struct drm_client_dev *client;
+> +	int ret;
+> +
+> +	if (!drm_core_check_feature(dev, DRIVER_MODESET))
+> +		return;
+> +
+> +	mutex_lock(&dev->clientlist_mutex);
+> +	list_for_each_entry(client, &dev->clientlist, list) {
+> +		if (!client->funcs || !client->funcs->restore)
+> +			continue;
+> +
+> +		ret =3D client->funcs->restore(client);
+> +		drm_dbg_kms(dev, "%s: ret=3D%d\n", client->name, ret);
+> +		if (!ret) /* The first one to return zero gets the privilege to restor=
+e */
+> +			break;
+> +	}
+> +	mutex_unlock(&dev->clientlist_mutex);
+> +}
+> +
+> +#ifdef CONFIG_DEBUG_FS
+> +static int drm_client_debugfs_internal_clients(struct seq_file *m, void =
+*data)
+> +{
+> +	struct drm_debugfs_entry *entry =3D m->private;
+> +	struct drm_device *dev =3D entry->dev;
+> +	struct drm_printer p =3D drm_seq_file_printer(m);
+> +	struct drm_client_dev *client;
+> +
+> +	mutex_lock(&dev->clientlist_mutex);
+> +	list_for_each_entry(client, &dev->clientlist, list)
+> +		drm_printf(&p, "%s\n", client->name);
+> +	mutex_unlock(&dev->clientlist_mutex);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct drm_debugfs_info drm_client_debugfs_list[] =3D {
+> +	{ "internal_clients", drm_client_debugfs_internal_clients, 0 },
+> +};
+> +
+> +void drm_client_debugfs_init(struct drm_device *dev)
+> +{
+> +	drm_debugfs_add_files(dev, drm_client_debugfs_list,
+> +			      ARRAY_SIZE(drm_client_debugfs_list));
+> +}
+> +#endif
+> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
+> index ac30b0ec9d93..c2c172eb25df 100644
+> --- a/drivers/gpu/drm/drm_drv.c
+> +++ b/drivers/gpu/drm/drm_drv.c
+> @@ -38,7 +38,7 @@
+> =20
+>  #include <drm/drm_accel.h>
+>  #include <drm/drm_cache.h>
+> -#include <drm/drm_client.h>
+> +#include <drm/drm_client_event.h>
+>  #include <drm/drm_color_mgmt.h>
+>  #include <drm/drm_drv.h>
+>  #include <drm/drm_file.h>
+> diff --git a/drivers/gpu/drm/drm_file.c b/drivers/gpu/drm/drm_file.c
+> index ad1dc638c83b..7415abb7faca 100644
+> --- a/drivers/gpu/drm/drm_file.c
+> +++ b/drivers/gpu/drm/drm_file.c
+> @@ -40,7 +40,7 @@
+>  #include <linux/slab.h>
+>  #include <linux/vga_switcheroo.h>
+> =20
+> -#include <drm/drm_client.h>
+> +#include <drm/drm_client_event.h>
+>  #include <drm/drm_drv.h>
+>  #include <drm/drm_file.h>
+>  #include <drm/drm_gem.h>
+> diff --git a/drivers/gpu/drm/drm_probe_helper.c b/drivers/gpu/drm/drm_pro=
+be_helper.c
+> index 92f21764246f..96b266b37ba4 100644
+> --- a/drivers/gpu/drm/drm_probe_helper.c
+> +++ b/drivers/gpu/drm/drm_probe_helper.c
+> @@ -33,7 +33,7 @@
+>  #include <linux/moduleparam.h>
+> =20
+>  #include <drm/drm_bridge.h>
+> -#include <drm/drm_client.h>
+> +#include <drm/drm_client_event.h>
+>  #include <drm/drm_crtc.h>
+>  #include <drm/drm_edid.h>
+>  #include <drm/drm_fourcc.h>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/driver=
+s/gpu/drm/i915/display/intel_display_driver.c
+> index c106fb2dd20b..673f9b965494 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+> @@ -11,7 +11,7 @@
+>  #include <acpi/video.h>
+>  #include <drm/display/drm_dp_mst_helper.h>
+>  #include <drm/drm_atomic_helper.h>
+> -#include <drm/drm_client.h>
+> +#include <drm/drm_client_event.h>
+>  #include <drm/drm_mode_config.h>
+>  #include <drm/drm_privacy_screen_consumer.h>
+>  #include <drm/drm_probe_helper.h>
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_vga.c b/drivers/gpu/drm/nouv=
+eau/nouveau_vga.c
+> index ab4e11dc0b8a..a6c375a24154 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_vga.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_vga.c
+> @@ -2,7 +2,7 @@
+>  #include <linux/vgaarb.h>
+>  #include <linux/vga_switcheroo.h>
+> =20
+> -#include <drm/drm_fb_helper.h>
+> +#include <drm/drm_client_event.h>
+> =20
+>  #include "nouveau_drv.h"
+>  #include "nouveau_acpi.h"
+> diff --git a/include/drm/drm_client.h b/include/drm/drm_client.h
+> index bc0e66f9c425..dfd5afcc9463 100644
+> --- a/include/drm/drm_client.h
+> +++ b/include/drm/drm_client.h
+> @@ -121,10 +121,6 @@ int drm_client_init(struct drm_device *dev, struct d=
+rm_client_dev *client,
+>  void drm_client_release(struct drm_client_dev *client);
+>  void drm_client_register(struct drm_client_dev *client);
+> =20
+> -void drm_client_dev_unregister(struct drm_device *dev);
+> -void drm_client_dev_hotplug(struct drm_device *dev);
+> -void drm_client_dev_restore(struct drm_device *dev);
+> -
+>  /**
+>   * struct drm_client_buffer - DRM client buffer
+>   */
+> diff --git a/include/drm/drm_client_event.h b/include/drm/drm_client_even=
+t.h
+> new file mode 100644
+> index 000000000000..2c8915241120
+> --- /dev/null
+> +++ b/include/drm/drm_client_event.h
+> @@ -0,0 +1,12 @@
+> +/* SPDX-License-Identifier: GPL-2.0 or MIT */
+> +
+> +#ifndef _DRM_CLIENT_EVENT_H_
+> +#define _DRM_CLIENT_EVENT_H_
+> +
+> +struct drm_device;
+> +
+> +void drm_client_dev_unregister(struct drm_device *dev);
+> +void drm_client_dev_hotplug(struct drm_device *dev);
+> +void drm_client_dev_restore(struct drm_device *dev);
+> +
+> +#endif
 > --=20
 > 2.46.0
 >=20
