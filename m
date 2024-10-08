@@ -2,29 +2,112 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEC339947B2
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Oct 2024 13:51:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E876799480E
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Oct 2024 14:07:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E5CC10E4D2;
-	Tue,  8 Oct 2024 11:51:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A30310E4DA;
+	Tue,  8 Oct 2024 12:06:58 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="NTY+03cD";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="YpBrSKpQ";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="NTY+03cD";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="YpBrSKpQ";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2771710E4D1;
- Tue,  8 Oct 2024 11:51:25 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8794846123169731115=="
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 90F1B10E4D3;
+ Tue,  8 Oct 2024 12:06:56 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 23AD721D06;
+ Tue,  8 Oct 2024 12:06:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1728389215; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=DqhDw7BZHjGNO6CC2JHaUuBN+mOEh/lOH8Odd1zk9AA=;
+ b=NTY+03cDmdfd4qYQSCDG1RfDMsy4vvUUUxwUTVImNXb0uB+2Ra/t6sGyQYDDBJT6WamyB0
+ RQCA8Z+Z62i9gvdxPn2pTCqzvorA1zmEGNuK9OwKSgLT7SJr2rwDLumajDoS83f9wJqxYx
+ j5fsVe1d7ze5LswhzWq3jmE+Uoss2HI=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1728389215;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=DqhDw7BZHjGNO6CC2JHaUuBN+mOEh/lOH8Odd1zk9AA=;
+ b=YpBrSKpQ6blSf1wlcTyFvfTAxZPn594i0PeAIcMSwGZpKC2FUw46GCyAJyOX20vh6yHuWo
+ Cjb1ulNzfsxe91Cw==
+Authentication-Results: smtp-out1.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=NTY+03cD;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=YpBrSKpQ
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1728389215; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=DqhDw7BZHjGNO6CC2JHaUuBN+mOEh/lOH8Odd1zk9AA=;
+ b=NTY+03cDmdfd4qYQSCDG1RfDMsy4vvUUUxwUTVImNXb0uB+2Ra/t6sGyQYDDBJT6WamyB0
+ RQCA8Z+Z62i9gvdxPn2pTCqzvorA1zmEGNuK9OwKSgLT7SJr2rwDLumajDoS83f9wJqxYx
+ j5fsVe1d7ze5LswhzWq3jmE+Uoss2HI=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1728389215;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=DqhDw7BZHjGNO6CC2JHaUuBN+mOEh/lOH8Odd1zk9AA=;
+ b=YpBrSKpQ6blSf1wlcTyFvfTAxZPn594i0PeAIcMSwGZpKC2FUw46GCyAJyOX20vh6yHuWo
+ Cjb1ulNzfsxe91Cw==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id D7C2F1340C;
+ Tue,  8 Oct 2024 12:06:54 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id lRVKM14gBWcCbgAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Tue, 08 Oct 2024 12:06:54 +0000
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: simona@ffwll.ch, airlied@gmail.com, javierm@redhat.com, jfalempe@redhat.com
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Thomas Zimmermann <tzimmermann@suse.de>
+Subject: [PATCH v3 00/12] drm: Introduce DRM client library
+Date: Tue,  8 Oct 2024 13:59:19 +0200
+Message-ID: <20241008120652.159190-1-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.46.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/gt=3A_Retry_RING?=
- =?utf-8?q?=5FHEAD_reset_until_it_sticks_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mauro Carvalho Chehab" <mchehab@kernel.org>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 08 Oct 2024 11:51:25 -0000
-Message-ID: <172838828515.1203272.17040747352816532290@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241003141044.149748-1-nitin.r.gote@intel.com>
-In-Reply-To: <20241003141044.149748-1-nitin.r.gote@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 23AD721D06
+X-Spam-Score: -3.51
+X-Rspamd-Action: no action
+X-Spamd-Result: default: False [-3.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ MID_CONTAINS_FROM(1.00)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
+ R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ MX_GOOD(-0.01)[];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FUZZY_BLOCKED(0.00)[rspamd.com];
+ FREEMAIL_TO(0.00)[ffwll.ch,gmail.com,redhat.com];
+ ARC_NA(0.00)[];
+ RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
+ TO_DN_SOME(0.00)[]; MIME_TRACE(0.00)[0:+];
+ TO_MATCH_ENVRCPT_ALL(0.00)[];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com]; RCVD_TLS_ALL(0.00)[];
+ RCVD_COUNT_TWO(0.00)[2]; FROM_EQ_ENVFROM(0.00)[];
+ FROM_HAS_DN(0.00)[];
+ SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
+ RCPT_COUNT_SEVEN(0.00)[9]; RCVD_VIA_SMTP_AUTH(0.00)[];
+ RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
+ DKIM_TRACE(0.00)[suse.de:+];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:rdns,
+ imap1.dmz-prg2.suse.org:helo, suse.de:mid, suse.de:dkim]
+X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
+X-Spam-Flag: NO
+X-Spam-Level: 
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,149 +120,76 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8794846123169731115==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+With the next DRM client coming soon (drm_log) and most of DRM's
+fbdev emulation consolidated in a few places, it is time to provide
+a single place for the clients.
 
-== Series Details ==
+The base client code and client event handling is now optional. It
+still remains in the DRM core, which simplifies module dependencies.
+The new module drm_client_lib.ko stores most of the in-kernel client
+code. Drivers can opt into client support, but the presence of the
+client module depends on the user's kernel configuration. Without
+selected clients, no client module will be build.
 
-Series: drm/i915/gt: Retry RING_HEAD reset until it sticks (rev4)
-URL   : https://patchwork.freedesktop.org/series/106377/
-State : success
+DRM now forwards suspend and resume events to client helpers instead
+of calling fbdev emulation directly. This breaks a cyclic dependency
+among the involved modules. It also allows any client to process suspend
+and resume events.
 
-== Summary ==
+v3:
+- fix more corner Kconfig cases (kernel test robot)
+v2:
+- rework of the overall design
+- keep base client code in DRM core
 
-CI Bug Log - changes from CI_DRM_15490 -> Patchwork_106377v4
-====================================================
+Thomas Zimmermann (12):
+  drm/i915: Select DRM_CLIENT_SELECTION
+  drm/xe: Select DRM_CLIENT_SELECTION
+  drm/fbdev-dma: Select FB_DEFERRED_IO
+  drm/fbdev: Select fbdev I/O helpers from modules that require them
+  drm/fbdev: Store fbdev module parameters in separate file
+  drm/client: Move client event handlers to drm_client_event.c
+  drm/client: Move suspend/resume into DRM client callbacks
+  drm/amdgpu: Suspend and resume internal clients with client helpers
+  drm/nouveau: Suspend and resume clients with client helpers
+  drm/radeon: Suspend and resume clients with client helpers
+  drm/client: Make client support optional
+  drm/client: Add client-lib module
 
-Summary
--------
+ Documentation/gpu/drm-client.rst              |   3 +
+ drivers/gpu/drm/Kconfig                       |  41 +++-
+ drivers/gpu/drm/Makefile                      |  20 +-
+ drivers/gpu/drm/amd/amdgpu/Kconfig            |   1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    |  22 +-
+ drivers/gpu/drm/drm_client.c                  | 121 -----------
+ drivers/gpu/drm/drm_client_event.c            | 197 ++++++++++++++++++
+ drivers/gpu/drm/drm_client_setup.c            |   3 +
+ drivers/gpu/drm/drm_debugfs.c                 |   1 -
+ drivers/gpu/drm/drm_drv.c                     |   2 +-
+ drivers/gpu/drm/drm_fb_helper.c               |  31 ---
+ drivers/gpu/drm/drm_fbdev_client.c            |  30 ++-
+ drivers/gpu/drm/drm_file.c                    |   2 +-
+ drivers/gpu/drm/drm_internal.h                |  15 ++
+ drivers/gpu/drm/drm_kms_helper_common.c       |  38 ++++
+ drivers/gpu/drm/drm_modeset_helper.c          |  14 +-
+ drivers/gpu/drm/drm_probe_helper.c            |   2 +-
+ drivers/gpu/drm/i915/Kconfig                  |   1 +
+ .../drm/i915/display/intel_display_driver.c   |   2 +-
+ drivers/gpu/drm/nouveau/nouveau_display.c     |   8 +-
+ drivers/gpu/drm/nouveau/nouveau_vga.c         |   2 +-
+ drivers/gpu/drm/radeon/radeon_device.c        |  19 +-
+ drivers/gpu/drm/radeon/radeon_fbdev.c         |   6 -
+ drivers/gpu/drm/radeon/radeon_mode.h          |   3 -
+ drivers/gpu/drm/xe/Kconfig                    |   1 +
+ include/drm/drm_client.h                      |  41 +++-
+ include/drm/drm_client_event.h                |  27 +++
+ 27 files changed, 434 insertions(+), 219 deletions(-)
+ create mode 100644 drivers/gpu/drm/drm_client_event.c
+ create mode 100644 include/drm/drm_client_event.h
 
-  **SUCCESS**
+-- 
+2.46.0
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106377v4/index.html
-
-Participating hosts (44 -> 41)
-------------------------------
-
-  Missing    (3): bat-rpls-4 bat-arls-1 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_106377v4 that come from known issues:
-
-### IGT changes ###
-
-#### Warnings ####
-
-  * igt@i915_selftest@live:
-    - bat-arls-5:         [DMESG-WARN][1] ([i915#10341] / [i915#12133]) -> [ABORT][2] ([i915#12061] / [i915#12133])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15490/bat-arls-5/igt@i915_selftest@live.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106377v4/bat-arls-5/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arls-5:         [DMESG-WARN][3] ([i915#10341] / [i915#11637]) -> [ABORT][4] ([i915#12061])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15490/bat-arls-5/igt@i915_selftest@live@workarounds.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106377v4/bat-arls-5/igt@i915_selftest@live@workarounds.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#10341]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10341
-  [i915#11637]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11637
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12133]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15490 -> Patchwork_106377v4
-
-  CI-20190529: 20190529
-  CI_DRM_15490: 131a5dd267541faa13894b97d44af39b257fc887 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8056: a327720fd57ba9f17ed8f15c6453cd2234f9398d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_106377v4: 131a5dd267541faa13894b97d44af39b257fc887 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106377v4/index.html
-
---===============8794846123169731115==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/gt: Retry RING_HEAD reset until it sticks (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/106377/">https://patchwork.freedesktop.org/series/106377/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106377v4/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106377v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_15490 -&gt; Patchwork_106377v4</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106377v4/index.html</p>
-<h2>Participating hosts (44 -&gt; 41)</h2>
-<p>Missing    (3): bat-rpls-4 bat-arls-1 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_106377v4 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15490/bat-arls-5/igt@i915_selftest@live.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10341">i915#10341</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133">i915#12133</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106377v4/bat-arls-5/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133">i915#12133</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15490/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10341">i915#10341</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11637">i915#11637</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_106377v4/bat-arls-5/igt@i915_selftest@live@workarounds.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_15490 -&gt; Patchwork_106377v4</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_15490: 131a5dd267541faa13894b97d44af39b257fc887 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8056: a327720fd57ba9f17ed8f15c6453cd2234f9398d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_106377v4: 131a5dd267541faa13894b97d44af39b257fc887 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============8794846123169731115==--
