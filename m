@@ -2,61 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 612E9995592
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Oct 2024 19:24:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BB46D99576D
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Oct 2024 21:12:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CABD310E17D;
-	Tue,  8 Oct 2024 17:24:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D294710E5A5;
+	Tue,  8 Oct 2024 19:12:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mRTnO616";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eJ9ErkOw";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E201B10E17D
- for <intel-gfx@lists.freedesktop.org>; Tue,  8 Oct 2024 17:24:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2D4E10E5A5;
+ Tue,  8 Oct 2024 19:12:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728408290; x=1759944290;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=ZZ3ZQeUy/ot4cpt9fLL3WojdjwOUYne12JYOii7D1ks=;
- b=mRTnO616b7Ms7Hzow7V8xvXL9bQmhsQM+AtJeeHshAFjdLCasnr23LIb
- 1zf+ySw35iyLSXszxS6OiASLi4CTbVA/xLVKa1XVIAUDIIcW/OQ1T0NYf
- xjFqL3FEs/0pIYTwm05LbdfsrU+CdjBdkVogzo+iydmrgwh5LhrDGnP3w
- zfZyMbweIBng3qAgLlUWHtNY+yOG2NDhyxXMgN7h4/kSnzMzpf5BU88NG
- biSAuUJPzHEEqB+Ot2Bkfi4vMB4d8VJkeFk47RFD4JwQ0U9CQnaJtOJ95
- ZSHYpkfYWi87aTiTXyCsb2wdKV/B8hevBrgQjdJAjDRXjx3tgJKhDc4E5 w==;
-X-CSE-ConnectionGUID: P5jMavFuRRK+lXS312D7dQ==
-X-CSE-MsgGUID: THOipunOSGCpnvrAec9bkw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11219"; a="30509578"
-X-IronPort-AV: E=Sophos;i="6.11,187,1725346800"; d="scan'208";a="30509578"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2024 10:24:49 -0700
-X-CSE-ConnectionGUID: Ue5c1QsfRNWR79bbTwb4tQ==
-X-CSE-MsgGUID: 2DUmV1fpQw2ypo3SyYVBQQ==
+ t=1728414739; x=1759950739;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=XVySQBxuiqFHVXdt+Jru3XVKRKScnO4sJDTEy7qOStw=;
+ b=eJ9ErkOw2n9/3Cp/AoMdudW7XOR15qFm7FTiWQf7xkriDevdKcKymswJ
+ nYfiQaFnZgJlaCnQCRt7ePTMQ8ka7VWHAATNXPB5OV7YN3f9F+bmu04Ud
+ I+ArmqDr9f4M0OTNFBrTJWColW1LYv/NBAtBkYHeWIwEqeAPFi2djpklm
+ dHwyBbT9Vg9qA2Al3gCBDrLw4PgmgzVY5cbzOPGQLg1ZPrCartPtbleBy
+ uQGuwWRRf4i1uFJgv7xUP6ttq8mAjLl3mg5IoON+cL9eYFix+KHmnUGLU
+ ZnLsIQjRRW5WQEmdmzXYfQ6Gs24LUz8rHIXJRH00TNt8QRhxortCWvYLc g==;
+X-CSE-ConnectionGUID: eppr9Fo+RXKBymfr/rdfrQ==
+X-CSE-MsgGUID: s6fvEVf7QH6nShqd7nKqGQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11219"; a="38240920"
+X-IronPort-AV: E=Sophos;i="6.11,187,1725346800"; d="scan'208";a="38240920"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Oct 2024 12:12:18 -0700
+X-CSE-ConnectionGUID: hQV9bL8RR9quCG9JzTFiYg==
+X-CSE-MsgGUID: M4nvk6kDR6ac+l+lkTIanw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,187,1725346800"; d="scan'208";a="75593941"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.41])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Oct 2024 10:24:46 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Raag Jadav <raag.jadav@intel.com>, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, matthew.d.roper@intel.com,
- andi.shyti@linux.intel.com
-Cc: intel-gfx@lists.freedesktop.org, anshuman.gupta@intel.com,
- badal.nilawar@intel.com, riana.tauro@intel.com, Raag Jadav
- <raag.jadav@intel.com>
-Subject: Re: [PATCH v1] drm/i915/dg2: enable G8 with a workaround
-In-Reply-To: <20241007122424.642796-1-raag.jadav@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241007122424.642796-1-raag.jadav@intel.com>
-Date: Tue, 08 Oct 2024 20:24:42 +0300
-Message-ID: <87ttdmbj8l.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,187,1725346800"; d="scan'208";a="76065578"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 08 Oct 2024 12:12:16 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 08 Oct 2024 22:12:15 +0300
+Date: Tue, 8 Oct 2024 22:12:15 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 8/8] drm/client: s/unsigned int i/int i/
+Message-ID: <ZwWED3yDPKfMsNPA@intel.com>
+References: <20241003113304.11700-1-ville.syrjala@linux.intel.com>
+ <20241003113304.11700-9-ville.syrjala@linux.intel.com>
+ <4bb5b981-0703-4853-acf8-f834da76ed05@suse.de>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <4bb5b981-0703-4853-acf8-f834da76ed05@suse.de>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,124 +72,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 07 Oct 2024, Raag Jadav <raag.jadav@intel.com> wrote:
-> Host BIOS doesn't enable G8 power mode due to an issue on DG2, so we
-> enable it from kernel with Wa_14022698589. Currently it is enabled for
-> all DG2 devices with the exception of a few, for which, it is enabled
-> only when paired with whitelisted CPU models.
+On Mon, Oct 07, 2024 at 09:43:47AM +0200, Thomas Zimmermann wrote:
+> Hi
+> 
+> Am 03.10.24 um 13:33 schrieb Ville Syrjala:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >
+> > Replace the 'unsigned int i' footguns with plain old signed
+> > int. Avoids accidents if/when someone decides they need
+> > to iterate backwards.
+> 
+> Why are signed types preferable here?
 
-In commit messages "currently" and the present tense usually refer to
-the status quo before the patch has been merged. Doesn't seem to be the
-case here, and it confuses what we have now and what the patch changes.
+If you iterate backwards you typically write
 
->
-> Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/intel_workarounds.c | 43 +++++++++++++++++++++
->  drivers/gpu/drm/i915/i915_reg.h             |  1 +
->  2 files changed, 44 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> index e539a656cfc3..b2db51377488 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> @@ -14,11 +14,30 @@
->  #include "intel_gt_mcr.h"
->  #include "intel_gt_print.h"
->  #include "intel_gt_regs.h"
-> +#include "intel_pcode.h"
->  #include "intel_ring.h"
->  #include "intel_workarounds.h"
->  
->  #include "display/intel_fbc_regs.h"
->  
-> +#ifdef CONFIG_X86
-> +#include <asm/cpu_device_id.h>
-> +#include <asm/intel-family.h>
-> +
-> +static const struct x86_cpu_id g8_cpu_ids[] = {
-> +	X86_MATCH_VFM(INTEL_ALDERLAKE,		NULL),
-> +	X86_MATCH_VFM(INTEL_ALDERLAKE_L,	NULL),
-> +	X86_MATCH_VFM(INTEL_COMETLAKE,		NULL),
-> +	X86_MATCH_VFM(INTEL_KABYLAKE,		NULL),
-> +	X86_MATCH_VFM(INTEL_KABYLAKE_L,		NULL),
-> +	X86_MATCH_VFM(INTEL_RAPTORLAKE,		NULL),
-> +	X86_MATCH_VFM(INTEL_RAPTORLAKE_P,	NULL),
-> +	X86_MATCH_VFM(INTEL_RAPTORLAKE_S,	NULL),
-> +	X86_MATCH_VFM(INTEL_ROCKETLAKE,		NULL),
-> +	{}
-> +};
-> +#endif
-> +
->  /**
->   * DOC: Hardware workarounds
->   *
-> @@ -1770,9 +1789,33 @@ static void wa_list_apply(const struct i915_wa_list *wal)
->  	intel_gt_mcr_unlock(gt, flags);
->  }
->  
-> +#define DG2_G8_WA_RANGE_1		0x56A0 ... 0x56AF
-> +#define DG2_G8_WA_RANGE_2		0x56B0 ... 0x56B9
+for (i = max; i >= 0; i--) {...}
 
-Absolutely not.
+and i>=0 is always true for unsigned types.
 
-> +
-> +/* Wa_14022698589:dg2 */
-> +static void intel_enable_g8(struct intel_uncore *uncore)
-> +{
-> +	if (IS_DG2(uncore->i915)) {
-> +		switch (INTEL_DEVID(uncore->i915)) {
+Another danger is doing any kind of arithmetic
+with 'i' and expecting a signed result.
 
-Even using INTEL_DEVID() is a no-go. There are currently four users, and
-even some of them are too much.
+Based on my experience in getting burned by C integer
+promotion/converison rules a good rule of thumb is to
+always use just "int" unless there is a very good
+reason for not doing so (eg. if the thing is a bitmask
+or some kind of other thing where negative values
+can never ever come up).
 
-We try hard to abstract this stuff at a higher level, and there must be
-zero direct PCI ID checks in code other than the table driven device
-identification. Otherwise it's just impossible to figure out where we do
-platform specific stuff for each platform.
-
-I understand those ranges above are a PITA to deal with, because they
-span across DG2 subplatforms.
-
-BR,
-Jani.
-
-
-
-> +		case DG2_G8_WA_RANGE_1:
-> +		case DG2_G8_WA_RANGE_2:
-> +#ifdef CONFIG_X86
-> +			if (!x86_match_cpu(g8_cpu_ids))
-> +#endif
-> +				return;
-> +		}
-> +
-> +		snb_pcode_write_p(uncore, PCODE_POWER_SETUP,
-> +				  POWER_SETUP_SUBCOMMAND_G8_ENABLE, 0, 0);
-> +	}
-> +}
-> +
->  void intel_gt_apply_workarounds(struct intel_gt *gt)
->  {
->  	wa_list_apply(&gt->wa_list);
-> +
-> +	/* Special case for pcode mailbox which can't be on wa_list */
-> +	intel_enable_g8(gt->uncore);
->  }
->  
->  static bool wa_list_verify(struct intel_gt *gt,
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index 41f4350a7c6c..e948b194550c 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -3568,6 +3568,7 @@
->  #define   PCODE_POWER_SETUP			0x7C
->  #define     POWER_SETUP_SUBCOMMAND_READ_I1	0x4
->  #define     POWER_SETUP_SUBCOMMAND_WRITE_I1	0x5
-> +#define     POWER_SETUP_SUBCOMMAND_G8_ENABLE	0x6
->  #define	    POWER_SETUP_I1_WATTS		REG_BIT(31)
->  #define	    POWER_SETUP_I1_SHIFT		6	/* 10.6 fixed point format */
->  #define	    POWER_SETUP_I1_DATA_MASK		REG_GENMASK(15, 0)
+Also IIRC there was a Linus rant about "unsigned int i"
+but I can't find it now.
 
 -- 
-Jani Nikula, Intel
+Ville Syrjälä
+Intel
