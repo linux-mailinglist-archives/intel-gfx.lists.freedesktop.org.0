@@ -2,74 +2,181 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80476994331
-	for <lists+intel-gfx@lfdr.de>; Tue,  8 Oct 2024 11:01:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E748994421
+	for <lists+intel-gfx@lfdr.de>; Tue,  8 Oct 2024 11:23:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2605710E4AF;
-	Tue,  8 Oct 2024 09:01:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B961B10E4B2;
+	Tue,  8 Oct 2024 09:23:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Exm7Qkmq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EnFXP7s2";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com
- [209.85.128.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B427310E4A6
- for <intel-gfx@lists.freedesktop.org>; Tue,  8 Oct 2024 09:01:26 +0000 (UTC)
-Received: by mail-wm1-f43.google.com with SMTP id
- 5b1f17b1804b1-42cb2191107so47872325e9.1
- for <intel-gfx@lists.freedesktop.org>; Tue, 08 Oct 2024 02:01:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1728378085; x=1728982885; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:reply-to:user-agent:mime-version:date
- :message-id:from:to:cc:subject:date:message-id:reply-to;
- bh=jG+w3MK4bfIOX7lbpH+0lEvwh9thN6p9tiGW8cj2qLE=;
- b=Exm7QkmqcExoqj+I/IWNEOuImTEJWJLApv5bZSY+HMP6gr8pwHDu5EGObSo4MohwkK
- EizNEKNGO0GBr/0mdkyIWAXzoyFvCflo8e7yGZzVjWJ5gyL43UouKq2pI8U2L+CaAUuh
- oYS7FlqtlX8/EdqpwlOfKpFJ5PFdQT5Lg4xjO+k38/IuD/Fz6E/Nctj31Jth+QlpxAzI
- lNvE4hWMF/U8expjFRUbM21QkazOauaykRmK+RVU7LaR58PH2k3FsWYjstLrchGU24nt
- EYlTqDXpuPOsqk8VuXUAiyOdu+41PxEjFQjhSxh40feHWWNK3iPZHxe1F6Ehy1OeWJr/
- g30A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1728378085; x=1728982885;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:reply-to:user-agent:mime-version:date
- :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=jG+w3MK4bfIOX7lbpH+0lEvwh9thN6p9tiGW8cj2qLE=;
- b=aPIdzO0Y4bZa8weXGdBBqN4EI33V26FtzAM52+ACQ0YW+8JCT420WFC+lsJCJYPc4r
- 463daKVBd2Mxmj5PzqDhHVB5httSKwgUaS7c6/aIdmwdNT5SHqMfymkhHTjEhfNRzu8U
- 8Jjn/J5XEAy9ACNSeuSB+csrkOxQiLgA/eTqz8VByJSrDkgXaN6dVRsx8FMnMVPboXkC
- Xb7TA+qFGLA85JzGaF9ArcxLb7Wa+iXe04QTnBJ/c5+UcEVel9SAsGzHtkpIHYvJQ6ka
- b9yWx3lfkw58ztz40DR/GYEPqKRfW6e4bxH5JDkDBZjvpUQP0a1dO/9g9s0uyx2OD3z4
- nGUA==
-X-Gm-Message-State: AOJu0Yz0fBAZurpw6lwo6uZtpR4UYM0toj5qJfvgF7V6JLyZQQa9ed65
- HnYb2h+8TtEMaqfl9Q+TBrLOrtdTSW8Zvvq8wJRHgfvcqI1JWwu00PGoeNgzG4k=
-X-Google-Smtp-Source: AGHT+IFvUcq2rZvmHZO+8xYPM49jt3EhWGeyiMhB/MtClUUmmkC7XouGzf5/fiIwBMKoeqURDrxQAQ==
-X-Received: by 2002:adf:ab1d:0:b0:37c:d027:d92f with SMTP id
- ffacd0b85a97d-37d0e6efed3mr8157475f8f.15.1728378084700; 
- Tue, 08 Oct 2024 02:01:24 -0700 (PDT)
-Received: from [0.0.0.0] ([134.134.139.77])
- by smtp.googlemail.com with ESMTPSA id
- ffacd0b85a97d-37d16972b7dsm7571423f8f.106.2024.10.08.02.01.22
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 08 Oct 2024 02:01:24 -0700 (PDT)
-Message-ID: <60c4b7c8-6ae8-469f-937d-d1a877c9b16c@gmail.com>
-Date: Tue, 8 Oct 2024 12:01:16 +0300
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3089510E4B2
+ for <intel-gfx@lists.freedesktop.org>; Tue,  8 Oct 2024 09:23:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1728379382; x=1759915382;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=XSzVHpZcGj5S09A78smc+UcPj9UNcgO7ECs6gxGkLEU=;
+ b=EnFXP7s2olVhuZdh5gRU2PGC0Hah69WS4OLIcmvX79tkj5RrmFuSdCw3
+ Sbcjx55b9ETXzw9QwjiCUjyXPZ8qjM50447PBogV2+mixqXrlF8ikpXlO
+ +6/q7HvbEaUGPOLeUtZmmAT+NM7pan0BhfA2i5JinTEu4okdD+D1h4pB8
+ Nc6ptxOW6AfOiEhyLU35rx6WsAHXZ2j8Jq19D7MrSA4euJMkQF+XnHjQn
+ FEsxcFPI2LpNwjxk7OXKT+2sM7PomiGMfZjQXCqUrUd+53phRNSVlwqKW
+ i+ecnPv8GphKK7+CT7R5Gmw1jli+Gh/QBx4SATZ3pp0bTUTFdI+U3ypta A==;
+X-CSE-ConnectionGUID: s/YktlqRT/CV4MoO6ig+6Q==
+X-CSE-MsgGUID: Z6wLsjpjQl2wIyzyyhXeCQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11218"; a="31345100"
+X-IronPort-AV: E=Sophos;i="6.11,186,1725346800"; d="scan'208";a="31345100"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Oct 2024 02:23:02 -0700
+X-CSE-ConnectionGUID: aKlRr6OcQVWcGHrpnq2wVg==
+X-CSE-MsgGUID: xwDUg9izQFO83Vr3LJ0MOA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,186,1725346800"; d="scan'208";a="75453003"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 08 Oct 2024 02:22:59 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Tue, 8 Oct 2024 02:22:56 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Tue, 8 Oct 2024 02:22:56 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Tue, 8 Oct 2024 02:22:56 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.173)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Tue, 8 Oct 2024 02:22:55 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=bEFQ0JoaW6aPP+oUOM7UjqKQ6SZjPlkWhl8ANfSjJEDCfbYbqEYa9JaQHdq0ED3rmL0NVbMUiZyRb1CfFMg+WR+xyCOIsMS9SjyOduBVfIM61k1XyDbT1kqcsG/ghsmxXKOcugRathZ0c+LHyp14XFee8a4ExJnP/7xirfyjjt2FoViTQq+L0ryxYS5ZbkG9yxLa9/rLkomp3k1n7Jcu2JEBqVoTK0xu7ih4Dmqife4iuCp1p6CBHmIWEpPB5cWHMuHLVU9Tn6sd/YWZbO64SmHPmQCX7VXt25bauYgf1/+TDJk0Xmq0akuyQwhKOGoHKvK/31sFdWer+nkzlg8fdQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=yeSNjo6D8+5Sgm4GKVQpenXsiVIXmvtYQHB59cumIf4=;
+ b=ofVa0UFSekqHx0QJuB/TnoL9RtpeeL0ML3qzJaKBKzFqbAn5NhFLsPD6XdTg5MLs/fE1IK7FLAH0T/X61zg+ZHXVniBEJrloHTdfGlqB+KdA4ZpiKi0IT679c9+TeRcmmvyUTYvSwSTR4aEO3c+/G4miVYPRg8MPGR4jOSVjykFX9w1YYIrGSNJFN5JoEih855p+W2Rd6V3Q/cYd6ttTJldIHQejvAu8uR/BoTmLvsF1jc5o4MgRxhRqbQDWopkMazzUF7I207e4EWCZDuZIPhWhji8+X09pRyLM/mR+Htu+kUvi88a8Z8b5JF4Q1+aT0Q3lFB/d/xzwRhmHKmu84w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CO1PR11MB5057.namprd11.prod.outlook.com (2603:10b6:303:6c::15)
+ by DS0PR11MB7801.namprd11.prod.outlook.com (2603:10b6:8:f2::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.22; Tue, 8 Oct
+ 2024 09:22:53 +0000
+Received: from CO1PR11MB5057.namprd11.prod.outlook.com
+ ([fe80::4610:6d6c:9af6:2548]) by CO1PR11MB5057.namprd11.prod.outlook.com
+ ([fe80::4610:6d6c:9af6:2548%6]) with mapi id 15.20.8048.013; Tue, 8 Oct 2024
+ 09:22:53 +0000
+Date: Tue, 8 Oct 2024 09:22:43 +0000
+From: Krzysztof Karas <krzysztof.karas@intel.com>
+To: <intel-gfx@lists.freedesktop.org>
+CC: Andi Shyti <andi.shyti@linux.intel.com>, Nirmoy Das <nirmoy.das@intel.com>
+Subject: [PATCH] drm/i915: move segment iterator to match current offset
+Message-ID: <quw77kz25yey6pnli7dabf2zuwhfycgil5aajhgmz5f3cxxawz@s4qvuuluu42m>
+"Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316"
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+X-ClientProxiedBy: DUZPR01CA0231.eurprd01.prod.exchangelabs.com
+ (2603:10a6:10:4b4::12) To PH0PR11MB5064.namprd11.prod.outlook.com
+ (2603:10b6:510:3b::15)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/7] drm/i915: Enable 10bpc + CCS on TGL+
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-References: <20240918144445.5716-1-ville.syrjala@linux.intel.com>
- <20240918144445.5716-4-ville.syrjala@linux.intel.com>
- <e30b033c-c242-47ef-aa9e-ba2ee734ca09@gmail.com> <ZwAt5SfK8wzYoQb1@intel.com>
-Content-Language: en-US
-From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-In-Reply-To: <ZwAt5SfK8wzYoQb1@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PR11MB5057:EE_|DS0PR11MB7801:EE_
+X-MS-Office365-Filtering-Correlation-Id: 73af2de3-9ef7-40f2-2813-08dce77ac917
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?d1R2NmhwU1gvOFM2eGdEQ1JpOTFQOFVDYVJRczUvUlVkcnNnS0tLekNpZmdE?=
+ =?utf-8?B?RFZGK1ZwT29nRlIyNG5qbVZOR1UxUFV2UXNBcWlmT1NZTURDb2kxWkQ3TDRw?=
+ =?utf-8?B?V2I1Q2YvUG1jS0ZIN1h2dndQVUIrb0dHVjIwYnNRTG94L2hRZHR0ejh1R3Fy?=
+ =?utf-8?B?ano2aEtBbUxMckc3NUlYUU13bytYVmQ1aXVFREJtakVINW9wYk1Wci9KUjM1?=
+ =?utf-8?B?MXpGOEk3YkVEd3AyaDhKNnROSUlTYTgwckprczFqUGdDU0tkVmpyUnNTRk9K?=
+ =?utf-8?B?aHJibHl2ajZQUms4UFNIV1F0ZGM2OVdYNkc4YlNHenlJWm1JcFBBTkFJNGlD?=
+ =?utf-8?B?S0d6dTFpV3plenVVbGNJcmtuL3U4WUJTSnBJNGFITGlueUw0bWVCeHgrOFdL?=
+ =?utf-8?B?MkhYb3IvNjNycUVRbjFXVVVIZGNERzU3N1RYRnhDelk0TTlFNHdETEtHanhk?=
+ =?utf-8?B?ZGY3Sk1WNHJMa1Y0enZiVGh6V3BaTFJWTW5UYkNZelAwenU3eXNEZE81S1lq?=
+ =?utf-8?B?bWw1L3hlOGdhaUxWdUp2UlI2SXM0U1Noa2gyZ3V2NTVCYlBhV0xtYkMvYnJh?=
+ =?utf-8?B?N0tFcFFzbVN3ZVhuRjEyQlZiZTJMdy9hZHRCWElyajd0KzNoWjg5VW0waFdp?=
+ =?utf-8?B?ZDFPSzBpZWFFUDRWWU9INHhyQmRtcjhib0RmT1ZDQ29sQUwrWTFmc1dCYlMv?=
+ =?utf-8?B?N2R5c1ZqcDlMY0VWR3l5MnBtMCtYbTlMTmJJQlBjY05URGVsbFY0WWhna2li?=
+ =?utf-8?B?aWxsNER6R3dyVmcySVY2M2RHMkNVckJxS2VFNTI0WVhoK0dLYTBPN2JTeE00?=
+ =?utf-8?B?RW55NWE3YmtvTzRXbSsvbHU5M29WS3pTcERrR3N4WDlPd1BSdExWeTRYNWwx?=
+ =?utf-8?B?bGs3a2pjNWF4VWJKTG56UkVLWWJ1VFRFanVZbi95aDRTcWJBaGNIditXNlpP?=
+ =?utf-8?B?Q0ZJczJZZ1pBUmV1VmU0SFRmSkptaGFzR2YyMGtPMnJUcHZyQ3lwa3RLaTV2?=
+ =?utf-8?B?TzZkRDh0WkRWVG5IVDZKNlAxT29BY0hWWWVjVXNIODVIN1pObHpQZitLamVl?=
+ =?utf-8?B?SHQ5eDhYdmtPRFlzZ0Z3MnpYSVdIemdZYThnWWhqWHZ5cGhEVmhyOXgrVnZZ?=
+ =?utf-8?B?S3Y0YXgxUUpqZnVNNnlXbWlMbHJDOStMa3JQSXByVUhMTklnQlMwWTZaSDB3?=
+ =?utf-8?B?K1JwanN4SjlZRWdPeEVqU1dERlNMOVViKzJHbnV0ZE5ScktWOFgySTlDSFBS?=
+ =?utf-8?B?dzlQUmFpREQyWnREd29uaGRhTmxqSmlOQUtabkFNeDAvUzBrMFZsQ0haTkJu?=
+ =?utf-8?B?NDZRMWY5VkVYaDl6ZDBLYytqdlZiVW00UmdJYzdndGc0a0FBWHpXTGNNa3ZP?=
+ =?utf-8?B?VWZQMFRyamM2eG5pUXVnMHFoUVZHcHVLUDJNTmlYeVNqcTRzZkhqTVY5R1U4?=
+ =?utf-8?B?YjZXZ3cwVTVhbVNpMXhlZmxFSzJOc1JiZGFFWWR5d3ZvVnY4YTRIZUpYYUU4?=
+ =?utf-8?B?cXltaHllcXJSRnVmTVJoVzNuMVJMRklpOTBTb1pOeEYzcmZVUTV5VDliaVpY?=
+ =?utf-8?B?dXU1V05aQWVGdGpmLzBpMS9iMXJxWlZhNkdoRlUrRGhTbkdpaGpjclZCWDAr?=
+ =?utf-8?B?RHFISWFac28ybTNhZHRhbERTMkRsdTFuR3FIb3pQaE9KYmRiU1NDcjhHVE01?=
+ =?utf-8?Q?jq1+v2gCzEylLvgeOg70?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CO1PR11MB5057.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eDQvaURTZkhkWFEwVlBCMXV0UHcyMkpOT3plOHNOVHJvWnZHQkZVN29uMjhK?=
+ =?utf-8?B?TVNsK2p3cHd1NDRNcVUwQW5vc0hEUzUreTh2L2dhVld0S0xuOWQ0Q2c5M1ho?=
+ =?utf-8?B?bnNKcWRYb0VtL1ZqZUlJUEVPR1BOWVhISUFHdWNwNHVwbHRwMm1aQ01VZWQr?=
+ =?utf-8?B?K0ZDSHNzMzI3Sm05RVo1YVhpWkRvYjFScDl3dEcxR1JzcU1SbmViRjhTS3lF?=
+ =?utf-8?B?OTY5bjIrcEdzZUdTK2I4cXJ4RGRSMUhBV0V6cytsN3BJMzJYaG5jWjlOc1hO?=
+ =?utf-8?B?Q1REQmZLV09VQnRNNXNjTEZIUEkwaE5wVnk0ZXR5ZzZ3cjY5djRnRjJ6Mlpm?=
+ =?utf-8?B?dWZ6UERXclIrQUtNcXlycjRKSDBDTThKQVhkRGFHdVhybm9qS1o5VzE4U1ox?=
+ =?utf-8?B?THFNVEcvTGZOY0dSbi9tMXdZbXVqOU5jR3h4UHY1YTZhekhWM0tycFVVdlFF?=
+ =?utf-8?B?dlU0RU53alAwbEJQNjVnMWVhVFA3dXhBN3JIcjRkajM4emVFZHJ2eDlSb1hG?=
+ =?utf-8?B?VzdadktaclNua2FzRFdQQjF0M1RuMzFXdGRQcFZXemprcUFjR1lGSUlZU2pF?=
+ =?utf-8?B?UmRCNU5pemljVmtzWFpnTGtvNUR6ZzRqeEhLd3ZRNUN5MHphUTBXOUxDQ2dZ?=
+ =?utf-8?B?QVRCeW5QcWw4aVhkV0ZxV3R0aFh5U3NVV0hHVWZxMVg0VkxMaFZsUUhHUWdn?=
+ =?utf-8?B?QTlmMWFJbXc2UnozSnU0cEFLSXZmb0UzWnJzd2IyTEIxM2JaOU8xMmFNTnZ3?=
+ =?utf-8?B?aERYMDdEbWlTWjgyWUN5SkE4N2hFOFhyK0w0ZVp5cUhEV0F2dXc1NmVpbGsy?=
+ =?utf-8?B?T0pMV1Y2SGdzOUNOTjhFOWltZkEzYVhpaHhOcUtzSzJDSmJpNVlyZTlKRjlY?=
+ =?utf-8?B?a3ZhYkpqbTJKVS82Y3ozcnJ0MmhRTUljVEc3VjV4TFBKOEg5YnYwTTJRWkdJ?=
+ =?utf-8?B?YnErYlFFMkRDNjhtdzFZN2tlZmF2TStGY2JSbDEzaTdoYnBYN2F6cC9xdmtG?=
+ =?utf-8?B?Y0dSa0lVa3ZPOUVtQlEwd2ovbmNrcmt4dFFyTlcvODJJS3NuM0NORHRVVEx2?=
+ =?utf-8?B?cXBwNFNqVTNORWpaOEpFWDhYV0lyVlo2SjJ0aGJxM1NOSXFicmY2bCtxejNa?=
+ =?utf-8?B?WTh5VzRPcDRHZWFoa0RxWDFWSS91TVRaNDVKKzkzcG5sY1A3R2tRSFh2cnAy?=
+ =?utf-8?B?U3NMMlIyYmthcVVsL3g4M3hxbE1OcVZ0ZlhZOVJNRnZ0SGhuMkhVdmdvdi9x?=
+ =?utf-8?B?eEpkS2NScnpZNHFkKzlOOG40SlBvaEV0VGd0YW0rYzhqejhhN3BmbmxSSExS?=
+ =?utf-8?B?WnFUQ0FhaXQ2ekd5ZE9qRlhGSUd6eWlkS3BGWWdHdWk1dndCUEg5Qkg2c1RS?=
+ =?utf-8?B?VWRJWUlCSlY4dUlnUTVVOGZsRzhuem1rclNrTXgzYTRncS8zbUt1eGhXMDdF?=
+ =?utf-8?B?eHJjM0NGWWNQNFgzYXQ0MmFVMnA1OEVuT1N1ZjBtSFpiT3lRQml2MURNTTla?=
+ =?utf-8?B?RHRiUTBSYXJYamR2UmxsM3pYbS9ydmNCWFhIU0dFTTZ1NDgrN0Q0ODR1cmIy?=
+ =?utf-8?B?RndwemsvNUVVWTcwTWMvRWxGVFFZRFdKR2o5MmtSdGxkUnNLQkRRM1NmYkRN?=
+ =?utf-8?B?M0VoM3MzRWlZaGtEcUFoUmVsTyszNGZoY0laWUxza01Ka0xoVTg4S3poa1Yr?=
+ =?utf-8?B?VVRuMTFLSGZ1ZXlTWk93UzZPY0VaV3hMelE0bUhoaFZPOVQ1emMvRUg1b1dB?=
+ =?utf-8?B?TGt4YlprKzBQMEVvbGloaTdOcDFzalVRSlFXemJibkJhUS9pYTlrS2h1RVZO?=
+ =?utf-8?B?dUcvUCtYNFZIV2ovdVNQOFo5U2V3VVFqNklOdVNLbzRZRGEwU2tjMEU4eTlN?=
+ =?utf-8?B?c0ZzRkRFd3dIQlFKUUJ1NGZxUXZNaFB5Nk8zbzNQSjRrNi9qRXRVbUNMOGl4?=
+ =?utf-8?B?MU9vbkEvdjdHVjdXeHRsMnEvZHozZ0diVjJCcGxrWTVybU1wd1V4OUl0TWpq?=
+ =?utf-8?B?bEhycm5FVHJDTWJmU0g2bW1tMzFLd1Q5cG02U0JBbExGbzFiWVIrTCtZYTVR?=
+ =?utf-8?B?dHFYbThYdnZIRXdRTzYwRlp5M3JYLzZzNUZNdmZLeW1hOVFmY1YwUVlMOG9u?=
+ =?utf-8?B?TzVhUDFPYmpUWElXY3dRbTRrYUR5b0RiUTNYb0Q2S3NNSm1xS3pMYTA5Q2di?=
+ =?utf-8?B?dmc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 73af2de3-9ef7-40f2-2813-08dce77ac917
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR11MB5064.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Oct 2024 09:22:53.7004 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: d6MOQrQWrnKxQOS8TpMRe5+qvysQ9JTzoefgrAlmWLwZD171ztimkuQJb/Ad4Vd8LKQofqWlU+lbB14kNNoUYJs4BeOep/wGGs9HnW/AgsE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7801
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,135 +189,59 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: juhapekka.heikkila@gmail.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 4.10.2024 21.03, Ville Syrjälä wrote:
-> On Fri, Oct 04, 2024 at 04:35:17PM +0300, Juha-Pekka Heikkila wrote:
->> On 18.9.2024 17.44, Ville Syrjala wrote:
->>> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
->>>
->>> TGL+ support 10bpc compressed scanout. Enable it.
->>>
->>> v2: Set .depth=30 for all variants to match drm_fourcc.c
->>>       Set clear color block size to 0x0
->>>
->>> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
->>> ---
->>>    drivers/gpu/drm/i915/display/intel_fb.c       | 36 +++++++++++++++++++
->>>    .../drm/i915/display/skl_universal_plane.c    |  8 ++---
->>>    2 files changed, 40 insertions(+), 4 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
->>> index bcf0d016f499..9b9da4f71f73 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_fb.c
->>> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
->>> @@ -67,6 +67,18 @@ static const struct drm_format_info gen12_ccs_formats[] = {
->>>    	{ .format = DRM_FORMAT_ABGR8888, .depth = 32, .num_planes = 2,
->>>    	  .char_per_block = { 4, 1 }, .block_w = { 1, 2 }, .block_h = { 1, 1 },
->>>    	  .hsub = 1, .vsub = 1, .has_alpha = true },
->>> +	{ .format = DRM_FORMAT_XRGB2101010, .depth = 30, .num_planes = 2,
->>> +	  .char_per_block = { 4, 1 }, .block_w = { 1, 2 }, .block_h = { 1, 1 },
->>> +	  .hsub = 1, .vsub = 1, },
->>> +	{ .format = DRM_FORMAT_XBGR2101010, .depth = 30, .num_planes = 2,
->>> +	  .char_per_block = { 4, 1 }, .block_w = { 1, 2 }, .block_h = { 1, 1 },
->>> +	  .hsub = 1, .vsub = 1, },
->>> +	{ .format = DRM_FORMAT_ARGB2101010, .depth = 30, .num_planes = 2,
->>
->> Is that comment about depth=30 for all variants because of these alpha
->> formats? Why is that? Here on other formats alpha is taken as part of
->> depth, like in above "DRM_FORMAT_ABGR8888, .depth = 32"
-> 
-> That stuff is just legacy compatibility stuff, and back in
-> the day peope decided that depth==32 simply means ARGB8888.
-> I'm not sure we should even state depth=30 on ARGB2101010
-> at all, or would it be better to leave it at 0.
-> 
-> Another option might be to just set .depth=0 on absolutely
-> all compressed formats. Using these with some legacy uapi
-> which only talks in terms of bpp and depth doesn't seem
-> feasible anyway.
-> 
-> But for now I think we just want to match drm_fourcc.c since
-> that's what we did for the other compressed formats.
+Commit 255fc1703e42 ("drm/i915/gem: Calculate object page offset for
+partial memory mapping") introduced a new offset that affects
+r.sgt.curr value. This field is used in remap_sg() function, in
+set_pte_at() call and changing its value causes page table entry to
+also be affected (see set_ptes() description).
+Example:
+ 1) upon entering remap_sg() r.sgt.curr could have already been changed to
+  a value equal to or greater than r.sgt.max,
+ 2) set_pte_at() uses r.sgt.curr to map a page entry from another segment
+  to the current one,
+ 3) r->sgt pointer is moved to the next entry returned from __sg_iter()
+  only once,
+ 3) the memory of the mismapped page might become unavailabe (accessing
+  some addresses causes -EFAULT).
 
-ack. patch set is
+This patch moves current r->sgt pointer as many segments, as initial
+r.sgt.curr is still larger than r.sgt.max.
 
-Reviewed-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Signed-off-by: Krzysztof Karas <krzysztof.karas@intel.com>
+---
+ drivers/gpu/drm/i915/i915_mm.c | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-> 
->>> +	  .char_per_block = { 4, 1 }, .block_w = { 1, 2 }, .block_h = { 1, 1 },
->>> +	  .hsub = 1, .vsub = 1, .has_alpha = true },
->>> +	{ .format = DRM_FORMAT_ABGR2101010, .depth = 30, .num_planes = 2,
->>> +	  .char_per_block = { 4, 1 }, .block_w = { 1, 2 }, .block_h = { 1, 1 },
->>> +	  .hsub = 1, .vsub = 1, .has_alpha = true },
->>>    	{ .format = DRM_FORMAT_YUYV, .num_planes = 2,
->>>    	  .char_per_block = { 2, 1 }, .block_w = { 1, 2 }, .block_h = { 1, 1 },
->>>    	  .hsub = 2, .vsub = 1, .is_yuv = true },
->>> @@ -113,6 +125,18 @@ static const struct drm_format_info gen12_ccs_cc_formats[] = {
->>>    	{ .format = DRM_FORMAT_ABGR8888, .depth = 32, .num_planes = 3,
->>>    	  .char_per_block = { 4, 1, 0 }, .block_w = { 1, 2, 0 }, .block_h = { 1, 1, 0 },
->>>    	  .hsub = 1, .vsub = 1, .has_alpha = true },
->>> +	{ .format = DRM_FORMAT_XRGB2101010, .depth = 30, .num_planes = 3,
->>> +	  .char_per_block = { 4, 1, 0 }, .block_w = { 1, 2, 0 }, .block_h = { 1, 1, 0 },
->>> +	  .hsub = 1, .vsub = 1, },
->>> +	{ .format = DRM_FORMAT_XBGR2101010, .depth = 30, .num_planes = 3,
->>> +	  .char_per_block = { 4, 1, 0 }, .block_w = { 1, 2, 0 }, .block_h = { 1, 1, 0 },
->>> +	  .hsub = 1, .vsub = 1, },
->>> +	{ .format = DRM_FORMAT_ARGB2101010, .depth = 30, .num_planes = 3,
->>> +	  .char_per_block = { 4, 1, 0 }, .block_w = { 1, 2, 0 }, .block_h = { 1, 1, 0 },
->>> +	  .hsub = 1, .vsub = 1, .has_alpha = true },
->>> +	{ .format = DRM_FORMAT_ABGR2101010, .depth = 30, .num_planes = 3,
->>> +	  .char_per_block = { 4, 1, 0 }, .block_w = { 1, 2, 0 }, .block_h = { 1, 1, 0 },
->>> +	  .hsub = 1, .vsub = 1, .has_alpha = true },
->>>    };
->>>    
->>>    static const struct drm_format_info gen12_flat_ccs_cc_formats[] = {
->>> @@ -128,6 +152,18 @@ static const struct drm_format_info gen12_flat_ccs_cc_formats[] = {
->>>    	{ .format = DRM_FORMAT_ABGR8888, .depth = 32, .num_planes = 2,
->>>    	  .char_per_block = { 4, 0 }, .block_w = { 1, 0 }, .block_h = { 1, 0 },
->>>    	  .hsub = 1, .vsub = 1, .has_alpha = true },
->>> +	{ .format = DRM_FORMAT_XRGB2101010, .depth = 30, .num_planes = 2,
->>> +	  .char_per_block = { 4, 0 }, .block_w = { 1, 0 }, .block_h = { 1, 0 },
->>> +	  .hsub = 1, .vsub = 1, },
->>> +	{ .format = DRM_FORMAT_XBGR2101010, .depth = 30, .num_planes = 2,
->>> +	  .char_per_block = { 4, 0 }, .block_w = { 1, 0 }, .block_h = { 1, 0 },
->>> +	  .hsub = 1, .vsub = 1, },
->>> +	{ .format = DRM_FORMAT_ARGB2101010, .depth = 30, .num_planes = 2,
->>> +	  .char_per_block = { 4, 0 }, .block_w = { 1, 0 }, .block_h = { 1, 0 },
->>> +	  .hsub = 1, .vsub = 1, .has_alpha = true },
->>> +	{ .format = DRM_FORMAT_ABGR2101010, .depth = 30, .num_planes = 2,
->>> +	  .char_per_block = { 4, 0 }, .block_w = { 1, 0 }, .block_h = { 1, 0 },
->>> +	  .hsub = 1, .vsub = 1, .has_alpha = true },
->>>    };
->>>    
->>>    struct intel_modifier_desc {
->>> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
->>> index 17d4c880ecc4..9f34df60b112 100644
->>> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
->>> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
->>> @@ -2315,6 +2315,10 @@ static bool gen12_plane_format_mod_supported(struct drm_plane *_plane,
->>>    	case DRM_FORMAT_XBGR8888:
->>>    	case DRM_FORMAT_ARGB8888:
->>>    	case DRM_FORMAT_ABGR8888:
->>> +	case DRM_FORMAT_XRGB2101010:
->>> +	case DRM_FORMAT_XBGR2101010:
->>> +	case DRM_FORMAT_ARGB2101010:
->>> +	case DRM_FORMAT_ABGR2101010:
->>>    		if (intel_fb_is_ccs_modifier(modifier))
->>>    			return true;
->>>    		fallthrough;
->>> @@ -2331,10 +2335,6 @@ static bool gen12_plane_format_mod_supported(struct drm_plane *_plane,
->>>    			return true;
->>>    		fallthrough;
->>>    	case DRM_FORMAT_RGB565:
->>> -	case DRM_FORMAT_XRGB2101010:
->>> -	case DRM_FORMAT_XBGR2101010:
->>> -	case DRM_FORMAT_ARGB2101010:
->>> -	case DRM_FORMAT_ABGR2101010:
->>>    	case DRM_FORMAT_XVYU2101010:
->>>    	case DRM_FORMAT_C8:
->>>    	case DRM_FORMAT_XBGR16161616F:
-> 
+diff --git a/drivers/gpu/drm/i915/i915_mm.c b/drivers/gpu/drm/i915/i915_mm.c
+index f5c97a620962..9a140840214b 100644
+--- a/drivers/gpu/drm/i915/i915_mm.c
++++ b/drivers/gpu/drm/i915/i915_mm.c
+@@ -51,10 +51,22 @@ static inline unsigned long sgt_pfn(const struct remap_pfn *r)
+ static int remap_sg(pte_t *pte, unsigned long addr, void *data)
+ {
+ 	struct remap_pfn *r = data;
++	unsigned int sgt_offset;
+ 
+ 	if (GEM_WARN_ON(!r->sgt.sgp))
+ 		return -EINVAL;
+ 
++	if (r->sgt.curr == r->sgt.max) {
++		r->sgt = __sgt_iter(__sg_next(r->sgt.sgp), use_dma(r->iobase));
++	} else if (r->sgt.curr > r->sgt.max) {
++		sgt_offset = r->sgt.curr;
++		while (sgt_offset >= r->sgt.max) {
++			sgt_offset -= r->sgt.max;
++			r->sgt = __sgt_iter(__sg_next(r->sgt.sgp), use_dma(r->iobase));
++		}
++		r->sgt.curr = sgt_offset;
++	}
++
+ 	/* Special PTE are not associated with any struct page */
+ 	set_pte_at(r->mm, addr, pte,
+ 		   pte_mkspecial(pfn_pte(sgt_pfn(r), r->prot)));
+-- 
+2.43.0
 
