@@ -2,60 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D5BE996C5E
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Oct 2024 15:39:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 92AD2996C1D
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Oct 2024 15:34:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF03A10E71B;
-	Wed,  9 Oct 2024 13:39:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11E3C10E704;
+	Wed,  9 Oct 2024 13:34:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dFk+BdmS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YrslQ4hX";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 15A5610E71B
- for <intel-gfx@lists.freedesktop.org>; Wed,  9 Oct 2024 13:39:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B2A3310E704
+ for <intel-gfx@lists.freedesktop.org>; Wed,  9 Oct 2024 13:34:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728481175; x=1760017175;
- h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=sA8lxdPdN9P2KGmcBupIuhr6siH/j3xJ+F7vAX+5EoI=;
- b=dFk+BdmSqRfGMOacezpLUhTUcSFX0RRbRE54OQvFOEZgqxRPHkjaBqIS
- WhNddOlIXzW9aDHJh9wKk7oPErKw78DRi+x4JEsx4xIkWKrB6AbSio6RL
- 7hzUVcUKrnLxAKICepRquXon4KuXnuBnoCr/2QH4o4dxGHu4WCroTT6qY
- OjUxFY1czlsN02M2lpTSlnfaOp5547NsOoQ44++2Cnw0b4QIF04cpTGVF
- jWJwSHJl5Ysp8Z61dkzcWuKbv+LAx5pPOaBC3HNfuvq+haZnHECIsiUI+
- ubActKwLx6mAEh7i3mB8T78qZ17Ej/cnqA4ZmMBaRcPYWCMaacw7FQu5G w==;
-X-CSE-ConnectionGUID: 3agOQhR7SlajDOY0yBQgMg==
-X-CSE-MsgGUID: OcGcI0+oSGOtHgQqUqrTDw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11220"; a="27674398"
-X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="27674398"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2024 06:39:35 -0700
-X-CSE-ConnectionGUID: 2HgAjkZMT/SLpw16neXVUA==
-X-CSE-MsgGUID: DIt3TsLTSKaqLvfObq95kQ==
+ t=1728480863; x=1760016863;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=HdIhTLYRU4W3P5MaEQGtUPJBpvD1m0zSqn9ba4PKQ7w=;
+ b=YrslQ4hXBmY7pUTPUyFWu9Y/r35z+S72Ett3iIO+cgQ2qbELiDNAr818
+ bFdbfk3U57YGGgoTGRMEEQYRYuVc60RNJTc0pjRpX/iNCXZg0FHvmAjcT
+ 39z4gJY7yrFP5cQgUT73UY6Nj7rR/HC5/vySgWhWkMOegyjnc2bbEL3ug
+ p8zbUR4b1MW3ANXKX9J+QYMg8PF1iOZ+QhlEPb+hvLSk0fT5aoYNX05Go
+ de1lEWEGIZu7uGEOwC+OshJUM6YLWUCf3qN5mriTeN+DZmAN8BOGKf9nF
+ MGn23CTRAoiKZhIbWU+OSBNplfBSpNkRfUxKxDVM9IzawUjtYd83Bw5AT g==;
+X-CSE-ConnectionGUID: Z40Sl1DtQCOKdShBPjJjQg==
+X-CSE-MsgGUID: bkNOeQzMQ9Wn9Ecd2+N7zw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11220"; a="27256751"
+X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="27256751"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2024 06:34:23 -0700
+X-CSE-ConnectionGUID: OVRG/m5nSMSuIHkx2kijTw==
+X-CSE-MsgGUID: wY30X7GMQcSOHOVIjHT1Jg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="76262150"
-Received: from eliteleevi.tm.intel.com ([10.237.54.20])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2024 06:39:33 -0700
-Date: Wed, 9 Oct 2024 16:33:49 +0300 (EEST)
-From: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-X-X-Sender: kvehmane@eliteleevi.tm.intel.com
-To: Vinod Govindapillai <vinod.govindapillai@intel.com>
-cc: intel-gfx@lists.freedesktop.org, jani.nikula@intel.com, 
- ville.syrjala@intel.com, kai.vehmanen@intel.com, jani.saarinen@intel.com
-Subject: Re: [PATCH 9/9] drm/i915/display: update audio bw calculations for MTL
-In-Reply-To: <20241008082327.342020-10-vinod.govindapillai@intel.com>
-Message-ID: <alpine.DEB.2.22.394.2410091632530.14041@eliteleevi.tm.intel.com>
-References: <20241008082327.342020-1-vinod.govindapillai@intel.com>
- <20241008082327.342020-10-vinod.govindapillai@intel.com>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7 02160 Espoo
+X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="76345661"
+Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.80])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2024 06:34:22 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Luca Coelho <luciano.coelho@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: jani.saarinen@intel.com
+Subject: Re: [core-for-CI PATCH] Revert "platform/x86:intel/pmc: Enable the
+ ACPI PM Timer to be turned off when suspended"
+In-Reply-To: <20241007090739.61293-1-luciano.coelho@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20241007090739.61293-1-luciano.coelho@intel.com>
+Date: Wed, 09 Oct 2024 16:34:18 +0300
+Message-ID: <87y12x8ko5.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,15 +69,263 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+On Mon, 07 Oct 2024, Luca Coelho <luciano.coelho@intel.com> wrote:
+> This is causing a regression since 6.12-rc1.  We are getting the
+> following error messages when running flip-vs-suspend* tests:
+>
+> [222.857770] =============================
+> [222.857771] [ BUG: Invalid wait context ]
+> [222.857772] 6.12.0-rc1-xe #1 Not tainted
+> [222.857773] -----------------------------
+> [222.857774] swapper/4/0 is trying to lock:
+> [222.857775] ffff8881174c88c8 (&pmcdev->lock){+.+.}-{3:3}, at: pmc_core_acpi_pm_timer_suspend_resume+0x50/0xe0 [intel_pmc_core]
+> [222.857782] other info that might help us debug this:
+> [222.857783] context-{4:4}
+> [222.857784] 1 lock held by swapper/4/0:
+> [222.857785]  #0: ffffffff83452258 (tick_freeze_lock){....}-{2:2}, at: tick_freeze+0x16/0x110
+> [222.857791] stack backtrace:
+> [222.857793] CPU: 4 UID: 0 PID: 0 Comm: swapper/4 Not tainted 6.12.0-rc1-xe #1
+> [222.857794] Hardware name: Intel Corporation Alder Lake Client Platform/AlderLake-P DDR5 RVP, BIOS RPLPFWI1.R00.4035.A00.2301200723 01/20/2023
+> [222.857796] Call Trace:
+> [222.857797]  <TASK>
+> [222.857798]  dump_stack_lvl+0x80/0xc0
+> [222.857802]  dump_stack+0x10/0x20
+> [222.857805]  __lock_acquire+0x943/0x2800
+> [222.857808]  ? stack_trace_save+0x4b/0x70
+> [222.857812]  lock_acquire+0xc5/0x2f0
+> [222.857814]  ? pmc_core_acpi_pm_timer_suspend_resume+0x50/0xe0 [intel_pmc_core]
+> [222.857817]  __mutex_lock+0xbe/0xc70
+> [222.857819]  ? pmc_core_acpi_pm_timer_suspend_resume+0x50/0xe0 [intel_pmc_core]
+> [222.857822]  ? pmc_core_acpi_pm_timer_suspend_resume+0x50/0xe0 [intel_pmc_core]
+> [222.857825]  mutex_lock_nested+0x1b/0x30
+> [222.857827]  ? mutex_lock_nested+0x1b/0x30
+> [222.857828]  pmc_core_acpi_pm_timer_suspend_resume+0x50/0xe0 [intel_pmc_core]
+> [222.857831]  acpi_pm_suspend+0x23/0x40
+> [222.857834]  clocksource_suspend+0x2b/0x50
+> [222.857836]  timekeeping_suspend+0x22a/0x360
+> [222.857839]  tick_freeze+0x89/0x110
+> [222.857840]  enter_s2idle_proper+0x34/0x1d0
+> [222.857843]  cpuidle_enter_s2idle+0xaa/0x120
+> [222.857845]  ? tsc_verify_tsc_adjust+0x42/0x100
+> [222.857849]  do_idle+0x221/0x250
+> [222.857852]  cpu_startup_entry+0x29/0x30
+> [222.857854]  start_secondary+0x12e/0x160
+> [222.857856]  common_startup_64+0x13e/0x141
+> [222.857859]  </TASK>
+>
+> This reverts commit e86c8186d03a6ba018e881ed45f0962ad553e861.
+>
+> Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
 
-On Tue, 8 Oct 2024, Vinod Govindapillai wrote:
+References: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12342
 
-> Update the reference overhaed values for audio bw calculations
-> for MTL onwards
+Pushed to topic/core-for-CI.
 
-s/overhaed/overhead/ , otherwise looks good:
 
-Reviewed-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
+BR,
+Jani.
 
-Br, Kai
+
+> ---
+>
+> drivers/platform/x86/intel/pmc/adl.c  |  2 --
+>  drivers/platform/x86/intel/pmc/cnp.c  |  2 --
+>  drivers/platform/x86/intel/pmc/core.c | 45 ---------------------------
+>  drivers/platform/x86/intel/pmc/core.h |  8 -----
+>  drivers/platform/x86/intel/pmc/icl.c  |  2 --
+>  drivers/platform/x86/intel/pmc/mtl.c  |  2 --
+>  drivers/platform/x86/intel/pmc/tgl.c  |  2 --
+>  7 files changed, 63 deletions(-)
+>
+> diff --git a/drivers/platform/x86/intel/pmc/adl.c b/drivers/platform/x86/intel/pmc/adl.c
+> index 9d9c07f44ff6..e7878558fd90 100644
+> --- a/drivers/platform/x86/intel/pmc/adl.c
+> +++ b/drivers/platform/x86/intel/pmc/adl.c
+> @@ -295,8 +295,6 @@ const struct pmc_reg_map adl_reg_map = {
+>  	.ppfear_buckets = CNP_PPFEAR_NUM_ENTRIES,
+>  	.pm_cfg_offset = CNP_PMC_PM_CFG_OFFSET,
+>  	.pm_read_disable_bit = CNP_PMC_READ_DISABLE_BIT,
+> -	.acpi_pm_tmr_ctl_offset = SPT_PMC_ACPI_PM_TMR_CTL_OFFSET,
+> -	.acpi_pm_tmr_disable_bit = SPT_PMC_BIT_ACPI_PM_TMR_DISABLE,
+>  	.ltr_ignore_max = ADL_NUM_IP_IGN_ALLOWED,
+>  	.lpm_num_modes = ADL_LPM_NUM_MODES,
+>  	.lpm_num_maps = ADL_LPM_NUM_MAPS,
+> diff --git a/drivers/platform/x86/intel/pmc/cnp.c b/drivers/platform/x86/intel/pmc/cnp.c
+> index 513c02670c5a..dd72974bf71e 100644
+> --- a/drivers/platform/x86/intel/pmc/cnp.c
+> +++ b/drivers/platform/x86/intel/pmc/cnp.c
+> @@ -200,8 +200,6 @@ const struct pmc_reg_map cnp_reg_map = {
+>  	.ppfear_buckets = CNP_PPFEAR_NUM_ENTRIES,
+>  	.pm_cfg_offset = CNP_PMC_PM_CFG_OFFSET,
+>  	.pm_read_disable_bit = CNP_PMC_READ_DISABLE_BIT,
+> -	.acpi_pm_tmr_ctl_offset = SPT_PMC_ACPI_PM_TMR_CTL_OFFSET,
+> -	.acpi_pm_tmr_disable_bit = SPT_PMC_BIT_ACPI_PM_TMR_DISABLE,
+>  	.ltr_ignore_max = CNP_NUM_IP_IGN_ALLOWED,
+>  	.etr3_offset = ETR3_OFFSET,
+>  };
+> diff --git a/drivers/platform/x86/intel/pmc/core.c b/drivers/platform/x86/intel/pmc/core.c
+> index ecb47f8b4f83..d6c0f88f8c7b 100644
+> --- a/drivers/platform/x86/intel/pmc/core.c
+> +++ b/drivers/platform/x86/intel/pmc/core.c
+> @@ -11,7 +11,6 @@
+>  
+>  #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
+>  
+> -#include <linux/acpi_pmtmr.h>
+>  #include <linux/bitfield.h>
+>  #include <linux/debugfs.h>
+>  #include <linux/delay.h>
+> @@ -1258,38 +1257,6 @@ static bool pmc_core_is_pson_residency_enabled(struct pmc_dev *pmcdev)
+>  	return val == 1;
+>  }
+>  
+> -/*
+> - * Enable or disable ACPI PM Timer
+> - *
+> - * This function is intended to be a callback for ACPI PM suspend/resume event.
+> - * The ACPI PM Timer is enabled on resume only if it was enabled during suspend.
+> - */
+> -static void pmc_core_acpi_pm_timer_suspend_resume(void *data, bool suspend)
+> -{
+> -	struct pmc_dev *pmcdev = data;
+> -	struct pmc *pmc = pmcdev->pmcs[PMC_IDX_MAIN];
+> -	const struct pmc_reg_map *map = pmc->map;
+> -	bool enabled;
+> -	u32 reg;
+> -
+> -	if (!map->acpi_pm_tmr_ctl_offset)
+> -		return;
+> -
+> -	guard(mutex)(&pmcdev->lock);
+> -
+> -	if (!suspend && !pmcdev->enable_acpi_pm_timer_on_resume)
+> -		return;
+> -
+> -	reg = pmc_core_reg_read(pmc, map->acpi_pm_tmr_ctl_offset);
+> -	enabled = !(reg & map->acpi_pm_tmr_disable_bit);
+> -	if (suspend)
+> -		reg |= map->acpi_pm_tmr_disable_bit;
+> -	else
+> -		reg &= ~map->acpi_pm_tmr_disable_bit;
+> -	pmc_core_reg_write(pmc, map->acpi_pm_tmr_ctl_offset, reg);
+> -
+> -	pmcdev->enable_acpi_pm_timer_on_resume = suspend && enabled;
+> -}
+>  
+>  static void pmc_core_dbgfs_unregister(struct pmc_dev *pmcdev)
+>  {
+> @@ -1486,7 +1453,6 @@ static int pmc_core_probe(struct platform_device *pdev)
+>  	struct pmc_dev *pmcdev;
+>  	const struct x86_cpu_id *cpu_id;
+>  	int (*core_init)(struct pmc_dev *pmcdev);
+> -	const struct pmc_reg_map *map;
+>  	struct pmc *primary_pmc;
+>  	int ret;
+>  
+> @@ -1545,11 +1511,6 @@ static int pmc_core_probe(struct platform_device *pdev)
+>  	pm_report_max_hw_sleep(FIELD_MAX(SLP_S0_RES_COUNTER_MASK) *
+>  			       pmc_core_adjust_slp_s0_step(primary_pmc, 1));
+>  
+> -	map = primary_pmc->map;
+> -	if (map->acpi_pm_tmr_ctl_offset)
+> -		acpi_pmtmr_register_suspend_resume_callback(pmc_core_acpi_pm_timer_suspend_resume,
+> -							 pmcdev);
+> -
+>  	device_initialized = true;
+>  	dev_info(&pdev->dev, " initialized\n");
+>  
+> @@ -1559,12 +1520,6 @@ static int pmc_core_probe(struct platform_device *pdev)
+>  static void pmc_core_remove(struct platform_device *pdev)
+>  {
+>  	struct pmc_dev *pmcdev = platform_get_drvdata(pdev);
+> -	const struct pmc *pmc = pmcdev->pmcs[PMC_IDX_MAIN];
+> -	const struct pmc_reg_map *map = pmc->map;
+> -
+> -	if (map->acpi_pm_tmr_ctl_offset)
+> -		acpi_pmtmr_unregister_suspend_resume_callback();
+> -
+>  	pmc_core_dbgfs_unregister(pmcdev);
+>  	pmc_core_clean_structure(pdev);
+>  }
+> diff --git a/drivers/platform/x86/intel/pmc/core.h b/drivers/platform/x86/intel/pmc/core.h
+> index 75fd593a7b0f..b9d3291d0bf2 100644
+> --- a/drivers/platform/x86/intel/pmc/core.h
+> +++ b/drivers/platform/x86/intel/pmc/core.h
+> @@ -68,8 +68,6 @@ struct telem_endpoint;
+>  #define SPT_PMC_LTR_SCC				0x3A0
+>  #define SPT_PMC_LTR_ISH				0x3A4
+>  
+> -#define SPT_PMC_ACPI_PM_TMR_CTL_OFFSET		0x18FC
+> -
+>  /* Sunrise Point: PGD PFET Enable Ack Status Registers */
+>  enum ppfear_regs {
+>  	SPT_PMC_XRAM_PPFEAR0A = 0x590,
+> @@ -150,8 +148,6 @@ enum ppfear_regs {
+>  #define SPT_PMC_VRIC1_SLPS0LVEN			BIT(13)
+>  #define SPT_PMC_VRIC1_XTALSDQDIS		BIT(22)
+>  
+> -#define SPT_PMC_BIT_ACPI_PM_TMR_DISABLE		BIT(1)
+> -
+>  /* Cannonlake Power Management Controller register offsets */
+>  #define CNP_PMC_SLPS0_DBG_OFFSET		0x10B4
+>  #define CNP_PMC_PM_CFG_OFFSET			0x1818
+> @@ -355,8 +351,6 @@ struct pmc_reg_map {
+>  	const u8  *lpm_reg_index;
+>  	const u32 pson_residency_offset;
+>  	const u32 pson_residency_counter_step;
+> -	const u32 acpi_pm_tmr_ctl_offset;
+> -	const u32 acpi_pm_tmr_disable_bit;
+>  };
+>  
+>  /**
+> @@ -432,8 +426,6 @@ struct pmc_dev {
+>  	u32 die_c6_offset;
+>  	struct telem_endpoint *punit_ep;
+>  	struct pmc_info *regmap_list;
+> -
+> -	bool enable_acpi_pm_timer_on_resume;
+>  };
+>  
+>  enum pmc_index {
+> diff --git a/drivers/platform/x86/intel/pmc/icl.c b/drivers/platform/x86/intel/pmc/icl.c
+> index cbbd44054468..71b0fd6cb7d8 100644
+> --- a/drivers/platform/x86/intel/pmc/icl.c
+> +++ b/drivers/platform/x86/intel/pmc/icl.c
+> @@ -46,8 +46,6 @@ const struct pmc_reg_map icl_reg_map = {
+>  	.ppfear_buckets = ICL_PPFEAR_NUM_ENTRIES,
+>  	.pm_cfg_offset = CNP_PMC_PM_CFG_OFFSET,
+>  	.pm_read_disable_bit = CNP_PMC_READ_DISABLE_BIT,
+> -	.acpi_pm_tmr_ctl_offset = SPT_PMC_ACPI_PM_TMR_CTL_OFFSET,
+> -	.acpi_pm_tmr_disable_bit = SPT_PMC_BIT_ACPI_PM_TMR_DISABLE,
+>  	.ltr_ignore_max = ICL_NUM_IP_IGN_ALLOWED,
+>  	.etr3_offset = ETR3_OFFSET,
+>  };
+> diff --git a/drivers/platform/x86/intel/pmc/mtl.c b/drivers/platform/x86/intel/pmc/mtl.c
+> index 91f2fa728f5c..c7d15d864039 100644
+> --- a/drivers/platform/x86/intel/pmc/mtl.c
+> +++ b/drivers/platform/x86/intel/pmc/mtl.c
+> @@ -462,8 +462,6 @@ const struct pmc_reg_map mtl_socm_reg_map = {
+>  	.ppfear_buckets = MTL_SOCM_PPFEAR_NUM_ENTRIES,
+>  	.pm_cfg_offset = CNP_PMC_PM_CFG_OFFSET,
+>  	.pm_read_disable_bit = CNP_PMC_READ_DISABLE_BIT,
+> -	.acpi_pm_tmr_ctl_offset = SPT_PMC_ACPI_PM_TMR_CTL_OFFSET,
+> -	.acpi_pm_tmr_disable_bit = SPT_PMC_BIT_ACPI_PM_TMR_DISABLE,
+>  	.lpm_num_maps = ADL_LPM_NUM_MAPS,
+>  	.ltr_ignore_max = MTL_SOCM_NUM_IP_IGN_ALLOWED,
+>  	.lpm_res_counter_step_x2 = TGL_PMC_LPM_RES_COUNTER_STEP_X2,
+> diff --git a/drivers/platform/x86/intel/pmc/tgl.c b/drivers/platform/x86/intel/pmc/tgl.c
+> index 371b4e30f142..e0580de18077 100644
+> --- a/drivers/platform/x86/intel/pmc/tgl.c
+> +++ b/drivers/platform/x86/intel/pmc/tgl.c
+> @@ -197,8 +197,6 @@ const struct pmc_reg_map tgl_reg_map = {
+>  	.ppfear_buckets = ICL_PPFEAR_NUM_ENTRIES,
+>  	.pm_cfg_offset = CNP_PMC_PM_CFG_OFFSET,
+>  	.pm_read_disable_bit = CNP_PMC_READ_DISABLE_BIT,
+> -	.acpi_pm_tmr_ctl_offset = SPT_PMC_ACPI_PM_TMR_CTL_OFFSET,
+> -	.acpi_pm_tmr_disable_bit = SPT_PMC_BIT_ACPI_PM_TMR_DISABLE,
+>  	.ltr_ignore_max = TGL_NUM_IP_IGN_ALLOWED,
+>  	.lpm_num_maps = TGL_LPM_NUM_MAPS,
+>  	.lpm_res_counter_step_x2 = TGL_PMC_LPM_RES_COUNTER_STEP_X2,
+
+-- 
+Jani Nikula, Intel
