@@ -2,61 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59D7A996C7E
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Oct 2024 15:44:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3894D996C71
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Oct 2024 15:43:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E0FF410E724;
-	Wed,  9 Oct 2024 13:43:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9EEA210E721;
+	Wed,  9 Oct 2024 13:43:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D3mYBpbh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MoZUum28";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC75910E724
- for <intel-gfx@lists.freedesktop.org>; Wed,  9 Oct 2024 13:43:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4DC2210E720
+ for <intel-gfx@lists.freedesktop.org>; Wed,  9 Oct 2024 13:43:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728481439; x=1760017439;
- h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=AEUWOlyMkQnGwheADTNwISM4NcC92ri068wivxQiSJI=;
- b=D3mYBpbh4f9Smna9BdnkvoW9we7cR4G8DgtZma/oFTOJdvb7yifjAmbG
- me2dTUeBsnN7c+it+5/Z6uaENH/glsAmK8BYzIG94hwjwi54tE6gzlKc9
- +VBh6mU7h76FI/erCUVCqyRQVOU5X0C3gQsQNyAXoPoJT7SbdeINQFBTE
- 1Bkxp0hHOTPnXJhPNmdOIbHao6mHzcwesJ+dcJQpyMfJshBM7l/KmixPG
- dahWowuBI7DZ71lTZnXWAfYH/KEkxPJEZKTugiUUT1rnWSOt3YcyyOQK/
- egJ2O4H2Dx/pxxFvOKfRnPcof7PIMYkQiGDe87CFiUI5J+Vx/bj88rDzj w==;
-X-CSE-ConnectionGUID: AtiWgMxnRJmzoeHIcVnI7Q==
-X-CSE-MsgGUID: uKGR1pBXQaC5wkjKyEoeNQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11220"; a="53188979"
-X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="53188979"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2024 06:43:53 -0700
-X-CSE-ConnectionGUID: nFCPxnqbTOeHgitgpu7Fgw==
-X-CSE-MsgGUID: z3JT6kcdRNywixJQ0NwIrQ==
+ t=1728481382; x=1760017382;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=dtW+LOutLatXhsvJcsglzFVFgOeTKI3hF7q5cPuyBr8=;
+ b=MoZUum2832GZnYvx6ZBDmgl6dJi+h/K9Q+2cSu8mw88WXRiod19QmpBU
+ 3+nyHKlsZR2N0VwbfFQPJgUWiedyDgSD6vA9cwCCyCEEzfsPzgLI9LVC5
+ evmb6A4X1j+d3e1/DIZqIGa9OGa9esdYW9MY2+a35QExFd+9Nrvqk+Muj
+ TIc3D7PwaqUXwcju2elCVM65PRkLAJUmQ5EswSY/37eWe7coFjLffVCiq
+ P551cM0VGA9SiBO0mT6jkYEi0fl7HQtf0DOMKihQSl42hnywVf146dEe1
+ lo3A8xpsxAQCWAtoWj4Xw2R272zA6YA/YhwaDeSJTdKEuCQ9j7FNYKKyX w==;
+X-CSE-ConnectionGUID: nhjPrLCkTpqcnjdamA0uXA==
+X-CSE-MsgGUID: WmwASwdiQvKqVLPglPUPpQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11220"; a="38347626"
+X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="38347626"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2024 06:43:02 -0700
+X-CSE-ConnectionGUID: 6HlphbEAQlurYCD3CNRFgw==
+X-CSE-MsgGUID: zhpaKz46Q1O+dTGZN1cchg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="107026019"
-Received: from eliteleevi.tm.intel.com ([10.237.54.20])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2024 06:43:52 -0700
-Date: Wed, 9 Oct 2024 16:38:07 +0300 (EEST)
-From: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-X-X-Sender: kvehmane@eliteleevi.tm.intel.com
-To: Vinod Govindapillai <vinod.govindapillai@intel.com>
-cc: intel-gfx@lists.freedesktop.org, jani.nikula@intel.com, 
- ville.syrjala@intel.com, kai.vehmanen@intel.com, jani.saarinen@intel.com
-Subject: Re: [PATCH 7/9] drm/i915/display: update audio support based on the
- available frequencies
-In-Reply-To: <20241008082327.342020-8-vinod.govindapillai@intel.com>
-Message-ID: <alpine.DEB.2.22.394.2410091635120.14041@eliteleevi.tm.intel.com>
-References: <20241008082327.342020-1-vinod.govindapillai@intel.com>
- <20241008082327.342020-8-vinod.govindapillai@intel.com>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7 02160 Espoo
+X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="76150956"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO jhogande-mobl1..)
+ ([10.245.245.231])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2024 06:43:01 -0700
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com, jani.nikula@linux.intel.com,
+ =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: [PATCH v2 1/2] drm/i915/display: Add own counter for Panel Replay
+ vblank workaround
+Date: Wed,  9 Oct 2024 16:42:24 +0300
+Message-Id: <20241009134225.1322820-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,33 +70,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+We are about to change meaning of vblank_enabled to fix Panel Replay vblank
+workaround. For sake of clarity we need to rename it. Vblank_enabled is
+used for i915gm/i945gm vblank irq workaround as well -> instead of rename
+add new counter named as vblank_wa_pipes.
 
-On Tue, 8 Oct 2024, Vinod Govindapillai wrote:
+v2:
+  - s/vblank_wa_pipes/vblank_wa_num_pipes/
+  - use int as a type for the counter
 
-> After pruning the sad audio frequency list, if there are no
-> supported audio frequencies left, audio cannot be supported.
-> So mark has_audio accordingly.
-[...]
-> @@ -823,9 +824,13 @@ bool intel_audio_compute_eld_config(struct drm_connector_state *conn_state,
->  				    "SAD updated. Freq: 0x%x(0x%x) Channels: %d(%d)\n",
->  				    sad.freq, sad_freq, sad.channels, sad_channels);
->  		}
-> +
-> +		/* If no supported freq in any sads, make audio support to false */
-> +		audio_supported |= sad.freq;
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_core.h | 2 ++
+ drivers/gpu/drm/i915/display/intel_display_irq.c  | 8 ++++----
+ 2 files changed, 6 insertions(+), 4 deletions(-)
 
-With the boolean logic fixed (Jani's note):
+diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
+index 982dd9469195..45697af25fa9 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_core.h
++++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+@@ -455,6 +455,8 @@ struct intel_display {
+ 		/* For i915gm/i945gm vblank irq workaround */
+ 		u8 vblank_enabled;
+ 
++		int vblank_wa_num_pipes;
++
+ 		struct work_struct vblank_dc_work;
+ 
+ 		u32 de_irq_mask[I915_MAX_PIPES];
+diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
+index a4367ddc7a44..8226ea218d77 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_irq.c
++++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
+@@ -1424,7 +1424,7 @@ static void intel_display_vblank_dc_work(struct work_struct *work)
+ 	struct intel_display *display =
+ 		container_of(work, typeof(*display), irq.vblank_dc_work);
+ 	struct drm_i915_private *i915 = to_i915(display->drm);
+-	u8 vblank_enabled = READ_ONCE(display->irq.vblank_enabled);
++	int vblank_wa_num_pipes = READ_ONCE(display->irq.vblank_wa_num_pipes);
+ 
+ 	/*
+ 	 * NOTE: intel_display_power_set_target_dc_state is used only by PSR
+@@ -1432,7 +1432,7 @@ static void intel_display_vblank_dc_work(struct work_struct *work)
+ 	 * PSR code. If DC3CO is taken into use we need take that into account
+ 	 * here as well.
+ 	 */
+-	intel_display_power_set_target_dc_state(i915, vblank_enabled ? DC_STATE_DISABLE :
++	intel_display_power_set_target_dc_state(i915, vblank_wa_num_pipes ? DC_STATE_DISABLE :
+ 						DC_STATE_EN_UPTO_DC6);
+ }
+ 
+@@ -1447,7 +1447,7 @@ int bdw_enable_vblank(struct drm_crtc *_crtc)
+ 	if (gen11_dsi_configure_te(crtc, true))
+ 		return 0;
+ 
+-	if (display->irq.vblank_enabled++ == 0 && crtc->block_dc_for_vblank)
++	if (display->irq.vblank_wa_num_pipes++ == 0 && crtc->block_dc_for_vblank)
+ 		schedule_work(&display->irq.vblank_dc_work);
+ 
+ 	spin_lock_irqsave(&dev_priv->irq_lock, irqflags);
+@@ -1478,7 +1478,7 @@ void bdw_disable_vblank(struct drm_crtc *_crtc)
+ 	bdw_disable_pipe_irq(dev_priv, pipe, GEN8_PIPE_VBLANK);
+ 	spin_unlock_irqrestore(&dev_priv->irq_lock, irqflags);
+ 
+-	if (--display->irq.vblank_enabled == 0 && crtc->block_dc_for_vblank)
++	if (--display->irq.vblank_wa_num_pipes == 0 && crtc->block_dc_for_vblank)
+ 		schedule_work(&display->irq.vblank_dc_work);
+ }
+ 
+-- 
+2.34.1
 
-Reviewed-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-
-> -	return true;
-> +	drm_dbg_kms(&i915->drm, "audio supported: %d\n", audio_supported);
-> +	return audio_supported;
-
-I was wondering whether this would warrant a more prominent warning, 
-but I guess if such a (rare) case would be hit, this message would 
-be emitted all the time, so probably still best left as a debug 
-level message.
-
-Br, Kai
