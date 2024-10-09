@@ -2,59 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B19E9965E2
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Oct 2024 11:49:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C272A9965F6
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Oct 2024 11:52:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E4D2F10E29B;
-	Wed,  9 Oct 2024 09:49:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6388D10E6B8;
+	Wed,  9 Oct 2024 09:52:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CN5wAVgw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JI1GJQjs";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6DEA210E29B;
- Wed,  9 Oct 2024 09:49:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD01910E6B7;
+ Wed,  9 Oct 2024 09:52:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728467391; x=1760003391;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=0XVUfZTDr+Q2dfQ50uH7zFHV2z4v5Ddxl9dcCINV6po=;
- b=CN5wAVgwul43CbLRgcxTsKkc93mafr3u0fcWthdrH9nsl1OupJCD6wiM
- 6BKW86aj/Hc/salVoYGAeTplBc2CDcrlcod43Q1/RfcP1fdBHB0KK+ukl
- qL793XHhCwhbhk74n7KLBO2lRiXO/fFBZsj5Yk8w0B1fp3mvs2i8tXUs/
- 29kBRVEECcNW0li6U2unJQM3Tz7raxc9S1kvLcP6In59WVmjV4VmrqpY2
- D/24IFGTMiC4jKlW4IiQqORX65giN79wMj2nFAZas88eItUAQ5SqJy+Iv
- CwllBdDaO+0EFzkH+cIzQwFwLPBGMv2uC0ebdxQk5lu19q/YlkiSD5ZWR g==;
-X-CSE-ConnectionGUID: jTG9BTFYS36ot7neLBLXig==
-X-CSE-MsgGUID: tiTMuG6OQqy6ktfvk6QsPg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11219"; a="45276229"
-X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="45276229"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2024 02:49:51 -0700
-X-CSE-ConnectionGUID: Pj5kh1N+RaGWdh5RU1Ug2Q==
-X-CSE-MsgGUID: hVjWa98/QPuMg0a0OtfMxA==
+ t=1728467566; x=1760003566;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=YQttl/+Vwl8Dxyo1zvdWitD0h4frUGqrgjmsrSzMycU=;
+ b=JI1GJQjshizNXM2KJ1pjQZQLSvhBGNzNgPiGGl0A84O1DRM480U7Fcrf
+ WiB1Fud0tMbyx7DoLufIHRtnjTUObXVbjH/9R8JWHI4oI+MdqVBwD8j92
+ ABqFs9tW2KSmY88elinO2O4CeaqONLgOum88cFWp4G61TduE6Qeo/PWxE
+ n8U6qbfSwrPEIcQ/Gs0tQE7dPYg0p1GeWNg+PDa5INoT3g/XxfRHKRbIL
+ i8FWn4/AbwM1ID9H/1eWpmbuUowxNm0TAURHgtasOIGjq2625bajOKyke
+ 9qPWyT9m1urjSg9YIyFlr1nWQhtWnWALygg6h7PxsXYWGqFO8wdpfz7GY Q==;
+X-CSE-ConnectionGUID: ia6xiOqlTY+4oxK/fAs8sQ==
+X-CSE-MsgGUID: L6QOASWFSdGRmLUtrlNcQw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11219"; a="27845660"
+X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="27845660"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2024 02:52:46 -0700
+X-CSE-ConnectionGUID: rlQlZS/0SN2qJpkbixRhkg==
+X-CSE-MsgGUID: +9ZLuUsuQ8ysmaDgUaPr/g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="106956839"
-Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.80])
+X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="113677781"
+Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2024 02:49:49 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com, Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: Re: [PATCH] drm/i915/hdcp: Move dig_port assignment lower in the
- sequence
-In-Reply-To: <20241009062455.1796615-1-suraj.kandpal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241009062455.1796615-1-suraj.kandpal@intel.com>
-Date: Wed, 09 Oct 2024 12:49:46 +0300
-Message-ID: <87y12xa9mt.fsf@intel.com>
+ 09 Oct 2024 02:52:44 -0700
+From: Tejas Upadhyay <tejas.upadhyay@intel.com>
+To: igt-dev@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Subject: [PATCH i-g-t] xe: Add test to check pci memory barrier capability
+Date: Wed,  9 Oct 2024 15:26:08 +0530
+Message-Id: <20241009095608.663743-1-tejas.upadhyay@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,67 +66,131 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 09 Oct 2024, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> Move dig_port assignment much lower in the sequence to avoid NULL
-> pointer deference in case encoder is not present.
+We want to make sure that direct mmap mapping of physical
+page at doorbell space and whole page is accessible in order
+to use pci memory barrier effect effectively.
 
-Please describe the case exactly. Is this real or a static analyzer
-warning?
+This is basic pci memory barrier test to showcase xe driver
+support for feature. In follow up patches we will have more
+of corner and negative tests added later.
 
-I see there's commit 6c63e6e14da7 ("drm/i915/hdcp: No HDCP when encoder
-is't initialized") adding the !connector->encoder check. But how was
-that supposed to fix anything when it leaves
+Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+---
+ include/drm-uapi/xe_drm.h       |  3 ++
+ tests/intel/xe_pci_membarrier.c | 77 +++++++++++++++++++++++++++++++++
+ tests/meson.build               |  1 +
+ 3 files changed, 81 insertions(+)
+ create mode 100644 tests/intel/xe_pci_membarrier.c
 
-	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
-
-above it in place, the line you're fixing now?
-
-If we haven't seen an oops here, it makes me think the reasoning in
-6c63e6e14da7 is bogus, the connector->encoder check is bogus, and this
-fix on top is also bogus.
-
-OTOH if we have seen a real issue, we need the backtrace and the
-conditions triggering it, and we need to backport this.
-
-While it may seem benign and defensive to add extra NULL checks, one of
-the dangers is the cargo culting of those checks. Static analyzers see a
-check somewhere, so they complain about unchecked dereferences
-everywhere. Checks start cropping up everywhere, and people lose track
-of when it's actually possible for the pointers to be NULL, and when
-not.
-
-BR,
-Jani.
-
-
->
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_hdcp.c | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> index ed6aa87403e2..ea8d56b25f6e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> @@ -2404,7 +2404,7 @@ static int _intel_hdcp_enable(struct intel_atomic_state *state,
->  	struct drm_i915_private *i915 = to_i915(display->drm);
->  	struct intel_connector *connector =
->  		to_intel_connector(conn_state->connector);
-> -	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
-> +	struct intel_digital_port *dig_port;
->  	struct intel_hdcp *hdcp = &connector->hdcp;
->  	unsigned long check_link_interval = DRM_HDCP_CHECK_PERIOD_MS;
->  	int ret = -EINVAL;
-> @@ -2418,6 +2418,8 @@ static int _intel_hdcp_enable(struct intel_atomic_state *state,
->  		return -ENODEV;
->  	}
->  
-> +	dig_port = intel_attached_dig_port(connector);
-> +
->  	mutex_lock(&hdcp->mutex);
->  	mutex_lock(&dig_port->hdcp_mutex);
->  	drm_WARN_ON(display->drm,
-
+diff --git a/include/drm-uapi/xe_drm.h b/include/drm-uapi/xe_drm.h
+index f0a450db9..866dc8060 100644
+--- a/include/drm-uapi/xe_drm.h
++++ b/include/drm-uapi/xe_drm.h
+@@ -823,6 +823,9 @@ struct drm_xe_gem_mmap_offset {
+ 	/** @offset: The fake offset to use for subsequent mmap call */
+ 	__u64 offset;
+ 
++	/* Specific MMAP offset for PCI memory barrier */
++#define DRM_XE_PCI_BARRIER_MMAP_OFFSET (0x50 << PAGE_SHIFT)
++
+ 	/** @reserved: Reserved */
+ 	__u64 reserved[2];
+ };
+diff --git a/tests/intel/xe_pci_membarrier.c b/tests/intel/xe_pci_membarrier.c
+new file mode 100644
+index 000000000..a28a01d4b
+--- /dev/null
++++ b/tests/intel/xe_pci_membarrier.c
+@@ -0,0 +1,77 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright(c) 2024 Intel Corporation. All rights reserved.
++ */
++
++#include "xe_drm.h"
++#include "igt.h"
++
++/**
++ * TEST: Test if the driver is capable of putting pci memory barrier using mmap
++ * Category: Core
++ * Mega feature: General Core features
++ * Sub-category: Memory management tests
++ * Functionality: mmap with pre-defined offset
++ */
++
++IGT_TEST_DESCRIPTION("Basic MMAP tests pci memory barrier effect with special offset");
++#define PAGE_SHIFT 12
++#define PAGE_SIZE 4096
++
++/**
++ * SUBTEST: pci-membarrier-basic
++ * Description: create pci memory barrier with write on defined mmap offset.
++ * Test category: functionality test
++ *
++ */
++
++static void pci_membarrier(int xe)
++{
++	uint64_t flags = MAP_SHARED;
++	uint64_t offset = DRM_XE_PCI_BARRIER_MMAP_OFFSET;
++	unsigned int prot = PROT_WRITE;
++	uint32_t *ptr;
++	uint64_t size = PAGE_SIZE;
++	struct timespec tv;
++
++	ptr = mmap(NULL, size, prot, flags, xe, offset);
++	igt_assert(ptr != MAP_FAILED);
++
++	/* Check whole page for any errors, also check as
++	 * we should not read written values back
++	 */
++	for (int i = 0; i < size / sizeof(*ptr); i++) {
++		/* It is expected unconfigured doorbell space
++		 * will return read value 0xdeadbeef
++		 */
++		igt_assert_eq_u32(READ_ONCE(ptr[i]), 0xdeadbeef);
++
++		igt_gettime(&tv);
++		ptr[i] = i;
++		if (READ_ONCE(ptr[i]) == i) {
++			while (READ_ONCE(ptr[i]) == i)
++				;
++			igt_info("fd:%d value retained for %"PRId64"ns pos:%d\n",
++				 xe, igt_nsec_elapsed(&tv), i);
++		}
++		igt_assert_neq(READ_ONCE(ptr[i]), i);
++	}
++
++	munmap(ptr, size);
++}
++
++igt_main
++{
++	int xe;
++
++	igt_fixture {
++		xe = drm_open_driver(DRIVER_XE);
++	}
++
++	igt_subtest_f("pci-membarrier-basic")
++		pci_membarrier(xe);
++
++	igt_fixture {
++		close(xe);
++	}
++}
+diff --git a/tests/meson.build b/tests/meson.build
+index e5d8852f3..310ef0e0d 100644
+--- a/tests/meson.build
++++ b/tests/meson.build
+@@ -304,6 +304,7 @@ intel_xe_progs = [
+ 	'xe_noexec_ping_pong',
+ 	'xe_oa',
+ 	'xe_pat',
++        'xe_pci_membarrier',
+ 	'xe_peer2peer',
+ 	'xe_pm',
+ 	'xe_pm_residency',
 -- 
-Jani Nikula, Intel
+2.34.1
+
