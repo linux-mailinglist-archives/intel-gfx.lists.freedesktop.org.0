@@ -2,48 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52B73995FBE
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Oct 2024 08:27:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B981995FF9
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Oct 2024 08:40:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC3F610E651;
-	Wed,  9 Oct 2024 06:26:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3186110E659;
+	Wed,  9 Oct 2024 06:40:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="PD/e9pS6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZWfi9FG5";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6366410E650;
- Wed,  9 Oct 2024 06:26:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1728455211;
- bh=7P9XX0NI6swUo/7q0hxI88EQjQYARABt9gplTZyTjmc=;
- h=Date:From:To:Cc:Subject:From;
- b=PD/e9pS6Pwz5IPZL6WQCETZMsidRPgUOXguQZrhBGJI32d0IHwyNS5S6yN11bfRn8
- Kuh3o+QvcNaLmXIVLUagolffKp1RJ8AcYd5uYZqcmL19lFMKZ34246eXWfwghub6Yc
- YeDk/bC2dI2aWAIkjT3NSo0QShM0u4/szEYsYsuYE0NXtzYlA3tXOzKgLb5K4s8ZSn
- Fo7U/WHssFXu6uRK04QzRyDIAObgRHSRpcFCfPGKpv0gZlPJuA5dhjYrucQq2UPRh2
- tb2rlkJ1fYVDtRaSVg4/fbyaRpqXT6lkU6t/VoqrfWGFL6J+Rvr9upLNJX3sbtiPcN
- CORNtQI/gxefA==
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (Client did not present a certificate)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4XNjbH0bjwz4wc3;
- Wed,  9 Oct 2024 17:26:50 +1100 (AEDT)
-Date: Wed, 9 Oct 2024 17:26:50 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>, Pierre-Eric
- Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>, Intel Graphics
- <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Linux Next
- Mailing List <linux-next@vger.kernel.org>
-Subject: linux-next: build warning after merge of the drm-misc tree
-Message-ID: <20241009172650.29169e6f@canb.auug.org.au>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD84910E658;
+ Wed,  9 Oct 2024 06:40:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1728456031; x=1759992031;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=IoG/u7GXFbEyPNpNfkcetMLIiFTpSK2wCLLqGx7/v8M=;
+ b=ZWfi9FG53FO8pFsXfmdOpmt1EG6LHAfZhYMuZJQUw15N+vPrCV/fvcbz
+ ufeMYIegCYf2zSvTcEISg+mWpi8eFvQtsBYoPBuRM36P5zs8VCS9Sq4gG
+ oD+zaKBRzUFtAkY3hki2FZ5ODgo/GrASRz7a9ZOCgMP74ER5S9EoER515
+ trSJpkQ/FXJ+fb/7d6WtV4Vy5p6kPrHfQd0hCyBJM1DgJe6sf1mknAKf0
+ Lc4qrx3eo6VsvJJ99tKN6YK+aPEqc7Vh1YSMHdGxal70gArV5Q9BYnhP8
+ DGVnTW5ULX1XRQPCwS2pkkwFNIQJBBp6e/b8x5vs7QPKsoLqC3Vu3zyfL Q==;
+X-CSE-ConnectionGUID: SeySQvrmSe+53SmOjcpLuw==
+X-CSE-MsgGUID: mi0T8NmPROmp39lRRUx3Lw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11219"; a="27821292"
+X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="27821292"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Oct 2024 23:40:31 -0700
+X-CSE-ConnectionGUID: DFhF3iMRQjm8G6ZUB89LVQ==
+X-CSE-MsgGUID: Ecxnf1lwRWiF1ISVVlWeVA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="80130266"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
+ by fmviesa003.fm.intel.com with ESMTP; 08 Oct 2024 23:40:28 -0700
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: uma.shankar@intel.com, chaitanya.kumar.borah@intel.com,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH] drm/i915/color: Use correct variable to load lut
+Date: Wed,  9 Oct 2024 12:07:53 +0530
+Message-ID: <20241009063753.1799234-2-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.43.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/3.yCEScp.iBobUH9X0xGTCu";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,42 +66,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/3.yCEScp.iBobUH9X0xGTCu
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+Use the blob variable instead of post_csc_lut as it may end up
+being null.
 
-Hi all,
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_color.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-After merging the drm-misc tree, today's linux-next build (htmldocs)
-produced this warning:
+diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
+index caf1af039960..22b7090c4f6f 100644
+--- a/drivers/gpu/drm/i915/display/intel_color.c
++++ b/drivers/gpu/drm/i915/display/intel_color.c
+@@ -1503,7 +1503,7 @@ static void ivb_load_luts(const struct intel_crtc_state *crtc_state)
+ 		ivb_load_lut_10(crtc_state, pre_csc_lut, PAL_PREC_SPLIT_MODE |
+ 				PAL_PREC_INDEX_VALUE(0));
+ 		ivb_load_lut_ext_max(crtc_state);
+-		ivb_load_lut_10(crtc_state, post_csc_lut, PAL_PREC_SPLIT_MODE |
++		ivb_load_lut_10(crtc_state, blob, PAL_PREC_SPLIT_MODE |
+ 				PAL_PREC_INDEX_VALUE(512));
+ 		break;
+ 	case GAMMA_MODE_MODE_10BIT:
+@@ -1531,7 +1531,7 @@ static void bdw_load_luts(const struct intel_crtc_state *crtc_state)
+ 		bdw_load_lut_10(crtc_state, pre_csc_lut, PAL_PREC_SPLIT_MODE |
+ 				PAL_PREC_INDEX_VALUE(0));
+ 		ivb_load_lut_ext_max(crtc_state);
+-		bdw_load_lut_10(crtc_state, post_csc_lut, PAL_PREC_SPLIT_MODE |
++		bdw_load_lut_10(crtc_state, blob, PAL_PREC_SPLIT_MODE |
+ 				PAL_PREC_INDEX_VALUE(512));
+ 		break;
+ 	case GAMMA_MODE_MODE_10BIT:
+-- 
+2.43.2
 
-include/drm/drm_file.h:400: warning: Function parameter or struct member 'c=
-lient_name_lock' not described in 'drm_file'
-include/drm/drm_file.h:400: warning: Excess struct member 'name_lock' descr=
-iption in 'drm_file'
-
-Introduced by commit
-
-  56c594d8df64 ("drm: add DRM_SET_CLIENT_NAME ioctl")
-
---=20
-Cheers,
-Stephen Rothwell
-
---Sig_/3.yCEScp.iBobUH9X0xGTCu
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmcGIioACgkQAVBC80lX
-0GxqAAf/WTCPEBONare0NFaBPSwyE3+rbXD3ZBePxOBMbAkhk8vlf7cS48XGu2QY
-pqvfVu+Y5AxpXO+uWI5E6PhCEdb8IhP9mJLNIW9R08ALMhiFGrZMJ//5GAKMMEoI
-45NuSl1QPvCO7yC2VORc91d8e6tMNcv+G3rOT3CW+Ifx8TljHyBjY4q7hSwNMrAp
-BU1mHbBh+FqegE7PuR0Kxi/iISu0nldN5W+sU4/S/JUmt4tLw4SbCitzoPz9BIaf
-lHluzPYQBMX4+Vv+gGXHXDWeezVBEmzmzCbSHgEwWFLlplBpEEILLyKkCSRib/Vx
-6CgT+Z2+EA16Rk96BaWlrHU51P8P0w==
-=lH2n
------END PGP SIGNATURE-----
-
---Sig_/3.yCEScp.iBobUH9X0xGTCu--
