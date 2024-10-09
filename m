@@ -2,84 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F19F59975C3
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Oct 2024 21:41:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 30CA59975D9
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Oct 2024 21:43:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B48E10E06A;
-	Wed,  9 Oct 2024 19:41:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACACF10E7F6;
+	Wed,  9 Oct 2024 19:43:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=quicinc.com header.i=@quicinc.com header.b="PLDK3vW1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k3IkkJlf";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
- [205.220.168.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B77B510E06A;
- Wed,  9 Oct 2024 19:41:05 +0000 (UTC)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 499I6ENY025610;
- Wed, 9 Oct 2024 19:41:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
- cc:content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
- lpiziDVRQrqq+xMtPzzwcKxJ2d4K9hj1JPy9sBR3yTo=; b=PLDK3vW1JUGm3XFW
- fphoq7n8Rbn5UFzGdKzYsSMx10wzDxVUrUcpOuwmjCz9QtbXRfcD9fT88v4uvIjI
- 1sleele330mat5gbMp8XIWLHJ4PmkRMsfzMsSudq6fw3DuIEz3n77bqT9+3tHfOH
- m8vSGd1n2fRk3pi8NF0UlyLUAgB/SgTvC2MO6Qw+YmwEwcBE35veGXbzUX3ajUL1
- 2ROSSe6DLvKTRfWmD5won0xUhtkZMSN+uslP2JPUlJB39P2FqcsKxJtSl8jyQ8UZ
- d1NgWL4tjpQKOBnjOYvX7raggT9g1i4RKvOfcAjpHVEJAd0c68TzcXbG9Zj4KmGp
- kpeU5g==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com
- [129.46.96.20])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 425xthr7tx-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 09 Oct 2024 19:41:00 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com
- [10.47.209.196])
- by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 499Jexs1018867
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 9 Oct 2024 19:40:59 GMT
-Received: from [10.134.71.247] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 9 Oct 2024
- 12:40:58 -0700
-Message-ID: <6a7ebf4b-9126-4c72-87cb-a881495f5c95@quicinc.com>
-Date: Wed, 9 Oct 2024 12:40:49 -0700
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E853310E7FA;
+ Wed,  9 Oct 2024 19:43:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1728503011; x=1760039011;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=yAGKy1IR1l5wMtEYQj/yUdzDZUfXVi0/iogWkBs5bjs=;
+ b=k3IkkJlf3jmLxkyb50JwqSU9ySQrVzH88KnybDGyd+4RVIUrPSWDBtLy
+ RRELF2kf2+uT+wot8fgFkhH4u9Idn0cfbYly0W4N+xsuZOs3JkFbL+yyQ
+ E3iWpqtXEzbfXqle7CdJVe3veFDfLPYc0iObrSIchhQe00KKVm8VoaXIi
+ 0M1xdkgbmi410e5iNghd+Zm64s5TC2UKCVX2CkJYSB1YrtdINXx6O8HYd
+ jeKJBTYLtvuFIo07/Ywed6qjUOM75PhG8cl2Hg5nd4k+KNawaArLok5l2
+ yqJmQOpIVVQS9MUJ248Z7NXh8ivgiixVoIYe7Nc/mmLD9o/Dbh7ffKOkp g==;
+X-CSE-ConnectionGUID: kHsUwXfMTqeQ5wzcQiaoZg==
+X-CSE-MsgGUID: 60L8cI+IStevBazhEMBlYw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11220"; a="27947095"
+X-IronPort-AV: E=Sophos;i="6.11,190,1725346800"; d="scan'208";a="27947095"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2024 12:43:31 -0700
+X-CSE-ConnectionGUID: Hy6PD3usTFeg5gxmietPdw==
+X-CSE-MsgGUID: aiR7angxTGe5YJ5RN5yPlg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,190,1725346800"; d="scan'208";a="81371464"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2024 12:43:29 -0700
+From: Imre Deak <imre.deak@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>
+Subject: [PATCH v2 0/4] drm/xe: Fix HPD interrupt enabling during runtime
+ resume
+Date: Wed,  9 Oct 2024 22:43:54 +0300
+Message-ID: <20241009194358.1321200-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.44.2
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 3/3] drm/ci: add sm8350-hdk
-To: Vignesh Raman <vignesh.raman@collabora.com>,
- <dri-devel@lists.freedesktop.org>
-CC: <daniels@collabora.com>, <helen.koike@collabora.com>, <airlied@gmail.com>, 
- <daniel@ffwll.ch>, <robdclark@gmail.com>,
- <guilherme.gallo@collabora.com>, <sergi.blanch.torne@collabora.com>,
- <deborah.brouwer@collabora.com>, <dmitry.baryshkov@linaro.org>,
- <linux-arm-msm@vger.kernel.org>, <intel-gfx@lists.freedesktop.org>,
- <virtualization@lists.linux.dev>, <linux-kernel@vger.kernel.org>
-References: <20241004133126.2436930-1-vignesh.raman@collabora.com>
- <20241004133126.2436930-4-vignesh.raman@collabora.com>
-Content-Language: en-US
-From: Abhinav Kumar <quic_abhinavk@quicinc.com>
-In-Reply-To: <20241004133126.2436930-4-vignesh.raman@collabora.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
- signatures=585085
-X-Proofpoint-ORIG-GUID: X7KYQapGwg778aSFyokjXVdfiJKpb7XH
-X-Proofpoint-GUID: X7KYQapGwg778aSFyokjXVdfiJKpb7XH
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 lowpriorityscore=0
- malwarescore=0 suspectscore=0 spamscore=0 priorityscore=1501 bulkscore=0
- phishscore=0 clxscore=1011 mlxlogscore=925 impostorscore=0 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
- definitions=main-2410090122
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,25 +68,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+This is v2 of [1], fixing a failure in igt/kms_pm_rpm/universal-planes
+reported by CI.
 
+[1] https://lore.kernel.org/all/20241007140531.1044630-1-imre.deak@intel.com
 
-On 10/4/2024 6:31 AM, Vignesh Raman wrote:
-> Add job that executes the IGT test suite for sm8350-hdk.
-> 
-> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
-> ---
->   drivers/gpu/drm/ci/arm64.config               |   7 +-
->   drivers/gpu/drm/ci/build.sh                   |   1 +
->   drivers/gpu/drm/ci/test.yml                   |  16 ++
->   .../drm/ci/xfails/msm-sm8350-hdk-fails.txt    |  15 ++
->   .../drm/ci/xfails/msm-sm8350-hdk-flakes.txt   |   6 +
->   .../drm/ci/xfails/msm-sm8350-hdk-skips.txt    | 211 ++++++++++++++++++
->   6 files changed, 255 insertions(+), 1 deletion(-)
->   create mode 100644 drivers/gpu/drm/ci/xfails/msm-sm8350-hdk-fails.txt
->   create mode 100644 drivers/gpu/drm/ci/xfails/msm-sm8350-hdk-flakes.txt
->   create mode 100644 drivers/gpu/drm/ci/xfails/msm-sm8350-hdk-skips.txt
-> 
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
 
-Very happy to see this added
+Imre Deak (4):
+  drm/i915/dp: Assume panel power is off if runtime suspended
+  drm/i915/dp: Disable unnecessary HPD polling for eDP
+  drm/xe/display: Separate the d3cold and non-d3cold runtime PM handling
+  drm/xe/display: Add missing HPD interrupt enabling during non-d3cold
+    RPM resume
 
-Reviewed-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
+ drivers/gpu/drm/i915/display/intel_dp.c       |  8 ++++++--
+ drivers/gpu/drm/i915/intel_runtime_pm.h       |  8 +++++++-
+ .../xe/compat-i915-headers/intel_runtime_pm.h |  8 ++++++++
+ drivers/gpu/drm/xe/display/xe_display.c       | 20 ++++++++++++++-----
+ 4 files changed, 36 insertions(+), 8 deletions(-)
+
+-- 
+2.44.2
+
