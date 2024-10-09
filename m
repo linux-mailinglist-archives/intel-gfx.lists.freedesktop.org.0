@@ -2,60 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AA9F996768
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Oct 2024 12:36:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB783996769
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Oct 2024 12:37:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3031210E6C9;
-	Wed,  9 Oct 2024 10:36:13 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B3qPExWR";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6AEED10E6C3;
+	Wed,  9 Oct 2024 10:37:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E0A3310E6C3;
- Wed,  9 Oct 2024 10:36:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728470172; x=1760006172;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=/1yJPIcuig1DfVUYSUgFXiHyrSGppyebBEqcdY5gqGk=;
- b=B3qPExWRSUk2Uw8equ41SMya9Nx6Ez5MbKnc86LCghDTgbzCQ1wQUK3E
- xyXf2cpuD/JYoUUNrl08lIcAEwoFGUmWdUrHIM/yZtkgibkzGxKIr17Vg
- qSmLZNewmmszgvEl0NUicmB4ORPSh5Ycptv/c7j+vVauG0BYvul79bTTx
- Y5lQWir+IPy4MLpPDa8Yw9yJiJDDcXvqk9Tled57XiJvNVsYYbVJBcsII
- LFl7eieu+49C9Ppyfgu/4QyGUp11rkWwfDmwcT1jGFcznYeo4HyR/6upg
- wDTlVMouMvBAaxxDQvUbAlfoj1/I9nMD6mAM1kAEwKzQHgXaizRvUfkJT w==;
-X-CSE-ConnectionGUID: 7njgJlfvT8yWsYy0+gDvOw==
-X-CSE-MsgGUID: cAElj41ySP6FF+CjcJ+7ag==
-X-IronPort-AV: E=McAfee;i="6700,10204,11219"; a="50296290"
-X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="50296290"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2024 03:36:11 -0700
-X-CSE-ConnectionGUID: oB6TncDJTIKfFpopOmN4Cg==
-X-CSE-MsgGUID: a1vvyXBySQmilWtOljelQQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="76517608"
-Received: from kamilkon-desk.igk.intel.com (HELO localhost) ([10.102.138.187])
- by fmviesa010-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Oct 2024 03:36:10 -0700
-Date: Wed, 9 Oct 2024 12:36:08 +0200
-From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>, intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH i-g-t] xe: Add test to check pci memory barrier capability
-Message-ID: <20241009103608.uw7fbirmms2dfv62@kamilkon-desk.igk.intel.com>
-Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- igt-dev@lists.freedesktop.org,
- Tejas Upadhyay <tejas.upadhyay@intel.com>,
- intel-gfx@lists.freedesktop.org
-References: <20241009095608.663743-1-tejas.upadhyay@intel.com>
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B26110E6C3;
+ Wed,  9 Oct 2024 10:37:04 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1829069309912885460=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20241009095608.663743-1-tejas.upadhyay@intel.com>
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/xe/mmap=3A_Add_mmap_sup?=
+ =?utf-8?q?port_for_PCI_memory_barrier?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 09 Oct 2024 10:37:04 -0000
+Message-ID: <172847022436.1208817.9518018543366609351@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241009100725.664150-1-tejas.upadhyay@intel.com>
+In-Reply-To: <20241009100725.664150-1-tejas.upadhyay@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,142 +37,152 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Tejas,
-On 2024-10-09 at 15:26:08 +0530, Tejas Upadhyay wrote:
-> We want to make sure that direct mmap mapping of physical
-> page at doorbell space and whole page is accessible in order
-> to use pci memory barrier effect effectively.
-> 
-> This is basic pci memory barrier test to showcase xe driver
-> support for feature. In follow up patches we will have more
-> of corner and negative tests added later.
-> 
-> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
-> ---
->  include/drm-uapi/xe_drm.h       |  3 ++
+--===============1829069309912885460==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Please send updates to drm-uapi with a separate patch.
+== Series Details ==
 
-Regards,
-Kamil
+Series: drm/xe/mmap: Add mmap support for PCI memory barrier
+URL   : https://patchwork.freedesktop.org/series/139768/
+State : success
 
->  tests/intel/xe_pci_membarrier.c | 77 +++++++++++++++++++++++++++++++++
->  tests/meson.build               |  1 +
->  3 files changed, 81 insertions(+)
->  create mode 100644 tests/intel/xe_pci_membarrier.c
-> 
-> diff --git a/include/drm-uapi/xe_drm.h b/include/drm-uapi/xe_drm.h
-> index f0a450db9..866dc8060 100644
-> --- a/include/drm-uapi/xe_drm.h
-> +++ b/include/drm-uapi/xe_drm.h
-> @@ -823,6 +823,9 @@ struct drm_xe_gem_mmap_offset {
->  	/** @offset: The fake offset to use for subsequent mmap call */
->  	__u64 offset;
->  
-> +	/* Specific MMAP offset for PCI memory barrier */
-> +#define DRM_XE_PCI_BARRIER_MMAP_OFFSET (0x50 << PAGE_SHIFT)
-> +
->  	/** @reserved: Reserved */
->  	__u64 reserved[2];
->  };
-> diff --git a/tests/intel/xe_pci_membarrier.c b/tests/intel/xe_pci_membarrier.c
-> new file mode 100644
-> index 000000000..a28a01d4b
-> --- /dev/null
-> +++ b/tests/intel/xe_pci_membarrier.c
-> @@ -0,0 +1,77 @@
-> +// SPDX-License-Identifier: MIT
-> +/*
-> + * Copyright(c) 2024 Intel Corporation. All rights reserved.
-> + */
-> +
-> +#include "xe_drm.h"
-> +#include "igt.h"
-> +
-> +/**
-> + * TEST: Test if the driver is capable of putting pci memory barrier using mmap
-> + * Category: Core
-> + * Mega feature: General Core features
-> + * Sub-category: Memory management tests
-> + * Functionality: mmap with pre-defined offset
-> + */
-> +
-> +IGT_TEST_DESCRIPTION("Basic MMAP tests pci memory barrier effect with special offset");
-> +#define PAGE_SHIFT 12
-> +#define PAGE_SIZE 4096
-> +
-> +/**
-> + * SUBTEST: pci-membarrier-basic
-> + * Description: create pci memory barrier with write on defined mmap offset.
-> + * Test category: functionality test
-> + *
-> + */
-> +
-> +static void pci_membarrier(int xe)
-> +{
-> +	uint64_t flags = MAP_SHARED;
-> +	uint64_t offset = DRM_XE_PCI_BARRIER_MMAP_OFFSET;
-> +	unsigned int prot = PROT_WRITE;
-> +	uint32_t *ptr;
-> +	uint64_t size = PAGE_SIZE;
-> +	struct timespec tv;
-> +
-> +	ptr = mmap(NULL, size, prot, flags, xe, offset);
-> +	igt_assert(ptr != MAP_FAILED);
-> +
-> +	/* Check whole page for any errors, also check as
-> +	 * we should not read written values back
-> +	 */
-> +	for (int i = 0; i < size / sizeof(*ptr); i++) {
-> +		/* It is expected unconfigured doorbell space
-> +		 * will return read value 0xdeadbeef
-> +		 */
-> +		igt_assert_eq_u32(READ_ONCE(ptr[i]), 0xdeadbeef);
-> +
-> +		igt_gettime(&tv);
-> +		ptr[i] = i;
-> +		if (READ_ONCE(ptr[i]) == i) {
-> +			while (READ_ONCE(ptr[i]) == i)
-> +				;
-> +			igt_info("fd:%d value retained for %"PRId64"ns pos:%d\n",
-> +				 xe, igt_nsec_elapsed(&tv), i);
-> +		}
-> +		igt_assert_neq(READ_ONCE(ptr[i]), i);
-> +	}
-> +
-> +	munmap(ptr, size);
-> +}
-> +
-> +igt_main
-> +{
-> +	int xe;
-> +
-> +	igt_fixture {
-> +		xe = drm_open_driver(DRIVER_XE);
-> +	}
-> +
-> +	igt_subtest_f("pci-membarrier-basic")
-> +		pci_membarrier(xe);
-> +
-> +	igt_fixture {
-> +		close(xe);
-> +	}
-> +}
-> diff --git a/tests/meson.build b/tests/meson.build
-> index e5d8852f3..310ef0e0d 100644
-> --- a/tests/meson.build
-> +++ b/tests/meson.build
-> @@ -304,6 +304,7 @@ intel_xe_progs = [
->  	'xe_noexec_ping_pong',
->  	'xe_oa',
->  	'xe_pat',
-> +        'xe_pci_membarrier',
->  	'xe_peer2peer',
->  	'xe_pm',
->  	'xe_pm_residency',
-> -- 
-> 2.34.1
-> 
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_15498 -> Patchwork_139768v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139768v1/index.html
+
+Participating hosts (42 -> 41)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_139768v1 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@i915_selftest@live:
+    - {bat-arlh-3}:       [ABORT][1] ([i915#12133]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15498/bat-arlh-3/igt@i915_selftest@live.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139768v1/bat-arlh-3/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@workarounds:
+    - {bat-arlh-3}:       [ABORT][3] ([i915#12061]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15498/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139768v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+    - bat-mtlp-6:         [ABORT][5] ([i915#12216]) -> [PASS][6] +1 other test pass
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15498/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139768v1/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#12133]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133
+  [i915#12216]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12216
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_15498 -> Patchwork_139768v1
+
+  CI-20190529: 20190529
+  CI_DRM_15498: 97b4690ecb1eafab876fe8be401d0d45bb5eb5ff @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8061: 8061
+  Patchwork_139768v1: 97b4690ecb1eafab876fe8be401d0d45bb5eb5ff @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139768v1/index.html
+
+--===============1829069309912885460==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/mmap: Add mmap support for PCI memory barrier</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/139768/">https://patchwork.freedesktop.org/series/139768/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139768v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139768v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_15498 -&gt; Patchwork_139768v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139768v1/index.html</p>
+<h2>Participating hosts (42 -&gt; 41)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_139768v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>{bat-arlh-3}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15498/bat-arlh-3/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133">i915#12133</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139768v1/bat-arlh-3/igt@i915_selftest@live.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>{bat-arlh-3}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15498/bat-arlh-3/igt@i915_selftest@live@workarounds.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139768v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a></li>
+<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15498/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12216">i915#12216</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139768v1/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_15498 -&gt; Patchwork_139768v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_15498: 97b4690ecb1eafab876fe8be401d0d45bb5eb5ff @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8061: 8061<br />
+  Patchwork_139768v1: 97b4690ecb1eafab876fe8be401d0d45bb5eb5ff @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============1829069309912885460==--
