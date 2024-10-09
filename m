@@ -2,67 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A64B3996F75
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Oct 2024 17:16:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A9A6996F76
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Oct 2024 17:16:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 514BB10E772;
-	Wed,  9 Oct 2024 15:16:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B105E10E773;
+	Wed,  9 Oct 2024 15:16:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="SCNWKO95";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="enX2gail";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com
- [209.85.214.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2AAD110E771;
- Wed,  9 Oct 2024 15:16:04 +0000 (UTC)
-Received: by mail-pl1-f170.google.com with SMTP id
- d9443c01a7336-20c544d34bcso19100555ad.1; 
- Wed, 09 Oct 2024 08:16:04 -0700 (PDT)
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com
+ [209.85.210.180])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0ABD10E773;
+ Wed,  9 Oct 2024 15:16:07 +0000 (UTC)
+Received: by mail-pf1-f180.google.com with SMTP id
+ d2e1a72fcca58-71e05198d1dso2442412b3a.1; 
+ Wed, 09 Oct 2024 08:16:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1728486963; x=1729091763; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1728486967; x=1729091767; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=BuCiguqr64e/vpvOFR/ydDcwvHS8vsqLJqmkm2B0WVw=;
- b=SCNWKO95qD9+UmUXrIZobOOttvBrbNFnjF5IEZqEjpNsjYrqxmatEna16cs41/HHZV
- zs3Uo+QiJuDbDihxOEgnFVntMlrviv0gKPqL9MPZyzrA3PS7simoR6bgYp8Ku9VH9zN+
- anFMdwyIaIlKb4rUSx3S/2miBXymvuHbPeIEOfjYxjcxjjjPY3P8FPiQESjjGLCppRyV
- hyEuS218Dvubly94AvdVTlU/khu3Kq383wn7HeY1htuC05cEMuvKr+sFDJ8Lgn+GZ106
- HvZcP9vI8bSr/B648yzYE8sIVAC/Uy1JUWpZOJUAg1FnKoKOY3JotQkjrqWQHyxmEGOY
- fIgQ==
+ bh=2Lsud1VSVKxL9o+8gozVVhLT4ZhXKNwGZ7gy58Dv9eE=;
+ b=enX2gailpJn44luf+86PfzUblIN0tMQTRHyvy9V028/br+U9L/OXLisLIp0aA8a+Ic
+ +FgQsmRZUOIRiFpItrb8muB0vwr276Ue2U+ocDwWj52Zu81yolyym2z1wOpLMbujR+F1
+ ShVBVGYch0YZaj4/TZgycwP5aHgXKRx6dXRXuf8kJyfXpqPcjtOayOZKz1E3EUjJRSIT
+ Q3LpDZh1+hS1jYXLyycrv79Kze7AkOTlCoYaxxKn7rzfGrcfrXY4s9VA8otWil5tlR71
+ lMXKMO3OTf9OGaffB0AtiwWFADRkHJDHjDwylD7Mlnz3r67BFg/ivSTAFbyJoOWknjei
+ /kRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1728486963; x=1729091763;
+ d=1e100.net; s=20230601; t=1728486967; x=1729091767;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=BuCiguqr64e/vpvOFR/ydDcwvHS8vsqLJqmkm2B0WVw=;
- b=rAkFwOlwHwcHiPjnxYkor1QSBjjlz4KGdVrQX7ZU9s1SvGfGviT+CtuFrTEI935bwp
- hO/0D+qhaMVdn34cxikyMSlNFd6g/k4AecTM1ls5BANPqyrr9CwIDBRf4KmANcb4QYUZ
- vB0Wjsc+oZ6F03pNmojFPBHI/ypLhR31tEChzOjW2i3gNHQvuI4okJxbCJ4K6E3HHbax
- 1d9Ak2FRWFx8wCAqJFw54Uz98TYJ8/83gcQdT88TJFVcg1NuO96I5NSjWqOlgAbJPvtW
- 73CNEtsRRT5qHRDZhLTkksKf6raUu0gINYAwmoSsoNHwbxX0ChrDNCqX1eboiLsV0gxb
- KpVQ==
+ bh=2Lsud1VSVKxL9o+8gozVVhLT4ZhXKNwGZ7gy58Dv9eE=;
+ b=ZIycatbSaosyFKiiXtsmLqkMGa04PE+WfJhgPq8eOwxqJkeqmzvWyyvSHFgzOTbq4n
+ owfBPgsggaQ/bcWFsFewYTSrPgwEc+q80LzAbiXcN1dWhbjxlnSqHLClY7vYaJ31/RSW
+ hK3f+DFpImiqqboGbfMvnucFh7Yna0RRdv/vi+0sOfzkgdvnZOv0yuFUefaT39qcDMBj
+ Ka2oyH+geDy0l5ZoBDmw0vyGA/moW614dGPA3DXLie5akBVFrEFt2/citDnB3YPsjD+c
+ pt3GeseIY+YQjTOs+qGdCi2WpS8m4De5AodhrcCCtTW9HZDo20ApREIzlzfs5VGmeKqu
+ O14g==
 X-Forwarded-Encrypted: i=1;
- AJvYcCU99VNes/5PopzbtTFNr444CTBnryNrS/g4FAYMFpJGM6W9rf8Y0M5ACbQWEGI8KSWTOK1eTS8+pYA=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yz37cNyIBEhPs5hjpXrhtZUBuRzG3URGcAiAj/F9G7aCyblsxLV
- u/7NXDV2cIyEXD2UEeYU/0gGYYFmbOrP64jnwpkUGpT4cEx3whHv7GXBo7smsA0=
-X-Google-Smtp-Source: AGHT+IFegI7L9adCANMIB7THoCrPIDZN7efph6RxYLBAKcYMcOMPkcqvPidVe9U2OsljaL33SQiOsA==
-X-Received: by 2002:a17:903:245:b0:202:13ca:d73e with SMTP id
- d9443c01a7336-20c63737be9mr49160725ad.28.1728486963284; 
- Wed, 09 Oct 2024 08:16:03 -0700 (PDT)
+ AJvYcCX7FXvOWJzUJZvp2KwE0Q4/YpLTEaoa+qYsLObzeP0nQR4SB2R3YYKR/9+OB10ZPwquZo+xO2y9Io4=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxGTZ7aoaZmY3/lA1umj05zq24wn+EtsIX+GSn0x7L6TyRegAtV
+ fFANuEvJsw86cCHYzdgIL7O89y2loFmNfIt9X4N8OvfmW7NkcOXN9OttXKgubqA=
+X-Google-Smtp-Source: AGHT+IGaCcuuBHMwjOHoQ4Z+FPwoCpbVykFaBMsy0+hY6czd6caZmpfg0E4fbkisBuMuUNeyQW8T/Q==
+X-Received: by 2002:a05:6a21:348b:b0:1d7:c3e2:4e18 with SMTP id
+ adf61e73a8af0-1d8a3c867e4mr4319204637.46.1728486967089; 
+ Wed, 09 Oct 2024 08:16:07 -0700 (PDT)
 Received: from localhost ([134.134.139.73]) by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-20c62f11757sm13905545ad.19.2024.10.09.08.16.02
+ 41be03b00d2f7-7e9f682c801sm8606529a12.39.2024.10.09.08.16.06
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 09 Oct 2024 08:16:03 -0700 (PDT)
+ Wed, 09 Oct 2024 08:16:06 -0700 (PDT)
 From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Subject: [PATCH 1/2] drm/xe: add interface to request physical alignment for
- buffer objects
-Date: Wed,  9 Oct 2024 18:19:46 +0300
-Message-ID: <20241009151947.2240099-2-juhapekka.heikkila@gmail.com>
+Subject: [PATCH 2/2] drm/xe/display: align framebuffers according to hw
+ requirements
+Date: Wed,  9 Oct 2024 18:19:47 +0300
+Message-ID: <20241009151947.2240099-3-juhapekka.heikkila@gmail.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241009151947.2240099-1-juhapekka.heikkila@gmail.com>
 References: <20241009151947.2240099-1-juhapekka.heikkila@gmail.com>
@@ -83,169 +83,131 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add xe_bo_create_pin_map_at_aligned() which augment
-xe_bo_create_pin_map_at() with alignment parameter allowing to pass
-required alignemnt if it differ from default.
+Align framebuffers in memory according to hw requirements instead of
+default page size alignment.
 
 Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 ---
- .../compat-i915-headers/gem/i915_gem_stolen.h |  2 +-
- drivers/gpu/drm/xe/xe_bo.c                    | 29 +++++++++++++++----
- drivers/gpu/drm/xe/xe_bo.h                    |  8 ++++-
- drivers/gpu/drm/xe/xe_bo_types.h              |  5 ++++
- drivers/gpu/drm/xe/xe_ggtt.c                  |  2 +-
- 5 files changed, 37 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 57 ++++++++++++++++----------
+ 1 file changed, 35 insertions(+), 22 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h
-index cb6c7598824b..9c4cf050059a 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h
-@@ -29,7 +29,7 @@ static inline int i915_gem_stolen_insert_node_in_range(struct xe_device *xe,
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index 79dbbbe03c7f..761510ae0690 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -79,7 +79,8 @@ write_dpt_remapped(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs,
  
- 	bo = xe_bo_create_locked_range(xe, xe_device_get_root_tile(xe),
- 				       NULL, size, start, end,
--				       ttm_bo_type_kernel, flags);
-+				       ttm_bo_type_kernel, flags, 0);
- 	if (IS_ERR(bo)) {
- 		err = PTR_ERR(bo);
- 		bo = NULL;
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 5e8f60a8d431..d5d30a0ff1e7 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -1454,7 +1454,8 @@ static struct xe_bo *
- __xe_bo_create_locked(struct xe_device *xe,
- 		      struct xe_tile *tile, struct xe_vm *vm,
- 		      size_t size, u64 start, u64 end,
--		      u16 cpu_caching, enum ttm_bo_type type, u32 flags)
-+		      u16 cpu_caching, enum ttm_bo_type type, u32 flags,
-+		      u64 alignment)
+ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
+ 			       const struct i915_gtt_view *view,
+-			       struct i915_vma *vma)
++			       struct i915_vma *vma,
++			       u64 physical_alignment)
  {
- 	struct xe_bo *bo = NULL;
- 	int err;
-@@ -1483,6 +1484,8 @@ __xe_bo_create_locked(struct xe_device *xe,
- 	if (IS_ERR(bo))
- 		return bo;
+ 	struct xe_device *xe = to_xe_device(fb->base.dev);
+ 	struct xe_tile *tile0 = xe_device_get_root_tile(xe);
+@@ -99,23 +100,29 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
+ 				 XE_PAGE_SIZE);
  
-+	bo->min_align = alignment;
-+
- 	/*
- 	 * Note that instead of taking a reference no the drm_gpuvm_resv_bo(),
- 	 * to ensure the shared resv doesn't disappear under the bo, the bo
-@@ -1523,16 +1526,18 @@ struct xe_bo *
- xe_bo_create_locked_range(struct xe_device *xe,
- 			  struct xe_tile *tile, struct xe_vm *vm,
- 			  size_t size, u64 start, u64 end,
--			  enum ttm_bo_type type, u32 flags)
-+			  enum ttm_bo_type type, u32 flags, u64 alignment)
+ 	if (IS_DGFX(xe))
+-		dpt = xe_bo_create_pin_map(xe, tile0, NULL, dpt_size,
+-					   ttm_bo_type_kernel,
+-					   XE_BO_FLAG_VRAM0 |
+-					   XE_BO_FLAG_GGTT |
+-					   XE_BO_FLAG_PAGETABLE);
++		dpt = xe_bo_create_pin_map_at_aligned(xe, tile0, NULL,
++						      dpt_size, ~0ull,
++						      ttm_bo_type_kernel,
++						      XE_BO_FLAG_VRAM0 |
++						      XE_BO_FLAG_GGTT |
++						      XE_BO_FLAG_PAGETABLE,
++						      physical_alignment);
+ 	else
+-		dpt = xe_bo_create_pin_map(xe, tile0, NULL, dpt_size,
+-					   ttm_bo_type_kernel,
+-					   XE_BO_FLAG_STOLEN |
+-					   XE_BO_FLAG_GGTT |
+-					   XE_BO_FLAG_PAGETABLE);
++		dpt = xe_bo_create_pin_map_at_aligned(xe, tile0, NULL,
++						      dpt_size,  ~0ull,
++						      ttm_bo_type_kernel,
++						      XE_BO_FLAG_STOLEN |
++						      XE_BO_FLAG_GGTT |
++						      XE_BO_FLAG_PAGETABLE,
++						      physical_alignment);
+ 	if (IS_ERR(dpt))
+-		dpt = xe_bo_create_pin_map(xe, tile0, NULL, dpt_size,
+-					   ttm_bo_type_kernel,
+-					   XE_BO_FLAG_SYSTEM |
+-					   XE_BO_FLAG_GGTT |
+-					   XE_BO_FLAG_PAGETABLE);
++		dpt = xe_bo_create_pin_map_at_aligned(xe, tile0, NULL,
++						      dpt_size,  ~0ull,
++						      ttm_bo_type_kernel,
++						      XE_BO_FLAG_SYSTEM |
++						      XE_BO_FLAG_GGTT |
++						      XE_BO_FLAG_PAGETABLE,
++						      physical_alignment);
+ 	if (IS_ERR(dpt))
+ 		return PTR_ERR(dpt);
+ 
+@@ -184,7 +191,8 @@ write_ggtt_rotated(struct xe_bo *bo, struct xe_ggtt *ggtt, u32 *ggtt_ofs, u32 bo
+ 
+ static int __xe_pin_fb_vma_ggtt(const struct intel_framebuffer *fb,
+ 				const struct i915_gtt_view *view,
+-				struct i915_vma *vma)
++				struct i915_vma *vma,
++				u64 physical_alignment)
  {
--	return __xe_bo_create_locked(xe, tile, vm, size, start, end, 0, type, flags);
-+	return __xe_bo_create_locked(xe, tile, vm, size, start, end, 0, type,
-+				     flags, alignment);
+ 	struct drm_gem_object *obj = intel_fb_bo(&fb->base);
+ 	struct xe_bo *bo = gem_to_xe_bo(obj);
+@@ -266,7 +274,8 @@ static int __xe_pin_fb_vma_ggtt(const struct intel_framebuffer *fb,
  }
  
- struct xe_bo *xe_bo_create_locked(struct xe_device *xe, struct xe_tile *tile,
- 				  struct xe_vm *vm, size_t size,
- 				  enum ttm_bo_type type, u32 flags)
+ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
+-					const struct i915_gtt_view *view)
++					const struct i915_gtt_view *view,
++					u64 physical_alignment)
  {
--	return __xe_bo_create_locked(xe, tile, vm, size, 0, ~0ULL, 0, type, flags);
-+	return __xe_bo_create_locked(xe, tile, vm, size, 0, ~0ULL, 0, type,
-+				     flags, 0);
+ 	struct drm_device *dev = fb->base.dev;
+ 	struct xe_device *xe = to_xe_device(dev);
+@@ -315,9 +324,9 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
+ 
+ 	vma->bo = bo;
+ 	if (intel_fb_uses_dpt(&fb->base))
+-		ret = __xe_pin_fb_vma_dpt(fb, view, vma);
++		ret = __xe_pin_fb_vma_dpt(fb, view, vma, physical_alignment);
+ 	else
+-		ret = __xe_pin_fb_vma_ggtt(fb, view, vma);
++		ret = __xe_pin_fb_vma_ggtt(fb, view, vma,  physical_alignment);
+ 	if (ret)
+ 		goto err_unpin;
+ 
+@@ -358,7 +367,7 @@ intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
+ {
+ 	*out_flags = 0;
+ 
+-	return __xe_pin_fb_vma(to_intel_framebuffer(fb), view);
++	return __xe_pin_fb_vma(to_intel_framebuffer(fb), view, phys_alignment);
  }
  
- struct xe_bo *xe_bo_create_user(struct xe_device *xe, struct xe_tile *tile,
-@@ -1542,7 +1547,7 @@ struct xe_bo *xe_bo_create_user(struct xe_device *xe, struct xe_tile *tile,
- {
- 	struct xe_bo *bo = __xe_bo_create_locked(xe, tile, vm, size, 0, ~0ULL,
- 						 cpu_caching, ttm_bo_type_device,
--						 flags | XE_BO_FLAG_USER);
-+						 flags | XE_BO_FLAG_USER, 0);
- 	if (!IS_ERR(bo))
- 		xe_bo_unlock_vm_held(bo);
+ void intel_fb_unpin_vma(struct i915_vma *vma, unsigned long flags)
+@@ -372,11 +381,15 @@ int intel_plane_pin_fb(struct intel_plane_state *plane_state)
+ 	struct drm_gem_object *obj = intel_fb_bo(fb);
+ 	struct xe_bo *bo = gem_to_xe_bo(obj);
+ 	struct i915_vma *vma;
++	struct intel_framebuffer *intel_fb = to_intel_framebuffer(fb);
++	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
++	u64 phys_alignment = plane->min_alignment(plane, fb, 0);
  
-@@ -1565,6 +1570,17 @@ struct xe_bo *xe_bo_create_pin_map_at(struct xe_device *xe, struct xe_tile *tile
- 				      struct xe_vm *vm,
- 				      size_t size, u64 offset,
- 				      enum ttm_bo_type type, u32 flags)
-+{
-+	return xe_bo_create_pin_map_at_aligned(xe, tile, vm, size, offset,
-+					       type, flags, 0);
-+}
+ 	/* We reject creating !SCANOUT fb's, so this is weird.. */
+ 	drm_WARN_ON(bo->ttm.base.dev, !(bo->flags & XE_BO_FLAG_SCANOUT));
+ 
+-	vma = __xe_pin_fb_vma(to_intel_framebuffer(fb), &plane_state->view.gtt);
++	vma = __xe_pin_fb_vma(intel_fb, &plane_state->view.gtt, phys_alignment);
 +
-+struct xe_bo *xe_bo_create_pin_map_at_aligned(struct xe_device *xe,
-+					      struct xe_tile *tile,
-+					      struct xe_vm *vm,
-+					      size_t size, u64 offset,
-+					      enum ttm_bo_type type, u32 flags,
-+					      u64 alignment)
- {
- 	struct xe_bo *bo;
- 	int err;
-@@ -1576,7 +1592,8 @@ struct xe_bo *xe_bo_create_pin_map_at(struct xe_device *xe, struct xe_tile *tile
- 		flags |= XE_BO_FLAG_GGTT;
+ 	if (IS_ERR(vma))
+ 		return PTR_ERR(vma);
  
- 	bo = xe_bo_create_locked_range(xe, tile, vm, size, start, end, type,
--				       flags | XE_BO_FLAG_NEEDS_CPU_ACCESS);
-+				       flags | XE_BO_FLAG_NEEDS_CPU_ACCESS,
-+				       alignment);
- 	if (IS_ERR(bo))
- 		return bo;
- 
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index 31f4ba3bd8c1..7fa44a0138b0 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -77,7 +77,7 @@ struct xe_bo *
- xe_bo_create_locked_range(struct xe_device *xe,
- 			  struct xe_tile *tile, struct xe_vm *vm,
- 			  size_t size, u64 start, u64 end,
--			  enum ttm_bo_type type, u32 flags);
-+			  enum ttm_bo_type type, u32 flags, u64 alignment);
- struct xe_bo *xe_bo_create_locked(struct xe_device *xe, struct xe_tile *tile,
- 				  struct xe_vm *vm, size_t size,
- 				  enum ttm_bo_type type, u32 flags);
-@@ -94,6 +94,12 @@ struct xe_bo *xe_bo_create_pin_map(struct xe_device *xe, struct xe_tile *tile,
- struct xe_bo *xe_bo_create_pin_map_at(struct xe_device *xe, struct xe_tile *tile,
- 				      struct xe_vm *vm, size_t size, u64 offset,
- 				      enum ttm_bo_type type, u32 flags);
-+struct xe_bo *xe_bo_create_pin_map_at_aligned(struct xe_device *xe,
-+					      struct xe_tile *tile,
-+					      struct xe_vm *vm,
-+					      size_t size, u64 offset,
-+					      enum ttm_bo_type type, u32 flags,
-+					      u64 alignment);
- struct xe_bo *xe_bo_create_from_data(struct xe_device *xe, struct xe_tile *tile,
- 				     const void *data, size_t size,
- 				     enum ttm_bo_type type, u32 flags);
-diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
-index 8b9201775081..13c6d8a69e91 100644
---- a/drivers/gpu/drm/xe/xe_bo_types.h
-+++ b/drivers/gpu/drm/xe/xe_bo_types.h
-@@ -76,6 +76,11 @@ struct xe_bo {
- 
- 	/** @vram_userfault_link: Link into @mem_access.vram_userfault.list */
- 		struct list_head vram_userfault_link;
-+
-+	/** @min_align: minimum alignment needed for this BO if different
-+	 * from default
-+	 */
-+	u64 min_align;
- };
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 47bfd9d2635d..1b3178226987 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -603,7 +603,7 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
- 				  u64 start, u64 end)
- {
- 	int err;
--	u64 alignment = XE_PAGE_SIZE;
-+	u64 alignment = bo->min_align > 0 ? bo->min_align : XE_PAGE_SIZE;
- 
- 	if (xe_bo_is_vram(bo) && ggtt->flags & XE_GGTT_FLAGS_64K)
- 		alignment = SZ_64K;
 -- 
 2.45.2
 
