@@ -2,175 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C73C4996537
-	for <lists+intel-gfx@lfdr.de>; Wed,  9 Oct 2024 11:25:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D3EE5996557
+	for <lists+intel-gfx@lfdr.de>; Wed,  9 Oct 2024 11:29:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5ADF910E28B;
-	Wed,  9 Oct 2024 09:25:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EDAAD10E22B;
+	Wed,  9 Oct 2024 09:29:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A4sdmYXA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aCI2WbZY";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 620BA10E22B;
- Wed,  9 Oct 2024 09:25:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D88E10E22B;
+ Wed,  9 Oct 2024 09:29:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728465919; x=1760001919;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=MSBMOq5oojaGO5NrhNCzr0bNrd+YiDctpbOJMZb9DAU=;
- b=A4sdmYXAb7b6z3rjJtFZ9FmjuDTOgORFAB9/B9vWurgmRpbuovb2FHWv
- s8F2WoQXPNwdzSs50Lmgnbh+LaB1j3fdWcNq33makskDGgLRFvOYaGo7Y
- T8FfqcBjM4LCiAtwUsbQ9XPKWwZe5pUEQCkrxzmZr3CmbfwebVg/3Ca8l
- 3lEvtIQc91vZcSNk34SSuQ5fIooqvfruiRG2NwIgHMhAb3a4VzDf1mY5Z
- eueE1WnDxJPb06xWhaJfeSy/LifMjrNvnPdSOP1MpPbPcE1YuoK3eOB2A
- AzcEmmRRLf/anKtNHtrqdUDffeM1S1fbMMtTh7GvqPIDzKP9gl2uYiw+T w==;
-X-CSE-ConnectionGUID: NvUdmjK0SpCA6B9Qw6wUXA==
-X-CSE-MsgGUID: Ke9wvMV9StGm5x584cW+AQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11219"; a="30628193"
-X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="30628193"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2024 02:25:18 -0700
-X-CSE-ConnectionGUID: BBbrY1SuQ565sMZQCd8/VA==
-X-CSE-MsgGUID: 9fQ0XsY7T1W3SirddsLx/g==
+ t=1728466162; x=1760002162;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=bXtEzb/tDF0yJNDTsQJcREZwZrNSDYsi7v0AwT3DD2c=;
+ b=aCI2WbZYPbLyPHNMHdbO1tBsNjU7A045bM6gv2wgGLHEBehtaoHnqJMp
+ dmTLUZ/ojrxEwncOqZhHyOt5CZaIfXpZV5Ptn3/qzXoE7ihzVQEtqKbWB
+ 1homnYGzxW9WUwqUdphfkMNokHmD2mvSFE6D10Em3EwVvPx9G8v65V2/H
+ js21C+QCS/s/aiilGJwOHku+NijopDY/JS5GsQx7PvdNPFjRxT7eg0TVg
+ ggyoBVNHYHK4Wce2f37Z8d2H453ju5ZHbGD1gT8X0rDSsg8rMnXu2Lbwo
+ GnffbQ2sCYF89U7l6TR1PEtMjglx83WaNayy4uXAaJBotLd/rF3uRuPar g==;
+X-CSE-ConnectionGUID: k9HKfS/vTA+oG4U8cNawkw==
+X-CSE-MsgGUID: lNlEeJ7XQxObM+ZLDNdTJQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11219"; a="27842618"
+X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="27842618"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2024 02:29:22 -0700
+X-CSE-ConnectionGUID: O4jWSEs+QM+8NQVHIj60sQ==
+X-CSE-MsgGUID: e33tJu2OTiOIto5lpMnV4g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="80693501"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmviesa005.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 09 Oct 2024 02:25:18 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Wed, 9 Oct 2024 02:25:17 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Wed, 9 Oct 2024 02:25:17 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Wed, 9 Oct 2024 02:25:17 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.169)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Wed, 9 Oct 2024 02:25:17 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=F87cun25Vt4ufm+GXBNux3JiOSBD36QH5hnVbQofIRsYN+fteVfr9LNhf2TumXhn5iUsKJal85BHlIXa9fGOXiomkGsDC/7hOd2FPI8quYgypFcmd/IOFgBhD4ZUugV8ciM/kMuGTkmdfLN7qNOO8gTlQiGTjEqyeljugUYTnaeG3KFFsiuX78fhbIm8pv66YKomtN4K1gs5BtuQegbhVZvUbHDdVJtWH2L9WkIp6aAPMZgF5Fqeld+oDAEG4RUkyCXTzCmK2T+JGm4pzj6hwgv4chGYEHUrOJQ4i1KqesHpFK+SEKo/7Ir3SP01s0ZCpoud6WRX5MSPM7wLRbgk7g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pj0doisnHZKAQ3cW4pqG5AWEIw2LUw2EOwdlR9f4UFA=;
- b=vZe2X8XsPJVr3Qq7CtOQPlTO4Xcu1fq6ftP1K4FeBAdv8mRtI6FyFK1uYrEF2zL918SmCx7k2BVoZiJoGfPEozYOA9Dc5oGVZgpSHXm0rfkCF+cr8PwEpaZC8j9yJ8tWzUrjIFFZ/XAtMQPBckObNMgFIeFb2UNTsA9JTgCMpfq1SsILQ2DRGa9W4+RxBzNFgEFtYnWfbH8TZnQytznTeBQt7o7bSeks0q7e7xHo2nMEgJktT8vKmWEiFSshcdTBu4AqdUTrIAwF2pERKVfFEZl3g/xluhBZ5Z/8iZeOvm66zbNPt/JHuEcZHQ7b5WmFVcBHDsYDvldf8hVWMQHOzQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from SN7PR11MB6750.namprd11.prod.outlook.com (2603:10b6:806:266::21)
- by MN2PR11MB4693.namprd11.prod.outlook.com (2603:10b6:208:261::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.20; Wed, 9 Oct
- 2024 09:25:14 +0000
-Received: from SN7PR11MB6750.namprd11.prod.outlook.com
- ([fe80::9570:169d:a0d5:527]) by SN7PR11MB6750.namprd11.prod.outlook.com
- ([fe80::9570:169d:a0d5:527%4]) with mapi id 15.20.8026.020; Wed, 9 Oct 2024
- 09:25:14 +0000
-From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Shankar, Uma" <uma.shankar@intel.com>, "Borah, Chaitanya Kumar"
- <chaitanya.kumar.borah@intel.com>
-Subject: RE: [PATCH] drm/i915/cdclk: Check cdclk value before division
-Thread-Topic: [PATCH] drm/i915/cdclk: Check cdclk value before division
-Thread-Index: AQHbGigcGDlrR63FT063VafoWdzTw7J+H3AAgAAGbhA=
-Date: Wed, 9 Oct 2024 09:25:14 +0000
-Message-ID: <SN7PR11MB675041066256290578EB43B6E37F2@SN7PR11MB6750.namprd11.prod.outlook.com>
-References: <20241009084634.1801800-1-suraj.kandpal@intel.com>
- <ZwZGfsLsy3G-iayh@intel.com>
-In-Reply-To: <ZwZGfsLsy3G-iayh@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SN7PR11MB6750:EE_|MN2PR11MB4693:EE_
-x-ms-office365-filtering-correlation-id: 46285075-7439-42d5-d108-08dce8444851
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|1800799024|366016|376014|38070700018;
-x-microsoft-antispam-message-info: =?iso-8859-1?Q?oSk4fW0jm2knnqAZGFyYiqZtyTbzuFzZIvt7RIDVXlU20d/+k48S8UPyuS?=
- =?iso-8859-1?Q?MWY1Q5SwN22wJtcRb95XVIVMfyBWaJqIzn8614GBAt/uOT4bUS5MZ3bkh2?=
- =?iso-8859-1?Q?KZehx2oUPQ9HPihJCYgCsHsqeFv+GrinRhh5ctrr3MAHkUmm+hDPseiR80?=
- =?iso-8859-1?Q?z/D2SmKTaVAind0DlcZN2gZRLqz65TD4NHVv6A8Bw5vN8iXiWoSW+6pTmB?=
- =?iso-8859-1?Q?pCFJjXCoxYrKeco+0Sy85S3W3St6HlfYvMU9aTdp4jnaOut+AeChjlo+KP?=
- =?iso-8859-1?Q?Jd02mwoD8SpTbFKiMGi/PABmHBZmyztGu53OeaNeSDESxurbzYqwhTv8kM?=
- =?iso-8859-1?Q?CrKAqo6sgTi6X/ehE982Ks9nUJ+bQ6n0KgbamxakMW5LDNGkqCE/Rz8lEz?=
- =?iso-8859-1?Q?Y2/59naEJzcpirQfawKPjWdOyyvlbRpWL16vpVA+4uEqc78qMGjWAva1tZ?=
- =?iso-8859-1?Q?353R4WNM2UsJirJz+oqRXDdaNMMpzBYv+7nbVvBqghEg12X2yYazG8YwqH?=
- =?iso-8859-1?Q?3H+dd/+mnl/IZYJFpTHi8l33nwbQOzFF0n9+xS30oTx0S+HYUowxriEb1L?=
- =?iso-8859-1?Q?xHOZYJeYWwLu7qeF7TZWNDt4CNupDBjXIH4T93pPCMBcaaJHvHT6OKYU52?=
- =?iso-8859-1?Q?x2l2fqmC7ZjDM7GV1T8m3eKsKeqZw+RJ+iWONMARJvbJ7bZA2g3SKREbF+?=
- =?iso-8859-1?Q?ksBx83vF9HcSlwlj0k3fTH5/IgJpZg211kjdCJoYi1kTf6+cSpt5lO9Ez7?=
- =?iso-8859-1?Q?nM4v/85uePp0qNByhOiAh8ncChYx+IzdLj/MFERtSXBdSrxZ8RV/PMTxsG?=
- =?iso-8859-1?Q?bOTHPX5Pe/ZQMBIBklRAUtR5pmZcp7OAWFDJBbh8n9BYvkwX49GbLT8QY8?=
- =?iso-8859-1?Q?c97wOJSelCq7DIbfAsTukYKxA5SRCgFFSNcA3rHgD4+TTiBLzXADGe3dzd?=
- =?iso-8859-1?Q?LMXBHbflUuJV6+dzWLkxgIUjNCyIR1klVHVNboMI3IHIx8ioMZXZmvmpQq?=
- =?iso-8859-1?Q?TWVMB5indsxSwD4WKYVEZDk91JavaX/tt5no5LX+hiSR85mqFeNH7GRStp?=
- =?iso-8859-1?Q?s1z1XbkazF/bMUXMpZH7vsVKMTKi1rn6lxojwo4draynHxtalWVDy1zRpm?=
- =?iso-8859-1?Q?3Ru6yn5BQvE6u0RltJhvecEy+uQ37UaUGfYoob4JSCbC6+LUITwj+kD533?=
- =?iso-8859-1?Q?XoNQPalMIh38Do2b8izs/+uIfXAKqnTK0linI/OLWH5MT5992YgIRucbWQ?=
- =?iso-8859-1?Q?jMe++Qse/Fyfhx9KB7XGKhbpsMG/L3couVyVKzAWQDBMUi73gy+JkFpM+g?=
- =?iso-8859-1?Q?QNZhLbOdfL6yN8Q/EdFN171o8lp0XdEGlOp98yGrfHyVSVcou9wAzoJJ25?=
- =?iso-8859-1?Q?7Tn5aW210YhI4ddI9J/FgaRPQPN8yF6Q=3D=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SN7PR11MB6750.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(38070700018); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?yx1KspNSDxSCF1nlsyVXuI6QimST9tIf2ol5ZP8ewcPJpoeyDOVzLn0em3?=
- =?iso-8859-1?Q?/j+wonOUXq2KRPmjapJavl2TbN5XYbwr8B5ynaF+eEXCN9LPbBez5JA9iK?=
- =?iso-8859-1?Q?I9nPIa0v/xEp6Cp157qQIv37G1XNZdJA3aL2yEawgkxEvizzadQy5ZsmIv?=
- =?iso-8859-1?Q?4ILuUl12Z7Xdr/YI+pw20dG9qWgBTkhEIXfCsr71RKZwT6qQGZedsVGaF8?=
- =?iso-8859-1?Q?bCmOclddLRNluvN0ZMHiw/xYlz+6lVTR8dHlubrFbnh+lFpp7JblkVdFM+?=
- =?iso-8859-1?Q?LTY2NAlSBRqEIIV1w4kawxQB+Prq/TQqgIaXJ5fdgoOLYDVov7p/Pt7C0y?=
- =?iso-8859-1?Q?p0E9IcNmiYV/id9qm2MJxfE1DhB2LYQZf7EASTjK0TBz+vYaJ0RwRlI3aK?=
- =?iso-8859-1?Q?kLbpzYEI85JVROn0lZJA+NYY1X5IpoL4BGbCDYhGGQBQeXgIsbsLNT1SAC?=
- =?iso-8859-1?Q?HmXHYAabMKbMpVkfKR3Wsk1VInHyDyNnWQIoCP3rNkXb3a7etnQi0k1e54?=
- =?iso-8859-1?Q?Kmg1ArnBCy8jdeNQfbNl4hqgm9utntiff+yH+G4OjPWSNXkrHidLkCjj65?=
- =?iso-8859-1?Q?eub60zaaPeQSOhVaUo5YyD/l59yeHBJrPwf0iZDl9heiN4MlPz18LCAm1M?=
- =?iso-8859-1?Q?M56IDy4KkyxbzOBcwRLOGL1/XoauXFAxLjEb4G2NOBKNZtE32Pxtmc4hyr?=
- =?iso-8859-1?Q?zxYebo1wG01LGbZExgmoWW+V/LKRkKwcNaPeB19gPKjiOI03l9h5Xfe2xM?=
- =?iso-8859-1?Q?jrJEV0VFKuuepH8ZSs9BDIHgK86X/tqXVm8HShhlkEuzEoTBal2uoiTy0c?=
- =?iso-8859-1?Q?8CrsJ1nPLoYge/QkQbjP4imTx4+wkI5XGVhQ7oH/EgtGdlXmf/ZoVQCt77?=
- =?iso-8859-1?Q?HmqlNFCmH7vc7E28kxRDw58rzeFq+pJ8LQarxqlpyekt6JHi9RtjWkik+N?=
- =?iso-8859-1?Q?DQsyLjf/+q9luTvE9qRRokEgx24+EJswK3xddDKoSWHr4W0ZdjLJeRHuNK?=
- =?iso-8859-1?Q?XlViuemj8ctSezvMnlHQDaXdyyGeyi/coFfxPBybICa6qzEuml4LQhbEB2?=
- =?iso-8859-1?Q?shlz9p03vAlCK66kSzdgI7wz2fxlZLHll8PzMOkYQadg+x7O4nF3elVE8V?=
- =?iso-8859-1?Q?OnxcK7qUhwlEpZmtYn4iul3FDDQxp2RrT0y5csZKaFxvb+a0sscd0I9JK0?=
- =?iso-8859-1?Q?wjFTAzB9Fp9EYPqq3ooRUVvqwCSgqR6ZUnSctvTy+0dxR+uaVwQaAzSuYc?=
- =?iso-8859-1?Q?6/iq8qUuBSFaKHaLBgdsGQYkYxLGiQRerfdkMo3Y22nhUmEBbrLZxTv0tS?=
- =?iso-8859-1?Q?0TXmjLgzG4VIdPaV4sMIi0C0YNrKGP0FIlmMJxIxj+yKJfoeO3c8R3UldU?=
- =?iso-8859-1?Q?vrR1EHchW5IzBmVrpoouIJnPyONmriUAoVg72dh0RyJSIGWcvlcXt2cy/s?=
- =?iso-8859-1?Q?bfctEoEVPX0LC9j9rsVezc6R4v78iv8ZV3zXXWwgPKZ6xXbL493eMVCe+g?=
- =?iso-8859-1?Q?uiOMWhDmH7RoO5peay6hn5DWMVcH4pV/fK7kbMq8JetUPA5xtjbIBY4U55?=
- =?iso-8859-1?Q?edl7CqPwNt++6QUN5sbQ2Wwyam89oK9vUJVhoc2HlDcS/t8Nc4c3dniQ++?=
- =?iso-8859-1?Q?nnDAinLMNWQQhqAhi9vcrLRfC8t7ni336D?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; d="scan'208";a="77005758"
+Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.80])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2024 02:29:20 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: imre.deak@intel.com, uma.shankar@intel.com, ville.syrjala@linux.intel.com
+Subject: Re: [v2] drm/i915: Allow fastset for change in HDR infoframe
+In-Reply-To: <20241009072530.2952143-1-chaitanya.kumar.borah@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20241009072530.2952143-1-chaitanya.kumar.borah@intel.com>
+Date: Wed, 09 Oct 2024 12:29:16 +0300
+Message-ID: <875xq1bp5f.fsf@intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB6750.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 46285075-7439-42d5-d108-08dce8444851
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Oct 2024 09:25:14.8304 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: MjLKtda3PmlHM+Zpy4wDOb/Vt+j5Lyn86XgfdChcqPGhoNcz4mgenaATe/vJ5BJQtJaOhiiD3/ZQQ1XN1rCGhw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4693
-X-OriginatorOrg: intel.com
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -186,55 +69,110 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Wed, 09 Oct 2024, Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com> wrote:
+> Changes in Dynamic Range and Mastering infoframe
+> should not trigger a full modeset. Therefore, allow
+> fastset. DP SDP programming is already hooked up in the
+> fastset flow but HDMI AVI infoframe update is not, add it.
+> Any other infoframe that can be fastset should be added to
+> the helper intel_hdmi_fastset_infoframes().
+>
+> v2:
+>  - Update HDMI AVI infoframe during fastset.
+>
+> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_ddi.c     |  3 +++
+>  drivers/gpu/drm/i915/display/intel_display.c |  3 ++-
+>  drivers/gpu/drm/i915/display/intel_hdmi.c    | 19 +++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_hdmi.h    |  3 +++
+>  4 files changed, 27 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index fe1ded6707f9..3195c1125ac3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -3489,6 +3489,9 @@ void intel_ddi_update_pipe(struct intel_atomic_state *state,
+>  		intel_ddi_update_pipe_dp(state, encoder, crtc_state,
+>  					 conn_state);
+>  
+> +	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+> +		intel_hdmi_fastset_infoframes(encoder, crtc_state, conn_state);
+
+I don't know if the patch at hand is the right thing to do, but if it
+is, please let's stick to uniform naming here. If you add stuff
+specifically for the encoder->update_pipe path, please name it
+*_update_pipe() i.e. intel_hdmi_infoframes_update_pipe().
+
+OTOH the DP path uses a common function, which makes me wonder if there
+could be less duplication for HDMI too.
+
+BR,
+Jani.
 
 
-> -----Original Message-----
-> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Sent: Wednesday, October 9, 2024 2:32 PM
-> To: Kandpal, Suraj <suraj.kandpal@intel.com>
-> Cc: intel-xe@lists.freedesktop.org; intel-gfx@lists.freedesktop.org; Shan=
-kar,
-> Uma <uma.shankar@intel.com>; Borah, Chaitanya Kumar
-> <chaitanya.kumar.borah@intel.com>
-> Subject: Re: [PATCH] drm/i915/cdclk: Check cdclk value before division
->=20
-> On Wed, Oct 09, 2024 at 02:16:34PM +0530, Suraj Kandpal wrote:
-> > Check cdclk value to avoid a divide by zero error. Since
-> > bxt_cdclk_init_hw has cdclk can end up being 0 and then we have a call
-> > to bxt_set_cdclk where we may end up dividing this value by 0.
->=20
-> Not possible unless someone completely screwed the cdclk tables and/or
-> refclk readout, in which case oops seems like a perfectly reasonable
-> outcome to me.
+> +
+>  	intel_hdcp_update_pipe(state, encoder, crtc_state, conn_state);
+>  }
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index e1f6255e918b..e8f8f55f75d2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -5683,7 +5683,8 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+>  	PIPE_CONF_CHECK_INFOFRAME(avi);
+>  	PIPE_CONF_CHECK_INFOFRAME(spd);
+>  	PIPE_CONF_CHECK_INFOFRAME(hdmi);
+> -	PIPE_CONF_CHECK_INFOFRAME(drm);
+> +	if (!fastset)
+> +		PIPE_CONF_CHECK_INFOFRAME(drm);
+>  	PIPE_CONF_CHECK_DP_VSC_SDP(vsc);
+>  	PIPE_CONF_CHECK_DP_AS_SDP(as_sdp);
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> index 72ac910bf6ec..eba79f14d4e2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> @@ -1211,6 +1211,25 @@ static void vlv_set_infoframes(struct intel_encoder *encoder,
+>  			      &crtc_state->infoframes.hdmi);
+>  }
+>  
+> +void intel_hdmi_fastset_infoframes(struct intel_encoder *encoder,
+> +				   const struct intel_crtc_state *crtc_state,
+> +				   const struct drm_connector_state *conn_state)
+> +{
+> +	struct intel_display *display = to_intel_display(encoder);
+> +	i915_reg_t reg = HSW_TVIDEO_DIP_CTL(display,
+> +					    crtc_state->cpu_transcoder);
+> +	u32 val = intel_de_read(display, reg);
+> +
+> +	val &= ~(VIDEO_DIP_ENABLE_DRM_GLK);
+> +
+> +	intel_de_write(display, reg, val);
+> +	intel_de_posting_read(display, reg);
+> +
+> +	intel_write_infoframe(encoder, crtc_state,
+> +			      HDMI_INFOFRAME_TYPE_DRM,
+> +			      &crtc_state->infoframes.drm);
+> +}
+> +
+>  static void hsw_set_infoframes(struct intel_encoder *encoder,
+>  			       bool enable,
+>  			       const struct intel_crtc_state *crtc_state,
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.h b/drivers/gpu/drm/i915/display/intel_hdmi.h
+> index 9b97623665c5..466f48df8a74 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.h
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.h
+> @@ -42,6 +42,9 @@ u32 intel_hdmi_infoframes_enabled(struct intel_encoder *encoder,
+>  u32 intel_hdmi_infoframe_enable(unsigned int type);
+>  void intel_hdmi_read_gcp_infoframe(struct intel_encoder *encoder,
+>  				   struct intel_crtc_state *crtc_state);
+> +void intel_hdmi_fastset_infoframes(struct intel_encoder *encoder,
+> +				   const struct intel_crtc_state *crtc_state,
+> +				   const struct drm_connector_state *conn_state);
+>  void intel_read_infoframe(struct intel_encoder *encoder,
+>  			  const struct intel_crtc_state *crtc_state,
+>  			  enum hdmi_infoframe_type type,
 
-Ohkay got it=20
-
->=20
-> >
-> > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_cdclk.c | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> > b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> > index fa1c2012b10c..a5acc70fb87c 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> > @@ -1921,7 +1921,7 @@ static u32 xe2lpd_mdclk_source_sel(struct
-> > intel_display *display)  int intel_mdclk_cdclk_ratio(struct intel_displ=
-ay
-> *display,
-> >  			    const struct intel_cdclk_config *cdclk_config)  {
-> > -	if (mdclk_source_is_cdclk_pll(display))
-> > +	if (mdclk_source_is_cdclk_pll(display) && cdclk_config->cdclk)
-> >  		return DIV_ROUND_UP(cdclk_config->vco, cdclk_config-
-> >cdclk);
-> >
-> >  	/* Otherwise, source for MDCLK is CD2XCLK. */
-> > --
-> > 2.43.2
->=20
-> --
-> Ville Syrj=E4l=E4
-> Intel
+-- 
+Jani Nikula, Intel
