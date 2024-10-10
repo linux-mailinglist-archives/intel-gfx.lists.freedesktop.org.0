@@ -2,54 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EA5099796F
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Oct 2024 02:01:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A5849979BB
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Oct 2024 02:40:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ACECE10E16D;
-	Thu, 10 Oct 2024 00:01:53 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MlSiFy7d";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 61A0E10E1DF;
+	Thu, 10 Oct 2024 00:40:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C2C510E125;
- Thu, 10 Oct 2024 00:01:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728518512; x=1760054512;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=whS9d45QxXzenYURIpM2Wevv0ZRQyiJgi5Ql0fn7STU=;
- b=MlSiFy7d5mF0x9y2R3xM7G7TTMKOXoUYSpeWcF3lUgijogOG6fEVT+U1
- chEwFvFQWVvZ/VXgGFP9YBkQx596SnKqsji5UlMPsDfwmXy764M9vrILP
- uRGWbU32orWSWCtzdblpDepYVEmZnUAb8ojS++XDu9dpBiPltQT25AAV5
- Rjzqa0Z/Zws2WVyoAoMP6YQCI3LRSdVaQXW6wo9RVu1FkLTQoOwy15cqt
- CzVnJ5iw3vkVTT7AOG2li39QOY6m17C+QLIhZmFFiQWnFqdbyLZXI3Lye
- GRSwFWdMGQEvcaSU/WKzkF6K8CrrS8+3sjdfzfFxHUouHgqLHI88cHNZz g==;
-X-CSE-ConnectionGUID: zgUVBBuUSZeGWFTIk7496w==
-X-CSE-MsgGUID: +XSlNYyNT2Sa38Pv6VAPuA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11220"; a="15470688"
-X-IronPort-AV: E=Sophos;i="6.11,191,1725346800"; d="scan'208";a="15470688"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2024 17:01:47 -0700
-X-CSE-ConnectionGUID: qfvJK3vuQuOj+oadbt9z2Q==
-X-CSE-MsgGUID: xs2WYBuNQBmo3tHamI4KDw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,191,1725346800"; d="scan'208";a="80977584"
-Received: from osgc-linux-buildserver.sh.intel.com ([10.112.232.61])
- by fmviesa004.fm.intel.com with ESMTP; 09 Oct 2024 17:01:46 -0700
-From: Shuicheng Lin <shuicheng.lin@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: Shuicheng Lin <shuicheng.lin@intel.com>
-Subject: [PATCH] drm/xe/display: Fix memory leak in parse_lfp_panel_dtd()
-Date: Wed,  9 Oct 2024 23:27:09 +0000
-Message-Id: <20241009232709.961628-1-shuicheng.lin@intel.com>
-X-Mailer: git-send-email 2.25.1
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A6C0D10E1DF;
+ Thu, 10 Oct 2024 00:40:53 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0256068582218415426=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/xe/display=3A_Fix_memor?=
+ =?utf-8?q?y_leak_in_parse=5Flfp=5Fpanel=5Fdtd=28=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Shuicheng Lin" <shuicheng.lin@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 10 Oct 2024 00:40:53 -0000
+Message-ID: <172852085367.1212857.10945472695786317129@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241009232709.961628-1-shuicheng.lin@intel.com>
+In-Reply-To: <20241009232709.961628-1-shuicheng.lin@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,61 +37,204 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The function parse_lfp_panel_dtd() is called when the driver
-attempts to initialize the eDP connector, and it allocates memory,
-which is recorded in panel->vbt.lfp_vbt_mode. However, since no
-eDP panel is connected, the driver fails at intel_edp_init_dpcd()
-and follows the failure path. Unfortunately, the allocated memory
-is not freed in this case.
+--===============0256068582218415426==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-To fix this issue, free the memory in the failure path.
+== Series Details ==
 
-leak info from kmemleak:
-"
-unreferenced object 0xffff8881252f8800 (size 128):
-  comm "systemd-udevd", pid 192, jiffies 4294896880
-  hex dump (first 32 bytes):
-    e8 fd 00 00 00 04 18 04 a0 04 40 05 00 00 00 03  ..........@.....
-    03 03 09 03 26 03 00 00 0a 00 00 00 00 00 00 00  ....&...........
-  backtrace (crc 7448f6b4):
-    [<ffffffff82475c9b>] kmemleak_alloc+0x4b/0x80
-    [<ffffffff814bb50e>] __kmalloc_cache_noprof+0x2be/0x390
-    [<ffffffffa069862c>] intel_bios_init_panel+0x1c4c/0x2720 [xe]
-    [<ffffffffa0699123>] intel_bios_init_panel_early+0x13/0x20 [xe]
-    [<ffffffffa06fceb9>] intel_dp_init_connector+0x2f9/0x1080 [xe]
-    [<ffffffffa06c370a>] intel_ddi_init+0xbba/0xf50 [xe]
-    [<ffffffffa069b906>] intel_bios_for_each_encoder+0x36/0x60 [xe]
-    [<ffffffffa06d7bd6>] intel_setup_outputs+0x206/0x450 [xe]
-    [<ffffffffa06dad33>] intel_display_driver_probe_nogem+0x163/0x1f0 [xe]
-    [<ffffffffa0680fc7>] xe_display_init_noaccel+0x27/0x70 [xe]
-    [<ffffffffa05b30d6>] xe_device_probe+0x806/0x9a0 [xe]
-    [<ffffffffa0612f0f>] xe_pci_probe+0x31f/0x590 [xe]
-    [<ffffffff81b41718>] local_pci_probe+0x48/0xb0
-    [<ffffffff81b432c8>] pci_device_probe+0xc8/0x280
-    [<ffffffff81d5dde8>] really_probe+0xf8/0x390
-    [<ffffffff81d5e11a>] __driver_probe_device+0x8a/0x170
-"
+Series: drm/xe/display: Fix memory leak in parse_lfp_panel_dtd()
+URL   : https://patchwork.freedesktop.org/series/139819/
+State : success
 
-Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 1 +
- 1 file changed, 1 insertion(+)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 90fa73575feb..39ad71454d2b 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -6801,6 +6801,7 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
- 
- out_vdd_off:
- 	intel_pps_vdd_off_sync(intel_dp);
-+	intel_panel_fini(intel_connector);
- 
- 	return false;
- }
--- 
-2.25.1
+CI Bug Log - changes from CI_DRM_15510 -> Patchwork_139819v1
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139819v1/index.html
+
+Participating hosts (43 -> 40)
+------------------------------
+
+  Missing    (3): bat-arls-1 bat-adlp-6 fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_139819v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live:
+    - bat-mtlp-8:         [PASS][1] -> [ABORT][2] ([i915#12216]) +1 other test abort
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15510/bat-mtlp-8/igt@i915_selftest@live.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139819v1/bat-mtlp-8/igt@i915_selftest@live.html
+    - bat-arlh-2:         [PASS][3] -> [ABORT][4] ([i915#12133])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15510/bat-arlh-2/igt@i915_selftest@live.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139819v1/bat-arlh-2/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arlh-2:         [PASS][5] -> [ABORT][6] ([i915#12061])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15510/bat-arlh-2/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139819v1/bat-arlh-2/igt@i915_selftest@live@workarounds.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live:
+    - bat-dg2-11:         [ABORT][7] ([i915#12133]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15510/bat-dg2-11/igt@i915_selftest@live.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139819v1/bat-dg2-11/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-dg2-11:         [ABORT][9] -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15510/bat-dg2-11/igt@i915_selftest@live@hangcheck.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139819v1/bat-dg2-11/igt@i915_selftest@live@hangcheck.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-mtlp-6:         [ABORT][11] ([i915#12216]) -> [PASS][12] +1 other test pass
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15510/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139819v1/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+
+  
+#### Warnings ####
+
+  * igt@i915_module_load@reload:
+    - fi-kbl-7567u:       [DMESG-WARN][13] ([i915#11621] / [i915#180]) -> [DMESG-WARN][14] ([i915#11621] / [i915#180] / [i915#1982])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15510/fi-kbl-7567u/igt@i915_module_load@reload.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139819v1/fi-kbl-7567u/igt@i915_module_load@reload.html
+
+  
+  [i915#11621]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11621
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#12133]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133
+  [i915#12216]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12216
+  [i915#180]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/180
+  [i915#1982]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_15510 -> Patchwork_139819v1
+
+  CI-20190529: 20190529
+  CI_DRM_15510: e1aba2bf4f79f2f8ae7ce538124d445fc91df852 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8061: 8061
+  Patchwork_139819v1: e1aba2bf4f79f2f8ae7ce538124d445fc91df852 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139819v1/index.html
+
+--===============0256068582218415426==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/display: Fix memory leak in parse_lfp_panel_dtd()</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/139819/">https://patchwork.freedesktop.org/series/139819/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139819v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139819v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_15510 -&gt; Patchwork_139819v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139819v1/index.html</p>
+<h2>Participating hosts (43 -&gt; 40)</h2>
+<p>Missing    (3): bat-arls-1 bat-adlp-6 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_139819v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15510/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139819v1/bat-mtlp-8/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12216">i915#12216</a>) +1 other test abort</li>
+<li>bat-arlh-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15510/bat-arlh-2/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139819v1/bat-arlh-2/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133">i915#12133</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-arlh-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15510/bat-arlh-2/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139819v1/bat-arlh-2/igt@i915_selftest@live@workarounds.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15510/bat-dg2-11/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133">i915#12133</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139819v1/bat-dg2-11/igt@i915_selftest@live.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15510/bat-dg2-11/igt@i915_selftest@live@hangcheck.html">ABORT</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139819v1/bat-dg2-11/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15510/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12216">i915#12216</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139819v1/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@i915_module_load@reload:<ul>
+<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15510/fi-kbl-7567u/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11621">i915#11621</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/180">i915#180</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139819v1/fi-kbl-7567u/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11621">i915#11621</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/180">i915#180</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_15510 -&gt; Patchwork_139819v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_15510: e1aba2bf4f79f2f8ae7ce538124d445fc91df852 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8061: 8061<br />
+  Patchwork_139819v1: e1aba2bf4f79f2f8ae7ce538124d445fc91df852 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============0256068582218415426==--
