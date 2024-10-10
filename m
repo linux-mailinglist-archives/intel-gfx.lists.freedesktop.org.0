@@ -2,179 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57F5A998706
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Oct 2024 15:02:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E11D998782
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Oct 2024 15:22:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 982AD10E8EF;
-	Thu, 10 Oct 2024 13:02:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C600510E8EC;
+	Thu, 10 Oct 2024 13:22:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aM68kyIQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ixXJa3i2";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E1E110E2CA;
- Thu, 10 Oct 2024 13:02:25 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 407B610E8EC
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Oct 2024 13:22:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728565345; x=1760101345;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=bTjpdXB+Qq5lgbn/f0uigOIn9HFXa7XRMu+lzBK8JpM=;
- b=aM68kyIQzowbzkCMh2+x6YxokDd1Rjl5cCxEuHU5Le1dMDIxGi+Qx3dl
- tlmzupIBgrJq2cHysMWg6dnihT3jNDh34OuEkgW3m9IWRAOfrx6Bm92ri
- urlgGHPYqQe3rgne6r7nkdSxz9eg95KWLtY005jyrHZplQCY4OA5iU+eu
- 3APBWw/IOI8rtudgopuJvmDNFoqj1AegVKWpSBMucR31qJf4kkPHp0s8n
- TNMQyNFvheTdZko4OgpW9b7Vw+7V7WJYMO1uRC+btoEjiblXy5EewOZg/
- VoklvMfcxx1oE+1z9MfNoiJdgbF/dKKCWm/riUZYBOVV+WfpONhroDC8g Q==;
-X-CSE-ConnectionGUID: X1CPdqyXQqa/lb6TrBlYCA==
-X-CSE-MsgGUID: e+BwN6hyTFGW+Jm8z2xcBw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11220"; a="38563102"
-X-IronPort-AV: E=Sophos;i="6.11,193,1725346800"; d="scan'208";a="38563102"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2024 06:02:24 -0700
-X-CSE-ConnectionGUID: RH+ybDXLQF+dSa/btv7p0w==
-X-CSE-MsgGUID: R9XY52DMTiugB2ALa0M7cg==
+ t=1728566525; x=1760102525;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=aAiL7OYKzntRi5Y5mC6ZwRw+0mZXxlTRcppGZXf29xM=;
+ b=ixXJa3i2pMW1zT0fRo5mz53WScUJ7lrXCFXvjrgDeb/nMZ/gKldxSoSN
+ Qhi4v63gdY15nHv6aQdCSmIwvhLiZbtaSEPwPPfO00kMkGJT33FY0z0O/
+ 1v3+EVWaaevgSqx+D/7Q7uNV/XMArfJ+gtG0D8JPmdANZwnG56Jgg7tdX
+ 4KZj3R+6mEyuIxi+65D/tvObKxNlg5iKYYmeUlaLfwub6F/6+JxqmSn3/
+ nc5JPs4vxrMBcZDchSVKXW7t57lAgFA4ZJc3ditshotIdJN4toHZweaPq
+ nYWG3W78bXtPv0eUFC0qfY+Uwq7zmj+L7rHL2BPcEhPD+MAsk/z3yfb+H A==;
+X-CSE-ConnectionGUID: LcbU2xMxSAueza/XbuyMgw==
+X-CSE-MsgGUID: X8lfKKitSPuXGMaK5KN0TA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11220"; a="15547093"
+X-IronPort-AV: E=Sophos;i="6.11,193,1725346800"; d="scan'208";a="15547093"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Oct 2024 06:22:05 -0700
+X-CSE-ConnectionGUID: atOppbWUSdmLTkZ30yWRVg==
+X-CSE-MsgGUID: FUuRa3WaTemW+pPv7ZP3kw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,193,1725346800"; d="scan'208";a="76496062"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orviesa010.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 10 Oct 2024 06:02:24 -0700
-Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 10 Oct 2024 06:02:24 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 10 Oct 2024 06:02:23 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Thu, 10 Oct 2024 06:02:23 -0700
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.45) by
- edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Thu, 10 Oct 2024 06:02:23 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mQw0BcCl7vMQi9SuFwWWeV4BSP2IzS2JB0GYfffY+yUmGdDNBPdVnudQCxE0UGIUsmG4G5UXklw63TjIzNQiXwJ9GFKvzgyxgPC/6aPC6pHbVGRdplxrXNOx5/bVjL6OWbepiK9AEsr6Jb+Zb++wddzA2KaFPjGdVXwV/QL0g5wwOi1ZySFnj3H971UpEQ2zQxu4ufp2747jExNkNcbCRAL5nCf3g9PSxt3hXdGMcdT3FnkITv/ONWCB7HmtSyz+7Z0iTdr6bmiaIbjuG0A1zXZZWZWov2n/WwJVPnB8U4aK3WrOSsjfV9a/LLthxzFHk8x6ynPPLulZyOnRsgJeyg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=86muV/MUABfnGPmF2d4XA0CnJHixew1cd2+lW6pymq8=;
- b=gvJkz/XXw+vYwlSFsKXNCxeOSsZbaB1KXhma+UrTaeu845yBOAJ4/66B1oGkUu2s3LwlW1mSoFXTFnefnElNoGcAxL4IS6C7ty+aA8hiWV2Rbuin08gEcJUjVxmaIYHP3kI7/jCc4Q5YCqFU8+bYyF4cHqtTwKcQBNqQFo+gV64vqDDS6MiIVZ5n+Joi8sima4JTPVGYUDqO2t2u+IitzBOMkEs0B6JozAlPI0dZ/3dqRG39wV4mlQAEHxGIvbkkluVsXTb09JPlHIN1d5KXOyeqvKF1ANXqRj7X9W+6rTW4ZNH1SOio95iuYni2eNhC6jdc684C1WT7Qis0GiujHQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by SA0PR11MB4590.namprd11.prod.outlook.com (2603:10b6:806:96::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.18; Thu, 10 Oct
- 2024 13:02:16 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44%6]) with mapi id 15.20.8026.020; Thu, 10 Oct 2024
- 13:02:16 +0000
-Date: Thu, 10 Oct 2024 08:02:10 -0500
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Raag Jadav <raag.jadav@intel.com>
-CC: Michal Wajdeczko <michal.wajdeczko@intel.com>, <airlied@gmail.com>,
- <simona@ffwll.ch>, <thomas.hellstrom@linux.intel.com>,
- <rodrigo.vivi@intel.com>, <jani.nikula@linux.intel.com>,
- <andriy.shevchenko@linux.intel.com>, <joonas.lahtinen@linux.intel.com>,
- <tursulin@ursulin.net>, <lina@asahilina.net>,
- <intel-xe@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
- <dri-devel@lists.freedesktop.org>, <himal.prasad.ghimiray@intel.com>,
- <francois.dugast@intel.com>, <aravind.iddamsetty@linux.intel.com>,
- <anshuman.gupta@intel.com>, <andi.shyti@linux.intel.com>,
- <matthew.d.roper@intel.com>
-Subject: Re: [PATCH v7 1/5] drm: Introduce device wedged event
-Message-ID: <ghawgrgfbochcupnbq52q4ep6l5rfj32i4wcnmykah3zxmehts@r5eaynm4vocf>
-References: <20240930073845.347326-1-raag.jadav@intel.com>
- <20240930073845.347326-2-raag.jadav@intel.com>
- <26f90d12-6a04-445e-96ff-aafbe3dc8132@intel.com>
- <Zv6Ms7G4pSLdgUKo@black.fi.intel.com>
- <ZwVJk8ESEyxyemrG@black.fi.intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <ZwVJk8ESEyxyemrG@black.fi.intel.com>
-X-ClientProxiedBy: MW4PR03CA0255.namprd03.prod.outlook.com
- (2603:10b6:303:b4::20) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+X-IronPort-AV: E=Sophos;i="6.11,193,1725346800"; d="scan'208";a="76902748"
+Received: from unknown (HELO localhost) ([10.237.66.160])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Oct 2024 06:22:03 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Hogander, Jouni" <jouni.hogander@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH v2 1/2] drm/i915/display: Add own counter for Panel
+ Replay vblank workaround
+In-Reply-To: <68bae7f78e000411bf89b5a7dfb1233735451148.camel@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20241009134225.1322820-1-jouni.hogander@intel.com>
+ <87ttdl8irr.fsf@intel.com>
+ <68bae7f78e000411bf89b5a7dfb1233735451148.camel@intel.com>
+Date: Thu, 10 Oct 2024 16:22:01 +0300
+Message-ID: <87cyk86qkm.fsf@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SA0PR11MB4590:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1a8d1d1c-afff-46d1-10eb-08dce92bc43e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?TcZqfwJncQxMEvOzP3Y5TZ+o4tAKpM5LtSPVVrjU1Etjt51v10mL+mFAx/uX?=
- =?us-ascii?Q?uLjAcpyr3vtHrBe3VnEWQ6PiGzW3y0QwqNyDG2p0X2VuFvzHOnoprb6FFTHs?=
- =?us-ascii?Q?aHjWiS5a8F2CNhtsQU3evwYPA0tDebSEilGh2NzO/Tkz9ZWZd+LBxXi2Rby7?=
- =?us-ascii?Q?6jVXQlM7uGp/nb2NOxFN5s1NeVyKUVL7SZAJbWOSS+Ud3PqgLplKTL9HgHfP?=
- =?us-ascii?Q?kB+yGbGIzdbXC97l/Px9wCN81nLLI1ZPqBEHo8K+xs+HUCOhWh9GEJjLR0oA?=
- =?us-ascii?Q?z0GWAAD15YRaWdkXcDMwp9QxCX25LVAik2Eb8++NT+63SZw6ESkmrLD8CJ8H?=
- =?us-ascii?Q?/dIPasUPhre+W9CtWk0Sd/P3F3g579Xu2pcvdrRbKW1Kx6qoq58FvOrIdQKk?=
- =?us-ascii?Q?Tpg2tgTnGs7lCAxnxbUMYLCypwaH+h7q+OfM2irONsF6fKQKz+X6jdev4tHa?=
- =?us-ascii?Q?0JB+yFzj1EpBw8jXDTq6c7v9oJVPhnjsc185Okk3WOAWapaof46PXHZDv0HB?=
- =?us-ascii?Q?lAZhdYATFj3m0Rp+Gx2trmDqDMorjvLkYJmYokyvoeluG/BJ0maCB2QUaX95?=
- =?us-ascii?Q?ewCTXUTcXoyaW+n52THjq2oMxu1nKrrRcUNoZHcReXyqZKkwwgwfho9PX63M?=
- =?us-ascii?Q?8RSKjzTHRcw8+U3h02N1+YOfMniE1R4Y7nazrhkGx0XqzTHYgqY+6227Crat?=
- =?us-ascii?Q?xcDIXVzqVfSZw2e5s7HVRm6JIzzhdS+/XD4amf4OYZ1O+OL8OzfVNZBAZDgz?=
- =?us-ascii?Q?r5EOlf8dTSKjJtVfeAzaY4OSbT8qylj74CCPh+wxtuKri6kF5Dbo61C4Hc+h?=
- =?us-ascii?Q?pL/pB/iIIJ1kMlli0F5cYvTaAuOdDqqtAuRGGS9zSSzl1oy0nPNsiZgOQDoi?=
- =?us-ascii?Q?xeIbiA4eU/xfgxutWianI+KEDtMSMXymI3gMjcujU/OGM6XJC5Crhy0COy/L?=
- =?us-ascii?Q?+LJubzH7LUHQj7yEiD//fmHpi1EYBJaeEEhnesb+5b96yzRj5WBLNIJ5F25u?=
- =?us-ascii?Q?sFBdpFyEr+jXTbZkeKtX0wxaxC4croBZU+QbtlVKjs4jDX72nsHt3bgg51Eu?=
- =?us-ascii?Q?tz/tQbH6lcOskzt901NJOjqKbmVX/2cvCFpzL4G7PUjQxcDSZLeBvCXn45d+?=
- =?us-ascii?Q?prsxlCxVEnOaWHl8BM6TJ+VzmYD5Uck6w9U0VpgiUo1E2Mxf0cg9sZmBp73k?=
- =?us-ascii?Q?u3CAhh1b/wxSMX7xvvAAiwDvoYyhHxWx2VjoN3hn4qRvIY39TThZo6oxy8Mm?=
- =?us-ascii?Q?BcN8gkHTrVTVFJp504xj6uBsAfZMAMM9Yp4AFyhgIw=3D=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(7416014)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?pFB8+vjgHA/sKHRAgSp43e0LUgZro4o3yTyPJYwkfGbAkel/eYTBqGYqMuSF?=
- =?us-ascii?Q?X3U5zvx2gkCu3kPkpkQxCHkOLdOK03fMA6IYzK/sbLXaqVf4x0vpvqj4aP4/?=
- =?us-ascii?Q?ySoAK2tVly9N7vXTKFY40yDKcZDi07CdW0p3qNvtM7nWEYgwov7TUE4I6uGj?=
- =?us-ascii?Q?ddTho1un5OQ8Mv7kjfvtE9kjkbmd2wXzEpwLfZFaqDl4UQc2sCpies8ycPtY?=
- =?us-ascii?Q?VdZf9d+DXuRICsRD9uXzxyHkHTIUn5xRejpvNiR0GZzPICkpzUwo/7BhMeZV?=
- =?us-ascii?Q?bBSVRSPVrLohd8q0BpIxvkizSJALbMDIPJ5Hc++avHKNqEuk1JlPi8QsmWji?=
- =?us-ascii?Q?5SS8P2NFNZhqiEsBL1sKybW51UU+VoFdF0Z0BG27UtMKEakoWH1txZ0B0tBq?=
- =?us-ascii?Q?kwzYn06w2Jl/qdTPyz4ORKJ/v2bdvyXp19avfThf2uj3V5jI8WL/THQAZUXk?=
- =?us-ascii?Q?goeGUMG/Z+DpVwlLhliQTNERKpRmfvDKz2RNQQWBGw2xJfylTiSiTVHJNi5Z?=
- =?us-ascii?Q?qNtokeRC/qguyScPvA6zLImZD9y8hNxIFLdPekX6xCEUhO2OUmWd9lFaRkyX?=
- =?us-ascii?Q?9aXBUMQZCu1pLsFEmEhU+4l/nf7vVlP6O5E7U6CbDZqXJImRJDqMQ3GMNePX?=
- =?us-ascii?Q?xsSEDGjY1ghp60RLAW+OKEA1pSkCXIwQ3+HuS3gxdUwXJIAGtJUNv50Fy4zJ?=
- =?us-ascii?Q?b+40r4AnzQkOOGwJNRh+OG+muY6LYRLK+j8WvDdGDyv+k+dQyvWsuH6ckLJi?=
- =?us-ascii?Q?ERZfhu/TLYS4lfS3VQmPlg2EUyW12+Wh8Ay51WyB601xIuWi8gogSJD7HdBt?=
- =?us-ascii?Q?uwIR7DxI93dcbrwK4UBb4dC1Dj9c/OHMQpmcoveaDkkcReZrKpM2iVCQWiYp?=
- =?us-ascii?Q?ISEXjO/iow2/YPvZcm26rAMCzYoXnIe6SGD8tiCiXe9TpeIfiXK3o/8EgUsb?=
- =?us-ascii?Q?esABDPsOhx7CGUHdUw27eDCw6DWUcvmVJ88C9C7uMmepE6NYwg0MQTMsd+qP?=
- =?us-ascii?Q?qO4pA68cCHrVAqWImAnuHCpSdXS89eUec7afR1jo+7mC1UYvqho9MD2wzGW4?=
- =?us-ascii?Q?oqw0ISedTmanUpaFipGNJQ18eTaZiXHSZbom/anvxWOFVSHiSCYCPpmfwboy?=
- =?us-ascii?Q?WbhYo/Cn6EXzidmVzsnGD2wEO1EoSset5UEqG4TQ3hNC7ZDJd/fHby+AgXvk?=
- =?us-ascii?Q?dVJiy3mqePwxKM92PAR81eCt6y5hGu/97qgAOje7++fw00H/DYcx/9f0LrWx?=
- =?us-ascii?Q?HIGc+XLiIBR94ZKh6RnsCHBYYkpIGpS5EV3az1RlU9x2jJCUZmYJkBHUHavO?=
- =?us-ascii?Q?g9wuQglA8czy8oMy5SEXvL8p0sShsIaqrvST7k/ALnklg70HjWz29Ql+TtaV?=
- =?us-ascii?Q?hQO/zzNNKMK4/vHE2oO6zpjpWbNMsnVjsTOgl4RE/f/0t0qmgLzMCQdIzBXL?=
- =?us-ascii?Q?t8TWJKViWW1hkdg4kXWUYKzvptJRwLyX/gVLFodMyYUrJwzP2R2nHKwvSSxF?=
- =?us-ascii?Q?f0OHN6vDreBRSmcxrYtC1wfTj4oDV44luU49bT0BIUwSnN0YDj4dOIWF61tg?=
- =?us-ascii?Q?WrpTSc5vcvK7Gg4JIC+qCXYmhah9ca+5G1eJzCrKjlZ16s7JB6O6GJH9LyJC?=
- =?us-ascii?Q?bg=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1a8d1d1c-afff-46d1-10eb-08dce92bc43e
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Oct 2024 13:02:16.7232 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: DOkrE7N4PQt8ZwpMjID/7Xbp1xYKhtg+ZyF5Agcq06Z5qZnOoQr30Q5i+uJcNbSJAQ+zp5G9GnjxVMBSbGDgTSOCvXNst0VGgHrC37KOqSY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4590
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -190,89 +72,175 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 08, 2024 at 06:02:43PM +0300, Raag Jadav wrote:
->On Thu, Oct 03, 2024 at 03:23:22PM +0300, Raag Jadav wrote:
->> On Tue, Oct 01, 2024 at 02:20:29PM +0200, Michal Wajdeczko wrote:
->> > On 30.09.2024 09:38, Raag Jadav wrote:
->> > >
->> > > +/**
->> > > + * enum drm_wedge_recovery - Recovery method for wedged device in order of
->> > > + * severity. To be set as bit fields in drm_device.wedge_recovery variable.
->> > > + * Drivers can choose to support any one or multiple of them depending on
->> > > + * their needs.
->> > > + */
->> > > +enum drm_wedge_recovery {
->> > > +	/** @DRM_WEDGE_RECOVERY_REBIND: unbind + rebind driver */
->> > > +	DRM_WEDGE_RECOVERY_REBIND,
->> > > +
->> > > +	/** @DRM_WEDGE_RECOVERY_BUS_RESET: unbind + reset bus device + rebind */
->> > > +	DRM_WEDGE_RECOVERY_BUS_RESET,
->> > > +
->> > > +	/** @DRM_WEDGE_RECOVERY_REBOOT: reboot system */
->> > > +	DRM_WEDGE_RECOVERY_REBOOT,
->> > > +
->> > > +	/** @DRM_WEDGE_RECOVERY_MAX: for bounds checking, do not use */
->> > > +	DRM_WEDGE_RECOVERY_MAX
->> > > +};
->> > > +
->> > >  /**
->> > >   * struct drm_device - DRM device structure
->> > >   *
->> > > @@ -317,6 +337,9 @@ struct drm_device {
->> > >  	 * Root directory for debugfs files.
->> > >  	 */
->> > >  	struct dentry *debugfs_root;
->> > > +
->> > > +	/** @wedge_recovery: Supported recovery methods for wedged device */
->> > > +	unsigned long wedge_recovery;
->> >
->> > hmm, so before the driver can ask for a reboot as a recovery method from
->> > wedge it has to somehow add 'reboot' as available method? why it that?
->>
->> It's for consumers to use as fallbacks in case the preferred recovery method
->> (sent along with uevent) don't workout. (patch 2/5)
+On Thu, 10 Oct 2024, "Hogander, Jouni" <jouni.hogander@intel.com> wrote:
+> On Wed, 2024-10-09 at 17:15 +0300, Jani Nikula wrote:
+>> On Wed, 09 Oct 2024, Jouni H=C3=B6gander <jouni.hogander@intel.com> wrot=
+e:
+>> > We are about to change meaning of vblank_enabled to fix Panel
+>> > Replay vblank
+>> > workaround. For sake of clarity we need to rename it.
+>> > Vblank_enabled is
+>> > used for i915gm/i945gm vblank irq workaround as well -> instead of
+>> > rename
+>> > add new counter named as vblank_wa_pipes.
+>> >=20
+>> > v2:
+>> > =C2=A0 - s/vblank_wa_pipes/vblank_wa_num_pipes/
+>> > =C2=A0 - use int as a type for the counter
+>> >=20
+>> > Signed-off-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
+>> > ---
+>> > =C2=A0drivers/gpu/drm/i915/display/intel_display_core.h | 2 ++
+>> > =C2=A0drivers/gpu/drm/i915/display/intel_display_irq.c=C2=A0 | 8 ++++-=
+---
+>> > =C2=A02 files changed, 6 insertions(+), 4 deletions(-)
+>> >=20
+>> > diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h
+>> > b/drivers/gpu/drm/i915/display/intel_display_core.h
+>> > index 982dd9469195..45697af25fa9 100644
+>> > --- a/drivers/gpu/drm/i915/display/intel_display_core.h
+>> > +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+>> > @@ -455,6 +455,8 @@ struct intel_display {
+>> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0/* For i915gm/i945gm vblank irq workaround */
+>> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0u8 vblank_enabled;
+>>=20
+>> Maybe we want to rename this one too?
 >
->On second thought...
+> I tried to explain it in commit message. Seems I didn't succeed in it.
 >
->Lucas, do we have a convincing enough usecase for fallback recovery?
->If <method> were to fail, I would expect there to be even bigger problems
->like kernel crash or unrecoverable hardware failure.
+> vblank_enabled is currently used by two workarounds:
 >
->At that point is it worth retrying?
+> 1. i915gm/i945gm vblank irq workaround
+> 2. LNL Panel Replay vblank workaround
+>
+> 1. and 2. are currently using vblank_enabled in a way they are
+> respecting it's meaning: is vblank enabled/disabled.
 
-when we were talking about this, I brought it up about allowing the
-driver to inform what was the supported wedge recovery mechanisms
-when the notification is sent. Not to be intended as fallback mechanism.
+Crucially, they're both using the same member, but never on the same
+platform. The member is "overloaded" for two different things. (See the
+otherwise unrelated series [1], it's the same thing with sb_lock.)
 
-So if the driver sends a notification with:
+> It was found out that 2. as it is implemented currently doesn't work
+> properly. Instead of information on vblank enabled/disabled we need to
+> know if there are pipes that need the workaround.
+>
+> Renaming vblank_enabled wouldn't reflect how it's used in 1. This is
+> why I decided to add own variable for 2. and this is what this patch is
+> about: Keep vblank_enabled as it is for 1. and add own variable for 2.
 
-	DRM_WEDGE_RECOVERY_REBIND | DRM_WEDGE_RECOVERY_BUS_RESET | DRM_WEDGE_RECOVERY_REBOOT
+My point is more generic, and it was not intended as a comment on *this*
+patch. Having a "vblank_enabled" member is misleading, when it's really
+just used for a very narrow case on a few platforms.
 
-it means any of these would be suitable, with the first being the option
-with less side-effect. I don't think we are advising userspace to use
-fallback, just informing what the driver/device supports. Depending on
-the error, the driver may leave only
+Does that make more sense?
 
-	DRM_WEDGE_RECOVERY_REBOOT
 
-That name could actually be DRM_WEDGE_RECOVERY_NONE. Because at that
-state the driver doesn't really know what can be done to recover.
-With that we can drop _MAX and use _NONE for bounding check. I think
-we can also omit it in the notification as it's clear:
+BR,
+Jani.
 
-	WEDGED
-	DRM_WEDGE_RECOVERY_REBIND | DRM_WEDGE_RECOVERY_BUS_RESET
 
-This means the driver can use any of these options to recover
+[1] https://lore.kernel.org/r/cover.1727890136.git.jani.nikula@intel.com
 
-	WEDGED
-	DRM_WEDGE_RECOVERY_BUS_RESET
+>
+> BR,
+>
+> Jouni H=C3=B6gander
+>=20=20
+>>=20
+>> BR,
+>> Jani.
+>>=20
+>> > =C2=A0
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0int vblank_wa_num_pipes;
+>> > +
+>> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0struct work_struct vblank_dc_work;
+>> > =C2=A0
+>> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0u32 de_irq_mask[I915_MAX_PIPES];
+>> > diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c
+>> > b/drivers/gpu/drm/i915/display/intel_display_irq.c
+>> > index a4367ddc7a44..8226ea218d77 100644
+>> > --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
+>> > +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
+>> > @@ -1424,7 +1424,7 @@ static void
+>> > intel_display_vblank_dc_work(struct work_struct *work)
+>> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct intel_display *=
+display =3D
+>> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0container_of(work, typeof(*display),
+>> > irq.vblank_dc_work);
+>> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct drm_i915_privat=
+e *i915 =3D to_i915(display->drm);
+>> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u8 vblank_enabled =3D READ_=
+ONCE(display->irq.vblank_enabled);
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0int vblank_wa_num_pipes =3D=
+ READ_ONCE(display-
+>> > >irq.vblank_wa_num_pipes);
+>> > =C2=A0
+>> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/*
+>> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * NOTE: intel_display=
+_power_set_target_dc_state is used
+>> > only by PSR
+>> > @@ -1432,7 +1432,7 @@ static void
+>> > intel_display_vblank_dc_work(struct work_struct *work)
+>> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * PSR code. If DC3CO =
+is taken into use we need take that
+>> > into account
+>> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * here as well.
+>> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 */
+>> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0intel_display_power_set_tar=
+get_dc_state(i915,
+>> > vblank_enabled ? DC_STATE_DISABLE :
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0intel_display_power_set_tar=
+get_dc_state(i915,
+>> > vblank_wa_num_pipes ? DC_STATE_DISABLE :
+>> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0DC_STA=
+TE_EN_UPTO_DC
+>> > 6);
+>> > =C2=A0}
+>> > =C2=A0
+>> > @@ -1447,7 +1447,7 @@ int bdw_enable_vblank(struct drm_crtc *_crtc)
+>> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (gen11_dsi_configur=
+e_te(crtc, true))
+>> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0return 0;
+>> > =C2=A0
+>> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (display->irq.vblank_ena=
+bled++ =3D=3D 0 && crtc-
+>> > >block_dc_for_vblank)
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (display->irq.vblank_wa_=
+num_pipes++ =3D=3D 0 && crtc-
+>> > >block_dc_for_vblank)
+>> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0schedule_work(&display->irq.vblank_dc_work);
+>> > =C2=A0
+>> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0spin_lock_irqsave(&dev=
+_priv->irq_lock, irqflags);
+>> > @@ -1478,7 +1478,7 @@ void bdw_disable_vblank(struct drm_crtc
+>> > *_crtc)
+>> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0bdw_disable_pipe_irq(d=
+ev_priv, pipe, GEN8_PIPE_VBLANK);
+>> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0spin_unlock_irqrestore=
+(&dev_priv->irq_lock, irqflags);
+>> > =C2=A0
+>> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (--display->irq.vblank_e=
+nabled =3D=3D 0 && crtc-
+>> > >block_dc_for_vblank)
+>> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (--display->irq.vblank_w=
+a_num_pipes =3D=3D 0 && crtc-
+>> > >block_dc_for_vblank)
+>> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0schedule_work(&display->irq.vblank_dc_work);
+>> > =C2=A0}
+>>=20
+>
 
-only bus reset would fix it
-
-	WEDGED
-	
-driver doesn't know anything that could fix it. It may be a soft-reboot,
-hard-reboot, firmware flashing etc... We just don't know.
-
-Lucas De Marchi
+--=20
+Jani Nikula, Intel
