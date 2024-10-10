@@ -2,54 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E88CD997C7D
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Oct 2024 07:34:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C25F4997C7E
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Oct 2024 07:34:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A5DB10E875;
-	Thu, 10 Oct 2024 05:34:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A32810E86C;
+	Thu, 10 Oct 2024 05:34:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TwLCzcgZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ASY2D6wY";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB8DC10E874;
- Thu, 10 Oct 2024 05:34:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E92210E869;
+ Thu, 10 Oct 2024 05:34:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728538470; x=1760074470;
+ t=1728538471; x=1760074471;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=7DWC8mH5AZEggSSmtIdY30N/vcGvbyKQUnm9UPGqiKA=;
- b=TwLCzcgZPn9CAbEGJk7hbBjmecRjVWgsomsOSVTOOJjvGOvC4NlktpKM
- S/znbMLCk4SMVHod1Rx/xshfenSx7pdC0aP5Rd6Gm4gJ+8Grgac/+6htL
- 9mJQ+X7Mf4vbEnw/E4rB9UEmFV9HPuycrDFQIJeUP/arwSeTYSDEO2IZt
- UsVUFkuWMCR5JxEyTREy4fOQpAw87DMNdm+ybLF3vabVsgU+KdEADG46s
- 7kCRLs1GiJFsZ22zU0BrmmqLrNA7iENCgH5LWemeCTa4j3bhabhfaQLL1
- OEPQVGUeD7PmyvefNgHN1Yi7H+x0oDSll09gl6RV+7BmdhFNXaZJ5z+1k Q==;
-X-CSE-ConnectionGUID: tODVXvlDSomTyvyXgDz0xA==
-X-CSE-MsgGUID: w4aKtorBSnauNHT37GkaXw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11220"; a="30749369"
-X-IronPort-AV: E=Sophos;i="6.11,192,1725346800"; d="scan'208";a="30749369"
+ bh=gBH9dAuUxnVJKGGrfb1/Sf0yNXap94STvghKy/uzE34=;
+ b=ASY2D6wYRinY/NoAM4o5sxMVj9r6vwhBJQbDsqNYsMIEVKUhFpgamQtL
+ /XxaGKRRrzM+qMzU6gbM/Yv39d+sV+f67FoGOBdhIp+A0YpC8IMKA26US
+ mcZkGfqp79dPC6HXwuOllOcFpKOFBsQhfiGeFgKfuhYHj/lu1hP7VwRI6
+ q5pZFsN9HcHUNRwNd8SyEEgac+umhOnhrVQcu5LIsI+xn/FdbEFPUATcy
+ 3fSczrdk2gYYqC+CrLOrvN3HZkadIGRyX4vwvqSLE1YEKAlYa1MwwfP7H
+ oWwBlyLxrZplKDxwbXJzAGMSfGL7zTw7bXEWIvnGRwQkQpsY5+mi8VuEU Q==;
+X-CSE-ConnectionGUID: Vjj0O5WWQB6o52SM86AXEA==
+X-CSE-MsgGUID: HqqdZLYyTlWnyMsJVB4i6g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11220"; a="30749370"
+X-IronPort-AV: E=Sophos;i="6.11,192,1725346800"; d="scan'208";a="30749370"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2024 22:34:29 -0700
-X-CSE-ConnectionGUID: F+boBgJBSFeT0uHCyPimQQ==
-X-CSE-MsgGUID: jlagK++zQhi5iQqH5EgK8A==
+ 09 Oct 2024 22:34:31 -0700
+X-CSE-ConnectionGUID: ZvMg81fETuSpygeSJeJ3pQ==
+X-CSE-MsgGUID: lxc4YysuSk+z6vastajGKg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,192,1725346800"; d="scan'208";a="76697311"
+X-IronPort-AV: E=Sophos;i="6.11,192,1725346800"; d="scan'208";a="76697319"
 Received: from oandoniu-mobl3.ger.corp.intel.com (HELO jhogande-mobl1..)
  ([10.245.244.162])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2024 22:34:28 -0700
+ 09 Oct 2024 22:34:29 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, intel-xe@lists.freedesktop.org,
  =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH 5/7] drm/i915/psr: Simplify frontbuffer invalidate/flush
- callbacks
-Date: Thu, 10 Oct 2024 08:33:14 +0300
-Message-Id: <20241010053316.1580527-6-jouni.hogander@intel.com>
+Subject: [PATCH 6/7] drm/i915/psr: Add VRR send push interface for PSR usage
+Date: Thu, 10 Oct 2024 08:33:15 +0300
+Message-Id: <20241010053316.1580527-7-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241010053316.1580527-1-jouni.hogander@intel.com>
 References: <20241010053316.1580527-1-jouni.hogander@intel.com>
@@ -72,115 +71,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-There is unnecessary complexity in frontbuffer tracking invalidate and
-flush callbacks. Simplify them a bit with some minor changes to sequences:
-
-Invalidate:
-
-1. Additionally write single full frame bit when selective fetch is
-enabled. This should be ok as continuous full frame bit is already set.
-2. Rewrite bits in PSR2_MAN_TRK_CTL if two invalidate calls in row without
-flush in between (psr.psr2_sel_fetch_cff_enabled == true).
-
-Flush:
-
-1. intel_dp->psr.psr2_sel_fetch_cff_enabled is clearn also when it is
-already false.
+Add own interface for PSR usage to perform push on frontbuffer tracking
+invalidate and flush call backs. Use this new interface from PSR code.
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 66 +++++-------------------
- 1 file changed, 12 insertions(+), 54 deletions(-)
+ drivers/gpu/drm/i915/display/intel_psr.c |  7 ++++++-
+ drivers/gpu/drm/i915/display/intel_vrr.c | 18 ++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_vrr.h |  4 ++++
+ 3 files changed, 28 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index b32020321ca7a..5be8076475f0b 100644
+index 5be8076475f0b..7959a33771b13 100644
 --- a/drivers/gpu/drm/i915/display/intel_psr.c
 +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -3069,28 +3069,8 @@ static void intel_psr_work(struct work_struct *work)
- 
- static void _psr_invalidate_handle(struct intel_dp *intel_dp)
- {
--	struct intel_display *display = to_intel_display(intel_dp);
--	enum transcoder cpu_transcoder = intel_dp->psr.transcoder;
--
- 	if (intel_dp->psr.psr2_sel_fetch_enabled) {
--		u32 val;
--
--		if (intel_dp->psr.psr2_sel_fetch_cff_enabled) {
--			/* Send one update otherwise lag is observed in screen */
--			intel_de_write(display,
--				       CURSURFLIVE(display, intel_dp->psr.pipe),
--				       0);
--			return;
--		}
--
--		val = man_trk_ctl_enable_bit_get(display) |
--		      man_trk_ctl_partial_frame_bit_get(display) |
--		      man_trk_ctl_continuos_full_frame(display);
--		intel_de_write(display,
--			       PSR2_MAN_TRK_CTL(display, cpu_transcoder),
--			       val);
--		intel_de_write(display,
--			       CURSURFLIVE(display, intel_dp->psr.pipe), 0);
-+		psr_force_exit(intel_dp);
- 		intel_dp->psr.psr2_sel_fetch_cff_enabled = true;
- 	} else {
- 		intel_psr_exit(intel_dp);
-@@ -3172,43 +3152,21 @@ static void _psr_flush_handle(struct intel_dp *intel_dp)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
- 	struct drm_i915_private *dev_priv = to_i915(display->drm);
--	enum transcoder cpu_transcoder = intel_dp->psr.transcoder;
-+
-+	psr_force_exit(intel_dp);
- 
- 	if (intel_dp->psr.psr2_sel_fetch_enabled) {
--		if (intel_dp->psr.psr2_sel_fetch_cff_enabled) {
--			/* can we turn CFF off? */
--			if (intel_dp->psr.busy_frontbuffer_bits == 0) {
--				u32 val = man_trk_ctl_enable_bit_get(display) |
--					man_trk_ctl_partial_frame_bit_get(display) |
--					man_trk_ctl_single_full_frame_bit_get(display) |
--					man_trk_ctl_continuos_full_frame(display);
--
--				/*
--				 * Set psr2_sel_fetch_cff_enabled as false to allow selective
--				 * updates. Still keep cff bit enabled as we don't have proper
--				 * SU configuration in case update is sent for any reason after
--				 * sff bit gets cleared by the HW on next vblank.
--				 */
--				intel_de_write(display,
--					       PSR2_MAN_TRK_CTL(display, cpu_transcoder),
--					       val);
--				intel_de_write(display,
--					       CURSURFLIVE(display, intel_dp->psr.pipe),
--					       0);
--				intel_dp->psr.psr2_sel_fetch_cff_enabled = false;
--			}
--		} else {
-+		/* can we turn CFF off? */
-+		if (intel_dp->psr.busy_frontbuffer_bits == 0)
- 			/*
--			 * continuous full frame is disabled, only a single full
--			 * frame is required
-+			 * Set psr2_sel_fetch_cff_enabled as false to allow selective
-+			 * updates. Still keep cff bit enabled as we don't have proper
-+			 * SU configuration in case update is sent for any reason after
-+			 * sff bit gets cleared by the HW on next vblank.
- 			 */
--			psr_force_exit(intel_dp);
--		}
--	} else {
--		psr_force_exit(intel_dp);
--
--		if (!intel_dp->psr.active && !intel_dp->psr.busy_frontbuffer_bits)
--			queue_work(dev_priv->unordered_wq, &intel_dp->psr.work);
-+			intel_dp->psr.psr2_sel_fetch_cff_enabled = false;
-+	} else if (!intel_dp->psr.active && !intel_dp->psr.busy_frontbuffer_bits) {
-+		queue_work(dev_priv->unordered_wq, &intel_dp->psr.work);
- 	}
+@@ -2326,8 +2326,13 @@ static void psr_force_exit(struct intel_dp *intel_dp)
+ 	 * This workaround do not exist for platforms with display 10 or newer
+ 	 * but testing proved that it works for up display 13, for newer
+ 	 * than that testing will be needed.
++	 *
++	 * In Lunarlake we can use TRANS_PUSH mechanism to force sending update
++	 * to sink.
+ 	 */
+-	intel_de_write(display, CURSURFLIVE(display, intel_dp->psr.pipe), 0);
++	DISPLAY_VER(display) >= 20 ?
++		intel_vrr_psr_send_push(display, cpu_transcoder) :
++		intel_de_write(display, CURSURFLIVE(display, intel_dp->psr.pipe), 0);
  }
  
+ void intel_psr2_program_trans_man_trk_ctl(const struct intel_crtc_state *crtc_state)
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+index 5925ade4591d4..d51830d173b61 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr.c
++++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+@@ -328,6 +328,24 @@ void intel_vrr_send_push(const struct intel_crtc_state *crtc_state)
+ 		       trans_push_val);
+ }
+ 
++/**
++ * intel_vrr_psr_send_push - Send push interface for PSR code
++ * @display: Intel display
++ * @cpu_transcoder: cpu_transcode
++ *
++ * This is for PSR usage to perform push on frontbuffer tracking invalidate and
++ * flush call back. PSR mutex should be taken by caller.
++ */
++void intel_vrr_psr_send_push(struct intel_display *display,
++			     enum transcoder cpu_transcoder)
++{
++	if (DISPLAY_VER(display) < 20)
++		return;
++
++	intel_de_rmw(display, TRANS_PUSH(display, cpu_transcoder), 0,
++		     TRANS_PUSH_SEND | LNL_TRANS_PUSH_PSR_PR_EN);
++}
++
+ bool intel_vrr_is_push_sent(const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(crtc_state);
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr.h b/drivers/gpu/drm/i915/display/intel_vrr.h
+index a75f159168c11..3da7ba12697ff 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr.h
++++ b/drivers/gpu/drm/i915/display/intel_vrr.h
+@@ -12,6 +12,8 @@ struct drm_connector_state;
+ struct intel_atomic_state;
+ struct intel_connector;
+ struct intel_crtc_state;
++struct intel_display;
++enum transcoder;
+ 
+ bool intel_vrr_is_capable(struct intel_connector *connector);
+ bool intel_vrr_is_in_range(struct intel_connector *connector, int vrefresh);
+@@ -25,6 +27,8 @@ bool intel_vrr_is_push_sent(const struct intel_crtc_state *crtc_state);
+ void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state);
+ void intel_vrr_psr_frame_change_enable(const struct intel_crtc_state *crtc_state);
+ void intel_vrr_psr_frame_change_disable(const struct intel_crtc_state *crtc_state);
++void intel_vrr_psr_send_push(struct intel_display *display,
++			     enum transcoder cpu_transcoder);
+ void intel_vrr_get_config(struct intel_crtc_state *crtc_state);
+ int intel_vrr_vmax_vblank_start(const struct intel_crtc_state *crtc_state);
+ int intel_vrr_vmin_vblank_start(const struct intel_crtc_state *crtc_state);
 -- 
 2.34.1
 
