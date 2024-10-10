@@ -2,116 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A3699987D7
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Oct 2024 15:37:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F712998844
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Oct 2024 15:50:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 19DBB10E297;
-	Thu, 10 Oct 2024 13:37:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C0A9310E90B;
+	Thu, 10 Oct 2024 13:50:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="rz3Uf+ha";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="6MUZJ8tp";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="rz3Uf+ha";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="6MUZJ8tp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mMVmnUQM";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6110A10E297;
- Thu, 10 Oct 2024 13:37:12 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id C1BA221FA1;
- Thu, 10 Oct 2024 13:37:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1728567430; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=rE4V5kj1uZvndrZk/9bvSar0PfV0NXBQ4O6TIk6c2Hs=;
- b=rz3Uf+hayhFLKTua9IV0L0Bwym5sCB+i0W+l9C1CwQ4xmyATV7EUtVm4pAgcBfhDUAzacm
- 5+uCi6om+zsmUO0moPTOtC2WlCqbxwO2OlwRhdFnvv/XPeTPXUqB4hp2jHe3ZdVVjxzbSs
- ep9UH+rL4u7YfYaDzDb8P6P+GCRTOwY=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1728567430;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=rE4V5kj1uZvndrZk/9bvSar0PfV0NXBQ4O6TIk6c2Hs=;
- b=6MUZJ8tpsuuQqX+RkfOb2L8721AtasomfXMUtkWglGOkJH6fx48VQfxBuPmUjUMI6xzviT
- +AjzIqdIz/JNobDw==
-Authentication-Results: smtp-out1.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=rz3Uf+ha;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=6MUZJ8tp
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1728567430; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=rE4V5kj1uZvndrZk/9bvSar0PfV0NXBQ4O6TIk6c2Hs=;
- b=rz3Uf+hayhFLKTua9IV0L0Bwym5sCB+i0W+l9C1CwQ4xmyATV7EUtVm4pAgcBfhDUAzacm
- 5+uCi6om+zsmUO0moPTOtC2WlCqbxwO2OlwRhdFnvv/XPeTPXUqB4hp2jHe3ZdVVjxzbSs
- ep9UH+rL4u7YfYaDzDb8P6P+GCRTOwY=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1728567430;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=rE4V5kj1uZvndrZk/9bvSar0PfV0NXBQ4O6TIk6c2Hs=;
- b=6MUZJ8tpsuuQqX+RkfOb2L8721AtasomfXMUtkWglGOkJH6fx48VQfxBuPmUjUMI6xzviT
- +AjzIqdIz/JNobDw==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 4DC7E13A6E;
- Thu, 10 Oct 2024 13:37:10 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id xhWzEYbYB2euVwAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Thu, 10 Oct 2024 13:37:10 +0000
-Date: Thu, 10 Oct 2024 15:37:08 +0200
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-fixes
-Message-ID: <20241010133708.GA461532@localhost.localdomain>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E153510E8FC;
+ Thu, 10 Oct 2024 13:50:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1728568247; x=1760104247;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=39cI15fSHOlIbWFEMUL8X8+qLnMWjuXGOc60EjPJcTE=;
+ b=mMVmnUQM9L3MtbqPsVlUT4691KvWwRj3JKXfKaZcQ5yai9QJdE9KePn4
+ Cofz34/D2MsOKdpWPdPPM01tE/2BagANoUVY2Yx+01cjwIJnN2USidXpt
+ 7mtXTTMUkZcH5h1F4z8tsk/AFGDjw9n5k0xD4hR/M08r9IjxlZu+Bs4TD
+ 869pjhE+smAHVjFYxbDu6tB6q02LAbzIXlJib4srW41GO4c6cu9hYh5jQ
+ n74/jBjdbC1WKj+UIa09QXmxIysZ6KlT0CALS1m0MT4pPKmPDegO4wUE4
+ TGYzpTLJ1khqFGKAi5aFbsQHbf1p8XFfKzn7kYDp0GPH5rjceaaHR2qJ8 Q==;
+X-CSE-ConnectionGUID: 5UnQrA1nSDyTHOfFrzVfCg==
+X-CSE-MsgGUID: nSXp0+P0T9Oa4LvEHAxPUA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11220"; a="45402737"
+X-IronPort-AV: E=Sophos;i="6.11,193,1725346800"; d="scan'208";a="45402737"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Oct 2024 06:50:46 -0700
+X-CSE-ConnectionGUID: Ag5BPi8NS/KpKIc0FTKdrA==
+X-CSE-MsgGUID: X6HsxArkQrmUQpeOKzjWwA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,193,1725346800"; d="scan'208";a="76781917"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO
+ jkrzyszt-mobl2.intranet) ([10.245.246.126])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Oct 2024 06:50:44 -0700
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org,
+ Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ Tejas Upadhyay <tejas.upadhyay@intel.com>,
+ Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Anshuman Gupta <anshuman.gupta@intel.com>,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Subject: [PATCH i-g-t] lib/gem_mman: Stop lying about I915_MMAP_OFFSET_GTT
+ support
+Date: Thu, 10 Oct 2024 15:49:06 +0200
+Message-ID: <20241010135023.275507-2-janusz.krzysztofik@linux.intel.com>
+X-Mailer: git-send-email 2.46.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: C1BA221FA1
-X-Spam-Level: 
-X-Spamd-Result: default: False [-4.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- NEURAL_HAM_SHORT(-0.20)[-1.000];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- MIME_GOOD(-0.10)[text/plain]; MX_GOOD(-0.01)[];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FUZZY_BLOCKED(0.00)[rspamd.com];
- FREEMAIL_TO(0.00)[gmail.com,ffwll.ch]; MIME_TRACE(0.00)[0:+];
- ARC_NA(0.00)[]; RCPT_COUNT_TWELVE(0.00)[16];
- TO_MATCH_ENVRCPT_ALL(0.00)[];
- FREEMAIL_ENVRCPT(0.00)[gmail.com]; RCVD_TLS_ALL(0.00)[];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- TO_DN_SOME(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- MISSING_XM_UA(0.00)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
- DKIM_TRACE(0.00)[suse.de:+];
- DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:dkim]
-X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
-X-Rspamd-Action: no action
-X-Spam-Score: -4.51
-X-Spam-Flag: NO
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -127,104 +72,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Sima,
+A few tests depend on for_each_mmap_offset_type() helper used for
+selection of device supported mmap_offset types in loops either around
+dynamic sub-subtests or inside subtest bodies.  That helper in turn
+calls gem_has_mmap_offset_type() to omit unsupported mmap_offset types.
+Unfortunately, its code returns GTT as supported mmap_offset type also on
+new platforms that no longer support that type.  Poorly coded subtests may
+than take unexpected processing paths and return unexpected results that
+are not easy to understand and explain.
 
-here's drm-misc-fixes for this week.
+Fix it.
 
-Best regards
-Thomas
+Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11370
+Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+---
+ lib/i915/gem_mman.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-drm-misc-fixes-2024-10-10:
-Short summary of fixes pull:
-
-fbdev-dma:
-- Only clean up deferred I/O if instanciated
-
-nouveau:
-- dmem: Fix privileged error in copy engine channel; Fix possible
-data leak in migrate_to_ram()
-- gsp: Fix coding style
-
-sched:
-- Avoid leaking lockdep map
-
-v3d:
-- Stop active perfmon before destroying it
-
-vc4:
-- Stop active perfmon before destroying it
-
-xe:
-- Drop GuC submit_wq pool
-The following changes since commit f9e7ac6e2e9986c2ee63224992cb5c8276e46b2a:
-
-  drm/panthor: Don't add write fences to the shared BOs (2024-10-01 18:41:02 +0200)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2024-10-10
-
-for you to fetch changes up to fcddc71ec7ecf15b4df3c41288c9cf0b8e886111:
-
-  drm/fbdev-dma: Only cleanup deferred I/O if necessary (2024-10-10 09:49:25 +0200)
-
-----------------------------------------------------------------
-Short summary of fixes pull:
-
-fbdev-dma:
-- Only clean up deferred I/O if instanciated
-
-nouveau:
-- dmem: Fix privileged error in copy engine channel; Fix possible
-data leak in migrate_to_ram()
-- gsp: Fix coding style
-
-sched:
-- Avoid leaking lockdep map
-
-v3d:
-- Stop active perfmon before destroying it
-
-vc4:
-- Stop active perfmon before destroying it
-
-xe:
-- Drop GuC submit_wq pool
-
-----------------------------------------------------------------
-Colin Ian King (1):
-      drm/nouveau/gsp: remove extraneous ; after mutex
-
-Janne Grunau (1):
-      drm/fbdev-dma: Only cleanup deferred I/O if necessary
-
-Matthew Brost (2):
-      drm/sched: Use drm sched lockdep map for submit_wq
-      drm/xe: Drop GuC submit_wq pool
-
-Maíra Canal (2):
-      drm/v3d: Stop the active perfmon before being destroyed
-      drm/vc4: Stop the active perfmon before being destroyed
-
-Yonatan Maman (2):
-      nouveau/dmem: Fix privileged error in copy engine channel
-      nouveau/dmem: Fix vulnerability in migrate_to_ram upon copy error
-
- drivers/gpu/drm/drm_fbdev_dma.c                   |  3 +-
- drivers/gpu/drm/nouveau/include/nvkm/subdev/gsp.h |  2 +-
- drivers/gpu/drm/nouveau/nouveau_dmem.c            |  2 +-
- drivers/gpu/drm/nouveau/nouveau_drm.c             |  2 +-
- drivers/gpu/drm/scheduler/sched_main.c            | 11 +++++
- drivers/gpu/drm/v3d/v3d_perfmon.c                 |  9 +++-
- drivers/gpu/drm/vc4/vc4_perfmon.c                 |  7 ++-
- drivers/gpu/drm/xe/xe_guc_submit.c                | 60 +----------------------
- drivers/gpu/drm/xe/xe_guc_types.h                 |  7 ---
- 9 files changed, 31 insertions(+), 72 deletions(-)
-
+diff --git a/lib/i915/gem_mman.c b/lib/i915/gem_mman.c
+index 0b41ba70dd..cd0c65e213 100644
+--- a/lib/i915/gem_mman.c
++++ b/lib/i915/gem_mman.c
+@@ -90,6 +90,8 @@ bool gem_has_mmap_offset_type(int fd, const struct mmap_offset *t)
+ 	if (gem_has_mmap_offset(fd))
+ 		if (gem_has_lmem(fd))
+ 			return t->type == I915_MMAP_OFFSET_FIXED;
++		else if (t->type == I915_MMAP_OFFSET_GTT)
++			return gem_has_mappable_ggtt(fd);
+ 		else
+ 			return t->type != I915_MMAP_OFFSET_FIXED;
+ 	else
 -- 
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
+2.46.2
+
