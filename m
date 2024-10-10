@@ -2,54 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0312998D73
-	for <lists+intel-gfx@lfdr.de>; Thu, 10 Oct 2024 18:30:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 28C0E998DC3
+	for <lists+intel-gfx@lfdr.de>; Thu, 10 Oct 2024 18:46:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7B0110E999;
-	Thu, 10 Oct 2024 16:30:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED5A010E0CA;
+	Thu, 10 Oct 2024 16:46:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SNsThphw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ESd28x7/";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B703810E979;
- Thu, 10 Oct 2024 16:30:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80EE010E0CA
+ for <intel-gfx@lists.freedesktop.org>; Thu, 10 Oct 2024 16:46:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728577839; x=1760113839;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=+l9gFbnLeJerz6+eMJ6jxdZf3F/+dIjux5jIjmh9tk0=;
- b=SNsThphw2Zku5GkRMnSxa7DuF6w+FFHzYXVAQX1CHd7/fGE0CJ19kgKw
- 4P5CHk68NurwlUuH8cINPnvgGLRZBVkeT6kWTcdEfVp9+NrSqllLEU6Ts
- KxAV3vbp/QandblGpWxjpw7RNSLCTm1t0LP0U6pOe95R8KiNfhpCx+BbK
- fARrEkbxyjaAjcrpTWCMjDAcvly9P5CD+f7kFQdjq5BrPkVo7tgGs/Sw4
- rFyVV5jLrYYHfvjyX3oUd728uI5Mq4EK1S2Mo8InwznWWe8ZcXlLcwgNY
- DAHpX89Uj1cq5IwDK2X17sHderxLN0uq6sv6yv1cqHHkb2fo28oyRhjkz A==;
-X-CSE-ConnectionGUID: 86JTLcC8TKe9fJ2wxjJTBA==
-X-CSE-MsgGUID: KY3bFtPIQ4Gxmi4a007g+A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11220"; a="31849182"
-X-IronPort-AV: E=Sophos;i="6.11,193,1725346800"; d="scan'208";a="31849182"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2024 09:30:39 -0700
-X-CSE-ConnectionGUID: ad+ctsg3RbipNoCduMw4uw==
-X-CSE-MsgGUID: 2fFLl9HIQ1Su5ijBE82umw==
+ t=1728578780; x=1760114780;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=TxgHpohDE2tG6DkwAZ8RTiEg0duu2SIDsiH/6j9Mm0I=;
+ b=ESd28x7/kcWZebSFXjDwy6oVQ1VLvFqf6rdHzMrNp/SG66mNSLQYFd1p
+ nb6eee/6P6/e0PnCU/suLkZ9ozb3KoFydixRd8v4yxN3IB/AstAZnctKR
+ cRXJS0JZo8KXp208CNvOFOOix2Y7yfxDXtLFRG/njsBpTwiwOTQ59QAdJ
+ ynM3RCXABlHxwsmzqWCxEEO/NBPSDiMg5aQA0i61DzuEPgoH7iM/S2MJe
+ i53zPz+bGVgl0cR7UnB6wbvX0I4kBq9x1CNecU52uxiVqq8jnnQs5MpFy
+ 5bJLos9nOiZnvMh7dhgQfhaODOi3dOuyR5z7sQKcaM0xRkeCdx78L7/H1 A==;
+X-CSE-ConnectionGUID: /OQ9LTWXSNuhxdIcvQfQCw==
+X-CSE-MsgGUID: BbGoQmG4SySrA6aajyPc1A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11220"; a="38598553"
+X-IronPort-AV: E=Sophos;i="6.11,193,1725346800"; d="scan'208";a="38598553"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Oct 2024 09:46:20 -0700
+X-CSE-ConnectionGUID: KaiGfomkRiypikC4Ssqzcw==
+X-CSE-MsgGUID: hkmCSxrFRnqPm+YvIVySlQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,193,1725346800"; d="scan'208";a="99976026"
-Received: from osgc-linux-buildserver.sh.intel.com ([10.112.232.61])
- by fmviesa002.fm.intel.com with ESMTP; 10 Oct 2024 09:30:38 -0700
-From: Shuicheng Lin <shuicheng.lin@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: Shuicheng Lin <shuicheng.lin@intel.com>,
- Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH] drm/i915/dp: Fix memory leak in parse_lfp_panel_dtd()
-Date: Thu, 10 Oct 2024 15:55:52 +0000
-Message-Id: <20241010155552.994880-1-shuicheng.lin@intel.com>
-X-Mailer: git-send-email 2.25.1
+X-IronPort-AV: E=Sophos;i="6.11,193,1725346800"; d="scan'208";a="76739290"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 10 Oct 2024 09:46:18 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 10 Oct 2024 19:46:17 +0300
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Subject: [PATCH v2 9/9] drm/i915: Carve up skl_get_plane_caps()
+Date: Thu, 10 Oct 2024 19:46:17 +0300
+Message-ID: <20241010164617.10280-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20241009182207.22900-10-ville.syrjala@linux.intel.com>
+References: <20241009182207.22900-10-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,59 +68,138 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The function parse_lfp_panel_dtd() is called when the driver
-attempts to initialize the eDP connector, and it allocates memory,
-which is recorded in panel->vbt.lfp_vbt_mode. However, since no
-eDP panel is connected, the driver fails at intel_edp_init_dpcd()
-and follows the failure path. Unfortunately, the allocated memory
-is not freed in this case.
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-To fix this issue, free the memory in the failure path.
+Split skl_get_plane_caps() into four variants:
+skl_plane_caps(), glk_plane_caps(), icl_plane_caps(),
+tgl_plane_caps().
 
-leak info from kmemleak:
-"
-unreferenced object 0xffff8881252f8800 (size 128):
-  comm "systemd-udevd", pid 192, jiffies 4294896880
-  hex dump (first 32 bytes):
-    e8 fd 00 00 00 04 18 04 a0 04 40 05 00 00 00 03  ..........@.....
-    03 03 09 03 26 03 00 00 0a 00 00 00 00 00 00 00  ....&...........
-  backtrace (crc 7448f6b4):
-    [<ffffffff82475c9b>] kmemleak_alloc+0x4b/0x80
-    [<ffffffff814bb50e>] __kmalloc_cache_noprof+0x2be/0x390
-    [<ffffffffa069862c>] intel_bios_init_panel+0x1c4c/0x2720 [xe]
-    [<ffffffffa0699123>] intel_bios_init_panel_early+0x13/0x20 [xe]
-    [<ffffffffa06fceb9>] intel_dp_init_connector+0x2f9/0x1080 [xe]
-    [<ffffffffa06c370a>] intel_ddi_init+0xbba/0xf50 [xe]
-    [<ffffffffa069b906>] intel_bios_for_each_encoder+0x36/0x60 [xe]
-    [<ffffffffa06d7bd6>] intel_setup_outputs+0x206/0x450 [xe]
-    [<ffffffffa06dad33>] intel_display_driver_probe_nogem+0x163/0x1f0 [xe]
-    [<ffffffffa0680fc7>] xe_display_init_noaccel+0x27/0x70 [xe]
-    [<ffffffffa05b30d6>] xe_device_probe+0x806/0x9a0 [xe]
-    [<ffffffffa0612f0f>] xe_pci_probe+0x31f/0x590 [xe]
-    [<ffffffff81b41718>] local_pci_probe+0x48/0xb0
-    [<ffffffff81b432c8>] pci_device_probe+0xc8/0x280
-    [<ffffffff81d5dde8>] really_probe+0xf8/0x390
-    [<ffffffff81d5e11a>] __driver_probe_device+0x8a/0x170
-"
+Makes it easier to figure out what is actually going on there.
 
-Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
+v2: skl_plane_caps() should return u8 not bool
+
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 1 +
- 1 file changed, 1 insertion(+)
+ .../drm/i915/display/skl_universal_plane.c    | 81 +++++++++++++------
+ 1 file changed, 57 insertions(+), 24 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 90fa73575feb..7141e3ca0d83 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -6801,6 +6801,7 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
- 
- out_vdd_off:
- 	intel_pps_vdd_off_sync(intel_dp);
-+	intel_bios_fini_panel(&intel_connector->panel);
- 
- 	return false;
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index bcb48d8932d2..4924fc3619c5 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -2562,47 +2562,73 @@ skl_plane_disable_flip_done(struct intel_plane *plane)
+ static bool skl_plane_has_rc_ccs(struct drm_i915_private *i915,
+ 				 enum pipe pipe, enum plane_id plane_id)
+ {
+-	if (DISPLAY_VER(i915) >= 11)
+-		return true;
+-
+-	if (IS_GEMINILAKE(i915))
+-		return pipe != PIPE_C;
+-
+ 	return pipe != PIPE_C &&
+ 		(plane_id == PLANE_1 || plane_id == PLANE_2);
  }
+ 
++static u8 skl_plane_caps(struct drm_i915_private *i915,
++			 enum pipe pipe, enum plane_id plane_id)
++{
++	u8 caps = INTEL_PLANE_CAP_TILING_X |
++		INTEL_PLANE_CAP_TILING_Y |
++		INTEL_PLANE_CAP_TILING_Yf;
++
++	if (skl_plane_has_rc_ccs(i915, pipe, plane_id))
++		caps |= INTEL_PLANE_CAP_CCS_RC;
++
++	return caps;
++}
++
++static bool glk_plane_has_rc_ccs(struct drm_i915_private *i915,
++				 enum pipe pipe)
++{
++	return pipe != PIPE_C;
++}
++
++static u8 glk_plane_caps(struct drm_i915_private *i915,
++			 enum pipe pipe, enum plane_id plane_id)
++{
++	u8 caps = INTEL_PLANE_CAP_TILING_X |
++		INTEL_PLANE_CAP_TILING_Y |
++		INTEL_PLANE_CAP_TILING_Yf;
++
++	if (glk_plane_has_rc_ccs(i915, pipe))
++		caps |= INTEL_PLANE_CAP_CCS_RC;
++
++	return caps;
++}
++
++static u8 icl_plane_caps(struct drm_i915_private *i915,
++			 enum pipe pipe, enum plane_id plane_id)
++{
++	return INTEL_PLANE_CAP_TILING_X |
++		INTEL_PLANE_CAP_TILING_Y |
++		INTEL_PLANE_CAP_TILING_Yf |
++		INTEL_PLANE_CAP_CCS_RC;
++}
++
+ static bool tgl_plane_has_mc_ccs(struct drm_i915_private *i915,
+ 				 enum plane_id plane_id)
+ {
+-	if (DISPLAY_VER(i915) < 12)
+-		return false;
+-
+ 	/* Wa_14010477008 */
+ 	if (IS_DG1(i915) || IS_ROCKETLAKE(i915) ||
+-		(IS_TIGERLAKE(i915) && IS_DISPLAY_STEP(i915, STEP_A0, STEP_D0)))
++	    (IS_TIGERLAKE(i915) && IS_DISPLAY_STEP(i915, STEP_A0, STEP_D0)))
+ 		return false;
+ 
+ 	return plane_id < PLANE_6;
+ }
+ 
+-static u8 skl_get_plane_caps(struct drm_i915_private *i915,
+-			     enum pipe pipe, enum plane_id plane_id)
++static u8 tgl_plane_caps(struct drm_i915_private *i915,
++			 enum pipe pipe, enum plane_id plane_id)
+ {
+-	u8 caps = INTEL_PLANE_CAP_TILING_X;
++	u8 caps = INTEL_PLANE_CAP_TILING_X |
++		INTEL_PLANE_CAP_CCS_RC |
++		INTEL_PLANE_CAP_CCS_RC_CC;
+ 
+-	if (DISPLAY_VER(i915) < 13 || IS_ALDERLAKE_P(i915))
+-		caps |= INTEL_PLANE_CAP_TILING_Y;
+-	if (DISPLAY_VER(i915) < 12)
+-		caps |= INTEL_PLANE_CAP_TILING_Yf;
+ 	if (HAS_4TILE(i915))
+ 		caps |= INTEL_PLANE_CAP_TILING_4;
+-
+-	if (skl_plane_has_rc_ccs(i915, pipe, plane_id)) {
+-		caps |= INTEL_PLANE_CAP_CCS_RC;
+-		if (DISPLAY_VER(i915) >= 12)
+-			caps |= INTEL_PLANE_CAP_CCS_RC_CC;
+-	}
++	else
++		caps |= INTEL_PLANE_CAP_TILING_Y;
+ 
+ 	if (tgl_plane_has_mc_ccs(i915, plane_id))
+ 		caps |= INTEL_PLANE_CAP_CCS_MC;
+@@ -2714,7 +2740,14 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
+ 	else
+ 		plane_type = DRM_PLANE_TYPE_OVERLAY;
+ 
+-	caps = skl_get_plane_caps(dev_priv, pipe, plane_id);
++	if (DISPLAY_VER(dev_priv) >= 12)
++		caps = tgl_plane_caps(dev_priv, pipe, plane_id);
++	else if (DISPLAY_VER(dev_priv) == 11)
++		caps = icl_plane_caps(dev_priv, pipe, plane_id);
++	else if (DISPLAY_VER(dev_priv) == 10)
++		caps = glk_plane_caps(dev_priv, pipe, plane_id);
++	else
++		caps = skl_plane_caps(dev_priv, pipe, plane_id);
+ 
+ 	/* FIXME: xe has problems with AUX */
+ 	if (!IS_ENABLED(I915) && !HAS_FLAT_CCS(dev_priv))
 -- 
-2.25.1
+2.45.2
 
