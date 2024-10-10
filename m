@@ -2,53 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85BE499955E
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Oct 2024 00:43:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EE33999562
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Oct 2024 00:43:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E0EF810E9F6;
-	Thu, 10 Oct 2024 22:43:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B78F810EA02;
+	Thu, 10 Oct 2024 22:43:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kUdxIffi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JkuKpNT5";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E699010E9F3;
- Thu, 10 Oct 2024 22:43:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A199D10E9F3;
+ Thu, 10 Oct 2024 22:43:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1728600201; x=1760136201;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=KbpQxoUjwMEONGTe8q2bOIfAVC6nTWS3gLy2pXwiUps=;
- b=kUdxIffiZLesFVarvwV4oMfooO3z+UQySaFWi1eOZI0LUwHzAZLbdOM0
- 3ym3nK8c3M1NvYlFkKAxzLjsH9nmDGup/v7mWp74dul+nAs0G16qcJXuO
- SRs0DJBlpFgMQTwP7MPnNl48+WHGhsy/FKKrOYkzPLBYQhB+iZP4aLXm2
- UV7voROIp51z+p1MMfyj+JcATbyhZP4070kGXXf3Pqe9r18VAuhyrL+9O
- CV4SeMU6NAVUaPdsqKn5xdLqHdEO1qKju9hd2vVzJX3hiuGIbdtTE6xTD
- 2Ro9Z+fNkztCAIBuQnxJldIiMSqwfggmFJna30wjWCP8TOEs+k/Rfc3Vo w==;
-X-CSE-ConnectionGUID: 502UznaaQ4inYzLHQKxv1Q==
-X-CSE-MsgGUID: b4RN+IIlTyOWZOQuUoK7nA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11221"; a="39380866"
-X-IronPort-AV: E=Sophos;i="6.11,194,1725346800"; d="scan'208";a="39380866"
+ bh=Vi/y5IAUGuFbIYKpdu9yRPhN/rCc/xJ1o6UvF9JeOq0=;
+ b=JkuKpNT5UrNfGOhO9IJ0uuFr0rkzn3mW+tNkPIicEq/ZIrk8Ferusm88
+ wY24uPWZ+ilNlsp4M9zrIRR8Pq6hpAF61kVcTqyZaRwFUpVeq9vkRfRBT
+ HsorkpLOIE75SDZQD9GK3GYY8WjqnQsHhmNs3Bv+qlDv27M4hkatzKAez
+ a40GYtR51vpToQa0/q5sxQFb9Fi/LL/dIBvCYHq7ivlMhsgTmmpaC5zti
+ wDvRjKU7Ht084vMDVyZ+zekhCulXn7ulog0zq4BNIjpKqCWJwgaoN7l3b
+ Q0lUI9LNBDCGeAQOEuuETS5Xbfv6LEldxFg0gedNVohwrQY8VcJLxGr/E A==;
+X-CSE-ConnectionGUID: BnhxcipFRQODDDKS4JYoLA==
+X-CSE-MsgGUID: n0WxCezMQFujdUqFT9hAXg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11221"; a="39380869"
+X-IronPort-AV: E=Sophos;i="6.11,194,1725346800"; d="scan'208";a="39380869"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2024 15:43:20 -0700
-X-CSE-ConnectionGUID: a5phnNceTgSDr4WxdqAsWw==
-X-CSE-MsgGUID: FZ9B/X3OTQSqIfS0Xr8zZw==
+ 10 Oct 2024 15:43:21 -0700
+X-CSE-ConnectionGUID: cqQtj6TtSYuN957H3iyC1Q==
+X-CSE-MsgGUID: 34G+7QbmSNibifC6KG4u3g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,194,1725346800"; d="scan'208";a="76732030"
+X-IronPort-AV: E=Sophos;i="6.11,194,1725346800"; d="scan'208";a="76732041"
 Received: from msatwood-mobl.jf.intel.com ([10.24.12.132])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2024 15:43:19 -0700
+ 10 Oct 2024 15:43:20 -0700
 From: Matt Atwood <matthew.s.atwood@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Cc: Matt Roper <matthew.d.roper@intel.com>,
+Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>,
+ Gustavo Sousa <gustavo.sousa@intel.com>,
  Matt Atwood <matthew.s.atwood@intel.com>
-Subject: [PATCH v2 04/10] drm/i915/xe3lpd: Update pmdemand programming
-Date: Thu, 10 Oct 2024 15:43:05 -0700
-Message-ID: <20241010224311.50133-5-matthew.s.atwood@intel.com>
+Subject: [PATCH v2 05/10] drm/i915/xe3lpd: Add cdclk changes
+Date: Thu, 10 Oct 2024 15:43:06 -0700
+Message-ID: <20241010224311.50133-6-matthew.s.atwood@intel.com>
 X-Mailer: git-send-email 2.45.0
 In-Reply-To: <20241010224311.50133-1-matthew.s.atwood@intel.com>
 References: <20241010224311.50133-1-matthew.s.atwood@intel.com>
@@ -69,221 +70,126 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Matt Roper <matthew.d.roper@intel.com>
+From: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 
-There are some minor changes to pmdemand handling on Xe3:
- - Active scalers are no longer tracked.  We can simply skip the readout
-   and programming of this field.
- - Active dbuf slices are no longer tracked.  We should skip the readout
-   and programming of this field and also make sure that it stays 0 in
-   our software bookkeeping so that we won't erroneously return true
-   from intel_pmdemand_needs_update() due to mismatches.
- - Even though there aren't enough pipes to utilize them, the size of
-   the 'active pipes' field has expanded to four bits, taking over the
-   register bits previously used for dbuf slices.  Since the lower bits
-   of the mask have moved, we need to update our reads/writes to handle
-   this properly.
+Xe3_LPD has new max cdclk of 691200 which requires reusing the lnl table
+and modify/add higher frequencies. Updating the max cdclk supported by
+the platform and voltage_level determination is also updated.
 
-v2: active pipes is no longer always max 3, add in the ability to go to
-4 for PTL.
+There are minor changes in cdclk programming sequence compared to lnl,
+where programming cd2x divider needs to be skipped. This is already handled
+by the calculations in existing code.
 
-Bspec: 68883, 69125
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+v2: update tables
+
+Bspec: 68861, 68863, 68864
+Cc: Gustavo Sousa <gustavo.sousa@intel.com>
+Signed-off-by: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
 Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_pmdemand.c | 65 +++++++++++++------
- drivers/gpu/drm/i915/display/intel_pmdemand.h |  4 +-
- drivers/gpu/drm/i915/i915_reg.h               |  1 +
- 3 files changed, 48 insertions(+), 22 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cdclk.c | 61 +++++++++++++++++++++-
+ 1 file changed, 59 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_pmdemand.c b/drivers/gpu/drm/i915/display/intel_pmdemand.c
-index ceaf9e3147da..3a820dd53b13 100644
---- a/drivers/gpu/drm/i915/display/intel_pmdemand.c
-+++ b/drivers/gpu/drm/i915/display/intel_pmdemand.c
-@@ -258,6 +258,7 @@ intel_pmdemand_connector_needs_update(struct intel_atomic_state *state)
- 
- static bool intel_pmdemand_needs_update(struct intel_atomic_state *state)
- {
-+	struct drm_i915_private *i915 = to_i915(state->base.dev);
- 	const struct intel_bw_state *new_bw_state, *old_bw_state;
- 	const struct intel_cdclk_state *new_cdclk_state, *old_cdclk_state;
- 	const struct intel_crtc_state *new_crtc_state, *old_crtc_state;
-@@ -274,12 +275,16 @@ static bool intel_pmdemand_needs_update(struct intel_atomic_state *state)
- 	new_dbuf_state = intel_atomic_get_new_dbuf_state(state);
- 	old_dbuf_state = intel_atomic_get_old_dbuf_state(state);
- 	if (new_dbuf_state &&
--	    (new_dbuf_state->active_pipes !=
--	     old_dbuf_state->active_pipes ||
--	     new_dbuf_state->enabled_slices !=
--	     old_dbuf_state->enabled_slices))
-+	    new_dbuf_state->active_pipes != old_dbuf_state->active_pipes)
- 		return true;
- 
-+	if (DISPLAY_VER(i915) < 30) {
-+		if (new_dbuf_state &&
-+		    new_dbuf_state->enabled_slices !=
-+		    old_dbuf_state->enabled_slices)
-+			return true;
-+	}
-+
- 	new_cdclk_state = intel_atomic_get_new_cdclk_state(state);
- 	old_cdclk_state = intel_atomic_get_old_cdclk_state(state);
- 	if (new_cdclk_state &&
-@@ -304,6 +309,7 @@ int intel_pmdemand_atomic_check(struct intel_atomic_state *state)
- 	const struct intel_cdclk_state *new_cdclk_state;
- 	const struct intel_dbuf_state *new_dbuf_state;
- 	struct intel_pmdemand_state *new_pmdemand_state;
-+	int max_active_pipes = 3;
- 
- 	if (DISPLAY_VER(i915) < 14)
- 		return 0;
-@@ -327,10 +333,13 @@ int intel_pmdemand_atomic_check(struct intel_atomic_state *state)
- 	if (IS_ERR(new_dbuf_state))
- 		return PTR_ERR(new_dbuf_state);
- 
-+	if (DISPLAY_VER(i915) >= 30) max_active_pipes = 4;
- 	new_pmdemand_state->params.active_pipes =
--		min_t(u8, hweight8(new_dbuf_state->active_pipes), 3);
--	new_pmdemand_state->params.active_dbufs =
--		min_t(u8, hweight8(new_dbuf_state->enabled_slices), 3);
-+		min_t(u8, hweight8(new_dbuf_state->active_pipes), max_active_pipes);
-+
-+	if (DISPLAY_VER(i915) < 30)
-+		new_pmdemand_state->params.active_dbufs =
-+			min_t(u8, hweight8(new_dbuf_state->enabled_slices), 3);
- 
- 	new_cdclk_state = intel_atomic_get_cdclk_state(state);
- 	if (IS_ERR(new_cdclk_state))
-@@ -395,27 +404,32 @@ intel_pmdemand_init_pmdemand_params(struct drm_i915_private *i915,
- 
- 	reg2 = intel_de_read(i915, XELPDP_INITIATE_PMDEMAND_REQUEST(1));
- 
--	/* Set 1*/
- 	pmdemand_state->params.qclk_gv_bw =
- 		REG_FIELD_GET(XELPDP_PMDEMAND_QCLK_GV_BW_MASK, reg1);
- 	pmdemand_state->params.voltage_index =
- 		REG_FIELD_GET(XELPDP_PMDEMAND_VOLTAGE_INDEX_MASK, reg1);
- 	pmdemand_state->params.qclk_gv_index =
- 		REG_FIELD_GET(XELPDP_PMDEMAND_QCLK_GV_INDEX_MASK, reg1);
--	pmdemand_state->params.active_pipes =
--		REG_FIELD_GET(XELPDP_PMDEMAND_PIPES_MASK, reg1);
--	pmdemand_state->params.active_dbufs =
--		REG_FIELD_GET(XELPDP_PMDEMAND_DBUFS_MASK, reg1);
- 	pmdemand_state->params.active_phys =
- 		REG_FIELD_GET(XELPDP_PMDEMAND_PHYS_MASK, reg1);
- 
--	/* Set 2*/
- 	pmdemand_state->params.cdclk_freq_mhz =
- 		REG_FIELD_GET(XELPDP_PMDEMAND_CDCLK_FREQ_MASK, reg2);
- 	pmdemand_state->params.ddiclk_max =
- 		REG_FIELD_GET(XELPDP_PMDEMAND_DDICLK_FREQ_MASK, reg2);
--	pmdemand_state->params.scalers =
--		REG_FIELD_GET(XELPDP_PMDEMAND_SCALERS_MASK, reg2);
-+
-+	if (DISPLAY_VER(i915) >= 30) {
-+		pmdemand_state->params.active_pipes =
-+			REG_FIELD_GET(XE3_PMDEMAND_PIPES_MASK, reg1);
-+	} else {
-+		pmdemand_state->params.active_pipes =
-+			REG_FIELD_GET(XELPDP_PMDEMAND_PIPES_MASK, reg1);
-+		pmdemand_state->params.active_dbufs =
-+			REG_FIELD_GET(XELPDP_PMDEMAND_DBUFS_MASK, reg1);
-+
-+		pmdemand_state->params.scalers =
-+			REG_FIELD_GET(XELPDP_PMDEMAND_SCALERS_MASK, reg2);
-+	}
- 
- unlock:
- 	mutex_unlock(&i915->display.pmdemand.lock);
-@@ -442,6 +456,10 @@ void intel_pmdemand_program_dbuf(struct drm_i915_private *i915,
- {
- 	u32 dbufs = min_t(u32, hweight8(dbuf_slices), 3);
- 
-+	/* PM Demand only tracks active dbufs on pre-Xe3 platforms */
-+	if (DISPLAY_VER(i915) >= 30)
-+		return;
-+
- 	mutex_lock(&i915->display.pmdemand.lock);
- 	if (drm_WARN_ON(&i915->drm,
- 			!intel_pmdemand_check_prev_transaction(i915)))
-@@ -460,7 +478,8 @@ void intel_pmdemand_program_dbuf(struct drm_i915_private *i915,
- }
- 
- static void
--intel_pmdemand_update_params(const struct intel_pmdemand_state *new,
-+intel_pmdemand_update_params(struct drm_i915_private *i915,
-+			     const struct intel_pmdemand_state *new,
- 			     const struct intel_pmdemand_state *old,
- 			     u32 *reg1, u32 *reg2, bool serialized)
- {
-@@ -495,16 +514,22 @@ intel_pmdemand_update_params(const struct intel_pmdemand_state *new,
- 	update_reg(reg1, qclk_gv_bw, XELPDP_PMDEMAND_QCLK_GV_BW_MASK);
- 	update_reg(reg1, voltage_index, XELPDP_PMDEMAND_VOLTAGE_INDEX_MASK);
- 	update_reg(reg1, qclk_gv_index, XELPDP_PMDEMAND_QCLK_GV_INDEX_MASK);
--	update_reg(reg1, active_pipes, XELPDP_PMDEMAND_PIPES_MASK);
--	update_reg(reg1, active_dbufs, XELPDP_PMDEMAND_DBUFS_MASK);
- 	update_reg(reg1, active_phys, XELPDP_PMDEMAND_PHYS_MASK);
- 
- 	/* Set 2*/
- 	update_reg(reg2, cdclk_freq_mhz, XELPDP_PMDEMAND_CDCLK_FREQ_MASK);
- 	update_reg(reg2, ddiclk_max, XELPDP_PMDEMAND_DDICLK_FREQ_MASK);
--	update_reg(reg2, scalers, XELPDP_PMDEMAND_SCALERS_MASK);
- 	update_reg(reg2, plls, XELPDP_PMDEMAND_PLLS_MASK);
- 
-+	if (DISPLAY_VER(i915) >= 30) {
-+		update_reg(reg1, active_pipes, XE3_PMDEMAND_PIPES_MASK);
-+	} else {
-+		update_reg(reg1, active_pipes, XELPDP_PMDEMAND_PIPES_MASK);
-+		update_reg(reg1, active_dbufs, XELPDP_PMDEMAND_DBUFS_MASK);
-+
-+		update_reg(reg2, scalers, XELPDP_PMDEMAND_SCALERS_MASK);
-+	}
-+
- #undef update_reg
- }
- 
-@@ -529,7 +554,7 @@ intel_pmdemand_program_params(struct drm_i915_private *i915,
- 	reg2 = intel_de_read(i915, XELPDP_INITIATE_PMDEMAND_REQUEST(1));
- 	mod_reg2 = reg2;
- 
--	intel_pmdemand_update_params(new, old, &mod_reg1, &mod_reg2,
-+	intel_pmdemand_update_params(i915, new, old, &mod_reg1, &mod_reg2,
- 				     serialized);
- 
- 	if (reg1 != mod_reg1) {
-diff --git a/drivers/gpu/drm/i915/display/intel_pmdemand.h b/drivers/gpu/drm/i915/display/intel_pmdemand.h
-index 128fd61f8f14..a1c49efdc493 100644
---- a/drivers/gpu/drm/i915/display/intel_pmdemand.h
-+++ b/drivers/gpu/drm/i915/display/intel_pmdemand.h
-@@ -20,14 +20,14 @@ struct pmdemand_params {
- 	u8 voltage_index;
- 	u8 qclk_gv_index;
- 	u8 active_pipes;
--	u8 active_dbufs;
-+	u8 active_dbufs;	/* pre-Xe3 only */
- 	/* Total number of non type C active phys from active_phys_mask */
- 	u8 active_phys;
- 	u8 plls;
- 	u16 cdclk_freq_mhz;
- 	/* max from ddi_clocks[] */
- 	u16 ddiclk_max;
--	u8 scalers;
-+	u8 scalers;		/* pre-Xe3 only */
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+index fa1c2012b10c..13829a3c3c42 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+@@ -1468,6 +1468,39 @@ static const struct intel_cdclk_vals xe2hpd_cdclk_table[] = {
+ 	{}
  };
  
- struct intel_pmdemand_state {
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 818142f5a10c..d30459f8d1cb 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -2705,6 +2705,7 @@
- #define  XELPDP_PMDEMAND_QCLK_GV_BW_MASK		REG_GENMASK(31, 16)
- #define  XELPDP_PMDEMAND_VOLTAGE_INDEX_MASK		REG_GENMASK(14, 12)
- #define  XELPDP_PMDEMAND_QCLK_GV_INDEX_MASK		REG_GENMASK(11, 8)
-+#define  XE3_PMDEMAND_PIPES_MASK			REG_GENMASK(7, 4)
- #define  XELPDP_PMDEMAND_PIPES_MASK			REG_GENMASK(7, 6)
- #define  XELPDP_PMDEMAND_DBUFS_MASK			REG_GENMASK(5, 4)
- #define  XELPDP_PMDEMAND_PHYS_MASK			REG_GENMASK(2, 0)
++static const struct intel_cdclk_vals xe3lpd_cdclk_table[] = {
++	{ .refclk = 38400, .cdclk = 153600, .ratio = 16, .waveform = 0xaaaa },
++	{ .refclk = 38400, .cdclk = 172800, .ratio = 16, .waveform = 0xad5a },
++	{ .refclk = 38400, .cdclk = 192000, .ratio = 16, .waveform = 0xb6b6 },
++	{ .refclk = 38400, .cdclk = 211200, .ratio = 16, .waveform = 0xdbb6 },
++	{ .refclk = 38400, .cdclk = 230400, .ratio = 16, .waveform = 0xeeee },
++	{ .refclk = 38400, .cdclk = 249600, .ratio = 16, .waveform = 0xf7de },
++	{ .refclk = 38400, .cdclk = 268800, .ratio = 16, .waveform = 0xfefe },
++	{ .refclk = 38400, .cdclk = 288000, .ratio = 16, .waveform = 0xfffe },
++	{ .refclk = 38400, .cdclk = 307200, .ratio = 16, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 326400, .ratio = 17, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 345600, .ratio = 18, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 364800, .ratio = 19, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 384000, .ratio = 20, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 403200, .ratio = 21, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 422400, .ratio = 22, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 441600, .ratio = 23, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 460800, .ratio = 24, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 480000, .ratio = 25, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 499200, .ratio = 26, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 518400, .ratio = 27, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 537600, .ratio = 28, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 556800, .ratio = 29, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 576000, .ratio = 30, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 595200, .ratio = 31, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 614400, .ratio = 32, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 633600, .ratio = 33, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 652800, .ratio = 34, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 672000, .ratio = 35, .waveform = 0xffff },
++	{ .refclk = 38400, .cdclk = 691200, .ratio = 36, .waveform = 0xffff },
++	{}
++};
++
+ static const int cdclk_squash_len = 16;
+ 
+ static int cdclk_squash_divider(u16 waveform)
+@@ -1594,6 +1627,18 @@ static u8 rplu_calc_voltage_level(int cdclk)
+ 				  rplu_voltage_level_max_cdclk);
+ }
+ 
++static u8 xe3lpd_calc_voltage_level(int cdclk)
++{
++	static const int xe3lpd_voltage_level_max_cdclk[] = {
++		[0] = 307200,
++		[1] = 691200,
++	};
++
++	return calc_voltage_level(cdclk,
++				  ARRAY_SIZE(xe3lpd_voltage_level_max_cdclk),
++				  xe3lpd_voltage_level_max_cdclk);
++}
++
+ static void icl_readout_refclk(struct intel_display *display,
+ 			       struct intel_cdclk_config *cdclk_config)
+ {
+@@ -3437,7 +3482,9 @@ void intel_update_max_cdclk(struct intel_display *display)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(display->drm);
+ 
+-	if (IS_JASPERLAKE(dev_priv) || IS_ELKHARTLAKE(dev_priv)) {
++	if (DISPLAY_VER(display) >= 30) {
++		display->cdclk.max_cdclk_freq = 691200;
++	} else if (IS_JASPERLAKE(dev_priv) || IS_ELKHARTLAKE(dev_priv)) {
+ 		if (display->cdclk.hw.ref == 24000)
+ 			display->cdclk.max_cdclk_freq = 552000;
+ 		else
+@@ -3650,6 +3697,13 @@ void intel_cdclk_debugfs_register(struct intel_display *display)
+ 			    display, &i915_cdclk_info_fops);
+ }
+ 
++static const struct intel_cdclk_funcs xe3lpd_cdclk_funcs = {
++	.get_cdclk = bxt_get_cdclk,
++	.set_cdclk = bxt_set_cdclk,
++	.modeset_calc_cdclk = bxt_modeset_calc_cdclk,
++	.calc_voltage_level = xe3lpd_calc_voltage_level,
++};
++
+ static const struct intel_cdclk_funcs rplu_cdclk_funcs = {
+ 	.get_cdclk = bxt_get_cdclk,
+ 	.set_cdclk = bxt_set_cdclk,
+@@ -3794,7 +3848,10 @@ void intel_init_cdclk_hooks(struct intel_display *display)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(display->drm);
+ 
+-	if (DISPLAY_VER(display) >= 20) {
++	if (DISPLAY_VER(display) >= 30) {
++		display->funcs.cdclk = &xe3lpd_cdclk_funcs;
++		display->cdclk.table = xe3lpd_cdclk_table;
++	} else if (DISPLAY_VER(display) >= 20) {
+ 		display->funcs.cdclk = &rplu_cdclk_funcs;
+ 		display->cdclk.table = xe2lpd_cdclk_table;
+ 	} else if (DISPLAY_VER_FULL(display) >= IP_VER(14, 1)) {
 -- 
 2.45.0
 
