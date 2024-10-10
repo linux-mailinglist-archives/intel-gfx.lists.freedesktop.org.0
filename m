@@ -2,40 +2,90 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90026999EFC
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Oct 2024 10:26:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46FBB999EF4
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Oct 2024 10:24:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2483B10EA75;
-	Fri, 11 Oct 2024 08:26:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D819110EA77;
+	Fri, 11 Oct 2024 08:24:19 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JlPCsfkj";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from rtg-sunil-navi33.amd.com (unknown [165.204.156.251])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 08C9910E4A8;
- Tue,  8 Oct 2024 08:45:36 +0000 (UTC)
-Received: from rtg-sunil-navi33.amd.com (localhost [127.0.0.1])
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 4988bIfR622174; Tue, 8 Oct 2024 14:07:18 +0530
-Received: (from sunil@localhost)
- by rtg-sunil-navi33.amd.com (8.15.2/8.15.2/Submit) id 4988bH4B622173;
- Tue, 8 Oct 2024 14:07:17 +0530
-From: Sunil Khatri <sunil.khatri@amd.com>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, Sunil Khatri <sunil.khatri@amd.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Sameer Lattannavar <sameer.lattannavar@intel.com>,
- =?UTF-8?q?Jonas=20=C3=85dahl?= <jadahl@redhat.com>
-Subject: [PATCH v1 2/2] drm: fix doc warning for height and width of plane
-Date: Tue,  8 Oct 2024 14:07:10 +0530
-Message-Id: <20241008083710.622153-2-sunil.khatri@amd.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241008083710.622153-1-sunil.khatri@amd.com>
-References: <20241008083710.622153-1-sunil.khatri@amd.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B06C10EA75
+ for <intel-gfx@lists.freedesktop.org>; Fri, 11 Oct 2024 08:24:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1728635060; x=1760171060;
+ h=resent-to:resent-from:resent-date:resent-message-id:from:
+ to:cc:subject:date:message-id:content-transfer-encoding:
+ mime-version; bh=+l9gFbnLeJerz6+eMJ6jxdZf3F/+dIjux5jIjmh9tk0=;
+ b=JlPCsfkjfkWhh5wYhQhkyHFOxDoXR4GL313SDQ7E+5K68B4L3+LHUkoV
+ YuqvLczFRq6Q+YtD7tRB0EPgtOh5XkFgC/FCZnf6IfHynlt+hq+lzFYEN
+ QmuqF/7h6aU2/lJw/B8rLrIcy5d5pypj+dYruwtDybvCiDP9zE6Wy2zJr
+ XOUBfU4hFRroj2QeLLCL8UVPpXzoRf++ICzFA4OG94D6IryUy8HbptL5n
+ r1Qx4LfAM5uMbuxxeZVXovUKBGgQjvSN7W1PQIkASeDEinP6TLo5uq1AS
+ 96tXpbvaPM/ktuvxDB3wk6oN9axKFdXyyLJd8AXpVayrJgfZ/3qyri/qY A==;
+X-CSE-ConnectionGUID: JTs1GxoeTFOatVuK6Fj1/A==
+X-CSE-MsgGUID: wwajSBqqQPaAhFr/b3KuMw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11221"; a="50569580"
+X-IronPort-AV: E=Sophos;i="6.11,195,1725346800"; d="scan'208";a="50569580"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2024 01:24:20 -0700
+X-CSE-ConnectionGUID: AsMunhfQRPS7HTne4wLx8A==
+X-CSE-MsgGUID: C8R2gksiTbuSeXL/7RS6Xw==
+X-ExtLoopCount2: 2 from 10.245.246.178
+X-IronPort-AV: E=Sophos;i="6.11,195,1725346800"; d="scan'208";a="76757264"
+Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.178])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2024 01:24:18 -0700
+Resent-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7,
+ 02160 Espoo
+Resent-To: intel-gfx@lists.freedesktop.org
+Resent-From: Jani Nikula <jani.nikula@intel.com>
+Resent-Date: Fri, 11 Oct 2024 11:24:12 +0300
+Resent-Message-ID: <87bjzr6o9f.fsf@intel.com>
+Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Mailbox Transport; Thu, 10 Oct 2024 09:30:41 -0700
+Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Thu, 10 Oct 2024 09:30:40 -0700
+Received: from fmviesa002.fm.intel.com (10.60.135.142) by
+ orsmsx602.amr.corp.intel.com (10.22.229.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Thu, 10 Oct 2024 09:30:40 -0700
+X-CSE-ConnectionGUID: ad+ctsg3RbipNoCduMw4uw==
+X-CSE-MsgGUID: 2fFLl9HIQ1Su5ijBE82umw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,193,1725346800"; d="scan'208";a="99976025"
+Received: from osgc-linux-buildserver.sh.intel.com ([10.112.232.61])
+ by fmviesa002.fm.intel.com with ESMTP; 10 Oct 2024 09:30:38 -0700
+From: Shuicheng Lin <shuicheng.lin@intel.com>
+To: <intel-xe@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>
+CC: Shuicheng Lin <shuicheng.lin@intel.com>, Jani Nikula
+ <jani.nikula@intel.com>
+Subject: [PATCH] drm/i915/dp: Fix memory leak in parse_lfp_panel_dtd()
+Date: Thu, 10 Oct 2024 15:55:52 +0000
+Message-ID: <20241010155552.994880-1-shuicheng.lin@intel.com>
+X-Mailer: git-send-email 2.25.1
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Fri, 11 Oct 2024 08:25:58 +0000
+X-MS-Exchange-Organization-Network-Message-Id: c9205538-0ac7-4d8a-be3e-08dce948e16e
+X-MS-Exchange-Organization-AuthSource: ORSMSX602.amr.corp.intel.com
+X-MS-Exchange-Organization-AuthAs: Internal
+X-MS-Exchange-Organization-AuthMechanism: 10
+Content-Type: text/plain
+X-MS-Exchange-Organization-AVStamp-Enterprise: 1.0
+X-MS-Exchange-Organization-SCL: -1
+X-MS-Exchange-Transport-EndToEndLatency: 00:00:00.6357793
+X-MS-Exchange-Processed-By-BccFoldering: 15.01.2507.039
+MIME-Version: 1.0
+X-TUID: hi22XFSinYLC
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,36 +101,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Fixes:
-include/uapi/drm/drm_mode.h:869:
-warning: Function parameter or struct member
-'width' not described in 'drm_plane_size_hint'
+The function parse_lfp_panel_dtd() is called when the driver
+attempts to initialize the eDP connector, and it allocates memory,
+which is recorded in panel->vbt.lfp_vbt_mode. However, since no
+eDP panel is connected, the driver fails at intel_edp_init_dpcd()
+and follows the failure path. Unfortunately, the allocated memory
+is not freed in this case.
 
-include/uapi/drm/drm_mode.h:869:
-warning: Function parameter or struct member
-'height' not described in 'drm_plane_size_hint'
+To fix this issue, free the memory in the failure path.
 
-Signed-off-by: Sunil Khatri <sunil.khatri@amd.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Sameer Lattannavar <sameer.lattannavar@intel.com>
-Cc: Jonas Ådahl <jadahl@redhat.com>
+leak info from kmemleak:
+"
+unreferenced object 0xffff8881252f8800 (size 128):
+  comm "systemd-udevd", pid 192, jiffies 4294896880
+  hex dump (first 32 bytes):
+    e8 fd 00 00 00 04 18 04 a0 04 40 05 00 00 00 03  ..........@.....
+    03 03 09 03 26 03 00 00 0a 00 00 00 00 00 00 00  ....&...........
+  backtrace (crc 7448f6b4):
+    [<ffffffff82475c9b>] kmemleak_alloc+0x4b/0x80
+    [<ffffffff814bb50e>] __kmalloc_cache_noprof+0x2be/0x390
+    [<ffffffffa069862c>] intel_bios_init_panel+0x1c4c/0x2720 [xe]
+    [<ffffffffa0699123>] intel_bios_init_panel_early+0x13/0x20 [xe]
+    [<ffffffffa06fceb9>] intel_dp_init_connector+0x2f9/0x1080 [xe]
+    [<ffffffffa06c370a>] intel_ddi_init+0xbba/0xf50 [xe]
+    [<ffffffffa069b906>] intel_bios_for_each_encoder+0x36/0x60 [xe]
+    [<ffffffffa06d7bd6>] intel_setup_outputs+0x206/0x450 [xe]
+    [<ffffffffa06dad33>] intel_display_driver_probe_nogem+0x163/0x1f0 [xe]
+    [<ffffffffa0680fc7>] xe_display_init_noaccel+0x27/0x70 [xe]
+    [<ffffffffa05b30d6>] xe_device_probe+0x806/0x9a0 [xe]
+    [<ffffffffa0612f0f>] xe_pci_probe+0x31f/0x590 [xe]
+    [<ffffffff81b41718>] local_pci_probe+0x48/0xb0
+    [<ffffffff81b432c8>] pci_device_probe+0xc8/0x280
+    [<ffffffff81d5dde8>] really_probe+0xf8/0x390
+    [<ffffffff81d5e11a>] __driver_probe_device+0x8a/0x170
+"
+
+Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
 ---
- include/uapi/drm/drm_mode.h | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/gpu/drm/i915/display/intel_dp.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/include/uapi/drm/drm_mode.h b/include/uapi/drm/drm_mode.h
-index d390011b89b4..ea07fbbde425 100644
---- a/include/uapi/drm/drm_mode.h
-+++ b/include/uapi/drm/drm_mode.h
-@@ -862,6 +862,8 @@ struct drm_color_lut {
-  *
-  * The plane SIZE_HINTS property blob contains an
-  * array of struct drm_plane_size_hint.
-+ * @width: Plane width hint
-+ * @height: Plane height hint
-  */
- struct drm_plane_size_hint {
- 	__u16 width;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 90fa73575feb..7141e3ca0d83 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -6801,6 +6801,7 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
+ 
+ out_vdd_off:
+ 	intel_pps_vdd_off_sync(intel_dp);
++	intel_bios_fini_panel(&intel_connector->panel);
+ 
+ 	return false;
+ }
 -- 
-2.34.1
+2.25.1
 
