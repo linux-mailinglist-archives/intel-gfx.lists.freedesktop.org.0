@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DE9F99955D
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Oct 2024 00:43:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 700DD99955F
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Oct 2024 00:43:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0516A10E9F0;
-	Thu, 10 Oct 2024 22:43:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11F4C10E9F7;
+	Thu, 10 Oct 2024 22:43:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JSu07M1N";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="InW+uhMz";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9CA7D10E151;
- Thu, 10 Oct 2024 22:43:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6540A10E151;
+ Thu, 10 Oct 2024 22:43:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728600198; x=1760136198;
+ t=1728600199; x=1760136199;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=eL2hGYtZ9ol1Bt7DJSpvYsjIO6CbwZCRRfFj1cMsAf0=;
- b=JSu07M1NACNWNcLfAIDA8BUnUNeSkzy4GGDj0mXmxLEEXnqXgwO/OC9I
- OpKAhKXPzoKjeYqRSHTOQJFao0Zs6+hvvMq+scz8OWCJVBpQRJrhtU916
- GcfFGvOyiqIKOgBosxc3pRNxsr5oMyQgx87OmkEei+zFv7LF9Xt7gEHB3
- ZVVz243fESvOY2RpqTkw+PzI3LVvrle8QhxwecO8sV0F4ck0aCviTXGw1
- 2p/Pf7T97sZtAeYWlqs+2L1EaX80aUnsPRsW/UxnPpYktFxmHpU6SwgZh
- 1F441uC5Nr+ENRqDhEWM2frOtsinkuCwmm+47CNgKd2+a4tF7VtsX+4yD g==;
-X-CSE-ConnectionGUID: tyDo8OX5TXSOTUKXk/469g==
-X-CSE-MsgGUID: RvdhalKpTTWuvpmX8T+Eyg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11221"; a="39380863"
-X-IronPort-AV: E=Sophos;i="6.11,194,1725346800"; d="scan'208";a="39380863"
+ bh=exWGODAA0TWci0AkL8b+xk5px+ZNTLVDQK3QTT73Ogo=;
+ b=InW+uhMz7TcvRfBuQgjDM/4BaNShSy0CbqXeOVH87aCyzaFOOZic2pBE
+ HmR7gmTSwaD2oAADJGpxYnT2+3qEGWzMJdP0c9bU4TQ9MEnEJwi66DSfx
+ ig5Xi/8ErPYPJKmyEd1LOO8sRT2XkgmMLe8CBc0RWTiBtYoXAflvX8h8n
+ iCU06A9JKH3PF2iVrbbIKl0PmgVH21NhdX9HBMiSjq8rlG/5DI9XzaDsK
+ c8dF67/s1l39PVpubz++28WW6jXfPUcbDw9r0mwMUpvo5jBX0NWFk5iJk
+ z7VjMlTDPYUp4hVujOPYVsIGmDlufNRJZ6AXzgSWvJufLRNChWduN5+4z A==;
+X-CSE-ConnectionGUID: En+fIOK2Rgut4+lJMDVkng==
+X-CSE-MsgGUID: ypE2jAcPQbyRi81U04gvMA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11221"; a="39380864"
+X-IronPort-AV: E=Sophos;i="6.11,194,1725346800"; d="scan'208";a="39380864"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2024 15:43:18 -0700
-X-CSE-ConnectionGUID: kWP0iGdKRuGLVxlEResS8Q==
-X-CSE-MsgGUID: 6vRGl+KzQEqBpwS1WdJZJg==
+ 10 Oct 2024 15:43:19 -0700
+X-CSE-ConnectionGUID: 6k6XIz/nQ6WTn4G7nEcoPQ==
+X-CSE-MsgGUID: 4jwXy6lgT82SoRhRsQB5Dg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,194,1725346800"; d="scan'208";a="76732010"
+X-IronPort-AV: E=Sophos;i="6.11,194,1725346800"; d="scan'208";a="76732017"
 Received: from msatwood-mobl.jf.intel.com ([10.24.12.132])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2024 15:43:17 -0700
+ 10 Oct 2024 15:43:18 -0700
 From: Matt Atwood <matthew.s.atwood@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Cc: Clint Taylor <clinton.a.taylor@intel.com>,
+Cc: Matt Roper <matthew.d.roper@intel.com>,
  Matt Atwood <matthew.s.atwood@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH v2 01/10] drm/i915/xe3lpd: reuse xe2lpd definition
-Date: Thu, 10 Oct 2024 15:43:02 -0700
-Message-ID: <20241010224311.50133-2-matthew.s.atwood@intel.com>
+ Vinod Govindapillai <vinod.govindapillai@intel.com>
+Subject: [PATCH v2 02/10] drm/i915/xe3lpd: Adjust watermark calculations
+Date: Thu, 10 Oct 2024 15:43:03 -0700
+Message-ID: <20241010224311.50133-3-matthew.s.atwood@intel.com>
 X-Mailer: git-send-email 2.45.0
 In-Reply-To: <20241010224311.50133-1-matthew.s.atwood@intel.com>
 References: <20241010224311.50133-1-matthew.s.atwood@intel.com>
@@ -70,86 +70,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Clint Taylor <clinton.a.taylor@intel.com>
+From: Matt Roper <matthew.d.roper@intel.com>
 
-xe3_lpd display is functionally identical to xe2_lpd for now so reuse
-the device description.  A separate xe3 definition will be added in the
-future if/when new feature flags are required.
+Xe3 makes a couple minor tweaks to the watermark algorithm's block count
+calculations.
 
-Signed-off-by: Clint Taylor <clinton.a.taylor@intel.com>
+Bspec: 68985
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_device.c |  6 ++++++
- drivers/gpu/drm/i915/display/intel_display_device.h |  2 ++
- include/drm/intel/i915_pciids.h                     | 12 ++++++++++++
- 3 files changed, 20 insertions(+)
+ drivers/gpu/drm/i915/display/skl_watermark.c | 18 ++++++++++++------
+ 1 file changed, 12 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
-index f33062322c66..aa22189e3853 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-@@ -1252,6 +1252,10 @@ static const struct platform_desc bmg_desc = {
- 	PLATFORM(BATTLEMAGE),
- };
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index 6e1f04d5ef47..31de33e868df 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -718,7 +718,7 @@ static int skl_compute_wm_params(const struct intel_crtc_state *crtc_state,
+ 				 int width, const struct drm_format_info *format,
+ 				 u64 modifier, unsigned int rotation,
+ 				 u32 plane_pixel_rate, struct skl_wm_params *wp,
+-				 int color_plane);
++				 int color_plane, unsigned int pan_x);
  
-+static const struct platform_desc ptl_desc = {
-+	PLATFORM(PANTHERLAKE),
-+};
+ static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
+ 				 struct intel_plane *plane,
+@@ -765,7 +765,7 @@ skl_cursor_allocation(const struct intel_crtc_state *crtc_state,
+ 				    drm_format_info(DRM_FORMAT_ARGB8888),
+ 				    DRM_FORMAT_MOD_LINEAR,
+ 				    DRM_MODE_ROTATE_0,
+-				    crtc_state->pixel_rate, &wp, 0);
++				    crtc_state->pixel_rate, &wp, 0, 0);
+ 	drm_WARN_ON(&i915->drm, ret);
+ 
+ 	for (level = 0; level < i915->display.wm.num_levels; level++) {
+@@ -1742,7 +1742,7 @@ skl_compute_wm_params(const struct intel_crtc_state *crtc_state,
+ 		      int width, const struct drm_format_info *format,
+ 		      u64 modifier, unsigned int rotation,
+ 		      u32 plane_pixel_rate, struct skl_wm_params *wp,
+-		      int color_plane)
++		      int color_plane, unsigned int pan_x)
+ {
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+@@ -1803,7 +1803,9 @@ skl_compute_wm_params(const struct intel_crtc_state *crtc_state,
+ 					   wp->y_min_scanlines,
+ 					   wp->dbuf_block_size);
+ 
+-		if (DISPLAY_VER(i915) >= 10)
++		if (DISPLAY_VER(i915) >= 30)
++			interm_pbpl += (pan_x != 0);
++		else if (DISPLAY_VER(i915) >= 10)
+ 			interm_pbpl++;
+ 
+ 		wp->plane_blocks_per_line = div_fixed16(interm_pbpl,
+@@ -1845,7 +1847,8 @@ skl_compute_plane_wm_params(const struct intel_crtc_state *crtc_state,
+ 				     fb->format, fb->modifier,
+ 				     plane_state->hw.rotation,
+ 				     intel_plane_pixel_rate(crtc_state, plane_state),
+-				     wp, color_plane);
++				     wp, color_plane,
++				     plane_state->uapi.src.x1);
+ }
+ 
+ static bool skl_wm_has_lines(struct drm_i915_private *i915, int level)
+@@ -1909,7 +1912,10 @@ static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
+ 		}
+ 	}
+ 
+-	blocks = fixed16_to_u32_round_up(selected_result) + 1;
++	blocks = fixed16_to_u32_round_up(selected_result);
++	if (DISPLAY_VER(i915) < 30)
++		blocks++;
 +
- __diag_pop();
- 
- /*
-@@ -1322,6 +1326,7 @@ static const struct {
- 	INTEL_MTL_IDS(INTEL_DISPLAY_DEVICE, &mtl_desc),
- 	INTEL_LNL_IDS(INTEL_DISPLAY_DEVICE, &lnl_desc),
- 	INTEL_BMG_IDS(INTEL_DISPLAY_DEVICE, &bmg_desc),
-+	INTEL_PTL_IDS(INTEL_DISPLAY_DEVICE, &ptl_desc),
- };
- 
- static const struct {
-@@ -1332,6 +1337,7 @@ static const struct {
- 	{ 14,  0, &xe_lpdp_display },
- 	{ 14,  1, &xe2_hpd_display },
- 	{ 20,  0, &xe2_lpd_display },
-+	{ 30,  0, &xe2_lpd_display },
- };
- 
- static const struct intel_display_device_info *
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index 3ef537fa551a..071a36b51f79 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -70,6 +70,8 @@ enum intel_display_platform {
- 	INTEL_DISPLAY_LUNARLAKE,
- 	/* Display ver 14.1 (based on GMD ID) */
- 	INTEL_DISPLAY_BATTLEMAGE,
-+	/* Display ver 30 (based on GMD ID) */
-+	INTEL_DISPLAY_PANTHERLAKE,
- };
- 
- enum intel_display_subplatform {
-diff --git a/include/drm/intel/i915_pciids.h b/include/drm/intel/i915_pciids.h
-index 02156c6f79b6..6b92f8c3731b 100644
---- a/include/drm/intel/i915_pciids.h
-+++ b/include/drm/intel/i915_pciids.h
-@@ -794,4 +794,16 @@
- 	MACRO__(0xE20D, ## __VA_ARGS__), \
- 	MACRO__(0xE212, ## __VA_ARGS__)
- 
-+/* PTL */
-+#define INTEL_PTL_IDS(MACRO__, ...) \
-+	MACRO__(0xB080, ## __VA_ARGS__), \
-+	MACRO__(0xB081, ## __VA_ARGS__), \
-+	MACRO__(0xB082, ## __VA_ARGS__), \
-+	MACRO__(0xB090, ## __VA_ARGS__), \
-+	MACRO__(0xB091, ## __VA_ARGS__), \
-+	MACRO__(0xB092, ## __VA_ARGS__), \
-+	MACRO__(0xB0A0, ## __VA_ARGS__), \
-+	MACRO__(0xB0A1, ## __VA_ARGS__), \
-+	MACRO__(0xB0A2, ## __VA_ARGS__)
-+
- #endif /* _I915_PCIIDS_H */
+ 	/*
+ 	 * Lets have blocks at minimum equivalent to plane_blocks_per_line
+ 	 * as there will be at minimum one line for lines configuration. This
 -- 
 2.45.0
 
