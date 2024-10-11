@@ -2,29 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BA9B999F27
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Oct 2024 10:39:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B2E24999F43
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Oct 2024 10:47:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D43510EA7E;
-	Fri, 11 Oct 2024 08:39:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3002510EA8A;
+	Fri, 11 Oct 2024 08:47:42 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OmmK3wfv";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F20710EA7E;
- Fri, 11 Oct 2024 08:39:00 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4115755944991079661=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 141B910EA87;
+ Fri, 11 Oct 2024 08:47:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1728636460; x=1760172460;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=2nj39NWEoWIviTYiFxe5RTBXqZ1nw3RnvVjKbtRqWpk=;
+ b=OmmK3wfvtASFjT2+/rXc3e/1ZAIHc8bhcLtC3PFSuXLVNJN8cNG+ZZXB
+ Nbaz03llFrf/UKObABUOdS7TlNka9FMtZx2lCVNc1Qydd8ij9RdfXRIog
+ EcHPhPnBrd+hQkiMjybMHtAaeDIOryqpzmHlcLmC3y2quhJwbKNOBAp6/
+ I/PvYW5gB8t+6uFSpN8tjYdncyDbZae+/rF82Bwo3/bkaCxm+gOFkFKhn
+ MnYmhZNgnNGxJwyrAdqBRz6+JFs8goAPiHfHPxMpZUjLaZ0t1a3jJ/+u0
+ iMXigaJqxMMZKDOUz7Y879umTYFkLq1CEBSLY+r9Puevs3x6PWFzSabmo g==;
+X-CSE-ConnectionGUID: bMT37ctjRXCJuFPaLbRgYw==
+X-CSE-MsgGUID: XvOJBWMWQjC/J/OCSJozuQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11221"; a="27838121"
+X-IronPort-AV: E=Sophos;i="6.11,195,1725346800"; d="scan'208";a="27838121"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2024 01:47:40 -0700
+X-CSE-ConnectionGUID: AnQ4uspyTuy6Fs0fH+5acg==
+X-CSE-MsgGUID: vqCFHIglQBub6i2f/JPFMA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,195,1725346800"; d="scan'208";a="81644719"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2024 01:47:35 -0700
+Date: Fri, 11 Oct 2024 11:47:32 +0300
+From: Raag Jadav <raag.jadav@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>, airlied@gmail.com,
+ simona@ffwll.ch, thomas.hellstrom@linux.intel.com,
+ rodrigo.vivi@intel.com, jani.nikula@linux.intel.com,
+ andriy.shevchenko@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ tursulin@ursulin.net, lina@asahilina.net,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
+ francois.dugast@intel.com, aravind.iddamsetty@linux.intel.com,
+ anshuman.gupta@intel.com, andi.shyti@linux.intel.com,
+ matthew.d.roper@intel.com
+Subject: Re: [PATCH v7 1/5] drm: Introduce device wedged event
+Message-ID: <ZwjmJFaK1FYVK7TK@black.fi.intel.com>
+References: <20240930073845.347326-1-raag.jadav@intel.com>
+ <20240930073845.347326-2-raag.jadav@intel.com>
+ <26f90d12-6a04-445e-96ff-aafbe3dc8132@intel.com>
+ <Zv6Ms7G4pSLdgUKo@black.fi.intel.com>
+ <ZwVJk8ESEyxyemrG@black.fi.intel.com>
+ <ghawgrgfbochcupnbq52q4ep6l5rfj32i4wcnmykah3zxmehts@r5eaynm4vocf>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/dp=3A_Fix_memory_l?=
- =?utf-8?q?eak_in_parse=5Flfp=5Fpanel=5Fdtd=28=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Shuicheng Lin" <shuicheng.lin@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 11 Oct 2024 08:39:00 -0000
-Message-ID: <172863594025.1239667.7204614741156703736@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241010155552.994880-1-shuicheng.lin@intel.com>
-In-Reply-To: <20241010155552.994880-1-shuicheng.lin@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ghawgrgfbochcupnbq52q4ep6l5rfj32i4wcnmykah3zxmehts@r5eaynm4vocf>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,180 +78,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4115755944991079661==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, Oct 10, 2024 at 08:02:10AM -0500, Lucas De Marchi wrote:
+> On Tue, Oct 08, 2024 at 06:02:43PM +0300, Raag Jadav wrote:
+> > On Thu, Oct 03, 2024 at 03:23:22PM +0300, Raag Jadav wrote:
+> > > On Tue, Oct 01, 2024 at 02:20:29PM +0200, Michal Wajdeczko wrote:
+> > > > On 30.09.2024 09:38, Raag Jadav wrote:
+> > > > >
+> > > > > +/**
+> > > > > + * enum drm_wedge_recovery - Recovery method for wedged device in order of
+> > > > > + * severity. To be set as bit fields in drm_device.wedge_recovery variable.
+> > > > > + * Drivers can choose to support any one or multiple of them depending on
+> > > > > + * their needs.
+> > > > > + */
+> > > > > +enum drm_wedge_recovery {
+> > > > > +	/** @DRM_WEDGE_RECOVERY_REBIND: unbind + rebind driver */
+> > > > > +	DRM_WEDGE_RECOVERY_REBIND,
+> > > > > +
+> > > > > +	/** @DRM_WEDGE_RECOVERY_BUS_RESET: unbind + reset bus device + rebind */
+> > > > > +	DRM_WEDGE_RECOVERY_BUS_RESET,
+> > > > > +
+> > > > > +	/** @DRM_WEDGE_RECOVERY_REBOOT: reboot system */
+> > > > > +	DRM_WEDGE_RECOVERY_REBOOT,
+> > > > > +
+> > > > > +	/** @DRM_WEDGE_RECOVERY_MAX: for bounds checking, do not use */
+> > > > > +	DRM_WEDGE_RECOVERY_MAX
+> > > > > +};
+> > > > > +
+> > > > >  /**
+> > > > >   * struct drm_device - DRM device structure
+> > > > >   *
+> > > > > @@ -317,6 +337,9 @@ struct drm_device {
+> > > > >  	 * Root directory for debugfs files.
+> > > > >  	 */
+> > > > >  	struct dentry *debugfs_root;
+> > > > > +
+> > > > > +	/** @wedge_recovery: Supported recovery methods for wedged device */
+> > > > > +	unsigned long wedge_recovery;
+> > > >
+> > > > hmm, so before the driver can ask for a reboot as a recovery method from
+> > > > wedge it has to somehow add 'reboot' as available method? why it that?
+> > > 
+> > > It's for consumers to use as fallbacks in case the preferred recovery method
+> > > (sent along with uevent) don't workout. (patch 2/5)
+> > 
+> > On second thought...
+> > 
+> > Lucas, do we have a convincing enough usecase for fallback recovery?
+> > If <method> were to fail, I would expect there to be even bigger problems
+> > like kernel crash or unrecoverable hardware failure.
+> > 
+> > At that point is it worth retrying?
+> 
+> when we were talking about this, I brought it up about allowing the
+> driver to inform what was the supported wedge recovery mechanisms
+> when the notification is sent. Not to be intended as fallback mechanism.
+> 
+> So if the driver sends a notification with:
+> 
+> 	DRM_WEDGE_RECOVERY_REBIND | DRM_WEDGE_RECOVERY_BUS_RESET | DRM_WEDGE_RECOVERY_REBOOT
+> 
+> it means any of these would be suitable, with the first being the option
+> with less side-effect. I don't think we are advising userspace to use
+> fallback, just informing what the driver/device supports. Depending on
+> the error, the driver may leave only
+> 
+> 	DRM_WEDGE_RECOVERY_REBOOT
+> 
+> That name could actually be DRM_WEDGE_RECOVERY_NONE. Because at that
+> state the driver doesn't really know what can be done to recover.
+> With that we can drop _MAX and use _NONE for bounding check. I think
+> we can also omit it in the notification as it's clear:
+> 
+> 	WEDGED
+> 	DRM_WEDGE_RECOVERY_REBIND | DRM_WEDGE_RECOVERY_BUS_RESET
+> 
+> This means the driver can use any of these options to recover
+> 
+> 	WEDGED
+> 	DRM_WEDGE_RECOVERY_BUS_RESET
+> 
+> only bus reset would fix it
+> 
+> 	WEDGED
+> 	
+> driver doesn't know anything that could fix it. It may be a soft-reboot,
+> hard-reboot, firmware flashing etc... We just don't know.
 
-== Series Details ==
+With this I think we can drop sysfs.
+(Already too many ABIs to deal with)
 
-Series: drm/i915/dp: Fix memory leak in parse_lfp_panel_dtd()
-URL   : https://patchwork.freedesktop.org/series/139856/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_15514 -> Patchwork_139856v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139856v1/index.html
-
-Participating hosts (45 -> 44)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_139856v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live:
-    - bat-mtlp-8:         [PASS][1] -> [ABORT][2] ([i915#12216]) +1 other test abort
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15514/bat-mtlp-8/igt@i915_selftest@live.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139856v1/bat-mtlp-8/igt@i915_selftest@live.html
-    - bat-dg2-8:          [PASS][3] -> [ABORT][4] ([i915#12133])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15514/bat-dg2-8/igt@i915_selftest@live.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139856v1/bat-dg2-8/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@client:
-    - bat-dg2-8:          [PASS][5] -> [ABORT][6] ([i915#12307])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15514/bat-dg2-8/igt@i915_selftest@live@client.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139856v1/bat-dg2-8/igt@i915_selftest@live@client.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-mtlp-6:         [ABORT][7] ([i915#12216]) -> [PASS][8] +1 other test pass
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15514/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139856v1/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-
-  
-#### Warnings ####
-
-  * igt@i915_module_load@reload:
-    - fi-kbl-7567u:       [DMESG-WARN][9] ([i915#11621] / [i915#180]) -> [DMESG-WARN][10] ([i915#11621] / [i915#180] / [i915#1982])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15514/fi-kbl-7567u/igt@i915_module_load@reload.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139856v1/fi-kbl-7567u/igt@i915_module_load@reload.html
-
-  
-  [i915#11621]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11621
-  [i915#12133]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133
-  [i915#12216]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12216
-  [i915#12307]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12307
-  [i915#180]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/180
-  [i915#1982]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15514 -> Patchwork_139856v1
-
-  CI-20190529: 20190529
-  CI_DRM_15514: f3354eab2a45420cf38a67f6d7735d5dff53eb6f @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8063: 8063
-  Patchwork_139856v1: f3354eab2a45420cf38a67f6d7735d5dff53eb6f @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139856v1/index.html
-
---===============4115755944991079661==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dp: Fix memory leak in parse_lfp_panel_dtd()</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/139856/">https://patchwork.freedesktop.org/series/139856/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139856v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139856v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_15514 -&gt; Patchwork_139856v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139856v1/index.html</p>
-<h2>Participating hosts (45 -&gt; 44)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_139856v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15514/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139856v1/bat-mtlp-8/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12216">i915#12216</a>) +1 other test abort</li>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15514/bat-dg2-8/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139856v1/bat-dg2-8/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133">i915#12133</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@client:</p>
-<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15514/bat-dg2-8/igt@i915_selftest@live@client.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139856v1/bat-dg2-8/igt@i915_selftest@live@client.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12307">i915#12307</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15514/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12216">i915#12216</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139856v1/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@i915_module_load@reload:<ul>
-<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15514/fi-kbl-7567u/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11621">i915#11621</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/180">i915#180</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139856v1/fi-kbl-7567u/igt@i915_module_load@reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11621">i915#11621</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/180">i915#180</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_15514 -&gt; Patchwork_139856v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_15514: f3354eab2a45420cf38a67f6d7735d5dff53eb6f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8063: 8063<br />
-  Patchwork_139856v1: f3354eab2a45420cf38a67f6d7735d5dff53eb6f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============4115755944991079661==--
+Raag
