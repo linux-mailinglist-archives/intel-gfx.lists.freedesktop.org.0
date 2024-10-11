@@ -2,46 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44DD399A1C9
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Oct 2024 12:44:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A45A99A201
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Oct 2024 12:52:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 992EC10E18A;
-	Fri, 11 Oct 2024 10:44:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6BDD310E079;
+	Fri, 11 Oct 2024 10:52:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UYQNXUEv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MEpaE9H0";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 990DD10E18A
- for <intel-gfx@lists.freedesktop.org>; Fri, 11 Oct 2024 10:44:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1D2810E079
+ for <intel-gfx@lists.freedesktop.org>; Fri, 11 Oct 2024 10:52:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728643451; x=1760179451;
+ t=1728643940; x=1760179940;
  h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=9e2Jh1vyhEHWoW5wv71bn8qb+T1VbSsyFDFADN4DCAg=;
- b=UYQNXUEvG8eQ0TyM/Hz3RSuylSH7kCLvNtl0EiX9mB91EgPtJWkKrL+U
- 4nlkXMFwO9HJi+Dx2cAYp/KYdEyofvUqJLCPWVc8hgKe11Rfd5Hvs43OC
- /R1nOgWHjTLlfz4XfpFgb9bN71cW2B2g18XHDj7ZTJUVak4/C7VRtfhwt
- LfHoktLCC7uR7c7DM9lcuSW5u5L8VxH5bwmuPFj1hUPL4BjgQxrWsQuBM
- pfdyQwUiktIQuHtjk4NC+w7AqLr0JLqkMkz5ZF2x3BGgOCL9pJPrscw0N
- LGo4v4/YfK7oX7V2j8E5eqsAaF/StLlpOffSe4RgiLh7S5DJEOQ8L6Ktr g==;
-X-CSE-ConnectionGUID: UbgrndH1ShCQ4cmMmmxIrQ==
-X-CSE-MsgGUID: +DZZhS9HRqG2KlwKOqsoWg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11221"; a="15661918"
-X-IronPort-AV: E=Sophos;i="6.11,195,1725346800"; d="scan'208";a="15661918"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2024 03:44:11 -0700
-X-CSE-ConnectionGUID: dUEO/EEzRzW5rJOvkN7XwQ==
-X-CSE-MsgGUID: Q1t3tkJYTta5+33ApFmcBQ==
+ message-id:mime-version:content-transfer-encoding;
+ bh=a0Jr/HSmwTMcrzqD5iVt/kH98zip4xRnBg0i4Q8g9jQ=;
+ b=MEpaE9H0vMz5x9RCqflsP0Rit0jGT2OuaDsG79mokT9/GzwyO3G0ccT6
+ tiuNMUQ8mNe47/Ghqxeaemier9bSCQwLpsgOYFa9inL6wzg3cpu9eLxJH
+ cC/ZnoUxJS2RjPWlKC3NI9lydUhbbZNr62IFg1d+hZr3pVU9WKYBnnaNW
+ iawYohCO9hX3YttOdSFrvEHPV1fWCycsPb6hKc4zyyyORYZyZ0leSvjIb
+ l6mnUCRCG9yRIaW35+dJGl6+nF+krYKiNcFFd/ENkX5VLDh86uzbX9E5r
+ AtGyERMNl9uC7C3LoBMpOfaox8yBdKet9M9EfevScmCgi7Q971C/gN+ym w==;
+X-CSE-ConnectionGUID: b4MlPMExTaKrH7uAuSFTVQ==
+X-CSE-MsgGUID: BsQE7CkETLOAf34UDErbNw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11221"; a="50581172"
+X-IronPort-AV: E=Sophos;i="6.11,195,1725346800"; d="scan'208";a="50581172"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2024 03:52:20 -0700
+X-CSE-ConnectionGUID: dE0hthjFQeG5+FbtV1unsQ==
+X-CSE-MsgGUID: JMUTvjy7TWiLowSuu+NdIQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,195,1725346800"; d="scan'208";a="81663986"
+X-IronPort-AV: E=Sophos;i="6.11,195,1725346800"; d="scan'208";a="81495068"
 Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.178])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2024 03:44:07 -0700
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2024 03:52:16 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Raag Jadav <raag.jadav@intel.com>, joonas.lahtinen@linux.intel.com,
  rodrigo.vivi@intel.com, matthew.d.roper@intel.com,
@@ -49,15 +49,17 @@ To: Raag Jadav <raag.jadav@intel.com>, joonas.lahtinen@linux.intel.com,
 Cc: intel-gfx@lists.freedesktop.org, anshuman.gupta@intel.com,
  badal.nilawar@intel.com, riana.tauro@intel.com, Raag Jadav
  <raag.jadav@intel.com>
-Subject: Re: [PATCH v2 2/4] drm/i915/dg2: Introduce DG2_WA subplatform
-In-Reply-To: <20241011103250.1035316-3-raag.jadav@intel.com>
+Subject: Re: [PATCH v2 3/4] drm/i915/wa: Introduce intel_wa_cpu.c for CPU
+ specific workarounds
+In-Reply-To: <20241011103250.1035316-4-raag.jadav@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20241011103250.1035316-1-raag.jadav@intel.com>
- <20241011103250.1035316-3-raag.jadav@intel.com>
-Date: Fri, 11 Oct 2024 13:44:01 +0300
-Message-ID: <87ikty6hse.fsf@intel.com>
+ <20241011103250.1035316-4-raag.jadav@intel.com>
+Date: Fri, 11 Oct 2024 13:52:10 +0300
+Message-ID: <87frp26het.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,115 +76,98 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Fri, 11 Oct 2024, Raag Jadav <raag.jadav@intel.com> wrote:
-> Introduce DG2_WA subplatform for the devices that will be used in a
-> workaround and span across multiple DG2 subplatforms.
-
-Ditto, give the subplatform a name other than "WA". Look up the specs,
-what's in common?
-
+> Having similar naming convention in intel-family.h and intel_device_info.h
+> results in redefinition of a few platforms. Define CPU IDs in its own file
+> to avoid this.
+>
 > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
 > ---
->  drivers/gpu/drm/i915/i915_drv.h          |  2 ++
->  drivers/gpu/drm/i915/intel_device_info.c | 34 +++++++++++++++++-------
->  drivers/gpu/drm/i915/intel_device_info.h |  5 +++-
->  3 files changed, 31 insertions(+), 10 deletions(-)
+>  drivers/gpu/drm/i915/Makefile               |  1 +
+>  drivers/gpu/drm/i915/gt/intel_wa_cpu.c      | 34 +++++++++++++++++++++
+>  drivers/gpu/drm/i915/gt/intel_workarounds.h |  2 ++
+>  3 files changed, 37 insertions(+)
+>  create mode 100644 drivers/gpu/drm/i915/gt/intel_wa_cpu.c
 >
-> diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-> index 39f6614a0a99..0a68cd9379e8 100644
-> --- a/drivers/gpu/drm/i915/i915_drv.h
-> +++ b/drivers/gpu/drm/i915/i915_drv.h
-> @@ -548,6 +548,8 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
->  	IS_SUBPLATFORM(i915, INTEL_DG2, INTEL_SUBPLATFORM_G11)
->  #define IS_DG2_G12(i915) \
->  	IS_SUBPLATFORM(i915, INTEL_DG2, INTEL_SUBPLATFORM_G12)
-> +#define IS_DG2_WA(i915) \
-> +	IS_SUBPLATFORM(i915, INTEL_DG2, INTEL_SUBPLATFORM_WA)
->  #define IS_RAPTORLAKE_S(i915) \
->  	IS_SUBPLATFORM(i915, INTEL_ALDERLAKE_S, INTEL_SUBPLATFORM_RPL)
->  #define IS_ALDERLAKE_P_N(i915) \
-> diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
-> index 3c47c625993e..674ab2a4d75e 100644
-> --- a/drivers/gpu/drm/i915/intel_device_info.c
-> +++ b/drivers/gpu/drm/i915/intel_device_info.c
-> @@ -200,6 +200,15 @@ static const u16 subplatform_g12_ids[] = {
->  	INTEL_DG2_G12_IDS(ID),
->  };
->  
-> +static const u16 subplatform_dg2_wa_ids[] = {
-> +	INTEL_DG2_WA_IDS(ID),
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> index c63fa2133ccb..1f9b503ab976 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -121,6 +121,7 @@ gt-y +=3D \
+>  	gt/intel_timeline.o \
+>  	gt/intel_tlb.o \
+>  	gt/intel_wopcm.o \
+> +	gt/intel_wa_cpu.o \
+>  	gt/intel_workarounds.o \
+>  	gt/shmem_utils.o \
+>  	gt/sysfs_engines.o
+> diff --git a/drivers/gpu/drm/i915/gt/intel_wa_cpu.c b/drivers/gpu/drm/i91=
+5/gt/intel_wa_cpu.c
+> new file mode 100644
+> index 000000000000..cbdab13e9db6
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/gt/intel_wa_cpu.c
+> @@ -0,0 +1,34 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright =C2=A9 2024 Intel Corporation
+> + *
+> + * This file is introduced to avoid platform redefinition from
+> + * intel_device_info.h :(
+
+I think the comment is good to have, but please be more specific and
+direct, and leave out the emoticons.
+
+"Avoid INTEL_<PLATFORM> name collisions between asm/intel-family.h and
+intel_device_info.h by having a separate file."
+
+Or something like that. Spells out exactly what the problem is, instead
+of leaving the reader guessing.
+
+> + */
+> +
+> +#include "intel_workarounds.h"
+> +
+> +#ifdef CONFIG_X86
+> +#include <asm/cpu_device_id.h>
+> +#include <asm/intel-family.h>
+> +
+> +static const struct x86_cpu_id wa_cpu_ids[] =3D {
+> +	X86_MATCH_VFM(INTEL_ALDERLAKE,		NULL),
+> +	X86_MATCH_VFM(INTEL_ALDERLAKE_L,	NULL),
+> +	X86_MATCH_VFM(INTEL_COMETLAKE,		NULL),
+> +	X86_MATCH_VFM(INTEL_KABYLAKE,		NULL),
+> +	X86_MATCH_VFM(INTEL_KABYLAKE_L,		NULL),
+> +	X86_MATCH_VFM(INTEL_RAPTORLAKE,		NULL),
+> +	X86_MATCH_VFM(INTEL_RAPTORLAKE_P,	NULL),
+> +	X86_MATCH_VFM(INTEL_RAPTORLAKE_S,	NULL),
+> +	X86_MATCH_VFM(INTEL_ROCKETLAKE,		NULL),
+> +	{}
 > +};
 > +
-> +static const u16 subplatform_dg2_ids[] = {
-> +	INTEL_DG2_IDS(ID),
-> +	INTEL_ATS_M_IDS(ID),
-> +};
+> +bool intel_match_wa_cpu(void)
 
-Nope, you don't need this.
+IMO the name's too generic.
 
+> +{
+> +	return x86_match_cpu(wa_cpu_ids);
+> +}
+> +#else
+> +bool intel_match_wa_cpu(void) { return false; }
+> +#endif
+> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.h b/drivers/gpu/dr=
+m/i915/gt/intel_workarounds.h
+> index 9beaab77c7f0..12f24fb31363 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.h
+> @@ -21,6 +21,8 @@ static inline void intel_wa_list_free(struct i915_wa_li=
+st *wal)
+>  	memset(wal, 0, sizeof(*wal));
+>  }
+>=20=20
+> +bool intel_match_wa_cpu(void);
 > +
->  static const u16 subplatform_arl_ids[] = {
->  	INTEL_ARL_IDS(ID),
->  };
-> @@ -252,15 +261,22 @@ static void intel_device_info_subplatform_init(struct drm_i915_private *i915)
->  		if (find_devid(devid, subplatform_rplu_ids,
->  			       ARRAY_SIZE(subplatform_rplu_ids)))
->  			mask |= BIT(INTEL_SUBPLATFORM_RPLU);
-> -	} else if (find_devid(devid, subplatform_g10_ids,
-> -			      ARRAY_SIZE(subplatform_g10_ids))) {
-> -		mask = BIT(INTEL_SUBPLATFORM_G10);
-> -	} else if (find_devid(devid, subplatform_g11_ids,
-> -			      ARRAY_SIZE(subplatform_g11_ids))) {
-> -		mask = BIT(INTEL_SUBPLATFORM_G11);
-> -	} else if (find_devid(devid, subplatform_g12_ids,
-> -			      ARRAY_SIZE(subplatform_g12_ids))) {
-> -		mask = BIT(INTEL_SUBPLATFORM_G12);
-> +	} else if (find_devid(devid, subplatform_dg2_ids,
-> +			      ARRAY_SIZE(subplatform_dg2_ids))) {
+>  void intel_engine_init_ctx_wa(struct intel_engine_cs *engine);
+>  int intel_engine_emit_ctx_wa(struct i915_request *rq);
 
-Nope. Just hoist the below checks to higher level.
-
-> +		if (find_devid(devid, subplatform_g10_ids,
-> +			       ARRAY_SIZE(subplatform_g10_ids)))
-> +			mask = BIT(INTEL_SUBPLATFORM_G10);
-> +		else if (find_devid(devid, subplatform_g11_ids,
-> +				    ARRAY_SIZE(subplatform_g11_ids)))
-> +			mask = BIT(INTEL_SUBPLATFORM_G11);
-> +		else if (find_devid(devid, subplatform_g12_ids,
-> +				    ARRAY_SIZE(subplatform_g12_ids)))
-> +			mask = BIT(INTEL_SUBPLATFORM_G12);
-> +
-> +		/* DG2 WA ids span across multiple subplatforms */
-> +		if (find_devid(devid, subplatform_dg2_wa_ids,
-> +			       ARRAY_SIZE(subplatform_dg2_wa_ids)))
-> +			mask |= BIT(INTEL_SUBPLATFORM_WA);
->  	} else if (find_devid(devid, subplatform_arl_ids,
->  			      ARRAY_SIZE(subplatform_arl_ids))) {
->  		mask = BIT(INTEL_SUBPLATFORM_ARL);
-> diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
-> index 643ff1bf74ee..c3623e859c78 100644
-> --- a/drivers/gpu/drm/i915/intel_device_info.h
-> +++ b/drivers/gpu/drm/i915/intel_device_info.h
-> @@ -95,9 +95,11 @@ enum intel_platform {
->  /*
->   * Subplatform bits share the same namespace per parent platform. In other words
->   * it is fine for the same bit to be used on multiple parent platforms.
-> + * Devices can belong to multiple subplatforms if needed, so it's possible to set
-> + * multiple bits for same device.
->   */
->  
-> -#define INTEL_SUBPLATFORM_BITS (3)
-> +#define INTEL_SUBPLATFORM_BITS (4)
->  #define INTEL_SUBPLATFORM_MASK (BIT(INTEL_SUBPLATFORM_BITS) - 1)
->  
->  /* HSW/BDW/SKL/KBL/CFL */
-> @@ -114,6 +116,7 @@ enum intel_platform {
->  #define INTEL_SUBPLATFORM_G10	0
->  #define INTEL_SUBPLATFORM_G11	1
->  #define INTEL_SUBPLATFORM_G12	2
-> +#define INTEL_SUBPLATFORM_WA	3
->  
->  /* ADL */
->  #define INTEL_SUBPLATFORM_RPL	0
-
--- 
+--=20
 Jani Nikula, Intel
