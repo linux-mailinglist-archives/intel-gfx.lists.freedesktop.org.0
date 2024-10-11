@@ -2,59 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEE38999EEB
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Oct 2024 10:23:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CC9EB999F02
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Oct 2024 10:27:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 825A110EA71;
-	Fri, 11 Oct 2024 08:23:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B67810EA7D;
+	Fri, 11 Oct 2024 08:27:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c6mLdmPs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WQDL//cJ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3024710EA71;
- Fri, 11 Oct 2024 08:23:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1622F10EA7D;
+ Fri, 11 Oct 2024 08:27:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728634987; x=1760170987;
+ t=1728635277; x=1760171277;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=Wwc80u7JDQK+oTUrhsESzjoMLBID8efIF7V/JIIeoes=;
- b=c6mLdmPsAslJvvBDZ34JnTEI6k6wf6N1pqaTzFL4b/YBGWWbRHgPER3C
- yVkTxCr+LUId4s5JkMdPcVsGDdVqu6JYRkIflCFZy+9w2SheaMG/Q422Z
- JONV4eTm6UumqyXg6B0S2HM7p8s3F8vLC+oGwIRDcFHmd4GWXidnBVpdO
- c+d2szsmSuAz/NUK+yRVpy3JFsZ+c38DC/Ef9DxlYyn56WZRDnN8XP+Y/
- eccHt2lbf2svHblf+gluYT60mJjsqOFEBHTWCqkDMsuSap3SovfuqY2zN
- m8J6czX+B8E0X3izwsOnYaD9kDDtewPaEzwsRt1nkIC3BT3jrguQj6WQj g==;
-X-CSE-ConnectionGUID: bF6ltjm2QUyZPD5atC0MHA==
-X-CSE-MsgGUID: bshHp7rcTN+r+LLzTw2MMg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11221"; a="45501737"
-X-IronPort-AV: E=Sophos;i="6.11,195,1725346800"; d="scan'208";a="45501737"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2024 01:23:06 -0700
-X-CSE-ConnectionGUID: VHP2PoN7RrKQT61IAh1UeQ==
-X-CSE-MsgGUID: whXTjNrxR1qzNogIK7bp9A==
+ bh=GuOStsVN7v3Z1w/jlst54taOyydcHInkXiYYOIfP+xA=;
+ b=WQDL//cJ51A82DZB5vZPW46qYsF1ADMPRfPg1gLtyD8dgDZmuvY0FW+8
+ CcqbBILrSIIdZ5AdnmSCqgkU3FyfDOoklN/eoF81M83NsFRBWrBuiWBpN
+ fusB+Lx5YgUoQ8DnK1bE9i2e2tdB4JmMqNvJsQwk6NLV1QYnFzXfeQz8D
+ nOHgthN3a5jeqtum/TbcZRDvMGippzMMMWfekLpe+ZOFcXhTiuZiEXC6N
+ BQ6dw2N8fFdJE0XOnZ+tTpqJMsouGGr1osDOxTvP8lJTws7XlYb3Jyd8P
+ ZwcNUTh14vVTyIOfb2Ip9CYexZAuo/F1QTX6OZ+6/6vrsWhRuyurcoXnp Q==;
+X-CSE-ConnectionGUID: LohqH56yS1CQBquGSdQSvQ==
+X-CSE-MsgGUID: dqBKCzIIQ3mqEG00k3gsdQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11221"; a="30904481"
+X-IronPort-AV: E=Sophos;i="6.11,195,1725346800"; d="scan'208";a="30904481"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2024 01:27:56 -0700
+X-CSE-ConnectionGUID: xvPaOFs1StqNsLvTSZAK1g==
+X-CSE-MsgGUID: JXD3HC+lTYeIM327pTThQw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,195,1725346800"; d="scan'208";a="77154061"
+X-IronPort-AV: E=Sophos;i="6.11,195,1725346800"; d="scan'208";a="77047856"
 Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.178])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2024 01:23:03 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Matt Atwood <matthew.s.atwood@intel.com>,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Cc: Suraj Kandpal <suraj.kandpal@intel.com>, Matt Atwood
- <matthew.s.atwood@intel.com>
-Subject: Re: [PATCH v2 09/10] drm/i915/xe3lpd: Add check to see if edp over
- type c is allowed
-In-Reply-To: <20241010224311.50133-10-matthew.s.atwood@intel.com>
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2024 01:27:55 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Shuicheng Lin <shuicheng.lin@intel.com>, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Cc: Shuicheng Lin <shuicheng.lin@intel.com>
+Subject: Re: [PATCH] drm/i915/dp: Fix memory leak in parse_lfp_panel_dtd()
+In-Reply-To: <20241010155552.994880-1-shuicheng.lin@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241010224311.50133-1-matthew.s.atwood@intel.com>
- <20241010224311.50133-10-matthew.s.atwood@intel.com>
-Date: Fri, 11 Oct 2024 11:22:57 +0300
-Message-ID: <87ed4n6obi.fsf@intel.com>
+References: <20241010155552.994880-1-shuicheng.lin@intel.com>
+Date: Fri, 11 Oct 2024 11:27:48 +0300
+Message-ID: <877caf6o3f.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -72,99 +69,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 10 Oct 2024, Matt Atwood <matthew.s.atwood@intel.com> wrote:
-> From: Suraj Kandpal <suraj.kandpal@intel.com>
+On Thu, 10 Oct 2024, Shuicheng Lin <shuicheng.lin@intel.com> wrote:
+> The function parse_lfp_panel_dtd() is called when the driver
+> attempts to initialize the eDP connector, and it allocates memory,
+> which is recorded in panel->vbt.lfp_vbt_mode. However, since no
+> eDP panel is connected, the driver fails at intel_edp_init_dpcd()
+> and follows the failure path. Unfortunately, the allocated memory
+> is not freed in this case.
 >
-> Read PICA register to see if edp over type C is possible and then
-> add the appropriate tables for it.
+> To fix this issue, free the memory in the failure path.
 >
-> Bspec: 68846
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
+> leak info from kmemleak:
+> "
+> unreferenced object 0xffff8881252f8800 (size 128):
+>   comm "systemd-udevd", pid 192, jiffies 4294896880
+>   hex dump (first 32 bytes):
+>     e8 fd 00 00 00 04 18 04 a0 04 40 05 00 00 00 03  ..........@.....
+>     03 03 09 03 26 03 00 00 0a 00 00 00 00 00 00 00  ....&...........
+>   backtrace (crc 7448f6b4):
+>     [<ffffffff82475c9b>] kmemleak_alloc+0x4b/0x80
+>     [<ffffffff814bb50e>] __kmalloc_cache_noprof+0x2be/0x390
+>     [<ffffffffa069862c>] intel_bios_init_panel+0x1c4c/0x2720 [xe]
+>     [<ffffffffa0699123>] intel_bios_init_panel_early+0x13/0x20 [xe]
+>     [<ffffffffa06fceb9>] intel_dp_init_connector+0x2f9/0x1080 [xe]
+>     [<ffffffffa06c370a>] intel_ddi_init+0xbba/0xf50 [xe]
+>     [<ffffffffa069b906>] intel_bios_for_each_encoder+0x36/0x60 [xe]
+>     [<ffffffffa06d7bd6>] intel_setup_outputs+0x206/0x450 [xe]
+>     [<ffffffffa06dad33>] intel_display_driver_probe_nogem+0x163/0x1f0 [xe]
+>     [<ffffffffa0680fc7>] xe_display_init_noaccel+0x27/0x70 [xe]
+>     [<ffffffffa05b30d6>] xe_device_probe+0x806/0x9a0 [xe]
+>     [<ffffffffa0612f0f>] xe_pci_probe+0x31f/0x590 [xe]
+>     [<ffffffff81b41718>] local_pci_probe+0x48/0xb0
+>     [<ffffffff81b432c8>] pci_device_probe+0xc8/0x280
+>     [<ffffffff81d5dde8>] really_probe+0xf8/0x390
+>     [<ffffffff81d5e11a>] __driver_probe_device+0x8a/0x170
+> "
+>
+> Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
 
-This patch was already rejected. Please don't send it again.
+For future reference, the commit message and subject should indicate
+this is v2, and what the changes were. See submitting-patches.rst.
+
+No need to resend for this.
 
 BR,
 Jani.
 
+
 > ---
->  drivers/gpu/drm/i915/display/intel_cx0_phy.c     |  2 ++
->  .../gpu/drm/i915/display/intel_display_types.h   |  1 +
->  drivers/gpu/drm/i915/display/intel_dp.c          | 16 ++++++++++++++++
->  drivers/gpu/drm/i915/i915_reg.h                  |  3 +++
->  4 files changed, 22 insertions(+)
+>  drivers/gpu/drm/i915/display/intel_dp.c | 1 +
+>  1 file changed, 1 insertion(+)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> index f1aea5ead41b..342cd508d6f6 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> @@ -2261,6 +2261,8 @@ intel_c20_pll_tables_get(struct intel_crtc_state *crtc_state,
->  		if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP)) {
->  			if (DISPLAY_VER_FULL(i915) == IP_VER(14, 1))
->  				return xe2hpd_c20_edp_tables;
-> +			if (DISPLAY_VER(i915) >= 30 && encoder->typec_supp)
-> +				return xe3lpd_c20_dp_edp_tables;
->  		}
->  
->  		if (DISPLAY_VER_FULL(i915) == IP_VER(14, 1))
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 2bb1fa64da2f..e9dc7707fbcd 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -158,6 +158,7 @@ struct intel_encoder {
->  	enum port port;
->  	u16 cloneable;
->  	u8 pipe_mask;
-> +	bool typec_supp;
->  
->  	/* Check and recover a bad link state. */
->  	struct delayed_work link_check_work;
 > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index fbb096be02ad..917a503cc43b 100644
+> index 90fa73575feb..7141e3ca0d83 100644
 > --- a/drivers/gpu/drm/i915/display/intel_dp.c
 > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -5570,6 +5570,20 @@ intel_dp_detect_sdp_caps(struct intel_dp *intel_dp)
->  		drm_dp_as_sdp_supported(&intel_dp->aux, intel_dp->dpcd);
+> @@ -6801,6 +6801,7 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
+>  
+>  out_vdd_off:
+>  	intel_pps_vdd_off_sync(intel_dp);
+> +	intel_bios_fini_panel(&intel_connector->panel);
+>  
+>  	return false;
 >  }
->  
-> +static void
-> +intel_dp_check_edp_typec_supp(struct intel_encoder *encoder)
-> +{
-> +	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> +	bool is_tc_port = intel_encoder_is_tc(encoder);
-> +	u32 ret = 0;
-> +
-> +	if (encoder->type != INTEL_OUTPUT_EDP || !is_tc_port)
-> +		return;
-> +
-> +	ret = intel_de_read(i915, PICA_PHY_CONFIG_CONTROL);
-> +	encoder->typec_supp = ret & EDP_ON_TYPEC;
-> +}
-> +
->  static int
->  intel_dp_detect(struct drm_connector *connector,
->  		struct drm_modeset_acquire_ctx *ctx,
-> @@ -5595,6 +5609,8 @@ intel_dp_detect(struct drm_connector *connector,
->  	if (!intel_display_driver_check_access(dev_priv))
->  		return connector->status;
->  
-> +	intel_dp_check_edp_typec_supp(encoder);
-> +
->  	/* Can't disconnect eDP */
->  	if (intel_dp_is_edp(intel_dp))
->  		status = edp_detect(intel_dp);
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index fc30e0056b07..387ab40e3dd0 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -4584,4 +4584,7 @@ enum skl_power_gate {
->  
->  #define MTL_MEDIA_GSI_BASE		0x380000
->  
-> +#define PICA_PHY_CONFIG_CONTROL 	_MMIO(0x16FE68)
-> +#define   EDP_ON_TYPEC			REG_BIT(31)
-> +
->  #endif /* _I915_REG_H_ */
 
 -- 
 Jani Nikula, Intel
