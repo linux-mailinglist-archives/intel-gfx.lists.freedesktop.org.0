@@ -2,29 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E78AB99A141
-	for <lists+intel-gfx@lfdr.de>; Fri, 11 Oct 2024 12:26:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B15A99A16B
+	for <lists+intel-gfx@lfdr.de>; Fri, 11 Oct 2024 12:34:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9256610E0A3;
-	Fri, 11 Oct 2024 10:26:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E87AE10EAAB;
+	Fri, 11 Oct 2024 10:34:00 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VCKba9xX";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B50610E0A3;
- Fri, 11 Oct 2024 10:26:11 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4812410EAAC
+ for <intel-gfx@lists.freedesktop.org>; Fri, 11 Oct 2024 10:33:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1728642839; x=1760178839;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=vzSZ7a/dSZSMaA0eNHtlnOoUA+e60nSqqDPG6REj7ko=;
+ b=VCKba9xXrBiLE/yeuEga7YP1RNgOaiJiQx5MLBNZCKnxOOn2PJc3yoVS
+ FTHON434n3XCQs1XueAYVJIPxAuaCtO4l5MRLywZwbNVVJf08TICk4S5F
+ K0uM1BTEVJ/MGP6PZXg4mc7/rg/8C+eNrmkSFVGrDIGa5QAJBEIU42Gn9
+ cfSNP5MYfExM6YeyHKpYMtSyow03Ff8g0TGcfImgXTN1T3pjlkQVh79X0
+ bWeYgNBmQcGM83WEc32cA2YA/0sryVpDjeAi9XUJAvfxsZuklTvW8Uapp
+ ADqJjAmT+FpY0MBUO8xKk3YtMDTmolDwGhmOX9cZ8HHfjb1pJYXsOCjnB g==;
+X-CSE-ConnectionGUID: AIs8jBktR/aWw8T5oTVkOg==
+X-CSE-MsgGUID: ITWd93EsTEq34dj3cS3gLg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11221"; a="38619591"
+X-IronPort-AV: E=Sophos;i="6.11,195,1725346800"; d="scan'208";a="38619591"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2024 03:33:58 -0700
+X-CSE-ConnectionGUID: JZ/ThuRrS/mNt+qORgcjkg==
+X-CSE-MsgGUID: iuhqZd1TSsak7vBm97KLfQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,195,1725346800"; d="scan'208";a="77341106"
+Received: from jraag-nuc8i7beh.iind.intel.com ([10.145.169.79])
+ by orviesa007.jf.intel.com with ESMTP; 11 Oct 2024 03:33:56 -0700
+From: Raag Jadav <raag.jadav@intel.com>
+To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, matthew.d.roper@intel.com,
+ andi.shyti@linux.intel.com
+Cc: intel-gfx@lists.freedesktop.org, anshuman.gupta@intel.com,
+ badal.nilawar@intel.com, riana.tauro@intel.com,
+ Raag Jadav <raag.jadav@intel.com>
+Subject: [PATCH v2 0/4] Implement Wa_14022698537
+Date: Fri, 11 Oct 2024 16:02:46 +0530
+Message-Id: <20241011103250.1035316-1-raag.jadav@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Some_correction_in_t?=
- =?utf-8?q?he_DP_Link_Training_sequence_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arun R Murthy" <arun.r.murthy@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 11 Oct 2024 10:26:11 -0000
-Message-ID: <172864237136.1240069.15091127948235015362@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240925034432.1777029-1-arun.r.murthy@intel.com>
-In-Reply-To: <20240925034432.1777029-1-arun.r.murthy@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,39 +65,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+This series implements Wa_14022698537 along with its prerequisites.
+Detailed description in commit message.
 
-Series: Some correction in the DP Link Training sequence (rev4)
-URL   : https://patchwork.freedesktop.org/series/139027/
-State : warning
+v2: Introduce DG2_WA subplatform for workaround (Jani)
+    Fix Wa_ID and include it in subject (Badal)
+    Rephrase commit message (Jani)
+    Move CPU whitelist to intel_wa_cpu.c
+v1: https://patchwork.freedesktop.org/series/139628/
 
-== Summary ==
+Raag Jadav (4):
+  drm/i915/pciids: Refactor DG2 PCI IDs into workaround ranges
+  drm/i915/dg2: Introduce DG2_WA subplatform
+  drm/i915/wa: Introduce intel_wa_cpu.c for CPU specific workarounds
+  drm/i915/dg2: Implement Wa_14022698537
 
-Error: dim checkpatch failed
-153513093c6d drm/i915/dp: use fsleep instead of usleep_range for LT
--:12: WARNING:BAD_SIGN_OFF: Co-developed-by and Signed-off-by: name/email do not match
-#12: 
-Co-developed-by: Srikanth V NagaVenkata <nagavenkata.srikanth.v@intel.com>
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+ drivers/gpu/drm/i915/Makefile               |  1 +
+ drivers/gpu/drm/i915/gt/intel_wa_cpu.c      | 34 +++++++++++++++++++++
+ drivers/gpu/drm/i915/gt/intel_workarounds.c | 18 +++++++++++
+ drivers/gpu/drm/i915/gt/intel_workarounds.h |  2 ++
+ drivers/gpu/drm/i915/i915_drv.h             |  2 ++
+ drivers/gpu/drm/i915/i915_reg.h             |  1 +
+ drivers/gpu/drm/i915/intel_device_info.c    | 34 +++++++++++++++------
+ drivers/gpu/drm/i915/intel_device_info.h    |  5 ++-
+ include/drm/intel/i915_pciids.h             | 34 +++++++++++++++------
+ 9 files changed, 111 insertions(+), 20 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/gt/intel_wa_cpu.c
 
-total: 0 errors, 1 warnings, 0 checks, 24 lines checked
-682bc8a8ead9 drm/i915/dp: read Aux RD interval just before setting the FFE preset
--:14: WARNING:BAD_SIGN_OFF: Co-developed-by and Signed-off-by: name/email do not match
-#14: 
-Co-developed-by: Srikanth V NagaVenkata <nagavenkata.srikanth.v@intel.com>
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-
-total: 0 errors, 1 warnings, 0 checks, 28 lines checked
-213849947f9b drm/i915/dp: Include the time taken by AUX Tx for timeout
--:13: WARNING:BAD_SIGN_OFF: Co-developed-by and Signed-off-by: name/email do not match
-#13: 
-Co-developed-by: Srikanth V NagaVenkata <nagavenkata.srikanth.v@intel.com>
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-
-total: 0 errors, 1 warnings, 0 checks, 8 lines checked
-
+-- 
+2.34.1
 
