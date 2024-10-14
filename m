@@ -2,51 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BF6A99C28B
+	by mail.lfdr.de (Postfix) with ESMTPS id C2DBD99C28C
 	for <lists+intel-gfx@lfdr.de>; Mon, 14 Oct 2024 10:08:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 91B2910E3C3;
-	Mon, 14 Oct 2024 08:07:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B72E10E3C4;
+	Mon, 14 Oct 2024 08:08:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aMtUanWa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ybly7kVO";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6339310E3C0;
- Mon, 14 Oct 2024 08:07:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B900D10E3C4;
+ Mon, 14 Oct 2024 08:07:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728893277; x=1760429277;
+ t=1728893279; x=1760429279;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ZJdBYuIqVGp/FCkRcREcrNc/fiZxg4dq8rzJHTYtkcU=;
- b=aMtUanWaotqRXrhgnu4yfVSGYpGQqmBpHfWUX12ttDAoiVuCmCEY/dW3
- +Is45QA0RXGQFw3K3sTB2QPWWfuI/0bQQrjwpwAqHiF6dIre+Gkx6j0Rs
- 0AWJZZYJYKKxptmBA7W99wwE46M348rxYzCLhF8tbPqKJmx0HaOQKRv8C
- aicYy4PZimCh4W3OtoEmqrQcWtrxH10jTDjeIm8wzixtYGxS7R5POi8on
- OmBD1cEMGwmMbkNt8fiGGaD6IHhcSHMOzVfWu7uUUIcz4lnovQvRM0KB2
- 0F0JTOMQvq2W4k/dz2hERST7fZrt+PBqaBLCOeTRbEOEDhINo8d1coAAE g==;
-X-CSE-ConnectionGUID: 0AWvZ4x1QP+IRPHSWYsEQA==
-X-CSE-MsgGUID: hOoRc841RTilD1WL23sMYg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="38784427"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="38784427"
+ bh=wXRneGnAltrnAcTpeBoxOrK7MRhjaWnX8HkujFnudnA=;
+ b=Ybly7kVOPZsqMVrWNWa1mH7M1zX95I5S5pN/yrJVmbqq8fGXiyLsbfKy
+ y5r8wD5EndqoRwcnaCWwHrAFJUjbJAMxmB+2illglJM5buzLdoivOgqzR
+ otczDE3MoOXMHV1c/Ej4oSSKKPOqqbFQzmJPVO+7Gr327ukZpanntdmCv
+ DpKkPLkupq4s2WC5PPrk6eorSeU5sReTp5IiWY5o3DswQu3AQI00zVBTh
+ +BluCPWEpDNvLqYSBJfJwqyG6pV/LTxcpc99DAmq07LJY3nzTMLjIRf+5
+ 98W6ysJdozcwfqg+Kl0bikTfZUrfzgu+sfl/oDq3YS/kegFFv4RRm/GPz Q==;
+X-CSE-ConnectionGUID: 6q+mkfICS72tu5Art/IbZQ==
+X-CSE-MsgGUID: jleKOrxmTTKHRqP+I8ToHA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="38784435"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="38784435"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2024 01:07:57 -0700
-X-CSE-ConnectionGUID: Ucsbst79Q1KEJHHf9qTO/A==
-X-CSE-MsgGUID: 5jKMMJD3RPqWfnI9Zz6G/g==
+ 14 Oct 2024 01:07:59 -0700
+X-CSE-ConnectionGUID: rOPJP2+QSE65YacCsKwn4w==
+X-CSE-MsgGUID: ZXNft0MzRtmDsShx8YeiRA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,202,1725346800"; d="scan'208";a="100834884"
+X-IronPort-AV: E=Sophos;i="6.11,202,1725346800"; d="scan'208";a="100834892"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2024 01:07:56 -0700
+ 14 Oct 2024 01:07:57 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 4/9] drm/i915/vdsc: Add support for read/write PPS for DSC3
-Date: Mon, 14 Oct 2024 13:39:55 +0530
-Message-ID: <20241014081000.2844245-5-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 5/9] drm/i915/dp: Add check for hdisplay divisible by slice
+ count
+Date: Mon, 14 Oct 2024 13:39:56 +0530
+Message-ID: <20241014081000.2844245-6-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241014081000.2844245-1-ankit.k.nautiyal@intel.com>
 References: <20241014081000.2844245-1-ankit.k.nautiyal@intel.com>
@@ -67,77 +68,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-With BMG each pipe has 3 DSC engines, so add bits to read/write the PPS
-registers for the 3rd VDSC engine.
+As per Bspec:49259 while computing the dsc slice count, we need to
+ensure that mode->hdisplay is divisible by the slice count.
+This check is there for DSI, where we select slice_count from bios,
+but is missing for DP.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vdsc.c      | 8 +++++---
- drivers/gpu/drm/i915/display/intel_vdsc_regs.h | 6 ++++++
- 2 files changed, 11 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-index d4e2eed81122..982dc326b4a1 100644
---- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-+++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-@@ -411,8 +411,10 @@ static void intel_dsc_get_pps_reg(const struct intel_crtc_state *crtc_state, int
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 04d22f0c1524..6cfc7d1c96ea 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -1031,6 +1031,9 @@ u8 intel_dp_dsc_get_slice_count(const struct intel_connector *connector,
+ 		if (num_joined_pipes > 1 && valid_dsc_slicecount[i] < 2)
+ 			continue;
  
- 	pipe_dsc = is_pipe_dsc(crtc, cpu_transcoder);
- 
--	if (dsc_reg_num >= 3)
-+	if (dsc_reg_num >= 4)
- 		MISSING_CASE(dsc_reg_num);
-+	if (dsc_reg_num >= 3)
-+		dsc_reg[2] = BMG_DSC2_PPS(pipe, pps);
- 	if (dsc_reg_num >= 2)
- 		dsc_reg[1] = pipe_dsc ? ICL_DSC1_PPS(pipe, pps) : DSCC_PPS(pps);
- 	if (dsc_reg_num >= 1)
-@@ -424,7 +426,7 @@ static void intel_dsc_pps_write(const struct intel_crtc_state *crtc_state,
- {
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
--	i915_reg_t dsc_reg[2];
-+	i915_reg_t dsc_reg[3];
- 	int i, vdsc_per_pipe, dsc_reg_num;
- 
- 	vdsc_per_pipe = intel_dsc_get_vdsc_per_pipe(crtc_state);
-@@ -824,7 +826,7 @@ static u32 intel_dsc_pps_read(struct intel_crtc_state *crtc_state, int pps,
- {
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
--	i915_reg_t dsc_reg[2];
-+	i915_reg_t dsc_reg[3];
- 	int i, vdsc_per_pipe, dsc_reg_num;
- 	u32 val;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-index 941f4ff6b940..efaeb5e0aea3 100644
---- a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
-@@ -61,8 +61,10 @@
- #define DSCC_PPS(pps)				_MMIO(_DSCC_PPS_0 + ((pps) < 12 ? (pps) : (pps) + 12) * 4)
- #define _ICL_DSC0_PICTURE_PARAMETER_SET_0_PB	0x78270
- #define _ICL_DSC1_PICTURE_PARAMETER_SET_0_PB	0x78370
-+#define _BMG_DSC2_PICTURE_PARAMETER_SET_0_PB	0x78970
- #define _ICL_DSC0_PICTURE_PARAMETER_SET_0_PC	0x78470
- #define _ICL_DSC1_PICTURE_PARAMETER_SET_0_PC	0x78570
-+#define _BMG_DSC2_PICTURE_PARAMETER_SET_0_PC	0x78A70
- #define ICL_DSC0_PICTURE_PARAMETER_SET_0(pipe)	_MMIO_PIPE((pipe) - PIPE_B, \
- 							   _ICL_DSC0_PICTURE_PARAMETER_SET_0_PB, \
- 							   _ICL_DSC0_PICTURE_PARAMETER_SET_0_PC)
-@@ -75,8 +77,12 @@
- #define _ICL_DSC1_PPS_0(pipe)			_PICK_EVEN((pipe) - PIPE_B, \
- 							   _ICL_DSC1_PICTURE_PARAMETER_SET_0_PB, \
- 							   _ICL_DSC1_PICTURE_PARAMETER_SET_0_PC)
-+#define _BMG_DSC2_PPS_0(pipe)			_PICK_EVEN((pipe) - PIPE_B, \
-+							   _BMG_DSC2_PICTURE_PARAMETER_SET_0_PB, \
-+							   _BMG_DSC2_PICTURE_PARAMETER_SET_0_PC)
- #define  ICL_DSC0_PPS(pipe, pps)		_MMIO(_ICL_DSC0_PPS_0(pipe) + ((pps) * 4))
- #define  ICL_DSC1_PPS(pipe, pps)		_MMIO(_ICL_DSC1_PPS_0(pipe) + ((pps) * 4))
-+#define  BMG_DSC2_PPS(pipe, pps)		_MMIO(_BMG_DSC2_PPS_0(pipe) + ((pps) * 4))
- 
- /* PPS 0 */
- #define   DSC_PPS0_NATIVE_422_ENABLE		REG_BIT(23)
++		if (mode_hdisplay % test_slice_count)
++			continue;
++
+ 		if (min_slice_count <= test_slice_count)
+ 			return test_slice_count;
+ 	}
 -- 
 2.45.2
 
