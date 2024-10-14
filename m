@@ -2,175 +2,166 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99FBD99BF2A
-	for <lists+intel-gfx@lfdr.de>; Mon, 14 Oct 2024 06:31:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 64D2599C006
+	for <lists+intel-gfx@lfdr.de>; Mon, 14 Oct 2024 08:31:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FB5A10E070;
-	Mon, 14 Oct 2024 04:31:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A3C010E26F;
+	Mon, 14 Oct 2024 06:31:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BVKXcLI9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a/Q7+oTR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C944B10E070
- for <intel-gfx@lists.freedesktop.org>; Mon, 14 Oct 2024 04:31:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 37A6210E26F
+ for <intel-gfx@lists.freedesktop.org>; Mon, 14 Oct 2024 06:31:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1728880313; x=1760416313;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=pVIsQAJY4vyPZaS0Km+wz9wnwnK4HyBF8M2/1Jj5y18=;
- b=BVKXcLI9FTGlVedtWY1abOG8NeIGy6MUhqK7mwu5zGpFu5+oKWsVNI6s
- G39uJVffHwnitG/T0hp+VaE/UNqo1nHN1Pku1UhR/MumQb8A7W6nRGCzO
- /X43EZiy6HYPjhACl8uAS7nYXOaOdb8nDoy5t5XdlReYjyAo1A9P/jT3q
- PaxpB2HC3E1odDmrjn5YwQC0e5c+v2wpB6gHz92s09zzq1/dvyxxTDBLl
- ZgBYIQ6RnMscW/s/M4GiJZ0WKXNjbT3fprkprCQE4C/CfiNnM3d8On+d3
- 1P8okfuI/WyLrZ4x5YRgqA+fDvfxq0oWKoAThwrcQfWuErF8Z90wjrhNk Q==;
-X-CSE-ConnectionGUID: C08jdQ+oSPO4C5npeH0m8w==
-X-CSE-MsgGUID: aiHtJNaJTzmhxyITifmfcw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11224"; a="27692668"
-X-IronPort-AV: E=Sophos;i="6.11,202,1725346800"; d="scan'208";a="27692668"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2024 21:31:53 -0700
-X-CSE-ConnectionGUID: 5pEN12k1TFO4tNgsnIp+XQ==
-X-CSE-MsgGUID: DLKy3VFxQAetYjRW8lY98w==
+ t=1728887473; x=1760423473;
+ h=date:from:to:cc:subject:message-id:in-reply-to: mime-version;
+ bh=kavM46/A0T7DVxl0C5CtnZfSJ/OgeN6vPFTPhTcy75g=;
+ b=a/Q7+oTRdv1p/U9JFdVq0yoqJCLIx0S6L4tpj9hOTXYL04vNaE0TB8V3
+ 9yKpFsrxyd+j+M8MjyRVDoF3r4IIk9/BM2mQ5FGc3mDVu1SVS4M1QqBHz
+ HkLxCswVqUZJvHLCFbJRP6gj6gFEpexIu6ihJRRhIz7AIpGTvhcnZ1NaR
+ UH1jeHGBUH/j8wXys3WfajCIP1rlgcCUsYC/dc7yySO/sBOfJxn36K4ZB
+ ftxBvmak6csMgwP26AZ8AYKtS5vRfj0nMQ0CI/L8gQAlzlrRntw77LgtZ
+ HSPFU+lPNMPvdRbDYKhko/BrAEWDAss/jDY7UTjFb87MvG0dZMynBt/lF w==;
+X-CSE-ConnectionGUID: saqzwlfcTqCIquR5h1vmsA==
+X-CSE-MsgGUID: OYeTtaM8QXWzPhD6Sc4weg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="31915909"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="31915909"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2024 23:31:13 -0700
+X-CSE-ConnectionGUID: WSdm3GwsQFewIcotblJJWQ==
+X-CSE-MsgGUID: Md4hL6mgRJ2wCR1KSjo7Sw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,202,1725346800"; d="scan'208";a="82028765"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmviesa005.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 13 Oct 2024 21:31:53 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.11,202,1725346800"; d="scan'208";a="77585354"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by fmviesa008.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 13 Oct 2024 23:31:13 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Sun, 13 Oct 2024 21:31:52 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.1.2507.39; Sun, 13 Oct 2024 23:31:12 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Sun, 13 Oct 2024 21:31:52 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Sun, 13 Oct 2024 21:31:52 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.48) by
- edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Sun, 13 Oct 2024 23:31:12 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.45) by
+ edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Sun, 13 Oct 2024 21:31:52 -0700
+ 15.1.2507.39; Sun, 13 Oct 2024 23:31:11 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=tjm27GC3+9xfhKaynUVUJVtnKtpn+QAbgiqmceohFGFNIC90pfMEC4a4snqYIggjtiBp87Vd5tVyoImnrTNF3XtSDzPGMqR81ZERdzRYhj9cexeSTK7WdmnIZXb1jObgvXYGMapbvT9YpBlqo8JfxAbjBmtph49DYNkTFhwQWdptxE0joVhfpnPtDYAOryWoHhr5i7G29dO8hrREyIwJGcysk3X/P7vJK5p04xjU+peyoyaSK1sFmXnOVmP/Ffu4eRqkmkRPKN7eCrBpJUcbRHbBd3HDUW1Whx6ZkenBZjZEBr834FytcoJjpQSjTJgOKfYyMo6prF4A4B7TjrRrbA==
+ b=RxM9yfT6aD1NEy5SjtfiqlsUcdUNzNoHjDAsgtf8Y1B5SYmUHAaFIsanNUqNKoha3O7UCHSTXK+xPlN4wVaFP9dPPVzoTHWd+2f+sXkJhDqQ6SGmr59MZaQeiOs8JZ6yaRRmmNR+kTV6nHY+0vIy/t/H6tg5gyLBkHV5mi9QxVyd+OZ5vWsHfwVHCJqi5g5XoUER16GeFyShVQbGVW/DXXE6VSNby1w5qUk28vM1OwQQAP/lqmA797937+jXLXLk4/bPRgNaMLlgxemfCQDXTZLy9e6eCRQWEVxfhqIHS5eqs2nz4vvr/2MptmjQVcg3JmsniwO+vjJB0x6sj3oGVw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hFC0JWuFTzqw50ZReGzLF4US2TwRBwLvNmyMYIZ16FM=;
- b=sSaAZqWprWUQGW68gF8wGd4xbOlow1k4FBM2U34TY3zAs4YFfzzsVEhzP5/n+I3l2WJq29PX9GgJihtNCvZRqPrCUv2bTQkbSmshLfnW+nrOb9qotC3SMGWZULonr06QQyAVblaaopcxemeQ2UThcGvK7cOkqvmb7RaEQNbnxQ7N3J4bGaM2Z4rUx5lMfXmAHzNdgEWB3RVZeSBwXZplcpk0L+TZomyyGSHIZgWjdouhPR0mzVUSQoaGkBnZGj4FhvBxbpzJckgSQx05mwYUIIgC6KOr2b/jeqRW3XtMmq3QeC4V4m2gObbN7mtt0HBxFo0tmFkwWDfveH8vt8wstQ==
+ bh=bCpoN9iYyikmqsLxnpFYY41H8z/6vyYgItdaXPbpkNs=;
+ b=zME3gpDK7zYktoQX66qSQgxD5OssN4h81TqQoRYcETPISxmUyPHqZI6NZ09sH6omJIQVVQzjYboD02iYPBHu53eLMkkajDmtHOBBuQfoHpZoiByADga1CV2mD20p58ZMXw9EdLKR9g/buyd3r3kelAYTZt7PpEQj9QSEcWZXjWlzEg1IWzQdTD54Be6vO/2OhKRvqKSwTXn1/5qNeDja56fi8IqKpzldlvi3lYXy8ZX0Dxx2pOs9PHyEt0DDvLP6cY93fNpoJN9e8t3uUj7CJKtEHj+m0ygRFwu4Z7PNn7JTJCS6ydlYSR9d+0X83TPEBRMMRYhgsLlYRE9lnshHPw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from CY5PR11MB6211.namprd11.prod.outlook.com (2603:10b6:930:25::6)
- by SA2PR11MB5100.namprd11.prod.outlook.com (2603:10b6:806:119::11) with
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from LV3PR11MB8603.namprd11.prod.outlook.com (2603:10b6:408:1b6::9)
+ by DS0PR11MB7484.namprd11.prod.outlook.com (2603:10b6:8:14c::10) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.26; Mon, 14 Oct
- 2024 04:31:50 +0000
-Received: from CY5PR11MB6211.namprd11.prod.outlook.com
- ([fe80::df5a:a32c:8904:15f1]) by CY5PR11MB6211.namprd11.prod.outlook.com
- ([fe80::df5a:a32c:8904:15f1%5]) with mapi id 15.20.8048.020; Mon, 14 Oct 2024
- 04:31:50 +0000
-From: "Gupta, Anshuman" <anshuman.gupta@intel.com>
-To: "Jadav, Raag" <raag.jadav@intel.com>, Jani Nikula
- <jani.nikula@linux.intel.com>
-CC: "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>, "Roper, Matthew D"
- <matthew.d.roper@intel.com>, "andi.shyti@linux.intel.com"
- <andi.shyti@linux.intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "Nilawar, Badal"
- <badal.nilawar@intel.com>, "Tauro, Riana" <riana.tauro@intel.com>
-Subject: RE: [PATCH v1] drm/i915/dg2: enable G8 with a workaround
-Thread-Topic: [PATCH v1] drm/i915/dg2: enable G8 with a workaround
-Thread-Index: AQHbGLQWlpt4+HXex0Chvvmk6hMCEbJ9HIMAgAFE5wCAB1DGkA==
-Date: Mon, 14 Oct 2024 04:31:50 +0000
-Message-ID: <CY5PR11MB621150027D63DDA95B01427895442@CY5PR11MB6211.namprd11.prod.outlook.com>
-References: <20241007122424.642796-1-raag.jadav@intel.com>
- <87ttdmbj8l.fsf@intel.com> <ZwZ7ZrcBObuIrPqh@black.fi.intel.com>
-In-Reply-To: <ZwZ7ZrcBObuIrPqh@black.fi.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CY5PR11MB6211:EE_|SA2PR11MB5100:EE_
-x-ms-office365-filtering-correlation-id: 84c38ba6-2cff-4e8a-d6bc-08dcec091f32
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|1800799024|366016|376014|38070700018;
-x-microsoft-antispam-message-info: =?us-ascii?Q?tgeDN3Ym8W85+Hs/S5MS5BpvIh5nfC4Q2Zza7i4JY1TL4E8mD/pz5EHTYPTP?=
- =?us-ascii?Q?f9itdGevmZpkINPx9BjrXA00RzNH3Sp2pXc3LbFrHGedqNAV2MMXwXM5UVQ/?=
- =?us-ascii?Q?xjSnCLGLFJzgGtUj3VM+gcBO+sG+mpjQsJh0qNGvjdQNKP0WeEf+ca0qiB8h?=
- =?us-ascii?Q?bAgPNvhfwrkSYFB4W2bVWKi864wnpJSlUwnx+aGABhzUJn3ievllzFBlSR9S?=
- =?us-ascii?Q?5RFshg8bsIE412DFsAtGu+VrqoNXBcTzV4hOb86BmN/EUnbf250V1KBctNqr?=
- =?us-ascii?Q?a/6SKR1yi/TegiLl8DHvlR+VbwE1AvXSjB7HrCtSK2WkwiITDmOYxJow5O6b?=
- =?us-ascii?Q?uZ3mlhtobgY94/zRgETVwEKIs0V4SRRuuTJKyi4hpnb4/PpMLpbLBEEdff7n?=
- =?us-ascii?Q?+RttZg2lxK7c2sPVd0Q66fUbifxbzjpLcVRktl1pBuZXrERmRJAYChwTRBJz?=
- =?us-ascii?Q?bX/ZiKbELnOAZ6kwKPSKs2K6KdTSZGvKZDrePpEuMufFvVlO3giKuCpvEi58?=
- =?us-ascii?Q?ekoy+WFT/7pW1vgIzEOI92v4nTvQx42H/F5vYWH45zW0ZjlAHQld+ZOs7vTZ?=
- =?us-ascii?Q?rlPv3jAlzZIFzAo5+RctmzzjTcrLBgWBzCYtd/QitHJIV+E3j3jX6z3D7YR5?=
- =?us-ascii?Q?vlzW04dQTaedte63zrDD6WWSwFPv2pGsqwCvuPYG+fMmUyJ2Imm1xgFZ3Sjl?=
- =?us-ascii?Q?1jFFvVxHNHGgENHgYk3Zjkeb6vxz069EgOBH7F2xeSiLUoq3IPt4LfGnyaYN?=
- =?us-ascii?Q?E6O8ahG27CAlpMoMfmYDtNNH0rBJha5EcR7/1GpePrd2X8+SEemnzUQnhntd?=
- =?us-ascii?Q?hC09FeYjyi6f0vvoyOWb9HzZ7mQNPuuD4128eAlVTtMKhhgbUqgqRPppMz6u?=
- =?us-ascii?Q?c14Wo2gVp3l5XNd6pOCviiaL1M0xXGEfm6Atvj9DHA72WUYBGJiWTJJ/nQz6?=
- =?us-ascii?Q?kwRKX4OQRVGem9RaIVLtmWnTQIm37Ashyd7pjpnKzLygsAOS8zdx7trUe5Ec?=
- =?us-ascii?Q?kTvcnYfA4e+TWxSPFuuNpvZrD9eCUvp4zNkvK3ZfD6L6dWOHW/Kab3D3mAp9?=
- =?us-ascii?Q?OpM8BPulBxALJNCglxKp0hbirxaaWShuRuqxb27RJRR6+XAuOMhERtK9Qowj?=
- =?us-ascii?Q?1Ed+sQUDGk95o8j+/jOQ8UJtQo6Di29eCGP2ufbdvNBcyleT+8jbBfwZJlio?=
- =?us-ascii?Q?25/XyhcXPD61Rcd/MfRCrv8VpHhxKrb5GAgP+BY7egdNj+rA7viDD8LibuY/?=
- =?us-ascii?Q?42FijvTT9eukkZoCE9sVutAyHV9raS+txMApMZnM0H5im2IlF5WE34mlUZTV?=
- =?us-ascii?Q?ctdWToyDEdysOJ+JuvTTbLp+gbp6qkkSejk0YwYR4czCBw=3D=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6211.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(38070700018); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?7M1FtiIOm1qGNSRPCNITr6XmkB391bHPMqNfSYZyz92ZmTdyW/nubDWWMiTu?=
- =?us-ascii?Q?O1Ci6cQACK1nKvFjyQFaFcDVSfepZL4CbvgHnFlkpgM569269XWGtk5+A10J?=
- =?us-ascii?Q?e53+1d6VKGuaFH22If3/Ydh51pkgaHfGVUSJM8SPH6MbLyUvfXia2/T+QhMb?=
- =?us-ascii?Q?X1I97ONodBTMGvC7M3h/KOXJDq77ly3VnIlxL5M7+/6CHrkuqDY6ndOCkI/I?=
- =?us-ascii?Q?bHhBmeJGoomnZNtCVfUKJ7clZMkLW0H475/aJ6ofhpMg+gC5+TBgDReRl1F+?=
- =?us-ascii?Q?iYdZka/oa6jQWw0317biElc2AUJkSuD+9DenQ+nLnxXKdTRio0L68ZrWMSaa?=
- =?us-ascii?Q?c8SRC7eV5jQcoeSkl5tkVOPYpp9Eq8wkAfxI4u/M/KM7+RJIEvMHbOrQyLwu?=
- =?us-ascii?Q?y+uIvfUxPMGe75j4CYVtbNz8wZzZEoHdrMGYTAZoyuds2SPjJYMZ+9BE6Wcz?=
- =?us-ascii?Q?+tUrIUTsICNv0w3ZoCWW4v3gwFxWYeEvOFElATMwc3rF32zzAdC4Z4TDgLwH?=
- =?us-ascii?Q?PMcDAOy5lMtGNz/y1WgGaa040Su2P9PLx4hMNeQPUGpNr8bu3dhrmhtrFu6M?=
- =?us-ascii?Q?tP+5B4EnprSgLXHuGZe53avNclFfAdoFjx0f0300+slVdIgBCnza1w/Mw7Xh?=
- =?us-ascii?Q?Lvq42WtfSUF1rDFtZRLDZJ0LeOtBq/sgwbVVJNMjspNBYt/Qn1cRkr/dxnSD?=
- =?us-ascii?Q?xaYn2BDVQaU65b6k77L9PUU7kEevr2Lc5S2tPP1gZaanHbCIZq90wVKJ88bw?=
- =?us-ascii?Q?GqQmz1yYBb2LCW1qcUKXdy5lOa07hccogsRfjg6ziLYatIUGjO5QQhIIOwYb?=
- =?us-ascii?Q?FVkd8T7X4Pbj+CPkvGujxofw0c/Adac4DFGylbOrYxqstKvbAc5X1n38muD5?=
- =?us-ascii?Q?FoATO2hIBJKbU1SN44njhV3SqgZ/JaaHON4DWKyVF/6eIf+CShQusercquY1?=
- =?us-ascii?Q?ok2rMWGHoZjaJ8nm++eHV79d6tlpHMy7yg4TJ6qAkQLROfhukbFLATeaGhYx?=
- =?us-ascii?Q?QnYW+qE2DlV6YdLWidxid21BnsFvWO7FplYsmu1ZgghFmyhOZ6emRCnVCdbm?=
- =?us-ascii?Q?bD71lZsy5O0V6fEHgYfrCIYTHEG9krOQo1GDL9YFr8uQYaLM3K2UAyHL3jaB?=
- =?us-ascii?Q?KG8IK5ryGKxNOZi9DSJxO072x6Wh+4ma4sNYDMYjVDU0l0CswjZ+2rcAwdAK?=
- =?us-ascii?Q?Lj+AYOAGsPUWxIoccFycl38UuD5v+3WCBQK+I43rrSeC5Qan/vsn7MiZe1fF?=
- =?us-ascii?Q?O2is82Cm4HtcKGxrJojRrORHjYECy8Wb5E65Isdv07VLhVmEWpLkLtm5bogk?=
- =?us-ascii?Q?aC+71ufQPMn2r1S/FaYU1D0mrKP3Y6mJbDv0FCGW+Qegwd/smYUnlD0Uvyvo?=
- =?us-ascii?Q?wJ34T0rLBk0Dc7XUJ863Mj+M9Lj0He+GnAQVVwBhM5ge1AbPsQtBDFuZmEEZ?=
- =?us-ascii?Q?et+VNagLf773heNJyrMnK1b9hqZZvDI2LEyax+Xhz+wunn3GDGYuLfD65gS+?=
- =?us-ascii?Q?iAZH2CpiTZbn8Tm/FP/abX5iWQlpWlbkT9yXzhKC3vLEbtCu/d7HZ96kgmYe?=
- =?us-ascii?Q?iKbxhzjUHwKraGTYUe2KyxBH20MOFA3lZDHuvWJS?=
+ 2024 06:31:07 +0000
+Received: from LV3PR11MB8603.namprd11.prod.outlook.com
+ ([fe80::4622:29cf:32b:7e5c]) by LV3PR11MB8603.namprd11.prod.outlook.com
+ ([fe80::4622:29cf:32b:7e5c%5]) with mapi id 15.20.8048.020; Mon, 14 Oct 2024
+ 06:31:07 +0000
+Date: Mon, 14 Oct 2024 14:30:55 +0800
+From: kernel test robot <oliver.sang@intel.com>
+To: Raag Jadav <raag.jadav@intel.com>
+CC: <oe-lkp@lists.linux.dev>, <lkp@intel.com>,
+ <intel-gfx@lists.freedesktop.org>, <rui.zhang@intel.com>,
+ <yu.c.chen@intel.com>, <jani.nikula@linux.intel.com>,
+ <joonas.lahtinen@linux.intel.com>, <rodrigo.vivi@intel.com>,
+ <matthew.d.roper@intel.com>, <andi.shyti@linux.intel.com>,
+ <anshuman.gupta@intel.com>, <badal.nilawar@intel.com>,
+ <riana.tauro@intel.com>, Raag Jadav <raag.jadav@intel.com>,
+ <oliver.sang@intel.com>
+Subject: Re: [PATCH v1] drm/i915/dg2: enable G8 with a workaround
+Message-ID: <202410141449.699cfd23-oliver.sang@intel.com>
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
+In-Reply-To: <20241007122424.642796-1-raag.jadav@intel.com>
+X-ClientProxiedBy: SG2PR02CA0096.apcprd02.prod.outlook.com
+ (2603:1096:4:90::36) To LV3PR11MB8603.namprd11.prod.outlook.com
+ (2603:10b6:408:1b6::9)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV3PR11MB8603:EE_|DS0PR11MB7484:EE_
+X-MS-Office365-Filtering-Correlation-Id: 73cf22de-5430-4ba9-6e54-08dcec19c8fe
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?GCJgxOGpVYrqnD7DD0ZhTxUfgpMEBQIdlkepaxSORKcisIn1stvLqVbgSjAu?=
+ =?us-ascii?Q?+g8gYw/mOL9bqTPrMpictPiJuqhWnvjKk9hhpkNOQWG2Kd5jwm1NgU0xjIO6?=
+ =?us-ascii?Q?bRWEE9u1SbysfUS9HIuUQ+d+8q9BOa6wTWBOvalAQWHB7TAVzywc5EU/PDOJ?=
+ =?us-ascii?Q?CCXIQ644YPmZiB1GAzgWEMkpOr1wK5d8WJfienXmkfG2Z4LVrd2rw5FcpzxL?=
+ =?us-ascii?Q?Awb0n4zwh4IkhQAaKaf48sco150DXIqG7mZPgV+RbRwJRsXfxAE11n1ux2A3?=
+ =?us-ascii?Q?Wl+FjBitqTPATXx4ZYWwJ0kerkEYRDSRnVH02MOTMHvFK5Mzpn7gy80YPDM2?=
+ =?us-ascii?Q?PQ1OmkPC4t+02JW1PUUAFrWmdAX3RFEv+zvOOMvO/2YM/ZCSaz6pGksuWiOc?=
+ =?us-ascii?Q?t5vkf6oNj2VvdDJ5Qdl39F8l8WgCTjg4F+OQ7UWOC8Vf3AiZH9Px0ZmhiLOZ?=
+ =?us-ascii?Q?+Y17K470AHuIzr1RasYC8N7AAt7nCDs6K9FU0KlYY7JcRvm/k6IHohom6tRm?=
+ =?us-ascii?Q?V4h81B5VShHVBiolLriCy2BfvMasFxuwp4ttAm8GMMUHQ1PEhoXfNVnF/Ro1?=
+ =?us-ascii?Q?6ZXXOvVMBoNMrwwD5lvuKSKsrUhpPiogzoH+OKsvcnzNZEMHpvstrwODpPlB?=
+ =?us-ascii?Q?VZ+3tsOfDBgdtAXV7hdcrshHRYjA/V5r6wHEw79gwLeVEPFOI+nCycHYQHzP?=
+ =?us-ascii?Q?fLxMl5lfOHSUa2UmfaVaQb7cS7MA5FSGjaTSjwuX8YGo8E5EtaMt1pUQFOVw?=
+ =?us-ascii?Q?s+Rn9UAQobROGVGOZNGL4XMOaZ1lcXX+nerHhgQkHSG1Lq6YDB/rz94SSJ+5?=
+ =?us-ascii?Q?QoBNZ6CFzDSi6NMzgHU8vjt/FeT7XaxQpttiYx1Kwigt14gPgF5vHvLm0Lzu?=
+ =?us-ascii?Q?8nS5Vdydc0gtQz6bZNQZZrv0Bxa4OrTYhEu7Iy/C6FvPfi5xvNk+YdOMe3RH?=
+ =?us-ascii?Q?Ql9TxkP+UqinUsB6zzzSk4sAutos/bMkJMrHTqgQQThobX9cm04x8XYi3pre?=
+ =?us-ascii?Q?1kwLOmpnlNSErH0LyIrNOZvXqyxr198imRXSmJ6rPSNy6J9uy0EdlkqB7H4o?=
+ =?us-ascii?Q?WdVf/+CvAZzBq4a70aZSSPmVZY85/XXt4rYgEke+FmlzIq9wIrlWu7QzgAA9?=
+ =?us-ascii?Q?1WH3GAFgiClCcpf2cvYYPNCHl8SBI6x/fLNH8vVOuk2ETB3drGcF39ZHhmi6?=
+ =?us-ascii?Q?9MRPOcWS/JzqMfnZZrJCevnVSa5+Lx1qzcMbdrgxVhmipcN4babc2qD2ALA?=
+ =?us-ascii?Q?=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:LV3PR11MB8603.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?44zfv5jahoN0VnMRhGmdqvBoWagOK3OvYRwMmpckPgDRRcnjn+XPDkZe//2r?=
+ =?us-ascii?Q?J72JuijQGYQMXg+kJ96q1G9F3GwkQbPSnq8DVojGO+dCjn44zN5kbBCnks5p?=
+ =?us-ascii?Q?7+2joslJ7AOpRZo2kTFtczZh2DaIxNdqPwLRjWWM1NaHteErW1dzYAKmTNU6?=
+ =?us-ascii?Q?diF2Fr7vzH6P+d1DyHGvdr26uej4wSt+XWfhTvzCNBUPpVO3+P4b5RrmFXHm?=
+ =?us-ascii?Q?FJWTlcb4+1ua+peVX0ySU8+rNoEZs2z/mXyy0hs14F+6H1f5B6QyeMUZWQEE?=
+ =?us-ascii?Q?gR6Z9vC0Gq/lGtO/iX+qzspAk8egZly5vheKHS+8vA9DMJioIKBhef2Mk80b?=
+ =?us-ascii?Q?IMBX7WqEurGFELrQmUGUN9mvigh2wgLGCZ+350tliCF1TdlogAFU+65puP1P?=
+ =?us-ascii?Q?lf6Hoar0Hc1LGL0kcEnKFKrRbwdBfEAE+J/LrZbhTH9tGqQOHT0e52/nMH7Z?=
+ =?us-ascii?Q?bQGPc0+BiKvQgFuiqLUDgB9lXtQ8rq+1c2RBPA7wQe8Btv2M7LAZ17tNMCcK?=
+ =?us-ascii?Q?Uyy7EUwPAZ8uxprwrDm1zka+h0c8ovCp6vTKOin9SI/Dif6rQTKxn4KtDk6z?=
+ =?us-ascii?Q?IqvNUHSbh8FWnY9JwT46Zo7CLxnJerRz2irTvFlhn9bwJ3A9bbdX4EXLE36R?=
+ =?us-ascii?Q?+djIQnzkL9DClF+8UYhRh3fBoULphMOfw9/9miNIqb1/V0gh8Ka8mTjvditC?=
+ =?us-ascii?Q?74u97oXNDcynkZbxINCgTOOhq+vB7sTbOJcVJFOQVMyV7gm/wsTuwsM80fH/?=
+ =?us-ascii?Q?6LPBWEOWILYIc11TvTYILIubiGnQqeSvHNy5mcWNC41Loe/Q+tP/uywt1NoF?=
+ =?us-ascii?Q?b5d/plF805zT48sqER/aXAy3oIfD5BcAvId/SsdNsieHFt4o4agSiRqn2ZPj?=
+ =?us-ascii?Q?DB6DcsMOmfnd84BSjOAQgjZ+lj0/8XHO7QGFOGkfjtmxcUyrBD0p0yMTIFCQ?=
+ =?us-ascii?Q?qWWPffnPl+hKSlgt/pYQJSaqWhmvc2IJ/+0axAmWGZGEt2CVkLcG2HkmJ1XT?=
+ =?us-ascii?Q?iUdqsDapP/1LFnip+GsWUpv6KWrRI5IMjnv2UOWLxeQ6CNzNcEZ2MqwuNVJx?=
+ =?us-ascii?Q?ASftBgWMePRJ7WiE9L3ecs30EaTxIgwHapbqAE3UIyTKzi+HxWKbu/s9INAj?=
+ =?us-ascii?Q?VM2K89SP1HJELMxqf+sTyvQBQdrZEATXPgUUj71W+3HHF9DZU0RutdON+n/m?=
+ =?us-ascii?Q?bddFoeZNQsShocDk3dET4Im3faObF5mhfLUPGFet9AAGdT9EzOINA0FNCHLA?=
+ =?us-ascii?Q?SS5HOCMksKsGbTrOxbVL7l/O5zNGXEexIZSC/hpMsrEIehp9FLsCTfIzbJvU?=
+ =?us-ascii?Q?P7fchHasdtKMA3u+mrn3bBSm3lfhtrcxqq8AmKEzCSRbncyi9TpNGizEzSmT?=
+ =?us-ascii?Q?+ECHtOTw3yxXKezpR8eu4XHuTz4SijKUElcxLEVwqEAWB0WkF9xOHAXTz0eY?=
+ =?us-ascii?Q?5Ioqw5jTntU1upMstEvCkhqFq+3bQYMfd20o/rF59OkoG6YtjqI6Y2Kt++u1?=
+ =?us-ascii?Q?1mSTFvNU5xqn0ni4LNFXTzSXFQ+yWpu9oxNjeyzfYB4UqxCqw0yuo6/Awirw?=
+ =?us-ascii?Q?SrVABoVOHF0VDWrKjt/+YbchcIPgv5/imchAnFeSgqfikRQUyD+dTS9fXjer?=
+ =?us-ascii?Q?aQ=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 73cf22de-5430-4ba9-6e54-08dcec19c8fe
+X-MS-Exchange-CrossTenant-AuthSource: LV3PR11MB8603.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6211.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 84c38ba6-2cff-4e8a-d6bc-08dcec091f32
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Oct 2024 04:31:50.2025 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: klCj8QX96pfnXvDMs7gmM9SYZJnHcjSVoVfCeKsT3kwctBp4HbMrl/+2MDdfxwV6CmaPylyIXR3PDP96p5BU+BwLNTNCTSwf+s9y7gbccS8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5100
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Oct 2024 06:31:07.3632 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Y6GDzDRt8JzSaSsNYKP8Zp/snJl7poP1s8df2ItUuInTGRA4u9EVQG0qLIITFvxkRsDJ/DUxC7fZmHeMUere7A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7484
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -189,107 +180,149 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
 
-> -----Original Message-----
-> From: Jadav, Raag <raag.jadav@intel.com>
-> Sent: Wednesday, October 9, 2024 6:18 PM
-> To: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: joonas.lahtinen@linux.intel.com; Vivi, Rodrigo <rodrigo.vivi@intel.co=
-m>;
-> Roper, Matthew D <matthew.d.roper@intel.com>; andi.shyti@linux.intel.com;
-> intel-gfx@lists.freedesktop.org; Gupta, Anshuman
-> <anshuman.gupta@intel.com>; Nilawar, Badal <badal.nilawar@intel.com>;
-> Tauro, Riana <riana.tauro@intel.com>
-> Subject: Re: [PATCH v1] drm/i915/dg2: enable G8 with a workaround
->=20
-> On Tue, Oct 08, 2024 at 08:24:42PM +0300, Jani Nikula wrote:
-> > On Mon, 07 Oct 2024, Raag Jadav <raag.jadav@intel.com> wrote:
-> > > Host BIOS doesn't enable G8 power mode due to an issue on DG2, so we
-AFAIU it discrete card firmware not HOST bios.
-Thanks,
-Anshuman.
-> > > enable it from kernel with Wa_14022698589. Currently it is enabled
-> > > for all DG2 devices with the exception of a few, for which, it is
-> > > enabled only when paired with whitelisted CPU models.
-> >
-> > In commit messages "currently" and the present tense usually refer to
-> > the status quo before the patch has been merged. Doesn't seem to be
-> > the case here, and it confuses what we have now and what the patch chan=
-ges.
->=20
-> True.
->=20
-> > >
-> > > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/gt/intel_workarounds.c | 43
-> +++++++++++++++++++++
-> > >  drivers/gpu/drm/i915/i915_reg.h             |  1 +
-> > >  2 files changed, 44 insertions(+)
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> > > b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> > > index e539a656cfc3..b2db51377488 100644
-> > > --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> > > +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> > > @@ -14,11 +14,30 @@
-> > >  #include "intel_gt_mcr.h"
-> > >  #include "intel_gt_print.h"
-> > >  #include "intel_gt_regs.h"
-> > > +#include "intel_pcode.h"
-> > >  #include "intel_ring.h"
-> > >  #include "intel_workarounds.h"
-> > >
-> > >  #include "display/intel_fbc_regs.h"
-> > >
-> > > +#ifdef CONFIG_X86
-> > > +#include <asm/cpu_device_id.h>
-> > > +#include <asm/intel-family.h>
-> > > +
-> > > +static const struct x86_cpu_id g8_cpu_ids[] =3D {
-> > > +	X86_MATCH_VFM(INTEL_ALDERLAKE,		NULL),
-> > > +	X86_MATCH_VFM(INTEL_ALDERLAKE_L,	NULL),
-> > > +	X86_MATCH_VFM(INTEL_COMETLAKE,		NULL),
-> > > +	X86_MATCH_VFM(INTEL_KABYLAKE,		NULL),
-> > > +	X86_MATCH_VFM(INTEL_KABYLAKE_L,		NULL),
-> > > +	X86_MATCH_VFM(INTEL_RAPTORLAKE,		NULL),
-> > > +	X86_MATCH_VFM(INTEL_RAPTORLAKE_P,	NULL),
-> > > +	X86_MATCH_VFM(INTEL_RAPTORLAKE_S,	NULL),
-> > > +	X86_MATCH_VFM(INTEL_ROCKETLAKE,		NULL),
-> > > +	{}
-> > > +};
-> > > +#endif
-> > > +
-> > >  /**
-> > >   * DOC: Hardware workarounds
-> > >   *
-> > > @@ -1770,9 +1789,33 @@ static void wa_list_apply(const struct
-> i915_wa_list *wal)
-> > >  	intel_gt_mcr_unlock(gt, flags);
-> > >  }
-> > >
-> > > +#define DG2_G8_WA_RANGE_1		0x56A0 ... 0x56AF
-> > > +#define DG2_G8_WA_RANGE_2		0x56B0 ... 0x56B9
-> >
-> > Absolutely not.
->=20
-> I had an "ugly" self-note which I forgot to add while sending out :D
->=20
-> > > +
-> > > +/* Wa_14022698589:dg2 */
-> > > +static void intel_enable_g8(struct intel_uncore *uncore) {
-> > > +	if (IS_DG2(uncore->i915)) {
-> > > +		switch (INTEL_DEVID(uncore->i915)) {
-> >
-> > Even using INTEL_DEVID() is a no-go. There are currently four users,
-> > and even some of them are too much.
-> >
-> > We try hard to abstract this stuff at a higher level, and there must
-> > be zero direct PCI ID checks in code other than the table driven
-> > device identification. Otherwise it's just impossible to figure out
-> > where we do platform specific stuff for each platform.
->=20
-> Even if we use pci_match_id(), we'd need an explicit list to match agains=
-t.
-> Any better way?
->=20
-> Raag
+Hello,
+
+kernel test robot noticed "UBSAN:array-index-out-of-bounds_in_drivers/gpu/drm/i915/i915_drv.h" on:
+
+commit: 3d845c2240623759952e06027546304b127ec1c5 ("[PATCH v1] drm/i915/dg2: enable G8 with a workaround")
+url: https://github.com/intel-lab-lkp/linux/commits/Raag-Jadav/drm-i915-dg2-enable-G8-with-a-workaround/20241007-202716
+base: git://anongit.freedesktop.org/drm-intel for-linux-next
+patch link: https://lore.kernel.org/all/20241007122424.642796-1-raag.jadav@intel.com/
+patch subject: [PATCH v1] drm/i915/dg2: enable G8 with a workaround
+
+in testcase: suspend-stress
+version: 
+with following parameters:
+
+	mode: freeze
+	iterations: 10
+
+
+
+config: x86_64-rhel-8.3-func
+compiler: gcc-12
+test machine: 4 threads (Broadwell) with 8G memory
+
+(please refer to attached dmesg/kmsg for entire log/backtrace)
+
+
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <oliver.sang@intel.com>
+| Closes: https://lore.kernel.org/oe-lkp/202410141449.699cfd23-oliver.sang@intel.com
+
+
+kern  :warn  : [   28.439916] ------------[ cut here ]------------
+kern  :err   : [   28.440035] UBSAN: array-index-out-of-bounds in drivers/gpu/drm/i915/i915_drv.h:466:28
+kern  :err   : [   28.440211] index 58 is out of range for type 'u32 [2]'
+kern  :warn  : [   28.440322] CPU: 1 UID: 0 PID: 202 Comm: systemd-udevd Not tainted 6.12.0-rc1-00198-g3d845c224062 #1
+kern  :warn  : [   28.440489] Hardware name:  /NUC5i3RYB, BIOS RYBDWi35.86A.0363.2017.0316.1028 03/16/2017
+kern  :warn  : [   28.440636] Call Trace:
+kern  :warn  : [   28.440703]  <TASK>
+kern :warn : [   28.440764] dump_stack_lvl (lib/dump_stack.c:123 (discriminator 1)) 
+kern :warn : [   28.440862] __ubsan_handle_out_of_bounds (lib/ubsan.c:232 lib/ubsan.c:429) 
+kern :warn : [   28.440977] gt_init_workarounds (drivers/gpu/drm/i915/i915_drv.h:466 drivers/gpu/drm/i915/gt/intel_workarounds.c:1689) i915
+kern :warn : [   28.441968] ? __pfx_gt_init_workarounds (drivers/gpu/drm/i915/gt/intel_workarounds.c:1665) i915
+kern :warn : [   28.442781] ? fwtable_write32 (drivers/gpu/drm/i915/intel_uncore.c:2012 (discriminator 11)) i915
+kern :warn : [   28.443526] intel_gt_init_workarounds (drivers/gpu/drm/i915/gt/intel_workarounds.c:1725) i915
+kern :warn : [   28.444297] intel_gt_init (drivers/gpu/drm/i915/gt/intel_gt.c:715) i915
+kern :warn : [   28.445032] i915_gem_init (drivers/gpu/drm/i915/i915_gem.c:1191) i915
+kern :warn : [   28.445793] i915_driver_probe (drivers/gpu/drm/i915/i915_driver.c:799) i915
+kern :warn : [   28.446517] ? __pfx_i915_driver_probe (drivers/gpu/drm/i915/i915_driver.c:751) i915
+kern :warn : [   28.447243] ? drm_privacy_screen_get (drivers/gpu/drm/drm_privacy_screen.c:168) drm
+kern :warn : [   28.447499] ? intel_display_driver_probe_defer (drivers/gpu/drm/i915/display/intel_display_driver.c:81) i915
+kern :warn : [   28.448300] ? i915_pci_probe (drivers/gpu/drm/i915/i915_pci.c:996) i915
+kern :warn : [   28.449003] ? __pfx_i915_pci_probe (drivers/gpu/drm/i915/i915_pci.c:957) i915
+kern :warn : [   28.449712] local_pci_probe (drivers/pci/pci-driver.c:324) 
+kern :warn : [   28.449811] pci_call_probe (drivers/pci/pci-driver.c:392) 
+kern :warn : [   28.449905] ? _raw_spin_lock (arch/x86/include/asm/atomic.h:107 include/linux/atomic/atomic-arch-fallback.h:2170 include/linux/atomic/atomic-instrumented.h:1302 include/asm-generic/qspinlock.h:111 include/linux/spinlock.h:187 include/linux/spinlock_api_smp.h:134 kernel/locking/spinlock.c:154) 
+kern :warn : [   28.449998] ? __pfx_pci_call_probe (drivers/pci/pci-driver.c:352) 
+kern :warn : [   28.450095] ? kernfs_add_one (fs/kernfs/dir.c:819) 
+kern :warn : [   28.450190] ? pci_assign_irq (drivers/pci/irq.c:149) 
+kern :warn : [   28.450282] ? pci_match_device (drivers/pci/pci-driver.c:159 (discriminator 1)) 
+kern :warn : [   28.450379] ? kernfs_put (arch/x86/include/asm/atomic.h:67 (discriminator 1) include/linux/atomic/atomic-arch-fallback.h:2278 (discriminator 1) include/linux/atomic/atomic-instrumented.h:1384 (discriminator 1) fs/kernfs/dir.c:557 (discriminator 1)) 
+kern :warn : [   28.450465] pci_device_probe (drivers/pci/pci-driver.c:452) 
+kern :warn : [   28.450557] ? pci_dma_configure (drivers/pci/pci-driver.c:1656) 
+kern :warn : [   28.450653] really_probe (drivers/base/dd.c:579 drivers/base/dd.c:658) 
+kern :warn : [   28.450741] __driver_probe_device (drivers/base/dd.c:738 drivers/base/dd.c:798) 
+kern :warn : [   28.450841] driver_probe_device (drivers/base/dd.c:830) 
+kern :warn : [   28.450937] __driver_attach (drivers/base/dd.c:1217) 
+kern :warn : [   28.451028] ? __pfx___driver_attach (drivers/base/dd.c:1157) 
+kern :warn : [   28.451124] bus_for_each_dev (drivers/base/bus.c:369) 
+kern :warn : [   28.451217] ? __pfx_bus_for_each_dev (drivers/base/bus.c:358) 
+kern :warn : [   28.451318] ? klist_add_tail (include/linux/list.h:150 include/linux/list.h:183 lib/klist.c:104 lib/klist.c:137) 
+kern :warn : [   28.451410] bus_add_driver (drivers/base/bus.c:675) 
+kern :warn : [   28.451500] driver_register (drivers/base/driver.c:246) 
+kern :warn : [   28.451594] i915_init (drivers/gpu/drm/i915/i915_driver.c:1395) i915
+kern :warn : [   28.452466] ? __pfx_i915_init (drivers/gpu/drm/i915/i915_config.c:13) i915
+kern :warn : [   28.453207] do_one_initcall (init/main.c:1269) 
+kern :warn : [   28.453304] ? __pfx_do_one_initcall (init/main.c:1260) 
+kern :warn : [   28.453408] ? kasan_unpoison (mm/kasan/shadow.c:157 mm/kasan/shadow.c:151 mm/kasan/shadow.c:182) 
+kern :warn : [   28.453499] ? kasan_unpoison (mm/kasan/shadow.c:156 mm/kasan/shadow.c:182) 
+kern :warn : [   28.453592] do_init_module (kernel/module/main.c:2543) 
+kern :warn : [   28.453687] init_module_from_file (kernel/module/main.c:3198) 
+kern :warn : [   28.453787] ? __pfx_init_module_from_file (kernel/module/main.c:3174) 
+kern :warn : [   28.453895] ? __pfx_userfaultfd_unmap_complete (fs/userfaultfd.c:810) 
+kern :warn : [   28.454012] ? __pfx__raw_spin_lock (kernel/locking/spinlock.c:153) 
+kern :warn : [   28.454112] idempotent_init_module (kernel/module/main.c:3210) 
+kern :warn : [   28.454214] ? __pfx_idempotent_init_module (kernel/module/main.c:3202) 
+kern :warn : [   28.454321] ? __pfx___seccomp_filter (kernel/seccomp.c:1218) 
+kern :warn : [   28.454424] ? fdget (include/linux/atomic/atomic-arch-fallback.h:479 include/linux/atomic/atomic-instrumented.h:50 fs/file.c:1141 fs/file.c:1155) 
+kern :warn : [   28.454504] ? security_capable (security/security.c:1142) 
+kern :warn : [   28.454599] __x64_sys_finit_module (include/linux/file.h:68 kernel/module/main.c:3238 kernel/module/main.c:3220 kernel/module/main.c:3220) 
+kern :warn : [   28.454698] do_syscall_64 (arch/x86/entry/common.c:52 arch/x86/entry/common.c:83) 
+kern :warn : [   28.454790] entry_SYSCALL_64_after_hwframe (arch/x86/entry/entry_64.S:130) 
+kern  :warn  : [   28.454900] RIP: 0033:0x7efbffb92229
+kern :warn : [ 28.454984] Code: 00 f3 c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 40 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 3f 4c 2b 00 f7 d8 64 89 01 48
+All code
+========
+   0:	00 f3                	add    %dh,%bl
+   2:	c3                   	retq   
+   3:	66 2e 0f 1f 84 00 00 	nopw   %cs:0x0(%rax,%rax,1)
+   a:	00 00 00 
+   d:	0f 1f 40 00          	nopl   0x0(%rax)
+  11:	48 89 f8             	mov    %rdi,%rax
+  14:	48 89 f7             	mov    %rsi,%rdi
+  17:	48 89 d6             	mov    %rdx,%rsi
+  1a:	48 89 ca             	mov    %rcx,%rdx
+  1d:	4d 89 c2             	mov    %r8,%r10
+  20:	4d 89 c8             	mov    %r9,%r8
+  23:	4c 8b 4c 24 08       	mov    0x8(%rsp),%r9
+  28:	0f 05                	syscall 
+  2a:*	48 3d 01 f0 ff ff    	cmp    $0xfffffffffffff001,%rax		<-- trapping instruction
+  30:	73 01                	jae    0x33
+  32:	c3                   	retq   
+  33:	48 8b 0d 3f 4c 2b 00 	mov    0x2b4c3f(%rip),%rcx        # 0x2b4c79
+  3a:	f7 d8                	neg    %eax
+  3c:	64 89 01             	mov    %eax,%fs:(%rcx)
+  3f:	48                   	rex.W
+
+Code starting with the faulting instruction
+===========================================
+   0:	48 3d 01 f0 ff ff    	cmp    $0xfffffffffffff001,%rax
+   6:	73 01                	jae    0x9
+   8:	c3                   	retq   
+   9:	48 8b 0d 3f 4c 2b 00 	mov    0x2b4c3f(%rip),%rcx        # 0x2b4c4f
+  10:	f7 d8                	neg    %eax
+  12:	64 89 01             	mov    %eax,%fs:(%rcx)
+  15:	48                   	rex.W
+kern  :warn  : [   28.455283] RSP: 002b:00007ffe0d7f9428 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
+kern  :warn  : [   28.455429] RAX: ffffffffffffffda RBX: 000055b5a7168b10 RCX: 00007efbffb92229
+kern  :warn  : [   28.455562] RDX: 0000000000000000 RSI: 00007efc004ab265 RDI: 0000000000000014
+kern  :warn  : [   28.455695] RBP: 00007efc004ab265 R08: 0000000000000000 R09: 00007ffe0d7f99a0
+kern  :warn  : [   28.455826] R10: 0000000000000014 R11: 0000000000000246 R12: 0000000000000000
+kern  :warn  : [   28.455959] R13: 000055b5a7170fe0 R14: 0000000000020000 R15: 000055b575213cbc
+kern  :warn  : [   28.456095]  </TASK>
+kern  :warn  : [   28.456422] ---[ end trace ]---
+
+
+The kernel config and materials to reproduce are available at:
+https://download.01.org/0day-ci/archive/20241014/202410141449.699cfd23-oliver.sang@intel.com
+
+
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
+
