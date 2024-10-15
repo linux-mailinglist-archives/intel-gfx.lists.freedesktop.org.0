@@ -2,60 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D90E899FC23
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Oct 2024 01:11:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AC1B99FC90
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Oct 2024 01:44:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B42710E63B;
-	Tue, 15 Oct 2024 23:11:40 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ilPHMXH0";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9444510E11F;
+	Tue, 15 Oct 2024 23:44:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 950D010E634;
- Tue, 15 Oct 2024 23:11:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729033899; x=1760569899;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=5JEC5lBCzUGad9AV/E8lp/x62Yzoe2RcCu2ZxmdL6Xs=;
- b=ilPHMXH0Qpp1pOyrJvCujP9/MmoSVE6IiSmzEzsoZai0g2c3tdctNAXF
- YnlnrJoCKSQcmfnXK5v58+rCn/2HSEPaceC78NhAsYWFQrhfokR5A7BMn
- CK5OI5jy99Cc10iuGuyE3tkPPl7fEi1jXyP6takuJN/n6CQ5XBGMWl7vq
- Bkix5LjWjczjTHUAZ5j0oZnRTmlw6M6HKPxcGjlflcu+G5xRH7n9inqz6
- n29mZNT42yIFsSriQDoqAJI9i9tYJOVtn01R7tL0Mad7dAgZqqU5kYHGB
- Op7OVLOC88tqRb2RMEp7eziXhVxgK69xSmvTHmk/St07tTLsHBztHJ0vO g==;
-X-CSE-ConnectionGUID: 5Pi8jDmBSFuqYQIymcbZ1A==
-X-CSE-MsgGUID: Am8lr37gQi+qYl5K15Zylg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="28600799"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="28600799"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2024 16:11:37 -0700
-X-CSE-ConnectionGUID: /PyvhZ2uTiawBTw4NM/e5w==
-X-CSE-MsgGUID: sYgKEM20Qjmfkxys5cSo5g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,206,1725346800"; d="scan'208";a="83120437"
-Received: from msatwood-mobl.amr.corp.intel.com (HELO
- msatwood-mobl.hsd1.or.comcast.net) ([10.125.108.167])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2024 16:11:36 -0700
-From: Matt Atwood <matthew.s.atwood@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: Suraj Kandpal <suraj.kandpal@intel.com>,
- Matt Atwood <matthew.s.atwood@intel.com>
-Subject: [PATCH v3 7/7] drm/i915/xe3lpd: Add condition for EDP to powerdown
- P2.PG
-Date: Tue, 15 Oct 2024 16:11:24 -0700
-Message-ID: <20241015231124.23982-8-matthew.s.atwood@intel.com>
-X-Mailer: git-send-email 2.45.0
-In-Reply-To: <20241015231124.23982-1-matthew.s.atwood@intel.com>
-References: <20241015231124.23982-1-matthew.s.atwood@intel.com>
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DEF3C10E11F;
+ Tue, 15 Oct 2024 23:44:50 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Add_xe3lpd_edp_enabl?=
+ =?utf-8?q?ing_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Atwood" <matthew.s.atwood@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 15 Oct 2024 23:44:50 -0000
+Message-ID: <172903589090.1271011.13733393229886801756@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241015231124.23982-1-matthew.s.atwood@intel.com>
+In-Reply-To: <20241015231124.23982-1-matthew.s.atwood@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,36 +37,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Suraj Kandpal <suraj.kandpal@intel.com>
+== Series Details ==
 
-Add condition for P2.PG power down value.
+Series: Add xe3lpd edp enabling (rev3)
+URL   : https://patchwork.freedesktop.org/series/139731/
+State : warning
 
-v2: change subject line to better match patch condition
+== Summary ==
 
-Bspec: 74494
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
----
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Error: dim checkpatch failed
+66e932283365 drm/i915/xe3lpd: Update pmdemand programming
+7f58d2c0ab26 drm/i915/xe3lpd: Add cdclk changes
+-:15: WARNING:TYPO_SPELLING: 'doesnt' may be misspelled - perhaps 'doesn't'?
+#15: 
+v3: xe3lpd doesnt supply the power control unit the voltage index
+           ^^^^^^
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 37c66b32325d..13a99f494680 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -3146,7 +3146,8 @@ static u8 cx0_power_control_disable_val(struct intel_encoder *encoder)
- 	if (intel_encoder_is_c10phy(encoder))
- 		return CX0_P2PG_STATE_DISABLE;
+total: 0 errors, 1 warnings, 0 checks, 89 lines checked
+0fd854c304c3 drm/i915/xe3lpd: Include hblank restriction for xe3lpd
+-:23: ERROR:SPACING: spaces required around that '>=' (ctx:WxV)
+#23: FILE: drivers/gpu/drm/i915/display/intel_hdcp.c:54:
++		else if (DISPLAY_VER(display) >=30)
+ 		                              ^
+
+total: 1 errors, 0 warnings, 0 checks, 17 lines checked
+ec9b5ea3b80a drm/i915/xe3lpd: Add C20 Phy consolidated programming table
+2349653366a5 drm/i915/xe3lpd: Add new bit range of MAX swing setup
+-:9: WARNING:TYPO_SPELLING: 'seperate' may be misspelled - perhaps 'separate'?
+#9: 
+v2: implement as two seperate macros instead of a single macro
+                     ^^^^^^^^
+
+-:32: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#32: FILE: drivers/gpu/drm/i915/display/intel_alpm.c:334:
  
--	if (IS_BATTLEMAGE(i915) && encoder->port == PORT_A)
-+	if ((IS_BATTLEMAGE(i915) && encoder->port == PORT_A) ||
-+	    (DISPLAY_VER(i915) >= 30 && encoder->type == INTEL_OUTPUT_EDP))
- 		return CX0_P2PG_STATE_DISABLE;
- 
- 	return CX0_P4PG_STATE_DISABLE;
--- 
-2.45.0
++
+
+-:65: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#65: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:299:
++#define PORT_ALPM_CTL(port)				_MMIO_PORT(port, _PORT_ALPM_CTL_A, _PORT_ALPM_CTL_B)
+
+-:69: WARNING:LONG_LINE: line length of 115 exceeds 100 columns
+#69: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:303:
++#define  PORT_ALPM_CTL_MAX_PHY_SWING_SETUP(val)		REG_FIELD_PREP(PORT_ALPM_CTL_MAX_PHY_SWING_SETUP_MASK, val)
+
+-:70: WARNING:LONG_LINE: line length of 119 exceeds 100 columns
+#70: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:304:
++#define  XE3_PORT_ALPM_CTL_MAX_PHY_SWING_SETUP(val)	REG_FIELD_PREP(XE3_PORT_ALPM_CTL_MAX_PHY_SWING_SETUP_MASK, val)
+
+-:72: WARNING:LONG_LINE: line length of 114 exceeds 100 columns
+#72: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:306:
++#define  PORT_ALPM_CTL_MAX_PHY_SWING_HOLD(val)		REG_FIELD_PREP(PORT_ALPM_CTL_MAX_PHY_SWING_HOLD_MASK, val)
+
+-:74: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
+#74: FILE: drivers/gpu/drm/i915/display/intel_psr_regs.h:308:
++#define  PORT_ALPM_CTL_SILENCE_PERIOD(val)		REG_FIELD_PREP(PORT_ALPM_CTL_SILENCE_PERIOD_MASK, val)
+
+total: 0 errors, 6 warnings, 1 checks, 52 lines checked
+85a432f18ce4 drm/i915/xe3lpd: Add check to see if edp over type c is allowed
+8086d5e83ea3 drm/i915/xe3lpd: Add condition for EDP to powerdown P2.PG
+
 
