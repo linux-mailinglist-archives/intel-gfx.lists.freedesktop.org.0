@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D6369A0BF4
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Oct 2024 15:53:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 84C669A0BF6
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Oct 2024 15:53:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 05EDA10E70D;
-	Wed, 16 Oct 2024 13:53:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1849910E70F;
+	Wed, 16 Oct 2024 13:53:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kLCruw4g";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dTmvgyjR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4987D10E70C
- for <intel-gfx@lists.freedesktop.org>; Wed, 16 Oct 2024 13:53:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D6EC10E70D
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Oct 2024 13:53:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729086791; x=1760622791;
+ t=1729086792; x=1760622792;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=XUWEI2NIKfRAdUTI7oiYEQyE6auXjNZ3wnvpGfYIqQ4=;
- b=kLCruw4gOKXA19Ti2twqYevrICU+HZHpYsVGcy40EI3HBPYO+jl5PeZW
- isIpPxf+kkHbmq3tqfzaeQJ22Bvezgo1gVAV4LenVcYeQktNziCOjD+kk
- jvzJw56Bn201+n7d/x2FV2y+A0Pt1Zi7648GzelZb4KF/Mh6o0gij9Dlm
- vjDxZTn8pdHQHFs1mshT4AegdsWrKqv+bVLdi/pr5BWMJgHMRFdcfbbpi
- aeNLWMsd9kN1rbKP2uQgLE5nSOAy53GCb5E1Jb8X88g3EWjk1J1QaH0CJ
- yk6RIw0Bs/+oHTnlDHEpA/ydIX6ZvmkzSknjV4d6izYz/s5pPsI4lCynf A==;
-X-CSE-ConnectionGUID: pAHzmhLjQTmfrD9tmPBS9w==
-X-CSE-MsgGUID: ghc0cRTXSfOBuBy3I0w9eA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="46008620"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="46008620"
+ bh=wcrL1ZI9fR5EZxs7f84lrkhIarzTMifhObqqkCHrU5o=;
+ b=dTmvgyjRNC4H+9R4eVmsRVIQ7l3p0vIBqLEkYRIaKb4K/lAPvE3jnJjs
+ 62OXfBfHMUWLBrwoxtt2L9jnVtz8KCSwscN9JPG1Gfbmm0F6YHEFn2YOW
+ WF5OsrPeXZDiVis3Lb0eWnRS7enTYe3vUNA0gYsnJooplRFZIILvYsTkV
+ tymKWTfx4S5RD5C/NKjFP3BMQplYQBrhJ6244lDVkbDUAvgHhSmum1W7C
+ 9WTkWqWzpJQuBwriyRi8Axo2HXdWNJvOWeSte+J/Q5/n0fI/cqfIcxnL9
+ yu4enRoW2Y8vALH2alpjezGsl1B34NOaLIykG/terUChp7Bz4OLrrAXU6 w==;
+X-CSE-ConnectionGUID: x23NY8ZgQACUkBJVuC0iZA==
+X-CSE-MsgGUID: HCl2FjS+Qei824S+EQ/4EA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="46008625"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="46008625"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2024 06:53:11 -0700
-X-CSE-ConnectionGUID: URI/ko1NTseDHHcQoSzAxw==
-X-CSE-MsgGUID: m1m7CgJdQduwtCFzMw9cVg==
+ 16 Oct 2024 06:53:12 -0700
+X-CSE-ConnectionGUID: 9Cdz5XfxQqC8FAauEweDQg==
+X-CSE-MsgGUID: PrnPGPRmRDOEDtx6/yFnPw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,208,1725346800"; d="scan'208";a="78124084"
+X-IronPort-AV: E=Sophos;i="6.11,208,1725346800"; d="scan'208";a="78124086"
 Received: from lstrano-mobl6.amr.corp.intel.com (HELO gjsousa-mobl2.intel.com)
  ([10.125.108.199])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2024 06:53:10 -0700
+ 16 Oct 2024 06:53:11 -0700
 From: Gustavo Sousa <gustavo.sousa@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH v3 1/5] drm/i915/display: Fix out-of-bounds access in
- pipe-related tracepoints
-Date: Wed, 16 Oct 2024 10:52:27 -0300
-Message-ID: <20241016135300.21428-2-gustavo.sousa@intel.com>
+Subject: [PATCH v3 2/5] drm/i915/display: Zero-initialize frame/scanline
+ counts in tracepoints
+Date: Wed, 16 Oct 2024 10:52:28 -0300
+Message-ID: <20241016135300.21428-3-gustavo.sousa@intel.com>
 X-Mailer: git-send-email 2.46.1
 In-Reply-To: <20241016135300.21428-1-gustavo.sousa@intel.com>
 References: <20241016135300.21428-1-gustavo.sousa@intel.com>
@@ -69,145 +69,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Some display trace events use array members to store frame and scanline
-counts for each pipe. However, those arrays are declared with 3 as the
-hardcoded size, which cause out-of-bounds access when the trace event is
-enabled on a platform that contains pipe D.
+In an upcoming change, we will also add support for logging
+frame/scanline counts for pipe D in relevant tracepoints.
 
-For example, when looking at the last 10 intel_pipe_enable events after
-running IGT's testdisplay, we see the following on a MTL machine that
-has pipe D available:
+In [1], Matt mentioned the possibility of having garbage in those counts
+for pipe D on a platform containing only 3 pipes. Indeed, it has been
+verified that the counts for the extra pipe would not be
+zero-initialized by the tracing system.
 
-    $ trace-cmd report -R -F intel_pipe_enable \
-    > | tail \
-    > | sed 's,\(frame=.*\) \(scanline=.*\),\n\t   \1\n\t\2,'
-         testdisplay-6715  [002] 17591.063491: intel_pipe_enable:     dev=0000:00:02.0
-               frame=ARRAY[83, 01, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00]
-            scanline=ARRAY[00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00] pipe=0
-         testdisplay-6715  [003] 17591.264742: intel_pipe_enable:     dev=0000:00:02.0
-               frame=ARRAY[89, 01, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00]
-            scanline=ARRAY[00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00] pipe=0
-         testdisplay-6715  [003] 17591.464541: intel_pipe_enable:     dev=0000:00:02.0
-               frame=ARRAY[8f, 01, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00]
-            scanline=ARRAY[00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00] pipe=0
-         testdisplay-6715  [001] 17591.695827: intel_pipe_enable:     dev=0000:00:02.0
-               frame=ARRAY[95, 01, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00]
-            scanline=ARRAY[00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00] pipe=0
-         testdisplay-6715  [000] 17591.915841: intel_pipe_enable:     dev=0000:00:02.0
-               frame=ARRAY[9a, 01, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00]
-            scanline=ARRAY[00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00] pipe=0
-         testdisplay-6715  [000] 17592.127114: intel_pipe_enable:     dev=0000:00:02.0
-               frame=ARRAY[a0, 01, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00]
-            scanline=ARRAY[00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00] pipe=0
-         testdisplay-6715  [002] 17592.358351: intel_pipe_enable:     dev=0000:00:02.0
-               frame=ARRAY[a8, 01, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00]
-            scanline=ARRAY[00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00] pipe=0
-         testdisplay-6715  [002] 17592.580467: intel_pipe_enable:     dev=0000:00:02.0
-               frame=ARRAY[ae, 01, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00]
-            scanline=ARRAY[00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00] pipe=0
-         testdisplay-6715  [000] 17592.950946: intel_pipe_enable:     dev=0000:00:02.0
-               frame=ARRAY[b8, 01, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00]
-            scanline=ARRAY[00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00] pipe=0
-         testdisplay-6715  [004] 17593.079597: intel_pipe_enable:     dev=0000:00:02.0
-               frame=ARRAY[bf, 01, 00, 00, 01, 00, 00, 00, 00, 00, 00, 00]
-            scanline=ARRAY[00, 00, 00, 00, 3a, 04, 00, 00, 00, 00, 00, 00] pipe=1
+Since it is also possible that the same would happen for a fused-off
+pipe, let's go ahead and add the logic to zero-initialize the arrays
+now.
 
-Which shows zeros for pipe A's scanline counts. That happens because
-pipe D's frame counts are overwriting them.
+[1] https://lore.kernel.org/all/20240918224927.GU5091@mdroper-desk1.amr.corp.intel.com/
 
-Let's fix that by making the arrays bring able to store info for all
-possible pipes.
-
-With the fix, we get the following:
-
-    $ trace-cmd report -R -F intel_pipe_enable \
-    > | tail \
-    > | sed 's,\(frame=.*\) \(scanline=.*\),\n\t   \1\n\t\2,'
-         testdisplay-7040  [003] 18067.489565: intel_pipe_enable:     dev=0000:00:02.0
-               frame=ARRAY[8c, 01, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00]
-            scanline=ARRAY[8e, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00] pipe=0
-         testdisplay-7040  [002] 18067.699312: intel_pipe_enable:     dev=0000:00:02.0
-               frame=ARRAY[92, 01, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00]
-            scanline=ARRAY[58, 02, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00] pipe=0
-         testdisplay-7040  [002] 18067.908868: intel_pipe_enable:     dev=0000:00:02.0
-               frame=ARRAY[98, 01, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00]
-            scanline=ARRAY[58, 02, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00] pipe=0
-         testdisplay-7040  [002] 18068.122802: intel_pipe_enable:     dev=0000:00:02.0
-               frame=ARRAY[9d, 01, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00]
-            scanline=ARRAY[58, 02, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00] pipe=0
-         testdisplay-7040  [003] 18068.331019: intel_pipe_enable:     dev=0000:00:02.0
-               frame=ARRAY[a2, 01, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00]
-            scanline=ARRAY[e0, 01, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00] pipe=0
-         testdisplay-7040  [002] 18068.529067: intel_pipe_enable:     dev=0000:00:02.0
-               frame=ARRAY[a8, 01, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00]
-            scanline=ARRAY[e0, 01, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00] pipe=0
-         testdisplay-7040  [003] 18068.742033: intel_pipe_enable:     dev=0000:00:02.0
-               frame=ARRAY[ae, 01, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00]
-            scanline=ARRAY[e0, 01, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00] pipe=0
-         testdisplay-7040  [002] 18068.956229: intel_pipe_enable:     dev=0000:00:02.0
-               frame=ARRAY[b3, 01, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00]
-            scanline=ARRAY[1f, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00] pipe=0
-         testdisplay-7040  [002] 18069.295322: intel_pipe_enable:     dev=0000:00:02.0
-               frame=ARRAY[bb, 01, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00]
-            scanline=ARRAY[7b, 08, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00] pipe=0
-         testdisplay-7040  [010] 18069.423527: intel_pipe_enable:     dev=0000:00:02.0
-               frame=ARRAY[c2, 01, 00, 00, 01, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00]
-            scanline=ARRAY[d0, 05, 00, 00, 3a, 04, 00, 00, 00, 00, 00, 00, 00, 00, 00, 00] pipe=1
-
-Which makes more sense now.
-
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
 Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_trace.h | 13 +++++++------
- 1 file changed, 7 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_trace.h | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_trace.h b/drivers/gpu/drm/i915/display/intel_display_trace.h
-index fc28d34b5eef..e70c015a09a1 100644
+index e70c015a09a1..84526f8df75b 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_trace.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_trace.h
-@@ -15,6 +15,7 @@
+@@ -9,6 +9,7 @@
+ #if !defined(__INTEL_DISPLAY_TRACE_H__) || defined(TRACE_HEADER_MULTI_READ)
+ #define __INTEL_DISPLAY_TRACE_H__
  
- #include "i915_drv.h"
- #include "intel_crtc.h"
-+#include "intel_display_limits.h"
- #include "intel_display_types.h"
- #include "intel_vblank.h"
- 
-@@ -27,8 +28,8 @@ TRACE_EVENT(intel_pipe_enable,
- 
- 	    TP_STRUCT__entry(
- 			     __string(dev, __dev_name_kms(crtc))
--			     __array(u32, frame, 3)
--			     __array(u32, scanline, 3)
-+			     __array(u32, frame, I915_MAX_PIPES)
-+			     __array(u32, scanline, I915_MAX_PIPES)
- 			     __field(enum pipe, pipe)
- 			     ),
++#include <linux/string.h>
+ #include <linux/string_helpers.h>
+ #include <linux/types.h>
+ #include <linux/tracepoint.h>
+@@ -36,6 +37,10 @@ TRACE_EVENT(intel_pipe_enable,
+ 			   struct intel_display *display = to_intel_display(crtc);
+ 			   struct intel_crtc *it__;
+ 			   __assign_str(dev);
++			   memset(__entry->frame, 0,
++				  sizeof(__entry->frame[0]) * I915_MAX_PIPES);
++			   memset(__entry->scanline, 0,
++				  sizeof(__entry->scanline[0]) * I915_MAX_PIPES);
+ 			   for_each_intel_crtc(display->drm, it__) {
+ 				   __entry->frame[it__->pipe] = intel_crtc_get_vblank_counter(it__);
+ 				   __entry->scanline[it__->pipe] = intel_get_crtc_scanline(it__);
+@@ -65,6 +70,10 @@ TRACE_EVENT(intel_pipe_disable,
+ 			   struct intel_display *display = to_intel_display(crtc);
+ 			   struct intel_crtc *it__;
+ 			   __assign_str(dev);
++			   memset(__entry->frame, 0,
++				  sizeof(__entry->frame[0]) * I915_MAX_PIPES);
++			   memset(__entry->scanline, 0,
++				  sizeof(__entry->scanline[0]) * I915_MAX_PIPES);
+ 			   for_each_intel_crtc(display->drm, it__) {
+ 				   __entry->frame[it__->pipe] = intel_crtc_get_vblank_counter(it__);
+ 				   __entry->scanline[it__->pipe] = intel_get_crtc_scanline(it__);
+@@ -194,6 +203,10 @@ TRACE_EVENT(intel_memory_cxsr,
  	    TP_fast_assign(
-@@ -55,8 +56,8 @@ TRACE_EVENT(intel_pipe_disable,
- 
- 	    TP_STRUCT__entry(
- 			     __string(dev, __dev_name_kms(crtc))
--			     __array(u32, frame, 3)
--			     __array(u32, scanline, 3)
-+			     __array(u32, frame, I915_MAX_PIPES)
-+			     __array(u32, scanline, I915_MAX_PIPES)
- 			     __field(enum pipe, pipe)
- 			     ),
- 
-@@ -184,8 +185,8 @@ TRACE_EVENT(intel_memory_cxsr,
- 
- 	    TP_STRUCT__entry(
- 			     __string(dev, __dev_name_display(display))
--			     __array(u32, frame, 3)
--			     __array(u32, scanline, 3)
-+			     __array(u32, frame, I915_MAX_PIPES)
-+			     __array(u32, scanline, I915_MAX_PIPES)
- 			     __field(bool, old)
- 			     __field(bool, new)
- 			     ),
+ 			   struct intel_crtc *crtc;
+ 			   __assign_str(dev);
++			   memset(__entry->frame, 0,
++				  sizeof(__entry->frame[0]) * I915_MAX_PIPES);
++			   memset(__entry->scanline, 0,
++				  sizeof(__entry->scanline[0]) * I915_MAX_PIPES);
+ 			   for_each_intel_crtc(display->drm, crtc) {
+ 				   __entry->frame[crtc->pipe] = intel_crtc_get_vblank_counter(crtc);
+ 				   __entry->scanline[crtc->pipe] = intel_get_crtc_scanline(crtc);
 -- 
 2.46.1
 
