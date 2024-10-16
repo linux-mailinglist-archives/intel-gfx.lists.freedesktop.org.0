@@ -2,29 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD4B19A0384
-	for <lists+intel-gfx@lfdr.de>; Wed, 16 Oct 2024 10:04:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F41239A04F3
+	for <lists+intel-gfx@lfdr.de>; Wed, 16 Oct 2024 11:01:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6EB9A10E2D6;
-	Wed, 16 Oct 2024 08:04:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8835010E013;
+	Wed, 16 Oct 2024 09:01:23 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HXZu5DDy";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1F9310E2D6;
- Wed, 16 Oct 2024 08:04:33 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0384726692643630347=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73E5110E013
+ for <intel-gfx@lists.freedesktop.org>; Wed, 16 Oct 2024 09:01:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1729069282; x=1760605282;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=RuE1gca2g3MQ1WUveMceG+w9/0Yywla/CilHKwozaSY=;
+ b=HXZu5DDyGhBQKRii4neJ4QbRGSmjXg2ZtgP56v1Z6OYZNlLTUqvq6kkf
+ 5EeNdCYCpsb05Q+tUJG1MVbx8+5bGgnthr6O9uzRn6QPuOnZl6IjxIHvZ
+ cSovL1gBXVQrOCt9Fra44hO9zLTkcRuJPJdoE19jn4Hj5S5DaypUjt4ta
+ LWVVpu2xxlOZ54WBKpL8jcBbKvun+Zscu9jemG51OxeQz7dY90FgIvwjQ
+ Np2aihdMakTurL7YxNr1JXBDTpch02n97Jm/vG2YSsvdSk4TDC1AEzAtX
+ vJGsvS6KmDYpHMFueVdsXAlNhLWWPnE6rDM9N4KfsDOtob6kiBYWHrVV1 Q==;
+X-CSE-ConnectionGUID: emrjaNPsRCu68/8pHUPlYw==
+X-CSE-MsgGUID: 1HOHzDTLRHW9EwAw9u9XuA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11225"; a="27977964"
+X-IronPort-AV: E=Sophos;i="6.11,207,1725346800"; d="scan'208";a="27977964"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Oct 2024 02:01:19 -0700
+X-CSE-ConnectionGUID: 1cnHGJE4THuFwfqXGp39EQ==
+X-CSE-MsgGUID: G99iPtckRBWUx0a0tsQs5w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,207,1725346800"; d="scan'208";a="78997646"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Oct 2024 02:01:15 -0700
+Date: Wed, 16 Oct 2024 12:01:12 +0300
+From: Raag Jadav <raag.jadav@intel.com>
+To: Riana Tauro <riana.tauro@intel.com>
+Cc: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, matthew.d.roper@intel.com,
+ andi.shyti@linux.intel.com, intel-gfx@lists.freedesktop.org,
+ anshuman.gupta@intel.com, badal.nilawar@intel.com
+Subject: Re: [PATCH v2 3/4] drm/i915/wa: Introduce intel_wa_cpu.c for CPU
+ specific workarounds
+Message-ID: <Zw-A2Ej-5FWaWukj@black.fi.intel.com>
+References: <20241011103250.1035316-1-raag.jadav@intel.com>
+ <20241011103250.1035316-4-raag.jadav@intel.com>
+ <e5b7b830-2c7b-4e64-bf5f-9fa06a61a78b@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Workaro?=
- =?utf-8?q?und_for_odd_panning_for_planar_yuv_=28rev6=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nemesa Garg" <nemesa.garg@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 16 Oct 2024 08:04:33 -0000
-Message-ID: <172906587365.1272710.3947876781477754670@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20240930112343.2673244-1-nemesa.garg@intel.com>
-In-Reply-To: <20240930112343.2673244-1-nemesa.garg@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e5b7b830-2c7b-4e64-bf5f-9fa06a61a78b@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,119 +70,41 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0384726692643630347==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, Oct 15, 2024 at 03:56:10PM +0530, Riana Tauro wrote:
+> Hi Raag
+> 
+> On 10/11/2024 4:02 PM, Raag Jadav wrote:
+> > Having similar naming convention in intel-family.h and intel_device_info.h
+> > results in redefinition of a few platforms. Define CPU IDs in its own file
+> > to avoid this.
+> > 
+> > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+> > ---
+> >   drivers/gpu/drm/i915/Makefile               |  1 +
+> >   drivers/gpu/drm/i915/gt/intel_wa_cpu.c      | 34 +++++++++++++++++++++
+> >   drivers/gpu/drm/i915/gt/intel_workarounds.h |  2 ++
+> >   3 files changed, 37 insertions(+)
+> >   create mode 100644 drivers/gpu/drm/i915/gt/intel_wa_cpu.c
+> > 
+> > diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> > index c63fa2133ccb..1f9b503ab976 100644
+> > --- a/drivers/gpu/drm/i915/Makefile
+> > +++ b/drivers/gpu/drm/i915/Makefile
+> > @@ -121,6 +121,7 @@ gt-y += \
+> >   	gt/intel_timeline.o \
+> >   	gt/intel_tlb.o \
+> >   	gt/intel_wopcm.o \
+> > +	gt/intel_wa_cpu.o \
+> Why is this file under gt/ ? Doesn't seem to be gt specific
 
-== Series Details ==
+The idea is to couple it with intel_workarounds.c
+Any other place it'd rather be?
 
-Series: drm/i915/display: Workaround for odd panning for planar yuv (rev6)
-URL   : https://patchwork.freedesktop.org/series/136416/
-State : success
+> >   	gt/intel_workarounds.o \
+> >   	gt/shmem_utils.o \
+> >   	gt/sysfs_engines.o
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_15539 -> Patchwork_136416v6
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136416v6/index.html
-
-Participating hosts (43 -> 42)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_136416v6 that come from known issues:
-
-### IGT changes ###
-
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12133]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15539 -> Patchwork_136416v6
-
-  CI-20190529: 20190529
-  CI_DRM_15539: 0bebd793802b4eae14c71400e833cda8f91b0557 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8075: 8075
-  Patchwork_136416v6: 0bebd793802b4eae14c71400e833cda8f91b0557 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136416v6/index.html
-
---===============0384726692643630347==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Workaround for odd panning for planar yuv (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/136416/">https://patchwork.freedesktop.org/series/136416/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136416v6/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136416v6/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_15539 -&gt; Patchwork_136416v6</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136416v6/index.html</p>
-<h2>Participating hosts (43 -&gt; 42)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_136416v6 that come from known issues:</p>
-<h3>IGT changes</h3>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_15539 -&gt; Patchwork_136416v6</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_15539: 0bebd793802b4eae14c71400e833cda8f91b0557 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8075: 8075<br />
-  Patchwork_136416v6: 0bebd793802b4eae14c71400e833cda8f91b0557 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============0384726692643630347==--
+Raag
