@@ -2,81 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9F549A2446
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Oct 2024 15:52:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 25F089A21EA
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Oct 2024 14:13:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C957B10E843;
-	Thu, 17 Oct 2024 13:52:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E88010E1D2;
+	Thu, 17 Oct 2024 12:13:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Q0u0n4DK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IpAV2I+7";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com
- [209.85.167.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0EF6410E304;
- Thu, 17 Oct 2024 07:57:40 +0000 (UTC)
-Received: by mail-lf1-f46.google.com with SMTP id
- 2adb3069b0e04-539ebb5a20aso663290e87.2; 
- Thu, 17 Oct 2024 00:57:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1729151858; x=1729756658; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=kEg0zeTWEzgOxEOcS7zMMhXVtwfnHJYFvRIaI/gF0MU=;
- b=Q0u0n4DKHuZhoaE/rt9aPaJuzzejddXq0XQrZBgZmV5wBj/ObeHdKUrtjhQMUxF4Mo
- pHrLWhjZcES7KCLFeWcoCsNQ/HH8cCw2G+V9BbCGGJkaQNQ4IQnFPI7pMfFjUdVZ1ixD
- us2Z3RLp2nckacnvy5fJ51JOECp3azg8jDsyAqibcH6IhJ+RY83BkCBe+2/fjJ5+QnC0
- XD/D1xwFYxiV6nV8QNmIeqMO2Csr1ZGKFnoZjVEOOEW05TA7tDf9UFAjhFnt5IfCi2fk
- C8u7me9cjhfnFl4CGVCZq3tk1I9O16JEYWnf8bRyNpsBo3LG61uk/Sg7NvWN4yMdpFBw
- 0yvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1729151858; x=1729756658;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=kEg0zeTWEzgOxEOcS7zMMhXVtwfnHJYFvRIaI/gF0MU=;
- b=HssvJHuVIgHJTcn4X24eBQGgakIMRx1mjzj+hz37fnOTmSm+3+LqASFr3TDmW5Leam
- vvdd2JjeEUqHLVo4JMvbv9ESyz+P+wMt8wiuji/2LS/w7xKWtfdDWl25LFbyvnF3Lph8
- pidRkrz6YZNXGh0FJgaTx/rLjEZ/7Oe7CFY3ENAB+VyCX92AhAFTRKny2luTubbUC6sc
- A1f/nk4cMZOqeKAuqiauhMtvmXr0pzpuig+nBOnKhWz/VzeCmyv+HrbJwBRoVxFfFiyN
- 5YG+x0YLVvEEEDc1Eom3oiKufGs30eIkjugT6k8jGuxK2TxM45H/cW2KwCL48tJfGOsy
- pjLg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWKS6qIM7Qx/zXMX7IGKQ/8Kxg9sqXK4FR65keEE2zu52jWNRGQ0VX6hLGdinsA21H1BSPKlHVAwz79@lists.freedesktop.org,
- AJvYcCX+2KWTzYk3zwDv88CENFMaEuDVvIErVZMOwOhGqmKORkh3FN+Wa+9d9id5IjuRtDW83Onewb8dg7g=@lists.freedesktop.org,
- AJvYcCXKm5kBjZt9sYh+U4LVJf5lgVV2qrKyFgLuFAvLrbK23YheuHI3EaCsUveeU47wi86C4arfkCaZWG4=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yxq2RA1nEBW6jcpQrqi8jOetrBh4qNpHG8qk06ncXixkvRRWhJZ
- b5eesuWZcfkddyt2EjS+8JIrOfUgJbnqRejyirvp1arwcP39PEZR
-X-Google-Smtp-Source: AGHT+IHc7cprvzcrGEg//WDzWKJt7hzqpefGqFa4tXnkGFB7777RAmwgm7rdKxdryrFGxYqTZIOxyA==
-X-Received: by 2002:a05:6512:6c9:b0:539:9527:3d59 with SMTP id
- 2adb3069b0e04-539e572854amr10138398e87.52.1729151857765; 
- Thu, 17 Oct 2024 00:57:37 -0700 (PDT)
-Received: from giedriuslaptop.. ([78.63.144.185])
- by smtp.googlemail.com with ESMTPSA id
- 2adb3069b0e04-539ffff3e5asm678703e87.151.2024.10.17.00.57.36
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 17 Oct 2024 00:57:37 -0700 (PDT)
-From: =?UTF-8?q?Giedrius=20Statkevi=C4=8Dius?= <giedriuswork@gmail.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>
-Cc: =?UTF-8?q?Giedrius=20Statkevi=C4=8Dius?= <giedriuswork@gmail.com>,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: [PATCH v2] drm/i915/lspcon: do not hardcode settle timeout
-Date: Thu, 17 Oct 2024 10:57:24 +0300
-Message-ID: <20241017075725.207384-1-giedriuswork@gmail.com>
-X-Mailer: git-send-email 2.47.0
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A6EC10E1D2;
+ Thu, 17 Oct 2024 12:13:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1729167203; x=1760703203;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=M/Guv2ibOzP4W8R462v3zpIVKL2++wVaM8jZzeZ4t1k=;
+ b=IpAV2I+75c4E37Ve5XmkIsYY5wtlOiFO4YkwPKFFSnKfrNKAxYj+nwhv
+ 3wzHST0NabTMSjlgJdVZeV4p+j3WqO9RAr+gFjj7/JqVpNF536DFq3wAz
+ LcwR1V9SopMgSEt+tMtmjxZe5SLVuYf94KByd8lWWkkEG/f3jMC5FBUw3
+ d9keyctGl4W6SzqdhBep2YOAH04N3ng8qkwT1eq/8G1dz8QFTW8FfshjS
+ 77SC7otIABqotVjlcQdXu0dAZv01Su9OZHK5K8b069717WDS7dqe8PKrt
+ YprFs50qQHf6JGYkl+D1Z/dfU7qsSzkMazc2N75gfoYTFJX4e18CiTVZe Q==;
+X-CSE-ConnectionGUID: bRXDfAMzTqy27d34wF625Q==
+X-CSE-MsgGUID: Z0wZ3kLZQu+Sa3x59c1X9Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11227"; a="28119073"
+X-IronPort-AV: E=Sophos;i="6.11,210,1725346800"; d="scan'208";a="28119073"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Oct 2024 05:13:22 -0700
+X-CSE-ConnectionGUID: edv1XVzcTnS1vLsxHsDqTA==
+X-CSE-MsgGUID: hMTlyzFBRVCQmK0XL0lItA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,210,1725346800"; d="scan'208";a="79359133"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Oct 2024 05:13:20 -0700
+Date: Thu, 17 Oct 2024 15:13:50 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ suraj.kandpal@intel.com, jani.nikula@linux.intel.com
+Subject: Re: [PATCH 1/7] drm/i915/dp: Use HAS_DSC macro in
+ intel_dp_dsc_max_src_input_bpc
+Message-ID: <ZxD_fiyWKZTO5f_3@ideak-desk.fi.intel.com>
+References: <20241003104343.984060-1-ankit.k.nautiyal@intel.com>
+ <20241003104343.984060-2-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Thu, 17 Oct 2024 13:52:26 +0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241003104343.984060-2-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,72 +67,36 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Avoid hardcoding the LSPCON settle timeout because it takes a longer
-time on certain chips made by certain vendors. Use the function that
-already exists to determine the timeout.
+On Thu, Oct 03, 2024 at 04:13:37PM +0530, Ankit Nautiyal wrote:
+> Use HAS_DSC macro to take into account platforms for which DSC is fused.
+> 
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index c4fdae5097ec..c47748905506 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -1766,6 +1766,9 @@ intel_dp_compute_link_config_wide(struct intel_dp *intel_dp,
+>  static
+>  u8 intel_dp_dsc_max_src_input_bpc(struct drm_i915_private *i915)
+>  {
+> +	if (!HAS_DSC(i915))
 
-Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Signed-off-by: Giedrius Statkevičius <giedriuswork@gmail.com>
----
-v2: add documentation about the parameter, apply 80 character line
-    length limit.
+This is checked already earlier via intel_dp_has_dsc(), couldn't we rely
+on that instead of checking it in these lower level functions?
 
- drivers/gpu/drm/display/drm_dp_dual_mode_helper.c | 4 ++--
- drivers/gpu/drm/i915/display/intel_lspcon.c       | 3 ++-
- include/drm/display/drm_dp_dual_mode_helper.h     | 2 +-
- 3 files changed, 5 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/display/drm_dp_dual_mode_helper.c b/drivers/gpu/drm/display/drm_dp_dual_mode_helper.c
-index 14a2a8473682..d14b262b2344 100644
---- a/drivers/gpu/drm/display/drm_dp_dual_mode_helper.c
-+++ b/drivers/gpu/drm/display/drm_dp_dual_mode_helper.c
-@@ -486,16 +486,16 @@ EXPORT_SYMBOL(drm_lspcon_get_mode);
-  * @dev: &drm_device to use
-  * @adapter: I2C-over-aux adapter
-  * @mode: required mode of operation
-+ * @time_out: LSPCON mode change settle timeout
-  *
-  * Returns:
-  * 0 on success, -error on failure/timeout
-  */
- int drm_lspcon_set_mode(const struct drm_device *dev, struct i2c_adapter *adapter,
--			enum drm_lspcon_mode mode)
-+			enum drm_lspcon_mode mode, int time_out)
- {
- 	u8 data = 0;
- 	int ret;
--	int time_out = 200;
- 	enum drm_lspcon_mode current_mode;
- 
- 	if (mode == DRM_LSPCON_MODE_PCON)
-diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c b/drivers/gpu/drm/i915/display/intel_lspcon.c
-index f9db867fae89..30c31fddec99 100644
---- a/drivers/gpu/drm/i915/display/intel_lspcon.c
-+++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
-@@ -211,7 +211,8 @@ static int lspcon_change_mode(struct intel_lspcon *lspcon,
- 		return 0;
- 	}
- 
--	err = drm_lspcon_set_mode(intel_dp->aux.drm_dev, ddc, mode);
-+	err = drm_lspcon_set_mode(intel_dp->aux.drm_dev, ddc, mode,
-+				  lspcon_get_mode_settle_timeout(lspcon));
- 	if (err < 0) {
- 		drm_err(display->drm, "LSPCON mode change failed\n");
- 		return err;
-diff --git a/include/drm/display/drm_dp_dual_mode_helper.h b/include/drm/display/drm_dp_dual_mode_helper.h
-index 7ee482265087..7ac6969db935 100644
---- a/include/drm/display/drm_dp_dual_mode_helper.h
-+++ b/include/drm/display/drm_dp_dual_mode_helper.h
-@@ -117,5 +117,5 @@ const char *drm_dp_get_dual_mode_type_name(enum drm_dp_dual_mode_type type);
- int drm_lspcon_get_mode(const struct drm_device *dev, struct i2c_adapter *adapter,
- 			enum drm_lspcon_mode *current_mode);
- int drm_lspcon_set_mode(const struct drm_device *dev, struct i2c_adapter *adapter,
--			enum drm_lspcon_mode reqd_mode);
-+			enum drm_lspcon_mode reqd_mode, int time_out);
- #endif
--- 
-2.47.0
-
+> +		return 0;
+> +
+>  	/* Max DSC Input BPC for ICL is 10 and for TGL+ is 12 */
+>  	if (DISPLAY_VER(i915) >= 12)
+>  		return 12;
+> -- 
+> 2.45.2
+> 
