@@ -2,62 +2,104 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CBE59A2166
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Oct 2024 13:46:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D84B49A2188
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Oct 2024 13:55:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9FB6710E802;
-	Thu, 17 Oct 2024 11:46:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D404610E7FB;
+	Thu, 17 Oct 2024 11:55:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="emaRf3nK";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="AagwBsl1";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="546Pcq2r";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="AagwBsl1";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="546Pcq2r";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8932D10E7FB;
- Thu, 17 Oct 2024 11:46:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729165582; x=1760701582;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=L+wxwGyQqmssu+Lab5dSp5b1acjSkHc3I5NYYhx/MAw=;
- b=emaRf3nK+IyJXyCvweD6wYSqe14Rradg7Cx2CKp+2/e+PjFkEVRPiQF1
- qf8hZCmm86q5/1A7SifPcs0GzAbT4q3W5hl1WYPQ7LvVP//hpMrOp+b1l
- 2X5Nj4qivL/8zyU337JUzy4xK4l+kdzaf0aafrgAJnEwh796pTkvH+rt/
- Cb9RKFOwWYQDKBdkR2/ujnSrOh19exn3bLKpUy9NK4E8GH5aJsEKTg17v
- KFrDV5wb19veJS7Cx0lp8bbg3DUL7pdQH/+r2dC1CIRh9rKI0eUAiQ6fj
- WbQOi94iFpaaDq+Gl0vaUMYRRN65pJcHNYac5FC1BUU1PHiHt6DCWqKA2 Q==;
-X-CSE-ConnectionGUID: nVZLo3nXQlKlKkTGFGkdyQ==
-X-CSE-MsgGUID: hICIZ54gTpyuFzK65xjDvg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="39766480"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="39766480"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Oct 2024 04:46:21 -0700
-X-CSE-ConnectionGUID: 08NG35+5ScKq4u1z8WZjUg==
-X-CSE-MsgGUID: WtYWI7L8QrGDagC1fNifCA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,210,1725346800"; d="scan'208";a="78563451"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 17 Oct 2024 04:46:17 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 17 Oct 2024 14:46:16 +0300
-Date: Thu, 17 Oct 2024 14:46:16 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Shuicheng Lin <shuicheng.lin@intel.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Jani Nikula <jani.nikula@intel.com>,
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66A0A10E7F8;
+ Thu, 17 Oct 2024 11:55:19 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 0C30F1FCD8;
+ Thu, 17 Oct 2024 11:55:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1729166118; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=kR9BaCLXnlcad/67YshRlnefaKRNHgduvgR2nx5Lae8=;
+ b=AagwBsl12g0Y/Dm5PjoL6+94wOwT7evCK8BoHZo7SG7nHmjjgjD4Fy4M36Jupiqu5zVH7F
+ d3XWrkZ2knXsAW35AJROyGG/nsIzJHxRdOeSIRHIdhyTwsgik4oO4moO9ChyFC6HGVokPb
+ dcB1MMf7piPXxz2/GSL5mZVFUY9+7rI=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1729166118;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=kR9BaCLXnlcad/67YshRlnefaKRNHgduvgR2nx5Lae8=;
+ b=546Pcq2rUmlzIHpt8lvcvJRJwspaLt6yD2DTQMTHpZcN9xZdwptfOIoAIwai612rAaXPSn
+ JQtNYTzG6hhyaDDQ==
+Authentication-Results: smtp-out2.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1729166118; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=kR9BaCLXnlcad/67YshRlnefaKRNHgduvgR2nx5Lae8=;
+ b=AagwBsl12g0Y/Dm5PjoL6+94wOwT7evCK8BoHZo7SG7nHmjjgjD4Fy4M36Jupiqu5zVH7F
+ d3XWrkZ2knXsAW35AJROyGG/nsIzJHxRdOeSIRHIdhyTwsgik4oO4moO9ChyFC6HGVokPb
+ dcB1MMf7piPXxz2/GSL5mZVFUY9+7rI=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1729166118;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=kR9BaCLXnlcad/67YshRlnefaKRNHgduvgR2nx5Lae8=;
+ b=546Pcq2rUmlzIHpt8lvcvJRJwspaLt6yD2DTQMTHpZcN9xZdwptfOIoAIwai612rAaXPSn
+ JQtNYTzG6hhyaDDQ==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 9FD7B13A53;
+ Thu, 17 Oct 2024 11:55:17 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id AfXZJSX7EGdqdwAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Thu, 17 Oct 2024 11:55:17 +0000
+Date: Thu, 17 Oct 2024 13:55:16 +0200
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH v2] drm/i915/dp: Fix memory leak in parse_lfp_panel_dtd()
-Message-ID: <ZxD5COw3IjfOvxia@intel.com>
-References: <20241016150154.1466131-1-shuicheng.lin@intel.com>
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-fixes
+Message-ID: <20241017115516.GA196624@linux.fritz.box>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241016150154.1466131-1-shuicheng.lin@intel.com>
-X-Patchwork-Hint: comment
+X-Spam-Level: 
+X-Spamd-Result: default: False [-4.30 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; MIME_TRACE(0.00)[0:+];
+ ARC_NA(0.00)[]; RCPT_COUNT_TWELVE(0.00)[16];
+ MISSING_XM_UA(0.00)[]; FREEMAIL_ENVRCPT(0.00)[gmail.com];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ TO_DN_SOME(0.00)[]; RCVD_TLS_ALL(0.00)[];
+ TO_MATCH_ENVRCPT_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
+ FUZZY_BLOCKED(0.00)[rspamd.com];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url,
+ imap1.dmz-prg2.suse.org:helo]
+X-Spam-Score: -4.30
+X-Spam-Flag: NO
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,71 +115,138 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 16, 2024 at 03:01:54PM +0000, Shuicheng Lin wrote:
-> The function parse_lfp_panel_dtd() is called when the driver
-> attempts to initialize the eDP connector, and it allocates memory,
-> which is recorded in panel->vbt.lfp_vbt_mode. However, since no
-> eDP panel is connected, the driver fails at intel_edp_init_dpcd()
-> and follows the failure path. Unfortunately, the allocated memory
-> is not freed in this case.
-> 
-> To fix this issue, free the memory in the failure path.
-> 
-> leak info from kmemleak:
-> "
-> unreferenced object 0xffff8881252f8800 (size 128):
->   comm "systemd-udevd", pid 192, jiffies 4294896880
->   hex dump (first 32 bytes):
->     e8 fd 00 00 00 04 18 04 a0 04 40 05 00 00 00 03  ..........@.....
->     03 03 09 03 26 03 00 00 0a 00 00 00 00 00 00 00  ....&...........
->   backtrace (crc 7448f6b4):
->     [<ffffffff82475c9b>] kmemleak_alloc+0x4b/0x80
->     [<ffffffff814bb50e>] __kmalloc_cache_noprof+0x2be/0x390
->     [<ffffffffa069862c>] intel_bios_init_panel+0x1c4c/0x2720 [xe]
->     [<ffffffffa0699123>] intel_bios_init_panel_early+0x13/0x20 [xe]
->     [<ffffffffa06fceb9>] intel_dp_init_connector+0x2f9/0x1080 [xe]
->     [<ffffffffa06c370a>] intel_ddi_init+0xbba/0xf50 [xe]
->     [<ffffffffa069b906>] intel_bios_for_each_encoder+0x36/0x60 [xe]
->     [<ffffffffa06d7bd6>] intel_setup_outputs+0x206/0x450 [xe]
->     [<ffffffffa06dad33>] intel_display_driver_probe_nogem+0x163/0x1f0 [xe]
->     [<ffffffffa0680fc7>] xe_display_init_noaccel+0x27/0x70 [xe]
->     [<ffffffffa05b30d6>] xe_device_probe+0x806/0x9a0 [xe]
->     [<ffffffffa0612f0f>] xe_pci_probe+0x31f/0x590 [xe]
->     [<ffffffff81b41718>] local_pci_probe+0x48/0xb0
->     [<ffffffff81b432c8>] pci_device_probe+0xc8/0x280
->     [<ffffffff81d5dde8>] really_probe+0xf8/0x390
->     [<ffffffff81d5e11a>] __driver_probe_device+0x8a/0x170
-> "
-> 
-> v2 (Jani):
->   -use intel_bios_fini_panel() to pair with intel_bios_init_panel_early()
-> 
-> Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Hi Dave, Sima,
 
-Applied to drm-intel-next. Thanks.
+here are the fixes from the misc tree for this week.
 
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 90fa73575feb..7141e3ca0d83 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -6801,6 +6801,7 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
->  
->  out_vdd_off:
->  	intel_pps_vdd_off_sync(intel_dp);
-> +	intel_bios_fini_panel(&intel_connector->panel);
->  
->  	return false;
->  }
-> -- 
-> 2.25.1
+Best regards
+Thomas
+
+drm-misc-fixes-2024-10-17:
+Short summary of fixes pull:
+
+ast:
+- Clear EDID on unplugged connectors
+
+host1x:
+- Fix boot on Tegra186
+- Set DMA parameters
+
+mgag200:
+- Revert VBLANK support
+
+panel:
+- himax-hx83192: Adjust power and gamma
+
+qaic:
+- Sgtable loop fixes
+
+vmwgfx:
+- Limit display layout allocatino size
+- Handle allocation errors in connector checks
+- Clean up KMS code for 2d-only setup
+- Report surface-check errors correctly
+- Remove NULL test around kvfree()
+The following changes since commit fcddc71ec7ecf15b4df3c41288c9cf0b8e886111:
+
+  drm/fbdev-dma: Only cleanup deferred I/O if necessary (2024-10-10 09:49:25 +0200)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2024-10-17
+
+for you to fetch changes up to c09c4f2a972ca7cd9c8926594aa2099bcbcd3b79:
+
+  drm/ast: vga: Clear EDID if no display is connected (2024-10-17 08:50:14 +0200)
+
+----------------------------------------------------------------
+Short summary of fixes pull:
+
+ast:
+- Clear EDID on unplugged connectors
+
+host1x:
+- Fix boot on Tegra186
+- Set DMA parameters
+
+mgag200:
+- Revert VBLANK support
+
+panel:
+- himax-hx83192: Adjust power and gamma
+
+qaic:
+- Sgtable loop fixes
+
+vmwgfx:
+- Limit display layout allocatino size
+- Handle allocation errors in connector checks
+- Clean up KMS code for 2d-only setup
+- Report surface-check errors correctly
+- Remove NULL test around kvfree()
+
+----------------------------------------------------------------
+Cong Yang (1):
+      drm/panel: himax-hx83102: Adjust power and gamma to optimize brightness
+
+Ian Forbes (2):
+      drm/vmwgfx: Limit display layout ioctl array size to VMWGFX_NUM_DISPLAY_UNITS
+      drm/vmwgfx: Handle possible ENOMEM in vmw_stdu_connector_atomic_check
+
+Jon Hunter (1):
+      gpu: host1x: Fix boot regression for Tegra
+
+Nikolay Kuratov (1):
+      drm/vmwgfx: Handle surface check failure correctly
+
+Pranjal Ramajor Asha Kanojiya (1):
+      accel/qaic: Fix the for loop used to walk SG table
+
+Thierry Reding (1):
+      gpu: host1x: Set up device DMA parameters
+
+Thomas Zimmermann (3):
+      Revert "drm/mgag200: Add vblank support"
+      drm/ast: sil164: Clear EDID if no display is connected
+      drm/ast: vga: Clear EDID if no display is connected
+
+Thorsten Blum (1):
+      drm/vmwgfx: Remove unnecessary NULL checks before kvfree()
+
+Zack Rusin (1):
+      drm/vmwgfx: Cleanup kms setup without 3d
+
+ drivers/accel/qaic/qaic_control.c           |  2 +-
+ drivers/accel/qaic/qaic_data.c              |  6 +--
+ drivers/gpu/drm/ast/ast_sil164.c            |  2 +
+ drivers/gpu/drm/ast/ast_vga.c               |  2 +
+ drivers/gpu/drm/mgag200/mgag200_drv.c       | 38 --------------
+ drivers/gpu/drm/mgag200/mgag200_drv.h       | 14 +-----
+ drivers/gpu/drm/mgag200/mgag200_g200.c      |  5 --
+ drivers/gpu/drm/mgag200/mgag200_g200eh.c    |  5 --
+ drivers/gpu/drm/mgag200/mgag200_g200eh3.c   |  5 --
+ drivers/gpu/drm/mgag200/mgag200_g200er.c    | 10 +---
+ drivers/gpu/drm/mgag200/mgag200_g200ev.c    | 10 +---
+ drivers/gpu/drm/mgag200/mgag200_g200ew3.c   |  5 --
+ drivers/gpu/drm/mgag200/mgag200_g200se.c    | 10 +---
+ drivers/gpu/drm/mgag200/mgag200_g200wb.c    |  5 --
+ drivers/gpu/drm/mgag200/mgag200_mode.c      | 77 +----------------------------
+ drivers/gpu/drm/panel/panel-himax-hx83102.c | 12 ++---
+ drivers/gpu/drm/vmwgfx/vmwgfx_blit.c        |  6 +--
+ drivers/gpu/drm/vmwgfx/vmwgfx_drv.h         |  4 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_kms.c         | 34 ++-----------
+ drivers/gpu/drm/vmwgfx/vmwgfx_kms.h         |  3 --
+ drivers/gpu/drm/vmwgfx/vmwgfx_stdu.c        |  4 ++
+ drivers/gpu/drm/vmwgfx/vmwgfx_surface.c     |  9 ++--
+ drivers/gpu/host1x/context.c                |  1 +
+ drivers/gpu/host1x/dev.c                    | 18 +++----
+ include/linux/host1x.h                      |  1 +
+ 25 files changed, 48 insertions(+), 240 deletions(-)
 
 -- 
-Ville Syrjälä
-Intel
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
