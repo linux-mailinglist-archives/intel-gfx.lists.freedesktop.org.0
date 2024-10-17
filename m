@@ -2,53 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 455829A1D0D
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Oct 2024 10:21:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4573F9A1D0F
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Oct 2024 10:21:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC5C510E7C9;
-	Thu, 17 Oct 2024 08:21:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13B5C10E7BF;
+	Thu, 17 Oct 2024 08:21:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZYFKi/dh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NmXzH9WG";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B2F410E7C6;
- Thu, 17 Oct 2024 08:21:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 758EC10E7C9;
+ Thu, 17 Oct 2024 08:21:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729153310; x=1760689310;
+ t=1729153311; x=1760689311;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=LexmVTzSMkdg8kpZB11S9FwxM8LzwiTfCDa1dHlORUA=;
- b=ZYFKi/dhU5b7mcXJSfwH+pqKYZ8eD8QdBdCJRFOgbWLMMhbbNDd67XMM
- T/SKKVoI1MPKEcWFYf5fhKgbteu4ZeCaW2NqGvbI69En7md0G7K+C+upW
- DtcRrMP8aBlaGSmWk8s+6E9c/lHE/dOKDIzWnI35m4hrD8ij9Y98tSCw+
- l9KL6kCGdvyTu1ZMywwetO2vHLL+vC3+uzI4USqdENs4/bq0l0tanMERT
- TJr6A+69ppcCgCjDCovEpDUw9Yc1krOjo2hflQoETt/Hmi3gYZoChxrP7
- ZiD6x3SVDNT9w8p6JxYyWKYhtcP2z4bAGavxpSrNNKOFAy7zJNGSYVzt/ A==;
-X-CSE-ConnectionGUID: eSNp7BoEQCCnUYP0HaBwXw==
-X-CSE-MsgGUID: sPOCloHQQcOrCQPKnsApkw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="28724885"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="28724885"
+ bh=NrOE5Mh0T2MzThq4c5aoDebuHKgGbuRobZTvctvnfD4=;
+ b=NmXzH9WGJ2nNW1VROWJCU7fJlha7nlYyKTETmVzfebGAKcnEUGzENnYS
+ NHxgRICcpMUoV3squhAyCw6lUSmvR9aiAIcSD/8yh+8zE7ZiomfRnNDpk
+ RdOqcCpCrpTJFUIUtRjkfuOnwCkx2KaUx6SL3ShSfgJtXwBSX+6uuXO47
+ SirNWKURQhNnOEdF0A5igJbjgZVRMdqzaxw2624jZG+o2tXu1QfxTLdbp
+ xgPBfNYGxjpPk4WFwJWb5uCGNnOWMSpmKTig6CXPshgbw97M2JgROezUV
+ eN65maomY3sem1eX+D6rOLLdHEHmah8XNLPxxJ3x5S/w6VsCq/Bj5sH8C Q==;
+X-CSE-ConnectionGUID: WmIYnPuqRGmMD5VGiAXo2Q==
+X-CSE-MsgGUID: 1lJVlmvTSG6NRLQxXQ3GiQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="28724889"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="28724889"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Oct 2024 01:21:50 -0700
-X-CSE-ConnectionGUID: secfTX1uRy6hrXnlTIOsQQ==
-X-CSE-MsgGUID: 9kFujOaaSXWsCuH4jUzKeg==
+ 17 Oct 2024 01:21:51 -0700
+X-CSE-ConnectionGUID: Patavu7STEi4P76GD1oaNw==
+X-CSE-MsgGUID: AJ9hLbL0TDW/7XXlp3a0qQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,210,1725346800"; d="scan'208";a="78086265"
+X-IronPort-AV: E=Sophos;i="6.11,210,1725346800"; d="scan'208";a="78086271"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Oct 2024 01:21:48 -0700
+ 17 Oct 2024 01:21:50 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	suraj.kandpal@intel.com
-Subject: [PATCH 08/10] drm/i915/display: Account for pixel replication in
- pipe_src
-Date: Thu, 17 Oct 2024 13:53:46 +0530
-Message-ID: <20241017082348.3413727-9-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 09/10] drm/i915/dsc: Account for Odd pixel removal
+Date: Thu, 17 Oct 2024 13:53:47 +0530
+Message-ID: <20241017082348.3413727-10-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241017082348.3413727-1-ankit.k.nautiyal@intel.com>
 References: <20241017082348.3413727-1-ankit.k.nautiyal@intel.com>
@@ -69,70 +68,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-With DSC pixel replication, extra pixels are added in the last slice
-of the last pipe. Due to this the total hactive gets increased by few
-pixels. Adjust the computation for pipe source width to account for
-pixel replication.
-
-Furthermore if the pipe source width is odd, add one more to make
-the pipe source width even, as per the Bspec.
-
-These extra pixels will be take care by the Splitter logic in
-hardware.
+With 3 DSC engines we can support 12 slices. With ultra joiner
+usecase while dividing the width into 12 slices, we might
+end up having odd number of pixels per pipe.
+As per Bspec, pipe src size should be even, so an extra pixel is added
+in each pipe. For Pipe A and C the odd pixel is added at the end of
+pipe and for Pipe B and D it is added at the beginning of the pipe.
+This extra pixel needs to be dropped in Splitter hardware.
+So account for odd pixel removal while programming DSS CTL.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 30 ++++++++++++++++++--
- 1 file changed, 28 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_vdsc.c | 26 +++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 20bb27aa880b..4f6fbee1ca7c 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -2514,15 +2514,41 @@ void intel_encoder_get_config(struct intel_encoder *encoder,
- 	intel_crtc_readout_derived_state(crtc_state);
+diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+index df5285d3e4b2..c41be2da4df5 100644
+--- a/drivers/gpu/drm/i915/display/intel_vdsc.c
++++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+@@ -768,6 +768,26 @@ void intel_uncompressed_joiner_enable(const struct intel_crtc_state *crtc_state)
+ 	}
  }
  
-+static int intel_splitter_adjust_pipe_width(int width, int pixel_replication_count, int num_pipes)
++/*
++ * With 12 slices, there can be a case where the src width is odd.
++ * As per Bspec the src width should be even, so an extra Odd Pixel is
++ * programmed in Pipe in such cases. This extra pixel needs to be
++ * dropped in Splitter HW.
++ */
++static
++bool intel_dsc_need_odd_pixel_removal(const struct intel_crtc_state *crtc_state)
 +{
-+	int pipe_src_width;
++	int pipe_src_w = drm_rect_width(&crtc_state->pipe_src);
 +
-+	/*
-+	 * With ultrajoiner and 12 DSC slices case, addition of extra pixels (padding)
-+	 * is required.
-+	 * Pixel replication is required due to the rounding of slice_width (Hactive / slice_count)
-+	 * One extra pixel is added if the pipe src width becomes odd, to make it even.
-+	 *
-+	 * Splitter HW takes care of these by removing odd pixel from each pipe.
-+	 * It removes replicated pixels from the last pipe.
-+	 */
-+	width += pixel_replication_count;
++	if (intel_crtc_num_joined_pipes(crtc_state) != 4)
++		return false;
 +
-+	pipe_src_width = width / num_pipes;
++	if ((pipe_src_w + crtc_state->dsc.pixel_replication_count) % 4)
++		return true;
 +
-+	if (pipe_src_width % 2 == 0)
-+		return width;
-+
-+	return width + num_pipes;
++	return false;
 +}
 +
- static void intel_joiner_compute_pipe_src(struct intel_crtc_state *crtc_state)
+ void intel_dsc_enable(const struct intel_crtc_state *crtc_state)
  {
- 	int num_pipes = intel_crtc_num_joined_pipes(crtc_state);
- 	int width, height;
-+	int pixel_replication_count = crtc_state->dsc.pixel_replication_count;
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+@@ -806,6 +826,12 @@ void intel_dsc_enable(const struct intel_crtc_state *crtc_state)
+ 			dss_ctl1_val |= PRIMARY_BIG_JOINER_ENABLE;
+ 	}
  
--	if (num_pipes == 1)
-+	if (num_pipes == 1 && !pixel_replication_count)
- 		return;
- 
--	width = drm_rect_width(&crtc_state->pipe_src);
-+	width = intel_splitter_adjust_pipe_width(drm_rect_width(&crtc_state->pipe_src),
-+						 pixel_replication_count, num_pipes);
++	if (intel_dsc_need_odd_pixel_removal(crtc_state)) {
++		dss_ctl2_val |= ODD_PIXEL_REMOVAL;
++		if (crtc->pipe == PIPE_A || crtc->pipe == PIPE_C)
++			dss_ctl2_val |= ODD_PIXEL_REMOVAL_CONFIG_EOL;
++	}
 +
- 	height = drm_rect_height(&crtc_state->pipe_src);
+ 	if (crtc_state->dsc.pixel_replication_count)
+ 		dss_ctl3_val = DSC_PIXEL_REPLICATION(crtc_state->dsc.pixel_replication_count);
  
- 	drm_rect_init(&crtc_state->pipe_src, 0, 0,
 -- 
 2.45.2
 
