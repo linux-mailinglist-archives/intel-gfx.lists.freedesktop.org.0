@@ -2,58 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D015B9A1D10
-	for <lists+intel-gfx@lfdr.de>; Thu, 17 Oct 2024 10:21:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA9839A1D38
+	for <lists+intel-gfx@lfdr.de>; Thu, 17 Oct 2024 10:31:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 482AB10E7B7;
-	Thu, 17 Oct 2024 08:21:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 717ED10E7C2;
+	Thu, 17 Oct 2024 08:31:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jSOEqAF2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jOb/fx69";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0DAC510E7B7;
- Thu, 17 Oct 2024 08:21:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E892B10E7BC;
+ Thu, 17 Oct 2024 08:31:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729153314; x=1760689314;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=d+UYDEvogSWqfxHF2naQpMuzXYjo6/nu2V9p00dCkuE=;
- b=jSOEqAF2aJwBu6cr9w2AGHy1NB8p/LxhJk9IIQQeehHuNQNFj5y6zL8b
- InEIuxgVpukZHj+s8zDoySX9tJwW1Mmipyk/M9f+vE8sMce9qP3rbtUoK
- sxf0ZYjypI9/MgNaT1D6LzwW1ZT7T08XTXDJGLpP7g0+fJTcK+DvcMmC5
- Flgv/pJkk9OxGbd66JAU0UuqnszDoWvKe0USOqe6Act4zWWQd3DTUaiDC
- FQviMGvE98vcDi1v7/YXZl/EA4qGqklxPEXJtWzeJy2fEKcnJfKxahuci
- QdrZzf+XzhtdJZQn+f7XRdRG+kkX5o7EuN6empik21JlDQCn9BhK09nPc A==;
-X-CSE-ConnectionGUID: XNb8NdSpTzCJE97eBv9Pvw==
-X-CSE-MsgGUID: ZcMvIo7hQrW+PE/faiMQUg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="28724907"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="28724907"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Oct 2024 01:21:53 -0700
-X-CSE-ConnectionGUID: Gpdi3DrnRKaPNKJmbhB3aA==
-X-CSE-MsgGUID: MMg67665R+KDa/G4k2i/JA==
+ t=1729153916; x=1760689916;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=Ii1v0FtqU8oTZXDztwaS+oUGSNl+R8s0xWhdAHmPyDI=;
+ b=jOb/fx69nJUIIW0ei9PeRdJnXOuQJ5bo7vlNfRB3KJU+yEddStymCS2j
+ THx4slSb0bNDw2Zw14La4LW5gZyoqPfwFlLhJ4FDPF69JKAkobN5v7JJV
+ TMya9mwMYr+OdqpY8+Hy2612ErYb6o0IHBRVQrAzUsbywpMGNVDfx+mys
+ 5N35QUH0OdglQNMpLl7SyJGljwW/0GapIKSlp9Xm+yb7dnQoSQuUDCLhf
+ JUQ9eqr2aUBiZXCLEMTB2rI/NNMDdsFo1OFqjGEdJvH6/YrVSiXYQFCtX
+ WVLsRkPm4kP9OKtSoK20/QWRkT1NN6SVU4OvBVSXUN98H8CjKZQRcViLs A==;
+X-CSE-ConnectionGUID: Y3tjZMmIQAChcun8MiNTIg==
+X-CSE-MsgGUID: MlEl6QqqQXiMmM90o2mPZQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11227"; a="39265768"
+X-IronPort-AV: E=Sophos;i="6.11,210,1725346800"; d="scan'208";a="39265768"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Oct 2024 01:31:55 -0700
+X-CSE-ConnectionGUID: WprSBoEoTWKK4qU6deXbzg==
+X-CSE-MsgGUID: RENHn+cPQEmbP0llsXPuTw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,210,1725346800"; d="scan'208";a="78086281"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Oct 2024 01:21:51 -0700
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org,
-	suraj.kandpal@intel.com
-Subject: [PATCH 10/10] drm/i915/dp: Add support for 3 vdsc engines and 12
- slices.
-Date: Thu, 17 Oct 2024 13:53:48 +0530
-Message-ID: <20241017082348.3413727-11-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241017082348.3413727-1-ankit.k.nautiyal@intel.com>
-References: <20241017082348.3413727-1-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,210,1725346800"; d="scan'208";a="83035203"
+Received: from mlehtone-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.51])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Oct 2024 01:31:51 -0700
+Date: Thu, 17 Oct 2024 11:31:48 +0300
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-intel-fixes
+Message-ID: <ZxDLdML9Dwqkb1AW@jlahtine-mobl.ger.corp.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,65 +76,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Certain resolutions require 12 DSC slices support along with ultrajoiner.
-For such cases, the third VDSC Engine per Pipe is enabled. Each VDSC
-Engine processes 1 Slice, resulting in a total of 12 VDSC Instances
-(4 Pipes * 3 VDSC Instances per Pipe).
-Add support for 12 DSC slices and 3 VDSC engines for such modes.
+Hi Dave & Sima,
 
-v2: Add missing check for 3 slices support only with 4 joined pipes.
-(Suraj)
+Here goes drm-intel-fixes towards v6.12-rc4.
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 18 ++++++++++++++++--
- 1 file changed, 16 insertions(+), 2 deletions(-)
+Just two DP MST fixes this round.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index ef96b9235636..91ae29d76cf5 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -110,8 +110,10 @@ static const u8 valid_dsc_bpp[] = {6, 8, 10, 12, 15};
- 
- /* With Single pipe configuration, HW is capable of supporting maximum
-  * of 4 slices per line.
-+ * For higher resolutions where 12 slice support is required with
-+ * ultrajoiner, only then each pipe can support 3 slices.
-  */
--static const u8 valid_dsc_slicecount[] = {1, 2, 4};
-+static const u8 valid_dsc_slicecount[] = {1, 2, 3, 4};
- 
- /**
-  * intel_dp_is_edp - is the given port attached to an eDP panel (either CPU or PCH)
-@@ -1043,6 +1045,13 @@ u8 intel_dp_dsc_get_slice_count(const struct intel_connector *connector,
- 	for (i = 0; i < ARRAY_SIZE(valid_dsc_slicecount); i++) {
- 		u8 test_slice_count = valid_dsc_slicecount[i] * num_joined_pipes;
- 
-+		/*
-+		 * 3 DSC Slices per pipe need 3 DSC engines,
-+		 * which is supported only with Ultrajoiner.
-+		 */
-+		if (valid_dsc_slicecount[i] == 3 && num_joined_pipes != 4)
-+			continue;
-+
- 		if (test_slice_count >
- 		    drm_dp_dsc_sink_max_slice_count(connector->dp.dsc_dpcd, false))
- 			break;
-@@ -2463,8 +2472,13 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
- 	 * VDSC engine operates at 1 Pixel per clock, so if peak pixel rate
- 	 * is greater than the maximum Cdclock and if slice count is even
- 	 * then we need to use 2 VDSC instances.
-+	 * In case of Ultrajoiner along with 12 slices we need to use 3
-+	 * VDSC instances.
- 	 */
--	if (pipe_config->joiner_pipes || pipe_config->dsc.slice_count > 1)
-+	if (pipe_config->joiner_pipes && num_joined_pipes == 4 &&
-+	    pipe_config->dsc.slice_count == 12)
-+		pipe_config->dsc.dsc_split = INTEL_DSC_SPLIT_3_STREAMS;
-+	else if (pipe_config->joiner_pipes || pipe_config->dsc.slice_count > 1)
- 		pipe_config->dsc.dsc_split = INTEL_DSC_SPLIT_2_STREAMS;
- 
- 	ret = intel_dp_dsc_compute_params(connector, pipe_config);
--- 
-2.45.2
+Regards, Joonas
 
+***
+
+drm-intel-fixes-2024-10-17:
+
+- Two DP bandwidth related MST fixes
+
+The following changes since commit 8e929cb546ee42c9a61d24fae60605e9e3192354:
+
+  Linux 6.12-rc3 (2024-10-13 14:33:32 -0700)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-fixes-2024-10-17
+
+for you to fetch changes up to 2f54e71359eb2abc0bdf6619cd356e5e350ff27b:
+
+  drm/i915/dp_mst: Don't require DSC hblank quirk for a non-DSC compatible mode (2024-10-16 14:56:40 +0300)
+
+----------------------------------------------------------------
+- Two DP bandwidth related MST fixes
+
+----------------------------------------------------------------
+Imre Deak (2):
+      drm/i915/dp_mst: Handle error during DSC BW overhead/slice calculation
+      drm/i915/dp_mst: Don't require DSC hblank quirk for a non-DSC compatible mode
+
+ drivers/gpu/drm/i915/display/intel_dp_mst.c | 40 +++++++++++++++++++++--------
+ 1 file changed, 30 insertions(+), 10 deletions(-)
