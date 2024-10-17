@@ -2,52 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4573F9A1D0F
+	by mail.lfdr.de (Postfix) with ESMTPS id D015B9A1D10
 	for <lists+intel-gfx@lfdr.de>; Thu, 17 Oct 2024 10:21:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 13B5C10E7BF;
-	Thu, 17 Oct 2024 08:21:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 482AB10E7B7;
+	Thu, 17 Oct 2024 08:21:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NmXzH9WG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jSOEqAF2";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 758EC10E7C9;
- Thu, 17 Oct 2024 08:21:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0DAC510E7B7;
+ Thu, 17 Oct 2024 08:21:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729153311; x=1760689311;
+ t=1729153314; x=1760689314;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=NrOE5Mh0T2MzThq4c5aoDebuHKgGbuRobZTvctvnfD4=;
- b=NmXzH9WGJ2nNW1VROWJCU7fJlha7nlYyKTETmVzfebGAKcnEUGzENnYS
- NHxgRICcpMUoV3squhAyCw6lUSmvR9aiAIcSD/8yh+8zE7ZiomfRnNDpk
- RdOqcCpCrpTJFUIUtRjkfuOnwCkx2KaUx6SL3ShSfgJtXwBSX+6uuXO47
- SirNWKURQhNnOEdF0A5igJbjgZVRMdqzaxw2624jZG+o2tXu1QfxTLdbp
- xgPBfNYGxjpPk4WFwJWb5uCGNnOWMSpmKTig6CXPshgbw97M2JgROezUV
- eN65maomY3sem1eX+D6rOLLdHEHmah8XNLPxxJ3x5S/w6VsCq/Bj5sH8C Q==;
-X-CSE-ConnectionGUID: WmIYnPuqRGmMD5VGiAXo2Q==
-X-CSE-MsgGUID: 1lJVlmvTSG6NRLQxXQ3GiQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="28724889"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="28724889"
+ bh=d+UYDEvogSWqfxHF2naQpMuzXYjo6/nu2V9p00dCkuE=;
+ b=jSOEqAF2aJwBu6cr9w2AGHy1NB8p/LxhJk9IIQQeehHuNQNFj5y6zL8b
+ InEIuxgVpukZHj+s8zDoySX9tJwW1Mmipyk/M9f+vE8sMce9qP3rbtUoK
+ sxf0ZYjypI9/MgNaT1D6LzwW1ZT7T08XTXDJGLpP7g0+fJTcK+DvcMmC5
+ Flgv/pJkk9OxGbd66JAU0UuqnszDoWvKe0USOqe6Act4zWWQd3DTUaiDC
+ FQviMGvE98vcDi1v7/YXZl/EA4qGqklxPEXJtWzeJy2fEKcnJfKxahuci
+ QdrZzf+XzhtdJZQn+f7XRdRG+kkX5o7EuN6empik21JlDQCn9BhK09nPc A==;
+X-CSE-ConnectionGUID: XNb8NdSpTzCJE97eBv9Pvw==
+X-CSE-MsgGUID: ZcMvIo7hQrW+PE/faiMQUg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="28724907"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="28724907"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Oct 2024 01:21:51 -0700
-X-CSE-ConnectionGUID: Patavu7STEi4P76GD1oaNw==
-X-CSE-MsgGUID: AJ9hLbL0TDW/7XXlp3a0qQ==
+ 17 Oct 2024 01:21:53 -0700
+X-CSE-ConnectionGUID: Gpdi3DrnRKaPNKJmbhB3aA==
+X-CSE-MsgGUID: MMg67665R+KDa/G4k2i/JA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,210,1725346800"; d="scan'208";a="78086271"
+X-IronPort-AV: E=Sophos;i="6.11,210,1725346800"; d="scan'208";a="78086281"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Oct 2024 01:21:50 -0700
+ 17 Oct 2024 01:21:51 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	suraj.kandpal@intel.com
-Subject: [PATCH 09/10] drm/i915/dsc: Account for Odd pixel removal
-Date: Thu, 17 Oct 2024 13:53:47 +0530
-Message-ID: <20241017082348.3413727-10-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 10/10] drm/i915/dp: Add support for 3 vdsc engines and 12
+ slices.
+Date: Thu, 17 Oct 2024 13:53:48 +0530
+Message-ID: <20241017082348.3413727-11-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241017082348.3413727-1-ankit.k.nautiyal@intel.com>
 References: <20241017082348.3413727-1-ankit.k.nautiyal@intel.com>
@@ -68,64 +69,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-With 3 DSC engines we can support 12 slices. With ultra joiner
-usecase while dividing the width into 12 slices, we might
-end up having odd number of pixels per pipe.
-As per Bspec, pipe src size should be even, so an extra pixel is added
-in each pipe. For Pipe A and C the odd pixel is added at the end of
-pipe and for Pipe B and D it is added at the beginning of the pipe.
-This extra pixel needs to be dropped in Splitter hardware.
-So account for odd pixel removal while programming DSS CTL.
+Certain resolutions require 12 DSC slices support along with ultrajoiner.
+For such cases, the third VDSC Engine per Pipe is enabled. Each VDSC
+Engine processes 1 Slice, resulting in a total of 12 VDSC Instances
+(4 Pipes * 3 VDSC Instances per Pipe).
+Add support for 12 DSC slices and 3 VDSC engines for such modes.
+
+v2: Add missing check for 3 slices support only with 4 joined pipes.
+(Suraj)
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vdsc.c | 26 +++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
+ drivers/gpu/drm/i915/display/intel_dp.c | 18 ++++++++++++++++--
+ 1 file changed, 16 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-index df5285d3e4b2..c41be2da4df5 100644
---- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-+++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-@@ -768,6 +768,26 @@ void intel_uncompressed_joiner_enable(const struct intel_crtc_state *crtc_state)
- 	}
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index ef96b9235636..91ae29d76cf5 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -110,8 +110,10 @@ static const u8 valid_dsc_bpp[] = {6, 8, 10, 12, 15};
  
-+/*
-+ * With 12 slices, there can be a case where the src width is odd.
-+ * As per Bspec the src width should be even, so an extra Odd Pixel is
-+ * programmed in Pipe in such cases. This extra pixel needs to be
-+ * dropped in Splitter HW.
-+ */
-+static
-+bool intel_dsc_need_odd_pixel_removal(const struct intel_crtc_state *crtc_state)
-+{
-+	int pipe_src_w = drm_rect_width(&crtc_state->pipe_src);
-+
-+	if (intel_crtc_num_joined_pipes(crtc_state) != 4)
-+		return false;
-+
-+	if ((pipe_src_w + crtc_state->dsc.pixel_replication_count) % 4)
-+		return true;
-+
-+	return false;
-+}
-+
- void intel_dsc_enable(const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-@@ -806,6 +826,12 @@ void intel_dsc_enable(const struct intel_crtc_state *crtc_state)
- 			dss_ctl1_val |= PRIMARY_BIG_JOINER_ENABLE;
- 	}
+ /* With Single pipe configuration, HW is capable of supporting maximum
+  * of 4 slices per line.
++ * For higher resolutions where 12 slice support is required with
++ * ultrajoiner, only then each pipe can support 3 slices.
+  */
+-static const u8 valid_dsc_slicecount[] = {1, 2, 4};
++static const u8 valid_dsc_slicecount[] = {1, 2, 3, 4};
  
-+	if (intel_dsc_need_odd_pixel_removal(crtc_state)) {
-+		dss_ctl2_val |= ODD_PIXEL_REMOVAL;
-+		if (crtc->pipe == PIPE_A || crtc->pipe == PIPE_C)
-+			dss_ctl2_val |= ODD_PIXEL_REMOVAL_CONFIG_EOL;
-+	}
-+
- 	if (crtc_state->dsc.pixel_replication_count)
- 		dss_ctl3_val = DSC_PIXEL_REPLICATION(crtc_state->dsc.pixel_replication_count);
+ /**
+  * intel_dp_is_edp - is the given port attached to an eDP panel (either CPU or PCH)
+@@ -1043,6 +1045,13 @@ u8 intel_dp_dsc_get_slice_count(const struct intel_connector *connector,
+ 	for (i = 0; i < ARRAY_SIZE(valid_dsc_slicecount); i++) {
+ 		u8 test_slice_count = valid_dsc_slicecount[i] * num_joined_pipes;
  
++		/*
++		 * 3 DSC Slices per pipe need 3 DSC engines,
++		 * which is supported only with Ultrajoiner.
++		 */
++		if (valid_dsc_slicecount[i] == 3 && num_joined_pipes != 4)
++			continue;
++
+ 		if (test_slice_count >
+ 		    drm_dp_dsc_sink_max_slice_count(connector->dp.dsc_dpcd, false))
+ 			break;
+@@ -2463,8 +2472,13 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+ 	 * VDSC engine operates at 1 Pixel per clock, so if peak pixel rate
+ 	 * is greater than the maximum Cdclock and if slice count is even
+ 	 * then we need to use 2 VDSC instances.
++	 * In case of Ultrajoiner along with 12 slices we need to use 3
++	 * VDSC instances.
+ 	 */
+-	if (pipe_config->joiner_pipes || pipe_config->dsc.slice_count > 1)
++	if (pipe_config->joiner_pipes && num_joined_pipes == 4 &&
++	    pipe_config->dsc.slice_count == 12)
++		pipe_config->dsc.dsc_split = INTEL_DSC_SPLIT_3_STREAMS;
++	else if (pipe_config->joiner_pipes || pipe_config->dsc.slice_count > 1)
+ 		pipe_config->dsc.dsc_split = INTEL_DSC_SPLIT_2_STREAMS;
+ 
+ 	ret = intel_dp_dsc_compute_params(connector, pipe_config);
 -- 
 2.45.2
 
