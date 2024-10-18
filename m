@@ -2,58 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D4289A4799
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Oct 2024 22:03:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C9D979A4875
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Oct 2024 22:49:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC45F10E98B;
-	Fri, 18 Oct 2024 20:03:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0214010E99D;
+	Fri, 18 Oct 2024 20:49:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A82aXasi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EA3fQgGd";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F40A410E988;
- Fri, 18 Oct 2024 20:03:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66E5A10E992;
+ Fri, 18 Oct 2024 20:49:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729281801; x=1760817801;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=1gXeqPgyY/96F15JrWbxwGUzsx9zu0G2FNt68vjT3gU=;
- b=A82aXasilAatSey+RnwFFCwPK+E9uyhT4jKpt9/C18B3Z2vOihIR5u39
- 01vQY87x4BqXCtGC7i2wPjNkCeK4stJ1mfRiysxtdlOP4aG1hhDc48cJM
- 8Bd5oHGPYLVE+42Ch6kc8zxa61jGfG5kw4cjGw3/BWXmENhpfSaBo4OXj
- 01Qn9G9rLmipRgi6wiG2rrtwF2kKwIlJMoYCPiZ5vGmdOlCQmCiRGou0U
- mNr0GWkCgWWxeIepPn79R8OXOP9y5x6Vojkc1vLtjnOAJ2P98n8l3z9Dc
- 8NgcET22GAbCvgTO2qTCTr9KmR3bdXrvRMxPih/g7YVI6QgCxwX2vf8H3 Q==;
-X-CSE-ConnectionGUID: fCj9VNu+T+O+kOTr6ZJGJA==
-X-CSE-MsgGUID: 8ELr48rxTgGIkI84rdA+9w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11229"; a="28286811"
-X-IronPort-AV: E=Sophos;i="6.11,214,1725346800"; d="scan'208";a="28286811"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Oct 2024 13:03:21 -0700
-X-CSE-ConnectionGUID: FqsP0dRkQKqPU7WJHQWgQA==
-X-CSE-MsgGUID: moIY9ISgTmqqmR4QzVSYQA==
+ t=1729284586; x=1760820586;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=KA5twk0kamdMmpGlRIoh3gL7v3sCJDrA5H2ZsilQ6O0=;
+ b=EA3fQgGdNkuelAT1xlmBO2L1Zl7YyqBHZhFWIyxi7jC8hr9xiCBkgNSQ
+ yUxwZYQ4uyxRw3Lw4rPGLk3EXIQqM/WLf3RPbkB3k2/6oe0jAzj9SO6+l
+ QhM0F0Y8asjTgCqnufk+WmOj9cA23DS3uA4bj5PYeNoqbpXCNTe6Z7rnk
+ B0AeOr0lxjYGgFoVVSrfF3YQsuSPhM1BZ9+pi1gDfem8EOOmJ8akaJIRR
+ VkxZ2L3hgkwYcoAJoTPGCgfY/8IK3+hgZIsZn75gt0H6yBuNybQ0LB07G
+ F0aGMTx33oxXKaPHRm+ZPj27zThmZirlYiVSIIVnyQI09z03QIEtQq1eh g==;
+X-CSE-ConnectionGUID: 8JWawWRGTlaXqXAt5KrfIw==
+X-CSE-MsgGUID: D3XYb8T7Q36i0wmzAJi4jw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11229"; a="54240166"
+X-IronPort-AV: E=Sophos;i="6.11,214,1725346800"; d="scan'208";a="54240166"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Oct 2024 13:49:45 -0700
+X-CSE-ConnectionGUID: rCZiTKNyRoqBzkwD6Ku+1g==
+X-CSE-MsgGUID: 4ndcPS9KRXO5gmoQtIhT8Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,214,1725346800"; d="scan'208";a="102263876"
+X-IronPort-AV: E=Sophos;i="6.11,214,1725346800"; d="scan'208";a="109798913"
 Received: from msatwood-mobl.jf.intel.com ([10.24.12.145])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Oct 2024 13:03:21 -0700
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Oct 2024 13:49:45 -0700
 From: Matt Atwood <matthew.s.atwood@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: Suraj Kandpal <suraj.kandpal@intel.com>,
- Matt Atwood <matthew.s.atwood@intel.com>,
- Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH v4 7/7] drm/i915/xe3lpd: Add condition for EDP to powerdown
- P2.PG
-Date: Fri, 18 Oct 2024 13:03:11 -0700
-Message-ID: <20241018200311.67324-8-matthew.s.atwood@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Matt Atwood <matthew.s.atwood@intel.com>
+Subject: [PATCH 00/12] drm/i915/xe3lpd: ptl display patches
+Date: Fri, 18 Oct 2024 13:49:29 -0700
+Message-ID: <20241018204941.73473-1-matthew.s.atwood@intel.com>
 X-Mailer: git-send-email 2.45.0
-In-Reply-To: <20241018200311.67324-1-matthew.s.atwood@intel.com>
-References: <20241018200311.67324-1-matthew.s.atwood@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -71,34 +66,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Suraj Kandpal <suraj.kandpal@intel.com>
+This series builds on the previous one, further enabling new features
+for the platform. 
 
-Add condition for P2.PG power down value.
+Dnyaneshwar Bhadane (3):
+  drm/i915/ptl: Define IS_PANTHERLAKE macro
+  drm/i915/cx0: Extend C10 check to PTL
+  drm/i915/ptl: Move async flip bit to PLANE_SURF register
 
-v2: change subject line to better match patch condition
+Heikkila, Juha-pekka (1):
+  drm/i915/display/xe3: disable x-tiled framebuffers
 
-Bspec: 74494
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
-Reviewed-by: Mika Kahola <mika.kahola@intel.com>
----
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Mika Kahola (1):
+  drm/i915/xe3lpd: Power request asserting/deasserting
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 37c66b32325d..13a99f494680 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -3146,7 +3146,8 @@ static u8 cx0_power_control_disable_val(struct intel_encoder *encoder)
- 	if (intel_encoder_is_c10phy(encoder))
- 		return CX0_P2PG_STATE_DISABLE;
- 
--	if (IS_BATTLEMAGE(i915) && encoder->port == PORT_A)
-+	if ((IS_BATTLEMAGE(i915) && encoder->port == PORT_A) ||
-+	    (DISPLAY_VER(i915) >= 30 && encoder->type == INTEL_OUTPUT_EDP))
- 		return CX0_P2PG_STATE_DISABLE;
- 
- 	return CX0_P4PG_STATE_DISABLE;
+Mitul Golani (1):
+  drm/i915/display/ptl: Fill VRR crtc_state timings before other
+    transcoder timings
+
+Ravi Kumar Vodapalli (2):
+  drm/i915/xe3: Underrun recovery does not exist post Xe2
+  drm/i915/xe3lpd: Skip disabling VRR during modeset disable
+
+Suraj Kandpal (4):
+  drm/i915/xe3lpd: Increase resolution for plane to support 6k
+  drm/i915/xe3lpd: Increase max_h max_v for PSR
+  drm/i915/xe3lpd: Increase bigjoiner limitations
+  drm/i915/xe3lpd: Prune modes for YUV420
+
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  |  9 ++++-
+ drivers/gpu/drm/i915/display/intel_display.c  | 21 ++++++----
+ drivers/gpu/drm/i915/display/intel_dp.c       | 15 +++++--
+ drivers/gpu/drm/i915/display/intel_fb.c       |  2 +-
+ drivers/gpu/drm/i915/display/intel_psr.c      |  6 ++-
+ drivers/gpu/drm/i915/display/intel_tc.c       | 40 +++++++++++++++++++
+ .../drm/i915/display/skl_universal_plane.c    | 29 +++++++++++---
+ .../i915/display/skl_universal_plane_regs.h   |  1 +
+ drivers/gpu/drm/i915/i915_drv.h               |  1 +
+ drivers/gpu/drm/i915/i915_reg.h               |  7 ++++
+ .../gpu/drm/xe/compat-i915-headers/i915_drv.h |  1 +
+ 11 files changed, 112 insertions(+), 20 deletions(-)
+
 -- 
 2.45.0
 
