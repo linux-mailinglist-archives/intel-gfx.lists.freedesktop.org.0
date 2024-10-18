@@ -2,54 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DB529A487A
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Oct 2024 22:49:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E4369A4878
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Oct 2024 22:49:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76C7010E9AB;
-	Fri, 18 Oct 2024 20:49:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF18F10E9A5;
+	Fri, 18 Oct 2024 20:49:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PQEEDTSx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NkHVxGku";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 87E0010E9A0;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DCD2F10E9A5;
  Fri, 18 Oct 2024 20:49:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729284594; x=1760820594;
+ t=1729284595; x=1760820595;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=rjp8/tR3gqm4GS5X/ajslw5SDaQIA9QpQg3HsQOXC/w=;
- b=PQEEDTSx+W6DIsj36ep8ifmU/KOPES+bKPlUyCZO6FdgdJ8U3PCvlMC/
- +OST+dh3P4nhSC/HTBh7yufHIJqFMxDIjNP7c7DdubPFUa1/PSeF1d0m7
- QFzY14YLP4fk7ofyuVCqwXF1+96s1QQ/JsuCTbtTYP605q6gAWbV6KK+g
- lvGcN7U5QQDJoakot1s6NNbLXjyn4LOwKPtEo3eJa9za/Rac7W+4Jrur7
- 9tkgqd2x09Pqtl+SldFDrP6mVPwTnfYl1SHHSGezGyW6H6Qdh0eF9kh4U
- cgxe9XjAB/k9JEuea36u1suwMb66AHy8E8+MgzsACKA9aI9QutbAeAviB Q==;
-X-CSE-ConnectionGUID: 19vJ+cvuTc+sHJTeZXCc9g==
-X-CSE-MsgGUID: JGDCnyosR2aGK+8+I4qmKw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11229"; a="54240192"
-X-IronPort-AV: E=Sophos;i="6.11,214,1725346800"; d="scan'208";a="54240192"
+ bh=Gy+C1wNvqHASzpX8yMLZ8MQ9yXlIHHkmL2QulC9QGio=;
+ b=NkHVxGkuPRCJM+cTVxqw/o5EdpjmL0RGb0YQWzRIaZsHaYsljx9RqRKq
+ YaM/V/Qo1QqV8E35GOIaXDbSP3mQoe+DHIhA3cTzH+Oqnq+FE3lR6hhtb
+ j7365JiM4Kq2zUv793uUwwdYNcOT/FtpDpsRxZRoCmsOj7ivhd1SLJVNU
+ beky+bTl4Th/p1xodgGIYcH14Oxml4bGIzIgpfrNz+6OxHPwxaANriUlv
+ VWYDdofDw7fbMKNyFEto8r8Mt9rn8AMMyBrFAHei0tKIX0myJuXwah0YK
+ av42ibLwcv11EHI6Xtk8H4ptnkKJvBjANy+RhXHSPWz/uzBkI3p8GRWfX A==;
+X-CSE-ConnectionGUID: ctWGloCqRIGUIt/SvLcMNw==
+X-CSE-MsgGUID: r/Ahrr7KRkCGDqYdZVCFRA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11229"; a="54240193"
+X-IronPort-AV: E=Sophos;i="6.11,214,1725346800"; d="scan'208";a="54240193"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  18 Oct 2024 13:49:54 -0700
-X-CSE-ConnectionGUID: HElyHhZ/QsGkOQW3kwP1/w==
-X-CSE-MsgGUID: sz58Dz4rTISXm9vK5B9sFQ==
+X-CSE-ConnectionGUID: rpktiwRaTpGr4auWHvANzQ==
+X-CSE-MsgGUID: QFuMsO14TTGRTYVaSyhaZg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,214,1725346800"; d="scan'208";a="109798961"
+X-IronPort-AV: E=Sophos;i="6.11,214,1725346800"; d="scan'208";a="109798966"
 Received: from msatwood-mobl.jf.intel.com ([10.24.12.145])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Oct 2024 13:49:52 -0700
+ 18 Oct 2024 13:49:53 -0700
 From: Matt Atwood <matthew.s.atwood@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>,
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>,
+ Arun R Murthy <arun.r.murthy@intel.com>,
  Matt Atwood <matthew.s.atwood@intel.com>
-Subject: [PATCH 07/12] drm/i915/xe3lpd: Skip disabling VRR during modeset
- disable
-Date: Fri, 18 Oct 2024 13:49:36 -0700
-Message-ID: <20241018204941.73473-8-matthew.s.atwood@intel.com>
+Subject: [PATCH 08/12] drm/i915/xe3lpd: Increase resolution for plane to
+ support 6k
+Date: Fri, 18 Oct 2024 13:49:37 -0700
+Message-ID: <20241018204941.73473-9-matthew.s.atwood@intel.com>
 X-Mailer: git-send-email 2.45.0
 In-Reply-To: <20241018204941.73473-1-matthew.s.atwood@intel.com>
 References: <20241018204941.73473-1-matthew.s.atwood@intel.com>
@@ -70,37 +71,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
+From: Suraj Kandpal <suraj.kandpal@intel.com>
 
-Spec does not request to disable VRR in the modeset disabling
-sequence for DP and HDMI for xe3_lpd.
+DISPLAY_VER >= 30 onwards CRTC can now support 6k resolution.
+Increase pipe and plane max width and height to reflect this
+increase in resolution.
 
-Bspec: 68848
-Signed-off-by: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
+Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c       |  5 ++++-
+ drivers/gpu/drm/i915/display/skl_universal_plane.c | 13 ++++++++++++-
+ 2 files changed, 16 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index dad415650b40..90669c7f988b 100644
+index 90669c7f988b..72150f257969 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -1310,9 +1310,11 @@ static void intel_pre_plane_update(struct intel_atomic_state *state,
- 		intel_atomic_get_new_crtc_state(state, crtc);
- 	enum pipe pipe = crtc->pipe;
- 
--	if (intel_crtc_vrr_disabling(state, crtc)) {
--		intel_vrr_disable(old_crtc_state);
--		intel_crtc_update_active_timings(old_crtc_state, false);
-+	if (DISPLAY_VER(dev_priv) < 30) {
-+		if (intel_crtc_vrr_disabling(state, crtc)) {
-+			intel_vrr_disable(old_crtc_state);
-+			intel_crtc_update_active_timings(old_crtc_state, false);
-+		}
+@@ -8452,7 +8452,10 @@ intel_mode_valid_max_plane_size(struct drm_i915_private *dev_priv,
+ 	 * plane so let's not advertize modes that are
+ 	 * too big for that.
+ 	 */
+-	if (DISPLAY_VER(dev_priv) >= 11) {
++	if (DISPLAY_VER(dev_priv) >= 30) {
++		plane_width_max = 6144;
++		plane_height_max = 4096;
++	} else if (DISPLAY_VER(dev_priv) >= 11) {
+ 		plane_width_max = 5120 * num_joined_pipes;
+ 		plane_height_max = 4320;
+ 	} else {
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index da974f4a25bd..bd7786a6161a 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -431,6 +431,13 @@ static int icl_plane_min_width(const struct drm_framebuffer *fb,
  	}
+ }
  
- 	if (audio_disabling(old_crtc_state, new_crtc_state))
++static int xe3_plane_max_width(const struct drm_framebuffer *fb,
++				   int color_plane,
++				   unsigned int rotation)
++{
++	return 6144;
++}
++
+ static int icl_hdr_plane_max_width(const struct drm_framebuffer *fb,
+ 				   int color_plane,
+ 				   unsigned int rotation)
+@@ -2589,7 +2596,11 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
+ 
+ 	intel_fbc_add_plane(skl_plane_fbc(dev_priv, pipe, plane_id), plane);
+ 
+-	if (DISPLAY_VER(dev_priv) >= 11) {
++	if (DISPLAY_VER(dev_priv) >= 30) {
++		plane->max_width = xe3_plane_max_width;
++		plane->max_height = icl_plane_max_height;
++		plane->min_cdclk = icl_plane_min_cdclk;
++	}else if (DISPLAY_VER(dev_priv) >= 11) {
+ 		plane->min_width = icl_plane_min_width;
+ 		if (icl_is_hdr_plane(dev_priv, plane_id))
+ 			plane->max_width = icl_hdr_plane_max_width;
 -- 
 2.45.0
 
