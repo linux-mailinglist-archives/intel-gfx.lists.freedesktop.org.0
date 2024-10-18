@@ -2,55 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 112339A4797
-	for <lists+intel-gfx@lfdr.de>; Fri, 18 Oct 2024 22:03:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 33E319A479A
+	for <lists+intel-gfx@lfdr.de>; Fri, 18 Oct 2024 22:03:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 696EE10E985;
-	Fri, 18 Oct 2024 20:03:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5DF810E99A;
+	Fri, 18 Oct 2024 20:03:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MUXEXgUk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gCCLogai";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0AC9A10E97F;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 980CC10E985;
  Fri, 18 Oct 2024 20:03:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729281799; x=1760817799;
+ t=1729281800; x=1760817800;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=CxEMRNRRIw0dhB2YfRGBrSPT+a0j8CSQ8HxSmRv4Olg=;
- b=MUXEXgUk+r7ewzen7mq4QHebEzykjsDEgp+2z/yWTpy2ab2IQ0LpcNEm
- BUhoVwcpyOmDKRAU+KtybuVmLMhJhRv6vYjxkdkyG8vz54zxizriVgllh
- 14DyyQmi+rdbfay+BXmg9aQvBqd+sVaRu3KYxV+Ipb3aUnh6X2AjibUWK
- 59tvQOrey5w0EwXrE7YGkFQrtfnTN4HFcLDTuHLZOq+AQJXRp81HAGJh/
- RukAPdHdLsJu2SGWvbEQg3eC+rhwRaBWOjpN6H6sZdL6Outb8j9nedXEB
- rrs/Qih6O8UkwY/+i6jKAiGlYIPiXbSJXwOCqnbGPy355IiKXQtIEJtU0 A==;
-X-CSE-ConnectionGUID: i1ZXjQouTEmvpBWhh+2CsA==
-X-CSE-MsgGUID: ClOwbYEZSzqM1NHi+7niig==
-X-IronPort-AV: E=McAfee;i="6700,10204,11229"; a="28286795"
-X-IronPort-AV: E=Sophos;i="6.11,214,1725346800"; d="scan'208";a="28286795"
+ bh=DLSVaXeSyGoi/9Ei9o2xtFi5RHxS4N8DlyIMNtgMedk=;
+ b=gCCLogaiaTxJFaC6JPuWDw5q9qzVmsAiCOf/Oo4ITBq3tZxrxEYRiqcU
+ J1xAGUUYLzLD7iSCnIJ/1qC0JQ6xFlSI3HFPSUR8WJ6w2FR/Vg7GKf0ea
+ eI61G+6yJLOQCQ741+mr24tW9azrHRPDOUMfY19K/tFd5W3nsbX8jAUnW
+ HcnBZdllVwx0H9maODlen31W2qCbi8mhoSHsjdhEdhUQSK007bnAe6Ksp
+ zuYkK0dI/x9YCd8sX31Ws69QHwDqVd6W6QWCeev6DyJFGk1sH6jVxzlO7
+ LS1EOV/ShVZvM9L8y+oTTmsaSqCoHHzkSBs3udllBJrGNdwYDstb2tAoX g==;
+X-CSE-ConnectionGUID: B+/CORMHSruSCD5qNqHPPg==
+X-CSE-MsgGUID: K5TM0Ft5Rp+pflIseNWZ/Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11229"; a="28286801"
+X-IronPort-AV: E=Sophos;i="6.11,214,1725346800"; d="scan'208";a="28286801"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  18 Oct 2024 13:03:19 -0700
-X-CSE-ConnectionGUID: hqkDwF5iQHS9RmtrdliIrg==
-X-CSE-MsgGUID: 4d/424tJR2uoK2q+de3wJA==
+X-CSE-ConnectionGUID: 5bmxurxeQ2yL8MKZEhCjkw==
+X-CSE-MsgGUID: T3hErcf/SBC0P0Tugyzx/w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,214,1725346800"; d="scan'208";a="102263864"
+X-IronPort-AV: E=Sophos;i="6.11,214,1725346800"; d="scan'208";a="102263867"
 Received: from msatwood-mobl.jf.intel.com ([10.24.12.145])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Oct 2024 13:03:18 -0700
+ 18 Oct 2024 13:03:19 -0700
 From: Matt Atwood <matthew.s.atwood@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: Suraj Kandpal <suraj.kandpal@intel.com>,
- Matt Atwood <matthew.s.atwood@intel.com>,
- Clint Taylor <Clinton.A.Taylor@intel.com>
-Subject: [PATCH v4 4/7] drm/i915/xe3lpd: Add C20 Phy consolidated programming
- table
-Date: Fri, 18 Oct 2024 13:03:08 -0700
-Message-ID: <20241018200311.67324-5-matthew.s.atwood@intel.com>
+ Matt Atwood <matthew.s.atwood@intel.com>
+Subject: [PATCH v4 5/7] drm/i915/xe3lpd: Add new bit range of MAX swing setup
+Date: Fri, 18 Oct 2024 13:03:09 -0700
+Message-ID: <20241018200311.67324-6-matthew.s.atwood@intel.com>
 X-Mailer: git-send-email 2.45.0
 In-Reply-To: <20241018200311.67324-1-matthew.s.atwood@intel.com>
 References: <20241018200311.67324-1-matthew.s.atwood@intel.com>
@@ -73,65 +71,32 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 
-From DISPLAY_VER() >= 30 C20 PHY consolidated programming table of
-DP and eDP been merged and now use the same rates and values. eDP
-over TypeC has also been introduced.
-Moreover it allows more granular and higher rates. Add new table to
-represent this change.
+Add new bit range for Max PHY Swing Setup in PORT_ALPM_CTL
+register for DISPLAY_VER >= 30.
 
-Bspec: 68961
+v2: implement as two seperate macros instead of a single macro
+v3: extend previous definition by 2 bits that were previously reserved
+
+Bspec: 70277
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
-Reviewed-by: Clint Taylor <Clinton.A.Taylor@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 26 +++++++++++++++++---
- 1 file changed, 23 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_psr_regs.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index f73d576fd99e..f878ef1a97ec 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -1122,6 +1122,22 @@ static const struct intel_c20pll_state * const xe2hpd_c20_dp_tables[] = {
- 	NULL,
- };
- 
-+static const struct intel_c20pll_state * const xe3lpd_c20_dp_edp_tables[] = {
-+	&mtl_c20_dp_rbr,
-+	&xe2hpd_c20_edp_r216,
-+	&xe2hpd_c20_edp_r243,
-+	&mtl_c20_dp_hbr1,
-+	&xe2hpd_c20_edp_r324,
-+	&xe2hpd_c20_edp_r432,
-+	&mtl_c20_dp_hbr2,
-+	&xe2hpd_c20_edp_r675,
-+	&mtl_c20_dp_hbr3,
-+	&mtl_c20_dp_uhbr10,
-+	&xe2hpd_c20_dp_uhbr13_5,
-+	&mtl_c20_dp_uhbr20,
-+	NULL,
-+};
-+
- /*
-  * HDMI link rates with 38.4 MHz reference clock.
-  */
-@@ -2242,10 +2258,14 @@ intel_c20_pll_tables_get(struct intel_crtc_state *crtc_state,
- 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
- 
- 	if (intel_crtc_has_dp_encoder(crtc_state)) {
--		if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP))
--			return xe2hpd_c20_edp_tables;
-+		if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP)) {
-+			if (DISPLAY_VER_FULL(i915) == IP_VER(14, 1))
-+				return xe2hpd_c20_edp_tables;
-+		}
- 
--		if (DISPLAY_VER_FULL(i915) == IP_VER(14, 1))
-+		if (DISPLAY_VER(i915) >= 30)
-+			return xe3lpd_c20_dp_edp_tables;
-+		else if (DISPLAY_VER_FULL(i915) == IP_VER(14, 1))
- 			return xe2hpd_c20_dp_tables;
- 		else
- 			return mtl_c20_dp_tables;
+diff --git a/drivers/gpu/drm/i915/display/intel_psr_regs.h b/drivers/gpu/drm/i915/display/intel_psr_regs.h
+index 0841242543ca..9ad7611506e8 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_psr_regs.h
+@@ -298,7 +298,7 @@
+ #define _PORT_ALPM_CTL_B			0x16fc2c
+ #define PORT_ALPM_CTL(port)			_MMIO_PORT(port, _PORT_ALPM_CTL_A, _PORT_ALPM_CTL_B)
+ #define  PORT_ALPM_CTL_ALPM_AUX_LESS_ENABLE	REG_BIT(31)
+-#define  PORT_ALPM_CTL_MAX_PHY_SWING_SETUP_MASK	REG_GENMASK(23, 20)
++#define  PORT_ALPM_CTL_MAX_PHY_SWING_SETUP_MASK	REG_GENMASK(25, 20)
+ #define  PORT_ALPM_CTL_MAX_PHY_SWING_SETUP(val)	REG_FIELD_PREP(PORT_ALPM_CTL_MAX_PHY_SWING_SETUP_MASK, val)
+ #define  PORT_ALPM_CTL_MAX_PHY_SWING_HOLD_MASK	REG_GENMASK(19, 16)
+ #define  PORT_ALPM_CTL_MAX_PHY_SWING_HOLD(val)	REG_FIELD_PREP(PORT_ALPM_CTL_MAX_PHY_SWING_HOLD_MASK, val)
 -- 
 2.45.0
 
