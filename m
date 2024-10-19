@@ -2,78 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F33D49A4E69
-	for <lists+intel-gfx@lfdr.de>; Sat, 19 Oct 2024 15:52:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE79D9A5066
+	for <lists+intel-gfx@lfdr.de>; Sat, 19 Oct 2024 21:08:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7EE4B10E29C;
-	Sat, 19 Oct 2024 13:52:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3905510E027;
+	Sat, 19 Oct 2024 19:08:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="bSPoMted";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fg8qI09f";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com
- [209.85.167.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E400A10E286
- for <intel-gfx@lists.freedesktop.org>; Sat, 19 Oct 2024 13:52:15 +0000 (UTC)
-Received: by mail-lf1-f47.google.com with SMTP id
- 2adb3069b0e04-539fe02c386so4097730e87.0
- for <intel-gfx@lists.freedesktop.org>; Sat, 19 Oct 2024 06:52:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1729345934; x=1729950734; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=vQwmYNtzm3cZvNfpTYZFoEiYNHH4mYbWhA3IgVfwxn8=;
- b=bSPoMtedn5f+zQiZucnMzvaVtLoZVgrZykBTyorsMiK8zYx9VUnL5OF56HR8pEWnDR
- vaQwil2X9Le2syiBW9qVEBPKWwP3cPklnGsg5DLW4v4ltNbKBPcC0pB7QNNre5vXLZnp
- gvGtck0cK9al3tnGZ0rwhQgP0bBBF7W6iRTfXnwKY0bNG4Iq0IXmMhaMh2m4x+byLG0F
- 65RPDbfCxHFJh3wwMYHYOSBwOpMQtOsC2WTkjYlBeeXa7yKnIegdOTYbe4BuK2JTj41Y
- nDlL7Yk4wv53zE3UwcAykVEy8xCi52slK1Y7GGn+f8KkYj25Jpzin+cw02h0yebmaSDK
- AF1w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1729345934; x=1729950734;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=vQwmYNtzm3cZvNfpTYZFoEiYNHH4mYbWhA3IgVfwxn8=;
- b=qpxuzKZReZ7G3Ot9fMqfNz2PvOER1h0dDVFZLkNUyBFoOaTZx0KLX90Y7MS2FbZHnZ
- oR3WnfZQVlDBfXGbosna3MTTsXGKXnYD9F53fXkrrGAerASyUUgLrIO2gzjyZUabW90L
- cCnH500qr33UtawU5Cg5iPymcKdZy4+ZRe8tz9WpkP2/hCINVWCmX7ZIczXDgcRMHqK8
- Su+fZxNd5eQfCgzudE9bMhVQu7eVE8UQ2nVyyAo4XIn0e4xnS2MPmdhyqu6MWOqgOWJB
- RoW81VtkIftUVl+TduzN8ltbiqBuHG4Y3NPYpU8iqiAEHXp5AdGcZdvURnyS8SS21dD2
- cTHQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUObt7ardhysxGU7TdQo4OoEy4cS0hORL3/2tGeY0SjLMlZfqYIVKh6PHj3XFQKfenMXFj16oVfsLc=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy2VmxxgZ9CvkBC7cL0RuSLIyPJGyB8AQMr7Zw+M8MajmIB/ARI
- wrT8EWfZ2aPcKHsW0sueLps2CoPIOKn4bgT1g45BxBG6X5RWGWbAPdoVnKsILfY=
-X-Google-Smtp-Source: AGHT+IHtKTwuA/16eF7+hnpWDZ2rjnjnTyFtXBWks05kOqX6iBQ8/kSxxHlzDOwjU9qt3ITnAANufg==
-X-Received: by 2002:a05:6512:2210:b0:52c:ad70:6feb with SMTP id
- 2adb3069b0e04-53a15b808bcmr1583655e87.20.1729345933627; 
- Sat, 19 Oct 2024 06:52:13 -0700 (PDT)
-Received: from eriador.lumag.spb.ru
- (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
- by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-53a15211e36sm534215e87.283.2024.10.19.06.52.12
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 19 Oct 2024 06:52:13 -0700 (PDT)
-Date: Sat, 19 Oct 2024 16:52:11 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: javierm@redhat.com, airlied@gmail.com, simona@ffwll.ch, 
- maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- dri-devel@lists.freedesktop.org, 
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, 
- Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
- Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>
-Subject: Re: [PATCH 11/28] drm/msm: Use video aperture helpers
-Message-ID: <nua5c3v4vxxqlhtozshhhw6u2fpnhjzmmnbnx7joknlzotm5yr@zbhplfbawmu4>
-References: <20240930130921.689876-1-tzimmermann@suse.de>
- <20240930130921.689876-12-tzimmermann@suse.de>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D28C210E027;
+ Sat, 19 Oct 2024 19:08:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1729364934; x=1760900934;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=724JEb7bJx5KyvA4qk7Tfnw3+GQOoVld9sssFLU4zw4=;
+ b=fg8qI09foSDX/VCopRBuGy9x1fq+x4pTQm55+yp4rw+dMq3EdA1dTtOO
+ mNVpemikgtLcLv6+d0a1ALOZ/IoL2bwsAJMzWGUafxExXW4wL2EpMwfjG
+ /hVF7HNzarWKseqJw0xDJCKqRGxUXBYyZiZo2MZUmR36UzCfauZf8zTuU
+ qeX4I9nMKAs2GuDL04cXlDoFO1/nrZ9oHlAn3qYNrKJ7fYzL9q0BOpJGe
+ Nj8bZl8OeULOHDj7hzHRxs/nFesoVn84+BX3S0Amo+QwDcheV7rvxFwVq
+ o61c84j48x29oMEoC8gvSzp1B0Tw7eruWxahRNgP5EjIhMdL6T7cBqG6Z g==;
+X-CSE-ConnectionGUID: +gwYFhu/RpGhMt5sVc4wiw==
+X-CSE-MsgGUID: HjvrDRyZTVqnVZgn3zJ37g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11230"; a="16502761"
+X-IronPort-AV: E=Sophos;i="6.11,217,1725346800"; d="scan'208";a="16502761"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2024 12:08:53 -0700
+X-CSE-ConnectionGUID: YS1EsQPsS56fLTMtrAi0nw==
+X-CSE-MsgGUID: mjSvnrv4SiylaFNdE64qEQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,217,1725346800"; d="scan'208";a="83940563"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2024 12:08:48 -0700
+Date: Sat, 19 Oct 2024 22:08:45 +0300
+From: Raag Jadav <raag.jadav@intel.com>
+To: =?iso-8859-1?Q?Andr=E9?= Almeida <andrealmeid@igalia.com>
+Cc: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
+ thomas.hellstrom@linux.intel.com, simona@ffwll.ch,
+ intel-gfx@lists.freedesktop.org, joonas.lahtinen@linux.intel.com,
+ dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
+ lucas.demarchi@intel.com, tursulin@ursulin.net,
+ francois.dugast@intel.com, jani.nikula@linux.intel.com,
+ airlied@gmail.com, aravind.iddamsetty@linux.intel.com,
+ anshuman.gupta@intel.com, andi.shyti@linux.intel.com,
+ matthew.d.roper@intel.com, andriy.shevchenko@linux.intel.com,
+ lina@asahilina.net, kernel-dev@igalia.com,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Subject: Re: [PATCH v7 1/5] drm: Introduce device wedged event
+Message-ID: <ZxQDvSfFiAjDqEE8@black.fi.intel.com>
+References: <20240930073845.347326-1-raag.jadav@intel.com>
+ <20240930073845.347326-2-raag.jadav@intel.com>
+ <ed8cb1e9-df05-44a7-9088-90b3ee8dce85@igalia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20240930130921.689876-12-tzimmermann@suse.de>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ed8cb1e9-df05-44a7-9088-90b3ee8dce85@igalia.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,24 +81,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Sep 30, 2024 at 03:03:09PM +0200, Thomas Zimmermann wrote:
-> DRM's aperture functions have long been implemented as helpers
-> under drivers/video/ for use with fbdev. Avoid the DRM wrappers by
-> calling the video functions directly.
+On Thu, Oct 17, 2024 at 04:16:09PM -0300, André Almeida wrote:
+> Hi Raag,
 > 
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Rob Clark <robdclark@gmail.com>
-> Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>
-> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Cc: Sean Paul <sean@poorly.run>
-> Cc: Marijn Suijten <marijn.suijten@somainline.org>
-> ---
->  drivers/gpu/drm/msm/msm_kms.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+> Em 30/09/2024 04:38, Raag Jadav escreveu:
+> > Introduce device wedged event, which will notify userspace of wedged
+> > (hanged/unusable) state of the DRM device through a uevent. This is
+> > useful especially in cases where the device is no longer operating as
+> > expected even after a hardware reset and has become unrecoverable from
+> > driver context.
+> > 
+> > Purpose of this implementation is to provide drivers a generic way to
+> > recover with the help of userspace intervention. Different drivers may
+> > have different ideas of a "wedged device" depending on their hardware
+> > implementation, and hence the vendor agnostic nature of the event.
+> > It is up to the drivers to decide when they see the need for recovery
+> > and how they want to recover from the available methods.
+> > 
+> > Current implementation defines three recovery methods, out of which,
+> > drivers can choose to support any one or multiple of them. Preferred
+> > recovery method will be sent in the uevent environment as WEDGED=<method>.
+> > Userspace consumers (sysadmin) can define udev rules to parse this event
+> > and take respective action to recover the device.
+> > 
+> >      =============== ==================================
+> >      Recovery method Consumer expectations
+> >      =============== ==================================
+> >      rebind          unbind + rebind driver
+> >      bus-reset       unbind + reset bus device + rebind
+> >      reboot          reboot system
+> >      =============== ==================================
+> > 
+> > 
 > 
+> I proposed something similar in the past:
+> https://lore.kernel.org/dri-devel/20221125175203.52481-1-andrealmeid@igalia.com/
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Thanks for sharing. I went through it and I think we can use some of the ideas
+with generic adaption.
 
--- 
-With best wishes
-Dmitry
+While we can always execute scripts on uevent, it'd be good to have a userspace
+daemon applying automated policies for wedge cases based on admin/user needs.
+This way we can also manage repeat offenders.
+
+Xe has devcoredump so telemetry would also be a nice addition.
+
+Great opportunity to collaborate here.
+
+> The motivation was that amdgpu was getting stuck after every GPU reset, and
+> there was just a black screen. The uevent would then trigger a daemon to
+> reset the compositor and getting things back together. As you can see in my
+> thread, the feature was blocked in favor of getting better overall GPU reset
+> from the kernel side.
+
+We have hardware level resets but (although rare) they're also prone to failure.
+We do what we can to recover from driver context but it adds on to the complexity
+overtime. Something like wedging, if done right, would be much more robust IMHO.
+
+Raag
