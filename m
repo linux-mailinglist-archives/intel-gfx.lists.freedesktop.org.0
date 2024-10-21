@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BBFB9A934B
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Oct 2024 00:28:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 294A29A934D
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Oct 2024 00:28:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFBF110E5C9;
-	Mon, 21 Oct 2024 22:28:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA7EB10E5C0;
+	Mon, 21 Oct 2024 22:28:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Xmi/1omm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eCLa4B/R";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A0FD10E5C8;
- Mon, 21 Oct 2024 22:28:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 584CD10E5BC;
+ Mon, 21 Oct 2024 22:28:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729549696; x=1761085696;
+ t=1729549698; x=1761085698;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=aoyl62LdyFaN1m9lyhoUYq9VlODkW/XOoCECIYnwy5A=;
- b=Xmi/1omm5iSe4E4THXIm6L6ohGgG3TFtp6QOP9bYTbp1twM9jc3Q6ZSw
- EGB/gcRKbOJHgyZL60SbNpSl/cO+CZGlEIkhhySm/HZNZCrBcZE4LkW8r
- uW36Sk6LCRxGtvQRyqAirjNndZK9oSlht8pl14AaXcoCLDegFFir85byd
- S+TWJ0aJNo9/N48cfA8poFvO7/TQAG0ypIyVI5b4tr8TzIEFGRQjxEHd/
- GYUpteRcyCwGJvv002YM+sXIXZmaVtrQGFXYyXqyOwv6gdZQLH19FJ72T
- QEqK0mo6V6hOhHThRlYG2p4LqkP/Om8kDXgVt/O7S0Qfw5tW9ERJLk8+2 g==;
-X-CSE-ConnectionGUID: xps92BvvT6Kqtz8bWV3C1w==
-X-CSE-MsgGUID: UKFQRhvfQp241HO/TsI97Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="28934469"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="28934469"
+ bh=82pkxPbdqdDrqUVYQtV2U8WiNHQLIJYqYJ8Q9nd6CMg=;
+ b=eCLa4B/RnEXye+YGjiCAxcTih0tiJhsrnf39wVaTQY7ERZwPBBgYzrwm
+ h9c3JuBJ3x4aa6vMwBqKQDZ1yd1JDRrDNH2n48wqXx6U7CC3QCOvflEEE
+ FXeZG8LPeXzwSAP2HcyHqbs87ynVXlGW7uXf+LMM38aLoTglp5/WvykB0
+ mywZ6bBif/6qRik9V1NjD14LUj999SgmrxLZSF5Iq/168VI+Va2c2tukP
+ R7BqR9oUdbuvpBx3LwC3Ia7q+E8a81WVKyNUoK9+AN8/wlxXKfQF9K4xe
+ Id9IMg/11yy3dXPO2+UpS3sEcaVhmgFu7JdmAzPDSnJ/wZaIFhPMdhVBh Q==;
+X-CSE-ConnectionGUID: V7aBkTglRa6FKxt+GQzG1w==
+X-CSE-MsgGUID: 1tjzU/TEQQ+d2C1tHknwIw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="28934471"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="28934471"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2024 15:28:16 -0700
-X-CSE-ConnectionGUID: lS5EI/qGQKWkb5efSbCW8w==
-X-CSE-MsgGUID: iCNQxaPwTH6G4guvA1fWUw==
+ 21 Oct 2024 15:28:18 -0700
+X-CSE-ConnectionGUID: 4SqmUJ8LTe6XdUT1x920WA==
+X-CSE-MsgGUID: TOBj4N7LT/u/9oJZf7x71Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,221,1725346800"; d="scan'208";a="80009630"
+X-IronPort-AV: E=Sophos;i="6.11,221,1725346800"; d="scan'208";a="80009637"
 Received: from aschofie-mobl2.amr.corp.intel.com (HELO
  gjsousa-mobl2.intel.com) ([10.125.110.79])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2024 15:28:14 -0700
+ 21 Oct 2024 15:28:16 -0700
 From: Gustavo Sousa <gustavo.sousa@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Luca Coelho <luciano.coelho@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH 09/13] drm/i915/dmc_wl: Deal with existing references when
- disabling
-Date: Mon, 21 Oct 2024 19:27:28 -0300
-Message-ID: <20241021222744.294371-10-gustavo.sousa@intel.com>
+Subject: [PATCH 10/13] drm/i915/dmc_wl: Couple enable/disable with dynamic DC
+ states
+Date: Mon, 21 Oct 2024 19:27:29 -0300
+Message-ID: <20241021222744.294371-11-gustavo.sousa@intel.com>
 X-Mailer: git-send-email 2.47.0
 In-Reply-To: <20241021222744.294371-1-gustavo.sousa@intel.com>
 References: <20241021222744.294371-1-gustavo.sousa@intel.com>
@@ -71,214 +71,109 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-It is possible that there are active wakelock references at the time we
-are disabling the DMC wakelock mechanism. We need to deal with that in
-two ways:
+Enabling and disabling the DMC wakelock should be done as part of
+enabling and disabling of dynamic DC states, respectively. We should not
+enable or disable DMC wakelock independently of DC states, otherwise we
+would risk ending up with an inconsistent state where dynamic DC states
+are enabled and the DMC wakelock is disabled, going against current
+recommendations and making MMIO transactions potentially slower. In
+future display IPs that could have a worse outcome if DMC trap
+implementation is completely removed.
 
-(A) Implement the missing step from Bspec:
-
-    The Bspec instructs us to clear any existing wakelock request bit
-    after disabling the mechanism. That gives a clue that it is okay to
-    disable while there are locks held and we do not need to wait for
-    them. However, since the spec is not explicit about it, we need
-    still to get confirmation with the hardware team. Let's thus
-    implement the spec and add a TODO note.
-
-(B) Ensure a consistent driver state:
-
-    The enable/disable logic would be problematic if the following
-    sequence of events would happen:
-
-    1. Function A calls intel_dmc_wl_get();
-    2. Some function calls intel_dmc_wl_disable();
-    3. Some function calls intel_dmc_wl_enable();
-    4. Function A is done and calls intel_dmc_wl_put().
-
-    At (2), the refcount becomes zero and then (4) causes an invalid
-    decrement to the refcount. That would cause some issues:
-
-        - At the time between (3) and (4), function A would think that
-          the hardware lock is held but it could not be really held
-          until intel_dmc_wl_get() is called by something else.
-        - The call made to (4) could cause the refcount to become zero
-          and consequently the hardware lock to be released while there
-          could be innocent paths trusting they still have the lock.
-
-    To fix that, we need to keep the refcount correctly in sync with
-    intel_dmc_wl_{get,put}() calls and retake the hardware lock when
-    enabling the DMC wakelock with a non-zero refcount.
-
-    One missing piece left to be handled here is the following scenario:
-
-    1. Function A calls intel_dmc_wl_get();
-    2. Some function calls intel_dmc_wl_disable();
-    3. Some function calls intel_dmc_wl_enable();
-    4. Concurrently with (3), function A performs the MMIO in between
-       setting DMC_WAKELOCK_CFG_ENABLE and asserting the lock with
-       __intel_dmc_wl_take().
-
-    I'm mostly sure this would cause issues future display IPs if DMC
-    trap implementation was completely removed. We need to check with
-    the hardware team whether it would be safe to assert the hardware
-    lock before setting DMC_WAKELOCK_CFG_ENABLE to avoid this scenario.
-    If not, then we would have to deal with that via software
-    synchronization.
+So, let's make things safer by tying stuff together, removing the
+independent calls, and also put warnings in place to detect inconsistent
+calls.
 
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dmc_wl.c | 97 ++++++++++++++-------
- 1 file changed, 67 insertions(+), 30 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_power_well.c | 5 ++++-
+ drivers/gpu/drm/i915/display/intel_dmc.c                | 4 ----
+ drivers/gpu/drm/i915/display/intel_dmc_wl.c             | 6 ++++--
+ 3 files changed, 8 insertions(+), 7 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+index e8946ce86aaa..1a6c93170a5a 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+@@ -981,6 +981,7 @@ void gen9_disable_dc_states(struct intel_display *display)
+ 	struct drm_i915_private *dev_priv = to_i915(display->drm);
+ 	struct i915_power_domains *power_domains = &display->power.domains;
+ 	struct intel_cdclk_config cdclk_config = {};
++	u32 old_state = power_domains->dc_state;
+ 
+ 	if (power_domains->target_dc_state == DC_STATE_EN_DC3CO) {
+ 		tgl_disable_dc3co(display);
+@@ -996,7 +997,9 @@ void gen9_disable_dc_states(struct intel_display *display)
+ 		return;
+ 	}
+ 
+-	intel_dmc_wl_disable(display);
++	if (old_state == DC_STATE_EN_UPTO_DC5 ||
++	    old_state == DC_STATE_EN_UPTO_DC6)
++		intel_dmc_wl_disable(display);
+ 
+ 	intel_cdclk_get_cdclk(display, &cdclk_config);
+ 	/* Can't read out voltage_level so can't use intel_cdclk_changed() */
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+index 48bbbf8f312c..f0b12c609884 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc.c
++++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+@@ -632,8 +632,6 @@ void intel_dmc_disable_program(struct intel_display *display)
+ 	pipedmc_clock_gating_wa(display, true);
+ 	disable_all_event_handlers(display);
+ 	pipedmc_clock_gating_wa(display, false);
+-
+-	intel_dmc_wl_disable(display);
+ }
+ 
+ void assert_dmc_loaded(struct intel_display *display)
+@@ -1140,8 +1138,6 @@ void intel_dmc_suspend(struct intel_display *display)
+ 	if (dmc)
+ 		flush_work(&dmc->work);
+ 
+-	intel_dmc_wl_disable(display);
+-
+ 	/* Drop the reference held in case DMC isn't loaded. */
+ 	if (!intel_dmc_has_payload(display))
+ 		intel_dmc_runtime_pm_put(display);
 diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-index 6992ce654e75..e27c06b7c42f 100644
+index e27c06b7c42f..8283b607aac4 100644
 --- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
 +++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-@@ -177,6 +177,37 @@ static void intel_dmc_wl_work(struct work_struct *work)
+@@ -271,6 +271,7 @@ void intel_dmc_wl_init(struct intel_display *display)
+ 	refcount_set(&wl->refcount, 0);
+ }
+ 
++/* Must only be called as part of enabling dynamic DC states. */
+ void intel_dmc_wl_enable(struct intel_display *display)
+ {
+ 	struct intel_dmc_wl *wl = &display->wl;
+@@ -281,7 +282,7 @@ void intel_dmc_wl_enable(struct intel_display *display)
+ 
+ 	spin_lock_irqsave(&wl->lock, flags);
+ 
+-	if (wl->enabled)
++	if (drm_WARN_ON(display->drm, wl->enabled))
+ 		goto out_unlock;
+ 
+ 	/*
+@@ -314,6 +315,7 @@ void intel_dmc_wl_enable(struct intel_display *display)
  	spin_unlock_irqrestore(&wl->lock, flags);
  }
  
-+static void __intel_dmc_wl_take(struct intel_display *display)
-+{
-+	struct intel_dmc_wl *wl = &display->wl;
-+
-+	/*
-+	 * Only try to take the wakelock if it's not marked as taken
-+	 * yet.  It may be already taken at this point if we have
-+	 * already released the last reference, but the work has not
-+	 * run yet.
-+	 */
-+	if (wl->taken)
-+		return;
-+
-+	__intel_de_rmw_nowl(display, DMC_WAKELOCK1_CTL, 0,
-+			    DMC_WAKELOCK_CTL_REQ);
-+
-+	/*
-+	 * We need to use the atomic variant of the waiting routine
-+	 * because the DMC wakelock is also taken in atomic context.
-+	 */
-+	if (__intel_de_wait_for_register_atomic_nowl(display, DMC_WAKELOCK1_CTL,
-+						     DMC_WAKELOCK_CTL_ACK,
-+						     DMC_WAKELOCK_CTL_ACK,
-+						     DMC_WAKELOCK_CTL_TIMEOUT_US)) {
-+		WARN_RATELIMIT(1, "DMC wakelock ack timed out");
-+		return;
-+	}
-+
-+	wl->taken = true;
-+}
-+
- static bool intel_dmc_wl_addr_in_range(u32 address,
- 				       const struct intel_dmc_wl_range ranges[])
++/* Must only be called as part of disabling dynamic DC states. */
+ void intel_dmc_wl_disable(struct intel_display *display)
  {
-@@ -261,7 +292,23 @@ void intel_dmc_wl_enable(struct intel_display *display)
- 	__intel_de_rmw_nowl(display, DMC_WAKELOCK_CFG, 0, DMC_WAKELOCK_CFG_ENABLE);
+ 	struct intel_dmc_wl *wl = &display->wl;
+@@ -326,7 +328,7 @@ void intel_dmc_wl_disable(struct intel_display *display)
  
- 	wl->enabled = true;
--	wl->taken = false;
-+
-+	/*
-+	 * This would be racy in the following scenario:
-+	 *
-+	 *   1. Function A calls intel_dmc_wl_get();
-+	 *   2. Some function calls intel_dmc_wl_disable();
-+	 *   3. Some function calls intel_dmc_wl_enable();
-+	 *   4. Concurrently with (3), function A performs the MMIO in between
-+	 *      setting DMC_WAKELOCK_CFG_ENABLE and asserting the lock with
-+	 *      __intel_dmc_wl_take().
-+	 *
-+	 * TODO: Check with the hardware team whether it is safe to assert the
-+	 * hardware lock before enabling to avoid such a scenario. Otherwise, we
-+	 * would need to deal with it via software synchronization.
-+	 */
-+	if (refcount_read(&wl->refcount))
-+		__intel_dmc_wl_take(display);
+ 	spin_lock_irqsave(&wl->lock, flags);
  
- out_unlock:
- 	spin_unlock_irqrestore(&wl->lock, flags);
-@@ -285,8 +332,18 @@ void intel_dmc_wl_disable(struct intel_display *display)
+-	if (!wl->enabled)
++	if (drm_WARN_ON(display->drm, !wl->enabled))
+ 		goto out_unlock;
+ 
  	/* Disable wakelock in DMC */
- 	__intel_de_rmw_nowl(display, DMC_WAKELOCK_CFG, DMC_WAKELOCK_CFG_ENABLE, 0);
- 
--	refcount_set(&wl->refcount, 0);
- 	wl->enabled = false;
-+
-+	/*
-+	 * The spec is not explicit about the expectation of existing
-+	 * lock users at the moment of disabling, but it does say that we must
-+	 * clear DMC_WAKELOCK_CTL_REQ, which gives us a clue that it is okay to
-+	 * disable with existing lock users.
-+	 *
-+	 * TODO: Get the correct expectation from the hardware team.
-+	 */
-+	__intel_de_rmw_nowl(display, DMC_WAKELOCK1_CTL, DMC_WAKELOCK_CTL_REQ, 0);
-+
- 	wl->taken = false;
- 
- out_unlock:
-@@ -306,8 +363,11 @@ void intel_dmc_wl_get(struct intel_display *display, i915_reg_t reg)
- 
- 	spin_lock_irqsave(&wl->lock, flags);
- 
--	if (!wl->enabled)
-+	if (!wl->enabled) {
-+		if (!refcount_inc_not_zero(&wl->refcount))
-+			refcount_set(&wl->refcount, 1);
- 		goto out_unlock;
-+	}
- 
- 	cancel_delayed_work(&wl->work);
- 
-@@ -316,30 +376,7 @@ void intel_dmc_wl_get(struct intel_display *display, i915_reg_t reg)
- 
- 	refcount_set(&wl->refcount, 1);
- 
--	/*
--	 * Only try to take the wakelock if it's not marked as taken
--	 * yet.  It may be already taken at this point if we have
--	 * already released the last reference, but the work has not
--	 * run yet.
--	 */
--	if (!wl->taken) {
--		__intel_de_rmw_nowl(display, DMC_WAKELOCK1_CTL, 0,
--				    DMC_WAKELOCK_CTL_REQ);
--
--		/*
--		 * We need to use the atomic variant of the waiting routine
--		 * because the DMC wakelock is also taken in atomic context.
--		 */
--		if (__intel_de_wait_for_register_atomic_nowl(display, DMC_WAKELOCK1_CTL,
--							     DMC_WAKELOCK_CTL_ACK,
--							     DMC_WAKELOCK_CTL_ACK,
--							     DMC_WAKELOCK_CTL_TIMEOUT_US)) {
--			WARN_RATELIMIT(1, "DMC wakelock ack timed out");
--			goto out_unlock;
--		}
--
--		wl->taken = true;
--	}
-+	__intel_dmc_wl_take(display);
- 
- out_unlock:
- 	spin_unlock_irqrestore(&wl->lock, flags);
-@@ -358,14 +395,14 @@ void intel_dmc_wl_put(struct intel_display *display, i915_reg_t reg)
- 
- 	spin_lock_irqsave(&wl->lock, flags);
- 
--	if (!wl->enabled)
--		goto out_unlock;
--
- 	if (WARN_RATELIMIT(!refcount_read(&wl->refcount),
- 			   "Tried to put wakelock with refcount zero\n"))
- 		goto out_unlock;
- 
- 	if (refcount_dec_and_test(&wl->refcount)) {
-+		if (!wl->enabled)
-+			goto out_unlock;
-+
- 		__intel_dmc_wl_release(display);
- 
- 		goto out_unlock;
 -- 
 2.47.0
 
