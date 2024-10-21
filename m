@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9ED319A6B24
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Oct 2024 15:55:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C5F469A6B25
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Oct 2024 15:55:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A60E10E51C;
-	Mon, 21 Oct 2024 13:55:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E5BD10E51D;
+	Mon, 21 Oct 2024 13:55:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nlOA19cA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H84+BV7L";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C276510E51B;
- Mon, 21 Oct 2024 13:55:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 877F110E51F;
+ Mon, 21 Oct 2024 13:55:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729518920; x=1761054920;
+ t=1729518926; x=1761054926;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=06xW/PCdOJJOD9rhOl/tcb+9/Rn23Gq9q415ZBCuVZ0=;
- b=nlOA19cAyzyr5J/1GgTyWwnc7px1OKZzng6AdVm3i2QAMP3VWi3HxoPw
- bXqBWXSOmQ7aR64be2ZASR2RR1SRXObb0zt1Lt0t1ENxOot2kSumZloO/
- ku5A+4q5s8RWAjjuv7NSxD5BVnrr/mAARrBrkOpvpyXdg7aJB43M/CjEQ
- kS97lffSrvZQerEXDjQJZDLVqt/uICujvHcv6eh12/tBl4mgKycbrP/gx
- Oo6Vmee8AybKeJ67y3olU/IyWSQk72h30xIz6RGCXT5tpFBZUZULa49MG
- 2FeKHF2Yjgh4G82DyfQd+u+zA9pkO2USyZ7xRHSrCCja22bebJ6gaEa1Y g==;
-X-CSE-ConnectionGUID: tQ/9QY9eS2WfPSp+fpqp0Q==
-X-CSE-MsgGUID: 40Z8/55+TCC7741qSkZe1w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11232"; a="29212941"
-X-IronPort-AV: E=Sophos;i="6.11,221,1725346800"; d="scan'208";a="29212941"
+ bh=/uBRNmfbVvdMSrneBq9rbAX4K5mUQnSblMxf6N9TdDo=;
+ b=H84+BV7Lv5GJ4OSmpEpeT0i3TwZgP8iJf1pRoWn9w+WammNPA0mtpxEs
+ SmiMyb2JlhuhLuxiLy5038kg0VsRzYK9Zajqj/fsVBQwYrYyL7QFH3paD
+ VirqVEegivpeJpKCHg0B+HGeeeFEdHhVVl2qVsHzQY3N7xACa3FQv78Om
+ NNdG5RJ+ivoty3YzVd8qlqXPy0Rg4yNsL7/syHvkMs/1bKG2PdZRhYrMD
+ OD1I/9OhyWLzDfFYrsAcQnDKQYxEOw3Y/tpRZ55ODDFA0lwNPMRhYZhx/
+ 7S86jOSQE7JqpRs1ya26aQgI9h/uePYxR6drx5mZPA53namZBf662g6t0 g==;
+X-CSE-ConnectionGUID: CPk+y6UOSLCt+WLvzQe5rw==
+X-CSE-MsgGUID: lbewDxHjRrK6zsEhx6rfeA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11232"; a="29212950"
+X-IronPort-AV: E=Sophos;i="6.11,221,1725346800"; d="scan'208";a="29212950"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2024 06:55:19 -0700
-X-CSE-ConnectionGUID: ltrcEidkTxGWfO17NozQ7w==
-X-CSE-MsgGUID: v2RI+SunQW6GU+D80lLwng==
+ 21 Oct 2024 06:55:25 -0700
+X-CSE-ConnectionGUID: D+4oisKDTdiNkQnJtvrr4w==
+X-CSE-MsgGUID: /uIL9I+HSWubuvrRPGyB+A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,221,1725346800"; d="scan'208";a="79534517"
+X-IronPort-AV: E=Sophos;i="6.11,221,1725346800"; d="scan'208";a="79534529"
 Received: from lbogdanm-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.246.222])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2024 06:55:17 -0700
+ 21 Oct 2024 06:55:23 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, rodrigo.vivi@intel.com, lucas.demarchi@intel.com,
  maarten.lankhorst@linux.intel.com
-Subject: [PATCH v4 10/15] drm/i915/display: add subplatform group for HSW/BDW
- ULT
-Date: Mon, 21 Oct 2024 16:54:11 +0300
-Message-Id: <22e5c42f8b8580fa5c6b40a6e1ef9760ba3c99a8.1729518793.git.jani.nikula@intel.com>
+Subject: [PATCH v4 11/15] drm/i915/bios: use display->platform.<platform>
+ instead of IS_<PLATFORM>()
+Date: Mon, 21 Oct 2024 16:54:12 +0300
+Message-Id: <ef32162e2027d3e7916ec32ffe1fb8159ff0be8c.1729518793.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1729518793.git.jani.nikula@intel.com>
 References: <cover.1729518793.git.jani.nikula@intel.com>
@@ -72,77 +72,181 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add support for defining aliases for subplatform groups, such as HSW/BDW
-ULT that covers both ULT and ULX.
-
-ULT is a special case, because we slightly abuse the ULT subplatform
-both as a subplatform and group, but with the way this is defined, it
-should be fairly clear.
-
-This follows i915 core and IS_HASWELL_ULT()/IS_BROADWELL_ULT()
-conventions, i.e. "is ULT" also matches ULX platforms.
-
-Note: Pedantically, this should have been done earlier, but it's only
-feasible now that we no longer have a subplatform enum and can actually
-initialize multiple subplatforms.
-
-v2: Use the subplatform group idea
+Switch to using the new display->platform.<platform> members for
+platform identification in display code.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_device.c | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+ drivers/gpu/drm/i915/display/intel_bios.c | 40 +++++++++--------------
+ 1 file changed, 15 insertions(+), 25 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
-index 50ffb31662b1..35abb4eaa0ef 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-@@ -41,6 +41,13 @@ struct subplatform_desc {
- 	.platforms._platform##_##_subplatform = 1,			\
- 	.name = #_subplatform
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index 9967b65e3cf6..ef3fc831ac88 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -1169,7 +1169,6 @@ static int intel_bios_ssc_frequency(struct intel_display *display,
+ static void
+ parse_general_features(struct intel_display *display)
+ {
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	const struct bdb_general_features *general;
  
-+/*
-+ * Group subplatform alias that matches multiple subplatforms. For making ult
-+ * cover both ult and ulx on HSW/BDW.
-+ */
-+#define SUBPLATFORM_GROUP(_platform, _subplatform)			\
-+	.platforms._platform##_##_subplatform = 1
-+
- struct platform_desc {
- 	struct intel_display_platforms platforms;
- 	const char *name;
-@@ -510,12 +517,15 @@ static const u16 hsw_ulx_ids[] = {
- static const struct platform_desc hsw_desc = {
- 	PLATFORM(haswell),
- 	.subplatforms = (const struct subplatform_desc[]) {
-+		/* Special case: Use ult both as group and subplatform. */
- 		{
- 			SUBPLATFORM(haswell, ult),
-+			SUBPLATFORM_GROUP(haswell, ult),
- 			.pciidlist = hsw_ult_ids,
- 		},
- 		{
- 			SUBPLATFORM(haswell, ulx),
-+			SUBPLATFORM_GROUP(haswell, ult),
- 			.pciidlist = hsw_ulx_ids,
- 		},
- 		{},
-@@ -560,12 +570,15 @@ static const u16 bdw_ulx_ids[] = {
- static const struct platform_desc bdw_desc = {
- 	PLATFORM(broadwell),
- 	.subplatforms = (const struct subplatform_desc[]) {
-+		/* Special case: Use ult both as group and subplatform. */
- 		{
- 			SUBPLATFORM(broadwell, ult),
-+			SUBPLATFORM_GROUP(broadwell, ult),
- 			.pciidlist = bdw_ult_ids,
- 		},
- 		{
- 			SUBPLATFORM(broadwell, ulx),
-+			SUBPLATFORM_GROUP(broadwell, ult),
- 			.pciidlist = bdw_ulx_ids,
- 		},
- 		{},
+ 	general = bdb_find_section(display, BDB_GENERAL_FEATURES);
+@@ -1179,7 +1178,7 @@ parse_general_features(struct intel_display *display)
+ 	display->vbt.int_tv_support = general->int_tv_support;
+ 	/* int_crt_support can't be trusted on earlier platforms */
+ 	if (display->vbt.version >= 155 &&
+-	    (HAS_DDI(display) || IS_VALLEYVIEW(i915)))
++	    (HAS_DDI(display) || display->platform.valleyview))
+ 		display->vbt.int_crt_support = general->int_crt_support;
+ 	display->vbt.lvds_use_ssc = general->enable_ssc;
+ 	display->vbt.lvds_ssc_freq =
+@@ -1542,7 +1541,6 @@ static void
+ parse_psr(struct intel_display *display,
+ 	  struct intel_panel *panel)
+ {
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	const struct bdb_psr *psr;
+ 	const struct psr_table *psr_table;
+ 	int panel_type = panel->vbt.panel_type;
+@@ -1567,7 +1565,7 @@ parse_psr(struct intel_display *display,
+ 	 * Old decimal value is wake up time in multiples of 100 us.
+ 	 */
+ 	if (display->vbt.version >= 205 &&
+-	    (DISPLAY_VER(display) >= 9 && !IS_BROXTON(i915))) {
++	    (DISPLAY_VER(display) >= 9 && !display->platform.broxton)) {
+ 		switch (psr_table->tp1_wakeup_time) {
+ 		case 0:
+ 			panel->vbt.psr.tp1_wakeup_time_us = 500;
+@@ -2029,11 +2027,9 @@ static void icl_fixup_mipi_sequences(struct intel_display *display,
+ static void fixup_mipi_sequences(struct intel_display *display,
+ 				 struct intel_panel *panel)
+ {
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+-
+ 	if (DISPLAY_VER(display) >= 11)
+ 		icl_fixup_mipi_sequences(display, panel);
+-	else if (IS_VALLEYVIEW(i915))
++	else if (display->platform.valleyview)
+ 		vlv_fixup_mipi_sequences(display, panel);
+ }
+ 
+@@ -2243,15 +2239,15 @@ static u8 map_ddc_pin(struct intel_display *display, u8 vbt_pin)
+ 	const u8 *ddc_pin_map;
+ 	int i, n_entries;
+ 
+-	if (INTEL_PCH_TYPE(i915) >= PCH_MTL || IS_ALDERLAKE_P(i915)) {
++	if (INTEL_PCH_TYPE(i915) >= PCH_MTL || display->platform.alderlake_p) {
+ 		ddc_pin_map = adlp_ddc_pin_map;
+ 		n_entries = ARRAY_SIZE(adlp_ddc_pin_map);
+-	} else if (IS_ALDERLAKE_S(i915)) {
++	} else if (display->platform.alderlake_s) {
+ 		ddc_pin_map = adls_ddc_pin_map;
+ 		n_entries = ARRAY_SIZE(adls_ddc_pin_map);
+ 	} else if (INTEL_PCH_TYPE(i915) >= PCH_DG1) {
+ 		return vbt_pin;
+-	} else if (IS_ROCKETLAKE(i915) && INTEL_PCH_TYPE(i915) == PCH_TGP) {
++	} else if (display->platform.rocketlake && INTEL_PCH_TYPE(i915) == PCH_TGP) {
+ 		ddc_pin_map = rkl_pch_tgp_ddc_pin_map;
+ 		n_entries = ARRAY_SIZE(rkl_pch_tgp_ddc_pin_map);
+ 	} else if (HAS_PCH_TGP(i915) && DISPLAY_VER(display) == 9) {
+@@ -2334,7 +2330,6 @@ static enum port __dvo_port_to_port(int n_ports, int n_dvo,
+ static enum port dvo_port_to_port(struct intel_display *display,
+ 				  u8 dvo_port)
+ {
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	/*
+ 	 * Each DDI port can have more than one value on the "DVO Port" field,
+ 	 * so look for all the possible values for each port.
+@@ -2391,12 +2386,12 @@ static enum port dvo_port_to_port(struct intel_display *display,
+ 					  ARRAY_SIZE(xelpd_port_mapping[0]),
+ 					  xelpd_port_mapping,
+ 					  dvo_port);
+-	else if (IS_ALDERLAKE_S(i915))
++	else if (display->platform.alderlake_s)
+ 		return __dvo_port_to_port(ARRAY_SIZE(adls_port_mapping),
+ 					  ARRAY_SIZE(adls_port_mapping[0]),
+ 					  adls_port_mapping,
+ 					  dvo_port);
+-	else if (IS_DG1(i915) || IS_ROCKETLAKE(i915))
++	else if (display->platform.dg1 || display->platform.rocketlake)
+ 		return __dvo_port_to_port(ARRAY_SIZE(rkl_port_mapping),
+ 					  ARRAY_SIZE(rkl_port_mapping[0]),
+ 					  rkl_port_mapping,
+@@ -2519,7 +2514,6 @@ static void sanitize_hdmi_level_shift(struct intel_bios_encoder_data *devdata,
+ 				      enum port port)
+ {
+ 	struct intel_display *display = devdata->display;
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+ 
+ 	if (!intel_bios_encoder_supports_dvi(devdata))
+ 		return;
+@@ -2529,7 +2523,7 @@ static void sanitize_hdmi_level_shift(struct intel_bios_encoder_data *devdata,
+ 	 * with a HSW VBT where the level shifter value goes
+ 	 * up to 11, whereas the BDW max is 9.
+ 	 */
+-	if (IS_BROADWELL(i915) && devdata->child.hdmi_level_shifter_value > 9) {
++	if (display->platform.broadwell && devdata->child.hdmi_level_shifter_value > 9) {
+ 		drm_dbg_kms(display->drm,
+ 			    "Bogus port %c VBT HDMI level shift %d, adjusting to %d\n",
+ 			    port_name(port), devdata->child.hdmi_level_shifter_value, 9);
+@@ -2618,14 +2612,13 @@ int intel_bios_hdmi_max_tmds_clock(const struct intel_bios_encoder_data *devdata
+ 
+ static bool is_port_valid(struct intel_display *display, enum port port)
+ {
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	/*
+ 	 * On some ICL SKUs port F is not present, but broken VBTs mark
+ 	 * the port as present. Only try to initialize port F for the
+ 	 * SKUs that may actually have it.
+ 	 */
+-	if (port == PORT_F && IS_ICELAKE(i915))
+-		return IS_ICL_WITH_PORT_F(i915);
++	if (port == PORT_F && display->platform.icelake)
++		return display->platform.icelake_port_f;
+ 
+ 	return true;
+ }
+@@ -2723,9 +2716,7 @@ static void parse_ddi_port(struct intel_bios_encoder_data *devdata)
+ 
+ static bool has_ddi_port_info(struct intel_display *display)
+ {
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+-
+-	return DISPLAY_VER(display) >= 5 || IS_G4X(i915);
++	return DISPLAY_VER(display) >= 5 || display->platform.g4x;
+ }
+ 
+ static void parse_ddi_ports(struct intel_display *display)
+@@ -2907,7 +2898,7 @@ init_vbt_missing_defaults(struct intel_display *display)
+ 	unsigned int ports = DISPLAY_RUNTIME_INFO(display)->port_mask;
+ 	enum port port;
+ 
+-	if (!HAS_DDI(display) && !IS_CHERRYVIEW(i915))
++	if (!HAS_DDI(display) && !display->platform.cherryview)
+ 		return;
+ 
+ 	for_each_port_masked(port, ports) {
+@@ -3603,17 +3594,16 @@ static const u8 direct_aux_ch_map[] = {
+ 
+ static enum aux_ch map_aux_ch(struct intel_display *display, u8 aux_channel)
+ {
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	const u8 *aux_ch_map;
+ 	int i, n_entries;
+ 
+ 	if (DISPLAY_VER(display) >= 13) {
+ 		aux_ch_map = adlp_aux_ch_map;
+ 		n_entries = ARRAY_SIZE(adlp_aux_ch_map);
+-	} else if (IS_ALDERLAKE_S(i915)) {
++	} else if (display->platform.alderlake_s) {
+ 		aux_ch_map = adls_aux_ch_map;
+ 		n_entries = ARRAY_SIZE(adls_aux_ch_map);
+-	} else if (IS_DG1(i915) || IS_ROCKETLAKE(i915)) {
++	} else if (display->platform.dg1 || display->platform.rocketlake) {
+ 		aux_ch_map = rkl_aux_ch_map;
+ 		n_entries = ARRAY_SIZE(rkl_aux_ch_map);
+ 	} else {
 -- 
 2.39.5
 
