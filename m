@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AD779A6882
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Oct 2024 14:32:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E71A9A687E
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Oct 2024 14:32:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A08D010E4D1;
-	Mon, 21 Oct 2024 12:32:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 39D1B10E4D8;
+	Mon, 21 Oct 2024 12:32:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FXdya2Ez";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EaWUeOhp";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C82D610E4CF;
- Mon, 21 Oct 2024 12:32:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E6F610E4D6;
+ Mon, 21 Oct 2024 12:32:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729513935; x=1761049935;
+ t=1729513937; x=1761049937;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=PaDEaxriKEvMCb4HfAaBmu+HCjJq9aQIDW3LbysKKSg=;
- b=FXdya2EzwK8N7sYc76AiAfzvJyBFWph2ft8oUaCJMIPm4tDb3GZ7qUgR
- 7wH29xVJic/GraQxMSD2fGivWivlDH5H2Pxf0Hv4nMPY4ZuKzR8kQ8sZL
- 4kL7hu8fhSIWtMZjpgf56i9v11mdrsMYzmEIb/RpQqRvLjmoSyrqyhuKy
- dc0Ohmaxw1AcCvqG7wWl+eNw4RnZ4rv5EnHbBKeiWINRitnAen+Xn8Vzl
- 5jZGyQEZIMDJUC7j4q6M/kTqxBMi2Xbi19JsLESAdLzCv3Ueww/WyeTEW
- iHI8qCTafVqBci0gw69Rl/WXdgxjXAZU+TWNNEIVZkmS3y2mleQBxY5gW Q==;
-X-CSE-ConnectionGUID: 7S99iHikR3SujsKGgB2Y2A==
-X-CSE-MsgGUID: ofPwEoN7TKKEgWzqx3mJuA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="46459644"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="46459644"
+ bh=BWBDn6MVhioBJljN/Kmr07t65EwezYucOFgYaTt6W98=;
+ b=EaWUeOhpZkn0jLIZ9+BAMb3BHiJyc6cPXl5c8aCVKsQFgTdOdgxRR8HJ
+ 5veul7wIap3hFd0WAxmUklWIGbFOE1Eg6IFeMLTyGURwaSPhYn+cw8HcS
+ v4lpyQTRqwz7KQCFdkvhvzk6vqObWP0zrvs6rkoBzhWRLa3rxOyiRAt34
+ thGw16NZRwdSDdsG/WXe6fJ7ekvp5taeqQmIFVp1GZ26jH02lxn2cz5lR
+ poUnMb2z2Bzrorpj6XDvjoerHfR46BMgktjpxhfYTPhwFPeibWpm7lxWj
+ n+O3RwTop8GlHVL4grAG1/PEAjXJGr8USwtDK6ajnPU57P5I88jZ4Z9lo g==;
+X-CSE-ConnectionGUID: gKJFAxpCS6igGU8X9w1ghQ==
+X-CSE-MsgGUID: +6ilz/1fS1KWf6atfegSDA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="46459645"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="46459645"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2024 05:32:15 -0700
-X-CSE-ConnectionGUID: iR+QyiGCRIytcV+m4pEWSA==
-X-CSE-MsgGUID: QE08/gukToGml3C6lx7wnw==
+ 21 Oct 2024 05:32:17 -0700
+X-CSE-ConnectionGUID: NaTYrRLgRFSGHDkv5Xq4sQ==
+X-CSE-MsgGUID: 04kI5qczQ6qWly+R8w0+OQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,220,1725346800"; d="scan'208";a="79866092"
+X-IronPort-AV: E=Sophos;i="6.11,220,1725346800"; d="scan'208";a="79866097"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2024 05:32:14 -0700
+ 21 Oct 2024 05:32:16 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	suraj.kandpal@intel.com
-Subject: [PATCH 10/16] drm/i915/dp_mst: Account for pixel replication for MST
- overhead with DSC
-Date: Mon, 21 Oct 2024 18:04:08 +0530
-Message-ID: <20241021123414.3993899-11-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 11/16] drm/i915/dp: Account for pixel replication for BW
+ computation with DSC
+Date: Mon, 21 Oct 2024 18:04:09 +0530
+Message-ID: <20241021123414.3993899-12-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241021123414.3993899-1-ankit.k.nautiyal@intel.com>
 References: <20241021123414.3993899-1-ankit.k.nautiyal@intel.com>
@@ -69,125 +69,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add the extra pixels to the hactive while computing overhead with DSC.
+Include the extra pixels added while computing bandwidth with DSC.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.h     |  1 +
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 17 +++++++++++++--
- drivers/gpu/drm/i915/display/intel_vdsc.c   | 23 +++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_vdsc.h   |  6 ++++++
- 4 files changed, 45 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 23 ++++++++++++++++++++++-
+ 1 file changed, 22 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-index 60baf4072dc9..e90a9dc1a8f5 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp.h
-@@ -20,6 +20,7 @@ struct intel_atomic_state;
- struct intel_connector;
- struct intel_crtc_state;
- struct intel_digital_port;
-+struct intel_display;
- struct intel_dp;
- struct intel_encoder;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 1a2ff3e1cb68..72130c7748dd 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -92,20 +92,33 @@ static int intel_dp_mst_bw_overhead(const struct intel_crtc_state *crtc_state,
- 				    const struct intel_connector *connector,
- 				    bool ssc, int dsc_slice_count, int bpp_x16)
- {
-+	struct intel_display *display = to_intel_display(crtc_state);
- 	const struct drm_display_mode *adjusted_mode =
- 		&crtc_state->hw.adjusted_mode;
- 	unsigned long flags = DRM_DP_BW_OVERHEAD_MST;
- 	int overhead;
-+	int replicated_pixels = 0;
- 
- 	flags |= intel_dp_is_uhbr(crtc_state) ? DRM_DP_BW_OVERHEAD_UHBR : 0;
- 	flags |= ssc ? DRM_DP_BW_OVERHEAD_SSC_REF_CLK : 0;
- 	flags |= crtc_state->fec_enable ? DRM_DP_BW_OVERHEAD_FEC : 0;
- 
--	if (dsc_slice_count)
-+	if (dsc_slice_count) {
- 		flags |= DRM_DP_BW_OVERHEAD_DSC;
-+		/*
-+		 * When hdisplay is not divisible by dsc_slice_count, extra pixels
-+		 * are added to last slice. Need to account for the extra overhead due
-+		 * to these extra pixels.
-+		 */
-+		replicated_pixels =
-+			intel_dsc_get_replicated_pixels(display,
-+							adjusted_mode->hdisplay,
-+							dsc_slice_count,
-+							crtc_state->output_format);
-+	}
- 
- 	overhead = drm_dp_bw_overhead(crtc_state->lane_count,
--				      adjusted_mode->hdisplay,
-+				      adjusted_mode->hdisplay + replicated_pixels,
- 				      dsc_slice_count,
- 				      bpp_x16,
- 				      flags);
-diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-index 14cc1ef3641e..c3c6a4a4dafd 100644
---- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-+++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-@@ -1048,3 +1048,26 @@ void intel_vdsc_state_dump(struct drm_printer *p, int indent,
- 	intel_vdsc_dump_state(p, indent, crtc_state);
- 	drm_dsc_dump_config(p, indent, &crtc_state->dsc.config);
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 53a437caacac..f35d6fc376c8 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -1940,6 +1940,23 @@ static bool is_bw_sufficient_for_dsc_config(u16 compressed_bppx16, u32 link_cloc
+ 	return available_bw > required_bw;
  }
-+
-+int intel_dsc_get_replicated_pixels(struct intel_display *display,
-+				    int mode_hdisplay,
-+				    int slice_count,
-+				    enum intel_output_format output_format)
+ 
++static
++u32 adjust_clock_for_extra_pixels(const struct drm_display_mode *adjusted_mode,
++				  int extra_pixels)
 +{
-+	int replicated_pixels;
-+	int slice_width = DIV_ROUND_UP(mode_hdisplay, slice_count);
++	u32 clock = adjusted_mode->clock;
++	u16 htotal = adjusted_mode->htotal;
 +
-+	if (!HAS_PIXEL_REPLICATION(display))
-+		return 0;
-+
-+	if (mode_hdisplay % slice_count == 0)
-+		return 0;
-+
-+	/* Odd slice width is not supported by YCbCr420 format */
-+	if (slice_width % 2 && output_format == INTEL_OUTPUT_FORMAT_YCBCR420)
-+		return 0;
-+
-+	replicated_pixels = (slice_width * slice_count) - mode_hdisplay;
-+
-+	return replicated_pixels;
++	if (!extra_pixels)
++		return clock;
++	/*
++	 * clock = (htotal) * (vtotal) * refresh_rate
++	 * adjusted_clock = (htotal + extra_pixels) * (vtotal) * refresh_rate
++	 * = clock + (clock * extra_pixels / htotal)
++	 */
++	return clock + extra_pixels * (clock / htotal);
 +}
-diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.h b/drivers/gpu/drm/i915/display/intel_vdsc.h
-index 290b2e9b3482..41b8b5c5866e 100644
---- a/drivers/gpu/drm/i915/display/intel_vdsc.h
-+++ b/drivers/gpu/drm/i915/display/intel_vdsc.h
-@@ -10,9 +10,11 @@
++
+ static int dsc_compute_link_config(struct intel_dp *intel_dp,
+ 				   struct intel_crtc_state *pipe_config,
+ 				   struct link_config_limits *limits,
+@@ -1948,8 +1965,12 @@ static int dsc_compute_link_config(struct intel_dp *intel_dp,
+ {
+ 	const struct drm_display_mode *adjusted_mode = &pipe_config->hw.adjusted_mode;
+ 	int link_rate, lane_count;
++	u32 adjusted_clock;
+ 	int i;
  
- struct drm_printer;
- 
-+enum intel_output_format;
- enum transcoder;
- struct intel_crtc;
- struct intel_crtc_state;
-+struct intel_display;
- struct intel_encoder;
- 
- bool intel_dsc_source_support(const struct intel_crtc_state *crtc_state);
-@@ -31,5 +33,9 @@ void intel_dsc_dp_pps_write(struct intel_encoder *encoder,
- 			    const struct intel_crtc_state *crtc_state);
- void intel_vdsc_state_dump(struct drm_printer *p, int indent,
- 			   const struct intel_crtc_state *crtc_state);
-+int intel_dsc_get_replicated_pixels(struct intel_display *display,
-+				    int mode_hdisplay,
-+				    int slice_count,
-+				    enum intel_output_format output_format);
- 
- #endif /* __INTEL_VDSC_H__ */
++	adjusted_clock = adjust_clock_for_extra_pixels(adjusted_mode,
++						       pipe_config->dsc.replicated_pixels);
++
+ 	for (i = 0; i < intel_dp->num_common_rates; i++) {
+ 		link_rate = intel_dp_common_rate(intel_dp, i);
+ 		if (link_rate < limits->min_rate || link_rate > limits->max_rate)
+@@ -1959,7 +1980,7 @@ static int dsc_compute_link_config(struct intel_dp *intel_dp,
+ 		     lane_count <= limits->max_lane_count;
+ 		     lane_count <<= 1) {
+ 			if (!is_bw_sufficient_for_dsc_config(compressed_bppx16, link_rate,
+-							     lane_count, adjusted_mode->clock,
++							     lane_count, adjusted_clock,
+ 							     pipe_config->output_format,
+ 							     timeslots))
+ 				continue;
 -- 
 2.45.2
 
