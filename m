@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 803749A9343
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Oct 2024 00:28:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 111D39A9344
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Oct 2024 00:28:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD7BA10E184;
-	Mon, 21 Oct 2024 22:28:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A102F10E5BD;
+	Mon, 21 Oct 2024 22:28:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TF46CCR6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GvJnDIa4";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A395610E15A;
- Mon, 21 Oct 2024 22:28:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D80310E5BB;
+ Mon, 21 Oct 2024 22:28:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729549682; x=1761085682;
+ t=1729549684; x=1761085684;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=zbNtOTpWskn3pOjBnhoNyzXP4riFkX/c9WK1wKiLYqU=;
- b=TF46CCR6qlg4KEbNzpTmUwsfIQEx6wqRSIBGv58AJcW5pLctvhyVk4Eb
- 5AEgO/YqO1gOGcnLhBF0HKoqzUlc3W/HFk2L00FHEUGEw2MdD3dQ4J4FZ
- 07bnay3sQyb1b+0ZOEjqAkFiAfWV1x7KZkXqGMQE8kU/KGevaVhjvixP2
- 9Do/JKEGT++bGPSKbZtYq4xchfivf8jLyBzfPJ3p3vdS/dRzBNFdMpqYV
- I2zWOGl5VSVrTAOK1jQXW6Yl3nKxT3LkJ6qs0S6K3nkZ4HdMhkKceGE3Z
- 4Cj8y5ypKvDN2zs2E5GK0RLZzbmzjAi7ZuCUKvy6QQDPi0CosO3c+wlVT A==;
-X-CSE-ConnectionGUID: nnHOb3vYSdixjE9+hg9aWA==
-X-CSE-MsgGUID: 3OeL8XW1QCeMQsnY7z7XOA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="28934448"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="28934448"
+ bh=AQBMU5f8kCRcwnadCh6zn3Wc5+NfUYG768MigAw1gGA=;
+ b=GvJnDIa4nq6q7qGsKHhURc8dc4xf92gkRsvPojiLoVmj43tqEiEObE2y
+ nWeykHttCm95/yyVQaTwK3IOrD0qowQxyF5PcymLJMe4uoGAA2EvA8oRW
+ DhIJvNmPw43Fw3M0ExbuqNn1/0j4AS6BWPElDZEjtOspkZ3Q9Z+C/p2xc
+ 4u+iXSpFOBozDCLpFN/KQnM8Y5xcPG7b2L/RqSxhFkOZTaXougAC1t1Si
+ vdfE3mAIDJAZjPMvnSCtHZz6Mmio+Q4R0hR5QkODAqMb54845Q1nj58Fy
+ SFUp9P6pFYqO4jKflLANh7dsa8xomq0Dfr3JkFM9ztvJhCgsxAJu9AQun Q==;
+X-CSE-ConnectionGUID: dTgujp8eRaqHvI8wqML/+g==
+X-CSE-MsgGUID: yqq5LDQVRBSyYixI0SZ2vw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="28934449"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="28934449"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2024 15:28:02 -0700
-X-CSE-ConnectionGUID: e7j2ur4JQbWEhj4F7eVB5g==
-X-CSE-MsgGUID: iincAdIMQ3ylHOk+Z08C2Q==
+ 21 Oct 2024 15:28:04 -0700
+X-CSE-ConnectionGUID: Gno/pEkkQlK4Fl6p6cpE/Q==
+X-CSE-MsgGUID: s3b8ze0KSR6IBXYJHmWRrA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,221,1725346800"; d="scan'208";a="80009595"
+X-IronPort-AV: E=Sophos;i="6.11,221,1725346800"; d="scan'208";a="80009598"
 Received: from aschofie-mobl2.amr.corp.intel.com (HELO
  gjsousa-mobl2.intel.com) ([10.125.110.79])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2024 15:28:01 -0700
+ 21 Oct 2024 15:28:02 -0700
 From: Gustavo Sousa <gustavo.sousa@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Luca Coelho <luciano.coelho@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH 01/13] drm/xe: Mimic i915 behavior for non-sleeping MMIO wait
-Date: Mon, 21 Oct 2024 19:27:20 -0300
-Message-ID: <20241021222744.294371-2-gustavo.sousa@intel.com>
+Subject: [PATCH 02/13] drm/i915/dmc_wl: Use non-sleeping variant of MMIO wait
+Date: Mon, 21 Oct 2024 19:27:21 -0300
+Message-ID: <20241021222744.294371-3-gustavo.sousa@intel.com>
 X-Mailer: git-send-email 2.47.0
 In-Reply-To: <20241021222744.294371-1-gustavo.sousa@intel.com>
 References: <20241021222744.294371-1-gustavo.sousa@intel.com>
@@ -70,52 +70,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In upcoming display changes, we will modify the DMC wakelock MMIO
-waiting code to choose a non-sleeping variant implementation, because
-the wakelock is also taking in atomic context.
+Some display MMIO transactions for offsets in the range that requires
+the DMC wakelock happen in atomic context (this has been confirmed
+during tests on PTL). That means that we need to use a non-sleeping
+variant of MMIO waiting function.
 
-While xe provides an explicit parameter (namely "atomic") to prevent
-xe_mmio_wait32() from sleeping, i915 does not and implements that
-behavior when slow_timeout_ms is zero.
-
-So, for now, let's mimic what i915 does to allow for display to use
-non-sleeping MMIO wait. In the future, we should come up with a better
-and explicit interface for this behavior in i915, at least while display
-code is not an independent entity with proper interfaces between xe and
-i915.
+Implement __intel_de_wait_for_register_atomic_nowl() and use it when
+waiting for acknowledgment of acquire/release.
 
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- .../gpu/drm/xe/compat-i915-headers/intel_uncore.h   | 13 ++++++++++++-
- 1 file changed, 12 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_de.h     | 11 +++++++++++
+ drivers/gpu/drm/i915/display/intel_dmc_wl.c | 20 ++++++++++++--------
+ 2 files changed, 23 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
-index 0382beb4035b..5a57f76c1760 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
-@@ -117,10 +117,21 @@ __intel_wait_for_register(struct intel_uncore *uncore, i915_reg_t i915_reg,
- 			  unsigned int slow_timeout_ms, u32 *out_value)
- {
- 	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
-+	bool atomic;
-+
-+	/*
-+	 * FIXME: We are trying to replicate the behavior from i915 here, in
-+	 * which sleep is not performed if slow_timeout_ms == 0. This hack is
-+	 * necessary because of paths in display code that are executed in
-+	 * atomic context. Setting the atomic flag based on timeout values
-+	 * doesn't feel very robust. Ideally, we should have a proper interface
-+	 * for explicitly choosing non-sleeping behavior.
-+	 */
-+	atomic = !slow_timeout_ms && fast_timeout_us > 0;
- 
- 	return xe_mmio_wait32(__compat_uncore_to_mmio(uncore), reg, mask, value,
- 			      fast_timeout_us + 1000 * slow_timeout_ms,
--			      out_value, false);
-+			      out_value, atomic);
+diff --git a/drivers/gpu/drm/i915/display/intel_de.h b/drivers/gpu/drm/i915/display/intel_de.h
+index e017cd4a8168..4116783a62dd 100644
+--- a/drivers/gpu/drm/i915/display/intel_de.h
++++ b/drivers/gpu/drm/i915/display/intel_de.h
+@@ -121,6 +121,17 @@ ____intel_de_wait_for_register_nowl(struct intel_display *display,
  }
+ #define __intel_de_wait_for_register_nowl(p,...) ____intel_de_wait_for_register_nowl(__to_intel_display(p), __VA_ARGS__)
  
- static inline u32 intel_uncore_read_fw(struct intel_uncore *uncore,
++static inline int
++____intel_de_wait_for_register_atomic_nowl(struct intel_display *display,
++					   i915_reg_t reg,
++					   u32 mask, u32 value,
++					   unsigned int fast_timeout_us)
++{
++	return __intel_wait_for_register(__to_uncore(display), reg, mask,
++					 value, fast_timeout_us, 0, NULL);
++}
++#define __intel_de_wait_for_register_atomic_nowl(p,...) ____intel_de_wait_for_register_atomic_nowl(__to_intel_display(p), __VA_ARGS__)
++
+ static inline int
+ __intel_de_wait(struct intel_display *display, i915_reg_t reg,
+ 		u32 mask, u32 value, unsigned int timeout)
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+index 5634ff07269d..8056a3c8666c 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
++++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+@@ -39,7 +39,7 @@
+  * potential future use.
+  */
+ 
+-#define DMC_WAKELOCK_CTL_TIMEOUT 5
++#define DMC_WAKELOCK_CTL_TIMEOUT_US 5000
+ #define DMC_WAKELOCK_HOLD_TIME 50
+ 
+ struct intel_dmc_wl_range {
+@@ -78,9 +78,9 @@ static void intel_dmc_wl_work(struct work_struct *work)
+ 
+ 	__intel_de_rmw_nowl(display, DMC_WAKELOCK1_CTL, DMC_WAKELOCK_CTL_REQ, 0);
+ 
+-	if (__intel_de_wait_for_register_nowl(display, DMC_WAKELOCK1_CTL,
+-					      DMC_WAKELOCK_CTL_ACK, 0,
+-					      DMC_WAKELOCK_CTL_TIMEOUT)) {
++	if (__intel_de_wait_for_register_atomic_nowl(display, DMC_WAKELOCK1_CTL,
++						     DMC_WAKELOCK_CTL_ACK, 0,
++						     DMC_WAKELOCK_CTL_TIMEOUT_US)) {
+ 		WARN_RATELIMIT(1, "DMC wakelock release timed out");
+ 		goto out_unlock;
+ 	}
+@@ -216,10 +216,14 @@ void intel_dmc_wl_get(struct intel_display *display, i915_reg_t reg)
+ 		__intel_de_rmw_nowl(display, DMC_WAKELOCK1_CTL, 0,
+ 				    DMC_WAKELOCK_CTL_REQ);
+ 
+-		if (__intel_de_wait_for_register_nowl(display, DMC_WAKELOCK1_CTL,
+-						      DMC_WAKELOCK_CTL_ACK,
+-						      DMC_WAKELOCK_CTL_ACK,
+-						      DMC_WAKELOCK_CTL_TIMEOUT)) {
++		/*
++		 * We need to use the atomic variant of the waiting routine
++		 * because the DMC wakelock is also taken in atomic context.
++		 */
++		if (__intel_de_wait_for_register_atomic_nowl(display, DMC_WAKELOCK1_CTL,
++							     DMC_WAKELOCK_CTL_ACK,
++							     DMC_WAKELOCK_CTL_ACK,
++							     DMC_WAKELOCK_CTL_TIMEOUT_US)) {
+ 			WARN_RATELIMIT(1, "DMC wakelock ack timed out");
+ 			goto out_unlock;
+ 		}
 -- 
 2.47.0
 
