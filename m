@@ -2,57 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CB929A6868
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Oct 2024 14:29:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D9EC9A686B
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Oct 2024 14:30:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2833110E4B4;
-	Mon, 21 Oct 2024 12:29:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D700C10E4B9;
+	Mon, 21 Oct 2024 12:30:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iSvYLSvK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MCuPGRWM";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35BB410E4B4;
- Mon, 21 Oct 2024 12:29:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13E4210E4B9
+ for <intel-gfx@lists.freedesktop.org>; Mon, 21 Oct 2024 12:30:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729513777; x=1761049777;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=YjSB3qDSgdemuJsrNfw2L2hRdz9fOB+QdNzSR6wbaAY=;
- b=iSvYLSvK+mbQeHPliESyVlLHtNLomFNvuHLvhWvZNkXX4/A+1fo8FdPa
- SuIfWrjh/QFHYGVaBqvLaSttsCIzbySEO9+417+1CZk2CeV5qioVNL6xQ
- LKP1dmWEh8wqdqg58UTp1SjN8sL8hs4HOKeVhsJI7u05jq6re2ywkQIVf
- a13UW01oWB4sX6XZcJ1GPiMBEf4EQHp3jM6VPr5JtNqspIPsqdalqoAuq
- OCepFhxj/jElR55+de+92z1G3PHrMliY2yqGRm7bB0JHEjKKbVE65wUON
- nIVk5YzaonRdaLzZ7M+MHs527k6BenGfAEQSOx68K9kPI9xlHhmcjcvjx A==;
-X-CSE-ConnectionGUID: yYlMPaO6TWmOOTXVMx+40g==
-X-CSE-MsgGUID: AhCUY4bMTxCcyxMRY7Fo4g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11232"; a="28447829"
-X-IronPort-AV: E=Sophos;i="6.11,220,1725346800"; d="scan'208";a="28447829"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ t=1729513831; x=1761049831;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=aL1xU7WU28PY+A/UmcmMerq9AwWT76JyktoxtroZh5g=;
+ b=MCuPGRWMEJ8YEFoPeqcC9zze5tVtCtoMnpKjx2l/+G9N18hr6t1TjpFO
+ UR2P1m0N8hobETp8BD1sH0/4ic5DuRo3EmF9S9zkHJJWc8+un7XMiP1z3
+ LDOwQsFhPqOPRnITrxd96tZC4txNSOKaZHR2iTg122g5MeMxKjzs9ZZGD
+ D/i5uC+gE8YLlu/7UDJPbkHzTx0/sv8ZRQqV9VwhBpM8KQgQVqbG4kB12
+ 61a6MBtFsV0ygVKzY5q4+0K4Zztj5mfQU+F3w3ia7R2H7olGOiRdZKrXN
+ TJ++Udv03MuuGutIxYH/PdZJe1ShOEmRVR2Lm4bmg5FS9l/kG3WJn5/KL Q==;
+X-CSE-ConnectionGUID: N5XlNgTkSvaQ2pyB+PKTXQ==
+X-CSE-MsgGUID: 7fnHqagVRVKCsytTOAd/Uw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11232"; a="28447931"
+X-IronPort-AV: E=Sophos;i="6.11,220,1725346800"; d="scan'208";a="28447931"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2024 05:29:36 -0700
-X-CSE-ConnectionGUID: 335cs8bjSQaUq0T/PZm1Ow==
-X-CSE-MsgGUID: iZT4cmkeSC2f7GfrOxSwiQ==
+ 21 Oct 2024 05:30:30 -0700
+X-CSE-ConnectionGUID: 8pcIHc5uTW6vmja5fOtr9A==
+X-CSE-MsgGUID: gxpnuLVsQ0iJ541SfgowWQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,220,1725346800"; d="scan'208";a="116955716"
-Received: from lbogdanm-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.246.222])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2024 05:29:34 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915/xe2lpd: Update C20 HDMI TMDS algorithm to
- include tx_misc
-In-Reply-To: <20241017205444.102979-2-gustavo.sousa@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241017205444.102979-2-gustavo.sousa@intel.com>
-Date: Mon, 21 Oct 2024 15:29:30 +0300
-Message-ID: <8734kpzljp.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,220,1725346800"; d="scan'208";a="84574482"
+Received: from lfiedoro-mobl.ger.corp.intel.com (HELO intel.com)
+ ([10.245.246.218])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2024 05:30:28 -0700
+Date: Mon, 21 Oct 2024 14:30:24 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Stephen Rothwell <sfr@canb.auug.org.au>,
+ Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>
+Subject: Re: [PATCH] drm/i915: Fix irq related documentation
+Message-ID: <ZxZJYD_wDTPoGokX@ashyti-mobl2.lan>
+References: <20241011214111.98128-1-rodrigo.vivi@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241011214111.98128-1-rodrigo.vivi@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,106 +70,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 17 Oct 2024, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
-> There has been an update to the Bspec in which we need to set
-> tx_misc=0x5 field for C20 TX Context programming for HDMI TMDS for
-> Xe2_LPD and newer. That field is mapped to the bits 7:0 of
-> SRAM_GENERIC_<A/B>_TX_CNTX_CFG_1, which in turn translates to tx[1] of
-> our state struct. Update the algorithm to reflect this change.
->
-> Bspec: 74489
-> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_cx0_phy.c    | 17 ++++++++++++++---
->  .../gpu/drm/i915/display/intel_cx0_phy_regs.h   |  2 ++
->  2 files changed, 16 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> index f73d576fd99e..22184b2d5a11 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> @@ -2142,8 +2142,12 @@ static void intel_c10pll_dump_hw_state(struct drm_i915_private *i915,
->  			    i + 2, hw_state->pll[i + 2], i + 3, hw_state->pll[i + 3]);
->  }
->  
-> -static int intel_c20_compute_hdmi_tmds_pll(u64 pixel_clock, struct intel_c20pll_state *pll_state)
-> +static int intel_c20_compute_hdmi_tmds_pll(struct intel_encoder *encoder,
-> +					   u64 pixel_clock,
-> +					   struct intel_c20pll_state *pll_state)
->  {
-> +	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+Hi Rodrigo,
 
-No new struct drm_i915_private local variables or parameters, please.
+On Fri, Oct 11, 2024 at 05:41:10PM -0400, Rodrigo Vivi wrote:
+> Also update the function names in the documentation.
+> 
+> Reported-by: Stephen Rothwell <sfr@canb.auug.org.au>
+> Closes:
+> https://lore.kernel.org/intel-gfx/20241001134331.7b4d4ca5@canb.auug.org.au/
+> Fixes: 3de5774cb8c0 ("drm/i915/irq: Rename suspend/resume functions")
+> Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> Cc: Andi Shyti <andi.shyti@linux.intel.com>
+> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-struct intel_display *display = to_intel_display(encoder);
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 
-> +
->  	u64 datarate;
->  	u64 mpll_tx_clk_div;
->  	u64 vco_freq_shift;
-> @@ -2154,6 +2158,7 @@ static int intel_c20_compute_hdmi_tmds_pll(u64 pixel_clock, struct intel_c20pll_
->  	u64 mpll_fracn_rem;
->  	u8  mpllb_ana_freq_vco;
->  	u8  mpll_div_multiplier;
-> +	u16  tx_misc;
->  
->  	if (pixel_clock < 25175 || pixel_clock > 600000)
->  		return -EINVAL;
-> @@ -2171,6 +2176,11 @@ static int intel_c20_compute_hdmi_tmds_pll(u64 pixel_clock, struct intel_c20pll_
->  	mpll_div_multiplier = min_t(u8, div64_u64((vco_freq * 16 + (datarate >> 1)),
->  						  datarate), 255);
->  
-> +	if (DISPLAY_VER(i915) >= 20)
-> +		tx_misc = 0x5;
-> +	else
-> +		tx_misc = 0x0;
-> +
->  	if (vco_freq <= DATARATE_3000000000)
->  		mpllb_ana_freq_vco = MPLLB_ANA_FREQ_VCO_3;
->  	else if (vco_freq <= DATARATE_3500000000)
-> @@ -2182,7 +2192,7 @@ static int intel_c20_compute_hdmi_tmds_pll(u64 pixel_clock, struct intel_c20pll_
->  
->  	pll_state->clock	= pixel_clock;
->  	pll_state->tx[0]	= 0xbe88;
-> -	pll_state->tx[1]	= 0x9800;
-> +	pll_state->tx[1]	= 0x9800 | C20_PHY_TX_MISC(tx_misc);
->  	pll_state->tx[2]	= 0x0000;
->  	pll_state->cmn[0]	= 0x0500;
->  	pll_state->cmn[1]	= 0x0005;
-> @@ -2266,7 +2276,8 @@ static int intel_c20pll_calc_state(struct intel_crtc_state *crtc_state,
->  
->  	/* try computed C20 HDMI tables before using consolidated tables */
->  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) {
-> -		if (intel_c20_compute_hdmi_tmds_pll(crtc_state->port_clock,
-> +		if (intel_c20_compute_hdmi_tmds_pll(encoder,
-> +						    crtc_state->port_clock,
-
-Alternatively you could just pass crtc_state. *shrug*.
-
->  						    &crtc_state->dpll_hw_state.cx0pll.c20) == 0)
->  			return 0;
->  	}
-> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-> index ab3ae110b68f..c1949aa1b909 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
-> @@ -280,6 +280,8 @@
->  #define PHY_C20_B_TX_CNTX_CFG(i915, idx) \
->  		((_IS_XE2HPD_C20(i915) ? _XE2HPD_C20_B_TX_CNTX_CFG : _MTL_C20_B_TX_CNTX_CFG) - (idx))
->  #define   C20_PHY_TX_RATE		REG_GENMASK(2, 0)
-> +#define   C20_PHY_TX_MISC_MASK		REG_GENMASK(7, 0)
-> +#define   C20_PHY_TX_MISC(val)		REG_FIELD_PREP16(C20_PHY_TX_MISC_MASK, (val))
-
-REG_FIELD_PREP16 should have a mask of REG_GENMASK16, and all the masks
-and fields and bits for a register should all use the same width.
-
-BR,
-Jani.
-
-
->  
->  #define PHY_C20_A_CMN_CNTX_CFG(i915, idx) \
->  		((_IS_XE2HPD_C20(i915) ? _XE2HPD_C20_A_CMN_CNTX_CFG : _MTL_C20_A_CMN_CNTX_CFG) - (idx))
-
--- 
-Jani Nikula, Intel
+Thanks,
+Andi
