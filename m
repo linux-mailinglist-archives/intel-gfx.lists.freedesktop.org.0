@@ -2,52 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6F8E9A6876
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Oct 2024 14:32:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F1C79A6877
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Oct 2024 14:32:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D22110E4C5;
-	Mon, 21 Oct 2024 12:32:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 972BE10E4C6;
+	Mon, 21 Oct 2024 12:32:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IvafJwuz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y1RZar5y";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 495B010E4C4;
- Mon, 21 Oct 2024 12:32:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA14810E4C9;
+ Mon, 21 Oct 2024 12:32:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729513923; x=1761049923;
+ t=1729513924; x=1761049924;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=/lb9CWrQF+avW+fScSJyBbgZBo0l+AGYO5yXkCen0zY=;
- b=IvafJwuzY0Es2bwSg08tlTHjxor2HJq8uPMSZphrdwnm+gEEVWRea6uY
- avGaeV57+p1RAO0HSEKjG1K68BE+b+B3sonvmz7dwhipgkLhFy3wgXK+8
- ASA+gwy5OIuoBC15D3PoMi9SA7fbMD22nWdYNas1Of6SVS/Peqyy9bfJw
- 7At/jUs7UCPWh6+khdj/YfB1xvCW22N5IGEEBZKyBehHnqHmUM/0Je9ek
- 4IASMoS3+HqytifwEMDp4oTuQAhLy9zoK4r0y0SCs7VD1BFLNwYzJfBow
- yQigXIw8XHeH2O6EXoEZOY3gmBA1fzVzJXfJYfkOoFWHTzk6X9cDVAG82 w==;
-X-CSE-ConnectionGUID: t5Hl92INRDWhKGffv3I65A==
-X-CSE-MsgGUID: wHjjdS6zSXSWqp0AHRwhAQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="46459625"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="46459625"
+ bh=45Jo4JD1pRmWm0ln4iUp/JE7O+O23vcHkHp8S8vZono=;
+ b=Y1RZar5yOCa3wDH4vkNn0kJKpDkzE1vtX5xO9BD9dnN6pg0ygeEUC4t0
+ GPArTYygMQbB2aoTJ2CFeP0kbZjUzANS2EPThF+v/fzfeAxH4RJQjdy2Q
+ DLSU/OdgF8f326eIqsjfNYjjHsDVZGIPFvoDHiaaeuYczxEFqEM3bBG0P
+ p397xYcXJBIuFimmSnlG23Q6Gv86hh3ush/Pz0V8O+Jo/nYyTCqAD7BTx
+ F/wqh86sEeMh2wty2kG425EvARHKnlSGZE+7zeBl9776m+Eog0JUBH/I7
+ pL2tX82LRUibCT9ycWw40UnNDlkRBFhWJEz7C2/p5b6YsGc1Wrya+F7J8 g==;
+X-CSE-ConnectionGUID: 30tUjesYR0q9kKXL72xNyw==
+X-CSE-MsgGUID: 0LnDGRJTTTecABW/qXuDZA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="46459627"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="46459627"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2024 05:32:03 -0700
-X-CSE-ConnectionGUID: Nu6eAKXCTS6UwMNqdskDFQ==
-X-CSE-MsgGUID: qOXeJROLQuy+48e64ik+yA==
+ 21 Oct 2024 05:32:04 -0700
+X-CSE-ConnectionGUID: MruH7uBmQTiavXCdCQ+cTA==
+X-CSE-MsgGUID: 645pO+KzRY2K0RNypEU1PA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,220,1725346800"; d="scan'208";a="79866044"
+X-IronPort-AV: E=Sophos;i="6.11,220,1725346800"; d="scan'208";a="79866050"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2024 05:32:02 -0700
+ 21 Oct 2024 05:32:03 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	suraj.kandpal@intel.com
-Subject: [PATCH 02/16] drm/i915/display: Prepare for dsc 3 stream splitter
-Date: Mon, 21 Oct 2024 18:04:00 +0530
-Message-ID: <20241021123414.3993899-3-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 03/16] drm/i915/vdsc: Use VDSC0/VDSC1 for LEFT/RIGHT VDSC
+ engine
+Date: Mon, 21 Oct 2024 18:04:01 +0530
+Message-ID: <20241021123414.3993899-4-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241021123414.3993899-1-ankit.k.nautiyal@intel.com>
 References: <20241021123414.3993899-1-ankit.k.nautiyal@intel.com>
@@ -68,121 +69,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-At the moment dsc_split represents that dsc splitter is used or not.
-With 3 DSC engines, the splitter can split into two streams or three
-streams. Make the member dsc_split as int and set that to 2 when dsc
-splitter splits to 2 stream.
-
-v2: Avoid new enum for dsc split. (Suraj)
+Drop use of LEFT/RIGHT VDSC engine and use VDSC0/VDSC1 instead.
+While at it, use REG_BIT macro for the bits.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/icl_dsi.c        |  2 +-
- drivers/gpu/drm/i915/display/intel_display.c  |  2 +-
- .../drm/i915/display/intel_display_types.h    |  2 +-
- drivers/gpu/drm/i915/display/intel_dp.c       |  2 +-
- drivers/gpu/drm/i915/display/intel_vdsc.c     | 20 ++++++++++++++-----
- 5 files changed, 19 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/i915/display/intel_vdsc.c      | 8 ++++----
+ drivers/gpu/drm/i915/display/intel_vdsc_regs.h | 4 ++--
+ 2 files changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-index 87a27d91d15d..553e75cf118c 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi.c
-+++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-@@ -1595,7 +1595,7 @@ static int gen11_dsi_dsc_compute_config(struct intel_encoder *encoder,
- 
- 	/* FIXME: split only when necessary */
- 	if (crtc_state->dsc.slice_count > 1)
--		crtc_state->dsc.dsc_split = true;
-+		crtc_state->dsc.dsc_split = 2;
- 
- 	/* FIXME: initialize from VBT */
- 	vdsc_cfg->rc_model_size = DSC_RC_MODEL_SIZE_CONST;
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index ef1436146325..9e2f0fd0558f 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -5741,7 +5741,7 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 	PIPE_CONF_CHECK_I(dsc.config.nsl_bpg_offset);
- 
- 	PIPE_CONF_CHECK_BOOL(dsc.compression_enable);
--	PIPE_CONF_CHECK_BOOL(dsc.dsc_split);
-+	PIPE_CONF_CHECK_I(dsc.dsc_split);
- 	PIPE_CONF_CHECK_I(dsc.compressed_bpp_x16);
- 
- 	PIPE_CONF_CHECK_BOOL(splitter.enable);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 2bb1fa64da2f..58f510909f4d 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1235,7 +1235,7 @@ struct intel_crtc_state {
- 	/* Display Stream compression state */
- 	struct {
- 		bool compression_enable;
--		bool dsc_split;
-+		int dsc_split;
- 		/* Compressed Bpp in U6.4 format (first 4 bits for fractional part) */
- 		u16 compressed_bpp_x16;
- 		u8 slice_count;
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 286b272aa98c..c1867c883b73 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2409,7 +2409,7 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
- 	 * then we need to use 2 VDSC instances.
- 	 */
- 	if (pipe_config->joiner_pipes || pipe_config->dsc.slice_count > 1)
--		pipe_config->dsc.dsc_split = true;
-+		pipe_config->dsc.dsc_split = 2;
- 
- 	ret = intel_dp_dsc_compute_params(connector, pipe_config);
- 	if (ret < 0) {
 diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-index 40525f5c4c42..3bce13c21756 100644
+index 3bce13c21756..198446738662 100644
 --- a/drivers/gpu/drm/i915/display/intel_vdsc.c
 +++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-@@ -379,7 +379,14 @@ intel_dsc_power_domain(struct intel_crtc *crtc, enum transcoder cpu_transcoder)
+@@ -777,9 +777,9 @@ void intel_dsc_enable(const struct intel_crtc_state *crtc_state)
  
- static int intel_dsc_get_vdsc_per_pipe(const struct intel_crtc_state *crtc_state)
- {
--	return crtc_state->dsc.dsc_split ? 2 : 1;
-+	switch (crtc_state->dsc.dsc_split) {
-+	case 2:
-+		return 2;
-+	case 0:
-+	default:
-+		break;
-+	}
-+	return 1;
- }
+ 	intel_dsc_pps_configure(crtc_state);
  
- int intel_dsc_get_num_vdsc_instances(const struct intel_crtc_state *crtc_state)
-@@ -976,8 +983,11 @@ void intel_dsc_get_config(struct intel_crtc_state *crtc_state)
+-	dss_ctl2_val |= LEFT_BRANCH_VDSC_ENABLE;
++	dss_ctl2_val |= VDSC0_ENABLE;
+ 	if (vdsc_instances_per_pipe > 1) {
+-		dss_ctl2_val |= RIGHT_BRANCH_VDSC_ENABLE;
++		dss_ctl2_val |= VDSC1_ENABLE;
+ 		dss_ctl1_val |= JOINER_ENABLE;
+ 	}
+ 	if (crtc_state->joiner_pipes) {
+@@ -979,12 +979,12 @@ void intel_dsc_get_config(struct intel_crtc_state *crtc_state)
+ 	dss_ctl1 = intel_de_read(dev_priv, dss_ctl1_reg(crtc, cpu_transcoder));
+ 	dss_ctl2 = intel_de_read(dev_priv, dss_ctl2_reg(crtc, cpu_transcoder));
+ 
+-	crtc_state->dsc.compression_enable = dss_ctl2 & LEFT_BRANCH_VDSC_ENABLE;
++	crtc_state->dsc.compression_enable = dss_ctl2 & VDSC0_ENABLE;
  	if (!crtc_state->dsc.compression_enable)
  		goto out;
  
--	crtc_state->dsc.dsc_split = (dss_ctl2 & RIGHT_BRANCH_VDSC_ENABLE) &&
--		(dss_ctl1 & JOINER_ENABLE);
-+	if ((dss_ctl1 & JOINER_ENABLE) &&
-+	    (dss_ctl2 & RIGHT_BRANCH_VDSC_ENABLE))
-+		crtc_state->dsc.dsc_split = 2;
-+	else
-+		crtc_state->dsc.dsc_split = 0;
+ 	if ((dss_ctl1 & JOINER_ENABLE) &&
+-	    (dss_ctl2 & RIGHT_BRANCH_VDSC_ENABLE))
++	    (dss_ctl2 & VDSC1_ENABLE))
+ 		crtc_state->dsc.dsc_split = 2;
+ 	else
+ 		crtc_state->dsc.dsc_split = 0;
+diff --git a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
+index bf32a3b46fb1..d7a72b95ee7e 100644
+--- a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
+@@ -21,8 +21,8 @@
+ #define  MAX_DL_BUFFER_TARGET_DEPTH		0x5a0
  
- 	intel_dsc_get_pps_config(crtc_state);
- out:
-@@ -988,10 +998,10 @@ static void intel_vdsc_dump_state(struct drm_printer *p, int indent,
- 				  const struct intel_crtc_state *crtc_state)
- {
- 	drm_printf_indent(p, indent,
--			  "dsc-dss: compressed-bpp:" FXP_Q4_FMT ", slice-count: %d, split: %s\n",
-+			  "dsc-dss: compressed-bpp:" FXP_Q4_FMT ", slice-count: %d, split: %d\n",
- 			  FXP_Q4_ARGS(crtc_state->dsc.compressed_bpp_x16),
- 			  crtc_state->dsc.slice_count,
--			  str_yes_no(crtc_state->dsc.dsc_split));
-+			  crtc_state->dsc.dsc_split);
- }
+ #define DSS_CTL2				_MMIO(0x67404)
+-#define  LEFT_BRANCH_VDSC_ENABLE		(1 << 31)
+-#define  RIGHT_BRANCH_VDSC_ENABLE		(1 << 15)
++#define  VDSC0_ENABLE				REG_BIT(31)
++#define  VDSC1_ENABLE				REG_BIT(15)
+ #define  RIGHT_DL_BUF_TARGET_DEPTH_MASK		(0xfff << 0)
+ #define  RIGHT_DL_BUF_TARGET_DEPTH(pixels)	((pixels) << 0)
  
- void intel_vdsc_state_dump(struct drm_printer *p, int indent,
 -- 
 2.45.2
 
