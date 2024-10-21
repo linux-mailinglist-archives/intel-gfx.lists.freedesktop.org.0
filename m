@@ -2,57 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D08909A937D
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Oct 2024 00:43:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 47B809A938D
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Oct 2024 00:54:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94CB510E245;
-	Mon, 21 Oct 2024 22:43:23 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gIvc849B";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id A568E10E09F;
+	Mon, 21 Oct 2024 22:54:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF21B10E15A;
- Mon, 21 Oct 2024 22:43:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729550599; x=1761086599;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=eNj13D7N9QfLTCPuudEVkz7xwSQKchMfnfCCJl1Jp08=;
- b=gIvc849BBiTKl0yQqRqCRoGEOduSDLj1SI+6ULYOvnTyK3+typNnMaZl
- eTq/jZUBq+k5EXh4JMJpehgQLtTlNY5YeQVWt4bn6EGCSsYYGCY7HyBmY
- E+vZd1Cs6TWwgHIVfDlaSRd2Uj56lnh8kNGhODyez+OsvO7v1hoWbwakb
- VswEcM3itU3F6WhWs64orVxVwqxBC8btp1UrRIfvcubMNQ5prKiJR+i4a
- +AhB9zqsAxLYvIsCHXeWCOW9902D4TFwDDsb/PBk72nm+vNTMipFoL6eH
- n0GP34HHubVV5jEH2knbCWPQJxz4pDi7dM99JVc73uTA/CX6uggKE3D4h Q==;
-X-CSE-ConnectionGUID: wpZz3bWfRR68d1wjq/4RMw==
-X-CSE-MsgGUID: bJHPAX3MTl6I2Oxp86WPMQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11232"; a="54464079"
-X-IronPort-AV: E=Sophos;i="6.11,221,1725346800"; d="scan'208";a="54464079"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2024 15:43:18 -0700
-X-CSE-ConnectionGUID: Qi6b70AvR9KrLXZcAcGUMA==
-X-CSE-MsgGUID: 2OeDRGAPTjqr83jhAK1WQA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,221,1725346800"; d="scan'208";a="79751017"
-Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.27.7])
- by fmviesa008.fm.intel.com with ESMTP; 21 Oct 2024 15:43:18 -0700
-From: Zhanjun Dong <zhanjun.dong@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: Zhanjun Dong <zhanjun.dong@intel.com>
-Subject: [PATCH v2 1/1] drm/i915/guc: Move destroy context at end of reset
- prepare
-Date: Mon, 21 Oct 2024 15:43:16 -0700
-Message-Id: <20241021224316.293590-2-zhanjun.dong@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241021224316.293590-1-zhanjun.dong@intel.com>
-References: <20241021224316.293590-1-zhanjun.dong@intel.com>
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B79E110E09F;
+ Mon, 21 Oct 2024 22:54:17 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/dmc=5Fwl=3A?=
+ =?utf-8?q?_Fixes_and_enablement_for_Xe3=5FLPD?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gustavo Sousa" <gustavo.sousa@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 21 Oct 2024 22:54:17 -0000
+Message-ID: <172955125774.1306617.10327348638839112051@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241021222744.294371-1-gustavo.sousa@intel.com>
+In-Reply-To: <20241021222744.294371-1-gustavo.sousa@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,38 +37,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-During GuC reset prepare, interrupt disabled before hardware reset,
-although interrupt disabled, the ct is still enabled, the host-GuC
-communication is still active.
-Move the destroy part to the end of reset preparation to avoid the
-situation of host processing G2H messages about an context, but the
-context already been destroyed.
+== Series Details ==
 
-Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
----
- drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Series: drm/i915/dmc_wl: Fixes and enablement for Xe3_LPD
+URL   : https://patchwork.freedesktop.org/series/140282/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-index 9ede6f240d79..858756eb4eb9 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-@@ -1689,10 +1689,11 @@ void intel_guc_submission_reset_prepare(struct intel_guc *guc)
- 	spin_unlock_irq(guc_to_gt(guc)->irq_lock);
- 
- 	guc_flush_submissions(guc);
--	guc_flush_destroyed_contexts(guc);
- 	flush_work(&guc->ct.requests.worker);
- 
- 	scrub_guc_desc_for_outstanding_g2h(guc);
-+	guc_flush_destroyed_contexts(guc);
-+
- }
- 
- static struct intel_engine_cs *
--- 
-2.34.1
+== Summary ==
+
+Error: dim checkpatch failed
+22a0e1dad66b drm/xe: Mimic i915 behavior for non-sleeping MMIO wait
+21b66390096d drm/i915/dmc_wl: Use non-sleeping variant of MMIO wait
+-:33: WARNING:LONG_LINE: line length of 134 exceeds 100 columns
+#33: FILE: drivers/gpu/drm/i915/display/intel_de.h:133:
++#define __intel_de_wait_for_register_atomic_nowl(p,...) ____intel_de_wait_for_register_atomic_nowl(__to_intel_display(p), __VA_ARGS__)
+
+-:33: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#33: FILE: drivers/gpu/drm/i915/display/intel_de.h:133:
++}
++#define __intel_de_wait_for_register_atomic_nowl(p,...) ____intel_de_wait_for_register_atomic_nowl(__to_intel_display(p), __VA_ARGS__)
+
+-:33: ERROR:SPACING: space required after that ',' (ctx:VxV)
+#33: FILE: drivers/gpu/drm/i915/display/intel_de.h:133:
++#define __intel_de_wait_for_register_atomic_nowl(p,...) ____intel_de_wait_for_register_atomic_nowl(__to_intel_display(p), __VA_ARGS__)
+                                                   ^
+
+total: 1 errors, 1 warnings, 1 checks, 55 lines checked
+87054766f121 drm/i915/dmc_wl: Check for non-zero refcount in release work
+504337ac549f drm/i915/dmc_wl: Get wakelock when disabling dynamic DC states
+6f7e7bfc4fc1 drm/i915/dmc_wl: Use sentinel item for range tables
+ed1087ec8d7b drm/i915/dmc_wl: Extract intel_dmc_wl_addr_in_range()
+a9d0463d8f1a drm/i915/dmc_wl: Check ranges specific to DC states
+f843b90ccfa9 drm/i915/dmc_wl: Allow simpler syntax for single reg in range tables
+1b4fb02d409c drm/i915/dmc_wl: Deal with existing references when disabling
+e54a65822ae0 drm/i915/dmc_wl: Couple enable/disable with dynamic DC states
+ad28b8ed1d2d drm/i915/dmc_wl: Add and use HAS_DMC_WAKELOCK()
+-:25: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i915' - possible side-effects?
+#25: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:131:
++#define HAS_DMC_WAKELOCK(i915)		(HAS_DMC(i915) && DISPLAY_VER(i915) >= 20)
+
+total: 0 errors, 0 warnings, 1 checks, 37 lines checked
+c90342162700 drm/i915/dmc_wl: Sanitize enable_dmc_wl according to hardware support
+aef567f023a4 drm/i915/xe3lpd: Use DMC wakelock by default
+-:31: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#31: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:127:
++intel_display_param_named_unsafe(enable_dmc_wl, int, 0400,
+ 	"Enable DMC wakelock "
+
+total: 0 errors, 0 warnings, 1 checks, 32 lines checked
+
 
