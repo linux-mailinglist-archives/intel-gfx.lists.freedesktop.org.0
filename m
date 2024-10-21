@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D93A9A6B27
-	for <lists+intel-gfx@lfdr.de>; Mon, 21 Oct 2024 15:55:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C1879A6B29
+	for <lists+intel-gfx@lfdr.de>; Mon, 21 Oct 2024 15:55:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B21B210E516;
-	Mon, 21 Oct 2024 13:55:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D44E510E51F;
+	Mon, 21 Oct 2024 13:55:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T7Ib10lN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="isObckYL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F34210E516;
- Mon, 21 Oct 2024 13:55:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2ACDA10E51F;
+ Mon, 21 Oct 2024 13:55:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729518945; x=1761054945;
+ t=1729518952; x=1761054952;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=RumTBcgcV0j18jfw3XC6N4mHovxfij7oWeWuaPEbStA=;
- b=T7Ib10lN7oCE7WRN+WpheO45r/ZVQzucJxvF72d7Vnm8HmVsc26lCJad
- op7jk9JdtcbK6rnJuh+PXEXWMCULSQuVVFFulAxihnAL1cCF9J6pCajT1
- XxJ661gUWLCgVJQh0Wb2BmvX34237urCLoKpdVYF77mw1oegZrt9T1wxr
- CFzhAislFRm80Q6tszWjH8viJYVVsSNrdtpbeSnFkd55f8VvK1mhVJVKC
- q5jPbrBiJnJ9z6/MYKg7BwBxHQcSEUEiOXBTxXgPHLtu/kWNOUp40HjAZ
- p9QqeERykI5Si8wJD6J/p5L3qqUfjiMCodQWF/qzbOzjoEUlCZB+OZRkV A==;
-X-CSE-ConnectionGUID: jXO4k2w3STGwKxTeFl8UoQ==
-X-CSE-MsgGUID: OFPpZDHTToCSFLe5t/nMoA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11232"; a="28443946"
-X-IronPort-AV: E=Sophos;i="6.11,221,1725346800"; d="scan'208";a="28443946"
+ bh=p83u157weH66jkTd1BNhPxPUQQsEUgJLLy/mWpjKaZg=;
+ b=isObckYL973ko3g/2GQJaQgqo811tCAMeiHERGP2mpVj6XhGcaPio6w3
+ MGngby8NpPUj5ZKQ+0oTlcyugS8inQ+EPqwJhj/0/rntO8Do+dL0QideG
+ B205/hAey+WnXK8ziUNzTi5WZLJQliVfiyTuEItA97lbn9mY6NkAYQjmb
+ mXPqh76qHUsEBpuVIInRkohPQSdptZ372HGE+gDzKG6vsSSSmpYZELwGA
+ CZSxb98cujUN3KkDN096G7LJHvyFVfMAoo4TEM+NhQmJowtpsaPOKeFGq
+ YoCEM8mpweKS/LVv/4mu7rJieyr+n/FIJoht9WrXbvdSzyzhOe3DNnYes g==;
+X-CSE-ConnectionGUID: Kt1QbQ5DRUmm0W+4RjGovg==
+X-CSE-MsgGUID: QCY9QeMFQ8ul/mcKk8KTiA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11232"; a="28443953"
+X-IronPort-AV: E=Sophos;i="6.11,221,1725346800"; d="scan'208";a="28443953"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2024 06:55:36 -0700
-X-CSE-ConnectionGUID: VjgBhSkwReq1mibKMA3onQ==
-X-CSE-MsgGUID: zArPWx2nQMGprTBpvIZw/g==
+ 21 Oct 2024 06:55:42 -0700
+X-CSE-ConnectionGUID: 8UwYwK99RI6ESraGRFM4Fg==
+X-CSE-MsgGUID: V/fmhK8jTV2NcUDNzxSbrw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,221,1725346800"; d="scan'208";a="79480447"
+X-IronPort-AV: E=Sophos;i="6.11,221,1725346800"; d="scan'208";a="79480456"
 Received: from lbogdanm-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.246.222])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2024 06:55:34 -0700
+ 21 Oct 2024 06:55:39 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, rodrigo.vivi@intel.com, lucas.demarchi@intel.com,
  maarten.lankhorst@linux.intel.com
-Subject: [PATCH v4 13/15] drm/i915/tv: use display->platform.<platform>
+Subject: [PATCH v4 14/15] drm/i915/vga: use display->platform.<platform>
  instead of IS_<PLATFORM>()
-Date: Mon, 21 Oct 2024 16:54:14 +0300
-Message-Id: <39a8ce57a5e410e77ee7a22d1c99c98d12db2ccc.1729518793.git.jani.nikula@intel.com>
+Date: Mon, 21 Oct 2024 16:54:15 +0300
+Message-Id: <f311ea0801853bf4aaee6dea9ce66a22f28e1009.1729518793.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1729518793.git.jani.nikula@intel.com>
 References: <cover.1729518793.git.jani.nikula@intel.com>
@@ -77,65 +77,24 @@ platform identification in display code.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_tv.c | 10 ++++------
- 1 file changed, 4 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/display/intel_vga.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_tv.c b/drivers/gpu/drm/i915/display/intel_tv.c
-index e40aff490486..bfd16054ca05 100644
---- a/drivers/gpu/drm/i915/display/intel_tv.c
-+++ b/drivers/gpu/drm/i915/display/intel_tv.c
-@@ -1093,7 +1093,6 @@ intel_tv_get_config(struct intel_encoder *encoder,
- 		    struct intel_crtc_state *pipe_config)
+diff --git a/drivers/gpu/drm/i915/display/intel_vga.c b/drivers/gpu/drm/i915/display/intel_vga.c
+index 2c76a0176a35..fd18dd07ae49 100644
+--- a/drivers/gpu/drm/i915/display/intel_vga.c
++++ b/drivers/gpu/drm/i915/display/intel_vga.c
+@@ -16,9 +16,7 @@
+ 
+ static i915_reg_t intel_vga_cntrl_reg(struct intel_display *display)
  {
- 	struct intel_display *display = to_intel_display(encoder);
--	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
- 	struct drm_display_mode *adjusted_mode =
- 		&pipe_config->hw.adjusted_mode;
- 	struct drm_display_mode mode = {};
-@@ -1167,7 +1166,7 @@ intel_tv_get_config(struct intel_encoder *encoder,
- 		adjusted_mode->crtc_clock /= 2;
- 
- 	/* pixel counter doesn't work on i965gm TV output */
--	if (IS_I965GM(dev_priv))
-+	if (display->platform.i965gm)
- 		pipe_config->mode_flags |=
- 			I915_MODE_FLAG_USE_SCANLINE_COUNTER;
- }
-@@ -1197,7 +1196,6 @@ intel_tv_compute_config(struct intel_encoder *encoder,
- 	struct intel_atomic_state *state =
- 		to_intel_atomic_state(pipe_config->uapi.state);
- 	struct intel_crtc *crtc = to_intel_crtc(pipe_config->uapi.crtc);
--	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
- 	struct intel_tv_connector_state *tv_conn_state =
- 		to_intel_tv_connector_state(conn_state);
- 	const struct tv_mode *tv_mode = intel_tv_mode_find(conn_state);
-@@ -1349,7 +1347,7 @@ intel_tv_compute_config(struct intel_encoder *encoder,
- 	adjusted_mode->name[0] = '\0';
- 
- 	/* pixel counter doesn't work on i965gm TV output */
--	if (IS_I965GM(dev_priv))
-+	if (display->platform.i965gm)
- 		pipe_config->mode_flags |=
- 			I915_MODE_FLAG_USE_SCANLINE_COUNTER;
- 
-@@ -1525,7 +1523,7 @@ static void intel_tv_pre_enable(struct intel_atomic_state *state,
- 		tv_mode->dda3_inc << TV_SCDDA3_INC_SHIFT;
- 
- 	/* Enable two fixes for the chips that need them. */
--	if (IS_I915GM(dev_priv))
-+	if (display->platform.i915gm)
- 		tv_ctl |= TV_ENC_C0_FIX | TV_ENC_SDP_FIX;
- 
- 	set_tv_mode_timings(display, tv_mode, burst_ena);
-@@ -1627,7 +1625,7 @@ intel_tv_detect_type(struct intel_tv *intel_tv,
- 	 * The TV sense state should be cleared to zero on cantiga platform. Otherwise
- 	 * the TV is misdetected. This is hardware requirement.
- 	 */
--	if (IS_GM45(dev_priv))
-+	if (display->platform.gm45)
- 		tv_dac &= ~(TVDAC_STATE_CHG_EN | TVDAC_A_SENSE_CTL |
- 			    TVDAC_B_SENSE_CTL | TVDAC_C_SENSE_CTL);
- 
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+-
+-	if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915))
++	if (display->platform.valleyview || display->platform.cherryview)
+ 		return VLV_VGACNTRL;
+ 	else if (DISPLAY_VER(display) >= 5)
+ 		return CPU_VGACNTRL;
 -- 
 2.39.5
 
