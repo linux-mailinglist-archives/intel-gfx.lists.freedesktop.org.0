@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 692DA9AB2E1
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Oct 2024 17:57:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 557CA9AB2E3
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Oct 2024 17:57:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AB6C10E204;
-	Tue, 22 Oct 2024 15:57:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EAE9710E6B2;
+	Tue, 22 Oct 2024 15:57:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WU8EzN/3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g4AjgINU";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49E2B10E204;
- Tue, 22 Oct 2024 15:57:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DDFBC10E6B0;
+ Tue, 22 Oct 2024 15:57:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729612660; x=1761148660;
+ t=1729612666; x=1761148666;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=8bqCmzuBMcgsJs3QQUfZr1ZhK+kAu03XSNHsNkYc/v0=;
- b=WU8EzN/3ehvhndDKFWtXbKP0HTrkmFWCGxs6isDPNUKa/7SZJg83mVzQ
- 0tXZXltae49B/EJha6Fsngfp8Vf4RIa1lhquSOymTYGpsUzODrC4xL6H7
- LiU4xngpCAHCm/u72Pq87AzgsKBOPJSt8y/inYXL9okRx7G4o2KGQ2vJt
- gfenoPDRKvdz/I5EVGmS7BOhndKeRhF2NZYtO46vnQwxzWuPr/Qi+skf4
- ysL4YbA9/+PxFuXwGmpnmlaCKhOPtsrQKjeQf8Q/LVlDzSRzIBNpSzXRQ
- L3R72zAGHJRsbdYdk6g7MofpUSD+lUJjXmH7LGF0Q3GOxb/pDRuHA9LlE A==;
-X-CSE-ConnectionGUID: vlcrljXJSuOalNQEX/JiZw==
-X-CSE-MsgGUID: HA96dzpORiWfsqVmZOTa6A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11233"; a="29270565"
-X-IronPort-AV: E=Sophos;i="6.11,223,1725346800"; d="scan'208";a="29270565"
+ bh=D2sUh6KbzHsbEnTgpvq1+6DZRP/4E2y3hSyam9vqd5c=;
+ b=g4AjgINU2j7raaSp8c0s1HECh/M2b+YnNy6RAKCERqS18W9KvRwb0vzw
+ bth2QjzOn/L2Tlz66Dy9s6TIAH1bJNa/O341GUej7izRNDsNTXLgLTMeN
+ HwhH5R7p8jELsUIIHeARTgXeZoLxBceMrjQhWAbbLq8vlXtwH3iUgc15l
+ CWnQaI9M/CRb8ayx4MY6Xdu2Jux0PiUBamiWY/Lsfx/1a/b2Y4WD3jwNA
+ SB1KpPYdxXiAbgNWrTRwFO2HRMTFsqFsAzGRAsuLUxY2O4oLMiSl1Pc+g
+ w1irNaA0gHoOjeDvhXRjVSsvoiZX5njDqf4YirKmPgYrRmXxCg7sY6hL0 w==;
+X-CSE-ConnectionGUID: NfcZ1Zb8RoS0scg0JyqYHA==
+X-CSE-MsgGUID: c62B+ddYRI2TXagNRQycdQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11233"; a="29270577"
+X-IronPort-AV: E=Sophos;i="6.11,223,1725346800"; d="scan'208";a="29270577"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2024 08:57:40 -0700
-X-CSE-ConnectionGUID: Zud6o3y5SBGsDz+T0cGW8Q==
-X-CSE-MsgGUID: yOgGdE6DS663LbCkj9Xnsw==
+ 22 Oct 2024 08:57:45 -0700
+X-CSE-ConnectionGUID: XYBhY9FuSQGlLW/qbZyLng==
+X-CSE-MsgGUID: VtCV11uMQHmVRRgAWJSxqA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,223,1725346800"; d="scan'208";a="79857937"
+X-IronPort-AV: E=Sophos;i="6.11,223,1725346800"; d="scan'208";a="79857961"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.58])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2024 08:57:37 -0700
+ 22 Oct 2024 08:57:43 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 01/11] drm/i915/gmbus: convert to struct intel_display
-Date: Tue, 22 Oct 2024 18:57:18 +0300
-Message-Id: <c9943348f29de4adaee9e174dd9def05835f09af.1729612605.git.jani.nikula@intel.com>
+Subject: [PATCH 02/11] drm/i915/cx0: convert to struct intel_display
+Date: Tue, 22 Oct 2024 18:57:19 +0300
+Message-Id: <3d2b6591fefe6e9b4f3cd402ba74f3a35cb504b5.1729612605.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1729612605.git.jani.nikula@intel.com>
 References: <cover.1729612605.git.jani.nikula@intel.com>
@@ -71,1310 +71,982 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 struct intel_display will replace struct drm_i915_private as the main
-device pointer for display code. Switch gmbus code over to it.
+device pointer for display code. Switch Cx0 PHY code over to it.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bios.c     |   6 +-
- drivers/gpu/drm/i915/display/intel_crt.c      |   6 +-
- .../drm/i915/display/intel_display_driver.c   |   4 +-
- .../gpu/drm/i915/display/intel_display_irq.c  |  11 +-
- drivers/gpu/drm/i915/display/intel_dsi_vbt.c  |   5 +-
- drivers/gpu/drm/i915/display/intel_dvo.c      |   8 +-
- drivers/gpu/drm/i915/display/intel_gmbus.c    | 290 +++++++++---------
- drivers/gpu/drm/i915/display/intel_gmbus.h    |  15 +-
- .../gpu/drm/i915/display/intel_gmbus_regs.h   |  16 +-
- drivers/gpu/drm/i915/display/intel_hdmi.c     |   8 +-
- .../gpu/drm/i915/display/intel_hotplug_irq.c  |   6 +-
- drivers/gpu/drm/i915/display/intel_lvds.c     |   2 +-
- drivers/gpu/drm/i915/display/intel_sdvo.c     |   9 +-
- drivers/gpu/drm/i915/i915_suspend.c           |   2 +-
- 14 files changed, 202 insertions(+), 186 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 308 ++++++++++---------
+ drivers/gpu/drm/i915/display/intel_cx0_phy.h |   8 +-
+ drivers/gpu/drm/i915/display/intel_display.c |   6 +-
+ 3 files changed, 174 insertions(+), 148 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index 9967b65e3cf6..48c010b5b150 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -2796,7 +2796,6 @@ static bool child_device_size_valid(struct intel_display *display, int size)
- static void
- parse_general_definitions(struct intel_display *display)
- {
--	struct drm_i915_private *i915 = to_i915(display->drm);
- 	const struct bdb_general_definitions *defs;
- 	struct intel_bios_encoder_data *devdata;
- 	const struct child_device_config *child;
-@@ -2821,7 +2820,7 @@ parse_general_definitions(struct intel_display *display)
- 
- 	bus_pin = defs->crt_ddc_gmbus_pin;
- 	drm_dbg_kms(display->drm, "crt_ddc_bus_pin: %d\n", bus_pin);
--	if (intel_gmbus_is_valid_pin(i915, bus_pin))
-+	if (intel_gmbus_is_valid_pin(display, bus_pin))
- 		display->vbt.crt_ddc_pin = bus_pin;
- 
- 	if (!child_device_size_valid(display, defs->child_dev_size))
-@@ -3338,7 +3337,6 @@ bool intel_bios_is_tv_present(struct intel_display *display)
-  */
- bool intel_bios_is_lvds_present(struct intel_display *display, u8 *i2c_pin)
- {
--	struct drm_i915_private *i915 = to_i915(display->drm);
- 	const struct intel_bios_encoder_data *devdata;
- 
- 	if (list_empty(&display->vbt.display_devices))
-@@ -3355,7 +3353,7 @@ bool intel_bios_is_lvds_present(struct intel_display *display, u8 *i2c_pin)
- 		    child->device_type != DEVICE_TYPE_LFP)
- 			continue;
- 
--		if (intel_gmbus_is_valid_pin(i915, child->i2c_pin))
-+		if (intel_gmbus_is_valid_pin(display, child->i2c_pin))
- 			*i2c_pin = child->i2c_pin;
- 
- 		/* However, we cannot trust the BIOS writers to populate
-diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
-index fd78adbaadbe..8222b1c251db 100644
---- a/drivers/gpu/drm/i915/display/intel_crt.c
-+++ b/drivers/gpu/drm/i915/display/intel_crt.c
-@@ -935,6 +935,7 @@ intel_crt_detect(struct drm_connector *connector,
- 
- static int intel_crt_get_modes(struct drm_connector *connector)
- {
-+	struct intel_display *display = to_intel_display(connector->dev);
- 	struct drm_device *dev = connector->dev;
- 	struct drm_i915_private *dev_priv = to_i915(dev);
- 	struct intel_crt *crt = intel_attached_crt(to_intel_connector(connector));
-@@ -954,7 +955,7 @@ static int intel_crt_get_modes(struct drm_connector *connector)
- 		goto out;
- 
- 	/* Try to probe digital port for output in DVI-I -> VGA mode. */
--	ddc = intel_gmbus_get_adapter(dev_priv, GMBUS_PIN_DPB);
-+	ddc = intel_gmbus_get_adapter(display, GMBUS_PIN_DPB);
- 	ret = intel_crt_ddc_get_modes(connector, ddc);
- 
- out:
-@@ -1009,6 +1010,7 @@ static const struct drm_encoder_funcs intel_crt_enc_funcs = {
- 
- void intel_crt_init(struct drm_i915_private *dev_priv)
- {
-+	struct intel_display *display = &dev_priv->display;
- 	struct drm_connector *connector;
- 	struct intel_crt *crt;
- 	struct intel_connector *intel_connector;
-@@ -1057,7 +1059,7 @@ void intel_crt_init(struct drm_i915_private *dev_priv)
- 	drm_connector_init_with_ddc(&dev_priv->drm, connector,
- 				    &intel_crt_connector_funcs,
- 				    DRM_MODE_CONNECTOR_VGA,
--				    intel_gmbus_get_adapter(dev_priv, ddc_pin));
-+				    intel_gmbus_get_adapter(display, ddc_pin));
- 
- 	drm_encoder_init(&dev_priv->drm, &crt->base.base, &intel_crt_enc_funcs,
- 			 DRM_MODE_ENCODER_DAC, "CRT");
-diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-index 673f9b965494..ae5470078173 100644
---- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@ -432,7 +432,7 @@ int intel_display_driver_probe_nogem(struct drm_i915_private *i915)
- 
- 	intel_pps_setup(display);
- 
--	intel_gmbus_setup(i915);
-+	intel_gmbus_setup(display);
- 
- 	drm_dbg_kms(&i915->drm, "%d display pipe%s available.\n",
- 		    INTEL_NUM_PIPES(i915),
-@@ -608,7 +608,7 @@ void intel_display_driver_remove_noirq(struct drm_i915_private *i915)
- 
- 	intel_overlay_cleanup(i915);
- 
--	intel_gmbus_teardown(i915);
-+	intel_gmbus_teardown(display);
- 
- 	destroy_workqueue(i915->display.wq.flip);
- 	destroy_workqueue(i915->display.wq.modeset);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-index a4f42ed3f21a..0478fe3cdd86 100644
---- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-@@ -543,12 +543,13 @@ void i965_pipestat_irq_handler(struct drm_i915_private *dev_priv,
- 		intel_opregion_asle_intr(display);
- 
- 	if (pipe_stats[0] & PIPE_GMBUS_INTERRUPT_STATUS)
--		intel_gmbus_irq_handler(dev_priv);
-+		intel_gmbus_irq_handler(display);
- }
- 
- void valleyview_pipestat_irq_handler(struct drm_i915_private *dev_priv,
- 				     u32 pipe_stats[I915_MAX_PIPES])
- {
-+	struct intel_display *display = &dev_priv->display;
- 	enum pipe pipe;
- 
- 	for_each_pipe(dev_priv, pipe) {
-@@ -566,7 +567,7 @@ void valleyview_pipestat_irq_handler(struct drm_i915_private *dev_priv,
- 	}
- 
- 	if (pipe_stats[0] & PIPE_GMBUS_INTERRUPT_STATUS)
--		intel_gmbus_irq_handler(dev_priv);
-+		intel_gmbus_irq_handler(display);
- }
- 
- static void ibx_irq_handler(struct drm_i915_private *dev_priv, u32 pch_iir)
-@@ -588,7 +589,7 @@ static void ibx_irq_handler(struct drm_i915_private *dev_priv, u32 pch_iir)
- 		intel_dp_aux_irq_handler(display);
- 
- 	if (pch_iir & SDE_GMBUS)
--		intel_gmbus_irq_handler(dev_priv);
-+		intel_gmbus_irq_handler(display);
- 
- 	if (pch_iir & SDE_AUDIO_HDCP_MASK)
- 		drm_dbg(&dev_priv->drm, "PCH HDCP audio interrupt\n");
-@@ -677,7 +678,7 @@ static void cpt_irq_handler(struct drm_i915_private *dev_priv, u32 pch_iir)
- 		intel_dp_aux_irq_handler(display);
- 
- 	if (pch_iir & SDE_GMBUS_CPT)
--		intel_gmbus_irq_handler(dev_priv);
-+		intel_gmbus_irq_handler(display);
- 
- 	if (pch_iir & SDE_AUDIO_CP_REQ_CPT)
- 		drm_dbg(&dev_priv->drm, "Audio CP request interrupt\n");
-@@ -1109,7 +1110,7 @@ void gen8_de_irq_handler(struct drm_i915_private *dev_priv, u32 master_ctl)
- 
- 			if ((IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv)) &&
- 			    (iir & BXT_DE_PORT_GMBUS)) {
--				intel_gmbus_irq_handler(dev_priv);
-+				intel_gmbus_irq_handler(display);
- 				found = true;
- 			}
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-index f0e3be0fe420..e8129a720210 100644
---- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-@@ -323,6 +323,7 @@ enum {
- static void icl_native_gpio_set_value(struct drm_i915_private *dev_priv,
- 				      int gpio, bool value)
- {
-+	struct intel_display *display = &dev_priv->display;
- 	int index;
- 
- 	if (drm_WARN_ON(&dev_priv->drm, DISPLAY_VER(dev_priv) == 11 && gpio >= MIPI_RESET_2))
-@@ -367,7 +368,7 @@ static void icl_native_gpio_set_value(struct drm_i915_private *dev_priv,
- 	case MIPI_AVEE_EN_2:
- 		index = gpio == MIPI_AVEE_EN_1 ? 1 : 2;
- 
--		intel_de_rmw(dev_priv, GPIO(dev_priv, index),
-+		intel_de_rmw(display, GPIO(display, index),
- 			     GPIO_CLOCK_VAL_OUT,
- 			     GPIO_CLOCK_DIR_MASK | GPIO_CLOCK_DIR_OUT |
- 			     GPIO_CLOCK_VAL_MASK | (value ? GPIO_CLOCK_VAL_OUT : 0));
-@@ -376,7 +377,7 @@ static void icl_native_gpio_set_value(struct drm_i915_private *dev_priv,
- 	case MIPI_VIO_EN_2:
- 		index = gpio == MIPI_VIO_EN_1 ? 1 : 2;
- 
--		intel_de_rmw(dev_priv, GPIO(dev_priv, index),
-+		intel_de_rmw(display, GPIO(display, index),
- 			     GPIO_DATA_VAL_OUT,
- 			     GPIO_DATA_DIR_MASK | GPIO_DATA_DIR_OUT |
- 			     GPIO_DATA_VAL_MASK | (value ? GPIO_DATA_VAL_OUT : 0));
-diff --git a/drivers/gpu/drm/i915/display/intel_dvo.c b/drivers/gpu/drm/i915/display/intel_dvo.c
-index 9508ceae0d84..2d5ffb37eac9 100644
---- a/drivers/gpu/drm/i915/display/intel_dvo.c
-+++ b/drivers/gpu/drm/i915/display/intel_dvo.c
-@@ -417,6 +417,7 @@ static bool intel_dvo_init_dev(struct drm_i915_private *dev_priv,
- 			       struct intel_dvo *intel_dvo,
- 			       const struct intel_dvo_device *dvo)
- {
-+	struct intel_display *display = &dev_priv->display;
- 	struct i2c_adapter *i2c;
- 	u32 dpll[I915_MAX_PIPES];
- 	enum pipe pipe;
-@@ -428,7 +429,7 @@ static bool intel_dvo_init_dev(struct drm_i915_private *dev_priv,
- 	 * special cases, but otherwise default to what's defined
- 	 * in the spec.
- 	 */
--	if (intel_gmbus_is_valid_pin(dev_priv, dvo->gpio))
-+	if (intel_gmbus_is_valid_pin(display, dvo->gpio))
- 		gpio = dvo->gpio;
- 	else if (dvo->type == INTEL_DVO_CHIP_LVDS)
- 		gpio = GMBUS_PIN_SSC;
-@@ -440,7 +441,7 @@ static bool intel_dvo_init_dev(struct drm_i915_private *dev_priv,
- 	 * It appears that everything is on GPIOE except for panels
- 	 * on i830 laptops, which are on GPIOB (DVOA).
- 	 */
--	i2c = intel_gmbus_get_adapter(dev_priv, gpio);
-+	i2c = intel_gmbus_get_adapter(display, gpio);
- 
- 	intel_dvo->dev = *dvo;
- 
-@@ -489,6 +490,7 @@ static bool intel_dvo_probe(struct drm_i915_private *i915,
- 
- void intel_dvo_init(struct drm_i915_private *i915)
- {
-+	struct intel_display *display = &i915->display;
- 	struct intel_connector *connector;
- 	struct intel_encoder *encoder;
- 	struct intel_dvo *intel_dvo;
-@@ -549,7 +551,7 @@ void intel_dvo_init(struct drm_i915_private *i915)
- 	drm_connector_init_with_ddc(&i915->drm, &connector->base,
- 				    &intel_dvo_connector_funcs,
- 				    intel_dvo_connector_type(&intel_dvo->dev),
--				    intel_gmbus_get_adapter(i915, GMBUS_PIN_DPC));
-+				    intel_gmbus_get_adapter(display, GMBUS_PIN_DPC));
- 
- 	drm_connector_helper_add(&connector->base,
- 				 &intel_dvo_connector_helper_funcs);
-diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
-index 6470f75106bd..e3d938c7f83e 100644
---- a/drivers/gpu/drm/i915/display/intel_gmbus.c
-+++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
-@@ -48,7 +48,7 @@ struct intel_gmbus {
- 	u32 reg0;
- 	i915_reg_t gpio_reg;
- 	struct i2c_algo_bit_data bit_algo;
--	struct drm_i915_private *i915;
-+	struct intel_display *display;
- };
- 
- enum gmbus_gpio {
-@@ -149,9 +149,10 @@ static const struct gmbus_pin gmbus_pins_mtp[] = {
- 	[GMBUS_PIN_12_TC4_ICP] = { "tc4", GPIOM },
- };
- 
--static const struct gmbus_pin *get_gmbus_pin(struct drm_i915_private *i915,
-+static const struct gmbus_pin *get_gmbus_pin(struct intel_display *display,
- 					     unsigned int pin)
- {
-+	struct drm_i915_private *i915 = to_i915(display->drm);
- 	const struct gmbus_pin *pins;
- 	size_t size;
- 
-@@ -173,7 +174,7 @@ static const struct gmbus_pin *get_gmbus_pin(struct drm_i915_private *i915,
- 	} else if (IS_GEMINILAKE(i915) || IS_BROXTON(i915)) {
- 		pins = gmbus_pins_bxt;
- 		size = ARRAY_SIZE(gmbus_pins_bxt);
--	} else if (DISPLAY_VER(i915) == 9) {
-+	} else if (DISPLAY_VER(display) == 9) {
- 		pins = gmbus_pins_skl;
- 		size = ARRAY_SIZE(gmbus_pins_skl);
- 	} else if (IS_BROADWELL(i915)) {
-@@ -190,9 +191,9 @@ static const struct gmbus_pin *get_gmbus_pin(struct drm_i915_private *i915,
- 	return &pins[pin];
- }
- 
--bool intel_gmbus_is_valid_pin(struct drm_i915_private *i915, unsigned int pin)
-+bool intel_gmbus_is_valid_pin(struct intel_display *display, unsigned int pin)
- {
--	return get_gmbus_pin(i915, pin);
-+	return get_gmbus_pin(display, pin);
- }
- 
- /* Intel GPIO access functions */
-@@ -206,42 +207,45 @@ to_intel_gmbus(struct i2c_adapter *i2c)
- }
- 
- void
--intel_gmbus_reset(struct drm_i915_private *i915)
-+intel_gmbus_reset(struct intel_display *display)
- {
--	intel_de_write(i915, GMBUS0(i915), 0);
--	intel_de_write(i915, GMBUS4(i915), 0);
-+	intel_de_write(display, GMBUS0(display), 0);
-+	intel_de_write(display, GMBUS4(display), 0);
- }
- 
--static void pnv_gmbus_clock_gating(struct drm_i915_private *i915,
-+static void pnv_gmbus_clock_gating(struct intel_display *display,
- 				   bool enable)
- {
- 	/* When using bit bashing for I2C, this bit needs to be set to 1 */
--	intel_de_rmw(i915, DSPCLK_GATE_D(i915), PNV_GMBUSUNIT_CLOCK_GATE_DISABLE,
-+	intel_de_rmw(display, DSPCLK_GATE_D(display),
-+		     PNV_GMBUSUNIT_CLOCK_GATE_DISABLE,
- 		     !enable ? PNV_GMBUSUNIT_CLOCK_GATE_DISABLE : 0);
- }
- 
--static void pch_gmbus_clock_gating(struct drm_i915_private *i915,
-+static void pch_gmbus_clock_gating(struct intel_display *display,
- 				   bool enable)
- {
--	intel_de_rmw(i915, SOUTH_DSPCLK_GATE_D, PCH_GMBUSUNIT_CLOCK_GATE_DISABLE,
-+	intel_de_rmw(display, SOUTH_DSPCLK_GATE_D,
-+		     PCH_GMBUSUNIT_CLOCK_GATE_DISABLE,
- 		     !enable ? PCH_GMBUSUNIT_CLOCK_GATE_DISABLE : 0);
- }
- 
--static void bxt_gmbus_clock_gating(struct drm_i915_private *i915,
-+static void bxt_gmbus_clock_gating(struct intel_display *display,
- 				   bool enable)
- {
--	intel_de_rmw(i915, GEN9_CLKGATE_DIS_4, BXT_GMBUS_GATING_DIS,
-+	intel_de_rmw(display, GEN9_CLKGATE_DIS_4, BXT_GMBUS_GATING_DIS,
- 		     !enable ? BXT_GMBUS_GATING_DIS : 0);
- }
- 
- static u32 get_reserved(struct intel_gmbus *bus)
- {
--	struct drm_i915_private *i915 = bus->i915;
-+	struct intel_display *display = bus->display;
-+	struct drm_i915_private *i915 = to_i915(display->drm);
- 	u32 reserved = 0;
- 
- 	/* On most chips, these bits must be preserved in software. */
- 	if (!IS_I830(i915) && !IS_I845G(i915))
--		reserved = intel_de_read_notrace(i915, bus->gpio_reg) &
-+		reserved = intel_de_read_notrace(display, bus->gpio_reg) &
- 			(GPIO_DATA_PULLUP_DISABLE | GPIO_CLOCK_PULLUP_DISABLE);
- 
- 	return reserved;
-@@ -250,31 +254,31 @@ static u32 get_reserved(struct intel_gmbus *bus)
- static int get_clock(void *data)
- {
- 	struct intel_gmbus *bus = data;
--	struct drm_i915_private *i915 = bus->i915;
-+	struct intel_display *display = bus->display;
- 	u32 reserved = get_reserved(bus);
- 
--	intel_de_write_notrace(i915, bus->gpio_reg, reserved | GPIO_CLOCK_DIR_MASK);
--	intel_de_write_notrace(i915, bus->gpio_reg, reserved);
-+	intel_de_write_notrace(display, bus->gpio_reg, reserved | GPIO_CLOCK_DIR_MASK);
-+	intel_de_write_notrace(display, bus->gpio_reg, reserved);
- 
--	return (intel_de_read_notrace(i915, bus->gpio_reg) & GPIO_CLOCK_VAL_IN) != 0;
-+	return (intel_de_read_notrace(display, bus->gpio_reg) & GPIO_CLOCK_VAL_IN) != 0;
- }
- 
- static int get_data(void *data)
- {
- 	struct intel_gmbus *bus = data;
--	struct drm_i915_private *i915 = bus->i915;
-+	struct intel_display *display = bus->display;
- 	u32 reserved = get_reserved(bus);
- 
--	intel_de_write_notrace(i915, bus->gpio_reg, reserved | GPIO_DATA_DIR_MASK);
--	intel_de_write_notrace(i915, bus->gpio_reg, reserved);
-+	intel_de_write_notrace(display, bus->gpio_reg, reserved | GPIO_DATA_DIR_MASK);
-+	intel_de_write_notrace(display, bus->gpio_reg, reserved);
- 
--	return (intel_de_read_notrace(i915, bus->gpio_reg) & GPIO_DATA_VAL_IN) != 0;
-+	return (intel_de_read_notrace(display, bus->gpio_reg) & GPIO_DATA_VAL_IN) != 0;
- }
- 
- static void set_clock(void *data, int state_high)
- {
- 	struct intel_gmbus *bus = data;
--	struct drm_i915_private *i915 = bus->i915;
-+	struct intel_display *display = bus->display;
- 	u32 reserved = get_reserved(bus);
- 	u32 clock_bits;
- 
-@@ -284,14 +288,14 @@ static void set_clock(void *data, int state_high)
- 		clock_bits = GPIO_CLOCK_DIR_OUT | GPIO_CLOCK_DIR_MASK |
- 			     GPIO_CLOCK_VAL_MASK;
- 
--	intel_de_write_notrace(i915, bus->gpio_reg, reserved | clock_bits);
--	intel_de_posting_read(i915, bus->gpio_reg);
-+	intel_de_write_notrace(display, bus->gpio_reg, reserved | clock_bits);
-+	intel_de_posting_read(display, bus->gpio_reg);
- }
- 
- static void set_data(void *data, int state_high)
- {
- 	struct intel_gmbus *bus = data;
--	struct drm_i915_private *i915 = bus->i915;
-+	struct intel_display *display = bus->display;
- 	u32 reserved = get_reserved(bus);
- 	u32 data_bits;
- 
-@@ -301,20 +305,21 @@ static void set_data(void *data, int state_high)
- 		data_bits = GPIO_DATA_DIR_OUT | GPIO_DATA_DIR_MASK |
- 			GPIO_DATA_VAL_MASK;
- 
--	intel_de_write_notrace(i915, bus->gpio_reg, reserved | data_bits);
--	intel_de_posting_read(i915, bus->gpio_reg);
-+	intel_de_write_notrace(display, bus->gpio_reg, reserved | data_bits);
-+	intel_de_posting_read(display, bus->gpio_reg);
- }
- 
- static int
- intel_gpio_pre_xfer(struct i2c_adapter *adapter)
- {
- 	struct intel_gmbus *bus = to_intel_gmbus(adapter);
--	struct drm_i915_private *i915 = bus->i915;
-+	struct intel_display *display = bus->display;
-+	struct drm_i915_private *i915 = to_i915(display->drm);
- 
--	intel_gmbus_reset(i915);
-+	intel_gmbus_reset(display);
- 
- 	if (IS_PINEVIEW(i915))
--		pnv_gmbus_clock_gating(i915, false);
-+		pnv_gmbus_clock_gating(display, false);
- 
- 	set_data(bus, 1);
- 	set_clock(bus, 1);
-@@ -326,13 +331,14 @@ static void
- intel_gpio_post_xfer(struct i2c_adapter *adapter)
- {
- 	struct intel_gmbus *bus = to_intel_gmbus(adapter);
--	struct drm_i915_private *i915 = bus->i915;
-+	struct intel_display *display = bus->display;
-+	struct drm_i915_private *i915 = to_i915(display->drm);
- 
- 	set_data(bus, 1);
- 	set_clock(bus, 1);
- 
- 	if (IS_PINEVIEW(i915))
--		pnv_gmbus_clock_gating(i915, true);
-+		pnv_gmbus_clock_gating(display, true);
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index f73d576fd99e..814bb17c9379 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -65,22 +65,23 @@ static u8 intel_cx0_get_owned_lane_mask(struct intel_encoder *encoder)
  }
  
  static void
-@@ -355,16 +361,17 @@ intel_gpio_setup(struct intel_gmbus *bus, i915_reg_t gpio_reg)
- 	algo->data = bus;
- }
- 
--static bool has_gmbus_irq(struct drm_i915_private *i915)
-+static bool has_gmbus_irq(struct intel_display *display)
+-assert_dc_off(struct drm_i915_private *i915)
++assert_dc_off(struct intel_display *display)
  {
 +	struct drm_i915_private *i915 = to_i915(display->drm);
- 	/*
- 	 * encoder->shutdown() may want to use GMBUS
- 	 * after irqs have already been disabled.
- 	 */
--	return HAS_GMBUS_IRQ(i915) && intel_irqs_enabled(i915);
-+	return HAS_GMBUS_IRQ(display) && intel_irqs_enabled(i915);
+ 	bool enabled;
+ 
+ 	enabled = intel_display_power_is_enabled(i915, POWER_DOMAIN_DC_OFF);
+-	drm_WARN_ON(&i915->drm, !enabled);
++	drm_WARN_ON(display->drm, !enabled);
  }
  
--static int gmbus_wait(struct drm_i915_private *i915, u32 status, u32 irq_en)
-+static int gmbus_wait(struct intel_display *display, u32 status, u32 irq_en)
+ static void intel_cx0_program_msgbus_timer(struct intel_encoder *encoder)
  {
- 	DEFINE_WAIT(wait);
- 	u32 gmbus2;
-@@ -374,21 +381,21 @@ static int gmbus_wait(struct drm_i915_private *i915, u32 status, u32 irq_en)
- 	 * we also need to check for NAKs besides the hw ready/idle signal, we
- 	 * need to wake up periodically and check that ourselves.
- 	 */
--	if (!has_gmbus_irq(i915))
-+	if (!has_gmbus_irq(display))
- 		irq_en = 0;
++	struct intel_display *display = to_intel_display(encoder);
+ 	int lane;
+-	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
  
--	add_wait_queue(&i915->display.gmbus.wait_queue, &wait);
--	intel_de_write_fw(i915, GMBUS4(i915), irq_en);
-+	add_wait_queue(&display->gmbus.wait_queue, &wait);
-+	intel_de_write_fw(display, GMBUS4(display), irq_en);
+ 	for_each_cx0_lane_in_mask(INTEL_CX0_BOTH_LANES, lane)
+-		intel_de_rmw(i915,
+-			     XELPDP_PORT_MSGBUS_TIMER(i915, encoder->port, lane),
++		intel_de_rmw(display,
++			     XELPDP_PORT_MSGBUS_TIMER(display, encoder->port, lane),
+ 			     XELPDP_PORT_MSGBUS_TIMER_VAL_MASK,
+ 			     XELPDP_PORT_MSGBUS_TIMER_VAL);
+ }
+@@ -119,25 +120,29 @@ static void intel_cx0_phy_transaction_end(struct intel_encoder *encoder, intel_w
+ static void intel_clear_response_ready_flag(struct intel_encoder *encoder,
+ 					    int lane)
+ {
++	struct intel_display *display = to_intel_display(encoder);
+ 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
  
- 	status |= GMBUS_SATOER;
--	ret = wait_for_us((gmbus2 = intel_de_read_fw(i915, GMBUS2(i915))) & status,
-+	ret = wait_for_us((gmbus2 = intel_de_read_fw(display, GMBUS2(display))) & status,
- 			  2);
- 	if (ret)
--		ret = wait_for((gmbus2 = intel_de_read_fw(i915, GMBUS2(i915))) & status,
-+		ret = wait_for((gmbus2 = intel_de_read_fw(display, GMBUS2(display))) & status,
- 			       50);
- 
--	intel_de_write_fw(i915, GMBUS4(i915), 0);
--	remove_wait_queue(&i915->display.gmbus.wait_queue, &wait);
-+	intel_de_write_fw(display, GMBUS4(display), 0);
-+	remove_wait_queue(&display->gmbus.wait_queue, &wait);
- 
- 	if (gmbus2 & GMBUS_SATOER)
- 		return -ENXIO;
-@@ -397,7 +404,7 @@ static int gmbus_wait(struct drm_i915_private *i915, u32 status, u32 irq_en)
+-	intel_de_rmw(i915, XELPDP_PORT_P2M_MSGBUS_STATUS(i915, encoder->port, lane),
++	intel_de_rmw(display,
++		     XELPDP_PORT_P2M_MSGBUS_STATUS(i915, encoder->port, lane),
+ 		     0, XELPDP_PORT_P2M_RESPONSE_READY | XELPDP_PORT_P2M_ERROR_SET);
  }
  
- static int
--gmbus_wait_idle(struct drm_i915_private *i915)
-+gmbus_wait_idle(struct intel_display *display)
+ static void intel_cx0_bus_reset(struct intel_encoder *encoder, int lane)
  {
- 	DEFINE_WAIT(wait);
- 	u32 irq_enable;
-@@ -405,33 +412,33 @@ gmbus_wait_idle(struct drm_i915_private *i915)
+-	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++	struct intel_display *display = to_intel_display(encoder);
+ 	enum port port = encoder->port;
+ 	enum phy phy = intel_encoder_to_phy(encoder);
  
- 	/* Important: The hw handles only the first bit, so set only one! */
- 	irq_enable = 0;
--	if (has_gmbus_irq(i915))
-+	if (has_gmbus_irq(display))
- 		irq_enable = GMBUS_IDLE_EN;
+-	intel_de_write(i915, XELPDP_PORT_M2P_MSGBUS_CTL(i915, port, lane),
++	intel_de_write(display, XELPDP_PORT_M2P_MSGBUS_CTL(display, port, lane),
+ 		       XELPDP_PORT_M2P_TRANSACTION_RESET);
  
--	add_wait_queue(&i915->display.gmbus.wait_queue, &wait);
--	intel_de_write_fw(i915, GMBUS4(i915), irq_enable);
-+	add_wait_queue(&display->gmbus.wait_queue, &wait);
-+	intel_de_write_fw(display, GMBUS4(display), irq_enable);
- 
--	ret = intel_de_wait_fw(i915, GMBUS2(i915), GMBUS_ACTIVE, 0, 10);
-+	ret = intel_de_wait_fw(display, GMBUS2(display), GMBUS_ACTIVE, 0, 10);
- 
--	intel_de_write_fw(i915, GMBUS4(i915), 0);
--	remove_wait_queue(&i915->display.gmbus.wait_queue, &wait);
-+	intel_de_write_fw(display, GMBUS4(display), 0);
-+	remove_wait_queue(&display->gmbus.wait_queue, &wait);
- 
- 	return ret;
- }
- 
--static unsigned int gmbus_max_xfer_size(struct drm_i915_private *i915)
-+static unsigned int gmbus_max_xfer_size(struct intel_display *display)
- {
--	return DISPLAY_VER(i915) >= 9 ? GEN9_GMBUS_BYTE_COUNT_MAX :
-+	return DISPLAY_VER(display) >= 9 ? GEN9_GMBUS_BYTE_COUNT_MAX :
- 	       GMBUS_BYTE_COUNT_MAX;
- }
- 
- static int
--gmbus_xfer_read_chunk(struct drm_i915_private *i915,
-+gmbus_xfer_read_chunk(struct intel_display *display,
- 		      unsigned short addr, u8 *buf, unsigned int len,
- 		      u32 gmbus0_reg, u32 gmbus1_index)
- {
- 	unsigned int size = len;
--	bool burst_read = len > gmbus_max_xfer_size(i915);
-+	bool burst_read = len > gmbus_max_xfer_size(display);
- 	bool extra_byte_added = false;
- 
- 	if (burst_read) {
-@@ -444,21 +451,21 @@ gmbus_xfer_read_chunk(struct drm_i915_private *i915,
- 			len++;
- 		}
- 		size = len % 256 + 256;
--		intel_de_write_fw(i915, GMBUS0(i915),
-+		intel_de_write_fw(display, GMBUS0(display),
- 				  gmbus0_reg | GMBUS_BYTE_CNT_OVERRIDE);
+-	if (intel_de_wait_for_clear(i915, XELPDP_PORT_M2P_MSGBUS_CTL(i915, port, lane),
++	if (intel_de_wait_for_clear(display, XELPDP_PORT_M2P_MSGBUS_CTL(display, port, lane),
+ 				    XELPDP_PORT_M2P_TRANSACTION_RESET,
+ 				    XELPDP_MSGBUS_TIMEOUT_SLOW)) {
+-		drm_err_once(&i915->drm, "Failed to bring PHY %c to idle.\n", phy_name(phy));
++		drm_err_once(display->drm,
++			     "Failed to bring PHY %c to idle.\n",
++			     phy_name(phy));
+ 		return;
  	}
  
--	intel_de_write_fw(i915, GMBUS1(i915),
-+	intel_de_write_fw(display, GMBUS1(display),
- 			  gmbus1_index | GMBUS_CYCLE_WAIT | (size << GMBUS_BYTE_COUNT_SHIFT) | (addr << GMBUS_SLAVE_ADDR_SHIFT) | GMBUS_SLAVE_READ | GMBUS_SW_RDY);
- 	while (len) {
- 		int ret;
- 		u32 val, loop = 0;
+@@ -147,22 +152,23 @@ static void intel_cx0_bus_reset(struct intel_encoder *encoder, int lane)
+ static int intel_cx0_wait_for_ack(struct intel_encoder *encoder,
+ 				  int command, int lane, u32 *val)
+ {
+-	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++	struct intel_display *display = to_intel_display(encoder);
+ 	enum port port = encoder->port;
+ 	enum phy phy = intel_encoder_to_phy(encoder);
  
--		ret = gmbus_wait(i915, GMBUS_HW_RDY, GMBUS_HW_RDY_EN);
-+		ret = gmbus_wait(display, GMBUS_HW_RDY, GMBUS_HW_RDY_EN);
- 		if (ret)
- 			return ret;
+-	if (intel_de_wait_custom(i915,
+-				 XELPDP_PORT_P2M_MSGBUS_STATUS(i915, port, lane),
++	if (intel_de_wait_custom(display,
++				 XELPDP_PORT_P2M_MSGBUS_STATUS(display, port, lane),
+ 				 XELPDP_PORT_P2M_RESPONSE_READY,
+ 				 XELPDP_PORT_P2M_RESPONSE_READY,
+ 				 XELPDP_MSGBUS_TIMEOUT_FAST_US,
+ 				 XELPDP_MSGBUS_TIMEOUT_SLOW, val)) {
+-		drm_dbg_kms(&i915->drm, "PHY %c Timeout waiting for message ACK. Status: 0x%x\n",
++		drm_dbg_kms(display->drm,
++			    "PHY %c Timeout waiting for message ACK. Status: 0x%x\n",
+ 			    phy_name(phy), *val);
  
--		val = intel_de_read_fw(i915, GMBUS3(i915));
-+		val = intel_de_read_fw(display, GMBUS3(display));
- 		do {
- 			if (extra_byte_added && len == 1)
- 				break;
-@@ -469,7 +476,7 @@ gmbus_xfer_read_chunk(struct drm_i915_private *i915,
+-		if (!(intel_de_read(i915, XELPDP_PORT_MSGBUS_TIMER(i915, port, lane)) &
++		if (!(intel_de_read(display, XELPDP_PORT_MSGBUS_TIMER(display, port, lane)) &
+ 		      XELPDP_PORT_MSGBUS_TIMER_TIMED_OUT))
+-			drm_dbg_kms(&i915->drm,
++			drm_dbg_kms(display->drm,
+ 				    "PHY %c Hardware did not detect a timeout\n",
+ 				    phy_name(phy));
  
- 		if (burst_read && len == size - 4)
- 			/* Reset the override bit */
--			intel_de_write_fw(i915, GMBUS0(i915), gmbus0_reg);
-+			intel_de_write_fw(display, GMBUS0(display), gmbus0_reg);
+@@ -171,14 +177,18 @@ static int intel_cx0_wait_for_ack(struct intel_encoder *encoder,
  	}
+ 
+ 	if (*val & XELPDP_PORT_P2M_ERROR_SET) {
+-		drm_dbg_kms(&i915->drm, "PHY %c Error occurred during %s command. Status: 0x%x\n", phy_name(phy),
++		drm_dbg_kms(display->drm,
++			    "PHY %c Error occurred during %s command. Status: 0x%x\n",
++			    phy_name(phy),
+ 			    command == XELPDP_PORT_P2M_COMMAND_READ_ACK ? "read" : "write", *val);
+ 		intel_cx0_bus_reset(encoder, lane);
+ 		return -EINVAL;
+ 	}
+ 
+ 	if (REG_FIELD_GET(XELPDP_PORT_P2M_COMMAND_TYPE_MASK, *val) != command) {
+-		drm_dbg_kms(&i915->drm, "PHY %c Not a %s response. MSGBUS Status: 0x%x.\n", phy_name(phy),
++		drm_dbg_kms(display->drm,
++			    "PHY %c Not a %s response. MSGBUS Status: 0x%x.\n",
++			    phy_name(phy),
+ 			    command == XELPDP_PORT_P2M_COMMAND_READ_ACK ? "read" : "write", *val);
+ 		intel_cx0_bus_reset(encoder, lane);
+ 		return -EINVAL;
+@@ -190,22 +200,22 @@ static int intel_cx0_wait_for_ack(struct intel_encoder *encoder,
+ static int __intel_cx0_read_once(struct intel_encoder *encoder,
+ 				 int lane, u16 addr)
+ {
+-	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++	struct intel_display *display = to_intel_display(encoder);
+ 	enum port port = encoder->port;
+ 	enum phy phy = intel_encoder_to_phy(encoder);
+ 	int ack;
+ 	u32 val;
+ 
+-	if (intel_de_wait_for_clear(i915, XELPDP_PORT_M2P_MSGBUS_CTL(i915, port, lane),
++	if (intel_de_wait_for_clear(display, XELPDP_PORT_M2P_MSGBUS_CTL(display, port, lane),
+ 				    XELPDP_PORT_M2P_TRANSACTION_PENDING,
+ 				    XELPDP_MSGBUS_TIMEOUT_SLOW)) {
+-		drm_dbg_kms(&i915->drm,
++		drm_dbg_kms(display->drm,
+ 			    "PHY %c Timeout waiting for previous transaction to complete. Reset the bus and retry.\n", phy_name(phy));
+ 		intel_cx0_bus_reset(encoder, lane);
+ 		return -ETIMEDOUT;
+ 	}
+ 
+-	intel_de_write(i915, XELPDP_PORT_M2P_MSGBUS_CTL(i915, port, lane),
++	intel_de_write(display, XELPDP_PORT_M2P_MSGBUS_CTL(display, port, lane),
+ 		       XELPDP_PORT_M2P_TRANSACTION_PENDING |
+ 		       XELPDP_PORT_M2P_COMMAND_READ |
+ 		       XELPDP_PORT_M2P_ADDRESS(addr));
+@@ -229,11 +239,11 @@ static int __intel_cx0_read_once(struct intel_encoder *encoder,
+ static u8 __intel_cx0_read(struct intel_encoder *encoder,
+ 			   int lane, u16 addr)
+ {
+-	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++	struct intel_display *display = to_intel_display(encoder);
+ 	enum phy phy = intel_encoder_to_phy(encoder);
+ 	int i, status;
+ 
+-	assert_dc_off(i915);
++	assert_dc_off(display);
+ 
+ 	/* 3 tries is assumed to be enough to read successfully */
+ 	for (i = 0; i < 3; i++) {
+@@ -243,7 +253,8 @@ static u8 __intel_cx0_read(struct intel_encoder *encoder,
+ 			return status;
+ 	}
+ 
+-	drm_err_once(&i915->drm, "PHY %c Read %04x failed after %d retries.\n",
++	drm_err_once(display->drm,
++		     "PHY %c Read %04x failed after %d retries.\n",
+ 		     phy_name(phy), addr, i);
  
  	return 0;
-@@ -486,9 +493,10 @@ gmbus_xfer_read_chunk(struct drm_i915_private *i915,
- #define INTEL_GMBUS_BURST_READ_MAX_LEN		767U
- 
- static int
--gmbus_xfer_read(struct drm_i915_private *i915, struct i2c_msg *msg,
-+gmbus_xfer_read(struct intel_display *display, struct i2c_msg *msg,
- 		u32 gmbus0_reg, u32 gmbus1_index)
+@@ -260,32 +271,32 @@ static u8 intel_cx0_read(struct intel_encoder *encoder,
+ static int __intel_cx0_write_once(struct intel_encoder *encoder,
+ 				  int lane, u16 addr, u8 data, bool committed)
  {
-+	struct drm_i915_private *i915 = to_i915(display->drm);
- 	u8 *buf = msg->buf;
- 	unsigned int rx_size = msg->len;
- 	unsigned int len;
-@@ -498,9 +506,9 @@ gmbus_xfer_read(struct drm_i915_private *i915, struct i2c_msg *msg,
- 		if (HAS_GMBUS_BURST_READ(i915))
- 			len = min(rx_size, INTEL_GMBUS_BURST_READ_MAX_LEN);
- 		else
--			len = min(rx_size, gmbus_max_xfer_size(i915));
-+			len = min(rx_size, gmbus_max_xfer_size(display));
+-	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++	struct intel_display *display = to_intel_display(encoder);
+ 	enum port port = encoder->port;
+ 	enum phy phy = intel_encoder_to_phy(encoder);
+ 	int ack;
+ 	u32 val;
  
--		ret = gmbus_xfer_read_chunk(i915, msg->addr, buf, len,
-+		ret = gmbus_xfer_read_chunk(display, msg->addr, buf, len,
- 					    gmbus0_reg, gmbus1_index);
- 		if (ret)
- 			return ret;
-@@ -513,7 +521,7 @@ gmbus_xfer_read(struct drm_i915_private *i915, struct i2c_msg *msg,
- }
- 
- static int
--gmbus_xfer_write_chunk(struct drm_i915_private *i915,
-+gmbus_xfer_write_chunk(struct intel_display *display,
- 		       unsigned short addr, u8 *buf, unsigned int len,
- 		       u32 gmbus1_index)
- {
-@@ -526,8 +534,8 @@ gmbus_xfer_write_chunk(struct drm_i915_private *i915,
- 		len -= 1;
- 	}
- 
--	intel_de_write_fw(i915, GMBUS3(i915), val);
--	intel_de_write_fw(i915, GMBUS1(i915),
-+	intel_de_write_fw(display, GMBUS3(display), val);
-+	intel_de_write_fw(display, GMBUS1(display),
- 			  gmbus1_index | GMBUS_CYCLE_WAIT | (chunk_size << GMBUS_BYTE_COUNT_SHIFT) | (addr << GMBUS_SLAVE_ADDR_SHIFT) | GMBUS_SLAVE_WRITE | GMBUS_SW_RDY);
- 	while (len) {
- 		int ret;
-@@ -537,9 +545,9 @@ gmbus_xfer_write_chunk(struct drm_i915_private *i915,
- 			val |= *buf++ << (8 * loop);
- 		} while (--len && ++loop < 4);
- 
--		intel_de_write_fw(i915, GMBUS3(i915), val);
-+		intel_de_write_fw(display, GMBUS3(display), val);
- 
--		ret = gmbus_wait(i915, GMBUS_HW_RDY, GMBUS_HW_RDY_EN);
-+		ret = gmbus_wait(display, GMBUS_HW_RDY, GMBUS_HW_RDY_EN);
- 		if (ret)
- 			return ret;
- 	}
-@@ -548,7 +556,7 @@ gmbus_xfer_write_chunk(struct drm_i915_private *i915,
- }
- 
- static int
--gmbus_xfer_write(struct drm_i915_private *i915, struct i2c_msg *msg,
-+gmbus_xfer_write(struct intel_display *display, struct i2c_msg *msg,
- 		 u32 gmbus1_index)
- {
- 	u8 *buf = msg->buf;
-@@ -557,9 +565,9 @@ gmbus_xfer_write(struct drm_i915_private *i915, struct i2c_msg *msg,
- 	int ret;
- 
- 	do {
--		len = min(tx_size, gmbus_max_xfer_size(i915));
-+		len = min(tx_size, gmbus_max_xfer_size(display));
- 
--		ret = gmbus_xfer_write_chunk(i915, msg->addr, buf, len,
-+		ret = gmbus_xfer_write_chunk(display, msg->addr, buf, len,
- 					     gmbus1_index);
- 		if (ret)
- 			return ret;
-@@ -586,7 +594,7 @@ gmbus_is_index_xfer(struct i2c_msg *msgs, int i, int num)
- }
- 
- static int
--gmbus_index_xfer(struct drm_i915_private *i915, struct i2c_msg *msgs,
-+gmbus_index_xfer(struct intel_display *display, struct i2c_msg *msgs,
- 		 u32 gmbus0_reg)
- {
- 	u32 gmbus1_index = 0;
-@@ -602,17 +610,17 @@ gmbus_index_xfer(struct drm_i915_private *i915, struct i2c_msg *msgs,
- 
- 	/* GMBUS5 holds 16-bit index */
- 	if (gmbus5)
--		intel_de_write_fw(i915, GMBUS5(i915), gmbus5);
-+		intel_de_write_fw(display, GMBUS5(display), gmbus5);
- 
- 	if (msgs[1].flags & I2C_M_RD)
--		ret = gmbus_xfer_read(i915, &msgs[1], gmbus0_reg,
-+		ret = gmbus_xfer_read(display, &msgs[1], gmbus0_reg,
- 				      gmbus1_index);
- 	else
--		ret = gmbus_xfer_write(i915, &msgs[1], gmbus1_index);
-+		ret = gmbus_xfer_write(display, &msgs[1], gmbus1_index);
- 
- 	/* Clear GMBUS5 after each index transfer */
- 	if (gmbus5)
--		intel_de_write_fw(i915, GMBUS5(i915), 0);
-+		intel_de_write_fw(display, GMBUS5(display), 0);
- 
- 	return ret;
- }
-@@ -622,34 +630,35 @@ do_gmbus_xfer(struct i2c_adapter *adapter, struct i2c_msg *msgs, int num,
- 	      u32 gmbus0_source)
- {
- 	struct intel_gmbus *bus = to_intel_gmbus(adapter);
--	struct drm_i915_private *i915 = bus->i915;
-+	struct intel_display *display = bus->display;
-+	struct drm_i915_private *i915 = to_i915(display->drm);
- 	int i = 0, inc, try = 0;
- 	int ret = 0;
- 
- 	/* Display WA #0868: skl,bxt,kbl,cfl,glk */
- 	if (IS_GEMINILAKE(i915) || IS_BROXTON(i915))
--		bxt_gmbus_clock_gating(i915, false);
-+		bxt_gmbus_clock_gating(display, false);
- 	else if (HAS_PCH_SPT(i915) || HAS_PCH_CNP(i915))
--		pch_gmbus_clock_gating(i915, false);
-+		pch_gmbus_clock_gating(display, false);
- 
- retry:
--	intel_de_write_fw(i915, GMBUS0(i915), gmbus0_source | bus->reg0);
-+	intel_de_write_fw(display, GMBUS0(display), gmbus0_source | bus->reg0);
- 
- 	for (; i < num; i += inc) {
- 		inc = 1;
- 		if (gmbus_is_index_xfer(msgs, i, num)) {
--			ret = gmbus_index_xfer(i915, &msgs[i],
-+			ret = gmbus_index_xfer(display, &msgs[i],
- 					       gmbus0_source | bus->reg0);
- 			inc = 2; /* an index transmission is two msgs */
- 		} else if (msgs[i].flags & I2C_M_RD) {
--			ret = gmbus_xfer_read(i915, &msgs[i],
-+			ret = gmbus_xfer_read(display, &msgs[i],
- 					      gmbus0_source | bus->reg0, 0);
- 		} else {
--			ret = gmbus_xfer_write(i915, &msgs[i], 0);
-+			ret = gmbus_xfer_write(display, &msgs[i], 0);
- 		}
- 
- 		if (!ret)
--			ret = gmbus_wait(i915,
-+			ret = gmbus_wait(display,
- 					 GMBUS_HW_WAIT_PHASE, GMBUS_HW_WAIT_EN);
- 		if (ret == -ETIMEDOUT)
- 			goto timeout;
-@@ -661,19 +670,19 @@ do_gmbus_xfer(struct i2c_adapter *adapter, struct i2c_msg *msgs, int num,
- 	 * a STOP on the very first cycle. To simplify the code we
- 	 * unconditionally generate the STOP condition with an additional gmbus
- 	 * cycle. */
--	intel_de_write_fw(i915, GMBUS1(i915), GMBUS_CYCLE_STOP | GMBUS_SW_RDY);
-+	intel_de_write_fw(display, GMBUS1(display), GMBUS_CYCLE_STOP | GMBUS_SW_RDY);
- 
- 	/* Mark the GMBUS interface as disabled after waiting for idle.
- 	 * We will re-enable it at the start of the next xfer,
- 	 * till then let it sleep.
- 	 */
--	if (gmbus_wait_idle(i915)) {
--		drm_dbg_kms(&i915->drm,
-+	if (gmbus_wait_idle(display)) {
-+		drm_dbg_kms(display->drm,
- 			    "GMBUS [%s] timed out waiting for idle\n",
- 			    adapter->name);
- 		ret = -ETIMEDOUT;
- 	}
--	intel_de_write_fw(i915, GMBUS0(i915), 0);
-+	intel_de_write_fw(display, GMBUS0(display), 0);
- 	ret = ret ?: i;
- 	goto out;
- 
-@@ -692,8 +701,8 @@ do_gmbus_xfer(struct i2c_adapter *adapter, struct i2c_msg *msgs, int num,
- 	 * it's slow responding and only answers on the 2nd retry.
- 	 */
- 	ret = -ENXIO;
--	if (gmbus_wait_idle(i915)) {
--		drm_dbg_kms(&i915->drm,
-+	if (gmbus_wait_idle(display)) {
-+		drm_dbg_kms(display->drm,
- 			    "GMBUS [%s] timed out after NAK\n",
- 			    adapter->name);
- 		ret = -ETIMEDOUT;
-@@ -703,11 +712,11 @@ do_gmbus_xfer(struct i2c_adapter *adapter, struct i2c_msg *msgs, int num,
- 	 * of resetting the GMBUS controller and so clearing the
- 	 * BUS_ERROR raised by the target's NAK.
- 	 */
--	intel_de_write_fw(i915, GMBUS1(i915), GMBUS_SW_CLR_INT);
--	intel_de_write_fw(i915, GMBUS1(i915), 0);
--	intel_de_write_fw(i915, GMBUS0(i915), 0);
-+	intel_de_write_fw(display, GMBUS1(display), GMBUS_SW_CLR_INT);
-+	intel_de_write_fw(display, GMBUS1(display), 0);
-+	intel_de_write_fw(display, GMBUS0(display), 0);
- 
--	drm_dbg_kms(&i915->drm, "GMBUS [%s] NAK for addr: %04x %c(%d)\n",
-+	drm_dbg_kms(display->drm, "GMBUS [%s] NAK for addr: %04x %c(%d)\n",
- 		    adapter->name, msgs[i].addr,
- 		    (msgs[i].flags & I2C_M_RD) ? 'r' : 'w', msgs[i].len);
- 
-@@ -718,7 +727,7 @@ do_gmbus_xfer(struct i2c_adapter *adapter, struct i2c_msg *msgs, int num,
- 	 * drm_do_probe_ddc_edid, which bails out on the first -ENXIO.
- 	 */
- 	if (ret == -ENXIO && i == 0 && try++ == 0) {
+-	if (intel_de_wait_for_clear(i915, XELPDP_PORT_M2P_MSGBUS_CTL(i915, port, lane),
++	if (intel_de_wait_for_clear(display, XELPDP_PORT_M2P_MSGBUS_CTL(display, port, lane),
+ 				    XELPDP_PORT_M2P_TRANSACTION_PENDING,
+ 				    XELPDP_MSGBUS_TIMEOUT_SLOW)) {
 -		drm_dbg_kms(&i915->drm,
 +		drm_dbg_kms(display->drm,
- 			    "GMBUS [%s] NAK on first message, retry\n",
- 			    adapter->name);
- 		goto retry;
-@@ -727,10 +736,10 @@ do_gmbus_xfer(struct i2c_adapter *adapter, struct i2c_msg *msgs, int num,
- 	goto out;
+ 			    "PHY %c Timeout waiting for previous transaction to complete. Resetting the bus.\n", phy_name(phy));
+ 		intel_cx0_bus_reset(encoder, lane);
+ 		return -ETIMEDOUT;
+ 	}
  
- timeout:
--	drm_dbg_kms(&i915->drm,
-+	drm_dbg_kms(display->drm,
- 		    "GMBUS [%s] timed out, falling back to bit banging on pin %d\n",
- 		    bus->adapter.name, bus->reg0 & 0xff);
--	intel_de_write_fw(i915, GMBUS0(i915), 0);
-+	intel_de_write_fw(display, GMBUS0(display), 0);
+-	intel_de_write(i915, XELPDP_PORT_M2P_MSGBUS_CTL(i915, port, lane),
++	intel_de_write(display, XELPDP_PORT_M2P_MSGBUS_CTL(display, port, lane),
+ 		       XELPDP_PORT_M2P_TRANSACTION_PENDING |
+ 		       (committed ? XELPDP_PORT_M2P_COMMAND_WRITE_COMMITTED :
+ 				    XELPDP_PORT_M2P_COMMAND_WRITE_UNCOMMITTED) |
+ 		       XELPDP_PORT_M2P_DATA(data) |
+ 		       XELPDP_PORT_M2P_ADDRESS(addr));
  
- 	/*
- 	 * Hardware may not support GMBUS over these pins? Try GPIO bitbanging
-@@ -741,9 +750,9 @@ do_gmbus_xfer(struct i2c_adapter *adapter, struct i2c_msg *msgs, int num,
- out:
- 	/* Display WA #0868: skl,bxt,kbl,cfl,glk */
- 	if (IS_GEMINILAKE(i915) || IS_BROXTON(i915))
--		bxt_gmbus_clock_gating(i915, true);
-+		bxt_gmbus_clock_gating(display, true);
- 	else if (HAS_PCH_SPT(i915) || HAS_PCH_CNP(i915))
--		pch_gmbus_clock_gating(i915, true);
-+		pch_gmbus_clock_gating(display, true);
- 
- 	return ret;
- }
-@@ -752,7 +761,8 @@ static int
- gmbus_xfer(struct i2c_adapter *adapter, struct i2c_msg *msgs, int num)
+-	if (intel_de_wait_for_clear(i915, XELPDP_PORT_M2P_MSGBUS_CTL(i915, port, lane),
++	if (intel_de_wait_for_clear(display, XELPDP_PORT_M2P_MSGBUS_CTL(display, port, lane),
+ 				    XELPDP_PORT_M2P_TRANSACTION_PENDING,
+ 				    XELPDP_MSGBUS_TIMEOUT_SLOW)) {
+-		drm_dbg_kms(&i915->drm,
++		drm_dbg_kms(display->drm,
+ 			    "PHY %c Timeout waiting for write to complete. Resetting the bus.\n", phy_name(phy));
+ 		intel_cx0_bus_reset(encoder, lane);
+ 		return -ETIMEDOUT;
+@@ -295,9 +306,9 @@ static int __intel_cx0_write_once(struct intel_encoder *encoder,
+ 		ack = intel_cx0_wait_for_ack(encoder, XELPDP_PORT_P2M_COMMAND_WRITE_ACK, lane, &val);
+ 		if (ack < 0)
+ 			return ack;
+-	} else if ((intel_de_read(i915, XELPDP_PORT_P2M_MSGBUS_STATUS(i915, port, lane)) &
++	} else if ((intel_de_read(display, XELPDP_PORT_P2M_MSGBUS_STATUS(display, port, lane)) &
+ 		    XELPDP_PORT_P2M_ERROR_SET)) {
+-		drm_dbg_kms(&i915->drm,
++		drm_dbg_kms(display->drm,
+ 			    "PHY %c Error occurred during write command.\n", phy_name(phy));
+ 		intel_cx0_bus_reset(encoder, lane);
+ 		return -EINVAL;
+@@ -318,11 +329,11 @@ static int __intel_cx0_write_once(struct intel_encoder *encoder,
+ static void __intel_cx0_write(struct intel_encoder *encoder,
+ 			      int lane, u16 addr, u8 data, bool committed)
  {
- 	struct intel_gmbus *bus = to_intel_gmbus(adapter);
--	struct drm_i915_private *i915 = bus->i915;
-+	struct intel_display *display = bus->display;
-+	struct drm_i915_private *i915 = to_i915(display->drm);
+-	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++	struct intel_display *display = to_intel_display(encoder);
+ 	enum phy phy = intel_encoder_to_phy(encoder);
+ 	int i, status;
+ 
+-	assert_dc_off(i915);
++	assert_dc_off(display);
+ 
+ 	/* 3 tries is assumed to be enough to write successfully */
+ 	for (i = 0; i < 3; i++) {
+@@ -332,7 +343,7 @@ static void __intel_cx0_write(struct intel_encoder *encoder,
+ 			return;
+ 	}
+ 
+-	drm_err_once(&i915->drm,
++	drm_err_once(display->drm,
+ 		     "PHY %c Write %04x failed after %d retries.\n", phy_name(phy), addr, i);
+ }
+ 
+@@ -348,9 +359,9 @@ static void intel_cx0_write(struct intel_encoder *encoder,
+ static void intel_c20_sram_write(struct intel_encoder *encoder,
+ 				 int lane, u16 addr, u16 data)
+ {
+-	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++	struct intel_display *display = to_intel_display(encoder);
+ 
+-	assert_dc_off(i915);
++	assert_dc_off(display);
+ 
+ 	intel_cx0_write(encoder, lane, PHY_C20_WR_ADDRESS_H, addr >> 8, 0);
+ 	intel_cx0_write(encoder, lane, PHY_C20_WR_ADDRESS_L, addr & 0xff, 0);
+@@ -362,10 +373,10 @@ static void intel_c20_sram_write(struct intel_encoder *encoder,
+ static u16 intel_c20_sram_read(struct intel_encoder *encoder,
+ 			       int lane, u16 addr)
+ {
+-	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++	struct intel_display *display = to_intel_display(encoder);
+ 	u16 val;
+ 
+-	assert_dc_off(i915);
++	assert_dc_off(display);
+ 
+ 	intel_cx0_write(encoder, lane, PHY_C20_RD_ADDRESS_H, addr >> 8, 0);
+ 	intel_cx0_write(encoder, lane, PHY_C20_RD_ADDRESS_L, addr & 0xff, 1);
+@@ -429,7 +440,7 @@ static u8 intel_c10_get_tx_term_ctl(const struct intel_crtc_state *crtc_state)
+ void intel_cx0_phy_set_signal_levels(struct intel_encoder *encoder,
+ 				     const struct intel_crtc_state *crtc_state)
+ {
+-	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++	struct intel_display *display = to_intel_display(encoder);
+ 	const struct intel_ddi_buf_trans *trans;
+ 	u8 owned_lane_mask;
  	intel_wakeref_t wakeref;
- 	int ret;
+@@ -444,7 +455,7 @@ void intel_cx0_phy_set_signal_levels(struct intel_encoder *encoder,
+ 	wakeref = intel_cx0_phy_transaction_begin(encoder);
  
-@@ -776,7 +786,8 @@ gmbus_xfer(struct i2c_adapter *adapter, struct i2c_msg *msgs, int num)
- int intel_gmbus_output_aksv(struct i2c_adapter *adapter)
+ 	trans = encoder->get_buf_trans(encoder, crtc_state, &n_entries);
+-	if (drm_WARN_ON_ONCE(&i915->drm, !trans)) {
++	if (drm_WARN_ON_ONCE(display->drm, !trans)) {
+ 		intel_cx0_phy_transaction_end(encoder, wakeref);
+ 		return;
+ 	}
+@@ -2003,6 +2014,7 @@ intel_c10pll_tables_get(struct intel_crtc_state *crtc_state,
+ static void intel_c10pll_update_pll(struct intel_crtc_state *crtc_state,
+ 				    struct intel_encoder *encoder)
  {
- 	struct intel_gmbus *bus = to_intel_gmbus(adapter);
--	struct drm_i915_private *i915 = bus->i915;
-+	struct intel_display *display = bus->display;
-+	struct drm_i915_private *i915 = to_i915(display->drm);
- 	u8 cmd = DRM_HDCP_DDC_AKSV;
- 	u8 buf[DRM_HDCP_KSV_LEN] = {};
- 	struct i2c_msg msgs[] = {
-@@ -797,7 +808,7 @@ int intel_gmbus_output_aksv(struct i2c_adapter *adapter)
- 	int ret;
++	struct intel_display *display = to_intel_display(crtc_state);
+ 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+ 	struct intel_cx0pll_state *pll_state = &crtc_state->dpll_hw_state.cx0pll;
+ 	int i;
+@@ -2019,7 +2031,7 @@ static void intel_c10pll_update_pll(struct intel_crtc_state *crtc_state,
+ 	if (pll_state->ssc_enabled)
+ 		return;
  
- 	wakeref = intel_display_power_get(i915, POWER_DOMAIN_GMBUS);
--	mutex_lock(&i915->display.gmbus.mutex);
-+	mutex_lock(&display->gmbus.mutex);
- 
- 	/*
- 	 * In order to output Aksv to the receiver, use an indexed write to
-@@ -806,7 +817,7 @@ int intel_gmbus_output_aksv(struct i2c_adapter *adapter)
- 	 */
- 	ret = do_gmbus_xfer(adapter, msgs, ARRAY_SIZE(msgs), GMBUS_AKSV_SELECT);
- 
--	mutex_unlock(&i915->display.gmbus.mutex);
-+	mutex_unlock(&display->gmbus.mutex);
- 	intel_display_power_put(i915, POWER_DOMAIN_GMBUS, wakeref);
- 
- 	return ret;
-@@ -830,27 +841,27 @@ static void gmbus_lock_bus(struct i2c_adapter *adapter,
- 			   unsigned int flags)
- {
- 	struct intel_gmbus *bus = to_intel_gmbus(adapter);
--	struct drm_i915_private *i915 = bus->i915;
-+	struct intel_display *display = bus->display;
- 
--	mutex_lock(&i915->display.gmbus.mutex);
-+	mutex_lock(&display->gmbus.mutex);
+-	drm_WARN_ON(&i915->drm, ARRAY_SIZE(pll_state->c10.pll) < 9);
++	drm_WARN_ON(display->drm, ARRAY_SIZE(pll_state->c10.pll) < 9);
+ 	for (i = 4; i < 9; i++)
+ 		pll_state->c10.pll[i] = 0;
+ }
+@@ -2073,7 +2085,7 @@ static void intel_c10pll_readout_hw_state(struct intel_encoder *encoder,
+ 	intel_cx0_phy_transaction_end(encoder, wakeref);
  }
  
- static int gmbus_trylock_bus(struct i2c_adapter *adapter,
- 			     unsigned int flags)
+-static void intel_c10_pll_program(struct drm_i915_private *i915,
++static void intel_c10_pll_program(struct intel_display *display,
+ 				  const struct intel_crtc_state *crtc_state,
+ 				  struct intel_encoder *encoder)
  {
- 	struct intel_gmbus *bus = to_intel_gmbus(adapter);
--	struct drm_i915_private *i915 = bus->i915;
-+	struct intel_display *display = bus->display;
- 
--	return mutex_trylock(&i915->display.gmbus.mutex);
-+	return mutex_trylock(&display->gmbus.mutex);
+@@ -2106,7 +2118,7 @@ static void intel_c10_pll_program(struct drm_i915_private *i915,
+ 		      MB_WRITE_COMMITTED);
  }
  
- static void gmbus_unlock_bus(struct i2c_adapter *adapter,
- 			     unsigned int flags)
+-static void intel_c10pll_dump_hw_state(struct drm_i915_private *i915,
++static void intel_c10pll_dump_hw_state(struct intel_display *display,
+ 				       const struct intel_c10pll_state *hw_state)
  {
- 	struct intel_gmbus *bus = to_intel_gmbus(adapter);
--	struct drm_i915_private *i915 = bus->i915;
-+	struct intel_display *display = bus->display;
+ 	bool fracen;
+@@ -2115,29 +2127,31 @@ static void intel_c10pll_dump_hw_state(struct drm_i915_private *i915,
+ 	unsigned int multiplier, tx_clk_div;
  
--	mutex_unlock(&i915->display.gmbus.mutex);
-+	mutex_unlock(&display->gmbus.mutex);
- }
+ 	fracen = hw_state->pll[0] & C10_PLL0_FRACEN;
+-	drm_dbg_kms(&i915->drm, "c10pll_hw_state: fracen: %s, ",
++	drm_dbg_kms(display->drm, "c10pll_hw_state: fracen: %s, ",
+ 		    str_yes_no(fracen));
  
- static const struct i2c_lock_operations gmbus_lock_ops = {
-@@ -861,31 +872,32 @@ static const struct i2c_lock_operations gmbus_lock_ops = {
- 
- /**
-  * intel_gmbus_setup - instantiate all Intel i2c GMBuses
-- * @i915: i915 device private
-+ * @display: display device
-  */
--int intel_gmbus_setup(struct drm_i915_private *i915)
-+int intel_gmbus_setup(struct intel_display *display)
- {
--	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
-+	struct drm_i915_private *i915 = to_i915(display->drm);
-+	struct pci_dev *pdev = to_pci_dev(display->drm->dev);
- 	unsigned int pin;
- 	int ret;
- 
- 	if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915))
--		i915->display.gmbus.mmio_base = VLV_DISPLAY_BASE;
--	else if (!HAS_GMCH(i915))
-+		display->gmbus.mmio_base = VLV_DISPLAY_BASE;
-+	else if (!HAS_GMCH(display))
- 		/*
- 		 * Broxton uses the same PCH offsets for South Display Engine,
- 		 * even though it doesn't have a PCH.
- 		 */
--		i915->display.gmbus.mmio_base = PCH_DISPLAY_BASE;
-+		display->gmbus.mmio_base = PCH_DISPLAY_BASE;
- 
--	mutex_init(&i915->display.gmbus.mutex);
--	init_waitqueue_head(&i915->display.gmbus.wait_queue);
-+	mutex_init(&display->gmbus.mutex);
-+	init_waitqueue_head(&display->gmbus.wait_queue);
- 
--	for (pin = 0; pin < ARRAY_SIZE(i915->display.gmbus.bus); pin++) {
-+	for (pin = 0; pin < ARRAY_SIZE(display->gmbus.bus); pin++) {
- 		const struct gmbus_pin *gmbus_pin;
- 		struct intel_gmbus *bus;
- 
--		gmbus_pin = get_gmbus_pin(i915, pin);
-+		gmbus_pin = get_gmbus_pin(display, pin);
- 		if (!gmbus_pin)
- 			continue;
- 
-@@ -901,7 +913,7 @@ int intel_gmbus_setup(struct drm_i915_private *i915)
- 			 "i915 gmbus %s", gmbus_pin->name);
- 
- 		bus->adapter.dev.parent = &pdev->dev;
--		bus->i915 = i915;
-+		bus->display = display;
- 
- 		bus->adapter.algo = &gmbus_algorithm;
- 		bus->adapter.lock_ops = &gmbus_lock_ops;
-@@ -919,7 +931,7 @@ int intel_gmbus_setup(struct drm_i915_private *i915)
- 		if (IS_I830(i915))
- 			bus->force_bit = 1;
- 
--		intel_gpio_setup(bus, GPIO(i915, gmbus_pin->gpio));
-+		intel_gpio_setup(bus, GPIO(display, gmbus_pin->gpio));
- 
- 		ret = i2c_add_adapter(&bus->adapter);
- 		if (ret) {
-@@ -927,43 +939,43 @@ int intel_gmbus_setup(struct drm_i915_private *i915)
- 			goto err;
- 		}
- 
--		i915->display.gmbus.bus[pin] = bus;
-+		display->gmbus.bus[pin] = bus;
+ 	if (fracen) {
+ 		frac_quot = hw_state->pll[12] << 8 | hw_state->pll[11];
+ 		frac_rem =  hw_state->pll[14] << 8 | hw_state->pll[13];
+ 		frac_den =  hw_state->pll[10] << 8 | hw_state->pll[9];
+-		drm_dbg_kms(&i915->drm, "quot: %u, rem: %u, den: %u,\n",
++		drm_dbg_kms(display->drm, "quot: %u, rem: %u, den: %u,\n",
+ 			    frac_quot, frac_rem, frac_den);
  	}
  
--	intel_gmbus_reset(i915);
-+	intel_gmbus_reset(display);
- 
- 	return 0;
- 
- err:
--	intel_gmbus_teardown(i915);
-+	intel_gmbus_teardown(display);
- 
- 	return ret;
- }
- 
--struct i2c_adapter *intel_gmbus_get_adapter(struct drm_i915_private *i915,
-+struct i2c_adapter *intel_gmbus_get_adapter(struct intel_display *display,
- 					    unsigned int pin)
- {
--	if (drm_WARN_ON(&i915->drm, pin >= ARRAY_SIZE(i915->display.gmbus.bus) ||
--			!i915->display.gmbus.bus[pin]))
-+	if (drm_WARN_ON(display->drm, pin >= ARRAY_SIZE(display->gmbus.bus) ||
-+			!display->gmbus.bus[pin]))
- 		return NULL;
- 
--	return &i915->display.gmbus.bus[pin]->adapter;
-+	return &display->gmbus.bus[pin]->adapter;
- }
- 
- void intel_gmbus_force_bit(struct i2c_adapter *adapter, bool force_bit)
- {
- 	struct intel_gmbus *bus = to_intel_gmbus(adapter);
--	struct drm_i915_private *i915 = bus->i915;
-+	struct intel_display *display = bus->display;
- 
--	mutex_lock(&i915->display.gmbus.mutex);
-+	mutex_lock(&display->gmbus.mutex);
- 
- 	bus->force_bit += force_bit ? 1 : -1;
+ 	multiplier = (REG_FIELD_GET8(C10_PLL3_MULTIPLIERH_MASK, hw_state->pll[3]) << 8 |
+ 		      hw_state->pll[2]) / 2 + 16;
+ 	tx_clk_div = REG_FIELD_GET8(C10_PLL15_TXCLKDIV_MASK, hw_state->pll[15]);
 -	drm_dbg_kms(&i915->drm,
 +	drm_dbg_kms(display->drm,
- 		    "%sabling bit-banging on %s. force bit now %d\n",
- 		    force_bit ? "en" : "dis", adapter->name,
- 		    bus->force_bit);
+ 		    "multiplier: %u, tx_clk_div: %u.\n", multiplier, tx_clk_div);
  
--	mutex_unlock(&i915->display.gmbus.mutex);
-+	mutex_unlock(&display->gmbus.mutex);
+-	drm_dbg_kms(&i915->drm, "c10pll_rawhw_state:");
+-	drm_dbg_kms(&i915->drm, "tx: 0x%x, cmn: 0x%x\n", hw_state->tx, hw_state->cmn);
++	drm_dbg_kms(display->drm, "c10pll_rawhw_state:");
++	drm_dbg_kms(display->drm, "tx: 0x%x, cmn: 0x%x\n", hw_state->tx,
++		    hw_state->cmn);
+ 
+ 	BUILD_BUG_ON(ARRAY_SIZE(hw_state->pll) % 4);
+ 	for (i = 0; i < ARRAY_SIZE(hw_state->pll); i = i + 4)
+-		drm_dbg_kms(&i915->drm, "pll[%d] = 0x%x, pll[%d] = 0x%x, pll[%d] = 0x%x, pll[%d] = 0x%x\n",
++		drm_dbg_kms(display->drm,
++			    "pll[%d] = 0x%x, pll[%d] = 0x%x, pll[%d] = 0x%x, pll[%d] = 0x%x\n",
+ 			    i, hw_state->pll[i], i + 1, hw_state->pll[i + 1],
+ 			    i + 2, hw_state->pll[i + 2], i + 3, hw_state->pll[i + 3]);
  }
- 
- bool intel_gmbus_is_forced_bit(struct i2c_adapter *adapter)
-@@ -973,25 +985,25 @@ bool intel_gmbus_is_forced_bit(struct i2c_adapter *adapter)
- 	return bus->force_bit;
- }
- 
--void intel_gmbus_teardown(struct drm_i915_private *i915)
-+void intel_gmbus_teardown(struct intel_display *display)
+@@ -2239,13 +2253,13 @@ static const struct intel_c20pll_state * const *
+ intel_c20_pll_tables_get(struct intel_crtc_state *crtc_state,
+ 			 struct intel_encoder *encoder)
  {
- 	unsigned int pin;
+-	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++	struct intel_display *display = to_intel_display(crtc_state);
  
--	for (pin = 0; pin < ARRAY_SIZE(i915->display.gmbus.bus); pin++) {
-+	for (pin = 0; pin < ARRAY_SIZE(display->gmbus.bus); pin++) {
- 		struct intel_gmbus *bus;
+ 	if (intel_crtc_has_dp_encoder(crtc_state)) {
+ 		if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP))
+ 			return xe2hpd_c20_edp_tables;
  
--		bus = i915->display.gmbus.bus[pin];
-+		bus = display->gmbus.bus[pin];
- 		if (!bus)
- 			continue;
+-		if (DISPLAY_VER_FULL(i915) == IP_VER(14, 1))
++		if (DISPLAY_VER_FULL(display) == IP_VER(14, 1))
+ 			return xe2hpd_c20_dp_tables;
+ 		else
+ 			return mtl_c20_dp_tables;
+@@ -2412,33 +2426,37 @@ static void intel_c20pll_readout_hw_state(struct intel_encoder *encoder,
+ 	intel_cx0_phy_transaction_end(encoder, wakeref);
+ }
  
- 		i2c_del_adapter(&bus->adapter);
+-static void intel_c20pll_dump_hw_state(struct drm_i915_private *i915,
++static void intel_c20pll_dump_hw_state(struct intel_display *display,
+ 				       const struct intel_c20pll_state *hw_state)
+ {
+ 	int i;
  
- 		kfree(bus);
--		i915->display.gmbus.bus[pin] = NULL;
-+		display->gmbus.bus[pin] = NULL;
+-	drm_dbg_kms(&i915->drm, "c20pll_hw_state:\n");
+-	drm_dbg_kms(&i915->drm, "tx[0] = 0x%.4x, tx[1] = 0x%.4x, tx[2] = 0x%.4x\n",
++	drm_dbg_kms(display->drm, "c20pll_hw_state:\n");
++	drm_dbg_kms(display->drm,
++		    "tx[0] = 0x%.4x, tx[1] = 0x%.4x, tx[2] = 0x%.4x\n",
+ 		    hw_state->tx[0], hw_state->tx[1], hw_state->tx[2]);
+-	drm_dbg_kms(&i915->drm, "cmn[0] = 0x%.4x, cmn[1] = 0x%.4x, cmn[2] = 0x%.4x, cmn[3] = 0x%.4x\n",
++	drm_dbg_kms(display->drm,
++		    "cmn[0] = 0x%.4x, cmn[1] = 0x%.4x, cmn[2] = 0x%.4x, cmn[3] = 0x%.4x\n",
+ 		    hw_state->cmn[0], hw_state->cmn[1], hw_state->cmn[2], hw_state->cmn[3]);
+ 
+ 	if (intel_c20phy_use_mpllb(hw_state)) {
+ 		for (i = 0; i < ARRAY_SIZE(hw_state->mpllb); i++)
+-			drm_dbg_kms(&i915->drm, "mpllb[%d] = 0x%.4x\n", i, hw_state->mpllb[i]);
++			drm_dbg_kms(display->drm, "mpllb[%d] = 0x%.4x\n", i,
++				    hw_state->mpllb[i]);
+ 	} else {
+ 		for (i = 0; i < ARRAY_SIZE(hw_state->mplla); i++)
+-			drm_dbg_kms(&i915->drm, "mplla[%d] = 0x%.4x\n", i, hw_state->mplla[i]);
++			drm_dbg_kms(display->drm, "mplla[%d] = 0x%.4x\n", i,
++				    hw_state->mplla[i]);
  	}
  }
  
--void intel_gmbus_irq_handler(struct drm_i915_private *i915)
-+void intel_gmbus_irq_handler(struct intel_display *display)
+-void intel_cx0pll_dump_hw_state(struct drm_i915_private *i915,
++void intel_cx0pll_dump_hw_state(struct intel_display *display,
+ 				const struct intel_cx0pll_state *hw_state)
  {
--	wake_up_all(&i915->display.gmbus.wait_queue);
-+	wake_up_all(&display->gmbus.wait_queue);
+ 	if (hw_state->use_c10)
+-		intel_c10pll_dump_hw_state(i915, &hw_state->c10);
++		intel_c10pll_dump_hw_state(display, &hw_state->c10);
+ 	else
+-		intel_c20pll_dump_hw_state(i915, &hw_state->c20);
++		intel_c20pll_dump_hw_state(display, &hw_state->c20);
  }
-diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.h b/drivers/gpu/drm/i915/display/intel_gmbus.h
-index 8111eb23e2af..35a200a9efc0 100644
---- a/drivers/gpu/drm/i915/display/intel_gmbus.h
-+++ b/drivers/gpu/drm/i915/display/intel_gmbus.h
-@@ -8,8 +8,8 @@
+ 
+ static u8 intel_c20_get_dp_rate(u32 clock)
+@@ -2538,7 +2556,7 @@ static int intel_get_c20_custom_width(u32 clock, bool dp)
+ 		return 0;
+ }
+ 
+-static void intel_c20_pll_program(struct drm_i915_private *i915,
++static void intel_c20_pll_program(struct intel_display *display,
+ 				  const struct intel_crtc_state *crtc_state,
+ 				  struct intel_encoder *encoder)
+ {
+@@ -2571,11 +2589,11 @@ static void intel_c20_pll_program(struct drm_i915_private *i915,
+ 	for (i = 0; i < ARRAY_SIZE(pll_state->tx); i++) {
+ 		if (cntx)
+ 			intel_c20_sram_write(encoder, INTEL_CX0_LANE0,
+-					     PHY_C20_A_TX_CNTX_CFG(i915, i),
++					     PHY_C20_A_TX_CNTX_CFG(display, i),
+ 					     pll_state->tx[i]);
+ 		else
+ 			intel_c20_sram_write(encoder, INTEL_CX0_LANE0,
+-					     PHY_C20_B_TX_CNTX_CFG(i915, i),
++					     PHY_C20_B_TX_CNTX_CFG(display, i),
+ 					     pll_state->tx[i]);
+ 	}
+ 
+@@ -2583,11 +2601,11 @@ static void intel_c20_pll_program(struct drm_i915_private *i915,
+ 	for (i = 0; i < ARRAY_SIZE(pll_state->cmn); i++) {
+ 		if (cntx)
+ 			intel_c20_sram_write(encoder, INTEL_CX0_LANE0,
+-					     PHY_C20_A_CMN_CNTX_CFG(i915, i),
++					     PHY_C20_A_CMN_CNTX_CFG(display, i),
+ 					     pll_state->cmn[i]);
+ 		else
+ 			intel_c20_sram_write(encoder, INTEL_CX0_LANE0,
+-					     PHY_C20_B_CMN_CNTX_CFG(i915, i),
++					     PHY_C20_B_CMN_CNTX_CFG(display, i),
+ 					     pll_state->cmn[i]);
+ 	}
+ 
+@@ -2596,22 +2614,22 @@ static void intel_c20_pll_program(struct drm_i915_private *i915,
+ 		for (i = 0; i < ARRAY_SIZE(pll_state->mpllb); i++) {
+ 			if (cntx)
+ 				intel_c20_sram_write(encoder, INTEL_CX0_LANE0,
+-						     PHY_C20_A_MPLLB_CNTX_CFG(i915, i),
++						     PHY_C20_A_MPLLB_CNTX_CFG(display, i),
+ 						     pll_state->mpllb[i]);
+ 			else
+ 				intel_c20_sram_write(encoder, INTEL_CX0_LANE0,
+-						     PHY_C20_B_MPLLB_CNTX_CFG(i915, i),
++						     PHY_C20_B_MPLLB_CNTX_CFG(display, i),
+ 						     pll_state->mpllb[i]);
+ 		}
+ 	} else {
+ 		for (i = 0; i < ARRAY_SIZE(pll_state->mplla); i++) {
+ 			if (cntx)
+ 				intel_c20_sram_write(encoder, INTEL_CX0_LANE0,
+-						     PHY_C20_A_MPLLA_CNTX_CFG(i915, i),
++						     PHY_C20_A_MPLLA_CNTX_CFG(display, i),
+ 						     pll_state->mplla[i]);
+ 			else
+ 				intel_c20_sram_write(encoder, INTEL_CX0_LANE0,
+-						     PHY_C20_B_MPLLA_CNTX_CFG(i915, i),
++						     PHY_C20_B_MPLLA_CNTX_CFG(display, i),
+ 						     pll_state->mplla[i]);
+ 		}
+ 	}
+@@ -2678,10 +2696,10 @@ static void intel_program_port_clock_ctl(struct intel_encoder *encoder,
+ 					 const struct intel_crtc_state *crtc_state,
+ 					 bool lane_reversal)
+ {
+-	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++	struct intel_display *display = to_intel_display(encoder);
+ 	u32 val = 0;
+ 
+-	intel_de_rmw(i915, XELPDP_PORT_BUF_CTL1(i915, encoder->port),
++	intel_de_rmw(display, XELPDP_PORT_BUF_CTL1(display, encoder->port),
+ 		     XELPDP_PORT_REVERSAL,
+ 		     lane_reversal ? XELPDP_PORT_REVERSAL : 0);
+ 
+@@ -2703,7 +2721,7 @@ static void intel_program_port_clock_ctl(struct intel_encoder *encoder,
+ 	else
+ 		val |= crtc_state->dpll_hw_state.cx0pll.ssc_enabled ? XELPDP_SSC_ENABLE_PLLB : 0;
+ 
+-	intel_de_rmw(i915, XELPDP_PORT_CLOCK_CTL(i915, encoder->port),
++	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port),
+ 		     XELPDP_LANE1_PHY_CLOCK_SELECT | XELPDP_FORWARD_CLOCK_UNGATE |
+ 		     XELPDP_DDI_CLOCK_SELECT_MASK | XELPDP_SSC_ENABLE_PLLA |
+ 		     XELPDP_SSC_ENABLE_PLLB, val);
+@@ -2734,48 +2752,49 @@ static u32 intel_cx0_get_powerdown_state(u8 lane_mask, u8 state)
+ static void intel_cx0_powerdown_change_sequence(struct intel_encoder *encoder,
+ 						u8 lane_mask, u8 state)
+ {
+-	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++	struct intel_display *display = to_intel_display(encoder);
+ 	enum port port = encoder->port;
+ 	enum phy phy = intel_encoder_to_phy(encoder);
+-	i915_reg_t buf_ctl2_reg = XELPDP_PORT_BUF_CTL2(i915, port);
++	i915_reg_t buf_ctl2_reg = XELPDP_PORT_BUF_CTL2(display, port);
+ 	int lane;
+ 
+-	intel_de_rmw(i915, buf_ctl2_reg,
++	intel_de_rmw(display, buf_ctl2_reg,
+ 		     intel_cx0_get_powerdown_state(INTEL_CX0_BOTH_LANES, XELPDP_LANE_POWERDOWN_NEW_STATE_MASK),
+ 		     intel_cx0_get_powerdown_state(lane_mask, state));
+ 
+ 	/* Wait for pending transactions.*/
+ 	for_each_cx0_lane_in_mask(lane_mask, lane)
+-		if (intel_de_wait_for_clear(i915, XELPDP_PORT_M2P_MSGBUS_CTL(i915, port, lane),
++		if (intel_de_wait_for_clear(display, XELPDP_PORT_M2P_MSGBUS_CTL(display, port, lane),
+ 					    XELPDP_PORT_M2P_TRANSACTION_PENDING,
+ 					    XELPDP_MSGBUS_TIMEOUT_SLOW)) {
+-			drm_dbg_kms(&i915->drm,
++			drm_dbg_kms(display->drm,
+ 				    "PHY %c Timeout waiting for previous transaction to complete. Reset the bus.\n",
+ 				    phy_name(phy));
+ 			intel_cx0_bus_reset(encoder, lane);
+ 		}
+ 
+-	intel_de_rmw(i915, buf_ctl2_reg,
++	intel_de_rmw(display, buf_ctl2_reg,
+ 		     intel_cx0_get_powerdown_update(INTEL_CX0_BOTH_LANES),
+ 		     intel_cx0_get_powerdown_update(lane_mask));
+ 
+ 	/* Update Timeout Value */
+-	if (intel_de_wait_custom(i915, buf_ctl2_reg,
++	if (intel_de_wait_custom(display, buf_ctl2_reg,
+ 				 intel_cx0_get_powerdown_update(lane_mask), 0,
+ 				 XELPDP_PORT_POWERDOWN_UPDATE_TIMEOUT_US, 0, NULL))
+-		drm_warn(&i915->drm, "PHY %c failed to bring out of Lane reset after %dus.\n",
++		drm_warn(display->drm,
++			 "PHY %c failed to bring out of Lane reset after %dus.\n",
+ 			 phy_name(phy), XELPDP_PORT_RESET_START_TIMEOUT_US);
+ }
+ 
+ static void intel_cx0_setup_powerdown(struct intel_encoder *encoder)
+ {
+-	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++	struct intel_display *display = to_intel_display(encoder);
+ 	enum port port = encoder->port;
+ 
+-	intel_de_rmw(i915, XELPDP_PORT_BUF_CTL2(i915, port),
++	intel_de_rmw(display, XELPDP_PORT_BUF_CTL2(display, port),
+ 		     XELPDP_POWER_STATE_READY_MASK,
+ 		     XELPDP_POWER_STATE_READY(CX0_P2_STATE_READY));
+-	intel_de_rmw(i915, XELPDP_PORT_BUF_CTL3(i915, port),
++	intel_de_rmw(display, XELPDP_PORT_BUF_CTL3(display, port),
+ 		     XELPDP_POWER_STATE_ACTIVE_MASK |
+ 		     XELPDP_PLL_LANE_STAGGERING_DELAY_MASK,
+ 		     XELPDP_POWER_STATE_ACTIVE(CX0_P0_STATE_ACTIVE) |
+@@ -2807,7 +2826,7 @@ static u32 intel_cx0_get_pclk_refclk_ack(u8 lane_mask)
+ static void intel_cx0_phy_lane_reset(struct intel_encoder *encoder,
+ 				     bool lane_reversal)
+ {
+-	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++	struct intel_display *display = to_intel_display(encoder);
+ 	enum port port = encoder->port;
+ 	enum phy phy = intel_encoder_to_phy(encoder);
+ 	u8 owned_lane_mask = intel_cx0_get_owned_lane_mask(encoder);
+@@ -2820,48 +2839,51 @@ static void intel_cx0_phy_lane_reset(struct intel_encoder *encoder,
+ 					   XELPDP_LANE_PHY_CURRENT_STATUS(1))
+ 					: XELPDP_LANE_PHY_CURRENT_STATUS(0);
+ 
+-	if (intel_de_wait_custom(i915, XELPDP_PORT_BUF_CTL1(i915, port),
++	if (intel_de_wait_custom(display, XELPDP_PORT_BUF_CTL1(display, port),
+ 				 XELPDP_PORT_BUF_SOC_PHY_READY,
+ 				 XELPDP_PORT_BUF_SOC_PHY_READY,
+ 				 XELPDP_PORT_BUF_SOC_READY_TIMEOUT_US, 0, NULL))
+-		drm_warn(&i915->drm, "PHY %c failed to bring out of SOC reset after %dus.\n",
++		drm_warn(display->drm,
++			 "PHY %c failed to bring out of SOC reset after %dus.\n",
+ 			 phy_name(phy), XELPDP_PORT_BUF_SOC_READY_TIMEOUT_US);
+ 
+-	intel_de_rmw(i915, XELPDP_PORT_BUF_CTL2(i915, port), lane_pipe_reset,
++	intel_de_rmw(display, XELPDP_PORT_BUF_CTL2(display, port), lane_pipe_reset,
+ 		     lane_pipe_reset);
+ 
+-	if (intel_de_wait_custom(i915, XELPDP_PORT_BUF_CTL2(i915, port),
++	if (intel_de_wait_custom(display, XELPDP_PORT_BUF_CTL2(display, port),
+ 				 lane_phy_current_status, lane_phy_current_status,
+ 				 XELPDP_PORT_RESET_START_TIMEOUT_US, 0, NULL))
+-		drm_warn(&i915->drm, "PHY %c failed to bring out of Lane reset after %dus.\n",
++		drm_warn(display->drm,
++			 "PHY %c failed to bring out of Lane reset after %dus.\n",
+ 			 phy_name(phy), XELPDP_PORT_RESET_START_TIMEOUT_US);
+ 
+-	intel_de_rmw(i915, XELPDP_PORT_CLOCK_CTL(i915, port),
++	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, port),
+ 		     intel_cx0_get_pclk_refclk_request(owned_lane_mask),
+ 		     intel_cx0_get_pclk_refclk_request(lane_mask));
+ 
+-	if (intel_de_wait_custom(i915, XELPDP_PORT_CLOCK_CTL(i915, port),
++	if (intel_de_wait_custom(display, XELPDP_PORT_CLOCK_CTL(display, port),
+ 				 intel_cx0_get_pclk_refclk_ack(owned_lane_mask),
+ 				 intel_cx0_get_pclk_refclk_ack(lane_mask),
+ 				 XELPDP_REFCLK_ENABLE_TIMEOUT_US, 0, NULL))
+-		drm_warn(&i915->drm, "PHY %c failed to request refclk after %dus.\n",
++		drm_warn(display->drm,
++			 "PHY %c failed to request refclk after %dus.\n",
+ 			 phy_name(phy), XELPDP_REFCLK_ENABLE_TIMEOUT_US);
+ 
+ 	intel_cx0_powerdown_change_sequence(encoder, INTEL_CX0_BOTH_LANES,
+ 					    CX0_P2_STATE_RESET);
+ 	intel_cx0_setup_powerdown(encoder);
+ 
+-	intel_de_rmw(i915, XELPDP_PORT_BUF_CTL2(i915, port), lane_pipe_reset, 0);
++	intel_de_rmw(display, XELPDP_PORT_BUF_CTL2(display, port), lane_pipe_reset, 0);
+ 
+-	if (intel_de_wait_for_clear(i915, XELPDP_PORT_BUF_CTL2(i915, port),
++	if (intel_de_wait_for_clear(display, XELPDP_PORT_BUF_CTL2(display, port),
+ 				    lane_phy_current_status,
+ 				    XELPDP_PORT_RESET_END_TIMEOUT))
+-		drm_warn(&i915->drm, "PHY %c failed to bring out of Lane reset after %dms.\n",
++		drm_warn(display->drm,
++			 "PHY %c failed to bring out of Lane reset after %dms.\n",
+ 			 phy_name(phy), XELPDP_PORT_RESET_END_TIMEOUT);
+ }
+ 
+-static void intel_cx0_program_phy_lane(struct drm_i915_private *i915,
+-				       struct intel_encoder *encoder, int lane_count,
++static void intel_cx0_program_phy_lane(struct intel_encoder *encoder, int lane_count,
+ 				       bool lane_reversal)
+ {
+ 	int i;
+@@ -2930,7 +2952,7 @@ static u32 intel_cx0_get_pclk_pll_ack(u8 lane_mask)
+ static void intel_cx0pll_enable(struct intel_encoder *encoder,
+ 				const struct intel_crtc_state *crtc_state)
+ {
+-	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++	struct intel_display *display = to_intel_display(encoder);
+ 	enum phy phy = intel_encoder_to_phy(encoder);
+ 	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+ 	bool lane_reversal = dig_port->saved_port_bits & DDI_BUF_PORT_REVERSAL;
+@@ -2962,15 +2984,15 @@ static void intel_cx0pll_enable(struct intel_encoder *encoder,
+ 
+ 	/* 5. Program PHY internal PLL internal registers. */
+ 	if (intel_encoder_is_c10phy(encoder))
+-		intel_c10_pll_program(i915, crtc_state, encoder);
++		intel_c10_pll_program(display, crtc_state, encoder);
+ 	else
+-		intel_c20_pll_program(i915, crtc_state, encoder);
++		intel_c20_pll_program(display, crtc_state, encoder);
+ 
+ 	/*
+ 	 * 6. Program the enabled and disabled owned PHY lane
+ 	 * transmitters over message bus
+ 	 */
+-	intel_cx0_program_phy_lane(i915, encoder, crtc_state->lane_count, lane_reversal);
++	intel_cx0_program_phy_lane(encoder, crtc_state->lane_count, lane_reversal);
+ 
+ 	/*
+ 	 * 7. Follow the Display Voltage Frequency Switching - Sequence
+@@ -2981,23 +3003,23 @@ static void intel_cx0pll_enable(struct intel_encoder *encoder,
+ 	 * 8. Program DDI_CLK_VALFREQ to match intended DDI
+ 	 * clock frequency.
+ 	 */
+-	intel_de_write(i915, DDI_CLK_VALFREQ(encoder->port),
++	intel_de_write(display, DDI_CLK_VALFREQ(encoder->port),
+ 		       crtc_state->port_clock);
+ 
+ 	/*
+ 	 * 9. Set PORT_CLOCK_CTL register PCLK PLL Request
+ 	 * LN<Lane for maxPCLK> to "1" to enable PLL.
+ 	 */
+-	intel_de_rmw(i915, XELPDP_PORT_CLOCK_CTL(i915, encoder->port),
++	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port),
+ 		     intel_cx0_get_pclk_pll_request(INTEL_CX0_BOTH_LANES),
+ 		     intel_cx0_get_pclk_pll_request(maxpclk_lane));
+ 
+ 	/* 10. Poll on PORT_CLOCK_CTL PCLK PLL Ack LN<Lane for maxPCLK> == "1". */
+-	if (intel_de_wait_custom(i915, XELPDP_PORT_CLOCK_CTL(i915, encoder->port),
++	if (intel_de_wait_custom(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port),
+ 				 intel_cx0_get_pclk_pll_ack(INTEL_CX0_BOTH_LANES),
+ 				 intel_cx0_get_pclk_pll_ack(maxpclk_lane),
+ 				 XELPDP_PCLK_PLL_ENABLE_TIMEOUT_US, 0, NULL))
+-		drm_warn(&i915->drm, "Port %c PLL not locked after %dus.\n",
++		drm_warn(display->drm, "Port %c PLL not locked after %dus.\n",
+ 			 phy_name(phy), XELPDP_PCLK_PLL_ENABLE_TIMEOUT_US);
+ 
+ 	/*
+@@ -3011,15 +3033,16 @@ static void intel_cx0pll_enable(struct intel_encoder *encoder,
+ 
+ int intel_mtl_tbt_calc_port_clock(struct intel_encoder *encoder)
+ {
+-	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+-	u32 clock;
+-	u32 val = intel_de_read(i915, XELPDP_PORT_CLOCK_CTL(i915, encoder->port));
++	struct intel_display *display = to_intel_display(encoder);
++	u32 clock, val;
++
++	val = intel_de_read(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port));
+ 
+ 	clock = REG_FIELD_GET(XELPDP_DDI_CLOCK_SELECT_MASK, val);
+ 
+-	drm_WARN_ON(&i915->drm, !(val & XELPDP_FORWARD_CLOCK_UNGATE));
+-	drm_WARN_ON(&i915->drm, !(val & XELPDP_TBT_CLOCK_REQUEST));
+-	drm_WARN_ON(&i915->drm, !(val & XELPDP_TBT_CLOCK_ACK));
++	drm_WARN_ON(display->drm, !(val & XELPDP_FORWARD_CLOCK_UNGATE));
++	drm_WARN_ON(display->drm, !(val & XELPDP_TBT_CLOCK_REQUEST));
++	drm_WARN_ON(display->drm, !(val & XELPDP_TBT_CLOCK_ACK));
+ 
+ 	switch (clock) {
+ 	case XELPDP_DDI_CLOCK_SELECT_TBT_162:
+@@ -3036,7 +3059,7 @@ int intel_mtl_tbt_calc_port_clock(struct intel_encoder *encoder)
+ 	}
+ }
+ 
+-static int intel_mtl_tbt_clock_select(struct drm_i915_private *i915, int clock)
++static int intel_mtl_tbt_clock_select(int clock)
+ {
+ 	switch (clock) {
+ 	case 162000:
+@@ -3056,7 +3079,7 @@ static int intel_mtl_tbt_clock_select(struct drm_i915_private *i915, int clock)
+ static void intel_mtl_tbt_pll_enable(struct intel_encoder *encoder,
+ 				     const struct intel_crtc_state *crtc_state)
+ {
+-	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++	struct intel_display *display = to_intel_display(encoder);
+ 	enum phy phy = intel_encoder_to_phy(encoder);
+ 	u32 val = 0;
+ 
+@@ -3064,13 +3087,13 @@ static void intel_mtl_tbt_pll_enable(struct intel_encoder *encoder,
+ 	 * 1. Program PORT_CLOCK_CTL REGISTER to configure
+ 	 * clock muxes, gating and SSC
+ 	 */
+-	val |= XELPDP_DDI_CLOCK_SELECT(intel_mtl_tbt_clock_select(i915, crtc_state->port_clock));
++	val |= XELPDP_DDI_CLOCK_SELECT(intel_mtl_tbt_clock_select(crtc_state->port_clock));
+ 	val |= XELPDP_FORWARD_CLOCK_UNGATE;
+-	intel_de_rmw(i915, XELPDP_PORT_CLOCK_CTL(i915, encoder->port),
++	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port),
+ 		     XELPDP_DDI_CLOCK_SELECT_MASK | XELPDP_FORWARD_CLOCK_UNGATE, val);
+ 
+ 	/* 2. Read back PORT_CLOCK_CTL REGISTER */
+-	val = intel_de_read(i915, XELPDP_PORT_CLOCK_CTL(i915, encoder->port));
++	val = intel_de_read(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port));
+ 
+ 	/*
+ 	 * 3. Follow the Display Voltage Frequency Switching - Sequence
+@@ -3081,14 +3104,15 @@ static void intel_mtl_tbt_pll_enable(struct intel_encoder *encoder,
+ 	 * 4. Set PORT_CLOCK_CTL register TBT CLOCK Request to "1" to enable PLL.
+ 	 */
+ 	val |= XELPDP_TBT_CLOCK_REQUEST;
+-	intel_de_write(i915, XELPDP_PORT_CLOCK_CTL(i915, encoder->port), val);
++	intel_de_write(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port), val);
+ 
+ 	/* 5. Poll on PORT_CLOCK_CTL TBT CLOCK Ack == "1". */
+-	if (intel_de_wait_custom(i915, XELPDP_PORT_CLOCK_CTL(i915, encoder->port),
++	if (intel_de_wait_custom(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port),
+ 				 XELPDP_TBT_CLOCK_ACK,
+ 				 XELPDP_TBT_CLOCK_ACK,
+ 				 100, 0, NULL))
+-		drm_warn(&i915->drm, "[ENCODER:%d:%s][%c] PHY PLL not locked after 100us.\n",
++		drm_warn(display->drm,
++			 "[ENCODER:%d:%s][%c] PHY PLL not locked after 100us.\n",
+ 			 encoder->base.base.id, encoder->base.name, phy_name(phy));
+ 
+ 	/*
+@@ -3100,7 +3124,7 @@ static void intel_mtl_tbt_pll_enable(struct intel_encoder *encoder,
+ 	 * 7. Program DDI_CLK_VALFREQ to match intended DDI
+ 	 * clock frequency.
+ 	 */
+-	intel_de_write(i915, DDI_CLK_VALFREQ(encoder->port),
++	intel_de_write(display, DDI_CLK_VALFREQ(encoder->port),
+ 		       crtc_state->port_clock);
+ }
+ 
+@@ -3130,7 +3154,7 @@ static u8 cx0_power_control_disable_val(struct intel_encoder *encoder)
+ 
+ static void intel_cx0pll_disable(struct intel_encoder *encoder)
+ {
+-	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++	struct intel_display *display = to_intel_display(encoder);
+ 	enum phy phy = intel_encoder_to_phy(encoder);
+ 	intel_wakeref_t wakeref = intel_cx0_phy_transaction_begin(encoder);
+ 
+@@ -3147,21 +3171,22 @@ static void intel_cx0pll_disable(struct intel_encoder *encoder)
+ 	 * 3. Set PORT_CLOCK_CTL register PCLK PLL Request LN<Lane for maxPCLK>
+ 	 * to "0" to disable PLL.
+ 	 */
+-	intel_de_rmw(i915, XELPDP_PORT_CLOCK_CTL(i915, encoder->port),
++	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port),
+ 		     intel_cx0_get_pclk_pll_request(INTEL_CX0_BOTH_LANES) |
+ 		     intel_cx0_get_pclk_refclk_request(INTEL_CX0_BOTH_LANES), 0);
+ 
+ 	/* 4. Program DDI_CLK_VALFREQ to 0. */
+-	intel_de_write(i915, DDI_CLK_VALFREQ(encoder->port), 0);
++	intel_de_write(display, DDI_CLK_VALFREQ(encoder->port), 0);
+ 
+ 	/*
+ 	 * 5. Poll on PORT_CLOCK_CTL PCLK PLL Ack LN<Lane for maxPCLK**> == "0".
+ 	 */
+-	if (intel_de_wait_custom(i915, XELPDP_PORT_CLOCK_CTL(i915, encoder->port),
++	if (intel_de_wait_custom(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port),
+ 				 intel_cx0_get_pclk_pll_ack(INTEL_CX0_BOTH_LANES) |
+ 				 intel_cx0_get_pclk_refclk_ack(INTEL_CX0_BOTH_LANES), 0,
+ 				 XELPDP_PCLK_PLL_DISABLE_TIMEOUT_US, 0, NULL))
+-		drm_warn(&i915->drm, "Port %c PLL not unlocked after %dus.\n",
++		drm_warn(display->drm,
++			 "Port %c PLL not unlocked after %dus.\n",
+ 			 phy_name(phy), XELPDP_PCLK_PLL_DISABLE_TIMEOUT_US);
+ 
+ 	/*
+@@ -3170,9 +3195,9 @@ static void intel_cx0pll_disable(struct intel_encoder *encoder)
+ 	 */
+ 
+ 	/* 7. Program PORT_CLOCK_CTL register to disable and gate clocks. */
+-	intel_de_rmw(i915, XELPDP_PORT_CLOCK_CTL(i915, encoder->port),
++	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port),
+ 		     XELPDP_DDI_CLOCK_SELECT_MASK, 0);
+-	intel_de_rmw(i915, XELPDP_PORT_CLOCK_CTL(i915, encoder->port),
++	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port),
+ 		     XELPDP_FORWARD_CLOCK_UNGATE, 0);
+ 
+ 	intel_cx0_phy_transaction_end(encoder, wakeref);
+@@ -3180,7 +3205,7 @@ static void intel_cx0pll_disable(struct intel_encoder *encoder)
+ 
+ static void intel_mtl_tbt_pll_disable(struct intel_encoder *encoder)
+ {
+-	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++	struct intel_display *display = to_intel_display(encoder);
+ 	enum phy phy = intel_encoder_to_phy(encoder);
+ 
+ 	/*
+@@ -3191,13 +3216,14 @@ static void intel_mtl_tbt_pll_disable(struct intel_encoder *encoder)
+ 	/*
+ 	 * 2. Set PORT_CLOCK_CTL register TBT CLOCK Request to "0" to disable PLL.
+ 	 */
+-	intel_de_rmw(i915, XELPDP_PORT_CLOCK_CTL(i915, encoder->port),
++	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port),
+ 		     XELPDP_TBT_CLOCK_REQUEST, 0);
+ 
+ 	/* 3. Poll on PORT_CLOCK_CTL TBT CLOCK Ack == "0". */
+-	if (intel_de_wait_custom(i915, XELPDP_PORT_CLOCK_CTL(i915, encoder->port),
++	if (intel_de_wait_custom(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port),
+ 				 XELPDP_TBT_CLOCK_ACK, 0, 10, 0, NULL))
+-		drm_warn(&i915->drm, "[ENCODER:%d:%s][%c] PHY PLL not unlocked after 10us.\n",
++		drm_warn(display->drm,
++			 "[ENCODER:%d:%s][%c] PHY PLL not unlocked after 10us.\n",
+ 			 encoder->base.base.id, encoder->base.name, phy_name(phy));
+ 
+ 	/*
+@@ -3208,12 +3234,12 @@ static void intel_mtl_tbt_pll_disable(struct intel_encoder *encoder)
+ 	/*
+ 	 * 5. Program PORT CLOCK CTRL register to disable and gate clocks
+ 	 */
+-	intel_de_rmw(i915, XELPDP_PORT_CLOCK_CTL(i915, encoder->port),
++	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port),
+ 		     XELPDP_DDI_CLOCK_SELECT_MASK |
+ 		     XELPDP_FORWARD_CLOCK_UNGATE, 0);
+ 
+ 	/* 6. Program DDI_CLK_VALFREQ to 0. */
+-	intel_de_write(i915, DDI_CLK_VALFREQ(encoder->port), 0);
++	intel_de_write(display, DDI_CLK_VALFREQ(encoder->port), 0);
+ }
+ 
+ void intel_mtl_pll_disable(struct intel_encoder *encoder)
+@@ -3230,13 +3256,15 @@ enum icl_port_dpll_id
+ intel_mtl_port_pll_type(struct intel_encoder *encoder,
+ 			const struct intel_crtc_state *crtc_state)
+ {
+-	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++	struct intel_display *display = to_intel_display(encoder);
++	u32 val, clock;
++
+ 	/*
+ 	 * TODO: Determine the PLL type from the SW state, once MTL PLL
+ 	 * handling is done via the standard shared DPLL framework.
+ 	 */
+-	u32 val = intel_de_read(i915, XELPDP_PORT_CLOCK_CTL(i915, encoder->port));
+-	u32 clock = REG_FIELD_GET(XELPDP_DDI_CLOCK_SELECT_MASK, val);
++	val = intel_de_read(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port));
++	clock = REG_FIELD_GET(XELPDP_DDI_CLOCK_SELECT_MASK, val);
+ 
+ 	if (clock == XELPDP_DDI_CLOCK_SELECT_MAXPCLK ||
+ 	    clock == XELPDP_DDI_CLOCK_SELECT_DIV18CLK)
+@@ -3408,13 +3436,13 @@ static void intel_c20pll_state_verify(const struct intel_crtc_state *state,
+ void intel_cx0pll_state_verify(struct intel_atomic_state *state,
+ 			       struct intel_crtc *crtc)
+ {
+-	struct drm_i915_private *i915 = to_i915(state->base.dev);
++	struct intel_display *display = to_intel_display(state);
+ 	const struct intel_crtc_state *new_crtc_state =
+ 		intel_atomic_get_new_crtc_state(state, crtc);
+ 	struct intel_encoder *encoder;
+ 	struct intel_cx0pll_state mpll_hw_state = {};
+ 
+-	if (DISPLAY_VER(i915) < 14)
++	if (DISPLAY_VER(display) < 14)
+ 		return;
+ 
+ 	if (!new_crtc_state->hw.active)
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.h b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+index 9004b99bb51f..711168882684 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+@@ -7,17 +7,15 @@
+ #define __INTEL_CX0_PHY_H__
  
  #include <linux/types.h>
+-#include <linux/bitfield.h>
+-#include <linux/bits.h>
  
+ enum icl_port_dpll_id;
 -struct drm_i915_private;
- struct i2c_adapter;
+ struct intel_atomic_state;
+ struct intel_c10pll_state;
+ struct intel_c20pll_state;
+-struct intel_cx0pll_state;
+ struct intel_crtc;
+ struct intel_crtc_state;
++struct intel_cx0pll_state;
 +struct intel_display;
+ struct intel_encoder;
+ struct intel_hdmi;
  
- #define GMBUS_PIN_DISABLED	0
- #define GMBUS_PIN_SSC		1
-@@ -34,18 +34,17 @@ struct i2c_adapter;
+@@ -35,7 +33,7 @@ void intel_cx0pll_readout_hw_state(struct intel_encoder *encoder,
+ int intel_cx0pll_calc_port_clock(struct intel_encoder *encoder,
+ 				 const struct intel_cx0pll_state *pll_state);
  
- #define GMBUS_NUM_PINS	15 /* including 0 */
- 
--int intel_gmbus_setup(struct drm_i915_private *dev_priv);
--void intel_gmbus_teardown(struct drm_i915_private *dev_priv);
--bool intel_gmbus_is_valid_pin(struct drm_i915_private *dev_priv,
--			      unsigned int pin);
-+int intel_gmbus_setup(struct intel_display *display);
-+void intel_gmbus_teardown(struct intel_display *display);
-+bool intel_gmbus_is_valid_pin(struct intel_display *display, unsigned int pin);
- int intel_gmbus_output_aksv(struct i2c_adapter *adapter);
- 
- struct i2c_adapter *
--intel_gmbus_get_adapter(struct drm_i915_private *dev_priv, unsigned int pin);
-+intel_gmbus_get_adapter(struct intel_display *display, unsigned int pin);
- void intel_gmbus_force_bit(struct i2c_adapter *adapter, bool force_bit);
- bool intel_gmbus_is_forced_bit(struct i2c_adapter *adapter);
--void intel_gmbus_reset(struct drm_i915_private *dev_priv);
-+void intel_gmbus_reset(struct intel_display *display);
- 
--void intel_gmbus_irq_handler(struct drm_i915_private *i915);
-+void intel_gmbus_irq_handler(struct intel_display *display);
- 
- #endif /* __INTEL_GMBUS_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_gmbus_regs.h b/drivers/gpu/drm/i915/display/intel_gmbus_regs.h
-index 53aacbda983c..59bad1dda6d6 100644
---- a/drivers/gpu/drm/i915/display/intel_gmbus_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_gmbus_regs.h
-@@ -8,9 +8,9 @@
- 
- #include "i915_reg_defs.h"
- 
--#define GMBUS_MMIO_BASE(__i915) ((__i915)->display.gmbus.mmio_base)
-+#define __GMBUS_MMIO_BASE(__display) ((__display)->gmbus.mmio_base)
- 
--#define GPIO(__i915, gpio)	_MMIO(GMBUS_MMIO_BASE(__i915) + 0x5010 + 4 * (gpio))
-+#define GPIO(__display, gpio)	_MMIO(__GMBUS_MMIO_BASE(__display) + 0x5010 + 4 * (gpio))
- #define   GPIO_CLOCK_DIR_MASK		(1 << 0)
- #define   GPIO_CLOCK_DIR_IN		(0 << 1)
- #define   GPIO_CLOCK_DIR_OUT		(1 << 1)
-@@ -27,7 +27,7 @@
- #define   GPIO_DATA_PULLUP_DISABLE	(1 << 13)
- 
- /* clock/port select */
--#define GMBUS0(__i915)		_MMIO(GMBUS_MMIO_BASE(__i915) + 0x5100)
-+#define GMBUS0(__display)	_MMIO(__GMBUS_MMIO_BASE(__display) + 0x5100)
- #define   GMBUS_AKSV_SELECT		(1 << 11)
- #define   GMBUS_RATE_100KHZ		(0 << 8)
- #define   GMBUS_RATE_50KHZ		(1 << 8)
-@@ -37,7 +37,7 @@
- #define   GMBUS_BYTE_CNT_OVERRIDE	(1 << 6)
- 
- /* command/status */
--#define GMBUS1(__i915)		_MMIO(GMBUS_MMIO_BASE(__i915) + 0x5104)
-+#define GMBUS1(__display)	_MMIO(__GMBUS_MMIO_BASE(__display) + 0x5104)
- #define   GMBUS_SW_CLR_INT		(1 << 31)
- #define   GMBUS_SW_RDY			(1 << 30)
- #define   GMBUS_ENT			(1 << 29) /* enable timeout */
-@@ -54,7 +54,7 @@
- #define   GMBUS_SLAVE_WRITE		(0 << 0)
- 
- /* status */
--#define GMBUS2(__i915)		_MMIO(GMBUS_MMIO_BASE(__i915) + 0x5108)
-+#define GMBUS2(__display)	_MMIO(__GMBUS_MMIO_BASE(__display) + 0x5108)
- #define   GMBUS_INUSE			(1 << 15)
- #define   GMBUS_HW_WAIT_PHASE		(1 << 14)
- #define   GMBUS_STALL_TIMEOUT		(1 << 13)
-@@ -64,10 +64,10 @@
- #define   GMBUS_ACTIVE			(1 << 9)
- 
- /* data buffer bytes 3-0 */
--#define GMBUS3(__i915)		_MMIO(GMBUS_MMIO_BASE(__i915) + 0x510c)
-+#define GMBUS3(__display)	_MMIO(__GMBUS_MMIO_BASE(__display) + 0x510c)
- 
- /* interrupt mask (Pineview+) */
--#define GMBUS4(__i915)		_MMIO(GMBUS_MMIO_BASE(__i915) + 0x5110)
-+#define GMBUS4(__display)	_MMIO(__GMBUS_MMIO_BASE(__display) + 0x5110)
- #define   GMBUS_SLAVE_TIMEOUT_EN	(1 << 4)
- #define   GMBUS_NAK_EN			(1 << 3)
- #define   GMBUS_IDLE_EN			(1 << 2)
-@@ -75,7 +75,7 @@
- #define   GMBUS_HW_RDY_EN		(1 << 0)
- 
- /* byte index */
--#define GMBUS5(__i915)		_MMIO(GMBUS_MMIO_BASE(__i915) + 0x5120)
-+#define GMBUS5(__display)	_MMIO(__GMBUS_MMIO_BASE(__display) + 0x5120)
- #define   GMBUS_2BYTE_INDEX_EN		(1 << 31)
- 
- #endif /* __INTEL_GMBUS_REGS_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index 72ac910bf6ec..022ba3635101 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -2917,7 +2917,6 @@ static struct intel_encoder *
- get_encoder_by_ddc_pin(struct intel_encoder *encoder, u8 ddc_pin)
+-void intel_cx0pll_dump_hw_state(struct drm_i915_private *dev_priv,
++void intel_cx0pll_dump_hw_state(struct intel_display *display,
+ 				const struct intel_cx0pll_state *hw_state);
+ void intel_cx0pll_state_verify(struct intel_atomic_state *state,
+ 			       struct intel_crtc *crtc);
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index ef1436146325..c19f01b63936 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -5305,15 +5305,15 @@ pipe_config_cx0pll_mismatch(struct drm_printer *p, bool fastset,
+ 			    const struct intel_cx0pll_state *a,
+ 			    const struct intel_cx0pll_state *b)
  {
- 	struct intel_display *display = to_intel_display(encoder);
--	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
- 	struct intel_encoder *other;
+-	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
++	struct intel_display *display = to_intel_display(crtc);
+ 	char *chipname = a->use_c10 ? "C10" : "C20";
  
- 	for_each_intel_encoder(display->drm, other) {
-@@ -2931,7 +2930,7 @@ get_encoder_by_ddc_pin(struct intel_encoder *encoder, u8 ddc_pin)
+ 	pipe_config_mismatch(p, fastset, crtc, name, chipname);
  
- 		connector = enc_to_dig_port(other)->hdmi.attached_connector;
- 
--		if (connector && connector->base.ddc == intel_gmbus_get_adapter(i915, ddc_pin))
-+		if (connector && connector->base.ddc == intel_gmbus_get_adapter(display, ddc_pin))
- 			return other;
- 	}
- 
-@@ -2941,7 +2940,6 @@ get_encoder_by_ddc_pin(struct intel_encoder *encoder, u8 ddc_pin)
- static u8 intel_hdmi_ddc_pin(struct intel_encoder *encoder)
- {
- 	struct intel_display *display = to_intel_display(encoder);
--	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
- 	struct intel_encoder *other;
- 	const char *source;
- 	u8 ddc_pin;
-@@ -2954,7 +2952,7 @@ static u8 intel_hdmi_ddc_pin(struct intel_encoder *encoder)
- 		source = "platform default";
- 	}
- 
--	if (!intel_gmbus_is_valid_pin(i915, ddc_pin)) {
-+	if (!intel_gmbus_is_valid_pin(display, ddc_pin)) {
- 		drm_dbg_kms(display->drm,
- 			    "[ENCODER:%d:%s] Invalid DDC pin %d\n",
- 			    encoder->base.base.id, encoder->base.name, ddc_pin);
-@@ -3052,7 +3050,7 @@ void intel_hdmi_init_connector(struct intel_digital_port *dig_port,
- 	drm_connector_init_with_ddc(dev, connector,
- 				    &intel_hdmi_connector_funcs,
- 				    DRM_MODE_CONNECTOR_HDMIA,
--				    intel_gmbus_get_adapter(dev_priv, ddc_pin));
-+				    intel_gmbus_get_adapter(display, ddc_pin));
- 
- 	drm_connector_helper_add(connector, &intel_hdmi_connector_helper_funcs);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_hotplug_irq.c b/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
-index 5d055dc9366f..cb64c6f0ad1b 100644
---- a/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
-+++ b/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
-@@ -556,6 +556,7 @@ void xelpdp_pica_irq_handler(struct drm_i915_private *i915, u32 iir)
- 
- void icp_irq_handler(struct drm_i915_private *dev_priv, u32 pch_iir)
- {
-+	struct intel_display *display = &dev_priv->display;
- 	u32 ddi_hotplug_trigger = pch_iir & SDE_DDI_HOTPLUG_MASK_ICP;
- 	u32 tc_hotplug_trigger = pch_iir & SDE_TC_HOTPLUG_MASK_ICP;
- 	u32 pin_mask = 0, long_mask = 0;
-@@ -589,11 +590,12 @@ void icp_irq_handler(struct drm_i915_private *dev_priv, u32 pch_iir)
- 		intel_hpd_irq_handler(dev_priv, pin_mask, long_mask);
- 
- 	if (pch_iir & SDE_GMBUS_ICP)
--		intel_gmbus_irq_handler(dev_priv);
-+		intel_gmbus_irq_handler(display);
+ 	drm_printf(p, "expected:\n");
+-	intel_cx0pll_dump_hw_state(i915, a);
++	intel_cx0pll_dump_hw_state(display, a);
+ 	drm_printf(p, "found:\n");
+-	intel_cx0pll_dump_hw_state(i915, b);
++	intel_cx0pll_dump_hw_state(display, b);
  }
  
- void spt_irq_handler(struct drm_i915_private *dev_priv, u32 pch_iir)
- {
-+	struct intel_display *display = &dev_priv->display;
- 	u32 hotplug_trigger = pch_iir & SDE_HOTPLUG_MASK_SPT &
- 		~SDE_PORTE_HOTPLUG_SPT;
- 	u32 hotplug2_trigger = pch_iir & SDE_PORTE_HOTPLUG_SPT;
-@@ -625,7 +627,7 @@ void spt_irq_handler(struct drm_i915_private *dev_priv, u32 pch_iir)
- 		intel_hpd_irq_handler(dev_priv, pin_mask, long_mask);
- 
- 	if (pch_iir & SDE_GMBUS_CPT)
--		intel_gmbus_irq_handler(dev_priv);
-+		intel_gmbus_irq_handler(display);
- }
- 
- void ilk_hpd_irq_handler(struct drm_i915_private *dev_priv, u32 hotplug_trigger)
-diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
-index 5f753ee743c6..96fa238b461d 100644
---- a/drivers/gpu/drm/i915/display/intel_lvds.c
-+++ b/drivers/gpu/drm/i915/display/intel_lvds.c
-@@ -900,7 +900,7 @@ void intel_lvds_init(struct drm_i915_private *i915)
- 	drm_connector_init_with_ddc(&i915->drm, &connector->base,
- 				    &intel_lvds_connector_funcs,
- 				    DRM_MODE_CONNECTOR_LVDS,
--				    intel_gmbus_get_adapter(i915, ddc_pin));
-+				    intel_gmbus_get_adapter(display, ddc_pin));
- 
- 	drm_encoder_init(&i915->drm, &encoder->base, &intel_lvds_enc_funcs,
- 			 DRM_MODE_ENCODER_LVDS, "LVDS");
-diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
-index b83bf813677d..7a28104f68ad 100644
---- a/drivers/gpu/drm/i915/display/intel_sdvo.c
-+++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
-@@ -2082,10 +2082,10 @@ intel_sdvo_get_edid(struct drm_connector *connector)
- static const struct drm_edid *
- intel_sdvo_get_analog_edid(struct drm_connector *connector)
- {
--	struct drm_i915_private *i915 = to_i915(connector->dev);
-+	struct intel_display *display = to_intel_display(connector->dev);
- 	struct i2c_adapter *ddc;
- 
--	ddc = intel_gmbus_get_adapter(i915, i915->display.vbt.crt_ddc_pin);
-+	ddc = intel_gmbus_get_adapter(display, display->vbt.crt_ddc_pin);
- 	if (!ddc)
- 		return NULL;
- 
-@@ -2638,6 +2638,7 @@ intel_sdvo_select_ddc_bus(struct intel_sdvo *sdvo,
- static void
- intel_sdvo_select_i2c_bus(struct intel_sdvo *sdvo)
- {
-+	struct intel_display *display = to_intel_display(&sdvo->base);
- 	struct drm_i915_private *dev_priv = to_i915(sdvo->base.base.dev);
- 	const struct sdvo_device_mapping *mapping;
- 	u8 pin;
-@@ -2648,7 +2649,7 @@ intel_sdvo_select_i2c_bus(struct intel_sdvo *sdvo)
- 		mapping = &dev_priv->display.vbt.sdvo_mappings[1];
- 
- 	if (mapping->initialized &&
--	    intel_gmbus_is_valid_pin(dev_priv, mapping->i2c_pin))
-+	    intel_gmbus_is_valid_pin(display, mapping->i2c_pin))
- 		pin = mapping->i2c_pin;
- 	else
- 		pin = GMBUS_PIN_DPB;
-@@ -2657,7 +2658,7 @@ intel_sdvo_select_i2c_bus(struct intel_sdvo *sdvo)
- 		    sdvo->base.base.base.id, sdvo->base.base.name,
- 		    pin, sdvo->target_addr);
- 
--	sdvo->i2c = intel_gmbus_get_adapter(dev_priv, pin);
-+	sdvo->i2c = intel_gmbus_get_adapter(display, pin);
- 
- 	/*
- 	 * With gmbus we should be able to drive sdvo i2c at 2MHz, but somehow
-diff --git a/drivers/gpu/drm/i915/i915_suspend.c b/drivers/gpu/drm/i915/i915_suspend.c
-index 9d3d9b983032..f18f1acf2158 100644
---- a/drivers/gpu/drm/i915/i915_suspend.c
-+++ b/drivers/gpu/drm/i915/i915_suspend.c
-@@ -137,5 +137,5 @@ void i915_restore_display(struct drm_i915_private *dev_priv)
- 
- 	intel_vga_redisable(display);
- 
--	intel_gmbus_reset(dev_priv);
-+	intel_gmbus_reset(display);
- }
+ bool
 -- 
 2.39.5
 
