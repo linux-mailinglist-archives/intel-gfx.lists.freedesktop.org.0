@@ -2,46 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4B929A9BF0
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Oct 2024 10:03:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F2EF59A9BF3
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Oct 2024 10:03:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A6D710E613;
-	Tue, 22 Oct 2024 08:03:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93D4F10E60B;
+	Tue, 22 Oct 2024 08:03:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="irHW7D7/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RZIv9gdT";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F0A3710E607;
- Tue, 22 Oct 2024 08:03:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1AFF710E60D;
+ Tue, 22 Oct 2024 08:03:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729584206; x=1761120206;
+ t=1729584235; x=1761120235;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=bE+gwca507EgMF2YhrsSdh6PifOJ0uIv1HYzjL/+6wQ=;
- b=irHW7D7/XyNhRMA5JYnp3aw05eMiJcAjRnrr9YQgM3qno2mflwn7Lgj+
- DZRCvYYmFvo6UTRyIf/GNHVl2dWqaTEBUtyttye1yj8otvg56qDo0uIef
- 32QIYYV2erlKON0pC6OYr+mVj7KOfR59OLHF9QtsE3V48RZHrOZaCwKWs
- JCXXg/En8XuvaUrmGA5LbrcMCTWuDagJJ7S8wQZbRNJpDi/9KnU40Haq/
- 1otzQ1nFJOhVxM1vHl8k/O/crx6JAL3th9/C/ktogbzBnFG2qv43+T/oF
- 5SxAGNNFkCxCDG2bUfkmwN7xEfVEeSGvHC26MCN6esyk+vkD/hcDx2PFT g==;
-X-CSE-ConnectionGUID: XgG5Ngx/RNWxCTqT5euOfw==
-X-CSE-MsgGUID: u7BLZbPNSU+foqbbYG2kRQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11232"; a="28533542"
-X-IronPort-AV: E=Sophos;i="6.11,222,1725346800"; d="scan'208";a="28533542"
+ bh=BSpZ+PKptcyKaq+ya2L3pPhTwRhDW8/b9dGPo6caI9A=;
+ b=RZIv9gdTfyG4fHD2GRzYbxO6XdBH6Wjwww1mLdHRNHmsyl03PAtw1Ah0
+ So0MbhGrSmHmAu5YIXw9KfygG7NvylUSPrTwru/rWwwcgiyXUChq4TJq3
+ i2gdHljjdTwiDnSXUx1sqYTudQT0rK/kxm55KktfSl46XDizp/fvJMAXH
+ Qlf5jvY3xRmak968cSKzQuesO3CaAuyYkCxfL15NwyidV9GP5LHTrBaJj
+ bDP8hlc8GyvACn40uIQdQkjDxl9Sx/YU0LTE+h7ZvQTCSaFoiNYYUd8Vd
+ lOkDgoTmi9hYJmBlfHRTx9yfU92Wb3Mzao1I3PRQpTpcKjDCXkMZcroUo g==;
+X-CSE-ConnectionGUID: 5XGg2BkVTDqe/imOFdH03A==
+X-CSE-MsgGUID: 0cDJInhkTOarbkXkaEM9Xg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11232"; a="28533559"
+X-IronPort-AV: E=Sophos;i="6.11,222,1725346800"; d="scan'208";a="28533559"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2024 01:03:25 -0700
-X-CSE-ConnectionGUID: qQXUpt44SV6UDNW/7ss0Fw==
-X-CSE-MsgGUID: jo0rShzDTgapYZa+jVSCrQ==
+ 22 Oct 2024 01:03:55 -0700
+X-CSE-ConnectionGUID: LtjC2XUpSWSSBc7KjWm2oQ==
+X-CSE-MsgGUID: CoP7Yr22Q4K1UhHPLq7Jbw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,222,1725346800"; d="scan'208";a="80195906"
+X-IronPort-AV: E=Sophos;i="6.11,222,1725346800"; d="scan'208";a="80196068"
 Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.246.4])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2024 01:03:24 -0700
+ 22 Oct 2024 01:03:53 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Gustavo Sousa <gustavo.sousa@intel.com>,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
@@ -52,8 +52,8 @@ In-Reply-To: <20241021222744.294371-8-gustavo.sousa@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20241021222744.294371-1-gustavo.sousa@intel.com>
  <20241021222744.294371-8-gustavo.sousa@intel.com>
-Date: Tue, 22 Oct 2024 11:03:21 +0300
-Message-ID: <87y12gwomu.fsf@intel.com>
+Date: Tue, 22 Oct 2024 11:03:50 +0300
+Message-ID: <87v7xkwom1.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -91,6 +91,9 @@ On Mon, 21 Oct 2024, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
 >  #include <linux/kernel.h>
 >  
 > +#include "i915_reg.h"
+
+I think you mean i915_reg_defs.h
+
 >  #include "intel_de.h"
 >  #include "intel_dmc.h"
 >  #include "intel_dmc_regs.h"
@@ -198,10 +201,6 @@ On Mon, 21 Oct 2024, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
 > +		return true;
 > +
 > +	switch (display->power.domains.dc_state) {
-
-This file has no business looking at power domain guts. Use or add
-interfaces instead of poking at data directly.
-
 > +	case DC_STATE_EN_DC3CO:
 > +		ranges = xe3lpd_dc3co_wl_ranges;
 > +		break;
@@ -226,11 +225,6 @@ interfaces instead of poking at data directly.
 >  
 > -	if (i915_mmio_reg_valid(reg) && !intel_dmc_wl_check_range(reg.reg))
 > +	if (i915_mmio_reg_valid(reg) && !intel_dmc_wl_check_range(display, reg.reg))
-
-Side note, unrelated to this patch, i915_reg_t is supposed to be opaque,
-nobody should look at reg.reg directly, there's i915_mmio_reg_offset()
-for it.
-
 >  		return;
 >  
 >  	spin_lock_irqsave(&wl->lock, flags);
