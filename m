@@ -2,57 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D54C69A9DD3
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Oct 2024 11:04:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 772609A9E0B
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Oct 2024 11:13:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77D1110E301;
-	Tue, 22 Oct 2024 09:04:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F423010E62B;
+	Tue, 22 Oct 2024 09:13:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kwvyp6wX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LSELA4Rv";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E5E5F10E301
- for <intel-gfx@lists.freedesktop.org>; Tue, 22 Oct 2024 09:04:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1C1E10E628;
+ Tue, 22 Oct 2024 09:13:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729587862; x=1761123862;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=sRiYCwCvf8q+ljbS+li/kKjLLeTgPr3ITzzbA3quhJM=;
- b=kwvyp6wX19eciPhURBFR0zZITW8r1QojOKK2NdeLZCnt6D3DnOxQZPbF
- Q0zvmX+Augb0CYW6dNdW3oL7mlIC6f4Pnvte6ncJakUckP0I4ji9dZr8m
- 3XjdduuFrA46Mw4w72/fmOh8/Pcuyid+N9Q6DIa1EwlK0XF1TtvAzwO+8
- 8mAa/5S1ryx4P8n098NNMgOU08Ir5Jk9Tx8ddtfQCQUAERse6kNzluyjN
- BF1+Dx4d18H4H1YGErD+avEhEJj9HK4/+MA+G4abg75a188Rr56X7nv+t
- FudnGYS3YWKpl+QmwdwyyH5kv1fKjURcC4jzuLeVpkhAVpiZtGrtB9gk/ w==;
-X-CSE-ConnectionGUID: JzgGZCgRSNWclcJv0qfD5g==
-X-CSE-MsgGUID: cN/f7LOnQ72AFqeNz89TQQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11232"; a="33035545"
-X-IronPort-AV: E=Sophos;i="6.11,222,1725346800"; d="scan'208";a="33035545"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2024 02:04:22 -0700
-X-CSE-ConnectionGUID: Md1TvGDmQuCcLUe5QmYCtg==
-X-CSE-MsgGUID: B29GIyC8SHmhJcHTyNzidA==
+ t=1729588386; x=1761124386;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=/NyZUNEMSfQCqnevypFd/WUcnN1eH6zt/YaLhORlzAM=;
+ b=LSELA4RvG1g0GpUyTFMB7FXFwioWmvk26XrQ3feMSWLnodJ2k1SlPvar
+ gRkmkAbtGjjkqcOs1Z5FBdiN/YZk28a9frYF0+O4U84/BPm04fAeeI9Ke
+ eJQZkZzIiwpLCq28l26qs4ZKKywRJH4oRn/PDmfuwGxEywvrgxmtIs+uc
+ r8O4W4hRG3K7rb+tTVbKcmNHjmPetz16Srqh5Xk5m2UGrdKPUmGgU2coH
+ QQdWAkx1Sg6pyBvz3PZavxjwqGjW/BNdUfQJJB8lZkK0xP0CBvHDL9q/Q
+ 7A2EADFDaFmkZj2YhPSyMtuIiblsW7Q2+RTuwXTNmEZOo1ynbNmgkX/+O A==;
+X-CSE-ConnectionGUID: qKpmho/2TMGXnd6amFc8cw==
+X-CSE-MsgGUID: rZWQcAjnQ8OdNI73u2pVdg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11232"; a="39721975"
+X-IronPort-AV: E=Sophos;i="6.11,222,1725346800"; d="scan'208";a="39721975"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2024 02:13:05 -0700
+X-CSE-ConnectionGUID: AZyZRlD6RAe9AE6I1Dt+HQ==
+X-CSE-MsgGUID: IkzqAu1YRF6e7JnHaVSNDA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,222,1725346800"; d="scan'208";a="117227759"
+X-IronPort-AV: E=Sophos;i="6.11,222,1725346800"; d="scan'208";a="79809764"
 Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.246.4])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2024 02:04:19 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 9/9] drm/i915: Remove ckey/format checks from
- skl_update_scaler_plane()
-In-Reply-To: <20241016143134.26903-10-ville.syrjala@linux.intel.com>
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2024 02:13:03 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Matthew Auld <matthew.auld@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: Re: [drm-intel-next PATCH] drm/xe: fix build failure originating
+ from backmerge
+In-Reply-To: <ef474dc3-d338-4645-a0e6-25ca3de7ffda@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241016143134.26903-1-ville.syrjala@linux.intel.com>
- <20241016143134.26903-10-ville.syrjala@linux.intel.com>
-Date: Tue, 22 Oct 2024 12:04:16 +0300
-Message-ID: <8734kowltb.fsf@intel.com>
+References: <20241022080943.763580-1-jani.nikula@intel.com>
+ <ef474dc3-d338-4645-a0e6-25ca3de7ffda@intel.com>
+Date: Tue, 22 Oct 2024 12:13:00 +0300
+Message-ID: <87zfmwv6ub.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -71,120 +72,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 16 Oct 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> skl_plane_check() already takes care to reject scaling when an
-> unsupported pixel format or color keying is used. No need to
-> replicate that in the scaler code.
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+On Tue, 22 Oct 2024, Matthew Auld <matthew.auld@intel.com> wrote:
+> On 22/10/2024 09:09, Jani Nikula wrote:
+>> ../drivers/gpu/drm/xe/display/xe_display.c: In function =E2=80=98xe_disp=
+lay_pm_shutdown=E2=80=99:
+>> ../drivers/gpu/drm/xe/display/xe_display.c:382:27: error: passing argume=
+nt 1 of =E2=80=98intel_dmc_suspend=E2=80=99 from incompatible pointer type =
+[-Werror=3Dincompatible-pointer-types]
+>>    382 |         intel_dmc_suspend(xe);
+>>        |                           ^~
+>>        |                           |
+>>        |                           struct xe_device *
+>> In file included from ../drivers/gpu/drm/xe/display/xe_display.c:24:
+>> ../drivers/gpu/drm/i915/display/intel_dmc.h:22:46: note: expected =E2=80=
+=98struct intel_display *=E2=80=99 but argument is of type =E2=80=98struct =
+xe_device *=E2=80=99
+>>     22 | void intel_dmc_suspend(struct intel_display *display);
+>>        |                        ~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
+>>=20
+>> Fixes: c141cf76918e ("Merge drm/drm-next into drm-intel-next")
+>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> Acked-by: Matthew Auld <matthew.auld@intel.com>
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Thanks, pushed to din.
 
-> ---
->  drivers/gpu/drm/i915/display/skl_scaler.c | 77 +++--------------------
->  1 file changed, 10 insertions(+), 67 deletions(-)
+BR,
+Jani.
+
 >
-> diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/=
-i915/display/skl_scaler.c
-> index baa601d27815..7dbc99b02eaa 100644
-> --- a/drivers/gpu/drm/i915/display/skl_scaler.c
-> +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-> @@ -272,7 +272,6 @@ int skl_update_scaler_plane(struct intel_crtc_state *=
-crtc_state,
->  		to_intel_plane(plane_state->uapi.plane);
->  	struct drm_i915_private *dev_priv =3D to_i915(intel_plane->base.dev);
->  	struct drm_framebuffer *fb =3D plane_state->hw.fb;
-> -	int ret;
->  	bool force_detach =3D !fb || !plane_state->uapi.visible;
->  	bool need_scaler =3D false;
->=20=20
-> @@ -281,72 +280,16 @@ int skl_update_scaler_plane(struct intel_crtc_state=
- *crtc_state,
->  	    fb && intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier))
->  		need_scaler =3D true;
->=20=20
-> -	ret =3D skl_update_scaler(crtc_state, force_detach,
-> -				drm_plane_index(&intel_plane->base),
-> -				&plane_state->scaler_id,
-> -				drm_rect_width(&plane_state->uapi.src) >> 16,
-> -				drm_rect_height(&plane_state->uapi.src) >> 16,
-> -				drm_rect_width(&plane_state->uapi.dst),
-> -				drm_rect_height(&plane_state->uapi.dst),
-> -				fb ? fb->format : NULL,
-> -				fb ? fb->modifier : 0,
-> -				need_scaler);
-> -
-> -	if (ret || plane_state->scaler_id < 0)
-> -		return ret;
-> -
-> -	/* check colorkey */
-> -	if (plane_state->ckey.flags) {
-> -		drm_dbg_kms(&dev_priv->drm,
-> -			    "[PLANE:%d:%s] scaling with color key not allowed",
-> -			    intel_plane->base.base.id,
-> -			    intel_plane->base.name);
-> -		return -EINVAL;
-> -	}
-> -
-> -	/* Check src format */
-> -	switch (fb->format->format) {
-> -	case DRM_FORMAT_RGB565:
-> -	case DRM_FORMAT_XBGR8888:
-> -	case DRM_FORMAT_XRGB8888:
-> -	case DRM_FORMAT_ABGR8888:
-> -	case DRM_FORMAT_ARGB8888:
-> -	case DRM_FORMAT_XRGB2101010:
-> -	case DRM_FORMAT_XBGR2101010:
-> -	case DRM_FORMAT_ARGB2101010:
-> -	case DRM_FORMAT_ABGR2101010:
-> -	case DRM_FORMAT_YUYV:
-> -	case DRM_FORMAT_YVYU:
-> -	case DRM_FORMAT_UYVY:
-> -	case DRM_FORMAT_VYUY:
-> -	case DRM_FORMAT_NV12:
-> -	case DRM_FORMAT_XYUV8888:
-> -	case DRM_FORMAT_P010:
-> -	case DRM_FORMAT_P012:
-> -	case DRM_FORMAT_P016:
-> -	case DRM_FORMAT_Y210:
-> -	case DRM_FORMAT_Y212:
-> -	case DRM_FORMAT_Y216:
-> -	case DRM_FORMAT_XVYU2101010:
-> -	case DRM_FORMAT_XVYU12_16161616:
-> -	case DRM_FORMAT_XVYU16161616:
-> -		break;
-> -	case DRM_FORMAT_XBGR16161616F:
-> -	case DRM_FORMAT_ABGR16161616F:
-> -	case DRM_FORMAT_XRGB16161616F:
-> -	case DRM_FORMAT_ARGB16161616F:
-> -		if (DISPLAY_VER(dev_priv) >=3D 11)
-> -			break;
-> -		fallthrough;
-> -	default:
-> -		drm_dbg_kms(&dev_priv->drm,
-> -			    "[PLANE:%d:%s] FB:%d unsupported scaling format 0x%x\n",
-> -			    intel_plane->base.base.id, intel_plane->base.name,
-> -			    fb->base.id, fb->format->format);
-> -		return -EINVAL;
-> -	}
-> -
-> -	return 0;
-> +	return skl_update_scaler(crtc_state, force_detach,
-> +				 drm_plane_index(&intel_plane->base),
-> +				 &plane_state->scaler_id,
-> +				 drm_rect_width(&plane_state->uapi.src) >> 16,
-> +				 drm_rect_height(&plane_state->uapi.src) >> 16,
-> +				 drm_rect_width(&plane_state->uapi.dst),
-> +				 drm_rect_height(&plane_state->uapi.dst),
-> +				 fb ? fb->format : NULL,
-> +				 fb ? fb->modifier : 0,
-> +				 need_scaler);
->  }
->=20=20
->  static int intel_atomic_setup_scaler(struct intel_crtc_scaler_state *sca=
-ler_state,
+>
+>> ---
+>>   drivers/gpu/drm/xe/display/xe_display.c | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/x=
+e/display/xe_display.c
+>> index 957ae763531d..ca00a365080f 100644
+>> --- a/drivers/gpu/drm/xe/display/xe_display.c
+>> +++ b/drivers/gpu/drm/xe/display/xe_display.c
+>> @@ -379,7 +379,7 @@ void xe_display_pm_shutdown(struct xe_device *xe)
+>>=20=20=20
+>>   	intel_opregion_suspend(display, PCI_D3cold);
+>>=20=20=20
+>> -	intel_dmc_suspend(xe);
+>> +	intel_dmc_suspend(display);
+>>   }
+>>=20=20=20
+>>   void xe_display_pm_runtime_suspend(struct xe_device *xe)
 
 --=20
 Jani Nikula, Intel
