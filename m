@@ -2,57 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBB4C9A9C5C
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Oct 2024 10:25:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 33E689A9C5D
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Oct 2024 10:25:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57D4110E608;
-	Tue, 22 Oct 2024 08:25:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA79D10E60D;
+	Tue, 22 Oct 2024 08:25:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E4aJI9yK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c+fVX3jO";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B5B810E608
- for <intel-gfx@lists.freedesktop.org>; Tue, 22 Oct 2024 08:25:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8BB6410E617
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Oct 2024 08:25:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729585519; x=1761121519;
+ t=1729585532; x=1761121532;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=zpxPJQRfLU5Lvl2fMzR/acO14KZ+6WQDNrT6hKV5wYQ=;
- b=E4aJI9yKGj629dRU0TDafOAL2qnleED5JeHEF/rXRF1C9EuoeMi6OHsX
- hzsmvzktMFtQOM2VyjhPUHkNj4kYY3brB3JYteexrOJcaXW4gRk1kq+CD
- hsu0m1h6mPzqjaO/QpOu3gRIdgzBGBCRylI2uUmVq3wmgOdv4kzn0tFd8
- 2Ei8/4tLNEV+uaJmcuojHvg3TQ3QbCOBPEdS/K2degJ32WY5UN57jjqPS
- vf7hWUj3g4c+8bM/3NWSrQNwhz1lJXZvnrGpIl22sw9rP9HjCN4cAkjdF
- 3c36PFLai05RCMJXHzekEWxivkyrbLKLONo/UE7gRns0TkGIoCLDGfg/0 Q==;
-X-CSE-ConnectionGUID: DZf3g/nhQRWwfjEvWeFMAg==
-X-CSE-MsgGUID: Po5YmdytQNCeQ51kSq165w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="39650326"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="39650326"
+ bh=EVhP9bv1yRPTa7JpO5woUAyOj5Z3dmjrmeg1kiAGGW8=;
+ b=c+fVX3jORRFAVBJOvK2Xhzrgz6lJoljDmWuZV9viJ0y06gvPHJt1wO9M
+ O7qTpBoYeAfgC6dFM/J3yuUORt4kft9cq46Eo+qi+gdCVHRNwkaHqumch
+ guUnfu3yGoSidiz36yp57Ah+amTHk5NuRAjNVP6+Rz7elnXcT/N/2dRvy
+ hGq/omg6ddaYL4CJeEQ0lWtsCx61ElypoRn2S5s0PIb6dRFwgmg9grVkt
+ kYJnLg5klEo1RahkXBv+/Kf9KDP7hQyl37W/9lRrNO3yZzP41XSiuOImZ
+ u4qPL7kcAm/MCVSm1xk6RfXTtAFC8+zAd5nJog8alA7mekAtL0TVbL/OX Q==;
+X-CSE-ConnectionGUID: FY+QeUIsRU+6wx4BwZmxJQ==
+X-CSE-MsgGUID: ZJrz+6IgQ/q3Yp77Q43SaA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="39650334"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="39650334"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2024 01:25:18 -0700
-X-CSE-ConnectionGUID: yXdaIM+1QvyccajjzfCPXQ==
-X-CSE-MsgGUID: a8/Pn6W6SkODRnwc9ZZg/w==
+ 22 Oct 2024 01:25:32 -0700
+X-CSE-ConnectionGUID: nUWS+Ng3QW2iMdng32p6OA==
+X-CSE-MsgGUID: DACPCzNCRLm2YxLPeBxuTg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,222,1725346800"; d="scan'208";a="110559584"
+X-IronPort-AV: E=Sophos;i="6.11,222,1725346800"; d="scan'208";a="110559634"
 Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.246.4])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2024 01:25:17 -0700
+ 22 Oct 2024 01:25:30 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 3/9] drm/i915/pfit: Reject pfit downscaling for GMCH
- platforms
-In-Reply-To: <20241016143134.26903-4-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 4/9] drm/i915/pfit: Check pfit minimum timings in pre-SKL
+In-Reply-To: <20241016143134.26903-5-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20241016143134.26903-1-ville.syrjala@linux.intel.com>
- <20241016143134.26903-4-ville.syrjala@linux.intel.com>
-Date: Tue, 22 Oct 2024 11:25:14 +0300
-Message-ID: <87jze0wnmd.fsf@intel.com>
+ <20241016143134.26903-5-ville.syrjala@linux.intel.com>
+Date: Tue, 22 Oct 2024 11:25:27 +0300
+Message-ID: <87h694wnm0.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -74,71 +73,118 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Wed, 16 Oct 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Gen2/3 pfit doesn't support downscaling at all, so reject it.
->
-> On i965+ downscaling is supported by the hardware (max scale
-> factor < 2.0), but as downscaling increases the effective
-> pixel rate we can't safely allow it unless
-> intel_crtc_compute_pixel_rate() gets fixed. Probably the
-> best solution would be to calculate (at least an
-> apporiximate) pfit destination window and use
-> ilk_pipe_pixel_rate() for all platforms. For now reject
-> downscaling on all gmch platforms.
->
-> The intel ddx has a similar check for this in userspace,
-> modesetting ddx does not. And presumably wayland compositors
-> also do not make such assumptions in userspace.
+> Transcoder hdisplay/vdisplay have documented minimum limits
+> when using the panel fitter. Enforce those limits for all
+> pre-SKL platforms. SKL+ handles everything in the unified
+> scaler code instead.
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
 Acked-by: Jani Nikula <jani.nikula@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/display/intel_panel.c | 20 ++++++++++++++++++++
->  1 file changed, 20 insertions(+)
+>  drivers/gpu/drm/i915/display/intel_panel.c | 59 +++++++++++++++++++++-
+>  1 file changed, 58 insertions(+), 1 deletion(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm=
 /i915/display/intel_panel.c
-> index fb7def772376..89cac3b3fd02 100644
+> index 89cac3b3fd02..dc843892b01b 100644
 > --- a/drivers/gpu/drm/i915/display/intel_panel.c
 > +++ b/drivers/gpu/drm/i915/display/intel_panel.c
-> @@ -681,6 +681,7 @@ static void i9xx_scale_aspect(struct intel_crtc_state=
- *crtc_state,
->  static int gmch_panel_fitting(struct intel_crtc_state *crtc_state,
->  			      const struct drm_connector_state *conn_state)
->  {
-> +	struct intel_display *display =3D to_intel_display(crtc_state);
->  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
->  	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
->  	u32 pfit_control =3D 0, pfit_pgm_ratios =3D 0, border =3D 0;
-> @@ -693,6 +694,25 @@ static int gmch_panel_fitting(struct intel_crtc_stat=
-e *crtc_state,
->  	    adjusted_mode->crtc_vdisplay =3D=3D pipe_src_h)
->  		goto out;
+> @@ -456,6 +456,24 @@ static int intel_pch_pfit_check_scaling(const struct=
+ intel_crtc_state *crtc_stat
+>  	return 0;
+>  }
 >=20=20
-> +	/*
-> +	 * TODO: implement downscaling for i965+. Need to account
-> +	 * for downscaling in intel_crtc_compute_pixel_rate().
-> +	 */
-> +	if (adjusted_mode->crtc_hdisplay < pipe_src_w) {
+> +static int intel_pch_pfit_check_timings(const struct intel_crtc_state *c=
+rtc_state)
+> +{
+> +	struct intel_display *display =3D to_intel_display(crtc_state);
+> +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> +	const struct drm_display_mode *adjusted_mode =3D
+> +		&crtc_state->hw.adjusted_mode;
+> +
+> +	if (adjusted_mode->crtc_vdisplay < 7) {
 > +		drm_dbg_kms(display->drm,
-> +			    "[CRTC:%d:%s] pfit horizontal downscaling (%d->%d) not supported\=
-n",
+> +			    "[CRTC:%d:%s] vertical active (%d) below minimum (%d) for pfit\n",
 > +			    crtc->base.base.id, crtc->base.name,
-> +			    pipe_src_w, adjusted_mode->crtc_hdisplay);
-> +		return -EINVAL;
-> +	}
-> +	if (adjusted_mode->crtc_vdisplay < pipe_src_h) {
-> +		drm_dbg_kms(display->drm,
-> +			    "[CRTC:%d:%s] pfit vertical downscaling (%d->%d) not supported\n",
-> +			    crtc->base.base.id, crtc->base.name,
-> +			    pipe_src_h, adjusted_mode->crtc_vdisplay);
+> +			    adjusted_mode->crtc_vdisplay, 7);
 > +		return -EINVAL;
 > +	}
 > +
->  	switch (conn_state->scaling_mode) {
->  	case DRM_MODE_SCALE_CENTER:
->  		/*
+> +	return 0;
+> +}
+> +
+>  /* adjusted_mode has been preset to be the panel's fixed mode */
+>  static int pch_panel_fitting(struct intel_crtc_state *crtc_state,
+>  			     const struct drm_connector_state *conn_state)
+> @@ -542,6 +560,10 @@ static int pch_panel_fitting(struct intel_crtc_state=
+ *crtc_state,
+>  	if (ret)
+>  		return ret;
+>=20=20
+> +	ret =3D intel_pch_pfit_check_timings(crtc_state);
+> +	if (ret)
+> +		return ret;
+> +
+>  	return 0;
+>  }
+>=20=20
+> @@ -678,6 +700,38 @@ static void i9xx_scale_aspect(struct intel_crtc_stat=
+e *crtc_state,
+>  	}
+>  }
+>=20=20
+> +static int intel_gmch_pfit_check_timings(const struct intel_crtc_state *=
+crtc_state)
+> +{
+> +	struct intel_display *display =3D to_intel_display(crtc_state);
+> +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> +	const struct drm_display_mode *adjusted_mode =3D
+> +		&crtc_state->hw.adjusted_mode;
+> +	int min;
+> +
+> +	if (DISPLAY_VER(display) >=3D 4)
+> +		min =3D 3;
+> +	else
+> +		min =3D 2;
+> +
+> +	if (adjusted_mode->crtc_hdisplay < min) {
+> +		drm_dbg_kms(display->drm,
+> +			    "[CRTC:%d:%s] horizontal active (%d) below minimum (%d) for pfit\=
+n",
+> +			    crtc->base.base.id, crtc->base.name,
+> +			    adjusted_mode->crtc_hdisplay, min);
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (adjusted_mode->crtc_vdisplay < min) {
+> +		drm_dbg_kms(display->drm,
+> +			    "[CRTC:%d:%s] vertical active (%d) below minimum (%d) for pfit\n",
+> +			    crtc->base.base.id, crtc->base.name,
+> +			    adjusted_mode->crtc_vdisplay, min);
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  static int gmch_panel_fitting(struct intel_crtc_state *crtc_state,
+>  			      const struct drm_connector_state *conn_state)
+>  {
+> @@ -772,7 +826,10 @@ static int gmch_panel_fitting(struct intel_crtc_stat=
+e *crtc_state,
+>  	crtc_state->gmch_pfit.pgm_ratios =3D pfit_pgm_ratios;
+>  	crtc_state->gmch_pfit.lvds_border_bits =3D border;
+>=20=20
+> -	return 0;
+> +	if ((pfit_control & PFIT_ENABLE) =3D=3D 0)
+> +		return 0;
+> +
+> +	return intel_gmch_pfit_check_timings(crtc_state);
+>  }
+>=20=20
+>  int intel_panel_fitting(struct intel_crtc_state *crtc_state,
 
 --=20
 Jani Nikula, Intel
