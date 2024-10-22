@@ -2,57 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B1409A9C54
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Oct 2024 10:24:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 385E49A9C58
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Oct 2024 10:25:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB3AA10E610;
-	Tue, 22 Oct 2024 08:24:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BDA5410E616;
+	Tue, 22 Oct 2024 08:25:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dXkZr0yF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nwsmBV4N";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B8A410E610
- for <intel-gfx@lists.freedesktop.org>; Tue, 22 Oct 2024 08:24:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C1AB10E617
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Oct 2024 08:25:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729585488; x=1761121488;
+ t=1729585504; x=1761121504;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=krgfQeOxT+P8zAJU4Boyl6VE5MKsgPFcWIsSU+yRHQc=;
- b=dXkZr0yFxu6tjLvNSVMm2p6f48mp8BMdubgaPCUfyNMMosHUePaaxCY9
- 1Dm6vFwujLUlIXFnts2u2L59ZI63KqY2VJC2AqK9pYgqefKcXAnMuGl6F
- PBd7BLELMjJ3Fq8MoCOy2vXvO4lV2NuNAPmI5Y8h7gr2yRN4M9m/kpGlz
- o2jWuMu21ADUyzoib3e6K7dW+cXrccaR4ik7Nk2bubqQ/otX1Nw+4pDx1
- IGDoES0ewmBgWNdR+HJ8S22Pct/v56orEJudgeVFlvGYF8OHNtLOmJJDI
- WnmHIwJzjuoUc4MHerP1X0ZC/ZbCIqiHtNTCEJSFJPGUTdOtzNondyBzK Q==;
-X-CSE-ConnectionGUID: NCJ/XIPeT3u5HKIffi/C3A==
-X-CSE-MsgGUID: COZyliC0SxGL4KZREVl4yQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11232"; a="31964632"
-X-IronPort-AV: E=Sophos;i="6.11,222,1725346800"; d="scan'208";a="31964632"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2024 01:24:47 -0700
-X-CSE-ConnectionGUID: 0nERz7fzSPibi5bHiUaypg==
-X-CSE-MsgGUID: HnDS6PJ9QPaOkISM4Dke7w==
+ bh=xH2I4j98reTvHTw7rugpQhSm3GVnmK9R/tV9s2szVCY=;
+ b=nwsmBV4Nmv+51+nK7KD/DPCk5V6/TE0w+Dla422gTpwFAZYOxqcu7DG6
+ CUbZamvTN+OztKlhDrrxy08jmY0WgfAPp5mhAzPxfPGQiZEki1HT71y6T
+ UOEvB0SY75DVVzlJZUTPE6l2+Xu6m2k5bJdDB9ypnCjG/uvRxJdZzpQcV
+ P1wEYB1sYX6WjF+ZMGlS16HQP2MYXZbmHfmZSm3ASGpjFuTpzvn/GTd2Y
+ P4bTva/UNUCo9sIsm6c5HGSXbU5aXSGL9XvlF3tas7FOXe2QMywALz+px
+ KXUvyMujO5z6gJNU1oyIS4ko9/MY2lXFVv1O/8J+y+rvnZ1lJDJMTU+r5 w==;
+X-CSE-ConnectionGUID: tAbh/5VzQg+w0nZ0z0uUuA==
+X-CSE-MsgGUID: /0TAEVJpSc+G0puqEpgIhQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="39650295"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="39650295"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2024 01:25:03 -0700
+X-CSE-ConnectionGUID: LbJS7j8PS26kKtgK1ozkEA==
+X-CSE-MsgGUID: ttkagodKTbiT0iuf/zCXHg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,222,1725346800"; d="scan'208";a="103095851"
+X-IronPort-AV: E=Sophos;i="6.11,222,1725346800"; d="scan'208";a="110559549"
 Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.246.4])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2024 01:24:46 -0700
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2024 01:25:01 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 1/9] drm/i915/pfit: Check pipe source size against pfit
- limits on ILK-BDW
-In-Reply-To: <20241016143134.26903-2-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 2/9] drm/i915/pfit: Check pfit scaling factors on ILK-BDW
+In-Reply-To: <20241016143134.26903-3-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20241016143134.26903-1-ville.syrjala@linux.intel.com>
- <20241016143134.26903-2-ville.syrjala@linux.intel.com>
-Date: Tue, 22 Oct 2024 11:24:44 +0300
-Message-ID: <87plnswnn7.fsf@intel.com>
+ <20241016143134.26903-3-ville.syrjala@linux.intel.com>
+Date: Tue, 22 Oct 2024 11:24:59 +0300
+Message-ID: <87msiwwnms.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -74,77 +73,61 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Wed, 16 Oct 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> The ILK-BDW panel fitter imposes extra limits on the maximum
-> pipe source size we can use. Check for that.
->
-> Only HSW/BDW are really affected by this since on older platforms
-> the max hdisplay/vdisplay matches the max PIPESRC. But we'll
-> put in the limits for all the platforms just to keep things
-> clear.
->
-> Note that pch_panel_fitting() is also used on SKL+, but we'll
-> skip the checks for those as it's all supposed to be handled
-> in the unified scaler code.
+> Make sure we're not exceeding the max scaling factors for the panel
+> fitter on ILK-BDW. SKL+ is skipped here since this is all supposed to
+> be handled by the unified scaler code.
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-
-Looks sensible, but I'm just not going to dig through all the old specs
-to verify all of this, and I don't expect anyone else to do it
-either. I'll take your word for it, and I trust you to fix any fallout
-as well.
-
-With that,
 
 Acked-by: Jani Nikula <jani.nikula@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/display/intel_panel.c | 52 +++++++++++++++++++++-
->  1 file changed, 51 insertions(+), 1 deletion(-)
+>  drivers/gpu/drm/i915/display/intel_panel.c | 39 ++++++++++++++++++++++
+>  1 file changed, 39 insertions(+)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm=
 /i915/display/intel_panel.c
-> index 71454ddef20f..b77017144818 100644
+> index b77017144818..fb7def772376 100644
 > --- a/drivers/gpu/drm/i915/display/intel_panel.c
 > +++ b/drivers/gpu/drm/i915/display/intel_panel.c
-> @@ -383,15 +383,54 @@ void intel_panel_add_encoder_fixed_mode(struct inte=
-l_connector *connector,
->  				   "current (BIOS)");
+> @@ -421,6 +421,41 @@ static int intel_pch_pfit_check_src_size(const struc=
+t intel_crtc_state *crtc_sta
+>  	return 0;
 >  }
 >=20=20
-> +static int intel_pch_pfit_check_src_size(const struct intel_crtc_state *=
-crtc_state)
+> +static int intel_pch_pfit_check_scaling(const struct intel_crtc_state *c=
+rtc_state)
 > +{
 > +	struct intel_display *display =3D to_intel_display(crtc_state);
 > +	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> +	const struct drm_rect *dst =3D &crtc_state->pch_pfit.dst;
 > +	int pipe_src_w =3D drm_rect_width(&crtc_state->pipe_src);
 > +	int pipe_src_h =3D drm_rect_height(&crtc_state->pipe_src);
-> +	int max_src_w, max_src_h;
+> +	int hscale, vscale, max_scale =3D 0x12000; /* 1.125 */
+> +	struct drm_rect src;
 > +
-> +	if (DISPLAY_VER(display) >=3D 8) {
-> +		max_src_w =3D 4096;
-> +		max_src_h =3D 4096;
-> +	} else if (DISPLAY_VER(display) >=3D 7) {
-> +		/*
-> +		 * PF0 7x5 capable
-> +		 * PF1 3x3 capable (could be switched to 7x5
-> +		 *                  mode on HSW when PF2 unused)
-> +		 * PF2 3x3 capable
-> +		 *
-> +		 * This assumes we use a 1:1 mapping between pipe and PF.
-> +		 */
-> +		max_src_w =3D crtc->pipe =3D=3D PIPE_A ? 4096 : 2048;
-> +		max_src_h =3D 4096;
-> +	} else {
-> +		max_src_w =3D 4096;
-> +		max_src_h =3D 4096;
+> +	drm_rect_init(&src, 0, 0, pipe_src_w << 16, pipe_src_h << 16);
+> +
+> +	hscale =3D drm_rect_calc_hscale(&src, dst, 0, max_scale);
+> +	if (hscale < 0) {
+> +		drm_dbg_kms(display->drm,
+> +			    "[CRTC:%d:%s] pfit horizontal downscaling (%d->%d) exceeds max (0=
+x%x)\n",
+> +			    crtc->base.base.id, crtc->base.name,
+> +			    pipe_src_w, drm_rect_width(dst),
+> +			    max_scale);
+> +		return hscale;
 > +	}
 > +
-> +	if (pipe_src_w > max_src_w || pipe_src_h > max_src_h) {
+> +	vscale =3D drm_rect_calc_vscale(&src, dst, 0, max_scale);
+> +	if (vscale < 0) {
 > +		drm_dbg_kms(display->drm,
-> +			    "[CRTC:%d:%s] source size (%dx%d) exceeds pfit max (%dx%d)\n",
+> +			    "[CRTC:%d:%s] pfit vertical downscaling (%d->%d) exceeds max (0x%=
+x)\n",
 > +			    crtc->base.base.id, crtc->base.name,
-> +			    pipe_src_w, pipe_src_h, max_src_w, max_src_h);
-> +		return -EINVAL;
+> +			    pipe_src_h, drm_rect_height(dst),
+> +			    max_scale);
+> +		return vscale;
 > +	}
 > +
 > +	return 0;
@@ -153,30 +136,12 @@ crtc_state)
 >  /* adjusted_mode has been preset to be the panel's fixed mode */
 >  static int pch_panel_fitting(struct intel_crtc_state *crtc_state,
 >  			     const struct drm_connector_state *conn_state)
->  {
-> +	struct intel_display *display =3D to_intel_display(crtc_state);
->  	const struct drm_display_mode *adjusted_mode =3D
->  		&crtc_state->hw.adjusted_mode;
->  	int pipe_src_w =3D drm_rect_width(&crtc_state->pipe_src);
->  	int pipe_src_h =3D drm_rect_height(&crtc_state->pipe_src);
-> -	int x, y, width, height;
-> +	int ret, x, y, width, height;
->=20=20
->  	/* Native modes don't need fitting */
->  	if (adjusted_mode->crtc_hdisplay =3D=3D pipe_src_w &&
-> @@ -453,6 +492,17 @@ static int pch_panel_fitting(struct intel_crtc_state=
+> @@ -503,6 +538,10 @@ static int pch_panel_fitting(struct intel_crtc_state=
  *crtc_state,
->  		      x, y, width, height);
->  	crtc_state->pch_pfit.enabled =3D true;
+>  	if (ret)
+>  		return ret;
 >=20=20
-> +	/*
-> +	 * SKL+ have unified scalers for pipes/planes so the
-> +	 * checks are done in a single place for all scalers.
-> +	 */
-> +	if (DISPLAY_VER(display) >=3D 9)
-> +		return 0;
-> +
-> +	ret =3D intel_pch_pfit_check_src_size(crtc_state);
+> +	ret =3D intel_pch_pfit_check_scaling(crtc_state);
 > +	if (ret)
 > +		return ret;
 > +
