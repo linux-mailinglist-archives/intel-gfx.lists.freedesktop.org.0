@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E7359A99DC
+	by mail.lfdr.de (Postfix) with ESMTPS id AFCE89A99DD
 	for <lists+intel-gfx@lfdr.de>; Tue, 22 Oct 2024 08:33:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D2E2610E5E6;
-	Tue, 22 Oct 2024 06:33:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 25E6510E5E8;
+	Tue, 22 Oct 2024 06:33:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5135010E5E6;
- Tue, 22 Oct 2024 06:33:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B21D310E5E7;
+ Tue, 22 Oct 2024 06:33:16 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/xe/hdcp=3A_Add_c?=
- =?utf-8?q?heck_to_remove_hdcp2_compatibilty?=
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_drm/xe/hdcp=3A_Add_check?=
+ =?utf-8?q?_to_remove_hdcp2_compatibilty?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Suraj Kandpal" <suraj.kandpal@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 22 Oct 2024 06:33:14 -0000
-Message-ID: <172957879432.1308045.12203686951917145134@2413ebb6fbb6>
+Date: Tue, 22 Oct 2024 06:33:16 -0000
+Message-ID: <172957879672.1308045.7764951439009351406@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241022055655.1902-1-suraj.kandpal@intel.com>
 In-Reply-To: <20241022055655.1902-1-suraj.kandpal@intel.com>
@@ -49,13 +49,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-e7e029bd84cf drm/xe/hdcp: Add check to remove hdcp2 compatibilty
--:4: WARNING:TYPO_SPELLING: 'compatibilty' may be misspelled - perhaps 'compatibility'?
-#4: 
-Subject: [PATCH] drm/xe/hdcp: Add check to remove hdcp2 compatibilty
-                                                        ^^^^^^^^^^^^
-
-total: 0 errors, 1 warnings, 0 checks, 18 lines checked
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
