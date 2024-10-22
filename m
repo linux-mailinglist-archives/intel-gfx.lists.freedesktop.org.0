@@ -2,59 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 130869A9E98
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Oct 2024 11:34:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E8B709A9EAB
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Oct 2024 11:37:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0018610E13A;
-	Tue, 22 Oct 2024 09:34:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B0BC10E638;
+	Tue, 22 Oct 2024 09:37:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aY7slCtI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UqRSFYw+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9466F10E13A;
- Tue, 22 Oct 2024 09:34:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A279B10E638;
+ Tue, 22 Oct 2024 09:37:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729589690; x=1761125690;
+ t=1729589876; x=1761125876;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=MdIH63WXreV8jRQQroMtck9ZrETS7F/PLz8PkfLbhpI=;
- b=aY7slCtIS5cRI4B65XzEWWgm4/J4zlrncMRq04BOIPHsMYT6/s3v3cb5
- f1R6h8mpsTqT4yJtfqksaXQUxVX2I5FkzMN5X30dLJlF5ukzlwwEOKZZN
- cwtAUFDc6W4AZlTmBc1CIZ7j8VdbGAUaaYVtspH5P+EFl3Tk7YpggCV5l
- bXTls6/hcCDXWtdY5eTQdzHw9QlMroEvYJFJt/EHaC+mtPWaXVdaH1dQi
- Rgv1q9qdqcTNYfaEF+EnuuW/0lLuhdAljq/kZPmvKFyjpTXj30EkSsjqV
- ccUrOn89egauEt9FAbjf3Wc8zd/tl0V2qdiOf385QX2zPb6pTaduJ7MTd Q==;
-X-CSE-ConnectionGUID: IYnfAggRTP6iWxllpjNsbQ==
-X-CSE-MsgGUID: 2a/8Ki2qRCKf2WQpWWsx3g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11232"; a="28543783"
-X-IronPort-AV: E=Sophos;i="6.11,222,1725346800"; d="scan'208";a="28543783"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2024 02:34:50 -0700
-X-CSE-ConnectionGUID: Q9A6209kTQW+PRTDWtS50w==
-X-CSE-MsgGUID: oTA3sOTVRXOxEAKXC3+qvQ==
+ bh=xqv1UOzX0BgyglVErG518qzM8lLBf1Kcifa1SH8Ab7I=;
+ b=UqRSFYw+6HKWsdctc70rQuWvLr9EEvvz5rnxijLip7AsWfGDSztdlWtL
+ ICYgJTq/QO8x5LdBZztFw5kmyw/Ctfga3C2wTu68qjFBK5Wq/EhVo9cZh
+ 2RRYh3zBuyCfai4nQ0Jfn4gtFaCj6idsYbgNF6+HDorE3OGBf/vzVkKXb
+ 09ha7RfgkvXOzAGJRch+Ic35ov3aHHzr16Jlx6zq4qD44pIF8McjFO6z9
+ 2nzq84xbd6arHqmrwCwYIA4VWFY+L6UNyjm8JcDcZ/Rf8pauRRbcJzJoX
+ yVeWqkVS9R5KMoQhIWj4ebhnieoPFinqsVeQTulYYjK/7S9vxA4JHh8dr w==;
+X-CSE-ConnectionGUID: +M/ggfmISuqAeses/+9cvg==
+X-CSE-MsgGUID: Es9Db4ZuTrOCX+0D4hkJlA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11232"; a="29002896"
+X-IronPort-AV: E=Sophos;i="6.11,222,1725346800"; d="scan'208";a="29002896"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2024 02:37:56 -0700
+X-CSE-ConnectionGUID: u93+a+BUR9u96QE//3k04w==
+X-CSE-MsgGUID: OF/HfutpQrG6BHzEP5bGQw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,222,1725346800"; d="scan'208";a="79876382"
+X-IronPort-AV: E=Sophos;i="6.11,222,1725346800"; d="scan'208";a="79448983"
 Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.246.4])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2024 02:34:48 -0700
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2024 02:37:54 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Gustavo Sousa <gustavo.sousa@intel.com>,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 Cc: Luca Coelho <luciano.coelho@intel.com>, Rodrigo Vivi
  <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH 02/13] drm/i915/dmc_wl: Use non-sleeping variant of MMIO
- wait
-In-Reply-To: <20241021222744.294371-3-gustavo.sousa@intel.com>
+Subject: Re: [PATCH 11/13] drm/i915/dmc_wl: Add and use HAS_DMC_WAKELOCK()
+In-Reply-To: <20241021222744.294371-12-gustavo.sousa@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20241021222744.294371-1-gustavo.sousa@intel.com>
- <20241021222744.294371-3-gustavo.sousa@intel.com>
-Date: Tue, 22 Oct 2024 12:34:44 +0300
-Message-ID: <87wmi0v5u3.fsf@intel.com>
+ <20241021222744.294371-12-gustavo.sousa@intel.com>
+Date: Tue, 22 Oct 2024 12:37:51 +0300
+Message-ID: <87ttd4v5ow.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -73,93 +72,82 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Mon, 21 Oct 2024, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
-> Some display MMIO transactions for offsets in the range that requires
-> the DMC wakelock happen in atomic context (this has been confirmed
-> during tests on PTL). That means that we need to use a non-sleeping
-> variant of MMIO waiting function.
+> In order to be able to use the DMC wakelock, we also need to know that
+> the display hardware has support for DMC, which is a runtime info.
+> Define HAS_DMC_WAKELOCK(), which checks for both DMC availability and IP
+> version, and use it in place of directly checking the display version.
 >
-> Implement __intel_de_wait_for_register_atomic_nowl() and use it when
-> waiting for acknowledgment of acquire/release.
+> Since we depend on runtime info, also make sure to call
+> intel_dmc_wl_init() only after we have probed the hardware for such info
+> (i.e. after intel_display_device_info_runtime_init()).
+
+Non-functional changes combined with functional changes. Please split.
+
+BR,
+Jani.
+
 >
 > Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_de.h     | 11 +++++++++++
->  drivers/gpu/drm/i915/display/intel_dmc_wl.c | 20 ++++++++++++--------
->  2 files changed, 23 insertions(+), 8 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_display_device.h | 1 +
+>  drivers/gpu/drm/i915/display/intel_display_driver.c | 2 +-
+>  drivers/gpu/drm/i915/display/intel_dmc_wl.c         | 4 ++--
+>  3 files changed, 4 insertions(+), 3 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_de.h b/drivers/gpu/drm/i915/display/intel_de.h
-> index e017cd4a8168..4116783a62dd 100644
-> --- a/drivers/gpu/drm/i915/display/intel_de.h
-> +++ b/drivers/gpu/drm/i915/display/intel_de.h
-> @@ -121,6 +121,17 @@ ____intel_de_wait_for_register_nowl(struct intel_display *display,
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+> index 071a36b51f79..5f78fd127fe0 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_device.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+> @@ -128,6 +128,7 @@ enum intel_display_subplatform {
+>  #define HAS_DDI(i915)			(DISPLAY_INFO(i915)->has_ddi)
+>  #define HAS_DISPLAY(i915)		(DISPLAY_RUNTIME_INFO(i915)->pipe_mask != 0)
+>  #define HAS_DMC(i915)			(DISPLAY_RUNTIME_INFO(i915)->has_dmc)
+> +#define HAS_DMC_WAKELOCK(i915)		(HAS_DMC(i915) && DISPLAY_VER(i915) >= 20)
+>  #define HAS_DOUBLE_BUFFERED_M_N(i915)	(DISPLAY_VER(i915) >= 9 || IS_BROADWELL(i915))
+>  #define HAS_DP_MST(i915)		(DISPLAY_INFO(i915)->has_dp_mst)
+>  #define HAS_DP20(i915)			(IS_DG2(i915) || DISPLAY_VER(i915) >= 14)
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+> index 673f9b965494..8afaa9cb89d2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+> @@ -200,7 +200,6 @@ void intel_display_driver_early_probe(struct drm_i915_private *i915)
+>  	intel_dpll_init_clock_hook(i915);
+>  	intel_init_display_hooks(i915);
+>  	intel_fdi_init_hook(i915);
+> -	intel_dmc_wl_init(&i915->display);
 >  }
->  #define __intel_de_wait_for_register_nowl(p,...) ____intel_de_wait_for_register_nowl(__to_intel_display(p), __VA_ARGS__)
 >  
-> +static inline int
-> +____intel_de_wait_for_register_atomic_nowl(struct intel_display *display,
-> +					   i915_reg_t reg,
-> +					   u32 mask, u32 value,
-> +					   unsigned int fast_timeout_us)
-> +{
-> +	return __intel_wait_for_register(__to_uncore(display), reg, mask,
-> +					 value, fast_timeout_us, 0, NULL);
-> +}
-> +#define __intel_de_wait_for_register_atomic_nowl(p,...) ____intel_de_wait_for_register_atomic_nowl(__to_intel_display(p), __VA_ARGS__)
-> +
-
-There's no need to add the wrapper when all users pass struct
-intel_display. And we don't want new users that pass i915.
-
-And why are we adding new stuff and users with double underscores?
-
->  static inline int
->  __intel_de_wait(struct intel_display *display, i915_reg_t reg,
->  		u32 mask, u32 value, unsigned int timeout)
+>  /* part #1: call before irq install */
+> @@ -238,6 +237,7 @@ int intel_display_driver_probe_noirq(struct drm_i915_private *i915)
+>  		return 0;
+>  
+>  	intel_dmc_init(display);
+> +	intel_dmc_wl_init(display);
+>  
+>  	i915->display.wq.modeset = alloc_ordered_workqueue("i915_modeset", 0);
+>  	i915->display.wq.flip = alloc_workqueue("i915_flip", WQ_HIGHPRI |
 > diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-> index 5634ff07269d..8056a3c8666c 100644
+> index 8283b607aac4..f6ec79b0e39d 100644
 > --- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
 > +++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-> @@ -39,7 +39,7 @@
->   * potential future use.
->   */
+> @@ -250,7 +250,7 @@ static bool intel_dmc_wl_check_range(struct intel_display *display, u32 address)
 >  
-> -#define DMC_WAKELOCK_CTL_TIMEOUT 5
-> +#define DMC_WAKELOCK_CTL_TIMEOUT_US 5000
->  #define DMC_WAKELOCK_HOLD_TIME 50
+>  static bool __intel_dmc_wl_supported(struct intel_display *display)
+>  {
+> -	if (DISPLAY_VER(display) < 20 ||
+> +	if (!HAS_DMC_WAKELOCK(display) ||
+>  	    !intel_dmc_has_payload(display) ||
+>  	    !display->params.enable_dmc_wl)
+>  		return false;
+> @@ -263,7 +263,7 @@ void intel_dmc_wl_init(struct intel_display *display)
+>  	struct intel_dmc_wl *wl = &display->wl;
 >  
->  struct intel_dmc_wl_range {
-> @@ -78,9 +78,9 @@ static void intel_dmc_wl_work(struct work_struct *work)
+>  	/* don't call __intel_dmc_wl_supported(), DMC is not loaded yet */
+> -	if (DISPLAY_VER(display) < 20 || !display->params.enable_dmc_wl)
+> +	if (!HAS_DMC_WAKELOCK(display) || !display->params.enable_dmc_wl)
+>  		return;
 >  
->  	__intel_de_rmw_nowl(display, DMC_WAKELOCK1_CTL, DMC_WAKELOCK_CTL_REQ, 0);
->  
-> -	if (__intel_de_wait_for_register_nowl(display, DMC_WAKELOCK1_CTL,
-> -					      DMC_WAKELOCK_CTL_ACK, 0,
-> -					      DMC_WAKELOCK_CTL_TIMEOUT)) {
-> +	if (__intel_de_wait_for_register_atomic_nowl(display, DMC_WAKELOCK1_CTL,
-> +						     DMC_WAKELOCK_CTL_ACK, 0,
-> +						     DMC_WAKELOCK_CTL_TIMEOUT_US)) {
->  		WARN_RATELIMIT(1, "DMC wakelock release timed out");
->  		goto out_unlock;
->  	}
-> @@ -216,10 +216,14 @@ void intel_dmc_wl_get(struct intel_display *display, i915_reg_t reg)
->  		__intel_de_rmw_nowl(display, DMC_WAKELOCK1_CTL, 0,
->  				    DMC_WAKELOCK_CTL_REQ);
->  
-> -		if (__intel_de_wait_for_register_nowl(display, DMC_WAKELOCK1_CTL,
-> -						      DMC_WAKELOCK_CTL_ACK,
-> -						      DMC_WAKELOCK_CTL_ACK,
-> -						      DMC_WAKELOCK_CTL_TIMEOUT)) {
-> +		/*
-> +		 * We need to use the atomic variant of the waiting routine
-> +		 * because the DMC wakelock is also taken in atomic context.
-> +		 */
-> +		if (__intel_de_wait_for_register_atomic_nowl(display, DMC_WAKELOCK1_CTL,
-> +							     DMC_WAKELOCK_CTL_ACK,
-> +							     DMC_WAKELOCK_CTL_ACK,
-> +							     DMC_WAKELOCK_CTL_TIMEOUT_US)) {
->  			WARN_RATELIMIT(1, "DMC wakelock ack timed out");
->  			goto out_unlock;
->  		}
+>  	INIT_DELAYED_WORK(&wl->work, intel_dmc_wl_work);
 
 -- 
 Jani Nikula, Intel
