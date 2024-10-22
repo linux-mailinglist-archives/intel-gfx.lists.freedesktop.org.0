@@ -2,29 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C5FE9AA2D8
-	for <lists+intel-gfx@lfdr.de>; Tue, 22 Oct 2024 15:16:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 444C09AA2A3
+	for <lists+intel-gfx@lfdr.de>; Tue, 22 Oct 2024 15:01:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F39210E325;
-	Tue, 22 Oct 2024 13:16:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C150610E319;
+	Tue, 22 Oct 2024 13:01:55 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UTk5nXTK";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C6C810E325;
- Tue, 22 Oct 2024 13:16:12 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7083640449292663184=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B597910E68A
+ for <intel-gfx@lists.freedesktop.org>; Tue, 22 Oct 2024 13:01:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1729602114; x=1761138114;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=moJ5LNaDfCMzPpoLxHxVbtSJ9Xaopzr7ukxsOOdYKE8=;
+ b=UTk5nXTK+BoR04g3j71a3Yb7y2Cnnpm2x3rbBSpPiPse8aIS8m9CqGU6
+ EoUERYMRYVckbvkypL8iPXT6RDRzLjmAMA24cHJIf+dYCjKYwCohQiRiB
+ UY1UkFbqA59b40P+eS/geH12eZWIy3ekOmyyVQ0lZBAOZ69ktmhE4WUjD
+ +GriJdfd7Hj8+84PdXbwYztlJhYfA2njai2ofKlJrypHNtPJXRAxY8Fnf
+ 48fNasOO8JOq+ei65uacfdMry54q6SrqH3Q4xgClQ+J1sG0/ZQIFbC9Ik
+ 6LmNYJcYz3inwUbkTJhuS4xC9mMcOTWjLgVtq4VNRPYhvmlnYnJaLQcqf A==;
+X-CSE-ConnectionGUID: GkmjnyJQQsGy0NVUlM7VIg==
+X-CSE-MsgGUID: Elnx4odGRNqp8AXsJSVDJA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11233"; a="46620617"
+X-IronPort-AV: E=Sophos;i="6.11,223,1725346800"; d="scan'208";a="46620617"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2024 06:01:47 -0700
+X-CSE-ConnectionGUID: jRxpaCEMTK6IkbOwTchgdg==
+X-CSE-MsgGUID: a20h3o5YQ3eQN7Bbb/0lDw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,223,1725346800"; d="scan'208";a="103155886"
+Received: from bnilawar-desk1.iind.intel.com ([10.145.169.59])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2024 06:01:45 -0700
+From: Badal Nilawar <badal.nilawar@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
+ chris.p.wilson@linux.intel.com
+Subject: [PATCH] drm/i915/rc6: Disable RPG during workload execution
+Date: Tue, 22 Oct 2024 18:52:26 +0530
+Message-Id: <20241022132226.1110383-1-badal.nilawar@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_mtd=3A_add_driver_for_Intel?=
- =?utf-8?q?_discrete_graphics?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Alexander Usyskin" <alexander.usyskin@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 22 Oct 2024 13:16:12 -0000
-Message-ID: <172960297250.1310194.7869353698598049891@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241022104119.3149051-1-alexander.usyskin@intel.com>
-In-Reply-To: <20241022104119.3149051-1-alexander.usyskin@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,160 +63,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7083640449292663184==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Encountering forcewake errors related to render power gating;
+therefore, disable it during workload execution.
 
-== Series Details ==
+Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
+Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_rc6.c       | 18 +++++++++++++++++-
+ drivers/gpu/drm/i915/gt/intel_rc6_types.h |  1 +
+ 2 files changed, 18 insertions(+), 1 deletion(-)
 
-Series: mtd: add driver for Intel discrete graphics
-URL   : https://patchwork.freedesktop.org/series/140306/
-State : success
+diff --git a/drivers/gpu/drm/i915/gt/intel_rc6.c b/drivers/gpu/drm/i915/gt/intel_rc6.c
+index c864d101faf9..459394ab5258 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rc6.c
++++ b/drivers/gpu/drm/i915/gt/intel_rc6.c
+@@ -140,6 +140,7 @@ static void gen11_rc6_enable(struct intel_rc6 *rc6)
+ 					      VDN_MFX_POWERGATE_ENABLE(i));
+ 	}
+ 
++	rc6->pg_enable = pg_enable;
+ 	intel_uncore_write_fw(uncore, GEN9_PG_ENABLE, pg_enable);
+ }
+ 
+@@ -572,8 +573,11 @@ static void __intel_rc6_disable(struct intel_rc6 *rc6)
+ 	intel_guc_rc_disable(gt_to_guc(gt));
+ 
+ 	intel_uncore_forcewake_get(uncore, FORCEWAKE_ALL);
+-	if (GRAPHICS_VER(i915) >= 9)
++	if (GRAPHICS_VER(i915) >= 9) {
++		rc6->pg_enable = 0;
+ 		intel_uncore_write_fw(uncore, GEN9_PG_ENABLE, 0);
++	}
++
+ 	intel_uncore_write_fw(uncore, GEN6_RC_CONTROL, 0);
+ 	intel_uncore_write_fw(uncore, GEN6_RC_STATE, 0);
+ 	intel_uncore_forcewake_put(uncore, FORCEWAKE_ALL);
+@@ -687,6 +691,15 @@ void intel_rc6_unpark(struct intel_rc6 *rc6)
+ 
+ 	/* Restore HW timers for automatic RC6 entry while busy */
+ 	intel_uncore_write_fw(uncore, GEN6_RC_CONTROL, rc6->ctl_enable);
++
++	/*
++	 * Seeing render forcewake timeouts during active submissions so disable render PG
++	 * while workloads are under execution.
++	 * FIXME Remove this change once real cause of render force wake timeout is fixed
++	 */
++	if (rc6->pg_enable == GEN9_RENDER_PG_ENABLE)
++		intel_uncore_write_fw(uncore, GEN9_PG_ENABLE,
++				      rc6->pg_enable & ~GEN9_RENDER_PG_ENABLE);
+ }
+ 
+ void intel_rc6_park(struct intel_rc6 *rc6)
+@@ -715,6 +728,9 @@ void intel_rc6_park(struct intel_rc6 *rc6)
+ 	else
+ 		target = 0x4; /* normal rc6 */
+ 	intel_uncore_write_fw(uncore, GEN6_RC_STATE, target << RC_SW_TARGET_STATE_SHIFT);
++
++	if (rc6->pg_enable == GEN9_RENDER_PG_ENABLE)
++		intel_uncore_write_fw(uncore, GEN9_PG_ENABLE, rc6->pg_enable);
+ }
+ 
+ void intel_rc6_disable(struct intel_rc6 *rc6)
+diff --git a/drivers/gpu/drm/i915/gt/intel_rc6_types.h b/drivers/gpu/drm/i915/gt/intel_rc6_types.h
+index cd4587098162..58e8da74777c 100644
+--- a/drivers/gpu/drm/i915/gt/intel_rc6_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_rc6_types.h
+@@ -30,6 +30,7 @@ struct intel_rc6 {
+ 
+ 	u32 ctl_enable;
+ 	u32 bios_rc_state;
++	u32 pg_enable;
+ 
+ 	struct drm_i915_gem_object *pctx;
+ 
+-- 
+2.34.1
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_15576 -> Patchwork_140306v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140306v1/index.html
-
-Participating hosts (45 -> 44)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_140306v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live:
-    - bat-mtlp-8:         [PASS][1] -> [ABORT][2] ([i915#12216]) +1 other test abort
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15576/bat-mtlp-8/igt@i915_selftest@live.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140306v1/bat-mtlp-8/igt@i915_selftest@live.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_addfb_basic@too-high:
-    - fi-cfl-8109u:       [DMESG-WARN][3] ([i915#11621]) -> [PASS][4] +51 other tests pass
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15576/fi-cfl-8109u/igt@kms_addfb_basic@too-high.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140306v1/fi-cfl-8109u/igt@kms_addfb_basic@too-high.html
-
-  
-#### Warnings ####
-
-  * igt@kms_flip@basic-flip-vs-dpms@c-dp1:
-    - fi-cfl-8109u:       [DMESG-WARN][5] ([i915#11621]) -> [INCOMPLETE][6] ([i915#12236]) +1 other test incomplete
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15576/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-dpms@c-dp1.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140306v1/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-dpms@c-dp1.html
-
-  
-  [i915#11621]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11621
-  [i915#12216]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12216
-  [i915#12236]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12236
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15576 -> Patchwork_140306v1
-
-  CI-20190529: 20190529
-  CI_DRM_15576: d5bac12430b0d4a980c0498b3c946772950e70ee @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8081: 9b8c0f6da8898f760bfaa2113455eb84b68a69f4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_140306v1: d5bac12430b0d4a980c0498b3c946772950e70ee @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140306v1/index.html
-
---===============7083640449292663184==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>mtd: add driver for Intel discrete graphics</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/140306/">https://patchwork.freedesktop.org/series/140306/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140306v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140306v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_15576 -&gt; Patchwork_140306v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140306v1/index.html</p>
-<h2>Participating hosts (45 -&gt; 44)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_140306v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_selftest@live:<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15576/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140306v1/bat-mtlp-8/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12216">i915#12216</a>) +1 other test abort</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_addfb_basic@too-high:<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15576/fi-cfl-8109u/igt@kms_addfb_basic@too-high.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11621">i915#11621</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140306v1/fi-cfl-8109u/igt@kms_addfb_basic@too-high.html">PASS</a> +51 other tests pass</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-dpms@c-dp1:<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15576/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-dpms@c-dp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11621">i915#11621</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140306v1/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-dpms@c-dp1.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12236">i915#12236</a>) +1 other test incomplete</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_15576 -&gt; Patchwork_140306v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_15576: d5bac12430b0d4a980c0498b3c946772950e70ee @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8081: 9b8c0f6da8898f760bfaa2113455eb84b68a69f4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_140306v1: d5bac12430b0d4a980c0498b3c946772950e70ee @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============7083640449292663184==--
