@@ -2,64 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A7B99AD25C
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Oct 2024 19:18:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC2759AD262
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Oct 2024 19:19:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C90D010E7E4;
-	Wed, 23 Oct 2024 17:18:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83DDE10E7FC;
+	Wed, 23 Oct 2024 17:19:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FgjxjAjc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jTtoccEr";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B5BDD10E382;
- Wed, 23 Oct 2024 17:18:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 029BC10E382;
+ Wed, 23 Oct 2024 17:19:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729703917; x=1761239917;
+ t=1729703977; x=1761239977;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=hE/cGLalllM1tRKk+1pBtZKT/Z8VWmSLdmYPuScI3I4=;
- b=FgjxjAjcf0Mha/3VHTpnnPAA/4C/VP2YTMzNnzTF3sgaR6KBv1y7DYQ3
- Kb7E0F6jOqqBByyoGENdDIBy6W3KNP2TaQH5yhqTv3s/n/OluuNndhna3
- 9ncNPVtUkYkjqNaF6ZNiN2f+fyAZcB+g7e6zl6vf73nYcjIZpQoMdHbOS
- mDwtr4QWj016boywpcLsMohU9aePzsyQ0MKjp0kC8PCCIOWlCo9PcgoUM
- PpkT2lAwOgswEadYpPtVjwRzHWkWnijp4OHJl8v/T3Nnk3qzd24LrP8qs
- uSvC2vuIBfuS8qzy2qdOcr0rtP4IYxsD2giJaQqjQCq2oNIlE8FCbdx6Q w==;
-X-CSE-ConnectionGUID: wRmor20ZRGSUvhblohr/dA==
-X-CSE-MsgGUID: MtbWlPt2QhiBxudI2C/zcQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="33000822"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="33000822"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2024 10:18:36 -0700
-X-CSE-ConnectionGUID: R1NF+gt3Q26MKnlpyeqpRw==
-X-CSE-MsgGUID: Gx+xw7cxQA67QOsM6oGYqA==
+ bh=XGbRRFMgNBj1LtsTKbVbXbaGcLgsyKzSGvy6vdwOBvk=;
+ b=jTtoccErnFu/P1cHj4G3puVxIfj+7QR78314JhPfVE9iULMzMqkt/7DA
+ RJ+3rx5u+M73FfUMyYRGte3O/bEYXe+HxHeby0AcU0W/dj6SkAZIUwSI0
+ uWcZmlDRKgeAenrhp2bGkJNLKgA4+TjwdveZ5uQq+Nmp4Y7y3YOKwIQzD
+ YlF2+/4WVdOxwTEMSKZyDku7o0cYrOSRfnZpJO8FIsZd+JO72sqKWW1Xl
+ vlKjJ3iTpBDD/eKX5WWVai/acqP11mfGwrRUKzYEaPVyfxDRPoETdE0jy
+ rQqrFiGRtUJCkDfQ8XjaL2MYHtbO45izP/6gDKHCiEASElGjMAhj47Aak g==;
+X-CSE-ConnectionGUID: tIepmMZgQTigk2+paZEetQ==
+X-CSE-MsgGUID: 2HO4MvCdRKqWmjbvlqbOxw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="29174690"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="29174690"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2024 10:19:36 -0700
+X-CSE-ConnectionGUID: +zwZSHskQE6XH/3/a8zU4w==
+X-CSE-MsgGUID: EzloFxtNRFeLOCNInLNJMw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,226,1725346800"; d="scan'208";a="80619205"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmviesa010.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 23 Oct 2024 10:18:35 -0700
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.11,226,1725346800"; d="scan'208";a="85408137"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orviesa004.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 23 Oct 2024 10:19:37 -0700
+Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Wed, 23 Oct 2024 10:18:34 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ 15.1.2507.39; Wed, 23 Oct 2024 10:19:36 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Wed, 23 Oct 2024 10:18:34 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.171)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Wed, 23 Oct 2024 10:19:36 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.177)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Wed, 23 Oct 2024 10:18:33 -0700
+ 15.1.2507.39; Wed, 23 Oct 2024 10:19:35 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=uiVeyk+DA2DhfwBZGTpADmLI0LN5qVSLxumUkoTeZvm5JcG/Z6y/V8G7fdOyR60IvB11g9oQGGm5bOmpEpn5eDMrtiqwIxCYfNGjJV8ByL69WMF8EKN1KkIBAP8K8iusjeKm1pQK83HwCsHEeVntFu0yNQRzve2BmuSakSYNzjMl9pTXOGA59matn8RGoQ8E4qN+rH6y6bThir9pTyb33TFZNzHgTRzq1X0QvMeNsHdmulHO9UO2olFSWFN7v0PNylXhYYq/UbI8sziDlmn1Z2iyZ29aJljbrNv9VwHyA5dsQxcpK7l1ciAPI5OdIMcC111JlzSOkETG2oeLUlv7nQ==
+ b=L7QXZdpIE/xrWfpUmb6XGm71OLzJgq5OWKGXdY2E3bId8NA7oB/VECpku0OzSygrD7r80Zb9BFY2rpgLAsWCi1Pll1RlE9oRM1kTf2QjUiVx/h50cJpcwI017VMrDCshNmscjQ0Xp2iruSYJ8WhzkvCTEduMgLIEEyu6eDimhmrZzLfMCmdJK1CwyeE1POxGg8/zu1XHtJwArZ+h8R7WRMUl4SNbq/OUXPmtxvgTfVFSGftjehxmE56qz+Dp5SvZ6oVYws7mCUMTQoIg36TkN4utDC2UCkrhoMeKxYMw07yn2HQqzFCKI6sL9MBshG4yF11ryF6MbU6qASBrMC52XQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zriE4VHnlhLgq1N1KMa3tiQkrsxwAAPW76XoTVkZBLE=;
- b=wf2LGNFq4SOUjECQiB1gY9JW+X82nY+vpD9c4Y6otBNcEv/wPiVT0fNrtQmsGe0l1u3AowBEOfM2Ayv3UsIZwpGodjQB+iVSeg363WxNoGvwqhtmcpMmxWwkXObmga1WFiLaSb7GtN+4kG52r7wH6XwQdKcqZG1U9w7W+nSLxws1lvpiwOixgWCF6JLbcm1E21DCYqR8xpQsy5BXDGjiIMXdA+fZS+Uu+iVeclCmbKWrDB3ZMrUFdlonpoVVTWJA9DFdZrEBzfkTiennPFY+Kd9qqlfmTqxoLs0xb4ImCaeYY/pPTVtdvB/s7RsOxYgp+Tix+TKoZeCWWFGM/++Ryg==
+ bh=CERSijdje4iIw+p931bqWJ5PpD9josbA/Cz9+QMIqig=;
+ b=R4uq5Fy4UAwQyrJ8uZjbtaUzj5Y/Xe4L+7nHk3FLbTPuyFdfq06Ku/JfSWgI9KyG9yevbcpTg2x27ymBD77XYwPNFTmY3h8yOICnORkQt1WWH9UL03zg3pNpxzgK53flxudvANtWZDKjQ2ihudGXbaaMQDyCTYu9bK18svPMnNw2iS/5lTxlIlxJqKxRed435j3ZxZp3xMBaUzr2lsuhb0oLa7dSftDUQxgathOI8SeswKNk20ymZrau7OgSECmztNTZRIjgaEH5s5oBpHQBIoeY5DsVxzcyDlQ3uvxVJ+xiS9UyYtLh6MbymvkFVKcPlYXjTcFunweFEf0HfYCWnQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,97 +69,97 @@ Received: from BYAPR11MB2854.namprd11.prod.outlook.com (2603:10b6:a02:c9::12)
  by PH8PR11MB8107.namprd11.prod.outlook.com (2603:10b6:510:256::6)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.17; Wed, 23 Oct
- 2024 17:18:32 +0000
+ 2024 17:19:28 +0000
 Received: from BYAPR11MB2854.namprd11.prod.outlook.com
  ([fe80::8a98:4745:7147:ed42]) by BYAPR11MB2854.namprd11.prod.outlook.com
  ([fe80::8a98:4745:7147:ed42%7]) with mapi id 15.20.8069.020; Wed, 23 Oct 2024
- 17:18:32 +0000
-Date: Wed, 23 Oct 2024 13:18:28 -0400
+ 17:19:28 +0000
+Date: Wed, 23 Oct 2024 13:19:24 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
 CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 07/11] drm/i915/display: convert vlv_wait_port_ready() to
+Subject: Re: [PATCH 08/11] drm/i915/power: convert assert_chv_phy_status() to
  struct intel_display
-Message-ID: <Zxkv5DpkTMOtg07v@intel.com>
+Message-ID: <ZxkwHLY6C4ohOfJU@intel.com>
 References: <cover.1729612605.git.jani.nikula@intel.com>
- <bf48a3b21e2d07859a733b503b911c1e4d8cdecf.1729612605.git.jani.nikula@intel.com>
+ <b1736e99b5c11d0e6eedf2b2708789f946bf81f6.1729612605.git.jani.nikula@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <bf48a3b21e2d07859a733b503b911c1e4d8cdecf.1729612605.git.jani.nikula@intel.com>
-X-ClientProxiedBy: MW4P220CA0017.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:303:115::22) To BYAPR11MB2854.namprd11.prod.outlook.com
+In-Reply-To: <b1736e99b5c11d0e6eedf2b2708789f946bf81f6.1729612605.git.jani.nikula@intel.com>
+X-ClientProxiedBy: MW2PR16CA0016.namprd16.prod.outlook.com (2603:10b6:907::29)
+ To BYAPR11MB2854.namprd11.prod.outlook.com
  (2603:10b6:a02:c9::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: BYAPR11MB2854:EE_|PH8PR11MB8107:EE_
-X-MS-Office365-Filtering-Correlation-Id: c591d888-7e6f-40c3-59c8-08dcf386b783
+X-MS-Office365-Filtering-Correlation-Id: b0aa7237-5876-48cd-eee3-08dcf386d94d
 X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?cKq3ikvs9h33YH70ndHBpKd97588X1rbqbvimRpvN2nMJbDsQhQYB0fXUIdc?=
- =?us-ascii?Q?/fY+qAPgEYHXz8MRWT1ECp08KihGWvBJcwfvkJKRCVwgp+Sf1WqsTvdlbrOF?=
- =?us-ascii?Q?ayPgltwucaVll+GA6gFU+h7TWCM6qSu16Tauzv28Q+3k9fmS/ZRQcbb5P2a6?=
- =?us-ascii?Q?LShCSqAjv9IDpnueQWpP6va28xMgzGc+/y+l2HvGTafOKsi3HlJLjII7Xf8C?=
- =?us-ascii?Q?RzOaELepB+XvlAcesESzKZW1/CafRD+L86k8GJXqhOXTot6h5m8N872BTiLf?=
- =?us-ascii?Q?qEtvNgqh3MkM1RL5UhKOEKv9tsHojD2nGBQsdErvICWpmBRW9qv/UTH5UZBU?=
- =?us-ascii?Q?Nj6mnqJl+JCd3y51WJxv9LR93vjSh7e9/qOBI1fuf5FzRcl0vgPWnJn0F6Q5?=
- =?us-ascii?Q?U2wksxaiOTThsJ+BDJE0xvg8XDnf7EFzbGU8zG4jF+ES26M5Zz5hMLqGpfiS?=
- =?us-ascii?Q?gV6duP6Lwmc2fGu0hcqNVP3L3GDL/0jyP3NdDtn8p0CCb4DlP8/kg+DSh8+W?=
- =?us-ascii?Q?ibZSUgps4guRPUGwnirTxOwi+QrsZilVDSIpbW9HhQZ2xzbh2QuD1yX3sywm?=
- =?us-ascii?Q?G0ILwmfRkMc+jswzDTUbCbojtDBLWk+9Abc0Q3mg7m3M7/DiOiwO2rKIeDlY?=
- =?us-ascii?Q?BsFZmMWpVxgYW3xZa+md2tn/T7geOxQkQc+qpb8euzKiDMSlN5XqjbXuiBw+?=
- =?us-ascii?Q?o3IxC821QuxbVxhi824tUFriVC/H0PoycD7lVgU6laYovAPDt8prGa0hxHVX?=
- =?us-ascii?Q?nWCBNeTeQux3k7YhIzgZhUL70PC/PfYmECHZxVoeU/fj/mEkUmh992ExOg8v?=
- =?us-ascii?Q?euqGCGN1wMhwsZecU+GORznHr+tyOCraVmQnELEw2jb5YbORDDsWPdVSql7Z?=
- =?us-ascii?Q?1nSYZpDBW4Re8hnYRE0TtayLGjDc/K0FUDSl0dQJhFOuU9k6JlQrDS+93wz4?=
- =?us-ascii?Q?jVaJM1XlHde6sA9UqQg8Y95+Z41cSGlj9SBuqdb/HORVcJ8hEU5mkcs0X+SV?=
- =?us-ascii?Q?HkUbw4QXB5PhhHk569wOKSxxWIveDrrBh1ubyUcaY4Icj+XoXNQ8lJjnCVyT?=
- =?us-ascii?Q?AZXRiiL35WuQkY0eBP4IXnOC2w7D6B1bHcTgh0bpNnOvOdM22BJ8QVRVdY+y?=
- =?us-ascii?Q?BDvA0UGz6dRZoEXS3wjoRibseBkplpY1PIUMh97Ea1aKlvOScPq2nG8umGxG?=
- =?us-ascii?Q?YnW7GxZ7TJ/GXpd+CeJWmcbXX6m9G+CSutNPi0lBCkYw6s0ar+8vxMhnVg26?=
- =?us-ascii?Q?CMpegiXZ5rvPGvE5AFoN2iiTAKFLX5liN0FmIqoTLn/3vaudG3mQkOXJRM1+?=
- =?us-ascii?Q?8rKVxDVBK57w+fKydEnwXG94?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?TpWDEZQNHJZ4vC+SHFGCyS0j32UIyYMM5qRVYEJc4iRKyf2s/pJYJNMa8AFF?=
+ =?us-ascii?Q?kQCb62fI/E4uI/8ln0waWdsBACd/0QTyIV/kEaY7GcLgaRMVw1T6k1N9pCD4?=
+ =?us-ascii?Q?TeWgvTgrZFUAytd5IZ7JoQH+k83pWciDz/+hwelAeAh0RvFRM7WlNiT3s/PB?=
+ =?us-ascii?Q?UAdbHEgYYDwffosFy80V2dtLLtmgeV+d5NLwnB4lSGyKEDGV871nY5AZruXA?=
+ =?us-ascii?Q?O1I3KDEfZJegn86Ikdqh3Pk14YBXbGOmjVov6gi1tRYSvPEZ7ejrWd47T3oa?=
+ =?us-ascii?Q?7ewfQRc263SsqW0HVJBzn1Co3SC2fP0T/2nWmQFY07hJWmXk2kvnYG00tenS?=
+ =?us-ascii?Q?4Mel2aXOOHR3UZIsBwSMtYffW+XAiu4m6FhVwmjAx7QbRcqKhoGDGyqHeK1s?=
+ =?us-ascii?Q?HzqD4EGV8V+9mpclCJHg+8bg12wAAvGIcsF0bpH8exzPE9Uu0Cu5izEPVR7i?=
+ =?us-ascii?Q?MyGJtc+hyO7IEaJP5jWc/oiJpICEjj/s0a+0l+GEIQYdzSsnQRUdAVwtXs52?=
+ =?us-ascii?Q?nSBm41UX9pPOXG9K5C1auI/69MR/C2FGJe6bHzyVY8asjfmdK8f5SO7RY8In?=
+ =?us-ascii?Q?W1iKyVkvFe6d9lwduD5nx9FrjygxFXSJye72w1oYklJz4kNEcgWF5nSMbaBv?=
+ =?us-ascii?Q?8Sgsqv9EsO1LESjOxdXt2f3c5F7RFtcWa6YK3DMX8tDdE0OyczyoBrHnTaDi?=
+ =?us-ascii?Q?zrSL0uIEDorYLjAyYBRArmUF1XSHVPX+scLEbByZjSlUuT7EHbRyc46Bvdt1?=
+ =?us-ascii?Q?F09+En1NoEGg5aJb8jd5JJy2y/7UXZGgwpXgrjNlPqHkhVsmwnOlTV4HiOcH?=
+ =?us-ascii?Q?VSmJpzsCDyPQciV//MtJlV30ZYBHDzhOYrxk3iE7eTFeLTDPiSq7+RM51tqJ?=
+ =?us-ascii?Q?UTMCduSa8ao8BZemCq9bm7JdUVtQbED4jKND3AyvW2Q7Ywt0hLcey7AA4+2Q?=
+ =?us-ascii?Q?PEhfHJlnpHSS3ziyC0wvNT+RIf7gHpJ3ZUV6+bvRjXfved3ga8ahy19wZUQQ?=
+ =?us-ascii?Q?tE7oWpy8F/HwN/DlvdeMrCire/In8ngTIy8jYHl5/b717Nu5XiE6p9/HevYn?=
+ =?us-ascii?Q?4FnVoBU+iGCL/BFhxA1baW+E4v97XRjecBEwvKYbgCNHpBX7rzvJunYcXPXy?=
+ =?us-ascii?Q?W1ujUEnmB+Xm6dcVUbqYNRwW5l7XAwzcrWRxcI/U60xuMPNjkMFfMxAss9nW?=
+ =?us-ascii?Q?Iqo8XbOoYdljjpetDWZpT0mggOScke++btjIo2cv25KhL60ShrV0w9OG0JRV?=
+ =?us-ascii?Q?96TStrw3svQU0Ej3etHuaZcGEWGGxMn208UWPJD0mRyvLT6SOPK1X3C89kz9?=
+ =?us-ascii?Q?d63hHZ/bfQimW1h3La9UeVbJ?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:BYAPR11MB2854.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?a57w9F63fZrKZGTiSCyNaWr3MBC3BzYHzZD71JfmGoy6I235FjMOo3DAXyPD?=
- =?us-ascii?Q?yClO1t4VMVO5YcrDbPMVUIxE0wUakbi+/PtJGGSSER5CHlEcUoz1+gbnL9Ts?=
- =?us-ascii?Q?4GPlAsoS7rINuZvDr6zxuQ0WYwoFj9wEf4UJHwcJ1uieesbslxl3j4lcY0st?=
- =?us-ascii?Q?Xt/CxqiNRjsgRqEOt3ofjCliYvPD3IvA3GvwjtrSYibWHfxPb7ssk6wjFYmy?=
- =?us-ascii?Q?uR7Alxd3BM4ZKURPxOStea9f8/hcJcMJYIh3LPTjkmlIhzLNC+Pt7pyUv3k+?=
- =?us-ascii?Q?7ammZMfTKecZY3ZuVb30fP3v1Co+OMyEtaY3waSQ1CWDbfTiUfAFCfcM1gLx?=
- =?us-ascii?Q?3Xo/1godP+kPu2qbaScAcjDThvZwaL3yPo65PzIuFHcWGyeC2Acx2p0cU99S?=
- =?us-ascii?Q?otz3vX9rGfOBSvz70iCs0nw6YP9M8mU1pOayILRkVayV2Zs73QqXUQOl3yTx?=
- =?us-ascii?Q?Sfjk+4WPtDVyi80z3KlKN2fY/m7zVHJfRPCF6SnbEj335HmMpt1qdtQJL94Z?=
- =?us-ascii?Q?h12ClPAnc3cZ0+b6yamP3v8QmnvTPLOFtfcgvQclqT0LPqmzx83+0bWrNKks?=
- =?us-ascii?Q?OTsiSGlT8K2iIduwEwz5mgdJyOwAyhdDrWXWPrdSi5r+x2qwHT3vJBNaCKsL?=
- =?us-ascii?Q?oZnZfBa8u8Vv4mLJ7UFO+pySY13kQj/eAsCOyrFFLhN8nQne/uazaBdf4cxw?=
- =?us-ascii?Q?smChbMVb07t4T1d+mcBmj6x5J/Tq/6CnSERATcf8JQODxOw6pmWx0dsj0rmF?=
- =?us-ascii?Q?nJMobAxNxlTCBsYgeG7nc6CFjfz5H8RiWSundC2MQYWMVkxFS4YH+ZQSvAmH?=
- =?us-ascii?Q?XH2VAvYpet5+/CFDcr6aKM0HqFe3WlZ9yKkcQSalzNSJjPAMNXymJyyfaNlX?=
- =?us-ascii?Q?HKjL2/cKySgeFv4Y+8AN8Kwnv74/hgx+6GipB7oOJQkcA2V8usZr0jpD3n09?=
- =?us-ascii?Q?/WOnbMPjOXdPv43EogmKRvLdVn3k52n1TtIxRqiniqr3W+rFMEiVSGnUy1nA?=
- =?us-ascii?Q?v23FQdF70NlTbxkFCStXWHsMyQzVHnR4raGarJJZhxLFbvbLa3FGDcBIJN7w?=
- =?us-ascii?Q?Yi/hb8hSmcZ/13s1Vxwy7aJRuhZMmTKyMtceMGfYSr1coSVUu3UwhrN9yaoL?=
- =?us-ascii?Q?96JlYUpyMt5JV05DycziDGMdua/CbPrD2MM8yJ3aNgIfDNNpyajOfrfvcpwD?=
- =?us-ascii?Q?aGk3HVJgmjg6vNMOZ1o7CgRHx/KxgcAxBarPCuYVMd33VmHzQeYWQtBdTfi8?=
- =?us-ascii?Q?ynX4664QvSbl5Dmnps1KNhhI2oCeizj0lW/Kow+X5B1ieInaZxe6qGCSV2m5?=
- =?us-ascii?Q?Uc3zdu9zJzUunL5p0oPkvFnNNes3TBpIEVCKd9v5iHV1bTGn67uq/6BYNe8m?=
- =?us-ascii?Q?orjclhIvKUj9Qu9pqN2oPbjHO+IIGkvzkQj+lY4jpsnuSuFuq12uG9+bTPnz?=
- =?us-ascii?Q?5VDW8sYCMhSXxXQIjeOxYp5cXGDj+xdDHxHCrzHkKjSs6HoCIj2Oj5eLbVlV?=
- =?us-ascii?Q?QapY1x2h9YTK3hv+c9XM5tClptqeBlwODnsXj6/i5EWpA4rbG58AO7jIjWsh?=
- =?us-ascii?Q?wWZlWHtdPj0E9VYFCI7rhRSlQGJFRSKBgIdQNz9URTbSSvNgWIAAn+tHtfjp?=
- =?us-ascii?Q?kg=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: c591d888-7e6f-40c3-59c8-08dcf386b783
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?8UZ8HPLW2EOGlaZnothzvxKPGtrx3g9wFZLcRy0iHHQ8DrpB+cn2lc0vvPwE?=
+ =?us-ascii?Q?O0f4SQguS8b/9u0jB7MilhTpZ9VR78B4NCYYUdGcW/HFZq4Ldt/73l6hNfvB?=
+ =?us-ascii?Q?2aDZR9Vy1LirTf3mV5C//ITBbWbaUakQAxj3KI2EG6TiKsq0PPply37tDxc+?=
+ =?us-ascii?Q?oVZD173w7LfxftgAhkLtkjG4eRO82U4qfo2s5cItdVK2Is2B0E1N4BZVW3SU?=
+ =?us-ascii?Q?yN5z9J3ArcRPZrt0M3nR1IIYYVljUAuhb4ABpEwgKzBJRWOK0YYyVlxP3zd1?=
+ =?us-ascii?Q?QhNkGG/YuUrFMDTXjDb7aDmGxPCp7JPFe+qh7NuAdaWcUTXnqngCmicUiKPZ?=
+ =?us-ascii?Q?c5XxecVVTc0l1h6Z+YvpXYP/9era1vebsPOJ+KuvA1ek778Ihe1Ikfd5W4eF?=
+ =?us-ascii?Q?J5tLh4WIPJJ/B7f8Zrdz8oBIL3wtuhMSnvi3hOjZTpv2S1vLYWkbE/tLRlyg?=
+ =?us-ascii?Q?grpE+XVrQFhqNM17j3aw00qmRYXAWKJtDxxvTpivPcUPvKV4U62vM1kEH/3d?=
+ =?us-ascii?Q?2iwf8S7nGX2cyGnXFgDt32gkQX95q3aq5e2QnFhHSnhOnQymo9z0WMp/DsR2?=
+ =?us-ascii?Q?5wTXQiV1ZO/wMQ5ap70kbMHWEgOOVxGTAt/0O+uOsOKIMSL4kOOuRZwK7a55?=
+ =?us-ascii?Q?y+h2pGgd7xYucQekLDM0P7jjGenWkem5f9xE2SDZtucIAgLdC+QV2alJsb3N?=
+ =?us-ascii?Q?Hmzmn/W858vrfD8iQ5eLSsF3PKIdoyb41YvIH5fOUG3VD4TjcwDsd5DN/QX/?=
+ =?us-ascii?Q?ODvBSnyqeMlcLSloKnTq3J17F+obDG71RnSE2Qm9EaFm6xtE5vaVW+bsjBj4?=
+ =?us-ascii?Q?xG9VArcPlY8WgsU04Mu2qWlMe8hM+i2eokN9yUw5H3Cr31x1aM0/JuB2YgnM?=
+ =?us-ascii?Q?fYKk3uelBk4tEE0ldnBMrNsKA9T5mfSY50Cx3bDmGSliC2XSBD7cSx95XEFf?=
+ =?us-ascii?Q?sdCeweiSqptXIUbtxuVHcWib+i4KAS0j5lq5iAtJyyAvbSoL+cVWfQjO34th?=
+ =?us-ascii?Q?aH882jMC2Pav2FzFe2C6+z88XjQiFjbTmCCGfAhjF+gfMT1dClQaHPQSID4B?=
+ =?us-ascii?Q?OkwzPA7ppqP64Bt8XjJ787StrLmnDSOurWt0muJ8pzz4dY8rgOBRGg8A/+hC?=
+ =?us-ascii?Q?wmqwgQA8neOpVSaqj+isvA4lK5fsSiDa9XuyfkteqfRysYZxV5VuZezvP9To?=
+ =?us-ascii?Q?uWDCCeZe+tB0Q0X7imXUZAGinvixN86QPS7SI2LHwGUiSawz55n4Uddk1wyP?=
+ =?us-ascii?Q?OfFL/EVouqRuk9b0KcBVQDPWJ8DHTOXY2TldmwgSJfhzCESwc5TTOKrsPYzE?=
+ =?us-ascii?Q?0zgY7qqDeHl+SUxww7ycMcVqaEtoHizOztc2p5BpsXefg2jUwoxNZpfESGT1?=
+ =?us-ascii?Q?+Nh2g0XD/rB8xv1VegZrzkio9Nb2VjNAp3TjImUavkBilt0mV1D1KnPg2TIY?=
+ =?us-ascii?Q?qYemMd+dc9w8Fejpjg8mvMSbtBnAa3iz+KO3MmXidiim2jpq1aK+84BKEqQ6?=
+ =?us-ascii?Q?dbjZqd0Z72xeI4Yv2URsTJrglTKyEF5Nhhxg79Zb1DK5mWr3yb1SN7fhYNxE?=
+ =?us-ascii?Q?YTLbWXEhobjGvoePaqilnv515XM0iCYZm2POVbUuJclqQYEYa32JMNcz/y5K?=
+ =?us-ascii?Q?cA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: b0aa7237-5876-48cd-eee3-08dcf386d94d
 X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB2854.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Oct 2024 17:18:31.9306 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Oct 2024 17:19:27.9707 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: WOp0Wz5CCDVO/kGIQybEKSc9HFihGcvNW1xePyWpFIyPDV+4CYUVpM7WfL5j/N76lgQ4oFPmILasKxDb657qEA==
+X-MS-Exchange-CrossTenant-UserPrincipalName: fd3hWxE1ISIzJ0+pRSlavsPqPQk3pzXLxFSfhSSCXVOyp/W4GXOZZknALmA4F5RBctRZ3+6BB3W7eaDlmBRhmQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB8107
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -177,134 +177,252 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 22, 2024 at 06:57:24PM +0300, Jani Nikula wrote:
+On Tue, Oct 22, 2024 at 06:57:25PM +0300, Jani Nikula wrote:
 > struct intel_display will replace struct drm_i915_private as the main
-> device pointer for display code. Switch vlv_wait_port_ready() over to
-> it. The main motivation to do just one function is to stop passing i915
-> to intel_de_wait(), so its generic wrapper can be removed.
+> device pointer for display code. Switch assert_chv_phy_status() and its
+> callers to it. Main motivation to do just one function is to stop
+> passing i915 to intel_de_wait(), so its generic wrapper can be removed.
 > 
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/display/g4x_dp.c        |  3 +--
->  drivers/gpu/drm/i915/display/g4x_hdmi.c      |  9 ++++-----
->  drivers/gpu/drm/i915/display/intel_display.c | 12 ++++++------
->  drivers/gpu/drm/i915/display/intel_display.h |  2 +-
->  4 files changed, 12 insertions(+), 14 deletions(-)
+>  .../i915/display/intel_display_power_well.c   | 95 ++++++++++---------
+>  1 file changed, 50 insertions(+), 45 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915/display/g4x_dp.c
-> index 440fb3002f28..a22781d21110 100644
-> --- a/drivers/gpu/drm/i915/display/g4x_dp.c
-> +++ b/drivers/gpu/drm/i915/display/g4x_dp.c
-> @@ -706,8 +706,7 @@ static void intel_enable_dp(struct intel_atomic_state *state,
->  		if (IS_CHERRYVIEW(dev_priv))
->  			lane_mask = intel_dp_unused_lane_mask(pipe_config->lane_count);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> index 885bc2e563c5..f0131dd853de 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> @@ -1337,13 +1337,14 @@ static void vlv_dpio_cmn_power_well_disable(struct drm_i915_private *dev_priv,
 >  
-> -		vlv_wait_port_ready(dev_priv, dp_to_dig_port(intel_dp),
-> -				    lane_mask);
-> +		vlv_wait_port_ready(display, dp_to_dig_port(intel_dp), lane_mask);
+>  #define BITS_SET(val, bits) (((val) & (bits)) == (bits))
+>  
+> -static void assert_chv_phy_status(struct drm_i915_private *dev_priv)
+> +static void assert_chv_phy_status(struct intel_display *display)
+>  {
+> +	struct drm_i915_private *dev_priv = to_i915(display->drm);
+>  	struct i915_power_well *cmn_bc =
+>  		lookup_power_well(dev_priv, VLV_DISP_PW_DPIO_CMN_BC);
+>  	struct i915_power_well *cmn_d =
+>  		lookup_power_well(dev_priv, CHV_DISP_PW_DPIO_CMN_D);
+> -	u32 phy_control = dev_priv->display.power.chv_phy_control;
+> +	u32 phy_control = display->power.chv_phy_control;
+>  	u32 phy_status = 0;
+>  	u32 phy_status_mask = 0xffffffff;
+>  
+> @@ -1354,7 +1355,7 @@ static void assert_chv_phy_status(struct drm_i915_private *dev_priv)
+>  	 * reset (ie. the power well has been disabled at
+>  	 * least once).
+>  	 */
+> -	if (!dev_priv->display.power.chv_phy_assert[DPIO_PHY0])
+> +	if (!display->power.chv_phy_assert[DPIO_PHY0])
+>  		phy_status_mask &= ~(PHY_STATUS_CMN_LDO(DPIO_PHY0, DPIO_CH0) |
+>  				     PHY_STATUS_SPLINE_LDO(DPIO_PHY0, DPIO_CH0, 0) |
+>  				     PHY_STATUS_SPLINE_LDO(DPIO_PHY0, DPIO_CH0, 1) |
+> @@ -1362,7 +1363,7 @@ static void assert_chv_phy_status(struct drm_i915_private *dev_priv)
+>  				     PHY_STATUS_SPLINE_LDO(DPIO_PHY0, DPIO_CH1, 0) |
+>  				     PHY_STATUS_SPLINE_LDO(DPIO_PHY0, DPIO_CH1, 1));
+>  
+> -	if (!dev_priv->display.power.chv_phy_assert[DPIO_PHY1])
+> +	if (!display->power.chv_phy_assert[DPIO_PHY1])
+>  		phy_status_mask &= ~(PHY_STATUS_CMN_LDO(DPIO_PHY1, DPIO_CH0) |
+>  				     PHY_STATUS_SPLINE_LDO(DPIO_PHY1, DPIO_CH0, 0) |
+>  				     PHY_STATUS_SPLINE_LDO(DPIO_PHY1, DPIO_CH0, 1));
+> @@ -1390,7 +1391,7 @@ static void assert_chv_phy_status(struct drm_i915_private *dev_priv)
+>  		 */
+>  		if (BITS_SET(phy_control,
+>  			     PHY_CH_POWER_DOWN_OVRD(0xf, DPIO_PHY0, DPIO_CH1)) &&
+> -		    (intel_de_read(dev_priv, DPLL(dev_priv, PIPE_B)) & DPLL_VCO_ENABLE) == 0)
+> +		    (intel_de_read(display, DPLL(display, PIPE_B)) & DPLL_VCO_ENABLE) == 0)
+>  			phy_status |= PHY_STATUS_CMN_LDO(DPIO_PHY0, DPIO_CH1);
+>  
+>  		if (BITS_SET(phy_control,
+> @@ -1433,12 +1434,12 @@ static void assert_chv_phy_status(struct drm_i915_private *dev_priv)
+>  	 * The PHY may be busy with some initial calibration and whatnot,
+>  	 * so the power state can take a while to actually change.
+>  	 */
+> -	if (intel_de_wait(dev_priv, DISPLAY_PHY_STATUS,
+> +	if (intel_de_wait(display, DISPLAY_PHY_STATUS,
+>  			  phy_status_mask, phy_status, 10))
+> -		drm_err(&dev_priv->drm,
+> +		drm_err(display->drm,
+>  			"Unexpected PHY_STATUS 0x%08x, expected 0x%08x (PHY_CONTROL=0x%08x)\n",
+> -			intel_de_read(dev_priv, DISPLAY_PHY_STATUS) & phy_status_mask,
+> -			phy_status, dev_priv->display.power.chv_phy_control);
+> +			intel_de_read(display, DISPLAY_PHY_STATUS) & phy_status_mask,
+> +			phy_status, display->power.chv_phy_control);
+>  }
+>  
+>  #undef BITS_SET
+> @@ -1446,11 +1447,12 @@ static void assert_chv_phy_status(struct drm_i915_private *dev_priv)
+>  static void chv_dpio_cmn_power_well_enable(struct drm_i915_private *dev_priv,
+>  					   struct i915_power_well *power_well)
+>  {
+> +	struct intel_display *display = &dev_priv->display;
+>  	enum i915_power_well_id id = i915_power_well_instance(power_well)->id;
+>  	enum dpio_phy phy;
+>  	u32 tmp;
+>  
+> -	drm_WARN_ON_ONCE(&dev_priv->drm,
+> +	drm_WARN_ON_ONCE(display->drm,
+>  			 id != VLV_DISP_PW_DPIO_CMN_BC &&
+>  			 id != CHV_DISP_PW_DPIO_CMN_D);
+>  
+> @@ -1464,9 +1466,9 @@ static void chv_dpio_cmn_power_well_enable(struct drm_i915_private *dev_priv,
+>  	vlv_set_power_well(dev_priv, power_well, true);
+>  
+>  	/* Poll for phypwrgood signal */
+> -	if (intel_de_wait_for_set(dev_priv, DISPLAY_PHY_STATUS,
+> +	if (intel_de_wait_for_set(display, DISPLAY_PHY_STATUS,
+>  				  PHY_POWERGOOD(phy), 1))
+> -		drm_err(&dev_priv->drm, "Display PHY %d is not power up\n",
+> +		drm_err(display->drm, "Display PHY %d is not power up\n",
+>  			phy);
+>  
+>  	vlv_dpio_get(dev_priv);
+> @@ -1494,24 +1496,25 @@ static void chv_dpio_cmn_power_well_enable(struct drm_i915_private *dev_priv,
+>  
+>  	vlv_dpio_put(dev_priv);
+>  
+> -	dev_priv->display.power.chv_phy_control |= PHY_COM_LANE_RESET_DEASSERT(phy);
+> -	intel_de_write(dev_priv, DISPLAY_PHY_CONTROL,
+> -		       dev_priv->display.power.chv_phy_control);
+> +	display->power.chv_phy_control |= PHY_COM_LANE_RESET_DEASSERT(phy);
+> +	intel_de_write(display, DISPLAY_PHY_CONTROL,
+> +		       display->power.chv_phy_control);
+>  
+> -	drm_dbg_kms(&dev_priv->drm,
+> +	drm_dbg_kms(display->drm,
+>  		    "Enabled DPIO PHY%d (PHY_CONTROL=0x%08x)\n",
+> -		    phy, dev_priv->display.power.chv_phy_control);
+> +		    phy, display->power.chv_phy_control);
+>  
+> -	assert_chv_phy_status(dev_priv);
+> +	assert_chv_phy_status(display);
+>  }
+>  
+>  static void chv_dpio_cmn_power_well_disable(struct drm_i915_private *dev_priv,
+>  					    struct i915_power_well *power_well)
+>  {
+> +	struct intel_display *display = &dev_priv->display;
+>  	enum i915_power_well_id id = i915_power_well_instance(power_well)->id;
+>  	enum dpio_phy phy;
+>  
+> -	drm_WARN_ON_ONCE(&dev_priv->drm,
+> +	drm_WARN_ON_ONCE(display->drm,
+>  			 id != VLV_DISP_PW_DPIO_CMN_BC &&
+>  			 id != CHV_DISP_PW_DPIO_CMN_D);
+>  
+> @@ -1524,20 +1527,20 @@ static void chv_dpio_cmn_power_well_disable(struct drm_i915_private *dev_priv,
+>  		assert_pll_disabled(dev_priv, PIPE_C);
 >  	}
 >  
->  	intel_dp_set_power(intel_dp, DP_SET_POWER_D0);
-> diff --git a/drivers/gpu/drm/i915/display/g4x_hdmi.c b/drivers/gpu/drm/i915/display/g4x_hdmi.c
-> index 46f23bdb4c17..d1a7d0d57c6b 100644
-> --- a/drivers/gpu/drm/i915/display/g4x_hdmi.c
-> +++ b/drivers/gpu/drm/i915/display/g4x_hdmi.c
-> @@ -480,8 +480,8 @@ static void vlv_hdmi_pre_enable(struct intel_atomic_state *state,
->  				const struct intel_crtc_state *pipe_config,
->  				const struct drm_connector_state *conn_state)
+> -	dev_priv->display.power.chv_phy_control &= ~PHY_COM_LANE_RESET_DEASSERT(phy);
+> -	intel_de_write(dev_priv, DISPLAY_PHY_CONTROL,
+> -		       dev_priv->display.power.chv_phy_control);
+> +	display->power.chv_phy_control &= ~PHY_COM_LANE_RESET_DEASSERT(phy);
+> +	intel_de_write(display, DISPLAY_PHY_CONTROL,
+> +		       display->power.chv_phy_control);
+>  
+>  	vlv_set_power_well(dev_priv, power_well, false);
+>  
+> -	drm_dbg_kms(&dev_priv->drm,
+> +	drm_dbg_kms(display->drm,
+>  		    "Disabled DPIO PHY%d (PHY_CONTROL=0x%08x)\n",
+> -		    phy, dev_priv->display.power.chv_phy_control);
+> +		    phy, display->power.chv_phy_control);
+>  
+>  	/* PHY is fully reset now, so we can enable the PHY state asserts */
+> -	dev_priv->display.power.chv_phy_assert[phy] = true;
+> +	display->power.chv_phy_assert[phy] = true;
+>  
+> -	assert_chv_phy_status(dev_priv);
+> +	assert_chv_phy_status(display);
+>  }
+>  
+>  static void assert_chv_phy_powergate(struct drm_i915_private *dev_priv, enum dpio_phy phy,
+> @@ -1607,29 +1610,30 @@ static void assert_chv_phy_powergate(struct drm_i915_private *dev_priv, enum dpi
+>  bool chv_phy_powergate_ch(struct drm_i915_private *dev_priv, enum dpio_phy phy,
+>  			  enum dpio_channel ch, bool override)
+>  {
+> -	struct i915_power_domains *power_domains = &dev_priv->display.power.domains;
+> +	struct intel_display *display = &dev_priv->display;
+> +	struct i915_power_domains *power_domains = &display->power.domains;
+>  	bool was_override;
+>  
+>  	mutex_lock(&power_domains->lock);
+>  
+> -	was_override = dev_priv->display.power.chv_phy_control & PHY_CH_POWER_DOWN_OVRD_EN(phy, ch);
+> +	was_override = display->power.chv_phy_control & PHY_CH_POWER_DOWN_OVRD_EN(phy, ch);
+>  
+>  	if (override == was_override)
+>  		goto out;
+>  
+>  	if (override)
+> -		dev_priv->display.power.chv_phy_control |= PHY_CH_POWER_DOWN_OVRD_EN(phy, ch);
+> +		display->power.chv_phy_control |= PHY_CH_POWER_DOWN_OVRD_EN(phy, ch);
+>  	else
+> -		dev_priv->display.power.chv_phy_control &= ~PHY_CH_POWER_DOWN_OVRD_EN(phy, ch);
+> +		display->power.chv_phy_control &= ~PHY_CH_POWER_DOWN_OVRD_EN(phy, ch);
+>  
+> -	intel_de_write(dev_priv, DISPLAY_PHY_CONTROL,
+> -		       dev_priv->display.power.chv_phy_control);
+> +	intel_de_write(display, DISPLAY_PHY_CONTROL,
+> +		       display->power.chv_phy_control);
+>  
+> -	drm_dbg_kms(&dev_priv->drm,
+> +	drm_dbg_kms(display->drm,
+>  		    "Power gating DPIO PHY%d CH%d (DPIO_PHY_CONTROL=0x%08x)\n",
+> -		    phy, ch, dev_priv->display.power.chv_phy_control);
+> +		    phy, ch, display->power.chv_phy_control);
+>  
+> -	assert_chv_phy_status(dev_priv);
+> +	assert_chv_phy_status(display);
+>  
+>  out:
+>  	mutex_unlock(&power_domains->lock);
+> @@ -1640,29 +1644,30 @@ bool chv_phy_powergate_ch(struct drm_i915_private *dev_priv, enum dpio_phy phy,
+>  void chv_phy_powergate_lanes(struct intel_encoder *encoder,
+>  			     bool override, unsigned int mask)
 >  {
 > +	struct intel_display *display = to_intel_display(encoder);
->  	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-> -	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> -	struct i915_power_domains *power_domains = &dev_priv->display.power.domains;
+> +	struct i915_power_domains *power_domains = &display->power.domains;
+>  	enum dpio_phy phy = vlv_dig_port_to_phy(enc_to_dig_port(encoder));
+>  	enum dpio_channel ch = vlv_dig_port_to_channel(enc_to_dig_port(encoder));
 >  
->  	vlv_phy_pre_encoder_enable(encoder, pipe_config);
+>  	mutex_lock(&power_domains->lock);
 >  
-> @@ -496,7 +496,7 @@ static void vlv_hdmi_pre_enable(struct intel_atomic_state *state,
+> -	dev_priv->display.power.chv_phy_control &= ~PHY_CH_POWER_DOWN_OVRD(0xf, phy, ch);
+> -	dev_priv->display.power.chv_phy_control |= PHY_CH_POWER_DOWN_OVRD(mask, phy, ch);
+> +	display->power.chv_phy_control &= ~PHY_CH_POWER_DOWN_OVRD(0xf, phy, ch);
+> +	display->power.chv_phy_control |= PHY_CH_POWER_DOWN_OVRD(mask, phy, ch);
 >  
->  	g4x_hdmi_enable_port(encoder, pipe_config);
+>  	if (override)
+> -		dev_priv->display.power.chv_phy_control |= PHY_CH_POWER_DOWN_OVRD_EN(phy, ch);
+> +		display->power.chv_phy_control |= PHY_CH_POWER_DOWN_OVRD_EN(phy, ch);
+>  	else
+> -		dev_priv->display.power.chv_phy_control &= ~PHY_CH_POWER_DOWN_OVRD_EN(phy, ch);
+> +		display->power.chv_phy_control &= ~PHY_CH_POWER_DOWN_OVRD_EN(phy, ch);
 >  
-> -	vlv_wait_port_ready(dev_priv, dig_port, 0x0);
-> +	vlv_wait_port_ready(display, dig_port, 0x0);
->  }
+> -	intel_de_write(dev_priv, DISPLAY_PHY_CONTROL,
+> -		       dev_priv->display.power.chv_phy_control);
+> +	intel_de_write(display, DISPLAY_PHY_CONTROL,
+> +		       display->power.chv_phy_control);
 >  
->  static void vlv_hdmi_pre_pll_enable(struct intel_atomic_state *state,
-> @@ -557,9 +557,8 @@ static void chv_hdmi_pre_enable(struct intel_atomic_state *state,
->  				const struct intel_crtc_state *pipe_config,
->  				const struct drm_connector_state *conn_state)
->  {
-> +	struct intel_display *display = to_intel_display(encoder);
->  	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-> -	struct drm_device *dev = encoder->base.dev;
-> -	struct drm_i915_private *dev_priv = to_i915(dev);
+> -	drm_dbg_kms(&dev_priv->drm,
+> +	drm_dbg_kms(display->drm,
+>  		    "Power gating DPIO PHY%d CH%d lanes 0x%x (PHY_CONTROL=0x%08x)\n",
+> -		    phy, ch, mask, dev_priv->display.power.chv_phy_control);
+> +		    phy, ch, mask, display->power.chv_phy_control);
 >  
->  	chv_phy_pre_encoder_enable(encoder, pipe_config);
+> -	assert_chv_phy_status(dev_priv);
+> +	assert_chv_phy_status(display);
 >  
-> @@ -573,7 +572,7 @@ static void chv_hdmi_pre_enable(struct intel_atomic_state *state,
->  
->  	g4x_hdmi_enable_port(encoder, pipe_config);
->  
-> -	vlv_wait_port_ready(dev_priv, dig_port, 0x0);
-> +	vlv_wait_port_ready(display, dig_port, 0x0);
->  
->  	/* Second common lane will stay alive on its own now */
->  	chv_phy_release_cl2_override(encoder);
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 2479ca0a02d9..53e81b0030d4 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -474,7 +474,7 @@ static void assert_planes_disabled(struct intel_crtc *crtc)
->  		assert_plane_disabled(plane);
->  }
->  
-> -void vlv_wait_port_ready(struct drm_i915_private *dev_priv,
-> +void vlv_wait_port_ready(struct intel_display *display,
->  			 struct intel_digital_port *dig_port,
->  			 unsigned int expected_mask)
->  {
-> @@ -487,11 +487,11 @@ void vlv_wait_port_ready(struct drm_i915_private *dev_priv,
->  		fallthrough;
->  	case PORT_B:
->  		port_mask = DPLL_PORTB_READY_MASK;
-> -		dpll_reg = DPLL(dev_priv, 0);
-> +		dpll_reg = DPLL(display, 0);
->  		break;
->  	case PORT_C:
->  		port_mask = DPLL_PORTC_READY_MASK;
-> -		dpll_reg = DPLL(dev_priv, 0);
-> +		dpll_reg = DPLL(display, 0);
->  		expected_mask <<= 4;
->  		break;
->  	case PORT_D:
-> @@ -500,11 +500,11 @@ void vlv_wait_port_ready(struct drm_i915_private *dev_priv,
->  		break;
->  	}
->  
-> -	if (intel_de_wait(dev_priv, dpll_reg, port_mask, expected_mask, 1000))
-> -		drm_WARN(&dev_priv->drm, 1,
-> +	if (intel_de_wait(display, dpll_reg, port_mask, expected_mask, 1000))
-> +		drm_WARN(display->drm, 1,
->  			 "timed out waiting for [ENCODER:%d:%s] port ready: got 0x%x, expected 0x%x\n",
->  			 dig_port->base.base.base.id, dig_port->base.base.name,
-> -			 intel_de_read(dev_priv, dpll_reg) & port_mask,
-> +			 intel_de_read(display, dpll_reg) & port_mask,
->  			 expected_mask);
->  }
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-> index 61e1df878de9..51fd8d109f7c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display.h
-> @@ -492,7 +492,7 @@ bool intel_encoder_is_tc(struct intel_encoder *encoder);
->  enum tc_port intel_encoder_to_tc(struct intel_encoder *encoder);
->  
->  int ilk_get_lanes_required(int target_clock, int link_bw, int bpp);
-> -void vlv_wait_port_ready(struct drm_i915_private *dev_priv,
-> +void vlv_wait_port_ready(struct intel_display *display,
->  			 struct intel_digital_port *dig_port,
->  			 unsigned int expected_mask);
+>  	assert_chv_phy_powergate(dev_priv, phy, ch, override, mask);
 >  
 > -- 
 > 2.39.5
