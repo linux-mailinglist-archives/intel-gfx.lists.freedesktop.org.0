@@ -2,54 +2,166 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D8569ACD33
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Oct 2024 16:48:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BBAE9ACD30
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Oct 2024 16:48:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 132EB10E7FF;
-	Wed, 23 Oct 2024 14:48:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E783910E7FD;
+	Wed, 23 Oct 2024 14:48:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e2Bs7Iy6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X6K44sfg";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 80EFF10E7FF
- for <intel-gfx@lists.freedesktop.org>; Wed, 23 Oct 2024 14:48:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9288310E7FD
+ for <intel-gfx@lists.freedesktop.org>; Wed, 23 Oct 2024 14:48:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729694917; x=1761230917;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=uQrbqORuU5enk1h2YR/qbP+fbEWmsjIZhoiElNv2XIM=;
- b=e2Bs7Iy6kdDtLFjbZJUJvJqzDgQZWzcaQNR0DrmfYdWyPULETc3ZzOW/
- JDKnR9hZSNc2n7+SKZmJqVS89q3XpclSkxq6lwg+Ru4t2BX5Mn4ibJC/T
- iQ8RWTXTaUp3KLt87YkjSX3RRufmctpGxy5PA39/jatCyVIqhP2vFGHK6
- raNyVZ79uk8ufgrbJIjZXMoDNDN8feCZOcJJSxOlwQl3ApY8nBZOJaihQ
- To5/kPoEGyjuOEkxb9vkYfxQLZSF9MIC11/u3HM+XWBkEGpZUdH/NQ9WX
- BIqWDOzR1A4fpM/Qx1kObp536Wna715clb1HWY2AmMla0I6+ckxYnecz2 w==;
-X-CSE-ConnectionGUID: /ZYIY03eQO+PZxAbZTl/oA==
-X-CSE-MsgGUID: zswXAJ5IScuAb+Yu3RXBIw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11234"; a="39867670"
-X-IronPort-AV: E=Sophos;i="6.11,226,1725346800"; d="scan'208";a="39867670"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2024 07:48:36 -0700
-X-CSE-ConnectionGUID: G/w5eOrSQ+uqe8KP7MCd8Q==
-X-CSE-MsgGUID: dgKq164QT1GBtSmPWgK89w==
+ t=1729694899; x=1761230899;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=zLHif9EWH+rzulfhmg5lRBlqw64yBo1GiG562H7krXU=;
+ b=X6K44sfg/nek5it5kpi7tO1AToaLzPRdztMZ9/2cJ5hrYpJ+Ln1Rnggf
+ yiWkrndgjQ1tNXS7hqPkIxT1spkbhXRAZRDVoi+7O/aqyWWRE6dNgvBK3
+ UzMU+0KiF0Bo6y0U8/ogq6ojiORhwZaFzzL9rQzXaT+nf5Pu+A4KQ1Zdn
+ DNDLFqQvAquipmZ0b+Q2HjVAC+ObMBw6Z7uBvgfh5hMIQsnKNA5h6K8RA
+ RN1yox/4fqr7AbxJy09ZqwuSa7zaR8nUXtNUCOBebGjLwdIq0xlmLrvHp
+ XITUZgldx4DLhJCJAmk5g1y0xE7SRvF/dyAV7BHfxsm4GGUCigSYo5y19 A==;
+X-CSE-ConnectionGUID: DEUak/xlTqGfU2UuLXsYKg==
+X-CSE-MsgGUID: MH4Qa/1rTN2p1lHKUjSbfA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11234"; a="29184487"
+X-IronPort-AV: E=Sophos;i="6.11,226,1725346800"; d="scan'208";a="29184487"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2024 07:48:19 -0700
+X-CSE-ConnectionGUID: evMDwYxGSLug2ZxNFriuNQ==
+X-CSE-MsgGUID: JtUHqb8lTGu9nNA4XpmA/Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,226,1725346800"; d="scan'208";a="79805336"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2024 07:48:36 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [CI] pmu changes
-Date: Wed, 23 Oct 2024 07:47:59 -0700
-Message-ID: <20241023144759.3140161-1-lucas.demarchi@intel.com>
-X-Mailer: git-send-email 2.47.0
+X-IronPort-AV: E=Sophos;i="6.11,226,1725346800"; d="scan'208";a="85344394"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orviesa004.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 23 Oct 2024 07:48:19 -0700
+Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Wed, 23 Oct 2024 07:48:18 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Wed, 23 Oct 2024 07:48:18 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.42) by
+ edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Wed, 23 Oct 2024 07:48:10 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=mbWi7su63XI6ZjkkltXZXkpx68IT4O7e0oIne+Y7ho6Z4+vQ78CkuAEz3s31uPtP7cznn5Ai6YUFGVf/5OmAnUDngBbvvixBFaCqvaI+WtstmyF7B/qb12RL2DcQiLs8TxJvs9H6myyAe1fVwoDBA594DJzQAixPyX85Fp/+tZo8wzcPMjye0B4f5PkDurdIy28bt7YixcuSGLj2QixmfSfusyTAEWLzk9qvZ4IXeR7KCEasYjYTLYF/Ibsr/1LAPTF1Id8GfO12B7i4Mvu9Vlz5PVIefF5iJR3gLlT6jou4ZbWSncR/qfZK670fEt488rFMLQeYESFiH6hbnI95iw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Q/7rxZWmNJD/Nkdm5fPoIpaDan3YfgpPW1SbLLQbA2s=;
+ b=raIcODFVVfDTRYnYI0EK2cgLM9u2q+XnAidi36LSLT6x36pUGc51nH1p9Q04imJLUU9onimPajJbBcHK7vqa77ZPPSGA3fD9o5vg1ywtedU1zlrWaFe2tOMDnTY5wYYM+DzPp/fSQ/EAtOeUjxvDRIEmHZNAr3zKuQbUICpIpWn+DA+RH5hyG1+dEDcMteH18wGsfbu69D3o28/rxl0vvDHUdwsG4VCmQEc70NsamdTbOoKRbXpRrkMZKn09/wKQLnDdea4FLRzJ8AOxv2j7GOo0bC+uHAZq0xK+vGr+BHfamqdDlm8qT2B7ONVAuW/G1HLNoiTIj9sVboqEsRva/w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BYAPR11MB2854.namprd11.prod.outlook.com (2603:10b6:a02:c9::12)
+ by BL3PR11MB6529.namprd11.prod.outlook.com (2603:10b6:208:38c::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.16; Wed, 23 Oct
+ 2024 14:48:07 +0000
+Received: from BYAPR11MB2854.namprd11.prod.outlook.com
+ ([fe80::8a98:4745:7147:ed42]) by BYAPR11MB2854.namprd11.prod.outlook.com
+ ([fe80::8a98:4745:7147:ed42%7]) with mapi id 15.20.8069.020; Wed, 23 Oct 2024
+ 14:48:07 +0000
+Date: Wed, 23 Oct 2024 10:48:03 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: "Nilawar, Badal" <badal.nilawar@intel.com>
+CC: Andi Shyti <andi.shyti@linux.intel.com>,
+ <intel-gfx@lists.freedesktop.org>, <anshuman.gupta@intel.com>,
+ <chris.p.wilson@linux.intel.com>
+Subject: Re: [PATCH] drm/i915/rc6: Disable RPG during workload execution
+Message-ID: <ZxkMo6BVeb7xvhs2@intel.com>
+References: <20241022132226.1110383-1-badal.nilawar@intel.com>
+ <Zxeoi1baLtbqDKIr@ashyti-mobl2.lan> <ZxfcPLgi8tmLiomr@intel.com>
+ <c94a44fc-0211-4b83-9faa-cb8d0765f76e@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <c94a44fc-0211-4b83-9faa-cb8d0765f76e@intel.com>
+X-ClientProxiedBy: MW4PR03CA0254.namprd03.prod.outlook.com
+ (2603:10b6:303:b4::19) To BYAPR11MB2854.namprd11.prod.outlook.com
+ (2603:10b6:a02:c9::12)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BYAPR11MB2854:EE_|BL3PR11MB6529:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7c463327-f3b8-47f2-bf33-08dcf371b4ed
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?zfz9O3N+Nl8V3Jr1zZH46/vxwhKbHTzgNTqWjxuE/0aEyvI+OGOKEJHh3gfa?=
+ =?us-ascii?Q?s0K+/hq0PRdlv5FDSWYzY3QRkY4g/Ft38d2tfof49Zr167dTf2i9qP2rMdRV?=
+ =?us-ascii?Q?QqS+7O4yxlmmgqrJE4Cch6Do1CB/ETVGQF/FmO7ICAICse1sPzazUZUpja7n?=
+ =?us-ascii?Q?yDFvB/w9Jg2cHS4xtUbOAF2Dd/q3vwx4MjGH9aSE2iUGNz5XB1k/YrDqPI7J?=
+ =?us-ascii?Q?ehAN6RLbrYsiYrwg8Kk/RjvFhEorXEHUGJ79Q9YGl8gZ28icDhPDkVVbbqT1?=
+ =?us-ascii?Q?yykFj0pNeZ5MhEpiHjQG361hecknc7GfT0kOLEYOQiGazPTmbJkHrrfNkDp0?=
+ =?us-ascii?Q?9JyccWTf/iXWgT1nTQkZh36OdyrO9c/vuN64caloCCvmuKJzp9u/cTJNSTHo?=
+ =?us-ascii?Q?boPvOe+t0SACGDbQifKENAnNj2VSqSfic8MQW5AWcXw0Axy9NB1/9xvz+8ZW?=
+ =?us-ascii?Q?0FjUpLCcmSwGjUemkv6HJ/jdBDAwwUYPK3vjDmH2VDk/63xcnEohe0uf8t3s?=
+ =?us-ascii?Q?2oOEiaLWw0p1PDc1Ub23dMy+eNqTb/KDIZ1oVrG0p1vY5Wg6i9j6DycI1ku9?=
+ =?us-ascii?Q?LKh9/0W8xP6y6UDr2ZYV8b5qvZ+1XyhEasMPr147hQ/QG3atE2a3osb16ZrY?=
+ =?us-ascii?Q?rIaFhWI5+9P/qMgyHMk3nWqrnsLKyz/bSQ4ktmWrMGik0sGNbWqZGp0TVJwC?=
+ =?us-ascii?Q?LWzKLLMJwkNw1IM3zpxknXHLBDH6SGSgcdfIUX2g6U5YNw6ksHUAABs+68UH?=
+ =?us-ascii?Q?BVTguV2pH/eoal4g93RY7cJ2wVgQrFKbmwbTszSNp1WR/8ZSWJDtIcm5awcf?=
+ =?us-ascii?Q?3qWkbdkSwB0CVWeZ6S7uaZSKt98DopWqV+O/S2crgtLyxyYXT+hGBzRPz2GY?=
+ =?us-ascii?Q?u+VHmWvSk3aTnAEofBnOe1u3mkseckV2tS/kJo2qdRVe8yEWMLywpxnDZGvM?=
+ =?us-ascii?Q?l2PRQJULnsFOw1ZdOnmZhuTpaXdba8hlXHqjedbBk/pVR8uPXyBgHfufuUEf?=
+ =?us-ascii?Q?hN0JTiNOto7KAuI6gpj33OG6rvf6H82dA+mZJIELJP99yKhluDwDrNmoqGG4?=
+ =?us-ascii?Q?jPo1St42MsBlhN4rwrxP9JlJPybiDNZ6W5LKVorOVcEau19d6Z7bJ4mpmbSS?=
+ =?us-ascii?Q?w4nq2RFxI1PA30pgtXNL9uZzTYnmZAxqp85OWuTpMJxD8G+MKHvXZTh567lb?=
+ =?us-ascii?Q?OWcbeNh8v/JdyHZ3LXPwUvTc43As20JQCdUvxSzg2N95mibDqJxCv2TE7Hyv?=
+ =?us-ascii?Q?DyygmXSjjPhwsA/9680Z?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BYAPR11MB2854.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?uiecasXAEOe1TzMwk8Q0Ji4TqXzep1Ejn/1WDm7n/FH5EGh6RU4MLNPDKn+H?=
+ =?us-ascii?Q?wcoafxHa79b60w7W+U7ob48nccvADXpV6DbSM1Rz7GRczAcmMDXdvFqXa7J6?=
+ =?us-ascii?Q?YivYG0v2JzG7yzdSUbK/Xg2DCuCBvhRqZdqTjQZZDH6rRb7s+hsTThAONmJD?=
+ =?us-ascii?Q?jIypA6HzcO2b/834iyQz43grmyIZHAisSnLAFAz5R+qZG553QucWrz7dib6T?=
+ =?us-ascii?Q?UaJjQ6xjZ/1+6rmYExyTr/KIqgLzFF0nEfnuQMI9TI9WHby25CaZlhJRiHjc?=
+ =?us-ascii?Q?C51y0v44p2rDSWgzaOrbcBivHiR6zB5ITpyH1jpefsoU7aWL0zbzat/0PJT0?=
+ =?us-ascii?Q?BpbJ2HsfpCPOe7rdKfY/lBIpxc/636vSEeKgxZvKYv4paMz7xTGUmjJ4vXUe?=
+ =?us-ascii?Q?GmGV8TOh2PcWvqT/g2cRO0dYfNETJS31PbIa4bkAjlJiLzG+1o2P61DkoNzu?=
+ =?us-ascii?Q?+61d8iTPzpskChmCMxMBcTOn3XK4eK5FpaqybdlFvFa7YvTw/Q4XjqsUhoSW?=
+ =?us-ascii?Q?zLLUnK5PrJal/IpIoQ6OBP+NduFMkYIuFnboB0ijmQZF1SA7G08lS9bkJnGI?=
+ =?us-ascii?Q?YcecuOIp8MYJJBiwRNgc+mvD1nsgW9mGouG3ldfH1sgifhSNDr28w0uafz4j?=
+ =?us-ascii?Q?yQ1QNgSNXVyYwouDUp9lnBK4v7w7YjKkGHD7KSgx6CLKItJFddaXZt6ereyT?=
+ =?us-ascii?Q?HODxDcruhJDR8yCOTKGt0KN91zZWIupgnj2butX04DiYRLRjt4Xvz43A/7Gc?=
+ =?us-ascii?Q?TwxaiMQdI0hsanscUAF4RmpbLVUNDVSroYzHJMBf9uXzwNIsTNEfVcVRgUX4?=
+ =?us-ascii?Q?TWSG545Cx3tMnKnN5sO4nQ0h5qQjAco+gpiLZdeSiYHrlzeuPrXWm/rGBY2C?=
+ =?us-ascii?Q?Mn2bqr4fyWuFDYHpz7NdeGYRxi5pBsAnT4xtTMy0DNePy1n1WFgmJ/7mm1Ke?=
+ =?us-ascii?Q?kTX8Z+eMYEYXvrVmuEUdlO9yRdzlkR4gnA1lQqlC++2o0BxjiwWLJK49v+s7?=
+ =?us-ascii?Q?/yRZm4h9MtZhGBGZEp39wv3C78+iZGo9BeJyvNqogSRzwhBQgw2qEQZ6Hru+?=
+ =?us-ascii?Q?nk5LdAgFXKfXQA/7DUPP5VFYUQ2aKnU7mJG3PyvxuUtFihSxil14R6PEYou+?=
+ =?us-ascii?Q?R1ea7SsULoq0RoC8XtUuqzX0vVhgn78NCBWlyG+RMYx/4EPqFT725elnUmrk?=
+ =?us-ascii?Q?QbPsJwv2vp3LUfgJl66sdf1Rr9hZwtW0kmdY/YOK9vugxKjC6xeksLCG9s4X?=
+ =?us-ascii?Q?zdoTbKvrAdcBphLID1uPbphspxFFmCa3YqL7Wa0Ct/UAAVVu5G7K293cc25q?=
+ =?us-ascii?Q?xtJ5Ili/wxlv1vvkooa+Zz2bcZTmDbN0vdY9osO1LEY/HIsg+f1U6hRV8hFR?=
+ =?us-ascii?Q?l9t/NLpkR80xCYcXbw7AoQ3EPcmAc6oeH44wgG6wAGmLTY1GTGwtLWXZ+QmL?=
+ =?us-ascii?Q?BKG9O4RbYMCSzDQkF+5LPCl3+GmaVePxrqtJ4y3RczK9eFtylGVpYGWmCAvy?=
+ =?us-ascii?Q?VufvDA8rqalVWMKAAFgw6rWAJyMg1sZ4LfbBeJDh0/t//yOcNH8hDa09DPlZ?=
+ =?us-ascii?Q?ICeQYJXsNNteqva9XHd6SLi9+RSZTJDaf4lQkwfr7ATXiWCpe60gvniM5KSY?=
+ =?us-ascii?Q?gw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7c463327-f3b8-47f2-bf33-08dcf371b4ed
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB2854.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Oct 2024 14:48:07.5695 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: e+E7gbvvh3iYHvrqcP4P/7POZ6B1wuJaWmSp5utpPHHxXAZnWcY75SHt4ULp77TiKEHFpZ9YsbyqyZJZT8dq9w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR11MB6529
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,1309 +177,109 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-By Peter:
-git://git.kernel.org/pub/scm/linux/kernel/git/peterz/queue.git perf/pmu-unregister
-https://lore.kernel.org/all/20241022215210.GA31953@noisy.programming.kicks-ass.net/
+On Wed, Oct 23, 2024 at 11:03:57AM +0530, Nilawar, Badal wrote:
+> 
+> 
+> On 22-10-2024 22:39, Rodrigo Vivi wrote:
+> > On Tue, Oct 22, 2024 at 03:28:43PM +0200, Andi Shyti wrote:
+> > > Hi Badal,
+> > > 
+> > > On Tue, Oct 22, 2024 at 06:52:26PM +0530, Badal Nilawar wrote:
+> > > > Encountering forcewake errors related to render power gating;
+> > > 
+> > > Can you please expand your explanation here?
+> > 
+> > yeap. More explanation please. All platforms? really?
+> 
+> We are seeing Render forcewake timeouts on ADLP, ADLM, ADLN, TWL, DG1, rpl.
 
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- include/linux/idr.h        |  17 +
- include/linux/perf_event.h |  35 ++-
- kernel/events/core.c       | 620 +++++++++++++++++++++++++------------
- 3 files changed, 455 insertions(+), 217 deletions(-)
+Is this a regression? or a new issue?
 
-diff --git a/include/linux/idr.h b/include/linux/idr.h
-index da5f5fa4a3a6a..cd729be369b36 100644
---- a/include/linux/idr.h
-+++ b/include/linux/idr.h
-@@ -15,6 +15,7 @@
- #include <linux/radix-tree.h>
- #include <linux/gfp.h>
- #include <linux/percpu.h>
-+#include <linux/cleanup.h>
- 
- struct idr {
- 	struct radix_tree_root	idr_rt;
-@@ -124,6 +125,22 @@ void *idr_get_next_ul(struct idr *, unsigned long *nextid);
- void *idr_replace(struct idr *, void *, unsigned long id);
- void idr_destroy(struct idr *);
- 
-+struct __class_idr {
-+	struct idr *idr;
-+	int id;
-+};
-+
-+#define idr_null ((struct __class_idr){ NULL, -1 })
-+#define take_idr_id(id) __get_and_null(id, idr_null)
-+
-+DEFINE_CLASS(idr_alloc, struct __class_idr,
-+	     if (_T.id >= 0) idr_remove(_T.idr, _T.id),
-+	     ((struct __class_idr){
-+	     	.idr = idr,
-+		.id = idr_alloc(idr, ptr, start, end, gfp),
-+	     }),
-+	     struct idr *idr, void *ptr, int start, int end, gfp_t gfp);
-+
- /**
-  * idr_init_base() - Initialise an IDR.
-  * @idr: IDR handle.
-diff --git a/include/linux/perf_event.h b/include/linux/perf_event.h
-index fb908843f2092..74c0eaeb96f6c 100644
---- a/include/linux/perf_event.h
-+++ b/include/linux/perf_event.h
-@@ -318,6 +318,9 @@ struct perf_output_handle;
- struct pmu {
- 	struct list_head		entry;
- 
-+	spinlock_t			events_lock;
-+	struct list_head		events;
-+
- 	struct module			*module;
- 	struct device			*dev;
- 	struct device			*parent;
-@@ -336,8 +339,7 @@ struct pmu {
- 	 */
- 	unsigned int			scope;
- 
--	int __percpu			*pmu_disable_count;
--	struct perf_cpu_pmu_context __percpu *cpu_pmu_context;
-+	struct perf_cpu_pmu_context __percpu **cpu_pmu_context;
- 	atomic_t			exclusive_cnt; /* < 0: cpu; > 0: tsk */
- 	int				task_ctx_nr;
- 	int				hrtimer_interval_ms;
-@@ -612,9 +614,10 @@ struct perf_addr_filter_range {
-  * enum perf_event_state - the states of an event:
-  */
- enum perf_event_state {
--	PERF_EVENT_STATE_DEAD		= -4,
--	PERF_EVENT_STATE_EXIT		= -3,
--	PERF_EVENT_STATE_ERROR		= -2,
-+	PERF_EVENT_STATE_DEAD		= -5,
-+	PERF_EVENT_STATE_REVOKED	= -4, /* pmu gone, must not touch */
-+	PERF_EVENT_STATE_EXIT		= -3, /* task died, still inherit */
-+	PERF_EVENT_STATE_ERROR		= -2, /* scheduling error, can enable */
- 	PERF_EVENT_STATE_OFF		= -1,
- 	PERF_EVENT_STATE_INACTIVE	=  0,
- 	PERF_EVENT_STATE_ACTIVE		=  1,
-@@ -652,13 +655,15 @@ struct swevent_hlist {
- 	struct rcu_head			rcu_head;
- };
- 
--#define PERF_ATTACH_CONTEXT	0x01
--#define PERF_ATTACH_GROUP	0x02
--#define PERF_ATTACH_TASK	0x04
--#define PERF_ATTACH_TASK_DATA	0x08
--#define PERF_ATTACH_ITRACE	0x10
--#define PERF_ATTACH_SCHED_CB	0x20
--#define PERF_ATTACH_CHILD	0x40
-+#define PERF_ATTACH_CONTEXT	0x0001
-+#define PERF_ATTACH_GROUP	0x0002
-+#define PERF_ATTACH_TASK	0x0004
-+#define PERF_ATTACH_TASK_DATA	0x0008
-+#define PERF_ATTACH_ITRACE	0x0010
-+#define PERF_ATTACH_SCHED_CB	0x0020
-+#define PERF_ATTACH_CHILD	0x0040
-+#define PERF_ATTACH_EXCLUSIVE	0x0080
-+#define PERF_ATTACH_CALLCHAIN	0x0100
- 
- struct bpf_prog;
- struct perf_cgroup;
-@@ -853,6 +858,7 @@ struct perf_event {
- 	void *security;
- #endif
- 	struct list_head		sb_list;
-+	struct list_head		pmu_list;
- 
- 	/*
- 	 * Certain events gets forwarded to another pmu internally by over-
-@@ -900,7 +906,7 @@ struct perf_event_pmu_context {
- 	struct list_head		pinned_active;
- 	struct list_head		flexible_active;
- 
--	/* Used to avoid freeing per-cpu perf_event_pmu_context */
-+	/* Used to identify the per-cpu perf_event_pmu_context */
- 	unsigned int			embedded : 1;
- 
- 	unsigned int			nr_events;
-@@ -1008,6 +1014,7 @@ struct perf_cpu_pmu_context {
- 
- 	int				active_oncpu;
- 	int				exclusive;
-+	int				pmu_disable_count;
- 
- 	raw_spinlock_t			hrtimer_lock;
- 	struct hrtimer			hrtimer;
-@@ -1103,7 +1110,7 @@ extern void perf_aux_output_flag(struct perf_output_handle *handle, u64 flags);
- extern void perf_event_itrace_started(struct perf_event *event);
- 
- extern int perf_pmu_register(struct pmu *pmu, const char *name, int type);
--extern void perf_pmu_unregister(struct pmu *pmu);
-+extern int perf_pmu_unregister(struct pmu *pmu);
- 
- extern void __perf_event_task_sched_in(struct task_struct *prev,
- 				       struct task_struct *task);
-diff --git a/kernel/events/core.c b/kernel/events/core.c
-index cea06cff258ed..0cdc7c8af1913 100644
---- a/kernel/events/core.c
-+++ b/kernel/events/core.c
-@@ -1178,21 +1178,22 @@ static int perf_mux_hrtimer_restart_ipi(void *arg)
- 
- void perf_pmu_disable(struct pmu *pmu)
- {
--	int *count = this_cpu_ptr(pmu->pmu_disable_count);
-+	int *count = &(*this_cpu_ptr(pmu->cpu_pmu_context))->pmu_disable_count;
- 	if (!(*count)++)
- 		pmu->pmu_disable(pmu);
- }
- 
- void perf_pmu_enable(struct pmu *pmu)
- {
--	int *count = this_cpu_ptr(pmu->pmu_disable_count);
-+	int *count = &(*this_cpu_ptr(pmu->cpu_pmu_context))->pmu_disable_count;
- 	if (!--(*count))
- 		pmu->pmu_enable(pmu);
- }
- 
- static void perf_assert_pmu_disabled(struct pmu *pmu)
- {
--	WARN_ON_ONCE(*this_cpu_ptr(pmu->pmu_disable_count) == 0);
-+	int *count = &(*this_cpu_ptr(pmu->cpu_pmu_context))->pmu_disable_count;
-+	WARN_ON_ONCE(*count == 0);
- }
- 
- static void get_ctx(struct perf_event_context *ctx)
-@@ -2303,7 +2304,7 @@ static void
- event_sched_out(struct perf_event *event, struct perf_event_context *ctx)
- {
- 	struct perf_event_pmu_context *epc = event->pmu_ctx;
--	struct perf_cpu_pmu_context *cpc = this_cpu_ptr(epc->pmu->cpu_pmu_context);
-+	struct perf_cpu_pmu_context *cpc = *this_cpu_ptr(epc->pmu->cpu_pmu_context);
- 	enum perf_event_state state = PERF_EVENT_STATE_INACTIVE;
- 
- 	// XXX cpc serialization, probably per-cpu IRQ disabled
-@@ -2406,7 +2407,9 @@ ctx_time_update_event(struct perf_event_context *ctx, struct perf_event *event)
- 
- #define DETACH_GROUP	0x01UL
- #define DETACH_CHILD	0x02UL
--#define DETACH_DEAD	0x04UL
-+#define DETACH_EXIT	0x04UL
-+#define DETACH_REVOKE	0x08UL
-+#define DETACH_DEAD	0x10UL
- 
- /*
-  * Cross CPU call to remove a performance event
-@@ -2421,6 +2424,7 @@ __perf_remove_from_context(struct perf_event *event,
- 			   void *info)
- {
- 	struct perf_event_pmu_context *pmu_ctx = event->pmu_ctx;
-+	enum perf_event_state state = PERF_EVENT_STATE_OFF;
- 	unsigned long flags = (unsigned long)info;
- 
- 	ctx_time_update(cpuctx, ctx);
-@@ -2429,16 +2433,22 @@ __perf_remove_from_context(struct perf_event *event,
- 	 * Ensure event_sched_out() switches to OFF, at the very least
- 	 * this avoids raising perf_pending_task() at this time.
- 	 */
--	if (flags & DETACH_DEAD)
-+	if (flags & DETACH_EXIT)
-+		state = PERF_EVENT_STATE_EXIT;
-+	if (flags & DETACH_REVOKE)
-+		state = PERF_EVENT_STATE_REVOKED;
-+	if (flags & DETACH_DEAD) {
- 		event->pending_disable = 1;
-+		state = PERF_EVENT_STATE_DEAD;
-+	}
- 	event_sched_out(event, ctx);
- 	if (flags & DETACH_GROUP)
- 		perf_group_detach(event);
- 	if (flags & DETACH_CHILD)
- 		perf_child_detach(event);
- 	list_del_event(event, ctx);
--	if (flags & DETACH_DEAD)
--		event->state = PERF_EVENT_STATE_DEAD;
-+
-+	event->state = state;
- 
- 	if (!pmu_ctx->nr_events) {
- 		pmu_ctx->rotate_necessary = 0;
-@@ -2446,7 +2456,7 @@ __perf_remove_from_context(struct perf_event *event,
- 		if (ctx->task && ctx->is_active) {
- 			struct perf_cpu_pmu_context *cpc;
- 
--			cpc = this_cpu_ptr(pmu_ctx->pmu->cpu_pmu_context);
-+			cpc = *this_cpu_ptr(pmu_ctx->pmu->cpu_pmu_context);
- 			WARN_ON_ONCE(cpc->task_epc && cpc->task_epc != pmu_ctx);
- 			cpc->task_epc = NULL;
- 		}
-@@ -2584,7 +2594,7 @@ static int
- event_sched_in(struct perf_event *event, struct perf_event_context *ctx)
- {
- 	struct perf_event_pmu_context *epc = event->pmu_ctx;
--	struct perf_cpu_pmu_context *cpc = this_cpu_ptr(epc->pmu->cpu_pmu_context);
-+	struct perf_cpu_pmu_context *cpc = *this_cpu_ptr(epc->pmu->cpu_pmu_context);
- 	int ret = 0;
- 
- 	WARN_ON_ONCE(event->ctx != ctx);
-@@ -2691,7 +2701,7 @@ group_sched_in(struct perf_event *group_event, struct perf_event_context *ctx)
- static int group_can_go_on(struct perf_event *event, int can_add_hw)
- {
- 	struct perf_event_pmu_context *epc = event->pmu_ctx;
--	struct perf_cpu_pmu_context *cpc = this_cpu_ptr(epc->pmu->cpu_pmu_context);
-+	struct perf_cpu_pmu_context *cpc = *this_cpu_ptr(epc->pmu->cpu_pmu_context);
- 
- 	/*
- 	 * Groups consisting entirely of software events can always go on.
-@@ -3316,7 +3326,7 @@ static void __pmu_ctx_sched_out(struct perf_event_pmu_context *pmu_ctx,
- 	if (ctx->task && !(ctx->is_active & EVENT_ALL)) {
- 		struct perf_cpu_pmu_context *cpc;
- 
--		cpc = this_cpu_ptr(pmu->cpu_pmu_context);
-+		cpc = *this_cpu_ptr(pmu->cpu_pmu_context);
- 		WARN_ON_ONCE(cpc->task_epc && cpc->task_epc != pmu_ctx);
- 		cpc->task_epc = NULL;
- 	}
-@@ -3564,7 +3574,7 @@ static void perf_ctx_sched_task_cb(struct perf_event_context *ctx, bool sched_in
- 	struct perf_cpu_pmu_context *cpc;
- 
- 	list_for_each_entry(pmu_ctx, &ctx->pmu_ctx_list, pmu_ctx_entry) {
--		cpc = this_cpu_ptr(pmu_ctx->pmu->cpu_pmu_context);
-+		cpc = *this_cpu_ptr(pmu_ctx->pmu->cpu_pmu_context);
- 
- 		if (cpc->sched_cb_usage && pmu_ctx->pmu->sched_task)
- 			pmu_ctx->pmu->sched_task(pmu_ctx, sched_in);
-@@ -3673,7 +3683,7 @@ static DEFINE_PER_CPU(int, perf_sched_cb_usages);
- 
- void perf_sched_cb_dec(struct pmu *pmu)
- {
--	struct perf_cpu_pmu_context *cpc = this_cpu_ptr(pmu->cpu_pmu_context);
-+	struct perf_cpu_pmu_context *cpc = *this_cpu_ptr(pmu->cpu_pmu_context);
- 
- 	this_cpu_dec(perf_sched_cb_usages);
- 	barrier();
-@@ -3685,7 +3695,7 @@ void perf_sched_cb_dec(struct pmu *pmu)
- 
- void perf_sched_cb_inc(struct pmu *pmu)
- {
--	struct perf_cpu_pmu_context *cpc = this_cpu_ptr(pmu->cpu_pmu_context);
-+	struct perf_cpu_pmu_context *cpc = *this_cpu_ptr(pmu->cpu_pmu_context);
- 
- 	if (!cpc->sched_cb_usage++)
- 		list_add(&cpc->sched_cb_entry, this_cpu_ptr(&sched_cb_list));
-@@ -3809,7 +3819,7 @@ static void __link_epc(struct perf_event_pmu_context *pmu_ctx)
- 	if (!pmu_ctx->ctx->task)
- 		return;
- 
--	cpc = this_cpu_ptr(pmu_ctx->pmu->cpu_pmu_context);
-+	cpc = *this_cpu_ptr(pmu_ctx->pmu->cpu_pmu_context);
- 	WARN_ON_ONCE(cpc->task_epc && cpc->task_epc != pmu_ctx);
- 	cpc->task_epc = pmu_ctx;
- }
-@@ -3941,7 +3951,7 @@ static int merge_sched_in(struct perf_event *event, void *data)
- 			struct perf_cpu_pmu_context *cpc;
- 
- 			event->pmu_ctx->rotate_necessary = 1;
--			cpc = this_cpu_ptr(event->pmu_ctx->pmu->cpu_pmu_context);
-+			cpc = *this_cpu_ptr(event->pmu_ctx->pmu->cpu_pmu_context);
- 			perf_mux_hrtimer_restart(cpc);
- 			group_update_userpage(event);
- 		}
-@@ -4508,7 +4518,8 @@ static void perf_event_enable_on_exec(struct perf_event_context *ctx)
- 
- static void perf_remove_from_owner(struct perf_event *event);
- static void perf_event_exit_event(struct perf_event *event,
--				  struct perf_event_context *ctx);
-+				  struct perf_event_context *ctx,
-+				  bool revoke);
- 
- /*
-  * Removes all events from the current task that have been marked
-@@ -4535,7 +4546,7 @@ static void perf_event_remove_on_exec(struct perf_event_context *ctx)
- 
- 		modified = true;
- 
--		perf_event_exit_event(event, ctx);
-+		perf_event_exit_event(event, ctx, false);
- 	}
- 
- 	raw_spin_lock_irqsave(&ctx->lock, flags);
-@@ -4968,11 +4979,14 @@ find_get_pmu_context(struct pmu *pmu, struct perf_event_context *ctx,
- 		 */
- 		struct perf_cpu_pmu_context *cpc;
- 
--		cpc = per_cpu_ptr(pmu->cpu_pmu_context, event->cpu);
-+		cpc = *per_cpu_ptr(pmu->cpu_pmu_context, event->cpu);
- 		epc = &cpc->epc;
- 		raw_spin_lock_irq(&ctx->lock);
- 		if (!epc->ctx) {
--			atomic_set(&epc->refcount, 1);
-+			/*
-+			 * One extra reference for the pmu; see perf_pmu_free().
-+			 */
-+			atomic_set(&epc->refcount, 2);
- 			epc->embedded = 1;
- 			list_add(&epc->pmu_ctx_entry, &ctx->pmu_ctx_list);
- 			epc->ctx = ctx;
-@@ -5041,6 +5055,15 @@ static void get_pmu_ctx(struct perf_event_pmu_context *epc)
- 	WARN_ON_ONCE(!atomic_inc_not_zero(&epc->refcount));
- }
- 
-+static void free_cpc_rcu(struct rcu_head *head)
-+{
-+	struct perf_cpu_pmu_context *cpc =
-+		container_of(head, typeof(*cpc), epc.rcu_head);
-+
-+	kfree(cpc->epc.task_ctx_data);
-+	kfree(cpc);
-+}
-+
- static void free_epc_rcu(struct rcu_head *head)
- {
- 	struct perf_event_pmu_context *epc = container_of(head, typeof(*epc), rcu_head);
-@@ -5075,8 +5098,10 @@ static void put_pmu_ctx(struct perf_event_pmu_context *epc)
- 
- 	raw_spin_unlock_irqrestore(&ctx->lock, flags);
- 
--	if (epc->embedded)
-+	if (epc->embedded) {
-+		call_rcu(&epc->rcu_head, free_cpc_rcu);
- 		return;
-+	}
- 
- 	call_rcu(&epc->rcu_head, free_epc_rcu);
- }
-@@ -5121,6 +5146,7 @@ static bool is_sb_event(struct perf_event *event)
- 	    attr->context_switch || attr->text_poke ||
- 	    attr->bpf_event)
- 		return true;
-+
- 	return false;
- }
- 
-@@ -5246,6 +5272,8 @@ static int exclusive_event_init(struct perf_event *event)
- 			return -EBUSY;
- 	}
- 
-+	event->attach_state |= PERF_ATTACH_EXCLUSIVE;
-+
- 	return 0;
- }
- 
-@@ -5253,14 +5281,13 @@ static void exclusive_event_destroy(struct perf_event *event)
- {
- 	struct pmu *pmu = event->pmu;
- 
--	if (!is_exclusive_pmu(pmu))
--		return;
--
- 	/* see comment in exclusive_event_init() */
- 	if (event->attach_state & PERF_ATTACH_TASK)
- 		atomic_dec(&pmu->exclusive_cnt);
- 	else
- 		atomic_inc(&pmu->exclusive_cnt);
-+
-+	event->attach_state &= ~PERF_ATTACH_EXCLUSIVE;
- }
- 
- static bool exclusive_event_match(struct perf_event *e1, struct perf_event *e2)
-@@ -5292,8 +5319,7 @@ static bool exclusive_event_installable(struct perf_event *event,
- 	return true;
- }
- 
--static void perf_addr_filters_splice(struct perf_event *event,
--				       struct list_head *head);
-+static void perf_free_addr_filters(struct perf_event *event);
- 
- static void perf_pending_task_sync(struct perf_event *event)
- {
-@@ -5319,40 +5345,22 @@ static void perf_pending_task_sync(struct perf_event *event)
- 	rcuwait_wait_event(&event->pending_work_wait, !event->pending_work, TASK_UNINTERRUPTIBLE);
- }
- 
--static void _free_event(struct perf_event *event)
-+/* vs perf_event_alloc() error */
-+static void __free_event(struct perf_event *event)
- {
--	irq_work_sync(&event->pending_irq);
--	irq_work_sync(&event->pending_disable_irq);
--	perf_pending_task_sync(event);
-+	struct pmu *pmu = event->pmu;
- 
--	unaccount_event(event);
-+	if (event->attach_state & PERF_ATTACH_CALLCHAIN)
-+		put_callchain_buffers();
- 
--	security_perf_event_free(event);
-+	kfree(event->addr_filter_ranges);
- 
--	if (event->rb) {
--		/*
--		 * Can happen when we close an event with re-directed output.
--		 *
--		 * Since we have a 0 refcount, perf_mmap_close() will skip
--		 * over us; possibly making our ring_buffer_put() the last.
--		 */
--		mutex_lock(&event->mmap_mutex);
--		ring_buffer_attach(event, NULL);
--		mutex_unlock(&event->mmap_mutex);
--	}
-+	if (event->attach_state & PERF_ATTACH_EXCLUSIVE)
-+		exclusive_event_destroy(event);
- 
- 	if (is_cgroup_event(event))
- 		perf_detach_cgroup(event);
- 
--	if (!event->parent) {
--		if (event->attr.sample_type & PERF_SAMPLE_CALLCHAIN)
--			put_callchain_buffers();
--	}
--
--	perf_event_free_bpf_prog(event);
--	perf_addr_filters_splice(event, NULL);
--	kfree(event->addr_filter_ranges);
--
- 	if (event->destroy)
- 		event->destroy(event);
- 
-@@ -5363,22 +5371,67 @@ static void _free_event(struct perf_event *event)
- 	if (event->hw.target)
- 		put_task_struct(event->hw.target);
- 
--	if (event->pmu_ctx)
-+	if (event->pmu_ctx) {
-+		/*
-+		 * put_pmu_ctx() needs an event->ctx reference, because of
-+		 * epc->ctx.
-+		 */
-+		WARN_ON_ONCE(!pmu);
-+		WARN_ON_ONCE(!event->ctx);
-+		WARN_ON_ONCE(event->pmu_ctx->ctx != event->ctx);
- 		put_pmu_ctx(event->pmu_ctx);
-+	}
- 
- 	/*
--	 * perf_event_free_task() relies on put_ctx() being 'last', in particular
--	 * all task references must be cleaned up.
-+	 * perf_event_free_task() relies on put_ctx() being 'last', in
-+	 * particular all task references must be cleaned up.
- 	 */
- 	if (event->ctx)
- 		put_ctx(event->ctx);
- 
--	exclusive_event_destroy(event);
--	module_put(event->pmu->module);
-+	if (pmu) {
-+		module_put(pmu->module);
-+		scoped_guard (spinlock, &pmu->events_lock) {
-+			list_del(&event->pmu_list);
-+			wake_up_var(pmu);
-+		}
-+	}
- 
- 	call_rcu(&event->rcu_head, free_event_rcu);
- }
- 
-+DEFINE_FREE(__free_event, struct perf_event *, if (_T) __free_event(_T))
-+
-+/* vs perf_event_alloc() success */
-+static void _free_event(struct perf_event *event)
-+{
-+	irq_work_sync(&event->pending_irq);
-+	irq_work_sync(&event->pending_disable_irq);
-+	perf_pending_task_sync(event);
-+
-+	unaccount_event(event);
-+
-+	security_perf_event_free(event);
-+
-+	if (event->rb) {
-+		WARN_ON_ONCE(!event->pmu);
-+		/*
-+		 * Can happen when we close an event with re-directed output.
-+		 *
-+		 * Since we have a 0 refcount, perf_mmap_close() will skip
-+		 * over us; possibly making our ring_buffer_put() the last.
-+		 */
-+		mutex_lock(&event->mmap_mutex);
-+		ring_buffer_attach(event, NULL);
-+		mutex_unlock(&event->mmap_mutex);
-+	}
-+
-+	perf_event_free_bpf_prog(event);
-+	perf_free_addr_filters(event);
-+
-+	__free_event(event);
-+}
-+
- /*
-  * Used to free events which have a known refcount of 1, such as in error paths
-  * where the event isn't exposed yet and inherited events.
-@@ -5492,7 +5545,11 @@ int perf_event_release_kernel(struct perf_event *event)
- 	 * Thus this guarantees that we will in fact observe and kill _ALL_
- 	 * child events.
- 	 */
--	perf_remove_from_context(event, DETACH_GROUP|DETACH_DEAD);
-+	if (event->state > PERF_EVENT_STATE_REVOKED) {
-+		perf_remove_from_context(event, DETACH_GROUP|DETACH_DEAD);
-+	} else {
-+		event->state = PERF_EVENT_STATE_DEAD;
-+	}
- 
- 	perf_event_ctx_unlock(event, ctx);
- 
-@@ -5789,7 +5846,7 @@ __perf_read(struct perf_event *event, char __user *buf,
- 	 * error state (i.e. because it was pinned but it couldn't be
- 	 * scheduled on to the CPU at some point).
- 	 */
--	if (event->state == PERF_EVENT_STATE_ERROR)
-+	if (event->state <= PERF_EVENT_STATE_ERROR)
- 		return 0;
- 
- 	if (count < event->read_size)
-@@ -5843,8 +5900,14 @@ static __poll_t perf_poll(struct file *file, poll_table *wait)
- 	struct perf_buffer *rb;
- 	__poll_t events = EPOLLHUP;
- 
-+	if (event->state <= PERF_EVENT_STATE_REVOKED)
-+		return EPOLLERR;
-+
- 	poll_wait(file, &event->waitq, wait);
- 
-+	if (event->state <= PERF_EVENT_STATE_REVOKED)
-+		return EPOLLERR;
-+
- 	if (is_event_hup(event))
- 		return events;
- 
-@@ -6024,6 +6087,9 @@ static long _perf_ioctl(struct perf_event *event, unsigned int cmd, unsigned lon
- 	void (*func)(struct perf_event *);
- 	u32 flags = arg;
- 
-+	if (event->state <= PERF_EVENT_STATE_REVOKED)
-+		return -ENODEV;
-+
- 	switch (cmd) {
- 	case PERF_EVENT_IOC_ENABLE:
- 		func = _perf_event_enable;
-@@ -6473,6 +6539,7 @@ static void perf_mmap_close(struct vm_area_struct *vma)
- 	unsigned long size = perf_data_size(rb);
- 	bool detach_rest = false;
- 
-+	/* FIXIES vs perf_pmu_unregister() */
- 	if (event->pmu->event_unmapped)
- 		event->pmu->event_unmapped(event, vma->vm_mm);
- 
-@@ -6581,9 +6648,8 @@ static const struct vm_operations_struct perf_mmap_vmops = {
- 	.page_mkwrite	= perf_mmap_fault,
- };
- 
--static int perf_mmap(struct file *file, struct vm_area_struct *vma)
-+static int _perf_mmap(struct perf_event *event, struct vm_area_struct *vma)
- {
--	struct perf_event *event = file->private_data;
- 	unsigned long user_locked, user_lock_limit;
- 	struct user_struct *user = current_user();
- 	struct mutex *aux_mutex = NULL;
-@@ -6594,6 +6660,9 @@ static int perf_mmap(struct file *file, struct vm_area_struct *vma)
- 	long user_extra = 0, extra = 0;
- 	int ret = 0, flags = 0;
- 
-+	if (event->state <= PERF_EVENT_STATE_REVOKED)
-+		return -ENODEV;
-+
- 	/*
- 	 * Don't allow mmap() of inherited per-task counters. This would
- 	 * create a performance issue due to all children writing to the
-@@ -6605,10 +6674,6 @@ static int perf_mmap(struct file *file, struct vm_area_struct *vma)
- 	if (!(vma->vm_flags & VM_SHARED))
- 		return -EINVAL;
- 
--	ret = security_perf_event_read(event);
--	if (ret)
--		return ret;
--
- 	vma_size = vma->vm_end - vma->vm_start;
- 
- 	if (vma->vm_pgoff == 0) {
-@@ -6805,12 +6870,32 @@ static int perf_mmap(struct file *file, struct vm_area_struct *vma)
- 	return ret;
- }
- 
-+static int perf_mmap(struct file *file, struct vm_area_struct *vma)
-+{
-+	struct perf_event *event = file->private_data;
-+	struct perf_event_context *ctx;
-+	int ret;
-+
-+	ret = security_perf_event_read(event);
-+	if (ret)
-+		return ret;
-+
-+	ctx = perf_event_ctx_lock(event);
-+	ret = _perf_mmap(event, vma);
-+	perf_event_ctx_unlock(event, ctx);
-+
-+	return ret;
-+}
-+
- static int perf_fasync(int fd, struct file *filp, int on)
- {
- 	struct inode *inode = file_inode(filp);
- 	struct perf_event *event = filp->private_data;
- 	int retval;
- 
-+	if (event->state <= PERF_EVENT_STATE_REVOKED)
-+		return -ENODEV;
-+
- 	inode_lock(inode);
- 	retval = fasync_helper(fd, filp, on, &event->fasync);
- 	inode_unlock(inode);
-@@ -10738,6 +10823,9 @@ int perf_event_set_bpf_prog(struct perf_event *event, struct bpf_prog *prog,
- 
- void perf_event_free_bpf_prog(struct perf_event *event)
- {
-+	if (!event->prog)
-+		return;
-+
- 	if (!perf_event_is_tracing(event)) {
- 		perf_event_free_bpf_handler(event);
- 		return;
-@@ -10836,6 +10924,17 @@ static void perf_addr_filters_splice(struct perf_event *event,
- 	free_filters_list(&list);
- }
- 
-+static void perf_free_addr_filters(struct perf_event *event)
-+{
-+	/*
-+	 * Used during free paths, there is no concurrency.
-+	 */
-+	if (list_empty(&event->addr_filters.list))
-+		return;
-+
-+	perf_addr_filters_splice(event, NULL);
-+}
-+
- /*
-  * Scan through mm's vmas and see if one of them matches the
-  * @filter; if so, adjust filter's address range.
-@@ -11512,11 +11611,6 @@ static int perf_event_idx_default(struct perf_event *event)
- 	return 0;
- }
- 
--static void free_pmu_context(struct pmu *pmu)
--{
--	free_percpu(pmu->cpu_pmu_context);
--}
--
- /*
-  * Let userspace know that this PMU supports address range filtering:
-  */
-@@ -11579,7 +11673,7 @@ perf_event_mux_interval_ms_store(struct device *dev,
- 	cpus_read_lock();
- 	for_each_online_cpu(cpu) {
- 		struct perf_cpu_pmu_context *cpc;
--		cpc = per_cpu_ptr(pmu->cpu_pmu_context, cpu);
-+		cpc = *per_cpu_ptr(pmu->cpu_pmu_context, cpu);
- 		cpc->hrtimer_interval = ns_to_ktime(NSEC_PER_MSEC * timer);
- 
- 		cpu_function_call(cpu, perf_mux_hrtimer_restart_ipi, cpc);
-@@ -11728,56 +11822,100 @@ static int pmu_dev_alloc(struct pmu *pmu)
- static struct lock_class_key cpuctx_mutex;
- static struct lock_class_key cpuctx_lock;
- 
--int perf_pmu_register(struct pmu *pmu, const char *name, int type)
-+static bool idr_cmpxchg(struct idr *idr, unsigned long id, void *old, void *new)
- {
--	int cpu, ret, max = PERF_TYPE_MAX;
-+	void *tmp, *val = idr_find(idr, id);
- 
--	mutex_lock(&pmus_lock);
--	ret = -ENOMEM;
--	pmu->pmu_disable_count = alloc_percpu(int);
--	if (!pmu->pmu_disable_count)
--		goto unlock;
-+	if (val != old)
-+		return false;
- 
--	pmu->type = -1;
--	if (WARN_ONCE(!name, "Can not register anonymous pmu.\n")) {
--		ret = -EINVAL;
--		goto free_pdc;
-+	tmp = idr_replace(idr, new, id);
-+	if (IS_ERR(tmp))
-+		return false;
-+
-+	WARN_ON_ONCE(tmp != val);
-+	return true;
-+}
-+
-+static void perf_pmu_free(struct pmu *pmu)
-+{
-+	if (pmu_bus_running && pmu->dev && pmu->dev != PMU_NULL_DEV) {
-+		if (pmu->nr_addr_filters)
-+			device_remove_file(pmu->dev, &dev_attr_nr_addr_filters);
-+		device_del(pmu->dev);
-+		put_device(pmu->dev);
- 	}
- 
--	if (WARN_ONCE(pmu->scope >= PERF_PMU_MAX_SCOPE, "Can not register a pmu with an invalid scope.\n")) {
--		ret = -EINVAL;
--		goto free_pdc;
-+	if (pmu->cpu_pmu_context) {
-+		int cpu;
-+
-+		for_each_possible_cpu(cpu) {
-+			struct perf_cpu_pmu_context *cpc;
-+
-+			cpc = *per_cpu_ptr(pmu->cpu_pmu_context, cpu);
-+			if (!cpc)
-+				continue;
-+			if (cpc->epc.embedded) {
-+				/* refcount managed */
-+				put_pmu_ctx(&cpc->epc);
-+				continue;
-+			}
-+			kfree(cpc);
-+		}
-+		free_percpu(pmu->cpu_pmu_context);
- 	}
-+}
-+
-+DEFINE_FREE(pmu_unregister, struct pmu *, if (_T) perf_pmu_free(_T))
-+
-+int perf_pmu_register(struct pmu *_pmu, const char *name, int type)
-+{
-+	int cpu, max = PERF_TYPE_MAX;
-+
-+	struct pmu *pmu __free(pmu_unregister) = _pmu;
-+	guard(mutex)(&pmus_lock);
-+
-+	if (WARN_ONCE(!name, "Can not register anonymous pmu.\n"))
-+		return -EINVAL;
-+
-+	if (WARN_ONCE(pmu->scope >= PERF_PMU_MAX_SCOPE,
-+		      "Can not register a pmu with an invalid scope.\n"))
-+		return -EINVAL;
- 
- 	pmu->name = name;
- 
- 	if (type >= 0)
- 		max = type;
- 
--	ret = idr_alloc(&pmu_idr, pmu, max, 0, GFP_KERNEL);
--	if (ret < 0)
--		goto free_pdc;
-+	CLASS(idr_alloc, pmu_type)(&pmu_idr, NULL, max, 0, GFP_KERNEL);
-+	if (pmu_type.id < 0)
-+		return pmu_type.id;
- 
--	WARN_ON(type >= 0 && ret != type);
-+	WARN_ON(type >= 0 && pmu_type.id != type);
- 
--	type = ret;
--	pmu->type = type;
-+	pmu->type = pmu_type.id;
-+	atomic_set(&pmu->exclusive_cnt, 0);
- 
- 	if (pmu_bus_running && !pmu->dev) {
--		ret = pmu_dev_alloc(pmu);
-+		int ret = pmu_dev_alloc(pmu);
- 		if (ret)
--			goto free_idr;
-+			return ret;
- 	}
- 
--	ret = -ENOMEM;
--	pmu->cpu_pmu_context = alloc_percpu(struct perf_cpu_pmu_context);
-+	pmu->cpu_pmu_context = alloc_percpu(struct perf_cpu_pmu_context *);
- 	if (!pmu->cpu_pmu_context)
--		goto free_dev;
-+		return -ENOMEM;
- 
- 	for_each_possible_cpu(cpu) {
--		struct perf_cpu_pmu_context *cpc;
-+		struct perf_cpu_pmu_context *cpc =
-+			kmalloc_node(sizeof(struct perf_cpu_pmu_context),
-+				     GFP_KERNEL | __GFP_ZERO,
-+				     cpu_to_node(cpu));
- 
--		cpc = per_cpu_ptr(pmu->cpu_pmu_context, cpu);
-+		if (!cpc)
-+			return -ENOMEM;
-+
-+		*per_cpu_ptr(pmu->cpu_pmu_context, cpu) = cpc;
- 		__perf_init_event_pmu_context(&cpc->epc, pmu);
- 		__perf_mux_hrtimer_init(cpc, cpu);
- 	}
-@@ -11810,33 +11948,115 @@ int perf_pmu_register(struct pmu *pmu, const char *name, int type)
- 	if (!pmu->event_idx)
- 		pmu->event_idx = perf_event_idx_default;
- 
-+	INIT_LIST_HEAD(&pmu->events);
-+	spin_lock_init(&pmu->events_lock);
-+
-+	/*
-+	 * Now that the PMU is complete, make it visible to perf_try_init_event().
-+	 */
-+	if (!idr_cmpxchg(&pmu_idr, pmu->type, NULL, pmu))
-+		return -EINVAL;
- 	list_add_rcu(&pmu->entry, &pmus);
--	atomic_set(&pmu->exclusive_cnt, 0);
--	ret = 0;
--unlock:
--	mutex_unlock(&pmus_lock);
- 
--	return ret;
-+	take_idr_id(pmu_type);
-+	_pmu = no_free_ptr(pmu); // let it rip
-+	return 0;
-+}
-+EXPORT_SYMBOL_GPL(perf_pmu_register);
- 
--free_dev:
--	if (pmu->dev && pmu->dev != PMU_NULL_DEV) {
--		device_del(pmu->dev);
--		put_device(pmu->dev);
-+static void __pmu_detach_event(struct pmu *pmu, struct perf_event *event,
-+			       struct perf_event_context *ctx)
-+{
-+	/*
-+	 * De-schedule the event and mark it REVOKED.
-+	 */
-+	perf_event_exit_event(event, ctx, true);
-+
-+	/*
-+	 * All _free_event() bits that rely on event->pmu:
-+	 */
-+	scoped_guard (mutex, &event->mmap_mutex) {
-+		WARN_ON_ONCE(pmu->event_unmapped);
-+		ring_buffer_attach(event, NULL);
-+	}
-+
-+	perf_event_free_bpf_prog(event);
-+	perf_free_addr_filters(event);
-+
-+	if (event->destroy) {
-+		event->destroy(event);
-+		event->destroy = NULL;
-+	}
-+
-+	if (event->pmu_ctx) {
-+		put_pmu_ctx(event->pmu_ctx);
-+		event->pmu_ctx = NULL;
- 	}
- 
--free_idr:
--	idr_remove(&pmu_idr, pmu->type);
-+	exclusive_event_destroy(event);
-+	module_put(pmu->module);
- 
--free_pdc:
--	free_percpu(pmu->pmu_disable_count);
--	goto unlock;
-+	event->pmu = NULL; /* force fault instead of UAF */
- }
--EXPORT_SYMBOL_GPL(perf_pmu_register);
- 
--void perf_pmu_unregister(struct pmu *pmu)
-+static void pmu_detach_event(struct pmu *pmu, struct perf_event *event)
- {
--	mutex_lock(&pmus_lock);
--	list_del_rcu(&pmu->entry);
-+	struct perf_event_context *ctx;
-+
-+	ctx = perf_event_ctx_lock(event);
-+	__pmu_detach_event(pmu, event, ctx);
-+	perf_event_ctx_unlock(event, ctx);
-+
-+	scoped_guard (spinlock, &pmu->events_lock)
-+		list_del(&event->pmu_list);
-+}
-+
-+static struct perf_event *pmu_get_event(struct pmu *pmu)
-+{
-+	struct perf_event *event;
-+
-+	guard(spinlock)(&pmu->events_lock);
-+	list_for_each_entry(event, &pmu->events, pmu_list) {
-+		if (atomic_long_inc_not_zero(&event->refcount))
-+			return event;
-+	}
-+
-+	return NULL;
-+}
-+
-+static bool pmu_empty(struct pmu *pmu)
-+{
-+	guard(spinlock)(&pmu->events_lock);
-+	return list_empty(&pmu->events);
-+}
-+
-+static void pmu_detach_events(struct pmu *pmu)
-+{
-+	struct perf_event *event;
-+
-+	for (;;) {
-+		event = pmu_get_event(pmu);
-+		if (!event)
-+			break;
-+
-+		pmu_detach_event(pmu, event);
-+		put_event(event);
-+	}
-+
-+	/*
-+	 * wait for pending _free_event()s
-+	 */
-+	wait_var_event(pmu, pmu_empty(pmu));
-+}
-+
-+int perf_pmu_unregister(struct pmu *pmu)
-+{
-+	scoped_guard (mutex, &pmus_lock) {
-+		if (!idr_cmpxchg(&pmu_idr, pmu->type, pmu, NULL))
-+			return -EINVAL;
-+
-+		list_del_rcu(&pmu->entry);
-+	}
- 
- 	/*
- 	 * We dereference the pmu list under both SRCU and regular RCU, so
-@@ -11845,16 +12065,31 @@ void perf_pmu_unregister(struct pmu *pmu)
- 	synchronize_srcu(&pmus_srcu);
- 	synchronize_rcu();
- 
--	free_percpu(pmu->pmu_disable_count);
--	idr_remove(&pmu_idr, pmu->type);
--	if (pmu_bus_running && pmu->dev && pmu->dev != PMU_NULL_DEV) {
--		if (pmu->nr_addr_filters)
--			device_remove_file(pmu->dev, &dev_attr_nr_addr_filters);
--		device_del(pmu->dev);
--		put_device(pmu->dev);
-+	if (pmu->event_unmapped && !pmu_empty(pmu)) {
-+		/*
-+		 * Can't force remove events when pmu::event_unmapped()
-+		 * is used in perf_mmap_close().
-+		 */
-+		guard(mutex)(&pmus_lock);
-+		idr_cmpxchg(&pmu_idr, pmu->type, NULL, pmu);
-+		list_add_rcu(&pmu->entry, &pmus);
-+		return -EBUSY;
- 	}
--	free_pmu_context(pmu);
--	mutex_unlock(&pmus_lock);
-+
-+	scoped_guard (mutex, &pmus_lock)
-+		idr_remove(&pmu_idr, pmu->type);
-+
-+	/*
-+	 * PMU is removed from the pmus list, so no new events will
-+	 * be created, now take care of the existing ones.
-+	 */
-+	pmu_detach_events(pmu);
-+
-+	/*
-+	 * PMU is unused, make it go away.
-+	 */
-+	perf_pmu_free(pmu);
-+	return 0;
- }
- EXPORT_SYMBOL_GPL(perf_pmu_unregister);
- 
-@@ -11923,8 +12158,10 @@ static int perf_try_init_event(struct pmu *pmu, struct perf_event *event)
- 			event->destroy(event);
- 	}
- 
--	if (ret)
-+	if (ret) {
-+		event->pmu = NULL;
- 		module_put(pmu->module);
-+	}
- 
- 	return ret;
- }
-@@ -11932,10 +12169,10 @@ static int perf_try_init_event(struct pmu *pmu, struct perf_event *event)
- static struct pmu *perf_init_event(struct perf_event *event)
- {
- 	bool extended_type = false;
--	int idx, type, ret;
- 	struct pmu *pmu;
-+	int type, ret;
- 
--	idx = srcu_read_lock(&pmus_srcu);
-+	guard(srcu)(&pmus_srcu);
- 
- 	/*
- 	 * Save original type before calling pmu->event_init() since certain
-@@ -11948,7 +12185,7 @@ static struct pmu *perf_init_event(struct perf_event *event)
- 		pmu = event->parent->pmu;
- 		ret = perf_try_init_event(pmu, event);
- 		if (!ret)
--			goto unlock;
-+			return pmu;
- 	}
- 
- 	/*
-@@ -11967,13 +12204,12 @@ static struct pmu *perf_init_event(struct perf_event *event)
- 	}
- 
- again:
--	rcu_read_lock();
--	pmu = idr_find(&pmu_idr, type);
--	rcu_read_unlock();
-+	scoped_guard (rcu)
-+		pmu = idr_find(&pmu_idr, type);
- 	if (pmu) {
- 		if (event->attr.type != type && type != PERF_TYPE_RAW &&
- 		    !(pmu->capabilities & PERF_PMU_CAP_EXTENDED_HW_TYPE))
--			goto fail;
-+			return ERR_PTR(-ENOENT);
- 
- 		ret = perf_try_init_event(pmu, event);
- 		if (ret == -ENOENT && event->attr.type != type && !extended_type) {
-@@ -11982,27 +12218,21 @@ static struct pmu *perf_init_event(struct perf_event *event)
- 		}
- 
- 		if (ret)
--			pmu = ERR_PTR(ret);
-+			return ERR_PTR(ret);
- 
--		goto unlock;
-+		return pmu;
- 	}
- 
- 	list_for_each_entry_rcu(pmu, &pmus, entry, lockdep_is_held(&pmus_srcu)) {
- 		ret = perf_try_init_event(pmu, event);
- 		if (!ret)
--			goto unlock;
-+			return pmu;
- 
--		if (ret != -ENOENT) {
--			pmu = ERR_PTR(ret);
--			goto unlock;
--		}
-+		if (ret != -ENOENT)
-+			return ERR_PTR(ret);
- 	}
--fail:
--	pmu = ERR_PTR(-ENOENT);
--unlock:
--	srcu_read_unlock(&pmus_srcu, idx);
- 
--	return pmu;
-+	return ERR_PTR(-ENOENT);
- }
- 
- static void attach_sb_event(struct perf_event *event)
-@@ -12129,7 +12359,6 @@ perf_event_alloc(struct perf_event_attr *attr, int cpu,
- 		 void *context, int cgroup_fd)
- {
- 	struct pmu *pmu;
--	struct perf_event *event;
- 	struct hw_perf_event *hwc;
- 	long err = -EINVAL;
- 	int node;
-@@ -12144,8 +12373,8 @@ perf_event_alloc(struct perf_event_attr *attr, int cpu,
- 	}
- 
- 	node = (cpu >= 0) ? cpu_to_node(cpu) : -1;
--	event = kmem_cache_alloc_node(perf_event_cache, GFP_KERNEL | __GFP_ZERO,
--				      node);
-+	struct perf_event *event __free(__free_event) =
-+		kmem_cache_alloc_node(perf_event_cache, GFP_KERNEL | __GFP_ZERO, node);
- 	if (!event)
- 		return ERR_PTR(-ENOMEM);
- 
-@@ -12235,6 +12464,13 @@ perf_event_alloc(struct perf_event_attr *attr, int cpu,
- 
- 	perf_event__state_init(event);
- 
-+	/*
-+	 * Hold SRCU critical section around perf_init_event(), until returning
-+	 * the fully formed event put on pmu->events_list. This ensures that
-+	 * perf_pmu_unregister() will see any in-progress event creation that
-+	 * races.
-+	 */
-+	guard(srcu)(&pmus_srcu);
- 	pmu = NULL;
- 
- 	hwc = &event->hw;
-@@ -12252,51 +12488,43 @@ perf_event_alloc(struct perf_event_attr *attr, int cpu,
- 	 * See perf_output_read().
- 	 */
- 	if (has_inherit_and_sample_read(attr) && !(attr->sample_type & PERF_SAMPLE_TID))
--		goto err_ns;
-+		return ERR_PTR(-EINVAL);
- 
- 	if (!has_branch_stack(event))
- 		event->attr.branch_sample_type = 0;
- 
- 	pmu = perf_init_event(event);
--	if (IS_ERR(pmu)) {
--		err = PTR_ERR(pmu);
--		goto err_ns;
--	}
-+	if (IS_ERR(pmu))
-+		return (void*)pmu;
- 
- 	/*
- 	 * Disallow uncore-task events. Similarly, disallow uncore-cgroup
- 	 * events (they don't make sense as the cgroup will be different
- 	 * on other CPUs in the uncore mask).
- 	 */
--	if (pmu->task_ctx_nr == perf_invalid_context && (task || cgroup_fd != -1)) {
--		err = -EINVAL;
--		goto err_pmu;
--	}
-+	if (pmu->task_ctx_nr == perf_invalid_context && (task || cgroup_fd != -1))
-+		return ERR_PTR(-EINVAL);
- 
- 	if (event->attr.aux_output &&
--	    !(pmu->capabilities & PERF_PMU_CAP_AUX_OUTPUT)) {
--		err = -EOPNOTSUPP;
--		goto err_pmu;
--	}
-+	    !(pmu->capabilities & PERF_PMU_CAP_AUX_OUTPUT))
-+		return ERR_PTR(-EOPNOTSUPP);
- 
- 	if (cgroup_fd != -1) {
- 		err = perf_cgroup_connect(cgroup_fd, event, attr, group_leader);
- 		if (err)
--			goto err_pmu;
-+			return ERR_PTR(err);
- 	}
- 
- 	err = exclusive_event_init(event);
- 	if (err)
--		goto err_pmu;
-+		return ERR_PTR(err);
- 
- 	if (has_addr_filter(event)) {
- 		event->addr_filter_ranges = kcalloc(pmu->nr_addr_filters,
- 						    sizeof(struct perf_addr_filter_range),
- 						    GFP_KERNEL);
--		if (!event->addr_filter_ranges) {
--			err = -ENOMEM;
--			goto err_per_task;
--		}
-+		if (!event->addr_filter_ranges)
-+			return ERR_PTR(-ENOMEM);
- 
- 		/*
- 		 * Clone the parent's vma offsets: they are valid until exec()
-@@ -12320,42 +12548,22 @@ perf_event_alloc(struct perf_event_attr *attr, int cpu,
- 		if (event->attr.sample_type & PERF_SAMPLE_CALLCHAIN) {
- 			err = get_callchain_buffers(attr->sample_max_stack);
- 			if (err)
--				goto err_addr_filters;
-+				return ERR_PTR(err);
-+			event->attach_state |= PERF_ATTACH_CALLCHAIN;
- 		}
- 	}
- 
- 	err = security_perf_event_alloc(event);
- 	if (err)
--		goto err_callchain_buffer;
-+		return ERR_PTR(err);
- 
- 	/* symmetric to unaccount_event() in _free_event() */
- 	account_event(event);
- 
--	return event;
--
--err_callchain_buffer:
--	if (!event->parent) {
--		if (event->attr.sample_type & PERF_SAMPLE_CALLCHAIN)
--			put_callchain_buffers();
--	}
--err_addr_filters:
--	kfree(event->addr_filter_ranges);
-+	scoped_guard (spinlock, &pmu->events_lock)
-+		list_add(&event->pmu_list, &pmu->events);
- 
--err_per_task:
--	exclusive_event_destroy(event);
--
--err_pmu:
--	if (is_cgroup_event(event))
--		perf_detach_cgroup(event);
--	if (event->destroy)
--		event->destroy(event);
--	module_put(pmu->module);
--err_ns:
--	if (event->hw.target)
--		put_task_struct(event->hw.target);
--	call_rcu(&event->rcu_head, free_event_rcu);
--
--	return ERR_PTR(err);
-+	return_ptr(event);
- }
- 
- static int perf_copy_attr(struct perf_event_attr __user *uattr,
-@@ -12741,6 +12949,10 @@ SYSCALL_DEFINE5(perf_event_open,
- 		if (err)
- 			goto err_fd;
- 		group_leader = fd_file(group)->private_data;
-+		if (group_leader->state <= PERF_EVENT_STATE_REVOKED) {
-+			err = -ENODEV;
-+			goto err_group_fd;
-+		}
- 		if (flags & PERF_FLAG_FD_OUTPUT)
- 			output_event = group_leader;
- 		if (flags & PERF_FLAG_FD_NO_GROUP)
-@@ -13288,10 +13500,11 @@ static void sync_child_event(struct perf_event *child_event)
- }
- 
- static void
--perf_event_exit_event(struct perf_event *event, struct perf_event_context *ctx)
-+perf_event_exit_event(struct perf_event *event,
-+		      struct perf_event_context *ctx, bool revoke)
- {
- 	struct perf_event *parent_event = event->parent;
--	unsigned long detach_flags = 0;
-+	unsigned long detach_flags = DETACH_EXIT;
- 
- 	if (parent_event) {
- 		/*
-@@ -13306,16 +13519,14 @@ perf_event_exit_event(struct perf_event *event, struct perf_event_context *ctx)
- 		 * Do destroy all inherited groups, we don't care about those
- 		 * and being thorough is better.
- 		 */
--		detach_flags = DETACH_GROUP | DETACH_CHILD;
-+		detach_flags |= DETACH_GROUP | DETACH_CHILD;
- 		mutex_lock(&parent_event->child_mutex);
- 	}
- 
--	perf_remove_from_context(event, detach_flags);
-+	if (revoke)
-+		detach_flags |= DETACH_GROUP | DETACH_REVOKE;
- 
--	raw_spin_lock_irq(&ctx->lock);
--	if (event->state > PERF_EVENT_STATE_EXIT)
--		perf_event_set_state(event, PERF_EVENT_STATE_EXIT);
--	raw_spin_unlock_irq(&ctx->lock);
-+	perf_remove_from_context(event, detach_flags);
- 
- 	/*
- 	 * Child events can be freed.
-@@ -13391,7 +13602,7 @@ static void perf_event_exit_task_context(struct task_struct *child)
- 	perf_event_task(child, child_ctx, 0);
- 
- 	list_for_each_entry_safe(child_event, next, &child_ctx->event_list, event_entry)
--		perf_event_exit_event(child_event, child_ctx);
-+		perf_event_exit_event(child_event, child_ctx, false);
- 
- 	mutex_unlock(&child_ctx->mutex);
- 
-@@ -13581,6 +13792,9 @@ inherit_event(struct perf_event *parent_event,
- 	if (parent_event->parent)
- 		parent_event = parent_event->parent;
- 
-+	if (parent_event->state <= PERF_EVENT_STATE_REVOKED)
-+		return NULL;
-+
- 	child_event = perf_event_alloc(&parent_event->attr,
- 					   parent_event->cpu,
- 					   child,
--- 
-2.47.0
+Is this happening with Xe on these platforms? or i915 only?
 
+> Issue disappears after disabling RPG. Instead of fully disabling RPG I am
+> disabling it during active submissions i.e. during unpark.
+> For MTL and ARL RPG is already disabled permanently.
+
+uhm. Interesting. Why that is disabled on these platforms? perhaps we should be
+doing the same for all GuC enabled platforms?
+
+> 
+> Impact of doing this change should be performance improvement so kept for
+> all platform otherwise I will add platform check.
+
+it could cause power consumption and battery life regressions. Better to filter
+per platform.
+
+> 
+> This is the issue https://gitlab.freedesktop.org/drm/intel/issues/9413. Will
+> add it in commit message.
+
+Next time please include the relevant links in the commit msg.
+
+Thanks a lot for the info and for working on this,
+Rodrigo.
+
+> 
+> Regards,
+> Badal
+> 
+> > 
+> > > 
+> > > > therefore, disable it during workload execution.
+> > > 
+> > > ... and here.
+> > > 
+> > > > Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
+> > > > Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+> > > > ---
+> > > >   drivers/gpu/drm/i915/gt/intel_rc6.c       | 18 +++++++++++++++++-
+> > > >   drivers/gpu/drm/i915/gt/intel_rc6_types.h |  1 +
+> > > >   2 files changed, 18 insertions(+), 1 deletion(-)
+> > > > 
+> > > > diff --git a/drivers/gpu/drm/i915/gt/intel_rc6.c b/drivers/gpu/drm/i915/gt/intel_rc6.c
+> > > > index c864d101faf9..459394ab5258 100644
+> > > > --- a/drivers/gpu/drm/i915/gt/intel_rc6.c
+> > > > +++ b/drivers/gpu/drm/i915/gt/intel_rc6.c
+> > > > @@ -140,6 +140,7 @@ static void gen11_rc6_enable(struct intel_rc6 *rc6)
+> > > >   					      VDN_MFX_POWERGATE_ENABLE(i));
+> > > >   	}
+> > > > +	rc6->pg_enable = pg_enable;
+> > > 
+> > > this looks borderline racy, it's fine only because this function
+> > > is called during resume which normally runs in atomic context.
+> > > 
+> > > >   	intel_uncore_write_fw(uncore, GEN9_PG_ENABLE, pg_enable);
+> > > >   }
+> > > > @@ -572,8 +573,11 @@ static void __intel_rc6_disable(struct intel_rc6 *rc6)
+> > > >   	intel_guc_rc_disable(gt_to_guc(gt));
+> > > >   	intel_uncore_forcewake_get(uncore, FORCEWAKE_ALL);
+> > > > -	if (GRAPHICS_VER(i915) >= 9)
+> > > > +	if (GRAPHICS_VER(i915) >= 9) {
+> > > > +		rc6->pg_enable = 0;
+> > > >   		intel_uncore_write_fw(uncore, GEN9_PG_ENABLE, 0);
+> > > > +	}
+> > > > +
+> > > >   	intel_uncore_write_fw(uncore, GEN6_RC_CONTROL, 0);
+> > > >   	intel_uncore_write_fw(uncore, GEN6_RC_STATE, 0);
+> > > >   	intel_uncore_forcewake_put(uncore, FORCEWAKE_ALL);
+> > > > @@ -687,6 +691,15 @@ void intel_rc6_unpark(struct intel_rc6 *rc6)
+> > > >   	/* Restore HW timers for automatic RC6 entry while busy */
+> > > >   	intel_uncore_write_fw(uncore, GEN6_RC_CONTROL, rc6->ctl_enable);
+> > > > +
+> > > > +	/*
+> > > > +	 * Seeing render forcewake timeouts during active submissions so disable render PG
+> > > > +	 * while workloads are under execution.
+> > > 
+> > > Can you please improve this sentence? If I never new about the
+> > > issue I would be a bit confused.
+> > > 
+> > > > +	 * FIXME Remove this change once real cause of render force wake timeout is fixed
+> > > > +	 */
+> > > > +	if (rc6->pg_enable == GEN9_RENDER_PG_ENABLE)
+> > > 
+> > > is this supposed to be "pg_enable == GEN9_RENDER_PG_ENABLE" or
+> > > "pg_enable & GEN9_RENDER_PG_ENABLE" ?
+> > > 
+> > > Andi
+> 
