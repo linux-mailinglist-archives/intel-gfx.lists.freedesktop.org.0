@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C16B9ACA9B
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Oct 2024 14:53:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 07F539ACABE
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Oct 2024 15:09:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CFDE510E7CE;
-	Wed, 23 Oct 2024 12:53:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0265110E7D8;
+	Wed, 23 Oct 2024 13:09:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f5SWrEH2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jFmqYqwB";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3500310E7CC;
- Wed, 23 Oct 2024 12:53:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5534C10E160;
+ Wed, 23 Oct 2024 13:09:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729688032; x=1761224032;
+ t=1729688949; x=1761224949;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=s/ijLkvgmNSIDW3lP3xx7kywtJiOOd1nWwIXo6qDPpU=;
- b=f5SWrEH2Y1Y3XwqBtWiKZSo9ksjH17JI0pYI+uHHmDXzbAyWhUpDX69P
- JyIIHvuOC/Ov+N6P/h/FvroRcUGupCre4qNmhBcmJOcdG1XFoSAPcD+fO
- Iy/tOmnDTlxmiyOSCW0p307xJMG7ZFC2UqfD0Y5UR7W7b2SNW7gfXFMh1
- Ndi6KIRSp6xGkMk0vDC94ULfu+LXVkecjWsKwvTmpQ3K3SHE6TCafOl4k
- 2mbGyFIMRrE6XZLu5XomGdT/U/vf42BAgibqoI7yviLdtQeMgM7WGaw2S
- RyOhEwtOqkP08Ldd5XOn01vHt7aysEas/Lay0UNbMs45U7IdYwbvqqBjk g==;
-X-CSE-ConnectionGUID: MasKS5S+S6aDQMDa9riWzg==
-X-CSE-MsgGUID: 7spdOK+mSuy2gwmfzr9dwQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="39820796"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="39820796"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2024 05:53:52 -0700
-X-CSE-ConnectionGUID: FTXxJjn7SVSm7c7cxdb7qg==
-X-CSE-MsgGUID: 3LglOoHNTba2rgHa1ro+ZA==
+ bh=00up3AruYVTsbu5yC0IuIPnOuh5NPyis+vwygtQ8SCY=;
+ b=jFmqYqwB+sney5HFYx0o7NU7wbs25DI/Zil2xj/ETMBrb2dt/L3GZNhi
+ wduWc5VKOKgwkOV1q9JIxBbFSfBeNyCsFTZaomraDTX3dD5cAS5/0mtIl
+ UP9mQyNJxOOfFIkkha/WAy3JMGOznuumUpzFWxWUrOmXlp00M6N4rYryz
+ G+ipzabSdkV1PRr+LcspxEsLzbwRyxQkSME+3OSNkW6nfXmnO7DTX/NAi
+ pcCgB+J95a3EM2OBk2jUG6hvIPMeJvEf5uCxpuHiW6+cDSopIPRHrrBrg
+ wYuE1Vbx9ZFD31mC4fs499JBN8IgNjMqQuM4TxHz1Pl6HxKG+aAU9de58 g==;
+X-CSE-ConnectionGUID: Od6aqJauQw6HKsyZkEpG0Q==
+X-CSE-MsgGUID: dDFC4n0KQlqJ5F8Hx9x6oQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11234"; a="29166738"
+X-IronPort-AV: E=Sophos;i="6.11,226,1725346800"; d="scan'208";a="29166738"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2024 06:09:09 -0700
+X-CSE-ConnectionGUID: FTOiETPrQ2CpJ6GZJlu7Jg==
+X-CSE-MsgGUID: G/Br6gsORBuUb2U8m9xN/Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,226,1725346800"; d="scan'208";a="79859858"
+X-IronPort-AV: E=Sophos;i="6.11,226,1725346800"; d="scan'208";a="80270535"
 Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.84])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2024 05:53:48 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Uros Bizjak <ubizjak@gmail.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Cc: Uros Bizjak <ubizjak@gmail.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>
-Subject: Re: [PATCH] drm/i915/active: Use try_cmpxchg() in active_fence_cb()
-In-Reply-To: <20241003084533.871524-1-ubizjak@gmail.com>
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2024 06:09:06 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ lucas.demarchi@intel.com, maarten.lankhorst@linux.intel.com
+Subject: Re: [PATCH v4 08/15] drm/i915/display: remove the display platform
+ enum as unnecessary
+In-Reply-To: <ZxfltspjmnJXNJd7@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241003084533.871524-1-ubizjak@gmail.com>
-Date: Wed, 23 Oct 2024 15:53:46 +0300
-Message-ID: <87ttd3t1yd.fsf@intel.com>
+References: <cover.1729518793.git.jani.nikula@intel.com>
+ <eeaa31b20670975479b8226d770f1559d966ef32.1729518793.git.jani.nikula@intel.com>
+ <ZxfltspjmnJXNJd7@intel.com>
+Date: Wed, 23 Oct 2024 16:09:03 +0300
+Message-ID: <87r087t18w.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -72,48 +72,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 03 Oct 2024, Uros Bizjak <ubizjak@gmail.com> wrote:
-> Replace this pattern in active_fence_cb():
+On Tue, 22 Oct 2024, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> On Mon, Oct 21, 2024 at 04:54:09PM +0300, Jani Nikula wrote:
+>> @@ -1466,7 +1462,7 @@ find_subplatform_desc(struct pci_dev *pdev, const struct platform_desc *desc)
+>>  	const struct subplatform_desc *sp;
+>>  	const u16 *id;
+>>  
+>> -	for (sp = desc->subplatforms; sp && sp->subplatform; sp++)
+>> +	for (sp = desc->subplatforms; sp && sp->pciidlist; sp++)
 >
->     cmpxchg(*ptr, old, new) == old
->
-> ... with the simpler and faster:
->
->     try_cmpxchg(*ptr, &old, new)
->
-> The x86 CMPXCHG instruction returns success in the ZF flag,
-> so this change saves a compare after the CMPXCHG.
->
-> Signed-off-by: Uros Bizjak <ubizjak@gmail.com>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Tvrtko Ursulin <tursulin@ursulin.net>
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: Simona Vetter <simona@ffwll.ch>
+> I honestly got confused on this... should it be a separate patch?
 
-Pushed to drm-intel-next, thanks for the patch.
+Well, I'm removing ->subplatform so obviously I have to check for the
+end condition using something else. I can make it a separate patch if
+you want.
 
 BR,
 Jani.
 
-> ---
->  drivers/gpu/drm/i915/i915_active.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
-> index 5ec293011d99..35319228bc51 100644
-> --- a/drivers/gpu/drm/i915/i915_active.c
-> +++ b/drivers/gpu/drm/i915/i915_active.c
-> @@ -212,7 +212,7 @@ active_fence_cb(struct dma_fence *fence, struct dma_fence_cb *cb)
->  	struct i915_active_fence *active =
->  		container_of(cb, typeof(*active), cb);
->  
-> -	return cmpxchg(__active_fence_slot(active), fence, NULL) == fence;
-> +	return try_cmpxchg(__active_fence_slot(active), &fence, NULL);
->  }
->  
->  static void
 
 -- 
 Jani Nikula, Intel
