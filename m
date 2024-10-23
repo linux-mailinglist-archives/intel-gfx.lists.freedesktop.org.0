@@ -2,52 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDF079ABEB8
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Oct 2024 08:28:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 92EFF9ABF42
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Oct 2024 08:50:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2843510E366;
-	Wed, 23 Oct 2024 06:28:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B74610E748;
+	Wed, 23 Oct 2024 06:50:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JaFZBu+8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MiSVXSNl";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B69D10E366
- for <intel-gfx@lists.freedesktop.org>; Wed, 23 Oct 2024 06:28:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43D2210E746;
+ Wed, 23 Oct 2024 06:50:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729664930; x=1761200930;
+ t=1729666242; x=1761202242;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=9V+Ebh4XR8AukGnk0MAauLyrgwu9qdrZAh/KmMJv5Yg=;
- b=JaFZBu+81pW0GHjdb+JDccFtHfdpThPKotZglRPBZditKLaAbxu29Hiw
- otXDJUBubFAka0N3YrKSCZDvaZtHx3Dz0g+Ks7WbEQPaj0CKmyqNwO8X8
- dqUD/VFFNRFaU7JjYbYHHvNcduUWRpK+8dYlikt2lNjQIk5ow1+2Ye96R
- IbTHTiVGvAEE0piR6wVBVggRrQV8Z5Kqvvm6DAnJATDRjwnavzK0cIFgE
- BOCmOqxf3PjPifFOpvja27dx7oMuvROBvfaS7Lho6vlBZCsnkbs39Sqh4
- k1LBprtQL5gznz+0UINbJiS61jjixcQdZRehVBPMQd8BYGgeTdI9V6EnJ A==;
-X-CSE-ConnectionGUID: uH71VFE7TrKlD9+B6dhpDg==
-X-CSE-MsgGUID: OPQXtBROT7abKnxE8gWQcQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="29171844"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="29171844"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2024 23:28:49 -0700
-X-CSE-ConnectionGUID: 30USmzsmSCaI7HjPJUicFg==
-X-CSE-MsgGUID: 08ZdmueJQN+tMQorm1oK+g==
+ bh=nT7NuL1R0ATodb3Uto4m8+MP/HiiXGiniyzNVtyMvTc=;
+ b=MiSVXSNlx8tbTEPfaq1EryhJhzVGfgOMeMKTVbAgRlRIUW6b5iZ2lEbU
+ 6GbreqTzcFUZtnvXZoy0t1/xlJE05pIUcRquE/csaHc02cdyMFIaUo1Pe
+ ZVkv9vkWu0BmwBEKYNC59ID218qQTAFeXe85lrs7mYf4rcLAHsDE1uA5q
+ p/n/9TM0xAN3XDdwoX/RGV9stC9Kcmg21fHHj052sdLZCmx/qjvO/o4Uf
+ Cfq8vlNAtNSXrWWIH5koyhxXHXORmuFrVjkttkx2gDdq7ji9/9xIAC9t/
+ Ut8I/v8QvF6AlpgIu7omw7mvoRv4837Iz/rEtuavlOlT9LoUDLEI5R7vp g==;
+X-CSE-ConnectionGUID: LgLQXLYrR7K8OCJWy083zg==
+X-CSE-MsgGUID: lW0pcH42Q3ysGhvjkGQGeQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11233"; a="32097453"
+X-IronPort-AV: E=Sophos;i="6.11,225,1725346800"; d="scan'208";a="32097453"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2024 23:50:42 -0700
+X-CSE-ConnectionGUID: sLM26XKqTg6SCzYhhmfBrA==
+X-CSE-MsgGUID: i4S+aO6pQe+AtQZG6stXMQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,225,1725346800"; d="scan'208";a="84074338"
-Received: from nitin-super-server.iind.intel.com ([10.145.169.70])
- by fmviesa003.fm.intel.com with ESMTP; 22 Oct 2024 23:28:47 -0700
-From: Nitin Gote <nitin.r.gote@intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,225,1725346800"; d="scan'208";a="84691474"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2024 23:50:41 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: andi.shyti@intel.com, chris.p.wilson@intel.com, nirmoy.das@intel.com,
- Nitin Gote <nitin.r.gote@intel.com>
-Subject: [PATCH v1] drm/i915/gt: Use ENGINE_TRACE for tracing.
-Date: Wed, 23 Oct 2024 12:18:29 +0530
-Message-Id: <20241023064829.3048622-1-nitin.r.gote@intel.com>
-X-Mailer: git-send-email 2.25.1
+Cc: intel-xe@lists.freedesktop.org,
+	suraj.kandpal@intel.com
+Subject: [PATCH 00/16] Add support for 3 VDSC engines 12 slices
+Date: Wed, 23 Oct 2024 12:22:41 +0530
+Message-ID: <20241023065257.190035-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -65,44 +66,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Instead of drm_err(), use ENGINE_TRACE for tracing.
+For BMG 3 VDSC engines are supported and each pipe can then support
+3 slices. For Ultra joiner cases for modes like 8k@120 Hz we require
+ultrajoiner and 3 x 4= 12 slices.
+Add support for 3 VDSC engines and 12 DSC slices. Along with this
+Pixel replication and Odd pixel considerartions are also required.
 
-Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
----
- .../gpu/drm/i915/gt/intel_ring_submission.c   | 20 +++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
+Rev2: Rebase
+Rev3:
+-Add patch to account for pixel replication in pipe_src.
+-Fix kernel test bot warning.
+-Minor refactoring.
+Rev4:
+-Address review comments from last version.
+-Add BW consideration with pixel replication
+-Split Odd pixel handling in separate patches.
+Rev 5:
+-Use num_streams instead of dsc_split.
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-index 32f3b52a183a..74d6a2b703ac 100644
---- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-@@ -282,16 +282,16 @@ static int xcs_resume(struct intel_engine_cs *engine)
- 	return 0;
- 
- err:
--	drm_err(&engine->i915->drm,
--		"%s initialization failed; "
--		"ctl %08x (valid? %d) head %08x [%08x] tail %08x [%08x] start %08x [expected %08x]\n",
--		engine->name,
--		ENGINE_READ(engine, RING_CTL),
--		ENGINE_READ(engine, RING_CTL) & RING_VALID,
--		ENGINE_READ(engine, RING_HEAD), ring->head,
--		ENGINE_READ(engine, RING_TAIL), ring->tail,
--		ENGINE_READ(engine, RING_START),
--		i915_ggtt_offset(ring->vma));
-+	ENGINE_TRACE(engine,
-+		     "initialization failed; "
-+		     "ctl %08x (valid? %d) head %08x [%08x] tail %08x [%08x] start %08x [expected %08x]\n",
-+		     ENGINE_READ(engine, RING_CTL),
-+		     ENGINE_READ(engine, RING_CTL) & RING_VALID,
-+		     ENGINE_READ(engine, RING_HEAD), ring->head,
-+		     ENGINE_READ(engine, RING_TAIL), ring->tail,
-+		     ENGINE_READ(engine, RING_START),
-+		     i915_ggtt_offset(ring->vma));
-+	GEM_TRACE_DUMP();
- 	return -EIO;
- }
- 
+Ankit Nautiyal (16):
+  drm/i915/dp: Update Comment for Valid DSC Slices per Line
+  drm/i915/display: Prepare for dsc 3 stream splitter
+  drm/i915/vdsc: Use VDSC0/VDSC1 for LEFT/RIGHT VDSC engine
+  drm/i915/vdsc: Introduce 3rd VDSC engine VDSC2
+  drm/i915/vdsc: Add support for read/write PPS for 3rd DSC engine
+  drm/i915/dp: Ensure hactive is divisible by slice count
+  drm/i915/dp: Enable 3 DSC engines for 12 slices
+  drm/i915/display: Add macro HAS_PIXEL_REPLICATION
+  drm/i915/display: Add support for DSC pixel replication
+  drm/i915/dp_mst: Account for pixel replication for MST overhead with
+    DSC
+  drm/i915/dp: Account for pixel replication for BW computation with DSC
+  drm/i915/display: Account for pixel replication in pipe_src
+  drm/i915/dp: Enable DSC pixel replication
+  drm/i915/dsc: Introduce odd pixel removal
+  drm/i915/display: Adjust Pipe SRC Width for Odd Pixels
+  drm/i915/dp: Add Check for Odd Pixel Requirement
+
+ drivers/gpu/drm/i915/display/icl_dsi.c        |   4 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |  36 +++++-
+ .../drm/i915/display/intel_display_device.h   |   3 +
+ .../drm/i915/display/intel_display_types.h    |   4 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       |  89 +++++++++++++--
+ drivers/gpu/drm/i915/display/intel_dp.h       |   2 +
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |  20 +++-
+ drivers/gpu/drm/i915/display/intel_vdsc.c     | 105 ++++++++++++++++--
+ drivers/gpu/drm/i915/display/intel_vdsc.h     |   9 ++
+ .../gpu/drm/i915/display/intel_vdsc_regs.h    |  22 +++-
+ 10 files changed, 267 insertions(+), 27 deletions(-)
+
 -- 
-2.25.1
+2.45.2
 
