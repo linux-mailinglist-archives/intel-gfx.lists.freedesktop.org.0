@@ -2,164 +2,164 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DFED9AD263
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Oct 2024 19:20:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 718F89AD2CD
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Oct 2024 19:26:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0348010E848;
-	Wed, 23 Oct 2024 17:20:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 77FC110E377;
+	Wed, 23 Oct 2024 17:26:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EAv0xjdn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D53JbwN5";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 59FC510E382;
- Wed, 23 Oct 2024 17:19:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F24B810E1E6;
+ Wed, 23 Oct 2024 17:26:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729703998; x=1761239998;
+ t=1729704404; x=1761240404;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=y6La+v4YAdJwRX9Ch0lq9uNsLeitodSy//Qohs6hM7U=;
- b=EAv0xjdnLAHv8chQN0u6DCDwditgH6DGEdPqPueqD9OCSeuW4XF8gV45
- GeCPcXTfIaXknjdYvGRn/VG/8byMgLQs4ZkHwEFW9yS4RtugFKbgRRJtG
- LpShDyoZ8LAHZxo5x2IonYFcGW6eYFXEWk8Tj4MVcIh3boOmDbbNOHxgK
- A7HMKIj/OP5rFF7O4IWTGOT7w/GGgEK0fz3Zl65DtHzZVRLs6PfBuVEIN
- UTAaTBeO8l/6LqsehawSKtI0ZgQV7ZN5Z9fzkisWvw7cIg3l22Oe87OT4
- wV9DU1GSmoSsl++2zR/azfynpQdq8bPTtPwdPQ0dONJy1eCYlPdqPRvOl w==;
-X-CSE-ConnectionGUID: gXtCieAaRLSmskLieMaAYA==
-X-CSE-MsgGUID: BhBDXF9YQFmQJ3lEKVguBg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="29174742"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="29174742"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2024 10:19:58 -0700
-X-CSE-ConnectionGUID: d395UHBaTlCNlDOKGqV89A==
-X-CSE-MsgGUID: 7l8dl/jXSaumrkHyMDgllw==
+ bh=kWZJyhE5H54dHzsbKWQEUcWEeFTUdE8O+KhDjqOd9Bo=;
+ b=D53JbwN5xMNXyyYlYnDuh1IWXR5ty5z1Ns0mGzlThymNc8Ye3quNYX5z
+ ayXkzLgZX4VV869Rk65krs2OrfZve9ZohU6pjNToIJobLWgv3HFdJvA9R
+ tHm+QjL4n9ye8zD9Y6XPtL9pYHU/uXlpgQZDjDfVQ8+bG+EPLw1zyVlnb
+ 3E0yyO6tccpC5ybbCobKVGATRBwAqn5nNctDrNK9uHVoBcdTAK2RTMsx+
+ /ZJH8dsOjrI0R2452v1CURENTuR9/2mMpGOqdTUuvGs6zhWQXBwENSgBG
+ puvOmPkkECYhEhBYtJw1xUscADC7TtTz2thSJwSgYyjZ9Fwaw35IAeHcI Q==;
+X-CSE-ConnectionGUID: SdUfyLueTNW/6b8h5p6ytA==
+X-CSE-MsgGUID: 7Z+BgxOqRS2ockJaTL7wbA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11234"; a="40677742"
+X-IronPort-AV: E=Sophos;i="6.11,226,1725346800"; d="scan'208";a="40677742"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2024 10:26:42 -0700
+X-CSE-ConnectionGUID: OAz+eZoaR72WuwWUcxuWjg==
+X-CSE-MsgGUID: gJyqQZAYT0ijOxv2pgXtaA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,226,1725346800"; d="scan'208";a="85408150"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orviesa004.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 23 Oct 2024 10:19:59 -0700
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.11,226,1725346800"; d="scan'208";a="81121156"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orviesa008.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 23 Oct 2024 10:26:42 -0700
+Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Wed, 23 Oct 2024 10:19:57 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ 15.1.2507.39; Wed, 23 Oct 2024 10:26:41 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Wed, 23 Oct 2024 10:19:57 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.169)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Wed, 23 Oct 2024 10:26:41 -0700
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.46) by
+ edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Wed, 23 Oct 2024 10:19:57 -0700
+ 15.1.2507.39; Wed, 23 Oct 2024 10:26:40 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ndaGfLPk7grJjGHxWvLA10/nH6G1SM39aYOLwJES01k/4ilPRWnVl9VSuckMkrVsRaJOayGhA8b2uY+nxizf2+mvek/RZrRnGwmBxKgMnbrSanGndkH1fJLw+EdbxbcVPYr41JrWptQu7GXTFAdVqKtYOrP+Uqwgbbi+mR0/+lafJx8zz9kLCryIL/4kzBG1JjxJ/2yuCVfxZfpRdAQbzCgAzkERvnT4QmKqZl3L9Qaw7WNJgxIiH9bM/bXcWoWfYHzGLIPEJYoklPlVyOR7lFpp45UzGoATkOc0udbW5CLQf5wnqnn4F3WyDZdU0pp810Fg1XeOgJkkB5wxtLarhQ==
+ b=jgkro3ANNICMi92F000wZB0wD3b72TPgT7RdP5KrKjh7Jha66vxczEaB0E6R0e3QCZ2IZ6VGQqjJH/W83IWQrITP/NcUPZohYQQ0acTQdupvuS0ghdfjhB1OvoufbeaHeECf2ipm0koEl5+DvFvpF2mmJFuT3LTtCZMuaXGH/TgLy2Cqw2WwI9FgCVupWdeF6g7qVJ5sFLG5n9uBdnvUbFJ6kTxv1faSks9N+5Qo3niogokKTzc8/sFCesAagRjoSTaKuONiqj3BcCV8+xuYA6QID42Jt1JYfPF+f9Vc0NQzWkHamAuPr4jmrTWZFR9dOjJAQ0Wnud8rDuCIKBmXDw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DSGNTfjHHLtap139RMF1ufVUG75iU9ZDsV0j5h2WlIM=;
- b=RgmU7bXDvMmD0nhWIDqgtRdq3Z7OPaH1nLyRiNTpxkUGQOt5sv3IPkpTAP8XGZXfcTXf/+bzC3c+npPeYYS55NVpYJ8Ro0+sm4dmzpR1A6upZHXGC396pZ8UsWtSFgkUmb6u1vP1pmQvyt60ITtG8ogQ9KZTiq8TYrKCzwQaUx4afYq8ZWYhg29MtupCH11nggbF0v2CKDR4d+XmyqwLsMbn018ziyCxY4iTqBoO8fN/UcNO0atWuKut3RHxRE2hBsJ3VaNWnTXTaFOJgwKFI7G9N7DTCf+ulrUCV62jss/cFf4CDBCwAv2a2s2zgQKl5EB/1aVQNs3Vog71g30wkQ==
+ bh=WBdd/LCDAzGFhaWQK0MBBB9WIjy8FC4/CIX36HWtTQw=;
+ b=akSXkzylvCb+pmyYLjxNGwxe2GkwqHTG7j8T4xbzcjGrErDKeM6Bp799Baj95CaUv6w4t08K0k1CXioaLLKPKUoF0CjVtG22+s31UYW+tV/CjTg/p18kfjzL2x6OclJZX2Avp74378I9pgLp8adJfqNIznlZk1DJbZNZIP52MrQhpcH1K9V4nbmhyFxTucCUu1Hdr+qJhAOXntGz2D45/tiqWqnIEn9dXCx3KH3+ludBqC8TRT8u2aHDArJ2kPEJryPclQmBqxP4SVazoPfuzFST8kb1dg9Q6KgQp0VxNfSppetYNSJU/CGaoGYRX8hLV6QqXGPIgO3mwQCt3Gee2g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from BYAPR11MB2854.namprd11.prod.outlook.com (2603:10b6:a02:c9::12)
- by PH7PR11MB7429.namprd11.prod.outlook.com (2603:10b6:510:270::7)
- with Microsoft SMTP Server (version=TLS1_2,
+ by DM4PR11MB5325.namprd11.prod.outlook.com (2603:10b6:5:390::19) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.18; Wed, 23 Oct
- 2024 17:19:54 +0000
+ 2024 17:26:37 +0000
 Received: from BYAPR11MB2854.namprd11.prod.outlook.com
  ([fe80::8a98:4745:7147:ed42]) by BYAPR11MB2854.namprd11.prod.outlook.com
  ([fe80::8a98:4745:7147:ed42%7]) with mapi id 15.20.8069.020; Wed, 23 Oct 2024
- 17:19:54 +0000
-Date: Wed, 23 Oct 2024 13:19:49 -0400
+ 17:26:35 +0000
+Date: Wed, 23 Oct 2024 13:26:32 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
 CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 09/11] drm/i915/ips: convert to struct intel_display
-Message-ID: <ZxkwNXTVSgUkzVBJ@intel.com>
+Subject: Re: [PATCH 10/11] drm/i915/dsi: convert to struct intel_display
+Message-ID: <ZxkxyDRw-7kveLPA@intel.com>
 References: <cover.1729612605.git.jani.nikula@intel.com>
- <2733f533be0729b15720a432a4fdcd77b6cb9dc8.1729612605.git.jani.nikula@intel.com>
+ <5385635d9c8b83bad7b47c0832cd992c8387899c.1729612605.git.jani.nikula@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <2733f533be0729b15720a432a4fdcd77b6cb9dc8.1729612605.git.jani.nikula@intel.com>
-X-ClientProxiedBy: MW4PR03CA0154.namprd03.prod.outlook.com
- (2603:10b6:303:8d::9) To BYAPR11MB2854.namprd11.prod.outlook.com
+In-Reply-To: <5385635d9c8b83bad7b47c0832cd992c8387899c.1729612605.git.jani.nikula@intel.com>
+X-ClientProxiedBy: MW4PR03CA0112.namprd03.prod.outlook.com
+ (2603:10b6:303:b7::27) To BYAPR11MB2854.namprd11.prod.outlook.com
  (2603:10b6:a02:c9::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BYAPR11MB2854:EE_|PH7PR11MB7429:EE_
-X-MS-Office365-Filtering-Correlation-Id: 05afa05e-c8be-46fa-eafb-08dcf386e8d9
+X-MS-TrafficTypeDiagnostic: BYAPR11MB2854:EE_|DM4PR11MB5325:EE_
+X-MS-Office365-Filtering-Correlation-Id: 16741502-d456-4ea9-b297-08dcf387d84c
 X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?7S2t4o6q70kTimAvS1k5uFpvCBFmjk/Nh4bnfgo97g1XlrupN7NiytIJgq/c?=
- =?us-ascii?Q?KXDzYgVxpk3aAQvrsQ9CvyNciwdhXaenyQaqm+0TaThDO8h5KmO2X5klPkcq?=
- =?us-ascii?Q?y7zkI9dSebJ7c8IggsusWNx7pXnMfdEpy0gtKBSsf6ugccXvmVQ2bMKbE2Z1?=
- =?us-ascii?Q?9G3AKCthdiEbe/ffamZ3DMlqjAa2vKC1UxWL8cqkXlsaA7jvyd7+ECDYfp7z?=
- =?us-ascii?Q?uqgLQS3vNV5OIa0TOBdKEYYAPzRibZ64s967gjAmx2XddwyPC8SzFfBLjwZG?=
- =?us-ascii?Q?krQpxz9BfNnSWfpBTzJtnYCAB3b2f0Q8XAqOhY8jOqep/Iwip2RLfJoNdF5Y?=
- =?us-ascii?Q?QHcq+GHfup69brpzvs2+6s3nB/mcfU5JQvw6oTUh7/eEdkVMnlqBQsdY4ENg?=
- =?us-ascii?Q?c/mRnWmvFG+qQS8B5NoTriwkYpjKSq15MKqq6pLoPSOnKr7K7Ri3Mlt4rmcB?=
- =?us-ascii?Q?s7RsEPb1B43w+N2lhbi1I0LAxqKGeAA0MT6szkKE5WCP0NTlM2b6CEqPiEaQ?=
- =?us-ascii?Q?8N/y2XbhsLFYTvP9f+Sm+WXktkAqdgU4tqWw5PWP/UN/3m9KZO3HiTH6C2PS?=
- =?us-ascii?Q?7zGdGkP8/cFKTUDtO9jJbRYS2nm7aNnFTME/aK7BBLnkX3CES/Upstwgo3np?=
- =?us-ascii?Q?RIKzjABFljynW75BjQa8KBrWEy9oC1dkNzTF1qm768marN72VqEeGF4la5xo?=
- =?us-ascii?Q?7KHshKHs7BT4KvkYs1JEUaU6KhMIOQ9sSdEiKo30m2JDRH7W0oKvgCeVqXsX?=
- =?us-ascii?Q?lxGVfN6HpCmBCFnEzWybFbxb9xwRI17sf4oBbYycA4L1ypa+adYtQi/5WqQx?=
- =?us-ascii?Q?hwIjSn90170c3LbxDu40I0oQ+nxz/Lbz8ypVLc6TDsjkdLFITPevMpqJHr8y?=
- =?us-ascii?Q?QbkVAYasiFbfezVMnu5I7xcY8qzooHcdCDaJdFDMua8UELSOPFC20SQIO6ZW?=
- =?us-ascii?Q?tSmYV1iHc41eFjRslOzQFFdfKA+9ByEDnImgm3BDEyyGzVjYBGCPXOucTY9Q?=
- =?us-ascii?Q?LimFLk55U2pbhrtGC1eDcwptZgym5OcDXWWCg50Lu7+hFvmu7PHUtUAi8IJ/?=
- =?us-ascii?Q?TSglPLQyYhiF4z56gRqNu3raOggHrw3dVUcFdWwqRsUJIEBLD1OfHpAefjtu?=
- =?us-ascii?Q?Z8GV2c3pU0m+vNfzhIsM5OfAL9h1if9jjD84AzScCyDAwDlnvpbdfDF+5Twy?=
- =?us-ascii?Q?QJSw1lYKFOAR/ntaEhOw32CrGYoV7k3Uaug64BAadNV9bugK496/4OL3ptVk?=
- =?us-ascii?Q?XliDIMeO40ZLs08qD+XeIpkSw7mLdy8i0tGgM5FgJMx3VFXjh8BW+ZVGIGB/?=
- =?us-ascii?Q?WmDDKf2iCproWGDrkpF2Gae7?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?qf+vlhxBl5qOGxvUQUWc0snzmpjoOHRloJaqnWT0lf9y+lg1RNrpKhI7pwx+?=
+ =?us-ascii?Q?BMonEjb1kOXZChuCecvKxevz/BWzuDRVfMUn9xRdzFhvMlxUmKTli7PJqit/?=
+ =?us-ascii?Q?M/mrmnbHGp8cK9ADn4z986usZY0Ey/evY0Hd4DfDJvfAfrYCaEAzzlUYwrdy?=
+ =?us-ascii?Q?NuJ00brNhiekn99Tn3g3xO9TKzDlAqInXEjmE8BbvVvFD1OcFNLvuo5cykDG?=
+ =?us-ascii?Q?S+nCb3WC8S3uFuItRqWzuWXYhmHrKax7EruPt29+OdiurJ+cLqlVIlIpwCT6?=
+ =?us-ascii?Q?VtfIzHWsoNNQ+Rb2gIv7CMYqyfgsC8mnK3MlMmZ2LHlTwERz2Q/7wUxBOANn?=
+ =?us-ascii?Q?yp3AfCys1+dI7b9TdoXmvu7SBkJvGzKp5/kGJVsfTcuOn7VoyxIK7cJtTE5q?=
+ =?us-ascii?Q?so0t4n39+7SDjjr3JUG7CSHw5V1clC+4faYRYo+tRsbtXnpXF6MRqubv4Q6J?=
+ =?us-ascii?Q?JyvavXoboNB6InuHsFfDYUjJGce5X1GpbDOOwQ2ejSr0/C3Z7rkuGHRsHFrz?=
+ =?us-ascii?Q?ubXUfaE44uHBJCFt2/ZE7ipAv7TKHrSWrRzKIZB1FDrdF0HN8JOmleslEyqk?=
+ =?us-ascii?Q?G95+S34B+IQJ554EU2r7fPyMCHgd6oNmX1bnAKIPFezBgC/dVwcfgyFneh59?=
+ =?us-ascii?Q?+v4R3C+FyMLN0DEunICtG6Bx7XJtyzaAekgz7SnPO8N+L22+8pGuOGo/CYgc?=
+ =?us-ascii?Q?Yu2KHY4QuAnOx782Y8gst6qUfbYY2swVxV6RPsUJ06b/BE2Te/gRIqTIYj4x?=
+ =?us-ascii?Q?FVK/3w4AC+XTmRnJ9AQSeVXAkLGmhyNDqLH+CWGwxVOUCep0vUJDO8ogeB+7?=
+ =?us-ascii?Q?/AkwmIDCHFWShXZum6jFJo2+MElspzpXi8BfNT7C1hZRlL3UTrt/7L5SmrHT?=
+ =?us-ascii?Q?dJPbr6LkUYzdN4XX47JJWOc6qjUBeDD9GmNGWn7k83LqHmeWUkNuzOG7ty1c?=
+ =?us-ascii?Q?PJiIFQ2+1YOS6CXagDPZqW9nR6r+ic9mX4KpreM3GhguImgVipaabfOox41B?=
+ =?us-ascii?Q?tvn5hT5LzWQEuyCjdfIybw7t4eHNxv00Iam2pGx8ZvK24IizVkk51LXbpe6m?=
+ =?us-ascii?Q?MapMSGzz2pgEziVqbt2v9WP7otn/ogMG98/mjn1qd4EcGkzF8Z+vMI0L5GpQ?=
+ =?us-ascii?Q?OZ0QHzOMIWiQu4O0o4uxE5asXNWNtuRit+EFG7EpcQEXs75ag3lB2q4q/goQ?=
+ =?us-ascii?Q?WcLb6phctOl7ndNkSL1Oy3Ghoybm3273obS5kDTOJGFU0zsJNm2yDDqfI3Cp?=
+ =?us-ascii?Q?y/VafoBNtwvDmHqJG7xvJu0Wa4C0qNOwPemLKd4FlCIUEvFaT/RDRg3ELvgX?=
+ =?us-ascii?Q?Dl1YbKrDGG/sWZlxdDmfy1SS?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:BYAPR11MB2854.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?owFBPvRK2YrqA7nIUIgAI29JS/lUDQPmIMhg8lRZLAOE1y+v7IqHVz6T7bcC?=
- =?us-ascii?Q?g3YECd751FI0k5lhEEIkmRX7raeYVFvH+iIw/sBJzn3X9GCtCBwDj/jNqzqt?=
- =?us-ascii?Q?ikV2loboflCqmGplXXkIhNPXjyRu27r39JCfyy+EZicxLg21Fk7zKK2W3y8I?=
- =?us-ascii?Q?7Grg9vTZfS3dEsT+hkH6gaaY4pJhCxvGvmLVS9Y3XSfFYOPUKIxQKFr6VjOZ?=
- =?us-ascii?Q?eFTQPsNFFNN8jsQUCSvHhjNkC1sTP+Fi1APbTxoQulCYDMBf8weICpjjvRqi?=
- =?us-ascii?Q?3Ut1LKzhqLDG+an/GcRFuiDz+P3N6Vuv+FYvAbblk3492HYlTkdB/IQbwxSz?=
- =?us-ascii?Q?pOgz/lZcpGrx/GXr76I1YGdxDgCGDtRZtxpd/pKgLC+jPvO//gs7JRQHmBB4?=
- =?us-ascii?Q?fcAPXFhIBCUtFXRSJWY+dPbn0hvoTVLI+VNfMaOpcYNagTwdzzOnp9r0221d?=
- =?us-ascii?Q?wT18nDHK0jkfcpGwuN4eIJcjZLGoWbft8zu4kPAOap64bbJcNGO0j2AZ/4W6?=
- =?us-ascii?Q?gGHdIhZHeDX74JSD8oJwJLHMCiT6hLtsbW+swRo6BMa4n4tWLrtCxvGaFKWG?=
- =?us-ascii?Q?7kd2j7HMoERxDtg5Q5kPXTp6bhz5v6SbNviLF/113LPdVVsLFCC7xWPohpSH?=
- =?us-ascii?Q?9H3CIiFaFy2c3qugnlbRPATnLl8c/kDcKXZHNX02cMgcQeb3IaGihmhCRWn5?=
- =?us-ascii?Q?zli1J3Jap3lWdPZj5WI2xaC5xyGL1xQioD3W6zaQnA2zFpKZWO1ZvBbswDHc?=
- =?us-ascii?Q?TqENCKxW2b0xIQiu1NueJu4BbZ7QtykYe36U+G+d76ANauTe7yWhhp7/9aZW?=
- =?us-ascii?Q?S8fIrnq4W+YN6/tzCpc4n+agArNYVt0tANkIGDftXPqvzvwFj+AKP35/G74y?=
- =?us-ascii?Q?L+4WxCbH4dDnq5k7m7PKgzutydMCIC6iG6y80zVifyeSjcv/L5IlsH211rhi?=
- =?us-ascii?Q?O/P8MwwFofZwlXUyhCgK5/+oTeav8VL5KkOjPK/q4gxCS83Bh5CONj1ViGRt?=
- =?us-ascii?Q?kPvGrxVq985mO3Wdr7MokLvaL5hEckJa2/cD7bgisK9aTOLRmNtbDn5P/XJI?=
- =?us-ascii?Q?PgiZyuJhD1qapZzXbVqL9CdF0oPmydEJnnfZreF//Sd1Jb8sX3z4CGDBTeSI?=
- =?us-ascii?Q?WuvPGC0xmmRLINqM7+uWtQgw56JV4DYIi0Ck9FqxxeDB0RhhE93h5I3iRiCs?=
- =?us-ascii?Q?lvT0oLO2vJWl37tEGY9yEZgboTJ2OuMJW3o/6kxR60hLpfyJsVw58fiO8SjQ?=
- =?us-ascii?Q?fkHFs0l0v/gFf438ftkdtPvzVNkTcBHxB2RAA0Sjv3sRj7yyIUX2ehHPFvRO?=
- =?us-ascii?Q?LOSy3lUZaqCHm1Sdgs0dZY1EflPUoWlfz6Pgfy/pKiM8niRHB+u29nBoYdUT?=
- =?us-ascii?Q?xVq/7gn9lxnseZG782Tev20q1wj6ohndw+Aqm1xRFkKQE8cjsy7fZT60A9KY?=
- =?us-ascii?Q?MhxXZpTeWkzzX+qPTmsrwHfSRdjgR1OeC2PAvEpQbCjYENLIXlof/l1YrxHk?=
- =?us-ascii?Q?y/ACBrV/VFXlHjIi8g3Sc4JHCptKZncuAOLwP47v54vynG+bB3AcoTM/Vdrq?=
- =?us-ascii?Q?Hu9dJSeGlq183IiEdE0zHnePHw3Vf7eV5wrh7BR5FkJqCaUq5kI+ZnnJSatx?=
- =?us-ascii?Q?xg=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 05afa05e-c8be-46fa-eafb-08dcf386e8d9
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ra4IFNdIMDV+v9JxKuxqFoj3AuIsx7E1SMdicU0kzXDjOFQboHr0ml0clSQR?=
+ =?us-ascii?Q?IzDVLRr5dIDgdXubE73njEunUU/fnC+eQILGSW7KnU7v6E741Fc1uqAaw6f4?=
+ =?us-ascii?Q?rLEOll874VJNvbVvHS0J2wlOCHyaGSqhtwbdDTfPtf2L3EVXFcb22IYQ2Q1e?=
+ =?us-ascii?Q?p2WNnZ2Ir7AfIisE4fDAVRVigpCCxH1Afz0nF8XxYObolwzYicW3remOtv6G?=
+ =?us-ascii?Q?Vf2SvF0f2yLG7uXW5rOuH+d9G1G5zPmNTZLBxM9cOH1aN0Uta4hFjLd1LN0z?=
+ =?us-ascii?Q?mtkhQGdnyAJYaMLDDPjOvf/HgSAk2M8ZrqpJj0yTbsGyLofesIw4i8NW8BtI?=
+ =?us-ascii?Q?4jgCv/l/MzAOySB4Sw/VSb2Df4PRLZ++be+T3nX9biLwE7DcNQ7OJHM9Pn+9?=
+ =?us-ascii?Q?wfZF6h+mKMp/wbzOOXHfPUxXvuatRX3lRtcuDJ6+QLU6CdNr2HiaIPdYzB7r?=
+ =?us-ascii?Q?aZfUitTIP65rOIe9QFulga8/hwC8UjMDdHf1Pf5ivhCVUx14g8PHbPAYcRBz?=
+ =?us-ascii?Q?S9nC9ZdWcXGE6kViPRLtZU3lq0ek5OvQNdxX3Tx5/jBpqaWsPpkVGdUdGbof?=
+ =?us-ascii?Q?4CKbcDsfum34+KOT4Q8iJBLVBCf5NeG3Poz6hXaKZrk6DtiZJ8NaQUb8i3fm?=
+ =?us-ascii?Q?MnS5ujEKkwagHeVIZzUOCm93fvCCEMcKfiUjoKvQUrXMQA+Yrv8mPNxl85Y/?=
+ =?us-ascii?Q?ZLh6M42kn/MA3VOMQerU0Wh/P8cdAVml/yy2sNeKrMA0MXtOUhrNyUKC/jkZ?=
+ =?us-ascii?Q?B3WgMqUiucMQSuIqGPwmpN3p8FFpYzhnOvp1T1D3QinENjPa31/GabeSsyY3?=
+ =?us-ascii?Q?IyyfuRTsDxE957g83yJTV9X1lTsa1KkI1clvR4YIJZXUxPW2D6dZVzUHT2UE?=
+ =?us-ascii?Q?DwfoOUdjktZgwrksIhj3NFFTVZ467SwKWS69mdHIoVnv54cyhVm64hLFOA9Y?=
+ =?us-ascii?Q?sSeAkKuKtTIDjA2Hp6tssEsaisDjcp9vy4edj0knkgENaLYnpi1LHZaS8LPs?=
+ =?us-ascii?Q?8T620eOEQZ5wuUcWVsS03N7ITvA3OgGtejyif0JU7r94wo91gKs/Yyu0n/rm?=
+ =?us-ascii?Q?9R0U+GFJh9tLuTlUtbiGeFGbIUcqTGgaAxr0RL52lVBeIo/rvxxtSUOgcCIT?=
+ =?us-ascii?Q?OUx6OdujDAsCItpCt64VF7Vea6PBygRgtxB98R11TbVVIhg5PrYFCjrw1VmB?=
+ =?us-ascii?Q?/URCtsdcRYip8MFCVLqSa8waKPbFV7XC8fJ/aEtWmLNXROEakiduJ31h6+pP?=
+ =?us-ascii?Q?SiOwxAjt5ExDuKJr/NcfebnYzx7bFfgHyYwhX9djH1Ebl+PbPbqgQd5NBF6x?=
+ =?us-ascii?Q?8iOdfKE0ZkPW8qtrZbZ1EAw+co7BHzH/VYlOW1uVjLY4VN+l6l+tDBLvf2FH?=
+ =?us-ascii?Q?0E0NAUGcgkKhVu5X0KH2yaqhevrqKsmsiKC531dGLXO2VMXozW51eU2J09Kf?=
+ =?us-ascii?Q?wjnRoYHo9B5vzHbsmq7tSlS4Ckf5z2oA9RdkC29aEFAIyUHwilWK3D6RJoP+?=
+ =?us-ascii?Q?VRPP2dXtNKXbEjEFwC69762aYm8OvZLK7V75324kKEvr21Dmrh2DM6rtVP5n?=
+ =?us-ascii?Q?+za/DVLpRUHK44mjX41IHxo+5m6qjWR6u4qH45R/igMDLlurppq+ScjqHu6E?=
+ =?us-ascii?Q?kw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 16741502-d456-4ea9-b297-08dcf387d84c
 X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB2854.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Oct 2024 17:19:54.3940 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Oct 2024 17:26:35.8544 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: GyV31BmlS+OPRcE9Q3X27CUjC6lEsBzNrdRE3N35GPsg0fInXfkDGK+UG/+vrjsi8FFXXvqbh0JFhwUueo4mWA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7429
+X-MS-Exchange-CrossTenant-UserPrincipalName: FL4aqihKmFQlaOk3URp2zc4XeMGRXK6kxSoIGjkl6iJ9tXURuGzWT74rxL4J/uZwJPYDoslgGhxdNtr+urTQUQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB5325
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -176,198 +176,1420 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 22, 2024 at 06:57:26PM +0300, Jani Nikula wrote:
+On Tue, Oct 22, 2024 at 06:57:27PM +0300, Jani Nikula wrote:
 > struct intel_display will replace struct drm_i915_private as the main
-> device pointer for display code. Switch HSW IPS code over to it.
+> device pointer for display code. Switch ICL DSI code over to it.
 > 
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/icl_dsi.c   | 444 ++++++++++++-----------
+>  drivers/gpu/drm/i915/display/icl_dsi.h   |   4 +-
+>  drivers/gpu/drm/i915/display/intel_ddi.c |   2 +-
+>  3 files changed, 227 insertions(+), 223 deletions(-)
+
+I think I need more coffee after this one :)
 
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-> ---
->  drivers/gpu/drm/i915/display/hsw_ips.c | 47 ++++++++++++++------------
->  1 file changed, 26 insertions(+), 21 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/hsw_ips.c b/drivers/gpu/drm/i915/display/hsw_ips.c
-> index c571c6e76d4a..34c5d28fc866 100644
-> --- a/drivers/gpu/drm/i915/display/hsw_ips.c
-> +++ b/drivers/gpu/drm/i915/display/hsw_ips.c
-> @@ -15,6 +15,7 @@
+> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+> index 87a27d91d15d..b61f2363d5c2 100644
+> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
+> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+> @@ -51,38 +51,38 @@
+>  #include "skl_scaler.h"
+>  #include "skl_universal_plane.h"
 >  
->  static void hsw_ips_enable(const struct intel_crtc_state *crtc_state)
+> -static int header_credits_available(struct drm_i915_private *dev_priv,
+> +static int header_credits_available(struct intel_display *display,
+>  				    enum transcoder dsi_trans)
 >  {
-> +	struct intel_display *display = to_intel_display(crtc_state);
->  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
->  	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
->  	u32 val;
-> @@ -27,16 +28,16 @@ static void hsw_ips_enable(const struct intel_crtc_state *crtc_state)
->  	 * This function is called from post_plane_update, which is run after
->  	 * a vblank wait.
->  	 */
-> -	drm_WARN_ON(&i915->drm,
-> +	drm_WARN_ON(display->drm,
->  		    !(crtc_state->active_planes & ~BIT(PLANE_CURSOR)));
+> -	return (intel_de_read(dev_priv, DSI_CMD_TXCTL(dsi_trans)) & FREE_HEADER_CREDIT_MASK)
+> +	return (intel_de_read(display, DSI_CMD_TXCTL(dsi_trans)) & FREE_HEADER_CREDIT_MASK)
+>  		>> FREE_HEADER_CREDIT_SHIFT;
+>  }
 >  
->  	val = IPS_ENABLE;
+> -static int payload_credits_available(struct drm_i915_private *dev_priv,
+> +static int payload_credits_available(struct intel_display *display,
+>  				     enum transcoder dsi_trans)
+>  {
+> -	return (intel_de_read(dev_priv, DSI_CMD_TXCTL(dsi_trans)) & FREE_PLOAD_CREDIT_MASK)
+> +	return (intel_de_read(display, DSI_CMD_TXCTL(dsi_trans)) & FREE_PLOAD_CREDIT_MASK)
+>  		>> FREE_PLOAD_CREDIT_SHIFT;
+>  }
 >  
-> -	if (i915->display.ips.false_color)
-> +	if (display->ips.false_color)
->  		val |= IPS_FALSE_COLOR;
+> -static bool wait_for_header_credits(struct drm_i915_private *dev_priv,
+> +static bool wait_for_header_credits(struct intel_display *display,
+>  				    enum transcoder dsi_trans, int hdr_credit)
+>  {
+> -	if (wait_for_us(header_credits_available(dev_priv, dsi_trans) >=
+> +	if (wait_for_us(header_credits_available(display, dsi_trans) >=
+>  			hdr_credit, 100)) {
+> -		drm_err(&dev_priv->drm, "DSI header credits not released\n");
+> +		drm_err(display->drm, "DSI header credits not released\n");
+>  		return false;
+>  	}
 >  
->  	if (IS_BROADWELL(i915)) {
-> -		drm_WARN_ON(&i915->drm,
-> +		drm_WARN_ON(display->drm,
->  			    snb_pcode_write(&i915->uncore, DISPLAY_IPS_CONTROL,
->  					    val | IPS_PCODE_CONTROL));
->  		/*
-> @@ -46,7 +47,7 @@ static void hsw_ips_enable(const struct intel_crtc_state *crtc_state)
->  		 * so we need to just enable it and continue on.
->  		 */
->  	} else {
-> -		intel_de_write(i915, IPS_CTL, val);
-> +		intel_de_write(display, IPS_CTL, val);
->  		/*
->  		 * The bit only becomes 1 in the next vblank, so this wait here
->  		 * is essentially intel_wait_for_vblank. If we don't have this
-> @@ -54,14 +55,15 @@ static void hsw_ips_enable(const struct intel_crtc_state *crtc_state)
->  		 * the HW state readout code will complain that the expected
->  		 * IPS_CTL value is not the one we read.
->  		 */
-> -		if (intel_de_wait_for_set(i915, IPS_CTL, IPS_ENABLE, 50))
-> -			drm_err(&i915->drm,
-> +		if (intel_de_wait_for_set(display, IPS_CTL, IPS_ENABLE, 50))
+>  	return true;
+>  }
+>  
+> -static bool wait_for_payload_credits(struct drm_i915_private *dev_priv,
+> +static bool wait_for_payload_credits(struct intel_display *display,
+>  				     enum transcoder dsi_trans, int payld_credit)
+>  {
+> -	if (wait_for_us(payload_credits_available(dev_priv, dsi_trans) >=
+> +	if (wait_for_us(payload_credits_available(display, dsi_trans) >=
+>  			payld_credit, 100)) {
+> -		drm_err(&dev_priv->drm, "DSI payload credits not released\n");
+> +		drm_err(display->drm, "DSI payload credits not released\n");
+>  		return false;
+>  	}
+>  
+> @@ -99,7 +99,7 @@ static enum transcoder dsi_port_to_transcoder(enum port port)
+>  
+>  static void wait_for_cmds_dispatched_to_panel(struct intel_encoder *encoder)
+>  {
+> -	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> +	struct intel_display *display = to_intel_display(encoder);
+>  	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+>  	struct mipi_dsi_device *dsi;
+>  	enum port port;
+> @@ -109,8 +109,8 @@ static void wait_for_cmds_dispatched_to_panel(struct intel_encoder *encoder)
+>  	/* wait for header/payload credits to be released */
+>  	for_each_dsi_port(port, intel_dsi->ports) {
+>  		dsi_trans = dsi_port_to_transcoder(port);
+> -		wait_for_header_credits(dev_priv, dsi_trans, MAX_HEADER_CREDIT);
+> -		wait_for_payload_credits(dev_priv, dsi_trans, MAX_PLOAD_CREDIT);
+> +		wait_for_header_credits(display, dsi_trans, MAX_HEADER_CREDIT);
+> +		wait_for_payload_credits(display, dsi_trans, MAX_PLOAD_CREDIT);
+>  	}
+>  
+>  	/* send nop DCS command */
+> @@ -120,22 +120,22 @@ static void wait_for_cmds_dispatched_to_panel(struct intel_encoder *encoder)
+>  		dsi->channel = 0;
+>  		ret = mipi_dsi_dcs_nop(dsi);
+>  		if (ret < 0)
+> -			drm_err(&dev_priv->drm,
 > +			drm_err(display->drm,
->  				"Timed out waiting for IPS enable\n");
+>  				"error sending DCS NOP command\n");
+>  	}
+>  
+>  	/* wait for header credits to be released */
+>  	for_each_dsi_port(port, intel_dsi->ports) {
+>  		dsi_trans = dsi_port_to_transcoder(port);
+> -		wait_for_header_credits(dev_priv, dsi_trans, MAX_HEADER_CREDIT);
+> +		wait_for_header_credits(display, dsi_trans, MAX_HEADER_CREDIT);
+>  	}
+>  
+>  	/* wait for LP TX in progress bit to be cleared */
+>  	for_each_dsi_port(port, intel_dsi->ports) {
+>  		dsi_trans = dsi_port_to_transcoder(port);
+> -		if (wait_for_us(!(intel_de_read(dev_priv, DSI_LP_MSG(dsi_trans)) &
+> +		if (wait_for_us(!(intel_de_read(display, DSI_LP_MSG(dsi_trans)) &
+>  				  LPTX_IN_PROGRESS), 20))
+> -			drm_err(&dev_priv->drm, "LPTX bit not cleared\n");
+> +			drm_err(display->drm, "LPTX bit not cleared\n");
 >  	}
 >  }
 >  
->  bool hsw_ips_disable(const struct intel_crtc_state *crtc_state)
+> @@ -143,7 +143,7 @@ static int dsi_send_pkt_payld(struct intel_dsi_host *host,
+>  			      const struct mipi_dsi_packet *packet)
 >  {
-> +	struct intel_display *display = to_intel_display(crtc_state);
->  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
->  	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
->  	bool need_vblank_wait = false;
-> @@ -70,19 +72,19 @@ bool hsw_ips_disable(const struct intel_crtc_state *crtc_state)
->  		return need_vblank_wait;
+>  	struct intel_dsi *intel_dsi = host->intel_dsi;
+> -	struct drm_i915_private *i915 = to_i915(intel_dsi->base.base.dev);
+> +	struct intel_display *display = to_intel_display(&intel_dsi->base);
+>  	enum transcoder dsi_trans = dsi_port_to_transcoder(host->port);
+>  	const u8 *data = packet->payload;
+>  	u32 len = packet->payload_length;
+> @@ -151,20 +151,20 @@ static int dsi_send_pkt_payld(struct intel_dsi_host *host,
 >  
->  	if (IS_BROADWELL(i915)) {
-> -		drm_WARN_ON(&i915->drm,
-> +		drm_WARN_ON(display->drm,
->  			    snb_pcode_write(&i915->uncore, DISPLAY_IPS_CONTROL, 0));
->  		/*
->  		 * Wait for PCODE to finish disabling IPS. The BSpec specified
->  		 * 42ms timeout value leads to occasional timeouts so use 100ms
->  		 * instead.
->  		 */
-> -		if (intel_de_wait_for_clear(i915, IPS_CTL, IPS_ENABLE, 100))
-> -			drm_err(&i915->drm,
-> +		if (intel_de_wait_for_clear(display, IPS_CTL, IPS_ENABLE, 100))
-> +			drm_err(display->drm,
->  				"Timed out waiting for IPS disable\n");
->  	} else {
-> -		intel_de_write(i915, IPS_CTL, 0);
-> -		intel_de_posting_read(i915, IPS_CTL);
-> +		intel_de_write(display, IPS_CTL, 0);
-> +		intel_de_posting_read(display, IPS_CTL);
+>  	/* payload queue can accept *256 bytes*, check limit */
+>  	if (len > MAX_PLOAD_CREDIT * 4) {
+> -		drm_err(&i915->drm, "payload size exceeds max queue limit\n");
+> +		drm_err(display->drm, "payload size exceeds max queue limit\n");
+>  		return -EINVAL;
 >  	}
 >  
->  	/* We need to wait for a vblank before we can disable the plane. */
-> @@ -188,6 +190,7 @@ bool hsw_crtc_supports_ips(struct intel_crtc *crtc)
+>  	for (i = 0; i < len; i += 4) {
+>  		u32 tmp = 0;
 >  
->  bool hsw_crtc_state_ips_capable(const struct intel_crtc_state *crtc_state)
+> -		if (!wait_for_payload_credits(i915, dsi_trans, 1))
+> +		if (!wait_for_payload_credits(display, dsi_trans, 1))
+>  			return -EBUSY;
+>  
+>  		for (j = 0; j < min_t(u32, len - i, 4); j++)
+>  			tmp |= *data++ << 8 * j;
+>  
+> -		intel_de_write(i915, DSI_CMD_TXPYLD(dsi_trans), tmp);
+> +		intel_de_write(display, DSI_CMD_TXPYLD(dsi_trans), tmp);
+>  	}
+>  
+>  	return 0;
+> @@ -175,14 +175,14 @@ static int dsi_send_pkt_hdr(struct intel_dsi_host *host,
+>  			    bool enable_lpdt)
 >  {
-> +	struct intel_display *display = to_intel_display(crtc_state);
->  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
->  	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+>  	struct intel_dsi *intel_dsi = host->intel_dsi;
+> -	struct drm_i915_private *dev_priv = to_i915(intel_dsi->base.base.dev);
+> +	struct intel_display *display = to_intel_display(&intel_dsi->base);
+>  	enum transcoder dsi_trans = dsi_port_to_transcoder(host->port);
+>  	u32 tmp;
 >  
-> @@ -195,7 +198,7 @@ bool hsw_crtc_state_ips_capable(const struct intel_crtc_state *crtc_state)
->  	if (!hsw_crtc_supports_ips(crtc))
->  		return false;
+> -	if (!wait_for_header_credits(dev_priv, dsi_trans, 1))
+> +	if (!wait_for_header_credits(display, dsi_trans, 1))
+>  		return -EBUSY;
 >  
-> -	if (!i915->display.params.enable_ips)
-> +	if (!display->params.enable_ips)
->  		return false;
+> -	tmp = intel_de_read(dev_priv, DSI_CMD_TXHDR(dsi_trans));
+> +	tmp = intel_de_read(display, DSI_CMD_TXHDR(dsi_trans));
 >  
->  	if (crtc_state->pipe_bpp > 24)
-> @@ -209,7 +212,7 @@ bool hsw_crtc_state_ips_capable(const struct intel_crtc_state *crtc_state)
->  	 * Should measure whether using a lower cdclk w/o IPS
->  	 */
->  	if (IS_BROADWELL(i915) &&
-> -	    crtc_state->pixel_rate > i915->display.cdclk.max_cdclk_freq * 95 / 100)
-> +	    crtc_state->pixel_rate > display->cdclk.max_cdclk_freq * 95 / 100)
->  		return false;
->  
->  	return true;
-> @@ -259,6 +262,7 @@ int hsw_ips_compute_config(struct intel_atomic_state *state,
->  
->  void hsw_ips_get_config(struct intel_crtc_state *crtc_state)
->  {
-> +	struct intel_display *display = to_intel_display(crtc_state);
->  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
->  	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
->  
-> @@ -266,7 +270,7 @@ void hsw_ips_get_config(struct intel_crtc_state *crtc_state)
->  		return;
->  
->  	if (IS_HASWELL(i915)) {
-> -		crtc_state->ips_enabled = intel_de_read(i915, IPS_CTL) & IPS_ENABLE;
-> +		crtc_state->ips_enabled = intel_de_read(display, IPS_CTL) & IPS_ENABLE;
->  	} else {
->  		/*
->  		 * We cannot readout IPS state on broadwell, set to
-> @@ -280,9 +284,9 @@ void hsw_ips_get_config(struct intel_crtc_state *crtc_state)
->  static int hsw_ips_debugfs_false_color_get(void *data, u64 *val)
->  {
->  	struct intel_crtc *crtc = data;
-> -	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-> +	struct intel_display *display = to_intel_display(crtc);
->  
-> -	*val = i915->display.ips.false_color;
-> +	*val = display->ips.false_color;
+>  	if (packet->payload)
+>  		tmp |= PAYLOAD_PRESENT;
+> @@ -201,15 +201,14 @@ static int dsi_send_pkt_hdr(struct intel_dsi_host *host,
+>  	tmp |= ((packet->header[0] & DT_MASK) << DT_SHIFT);
+>  	tmp |= (packet->header[1] << PARAM_WC_LOWER_SHIFT);
+>  	tmp |= (packet->header[2] << PARAM_WC_UPPER_SHIFT);
+> -	intel_de_write(dev_priv, DSI_CMD_TXHDR(dsi_trans), tmp);
+> +	intel_de_write(display, DSI_CMD_TXHDR(dsi_trans), tmp);
 >  
 >  	return 0;
 >  }
-> @@ -290,7 +294,7 @@ static int hsw_ips_debugfs_false_color_get(void *data, u64 *val)
->  static int hsw_ips_debugfs_false_color_set(void *data, u64 val)
+>  
+>  void icl_dsi_frame_update(struct intel_crtc_state *crtc_state)
 >  {
->  	struct intel_crtc *crtc = data;
-> -	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-> +	struct intel_display *display = to_intel_display(crtc);
->  	struct intel_crtc_state *crtc_state;
+> -	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> -	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+> +	struct intel_display *display = to_intel_display(crtc_state);
+>  	u32 mode_flags;
+>  	enum port port;
+>  
+> @@ -227,12 +226,13 @@ void icl_dsi_frame_update(struct intel_crtc_state *crtc_state)
+>  	else
+>  		return;
+>  
+> -	intel_de_rmw(dev_priv, DSI_CMD_FRMCTL(port), 0, DSI_FRAME_UPDATE_REQUEST);
+> +	intel_de_rmw(display, DSI_CMD_FRMCTL(port), 0,
+> +		     DSI_FRAME_UPDATE_REQUEST);
+>  }
+>  
+>  static void dsi_program_swing_and_deemphasis(struct intel_encoder *encoder)
+>  {
+> -	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> +	struct intel_display *display = to_intel_display(encoder);
+>  	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+>  	enum phy phy;
+>  	u32 tmp, mask, val;
+> @@ -246,31 +246,31 @@ static void dsi_program_swing_and_deemphasis(struct intel_encoder *encoder)
+>  		mask = SCALING_MODE_SEL_MASK | RTERM_SELECT_MASK;
+>  		val = SCALING_MODE_SEL(0x2) | TAP2_DISABLE | TAP3_DISABLE |
+>  		      RTERM_SELECT(0x6);
+> -		tmp = intel_de_read(dev_priv, ICL_PORT_TX_DW5_LN(0, phy));
+> +		tmp = intel_de_read(display, ICL_PORT_TX_DW5_LN(0, phy));
+>  		tmp &= ~mask;
+>  		tmp |= val;
+> -		intel_de_write(dev_priv, ICL_PORT_TX_DW5_GRP(phy), tmp);
+> -		intel_de_rmw(dev_priv, ICL_PORT_TX_DW5_AUX(phy), mask, val);
+> +		intel_de_write(display, ICL_PORT_TX_DW5_GRP(phy), tmp);
+> +		intel_de_rmw(display, ICL_PORT_TX_DW5_AUX(phy), mask, val);
+>  
+>  		mask = SWING_SEL_LOWER_MASK | SWING_SEL_UPPER_MASK |
+>  		       RCOMP_SCALAR_MASK;
+>  		val = SWING_SEL_UPPER(0x2) | SWING_SEL_LOWER(0x2) |
+>  		      RCOMP_SCALAR(0x98);
+> -		tmp = intel_de_read(dev_priv, ICL_PORT_TX_DW2_LN(0, phy));
+> +		tmp = intel_de_read(display, ICL_PORT_TX_DW2_LN(0, phy));
+>  		tmp &= ~mask;
+>  		tmp |= val;
+> -		intel_de_write(dev_priv, ICL_PORT_TX_DW2_GRP(phy), tmp);
+> -		intel_de_rmw(dev_priv, ICL_PORT_TX_DW2_AUX(phy), mask, val);
+> +		intel_de_write(display, ICL_PORT_TX_DW2_GRP(phy), tmp);
+> +		intel_de_rmw(display, ICL_PORT_TX_DW2_AUX(phy), mask, val);
+>  
+>  		mask = POST_CURSOR_1_MASK | POST_CURSOR_2_MASK |
+>  		       CURSOR_COEFF_MASK;
+>  		val = POST_CURSOR_1(0x0) | POST_CURSOR_2(0x0) |
+>  		      CURSOR_COEFF(0x3f);
+> -		intel_de_rmw(dev_priv, ICL_PORT_TX_DW4_AUX(phy), mask, val);
+> +		intel_de_rmw(display, ICL_PORT_TX_DW4_AUX(phy), mask, val);
+>  
+>  		/* Bspec: must not use GRP register for write */
+>  		for (lane = 0; lane <= 3; lane++)
+> -			intel_de_rmw(dev_priv, ICL_PORT_TX_DW4_LN(lane, phy),
+> +			intel_de_rmw(display, ICL_PORT_TX_DW4_LN(lane, phy),
+>  				     mask, val);
+>  	}
+>  }
+> @@ -278,13 +278,13 @@ static void dsi_program_swing_and_deemphasis(struct intel_encoder *encoder)
+>  static void configure_dual_link_mode(struct intel_encoder *encoder,
+>  				     const struct intel_crtc_state *pipe_config)
+>  {
+> -	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> +	struct intel_display *display = to_intel_display(encoder);
+>  	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+>  	i915_reg_t dss_ctl1_reg, dss_ctl2_reg;
+>  	u32 dss_ctl1;
+>  
+>  	/* FIXME: Move all DSS handling to intel_vdsc.c */
+> -	if (DISPLAY_VER(dev_priv) >= 12) {
+> +	if (DISPLAY_VER(display) >= 12) {
+>  		struct intel_crtc *crtc = to_intel_crtc(pipe_config->uapi.crtc);
+>  
+>  		dss_ctl1_reg = ICL_PIPE_DSS_CTL1(crtc->pipe);
+> @@ -294,7 +294,7 @@ static void configure_dual_link_mode(struct intel_encoder *encoder,
+>  		dss_ctl2_reg = DSS_CTL2;
+>  	}
+>  
+> -	dss_ctl1 = intel_de_read(dev_priv, dss_ctl1_reg);
+> +	dss_ctl1 = intel_de_read(display, dss_ctl1_reg);
+>  	dss_ctl1 |= SPLITTER_ENABLE;
+>  	dss_ctl1 &= ~OVERLAP_PIXELS_MASK;
+>  	dss_ctl1 |= OVERLAP_PIXELS(intel_dsi->pixel_overlap);
+> @@ -309,19 +309,19 @@ static void configure_dual_link_mode(struct intel_encoder *encoder,
+>  		dl_buffer_depth = hactive / 2 + intel_dsi->pixel_overlap;
+>  
+>  		if (dl_buffer_depth > MAX_DL_BUFFER_TARGET_DEPTH)
+> -			drm_err(&dev_priv->drm,
+> +			drm_err(display->drm,
+>  				"DL buffer depth exceed max value\n");
+>  
+>  		dss_ctl1 &= ~LEFT_DL_BUF_TARGET_DEPTH_MASK;
+>  		dss_ctl1 |= LEFT_DL_BUF_TARGET_DEPTH(dl_buffer_depth);
+> -		intel_de_rmw(dev_priv, dss_ctl2_reg, RIGHT_DL_BUF_TARGET_DEPTH_MASK,
+> +		intel_de_rmw(display, dss_ctl2_reg, RIGHT_DL_BUF_TARGET_DEPTH_MASK,
+>  			     RIGHT_DL_BUF_TARGET_DEPTH(dl_buffer_depth));
+>  	} else {
+>  		/* Interleave */
+>  		dss_ctl1 |= DUAL_LINK_MODE_INTERLEAVE;
+>  	}
+>  
+> -	intel_de_write(dev_priv, dss_ctl1_reg, dss_ctl1);
+> +	intel_de_write(display, dss_ctl1_reg, dss_ctl1);
+>  }
+>  
+>  /* aka DSI 8X clock */
+> @@ -342,6 +342,7 @@ static int afe_clk(struct intel_encoder *encoder,
+>  static void gen11_dsi_program_esc_clk_div(struct intel_encoder *encoder,
+>  					  const struct intel_crtc_state *crtc_state)
+>  {
+> +	struct intel_display *display = to_intel_display(encoder);
+>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>  	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+>  	enum port port;
+> @@ -361,33 +362,34 @@ static void gen11_dsi_program_esc_clk_div(struct intel_encoder *encoder,
+>  	}
+>  
+>  	for_each_dsi_port(port, intel_dsi->ports) {
+> -		intel_de_write(dev_priv, ICL_DSI_ESC_CLK_DIV(port),
+> +		intel_de_write(display, ICL_DSI_ESC_CLK_DIV(port),
+>  			       esc_clk_div_m & ICL_ESC_CLK_DIV_MASK);
+> -		intel_de_posting_read(dev_priv, ICL_DSI_ESC_CLK_DIV(port));
+> +		intel_de_posting_read(display, ICL_DSI_ESC_CLK_DIV(port));
+>  	}
+>  
+>  	for_each_dsi_port(port, intel_dsi->ports) {
+> -		intel_de_write(dev_priv, ICL_DPHY_ESC_CLK_DIV(port),
+> +		intel_de_write(display, ICL_DPHY_ESC_CLK_DIV(port),
+>  			       esc_clk_div_m & ICL_ESC_CLK_DIV_MASK);
+> -		intel_de_posting_read(dev_priv, ICL_DPHY_ESC_CLK_DIV(port));
+> +		intel_de_posting_read(display, ICL_DPHY_ESC_CLK_DIV(port));
+>  	}
+>  
+>  	if (IS_ALDERLAKE_S(dev_priv) || IS_ALDERLAKE_P(dev_priv)) {
+>  		for_each_dsi_port(port, intel_dsi->ports) {
+> -			intel_de_write(dev_priv, ADL_MIPIO_DW(port, 8),
+> +			intel_de_write(display, ADL_MIPIO_DW(port, 8),
+>  				       esc_clk_div_m_phy & TX_ESC_CLK_DIV_PHY);
+> -			intel_de_posting_read(dev_priv, ADL_MIPIO_DW(port, 8));
+> +			intel_de_posting_read(display, ADL_MIPIO_DW(port, 8));
+>  		}
+>  	}
+>  }
+>  
+> -static void get_dsi_io_power_domains(struct drm_i915_private *dev_priv,
+> -				     struct intel_dsi *intel_dsi)
+> +static void get_dsi_io_power_domains(struct intel_dsi *intel_dsi)
+>  {
+> +	struct intel_display *display = to_intel_display(&intel_dsi->base);
+> +	struct drm_i915_private *dev_priv = to_i915(display->drm);
+>  	enum port port;
+>  
+>  	for_each_dsi_port(port, intel_dsi->ports) {
+> -		drm_WARN_ON(&dev_priv->drm, intel_dsi->io_wakeref[port]);
+> +		drm_WARN_ON(display->drm, intel_dsi->io_wakeref[port]);
+>  		intel_dsi->io_wakeref[port] =
+>  			intel_display_power_get(dev_priv,
+>  						port == PORT_A ?
+> @@ -398,15 +400,15 @@ static void get_dsi_io_power_domains(struct drm_i915_private *dev_priv,
+>  
+>  static void gen11_dsi_enable_io_power(struct intel_encoder *encoder)
+>  {
+> -	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> +	struct intel_display *display = to_intel_display(encoder);
+>  	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+>  	enum port port;
+>  
+>  	for_each_dsi_port(port, intel_dsi->ports)
+> -		intel_de_rmw(dev_priv, ICL_DSI_IO_MODECTL(port),
+> +		intel_de_rmw(display, ICL_DSI_IO_MODECTL(port),
+>  			     0, COMBO_PHY_MODE_DSI);
+>  
+> -	get_dsi_io_power_domains(dev_priv, intel_dsi);
+> +	get_dsi_io_power_domains(intel_dsi);
+>  }
+>  
+>  static void gen11_dsi_power_up_lanes(struct intel_encoder *encoder)
+> @@ -422,6 +424,7 @@ static void gen11_dsi_power_up_lanes(struct intel_encoder *encoder)
+>  
+>  static void gen11_dsi_config_phy_lanes_sequence(struct intel_encoder *encoder)
+>  {
+> +	struct intel_display *display = to_intel_display(encoder);
+>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>  	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+>  	enum phy phy;
+> @@ -430,32 +433,33 @@ static void gen11_dsi_config_phy_lanes_sequence(struct intel_encoder *encoder)
+>  
+>  	/* Step 4b(i) set loadgen select for transmit and aux lanes */
+>  	for_each_dsi_phy(phy, intel_dsi->phys) {
+> -		intel_de_rmw(dev_priv, ICL_PORT_TX_DW4_AUX(phy), LOADGEN_SELECT, 0);
+> +		intel_de_rmw(display, ICL_PORT_TX_DW4_AUX(phy),
+> +			     LOADGEN_SELECT, 0);
+>  		for (lane = 0; lane <= 3; lane++)
+> -			intel_de_rmw(dev_priv, ICL_PORT_TX_DW4_LN(lane, phy),
+> +			intel_de_rmw(display, ICL_PORT_TX_DW4_LN(lane, phy),
+>  				     LOADGEN_SELECT, lane != 2 ? LOADGEN_SELECT : 0);
+>  	}
+>  
+>  	/* Step 4b(ii) set latency optimization for transmit and aux lanes */
+>  	for_each_dsi_phy(phy, intel_dsi->phys) {
+> -		intel_de_rmw(dev_priv, ICL_PORT_TX_DW2_AUX(phy),
+> +		intel_de_rmw(display, ICL_PORT_TX_DW2_AUX(phy),
+>  			     FRC_LATENCY_OPTIM_MASK, FRC_LATENCY_OPTIM_VAL(0x5));
+> -		tmp = intel_de_read(dev_priv, ICL_PORT_TX_DW2_LN(0, phy));
+> +		tmp = intel_de_read(display, ICL_PORT_TX_DW2_LN(0, phy));
+>  		tmp &= ~FRC_LATENCY_OPTIM_MASK;
+>  		tmp |= FRC_LATENCY_OPTIM_VAL(0x5);
+> -		intel_de_write(dev_priv, ICL_PORT_TX_DW2_GRP(phy), tmp);
+> +		intel_de_write(display, ICL_PORT_TX_DW2_GRP(phy), tmp);
+>  
+>  		/* For EHL, TGL, set latency optimization for PCS_DW1 lanes */
+>  		if (IS_JASPERLAKE(dev_priv) || IS_ELKHARTLAKE(dev_priv) ||
+> -		    (DISPLAY_VER(dev_priv) >= 12)) {
+> -			intel_de_rmw(dev_priv, ICL_PORT_PCS_DW1_AUX(phy),
+> +		    (DISPLAY_VER(display) >= 12)) {
+> +			intel_de_rmw(display, ICL_PORT_PCS_DW1_AUX(phy),
+>  				     LATENCY_OPTIM_MASK, LATENCY_OPTIM_VAL(0));
+>  
+> -			tmp = intel_de_read(dev_priv,
+> +			tmp = intel_de_read(display,
+>  					    ICL_PORT_PCS_DW1_LN(0, phy));
+>  			tmp &= ~LATENCY_OPTIM_MASK;
+>  			tmp |= LATENCY_OPTIM_VAL(0x1);
+> -			intel_de_write(dev_priv, ICL_PORT_PCS_DW1_GRP(phy),
+> +			intel_de_write(display, ICL_PORT_PCS_DW1_GRP(phy),
+>  				       tmp);
+>  		}
+>  	}
+> @@ -464,17 +468,17 @@ static void gen11_dsi_config_phy_lanes_sequence(struct intel_encoder *encoder)
+>  
+>  static void gen11_dsi_voltage_swing_program_seq(struct intel_encoder *encoder)
+>  {
+> -	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> +	struct intel_display *display = to_intel_display(encoder);
+>  	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+>  	u32 tmp;
+>  	enum phy phy;
+>  
+>  	/* clear common keeper enable bit */
+>  	for_each_dsi_phy(phy, intel_dsi->phys) {
+> -		tmp = intel_de_read(dev_priv, ICL_PORT_PCS_DW1_LN(0, phy));
+> +		tmp = intel_de_read(display, ICL_PORT_PCS_DW1_LN(0, phy));
+>  		tmp &= ~COMMON_KEEPER_EN;
+> -		intel_de_write(dev_priv, ICL_PORT_PCS_DW1_GRP(phy), tmp);
+> -		intel_de_rmw(dev_priv, ICL_PORT_PCS_DW1_AUX(phy), COMMON_KEEPER_EN, 0);
+> +		intel_de_write(display, ICL_PORT_PCS_DW1_GRP(phy), tmp);
+> +		intel_de_rmw(display, ICL_PORT_PCS_DW1_AUX(phy), COMMON_KEEPER_EN, 0);
+>  	}
+>  
+>  	/*
+> @@ -483,14 +487,15 @@ static void gen11_dsi_voltage_swing_program_seq(struct intel_encoder *encoder)
+>  	 * as part of lane phy sequence configuration
+>  	 */
+>  	for_each_dsi_phy(phy, intel_dsi->phys)
+> -		intel_de_rmw(dev_priv, ICL_PORT_CL_DW5(phy), 0, SUS_CLOCK_CONFIG);
+> +		intel_de_rmw(display, ICL_PORT_CL_DW5(phy), 0,
+> +			     SUS_CLOCK_CONFIG);
+>  
+>  	/* Clear training enable to change swing values */
+>  	for_each_dsi_phy(phy, intel_dsi->phys) {
+> -		tmp = intel_de_read(dev_priv, ICL_PORT_TX_DW5_LN(0, phy));
+> +		tmp = intel_de_read(display, ICL_PORT_TX_DW5_LN(0, phy));
+>  		tmp &= ~TX_TRAINING_EN;
+> -		intel_de_write(dev_priv, ICL_PORT_TX_DW5_GRP(phy), tmp);
+> -		intel_de_rmw(dev_priv, ICL_PORT_TX_DW5_AUX(phy), TX_TRAINING_EN, 0);
+> +		intel_de_write(display, ICL_PORT_TX_DW5_GRP(phy), tmp);
+> +		intel_de_rmw(display, ICL_PORT_TX_DW5_AUX(phy), TX_TRAINING_EN, 0);
+>  	}
+>  
+>  	/* Program swing and de-emphasis */
+> @@ -498,26 +503,26 @@ static void gen11_dsi_voltage_swing_program_seq(struct intel_encoder *encoder)
+>  
+>  	/* Set training enable to trigger update */
+>  	for_each_dsi_phy(phy, intel_dsi->phys) {
+> -		tmp = intel_de_read(dev_priv, ICL_PORT_TX_DW5_LN(0, phy));
+> +		tmp = intel_de_read(display, ICL_PORT_TX_DW5_LN(0, phy));
+>  		tmp |= TX_TRAINING_EN;
+> -		intel_de_write(dev_priv, ICL_PORT_TX_DW5_GRP(phy), tmp);
+> -		intel_de_rmw(dev_priv, ICL_PORT_TX_DW5_AUX(phy), 0, TX_TRAINING_EN);
+> +		intel_de_write(display, ICL_PORT_TX_DW5_GRP(phy), tmp);
+> +		intel_de_rmw(display, ICL_PORT_TX_DW5_AUX(phy), 0, TX_TRAINING_EN);
+>  	}
+>  }
+>  
+>  static void gen11_dsi_enable_ddi_buffer(struct intel_encoder *encoder)
+>  {
+> -	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> +	struct intel_display *display = to_intel_display(encoder);
+>  	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+>  	enum port port;
+>  
+>  	for_each_dsi_port(port, intel_dsi->ports) {
+> -		intel_de_rmw(dev_priv, DDI_BUF_CTL(port), 0, DDI_BUF_CTL_ENABLE);
+> +		intel_de_rmw(display, DDI_BUF_CTL(port), 0, DDI_BUF_CTL_ENABLE);
+>  
+> -		if (wait_for_us(!(intel_de_read(dev_priv, DDI_BUF_CTL(port)) &
+> +		if (wait_for_us(!(intel_de_read(display, DDI_BUF_CTL(port)) &
+>  				  DDI_BUF_IS_IDLE),
+>  				  500))
+> -			drm_err(&dev_priv->drm, "DDI port:%c buffer idle\n",
+> +			drm_err(display->drm, "DDI port:%c buffer idle\n",
+>  				port_name(port));
+>  	}
+>  }
+> @@ -526,6 +531,7 @@ static void
+>  gen11_dsi_setup_dphy_timings(struct intel_encoder *encoder,
+>  			     const struct intel_crtc_state *crtc_state)
+>  {
+> +	struct intel_display *display = to_intel_display(encoder);
+>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>  	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+>  	enum port port;
+> @@ -533,12 +539,12 @@ gen11_dsi_setup_dphy_timings(struct intel_encoder *encoder,
+>  
+>  	/* Program DPHY clock lanes timings */
+>  	for_each_dsi_port(port, intel_dsi->ports)
+> -		intel_de_write(dev_priv, DPHY_CLK_TIMING_PARAM(port),
+> +		intel_de_write(display, DPHY_CLK_TIMING_PARAM(port),
+>  			       intel_dsi->dphy_reg);
+>  
+>  	/* Program DPHY data lanes timings */
+>  	for_each_dsi_port(port, intel_dsi->ports)
+> -		intel_de_write(dev_priv, DPHY_DATA_TIMING_PARAM(port),
+> +		intel_de_write(display, DPHY_DATA_TIMING_PARAM(port),
+>  			       intel_dsi->dphy_data_lane_reg);
+>  
+>  	/*
+> @@ -547,10 +553,10 @@ gen11_dsi_setup_dphy_timings(struct intel_encoder *encoder,
+>  	 * a value '0' inside TA_PARAM_REGISTERS otherwise
+>  	 * leave all fields at HW default values.
+>  	 */
+> -	if (DISPLAY_VER(dev_priv) == 11) {
+> +	if (DISPLAY_VER(display) == 11) {
+>  		if (afe_clk(encoder, crtc_state) <= 800000) {
+>  			for_each_dsi_port(port, intel_dsi->ports)
+> -				intel_de_rmw(dev_priv, DPHY_TA_TIMING_PARAM(port),
+> +				intel_de_rmw(display, DPHY_TA_TIMING_PARAM(port),
+>  					     TA_SURE_MASK,
+>  					     TA_SURE_OVERRIDE | TA_SURE(0));
+>  		}
+> @@ -558,7 +564,7 @@ gen11_dsi_setup_dphy_timings(struct intel_encoder *encoder,
+>  
+>  	if (IS_JASPERLAKE(dev_priv) || IS_ELKHARTLAKE(dev_priv)) {
+>  		for_each_dsi_phy(phy, intel_dsi->phys)
+> -			intel_de_rmw(dev_priv, ICL_DPHY_CHKN(phy),
+> +			intel_de_rmw(display, ICL_DPHY_CHKN(phy),
+>  				     0, ICL_DPHY_CHKN_AFE_OVER_PPI_STRAP);
+>  	}
+>  }
+> @@ -567,30 +573,30 @@ static void
+>  gen11_dsi_setup_timings(struct intel_encoder *encoder,
+>  			const struct intel_crtc_state *crtc_state)
+>  {
+> -	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> +	struct intel_display *display = to_intel_display(encoder);
+>  	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+>  	enum port port;
+>  
+>  	/* Program T-INIT master registers */
+>  	for_each_dsi_port(port, intel_dsi->ports)
+> -		intel_de_rmw(dev_priv, ICL_DSI_T_INIT_MASTER(port),
+> +		intel_de_rmw(display, ICL_DSI_T_INIT_MASTER(port),
+>  			     DSI_T_INIT_MASTER_MASK, intel_dsi->init_count);
+>  
+>  	/* shadow register inside display core */
+>  	for_each_dsi_port(port, intel_dsi->ports)
+> -		intel_de_write(dev_priv, DSI_CLK_TIMING_PARAM(port),
+> +		intel_de_write(display, DSI_CLK_TIMING_PARAM(port),
+>  			       intel_dsi->dphy_reg);
+>  
+>  	/* shadow register inside display core */
+>  	for_each_dsi_port(port, intel_dsi->ports)
+> -		intel_de_write(dev_priv, DSI_DATA_TIMING_PARAM(port),
+> +		intel_de_write(display, DSI_DATA_TIMING_PARAM(port),
+>  			       intel_dsi->dphy_data_lane_reg);
+>  
+>  	/* shadow register inside display core */
+> -	if (DISPLAY_VER(dev_priv) == 11) {
+> +	if (DISPLAY_VER(display) == 11) {
+>  		if (afe_clk(encoder, crtc_state) <= 800000) {
+>  			for_each_dsi_port(port, intel_dsi->ports) {
+> -				intel_de_rmw(dev_priv, DSI_TA_TIMING_PARAM(port),
+> +				intel_de_rmw(display, DSI_TA_TIMING_PARAM(port),
+>  					     TA_SURE_MASK,
+>  					     TA_SURE_OVERRIDE | TA_SURE(0));
+>  			}
+> @@ -600,45 +606,45 @@ gen11_dsi_setup_timings(struct intel_encoder *encoder,
+>  
+>  static void gen11_dsi_gate_clocks(struct intel_encoder *encoder)
+>  {
+> -	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> +	struct intel_display *display = to_intel_display(encoder);
+>  	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+>  	u32 tmp;
+>  	enum phy phy;
+>  
+> -	mutex_lock(&dev_priv->display.dpll.lock);
+> -	tmp = intel_de_read(dev_priv, ICL_DPCLKA_CFGCR0);
+> +	mutex_lock(&display->dpll.lock);
+> +	tmp = intel_de_read(display, ICL_DPCLKA_CFGCR0);
+>  	for_each_dsi_phy(phy, intel_dsi->phys)
+>  		tmp |= ICL_DPCLKA_CFGCR0_DDI_CLK_OFF(phy);
+>  
+> -	intel_de_write(dev_priv, ICL_DPCLKA_CFGCR0, tmp);
+> -	mutex_unlock(&dev_priv->display.dpll.lock);
+> +	intel_de_write(display, ICL_DPCLKA_CFGCR0, tmp);
+> +	mutex_unlock(&display->dpll.lock);
+>  }
+>  
+>  static void gen11_dsi_ungate_clocks(struct intel_encoder *encoder)
+>  {
+> -	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> +	struct intel_display *display = to_intel_display(encoder);
+>  	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+>  	u32 tmp;
+>  	enum phy phy;
+>  
+> -	mutex_lock(&dev_priv->display.dpll.lock);
+> -	tmp = intel_de_read(dev_priv, ICL_DPCLKA_CFGCR0);
+> +	mutex_lock(&display->dpll.lock);
+> +	tmp = intel_de_read(display, ICL_DPCLKA_CFGCR0);
+>  	for_each_dsi_phy(phy, intel_dsi->phys)
+>  		tmp &= ~ICL_DPCLKA_CFGCR0_DDI_CLK_OFF(phy);
+>  
+> -	intel_de_write(dev_priv, ICL_DPCLKA_CFGCR0, tmp);
+> -	mutex_unlock(&dev_priv->display.dpll.lock);
+> +	intel_de_write(display, ICL_DPCLKA_CFGCR0, tmp);
+> +	mutex_unlock(&display->dpll.lock);
+>  }
+>  
+>  static bool gen11_dsi_is_clock_enabled(struct intel_encoder *encoder)
+>  {
+> -	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> +	struct intel_display *display = to_intel_display(encoder);
+>  	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+>  	bool clock_enabled = false;
+>  	enum phy phy;
+>  	u32 tmp;
+>  
+> -	tmp = intel_de_read(dev_priv, ICL_DPCLKA_CFGCR0);
+> +	tmp = intel_de_read(display, ICL_DPCLKA_CFGCR0);
+>  
+>  	for_each_dsi_phy(phy, intel_dsi->phys) {
+>  		if (!(tmp & ICL_DPCLKA_CFGCR0_DDI_CLK_OFF(phy)))
+> @@ -651,36 +657,36 @@ static bool gen11_dsi_is_clock_enabled(struct intel_encoder *encoder)
+>  static void gen11_dsi_map_pll(struct intel_encoder *encoder,
+>  			      const struct intel_crtc_state *crtc_state)
+>  {
+> -	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> +	struct intel_display *display = to_intel_display(encoder);
+>  	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+>  	struct intel_shared_dpll *pll = crtc_state->shared_dpll;
+>  	enum phy phy;
+>  	u32 val;
+>  
+> -	mutex_lock(&dev_priv->display.dpll.lock);
+> +	mutex_lock(&display->dpll.lock);
+>  
+> -	val = intel_de_read(dev_priv, ICL_DPCLKA_CFGCR0);
+> +	val = intel_de_read(display, ICL_DPCLKA_CFGCR0);
+>  	for_each_dsi_phy(phy, intel_dsi->phys) {
+>  		val &= ~ICL_DPCLKA_CFGCR0_DDI_CLK_SEL_MASK(phy);
+>  		val |= ICL_DPCLKA_CFGCR0_DDI_CLK_SEL(pll->info->id, phy);
+>  	}
+> -	intel_de_write(dev_priv, ICL_DPCLKA_CFGCR0, val);
+> +	intel_de_write(display, ICL_DPCLKA_CFGCR0, val);
+>  
+>  	for_each_dsi_phy(phy, intel_dsi->phys) {
+>  		val &= ~ICL_DPCLKA_CFGCR0_DDI_CLK_OFF(phy);
+>  	}
+> -	intel_de_write(dev_priv, ICL_DPCLKA_CFGCR0, val);
+> +	intel_de_write(display, ICL_DPCLKA_CFGCR0, val);
+>  
+> -	intel_de_posting_read(dev_priv, ICL_DPCLKA_CFGCR0);
+> +	intel_de_posting_read(display, ICL_DPCLKA_CFGCR0);
+>  
+> -	mutex_unlock(&dev_priv->display.dpll.lock);
+> +	mutex_unlock(&display->dpll.lock);
+>  }
+>  
+>  static void
+>  gen11_dsi_configure_transcoder(struct intel_encoder *encoder,
+>  			       const struct intel_crtc_state *pipe_config)
+>  {
+> -	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> +	struct intel_display *display = to_intel_display(encoder);
+>  	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+>  	struct intel_crtc *crtc = to_intel_crtc(pipe_config->uapi.crtc);
+>  	enum pipe pipe = crtc->pipe;
+> @@ -690,7 +696,7 @@ gen11_dsi_configure_transcoder(struct intel_encoder *encoder,
+>  
+>  	for_each_dsi_port(port, intel_dsi->ports) {
+>  		dsi_trans = dsi_port_to_transcoder(port);
+> -		tmp = intel_de_read(dev_priv, DSI_TRANS_FUNC_CONF(dsi_trans));
+> +		tmp = intel_de_read(display, DSI_TRANS_FUNC_CONF(dsi_trans));
+>  
+>  		if (intel_dsi->eotp_pkt)
+>  			tmp &= ~EOTP_DISABLED;
+> @@ -746,7 +752,7 @@ gen11_dsi_configure_transcoder(struct intel_encoder *encoder,
+>  			}
+>  		}
+>  
+> -		if (DISPLAY_VER(dev_priv) >= 12) {
+> +		if (DISPLAY_VER(display) >= 12) {
+>  			if (is_vid_mode(intel_dsi))
+>  				tmp |= BLANKING_PACKET_ENABLE;
+>  		}
+> @@ -779,15 +785,15 @@ gen11_dsi_configure_transcoder(struct intel_encoder *encoder,
+>  			tmp |= TE_SOURCE_GPIO;
+>  		}
+>  
+> -		intel_de_write(dev_priv, DSI_TRANS_FUNC_CONF(dsi_trans), tmp);
+> +		intel_de_write(display, DSI_TRANS_FUNC_CONF(dsi_trans), tmp);
+>  	}
+>  
+>  	/* enable port sync mode if dual link */
+>  	if (intel_dsi->dual_link) {
+>  		for_each_dsi_port(port, intel_dsi->ports) {
+>  			dsi_trans = dsi_port_to_transcoder(port);
+> -			intel_de_rmw(dev_priv,
+> -				     TRANS_DDI_FUNC_CTL2(dev_priv, dsi_trans),
+> +			intel_de_rmw(display,
+> +				     TRANS_DDI_FUNC_CTL2(display, dsi_trans),
+>  				     0, PORT_SYNC_MODE_ENABLE);
+>  		}
+>  
+> @@ -799,8 +805,8 @@ gen11_dsi_configure_transcoder(struct intel_encoder *encoder,
+>  		dsi_trans = dsi_port_to_transcoder(port);
+>  
+>  		/* select data lane width */
+> -		tmp = intel_de_read(dev_priv,
+> -				    TRANS_DDI_FUNC_CTL(dev_priv, dsi_trans));
+> +		tmp = intel_de_read(display,
+> +				    TRANS_DDI_FUNC_CTL(display, dsi_trans));
+>  		tmp &= ~DDI_PORT_WIDTH_MASK;
+>  		tmp |= DDI_PORT_WIDTH(intel_dsi->lane_count);
+>  
+> @@ -826,16 +832,16 @@ gen11_dsi_configure_transcoder(struct intel_encoder *encoder,
+>  
+>  		/* enable DDI buffer */
+>  		tmp |= TRANS_DDI_FUNC_ENABLE;
+> -		intel_de_write(dev_priv,
+> -			       TRANS_DDI_FUNC_CTL(dev_priv, dsi_trans), tmp);
+> +		intel_de_write(display,
+> +			       TRANS_DDI_FUNC_CTL(display, dsi_trans), tmp);
+>  	}
+>  
+>  	/* wait for link ready */
+>  	for_each_dsi_port(port, intel_dsi->ports) {
+>  		dsi_trans = dsi_port_to_transcoder(port);
+> -		if (wait_for_us((intel_de_read(dev_priv, DSI_TRANS_FUNC_CONF(dsi_trans)) &
+> +		if (wait_for_us((intel_de_read(display, DSI_TRANS_FUNC_CONF(dsi_trans)) &
+>  				 LINK_READY), 2500))
+> -			drm_err(&dev_priv->drm, "DSI link not ready\n");
+> +			drm_err(display->drm, "DSI link not ready\n");
+>  	}
+>  }
+>  
+> @@ -843,7 +849,7 @@ static void
+>  gen11_dsi_set_transcoder_timings(struct intel_encoder *encoder,
+>  				 const struct intel_crtc_state *crtc_state)
+>  {
+> -	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> +	struct intel_display *display = to_intel_display(encoder);
+>  	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+>  	const struct drm_display_mode *adjusted_mode =
+>  		&crtc_state->hw.adjusted_mode;
+> @@ -910,17 +916,17 @@ gen11_dsi_set_transcoder_timings(struct intel_encoder *encoder,
+>  
+>  	/* minimum hactive as per bspec: 256 pixels */
+>  	if (adjusted_mode->crtc_hdisplay < 256)
+> -		drm_err(&dev_priv->drm, "hactive is less then 256 pixels\n");
+> +		drm_err(display->drm, "hactive is less then 256 pixels\n");
+>  
+>  	/* if RGB666 format, then hactive must be multiple of 4 pixels */
+>  	if (intel_dsi->pixel_format == MIPI_DSI_FMT_RGB666 && hactive % 4 != 0)
+> -		drm_err(&dev_priv->drm,
+> +		drm_err(display->drm,
+>  			"hactive pixels are not multiple of 4\n");
+>  
+>  	/* program TRANS_HTOTAL register */
+>  	for_each_dsi_port(port, intel_dsi->ports) {
+>  		dsi_trans = dsi_port_to_transcoder(port);
+> -		intel_de_write(dev_priv, TRANS_HTOTAL(dev_priv, dsi_trans),
+> +		intel_de_write(display, TRANS_HTOTAL(display, dsi_trans),
+>  			       HACTIVE(hactive - 1) | HTOTAL(htotal - 1));
+>  	}
+>  
+> @@ -929,12 +935,12 @@ gen11_dsi_set_transcoder_timings(struct intel_encoder *encoder,
+>  		if (intel_dsi->video_mode == NON_BURST_SYNC_PULSE) {
+>  			/* BSPEC: hsync size should be atleast 16 pixels */
+>  			if (hsync_size < 16)
+> -				drm_err(&dev_priv->drm,
+> +				drm_err(display->drm,
+>  					"hsync size < 16 pixels\n");
+>  		}
+>  
+>  		if (hback_porch < 16)
+> -			drm_err(&dev_priv->drm, "hback porch < 16 pixels\n");
+> +			drm_err(display->drm, "hback porch < 16 pixels\n");
+>  
+>  		if (intel_dsi->dual_link) {
+>  			hsync_start /= 2;
+> @@ -943,8 +949,8 @@ gen11_dsi_set_transcoder_timings(struct intel_encoder *encoder,
+>  
+>  		for_each_dsi_port(port, intel_dsi->ports) {
+>  			dsi_trans = dsi_port_to_transcoder(port);
+> -			intel_de_write(dev_priv,
+> -				       TRANS_HSYNC(dev_priv, dsi_trans),
+> +			intel_de_write(display,
+> +				       TRANS_HSYNC(display, dsi_trans),
+>  				       HSYNC_START(hsync_start - 1) | HSYNC_END(hsync_end - 1));
+>  		}
+>  	}
+> @@ -958,22 +964,22 @@ gen11_dsi_set_transcoder_timings(struct intel_encoder *encoder,
+>  		 * struct drm_display_mode.
+>  		 * For interlace mode: program required pixel minus 2
+>  		 */
+> -		intel_de_write(dev_priv, TRANS_VTOTAL(dev_priv, dsi_trans),
+> +		intel_de_write(display, TRANS_VTOTAL(display, dsi_trans),
+>  			       VACTIVE(vactive - 1) | VTOTAL(vtotal - 1));
+>  	}
+>  
+>  	if (vsync_end < vsync_start || vsync_end > vtotal)
+> -		drm_err(&dev_priv->drm, "Invalid vsync_end value\n");
+> +		drm_err(display->drm, "Invalid vsync_end value\n");
+>  
+>  	if (vsync_start < vactive)
+> -		drm_err(&dev_priv->drm, "vsync_start less than vactive\n");
+> +		drm_err(display->drm, "vsync_start less than vactive\n");
+>  
+>  	/* program TRANS_VSYNC register for video mode only */
+>  	if (is_vid_mode(intel_dsi)) {
+>  		for_each_dsi_port(port, intel_dsi->ports) {
+>  			dsi_trans = dsi_port_to_transcoder(port);
+> -			intel_de_write(dev_priv,
+> -				       TRANS_VSYNC(dev_priv, dsi_trans),
+> +			intel_de_write(display,
+> +				       TRANS_VSYNC(display, dsi_trans),
+>  				       VSYNC_START(vsync_start - 1) | VSYNC_END(vsync_end - 1));
+>  		}
+>  	}
+> @@ -987,8 +993,8 @@ gen11_dsi_set_transcoder_timings(struct intel_encoder *encoder,
+>  	if (is_vid_mode(intel_dsi)) {
+>  		for_each_dsi_port(port, intel_dsi->ports) {
+>  			dsi_trans = dsi_port_to_transcoder(port);
+> -			intel_de_write(dev_priv,
+> -				       TRANS_VSYNCSHIFT(dev_priv, dsi_trans),
+> +			intel_de_write(display,
+> +				       TRANS_VSYNCSHIFT(display, dsi_trans),
+>  				       vsync_shift);
+>  		}
+>  	}
+> @@ -999,11 +1005,11 @@ gen11_dsi_set_transcoder_timings(struct intel_encoder *encoder,
+>  	 * FIXME get rid of these local hacks and do it right,
+>  	 * this will not handle eg. delayed vblank correctly.
+>  	 */
+> -	if (DISPLAY_VER(dev_priv) >= 12) {
+> +	if (DISPLAY_VER(display) >= 12) {
+>  		for_each_dsi_port(port, intel_dsi->ports) {
+>  			dsi_trans = dsi_port_to_transcoder(port);
+> -			intel_de_write(dev_priv,
+> -				       TRANS_VBLANK(dev_priv, dsi_trans),
+> +			intel_de_write(display,
+> +				       TRANS_VBLANK(display, dsi_trans),
+>  				       VBLANK_START(vactive - 1) | VBLANK_END(vtotal - 1));
+>  		}
+>  	}
+> @@ -1011,20 +1017,20 @@ gen11_dsi_set_transcoder_timings(struct intel_encoder *encoder,
+>  
+>  static void gen11_dsi_enable_transcoder(struct intel_encoder *encoder)
+>  {
+> -	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> +	struct intel_display *display = to_intel_display(encoder);
+>  	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+>  	enum port port;
+>  	enum transcoder dsi_trans;
+>  
+>  	for_each_dsi_port(port, intel_dsi->ports) {
+>  		dsi_trans = dsi_port_to_transcoder(port);
+> -		intel_de_rmw(dev_priv, TRANSCONF(dev_priv, dsi_trans), 0,
+> +		intel_de_rmw(display, TRANSCONF(display, dsi_trans), 0,
+>  			     TRANSCONF_ENABLE);
+>  
+>  		/* wait for transcoder to be enabled */
+> -		if (intel_de_wait_for_set(dev_priv, TRANSCONF(dev_priv, dsi_trans),
+> +		if (intel_de_wait_for_set(display, TRANSCONF(display, dsi_trans),
+>  					  TRANSCONF_STATE_ENABLE, 10))
+> -			drm_err(&dev_priv->drm,
+> +			drm_err(display->drm,
+>  				"DSI transcoder not enabled\n");
+>  	}
+>  }
+> @@ -1032,7 +1038,7 @@ static void gen11_dsi_enable_transcoder(struct intel_encoder *encoder)
+>  static void gen11_dsi_setup_timeouts(struct intel_encoder *encoder,
+>  				     const struct intel_crtc_state *crtc_state)
+>  {
+> -	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> +	struct intel_display *display = to_intel_display(encoder);
+>  	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+>  	enum port port;
+>  	enum transcoder dsi_trans;
+> @@ -1056,21 +1062,21 @@ static void gen11_dsi_setup_timeouts(struct intel_encoder *encoder,
+>  		dsi_trans = dsi_port_to_transcoder(port);
+>  
+>  		/* program hst_tx_timeout */
+> -		intel_de_rmw(dev_priv, DSI_HSTX_TO(dsi_trans),
+> +		intel_de_rmw(display, DSI_HSTX_TO(dsi_trans),
+>  			     HSTX_TIMEOUT_VALUE_MASK,
+>  			     HSTX_TIMEOUT_VALUE(hs_tx_timeout));
+>  
+>  		/* FIXME: DSI_CALIB_TO */
+>  
+>  		/* program lp_rx_host timeout */
+> -		intel_de_rmw(dev_priv, DSI_LPRX_HOST_TO(dsi_trans),
+> +		intel_de_rmw(display, DSI_LPRX_HOST_TO(dsi_trans),
+>  			     LPRX_TIMEOUT_VALUE_MASK,
+>  			     LPRX_TIMEOUT_VALUE(lp_rx_timeout));
+>  
+>  		/* FIXME: DSI_PWAIT_TO */
+>  
+>  		/* program turn around timeout */
+> -		intel_de_rmw(dev_priv, DSI_TA_TO(dsi_trans),
+> +		intel_de_rmw(display, DSI_TA_TO(dsi_trans),
+>  			     TA_TIMEOUT_VALUE_MASK,
+>  			     TA_TIMEOUT_VALUE(ta_timeout));
+>  	}
+> @@ -1079,7 +1085,7 @@ static void gen11_dsi_setup_timeouts(struct intel_encoder *encoder,
+>  static void gen11_dsi_config_util_pin(struct intel_encoder *encoder,
+>  				      bool enable)
+>  {
+> -	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> +	struct intel_display *display = to_intel_display(encoder);
+>  	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+>  	u32 tmp;
+>  
+> @@ -1091,7 +1097,7 @@ static void gen11_dsi_config_util_pin(struct intel_encoder *encoder,
+>  	if (is_vid_mode(intel_dsi) || (intel_dsi->ports & BIT(PORT_B)))
+>  		return;
+>  
+> -	tmp = intel_de_read(dev_priv, UTIL_PIN_CTL);
+> +	tmp = intel_de_read(display, UTIL_PIN_CTL);
+>  
+>  	if (enable) {
+>  		tmp |= UTIL_PIN_DIRECTION_INPUT;
+> @@ -1099,7 +1105,7 @@ static void gen11_dsi_config_util_pin(struct intel_encoder *encoder,
+>  	} else {
+>  		tmp &= ~UTIL_PIN_ENABLE;
+>  	}
+> -	intel_de_write(dev_priv, UTIL_PIN_CTL, tmp);
+> +	intel_de_write(display, UTIL_PIN_CTL, tmp);
+>  }
+>  
+>  static void
+> @@ -1137,7 +1143,7 @@ gen11_dsi_enable_port_and_phy(struct intel_encoder *encoder,
+>  
+>  static void gen11_dsi_powerup_panel(struct intel_encoder *encoder)
+>  {
+> -	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> +	struct intel_display *display = to_intel_display(encoder);
+>  	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+>  	struct mipi_dsi_device *dsi;
+>  	enum port port;
+> @@ -1153,14 +1159,14 @@ static void gen11_dsi_powerup_panel(struct intel_encoder *encoder)
+>  		 * FIXME: This uses the number of DW's currently in the payload
+>  		 * receive queue. This is probably not what we want here.
+>  		 */
+> -		tmp = intel_de_read(dev_priv, DSI_CMD_RXCTL(dsi_trans));
+> +		tmp = intel_de_read(display, DSI_CMD_RXCTL(dsi_trans));
+>  		tmp &= NUMBER_RX_PLOAD_DW_MASK;
+>  		/* multiply "Number Rx Payload DW" by 4 to get max value */
+>  		tmp = tmp * 4;
+>  		dsi = intel_dsi->dsi_hosts[port]->device;
+>  		ret = mipi_dsi_set_maximum_return_packet_size(dsi, tmp);
+>  		if (ret < 0)
+> -			drm_err(&dev_priv->drm,
+> +			drm_err(display->drm,
+>  				"error setting max return pkt size%d\n", tmp);
+>  	}
+>  
+> @@ -1220,10 +1226,10 @@ static void gen11_dsi_pre_enable(struct intel_atomic_state *state,
+>  static void icl_apply_kvmr_pipe_a_wa(struct intel_encoder *encoder,
+>  				     enum pipe pipe, bool enable)
+>  {
+> -	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> +	struct intel_display *display = to_intel_display(encoder);
+>  
+> -	if (DISPLAY_VER(dev_priv) == 11 && pipe == PIPE_B)
+> -		intel_de_rmw(dev_priv, CHICKEN_PAR1_1,
+> +	if (DISPLAY_VER(display) == 11 && pipe == PIPE_B)
+> +		intel_de_rmw(display, CHICKEN_PAR1_1,
+>  			     IGNORE_KVMR_PIPE_A,
+>  			     enable ? IGNORE_KVMR_PIPE_A : 0);
+>  }
+> @@ -1236,13 +1242,13 @@ static void icl_apply_kvmr_pipe_a_wa(struct intel_encoder *encoder,
+>   */
+>  static void adlp_set_lp_hs_wakeup_gb(struct intel_encoder *encoder)
+>  {
+> -	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+> +	struct intel_display *display = to_intel_display(encoder);
+>  	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+>  	enum port port;
+>  
+> -	if (DISPLAY_VER(i915) == 13) {
+> +	if (DISPLAY_VER(display) == 13) {
+>  		for_each_dsi_port(port, intel_dsi->ports)
+> -			intel_de_rmw(i915, TGL_DSI_CHKN_REG(port),
+> +			intel_de_rmw(display, TGL_DSI_CHKN_REG(port),
+>  				     TGL_DSI_CHKN_LSHS_GB_MASK,
+>  				     TGL_DSI_CHKN_LSHS_GB(4));
+>  	}
+> @@ -1276,7 +1282,7 @@ static void gen11_dsi_enable(struct intel_atomic_state *state,
+>  
+>  static void gen11_dsi_disable_transcoder(struct intel_encoder *encoder)
+>  {
+> -	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> +	struct intel_display *display = to_intel_display(encoder);
+>  	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+>  	enum port port;
+>  	enum transcoder dsi_trans;
+> @@ -1285,13 +1291,13 @@ static void gen11_dsi_disable_transcoder(struct intel_encoder *encoder)
+>  		dsi_trans = dsi_port_to_transcoder(port);
+>  
+>  		/* disable transcoder */
+> -		intel_de_rmw(dev_priv, TRANSCONF(dev_priv, dsi_trans),
+> +		intel_de_rmw(display, TRANSCONF(display, dsi_trans),
+>  			     TRANSCONF_ENABLE, 0);
+>  
+>  		/* wait for transcoder to be disabled */
+> -		if (intel_de_wait_for_clear(dev_priv, TRANSCONF(dev_priv, dsi_trans),
+> +		if (intel_de_wait_for_clear(display, TRANSCONF(display, dsi_trans),
+>  					    TRANSCONF_STATE_ENABLE, 50))
+> -			drm_err(&dev_priv->drm,
+> +			drm_err(display->drm,
+>  				"DSI trancoder not disabled\n");
+>  	}
+>  }
+> @@ -1308,7 +1314,7 @@ static void gen11_dsi_powerdown_panel(struct intel_encoder *encoder)
+>  
+>  static void gen11_dsi_deconfigure_trancoder(struct intel_encoder *encoder)
+>  {
+> -	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> +	struct intel_display *display = to_intel_display(encoder);
+>  	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+>  	enum port port;
+>  	enum transcoder dsi_trans;
+> @@ -1317,29 +1323,29 @@ static void gen11_dsi_deconfigure_trancoder(struct intel_encoder *encoder)
+>  	/* disable periodic update mode */
+>  	if (is_cmd_mode(intel_dsi)) {
+>  		for_each_dsi_port(port, intel_dsi->ports)
+> -			intel_de_rmw(dev_priv, DSI_CMD_FRMCTL(port),
+> +			intel_de_rmw(display, DSI_CMD_FRMCTL(port),
+>  				     DSI_PERIODIC_FRAME_UPDATE_ENABLE, 0);
+>  	}
+>  
+>  	/* put dsi link in ULPS */
+>  	for_each_dsi_port(port, intel_dsi->ports) {
+>  		dsi_trans = dsi_port_to_transcoder(port);
+> -		tmp = intel_de_read(dev_priv, DSI_LP_MSG(dsi_trans));
+> +		tmp = intel_de_read(display, DSI_LP_MSG(dsi_trans));
+>  		tmp |= LINK_ENTER_ULPS;
+>  		tmp &= ~LINK_ULPS_TYPE_LP11;
+> -		intel_de_write(dev_priv, DSI_LP_MSG(dsi_trans), tmp);
+> +		intel_de_write(display, DSI_LP_MSG(dsi_trans), tmp);
+>  
+> -		if (wait_for_us((intel_de_read(dev_priv, DSI_LP_MSG(dsi_trans)) &
+> +		if (wait_for_us((intel_de_read(display, DSI_LP_MSG(dsi_trans)) &
+>  				 LINK_IN_ULPS),
+>  				10))
+> -			drm_err(&dev_priv->drm, "DSI link not in ULPS\n");
+> +			drm_err(display->drm, "DSI link not in ULPS\n");
+>  	}
+>  
+>  	/* disable ddi function */
+>  	for_each_dsi_port(port, intel_dsi->ports) {
+>  		dsi_trans = dsi_port_to_transcoder(port);
+> -		intel_de_rmw(dev_priv,
+> -			     TRANS_DDI_FUNC_CTL(dev_priv, dsi_trans),
+> +		intel_de_rmw(display,
+> +			     TRANS_DDI_FUNC_CTL(display, dsi_trans),
+>  			     TRANS_DDI_FUNC_ENABLE, 0);
+>  	}
+>  
+> @@ -1347,8 +1353,8 @@ static void gen11_dsi_deconfigure_trancoder(struct intel_encoder *encoder)
+>  	if (intel_dsi->dual_link) {
+>  		for_each_dsi_port(port, intel_dsi->ports) {
+>  			dsi_trans = dsi_port_to_transcoder(port);
+> -			intel_de_rmw(dev_priv,
+> -				     TRANS_DDI_FUNC_CTL2(dev_priv, dsi_trans),
+> +			intel_de_rmw(display,
+> +				     TRANS_DDI_FUNC_CTL2(display, dsi_trans),
+>  				     PORT_SYNC_MODE_ENABLE, 0);
+>  		}
+>  	}
+> @@ -1356,18 +1362,18 @@ static void gen11_dsi_deconfigure_trancoder(struct intel_encoder *encoder)
+>  
+>  static void gen11_dsi_disable_port(struct intel_encoder *encoder)
+>  {
+> -	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> +	struct intel_display *display = to_intel_display(encoder);
+>  	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+>  	enum port port;
+>  
+>  	gen11_dsi_ungate_clocks(encoder);
+>  	for_each_dsi_port(port, intel_dsi->ports) {
+> -		intel_de_rmw(dev_priv, DDI_BUF_CTL(port), DDI_BUF_CTL_ENABLE, 0);
+> +		intel_de_rmw(display, DDI_BUF_CTL(port), DDI_BUF_CTL_ENABLE, 0);
+>  
+> -		if (wait_for_us((intel_de_read(dev_priv, DDI_BUF_CTL(port)) &
+> +		if (wait_for_us((intel_de_read(display, DDI_BUF_CTL(port)) &
+>  				 DDI_BUF_IS_IDLE),
+>  				 8))
+> -			drm_err(&dev_priv->drm,
+> +			drm_err(display->drm,
+>  				"DDI port:%c buffer not idle\n",
+>  				port_name(port));
+>  	}
+> @@ -1376,6 +1382,7 @@ static void gen11_dsi_disable_port(struct intel_encoder *encoder)
+>  
+>  static void gen11_dsi_disable_io_power(struct intel_encoder *encoder)
+>  {
+> +	struct intel_display *display = to_intel_display(encoder);
+>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>  	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+>  	enum port port;
+> @@ -1393,7 +1400,7 @@ static void gen11_dsi_disable_io_power(struct intel_encoder *encoder)
+>  
+>  	/* set mode to DDI */
+>  	for_each_dsi_port(port, intel_dsi->ports)
+> -		intel_de_rmw(dev_priv, ICL_DSI_IO_MODECTL(port),
+> +		intel_de_rmw(display, ICL_DSI_IO_MODECTL(port),
+>  			     COMBO_PHY_MODE_DSI, 0);
+>  }
+>  
+> @@ -1505,8 +1512,7 @@ static void gen11_dsi_get_timings(struct intel_encoder *encoder,
+>  
+>  static bool gen11_dsi_is_periodic_cmd_mode(struct intel_dsi *intel_dsi)
+>  {
+> -	struct drm_device *dev = intel_dsi->base.base.dev;
+> -	struct drm_i915_private *dev_priv = to_i915(dev);
+> +	struct intel_display *display = to_intel_display(&intel_dsi->base);
+>  	enum transcoder dsi_trans;
+>  	u32 val;
+>  
+> @@ -1515,7 +1521,7 @@ static bool gen11_dsi_is_periodic_cmd_mode(struct intel_dsi *intel_dsi)
+>  	else
+>  		dsi_trans = TRANSCODER_DSI_0;
+>  
+> -	val = intel_de_read(dev_priv, DSI_TRANS_FUNC_CONF(dsi_trans));
+> +	val = intel_de_read(display, DSI_TRANS_FUNC_CONF(dsi_trans));
+>  	return (val & DSI_PERIODIC_FRAME_UPDATE_ENABLE);
+>  }
+>  
+> @@ -1558,7 +1564,7 @@ static void gen11_dsi_get_config(struct intel_encoder *encoder,
+>  static void gen11_dsi_sync_state(struct intel_encoder *encoder,
+>  				 const struct intel_crtc_state *crtc_state)
+>  {
+> -	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> +	struct intel_display *display = to_intel_display(encoder);
+>  	struct intel_crtc *intel_crtc;
+>  	enum pipe pipe;
+>  
+> @@ -1569,9 +1575,9 @@ static void gen11_dsi_sync_state(struct intel_encoder *encoder,
+>  	pipe = intel_crtc->pipe;
+>  
+>  	/* wa verify 1409054076:icl,jsl,ehl */
+> -	if (DISPLAY_VER(dev_priv) == 11 && pipe == PIPE_B &&
+> -	    !(intel_de_read(dev_priv, CHICKEN_PAR1_1) & IGNORE_KVMR_PIPE_A))
+> -		drm_dbg_kms(&dev_priv->drm,
+> +	if (DISPLAY_VER(display) == 11 && pipe == PIPE_B &&
+> +	    !(intel_de_read(display, CHICKEN_PAR1_1) & IGNORE_KVMR_PIPE_A))
+> +		drm_dbg_kms(display->drm,
+>  			    "[ENCODER:%d:%s] BIOS left IGNORE_KVMR_PIPE_A cleared with pipe B enabled\n",
+>  			    encoder->base.base.id,
+>  			    encoder->base.name);
+> @@ -1580,9 +1586,9 @@ static void gen11_dsi_sync_state(struct intel_encoder *encoder,
+>  static int gen11_dsi_dsc_compute_config(struct intel_encoder *encoder,
+>  					struct intel_crtc_state *crtc_state)
+>  {
+> -	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> +	struct intel_display *display = to_intel_display(encoder);
+>  	struct drm_dsc_config *vdsc_cfg = &crtc_state->dsc.config;
+> -	int dsc_max_bpc = DISPLAY_VER(dev_priv) >= 12 ? 12 : 10;
+> +	int dsc_max_bpc = DISPLAY_VER(display) >= 12 ? 12 : 10;
+>  	bool use_dsc;
 >  	int ret;
 >  
-> @@ -298,7 +302,7 @@ static int hsw_ips_debugfs_false_color_set(void *data, u64 val)
->  	if (ret)
+> @@ -1607,12 +1613,12 @@ static int gen11_dsi_dsc_compute_config(struct intel_encoder *encoder,
 >  		return ret;
 >  
-> -	i915->display.ips.false_color = val;
-> +	display->ips.false_color = val;
+>  	/* DSI specific sanity checks on the common code */
+> -	drm_WARN_ON(&dev_priv->drm, vdsc_cfg->vbr_enable);
+> -	drm_WARN_ON(&dev_priv->drm, vdsc_cfg->simple_422);
+> -	drm_WARN_ON(&dev_priv->drm,
+> +	drm_WARN_ON(display->drm, vdsc_cfg->vbr_enable);
+> +	drm_WARN_ON(display->drm, vdsc_cfg->simple_422);
+> +	drm_WARN_ON(display->drm,
+>  		    vdsc_cfg->pic_width % vdsc_cfg->slice_width);
+> -	drm_WARN_ON(&dev_priv->drm, vdsc_cfg->slice_height < 8);
+> -	drm_WARN_ON(&dev_priv->drm,
+> +	drm_WARN_ON(display->drm, vdsc_cfg->slice_height < 8);
+> +	drm_WARN_ON(display->drm,
+>  		    vdsc_cfg->pic_height % vdsc_cfg->slice_height);
 >  
->  	crtc_state = to_intel_crtc_state(crtc->base.state);
->  
-> @@ -325,18 +329,19 @@ DEFINE_DEBUGFS_ATTRIBUTE(hsw_ips_debugfs_false_color_fops,
->  static int hsw_ips_debugfs_status_show(struct seq_file *m, void *unused)
+>  	ret = drm_dsc_compute_rc_parameters(vdsc_cfg);
+> @@ -1628,7 +1634,7 @@ static int gen11_dsi_compute_config(struct intel_encoder *encoder,
+>  				    struct intel_crtc_state *pipe_config,
+>  				    struct drm_connector_state *conn_state)
 >  {
->  	struct intel_crtc *crtc = m->private;
-> +	struct intel_display *display = to_intel_display(crtc);
->  	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
->  	intel_wakeref_t wakeref;
+> -	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+> +	struct intel_display *display = to_intel_display(encoder);
+>  	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+>  	struct intel_connector *intel_connector = intel_dsi->attached_connector;
+>  	struct drm_display_mode *adjusted_mode =
+> @@ -1662,7 +1668,7 @@ static int gen11_dsi_compute_config(struct intel_encoder *encoder,
+>  	pipe_config->clock_set = true;
 >  
->  	wakeref = intel_runtime_pm_get(&i915->runtime_pm);
+>  	if (gen11_dsi_dsc_compute_config(encoder, pipe_config))
+> -		drm_dbg_kms(&i915->drm, "Attempting to use DSC failed\n");
+> +		drm_dbg_kms(display->drm, "Attempting to use DSC failed\n");
 >  
->  	seq_printf(m, "Enabled by kernel parameter: %s\n",
-> -		   str_yes_no(i915->display.params.enable_ips));
-> +		   str_yes_no(display->params.enable_ips));
+>  	pipe_config->port_clock = afe_clk(encoder, pipe_config) / 5;
 >  
-> -	if (DISPLAY_VER(i915) >= 8) {
-> +	if (DISPLAY_VER(display) >= 8) {
->  		seq_puts(m, "Currently: unknown\n");
->  	} else {
-> -		if (intel_de_read(i915, IPS_CTL) & IPS_ENABLE)
-> +		if (intel_de_read(display, IPS_CTL) & IPS_ENABLE)
->  			seq_puts(m, "Currently: enabled\n");
->  		else
->  			seq_puts(m, "Currently: disabled\n");
+> @@ -1680,15 +1686,13 @@ static int gen11_dsi_compute_config(struct intel_encoder *encoder,
+>  static void gen11_dsi_get_power_domains(struct intel_encoder *encoder,
+>  					struct intel_crtc_state *crtc_state)
+>  {
+> -	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+> -
+> -	get_dsi_io_power_domains(i915,
+> -				 enc_to_intel_dsi(encoder));
+> +	get_dsi_io_power_domains(enc_to_intel_dsi(encoder));
+>  }
+>  
+>  static bool gen11_dsi_get_hw_state(struct intel_encoder *encoder,
+>  				   enum pipe *pipe)
+>  {
+> +	struct intel_display *display = to_intel_display(encoder);
+>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>  	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+>  	enum transcoder dsi_trans;
+> @@ -1704,8 +1708,8 @@ static bool gen11_dsi_get_hw_state(struct intel_encoder *encoder,
+>  
+>  	for_each_dsi_port(port, intel_dsi->ports) {
+>  		dsi_trans = dsi_port_to_transcoder(port);
+> -		tmp = intel_de_read(dev_priv,
+> -				    TRANS_DDI_FUNC_CTL(dev_priv, dsi_trans));
+> +		tmp = intel_de_read(display,
+> +				    TRANS_DDI_FUNC_CTL(display, dsi_trans));
+>  		switch (tmp & TRANS_DDI_EDP_INPUT_MASK) {
+>  		case TRANS_DDI_EDP_INPUT_A_ON:
+>  			*pipe = PIPE_A;
+> @@ -1720,11 +1724,11 @@ static bool gen11_dsi_get_hw_state(struct intel_encoder *encoder,
+>  			*pipe = PIPE_D;
+>  			break;
+>  		default:
+> -			drm_err(&dev_priv->drm, "Invalid PIPE input\n");
+> +			drm_err(display->drm, "Invalid PIPE input\n");
+>  			goto out;
+>  		}
+>  
+> -		tmp = intel_de_read(dev_priv, TRANSCONF(dev_priv, dsi_trans));
+> +		tmp = intel_de_read(display, TRANSCONF(display, dsi_trans));
+>  		ret = tmp & TRANSCONF_ENABLE;
+>  	}
+>  out:
+> @@ -1834,8 +1838,7 @@ static const struct mipi_dsi_host_ops gen11_dsi_host_ops = {
+>  
+>  static void icl_dphy_param_init(struct intel_dsi *intel_dsi)
+>  {
+> -	struct drm_device *dev = intel_dsi->base.base.dev;
+> -	struct drm_i915_private *dev_priv = to_i915(dev);
+> +	struct intel_display *display = to_intel_display(&intel_dsi->base);
+>  	struct intel_connector *connector = intel_dsi->attached_connector;
+>  	struct mipi_config *mipi_config = connector->panel.vbt.dsi.config;
+>  	u32 tlpx_ns;
+> @@ -1859,7 +1862,7 @@ static void icl_dphy_param_init(struct intel_dsi *intel_dsi)
+>  	 */
+>  	prepare_cnt = DIV_ROUND_UP(ths_prepare_ns * 4, tlpx_ns);
+>  	if (prepare_cnt > ICL_PREPARE_CNT_MAX) {
+> -		drm_dbg_kms(&dev_priv->drm, "prepare_cnt out of range (%d)\n",
+> +		drm_dbg_kms(display->drm, "prepare_cnt out of range (%d)\n",
+>  			    prepare_cnt);
+>  		prepare_cnt = ICL_PREPARE_CNT_MAX;
+>  	}
+> @@ -1868,7 +1871,7 @@ static void icl_dphy_param_init(struct intel_dsi *intel_dsi)
+>  	clk_zero_cnt = DIV_ROUND_UP(mipi_config->tclk_prepare_clkzero -
+>  				    ths_prepare_ns, tlpx_ns);
+>  	if (clk_zero_cnt > ICL_CLK_ZERO_CNT_MAX) {
+> -		drm_dbg_kms(&dev_priv->drm,
+> +		drm_dbg_kms(display->drm,
+>  			    "clk_zero_cnt out of range (%d)\n", clk_zero_cnt);
+>  		clk_zero_cnt = ICL_CLK_ZERO_CNT_MAX;
+>  	}
+> @@ -1876,7 +1879,7 @@ static void icl_dphy_param_init(struct intel_dsi *intel_dsi)
+>  	/* trail cnt in escape clocks*/
+>  	trail_cnt = DIV_ROUND_UP(tclk_trail_ns, tlpx_ns);
+>  	if (trail_cnt > ICL_TRAIL_CNT_MAX) {
+> -		drm_dbg_kms(&dev_priv->drm, "trail_cnt out of range (%d)\n",
+> +		drm_dbg_kms(display->drm, "trail_cnt out of range (%d)\n",
+>  			    trail_cnt);
+>  		trail_cnt = ICL_TRAIL_CNT_MAX;
+>  	}
+> @@ -1884,7 +1887,7 @@ static void icl_dphy_param_init(struct intel_dsi *intel_dsi)
+>  	/* tclk pre count in escape clocks */
+>  	tclk_pre_cnt = DIV_ROUND_UP(mipi_config->tclk_pre, tlpx_ns);
+>  	if (tclk_pre_cnt > ICL_TCLK_PRE_CNT_MAX) {
+> -		drm_dbg_kms(&dev_priv->drm,
+> +		drm_dbg_kms(display->drm,
+>  			    "tclk_pre_cnt out of range (%d)\n", tclk_pre_cnt);
+>  		tclk_pre_cnt = ICL_TCLK_PRE_CNT_MAX;
+>  	}
+> @@ -1893,7 +1896,7 @@ static void icl_dphy_param_init(struct intel_dsi *intel_dsi)
+>  	hs_zero_cnt = DIV_ROUND_UP(mipi_config->ths_prepare_hszero -
+>  				   ths_prepare_ns, tlpx_ns);
+>  	if (hs_zero_cnt > ICL_HS_ZERO_CNT_MAX) {
+> -		drm_dbg_kms(&dev_priv->drm, "hs_zero_cnt out of range (%d)\n",
+> +		drm_dbg_kms(display->drm, "hs_zero_cnt out of range (%d)\n",
+>  			    hs_zero_cnt);
+>  		hs_zero_cnt = ICL_HS_ZERO_CNT_MAX;
+>  	}
+> @@ -1901,7 +1904,7 @@ static void icl_dphy_param_init(struct intel_dsi *intel_dsi)
+>  	/* hs exit zero cnt in escape clocks */
+>  	exit_zero_cnt = DIV_ROUND_UP(mipi_config->ths_exit, tlpx_ns);
+>  	if (exit_zero_cnt > ICL_EXIT_ZERO_CNT_MAX) {
+> -		drm_dbg_kms(&dev_priv->drm,
+> +		drm_dbg_kms(display->drm,
+>  			    "exit_zero_cnt out of range (%d)\n",
+>  			    exit_zero_cnt);
+>  		exit_zero_cnt = ICL_EXIT_ZERO_CNT_MAX;
+> @@ -1943,10 +1946,9 @@ static void icl_dsi_add_properties(struct intel_connector *connector)
+>  						       fixed_mode->vdisplay);
+>  }
+>  
+> -void icl_dsi_init(struct drm_i915_private *dev_priv,
+> +void icl_dsi_init(struct intel_display *display,
+>  		  const struct intel_bios_encoder_data *devdata)
+>  {
+> -	struct intel_display *display = &dev_priv->display;
+>  	struct intel_dsi *intel_dsi;
+>  	struct intel_encoder *encoder;
+>  	struct intel_connector *intel_connector;
+> @@ -1974,7 +1976,8 @@ void icl_dsi_init(struct drm_i915_private *dev_priv,
+>  	encoder->devdata = devdata;
+>  
+>  	/* register DSI encoder with DRM subsystem */
+> -	drm_encoder_init(&dev_priv->drm, &encoder->base, &gen11_dsi_encoder_funcs,
+> +	drm_encoder_init(display->drm, &encoder->base,
+> +			 &gen11_dsi_encoder_funcs,
+>  			 DRM_MODE_ENCODER_DSI, "DSI %c", port_name(port));
+>  
+>  	encoder->pre_pll_enable = gen11_dsi_pre_pll_enable;
+> @@ -1999,7 +2002,8 @@ void icl_dsi_init(struct drm_i915_private *dev_priv,
+>  	encoder->shutdown = intel_dsi_shutdown;
+>  
+>  	/* register DSI connector with DRM subsystem */
+> -	drm_connector_init(&dev_priv->drm, connector, &gen11_dsi_connector_funcs,
+> +	drm_connector_init(display->drm, connector,
+> +			   &gen11_dsi_connector_funcs,
+>  			   DRM_MODE_CONNECTOR_DSI);
+>  	drm_connector_helper_add(connector, &gen11_dsi_connector_helper_funcs);
+>  	connector->display_info.subpixel_order = SubPixelHorizontalRGB;
+> @@ -2012,12 +2016,12 @@ void icl_dsi_init(struct drm_i915_private *dev_priv,
+>  
+>  	intel_bios_init_panel_late(display, &intel_connector->panel, encoder->devdata, NULL);
+>  
+> -	mutex_lock(&dev_priv->drm.mode_config.mutex);
+> +	mutex_lock(&display->drm->mode_config.mutex);
+>  	intel_panel_add_vbt_lfp_fixed_mode(intel_connector);
+> -	mutex_unlock(&dev_priv->drm.mode_config.mutex);
+> +	mutex_unlock(&display->drm->mode_config.mutex);
+>  
+>  	if (!intel_panel_preferred_fixed_mode(intel_connector)) {
+> -		drm_err(&dev_priv->drm, "DSI fixed mode info missing\n");
+> +		drm_err(display->drm, "DSI fixed mode info missing\n");
+>  		goto err;
+>  	}
+>  
+> @@ -2030,10 +2034,10 @@ void icl_dsi_init(struct drm_i915_private *dev_priv,
+>  	else
+>  		intel_dsi->ports = BIT(port);
+>  
+> -	if (drm_WARN_ON(&dev_priv->drm, intel_connector->panel.vbt.dsi.bl_ports & ~intel_dsi->ports))
+> +	if (drm_WARN_ON(display->drm, intel_connector->panel.vbt.dsi.bl_ports & ~intel_dsi->ports))
+>  		intel_connector->panel.vbt.dsi.bl_ports &= intel_dsi->ports;
+>  
+> -	if (drm_WARN_ON(&dev_priv->drm, intel_connector->panel.vbt.dsi.cabc_ports & ~intel_dsi->ports))
+> +	if (drm_WARN_ON(display->drm, intel_connector->panel.vbt.dsi.cabc_ports & ~intel_dsi->ports))
+>  		intel_connector->panel.vbt.dsi.cabc_ports &= intel_dsi->ports;
+>  
+>  	for_each_dsi_port(port, intel_dsi->ports) {
+> @@ -2047,7 +2051,7 @@ void icl_dsi_init(struct drm_i915_private *dev_priv,
+>  	}
+>  
+>  	if (!intel_dsi_vbt_init(intel_dsi, MIPI_DSI_GENERIC_PANEL_ID)) {
+> -		drm_dbg_kms(&dev_priv->drm, "no device found\n");
+> +		drm_dbg_kms(display->drm, "no device found\n");
+>  		goto err;
+>  	}
+>  
+> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.h b/drivers/gpu/drm/i915/display/icl_dsi.h
+> index 43fa7d72eeb1..099fc50e35b4 100644
+> --- a/drivers/gpu/drm/i915/display/icl_dsi.h
+> +++ b/drivers/gpu/drm/i915/display/icl_dsi.h
+> @@ -6,11 +6,11 @@
+>  #ifndef __ICL_DSI_H__
+>  #define __ICL_DSI_H__
+>  
+> -struct drm_i915_private;
+>  struct intel_bios_encoder_data;
+>  struct intel_crtc_state;
+> +struct intel_display;
+>  
+> -void icl_dsi_init(struct drm_i915_private *dev_priv,
+> +void icl_dsi_init(struct intel_display *display,
+>  		  const struct intel_bios_encoder_data *devdata);
+>  void icl_dsi_frame_update(struct intel_crtc_state *crtc_state);
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index ff4c633c8546..2bd14e2134be 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -4885,7 +4885,7 @@ void intel_ddi_init(struct intel_display *display,
+>  		if (!assert_has_icl_dsi(dev_priv))
+>  			return;
+>  
+> -		icl_dsi_init(dev_priv, devdata);
+> +		icl_dsi_init(display, devdata);
+>  		return;
+>  	}
+>  
 > -- 
 > 2.39.5
 > 
