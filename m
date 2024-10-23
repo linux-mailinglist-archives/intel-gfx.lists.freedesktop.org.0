@@ -2,164 +2,164 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 441319ACD9E
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Oct 2024 16:57:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CAA8A9ACE0A
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Oct 2024 17:06:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE8FC10E816;
-	Wed, 23 Oct 2024 14:57:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC48210E36E;
+	Wed, 23 Oct 2024 15:06:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hkdfFvjL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TRk3iNiP";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5ABDA10E803;
- Wed, 23 Oct 2024 14:57:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BFD5310E36E;
+ Wed, 23 Oct 2024 15:06:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729695447; x=1761231447;
+ t=1729695962; x=1761231962;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=zzoabk8fWg3ph2jzF2rExJ8//yyOM19hzSxelGcEpJA=;
- b=hkdfFvjLXiGTJk+f57J/Y5/k0HFamYFYnBQ9OCtcOqGx+sKbYCNC7gR/
- fbuuro79kQPcX/wzPgFAH2W4CjdKOfDHy5fx7e9ljhkXvBLH/Y+MyZg1z
- XSvwO8DwEqkBOpEFCT0enwp8/10IqhQzABAinQ1TjKCUCuXAiSwwbd1yd
- TcwGOLOqv3HJLLZ7R19OhW79XaqdYVGRRLsK2lq/vUUjg4mSzHxWzicmQ
- DEmcMTheKPycRyowBkV8El83fkcVh24gaV+X7qCQHON09zIRxfuzMAwPP
- Ti05Oc5bNPx5kxdXS5ngvZlr3OtZpUzUxfCmhfYwzhsE3jLzXgcqODDey A==;
-X-CSE-ConnectionGUID: 3hWl/4TTQ+WQKq+sANw83Q==
-X-CSE-MsgGUID: aGVA/LuISu67m0YpqPhtXw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="51830386"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="51830386"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2024 07:57:26 -0700
-X-CSE-ConnectionGUID: RasMY90vS7i5H4VTrqb5xw==
-X-CSE-MsgGUID: WRbfkDU2QZGNrvx+z0uFsw==
+ bh=jpx4Wd5sttpXkhMcBpQOveDPaAzIOwEwNSGRLFrMEgE=;
+ b=TRk3iNiPreiuyNhi25JPvqCKjSFiOtZaIPMYYkzQ8fC+tdKYy3hnGnDj
+ lHWjs9mK6D3IhI0v+IrDbe1hT6h906ru3ReMb79UZZ63bE08f4KacwiCw
+ 2tZLaOTXrft6NxJbAJss+vE8RxqxHhSBx+t0azJEDFvCMiyvilQovXp6e
+ wt8/X6MlowAiWyHQTk4uYishFCSNcOhvSO58R8fveVnvWFo5ivBaubgVh
+ jPe8UPITyVmDupLWL3IZIcfH3RGGCb85IFvLTqPET3o5hipRLCTq+n1HW
+ PjqbvyQkuYCZrTbX/KwmPyPKweDSQGjGQczY6uNAFPjemVkweFNS70bCH g==;
+X-CSE-ConnectionGUID: 2ejzIg3nTTWf4oNqR+X8hA==
+X-CSE-MsgGUID: w00UeTfeRZyrDNuLB8i5Xg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11234"; a="40681304"
+X-IronPort-AV: E=Sophos;i="6.11,226,1725346800"; d="scan'208";a="40681304"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2024 08:06:00 -0700
+X-CSE-ConnectionGUID: QJBxazkiRpCx7rnNVlhzPw==
+X-CSE-MsgGUID: 01TB8paxTSyla3SfEMzlJw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,226,1725346800"; d="scan'208";a="80425292"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orviesa006.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 23 Oct 2024 07:57:26 -0700
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.11,226,1725346800"; d="scan'208";a="80311590"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by fmviesa008.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 23 Oct 2024 08:05:58 -0700
+Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Wed, 23 Oct 2024 07:57:25 -0700
+ 15.1.2507.39; Wed, 23 Oct 2024 08:05:29 -0700
 Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Wed, 23 Oct 2024 07:57:25 -0700
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.177)
+ 15.1.2507.39 via Frontend Transport; Wed, 23 Oct 2024 08:05:29 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.171)
  by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Wed, 23 Oct 2024 07:57:25 -0700
+ 15.1.2507.39; Wed, 23 Oct 2024 08:05:24 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qPTvCtTE71YnOsRr1NXTSvYD3OrwjXsU3zHN10qWTztCkT9xoGYEDuHjCyxOZWbcFOtp5+i/vdXGLHqcvGSKmMIen1KrxBpe5Ss4LoVjDEmoDoC7tiFKejgP135xtg3unEk0EXxxa7dwCNjSAighg3YB4GtHcmdO9odZQO1OlNsMrz3ULxtbUAeaeoFFknb5rZ30bRTmCdmYpqsXrWsqA6fV3ocpPRN3wfzfmFEFBs8q9v/5jSkm9q3ZNOAaAYF8GQZy94WrK5RvJZn73VyOR1EAUVwxQwuKJww/4OxwoNN53Eym4ad+bmR3Hhp0V5ACbBSq+6rXcDUfYs7Z8ED1Gw==
+ b=oczTwL8Lhk05WRVDzMwwdvNnZmUL51ocsNoz7+Th2BP7goHoT7Kx8YeE/1s8IsQnGDdXduuG5NthaBpoZb7k6L9CmuhuRAV3bPjOm6qoLiytyTrzbhBRupWbZY8o06w2wZRBokkOrQ+/eQYBHgEH+DNXJzvODaRntmkMp57altNwOnsr7JOOjmr8jeQ8Dg5wE44NmQZLvKnmxt8CclU4A1LnOfEiK6ZQlvtzpUh6mOz4/+9GFPWjlgFIZ7TWZGwK4tWeAj8I40BOFQP/MfW4vYE+ldxisflLz0eGKZKTb/E1DGey8EzAJew6bYRlz5aeI7nFyowqRzRp3uGZk4vWyQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ncvmI5jGUpNCbPmsZUUcX/kgfi7dJzgoiUfEw45yOE4=;
- b=KBRqFVVMEhM8SZbGeuBZY+8KJhzrA0AAUgFTyp0R2ppEDcDrQvMisHadlpNX6Zskdueiu3AjvMFbpVlS9a9Z8VzqXSk1h1qr7mP0ohWOv51z8rm85UIQ/7SVCdYaab3NU5kwSwPxPGWfA5pxS++F9rcMBC9oLRiwVPFHQHu7dJ2hMYue+a1vM+ZHsvM0Jy2X1xme3M1ggEJFOLs65k2YvGzexcpJ2eK4j3cTrjbDjfzWlJUucax4iTSzGgtPbNb2rvx65GYNwOywlzywSyI0vhn72YhnjMiyRvkgRRxYn13LsrAhp5CSo6ZZeQN3hw4Po+S1y3U7zd/ravt+hF6UFQ==
+ bh=jd7y3h/vdpkgNp2KaFKEpwNXS6qn8YwQt299zQraQCY=;
+ b=gF7lQCqS88+9KzhxL3yzRV4zacQNfx0If2GoE+56uDzHkyZPouwijGfvzyqQNSfo7y5Qe4mVhTHMLRVxICnKiATgBUrgWbw4wWCIuXdwF85VdL0qu3iBdE4+TMKOidyB9OjCcNfgt9DNuq9JgepDpLLEe1FvD4vAgzg/gilA3gDLXDcKzO8KPb4xzvC5RBa5usF7D+MPePYyaZi0mGLiHbsCQHq//uF0m0frJ8deCsOoLF41CJeSKM7wDT5wMOxmErpsgmrTAVPraRq5XGiiKnbK9OaUqEzcIxDoOkEQ1dF007it52smkCyO+uuk7uftiNmxrvzzEYUG+QSDyfmEOA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from BYAPR11MB2854.namprd11.prod.outlook.com (2603:10b6:a02:c9::12)
- by PH8PR11MB6681.namprd11.prod.outlook.com (2603:10b6:510:1c4::6)
+ by PH0PR11MB5207.namprd11.prod.outlook.com (2603:10b6:510:32::15)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.17; Wed, 23 Oct
- 2024 14:57:21 +0000
+ 2024 15:05:13 +0000
 Received: from BYAPR11MB2854.namprd11.prod.outlook.com
  ([fe80::8a98:4745:7147:ed42]) by BYAPR11MB2854.namprd11.prod.outlook.com
  ([fe80::8a98:4745:7147:ed42%7]) with mapi id 15.20.8069.020; Wed, 23 Oct 2024
- 14:57:19 +0000
-Date: Wed, 23 Oct 2024 10:57:15 -0400
+ 15:05:13 +0000
+Date: Wed, 23 Oct 2024 11:05:09 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
 CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 05/11] drm/i915/dp/hdcp: convert to struct intel_display
-Message-ID: <ZxkOy1Kj_JC7bcd1@intel.com>
+Subject: Re: [PATCH 06/11] drm/i915/crt: convert to struct intel_display
+Message-ID: <ZxkQpfR6qqnK6JEZ@intel.com>
 References: <cover.1729612605.git.jani.nikula@intel.com>
- <cc314c7be1d175b7bbb82844a99a3de4b4d2c135.1729612605.git.jani.nikula@intel.com>
+ <d68d73aa5a0ba43eca7f1ee6c5f921f5f30aa284.1729612605.git.jani.nikula@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <cc314c7be1d175b7bbb82844a99a3de4b4d2c135.1729612605.git.jani.nikula@intel.com>
-X-ClientProxiedBy: MW4PR04CA0383.namprd04.prod.outlook.com
- (2603:10b6:303:81::28) To BYAPR11MB2854.namprd11.prod.outlook.com
+In-Reply-To: <d68d73aa5a0ba43eca7f1ee6c5f921f5f30aa284.1729612605.git.jani.nikula@intel.com>
+X-ClientProxiedBy: MW4PR03CA0084.namprd03.prod.outlook.com
+ (2603:10b6:303:b6::29) To BYAPR11MB2854.namprd11.prod.outlook.com
  (2603:10b6:a02:c9::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BYAPR11MB2854:EE_|PH8PR11MB6681:EE_
-X-MS-Office365-Filtering-Correlation-Id: f9289d03-c09c-424c-e742-08dcf372fdcb
+X-MS-TrafficTypeDiagnostic: BYAPR11MB2854:EE_|PH0PR11MB5207:EE_
+X-MS-Office365-Filtering-Correlation-Id: 35378ae7-0f45-4348-d4c1-08dcf3741806
 X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?UMDgSN+Ehx33i452iJjjwCfxQEKkJ2fsRCXLfQfiLykKivxNZbHUBwRTplb/?=
- =?us-ascii?Q?0zAU675lTJlzFaKa7w3iK6ip45jH6+gHgQmg+KmJeYFKHZSb3EgsPuMN3iFO?=
- =?us-ascii?Q?LbEL8Nhn45G/qaWBAakl2grb+YGvs4eto38meG4hHeamiOv74NU2uJbz0n8d?=
- =?us-ascii?Q?fb2c/XNMQojrdigEpeNpUQKKLmovtNjO6xa4KEAzLiU6oLC2GpxWH9ufF3CK?=
- =?us-ascii?Q?UZSPvKN9shZiKrXd/wroGPZUOIiibbDpUx9HIHF8QW5EpXeKCQMoxWHYza/R?=
- =?us-ascii?Q?35d9SAi/syJQNQwG9x4Qt7+9bhSo/bAq4z0UwHEt6zAqrDvgNdEM0gjUhZB5?=
- =?us-ascii?Q?2GsHPrKM99X6wDsUb1vBERiw8xZmCDrWMFbmlXwu5oUTuvwgxlYUkFjq3jFR?=
- =?us-ascii?Q?wd/Bkt56daasxU7VQNftgGwlF2PNEToxlmU5stIYvkS/Ar+RHozHGf2Ok1h8?=
- =?us-ascii?Q?NZ/yq8+3im3505JH/JygO/D+6ROnk7jU5wU3OVCcPzyQll8QTquuCcYIllw7?=
- =?us-ascii?Q?Wyjbs5YBeDBpI/i7bGBqlB4YFJGviwnjte282g5eu56PIB0ykokkCxjMSHaq?=
- =?us-ascii?Q?uufe2llu8ZN9tgbkFvfom53Sx/AwSmWtAn/c+GMT5Jp1aE7U2iMNUQ1DZgYf?=
- =?us-ascii?Q?4698Fq/V8l7i47IAhTqVh5lafMQeTNIy9/louL1BC/2NJdsBeY+y3l8u697f?=
- =?us-ascii?Q?wwbQQany+QabPM0yQb8P7CquiSOvQ22/Y3xoFXd4BdJgIYmWuULZbJJs4+tA?=
- =?us-ascii?Q?id5FTVzZYJsMnpZ9gf1tdqfkeBMEJUjEv/sq1aKMCKFd2iAeTVSPOQNzskE0?=
- =?us-ascii?Q?+3ynuLYbhTiekUaqtpbRpwKpo2FA5eiuWLbPz9Jz/ftOklp7wi4lDfHxWPSe?=
- =?us-ascii?Q?N7S9P8XthB//YpzU4yyKeHgWN5OQQmzbUY8p1LvnW2Ll4ndc8Dz65DjDKKRl?=
- =?us-ascii?Q?ilEqqQzNWdD6BsBNiFM+JLGnyQhp+k9x4jnI6GuQEuaUtOHH0+e8dzzUUS7F?=
- =?us-ascii?Q?BZkO1IoGPOt95UvUbo07kSxBWWxnxnfYd/lkFigl06lrpgCaDwyjgK1Icj23?=
- =?us-ascii?Q?6M+PnXqx2a0Wv3sA1bfds/R85HaV8qdt8GkgZW+VDhe7+auhG1SmYK8POlWP?=
- =?us-ascii?Q?+rmSrZ/O4lJVCeoCtVZ9d2xnzKeWdgRUjzomIHnElbMEByAX6w2vBhmK+ODE?=
- =?us-ascii?Q?dFS765Dsq/b02O8oRWFdhyazbxBbsRFfdaKDtujJIxYCNzWykuzUESdN91h8?=
- =?us-ascii?Q?1bMvvZEbqYdaRj0V45ph9m+1Yck5J5pDTbrct2QeYCjYRPTzEtE1RQZec04R?=
- =?us-ascii?Q?0cA=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?2f3zoWS+tOaRR85z0INB0LTDkwnG4CuIenwVtHtXOdNdrE8TfST2KWPTKRxB?=
+ =?us-ascii?Q?fkRwmmFuc++VmdIKWToYZlSMr3TzrvpnnXV3iAo/Fbnh6tbg6Lz+T05Qly6x?=
+ =?us-ascii?Q?t8A+w0pKH8A9ACWWHvOU/qi7QWMk9NjEYJZ1Y8M6ZuW3et4YBtDF2BJi8GpV?=
+ =?us-ascii?Q?fhz19K0dNmVS4bbEd79nz/VcDxVm79tFIN50Svge3xw9QcQ1aW3ZZK01Ow2m?=
+ =?us-ascii?Q?f8T1CKKgTWWc9fmyfonoFEpzKF5XUiKvhDcU4V6uatYCDbDTAZDktkbUAvvb?=
+ =?us-ascii?Q?bpcg51kWmZN2IqWTn/Q+weSfd5hnao9XR5qzcIB/WYgeymIBc6MK7qj9tdYH?=
+ =?us-ascii?Q?XXSLig/cjtiMeIW8Wd/Gu0vomFxOkxSTU0NEx5eYVmM7qdIXfd/gcM8eCFMs?=
+ =?us-ascii?Q?AV67XSXWL6pmDJqrImGaN5oqDmwenN81MU4v7eVaHBH2ZhmuIcNGckm5bw1S?=
+ =?us-ascii?Q?EW54YJhWcBzLrB+Zn1HdpLt8PZNsvLrKY/tOAzk8oLSpl3N2i6SqWPCQoZBk?=
+ =?us-ascii?Q?9LhzabmQhoTh3A4QbEaYMDyTFLebZMSdlRL4lSrMrMJXxFcBP9KOHYwuN0xh?=
+ =?us-ascii?Q?f+r7pl8TfhhL+5Z5olg/JRi8MZIbTLY8clZ3Vq4TnBFtF3XuO2Gy/cYbeUCN?=
+ =?us-ascii?Q?KyF3sWEtnC/2n8g41+xLVXeJd7Ub68326lb6LCZgSc11gVquyDtzNmZOTYy3?=
+ =?us-ascii?Q?s5nUrgKeTgY8SRjFXEWUnhBB+GM7JtCC6HPyOsPUV8RSeZA0RdVs7oirNCi2?=
+ =?us-ascii?Q?ru+5NDwwQacYgEp9DVsWc1siFSgqE9eJ6+hstLQFShDRoR988JxV4OrbinJt?=
+ =?us-ascii?Q?4NiNMR7HzaKTh2XxHS5VPYgsrJ2AQNR2BcmEPxpGMCiypgX/dNcV0Yg1duHm?=
+ =?us-ascii?Q?BWj+R2ncq7JKgCcThYGRy+8rTJfWLPgPx4flwlYr0AY3yy39ApWY1LYt2hch?=
+ =?us-ascii?Q?x0znB/m2i8X2OLoIoyiljgZ4J7XtoNrXPzCQavawz9tzoyQzOGyKzqRmn3Se?=
+ =?us-ascii?Q?L/mwv89adMFjpfrYicpvDZnwlQzxVZdCKImkErlRKpOu/dpvXl8ipf/s3xuX?=
+ =?us-ascii?Q?RAeFeBcr0dpS42nymvUhURUpORCY3jzF3oBmai25VTOFmO10GMC04kpfF8WP?=
+ =?us-ascii?Q?B3Y9ApbrP4OqnsZBFbPxWuI/mrRQBrtOO2w0L7Vt+gOsJC4/imNxMRq++Wrx?=
+ =?us-ascii?Q?G3Dv6KaArzeL6Oaiz0GYP7jKiCiVh/NZ5UPri9K4FG3Dfw5seAQcL5WKEFFT?=
+ =?us-ascii?Q?2UA7TjzBsS52h2dHkF6UaSH+/9MfdUz4/hKXasoLXhgyOpJzTJL93+PD8WWu?=
+ =?us-ascii?Q?RlnAGUqTNpKElmL8mX5uuggC?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:BYAPR11MB2854.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?x/HGxYohyZTEWDoQnsx2Qx43Cby6we9kk6AJfGTWWwiUlqQ5+vj6hAmuAOO0?=
- =?us-ascii?Q?IShEIZlpXkDo23pNj7ivA1fej6rn4zD9LedMFaPBZGVMpTyI0US06nVD3RtD?=
- =?us-ascii?Q?k4f3XCOiFcq+eeftgIbzVs4VQ/7L8FLOuE4p17lQ9+n2Tdq6OMeJI/4fY8PO?=
- =?us-ascii?Q?LEXjlsFM/tQvZGgz5LTART4MiEawS3reYMdY7wA4M1oayXwYa+Dp+OcwTa1/?=
- =?us-ascii?Q?2ngZhZTf351yvQQEPrysshvqY69cVWocBfDlz43f2NVYF7PVUp+xBAtvcVOv?=
- =?us-ascii?Q?7DefzBAc3q5sdsH3o/6Y1OuU5M32+4wE36qM2/CPqOzw572FKJH2ihrjXc/A?=
- =?us-ascii?Q?hF3d+P+PkVXeilPfyrPVxd5gEOqDLQIb06vcHP3wGoKDCVabexLw+9VnxCde?=
- =?us-ascii?Q?6/kacEvr77zKBlG/5dfz4x8XLgOtgmKOSwe2JiyrnYyZd5ywI3eQtq3asXEd?=
- =?us-ascii?Q?edF1Xf9lur2ApUH6pLPM7+TB2q00tvZC0GQCZNf7rRpU4D4tEOuAkS7Tp/yx?=
- =?us-ascii?Q?B3LMPI6PAmcLWYqJ8xKq+C8ByWftcPwdVA+rb4qSU2FCiER74nBhVl6LWfUT?=
- =?us-ascii?Q?r3rKM7la/xUZBMPCfIv7/gQjUFl1x3zxcwKqqSDxYCqi6iDdleeZzud5axjP?=
- =?us-ascii?Q?+T9HtwL7neXefy1/n4fxKVuDVEIHD4Uh2ngwvr1tMnggCtzydh/k7OzDdXQn?=
- =?us-ascii?Q?q67YcNzragDfdxDpZ26tBmvKSZYFR/EVAPrlLAVYwv2nresvWhUviQwQ7Vd5?=
- =?us-ascii?Q?eafusc1157O5eh+zu7jMMeZbQ5/uZkNDHTPLfapNEtlFAXX/KHUyTwnhHBGr?=
- =?us-ascii?Q?eSQB9jGowUMrdc8I/3pl5LnuUay+u7htZ+P/g/Iageth/9/H78N0KE/fBlTv?=
- =?us-ascii?Q?t9JUuKIH95t3hmF8Hrhxqjs9FGLmhEbpqr8wni41/6GdYYVW7ABlw+8bBa05?=
- =?us-ascii?Q?82goI1gu9c9ww6KWN0RbJUBkfxOhnPLeS/shdFujLR84wtQA3hXVyz3SYQ3E?=
- =?us-ascii?Q?dj5/+JlL7GdtPob64g5J0Je06KDIYgk0i2tDwiPMdIie+6iMo0mI2GfB3xEm?=
- =?us-ascii?Q?pHnYXfrDVxsMZCqBqEwn+DGzyIGolRAohhhpqaQZiZzGrUJC4iUP4rkNAIR+?=
- =?us-ascii?Q?lv9s1/ti7PmFJujMzLk5UO3kCQGd2kFGQ6JVAfuVaPUSMba78CH0D01Bbi1P?=
- =?us-ascii?Q?bSJOZFkm9gYIefBnRUOFQiQ7JzjtaA/E0OiPGtEi8Rg4o9j6hLXf96szWD3j?=
- =?us-ascii?Q?tuY5S9H5hVKiSyRkoNNJJ+l+vVC7uzTBmjs6iPaNz13ZWdqUAIznRjTxWJH3?=
- =?us-ascii?Q?lMc99djEgWCvHS4f0tC+FvMdVsVgOlW7dKGNSE5NA7iFHiB8cjbcx1K1uqlT?=
- =?us-ascii?Q?bvtiRw6ijG/0bvPw/KWB6XRiVSWcPFBveyLzZIWCELgrEkxdvFKVasTlcMXx?=
- =?us-ascii?Q?llz7rCov7TRMaSVbIop0rvO9jAp34cm7F8c/FZN6dnj3B181j8BZIpFasRTF?=
- =?us-ascii?Q?yQ0OTEO0LcWK1w2exGlv1SBJafvyV/wSALXpTDUiNxdf4EekFVr+juOUv4+l?=
- =?us-ascii?Q?gB5WfVu/LNNbUV/iE6QkQb3m2WfDdTkA8/MZnGqRw0bAy8tMx+tw7jUBKlmo?=
- =?us-ascii?Q?7w=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: f9289d03-c09c-424c-e742-08dcf372fdcb
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?PKA1rhJGVzdSqHpfdnn03Wqd1c4rV8OzHBWZHWfloi1lqLgqQQp9+WgsNsHZ?=
+ =?us-ascii?Q?QqD+7DX89Kpyre93uqxBn9XBxfSDrhm7C5OYZ9BUd0qi4Pa65nq6SJ055C6k?=
+ =?us-ascii?Q?oHwOAJwLr6NPASodN2LBRHDiA0YGxKLxJ02Xa+zVsphYccA2Lf8hA7zbtTTI?=
+ =?us-ascii?Q?cRfUF7WQuxg16ylNcY38b/k82ENV9Zu6EQndsgKPGGQOR0+KFnngz13j7CBI?=
+ =?us-ascii?Q?4/EGj8RtuK5ode1qoNKRMrYtrqhIWO4j5G1zvx1DrnA4zV1b79Lz9hnc4Blm?=
+ =?us-ascii?Q?9xILb4GUe1QSEadP6LnuXOp5UDz4XvmqREocb0VR0kYfc2v3MSPBCNLnYnOx?=
+ =?us-ascii?Q?eGJzz27S+Zth8eKMw9KvgQvfpu7ZFuaPQbffD9pvQkf7cKMkIFnWtv3T9tYU?=
+ =?us-ascii?Q?ohFxzcwfGtjPMaCQabhC1JDitQ8FA1Sa894uJ+4H9+hMC48wfP1CKmkcfPhz?=
+ =?us-ascii?Q?ec9KwTJ0fAraojv5AhyddeiiVTrhnzXVEVFs+qqrHO9KtQy+oKLg+WTCPjpP?=
+ =?us-ascii?Q?1nx9jlzduIlUL9lxCZtcrmrMb1hdT4G0fanveqrU1HceKYIhnguTuVz/nJvo?=
+ =?us-ascii?Q?TXCd1XCohQoImhEt1Ne/5PlvD19BWQRDG5uPDk9imSI3gcJT9L7k8xNhuKbi?=
+ =?us-ascii?Q?MZzg+gSEP9EHx9iV7L6laZU4nWWU4DjzdGII6ppO51/mdqx+pyVJcif9EFk4?=
+ =?us-ascii?Q?Lg6NlNINE9tMvfIY+mbHOH0hzJAWdB1Vf8jiahiFR9j7JlwdmvHc6R6SmouQ?=
+ =?us-ascii?Q?KKsWMx/1zVbHg4AYci3Revj52Gp9LC0WWYShnIE7P0LVPbPdBFHO9YdxWur5?=
+ =?us-ascii?Q?O5ejDMoql5JKVFsNR/Nvl226puB3gHyoO/xwSTVK+Fraxp/i+ukrgR8kqJ4t?=
+ =?us-ascii?Q?9QUOL80RWP7nQkDBRNyIertug9GdO4NchDcmrcXAuM59foXl/r4KJ5HxDQ9d?=
+ =?us-ascii?Q?HZXmYLfn5f1NQzd0FQZ9Ia/LuS6f1lG4rrFPhwz7j7uGxXSmtvuXKZ+LL+cF?=
+ =?us-ascii?Q?N2YN6fC3KjyQy9aIB1XLIEnZlE7z3dc6ttMuJ6KwR0w6Bu7bEkUvA3NZq0Y7?=
+ =?us-ascii?Q?oWnI7lDpVQ/X/kN/dCyHsvEJwZU2rYZFNtw0yccLdruc+onjg1VfoYkNlRUl?=
+ =?us-ascii?Q?S6OqbDuh/CcsYmb9MqsCEYqREM4DoeqmwyXyZdWv2CfqIZIv8Ytm/4vL03qN?=
+ =?us-ascii?Q?PTVb3ugQlA1EpH064YwsKQZRCW4Uyb6QqrWqgN8PACbE/uhxWsaBwxAa7ADj?=
+ =?us-ascii?Q?6Sm+mD15A0a9Uqdj4u66v2dTdoISzeMtgn1FezPbOEBTuyYX5AwCUBkThbKU?=
+ =?us-ascii?Q?CuI9EUyAnuXRbfru3/SuBHgLuvPtLJ/z2vLoWi4CgsLyETIGgxINccNhN8lC?=
+ =?us-ascii?Q?OsZHB9zF2rgKsuxcCc3TEvnt5opn3a38Lx+XzfswU2t162vZ+nby6xKMfQn7?=
+ =?us-ascii?Q?MhxGzQRR9IYTcfAOOI1CebZVAP+t+OefOw9e6LL80fdlDXJTBCoLkm9I6yRC?=
+ =?us-ascii?Q?yLzZipJvKjHG9pyP5g8c7UsaXRt+Ks85bemLUTbvV6iB5lEV0FFQqkA/koyu?=
+ =?us-ascii?Q?sdjeD32gewh5GP38cx3Ppd7Pd0gS/5SaYF7E5k0rbe2Dg9DPNEBl64Z6vK0e?=
+ =?us-ascii?Q?tg=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 35378ae7-0f45-4348-d4c1-08dcf3741806
 X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB2854.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Oct 2024 14:57:19.3352 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Oct 2024 15:05:12.9560 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kElp9iwvmWAo6yvpVYqWs/qSe3EBiD7/2CL0l2xNGkvfLxHuX4jkY4HPNyCkh7u/5v4MiHfE8wBv7j7a1wJykQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6681
+X-MS-Exchange-CrossTenant-UserPrincipalName: vqDgGBDKG2WRnIMG9mrwIaFc1IaWG1HufPD8OpOfVCZVdfaB+T5mN4LHD2OqjC46ySkViSncmc5Rjz3G+BC02w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5207
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -176,380 +176,793 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 22, 2024 at 06:57:22PM +0300, Jani Nikula wrote:
+On Tue, Oct 22, 2024 at 06:57:23PM +0300, Jani Nikula wrote:
 > struct intel_display will replace struct drm_i915_private as the main
-> device pointer for display code. Switch DP HDCP code over to it.
+> device pointer for display code. Switch CRT code over to it.
 > 
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/display/intel_dp_hdcp.c | 88 ++++++++++----------
->  1 file changed, 45 insertions(+), 43 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_crt.c      | 207 +++++++++---------
+>  drivers/gpu/drm/i915/display/intel_crt.h      |  10 +-
+>  drivers/gpu/drm/i915/display/intel_display.c  |  12 +-
+>  .../gpu/drm/i915/display/intel_pch_display.c  |   3 +-
+>  4 files changed, 122 insertions(+), 110 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-> index 5d77adaaf566..e7f9619bccc0 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
-> @@ -58,7 +58,7 @@ static
->  int intel_dp_hdcp_write_an_aksv(struct intel_digital_port *dig_port,
->  				u8 *an)
->  {
-> -	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-> +	struct intel_display *display = to_intel_display(dig_port);
->  	u8 aksv[DRM_HDCP_KSV_LEN] = {};
->  	ssize_t dpcd_ret;
->  
-> @@ -66,7 +66,7 @@ int intel_dp_hdcp_write_an_aksv(struct intel_digital_port *dig_port,
->  	dpcd_ret = drm_dp_dpcd_write(&dig_port->dp.aux, DP_AUX_HDCP_AN,
->  				     an, DRM_HDCP_AN_LEN);
->  	if (dpcd_ret != DRM_HDCP_AN_LEN) {
-> -		drm_dbg_kms(&i915->drm,
-> +		drm_dbg_kms(display->drm,
->  			    "Failed to write An over DP/AUX (%zd)\n",
->  			    dpcd_ret);
->  		return dpcd_ret >= 0 ? -EIO : dpcd_ret;
-> @@ -82,7 +82,7 @@ int intel_dp_hdcp_write_an_aksv(struct intel_digital_port *dig_port,
->  	dpcd_ret = drm_dp_dpcd_write(&dig_port->dp.aux, DP_AUX_HDCP_AKSV,
->  				     aksv, DRM_HDCP_KSV_LEN);
->  	if (dpcd_ret != DRM_HDCP_KSV_LEN) {
-> -		drm_dbg_kms(&i915->drm,
-> +		drm_dbg_kms(display->drm,
->  			    "Failed to write Aksv over DP/AUX (%zd)\n",
->  			    dpcd_ret);
->  		return dpcd_ret >= 0 ? -EIO : dpcd_ret;
-> @@ -93,13 +93,13 @@ int intel_dp_hdcp_write_an_aksv(struct intel_digital_port *dig_port,
->  static int intel_dp_hdcp_read_bksv(struct intel_digital_port *dig_port,
->  				   u8 *bksv)
->  {
-> -	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-> +	struct intel_display *display = to_intel_display(dig_port);
->  	ssize_t ret;
->  
->  	ret = drm_dp_dpcd_read(&dig_port->dp.aux, DP_AUX_HDCP_BKSV, bksv,
->  			       DRM_HDCP_KSV_LEN);
->  	if (ret != DRM_HDCP_KSV_LEN) {
-> -		drm_dbg_kms(&i915->drm,
-> +		drm_dbg_kms(display->drm,
->  			    "Read Bksv from DP/AUX failed (%zd)\n", ret);
->  		return ret >= 0 ? -EIO : ret;
->  	}
-> @@ -109,7 +109,7 @@ static int intel_dp_hdcp_read_bksv(struct intel_digital_port *dig_port,
->  static int intel_dp_hdcp_read_bstatus(struct intel_digital_port *dig_port,
->  				      u8 *bstatus)
->  {
-> -	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-> +	struct intel_display *display = to_intel_display(dig_port);
->  	ssize_t ret;
->  
->  	/*
-> @@ -120,7 +120,7 @@ static int intel_dp_hdcp_read_bstatus(struct intel_digital_port *dig_port,
->  	ret = drm_dp_dpcd_read(&dig_port->dp.aux, DP_AUX_HDCP_BINFO,
->  			       bstatus, DRM_HDCP_BSTATUS_LEN);
->  	if (ret != DRM_HDCP_BSTATUS_LEN) {
-> -		drm_dbg_kms(&i915->drm,
-> +		drm_dbg_kms(display->drm,
->  			    "Read bstatus from DP/AUX failed (%zd)\n", ret);
->  		return ret >= 0 ? -EIO : ret;
->  	}
-> @@ -129,7 +129,7 @@ static int intel_dp_hdcp_read_bstatus(struct intel_digital_port *dig_port,
->  
->  static
->  int intel_dp_hdcp_read_bcaps(struct drm_dp_aux *aux,
-> -			     struct drm_i915_private *i915,
-> +			     struct intel_display *display,
->  			     u8 *bcaps)
->  {
->  	ssize_t ret;
-> @@ -137,7 +137,7 @@ int intel_dp_hdcp_read_bcaps(struct drm_dp_aux *aux,
->  	ret = drm_dp_dpcd_read(aux, DP_AUX_HDCP_BCAPS,
->  			       bcaps, 1);
->  	if (ret != 1) {
-> -		drm_dbg_kms(&i915->drm,
-> +		drm_dbg_kms(display->drm,
->  			    "Read bcaps from DP/AUX failed (%zd)\n", ret);
->  		return ret >= 0 ? -EIO : ret;
->  	}
-> @@ -149,11 +149,11 @@ static
->  int intel_dp_hdcp_repeater_present(struct intel_digital_port *dig_port,
->  				   bool *repeater_present)
->  {
-> -	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-> +	struct intel_display *display = to_intel_display(dig_port);
->  	ssize_t ret;
->  	u8 bcaps;
->  
-> -	ret = intel_dp_hdcp_read_bcaps(&dig_port->dp.aux, i915, &bcaps);
-> +	ret = intel_dp_hdcp_read_bcaps(&dig_port->dp.aux, display, &bcaps);
->  	if (ret)
->  		return ret;
->  
-> @@ -165,13 +165,14 @@ static
->  int intel_dp_hdcp_read_ri_prime(struct intel_digital_port *dig_port,
->  				u8 *ri_prime)
->  {
-> -	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-> +	struct intel_display *display = to_intel_display(dig_port);
->  	ssize_t ret;
->  
->  	ret = drm_dp_dpcd_read(&dig_port->dp.aux, DP_AUX_HDCP_RI_PRIME,
->  			       ri_prime, DRM_HDCP_RI_LEN);
->  	if (ret != DRM_HDCP_RI_LEN) {
-> -		drm_dbg_kms(&i915->drm, "Read Ri' from DP/AUX failed (%zd)\n",
-> +		drm_dbg_kms(display->drm,
-> +			    "Read Ri' from DP/AUX failed (%zd)\n",
->  			    ret);
->  		return ret >= 0 ? -EIO : ret;
->  	}
-> @@ -182,14 +183,14 @@ static
->  int intel_dp_hdcp_read_ksv_ready(struct intel_digital_port *dig_port,
->  				 bool *ksv_ready)
->  {
-> -	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-> +	struct intel_display *display = to_intel_display(dig_port);
->  	ssize_t ret;
->  	u8 bstatus;
->  
->  	ret = drm_dp_dpcd_read(&dig_port->dp.aux, DP_AUX_HDCP_BSTATUS,
->  			       &bstatus, 1);
->  	if (ret != 1) {
-> -		drm_dbg_kms(&i915->drm,
-> +		drm_dbg_kms(display->drm,
->  			    "Read bstatus from DP/AUX failed (%zd)\n", ret);
->  		return ret >= 0 ? -EIO : ret;
->  	}
-> @@ -201,7 +202,7 @@ static
->  int intel_dp_hdcp_read_ksv_fifo(struct intel_digital_port *dig_port,
->  				int num_downstream, u8 *ksv_fifo)
->  {
-> -	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-> +	struct intel_display *display = to_intel_display(dig_port);
->  	ssize_t ret;
->  	int i;
->  
-> @@ -213,7 +214,7 @@ int intel_dp_hdcp_read_ksv_fifo(struct intel_digital_port *dig_port,
->  				       ksv_fifo + i * DRM_HDCP_KSV_LEN,
->  				       len);
->  		if (ret != len) {
-> -			drm_dbg_kms(&i915->drm,
-> +			drm_dbg_kms(display->drm,
->  				    "Read ksv[%d] from DP/AUX failed (%zd)\n",
->  				    i, ret);
->  			return ret >= 0 ? -EIO : ret;
-> @@ -226,7 +227,7 @@ static
->  int intel_dp_hdcp_read_v_prime_part(struct intel_digital_port *dig_port,
->  				    int i, u32 *part)
->  {
-> -	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-> +	struct intel_display *display = to_intel_display(dig_port);
->  	ssize_t ret;
->  
->  	if (i >= DRM_HDCP_V_PRIME_NUM_PARTS)
-> @@ -236,7 +237,7 @@ int intel_dp_hdcp_read_v_prime_part(struct intel_digital_port *dig_port,
->  			       DP_AUX_HDCP_V_PRIME(i), part,
->  			       DRM_HDCP_V_PRIME_PART_LEN);
->  	if (ret != DRM_HDCP_V_PRIME_PART_LEN) {
-> -		drm_dbg_kms(&i915->drm,
-> +		drm_dbg_kms(display->drm,
->  			    "Read v'[%d] from DP/AUX failed (%zd)\n", i, ret);
->  		return ret >= 0 ? -EIO : ret;
->  	}
-> @@ -256,14 +257,14 @@ static
->  bool intel_dp_hdcp_check_link(struct intel_digital_port *dig_port,
->  			      struct intel_connector *connector)
->  {
-> -	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-> +	struct intel_display *display = to_intel_display(dig_port);
->  	ssize_t ret;
->  	u8 bstatus;
->  
->  	ret = drm_dp_dpcd_read(&dig_port->dp.aux, DP_AUX_HDCP_BSTATUS,
->  			       &bstatus, 1);
->  	if (ret != 1) {
-> -		drm_dbg_kms(&i915->drm,
-> +		drm_dbg_kms(display->drm,
->  			    "Read bstatus from DP/AUX failed (%zd)\n", ret);
->  		return false;
->  	}
-> @@ -275,11 +276,11 @@ static
->  int intel_dp_hdcp_get_capability(struct intel_digital_port *dig_port,
->  				 bool *hdcp_capable)
->  {
-> -	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-> +	struct intel_display *display = to_intel_display(dig_port);
->  	ssize_t ret;
->  	u8 bcaps;
->  
-> -	ret = intel_dp_hdcp_read_bcaps(&dig_port->dp.aux, i915, &bcaps);
-> +	ret = intel_dp_hdcp_read_bcaps(&dig_port->dp.aux, display, &bcaps);
->  	if (ret)
->  		return ret;
->  
-> @@ -342,7 +343,7 @@ static int
->  intel_dp_hdcp2_read_rx_status(struct intel_connector *connector,
->  			      u8 *rx_status)
->  {
-> -	struct drm_i915_private *i915 = to_i915(connector->base.dev);
-> +	struct intel_display *display = to_intel_display(connector);
->  	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
->  	struct drm_dp_aux *aux = &dig_port->dp.aux;
->  	ssize_t ret;
-> @@ -351,7 +352,7 @@ intel_dp_hdcp2_read_rx_status(struct intel_connector *connector,
->  			       DP_HDCP_2_2_REG_RXSTATUS_OFFSET, rx_status,
->  			       HDCP_2_2_DP_RXSTATUS_LEN);
->  	if (ret != HDCP_2_2_DP_RXSTATUS_LEN) {
-> -		drm_dbg_kms(&i915->drm,
-> +		drm_dbg_kms(display->drm,
->  			    "Read bstatus from DP/AUX failed (%zd)\n", ret);
->  		return ret >= 0 ? -EIO : ret;
->  	}
-> @@ -397,7 +398,7 @@ static ssize_t
->  intel_dp_hdcp2_wait_for_msg(struct intel_connector *connector,
->  			    const struct hdcp2_dp_msg_data *hdcp2_msg_data)
->  {
-> -	struct drm_i915_private *i915 = to_i915(connector->base.dev);
-> +	struct intel_display *display = to_intel_display(connector);
->  	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
->  	struct intel_dp *dp = &dig_port->dp;
->  	struct intel_hdcp *hdcp = &dp->attached_connector->hdcp;
-> @@ -430,7 +431,7 @@ intel_dp_hdcp2_wait_for_msg(struct intel_connector *connector,
->  	}
->  
->  	if (ret)
-> -		drm_dbg_kms(&i915->drm,
-> +		drm_dbg_kms(display->drm,
->  			    "msg_id %d, ret %d, timeout(mSec): %d\n",
->  			    hdcp2_msg_data->msg_id, ret, timeout);
->  
-> @@ -514,8 +515,8 @@ static
->  int intel_dp_hdcp2_read_msg(struct intel_connector *connector,
->  			    u8 msg_id, void *buf, size_t size)
->  {
-> +	struct intel_display *display = to_intel_display(connector);
->  	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
-> -	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
->  	struct drm_dp_aux *aux = &dig_port->dp.aux;
->  	struct intel_dp *dp = &dig_port->dp;
->  	struct intel_hdcp *hdcp = &dp->attached_connector->hdcp;
-> @@ -568,7 +569,7 @@ int intel_dp_hdcp2_read_msg(struct intel_connector *connector,
->  		ret = drm_dp_dpcd_read(aux, offset,
->  				       (void *)byte, len);
->  		if (ret < 0) {
-> -			drm_dbg_kms(&i915->drm, "msg_id %d, ret %zd\n",
-> +			drm_dbg_kms(display->drm, "msg_id %d, ret %zd\n",
->  				    msg_id, ret);
->  			return ret;
->  		}
-> @@ -581,7 +582,8 @@ int intel_dp_hdcp2_read_msg(struct intel_connector *connector,
->  	if (hdcp2_msg_data->msg_read_timeout > 0) {
->  		msg_expired = ktime_after(ktime_get_raw(), msg_end);
->  		if (msg_expired) {
-> -			drm_dbg_kms(&i915->drm, "msg_id %d, entire msg read timeout(mSec): %d\n",
-> +			drm_dbg_kms(display->drm,
-> +				    "msg_id %d, entire msg read timeout(mSec): %d\n",
->  				    msg_id, hdcp2_msg_data->msg_read_timeout);
->  			return -ETIMEDOUT;
->  		}
-> @@ -696,7 +698,7 @@ int intel_dp_hdcp_get_remote_capability(struct intel_connector *connector,
->  					bool *hdcp_capable,
->  					bool *hdcp2_capable)
->  {
-> -	struct drm_i915_private *i915 = to_i915(connector->base.dev);
-> +	struct intel_display *display = to_intel_display(connector);
->  	struct drm_dp_aux *aux;
->  	u8 bcaps;
->  	int ret;
-> @@ -709,10 +711,10 @@ int intel_dp_hdcp_get_remote_capability(struct intel_connector *connector,
->  	aux = &connector->port->aux;
->  	ret =  _intel_dp_hdcp2_get_capability(aux, hdcp2_capable);
->  	if (ret)
-> -		drm_dbg_kms(&i915->drm,
-> +		drm_dbg_kms(display->drm,
->  			    "HDCP2 DPCD capability read failed err: %d\n", ret);
->  
-> -	ret = intel_dp_hdcp_read_bcaps(aux, i915, &bcaps);
-> +	ret = intel_dp_hdcp_read_bcaps(aux, display, &bcaps);
->  	if (ret)
->  		return ret;
->  
-> @@ -745,8 +747,8 @@ static int
->  intel_dp_mst_toggle_hdcp_stream_select(struct intel_connector *connector,
->  				       bool enable)
->  {
-> +	struct intel_display *display = to_intel_display(connector);
->  	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
-> -	struct drm_i915_private *i915 = to_i915(connector->base.dev);
->  	struct intel_hdcp *hdcp = &connector->hdcp;
->  	int ret;
->  
-> @@ -754,7 +756,7 @@ intel_dp_mst_toggle_hdcp_stream_select(struct intel_connector *connector,
->  					 hdcp->stream_transcoder, enable,
->  					 TRANS_DDI_HDCP_SELECT);
->  	if (ret)
-> -		drm_err(&i915->drm, "%s HDCP stream select failed (%d)\n",
-> +		drm_err(display->drm, "%s HDCP stream select failed (%d)\n",
->  			enable ? "Enable" : "Disable", ret);
->  	return ret;
+> diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
+> index 8222b1c251db..166501e06046 100644
+> --- a/drivers/gpu/drm/i915/display/intel_crt.c
+> +++ b/drivers/gpu/drm/i915/display/intel_crt.c
+> @@ -81,12 +81,13 @@ static struct intel_crt *intel_attached_crt(struct intel_connector *connector)
+>  	return intel_encoder_to_crt(intel_attached_encoder(connector));
 >  }
-> @@ -763,8 +765,8 @@ static int
->  intel_dp_mst_hdcp_stream_encryption(struct intel_connector *connector,
->  				    bool enable)
+>  
+> -bool intel_crt_port_enabled(struct drm_i915_private *dev_priv,
+> +bool intel_crt_port_enabled(struct intel_display *display,
+>  			    i915_reg_t adpa_reg, enum pipe *pipe)
 >  {
-> +	struct intel_display *display = to_intel_display(connector);
->  	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
-> -	struct drm_i915_private *i915 = to_i915(connector->base.dev);
->  	struct intel_hdcp *hdcp = &connector->hdcp;
->  	enum port port = dig_port->base.port;
->  	enum transcoder cpu_transcoder = hdcp->stream_transcoder;
-> @@ -780,10 +782,10 @@ intel_dp_mst_hdcp_stream_encryption(struct intel_connector *connector,
->  		return -EINVAL;
+> +	struct drm_i915_private *dev_priv = to_i915(display->drm);
+>  	u32 val;
 >  
->  	/* Wait for encryption confirmation */
-> -	if (intel_de_wait(i915, HDCP_STATUS(i915, cpu_transcoder, port),
-> +	if (intel_de_wait(display, HDCP_STATUS(display, cpu_transcoder, port),
->  			  stream_enc_status, enable ? stream_enc_status : 0,
->  			  HDCP_ENCRYPT_STATUS_CHANGE_TIMEOUT_MS)) {
-> -		drm_err(&i915->drm, "Timed out waiting for transcoder: %s stream encryption %s\n",
-> +		drm_err(display->drm, "Timed out waiting for transcoder: %s stream encryption %s\n",
->  			transcoder_name(cpu_transcoder), enable ? "enabled" : "disabled");
->  		return -ETIMEDOUT;
->  	}
-> @@ -795,8 +797,8 @@ static int
->  intel_dp_mst_hdcp2_stream_encryption(struct intel_connector *connector,
->  				     bool enable)
+> -	val = intel_de_read(dev_priv, adpa_reg);
+> +	val = intel_de_read(display, adpa_reg);
+>  
+>  	/* asserts want to know the pipe even if the port is disabled */
+>  	if (HAS_PCH_CPT(dev_priv))
+> @@ -100,6 +101,7 @@ bool intel_crt_port_enabled(struct drm_i915_private *dev_priv,
+>  static bool intel_crt_get_hw_state(struct intel_encoder *encoder,
+>  				   enum pipe *pipe)
 >  {
-> +	struct intel_display *display = to_intel_display(connector);
->  	struct intel_digital_port *dig_port = intel_attached_dig_port(connector);
-> -	struct drm_i915_private *i915 = to_i915(connector->base.dev);
->  	struct hdcp_port_data *data = &dig_port->hdcp_port_data;
->  	struct intel_hdcp *hdcp = &connector->hdcp;
->  	enum transcoder cpu_transcoder = hdcp->stream_transcoder;
-> @@ -804,8 +806,8 @@ intel_dp_mst_hdcp2_stream_encryption(struct intel_connector *connector,
->  	enum port port = dig_port->base.port;
->  	int ret;
+> +	struct intel_display *display = to_intel_display(encoder);
+>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>  	struct intel_crt *crt = intel_encoder_to_crt(encoder);
+>  	intel_wakeref_t wakeref;
+> @@ -110,7 +112,7 @@ static bool intel_crt_get_hw_state(struct intel_encoder *encoder,
+>  	if (!wakeref)
+>  		return false;
 >  
-> -	drm_WARN_ON(&i915->drm, enable &&
-> -		    !!(intel_de_read(i915, HDCP2_AUTH_STREAM(i915, cpu_transcoder, port))
-> +	drm_WARN_ON(display->drm, enable &&
-> +		    !!(intel_de_read(display, HDCP2_AUTH_STREAM(display, cpu_transcoder, port))
->  		    & AUTH_STREAM_TYPE) != data->streams[0].stream_type);
+> -	ret = intel_crt_port_enabled(dev_priv, crt->adpa_reg, pipe);
+> +	ret = intel_crt_port_enabled(display, crt->adpa_reg, pipe);
 >  
->  	ret = intel_dp_mst_toggle_hdcp_stream_select(connector, enable);
-> @@ -813,11 +815,11 @@ intel_dp_mst_hdcp2_stream_encryption(struct intel_connector *connector,
->  		return ret;
+>  	intel_display_power_put(dev_priv, encoder->power_domain, wakeref);
 >  
->  	/* Wait for encryption confirmation */
-> -	if (intel_de_wait(i915, HDCP2_STREAM_STATUS(i915, cpu_transcoder, pipe),
-> +	if (intel_de_wait(display, HDCP2_STREAM_STATUS(display, cpu_transcoder, pipe),
->  			  STREAM_ENCRYPTION_STATUS,
->  			  enable ? STREAM_ENCRYPTION_STATUS : 0,
->  			  HDCP_ENCRYPT_STATUS_CHANGE_TIMEOUT_MS)) {
-> -		drm_err(&i915->drm, "Timed out waiting for transcoder: %s stream encryption %s\n",
-> +		drm_err(display->drm, "Timed out waiting for transcoder: %s stream encryption %s\n",
->  			transcoder_name(cpu_transcoder), enable ? "enabled" : "disabled");
->  		return -ETIMEDOUT;
+> @@ -119,11 +121,11 @@ static bool intel_crt_get_hw_state(struct intel_encoder *encoder,
+>  
+>  static unsigned int intel_crt_get_flags(struct intel_encoder *encoder)
+>  {
+> -	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> +	struct intel_display *display = to_intel_display(encoder);
+>  	struct intel_crt *crt = intel_encoder_to_crt(encoder);
+>  	u32 tmp, flags = 0;
+>  
+> -	tmp = intel_de_read(dev_priv, crt->adpa_reg);
+> +	tmp = intel_de_read(display, crt->adpa_reg);
+>  
+>  	if (tmp & ADPA_HSYNC_ACTIVE_HIGH)
+>  		flags |= DRM_MODE_FLAG_PHSYNC;
+> @@ -168,13 +170,14 @@ static void intel_crt_set_dpms(struct intel_encoder *encoder,
+>  			       const struct intel_crtc_state *crtc_state,
+>  			       int mode)
+>  {
+> +	struct intel_display *display = to_intel_display(encoder);
+>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>  	struct intel_crt *crt = intel_encoder_to_crt(encoder);
+>  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+>  	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
+>  	u32 adpa;
+>  
+> -	if (DISPLAY_VER(dev_priv) >= 5)
+> +	if (DISPLAY_VER(display) >= 5)
+>  		adpa = ADPA_HOTPLUG_BITS;
+>  	else
+>  		adpa = 0;
+> @@ -193,7 +196,7 @@ static void intel_crt_set_dpms(struct intel_encoder *encoder,
+>  		adpa |= ADPA_PIPE_SEL(crtc->pipe);
+>  
+>  	if (!HAS_PCH_SPLIT(dev_priv))
+> -		intel_de_write(dev_priv, BCLRPAT(dev_priv, crtc->pipe), 0);
+> +		intel_de_write(display, BCLRPAT(display, crtc->pipe), 0);
+>  
+>  	switch (mode) {
+>  	case DRM_MODE_DPMS_ON:
+> @@ -210,7 +213,7 @@ static void intel_crt_set_dpms(struct intel_encoder *encoder,
+>  		break;
 >  	}
+>  
+> -	intel_de_write(dev_priv, crt->adpa_reg, adpa);
+> +	intel_de_write(display, crt->adpa_reg, adpa);
+>  }
+>  
+>  static void intel_disable_crt(struct intel_atomic_state *state,
+> @@ -241,9 +244,10 @@ static void hsw_disable_crt(struct intel_atomic_state *state,
+>  			    const struct intel_crtc_state *old_crtc_state,
+>  			    const struct drm_connector_state *old_conn_state)
+>  {
+> +	struct intel_display *display = to_intel_display(state);
+>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>  
+> -	drm_WARN_ON(&dev_priv->drm, !old_crtc_state->has_pch_encoder);
+> +	drm_WARN_ON(display->drm, !old_crtc_state->has_pch_encoder);
+>  
+>  	intel_set_pch_fifo_underrun_reporting(dev_priv, PIPE_A, false);
+>  }
+> @@ -253,6 +257,7 @@ static void hsw_post_disable_crt(struct intel_atomic_state *state,
+>  				 const struct intel_crtc_state *old_crtc_state,
+>  				 const struct drm_connector_state *old_conn_state)
+>  {
+> +	struct intel_display *display = to_intel_display(state);
+>  	struct intel_crtc *crtc = to_intel_crtc(old_crtc_state->uapi.crtc);
+>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>  
+> @@ -272,7 +277,7 @@ static void hsw_post_disable_crt(struct intel_atomic_state *state,
+>  
+>  	hsw_fdi_disable(encoder);
+>  
+> -	drm_WARN_ON(&dev_priv->drm, !old_crtc_state->has_pch_encoder);
+> +	drm_WARN_ON(display->drm, !old_crtc_state->has_pch_encoder);
+>  
+>  	intel_set_pch_fifo_underrun_reporting(dev_priv, PIPE_A, true);
+>  }
+> @@ -282,9 +287,10 @@ static void hsw_pre_pll_enable_crt(struct intel_atomic_state *state,
+>  				   const struct intel_crtc_state *crtc_state,
+>  				   const struct drm_connector_state *conn_state)
+>  {
+> +	struct intel_display *display = to_intel_display(state);
+>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>  
+> -	drm_WARN_ON(&dev_priv->drm, !crtc_state->has_pch_encoder);
+> +	drm_WARN_ON(display->drm, !crtc_state->has_pch_encoder);
+>  
+>  	intel_set_pch_fifo_underrun_reporting(dev_priv, PIPE_A, false);
+>  }
+> @@ -294,11 +300,12 @@ static void hsw_pre_enable_crt(struct intel_atomic_state *state,
+>  			       const struct intel_crtc_state *crtc_state,
+>  			       const struct drm_connector_state *conn_state)
+>  {
+> +	struct intel_display *display = to_intel_display(state);
+>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+>  	enum pipe pipe = crtc->pipe;
+>  
+> -	drm_WARN_ON(&dev_priv->drm, !crtc_state->has_pch_encoder);
+> +	drm_WARN_ON(display->drm, !crtc_state->has_pch_encoder);
+>  
+>  	intel_set_cpu_fifo_underrun_reporting(dev_priv, pipe, false);
+>  
+> @@ -312,11 +319,12 @@ static void hsw_enable_crt(struct intel_atomic_state *state,
+>  			   const struct intel_crtc_state *crtc_state,
+>  			   const struct drm_connector_state *conn_state)
+>  {
+> +	struct intel_display *display = to_intel_display(state);
+>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+>  	enum pipe pipe = crtc->pipe;
+>  
+> -	drm_WARN_ON(&dev_priv->drm, !crtc_state->has_pch_encoder);
+> +	drm_WARN_ON(display->drm, !crtc_state->has_pch_encoder);
+>  
+>  	intel_ddi_enable_transcoder_func(encoder, crtc_state);
+>  
+> @@ -346,9 +354,10 @@ static enum drm_mode_status
+>  intel_crt_mode_valid(struct drm_connector *connector,
+>  		     struct drm_display_mode *mode)
+>  {
+> +	struct intel_display *display = to_intel_display(connector->dev);
+>  	struct drm_device *dev = connector->dev;
+>  	struct drm_i915_private *dev_priv = to_i915(dev);
+> -	int max_dotclk = dev_priv->display.cdclk.max_dotclk_freq;
+> +	int max_dotclk = display->cdclk.max_dotclk_freq;
+>  	enum drm_mode_status status;
+>  	int max_clock;
+>  
+> @@ -367,7 +376,7 @@ intel_crt_mode_valid(struct drm_connector *connector,
+>  		 * DAC limit supposedly 355 MHz.
+>  		 */
+>  		max_clock = 270000;
+> -	else if (IS_DISPLAY_VER(dev_priv, 3, 4))
+> +	else if (IS_DISPLAY_VER(display, 3, 4))
+>  		max_clock = 400000;
+>  	else
+>  		max_clock = 350000;
+> @@ -428,6 +437,7 @@ static int hsw_crt_compute_config(struct intel_encoder *encoder,
+>  				  struct intel_crtc_state *pipe_config,
+>  				  struct drm_connector_state *conn_state)
+>  {
+> +	struct intel_display *display = to_intel_display(encoder);
+>  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>  	struct drm_display_mode *adjusted_mode =
+>  		&pipe_config->hw.adjusted_mode;
+> @@ -450,7 +460,7 @@ static int hsw_crt_compute_config(struct intel_encoder *encoder,
+>  	if (HAS_PCH_LPT(dev_priv)) {
+>  		/* TODO: Check crtc_state->max_link_bpp_x16 instead of bw_constrained */
+>  		if (pipe_config->bw_constrained && pipe_config->pipe_bpp < 24) {
+> -			drm_dbg_kms(&dev_priv->drm,
+> +			drm_dbg_kms(display->drm,
+>  				    "LPT only supports 24bpp\n");
+>  			return -EINVAL;
+>  		}
+> @@ -470,6 +480,7 @@ static int hsw_crt_compute_config(struct intel_encoder *encoder,
+>  
+>  static bool ilk_crt_detect_hotplug(struct drm_connector *connector)
+>  {
+> +	struct intel_display *display = to_intel_display(connector->dev);
+>  	struct drm_device *dev = connector->dev;
+>  	struct intel_crt *crt = intel_attached_crt(to_intel_connector(connector));
+>  	struct drm_i915_private *dev_priv = to_i915(dev);
+> @@ -483,36 +494,36 @@ static bool ilk_crt_detect_hotplug(struct drm_connector *connector)
+>  
+>  		crt->force_hotplug_required = false;
+>  
+> -		save_adpa = adpa = intel_de_read(dev_priv, crt->adpa_reg);
+> -		drm_dbg_kms(&dev_priv->drm,
+> +		save_adpa = adpa = intel_de_read(display, crt->adpa_reg);
+> +		drm_dbg_kms(display->drm,
+>  			    "trigger hotplug detect cycle: adpa=0x%x\n", adpa);
+>  
+>  		adpa |= ADPA_CRT_HOTPLUG_FORCE_TRIGGER;
+>  		if (turn_off_dac)
+>  			adpa &= ~ADPA_DAC_ENABLE;
+>  
+> -		intel_de_write(dev_priv, crt->adpa_reg, adpa);
+> +		intel_de_write(display, crt->adpa_reg, adpa);
+>  
+> -		if (intel_de_wait_for_clear(dev_priv,
+> +		if (intel_de_wait_for_clear(display,
+>  					    crt->adpa_reg,
+>  					    ADPA_CRT_HOTPLUG_FORCE_TRIGGER,
+>  					    1000))
+> -			drm_dbg_kms(&dev_priv->drm,
+> +			drm_dbg_kms(display->drm,
+>  				    "timed out waiting for FORCE_TRIGGER");
+>  
+>  		if (turn_off_dac) {
+> -			intel_de_write(dev_priv, crt->adpa_reg, save_adpa);
+> -			intel_de_posting_read(dev_priv, crt->adpa_reg);
+> +			intel_de_write(display, crt->adpa_reg, save_adpa);
+> +			intel_de_posting_read(display, crt->adpa_reg);
+>  		}
+>  	}
+>  
+>  	/* Check the status to see if both blue and green are on now */
+> -	adpa = intel_de_read(dev_priv, crt->adpa_reg);
+> +	adpa = intel_de_read(display, crt->adpa_reg);
+>  	if ((adpa & ADPA_CRT_HOTPLUG_MONITOR_MASK) != 0)
+>  		ret = true;
+>  	else
+>  		ret = false;
+> -	drm_dbg_kms(&dev_priv->drm, "ironlake hotplug adpa=0x%x, result %d\n",
+> +	drm_dbg_kms(display->drm, "ironlake hotplug adpa=0x%x, result %d\n",
+>  		    adpa, ret);
+>  
+>  	return ret;
+> @@ -520,6 +531,7 @@ static bool ilk_crt_detect_hotplug(struct drm_connector *connector)
+>  
+>  static bool valleyview_crt_detect_hotplug(struct drm_connector *connector)
+>  {
+> +	struct intel_display *display = to_intel_display(connector->dev);
+>  	struct drm_device *dev = connector->dev;
+>  	struct intel_crt *crt = intel_attached_crt(to_intel_connector(connector));
+>  	struct drm_i915_private *dev_priv = to_i915(dev);
+> @@ -542,29 +554,29 @@ static bool valleyview_crt_detect_hotplug(struct drm_connector *connector)
+>  	 */
+>  	reenable_hpd = intel_hpd_disable(dev_priv, crt->base.hpd_pin);
+>  
+> -	save_adpa = adpa = intel_de_read(dev_priv, crt->adpa_reg);
+> -	drm_dbg_kms(&dev_priv->drm,
+> +	save_adpa = adpa = intel_de_read(display, crt->adpa_reg);
+> +	drm_dbg_kms(display->drm,
+>  		    "trigger hotplug detect cycle: adpa=0x%x\n", adpa);
+>  
+>  	adpa |= ADPA_CRT_HOTPLUG_FORCE_TRIGGER;
+>  
+> -	intel_de_write(dev_priv, crt->adpa_reg, adpa);
+> +	intel_de_write(display, crt->adpa_reg, adpa);
+>  
+> -	if (intel_de_wait_for_clear(dev_priv, crt->adpa_reg,
+> +	if (intel_de_wait_for_clear(display, crt->adpa_reg,
+>  				    ADPA_CRT_HOTPLUG_FORCE_TRIGGER, 1000)) {
+> -		drm_dbg_kms(&dev_priv->drm,
+> +		drm_dbg_kms(display->drm,
+>  			    "timed out waiting for FORCE_TRIGGER");
+> -		intel_de_write(dev_priv, crt->adpa_reg, save_adpa);
+> +		intel_de_write(display, crt->adpa_reg, save_adpa);
+>  	}
+>  
+>  	/* Check the status to see if both blue and green are on now */
+> -	adpa = intel_de_read(dev_priv, crt->adpa_reg);
+> +	adpa = intel_de_read(display, crt->adpa_reg);
+>  	if ((adpa & ADPA_CRT_HOTPLUG_MONITOR_MASK) != 0)
+>  		ret = true;
+>  	else
+>  		ret = false;
+>  
+> -	drm_dbg_kms(&dev_priv->drm,
+> +	drm_dbg_kms(display->drm,
+>  		    "valleyview hotplug adpa=0x%x, result %d\n", adpa, ret);
+>  
+>  	if (reenable_hpd)
+> @@ -575,6 +587,7 @@ static bool valleyview_crt_detect_hotplug(struct drm_connector *connector)
+>  
+>  static bool intel_crt_detect_hotplug(struct drm_connector *connector)
+>  {
+> +	struct intel_display *display = to_intel_display(connector->dev);
+>  	struct drm_device *dev = connector->dev;
+>  	struct drm_i915_private *dev_priv = to_i915(dev);
+>  	u32 stat;
+> @@ -603,18 +616,18 @@ static bool intel_crt_detect_hotplug(struct drm_connector *connector)
+>  					      CRT_HOTPLUG_FORCE_DETECT,
+>  					      CRT_HOTPLUG_FORCE_DETECT);
+>  		/* wait for FORCE_DETECT to go off */
+> -		if (intel_de_wait_for_clear(dev_priv, PORT_HOTPLUG_EN(dev_priv),
+> +		if (intel_de_wait_for_clear(display, PORT_HOTPLUG_EN(display),
+>  					    CRT_HOTPLUG_FORCE_DETECT, 1000))
+> -			drm_dbg_kms(&dev_priv->drm,
+> +			drm_dbg_kms(display->drm,
+>  				    "timed out waiting for FORCE_DETECT to go off");
+>  	}
+>  
+> -	stat = intel_de_read(dev_priv, PORT_HOTPLUG_STAT(dev_priv));
+> +	stat = intel_de_read(display, PORT_HOTPLUG_STAT(display));
+>  	if ((stat & CRT_HOTPLUG_MONITOR_MASK) != CRT_HOTPLUG_MONITOR_NONE)
+>  		ret = true;
+>  
+>  	/* clear the interrupt we just generated, if any */
+> -	intel_de_write(dev_priv, PORT_HOTPLUG_STAT(dev_priv),
+> +	intel_de_write(display, PORT_HOTPLUG_STAT(display),
+>  		       CRT_HOTPLUG_INT_STATUS);
+>  
+>  	i915_hotplug_interrupt_update(dev_priv, CRT_HOTPLUG_FORCE_DETECT, 0);
+> @@ -660,8 +673,7 @@ static int intel_crt_ddc_get_modes(struct drm_connector *connector,
+>  
+>  static bool intel_crt_detect_ddc(struct drm_connector *connector)
+>  {
+> -	struct intel_crt *crt = intel_attached_crt(to_intel_connector(connector));
+> -	struct drm_i915_private *dev_priv = to_i915(crt->base.base.dev);
+> +	struct intel_display *display = to_intel_display(connector->dev);
+>  	const struct drm_edid *drm_edid;
+>  	bool ret = false;
+>  
+> @@ -674,15 +686,15 @@ static bool intel_crt_detect_ddc(struct drm_connector *connector)
+>  		 * have to check the EDID input spec of the attached device.
+>  		 */
+>  		if (drm_edid_is_digital(drm_edid)) {
+> -			drm_dbg_kms(&dev_priv->drm,
+> +			drm_dbg_kms(display->drm,
+>  				    "CRT not detected via DDC:0x50 [EDID reports a digital panel]\n");
+>  		} else {
+> -			drm_dbg_kms(&dev_priv->drm,
+> +			drm_dbg_kms(display->drm,
+>  				    "CRT detected via DDC:0x50 [EDID]\n");
+>  			ret = true;
+>  		}
+>  	} else {
+> -		drm_dbg_kms(&dev_priv->drm,
+> +		drm_dbg_kms(display->drm,
+>  			    "CRT not detected via DDC:0x50 [no valid EDID found]\n");
+>  	}
+>  
+> @@ -695,8 +707,6 @@ static enum drm_connector_status
+>  intel_crt_load_detect(struct intel_crt *crt, enum pipe pipe)
+>  {
+>  	struct intel_display *display = to_intel_display(&crt->base);
+> -	struct drm_device *dev = crt->base.base.dev;
+> -	struct drm_i915_private *dev_priv = to_i915(dev);
+>  	enum transcoder cpu_transcoder = (enum transcoder)pipe;
+>  	u32 save_bclrpat;
+>  	u32 save_vtotal;
+> @@ -707,14 +717,14 @@ intel_crt_load_detect(struct intel_crt *crt, enum pipe pipe)
+>  	u8 st00;
+>  	enum drm_connector_status status;
+>  
+> -	drm_dbg_kms(&dev_priv->drm, "starting load-detect on CRT\n");
+> +	drm_dbg_kms(display->drm, "starting load-detect on CRT\n");
+>  
+> -	save_bclrpat = intel_de_read(dev_priv,
+> -				     BCLRPAT(dev_priv, cpu_transcoder));
+> -	save_vtotal = intel_de_read(dev_priv,
+> -				    TRANS_VTOTAL(dev_priv, cpu_transcoder));
+> -	vblank = intel_de_read(dev_priv,
+> -			       TRANS_VBLANK(dev_priv, cpu_transcoder));
+> +	save_bclrpat = intel_de_read(display,
+> +				     BCLRPAT(display, cpu_transcoder));
+> +	save_vtotal = intel_de_read(display,
+> +				    TRANS_VTOTAL(display, cpu_transcoder));
+> +	vblank = intel_de_read(display,
+> +			       TRANS_VBLANK(display, cpu_transcoder));
+>  
+>  	vtotal = REG_FIELD_GET(VTOTAL_MASK, save_vtotal) + 1;
+>  	vactive = REG_FIELD_GET(VACTIVE_MASK, save_vtotal) + 1;
+> @@ -723,25 +733,25 @@ intel_crt_load_detect(struct intel_crt *crt, enum pipe pipe)
+>  	vblank_end = REG_FIELD_GET(VBLANK_END_MASK, vblank) + 1;
+>  
+>  	/* Set the border color to purple. */
+> -	intel_de_write(dev_priv, BCLRPAT(dev_priv, cpu_transcoder), 0x500050);
+> +	intel_de_write(display, BCLRPAT(display, cpu_transcoder), 0x500050);
+>  
+> -	if (DISPLAY_VER(dev_priv) != 2) {
+> -		u32 transconf = intel_de_read(dev_priv,
+> -					      TRANSCONF(dev_priv, cpu_transcoder));
+> +	if (DISPLAY_VER(display) != 2) {
+> +		u32 transconf = intel_de_read(display,
+> +					      TRANSCONF(display, cpu_transcoder));
+>  
+> -		intel_de_write(dev_priv, TRANSCONF(dev_priv, cpu_transcoder),
+> +		intel_de_write(display, TRANSCONF(display, cpu_transcoder),
+>  			       transconf | TRANSCONF_FORCE_BORDER);
+> -		intel_de_posting_read(dev_priv,
+> -				      TRANSCONF(dev_priv, cpu_transcoder));
+> +		intel_de_posting_read(display,
+> +				      TRANSCONF(display, cpu_transcoder));
+>  		/* Wait for next Vblank to substitue
+>  		 * border color for Color info */
+>  		intel_crtc_wait_for_next_vblank(intel_crtc_for_pipe(display, pipe));
+> -		st00 = intel_de_read8(dev_priv, _VGA_MSR_WRITE);
+> +		st00 = intel_de_read8(display, _VGA_MSR_WRITE);
+>  		status = ((st00 & (1 << 4)) != 0) ?
+>  			connector_status_connected :
+>  			connector_status_disconnected;
+>  
+> -		intel_de_write(dev_priv, TRANSCONF(dev_priv, cpu_transcoder),
+> +		intel_de_write(display, TRANSCONF(display, cpu_transcoder),
+>  			       transconf);
+>  	} else {
+>  		bool restore_vblank = false;
+> @@ -752,13 +762,13 @@ intel_crt_load_detect(struct intel_crt *crt, enum pipe pipe)
+>  		* Yes, this will flicker
+>  		*/
+>  		if (vblank_start <= vactive && vblank_end >= vtotal) {
+> -			u32 vsync = intel_de_read(dev_priv,
+> -						  TRANS_VSYNC(dev_priv, cpu_transcoder));
+> +			u32 vsync = intel_de_read(display,
+> +						  TRANS_VSYNC(display, cpu_transcoder));
+>  			u32 vsync_start = REG_FIELD_GET(VSYNC_START_MASK, vsync) + 1;
+>  
+>  			vblank_start = vsync_start;
+> -			intel_de_write(dev_priv,
+> -				       TRANS_VBLANK(dev_priv, cpu_transcoder),
+> +			intel_de_write(display,
+> +				       TRANS_VBLANK(display, cpu_transcoder),
+>  				       VBLANK_START(vblank_start - 1) |
+>  				       VBLANK_END(vblank_end - 1));
+>  			restore_vblank = true;
+> @@ -772,9 +782,9 @@ intel_crt_load_detect(struct intel_crt *crt, enum pipe pipe)
+>  		/*
+>  		 * Wait for the border to be displayed
+>  		 */
+> -		while (intel_de_read(dev_priv, PIPEDSL(dev_priv, pipe)) >= vactive)
+> +		while (intel_de_read(display, PIPEDSL(display, pipe)) >= vactive)
+>  			;
+> -		while ((dsl = intel_de_read(dev_priv, PIPEDSL(dev_priv, pipe))) <= vsample)
+> +		while ((dsl = intel_de_read(display, PIPEDSL(display, pipe))) <= vsample)
+>  			;
+>  		/*
+>  		 * Watch ST00 for an entire scanline
+> @@ -784,15 +794,15 @@ intel_crt_load_detect(struct intel_crt *crt, enum pipe pipe)
+>  		do {
+>  			count++;
+>  			/* Read the ST00 VGA status register */
+> -			st00 = intel_de_read8(dev_priv, _VGA_MSR_WRITE);
+> +			st00 = intel_de_read8(display, _VGA_MSR_WRITE);
+>  			if (st00 & (1 << 4))
+>  				detect++;
+> -		} while ((intel_de_read(dev_priv, PIPEDSL(dev_priv, pipe)) == dsl));
+> +		} while ((intel_de_read(display, PIPEDSL(display, pipe)) == dsl));
+>  
+>  		/* restore vblank if necessary */
+>  		if (restore_vblank)
+> -			intel_de_write(dev_priv,
+> -				       TRANS_VBLANK(dev_priv, cpu_transcoder),
+> +			intel_de_write(display,
+> +				       TRANS_VBLANK(display, cpu_transcoder),
+>  				       vblank);
+>  		/*
+>  		 * If more than 3/4 of the scanline detected a monitor,
+> @@ -806,7 +816,7 @@ intel_crt_load_detect(struct intel_crt *crt, enum pipe pipe)
+>  	}
+>  
+>  	/* Restore previous settings */
+> -	intel_de_write(dev_priv, BCLRPAT(dev_priv, cpu_transcoder),
+> +	intel_de_write(display, BCLRPAT(display, cpu_transcoder),
+>  		       save_bclrpat);
+>  
+>  	return status;
+> @@ -843,6 +853,7 @@ intel_crt_detect(struct drm_connector *connector,
+>  		 struct drm_modeset_acquire_ctx *ctx,
+>  		 bool force)
+>  {
+> +	struct intel_display *display = to_intel_display(connector->dev);
+>  	struct drm_i915_private *dev_priv = to_i915(connector->dev);
+>  	struct intel_crt *crt = intel_attached_crt(to_intel_connector(connector));
+>  	struct intel_encoder *intel_encoder = &crt->base;
+> @@ -850,7 +861,7 @@ intel_crt_detect(struct drm_connector *connector,
+>  	intel_wakeref_t wakeref;
+>  	int status;
+>  
+> -	drm_dbg_kms(&dev_priv->drm, "[CONNECTOR:%d:%s] force=%d\n",
+> +	drm_dbg_kms(display->drm, "[CONNECTOR:%d:%s] force=%d\n",
+>  		    connector->base.id, connector->name,
+>  		    force);
+>  
+> @@ -860,7 +871,7 @@ intel_crt_detect(struct drm_connector *connector,
+>  	if (!intel_display_driver_check_access(dev_priv))
+>  		return connector->status;
+>  
+> -	if (dev_priv->display.params.load_detect_test) {
+> +	if (display->params.load_detect_test) {
+>  		wakeref = intel_display_power_get(dev_priv,
+>  						  intel_encoder->power_domain);
+>  		goto load_detect;
+> @@ -873,18 +884,18 @@ intel_crt_detect(struct drm_connector *connector,
+>  	wakeref = intel_display_power_get(dev_priv,
+>  					  intel_encoder->power_domain);
+>  
+> -	if (I915_HAS_HOTPLUG(dev_priv)) {
+> +	if (I915_HAS_HOTPLUG(display)) {
+>  		/* We can not rely on the HPD pin always being correctly wired
+>  		 * up, for example many KVM do not pass it through, and so
+>  		 * only trust an assertion that the monitor is connected.
+>  		 */
+>  		if (intel_crt_detect_hotplug(connector)) {
+> -			drm_dbg_kms(&dev_priv->drm,
+> +			drm_dbg_kms(display->drm,
+>  				    "CRT detected via hotplug\n");
+>  			status = connector_status_connected;
+>  			goto out;
+>  		} else
+> -			drm_dbg_kms(&dev_priv->drm,
+> +			drm_dbg_kms(display->drm,
+>  				    "CRT not detected via hotplug\n");
+>  	}
+>  
+> @@ -897,7 +908,7 @@ intel_crt_detect(struct drm_connector *connector,
+>  	 * broken monitor (without edid) to work behind a broken kvm (that fails
+>  	 * to have the right resistors for HP detection) needs to fix this up.
+>  	 * For now just bail out. */
+> -	if (I915_HAS_HOTPLUG(dev_priv)) {
+> +	if (I915_HAS_HOTPLUG(display)) {
+>  		status = connector_status_disconnected;
+>  		goto out;
+>  	}
+> @@ -917,10 +928,10 @@ intel_crt_detect(struct drm_connector *connector,
+>  	} else {
+>  		if (intel_crt_detect_ddc(connector))
+>  			status = connector_status_connected;
+> -		else if (DISPLAY_VER(dev_priv) < 4)
+> +		else if (DISPLAY_VER(display) < 4)
+>  			status = intel_crt_load_detect(crt,
+>  				to_intel_crtc(connector->state->crtc)->pipe);
+> -		else if (dev_priv->display.params.load_detect_test)
+> +		else if (display->params.load_detect_test)
+>  			status = connector_status_disconnected;
+>  		else
+>  			status = connector_status_unknown;
+> @@ -966,19 +977,19 @@ static int intel_crt_get_modes(struct drm_connector *connector)
+>  
+>  void intel_crt_reset(struct drm_encoder *encoder)
+>  {
+> -	struct drm_i915_private *dev_priv = to_i915(encoder->dev);
+> +	struct intel_display *display = to_intel_display(encoder->dev);
+>  	struct intel_crt *crt = intel_encoder_to_crt(to_intel_encoder(encoder));
+>  
+> -	if (DISPLAY_VER(dev_priv) >= 5) {
+> +	if (DISPLAY_VER(display) >= 5) {
+>  		u32 adpa;
+>  
+> -		adpa = intel_de_read(dev_priv, crt->adpa_reg);
+> +		adpa = intel_de_read(display, crt->adpa_reg);
+>  		adpa &= ~ADPA_CRT_HOTPLUG_MASK;
+>  		adpa |= ADPA_HOTPLUG_BITS;
+> -		intel_de_write(dev_priv, crt->adpa_reg, adpa);
+> -		intel_de_posting_read(dev_priv, crt->adpa_reg);
+> +		intel_de_write(display, crt->adpa_reg, adpa);
+> +		intel_de_posting_read(display, crt->adpa_reg);
+>  
+> -		drm_dbg_kms(&dev_priv->drm, "crt adpa set to 0x%x\n", adpa);
+> +		drm_dbg_kms(display->drm, "crt adpa set to 0x%x\n", adpa);
+>  		crt->force_hotplug_required = true;
+>  	}
+>  
+> @@ -1008,9 +1019,9 @@ static const struct drm_encoder_funcs intel_crt_enc_funcs = {
+>  	.destroy = intel_encoder_destroy,
+>  };
+>  
+> -void intel_crt_init(struct drm_i915_private *dev_priv)
+> +void intel_crt_init(struct intel_display *display)
+>  {
+> -	struct intel_display *display = &dev_priv->display;
+> +	struct drm_i915_private *dev_priv = to_i915(display->drm);
+>  	struct drm_connector *connector;
+>  	struct intel_crt *crt;
+>  	struct intel_connector *intel_connector;
+> @@ -1025,7 +1036,7 @@ void intel_crt_init(struct drm_i915_private *dev_priv)
+>  	else
+>  		adpa_reg = ADPA;
+>  
+> -	adpa = intel_de_read(dev_priv, adpa_reg);
+> +	adpa = intel_de_read(display, adpa_reg);
+>  	if ((adpa & ADPA_DAC_ENABLE) == 0) {
+>  		/*
+>  		 * On some machines (some IVB at least) CRT can be
+> @@ -1035,11 +1046,11 @@ void intel_crt_init(struct drm_i915_private *dev_priv)
+>  		 * take. So the only way to tell is attempt to enable
+>  		 * it and see what happens.
+>  		 */
+> -		intel_de_write(dev_priv, adpa_reg,
+> +		intel_de_write(display, adpa_reg,
+>  			       adpa | ADPA_DAC_ENABLE | ADPA_HSYNC_CNTL_DISABLE | ADPA_VSYNC_CNTL_DISABLE);
+> -		if ((intel_de_read(dev_priv, adpa_reg) & ADPA_DAC_ENABLE) == 0)
+> +		if ((intel_de_read(display, adpa_reg) & ADPA_DAC_ENABLE) == 0)
+>  			return;
+> -		intel_de_write(dev_priv, adpa_reg, adpa);
+> +		intel_de_write(display, adpa_reg, adpa);
+>  	}
+>  
+>  	crt = kzalloc(sizeof(struct intel_crt), GFP_KERNEL);
+> @@ -1052,16 +1063,16 @@ void intel_crt_init(struct drm_i915_private *dev_priv)
+>  		return;
+>  	}
+>  
+> -	ddc_pin = dev_priv->display.vbt.crt_ddc_pin;
+> +	ddc_pin = display->vbt.crt_ddc_pin;
+>  
+>  	connector = &intel_connector->base;
+>  	crt->connector = intel_connector;
+> -	drm_connector_init_with_ddc(&dev_priv->drm, connector,
+> +	drm_connector_init_with_ddc(display->drm, connector,
+>  				    &intel_crt_connector_funcs,
+>  				    DRM_MODE_CONNECTOR_VGA,
+>  				    intel_gmbus_get_adapter(display, ddc_pin));
+>  
+> -	drm_encoder_init(&dev_priv->drm, &crt->base.base, &intel_crt_enc_funcs,
+> +	drm_encoder_init(display->drm, &crt->base.base, &intel_crt_enc_funcs,
+>  			 DRM_MODE_ENCODER_DAC, "CRT");
+>  
+>  	intel_connector_attach_encoder(intel_connector, &crt->base);
+> @@ -1073,14 +1084,14 @@ void intel_crt_init(struct drm_i915_private *dev_priv)
+>  	else
+>  		crt->base.pipe_mask = ~0;
+>  
+> -	if (DISPLAY_VER(dev_priv) != 2)
+> +	if (DISPLAY_VER(display) != 2)
+>  		connector->interlace_allowed = true;
+>  
+>  	crt->adpa_reg = adpa_reg;
+>  
+>  	crt->base.power_domain = POWER_DOMAIN_PORT_CRT;
+>  
+> -	if (I915_HAS_HOTPLUG(dev_priv) &&
+> +	if (I915_HAS_HOTPLUG(display) &&
+>  	    !dmi_check_system(intel_spurious_crt_detect)) {
+>  		crt->base.hpd_pin = HPD_CRT;
+>  		crt->base.hotplug = intel_encoder_hotplug;
+> @@ -1090,7 +1101,7 @@ void intel_crt_init(struct drm_i915_private *dev_priv)
+>  	}
+>  	intel_connector->base.polled = intel_connector->polled;
+>  
+> -	if (HAS_DDI(dev_priv)) {
+> +	if (HAS_DDI(display)) {
+>  		assert_port_valid(dev_priv, PORT_E);
+>  
+>  		crt->base.port = PORT_E;
+> @@ -1134,7 +1145,7 @@ void intel_crt_init(struct drm_i915_private *dev_priv)
+>  		u32 fdi_config = FDI_RX_POLARITY_REVERSED_LPT |
+>  				 FDI_RX_LINK_REVERSAL_OVERRIDE;
+>  
+> -		dev_priv->display.fdi.rx_config = intel_de_read(dev_priv,
+> +		display->fdi.rx_config = intel_de_read(display,
+>  								FDI_RX_CTL(PIPE_A)) & fdi_config;
+>  	}
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_crt.h b/drivers/gpu/drm/i915/display/intel_crt.h
+> index fe7690c2b948..e0abfe96a3d2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_crt.h
+> +++ b/drivers/gpu/drm/i915/display/intel_crt.h
+> @@ -10,20 +10,20 @@
+>  
+>  enum pipe;
+>  struct drm_encoder;
+> -struct drm_i915_private;
+> +struct intel_display;
+>  
+>  #ifdef I915
+> -bool intel_crt_port_enabled(struct drm_i915_private *dev_priv,
+> +bool intel_crt_port_enabled(struct intel_display *display,
+>  			    i915_reg_t adpa_reg, enum pipe *pipe);
+> -void intel_crt_init(struct drm_i915_private *dev_priv);
+> +void intel_crt_init(struct intel_display *display);
+>  void intel_crt_reset(struct drm_encoder *encoder);
+>  #else
+> -static inline bool intel_crt_port_enabled(struct drm_i915_private *dev_priv,
+> +static inline bool intel_crt_port_enabled(struct intel_display *display,
+>  					  i915_reg_t adpa_reg, enum pipe *pipe)
+>  {
+>  	return false;
+>  }
+> -static inline void intel_crt_init(struct drm_i915_private *dev_priv)
+> +static inline void intel_crt_init(struct intel_display *display)
+>  {
+>  }
+>  static inline void intel_crt_reset(struct drm_encoder *encoder)
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index c19f01b63936..2479ca0a02d9 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -8147,7 +8147,7 @@ void intel_setup_outputs(struct drm_i915_private *dev_priv)
+>  
+>  	if (HAS_DDI(dev_priv)) {
+>  		if (intel_ddi_crt_present(dev_priv))
+> -			intel_crt_init(dev_priv);
+> +			intel_crt_init(display);
+>  
+>  		intel_bios_for_each_encoder(display, intel_ddi_init);
+>  
+> @@ -8162,7 +8162,7 @@ void intel_setup_outputs(struct drm_i915_private *dev_priv)
+>  		 * incorrect sharing of the PPS.
+>  		 */
+>  		intel_lvds_init(dev_priv);
+> -		intel_crt_init(dev_priv);
+> +		intel_crt_init(display);
+>  
+>  		dpd_is_edp = intel_dp_is_port_edp(dev_priv, PORT_D);
+>  
+> @@ -8193,7 +8193,7 @@ void intel_setup_outputs(struct drm_i915_private *dev_priv)
+>  		bool has_edp, has_port;
+>  
+>  		if (IS_VALLEYVIEW(dev_priv) && dev_priv->display.vbt.int_crt_support)
+> -			intel_crt_init(dev_priv);
+> +			intel_crt_init(display);
+>  
+>  		/*
+>  		 * The DP_DETECTED bit is the latched state of the DDC
+> @@ -8239,14 +8239,14 @@ void intel_setup_outputs(struct drm_i915_private *dev_priv)
+>  		vlv_dsi_init(dev_priv);
+>  	} else if (IS_PINEVIEW(dev_priv)) {
+>  		intel_lvds_init(dev_priv);
+> -		intel_crt_init(dev_priv);
+> +		intel_crt_init(display);
+>  	} else if (IS_DISPLAY_VER(dev_priv, 3, 4)) {
+>  		bool found = false;
+>  
+>  		if (IS_MOBILE(dev_priv))
+>  			intel_lvds_init(dev_priv);
+>  
+> -		intel_crt_init(dev_priv);
+> +		intel_crt_init(display);
+>  
+>  		if (intel_de_read(dev_priv, GEN3_SDVOB) & SDVO_DETECTED) {
+>  			drm_dbg_kms(&dev_priv->drm, "probing SDVOB\n");
+> @@ -8288,7 +8288,7 @@ void intel_setup_outputs(struct drm_i915_private *dev_priv)
+>  		if (IS_I85X(dev_priv))
+>  			intel_lvds_init(dev_priv);
+>  
+> -		intel_crt_init(dev_priv);
+> +		intel_crt_init(display);
+>  		intel_dvo_init(dev_priv);
+>  	}
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_pch_display.c b/drivers/gpu/drm/i915/display/intel_pch_display.c
+> index f13ab680c2cf..17739a51fe54 100644
+> --- a/drivers/gpu/drm/i915/display/intel_pch_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_pch_display.c
+> @@ -76,6 +76,7 @@ static void assert_pch_hdmi_disabled(struct drm_i915_private *dev_priv,
+>  static void assert_pch_ports_disabled(struct drm_i915_private *dev_priv,
+>  				      enum pipe pipe)
+>  {
+> +	struct intel_display *display = &dev_priv->display;
+>  	enum pipe port_pipe;
+>  
+>  	assert_pch_dp_disabled(dev_priv, pipe, PORT_B, PCH_DP_B);
+> @@ -83,7 +84,7 @@ static void assert_pch_ports_disabled(struct drm_i915_private *dev_priv,
+>  	assert_pch_dp_disabled(dev_priv, pipe, PORT_D, PCH_DP_D);
+>  
+>  	I915_STATE_WARN(dev_priv,
+> -			intel_crt_port_enabled(dev_priv, PCH_ADPA, &port_pipe) && port_pipe == pipe,
+> +			intel_crt_port_enabled(display, PCH_ADPA, &port_pipe) && port_pipe == pipe,
+>  			"PCH VGA enabled on transcoder %c, should be disabled\n",
+>  			pipe_name(pipe));
+>  
 > -- 
 > 2.39.5
 > 
