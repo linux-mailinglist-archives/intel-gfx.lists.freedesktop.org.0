@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 833F79ABF4D
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Oct 2024 08:51:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D4209ABF4E
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Oct 2024 08:51:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A71910E760;
-	Wed, 23 Oct 2024 06:51:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 166CF10E764;
+	Wed, 23 Oct 2024 06:51:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KZOmEZ/g";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AC6KA+xx";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0205C10E75B;
- Wed, 23 Oct 2024 06:50:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 19FF910E75C;
+ Wed, 23 Oct 2024 06:51:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729666259; x=1761202259;
+ t=1729666264; x=1761202264;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=xZtyL2dHYB6N2kVAXjmI8XLiIXgsiWQiZGQiyDzy0Kc=;
- b=KZOmEZ/g8b7ixctHZNt4ulrgwh1EvHtjyF4Pc5ELkAbiyGLnrVgjk16T
- TmlhtHTMQfCOEYdBArUOQ4FcFuiacy1mtanDk0JbIxau5VpJwGBCSkJAa
- pRtviw3d+CwnaM3BJkqz2UsKU9qhvQ9BOoFL8N2I1pcNKvKXpWeEICVdZ
- W3HY1a4uYz3FUr8Xi1Hzz1s+Ccub/6Z2/OhWSlead8By0srL3ve2eH1uS
- 5CAIKb62I0fNSMeLRA0CKtX3j1qwQHX/XIp+8nNW4nbqEr/hDIPu8SHBL
- 4gISw7q8mhKq5IucLfvPZ4jVg2R4yKJgjekeW2YrcJHnbvWeJoYy0K1dN w==;
-X-CSE-ConnectionGUID: 4pthpyPYQz2BHlGUhqideA==
-X-CSE-MsgGUID: xwoZoIl3RIiF6DxT8pd92Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11233"; a="32097482"
-X-IronPort-AV: E=Sophos;i="6.11,225,1725346800"; d="scan'208";a="32097482"
+ bh=hv7YLVkJJKTT2VNLvv46icwwunGTkWFQjo7uFj9dvko=;
+ b=AC6KA+xxlllnxAAUtDgnoB+iPzR6bwWtDH/ibozbf+qkNC62bFwOfHEr
+ 8eV0/oHdpqg1zYXtgAXdb3aSYjJ+7TUIZfW3bVBzxnKH/KrNQQ3VCKgUZ
+ DHS66MAXYVlokvPOaYSEhM5Qa81lcYzPEQDWq//WeXtj/RebKNJPfzDim
+ ZuM5H4fDQp7GYWT392I1P4idJmES+RbSMqjpZ+Ax9LykzrfskSTb/mTr9
+ LZm8RoQxZJ9oEfzTI79/zMqc70VahZFqyV1PDBCzc6uuSGR0KpXnBixMk
+ tBPZhBcSACh1aFO2E6MnAmS6fMYUpN8IOInwwh4ojLA4fAuSCNZ7dOPLT g==;
+X-CSE-ConnectionGUID: YASatE9OTCuTMFypyyGiUg==
+X-CSE-MsgGUID: 41FEN9wFTKGt3B2klJuMlQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11233"; a="32097495"
+X-IronPort-AV: E=Sophos;i="6.11,225,1725346800"; d="scan'208";a="32097495"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2024 23:50:59 -0700
-X-CSE-ConnectionGUID: 7Yy+npMHQj+0Zwfkv8iZwQ==
-X-CSE-MsgGUID: SBf0IB1LRE+wtfBArF5dAA==
+ 22 Oct 2024 23:51:04 -0700
+X-CSE-ConnectionGUID: ajBn4doMQjmIWAoGGttiDQ==
+X-CSE-MsgGUID: oJq4AuxnQMeXbLFPJmYpRQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,225,1725346800"; d="scan'208";a="84691598"
+X-IronPort-AV: E=Sophos;i="6.11,225,1725346800"; d="scan'208";a="84691618"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2024 23:50:58 -0700
+ 22 Oct 2024 23:51:01 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	suraj.kandpal@intel.com
-Subject: [PATCH 11/16] drm/i915/dp: Account for pixel replication for BW
- computation with DSC
-Date: Wed, 23 Oct 2024 12:22:52 +0530
-Message-ID: <20241023065257.190035-12-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 12/16] drm/i915/display: Account for pixel replication in
+ pipe_src
+Date: Wed, 23 Oct 2024 12:22:53 +0530
+Message-ID: <20241023065257.190035-13-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241023065257.190035-1-ankit.k.nautiyal@intel.com>
 References: <20241023065257.190035-1-ankit.k.nautiyal@intel.com>
@@ -69,63 +69,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Include the extra pixels added while computing bandwidth with DSC.
+With DSC pixel replication, extra pixels are added in the last slice
+of the last pipe. Due to this the total hactive gets increased by few
+pixels. Adjust the computation for pipe source width to account for
+pixel replication.
+
+These extra pixels will be take care by the Splitter logic in
+hardware.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 23 ++++++++++++++++++++++-
- 1 file changed, 22 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 20 +++++++++++++++++++-
+ 1 file changed, 19 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 4065fc26e70e..f4a446824cb3 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1940,6 +1940,23 @@ static bool is_bw_sufficient_for_dsc_config(u16 compressed_bppx16, u32 link_cloc
- 	return available_bw > required_bw;
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index aa9e44970752..8065ed921952 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -2514,6 +2514,22 @@ void intel_encoder_get_config(struct intel_encoder *encoder,
+ 	intel_crtc_readout_derived_state(crtc_state);
  }
  
-+static
-+u32 adjust_clock_for_extra_pixels(const struct drm_display_mode *adjusted_mode,
-+				  int extra_pixels)
++static int intel_splitter_adjust_pipe_width(int width, int replicated_pixels)
 +{
-+	u32 clock = adjusted_mode->clock;
-+	u16 htotal = adjusted_mode->htotal;
-+
-+	if (!extra_pixels)
-+		return clock;
-+	/*
-+	 * clock = (htotal) * (vtotal) * refresh_rate
-+	 * adjusted_clock = (htotal + extra_pixels) * (vtotal) * refresh_rate
-+	 * = clock + (clock * extra_pixels / htotal)
++	/* Account for Pixel replication:
++	 * Pixel replication is required due to the rounding of slice_width (Hactive / slice_count).
++	 *
++	 * Splitter HW takes care of these by removing replicated pixels from the last pipe.
 +	 */
-+	return clock + extra_pixels * (clock / htotal);
++
++	if (!replicated_pixels)
++		return width;
++
++	width += replicated_pixels;
++
++	return width;
 +}
 +
- static int dsc_compute_link_config(struct intel_dp *intel_dp,
- 				   struct intel_crtc_state *pipe_config,
- 				   struct link_config_limits *limits,
-@@ -1948,8 +1965,12 @@ static int dsc_compute_link_config(struct intel_dp *intel_dp,
+ static void intel_joiner_compute_pipe_src(struct intel_crtc_state *crtc_state)
  {
- 	const struct drm_display_mode *adjusted_mode = &pipe_config->hw.adjusted_mode;
- 	int link_rate, lane_count;
-+	u32 adjusted_clock;
- 	int i;
+ 	int num_pipes = intel_crtc_num_joined_pipes(crtc_state);
+@@ -2522,7 +2538,9 @@ static void intel_joiner_compute_pipe_src(struct intel_crtc_state *crtc_state)
+ 	if (num_pipes == 1)
+ 		return;
  
-+	adjusted_clock = adjust_clock_for_extra_pixels(adjusted_mode,
-+						       pipe_config->dsc.replicated_pixels);
+-	width = drm_rect_width(&crtc_state->pipe_src);
++	width = intel_splitter_adjust_pipe_width(drm_rect_width(&crtc_state->pipe_src),
++						 crtc_state->dsc.replicated_pixels);
 +
- 	for (i = 0; i < intel_dp->num_common_rates; i++) {
- 		link_rate = intel_dp_common_rate(intel_dp, i);
- 		if (link_rate < limits->min_rate || link_rate > limits->max_rate)
-@@ -1959,7 +1980,7 @@ static int dsc_compute_link_config(struct intel_dp *intel_dp,
- 		     lane_count <= limits->max_lane_count;
- 		     lane_count <<= 1) {
- 			if (!is_bw_sufficient_for_dsc_config(compressed_bppx16, link_rate,
--							     lane_count, adjusted_mode->clock,
-+							     lane_count, adjusted_clock,
- 							     pipe_config->output_format,
- 							     timeslots))
- 				continue;
+ 	height = drm_rect_height(&crtc_state->pipe_src);
+ 
+ 	drm_rect_init(&crtc_state->pipe_src, 0, 0,
 -- 
 2.45.2
 
