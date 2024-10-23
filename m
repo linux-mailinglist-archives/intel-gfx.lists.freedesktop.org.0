@@ -2,60 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 900B39ACC1F
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Oct 2024 16:19:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FAF99ACC2C
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Oct 2024 16:23:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C1BD10E180;
-	Wed, 23 Oct 2024 14:19:32 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YBZd4Kme";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7AD1B10E7E8;
+	Wed, 23 Oct 2024 14:23:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 007DC10E180
- for <intel-gfx@lists.freedesktop.org>; Wed, 23 Oct 2024 14:19:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729693171; x=1761229171;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=muDyVZ4qAQk/LlB5U9WB7HUouaT4ku7jWdvxjvrL5zg=;
- b=YBZd4Kme4hd7QuLgikE/MpKx30MjToTi+8fv0lLI9LGKpZpgP4NrRWF0
- 7VRg21g2F42vJ/jdtgzCO09QlW3wNx2xqJ5e8GDxSMHAbI47g8rMF8lk8
- InDSrpVDRvYhnyzDfBCM99VrVwNDTdNBs+TQzjae5hRY7E6KCuamNKMUv
- 2/cvuUpTl3pkkvpofyrGFb/Rnu1i1X+Huxd2Kfi+VRrUnkARUblfnbw/m
- mWi4yUMdHc0olAauKFUZenOMk6AUzRUlFfD0TfjpAjzw0zZYp4Hx3+3uD
- RGRSuY7w/FYne39XIpn4CSayz16c5dTNjPviqRUxi3r9LOyUPgzl4lxqC A==;
-X-CSE-ConnectionGUID: E9+Pr7yfSkiVK5bKtqfd5Q==
-X-CSE-MsgGUID: X21puxbNQo2S28cvp33g/Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11234"; a="39862029"
-X-IronPort-AV: E=Sophos;i="6.11,226,1725346800"; d="scan'208";a="39862029"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2024 07:19:20 -0700
-X-CSE-ConnectionGUID: EVYKx59XT3W06TBSjv6tUg==
-X-CSE-MsgGUID: vbraiIgcTY28nPq/b166sg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,226,1725346800"; d="scan'208";a="80405916"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2024 07:19:19 -0700
-Date: Wed, 23 Oct 2024 17:19:49 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH v3 1/8] drm/i915/dp: Flush modeset commits during
- connector detection
-Message-ID: <ZxkGBSXJIWw3SGYH@ideak-desk.fi.intel.com>
-References: <20241016132405.2231744-1-imre.deak@intel.com>
- <20241016132405.2231744-2-imre.deak@intel.com>
- <Zxjoz9VmUomyQE-_@intel.com>
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42EBB10E1A1;
+ Wed, 23 Oct 2024 14:23:28 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8719125073054083935=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Zxjoz9VmUomyQE-_@intel.com>
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915=3A_ensure_segment_?=
+ =?utf-8?q?offset_never_exceeds_allowed_max?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Krzysztof Karas" <krzysztof.karas@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 23 Oct 2024 14:23:28 -0000
+Message-ID: <172969340827.1324057.1954389888484066527@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <agetzfnm7xpwocyvnznewkmfqin3hyha2qywyvhqnk77gyuvuy@hat5jnfpljty>
+In-Reply-To: <agetzfnm7xpwocyvnznewkmfqin3hyha2qywyvhqnk77gyuvuy@hat5jnfpljty>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,152 +37,205 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 23, 2024 at 03:15:11PM +0300, Ville Syrjälä wrote:
-> On Wed, Oct 16, 2024 at 04:23:58PM +0300, Imre Deak wrote:
-> > Make sure that a DP connector detection doesn't happen in parallel
-> > with an ongoing modeset on the connector. The reasons for this are:
-> > 
-> > - Besides reading the capabilities, EDID etc. the detection may change
-> >   the state of the sink (via the AUX bus), for instance by setting the
-> >   LTTPR mode or the source OUI (the latter introduced by an upcoming
-> >   patch). It's better to avoid such changes affecting an onging modeset
-> >   in any way.
-> > 
-> > - During a modeset's link training any access to DPCD registers, besides
-> >   the registers used for link training should be avoided, at least in
-> >   the LTTPR non-transparent and transparent link training modes.
-> > 
-> >   Such asynchronous accesses - besides connector detection - can also
-> >   happen via the AUX device node for instance, for those a parallel
-> >   modeset will have to be avoided in a similar way to the change in this
-> >   patch. (A topic for a follow-up change.)
-> > 
-> > - The source OUI written to an eDP sink is valid only while the panel
-> >   power is enabled. A modeset on eDP will enable/disable the panel power
-> >   synchronously; this should be prevented in the middle of the connector
-> >   detection, to ensure a consistent sink state (which depends on the
-> >   source OUI) for the whole duration of detection. The panel power could
-> >   still get disabled during detection after an idle period (1 sec), this
-> >   will be prevented by the next patch.
-> > 
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_dp.c     | 28 ++++++++++++++++++---
-> >  drivers/gpu/drm/i915/display/intel_dp.h     |  1 +
-> >  drivers/gpu/drm/i915/display/intel_dp_mst.c |  2 ++
-> >  3 files changed, 27 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> > index 6b27fabd61c37..977ff2ce18eeb 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > @@ -5035,6 +5035,16 @@ bool intel_dp_has_connector(struct intel_dp *intel_dp,
-> >  	return false;
-> >  }
-> >  
-> > +static void wait_for_crtc_hw_done(
-> 
-> This doesn't really do anything with the crtc, so the name feels
-> a bit off.
+--===============8719125073054083935==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Yes, it's waiting for the crtc only if the connector is enabled. I can
-rename it to wait_for_connector_hw_done().
+== Series Details ==
 
-> > struct drm_i915_private *i915, struct drm_crtc_commit *commit)
-> 
-> 'struct intel_display' everywhere? Or are you looking to backport this
-> so far back that we don't have that?
+Series: drm/i915: ensure segment offset never exceeds allowed max
+URL   : https://patchwork.freedesktop.org/series/140374/
+State : success
 
-Ok, will do that. I think it should be backported only after it's been
-tested and actual problems related to this were reported (I don't know
-of any).
+== Summary ==
 
-> Otherwise
-> Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> > +{
-> > +	if (!commit)
-> > +		return;
-> > +
-> > +	drm_WARN_ON(&i915->drm,
-> > +		    !wait_for_completion_timeout(&commit->hw_done,
-> > +						 msecs_to_jiffies(5000)));
-> > +}
-> > +
-> >  int intel_dp_get_active_pipes(struct intel_dp *intel_dp,
-> >  			      struct drm_modeset_acquire_ctx *ctx,
-> >  			      u8 *pipe_mask)
-> > @@ -5071,10 +5081,7 @@ int intel_dp_get_active_pipes(struct intel_dp *intel_dp,
-> >  		if (!crtc_state->hw.active)
-> >  			continue;
-> >  
-> > -		if (conn_state->commit)
-> > -			drm_WARN_ON(&i915->drm,
-> > -				    !wait_for_completion_timeout(&conn_state->commit->hw_done,
-> > -								 msecs_to_jiffies(5000)));
-> > +		wait_for_crtc_hw_done(i915, conn_state->commit);
-> >  
-> >  		*pipe_mask |= BIT(crtc->pipe);
-> >  	}
-> > @@ -5083,6 +5090,17 @@ int intel_dp_get_active_pipes(struct intel_dp *intel_dp,
-> >  	return ret;
-> >  }
-> >  
-> > +void intel_dp_flush_connector_commits(struct intel_connector *connector)
-> > +{
-> > +	struct drm_i915_private *i915 = to_i915(connector->base.dev);
-> > +	const struct drm_connector_state *conn_state =
-> > +		connector->base.state;
-> > +
-> > +	drm_modeset_lock_assert_held(&i915->drm.mode_config.connection_mutex);
-> > +
-> > +	return wait_for_crtc_hw_done(i915, conn_state->commit);
-> > +}
-> > +
-> >  static bool intel_dp_is_connected(struct intel_dp *intel_dp)
-> >  {
-> >  	struct intel_connector *connector = intel_dp->attached_connector;
-> > @@ -5596,6 +5614,8 @@ intel_dp_detect(struct drm_connector *connector,
-> >  	if (!intel_display_driver_check_access(dev_priv))
-> >  		return connector->status;
-> >  
-> > +	intel_dp_flush_connector_commits(intel_connector);
-> > +
-> >  	/* Can't disconnect eDP */
-> >  	if (intel_dp_is_edp(intel_dp))
-> >  		status = edp_detect(intel_dp);
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-> > index 60baf4072dc9d..4efb9605a50e0 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp.h
-> > @@ -54,6 +54,7 @@ void intel_dp_set_link_params(struct intel_dp *intel_dp,
-> >  int intel_dp_get_active_pipes(struct intel_dp *intel_dp,
-> >  			      struct drm_modeset_acquire_ctx *ctx,
-> >  			      u8 *pipe_mask);
-> > +void intel_dp_flush_connector_commits(struct intel_connector *connector);
-> >  void intel_dp_link_check(struct intel_encoder *encoder);
-> >  void intel_dp_check_link_state(struct intel_dp *intel_dp);
-> >  void intel_dp_set_power(struct intel_dp *intel_dp, u8 mode);
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > index 1a2ff3e1cb68f..5bba078c00d89 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > @@ -1573,6 +1573,8 @@ intel_dp_mst_detect(struct drm_connector *connector,
-> >  	if (!intel_display_driver_check_access(i915))
-> >  		return connector->status;
-> >  
-> > +	intel_dp_flush_connector_commits(intel_connector);
-> > +
-> >  	return drm_dp_mst_detect_port(connector, ctx, &intel_dp->mst_mgr,
-> >  				      intel_connector->port);
-> >  }
-> > -- 
-> > 2.44.2
-> 
-> -- 
-> Ville Syrjälä
-> Intel
+CI Bug Log - changes from CI_DRM_15585 -> Patchwork_140374v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v1/index.html
+
+Participating hosts (47 -> 46)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_140374v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live:
+    - bat-twl-1:          [PASS][1] -> [INCOMPLETE][2] ([i915#12133] / [i915#9413])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15585/bat-twl-1/igt@i915_selftest@live.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v1/bat-twl-1/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@gt_lrc:
+    - bat-twl-1:          [PASS][3] -> [INCOMPLETE][4] ([i915#9413])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15585/bat-twl-1/igt@i915_selftest@live@gt_lrc.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v1/bat-twl-1/igt@i915_selftest@live@gt_lrc.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-mtlp-6:         [PASS][5] -> [ABORT][6] ([i915#12216]) +1 other test abort
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15585/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v1/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live:
+    - bat-mtlp-8:         [ABORT][7] ([i915#12216]) -> [PASS][8] +1 other test pass
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15585/bat-mtlp-8/igt@i915_selftest@live.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v1/bat-mtlp-8/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@late_gt_pm:
+    - bat-atsm-1:         [ABORT][9] ([i915#12133]) -> [PASS][10] +1 other test pass
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15585/bat-atsm-1/igt@i915_selftest@live@late_gt_pm.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v1/bat-atsm-1/igt@i915_selftest@live@late_gt_pm.html
+
+  * igt@kms_chamelium_frames@dp-crc-fast:
+    - bat-dg2-13:         [FAIL][11] ([i915#12440]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15585/bat-dg2-13/igt@kms_chamelium_frames@dp-crc-fast.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v1/bat-dg2-13/igt@kms_chamelium_frames@dp-crc-fast.html
+
+  * igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-a-dp-1:
+    - bat-rpls-4:         [DMESG-WARN][13] -> [PASS][14] +1 other test pass
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15585/bat-rpls-4/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-a-dp-1.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v1/bat-rpls-4/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-a-dp-1.html
+
+  
+  [i915#12133]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133
+  [i915#12216]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12216
+  [i915#12440]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12440
+  [i915#9413]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_15585 -> Patchwork_140374v1
+
+  CI-20190529: 20190529
+  CI_DRM_15585: d42d1d4a13007b0e53898454d5597b1a6126877a @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8082: c8379ec8b26f3c21bae5473706b23da78bd26ffa @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_140374v1: d42d1d4a13007b0e53898454d5597b1a6126877a @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v1/index.html
+
+--===============8719125073054083935==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: ensure segment offset never exceeds allowed max</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/140374/">https://patchwork.freedesktop.org/series/140374/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_15585 -&gt; Patchwork_140374v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v1/index.html</p>
+<h2>Participating hosts (47 -&gt; 46)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_140374v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-twl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15585/bat-twl-1/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v1/bat-twl-1/igt@i915_selftest@live.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133">i915#12133</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413">i915#9413</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_lrc:</p>
+<ul>
+<li>bat-twl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15585/bat-twl-1/igt@i915_selftest@live@gt_lrc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v1/bat-twl-1/igt@i915_selftest@live@gt_lrc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413">i915#9413</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15585/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v1/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12216">i915#12216</a>) +1 other test abort</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15585/bat-mtlp-8/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12216">i915#12216</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v1/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@late_gt_pm:</p>
+<ul>
+<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15585/bat-atsm-1/igt@i915_selftest@live@late_gt_pm.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133">i915#12133</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v1/bat-atsm-1/igt@i915_selftest@live@late_gt_pm.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_frames@dp-crc-fast:</p>
+<ul>
+<li>bat-dg2-13:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15585/bat-dg2-13/igt@kms_chamelium_frames@dp-crc-fast.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12440">i915#12440</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v1/bat-dg2-13/igt@kms_chamelium_frames@dp-crc-fast.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-a-dp-1:</p>
+<ul>
+<li>bat-rpls-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15585/bat-rpls-4/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-a-dp-1.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v1/bat-rpls-4/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-a-dp-1.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_15585 -&gt; Patchwork_140374v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_15585: d42d1d4a13007b0e53898454d5597b1a6126877a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8082: c8379ec8b26f3c21bae5473706b23da78bd26ffa @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_140374v1: d42d1d4a13007b0e53898454d5597b1a6126877a @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============8719125073054083935==--
