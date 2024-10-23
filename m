@@ -2,51 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF5209AD6EB
-	for <lists+intel-gfx@lfdr.de>; Wed, 23 Oct 2024 23:47:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DDA349AD6E9
+	for <lists+intel-gfx@lfdr.de>; Wed, 23 Oct 2024 23:47:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D243410E880;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8AE2910E87D;
 	Wed, 23 Oct 2024 21:47:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PChdrTGp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FS7y7U4M";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D9E7610E86D;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 014E010E1A6;
  Wed, 23 Oct 2024 21:47:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1729720027; x=1761256027;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=og1HfR6CT7zFmb6gUOs0cAAvaJ+3wr8ujrjCe52wPjE=;
- b=PChdrTGpJ8JfinVo/x7qwI5+0oqVgE1h33Oe9vgWNJXb2kVC+Xe9eSji
- F7A/BDxWfk9hl91HOUxic7PGcF7Bstuy7PjoSBbllKQu46r0yVgQ1/kgO
- uF5Yjt8Oc30sVQ2J0X13qVkK20z3WAIE1qt5/OWzOaPQwFfnR+2GF3+z3
- y0K623+gBvoYxicm5UNiMe2PlKMvuj//pfUupEkLK0dwIAlrZhePNSJT4
- lNv75I+RXLwRRur9QkTOMwRte81Y3a4rt62Q7Mh7HldHwR8p6Md8GFvoY
- A4Pi0p/q9wIzRu55/c/8a2nDeAAT5CaUNwpQitvdTxKYPGry8JWpTHFno A==;
-X-CSE-ConnectionGUID: qx/w22zcQFSgCpigrCwYbA==
-X-CSE-MsgGUID: bJlX6VxtTX++jnMHKE3hOQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11234"; a="54732007"
-X-IronPort-AV: E=Sophos;i="6.11,227,1725346800"; d="scan'208";a="54732007"
+ bh=AoT4BueZclBuWyM80tDOgvms8MGZuLBwt3c5tKlEzOQ=;
+ b=FS7y7U4MwqTn7DNn2uVtRuyc9pvdyLSAUOdA4Gg91qYVjphlXnbsvrrw
+ y2ocpmC1Sr4BOnW6VjkScJrBukn3IKiE8ckj8U++Dy446e+2BztrEruxT
+ B0NlWsKwFrYMp5U8Ps9RzdgjQUxvLFXUJnstxv+Mzm+7CXO5Ie3kvV+Ti
+ DZzZ4SNKH2y9oAqhgGpHw8vdt0F6enCmlE2uKsGWB8bO17N7MzIjx2Hzs
+ l9XCAJbry3I4aZ8G7dgobSmt4aeGKJziRgsaTRXlMv+JaNmz7aJyvEWjY
+ As0QA8Mm6VoB0lKiIy7h/ZpoXWmLt29f1pIrMq1sfhbzPAbIPFzVee1tq Q==;
+X-CSE-ConnectionGUID: RAI3eQy8RSKG1JZ57fAhZw==
+X-CSE-MsgGUID: 0yoGZ+rSQQ+7jWJg9dHdEQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11234"; a="54732009"
+X-IronPort-AV: E=Sophos;i="6.11,227,1725346800"; d="scan'208";a="54732009"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Oct 2024 14:47:06 -0700
-X-CSE-ConnectionGUID: Wi8QA5W9Q76u4Z+8DlFhxA==
-X-CSE-MsgGUID: GBqQBcIZRYW8e1PMSz/EIQ==
+X-CSE-ConnectionGUID: JT4F1XNeQZqCEeAaE88buQ==
+X-CSE-MsgGUID: Xgz4AqR1TLazP9MWh3XkCw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,227,1725346800"; d="scan'208";a="80809807"
+X-IronPort-AV: E=Sophos;i="6.11,227,1725346800"; d="scan'208";a="80809808"
 Received: from cataylo2-desk.jf.intel.com ([10.165.21.140])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Oct 2024 14:47:05 -0700
 From: Clint Taylor <clinton.a.taylor@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 10/12] drm/i915/display/xe3: disable x-tiled framebuffers
-Date: Wed, 23 Oct 2024 14:46:59 -0700
-Message-Id: <20241023214701.963830-11-clinton.a.taylor@intel.com>
+Subject: [PATCH v2 11/12] drm/i915/xe3lpd: Skip disabling VRR during modeset
+ disable
+Date: Wed, 23 Oct 2024 14:47:00 -0700
+Message-Id: <20241023214701.963830-12-clinton.a.taylor@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20241023214701.963830-1-clinton.a.taylor@intel.com>
 References: <20241023214701.963830-1-clinton.a.taylor@intel.com>
@@ -67,31 +68,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: "Heikkila, Juha-pekka" <juha-pekka.heikkila@intel.com>
+From: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
 
-Xe3 has no more support for x-tile on display.
+Spec does not request to disable VRR in the modeset disabling
+sequence for DP and HDMI for xe3_lpd.
 
-v2: Include up to display 29 for X-tiled support. (Gustavo)
-Signed-off-by: Heikkila, Juha-pekka <juha-pekka.heikkila@intel.com>
+Bspec: 68848
+Signed-off-by: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
 Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
-Signed-off-by: Clint Taylor <Clinton.A.Taylor@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fb.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-index a7b4cf8b6d50..6a7060889f40 100644
---- a/drivers/gpu/drm/i915/display/intel_fb.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb.c
-@@ -349,7 +349,7 @@ static const struct intel_modifier_desc intel_modifiers[] = {
- 		.plane_caps = INTEL_PLANE_CAP_TILING_Y,
- 	}, {
- 		.modifier = I915_FORMAT_MOD_X_TILED,
--		.display_ver = DISPLAY_VER_ALL,
-+		.display_ver = { 0, 29 },
- 		.plane_caps = INTEL_PLANE_CAP_TILING_X,
- 	}, {
- 		.modifier = DRM_FORMAT_MOD_LINEAR,
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 124e094a9999..bc35327b37d6 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -1310,9 +1310,11 @@ static void intel_pre_plane_update(struct intel_atomic_state *state,
+ 		intel_atomic_get_new_crtc_state(state, crtc);
+ 	enum pipe pipe = crtc->pipe;
+ 
+-	if (intel_crtc_vrr_disabling(state, crtc)) {
+-		intel_vrr_disable(old_crtc_state);
+-		intel_crtc_update_active_timings(old_crtc_state, false);
++	if (DISPLAY_VER(dev_priv) < 30) {
++		if (intel_crtc_vrr_disabling(state, crtc)) {
++			intel_vrr_disable(old_crtc_state);
++			intel_crtc_update_active_timings(old_crtc_state, false);
++		}
+ 	}
+ 
+ 	if (audio_disabling(old_crtc_state, new_crtc_state))
 -- 
 2.25.1
 
