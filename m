@@ -2,63 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 428D79ADE58
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Oct 2024 09:59:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A5BA89ADE8D
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Oct 2024 10:11:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 312D410E8CA;
-	Thu, 24 Oct 2024 07:59:05 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Kfkgpipo";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9849A10E8B8;
+	Thu, 24 Oct 2024 08:11:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 64AD210E8AE;
- Thu, 24 Oct 2024 07:59:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729756744; x=1761292744;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=G5tfKWi77QuzGi68lJV0Ha1bzx5oG6W+q4fP/Yv3l0w=;
- b=Kfkgpipo51IW74smhz37Fu5mBYDPRdM8svaHM+vk4bR2a11OwnXg1u1u
- t78jULadcZlLo/XFsthFcN9M9JOifY6YUwfnXfSL+DCyed6qHdJI6XxxL
- xfP3PUDSdi+xiJsm6VSatsm9of5do3AETYLiVWXmUYA4t5a3iDIpdB0Ay
- P6DH2WhdwNTLHT9DskDoxcyJXUuy30hQ2czG2xPz+JDxE6mnNShQOSEFP
- EldL75Hj2o2MO9HUntPxxk/DBspgN7wgJkjLmozhSNRKHtl0iFZyK8nQc
- GE9WtP91vh2ISIP0mEu4aOXYJcKNdYYxz82D0/B0BWpqIm37Z9GAz5bE1 g==;
-X-CSE-ConnectionGUID: jxXyf1X6SKyWw5dpJiGo2A==
-X-CSE-MsgGUID: dAgOsZddSpepaTXRlGwQ0w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11234"; a="40764480"
-X-IronPort-AV: E=Sophos;i="6.11,228,1725346800"; d="scan'208";a="40764480"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2024 00:59:04 -0700
-X-CSE-ConnectionGUID: Y6xZGPyNQX629cWQvdfMqg==
-X-CSE-MsgGUID: mmAUx8/FSVCW09dG+yw3hQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="85300744"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.151])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2024 00:59:02 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Cc: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>, "Ghimiray, Himal
- Prasad" <himal.prasad.ghimiray@intel.com>
-Subject: RE: [PATCH] drm/xe/hdcp: Add check to remove hdcp2 compatibility
-In-Reply-To: <SN7PR11MB6750E049267C185625EEC58DE34C2@SN7PR11MB6750.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241022055655.1902-1-suraj.kandpal@intel.com>
- <20241022072920.102033-1-suraj.kandpal@intel.com>
- <877ca0y3z9.fsf@intel.com>
- <SN7PR11MB6750E049267C185625EEC58DE34C2@SN7PR11MB6750.namprd11.prod.outlook.com>
-Date: Thu, 24 Oct 2024 10:58:58 +0300
-Message-ID: <87ldyeszi5.fsf@intel.com>
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C82610E8B8;
+ Thu, 24 Oct 2024 08:11:46 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2999698488109587813=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_drm/i915/gsc=3A_test_new_GS?=
+ =?utf-8?q?C_102=2E1=2E15=2E1926_for_MTL_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 24 Oct 2024 08:11:46 -0000
+Message-ID: <172975750650.1325996.3790780880750887968@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241022230050.4176990-1-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20241022230050.4176990-1-daniele.ceraolospurio@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,93 +37,235 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 22 Oct 2024, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
->> -----Original Message-----
->> From: Jani Nikula <jani.nikula@linux.intel.com>
->> Sent: Tuesday, October 22, 2024 1:17 PM
->> To: Kandpal, Suraj <suraj.kandpal@intel.com>; intel-xe@lists.freedesktop.org;
->> intel-gfx@lists.freedesktop.org
->> Cc: Kandpal, Suraj <suraj.kandpal@intel.com>; Nautiyal, Ankit K
->> <ankit.k.nautiyal@intel.com>; Ghimiray, Himal Prasad
->> <himal.prasad.ghimiray@intel.com>
->> Subject: Re: [PATCH] drm/xe/hdcp: Add check to remove hdcp2 compatibility
->> 
->> On Tue, 22 Oct 2024, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
->> > Add check to remove HDCP2 compatibility from BMG as it does not have
->> > GSC which ends up causing warning when we try to get reference of GSC
->> > FW.
->> >
->> > Fixes: 89d030804831 ("drm/xe/hdcp: Fix condition for hdcp gsc cs
->> > requirement")
->> > Fixes: 883631771038 ("drm/i915/mtl: Add HDCP GSC interface")
->> > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
->> > Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
->> > Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
->> > ---
->> >  drivers/gpu/drm/i915/display/intel_hdcp_gsc.c | 3 ++-
->> >  drivers/gpu/drm/xe/display/xe_hdcp_gsc.c      | 4 +++-
->> >  2 files changed, 5 insertions(+), 2 deletions(-)
->> >
->> > diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
->> > b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
->> > index 55965844d829..2c1d0ee8cec2 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
->> > @@ -21,7 +21,8 @@ struct intel_hdcp_gsc_message {
->> >
->> >  bool intel_hdcp_gsc_cs_required(struct intel_display *display)  {
->> > -	return DISPLAY_VER(display) >= 14;
->> > +	return DISPLAY_VER(display) >= 14 &&
->> > +		DISPLAY_VER_FULL(display) != IP_VER(14, 1);
->> >  }
->> >
->> >  bool intel_hdcp_gsc_check_status(struct intel_display *display) diff
->> > --git a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
->> > b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
->> > index 231677129a35..efa3441c249c 100644
->> > --- a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
->> > +++ b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
->> > @@ -8,6 +8,7 @@
->> >  #include <linux/delay.h>
->> >
->> >  #include "abi/gsc_command_header_abi.h"
->> > +#include "i915_drv.h"
->> 
->> Hrmh, xe code should not include i915_drv.h.
->
-> The issue is without this IP_VER used below ends up throwing an error
+--===============2999698488109587813==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Yeah, we'll need to fix that.
+== Series Details ==
 
-Ack as a temporary measure, but please follow through with Matt's review
-comments before merging.
+Series: drm/i915/gsc: test new GSC 102.1.15.1926 for MTL (rev2)
+URL   : https://patchwork.freedesktop.org/series/140338/
+State : failure
 
-BR,
-Jani.
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_15587 -> Patchwork_140338v2
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_140338v2 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_140338v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140338v2/index.html
+
+Participating hosts (47 -> 45)
+------------------------------
+
+  Missing    (2): fi-snb-2520m bat-adls-6 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_140338v2:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@gt_tlb:
+    - bat-arlh-2:         [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15587/bat-arlh-2/igt@i915_selftest@live@gt_tlb.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140338v2/bat-arlh-2/igt@i915_selftest@live@gt_tlb.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_140338v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live:
+    - bat-mtlp-8:         [PASS][3] -> [ABORT][4] ([i915#12216]) +1 other test abort
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15587/bat-mtlp-8/igt@i915_selftest@live.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140338v2/bat-mtlp-8/igt@i915_selftest@live.html
+    - bat-arlh-2:         [PASS][5] -> [INCOMPLETE][6] ([i915#10341] / [i915#12133])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15587/bat-arlh-2/igt@i915_selftest@live.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140338v2/bat-arlh-2/igt@i915_selftest@live.html
+
+  * igt@kms_chamelium_edid@hdmi-edid-read:
+    - bat-dg2-13:         [PASS][7] -> [DMESG-WARN][8] ([i915#12253])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15587/bat-dg2-13/igt@kms_chamelium_edid@hdmi-edid-read.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140338v2/bat-dg2-13/igt@kms_chamelium_edid@hdmi-edid-read.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live:
+    - bat-arlh-3:         [ABORT][9] ([i915#12061] / [i915#12133]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15587/bat-arlh-3/igt@i915_selftest@live.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140338v2/bat-arlh-3/igt@i915_selftest@live.html
+    - bat-twl-1:          [INCOMPLETE][11] ([i915#12133] / [i915#9413]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15587/bat-twl-1/igt@i915_selftest@live.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140338v2/bat-twl-1/igt@i915_selftest@live.html
+    - bat-arls-2:         [ABORT][13] ([i915#12133]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15587/bat-arls-2/igt@i915_selftest@live.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140338v2/bat-arls-2/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@gt_lrc:
+    - bat-twl-1:          [INCOMPLETE][15] ([i915#9413]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15587/bat-twl-1/igt@i915_selftest@live@gt_lrc.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140338v2/bat-twl-1/igt@i915_selftest@live@gt_lrc.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arlh-3:         [ABORT][17] ([i915#12061]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15587/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140338v2/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+    - bat-arls-2:         [ABORT][19] ([i915#12061]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15587/bat-arls-2/igt@i915_selftest@live@workarounds.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140338v2/bat-arls-2/igt@i915_selftest@live@workarounds.html
+
+  
+  [i915#10341]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10341
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#12133]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133
+  [i915#12216]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12216
+  [i915#12253]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12253
+  [i915#9413]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413
 
 
->
-> Regards,
-> Suraj Kandpal
->> 
->> >  #include "intel_hdcp_gsc.h"
->> >  #include "intel_hdcp_gsc_message.h"
->> >  #include "xe_bo.h"
->> > @@ -32,7 +33,8 @@ struct intel_hdcp_gsc_message {
->> >
->> >  bool intel_hdcp_gsc_cs_required(struct intel_display *display)  {
->> > -	return DISPLAY_VER(display) >= 14;
->> > +	return DISPLAY_VER(display) >= 14 &&
->> > +		DISPLAY_VER_FULL(display) != IP_VER(14, 1);
->> >  }
->> >
->> >  bool intel_hdcp_gsc_check_status(struct intel_display *display)
->> 
->> --
->> Jani Nikula, Intel
+Build changes
+-------------
 
--- 
-Jani Nikula, Intel
+  * Linux: CI_DRM_15587 -> Patchwork_140338v2
+
+  CI-20190529: 20190529
+  CI_DRM_15587: 3d45ea06af2c04db741c142380d97001b3cdb5da @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8082: c8379ec8b26f3c21bae5473706b23da78bd26ffa @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_140338v2: 3d45ea06af2c04db741c142380d97001b3cdb5da @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140338v2/index.html
+
+--===============2999698488109587813==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/gsc: test new GSC 102.1.15.1926 for MTL (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/140338/">https://patchwork.freedesktop.org/series/140338/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140338v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140338v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_15587 -&gt; Patchwork_140338v2</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_140338v2 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_140338v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140338v2/index.html</p>
+<h2>Participating hosts (47 -&gt; 45)</h2>
+<p>Missing    (2): fi-snb-2520m bat-adls-6 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_140338v2:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_selftest@live@gt_tlb:<ul>
+<li>bat-arlh-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15587/bat-arlh-2/igt@i915_selftest@live@gt_tlb.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140338v2/bat-arlh-2/igt@i915_selftest@live@gt_tlb.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_140338v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15587/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140338v2/bat-mtlp-8/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12216">i915#12216</a>) +1 other test abort</li>
+<li>bat-arlh-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15587/bat-arlh-2/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140338v2/bat-arlh-2/igt@i915_selftest@live.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10341">i915#10341</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133">i915#12133</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_edid@hdmi-edid-read:</p>
+<ul>
+<li>bat-dg2-13:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15587/bat-dg2-13/igt@kms_chamelium_edid@hdmi-edid-read.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140338v2/bat-dg2-13/igt@kms_chamelium_edid@hdmi-edid-read.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12253">i915#12253</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15587/bat-arlh-3/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133">i915#12133</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140338v2/bat-arlh-3/igt@i915_selftest@live.html">PASS</a></li>
+<li>bat-twl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15587/bat-twl-1/igt@i915_selftest@live.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133">i915#12133</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413">i915#9413</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140338v2/bat-twl-1/igt@i915_selftest@live.html">PASS</a></li>
+<li>bat-arls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15587/bat-arls-2/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133">i915#12133</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140338v2/bat-arls-2/igt@i915_selftest@live.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gt_lrc:</p>
+<ul>
+<li>bat-twl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15587/bat-twl-1/igt@i915_selftest@live@gt_lrc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413">i915#9413</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140338v2/bat-twl-1/igt@i915_selftest@live@gt_lrc.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15587/bat-arlh-3/igt@i915_selftest@live@workarounds.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140338v2/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a></li>
+<li>bat-arls-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15587/bat-arls-2/igt@i915_selftest@live@workarounds.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140338v2/bat-arls-2/igt@i915_selftest@live@workarounds.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_15587 -&gt; Patchwork_140338v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_15587: 3d45ea06af2c04db741c142380d97001b3cdb5da @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8082: c8379ec8b26f3c21bae5473706b23da78bd26ffa @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_140338v2: 3d45ea06af2c04db741c142380d97001b3cdb5da @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============2999698488109587813==--
