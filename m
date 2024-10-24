@@ -2,184 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E6B39AEA88
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Oct 2024 17:33:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 405FB9AEB35
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Oct 2024 17:59:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB5C110E96E;
-	Thu, 24 Oct 2024 15:33:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 153B510E31C;
+	Thu, 24 Oct 2024 15:59:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Wwwnj0pL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NPEgVklt";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0CBC010E969;
- Thu, 24 Oct 2024 15:33:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B65C510E2A5
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Oct 2024 15:59:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729784009; x=1761320009;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=CMdGpeRVY+eMdxXYeXzxZT0e/Rm5CaVczyOCOpp6JJI=;
- b=Wwwnj0pLNwJSl9u86DBNwF6BTlEZQkKqgCiF1hW6AnJrbdJgj5gRxDo8
- pmsGAF3E7DpwS/IjNnj32J3lU3Dm2TvCvTlYdNtv0UrM1Es8FH/kSaHzJ
- 4VERELVcUzyGRP+Vw10FMZhcjCCBjojrEe7mzgIiLBdau8+Vjn+sEhDpo
- FRvnDaljmZzkb9LwhJ+cIyBKqM5NKACYMnLXvkaWMxuRi/qq4YYixNfUJ
- jSgoZGNQoQCoWNQMy+Avf7sRM1J7LeemEmj3kPmFj7MirDL5FYmuIM57n
- zpOQWiADvmJgy0UgJShcOLd2hbLLiOVt7ab4whRQeIOAIYLx6NYRnt/14 A==;
-X-CSE-ConnectionGUID: qFuxG2P9Tvq+L619HdOk4w==
-X-CSE-MsgGUID: swBhZM0XR1icZ8RDwvgwuA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11235"; a="17049302"
-X-IronPort-AV: E=Sophos;i="6.11,229,1725346800"; d="scan'208";a="17049302"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2024 08:33:28 -0700
-X-CSE-ConnectionGUID: qN/o31ZgRW2yI6R1v7GE0w==
-X-CSE-MsgGUID: eqyInTHPTzONwKqOi2mgMQ==
+ t=1729785559; x=1761321559;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=dL6cW8bb7rBCreMe5lWru6CsAmWErj0ucHqEEVMN5ak=;
+ b=NPEgVkltXYkyi91IXepUJ94YqjLI1PEgESWYFuxai8rRDSrAVPa3rCR2
+ 5Kx0dnUu2dFhEOadwZ+oQleq8DUS54jm8QRxUPnn1EIgLnl7NrCKPu04H
+ BusLzCpAJ3KTyIyF+YD0JYy7UxbelPpJtVwHJy1dpkL559U6C9qcSerHG
+ wBV4HEnKnKWeDEUI5LL6kuFVSfUrfwtD3v/idU+KrkmDO6KIQrixbCGrE
+ wvNGhSSL6qrEDuvJnIuPW3cx8OhpqSXcayu7Wfqy6kaRF/y5jCwwOReAq
+ QfL3bN5JIEMOx03h8jRSx7TUxKlPjLonVs9vwObpwfAXHP/lj40lS5t6e w==;
+X-CSE-ConnectionGUID: Sh9sPiBqSnG76UyJA3rVuQ==
+X-CSE-MsgGUID: L/BFdkduRC2MypHRMwnZDw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="46891436"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="46891436"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2024 08:58:25 -0700
+X-CSE-ConnectionGUID: 9Uv6EIgBTPm1khn0eSGXqw==
+X-CSE-MsgGUID: G4SkhsmOQneT+U7kVXk3Cg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,229,1725346800"; d="scan'208";a="80804475"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orviesa006.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 24 Oct 2024 08:33:28 -0700
-Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 24 Oct 2024 08:33:28 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Thu, 24 Oct 2024 08:33:28 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.42) by
- edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Thu, 24 Oct 2024 08:33:27 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=PRG4H9EqnMbN/QLXFDCsNadyNG71hT94cFCz9DULRUx/QyXAc2ARHWigTcJKlsAsF2nQWVuxwOQT8UqkL1ulxP/O4NYv65BzArYS/OeLOWw4UQ4/FIfxJyk+UIxO1y58XCGsZNb8jVS1OSObwj6xJQ43PXxKdxWq5A2C2hSW7wmMFt8j/KX9v20dLZg3dZT0d3sexxzvyzA8jDiXkLdh/hvOivcoOe/3WRdF2tnP6n2UbMOu7BWOgbbMOn5kdwIhEaiVQlTLVHhYMSCu95mwiVOYffTaocEFsUd4Syhw8RmaZOSBIVPanTF/rDYIb2xvTUgrml0FkcC1PslTmcWPQg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=GlwGsyloIbJ7GLYV7G0OXpbxRpPTXVbx8XNtaVvL6YE=;
- b=g2vAtLGZmjqXhdmHCJB+tb7HVPK1/SfqINNr73j17+rgUQ6DnvMb+LPfxj3uOVLb+0xgViSb6P6e2vR95rqg+Y85ntF/lyDc4nUSKDPtXOf36OHCKj3jlTQBqRBKdweXdIbtzT+SV9oYQY2Cdr+Jw/t2ffQygtmHXalrF+MU1W8+WMnKhFv9srLYM9HY/WyPQATOzJ0wcvDKFw8T0HTtCmkyw2kHzrMy4R92G5PS0uEZDpcIZg7MVzQIEpRjchFTOF09NzYrjV+Che7A7jNu/LBaf6M7qTu1QJhKO609U9oL5jhhDti0uSNBhb2Rw13AmRdcDuaUDtxRIVnNLNST2w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB7605.namprd11.prod.outlook.com (2603:10b6:510:277::5)
- by DS0PR11MB8739.namprd11.prod.outlook.com (2603:10b6:8:1bb::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.20; Thu, 24 Oct
- 2024 15:33:24 +0000
-Received: from PH7PR11MB7605.namprd11.prod.outlook.com
- ([fe80::d720:25db:67bb:6f50]) by PH7PR11MB7605.namprd11.prod.outlook.com
- ([fe80::d720:25db:67bb:6f50%6]) with mapi id 15.20.8069.027; Thu, 24 Oct 2024
- 15:33:24 +0000
-Message-ID: <5a48a3f3-bda0-45a2-98e1-068165f8e772@intel.com>
-Date: Thu, 24 Oct 2024 08:33:22 -0700
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe/hdcp: Add check to remove hdcp2 compatibility
-To: Suraj Kandpal <suraj.kandpal@intel.com>, <intel-xe@lists.freedesktop.org>, 
- <intel-gfx@lists.freedesktop.org>
-CC: Ankit Nautiyal <ankit.k.nautiyal@intel.com>, Himal Prasad Ghimiray
- <himal.prasad.ghimiray@intel.com>
-References: <20241022055655.1902-1-suraj.kandpal@intel.com>
- <20241022072920.102033-1-suraj.kandpal@intel.com>
-Content-Language: en-US
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-In-Reply-To: <20241022072920.102033-1-suraj.kandpal@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SJ2PR07CA0019.namprd07.prod.outlook.com
- (2603:10b6:a03:505::21) To PH7PR11MB7605.namprd11.prod.outlook.com
- (2603:10b6:510:277::5)
+X-IronPort-AV: E=Sophos;i="6.11,229,1725346800"; d="scan'208";a="80738605"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 24 Oct 2024 08:58:22 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 24 Oct 2024 18:58:21 +0300
+Date: Thu, 24 Oct 2024 18:58:21 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH] drm/i915/display: convert I915_STATE_WARN() to struct
+ intel_display
+Message-ID: <Zxpuneg0pzjiLPr8@intel.com>
+References: <20241024143035.2164165-1-jani.nikula@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB7605:EE_|DS0PR11MB8739:EE_
-X-MS-Office365-Filtering-Correlation-Id: 693c6862-ed8d-4431-71be-08dcf44132bd
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?RzFUbGRkYjlEeXNNWllqTUl4Y0svRTVZOVdXaHFWT3BzTTJCVndVbFZCZ0cw?=
- =?utf-8?B?bFFNTEp3WVZScGo3NlQxcEpCRHJKbFp1VWVGQndrUU04cUVmaEZ0MmY1cDVP?=
- =?utf-8?B?THpmaEtmaUJYU0kxdGtzOTQyZkk4TkNCd2dGZkFHQmN6ejZEMThTaXVTMTk2?=
- =?utf-8?B?b1RVT0p5N2pOWVlHcTBmWjlFNklvNHlNem1aQTB5QlNYZVorMVRPMG96aFI2?=
- =?utf-8?B?Wmo1NWZTZEJyTGsvUlJDbFhGdlNxSHRpN3R5eE5JOFAzNFU5Vm5TK1V4M0Yr?=
- =?utf-8?B?YmVWSzhubWJnTG9vR3BkeFR6QXdpcVJoMTJBWmwvVnFwMnV6cjQrNnE2U21X?=
- =?utf-8?B?cUIzdS9pQlhjcmV6dzkzWGlaQVRMWnVXNW8yYXNhTVk3NGRqaGpvYjJLbnVs?=
- =?utf-8?B?NEswMDZxMDVwSG0yYk8xTTVaTFdHeTFoWG1wdmtzbEtacEpXblQ4OFQ3a2dr?=
- =?utf-8?B?dDhPV2VQTjVZOTUwak4vajNaM1hBQnNzeS9kU2kvSG1ldE51NjlaQkFmMXMy?=
- =?utf-8?B?ODE0SnFxWkxvMWZ2ZjRsNDZybzFzSlF6T0ZqRGRXSGMzK21YU29wRzdFYU9v?=
- =?utf-8?B?aTFna3U5bzdnUHI0NVJoU2x3QXYxQlRJWldoVXk5YXdVckxtZ3ZyekZnSVBN?=
- =?utf-8?B?OHZUS29FNnN6VTl1OU1QeU5oTVdpNmUyRitWV3Nua3lJWkRqdUphUlhtZ3NY?=
- =?utf-8?B?WUwwNC8vWlJlUWlBODVRTHJkY0ZPV1BGR2c4TDQvMVMra3Rjc2FVUmV5bWxR?=
- =?utf-8?B?MHJQU0g5b0lWVjNmRk1hYlFVUFcrVzhFV3dkWFV5RUp5MFFyUnY5aG1VdWNJ?=
- =?utf-8?B?ckV1YjJ5QVUrUFhIRWNxcFZKbEhWVU1Bb2J2Qm9vcGhEMnBJQlB5b1g0MFZE?=
- =?utf-8?B?SFlHUDlXb3doRU9iM1pVZkVQYURQa1MyUk9YOVNoZ0NkVGlSSThsSzhOTG0r?=
- =?utf-8?B?MGt5eVd1YmdIdVpUb3hoUnRhTzNWdk5sVEtBTGcwSi9XK3JYMzlhLy8vSWtE?=
- =?utf-8?B?MFI0QnJrZ0FwK1k3R0lIUjJxb0ZyV2QvcEhwUmlKeURyVUJqQXpsVFQ2SStG?=
- =?utf-8?B?bTYxOW50Z1I3TDJnM2NCOUNwMU9kUkIyTjk3NmEyNTk0dTAzRVcxT3JPUjc0?=
- =?utf-8?B?UU1mWjd0SHdhTXEweVh3TzdrMytPbFAvLzRacWVvR1cvS3FLZWRWUE81SWZx?=
- =?utf-8?B?STh3b3NHbzhLeEptMkg1RWxERDg3cW96ZGNpRUgvSXNzMzI2c2dvcXhVSW4y?=
- =?utf-8?B?Z1lVeEJteWd4dkVLWkM5cjZnbjFnMVZ0cHM4dTFaMnJoWURCQmRHVEJEcmQ3?=
- =?utf-8?B?Q2dIZnJrNkdyT0JDY0hzWk5IazVRdjdXVzhxZWtROHA4d0ZCNWdhaElRODcx?=
- =?utf-8?B?KzZSb2VQdWJUcy9mN0x5UlpoQWxJYllLNWNZa0t0QlViUjI5NDVRUHZ5ZGl1?=
- =?utf-8?B?N2xBR0E3Uk9GdTJiRXlNY0kxc2VQQ3B6THJmZ2twaHF4SnZTV1FRbllHQ0pT?=
- =?utf-8?B?eFhMSExuLy9ZWm8yaVZwbzd1ZEJEaFJmVHRDcmU5VmZJd2ZyVWpmU1Nwby9D?=
- =?utf-8?B?M3dlY2F5WW1Ieno3WGZVUnRKUzZpM3h3SmlFdkk2VWx6ZTZURDVQT0t4V2Fx?=
- =?utf-8?B?VVplNEo3NnhIbWo1c2Y0ZXJtc2tlblRZUnZjL2hwdUZFTzRzbk0xTkZpL3Qv?=
- =?utf-8?B?ZHBRS3VUZW03RE9CZ1REU0VRTkplT1c5Zzg1L285Q25ET2MzVEQzbDQ0T1dl?=
- =?utf-8?Q?+v4fz2eqjo9rLxqUrRPJQWfAnkYNXs7Tn5PpCdr?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB7605.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dTBrMWJ6aDNtMkFrb0I3cis4aFlXOU9Ja1d1SElQemJQL2ZVd2FEQkFNSVZQ?=
- =?utf-8?B?bjMxenBKNy9vbHJDYTdTSW9vL2E2dHZOOExRbWxEK3FrTzV5MDVpb29sRWcr?=
- =?utf-8?B?anlrT0s3dkdTemNvbEtRRjVrMEJXcHM2QXNFejc3MzVWV3J5c0w0YUsyWlB5?=
- =?utf-8?B?YnhJNEdSTXZuQ1ZjcVZibmhZMDMxK1MzV0JUN0hVTmhmeC9PUDBobHZqbFlP?=
- =?utf-8?B?SzB6Ym1KbU5iUnRubFFSbWtMcGdqbGpJNmhZc3RXYzV1UUJSMit4Yk4vTTFa?=
- =?utf-8?B?OElvSDhOUVNxWUFRT3JoMnRCWEVBSmlVWUUrcElHQmZXRmlUMlQ5OEN1QTZw?=
- =?utf-8?B?UW1qZTFyV0d4TCtJa0U0T0FtUHJkWVRKUmpBazFPNXJ3NjlkK0hDQjhhVHpx?=
- =?utf-8?B?ME1wbll6dWo1RGZUVngrUDdnUi8zSWdoMDZaaHk4elJHZUtaYVN6SGRnNTNm?=
- =?utf-8?B?ZVJuM3VmVWRFclVoRTNMS0IxaTNudFJhaGJPSXlGTjVMb2tQTHdpZXIzVFdI?=
- =?utf-8?B?VkFNQ1pPTU8zREYzQlFaVDAzMGMwWDdYVXBRQkZmZVRLbjlaU1FkRWYydVZG?=
- =?utf-8?B?SklGOFlWYkhzeWpWM2R4TWkwY1dRMHlmVDBmYmRJbUhvWnlxakpMU1pFNndR?=
- =?utf-8?B?YVpsVElNSCt1NXVoeDQ3ZkxCbjR4MERnYjcrRmwyb0J0UUJBOFpVcEpOeGJs?=
- =?utf-8?B?bi82YTljU0NjREVDWEJwWDliTzBjYUNKWUNLSXZxZ25aeVlQb0pFVFBXc2xM?=
- =?utf-8?B?WXhCbFhFUTVnQmlGODFtUnU3T1lML3JFSEVpM3dmVUdHTCs3Qm43bHNsYlNm?=
- =?utf-8?B?UFh3aTc2b0tMNStDYVltM1BoOTdFRWhJUDlCdkkzTkMzNHdMVWdjTnU3Q3Zh?=
- =?utf-8?B?clZoNnhFaDY5RXZiWHBOSTNEeDQ3MW91V2hwbXl3YUp5WnJ4b2JXN3NsczEz?=
- =?utf-8?B?dUVsY2t0QWJKaE5ZTE92WFZDWm5weE5GSzAyRjFldzUwL0F4OXRUd3lkcnRE?=
- =?utf-8?B?S00xZVNDWlFPRXR5d3BsSHpjM2Z6eFA1QVQraHBra3BQKzVMcWp5aGtRVXNB?=
- =?utf-8?B?YWZOYWYzTVpFMWlCRE1LdkgyekYzWTN0Q05zaVFhY1Vsbng3RDNDTHBpUXBE?=
- =?utf-8?B?a0dBdTRQYVBRTGZ1UXAxVHlTYXFrR29uL0doREZUVFZTZE9uV0hhVEMzdHpk?=
- =?utf-8?B?TmxWN2w3bSthdXQyUUI2VXUxUURwMGNxSWNzVncrMlhTcmN4THJDekhPcVdN?=
- =?utf-8?B?ZnFteExtaTdBWWVsVTlIMjRjUGJrcXpvYmhQZm50aEI3TmFRNUR3S1BJUm1X?=
- =?utf-8?B?WjQwN3BaOC9KL0FYdGw5T0g3MWdPSnhkY20vVmcvYXE0ek9GVnFYUmNXYi9a?=
- =?utf-8?B?WHJpZ1N2L2UzTFNOK2laVFIvMTJDQlh4MTNPdXBZYzRyZ1BJb2ZreUtQRFQ5?=
- =?utf-8?B?SEYxV29qVWxzclZMRmprWTFwa3B6eEwvM1lSa1gxRzV0N2h1cTRObTlkSVNT?=
- =?utf-8?B?bm9jZFRDR1lQMjVCekNmZFMvZDcrSGdpZ0xQNzd4NHVHKzNPS0VtZGRnMDVX?=
- =?utf-8?B?VGNTT3M3b0RSUEhjTlNHWjRJLytYTHJRMFp5bjhUWkR5eHU2anhtZDJmWVFE?=
- =?utf-8?B?UjNGajNUVmdIWmtPeEdOb2lDTWNKNGhva1lDRlh2M1BKRndsQWE1Y2JVTU9V?=
- =?utf-8?B?RmlXOGNBUFJuYXljelhreGxmSGFDWHFLVWxFSldwdDNDUXluY1R1eWNBeWlR?=
- =?utf-8?B?eFVySlpQY2hpN3ZVYWxPaGM0dHU2S0VQK3pJN3BLNzAxTkpvR1ZQZVFkN0t4?=
- =?utf-8?B?a2dMMTBFazlNZGJkaXBneCsrdll6Z0xOaThVdFI0UVpSQUVZQ1VYbVRDanln?=
- =?utf-8?B?NEJmOVpsMXlyTHp2dFVtNGpldCtvblcxMUFFdGJUak9EUDU3Mkt3UmFIKzVZ?=
- =?utf-8?B?THZ2d2tFb0IrZm85VWVST0NMaEJKbzE0dExXOHhOYk5XNFVrOVltVlp6RFg4?=
- =?utf-8?B?ZUdkRUdPL3U5aC9uVVFTSzA4aGlpL01NNXJwT2x6Y2MxMERBejAzdU5obUUr?=
- =?utf-8?B?RDg2M2NuVzZuR2UvWFdQbFZpbE0rQUE4eTZETkw3d2poQlk5ZTJQaU1xQ05N?=
- =?utf-8?B?WlkxUlBkeU9xaU4zSndDTGVsd0thZWY2TGw4N3dEWDhOQUJmWWRUUnV6ZnN1?=
- =?utf-8?Q?dZR712YldPckHlGegtzfy/E=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 693c6862-ed8d-4431-71be-08dcf44132bd
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB7605.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Oct 2024 15:33:24.2792 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: GJfh5s4q7A7q3FbqAOLV//0e3AD0n16X3hVv1TKurhQbl0aAG0hKm3GxluCJXXvSlZPMndzDHkuVhs8njXCBFAxzkWe4OuU/0MtGE7OLMho=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB8739
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241024143035.2164165-1-jani.nikula@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -195,74 +71,1089 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Thu, Oct 24, 2024 at 05:30:35PM +0300, Jani Nikula wrote:
+> Convert I915_STATE_WARN() to struct intel_display *, and rename to
+> INTEL_DISPLAY_STATE_WARN(). Do some minor opportunistic struct
+> drm_i915_private to struct intel_display conversions while at it.
+> 
+> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-
-On 10/22/2024 12:29 AM, Suraj Kandpal wrote:
-> Add check to remove HDCP2 compatibility from BMG as it does not
-> have GSC which ends up causing warning when we try to get reference
-> of GSC FW.
->
-> Fixes: 89d030804831 ("drm/xe/hdcp: Fix condition for hdcp gsc cs requirement")
-> Fixes: 883631771038 ("drm/i915/mtl: Add HDCP GSC interface")
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 > ---
->   drivers/gpu/drm/i915/display/intel_hdcp_gsc.c | 3 ++-
->   drivers/gpu/drm/xe/display/xe_hdcp_gsc.c      | 4 +++-
->   2 files changed, 5 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
-> index 55965844d829..2c1d0ee8cec2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
-> @@ -21,7 +21,8 @@ struct intel_hdcp_gsc_message {
->   
->   bool intel_hdcp_gsc_cs_required(struct intel_display *display)
->   {
-> -	return DISPLAY_VER(display) >= 14;
-> +	return DISPLAY_VER(display) >= 14 &&
-> +		DISPLAY_VER_FULL(display) != IP_VER(14, 1);
->   }
->   
->   bool intel_hdcp_gsc_check_status(struct intel_display *display)
-> diff --git a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-> index 231677129a35..efa3441c249c 100644
-> --- a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-> +++ b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
-> @@ -8,6 +8,7 @@
->   #include <linux/delay.h>
->   
->   #include "abi/gsc_command_header_abi.h"
-> +#include "i915_drv.h"
->   #include "intel_hdcp_gsc.h"
->   #include "intel_hdcp_gsc_message.h"
->   #include "xe_bo.h"
-> @@ -32,7 +33,8 @@ struct intel_hdcp_gsc_message {
->   
->   bool intel_hdcp_gsc_cs_required(struct intel_display *display)
->   {
-> -	return DISPLAY_VER(display) >= 14;
-> +	return DISPLAY_VER(display) >= 14 &&
-> +		DISPLAY_VER_FULL(display) != IP_VER(14, 1);
+> 
+> Another option would be to convert I915_STATE_WARN() directly to
+> drm_WARN() or drm_err() and throw out the i915.verbose_state_checks
+> module parameter.
+> 
+> Note: This is much easier to review with git show -w or --color-words or
+> both.
+> ---
+>  drivers/gpu/drm/i915/display/g4x_dp.c         | 15 ++--
+>  drivers/gpu/drm/i915/display/intel_crtc.c     |  8 +-
+>  drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 76 ++++++++--------
+>  drivers/gpu/drm/i915/display/intel_display.c  | 19 ++--
+>  drivers/gpu/drm/i915/display/intel_display.h  | 17 ++--
+>  .../drm/i915/display/intel_display_power.c    | 73 +++++++--------
+>  drivers/gpu/drm/i915/display/intel_dpll.c     |  9 +-
+>  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 90 ++++++++++---------
+>  drivers/gpu/drm/i915/display/intel_fdi.c      | 42 +++++----
+>  .../drm/i915/display/intel_modeset_verify.c   | 89 +++++++++---------
+>  .../gpu/drm/i915/display/intel_pch_display.c  | 56 ++++++------
+>  drivers/gpu/drm/i915/display/intel_pps.c      | 26 +++---
+>  drivers/gpu/drm/i915/display/intel_snps_phy.c | 11 +--
+>  drivers/gpu/drm/i915/display/vlv_dsi_pll.c    |  7 +-
+>  14 files changed, 277 insertions(+), 261 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915/display/g4x_dp.c
+> index 440fb3002f28..dfe5a40fda1e 100644
+> --- a/drivers/gpu/drm/i915/display/g4x_dp.c
+> +++ b/drivers/gpu/drm/i915/display/g4x_dp.c
+> @@ -170,13 +170,12 @@ static void assert_dp_port(struct intel_dp *intel_dp, bool state)
+>  {
+>  	struct intel_display *display = to_intel_display(intel_dp);
+>  	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+> -	struct drm_i915_private *dev_priv = to_i915(dig_port->base.base.dev);
+>  	bool cur_state = intel_de_read(display, intel_dp->output_reg) & DP_PORT_EN;
+>  
+> -	I915_STATE_WARN(dev_priv, cur_state != state,
+> -			"[ENCODER:%d:%s] state assertion failure (expected %s, current %s)\n",
+> -			dig_port->base.base.base.id, dig_port->base.base.name,
+> -			str_on_off(state), str_on_off(cur_state));
+> +	INTEL_DISPLAY_STATE_WARN(display, cur_state != state,
+> +				 "[ENCODER:%d:%s] state assertion failure (expected %s, current %s)\n",
+> +				 dig_port->base.base.base.id, dig_port->base.base.name,
+> +				 str_on_off(state), str_on_off(cur_state));
+>  }
+>  #define assert_dp_port_disabled(d) assert_dp_port((d), false)
+>  
+> @@ -185,9 +184,9 @@ static void assert_edp_pll(struct drm_i915_private *dev_priv, bool state)
+>  	struct intel_display *display = &dev_priv->display;
+>  	bool cur_state = intel_de_read(display, DP_A) & DP_PLL_ENABLE;
+>  
+> -	I915_STATE_WARN(dev_priv, cur_state != state,
+> -			"eDP PLL state assertion failure (expected %s, current %s)\n",
+> -			str_on_off(state), str_on_off(cur_state));
+> +	INTEL_DISPLAY_STATE_WARN(display, cur_state != state,
+> +				 "eDP PLL state assertion failure (expected %s, current %s)\n",
+> +				 str_on_off(state), str_on_off(cur_state));
+>  }
+>  #define assert_edp_pll_enabled(d) assert_edp_pll((d), true)
+>  #define assert_edp_pll_disabled(d) assert_edp_pll((d), false)
+> diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+> index 3c9168a57f38..a2c528d707f4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_crtc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+> @@ -36,11 +36,11 @@
+>  
+>  static void assert_vblank_disabled(struct drm_crtc *crtc)
+>  {
+> -	struct drm_i915_private *i915 = to_i915(crtc->dev);
+> +	struct intel_display *display = to_intel_display(crtc->dev);
+>  
+> -	if (I915_STATE_WARN(i915, drm_crtc_vblank_get(crtc) == 0,
+> -			    "[CRTC:%d:%s] vblank assertion failure (expected off, current on)\n",
+> -			    crtc->base.id, crtc->name))
+> +	if (INTEL_DISPLAY_STATE_WARN(display, drm_crtc_vblank_get(crtc) == 0,
+> +				     "[CRTC:%d:%s] vblank assertion failure (expected off, current on)\n",
+> +				     crtc->base.id, crtc->name))
+>  		drm_crtc_vblank_put(crtc);
+>  }
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> index 8bd5a4d1b735..638a8167361c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> @@ -3272,28 +3272,28 @@ static void intel_c10pll_state_verify(const struct intel_crtc_state *state,
+>  				      struct intel_encoder *encoder,
+>  				      struct intel_c10pll_state *mpllb_hw_state)
+>  {
+> -	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+> +	struct intel_display *display = to_intel_display(state);
+>  	const struct intel_c10pll_state *mpllb_sw_state = &state->dpll_hw_state.cx0pll.c10;
+>  	int i;
+>  
+>  	for (i = 0; i < ARRAY_SIZE(mpllb_sw_state->pll); i++) {
+>  		u8 expected = mpllb_sw_state->pll[i];
+>  
+> -		I915_STATE_WARN(i915, mpllb_hw_state->pll[i] != expected,
+> -				"[CRTC:%d:%s] mismatch in C10MPLLB: Register[%d] (expected 0x%02x, found 0x%02x)",
+> -				crtc->base.base.id, crtc->base.name, i,
+> -				expected, mpllb_hw_state->pll[i]);
+> +		INTEL_DISPLAY_STATE_WARN(display, mpllb_hw_state->pll[i] != expected,
+> +					 "[CRTC:%d:%s] mismatch in C10MPLLB: Register[%d] (expected 0x%02x, found 0x%02x)",
+> +					 crtc->base.base.id, crtc->base.name, i,
+> +					 expected, mpllb_hw_state->pll[i]);
+>  	}
+>  
+> -	I915_STATE_WARN(i915, mpllb_hw_state->tx != mpllb_sw_state->tx,
+> -			"[CRTC:%d:%s] mismatch in C10MPLLB: Register TX0 (expected 0x%02x, found 0x%02x)",
+> -			crtc->base.base.id, crtc->base.name,
+> -			mpllb_sw_state->tx, mpllb_hw_state->tx);
+> +	INTEL_DISPLAY_STATE_WARN(display, mpllb_hw_state->tx != mpllb_sw_state->tx,
+> +				 "[CRTC:%d:%s] mismatch in C10MPLLB: Register TX0 (expected 0x%02x, found 0x%02x)",
+> +				 crtc->base.base.id, crtc->base.name,
+> +				 mpllb_sw_state->tx, mpllb_hw_state->tx);
+>  
+> -	I915_STATE_WARN(i915, mpllb_hw_state->cmn != mpllb_sw_state->cmn,
+> -			"[CRTC:%d:%s] mismatch in C10MPLLB: Register CMN0 (expected 0x%02x, found 0x%02x)",
+> -			crtc->base.base.id, crtc->base.name,
+> -			mpllb_sw_state->cmn, mpllb_hw_state->cmn);
+> +	INTEL_DISPLAY_STATE_WARN(display, mpllb_hw_state->cmn != mpllb_sw_state->cmn,
+> +				 "[CRTC:%d:%s] mismatch in C10MPLLB: Register CMN0 (expected 0x%02x, found 0x%02x)",
+> +				 crtc->base.base.id, crtc->base.name,
+> +				 mpllb_sw_state->cmn, mpllb_hw_state->cmn);
+>  }
+>  
+>  void intel_cx0pll_readout_hw_state(struct intel_encoder *encoder,
+> @@ -3379,51 +3379,51 @@ static void intel_c20pll_state_verify(const struct intel_crtc_state *state,
+>  				      struct intel_encoder *encoder,
+>  				      struct intel_c20pll_state *mpll_hw_state)
+>  {
+> -	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+> +	struct intel_display *display = to_intel_display(state);
+>  	const struct intel_c20pll_state *mpll_sw_state = &state->dpll_hw_state.cx0pll.c20;
+>  	bool sw_use_mpllb = intel_c20phy_use_mpllb(mpll_sw_state);
+>  	bool hw_use_mpllb = intel_c20phy_use_mpllb(mpll_hw_state);
+>  	int clock = intel_c20pll_calc_port_clock(encoder, mpll_sw_state);
+>  	int i;
+>  
+> -	I915_STATE_WARN(i915, mpll_hw_state->clock != clock,
+> -			"[CRTC:%d:%s] mismatch in C20: Register CLOCK (expected %d, found %d)",
+> -			crtc->base.base.id, crtc->base.name,
+> -			mpll_sw_state->clock, mpll_hw_state->clock);
+> +	INTEL_DISPLAY_STATE_WARN(display, mpll_hw_state->clock != clock,
+> +				 "[CRTC:%d:%s] mismatch in C20: Register CLOCK (expected %d, found %d)",
+> +				 crtc->base.base.id, crtc->base.name,
+> +				 mpll_sw_state->clock, mpll_hw_state->clock);
+>  
+> -	I915_STATE_WARN(i915, sw_use_mpllb != hw_use_mpllb,
+> -			"[CRTC:%d:%s] mismatch in C20: Register MPLLB selection (expected %d, found %d)",
+> -			crtc->base.base.id, crtc->base.name,
+> -			sw_use_mpllb, hw_use_mpllb);
+> +	INTEL_DISPLAY_STATE_WARN(display, sw_use_mpllb != hw_use_mpllb,
+> +				 "[CRTC:%d:%s] mismatch in C20: Register MPLLB selection (expected %d, found %d)",
+> +				 crtc->base.base.id, crtc->base.name,
+> +				 sw_use_mpllb, hw_use_mpllb);
+>  
+>  	if (hw_use_mpllb) {
+>  		for (i = 0; i < ARRAY_SIZE(mpll_sw_state->mpllb); i++) {
+> -			I915_STATE_WARN(i915, mpll_hw_state->mpllb[i] != mpll_sw_state->mpllb[i],
+> -					"[CRTC:%d:%s] mismatch in C20MPLLB: Register[%d] (expected 0x%04x, found 0x%04x)",
+> -					crtc->base.base.id, crtc->base.name, i,
+> -					mpll_sw_state->mpllb[i], mpll_hw_state->mpllb[i]);
+> +			INTEL_DISPLAY_STATE_WARN(display, mpll_hw_state->mpllb[i] != mpll_sw_state->mpllb[i],
+> +						 "[CRTC:%d:%s] mismatch in C20MPLLB: Register[%d] (expected 0x%04x, found 0x%04x)",
+> +						 crtc->base.base.id, crtc->base.name, i,
+> +						 mpll_sw_state->mpllb[i], mpll_hw_state->mpllb[i]);
+>  		}
+>  	} else {
+>  		for (i = 0; i < ARRAY_SIZE(mpll_sw_state->mplla); i++) {
+> -			I915_STATE_WARN(i915, mpll_hw_state->mplla[i] != mpll_sw_state->mplla[i],
+> -					"[CRTC:%d:%s] mismatch in C20MPLLA: Register[%d] (expected 0x%04x, found 0x%04x)",
+> -					crtc->base.base.id, crtc->base.name, i,
+> -					mpll_sw_state->mplla[i], mpll_hw_state->mplla[i]);
+> +			INTEL_DISPLAY_STATE_WARN(display, mpll_hw_state->mplla[i] != mpll_sw_state->mplla[i],
+> +						 "[CRTC:%d:%s] mismatch in C20MPLLA: Register[%d] (expected 0x%04x, found 0x%04x)",
+> +						 crtc->base.base.id, crtc->base.name, i,
+> +						 mpll_sw_state->mplla[i], mpll_hw_state->mplla[i]);
+>  		}
+>  	}
+>  
+>  	for (i = 0; i < ARRAY_SIZE(mpll_sw_state->tx); i++) {
+> -		I915_STATE_WARN(i915, mpll_hw_state->tx[i] != mpll_sw_state->tx[i],
+> -				"[CRTC:%d:%s] mismatch in C20: Register TX[%i] (expected 0x%04x, found 0x%04x)",
+> -				crtc->base.base.id, crtc->base.name, i,
+> -				mpll_sw_state->tx[i], mpll_hw_state->tx[i]);
+> +		INTEL_DISPLAY_STATE_WARN(display, mpll_hw_state->tx[i] != mpll_sw_state->tx[i],
+> +					 "[CRTC:%d:%s] mismatch in C20: Register TX[%i] (expected 0x%04x, found 0x%04x)",
+> +					 crtc->base.base.id, crtc->base.name, i,
+> +					 mpll_sw_state->tx[i], mpll_hw_state->tx[i]);
+>  	}
+>  
+>  	for (i = 0; i < ARRAY_SIZE(mpll_sw_state->cmn); i++) {
+> -		I915_STATE_WARN(i915, mpll_hw_state->cmn[i] != mpll_sw_state->cmn[i],
+> -				"[CRTC:%d:%s] mismatch in C20: Register CMN[%i] (expected 0x%04x, found 0x%04x)",
+> -				crtc->base.base.id, crtc->base.name, i,
+> -				mpll_sw_state->cmn[i], mpll_hw_state->cmn[i]);
+> +		INTEL_DISPLAY_STATE_WARN(display, mpll_hw_state->cmn[i] != mpll_sw_state->cmn[i],
+> +					 "[CRTC:%d:%s] mismatch in C20: Register CMN[%i] (expected 0x%04x, found 0x%04x)",
+> +					 crtc->base.base.id, crtc->base.name, i,
+> +					 mpll_sw_state->cmn[i], mpll_hw_state->cmn[i]);
+>  	}
+>  }
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index ef1436146325..54e68b876be9 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -422,6 +422,7 @@ intel_wait_for_pipe_off(const struct intel_crtc_state *old_crtc_state)
+>  void assert_transcoder(struct drm_i915_private *dev_priv,
+>  		       enum transcoder cpu_transcoder, bool state)
+>  {
+> +	struct intel_display *display = &dev_priv->display;
+>  	bool cur_state;
+>  	enum intel_display_power_domain power_domain;
+>  	intel_wakeref_t wakeref;
+> @@ -442,24 +443,24 @@ void assert_transcoder(struct drm_i915_private *dev_priv,
+>  		cur_state = false;
+>  	}
+>  
+> -	I915_STATE_WARN(dev_priv, cur_state != state,
+> -			"transcoder %s assertion failure (expected %s, current %s)\n",
+> -			transcoder_name(cpu_transcoder), str_on_off(state),
+> -			str_on_off(cur_state));
+> +	INTEL_DISPLAY_STATE_WARN(display, cur_state != state,
+> +				 "transcoder %s assertion failure (expected %s, current %s)\n",
+> +				 transcoder_name(cpu_transcoder), str_on_off(state),
+> +				 str_on_off(cur_state));
+>  }
+>  
+>  static void assert_plane(struct intel_plane *plane, bool state)
+>  {
+> -	struct drm_i915_private *i915 = to_i915(plane->base.dev);
+> +	struct intel_display *display = to_intel_display(plane->base.dev);
+>  	enum pipe pipe;
+>  	bool cur_state;
+>  
+>  	cur_state = plane->get_hw_state(plane, &pipe);
+>  
+> -	I915_STATE_WARN(i915, cur_state != state,
+> -			"%s assertion failure (expected %s, current %s)\n",
+> -			plane->base.name, str_on_off(state),
+> -			str_on_off(cur_state));
+> +	INTEL_DISPLAY_STATE_WARN(display, cur_state != state,
+> +				 "%s assertion failure (expected %s, current %s)\n",
+> +				 plane->base.name, str_on_off(state),
+> +				 str_on_off(cur_state));
+>  }
+>  
+>  #define assert_plane_enabled(p) assert_plane(p, true)
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+> index 61e1df878de9..dd56d60a7d0c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display.h
+> @@ -585,18 +585,17 @@ void assert_transcoder(struct drm_i915_private *dev_priv,
+>  bool assert_port_valid(struct drm_i915_private *i915, enum port port);
+>  
+>  /*
+> - * Use I915_STATE_WARN(x) (rather than WARN() and WARN_ON()) for hw state sanity
+> - * checks to check for unexpected conditions which may not necessarily be a user
+> - * visible problem. This will either WARN() or DRM_ERROR() depending on the
+> - * verbose_state_checks module param, to enable distros and users to tailor
+> - * their preferred amount of i915 abrt spam.
+> + * Use INTEL_DISPLAY_STATE_WARN(x) (rather than WARN() and WARN_ON()) for hw
+> + * state sanity checks to check for unexpected conditions which may not
+> + * necessarily be a user visible problem. This will either drm_WARN() or
+> + * drm_err() depending on the verbose_state_checks module param, to enable
+> + * distros and users to tailor their preferred amount of i915 abrt spam.
+>   */
+> -#define I915_STATE_WARN(__i915, condition, format...) ({		\
+> -	struct drm_device *drm = &(__i915)->drm;			\
+> +#define INTEL_DISPLAY_STATE_WARN(__display, condition, format...) ({	\
+>  	int __ret_warn_on = !!(condition);				\
+>  	if (unlikely(__ret_warn_on))					\
+> -		if (!drm_WARN(drm, __i915->display.params.verbose_state_checks, format)) \
+> -			drm_err(drm, format);				\
+> +		if (!drm_WARN((__display)->drm, (__display)->params.verbose_state_checks, format)) \
+> +			drm_err((__display)->drm, format);		\
+>  	unlikely(__ret_warn_on);					\
+>  })
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+> index c2bc80f5bf6b..d0c21c89c471 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> @@ -1176,43 +1176,44 @@ static void hsw_assert_cdclk(struct drm_i915_private *dev_priv)
+>  
+>  static void assert_can_disable_lcpll(struct drm_i915_private *dev_priv)
+>  {
+> +	struct intel_display *display = &dev_priv->display;
+>  	struct intel_crtc *crtc;
+>  
+> -	for_each_intel_crtc(&dev_priv->drm, crtc)
+> -		I915_STATE_WARN(dev_priv, crtc->active,
+> -				"CRTC for pipe %c enabled\n",
+> -				pipe_name(crtc->pipe));
+> -
+> -	I915_STATE_WARN(dev_priv, intel_de_read(dev_priv, HSW_PWR_WELL_CTL2),
+> -			"Display power well on\n");
+> -	I915_STATE_WARN(dev_priv,
+> -			intel_de_read(dev_priv, SPLL_CTL) & SPLL_PLL_ENABLE,
+> -			"SPLL enabled\n");
+> -	I915_STATE_WARN(dev_priv,
+> -			intel_de_read(dev_priv, WRPLL_CTL(0)) & WRPLL_PLL_ENABLE,
+> -			"WRPLL1 enabled\n");
+> -	I915_STATE_WARN(dev_priv,
+> -			intel_de_read(dev_priv, WRPLL_CTL(1)) & WRPLL_PLL_ENABLE,
+> -			"WRPLL2 enabled\n");
+> -	I915_STATE_WARN(dev_priv,
+> -			intel_de_read(dev_priv, PP_STATUS(dev_priv, 0)) & PP_ON,
+> -			"Panel power on\n");
+> -	I915_STATE_WARN(dev_priv,
+> -			intel_de_read(dev_priv, BLC_PWM_CPU_CTL2) & BLM_PWM_ENABLE,
+> -			"CPU PWM1 enabled\n");
+> +	for_each_intel_crtc(display->drm, crtc)
+> +		INTEL_DISPLAY_STATE_WARN(display, crtc->active,
+> +					 "CRTC for pipe %c enabled\n",
+> +					 pipe_name(crtc->pipe));
+> +
+> +	INTEL_DISPLAY_STATE_WARN(display, intel_de_read(display, HSW_PWR_WELL_CTL2),
+> +				 "Display power well on\n");
+> +	INTEL_DISPLAY_STATE_WARN(display,
+> +				 intel_de_read(display, SPLL_CTL) & SPLL_PLL_ENABLE,
+> +				 "SPLL enabled\n");
+> +	INTEL_DISPLAY_STATE_WARN(display,
+> +				 intel_de_read(display, WRPLL_CTL(0)) & WRPLL_PLL_ENABLE,
+> +				 "WRPLL1 enabled\n");
+> +	INTEL_DISPLAY_STATE_WARN(display,
+> +				 intel_de_read(display, WRPLL_CTL(1)) & WRPLL_PLL_ENABLE,
+> +				 "WRPLL2 enabled\n");
+> +	INTEL_DISPLAY_STATE_WARN(display,
+> +				 intel_de_read(display, PP_STATUS(display, 0)) & PP_ON,
+> +				 "Panel power on\n");
+> +	INTEL_DISPLAY_STATE_WARN(display,
+> +				 intel_de_read(display, BLC_PWM_CPU_CTL2) & BLM_PWM_ENABLE,
+> +				 "CPU PWM1 enabled\n");
+>  	if (IS_HASWELL(dev_priv))
+> -		I915_STATE_WARN(dev_priv,
+> -				intel_de_read(dev_priv, HSW_BLC_PWM2_CTL) & BLM_PWM_ENABLE,
+> -				"CPU PWM2 enabled\n");
+> -	I915_STATE_WARN(dev_priv,
+> -			intel_de_read(dev_priv, BLC_PWM_PCH_CTL1) & BLM_PCH_PWM_ENABLE,
+> -			"PCH PWM1 enabled\n");
+> -	I915_STATE_WARN(dev_priv,
+> -			(intel_de_read(dev_priv, UTIL_PIN_CTL) & (UTIL_PIN_ENABLE | UTIL_PIN_MODE_MASK)) == (UTIL_PIN_ENABLE | UTIL_PIN_MODE_PWM),
+> -			"Utility pin enabled in PWM mode\n");
+> -	I915_STATE_WARN(dev_priv,
+> -			intel_de_read(dev_priv, PCH_GTC_CTL) & PCH_GTC_ENABLE,
+> -			"PCH GTC enabled\n");
+> +		INTEL_DISPLAY_STATE_WARN(display,
+> +					 intel_de_read(display, HSW_BLC_PWM2_CTL) & BLM_PWM_ENABLE,
+> +					 "CPU PWM2 enabled\n");
+> +	INTEL_DISPLAY_STATE_WARN(display,
+> +				 intel_de_read(display, BLC_PWM_PCH_CTL1) & BLM_PCH_PWM_ENABLE,
+> +				 "PCH PWM1 enabled\n");
+> +	INTEL_DISPLAY_STATE_WARN(display,
+> +				 (intel_de_read(display, UTIL_PIN_CTL) & (UTIL_PIN_ENABLE | UTIL_PIN_MODE_MASK)) == (UTIL_PIN_ENABLE | UTIL_PIN_MODE_PWM),
+> +				 "Utility pin enabled in PWM mode\n");
+> +	INTEL_DISPLAY_STATE_WARN(display,
+> +				 intel_de_read(display, PCH_GTC_CTL) & PCH_GTC_ENABLE,
+> +				 "PCH GTC enabled\n");
+>  
+>  	/*
+>  	 * In theory we can still leave IRQs enabled, as long as only the HPD
+> @@ -1220,8 +1221,8 @@ static void assert_can_disable_lcpll(struct drm_i915_private *dev_priv)
+>  	 * gen-specific and since we only disable LCPLL after we fully disable
+>  	 * the interrupts, the check below should be enough.
+>  	 */
+> -	I915_STATE_WARN(dev_priv, intel_irqs_enabled(dev_priv),
+> -			"IRQs enabled\n");
+> +	INTEL_DISPLAY_STATE_WARN(display, intel_irqs_enabled(dev_priv),
+> +				 "IRQs enabled\n");
+>  }
+>  
+>  static u32 hsw_read_dcomp(struct drm_i915_private *dev_priv)
+> diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
+> index c0a3c4b53b0a..198ceda790d2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dpll.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dpll.c
+> @@ -2331,12 +2331,13 @@ void vlv_force_pll_off(struct drm_i915_private *dev_priv, enum pipe pipe)
+>  static void assert_pll(struct drm_i915_private *dev_priv,
+>  		       enum pipe pipe, bool state)
+>  {
+> +	struct intel_display *display = &dev_priv->display;
+>  	bool cur_state;
+>  
+> -	cur_state = intel_de_read(dev_priv, DPLL(dev_priv, pipe)) & DPLL_VCO_ENABLE;
+> -	I915_STATE_WARN(dev_priv, cur_state != state,
+> -			"PLL state assertion failure (expected %s, current %s)\n",
+> -			str_on_off(state), str_on_off(cur_state));
+> +	cur_state = intel_de_read(display, DPLL(display, pipe)) & DPLL_VCO_ENABLE;
+> +	INTEL_DISPLAY_STATE_WARN(display, cur_state != state,
+> +				 "PLL state assertion failure (expected %s, current %s)\n",
+> +				 str_on_off(state), str_on_off(cur_state));
+>  }
+>  
+>  void assert_pll_enabled(struct drm_i915_private *i915, enum pipe pipe)
+> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> index f490b2157828..c9eda647919a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> @@ -173,18 +173,19 @@ void assert_shared_dpll(struct drm_i915_private *i915,
+>  			struct intel_shared_dpll *pll,
+>  			bool state)
+>  {
+> +	struct intel_display *display = &i915->display;
+>  	bool cur_state;
+>  	struct intel_dpll_hw_state hw_state;
+>  
+> -	if (drm_WARN(&i915->drm, !pll,
+> +	if (drm_WARN(display->drm, !pll,
+>  		     "asserting DPLL %s with no DPLL\n", str_on_off(state)))
+>  		return;
+>  
+>  	cur_state = intel_dpll_get_hw_state(i915, pll, &hw_state);
+> -	I915_STATE_WARN(i915, cur_state != state,
+> -			"%s assertion failure (expected %s, current %s)\n",
+> -			pll->info->name, str_on_off(state),
+> -			str_on_off(cur_state));
+> +	INTEL_DISPLAY_STATE_WARN(display, cur_state != state,
+> +				 "%s assertion failure (expected %s, current %s)\n",
+> +				 pll->info->name, str_on_off(state),
+> +				 str_on_off(cur_state));
+>  }
+>  
+>  static enum tc_port icl_pll_id_to_tc_port(enum intel_dpll_id id)
+> @@ -545,14 +546,15 @@ static bool ibx_pch_dpll_get_hw_state(struct drm_i915_private *i915,
+>  
+>  static void ibx_assert_pch_refclk_enabled(struct drm_i915_private *i915)
+>  {
+> +	struct intel_display *display = &i915->display;
+>  	u32 val;
+>  	bool enabled;
+>  
+> -	val = intel_de_read(i915, PCH_DREF_CONTROL);
+> +	val = intel_de_read(display, PCH_DREF_CONTROL);
+>  	enabled = !!(val & (DREF_SSC_SOURCE_MASK | DREF_NONSPREAD_SOURCE_MASK |
+>  			    DREF_SUPERSPREAD_SOURCE_MASK));
+> -	I915_STATE_WARN(i915, !enabled,
+> -			"PCH refclk assertion failure, should be active but is disabled\n");
+> +	INTEL_DISPLAY_STATE_WARN(display, !enabled,
+> +				 "PCH refclk assertion failure, should be active but is disabled\n");
+>  }
+>  
+>  static void ibx_pch_dpll_enable(struct drm_i915_private *i915,
+> @@ -4619,6 +4621,7 @@ verify_single_dpll_state(struct drm_i915_private *i915,
+>  			 struct intel_crtc *crtc,
+>  			 const struct intel_crtc_state *new_crtc_state)
+>  {
+> +	struct intel_display *display = &i915->display;
+>  	struct intel_dpll_hw_state dpll_hw_state = {};
+>  	u8 pipe_mask;
+>  	bool active;
+> @@ -4626,22 +4629,22 @@ verify_single_dpll_state(struct drm_i915_private *i915,
+>  	active = intel_dpll_get_hw_state(i915, pll, &dpll_hw_state);
+>  
+>  	if (!pll->info->always_on) {
+> -		I915_STATE_WARN(i915, !pll->on && pll->active_mask,
+> -				"%s: pll in active use but not on in sw tracking\n",
+> -				pll->info->name);
+> -		I915_STATE_WARN(i915, pll->on && !pll->active_mask,
+> -				"%s: pll is on but not used by any active pipe\n",
+> -				pll->info->name);
+> -		I915_STATE_WARN(i915, pll->on != active,
+> -				"%s: pll on state mismatch (expected %i, found %i)\n",
+> -				pll->info->name, pll->on, active);
+> +		INTEL_DISPLAY_STATE_WARN(display, !pll->on && pll->active_mask,
+> +					 "%s: pll in active use but not on in sw tracking\n",
+> +					 pll->info->name);
+> +		INTEL_DISPLAY_STATE_WARN(display, pll->on && !pll->active_mask,
+> +					 "%s: pll is on but not used by any active pipe\n",
+> +					 pll->info->name);
+> +		INTEL_DISPLAY_STATE_WARN(display, pll->on != active,
+> +					 "%s: pll on state mismatch (expected %i, found %i)\n",
+> +					 pll->info->name, pll->on, active);
+>  	}
+>  
+>  	if (!crtc) {
+> -		I915_STATE_WARN(i915,
+> -				pll->active_mask & ~pll->state.pipe_mask,
+> -				"%s: more active pll users than references: 0x%x vs 0x%x\n",
+> -				pll->info->name, pll->active_mask, pll->state.pipe_mask);
+> +		INTEL_DISPLAY_STATE_WARN(display,
+> +					 pll->active_mask & ~pll->state.pipe_mask,
+> +					 "%s: more active pll users than references: 0x%x vs 0x%x\n",
+> +					 pll->info->name, pll->active_mask, pll->state.pipe_mask);
+>  
+>  		return;
+>  	}
+> @@ -4649,23 +4652,23 @@ verify_single_dpll_state(struct drm_i915_private *i915,
+>  	pipe_mask = BIT(crtc->pipe);
+>  
+>  	if (new_crtc_state->hw.active)
+> -		I915_STATE_WARN(i915, !(pll->active_mask & pipe_mask),
+> -				"%s: pll active mismatch (expected pipe %c in active mask 0x%x)\n",
+> -				pll->info->name, pipe_name(crtc->pipe), pll->active_mask);
+> +		INTEL_DISPLAY_STATE_WARN(display, !(pll->active_mask & pipe_mask),
+> +					 "%s: pll active mismatch (expected pipe %c in active mask 0x%x)\n",
+> +					 pll->info->name, pipe_name(crtc->pipe), pll->active_mask);
+>  	else
+> -		I915_STATE_WARN(i915, pll->active_mask & pipe_mask,
+> -				"%s: pll active mismatch (didn't expect pipe %c in active mask 0x%x)\n",
+> -				pll->info->name, pipe_name(crtc->pipe), pll->active_mask);
+> +		INTEL_DISPLAY_STATE_WARN(display, pll->active_mask & pipe_mask,
+> +					 "%s: pll active mismatch (didn't expect pipe %c in active mask 0x%x)\n",
+> +					 pll->info->name, pipe_name(crtc->pipe), pll->active_mask);
+>  
+> -	I915_STATE_WARN(i915, !(pll->state.pipe_mask & pipe_mask),
+> -			"%s: pll enabled crtcs mismatch (expected 0x%x in 0x%x)\n",
+> -			pll->info->name, pipe_mask, pll->state.pipe_mask);
+> +	INTEL_DISPLAY_STATE_WARN(display, !(pll->state.pipe_mask & pipe_mask),
+> +				 "%s: pll enabled crtcs mismatch (expected 0x%x in 0x%x)\n",
+> +				 pll->info->name, pipe_mask, pll->state.pipe_mask);
+>  
+> -	I915_STATE_WARN(i915,
+> -			pll->on && memcmp(&pll->state.hw_state, &dpll_hw_state,
+> -					  sizeof(dpll_hw_state)),
+> -			"%s: pll hw state mismatch\n",
+> -			pll->info->name);
+> +	INTEL_DISPLAY_STATE_WARN(display,
+> +				 pll->on && memcmp(&pll->state.hw_state, &dpll_hw_state,
+> +						   sizeof(dpll_hw_state)),
+> +				 "%s: pll hw state mismatch\n",
+> +				 pll->info->name);
+>  }
+>  
+>  static bool has_alt_port_dpll(const struct intel_shared_dpll *old_pll,
+> @@ -4678,6 +4681,7 @@ static bool has_alt_port_dpll(const struct intel_shared_dpll *old_pll,
+>  void intel_shared_dpll_state_verify(struct intel_atomic_state *state,
+>  				    struct intel_crtc *crtc)
+>  {
+> +	struct intel_display *display = to_intel_display(state);
+>  	struct drm_i915_private *i915 = to_i915(state->base.dev);
+>  	const struct intel_crtc_state *old_crtc_state =
+>  		intel_atomic_get_old_crtc_state(state, crtc);
+> @@ -4693,16 +4697,16 @@ void intel_shared_dpll_state_verify(struct intel_atomic_state *state,
+>  		u8 pipe_mask = BIT(crtc->pipe);
+>  		struct intel_shared_dpll *pll = old_crtc_state->shared_dpll;
+>  
+> -		I915_STATE_WARN(i915, pll->active_mask & pipe_mask,
+> -				"%s: pll active mismatch (didn't expect pipe %c in active mask (0x%x))\n",
+> -				pll->info->name, pipe_name(crtc->pipe), pll->active_mask);
+> +		INTEL_DISPLAY_STATE_WARN(display, pll->active_mask & pipe_mask,
+> +					 "%s: pll active mismatch (didn't expect pipe %c in active mask (0x%x))\n",
+> +					 pll->info->name, pipe_name(crtc->pipe), pll->active_mask);
+>  
+>  		/* TC ports have both MG/TC and TBT PLL referenced simultaneously */
+> -		I915_STATE_WARN(i915, !has_alt_port_dpll(old_crtc_state->shared_dpll,
+> -							 new_crtc_state->shared_dpll) &&
+> -				pll->state.pipe_mask & pipe_mask,
+> -				"%s: pll enabled crtcs mismatch (found pipe %c in enabled mask (0x%x))\n",
+> -				pll->info->name, pipe_name(crtc->pipe), pll->state.pipe_mask);
+> +		INTEL_DISPLAY_STATE_WARN(display, !has_alt_port_dpll(old_crtc_state->shared_dpll,
+> +								     new_crtc_state->shared_dpll) &&
+> +					 pll->state.pipe_mask & pipe_mask,
+> +					 "%s: pll enabled crtcs mismatch (found pipe %c in enabled mask (0x%x))\n",
+> +					 pll->info->name, pipe_name(crtc->pipe), pll->state.pipe_mask);
+>  	}
+>  }
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_fdi.c b/drivers/gpu/drm/i915/display/intel_fdi.c
+> index 0168894e9cd1..98e1a3606227 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fdi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fdi.c
+> @@ -26,9 +26,10 @@ struct intel_fdi_funcs {
+>  static void assert_fdi_tx(struct drm_i915_private *dev_priv,
+>  			  enum pipe pipe, bool state)
+>  {
+> +	struct intel_display *display = &dev_priv->display;
+>  	bool cur_state;
+>  
+> -	if (HAS_DDI(dev_priv)) {
+> +	if (HAS_DDI(display)) {
+>  		/*
+>  		 * DDI does not have a specific FDI_TX register.
+>  		 *
+> @@ -36,14 +37,14 @@ static void assert_fdi_tx(struct drm_i915_private *dev_priv,
+>  		 * so pipe->transcoder cast is fine here.
+>  		 */
+>  		enum transcoder cpu_transcoder = (enum transcoder)pipe;
+> -		cur_state = intel_de_read(dev_priv,
+> -					  TRANS_DDI_FUNC_CTL(dev_priv, cpu_transcoder)) & TRANS_DDI_FUNC_ENABLE;
+> +		cur_state = intel_de_read(display,
+> +					  TRANS_DDI_FUNC_CTL(display, cpu_transcoder)) & TRANS_DDI_FUNC_ENABLE;
+>  	} else {
+> -		cur_state = intel_de_read(dev_priv, FDI_TX_CTL(pipe)) & FDI_TX_ENABLE;
+> +		cur_state = intel_de_read(display, FDI_TX_CTL(pipe)) & FDI_TX_ENABLE;
+>  	}
+> -	I915_STATE_WARN(dev_priv, cur_state != state,
+> -			"FDI TX state assertion failure (expected %s, current %s)\n",
+> -			str_on_off(state), str_on_off(cur_state));
+> +	INTEL_DISPLAY_STATE_WARN(display, cur_state != state,
+> +				 "FDI TX state assertion failure (expected %s, current %s)\n",
+> +				 str_on_off(state), str_on_off(cur_state));
+>  }
+>  
+>  void assert_fdi_tx_enabled(struct drm_i915_private *i915, enum pipe pipe)
+> @@ -59,12 +60,13 @@ void assert_fdi_tx_disabled(struct drm_i915_private *i915, enum pipe pipe)
+>  static void assert_fdi_rx(struct drm_i915_private *dev_priv,
+>  			  enum pipe pipe, bool state)
+>  {
+> +	struct intel_display *display = &dev_priv->display;
+>  	bool cur_state;
+>  
+> -	cur_state = intel_de_read(dev_priv, FDI_RX_CTL(pipe)) & FDI_RX_ENABLE;
+> -	I915_STATE_WARN(dev_priv, cur_state != state,
+> -			"FDI RX state assertion failure (expected %s, current %s)\n",
+> -			str_on_off(state), str_on_off(cur_state));
+> +	cur_state = intel_de_read(display, FDI_RX_CTL(pipe)) & FDI_RX_ENABLE;
+> +	INTEL_DISPLAY_STATE_WARN(display, cur_state != state,
+> +				 "FDI RX state assertion failure (expected %s, current %s)\n",
+> +				 str_on_off(state), str_on_off(cur_state));
+>  }
+>  
+>  void assert_fdi_rx_enabled(struct drm_i915_private *i915, enum pipe pipe)
+> @@ -80,6 +82,7 @@ void assert_fdi_rx_disabled(struct drm_i915_private *i915, enum pipe pipe)
+>  void assert_fdi_tx_pll_enabled(struct drm_i915_private *i915,
+>  			       enum pipe pipe)
+>  {
+> +	struct intel_display *display = &i915->display;
+>  	bool cur_state;
+>  
+>  	/* ILK FDI PLL is always enabled */
+> @@ -87,23 +90,24 @@ void assert_fdi_tx_pll_enabled(struct drm_i915_private *i915,
+>  		return;
+>  
+>  	/* On Haswell, DDI ports are responsible for the FDI PLL setup */
+> -	if (HAS_DDI(i915))
+> +	if (HAS_DDI(display))
+>  		return;
+>  
+> -	cur_state = intel_de_read(i915, FDI_TX_CTL(pipe)) & FDI_TX_PLL_ENABLE;
+> -	I915_STATE_WARN(i915, !cur_state,
+> -			"FDI TX PLL assertion failure, should be active but is disabled\n");
+> +	cur_state = intel_de_read(display, FDI_TX_CTL(pipe)) & FDI_TX_PLL_ENABLE;
+> +	INTEL_DISPLAY_STATE_WARN(display, !cur_state,
+> +				 "FDI TX PLL assertion failure, should be active but is disabled\n");
+>  }
+>  
+>  static void assert_fdi_rx_pll(struct drm_i915_private *i915,
+>  			      enum pipe pipe, bool state)
+>  {
+> +	struct intel_display *display = &i915->display;
+>  	bool cur_state;
+>  
+> -	cur_state = intel_de_read(i915, FDI_RX_CTL(pipe)) & FDI_RX_PLL_ENABLE;
+> -	I915_STATE_WARN(i915, cur_state != state,
+> -			"FDI RX PLL assertion failure (expected %s, current %s)\n",
+> -			str_on_off(state), str_on_off(cur_state));
+> +	cur_state = intel_de_read(display, FDI_RX_CTL(pipe)) & FDI_RX_PLL_ENABLE;
+> +	INTEL_DISPLAY_STATE_WARN(display, cur_state != state,
+> +				 "FDI RX PLL assertion failure (expected %s, current %s)\n",
+> +				 str_on_off(state), str_on_off(cur_state));
+>  }
+>  
+>  void assert_fdi_rx_pll_enabled(struct drm_i915_private *i915, enum pipe pipe)
+> diff --git a/drivers/gpu/drm/i915/display/intel_modeset_verify.c b/drivers/gpu/drm/i915/display/intel_modeset_verify.c
+> index 3491db5cad31..1e8a1cdc29bf 100644
+> --- a/drivers/gpu/drm/i915/display/intel_modeset_verify.c
+> +++ b/drivers/gpu/drm/i915/display/intel_modeset_verify.c
+> @@ -26,6 +26,7 @@
+>  static void intel_connector_verify_state(const struct intel_crtc_state *crtc_state,
+>  					 const struct drm_connector_state *conn_state)
+>  {
+> +	struct intel_display *display = to_intel_display(crtc_state);
+>  	struct intel_connector *connector = to_intel_connector(conn_state->connector);
+>  	struct drm_i915_private *i915 = to_i915(connector->base.dev);
+>  
+> @@ -35,29 +36,29 @@ static void intel_connector_verify_state(const struct intel_crtc_state *crtc_sta
+>  	if (connector->get_hw_state(connector)) {
+>  		struct intel_encoder *encoder = intel_attached_encoder(connector);
+>  
+> -		I915_STATE_WARN(i915, !crtc_state,
+> -				"connector enabled without attached crtc\n");
+> +		INTEL_DISPLAY_STATE_WARN(display, !crtc_state,
+> +					 "connector enabled without attached crtc\n");
+>  
+>  		if (!crtc_state)
+>  			return;
+>  
+> -		I915_STATE_WARN(i915, !crtc_state->hw.active,
+> -				"connector is active, but attached crtc isn't\n");
+> +		INTEL_DISPLAY_STATE_WARN(display, !crtc_state->hw.active,
+> +					 "connector is active, but attached crtc isn't\n");
+>  
+>  		if (!encoder || encoder->type == INTEL_OUTPUT_DP_MST)
+>  			return;
+>  
+> -		I915_STATE_WARN(i915,
+> -				conn_state->best_encoder != &encoder->base,
+> -				"atomic encoder doesn't match attached encoder\n");
+> +		INTEL_DISPLAY_STATE_WARN(display,
+> +					 conn_state->best_encoder != &encoder->base,
+> +					 "atomic encoder doesn't match attached encoder\n");
+>  
+> -		I915_STATE_WARN(i915, conn_state->crtc != encoder->base.crtc,
+> -				"attached encoder crtc differs from connector crtc\n");
+> +		INTEL_DISPLAY_STATE_WARN(display, conn_state->crtc != encoder->base.crtc,
+> +					 "attached encoder crtc differs from connector crtc\n");
+>  	} else {
+> -		I915_STATE_WARN(i915, crtc_state && crtc_state->hw.active,
+> -				"attached crtc is active, but connector isn't\n");
+> -		I915_STATE_WARN(i915, !crtc_state && conn_state->best_encoder,
+> -				"best encoder set without crtc!\n");
+> +		INTEL_DISPLAY_STATE_WARN(display, crtc_state && crtc_state->hw.active,
+> +					 "attached crtc is active, but connector isn't\n");
+> +		INTEL_DISPLAY_STATE_WARN(display, !crtc_state && conn_state->best_encoder,
+> +					 "best encoder set without crtc!\n");
+>  	}
+>  }
+>  
+> @@ -65,6 +66,7 @@ static void
+>  verify_connector_state(struct intel_atomic_state *state,
+>  		       struct intel_crtc *crtc)
+>  {
+> +	struct intel_display *display = to_intel_display(state);
+>  	struct drm_connector *connector;
+>  	const struct drm_connector_state *new_conn_state;
+>  	int i;
+> @@ -81,8 +83,8 @@ verify_connector_state(struct intel_atomic_state *state,
+>  
+>  		intel_connector_verify_state(crtc_state, new_conn_state);
+>  
+> -		I915_STATE_WARN(to_i915(connector->dev), new_conn_state->best_encoder != encoder,
+> -				"connector's atomic encoder doesn't match legacy encoder\n");
+> +		INTEL_DISPLAY_STATE_WARN(display, new_conn_state->best_encoder != encoder,
+> +					 "connector's atomic encoder doesn't match legacy encoder\n");
+>  	}
+>  }
+>  
+> @@ -109,6 +111,7 @@ static void intel_pipe_config_sanity_check(const struct intel_crtc_state *crtc_s
+>  static void
+>  verify_encoder_state(struct intel_atomic_state *state)
+>  {
+> +	struct intel_display *display = to_intel_display(state);
+>  	struct drm_i915_private *i915 = to_i915(state->base.dev);
+>  	struct intel_encoder *encoder;
+>  	struct drm_connector *connector;
+> @@ -134,25 +137,25 @@ verify_encoder_state(struct intel_atomic_state *state)
+>  			found = true;
+>  			enabled = true;
+>  
+> -			I915_STATE_WARN(i915,
+> -					new_conn_state->crtc != encoder->base.crtc,
+> -					"connector's crtc doesn't match encoder crtc\n");
+> +			INTEL_DISPLAY_STATE_WARN(display,
+> +						 new_conn_state->crtc != encoder->base.crtc,
+> +						 "connector's crtc doesn't match encoder crtc\n");
+>  		}
+>  
+>  		if (!found)
+>  			continue;
+>  
+> -		I915_STATE_WARN(i915, !!encoder->base.crtc != enabled,
+> -				"encoder's enabled state mismatch (expected %i, found %i)\n",
+> -				!!encoder->base.crtc, enabled);
+> +		INTEL_DISPLAY_STATE_WARN(display, !!encoder->base.crtc != enabled,
+> +					 "encoder's enabled state mismatch (expected %i, found %i)\n",
+> +					 !!encoder->base.crtc, enabled);
+>  
+>  		if (!encoder->base.crtc) {
+>  			bool active;
+>  
+>  			active = encoder->get_hw_state(encoder, &pipe);
+> -			I915_STATE_WARN(i915, active,
+> -					"encoder detached but still enabled on pipe %c.\n",
+> -					pipe_name(pipe));
+> +			INTEL_DISPLAY_STATE_WARN(display, active,
+> +						 "encoder detached but still enabled on pipe %c.\n",
+> +						 pipe_name(pipe));
+>  		}
+>  	}
+>  }
+> @@ -161,8 +164,8 @@ static void
+>  verify_crtc_state(struct intel_atomic_state *state,
+>  		  struct intel_crtc *crtc)
+>  {
+> -	struct drm_device *dev = crtc->base.dev;
+> -	struct drm_i915_private *i915 = to_i915(dev);
+> +	struct intel_display *display = to_intel_display(state);
+> +	struct drm_i915_private *i915 = to_i915(display->drm);
+>  	const struct intel_crtc_state *sw_crtc_state =
+>  		intel_atomic_get_new_crtc_state(state, crtc);
+>  	struct intel_crtc_state *hw_crtc_state;
+> @@ -173,7 +176,7 @@ verify_crtc_state(struct intel_atomic_state *state,
+>  	if (!hw_crtc_state)
+>  		return;
+>  
+> -	drm_dbg_kms(&i915->drm, "[CRTC:%d:%s]\n", crtc->base.base.id,
+> +	drm_dbg_kms(display->drm, "[CRTC:%d:%s]\n", crtc->base.base.id,
+>  		    crtc->base.name);
+>  
+>  	hw_crtc_state->hw.enable = sw_crtc_state->hw.enable;
+> @@ -184,30 +187,30 @@ verify_crtc_state(struct intel_atomic_state *state,
+>  	if (IS_I830(i915) && hw_crtc_state->hw.active)
+>  		hw_crtc_state->hw.active = sw_crtc_state->hw.active;
+>  
+> -	I915_STATE_WARN(i915,
+> -			sw_crtc_state->hw.active != hw_crtc_state->hw.active,
+> -			"crtc active state doesn't match with hw state (expected %i, found %i)\n",
+> -			sw_crtc_state->hw.active, hw_crtc_state->hw.active);
+> +	INTEL_DISPLAY_STATE_WARN(display,
+> +				 sw_crtc_state->hw.active != hw_crtc_state->hw.active,
+> +				 "crtc active state doesn't match with hw state (expected %i, found %i)\n",
+> +				 sw_crtc_state->hw.active, hw_crtc_state->hw.active);
+>  
+> -	I915_STATE_WARN(i915, crtc->active != sw_crtc_state->hw.active,
+> -			"transitional active state does not match atomic hw state (expected %i, found %i)\n",
+> -			sw_crtc_state->hw.active, crtc->active);
+> +	INTEL_DISPLAY_STATE_WARN(display, crtc->active != sw_crtc_state->hw.active,
+> +				 "transitional active state does not match atomic hw state (expected %i, found %i)\n",
+> +				 sw_crtc_state->hw.active, crtc->active);
+>  
+>  	primary_crtc = intel_primary_crtc(sw_crtc_state);
+>  
+> -	for_each_encoder_on_crtc(dev, &primary_crtc->base, encoder) {
+> +	for_each_encoder_on_crtc(display->drm, &primary_crtc->base, encoder) {
+>  		enum pipe pipe;
+>  		bool active;
+>  
+>  		active = encoder->get_hw_state(encoder, &pipe);
+> -		I915_STATE_WARN(i915, active != sw_crtc_state->hw.active,
+> -				"[ENCODER:%i] active %i with crtc active %i\n",
+> -				encoder->base.base.id, active,
+> -				sw_crtc_state->hw.active);
+> +		INTEL_DISPLAY_STATE_WARN(display, active != sw_crtc_state->hw.active,
+> +					 "[ENCODER:%i] active %i with crtc active %i\n",
+> +					 encoder->base.base.id, active,
+> +					 sw_crtc_state->hw.active);
+>  
+> -		I915_STATE_WARN(i915, active && primary_crtc->pipe != pipe,
+> -				"Encoder connected to wrong pipe %c\n",
+> -				pipe_name(pipe));
+> +		INTEL_DISPLAY_STATE_WARN(display, active && primary_crtc->pipe != pipe,
+> +					 "Encoder connected to wrong pipe %c\n",
+> +					 pipe_name(pipe));
+>  
+>  		if (active)
+>  			intel_encoder_get_config(encoder, hw_crtc_state);
+> @@ -220,7 +223,7 @@ verify_crtc_state(struct intel_atomic_state *state,
+>  
+>  	if (!intel_pipe_config_compare(sw_crtc_state,
+>  				       hw_crtc_state, false)) {
+> -		I915_STATE_WARN(i915, 1, "pipe state doesn't match!\n");
+> +		INTEL_DISPLAY_STATE_WARN(display, 1, "pipe state doesn't match!\n");
+>  		intel_crtc_state_dump(hw_crtc_state, NULL, "hw state");
+>  		intel_crtc_state_dump(sw_crtc_state, NULL, "sw state");
+>  	}
+> diff --git a/drivers/gpu/drm/i915/display/intel_pch_display.c b/drivers/gpu/drm/i915/display/intel_pch_display.c
+> index f13ab680c2cf..5fbcb74aeac1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_pch_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_pch_display.c
+> @@ -39,58 +39,61 @@ static void assert_pch_dp_disabled(struct drm_i915_private *dev_priv,
+>  				   enum pipe pipe, enum port port,
+>  				   i915_reg_t dp_reg)
+>  {
+> +	struct intel_display *display = &dev_priv->display;
+>  	enum pipe port_pipe;
+>  	bool state;
+>  
+>  	state = g4x_dp_port_enabled(dev_priv, dp_reg, port, &port_pipe);
+>  
+> -	I915_STATE_WARN(dev_priv, state && port_pipe == pipe,
+> -			"PCH DP %c enabled on transcoder %c, should be disabled\n",
+> -			port_name(port), pipe_name(pipe));
+> +	INTEL_DISPLAY_STATE_WARN(display, state && port_pipe == pipe,
+> +				 "PCH DP %c enabled on transcoder %c, should be disabled\n",
+> +				 port_name(port), pipe_name(pipe));
+>  
+> -	I915_STATE_WARN(dev_priv,
+> -			HAS_PCH_IBX(dev_priv) && !state && port_pipe == PIPE_B,
+> -			"IBX PCH DP %c still using transcoder B\n",
+> -			port_name(port));
+> +	INTEL_DISPLAY_STATE_WARN(display,
+> +				 HAS_PCH_IBX(dev_priv) && !state && port_pipe == PIPE_B,
+> +				 "IBX PCH DP %c still using transcoder B\n",
+> +				 port_name(port));
+>  }
+>  
+>  static void assert_pch_hdmi_disabled(struct drm_i915_private *dev_priv,
+>  				     enum pipe pipe, enum port port,
+>  				     i915_reg_t hdmi_reg)
+>  {
+> +	struct intel_display *display = &dev_priv->display;
+>  	enum pipe port_pipe;
+>  	bool state;
+>  
+>  	state = intel_sdvo_port_enabled(dev_priv, hdmi_reg, &port_pipe);
+>  
+> -	I915_STATE_WARN(dev_priv, state && port_pipe == pipe,
+> -			"PCH HDMI %c enabled on transcoder %c, should be disabled\n",
+> -			port_name(port), pipe_name(pipe));
+> +	INTEL_DISPLAY_STATE_WARN(display, state && port_pipe == pipe,
+> +				 "PCH HDMI %c enabled on transcoder %c, should be disabled\n",
+> +				 port_name(port), pipe_name(pipe));
+>  
+> -	I915_STATE_WARN(dev_priv,
+> -			HAS_PCH_IBX(dev_priv) && !state && port_pipe == PIPE_B,
+> -			"IBX PCH HDMI %c still using transcoder B\n",
+> -			port_name(port));
+> +	INTEL_DISPLAY_STATE_WARN(display,
+> +				 HAS_PCH_IBX(dev_priv) && !state && port_pipe == PIPE_B,
+> +				 "IBX PCH HDMI %c still using transcoder B\n",
+> +				 port_name(port));
+>  }
+>  
+>  static void assert_pch_ports_disabled(struct drm_i915_private *dev_priv,
+>  				      enum pipe pipe)
+>  {
+> +	struct intel_display *display = &dev_priv->display;
+>  	enum pipe port_pipe;
+>  
+>  	assert_pch_dp_disabled(dev_priv, pipe, PORT_B, PCH_DP_B);
+>  	assert_pch_dp_disabled(dev_priv, pipe, PORT_C, PCH_DP_C);
+>  	assert_pch_dp_disabled(dev_priv, pipe, PORT_D, PCH_DP_D);
+>  
+> -	I915_STATE_WARN(dev_priv,
+> -			intel_crt_port_enabled(dev_priv, PCH_ADPA, &port_pipe) && port_pipe == pipe,
+> -			"PCH VGA enabled on transcoder %c, should be disabled\n",
+> -			pipe_name(pipe));
+> +	INTEL_DISPLAY_STATE_WARN(display,
+> +				 intel_crt_port_enabled(dev_priv, PCH_ADPA, &port_pipe) && port_pipe == pipe,
+> +				 "PCH VGA enabled on transcoder %c, should be disabled\n",
+> +				 pipe_name(pipe));
+>  
+> -	I915_STATE_WARN(dev_priv,
+> -			intel_lvds_port_enabled(dev_priv, PCH_LVDS, &port_pipe) && port_pipe == pipe,
+> -			"PCH LVDS enabled on transcoder %c, should be disabled\n",
+> -			pipe_name(pipe));
+> +	INTEL_DISPLAY_STATE_WARN(display,
+> +				 intel_lvds_port_enabled(dev_priv, PCH_LVDS, &port_pipe) && port_pipe == pipe,
+> +				 "PCH LVDS enabled on transcoder %c, should be disabled\n",
+> +				 pipe_name(pipe));
+>  
+>  	/* PCH SDVOB multiplex with HDMIB */
+>  	assert_pch_hdmi_disabled(dev_priv, pipe, PORT_B, PCH_HDMIB);
+> @@ -101,14 +104,15 @@ static void assert_pch_ports_disabled(struct drm_i915_private *dev_priv,
+>  static void assert_pch_transcoder_disabled(struct drm_i915_private *dev_priv,
+>  					   enum pipe pipe)
+>  {
+> +	struct intel_display *display = &dev_priv->display;
+>  	u32 val;
+>  	bool enabled;
+>  
+> -	val = intel_de_read(dev_priv, PCH_TRANSCONF(pipe));
+> +	val = intel_de_read(display, PCH_TRANSCONF(pipe));
+>  	enabled = !!(val & TRANS_ENABLE);
+> -	I915_STATE_WARN(dev_priv, enabled,
+> -			"transcoder assertion failed, should be off on pipe %c but is still active\n",
+> -			pipe_name(pipe));
+> +	INTEL_DISPLAY_STATE_WARN(display, enabled,
+> +				 "transcoder assertion failed, should be off on pipe %c but is still active\n",
+> +				 pipe_name(pipe));
+>  }
+>  
+>  static void ibx_sanitize_pch_hdmi_port(struct drm_i915_private *dev_priv,
+> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
+> index ffeee9daa568..f1e78fd19e12 100644
+> --- a/drivers/gpu/drm/i915/display/intel_pps.c
+> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
+> @@ -809,7 +809,6 @@ bool intel_pps_vdd_on_unlocked(struct intel_dp *intel_dp)
+>  void intel_pps_vdd_on(struct intel_dp *intel_dp)
+>  {
+>  	struct intel_display *display = to_intel_display(intel_dp);
+> -	struct drm_i915_private *i915 = to_i915(display->drm);
+>  	intel_wakeref_t wakeref;
+>  	bool vdd;
+>  
+> @@ -819,10 +818,10 @@ void intel_pps_vdd_on(struct intel_dp *intel_dp)
+>  	vdd = false;
+>  	with_intel_pps_lock(intel_dp, wakeref)
+>  		vdd = intel_pps_vdd_on_unlocked(intel_dp);
+> -	I915_STATE_WARN(i915, !vdd, "[ENCODER:%d:%s] %s VDD already requested on\n",
+> -			dp_to_dig_port(intel_dp)->base.base.base.id,
+> -			dp_to_dig_port(intel_dp)->base.base.name,
+> -			pps_name(intel_dp));
+> +	INTEL_DISPLAY_STATE_WARN(display, !vdd, "[ENCODER:%d:%s] %s VDD already requested on\n",
+> +				 dp_to_dig_port(intel_dp)->base.base.base.id,
+> +				 dp_to_dig_port(intel_dp)->base.base.name,
+> +				 pps_name(intel_dp));
+>  }
+>  
+>  static void intel_pps_vdd_off_sync_unlocked(struct intel_dp *intel_dp)
+> @@ -929,18 +928,17 @@ static void edp_panel_vdd_schedule_off(struct intel_dp *intel_dp)
+>  void intel_pps_vdd_off_unlocked(struct intel_dp *intel_dp, bool sync)
+>  {
+>  	struct intel_display *display = to_intel_display(intel_dp);
+> -	struct drm_i915_private *dev_priv = to_i915(display->drm);
+>  
+>  	lockdep_assert_held(&display->pps.mutex);
+>  
+>  	if (!intel_dp_is_edp(intel_dp))
+>  		return;
+>  
+> -	I915_STATE_WARN(dev_priv, !intel_dp->pps.want_panel_vdd,
+> -			"[ENCODER:%d:%s] %s VDD not forced on",
+> -			dp_to_dig_port(intel_dp)->base.base.base.id,
+> -			dp_to_dig_port(intel_dp)->base.base.name,
+> -			pps_name(intel_dp));
+> +	INTEL_DISPLAY_STATE_WARN(display, !intel_dp->pps.want_panel_vdd,
+> +				 "[ENCODER:%d:%s] %s VDD not forced on",
+> +				 dp_to_dig_port(intel_dp)->base.base.base.id,
+> +				 dp_to_dig_port(intel_dp)->base.base.name,
+> +				 pps_name(intel_dp));
+>  
+>  	intel_dp->pps.want_panel_vdd = false;
+>  
+> @@ -1878,7 +1876,7 @@ void assert_pps_unlocked(struct intel_display *display, enum pipe pipe)
+>  	    ((val & PANEL_UNLOCK_MASK) == PANEL_UNLOCK_REGS))
+>  		locked = false;
+>  
+> -	I915_STATE_WARN(dev_priv, panel_pipe == pipe && locked,
+> -			"panel assertion failure, pipe %c regs locked\n",
+> -			pipe_name(pipe));
+> +	INTEL_DISPLAY_STATE_WARN(display, panel_pipe == pipe && locked,
+> +				 "panel assertion failure, pipe %c regs locked\n",
+> +				 pipe_name(pipe));
+>  }
+> diff --git a/drivers/gpu/drm/i915/display/intel_snps_phy.c b/drivers/gpu/drm/i915/display/intel_snps_phy.c
+> index e6df1f92def5..4b3a32736fd6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_snps_phy.c
+> +++ b/drivers/gpu/drm/i915/display/intel_snps_phy.c
+> @@ -1997,6 +1997,7 @@ int intel_snps_phy_check_hdmi_link_rate(int clock)
+>  void intel_mpllb_state_verify(struct intel_atomic_state *state,
+>  			      struct intel_crtc *crtc)
+>  {
+> +	struct intel_display *display = to_intel_display(state);
+>  	struct drm_i915_private *i915 = to_i915(state->base.dev);
+>  	const struct intel_crtc_state *new_crtc_state =
+>  		intel_atomic_get_new_crtc_state(state, crtc);
+> @@ -2019,11 +2020,11 @@ void intel_mpllb_state_verify(struct intel_atomic_state *state,
+>  	intel_mpllb_readout_hw_state(encoder, &mpllb_hw_state);
+>  
+>  #define MPLLB_CHECK(__name)						\
+> -	I915_STATE_WARN(i915, mpllb_sw_state->__name != mpllb_hw_state.__name, \
+> -			"[CRTC:%d:%s] mismatch in MPLLB: %s (expected 0x%08x, found 0x%08x)", \
+> -			crtc->base.base.id, crtc->base.name,		\
+> -			__stringify(__name),				\
+> -			mpllb_sw_state->__name, mpllb_hw_state.__name)
+> +	INTEL_DISPLAY_STATE_WARN(display, mpllb_sw_state->__name != mpllb_hw_state.__name, \
+> +				 "[CRTC:%d:%s] mismatch in MPLLB: %s (expected 0x%08x, found 0x%08x)", \
+> +				 crtc->base.base.id, crtc->base.name,	\
+> +				 __stringify(__name),			\
+> +				 mpllb_sw_state->__name, mpllb_hw_state.__name)
+>  
+>  	MPLLB_CHECK(mpllb_cp);
+>  	MPLLB_CHECK(mpllb_div);
+> diff --git a/drivers/gpu/drm/i915/display/vlv_dsi_pll.c b/drivers/gpu/drm/i915/display/vlv_dsi_pll.c
+> index 70c5a13a3c75..59a50647f2c3 100644
+> --- a/drivers/gpu/drm/i915/display/vlv_dsi_pll.c
+> +++ b/drivers/gpu/drm/i915/display/vlv_dsi_pll.c
+> @@ -592,15 +592,16 @@ void bxt_dsi_reset_clocks(struct intel_encoder *encoder, enum port port)
+>  
+>  static void assert_dsi_pll(struct drm_i915_private *i915, bool state)
+>  {
+> +	struct intel_display *display = &i915->display;
+>  	bool cur_state;
+>  
+>  	vlv_cck_get(i915);
+>  	cur_state = vlv_cck_read(i915, CCK_REG_DSI_PLL_CONTROL) & DSI_PLL_VCO_EN;
+>  	vlv_cck_put(i915);
+>  
+> -	I915_STATE_WARN(i915, cur_state != state,
+> -			"DSI PLL state assertion failure (expected %s, current %s)\n",
+> -			str_on_off(state), str_on_off(cur_state));
+> +	INTEL_DISPLAY_STATE_WARN(display, cur_state != state,
+> +				 "DSI PLL state assertion failure (expected %s, current %s)\n",
+> +				 str_on_off(state), str_on_off(cur_state));
+>  }
+>  
+>  void assert_dsi_pll_enabled(struct drm_i915_private *i915)
+> -- 
+> 2.39.5
 
-I don't think this is the correct check or the correct location. BMG 
-does require the GSC for HDCP, so intel_hdcp_gsc_cs_required() should 
-still return true; it's just that we've decided not to support GSC FW 
-loading on the platform, so we can't support HDCP2.x. Also note that the 
-this might change and/or it might apply to other platform in the future, 
-so any check needs to be done based on GSC support and not 
-platform/display ID.
-
-IMO when intel_hdcp_gsc_cs_required() returns true, the caller should 
-check if the GSC FW is defined (or if the GSCCS is available) and if it 
-is not return that hdcp2 is not supported due to unmet prerequsites and 
-fallback to 1.4 without printing any errors.
-
-Daniele
-
->   }
->   
->   bool intel_hdcp_gsc_check_status(struct intel_display *display)
-
+-- 
+Ville Syrjälä
+Intel
