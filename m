@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3ECF19AF56F
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Oct 2024 00:31:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F1C89AF56B
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Oct 2024 00:31:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D76F810E9B9;
-	Thu, 24 Oct 2024 22:31:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6096110E9B1;
+	Thu, 24 Oct 2024 22:31:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K5qg5mFK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ELLJ/W4t";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 00A4110E9AA;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF80710E3DD;
  Thu, 24 Oct 2024 22:31:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1729809095; x=1761345095;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=l7qj8BuMpbFxhxwjTJwoE6IYZMmBg1aTMjrdvpde5oo=;
- b=K5qg5mFKp0vVmYvRyiNQfpgwRrE6pSVSKmsYHqXduLJVF+/vn+OOsdc6
- TAvL4x0Ratpydvj4p/709JmTMYJ6q0+vNfYWmSyJUPuR2lMF2FrgvjgYm
- C9v3tYua6TQiiMByxFyegISLaaemvrdc0+yjBloj22oX/KvZ8TRVeBliZ
- 5K/CE6un9uQZqt/qNVT8PwBCP9zgBURTSi9mxLuNLWlIUdPHmS7djq2f1
- dJQgkAlCv1SEc13+vWcKTwARQPrZ64pWQLjhtgwKYG1e8k7QOJsfDuT5T
- TjnkM5pQeUf9j0uSyMV8X/oz4go0W7f08LO3OaMGDYPi5F6CGoeXLP4ad g==;
-X-CSE-ConnectionGUID: 6+7KtuGhTT667HXDTtglVQ==
-X-CSE-MsgGUID: zUJ7gqbeTc+7bhiM85v3eQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11235"; a="46950808"
-X-IronPort-AV: E=Sophos;i="6.11,230,1725346800"; d="scan'208";a="46950808"
+ bh=2aRMB6apax37HIZCgt0RRlAoFdFRglk/Hvo3H4yDLq4=;
+ b=ELLJ/W4tS52oP9p4gT79xWomEtKvT/wRiCYJyZ2zyWj866zWAqeCg47L
+ 1zd/t/8uoU+/MNG6/N/w8emOEWqSTmL/72voyIvDyVA9fyDs/j3nBMTAW
+ 2jcVV3BU5uR0Ue3GU5Fm0nJaSSh7BEiONrNc/0bHvbEUtUWKTPVqiICA1
+ p85d5Dtba/A4sYnUYgWYh9Px86OkpCokfkPc+x8sWSAH7+ZPAzUU4Qmdn
+ ITp3XpMahQSsn8xcjct5dUzwJVFR6ByHSslCIIqqSTH/ryJiQakTHDe+d
+ DtSAjJRrfEPANDsFFbWkcx1PpeDJbrmF19T1aw7oC6o+LAOakQZH7hlz6 A==;
+X-CSE-ConnectionGUID: ld8JgoSXQ82tBKOql8oRgA==
+X-CSE-MsgGUID: VWZuzaIOQbqpZjOOy2A6mA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11235"; a="46950807"
+X-IronPort-AV: E=Sophos;i="6.11,230,1725346800"; d="scan'208";a="46950807"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Oct 2024 15:31:20 -0700
-X-CSE-ConnectionGUID: axDY9nMXRo2VJ0aclCo+0A==
-X-CSE-MsgGUID: buphM8BATAG8KuKp0+HbJQ==
+X-CSE-ConnectionGUID: E8GcUHRFQ9+Vh/W/njUlXw==
+X-CSE-MsgGUID: qS2mDNnDRMOKnhDG7vIqNw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,230,1725346800"; d="scan'208";a="80838667"
+X-IronPort-AV: E=Sophos;i="6.11,230,1725346800"; d="scan'208";a="80838669"
 Received: from cataylo2-desk.jf.intel.com ([10.165.21.140])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Oct 2024 15:31:19 -0700
 From: Clint Taylor <clinton.a.taylor@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Subject: [PATCH v4 04/11] drm/i915/ptl: Define IS_PANTHERLAKE macro
-Date: Thu, 24 Oct 2024 15:31:07 -0700
-Message-Id: <20241024223114.785209-5-clinton.a.taylor@intel.com>
+Subject: [PATCH v4 05/11] drm/i915/cx0: Extend C10 check to PTL
+Date: Thu, 24 Oct 2024 15:31:08 -0700
+Message-Id: <20241024223114.785209-6-clinton.a.taylor@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20241024223114.785209-1-clinton.a.taylor@intel.com>
 References: <20241024223114.785209-1-clinton.a.taylor@intel.com>
@@ -69,29 +69,46 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 
-Common display code requires IS_PANTHERLAKE macro.
-Define the macro and set 0 as PTL is no longer support for i915.
+When deciding the type of the phy, add PTL support to make
+sure the correct path is taken for selection of C10 PHY.
+Only port A is connected C10 PHY for Pantherlake.
 
+Bspec:  72571
 Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
 Signed-off-by: Clint Taylor <Clinton.A.Taylor@intel.com>
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/i915/i915_drv.h | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c      | 3 +++
+ drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h | 1 +
+ 2 files changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index a66e5bb078cf..ca1ab5931e28 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -538,6 +538,7 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
-  */
- #define IS_LUNARLAKE(i915) (0 && i915)
- #define IS_BATTLEMAGE(i915)  (0 && i915)
-+#define IS_PANTHERLAKE(i915) (0 && i915)
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index d05daa7a2b03..4d6e1c135bdc 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -34,6 +34,9 @@ bool intel_encoder_is_c10phy(struct intel_encoder *encoder)
+ 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+ 	enum phy phy = intel_encoder_to_phy(encoder);
  
- #define IS_ARROWLAKE(i915) \
- 	IS_SUBPLATFORM(i915, INTEL_METEORLAKE, INTEL_SUBPLATFORM_ARL)
++	if (IS_PANTHERLAKE(i915) && phy == PHY_A)
++		return true;
++
+ 	if ((IS_LUNARLAKE(i915) || IS_METEORLAKE(i915)) && phy < PHY_C)
+ 		return true;
+ 
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+index b7041b578e5e..bd8c3de57dcd 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+@@ -67,6 +67,7 @@ static inline struct drm_i915_private *to_i915(const struct drm_device *dev)
+ #define IS_METEORLAKE(dev_priv) IS_PLATFORM(dev_priv, XE_METEORLAKE)
+ #define IS_LUNARLAKE(dev_priv) IS_PLATFORM(dev_priv, XE_LUNARLAKE)
+ #define IS_BATTLEMAGE(dev_priv)  IS_PLATFORM(dev_priv, XE_BATTLEMAGE)
++#define IS_PANTHERLAKE(dev_priv) IS_PLATFORM(dev_priv, XE_PANTHERLAKE)
+ 
+ #define IS_HASWELL_ULT(dev_priv) (dev_priv && 0)
+ #define IS_BROADWELL_ULT(dev_priv) (dev_priv && 0)
 -- 
 2.25.1
 
