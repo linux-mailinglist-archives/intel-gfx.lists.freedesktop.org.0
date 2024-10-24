@@ -2,60 +2,170 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DF909AF537
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Oct 2024 00:19:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 914029AF54D
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Oct 2024 00:21:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 56F1710E3D5;
-	Thu, 24 Oct 2024 22:19:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 48D0310E9A5;
+	Thu, 24 Oct 2024 22:21:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="akUyJVsE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MY9O2RvQ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ABAA510E9A5;
- Thu, 24 Oct 2024 22:19:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7A7B10E3DD;
+ Thu, 24 Oct 2024 22:21:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729808368; x=1761344368;
+ t=1729808500; x=1761344500;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=4vqycs1OgdzaLf8uoT9otDSHh6hPgAHfJINb55O+xlI=;
- b=akUyJVsEd1jX7E5bnJGr24MUeoQhCMc5t+aZ4vRJ9fm765hgKAkMCuoT
- wiJom3UMcBRwtNCmJowmQ0YB5JFdbm2HnDCPbFJ6mUUOk+MKHpQQE/y7K
- cnaNoUbLszWCu1UmE5jYVto+3KLJkom3p1Ze3bBKA7GmmDDrl6G8Gun3C
- sEWX/sYq6yGGF8nS9VQshDsYqscFxDZW3j+RguTMTF4tCWkFMd5K7bpGd
- 3Oje9xMzC47UvjXZosgv3zEX5WFcIFSqLw9tiMzTpuJbCAFDJXpO3L8TN
- 55Apul4tnQmDw4jRYx3zqgDDhp97ed1tNgsUOHWGYw/DTrx4iO2YBNrqu g==;
-X-CSE-ConnectionGUID: 2FRC+FZXStW4cUYG+TvyVA==
-X-CSE-MsgGUID: JZ5JwEJCQGmu0h8eSf4tYg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11235"; a="46948438"
-X-IronPort-AV: E=Sophos;i="6.11,230,1725346800"; d="scan'208";a="46948438"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2024 15:19:27 -0700
-X-CSE-ConnectionGUID: olAcCpmtTPa6GkVEf9xdZA==
-X-CSE-MsgGUID: jMbbgSQvTcWAf+3qselSmw==
+ in-reply-to:mime-version;
+ bh=xP7Q4O680yXAS3vWliADDFA4xdHGwtFPrQDQEXHlFz0=;
+ b=MY9O2RvQx7Wcu5rTa2UBw1YZuXpehmXvtLG+nel0lmUeqmHN+SyTcx2I
+ wiGQ44i10nESI+cobAoMu5cI+uUmR4M4GdNx/7mEetBXx46iA7YHBwRLb
+ j48njOcnKZU313tTovUz2opoise3jhZKFBAIJpi0VElrSBk6uLaJUvhIJ
+ TzAemT3vdkt5dLtmMJjnS+U/CqsftnWSkq9nwDrezcibbjoeTWG6YhjNt
+ 9PbdSHZyV/RXasbppLfx4/79YUX7Si816tYrDGha7eylGCG6gktyxOY9B
+ Z0e/s/rzGs/ffkNLoo5q90a/6r5lkirHzYuWdGBrnh4j2yFwkyQWLQcXz A==;
+X-CSE-ConnectionGUID: k3ga19QWSwaIzLichca/hw==
+X-CSE-MsgGUID: vMIRPgpQQE+8d2P6hVbJ6A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11235"; a="33270635"
+X-IronPort-AV: E=Sophos;i="6.11,230,1725346800"; d="scan'208";a="33270635"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2024 15:21:39 -0700
+X-CSE-ConnectionGUID: zGx0jehjRXiuBu7pPH8k9w==
+X-CSE-MsgGUID: HrsE+zu5QPSuFAL+BE664Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,230,1725346800"; d="scan'208";a="80836135"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
- by fmviesa008.fm.intel.com with ESMTP; 24 Oct 2024 15:19:25 -0700
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1t46As-000XDW-3D;
- Thu, 24 Oct 2024 22:19:22 +0000
-Date: Fri, 25 Oct 2024 06:18:47 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
- intel-xe@lists.freedesktop.org, suraj.kandpal@intel.com
-Subject: Re: [PATCH 06/10] drm/i915/display: Add DSC pixel replication
-Message-ID: <202410250632.xdHuHbQW-lkp@intel.com>
-References: <20241017082348.3413727-7-ankit.k.nautiyal@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+X-IronPort-AV: E=Sophos;i="6.11,230,1725346800"; d="scan'208";a="81032867"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 24 Oct 2024 15:21:34 -0700
+Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Thu, 24 Oct 2024 15:21:33 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Thu, 24 Oct 2024 15:21:33 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.169)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Thu, 24 Oct 2024 15:21:33 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Yrs233eOSwKg48zafArzMLZRzXuG+aILGDczGKcdXV+Ztt3o+IrCIWIwJMCp8mFs1TRh4pkLJzzxCnpnyhgs5nkPOmivpG3oM9hzx1Bk1DeYvUWIQ1FSyzTwxqocO/XkUD/O4ZbfEQpRkSnOVm1xILyfzBUPCMWSnjqp2nirqe2A01/OWb6rM733TFCGtZVEWMcZeXtfpG2ZU3WLtBqXc8j1RganKLhDiUSmBgZg9VWc1ezuuKtXMm4KEHjeoYeud1qPVzAagKF1SQU7f28VVsQ+IS8kshD6m4sPfdkiAnlDY49B6wfohEeQIJBL1XOd+tSm3tKDYGufTDkNP8r/Eg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8y92J7n56aNvRFl/IjLgnHjFtahhSVPOPl43BPwd4k8=;
+ b=ns/YB/yIZkmGA/+O5A5YxemmR1DghsR86eeO1pXxEeRLCPgNGC+UaXCTS265uj8bP7e0XBsz4mz/IVVnX1kH0XWba2Nb23H61V6nMkp+fYdV/N5YfVue6Qt30RiggnBaKGDXeDUrnigmhGz1zGaTZgbvm0I8jEu5TWzUt0HMRtHtpMT3Qoa2vCdSCBVKetNXITqVssJVwNsBs70YIBvp170Uwc6vAnw/ORe+vL4BybrTDefAFKfYAIYNC1N5naqdgKndvPeVajaKQ14ZcbKSPC+QVq4SYDLSXitwbsQw1TfBV8ODUqaBICnATTLPwpKDG2da6zexkxbPTn+4IlPXMw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
+ by CYYPR11MB8406.namprd11.prod.outlook.com (2603:10b6:930:ba::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.23; Thu, 24 Oct
+ 2024 22:21:31 +0000
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::8dd1:f169:5266:e16e]) by DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::8dd1:f169:5266:e16e%6]) with mapi id 15.20.8093.018; Thu, 24 Oct 2024
+ 22:21:31 +0000
+Date: Thu, 24 Oct 2024 15:21:27 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: "Taylor, Clinton A" <clinton.a.taylor@intel.com>
+CC: "Kahola, Mika" <mika.kahola@intel.com>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH v2 07/12] drm/i915/cx0: Remove bus reset after every c10
+ transaction
+Message-ID: <20241024222127.GR4891@mdroper-desk1.amr.corp.intel.com>
+References: <20241023214701.963830-1-clinton.a.taylor@intel.com>
+ <20241023214701.963830-8-clinton.a.taylor@intel.com>
+ <MW4PR11MB705444C75DA8CE151657E689EF4E2@MW4PR11MB7054.namprd11.prod.outlook.com>
+ <20241024191854.GM5725@mdroper-desk1.amr.corp.intel.com>
+ <fc292e32fac2e9f36a474d9c2b3f2bb009a40f73.camel@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20241017082348.3413727-7-ankit.k.nautiyal@intel.com>
+In-Reply-To: <fc292e32fac2e9f36a474d9c2b3f2bb009a40f73.camel@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0261.namprd03.prod.outlook.com
+ (2603:10b6:a03:3a0::26) To DS0PR11MB8182.namprd11.prod.outlook.com
+ (2603:10b6:8:163::17)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|CYYPR11MB8406:EE_
+X-MS-Office365-Filtering-Correlation-Id: a572754f-e405-4aa2-c01a-08dcf47a3618
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?yAL9X9huOK6LS9hliQGH/5by0QvIfz03611Ka7P0QO6iEZLmBMPZa5JWk+pW?=
+ =?us-ascii?Q?RwyveVxaeOcoGyEOD0nc1q9EAyuiO7/Da9dR1fp4gq81qTf8jaHsV8tI1O06?=
+ =?us-ascii?Q?XuG0KDE9WOzBe0vHbV8eEa6Au6/EKctjEqtnoe8cPuySJGssplmeqNFz3BsY?=
+ =?us-ascii?Q?oObPMdxu13XwRxVgF3i2+BRax6JzkAXgkXizrYCL/MclScE8Y/UGjfMCzzTp?=
+ =?us-ascii?Q?U+2NFAl4YKvApkewBPXs3qKP3S2e+EPOlQFnxg7OI7JlMKmw5jUa5LNKbJAh?=
+ =?us-ascii?Q?UEoIGyU9oEdoDs+6VpTi9c/wb8LeTvGpHLe0Xf/AJTD1N6sdf0qNh3pKlf8s?=
+ =?us-ascii?Q?GK5v80K6xw1Ql171A3Iw6fKKLKtWeD+WY1JyiWVfe2bDwIQP7U1fivJG3onu?=
+ =?us-ascii?Q?HRGeIxd0Qa/fnMTUXQ5ciHAhSNfkEA82jt7auPXalWaymFPdCy1i4F7S1QAO?=
+ =?us-ascii?Q?pPrIqw8gSMbyLmpbbalpSMTWxoYpoBWd195hItSWeQHzlL+Wn3gxoSVSWylq?=
+ =?us-ascii?Q?8BwwH9CHcNDbIVLOudLRXbMUZd0I58ldwaL46/t3qJ8P5qaF+dHbWrRxYUSM?=
+ =?us-ascii?Q?Uk5bfj60l6I3fMWM2NwrfyWdwLqysKKAQAmMdrFTSbt4MGu96q9FxME7nrpl?=
+ =?us-ascii?Q?maiseWLt43KLPnnP9qWzGzUcoUHGXb8PVr7kJesF8AcGpp99nG7m8gqcZUXM?=
+ =?us-ascii?Q?d+wod5p2p3ydOaYM6LcodavcjUuekv6yJML7Q7zjZTij4bla+dOJmFt3kpTr?=
+ =?us-ascii?Q?Mr/JOCUhKO12DiVQt9Y7bYCd2vKZPht6o4ot8pbCNWDw6GJTGnlmc7Ebk/a0?=
+ =?us-ascii?Q?8A3jFahU51yUP5jdX/nNl0PRSIgsSuSq8AfrxOMoRJVsTBobWDH2u8zg/tQN?=
+ =?us-ascii?Q?Eu6GQSvVvCfZatr5ixGTKG0FJPE+dMVupQSq2mR9j+7O91PWMwoJPpI9vD2P?=
+ =?us-ascii?Q?k2g/GJr7b9ZlBX0lbveMCVhc3caoeMjiV7n8L0hozLK1aVhZy2iE1ZUM/UMx?=
+ =?us-ascii?Q?dupIdti3d/uAhZsZlSh/nTgPfzAVBlOuc8qvyKIX9ZK2ZMN4a3oStH2GkDeM?=
+ =?us-ascii?Q?7Fvlx/5A5DMB8fO89fHOUAVP69m1GLiqf+7Nc2U7dBBV2Vzl2wXPdZ2hfvXw?=
+ =?us-ascii?Q?uMl149152w7uIJIMqownO1rqkOOA5zTa87/wQK95f4eatreNmRKuuvTUOw3f?=
+ =?us-ascii?Q?cCSUTUKNSDkwd9iiVTtKREA0rKMcgQxz6YttuLWWyeg3BLe7JwzFtkUywB1/?=
+ =?us-ascii?Q?ub/WnYZ1SlR3kFRE+JM2ARjIG70DMgNL6KKrYJrSgJQ+e6qpzw6IEhDYek0G?=
+ =?us-ascii?Q?J+cvmUxjtZcjXSJtXZU+pJ7t?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?BCndpLIEegQM5RuyZHkQXExBudS1fK5LRxCQ6NRZMLwpFHBeunYcHW1NXrm0?=
+ =?us-ascii?Q?sjxFE5aAS7sNED/ZTOptJtYukcNnST/zHW5APTCb1JVBOdynxHmn6KXqmf+1?=
+ =?us-ascii?Q?fmW0w47TvWwsOPGw0D+EyjHmTey1ozsY0qwztneXWpq02/jOWDn2QO6Ih+e1?=
+ =?us-ascii?Q?LnAEZCSeylEpd2TKpDXqWNZIERPfyyTxPlvTrVvmyxBHLcJ5d97qxKRYQlOx?=
+ =?us-ascii?Q?lHjopXImjebYOsOJF/UgkmYqo3jIGrht423RtPNfslWkOYcke6gS4Z0Jp/VZ?=
+ =?us-ascii?Q?jCxjtu+RKxhWh0iH86JLbOiXw0MignywGfjl41OAR9jqFlY8yoRHgwv17NBO?=
+ =?us-ascii?Q?1yKRx6bN6vPA/jYi6P7VGLNn4+NSxv5tFMZi44DYcKl4D0HsXs8zTqMlRUse?=
+ =?us-ascii?Q?BbN+hxjdbYjnLm6atYZm/8c5Mz26WAWCjArYXnRQfly50iWtZzFRFNIERALy?=
+ =?us-ascii?Q?/Ax5DCs3pIRdLW+PsOQ/9wCN8dyEbtMjauihpnE+knDqYTnbNPk0W8OkcYw5?=
+ =?us-ascii?Q?zWANWT4riQZt+gnbDHIyaSnk+Z1AxtnWNxrt415Jv4YBTfMKgGhZBiL5YSxL?=
+ =?us-ascii?Q?zE1ynaIKpVvC8dZpYpJSEOfAUbFKPRLdapAiX0oDxgKw3bI4JRbI+poTiMTB?=
+ =?us-ascii?Q?cghF7tmJjQ2d1oF6hd0gHlJt76ImLMK77ihhiVek+BxBom+93i1bJBEUdbhc?=
+ =?us-ascii?Q?5Inbddh8JXFEP8CrixfJ73vI56gLHdxn6T8Mfd67Fqcc4+nkrm49knEetKXD?=
+ =?us-ascii?Q?KoJ3cX/9qqW7aO6dPzmGMWukUwfpZW8ZkNYDPWCJEIDmX6kkE7f0of+kT1NW?=
+ =?us-ascii?Q?d6yJldsrodaR1ODX64b67T0bQydhPBYspNCED1SkPhdKOZ1QIacAUHKz9x47?=
+ =?us-ascii?Q?Ls1tYiAUKYPA9SMAPxc+dEDplZ4khTzlCVqDS76I5BvAsrpJSMA34NDT/Glf?=
+ =?us-ascii?Q?260F3zNppZ0psZXBI3ZfJacfsKkUo+EPWW03vX5diXMI9iJMOZ279g8IaQ5W?=
+ =?us-ascii?Q?EArSYR3MUsai7H11q6rRazq2j3QxuvdvH60G23xhoxTiP/onZLGe2HqVP2Ti?=
+ =?us-ascii?Q?pUWbb2iPma3FQCRQM13TzhGM6S87j775+mHByfnT6tJ887b6svHrWqjyi4kR?=
+ =?us-ascii?Q?YvAOR74HSDMNSJJkhyGHmdT+xlnbM14tFpdR9t+4Wbwkvn/ke62uT3EZlKTP?=
+ =?us-ascii?Q?JVxukNp+dkSJi1Oh7g8OZYJKZEzp7lG2TCtP7fMResG/2qD3cTGcq1ZfZbxu?=
+ =?us-ascii?Q?rM7REl1jFuOj2SeoxFkh7dplxEUK/Ly8ZBjau8FZyCyrKvoOrMW14Rner7uL?=
+ =?us-ascii?Q?+L5tecBTmmj2RoAGoV9nhNuXiBFPU0oOY43CIR9WqB7Glh0RNRkdv/KqJdZ7?=
+ =?us-ascii?Q?0hu7HCH3IgYsR2SYRyUBf65Nr1SJjF1OpKZI8Hva5Lwiv/bsTw0QWqIOumAY?=
+ =?us-ascii?Q?OGD58kA0tuM8M/rIJ08hzCGWUnyP832BWXQsCNg7O+KOIQdRxCnWJE8GZscq?=
+ =?us-ascii?Q?U1IsJK+4gMu+YLNCeECFVrV86/P7ebwz1GI0AU6hoTErvqYiKIwraqAm+bE+?=
+ =?us-ascii?Q?6jqYKNeFGBFIl/w2vasFP5QfucQguXSHNl4S0u1HsW6sPAi8vr00feHbcbmK?=
+ =?us-ascii?Q?bg=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: a572754f-e405-4aa2-c01a-08dcf47a3618
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Oct 2024 22:21:31.2185 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: hcdMAzJWdwVWMwwNIAeeolQ9ZIwY2Tx9w02bQznGXCTRe1zMCl+CV/xen5llZZ54Yd7WekPGfEn0CoEmfxcECNT4iGznXfQDLzmDcBmH/40=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR11MB8406
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,385 +181,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Ankit,
+On Thu, Oct 24, 2024 at 10:15:11PM +0000, Taylor, Clinton A wrote:
+> On Thu, 2024-10-24 at 12:18 -0700, Matt Roper wrote:
+> > On Thu, Oct 24, 2024 at 06:08:46AM +0000, Kahola, Mika wrote:
+> > > > -----Original Message-----
+> > > > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Clint
+> > > > Taylor
+> > > > Sent: Thursday, 24 October 2024 0.47
+> > > > To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
+> > > > Subject: [PATCH v2 07/12] drm/i915/cx0: Remove bus reset after every c10
+> > > > transaction
+> > > > 
+> > > > C10 phy timeouts occur on xe3lpd if the c10 bus is reset every transaction.
+> > > > Starting with xe3lpd this is bus reset not necessary
+> > > > 
+> > > 
+> > > This C10/C20 bus reset was originally placed as a workaround to prevent bus timeouts.
+> > > These timeouts were fixed elsewhere and therefore these are unnecessary lines.
+> > 
+> > I'm a bit confused by the patch / explanation here.  Before this patch
+> > we did the reset on all platforms, unconditionally.  The code change
+> > below is removing the reset from the existing platforms (MTL/ARL and
+> > Xe2) but keeping it only on the new Xe3 platforms.
+> > 
+> > If the timeout mystery was solved and these resets are no longer needed,
+> > shouldn't we be removing the line completely rather than making it
+> > conditional to the new platforms?  Or do we have now have new,
+> > unexplained failures specifically on Xe3 that requires that we bring
+> > back this hack at the same time we're removing it from the older
+> > platforms?
+> > 
+> I reversed the conditional when splitting the c10 patches. Will correct and send a new
+> series.
 
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on drm-intel/for-linux-next]
-[also build test ERROR on next-20241024]
-[cannot apply to drm-intel/for-linux-next-fixes drm-tip/drm-tip linus/master v6.12-rc4]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Ankit-Nautiyal/drm-i915-display-Prepare-for-dsc-3-stream-splitter/20241017-162821
-base:   git://anongit.freedesktop.org/drm-intel for-linux-next
-patch link:    https://lore.kernel.org/r/20241017082348.3413727-7-ankit.k.nautiyal%40intel.com
-patch subject: [PATCH 06/10] drm/i915/display: Add DSC pixel replication
-config: i386-randconfig-006-20241024 (https://download.01.org/0day-ci/archive/20241025/202410250632.xdHuHbQW-lkp@intel.com/config)
-compiler: clang version 19.1.2 (https://github.com/llvm/llvm-project 7ba7d8e2f7b6445b60679da826210cdde29eaf8b)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241025/202410250632.xdHuHbQW-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202410250632.xdHuHbQW-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   In file included from drivers/gpu/drm/i915/display/intel_vdsc.c:13:
-   In file included from drivers/gpu/drm/i915/i915_drv.h:40:
-   In file included from drivers/gpu/drm/i915/display/intel_display_core.h:16:
-   In file included from include/drm/drm_connector.h:32:
-   In file included from include/drm/drm_util.h:36:
-   In file included from include/linux/kgdb.h:19:
-   In file included from include/linux/kprobes.h:28:
-   In file included from include/linux/ftrace.h:13:
-   In file included from include/linux/kallsyms.h:13:
-   In file included from include/linux/mm.h:2213:
-   include/linux/vmstat.h:518:36: error: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Werror,-Wenum-enum-conversion]
-     518 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
-         |                               ~~~~~~~~~~~ ^ ~~~
-   drivers/gpu/drm/i915/display/intel_vdsc.c:375:10: error: arithmetic between different enumeration types ('enum pipe' and 'enum intel_display_power_domain') [-Werror,-Wenum-enum-conversion]
-     375 |                 return POWER_DOMAIN_PIPE(pipe);
-         |                        ^~~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/display/intel_display_power.h:120:41: note: expanded from macro 'POWER_DOMAIN_PIPE'
-     120 | #define POWER_DOMAIN_PIPE(pipe) ((pipe) + POWER_DOMAIN_PIPE_A)
-         |                                  ~~~~~~ ^ ~~~~~~~~~~~~~~~~~~~
->> drivers/gpu/drm/i915/display/intel_vdsc.c:817:11: error: arithmetic between different enumeration types ('const enum transcoder' and 'enum pipe') [-Werror,-Wenum-enum-conversion]
-     816 |                 intel_de_write(dev_priv,
-         |                 ~~~~~~~~~~~~~~~~~~~~~~~~
-     817 |                                BMG_PIPE_DSS_CTL3(crtc_state->cpu_transcoder), dss_ctl3_val);
-         |                                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/display/intel_vdsc_regs.h:57:53: note: expanded from macro 'BMG_PIPE_DSS_CTL3'
-      57 | #define BMG_PIPE_DSS_CTL3(pipe)                 _MMIO_PIPE((pipe) - PIPE_B, \
-         |                                                                   ^ ~~~~~~
-   drivers/gpu/drm/i915/display/intel_display_reg_defs.h:25:45: note: expanded from macro '_MMIO_PIPE'
-      25 | #define _MMIO_PIPE(pipe, a, b)          _MMIO(_PIPE(pipe, a, b))
-         |                                                     ^~~~
-   drivers/gpu/drm/i915/display/intel_display_reg_defs.h:18:39: note: expanded from macro '_PIPE'
-      18 | #define _PIPE(pipe, a, b)               _PICK_EVEN(pipe, a, b)
-         |                                                    ^~~~
-   drivers/gpu/drm/i915/i915_reg_defs.h:213:49: note: expanded from macro '_PICK_EVEN'
-     213 | #define _PICK_EVEN(__index, __a, __b) ((__a) + (__index) * ((__b) - (__a)))
-         |                                                 ^~~~~~~
-   drivers/gpu/drm/i915/i915_reg_defs.h:267:47: note: expanded from macro '_MMIO'
-     267 | #define _MMIO(r) ((const i915_reg_t){ .reg = (r) })
-         |                                               ^
-   drivers/gpu/drm/i915/display/intel_de.h:88:71: note: expanded from macro 'intel_de_write'
-      88 | #define intel_de_write(p,...) __intel_de_write(__to_intel_display(p), __VA_ARGS__)
-         |                                                                       ^~~~~~~~~~~
-   drivers/gpu/drm/i915/display/intel_vdsc.c:833:12: error: arithmetic between different enumeration types ('const enum transcoder' and 'enum pipe') [-Werror,-Wenum-enum-conversion]
-     832 |                         intel_de_write(dev_priv,
-         |                         ~~~~~~~~~~~~~~~~~~~~~~~~
-     833 |                                        BMG_PIPE_DSS_CTL3(old_crtc_state->cpu_transcoder), 0);
-         |                                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/display/intel_vdsc_regs.h:57:53: note: expanded from macro 'BMG_PIPE_DSS_CTL3'
-      57 | #define BMG_PIPE_DSS_CTL3(pipe)                 _MMIO_PIPE((pipe) - PIPE_B, \
-         |                                                                   ^ ~~~~~~
-   drivers/gpu/drm/i915/display/intel_display_reg_defs.h:25:45: note: expanded from macro '_MMIO_PIPE'
-      25 | #define _MMIO_PIPE(pipe, a, b)          _MMIO(_PIPE(pipe, a, b))
-         |                                                     ^~~~
-   drivers/gpu/drm/i915/display/intel_display_reg_defs.h:18:39: note: expanded from macro '_PIPE'
-      18 | #define _PIPE(pipe, a, b)               _PICK_EVEN(pipe, a, b)
-         |                                                    ^~~~
-   drivers/gpu/drm/i915/i915_reg_defs.h:213:49: note: expanded from macro '_PICK_EVEN'
-     213 | #define _PICK_EVEN(__index, __a, __b) ((__a) + (__index) * ((__b) - (__a)))
-         |                                                 ^~~~~~~
-   drivers/gpu/drm/i915/i915_reg_defs.h:267:47: note: expanded from macro '_MMIO'
-     267 | #define _MMIO(r) ((const i915_reg_t){ .reg = (r) })
-         |                                               ^
-   drivers/gpu/drm/i915/display/intel_de.h:88:71: note: expanded from macro 'intel_de_write'
-      88 | #define intel_de_write(p,...) __intel_de_write(__to_intel_display(p), __VA_ARGS__)
-         |                                                                       ^~~~~~~~~~~
->> drivers/gpu/drm/i915/display/intel_vdsc.c:1006:38: error: arithmetic between different enumeration types ('enum transcoder' and 'enum pipe') [-Werror,-Wenum-enum-conversion]
-    1006 |                 dss_ctl3 = intel_de_read(dev_priv, BMG_PIPE_DSS_CTL3(crtc_state->cpu_transcoder));
-         |                            ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/display/intel_vdsc_regs.h:57:53: note: expanded from macro 'BMG_PIPE_DSS_CTL3'
-      57 | #define BMG_PIPE_DSS_CTL3(pipe)                 _MMIO_PIPE((pipe) - PIPE_B, \
-         |                                                                   ^ ~~~~~~
-   drivers/gpu/drm/i915/display/intel_display_reg_defs.h:25:45: note: expanded from macro '_MMIO_PIPE'
-      25 | #define _MMIO_PIPE(pipe, a, b)          _MMIO(_PIPE(pipe, a, b))
-         |                                                     ^~~~
-   drivers/gpu/drm/i915/display/intel_display_reg_defs.h:18:39: note: expanded from macro '_PIPE'
-      18 | #define _PIPE(pipe, a, b)               _PICK_EVEN(pipe, a, b)
-         |                                                    ^~~~
-   drivers/gpu/drm/i915/i915_reg_defs.h:213:49: note: expanded from macro '_PICK_EVEN'
-     213 | #define _PICK_EVEN(__index, __a, __b) ((__a) + (__index) * ((__b) - (__a)))
-         |                                                 ^~~~~~~
-   drivers/gpu/drm/i915/i915_reg_defs.h:267:47: note: expanded from macro '_MMIO'
-     267 | #define _MMIO(r) ((const i915_reg_t){ .reg = (r) })
-         |                                               ^
-   drivers/gpu/drm/i915/display/intel_de.h:32:69: note: expanded from macro 'intel_de_read'
-      32 | #define intel_de_read(p,...) __intel_de_read(__to_intel_display(p), __VA_ARGS__)
-         |                                                                     ^~~~~~~~~~~
-   5 errors generated.
+Okay, even if the condition got reversed by accident, I'm still unclear
+on whether we truly still need this on pre-Xe3 platforms or not.  Based
+on Mika's explanation is sounds like maybe these lines should simply be
+getting removed completely, and that that's independent of the Xe3 work
+going on?  We can see what he thinks tomorrow.
 
 
-vim +817 drivers/gpu/drm/i915/display/intel_vdsc.c
+Matt
 
-   770	
-   771	void intel_dsc_enable(const struct intel_crtc_state *crtc_state)
-   772	{
-   773		struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-   774		struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-   775		u32 dss_ctl1_val = 0;
-   776		u32 dss_ctl2_val = 0;
-   777		u32 dss_ctl3_val = 0;
-   778		int vdsc_instances_per_pipe = intel_dsc_get_vdsc_per_pipe(crtc_state);
-   779	
-   780		if (!crtc_state->dsc.compression_enable)
-   781			return;
-   782	
-   783		intel_dsc_pps_configure(crtc_state);
-   784	
-   785		dss_ctl2_val |= VDSC0_ENABLE;
-   786		if (vdsc_instances_per_pipe > 1) {
-   787			dss_ctl2_val |= VDSC1_ENABLE;
-   788			dss_ctl1_val |= JOINER_ENABLE;
-   789		}
-   790	
-   791		if (vdsc_instances_per_pipe > 2) {
-   792			dss_ctl2_val |= VDSC2_ENABLE;
-   793			dss_ctl2_val |= SMALL_JOINER_CONFIG_3_ENGINES;
-   794		}
-   795	
-   796		if (crtc_state->joiner_pipes) {
-   797			if (intel_crtc_ultrajoiner_enable_needed(crtc_state))
-   798				dss_ctl1_val |= ULTRA_JOINER_ENABLE;
-   799	
-   800			if (intel_crtc_is_ultrajoiner_primary(crtc_state))
-   801				dss_ctl1_val |= PRIMARY_ULTRA_JOINER_ENABLE;
-   802	
-   803			dss_ctl1_val |= BIG_JOINER_ENABLE;
-   804	
-   805			if (intel_crtc_is_bigjoiner_primary(crtc_state))
-   806				dss_ctl1_val |= PRIMARY_BIG_JOINER_ENABLE;
-   807		}
-   808	
-   809		if (crtc_state->dsc.pixel_replication_count)
-   810			dss_ctl3_val = DSC_PIXEL_REPLICATION(crtc_state->dsc.pixel_replication_count);
-   811	
-   812		intel_de_write(dev_priv, dss_ctl1_reg(crtc, crtc_state->cpu_transcoder), dss_ctl1_val);
-   813		intel_de_write(dev_priv, dss_ctl2_reg(crtc, crtc_state->cpu_transcoder), dss_ctl2_val);
-   814	
-   815		if (IS_BATTLEMAGE(dev_priv) && dss_ctl3_val)
-   816			intel_de_write(dev_priv,
- > 817				       BMG_PIPE_DSS_CTL3(crtc_state->cpu_transcoder), dss_ctl3_val);
-   818	}
-   819	
-   820	void intel_dsc_disable(const struct intel_crtc_state *old_crtc_state)
-   821	{
-   822		struct intel_crtc *crtc = to_intel_crtc(old_crtc_state->uapi.crtc);
-   823		struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-   824	
-   825		/* Disable only if either of them is enabled */
-   826		if (old_crtc_state->dsc.compression_enable ||
-   827		    old_crtc_state->joiner_pipes) {
-   828			intel_de_write(dev_priv, dss_ctl1_reg(crtc, old_crtc_state->cpu_transcoder), 0);
-   829			intel_de_write(dev_priv, dss_ctl2_reg(crtc, old_crtc_state->cpu_transcoder), 0);
-   830	
-   831			if (IS_BATTLEMAGE(dev_priv))
-   832				intel_de_write(dev_priv,
-   833					       BMG_PIPE_DSS_CTL3(old_crtc_state->cpu_transcoder), 0);
-   834		}
-   835	}
-   836	
-   837	static u32 intel_dsc_pps_read(struct intel_crtc_state *crtc_state, int pps,
-   838				      bool *all_equal)
-   839	{
-   840		struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-   841		struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-   842		i915_reg_t dsc_reg[3];
-   843		int i, vdsc_per_pipe, dsc_reg_num;
-   844		u32 val;
-   845	
-   846		vdsc_per_pipe = intel_dsc_get_vdsc_per_pipe(crtc_state);
-   847		dsc_reg_num = min_t(int, ARRAY_SIZE(dsc_reg), vdsc_per_pipe);
-   848	
-   849		drm_WARN_ON_ONCE(&i915->drm, dsc_reg_num < vdsc_per_pipe);
-   850	
-   851		intel_dsc_get_pps_reg(crtc_state, pps, dsc_reg, dsc_reg_num);
-   852	
-   853		*all_equal = true;
-   854	
-   855		val = intel_de_read(i915, dsc_reg[0]);
-   856	
-   857		for (i = 1; i < dsc_reg_num; i++) {
-   858			if (intel_de_read(i915, dsc_reg[i]) != val) {
-   859				*all_equal = false;
-   860				break;
-   861			}
-   862		}
-   863	
-   864		return val;
-   865	}
-   866	
-   867	static u32 intel_dsc_pps_read_and_verify(struct intel_crtc_state *crtc_state, int pps)
-   868	{
-   869		struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-   870		struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-   871		u32 val;
-   872		bool all_equal;
-   873	
-   874		val = intel_dsc_pps_read(crtc_state, pps, &all_equal);
-   875		drm_WARN_ON(&i915->drm, !all_equal);
-   876	
-   877		return val;
-   878	}
-   879	
-   880	static void intel_dsc_get_pps_config(struct intel_crtc_state *crtc_state)
-   881	{
-   882		struct drm_dsc_config *vdsc_cfg = &crtc_state->dsc.config;
-   883		struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-   884		struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-   885		int num_vdsc_instances = intel_dsc_get_num_vdsc_instances(crtc_state);
-   886		u32 pps_temp;
-   887	
-   888		/* PPS 0 */
-   889		pps_temp = intel_dsc_pps_read_and_verify(crtc_state, 0);
-   890	
-   891		vdsc_cfg->bits_per_component = REG_FIELD_GET(DSC_PPS0_BPC_MASK, pps_temp);
-   892		vdsc_cfg->line_buf_depth = REG_FIELD_GET(DSC_PPS0_LINE_BUF_DEPTH_MASK, pps_temp);
-   893		vdsc_cfg->block_pred_enable = pps_temp & DSC_PPS0_BLOCK_PREDICTION;
-   894		vdsc_cfg->convert_rgb = pps_temp & DSC_PPS0_COLOR_SPACE_CONVERSION;
-   895		vdsc_cfg->simple_422 = pps_temp & DSC_PPS0_422_ENABLE;
-   896		vdsc_cfg->native_422 = pps_temp & DSC_PPS0_NATIVE_422_ENABLE;
-   897		vdsc_cfg->native_420 = pps_temp & DSC_PPS0_NATIVE_420_ENABLE;
-   898		vdsc_cfg->vbr_enable = pps_temp & DSC_PPS0_VBR_ENABLE;
-   899	
-   900		/* PPS 1 */
-   901		pps_temp = intel_dsc_pps_read_and_verify(crtc_state, 1);
-   902	
-   903		vdsc_cfg->bits_per_pixel = REG_FIELD_GET(DSC_PPS1_BPP_MASK, pps_temp);
-   904	
-   905		if (vdsc_cfg->native_420)
-   906			vdsc_cfg->bits_per_pixel >>= 1;
-   907	
-   908		crtc_state->dsc.compressed_bpp_x16 = vdsc_cfg->bits_per_pixel;
-   909	
-   910		/* PPS 2 */
-   911		pps_temp = intel_dsc_pps_read_and_verify(crtc_state, 2);
-   912	
-   913		vdsc_cfg->pic_width = REG_FIELD_GET(DSC_PPS2_PIC_WIDTH_MASK, pps_temp) * num_vdsc_instances;
-   914		vdsc_cfg->pic_height = REG_FIELD_GET(DSC_PPS2_PIC_HEIGHT_MASK, pps_temp);
-   915	
-   916		/* PPS 3 */
-   917		pps_temp = intel_dsc_pps_read_and_verify(crtc_state, 3);
-   918	
-   919		vdsc_cfg->slice_width = REG_FIELD_GET(DSC_PPS3_SLICE_WIDTH_MASK, pps_temp);
-   920		vdsc_cfg->slice_height = REG_FIELD_GET(DSC_PPS3_SLICE_HEIGHT_MASK, pps_temp);
-   921	
-   922		/* PPS 4 */
-   923		pps_temp = intel_dsc_pps_read_and_verify(crtc_state, 4);
-   924	
-   925		vdsc_cfg->initial_dec_delay = REG_FIELD_GET(DSC_PPS4_INITIAL_DEC_DELAY_MASK, pps_temp);
-   926		vdsc_cfg->initial_xmit_delay = REG_FIELD_GET(DSC_PPS4_INITIAL_XMIT_DELAY_MASK, pps_temp);
-   927	
-   928		/* PPS 5 */
-   929		pps_temp = intel_dsc_pps_read_and_verify(crtc_state, 5);
-   930	
-   931		vdsc_cfg->scale_decrement_interval = REG_FIELD_GET(DSC_PPS5_SCALE_DEC_INT_MASK, pps_temp);
-   932		vdsc_cfg->scale_increment_interval = REG_FIELD_GET(DSC_PPS5_SCALE_INC_INT_MASK, pps_temp);
-   933	
-   934		/* PPS 6 */
-   935		pps_temp = intel_dsc_pps_read_and_verify(crtc_state, 6);
-   936	
-   937		vdsc_cfg->initial_scale_value = REG_FIELD_GET(DSC_PPS6_INITIAL_SCALE_VALUE_MASK, pps_temp);
-   938		vdsc_cfg->first_line_bpg_offset = REG_FIELD_GET(DSC_PPS6_FIRST_LINE_BPG_OFFSET_MASK, pps_temp);
-   939		vdsc_cfg->flatness_min_qp = REG_FIELD_GET(DSC_PPS6_FLATNESS_MIN_QP_MASK, pps_temp);
-   940		vdsc_cfg->flatness_max_qp = REG_FIELD_GET(DSC_PPS6_FLATNESS_MAX_QP_MASK, pps_temp);
-   941	
-   942		/* PPS 7 */
-   943		pps_temp = intel_dsc_pps_read_and_verify(crtc_state, 7);
-   944	
-   945		vdsc_cfg->nfl_bpg_offset = REG_FIELD_GET(DSC_PPS7_NFL_BPG_OFFSET_MASK, pps_temp);
-   946		vdsc_cfg->slice_bpg_offset = REG_FIELD_GET(DSC_PPS7_SLICE_BPG_OFFSET_MASK, pps_temp);
-   947	
-   948		/* PPS 8 */
-   949		pps_temp = intel_dsc_pps_read_and_verify(crtc_state, 8);
-   950	
-   951		vdsc_cfg->initial_offset = REG_FIELD_GET(DSC_PPS8_INITIAL_OFFSET_MASK, pps_temp);
-   952		vdsc_cfg->final_offset = REG_FIELD_GET(DSC_PPS8_FINAL_OFFSET_MASK, pps_temp);
-   953	
-   954		/* PPS 9 */
-   955		pps_temp = intel_dsc_pps_read_and_verify(crtc_state, 9);
-   956	
-   957		vdsc_cfg->rc_model_size = REG_FIELD_GET(DSC_PPS9_RC_MODEL_SIZE_MASK, pps_temp);
-   958	
-   959		/* PPS 10 */
-   960		pps_temp = intel_dsc_pps_read_and_verify(crtc_state, 10);
-   961	
-   962		vdsc_cfg->rc_quant_incr_limit0 = REG_FIELD_GET(DSC_PPS10_RC_QUANT_INC_LIMIT0_MASK, pps_temp);
-   963		vdsc_cfg->rc_quant_incr_limit1 = REG_FIELD_GET(DSC_PPS10_RC_QUANT_INC_LIMIT1_MASK, pps_temp);
-   964	
-   965		/* PPS 16 */
-   966		pps_temp = intel_dsc_pps_read_and_verify(crtc_state, 16);
-   967	
-   968		vdsc_cfg->slice_chunk_size = REG_FIELD_GET(DSC_PPS16_SLICE_CHUNK_SIZE_MASK, pps_temp);
-   969	
-   970		if (DISPLAY_VER(i915) >= 14) {
-   971			/* PPS 17 */
-   972			pps_temp = intel_dsc_pps_read_and_verify(crtc_state, 17);
-   973	
-   974			vdsc_cfg->second_line_bpg_offset = REG_FIELD_GET(DSC_PPS17_SL_BPG_OFFSET_MASK, pps_temp);
-   975	
-   976			/* PPS 18 */
-   977			pps_temp = intel_dsc_pps_read_and_verify(crtc_state, 18);
-   978	
-   979			vdsc_cfg->nsl_bpg_offset = REG_FIELD_GET(DSC_PPS18_NSL_BPG_OFFSET_MASK, pps_temp);
-   980			vdsc_cfg->second_line_offset_adj = REG_FIELD_GET(DSC_PPS18_SL_OFFSET_ADJ_MASK, pps_temp);
-   981		}
-   982	}
-   983	
-   984	void intel_dsc_get_config(struct intel_crtc_state *crtc_state)
-   985	{
-   986		struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-   987		struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-   988		enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-   989		enum intel_display_power_domain power_domain;
-   990		intel_wakeref_t wakeref;
-   991		u32 dss_ctl1, dss_ctl2, dss_ctl3 = 0;
-   992	
-   993		if (!intel_dsc_source_support(crtc_state))
-   994			return;
-   995	
-   996		power_domain = intel_dsc_power_domain(crtc, cpu_transcoder);
-   997	
-   998		wakeref = intel_display_power_get_if_enabled(dev_priv, power_domain);
-   999		if (!wakeref)
-  1000			return;
-  1001	
-  1002		dss_ctl1 = intel_de_read(dev_priv, dss_ctl1_reg(crtc, cpu_transcoder));
-  1003		dss_ctl2 = intel_de_read(dev_priv, dss_ctl2_reg(crtc, cpu_transcoder));
-  1004	
-  1005		if (IS_BATTLEMAGE(dev_priv))
-> 1006			dss_ctl3 = intel_de_read(dev_priv, BMG_PIPE_DSS_CTL3(crtc_state->cpu_transcoder));
-  1007	
-  1008		crtc_state->dsc.compression_enable = dss_ctl2 & VDSC0_ENABLE;
-  1009		if (!crtc_state->dsc.compression_enable)
-  1010			goto out;
-  1011	
-  1012		if (dss_ctl1 & JOINER_ENABLE) {
-  1013			if (dss_ctl2 & (VDSC2_ENABLE | SMALL_JOINER_CONFIG_3_ENGINES))
-  1014				crtc_state->dsc.dsc_split = INTEL_DSC_SPLIT_3_STREAMS;
-  1015	
-  1016			else if (dss_ctl2 & VDSC1_ENABLE)
-  1017				crtc_state->dsc.dsc_split = INTEL_DSC_SPLIT_2_STREAMS;
-  1018		} else {
-  1019			crtc_state->dsc.dsc_split = INTEL_DSC_SPLIT_DISABLED;
-  1020		}
-  1021	
-  1022		if (dss_ctl3 & DSC_PIXEL_REPLICATION_MASK)
-  1023			crtc_state->dsc.pixel_replication_count =
-  1024				dss_ctl3 & DSC_PIXEL_REPLICATION_MASK;
-  1025	
-  1026		intel_dsc_get_pps_config(crtc_state);
-  1027	out:
-  1028		intel_display_power_put(dev_priv, power_domain, wakeref);
-  1029	}
-  1030	
+> 
+> -Clint
+> 
+> > 
+> > Matt
+> > 
+> > > Reviewed-by: Mika Kahola <mika.kahola@intel.com>
+> > > 
+> > > > Signed-off-by: Clint Taylor <clinton.a.taylor@intel.com>
+> > > > ---
+> > > >  drivers/gpu/drm/i915/display/intel_cx0_phy.c | 6 ++++--
+> > > >  1 file changed, 4 insertions(+), 2 deletions(-)
+> > > > 
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> > > > b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> > > > index c1357bdb8a3b..a8966a7a9927 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> > > > @@ -224,7 +224,8 @@ static int __intel_cx0_read_once(struct intel_encoder
+> > > > *encoder,
+> > > >  	 * down and let the message bus to end up
+> > > >  	 * in a known state
+> > > >  	 */
+> > > > -	intel_cx0_bus_reset(encoder, lane);
+> > > > +	if ((DISPLAY_VER(i915) >= 30))
+> > > > +		intel_cx0_bus_reset(encoder, lane);
+> > > > 
+> > > >  	return REG_FIELD_GET(XELPDP_PORT_P2M_DATA_MASK, val);  } @@ -
+> > > > 313,7 +314,8 @@ static int __intel_cx0_write_once(struct intel_encoder
+> > > > *encoder,
+> > > >  	 * down and let the message bus to end up
+> > > >  	 * in a known state
+> > > >  	 */
+> > > > -	intel_cx0_bus_reset(encoder, lane);
+> > > > +	if ((DISPLAY_VER(i915) >= 30))
+> > > > +		intel_cx0_bus_reset(encoder, lane);
+> > > > 
+> > > >  	return 0;
+> > > >  }
+> > > > --
+> > > > 2.25.1
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
