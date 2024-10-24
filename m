@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3680D9ADABB
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Oct 2024 05:56:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D5D629ADABC
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Oct 2024 05:56:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8994E10E89F;
-	Thu, 24 Oct 2024 03:56:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3C8510E155;
+	Thu, 24 Oct 2024 03:56:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m04+0L2q";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SVC7eiKm";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 53EC510E89F;
- Thu, 24 Oct 2024 03:56:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D16810E8A0;
+ Thu, 24 Oct 2024 03:56:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729742175; x=1761278175;
+ t=1729742177; x=1761278177;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=BlIR1Bp3m6Hwiy1JUDcHgld/mahDUZa5oWAlF3gBO2A=;
- b=m04+0L2qOZVx/Dg/4IHvMCh8XiLhcF84dnX60SsN+t4DYPHJVloxhvyN
- muQfCGVsRE4Fhr1YFmhFpH5GJgxwlklTx4klWujmaR+VYnCTrhMeZmLsk
- mLrSFgiGLMNJu62aM5TnhF8yXzf8TmXDX0OG3GnoEcAZSOGKBp+sYm9Yr
- kNmu6yCZmIGEjvLc+DL+BFbPHueTuFU6mqZUBUA/R/ec9EdMv1bbtMvSH
- TsGTrX3rZShfQwMS0/+xlg3gYRaUKlTQzqQmt+gOWVJt4prJN/vavNZas
- m0x5O383BZTam22lJRdHChm+NYq0rnje+AlRivKkjfT4qV3RrCetjA6Ev g==;
-X-CSE-ConnectionGUID: unD5KMJ5RIGwaE+EThXbPg==
-X-CSE-MsgGUID: af2ybpQKR76EHAIoRxztiQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11234"; a="28818511"
-X-IronPort-AV: E=Sophos;i="6.11,228,1725346800"; d="scan'208";a="28818511"
+ bh=WVGydUsBQOt+BtnsAokogVjyZdg9SaHDElVZg8rj4QQ=;
+ b=SVC7eiKmYX2S89fVLsF/IH5ozpA2zT0u9RYIQqEcnd4QyM1HcKtbONjK
+ KhgDTx4MmiG+tQO3DGbbgdg5x1PzWshzLDbDM9CnsF2wlb+V8KDiIfv+9
+ Qu/k99giiv9vafoaHy4g0xoKX81CCDbB6Mr9dLEFjP0w7N1KxPJLG+ES+
+ 0y7eKLgwktdrlwl2SEkICybMPOyRsJGwhcOydAZWPZSXLcj2TYQcEXqLM
+ RMSS2LRA5Qf/80qd5Tvv8zdGgN3Ooy4pUWs4+cLOwR12+EsLn/FrUvJ0p
+ XnUUWRCdkdc5+CTP18osnZxdsKDEsuZQcxbwLFoShpAnRComb7XdgSfXv Q==;
+X-CSE-ConnectionGUID: ACXJsslsRea/9dbBMrTd/w==
+X-CSE-MsgGUID: RrEpbHlWT6qNqQcYrhpIXQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11234"; a="28818512"
+X-IronPort-AV: E=Sophos;i="6.11,228,1725346800"; d="scan'208";a="28818512"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2024 20:56:15 -0700
-X-CSE-ConnectionGUID: ZOHVMk4RTf6r7H+8rn1Owg==
-X-CSE-MsgGUID: 8DnkSAbVSwOPTxiyllNNTw==
+ 23 Oct 2024 20:56:17 -0700
+X-CSE-ConnectionGUID: O0Gnr5A7TSyj7rUJreYCbg==
+X-CSE-MsgGUID: eDayl3/HR2S229GgIJ9gwQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,228,1725346800"; d="scan'208";a="80128114"
+X-IronPort-AV: E=Sophos;i="6.11,228,1725346800"; d="scan'208";a="80128118"
 Received: from linux-lunar-lake-client-platform.iind.intel.com
  ([10.227.88.172])
- by fmviesa007.fm.intel.com with ESMTP; 23 Oct 2024 20:56:13 -0700
+ by fmviesa007.fm.intel.com with ESMTP; 23 Oct 2024 20:56:15 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com, matthew.d.roper@intel.com,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 3/4] drm/i914/xe3lpd: Increase bigjoiner limitations
-Date: Thu, 24 Oct 2024 09:25:51 +0530
-Message-Id: <20241024035552.94363-4-suraj.kandpal@intel.com>
+Subject: [PATCH 4/4] drm/i915/xe3lpd: Prune modes for YUV420
+Date: Thu, 24 Oct 2024 09:25:52 +0530
+Message-Id: <20241024035552.94363-5-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241024035552.94363-1-suraj.kandpal@intel.com>
 References: <20241024035552.94363-1-suraj.kandpal@intel.com>
@@ -69,37 +69,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-With 6k resolution support for a single crtc being added
-bigjoiner will only come into picture when hdisplay > 6144
+We only support resolution up to 4k for single pipe when using
+YUV420 format so we prune these modes and restrict the plane size
+at src.
 
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index fbb096be02ad..e0baad468d76 100644
+index e0baad468d76..edaea5e8c53c 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1313,14 +1313,17 @@ bool intel_dp_needs_joiner(struct intel_dp *intel_dp,
- 			   int num_joined_pipes)
+@@ -1373,6 +1373,7 @@ intel_dp_mode_valid(struct drm_connector *_connector,
  {
- 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-+	int hdisplay_limit;
+ 	struct intel_connector *connector = to_intel_connector(_connector);
+ 	struct intel_dp *intel_dp = intel_attached_dp(connector);
++	enum intel_output_format sink_format;
+ 	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+ 	const struct drm_display_mode *fixed_mode;
+ 	int target_clock = mode->clock;
+@@ -1407,6 +1408,11 @@ intel_dp_mode_valid(struct drm_connector *_connector,
+ 						     mode->hdisplay, target_clock);
+ 	max_dotclk *= num_joined_pipes;
  
- 	if (!intel_dp_has_joiner(intel_dp))
- 		return false;
- 
- 	num_joined_pipes /= 2;
- 
-+	hdisplay_limit = DISPLAY_VER(i915) >= 30 ? 6144 : 5120;
++	sink_format = intel_dp_sink_format(connector, mode);
++	if (sink_format == INTEL_OUTPUT_FORMAT_YCBCR420 &&
++	    mode->hdisplay > 4096)
++		return MODE_NO_420;
 +
- 	return clock > num_joined_pipes * i915->display.cdclk.max_dotclk_freq ||
--	       hdisplay > num_joined_pipes * 5120;
-+	       hdisplay > num_joined_pipes * hdisplay_limit;
- }
+ 	if (target_clock > max_dotclk)
+ 		return MODE_CLOCK_HIGH;
  
- int intel_dp_num_joined_pipes(struct intel_dp *intel_dp,
 -- 
 2.34.1
 
