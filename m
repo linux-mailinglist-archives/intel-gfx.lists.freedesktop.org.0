@@ -2,60 +2,110 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6C389AE4EB
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Oct 2024 14:35:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E1A29AE55C
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Oct 2024 14:49:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E399110E91F;
-	Thu, 24 Oct 2024 12:35:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 805F110E931;
+	Thu, 24 Oct 2024 12:49:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kcCdTaRA";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="IeLaMLom";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="bwPn/WK+";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="IeLaMLom";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="bwPn/WK+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89EC610E91F;
- Thu, 24 Oct 2024 12:35:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729773309; x=1761309309;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=B0a7iq0OPpmF8hT/Yp5UdeexllVHUUULCWLHIWPuVaw=;
- b=kcCdTaRAoTYQtKb1a/8HkxOCUC+IG+xYVA3ET5J6qc9O9hHKYItN4h/C
- 4T00t7vocE2MiTdVBf1kdmL6Qdz43+zW7V2uuEB2ORNrBtcEC3TkAdG6V
- 2IeYvOwl8uH3gHTIkNP2KgIAN7OhQtfd8SCz04B6nggZDVDtUC6NHGH3w
- 2cQA0Y3H29iU8OYyvn0JKQw1sPw6Ta2DIaNt6ocesHBCSpK2e1nqc52fx
- Lz2thLVy30J/H/CksBxgzQVBivedqaSIY4K3C6KJg3Bw4a3YSM4ukHsqN
- MLaJUHIABYZ6UDSqMFR2phev/mGb9miP9TCDCj3ysscY5r8J/KYmXXos/ w==;
-X-CSE-ConnectionGUID: N/pC7HakTr6eEvvqTGy0Cg==
-X-CSE-MsgGUID: NKUt1CB4TT+UsKyzsxQaKQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="51942993"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="51942993"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2024 05:35:09 -0700
-X-CSE-ConnectionGUID: rHuzGFKZS9qgt3pOMuEidg==
-X-CSE-MsgGUID: fj5fOFzpT3evF2kIINODgw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,229,1725346800"; d="scan'208";a="81001376"
-Received: from unknown (HELO localhost) ([10.237.66.160])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2024 05:35:08 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com, rodrigo.vivi@intel.com, lucas.demarchi@intel.com,
- maarten.lankhorst@linux.intel.com
-Subject: [CI v4 v4 16/16] drm/i915/vblank: use display->platform.<platform>
- instead of IS_<PLATFORM>()
-Date: Thu, 24 Oct 2024 15:33:42 +0300
-Message-Id: <ad2e842069962f2bf611f62a98b325803f0009d9.1729773149.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1729773149.git.jani.nikula@intel.com>
-References: <cover.1729773149.git.jani.nikula@intel.com>
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E381310E930;
+ Thu, 24 Oct 2024 12:49:24 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 4CE521FDB7;
+ Thu, 24 Oct 2024 12:49:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1729774163; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=TNZyzsAZPH1onMcnoCmPu3rQFvjSIdxP5wWbG6tr7sE=;
+ b=IeLaMLomb4JJ20ZBEjnHUquzUfNZtz1ws3YUDLGZoxGmxwJ8T6n9rfSBiI4HeouFCa2qo2
+ lJ9qiw+Rol4FkCkESL0BEyNzLCyPjTY8xsvKkrXm5cZTmCcyJTaGRoujbeUcLvvbAZWRnY
+ Th8vfTqZui2Z5rYwP2zoeDgzvqciGoY=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1729774163;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=TNZyzsAZPH1onMcnoCmPu3rQFvjSIdxP5wWbG6tr7sE=;
+ b=bwPn/WK+TtzEvhZZ05Q/8A0xgJFiv7wJP4RqVLps10tVM0cmVT3FACZjqLwORhmpSeDrx9
+ ztoC3PG2HqO/lHBA==
+Authentication-Results: smtp-out2.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=IeLaMLom;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b="bwPn/WK+"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1729774163; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=TNZyzsAZPH1onMcnoCmPu3rQFvjSIdxP5wWbG6tr7sE=;
+ b=IeLaMLomb4JJ20ZBEjnHUquzUfNZtz1ws3YUDLGZoxGmxwJ8T6n9rfSBiI4HeouFCa2qo2
+ lJ9qiw+Rol4FkCkESL0BEyNzLCyPjTY8xsvKkrXm5cZTmCcyJTaGRoujbeUcLvvbAZWRnY
+ Th8vfTqZui2Z5rYwP2zoeDgzvqciGoY=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1729774163;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=TNZyzsAZPH1onMcnoCmPu3rQFvjSIdxP5wWbG6tr7sE=;
+ b=bwPn/WK+TtzEvhZZ05Q/8A0xgJFiv7wJP4RqVLps10tVM0cmVT3FACZjqLwORhmpSeDrx9
+ ztoC3PG2HqO/lHBA==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id DB8F2136F5;
+ Thu, 24 Oct 2024 12:49:22 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id 6OjhM1JCGmeoDQAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Thu, 24 Oct 2024 12:49:22 +0000
+Date: Thu, 24 Oct 2024 14:49:21 +0200
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-fixes
+Message-ID: <20241024124921.GA20475@localhost.localdomain>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Rspamd-Queue-Id: 4CE521FDB7
+X-Spam-Level: 
+X-Spamd-Result: default: False [-4.51 / 50.00]; BAYES_HAM(-3.00)[99.99%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ MX_GOOD(-0.01)[]; FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; MISSING_XM_UA(0.00)[];
+ ARC_NA(0.00)[]; RCPT_COUNT_TWELVE(0.00)[16];
+ MIME_TRACE(0.00)[0:+]; FREEMAIL_ENVRCPT(0.00)[gmail.com];
+ FUZZY_BLOCKED(0.00)[rspamd.com];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ TO_DN_SOME(0.00)[]; RCVD_TLS_ALL(0.00)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:dkim,gitlab.freedesktop.org:url];
+ RCVD_COUNT_TWO(0.00)[2]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ DKIM_TRACE(0.00)[suse.de:+]
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Rspamd-Action: no action
+X-Spam-Score: -4.51
+X-Spam-Flag: NO
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,55 +121,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Switch to using the new display->platform.<platform> members for
-platform identification in display code.
+Hi Dave, Sima,
 
-v2: Split out an unrelated hunk to a separate patch (Rodrigo)
+this is the PR for drm-misc-fixes.
 
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_vblank.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+Best regards
+Thomas
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
-index 9278d0b2ae74..a95fb3349eba 100644
---- a/drivers/gpu/drm/i915/display/intel_vblank.c
-+++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-@@ -326,14 +326,13 @@ static bool i915_get_crtc_scanoutpos(struct drm_crtc *_crtc,
- 				     const struct drm_display_mode *mode)
- {
- 	struct intel_display *display = to_intel_display(_crtc->dev);
--	struct drm_i915_private *dev_priv = to_i915(display->drm);
- 	struct intel_crtc *crtc = to_intel_crtc(_crtc);
- 	enum pipe pipe = crtc->pipe;
- 	int position;
- 	int vbl_start, vbl_end, hsync_start, htotal, vtotal;
- 	unsigned long irqflags;
- 	bool use_scanline_counter = DISPLAY_VER(display) >= 5 ||
--		IS_G4X(dev_priv) || DISPLAY_VER(display) == 2 ||
-+		display->platform.g4x || DISPLAY_VER(display) == 2 ||
- 		crtc->mode_flags & I915_MODE_FLAG_USE_SCANLINE_COUNTER;
- 
- 	if (drm_WARN_ON(display->drm, !mode->crtc_clock)) {
-@@ -602,14 +601,15 @@ void intel_vblank_evade_init(const struct intel_crtc_state *old_crtc_state,
- 			     const struct intel_crtc_state *new_crtc_state,
- 			     struct intel_vblank_evade_ctx *evade)
- {
-+	struct intel_display *display = to_intel_display(new_crtc_state);
- 	struct intel_crtc *crtc = to_intel_crtc(new_crtc_state->uapi.crtc);
--	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
- 	const struct intel_crtc_state *crtc_state;
- 	const struct drm_display_mode *adjusted_mode;
- 
- 	evade->crtc = crtc;
- 
--	evade->need_vlv_dsi_wa = (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915)) &&
-+	evade->need_vlv_dsi_wa = (display->platform.valleyview ||
-+				  display->platform.cherryview) &&
- 		intel_crtc_has_type(new_crtc_state, INTEL_OUTPUT_DSI);
- 
- 	/*
+drm-misc-fixes-2024-10-24:
+Short summary of fixes pull:
+
+bridge:
+- aux: Fix assignment of OF node
+- tc358767: Add missing of_node_put() in error path
+The following changes since commit 83f000784844cb9d4669ef1a3366479db3197b33:
+
+  Merge tag 'drm-xe-fixes-2024-10-17' of https://gitlab.freedesktop.org/drm/xe/kernel into drm-fixes (2024-10-18 13:53:41 +1000)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2024-10-24
+
+for you to fetch changes up to 5c23878252515b8d2b86839bd4cb7dea7088aacd:
+
+  drm/bridge: tc358767: fix missing of_node_put() in for_each_endpoint_of_node() (2024-10-21 15:00:35 +0200)
+
+----------------------------------------------------------------
+Short summary of fixes pull:
+
+bridge:
+- aux: Fix assignment of OF node
+- tc358767: Add missing of_node_put() in error path
+
+----------------------------------------------------------------
+Abel Vesa (1):
+      drm/bridge: Fix assignment of the of_node of the parent to aux bridge
+
+Javier Carrasco (1):
+      drm/bridge: tc358767: fix missing of_node_put() in for_each_endpoint_of_node()
+
+ drivers/gpu/drm/bridge/aux-bridge.c | 3 ++-
+ drivers/gpu/drm/bridge/tc358767.c   | 1 +
+ 2 files changed, 3 insertions(+), 1 deletion(-)
+
 -- 
-2.39.5
-
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
