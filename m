@@ -2,57 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FB8C9AE268
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Oct 2024 12:22:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A5A5D9AE26B
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Oct 2024 12:23:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F25D10E8EE;
-	Thu, 24 Oct 2024 10:22:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA0F610E8F1;
+	Thu, 24 Oct 2024 10:23:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mk+oeYuR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IBvbfaq0";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C4F5010E8EE
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Oct 2024 10:22:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1EC0610E8F2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 24 Oct 2024 10:23:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729765374; x=1761301374;
+ t=1729765387; x=1761301387;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=C0na7BW6kCz6BOr18zHkuy0bZnOTA97IcrruA8JtYoY=;
- b=mk+oeYuRdhrePhHa2AkIcXILoCmrxuftiAI2eRyz5WNVfeziEOd3LExQ
- XAUfKDyFwjKB/7xPEdYMT79zaD8fXw6swL+OyQVGuPapq2btIe4Kyf0AK
- 09vzKrEa7A9ul/O+VDAQ1pd62wACv3u/avASNRIDUtiedotzn67PBNpd8
- 7CMbR0t/MGtHg57v40ROidTZJbrW+XFykZcR1k9ABghCX9BC539S+enHN
- uinEh/AhmUzN50cGNEJkVp8ZmCbdSL0375QJ0IRBXOTo2mRy1NPxz1/3B
- 1bSEbhQHoWWQEAO3BGozJGeAvaib/ENYNULRoE3ks5+d34cNyZc9/OI/U w==;
-X-CSE-ConnectionGUID: tFW9/SFjQG2TAZPqp1mZfQ==
-X-CSE-MsgGUID: R8J/jrAnSeCWMrVlt1pxfQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11234"; a="46877755"
-X-IronPort-AV: E=Sophos;i="6.11,228,1725346800"; d="scan'208";a="46877755"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2024 03:22:53 -0700
-X-CSE-ConnectionGUID: PRVBMROoTfytyCkd/WbBrw==
-X-CSE-MsgGUID: 3HpW/I7aRvyPqUhG3RZvVw==
+ bh=liprMZVwKMQfjSPC5GhBzWHS/tnG7yOTL984IZXW6+w=;
+ b=IBvbfaq0gb1zqAc/o8i/u+ei2f7l+8ka1tGK5rvKSGhqrST5tJH0NM5d
+ CbZD8yEvPj1W+eEHbDsxiapJNgCDrGzIHKkX1R+eWGEnJdv7lzvUxc9i8
+ 2IQFd4Uw7xx69pGCpta62UmcukDF/sORZvRBzSxaVmH/DdNbAJYQI7Bln
+ I48C6s3tRcpzwsz9HFH2kInw7Lx+SaZsVfAbbmgTfnYDCDCZ0cMlZNKie
+ fqn856YRQSENxA7CKO7OLkO96LwguJAOxRyuA3ak3KWczIRXl+1sJ8f6N
+ lNbSd4EVdxN2W2bKNRLHTVrMZ7psVy+zIQEb6Cpdf6l3B40yY2QWWLoON w==;
+X-CSE-ConnectionGUID: DF7j0ai5SY2Y/ed9Tm5YTw==
+X-CSE-MsgGUID: 9Ho/BExKTq28FXijrwdEVQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11234"; a="29492381"
+X-IronPort-AV: E=Sophos;i="6.11,228,1725346800"; d="scan'208";a="29492381"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2024 03:23:07 -0700
+X-CSE-ConnectionGUID: iv3T8kZQQEW+L/vxGFTVAA==
+X-CSE-MsgGUID: H0WHzX+bSXe5dc9iDDo0xA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,228,1725346800"; d="scan'208";a="103868607"
+X-IronPort-AV: E=Sophos;i="6.11,228,1725346800"; d="scan'208";a="80132946"
 Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.151])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2024 03:22:52 -0700
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2024 03:23:05 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>, Lucas De Marchi
  <lucas.demarchi@intel.com>
-Subject: Re: [PATCH topic/core-for-CI 1/2] Revert "HAX suspend: Disable
- S3/S4 for fi-bdw-samus"
-In-Reply-To: <20241023211834.3370346-1-lucas.demarchi@intel.com>
+Subject: Re: [PATCH topic/core-for-CI 2/2] Revert "HAX sound: Disable
+ probing snd_hda with DG1"
+In-Reply-To: <20241023211834.3370346-2-lucas.demarchi@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20241023211834.3370346-1-lucas.demarchi@intel.com>
-Date: Thu, 24 Oct 2024 13:22:48 +0300
-Message-ID: <87ttd1ssuf.fsf@intel.com>
+ <20241023211834.3370346-2-lucas.demarchi@intel.com>
+Date: Thu, 24 Oct 2024 13:23:01 +0300
+Message-ID: <87r085ssu2.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -71,67 +72,77 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Wed, 23 Oct 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> This reverts commit efeb42fe3b7c58abbe674515252cfdb71c09eba5.
+> This reverts commit 852510ccd334063bec2c2c3e5a61a071599ac015.
 >
-> That machine is not in CI anymore, let's drop the hack.
+> This should be solved already since commit e6d0c13e9f46 ("ALSA: hda:
+> i915: Remove extra argument from snd_hdac_i915_init").
+>
+> We can try to drop it and see if anything explodes on dg1 land.
 >
 > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
 Acked-by: Jani Nikula <jani.nikula@intel.com>
 
 > ---
->  drivers/acpi/sleep.c | 20 --------------------
->  1 file changed, 20 deletions(-)
+>  sound/hda/hdac_i915.c     | 23 -----------------------
+>  sound/pci/hda/hda_intel.c |  3 +++
+>  2 files changed, 3 insertions(+), 23 deletions(-)
 >
-> diff --git a/drivers/acpi/sleep.c b/drivers/acpi/sleep.c
-> index 4272cbc71ae89..c8ee8e42b0f64 100644
-> --- a/drivers/acpi/sleep.c
-> +++ b/drivers/acpi/sleep.c
-> @@ -84,16 +84,11 @@ static int acpi_sleep_prepare(u32 acpi_state)
->  	return 0;
+> diff --git a/sound/hda/hdac_i915.c b/sound/hda/hdac_i915.c
+> index a214636ed9757..e9425213320ea 100644
+> --- a/sound/hda/hdac_i915.c
+> +++ b/sound/hda/hdac_i915.c
+> @@ -170,26 +170,6 @@ static int i915_gfx_present(struct pci_dev *hdac_pci)
+>  	return false;
 >  }
 >  
-> -static u8 max_sleep_state = -1;
-> -
->  bool acpi_sleep_state_supported(u8 sleep_state)
->  {
->  	acpi_status status;
->  	u8 type_a, type_b;
->  
-> -	if (sleep_state > max_sleep_state)
-> -		return false;
-> -
->  	status = acpi_get_sleep_type_data(sleep_state, &type_a, &type_b);
->  	return ACPI_SUCCESS(status) && (!acpi_gbl_reduced_hardware
->  		|| (acpi_gbl_FADT.sleep_control.address
-> @@ -170,13 +165,6 @@ static int __init init_nvs_nosave(const struct dmi_system_id *d)
->  	return 0;
->  }
->  
-> -static int __init init_nosleep(const struct dmi_system_id *d)
+> -static bool dg1_gfx_present(void)
 > -{
-> -	pr_info("Disabling ACPI suspend\n");
-> -	max_sleep_state = 0;
-> -	return 0;
+> -	static const struct pci_device_id ids[] = {
+> -		{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x4905),
+> -		  .class = PCI_BASE_CLASS_DISPLAY << 16,
+> -		  .class_mask = 0xff << 16 },
+> -		{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x4906),
+> -		  .class = PCI_BASE_CLASS_DISPLAY << 16,
+> -		  .class_mask = 0xff << 16 },
+> -		{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x4907),
+> -		  .class = PCI_BASE_CLASS_DISPLAY << 16,
+> -		  .class_mask = 0xff << 16 },
+> -		{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, 0x4908),
+> -		  .class = PCI_BASE_CLASS_DISPLAY << 16,
+> -		  .class_mask = 0xff << 16 },
+> -		{}
+> -	};
+> -	return pci_dev_present(ids);
 > -}
 > -
->  bool acpi_sleep_default_s3;
+>  /**
+>   * snd_hdac_i915_init - Initialize i915 audio component
+>   * @bus: HDA core bus
+> @@ -210,9 +190,6 @@ int snd_hdac_i915_init(struct hdac_bus *bus)
+>  	if (!i915_gfx_present(to_pci_dev(bus->dev)))
+>  		return -ENODEV;
 >  
->  static int __init init_default_s3(const struct dmi_system_id *d)
-> @@ -411,14 +399,6 @@ static const struct dmi_system_id acpisleep_dmi_table[] __initconst = {
->  		DMI_MATCH(DMI_PRODUCT_NAME, "20GGA00L00"),
->  		},
->  	},
-> -	{
-> -	.callback = init_nosleep,
-> -	.ident = "samus",
-> -	.matches = {
-> -		DMI_MATCH(DMI_SYS_VENDOR, "GOOGLE"),
-> -		DMI_MATCH(DMI_PRODUCT_NAME, "Samus"),
-> -		},
-> -	},
->  	{},
->  };
+> -	if (dg1_gfx_present())
+> -		return -ENODEV;
+> -
+>  	err = snd_hdac_acomp_init(bus, NULL,
+>  				  i915_component_master_match,
+>  				  sizeof(struct i915_audio_component) - sizeof(*acomp));
+> diff --git a/sound/pci/hda/hda_intel.c b/sound/pci/hda/hda_intel.c
+> index 282e87cc2166b..b4540c5cd2a6f 100644
+> --- a/sound/pci/hda/hda_intel.c
+> +++ b/sound/pci/hda/hda_intel.c
+> @@ -2143,6 +2143,9 @@ static int azx_probe(struct pci_dev *pci,
+>  			 * codecs can be on the same link.
+>  			 */
+>  			if (HDA_CONTROLLER_IN_GPU(pci)) {
+> +				dev_err_probe(card->dev, err,
+> +					     "HSW/BDW HD-audio HDMI/DP requires binding with gfx driver\n");
+> +
+>  				goto out_free;
+>  			} else {
+>  				/* don't bother any longer */
 
 -- 
 Jani Nikula, Intel
