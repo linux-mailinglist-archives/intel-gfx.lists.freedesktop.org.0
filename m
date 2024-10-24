@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9E2C9AE4D6
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Oct 2024 14:34:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 124139AE4E0
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Oct 2024 14:34:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 716DA10E925;
-	Thu, 24 Oct 2024 12:34:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8CFC010E923;
+	Thu, 24 Oct 2024 12:34:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lFtGhy7M";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X5cJiNQc";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F3CA10E91F;
- Thu, 24 Oct 2024 12:34:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32A7C10E91B;
+ Thu, 24 Oct 2024 12:34:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729773283; x=1761309283;
+ t=1729773289; x=1761309289;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=9MZZFowaO770CPb6uEJDp2hFvZDBQxuxOwi63S++VVk=;
- b=lFtGhy7MdH2LlaOIzv9jMXbPUbbTGuu+RgQDiDV94I/zUGMYt9zhHAzo
- sB/OgNiQbb2iqYgSwhWe02DxHV4PABI7my4yOboui8ffDYa9StoDmVp/Y
- T/u9xh85e12FDwZguzhaagxU0nNrQcsLiVwPIbX/m8mjo5qbXwEUg6CNh
- fD8ew7tadv7OyeBCNeGDeJxpy0d1SQINtIFXW6e9cikMvCvC/nSztPntd
- KK1SV0RE22+GoiN3lj/bNqr/W3F/c+0U0ViFPTW5dYzcl47TmLqneo5tc
- DxG/Lg++xWmwfIhIS/LjJlXSM59h3nwwwWKxhtBKkl1I+Bsf5QOwa2TCn Q==;
-X-CSE-ConnectionGUID: XB7gADHBSCSl2h3y/8D/MQ==
-X-CSE-MsgGUID: 8u3nB9XNR0Sys6X3wwNOpg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="29327878"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="29327878"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2024 05:34:43 -0700
-X-CSE-ConnectionGUID: 1qqcRJE3SJ2i9b6XR1U+eQ==
-X-CSE-MsgGUID: lGfCcns2RXeNuCYJDRrqIA==
+ bh=xH/0CO2Kj/cyNxDbIFkZsyHmHYkwVJcRl+LJTS/Jj6A=;
+ b=X5cJiNQcdlaLIvu/fCHiMaYaJKSkY34QrdK4CL7t4FwC8DqfIvzNSJE5
+ OZx911UNLmUFr+A3PKIXSEYLkGipHtRQX0ofrcJs2Oi57VKYO/i4rXp17
+ vsJ76WtgawqHPsuSizXW+eIAdbXGGCdDh67cihN3SzgCzHvLiDzk84HLY
+ 3CxA2gB5yKNRUorzW31ppLvdzZgxu0I+YfC4r9wX+Uphha+uNWuMB6MPz
+ 4Jvz5G/c83rmHhz9/UJcI7BkyIPYsMWUqMcMNus1nRoNhY9m9eM1NJBof
+ idlLZY8nVILBWxcekSoMVc9/2pg4/hBf5xxpifS/gDvx24/csJLLgyKDR A==;
+X-CSE-ConnectionGUID: HVTLCVzWRUyBtznQXe4mXw==
+X-CSE-MsgGUID: YRwzYN1nQ8e2WjbZrNLcxA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="51942960"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="51942960"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2024 05:34:48 -0700
+X-CSE-ConnectionGUID: ZJAoz2MgQ4uOTcr2b40Htw==
+X-CSE-MsgGUID: 3X5/QC3lQuGG56dYGBBxPQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,229,1725346800"; d="scan'208";a="80494865"
+X-IronPort-AV: E=Sophos;i="6.11,229,1725346800"; d="scan'208";a="81001084"
 Received: from unknown (HELO localhost) ([10.237.66.160])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2024 05:34:41 -0700
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2024 05:34:47 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, rodrigo.vivi@intel.com, lucas.demarchi@intel.com,
  maarten.lankhorst@linux.intel.com
-Subject: [CI v4 v4 11/16] drm/i915/bios: use display->platform.<platform>
+Subject: [CI v4 v4 12/16] drm/i915/pps: use display->platform.<platform>
  instead of IS_<PLATFORM>()
-Date: Thu, 24 Oct 2024 15:33:37 +0300
-Message-Id: <d9c654caa28e917871119dac7669a42168a8f7a8.1729773149.git.jani.nikula@intel.com>
+Date: Thu, 24 Oct 2024 15:33:38 +0300
+Message-Id: <fb6e58e6cddd28b9ea5e5ceda9df0fa534b237de.1729773149.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1729773149.git.jani.nikula@intel.com>
 References: <cover.1729773149.git.jani.nikula@intel.com>
@@ -77,176 +77,211 @@ platform identification in display code.
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bios.c | 40 +++++++++--------------
- 1 file changed, 15 insertions(+), 25 deletions(-)
+ drivers/gpu/drm/i915/display/intel_pps.c | 47 ++++++++++--------------
+ 1 file changed, 20 insertions(+), 27 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index 9967b65e3cf6..ef3fc831ac88 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -1169,7 +1169,6 @@ static int intel_bios_ssc_frequency(struct intel_display *display,
- static void
- parse_general_features(struct intel_display *display)
+diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
+index ffeee9daa568..4bb7461e4616 100644
+--- a/drivers/gpu/drm/i915/display/intel_pps.c
++++ b/drivers/gpu/drm/i915/display/intel_pps.c
+@@ -29,10 +29,9 @@ static void pps_init_registers(struct intel_dp *intel_dp, bool force_disable_vdd
+ static const char *pps_name(struct intel_dp *intel_dp)
  {
+ 	struct intel_display *display = to_intel_display(intel_dp);
 -	struct drm_i915_private *i915 = to_i915(display->drm);
- 	const struct bdb_general_features *general;
+ 	struct intel_pps *pps = &intel_dp->pps;
  
- 	general = bdb_find_section(display, BDB_GENERAL_FEATURES);
-@@ -1179,7 +1178,7 @@ parse_general_features(struct intel_display *display)
- 	display->vbt.int_tv_support = general->int_tv_support;
- 	/* int_crt_support can't be trusted on earlier platforms */
- 	if (display->vbt.version >= 155 &&
--	    (HAS_DDI(display) || IS_VALLEYVIEW(i915)))
-+	    (HAS_DDI(display) || display->platform.valleyview))
- 		display->vbt.int_crt_support = general->int_crt_support;
- 	display->vbt.lvds_use_ssc = general->enable_ssc;
- 	display->vbt.lvds_ssc_freq =
-@@ -1542,7 +1541,6 @@ static void
- parse_psr(struct intel_display *display,
- 	  struct intel_panel *panel)
- {
--	struct drm_i915_private *i915 = to_i915(display->drm);
- 	const struct bdb_psr *psr;
- 	const struct psr_table *psr_table;
- 	int panel_type = panel->vbt.panel_type;
-@@ -1567,7 +1565,7 @@ parse_psr(struct intel_display *display,
- 	 * Old decimal value is wake up time in multiples of 100 us.
+-	if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915)) {
++	if (display->platform.valleyview || display->platform.cherryview) {
+ 		switch (pps->vlv_pps_pipe) {
+ 		case INVALID_PIPE:
+ 			/*
+@@ -122,7 +121,7 @@ vlv_power_sequencer_kick(struct intel_dp *intel_dp)
+ 	DP |= DP_PORT_WIDTH(1);
+ 	DP |= DP_LINK_TRAIN_PAT_1;
+ 
+-	if (IS_CHERRYVIEW(dev_priv))
++	if (display->platform.cherryview)
+ 		DP |= DP_PIPE_SEL_CHV(pipe);
+ 	else
+ 		DP |= DP_PIPE_SEL(pipe);
+@@ -134,7 +133,7 @@ vlv_power_sequencer_kick(struct intel_dp *intel_dp)
+ 	 * So enable temporarily it if it's not already enabled.
  	 */
- 	if (display->vbt.version >= 205 &&
--	    (DISPLAY_VER(display) >= 9 && !IS_BROXTON(i915))) {
-+	    (DISPLAY_VER(display) >= 9 && !display->platform.broxton)) {
- 		switch (psr_table->tp1_wakeup_time) {
- 		case 0:
- 			panel->vbt.psr.tp1_wakeup_time_us = 500;
-@@ -2029,11 +2027,9 @@ static void icl_fixup_mipi_sequences(struct intel_display *display,
- static void fixup_mipi_sequences(struct intel_display *display,
- 				 struct intel_panel *panel)
- {
--	struct drm_i915_private *i915 = to_i915(display->drm);
--
- 	if (DISPLAY_VER(display) >= 11)
- 		icl_fixup_mipi_sequences(display, panel);
--	else if (IS_VALLEYVIEW(i915))
-+	else if (display->platform.valleyview)
- 		vlv_fixup_mipi_sequences(display, panel);
- }
+ 	if (!pll_enabled) {
+-		release_cl_override = IS_CHERRYVIEW(dev_priv) &&
++		release_cl_override = display->platform.cherryview &&
+ 			!chv_phy_powergate_ch(dev_priv, phy, ch, true);
  
-@@ -2243,15 +2239,15 @@ static u8 map_ddc_pin(struct intel_display *display, u8 vbt_pin)
- 	const u8 *ddc_pin_map;
- 	int i, n_entries;
- 
--	if (INTEL_PCH_TYPE(i915) >= PCH_MTL || IS_ALDERLAKE_P(i915)) {
-+	if (INTEL_PCH_TYPE(i915) >= PCH_MTL || display->platform.alderlake_p) {
- 		ddc_pin_map = adlp_ddc_pin_map;
- 		n_entries = ARRAY_SIZE(adlp_ddc_pin_map);
--	} else if (IS_ALDERLAKE_S(i915)) {
-+	} else if (display->platform.alderlake_s) {
- 		ddc_pin_map = adls_ddc_pin_map;
- 		n_entries = ARRAY_SIZE(adls_ddc_pin_map);
- 	} else if (INTEL_PCH_TYPE(i915) >= PCH_DG1) {
- 		return vbt_pin;
--	} else if (IS_ROCKETLAKE(i915) && INTEL_PCH_TYPE(i915) == PCH_TGP) {
-+	} else if (display->platform.rocketlake && INTEL_PCH_TYPE(i915) == PCH_TGP) {
- 		ddc_pin_map = rkl_pch_tgp_ddc_pin_map;
- 		n_entries = ARRAY_SIZE(rkl_pch_tgp_ddc_pin_map);
- 	} else if (HAS_PCH_TGP(i915) && DISPLAY_VER(display) == 9) {
-@@ -2334,7 +2330,6 @@ static enum port __dvo_port_to_port(int n_ports, int n_dvo,
- static enum port dvo_port_to_port(struct intel_display *display,
- 				  u8 dvo_port)
+ 		if (vlv_force_pll_on(dev_priv, pipe, vlv_get_dpll(dev_priv))) {
+@@ -356,10 +355,10 @@ static int intel_num_pps(struct intel_display *display)
  {
--	struct drm_i915_private *i915 = to_i915(display->drm);
- 	/*
- 	 * Each DDI port can have more than one value on the "DVO Port" field,
- 	 * so look for all the possible values for each port.
-@@ -2391,12 +2386,12 @@ static enum port dvo_port_to_port(struct intel_display *display,
- 					  ARRAY_SIZE(xelpd_port_mapping[0]),
- 					  xelpd_port_mapping,
- 					  dvo_port);
--	else if (IS_ALDERLAKE_S(i915))
-+	else if (display->platform.alderlake_s)
- 		return __dvo_port_to_port(ARRAY_SIZE(adls_port_mapping),
- 					  ARRAY_SIZE(adls_port_mapping[0]),
- 					  adls_port_mapping,
- 					  dvo_port);
--	else if (IS_DG1(i915) || IS_ROCKETLAKE(i915))
-+	else if (display->platform.dg1 || display->platform.rocketlake)
- 		return __dvo_port_to_port(ARRAY_SIZE(rkl_port_mapping),
- 					  ARRAY_SIZE(rkl_port_mapping[0]),
- 					  rkl_port_mapping,
-@@ -2519,7 +2514,6 @@ static void sanitize_hdmi_level_shift(struct intel_bios_encoder_data *devdata,
- 				      enum port port)
- {
- 	struct intel_display *display = devdata->display;
--	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	struct drm_i915_private *i915 = to_i915(display->drm);
  
- 	if (!intel_bios_encoder_supports_dvi(devdata))
+-	if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915))
++	if (display->platform.valleyview || display->platform.cherryview)
+ 		return 2;
+ 
+-	if (IS_GEMINILAKE(i915) || IS_BROXTON(i915))
++	if (display->platform.geminilake || display->platform.broxton)
+ 		return 2;
+ 
+ 	if (INTEL_PCH_TYPE(i915) >= PCH_MTL)
+@@ -406,11 +405,10 @@ pps_initial_setup(struct intel_dp *intel_dp)
+ 	struct intel_display *display = to_intel_display(intel_dp);
+ 	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
+ 	struct intel_connector *connector = intel_dp->attached_connector;
+-	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+ 
+ 	lockdep_assert_held(&display->pps.mutex);
+ 
+-	if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915)) {
++	if (display->platform.valleyview || display->platform.cherryview) {
+ 		vlv_initial_power_sequencer_setup(intel_dp);
+ 		return true;
+ 	}
+@@ -509,9 +507,9 @@ static void intel_pps_get_registers(struct intel_dp *intel_dp,
+ 
+ 	memset(regs, 0, sizeof(*regs));
+ 
+-	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
++	if (display->platform.valleyview || display->platform.cherryview)
+ 		pps_idx = vlv_power_sequencer_pipe(intel_dp);
+-	else if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv))
++	else if (display->platform.geminilake || display->platform.broxton)
+ 		pps_idx = bxt_power_sequencer_idx(intel_dp);
+ 	else
+ 		pps_idx = intel_dp->pps.pps_idx;
+@@ -522,7 +520,7 @@ static void intel_pps_get_registers(struct intel_dp *intel_dp,
+ 	regs->pp_off = PP_OFF_DELAYS(display, pps_idx);
+ 
+ 	/* Cycle delay moved from PP_DIVISOR to PP_CONTROL */
+-	if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv) ||
++	if (display->platform.geminilake || display->platform.broxton ||
+ 	    INTEL_PCH_TYPE(dev_priv) >= PCH_CNP)
+ 		regs->pp_div = INVALID_MMIO_REG;
+ 	else
+@@ -552,11 +550,10 @@ _pp_stat_reg(struct intel_dp *intel_dp)
+ static bool edp_have_panel_power(struct intel_dp *intel_dp)
+ {
+ 	struct intel_display *display = to_intel_display(intel_dp);
+-	struct drm_i915_private *dev_priv = to_i915(display->drm);
+ 
+ 	lockdep_assert_held(&display->pps.mutex);
+ 
+-	if ((IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) &&
++	if ((display->platform.valleyview || display->platform.cherryview) &&
+ 	    intel_dp->pps.vlv_pps_pipe == INVALID_PIPE)
+ 		return false;
+ 
+@@ -566,11 +563,10 @@ static bool edp_have_panel_power(struct intel_dp *intel_dp)
+ static bool edp_have_panel_vdd(struct intel_dp *intel_dp)
+ {
+ 	struct intel_display *display = to_intel_display(intel_dp);
+-	struct drm_i915_private *dev_priv = to_i915(display->drm);
+ 
+ 	lockdep_assert_held(&display->pps.mutex);
+ 
+-	if ((IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) &&
++	if ((display->platform.valleyview || display->platform.cherryview) &&
+ 	    intel_dp->pps.vlv_pps_pipe == INVALID_PIPE)
+ 		return false;
+ 
+@@ -953,7 +949,6 @@ void intel_pps_vdd_off_unlocked(struct intel_dp *intel_dp, bool sync)
+ void intel_pps_on_unlocked(struct intel_dp *intel_dp)
+ {
+ 	struct intel_display *display = to_intel_display(intel_dp);
+-	struct drm_i915_private *dev_priv = to_i915(display->drm);
+ 	u32 pp;
+ 	i915_reg_t pp_ctrl_reg;
+ 
+@@ -978,7 +973,7 @@ void intel_pps_on_unlocked(struct intel_dp *intel_dp)
+ 
+ 	pp_ctrl_reg = _pp_ctrl_reg(intel_dp);
+ 	pp = ilk_get_pp_control(intel_dp);
+-	if (IS_IRONLAKE(dev_priv)) {
++	if (display->platform.ironlake) {
+ 		/* ILK workaround: disable reset around power sequence */
+ 		pp &= ~PANEL_POWER_RESET;
+ 		intel_de_write(display, pp_ctrl_reg, pp);
+@@ -994,7 +989,7 @@ void intel_pps_on_unlocked(struct intel_dp *intel_dp)
+ 			     0, PCH_DPLSUNIT_CLOCK_GATE_DISABLE);
+ 
+ 	pp |= PANEL_POWER_ON;
+-	if (!IS_IRONLAKE(dev_priv))
++	if (!display->platform.ironlake)
+ 		pp |= PANEL_POWER_RESET;
+ 
+ 	intel_de_write(display, pp_ctrl_reg, pp);
+@@ -1007,7 +1002,7 @@ void intel_pps_on_unlocked(struct intel_dp *intel_dp)
+ 		intel_de_rmw(display, SOUTH_DSPCLK_GATE_D,
+ 			     PCH_DPLSUNIT_CLOCK_GATE_DISABLE, 0);
+ 
+-	if (IS_IRONLAKE(dev_priv)) {
++	if (display->platform.ironlake) {
+ 		pp |= PANEL_POWER_RESET; /* restore panel reset bit */
+ 		intel_de_write(display, pp_ctrl_reg, pp);
+ 		intel_de_posting_read(display, pp_ctrl_reg);
+@@ -1627,7 +1622,7 @@ static void pps_init_registers(struct intel_dp *intel_dp, bool force_disable_vdd
+ 
+ 	/* Haswell doesn't have any port selection bits for the panel
+ 	 * power sequencer any more. */
+-	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) {
++	if (display->platform.valleyview || display->platform.cherryview) {
+ 		port_sel = PANEL_PORT_SELECT_VLV(port);
+ 	} else if (HAS_PCH_IBX(dev_priv) || HAS_PCH_CPT(dev_priv)) {
+ 		switch (port) {
+@@ -1674,7 +1669,6 @@ static void pps_init_registers(struct intel_dp *intel_dp, bool force_disable_vdd
+ void intel_pps_encoder_reset(struct intel_dp *intel_dp)
+ {
+ 	struct intel_display *display = to_intel_display(intel_dp);
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	intel_wakeref_t wakeref;
+ 
+ 	if (!intel_dp_is_edp(intel_dp))
+@@ -1685,7 +1679,7 @@ void intel_pps_encoder_reset(struct intel_dp *intel_dp)
+ 		 * Reinit the power sequencer also on the resume path, in case
+ 		 * BIOS did something nasty with it.
+ 		 */
+-		if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915))
++		if (display->platform.valleyview || display->platform.cherryview)
+ 			vlv_initial_power_sequencer_setup(intel_dp);
+ 
+ 		pps_init_delays(intel_dp);
+@@ -1721,11 +1715,10 @@ bool intel_pps_init(struct intel_dp *intel_dp)
+ static void pps_init_late(struct intel_dp *intel_dp)
+ {
+ 	struct intel_display *display = to_intel_display(intel_dp);
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+ 	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
+ 	struct intel_connector *connector = intel_dp->attached_connector;
+ 
+-	if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915))
++	if (display->platform.valleyview || display->platform.cherryview)
  		return;
-@@ -2529,7 +2523,7 @@ static void sanitize_hdmi_level_shift(struct intel_bios_encoder_data *devdata,
- 	 * with a HSW VBT where the level shifter value goes
- 	 * up to 11, whereas the BDW max is 9.
- 	 */
--	if (IS_BROADWELL(i915) && devdata->child.hdmi_level_shifter_value > 9) {
-+	if (display->platform.broadwell && devdata->child.hdmi_level_shifter_value > 9) {
- 		drm_dbg_kms(display->drm,
- 			    "Bogus port %c VBT HDMI level shift %d, adjusting to %d\n",
- 			    port_name(port), devdata->child.hdmi_level_shifter_value, 9);
-@@ -2618,14 +2612,13 @@ int intel_bios_hdmi_max_tmds_clock(const struct intel_bios_encoder_data *devdata
  
- static bool is_port_valid(struct intel_display *display, enum port port)
+ 	if (intel_num_pps(display) < 2)
+@@ -1783,9 +1776,9 @@ void intel_pps_setup(struct intel_display *display)
  {
--	struct drm_i915_private *i915 = to_i915(display->drm);
- 	/*
- 	 * On some ICL SKUs port F is not present, but broken VBTs mark
- 	 * the port as present. Only try to initialize port F for the
- 	 * SKUs that may actually have it.
- 	 */
--	if (port == PORT_F && IS_ICELAKE(i915))
--		return IS_ICL_WITH_PORT_F(i915);
-+	if (port == PORT_F && display->platform.icelake)
-+		return display->platform.icelake_port_f;
+ 	struct drm_i915_private *i915 = to_i915(display->drm);
  
- 	return true;
- }
-@@ -2723,9 +2716,7 @@ static void parse_ddi_port(struct intel_bios_encoder_data *devdata)
- 
- static bool has_ddi_port_info(struct intel_display *display)
- {
--	struct drm_i915_private *i915 = to_i915(display->drm);
--
--	return DISPLAY_VER(display) >= 5 || IS_G4X(i915);
-+	return DISPLAY_VER(display) >= 5 || display->platform.g4x;
- }
- 
- static void parse_ddi_ports(struct intel_display *display)
-@@ -2907,7 +2898,7 @@ init_vbt_missing_defaults(struct intel_display *display)
- 	unsigned int ports = DISPLAY_RUNTIME_INFO(display)->port_mask;
- 	enum port port;
- 
--	if (!HAS_DDI(display) && !IS_CHERRYVIEW(i915))
-+	if (!HAS_DDI(display) && !display->platform.cherryview)
- 		return;
- 
- 	for_each_port_masked(port, ports) {
-@@ -3603,17 +3594,16 @@ static const u8 direct_aux_ch_map[] = {
- 
- static enum aux_ch map_aux_ch(struct intel_display *display, u8 aux_channel)
- {
--	struct drm_i915_private *i915 = to_i915(display->drm);
- 	const u8 *aux_ch_map;
- 	int i, n_entries;
- 
- 	if (DISPLAY_VER(display) >= 13) {
- 		aux_ch_map = adlp_aux_ch_map;
- 		n_entries = ARRAY_SIZE(adlp_aux_ch_map);
--	} else if (IS_ALDERLAKE_S(i915)) {
-+	} else if (display->platform.alderlake_s) {
- 		aux_ch_map = adls_aux_ch_map;
- 		n_entries = ARRAY_SIZE(adls_aux_ch_map);
--	} else if (IS_DG1(i915) || IS_ROCKETLAKE(i915)) {
-+	} else if (display->platform.dg1 || display->platform.rocketlake) {
- 		aux_ch_map = rkl_aux_ch_map;
- 		n_entries = ARRAY_SIZE(rkl_aux_ch_map);
- 	} else {
+-	if (HAS_PCH_SPLIT(i915) || IS_GEMINILAKE(i915) || IS_BROXTON(i915))
++	if (HAS_PCH_SPLIT(i915) || display->platform.geminilake || display->platform.broxton)
+ 		display->pps.mmio_base = PCH_PPS_BASE;
+-	else if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915))
++	else if (display->platform.valleyview || display->platform.cherryview)
+ 		display->pps.mmio_base = VLV_PPS_BASE;
+ 	else
+ 		display->pps.mmio_base = PPS_BASE;
+@@ -1857,7 +1850,7 @@ void assert_pps_unlocked(struct intel_display *display, enum pipe pipe)
+ 			MISSING_CASE(port_sel);
+ 			break;
+ 		}
+-	} else if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) {
++	} else if (display->platform.valleyview || display->platform.cherryview) {
+ 		/* presumably write lock depends on pipe, not port select */
+ 		pp_reg = PP_CONTROL(display, pipe);
+ 		panel_pipe = pipe;
 -- 
 2.39.5
 
