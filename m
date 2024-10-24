@@ -2,57 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27A679AECB3
-	for <lists+intel-gfx@lfdr.de>; Thu, 24 Oct 2024 18:54:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FBFB9AED0E
+	for <lists+intel-gfx@lfdr.de>; Thu, 24 Oct 2024 19:03:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68D7010E3A1;
-	Thu, 24 Oct 2024 16:54:12 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GCl4gGHk";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 89AAA10E3A3;
+	Thu, 24 Oct 2024 17:03:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79FAA10E39A
- for <intel-gfx@lists.freedesktop.org>; Thu, 24 Oct 2024 16:54:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729788851; x=1761324851;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=UoD335vQuJopzDflZbN0/dkdYK9YnYzyRwyW5Erib0A=;
- b=GCl4gGHkxy7lb1KMyA8gj9iEMSafHZ24iYwDxiypmPnUrvR13YUEgn03
- cmRcE1J8AwQ1urENq7mKUGICHXtvMPDGKNPcS0Q4asVhSYQDx2G8SY1B2
- qHDEEKQiLbPSVIOA5s66kfit75Ujp9rBpzbxslYPgRtVDwcOjtyfB7Iop
- qpzScNZ0r4iHXzr1JOoMdt0C/jQn/PviDDHXrH0BM+ZWTvPEumQgwUJ6l
- LOXukB6Rh8dV5c8nnTok+NCH/gkCtKTstYg1o07g586HS9jgdK4u0IBoV
- FOSJld09O3C5rMpKh/hKIocTHAX5Xd4Qc89GNL5g1qi2rUMIvD8aBEAYu g==;
-X-CSE-ConnectionGUID: H9Wpc8gmQUuE4Pyb/LMR8Q==
-X-CSE-MsgGUID: Yvyf9mKLQvWi2mqDGd2h3w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11235"; a="40048010"
-X-IronPort-AV: E=Sophos;i="6.11,229,1725346800"; d="scan'208";a="40048010"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2024 09:54:11 -0700
-X-CSE-ConnectionGUID: gsA+iFPwQ8OvAEQsCzBwrw==
-X-CSE-MsgGUID: n2mwzcBiSsiKtpwIempTeg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,229,1725346800"; d="scan'208";a="80757463"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 24 Oct 2024 09:54:09 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 24 Oct 2024 19:54:08 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 4/4] drm/i915/color: Make color .get_config() mandatory
-Date: Thu, 24 Oct 2024 19:53:56 +0300
-Message-ID: <20241024165356.17756-5-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241024165356.17756-1-ville.syrjala@linux.intel.com>
-References: <20241024165356.17756-1-ville.syrjala@linux.intel.com>
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8107310E3A3;
+ Thu, 24 Oct 2024 17:03:43 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/display=3A_?=
+ =?utf-8?q?convert_I915=5FSTATE=5FWARN=28=29_to_struct_intel=5Fdisplay_=28re?=
+ =?utf-8?q?v2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 24 Oct 2024 17:03:43 -0000
+Message-ID: <172978942352.1327227.5798513546996683758@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241024162510.2410128-1-jani.nikula@intel.com>
+In-Reply-To: <20241024162510.2410128-1-jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,33 +38,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+== Series Details ==
 
-Every platforms implements the color .get_config() hook. Just
-make it mandatory.
+Series: drm/i915/display: convert I915_STATE_WARN() to struct intel_display (rev2)
+URL   : https://patchwork.freedesktop.org/series/140444/
+State : warning
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_color.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-index 40c1a770f6d9..174753625bca 100644
---- a/drivers/gpu/drm/i915/display/intel_color.c
-+++ b/drivers/gpu/drm/i915/display/intel_color.c
-@@ -2055,8 +2055,7 @@ void intel_color_get_config(struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
- 
--	if (display->funcs.color->get_config)
--		display->funcs.color->get_config(crtc_state);
-+	display->funcs.color->get_config(crtc_state);
- 
- 	display->funcs.color->read_luts(crtc_state);
- 
--- 
-2.45.2
+Error: dim checkpatch failed
+920b20070088 drm/i915/display: convert I915_STATE_WARN() to struct intel_display
+-:156: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#156: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:3401:
++			INTEL_DISPLAY_STATE_WARN(display, mpll_hw_state->mpllb[i] != mpll_sw_state->mpllb[i],
+
+-:167: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#167: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:3408:
++			INTEL_DISPLAY_STATE_WARN(display, mpll_hw_state->mplla[i] != mpll_sw_state->mplla[i],
+
+-:264: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__display' - possible side-effects?
+#264: FILE: drivers/gpu/drm/i915/display/intel_display.h:594:
++#define INTEL_DISPLAY_STATE_WARN(__display, condition, format...) ({	\
+ 	int __ret_warn_on = !!(condition);				\
+ 	if (unlikely(__ret_warn_on))					\
++		if (!drm_WARN((__display)->drm, (__display)->params.verbose_state_checks, format)) \
++			drm_err((__display)->drm, format);		\
+ 	unlikely(__ret_warn_on);					\
+ })
+
+-:349: WARNING:LONG_LINE: line length of 154 exceeds 100 columns
+#349: FILE: drivers/gpu/drm/i915/display/intel_display_power.c:1212:
++				 (intel_de_read(display, UTIL_PIN_CTL) & (UTIL_PIN_ENABLE | UTIL_PIN_MODE_MASK)) == (UTIL_PIN_ENABLE | UTIL_PIN_MODE_PWM),
+
+-:549: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#549: FILE: drivers/gpu/drm/i915/display/intel_dpll_mgr.c:4709:
++					 pll->info->name, pipe_name(crtc->pipe), pll->state.pipe_mask);
+
+-:576: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
+#576: FILE: drivers/gpu/drm/i915/display/intel_fdi.c:41:
++					  TRANS_DDI_FUNC_CTL(display, cpu_transcoder)) & TRANS_DDI_FUNC_ENABLE;
+
+-:914: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#914: FILE: drivers/gpu/drm/i915/display/intel_pch_display.c:89:
++				 intel_crt_port_enabled(dev_priv, PCH_ADPA, &port_pipe) && port_pipe == pipe,
+
+-:923: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
+#923: FILE: drivers/gpu/drm/i915/display/intel_pch_display.c:94:
++				 intel_lvds_port_enabled(dev_priv, PCH_LVDS, &port_pipe) && port_pipe == pipe,
+
+-:1033: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#1033: FILE: drivers/gpu/drm/i915/display/intel_snps_phy.c:2024:
++				 "[CRTC:%d:%s] mismatch in MPLLB: %s (expected 0x%08x, found 0x%08x)", \
+
+total: 0 errors, 8 warnings, 1 checks, 947 lines checked
+
 
