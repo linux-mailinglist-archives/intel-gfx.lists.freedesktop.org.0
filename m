@@ -2,63 +2,185 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEA729AFADC
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Oct 2024 09:18:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C8609AFAE7
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Oct 2024 09:24:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7FE2010EA0A;
-	Fri, 25 Oct 2024 07:18:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7533410EA0E;
+	Fri, 25 Oct 2024 07:24:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nzbguKaG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F325M16B";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A9DD10EA0A
- for <intel-gfx@lists.freedesktop.org>; Fri, 25 Oct 2024 07:18:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 674C210EA0B;
+ Fri, 25 Oct 2024 07:24:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729840732; x=1761376732;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to:content-transfer-encoding;
- bh=SA9Zm7bPfT6aAoRjLSl2cp+WtQImGGd7NAjQJJ4uamY=;
- b=nzbguKaGF4H/M+OUHW/uBJ8arZhs02psJxDNvpiL3drNOtXlPIxPvLKE
- iGAxhVDuMMz+zuXXBP6zhI6V+Ft6uALM45e2A9Mkt++REducA6Ydp+RAP
- 58LO+N/xsQ0QH7dJjQ0xSFDIKsXmLsuJAZTYJF1ROkf+YraYSZm4xVYal
- EJaHOUg/zpjkiPY8fDcvAJfw8lw/quMu5LSCOE6u+vvBtUV990CdumjSS
- omBFRIUhMkZ3an9ycFZaEN0yREZRP67KVLBxtG+tN4oXNe2rYnQHv+pFE
- 4swYI0wSUcHsRzzf4ilCuEhj58ZFE44INK0IPBBKAFYX1r6oe0f1RGnRi A==;
-X-CSE-ConnectionGUID: Z2pBTn2bRsex1pF0RAvLtg==
-X-CSE-MsgGUID: 4RYXxQgQTkC8hK1a08kJCg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="52055467"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="52055467"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2024 00:18:51 -0700
-X-CSE-ConnectionGUID: NGUMBPLqQxSZfvK6GZyoXg==
-X-CSE-MsgGUID: 4a9Cz/bsQK+a6j13Yauibw==
+ t=1729841095; x=1761377095;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=9E6Fa8+UgXvYxN2OF7TDzBuDk05KO6RsDl9ZrwlLSkg=;
+ b=F325M16BD1ePVFLOB8txYfr4wbYfViIzKcviQI0LffQxepMF7GEht1Rq
+ W3aQ8Lnr7aYcI9RCKLBERY3UzlVJLX9+hEaH7Ing5LEwrahfJjG3aEsdj
+ 58Em9PALAcZGhGROkzqPZNTIxubIY1rQaeDl9+b6/GQM/eo53pyO61Pzp
+ RofIFVkDLA+udyA8QDqZyDavpR3PLyZ5nGkFFtgNNlC64IKY3bWSS8g5i
+ LS9fQdxuOaLeu9vr7LGkEqn03+uvnNpZC/3IRrItLQ8AQ2nD8UR4QghJ5
+ viPieVejI9oAKWWfpC5be8wofZsxz6AHiXb++kqvnwMsBrh5rmpJjcIgD w==;
+X-CSE-ConnectionGUID: CtYDtje8S9mAGr5NJ+tphA==
+X-CSE-MsgGUID: kpi02UmXT32KVk5HuC9bKw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="33193935"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="33193935"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Oct 2024 00:24:55 -0700
+X-CSE-ConnectionGUID: Z7cu3PHaRh6q2x0PqxNB8w==
+X-CSE-MsgGUID: sJILPpkZRRSvZ60vsjEWYw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,231,1725346800"; d="scan'208";a="80939785"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 25 Oct 2024 00:18:48 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 25 Oct 2024 10:18:47 +0300
-Date: Fri, 25 Oct 2024 10:18:47 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Cc: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH v4 4/8] drm/i915/dp: Track source OUI validity explicitly
-Message-ID: <ZxtGV68oFx9rzyBp@intel.com>
-References: <20241016132405.2231744-5-imre.deak@intel.com>
- <20241022094624.2696428-1-imre.deak@intel.com>
- <ZxjpC1QVavaq85Yj@intel.com>
- <ZxkK-OneQNHH-WGC@ideak-desk.fi.intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,231,1725346800"; d="scan'208";a="81668695"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orviesa008.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 25 Oct 2024 00:24:55 -0700
+Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Fri, 25 Oct 2024 00:24:54 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Fri, 25 Oct 2024 00:24:54 -0700
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.40) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Fri, 25 Oct 2024 00:24:54 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=olObye/Q+v2xXd890s48oGnjqhjKAsQrvsGTkVzr92vxa4K0ykaAJnssYfF4prw65WDV1DaRYuYX3CC4IhnslVooluToYwWJWRwtJYpqL7qQGPUec1ysyLe8jPLXtMBwU8DQxJAFgLoMtwfwpNjLm48C0E7MB+3Vjf4aUYxOoJfEG+4Nm1Uwou9xMaoYcIa88JXW2Bm5Il1RjNlMoKwRQrELrL4xRZFAt12H7rYOcK5hDdi+H16KpSajkB5HTpFhnDjxEC6OBWOP1jycyRe0o0EacfRgecEboV1Vli1JHARY3P123YMh2/jb5LhzXirzCm1FNTs7vnzKCxkGRPMmDg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=01qbtoboFIsB8wqz1hdmYLIObq6UXjfKDGY025Q0/dE=;
+ b=Bv9zaFVtQzLMhRa8lVaxiF5tNCGe68jpgWjXbM7gtq+J2l0pTQO9z3CIotFsQOqh21ORn3kifq2CdzcsnSFwWXgl9LZ857kcEdduARkaLl+vB8admjwiuiiuh1R7cHKyxg5/HuQKjZxBaMBZNjyxrO/sHHGPhvIrQDtLS1HHz/+Ah5UDGcUaFDM8tcyRmnU8qh3u/WR9x7h2gW6krPZd1XcFEpnSFuV/8bgVLD225NEin7s+5l6POtLKtrJpZlx0WYs4UfJhEqk/78Gl4qVICjALG+y/z8/2tMdxh6gGDvmDRliSDj+eyovdU8II5P5ODt/sZwY5cehaFDX4nJHwCA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
+ by PH0PR11MB4807.namprd11.prod.outlook.com (2603:10b6:510:3a::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.21; Fri, 25 Oct
+ 2024 07:24:51 +0000
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839%4]) with mapi id 15.20.8093.018; Fri, 25 Oct 2024
+ 07:24:51 +0000
+Message-ID: <01ab01ee-8a41-404c-bd8f-548c4e7ee296@intel.com>
+Date: Fri, 25 Oct 2024 12:54:45 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/5] drm/i915/display: Fix the plane max height and width
+ limits
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, "Suraj
+ Kandpal" <suraj.kandpal@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
+ <matthew.d.roper@intel.com>
+References: <20241025060136.9884-1-suraj.kandpal@intel.com>
+ <20241025060136.9884-2-suraj.kandpal@intel.com> <Zxs40xP4Bo33fqe8@intel.com>
+Content-Language: en-US
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+In-Reply-To: <Zxs40xP4Bo33fqe8@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA0PR01CA0116.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:11d::18) To DM4PR11MB5341.namprd11.prod.outlook.com
+ (2603:10b6:5:390::22)
 MIME-Version: 1.0
-Content-Disposition: inline
-In-Reply-To: <ZxkK-OneQNHH-WGC@ideak-desk.fi.intel.com>
-X-Patchwork-Hint: comment
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|PH0PR11MB4807:EE_
+X-MS-Office365-Filtering-Correlation-Id: 073ad81f-8d1e-429f-4c2b-08dcf4c61d3f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?bVpPbUNSeHlEYkgzVW90emRZYW1hbGNKU1Z1NEliZnBmd1M0RXZBRUR1QnpY?=
+ =?utf-8?B?WWowTkRDQ21PSVJLV3pTV0N0YXF1T0xEY2EyL3VsZjZkajl3c2hCOWttZkg4?=
+ =?utf-8?B?OXFnRzlmcXNuWmNzQU9oZGtPN01sdjVyNldSeHRPcEhaNThDV09JV2VFUXUz?=
+ =?utf-8?B?QWRqS24wNnF6dkpoSUZ6azhIMW5tcVB6bE1vVzN4ajlvYWxjVDJpcng5dVBl?=
+ =?utf-8?B?NGc4SzZPU2ZoVEsxRkloeWQ1ZVFGcnNUZzJQeGo1SlFvUXVKK2pHUXpQNTNh?=
+ =?utf-8?B?b3dsQ1dGNHVvTkJXWXdHNDBnVjNVVjJnZG4rcDJqZndIdSs4bzVMUk9mWGZz?=
+ =?utf-8?B?WmZzWmRkOFZpcVhZYnUrQWhabDJQMHlUWURFc1JKb0d6cDdWYXhUSWRJS29t?=
+ =?utf-8?B?K0hPNXdiaTZhYU5xeGVYcEp6bmdEYWJMN1k0SlR2TWExTWw1QVFBNVpTcURy?=
+ =?utf-8?B?alZUc21JaHRzKzMxTVVPUVJMNmpCZXlueEsyZTlDdU5BNUJqMVRWQ1JIdWR6?=
+ =?utf-8?B?VlpKM2xBcnZRZFBEb0M5anVhVndWTlFLOHFJTUxZbG9nTEVOWXpxQUI1Q3RP?=
+ =?utf-8?B?WmQ3UkFPeWcveVM2bXQ0bEM3L3NuU3BMZmVmclhOd3ZPTGJNbGMwUHFHcDJ0?=
+ =?utf-8?B?MlEwbG1TSm4yenZ3eEVUUWFHcGltZGRDYW96WG5TRkxiSEZCK0tYd1VuNkVI?=
+ =?utf-8?B?RDMyKzZIOEltc0V5ZEdsZGJtQjl6Q1h1RFRLcEgzODBHT3JhdmVIYUZkK3Jm?=
+ =?utf-8?B?aUs2dkFUQXppc2tPclJyR0V1STJNaWNlRWNZdWtLR3MxQ20rYlFWYzJXbkFs?=
+ =?utf-8?B?dHVyTVJjckphSmo3TzhRU0hENlF3eEQ2ZDRncHFoeDhJMWVhcXhpNVc0bzYx?=
+ =?utf-8?B?S1VSeHI5bjZTZEpQR2tKaHJ3Z2UzQTZacjg0ZHR6TkFJa1U0bTlnNWt3TXNM?=
+ =?utf-8?B?SWJuNFhCbzQ2UGN1U0dQMzJjbTFSaXozVjBsL05idGZFQm53TmRzUXRoNG1Y?=
+ =?utf-8?B?Y2pmVkxlYVM3R1prbEZVQWtPT2xlbUhUdVd1Ti95QUpxM0NIcTUrWTN2MGRa?=
+ =?utf-8?B?VHNscnlIUlRaNCtkdUFXcVFVekNWck81Ni9VR3NZc3dJbHRTTFRDVkxLZm9l?=
+ =?utf-8?B?RysxWVRYWmtwSy9RYjdzalkzeXBEZ0h6S1hMdzBtbXh2cU9qb3hHMGtiUkto?=
+ =?utf-8?B?cTQzVUJFbGgvZUFRcDJPbHVTMStNOXQ0Z3NRSXFsQjNqTTdycFJjQ3ZhMHNy?=
+ =?utf-8?B?RmJRMWhVa0tlWDh1MzkvMG1wWUd5aGZFdDVZZ1JpTllqY1NicmI0dk1tbnBt?=
+ =?utf-8?B?SzJPMU03MFJyekg0VGZndHhuUUZvTHVNc0hqMXVwa2hMNytlSXFDZlRBc0hq?=
+ =?utf-8?B?UlA1SUxGb0lwVEwxdi92Ry94M0lvVnB3RHY2Tm4rT2RWdGRYdWp6NHZmb0Jt?=
+ =?utf-8?B?ZG9XemdtMENGM3VGTTFkTWFVMzVkQTZtSFMxb0U3emFTeUhGMFdyWWFoUGRH?=
+ =?utf-8?B?ZTA5d1JhTkx4QW00anpEUnoxd1VKeEFJWVd4NWtqa0lBallIb0t4Y3dWWUNt?=
+ =?utf-8?B?eTNxa01WelZFT2RpT2ZLY0NOQW9lRXJXb0k0UXpDWjVqanROSSt6NnhqSHBn?=
+ =?utf-8?B?eFdDb2xSbjk0VGt2OVBPd0Jid1JaRVZlajNMMXM1OHY3dW5Nam5Ua1J4ODUy?=
+ =?utf-8?B?djRncGM5QmhlQnN4YTFEbGJnb3B5M0xiV0xPM1Q4OW96VytQUXJVNmJ0MFBB?=
+ =?utf-8?Q?nlmarw8BOg2pLdpzqw=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZWdpblFPbk5TTnNIMktvdll5cFJhZ0J0UVgyU1RncW5iOFBnL1c1OUl1azVI?=
+ =?utf-8?B?bWllTDV0eUpZVkEwcmsrM2NnUkozWHBEUFB0RFpBaGtHWWE2d2YyRjNnUXFi?=
+ =?utf-8?B?NUtJejZwR1IyT2h1U1JYY2RWN0VqWmUwWHVoTHJkRWN3WnJRTHZaZmpjNzAx?=
+ =?utf-8?B?eW5CSHU4dVR3MEFVVWpEV2ZPVVNsQnJvMlduaVdDSWNVeWR5dWdKakJmK2xs?=
+ =?utf-8?B?KzlBcTg4c1Z6ajhvSFBlSXZNaUVhbWFHTnJmckdNUHg4T2ZzS2hpVno4RTZr?=
+ =?utf-8?B?QXUzcTMwNnNxNkFpSGVwYUQzelRFZGV3MlRhQzJKSXVZVUZmT1VmTkxta3pz?=
+ =?utf-8?B?dGNGN0l5WFFueVYyd2toTzRLRloxOXQ3SnduV2d6S0p0eVRndEJlQitMeFh0?=
+ =?utf-8?B?SXEwN2E1eFpXREhtekMrTEtPYm1OTnUrNE5SSmlVWXdOY2dkSjE1L1h3bDB4?=
+ =?utf-8?B?c0Z3US9icEpuVDd1djAvUUFwRGNqdkhHcnRma011ZHg5eXlpZjBRV0lQQzJs?=
+ =?utf-8?B?MWtmYkIxMU8zL3l2ZHZpUE53VXE3RC9USUJ0WVRzVjdzbndpVmZKaTY0M3VF?=
+ =?utf-8?B?dW5KYTdhRkc3aEY1cllBVFA5V1pmWXdTZWdYampiUHdaSTZ1WkZZY0srVmQv?=
+ =?utf-8?B?M0o0OThlNjRXVHpwMitLU00wZTBDcWkzU29FNGpBV0dHTlEvZkFYRTJ5QlFY?=
+ =?utf-8?B?WE9HVmZSS1BYQ04zVjltWTJxaEpsblIyWVUrb21WZmNIVHhFMUhiclJzMTl4?=
+ =?utf-8?B?V3pFWHpOYklzTzNmRk1oN3FERXBISGYyOGJSS3E4NDh0VXNSUUJEV3dKOURu?=
+ =?utf-8?B?ay9vcGl0TlZKUmljdGhDZjFxWlJMTUNWZCthSEVBWW44UzR1aDRvVzgrV1pS?=
+ =?utf-8?B?Q3dBdGp4SHNDbGs3QUlCc29rS2lBeDRVa0tPaTluZ2I5TitUaGxTY0R5akcx?=
+ =?utf-8?B?TTRBZHoxd0pNNnpZa3dmdTA2OXlkaVhldm4xWDRLVkYzQWlXS0RiNDNrbE83?=
+ =?utf-8?B?Y3hZWkM4NDh0NWtGSE45VElxcmhKdklEMklMRHpzY2ZKcWVtaDFocXdqVW41?=
+ =?utf-8?B?bTRGZU1lQzlpRHpvY1B2RE42VE1QMHpDQVhkbU1MZFZRWXkxeXRTSXp0QXRK?=
+ =?utf-8?B?OTdXN3E5T2F6VktSR0tBTUtaUmxRSEtBdExKWjBxNzdRM1Nsb21vcldDNXh6?=
+ =?utf-8?B?MzhsOVoycFZRTW16ZFVHVVE0T1RqQWNWSjRRNXVqa1RFS0tUU1AyeE11MVNC?=
+ =?utf-8?B?WGl4dEg5bExma0EyYTFneXNyUEVqVkUrNXhEMStYQXE0Y3ZxQXZJWXAweXVy?=
+ =?utf-8?B?dUJndXNadDJmTUxzK2JyRW82M2FkS0YxVlRxeEpsTlRDUE4ydk5qejFmN0cz?=
+ =?utf-8?B?eWRyV0RiY21oOXplQy9xdkRSMHFRU1Bua3JuUHpXcUNVMjlhWXVGMWZCVENT?=
+ =?utf-8?B?bjZwQ2hqd1QyZ2ZpdUNJTG1yOTZPbm9UVURQbWtSdUlIU3JCN3pDRy96OG9L?=
+ =?utf-8?B?SXdUZFBWT2VtdFFQOFVvOUZvSUxnNkpqQTE2NEhHZTZpN0lHMlkvak5HYlZi?=
+ =?utf-8?B?TWdLY2IvMWNPRE40YmU2eGlVUlcvTG1zR04vdmNaNlVXUmN6Sy9WYzRTOE55?=
+ =?utf-8?B?MkpwanRnbUNRbW1wM211alF6ZE5VWFFBaThGbnk0UUwyWlhyVUNvWXZ4MUdn?=
+ =?utf-8?B?UVlEZEg4RzFiOVdibDB2VjdIeEpVVjVocVZQMjlwYk0vVVJEdXBSMm94N0Zq?=
+ =?utf-8?B?VjF4akFROW5WM1I4WXd0SDJLSjlhUDB0M3F5UDZmOURiMmpOTXJsRlk3dUJ4?=
+ =?utf-8?B?RndKTmh3UG1jWnRZN3NWdElaSm5BZ1ZzaXZNQk53blgwUVU1d2ZOMXdGb3RV?=
+ =?utf-8?B?OVdvMkZzUFVwV0RYd0EwL29QY2EzV21NVnBWUGNOUlBiYnB5RlhWVjhWdnA4?=
+ =?utf-8?B?UDdEelY2QUJqS01sb1NVQStRdmxQZkZTd3M5Q2h2TkVOOXE4bGYxMzhMeUli?=
+ =?utf-8?B?WjltV0lyWHBaRzRQakNxcjYvSkdRQ1d5MVNySXpqNldlbHJIejYxaERNQnBF?=
+ =?utf-8?B?OFQ4K29Kb3lOeTBHVjc4Uld1QXBLcnVNdkNaYStIYjVLSi9JMHZBUENXc3NV?=
+ =?utf-8?B?VjZxVnBOMi96TWVIYXBtZDVVN2UzOHJLVllPdFR6a1RyaWVUYldkSVB3T29L?=
+ =?utf-8?B?SkE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 073ad81f-8d1e-429f-4c2b-08dcf4c61d3f
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Oct 2024 07:24:51.4508 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: TvUOuo8DqIJ+hjtg/O1GjGHSZQ8N60cWF17tyHnPc4mnTxyNiA8Fl3TkHDT0nI3TCMinZxHYJkTsnEXplT4IWqNWyKTFZzSu666kLWMqxdE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB4807
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,316 +196,96 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 23, 2024 at 05:40:56PM +0300, Imre Deak wrote:
-> On Wed, Oct 23, 2024 at 03:16:11PM +0300, Ville Syrj=E4l=E4 wrote:
-> > On Tue, Oct 22, 2024 at 12:46:23PM +0300, Imre Deak wrote:
-> > > While updating the source OUI on the sink the driver should avoid
-> > > writing the OUI if it's already up-to-date to prevent the sink from
-> > > resetting itself in response to the update. On eDP - the only output
-> > > type where the OUI was updated so far - the driver ensured this by
-> > > comparing the current source OUI DPCD register values with the expect=
-ed
-> > > Intel OUI value, skipping the update in case of a match. On some non-=
-eDP
-> > > sinks - at least on Synaptics branch devices - this method doesn't wo=
-rk,
-> > > since the source OUI DPCD registers read back as all 0, even after
-> > > updating the registers.
-> > > =
 
-> > > Handle the above kind of sinks by tracking when the OUI was updated a=
-nd
-> > > so should be valid, regardless of what the DPCD registers contain.
-> > > =
+On 10/25/2024 11:51 AM, Ville Syrjälä wrote:
+> On Fri, Oct 25, 2024 at 11:31:32AM +0530, Suraj Kandpal wrote:
+>> Fix the plane max height and width limits taking into account the
+>> joined pipe limits too.
+>>
+>> Bspec: 28692, 49199, 68858
+>> Fixes: 63dc014e37b9 ("drm/i915/dp: Allow big joiner modes in intel_dp_mode_valid(), v3.")
+>> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/display/intel_display.c | 19 ++++++++++++++++---
+>>   1 file changed, 16 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+>> index ef1436146325..fc578af4f394 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+>> @@ -8450,9 +8450,22 @@ intel_mode_valid_max_plane_size(struct drm_i915_private *dev_priv,
+>>   	 * plane so let's not advertize modes that are
+>>   	 * too big for that.
+>>   	 */
+>> -	if (DISPLAY_VER(dev_priv) >= 11) {
+>> -		plane_width_max = 5120 * num_joined_pipes;
+>> -		plane_height_max = 4320;
+>> +	if (DISPLAY_VER(dev_priv) >= 20) {
+>> +		if (num_joined_pipes > 1) {
+>> +			plane_width_max = 8192;
+>> +			plane_height_max = 4800;
+>> +		} else {
+>> +			plane_width_max = 5120;
+>> +			plane_height_max = 4096;
+> The joiner operates on horizontal lines. Why would the
+> vertical resolution change here?
+>
+> And this is breaking ultrajoiner now.
 
-> > > eDP sinks reset the written source OUI value when the panel power is
-> > > disabled, invalidate the OUI state accordingly.
-> > > =
+Yeah this will complicate function to check whether go to ultrajoiner or 
+bigjoiner.
 
-> > > This is required by a follow-up patch updating the source OUI for
-> > > non-eDP sink types as well.
-> > > =
+Perhaps need to have separate function for max_joined_plane_width() and 
+max_unjoined_plane_width();
 
-> > > v2: Fix setting intel_dp::oui_valid=3Dtrue, if the DPCD register cont=
-ains
-> > >     already the expected value.
-> > > =
+And the func intel_dp_needs_joiner() will change to something like:
 
-> > > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/g4x_dp.c         |  1 +
-> > >  drivers/gpu/drm/i915/display/intel_ddi.c      |  1 +
-> > >  .../drm/i915/display/intel_display_types.h    |  1 +
-> > >  drivers/gpu/drm/i915/display/intel_dp.c       | 38 ++++++++++++-----=
---
-> > >  drivers/gpu/drm/i915/display/intel_dp.h       |  1 +
-> > >  drivers/gpu/drm/i915/display/intel_pps.c      |  6 ++-
-> > >  6 files changed, 34 insertions(+), 14 deletions(-)
-> > > =
+bool intel_dp_needs_joiner(struct intel_dp *intel_dp,
+                            struct intel_connector *connector,
+                            int hdisplay, int clock,
+                            int num_joined_pipes)
+{
+         struct drm_i915_private *i915 = dp_to_i915(intel_dp);
 
-> > > diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/=
-i915/display/g4x_dp.c
-> > > index 440fb3002f286..596e926ef0894 100644
-> > > --- a/drivers/gpu/drm/i915/display/g4x_dp.c
-> > > +++ b/drivers/gpu/drm/i915/display/g4x_dp.c
-> > > @@ -1251,6 +1251,7 @@ static void intel_dp_encoder_reset(struct drm_e=
-ncoder *encoder)
-> > >  	intel_dp->DP =3D intel_de_read(display, intel_dp->output_reg);
-> > >  =
+         if (!intel_dp_has_joiner(intel_dp))
+                 return false;
 
-> > >  	intel_dp->reset_link_params =3D true;
-> > > +	intel_dp_invalidate_source_oui(intel_dp);
-> > >  =
+         if (hdisplay > max_joined_plane_width())
+                 return false;
 
-> > >  	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
-> > >  		vlv_pps_pipe_reset(intel_dp);
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/d=
-rm/i915/display/intel_ddi.c
-> > > index fe1ded6707f90..465f245a53c48 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > @@ -4392,6 +4392,7 @@ static void intel_ddi_encoder_reset(struct drm_=
-encoder *encoder)
-> > >  	struct intel_digital_port *dig_port =3D enc_to_dig_port(to_intel_en=
-coder(encoder));
-> > >  =
+         if (num_joined_pipes == 2)
+                 return clock > i915->display.cdclk.max_dotclk_freq ||
+                         hdisplay > max_unjoined_plane_width();
+         if (num_joined_pipes == 4)
+                 return clock > 2 * i915->display.cdclk.max_dotclk_freq;
 
-> > >  	intel_dp->reset_link_params =3D true;
-> > > +	intel_dp_invalidate_source_oui(intel_dp);
-> > >  =
+         return false;
+}
 
-> > >  	intel_pps_encoder_reset(intel_dp);
-> > >  =
+Regards,
 
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/dri=
-vers/gpu/drm/i915/display/intel_display_types.h
-> > > index 2bb1fa64da2f1..9b46427806c6d 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > @@ -1765,6 +1765,7 @@ struct intel_dp {
-> > >  =
-
-> > >  	/* When we last wrote the OUI for eDP */
-> > >  	unsigned long last_oui_write;
-> > > +	bool oui_valid;
-> > >  =
-
-> > >  	bool colorimetry_support;
-> > >  =
-
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/dr=
-m/i915/display/intel_dp.c
-> > > index 96ee5de719a2c..a6f84b8f770d0 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > > @@ -3400,33 +3400,46 @@ void intel_dp_sink_disable_decompression(stru=
-ct intel_atomic_state *state,
-> > >  }
-> > >  =
-
-> > >  static void
-> > > -intel_edp_init_source_oui(struct intel_dp *intel_dp, bool careful)
-> > > +intel_dp_init_source_oui(struct intel_dp *intel_dp)
-> > >  {
-> > >  	struct drm_i915_private *i915 =3D dp_to_i915(intel_dp);
-> > >  	u8 oui[] =3D { 0x00, 0xaa, 0x01 };
-> > >  	u8 buf[3] =3D {};
-> > >  =
-
-> > > +	if (!intel_dp_is_edp(intel_dp))
-> > > +		return;
-> > > +
-> > > +	if (READ_ONCE(intel_dp->oui_valid))
-> > > +		return;
-> > > +
-> > > +	WRITE_ONCE(intel_dp->oui_valid, true);
-> > =
-
-> > Would seem nicer if this is set alognside the timestamp.
-> > Are we actually always setting both?
-> =
-
-> Yes. In case DPCD contained already the correct value, it's not known
-> when it was written, so the code assumes it's written now.
-> =
-
-> > In that case maybe extract both into a small helper?
-> =
-
-> You mean setting both at the same place, but not sure how it would work:
-> I set the flag before writing the register to account for the
-> T1: oui_valid=3Dtrue -> T2: HPD/oui_valid=3Dfalse -> T1: write DPCD case,
-> guaranteeing that oui_valid remains false. OTOH last_oui_write should be
-> set after the DPCD write so that the wait duration can't get shorter
-> than needed.
-
-OK, a bit ugly but can't see a better non-racy way for it, so
-Reviewed-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-
-> =
-
-> > > +
-> > >  	/*
-> > >  	 * During driver init, we want to be careful and avoid changing the=
- source OUI if it's
-> > >  	 * already set to what we want, so as to avoid clearing any state b=
-y accident
-> > >  	 */
-> > > -	if (careful) {
-> > > -		if (drm_dp_dpcd_read(&intel_dp->aux, DP_SOURCE_OUI, buf, sizeof(bu=
-f)) < 0)
-> > > -			drm_err(&i915->drm, "Failed to read source OUI\n");
-> > > +	if (drm_dp_dpcd_read(&intel_dp->aux, DP_SOURCE_OUI, buf, sizeof(buf=
-)) < 0)
-> > > +		drm_err(&i915->drm, "Failed to read source OUI\n");
-> > >  =
-
-> > > -		if (memcmp(oui, buf, sizeof(oui)) =3D=3D 0) {
-> > > -			/* Assume the OUI was written now. */
-> > > -			intel_dp->last_oui_write =3D jiffies;
-> > > -			return;
-> > > -		}
-> > > +	if (memcmp(oui, buf, sizeof(oui)) =3D=3D 0) {
-> > > +		/* Assume the OUI was written now. */
-> > > +		intel_dp->last_oui_write =3D jiffies;
-> > > +		return;
-> > >  	}
-> > >  =
-
-> > > -	if (drm_dp_dpcd_write(&intel_dp->aux, DP_SOURCE_OUI, oui, sizeof(ou=
-i)) < 0)
-> > > +	if (drm_dp_dpcd_write(&intel_dp->aux, DP_SOURCE_OUI, oui, sizeof(ou=
-i)) < 0) {
-> > >  		drm_err(&i915->drm, "Failed to write source OUI\n");
-> > > +		WRITE_ONCE(intel_dp->oui_valid, false);
-> > > +	}
-> > >  =
-
-> > >  	intel_dp->last_oui_write =3D jiffies;
-> > >  }
-> > >  =
-
-> > > +void intel_dp_invalidate_source_oui(struct intel_dp *intel_dp)
-> > > +{
-> > > +	WRITE_ONCE(intel_dp->oui_valid, false);
-> > > +}
-> > > +
-> > >  void intel_dp_wait_source_oui(struct intel_dp *intel_dp)
-> > >  {
-> > >  	struct intel_connector *connector =3D intel_dp->attached_connector;
-> > > @@ -3462,8 +3475,7 @@ void intel_dp_set_power(struct intel_dp *intel_=
-dp, u8 mode)
-> > >  		lspcon_resume(dp_to_dig_port(intel_dp));
-> > >  =
-
-> > >  		/* Write the source OUI as early as possible */
-> > > -		if (intel_dp_is_edp(intel_dp))
-> > > -			intel_edp_init_source_oui(intel_dp, false);
-> > > +		intel_dp_init_source_oui(intel_dp);
-> > >  =
-
-> > >  		/*
-> > >  		 * When turning on, we need to retry for 1ms to give the sink
-> > > @@ -4184,7 +4196,7 @@ intel_edp_init_dpcd(struct intel_dp *intel_dp, =
-struct intel_connector *connector
-> > >  	 * If needed, program our source OUI so we can make various Intel-s=
-pecific AUX services
-> > >  	 * available (such as HDR backlight controls)
-> > >  	 */
-> > > -	intel_edp_init_source_oui(intel_dp, true);
-> > > +	intel_dp_init_source_oui(intel_dp);
-> > >  =
-
-> > >  	return true;
-> > >  }
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/dr=
-m/i915/display/intel_dp.h
-> > > index 4efb9605a50e0..48f10876be656 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_dp.h
-> > > +++ b/drivers/gpu/drm/i915/display/intel_dp.h
-> > > @@ -189,6 +189,7 @@ void intel_dp_check_frl_training(struct intel_dp =
-*intel_dp);
-> > >  void intel_dp_pcon_dsc_configure(struct intel_dp *intel_dp,
-> > >  				 const struct intel_crtc_state *crtc_state);
-> > >  =
-
-> > > +void intel_dp_invalidate_source_oui(struct intel_dp *intel_dp);
-> > >  void intel_dp_wait_source_oui(struct intel_dp *intel_dp);
-> > >  int intel_dp_output_bpp(enum intel_output_format output_format, int =
-bpp);
-> > >  =
-
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/d=
-rm/i915/display/intel_pps.c
-> > > index 64f1f7ea94993..3d1f9b17034d0 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_pps.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_pps.c
-> > > @@ -861,8 +861,10 @@ static void intel_pps_vdd_off_sync_unlocked(stru=
-ct intel_dp *intel_dp)
-> > >  		    intel_de_read(display, pp_stat_reg),
-> > >  		    intel_de_read(display, pp_ctrl_reg));
-> > >  =
-
-> > > -	if ((pp & PANEL_POWER_ON) =3D=3D 0)
-> > > +	if ((pp & PANEL_POWER_ON) =3D=3D 0) {
-> > >  		intel_dp->pps.panel_power_off_time =3D ktime_get_boottime();
-> > > +		intel_dp_invalidate_source_oui(intel_dp);
-> > =
-
-> > Hmm. I was thinking the rsulting long HPD would be enough, but I
-> > guess we do have at least one example of a machine with no HPD on
-> > eDP :(
-> =
-
-> Ok, didn't think of an HPD getting always generated (is that guaranteed
-> vs. only an artifact?) Another reason for doing the above synchronously
-> here would be to guarantee that a modeset disabling/reenabling the panel
-> power will be guaranteed to see oui_valid=3Dfalse during reenabling, so
-> that reenabling will rewrite the OUI (the HPD might be handled at any
-> point wrt. the reenabling).
-> =
-
-> > > +	}
-> > >  =
-
-> > >  	intel_display_power_put(dev_priv,
-> > >  				intel_aux_power_domain(dig_port),
-> > > @@ -1074,6 +1076,8 @@ void intel_pps_off_unlocked(struct intel_dp *in=
-tel_dp)
-> > >  	wait_panel_off(intel_dp);
-> > >  	intel_dp->pps.panel_power_off_time =3D ktime_get_boottime();
-> > >  =
-
-> > > +	intel_dp_invalidate_source_oui(intel_dp);
-> > > +
-> > >  	/* We got a reference when we enabled the VDD. */
-> > >  	intel_display_power_put(dev_priv,
-> > >  				intel_aux_power_domain(dig_port),
-> > > -- =
-
-> > > 2.44.2
-> > =
-
-> > -- =
-
-> > Ville Syrj=E4l=E4
-> > Intel
-
--- =
-
-Ville Syrj=E4l=E4
-Intel
----------------------------------------------------------------------
-Intel Finland Oy
-Registered Address: PL 281, 00181 Helsinki =
-
-Business Identity Code: 0357606 - 4 =
-
-Domiciled in Helsinki =
+Ankit
 
 
-This e-mail and any attachments may contain confidential material for
-the sole use of the intended recipient(s). Any review or distribution
-by others is strictly prohibited. If you are not the intended
-recipient, please contact the sender and delete all copies.
-
+>
+> Frankly I have a hard time believing that there are any extra
+> limits on plane size imposed by the hardware for joined pipes.
+> If there is some kind of maximum width limit then it must be
+> coming from the joiner itself (eg. max line buffer width) and
+> not from the planes. So I think this is the wrong place to
+> handle that.
+>
+>> +		}
+>> +	} else if (DISPLAY_VER(dev_priv) >= 11) {
+>> +		if (num_joined_pipes > 1) {
+>> +			plane_width_max = 7680;
+>> +			plane_height_max = 4320;
+>> +		} else {
+>> +			plane_width_max = 5120;
+>> +			plane_height_max = 4096;
+>> +		}
+>>   	} else {
+>>   		plane_width_max = 5120;
+>>   		plane_height_max = 4096;
+>> -- 
+>> 2.34.1
