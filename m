@@ -2,29 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 603109AFDB6
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Oct 2024 11:12:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 389809AFE33
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Oct 2024 11:30:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D3AD010EA3D;
-	Fri, 25 Oct 2024 09:12:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37FF710EA4B;
+	Fri, 25 Oct 2024 09:30:15 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EclHZjyZ";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC3C010EA3D;
- Fri, 25 Oct 2024 09:12:15 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1129041872444842297=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 57E2B10EA47;
+ Fri, 25 Oct 2024 09:30:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1729848614; x=1761384614;
+ h=message-id:date:mime-version:from:to:cc:subject:
+ content-transfer-encoding;
+ bh=MLPbtr+Kqh0AfabOMII7RyrjvgNXimfHir0Z4szYJEY=;
+ b=EclHZjyZ59aeG/q4Sclci+WvGlQ+myeeZrBy2Znb2AwFP0VzomEoSqVq
+ 2dtv1JPcyuHx7nOFLa1NS7zWqLeDLjzDnLfbyS04fytEmpHQ0idoGHkJg
+ /rvgB3FauswZrnApPINTNRj3TGM51ollAlAafF0XrP6UCGf8jUGz69jhl
+ dUZoI7dTiUehmSjbiGK8fkWsvilTWXySiuUX9qSCiCGmzh79p42dRns1K
+ 1gL+rlQD/7NGSXbWQCck23CzdWtl0oaBkmPoaBBKnAPFr73iyDbclMx1I
+ LO8c+JUObht+Dij++LCICwN0qS/dUTXOWHoAQ5h+8kvirsLnL8DXlpt+j w==;
+X-CSE-ConnectionGUID: Y+eSuFF+SqmVizvztDitow==
+X-CSE-MsgGUID: u8nXFhfZT4Gif/WMU3mlCg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="33204045"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="33204045"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Oct 2024 02:30:13 -0700
+X-CSE-ConnectionGUID: gh9bh76iQcCik3CsVITf+w==
+X-CSE-MsgGUID: lLSF7RjPQjiu5ICBVKr5/w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,231,1725346800"; d="scan'208";a="85967743"
+Received: from opintica-mobl1 (HELO [10.245.244.181]) ([10.245.244.181])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Oct 2024 02:30:08 -0700
+Message-ID: <2d42f0f2-a1f9-473c-bd0c-ea3df77b6a3a@linux.intel.com>
+Date: Fri, 25 Oct 2024 11:30:27 +0200
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_drm/i915=3A_ensure_segment_?=
- =?utf-8?q?offset_never_exceeds_allowed_max_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Krzysztof Karas" <krzysztof.karas@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 25 Oct 2024 09:12:15 -0000
-Message-ID: <172984753582.1331517.16956146581135571444@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <agetzfnm7xpwocyvnznewkmfqin3hyha2qywyvhqnk77gyuvuy@hat5jnfpljty>
-In-Reply-To: <agetzfnm7xpwocyvnznewkmfqin3hyha2qywyvhqnk77gyuvuy@hat5jnfpljty>
+User-Agent: Mozilla Thunderbird
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Simona Vetter <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
+Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Oded Gabbay
+ <ogabbay@kernel.org>, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+Subject: [PULL] drm-misc-next
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,220 +73,255 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1129041872444842297==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Dave, Simona,
 
-== Series Details ==
+A bit late, but here it is!
 
-Series: drm/i915: ensure segment offset never exceeds allowed max (rev3)
-URL   : https://patchwork.freedesktop.org/series/140374/
-State : failure
+drm-misc-next-2024-10-25:
+drm-misc-next for v6.13:
 
-== Summary ==
+UAPI Changes:
 
-CI Bug Log - changes from CI_DRM_15594 -> Patchwork_140374v3
-====================================================
+Cross-subsystem Changes:
+- Add DT bindings for Sharp Memory LCD.
+- Update DT bindings for tc358768.
 
-Summary
--------
+Core Changes:
+- Make the fbdev emulations a drm-client.
+- Add a drm-client lib module.
+- drm/display no longer needs COMPILE_TEST dep.
+- Build fix for !CONFIG_FB_DEFERRED_IO.
+- Small fixes to sched.
+- Add YCbCr420 output support for drm/bridge, use it in msm/dp.
 
-  **FAILURE**
+Driver Changes:
+- Kconfig and driver changes for drm-client.
+- Assorted small fixes to a lot of drivers.
+- Constify regmap config/bus.
+- Add Microchip AC69T88A panel.
+- Build meson, mediatek and imx/dcss drivers on x86 when COMPILE_TEST is set.
+The following changes since commit 134e71bd1edcc7252b64ca31efe88edfef86d784:
 
-  Serious unknown changes coming with Patchwork_140374v3 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_140374v3, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+  drm/sched: Further optimise drm_sched_entity_push_job (2024-10-17 12:20:06 +0200)
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v3/index.html
+are available in the Git repository at:
 
-Participating hosts (46 -> 45)
-------------------------------
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-2024-10-25
 
-  Missing    (1): fi-snb-2520m 
+for you to fetch changes up to d4e4e498bec6c16d303ff55c0211d5c11e81e379:
 
-Possible new issues
--------------------
+  drm/meson: Allow build with COMPILE_TEST=y (2024-10-25 10:25:10 +0300)
 
-  Here are the unknown changes that may have been introduced in Patchwork_140374v3:
+----------------------------------------------------------------
+drm-misc-next for v6.13:
 
-### IGT changes ###
+UAPI Changes:
 
-#### Possible regressions ####
+Cross-subsystem Changes:
+- Add DT bindings for Sharp Memory LCD.
+- Update DT bindings for tc358768.
 
-  * igt@i915_selftest@live:
-    - fi-cfl-8109u:       [PASS][1] -> [DMESG-FAIL][2] +1 other test dmesg-fail
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15594/fi-cfl-8109u/igt@i915_selftest@live.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v3/fi-cfl-8109u/igt@i915_selftest@live.html
+Core Changes:
+- Make the fbdev emulations a drm-client.
+- Add a drm-client lib module.
+- drm/display no longer needs COMPILE_TEST dep.
+- Build fix for !CONFIG_FB_DEFERRED_IO.
+- Small fixes to sched.
+- Add YCbCr420 output support for drm/bridge, use it in msm/dp.
 
-  
-Known issues
-------------
+Driver Changes:
+- Kconfig and driver changes for drm-client.
+- Assorted small fixes to a lot of drivers.
+- Constify regmap config/bus.
+- Add Microchip AC69T88A panel.
+- Build meson, mediatek and imx/dcss drivers on x86 when COMPILE_TEST is set.
 
-  Here are the changes found in Patchwork_140374v3 that come from known issues:
+----------------------------------------------------------------
+Alex Lanzano (2):
+      dt-bindings: display: Add Sharp Memory LCD bindings
+      drm/tiny: Add driver for Sharp Memory LCD
 
-### IGT changes ###
+Alexander Stein (1):
+      drm: fsl-dcu: Use dev_err_probe
 
-#### Issues hit ####
+Arnd Bergmann (2):
+      drm/imx: parallel-display: add legacy bridge Kconfig dependency
+      drm/imx: legacy-bridge: add MODULE_DESCRIPTION
 
-  * igt@i915_selftest@live@workarounds:
-    - bat-mtlp-6:         [PASS][3] -> [ABORT][4] ([i915#12216]) +1 other test abort
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15594/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v3/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+Chen Ni (1):
+      drm/fsl-dcu: Remove redundant dev_err()
 
-  
-#### Possible fixes ####
+Cristian Ciocaltea (3):
+      drm/bridge: synopsys: Add DW HDMI QP TX Controller support library
+      dt-bindings: display: rockchip: Add schema for RK3588 HDMI TX Controller
+      drm/rockchip: Add basic RK3588 HDMI output support
 
-  * igt@i915_selftest@live:
-    - bat-arlh-3:         [ABORT][5] ([i915#12133]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15594/bat-arlh-3/igt@i915_selftest@live.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v3/bat-arlh-3/igt@i915_selftest@live.html
-    - bat-dg2-11:         [ABORT][7] ([i915#12133]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15594/bat-dg2-11/igt@i915_selftest@live.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v3/bat-dg2-11/igt@i915_selftest@live.html
+Dmitry Baryshkov (7):
+      drm/fbdev: fix drm_fb_helper_deferred_io() build failure
+      drm/display: bridge_connector: handle ycbcr_420_allowed
+      drm/atomic: add interlaced and ycbcr_420 flags to connector's state dump
+      drm/bridge: display-connector: allow YCbCr 420 for HDMI and DP
+      drm/bridge: aux: allow interlaced and YCbCr 420 output
+      drm/msm/dp: migrate the ycbcr_420_allowed to drm_bridge
+      drm/bridge: dw-hdmi: set bridge's ycbcr_420_allowed flag
 
-  * igt@i915_selftest@live@active:
-    - bat-dg2-11:         [ABORT][9] ([i915#12305]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15594/bat-dg2-11/igt@i915_selftest@live@active.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v3/bat-dg2-11/igt@i915_selftest@live@active.html
+Dzmitry Sankouski (1):
+      drm/panel: s6e3ha8: add static modifier to supply list
 
-  * igt@i915_selftest@live@workarounds:
-    - bat-arlh-3:         [ABORT][11] ([i915#12061]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15594/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v3/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+Javier Carrasco (6):
+      drm/bridge: dpc3433: Constify struct regmap_config
+      drm/fsl-dcu: Constify struct regmap_config
+      drm/mediatek: dp: Constify struct regmap_config
+      drm/meson: Constify struct regmap_config
+      drm/panel: ili9322: Constify struct regmap_bus
+      drm/sprd: Constify struct regmap_bus
 
-  * igt@kms_pm_rpm@basic-rte:
-    - bat-rpls-4:         [DMESG-WARN][13] ([i915#12379]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15594/bat-rpls-4/igt@kms_pm_rpm@basic-rte.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v3/bat-rpls-4/igt@kms_pm_rpm@basic-rte.html
+Jean Delvare (1):
+      drm/display: Drop obsolete dependency on COMPILE_TEST
 
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12133]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133
-  [i915#12216]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12216
-  [i915#12305]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12305
-  [i915#12379]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12379
+Krzysztof Kozlowski (3):
+      drm/meson: drop unused static dw_hdmi_dwc_write_bits
+      dt-bindings: display: bridge: tc358768: switch to bus-width
+      drm/bridge: tc358768: switch to bus-width
 
+Liu Ying (1):
+      drm/bridge: ite-it66121: Drop hdmi_avi_infoframe_init() function call
 
-Build changes
--------------
+Manikandan Muralidharan (2):
+      dt-bindings: display: panel-simple: Document support for Microchip AC69T88A
+      drm/panel: simple: Add Microchip AC69T88A LVDS Display panel
 
-  * Linux: CI_DRM_15594 -> Patchwork_140374v3
+Matthias Schiffer (1):
+      drm: fsl-dcu: enable PIXCLK on LS1021A
 
-  CI-20190529: 20190529
-  CI_DRM_15594: 8fb857e3bba9a5e5fa43d99cf5863608cde9c107 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8083: 73f910ebf47fe8f379d2e233cab754e4d6091701 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_140374v3: 8fb857e3bba9a5e5fa43d99cf5863608cde9c107 @ git://anongit.freedesktop.org/gfx-ci/linux
+Philipp Stanner (1):
+      drm/sched: memset() 'job' in drm_sched_job_init()
 
-== Logs ==
+Randy Dunlap (1):
+      drm/fbdev-dma: remove obsolete kernel-doc references
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v3/index.html
+Ryan Walklin (1):
+      drm: panel: nv3052c: correct spi_device_id for RG35XX panel
 
---===============1129041872444842297==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Simon Horman (1):
+      accel/qaic: Pass string literal as format argument of alloc_workqueue()
 
+Thomas Zimmermann (11):
+      drm/i915: Select DRM_CLIENT_SELECTION
+      drm/xe: Select DRM_CLIENT_SELECTION
+      drm/fbdev-dma: Select FB_DEFERRED_IO
+      drm/fbdev: Select fbdev I/O helpers from modules that require them
+      drm/client: Move client event handlers to drm_client_event.c
+      drm/client: Move suspend/resume into DRM client callbacks
+      drm/amdgpu: Suspend and resume internal clients with client helpers
+      drm/nouveau: Suspend and resume clients with client helpers
+      drm/radeon: Suspend and resume clients with client helpers
+      drm/client: Make client support optional
+      drm/client: Add client-lib module
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+Ville Syrjälä (4):
+      drm/imx/dcss: Fix 64bit divisions
+      drm/imx/dcss: Allow build with COMPILE_TEST=y
+      drm/mediatek: Allow build with COMPILE_TEST=y
+      drm/meson: Allow build with COMPILE_TEST=y
 
+Wadim Egorov (2):
+      dt-bindings: display: bridge: sil,sii9022: Add bus-width
+      drm/bridge: sii902x: Set input bus format based on bus-width
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: ensure segment offset never exceeds allowed max (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/140374/">https://patchwork.freedesktop.org/series/140374/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_15594 -&gt; Patchwork_140374v3</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_140374v3 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_140374v3, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v3/index.html</p>
-<h2>Participating hosts (46 -&gt; 45)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_140374v3:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@i915_selftest@live:<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15594/fi-cfl-8109u/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v3/fi-cfl-8109u/igt@i915_selftest@live.html">DMESG-FAIL</a> +1 other test dmesg-fail</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_140374v3 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15594/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v3/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12216">i915#12216</a>) +1 other test abort</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15594/bat-arlh-3/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133">i915#12133</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v3/bat-arlh-3/igt@i915_selftest@live.html">PASS</a></li>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15594/bat-dg2-11/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133">i915#12133</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v3/bat-dg2-11/igt@i915_selftest@live.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@active:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15594/bat-dg2-11/igt@i915_selftest@live@active.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12305">i915#12305</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v3/bat-dg2-11/igt@i915_selftest@live@active.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15594/bat-arlh-3/igt@i915_selftest@live@workarounds.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v3/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_rpm@basic-rte:</p>
-<ul>
-<li>bat-rpls-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15594/bat-rpls-4/igt@kms_pm_rpm@basic-rte.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12379">i915#12379</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v3/bat-rpls-4/igt@kms_pm_rpm@basic-rte.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_15594 -&gt; Patchwork_140374v3</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_15594: 8fb857e3bba9a5e5fa43d99cf5863608cde9c107 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8083: 73f910ebf47fe8f379d2e233cab754e4d6091701 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_140374v3: 8fb857e3bba9a5e5fa43d99cf5863608cde9c107 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============1129041872444842297==--
+ .../bindings/display/bridge/sil,sii9022.yaml       |  15 +-
+ .../bindings/display/bridge/toshiba,tc358768.yaml  |   4 +
+ .../bindings/display/panel/panel-simple.yaml       |   2 +
+ .../rockchip/rockchip,rk3588-dw-hdmi-qp.yaml       | 188 +++++
+ .../bindings/display/sharp,ls010b7dh04.yaml        |  92 +++
+ Documentation/gpu/drm-client.rst                   |   3 +
+ Documentation/gpu/drm-kms-helpers.rst              |   9 -
+ MAINTAINERS                                        |   6 +
+ drivers/accel/qaic/qaic_drv.c                      |   4 +-
+ drivers/gpu/drm/Kconfig                            |  41 +-
+ drivers/gpu/drm/Makefile                           |  20 +-
+ drivers/gpu/drm/amd/amdgpu/Kconfig                 |   1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c         |  22 +-
+ drivers/gpu/drm/bridge/aux-bridge.c                |   4 +
+ drivers/gpu/drm/bridge/aux-hpd-bridge.c            |   4 +
+ drivers/gpu/drm/bridge/display-connector.c         |   4 +
+ drivers/gpu/drm/bridge/imx/imx-legacy-bridge.c     |   1 +
+ drivers/gpu/drm/bridge/ite-it66121.c               |   2 -
+ drivers/gpu/drm/bridge/sii902x.c                   |  24 +-
+ drivers/gpu/drm/bridge/synopsys/Kconfig            |   8 +
+ drivers/gpu/drm/bridge/synopsys/Makefile           |   2 +
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c       | 647 ++++++++++++++++
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.h       | 834 +++++++++++++++++++++
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c          |   3 +
+ drivers/gpu/drm/bridge/tc358768.c                  |   4 +-
+ drivers/gpu/drm/bridge/ti-dlpc3433.c               |   2 +-
+ drivers/gpu/drm/display/Kconfig                    |   2 +-
+ drivers/gpu/drm/display/drm_bridge_connector.c     |   6 +-
+ drivers/gpu/drm/drm_atomic.c                       |   2 +
+ drivers/gpu/drm/drm_client.c                       | 121 ---
+ drivers/gpu/drm/drm_client_event.c                 | 197 +++++
+ drivers/gpu/drm/drm_client_setup.c                 |   3 +
+ drivers/gpu/drm/drm_debugfs.c                      |   1 -
+ drivers/gpu/drm/drm_drv.c                          |   2 +-
+ drivers/gpu/drm/drm_fb_helper.c                    |   2 +
+ drivers/gpu/drm/drm_fbdev_client.c                 |  30 +-
+ drivers/gpu/drm/drm_file.c                         |   2 +-
+ drivers/gpu/drm/drm_internal.h                     |   8 +
+ drivers/gpu/drm/drm_modeset_helper.c               |  14 +-
+ drivers/gpu/drm/drm_probe_helper.c                 |   2 +-
+ drivers/gpu/drm/fsl-dcu/Kconfig                    |   1 +
+ drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_drv.c          |  23 +-
+ drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_drv.h          |   3 +
+ drivers/gpu/drm/fsl-dcu/fsl_tcon.c                 |   2 +-
+ drivers/gpu/drm/i915/Kconfig                       |   1 +
+ .../gpu/drm/i915/display/intel_display_driver.c    |   2 +-
+ drivers/gpu/drm/imx/dcss/Kconfig                   |   2 +-
+ drivers/gpu/drm/imx/dcss/dcss-scaler.c             |   4 +-
+ drivers/gpu/drm/imx/ipuv3/Kconfig                  |   1 +
+ drivers/gpu/drm/mediatek/Kconfig                   |   4 +-
+ drivers/gpu/drm/mediatek/mtk_dp.c                  |   2 +-
+ drivers/gpu/drm/meson/Kconfig                      |   2 +-
+ drivers/gpu/drm/meson/meson_drv.c                  |   2 +-
+ drivers/gpu/drm/meson/meson_dw_hdmi.c              |  14 -
+ drivers/gpu/drm/msm/Kconfig                        |   1 +
+ drivers/gpu/drm/msm/dp/dp_display.c                |   4 +-
+ drivers/gpu/drm/msm/dp/dp_drm.c                    |  10 +-
+ drivers/gpu/drm/msm/dp/dp_drm.h                    |   7 +-
+ drivers/gpu/drm/nouveau/nouveau_display.c          |   8 +-
+ drivers/gpu/drm/nouveau/nouveau_vga.c              |   2 +-
+ drivers/gpu/drm/panel/panel-ilitek-ili9322.c       |   2 +-
+ drivers/gpu/drm/panel/panel-newvision-nv3052c.c    |   2 +-
+ drivers/gpu/drm/panel/panel-samsung-s6e3ha8.c      |   2 +-
+ drivers/gpu/drm/panel/panel-simple.c               |  28 +
+ drivers/gpu/drm/radeon/radeon_device.c             |  19 +-
+ drivers/gpu/drm/radeon/radeon_fbdev.c              |   6 -
+ drivers/gpu/drm/radeon/radeon_mode.h               |   3 -
+ drivers/gpu/drm/rockchip/Kconfig                   |   9 +
+ drivers/gpu/drm/rockchip/Makefile                  |   1 +
+ drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c     | 424 +++++++++++
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.c        |   2 +
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.h        |   1 +
+ drivers/gpu/drm/scheduler/sched_main.c             |   8 +
+ drivers/gpu/drm/sprd/sprd_dsi.c                    |   2 +-
+ drivers/gpu/drm/tiny/Kconfig                       |  21 +
+ drivers/gpu/drm/tiny/Makefile                      |   1 +
+ drivers/gpu/drm/tiny/sharp-memory.c                | 671 +++++++++++++++++
+ drivers/gpu/drm/xe/Kconfig                         |   1 +
+ include/drm/bridge/dw_hdmi_qp.h                    |  32 +
+ include/drm/drm_bridge.h                           |   5 +
+ include/drm/drm_client.h                           |  41 +-
+ include/drm/drm_client_event.h                     |  27 +
+ include/drm/drm_fb_helper.h                        |   4 +
+ 83 files changed, 3492 insertions(+), 253 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/rockchip/rockchip,rk3588-dw-hdmi-qp.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/sharp,ls010b7dh04.yaml
+ create mode 100644 drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c
+ create mode 100644 drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.h
+ create mode 100644 drivers/gpu/drm/drm_client_event.c
+ create mode 100644 drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
+ create mode 100644 drivers/gpu/drm/tiny/sharp-memory.c
+ create mode 100644 include/drm/bridge/dw_hdmi_qp.h
+ create mode 100644 include/drm/drm_client_event.h
