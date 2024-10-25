@@ -2,72 +2,178 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D64A9B0065
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Oct 2024 12:45:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FB1E9B00AE
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Oct 2024 12:57:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7554D10EA7A;
-	Fri, 25 Oct 2024 10:45:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 53E0F10E2B3;
+	Fri, 25 Oct 2024 10:57:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ac1WxzLD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QJWjC/Bl";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88E1E10EA75;
- Fri, 25 Oct 2024 10:45:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E4DA10E2B3
+ for <intel-gfx@lists.freedesktop.org>; Fri, 25 Oct 2024 10:57:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729853133; x=1761389133;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=CbpyF5Ea61ejS550TYAPfK9e6ps6w+rXZtgmonFvm5w=;
- b=ac1WxzLDyzQpX1wA15w2a/kjoTCfGHCiuBq0GAxjoTPt7hWAZ0+v+fmQ
- og8UmjyLdLWBxecP+IYFkRyYx2bOsztUKbmfkjrvlaafi+UJaJHzb3ryP
- pHdpucH2d7/4RS9eVQnwYIv+K0P/3dzdjNZ1eogfho94qiNz8ER9603+K
- 3HJ9EFegtpTdbLaMtcHlZ1j/kbkPEvGcH2gw6wHBM1VNw55Yk1KD1feQM
- WLrrlh+PvCHEx4KJmCZPxvwhVj0JRz04XfTcJfQCSsYr4q3POLp21S8zr
- fTJ28Ajxsqd1yE1k8wmKm0ciwcN1VyjOxBduxYRbFa+gdTx99TZYZAVe0 w==;
-X-CSE-ConnectionGUID: iXCrN6DpQPaDbJZlda09BQ==
-X-CSE-MsgGUID: 3AEFe0k8R8CZfjKB49rEEg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11235"; a="17149132"
-X-IronPort-AV: E=Sophos;i="6.11,231,1725346800"; d="scan'208";a="17149132"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2024 03:45:33 -0700
-X-CSE-ConnectionGUID: zJo15/wATO69QrGbWGXXdw==
-X-CSE-MsgGUID: yYBp0LK1Rs2v7J/w0LQktQ==
+ t=1729853868; x=1761389868;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=P7NeDjCRks1p9Wuk8P7MtYKA0aQnbd1yoCu1hY3F9+8=;
+ b=QJWjC/Bl0G3l/b8ogsSc84DJcLcPdzCw5XAtZ3CxuIA9iQEM8KgJjO6H
+ RjIvsLqdAxb30C6nsMee6Mbfmrb7rJ9FQVwzRX/x4N35xGUh0SW23T4B6
+ 03on0iGYLFSvRRqqfHNj+30UhLHFci4I/AtpNslY9njPqyHWtMzcLGB24
+ lPEr3eKXGMlWtqRGaH8j6DsxYMcXlKv8Vv8+UstxoeHLVNlPkLoSRHK4i
+ KIV+OFSHwHc/NcQYxYc33KfTEBWpadIe/+CAr58AbaQm+z10Fljt9/HEE
+ teiXl+S82N6iKRxb29tYDd+snW5H5ChRTQqKRmwKcFdV355jG/YR0WzEK w==;
+X-CSE-ConnectionGUID: qGrp9E5mS4awjF/r/gSZsA==
+X-CSE-MsgGUID: m0I/Il23Q3mD+iyj+99JjA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11235"; a="29737357"
+X-IronPort-AV: E=Sophos;i="6.11,231,1725346800"; d="scan'208";a="29737357"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Oct 2024 03:57:48 -0700
+X-CSE-ConnectionGUID: 1rnQQ2R4QwCP7X56bRLnZQ==
+X-CSE-MsgGUID: TGW86kMsRZedqVZ078hioA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,231,1725346800"; d="scan'208";a="80803263"
-Received: from mklonows-mobl1.ger.corp.intel.com (HELO [10.245.246.191])
- ([10.245.246.191])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2024 03:45:28 -0700
-Message-ID: <f8b752348b9442f52a0f420818688fe9be5814a9.camel@linux.intel.com>
-Subject: Re: [PULL] drm-xe-next
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>, Matthew Brost
- <matthew.brost@intel.com>
-Cc: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas
- Zimmermann <tzimmermann@suse.de>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org,  intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org,  dim-tools@lists.freedesktop.org
-Date: Fri, 25 Oct 2024 12:45:26 +0200
-In-Reply-To: <87plnor0e4.fsf@intel.com>
-References: <ZxqJS8bCWc9ZgIav@fedora>
- <ZxqeXxbcdVt8lN4k@DUT025-TGLU.fm.intel.com>
- <dfdd7040f846234cc4ec18d71e4e4746739c1848.camel@linux.intel.com>
- <87plnor0e4.fsf@intel.com>
-Autocrypt: addr=thomas.hellstrom@linux.intel.com; prefer-encrypt=mutual;
- keydata=mDMEZaWU6xYJKwYBBAHaRw8BAQdAj/We1UBCIrAm9H5t5Z7+elYJowdlhiYE8zUXgxcFz360SFRob21hcyBIZWxsc3Ryw7ZtIChJbnRlbCBMaW51eCBlbWFpbCkgPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPoiTBBMWCgA7FiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQuBaTVQrGBr/yQAD/Z1B+Kzy2JTuIy9LsKfC9FJmt1K/4qgaVeZMIKCAxf2UBAJhmZ5jmkDIf6YghfINZlYq6ixyWnOkWMuSLmELwOsgPuDgEZaWU6xIKKwYBBAGXVQEFAQEHQF9v/LNGegctctMWGHvmV/6oKOWWf/vd4MeqoSYTxVBTAwEIB4h4BBgWCgAgFiEEbJFDO8NaBua8diGTuBaTVQrGBr8FAmWllOsCGwwACgkQuBaTVQrGBr/P2QD9Gts6Ee91w3SzOelNjsus/DcCTBb3fRugJoqcfxjKU0gBAKIFVMvVUGbhlEi6EFTZmBZ0QIZEIzOOVfkaIgWelFEH
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
+X-IronPort-AV: E=Sophos;i="6.11,231,1725346800"; d="scan'208";a="80991299"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by fmviesa008.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 25 Oct 2024 03:57:48 -0700
+Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Fri, 25 Oct 2024 03:57:47 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Fri, 25 Oct 2024 03:57:47 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.174)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Fri, 25 Oct 2024 03:57:47 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=bFFWZFNY31qmzXtEMozC5DMQ7SvhwrLyPm4jP06HyOxlXT5zFVUGnyIgIfrqryrRxKrdSPo0/WgyL3t5lejUB2gSbJgoRAgaYxm0AZJ4GMrA0RBpIAtNwo9EEX9qbKq/0tHqhQ9PvfZrL20sthgwNBlDarnG28p2oguO3jVGLd0dmxvVXKCw2S/CJLaCDyz5TuV0b5yw0OVjYzCT0ltBTcplluQ24uqImcMxlkq4dcibxGpH2n65Ztq1impSJsb8kQHtyM5Ig154S61tDguRmY8fD4W65c2mB/2B7cLYP9LFbbLecJtGJe5Zugc9CAe1Xcz7spK0L69etAgpRQOgwg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fXxGEvmgtISJKNuGVOOjAKlO3NulIfMw2hULu3FzLRw=;
+ b=T9mNurNXPK1meVsPnLDp5QxYAWfTn4K/AeWfKZmaNEsM1q7rqSx00DYNDowhza2t1votPKSzyanyGOP56rDuo85HJN02Oi40lK9FiIA3bZVmS/uFunN3kUZd/FBSsLEytaRHoScCp4/JA4nYjJDclgBcam4cyOyBkeW0esN7CcXIp1is87EasLVlJRURjt98Pg/XLhv10fDC3cgJzHCla2QIPh+kcehHFv4eduvgIo4eAr8uZZH6RHa6SB1Zo0OykdEdMKLON+zvr8u6UhB186IX4VI1rJBR2EUW1XJJ8BksgdmnlTrhrJTamJM/pZoyMNtX+RpRkvxihufIJRXhKw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CO1PR11MB5057.namprd11.prod.outlook.com (2603:10b6:303:6c::15)
+ by CH3PR11MB7769.namprd11.prod.outlook.com (2603:10b6:610:123::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.21; Fri, 25 Oct
+ 2024 10:57:45 +0000
+Received: from CO1PR11MB5057.namprd11.prod.outlook.com
+ ([fe80::4610:6d6c:9af6:2548]) by CO1PR11MB5057.namprd11.prod.outlook.com
+ ([fe80::4610:6d6c:9af6:2548%7]) with mapi id 15.20.8093.018; Fri, 25 Oct 2024
+ 10:57:45 +0000
+Date: Fri, 25 Oct 2024 10:57:35 +0000
+From: Krzysztof Karas <krzysztof.karas@intel.com>
+To: <intel-gfx@lists.freedesktop.org>
+CC: Andi Shyti <andi.shyti@linux.intel.com>
+Subject: [PATCH] drm/i915: add GEM_WARN_ON to remap_io_sg
+Message-ID: <fzn3jb4cdylc7fj4og2hgy73onelzurxmmsrzqix6yswms4ite@d74hat7krnm6>
+"Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316"
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+X-ClientProxiedBy: MI0P293CA0013.ITAP293.PROD.OUTLOOK.COM
+ (2603:10a6:290:44::18) To CO1PR11MB5057.namprd11.prod.outlook.com
+ (2603:10b6:303:6c::15)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PR11MB5057:EE_|CH3PR11MB7769:EE_
+X-MS-Office365-Filtering-Correlation-Id: e94f17e2-a849-4fc2-5152-08dcf4e3db1a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?K09kQWE4MWcrTzcwSjlBNWxSdnhGeklkd3MwcXM5NTlNelNxTlBQWnpsazdP?=
+ =?utf-8?B?SHlmYXY5ZGtDWjdtK2x1eHpOVU9FaTIxd253NzlvOUlWT3lUaHJUQUkvU1ZJ?=
+ =?utf-8?B?UjFxeUwwS0RVNlNBSERZVGxhNzZQQWVpMkExOERsMjhlVUZlcHo5bitVQ1Jz?=
+ =?utf-8?B?MWNRbGY3WG1ISUp5RE52Nitaa0h5V0NQNWpMUTFzS3Z6L1NpQkJUREYwZTB2?=
+ =?utf-8?B?cHRkSm1QblBwdTF1RVJCQ1k3d0hJYVp3SHJGQ0tMNDJMT0E0bWNYbCt2dm1n?=
+ =?utf-8?B?ZkN1eDhQRlpJV3c4Y3V0S2JiTzFGbVF5Zk5IZjFpY0RGL1dWZTdPU1BJclJG?=
+ =?utf-8?B?MmprSWxzMWFZY0lhQzBGM2hVVkJIQXFCRkt5OUs2cVY2YjhwVzdSYjYvdm9v?=
+ =?utf-8?B?WVRjT3gveWo4MkN4VWd5UW4zaVp2VG85WFQ4Nno3VG5xd3NhL05VV2NYbXhB?=
+ =?utf-8?B?VEhRaXJTTnJDZW9GNkwzdjc3NXRSNGRHWm1KbW11amVjZXFGM0dBWUlMTU45?=
+ =?utf-8?B?OXYyR2NoOVBnM3VDK2dGczlsZm5HVGJnSjFmeW0xc0JxWUFOd0dNdlNXRkM1?=
+ =?utf-8?B?VXh0NVUvbVNvMnZBZXlBNnVYVGtONjdWL0VBRkV4Z3F0WlRxZXplc2JLSzdr?=
+ =?utf-8?B?RmZaMVUrUnRZK0Z3Zkd2a3B3UnFpMUJDaDZZUCszT3BwNTdPeHhhSnVranJ3?=
+ =?utf-8?B?T2ZkcWd4U1JNWVIyL0J3ME5uc21WU1BRLy9SMGRycEFIVEVIN0JkaUhJcVVV?=
+ =?utf-8?B?UjVmMVJwRkVOS24rR00zRHF3c1FmTUJlT1NUaFhPMm1TTFdtWTFLZU9rSEtk?=
+ =?utf-8?B?VnIyc1luZUFRaFFaZkRWODhBYVF4N0ZIU1ZhYnR4Vlg0dGdoaVltVVpkMllB?=
+ =?utf-8?B?WGdIN09iczFITXZBN2dNTlFhVEdoTXhkMjhuM1dFSEVnbFJEbnBldUQzNHda?=
+ =?utf-8?B?MjcwVTVrMUlwSHNvQWttMzVtSjVhS2J3Snl6Sm56bTB6RHowelNWSzBVUlM0?=
+ =?utf-8?B?ZmRQeWczSndqUnN6RWg2UzdtckxhWWhTaDU2VXJ0RWJVMXh5a014T1lXQTZ0?=
+ =?utf-8?B?WTBqSXZXM3hoTnAvSGFpWlhxZllEVVo3Qzl2NFE1cThVc0ZUaU0yRkdGME1N?=
+ =?utf-8?B?azArMEFRQXo5K29Jb0s1NVdaaStpbE93b0tCalBKc3poUjFJaS9TV3g1NFlh?=
+ =?utf-8?B?dUkxY1JXVnVuVDFCN0xNU2sxQXlyT1dsT1VtSHU3ZFJMaGUrdmc1Qjg2UnhO?=
+ =?utf-8?B?bHh6a2hsVVEvK0FaNytPcndMbUZkUElyVFZjRXNVWFBieXZHdXFmRjZQbnRk?=
+ =?utf-8?B?bm9QMExPeWZQa1d6NTRpLy9PeTE0UGZUbGhQNXR6TC8yT0RmRWN0M2hkL3JL?=
+ =?utf-8?B?UVJwZDBVN1hKVTJRNzFSNmpOcmkwbFM5ckVWWWp2ak9KMDZIZEtkS01oVkdF?=
+ =?utf-8?B?SC9oZC8xb0NqY1dDSXJEN2J5MlNtYUx5TzJIcThIeEJiZmNJWW1IbTZaTERy?=
+ =?utf-8?B?Q3dvM3lMVmlHaDRDL0RyYUVtOHlVbG1QeUhvVXlGWG8xRHM5d09jK0JabEph?=
+ =?utf-8?B?R3E2QTk5ZTZRc3RleXlnZ3RmWkdpOWJDRE1GbUtZWEE1eUN6NzZkamxXQnFC?=
+ =?utf-8?B?WXRrNitUbUNqVEZlYUVUMmJxZFNvUjBOdGFrSThwL2FoM1VWMU9PQnBieHBF?=
+ =?utf-8?B?N2psWTQzYzREc1EzN3VSN1ZBYmt1bGlscnQrMVowSFFheGdOZm03UGdZWm10?=
+ =?utf-8?Q?ByikmY1QTIPYZa74cb351kxdCFGMJ05u8s4IMm8?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CO1PR11MB5057.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?S2xsem5lZThlTHpXUVBZVGZBOVBReVdySlNxZFpaN3IwdFJ1dGM5ZjFGR1Ro?=
+ =?utf-8?B?cXRrRG5RMEtoQ3RVeGs0cXRBcWY4b1hHV2IyR1F2N0xINXpKNjAvcnh5a2dz?=
+ =?utf-8?B?ZVBJMUt1aVYrTGQyNkZoZnFIYUdOUEVIN2FiL3BYS0pnTnZ0eTBZVnF5WmdY?=
+ =?utf-8?B?UW9nRFVmNkxSb2F4SCtJM0lYdUtQOS91OS93Y0dmWXZVQjNyYXZkeWY0Rkd3?=
+ =?utf-8?B?akFCWWtVdytvV1N6VVB6QnFZY0JPRVUySWNuSk9SMEF2dzd5QnF4TWZ1VHdi?=
+ =?utf-8?B?WjQ4bm5tNmUzVWdqeXJsUkRlZVdJWllsOTNtTWZpUTR6aENLV2JadHptTWNM?=
+ =?utf-8?B?MEV3UHNURVZnRGhLTGhEM3lEQ0Q2OVBtbnZQZExUL2RHV1JBMTc5Rkd5LzJv?=
+ =?utf-8?B?YUxhVlFXc0wxZ0NSOCtQN0E2bVhYdFZNaklUWnM4Q0FrblQzNkZpdHhFUmRa?=
+ =?utf-8?B?WWp5QUtVNUo2OTR6MnUrMTByZDFDWGZFM3M5bmlkSVZNVlhoTkRsVC9jTTZ5?=
+ =?utf-8?B?djJoRFdtWW1aaXA0eVhxVVdDeVNXdW9SWkEvK3hHSklhV2l5Q0ptMEdUTmZh?=
+ =?utf-8?B?UHp0dFlRYWJ6MFVzZTdLWGNyb3pWK3FjYk9DR0VUOGU0VHEzajdLajBhMjIv?=
+ =?utf-8?B?SXRaaHE4TTFkLy9tTWpVUURFbGwyVjlRM2F3RlNHbmVDL05RWFh2YjJsSW5J?=
+ =?utf-8?B?YjQ5c2RKYitwTnVqZXZLTFZxUE1kUkhaZnBGT1I1WGZQVUZpMWZNSzM5SGJW?=
+ =?utf-8?B?cnpPbHpIWlBRc2lyUWFRc2hWbW8vV2RWcXpwUnl3YkFwWSswbVdPUEREVVJ1?=
+ =?utf-8?B?OHZjQ0p4VmRJOVNjWHQ3MEFoZXR1TXJmMHVCcDlITGlxMmpnQjNCc0hsaVdI?=
+ =?utf-8?B?RHNaWjFmeC95U3BuYXJuSHpqbjZkeml2TUFRQWFnMDgzTXNzS0FrYmthcUFX?=
+ =?utf-8?B?bHQvRW5MMCtKdnhoOWNHREViVk5IZ2s2THlCVUY3TzNzTVlXS25pVG9xZWZr?=
+ =?utf-8?B?aEFzM3pNTVdpaVpYaEhLTmJrRjJuNVBaY05aR0I2ais1SWhiYkpxaEUxWWxR?=
+ =?utf-8?B?U09OL3M2d3JwWDJqbFZuc2Vpa0ovd2pSN3h5ZldHbXg1OWUrSS9ndjlEbHBL?=
+ =?utf-8?B?TWZXbWc0TkZmRkNOcGhEOTM3VVZob1lmM2JtRlJqL1B4dk5hdFF5TmxSSzNF?=
+ =?utf-8?B?WitUelF6NVY0eHVDN2NVaFZ3Q1Z1cmFUeW82OTBjNVV0YmNtWGZibmNITVlK?=
+ =?utf-8?B?emlBR0RTbGRIdDBXemw2RDVxTEtMdGRnYTJrdDduVlQwOWFhdG4yK1AvOUhT?=
+ =?utf-8?B?M3o1Vldmdms0Qml0TWk5TFdad0dhS1lGL2lGKzlEOXJZUnNYOVRFNGJwdS9U?=
+ =?utf-8?B?UWZFajZ1TlBJZ0ZhQWJWL0Q2MXNnQkwzZlhLTG1rVy9RV2lEK29jSHYwd3RN?=
+ =?utf-8?B?ajFiSDFOWm9rUW5lMWsrUEVHUjVvQ0pRcUJwdzlzSE11QVI0RWZEWkVpRFpN?=
+ =?utf-8?B?UDJINkFWM0RhTmQwZjN4bkhycm94bThoVlI1SFlvcDVKN2pyN0FKUmUrT2xC?=
+ =?utf-8?B?UTB2NFgyQU81RUhuWmtPNEppSSt5Zi9VdVl1MXNieDBkSURXZjl6U3JGVlA4?=
+ =?utf-8?B?RnBvQXBvWnpOaXMrSEZadmNUZ1JBaVh4Q3h0UmI2bWU0NWdrR2VlbWF0bEpq?=
+ =?utf-8?B?RW9hN1QzMStKNllUbjV0NC9sdTFyQlVURWpaVlRBU1JNSmdyMUZkYUdkT1Ri?=
+ =?utf-8?B?a2Z5QS91VmVpTHZSemNRYzJ4RTQrYys4ajNiOHlLb2J4UFZrSTZTL3ArZEVU?=
+ =?utf-8?B?YjRndFZIU2RDMytpMkgrTktrQU9hUU5vZEdId1JKY1h6NlFKVXdGODVyekZZ?=
+ =?utf-8?B?S2xDN1RtWWRKdmRWd3E1OVV2anVRQ2FWK3BNb2U3NFI4aE9xNlQvUFZZcnYz?=
+ =?utf-8?B?WUNWY3lEVlBCNjU1Sk1MUUN5OTJlTmhQd1pnblQ3QjhsUm1EcU9FNi9pT0dH?=
+ =?utf-8?B?VDBlNUlBYU1JQmtQaFMrUkoyZlhxUEtRaGxWQ1lNck5vL1IrMDU4VVRod0cv?=
+ =?utf-8?B?UUxDZ2pxSmxmTEFtY2QzWDRnelNDTGZhVExicUluRVF6RUFjcUxTWmxmOHhU?=
+ =?utf-8?B?V0x6dUd2c05IQ2xXSk9lcVk5MmplL004WjBjTURKcDBrNUFQTWZhZkw5L3Z2?=
+ =?utf-8?B?RWc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: e94f17e2-a849-4fc2-5152-08dcf4e3db1a
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5057.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Oct 2024 10:57:45.1505 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: hzgsTGJ/f84nk0XgGeXZCo9rTwAysobQJ86spdnCX7/r03g7nnkeM8DtvJFz6ZBo7bQqiV7aOfKSYIsIeVrEOZPJsDPCKSatqC1VrrX2yvk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB7769
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,373 +189,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 2024-10-25 at 12:34 +0300, Jani Nikula wrote:
-> On Fri, 25 Oct 2024, Thomas Hellstr=C3=B6m
-> <thomas.hellstrom@linux.intel.com> wrote:
-> > On Thu, 2024-10-24 at 19:22 +0000, Matthew Brost wrote:
-> > > On Thu, Oct 24, 2024 at 07:52:11PM +0200, Thomas Hellstrom wrote:
-> > > > Hi, Dave & Simona,
-> > > >=20
-> > > > This week's drm-xe-next PR
-> > > >=20
-> > > > Thanks,
-> > > > Thomas
-> > > >=20
-> > > >=20
-> > > > drm-xe-next-2024-10-24:
-> > > > UAPI Changes:
-> > > > - Define and parse OA sync properties (Ashutosh)
-> > > >=20
-> > > > Driver Changes:
-> > > > - Add caller info to xe_gt_reset_async (Nirmoy)
-> > > > - A large forcewake rework / cleanup (Himal)
-> > > > - A g2h response timeout fix (Badal)
-> > > > - A PTL workaround (Vinay)
-> > > > - Handle unreliable MMIO reads during forcewake (Shuicheng)
-> > > > - Ufence user-space access fixes (Nirmoy)
-> > > > - Annotate flexible arrays (Matthew Brost)
-> > > > - Enable GuC lite restore (Fei)
-> > > > - Prevent GuC register capture on VF (Zhanjun)
-> > > > - Show VFs VRAM / LMEM provisioning summary over debugfs
-> > > > (Michal)
-> > > > - Parallel queues fix on GT reset (Nirmoy)
-> > > > - Move reference grabbing to a job's dma-fence (Matt Brost)
-> > > > - Mark a number of local workqueues WQ_MEM_RECLAIM (Matt Brost)
-> > >=20
-> > > This breaks CI [1] - my mistake. Maybe omit these in this weeks
-> > > PR.
->=20
-> How did this pass CI and get merged in the first place?!?
->=20
-> It's now botching unrelated pre-merge testing all over the place,
-> e.g. [3] and [4].
->=20
-> BR,
-> Jani.
+Since we already have that warning inside `remap_sg` we can also catch
+this condition inside `remap_io_sg`.
 
-This appears to have been a partial merge of a passing series....
-/Thomas
+Signed-off-by: Krzysztof Karas <krzysztof.karas@intel.com>
+---
+ drivers/gpu/drm/i915/i915_mm.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-
->=20
->=20
-> [3]
-> https://lore.kernel.org/r/172981565466.1330037.6238046952250769671@2413eb=
-b6fbb6
-> [4]
-> https://lore.kernel.org/r/172981849964.1330038.16133455483045565936@2413e=
-bb6fbb6
->=20
->=20
-> > >=20
-> > > We need [2] merged to fix this. Waiting on an RB but I'd like to
-> > > get
-> > > all of this in 6.12.
-> > >=20
-> > > Matt
-> > >=20
-> > > [1]
-> > > https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-140135v2/bat-lnl-1/ig=
-t@xe_exec_fault_mode@twice-invalid-fault.html
-> > > [2] https://patchwork.freedesktop.org/series/140406/
-> >=20
-> > So this CI failure is a warning only and IMHO for drm-xe-next
-> > (6.13)
-> > it's not catastrophic. There might be a window in the bisect
-> > history
-> > where this warning appears. It's perhaps more important for -fixes,
-> > though.
-> >=20
-> > If we need to wait for the scheduler patch going into drm-misc-next
-> > /
-> > drm-next/ backmerge we'd hold off this branch for too long I fear.
-> >=20
-> > @Dave, @Sima=20
-> > If you feel differently please skip this PR for this week and we'll
-> > work to get the scheduler patch merged asap.
-> >=20
-> > Thanks,
-> > Thomas
-> >=20
-> >=20
-> > >=20
-> > > > - OA synchronization support (Ashutosh)
-> > > >=20
-> > > > The following changes since commit
-> > > > 2eb460ab9f4bc5b575f52568d17936da0af681d8:
-> > > >=20
-> > > > =C2=A0 drm/xe: Enlarge the invalidation timeout from 150 to 500
-> > > > (2024-
-> > > > 10-16 16:11:10 +0100)
-> > > >=20
-> > > > are available in the Git repository at:
-> > > >=20
-> > > > =C2=A0 https://gitlab.freedesktop.org/drm/xe/kernel.git=C2=A0tags/d=
-rm-xe-
-> > > > next-2024-10-24
-> > > >=20
-> > > > for you to fetch changes up to
-> > > > 85d3f9e84e0628c412b69aa99b63654dfa08ad68:
-> > > >=20
-> > > > =C2=A0 drm/xe/oa: Allow only certain property changes from config
-> > > > (2024-
-> > > > 10-23 12:42:20 -0700)
-> > > >=20
-> > > > ---------------------------------------------------------------
-> > > > -
-> > > > UAPI Changes:
-> > > > - Define and parse OA sync properties (Ashutosh)
-> > > >=20
-> > > > Driver Changes:
-> > > > - Add caller info to xe_gt_reset_async (Nirmoy)
-> > > > - A large forcewake rework / cleanup (Himal)
-> > > > - A g2h response timeout fix (Badal)
-> > > > - A PTL workaround (Vinay)
-> > > > - Handle unreliable MMIO reads during forcewake (Shuicheng)
-> > > > - Ufence user-space access fixes (Nirmoy)
-> > > > - Annotate flexible arrays (Matthew Brost)
-> > > > - Enable GuC lite restore (Fei)
-> > > > - Prevent GuC register capture on VF (Zhanjun)
-> > > > - Show VFs VRAM / LMEM provisioning summary over debugfs
-> > > > (Michal)
-> > > > - Parallel queues fix on GT reset (Nirmoy)
-> > > > - Move reference grabbing to a job's dma-fence (Matt Brost)
-> > > > - Mark a number of local workqueues WQ_MEM_RECLAIM (Matt Brost)
-> > > > - OA synchronization support (Ashutosh)
-> > > >=20
-> > > > ---------------------------------------------------------------
-> > > > -
-> > > > Ashutosh Dixit (7):
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe/oa: Separate batch submission=
- from waiting for
-> > > > completion
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe/oa/uapi: Define and parse OA =
-sync properties
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe/oa: Add input fence dependenc=
-ies
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe/oa: Signal output fences
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe/oa: Move functions up so they=
- can be reused for
-> > > > config
-> > > > ioctl
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe/oa: Add syncs support to OA c=
-onfig ioctl
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe/oa: Allow only certain proper=
-ty changes from
-> > > > config
-> > > >=20
-> > > > Badal Nilawar (1):
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe/guc/ct: Flush g2h worker in c=
-ase of g2h response
-> > > > timeout
-> > > >=20
-> > > > Fei Yang (1):
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe: enable lite restore
-> > > >=20
-> > > > Himal Prasad Ghimiray (26):
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe: Add member initialized_domai=
-ns to xe_force_wake()
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe/forcewake: Change awake_domai=
-n datatype
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe/forcewake: Add a helper
-> > > > xe_force_wake_ref_has_domain()
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe: Error handling in xe_force_w=
-ake_get()
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe: Modify xe_force_wake_put to =
-handle _get returned
-> > > > mask
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe/device: Update handling of xe=
-_force_wake_get
-> > > > return
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe/hdcp: Update handling of xe_f=
-orce_wake_get return
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe/gsc: Update handling of xe_fo=
-rce_wake_get return
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe/gt: Update handling of xe_for=
-ce_wake_get return
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe/xe_gt_idle: Update handling o=
-f xe_force_wake_get
-> > > > return
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe/devcoredump: Update handling =
-of xe_force_wake_get
-> > > > return
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe/tests/mocs: Update xe_force_w=
-ake_get() return
-> > > > handling
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe/mocs: Update handling of xe_f=
-orce_wake_get return
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe/xe_drm_client: Update handlin=
-g of
-> > > > xe_force_wake_get
-> > > > return
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe/xe_gt_debugfs: Update handlin=
-g of
-> > > > xe_force_wake_get
-> > > > return
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe/guc: Update handling of xe_fo=
-rce_wake_get return
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe/huc: Update handling of xe_fo=
-rce_wake_get return
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe/oa: Handle force_wake_get fai=
-lure in
-> > > > xe_oa_stream_init()
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe/pat: Update handling of xe_fo=
-rce_wake_get return
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe/gt_tlb_invalidation_ggtt: Upd=
-ate handling of
-> > > > xe_force_wake_get return
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe/xe_reg_sr: Update handling of=
- xe_force_wake_get
-> > > > return
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe/query: Update handling of xe_=
-force_wake_get return
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe/vram: Update handling of xe_f=
-orce_wake_get return
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe: forcewake debugfs open fails=
- on xe_forcewake_get
-> > > > failure
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe: Ensure __must_check for xe_f=
-orce_wake_get()
-> > > > return
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe: Change return type to void f=
-or xe_force_wake_put
-> > > >=20
-> > > > Matthew Brost (5):
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe: Use __counted_by for flexibl=
-e arrays
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe: Take ref to job's fence in a=
-rm
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe: Mark GGTT work queue with WQ=
-_MEM_RECLAIM
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe: Mark G2H work queue with WQ_=
-MEM_RECLAIM
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe: Mark GT work queue with WQ_M=
-EM_RECLAIM
-> > > >=20
-> > > > Michal Wajdeczko (1):
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe/pf: Show VFs LMEM provisionin=
-g summary over
-> > > > debugfs
-> > > >=20
-> > > > Nirmoy Das (4):
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe: Add caller info to xe_gt_res=
-et_async
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe/ufence: Prefetch ufence addr =
-to catch bogus
-> > > > address
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe/ufence: Warn if mmget_not_zer=
-o() fails
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe: Don't restart parallel queue=
-s multiple times on
-> > > > GT
-> > > > reset
-> > > >=20
-> > > > Shuicheng Lin (1):
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe: Handle unreliable MMIO reads=
- during forcewake
-> > > >=20
-> > > > Vinay Belgaumkar (1):
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe/ptl: Apply Wa_14022866841
-> > > >=20
-> > > > Zhanjun Dong (1):
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe/guc: Prevent GuC register cap=
-ture running on VF
-> > > >=20
-> > > > =C2=A0drivers/gpu/drm/xe/abi/guc_klvs_abi.h=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
-> > > > =C2=A0drivers/gpu/drm/xe/display/xe_hdcp_gsc.c=C2=A0=C2=A0=C2=A0 |=
-=C2=A0=C2=A0 6 +-
-> > > > =C2=A0drivers/gpu/drm/xe/tests/xe_mocs.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 18 +-
-> > > > =C2=A0drivers/gpu/drm/xe/xe_debugfs.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 27 +-
-> > > > =C2=A0drivers/gpu/drm/xe/xe_devcoredump.c=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 14 +-
-> > > > =C2=A0drivers/gpu/drm/xe/xe_device.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 25 +-
-> > > > =C2=A0drivers/gpu/drm/xe/xe_drm_client.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 8 +-
-> > > > =C2=A0drivers/gpu/drm/xe/xe_exec_queue_types.h=C2=A0=C2=A0=C2=A0 |=
-=C2=A0=C2=A0 2 +-
-> > > > =C2=A0drivers/gpu/drm/xe/xe_execlist.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +-
-> > > > =C2=A0drivers/gpu/drm/xe/xe_force_wake.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 134 ++++--
-> > > > =C2=A0drivers/gpu/drm/xe/xe_force_wake.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 23 +-
-> > > > =C2=A0drivers/gpu/drm/xe/xe_force_wake_types.h=C2=A0=C2=A0=C2=A0 |=
-=C2=A0=C2=A0 6 +-
-> > > > =C2=A0drivers/gpu/drm/xe/xe_ggtt.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +=
--
-> > > > =C2=A0drivers/gpu/drm/xe/xe_gsc.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 23 =
-+-
-> > > > =C2=A0drivers/gpu/drm/xe/xe_gsc_proxy.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 9 +-
-> > > > =C2=A0drivers/gpu/drm/xe/xe_gt.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 110=
- +++--
-> > > > =C2=A0drivers/gpu/drm/xe/xe_gt_debugfs.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 13 +-
-> > > > =C2=A0drivers/gpu/drm/xe/xe_gt_idle.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 26 +-
-> > > > =C2=A0drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c=C2=A0 |=C2=A0 35 +=
-+
-> > > > =C2=A0drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h=C2=A0 |=C2=A0=C2=
-=A0 1 +
-> > > > =C2=A0drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c |=C2=A0=C2=A0 5 +
-> > > > =C2=A0drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c |=C2=A0=C2=A0 5 +=
--
-> > > > =C2=A0drivers/gpu/drm/xe/xe_guc.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 15 =
-+-
-> > > > =C2=A0drivers/gpu/drm/xe/xe_guc_ads.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 5 +
-> > > > =C2=A0drivers/gpu/drm/xe/xe_guc_capture.c=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 8 +-
-> > > > =C2=A0drivers/gpu/drm/xe/xe_guc_ct.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 20 +-
-> > > > =C2=A0drivers/gpu/drm/xe/xe_guc_fwif.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
-> > > > =C2=A0drivers/gpu/drm/xe/xe_guc_log.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 9 +-
-> > > > =C2=A0drivers/gpu/drm/xe/xe_guc_pc.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 50 +-
-> > > > =C2=A0drivers/gpu/drm/xe/xe_guc_submit.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 29 +-
-> > > > =C2=A0drivers/gpu/drm/xe/xe_huc.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 8 +-
-> > > > =C2=A0drivers/gpu/drm/xe/xe_mocs.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 14 +-
-> > > > =C2=A0drivers/gpu/drm/xe/xe_oa.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 678
-> > > > +++++++++++++++++++---------
-> > > > =C2=A0drivers/gpu/drm/xe/xe_oa_types.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 12 +
-> > > > =C2=A0drivers/gpu/drm/xe/xe_pat.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 65 =
-++-
-> > > > =C2=A0drivers/gpu/drm/xe/xe_query.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 10 +-
-> > > > =C2=A0drivers/gpu/drm/xe/xe_reg_sr.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 24 +-
-> > > > =C2=A0drivers/gpu/drm/xe/xe_sched_job.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +-
-> > > > =C2=A0drivers/gpu/drm/xe/xe_sched_job_types.h=C2=A0=C2=A0=C2=A0=C2=
-=A0 |=C2=A0=C2=A0 3 +-
-> > > > =C2=A0drivers/gpu/drm/xe/xe_sync.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 5 +=
--
-> > > > =C2=A0drivers/gpu/drm/xe/xe_vram.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 12 +-
-> > > > =C2=A0drivers/gpu/drm/xe/xe_wa_oob.rules=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +
-> > > > =C2=A0include/uapi/drm/xe_drm.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=
-=C2=A0 17 +
-> > > > =C2=A043 files changed, 997 insertions(+), 487 deletions(-)
-> >=20
->=20
+diff --git a/drivers/gpu/drm/i915/i915_mm.c b/drivers/gpu/drm/i915/i915_mm.c
+index f5c97a620962..8a2779191f18 100644
+--- a/drivers/gpu/drm/i915/i915_mm.c
++++ b/drivers/gpu/drm/i915/i915_mm.c
+@@ -146,7 +146,7 @@ int remap_io_sg(struct vm_area_struct *vma,
+ 	while (offset >= sg_dma_len(r.sgt.sgp) >> PAGE_SHIFT) {
+ 		offset -= sg_dma_len(r.sgt.sgp) >> PAGE_SHIFT;
+ 		r.sgt = __sgt_iter(__sg_next(r.sgt.sgp), use_dma(iobase));
+-		if (!r.sgt.sgp)
++		if (GEM_WARN_ON(!r.sgt.sgp))
+ 			return -EINVAL;
+ 	}
+ 	r.sgt.curr = offset << PAGE_SHIFT;
+-- 
+2.43.0
 
