@@ -2,58 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B69889AF979
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Oct 2024 08:02:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 928C59AF984
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Oct 2024 08:03:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 83A1C10E374;
-	Fri, 25 Oct 2024 06:02:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC39B10E9F2;
+	Fri, 25 Oct 2024 06:03:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mnduXuoc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J45KmdDq";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BCE3310E374;
- Fri, 25 Oct 2024 06:02:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9ED7E10E9F3;
+ Fri, 25 Oct 2024 06:03:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729836125; x=1761372125;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=0+VnajePGJn0Rhz1VQ8RRir4y8c8EsosToMhEwOtdb4=;
- b=mnduXuocrEVy+0ESDjkm0W2tVlqU2KEhcsg4nL3AsDxpuAQeiiWD1/e4
- mqG9j+te0lFIdPhaTUUH1Q9NaoX3sVwnKkpUYDfSw+tzzr+neBFuqMfeQ
- S2kOi30on2On0Ldyda9qTPE+CM4SULyrWJvV4acxnEtkeh8qV9qFlKNIp
- OjM5w3zGBqA4o5LgW+Im11H1dlyPdUYqe6sNX7PoIGqXJsagWZpY/GlO6
- /YoSeMdUNbgeHN/u55a6MHn0Gz/01WjVSLpDEZflzcN78FthH0RaYdsOm
- sqEdzpFNnVgPri4W7r3s2oOAKak9eAiFBwbZinxdlmYUMvMvzCMX6khwl Q==;
-X-CSE-ConnectionGUID: QaqnLeHLS/6tgwdyvj6l7Q==
-X-CSE-MsgGUID: 9wlHBwi9RsmxJBURGTuOOw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="29620705"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="29620705"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2024 23:02:05 -0700
-X-CSE-ConnectionGUID: tVBiqPUDSAmUsggctLn+5w==
-X-CSE-MsgGUID: oheKCwKJSOuM5Cy/xnx8kQ==
+ t=1729836233; x=1761372233;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=AkVVkARjSxdSmyHPmy1ajU4UyyQGT4kUuLCo9GdsoJs=;
+ b=J45KmdDqSLuksA2LQPDWBIZSf1t/pgK6PLpGnrDu/T2W9l5HFeEFbj4x
+ l7cKtVYXtl0o2EimtfNuZPDc+gNA7FfWmVcPrHgksZiJ1RzsGtujte+wd
+ 56WywbRuj/QFr2Dcp3Y9nKLGZQZynYcYNPfrnSRMsxismuEtYdtLJsz3J
+ n7ot7eFaHofv9+fY9VR4mSG7PALCJQnC2uumQOo1TMW3Hh0byvPylFccc
+ /PtwSPwYwdy0K3ip8wulH1HgHNlmx1wT9XrUICAGmVSM8W7jH2sd7HR6U
+ E7wH6yG1DbepYuR7sxZcDCPkpVSp0zImszVs2s1XYS1HZvVDEh2YKV8ZP w==;
+X-CSE-ConnectionGUID: 3X0a9kQyROWXgrrHixVYzA==
+X-CSE-MsgGUID: lvZBaJkuScu6Xeyb9WH1/w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="29435683"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="29435683"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2024 23:03:53 -0700
+X-CSE-ConnectionGUID: X1+pzynwSKK0C/rlDR5g+g==
+X-CSE-MsgGUID: NPcwojJ/RNmkf13XrLOeBw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,231,1725346800"; d="scan'208";a="80734438"
-Received: from unknown (HELO kandpal-X299-UD4-Pro.iind.intel.com)
- ([10.190.239.10])
- by orviesa009.jf.intel.com with ESMTP; 24 Oct 2024 23:02:03 -0700
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com, matthew.d.roper@intel.com,
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 5/5] drm/i914/xe3lpd: Increase bigjoiner limitations
-Date: Fri, 25 Oct 2024 11:31:36 +0530
-Message-Id: <20241025060136.9884-6-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241025060136.9884-1-suraj.kandpal@intel.com>
-References: <20241025060136.9884-1-suraj.kandpal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,231,1725346800"; d="scan'208";a="80922126"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 24 Oct 2024 23:03:49 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 25 Oct 2024 09:03:49 +0300
+Date: Fri, 25 Oct 2024 09:03:49 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>
+Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Subject: Re: [PATCH] drm/i915/display: plane property for async supported
+ modifiers
+Message-ID: <Zxs0xT1tp9ToPDoo@intel.com>
+References: <20241016053626.2850384-1-arun.r.murthy@intel.com>
+ <Zw-_6yuy139Zmir3@intel.com> <Zw_FgeZFATAk-aMf@intel.com>
+ <Zw_HHn42gYFvjWmP@intel.com>
+ <IA0PR11MB73076CAE9CF2258CF83F8F49BA472@IA0PR11MB7307.namprd11.prod.outlook.com>
+ <IA0PR11MB7307CD2E8E7D15D982662127BA4F2@IA0PR11MB7307.namprd11.prod.outlook.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <IA0PR11MB7307CD2E8E7D15D982662127BA4F2@IA0PR11MB7307.namprd11.prod.outlook.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,38 +77,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-With 6k resolution support for a single crtc being added
-bigjoiner will only come into picture when hdisplay > 6144
+On Fri, Oct 25, 2024 at 04:28:18AM +0000, Murthy, Arun R wrote:
+> > > Subject: Re: [PATCH] drm/i915/display: plane property for async
+> > > supported modifiers
+> > >
+> > > On Wed, Oct 16, 2024 at 04:54:09PM +0300, Ville Syrjälä wrote:
+> > > > On Wed, Oct 16, 2024 at 04:30:19PM +0300, Ville Syrjälä wrote:
+> > > > > On Wed, Oct 16, 2024 at 11:06:26AM +0530, Arun R Murthy wrote:
+> > > > > > Create a i915 private plane property for sharing the async
+> > > > > > supported modifiers to the user.
+> > > > > > UMD related discussion requesting the same
+> > > > > > https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/29618#
+> > > > > > no
+> > > > > > te_2487123
+> > > > > >
+> > > > > > Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+> > > > > > ---
+> > > > > >  .../gpu/drm/i915/display/intel_atomic_plane.c |  6 +++
+> > > > > >  .../drm/i915/display/intel_display_types.h    |  4 ++
+> > > > > >  .../drm/i915/display/skl_universal_plane.c    | 49
+> > ++++++++++++++++++-
+> > > > >
+> > > > > This whole thing belongs in the drm core.
+> > > >
+> > > > And I don't even see an actual implementation of anything here.
+> > > > Why did you even post this when it doesn't do anything?
+> > > >
+> > > > Anyways, thinking about how we might actually implement this, we can
+> > > > probably leverage
+> > > > https://patchwork.freedesktop.org/patch/619047/?series=139807&rev=3
+> > >
+> > > Although we should probably pass the format to that as well...
+> > >
+> > The blob points to the struct with elements, modifier and formats.
+> > The main intention of this patch to get the i915 plane private property.
+> > The reason for not having this as drm property is we are the only user for this
+> > and no other vendor has this restriction.
+> > 
+> 
+> Any comments on this?
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+Seeinag as the patch does nothing so there is nothing to 
+comment beyond what I already said.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 7e29619ba040..9dd4610c749a 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1315,14 +1315,17 @@ bool intel_dp_needs_joiner(struct intel_dp *intel_dp,
- 			   int num_joined_pipes)
- {
- 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
-+	int hdisplay_limit;
- 
- 	if (!intel_dp_has_joiner(intel_dp))
- 		return false;
- 
- 	num_joined_pipes /= 2;
- 
-+	hdisplay_limit = DISPLAY_VER(i915) >= 30 ? 6144 : 5120;
-+
- 	return clock > num_joined_pipes * i915->display.cdclk.max_dotclk_freq ||
--	       hdisplay > num_joined_pipes * 5120;
-+	       hdisplay > num_joined_pipes * hdisplay_limit;
- }
- 
- int intel_dp_num_joined_pipes(struct intel_dp *intel_dp,
 -- 
-2.34.1
-
+Ville Syrjälä
+Intel
