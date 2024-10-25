@@ -2,83 +2,74 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A40C79AFB59
-	for <lists+intel-gfx@lfdr.de>; Fri, 25 Oct 2024 09:46:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E9E749AFBD5
+	for <lists+intel-gfx@lfdr.de>; Fri, 25 Oct 2024 10:02:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9A2E10EA14;
-	Fri, 25 Oct 2024 07:46:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 75B6810EA1B;
+	Fri, 25 Oct 2024 08:02:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hKODa1Oi";
+	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="czm6Rko2";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AFE210E2AD;
- Fri, 25 Oct 2024 07:46:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729842395; x=1761378395;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Mzm/p9vp/1SxZYyxLUIAr3dK4m/QwRpy+mAy/vi+65A=;
- b=hKODa1Oi5vnZpADZqmlQaefcdi4vzZxWqD+KdBeJYCBVsDcc9z5bVBrx
- lm0lQByCRG/2WmaomLavVr3Uy72f8gUOLPfkCR73YMQ6OsoQFghTwJgCz
- LYBGCKFT5ac+rMubDD1v31DXUN2pFM9mLepSd2JEofG4qYWQw+mrzFram
- zpqKIP++x788gBHqpLPqcNb26SUA1pf2nK0L3y9KdwGcm5vZbhZDRlJW5
- H2vbldL1Q4Hqof/r5TaIALk8zX0SoZQk9FVje8pbXnrZ2l1EBvwQ1ljcm
- 8ANB+a6Z92kWkHrCmaMH6vUSBZESOOgqsuGLpAEf2Ug6WJvU+9EXY8MDJ w==;
-X-CSE-ConnectionGUID: 27OlbVaPToKMPx7CNRPMPg==
-X-CSE-MsgGUID: jt+K5vMXRlaPxtaaKR2u6w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="29446886"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="29446886"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2024 00:46:34 -0700
-X-CSE-ConnectionGUID: 4NLKVHg9T6yFez9/u+3hfQ==
-X-CSE-MsgGUID: 8E8OB6zhRpuvXvELpRP+eg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,231,1725346800"; d="scan'208";a="80948136"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 25 Oct 2024 00:46:24 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 25 Oct 2024 10:46:23 +0300
-Date: Fri, 25 Oct 2024 10:46:23 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: dri-devel@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Alain Volmat <alain.volmat@foss.st.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Alexey Brodkin <abrodkin@synopsys.com>,
- amd-gfx@lists.freedesktop.org, Andy Yan <andy.yan@rock-chips.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Danilo Krummrich <dakr@redhat.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- freedreno@lists.freedesktop.org, Hans de Goede <hdegoede@redhat.com>,
- Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
- Inki Dae <inki.dae@samsung.com>, Jyri Sarha <jyri.sarha@iki.fi>,
- Karol Herbst <kherbst@redhat.com>,
- linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- linux-arm-msm@vger.kernel.orga, linux-mediatek@lists.infradead.org,
- linux-renesas-soc@vger.kernel.org,
- Liviu Dudau <liviu.dudau@arm.com>, Lyude Paul <lyude@redhat.com>,
- =?iso-8859-1?Q?Ma=EDra?= Canal <mairacanal@riseup.net>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- nouveau@lists.freedesktop.org, nouveau@lists.freedesktop.orga,
- Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
- Rob Clark <robdclark@gmail.com>, Russell King <linux@armlinux.org.uk>,
- Sandy Huang <hjc@rock-chips.com>, Sean Paul <sean@poorly.run>,
- spice-devel@lists.freedesktop.org, virtualization@lists.linux.dev,
- xen-devel@lists.xenproject.org, Xinhui Pan <Xinhui.Pan@amd.com>,
- Zack Rusin <zack.rusin@broadcom.com>
-Subject: Re: [PATCH 0/2] drm: Treewide plane/crtc legacy state sweeping
-Message-ID: <ZxtMz8JP3DbzpMew@intel.com>
-References: <20241002182200.15363-1-ville.syrjala@linux.intel.com>
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com
+ [209.85.128.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A69310EA1A
+ for <intel-gfx@lists.freedesktop.org>; Fri, 25 Oct 2024 08:02:19 +0000 (UTC)
+Received: by mail-wm1-f43.google.com with SMTP id
+ 5b1f17b1804b1-43193678216so3441705e9.0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 25 Oct 2024 01:02:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1729843338; x=1730448138;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=dPlJ5N8S825e5O2BQezw1OUqhpDik54QuV13KXIiJRU=;
+ b=czm6Rko28L4lb3UZCXucBxObn1hZHRuaMrHJeOL4cpCyYtKDVmfb2+Ygz7IJF8zhA8
+ O5030eML6b72KS/dRHR3psVP2K0t+/1hkEwJVzg1qlOQ7zXQIL7ZxOhAqihHn2yD4FGx
+ zXkJXdUOKgRLl+0mK35qyfhbzjn+cG/ZKFII7LJafxJjF83Hng7/KAPyvvm1NF7UYIKk
+ aSTj/sG+BPqQRT9CEMCHK0TXHjnwyvVmkdCqRI+3bmS9ZNUZMEGxg6CG3i+zIkWcvtaz
+ xSNYsuOpQDrlyYfLz0nSikJxHAU0mkTpUAMORdQB7KcbFPdQMZyZ+fpU724dWeRumKSQ
+ TmMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1729843338; x=1730448138;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=dPlJ5N8S825e5O2BQezw1OUqhpDik54QuV13KXIiJRU=;
+ b=aMg86ycYv/BCaiLmkqwBdSnj6pxprQ2pejD+BbkSTB2xgwJtuZ4x0GumUX1ifvLdbN
+ N07FQoHnQLE4qEjOBgq9Wix1quS3Xasac/97VxslwbIykmhp/P6PeVhqmax1kD+PBQ/8
+ VELY7+9g/kGUhFXKQdXQZznPQFjmetJGNravJ7RROV6h0aUI5R00hCEQXANw2Q0eJegl
+ bRjEwDUvNe97NcR8+Jkr1z0ixeEL8hMuoOlgiRavusybYz/31Om2zFbY4pK02stM89dG
+ 5ManruuGwb+aGFPNXqx1mrq91GhAAmCNNsljKF7gAJWhWLC1z9MYHVUI2sUjYLha0hPU
+ oTpg==
+X-Gm-Message-State: AOJu0YwCq8tbZ9NB0IkcU17el84hszVlKFNx1OI9OhTZHVaUE25t2xrA
+ OnaO8IIuoNvle91ddEDUkg5MVumO+7HQo9vC24pPVaSwqsRrO1xp4+fPVfwQg6o=
+X-Google-Smtp-Source: AGHT+IEWtuq49hD78v/MTqXhzVsk0xK/u9ZnoopFrxhzSnBLA1YtiHstP5VuDN+drZzkqRsyaYw9vw==
+X-Received: by 2002:a05:600c:1d96:b0:430:5356:ac8e with SMTP id
+ 5b1f17b1804b1-4318c6dd921mr38898375e9.5.1729843337818; 
+ Fri, 25 Oct 2024 01:02:17 -0700 (PDT)
+Received: from [192.168.0.101] ([90.241.98.187])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-43193594ff3sm10308715e9.12.2024.10.25.01.02.17
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 25 Oct 2024 01:02:17 -0700 (PDT)
+Message-ID: <0e9813a8-0af6-4d06-971e-7909796bd9b5@ursulin.net>
+Date: Fri, 25 Oct 2024 09:02:16 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241002182200.15363-1-ville.syrjala@linux.intel.com>
-X-Patchwork-Hint: comment
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] drm/i915/gt: Use ENGINE_TRACE for tracing.
+To: Matt Roper <matthew.d.roper@intel.com>, Nitin Gote <nitin.r.gote@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, andi.shyti@intel.com,
+ chris.p.wilson@intel.com, nirmoy.das@intel.com
+References: <20241024103917.3231206-1-nitin.r.gote@intel.com>
+ <20241024185813.GK5725@mdroper-desk1.amr.corp.intel.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tursulin@ursulin.net>
+In-Reply-To: <20241024185813.GK5725@mdroper-desk1.amr.corp.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,180 +85,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Oct 02, 2024 at 09:21:58PM +0300, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> An attempt to hide the drm_plane/crtc legacy state better.
-> 
-> This also highlights the fact that a lot of supposedly
-> atomic drivers are poking around in the legacy crtc state,
-> which is rather questionable. For planes we did force the
-> legacy state to NULL already to force drivers to behave.
-> But even then it seems capable of confusing people with
-> its high profile location directly under drm_plane.
-> 
-> This might end up as some kind of conflict
-> galore, but the alternative would involve trying
-> to wean the atomic drivers off one by one,
-> which would probably take forever. At least with
-> this the issue becomes visible and shouldn't be
-> forgotten as easily.
 
-Ping, anyone have thoughts on this? I'd like to get something
-like this in at some point to make the legacy state (ab)users
-easily visible...
+On 24/10/2024 19:58, Matt Roper wrote:
+> On Thu, Oct 24, 2024 at 04:09:17PM +0530, Nitin Gote wrote:
+>> There is ENGINE_TRACE() macro which introduce engine name
+>> with GEM tracing in i915. So, it will be good to use ENGINE_TRACE()
+>> over drm_err() drm_device based logging for engine debug log.
+> 
+> Doesn't this just eliminate the logging completely if the driver is
+> built without CONFIG_DRM_I915_TRACE_GEM?  That means that most users
+> will probably get no dmesg output at all on failure now, which could
+> make it harder for us to understand and debug user-reported bugs.
+> 
+> Of course intel_ring_submission.c only gets used for the old
+> pre-execlist platforms (HSW and older) so maybe there are few enough of
+> those in active usage that we don't really get too many new bug reports
+> anyway?
+
+Yeah, plus, the justification about engine name does not appear to hold, 
+since the old message was printing it already. So if there is something 
+more happening here under the covers please do explain it properly in 
+the commit message.
+
+Regards,
+
+Tvrtko
+
 
 > 
-> The cc list was getting way out of hand, so I had
-> to trim it a bit. Hopefully I didn't chop off too
-> many names...
+> Matt
 > 
-> Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>
-> Cc: Alain Volmat <alain.volmat@foss.st.com>
-> Cc: Alex Deucher <alexander.deucher@amd.com>
-> Cc: Alexey Brodkin <abrodkin@synopsys.com>
-> Cc: amd-gfx@lists.freedesktop.org
-> Cc: Andy Yan <andy.yan@rock-chips.com>
-> Cc: "Christian König" <christian.koenig@amd.com>
-> Cc: Danilo Krummrich <dakr@redhat.com>
-> Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Cc: freedreno@lists.freedesktop.org
-> Cc: Hans de Goede <hdegoede@redhat.com>
-> Cc: "Heiko Stübner" <heiko@sntech.de>
-> Cc: Inki Dae <inki.dae@samsung.com>
-> Cc: Jyri Sarha <jyri.sarha@iki.fi>
-> Cc: Karol Herbst <kherbst@redhat.com>
-> Cc: linux-amlogic@lists.infradead.org
-> Cc: linux-arm-msm@vger.kernel.org
-> Cc: linux-arm-msm@vger.kernel.orga
-> Cc: linux-mediatek@lists.infradead.org
-> Cc: linux-renesas-soc@vger.kernel.org
-> Cc: Liviu Dudau <liviu.dudau@arm.com>
-> Cc: Lyude Paul <lyude@redhat.com>
-> Cc: "Maíra Canal" <mairacanal@riseup.net>
-> Cc: Marijn Suijten <marijn.suijten@somainline.org>
-> Cc: nouveau@lists.freedesktop.org
-> Cc: nouveau@lists.freedesktop.orga
-> Cc: Patrik Jakobsson <patrik.r.jakobsson@gmail.com>
-> Cc: Rob Clark <robdclark@gmail.com>
-> Cc: Russell King <linux@armlinux.org.uk>
-> Cc: Sandy Huang <hjc@rock-chips.com>
-> Cc: Sean Paul <sean@poorly.run>
-> Cc: spice-devel@lists.freedesktop.org
-> Cc: virtualization@lists.linux.dev
-> Cc: xen-devel@lists.xenproject.org
-> Cc: Xinhui Pan <Xinhui.Pan@amd.com>
-> Cc: Zack Rusin <zack.rusin@broadcom.com>
+>>
+>> v2: Bit more specific in commit description (Andi)
+>>
+>> Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
+>> ---
+>>   .../gpu/drm/i915/gt/intel_ring_submission.c   | 20 +++++++++----------
+>>   1 file changed, 10 insertions(+), 10 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+>> index 32f3b52a183a..74d6a2b703ac 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+>> +++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+>> @@ -282,16 +282,16 @@ static int xcs_resume(struct intel_engine_cs *engine)
+>>   	return 0;
+>>   
+>>   err:
+>> -	drm_err(&engine->i915->drm,
+>> -		"%s initialization failed; "
+>> -		"ctl %08x (valid? %d) head %08x [%08x] tail %08x [%08x] start %08x [expected %08x]\n",
+>> -		engine->name,
+>> -		ENGINE_READ(engine, RING_CTL),
+>> -		ENGINE_READ(engine, RING_CTL) & RING_VALID,
+>> -		ENGINE_READ(engine, RING_HEAD), ring->head,
+>> -		ENGINE_READ(engine, RING_TAIL), ring->tail,
+>> -		ENGINE_READ(engine, RING_START),
+>> -		i915_ggtt_offset(ring->vma));
+>> +	ENGINE_TRACE(engine,
+>> +		     "initialization failed; "
+>> +		     "ctl %08x (valid? %d) head %08x [%08x] tail %08x [%08x] start %08x [expected %08x]\n",
+>> +		     ENGINE_READ(engine, RING_CTL),
+>> +		     ENGINE_READ(engine, RING_CTL) & RING_VALID,
+>> +		     ENGINE_READ(engine, RING_HEAD), ring->head,
+>> +		     ENGINE_READ(engine, RING_TAIL), ring->tail,
+>> +		     ENGINE_READ(engine, RING_START),
+>> +		     i915_ggtt_offset(ring->vma));
+>> +	GEM_TRACE_DUMP();
+>>   	return -EIO;
+>>   }
+>>   
+>> -- 
+>> 2.25.1
+>>
 > 
-> Ville Syrjälä (2):
->   drm: Move plane->{fb,old_fb,crtc} to legacy sub-structure
->   drm: Move crtc->{x,y,mode,enabled} to legacy sub-structure
-> 
->  .../gpu/drm/amd/amdgpu/amdgpu_connectors.c    |  7 +-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_display.c   | 20 ++---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_pll.c       |  2 +-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c      |  2 +-
->  drivers/gpu/drm/amd/amdgpu/dce_v10_0.c        | 35 ++++----
->  drivers/gpu/drm/amd/amdgpu/dce_v11_0.c        | 35 ++++----
->  drivers/gpu/drm/amd/amdgpu/dce_v6_0.c         | 37 ++++-----
->  drivers/gpu/drm/amd/amdgpu/dce_v8_0.c         | 35 ++++----
->  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 14 ++--
->  .../amd/display/amdgpu_dm/amdgpu_dm_crtc.c    |  2 +-
->  drivers/gpu/drm/amd/pm/amdgpu_dpm_internal.c  |  4 +-
->  drivers/gpu/drm/arm/hdlcd_drv.c               |  2 +-
->  drivers/gpu/drm/arm/malidp_hw.c               |  2 +-
->  drivers/gpu/drm/armada/armada_crtc.c          | 12 ++-
->  drivers/gpu/drm/ast/ast_dp.c                  |  8 +-
->  drivers/gpu/drm/drm_atomic.c                  |  6 +-
->  drivers/gpu/drm/drm_atomic_helper.c           |  8 +-
->  drivers/gpu/drm/drm_client_modeset.c          | 10 +--
->  drivers/gpu/drm/drm_crtc.c                    | 31 +++----
->  drivers/gpu/drm/drm_crtc_helper.c             | 80 ++++++++++---------
->  drivers/gpu/drm/drm_fb_helper.c               | 12 +--
->  drivers/gpu/drm/drm_framebuffer.c             |  4 +-
->  drivers/gpu/drm/drm_plane.c                   | 69 ++++++++--------
->  drivers/gpu/drm/drm_plane_helper.c            |  6 +-
->  drivers/gpu/drm/drm_vblank.c                  |  2 +-
->  drivers/gpu/drm/exynos/exynos5433_drm_decon.c |  4 +-
->  drivers/gpu/drm/gma500/cdv_intel_display.c    |  2 +-
->  drivers/gpu/drm/gma500/cdv_intel_dp.c         |  6 +-
->  drivers/gpu/drm/gma500/cdv_intel_hdmi.c       |  3 +-
->  drivers/gpu/drm/gma500/cdv_intel_lvds.c       |  6 +-
->  drivers/gpu/drm/gma500/gma_display.c          | 22 ++---
->  drivers/gpu/drm/gma500/oaktrail_crtc.c        |  2 +-
->  drivers/gpu/drm/gma500/psb_intel_display.c    |  2 +-
->  drivers/gpu/drm/gma500/psb_intel_lvds.c       |  6 +-
->  drivers/gpu/drm/gma500/psb_intel_sdvo.c       |  8 +-
->  drivers/gpu/drm/i2c/ch7006_drv.c              |  7 +-
->  drivers/gpu/drm/i2c/sil164_drv.c              |  2 +-
->  .../drm/i915/display/intel_modeset_setup.c    |  4 +-
->  drivers/gpu/drm/imx/lcdc/imx-lcdc.c           | 31 ++++---
->  drivers/gpu/drm/mediatek/mtk_crtc.c           |  6 +-
->  drivers/gpu/drm/meson/meson_overlay.c         |  2 +-
->  drivers/gpu/drm/meson/meson_plane.c           |  8 +-
->  drivers/gpu/drm/msm/disp/dpu1/dpu_core_perf.c | 18 +++--
->  drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c       |  6 +-
->  drivers/gpu/drm/msm/disp/dpu1/dpu_plane.c     | 16 ++--
->  drivers/gpu/drm/msm/disp/mdp5/mdp5_crtc.c     |  4 +-
->  drivers/gpu/drm/nouveau/dispnv04/crtc.c       | 25 +++---
->  drivers/gpu/drm/nouveau/dispnv04/cursor.c     |  2 +-
->  drivers/gpu/drm/nouveau/dispnv04/dfp.c        |  2 +-
->  drivers/gpu/drm/nouveau/dispnv04/disp.c       |  4 +-
->  .../gpu/drm/nouveau/dispnv04/tvmodesnv17.c    |  4 +-
->  drivers/gpu/drm/nouveau/dispnv04/tvnv17.c     |  7 +-
->  drivers/gpu/drm/nouveau/nouveau_connector.c   |  6 +-
->  drivers/gpu/drm/qxl/qxl_display.c             |  6 +-
->  drivers/gpu/drm/radeon/atombios_crtc.c        | 28 +++----
->  drivers/gpu/drm/radeon/cik.c                  | 12 +--
->  drivers/gpu/drm/radeon/evergreen.c            | 16 ++--
->  drivers/gpu/drm/radeon/r100.c                 | 16 ++--
->  drivers/gpu/drm/radeon/r600_cs.c              |  2 +-
->  drivers/gpu/drm/radeon/r600_dpm.c             |  4 +-
->  drivers/gpu/drm/radeon/radeon_connectors.c    |  7 +-
->  drivers/gpu/drm/radeon/radeon_cursor.c        | 29 +++----
->  drivers/gpu/drm/radeon/radeon_device.c        |  2 +-
->  drivers/gpu/drm/radeon/radeon_display.c       | 26 +++---
->  drivers/gpu/drm/radeon/radeon_drv.c           |  2 +-
->  drivers/gpu/drm/radeon/radeon_legacy_crtc.c   | 16 ++--
->  .../gpu/drm/radeon/radeon_legacy_encoders.c   |  2 +-
->  drivers/gpu/drm/radeon/radeon_pm.c            |  2 +-
->  drivers/gpu/drm/radeon/rs600.c                | 10 +--
->  drivers/gpu/drm/radeon/rs690.c                | 22 ++---
->  drivers/gpu/drm/radeon/rs780_dpm.c            |  6 +-
->  drivers/gpu/drm/radeon/rv515.c                | 30 +++----
->  drivers/gpu/drm/radeon/rv770.c                |  2 +-
->  drivers/gpu/drm/radeon/si.c                   | 14 ++--
->  .../gpu/drm/renesas/rcar-du/rcar_du_crtc.c    |  2 +-
->  .../gpu/drm/renesas/shmobile/shmob_drm_crtc.c |  2 +-
->  drivers/gpu/drm/rockchip/rockchip_drm_vop.c   |  6 +-
->  drivers/gpu/drm/sti/sti_crtc.c                |  4 +-
->  drivers/gpu/drm/sti/sti_cursor.c              |  2 +-
->  drivers/gpu/drm/sti/sti_gdp.c                 |  2 +-
->  drivers/gpu/drm/sti/sti_hqvdp.c               |  2 +-
->  drivers/gpu/drm/sti/sti_tvout.c               |  6 +-
->  drivers/gpu/drm/sti/sti_vid.c                 |  2 +-
->  drivers/gpu/drm/tilcdc/tilcdc_crtc.c          | 10 +--
->  drivers/gpu/drm/tiny/arcpgu.c                 |  2 +-
->  drivers/gpu/drm/vboxvideo/vbox_mode.c         |  2 +-
->  drivers/gpu/drm/vc4/vc4_dpi.c                 |  2 +-
->  drivers/gpu/drm/vc4/vc4_plane.c               |  4 +-
->  drivers/gpu/drm/virtio/virtgpu_display.c      |  4 +-
->  drivers/gpu/drm/vkms/vkms_composer.c          |  4 +-
->  drivers/gpu/drm/vkms/vkms_crtc.c              |  2 +-
->  drivers/gpu/drm/vkms/vkms_writeback.c         |  4 +-
->  drivers/gpu/drm/vmwgfx/vmwgfx_kms.c           |  8 +-
->  drivers/gpu/drm/vmwgfx/vmwgfx_ldu.c           | 18 +++--
->  drivers/gpu/drm/vmwgfx/vmwgfx_scrn.c          |  9 ++-
->  drivers/gpu/drm/vmwgfx/vmwgfx_stdu.c          |  4 +-
->  drivers/gpu/drm/vmwgfx/vmwgfx_vkms.c          |  2 +-
->  drivers/gpu/drm/xen/xen_drm_front_kms.c       |  2 +-
->  include/drm/drm_crtc.h                        | 75 ++++++++---------
->  include/drm/drm_plane.h                       | 52 ++++++------
->  100 files changed, 599 insertions(+), 547 deletions(-)
-> 
-> -- 
-> 2.45.2
-
--- 
-Ville Syrjälä
-Intel
