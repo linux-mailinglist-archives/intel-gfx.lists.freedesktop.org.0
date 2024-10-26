@@ -2,59 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A4109B1557
-	for <lists+intel-gfx@lfdr.de>; Sat, 26 Oct 2024 08:27:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A75E09B155A
+	for <lists+intel-gfx@lfdr.de>; Sat, 26 Oct 2024 08:27:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B3FDE10E3FF;
-	Sat, 26 Oct 2024 06:27:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10C5C10EB7E;
+	Sat, 26 Oct 2024 06:27:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gCQ4nC55";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kng8FBaB";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C38CB10E402
- for <intel-gfx@lists.freedesktop.org>; Sat, 26 Oct 2024 06:27:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 521C110E3FF
+ for <intel-gfx@lists.freedesktop.org>; Sat, 26 Oct 2024 06:27:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1729924029; x=1761460029;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=zeK52cArmpTkxk/NIpqdBV8glIVOguZdhY4Mckk22Qc=;
- b=gCQ4nC55ZarrApaiWnD0IydV94x0L2k2N1F6Mf/grh3tm0rhrKmh4IvV
- +yJainbyd2Q5WfOZj9uKR5QySIOSfEKAVUILLrj8PVnnILSNSwTRKbZX7
- m5L+GYnlOtrF+MygH0yPy+JOfJoBufkyIY3ViN/V7XJr+XHvmqW0Wp43m
- yuncIiRKjEbkbG5OUeeN6oxhCU2/oRZOoya2kH3FLh5Lo9lFrPU4YY3Rn
- WIlDJpQI/W4lrwh7u3fyFdOn4sZVo1L3w+K/83MNm7HCsmqMktHRlKbsq
- f4FcjBHiFRF4qAAV++dgq/Yg0eWgtglNZ4mSF2oGsy5Z1LNpaH2wzkQ6E Q==;
-X-CSE-ConnectionGUID: WtCT2sbHQ2eD241nQ+MMfw==
-X-CSE-MsgGUID: 0zDX8+i+TYOBX8Ylj7TykA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11236"; a="40177200"
-X-IronPort-AV: E=Sophos;i="6.11,234,1725346800"; d="scan'208";a="40177200"
+ bh=EuoIEako/BaOClz/Tl33jfqFXdSg5lrE2smGeabOIIs=;
+ b=kng8FBaBRAgjnMTh2fsHrc+H67oJzLVE8Wp7Ji51n5zdmC4AeSMAD+hH
+ Bj1jX92+b99wTlH382QInENEP1S/535ZTvw0VglzTOH5jGoNPeZcZhp4Y
+ eKHviCmt2ysTg6y+SLonTh0Y10MivxGq9ErjwKZqh9StK0PYWM+3+zw7g
+ 8kMZgKTu2YTsRfNrfymlwqHKCE9uenPx/dtY1XvGs17OpyE72IzCqWQur
+ JglFGWvFi0DgYwar2Gmr9v/ai6mj9MugFCjwi5yg9OxatcbUSozxsXOSi
+ G+Ht6BIGoQc2fIGEFV+NAMG2UzY4StTRIEuaPrW77BSCutTX+jRIWJmxJ w==;
+X-CSE-ConnectionGUID: dm0xywWgQ4SxgEJnSwZG1g==
+X-CSE-MsgGUID: N4lvGEqaTmaxHo4mN5y4fw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11236"; a="40177201"
+X-IronPort-AV: E=Sophos;i="6.11,234,1725346800"; d="scan'208";a="40177201"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2024 23:27:08 -0700
-X-CSE-ConnectionGUID: f3MN4rTHRD2m0a+v0bvzMA==
-X-CSE-MsgGUID: DhAd/9I6ToKZeC66srGYKw==
+ 25 Oct 2024 23:27:09 -0700
+X-CSE-ConnectionGUID: RRJb0c2LQzuoDmT/oeePyg==
+X-CSE-MsgGUID: qSnoPxKcS3StPe6SotAC6w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,234,1725346800"; d="scan'208";a="118586607"
+X-IronPort-AV: E=Sophos;i="6.11,234,1725346800"; d="scan'208";a="118586612"
 Received: from ldmartin-desk2.corp.intel.com (HELO ldmartin-desk2.lan)
  ([10.125.111.191])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2024 23:27:08 -0700
+ 25 Oct 2024 23:27:09 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>,
  Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH 1/3] drm/xe: Add trace to lrc timestamp update
-Date: Sat, 26 Oct 2024 01:26:56 -0500
-Message-ID: <20241026062658.28060-2-lucas.demarchi@intel.com>
+Subject: [PATCH 2/3] drm/xe: Accumulate exec queue timestamp on destroy
+Date: Sat, 26 Oct 2024 01:26:57 -0500
+Message-ID: <20241026062658.28060-3-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.47.0
 In-Reply-To: <20241026062658.28060-1-lucas.demarchi@intel.com>
 References: <20241026062658.28060-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,123 +70,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Help debugging when LRC timestamp is updated for a exec queue.
+When the exec queue is destroyed, there's a race between a query to the
+fdinfo and the exec queue value being updated: after the destroy ioctl,
+if the fdinfo is queried before a call to guc_exec_queue_free_job(),
+the wrong utilization is reported: it's not accumulated on the query
+since the queue was removed from the array, and the value wasn't updated
+yet by the free_job().
 
+Explicitly accumulate the engine utilization so the right value is
+visible after the ioctl return.
+
+Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/2667
+Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/Makefile       |  1 +
- drivers/gpu/drm/xe/xe_lrc.c       |  3 ++
- drivers/gpu/drm/xe/xe_trace_lrc.c |  9 ++++++
- drivers/gpu/drm/xe/xe_trace_lrc.h | 52 +++++++++++++++++++++++++++++++
- 4 files changed, 65 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_trace_lrc.c
- create mode 100644 drivers/gpu/drm/xe/xe_trace_lrc.h
+ drivers/gpu/drm/xe/xe_exec_queue.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index bc7a04ce69fd..21d69935c336 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -101,6 +101,7 @@ xe-y += xe_bb.o \
- 	xe_trace.o \
- 	xe_trace_bo.o \
- 	xe_trace_guc.o \
-+	xe_trace_lrc.o \
- 	xe_ttm_sys_mgr.o \
- 	xe_ttm_stolen_mgr.o \
- 	xe_ttm_vram_mgr.o \
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 4f64c7f4e68d..4b65da77c6e0 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -25,6 +25,7 @@
- #include "xe_map.h"
- #include "xe_memirq.h"
- #include "xe_sriov.h"
-+#include "xe_trace_lrc.h"
- #include "xe_vm.h"
- #include "xe_wa.h"
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index d098d2dd1b2d..b15ca84b2422 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -829,6 +829,14 @@ int xe_exec_queue_destroy_ioctl(struct drm_device *dev, void *data,
  
-@@ -1758,5 +1759,7 @@ u32 xe_lrc_update_timestamp(struct xe_lrc *lrc, u32 *old_ts)
+ 	xe_exec_queue_kill(q);
  
- 	lrc->ctx_timestamp = xe_lrc_ctx_timestamp(lrc);
++	/*
++	 * After killing and destroying the exec queue, make sure userspace has
++	 * an updated view of the run ticks, regardless if this was the last
++	 * ref: since the exec queue is removed from xef->exec_queue.xa, a
++	 * query to fdinfo after this returns could not account for this load.
++	 */
++	xe_exec_queue_update_run_ticks(q);
++
+ 	trace_xe_exec_queue_close(q);
+ 	xe_exec_queue_put(q);
  
-+	trace_xe_lrc_update_timestamp(lrc, *old_ts);
-+
- 	return lrc->ctx_timestamp;
- }
-diff --git a/drivers/gpu/drm/xe/xe_trace_lrc.c b/drivers/gpu/drm/xe/xe_trace_lrc.c
-new file mode 100644
-index 000000000000..ab9b7e2970bc
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_trace_lrc.c
-@@ -0,0 +1,9 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#ifndef __CHECKER__
-+#define CREATE_TRACE_POINTS
-+#include "xe_trace_lrc.h"
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_trace_lrc.h b/drivers/gpu/drm/xe/xe_trace_lrc.h
-new file mode 100644
-index 000000000000..5c669a0b2180
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_trace_lrc.h
-@@ -0,0 +1,52 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#undef TRACE_SYSTEM
-+#define TRACE_SYSTEM xe
-+
-+#if !defined(_XE_TRACE_LRC_H_) || defined(TRACE_HEADER_MULTI_READ)
-+#define _XE_TRACE_LRC_H_
-+
-+#include <linux/tracepoint.h>
-+#include <linux/types.h>
-+
-+#include "xe_gt_types.h"
-+#include "xe_lrc.h"
-+#include "xe_lrc_types.h"
-+
-+#define __dev_name_lrc(lrc)	dev_name(gt_to_xe((lrc)->fence_ctx.gt)->drm.dev)
-+
-+TRACE_EVENT(xe_lrc_update_timestamp,
-+	    TP_PROTO(struct xe_lrc *lrc, uint32_t old),
-+	    TP_ARGS(lrc, old),
-+	    TP_STRUCT__entry(
-+		     __field(struct xe_lrc *, lrc)
-+		     __field(u32, old)
-+		     __field(u32, new)
-+		     __string(name, lrc->fence_ctx.name)
-+		     __string(device_id, __dev_name_lrc(lrc))
-+	    ),
-+
-+	    TP_fast_assign(
-+		   __entry->lrc	= lrc;
-+		   __entry->old = old;
-+		   __entry->new = lrc->ctx_timestamp;
-+		   __assign_str(name);
-+		   __assign_str(device_id);
-+		   ),
-+	    TP_printk("lrc=:%p lrc->name=%s old=%u new=%u device_id:%s",
-+		      __entry->lrc, __get_str(name),
-+		      __entry->old, __entry->new,
-+		      __get_str(device_id))
-+);
-+
-+#endif
-+
-+/* This part must be outside protection */
-+#undef TRACE_INCLUDE_PATH
-+#undef TRACE_INCLUDE_FILE
-+#define TRACE_INCLUDE_PATH ../../drivers/gpu/drm/xe
-+#define TRACE_INCLUDE_FILE xe_trace_lrc
-+#include <trace/define_trace.h>
 -- 
 2.47.0
 
