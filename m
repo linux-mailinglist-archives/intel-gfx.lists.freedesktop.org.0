@@ -2,59 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE1C39B1559
-	for <lists+intel-gfx@lfdr.de>; Sat, 26 Oct 2024 08:27:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C73459B16F0
+	for <lists+intel-gfx@lfdr.de>; Sat, 26 Oct 2024 12:11:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C1C110E411;
-	Sat, 26 Oct 2024 06:27:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 81CDE10E09D;
+	Sat, 26 Oct 2024 10:11:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WbmJjdTy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j1ojOyBI";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF97710E402
- for <intel-gfx@lists.freedesktop.org>; Sat, 26 Oct 2024 06:27:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F154110E013;
+ Sat, 26 Oct 2024 10:11:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1729924030; x=1761460030;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=MAGouAwClj/J/WNsHAA7MpiV14Iy2Xvb6ZX6Oi2b/Us=;
- b=WbmJjdTyeFwkNrSMbfnBuRvy/v+5WDjliIwGYI4Pd70gAoYcdIy/EJIw
- K+CT26xPY0KQY9D6pzwAvLghrpfOGjQKx+GxgLUN/A9cuTjt2kfLNQdXG
- 0WqSiLPFDibMAPatfy6lBIHjprbeWLgFp/v7FQ1Ln/8bM4ZgPI80JVBXG
- nKn9c08+W3tjX8zEGJi+cgxs7FYFujTt4fjd+b1sYI1B25ksDHOtBqRId
- ORdywTTn/5wS6oAzR2ArLCG30XC63G5riWRdNgALC+/p81LlIIM0qLHXc
- 45P/zI+4+e+cl7f82EAHmL8v5gDi4tyZN3EUWWD3HeMc/P/X0x6pf6sUk g==;
-X-CSE-ConnectionGUID: PAKOjE6/T7+lb77b6i0OEA==
-X-CSE-MsgGUID: 2wjCGJ54Q6yKxw8W9vCB+g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11236"; a="40177202"
-X-IronPort-AV: E=Sophos;i="6.11,234,1725346800"; d="scan'208";a="40177202"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2024 23:27:09 -0700
-X-CSE-ConnectionGUID: xtZ1fX+hTJGsehoLPVHPyg==
-X-CSE-MsgGUID: D+lDKBRlRQGR6VFaPVQ5Hg==
+ t=1729937464; x=1761473464;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=8DU14E5D0lWg600MwJ4URtFuPIv26XFVrn6CO/yON44=;
+ b=j1ojOyBITwISF5CKMOCbTbb/OK94pVkNC0daNy57wLHD455rxUFLMYkg
+ N2kL40XrXIbuhQqyTmPz/Mu5OkucgMRo+f88TAx41RVuzqb/dNXPbXkdd
+ 5XnBXQwMY0BsY/6Zy1pkTzBFK/a8Ngq2nefUrASudv0hxDn/uaqA8tFkA
+ NGdHkNiGoyuNSAPshT42NLFVk00GxdR+5Pd1yzGQ5Nr/5MlfV32j07OuA
+ e7Bzw7atoG+3mUxLf/qzC7a6r8+jxyZv0hOjXhT+sSiUJ1TDUVQv4snoA
+ i4almzX0ywtN5MNX+v6LGHN9Ie81sEi4RTqbFP9sZvUIbDp+vsAsUpca8 A==;
+X-CSE-ConnectionGUID: JBzeYvh5QpKZi4Se8GRjkw==
+X-CSE-MsgGUID: Sugp1e8iQemPPH+MKAxccA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="29464306"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="29464306"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Oct 2024 03:11:02 -0700
+X-CSE-ConnectionGUID: w7o/M5n7SL2VFBwPyocUFw==
+X-CSE-MsgGUID: r+fgvL8nRhaZ3YSCRxyh4Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,234,1725346800"; d="scan'208";a="118586616"
-Received: from ldmartin-desk2.corp.intel.com (HELO ldmartin-desk2.lan)
- ([10.125.111.191])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2024 23:27:09 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>,
- Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH 3/3] drm/xe: Stop accumulating LRC timestamp on job_free
-Date: Sat, 26 Oct 2024 01:26:58 -0500
-Message-ID: <20241026062658.28060-4-lucas.demarchi@intel.com>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20241026062658.28060-1-lucas.demarchi@intel.com>
-References: <20241026062658.28060-1-lucas.demarchi@intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,234,1725346800"; d="scan'208";a="81113883"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+ by orviesa009.jf.intel.com with ESMTP; 26 Oct 2024 03:10:56 -0700
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1t4dkz-000ZUo-3D;
+ Sat, 26 Oct 2024 10:10:54 +0000
+Date: Sat, 26 Oct 2024 18:10:30 +0800
+From: kernel test robot <lkp@intel.com>
+To: Raag Jadav <raag.jadav@intel.com>, airlied@gmail.com, simona@ffwll.ch,
+ lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
+ jani.nikula@linux.intel.com, andriy.shevchenko@linux.intel.com,
+ lina@asahilina.net, michal.wajdeczko@intel.com, christian.koenig@amd.com
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
+ aravind.iddamsetty@linux.intel.com, anshuman.gupta@intel.com,
+ alexander.deucher@amd.com, andrealmeid@igalia.com,
+ amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com,
+ Raag Jadav <raag.jadav@intel.com>
+Subject: Re: [PATCH v8 1/4] drm: Introduce device wedged event
+Message-ID: <202410261754.enck8cc6-lkp@intel.com>
+References: <20241025084817.144621-2-raag.jadav@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241025084817.144621-2-raag.jadav@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,63 +78,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The exec queue timestamp is only really useful when it's being queried
-through the fdinfo. There's no need to update it so often, on every
-job_free. Tracing a simple app like vkcube running shows an update
-rate of ~ 120Hz.
+Hi Raag,
 
-The update on job_free() is used to cover a gap: if exec
-queue is created and destroyed rapidily, before a new query, the
-timestamp still needs to be accumulated and accounted on the xef.
-Initial implementation in commit 6109f24f87d7 ("drm/xe: Add helper to
-accumulate exec queue runtime") couldn't do it on the exec_queue_fini
-since the xef could be gone at that point. However since commit
-ce8c161cbad4 ("drm/xe: Add ref counting for xe_file") the xef is
-refcounted and the exec queue has a reference.
+kernel test robot noticed the following build errors:
 
-Improve the fix in commit 2149ded63079 ("drm/xe: Fix use after free when
-client stats are captured") by reducing the frequency in which the
-update is needed.
+[auto build test ERROR on drm-xe/drm-xe-next]
+[also build test ERROR on drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-tip/drm-tip linus/master v6.12-rc4 next-20241025]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Fixes: 2149ded63079 ("drm/xe: Fix use after free when client stats are captured")
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/xe/xe_exec_queue.c | 6 ++++++
- drivers/gpu/drm/xe/xe_guc_submit.c | 2 --
- 2 files changed, 6 insertions(+), 2 deletions(-)
+url:    https://github.com/intel-lab-lkp/linux/commits/Raag-Jadav/drm-Introduce-device-wedged-event/20241025-165119
+base:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+patch link:    https://lore.kernel.org/r/20241025084817.144621-2-raag.jadav%40intel.com
+patch subject: [PATCH v8 1/4] drm: Introduce device wedged event
+config: arm-randconfig-002-20241026 (https://download.01.org/0day-ci/archive/20241026/202410261754.enck8cc6-lkp@intel.com/config)
+compiler: clang version 20.0.0git (https://github.com/llvm/llvm-project 5886454669c3c9026f7f27eab13509dd0241f2d6)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241026/202410261754.enck8cc6-lkp@intel.com/reproduce)
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index b15ca84b2422..bc2fc917e0de 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -260,8 +260,14 @@ void xe_exec_queue_fini(struct xe_exec_queue *q)
- {
- 	int i;
- 
-+	/*
-+	 * Before releasing our ref to lrc and xef, accumulate our run ticks
-+	 */
-+	xe_exec_queue_update_run_ticks(q);
-+
- 	for (i = 0; i < q->width; ++i)
- 		xe_lrc_put(q->lrc[i]);
-+
- 	__xe_exec_queue_free(q);
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index e5d7c767a744..ebe4665d9159 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -747,8 +747,6 @@ static void guc_exec_queue_free_job(struct drm_sched_job *drm_job)
- {
- 	struct xe_sched_job *job = to_xe_sched_job(drm_job);
- 
--	xe_exec_queue_update_run_ticks(job->q);
--
- 	trace_xe_sched_job_free(job);
- 	xe_sched_job_put(job);
- }
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202410261754.enck8cc6-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   In file included from drivers/gpu/drm/drm_drv.c:36:
+   In file included from include/linux/pseudo_fs.h:4:
+   In file included from include/linux/fs_context.h:14:
+   In file included from include/linux/security.h:33:
+   In file included from include/linux/mm.h:2213:
+   include/linux/vmstat.h:518:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
+     518 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
+         |                               ~~~~~~~~~~~ ^ ~~~
+>> drivers/gpu/drm/drm_drv.c:81:3: error: expression is not an integer constant expression
+      81 |         [ffs(DRM_WEDGE_RECOVERY_REBIND) - 1]    = "rebind",
+         |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/asm-generic/bitops/ffs.h:43:16: note: expanded from macro 'ffs'
+      43 | #define ffs(x) generic_ffs(x)
+         |                ^
+   drivers/gpu/drm/drm_drv.c:82:3: error: expression is not an integer constant expression
+      82 |         [ffs(DRM_WEDGE_RECOVERY_BUS_RESET) - 1] = "bus-reset",
+         |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/asm-generic/bitops/ffs.h:43:16: note: expanded from macro 'ffs'
+      43 | #define ffs(x) generic_ffs(x)
+         |                ^
+>> drivers/gpu/drm/drm_drv.c:84:15: error: invalid application of 'sizeof' to an incomplete type 'const char *const[]'
+      84 | static_assert(ARRAY_SIZE(drm_wedge_recovery_opts) == ffs(DRM_WEDGE_RECOVERY_BUS_RESET));
+         | ~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/array_size.h:11:32: note: expanded from macro 'ARRAY_SIZE'
+      11 | #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + __must_be_array(arr))
+         |                                ^
+   include/linux/build_bug.h:77:50: note: expanded from macro 'static_assert'
+      77 | #define static_assert(expr, ...) __static_assert(expr, ##__VA_ARGS__, #expr)
+         |                                  ~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/build_bug.h:78:56: note: expanded from macro '__static_assert'
+      78 | #define __static_assert(expr, msg, ...) _Static_assert(expr, msg)
+         |                                                        ^~~~
+   drivers/gpu/drm/drm_drv.c:528:32: error: invalid application of 'sizeof' to an incomplete type 'const char *const[]'
+     528 |         unsigned int len, opt, size = ARRAY_SIZE(drm_wedge_recovery_opts);
+         |                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/array_size.h:11:32: note: expanded from macro 'ARRAY_SIZE'
+      11 | #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + __must_be_array(arr))
+         |                                ^~~~~
+   1 warning and 4 errors generated.
+
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for MODVERSIONS
+   Depends on [n]: MODULES [=y] && !COMPILE_TEST [=y]
+   Selected by [y]:
+   - RANDSTRUCT_FULL [=y] && (CC_HAS_RANDSTRUCT [=y] || GCC_PLUGINS [=n]) && MODULES [=y]
+
+
+vim +81 drivers/gpu/drm/drm_drv.c
+
+    75	
+    76	/*
+    77	 * Available recovery methods for wedged device. To be sent along with device
+    78	 * wedged uevent.
+    79	 */
+    80	static const char *const drm_wedge_recovery_opts[] = {
+  > 81		[ffs(DRM_WEDGE_RECOVERY_REBIND) - 1]	= "rebind",
+    82		[ffs(DRM_WEDGE_RECOVERY_BUS_RESET) - 1]	= "bus-reset",
+    83	};
+  > 84	static_assert(ARRAY_SIZE(drm_wedge_recovery_opts) == ffs(DRM_WEDGE_RECOVERY_BUS_RESET));
+    85	
+
 -- 
-2.47.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
