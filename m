@@ -2,55 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D952B9B3B18
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Oct 2024 21:08:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E88A9B3B1D
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Oct 2024 21:08:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0157910E565;
-	Mon, 28 Oct 2024 20:08:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2BF0010E56D;
+	Mon, 28 Oct 2024 20:08:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iHaRRk1Q";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XQq9cNHq";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1E5810E565;
- Mon, 28 Oct 2024 20:08:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB6B810E572;
+ Mon, 28 Oct 2024 20:08:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730146102; x=1761682102;
+ t=1730146108; x=1761682108;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=sBzVPXsFXg3tp1YZlMTrA/twX8z3mLjVMLBtGQiw8C0=;
- b=iHaRRk1Q5oS8NWR2x4BPuPJULwFTcOJ3eMLbgtPR88CTBNwQ1KVU+ZoS
- jLz/xtXm2WRcNS4b2fQjNzlHJq91qijja00qvnvAbCfi4iaGC9rWpsdnt
- POTuk9N18PjL5lr+vhvZfQbVoqgenTEqjarRbLUYHMkB1vKlviT0+vQvm
- 5jsZichl0M2y3Y4wAHv+A1LMMf2qyfIfnUBYI3+P7sxqo41PcHeviDcbJ
- f2nIsQNP5891QZ2rshwQkOPnKc5bdm5A4RlEfAEiVEIiH5WvtaUrrSYyR
- 6Ec/xt8x2EGmTCHSfOj+GsBRKTzgk1kfgqb4ATcwQ7twXZEBow27Z9gcz w==;
-X-CSE-ConnectionGUID: ipsghBghTU+L/a6uyAsYeg==
-X-CSE-MsgGUID: G1ZwAWLDRuCqpLe3BCIhmg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="33456853"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="33456853"
+ bh=CU6OdBl4oA6Hg0/HZYcQAX+1j9dKcmjRm2zpEF9LG0c=;
+ b=XQq9cNHqpbNNgNdCMffzF75G/r/ZiSW6V9ns0GfMfZM52+KiNCJ9Quos
+ PGjWCTL9byynkkeIOU0WioG/LOyDJn8y33hAarzMM6GG7GRw8k+76IOrQ
+ /kDKTIyK3pQXPuYjiiMnICdtQehos9ewoUknluAet2nf77swdOqTVhykf
+ zs9iPdafFlqQ8xXqdP/rQjuK94m9nGtbOMvgAGRWcDw+aKH13EYLJ1TEY
+ ERgKSgVCJqoxreWp2kkyFU1lIHAYh011Q5zJCGxTLe6dDGq+etwGL6R+Z
+ p3uCSc2adY5NXGitgUixTy7v5foNqT6wCVYx9vUsFRjQQQAcPI+3pmPf4 w==;
+X-CSE-ConnectionGUID: jLj1B9FSThuhCQDx6fGDDQ==
+X-CSE-MsgGUID: GuKLhvIvQvKhC7B5Cwqewg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="33456872"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="33456872"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2024 13:08:22 -0700
-X-CSE-ConnectionGUID: +MPiqr36RaW+7GmInYMt1A==
-X-CSE-MsgGUID: DV1y+anlQ0Cy18G0a0bj1Q==
+ 28 Oct 2024 13:08:27 -0700
+X-CSE-ConnectionGUID: IttZxe2DSjSOKNF+gmhyvA==
+X-CSE-MsgGUID: JfhpETYyTjWqipPNt15G5A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="81628592"
+X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="81628607"
 Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.246.21])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2024 13:08:20 -0700
+ 28 Oct 2024 13:08:25 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [CI v2 v2 09/12] drm/i915/power: convert assert_chv_phy_status() to
- struct intel_display
-Date: Mon, 28 Oct 2024 22:07:27 +0200
-Message-Id: <de6b01e1f21934ff520aa3b49ab5f97cbbf028f2.1730146000.git.jani.nikula@intel.com>
+Subject: [CI v2 v2 10/12] drm/i915/ips: convert to struct intel_display
+Date: Mon, 28 Oct 2024 22:07:28 +0200
+Message-Id: <66060d0c3fbb20e5d2c98a92133f091de6b25230.1730146000.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1730146000.git.jani.nikula@intel.com>
 References: <cover.1730146000.git.jani.nikula@intel.com>
@@ -73,249 +72,194 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 struct intel_display will replace struct drm_i915_private as the main
-device pointer for display code. Switch assert_chv_phy_status() and its
-callers to it. Main motivation to do just one function is to stop
-passing i915 to intel_de_wait(), so its generic wrapper can be removed.
+device pointer for display code. Switch HSW IPS code over to it.
 
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- .../i915/display/intel_display_power_well.c   | 95 ++++++++++---------
- 1 file changed, 50 insertions(+), 45 deletions(-)
+ drivers/gpu/drm/i915/display/hsw_ips.c | 47 ++++++++++++++------------
+ 1 file changed, 26 insertions(+), 21 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-index 885bc2e563c5..f0131dd853de 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-@@ -1337,13 +1337,14 @@ static void vlv_dpio_cmn_power_well_disable(struct drm_i915_private *dev_priv,
+diff --git a/drivers/gpu/drm/i915/display/hsw_ips.c b/drivers/gpu/drm/i915/display/hsw_ips.c
+index c571c6e76d4a..34c5d28fc866 100644
+--- a/drivers/gpu/drm/i915/display/hsw_ips.c
++++ b/drivers/gpu/drm/i915/display/hsw_ips.c
+@@ -15,6 +15,7 @@
  
- #define BITS_SET(val, bits) (((val) & (bits)) == (bits))
- 
--static void assert_chv_phy_status(struct drm_i915_private *dev_priv)
-+static void assert_chv_phy_status(struct intel_display *display)
+ static void hsw_ips_enable(const struct intel_crtc_state *crtc_state)
  {
-+	struct drm_i915_private *dev_priv = to_i915(display->drm);
- 	struct i915_power_well *cmn_bc =
- 		lookup_power_well(dev_priv, VLV_DISP_PW_DPIO_CMN_BC);
- 	struct i915_power_well *cmn_d =
- 		lookup_power_well(dev_priv, CHV_DISP_PW_DPIO_CMN_D);
--	u32 phy_control = dev_priv->display.power.chv_phy_control;
-+	u32 phy_control = display->power.chv_phy_control;
- 	u32 phy_status = 0;
- 	u32 phy_status_mask = 0xffffffff;
- 
-@@ -1354,7 +1355,7 @@ static void assert_chv_phy_status(struct drm_i915_private *dev_priv)
- 	 * reset (ie. the power well has been disabled at
- 	 * least once).
++	struct intel_display *display = to_intel_display(crtc_state);
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+ 	u32 val;
+@@ -27,16 +28,16 @@ static void hsw_ips_enable(const struct intel_crtc_state *crtc_state)
+ 	 * This function is called from post_plane_update, which is run after
+ 	 * a vblank wait.
  	 */
--	if (!dev_priv->display.power.chv_phy_assert[DPIO_PHY0])
-+	if (!display->power.chv_phy_assert[DPIO_PHY0])
- 		phy_status_mask &= ~(PHY_STATUS_CMN_LDO(DPIO_PHY0, DPIO_CH0) |
- 				     PHY_STATUS_SPLINE_LDO(DPIO_PHY0, DPIO_CH0, 0) |
- 				     PHY_STATUS_SPLINE_LDO(DPIO_PHY0, DPIO_CH0, 1) |
-@@ -1362,7 +1363,7 @@ static void assert_chv_phy_status(struct drm_i915_private *dev_priv)
- 				     PHY_STATUS_SPLINE_LDO(DPIO_PHY0, DPIO_CH1, 0) |
- 				     PHY_STATUS_SPLINE_LDO(DPIO_PHY0, DPIO_CH1, 1));
+-	drm_WARN_ON(&i915->drm,
++	drm_WARN_ON(display->drm,
+ 		    !(crtc_state->active_planes & ~BIT(PLANE_CURSOR)));
  
--	if (!dev_priv->display.power.chv_phy_assert[DPIO_PHY1])
-+	if (!display->power.chv_phy_assert[DPIO_PHY1])
- 		phy_status_mask &= ~(PHY_STATUS_CMN_LDO(DPIO_PHY1, DPIO_CH0) |
- 				     PHY_STATUS_SPLINE_LDO(DPIO_PHY1, DPIO_CH0, 0) |
- 				     PHY_STATUS_SPLINE_LDO(DPIO_PHY1, DPIO_CH0, 1));
-@@ -1390,7 +1391,7 @@ static void assert_chv_phy_status(struct drm_i915_private *dev_priv)
+ 	val = IPS_ENABLE;
+ 
+-	if (i915->display.ips.false_color)
++	if (display->ips.false_color)
+ 		val |= IPS_FALSE_COLOR;
+ 
+ 	if (IS_BROADWELL(i915)) {
+-		drm_WARN_ON(&i915->drm,
++		drm_WARN_ON(display->drm,
+ 			    snb_pcode_write(&i915->uncore, DISPLAY_IPS_CONTROL,
+ 					    val | IPS_PCODE_CONTROL));
+ 		/*
+@@ -46,7 +47,7 @@ static void hsw_ips_enable(const struct intel_crtc_state *crtc_state)
+ 		 * so we need to just enable it and continue on.
  		 */
- 		if (BITS_SET(phy_control,
- 			     PHY_CH_POWER_DOWN_OVRD(0xf, DPIO_PHY0, DPIO_CH1)) &&
--		    (intel_de_read(dev_priv, DPLL(dev_priv, PIPE_B)) & DPLL_VCO_ENABLE) == 0)
-+		    (intel_de_read(display, DPLL(display, PIPE_B)) & DPLL_VCO_ENABLE) == 0)
- 			phy_status |= PHY_STATUS_CMN_LDO(DPIO_PHY0, DPIO_CH1);
- 
- 		if (BITS_SET(phy_control,
-@@ -1433,12 +1434,12 @@ static void assert_chv_phy_status(struct drm_i915_private *dev_priv)
- 	 * The PHY may be busy with some initial calibration and whatnot,
- 	 * so the power state can take a while to actually change.
- 	 */
--	if (intel_de_wait(dev_priv, DISPLAY_PHY_STATUS,
-+	if (intel_de_wait(display, DISPLAY_PHY_STATUS,
- 			  phy_status_mask, phy_status, 10))
--		drm_err(&dev_priv->drm,
-+		drm_err(display->drm,
- 			"Unexpected PHY_STATUS 0x%08x, expected 0x%08x (PHY_CONTROL=0x%08x)\n",
--			intel_de_read(dev_priv, DISPLAY_PHY_STATUS) & phy_status_mask,
--			phy_status, dev_priv->display.power.chv_phy_control);
-+			intel_de_read(display, DISPLAY_PHY_STATUS) & phy_status_mask,
-+			phy_status, display->power.chv_phy_control);
+ 	} else {
+-		intel_de_write(i915, IPS_CTL, val);
++		intel_de_write(display, IPS_CTL, val);
+ 		/*
+ 		 * The bit only becomes 1 in the next vblank, so this wait here
+ 		 * is essentially intel_wait_for_vblank. If we don't have this
+@@ -54,14 +55,15 @@ static void hsw_ips_enable(const struct intel_crtc_state *crtc_state)
+ 		 * the HW state readout code will complain that the expected
+ 		 * IPS_CTL value is not the one we read.
+ 		 */
+-		if (intel_de_wait_for_set(i915, IPS_CTL, IPS_ENABLE, 50))
+-			drm_err(&i915->drm,
++		if (intel_de_wait_for_set(display, IPS_CTL, IPS_ENABLE, 50))
++			drm_err(display->drm,
+ 				"Timed out waiting for IPS enable\n");
+ 	}
  }
  
- #undef BITS_SET
-@@ -1446,11 +1447,12 @@ static void assert_chv_phy_status(struct drm_i915_private *dev_priv)
- static void chv_dpio_cmn_power_well_enable(struct drm_i915_private *dev_priv,
- 					   struct i915_power_well *power_well)
+ bool hsw_ips_disable(const struct intel_crtc_state *crtc_state)
  {
-+	struct intel_display *display = &dev_priv->display;
- 	enum i915_power_well_id id = i915_power_well_instance(power_well)->id;
- 	enum dpio_phy phy;
- 	u32 tmp;
++	struct intel_display *display = to_intel_display(crtc_state);
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+ 	bool need_vblank_wait = false;
+@@ -70,19 +72,19 @@ bool hsw_ips_disable(const struct intel_crtc_state *crtc_state)
+ 		return need_vblank_wait;
  
--	drm_WARN_ON_ONCE(&dev_priv->drm,
-+	drm_WARN_ON_ONCE(display->drm,
- 			 id != VLV_DISP_PW_DPIO_CMN_BC &&
- 			 id != CHV_DISP_PW_DPIO_CMN_D);
- 
-@@ -1464,9 +1466,9 @@ static void chv_dpio_cmn_power_well_enable(struct drm_i915_private *dev_priv,
- 	vlv_set_power_well(dev_priv, power_well, true);
- 
- 	/* Poll for phypwrgood signal */
--	if (intel_de_wait_for_set(dev_priv, DISPLAY_PHY_STATUS,
-+	if (intel_de_wait_for_set(display, DISPLAY_PHY_STATUS,
- 				  PHY_POWERGOOD(phy), 1))
--		drm_err(&dev_priv->drm, "Display PHY %d is not power up\n",
-+		drm_err(display->drm, "Display PHY %d is not power up\n",
- 			phy);
- 
- 	vlv_dpio_get(dev_priv);
-@@ -1494,24 +1496,25 @@ static void chv_dpio_cmn_power_well_enable(struct drm_i915_private *dev_priv,
- 
- 	vlv_dpio_put(dev_priv);
- 
--	dev_priv->display.power.chv_phy_control |= PHY_COM_LANE_RESET_DEASSERT(phy);
--	intel_de_write(dev_priv, DISPLAY_PHY_CONTROL,
--		       dev_priv->display.power.chv_phy_control);
-+	display->power.chv_phy_control |= PHY_COM_LANE_RESET_DEASSERT(phy);
-+	intel_de_write(display, DISPLAY_PHY_CONTROL,
-+		       display->power.chv_phy_control);
- 
--	drm_dbg_kms(&dev_priv->drm,
-+	drm_dbg_kms(display->drm,
- 		    "Enabled DPIO PHY%d (PHY_CONTROL=0x%08x)\n",
--		    phy, dev_priv->display.power.chv_phy_control);
-+		    phy, display->power.chv_phy_control);
- 
--	assert_chv_phy_status(dev_priv);
-+	assert_chv_phy_status(display);
- }
- 
- static void chv_dpio_cmn_power_well_disable(struct drm_i915_private *dev_priv,
- 					    struct i915_power_well *power_well)
- {
-+	struct intel_display *display = &dev_priv->display;
- 	enum i915_power_well_id id = i915_power_well_instance(power_well)->id;
- 	enum dpio_phy phy;
- 
--	drm_WARN_ON_ONCE(&dev_priv->drm,
-+	drm_WARN_ON_ONCE(display->drm,
- 			 id != VLV_DISP_PW_DPIO_CMN_BC &&
- 			 id != CHV_DISP_PW_DPIO_CMN_D);
- 
-@@ -1524,20 +1527,20 @@ static void chv_dpio_cmn_power_well_disable(struct drm_i915_private *dev_priv,
- 		assert_pll_disabled(dev_priv, PIPE_C);
+ 	if (IS_BROADWELL(i915)) {
+-		drm_WARN_ON(&i915->drm,
++		drm_WARN_ON(display->drm,
+ 			    snb_pcode_write(&i915->uncore, DISPLAY_IPS_CONTROL, 0));
+ 		/*
+ 		 * Wait for PCODE to finish disabling IPS. The BSpec specified
+ 		 * 42ms timeout value leads to occasional timeouts so use 100ms
+ 		 * instead.
+ 		 */
+-		if (intel_de_wait_for_clear(i915, IPS_CTL, IPS_ENABLE, 100))
+-			drm_err(&i915->drm,
++		if (intel_de_wait_for_clear(display, IPS_CTL, IPS_ENABLE, 100))
++			drm_err(display->drm,
+ 				"Timed out waiting for IPS disable\n");
+ 	} else {
+-		intel_de_write(i915, IPS_CTL, 0);
+-		intel_de_posting_read(i915, IPS_CTL);
++		intel_de_write(display, IPS_CTL, 0);
++		intel_de_posting_read(display, IPS_CTL);
  	}
  
--	dev_priv->display.power.chv_phy_control &= ~PHY_COM_LANE_RESET_DEASSERT(phy);
--	intel_de_write(dev_priv, DISPLAY_PHY_CONTROL,
--		       dev_priv->display.power.chv_phy_control);
-+	display->power.chv_phy_control &= ~PHY_COM_LANE_RESET_DEASSERT(phy);
-+	intel_de_write(display, DISPLAY_PHY_CONTROL,
-+		       display->power.chv_phy_control);
+ 	/* We need to wait for a vblank before we can disable the plane. */
+@@ -188,6 +190,7 @@ bool hsw_crtc_supports_ips(struct intel_crtc *crtc)
  
- 	vlv_set_power_well(dev_priv, power_well, false);
+ bool hsw_crtc_state_ips_capable(const struct intel_crtc_state *crtc_state)
+ {
++	struct intel_display *display = to_intel_display(crtc_state);
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
  
--	drm_dbg_kms(&dev_priv->drm,
-+	drm_dbg_kms(display->drm,
- 		    "Disabled DPIO PHY%d (PHY_CONTROL=0x%08x)\n",
--		    phy, dev_priv->display.power.chv_phy_control);
-+		    phy, display->power.chv_phy_control);
+@@ -195,7 +198,7 @@ bool hsw_crtc_state_ips_capable(const struct intel_crtc_state *crtc_state)
+ 	if (!hsw_crtc_supports_ips(crtc))
+ 		return false;
  
- 	/* PHY is fully reset now, so we can enable the PHY state asserts */
--	dev_priv->display.power.chv_phy_assert[phy] = true;
-+	display->power.chv_phy_assert[phy] = true;
+-	if (!i915->display.params.enable_ips)
++	if (!display->params.enable_ips)
+ 		return false;
  
--	assert_chv_phy_status(dev_priv);
-+	assert_chv_phy_status(display);
+ 	if (crtc_state->pipe_bpp > 24)
+@@ -209,7 +212,7 @@ bool hsw_crtc_state_ips_capable(const struct intel_crtc_state *crtc_state)
+ 	 * Should measure whether using a lower cdclk w/o IPS
+ 	 */
+ 	if (IS_BROADWELL(i915) &&
+-	    crtc_state->pixel_rate > i915->display.cdclk.max_cdclk_freq * 95 / 100)
++	    crtc_state->pixel_rate > display->cdclk.max_cdclk_freq * 95 / 100)
+ 		return false;
+ 
+ 	return true;
+@@ -259,6 +262,7 @@ int hsw_ips_compute_config(struct intel_atomic_state *state,
+ 
+ void hsw_ips_get_config(struct intel_crtc_state *crtc_state)
+ {
++	struct intel_display *display = to_intel_display(crtc_state);
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+ 
+@@ -266,7 +270,7 @@ void hsw_ips_get_config(struct intel_crtc_state *crtc_state)
+ 		return;
+ 
+ 	if (IS_HASWELL(i915)) {
+-		crtc_state->ips_enabled = intel_de_read(i915, IPS_CTL) & IPS_ENABLE;
++		crtc_state->ips_enabled = intel_de_read(display, IPS_CTL) & IPS_ENABLE;
+ 	} else {
+ 		/*
+ 		 * We cannot readout IPS state on broadwell, set to
+@@ -280,9 +284,9 @@ void hsw_ips_get_config(struct intel_crtc_state *crtc_state)
+ static int hsw_ips_debugfs_false_color_get(void *data, u64 *val)
+ {
+ 	struct intel_crtc *crtc = data;
+-	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
++	struct intel_display *display = to_intel_display(crtc);
+ 
+-	*val = i915->display.ips.false_color;
++	*val = display->ips.false_color;
+ 
+ 	return 0;
  }
- 
- static void assert_chv_phy_powergate(struct drm_i915_private *dev_priv, enum dpio_phy phy,
-@@ -1607,29 +1610,30 @@ static void assert_chv_phy_powergate(struct drm_i915_private *dev_priv, enum dpi
- bool chv_phy_powergate_ch(struct drm_i915_private *dev_priv, enum dpio_phy phy,
- 			  enum dpio_channel ch, bool override)
+@@ -290,7 +294,7 @@ static int hsw_ips_debugfs_false_color_get(void *data, u64 *val)
+ static int hsw_ips_debugfs_false_color_set(void *data, u64 val)
  {
--	struct i915_power_domains *power_domains = &dev_priv->display.power.domains;
-+	struct intel_display *display = &dev_priv->display;
-+	struct i915_power_domains *power_domains = &display->power.domains;
- 	bool was_override;
+ 	struct intel_crtc *crtc = data;
+-	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
++	struct intel_display *display = to_intel_display(crtc);
+ 	struct intel_crtc_state *crtc_state;
+ 	int ret;
  
- 	mutex_lock(&power_domains->lock);
+@@ -298,7 +302,7 @@ static int hsw_ips_debugfs_false_color_set(void *data, u64 val)
+ 	if (ret)
+ 		return ret;
  
--	was_override = dev_priv->display.power.chv_phy_control & PHY_CH_POWER_DOWN_OVRD_EN(phy, ch);
-+	was_override = display->power.chv_phy_control & PHY_CH_POWER_DOWN_OVRD_EN(phy, ch);
+-	i915->display.ips.false_color = val;
++	display->ips.false_color = val;
  
- 	if (override == was_override)
- 		goto out;
+ 	crtc_state = to_intel_crtc_state(crtc->base.state);
  
- 	if (override)
--		dev_priv->display.power.chv_phy_control |= PHY_CH_POWER_DOWN_OVRD_EN(phy, ch);
-+		display->power.chv_phy_control |= PHY_CH_POWER_DOWN_OVRD_EN(phy, ch);
- 	else
--		dev_priv->display.power.chv_phy_control &= ~PHY_CH_POWER_DOWN_OVRD_EN(phy, ch);
-+		display->power.chv_phy_control &= ~PHY_CH_POWER_DOWN_OVRD_EN(phy, ch);
- 
--	intel_de_write(dev_priv, DISPLAY_PHY_CONTROL,
--		       dev_priv->display.power.chv_phy_control);
-+	intel_de_write(display, DISPLAY_PHY_CONTROL,
-+		       display->power.chv_phy_control);
- 
--	drm_dbg_kms(&dev_priv->drm,
-+	drm_dbg_kms(display->drm,
- 		    "Power gating DPIO PHY%d CH%d (DPIO_PHY_CONTROL=0x%08x)\n",
--		    phy, ch, dev_priv->display.power.chv_phy_control);
-+		    phy, ch, display->power.chv_phy_control);
- 
--	assert_chv_phy_status(dev_priv);
-+	assert_chv_phy_status(display);
- 
- out:
- 	mutex_unlock(&power_domains->lock);
-@@ -1640,29 +1644,30 @@ bool chv_phy_powergate_ch(struct drm_i915_private *dev_priv, enum dpio_phy phy,
- void chv_phy_powergate_lanes(struct intel_encoder *encoder,
- 			     bool override, unsigned int mask)
+@@ -325,18 +329,19 @@ DEFINE_DEBUGFS_ATTRIBUTE(hsw_ips_debugfs_false_color_fops,
+ static int hsw_ips_debugfs_status_show(struct seq_file *m, void *unused)
  {
-+	struct intel_display *display = to_intel_display(encoder);
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
--	struct i915_power_domains *power_domains = &dev_priv->display.power.domains;
-+	struct i915_power_domains *power_domains = &display->power.domains;
- 	enum dpio_phy phy = vlv_dig_port_to_phy(enc_to_dig_port(encoder));
- 	enum dpio_channel ch = vlv_dig_port_to_channel(enc_to_dig_port(encoder));
+ 	struct intel_crtc *crtc = m->private;
++	struct intel_display *display = to_intel_display(crtc);
+ 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+ 	intel_wakeref_t wakeref;
  
- 	mutex_lock(&power_domains->lock);
+ 	wakeref = intel_runtime_pm_get(&i915->runtime_pm);
  
--	dev_priv->display.power.chv_phy_control &= ~PHY_CH_POWER_DOWN_OVRD(0xf, phy, ch);
--	dev_priv->display.power.chv_phy_control |= PHY_CH_POWER_DOWN_OVRD(mask, phy, ch);
-+	display->power.chv_phy_control &= ~PHY_CH_POWER_DOWN_OVRD(0xf, phy, ch);
-+	display->power.chv_phy_control |= PHY_CH_POWER_DOWN_OVRD(mask, phy, ch);
+ 	seq_printf(m, "Enabled by kernel parameter: %s\n",
+-		   str_yes_no(i915->display.params.enable_ips));
++		   str_yes_no(display->params.enable_ips));
  
- 	if (override)
--		dev_priv->display.power.chv_phy_control |= PHY_CH_POWER_DOWN_OVRD_EN(phy, ch);
-+		display->power.chv_phy_control |= PHY_CH_POWER_DOWN_OVRD_EN(phy, ch);
- 	else
--		dev_priv->display.power.chv_phy_control &= ~PHY_CH_POWER_DOWN_OVRD_EN(phy, ch);
-+		display->power.chv_phy_control &= ~PHY_CH_POWER_DOWN_OVRD_EN(phy, ch);
- 
--	intel_de_write(dev_priv, DISPLAY_PHY_CONTROL,
--		       dev_priv->display.power.chv_phy_control);
-+	intel_de_write(display, DISPLAY_PHY_CONTROL,
-+		       display->power.chv_phy_control);
- 
--	drm_dbg_kms(&dev_priv->drm,
-+	drm_dbg_kms(display->drm,
- 		    "Power gating DPIO PHY%d CH%d lanes 0x%x (PHY_CONTROL=0x%08x)\n",
--		    phy, ch, mask, dev_priv->display.power.chv_phy_control);
-+		    phy, ch, mask, display->power.chv_phy_control);
- 
--	assert_chv_phy_status(dev_priv);
-+	assert_chv_phy_status(display);
- 
- 	assert_chv_phy_powergate(dev_priv, phy, ch, override, mask);
- 
+-	if (DISPLAY_VER(i915) >= 8) {
++	if (DISPLAY_VER(display) >= 8) {
+ 		seq_puts(m, "Currently: unknown\n");
+ 	} else {
+-		if (intel_de_read(i915, IPS_CTL) & IPS_ENABLE)
++		if (intel_de_read(display, IPS_CTL) & IPS_ENABLE)
+ 			seq_puts(m, "Currently: enabled\n");
+ 		else
+ 			seq_puts(m, "Currently: disabled\n");
 -- 
 2.39.5
 
