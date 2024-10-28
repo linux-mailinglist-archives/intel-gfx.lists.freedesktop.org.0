@@ -2,29 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A6F49B3071
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Oct 2024 13:37:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CC2319B3085
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Oct 2024 13:40:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20BF010E356;
-	Mon, 28 Oct 2024 12:37:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF07E10E498;
+	Mon, 28 Oct 2024 12:40:30 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I+E5DKmz";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA7E310E356;
- Mon, 28 Oct 2024 12:37:35 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2527125739323385946=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B51C310E498
+ for <intel-gfx@lists.freedesktop.org>; Mon, 28 Oct 2024 12:40:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1730119228; x=1761655228;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=P8ujdvhx/0Ltcj3RiET9rx87fnBPQZBaT0eGTyGlfw8=;
+ b=I+E5DKmzgW3vu9guLdU+TxRCdg8mZcppKTMxZwPgzRzCzdWPfe3OAfXF
+ sRw6BkI3nF4C/zgg5J/qEty9kTRPU6hZ6IWBR0YpnVLPSawxok/fHTItK
+ Ffij4tp2AAal27ForwuTpG+z8uyNnolqHJY3W7g2VtpVKRK/o/fdgR+H2
+ 9Hh/P5berfi4qupn8MyY2pemorlLeyIXE19rSsL1GwUqMQuyBF7jxONqx
+ g+O0lVXJjNZHnOTEl+ErxV6Rr8mlHackzCYdZCJl1tY721zr8kmbipE6v
+ fCODbJVIkLKprL3AHn281UiB7NGqk1Ob1m9QJ2s0EFZjkF1pO1nuEz8aw Q==;
+X-CSE-ConnectionGUID: cT6CDy+9QBa1Ucqe3WP7Hg==
+X-CSE-MsgGUID: +fv/td6RSPGbH/R0fZW3BA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11238"; a="17346868"
+X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="17346868"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2024 05:40:28 -0700
+X-CSE-ConnectionGUID: ID5NrpBoT4a1iWbBpfxuVA==
+X-CSE-MsgGUID: fM9CWGQtQqe4bN3oYovHSg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="119067863"
+Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.245.177.235])
+ ([10.245.177.235])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2024 05:40:27 -0700
+Message-ID: <bb778db8-71d1-4ded-be52-f5dc32052ae2@linux.intel.com>
+Date: Mon, 28 Oct 2024 13:40:23 +0100
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/xe2lpd=3A_Update_C?=
- =?utf-8?q?20_HDMI_TMDS_algorithm_to_include_tx=5Fmisc_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gustavo Sousa" <gustavo.sousa@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 28 Oct 2024 12:37:35 -0000
-Message-ID: <173011905575.1354624.16367023887228227373@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241023153352.144146-1-gustavo.sousa@intel.com>
-In-Reply-To: <20241023153352.144146-1-gustavo.sousa@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] drm/xe: Add trace to lrc timestamp update
+To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+References: <20241026062658.28060-1-lucas.demarchi@intel.com>
+ <20241026062658.28060-2-lucas.demarchi@intel.com>
+Content-Language: en-US
+From: Nirmoy Das <nirmoy.das@linux.intel.com>
+In-Reply-To: <20241026062658.28060-2-lucas.demarchi@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,222 +69,129 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2527125739323385946==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
-
-Series: drm/i915/xe2lpd: Update C20 HDMI TMDS algorithm to include tx_misc (rev2)
-URL   : https://patchwork.freedesktop.org/series/140136/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_15586 -> Patchwork_140136v2
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/index.html
-
-Participating hosts (46 -> 46)
-------------------------------
-
-  Additional (1): fi-skl-6600u 
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_140136v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][1] ([i915#2190])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/fi-skl-6600u/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@random-engines:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][2] ([i915#4613]) +3 other tests skip
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/fi-skl-6600u/igt@gem_lmem_swapping@random-engines.html
-
-  * igt@i915_selftest@live:
-    - bat-arlh-3:         [PASS][3] -> [ABORT][4] ([i915#12133])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15586/bat-arlh-3/igt@i915_selftest@live.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/bat-arlh-3/igt@i915_selftest@live.html
-    - bat-mtlp-6:         [PASS][5] -> [INCOMPLETE][6] ([i915#10341])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15586/bat-mtlp-6/igt@i915_selftest@live.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/bat-mtlp-6/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@gt_lrc:
-    - bat-mtlp-6:         [PASS][7] -> [INCOMPLETE][8] ([i915#12624])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15586/bat-mtlp-6/igt@i915_selftest@live@gt_lrc.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/bat-mtlp-6/igt@i915_selftest@live@gt_lrc.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arlh-3:         [PASS][9] -> [ABORT][10] ([i915#12061])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15586/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_dsc@dsc-basic:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][11] +9 other tests skip
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/fi-skl-6600u/igt@kms_dsc@dsc-basic.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live:
-    - bat-dg2-8:          [ABORT][12] ([i915#12133]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15586/bat-dg2-8/igt@i915_selftest@live.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/bat-dg2-8/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@vma:
-    - bat-dg2-8:          [ABORT][14] ([i915#12305]) -> [PASS][15]
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15586/bat-dg2-8/igt@i915_selftest@live@vma.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/bat-dg2-8/igt@i915_selftest@live@vma.html
-
-  
-  [i915#10341]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10341
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12133]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133
-  [i915#12305]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12305
-  [i915#12624]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12624
-  [i915#2190]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190
-  [i915#4613]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613
+On 10/26/2024 8:26 AM, Lucas De Marchi wrote:
+> Help debugging when LRC timestamp is updated for a exec queue.
+>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
 
-Build changes
--------------
+Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
 
-  * Linux: CI_DRM_15586 -> Patchwork_140136v2
-
-  CI-20190529: 20190529
-  CI_DRM_15586: 790c7308eb96861950ceddfd5a0f410cc3306c2e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8082: c8379ec8b26f3c21bae5473706b23da78bd26ffa @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_140136v2: 790c7308eb96861950ceddfd5a0f410cc3306c2e @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/index.html
-
---===============2527125739323385946==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/xe2lpd: Update C20 HDMI TMDS algorithm to include tx_misc (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/140136/">https://patchwork.freedesktop.org/series/140136/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_15586 -&gt; Patchwork_140136v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/index.html</p>
-<h2>Participating hosts (46 -&gt; 46)</h2>
-<p>Additional (1): fi-skl-6600u <br />
-  Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_140136v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/fi-skl-6600u/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@random-engines:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/fi-skl-6600u/igt@gem_lmem_swapping@random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15586/bat-arlh-3/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/bat-arlh-3/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133">i915#12133</a>)</li>
-<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15586/bat-mtlp-6/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/bat-mtlp-6/igt@i915_selftest@live.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10341">i915#10341</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_lrc:</p>
-<ul>
-<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15586/bat-mtlp-6/igt@i915_selftest@live@gt_lrc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/bat-mtlp-6/igt@i915_selftest@live@gt_lrc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12624">i915#12624</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15586/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/bat-arlh-3/igt@i915_selftest@live@workarounds.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/fi-skl-6600u/igt@kms_dsc@dsc-basic.html">SKIP</a> +9 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15586/bat-dg2-8/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133">i915#12133</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/bat-dg2-8/igt@i915_selftest@live.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@vma:</p>
-<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15586/bat-dg2-8/igt@i915_selftest@live@vma.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12305">i915#12305</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/bat-dg2-8/igt@i915_selftest@live@vma.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_15586 -&gt; Patchwork_140136v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_15586: 790c7308eb96861950ceddfd5a0f410cc3306c2e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8082: c8379ec8b26f3c21bae5473706b23da78bd26ffa @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_140136v2: 790c7308eb96861950ceddfd5a0f410cc3306c2e @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============2527125739323385946==--
+> ---
+>  drivers/gpu/drm/xe/Makefile       |  1 +
+>  drivers/gpu/drm/xe/xe_lrc.c       |  3 ++
+>  drivers/gpu/drm/xe/xe_trace_lrc.c |  9 ++++++
+>  drivers/gpu/drm/xe/xe_trace_lrc.h | 52 +++++++++++++++++++++++++++++++
+>  4 files changed, 65 insertions(+)
+>  create mode 100644 drivers/gpu/drm/xe/xe_trace_lrc.c
+>  create mode 100644 drivers/gpu/drm/xe/xe_trace_lrc.h
+>
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index bc7a04ce69fd..21d69935c336 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -101,6 +101,7 @@ xe-y += xe_bb.o \
+>  	xe_trace.o \
+>  	xe_trace_bo.o \
+>  	xe_trace_guc.o \
+> +	xe_trace_lrc.o \
+>  	xe_ttm_sys_mgr.o \
+>  	xe_ttm_stolen_mgr.o \
+>  	xe_ttm_vram_mgr.o \
+> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+> index 4f64c7f4e68d..4b65da77c6e0 100644
+> --- a/drivers/gpu/drm/xe/xe_lrc.c
+> +++ b/drivers/gpu/drm/xe/xe_lrc.c
+> @@ -25,6 +25,7 @@
+>  #include "xe_map.h"
+>  #include "xe_memirq.h"
+>  #include "xe_sriov.h"
+> +#include "xe_trace_lrc.h"
+>  #include "xe_vm.h"
+>  #include "xe_wa.h"
+>  
+> @@ -1758,5 +1759,7 @@ u32 xe_lrc_update_timestamp(struct xe_lrc *lrc, u32 *old_ts)
+>  
+>  	lrc->ctx_timestamp = xe_lrc_ctx_timestamp(lrc);
+>  
+> +	trace_xe_lrc_update_timestamp(lrc, *old_ts);
+> +
+>  	return lrc->ctx_timestamp;
+>  }
+> diff --git a/drivers/gpu/drm/xe/xe_trace_lrc.c b/drivers/gpu/drm/xe/xe_trace_lrc.c
+> new file mode 100644
+> index 000000000000..ab9b7e2970bc
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_trace_lrc.c
+> @@ -0,0 +1,9 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright © 2024 Intel Corporation
+> + */
+> +
+> +#ifndef __CHECKER__
+> +#define CREATE_TRACE_POINTS
+> +#include "xe_trace_lrc.h"
+> +#endif
+> diff --git a/drivers/gpu/drm/xe/xe_trace_lrc.h b/drivers/gpu/drm/xe/xe_trace_lrc.h
+> new file mode 100644
+> index 000000000000..5c669a0b2180
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_trace_lrc.h
+> @@ -0,0 +1,52 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * Copyright © 2024 Intel Corporation
+> + */
+> +
+> +#undef TRACE_SYSTEM
+> +#define TRACE_SYSTEM xe
+> +
+> +#if !defined(_XE_TRACE_LRC_H_) || defined(TRACE_HEADER_MULTI_READ)
+> +#define _XE_TRACE_LRC_H_
+> +
+> +#include <linux/tracepoint.h>
+> +#include <linux/types.h>
+> +
+> +#include "xe_gt_types.h"
+> +#include "xe_lrc.h"
+> +#include "xe_lrc_types.h"
+> +
+> +#define __dev_name_lrc(lrc)	dev_name(gt_to_xe((lrc)->fence_ctx.gt)->drm.dev)
+> +
+> +TRACE_EVENT(xe_lrc_update_timestamp,
+> +	    TP_PROTO(struct xe_lrc *lrc, uint32_t old),
+> +	    TP_ARGS(lrc, old),
+> +	    TP_STRUCT__entry(
+> +		     __field(struct xe_lrc *, lrc)
+> +		     __field(u32, old)
+> +		     __field(u32, new)
+> +		     __string(name, lrc->fence_ctx.name)
+> +		     __string(device_id, __dev_name_lrc(lrc))
+> +	    ),
+> +
+> +	    TP_fast_assign(
+> +		   __entry->lrc	= lrc;
+> +		   __entry->old = old;
+> +		   __entry->new = lrc->ctx_timestamp;
+> +		   __assign_str(name);
+> +		   __assign_str(device_id);
+> +		   ),
+> +	    TP_printk("lrc=:%p lrc->name=%s old=%u new=%u device_id:%s",
+> +		      __entry->lrc, __get_str(name),
+> +		      __entry->old, __entry->new,
+> +		      __get_str(device_id))
+> +);
+> +
+> +#endif
+> +
+> +/* This part must be outside protection */
+> +#undef TRACE_INCLUDE_PATH
+> +#undef TRACE_INCLUDE_FILE
+> +#define TRACE_INCLUDE_PATH ../../drivers/gpu/drm/xe
+> +#define TRACE_INCLUDE_FILE xe_trace_lrc
+> +#include <trace/define_trace.h>
