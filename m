@@ -2,61 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC2319B3085
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Oct 2024 13:40:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5375E9B309B
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Oct 2024 13:43:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF07E10E498;
-	Mon, 28 Oct 2024 12:40:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 595A710E499;
+	Mon, 28 Oct 2024 12:43:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I+E5DKmz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RTVInMJb";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B51C310E498
- for <intel-gfx@lists.freedesktop.org>; Mon, 28 Oct 2024 12:40:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C1E5810E499
+ for <intel-gfx@lists.freedesktop.org>; Mon, 28 Oct 2024 12:43:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730119228; x=1761655228;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=P8ujdvhx/0Ltcj3RiET9rx87fnBPQZBaT0eGTyGlfw8=;
- b=I+E5DKmzgW3vu9guLdU+TxRCdg8mZcppKTMxZwPgzRzCzdWPfe3OAfXF
- sRw6BkI3nF4C/zgg5J/qEty9kTRPU6hZ6IWBR0YpnVLPSawxok/fHTItK
- Ffij4tp2AAal27ForwuTpG+z8uyNnolqHJY3W7g2VtpVKRK/o/fdgR+H2
- 9Hh/P5berfi4qupn8MyY2pemorlLeyIXE19rSsL1GwUqMQuyBF7jxONqx
- g+O0lVXJjNZHnOTEl+ErxV6Rr8mlHackzCYdZCJl1tY721zr8kmbipE6v
- fCODbJVIkLKprL3AHn281UiB7NGqk1Ob1m9QJ2s0EFZjkF1pO1nuEz8aw Q==;
-X-CSE-ConnectionGUID: cT6CDy+9QBa1Ucqe3WP7Hg==
-X-CSE-MsgGUID: +fv/td6RSPGbH/R0fZW3BA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11238"; a="17346868"
-X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="17346868"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2024 05:40:28 -0700
-X-CSE-ConnectionGUID: ID5NrpBoT4a1iWbBpfxuVA==
-X-CSE-MsgGUID: fM9CWGQtQqe4bN3oYovHSg==
+ t=1730119430; x=1761655430;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=g0BP5CSCQvH2ZrJ789UyLf2JUb7cgFakH4J7/zoAyjo=;
+ b=RTVInMJbiGAbAddaRZsMbD340nfu41pDEWfzrnA+xBWl13Va/X/KeIp3
+ vXRBuGFqJ5ySOwSFT1qmMiOBgM1nj3VT68NbbqHkpyhZGNhX+2jeehIDg
+ 793Hi0ioXCueuHKHiEu40siTyq8DJnwPiV2ZcvcB2NMxvw0fG9M5iaS8m
+ Gm9+Z0SrKMIKr13RuagqFJeDxZ7K11KdgCFoDUI/HQhTrqkvkst6reyRN
+ 5xfsJWzBMEzIaqnOhdOPgG4vK8Yxwhvy1FW8wqzNp05Lo26KR9u1+yIq1
+ 0PiHg9pw182oPP+3OnxLkoNS28qlXBDTeqyb89gYZmkvWwcN7HJc6xBEz g==;
+X-CSE-ConnectionGUID: KdWiIA/kRrKenR276MbuMw==
+X-CSE-MsgGUID: jdce0B16S2mUc5CIQWehMA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11238"; a="41079628"
+X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="41079628"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2024 05:43:48 -0700
+X-CSE-ConnectionGUID: KzAiAWwWTp6fdXnu9EK5qA==
+X-CSE-MsgGUID: dYcKK8JNT9Wv1Gc3sbvQUg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="119067863"
-Received: from nirmoyda-mobl.ger.corp.intel.com (HELO [10.245.177.235])
- ([10.245.177.235])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2024 05:40:27 -0700
-Message-ID: <bb778db8-71d1-4ded-be52-f5dc32052ae2@linux.intel.com>
-Date: Mon, 28 Oct 2024 13:40:23 +0100
+X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="104925888"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.21])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2024 05:43:46 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Vinod Govindapillai <vinod.govindapillai@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: vinod.govindapillai@intel.com, uma.shankar@intel.com
+Subject: Re: [PATCH] drm/i915: Implement Dbuf overlap detection feature
+ starting from LNL
+In-Reply-To: <20241028120829.78735-1-vinod.govindapillai@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20241028120829.78735-1-vinod.govindapillai@intel.com>
+Date: Mon, 28 Oct 2024 14:43:43 +0200
+Message-ID: <87iktcpfcw.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] drm/xe: Add trace to lrc timestamp update
-To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org
-Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>,
- Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-References: <20241026062658.28060-1-lucas.demarchi@intel.com>
- <20241026062658.28060-2-lucas.demarchi@intel.com>
-Content-Language: en-US
-From: Nirmoy Das <nirmoy.das@linux.intel.com>
-In-Reply-To: <20241026062658.28060-2-lucas.demarchi@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,126 +70,137 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 10/26/2024 8:26 AM, Lucas De Marchi wrote:
-> Help debugging when LRC timestamp is updated for a exec queue.
+On Mon, 28 Oct 2024, Vinod Govindapillai <vinod.govindapillai@intel.com> wrote:
+> From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 >
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-
-
-Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
-
+> From LNL onwards there is a new hardware feature, which
+> allows to detect if the driver wrongly allocated DBuf
+> entries and they happen to overlap. If enabled this will
+> cause a specific interrupt to occur.
+> We now handle it in the driver, by writing correspondent
+> error message to kernel log.
+>
+> v2: Initialize dbuf overlap flag in runtime_defaults (Jani Nikula)
+>
+> v3: Unmask the overlap detection interrupt (Uma)
+>
+> Bspec: 69450
+> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+> Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
 > ---
->  drivers/gpu/drm/xe/Makefile       |  1 +
->  drivers/gpu/drm/xe/xe_lrc.c       |  3 ++
->  drivers/gpu/drm/xe/xe_trace_lrc.c |  9 ++++++
->  drivers/gpu/drm/xe/xe_trace_lrc.h | 52 +++++++++++++++++++++++++++++++
->  4 files changed, 65 insertions(+)
->  create mode 100644 drivers/gpu/drm/xe/xe_trace_lrc.c
->  create mode 100644 drivers/gpu/drm/xe/xe_trace_lrc.h
+>  drivers/gpu/drm/i915/display/intel_display_device.c |  5 +++++
+>  drivers/gpu/drm/i915/display/intel_display_device.h |  2 ++
+>  drivers/gpu/drm/i915/display/intel_display_irq.c    | 10 ++++++++++
+>  drivers/gpu/drm/i915/i915_reg.h                     |  2 ++
+>  4 files changed, 19 insertions(+)
 >
-> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-> index bc7a04ce69fd..21d69935c336 100644
-> --- a/drivers/gpu/drm/xe/Makefile
-> +++ b/drivers/gpu/drm/xe/Makefile
-> @@ -101,6 +101,7 @@ xe-y += xe_bb.o \
->  	xe_trace.o \
->  	xe_trace_bo.o \
->  	xe_trace_guc.o \
-> +	xe_trace_lrc.o \
->  	xe_ttm_sys_mgr.o \
->  	xe_ttm_stolen_mgr.o \
->  	xe_ttm_vram_mgr.o \
-> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-> index 4f64c7f4e68d..4b65da77c6e0 100644
-> --- a/drivers/gpu/drm/xe/xe_lrc.c
-> +++ b/drivers/gpu/drm/xe/xe_lrc.c
-> @@ -25,6 +25,7 @@
->  #include "xe_map.h"
->  #include "xe_memirq.h"
->  #include "xe_sriov.h"
-> +#include "xe_trace_lrc.h"
->  #include "xe_vm.h"
->  #include "xe_wa.h"
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
+> index aa22189e3853..0ac9a35e5f7b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_device.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_device.c
+> @@ -1227,6 +1227,7 @@ static const struct intel_display_device_info xe2_lpd_display = {
+>  	.__runtime_defaults.fbc_mask =
+>  		BIT(INTEL_FBC_A) | BIT(INTEL_FBC_B) |
+>  		BIT(INTEL_FBC_C) | BIT(INTEL_FBC_D),
+> +	.__runtime_defaults.has_dbuf_overlap_detection = true,
+>  };
 >  
-> @@ -1758,5 +1759,7 @@ u32 xe_lrc_update_timestamp(struct xe_lrc *lrc, u32 *old_ts)
+>  static const struct intel_display_device_info xe2_hpd_display = {
+> @@ -1668,6 +1669,10 @@ static void __intel_display_device_info_runtime_init(struct drm_i915_private *i9
+>  		if (IS_DISPLAY_VER(i915, 10, 12) &&
+>  		    (dfsm & GLK_DFSM_DISPLAY_DSC_DISABLE))
+>  			display_runtime->has_dsc = 0;
+> +
+> +		if (DISPLAY_VER(i915) >= 20 &&
+
+Always use display over i915 when possible:
+
+DISPLAY_VER(display)
+
+> +		    (dfsm & XE2LPD_DFSM_DBUF_OVERLAP_DISABLE))
+> +			display_runtime->has_dbuf_overlap_detection = false;
+>  	}
 >  
->  	lrc->ctx_timestamp = xe_lrc_ctx_timestamp(lrc);
+>  	if (DISPLAY_VER(i915) >= 20) {
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+> index 071a36b51f79..6bf5672d874d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_device.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+> @@ -125,6 +125,7 @@ enum intel_display_subplatform {
+>  #define HAS_CDCLK_SQUASH(i915)		(DISPLAY_INFO(i915)->has_cdclk_squash)
+>  #define HAS_CUR_FBC(i915)		(!HAS_GMCH(i915) && IS_DISPLAY_VER(i915, 7, 13))
+>  #define HAS_D12_PLANE_MINIMIZATION(i915) (IS_ROCKETLAKE(i915) || IS_ALDERLAKE_S(i915))
+> +#define HAS_DBUF_OVERLAP_DETECTION(__i915) (DISPLAY_RUNTIME_INFO(__i915)->has_dbuf_overlap_detection)
+>  #define HAS_DDI(i915)			(DISPLAY_INFO(i915)->has_ddi)
+>  #define HAS_DISPLAY(i915)		(DISPLAY_RUNTIME_INFO(i915)->pipe_mask != 0)
+>  #define HAS_DMC(i915)			(DISPLAY_RUNTIME_INFO(i915)->has_dmc)
+> @@ -232,6 +233,7 @@ struct intel_display_runtime_info {
+>  	bool has_hdcp;
+>  	bool has_dmc;
+>  	bool has_dsc;
+> +	bool has_dbuf_overlap_detection;
+>  };
 >  
-> +	trace_xe_lrc_update_timestamp(lrc, *old_ts);
+>  struct intel_display_device_info {
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
+> index a4f42ed3f21a..3d3c0c1fd184 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
+> @@ -902,6 +902,13 @@ gen8_de_misc_irq_handler(struct drm_i915_private *dev_priv, u32 iir)
+>  	struct intel_display *display = &dev_priv->display;
+>  	bool found = false;
+>  
+> +	if (HAS_DBUF_OVERLAP_DETECTION(dev_priv)) {
+
+HAS_DBUF_OVERLAP_DETECTION(display)
+
+> +		if (iir & XE2LPD_DBUF_OVERLAP_DETECTED) {
+> +			drm_warn(&dev_priv->drm,  "DBuf overlap detected\n");
+
+drm_warn(display->drm, ...)
+
+So the end result is that we get a warning, and that's it?
+
+> +			found = true;
+> +		}
+> +	}
 > +
->  	return lrc->ctx_timestamp;
->  }
-> diff --git a/drivers/gpu/drm/xe/xe_trace_lrc.c b/drivers/gpu/drm/xe/xe_trace_lrc.c
-> new file mode 100644
-> index 000000000000..ab9b7e2970bc
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_trace_lrc.c
-> @@ -0,0 +1,9 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright © 2024 Intel Corporation
-> + */
+>  	if (DISPLAY_VER(dev_priv) >= 14) {
+>  		if (iir & (XELPDP_PMDEMAND_RSP |
+>  			   XELPDP_PMDEMAND_RSPTOUT_ERR)) {
+> @@ -1789,6 +1796,9 @@ void gen8_de_irq_postinstall(struct drm_i915_private *dev_priv)
+>  			de_port_masked |= DSI0_TE | DSI1_TE;
+>  	}
+>  
+> +	if (HAS_DBUF_OVERLAP_DETECTION(dev_priv))
+
+HAS_DBUF_OVERLAP_DETECTION(display)
+
+> +		de_misc_masked |= XE2LPD_DBUF_OVERLAP_DETECTED;
 > +
-> +#ifndef __CHECKER__
-> +#define CREATE_TRACE_POINTS
-> +#include "xe_trace_lrc.h"
-> +#endif
-> diff --git a/drivers/gpu/drm/xe/xe_trace_lrc.h b/drivers/gpu/drm/xe/xe_trace_lrc.h
-> new file mode 100644
-> index 000000000000..5c669a0b2180
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_trace_lrc.h
-> @@ -0,0 +1,52 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Copyright © 2024 Intel Corporation
-> + */
-> +
-> +#undef TRACE_SYSTEM
-> +#define TRACE_SYSTEM xe
-> +
-> +#if !defined(_XE_TRACE_LRC_H_) || defined(TRACE_HEADER_MULTI_READ)
-> +#define _XE_TRACE_LRC_H_
-> +
-> +#include <linux/tracepoint.h>
-> +#include <linux/types.h>
-> +
-> +#include "xe_gt_types.h"
-> +#include "xe_lrc.h"
-> +#include "xe_lrc_types.h"
-> +
-> +#define __dev_name_lrc(lrc)	dev_name(gt_to_xe((lrc)->fence_ctx.gt)->drm.dev)
-> +
-> +TRACE_EVENT(xe_lrc_update_timestamp,
-> +	    TP_PROTO(struct xe_lrc *lrc, uint32_t old),
-> +	    TP_ARGS(lrc, old),
-> +	    TP_STRUCT__entry(
-> +		     __field(struct xe_lrc *, lrc)
-> +		     __field(u32, old)
-> +		     __field(u32, new)
-> +		     __string(name, lrc->fence_ctx.name)
-> +		     __string(device_id, __dev_name_lrc(lrc))
-> +	    ),
-> +
-> +	    TP_fast_assign(
-> +		   __entry->lrc	= lrc;
-> +		   __entry->old = old;
-> +		   __entry->new = lrc->ctx_timestamp;
-> +		   __assign_str(name);
-> +		   __assign_str(device_id);
-> +		   ),
-> +	    TP_printk("lrc=:%p lrc->name=%s old=%u new=%u device_id:%s",
-> +		      __entry->lrc, __get_str(name),
-> +		      __entry->old, __entry->new,
-> +		      __get_str(device_id))
-> +);
-> +
-> +#endif
-> +
-> +/* This part must be outside protection */
-> +#undef TRACE_INCLUDE_PATH
-> +#undef TRACE_INCLUDE_FILE
-> +#define TRACE_INCLUDE_PATH ../../drivers/gpu/drm/xe
-> +#define TRACE_INCLUDE_FILE xe_trace_lrc
-> +#include <trace/define_trace.h>
+>  	if (HAS_DSB(dev_priv))
+>  		de_pipe_masked |= GEN12_DSB_INT(INTEL_DSB_0) |
+>  			GEN12_DSB_INT(INTEL_DSB_1) |
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index 405f409e9761..327d1aa3f211 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -2589,6 +2589,7 @@
+>  #define  GEN8_DE_MISC_GSE		REG_BIT(27)
+>  #define  GEN8_DE_EDP_PSR		REG_BIT(19)
+>  #define  XELPDP_PMDEMAND_RSP		REG_BIT(3)
+> +#define  XE2LPD_DBUF_OVERLAP_DETECTED	REG_BIT(1)
+>  
+>  #define GEN8_DE_MISC_IRQ_REGS		I915_IRQ_REGS(GEN8_DE_MISC_IMR, \
+>  						      GEN8_DE_MISC_IER, \
+> @@ -2894,6 +2895,7 @@
+>  #define   SKL_DFSM_PIPE_C_DISABLE	(1 << 28)
+>  #define   TGL_DFSM_PIPE_D_DISABLE	(1 << 22)
+>  #define   GLK_DFSM_DISPLAY_DSC_DISABLE	(1 << 7)
+> +#define   XE2LPD_DFSM_DBUF_OVERLAP_DISABLE	(1 << 3)
+>  
+>  #define XE2LPD_DE_CAP			_MMIO(0x41100)
+>  #define   XE2LPD_DE_CAP_3DLUT_MASK	REG_GENMASK(31, 30)
+
+-- 
+Jani Nikula, Intel
