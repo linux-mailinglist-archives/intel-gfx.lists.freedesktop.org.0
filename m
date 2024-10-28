@@ -2,51 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF8CA9B3A70
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Oct 2024 20:30:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 882879B3A6F
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Oct 2024 20:30:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 66ED710E54C;
-	Mon, 28 Oct 2024 19:30:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A676D10E543;
+	Mon, 28 Oct 2024 19:30:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EW1t85B1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RkkQzk6A";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 137C010E539;
- Mon, 28 Oct 2024 19:30:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC73E10E536;
+ Mon, 28 Oct 2024 19:30:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1730143821; x=1761679821;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=2aRMB6apax37HIZCgt0RRlAoFdFRglk/Hvo3H4yDLq4=;
- b=EW1t85B1/UlMYj7vCtx+lD8YmK8rJcrTHR5Ax4c41lo3f1lgWOI2Stlt
- 5BOvaC9t34LmcMJIW3jZsR/qqeeYtr+hz0r/UjF6wsz7/YYxau21noJ8Q
- 42tdAYyGMd+4HdbTkAL9EmdvZ5qf6NlpxhdHDdY65+iNIRrEn/3K6YeNv
- SqMhI58t7rVZqfEvQUfew13PKVy3FTPLZacavw9PY0OkSzhRhD7FevRLe
- FT/O4mAyOe8ip6h/n6yb/6wMaZOgaIHhxJkWKbTar/ipAEInAVKlCPZcZ
- oh+uYw5yiy8p6t0ZK1ky238SfdwdoS8NOkKiquUK7pSwtFMmz+2vakuR1 g==;
-X-CSE-ConnectionGUID: TqTvA7e9QJGTbelRmgy11A==
-X-CSE-MsgGUID: uHnJ7IB6Qoe/u1y4EaKZuw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="40855934"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="40855934"
+ bh=ZzhKKYwot3UMtRFi6MS5HLHYqjTsTycSbN3eKiH8MO0=;
+ b=RkkQzk6AwhEhviam42LQG+Jrx37bjt70qNMq7wb9PNWN3acoXPXLjbui
+ zrS7IyYpQ4Sc6q9I0dVzUe47M3yjeWARL3D7I0BvhXGikdny/8MKIJ+W/
+ arn3ASUHTiEgEIpGB1g1QUhBZj19cjoTWBuTw5k2iTbgjHTNiLCQkqoec
+ hfJgWDyag6OfKHbZJK33KdhfL0JlLVP33860SdDQlQopdUANxe1DTNUKq
+ uBuByQTR1tyoW4in71qKsthjHf11cuiQ7Ty/pZEn9SBKcljhR0y80E2hq
+ 0y/zImTUxMVVZXfk8a6V3IdMKhZGYjCh0tE4tCGH9WaKoulrhNMO5gy9a A==;
+X-CSE-ConnectionGUID: q4xsmTZSStKyRm/OPRbNEw==
+X-CSE-MsgGUID: 0MBwrqVnRweQB5mbgQq/FQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="40855931"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="40855931"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2024 12:30:21 -0700
-X-CSE-ConnectionGUID: X9twN/ssS9OhUw4IOEdfHw==
-X-CSE-MsgGUID: BW6gARvzQsah1ocXE1dreA==
+ 28 Oct 2024 12:30:20 -0700
+X-CSE-ConnectionGUID: sExV1IHJS4+q0B5vni3psg==
+X-CSE-MsgGUID: 59DonePKRNSn25LRyJBHJQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="81777545"
+X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="81777546"
 Received: from cataylo2-desk.jf.intel.com ([10.165.21.140])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  28 Oct 2024 12:30:20 -0700
 From: Clint Taylor <clinton.a.taylor@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Subject: [PATCH v6 4/9] drm/i915/cx0: Extend C10 check to PTL
-Date: Mon, 28 Oct 2024 12:30:10 -0700
-Message-Id: <20241028193015.3241858-5-clinton.a.taylor@intel.com>
+Subject: [PATCH v6 5/9] drm/i915/cx0: Remove bus reset after every c10
+ transaction
+Date: Mon, 28 Oct 2024 12:30:11 -0700
+Message-Id: <20241028193015.3241858-6-clinton.a.taylor@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20241028193015.3241858-1-clinton.a.taylor@intel.com>
 References: <20241028193015.3241858-1-clinton.a.taylor@intel.com>
@@ -67,48 +68,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+C10 phy timeouts occur on xe3lpd if the c10 bus is reset every
+transaction. Although not required by BSPEC bus resets were added for
+prior platforms as a workaround. Starting with xe3_lpd this bus reset is
+not necessary.
 
-When deciding the type of the phy, add PTL support to make
-sure the correct path is taken for selection of C10 PHY.
-Only port A is connected C10 PHY for Pantherlake.
-
-Bspec:  72571
-Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
-Signed-off-by: Clint Taylor <Clinton.A.Taylor@intel.com>
+Signed-off-by: Clint Taylor <clinton.a.taylor@intel.com>
 Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c      | 3 +++
- drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h | 1 +
- 2 files changed, 4 insertions(+)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index d05daa7a2b03..4d6e1c135bdc 100644
+index 4d6e1c135bdc..c6e0cbff5201 100644
 --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
 +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -34,6 +34,9 @@ bool intel_encoder_is_c10phy(struct intel_encoder *encoder)
- 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
- 	enum phy phy = intel_encoder_to_phy(encoder);
+@@ -224,7 +224,8 @@ static int __intel_cx0_read_once(struct intel_encoder *encoder,
+ 	 * down and let the message bus to end up
+ 	 * in a known state
+ 	 */
+-	intel_cx0_bus_reset(encoder, lane);
++	if (DISPLAY_VER(i915) < 30)
++		intel_cx0_bus_reset(encoder, lane);
  
-+	if (IS_PANTHERLAKE(i915) && phy == PHY_A)
-+		return true;
-+
- 	if ((IS_LUNARLAKE(i915) || IS_METEORLAKE(i915)) && phy < PHY_C)
- 		return true;
+ 	return REG_FIELD_GET(XELPDP_PORT_P2M_DATA_MASK, val);
+ }
+@@ -313,7 +314,8 @@ static int __intel_cx0_write_once(struct intel_encoder *encoder,
+ 	 * down and let the message bus to end up
+ 	 * in a known state
+ 	 */
+-	intel_cx0_bus_reset(encoder, lane);
++	if (DISPLAY_VER(i915) < 30)
++		intel_cx0_bus_reset(encoder, lane);
  
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-index b7041b578e5e..bd8c3de57dcd 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-@@ -67,6 +67,7 @@ static inline struct drm_i915_private *to_i915(const struct drm_device *dev)
- #define IS_METEORLAKE(dev_priv) IS_PLATFORM(dev_priv, XE_METEORLAKE)
- #define IS_LUNARLAKE(dev_priv) IS_PLATFORM(dev_priv, XE_LUNARLAKE)
- #define IS_BATTLEMAGE(dev_priv)  IS_PLATFORM(dev_priv, XE_BATTLEMAGE)
-+#define IS_PANTHERLAKE(dev_priv) IS_PLATFORM(dev_priv, XE_PANTHERLAKE)
- 
- #define IS_HASWELL_ULT(dev_priv) (dev_priv && 0)
- #define IS_BROADWELL_ULT(dev_priv) (dev_priv && 0)
+ 	return 0;
+ }
 -- 
 2.25.1
 
