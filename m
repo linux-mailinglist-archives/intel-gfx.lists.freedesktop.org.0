@@ -2,29 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78E109B3166
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Oct 2024 14:12:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DA389B31E8
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Oct 2024 14:41:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A97B810E062;
-	Mon, 28 Oct 2024 13:12:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 07A9610E4B3;
+	Mon, 28 Oct 2024 13:41:19 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HSe/0s3n";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C4A7B10E062;
- Mon, 28 Oct 2024 13:12:12 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7673476783064250364=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E1F010E4B2;
+ Mon, 28 Oct 2024 13:41:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1730122877; x=1761658877;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=2VIK6JwV2k0Fhp9MsImXl4fL3dmgHghsV421vsALGqs=;
+ b=HSe/0s3n+LPpasHflgK6Tx3w13qXGbDYVscu18f1BetLldK4zHhnkX7f
+ bIe0x4CTXZ+NWg5AKfELPZFj7sub7MAEqZh21iI8kzvNvXnr9AfcaS1QB
+ 5LKDX9RIzuRnV1lBxDzcK2FRSueaiEhXzw0NopE0tFcsvI1l95eFSkn11
+ fU6IJD0Gtj9KfPt8cL92HH8oXUFxOdUh1WcPwyhcU7R0nnHYj3AOnImG7
+ spATRObQlBVmNeuMGvgC3DARDtnUFClCpehq2skGMb9TUhvF0HciJQ3BC
+ 7zT9JN5QZwlPYUeVNjPuVO9DBJypiHgbVtcBIIZDCo3ktj8/i2vlLLxXP Q==;
+X-CSE-ConnectionGUID: 2On4uT+lT6ucmfTrvkg36w==
+X-CSE-MsgGUID: V9JOPnzHQreYNZxPx5IzDQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11238"; a="41084138"
+X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="41084138"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2024 06:41:12 -0700
+X-CSE-ConnectionGUID: ejI4fWxJSriqYtP/I9Dk/A==
+X-CSE-MsgGUID: pS2l88qxTy2OxhndErY07w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="81783737"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2024 06:41:10 -0700
+Date: Mon, 28 Oct 2024 15:41:42 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH] drm/i915/psr: WA for panels stating bad link status
+ after PSR is enabled
+Message-ID: <Zx-UljQCRUST_RSl@ideak-desk.fi.intel.com>
+References: <20241028074642.804895-1-jouni.hogander@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/xe2lpd=3A_Update_C?=
- =?utf-8?q?20_HDMI_TMDS_algorithm_to_include_tx=5Fmisc_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gustavo Sousa" <gustavo.sousa@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 28 Oct 2024 13:12:12 -0000
-Message-ID: <173012113279.1354624.10814646276860552624@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241023153352.144146-1-gustavo.sousa@intel.com>
-In-Reply-To: <20241023153352.144146-1-gustavo.sousa@intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241028074642.804895-1-jouni.hogander@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,222 +66,157 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
+Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============7673476783064250364==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, Oct 28, 2024 at 09:46:42AM +0200, Jouni Högander wrote:
+> We are currently seeing unexpected link trainings with several different
+> eDP panels. These are caused by these panels stating bad link status in
+> their dpcd registers. This can be observed by doing following test:
+> 
+> 1. Boot up without Xe module loaded
+> 
+> 2. Load Xe module with PSR disabled:
+>     $ modprobe xe  enable_psr=0
+> 
+> 3. Read panel link status register
+>     $ dpcd_reg read --offset 0x200e --count=1
+>     0x200e:  00
+> 
+> 4. Enable PSR, sleep for 2 seconds and disable PSR again:
+> 
+>     $ echo 0x1 > /sys/kernel/debug/dri/0/i915_edp_psr_debug
+>     $ echo "-1" > /sys/kernel/debug/dri/0000:00:02.0/xe_params/enable_psr
+>     $ echo 0x0 > /sys/kernel/debug/dri/0/i915_edp_psr_debug
+>     $ sleep 2
+>     $ cat /sys/kernel/debug/dri/0/i915_edp_psr_status | grep status
+>     $ echo 0x1 > /sys/kernel/debug/dri/0/i915_edp_psr_debug
+>     Source PSR/PanelReplay status: DEEP_SLEEP [0x80310030]
+> 
+> 5. Now read panel link status registers again:
+>     $ dpcd_reg read --offset 0x200e --count=1
+>     0x200e:  80
+> 
+> Workaround this by not trusting link status registers after PSR is enabled
+> until first short pulse interrupt is received.
+> 
+> Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+> ---
+>  .../drm/i915/display/intel_display_types.h    |  2 +
+>  drivers/gpu/drm/i915/display/intel_dp.c       |  3 +-
+>  drivers/gpu/drm/i915/display/intel_psr.c      | 39 +++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_psr.h      |  1 +
+>  4 files changed, 44 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 2bb1fa64da2f..f0b7d7262961 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1618,6 +1618,8 @@ struct intel_psr {
+>  	u32 dc3co_exit_delay;
+>  	struct delayed_work dc3co_work;
+>  	u8 entry_setup_frames;
+> +
+> +	bool link_ok;
+>  };
+>  
+>  struct intel_dp {
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index b036c6521659..efaaadfb12ea 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -5007,7 +5007,8 @@ intel_dp_needs_link_retrain(struct intel_dp *intel_dp)
+>  		return true;
+>  
+>  	/* Retrain if link not ok */
+> -	return !intel_dp_link_ok(intel_dp, link_status);
+> +	return !(intel_dp_link_ok(intel_dp, link_status) ||
+> +		 intel_psr_link_ok(intel_dp));
+>  }
+>  
+>  bool intel_dp_has_connector(struct intel_dp *intel_dp,
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+> index 992543f508c1..0cd7388389e0 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> @@ -2009,6 +2009,15 @@ static void intel_psr_enable_locked(struct intel_dp *intel_dp,
+>  	intel_dp->psr.enabled = true;
+>  	intel_dp->psr.paused = false;
+>  
+> +	/*
+> +	 * Link_ok is sticky and set here on PSR enable. We can assume link
+> +	 * training is complete as we never continue to PSR enable with
+> +	 * untrained link. Link_ok is kept as set until first short pulse
+> +	 * interrupt. This is targeted to workaround panels stating bad link
+> +	 * after PSR is enabled.
+> +	 */
+> +	intel_dp->psr.link_ok = true;
+> +
+>  	intel_psr_activate(intel_dp);
+>  }
+>  
+> @@ -3458,6 +3467,9 @@ void intel_psr_short_pulse(struct intel_dp *intel_dp)
+>  
+>  	mutex_lock(&psr->lock);
+>  
+> +	/* Let's clear possibly set link_ok flag here */
+> +	psr->link_ok = false;
 
-== Series Details ==
+Should psr->link_ok also get reset when the output is disabled, so it's
+effect is consistent (i.e. doesn't effect the link state from output
+enabling/link training until PSR is enabled)?
 
-Series: drm/i915/xe2lpd: Update C20 HDMI TMDS algorithm to include tx_misc (rev2)
-URL   : https://patchwork.freedesktop.org/series/140136/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_15586 -> Patchwork_140136v2
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/index.html
-
-Participating hosts (46 -> 46)
-------------------------------
-
-  Additional (1): fi-skl-6600u 
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_140136v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][1] ([i915#2190])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/fi-skl-6600u/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@random-engines:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][2] ([i915#4613]) +3 other tests skip
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/fi-skl-6600u/igt@gem_lmem_swapping@random-engines.html
-
-  * igt@i915_selftest@live:
-    - bat-arlh-3:         [PASS][3] -> [ABORT][4] ([i915#12133])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15586/bat-arlh-3/igt@i915_selftest@live.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/bat-arlh-3/igt@i915_selftest@live.html
-    - bat-mtlp-6:         [PASS][5] -> [INCOMPLETE][6] ([i915#10341])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15586/bat-mtlp-6/igt@i915_selftest@live.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/bat-mtlp-6/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@gt_lrc:
-    - bat-mtlp-6:         [PASS][7] -> [INCOMPLETE][8] ([i915#12624])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15586/bat-mtlp-6/igt@i915_selftest@live@gt_lrc.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/bat-mtlp-6/igt@i915_selftest@live@gt_lrc.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arlh-3:         [PASS][9] -> [ABORT][10] ([i915#12061])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15586/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_dsc@dsc-basic:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][11] +9 other tests skip
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/fi-skl-6600u/igt@kms_dsc@dsc-basic.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live:
-    - bat-dg2-8:          [ABORT][12] ([i915#12133]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15586/bat-dg2-8/igt@i915_selftest@live.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/bat-dg2-8/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@vma:
-    - bat-dg2-8:          [ABORT][14] ([i915#12305]) -> [PASS][15]
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15586/bat-dg2-8/igt@i915_selftest@live@vma.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/bat-dg2-8/igt@i915_selftest@live@vma.html
-
-  
-  [i915#10341]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10341
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12133]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133
-  [i915#12305]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12305
-  [i915#12624]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12624
-  [i915#2190]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190
-  [i915#4613]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15586 -> Patchwork_140136v2
-
-  CI-20190529: 20190529
-  CI_DRM_15586: 790c7308eb96861950ceddfd5a0f410cc3306c2e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8082: c8379ec8b26f3c21bae5473706b23da78bd26ffa @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_140136v2: 790c7308eb96861950ceddfd5a0f410cc3306c2e @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/index.html
-
---===============7673476783064250364==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/xe2lpd: Update C20 HDMI TMDS algorithm to include tx_misc (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/140136/">https://patchwork.freedesktop.org/series/140136/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_15586 -&gt; Patchwork_140136v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/index.html</p>
-<h2>Participating hosts (46 -&gt; 46)</h2>
-<p>Additional (1): fi-skl-6600u <br />
-  Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_140136v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/fi-skl-6600u/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@random-engines:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/fi-skl-6600u/igt@gem_lmem_swapping@random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15586/bat-arlh-3/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/bat-arlh-3/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133">i915#12133</a>)</li>
-<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15586/bat-mtlp-6/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/bat-mtlp-6/igt@i915_selftest@live.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10341">i915#10341</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_lrc:</p>
-<ul>
-<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15586/bat-mtlp-6/igt@i915_selftest@live@gt_lrc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/bat-mtlp-6/igt@i915_selftest@live@gt_lrc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12624">i915#12624</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15586/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/bat-arlh-3/igt@i915_selftest@live@workarounds.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/fi-skl-6600u/igt@kms_dsc@dsc-basic.html">SKIP</a> +9 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15586/bat-dg2-8/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133">i915#12133</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/bat-dg2-8/igt@i915_selftest@live.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@vma:</p>
-<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15586/bat-dg2-8/igt@i915_selftest@live@vma.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12305">i915#12305</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140136v2/bat-dg2-8/igt@i915_selftest@live@vma.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_15586 -&gt; Patchwork_140136v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_15586: 790c7308eb96861950ceddfd5a0f410cc3306c2e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8082: c8379ec8b26f3c21bae5473706b23da78bd26ffa @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_140136v2: 790c7308eb96861950ceddfd5a0f410cc3306c2e @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============7673476783064250364==--
+> +
+>  	if (!psr->enabled)
+>  		goto exit;
+>  
+> @@ -3517,6 +3529,33 @@ bool intel_psr_enabled(struct intel_dp *intel_dp)
+>  	return ret;
+>  }
+>  
+> +/**
+> + * intel_psr_link_ok - return psr->link_ok
+> + * @intel_dp: struct intel_dp
+> + *
+> + * We are seeing unexpected link re-trainings with some panels. This is caused
+> + * by panel stating bad link status after PSR is enabled. Code checking link
+> + * status can call this to ensure it can ignore bad link status stated by the
+> + * panel I.e. if panel is stating bad link and intel_psr_link_ok is stating link
+> + * is ok caller should rely on latter.
+> + *
+> + * Return value of link_ok
+> + */
+> +bool intel_psr_link_ok(struct intel_dp *intel_dp)
+> +{
+> +	bool ret;
+> +
+> +	if ((!CAN_PSR(intel_dp) && !CAN_PANEL_REPLAY(intel_dp)) ||
+> +	    !intel_dp_is_edp(intel_dp))
+> +		return false;
+> +
+> +	mutex_lock(&intel_dp->psr.lock);
+> +	ret = intel_dp->psr.link_ok;
+> +	mutex_unlock(&intel_dp->psr.lock);
+> +
+> +	return ret;
+> +}
+> +
+>  /**
+>   * intel_psr_lock - grab PSR lock
+>   * @crtc_state: the crtc state
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.h b/drivers/gpu/drm/i915/display/intel_psr.h
+> index 5f26f61f82aa..956be263c09e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.h
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.h
+> @@ -59,6 +59,7 @@ void intel_psr2_program_trans_man_trk_ctl(const struct intel_crtc_state *crtc_st
+>  void intel_psr_pause(struct intel_dp *intel_dp);
+>  void intel_psr_resume(struct intel_dp *intel_dp);
+>  bool intel_psr_needs_block_dc_vblank(const struct intel_crtc_state *crtc_state);
+> +bool intel_psr_link_ok(struct intel_dp *intel_dp);
+>  
+>  void intel_psr_lock(const struct intel_crtc_state *crtc_state);
+>  void intel_psr_unlock(const struct intel_crtc_state *crtc_state);
+> -- 
+> 2.34.1
+> 
