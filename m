@@ -2,184 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 346EC9B3119
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Oct 2024 13:55:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A767E9B311B
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Oct 2024 13:56:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3706510E4A5;
-	Mon, 28 Oct 2024 12:54:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 132CD10E49C;
+	Mon, 28 Oct 2024 12:56:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DOb7ss0w";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GSz5Ev5n";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 69E1410E49C;
- Mon, 28 Oct 2024 12:54:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8851610E49C;
+ Mon, 28 Oct 2024 12:56:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730120095; x=1761656095;
- h=message-id:date:subject:from:to:cc:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=xRjlB2nAWMCbZzzUYYs35fNdNN7JIffvUjfYAMTL9iM=;
- b=DOb7ss0wdk4bh1+EngHV/LmvxgmY0nYmsRM6kaKYMD4FXJ+rRE7+0Ykf
- /SG5XInurHq2ehjbP3EtYXWxPcyvT+jfeT30avFtsUU1qNhpUaZq0Ckyq
- MUKVrKiqTw019B8dVEcKQDRQ6oe1LIWUSu+r2AHntmBtMKsxIGPSRrBzv
- fsaVXcKeK4sX3aKkUOjDzb8set/OzY1V8FmPN+bkWaoGJH3aKhTuinUbk
- E9hGvPuJQjZqVSCiEO7EtfEKWtM+QP8n1k8PGrBmCExmH8VWFWHL71YQF
- nxgqh4nNKt9FcRPynKAHM57qY5CyUnLnPIcQevTD80O9GHHGj6GAuE4nb Q==;
-X-CSE-ConnectionGUID: fu4FKDSoRyOdD2QhLPXHiQ==
-X-CSE-MsgGUID: XWobyynTS4qw3FYirQJG5A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11238"; a="29926265"
-X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="29926265"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2024 05:54:55 -0700
-X-CSE-ConnectionGUID: N4Hu/OatRsy96GFDAcp5Zw==
-X-CSE-MsgGUID: 96nimrScRye9/Ytjb/RifA==
+ t=1730120168; x=1761656168;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=dRjGJ4oS+yijrJVan4nggeE2iNCe2pA4wi2m1tXwXig=;
+ b=GSz5Ev5nlVoseThr9FwzuGoeOXcOXYaxHTneukcUUaQupMCmfv2Ez3Vg
+ sTYdALx3JerYxjCVS/+0NeAZ1gqgmpVWe8GdT1BdokaoQhfVzPmPWXg4x
+ lHO5xJnkYJ5+NRPR7Y/oi+y3KWDi8lchZKvRSAFtSrw6O7Cq0pc0udPvK
+ Lmvj76/TqbjCQ46QeQssrcr42YYg5wrDRpg/rjSyd53UffBid76MrjT7O
+ lpulzsbRWBGjXKtwUd26YdTQ/ow3+BvX8Khxteh5hrUlhy8UI0b+ycUxW
+ 7YEbpcuQeXqo5Iv5waoaU9fOcbfxjIP+yb+OCXd8zQwgmD5dBk2crrILi g==;
+X-CSE-ConnectionGUID: IYqJMB6+SkeJgGIF+UKxEg==
+X-CSE-MsgGUID: tweNtsv4TDqAZPVuq+AtUw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11238"; a="29616610"
+X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="29616610"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2024 05:56:08 -0700
+X-CSE-ConnectionGUID: fPA8ZC0ETme62fJBsnebOg==
+X-CSE-MsgGUID: wnKM/ZH1ROCJjEGevwu10w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="82038987"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orviesa007.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 28 Oct 2024 05:54:55 -0700
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Mon, 28 Oct 2024 05:54:54 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Mon, 28 Oct 2024 05:54:54 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.48) by
- edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Mon, 28 Oct 2024 05:54:54 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=HB2SfnaMbsjK/pvhbfT5BlprLbFNW1lbttuA6uByb98sMp5EjrH1G1wRpBYIbvJNWRwB88t2uw/Hgt3708ro+6dCY61M2P9dVlpbnQJhKpm9dhr8eDr8I0kDjN0HTs4G+8L6C//MHxrfYwC6bq2KKv6KPadW1ecL4wqR/gjRSGl87lx9oeDNkQeh8iTAcdcIqTOf3iCAfvErLyArDSAWwrYq2UwaLOgoQMjnT9BPaKYR2xfPuohKZemKvMF8B2r3LS0WQ8L+PpmiybTypOU2rxz2MhRDKrfFWjzAmNlMHys/diAApilTKWuQGUsJAwoGhqMw2KhEx1Yq7bH6TSKJ+A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/bbylXSB8nH94bGbP44hYltresbNP1dvPRiNgzFwwko=;
- b=Q3scXfwxyHfP0Lx7/xDCOPBO9ZwupDP7OPD/nmIsOv6pgoFf1QI7jXmCWlVBjs3rJdDOXN7DDeITTHiovgzeEz779sSWs2g5b4/og6+LL956XLzZYYocOwzAQLdjnHpJqmWC1FX1RW8Bhlx+w1OeypmUU24oZuMr5duE9Qm4bffNACQhZF1goh0hat1azANXhEXBKwsGmngW5o7UeLCunl6vnKqgINhmCYCiAuVlCUOBW4tKnb+zXzNG7TNalAsV6wwmSoduFQpPteco2b1HcfD9GhXCLw5uyhjpobhZ+lxIQBXeWj1+sCbuTNAPQrkYMJZF9WZVuMc8UO87CFOmOw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by MN2PR11MB4552.namprd11.prod.outlook.com (2603:10b6:208:263::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.21; Mon, 28 Oct
- 2024 12:54:51 +0000
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::397:7566:d626:e839%4]) with mapi id 15.20.8093.023; Mon, 28 Oct 2024
- 12:54:51 +0000
-Message-ID: <a1f6f1fc-4bbc-4172-974f-b0eba2752a21@intel.com>
-Date: Mon, 28 Oct 2024 18:24:45 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] drm/i915/psr: Change psr size limits check
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>, <intel-xe@lists.freedesktop.org>, 
- <intel-gfx@lists.freedesktop.org>
-CC: <matthew.d.roper@intel.com>
-References: <20241028074333.182041-1-suraj.kandpal@intel.com>
- <20241028074333.182041-3-suraj.kandpal@intel.com>
- <9bea7900-aa6a-4b2a-b82e-4e83bb7e728f@intel.com>
-Content-Language: en-US
-In-Reply-To: <9bea7900-aa6a-4b2a-b82e-4e83bb7e728f@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA0PR01CA0020.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:b8::8) To DM4PR11MB5341.namprd11.prod.outlook.com
- (2603:10b6:5:390::22)
+X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="81193283"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.21])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2024 05:56:06 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Arun R Murthy <arun.r.murthy@intel.com>, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Cc: Arun R Murthy <arun.r.murthy@intel.com>
+Subject: Re: [PATCHv3] drm/i915/dp: Guarantee a minimum HBlank time
+In-Reply-To: <20241028061418.3460461-1-arun.r.murthy@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20241028061418.3460461-1-arun.r.murthy@intel.com>
+Date: Mon, 28 Oct 2024 14:56:03 +0200
+Message-ID: <87frogpesc.fsf@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|MN2PR11MB4552:EE_
-X-MS-Office365-Filtering-Correlation-Id: d61578c9-ad7f-42ab-1da5-08dcf74fb623
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?bSs4bGVHTXRaQjlyVnByRVZKR1VwZTA3VVpEd2hkaWszZWpBNUhiTFZjQXNN?=
- =?utf-8?B?cGpDTUQvVVdnaTU5MlV0QzNHaUl2MitHQjRlTFUzNmZFc1E2djZjUjdjOTdI?=
- =?utf-8?B?SlNoemUzbDFFOTlZc210Z3RTQm94VERJaEcyd3NmSHBZUjNYZUhsTFoxQWU2?=
- =?utf-8?B?a0NleTdMVWEzNFNCRnhLY3kwdm5xZG5lTUViL2dTSWxPNFh3ZTVBS1FJM2dy?=
- =?utf-8?B?cEk4bi9GVjZPWm1RbEtQNTdjd1owZ0EraGZPYXBHSGsvN1QrNTRIK0ZEdllM?=
- =?utf-8?B?eVBmeEpTRTJianhkVzFVMFpRZnlDV2FDeTU3MDFKcTBab0RZWHFvT3dQNnd3?=
- =?utf-8?B?b3pYL1l5NWxDQVJiUmZVMndXaUpFZDV1b0tSRHRRSGxpUms1ZWRFeGp4VnZI?=
- =?utf-8?B?V2pxQjdwWUo4TlRxUVpsNVcrcHUvVkh4VFVXZTNHa3dwV2hJVmpnVGZmcVh0?=
- =?utf-8?B?VlNuNlA3QkR1enJQREc5dGNLUDQzUUd2Y3YwV2pQV1pKRWZPU25oYlhKdURv?=
- =?utf-8?B?TCtGQmdSUGllN2d2ZmtzSWNXUWNEOEFjUnZnc1FCQWY2aXdqa0RwNzlXdGdk?=
- =?utf-8?B?cUVuaHhZeVFJYVEvRVcyKzVUSlpvN2EwNTFJUTdlejlocHRpUVVnSkFmS2Rt?=
- =?utf-8?B?U3p6Y0dhQ3kyUVdBdHU4MVF4RWhLOC9GSDlMWE5UbHVyZWF5UGt5L1dGUk1s?=
- =?utf-8?B?dGpuK0xkZFdpeXFTbEFBQ2RBRHJUMXRuQzArMXMvejZGYnVWQ3hLLy9wVzZU?=
- =?utf-8?B?UHZQNjhzZ2M4ZWcrVm9zTFljRy9Oc1NEN3lhMlkwc3J4dnB1RzBSeHA2bG5U?=
- =?utf-8?B?SlFyN29QZ1JmWjduM1ZRL2J1NkxLRDRSSXQ0SG1CMDJOYmFEVlhoc3psMTJ2?=
- =?utf-8?B?OGRpUnRiVjhQN0tWSGhLbllYSU5sQW5tbjIyVWdBdEk3WEdYT1lJVnFQZ2tD?=
- =?utf-8?B?V1NOSkRLeXgzK2RhYUFPa1VzcnQyU3FFTEhYODN4ckQ3VmhvMU1LS0hTek5K?=
- =?utf-8?B?b0FSQTJvM3FEV1RTNDFJRUV6TmY1QmJoOGE0RG9kaWNxQkthVW55NUJvQ2g3?=
- =?utf-8?B?ZjJNdTkzdmdudlMwVm9Qb1lvbEJ5NTYrM3pybWJGdGNnTnp0Ly9QTTNOTXNs?=
- =?utf-8?B?NnY0Z3pPbWRwM1ZPOSt0VEp2c3dQQ1kwOVJ4dXRKTTlyME5iMUwvak5DOXBT?=
- =?utf-8?B?cWhySUFwSnZzQWF5dEJsR3AwMVhSbk9TQ0laeVZqYWl5RkRGalJDK2NSWURR?=
- =?utf-8?B?WnJxSUVTQXZ0ZzBGYzI2QTU4cC9BL1J2NmdYWHpSY3VzOHhCOElJNy9UZmhZ?=
- =?utf-8?B?Ym9rb3krL0dZT085VkpVZWVqT0Z4c1Z3RlllRVhaL2tyM1FEMVFoQzIxaHpq?=
- =?utf-8?B?cWVMS1RSQ3FROGRPWmZ5b1R0TkhTZGM2dzhHOGdwa2poNk9kWTlja0JYeklL?=
- =?utf-8?B?TjNPVHY4dDFSVHZVNXZtTlE2RU9Xd05BTTEwbFF1V3hTTTE5MGRobkxVM3dK?=
- =?utf-8?B?Z2duMzV4MmZiMlkyMTlFbVBFQUt5aHkwekh6N1hwVi9kWXhROFIrU3JENmJF?=
- =?utf-8?B?OTNpaTAwd1NyRWsvVVlsOTZkMjl3THBESGJRNDlXQUhBb1lQcExGTG9ueG83?=
- =?utf-8?B?c1RoWWNqcGVvN0VyaU1weWg2QXBaSzhrQlhUMDRoQ3lZNllkd1RaNDROQmI5?=
- =?utf-8?B?U1VOR0h0VzZEWWhhSld5aFNYU0hpdnh3RU5QRU1oVStUeHZDbzBiQ2ZDUTZ6?=
- =?utf-8?Q?K++Wn7vXOV+XLxobiWoiFfp2u52zcYZHe0N8rrl?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ck0xUjBQbGl2MEtacnUzYzc1bzRrbk5OTTB0aXlqdUJicHpOcTVEQm5xN2Uv?=
- =?utf-8?B?aVV6U2l5WjdiM1poZmpJYVFtdGZvWWZPZ0ppWThFSlU1V2FyYXpTd1JTdkRy?=
- =?utf-8?B?RGRwOFp2b0lBRWlBeWxnbUQ4cHM1cGdlK2JFZXUzYUNsSXZsNEFaNUdkb3J4?=
- =?utf-8?B?YjZuSzJPSmhtSTJ2dVJzQnhXN3lRbGVFV1Zua2JkVjBYMEhMYnI5QTJnREg4?=
- =?utf-8?B?bHJaYVZsUVBMQ0grZWx4cGgyaVYvN2ZFemxaeFBXQ0t0NlNJSlZ4Sko3enhz?=
- =?utf-8?B?USthRVZPdkZEY2o3eDlMZXVERTJvam5STCtudmtIRHN5bEhnNzFWeFpncUdT?=
- =?utf-8?B?WXZIdm53VXhKbjBrQWMzT01jUHZCK0k5Z2pHMGZHN0xiVjg5cGFDK3RTdzM4?=
- =?utf-8?B?UXRxSVBRdXBiSmpXNmRNNy9ZeXFwZmg0Y0p3SUswT1NjdmdyL2FSdy9rREg2?=
- =?utf-8?B?RWh6TU0wT3FZZjBwVk9RQXdCdXU5ZDNSMlRTck9XRS9oQjEwSmM5NUdXM2s4?=
- =?utf-8?B?TTNZTlZueWZqRnRWZFM5NUVLZGk3aEllODIrc3ExWHpObDZRd21WYUQ2YVhm?=
- =?utf-8?B?b2hsM29PM05IN29CTkFHekRuVElJZzhjNUhhSWlkd21KeFhRaUp2SWh3Tkpn?=
- =?utf-8?B?QmZZTUxBdHRaVDk4bUgyaGtIVTNrTSsxMW5pZFlxVmpjbWdMbVk2R2hCUkNF?=
- =?utf-8?B?QkN3N25YRGxDb2Y4WFN2OTFlZDMwMkU2Yy8vL3k5S0NvWnVaM0x3V25zeGxm?=
- =?utf-8?B?TjN2Nk8rZVU4eVVDMHRpMGpiTWMrVE5DMkozV0Z5WUN1NEpPaHZMc3lyOFBK?=
- =?utf-8?B?TmU2eXJQNU1Ib2kvWUdVOXlBOEsvMlZvQXJrUzRscVBSa3d1ZDczeDlMZlNY?=
- =?utf-8?B?NzUxNloxUGcrZ2l2UFIvR3dqdHZiU1JNb3Mxdk9XTGI0YTBpSVkrbHdHcTFw?=
- =?utf-8?B?d2VZVk1LZE0zQ0RLWS9ZQ2JLMzRTMTYrVE1KTDNra1l0UzAwV1UrWitHZjc4?=
- =?utf-8?B?NWtHdUFjbXJ2Wm1hZDFVTmlDRlpKVDFHNEtZMWJSU29waURiOUtqN1lmOFlU?=
- =?utf-8?B?dzF5czJZWHhmdHM1TUVYekw1cWZyeTkvTHBFNUNiOEtiN1lLeVRiTWo0R0F6?=
- =?utf-8?B?MHkwZC9FaDUwU1pMeW5rMTR4ZFpQU2RvQ2I0VElsS2xUQythYWpyN09sQVkr?=
- =?utf-8?B?MUxjTHN2K0JxWlpMSDJLc09FU0cxMnRuOHhURU40RGx5dmNPcm1ZckR1ZENx?=
- =?utf-8?B?NHVhcWRLWCsxeWtpQnA2WEtHMElVT0E2QXR3MStMRUtEUGdDenR0d0N3c2da?=
- =?utf-8?B?ZDZzb3F5TzFEdGZabTZSYlhKMDJCbVRzcUFOUklmLzFSQkgrRlBJZVo4UXNK?=
- =?utf-8?B?SjUzSnJISlB2VHc5cEFBTnV6TUpsKzJqV0E3dmNVRUhmTG1YcE5qZzBwcjJO?=
- =?utf-8?B?NUdnYW0ySTc5Qmo3ZlZZRW5uT05Xb25YM0lVV0lReHVRNVRJU0I3ZUl1ai9L?=
- =?utf-8?B?WVZxa3pSYmxORkhFbzZXSmM2Sm0vUTV4dFZMekkybXRUZXdJY1JNaVRhSmZR?=
- =?utf-8?B?Yk5FNURRazNGaGRRd3hoQzluVlh1amljM2lUMUVLNndIV2ZKNWRuRjBIRTM5?=
- =?utf-8?B?SVNuMTRyaHBCbk02UDNiZGlyMC9qOHdnVnVGMnlNclFEZXpJQ1BqSklSck5L?=
- =?utf-8?B?WmVQaDkrV2k4cUJhdythRDRhaGhjY2g4RGxGS1dGZm5jeVFRMEVGOEpOdmg1?=
- =?utf-8?B?azJCTE9lTk5JREk4Y01GQXQvTnhtanFkaFlJSVBaaEJVL3kvZ1ZGK0NlU0pU?=
- =?utf-8?B?aEFBdW1zZHo4ZVRYUk4rS0FiQSsyZFV3MWtPdS9qUFZjM1pQeGs0WFN6R3Rn?=
- =?utf-8?B?NnNPczgwcWhEcFZ6ZUVHTW05dFgyNG12VERTYi9INGdwbnZaNy9zb1hYVWMr?=
- =?utf-8?B?cTV3OG56NkcvS1RpTU4wQmtTUEZRc3pDYUJhT0pJaUJFcExXbGRoaGJKQXF4?=
- =?utf-8?B?VFZJVXJEKzJTdjJLc1pFSHRQMWFIOXgrTEJJR0dhOS8zNG81bTFmcDBqVkJt?=
- =?utf-8?B?QmoxUjBaQlg2dG80MW1Wblg3cCsrY0Y0bHF3RGNZNEI1MUwxbEQ2b0lqVVlL?=
- =?utf-8?B?NUpBNlV3Mm1SaktXTU5vYk5mQTFpNFdaNWkrSEt0ZjR4bDJDc1hRT1hjKzR5?=
- =?utf-8?B?SUE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: d61578c9-ad7f-42ab-1da5-08dcf74fb623
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Oct 2024 12:54:51.3438 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: q9oH9OQTBMdKgAxcWTzXHFTVphTV701IDDkfQ6nL11dP01c9VaIQZQXt0am3NL2lXlD7c+EKRcDQ/wg8qtlPclSDci1x7tgW52ap7yzuviQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4552
-X-OriginatorOrg: intel.com
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -195,54 +69,159 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-On 10/28/2024 6:14 PM, Nautiyal, Ankit K wrote:
+On Mon, 28 Oct 2024, Arun R Murthy <arun.r.murthy@intel.com> wrote:
+> Mandate a minimum Hblank symbol cycle count between BS and BE in 8b/10b
+> MST and 12b/132b mode.
+> Spec: DP2.1a
 >
-> On 10/28/2024 1:13 PM, Suraj Kandpal wrote:
->> Change the check to only check for psr size limits till Pre-Xe2
->> since after that the psr size is equal to maximum pipe size anyways.
->>
->> --v2
->> -Check only size limit until pre-Xe2 [Matt]
->>
->> Bspec: 69885, 68858
->> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> v2: Affine calculation/updation of min HBlank to dp_mst (Jani)
+> v3: moved min_hblank from struct intel_dp to intel_crtc_state (Jani)
 >
-> LGTM.
+> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_atomic.c   |  1 +
+>  drivers/gpu/drm/i915/display/intel_crtc.c     |  1 +
+>  .../drm/i915/display/intel_display_types.h    |  1 +
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c   | 28 +++++++++++++++++++
+>  drivers/gpu/drm/i915/i915_reg.h               |  4 +++
+>  5 files changed, 35 insertions(+)
 >
-> Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
->
->> ---
->>   drivers/gpu/drm/i915/display/intel_psr.c | 4 ++--
->>   1 file changed, 2 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c 
->> b/drivers/gpu/drm/i915/display/intel_psr.c
->> index 4176163ec19a..7bc64eae9c8e 100644
->> --- a/drivers/gpu/drm/i915/display/intel_psr.c
->> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
->> @@ -1453,11 +1453,11 @@ static bool intel_psr2_config_valid(struct 
->> intel_dp *intel_dp,
->>           return false;
->>       }
->>   -    if (DISPLAY_VER(display) >= 12) {
+> diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/gpu/drm/i915/display/intel_atomic.c
+> index 03dc54c802d3..24aa079efcad 100644
+> --- a/drivers/gpu/drm/i915/display/intel_atomic.c
+> +++ b/drivers/gpu/drm/i915/display/intel_atomic.c
+> @@ -278,6 +278,7 @@ intel_crtc_duplicate_state(struct drm_crtc *crtc)
+>  	crtc_state->dsb_color_vblank = NULL;
+>  	crtc_state->dsb_commit = NULL;
+>  	crtc_state->use_dsb = false;
+> +	crtc_state->min_hblank = 0;
+>  
+>  	return &crtc_state->uapi;
+>  }
+> diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+> index 3c9168a57f38..472f3010bce4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_crtc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+> @@ -184,6 +184,7 @@ void intel_crtc_state_reset(struct intel_crtc_state *crtc_state,
+>  	crtc_state->scaler_state.scaler_id = -1;
+>  	crtc_state->mst_master_transcoder = INVALID_TRANSCODER;
+>  	crtc_state->max_link_bpp_x16 = INT_MAX;
+> +	crtc_state->min_hblank = 0;
+>  }
+>  
+>  static struct intel_crtc *intel_crtc_alloc(void)
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 2bb1fa64da2f..7f631fef128e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1075,6 +1075,7 @@ struct intel_crtc_state {
+>  
+>  	int max_link_bpp_x16;	/* in 1/16 bpp units */
+>  	int pipe_bpp;		/* in 1 bpp units */
+> +	int min_hblank;		/* min HBlank for DP2.1 */
+>  	struct intel_link_m_n dp_m_n;
+>  
+>  	/* m2_n2 for eDP downclock */
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> index 1a2ff3e1cb68..2e088760a23a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> @@ -161,6 +161,28 @@ static int intel_dp_mst_dsc_get_slice_count(const struct intel_connector *connec
+>  					    num_joined_pipes);
+>  }
+>  
+> +static void intel_dp_mst_compute_min_hblank(struct intel_crtc_state *crtc_state,
+> +					    struct intel_connector *intel_connector,
 
-I think you missed to initialize psr_max_{h,v} and max_bpp with 
-crtc_{h,v}display and crtc_state->pipe_bpp respectively.
+Always name struct intel_connector *connector, not
+intel_connector. That's what the style has been for years now, though
+not everything's been converted.
 
-Otherwise those are all 0's and will fail for Display ver > 14.
+> +					    int bpp_x16)
+> +{
+> +	struct intel_encoder *intel_encoder = intel_connector->encoder;
 
+Ditto, just encoder.
 
-Regards,
+> +	struct intel_display *intel_display = to_intel_display(intel_encoder);
 
-Ankit
+Just display. Always. Everywhere. Make this the first local variable
+whenever possible.
 
->> +    if (IS_DISPLAY_VER(display, 12, 14)) {
->>           psr_max_h = 5120;
->>           psr_max_v = 3200;
->>           max_bpp = 30;
->> -    } else if (DISPLAY_VER(display) >= 10) {
->> +    } else if (IS_DISPLAY_VER(display, 10, 11)) {
->>           psr_max_h = 4096;
->>           psr_max_v = 2304;
->>           max_bpp = 24;
+> +	const struct drm_display_mode *adjusted_mode =
+> +					&crtc_state->hw.adjusted_mode;
+> +	u32 symbol_size = intel_dp_is_uhbr(crtc_state) ? 32 : 8;
+> +	u32 hblank;
+
+Looks like these should be ints.
+
+> +
+> +	if (DISPLAY_VER(intel_display) < 20)
+> +		return;
+> +
+> +	/* Calculate min Hblank Link Layer Symbol Cycle Count for 8b/10b MST & 128b/132b */
+> +	hblank = DIV_ROUND_UP((DIV_ROUND_UP(adjusted_mode->htotal - adjusted_mode->hdisplay, 4) * bpp_x16), symbol_size);
+
+Okay so I didn't really think this through, but 1) do we lose precision
+by dividing by 4 first, and multiplying by bpp_x16 next, and 2) how does
+this take into account that bpp_x16 is in fact the x16 value?
+
+> +	if (intel_dp_is_uhbr(crtc_state))
+> +		crtc_state->min_hblank = (hblank > 5) ? hblank : 5;
+> +	else
+> +		crtc_state->min_hblank = (hblank > 3) ? hblank : 3;
+
+These look like hand-rolled max() that needlessly duplicate both hblank
+and the constant.
+
+> +}
+> +
+>  static int intel_dp_mst_find_vcpi_slots_for_bpp(struct intel_encoder *encoder,
+>  						struct intel_crtc_state *crtc_state,
+>  						int max_bpp,
+> @@ -238,6 +260,8 @@ static int intel_dp_mst_find_vcpi_slots_for_bpp(struct intel_encoder *encoder,
+>  		remote_bw_overhead = intel_dp_mst_bw_overhead(crtc_state, connector,
+>  							      true, dsc_slice_count, link_bpp_x16);
+>  
+> +		intel_dp_mst_compute_min_hblank(crtc_state, connector, link_bpp_x16);
+> +
+>  		intel_dp_mst_compute_m_n(crtc_state, connector,
+>  					 local_bw_overhead,
+>  					 link_bpp_x16,
+> @@ -1292,6 +1316,10 @@ static void intel_mst_enable_dp(struct intel_atomic_state *state,
+>  			       TRANS_DP2_VFREQ_PIXEL_CLOCK(crtc_clock_hz & 0xffffff));
+>  	}
+>  
+> +	if (DISPLAY_VER(dev_priv) >= 20)
+
+Always use the display local var when possible.
+
+DISPLAY_VER(display)
+
+> +		intel_de_write(dev_priv, DP_MIN_HBLANK_CTL(dev_priv, trans),
+> +			       pipe_config->min_hblank);
+
+intel_de_write(display, .... DP_MIN_HBLANK_CTL(display, trans) ...
+
+> +
+>  	enable_bs_jitter_was(pipe_config);
+>  
+>  	intel_ddi_enable_transcoder_func(encoder, pipe_config);
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index 405f409e9761..8aeed48f9170 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -1147,6 +1147,10 @@
+>  #define _TRANS_MULT_B		0x6102c
+>  #define TRANS_MULT(dev_priv, trans)	_MMIO_TRANS2(dev_priv, (trans), _TRANS_MULT_A)
+>  
+> +#define _DP_MIN_HBLANK_CTL_A	0x600ac
+> +#define _DP_MIN_HBLANK_CTL_B	0x610ac
+> +#define DP_MIN_HBLANK_CTL(dev_priv, trans)	_MMIO_TRANS2(dev_priv, (trans), _DP_MIN_HBLANK_CTL_A)
+> +
+>  /* VGA port control */
+>  #define ADPA			_MMIO(0x61100)
+>  #define PCH_ADPA                _MMIO(0xe1100)
+
+-- 
+Jani Nikula, Intel
