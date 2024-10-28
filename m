@@ -2,53 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D9B39B3E65
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Oct 2024 00:26:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EB1179B3E7F
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Oct 2024 00:33:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA10710E38A;
-	Mon, 28 Oct 2024 23:26:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02BA710E588;
+	Mon, 28 Oct 2024 23:33:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ccgt84oV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MhpbEJe1";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AAF2610E240;
- Mon, 28 Oct 2024 23:26:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5CBA610E588
+ for <intel-gfx@lists.freedesktop.org>; Mon, 28 Oct 2024 23:33:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730157995; x=1761693995;
+ t=1730158408; x=1761694408;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=kaCFeEXIskP9cvkK2CCjL4RXRuBE5hYbX83iXHBAnMw=;
- b=ccgt84oVU8o6cLqVSR3ozcV/KD+uNeRyvOUEqDMyyDYcxUbsgS7YDram
- sf9/QbaYQKSNoixrZ5aqFN1cJ/IoICMc1dimQfkd+Z5bl8xFb6Ctba2hu
- hNs0uGzAxklV1+UtHU7SiI1xlkpKcf9ofp2kzL8TRWreZ9wB/ygvbxa7x
- PBxw8LcMVbC0EHyhCO1Jhd27JAeOcgtJuykuOpX11cgg73A285ggpJvnq
- d4MgMB9VbmOnXO8sX2Kx0X8YjH2mpEuAxUI6MlPAhChjdMbWeDbvP/ENV
- To/uHH/cjPHDTbEuOTnU/G3cr3b0SvVivM5MOFAV1ggL8ZI5kj+tFmIGV g==;
-X-CSE-ConnectionGUID: WK5O+YIiQImkUPSdvhNXLA==
-X-CSE-MsgGUID: Ovpd1fqgSK6sRJjO1fKpRw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="29918459"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="29918459"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2024 16:26:35 -0700
-X-CSE-ConnectionGUID: iTevsw8jQVOvPAbFbvvueQ==
-X-CSE-MsgGUID: UfmgdthaQ8OB0t0zmJlYQA==
+ bh=aQMrL4SanN5oHTV/8ko446ThHWCuqC8cPzNOqAsT9tM=;
+ b=MhpbEJe1upvEQzaJh0E0vUtnzzzasiSioi5Y7+lpRlwUZghje1ImFpdk
+ XzZ8PJDP4RyERZz0xdwaIteI2Iq/OukhNxvMrzXvgO28FscxdDkyEp63c
+ S0h6vRKlXZ2CoGsh/O+xjPCY75WO01xCd/poGqfZMtze6KkZ70oHrKFxR
+ BK5OwhjiuUGOOqdBtpw0AvimfxqaLpZdFf9dyfTQRtucARLh8A/TudJpb
+ n0pJk90XtE8S4fPevT1BJimVvPq1zv4yDNd/gSgb+zrNzijF5R3Xj/jsW
+ iCNIReRK7mJIPCJS+y06jEqytmbsVgsq3lZwyj+peTNNLfX15szNzQcqS A==;
+X-CSE-ConnectionGUID: 64ASfWgeThWIfyuDTb+LAQ==
+X-CSE-MsgGUID: St6L7PRMQC6Rv+Ye+K+IJg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11239"; a="47257359"
+X-IronPort-AV: E=Sophos;i="6.11,240,1725346800"; d="scan'208";a="47257359"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2024 16:33:27 -0700
+X-CSE-ConnectionGUID: psNONILxROuzKhbsGPt4LQ==
+X-CSE-MsgGUID: EImb9zKXQ6Wn7x5bQc9duw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,240,1725346800"; d="scan'208";a="81391579"
-Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.27.7])
- by fmviesa007.fm.intel.com with ESMTP; 28 Oct 2024 16:26:35 -0700
-From: Zhanjun Dong <zhanjun.dong@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: Zhanjun Dong <zhanjun.dong@intel.com>
-Subject: [PATCH v1] FOR-CI: drm/i915/guc: Disable ct receive tasklet during
- reset preparation
-Date: Mon, 28 Oct 2024 16:26:32 -0700
-Message-Id: <20241028232632.1951286-1-zhanjun.dong@intel.com>
-X-Mailer: git-send-email 2.34.1
+X-IronPort-AV: E=Sophos;i="6.11,240,1725346800"; d="scan'208";a="85719321"
+Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2024 16:31:41 -0700
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ John Harrison <John.C.Harrison@Intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH] drm/i915/gsc: ARL-H and ARL-U need a newer GSC FW.
+Date: Mon, 28 Oct 2024 16:31:32 -0700
+Message-ID: <20241028233132.149745-1-daniele.ceraolospurio@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -66,55 +67,209 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-During GuC reset prepare, interrupt is disabled, if the interrupt
-event already happens and is in progress, from interrupt event to
-tasklet get running, there is alway some kind of latency. In long
-latency case, it might have 2 rare race conditions:
-1. Tasklet runs after IRQ flush, add request to queue after worker
-flush started, causes unexpected G2H message request processing,
-while reset prepare code already get context destroyed. Request
-handler will report error about bad context state.
-2. Tasklet runs after intel_guc_submission_reset_prepare,
-ct_try_receive_message start to run, while intel_uc_reset_prepare
-already finished guc sanitize and set ct->enable to false. This will
-causes warning on incorrect ct->enable state.
+All MTL and ARL SKUs share the same GSC FW, but the newer platforms are
+only supported in newer blobs. In particular, ARL-S is supported
+starting from 102.0.10.1878 (which is already the minimum required
+version for ARL in the code), while ARL-H and ARL-U are supported from
+102.1.15.1926. Therefore, the driver needs to check which specific ARL
+subplatform its running on when verifying that the GSC FW is new enough
+for it.
 
-Fixed by disable ct receive tasklet during reset preparation to avoid
-the above race condition.
-
-Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+Fixes: 2955ae8186c8 ("drm/i915: ARL requires a newer GSC firmware")
+Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: John Harrison <John.C.Harrison@Intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 11 ++++++++---
- 1 file changed, 8 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c | 50 +++++++++++++++--------
+ drivers/gpu/drm/i915/i915_drv.h           |  8 +++-
+ drivers/gpu/drm/i915/intel_device_info.c  | 24 ++++++++---
+ drivers/gpu/drm/i915/intel_device_info.h  |  4 +-
+ include/drm/intel/i915_pciids.h           | 15 +++++--
+ 5 files changed, 72 insertions(+), 29 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-index 9ede6f240d79..f82fec33c432 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-@@ -1684,15 +1684,20 @@ void intel_guc_submission_reset_prepare(struct intel_guc *guc)
- 	guc->interrupts.disable(guc);
- 	__reset_guc_busyness_stats(guc);
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c
+index 551b0d7974ff..5dc0ccd07636 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c
++++ b/drivers/gpu/drm/i915/gt/uc/intel_gsc_fw.c
+@@ -80,6 +80,7 @@ int intel_gsc_fw_get_binary_info(struct intel_uc_fw *gsc_fw, const void *data, s
+ 	const struct intel_gsc_cpd_header_v2 *cpd_header = NULL;
+ 	const struct intel_gsc_cpd_entry *cpd_entry = NULL;
+ 	const struct intel_gsc_manifest_header *manifest;
++	struct intel_uc_fw_ver min_ver = { 0 };
+ 	size_t min_size = sizeof(*layout);
+ 	int i;
  
--	/* Flush IRQ handler */
--	spin_lock_irq(guc_to_gt(guc)->irq_lock);
--	spin_unlock_irq(guc_to_gt(guc)->irq_lock);
+@@ -212,33 +213,46 @@ int intel_gsc_fw_get_binary_info(struct intel_uc_fw *gsc_fw, const void *data, s
+ 		}
+ 	}
+ 
+-	if (IS_ARROWLAKE(gt->i915)) {
 +	/*
-+	 * Disable tasklet until end of prepare, if tasklet is active,
-+	 * tasklet_disable will wait until it finished
++	 * ARL SKUs require newer firmwares, but the blob is actually common
++	 * across all MTL and ARL SKUs, so we need to do an explicit version check
++	 * here rather than using a separate table entry. If a too old version
++	 * is found, then just don't use GSC rather than aborting the driver load.
++	 * Note that the major number in the GSC FW version is used to indicate
++	 * the platform, so we expect it to always be 102 for MTL/ARL binaries.
 +	 */
-+	tasklet_disable(&guc->ct.receive_tasklet);
- 
- 	guc_flush_submissions(guc);
- 	guc_flush_destroyed_contexts(guc);
- 	flush_work(&guc->ct.requests.worker);
- 
- 	scrub_guc_desc_for_outstanding_g2h(guc);
++	if (IS_ARROWLAKE_S(gt->i915))
++		min_ver = (struct intel_uc_fw_ver){ 102, 0, 10, 1878 };
++	else if (IS_ARROWLAKE_H(gt->i915) || IS_ARROWLAKE_U(gt->i915))
++		min_ver = (struct intel_uc_fw_ver){ 102, 1, 15, 1926 };
 +
-+	/* Enable tasklet at the end, before HW reset */
-+	tasklet_enable(&guc->ct.receive_tasklet);
- }
++	if (IS_METEORLAKE(gt->i915) && gsc->release.major != 102) {
++		gt_info(gt, "Invalid GSC firmware for MTL/ARL, got %d.%d.%d.%d but need 102.x.x.x",
++			gsc->release.major, gsc->release.minor,
++			gsc->release.patch, gsc->release.build);
++			return -EINVAL;
++	}
++
++	if (min_ver.major) {
+ 		bool too_old = false;
  
- static struct intel_engine_cs *
+-		/*
+-		 * ARL requires a newer firmware than MTL did (102.0.10.1878) but the
+-		 * firmware is actually common. So, need to do an explicit version check
+-		 * here rather than using a separate table entry. And if the older
+-		 * MTL-only version is found, then just don't use GSC rather than aborting
+-		 * the driver load.
+-		 */
+-		if (gsc->release.major < 102) {
++		if (gsc->release.minor < min_ver.minor) {
+ 			too_old = true;
+-		} else if (gsc->release.major == 102) {
+-			if (gsc->release.minor == 0) {
+-				if (gsc->release.patch < 10) {
++		} else if (gsc->release.minor == min_ver.minor) {
++			if (gsc->release.patch < min_ver.patch) {
++				too_old = true;
++			} else if (gsc->release.patch == min_ver.patch) {
++				if (gsc->release.build < min_ver.build)
+ 					too_old = true;
+-				} else if (gsc->release.patch == 10) {
+-					if (gsc->release.build < 1878)
+-						too_old = true;
+-				}
+ 			}
+ 		}
+ 
+ 		if (too_old) {
+-			gt_info(gt, "GSC firmware too old for ARL, got %d.%d.%d.%d but need at least 102.0.10.1878",
++			gt_info(gt, "GSC firmware too old for ARL, got %d.%d.%d.%d but need at least %d.%d.%d.%d",
+ 				gsc->release.major, gsc->release.minor,
+-				gsc->release.patch, gsc->release.build);
++				gsc->release.patch, gsc->release.build,
++				min_ver.major, min_ver.minor,
++				min_ver.patch, min_ver.build);
+ 			return -EINVAL;
+ 		}
+ 	}
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index a66e5bb078cf..b1f2183aa156 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -539,8 +539,12 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+ #define IS_LUNARLAKE(i915) (0 && i915)
+ #define IS_BATTLEMAGE(i915)  (0 && i915)
+ 
+-#define IS_ARROWLAKE(i915) \
+-	IS_SUBPLATFORM(i915, INTEL_METEORLAKE, INTEL_SUBPLATFORM_ARL)
++#define IS_ARROWLAKE_H(i915) \
++	IS_SUBPLATFORM(i915, INTEL_METEORLAKE, INTEL_SUBPLATFORM_ARL_H)
++#define IS_ARROWLAKE_U(i915) \
++	IS_SUBPLATFORM(i915, INTEL_METEORLAKE, INTEL_SUBPLATFORM_ARL_U)
++#define IS_ARROWLAKE_S(i915) \
++	IS_SUBPLATFORM(i915, INTEL_METEORLAKE, INTEL_SUBPLATFORM_ARL_S)
+ #define IS_DG2_G10(i915) \
+ 	IS_SUBPLATFORM(i915, INTEL_DG2, INTEL_SUBPLATFORM_G10)
+ #define IS_DG2_G11(i915) \
+diff --git a/drivers/gpu/drm/i915/intel_device_info.c b/drivers/gpu/drm/i915/intel_device_info.c
+index 3c47c625993e..467999249b9a 100644
+--- a/drivers/gpu/drm/i915/intel_device_info.c
++++ b/drivers/gpu/drm/i915/intel_device_info.c
+@@ -200,8 +200,16 @@ static const u16 subplatform_g12_ids[] = {
+ 	INTEL_DG2_G12_IDS(ID),
+ };
+ 
+-static const u16 subplatform_arl_ids[] = {
+-	INTEL_ARL_IDS(ID),
++static const u16 subplatform_arl_h_ids[] = {
++	INTEL_ARL_H_IDS(ID),
++};
++
++static const u16 subplatform_arl_u_ids[] = {
++	INTEL_ARL_U_IDS(ID),
++};
++
++static const u16 subplatform_arl_s_ids[] = {
++	INTEL_ARL_S_IDS(ID),
+ };
+ 
+ static bool find_devid(u16 id, const u16 *p, unsigned int num)
+@@ -261,9 +269,15 @@ static void intel_device_info_subplatform_init(struct drm_i915_private *i915)
+ 	} else if (find_devid(devid, subplatform_g12_ids,
+ 			      ARRAY_SIZE(subplatform_g12_ids))) {
+ 		mask = BIT(INTEL_SUBPLATFORM_G12);
+-	} else if (find_devid(devid, subplatform_arl_ids,
+-			      ARRAY_SIZE(subplatform_arl_ids))) {
+-		mask = BIT(INTEL_SUBPLATFORM_ARL);
++	} else if (find_devid(devid, subplatform_arl_h_ids,
++			      ARRAY_SIZE(subplatform_arl_h_ids))) {
++		mask = BIT(INTEL_SUBPLATFORM_ARL_H);
++	} else if (find_devid(devid, subplatform_arl_u_ids,
++			      ARRAY_SIZE(subplatform_arl_u_ids))) {
++		mask = BIT(INTEL_SUBPLATFORM_ARL_U);
++	} else if (find_devid(devid, subplatform_arl_s_ids,
++			      ARRAY_SIZE(subplatform_arl_s_ids))) {
++		mask = BIT(INTEL_SUBPLATFORM_ARL_S);
+ 	}
+ 
+ 	GEM_BUG_ON(mask & ~INTEL_SUBPLATFORM_MASK);
+diff --git a/drivers/gpu/drm/i915/intel_device_info.h b/drivers/gpu/drm/i915/intel_device_info.h
+index 4f4aa4ff9963..ef84eea9ba0b 100644
+--- a/drivers/gpu/drm/i915/intel_device_info.h
++++ b/drivers/gpu/drm/i915/intel_device_info.h
+@@ -128,7 +128,9 @@ enum intel_platform {
+ #define INTEL_SUBPLATFORM_RPLU  2
+ 
+ /* MTL */
+-#define INTEL_SUBPLATFORM_ARL	0
++#define INTEL_SUBPLATFORM_ARL_H	0
++#define INTEL_SUBPLATFORM_ARL_U	1
++#define INTEL_SUBPLATFORM_ARL_S	2
+ 
+ enum intel_ppgtt_type {
+ 	INTEL_PPGTT_NONE = I915_GEM_PPGTT_NONE,
+diff --git a/include/drm/intel/i915_pciids.h b/include/drm/intel/i915_pciids.h
+index 6b92f8c3731b..ae64e8ec1adc 100644
+--- a/include/drm/intel/i915_pciids.h
++++ b/include/drm/intel/i915_pciids.h
+@@ -765,13 +765,22 @@
+ 	INTEL_ATS_M75_IDS(MACRO__, ## __VA_ARGS__)
+ 
+ /* ARL */
+-#define INTEL_ARL_IDS(MACRO__, ...) \
+-	MACRO__(0x7D41, ## __VA_ARGS__), \
++#define INTEL_ARL_H_IDS(MACRO__, ...) \
+ 	MACRO__(0x7D51, ## __VA_ARGS__), \
++	MACRO__(0x7DD1, ## __VA_ARGS__)
++
++#define INTEL_ARL_U_IDS(MACRO__, ...) \
++	MACRO__(0x7D41, ## __VA_ARGS__) \
++
++#define INTEL_ARL_S_IDS(MACRO__, ...) \
+ 	MACRO__(0x7D67, ## __VA_ARGS__), \
+-	MACRO__(0x7DD1, ## __VA_ARGS__), \
+ 	MACRO__(0xB640, ## __VA_ARGS__)
+ 
++#define INTEL_ARL_IDS(MACRO__, ...) \
++	INTEL_ARL_H_IDS(MACRO__, ## __VA_ARGS__), \
++	INTEL_ARL_U_IDS(MACRO__, ## __VA_ARGS__), \
++	INTEL_ARL_S_IDS(MACRO__, ## __VA_ARGS__)
++
+ /* MTL */
+ #define INTEL_MTL_IDS(MACRO__, ...) \
+ 	MACRO__(0x7D40, ## __VA_ARGS__), \
 -- 
-2.34.1
+2.43.0
 
