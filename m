@@ -2,61 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E6969B3428
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Oct 2024 15:58:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B5529B3431
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Oct 2024 16:01:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D64AA10E4DE;
-	Mon, 28 Oct 2024 14:58:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D0A810E4E0;
+	Mon, 28 Oct 2024 15:01:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hS+4PmpZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NlFLWMkK";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4EF4E10E4DE
- for <intel-gfx@lists.freedesktop.org>; Mon, 28 Oct 2024 14:58:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C97610E4E0
+ for <intel-gfx@lists.freedesktop.org>; Mon, 28 Oct 2024 15:01:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730127530; x=1761663530;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=jImTaeYwwyLs8osHwS1+vxJzmzjApVEncEzUCUIxmDI=;
- b=hS+4PmpZ1BtNtzV567sXVpNAxrU2BNk+Z8dk5CcUJwLxhbQUY1LPbZsF
- bQJNS9U5BQ+jLL0K3RqxrGr0xVzljqciyqMwJSewxVtuYsRsuOfk/cupR
- thsUHoOpQie1Wx0clwm9d9JgHVxoRJ+dtNnzK0mM5IpRUGoj8Kxtlcwq7
- 3nxCxyQFrXyYfMCWyR5J6wDUMTehZwjRB7oeRC2+PoZpW+gHBGXuEzvka
- QmD5Gqcz+AJ46Ix9L8k67ybaIT4f+sG9tw96IW/fsQk45rsndvfcGrkak
- FTTSD1ghddi3w4KszdB/vnBDb/EzQFvsOZbOhGxSgpm94ce/8BN9Tpsby w==;
-X-CSE-ConnectionGUID: ETGDk8kzRuG4QCpAJmhn7g==
-X-CSE-MsgGUID: 1CJ+h1vAReOu7HRlbTKP9Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="40264294"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="40264294"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2024 07:58:50 -0700
-X-CSE-ConnectionGUID: E8cDDvjSR+SgPZ8bsuM1sg==
-X-CSE-MsgGUID: yhJmQ5NLQOO8qsospD9VXw==
+ t=1730127667; x=1761663667;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=q2PEBeHXPV26su/useQb8Nvi9tlN1VM9/Emvw8vLi7w=;
+ b=NlFLWMkKzK0fYcMXb/cVClDBV1w46BcJEzVAzHFtprq+Tyjw4UVUxCJH
+ xGlY5H0JixoNjJcV3j8VIAYmrdYposz5DSvdWYG/ekVGgBSia/AU0+Onc
+ nFzC6dJ8rtcwu3sU/mGQ0Gqqb2uEdMreRBkK5DFsBW2ZisTfxTIF+piOu
+ QthP/TY3qrzpYdkWTEuPBLkiSxOY4kQ62fFYUq2K/QIug9wIA8oIET5aV
+ Gq8Dom6FebUrDN53+iFsESG8b7C8bE5gdcgJuogwEiNhbaQitZqwbkMiB
+ nBK56YBJD4bqayZUGfdc7SxJGV7vGdxrkb4OPkOYXx7AZNVBGb985Q+5b Q==;
+X-CSE-ConnectionGUID: PQE+Hi0zTJu1lyBS9rAWCQ==
+X-CSE-MsgGUID: /QbPGE1ESuanwUKENNkvNQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11239"; a="29185628"
+X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="29185628"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2024 08:01:06 -0700
+X-CSE-ConnectionGUID: 12DN1SPoSTKJ3VNXPaCn9A==
+X-CSE-MsgGUID: f6GMM0PSQyuXbia24JuCzg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="119102136"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2024 07:58:49 -0700
-Date: Mon, 28 Oct 2024 16:59:20 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, Tejun Heo <tj@kernel.org>,
- stable@vger.kernel.org, Heiner Kallweit <hkallweit1@gmail.com>
-Subject: Re: [Intel-gfx] [PATCH 1/2] drm/i915: Schedule the HPD poll init
- work on an unbound workqueue
-Message-ID: <Zx-myBLnx49hR-fy@ideak-desk.fi.intel.com>
-References: <20230901140403.2821777-1-imre.deak@intel.com>
- <vgkma7lsnlajc2ttvk3zrfzfqw4uclyjvjq3qlb54pmrcuolvd@7xdf4nzxxdcx>
- <877c9sp9ji.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="81747261"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 28 Oct 2024 08:01:04 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 28 Oct 2024 17:01:03 +0200
+Date: Mon, 28 Oct 2024 17:01:03 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Hogander, Jouni" <jouni.hogander@intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH 6/9] drm/i915: Disable scanout VT-d workaround for TGL+
+Message-ID: <Zx-nL8970BVaxlLE@intel.com>
+References: <20241009182207.22900-1-ville.syrjala@linux.intel.com>
+ <20241009182207.22900-7-ville.syrjala@linux.intel.com>
+ <cf761598f491ed4567bd8937b2fca1593bce4e6a.camel@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <877c9sp9ji.fsf@intel.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <cf761598f491ed4567bd8937b2fca1593bce4e6a.camel@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,110 +69,53 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Oct 28, 2024 at 04:49:21PM +0200, Jani Nikula wrote:
-> On Mon, 28 Oct 2024, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> > +Jani
-> >
-> > On Fri, Sep 01, 2023 at 05:04:02PM +0300, Imre Deak wrote:
-> >>Disabling HPD polling from i915_hpd_poll_init_work() involves probing
-> >>all display connectors explicitly to account for lost hotplug
-> >>interrupts. On some platforms (mostly pre-ICL) with HDMI connectors the
-> >>I2C EDID bit-banging using udelay() triggers in turn the
-> >>
-> >> workqueue: i915_hpd_poll_init_work [i915] hogged CPU for >10000us 4 times, consider switching to WQ_UNBOUND
-> >>
-> >>warning.
-> >>
-> >>Fix the above by scheduling i915_hpd_poll_init_work() on a WQ_UNBOUND
-> >>workqueue. It's ok to use a system WQ, since i915_hpd_poll_init_work()
-> >>is properly flushed in intel_hpd_cancel_work().
-> >>
-> >>The connector probing from drm_mode_config::output_poll_work resulting
-> >>in the same warning is fixed by the next patch.
-> >>
-> >>Cc: Tejun Heo <tj@kernel.org>
-> >>Cc: Heiner Kallweit <hkallweit1@gmail.com>
-> >>CC: stable@vger.kernel.org # 6.5
-> >>Suggested-by: Tejun Heo <tj@kernel.org>
-> >>Suggested-by: Heiner Kallweit <hkallweit1@gmail.com>
-> >>Reported-by: Heiner Kallweit <hkallweit1@gmail.com>
-> >>Closes: https://gitlab.freedesktop.org/drm/intel/-/issues/9245
-> >>Link: https://lore.kernel.org/all/f7e21caa-e98d-e5b5-932a-fe12d27fde9b@gmail.com
-> >>Signed-off-by: Imre Deak <imre.deak@intel.com>
-> >>---
-> >> drivers/gpu/drm/i915/display/intel_hotplug.c | 4 ++--
-> >> 1 file changed, 2 insertions(+), 2 deletions(-)
-> >>
-> >>diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/drm/i915/display/intel_hotplug.c
-> >>index e8562f6f8bb44..accc2fec562a0 100644
-> >>--- a/drivers/gpu/drm/i915/display/intel_hotplug.c
-> >>+++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
-> >>@@ -774,7 +774,7 @@ void intel_hpd_poll_enable(struct drm_i915_private *dev_priv)
-> >> 	 * As well, there's no issue if we race here since we always reschedule
-> >> 	 * this worker anyway
-> >> 	 */
-> >>-	queue_work(dev_priv->unordered_wq,
-> >>+	queue_work(system_unbound_wq,
-> >> 		   &dev_priv->display.hotplug.poll_init_work);
-> >> }
-> >>
-> >>@@ -803,7 +803,7 @@ void intel_hpd_poll_disable(struct drm_i915_private *dev_priv)
-> >> 		return;
-> >>
-> >> 	WRITE_ONCE(dev_priv->display.hotplug.poll_enabled, false);
-> >>-	queue_work(dev_priv->unordered_wq,
-> >>+	queue_work(system_unbound_wq,
-> >
-> > This 1y+ patch doesn't apply anymore and now we also have xe to account
-> > for.  I'm reviving this since we are unifying the kernel config in CI
-> > and now several machines testing i915 start to hit this warning.
-> >
-> > Looking at the current code for xe we have:
-> >
-> > 	drivers/gpu/drm/xe/xe_device_types.h:
-> >
-> >          /** @unordered_wq: used to serialize unordered work, mostly display */
-> >          struct workqueue_struct *unordered_wq;
-> >
-> >
-> > ... which is, actually, just display.
-> >
-> > Jani, should we move this wq to display where it belongs, with the right
-> > flags, rather than queueing it on system_unbound_wq?
+On Thu, Oct 24, 2024 at 10:50:06AM +0000, Hogander, Jouni wrote:
+> On Wed, 2024-10-09 at 21:22 +0300, Ville Syrjala wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > 
+> > TGL+ should no longer need any VT-d scanout workarounds.
+> > Don't apply any.
+> > 
+> > Not 100% sure whether pre-SNB might also suffer from this. The
+> > workaround did originate on SNB but who knows if it was just
+> > never caught before that. Not that I ever managed to enable
+> > VT-d any older hardware. Last time I tried on my ILK it ate
+> > the disk!
 > 
-> I think the general answer is:
-> 
-> 1. Never use i915 or xe core workqueues in display code.
-> 
-> 2. Use system workqueues where appropriate for display, and cancel the
->    individual work where needed. While there are legitimate uses for the
->    dedicated workqueues, I'm guessing a large portion of their use may
->    be cargo-culting and/or the result of system wq flush going away, and
->    not based on any real analysis.
-> 
-> 3. For display stuff, add the minimal necessary workqueues in display
->    code, and use them where appropriate. Also cancel the individual work
->    where needed, and flush the entire workqueue only when really
->    necessary. The entire workqueue flushing is also cargo-culting and/or
->    the result of system wq flush going away.
-> 
-> 4. Finally move the display wq init/cleanup to display code.
-> 
-> Now, I don't know what the answer in this particular case, or many of
-> the other cases, is. And that's probably one of the reasons we have the
-> status quo. :(
+> Any possibility to have bspec reference or is it just some offline
+> documentation?
 
-The work scheduled for hotplug events (like the above poll_init_work)
-are flushed explicitly, so I think the system workqueues should be used
-for those (as opposed to driver specific workqueues).
+The workaround is documented in the PLANE_SURF registers.
+It is there for pre-TGL and gone for TGL+.
 
+> 
 > BR,
-> Jani.
 > 
+> Jouni Högander
+> > 
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_display.c | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+> > b/drivers/gpu/drm/i915/display/intel_display.c
+> > index 2afd10bbe7b8..7c25060e5f32 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -8694,5 +8694,5 @@ void intel_hpd_poll_fini(struct
+> > drm_i915_private *i915)
+> >  
+> >  bool intel_scanout_needs_vtd_wa(struct drm_i915_private *i915)
+> >  {
+> > -       return DISPLAY_VER(i915) >= 6 && i915_vtd_active(i915);
+> > +       return IS_DISPLAY_VER(i915, 6, 11) && i915_vtd_active(i915);
+> >  }
 > 
-> -- 
-> Jani Nikula, Intel
+
+-- 
+Ville Syrjälä
+Intel
