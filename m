@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 882879B3A6F
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Oct 2024 20:30:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BFEA9B3A72
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Oct 2024 20:30:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A676D10E543;
-	Mon, 28 Oct 2024 19:30:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5432E10E557;
+	Mon, 28 Oct 2024 19:30:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RkkQzk6A";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X0sbobYe";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC73E10E536;
- Mon, 28 Oct 2024 19:30:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F34B10E53A;
+ Mon, 28 Oct 2024 19:30:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730143821; x=1761679821;
+ t=1730143822; x=1761679822;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=ZzhKKYwot3UMtRFi6MS5HLHYqjTsTycSbN3eKiH8MO0=;
- b=RkkQzk6AwhEhviam42LQG+Jrx37bjt70qNMq7wb9PNWN3acoXPXLjbui
- zrS7IyYpQ4Sc6q9I0dVzUe47M3yjeWARL3D7I0BvhXGikdny/8MKIJ+W/
- arn3ASUHTiEgEIpGB1g1QUhBZj19cjoTWBuTw5k2iTbgjHTNiLCQkqoec
- hfJgWDyag6OfKHbZJK33KdhfL0JlLVP33860SdDQlQopdUANxe1DTNUKq
- uBuByQTR1tyoW4in71qKsthjHf11cuiQ7Ty/pZEn9SBKcljhR0y80E2hq
- 0y/zImTUxMVVZXfk8a6V3IdMKhZGYjCh0tE4tCGH9WaKoulrhNMO5gy9a A==;
-X-CSE-ConnectionGUID: q4xsmTZSStKyRm/OPRbNEw==
-X-CSE-MsgGUID: 0MBwrqVnRweQB5mbgQq/FQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="40855931"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="40855931"
+ bh=OlbSmgYFCp6kPY5rHwOvB8io/h5G8sKMV9OU9yIhRMA=;
+ b=X0sbobYeG0PSOF1l9ZPn5kjQDC2utbGXutsMKjY05kFARWuJ/LXi3lCt
+ G/HxtwXxKaxDWshBK/RCoLXpyaTCEc53srFrth1YscFcyfjChOH6nq1vy
+ +fDfjfArCfDZWAdYd8UDfXiwzNDGi7M7zekv8cOVx7pl0bxpTTdt/ZKz9
+ thAZSnbNtwGRtKmfzcwL55ySxVd6vFW+3ZNQQoLh9cK8vTofXg5peV8ui
+ 9+4tVfQXomHD2gx7bIkxwYOeIq0m03ddIIxSQR6kw++gflkthkYggDB9I
+ HcJbrd17dlVz74pErk3Hp/ioO4Cn8rfnqJkJj7vA/TNr9ynPaXlOGHuve A==;
+X-CSE-ConnectionGUID: aeKRSA4gTeGC75GPgBxelQ==
+X-CSE-MsgGUID: nSQRyq1lRXinZUQlY5WYsA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="40855935"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="40855935"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2024 12:30:20 -0700
-X-CSE-ConnectionGUID: sExV1IHJS4+q0B5vni3psg==
-X-CSE-MsgGUID: 59DonePKRNSn25LRyJBHJQ==
+ 28 Oct 2024 12:30:21 -0700
+X-CSE-ConnectionGUID: QJhSIs1kTseCfdg3pnFhTg==
+X-CSE-MsgGUID: fq1EQHinT06/yMhUw1Gfjg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="81777546"
+X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="81777548"
 Received: from cataylo2-desk.jf.intel.com ([10.165.21.140])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  28 Oct 2024 12:30:20 -0700
 From: Clint Taylor <clinton.a.taylor@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Subject: [PATCH v6 5/9] drm/i915/cx0: Remove bus reset after every c10
- transaction
-Date: Mon, 28 Oct 2024 12:30:11 -0700
-Message-Id: <20241028193015.3241858-6-clinton.a.taylor@intel.com>
+Subject: [PATCH v6 6/9] drm/i915/xe3lpd: Move async flip bit to PLANE_SURF
+ register
+Date: Mon, 28 Oct 2024 12:30:12 -0700
+Message-Id: <20241028193015.3241858-7-clinton.a.taylor@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20241028193015.3241858-1-clinton.a.taylor@intel.com>
 References: <20241028193015.3241858-1-clinton.a.taylor@intel.com>
@@ -68,41 +68,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-C10 phy timeouts occur on xe3lpd if the c10 bus is reset every
-transaction. Although not required by BSPEC bus resets were added for
-prior platforms as a workaround. Starting with xe3_lpd this bus reset is
-not necessary.
+From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 
-Signed-off-by: Clint Taylor <clinton.a.taylor@intel.com>
-Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
+The async flip moved from PLANE_CTL to PLANE_SURF for Xe3_LPD.
+
+Bspec: 69853,69878
+Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
+Signed-off-by: Clint Taylor <Clinton.A.Taylor@intel.com>
+Reviewed-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/skl_universal_plane.c  | 13 +++++++++----
+ .../gpu/drm/i915/display/skl_universal_plane_regs.h |  1 +
+ 2 files changed, 10 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 4d6e1c135bdc..c6e0cbff5201 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -224,7 +224,8 @@ static int __intel_cx0_read_once(struct intel_encoder *encoder,
- 	 * down and let the message bus to end up
- 	 * in a known state
- 	 */
--	intel_cx0_bus_reset(encoder, lane);
-+	if (DISPLAY_VER(i915) < 30)
-+		intel_cx0_bus_reset(encoder, lane);
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index a0a7ed01415a..60ca4f8c4a3c 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -1567,17 +1567,22 @@ skl_plane_async_flip(struct intel_dsb *dsb,
+ 	struct intel_display *display = to_intel_display(plane->base.dev);
+ 	enum plane_id plane_id = plane->id;
+ 	enum pipe pipe = plane->pipe;
+-	u32 plane_ctl = plane_state->ctl;
++	u32 plane_ctl = plane_state->ctl, plane_surf;
  
- 	return REG_FIELD_GET(XELPDP_PORT_P2M_DATA_MASK, val);
- }
-@@ -313,7 +314,8 @@ static int __intel_cx0_write_once(struct intel_encoder *encoder,
- 	 * down and let the message bus to end up
- 	 * in a known state
- 	 */
--	intel_cx0_bus_reset(encoder, lane);
-+	if (DISPLAY_VER(i915) < 30)
-+		intel_cx0_bus_reset(encoder, lane);
+ 	plane_ctl |= skl_plane_ctl_crtc(crtc_state);
++	plane_surf = skl_plane_surf(plane_state, 0);
  
- 	return 0;
+-	if (async_flip)
+-		plane_ctl |= PLANE_CTL_ASYNC_FLIP;
++	if (async_flip) {
++		if (DISPLAY_VER(display) >= 30)
++			plane_surf |= PLANE_SURF_ASYNC_UPDATE;
++		else
++			plane_ctl |= PLANE_CTL_ASYNC_FLIP;
++	}
+ 
+ 	intel_de_write_dsb(display, dsb, PLANE_CTL(pipe, plane_id),
+ 			   plane_ctl);
+ 	intel_de_write_dsb(display, dsb, PLANE_SURF(pipe, plane_id),
+-			   skl_plane_surf(plane_state, 0));
++			   plane_surf);
  }
+ 
+ static bool intel_format_is_p01x(u32 format)
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h b/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
+index 4ddcd7d46bbd..ff31a00d511e 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
+@@ -159,6 +159,7 @@
+ 							_PLANE_SURF_2_A, _PLANE_SURF_2_B)
+ #define   PLANE_SURF_ADDR_MASK			REG_GENMASK(31, 12)
+ #define   PLANE_SURF_DECRYPT			REG_BIT(2)
++#define   PLANE_SURF_ASYNC_UPDATE		REG_BIT(0)
+ 
+ #define _PLANE_KEYMAX_1_A			0x701a0
+ #define _PLANE_KEYMAX_2_A			0x702a0
 -- 
 2.25.1
 
