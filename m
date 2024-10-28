@@ -2,58 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3262F9B3AC5
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Oct 2024 20:50:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A666B9B3B0C
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Oct 2024 21:07:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 054D710E558;
-	Mon, 28 Oct 2024 19:50:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7ED6510E074;
+	Mon, 28 Oct 2024 20:07:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J1sZaAyw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VTTrfAmh";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 429E410E559;
- Mon, 28 Oct 2024 19:50:25 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D8AC10E219;
+ Mon, 28 Oct 2024 20:07:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730145026; x=1761681026;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=B0a7iq0OPpmF8hT/Yp5UdeexllVHUUULCWLHIWPuVaw=;
- b=J1sZaAywNPgnfmnnt699T6JK/tGBAiAzzMGoIr7HnfrXxcjJZFyyTSiF
- OjGcnwKt3xe7Ybo6mlGcwNGOSH4ilWUX/pi79hX+iOLC/XRz0VIVb47Cx
- 531pfrBpFegfuCTzJF8WxFrfqTx8g3n5ENjiiFvQjhLqd5kz1L80r6jw5
- /vuc0YB7L4+10d2gkHJZCMZR6A75X1+WxJ97no/MctDPljljH3Hwf0Y1/
- EXoqYsJCQXql+uY2o1lG7LRfycczFwOku138Yue0qPaiSLtTX1h+XPLd0
- Iwb+hC2P+yywYN6v5NL+u9hDquhUOGEmM5/I3O4tSY2NIFCUTFdtCsQPU g==;
-X-CSE-ConnectionGUID: liiY0qEKSYCrhgS4igHcWA==
-X-CSE-MsgGUID: 4wpOWtaASQuTVnwHZ3eu4w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="40858030"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="40858030"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2024 12:50:26 -0700
-X-CSE-ConnectionGUID: iPVIEwdSSO6nGSyZFpgD7g==
-X-CSE-MsgGUID: fJ3sYp/tQUqeZ40NpitAww==
+ t=1730146057; x=1761682057;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=MdOmBd3uCo5GV4hEM3tutNNtg+zPkre0XlF22iWDzac=;
+ b=VTTrfAmh2KV3zX69Q+HWJYNCNS+t4RojvgFu2P1nZTLrDkKha73hS6gS
+ tEfnWo4IohYN/FvZ8GcUovTwSCJSwh0m5bn0Gsa2AbkxSGO4ZqNNq9XOK
+ n3gMc7MmNC0MVKff2ajxWVNXsBAoGDs5UkIsVLM6MM7ZakAEn2BObyYUg
+ bWjo2E2awLwiRBLjV3K4o/6F46vTmZt1KAZvhswUryIS1umHkhyNUknks
+ ap5XEBhi0qVAx9LcK8w+/8P8eXEAfDffR7vqyCiCgB/mhUFY0RHPDsyvb
+ 9HWDbh0qFpn5ilt5HAYSTZM1KTVXOWbSakSzCrpqH7l9RzytuUL7B4zt6 g==;
+X-CSE-ConnectionGUID: /5Pd+i2AQKiaaei/iUqzPQ==
+X-CSE-MsgGUID: mPWDMv8LSPyZsCJzrvLbQA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11239"; a="33681128"
+X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="33681128"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2024 13:07:36 -0700
+X-CSE-ConnectionGUID: sXkq7njdTOyAuCs5NaLp+A==
+X-CSE-MsgGUID: iiMaupSUQU+3jaVEVBICxg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="86860049"
+X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="82055029"
 Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.246.21])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2024 12:50:23 -0700
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2024 13:07:34 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com, rodrigo.vivi@intel.com, lucas.demarchi@intel.com,
- maarten.lankhorst@linux.intel.com
-Subject: [CI RESEND v4 v4 16/16] drm/i915/vblank: use
- display->platform.<platform> instead of IS_<PLATFORM>()
-Date: Mon, 28 Oct 2024 21:48:49 +0200
-Message-Id: <ed7295a7246bf00d8ae39f78c78dcc842c6939d9.1730144869.git.jani.nikula@intel.com>
+Cc: jani.nikula@intel.com
+Subject: [CI v2 v2 00/12] drm/i915/display: bunch of struct intel_display
+ conversions
+Date: Mon, 28 Oct 2024 22:07:18 +0200
+Message-Id: <cover.1730146000.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1730144869.git.jani.nikula@intel.com>
-References: <cover.1730144869.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
@@ -72,55 +69,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Switch to using the new display->platform.<platform> members for
-platform identification in display code.
+Just resending [1] because I never got the CI logs for it.
 
-v2: Split out an unrelated hunk to a separate patch (Rodrigo)
+[1] https://lore.kernel.org/r/cover.1729776384.git.jani.nikula@intel.com
 
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_vblank.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+Jani Nikula (12):
+  drm/i915/gmbus: convert to struct intel_display
+  drm/i915/cx0: remove unnecessary includes
+  drm/i915/cx0: convert to struct intel_display
+  drm/i915/dpio: convert to struct intel_display
+  drm/i915/hdcp: further conversion to struct intel_display
+  drm/i915/dp/hdcp: convert to struct intel_display
+  drm/i915/crt: convert to struct intel_display
+  drm/i915/display: convert vlv_wait_port_ready() to struct
+    intel_display
+  drm/i915/power: convert assert_chv_phy_status() to struct
+    intel_display
+  drm/i915/ips: convert to struct intel_display
+  drm/i915/dsi: convert to struct intel_display
+  drm/i915/de: remove unnecessary generic wrappers
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
-index 9278d0b2ae74..a95fb3349eba 100644
---- a/drivers/gpu/drm/i915/display/intel_vblank.c
-+++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-@@ -326,14 +326,13 @@ static bool i915_get_crtc_scanoutpos(struct drm_crtc *_crtc,
- 				     const struct drm_display_mode *mode)
- {
- 	struct intel_display *display = to_intel_display(_crtc->dev);
--	struct drm_i915_private *dev_priv = to_i915(display->drm);
- 	struct intel_crtc *crtc = to_intel_crtc(_crtc);
- 	enum pipe pipe = crtc->pipe;
- 	int position;
- 	int vbl_start, vbl_end, hsync_start, htotal, vtotal;
- 	unsigned long irqflags;
- 	bool use_scanline_counter = DISPLAY_VER(display) >= 5 ||
--		IS_G4X(dev_priv) || DISPLAY_VER(display) == 2 ||
-+		display->platform.g4x || DISPLAY_VER(display) == 2 ||
- 		crtc->mode_flags & I915_MODE_FLAG_USE_SCANLINE_COUNTER;
- 
- 	if (drm_WARN_ON(display->drm, !mode->crtc_clock)) {
-@@ -602,14 +601,15 @@ void intel_vblank_evade_init(const struct intel_crtc_state *old_crtc_state,
- 			     const struct intel_crtc_state *new_crtc_state,
- 			     struct intel_vblank_evade_ctx *evade)
- {
-+	struct intel_display *display = to_intel_display(new_crtc_state);
- 	struct intel_crtc *crtc = to_intel_crtc(new_crtc_state->uapi.crtc);
--	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
- 	const struct intel_crtc_state *crtc_state;
- 	const struct drm_display_mode *adjusted_mode;
- 
- 	evade->crtc = crtc;
- 
--	evade->need_vlv_dsi_wa = (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915)) &&
-+	evade->need_vlv_dsi_wa = (display->platform.valleyview ||
-+				  display->platform.cherryview) &&
- 		intel_crtc_has_type(new_crtc_state, INTEL_OUTPUT_DSI);
- 
- 	/*
+ drivers/gpu/drm/i915/display/g4x_dp.c         |   3 +-
+ drivers/gpu/drm/i915/display/g4x_hdmi.c       |   9 +-
+ drivers/gpu/drm/i915/display/hsw_ips.c        |  47 +-
+ drivers/gpu/drm/i915/display/icl_dsi.c        | 444 +++++++++---------
+ drivers/gpu/drm/i915/display/icl_dsi.h        |   4 +-
+ drivers/gpu/drm/i915/display/intel_bios.c     |   6 +-
+ drivers/gpu/drm/i915/display/intel_crt.c      | 213 +++++----
+ drivers/gpu/drm/i915/display/intel_crt.h      |  10 +-
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 334 +++++++------
+ drivers/gpu/drm/i915/display/intel_cx0_phy.h  |   8 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c      |   2 +-
+ drivers/gpu/drm/i915/display/intel_de.h       |  46 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |  30 +-
+ drivers/gpu/drm/i915/display/intel_display.h  |   2 +-
+ .../drm/i915/display/intel_display_driver.c   |  11 +-
+ .../gpu/drm/i915/display/intel_display_irq.c  |  11 +-
+ .../i915/display/intel_display_power_well.c   | 114 +++--
+ drivers/gpu/drm/i915/display/intel_dp.c       |   3 +-
+ drivers/gpu/drm/i915/display/intel_dp_hdcp.c  |  93 ++--
+ drivers/gpu/drm/i915/display/intel_dpio_phy.c | 158 +++----
+ drivers/gpu/drm/i915/display/intel_dpio_phy.h |  22 +-
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c |   6 +-
+ drivers/gpu/drm/i915/display/intel_dsi_vbt.c  |   5 +-
+ drivers/gpu/drm/i915/display/intel_dvo.c      |   8 +-
+ drivers/gpu/drm/i915/display/intel_gmbus.c    | 290 ++++++------
+ drivers/gpu/drm/i915/display/intel_gmbus.h    |  15 +-
+ .../gpu/drm/i915/display/intel_gmbus_regs.h   |  16 +-
+ drivers/gpu/drm/i915/display/intel_hdcp.c     |  30 +-
+ drivers/gpu/drm/i915/display/intel_hdcp.h     |  10 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |  11 +-
+ .../gpu/drm/i915/display/intel_hotplug_irq.c  |   6 +-
+ drivers/gpu/drm/i915/display/intel_lvds.c     |   2 +-
+ .../gpu/drm/i915/display/intel_pch_display.c  |   3 +-
+ drivers/gpu/drm/i915/display/intel_sdvo.c     |   9 +-
+ drivers/gpu/drm/i915/i915_suspend.c           |   2 +-
+ drivers/gpu/drm/xe/display/xe_display.c       |   4 +-
+ 36 files changed, 1024 insertions(+), 963 deletions(-)
+
 -- 
 2.39.5
 
