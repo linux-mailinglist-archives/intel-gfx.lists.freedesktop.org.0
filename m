@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BED99B3AB0
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Oct 2024 20:49:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 324A49B3AB1
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Oct 2024 20:49:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A225510E547;
-	Mon, 28 Oct 2024 19:49:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15DF010E1E3;
+	Mon, 28 Oct 2024 19:49:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Bqpo0qsd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hyQTAcBt";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A19010E1E3;
- Mon, 28 Oct 2024 19:49:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7757010E1E3;
+ Mon, 28 Oct 2024 19:49:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730144943; x=1761680943;
+ t=1730144948; x=1761680948;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ZXV1OkPEwWypp18ZDLAL/7XnNcOSLvRoKKIlnfATxKM=;
- b=Bqpo0qsd91AjwEv7yHvOWhe+fR6v3C2xjKFrLSzoZaibpcExGu+MIvtb
- tgAc7cXI5L2PWm6vKQhUw/eqrhgOFyAXrGldyRdcQ9U7p0DHYfidhrVkd
- sUGY0uye5RfhsQnDLfN2Acx2gyaUU7q/YJJKi2Ggv72KlmOTnEmVVzdD3
- f3LSp9XXIMNmW1KBiTedYuetVqBANN/HtpkJpo4W7wnh2GtPdlMkYqij3
- QFL4UIpy3/x3qabQ12CDTpajSQMvJte6XR+eEhWWrzrecifE1JjqLh7wg
- 5hJaX42TPBrlQFwmMnfT7Axn8kWeSocBdGFzOOumP2VkmFVAJpnqjtXAa A==;
-X-CSE-ConnectionGUID: gIcQgaYtQ1OO78/0WWt9lQ==
-X-CSE-MsgGUID: KKovTXUST7+1auKVzvoiHQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="40857781"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="40857781"
+ bh=aCy0TjXMg20dRsMrVXmSFqvtbzzoQU9MXZ5tt3aH/OQ=;
+ b=hyQTAcBtdY2ZlQHqZdBhEwzrpF2uDdgS/0g654CAcIxfeUVjK2FkEIT+
+ jybkkBYf7bhWhyowX08eetfIRp/wRJQemBsWqO3t9FySJbVORDA4N3Jqa
+ tJMid8ynT9cwPYR4k4SddDhUjDnRuQzn563Ju1Lj1U3qo+D2to2gW2qmi
+ szHsVk9LImbCeQkPWg1Xy8kJ4LRxDW+q9Meru6WrAbil+MC1SDSg5BGaK
+ kSVg/MWR9mxYFl6rBC+EvoVlUtDY19CFt26EM1vfb4ERk1cQyHIWTq9JQ
+ bZ2Z1O8AsMW6XQ9t162lyXuzHr4A0RTsWdM4i1IAtbdbkbqYUc/DngGO5 A==;
+X-CSE-ConnectionGUID: 2wcZpcvYRfi2fj4+aHK1GQ==
+X-CSE-MsgGUID: R9o4oMseSpy84CzLJSxx4g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="40857806"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="40857806"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2024 12:49:03 -0700
-X-CSE-ConnectionGUID: vYo6cd3aS96hf4U62ApywQ==
-X-CSE-MsgGUID: PPnO5rJuSC2wkTi18ZiN8A==
+ 28 Oct 2024 12:49:08 -0700
+X-CSE-ConnectionGUID: 7gCphym1RGSOMohFYgGLbA==
+X-CSE-MsgGUID: jeHtc8SiSEeTw9VKWE40cA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="81780151"
+X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="81780175"
 Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.246.21])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2024 12:49:00 -0700
+ 28 Oct 2024 12:49:05 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, rodrigo.vivi@intel.com, lucas.demarchi@intel.com,
  maarten.lankhorst@linux.intel.com
-Subject: [CI RESEND v4 v4 01/16] drm/i915/display: reindent subplatform
- initialization
-Date: Mon, 28 Oct 2024 21:48:34 +0200
-Message-Id: <0b7c3c44e4111c07e38a4bc842bbbced6f97c827.1730144869.git.jani.nikula@intel.com>
+Subject: [CI RESEND v4 v4 02/16] drm/i915/display: use a macro to initialize
+ subplatforms
+Date: Mon, 28 Oct 2024 21:48:35 +0200
+Message-Id: <c4c9d7ea779475513db68e843c970a4dd8f8ac2c.1730144869.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1730144869.git.jani.nikula@intel.com>
 References: <cover.1730144869.git.jani.nikula@intel.com>
@@ -72,212 +72,182 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Make the subplatform initialization less cramped, and follow the coding
-style more closely. Initialize .pciidlist using designated initializers.
+Make it easier to change the underlying structures by using a macro
+similar to PLATFORM() for initialization.
+
+The subplatform names in debug logs change slightly as they now reflect
+the enum rather than manually entered names. For example, RAPTORLAKE_S
+rather than RPL-S.
 
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- .../drm/i915/display/intel_display_device.c   | 116 +++++++++++++-----
- 1 file changed, 88 insertions(+), 28 deletions(-)
+ .../drm/i915/display/intel_display_device.c   | 44 ++++++++++---------
+ 1 file changed, 24 insertions(+), 20 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
-index aa22189e3853..9c54a8b3cb6f 100644
+index 9c54a8b3cb6f..3330ec1bf2cf 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_device.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-@@ -497,8 +497,14 @@ static const u16 hsw_ulx_ids[] = {
- static const struct platform_desc hsw_desc = {
+@@ -37,6 +37,10 @@ struct subplatform_desc {
+ 	struct stepping_desc step_info;
+ };
+ 
++#define SUBPLATFORM(_platform, _subplatform)				\
++	.subplatform = (INTEL_DISPLAY_##_platform##_##_subplatform),	\
++	.name = #_subplatform
++
+ struct platform_desc {
+ 	enum intel_display_platform platform;
+ 	const char *name;
+@@ -498,11 +502,11 @@ static const struct platform_desc hsw_desc = {
  	PLATFORM(HASWELL),
  	.subplatforms = (const struct subplatform_desc[]) {
--		{ INTEL_DISPLAY_HASWELL_ULT, "ULT", hsw_ult_ids },
--		{ INTEL_DISPLAY_HASWELL_ULX, "ULX", hsw_ulx_ids },
-+		{
-+			INTEL_DISPLAY_HASWELL_ULT, "ULT",
-+			.pciidlist = hsw_ult_ids,
-+		},
-+		{
-+			INTEL_DISPLAY_HASWELL_ULX, "ULX",
-+			.pciidlist = hsw_ulx_ids,
-+		},
+ 		{
+-			INTEL_DISPLAY_HASWELL_ULT, "ULT",
++			SUBPLATFORM(HASWELL, ULT),
+ 			.pciidlist = hsw_ult_ids,
+ 		},
+ 		{
+-			INTEL_DISPLAY_HASWELL_ULX, "ULX",
++			SUBPLATFORM(HASWELL, ULX),
+ 			.pciidlist = hsw_ulx_ids,
+ 		},
  		{},
- 	},
- 	.info = &(const struct intel_display_device_info) {
-@@ -541,8 +547,14 @@ static const u16 bdw_ulx_ids[] = {
- static const struct platform_desc bdw_desc = {
+@@ -548,11 +552,11 @@ static const struct platform_desc bdw_desc = {
  	PLATFORM(BROADWELL),
  	.subplatforms = (const struct subplatform_desc[]) {
--		{ INTEL_DISPLAY_BROADWELL_ULT, "ULT", bdw_ult_ids },
--		{ INTEL_DISPLAY_BROADWELL_ULX, "ULX", bdw_ulx_ids },
-+		{
-+			INTEL_DISPLAY_BROADWELL_ULT, "ULT",
-+			.pciidlist = bdw_ult_ids,
-+		},
-+		{
-+			INTEL_DISPLAY_BROADWELL_ULX, "ULX",
-+			.pciidlist = bdw_ulx_ids,
-+		},
+ 		{
+-			INTEL_DISPLAY_BROADWELL_ULT, "ULT",
++			SUBPLATFORM(BROADWELL, ULT),
+ 			.pciidlist = bdw_ult_ids,
+ 		},
+ 		{
+-			INTEL_DISPLAY_BROADWELL_ULX, "ULX",
++			SUBPLATFORM(BROADWELL, ULX),
+ 			.pciidlist = bdw_ulx_ids,
+ 		},
  		{},
- 	},
- 	.info = &(const struct intel_display_device_info) {
-@@ -632,8 +644,14 @@ static const enum intel_step skl_steppings[] = {
- static const struct platform_desc skl_desc = {
+@@ -645,11 +649,11 @@ static const struct platform_desc skl_desc = {
  	PLATFORM(SKYLAKE),
  	.subplatforms = (const struct subplatform_desc[]) {
--		{ INTEL_DISPLAY_SKYLAKE_ULT, "ULT", skl_ult_ids },
--		{ INTEL_DISPLAY_SKYLAKE_ULX, "ULX", skl_ulx_ids },
-+		{
-+			INTEL_DISPLAY_SKYLAKE_ULT, "ULT",
-+			.pciidlist = skl_ult_ids,
-+		},
-+		{
-+			INTEL_DISPLAY_SKYLAKE_ULX, "ULX",
-+			.pciidlist = skl_ulx_ids,
-+		},
+ 		{
+-			INTEL_DISPLAY_SKYLAKE_ULT, "ULT",
++			SUBPLATFORM(SKYLAKE, ULT),
+ 			.pciidlist = skl_ult_ids,
+ 		},
+ 		{
+-			INTEL_DISPLAY_SKYLAKE_ULX, "ULX",
++			SUBPLATFORM(SKYLAKE, ULX),
+ 			.pciidlist = skl_ulx_ids,
+ 		},
  		{},
- 	},
- 	.info = &skl_display,
-@@ -667,8 +685,14 @@ static const enum intel_step kbl_steppings[] = {
- static const struct platform_desc kbl_desc = {
+@@ -686,11 +690,11 @@ static const struct platform_desc kbl_desc = {
  	PLATFORM(KABYLAKE),
  	.subplatforms = (const struct subplatform_desc[]) {
--		{ INTEL_DISPLAY_KABYLAKE_ULT, "ULT", kbl_ult_ids },
--		{ INTEL_DISPLAY_KABYLAKE_ULX, "ULX", kbl_ulx_ids },
-+		{
-+			INTEL_DISPLAY_KABYLAKE_ULT, "ULT",
-+			.pciidlist = kbl_ult_ids,
-+		},
-+		{
-+			INTEL_DISPLAY_KABYLAKE_ULX, "ULX",
-+			.pciidlist = kbl_ulx_ids,
-+		},
+ 		{
+-			INTEL_DISPLAY_KABYLAKE_ULT, "ULT",
++			SUBPLATFORM(KABYLAKE, ULT),
+ 			.pciidlist = kbl_ult_ids,
+ 		},
+ 		{
+-			INTEL_DISPLAY_KABYLAKE_ULX, "ULX",
++			SUBPLATFORM(KABYLAKE, ULX),
+ 			.pciidlist = kbl_ulx_ids,
+ 		},
  		{},
- 	},
- 	.info = &skl_display,
-@@ -692,8 +716,14 @@ static const u16 cfl_ulx_ids[] = {
- static const struct platform_desc cfl_desc = {
+@@ -717,11 +721,11 @@ static const struct platform_desc cfl_desc = {
  	PLATFORM(COFFEELAKE),
  	.subplatforms = (const struct subplatform_desc[]) {
--		{ INTEL_DISPLAY_COFFEELAKE_ULT, "ULT", cfl_ult_ids },
--		{ INTEL_DISPLAY_COFFEELAKE_ULX, "ULX", cfl_ulx_ids },
-+		{
-+			INTEL_DISPLAY_COFFEELAKE_ULT, "ULT",
-+			.pciidlist = cfl_ult_ids,
-+		},
-+		{
-+			INTEL_DISPLAY_COFFEELAKE_ULX, "ULX",
-+			.pciidlist = cfl_ulx_ids,
-+		},
+ 		{
+-			INTEL_DISPLAY_COFFEELAKE_ULT, "ULT",
++			SUBPLATFORM(COFFEELAKE, ULT),
+ 			.pciidlist = cfl_ult_ids,
+ 		},
+ 		{
+-			INTEL_DISPLAY_COFFEELAKE_ULX, "ULX",
++			SUBPLATFORM(COFFEELAKE, ULX),
+ 			.pciidlist = cfl_ulx_ids,
+ 		},
  		{},
- 	},
- 	.info = &skl_display,
-@@ -708,7 +738,10 @@ static const u16 cml_ult_ids[] = {
- static const struct platform_desc cml_desc = {
+@@ -739,7 +743,7 @@ static const struct platform_desc cml_desc = {
  	PLATFORM(COMETLAKE),
  	.subplatforms = (const struct subplatform_desc[]) {
--		{ INTEL_DISPLAY_COMETLAKE_ULT, "ULT", cml_ult_ids },
-+		{
-+			INTEL_DISPLAY_COMETLAKE_ULT, "ULT",
-+			.pciidlist = cml_ult_ids,
-+		},
+ 		{
+-			INTEL_DISPLAY_COMETLAKE_ULT, "ULT",
++			SUBPLATFORM(COMETLAKE, ULT),
+ 			.pciidlist = cml_ult_ids,
+ 		},
  		{},
- 	},
- 	.info = &skl_display,
-@@ -824,7 +857,10 @@ static const enum intel_step icl_steppings[] = {
- static const struct platform_desc icl_desc = {
+@@ -858,7 +862,7 @@ static const struct platform_desc icl_desc = {
  	PLATFORM(ICELAKE),
  	.subplatforms = (const struct subplatform_desc[]) {
--		{ INTEL_DISPLAY_ICELAKE_PORT_F, "Port F", icl_port_f_ids },
-+		{
-+			INTEL_DISPLAY_ICELAKE_PORT_F, "Port F",
-+			.pciidlist = icl_port_f_ids,
-+		},
+ 		{
+-			INTEL_DISPLAY_ICELAKE_PORT_F, "Port F",
++			SUBPLATFORM(ICELAKE, PORT_F),
+ 			.pciidlist = icl_port_f_ids,
+ 		},
  		{},
- 	},
- 	.info = &(const struct intel_display_device_info) {
-@@ -921,8 +957,11 @@ static const enum intel_step tgl_uy_steppings[] = {
- static const struct platform_desc tgl_desc = {
+@@ -958,7 +962,7 @@ static const struct platform_desc tgl_desc = {
  	PLATFORM(TIGERLAKE),
  	.subplatforms = (const struct subplatform_desc[]) {
--		{ INTEL_DISPLAY_TIGERLAKE_UY, "UY", tgl_uy_ids,
--		  STEP_INFO(tgl_uy_steppings) },
-+		{
-+			INTEL_DISPLAY_TIGERLAKE_UY, "UY",
-+			.pciidlist = tgl_uy_ids,
-+			STEP_INFO(tgl_uy_steppings),
-+		},
- 		{},
- 	},
- 	.info = &(const struct intel_display_device_info) {
-@@ -998,8 +1037,11 @@ static const enum intel_step adl_s_rpl_s_steppings[] = {
- static const struct platform_desc adl_s_desc = {
+ 		{
+-			INTEL_DISPLAY_TIGERLAKE_UY, "UY",
++			SUBPLATFORM(TIGERLAKE, UY),
+ 			.pciidlist = tgl_uy_ids,
+ 			STEP_INFO(tgl_uy_steppings),
+ 		},
+@@ -1038,7 +1042,7 @@ static const struct platform_desc adl_s_desc = {
  	PLATFORM(ALDERLAKE_S),
  	.subplatforms = (const struct subplatform_desc[]) {
--		{ INTEL_DISPLAY_ALDERLAKE_S_RAPTORLAKE_S, "RPL-S", adls_rpls_ids,
--		  STEP_INFO(adl_s_rpl_s_steppings) },
-+		{
-+			INTEL_DISPLAY_ALDERLAKE_S_RAPTORLAKE_S, "RPL-S",
-+			.pciidlist = adls_rpls_ids,
-+			STEP_INFO(adl_s_rpl_s_steppings),
-+		},
- 		{},
- 	},
- 	.info = &(const struct intel_display_device_info) {
-@@ -1102,12 +1144,21 @@ static const enum intel_step adl_p_rpl_pu_steppings[] = {
- static const struct platform_desc adl_p_desc = {
+ 		{
+-			INTEL_DISPLAY_ALDERLAKE_S_RAPTORLAKE_S, "RPL-S",
++			SUBPLATFORM(ALDERLAKE_S, RAPTORLAKE_S),
+ 			.pciidlist = adls_rpls_ids,
+ 			STEP_INFO(adl_s_rpl_s_steppings),
+ 		},
+@@ -1145,17 +1149,17 @@ static const struct platform_desc adl_p_desc = {
  	PLATFORM(ALDERLAKE_P),
  	.subplatforms = (const struct subplatform_desc[]) {
--		{ INTEL_DISPLAY_ALDERLAKE_P_ALDERLAKE_N, "ADL-N", adlp_adln_ids,
--		  STEP_INFO(adl_p_adl_n_steppings) },
--		{ INTEL_DISPLAY_ALDERLAKE_P_RAPTORLAKE_P, "RPL-P", adlp_rplp_ids,
--		  STEP_INFO(adl_p_rpl_pu_steppings) },
--		{ INTEL_DISPLAY_ALDERLAKE_P_RAPTORLAKE_U, "RPL-U", adlp_rplu_ids,
--		  STEP_INFO(adl_p_rpl_pu_steppings) },
-+		{
-+			INTEL_DISPLAY_ALDERLAKE_P_ALDERLAKE_N, "ADL-N",
-+			.pciidlist = adlp_adln_ids,
-+			STEP_INFO(adl_p_adl_n_steppings),
-+		},
-+		{
-+			INTEL_DISPLAY_ALDERLAKE_P_RAPTORLAKE_P, "RPL-P",
-+			.pciidlist = adlp_rplp_ids,
-+			STEP_INFO(adl_p_rpl_pu_steppings),
-+		},
-+		{
-+			INTEL_DISPLAY_ALDERLAKE_P_RAPTORLAKE_U, "RPL-U",
-+			.pciidlist = adlp_rplu_ids,
-+			STEP_INFO(adl_p_rpl_pu_steppings),
-+		},
- 		{},
- 	},
- 	.info = &xe_lpd_display,
-@@ -1161,12 +1212,21 @@ static const enum intel_step dg2_g12_steppings[] = {
- static const struct platform_desc dg2_desc = {
+ 		{
+-			INTEL_DISPLAY_ALDERLAKE_P_ALDERLAKE_N, "ADL-N",
++			SUBPLATFORM(ALDERLAKE_P, ALDERLAKE_N),
+ 			.pciidlist = adlp_adln_ids,
+ 			STEP_INFO(adl_p_adl_n_steppings),
+ 		},
+ 		{
+-			INTEL_DISPLAY_ALDERLAKE_P_RAPTORLAKE_P, "RPL-P",
++			SUBPLATFORM(ALDERLAKE_P, RAPTORLAKE_P),
+ 			.pciidlist = adlp_rplp_ids,
+ 			STEP_INFO(adl_p_rpl_pu_steppings),
+ 		},
+ 		{
+-			INTEL_DISPLAY_ALDERLAKE_P_RAPTORLAKE_U, "RPL-U",
++			SUBPLATFORM(ALDERLAKE_P, RAPTORLAKE_U),
+ 			.pciidlist = adlp_rplu_ids,
+ 			STEP_INFO(adl_p_rpl_pu_steppings),
+ 		},
+@@ -1213,17 +1217,17 @@ static const struct platform_desc dg2_desc = {
  	PLATFORM(DG2),
  	.subplatforms = (const struct subplatform_desc[]) {
--		{ INTEL_DISPLAY_DG2_G10, "G10", dg2_g10_ids,
--		  STEP_INFO(dg2_g10_steppings) },
--		{ INTEL_DISPLAY_DG2_G11, "G11", dg2_g11_ids,
--		  STEP_INFO(dg2_g11_steppings) },
--		{ INTEL_DISPLAY_DG2_G12, "G12", dg2_g12_ids,
--		  STEP_INFO(dg2_g12_steppings) },
-+		{
-+			INTEL_DISPLAY_DG2_G10, "G10",
-+			.pciidlist = dg2_g10_ids,
-+			STEP_INFO(dg2_g10_steppings),
-+		},
-+		{
-+			INTEL_DISPLAY_DG2_G11, "G11",
-+			.pciidlist = dg2_g11_ids,
-+			STEP_INFO(dg2_g11_steppings),
-+		},
-+		{
-+			INTEL_DISPLAY_DG2_G12, "G12",
-+			.pciidlist = dg2_g12_ids,
-+			STEP_INFO(dg2_g12_steppings),
-+		},
- 		{},
- 	},
- 	.info = &xe_hpd_display,
+ 		{
+-			INTEL_DISPLAY_DG2_G10, "G10",
++			SUBPLATFORM(DG2, G10),
+ 			.pciidlist = dg2_g10_ids,
+ 			STEP_INFO(dg2_g10_steppings),
+ 		},
+ 		{
+-			INTEL_DISPLAY_DG2_G11, "G11",
++			SUBPLATFORM(DG2, G11),
+ 			.pciidlist = dg2_g11_ids,
+ 			STEP_INFO(dg2_g11_steppings),
+ 		},
+ 		{
+-			INTEL_DISPLAY_DG2_G12, "G12",
++			SUBPLATFORM(DG2, G12),
+ 			.pciidlist = dg2_g12_ids,
+ 			STEP_INFO(dg2_g12_steppings),
+ 		},
 -- 
 2.39.5
 
