@@ -2,54 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D7689B3B13
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Oct 2024 21:08:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 05A089B3B14
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Oct 2024 21:08:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20A2E10E564;
-	Mon, 28 Oct 2024 20:08:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A6A6310E566;
+	Mon, 28 Oct 2024 20:08:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XAUP8HDI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FpNqeerc";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7042F10E565;
- Mon, 28 Oct 2024 20:07:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 10E3110E566;
+ Mon, 28 Oct 2024 20:08:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730146078; x=1761682078;
+ t=1730146082; x=1761682082;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=tixw/wT3vaVKA7tcJwOA/hbkoJZ6eD0MHEhqVyIbjLM=;
- b=XAUP8HDIRVX2epekGuPLvJ6h0geUs+2mi159viRaxNUJPCwlGYx4868o
- wJTLbyeNbngr0PEadyu5oXk//s7slNzY+A9qJ6QtaRC4CS/9dAR8oVMie
- RmKi8y+qyHq/nBO3StsCUVAW18rwOn1F2UmaUi56KzGuaZ+g15gc+IRwt
- hWy06gW69iPksHIDMhmwniicQKN8u6aPXYZ2YGpUHGEWMyCPagTCQvUQV
- KEisK5888qxQYv9RdZE/kaZ6ZrJO7MbsTjBjQMiW6xavWfMQbSQVGZMz7
- JWZwHbGBl/481VxsZgB6KRMaoqKDMFhnHcaCnda4rgwZ8m5WySN/23t/i w==;
-X-CSE-ConnectionGUID: +8WhrQ6TTRCOTVMBdFOvhA==
-X-CSE-MsgGUID: VBO5pFKbQcq/27RRG6XDiA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11239"; a="33681183"
-X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="33681183"
+ bh=veOY2f2pHcaI3AjkpbIja3dgE/PStYy0W+E+u8tAVtA=;
+ b=FpNqeercpJPcKEJ7pKuBU+tobm0vqJv0lO4NasUtqYVIlfZSXDL3TSzp
+ o+WQVUzcn8zOLcHkXWX6JTOAC8o4D9o7rhi4w4l9yXNcsqWaRrIdZ1bCZ
+ lzYrG0gfR8I4oqFcshtcFFom8HezGmKqrmG7LDtlukP9EpHNzrjPa7dmg
+ 93j1SlQDeM4MBil+F+V6TgYPYPJFllJG287SqyMocmnBfRBY0eprt+yM1
+ r+d0SljsltPVHZLuMtL6eImvStbQCki1ar/ygdQN2JA0269kfm3VbhvBZ
+ r9A04bxrRW1qE65QsSTMZT+VrGgLhpvGH3XHAy+3c9yIFOMoPpTPtQoCn g==;
+X-CSE-ConnectionGUID: MRLke188QHS6DaCt9LMB8A==
+X-CSE-MsgGUID: /JLAyV8wTpq8TuuKnxrH4A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11239"; a="33681184"
+X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="33681184"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2024 13:07:57 -0700
-X-CSE-ConnectionGUID: HPs2vAvmR6eQXPJdOuyc2g==
-X-CSE-MsgGUID: 6Cp0mRcESeeZ8iMF2Y1jKQ==
+ 28 Oct 2024 13:08:02 -0700
+X-CSE-ConnectionGUID: amrOLcy0QaOzDSdZnkL2/A==
+X-CSE-MsgGUID: 3pyujZ1ETKCtpqN20FO+XQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="82055128"
+X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="82055141"
 Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.246.21])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2024 13:07:55 -0700
+ 28 Oct 2024 13:08:00 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [CI v2 v2 04/12] drm/i915/dpio: convert to struct intel_display
-Date: Mon, 28 Oct 2024 22:07:22 +0200
-Message-Id: <1138083101f3c9058284592009b25f41065fbe30.1730146000.git.jani.nikula@intel.com>
+Subject: [CI v2 v2 05/12] drm/i915/hdcp: further conversion to struct
+ intel_display
+Date: Mon, 28 Oct 2024 22:07:23 +0200
+Message-Id: <9680cc9e5ed7798a736fa73ad9ea0eb9c88e64bb.1730146000.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1730146000.git.jani.nikula@intel.com>
 References: <cover.1730146000.git.jani.nikula@intel.com>
@@ -71,626 +72,270 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-struct intel_display will replace struct drm_i915_private as the main
-device pointer for display code. Switch DPIO PHY code over to it.
+There are some unconverted stragglers left in the HDCP API still using
+struct drm_i915_private. Convert to struct intel_display.
 
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- .../i915/display/intel_display_power_well.c   |  19 ++-
- drivers/gpu/drm/i915/display/intel_dpio_phy.c | 158 +++++++++---------
- drivers/gpu/drm/i915/display/intel_dpio_phy.h |  22 +--
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c |   6 +-
- 4 files changed, 106 insertions(+), 99 deletions(-)
+ .../drm/i915/display/intel_display_driver.c   |  7 +++--
+ drivers/gpu/drm/i915/display/intel_dp.c       |  3 +-
+ drivers/gpu/drm/i915/display/intel_dp_hdcp.c  |  5 ++--
+ drivers/gpu/drm/i915/display/intel_hdcp.c     | 30 ++++++++-----------
+ drivers/gpu/drm/i915/display/intel_hdcp.h     | 10 +++----
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |  3 +-
+ drivers/gpu/drm/xe/display/xe_display.c       |  4 ++-
+ 7 files changed, 30 insertions(+), 32 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-index adaf7cf3a33b..885bc2e563c5 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-@@ -919,38 +919,45 @@ static void hsw_power_well_sync_hw(struct drm_i915_private *dev_priv,
- static void bxt_dpio_cmn_power_well_enable(struct drm_i915_private *dev_priv,
- 					   struct i915_power_well *power_well)
+diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+index ae5470078173..3b37a8a69201 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_driver.c
++++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+@@ -485,7 +485,7 @@ int intel_display_driver_probe_nogem(struct drm_i915_private *i915)
+ 	return 0;
+ 
+ err_hdcp:
+-	intel_hdcp_component_fini(i915);
++	intel_hdcp_component_fini(display);
+ err_mode_config:
+ 	intel_mode_config_cleanup(i915);
+ 
+@@ -495,6 +495,7 @@ int intel_display_driver_probe_nogem(struct drm_i915_private *i915)
+ /* part #3: call after gem init */
+ int intel_display_driver_probe(struct drm_i915_private *i915)
  {
--	bxt_dpio_phy_init(dev_priv, i915_power_well_instance(power_well)->bxt.phy);
-+	struct intel_display *display = &dev_priv->display;
-+
-+	bxt_dpio_phy_init(display, i915_power_well_instance(power_well)->bxt.phy);
++	struct intel_display *display = &i915->display;
+ 	int ret;
+ 
+ 	if (!HAS_DISPLAY(i915))
+@@ -505,7 +506,7 @@ int intel_display_driver_probe(struct drm_i915_private *i915)
+ 	 * the BIOS fb takeover and whatever else magic ggtt reservations
+ 	 * happen during gem/ggtt init.
+ 	 */
+-	intel_hdcp_component_init(i915);
++	intel_hdcp_component_init(display);
+ 
+ 	/*
+ 	 * Force all active planes to recompute their states. So that on
+@@ -600,7 +601,7 @@ void intel_display_driver_remove_noirq(struct drm_i915_private *i915)
+ 	/* flush any delayed tasks or pending work */
+ 	flush_workqueue(i915->unordered_wq);
+ 
+-	intel_hdcp_component_fini(i915);
++	intel_hdcp_component_fini(display);
+ 
+ 	intel_mode_config_cleanup(i915);
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 7e29619ba040..2c8db21e8612 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -6416,6 +6416,7 @@ bool
+ intel_dp_init_connector(struct intel_digital_port *dig_port,
+ 			struct intel_connector *intel_connector)
+ {
++	struct intel_display *display = to_intel_display(dig_port);
+ 	struct drm_connector *connector = &intel_connector->base;
+ 	struct intel_dp *intel_dp = &dig_port->dp;
+ 	struct intel_encoder *intel_encoder = &dig_port->base;
+@@ -6505,7 +6506,7 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
+ 
+ 	intel_dp_add_properties(intel_dp, connector);
+ 
+-	if (is_hdcp_supported(dev_priv, port) && !intel_dp_is_edp(intel_dp)) {
++	if (is_hdcp_supported(display, port) && !intel_dp_is_edp(intel_dp)) {
+ 		int ret = intel_dp_hdcp_init(dig_port, intel_connector);
+ 		if (ret)
+ 			drm_dbg_kms(&dev_priv->drm,
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+index dce645a07cdb..5d77adaaf566 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
+@@ -873,13 +873,12 @@ static const struct intel_hdcp_shim intel_dp_mst_hdcp_shim = {
+ int intel_dp_hdcp_init(struct intel_digital_port *dig_port,
+ 		       struct intel_connector *intel_connector)
+ {
+-	struct drm_device *dev = intel_connector->base.dev;
+-	struct drm_i915_private *dev_priv = to_i915(dev);
++	struct intel_display *display = to_intel_display(dig_port);
+ 	struct intel_encoder *intel_encoder = &dig_port->base;
+ 	enum port port = intel_encoder->port;
+ 	struct intel_dp *intel_dp = &dig_port->dp;
+ 
+-	if (!is_hdcp_supported(dev_priv, port))
++	if (!is_hdcp_supported(display, port))
+ 		return 0;
+ 
+ 	if (intel_connector->mst_port)
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+index ed6aa87403e2..870084af92d0 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+@@ -1192,10 +1192,10 @@ static void intel_hdcp_prop_work(struct work_struct *work)
+ 	drm_connector_put(&connector->base);
  }
  
- static void bxt_dpio_cmn_power_well_disable(struct drm_i915_private *dev_priv,
- 					    struct i915_power_well *power_well)
+-bool is_hdcp_supported(struct drm_i915_private *i915, enum port port)
++bool is_hdcp_supported(struct intel_display *display, enum port port)
  {
--	bxt_dpio_phy_uninit(dev_priv, i915_power_well_instance(power_well)->bxt.phy);
-+	struct intel_display *display = &dev_priv->display;
-+
-+	bxt_dpio_phy_uninit(display, i915_power_well_instance(power_well)->bxt.phy);
+-	return DISPLAY_RUNTIME_INFO(i915)->has_hdcp &&
+-		(DISPLAY_VER(i915) >= 12 || port < PORT_E);
++	return DISPLAY_RUNTIME_INFO(display)->has_hdcp &&
++		(DISPLAY_VER(display) >= 12 || port < PORT_E);
  }
  
- static bool bxt_dpio_cmn_power_well_enabled(struct drm_i915_private *dev_priv,
- 					    struct i915_power_well *power_well)
- {
--	return bxt_dpio_phy_is_enabled(dev_priv, i915_power_well_instance(power_well)->bxt.phy);
-+	struct intel_display *display = &dev_priv->display;
-+
-+	return bxt_dpio_phy_is_enabled(display, i915_power_well_instance(power_well)->bxt.phy);
+ static int
+@@ -2301,9 +2301,9 @@ static int initialize_hdcp_port_data(struct intel_connector *connector,
+ 	return 0;
  }
  
- static void bxt_verify_dpio_phy_power_wells(struct drm_i915_private *dev_priv)
+-static bool is_hdcp2_supported(struct drm_i915_private *i915)
++static bool is_hdcp2_supported(struct intel_display *display)
  {
-+	struct intel_display *display = &dev_priv->display;
- 	struct i915_power_well *power_well;
+-	struct intel_display *display = to_intel_display(&i915->drm);
++	struct drm_i915_private *i915 = to_i915(display->drm);
  
- 	power_well = lookup_power_well(dev_priv, BXT_DISP_PW_DPIO_CMN_A);
- 	if (intel_power_well_refcount(power_well) > 0)
--		bxt_dpio_phy_verify_state(dev_priv, i915_power_well_instance(power_well)->bxt.phy);
-+		bxt_dpio_phy_verify_state(display, i915_power_well_instance(power_well)->bxt.phy);
- 
- 	power_well = lookup_power_well(dev_priv, VLV_DISP_PW_DPIO_CMN_BC);
- 	if (intel_power_well_refcount(power_well) > 0)
--		bxt_dpio_phy_verify_state(dev_priv, i915_power_well_instance(power_well)->bxt.phy);
-+		bxt_dpio_phy_verify_state(display, i915_power_well_instance(power_well)->bxt.phy);
- 
- 	if (IS_GEMINILAKE(dev_priv)) {
- 		power_well = lookup_power_well(dev_priv,
- 					       GLK_DISP_PW_DPIO_CMN_C);
- 		if (intel_power_well_refcount(power_well) > 0)
--			bxt_dpio_phy_verify_state(dev_priv,
-+			bxt_dpio_phy_verify_state(display,
- 						  i915_power_well_instance(power_well)->bxt.phy);
- 	}
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_dpio_phy.c b/drivers/gpu/drm/i915/display/intel_dpio_phy.c
-index d20e4e9cf7f7..0f12f2c3467c 100644
---- a/drivers/gpu/drm/i915/display/intel_dpio_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpio_phy.c
-@@ -219,8 +219,10 @@ static const struct bxt_dpio_phy_info glk_dpio_phy_info[] = {
- };
- 
- static const struct bxt_dpio_phy_info *
--bxt_get_phy_list(struct drm_i915_private *dev_priv, int *count)
-+bxt_get_phy_list(struct intel_display *display, int *count)
- {
-+	struct drm_i915_private *dev_priv = to_i915(display->drm);
-+
- 	if (IS_GEMINILAKE(dev_priv)) {
- 		*count =  ARRAY_SIZE(glk_dpio_phy_info);
- 		return glk_dpio_phy_info;
-@@ -231,22 +233,22 @@ bxt_get_phy_list(struct drm_i915_private *dev_priv, int *count)
+ 	if (intel_hdcp_gsc_cs_required(display))
+ 		return true;
+@@ -2317,12 +2317,11 @@ static bool is_hdcp2_supported(struct drm_i915_private *i915)
+ 		IS_COMETLAKE(i915));
  }
  
- static const struct bxt_dpio_phy_info *
--bxt_get_phy_info(struct drm_i915_private *dev_priv, enum dpio_phy phy)
-+bxt_get_phy_info(struct intel_display *display, enum dpio_phy phy)
+-void intel_hdcp_component_init(struct drm_i915_private *i915)
++void intel_hdcp_component_init(struct intel_display *display)
  {
- 	int count;
- 	const struct bxt_dpio_phy_info *phy_list =
--		bxt_get_phy_list(dev_priv, &count);
-+		bxt_get_phy_list(display, &count);
+-	struct intel_display *display = to_intel_display(&i915->drm);
+ 	int ret;
  
- 	return &phy_list[phy];
- }
- 
--void bxt_port_to_phy_channel(struct drm_i915_private *dev_priv, enum port port,
-+void bxt_port_to_phy_channel(struct intel_display *display, enum port port,
- 			     enum dpio_phy *phy, enum dpio_channel *ch)
- {
- 	const struct bxt_dpio_phy_info *phy_info, *phys;
- 	int i, count;
- 
--	phys = bxt_get_phy_list(dev_priv, &count);
-+	phys = bxt_get_phy_list(display, &count);
- 
- 	for (i = 0; i < count; i++) {
- 		phy_info = &phys[i];
-@@ -265,7 +267,7 @@ void bxt_port_to_phy_channel(struct drm_i915_private *dev_priv, enum port port,
- 		}
- 	}
- 
--	drm_WARN(&dev_priv->drm, 1, "PHY not found for PORT %c",
-+	drm_WARN(display->drm, 1, "PHY not found for PORT %c",
- 		 port_name(port));
- 	*phy = DPIO_PHY0;
- 	*ch = DPIO_CH0;
-@@ -275,16 +277,16 @@ void bxt_port_to_phy_channel(struct drm_i915_private *dev_priv, enum port port,
-  * Like intel_de_rmw() but reads from a single per-lane register and
-  * writes to the group register to write the same value to all the lanes.
-  */
--static u32 bxt_dpio_phy_rmw_grp(struct drm_i915_private *i915,
-+static u32 bxt_dpio_phy_rmw_grp(struct intel_display *display,
- 				i915_reg_t reg_single,
- 				i915_reg_t reg_group,
- 				u32 clear, u32 set)
- {
- 	u32 old, val;
- 
--	old = intel_de_read(i915, reg_single);
-+	old = intel_de_read(display, reg_single);
- 	val = (old & ~clear) | set;
--	intel_de_write(i915, reg_group, val);
-+	intel_de_write(display, reg_group, val);
- 
- 	return old;
- }
-@@ -292,30 +294,30 @@ static u32 bxt_dpio_phy_rmw_grp(struct drm_i915_private *i915,
- void bxt_dpio_phy_set_signal_levels(struct intel_encoder *encoder,
- 				    const struct intel_crtc_state *crtc_state)
- {
--	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-+	struct intel_display *display = to_intel_display(encoder);
- 	const struct intel_ddi_buf_trans *trans;
- 	enum dpio_channel ch;
- 	enum dpio_phy phy;
- 	int lane, n_entries;
- 
- 	trans = encoder->get_buf_trans(encoder, crtc_state, &n_entries);
--	if (drm_WARN_ON_ONCE(&dev_priv->drm, !trans))
-+	if (drm_WARN_ON_ONCE(display->drm, !trans))
+-	if (!is_hdcp2_supported(i915))
++	if (!is_hdcp2_supported(display))
  		return;
  
--	bxt_port_to_phy_channel(dev_priv, encoder->port, &phy, &ch);
-+	bxt_port_to_phy_channel(display, encoder->port, &phy, &ch);
+ 	mutex_lock(&display->hdcp.hdcp_mutex);
+@@ -2367,19 +2366,18 @@ int intel_hdcp_init(struct intel_connector *connector,
+ 		    struct intel_digital_port *dig_port,
+ 		    const struct intel_hdcp_shim *shim)
+ {
+-	struct drm_i915_private *i915 = to_i915(connector->base.dev);
++	struct intel_display *display = to_intel_display(connector);
+ 	struct intel_hdcp *hdcp = &connector->hdcp;
+ 	int ret;
  
- 	/*
- 	 * While we write to the group register to program all lanes at once we
- 	 * can read only lane registers and we pick lanes 0/1 for that.
- 	 */
--	bxt_dpio_phy_rmw_grp(dev_priv, BXT_PORT_PCS_DW10_LN01(phy, ch),
-+	bxt_dpio_phy_rmw_grp(display, BXT_PORT_PCS_DW10_LN01(phy, ch),
- 			     BXT_PORT_PCS_DW10_GRP(phy, ch),
- 			     TX2_SWING_CALC_INIT | TX1_SWING_CALC_INIT, 0);
+ 	if (!shim)
+ 		return -EINVAL;
  
- 	for (lane = 0; lane < crtc_state->lane_count; lane++) {
- 		int level = intel_ddi_level(encoder, crtc_state, lane);
+-	if (is_hdcp2_supported(i915))
++	if (is_hdcp2_supported(display))
+ 		intel_hdcp2_init(connector, dig_port, shim);
  
--		intel_de_rmw(dev_priv, BXT_PORT_TX_DW2_LN(phy, ch, lane),
-+		intel_de_rmw(display, BXT_PORT_TX_DW2_LN(phy, ch, lane),
- 			     MARGIN_000_MASK | UNIQ_TRANS_SCALE_MASK,
- 			     MARGIN_000(trans->entries[level].bxt.margin) |
- 			     UNIQ_TRANS_SCALE(trans->entries[level].bxt.scale));
-@@ -325,50 +327,50 @@ void bxt_dpio_phy_set_signal_levels(struct intel_encoder *encoder,
- 		int level = intel_ddi_level(encoder, crtc_state, lane);
- 		u32 val;
- 
--		intel_de_rmw(dev_priv, BXT_PORT_TX_DW3_LN(phy, ch, lane),
-+		intel_de_rmw(display, BXT_PORT_TX_DW3_LN(phy, ch, lane),
- 			     SCALE_DCOMP_METHOD,
- 			     trans->entries[level].bxt.enable ?
- 			     SCALE_DCOMP_METHOD : 0);
- 
--		val = intel_de_read(dev_priv, BXT_PORT_TX_DW3_LN(phy, ch, lane));
-+		val = intel_de_read(display, BXT_PORT_TX_DW3_LN(phy, ch, lane));
- 		if ((val & UNIQUE_TRANGE_EN_METHOD) && !(val & SCALE_DCOMP_METHOD))
--			drm_err(&dev_priv->drm,
-+			drm_err(display->drm,
- 				"Disabled scaling while ouniqetrangenmethod was set");
+-	ret =
+-	drm_connector_attach_content_protection_property(&connector->base,
+-							 hdcp->hdcp2_supported);
++	ret = drm_connector_attach_content_protection_property(&connector->base,
++							       hdcp->hdcp2_supported);
+ 	if (ret) {
+ 		hdcp->hdcp2_supported = false;
+ 		kfree(dig_port->hdcp_port_data.streams);
+@@ -2432,7 +2430,7 @@ static int _intel_hdcp_enable(struct intel_atomic_state *state,
+ 		hdcp->stream_transcoder = INVALID_TRANSCODER;
  	}
  
- 	for (lane = 0; lane < crtc_state->lane_count; lane++) {
- 		int level = intel_ddi_level(encoder, crtc_state, lane);
+-	if (DISPLAY_VER(i915) >= 12)
++	if (DISPLAY_VER(display) >= 12)
+ 		dig_port->hdcp_port_data.hdcp_transcoder =
+ 			intel_get_hdcp_transcoder(hdcp->cpu_transcoder);
  
--		intel_de_rmw(dev_priv, BXT_PORT_TX_DW4_LN(phy, ch, lane),
-+		intel_de_rmw(display, BXT_PORT_TX_DW4_LN(phy, ch, lane),
- 			     DE_EMPHASIS_MASK,
- 			     DE_EMPHASIS(trans->entries[level].bxt.deemphasis));
- 	}
- 
--	bxt_dpio_phy_rmw_grp(dev_priv, BXT_PORT_PCS_DW10_LN01(phy, ch),
-+	bxt_dpio_phy_rmw_grp(display, BXT_PORT_PCS_DW10_LN01(phy, ch),
- 			     BXT_PORT_PCS_DW10_GRP(phy, ch),
- 			     0, TX2_SWING_CALC_INIT | TX1_SWING_CALC_INIT);
+@@ -2583,10 +2581,8 @@ void intel_hdcp_update_pipe(struct intel_atomic_state *state,
+ 		_intel_hdcp_enable(state, encoder, crtc_state, conn_state);
  }
  
--bool bxt_dpio_phy_is_enabled(struct drm_i915_private *dev_priv,
-+bool bxt_dpio_phy_is_enabled(struct intel_display *display,
- 			     enum dpio_phy phy)
+-void intel_hdcp_component_fini(struct drm_i915_private *i915)
++void intel_hdcp_component_fini(struct intel_display *display)
  {
- 	const struct bxt_dpio_phy_info *phy_info;
+-	struct intel_display *display = to_intel_display(&i915->drm);
+-
+ 	mutex_lock(&display->hdcp.hdcp_mutex);
+ 	if (!display->hdcp.comp_added) {
+ 		mutex_unlock(&display->hdcp.hdcp_mutex);
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.h b/drivers/gpu/drm/i915/display/intel_hdcp.h
+index 477f2d2bb120..d99830cfb798 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdcp.h
++++ b/drivers/gpu/drm/i915/display/intel_hdcp.h
+@@ -12,13 +12,13 @@
  
--	phy_info = bxt_get_phy_info(dev_priv, phy);
-+	phy_info = bxt_get_phy_info(display, phy);
- 
--	if (!(intel_de_read(dev_priv, BXT_P_CR_GT_DISP_PWRON) & phy_info->pwron_mask))
-+	if (!(intel_de_read(display, BXT_P_CR_GT_DISP_PWRON) & phy_info->pwron_mask))
- 		return false;
- 
--	if ((intel_de_read(dev_priv, BXT_PORT_CL1CM_DW0(phy)) &
-+	if ((intel_de_read(display, BXT_PORT_CL1CM_DW0(phy)) &
- 	     (PHY_POWER_GOOD | PHY_RESERVED)) != PHY_POWER_GOOD) {
--		drm_dbg(&dev_priv->drm,
-+		drm_dbg(display->drm,
- 			"DDI PHY %d powered, but power hasn't settled\n", phy);
- 
- 		return false;
- 	}
- 
--	if (!(intel_de_read(dev_priv, BXT_PHY_CTL_FAMILY(phy)) & COMMON_RESET_DIS)) {
--		drm_dbg(&dev_priv->drm,
-+	if (!(intel_de_read(display, BXT_PHY_CTL_FAMILY(phy)) & COMMON_RESET_DIS)) {
-+		drm_dbg(display->drm,
- 			"DDI PHY %d powered, but still in reset\n", phy);
- 
- 		return false;
-@@ -377,47 +379,44 @@ bool bxt_dpio_phy_is_enabled(struct drm_i915_private *dev_priv,
- 	return true;
- }
- 
--static u32 bxt_get_grc(struct drm_i915_private *dev_priv, enum dpio_phy phy)
-+static u32 bxt_get_grc(struct intel_display *display, enum dpio_phy phy)
- {
--	u32 val = intel_de_read(dev_priv, BXT_PORT_REF_DW6(phy));
-+	u32 val = intel_de_read(display, BXT_PORT_REF_DW6(phy));
- 
- 	return REG_FIELD_GET(GRC_CODE_MASK, val);
- }
- 
--static void bxt_phy_wait_grc_done(struct drm_i915_private *dev_priv,
-+static void bxt_phy_wait_grc_done(struct intel_display *display,
- 				  enum dpio_phy phy)
- {
--	if (intel_de_wait_for_set(dev_priv, BXT_PORT_REF_DW3(phy),
--				  GRC_DONE, 10))
--		drm_err(&dev_priv->drm, "timeout waiting for PHY%d GRC\n",
--			phy);
-+	if (intel_de_wait_for_set(display, BXT_PORT_REF_DW3(phy), GRC_DONE, 10))
-+		drm_err(display->drm, "timeout waiting for PHY%d GRC\n", phy);
- }
- 
--static void _bxt_dpio_phy_init(struct drm_i915_private *dev_priv,
--			       enum dpio_phy phy)
-+static void _bxt_dpio_phy_init(struct intel_display *display, enum dpio_phy phy)
- {
- 	const struct bxt_dpio_phy_info *phy_info;
- 	u32 val;
- 
--	phy_info = bxt_get_phy_info(dev_priv, phy);
-+	phy_info = bxt_get_phy_info(display, phy);
- 
--	if (bxt_dpio_phy_is_enabled(dev_priv, phy)) {
-+	if (bxt_dpio_phy_is_enabled(display, phy)) {
- 		/* Still read out the GRC value for state verification */
- 		if (phy_info->rcomp_phy != -1)
--			dev_priv->display.state.bxt_phy_grc = bxt_get_grc(dev_priv, phy);
-+			display->state.bxt_phy_grc = bxt_get_grc(display, phy);
- 
--		if (bxt_dpio_phy_verify_state(dev_priv, phy)) {
--			drm_dbg(&dev_priv->drm, "DDI PHY %d already enabled, "
-+		if (bxt_dpio_phy_verify_state(display, phy)) {
-+			drm_dbg(display->drm, "DDI PHY %d already enabled, "
- 				"won't reprogram it\n", phy);
- 			return;
- 		}
- 
--		drm_dbg(&dev_priv->drm,
-+		drm_dbg(display->drm,
- 			"DDI PHY %d enabled with invalid state, "
- 			"force reprogramming it\n", phy);
- 	}
- 
--	intel_de_rmw(dev_priv, BXT_P_CR_GT_DISP_PWRON, 0, phy_info->pwron_mask);
-+	intel_de_rmw(display, BXT_P_CR_GT_DISP_PWRON, 0, phy_info->pwron_mask);
- 
- 	/*
- 	 * The PHY registers start out inaccessible and respond to reads with
-@@ -427,92 +426,91 @@ static void _bxt_dpio_phy_init(struct drm_i915_private *dev_priv,
- 	 * The flag should get set in 100us according to the HW team, but
- 	 * use 1ms due to occasional timeouts observed with that.
- 	 */
--	if (intel_de_wait_fw(dev_priv, BXT_PORT_CL1CM_DW0(phy),
-+	if (intel_de_wait_fw(display, BXT_PORT_CL1CM_DW0(phy),
- 			     PHY_RESERVED | PHY_POWER_GOOD, PHY_POWER_GOOD, 1))
--		drm_err(&dev_priv->drm, "timeout during PHY%d power on\n",
-+		drm_err(display->drm, "timeout during PHY%d power on\n",
- 			phy);
- 
- 	/* Program PLL Rcomp code offset */
--	intel_de_rmw(dev_priv, BXT_PORT_CL1CM_DW9(phy),
-+	intel_de_rmw(display, BXT_PORT_CL1CM_DW9(phy),
- 		     IREF0RC_OFFSET_MASK, IREF0RC_OFFSET(0xE4));
- 
--	intel_de_rmw(dev_priv, BXT_PORT_CL1CM_DW10(phy),
-+	intel_de_rmw(display, BXT_PORT_CL1CM_DW10(phy),
- 		     IREF1RC_OFFSET_MASK, IREF1RC_OFFSET(0xE4));
- 
- 	/* Program power gating */
--	intel_de_rmw(dev_priv, BXT_PORT_CL1CM_DW28(phy), 0,
-+	intel_de_rmw(display, BXT_PORT_CL1CM_DW28(phy), 0,
- 		     OCL1_POWER_DOWN_EN | DW28_OLDO_DYN_PWR_DOWN_EN | SUS_CLK_CONFIG);
- 
- 	if (phy_info->dual_channel)
--		intel_de_rmw(dev_priv, BXT_PORT_CL2CM_DW6(phy), 0,
-+		intel_de_rmw(display, BXT_PORT_CL2CM_DW6(phy), 0,
- 			     DW6_OLDO_DYN_PWR_DOWN_EN);
- 
- 	if (phy_info->rcomp_phy != -1) {
- 		u32 grc_code;
- 
--		bxt_phy_wait_grc_done(dev_priv, phy_info->rcomp_phy);
-+		bxt_phy_wait_grc_done(display, phy_info->rcomp_phy);
- 
- 		/*
- 		 * PHY0 isn't connected to an RCOMP resistor so copy over
- 		 * the corresponding calibrated value from PHY1, and disable
- 		 * the automatic calibration on PHY0.
- 		 */
--		val = bxt_get_grc(dev_priv, phy_info->rcomp_phy);
--		dev_priv->display.state.bxt_phy_grc = val;
-+		val = bxt_get_grc(display, phy_info->rcomp_phy);
-+		display->state.bxt_phy_grc = val;
- 
- 		grc_code = GRC_CODE_FAST(val) |
- 			GRC_CODE_SLOW(val) |
- 			GRC_CODE_NOM(val);
--		intel_de_write(dev_priv, BXT_PORT_REF_DW6(phy), grc_code);
--		intel_de_rmw(dev_priv, BXT_PORT_REF_DW8(phy),
-+		intel_de_write(display, BXT_PORT_REF_DW6(phy), grc_code);
-+		intel_de_rmw(display, BXT_PORT_REF_DW8(phy),
- 			     0, GRC_DIS | GRC_RDY_OVRD);
- 	}
- 
- 	if (phy_info->reset_delay)
- 		udelay(phy_info->reset_delay);
- 
--	intel_de_rmw(dev_priv, BXT_PHY_CTL_FAMILY(phy), 0, COMMON_RESET_DIS);
-+	intel_de_rmw(display, BXT_PHY_CTL_FAMILY(phy), 0, COMMON_RESET_DIS);
- }
- 
--void bxt_dpio_phy_uninit(struct drm_i915_private *dev_priv, enum dpio_phy phy)
-+void bxt_dpio_phy_uninit(struct intel_display *display, enum dpio_phy phy)
- {
- 	const struct bxt_dpio_phy_info *phy_info;
- 
--	phy_info = bxt_get_phy_info(dev_priv, phy);
-+	phy_info = bxt_get_phy_info(display, phy);
- 
--	intel_de_rmw(dev_priv, BXT_PHY_CTL_FAMILY(phy), COMMON_RESET_DIS, 0);
-+	intel_de_rmw(display, BXT_PHY_CTL_FAMILY(phy), COMMON_RESET_DIS, 0);
- 
--	intel_de_rmw(dev_priv, BXT_P_CR_GT_DISP_PWRON, phy_info->pwron_mask, 0);
-+	intel_de_rmw(display, BXT_P_CR_GT_DISP_PWRON, phy_info->pwron_mask, 0);
- }
- 
--void bxt_dpio_phy_init(struct drm_i915_private *dev_priv, enum dpio_phy phy)
-+void bxt_dpio_phy_init(struct intel_display *display, enum dpio_phy phy)
- {
--	const struct bxt_dpio_phy_info *phy_info =
--		bxt_get_phy_info(dev_priv, phy);
-+	const struct bxt_dpio_phy_info *phy_info = bxt_get_phy_info(display, phy);
- 	enum dpio_phy rcomp_phy = phy_info->rcomp_phy;
- 	bool was_enabled;
- 
--	lockdep_assert_held(&dev_priv->display.power.domains.lock);
-+	lockdep_assert_held(&display->power.domains.lock);
- 
- 	was_enabled = true;
- 	if (rcomp_phy != -1)
--		was_enabled = bxt_dpio_phy_is_enabled(dev_priv, rcomp_phy);
-+		was_enabled = bxt_dpio_phy_is_enabled(display, rcomp_phy);
- 
- 	/*
- 	 * We need to copy the GRC calibration value from rcomp_phy,
- 	 * so make sure it's powered up.
- 	 */
- 	if (!was_enabled)
--		_bxt_dpio_phy_init(dev_priv, rcomp_phy);
-+		_bxt_dpio_phy_init(display, rcomp_phy);
- 
--	_bxt_dpio_phy_init(dev_priv, phy);
-+	_bxt_dpio_phy_init(display, phy);
- 
- 	if (!was_enabled)
--		bxt_dpio_phy_uninit(dev_priv, rcomp_phy);
-+		bxt_dpio_phy_uninit(display, rcomp_phy);
- }
- 
- static bool __printf(6, 7)
--__phy_reg_verify_state(struct drm_i915_private *dev_priv, enum dpio_phy phy,
-+__phy_reg_verify_state(struct intel_display *display, enum dpio_phy phy,
- 		       i915_reg_t reg, u32 mask, u32 expected,
- 		       const char *reg_fmt, ...)
- {
-@@ -520,7 +518,7 @@ __phy_reg_verify_state(struct drm_i915_private *dev_priv, enum dpio_phy phy,
- 	va_list args;
- 	u32 val;
- 
--	val = intel_de_read(dev_priv, reg);
-+	val = intel_de_read(display, reg);
- 	if ((val & mask) == expected)
- 		return true;
- 
-@@ -528,7 +526,7 @@ __phy_reg_verify_state(struct drm_i915_private *dev_priv, enum dpio_phy phy,
- 	vaf.fmt = reg_fmt;
- 	vaf.va = &args;
- 
--	drm_dbg(&dev_priv->drm, "DDI PHY %d reg %pV [%08x] state mismatch: "
-+	drm_dbg(display->drm, "DDI PHY %d reg %pV [%08x] state mismatch: "
- 			 "current %08x, expected %08x (mask %08x)\n",
- 			 phy, &vaf, reg.reg, val, (val & ~mask) | expected,
- 			 mask);
-@@ -538,20 +536,20 @@ __phy_reg_verify_state(struct drm_i915_private *dev_priv, enum dpio_phy phy,
- 	return false;
- }
- 
--bool bxt_dpio_phy_verify_state(struct drm_i915_private *dev_priv,
-+bool bxt_dpio_phy_verify_state(struct intel_display *display,
- 			       enum dpio_phy phy)
- {
- 	const struct bxt_dpio_phy_info *phy_info;
- 	u32 mask;
- 	bool ok;
- 
--	phy_info = bxt_get_phy_info(dev_priv, phy);
-+	phy_info = bxt_get_phy_info(display, phy);
- 
- #define _CHK(reg, mask, exp, fmt, ...)					\
--	__phy_reg_verify_state(dev_priv, phy, reg, mask, exp, fmt,	\
-+	__phy_reg_verify_state(display, phy, reg, mask, exp, fmt,	\
- 			       ## __VA_ARGS__)
- 
--	if (!bxt_dpio_phy_is_enabled(dev_priv, phy))
-+	if (!bxt_dpio_phy_is_enabled(display, phy))
- 		return false;
- 
- 	ok = true;
-@@ -575,7 +573,7 @@ bool bxt_dpio_phy_verify_state(struct drm_i915_private *dev_priv,
- 			   "BXT_PORT_CL2CM_DW6(%d)", phy);
- 
- 	if (phy_info->rcomp_phy != -1) {
--		u32 grc_code = dev_priv->display.state.bxt_phy_grc;
-+		u32 grc_code = display->state.bxt_phy_grc;
- 
- 		grc_code = GRC_CODE_FAST(grc_code) |
- 			GRC_CODE_SLOW(grc_code) |
-@@ -614,20 +612,20 @@ bxt_dpio_phy_calc_lane_lat_optim_mask(u8 lane_count)
- void bxt_dpio_phy_set_lane_optim_mask(struct intel_encoder *encoder,
- 				      u8 lane_lat_optim_mask)
- {
--	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-+	struct intel_display *display = to_intel_display(encoder);
- 	enum port port = encoder->port;
- 	enum dpio_phy phy;
- 	enum dpio_channel ch;
- 	int lane;
- 
--	bxt_port_to_phy_channel(dev_priv, port, &phy, &ch);
-+	bxt_port_to_phy_channel(display, port, &phy, &ch);
- 
- 	for (lane = 0; lane < 4; lane++) {
- 		/*
- 		 * Note that on CHV this flag is called UPAR, but has
- 		 * the same function.
- 		 */
--		intel_de_rmw(dev_priv, BXT_PORT_TX_DW14_LN(phy, ch, lane),
-+		intel_de_rmw(display, BXT_PORT_TX_DW14_LN(phy, ch, lane),
- 			     LATENCY_OPTIM,
- 			     lane_lat_optim_mask & BIT(lane) ? LATENCY_OPTIM : 0);
- 	}
-@@ -636,18 +634,18 @@ void bxt_dpio_phy_set_lane_optim_mask(struct intel_encoder *encoder,
- u8
- bxt_dpio_phy_get_lane_lat_optim_mask(struct intel_encoder *encoder)
- {
--	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-+	struct intel_display *display = to_intel_display(encoder);
- 	enum port port = encoder->port;
- 	enum dpio_phy phy;
- 	enum dpio_channel ch;
- 	int lane;
- 	u8 mask;
- 
--	bxt_port_to_phy_channel(dev_priv, port, &phy, &ch);
-+	bxt_port_to_phy_channel(display, port, &phy, &ch);
- 
- 	mask = 0;
- 	for (lane = 0; lane < 4; lane++) {
--		u32 val = intel_de_read(dev_priv,
-+		u32 val = intel_de_read(display,
- 					BXT_PORT_TX_DW14_LN(phy, ch, lane));
- 
- 		if (val & LATENCY_OPTIM)
-diff --git a/drivers/gpu/drm/i915/display/intel_dpio_phy.h b/drivers/gpu/drm/i915/display/intel_dpio_phy.h
-index 226994dcb89b..a82939165546 100644
---- a/drivers/gpu/drm/i915/display/intel_dpio_phy.h
-+++ b/drivers/gpu/drm/i915/display/intel_dpio_phy.h
-@@ -10,9 +10,9 @@
- 
- enum pipe;
- enum port;
+ struct drm_connector;
+ struct drm_connector_state;
 -struct drm_i915_private;
+ struct intel_atomic_state;
+ struct intel_connector;
  struct intel_crtc_state;
- struct intel_digital_port;
++struct intel_digital_port;
 +struct intel_display;
  struct intel_encoder;
+ struct intel_hdcp_shim;
+-struct intel_digital_port;
+ enum port;
+ enum transcoder;
  
- enum dpio_channel {
-@@ -27,15 +27,15 @@ enum dpio_phy {
- };
+@@ -37,14 +37,14 @@ void intel_hdcp_update_pipe(struct intel_atomic_state *state,
+ 			    struct intel_encoder *encoder,
+ 			    const struct intel_crtc_state *crtc_state,
+ 			    const struct drm_connector_state *conn_state);
+-bool is_hdcp_supported(struct drm_i915_private *i915, enum port port);
++bool is_hdcp_supported(struct intel_display *display, enum port port);
+ bool intel_hdcp_get_capability(struct intel_connector *connector);
+ bool intel_hdcp2_get_capability(struct intel_connector *connector);
+ void intel_hdcp_get_remote_capability(struct intel_connector *connector,
+ 				      bool *hdcp_capable,
+ 				      bool *hdcp2_capable);
+-void intel_hdcp_component_init(struct drm_i915_private *i915);
+-void intel_hdcp_component_fini(struct drm_i915_private *i915);
++void intel_hdcp_component_init(struct intel_display *display);
++void intel_hdcp_component_fini(struct intel_display *display);
+ void intel_hdcp_cleanup(struct intel_connector *connector);
+ void intel_hdcp_handle_cp_irq(struct intel_connector *connector);
  
- #ifdef I915
--void bxt_port_to_phy_channel(struct drm_i915_private *dev_priv, enum port port,
-+void bxt_port_to_phy_channel(struct intel_display *display, enum port port,
- 			     enum dpio_phy *phy, enum dpio_channel *ch);
- void bxt_dpio_phy_set_signal_levels(struct intel_encoder *encoder,
- 				    const struct intel_crtc_state *crtc_state);
--void bxt_dpio_phy_init(struct drm_i915_private *dev_priv, enum dpio_phy phy);
--void bxt_dpio_phy_uninit(struct drm_i915_private *dev_priv, enum dpio_phy phy);
--bool bxt_dpio_phy_is_enabled(struct drm_i915_private *dev_priv,
-+void bxt_dpio_phy_init(struct intel_display *display, enum dpio_phy phy);
-+void bxt_dpio_phy_uninit(struct intel_display *display, enum dpio_phy phy);
-+bool bxt_dpio_phy_is_enabled(struct intel_display *display,
- 			     enum dpio_phy phy);
--bool bxt_dpio_phy_verify_state(struct drm_i915_private *dev_priv,
-+bool bxt_dpio_phy_verify_state(struct intel_display *display,
- 			       enum dpio_phy phy);
- u8 bxt_dpio_phy_calc_lane_lat_optim_mask(u8 lane_count);
- void bxt_dpio_phy_set_lane_optim_mask(struct intel_encoder *encoder,
-@@ -73,7 +73,7 @@ void vlv_phy_pre_encoder_enable(struct intel_encoder *encoder,
- void vlv_phy_reset_lanes(struct intel_encoder *encoder,
- 			 const struct intel_crtc_state *old_crtc_state);
- #else
--static inline void bxt_port_to_phy_channel(struct drm_i915_private *dev_priv, enum port port,
-+static inline void bxt_port_to_phy_channel(struct intel_display *display, enum port port,
- 					   enum dpio_phy *phy, enum dpio_channel *ch)
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index 37b61f05bd73..e1a1351bc94f 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -3026,7 +3026,6 @@ void intel_hdmi_init_connector(struct intel_digital_port *dig_port,
+ 	struct intel_hdmi *intel_hdmi = &dig_port->hdmi;
+ 	struct intel_encoder *intel_encoder = &dig_port->base;
+ 	struct drm_device *dev = intel_encoder->base.dev;
+-	struct drm_i915_private *dev_priv = to_i915(dev);
+ 	enum port port = intel_encoder->port;
+ 	struct cec_connector_info conn_info;
+ 	u8 ddc_pin;
+@@ -3076,7 +3075,7 @@ void intel_hdmi_init_connector(struct intel_digital_port *dig_port,
+ 	intel_connector_attach_encoder(intel_connector, intel_encoder);
+ 	intel_hdmi->attached_connector = intel_connector;
+ 
+-	if (is_hdcp_supported(dev_priv, port)) {
++	if (is_hdcp_supported(display, port)) {
+ 		int ret = intel_hdcp_init(intel_connector, dig_port,
+ 					  &intel_hdmi_hdcp_shim);
+ 		if (ret)
+diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+index 695c27ac6b0f..b5502f335f53 100644
+--- a/drivers/gpu/drm/xe/display/xe_display.c
++++ b/drivers/gpu/drm/xe/display/xe_display.c
+@@ -202,12 +202,14 @@ int xe_display_init(struct xe_device *xe)
+ 
+ void xe_display_fini(struct xe_device *xe)
  {
++	struct intel_display *display = &xe->display;
++
+ 	if (!xe->info.probe_display)
+ 		return;
+ 
+ 	intel_hpd_poll_fini(xe);
+ 
+-	intel_hdcp_component_fini(xe);
++	intel_hdcp_component_fini(display);
+ 	intel_audio_deinit(xe);
  }
-@@ -81,18 +81,18 @@ static inline void bxt_dpio_phy_set_signal_levels(struct intel_encoder *encoder,
- 						  const struct intel_crtc_state *crtc_state)
- {
- }
--static inline void bxt_dpio_phy_init(struct drm_i915_private *dev_priv, enum dpio_phy phy)
-+static inline void bxt_dpio_phy_init(struct intel_display *display, enum dpio_phy phy)
- {
- }
--static inline void bxt_dpio_phy_uninit(struct drm_i915_private *dev_priv, enum dpio_phy phy)
-+static inline void bxt_dpio_phy_uninit(struct intel_display *display, enum dpio_phy phy)
- {
- }
--static inline bool bxt_dpio_phy_is_enabled(struct drm_i915_private *dev_priv,
-+static inline bool bxt_dpio_phy_is_enabled(struct intel_display *display,
- 					   enum dpio_phy phy)
- {
- 	return false;
- }
--static inline bool bxt_dpio_phy_verify_state(struct drm_i915_private *dev_priv,
-+static inline bool bxt_dpio_phy_verify_state(struct intel_display *display,
- 					     enum dpio_phy phy)
- {
- 	return true;
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index f490b2157828..99962d8cc6b5 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -2035,13 +2035,14 @@ static void bxt_ddi_pll_enable(struct drm_i915_private *i915,
- 			       struct intel_shared_dpll *pll,
- 			       const struct intel_dpll_hw_state *dpll_hw_state)
- {
-+	struct intel_display *display = &i915->display;
- 	const struct bxt_dpll_hw_state *hw_state = &dpll_hw_state->bxt;
- 	enum port port = (enum port)pll->info->id; /* 1:1 port->PLL mapping */
- 	enum dpio_phy phy;
- 	enum dpio_channel ch;
- 	u32 temp;
  
--	bxt_port_to_phy_channel(i915, port, &phy, &ch);
-+	bxt_port_to_phy_channel(display, port, &phy, &ch);
- 
- 	/* Non-SSC reference */
- 	intel_de_rmw(i915, BXT_PORT_PLL_ENABLE(port), 0, PORT_PLL_REF_SEL);
-@@ -2157,6 +2158,7 @@ static bool bxt_ddi_pll_get_hw_state(struct drm_i915_private *i915,
- 				     struct intel_shared_dpll *pll,
- 				     struct intel_dpll_hw_state *dpll_hw_state)
- {
-+	struct intel_display *display = &i915->display;
- 	struct bxt_dpll_hw_state *hw_state = &dpll_hw_state->bxt;
- 	enum port port = (enum port)pll->info->id; /* 1:1 port->PLL mapping */
- 	intel_wakeref_t wakeref;
-@@ -2165,7 +2167,7 @@ static bool bxt_ddi_pll_get_hw_state(struct drm_i915_private *i915,
- 	u32 val;
- 	bool ret;
- 
--	bxt_port_to_phy_channel(i915, port, &phy, &ch);
-+	bxt_port_to_phy_channel(display, port, &phy, &ch);
- 
- 	wakeref = intel_display_power_get_if_enabled(i915,
- 						     POWER_DOMAIN_DISPLAY_CORE);
 -- 
 2.39.5
 
