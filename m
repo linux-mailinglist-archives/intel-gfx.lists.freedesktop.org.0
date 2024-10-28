@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB90A9B3ABD
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Oct 2024 20:50:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 401609B3AC0
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Oct 2024 20:50:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D731B10E55F;
-	Mon, 28 Oct 2024 19:50:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CFD7C10E55C;
+	Mon, 28 Oct 2024 19:50:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z6elYIqe";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J3kF6NHn";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E089510E55E;
- Mon, 28 Oct 2024 19:50:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7158710E561;
+ Mon, 28 Oct 2024 19:50:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730145004; x=1761681004;
+ t=1730145009; x=1761681009;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=xH/0CO2Kj/cyNxDbIFkZsyHmHYkwVJcRl+LJTS/Jj6A=;
- b=Z6elYIqePAugCKpIYXauIJsGuphaUsvk5/+Z7urXsD0LvDpiY6z97O+M
- iW4HiG6Keo/BOSjGIghR4JYlGI+Mi9ltR7RZrWXTuL0yqmak1u7erdS3c
- kIwo+gAwRKYi5WIZJy2m7+VCcK9tynpa3XLytSRai6swn9QyeP+MTiaQD
- UftAtFS59628IyqWwcQeNJi7UDOryO1wtju4Ksp/v2M5ORE/HSzjVdfp9
- 11/mBJXpLWk3rR/KBVd1bK4HSEj+RaeqexBeb7YLiAix2wPHgMSz6rifV
- r5+MsxX3LoXRMXfgrv3mvlvpv4EhTWsCnMJF8ObjCKEVSpu+29+VCkLo4 g==;
-X-CSE-ConnectionGUID: LtdpxEmBRE6Cs2SOkk3Png==
-X-CSE-MsgGUID: 7ZSRx9DrSlyJ1VZFZm5mFA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="40857957"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="40857957"
+ bh=eQZYGOShJJYSLnObgDs0j4+WPca8DjIvbO+ZkJSHfAQ=;
+ b=J3kF6NHnjfqRLa+WLrSg2oyzPWegsfOcu88CzsI4/MEOn9SyKA77Smr5
+ 1LPLer1hlYe3tykdjb8Lkv/o9e9YGc7slKmJmtdCoP3ZkESrtmUXhxwml
+ XFPYimaO/cQhDwO5rd3b4b9c+fA1ygw8T9eSEluWRj+3jy+693nD/x/m2
+ wWTWjDh98XcxYSIOeDkhTx279XLAxHhX13Ut+ks9zbkMfs6t8mp3svBGq
+ ptF17BCNs9IrdfGO7xz0u1zuziKr4QPDATGEbQqc/jvb6fxGVM8pazZ1X
+ LILZ2Fzwkus13+U/dCL8ZJBUEpWFyxQDcSGEmKT1COUTVtUyuMV5VOJey w==;
+X-CSE-ConnectionGUID: Paxx4Q6jS9eQ+M7K0wYyFw==
+X-CSE-MsgGUID: b5S/oNLwQeKPm/hFTCCT7A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="40857970"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="40857970"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2024 12:50:03 -0700
-X-CSE-ConnectionGUID: qsQIkZccTrOeI6lM0av5hw==
-X-CSE-MsgGUID: poBIRXIySVahE8FF161yeg==
+ 28 Oct 2024 12:50:09 -0700
+X-CSE-ConnectionGUID: KCz0ysD9Td6kpMxmTad7dQ==
+X-CSE-MsgGUID: yGpRZATJT+urN5Xf6TTj7w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="86859982"
+X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="86860004"
 Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.246.21])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2024 12:50:01 -0700
+ 28 Oct 2024 12:50:06 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, rodrigo.vivi@intel.com, lucas.demarchi@intel.com,
  maarten.lankhorst@linux.intel.com
-Subject: [CI RESEND v4 v4 12/16] drm/i915/pps: use
- display->platform.<platform> instead of IS_<PLATFORM>()
-Date: Mon, 28 Oct 2024 21:48:45 +0200
-Message-Id: <05de39ea5ef3898c115cc4f3725f58116d285339.1730144869.git.jani.nikula@intel.com>
+Subject: [CI RESEND v4 v4 13/16] drm/i915/tv: use display->platform.<platform>
+ instead of IS_<PLATFORM>()
+Date: Mon, 28 Oct 2024 21:48:46 +0200
+Message-Id: <24306709d58bff03c819f44dfada95c1c998ad11.1730144869.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1730144869.git.jani.nikula@intel.com>
 References: <cover.1730144869.git.jani.nikula@intel.com>
@@ -78,211 +78,65 @@ platform identification in display code.
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_pps.c | 47 ++++++++++--------------
- 1 file changed, 20 insertions(+), 27 deletions(-)
+ drivers/gpu/drm/i915/display/intel_tv.c | 10 ++++------
+ 1 file changed, 4 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
-index ffeee9daa568..4bb7461e4616 100644
---- a/drivers/gpu/drm/i915/display/intel_pps.c
-+++ b/drivers/gpu/drm/i915/display/intel_pps.c
-@@ -29,10 +29,9 @@ static void pps_init_registers(struct intel_dp *intel_dp, bool force_disable_vdd
- static const char *pps_name(struct intel_dp *intel_dp)
+diff --git a/drivers/gpu/drm/i915/display/intel_tv.c b/drivers/gpu/drm/i915/display/intel_tv.c
+index e40aff490486..bfd16054ca05 100644
+--- a/drivers/gpu/drm/i915/display/intel_tv.c
++++ b/drivers/gpu/drm/i915/display/intel_tv.c
+@@ -1093,7 +1093,6 @@ intel_tv_get_config(struct intel_encoder *encoder,
+ 		    struct intel_crtc_state *pipe_config)
  {
- 	struct intel_display *display = to_intel_display(intel_dp);
--	struct drm_i915_private *i915 = to_i915(display->drm);
- 	struct intel_pps *pps = &intel_dp->pps;
+ 	struct intel_display *display = to_intel_display(encoder);
+-	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 	struct drm_display_mode *adjusted_mode =
+ 		&pipe_config->hw.adjusted_mode;
+ 	struct drm_display_mode mode = {};
+@@ -1167,7 +1166,7 @@ intel_tv_get_config(struct intel_encoder *encoder,
+ 		adjusted_mode->crtc_clock /= 2;
  
--	if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915)) {
-+	if (display->platform.valleyview || display->platform.cherryview) {
- 		switch (pps->vlv_pps_pipe) {
- 		case INVALID_PIPE:
- 			/*
-@@ -122,7 +121,7 @@ vlv_power_sequencer_kick(struct intel_dp *intel_dp)
- 	DP |= DP_PORT_WIDTH(1);
- 	DP |= DP_LINK_TRAIN_PAT_1;
+ 	/* pixel counter doesn't work on i965gm TV output */
+-	if (IS_I965GM(dev_priv))
++	if (display->platform.i965gm)
+ 		pipe_config->mode_flags |=
+ 			I915_MODE_FLAG_USE_SCANLINE_COUNTER;
+ }
+@@ -1197,7 +1196,6 @@ intel_tv_compute_config(struct intel_encoder *encoder,
+ 	struct intel_atomic_state *state =
+ 		to_intel_atomic_state(pipe_config->uapi.state);
+ 	struct intel_crtc *crtc = to_intel_crtc(pipe_config->uapi.crtc);
+-	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 	struct intel_tv_connector_state *tv_conn_state =
+ 		to_intel_tv_connector_state(conn_state);
+ 	const struct tv_mode *tv_mode = intel_tv_mode_find(conn_state);
+@@ -1349,7 +1347,7 @@ intel_tv_compute_config(struct intel_encoder *encoder,
+ 	adjusted_mode->name[0] = '\0';
  
--	if (IS_CHERRYVIEW(dev_priv))
-+	if (display->platform.cherryview)
- 		DP |= DP_PIPE_SEL_CHV(pipe);
- 	else
- 		DP |= DP_PIPE_SEL(pipe);
-@@ -134,7 +133,7 @@ vlv_power_sequencer_kick(struct intel_dp *intel_dp)
- 	 * So enable temporarily it if it's not already enabled.
+ 	/* pixel counter doesn't work on i965gm TV output */
+-	if (IS_I965GM(dev_priv))
++	if (display->platform.i965gm)
+ 		pipe_config->mode_flags |=
+ 			I915_MODE_FLAG_USE_SCANLINE_COUNTER;
+ 
+@@ -1525,7 +1523,7 @@ static void intel_tv_pre_enable(struct intel_atomic_state *state,
+ 		tv_mode->dda3_inc << TV_SCDDA3_INC_SHIFT;
+ 
+ 	/* Enable two fixes for the chips that need them. */
+-	if (IS_I915GM(dev_priv))
++	if (display->platform.i915gm)
+ 		tv_ctl |= TV_ENC_C0_FIX | TV_ENC_SDP_FIX;
+ 
+ 	set_tv_mode_timings(display, tv_mode, burst_ena);
+@@ -1627,7 +1625,7 @@ intel_tv_detect_type(struct intel_tv *intel_tv,
+ 	 * The TV sense state should be cleared to zero on cantiga platform. Otherwise
+ 	 * the TV is misdetected. This is hardware requirement.
  	 */
- 	if (!pll_enabled) {
--		release_cl_override = IS_CHERRYVIEW(dev_priv) &&
-+		release_cl_override = display->platform.cherryview &&
- 			!chv_phy_powergate_ch(dev_priv, phy, ch, true);
+-	if (IS_GM45(dev_priv))
++	if (display->platform.gm45)
+ 		tv_dac &= ~(TVDAC_STATE_CHG_EN | TVDAC_A_SENSE_CTL |
+ 			    TVDAC_B_SENSE_CTL | TVDAC_C_SENSE_CTL);
  
- 		if (vlv_force_pll_on(dev_priv, pipe, vlv_get_dpll(dev_priv))) {
-@@ -356,10 +355,10 @@ static int intel_num_pps(struct intel_display *display)
- {
- 	struct drm_i915_private *i915 = to_i915(display->drm);
- 
--	if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915))
-+	if (display->platform.valleyview || display->platform.cherryview)
- 		return 2;
- 
--	if (IS_GEMINILAKE(i915) || IS_BROXTON(i915))
-+	if (display->platform.geminilake || display->platform.broxton)
- 		return 2;
- 
- 	if (INTEL_PCH_TYPE(i915) >= PCH_MTL)
-@@ -406,11 +405,10 @@ pps_initial_setup(struct intel_dp *intel_dp)
- 	struct intel_display *display = to_intel_display(intel_dp);
- 	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
- 	struct intel_connector *connector = intel_dp->attached_connector;
--	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
- 
- 	lockdep_assert_held(&display->pps.mutex);
- 
--	if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915)) {
-+	if (display->platform.valleyview || display->platform.cherryview) {
- 		vlv_initial_power_sequencer_setup(intel_dp);
- 		return true;
- 	}
-@@ -509,9 +507,9 @@ static void intel_pps_get_registers(struct intel_dp *intel_dp,
- 
- 	memset(regs, 0, sizeof(*regs));
- 
--	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv))
-+	if (display->platform.valleyview || display->platform.cherryview)
- 		pps_idx = vlv_power_sequencer_pipe(intel_dp);
--	else if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv))
-+	else if (display->platform.geminilake || display->platform.broxton)
- 		pps_idx = bxt_power_sequencer_idx(intel_dp);
- 	else
- 		pps_idx = intel_dp->pps.pps_idx;
-@@ -522,7 +520,7 @@ static void intel_pps_get_registers(struct intel_dp *intel_dp,
- 	regs->pp_off = PP_OFF_DELAYS(display, pps_idx);
- 
- 	/* Cycle delay moved from PP_DIVISOR to PP_CONTROL */
--	if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv) ||
-+	if (display->platform.geminilake || display->platform.broxton ||
- 	    INTEL_PCH_TYPE(dev_priv) >= PCH_CNP)
- 		regs->pp_div = INVALID_MMIO_REG;
- 	else
-@@ -552,11 +550,10 @@ _pp_stat_reg(struct intel_dp *intel_dp)
- static bool edp_have_panel_power(struct intel_dp *intel_dp)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
--	struct drm_i915_private *dev_priv = to_i915(display->drm);
- 
- 	lockdep_assert_held(&display->pps.mutex);
- 
--	if ((IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) &&
-+	if ((display->platform.valleyview || display->platform.cherryview) &&
- 	    intel_dp->pps.vlv_pps_pipe == INVALID_PIPE)
- 		return false;
- 
-@@ -566,11 +563,10 @@ static bool edp_have_panel_power(struct intel_dp *intel_dp)
- static bool edp_have_panel_vdd(struct intel_dp *intel_dp)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
--	struct drm_i915_private *dev_priv = to_i915(display->drm);
- 
- 	lockdep_assert_held(&display->pps.mutex);
- 
--	if ((IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) &&
-+	if ((display->platform.valleyview || display->platform.cherryview) &&
- 	    intel_dp->pps.vlv_pps_pipe == INVALID_PIPE)
- 		return false;
- 
-@@ -953,7 +949,6 @@ void intel_pps_vdd_off_unlocked(struct intel_dp *intel_dp, bool sync)
- void intel_pps_on_unlocked(struct intel_dp *intel_dp)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
--	struct drm_i915_private *dev_priv = to_i915(display->drm);
- 	u32 pp;
- 	i915_reg_t pp_ctrl_reg;
- 
-@@ -978,7 +973,7 @@ void intel_pps_on_unlocked(struct intel_dp *intel_dp)
- 
- 	pp_ctrl_reg = _pp_ctrl_reg(intel_dp);
- 	pp = ilk_get_pp_control(intel_dp);
--	if (IS_IRONLAKE(dev_priv)) {
-+	if (display->platform.ironlake) {
- 		/* ILK workaround: disable reset around power sequence */
- 		pp &= ~PANEL_POWER_RESET;
- 		intel_de_write(display, pp_ctrl_reg, pp);
-@@ -994,7 +989,7 @@ void intel_pps_on_unlocked(struct intel_dp *intel_dp)
- 			     0, PCH_DPLSUNIT_CLOCK_GATE_DISABLE);
- 
- 	pp |= PANEL_POWER_ON;
--	if (!IS_IRONLAKE(dev_priv))
-+	if (!display->platform.ironlake)
- 		pp |= PANEL_POWER_RESET;
- 
- 	intel_de_write(display, pp_ctrl_reg, pp);
-@@ -1007,7 +1002,7 @@ void intel_pps_on_unlocked(struct intel_dp *intel_dp)
- 		intel_de_rmw(display, SOUTH_DSPCLK_GATE_D,
- 			     PCH_DPLSUNIT_CLOCK_GATE_DISABLE, 0);
- 
--	if (IS_IRONLAKE(dev_priv)) {
-+	if (display->platform.ironlake) {
- 		pp |= PANEL_POWER_RESET; /* restore panel reset bit */
- 		intel_de_write(display, pp_ctrl_reg, pp);
- 		intel_de_posting_read(display, pp_ctrl_reg);
-@@ -1627,7 +1622,7 @@ static void pps_init_registers(struct intel_dp *intel_dp, bool force_disable_vdd
- 
- 	/* Haswell doesn't have any port selection bits for the panel
- 	 * power sequencer any more. */
--	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) {
-+	if (display->platform.valleyview || display->platform.cherryview) {
- 		port_sel = PANEL_PORT_SELECT_VLV(port);
- 	} else if (HAS_PCH_IBX(dev_priv) || HAS_PCH_CPT(dev_priv)) {
- 		switch (port) {
-@@ -1674,7 +1669,6 @@ static void pps_init_registers(struct intel_dp *intel_dp, bool force_disable_vdd
- void intel_pps_encoder_reset(struct intel_dp *intel_dp)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
--	struct drm_i915_private *i915 = to_i915(display->drm);
- 	intel_wakeref_t wakeref;
- 
- 	if (!intel_dp_is_edp(intel_dp))
-@@ -1685,7 +1679,7 @@ void intel_pps_encoder_reset(struct intel_dp *intel_dp)
- 		 * Reinit the power sequencer also on the resume path, in case
- 		 * BIOS did something nasty with it.
- 		 */
--		if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915))
-+		if (display->platform.valleyview || display->platform.cherryview)
- 			vlv_initial_power_sequencer_setup(intel_dp);
- 
- 		pps_init_delays(intel_dp);
-@@ -1721,11 +1715,10 @@ bool intel_pps_init(struct intel_dp *intel_dp)
- static void pps_init_late(struct intel_dp *intel_dp)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
--	struct drm_i915_private *i915 = to_i915(display->drm);
- 	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
- 	struct intel_connector *connector = intel_dp->attached_connector;
- 
--	if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915))
-+	if (display->platform.valleyview || display->platform.cherryview)
- 		return;
- 
- 	if (intel_num_pps(display) < 2)
-@@ -1783,9 +1776,9 @@ void intel_pps_setup(struct intel_display *display)
- {
- 	struct drm_i915_private *i915 = to_i915(display->drm);
- 
--	if (HAS_PCH_SPLIT(i915) || IS_GEMINILAKE(i915) || IS_BROXTON(i915))
-+	if (HAS_PCH_SPLIT(i915) || display->platform.geminilake || display->platform.broxton)
- 		display->pps.mmio_base = PCH_PPS_BASE;
--	else if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915))
-+	else if (display->platform.valleyview || display->platform.cherryview)
- 		display->pps.mmio_base = VLV_PPS_BASE;
- 	else
- 		display->pps.mmio_base = PPS_BASE;
-@@ -1857,7 +1850,7 @@ void assert_pps_unlocked(struct intel_display *display, enum pipe pipe)
- 			MISSING_CASE(port_sel);
- 			break;
- 		}
--	} else if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) {
-+	} else if (display->platform.valleyview || display->platform.cherryview) {
- 		/* presumably write lock depends on pipe, not port select */
- 		pp_reg = PP_CONTROL(display, pipe);
- 		panel_pipe = pipe;
 -- 
 2.39.5
 
