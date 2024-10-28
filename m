@@ -2,183 +2,181 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB25D9B3665
-	for <lists+intel-gfx@lfdr.de>; Mon, 28 Oct 2024 17:25:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 44EA09B367C
+	for <lists+intel-gfx@lfdr.de>; Mon, 28 Oct 2024 17:30:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5249310E0E1;
-	Mon, 28 Oct 2024 16:25:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C3E4310E36D;
+	Mon, 28 Oct 2024 16:30:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OZ7W0YzR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JQ8SbWpy";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A9F110E0E1;
- Mon, 28 Oct 2024 16:25:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6CAAA10E36D;
+ Mon, 28 Oct 2024 16:30:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730132728; x=1761668728;
+ t=1730133045; x=1761669045;
  h=content-transfer-encoding:in-reply-to:references:subject:
  from:to:date:message-id:mime-version;
- bh=pTzgXNG1k/CAfeFpGnqQfpjdJg31eT5G4h7Nkhwr8xc=;
- b=OZ7W0YzRrNPKYK7a8Le/N419InitVdGKNHIIpJu2m/wnljAluOUv6O/U
- vp3EkJVNX5AUqqoWBl3QSmG2v3I7OXi/1xOTEwuc0bucEAQTwzZDhCFcA
- ojQmCxkiXMSTyaM1GhZLFfioHWRSmFRrzRJ85m8ZO4tfPFFjSOSxTNrzs
- pTX5dDR6tEn/YA2OmOwbzN3oYTQ7JFGVOZkHPMeIqioR2CBbrKxDorxWS
- UwyEGUS2nEBJ6jc4fL5bcl3yNRz6qbpvzDcQYyIull1OrHrXPavrnObw3
- 9eWOD47SkqaqN77P1DMRGi492ujVT5T8+gePkwTSzpzPUxQwv4iRohNcb Q==;
-X-CSE-ConnectionGUID: LzJwrIPeQEKbwjKY3grMRw==
-X-CSE-MsgGUID: rQN96XfBR4yW6H/FYSzeGw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11239"; a="41100605"
-X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="41100605"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2024 09:25:27 -0700
-X-CSE-ConnectionGUID: 2SO6ukAKT0G0g9cjTvARkA==
-X-CSE-MsgGUID: aY0tPtaaTAC0Gg8yLX1xxw==
+ bh=/GwrEFsTWypzBJcEX5kAswfKqt5JYDZlXf9eLA1jzmU=;
+ b=JQ8SbWpyuYw7vpsQQPCflkJDE7CgU7V3MvyfzBzVycMS6RG+OK0n8q84
+ M5MNHAUwBlA498XxCUjY+ShCEwFrlgKtnDaT7QexX+qqBuvjD3GW8kG0Z
+ H99SBbLlmH8aEMI6LfwnPSld7Ra+BO9+bOvkhHagoBhycHJGQXiHM2i4A
+ 5nzG9CApMCbhtvlLkcuErHiajKJ3PLYPYvg2/oNto81i7ssKNnFpiTViS
+ hU8dKPkMK19Q/QEZyl8FTdQztEUL5rYpX9Hy3I2r2ImMPQBVq08Vk+tQU
+ +khzQeIKgQ+9EI0hPKiAOiz4v4SfQrgxhaiTC779y8U/RidVo87VL5vNC w==;
+X-CSE-ConnectionGUID: 3yPWHW3sSHaso3gg0wUX6Q==
+X-CSE-MsgGUID: p+1JR6cHSDeIZpgh5HearA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11239"; a="17371758"
+X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="17371758"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2024 09:30:45 -0700
+X-CSE-ConnectionGUID: 078vGQ0zSxOivjzZf75UAQ==
+X-CSE-MsgGUID: rZIOyotrRVCTUQ++Ezcv4g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="85619774"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmviesa003.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 28 Oct 2024 09:25:28 -0700
+X-IronPort-AV: E=Sophos;i="6.11,239,1725346800"; d="scan'208";a="104987819"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmviesa002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 28 Oct 2024 09:30:45 -0700
 Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Mon, 28 Oct 2024 09:25:27 -0700
+ 15.1.2507.39; Mon, 28 Oct 2024 09:30:44 -0700
 Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
  orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Mon, 28 Oct 2024 09:25:27 -0700
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.48) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Mon, 28 Oct 2024 09:30:44 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.168)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Mon, 28 Oct 2024 09:25:26 -0700
+ 15.1.2507.39; Mon, 28 Oct 2024 09:30:44 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=D4/h4Ux/XNGkBF/j8aN2wwUl3tK/mn5s6vGCsvJU17/m8kxTJx0G0oHgHMbSmFDwsWI9Oubruz7QPPIq9/XCmjnpsvfHEwgjorx2f7vAO4uZPB0r4RlUxqiRMPEwoGiOLG4gWcQmFrwlH80LjNe7PIAVtklcgqVeWBC0QRxElKLb2rVEr+hYvodQ1ZImBwi+17jtVTn3i/GoiS9oc3mOltOiUHIjGS5XxugZhACepnGp/CEagMQcMmdQNwkFnKF8bM8XCQWdb3d7bv9dgAyZygQMJysrlqFLeEqPqqd71JAGriM3z761c3dhtgOoxiH5d0hIxt7ZEZtAuO08NMhczw==
+ b=S2SP1O6mxWImtgZZl4dZjpu4194c19D6K+ss5vw6CGgQlbyskNwU0sh77TphlTn0l8mNOS6GDGjRV4gPJDvxAb9IlyC+hhZ6hqmn5jF33PQUIEKCIznORhw7Mf40bIRsk1S/mMLCIDsEaMhRbb52K6UwF5CToFoERchYEDAVJr8rc8u0xtAdWZqel/DZ2UhoIhBE9IYxR11wSkwkhDhSvGsGqqMRcaKTMLuTM7vBI9ee/9cfMzaVRRf8yqQxj7335DCYQLS5eqOFVPkuqtXsN8nTLlGO4RJp4E0owFwWaPVv7v9kTtArPsnEiYHtvEhpUigxdRTt3ywEqKsf37quJQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pTzgXNG1k/CAfeFpGnqQfpjdJg31eT5G4h7Nkhwr8xc=;
- b=xQqni66B0U+wE01uNSr3NHZvOoq0abfjsyndPL3uKghWnkHZ1lrsHC9E8G/YymHyAfkQRj3IfXHTYHRLlbm8cmY+BkzCymB32yvL7McT1E+keyvXJoNtaLRUm/1277KzMRaVw64xorTbDnsyRHl08i2sk37/LIG2AgncMM6faZcy/jac72sYuTHRk3l/0usRlIIcyFU5DyDcBfc4+qq9+TwkIBU10xYU5UjtC/i3SPYtxuU/hHm+zqSnoTdGJGkPYoi3nu5Fr4gLiWR+70k4rQlsH8ZTwlTP6comGqkWq8YPl/IfaISrUFOtABFMxZM6msR5+VChtwDDVJBeNE2mRQ==
+ bh=8WZE0SFrbUALPv1OlXQwkap1bm+SiGw7sNEbZlCHOwI=;
+ b=icWDVZz0gPwvF5ntl6n/dxe8pSEBw6maUiNO7EimtMtviMWaESWJAyThN+25gMDpkLPot3XejR/29i4M3DfIvo9yxUY48pzmcB4656GFKCEvj3tNR82jxni4r3gLmpEuGluWmldmsFCo/OuFKVozn835MfRZNnAthhnbhoHogTaSVchVZP1+xnePwmnrqqfKnIR11YhLGr9E//Xuk5c/AROAZaV3rw6afrnGvdbXaJ9RXUnQlIjxqn9VoDQaSslTynBBhvNbOd2WWuoznI2W6T2bJ5fMVY/Ck10Eus5/AVYEHtIvaTB4yGnqul9R2ek2KIdNvf5fZHZbiL1FyBwXig==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
- by SJ2PR11MB8421.namprd11.prod.outlook.com (2603:10b6:a03:549::9)
+ by PH0PR11MB7636.namprd11.prod.outlook.com (2603:10b6:510:26f::13)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.25; Mon, 28 Oct
- 2024 16:25:23 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.23; Mon, 28 Oct
+ 2024 16:30:41 +0000
 Received: from PH8PR11MB8287.namprd11.prod.outlook.com
  ([fe80::7e8b:2e5:8ce4:2350]) by PH8PR11MB8287.namprd11.prod.outlook.com
  ([fe80::7e8b:2e5:8ce4:2350%6]) with mapi id 15.20.8093.023; Mon, 28 Oct 2024
- 16:25:23 +0000
+ 16:30:41 +0000
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <2690c5529e6bafeb0e35d757754622e519485a85.camel@intel.com>
+In-Reply-To: <20241025204743.211510-7-clinton.a.taylor@intel.com>
 References: <20241025204743.211510-1-clinton.a.taylor@intel.com>
- <20241025204743.211510-2-clinton.a.taylor@intel.com>
- <2690c5529e6bafeb0e35d757754622e519485a85.camel@intel.com>
-Subject: Re: [PATCH v5 01/11] drm/i915/xe3lpd: Update pmdemand programming
+ <20241025204743.211510-7-clinton.a.taylor@intel.com>
+Subject: Re: [PATCH v5 06/11] drm/i915/cx0: Remove bus reset after every c10
+ transaction
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-To: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>, "Taylor, Clinton
- A" <clinton.a.taylor@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>
-Date: Mon, 28 Oct 2024 13:25:18 -0300
-Message-ID: <173013271888.3514.3255629474297829807@gjsousa-mobl2>
+To: Clint Taylor <clinton.a.taylor@intel.com>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
+Date: Mon, 28 Oct 2024 13:30:37 -0300
+Message-ID: <173013303703.3514.5957030414255599670@gjsousa-mobl2>
 User-Agent: alot/0.10
-X-ClientProxiedBy: MW4PR03CA0129.namprd03.prod.outlook.com
- (2603:10b6:303:8c::14) To PH8PR11MB8287.namprd11.prod.outlook.com
+X-ClientProxiedBy: MW4PR03CA0102.namprd03.prod.outlook.com
+ (2603:10b6:303:b7::17) To PH8PR11MB8287.namprd11.prod.outlook.com
  (2603:10b6:510:1c7::14)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|SJ2PR11MB8421:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0232074e-68f4-41b6-780c-08dcf76d1f6a
+X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|PH0PR11MB7636:EE_
+X-MS-Office365-Filtering-Correlation-Id: 48fe9c32-7343-4c03-6c54-08dcf76ddd1e
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?SlpNc2hXL2pydHIrQzlVSDU0RzB0N003UkRzTk5aZmJsYlI2OEF3SldZUUFQ?=
- =?utf-8?B?Yys3ekQxQkxGSWV5OElzeWRQRGJSdTB2UEdaczRQUFo3YXRGNGs1QmE2MTV3?=
- =?utf-8?B?bE5VanFSTXp2bVdQWXZodkpIU1hlOUR4TzlSMGdKUk5RcXJjU1lPVHpUaE50?=
- =?utf-8?B?eG5DNWFmenM2WUNZT0xKZ3ZLL2d1dk8wR0dkVHBlQ3Nqa3FZSlRGVUZ4TkVC?=
- =?utf-8?B?Z2JXN0tYcjg5Uy9jcG9iWFVKNWpEZklGSWNxTjVOWjNHeDdkQ0tvNE56ZDlh?=
- =?utf-8?B?d3JWWC9IdnZyam9DZ1RNVkYyRDlRNGprWkp5WWhXbUlxTzNyb0c3eXdLMjcv?=
- =?utf-8?B?d2MveGIyNjhCNFE0OVVkOWphSVJRZHh5bUFnUmdvSi9oaDBYcE90RTN3Wmg4?=
- =?utf-8?B?aTVTTGt2am9lUlF4TEJKME5xT1VubE13R2h2RVB4dmw5OVR2dHNzUzFXTTFI?=
- =?utf-8?B?N0xHY3I3RWFlSlBraHJuZDNaL2o5TTdpNGx2NEtXaEFuREMrczE1UG9TT29v?=
- =?utf-8?B?YUJBTGlDV1ZpTlpKeTRzWTBKZklTUmdNdXN5ZHQ3eWd6M3ZLZm9jM04wRXFO?=
- =?utf-8?B?aERnTWdROFBsYTBzNE9EeTdKMzJnY2drc3Arb0I2MGo3clJMVER2ZGZBbC9o?=
- =?utf-8?B?VXVlSlE3VmFRckFZa0JLV1d1V3Z0SEpTeEJwNTY2SWlVekx2cHYxcWhreEVJ?=
- =?utf-8?B?b1I0bVUzZlEwZlRtdG9Cc1lsWTFnKzJLVWVXQlp1dVZTT3F1OFpHa1RGTjRx?=
- =?utf-8?B?ajRWbjh5UGVzaTZrT0hkWnJUQ29LWVJIRFJ4SzVNS0ZWbGZ5MUJ3dkh6ODVn?=
- =?utf-8?B?bTJ0bElPSnIzWjJyT0lRQmNMYXkrYU8vbnZLZzBlK0p4WUhxSDNEc3UwelRw?=
- =?utf-8?B?Y28vQWRLOGljOGduRGNhcGV0bEpvUXgvUmtsSUNEQ2FJMFlOM0lnaEJGSURy?=
- =?utf-8?B?MnFGUEwyenNIOXEvQTV2cVRLWjU4d3FZM21yK1BmaGtCWlF4NVZXMXdkM1JL?=
- =?utf-8?B?SlVXUll6WWZjRzJuWDdiT2hsUWhDSjBPV200S1ZIYUtGMWt2TFl5SWFtSFp5?=
- =?utf-8?B?RW5xcWpVOTNtUExqR0xZVXNSaWF2M2lDekpOSGpqRHVWc1RSRWhTUmN2TmRL?=
- =?utf-8?B?NDh3VllSQXpha3VQTVRIajdzYm9OeTlXTk51alNiT29uY3RuVGJZZUxweWtz?=
- =?utf-8?B?N3ZZZldjS2RiL0s4UkdveWhNQmJadlFGVG1IeXdNQ3dEQmpVaUZLYmd3SHh3?=
- =?utf-8?B?TW9aN1Y5dnBPYjdmZTE5YlBHTWkyV0dud3Bya1dyeU9aZXR2RlRaVWpTYUdo?=
- =?utf-8?B?VjFKeFVzdFFIYy9mQTJORjBXQ2ZZeUt2dHM3NWdlNStFMzRvYzRNZnpiVlVn?=
- =?utf-8?B?VThpWFhDK1RwQzNETURtSW11M1BDc3czLzNPVjRRUEMxV1dvNFJhOUJ4aEtz?=
- =?utf-8?B?bzREbGNhNzJrU3kzQXYwNjZtL3pqekU5L2V4T2w1czd1MEZjLzlMT1BFeEdG?=
- =?utf-8?B?dmd4d25tVTFFYlRXZnpnSmZmLyt0S3BrR1g3bzdtL2d0MGN4aVc0Y0pWNFJl?=
- =?utf-8?B?Lzg5MHNXaDZ4K0w5WnRCUEJiQjQ3SXlRN29FME1RcmErKzB0V3VIZ01ST1dt?=
- =?utf-8?B?U0hLN3Jmc2U4V2N4RVUxNUJxRDA3MmdaSHFNZStlOWVJM1FpQTlZak9sWFov?=
- =?utf-8?B?ZzNoZ1VkWU5ZVGNEdHdrc0xROEJpcWJXa2RkV3c4ZmpzNzd1K1ZUU0ZMRy9y?=
- =?utf-8?Q?IgwS14WXqimhk1kTwa5XDaIKcLxXqva59uBrpYC?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?SlJvZzNkd2tqZU8rbkRHU0Nzcy95RkVvaFNiUnN6UlJOTWw4TENVeU95Rzha?=
+ =?utf-8?B?dGZUN21COEZGSEdTRnVIWUdERXZ0U0FrbGRUYTE1MEZwOHMyYzhQaHdXb2Rm?=
+ =?utf-8?B?UHRCY2srUlYzZjJnY2UrNHpNRjFZajdNTGhhaURiWm1qVGg5WXlhbGRFV2pU?=
+ =?utf-8?B?OG54TzZXV3RDN25ueFhWWm9lb05NZERkdytkamRkSmM4UkF5QVgwemtZRDRs?=
+ =?utf-8?B?bE1PN01NMExxaDVnNFQvSXBlM0E3VDdrVXZNTzVKaFAxNlJqcklSY1Y4SFFy?=
+ =?utf-8?B?MUt6QkhHMDRuandSWmtDejB1QlRpdWw1Sk1SZzNNNWwwbDd6VCtyUlRWckE1?=
+ =?utf-8?B?KysyUi95NjZVRDBaZXRoY1BwdDJVaE9pRStpd0wzSzlVcm5maU94b1VoMXhZ?=
+ =?utf-8?B?ZkM2Qmw2aGFrNHp6NHVlQjh1K0pjbElpUFAyUkd6Wm5TUVZJZHhEaldZa2pK?=
+ =?utf-8?B?cFowYVVuclkzNjBsR3BXOFNndi9pTGFEekpoMFVSVDBOWDJtc2RQSko4SWdD?=
+ =?utf-8?B?eTRUQkkzR0MvYk1VY1NmamN5SW1IbDVPOE5yMC8zejdNVEFpUldhNHZ3eEJh?=
+ =?utf-8?B?T0dHSmd6d1VhQ2p3N3hYd0MwZ3pwTTBxSnBXVnVCRUE0YVZUMVJaV1lvU3Mz?=
+ =?utf-8?B?Tm01ekk1cm5YK2RKQTFMcFp2cDJPR01nOVNpWENEaTVadTczc01CNFBJZnBH?=
+ =?utf-8?B?NVB3aHlWdkhtdExxcktkQ2diYVMxMzIxaitGS0xKaWZuemlzRElsNHBwTlFk?=
+ =?utf-8?B?UmZGaXdPUjNBVFFKMVFldlo2RG5VbDRtcFliUWV5WUdyclpablRtaGFzRzFK?=
+ =?utf-8?B?RjFlaFlKQkhLVDQrYlFVdnp2RmVoUzBxODFrWEU0WjRaeUFqdHNVRkR2WCtk?=
+ =?utf-8?B?RXpwRXpTQlhTclhQZmRRSW5DL1U5bklaL2FHZUJneWEwQjE2ODVDN3RmMlNj?=
+ =?utf-8?B?WHFGVFU1NENXSDhXckZhZGFVaEhBblJkaGg1Wktqd2k1cUZCeWhkUDlvZ3lX?=
+ =?utf-8?B?ZHlOVlBzWWhjYTZYMFY0d1NROUMwNHEyQjcxMVJUWlFzSUJaMVRGZDUyR29l?=
+ =?utf-8?B?SWhoZ01LQjRkbDdIb0ZFNEQvbnZZa2pONGYrUTllTkZxbUxBbCtuN0JPeWRW?=
+ =?utf-8?B?V3JDT1pJNXVxeGd6VzNMOUJBazVBVkcySzNPZmxYTzgyNlNLVmRPN1hkQk55?=
+ =?utf-8?B?TjNUNk53cE9NemswNkZKYnFoN0xYeVZHWGM1OWg5T2JjajM4UE5PUEg2a0tC?=
+ =?utf-8?B?YXgxbWZXdXIrMkUzSmJzTXdSMnlLWnYvaHRlNW0wZitWV0pCZHYzeWFXNmdD?=
+ =?utf-8?B?SXRjUlFYTmxyS1NqZUxMOUxhWFRIaGN4OUFKSmE0WnZoL05xSWVBUkErMjVP?=
+ =?utf-8?B?amE3Mm5UOVJDR2NXazZMZkVUcVRzQ21wRG1VT1AyVUdYN3ZPTjcwRXN5bDZz?=
+ =?utf-8?B?TDZnYUdFbis1aldnSzBTeDNOWXYyY250alZmT2FjaUxWNllxMVprK2FtakJ0?=
+ =?utf-8?B?YkZ2R3VreWVwUWNjbUlPUGdvNHJ1SklLb0ZqYnNib0xBUXpoNU1CS3RIQ2hY?=
+ =?utf-8?B?SUR0aTNsTzhPWUpWUXFiQjM4RW91eFJPNmROaUxGTm1BUUZiWWlSV3V1Y0JT?=
+ =?utf-8?B?RU02eXppWG53cFAxRHR2VEwvYnd5dkd0VlFGenpWZTZrZVJaeE5iV2tES05H?=
+ =?utf-8?B?Y254WEYwTW12TTFqVlYybE9FMTRweW1jS05vejJxeHRRRVlTS3FFOTN1VWJr?=
+ =?utf-8?Q?+cMaZfU7EVejSq4VSntJ+PB0/o2p1X1WKHQuvsT?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eWo3c2ZrTDJ1UjhRaEJmMG5mS3VDWEVxalQ0enpBd2FkT1RFNmQ4WUVFQWFD?=
- =?utf-8?B?cHY5YXoxK3FNTGIyUXNSb3ZLbHJya1NaT1I2UmRlK2prcm5vT1FQTElrVi9U?=
- =?utf-8?B?VTM5eENKU0toRURkVzMzRnR6anFJM2hqaVpYWVBxZnZjYzFNVy9hbVZicUZ1?=
- =?utf-8?B?M01SamhRbjNTUzJSL01yYVpxK3htU1dsN0czYjUrUmkzSDNlKzdwUWU0dnVx?=
- =?utf-8?B?Y2lHaUxOODNNUmhWeXduSDA4d0Z2aWFINmZvWkc1KzN0UHE4WjZYTlY4Rmx3?=
- =?utf-8?B?YWdOMW1rbkQ5V3RLVFVYRjVkNGZha1M1VzRlODJUTkgyZGVCay80NTVqazlw?=
- =?utf-8?B?RVc0eEhYRDJ6d1JtR1pNUHA4Ykl2QWZLWWhzMmJ1bjlOS2t4R0dlYU9aTmRW?=
- =?utf-8?B?ZzVlWk80alBCSnQ1aVhra3dKbmJTQmh4emNFZFJ4Z1QzZWJ4YTR6eEkybzNV?=
- =?utf-8?B?VTBkYW1oaExtMjNPVG9HQkpUNFZKMUE2V2wwZjB4Wi95cWZ2c1VtdGtTTytS?=
- =?utf-8?B?QkwwTVdrRDNtdUVjOE1OYkNpYUFLMFVUdnp3VHN1TmhiMWNLQ3psZ29sTWN0?=
- =?utf-8?B?QW93MXpkMXNvSG1FM0VwN213ODVEZHVhQnVyNEdLRlpEbGR5VFRVMjk5dk43?=
- =?utf-8?B?QTRhQ1QxWEFyS1NZMHNGRmw4RzF0V1dBWHNNU2hzck8wTW9STVlTMWtOMXIv?=
- =?utf-8?B?MERmZnMxdlloQlZZMlhhNUFYTEhkcjJWV09tcVBUZW5Uc0ptaEVVaDJOaG5O?=
- =?utf-8?B?UXA4NXpZeTArK2FwUWIwV0RNemxTdHlvL1pNSmJFUzNSbW0zRW1HTWdUZ2ti?=
- =?utf-8?B?WEw2YWxoSzVZTjl0SnFaT3hFSW9HYlFUYkpJOFVnT1dnbHFNU0dSd2thbGhp?=
- =?utf-8?B?NHZRQURTQkFsWGk0Q1FCUU5HOXcyRjM1aTFLSjdJc3hXdFFLVmJUS0JpNkFM?=
- =?utf-8?B?SDlic2FDOTh0d3VUYkh1Y1FLOE5ndGZuaFVJYjhLbzhYMmN1ZG91UEtTbERY?=
- =?utf-8?B?VlRnenViUXI5TEgvYi8vbjVSbzVSSkZuRDZOd0gyVVUwSmUveEZaZ2tPYVh6?=
- =?utf-8?B?a2JMcXRCTnB4TmhUSkFXVWFkUno5V2ROSE1OTFdja3N3RVlIRXVxbnNCREEr?=
- =?utf-8?B?K29zdXQzTm9CNncrQkVTSEcwZFUzYlpBaTJiZkFCZnJubVVqaG9FaFovWVpn?=
- =?utf-8?B?emJkbnZaaUhjNEZMRlR6T0FLT0RJVXdrTHhQbnRQVmJudVY5M3VHSFZZMW1E?=
- =?utf-8?B?VkNVNytpU0U4SVNpbXJTYWt0dFV4Nk4xZW1mWWJtSmZFZ3NXRVN1Y3c0cnk1?=
- =?utf-8?B?eGs0Y2VlQzRsOVJQRXpEYkN5QUpMUm1TdjhEVm5pc3h0S3VDZXY3ckhzNVVm?=
- =?utf-8?B?NFNpY2RZRzF6NzMvSTdvSlE5N3lxVzROcjJKaVc2ZzBGZHAyQzFTdTJXSS91?=
- =?utf-8?B?TVVXVG5MM2lMeGk5V0xERm0xWDNDenY0eTRnelhOR0l4T3BGVnp6V1RWT0d2?=
- =?utf-8?B?bHozbGdnTmZ2Zm0rVU9wUzJzeVF4emFvUjNWQkp4T2g4eVRqb3pJUmJwVWhj?=
- =?utf-8?B?bGFsMlkxdklXS3lDSjdrWkpMOUxFV0NGa1Q2aDBYKzJITUxaNXRVeTJ1SURh?=
- =?utf-8?B?N25ibEkwYjZCNFkzNk5namRXckJ5RmNOMGJWRTNLRThRZWpSeG5ldXB5SG5s?=
- =?utf-8?B?N0hUQjRwaENyWGYxc3VNRUxpSU5XcGFnazlhQVlQSlcrVUlzRi9iWVNPRDVt?=
- =?utf-8?B?T21ZUXNoVkhTdHJ6Sm1EMG1hcGxDbFB5RWUybE4rN3FYL3Rjd1dKYzRyWUFD?=
- =?utf-8?B?dVppOUVjaURSVTdrNnhlazBQUmNEcGhrd0tUYTA1bzNhdHVJQS95TUtuWFZp?=
- =?utf-8?B?Y3ZLb1VPcUQyWjR1RGh4SU1FNXJzNjEvbHJGN2wzZHd0ZzBnUXlIMitGQWo5?=
- =?utf-8?B?OWtDcnl4dkgrY2I3UGd1UUlzTUZ4WDRSWVNYN0tuQTI4VlRtTW9sNzQ1RWRu?=
- =?utf-8?B?dGVVNHh0SStWM1RwSlNQNitQcHZMeDVseEFqUEZSRTFITWhUVE1xd2s2dGN0?=
- =?utf-8?B?Yk5lL3BaTWF0aWF1YXhYQ0JXSFZhei81WEJiNFlIQWdFT3E5blI4L20rVlRE?=
- =?utf-8?B?Z1JqUEpJV3JSbk1jRGgvWU5QL0pYV3NUcjd4dlpjWGRtVHE1cFQrNmJYR2hj?=
- =?utf-8?B?Qmc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0232074e-68f4-41b6-780c-08dcf76d1f6a
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?STRyeUhJVUFBSVhoaWtjWVFxajhYSHVZQ0xLL1kwc2orUmpidFc0UWt2dDc5?=
+ =?utf-8?B?bGpDdmxLTVJlbngra2x3amsvdytabTBEVmo5eUlsK3BLMHRwRDByR1RBNE1n?=
+ =?utf-8?B?cjBBUytETE9lUVBQRkxiTGY0R21UdnRNekdCL0ozUG9FN0xMckhLUW44NWVv?=
+ =?utf-8?B?aFFMVEI5aDFuN1RFSmc5RTJEV3hxNUdKREFnZzMzMjBFN1hHcng5aDVjZ0I4?=
+ =?utf-8?B?amFrQ0lpL2Y3Z0NGUm5oUFJGYjFFamUzcWxNLzNXay9Rbi9zK1FwQU5QZGtZ?=
+ =?utf-8?B?K013Z2xwUTN4SDZUcmdzZGd6dG9ObjYwdzJNK2E5bU80RnpWTUFLbVpQK1Bp?=
+ =?utf-8?B?YnlsRFpsekt1VjlmN0cwek0vcWpneDRTbmJyaGsxUmxnSWlrcy9xa1QrQ0NW?=
+ =?utf-8?B?bkZzQjJMQ0s3VHlrcXdPdGhJK3RCSDMrQmp3ME1HR0xYQjBEQUp4UkduOUFJ?=
+ =?utf-8?B?UWw3OGNiV3QxTCt6elVwN3ZtL2t4V2pqSCtKQjRWS2JLWHBtOUhwOVp1TTJr?=
+ =?utf-8?B?aG13cEpBSlFsV1dkalhGS3NCM2lNUWQyWFp1NloxNXBjUlZsOVRFdXRhK3c2?=
+ =?utf-8?B?blU3d0U1cjBVUTFwcVY4RHorMmdKM015ek03VGk0ejB1WHU4MXZpdTBOa28z?=
+ =?utf-8?B?WTFPZXl3dFJtZEppU3ZyWlZxMDgySGlPSGhpd2RLZWpXVWJoTFB4T2xWSkNu?=
+ =?utf-8?B?OEV4WmFyRFEvY2pWNi8zMVd3Z2dtK1h5MEluR0pLeWgwamRXOFhua2J0M3BX?=
+ =?utf-8?B?UStjSTlyYVZ0OHJEWjB5eW5wRzZ5ZG9zTHNHN0puZkIvZUJteldROWtGRFdB?=
+ =?utf-8?B?R3pPNDNhZHBjb0NHMHZ3NlVHd0tNeVFBM0c1NVdmOHJGdUNhRUU2SE5oMU1U?=
+ =?utf-8?B?M1daL05wWWRGQ3VNNTlOY3Q0RjdWNDFFN3VPTnhoN3dKZ212TTE0ei9sdVdF?=
+ =?utf-8?B?WmRPazh0MTlGSHV6RUN1N0ZGWDFDUkdFTHpCU0xTelJ3bW5QNW5QdjFMR2lr?=
+ =?utf-8?B?Rnh1R2F3dDUxUytDVUR3UjJpRkwvakYrMmtVYndUVy9hcXNCanR3N1d2TmRj?=
+ =?utf-8?B?NC9PakMwUHc0ZjYrdS9RTGZIU0lkSWlUQW9oK291SnUzMVA5N2kyN3V0OE5W?=
+ =?utf-8?B?WFZxeUJRZUdXRUJJWGI5Y3F3VXg5YWdJY0VjbTBTZUNlMVJIUTZDdDIxNDZU?=
+ =?utf-8?B?clpVdTB3aU16ZlVwZ0FuL01wQ1NwNFFYam1UREtsNW9HRTZNLzN3K2lMeFdi?=
+ =?utf-8?B?VmFPdU5LUXNrUzJGeGxDNVBNaGt2TkpvOHdlMHlrRDYrU2hoZisrU0hiUGhj?=
+ =?utf-8?B?T201V1hVbDJDd29USzh1ZTk3djFwa3BtbXZZSytlcVN0RWNCQWQ3c0Myc2RR?=
+ =?utf-8?B?aWl5dzl3NnVUVW1Ib2diVjU5OVowYUFQN2h5NFZodXp1L3lxUkU3aXJLdkdH?=
+ =?utf-8?B?UFVuY0pIMlRWRmg4MktxbHZ1MG9MMFJ2dm9pLy9oM05GSjZiTzloV0g4N1NV?=
+ =?utf-8?B?ZVAyN0pSWXJhdElmckJ1bW9QbzZKYUxnOFhDV2ZXNGtsMU1KUGJqVllhbDBE?=
+ =?utf-8?B?YnRKS2NDdGlKcXJxbWpwQXZ3ZXoyZ3h5NlN6REJMRVN4N0NmcjBHeWR5bm1I?=
+ =?utf-8?B?TXhzZVZQUXZVV3pETngrOXZoQ3kwMWkvSEdUZ05DaXMyWDFOYVBsU2dEcmZQ?=
+ =?utf-8?B?b0o1L25Ed1dKemlsYk56N2QrOGRZRmF5VlBvZEdCZ0dhQWRCR3daNCtzbnpJ?=
+ =?utf-8?B?L1M0VDg4cmlmTHFtY2ZZNXlnaGlNTnN4SmJNY2lLdmRsNWZZTTVEZVY3Tk1H?=
+ =?utf-8?B?c0FQc3Azek4wVmRaeUtXZEdVUDZnYXlqOVdZZDdETG5YN1MzNGVEUVZyQ2NS?=
+ =?utf-8?B?YXU3VWpLZFRNUmVROGgydkxQeWM1NkhTQTc2cEZ6bC8vTkIzSHhwamZJdnVG?=
+ =?utf-8?B?SDBBTUthZzB2MHROVURLLzVqVjN4V1JscitVT2pJZC82RmxXVHByMUp2S1ph?=
+ =?utf-8?B?VVRjU1lOU2pMWk8zdWhBMHV0MGpzdkZwMGJmcHVXaXZ1YzNkQVhGcmxrUDlX?=
+ =?utf-8?B?L2xVWXBFNnk4Nk93eXhHUmRFd2FQc0NYenBnSDRHZkpRWjVRaDJXb0lWeERT?=
+ =?utf-8?B?dkYrQ0Z6TG10M1lCUmkzVHltWFRZcWRWMTV5a2gyQlYyVG1BNXM2eHBSNlAz?=
+ =?utf-8?B?TWc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 48fe9c32-7343-4c03-6c54-08dcf76ddd1e
 X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Oct 2024 16:25:23.3761 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Oct 2024 16:30:41.4602 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: X3EVRZuUnw3zT5K31sBKvhN6WHGle0Vzw9wppUjydPQzIAu/KVlDppis0LMlNOdIUgtYFirZyCtaEzMHuxp5NA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB8421
+X-MS-Exchange-CrossTenant-UserPrincipalName: Fxg8PBUdgGsa3Qx0g6uMhD+9Y18KSfhGzU0+KqqWmx2qqUUiM0wziMJa4aSjlQF1e8RW7ZnPpBqeRQJpY54Gvw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB7636
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -195,421 +193,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Govindapillai, Vinod (2024-10-28 12:19:01-03:00)
->On Fri, 2024-10-25 at 13:47 -0700, Clint Taylor wrote:
->> From: Matt Roper <matthew.d.roper@intel.com>
->>=20
->> There are some minor changes to pmdemand handling on Xe3:
->> =C2=A0- Active scalers are no longer tracked.=C2=A0 We can simply skip t=
-he readout
->> =C2=A0=C2=A0 and programming of this field.
->> =C2=A0- Active dbuf slices are no longer tracked.=C2=A0 We should skip t=
-he readout
->> =C2=A0=C2=A0 and programming of this field and also make sure that it st=
-ays 0 in
->> =C2=A0=C2=A0 our software bookkeeping so that we won't erroneously retur=
-n true
->> =C2=A0=C2=A0 from intel_pmdemand_needs_update() due to mismatches.
->> =C2=A0- Even though there aren't enough pipes to utilize them, the size =
-of
->> =C2=A0=C2=A0 the 'active pipes' field has expanded to four bits, taking =
-over the
->> =C2=A0=C2=A0 register bits previously used for dbuf slices.=C2=A0 Since =
-the lower bits
->> =C2=A0=C2=A0 of the mask have moved, we need to update our reads/writes =
-to handle
->> =C2=A0=C2=A0 this properly.
->>=20
->> v2: active pipes is no longer always max 3, add in the ability to go to
->> 4 for PTL.
->> v3: use intel_display for display_ver check, use INTEL_NUM_PIPES
->> v4: add a conditional for number of pipes macro vs using 3.
->> v5: reverse conditional order of v4.
->> v6: undo v5 and fix num_pipes assignment
->> v7: pass display struct instead of i915, checkpatch fix
->>=20
->> Bspec: 68883, 69125
->> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
->> Signed-off-by: Matt Atwood <matthew.s.atwood@intel.com>
->> Signed-off-by: Clint Taylor <Clinton.A.Taylor@intel.com>
->> ---
->> =C2=A0drivers/gpu/drm/i915/display/intel_pmdemand.c | 73 +++++++++++++--=
-----
->> =C2=A0drivers/gpu/drm/i915/display/intel_pmdemand.h |=C2=A0 4 +-
->> =C2=A0drivers/gpu/drm/i915/i915_reg.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 1 +
->> =C2=A03 files changed, 53 insertions(+), 25 deletions(-)
->>=20
->> diff --git a/drivers/gpu/drm/i915/display/intel_pmdemand.c
->> b/drivers/gpu/drm/i915/display/intel_pmdemand.c
->> index ceaf9e3147da..32443ae8e76c 100644
->> --- a/drivers/gpu/drm/i915/display/intel_pmdemand.c
->> +++ b/drivers/gpu/drm/i915/display/intel_pmdemand.c
->> @@ -258,6 +258,7 @@ intel_pmdemand_connector_needs_update(struct intel_a=
-tomic_state *state)
->> =C2=A0
->> =C2=A0static bool intel_pmdemand_needs_update(struct intel_atomic_state =
-*state)
->> =C2=A0{
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct intel_display *display=
- =3D to_intel_display(state);
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0const struct intel_bw_st=
-ate *new_bw_state, *old_bw_state;
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0const struct intel_cdclk=
-_state *new_cdclk_state, *old_cdclk_state;
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0const struct intel_crtc_=
-state *new_crtc_state, *old_crtc_state;
->> @@ -274,12 +275,16 @@ static bool intel_pmdemand_needs_update(struct int=
-el_atomic_state *state)
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0new_dbuf_state =3D intel=
-_atomic_get_new_dbuf_state(state);
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0old_dbuf_state =3D intel=
-_atomic_get_old_dbuf_state(state);
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (new_dbuf_state &&
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 (new_dbuf_=
-state->active_pipes !=3D
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 old_=
-dbuf_state->active_pipes ||
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 new_=
-dbuf_state->enabled_slices !=3D
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 old_=
-dbuf_state->enabled_slices))
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 new_dbuf_s=
-tate->active_pipes !=3D old_dbuf_state->active_pipes)
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0return true;
->> =C2=A0
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (DISPLAY_VER(display) < 30=
-) {
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0if (new_dbuf_state &&
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 new_dbuf_state->enabled_slices !=3D
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 old_dbuf_state->enabled_slices)
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return=
- true;
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
->> +
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0new_cdclk_state =3D inte=
-l_atomic_get_new_cdclk_state(state);
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0old_cdclk_state =3D inte=
-l_atomic_get_old_cdclk_state(state);
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (new_cdclk_state &&
->> @@ -327,10 +332,15 @@ int intel_pmdemand_atomic_check(struct intel_atomi=
-c_state *state)
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (IS_ERR(new_dbuf_stat=
-e))
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0return PTR_ERR(new_dbuf_state);
->> =C2=A0
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0new_pmdemand_state->params.ac=
-tive_pipes =3D
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0min_t(u8, hweight8(new_dbuf_state->active_pipes), 3);
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0new_pmdemand_state->params.ac=
-tive_dbufs =3D
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0min_t(u8, hweight8(new_dbuf_state->enabled_slices), 3)=
-;
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (DISPLAY_VER(i915) < 30) {
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0new_pmdemand_state->params.active_dbufs =3D
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0min_t(=
-u8, hweight8(new_dbuf_state->enabled_slices), 3);
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0new_pmdemand_state->params.active_pipes =3D
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0min_t(=
-u8, hweight8(new_dbuf_state->active_pipes), 3);
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0} else {
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0new_pmdemand_state->params.active_pipes =3D
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0min_t(=
-u8, hweight8(new_dbuf_state->active_pipes), INTEL_NUM_PIPES(i915));
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
->> =C2=A0
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0new_cdclk_state =3D inte=
-l_atomic_get_cdclk_state(state);
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (IS_ERR(new_cdclk_sta=
-te))
->> @@ -395,27 +405,32 @@ intel_pmdemand_init_pmdemand_params(struct drm_i91=
-5_private *i915,
->> =C2=A0
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0reg2 =3D intel_de_read(i=
-915, XELPDP_INITIATE_PMDEMAND_REQUEST(1));
->> =C2=A0
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* Set 1*/
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0pmdemand_state->params.q=
-clk_gv_bw =3D
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0REG_FIELD_GET(XELPDP_PMDEMAND_QCLK_GV_BW_MASK, reg1=
-);
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0pmdemand_state->params.v=
-oltage_index =3D
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0REG_FIELD_GET(XELPDP_PMDEMAND_VOLTAGE_INDEX_MASK, r=
-eg1);
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0pmdemand_state->params.q=
-clk_gv_index =3D
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0REG_FIELD_GET(XELPDP_PMDEMAND_QCLK_GV_INDEX_MASK, r=
-eg1);
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0pmdemand_state->params.active=
-_pipes =3D
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0REG_FIELD_GET(XELPDP_PMDEMAND_PIPES_MASK, reg1);
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0pmdemand_state->params.active=
-_dbufs =3D
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0REG_FIELD_GET(XELPDP_PMDEMAND_DBUFS_MASK, reg1);
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0pmdemand_state->params.a=
-ctive_phys =3D
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0REG_FIELD_GET(XELPDP_PMDEMAND_PHYS_MASK, reg1);
->> =C2=A0
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* Set 2*/
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0pmdemand_state->params.c=
-dclk_freq_mhz =3D
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0REG_FIELD_GET(XELPDP_PMDEMAND_CDCLK_FREQ_MASK, reg2=
-);
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0pmdemand_state->params.d=
-diclk_max =3D
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0REG_FIELD_GET(XELPDP_PMDEMAND_DDICLK_FREQ_MASK, reg=
-2);
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0pmdemand_state->params.scaler=
-s =3D
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0REG_FIELD_GET(XELPDP_PMDEMAND_SCALERS_MASK, reg2);
->> +
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (DISPLAY_VER(i915) >=3D 30=
-) {
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0pmdemand_state->params.active_pipes =3D
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0REG_FI=
-ELD_GET(XE3_PMDEMAND_PIPES_MASK, reg1);
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0} else {
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0pmdemand_state->params.active_pipes =3D
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0REG_FI=
-ELD_GET(XELPDP_PMDEMAND_PIPES_MASK, reg1);
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0pmdemand_state->params.active_dbufs =3D
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0REG_FI=
-ELD_GET(XELPDP_PMDEMAND_DBUFS_MASK, reg1);
->> +
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0pmdemand_state->params.scalers =3D
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0REG_FI=
-ELD_GET(XELPDP_PMDEMAND_SCALERS_MASK, reg2);
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
->> =C2=A0
->> =C2=A0unlock:
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0mutex_unlock(&i915->disp=
-lay.pmdemand.lock);
->> @@ -442,6 +457,10 @@ void intel_pmdemand_program_dbuf(struct drm_i915_pr=
-ivate *i915,
->> =C2=A0{
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u32 dbufs =3D min_t(u32,=
- hweight8(dbuf_slices), 3);
->> =C2=A0
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* PM Demand only tracks acti=
-ve dbufs on pre-Xe3 platforms */
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (DISPLAY_VER(i915) >=3D 30=
-)
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0return;
->> +
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0mutex_lock(&i915->displa=
-y.pmdemand.lock);
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (drm_WARN_ON(&i915->d=
-rm,
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0!in=
-tel_pmdemand_check_prev_transaction(i915)))
->> @@ -460,9 +479,10 @@ void intel_pmdemand_program_dbuf(struct drm_i915_pr=
-ivate *i915,
->> =C2=A0}
->> =C2=A0
->> =C2=A0static void
->> -intel_pmdemand_update_params(const struct intel_pmdemand_state *new,
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 const struct intel_pmdemand_state *old,
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 u32 *reg1, u32 *reg2, bool serialized)
->> +intel_pmdemand_update_params(struct intel_display *display,
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const struct intel_pmdemand_stat=
-e *new,
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const struct intel_pmdemand_stat=
-e *old,
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 u32 *reg1, u32 *reg2, bool seria=
-lized)
->Wonder if this need to be aligned!
+Quoting Clint Taylor (2024-10-25 17:47:38-03:00)
+>C10 phy timeouts occur on xe3lpd if the c10 bus is reset every
+>transaction. Starting with xe3lpd this is bus reset not necessary
 
-Yep, it looks like we need an alignment fix here indeed. I just applied thi=
-s
-series and the end result is misaligned.
+I provided a r-b with minor suggestions to this patch in the v4 series:
+
+https://lore.kernel.org/intel-xe/172986437914.1548.2518455286416273948@gjso=
+usa-mobl2/
+
+--
+Gustavo Sousa
 
 >
->Otherwise, looks okay to me.
+>Signed-off-by: Clint Taylor <clinton.a.taylor@intel.com>
+>---
+> drivers/gpu/drm/i915/display/intel_cx0_phy.c | 6 ++++--
+> 1 file changed, 4 insertions(+), 2 deletions(-)
 >
->Reviewed-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
-
-With the alignment fix, this patch is
-
-Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
-
-as well.
-
->
->> =C2=A0{
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/*
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * The pmdemand paramete=
-r updates happens in two steps. Pre plane and
->> @@ -495,16 +515,22 @@ intel_pmdemand_update_params(const struct intel_pm=
-demand_state *new,
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0update_reg(reg1, qclk_gv=
-_bw, XELPDP_PMDEMAND_QCLK_GV_BW_MASK);
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0update_reg(reg1, voltage=
-_index, XELPDP_PMDEMAND_VOLTAGE_INDEX_MASK);
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0update_reg(reg1, qclk_gv=
-_index, XELPDP_PMDEMAND_QCLK_GV_INDEX_MASK);
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0update_reg(reg1, active_pipes=
-, XELPDP_PMDEMAND_PIPES_MASK);
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0update_reg(reg1, active_dbufs=
-, XELPDP_PMDEMAND_DBUFS_MASK);
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0update_reg(reg1, active_=
-phys, XELPDP_PMDEMAND_PHYS_MASK);
->> =C2=A0
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* Set 2*/
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0update_reg(reg2, cdclk_f=
-req_mhz, XELPDP_PMDEMAND_CDCLK_FREQ_MASK);
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0update_reg(reg2, ddiclk_=
-max, XELPDP_PMDEMAND_DDICLK_FREQ_MASK);
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0update_reg(reg2, scalers, XEL=
-PDP_PMDEMAND_SCALERS_MASK);
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0update_reg(reg2, plls, X=
-ELPDP_PMDEMAND_PLLS_MASK);
->> =C2=A0
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (DISPLAY_VER(display) >=3D=
- 30) {
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0update_reg(reg1, active_pipes, XE3_PMDEMAND_PIPES_MASK=
-);
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0} else {
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0update_reg(reg1, active_pipes, XELPDP_PMDEMAND_PIPES_M=
-ASK);
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0update_reg(reg1, active_dbufs, XELPDP_PMDEMAND_DBUFS_M=
-ASK);
->> +
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0update_reg(reg2, scalers, XELPDP_PMDEMAND_SCALERS_MASK=
-);
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
->> +
->> =C2=A0#undef update_reg
->> =C2=A0}
->> =C2=A0
->> @@ -514,6 +540,7 @@ intel_pmdemand_program_params(struct drm_i915_privat=
-e *i915,
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 const struct intel_pmdemand_state *old,
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 bool serialized)
->> =C2=A0{
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct intel_display *display=
- =3D &i915->display;
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0bool changed =3D false;
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u32 reg1, mod_reg1;
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u32 reg2, mod_reg2;
->> @@ -529,7 +556,7 @@ intel_pmdemand_program_params(struct drm_i915_privat=
-e *i915,
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0reg2 =3D intel_de_read(i=
-915, XELPDP_INITIATE_PMDEMAND_REQUEST(1));
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0mod_reg2 =3D reg2;
->> =C2=A0
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0intel_pmdemand_update_params(=
-new, old, &mod_reg1, &mod_reg2,
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0intel_pmdemand_update_params(=
-display, new, old, &mod_reg1, &mod_reg2,
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 seria=
-lized);
->> =C2=A0
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (reg1 !=3D mod_reg1) =
-{
->> diff --git a/drivers/gpu/drm/i915/display/intel_pmdemand.h
->> b/drivers/gpu/drm/i915/display/intel_pmdemand.h
->> index 128fd61f8f14..a1c49efdc493 100644
->> --- a/drivers/gpu/drm/i915/display/intel_pmdemand.h
->> +++ b/drivers/gpu/drm/i915/display/intel_pmdemand.h
->> @@ -20,14 +20,14 @@ struct pmdemand_params {
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u8 voltage_index;
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u8 qclk_gv_index;
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u8 active_pipes;
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u8 active_dbufs;
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u8 active_dbufs;=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* pre-Xe3 only */
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* Total number of non t=
-ype C active phys from active_phys_mask */
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u8 active_phys;
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u8 plls;
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u16 cdclk_freq_mhz;
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* max from ddi_clocks[]=
- */
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u16 ddiclk_max;
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u8 scalers;
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u8 scalers;=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* pre-Xe3 only=
- */
->> =C2=A0};
->> =C2=A0
->> =C2=A0struct intel_pmdemand_state {
->> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915=
-_reg.h
->> index 405f409e9761..89e4381f8baa 100644
->> --- a/drivers/gpu/drm/i915/i915_reg.h
->> +++ b/drivers/gpu/drm/i915/i915_reg.h
->> @@ -2696,6 +2696,7 @@
->> =C2=A0#define=C2=A0 XELPDP_PMDEMAND_QCLK_GV_BW_MASK=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0REG_GE=
-NMASK(31, 16)
->> =C2=A0#define=C2=A0 XELPDP_PMDEMAND_VOLTAGE_INDEX_MASK=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0REG_GENMASK(14, 12)
->> =C2=A0#define=C2=A0 XELPDP_PMDEMAND_QCLK_GV_INDEX_MASK=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0REG_GENMASK(11, 8)
->> +#define=C2=A0 XE3_PMDEMAND_PIPES_MASK=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0REG_GENMASK(7, 4)
->> =C2=A0#define=C2=A0 XELPDP_PMDEMAND_PIPES_MASK=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0REG_GENMASK(7, 6)
->> =C2=A0#define=C2=A0 XELPDP_PMDEMAND_DBUFS_MASK=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0REG_GENMASK(5, 4)
->> =C2=A0#define=C2=A0 XELPDP_PMDEMAND_PHYS_MASK=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0REG_GENMASK(2, 0)
+>diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/dr=
+m/i915/display/intel_cx0_phy.c
+>index 4d6e1c135bdc..c6e0cbff5201 100644
+>--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+>+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+>@@ -224,7 +224,8 @@ static int __intel_cx0_read_once(struct intel_encoder =
+*encoder,
+>          * down and let the message bus to end up
+>          * in a known state
+>          */
+>-        intel_cx0_bus_reset(encoder, lane);
+>+        if (DISPLAY_VER(i915) < 30)
+>+                intel_cx0_bus_reset(encoder, lane);
+>=20
+>         return REG_FIELD_GET(XELPDP_PORT_P2M_DATA_MASK, val);
+> }
+>@@ -313,7 +314,8 @@ static int __intel_cx0_write_once(struct intel_encoder=
+ *encoder,
+>          * down and let the message bus to end up
+>          * in a known state
+>          */
+>-        intel_cx0_bus_reset(encoder, lane);
+>+        if (DISPLAY_VER(i915) < 30)
+>+                intel_cx0_bus_reset(encoder, lane);
+>=20
+>         return 0;
+> }
+>--=20
+>2.25.1
 >
