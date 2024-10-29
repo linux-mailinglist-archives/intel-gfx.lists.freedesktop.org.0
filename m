@@ -2,69 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66DC49B53F0
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Oct 2024 21:38:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 166BB9B54B1
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Oct 2024 22:06:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D7AAC10E3AD;
-	Tue, 29 Oct 2024 20:38:33 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ya5wx5nD";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 008E410E3B3;
+	Tue, 29 Oct 2024 21:06:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A04510E3AD;
- Tue, 29 Oct 2024 20:38:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730234312; x=1761770312;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=6okHm/7AGGiIgVtiEfCGzhiqT2UdVm/K9eRG9HnO6hU=;
- b=Ya5wx5nDf2b7YWAx22LT4WgaAUe/cAbiKmcYao91PSzrgTebcoM5YYEV
- ClY5XNw8WNWvs43jS9fkNjiQ5oVugH0BGk/HmFtAwX3z3+OahL4iBPvDG
- Mdue5QiXwp4mmys/YmvqACMKXWpy8+IYNY2vMxeOi5vVOyElH4x5urbXj
- lv/spN1py0qzu1hR7xlBRZW+MJdALTaaS7nCo+G/TAhy2n2suc2RGfAcj
- 8NAEgO8nixPHO2YpTh7WR/Rlxi3uHYbyNbp3pYLh0fDqLe6OhOIZFFYxG
- GEcKGE4IBzCEPa4PXhRbShPv6JHLaEzdNwppYfkl+hGbtbN4kdE5eGcyE g==;
-X-CSE-ConnectionGUID: zu/Ke2ciT66rmRN6rKPoqA==
-X-CSE-MsgGUID: axrBxF/dRxy1pBbgz1sEeg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11240"; a="40518711"
-X-IronPort-AV: E=Sophos;i="6.11,243,1725346800"; d="scan'208";a="40518711"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2024 13:38:31 -0700
-X-CSE-ConnectionGUID: Nsb/u+yvSCeXr6hmL5ZO2A==
-X-CSE-MsgGUID: Wum6oC0bTZC6i0saa0y+hQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="86830630"
-Received: from kfilipek-mobl.ger.corp.intel.com (HELO [10.245.119.69])
- ([10.245.119.69])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2024 13:38:28 -0700
-Message-ID: <84a9090c-a226-4c74-b4a5-2449558a3b9f@linux.intel.com>
-Date: Tue, 29 Oct 2024 21:38:26 +0100
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5088910E3AE;
+ Tue, 29 Oct 2024 21:06:11 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2423924240023418513=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] accel/ivpu: remove DRIVER_DATE conditional
- drm_driver init
-To: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Cc: David Airlie <airlied@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Oded Gabbay <ogabbay@kernel.org>,
- Simona Vetter <simona@ffwll.ch>,
- Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>
-References: <20241028185141.3756176-1-jani.nikula@intel.com>
- <20241028185141.3756176-2-jani.nikula@intel.com>
-Content-Language: en-US
-From: Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
- Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <20241028185141.3756176-2-jani.nikula@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/psr=3A_WA_for_pane?=
+ =?utf-8?q?ls_stating_bad_link_status_after_PSR_is_enabled_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 29 Oct 2024 21:06:11 -0000
+Message-ID: <173023597132.1361174.17578347186568263621@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241029122415.1789528-1-jouni.hogander@intel.com>
+In-Reply-To: <20241029122415.1789528-1-jouni.hogander@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,56 +37,157 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Reviewed-by: Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>
+--===============2423924240023418513==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 10/28/2024 7:51 PM, Jani Nikula wrote:
-> The ivpu struct drm_driver has conditional initialization based on #ifdef
-> DRIVER_DATE, which is never defined anywhere. Neither are the macros
-> referenced within the block: DRIVER_DATE, DRIVER_MAJOR, DRIVER_MINOR,
-> and DRIVER_PATCHLEVEL. With the struct drm_driver date member going away
-> anyway, just remove the conditional compilation.
-> 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> 
-> ---
-> 
-> Note: I prefer to merge this together with the other patches via
-> drm-misc-next.
-> 
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Oded Gabbay <ogabbay@kernel.org>
-> Cc: Simona Vetter <simona@ffwll.ch>
-> Cc: Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: dri-devel@lists.freedesktop.org
-> ---
->  drivers/accel/ivpu/ivpu_drv.c | 7 -------
->  1 file changed, 7 deletions(-)
-> 
-> diff --git a/drivers/accel/ivpu/ivpu_drv.c b/drivers/accel/ivpu/ivpu_drv.c
-> index e7d8967c02f2..07c7e5a5f22b 100644
-> --- a/drivers/accel/ivpu/ivpu_drv.c
-> +++ b/drivers/accel/ivpu/ivpu_drv.c
-> @@ -456,15 +456,8 @@ static const struct drm_driver driver = {
->  	.name = DRIVER_NAME,
->  	.desc = DRIVER_DESC,
->  
-> -#ifdef DRIVER_DATE
-> -	.date = DRIVER_DATE,
-> -	.major = DRIVER_MAJOR,
-> -	.minor = DRIVER_MINOR,
-> -	.patchlevel = DRIVER_PATCHLEVEL,
-> -#else
->  	.date = UTS_RELEASE,
->  	.major = 1,
-> -#endif
->  };
->  
->  static void ivpu_context_abort_invalid(struct ivpu_device *vdev)
+== Series Details ==
 
+Series: drm/i915/psr: WA for panels stating bad link status after PSR is enabled (rev2)
+URL   : https://patchwork.freedesktop.org/series/140570/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_15606 -> Patchwork_140570v2
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140570v2/index.html
+
+Participating hosts (47 -> 46)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_140570v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live:
+    - fi-hsw-4770:        [PASS][1] -> [DMESG-WARN][2] ([i915#12133]) +1 other test dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15606/fi-hsw-4770/igt@i915_selftest@live.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140570v2/fi-hsw-4770/igt@i915_selftest@live.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live:
+    - bat-adlm-1:         [INCOMPLETE][3] ([i915#12133]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15606/bat-adlm-1/igt@i915_selftest@live.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140570v2/bat-adlm-1/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-adlm-1:         [INCOMPLETE][5] ([i915#9413]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15606/bat-adlm-1/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140570v2/bat-adlm-1/igt@i915_selftest@live@workarounds.html
+
+  
+  [i915#12133]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133
+  [i915#9413]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_15606 -> Patchwork_140570v2
+
+  CI-20190529: 20190529
+  CI_DRM_15606: 91b5d7af697c6765039b8700127c1740da858065 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8087: 7abd9c49a49a9ff1f3300d7c51a92a5af8a789f1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_140570v2: 91b5d7af697c6765039b8700127c1740da858065 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140570v2/index.html
+
+--===============2423924240023418513==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/psr: WA for panels stating bad link status after PSR is enabled (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/140570/">https://patchwork.freedesktop.org/series/140570/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140570v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140570v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_15606 -&gt; Patchwork_140570v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140570v2/index.html</p>
+<h2>Participating hosts (47 -&gt; 46)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_140570v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live:<ul>
+<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15606/fi-hsw-4770/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140570v2/fi-hsw-4770/igt@i915_selftest@live.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133">i915#12133</a>) +1 other test dmesg-warn</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-adlm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15606/bat-adlm-1/igt@i915_selftest@live.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133">i915#12133</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140570v2/bat-adlm-1/igt@i915_selftest@live.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-adlm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15606/bat-adlm-1/igt@i915_selftest@live@workarounds.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413">i915#9413</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140570v2/bat-adlm-1/igt@i915_selftest@live@workarounds.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_15606 -&gt; Patchwork_140570v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_15606: 91b5d7af697c6765039b8700127c1740da858065 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8087: 7abd9c49a49a9ff1f3300d7c51a92a5af8a789f1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_140570v2: 91b5d7af697c6765039b8700127c1740da858065 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============2423924240023418513==--
