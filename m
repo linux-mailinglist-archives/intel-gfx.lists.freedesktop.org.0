@@ -2,58 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FE6E9B500E
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Oct 2024 18:04:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FFF99B502C
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Oct 2024 18:14:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B9FD10E6AA;
-	Tue, 29 Oct 2024 17:04:50 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SMcydHr2";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E11410E3A6;
+	Tue, 29 Oct 2024 17:14:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A7D6810E6AA
- for <intel-gfx@lists.freedesktop.org>; Tue, 29 Oct 2024 17:04:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730221489; x=1761757489;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=hm2Tan0k7Fgg4SNNV6lEcgmZ3782GaVNcOPMVrXzOuk=;
- b=SMcydHr2o99IPHm2u+yDi0g0lWEjyR5gheldffaXR+8dc9lMNNskx07h
- PvwOmZOuTogwAfwn5I+5VrueVB1iv/y6CUg/wLi2At/LTs8Iy54g2gD7x
- 3Ms5+sQ7cWnSvYmlaDXxmcfDx5ySR0LcnoNyWRa4TydIvwhOX03aOf3L+
- roEKZG5QOgi4JkLtNDG6kgucF4T7/pOSBOz0iZB4bhVqcLJtDSrVMQvtH
- bqNAdgg7sHveXucVcTRFIU1TDEjlHYkj/To97iAFMaGkoPVaibgrmxI69
- JIKwV6/TUjVS9WjDNaj6a7miWx4HNwS0Xc4mzgBAIt1J8Gzm9B0+zQN9Q w==;
-X-CSE-ConnectionGUID: T3tbDGtaREO6iM0l4dZjdw==
-X-CSE-MsgGUID: ntWq+KphQ1moInhGszMyag==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="30017684"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="30017684"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2024 10:02:51 -0700
-X-CSE-ConnectionGUID: S2bNcv7mT4GtRgRGN7OdXA==
-X-CSE-MsgGUID: Wkhjv0CoQXeIzaEJFZFh4A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,241,1725346800"; d="scan'208";a="85978387"
-Received: from black.fi.intel.com ([10.237.72.28])
- by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2024 10:02:48 -0700
-Date: Tue, 29 Oct 2024 19:02:45 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Mika Kahola <mika.kahola@intel.com>, intel-gfx@lists.freedesktop.org,
- gustavo.sousa@intel.com
-Subject: Re: [PATCH v3] drm/i915/xe3lpd: Power request asserting/deasserting
-Message-ID: <ZyEVNW_OG0g8c0X-@black.fi.intel.com>
-References: <20241029140037.164687-1-mika.kahola@intel.com>
- <87bjz3nf8m.fsf@intel.com>
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C34810E6B0;
+ Tue, 29 Oct 2024 17:14:10 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87bjz3nf8m.fsf@intel.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/gsc=3A_ARL-?=
+ =?utf-8?q?H_and_ARL-U_need_a_newer_GSC_FW=2E?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 29 Oct 2024 17:14:10 -0000
+Message-ID: <173022205050.1359138.10243266696321675626@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241028233132.149745-1-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20241028233132.149745-1-daniele.ceraolospurio@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,33 +37,58 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 29, 2024 at 04:41:29PM +0200, Jani Nikula wrote:
-> On Tue, 29 Oct 2024, Mika Kahola <mika.kahola@intel.com> wrote:
+== Series Details ==
 
-...
+Series: drm/i915/gsc: ARL-H and ARL-U need a newer GSC FW.
+URL   : https://patchwork.freedesktop.org/series/140620/
+State : warning
 
-> > +static void wa_14020908590(struct intel_display *display,
-> > +			   bool enable)
-> > +{
-> > +	bool error = false;
-> > +
-> > +	/* check if mailbox is running busy */
-> > +	if (intel_de_wait_for_clear(display, TCSS_DISP_MAILBOX_IN_CMD,
-> > +				    TCSS_DISP_MAILBOX_IN_CMD_RUN_BUSY, 10)) {
-> > +		drm_dbg_kms(display->drm,
-> > +			    "Timeout waiting for TCSS mailbox run/busy bit to clear\n");
-> 
-> Just do drm_WARN() with the message here.
+== Summary ==
 
-Rather,
+Error: dim checkpatch failed
+a2f1e2c2a443 drm/i915/gsc: ARL-H and ARL-U need a newer GSC FW.
+-:183: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#183: FILE: include/drm/intel/pciids.h:768:
++#define INTEL_ARL_H_IDS(MACRO__, ...) \
+ 	MACRO__(0x7D51, ## __VA_ARGS__), \
++	MACRO__(0x7DD1, ## __VA_ARGS__)
 
-	ret = intel_de_wait_for_clear();
-	if (drm_WARN(drm, ret, ...))
-		return;
+-:183: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'MACRO__' - possible side-effects?
+#183: FILE: include/drm/intel/pciids.h:768:
++#define INTEL_ARL_H_IDS(MACRO__, ...) \
+ 	MACRO__(0x7D51, ## __VA_ARGS__), \
++	MACRO__(0x7DD1, ## __VA_ARGS__)
 
-Cleaner?
+-:190: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#190: FILE: include/drm/intel/pciids.h:775:
++#define INTEL_ARL_S_IDS(MACRO__, ...) \
+ 	MACRO__(0x7D67, ## __VA_ARGS__), \
+ 	MACRO__(0xB640, ## __VA_ARGS__)
 
-Raag
+-:190: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'MACRO__' - possible side-effects?
+#190: FILE: include/drm/intel/pciids.h:775:
++#define INTEL_ARL_S_IDS(MACRO__, ...) \
+ 	MACRO__(0x7D67, ## __VA_ARGS__), \
+ 	MACRO__(0xB640, ## __VA_ARGS__)
+
+-:195: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#195: FILE: include/drm/intel/pciids.h:779:
++#define INTEL_ARL_IDS(MACRO__, ...) \
++	INTEL_ARL_H_IDS(MACRO__, ## __VA_ARGS__), \
++	INTEL_ARL_U_IDS(MACRO__, ## __VA_ARGS__), \
++	INTEL_ARL_S_IDS(MACRO__, ## __VA_ARGS__)
+
+-:195: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'MACRO__' - possible side-effects?
+#195: FILE: include/drm/intel/pciids.h:779:
++#define INTEL_ARL_IDS(MACRO__, ...) \
++	INTEL_ARL_H_IDS(MACRO__, ## __VA_ARGS__), \
++	INTEL_ARL_U_IDS(MACRO__, ## __VA_ARGS__), \
++	INTEL_ARL_S_IDS(MACRO__, ## __VA_ARGS__)
+
+total: 3 errors, 0 warnings, 3 checks, 156 lines checked
+
+
