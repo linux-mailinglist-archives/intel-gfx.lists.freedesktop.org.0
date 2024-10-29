@@ -2,58 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E318B9B43F6
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Oct 2024 09:15:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A8119B4457
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Oct 2024 09:36:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87C7910E5CD;
-	Tue, 29 Oct 2024 08:15:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3812A10E21C;
+	Tue, 29 Oct 2024 08:36:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="YR7pEPrM";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="5TwJJjYX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="evYlAxqB";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2637210E5CD
- for <intel-gfx@lists.freedesktop.org>; Tue, 29 Oct 2024 08:15:42 +0000 (UTC)
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1730189739;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=3Chz53onyGXnawZI5oBTcPsbWgh0zf5233Unf5kXlAA=;
- b=YR7pEPrMrq9xxPt4AEXfGfH7PjFFDgHaddQCyg3umOtctRdxr/RJusiR3HJNLhdWYmwlpC
- 1dXpiUxTrNDDh/wAqI28ZlZwgGyb56/IhifAt/S1E8iqkdP0Yf67mBxkENUkai3IvycNvM
- HFnMFF8dkrKng8/c/GtGN44dhCxlWCR/mXahIULhhcJ2p4VhhAAsEw9ivz9yOhN0vfDg1h
- 8W3ZFGz4KmaPkgKtODJIhmI54jclHV86JzicPBea3yvA7RHyqdaBRa3d7puHawKimhPRF2
- LbFvka68yScaAOQ9hvWQ8oIAXxvKmSb4V1jgM5Qtr4lnitp6UALQLui7dg8J/A==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1730189739;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=3Chz53onyGXnawZI5oBTcPsbWgh0zf5233Unf5kXlAA=;
- b=5TwJJjYXsMYAwUAKrtmNB4n9EdPqWwgSXXJ5MxTar3zSew9N1IuO1xAxTXH61PCr6Ch5wN
- fG1/dMVvZ1CC4hBQ==
-To: Sean Christopherson <seanjc@google.com>, Nam Cao <namcao@linutronix.de>
-Cc: Anna-Maria Behnsen <anna-maria@linutronix.de>, Frederic Weisbecker
- <frederic@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, Alice
- Ryhl <aliceryhl@google.com>, Miguel Ojeda <ojeda@kernel.org>, Kees Cook
- <kees@kernel.org>, linux-kernel@vger.kernel.org, Jani Nikula
- <jani.nikula@linux.intel.com>, intel-gfx@lists.freedesktop.org, Paolo
- Bonzini <pbonzini@redhat.com>, x86@kernel.org, Jakub Kicinski
- <kuba@kernel.org>, Oliver Hartkopp <socketcan@hartkopp.net>, Kalle Valo
- <kvalo@kernel.org>, Jens Axboe <axboe@kernel.dk>, Christian Brauner
- <brauner@kernel.org>, Peter Zijlstra <peterz@infradead.org>, John Stultz
- <jstultz@google.com>
-Subject: Re: [PATCH 00/21] hrtimers: Switch to new hrtimer interface
- functions (1/5)
-In-Reply-To: <Zx-2VV9rRnHOgtvG@google.com>
-References: <cover.1729864615.git.namcao@linutronix.de>
- <Zx-2VV9rRnHOgtvG@google.com>
-Date: Tue, 29 Oct 2024 09:15:39 +0100
-Message-ID: <875xpb2ul0.ffs@tglx>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 54D0810E21C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 29 Oct 2024 08:36:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1730190998; x=1761726998;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=etfIiqH9NuLxc8tO0vhg3JPtvNU/d9r+OvYLKKezY48=;
+ b=evYlAxqBDNNRZ6p6A0z9TQX8/BnrSTFVdqGP6ghOzFoH1rkg5bq3BZKf
+ SkuaF/2UYDJkQGNU5CpyGAyXRh8T3HgSy1mQhRJiLdwXgkHSBHQVDTp5O
+ ZqUlJzrTQ1u12+a4FNmZdfAOObjpwP3ldniVepMHauyH7m+EL/kKb8bOt
+ 0C9lymf0s89yF1uVVtSp3sIwusFGBJ19rvSQsiwnxtAG/HrkwQFEaWXHX
+ Q+ShVb2gnqtaBGbQxRmilULc0zOkc9ZyN0t92CN1y40HseR1Qq7IXWJF2
+ wm/sx1zgxU9roxWgRK/NDjVkGdTKbBa5d2WTQtEYqaoUCn7Dm10FhpYh/ g==;
+X-CSE-ConnectionGUID: Poh2ZVW0RDSn0QYvuICvjA==
+X-CSE-MsgGUID: rLAW9n+QTcm4y2eUbu5R+g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="29673842"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="29673842"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2024 01:36:38 -0700
+X-CSE-ConnectionGUID: OiuM0hdRRyaGvqLN8PscNQ==
+X-CSE-MsgGUID: nEck04fGT5SkemPTGIYq7A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,241,1725346800"; d="scan'208";a="82701240"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.69])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2024 01:36:37 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Animesh Manna <animesh.manna@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: jouni.hogander@intel.com, Animesh Manna <animesh.manna@intel.com>
+Subject: Re: [RFC] drm/i915/psr: Disable psr1 if setup_time > vblank
+In-Reply-To: <20241029050030.1413662-1-animesh.manna@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20241029050030.1413662-1-animesh.manna@intel.com>
+Date: Tue, 29 Oct 2024 10:36:34 +0200
+Message-ID: <87y127nw4t.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -71,25 +68,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Oct 28 2024 at 09:05, Sean Christopherson wrote:
-> On Mon, Oct 28, 2024, Nam Cao wrote:
->> This is the first part of a 5-part series (split for convenience). All 5
->> parts are:
->> 
->> Part 1: https://lore.kernel.org/lkml/cover.1729864615.git.namcao@linutronix.de
->> Part 2: https://lore.kernel.org/lkml/cover.1729864823.git.namcao@linutronix.de
->> Part 3: https://lore.kernel.org/lkml/cover.1729865232.git.namcao@linutronix.de
->> Part 4: https://lore.kernel.org/lkml/cover.1729865485.git.namcao@linutronix.de
->> Part 5: https://lore.kernel.org/lkml/cover.1729865740.git.namcao@linutronix.de
+On Tue, 29 Oct 2024, Animesh Manna <animesh.manna@intel.com> wrote:
+> Issue is seen when PSR enabled with setup frames and when try to disable
+> PSR at SRDONACK State (0x1). PSR FSM is stuck at SRDONACK(0x1) for more
+> than 5 seconds. Issue not seen with Setup frames disabled. Currently
+> disable psr1 if setuptime > vblank to workaround the above issue.
 >
-> How do y'all anticipate landing these patches?  Is the plan/desire to get acks
-> from subsystems?  Land the new helpers and then let subsystems grab their relevant
-> patches?  Option C?
+> HSD: 16024594674
+>
+> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_psr.c | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+> index 4176163ec19a..887fa8a8f878 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> @@ -1640,6 +1640,15 @@ _panel_replay_compute_config(struct intel_dp *intel_dp,
+>  	return true;
+>  }
+>  
+> +static bool intel_psr_needs_wa_18037818876(struct intel_dp *intel_dp,
+> +					   struct intel_crtc_state *crtc_state)
+> +{
+> +	struct intel_display *display = to_intel_display(intel_dp);
+> +
+> +	return ((DISPLAY_VER(display) == 20) && intel_dp->psr.entry_setup_frames > 0 &&
+> +		!crtc_state->has_sel_update);
 
-Ideally I can just collect acks and route them through my tree. Last
-time we did this helper first and subsystems grab it took ages and lots
-of chasing to get it done.
+Excessive parentheses both around the display ver check as well as the
+whole thing.
 
-Thanks,
+BR,
+Jani.
 
-        tglx
+
+> +}
+> +
+>  void intel_psr_compute_config(struct intel_dp *intel_dp,
+>  			      struct intel_crtc_state *crtc_state,
+>  			      struct drm_connector_state *conn_state)
+> @@ -1686,6 +1695,10 @@ void intel_psr_compute_config(struct intel_dp *intel_dp,
+>  		return;
+>  
+>  	crtc_state->has_sel_update = intel_sel_update_config_valid(intel_dp, crtc_state);
+> +
+> +	/* Wa_18037818876 */
+> +	if (intel_psr_needs_wa_18037818876(intel_dp, crtc_state))
+> +		crtc_state->has_psr = false;
+>  }
+>  
+>  void intel_psr_get_config(struct intel_encoder *encoder,
+
+-- 
+Jani Nikula, Intel
