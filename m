@@ -2,29 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 891F19B5218
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Oct 2024 19:50:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A0C09B5278
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Oct 2024 20:11:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7FE5910E6DC;
-	Tue, 29 Oct 2024 18:50:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6AC1B10E6DE;
+	Tue, 29 Oct 2024 19:11:44 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eNOEIQvk";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B268010E0B9;
- Tue, 29 Oct 2024 18:50:05 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1503910E6DE
+ for <intel-gfx@lists.freedesktop.org>; Tue, 29 Oct 2024 19:11:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1730229104; x=1761765104;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=jiuF3TDOmIpUBIGdTAblOwGhScY/DAqUYOqircwYC/I=;
+ b=eNOEIQvkd35sNn7blpL2HGJ+54h5sUN3q8OEZxsrACc8Ok2HrYVBnlu4
+ pDdX/BXELsNzPMAjqpGv6dYN8t+m+GHfzORrJq+gMcDYNHy1tOLZ1Mm5m
+ jxkq8TzSsyC8B4Esls0lE9kiT1pXSMbVOXbfEUer0b5H5O8J452/L8wHr
+ 55LgkZMgV0VrrH7dEr89WmJVsTjLmQdF9NysjC6YnVxbbP9LfN3dfJwo6
+ 0zv/HO0wC7u1MiR0Wig7aBmxfVeKcsUit8P/E0IM9ug9Rm+n4hHYh9AsP
+ crkh7RSpvvmIrWN9QdPNeIz86AC6qFq4hp1OaMTsyJRZZhxQu571YOVBN Q==;
+X-CSE-ConnectionGUID: kWbluzTjTUyoGRK92qobtw==
+X-CSE-MsgGUID: YdeEuKBnRkWsWv4Suvaf7Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="29745589"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="29745589"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2024 12:11:43 -0700
+X-CSE-ConnectionGUID: QWT3dgpTS1aYa32lJR37mg==
+X-CSE-MsgGUID: ulSt54sRQzGNHtuGDjFBgw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="86812686"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2024 12:11:43 -0700
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Subject: [PATCH 0/4] drm/i915/dp_mst: Fix DDI function/DP2 config programming
+Date: Tue, 29 Oct 2024 21:12:11 +0200
+Message-ID: <20241029191215.3889861-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.44.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_drm/i915=3A_add_dedicate?=
- =?utf-8?q?d_lock_for_each_sideband_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 29 Oct 2024 18:50:05 -0000
-Message-ID: <173022780572.1361175.6509577767103280887@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <cover.1730193891.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1730193891.git.jani.nikula@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,20 +61,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Fix/align with the spec the DDI function and DP2 config programming
+during enabling/disabling MST slave transcoders. On PTL the first patch
+fixes a slave transcoder getting stuck issue. On PTL the DP2
+configuration and on other ADLP+ platforms both the DDI function and the
+DP2 configuration changes only align the code with the specification,
+without actual problems reported that these woud fix.
 
-Series: drm/i915: add dedicated lock for each sideband (rev2)
-URL   : https://patchwork.freedesktop.org/series/139437/
-State : warning
+Imre Deak (4):
+  drm/i915/ptl/dp_mst: Fix slave transcoder enabling wrt. DDI function
+  drm/i915/dp: Export intel_ddi_config_transcoder_dp2()
+  drm/i915/ptl/dp_mst: Align slave transcoder sequences with spec wrt.
+    DP2 config
+  drm/i915/adlp+: Align slave transcoder sequences with spec wrt. DDI
+    function/DP2 config
 
-== Summary ==
+ drivers/gpu/drm/i915/display/intel_ddi.c    | 17 ++++++++++-------
+ drivers/gpu/drm/i915/display/intel_ddi.h    |  5 +++++
+ drivers/gpu/drm/i915/display/intel_dp_mst.c |  8 ++++++++
+ 3 files changed, 23 insertions(+), 7 deletions(-)
 
-Error: dim sparse failed
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
-
+-- 
+2.44.2
 
