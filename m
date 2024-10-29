@@ -2,29 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43F939B55CE
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Oct 2024 23:31:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 42BB99B56A8
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Oct 2024 00:22:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0ED6D10E3BA;
-	Tue, 29 Oct 2024 22:31:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2DCBA10E3C4;
+	Tue, 29 Oct 2024 23:22:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D3D010E3BA;
- Tue, 29 Oct 2024 22:31:09 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6854843749733406906=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89EE410E3C0;
+ Tue, 29 Oct 2024 23:22:53 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_use_x10?=
- =?utf-8?q?0_version_for_full_version_and_release_=28rev4=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/display=3A_?=
+ =?utf-8?q?bunch_of_struct_intel=5Fdisplay_conversions_=28rev6=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 29 Oct 2024 22:31:09 -0000
-Message-ID: <173024106904.1362048.12680189709026525399@2413ebb6fbb6>
+Date: Tue, 29 Oct 2024 23:22:53 -0000
+Message-ID: <173024417355.1362048.15850975919086569848@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
-References: <20241029155536.753413-1-jani.nikula@intel.com>
-In-Reply-To: <20241029155536.753413-1-jani.nikula@intel.com>
+References: <cover.1730146000.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1730146000.git.jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,176 +41,91 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============6854843749733406906==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/display: use x100 version for full version and release (rev4)
-URL   : https://patchwork.freedesktop.org/series/140454/
-State : success
+Series: drm/i915/display: bunch of struct intel_display conversions (rev6)
+URL   : https://patchwork.freedesktop.org/series/140324/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_15606 -> Patchwork_140454v4
-====================================================
+Error: dim checkpatch failed
+ad128789ff31 drm/i915/gmbus: convert to struct intel_display
+c7142960f3a5 drm/i915/cx0: remove unnecessary includes
+df827e9677c3 drm/i915/cx0: convert to struct intel_display
+-:463: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
+#463: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:2436:
++									  PHY_C20_B_MPLLB_CNTX_CFG(display, i));
 
-Summary
--------
+-:468: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
+#468: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:2440:
++									  PHY_C20_A_MPLLB_CNTX_CFG(display, i));
 
-  **SUCCESS**
+-:477: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
+#477: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:2448:
++									  PHY_C20_B_MPLLA_CNTX_CFG(display, i));
 
-  No regressions found.
+-:482: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
+#482: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:2452:
++									  PHY_C20_A_MPLLA_CNTX_CFG(display, i));
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140454v4/index.html
+-:639: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#639: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:2799:
++		if (intel_de_wait_for_clear(display, XELPDP_PORT_M2P_MSGBUS_CTL(display, port, lane),
 
-Participating hosts (47 -> 45)
-------------------------------
+total: 0 errors, 5 warnings, 0 checks, 1002 lines checked
+52d79f2979c0 drm/i915/dpio: convert to struct intel_display
+-:565: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#565: FILE: drivers/gpu/drm/i915/display/intel_dpio_phy.h:84:
+ }
++static inline void bxt_dpio_phy_init(struct intel_display *display, enum dpio_phy phy)
 
-  Missing    (2): bat-arls-2 fi-snb-2520m 
+-:569: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#569: FILE: drivers/gpu/drm/i915/display/intel_dpio_phy.h:87:
+ }
++static inline void bxt_dpio_phy_uninit(struct intel_display *display, enum dpio_phy phy)
 
-Known issues
-------------
+-:573: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#573: FILE: drivers/gpu/drm/i915/display/intel_dpio_phy.h:90:
+ }
++static inline bool bxt_dpio_phy_is_enabled(struct intel_display *display,
 
-  Here are the changes found in Patchwork_140454v4 that come from known issues:
+-:579: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#579: FILE: drivers/gpu/drm/i915/display/intel_dpio_phy.h:95:
+ }
++static inline bool bxt_dpio_phy_verify_state(struct intel_display *display,
 
-### IGT changes ###
+total: 0 errors, 0 warnings, 4 checks, 570 lines checked
+293faf775a6e drm/i915/hdcp: further conversion to struct intel_display
+2c36b8e22ec1 drm/i915/dp/hdcp: convert to struct intel_display
+43f7b275058c drm/i915/crt: convert to struct intel_display
+-:220: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#220: FILE: drivers/gpu/drm/i915/display/intel_crt.c:497:
++		save_adpa = adpa = intel_de_read(display, crt->adpa_reg);
 
-#### Issues hit ####
+-:274: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#274: FILE: drivers/gpu/drm/i915/display/intel_crt.c:557:
++	save_adpa = adpa = intel_de_read(display, crt->adpa_reg);
 
-  * igt@i915_selftest@live:
-    - bat-arlh-3:         [PASS][1] -> [ABORT][2] ([i915#12133])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15606/bat-arlh-3/igt@i915_selftest@live.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140454v4/bat-arlh-3/igt@i915_selftest@live.html
+-:706: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#706: FILE: drivers/gpu/drm/i915/display/intel_crt.h:26:
+ }
++static inline void intel_crt_init(struct intel_display *display)
 
-  * igt@i915_selftest@live@workarounds:
-    - bat-arlh-3:         [PASS][3] -> [ABORT][4] ([i915#12061])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15606/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140454v4/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+-:776: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#776: FILE: drivers/gpu/drm/i915/display/intel_pch_display.c:89:
++				 intel_crt_port_enabled(display, PCH_ADPA, &port_pipe) && port_pipe == pipe,
 
-  
-#### Possible fixes ####
+total: 0 errors, 1 warnings, 3 checks, 697 lines checked
+a0f1db2be274 drm/i915/display: convert vlv_wait_port_ready() to struct intel_display
+12892fe486da drm/i915/power: convert assert_chv_phy_status() to struct intel_display
+4ec3133642a3 drm/i915/ips: convert to struct intel_display
+4bfc289ec3b3 drm/i915/dsi: convert to struct intel_display
+-:1366: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#1366: FILE: drivers/gpu/drm/i915/display/icl_dsi.c:2041:
++	if (drm_WARN_ON(display->drm, intel_connector->panel.vbt.dsi.cabc_ports & ~intel_dsi->ports))
 
-  * igt@i915_selftest@live:
-    - bat-mtlp-8:         [ABORT][5] ([i915#12133] / [i915#12216]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15606/bat-mtlp-8/igt@i915_selftest@live.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140454v4/bat-mtlp-8/igt@i915_selftest@live.html
-    - bat-adlm-1:         [INCOMPLETE][7] ([i915#12133]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15606/bat-adlm-1/igt@i915_selftest@live.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140454v4/bat-adlm-1/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-mtlp-8:         [ABORT][9] ([i915#12216]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15606/bat-mtlp-8/igt@i915_selftest@live@workarounds.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140454v4/bat-mtlp-8/igt@i915_selftest@live@workarounds.html
-    - bat-adlm-1:         [INCOMPLETE][11] ([i915#9413]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15606/bat-adlm-1/igt@i915_selftest@live@workarounds.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140454v4/bat-adlm-1/igt@i915_selftest@live@workarounds.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12133]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133
-  [i915#12216]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12216
-  [i915#9413]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15606 -> Patchwork_140454v4
-
-  CI-20190529: 20190529
-  CI_DRM_15606: 91b5d7af697c6765039b8700127c1740da858065 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8087: 7abd9c49a49a9ff1f3300d7c51a92a5af8a789f1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_140454v4: 91b5d7af697c6765039b8700127c1740da858065 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140454v4/index.html
-
---===============6854843749733406906==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 1 warnings, 0 checks, 1302 lines checked
+a594d4aa014e drm/i915/de: remove unnecessary generic wrappers
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: use x100 version for full version and release (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/140454/">https://patchwork.freedesktop.org/series/140454/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140454v4/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140454v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_15606 -&gt; Patchwork_140454v4</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140454v4/index.html</p>
-<h2>Participating hosts (47 -&gt; 45)</h2>
-<p>Missing    (2): bat-arls-2 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_140454v4 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15606/bat-arlh-3/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140454v4/bat-arlh-3/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133">i915#12133</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15606/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140454v4/bat-arlh-3/igt@i915_selftest@live@workarounds.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15606/bat-mtlp-8/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133">i915#12133</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12216">i915#12216</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140454v4/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a></li>
-<li>bat-adlm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15606/bat-adlm-1/igt@i915_selftest@live.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133">i915#12133</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140454v4/bat-adlm-1/igt@i915_selftest@live.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15606/bat-mtlp-8/igt@i915_selftest@live@workarounds.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12216">i915#12216</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140454v4/bat-mtlp-8/igt@i915_selftest@live@workarounds.html">PASS</a></li>
-<li>bat-adlm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15606/bat-adlm-1/igt@i915_selftest@live@workarounds.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413">i915#9413</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140454v4/bat-adlm-1/igt@i915_selftest@live@workarounds.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_15606 -&gt; Patchwork_140454v4</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_15606: 91b5d7af697c6765039b8700127c1740da858065 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8087: 7abd9c49a49a9ff1f3300d7c51a92a5af8a789f1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_140454v4: 91b5d7af697c6765039b8700127c1740da858065 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============6854843749733406906==--
