@@ -2,29 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 179DF9B4C53
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Oct 2024 15:41:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B88129B4C54
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Oct 2024 15:41:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BBFAB10E29B;
-	Tue, 29 Oct 2024 14:41:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0B1410E29C;
+	Tue, 29 Oct 2024 14:41:35 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EzeIqj69";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC68010E29B;
- Tue, 29 Oct 2024 14:41:16 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6767349570839188490=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C62B10E29C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 29 Oct 2024 14:41:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1730212895; x=1761748895;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=o6De2d64pQfwGptdgBwDTDww+kwEcAuDYSVE8bYwuEE=;
+ b=EzeIqj69Bx7WQCc/iaxC2oxEt0+rjXBiF0qeLuqZaBhj0YLDHk/U1fgk
+ 518DVVfS2Rd37EIfGsN7Yb2TYjMkVaQAf0oWgqa2ZcqeSIX7Q5tDdcHDY
+ XGpeCCzTPLADCUsSnfD1bCRrp4fk+eIWCU/gvfGvdCi/FWLdINNkD0qCK
+ +846sPJvIGPP47mux5c2WlGE3Klsr1/clxm/c7Lb5xVldJEJvtcon0kHW
+ VPRWfcJC4limOV43GS8lVes1uCBQfvMrc31j1Yysk7zTQ3jL3hGfWLjer
+ ANWOgRY4MYZ9OiM+RiQ+FD/+iFVLIij7AzAoqLhbXj3avqK25UhR5HMF/ g==;
+X-CSE-ConnectionGUID: Ie5Gg1MVSTKWEjy9ZVpazA==
+X-CSE-MsgGUID: BHKSkpAjR4GmsmwtWpcbqw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11240"; a="41256806"
+X-IronPort-AV: E=Sophos;i="6.11,241,1725346800"; d="scan'208";a="41256806"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2024 07:41:35 -0700
+X-CSE-ConnectionGUID: pjIRRAY1R22j1Tqgt+3Jfg==
+X-CSE-MsgGUID: 9mNe1JgnSR+MXTEn5ViGiw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,241,1725346800"; d="scan'208";a="81608398"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.69])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2024 07:41:32 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Mika Kahola <mika.kahola@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: gustavo.sousa@intel.com, Mika Kahola <mika.kahola@intel.com>
+Subject: Re: [PATCH v3] drm/i915/xe3lpd: Power request asserting/deasserting
+In-Reply-To: <20241029140037.164687-1-mika.kahola@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20241029140037.164687-1-mika.kahola@intel.com>
+Date: Tue, 29 Oct 2024 16:41:29 +0200
+Message-ID: <87bjz3nf8m.fsf@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/xe3lpd=3A_ptl_disp?=
- =?utf-8?q?lay_patches_=28rev6=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Atwood" <matthew.s.atwood@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 29 Oct 2024 14:41:16 -0000
-Message-ID: <173021287669.1359138.16238489356738651790@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241028193015.3241858-1-clinton.a.taylor@intel.com>
-In-Reply-To: <20241028193015.3241858-1-clinton.a.taylor@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,142 +65,142 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============6767349570839188490==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 29 Oct 2024, Mika Kahola <mika.kahola@intel.com> wrote:
+> There is a HW issue that arises when there are race conditions
+> between TCSS entering/exiting TC7 or TC10 states while the
+> driver is asserting/deasserting TCSS power request. As a
+> workaround, Display driver will implement a mailbox sequence
+> to ensure that the TCSS is in TC0 when TCSS power request is
+> asserted/deasserted.
+>
+> The sequence is the following
+>
+> 1. Read mailbox command status and wait until run/busy bit is
+>    clear
+> 2. Write mailbox data value '1' for power request asserting
+>    and '0' for power request deasserting
+> 3. Write mailbox command run/busy bit and command value with 0x1
+> 4. Read mailbox command and wait until run/busy bit is clear
+>    before continuing power request.
+>
+> v2: Rename WA function (Gustavo)
+>     Limit WA only for PTL platform with a TODO note (Gustavo)
+>     Add TCSS_DISP_MAILBOX_IN_CMD_RUN_BUSY for clarity when writing
+>     register data (Gustavo)
+>     Move register defs from i915_reg.h to intel_cx0_phy_regs.h (Gustavo)
+> v3: use "struct intel_display" instead of "struct drm_i915_private" (Jani)
+>     Move defs above C10 definitions in the
+>     intel_cx0_phy_regs.h file (Gustavo)
+>     Move drm_WARN_ON() inside WA function (Gustavo)
+>     Rename workaround function as wa_14020908590() (Gustvo)
+>     Use boolean enable instead of if-else structure (Gustavo)
+>
+> Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+> ---
+>  .../gpu/drm/i915/display/intel_cx0_phy_regs.h |  8 ++++
+>  drivers/gpu/drm/i915/display/intel_tc.c       | 39 +++++++++++++++++++
+>  2 files changed, 47 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+> index ab3ae110b68f..e04cf2e7c054 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+> @@ -200,6 +200,14 @@
+>  #define   XELPDP_SSC_ENABLE_PLLA			REG_BIT(1)
+>  #define   XELPDP_SSC_ENABLE_PLLB			REG_BIT(0)
+>  
+> +#define TCSS_DISP_MAILBOX_IN_CMD		_MMIO(0x161300)
+> +#define   TCSS_DISP_MAILBOX_IN_CMD_RUN_BUSY	REG_BIT(31)
+> +#define   TCSS_DISP_MAILBOX_IN_CMD_CMD_MASK	REG_GENMASK(7, 0)
+> +#define   TCSS_DISP_MAILBOX_IN_CMD_DATA(val)	(TCSS_DISP_MAILBOX_IN_CMD_RUN_BUSY | \
+> +						REG_FIELD_PREP(TCSS_DISP_MAILBOX_IN_CMD_CMD_MASK, val))
+> +
+> +#define TCSS_DISP_MAILBOX_IN_DATA		_MMIO(0x161304)
+> +
+>  /* C10 Vendor Registers */
+>  #define PHY_C10_VDR_PLL(idx)		(0xC00 + (idx))
+>  #define   C10_PLL0_FRACEN		REG_BIT8(4)
+> diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
+> index 6f2ee7dbc43b..51e8f7b1b812 100644
+> --- a/drivers/gpu/drm/i915/display/intel_tc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_tc.c
+> @@ -1013,6 +1013,38 @@ xelpdp_tc_phy_wait_for_tcss_power(struct intel_tc_port *tc, bool enabled)
+>  	return true;
+>  }
+>  
+> +static void wa_14020908590(struct intel_display *display,
+> +			   bool enable)
+> +{
+> +	bool error = false;
+> +
+> +	/* check if mailbox is running busy */
+> +	if (intel_de_wait_for_clear(display, TCSS_DISP_MAILBOX_IN_CMD,
+> +				    TCSS_DISP_MAILBOX_IN_CMD_RUN_BUSY, 10)) {
+> +		drm_dbg_kms(display->drm,
+> +			    "Timeout waiting for TCSS mailbox run/busy bit to clear\n");
 
-== Series Details ==
+Just do drm_WARN() with the message here.
 
-Series: drm/i915/xe3lpd: ptl display patches (rev6)
-URL   : https://patchwork.freedesktop.org/series/140196/
-State : success
+> +		error = true;
+> +		goto out;
+> +	}
+> +
+> +	intel_de_write(display, TCSS_DISP_MAILBOX_IN_DATA, enable);
+> +	intel_de_write(display, TCSS_DISP_MAILBOX_IN_CMD,
+> +		       TCSS_DISP_MAILBOX_IN_CMD_RUN_BUSY |
+> +		       TCSS_DISP_MAILBOX_IN_CMD_DATA(0x1));
+> +
+> +	/* wait to clear mailbox running busy bit before continuing */
+> +	if (intel_de_wait_for_clear(display, TCSS_DISP_MAILBOX_IN_CMD,
+> +				    TCSS_DISP_MAILBOX_IN_CMD_RUN_BUSY, 10)) {
+> +		drm_dbg_kms(display->drm,
+> +			    "Timeout after writing data to mailbox. Mailbox run/busy bit did not clear\n");
 
-== Summary ==
+Ditto.
 
-CI Bug Log - changes from CI_DRM_15604 -> Patchwork_140196v6
-====================================================
+> +		error = true;
+> +		goto out;
+> +	}
+> +
+> +out:
+> +	drm_WARN_ON(display->drm, error);
 
-Summary
--------
+This stringifies the literal "error", and nothing of value is printed to
+dmesg.
 
-  **SUCCESS**
+> +}
+> +
+>  static void __xelpdp_tc_phy_enable_tcss_power(struct intel_tc_port *tc, bool enable)
+>  {
+>  	struct drm_i915_private *i915 = tc_to_i915(tc);
+> @@ -1022,6 +1054,13 @@ static void __xelpdp_tc_phy_enable_tcss_power(struct intel_tc_port *tc, bool ena
+>  
+>  	assert_tc_cold_blocked(tc);
+>  
+> +	/*
+> +	 * Gfx driver WA 14020908590 for PTL tcss_rxdetect_clkswb_req/ack
+> +	 * handshake violation when pwwreq= 0->1 during TC7/10 entry
+> +	 */
+> +	if (DISPLAY_VER(i915) == 30)
+> +		wa_14020908590(&i915->display, enable);
 
-  No regressions found.
+Please don't add inline &i915->display, because all of them need to be
+changed sooner rather than later.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140196v6/index.html
+Add a struct intel_display *display local variable, and pass that
+around.
 
-Participating hosts (47 -> 46)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_140196v6 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live:
-    - bat-arlh-3:         [PASS][1] -> [ABORT][2] ([i915#12133])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15604/bat-arlh-3/igt@i915_selftest@live.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140196v6/bat-arlh-3/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arlh-3:         [PASS][3] -> [ABORT][4] ([i915#12061])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15604/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140196v6/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12133]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15604 -> Patchwork_140196v6
-
-  CI-20190529: 20190529
-  CI_DRM_15604: 738c18d8599dce736da8b6958f96d2eac08a36ab @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8086: 18939acec2446c6644644186b090d16e366af8bc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_140196v6: 738c18d8599dce736da8b6958f96d2eac08a36ab @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140196v6/index.html
-
---===============6767349570839188490==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+BR,
+Jani.
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+> +
+>  	val = intel_de_read(i915, reg);
+>  	if (enable)
+>  		val |= XELPDP_TCSS_POWER_REQUEST;
 
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/xe3lpd: ptl display patches (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/140196/">https://patchwork.freedesktop.org/series/140196/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140196v6/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140196v6/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_15604 -&gt; Patchwork_140196v6</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140196v6/index.html</p>
-<h2>Participating hosts (47 -&gt; 46)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_140196v6 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15604/bat-arlh-3/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140196v6/bat-arlh-3/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133">i915#12133</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15604/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140196v6/bat-arlh-3/igt@i915_selftest@live@workarounds.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_15604 -&gt; Patchwork_140196v6</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_15604: 738c18d8599dce736da8b6958f96d2eac08a36ab @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8086: 18939acec2446c6644644186b090d16e366af8bc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_140196v6: 738c18d8599dce736da8b6958f96d2eac08a36ab @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============6767349570839188490==--
+-- 
+Jani Nikula, Intel
