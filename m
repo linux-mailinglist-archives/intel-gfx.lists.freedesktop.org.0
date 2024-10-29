@@ -2,61 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B01FF9B8B3F
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Nov 2024 07:28:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0253B9B8EAC
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Nov 2024 11:08:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C82F10E960;
-	Fri,  1 Nov 2024 06:28:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F244E10E977;
+	Fri,  1 Nov 2024 10:08:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q+XA+z40";
+	dkim=pass (1024-bit key; secure) header.d=paranoici.org header.i=@paranoici.org header.b="QoTo2yv3";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85DAA10E961;
- Fri,  1 Nov 2024 06:27:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730442480; x=1761978480;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Fy1pWas8xAXQvA2Xqw8cZBAJ/zJPREXvenJ6EGIpFcc=;
- b=Q+XA+z40iks5PdNx11+TXHH00GzfqJxKvmxoHRvF8cdCzhDRQIbVscqx
- 1xouBSHytBnf96wEQyp5l02FfK7By4TNp68rkIkbQmNPFvi7oOhwc//BZ
- KrzYYKYZx4k39l6IAWj+o3qSLG6vZhzSFK9Vbp8fGhF56IUfHQ8q9mD3y
- d22nTtuMeTTWtNA0JjxDzhP9iWYbF72kWt2D7SzOHKxl+LluaztDAo1Ov
- Mz4eoDlJwkjyp0B4nUcNNXqKQWVLsvv4JuusU+GhMjrEsI/YhPnObH1bZ
- 3e+QXoshRRRaIpsWq7ErkZA7VbDiY5WxyODXjQoOlwSGiJtZzhTZvNNJc A==;
-X-CSE-ConnectionGUID: OMfGTaSpTqmYTiSnkG5FUw==
-X-CSE-MsgGUID: gyYBqlDrSCS1aXXO0qGDGg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="41306095"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="41306095"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2024 23:28:00 -0700
-X-CSE-ConnectionGUID: dOqfpWXmS9CsZsJELH4x0A==
-X-CSE-MsgGUID: GjQGBsMvQLG+RzpvxcCb7g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="87648599"
-Received: from ksztyber-mobl2.ger.corp.intel.com (HELO jhogande-mobl1..)
- ([10.245.244.3])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2024 23:27:58 -0700
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v2 7/7] drm/i915/display: Generate PSR frame change event on
- cursor update
-Date: Fri,  1 Nov 2024 08:27:28 +0200
-Message-Id: <20241101062728.3865980-8-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241101062728.3865980-1-jouni.hogander@intel.com>
-References: <20241101062728.3865980-1-jouni.hogander@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+X-Greylist: delayed 459 seconds by postgrey-1.36 at gabe;
+ Tue, 29 Oct 2024 07:55:50 UTC
+Received: from confino.investici.org (confino.investici.org [93.190.126.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C8B010E5C3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 29 Oct 2024 07:55:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=paranoici.org;
+ s=stigmate; t=1730188089;
+ bh=DBH4cM5u0lzF/5WegoayGk30dhb3VKVT7NmVFPEVhYU=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=QoTo2yv3zWxRKkyeWLBiK65DyF9DWCwubMzh75xz/VHXR6u6umQrnvhe3+WL500QS
+ pMBf2HaJlBtNC4YUFH+Y523We2MOIlI5BMlTNb5G/3xEYQ7FerU+N4zXlqLiqGODbn
+ fwwu2wd43ceTsPq8RDpyTs/5LA9y0EPJGohVZZEA=
+Received: from mx1.investici.org (unknown [127.0.0.1])
+ by confino.investici.org (Postfix) with ESMTP id 4Xd2Rs0cTxz10vP;
+ Tue, 29 Oct 2024 07:48:09 +0000 (UTC)
+Received: from [93.190.126.19] (mx1.investici.org [93.190.126.19])
+ (Authenticated sender: invernomuto@paranoici.org) by localhost (Postfix) with
+ ESMTPSA id 4Xd2Rs0GY9z10t6; Tue, 29 Oct 2024 07:48:09 +0000 (UTC)
+Received: from frx by crunch with local (Exim 4.98)
+ (envelope-from <invernomuto@paranoici.org>)
+ id 1t5gxU-000000001cC-0Ma5; Tue, 29 Oct 2024 08:48:08 +0100
+Date: Tue, 29 Oct 2024 08:47:51 +0100
+From: Francesco Poli <invernomuto@paranoici.org>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: imre.deak@intel.com, Intel GFX list <intel-gfx@lists.freedesktop.org>,
+ 1075770@bugs.debian.org
+Subject: Re: [bug report] adlp_tc_phy_connect [i915] floods logs with
+ drm_WARN_ON(tc->mode == TC_PORT_LEGACY) call traces
+Message-Id: <20241029084751.226aeb1245b12036f98ac964@paranoici.org>
+In-Reply-To: <87v80oxzz9.fsf@intel.com>
+References: <20240715203543.63b40a68931fdc45332ba9f8@paranoici.org>
+ <ZqFIKLLcUQrd1IAq@ideak-desk.fi.intel.com>
+ <20240725235929.68dd56625806ac0c8d20a2c8@paranoici.org>
+ <87v80oxzz9.fsf@intel.com>
+X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
+Content-Type: multipart/signed; protocol="application/pgp-signature";
+ micalg="PGP-SHA512";
+ boundary="Signature=_Tue__29_Oct_2024_08_47_51_+0100_cTzXq8Xnl92OrbC_"
+X-Mailman-Approved-At: Fri, 01 Nov 2024 10:08:01 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,45 +67,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On LunarLake and onwards we are using vrr send push mechanism to trigger
-frame change event. Due to this we need to trigger it using
-intel_vrr_psr_send_push provided by VRR code on legacy cursor update.
+--Signature=_Tue__29_Oct_2024_08_47_51_+0100_cTzXq8Xnl92OrbC_
+Content-Type: text/plain; charset=US-ASCII
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
----
- drivers/gpu/drm/i915/display/intel_cursor.c | 5 +++++
- 1 file changed, 5 insertions(+)
+Control: forwarded -1 https://gitlab.freedesktop.org/drm/i915/kernel/-/issu=
+es/12246
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index 9ba77970dab7..5617781e9c58 100644
---- a/drivers/gpu/drm/i915/display/intel_cursor.c
-+++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -25,6 +25,7 @@
- #include "intel_psr.h"
- #include "intel_psr_regs.h"
- #include "intel_vblank.h"
-+#include "intel_vrr.h"
- #include "skl_watermark.h"
- 
- /* Cursor formats */
-@@ -798,6 +799,7 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- 		to_intel_crtc_state(crtc->base.state);
- 	struct intel_crtc_state *new_crtc_state;
- 	struct intel_vblank_evade_ctx evade;
-+	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
- 	int ret;
- 
- 	/*
-@@ -917,6 +919,9 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- 		intel_plane_disable_arm(NULL, plane, crtc_state);
- 	}
- 
-+	if (crtc_state->has_psr)
-+		intel_vrr_psr_send_push(crtc, cpu_transcoder);
-+
- 	local_irq_enable();
- 
- 	intel_psr_unlock(crtc_state);
--- 
-2.34.1
 
+On Mon, 29 Jul 2024 13:19:06 +0300 Jani Nikula wrote:
+
+[...]
+> There are a number of reasons why email and mailing lists are really bad
+> for reporting bugs, from our perspective, which is why we've asked
+> people to report bugs to freedesktop.org bug trackers for about a decade
+> now.
+>=20
+> If the right person doesn't have time to resolve the issue right away,
+> it'll likely be forgotten on the mailing list. Attachments aren't
+> welcome on mailing lists, let alone big logs. It's easier to label and
+> reference issues on a bug tracker. It's easier (yes, for us) to manage
+> the issues, and the people working on them, on a bug tracker. And so on.
+
+I filed an issue report on the freedesktop.org tracker (however, there
+have been no replies yet).
+
+I still experience the bug with:
+
+$ uname -srvmo
+Linux 6.11.4-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.11.4-1 (2024-10-20) x86_=
+64 GNU/Linux
+
+
+--=20
+ http://www.inventati.org/frx/
+ There's not a second to spare! To the laboratory!
+..................................................... Francesco Poli .
+ GnuPG key fpr =3D=3D CA01 1147 9CD2 EFDF FB82  3925 3E1C 27E1 1F69 BFFE
+
+--Signature=_Tue__29_Oct_2024_08_47_51_+0100_cTzXq8Xnl92OrbC_
+Content-Type: application/pgp-signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEygERR5zS79/7gjklPhwn4R9pv/4FAmcgkycACgkQPhwn4R9p
+v/73qhAAqfq1opLJpsi8N5Zybplb3p6fVnnRbfmlFkAFK4iGsmwpe8ZJrYTJe3P3
+R06TO1LkH9OXs5Nq63q5yezrYnaBbQNh26KfoyVBXVYoCBSXJneAReIE/aWbHD7o
+DvvStIBGnvdOaH1gPcKvt4k2o49MQEvq36gkinFZGiBXCJa1GDjHFXHbZWuqsRju
+AsqMyIKffLbhggIQOBnT2x4JEp4thVNWID0oVUQnDeS2d0tmOIWket8LZkx6C564
+djghjfh0kFKIryqLridY674A+nRdS8rHyn1uqxuaYlGVCIOzlTJWME9g/+RsHdWG
+zsHocTwfXMbe2r5MM1/tL9p3n8syk7tFt5PVcDhRd8pmewTZpwoAsNoMnqpRG/4s
+cmhPJ2du01p8ORdm6ke/4h051SbJualIQvLYWkoRyes3LIvkKmhkb5xJ2vD0VhZg
+zjFvgcLBPXosTxk69FapfekT0pMi9ydRVIx2VdBkAx8VQJ7RHuF6rZsOXnKmMB2o
+9J1Ag7VNUBbxCepB+RiqthlgL8USUUaPUB4ugdlddww1iOGenSNFUs82Ghb+HVyR
+AI6xhfo+KFhsN56GHs/WAqmCcxA1Yz/oBmPWKIYx8UJWeFYaSqOY9U2cY0Ib3Aj/
+KnWDtW68kmIN5ZC5IvnAtXbAtoBOXB6oU6m+k/dvmFvOM35J9Yg=
+=O3TT
+-----END PGP SIGNATURE-----
+
+--Signature=_Tue__29_Oct_2024_08_47_51_+0100_cTzXq8Xnl92OrbC_--
