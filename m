@@ -2,52 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 784399B45B0
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Oct 2024 10:25:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EDEE9B45B2
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Oct 2024 10:25:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12FE510E13E;
-	Tue, 29 Oct 2024 09:25:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1667210E5EB;
+	Tue, 29 Oct 2024 09:25:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FF/Yq9tn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TgcgWpAM";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA42D10E5F1
- for <intel-gfx@lists.freedesktop.org>; Tue, 29 Oct 2024 09:25:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5EC4910E5EB
+ for <intel-gfx@lists.freedesktop.org>; Tue, 29 Oct 2024 09:25:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730193936; x=1761729936;
+ t=1730193940; x=1761729940;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=RCPa1brl6TgiNuH5MbCvT5YAGWQgmTAsycLH5qn0b/Y=;
- b=FF/Yq9tnPwaQY4wRcXRxW360Sv4CtFuaWzcoVVn11SQotIt3gdIwjwPg
- 2afYFGF9dd7pH5by1PdP6VG3hdXDZgFFTX0quh18/CUPQ/10OUO5CWtn6
- 4hfze7r4+S5z2RrD35lZOMuU887e9xVrgYDEQKyMXnCzf6gVqLuhBSgtw
- 7PmqLLfezBFQ+eMrv3CO5sFICZ5rzfjD0hTXHYu87On5+sWjcTWLiA4bw
- 2tXYGSkR9Qwp+vNh/EPUalWvstngaHVLk+i70y4dczhZt6EopIeVVSd+W
- d2jPayg/6vrKl/9NBYbqOvkHfhlPLy3Stwv/B6j9xXNX0gelatytK2/pb w==;
-X-CSE-ConnectionGUID: ACk9E/51QJCOvc4GJzN9yw==
-X-CSE-MsgGUID: jVzXWKy7SUujn9F/Eg5LNw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11239"; a="29723958"
-X-IronPort-AV: E=Sophos;i="6.11,241,1725346800"; d="scan'208";a="29723958"
+ bh=O4BkneOjIZm1w36u/0cnh5/M7Ej25Lwdee7LSadnhhE=;
+ b=TgcgWpAMlnCkhbhYKBB0IgIhKCJvbvzMn8vo/YnGTMPN2o8OxG/3JRjX
+ skn2Za3YR09DI1WZMrwoFh6E/w3p6m9OUNR9QS0z6qnUW2iynni+GKv59
+ 1cpCR/Ma04Dz1X/VWifO9GmYpq64EtUye8XKyJltl9RJr18T+KdTfenCb
+ wnr6ul1GOuVdsY9UCiy5/4OXSn5MtcJGKMnFoh7gbFsH3lzd5M5XCUrRM
+ 4EO8noFEHpPPTIlHiyVACxE9cl3TWnfbWADmZX6TlWefjv2yxAbXRoslX
+ ejE902NSNmec86kerFfBW5HLtruVTwdwX57Fw2WhC1/SBcBnft9/45eEt g==;
+X-CSE-ConnectionGUID: 4RIaEZjKTD+PMpiaPKcloQ==
+X-CSE-MsgGUID: qNaFDN1aSuWYL24vPKBjzw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11239"; a="29723973"
+X-IronPort-AV: E=Sophos;i="6.11,241,1725346800"; d="scan'208";a="29723973"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2024 02:25:36 -0700
-X-CSE-ConnectionGUID: aNolQHl7RAOy38ImcZx2hA==
-X-CSE-MsgGUID: XVdzx5J2QtGs4N7ec9GuTg==
+ 29 Oct 2024 02:25:39 -0700
+X-CSE-ConnectionGUID: aY8KJ098Rdm0yGgopXhdPw==
+X-CSE-MsgGUID: Azhn2abgT+aDR4OoDT8B9w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,241,1725346800"; d="scan'208";a="105245182"
+X-IronPort-AV: E=Sophos;i="6.11,241,1725346800"; d="scan'208";a="105245188"
 Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.69])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2024 02:25:34 -0700
+ 29 Oct 2024 02:25:38 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [RESEND 1/4] drm/i915/sbi: add intel_sbi_{lock,unlock}()
-Date: Tue, 29 Oct 2024 11:25:23 +0200
-Message-Id: <61929c2fad4d4ff64e57ea2a28007f2efeb5113c.1730193891.git.jani.nikula@intel.com>
+Subject: [RESEND 2/4] drm/i915/sbi: add a dedicated mutex for LPT/WPT IOSF
+ sideband
+Date: Tue, 29 Oct 2024 11:25:24 +0200
+Message-Id: <139933094fe51fccdbe14d4e20df69782e801905.1730193891.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1730193891.git.jani.nikula@intel.com>
 References: <cover.1730193891.git.jani.nikula@intel.com>
@@ -69,165 +70,115 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Abstract the LPT/WPT IOSF sideband locking by adding dedicated sbi
-lock/unlock functions.
+The LPT/WPT IOSF sideband is unrelated to pcode or VLV/CHV IOSF
+sideband. It's just confusing to piggyback on the same mutex. Add a
+dedicated lock with init and cleanup functions.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- .../gpu/drm/i915/display/intel_pch_refclk.c   | 26 +++++++++----------
- drivers/gpu/drm/i915/intel_sbi.c              | 10 +++++++
- drivers/gpu/drm/i915/intel_sbi.h              |  2 ++
- 3 files changed, 25 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/i915/i915_driver.c |  3 +++
+ drivers/gpu/drm/i915/i915_drv.h    |  3 +++
+ drivers/gpu/drm/i915/intel_sbi.c   | 16 +++++++++++++---
+ drivers/gpu/drm/i915/intel_sbi.h   |  2 ++
+ 4 files changed, 21 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_pch_refclk.c b/drivers/gpu/drm/i915/display/intel_pch_refclk.c
-index 84c55971e91a..d29b9adcbed1 100644
---- a/drivers/gpu/drm/i915/display/intel_pch_refclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_pch_refclk.c
-@@ -108,13 +108,13 @@ void lpt_disable_iclkip(struct drm_i915_private *dev_priv)
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index 365329ff8a07..d4d29034d9ea 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -104,6 +104,7 @@
+ #include "intel_pci_config.h"
+ #include "intel_pcode.h"
+ #include "intel_region_ttm.h"
++#include "intel_sbi.h"
+ #include "vlv_suspend.h"
  
- 	intel_de_write(dev_priv, PIXCLK_GATE, PIXCLK_GATE_GATE);
+ static const struct drm_driver i915_drm_driver;
+@@ -231,6 +232,7 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
+ 	spin_lock_init(&dev_priv->irq_lock);
+ 	spin_lock_init(&dev_priv->gpu_error.lock);
  
--	mutex_lock(&dev_priv->sb_lock);
-+	intel_sbi_lock(dev_priv);
++	intel_sbi_init(dev_priv);
+ 	mutex_init(&dev_priv->sb_lock);
+ 	cpu_latency_qos_add_request(&dev_priv->sb_qos, PM_QOS_DEFAULT_VALUE);
  
- 	temp = intel_sbi_read(dev_priv, SBI_SSCCTL6, SBI_ICLK);
- 	temp |= SBI_SSCCTL_DISABLE;
- 	intel_sbi_write(dev_priv, SBI_SSCCTL6, temp, SBI_ICLK);
+@@ -292,6 +294,7 @@ static void i915_driver_late_release(struct drm_i915_private *dev_priv)
  
--	mutex_unlock(&dev_priv->sb_lock);
-+	intel_sbi_unlock(dev_priv);
+ 	cpu_latency_qos_remove_request(&dev_priv->sb_qos);
+ 	mutex_destroy(&dev_priv->sb_lock);
++	intel_sbi_fini(dev_priv);
+ 
+ 	i915_params_free(&dev_priv->params);
  }
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index de73b348b8cf..3e46cdcf294a 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -236,6 +236,9 @@ struct drm_i915_private {
+ 	spinlock_t irq_lock;
+ 	bool irqs_enabled;
  
- struct iclkip_params {
-@@ -195,7 +195,7 @@ void lpt_program_iclkip(const struct intel_crtc_state *crtc_state)
- 		    "iCLKIP clock: found settings for %dKHz refresh rate: auxdiv=%x, divsel=%x, phasedir=%x, phaseinc=%x\n",
- 		    clock, p.auxdiv, p.divsel, p.phasedir, p.phaseinc);
- 
--	mutex_lock(&dev_priv->sb_lock);
-+	intel_sbi_lock(dev_priv);
- 
- 	/* Program SSCDIVINTPHASE6 */
- 	temp = intel_sbi_read(dev_priv, SBI_SSCDIVINTPHASE6, SBI_ICLK);
-@@ -218,7 +218,7 @@ void lpt_program_iclkip(const struct intel_crtc_state *crtc_state)
- 	temp &= ~SBI_SSCCTL_DISABLE;
- 	intel_sbi_write(dev_priv, SBI_SSCCTL6, temp, SBI_ICLK);
- 
--	mutex_unlock(&dev_priv->sb_lock);
-+	intel_sbi_unlock(dev_priv);
- 
- 	/* Wait for initialization time */
- 	udelay(24);
-@@ -236,11 +236,11 @@ int lpt_get_iclkip(struct drm_i915_private *dev_priv)
- 
- 	iclkip_params_init(&p);
- 
--	mutex_lock(&dev_priv->sb_lock);
-+	intel_sbi_lock(dev_priv);
- 
- 	temp = intel_sbi_read(dev_priv, SBI_SSCCTL6, SBI_ICLK);
- 	if (temp & SBI_SSCCTL_DISABLE) {
--		mutex_unlock(&dev_priv->sb_lock);
-+		intel_sbi_unlock(dev_priv);
- 		return 0;
- 	}
- 
-@@ -254,7 +254,7 @@ int lpt_get_iclkip(struct drm_i915_private *dev_priv)
- 	p.auxdiv = (temp & SBI_SSCAUXDIV_FINALDIV2SEL_MASK) >>
- 		SBI_SSCAUXDIV_FINALDIV2SEL_SHIFT;
- 
--	mutex_unlock(&dev_priv->sb_lock);
-+	intel_sbi_unlock(dev_priv);
- 
- 	p.desired_divisor = (p.divsel + 2) * p.iclk_pi_range + p.phaseinc;
- 
-@@ -279,7 +279,7 @@ static void lpt_enable_clkout_dp(struct drm_i915_private *dev_priv,
- 		     with_fdi, "LP PCH doesn't have FDI\n"))
- 		with_fdi = false;
- 
--	mutex_lock(&dev_priv->sb_lock);
-+	intel_sbi_lock(dev_priv);
- 
- 	tmp = intel_sbi_read(dev_priv, SBI_SSCCTL, SBI_ICLK);
- 	tmp &= ~SBI_SSCCTL_DISABLE;
-@@ -302,7 +302,7 @@ static void lpt_enable_clkout_dp(struct drm_i915_private *dev_priv,
- 	tmp |= SBI_GEN0_CFG_BUFFENABLE_DISABLE;
- 	intel_sbi_write(dev_priv, reg, tmp, SBI_ICLK);
- 
--	mutex_unlock(&dev_priv->sb_lock);
-+	intel_sbi_unlock(dev_priv);
- }
- 
- /* Sequence to disable CLKOUT_DP */
-@@ -310,7 +310,7 @@ void lpt_disable_clkout_dp(struct drm_i915_private *dev_priv)
- {
- 	u32 reg, tmp;
- 
--	mutex_lock(&dev_priv->sb_lock);
-+	intel_sbi_lock(dev_priv);
- 
- 	reg = HAS_PCH_LPT_LP(dev_priv) ? SBI_GEN0 : SBI_DBUFF0;
- 	tmp = intel_sbi_read(dev_priv, reg, SBI_ICLK);
-@@ -328,7 +328,7 @@ void lpt_disable_clkout_dp(struct drm_i915_private *dev_priv)
- 		intel_sbi_write(dev_priv, SBI_SSCCTL, tmp, SBI_ICLK);
- 	}
- 
--	mutex_unlock(&dev_priv->sb_lock);
-+	intel_sbi_unlock(dev_priv);
- }
- 
- #define BEND_IDX(steps) ((50 + (steps)) / 5)
-@@ -374,7 +374,7 @@ static void lpt_bend_clkout_dp(struct drm_i915_private *dev_priv, int steps)
- 	if (drm_WARN_ON(&dev_priv->drm, idx >= ARRAY_SIZE(sscdivintphase)))
- 		return;
- 
--	mutex_lock(&dev_priv->sb_lock);
-+	intel_sbi_lock(dev_priv);
- 
- 	if (steps % 10 != 0)
- 		tmp = 0xAAAAAAAB;
-@@ -387,7 +387,7 @@ static void lpt_bend_clkout_dp(struct drm_i915_private *dev_priv, int steps)
- 	tmp |= sscdivintphase[idx];
- 	intel_sbi_write(dev_priv, SBI_SSCDIVINTPHASE, tmp, SBI_ICLK);
- 
--	mutex_unlock(&dev_priv->sb_lock);
-+	intel_sbi_unlock(dev_priv);
- }
- 
- #undef BEND_IDX
++	/* LPT/WPT IOSF sideband protection */
++	struct mutex sbi_lock;
++
+ 	/* Sideband mailbox protection */
+ 	struct mutex sb_lock;
+ 	struct pm_qos_request sb_qos;
 diff --git a/drivers/gpu/drm/i915/intel_sbi.c b/drivers/gpu/drm/i915/intel_sbi.c
-index 5c6e517c73f4..862b5b9992eb 100644
+index 862b5b9992eb..41e85ac773dc 100644
 --- a/drivers/gpu/drm/i915/intel_sbi.c
 +++ b/drivers/gpu/drm/i915/intel_sbi.c
-@@ -57,6 +57,16 @@ static int intel_sbi_rw(struct drm_i915_private *i915, u16 reg,
- 	return 0;
+@@ -17,7 +17,7 @@ static int intel_sbi_rw(struct drm_i915_private *i915, u16 reg,
+ 	struct intel_uncore *uncore = &i915->uncore;
+ 	u32 cmd;
+ 
+-	lockdep_assert_held(&i915->sb_lock);
++	lockdep_assert_held(&i915->sbi_lock);
+ 
+ 	if (intel_wait_for_register_fw(uncore,
+ 				       SBI_CTL_STAT, SBI_BUSY, 0,
+@@ -59,12 +59,12 @@ static int intel_sbi_rw(struct drm_i915_private *i915, u16 reg,
+ 
+ void intel_sbi_lock(struct drm_i915_private *i915)
+ {
+-	mutex_lock(&i915->sb_lock);
++	mutex_lock(&i915->sbi_lock);
  }
  
-+void intel_sbi_lock(struct drm_i915_private *i915)
-+{
-+	mutex_lock(&i915->sb_lock);
-+}
-+
-+void intel_sbi_unlock(struct drm_i915_private *i915)
-+{
-+	mutex_unlock(&i915->sb_lock);
-+}
-+
- u32 intel_sbi_read(struct drm_i915_private *i915, u16 reg,
- 		   enum intel_sbi_destination destination)
+ void intel_sbi_unlock(struct drm_i915_private *i915)
  {
+-	mutex_unlock(&i915->sb_lock);
++	mutex_unlock(&i915->sbi_lock);
+ }
+ 
+ u32 intel_sbi_read(struct drm_i915_private *i915, u16 reg,
+@@ -82,3 +82,13 @@ void intel_sbi_write(struct drm_i915_private *i915, u16 reg, u32 value,
+ {
+ 	intel_sbi_rw(i915, reg, destination, &value, false);
+ }
++
++void intel_sbi_init(struct drm_i915_private *i915)
++{
++	mutex_init(&i915->sbi_lock);
++}
++
++void intel_sbi_fini(struct drm_i915_private *i915)
++{
++	mutex_destroy(&i915->sbi_lock);
++}
 diff --git a/drivers/gpu/drm/i915/intel_sbi.h b/drivers/gpu/drm/i915/intel_sbi.h
-index f5a862210454..f91bd03aa826 100644
+index f91bd03aa826..85161a4f13b8 100644
 --- a/drivers/gpu/drm/i915/intel_sbi.h
 +++ b/drivers/gpu/drm/i915/intel_sbi.h
 @@ -15,6 +15,8 @@ enum intel_sbi_destination {
  	SBI_MPHY,
  };
  
-+void intel_sbi_lock(struct drm_i915_private *i915);
-+void intel_sbi_unlock(struct drm_i915_private *i915);
++void intel_sbi_init(struct drm_i915_private *i915);
++void intel_sbi_fini(struct drm_i915_private *i915);
+ void intel_sbi_lock(struct drm_i915_private *i915);
+ void intel_sbi_unlock(struct drm_i915_private *i915);
  u32 intel_sbi_read(struct drm_i915_private *i915, u16 reg,
- 		   enum intel_sbi_destination destination);
- void intel_sbi_write(struct drm_i915_private *i915, u16 reg, u32 value,
 -- 
 2.39.5
 
