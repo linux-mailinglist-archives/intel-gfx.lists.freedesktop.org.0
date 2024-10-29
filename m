@@ -2,55 +2,90 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0253B9B8EAC
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Nov 2024 11:08:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52B1F9B8EB4
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Nov 2024 11:08:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F244E10E977;
-	Fri,  1 Nov 2024 10:08:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D711C10E984;
+	Fri,  1 Nov 2024 10:08:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=paranoici.org header.i=@paranoici.org header.b="QoTo2yv3";
+	dkim=pass (2048-bit key; unprotected) header.d=quicinc.com header.i=@quicinc.com header.b="QS0t9JAU";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 459 seconds by postgrey-1.36 at gabe;
- Tue, 29 Oct 2024 07:55:50 UTC
-Received: from confino.investici.org (confino.investici.org [93.190.126.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C8B010E5C3
- for <intel-gfx@lists.freedesktop.org>; Tue, 29 Oct 2024 07:55:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=paranoici.org;
- s=stigmate; t=1730188089;
- bh=DBH4cM5u0lzF/5WegoayGk30dhb3VKVT7NmVFPEVhYU=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=QoTo2yv3zWxRKkyeWLBiK65DyF9DWCwubMzh75xz/VHXR6u6umQrnvhe3+WL500QS
- pMBf2HaJlBtNC4YUFH+Y523We2MOIlI5BMlTNb5G/3xEYQ7FerU+N4zXlqLiqGODbn
- fwwu2wd43ceTsPq8RDpyTs/5LA9y0EPJGohVZZEA=
-Received: from mx1.investici.org (unknown [127.0.0.1])
- by confino.investici.org (Postfix) with ESMTP id 4Xd2Rs0cTxz10vP;
- Tue, 29 Oct 2024 07:48:09 +0000 (UTC)
-Received: from [93.190.126.19] (mx1.investici.org [93.190.126.19])
- (Authenticated sender: invernomuto@paranoici.org) by localhost (Postfix) with
- ESMTPSA id 4Xd2Rs0GY9z10t6; Tue, 29 Oct 2024 07:48:09 +0000 (UTC)
-Received: from frx by crunch with local (Exim 4.98)
- (envelope-from <invernomuto@paranoici.org>)
- id 1t5gxU-000000001cC-0Ma5; Tue, 29 Oct 2024 08:48:08 +0100
-Date: Tue, 29 Oct 2024 08:47:51 +0100
-From: Francesco Poli <invernomuto@paranoici.org>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: imre.deak@intel.com, Intel GFX list <intel-gfx@lists.freedesktop.org>,
- 1075770@bugs.debian.org
-Subject: Re: [bug report] adlp_tc_phy_connect [i915] floods logs with
- drm_WARN_ON(tc->mode == TC_PORT_LEGACY) call traces
-Message-Id: <20241029084751.226aeb1245b12036f98ac964@paranoici.org>
-In-Reply-To: <87v80oxzz9.fsf@intel.com>
-References: <20240715203543.63b40a68931fdc45332ba9f8@paranoici.org>
- <ZqFIKLLcUQrd1IAq@ideak-desk.fi.intel.com>
- <20240725235929.68dd56625806ac0c8d20a2c8@paranoici.org>
- <87v80oxzz9.fsf@intel.com>
-X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Content-Type: multipart/signed; protocol="application/pgp-signature";
- micalg="PGP-SHA512";
- boundary="Signature=_Tue__29_Oct_2024_08_47_51_+0100_cTzXq8Xnl92OrbC_"
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
+ [205.220.168.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B60810E284;
+ Tue, 29 Oct 2024 14:48:22 +0000 (UTC)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49T91Ow1025858;
+ Tue, 29 Oct 2024 14:47:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+ cc:content-transfer-encoding:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+ +wv4O0Y5GVDH3vUrfYUR55hgvLmKzOGrUOAzL5LkrYY=; b=QS0t9JAUBHqWH02u
+ dNtVrgHN86w5CLnNDffItzpLyqgQwNrWLXukh7717iCujg+qac7U0LQNgx8UjmfO
+ pNppyLoV0BiCWiWYeQfbQSkEueNjqhpwe3ymQ/5JtmI+7D7lNEAuLZkjWYt7Bad3
+ FIWANrEtgFCEbNhs18Z88h7B0VJOTTZcagFhIXvQ7W0zo2pKEUeoAojfMPClCC3w
+ ++dX6DXZS2K0/yun7AKEtrTTvl9CbZw4Czd+v0b3ypA1OiaF5hQ72P40HQv1u1dm
+ mFSANVwhc7kKC3bU9wQWN7RlliJHoMkvZAvlxYf4h1W0oqtV7QsYssccuvYBrg1q
+ QDJmNA==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com
+ [129.46.96.20])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42gsq8gr78-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Tue, 29 Oct 2024 14:47:56 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com
+ [10.47.209.196])
+ by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49TEltNx020912
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Tue, 29 Oct 2024 14:47:55 GMT
+Received: from [10.226.59.182] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 29 Oct
+ 2024 07:47:54 -0700
+Message-ID: <5dd216a0-0c99-6dd5-f06d-60c7c6da1b31@quicinc.com>
+Date: Tue, 29 Oct 2024 08:47:54 -0600
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.0
+Subject: Re: [PATCH v2 3/3] drm: remove driver date from struct drm_driver and
+ all drivers
+Content-Language: en-US
+To: Jani Nikula <jani.nikula@intel.com>, <dri-devel@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>
+CC: Javier Martinez Canillas <javierm@redhat.com>, Alex Deucher
+ <alexander.deucher@amd.com>, Simon Ser <contact@emersion.fr>, David Airlie
+ <airlied@gmail.com>, Hamza Mahfooz <hamza.mahfooz@amd.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>, Simona Vetter
+ <simona@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>,
+ =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ <amd-gfx@lists.freedesktop.org>, <linux-arm-kernel@lists.infradead.org>,
+ <nouveau@lists.freedesktop.org>, <xen-devel@lists.xenproject.org>
+References: <20241028185141.3756176-1-jani.nikula@intel.com>
+ <20241028185141.3756176-3-jani.nikula@intel.com>
+From: Jeffrey Hugo <quic_jhugo@quicinc.com>
+In-Reply-To: <20241028185141.3756176-3-jani.nikula@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
+ signatures=585085
+X-Proofpoint-GUID: 1zozjE_Cu_2BsSxN4CNnC4fCdn0_-mvH
+X-Proofpoint-ORIG-GUID: 1zozjE_Cu_2BsSxN4CNnC4fCdn0_-mvH
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 bulkscore=0
+ adultscore=0 mlxscore=0 priorityscore=1501 mlxlogscore=982 impostorscore=0
+ lowpriorityscore=0 malwarescore=0 clxscore=1011 spamscore=0 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
+ definitions=main-2410290113
 X-Mailman-Approved-At: Fri, 01 Nov 2024 10:08:01 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,63 +102,21 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Signature=_Tue__29_Oct_2024_08_47_51_+0100_cTzXq8Xnl92OrbC_
-Content-Type: text/plain; charset=US-ASCII
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 10/28/2024 12:51 PM, Jani Nikula wrote:
+> We stopped using the driver initialized date in commit 7fb8af6798e8
+> ("drm: deprecate driver date") and (eventually) started returning "0"
+> for drm_version ioctl instead.
+> 
+> Finish the job, and remove the unused date member from struct
+> drm_driver, its initialization from drivers, along with the common
+> DRIVER_DATE macros.
+> 
+> v2: Also update drivers/accel (kernel test robot)
+> 
+> Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
+> Acked-by: Alex Deucher <alexander.deucher@amd.com>
+> Acked-by: Simon Ser <contact@emersion.fr>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-Control: forwarded -1 https://gitlab.freedesktop.org/drm/i915/kernel/-/issu=
-es/12246
-
-
-On Mon, 29 Jul 2024 13:19:06 +0300 Jani Nikula wrote:
-
-[...]
-> There are a number of reasons why email and mailing lists are really bad
-> for reporting bugs, from our perspective, which is why we've asked
-> people to report bugs to freedesktop.org bug trackers for about a decade
-> now.
->=20
-> If the right person doesn't have time to resolve the issue right away,
-> it'll likely be forgotten on the mailing list. Attachments aren't
-> welcome on mailing lists, let alone big logs. It's easier to label and
-> reference issues on a bug tracker. It's easier (yes, for us) to manage
-> the issues, and the people working on them, on a bug tracker. And so on.
-
-I filed an issue report on the freedesktop.org tracker (however, there
-have been no replies yet).
-
-I still experience the bug with:
-
-$ uname -srvmo
-Linux 6.11.4-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.11.4-1 (2024-10-20) x86_=
-64 GNU/Linux
-
-
---=20
- http://www.inventati.org/frx/
- There's not a second to spare! To the laboratory!
-..................................................... Francesco Poli .
- GnuPG key fpr =3D=3D CA01 1147 9CD2 EFDF FB82  3925 3E1C 27E1 1F69 BFFE
-
---Signature=_Tue__29_Oct_2024_08_47_51_+0100_cTzXq8Xnl92OrbC_
-Content-Type: application/pgp-signature
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCgAdFiEEygERR5zS79/7gjklPhwn4R9pv/4FAmcgkycACgkQPhwn4R9p
-v/73qhAAqfq1opLJpsi8N5Zybplb3p6fVnnRbfmlFkAFK4iGsmwpe8ZJrYTJe3P3
-R06TO1LkH9OXs5Nq63q5yezrYnaBbQNh26KfoyVBXVYoCBSXJneAReIE/aWbHD7o
-DvvStIBGnvdOaH1gPcKvt4k2o49MQEvq36gkinFZGiBXCJa1GDjHFXHbZWuqsRju
-AsqMyIKffLbhggIQOBnT2x4JEp4thVNWID0oVUQnDeS2d0tmOIWket8LZkx6C564
-djghjfh0kFKIryqLridY674A+nRdS8rHyn1uqxuaYlGVCIOzlTJWME9g/+RsHdWG
-zsHocTwfXMbe2r5MM1/tL9p3n8syk7tFt5PVcDhRd8pmewTZpwoAsNoMnqpRG/4s
-cmhPJ2du01p8ORdm6ke/4h051SbJualIQvLYWkoRyes3LIvkKmhkb5xJ2vD0VhZg
-zjFvgcLBPXosTxk69FapfekT0pMi9ydRVIx2VdBkAx8VQJ7RHuF6rZsOXnKmMB2o
-9J1Ag7VNUBbxCepB+RiqthlgL8USUUaPUB4ugdlddww1iOGenSNFUs82Ghb+HVyR
-AI6xhfo+KFhsN56GHs/WAqmCcxA1Yz/oBmPWKIYx8UJWeFYaSqOY9U2cY0Ib3Aj/
-KnWDtW68kmIN5ZC5IvnAtXbAtoBOXB6oU6m+k/dvmFvOM35J9Yg=
-=O3TT
------END PGP SIGNATURE-----
-
---Signature=_Tue__29_Oct_2024_08_47_51_+0100_cTzXq8Xnl92OrbC_--
+For QAIC -
+Acked-by: Jeffrey Hugo <quic_jhugo@quicinc.com>
