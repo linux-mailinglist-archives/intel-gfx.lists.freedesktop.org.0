@@ -2,52 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22D859B41C8
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Oct 2024 06:19:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B2EF9B41CE
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Oct 2024 06:26:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5019510E15E;
-	Tue, 29 Oct 2024 05:19:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 626E010E595;
+	Tue, 29 Oct 2024 05:26:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g/Ek3eWk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="niDk/7q3";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF99110E15E
- for <intel-gfx@lists.freedesktop.org>; Tue, 29 Oct 2024 05:19:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E528A10E595;
+ Tue, 29 Oct 2024 05:26:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730179182; x=1761715182;
+ t=1730179580; x=1761715580;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=p+4cjyzPL3tmL6PY1VYIgSUudyCB2xr37HIg4kJSKGA=;
- b=g/Ek3eWkPJMyDRpqzPR/AARYX1F3jMvBcSlUI0XxLAFaQXZ0EutDh2Z8
- iLc2xAv1obEu0odLAcO1QoUGTYXhV6pwQGVBUd9Gja0O2sCEqt4iLGLcz
- jRgJkSdh3JkWeR7Q7UR3BlGgLjVPRl26Kjfo/XO1GbIB3iIXm93oYUsDP
- NTCm105iULjcihaTiMvKHYQeTf1MuXczEL5lq3bh1UVJWNOSL/mzAz4oH
- Xt7Xjh/pu0WR5Kzkz3DOxuKNgtYqUqQt05PRwyCY0K6koEf1ShU4rveTO
- NIkgDUXU+HbGTGgSecrSj8BaspMADjMmgZi+HGisc6E/tyejzSAq7VVII Q==;
-X-CSE-ConnectionGUID: cze7cJnDQeauYy5JVyLp6Q==
-X-CSE-MsgGUID: orvyccBiR3KhZPMG6VuQrQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="29987549"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="29987549"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2024 22:19:42 -0700
-X-CSE-ConnectionGUID: V2SW1KkdTkO4jTEWPWR/xQ==
-X-CSE-MsgGUID: W+qEjkElSdye2bVoT4HY+A==
+ bh=lsqTNSy5k10L4dhb+UfFv/rTIgIRm0FtXmdCP+THva4=;
+ b=niDk/7q3sBCQwHRM/Z7BWkUc42hNW89h4AqT2XM05ZDCK7yy3J+t4SSn
+ b7Rmw/XpLaTMVBH+LbyzVfx4zFoD/YYIMydBry+6+AdnbP3JyrHjJAPb2
+ D3CuA1OA4VF5uWMkmCg9nRj7GZSwfLWi3sQzjqQoi3CAqkHZ4V0Yvnwpv
+ mq+AydGc20HfRr10LCSqecGOh8b46oi02tmgnJty/f0dK9R9XvmmXqKjo
+ saMos7wQ4OWLqMVh09iqqvroC6O1gdJ7l1vfncatTU9pIwa/GC/0X1kGm
+ AgMcSXLQZMJnjivm+nGoc83LqFWdiZOpcVe7xUi6fnqkKNDxUd3DvUZef w==;
+X-CSE-ConnectionGUID: GKQLelHjQxeZFt3nuFjSKA==
+X-CSE-MsgGUID: +NZn8DlOSIKxcHuMtKz+AQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11239"; a="30013417"
+X-IronPort-AV: E=Sophos;i="6.11,241,1725346800"; d="scan'208";a="30013417"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2024 22:26:19 -0700
+X-CSE-ConnectionGUID: tyNsBLuyRzm/NGllwrr+EA==
+X-CSE-MsgGUID: 7fXrVZagQbOJ20SS6O53cA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,241,1725346800"; d="scan'208";a="82168506"
-Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
- by fmviesa010.fm.intel.com with ESMTP; 28 Oct 2024 22:19:41 -0700
-From: Animesh Manna <animesh.manna@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: jouni.hogander@intel.com,
-	Animesh Manna <animesh.manna@intel.com>
-Subject: [RFC] drm/i915/psr: Disable psr1 if setup_time > vblank
-Date: Tue, 29 Oct 2024 10:30:30 +0530
-Message-Id: <20241029050030.1413662-1-animesh.manna@intel.com>
-X-Mailer: git-send-email 2.29.0
+X-IronPort-AV: E=Sophos;i="6.11,241,1725346800"; d="scan'208";a="86450118"
+Received: from unknown (HELO kandpal-X299-UD4-Pro.iind.intel.com)
+ ([10.190.239.10])
+ by fmviesa004.fm.intel.com with ESMTP; 28 Oct 2024 22:26:18 -0700
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH] drm/i915/xe3lpd: Disable HDCP Line Rekeying for Xe3
+Date: Tue, 29 Oct 2024 10:56:03 +0530
+Message-Id: <20241029052603.215853-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -65,49 +66,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Issue is seen when PSR enabled with setup frames and when try to disable
-PSR at SRDONACK State (0x1). PSR FSM is stuck at SRDONACK(0x1) for more
-than 5 seconds. Issue not seen with Setup frames disabled. Currently
-disable psr1 if setuptime > vblank to workaround the above issue.
+We need to disable HDCP Line Rekeying for Xe3 when we are using an HDMI
+encoder. Also remove the Wa comment tag as this follows the bspec and
+does not implement the wa.
 
-HSD: 16024594674
+v2: add additional definition instead of function, commit message typo
+fix and update.
+v3: restore lost conditional from v2.
+v4: subject line and subject message updated, fix the if ladder order,
+fix the bit definition order.
+v5: Add the bspec link and remove the Wa comment tag
 
-Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+Bspec: 69964
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+ drivers/gpu/drm/i915/display/intel_hdcp.c | 11 +++++++----
+ drivers/gpu/drm/i915/i915_reg.h           |  1 +
+ 2 files changed, 8 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 4176163ec19a..887fa8a8f878 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1640,6 +1640,15 @@ _panel_replay_compute_config(struct intel_dp *intel_dp,
- 	return true;
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+index ed6aa87403e2..7a32bfef8d87 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+@@ -31,7 +31,6 @@
+ #define KEY_LOAD_TRIES	5
+ #define HDCP2_LC_RETRY_CNT			3
  
-+static bool intel_psr_needs_wa_18037818876(struct intel_dp *intel_dp,
-+					   struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_display *display = to_intel_display(intel_dp);
-+
-+	return ((DISPLAY_VER(display) == 20) && intel_dp->psr.entry_setup_frames > 0 &&
-+		!crtc_state->has_sel_update);
-+}
-+
- void intel_psr_compute_config(struct intel_dp *intel_dp,
- 			      struct intel_crtc_state *crtc_state,
- 			      struct drm_connector_state *conn_state)
-@@ -1686,6 +1695,10 @@ void intel_psr_compute_config(struct intel_dp *intel_dp,
+-/* WA: 16022217614 */
+ static void
+ intel_hdcp_disable_hdcp_line_rekeying(struct intel_encoder *encoder,
+ 				      struct intel_hdcp *hdcp)
+@@ -43,14 +42,18 @@ intel_hdcp_disable_hdcp_line_rekeying(struct intel_encoder *encoder,
  		return;
  
- 	crtc_state->has_sel_update = intel_sel_update_config_valid(intel_dp, crtc_state);
-+
-+	/* Wa_18037818876 */
-+	if (intel_psr_needs_wa_18037818876(intel_dp, crtc_state))
-+		crtc_state->has_psr = false;
+ 	if (DISPLAY_VER(display) >= 14) {
+-		if (IS_DISPLAY_VER_STEP(display, IP_VER(14, 0), STEP_D0, STEP_FOREVER))
+-			intel_de_rmw(display, MTL_CHICKEN_TRANS(hdcp->cpu_transcoder),
+-				     0, HDCP_LINE_REKEY_DISABLE);
++		if (DISPLAY_VER(display) >= 30)
++			intel_de_rmw(display,
++				     TRANS_DDI_FUNC_CTL(display, hdcp->cpu_transcoder),
++				     0, XE3_TRANS_DDI_HDCP_LINE_REKEY_DISABLE);
+ 		else if (IS_DISPLAY_VER_STEP(display, IP_VER(14, 1), STEP_B0, STEP_FOREVER) ||
+ 			 IS_DISPLAY_VER_STEP(display, IP_VER(20, 0), STEP_B0, STEP_FOREVER))
+ 			intel_de_rmw(display,
+ 				     TRANS_DDI_FUNC_CTL(display, hdcp->cpu_transcoder),
+ 				     0, TRANS_DDI_HDCP_LINE_REKEY_DISABLE);
++		else if (IS_DISPLAY_VER_STEP(display, IP_VER(14, 0), STEP_D0, STEP_FOREVER))
++			intel_de_rmw(display, MTL_CHICKEN_TRANS(hdcp->cpu_transcoder),
++				     0, HDCP_LINE_REKEY_DISABLE);
+ 	}
  }
  
- void intel_psr_get_config(struct intel_encoder *encoder,
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 405f409e9761..184420011a88 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -3816,6 +3816,7 @@ enum skl_power_gate {
+ #define  TRANS_DDI_PVSYNC		(1 << 17)
+ #define  TRANS_DDI_PHSYNC		(1 << 16)
+ #define  TRANS_DDI_PORT_SYNC_ENABLE	REG_BIT(15)
++#define  XE3_TRANS_DDI_HDCP_LINE_REKEY_DISABLE	REG_BIT(15)
+ #define  TRANS_DDI_EDP_INPUT_MASK	(7 << 12)
+ #define  TRANS_DDI_EDP_INPUT_A_ON	(0 << 12)
+ #define  TRANS_DDI_EDP_INPUT_A_ONOFF	(4 << 12)
 -- 
-2.29.0
+2.34.1
 
