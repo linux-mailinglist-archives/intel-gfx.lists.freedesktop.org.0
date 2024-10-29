@@ -2,56 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D23DF9B52FF
-	for <lists+intel-gfx@lfdr.de>; Tue, 29 Oct 2024 20:51:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 66DC49B53F0
+	for <lists+intel-gfx@lfdr.de>; Tue, 29 Oct 2024 21:38:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 437EE10E6F3;
-	Tue, 29 Oct 2024 19:51:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7AAC10E3AD;
+	Tue, 29 Oct 2024 20:38:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GY6we5s8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ya5wx5nD";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AB6C10E6F3
- for <intel-gfx@lists.freedesktop.org>; Tue, 29 Oct 2024 19:51:07 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A04510E3AD;
+ Tue, 29 Oct 2024 20:38:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730231467; x=1761767467;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=/8cRYR8nHBtrUkx3uFvF55lP0RtgId51bbj2NMwCaJk=;
- b=GY6we5s87noB7YTmxorKCKEi/DaiLkaITrFZ29cbSGEPJaY6Y3ROpp4t
- WuxvBDQBkdrV4H68iZZ/n4JiTI7y0GGoAQZHvxSVkr7NxLMbpscjXHNOZ
- WDIA6y0xnEG2kaRioVlUP5KKdZyvNRet2TjCf+EkAz6L6s+ooMSE/wbkV
- mEXRcOppcWU/lxIBDpAfrs8xbw3tIP+cye0fydJ2n52r2ZjGGgRcuTL2j
- wR4auPbFqDKaIzOXBQQFHXlk+DS1hiHCeIsfVJ0C8IJQk9+ABHJO8/CY9
- 2O7KhJMG93MULr0WMsr7kXgZ0sXg/VFzL+kUflkxDRM1VxGaAJXtKn2vK Q==;
-X-CSE-ConnectionGUID: wwKEmsUbS9yLsdKYFUiOyw==
-X-CSE-MsgGUID: JRXDeQrSTpCi0X0IpiOZRg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11240"; a="47380712"
-X-IronPort-AV: E=Sophos;i="6.11,241,1725346800"; d="scan'208";a="47380712"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2024 12:51:07 -0700
-X-CSE-ConnectionGUID: pWBSWbg4Twu6ZY7ELSnZWw==
-X-CSE-MsgGUID: D/0LJbGwRqu1wBsFRWDokQ==
+ t=1730234312; x=1761770312;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=6okHm/7AGGiIgVtiEfCGzhiqT2UdVm/K9eRG9HnO6hU=;
+ b=Ya5wx5nDf2b7YWAx22LT4WgaAUe/cAbiKmcYao91PSzrgTebcoM5YYEV
+ ClY5XNw8WNWvs43jS9fkNjiQ5oVugH0BGk/HmFtAwX3z3+OahL4iBPvDG
+ Mdue5QiXwp4mmys/YmvqACMKXWpy8+IYNY2vMxeOi5vVOyElH4x5urbXj
+ lv/spN1py0qzu1hR7xlBRZW+MJdALTaaS7nCo+G/TAhy2n2suc2RGfAcj
+ 8NAEgO8nixPHO2YpTh7WR/Rlxi3uHYbyNbp3pYLh0fDqLe6OhOIZFFYxG
+ GEcKGE4IBzCEPa4PXhRbShPv6JHLaEzdNwppYfkl+hGbtbN4kdE5eGcyE g==;
+X-CSE-ConnectionGUID: zu/Ke2ciT66rmRN6rKPoqA==
+X-CSE-MsgGUID: axrBxF/dRxy1pBbgz1sEeg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11240"; a="40518711"
+X-IronPort-AV: E=Sophos;i="6.11,243,1725346800"; d="scan'208";a="40518711"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2024 13:38:31 -0700
+X-CSE-ConnectionGUID: Nsb/u+yvSCeXr6hmL5ZO2A==
+X-CSE-MsgGUID: Wum6oC0bTZC6i0saa0y+hQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,241,1725346800"; d="scan'208";a="81624238"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.69])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2024 12:51:05 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 2/4] drm/i915/dp: Export intel_ddi_config_transcoder_dp2()
-In-Reply-To: <20241029191215.3889861-3-imre.deak@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241029191215.3889861-1-imre.deak@intel.com>
- <20241029191215.3889861-3-imre.deak@intel.com>
-Date: Tue, 29 Oct 2024 21:51:02 +0200
-Message-ID: <878qu6ofh5.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="86830630"
+Received: from kfilipek-mobl.ger.corp.intel.com (HELO [10.245.119.69])
+ ([10.245.119.69])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2024 13:38:28 -0700
+Message-ID: <84a9090c-a226-4c74-b4a5-2449558a3b9f@linux.intel.com>
+Date: Tue, 29 Oct 2024 21:38:26 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/3] accel/ivpu: remove DRIVER_DATE conditional
+ drm_driver init
+To: Jani Nikula <jani.nikula@intel.com>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Cc: David Airlie <airlied@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Oded Gabbay <ogabbay@kernel.org>,
+ Simona Vetter <simona@ffwll.ch>,
+ Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>
+References: <20241028185141.3756176-1-jani.nikula@intel.com>
+ <20241028185141.3756176-2-jani.nikula@intel.com>
+Content-Language: en-US
+From: Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173, 80-298
+ Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <20241028185141.3756176-2-jani.nikula@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,89 +80,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 29 Oct 2024, Imre Deak <imre.deak@intel.com> wrote:
-> Export intel_ddi_config_transcoder_dp2() taken into use by the MST
-> encoder in the next patch. Move the HAS_DP20() check to the function, so
-> it doesn't need to be checked for each caller. Besides enabling the DP2
-> configuration also add a way to disable it, required by the MST slave
-> transcoder disabling sequence in the next patch.
+Reviewed-by: Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>
 
-Did you consider making intel_ddi_config_transcoder_dp2() enable part of
-intel_ddi_config_transcoder_func() and disable part of
-intel_ddi_disable_transcoder_func()? It's a bit much to add new
-functions for single register updates.
-
-BR,
-Jani.
-
-
->
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
+On 10/28/2024 7:51 PM, Jani Nikula wrote:
+> The ivpu struct drm_driver has conditional initialization based on #ifdef
+> DRIVER_DATE, which is never defined anywhere. Neither are the macros
+> referenced within the block: DRIVER_DATE, DRIVER_MAJOR, DRIVER_MINOR,
+> and DRIVER_PATCHLEVEL. With the struct drm_driver date member going away
+> anyway, just remove the conditional compilation.
+> 
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> 
 > ---
->  drivers/gpu/drm/i915/display/intel_ddi.c | 15 +++++++++------
->  drivers/gpu/drm/i915/display/intel_ddi.h |  3 +++
->  2 files changed, 12 insertions(+), 6 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index 6bbfe0762cafa..5ff7d23775d82 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -454,15 +454,19 @@ static u32 bdw_trans_port_sync_master_select(enum transcoder master_transcoder)
->  		return master_transcoder + 1;
->  }
+> 
+> Note: I prefer to merge this together with the other patches via
+> drm-misc-next.
+> 
+> Cc: David Airlie <airlied@gmail.com>
+> Cc: Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Oded Gabbay <ogabbay@kernel.org>
+> Cc: Simona Vetter <simona@ffwll.ch>
+> Cc: Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: dri-devel@lists.freedesktop.org
+> ---
+>  drivers/accel/ivpu/ivpu_drv.c | 7 -------
+>  1 file changed, 7 deletions(-)
+> 
+> diff --git a/drivers/accel/ivpu/ivpu_drv.c b/drivers/accel/ivpu/ivpu_drv.c
+> index e7d8967c02f2..07c7e5a5f22b 100644
+> --- a/drivers/accel/ivpu/ivpu_drv.c
+> +++ b/drivers/accel/ivpu/ivpu_drv.c
+> @@ -456,15 +456,8 @@ static const struct drm_driver driver = {
+>  	.name = DRIVER_NAME,
+>  	.desc = DRIVER_DESC,
 >  
-> -static void
-> +void
->  intel_ddi_config_transcoder_dp2(struct intel_encoder *encoder,
-> -				const struct intel_crtc_state *crtc_state)
-> +				const struct intel_crtc_state *crtc_state,
-> +				bool enable)
->  {
->  	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
->  	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
->  	u32 val = 0;
+> -#ifdef DRIVER_DATE
+> -	.date = DRIVER_DATE,
+> -	.major = DRIVER_MAJOR,
+> -	.minor = DRIVER_MINOR,
+> -	.patchlevel = DRIVER_PATCHLEVEL,
+> -#else
+>  	.date = UTS_RELEASE,
+>  	.major = 1,
+> -#endif
+>  };
 >  
-> -	if (intel_dp_is_uhbr(crtc_state))
-> +	if (!HAS_DP20(i915))
-> +		return;
-> +
-> +	if (enable && intel_dp_is_uhbr(crtc_state))
->  		val = TRANS_DP2_128B132B_CHANNEL_CODING;
->  
->  	intel_de_write(i915, TRANS_DP2_CTL(cpu_transcoder), val);
-> @@ -2549,7 +2553,7 @@ static void mtl_ddi_pre_enable_dp(struct intel_atomic_state *state,
->  	/*
->  	 * 6.b If DP v2.0/128b mode - Configure TRANS_DP2_CTL register settings.
->  	 */
-> -	intel_ddi_config_transcoder_dp2(encoder, crtc_state);
-> +	intel_ddi_config_transcoder_dp2(encoder, crtc_state, true);
->  
->  	/*
->  	 * 6.c Configure TRANS_DDI_FUNC_CTL DDI Select, DDI Mode Select & MST
-> @@ -2686,8 +2690,7 @@ static void tgl_ddi_pre_enable_dp(struct intel_atomic_state *state,
->  	 */
->  	intel_ddi_enable_transcoder_clock(encoder, crtc_state);
->  
-> -	if (HAS_DP20(dev_priv))
-> -		intel_ddi_config_transcoder_dp2(encoder, crtc_state);
-> +	intel_ddi_config_transcoder_dp2(encoder, crtc_state, true);
->  
->  	/*
->  	 * 7.b Configure TRANS_DDI_FUNC_CTL DDI Select, DDI Mode Select & MST
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.h b/drivers/gpu/drm/i915/display/intel_ddi.h
-> index 1aa2e3a190aee..bf27b2fbb08e9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.h
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.h
-> @@ -65,6 +65,9 @@ void intel_ddi_disable_transcoder_func(const struct intel_crtc_state *crtc_state
->  void intel_ddi_enable_transcoder_clock(struct intel_encoder *encoder,
->  				       const struct intel_crtc_state *crtc_state);
->  void intel_ddi_disable_transcoder_clock(const  struct intel_crtc_state *crtc_state);
-> +void intel_ddi_config_transcoder_dp2(struct intel_encoder *encoder,
-> +				     const struct intel_crtc_state *crtc_state,
-> +				     bool enable);
->  void intel_ddi_wait_for_fec_status(struct intel_encoder *encoder,
->  				   const struct intel_crtc_state *crtc_state,
->  				   bool enabled);
+>  static void ivpu_context_abort_invalid(struct ivpu_device *vdev)
 
--- 
-Jani Nikula, Intel
