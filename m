@@ -2,54 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 498629B5E05
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Oct 2024 09:38:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C5B09B5E7F
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Oct 2024 10:13:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F70910E75D;
-	Wed, 30 Oct 2024 08:38:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D57CC10E409;
+	Wed, 30 Oct 2024 09:13:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UhHam3sE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aXN2xXj1";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2144510E75D;
- Wed, 30 Oct 2024 08:38:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC6A310E2AA;
+ Wed, 30 Oct 2024 09:13:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730277521; x=1761813521;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=4/rLEAmFlHp23flk99P6eyjjFH8YOesEG0mWlxAX7c0=;
- b=UhHam3sEnw08nKTEEkIW/HhJtDodJdGqPfJUbZorZRPyoTJW1k6xbM6q
- qh7tXoMHNUCCQKT/rH/yzy3wBPBfoK3/Y4F//FjAZyFuXIkyCIYJNDpKB
- lmEQj9CehJmxhiqsOVZv2ZvZVDdFZPTbhoLi5pjfIwpr90mKywmPWVb8E
- lF0mYRKzJ/gIPj/fsBU5rkN0KhmMDEGgnzrXLVJv8lAPXDcHFzUlQnwJD
- vI6rp9w9Ge4GYBr6Tf31ChLTUClGy36FnyymV/a8xWMp6BdkLdBiuc7JY
- B4Vbdi9T/Q4Vi6dniQ9vL0r339NWUrZbme5yIoh9m5aae+Ze2vxbRpxpt A==;
-X-CSE-ConnectionGUID: mr5ShvdjQ5WCUbCLhyJ7Ow==
-X-CSE-MsgGUID: ArOXKkFkRiivKpStY/9SpQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="30112710"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="30112710"
+ t=1730279629; x=1761815629;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=SBMDdQxQMErq/mDK+xZ4gR7xXfhRt7Nk3QNEfZVi/2o=;
+ b=aXN2xXj1UgflZxA5YI15/K9yas8LM9bjRycbZyxKsfha+uMZobMuoZK9
+ Tg6/Oist662QUn7QZsWIa3hvlgwDKRJRBrFbIpIVdy1FFjopXTvocHxVi
+ +XiGbSxZ0ctF2ne8ZBah8+1s/JKcaIVPLfGmExEe/WSxlpHvatCIe4qrw
+ M5QeCt9bFylxOSmCkrNR4XiD+mbE/DvDAqIcPH57cR2DaFZWkwmvT0p1B
+ octDgCxdir0bybdgqqny4872WEwNbzrAyuboq7L8S+xADkGEibSIBtgCv
+ kic1+xFOUIch+1y3n9y1ZNEHX6dHGDoArJrFKvszpRbEXg3O7tXtenSfX A==;
+X-CSE-ConnectionGUID: +VB3gK1DS1q53hW+pwGXeg==
+X-CSE-MsgGUID: UnuWkB7rRG+9EjXxrhHlHA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11240"; a="30182920"
+X-IronPort-AV: E=Sophos;i="6.11,244,1725346800"; d="scan'208";a="30182920"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2024 01:38:40 -0700
-X-CSE-ConnectionGUID: n0xcDH5nTyaWCy6lp/UikA==
-X-CSE-MsgGUID: 6kx5SJgDReufkuAy8xxEdQ==
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2024 02:13:48 -0700
+X-CSE-ConnectionGUID: 5tZXwGQ8R/2CsvNHLDYs7w==
+X-CSE-MsgGUID: PxaXnd10QXGXDx/WPY2nuw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,244,1725346800"; d="scan'208";a="82407987"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+X-IronPort-AV: E=Sophos;i="6.11,244,1725346800"; d="scan'208";a="82417445"
+Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.122])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2024 01:38:38 -0700
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH] drm/i915/dp: Limit max compressed bpp to 18 when forcing DSC
-Date: Wed, 30 Oct 2024 14:11:00 +0530
-Message-ID: <20241030084100.1361689-1-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
+ 30 Oct 2024 02:13:47 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: I915-ci-infra@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: =?utf-8?Q?=E2=9C=97?= Fi.CI.BAT: failure for drm/i915: add
+ dedicated lock for each sideband (rev3)
+In-Reply-To: <173024786373.1362048.16983004525018468080@2413ebb6fbb6>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1730193891.git.jani.nikula@intel.com>
+ <173024786373.1362048.16983004525018468080@2413ebb6fbb6>
+Date: Wed, 30 Oct 2024 11:13:43 +0200
+Message-ID: <875xpanebc.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,40 +70,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-While forcing DSC when it is not actually required, the max compressed
-bpp from the source gets picked for compression for some pipe bpps.
-Apparently, when DSC is not required, forcing DSC to the maximum compressed
-bpp seems to cause underruns.
+On Wed, 30 Oct 2024, Patchwork <patchwork@emeril.freedesktop.org> wrote:
+> == Series Details ==
+>
+> Series: drm/i915: add dedicated lock for each sideband (rev3)
+> URL   : https://patchwork.freedesktop.org/series/139437/
+> State : failure
+>
+> == Summary ==
+>
+> CI Bug Log - changes from CI_DRM_15607 -> Patchwork_139437v3
+> ====================================================
+>
+> Summary
+> -------
+>
+>   **FAILURE**
+>
+>   Serious unknown changes coming with Patchwork_139437v3 absolutely need to be
+>   verified manually.
+>   
+>   If you think the reported changes have nothing to do with the changes
+>   introduced in Patchwork_139437v3, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+>   to document this new failure mode, which will reduce false positives in CI.
+>
+>   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139437v3/index.html
+>
+> Participating hosts (47 -> 46)
+> ------------------------------
+>
+>   Missing    (1): fi-snb-2520m 
+>
+> Possible new issues
+> -------------------
+>
+>   Here are the unknown changes that may have been introduced in Patchwork_139437v3:
+>
+> ### IGT changes ###
+>
+> #### Possible regressions ####
+>
+>   * igt@i915_selftest@live:
+>     - bat-jsl-1:          [PASS][1] -> [DMESG-WARN][2] +1 other test dmesg-warn
+>    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15607/bat-jsl-1/igt@i915_selftest@live.html
+>    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139437v3/bat-jsl-1/igt@i915_selftest@live.html
 
-To avoid this, limit the max compressed bpp to 18 while forcing DSC. This
-value works across platforms with different pipe bpps and prevents
-underruns.
+Unrelated.
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+>
+>   
+> Known issues
+> ------------
+>
+>   Here are the changes found in Patchwork_139437v3 that come from known issues:
+>
+> ### IGT changes ###
+>
+> #### Possible fixes ####
+>
+>   * igt@i915_selftest@live:
+>     - bat-mtlp-8:         [ABORT][3] ([i915#12133] / [i915#12216]) -> [PASS][4]
+>    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15607/bat-mtlp-8/igt@i915_selftest@live.html
+>    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139437v3/bat-mtlp-8/igt@i915_selftest@live.html
+>
+>   * igt@i915_selftest@live@workarounds:
+>     - bat-mtlp-8:         [ABORT][5] ([i915#12216]) -> [PASS][6]
+>    [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15607/bat-mtlp-8/igt@i915_selftest@live@workarounds.html
+>    [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139437v3/bat-mtlp-8/igt@i915_selftest@live@workarounds.html
+>
+>   * igt@kms_chamelium_frames@dp-crc-fast:
+>     - bat-dg2-13:         [DMESG-WARN][7] ([i915#12253]) -> [PASS][8]
+>    [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15607/bat-dg2-13/igt@kms_chamelium_frames@dp-crc-fast.html
+>    [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139437v3/bat-dg2-13/igt@kms_chamelium_frames@dp-crc-fast.html
+>
+>   
+>   [i915#12133]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133
+>   [i915#12216]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12216
+>   [i915#12253]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12253
+>
+>
+> Build changes
+> -------------
+>
+>   * Linux: CI_DRM_15607 -> Patchwork_139437v3
+>
+>   CI-20190529: 20190529
+>   CI_DRM_15607: fb2691707e2d5a8c704ae5e48bc5a314a308b0e0 @ git://anongit.freedesktop.org/gfx-ci/linux
+>   IGT_8087: 7abd9c49a49a9ff1f3300d7c51a92a5af8a789f1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+>   Patchwork_139437v3: fb2691707e2d5a8c704ae5e48bc5a314a308b0e0 @ git://anongit.freedesktop.org/gfx-ci/linux
+>
+> == Logs ==
+>
+> For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139437v3/index.html
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 28fa5e2d0c33..0ce29cefaa13 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2021,6 +2021,15 @@ static int dsc_src_max_compressed_bpp(struct intel_dp *intel_dp)
- {
- 	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
- 
-+	/*
-+	 * Forcing DSC and using the platform's max compressed bpp is seen to cause
-+	 * underruns. Since DSC isn't needed in these cases, limit the
-+	 * max compressed bpp to 18, which is a safe value across platforms with different
-+	 * pipe bpps.
-+	 */
-+	if (intel_dp->force_dsc_en)
-+		return 18;
-+
- 	/*
- 	 * Max Compressed bpp for Gen 13+ is 27bpp.
- 	 * For earlier platform is 23bpp. (Bspec:49259).
 -- 
-2.45.2
-
+Jani Nikula, Intel
