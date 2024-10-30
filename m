@@ -2,59 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A6BF9B66DA
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Oct 2024 16:03:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 02D889B66E2
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Oct 2024 16:03:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 249FB10E7B7;
-	Wed, 30 Oct 2024 15:03:03 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RxVc9zGK";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D69B10E7BD;
+	Wed, 30 Oct 2024 15:03:35 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5CDDB10E7B7
- for <intel-gfx@lists.freedesktop.org>; Wed, 30 Oct 2024 15:03:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730300583; x=1761836583;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=kQcIwxmYh1Mw9VwQcUO9YZZ9uEC5S8Q1wwGXoT0sLrU=;
- b=RxVc9zGKcPA6Ok603FVzbUISp3A5eskX2LRyfc/1o9V12K1yOOq8Ib5M
- mbQrtxBzk4DR9M9LHBDJHBKgzhy+USTMk28WV4/WNGcK5S2ORHVouXVmf
- mzI6VfiyAXVbD+MkQHHi7FMgLMSNLIllODLAyXb2RqLf/MgmvJkJabUcK
- hJ72beNHKOH+9M3slHMZp3YOdNClhw86UQkQLebVJ+o3/hEVriJnvD2H3
- InIRUwcwQkCTOgJCYK9ebf/2ihW2k08kxbbD+AFjtkYTKr3Hnfw1TxQE0
- RMupbTzUB5cXYvPrv6nytE224k7L98nzQPE1IAcy+bRCGu77SsIgyAhEH g==;
-X-CSE-ConnectionGUID: g5xDGVFGTrGM0PQAIcPovA==
-X-CSE-MsgGUID: 05eWAWJLT5yGrp8CAEDWNw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="30156951"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="30156951"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2024 08:03:03 -0700
-X-CSE-ConnectionGUID: hR5J6B1iQsKEaXbDIm6Trg==
-X-CSE-MsgGUID: M9Grio+IRp+PTtUooFC45g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,245,1725346800"; d="scan'208";a="119792422"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO intel.com)
- ([10.245.246.147])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2024 08:03:00 -0700
-Date: Wed, 30 Oct 2024 16:02:55 +0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: "Karas, Krzysztof" <krzysztof.karas@intel.com>
-Cc: intel-gfx@lists.freedesktop.org,
-	Andi Shyti <andi.shyti@linux.intel.com>
-Subject: Re: [PATCH v4] drm/i915: ensure segment offset never exceeds allowed
- max
-Message-ID: <ZyJKn7hbuxXqrH35@ashyti-mobl2.lan>
-References: <kjsmgowrerhkk2d7qxsbccosjb55usqhfmxse6lesxfqwxtvhu@twuaxfazvq2a>
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4BD3B10E7BD;
+ Wed, 30 Oct 2024 15:03:34 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <kjsmgowrerhkk2d7qxsbccosjb55usqhfmxse6lesxfqwxtvhu@twuaxfazvq2a>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Implement_Wa=5F14022?=
+ =?utf-8?q?698537_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Raag Jadav" <raag.jadav@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 30 Oct 2024 15:03:34 -0000
+Message-ID: <173030061430.1363580.14466362428929315638@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241030143418.410406-1-raag.jadav@intel.com>
+In-Reply-To: <20241030143418.410406-1-raag.jadav@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,71 +37,196 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Krzysztof,
+== Series Details ==
 
-First of all I need to apologize for not being responsive on your
-patches. We had offline reviews and some discussions though, but
-they were not reported in the v1-v3 reviews. Next time, the
-reviews need to have more visibility for the community.
+Series: Implement Wa_14022698537 (rev2)
+URL   : https://patchwork.freedesktop.org/series/139883/
+State : warning
 
-On Mon, Oct 28, 2024 at 04:00:48PM +0000, Karas, Krzysztof wrote:
-> Commit 255fc1703e42 ("drm/i915/gem: Calculate object page offset for
-> partial memory mapping") introduced a new offset that is compared to
-> sg_dma_len(r.sgt.sgp) in remap_io_sg() function. However, later in
-> remap_sg() the offset (which at that point resides in r->sgt.curr)
-> is compared to r->sgt.max. Scatter-gather list's max relies on one
+== Summary ==
 
-what we compare to max is not the offset, but the current sg
-item, right? Or did I miss something?
+Error: dim checkpatch failed
+6b96c7b8885a drm/intel/pciids: Refactor DG2 PCI IDs into segment ranges
+-:25: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#25: FILE: include/drm/intel/pciids.h:720:
++#define INTEL_DG2_G10_D_IDS(MACRO__, ...) \
+ 	MACRO__(0x56A0, ## __VA_ARGS__), \
+ 	MACRO__(0x56A1, ## __VA_ARGS__), \
++	MACRO__(0x56A2, ## __VA_ARGS__)
 
-> of two values (see i915_scatterlist.h):
->  a) sg_dma_len(s.sgp) when `dma` is true,
->  b) s.sgp->length otherwise.
-> This suggests that in cases where `dma` is false, we should use
-> s.sgp->length to determine the max value instead of sg_dma_len(),
-> which is used regardless in remap_io_sg() (use_dma(iobase) might return
-> false there).
-> 
-> This patch uses r.sgt.max to check if offset is within allowed bounds,
-> because that max value is already set according to the `dma` value.
+-:25: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'MACRO__' - possible side-effects?
+#25: FILE: include/drm/intel/pciids.h:720:
++#define INTEL_DG2_G10_D_IDS(MACRO__, ...) \
+ 	MACRO__(0x56A0, ## __VA_ARGS__), \
+ 	MACRO__(0x56A1, ## __VA_ARGS__), \
++	MACRO__(0x56A2, ## __VA_ARGS__)
 
-are you trying to fix any issues here? If so, which one?
+-:31: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#31: FILE: include/drm/intel/pciids.h:725:
++#define INTEL_DG2_G10_E_IDS(MACRO__, ...) \
+ 	MACRO__(0x56BE, ## __VA_ARGS__), \
+ 	MACRO__(0x56BF, ## __VA_ARGS__)
 
-> v3:
->  - instead of checking if r.sgt.curr would exceed allowed max, changed
-> the value in the while loop to be aligned with `dma` value.
-> 
-> v4:
->  - remove unnecessary parent relation
-> 
-> Signed-off-by: Krzysztof Karas <krzysztof.karas@intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_mm.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_mm.c b/drivers/gpu/drm/i915/i915_mm.c
-> index f5c97a620962..76e2801619f0 100644
-> --- a/drivers/gpu/drm/i915/i915_mm.c
-> +++ b/drivers/gpu/drm/i915/i915_mm.c
-> @@ -143,8 +143,8 @@ int remap_io_sg(struct vm_area_struct *vma,
->  	/* We rely on prevalidation of the io-mapping to skip track_pfn(). */
->  	GEM_BUG_ON((vma->vm_flags & EXPECTED_FLAGS) != EXPECTED_FLAGS);
->  
-> -	while (offset >= sg_dma_len(r.sgt.sgp) >> PAGE_SHIFT) {
-> -		offset -= sg_dma_len(r.sgt.sgp) >> PAGE_SHIFT;
-> +	while (offset >= r.sgt.max >> PAGE_SHIFT) {
-> +		offset -= r.sgt.max >> PAGE_SHIFT;
+-:31: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'MACRO__' - possible side-effects?
+#31: FILE: include/drm/intel/pciids.h:725:
++#define INTEL_DG2_G10_E_IDS(MACRO__, ...) \
+ 	MACRO__(0x56BE, ## __VA_ARGS__), \
+ 	MACRO__(0x56BF, ## __VA_ARGS__)
 
-To me looks right sg_dma_len(), why max?
+-:39: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#39: FILE: include/drm/intel/pciids.h:729:
++#define INTEL_DG2_G10_M_IDS(MACRO__, ...) \
++	MACRO__(0x5690, ## __VA_ARGS__), \
++	MACRO__(0x5691, ## __VA_ARGS__), \
++	MACRO__(0x5692, ## __VA_ARGS__)
 
-Thanks a lot for your patch,
-Andi
+-:39: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'MACRO__' - possible side-effects?
+#39: FILE: include/drm/intel/pciids.h:729:
++#define INTEL_DG2_G10_M_IDS(MACRO__, ...) \
++	MACRO__(0x5690, ## __VA_ARGS__), \
++	MACRO__(0x5691, ## __VA_ARGS__), \
++	MACRO__(0x5692, ## __VA_ARGS__)
 
->  		r.sgt = __sgt_iter(__sg_next(r.sgt.sgp), use_dma(iobase));
->  		if (!r.sgt.sgp)
->  			return -EINVAL;
-> -- 
-> 2.34.1
+-:44: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#44: FILE: include/drm/intel/pciids.h:734:
++#define INTEL_DG2_G10_IDS(MACRO__, ...) \
++	INTEL_DG2_G10_D_IDS(MACRO__, ## __VA_ARGS__), \
++	INTEL_DG2_G10_E_IDS(MACRO__, ## __VA_ARGS__), \
++	INTEL_DG2_G10_M_IDS(MACRO__, ## __VA_ARGS__)
+
+-:44: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'MACRO__' - possible side-effects?
+#44: FILE: include/drm/intel/pciids.h:734:
++#define INTEL_DG2_G10_IDS(MACRO__, ...) \
++	INTEL_DG2_G10_D_IDS(MACRO__, ## __VA_ARGS__), \
++	INTEL_DG2_G10_E_IDS(MACRO__, ## __VA_ARGS__), \
++	INTEL_DG2_G10_M_IDS(MACRO__, ## __VA_ARGS__)
+
+-:49: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#49: FILE: include/drm/intel/pciids.h:739:
++#define INTEL_DG2_G11_D_IDS(MACRO__, ...) \
+ 	MACRO__(0x56A5, ## __VA_ARGS__), \
+ 	MACRO__(0x56A6, ## __VA_ARGS__), \
+ 	MACRO__(0x56B0, ## __VA_ARGS__), \
++	MACRO__(0x56B1, ## __VA_ARGS__)
+
+-:49: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'MACRO__' - possible side-effects?
+#49: FILE: include/drm/intel/pciids.h:739:
++#define INTEL_DG2_G11_D_IDS(MACRO__, ...) \
+ 	MACRO__(0x56A5, ## __VA_ARGS__), \
+ 	MACRO__(0x56A6, ## __VA_ARGS__), \
+ 	MACRO__(0x56B0, ## __VA_ARGS__), \
++	MACRO__(0x56B1, ## __VA_ARGS__)
+
+-:56: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#56: FILE: include/drm/intel/pciids.h:745:
++#define INTEL_DG2_G11_E_IDS(MACRO__, ...) \
+ 	MACRO__(0x56BA, ## __VA_ARGS__), \
+ 	MACRO__(0x56BB, ## __VA_ARGS__), \
+ 	MACRO__(0x56BC, ## __VA_ARGS__), \
+ 	MACRO__(0x56BD, ## __VA_ARGS__)
+
+-:56: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'MACRO__' - possible side-effects?
+#56: FILE: include/drm/intel/pciids.h:745:
++#define INTEL_DG2_G11_E_IDS(MACRO__, ...) \
+ 	MACRO__(0x56BA, ## __VA_ARGS__), \
+ 	MACRO__(0x56BB, ## __VA_ARGS__), \
+ 	MACRO__(0x56BC, ## __VA_ARGS__), \
+ 	MACRO__(0x56BD, ## __VA_ARGS__)
+
+-:65: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#65: FILE: include/drm/intel/pciids.h:751:
++#define INTEL_DG2_G11_M_IDS(MACRO__, ...) \
++	MACRO__(0x5693, ## __VA_ARGS__), \
++	MACRO__(0x5694, ## __VA_ARGS__), \
++	MACRO__(0x5695, ## __VA_ARGS__)
+
+-:65: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'MACRO__' - possible side-effects?
+#65: FILE: include/drm/intel/pciids.h:751:
++#define INTEL_DG2_G11_M_IDS(MACRO__, ...) \
++	MACRO__(0x5693, ## __VA_ARGS__), \
++	MACRO__(0x5694, ## __VA_ARGS__), \
++	MACRO__(0x5695, ## __VA_ARGS__)
+
+-:70: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#70: FILE: include/drm/intel/pciids.h:756:
++#define INTEL_DG2_G11_IDS(MACRO__, ...) \
++	INTEL_DG2_G11_D_IDS(MACRO__, ## __VA_ARGS__), \
++	INTEL_DG2_G11_E_IDS(MACRO__, ## __VA_ARGS__), \
++	INTEL_DG2_G11_M_IDS(MACRO__, ## __VA_ARGS__)
+
+-:70: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'MACRO__' - possible side-effects?
+#70: FILE: include/drm/intel/pciids.h:756:
++#define INTEL_DG2_G11_IDS(MACRO__, ...) \
++	INTEL_DG2_G11_D_IDS(MACRO__, ## __VA_ARGS__), \
++	INTEL_DG2_G11_E_IDS(MACRO__, ## __VA_ARGS__), \
++	INTEL_DG2_G11_M_IDS(MACRO__, ## __VA_ARGS__)
+
+-:75: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#75: FILE: include/drm/intel/pciids.h:761:
++#define INTEL_DG2_G12_D_IDS(MACRO__, ...) \
+ 	MACRO__(0x56A3, ## __VA_ARGS__), \
+ 	MACRO__(0x56A4, ## __VA_ARGS__), \
+ 	MACRO__(0x56B2, ## __VA_ARGS__), \
+ 	MACRO__(0x56B3, ## __VA_ARGS__)
+
+-:75: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'MACRO__' - possible side-effects?
+#75: FILE: include/drm/intel/pciids.h:761:
++#define INTEL_DG2_G12_D_IDS(MACRO__, ...) \
+ 	MACRO__(0x56A3, ## __VA_ARGS__), \
+ 	MACRO__(0x56A4, ## __VA_ARGS__), \
+ 	MACRO__(0x56B2, ## __VA_ARGS__), \
+ 	MACRO__(0x56B3, ## __VA_ARGS__)
+
+-:81: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#81: FILE: include/drm/intel/pciids.h:767:
++#define INTEL_DG2_G12_M_IDS(MACRO__, ...) \
++	MACRO__(0x5696, ## __VA_ARGS__), \
++	MACRO__(0x5697, ## __VA_ARGS__)
+
+-:81: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'MACRO__' - possible side-effects?
+#81: FILE: include/drm/intel/pciids.h:767:
++#define INTEL_DG2_G12_M_IDS(MACRO__, ...) \
++	MACRO__(0x5696, ## __VA_ARGS__), \
++	MACRO__(0x5697, ## __VA_ARGS__)
+
+-:85: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#85: FILE: include/drm/intel/pciids.h:771:
++#define INTEL_DG2_G12_IDS(MACRO__, ...) \
++	INTEL_DG2_G12_D_IDS(MACRO__, ## __VA_ARGS__), \
++	INTEL_DG2_G12_M_IDS(MACRO__, ## __VA_ARGS__)
+
+-:85: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'MACRO__' - possible side-effects?
+#85: FILE: include/drm/intel/pciids.h:771:
++#define INTEL_DG2_G12_IDS(MACRO__, ...) \
++	INTEL_DG2_G12_D_IDS(MACRO__, ## __VA_ARGS__), \
++	INTEL_DG2_G12_M_IDS(MACRO__, ## __VA_ARGS__)
+
+-:89: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#89: FILE: include/drm/intel/pciids.h:775:
++#define INTEL_DG2_D_IDS(MACRO__, ...) \
++	INTEL_DG2_G10_D_IDS(MACRO__, ## __VA_ARGS__), \
++	INTEL_DG2_G11_D_IDS(MACRO__, ## __VA_ARGS__), \
++	INTEL_DG2_G12_D_IDS(MACRO__, ## __VA_ARGS__)
+
+-:89: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'MACRO__' - possible side-effects?
+#89: FILE: include/drm/intel/pciids.h:775:
++#define INTEL_DG2_D_IDS(MACRO__, ...) \
++	INTEL_DG2_G10_D_IDS(MACRO__, ## __VA_ARGS__), \
++	INTEL_DG2_G11_D_IDS(MACRO__, ## __VA_ARGS__), \
++	INTEL_DG2_G12_D_IDS(MACRO__, ## __VA_ARGS__)
+
+total: 12 errors, 0 warnings, 12 checks, 79 lines checked
+6e91624b80d3 drm/i915/dg2: Introduce DG2_D subplatform
+fb34b2b10b7c drm/i915: Introduce intel_cpu_info.c for CPU IDs
+-:28: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#28: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 62 lines checked
+07a9b38a0475 drm/i915/dg2: Implement Wa_14022698537
+
+
