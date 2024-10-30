@@ -2,60 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61D2E9B61ED
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Oct 2024 12:35:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E0C49B61F6
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Oct 2024 12:36:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDC3810E78A;
-	Wed, 30 Oct 2024 11:35:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4735910E78B;
+	Wed, 30 Oct 2024 11:36:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V6CnVrAU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AadqQ4Jj";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6971610E79F
- for <intel-gfx@lists.freedesktop.org>; Wed, 30 Oct 2024 11:35:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA65510E78B
+ for <intel-gfx@lists.freedesktop.org>; Wed, 30 Oct 2024 11:36:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730288128; x=1761824128;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=s+W1YcG9hYxvVxT6+kylEbbMKaUoAgBcU+obyLZ/cNg=;
- b=V6CnVrAURsL8xV/Mz1Rs97y4HtCcspVVvb3XxI1fVjshyD+OwqTdehHw
- 8DxGXNUxqoe0b6nah5qad0bpWc0L/3scZAXEDgz4A7nk6CnZ/GnkMVUvC
- uZAmlBmakRoWcSyeYuVCkXfBpDffsbAHddGcC/d2ftGIure2Nsv1WXjjh
- bFwK4FnMa2kBiWhCBda0+sZ5WQ8RExPEuI4CKPaAX4VKxtwAyF1B9M2cz
- 0q63t7TcZ4xrtRYUqPmO+X/cXM8OCf91xfTAAOvFIJZLSPUa33J5fPp/p
- BuLDsEQmMjMXp8xj8AWTBCnwdMGiIEdCSOFydEqfiwXRT+2YMeQrh5U9y Q==;
-X-CSE-ConnectionGUID: F4Vz62FpTxOUAu2HS+RGgg==
-X-CSE-MsgGUID: 93wr7p0BTAWn66D10Pj+XQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11240"; a="41349438"
-X-IronPort-AV: E=Sophos;i="6.11,245,1725346800"; d="scan'208";a="41349438"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2024 04:35:28 -0700
-X-CSE-ConnectionGUID: TpCekvBqS3iFmLDcYv0BcA==
-X-CSE-MsgGUID: sKBYgAGJQH2HDfIomCtcxA==
+ t=1730288168; x=1761824168;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=lEHxMwu3BPfE8kdIuEfDvv4BPW153qHUJl1mEzPByfk=;
+ b=AadqQ4JjoBqWRc0+JkhIVvI5xYHQgmE6UA6DbjhXHkmeh9XLBAf4A/dk
+ R9EV+Eo/aCztaz3auDZ+VMNtMzV9JDTh61ZYgh34YU+CE0OgD7cth/Ba0
+ coLyXsVFaUinkUwxUKl2LulmGUehNg1RWr1GYxBXHVlQeaWs49erFkWDG
+ gwaqfpLIMlRFot0oUinNVnk3iQVUJwqh4R0wcuqpIt3ybJDU/Yjd4ib+6
+ MTHzga7yhEMUz64r5oiG/0LbXPAPOq7nIG53re0PvehT1V4N7qBA1iKkW
+ 5Ve3xkpqeTpvRL+K2RlDbefqf+DsJr3zRRr91X4Y4x9ai4RExs4echrxq Q==;
+X-CSE-ConnectionGUID: zBeqZXdrTH27ZNihhZq9EA==
+X-CSE-MsgGUID: T40Lm1WhSDu5RxdpyPvBow==
+X-IronPort-AV: E=McAfee;i="6700,10204,11240"; a="47459115"
+X-IronPort-AV: E=Sophos;i="6.11,245,1725346800"; d="scan'208";a="47459115"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2024 04:36:08 -0700
+X-CSE-ConnectionGUID: VGN8zVdyRTOg+8fgT5ggYA==
+X-CSE-MsgGUID: fi2wHUF8QwWhZYMvJ2nOdA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,245,1725346800"; d="scan'208";a="87064670"
-Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.122])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2024 04:35:26 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 07/11] drm/i915/cdclk: Factor out INTEL_OUTPUT_DSI check
- in vlv_dsi_min_cdclk()
-In-Reply-To: <20241029215217.3697-8-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241029215217.3697-1-ville.syrjala@linux.intel.com>
- <20241029215217.3697-8-ville.syrjala@linux.intel.com>
-Date: Wed, 30 Oct 2024 13:35:23 +0200
-Message-ID: <87cyjhn7r8.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,245,1725346800"; d="scan'208";a="81843924"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2024 04:36:06 -0700
+Date: Wed, 30 Oct 2024 13:36:03 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: "Kahola, Mika" <mika.kahola@intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Sousa, Gustavo" <gustavo.sousa@intel.com>
+Subject: Re: [PATCH v3] drm/i915/xe3lpd: Power request asserting/deasserting
+Message-ID: <ZyIaI_CSjm1sH3M9@black.fi.intel.com>
+References: <20241029140037.164687-1-mika.kahola@intel.com>
+ <87bjz3nf8m.fsf@intel.com> <ZyEVNW_OG0g8c0X-@black.fi.intel.com>
+ <MW4PR11MB7054BD69AC2BB7C5D59D2565EF542@MW4PR11MB7054.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <MW4PR11MB7054BD69AC2BB7C5D59D2565EF542@MW4PR11MB7054.namprd11.prod.outlook.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,63 +71,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 29 Oct 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> All the if statements in vlv_dsi_min_cdclk() check for
-> INTEL_OUTPUT_DSI. Make life simpler by checking that just
-> once at the start.
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+On Wed, Oct 30, 2024 at 04:52:20PM +0530, Kahola, Mika wrote:
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+...
 
-> ---
->  drivers/gpu/drm/i915/display/vlv_dsi.c | 16 ++++++++--------
->  1 file changed, 8 insertions(+), 8 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i91=
-5/display/vlv_dsi.c
-> index 49a895589150..708639178e29 100644
-> --- a/drivers/gpu/drm/i915/display/vlv_dsi.c
-> +++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
-> @@ -1763,26 +1763,26 @@ static void vlv_dphy_param_init(struct intel_dsi =
-*intel_dsi)
->  int vlv_dsi_min_cdclk(const struct intel_crtc_state *crtc_state)
->  {
->  	struct drm_i915_private *dev_priv =3D to_i915(crtc_state->uapi.crtc->de=
-v);
-> -	int min_cdclk =3D 0;
-> +
-> +	if (!intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DSI))
-> +		return 0;
->=20=20
->  	/*
->  	 * On Valleyview some DSI panels lose (v|h)sync when the clock is lower
->  	 * than 320000KHz.
->  	 */
-> -	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DSI) &&
-> -	    IS_VALLEYVIEW(dev_priv))
-> -		min_cdclk =3D max(320000, min_cdclk);
-> +	if (IS_VALLEYVIEW(dev_priv))
-> +		return 320000;
->=20=20
->  	/*
->  	 * On Geminilake once the CDCLK gets as low as 79200
->  	 * picture gets unstable, despite that values are
->  	 * correct for DSI PLL and DE PLL.
->  	 */
-> -	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DSI) &&
-> -	    IS_GEMINILAKE(dev_priv))
-> -		min_cdclk =3D max(158400, min_cdclk);
-> +	if (IS_GEMINILAKE(dev_priv))
-> +		return 158400;
->=20=20
-> -	return min_cdclk;
-> +	return 0;
->  }
->=20=20
->  typedef void (*vlv_dsi_dmi_quirk_func)(struct intel_dsi *intel_dsi);
+> > > > +static void wa_14020908590(struct intel_display *display,
+> > > > +			   bool enable)
+> > > > +{
+> > > > +	bool error = false;
+> > > > +
+> > > > +	/* check if mailbox is running busy */
+> > > > +	if (intel_de_wait_for_clear(display, TCSS_DISP_MAILBOX_IN_CMD,
+> > > > +				    TCSS_DISP_MAILBOX_IN_CMD_RUN_BUSY,
+> > 10)) {
+> > > > +		drm_dbg_kms(display->drm,
+> > > > +			    "Timeout waiting for TCSS mailbox run/busy bit to
+> > clear\n");
+> > >
+> > > Just do drm_WARN() with the message here.
+> > 
+> > Rather,
+> > 
+> > 	ret = intel_de_wait_for_clear();
+> > 	if (drm_WARN(drm, ret, ...))
+> > 		return;
+> > 
+> > Cleaner?
+> 
+> Maybe we could drop the drm_WARN_ON() completely? This is something that
+> we are not really using elsewhere in the driver. Simply drm_dbg_kms() on
+> timeouts has so far been enough. What do you think?
 
---=20
-Jani Nikula, Intel
+Right, WARN() is usually for cases that *should never happen* or have *serious
+consequences*. Unless that's the case, I'm not sure if it'll be useful here.
+
+Raag
