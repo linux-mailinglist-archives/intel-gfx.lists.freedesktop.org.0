@@ -2,53 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E0269B5A90
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Oct 2024 05:08:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EFCC9B5A91
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Oct 2024 05:08:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12F4510E745;
-	Wed, 30 Oct 2024 04:08:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9781C10E12E;
+	Wed, 30 Oct 2024 04:08:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KiDAdW7v";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ePybpwfh";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF34E10E12E;
- Wed, 30 Oct 2024 04:08:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0EEA710E12E;
+ Wed, 30 Oct 2024 04:08:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730261296; x=1761797296;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=LgzcttBzQdW/kdcrRHsm3pUuHb5Z8a8/0F2Lmcn18bs=;
- b=KiDAdW7v99NF6kqyipXM1M0moRghguh1Ov2B3/KjBu8P92gIv0ZScqzY
- EaJeTgM4Bk2U78jPEX+978ZiWyUfvtw2NUCfQmCdYXAveEytIa5aGG1i1
- lU5bLgp/p/Li53u9a2B5hklrLmgDSj1qTRyiDLJxM6s1cI1dr4SrH0CG9
- +7Yxz6MbLFyoG7kxfpVIM74k0hvieXh7DK9syQIem3eDyqUPfURrYyPZM
- Q6fHyUPvl0bgigf2iySoyXiD4xshJCeLq2pIy9NLO4/CciWYznfJXp7X3
- rgOFZoOJH5VFzyTgoHO9aqEbcAGezzZsvN7ODBWXUbpRBqDBcu7+y+iV3 Q==;
-X-CSE-ConnectionGUID: vcP9SjE6SPmAMRMJzwsi2w==
-X-CSE-MsgGUID: Lin17KkPQMK1eLAOcTHntw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="30088429"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="30088429"
+ t=1730261298; x=1761797298;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=3RYlCAS4sdmyIw+dYiCwEq0RnvTWX45EaVUmq0tk5Is=;
+ b=ePybpwfhK5PmCE3Q0b6tm3AcqWo/291Aa1925/DU3WxhrouMM/0Qm+fq
+ 9zcV9W/QDWXT9Uu1iGD/I3pnUXHGR8sLlfPl9xKEWh5O5xCNZrIdHvLLN
+ n/eHfxbH4VXlHjeMqzgFFKmKNZw0fSJs7gtn3CwjOj0NSfA5iGYmQMwVz
+ lZGT733wcY+a8gGHK2+VDQf/abyvJI+gXAHOknIw8H1yLKDpHcZwY5Vbi
+ HabA9esUaot4tHr8zfEoOUYcJX76Sy9fOi3sOwdYpSyonHoGvD8vPsf/V
+ gx4h4fW7aX9MZAwMNYLFXLrujPuB4TQ8Sqj3US60WY+RfgHPz7jZ1/VzQ Q==;
+X-CSE-ConnectionGUID: vlXAffNkR5KqGzHzGSvufA==
+X-CSE-MsgGUID: Nyh15DW0RQydqN/DAHUz6A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="30088431"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="30088431"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2024 21:08:16 -0700
-X-CSE-ConnectionGUID: 7RXVprwVQ1+97uvSAywvwA==
-X-CSE-MsgGUID: mZ4GZCArRnKMDWRCMw4+Ew==
+ 29 Oct 2024 21:08:17 -0700
+X-CSE-ConnectionGUID: azHI4x/oRQeXyn4M+KcN7g==
+X-CSE-MsgGUID: N7J0IGc5TZq2jDI74cYaQA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,244,1725346800"; d="scan'208";a="82510485"
+X-IronPort-AV: E=Sophos;i="6.11,244,1725346800"; d="scan'208";a="82510495"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2024 21:08:14 -0700
+ 29 Oct 2024 21:08:16 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	suraj.kandpal@intel.com
-Subject: [PATCH 0/7] Add support for 3 VDSC engines 12 slices
-Date: Wed, 30 Oct 2024 09:40:29 +0530
-Message-ID: <20241030041036.1238006-1-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 1/7] drm/i915/dp: Update Comment for Valid DSC Slices per Line
+Date: Wed, 30 Oct 2024 09:40:30 +0530
+Message-ID: <20241030041036.1238006-2-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20241030041036.1238006-1-ankit.k.nautiyal@intel.com>
+References: <20241030041036.1238006-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -66,44 +68,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-For BMG 3 VDSC engines are supported and each pipe can then support
-3 slices. For Ultra joiner cases for modes like 8k@120 Hz we require
-ultrajoiner and 3 x 4= 12 slices.
-Add support for 3 VDSC engines and 12 DSC slices.
+For some platforms, the maximum slices per DSC engine is 4, while for
+others it is 2. Update the comment to reflect this and clarify that
+the 'valid_dsc_slicecount' list represents the valid number of slices
+per pipe.
 
-Rev2: Rebase
-Rev3:
--Add patch to account for pixel replication in pipe_src.
--Fix kernel test bot warning.
--Minor refactoring.
-Rev4:
--Address review comments from last version.
--Add BW consideration with pixel replication
--Split Odd pixel handling in separate patches.
-Rev 5:
--Use num_streams instead of dsc_split.
-Rev 6:
--Drop patches for pixel replication and odd pixel removal.
-Rev 7:
--Fix Hw readout for DSC in Patch#2, and rebase.
+Currently, we are working with 1, and 2 slices per DSC engine,
+which works for all platforms. With this the number of slices per pipe
+can be 1,2 or 4 with different slice & DSC engine configuration.
 
-Ankit Nautiyal (7):
-  drm/i915/dp: Update Comment for Valid DSC Slices per Line
-  drm/i915/display: Prepare for dsc 3 stream splitter
-  drm/i915/vdsc: Use VDSC0/VDSC1 for LEFT/RIGHT VDSC engine
-  drm/i915/vdsc: Introduce 3rd VDSC engine VDSC2
-  drm/i915/vdsc: Add support for read/write PPS for 3rd DSC engine
-  drm/i915/dp: Ensure hactive is divisible by slice count
-  drm/i915/dp: Enable 3 DSC engines for 12 slices
+Add a #TODO for adding support for 4 slices per DSC engine where
+supported.
 
- drivers/gpu/drm/i915/display/icl_dsi.c        |  4 ++-
- drivers/gpu/drm/i915/display/intel_display.c  |  2 +-
- .../drm/i915/display/intel_display_types.h    |  2 +-
- drivers/gpu/drm/i915/display/intel_dp.c       | 36 ++++++++++++++++---
- drivers/gpu/drm/i915/display/intel_vdsc.c     | 34 ++++++++++++------
- .../gpu/drm/i915/display/intel_vdsc_regs.h    | 12 +++++--
- 6 files changed, 69 insertions(+), 21 deletions(-)
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 7e29619ba040..bd9f37e1a13f 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -109,8 +109,14 @@
+ /* Constants for DP DSC configurations */
+ static const u8 valid_dsc_bpp[] = {6, 8, 10, 12, 15};
+ 
+-/* With Single pipe configuration, HW is capable of supporting maximum
+- * of 4 slices per line.
++/*
++ * With Single pipe configuration, HW is capable of supporting maximum of:
++ * 2 slices per line for ICL, BMG
++ * 4 slices per line for other platforms.
++ * For now consider a max of 2 slices per line, which works for all platforms.
++ * With this we can have max of 4 DSC Slices per pipe.
++ *
++ * #TODO Split this better to use 4 slices/dsc engine where supported.
+  */
+ static const u8 valid_dsc_slicecount[] = {1, 2, 4};
+ 
 -- 
 2.45.2
 
