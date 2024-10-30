@@ -2,60 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94FFD9B6B70
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Oct 2024 18:55:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C24789B6C41
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Oct 2024 19:39:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D19110E0B5;
-	Wed, 30 Oct 2024 17:55:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1214D10E0A4;
+	Wed, 30 Oct 2024 18:39:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nz/Uivf+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ghYwbnAt";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B0FDC10E0B5
- for <intel-gfx@lists.freedesktop.org>; Wed, 30 Oct 2024 17:55:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A82210E0A4
+ for <intel-gfx@lists.freedesktop.org>; Wed, 30 Oct 2024 18:39:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730310939; x=1761846939;
+ t=1730313578; x=1761849578;
  h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=uDyW1uccgmqhUBFnXz1IDa4mqCs+9KEdowMSUsPRgsA=;
- b=nz/Uivf+4WwlumkLoGqsHU60/0kuJ2ZgDoy8j1ZCby2clY42tjlvJbcD
- m0iELITQ0Oa9AE5opX04NJjhBHAx6o+uwJfERd/s7P+gFPYK/6VpTrqUR
- 85mWQX0MgpasLZk1zfbMJd/jjWzAK9o+4QYf7b5l+aphFkkSxRV/SuEeE
- +X2g476HC/PtX0xIS7hYFD83OJnrf+k2nyn80dSD4dyZv22z0TrEy6bfC
- 6i4MJPHKxkHE8AtYVZ9ImXlkSsUgtDebTWsJ82WE9UZZQFl5Kw/f9zvgY
- a0AxSUCDwv5xY/YJyChne176WsxrjofRkS5BgMxZ4wFmiPXhHoiE0gNcE Q==;
-X-CSE-ConnectionGUID: HIXtER5LQAGLIerYEoxv+Q==
-X-CSE-MsgGUID: tjys2BUkTaaG5RX5d14uAg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="29796608"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="29796608"
+ message-id:mime-version;
+ bh=gXTiwVU6Nh4K3jkqMqqgG0Z/zoaB1/3qTOf/GuvefXQ=;
+ b=ghYwbnAtQe785V20hWP3DTlaptcQTuQLcRxByh9X3tDdiajaaV4jkYOw
+ 1MQeZRc8zYUl8z8dgyTLqyslaU/ZrhlDuOgQTYGa5OQpQWRM19DviFQct
+ zmk2RLdsjBqLOef31oPAMJLWqBP3zjO9M6qeSu2bg6IVeGc+iXZntlVhr
+ TV4J6qrjJfIDM/fqAzUIKPwjhuFEQgG52pPRb4zrLea8Eap33HWGtmwBO
+ K4Rn6fA3Z7lZwR5/87jLwQ6AEvGi//do910nhyHasm1x1dHB6bjKPyq0C
+ j2GXygdlCeg8WPUKSQxhDd7Xb+lT2VW70w3FAdYggOKm+tHo5f4X4JRNN Q==;
+X-CSE-ConnectionGUID: 0o6mjXWVTp66p13VcsSr8w==
+X-CSE-MsgGUID: 2eiWZkELSEK21asreQziTw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11241"; a="33961638"
+X-IronPort-AV: E=Sophos;i="6.11,245,1725346800"; d="scan'208";a="33961638"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2024 10:55:28 -0700
-X-CSE-ConnectionGUID: EIeAk/yGRhScpPXGuEmXuA==
-X-CSE-MsgGUID: iEcnDuPPTZGhnmc9ZBvjaw==
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2024 11:39:38 -0700
+X-CSE-ConnectionGUID: HjQauCdMSLa4ZWQYZzw/gg==
+X-CSE-MsgGUID: +6XYQbMaS6WC+YcEV2/WWA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,245,1725346800"; d="scan'208";a="82705017"
+X-IronPort-AV: E=Sophos;i="6.11,245,1725346800"; d="scan'208";a="82712237"
 Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.246.122])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2024 10:55:26 -0700
+ 30 Oct 2024 11:39:34 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 06/11] drm/i915/cdclk: Extract vlv_dsi_min_cdclk()
-In-Reply-To: <ZyIzCZ1f7QDQPB5G@intel.com>
+To: Raag Jadav <raag.jadav@intel.com>, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, matthew.d.roper@intel.com,
+ andi.shyti@linux.intel.com
+Cc: intel-gfx@lists.freedesktop.org, anshuman.gupta@intel.com,
+ badal.nilawar@intel.com, riana.tauro@intel.com, Raag Jadav
+ <raag.jadav@intel.com>
+Subject: Re: [PATCH v3 4/4] drm/i915/dg2: Implement Wa_14022698537
+In-Reply-To: <20241030143418.410406-5-raag.jadav@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241029215217.3697-1-ville.syrjala@linux.intel.com>
- <20241029215217.3697-7-ville.syrjala@linux.intel.com>
- <87frodn7sh.fsf@intel.com> <ZyIzCZ1f7QDQPB5G@intel.com>
-Date: Wed, 30 Oct 2024 19:55:23 +0200
-Message-ID: <87cyjhlblg.fsf@intel.com>
+References: <20241030143418.410406-1-raag.jadav@intel.com>
+ <20241030143418.410406-5-raag.jadav@intel.com>
+Date: Wed, 30 Oct 2024 20:39:31 +0200
+Message-ID: <875xp9l9jw.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,186 +73,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 30 Oct 2024, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Wed, Oct 30, 2024 at 01:34:38PM +0200, Jani Nikula wrote:
->> On Tue, 29 Oct 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
->> > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->> >
->> > Pull the DSI min cdclk calculation into a helper and hide
->> > it inside vlv_dsi.c in order to keep most DSI related
->> > details in one place.
->> >
->> > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->> > ---
->> >  drivers/gpu/drm/i915/display/intel_cdclk.c | 23 ++------------------
->> >  drivers/gpu/drm/i915/display/vlv_dsi.c     | 25 ++++++++++++++++++++++
->> >  drivers/gpu/drm/i915/display/vlv_dsi.h     |  8 +++++++
->> >  3 files changed, 35 insertions(+), 21 deletions(-)
->> >
->> > diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/=
-drm/i915/display/intel_cdclk.c
->> > index 89d12c521411..e10378744607 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
->> > @@ -46,6 +46,7 @@
->> >  #include "intel_vdsc.h"
->> >  #include "skl_watermark.h"
->> >  #include "skl_watermark_regs.h"
->> > +#include "vlv_dsi.h"
->> >  #include "vlv_sideband.h"
->> >=20=20
->> >  /**
->> > @@ -2849,8 +2850,6 @@ static int intel_vdsc_min_cdclk(const struct int=
-el_crtc_state *crtc_state)
->> >=20=20
->> >  int intel_crtc_compute_min_cdclk(const struct intel_crtc_state *crtc_=
-state)
->> >  {
->> > -	struct intel_display *display =3D to_intel_display(crtc_state);
->> > -	struct drm_i915_private *dev_priv =3D to_i915(display->drm);
->> >  	int min_cdclk;
->> >=20=20
->> >  	if (!crtc_state->hw.enable)
->> > @@ -2859,25 +2858,7 @@ int intel_crtc_compute_min_cdclk(const struct i=
-ntel_crtc_state *crtc_state)
->> >  	min_cdclk =3D intel_pixel_rate_to_cdclk(crtc_state);
->> >  	min_cdclk =3D max(hsw_ips_min_cdclk(crtc_state), min_cdclk);
->> >  	min_cdclk =3D max(intel_audio_min_cdclk(crtc_state), min_cdclk);
->> > -
->> > -	/*
->> > -	 * On Valleyview some DSI panels lose (v|h)sync when the clock is lo=
-wer
->> > -	 * than 320000KHz.
->> > -	 */
->> > -	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DSI) &&
->> > -	    IS_VALLEYVIEW(dev_priv))
->> > -		min_cdclk =3D max(320000, min_cdclk);
->> > -
->> > -	/*
->> > -	 * On Geminilake once the CDCLK gets as low as 79200
->> > -	 * picture gets unstable, despite that values are
->> > -	 * correct for DSI PLL and DE PLL.
->> > -	 */
->> > -	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DSI) &&
->> > -	    IS_GEMINILAKE(dev_priv))
->> > -		min_cdclk =3D max(158400, min_cdclk);
->> > -
->> > -	/* Account for additional needs from the planes */
->> > +	min_cdclk =3D max(vlv_dsi_min_cdclk(crtc_state), min_cdclk);
->> >  	min_cdclk =3D max(intel_planes_min_cdclk(crtc_state), min_cdclk);
->> >=20=20
->> >  	if (crtc_state->dsc.compression_enable)
->> > diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/=
-i915/display/vlv_dsi.c
->> > index 9383eedee2d4..49a895589150 100644
->> > --- a/drivers/gpu/drm/i915/display/vlv_dsi.c
->> > +++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
->> > @@ -1760,6 +1760,31 @@ static void vlv_dphy_param_init(struct intel_ds=
-i *intel_dsi)
->> >  	intel_dsi_log_params(intel_dsi);
->> >  }
->> >=20=20
->> > +int vlv_dsi_min_cdclk(const struct intel_crtc_state *crtc_state)
->> > +{
->> > +	struct drm_i915_private *dev_priv =3D to_i915(crtc_state->uapi.crtc-=
->dev);
->> > +	int min_cdclk =3D 0;
->> > +
->> > +	/*
->> > +	 * On Valleyview some DSI panels lose (v|h)sync when the clock is lo=
-wer
->> > +	 * than 320000KHz.
->> > +	 */
->> > +	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DSI) &&
->> > +	    IS_VALLEYVIEW(dev_priv))
->> > +		min_cdclk =3D max(320000, min_cdclk);
->> > +
->> > +	/*
->> > +	 * On Geminilake once the CDCLK gets as low as 79200
->> > +	 * picture gets unstable, despite that values are
->> > +	 * correct for DSI PLL and DE PLL.
->> > +	 */
->> > +	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DSI) &&
->> > +	    IS_GEMINILAKE(dev_priv))
->> > +		min_cdclk =3D max(158400, min_cdclk);
->> > +
->> > +	return min_cdclk;
->> > +}
->> > +
->> >  typedef void (*vlv_dsi_dmi_quirk_func)(struct intel_dsi *intel_dsi);
->> >=20=20
->> >  /*
->> > diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.h b/drivers/gpu/drm/=
-i915/display/vlv_dsi.h
->> > index cf9d7b82f288..5f99059b4c48 100644
->> > --- a/drivers/gpu/drm/i915/display/vlv_dsi.h
->> > +++ b/drivers/gpu/drm/i915/display/vlv_dsi.h
->> > @@ -8,13 +8,17 @@
->> >=20=20
->> >  #include <linux/types.h>
->> >=20=20
->> > +#include <drm/drm_mipi_dsi.h>
->> > +
->>=20
->> Huh, why is this required? At least it's unrelated to the patch.
+On Wed, 30 Oct 2024, Raag Jadav <raag.jadav@intel.com> wrote:
+> G8 power state entry is disabled due to a limitation on DG2, so we
+> enable it from driver with Wa_14022698537. For now we enable it for
+> all DG2 devices with the exception of a few, for which, we enable
+> only when paired with whitelisted CPU models. This works with Native
+> ASMP and reduces idle power consumption.
 >
-> Sorry meant to note that in the commit msg, but forgot.
+> $ echo powersave > /sys/module/pcie_aspm/parameters/policy
+> $ lspci -s 0000:03:00.0 -vvv
+> LnkCtl: ASPM L1 Enabled; RCB 64 bytes, Disabled- CommClk-
 >
-> xe fails to build without this:
-> ../drivers/gpu/drm/i915/display/vlv_dsi.h:28:42: error: return type is an=
- incomplete type
+> v2: Fix Wa_ID and include it in subject (Badal)
+>     Rephrase commit message (Jani)
+> v3: Move workaround to i915_pcode_init() (Badal, Anshuman)
+>     Re-order macro (Riana)
 >
-> It looks like a forward declaration is not enough for
-> return types of static inline functions. i915 on the other
-> hand builds fine.
+> Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_driver.c | 15 +++++++++++++++
+>  drivers/gpu/drm/i915/i915_reg.h    |  1 +
+>  2 files changed, 16 insertions(+)
 >
-> I suppose one alternative would be to declare is as just
-> 'int' for xe.
+> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+> index 365329ff8a07..59c6124c9bc2 100644
+> --- a/drivers/gpu/drm/i915/i915_driver.c
+> +++ b/drivers/gpu/drm/i915/i915_driver.c
+> @@ -93,12 +93,14 @@
+>  #include "i915_memcpy.h"
+>  #include "i915_perf.h"
+>  #include "i915_query.h"
+> +#include "i915_reg.h"
+>  #include "i915_suspend.h"
+>  #include "i915_switcheroo.h"
+>  #include "i915_sysfs.h"
+>  #include "i915_utils.h"
+>  #include "i915_vgpu.h"
+>  #include "intel_clock_gating.h"
+> +#include "intel_cpu_info.h"
+>  #include "intel_gvt.h"
+>  #include "intel_memory_region.h"
+>  #include "intel_pci_config.h"
+> @@ -415,6 +417,18 @@ static int i915_set_dma_info(struct drm_i915_private *i915)
+>  	return ret;
+>  }
+>  
+> +/* Wa_14022698537:dg2 */
+> +static void i915_enable_g8(struct drm_i915_private *i915)
+> +{
+> +	if (IS_DG2(i915)) {
+> +		if (IS_DG2_D(i915) && !intel_match_g8_cpu())
+> +			return;
 
-I think I've actually snuck in some of those int usages in the past,
-because in the end it doesn't really matter for the inline stubs.
+You don't need to check for DG2 twice.
 
 BR,
 Jani.
 
->
->>=20
->> Other than that,
->>=20
->> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
->>=20
->>=20
->> >  enum port;
->> >  struct drm_i915_private;
->> > +struct intel_crtc_state;
->> >  struct intel_dsi;
->> >=20=20
->> >  #ifdef I915
->> >  void vlv_dsi_wait_for_fifo_empty(struct intel_dsi *intel_dsi, enum po=
-rt port);
->> >  enum mipi_dsi_pixel_format pixel_format_from_register_bits(u32 fmt);
->> > +int vlv_dsi_min_cdclk(const struct intel_crtc_state *crtc_state);
->> >  void vlv_dsi_init(struct drm_i915_private *dev_priv);
->> >  #else
->> >  static inline void vlv_dsi_wait_for_fifo_empty(struct intel_dsi *inte=
-l_dsi, enum port port)
->> > @@ -24,6 +28,10 @@ static inline enum mipi_dsi_pixel_format pixel_form=
-at_from_register_bits(u32 fmt
->> >  {
->> >  	return 0;
->> >  }
->> > +static inline int vlv_dsi_min_cdclk(const struct intel_crtc_state *cr=
-tc_state)
->> > +{
->> > +	return 0;
->> > +}
->> >  static inline void vlv_dsi_init(struct drm_i915_private *dev_priv)
->> >  {
->> >  }
->>=20
->> --=20
->> Jani Nikula, Intel
+> +
+> +		snb_pcode_write_p(&i915->uncore, PCODE_POWER_SETUP,
+> +				  POWER_SETUP_SUBCOMMAND_G8_ENABLE, 0, 0);
+> +	}
+> +}
+> +
+>  static int i915_pcode_init(struct drm_i915_private *i915)
+>  {
+>  	struct intel_gt *gt;
+> @@ -428,6 +442,7 @@ static int i915_pcode_init(struct drm_i915_private *i915)
+>  		}
+>  	}
+>  
+> +	i915_enable_g8(i915);
+>  	return 0;
+>  }
+>  
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index 89e4381f8baa..d400c77423a5 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -3617,6 +3617,7 @@
+>  #define	    POWER_SETUP_I1_WATTS		REG_BIT(31)
+>  #define	    POWER_SETUP_I1_SHIFT		6	/* 10.6 fixed point format */
+>  #define	    POWER_SETUP_I1_DATA_MASK		REG_GENMASK(15, 0)
+> +#define     POWER_SETUP_SUBCOMMAND_G8_ENABLE	0x6
+>  #define GEN12_PCODE_READ_SAGV_BLOCK_TIME_US	0x23
+>  #define   XEHP_PCODE_FREQUENCY_CONFIG		0x6e	/* pvc */
+>  /* XEHP_PCODE_FREQUENCY_CONFIG sub-commands (param1) */
 
---=20
+-- 
 Jani Nikula, Intel
