@@ -2,59 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53FFA9B6608
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Oct 2024 15:35:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BC809B660F
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Oct 2024 15:35:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A833A10E7A9;
-	Wed, 30 Oct 2024 14:35:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F027110E7BC;
+	Wed, 30 Oct 2024 14:35:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BEZEtgEZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YI2M4ydd";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D44910E7A9
- for <intel-gfx@lists.freedesktop.org>; Wed, 30 Oct 2024 14:35:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6036610E7AA
+ for <intel-gfx@lists.freedesktop.org>; Wed, 30 Oct 2024 14:35:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730298902; x=1761834902;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=6mdfcWPqytIQSl1UvX0X7hYdfY6N1+RM2OSHPnZvS20=;
- b=BEZEtgEZ9HMfoXrJ8DJvJ7+RzIaGVDAwyw2C2ENwH+oXyNQPZ4oZt5mY
- vHKIwwWfoF8TlFiQZhuu31FKIZ7X6XSrWxpl2OTM+jHeJhL97XWSVPztt
- 6r5Y0CiCcQKn98Bv5GCwZtDDwBLH1oETYrPygOA6CEqgpHTFy8ngzHUSI
- 2s+kmYaboCsUEQmD2v1AXijUQ5GkXcRumf5Vd/UN09otzEU40J5YurrRP
- C3uHKdbkfjyvH3/GHJ1D3lZR+WzKfG4FfI4g9tM93/EQ27JzZcbkffv3W
- 3u2hSyGTdY4cl3gI1PNaxVqqMob+RcQsjaZut1FIVkpocN235cA3jU0zF Q==;
-X-CSE-ConnectionGUID: VN5QHMtTSYa8SSn4Xu0yMQ==
-X-CSE-MsgGUID: lFOTQJZgSuCeLek+mi8uJQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11241"; a="55407452"
-X-IronPort-AV: E=Sophos;i="6.11,245,1725346800"; d="scan'208";a="55407452"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2024 07:35:02 -0700
-X-CSE-ConnectionGUID: JAikp6d/SCeZvmMT7LokiA==
-X-CSE-MsgGUID: sI5Ll0otRPe38rW9RoMFQA==
+ t=1730298951; x=1761834951;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=j6Skm4dbN1VbY7hOPSySOVw5NH6kAlvb3bTiij7EO7I=;
+ b=YI2M4yddTcnlW9V0/9vVWfrDcN3EvnYDC5vlXFj21LMLMNURCa+VcBYk
+ 5/4D0ZTHVr1Qk9pphfvxnIkeEr05JZQNDdJ5pn5nPvNXYPu6CWnkrVZXJ
+ QhGNPlna+NZBvF/n463HW9Ygw1elWJXGIR9+ANxhnQU3A4MWaQt9KRl2F
+ SXRMCDsUsZaWqtX0jDmXYcqx3+ByeZ3DKz8IGDIpD9llIYmVv+2oXTNw7
+ vdK7OOCQIYaWXeW3cGUfuJbu8lFcoDvUO4BX1UMQCsN2+5Cvb7nwaiBmX
+ sqA8/Jgcbgnf0a2dMjN4/sP8IbCIJE4vG7jIRA11DiFTDg8hfZtw/dPtR A==;
+X-CSE-ConnectionGUID: Q9ePBb78QBmAObjbU4G/AQ==
+X-CSE-MsgGUID: S+YbQBp/Qm6O9z4K5VoKUw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="40535853"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="40535853"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2024 07:35:51 -0700
+X-CSE-ConnectionGUID: xaL+Bn+KSkuPh9ht+QXwKA==
+X-CSE-MsgGUID: +PnJ/4COQGmAEgwhwu+AdA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,245,1725346800"; d="scan'208";a="113180529"
-Received: from jraag-nuc8i7beh.iind.intel.com ([10.145.169.79])
- by fmviesa001.fm.intel.com with ESMTP; 30 Oct 2024 07:34:59 -0700
-From: Raag Jadav <raag.jadav@intel.com>
-To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, matthew.d.roper@intel.com,
- andi.shyti@linux.intel.com
-Cc: intel-gfx@lists.freedesktop.org, anshuman.gupta@intel.com,
- badal.nilawar@intel.com, riana.tauro@intel.com,
- Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v3 4/4] drm/i915/dg2: Implement Wa_14022698537
-Date: Wed, 30 Oct 2024 20:04:18 +0530
-Message-Id: <20241030143418.410406-5-raag.jadav@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241030143418.410406-1-raag.jadav@intel.com>
-References: <20241030143418.410406-1-raag.jadav@intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,245,1725346800"; d="scan'208";a="82445750"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2024 07:35:49 -0700
+Date: Wed, 30 Oct 2024 16:36:20 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 2/4] drm/i915/dp: Export intel_ddi_config_transcoder_dp2()
+Message-ID: <ZyJEZA3orJ3PDr90@ideak-desk.fi.intel.com>
+References: <20241029191215.3889861-1-imre.deak@intel.com>
+ <20241029191215.3889861-3-imre.deak@intel.com>
+ <878qu6ofh5.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <878qu6ofh5.fsf@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,88 +66,103 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-G8 power state entry is disabled due to a limitation on DG2, so we
-enable it from driver with Wa_14022698537. For now we enable it for
-all DG2 devices with the exception of a few, for which, we enable
-only when paired with whitelisted CPU models. This works with Native
-ASMP and reduces idle power consumption.
+On Tue, Oct 29, 2024 at 09:51:02PM +0200, Jani Nikula wrote:
+> On Tue, 29 Oct 2024, Imre Deak <imre.deak@intel.com> wrote:
+> > Export intel_ddi_config_transcoder_dp2() taken into use by the MST
+> > encoder in the next patch. Move the HAS_DP20() check to the function, so
+> > it doesn't need to be checked for each caller. Besides enabling the DP2
+> > configuration also add a way to disable it, required by the MST slave
+> > transcoder disabling sequence in the next patch.
+> 
+> Did you consider making intel_ddi_config_transcoder_dp2() enable part of
+> intel_ddi_config_transcoder_func() 
 
-$ echo powersave > /sys/module/pcie_aspm/parameters/policy
-$ lspci -s 0000:03:00.0 -vvv
-LnkCtl: ASPM L1 Enabled; RCB 64 bytes, Disabled- CommClk-
+Ok, makes sense, will do that.
 
-v2: Fix Wa_ID and include it in subject (Badal)
-    Rephrase commit message (Jani)
-v3: Move workaround to i915_pcode_init() (Badal, Anshuman)
-    Re-order macro (Riana)
+> and disable part of intel_ddi_disable_transcoder_func()?
 
-Signed-off-by: Raag Jadav <raag.jadav@intel.com>
----
- drivers/gpu/drm/i915/i915_driver.c | 15 +++++++++++++++
- drivers/gpu/drm/i915/i915_reg.h    |  1 +
- 2 files changed, 16 insertions(+)
+That's the correct place for the slave transcoder sequence, but it's
+done only later for the master transcoder (which is still missing as I
+realized now). Can add the DP2 disabling to the correct places for both,
+keeping intel_ddi_config_transcoder_dp2() static.
 
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index 365329ff8a07..59c6124c9bc2 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -93,12 +93,14 @@
- #include "i915_memcpy.h"
- #include "i915_perf.h"
- #include "i915_query.h"
-+#include "i915_reg.h"
- #include "i915_suspend.h"
- #include "i915_switcheroo.h"
- #include "i915_sysfs.h"
- #include "i915_utils.h"
- #include "i915_vgpu.h"
- #include "intel_clock_gating.h"
-+#include "intel_cpu_info.h"
- #include "intel_gvt.h"
- #include "intel_memory_region.h"
- #include "intel_pci_config.h"
-@@ -415,6 +417,18 @@ static int i915_set_dma_info(struct drm_i915_private *i915)
- 	return ret;
- }
- 
-+/* Wa_14022698537:dg2 */
-+static void i915_enable_g8(struct drm_i915_private *i915)
-+{
-+	if (IS_DG2(i915)) {
-+		if (IS_DG2_D(i915) && !intel_match_g8_cpu())
-+			return;
-+
-+		snb_pcode_write_p(&i915->uncore, PCODE_POWER_SETUP,
-+				  POWER_SETUP_SUBCOMMAND_G8_ENABLE, 0, 0);
-+	}
-+}
-+
- static int i915_pcode_init(struct drm_i915_private *i915)
- {
- 	struct intel_gt *gt;
-@@ -428,6 +442,7 @@ static int i915_pcode_init(struct drm_i915_private *i915)
- 		}
- 	}
- 
-+	i915_enable_g8(i915);
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 89e4381f8baa..d400c77423a5 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -3617,6 +3617,7 @@
- #define	    POWER_SETUP_I1_WATTS		REG_BIT(31)
- #define	    POWER_SETUP_I1_SHIFT		6	/* 10.6 fixed point format */
- #define	    POWER_SETUP_I1_DATA_MASK		REG_GENMASK(15, 0)
-+#define     POWER_SETUP_SUBCOMMAND_G8_ENABLE	0x6
- #define GEN12_PCODE_READ_SAGV_BLOCK_TIME_US	0x23
- #define   XEHP_PCODE_FREQUENCY_CONFIG		0x6e	/* pvc */
- /* XEHP_PCODE_FREQUENCY_CONFIG sub-commands (param1) */
--- 
-2.34.1
-
+> It's a bit much to add new functions for single register updates.
+> 
+> BR,
+> Jani.
+> 
+> 
+> >
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_ddi.c | 15 +++++++++------
+> >  drivers/gpu/drm/i915/display/intel_ddi.h |  3 +++
+> >  2 files changed, 12 insertions(+), 6 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > index 6bbfe0762cafa..5ff7d23775d82 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > @@ -454,15 +454,19 @@ static u32 bdw_trans_port_sync_master_select(enum transcoder master_transcoder)
+> >  		return master_transcoder + 1;
+> >  }
+> >  
+> > -static void
+> > +void
+> >  intel_ddi_config_transcoder_dp2(struct intel_encoder *encoder,
+> > -				const struct intel_crtc_state *crtc_state)
+> > +				const struct intel_crtc_state *crtc_state,
+> > +				bool enable)
+> >  {
+> >  	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+> >  	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+> >  	u32 val = 0;
+> >  
+> > -	if (intel_dp_is_uhbr(crtc_state))
+> > +	if (!HAS_DP20(i915))
+> > +		return;
+> > +
+> > +	if (enable && intel_dp_is_uhbr(crtc_state))
+> >  		val = TRANS_DP2_128B132B_CHANNEL_CODING;
+> >  
+> >  	intel_de_write(i915, TRANS_DP2_CTL(cpu_transcoder), val);
+> > @@ -2549,7 +2553,7 @@ static void mtl_ddi_pre_enable_dp(struct intel_atomic_state *state,
+> >  	/*
+> >  	 * 6.b If DP v2.0/128b mode - Configure TRANS_DP2_CTL register settings.
+> >  	 */
+> > -	intel_ddi_config_transcoder_dp2(encoder, crtc_state);
+> > +	intel_ddi_config_transcoder_dp2(encoder, crtc_state, true);
+> >  
+> >  	/*
+> >  	 * 6.c Configure TRANS_DDI_FUNC_CTL DDI Select, DDI Mode Select & MST
+> > @@ -2686,8 +2690,7 @@ static void tgl_ddi_pre_enable_dp(struct intel_atomic_state *state,
+> >  	 */
+> >  	intel_ddi_enable_transcoder_clock(encoder, crtc_state);
+> >  
+> > -	if (HAS_DP20(dev_priv))
+> > -		intel_ddi_config_transcoder_dp2(encoder, crtc_state);
+> > +	intel_ddi_config_transcoder_dp2(encoder, crtc_state, true);
+> >  
+> >  	/*
+> >  	 * 7.b Configure TRANS_DDI_FUNC_CTL DDI Select, DDI Mode Select & MST
+> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.h b/drivers/gpu/drm/i915/display/intel_ddi.h
+> > index 1aa2e3a190aee..bf27b2fbb08e9 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_ddi.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.h
+> > @@ -65,6 +65,9 @@ void intel_ddi_disable_transcoder_func(const struct intel_crtc_state *crtc_state
+> >  void intel_ddi_enable_transcoder_clock(struct intel_encoder *encoder,
+> >  				       const struct intel_crtc_state *crtc_state);
+> >  void intel_ddi_disable_transcoder_clock(const  struct intel_crtc_state *crtc_state);
+> > +void intel_ddi_config_transcoder_dp2(struct intel_encoder *encoder,
+> > +				     const struct intel_crtc_state *crtc_state,
+> > +				     bool enable);
+> >  void intel_ddi_wait_for_fec_status(struct intel_encoder *encoder,
+> >  				   const struct intel_crtc_state *crtc_state,
+> >  				   bool enabled);
+> 
+> -- 
+> Jani Nikula, Intel
