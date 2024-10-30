@@ -2,29 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E09129B5ED0
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Oct 2024 10:25:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 919899B5F08
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Oct 2024 10:41:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06CF110E76A;
-	Wed, 30 Oct 2024 09:25:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9A9C10E76C;
+	Wed, 30 Oct 2024 09:41:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A63610E766;
- Wed, 30 Oct 2024 09:25:07 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8488094099367004505=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A580D10E76C;
+ Wed, 30 Oct 2024 09:41:37 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/dp=3A_Limit_max_co?=
- =?utf-8?q?mpressed_bpp_to_18_when_forcing_DSC?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/display=3A_?=
+ =?utf-8?q?platform_identification_with_display-=3Eplatform=2E=3Cplatform=3E?=
+ =?utf-8?q?_=28rev5=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 30 Oct 2024 09:25:07 -0000
-Message-ID: <173028030749.1363061.3150650113661717359@2413ebb6fbb6>
+Date: Wed, 30 Oct 2024 09:41:37 -0000
+Message-ID: <173028129767.1363061.9968140951612998318@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
-References: <20241030084100.1361689-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20241030084100.1361689-1-ankit.k.nautiyal@intel.com>
+References: <cover.1730144869.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1730144869.git.jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,187 +42,164 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============8488094099367004505==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/dp: Limit max compressed bpp to 18 when forcing DSC
-URL   : https://patchwork.freedesktop.org/series/140715/
-State : success
+Series: drm/i915/display: platform identification with display->platform.<platform> (rev5)
+URL   : https://patchwork.freedesktop.org/series/139302/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_15608 -> Patchwork_140715v1
-====================================================
+Error: dim checkpatch failed
+8a6d72b5b6e1 drm/i915/display: reindent subplatform initialization
+5bc43647765f drm/i915/display: use a macro to initialize subplatforms
+9329fcbdecfe drm/i915/display: use a macro to define platform enumerations
+-:22: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#22: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:18:
++#define INTEL_DISPLAY_PLATFORMS(func) \
++	func(PLATFORM_UNINITIALIZED) \
++	/* Display ver 2 */ \
++	func(I830) \
++	func(I845G) \
++	func(I85X) \
++	func(I865G) \
++	/* Display ver 3 */ \
++	func(I915G) \
++	func(I915GM) \
++	func(I945G) \
++	func(I945GM) \
++	func(G33) \
++	func(PINEVIEW) \
++	/* Display ver 4 */ \
++	func(I965G) \
++	func(I965GM) \
++	func(G45) \
++	func(GM45) \
++	/* Display ver 5 */ \
++	func(IRONLAKE) \
++	/* Display ver 6 */ \
++	func(SANDYBRIDGE) \
++	/* Display ver 7 */ \
++	func(IVYBRIDGE) \
++	func(VALLEYVIEW) \
++	func(HASWELL) \
++	/* Display ver 8 */ \
++	func(BROADWELL) \
++	func(CHERRYVIEW) \
++	/* Display ver 9 */ \
++	func(SKYLAKE) \
++	func(BROXTON) \
++	func(KABYLAKE) \
++	func(GEMINILAKE) \
++	func(COFFEELAKE) \
++	func(COMETLAKE) \
++	/* Display ver 11 */ \
++	func(ICELAKE) \
++	func(JASPERLAKE) \
++	func(ELKHARTLAKE) \
++	/* Display ver 12 */ \
++	func(TIGERLAKE) \
++	func(ROCKETLAKE) \
++	func(DG1) \
++	func(ALDERLAKE_S) \
++	/* Display ver 13 */ \
++	func(ALDERLAKE_P) \
++	func(DG2) \
++	/* Display ver 14 (based on GMD ID) */ \
++	func(METEORLAKE) \
++	/* Display ver 20 (based on GMD ID) */ \
++	func(LUNARLAKE) \
++	/* Display ver 14.1 (based on GMD ID) */ \
++	func(BATTLEMAGE) \
++	/* Display ver 30 (based on GMD ID) */ \
++	func(PANTHERLAKE)
 
-Summary
--------
+-:22: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'func' - possible side-effects?
+#22: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:18:
++#define INTEL_DISPLAY_PLATFORMS(func) \
++	func(PLATFORM_UNINITIALIZED) \
++	/* Display ver 2 */ \
++	func(I830) \
++	func(I845G) \
++	func(I85X) \
++	func(I865G) \
++	/* Display ver 3 */ \
++	func(I915G) \
++	func(I915GM) \
++	func(I945G) \
++	func(I945GM) \
++	func(G33) \
++	func(PINEVIEW) \
++	/* Display ver 4 */ \
++	func(I965G) \
++	func(I965GM) \
++	func(G45) \
++	func(GM45) \
++	/* Display ver 5 */ \
++	func(IRONLAKE) \
++	/* Display ver 6 */ \
++	func(SANDYBRIDGE) \
++	/* Display ver 7 */ \
++	func(IVYBRIDGE) \
++	func(VALLEYVIEW) \
++	func(HASWELL) \
++	/* Display ver 8 */ \
++	func(BROADWELL) \
++	func(CHERRYVIEW) \
++	/* Display ver 9 */ \
++	func(SKYLAKE) \
++	func(BROXTON) \
++	func(KABYLAKE) \
++	func(GEMINILAKE) \
++	func(COFFEELAKE) \
++	func(COMETLAKE) \
++	/* Display ver 11 */ \
++	func(ICELAKE) \
++	func(JASPERLAKE) \
++	func(ELKHARTLAKE) \
++	/* Display ver 12 */ \
++	func(TIGERLAKE) \
++	func(ROCKETLAKE) \
++	func(DG1) \
++	func(ALDERLAKE_S) \
++	/* Display ver 13 */ \
++	func(ALDERLAKE_P) \
++	func(DG2) \
++	/* Display ver 14 (based on GMD ID) */ \
++	func(METEORLAKE) \
++	/* Display ver 20 (based on GMD ID) */ \
++	func(LUNARLAKE) \
++	/* Display ver 14.1 (based on GMD ID) */ \
++	func(BATTLEMAGE) \
++	/* Display ver 30 (based on GMD ID) */ \
++	func(PANTHERLAKE)
 
-  **SUCCESS**
+total: 1 errors, 0 warnings, 1 checks, 128 lines checked
+662b76acbb7b drm/i915/display: join the platform and subplatform enums
+433a01963f72 drm/i915/display: convert display platforms to lower case
+ffb9c7422575 drm/i915/display: add display platforms structure with platform members
+-:67: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
+#67: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:110:
++#define __MEMBER(name) unsigned long name:1;
 
-  No regressions found.
+-:68: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#68: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:111:
++#define __COUNT(x) 1 +
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140715v1/index.html
+-:68: WARNING:MACRO_ARG_UNUSED: Argument 'x' is not used in function-like macro
+#68: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:111:
++#define __COUNT(x) 1 +
 
-Participating hosts (47 -> 46)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_140715v1 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@i915_selftest@live:
-    - bat-arlh-3:         [ABORT][1] ([i915#12133]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15608/bat-arlh-3/igt@i915_selftest@live.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140715v1/bat-arlh-3/igt@i915_selftest@live.html
-    - bat-twl-1:          [INCOMPLETE][3] ([i915#12133] / [i915#9413]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15608/bat-twl-1/igt@i915_selftest@live.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140715v1/bat-twl-1/igt@i915_selftest@live.html
-    - bat-mtlp-6:         [DMESG-WARN][5] ([i915#10341] / [i915#12133]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15608/bat-mtlp-6/igt@i915_selftest@live.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140715v1/bat-mtlp-6/igt@i915_selftest@live.html
-    - bat-atsm-1:         [ABORT][7] ([i915#12133]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15608/bat-atsm-1/igt@i915_selftest@live.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140715v1/bat-atsm-1/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@client:
-    - bat-atsm-1:         [ABORT][9] ([i915#12305]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15608/bat-atsm-1/igt@i915_selftest@live@client.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140715v1/bat-atsm-1/igt@i915_selftest@live@client.html
-
-  * igt@i915_selftest@live@gt_lrc:
-    - bat-twl-1:          [INCOMPLETE][11] ([i915#9413]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15608/bat-twl-1/igt@i915_selftest@live@gt_lrc.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140715v1/bat-twl-1/igt@i915_selftest@live@gt_lrc.html
-
-  * igt@i915_selftest@live@hangcheck:
-    - bat-mtlp-6:         [DMESG-WARN][13] ([i915#11349] / [i915#12133]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15608/bat-mtlp-6/igt@i915_selftest@live@hangcheck.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140715v1/bat-mtlp-6/igt@i915_selftest@live@hangcheck.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arlh-3:         [ABORT][15] ([i915#12061]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15608/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140715v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-
-  
-  [i915#10341]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10341
-  [i915#11349]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11349
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12133]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133
-  [i915#12305]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12305
-  [i915#9413]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15608 -> Patchwork_140715v1
-
-  CI-20190529: 20190529
-  CI_DRM_15608: b97473387ce132222c9b71f7cf39c2cd814cbb6f @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8088: 0030d5bc92b8e4ac991db1c88af1f0ad7593812a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_140715v1: b97473387ce132222c9b71f7cf39c2cd814cbb6f @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140715v1/index.html
-
---===============8488094099367004505==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 1 errors, 2 warnings, 0 checks, 57 lines checked
+029dea4c69a5 drm/i915/display: add platform member to struct intel_display
+8fd0d488a948 drm/i915/display: remove the display platform enum as unnecessary
+af3a1c4720a1 drm/i915/display: add platform group for g4x
+a1fa11205222 drm/i915/display: add subplatform group for HSW/BDW ULT
+d02492327846 drm/i915/bios: use display->platform.<platform> instead of IS_<PLATFORM>()
+bf8ffb537ff5 drm/i915/pps: use display->platform.<platform> instead of IS_<PLATFORM>()
+1f59dbd87141 drm/i915/tv: use display->platform.<platform> instead of IS_<PLATFORM>()
+51f43107e346 drm/i915/vga: use display->platform.<platform> instead of IS_<PLATFORM>()
+b380e9f9cc14 drm/i915/vblank: drop unnecessary i915 local variable
+58c55914454d drm/i915/vblank: use display->platform.<platform> instead of IS_<PLATFORM>()
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dp: Limit max compressed bpp to 18 when forcing DSC</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/140715/">https://patchwork.freedesktop.org/series/140715/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140715v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140715v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_15608 -&gt; Patchwork_140715v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140715v1/index.html</p>
-<h2>Participating hosts (47 -&gt; 46)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_140715v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15608/bat-arlh-3/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133">i915#12133</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140715v1/bat-arlh-3/igt@i915_selftest@live.html">PASS</a></li>
-<li>bat-twl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15608/bat-twl-1/igt@i915_selftest@live.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133">i915#12133</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413">i915#9413</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140715v1/bat-twl-1/igt@i915_selftest@live.html">PASS</a></li>
-<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15608/bat-mtlp-6/igt@i915_selftest@live.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10341">i915#10341</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133">i915#12133</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140715v1/bat-mtlp-6/igt@i915_selftest@live.html">PASS</a></li>
-<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15608/bat-atsm-1/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133">i915#12133</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140715v1/bat-atsm-1/igt@i915_selftest@live.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@client:</p>
-<ul>
-<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15608/bat-atsm-1/igt@i915_selftest@live@client.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12305">i915#12305</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140715v1/bat-atsm-1/igt@i915_selftest@live@client.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_lrc:</p>
-<ul>
-<li>bat-twl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15608/bat-twl-1/igt@i915_selftest@live@gt_lrc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413">i915#9413</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140715v1/bat-twl-1/igt@i915_selftest@live@gt_lrc.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hangcheck:</p>
-<ul>
-<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15608/bat-mtlp-6/igt@i915_selftest@live@hangcheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11349">i915#11349</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133">i915#12133</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140715v1/bat-mtlp-6/igt@i915_selftest@live@hangcheck.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15608/bat-arlh-3/igt@i915_selftest@live@workarounds.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140715v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_15608 -&gt; Patchwork_140715v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_15608: b97473387ce132222c9b71f7cf39c2cd814cbb6f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8088: 0030d5bc92b8e4ac991db1c88af1f0ad7593812a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_140715v1: b97473387ce132222c9b71f7cf39c2cd814cbb6f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============8488094099367004505==--
