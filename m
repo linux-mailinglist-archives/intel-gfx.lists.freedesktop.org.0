@@ -2,64 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2910E9B6306
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Oct 2024 13:25:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FC9A9B6338
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Oct 2024 13:41:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A18510E051;
-	Wed, 30 Oct 2024 12:25:30 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MjzzEr2a";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id F223410E7A2;
+	Wed, 30 Oct 2024 12:41:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EAF9410E051;
- Wed, 30 Oct 2024 12:25:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730291130; x=1761827130;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=6BoHKOnCklHPGtYZtFjwPZb1kaUp9/UCaK2WHzvG+rc=;
- b=MjzzEr2avr86BmT0Xp7Zuy8AZavDjbXBVhQYrXKx1pKW7peDOjbfKCcH
- IV4JtVPiqkAqyV5uR6ZU9zg7+40j/uE1qtYszkWcKz1HM1VoQx7tcACTh
- lqucUie37JohtBaFJci9IVz4gArKV43SCtnrRiBHT2m+9sbnSfS48g+m2
- V1sReVZ7CoTPnL0hwos+osU2wEtAM9Ah6rvTpIX07ACKwfi/l2DwpAR7A
- k4gDBrKMcwzgtQ4AtjN7Yh0oO+TsS95t64tDnTAQmCUhhdNaWb2ijT38N
- ew/wBLVw8cz2YZVIHLI5YPpaPop6fpDe/nR9it+HqoT3mVB/gFuUzd8Ix w==;
-X-CSE-ConnectionGUID: qEi2HkxxRlaH01GKLM6ngA==
-X-CSE-MsgGUID: yXq/z1PwQpiCMsi7rBzEnQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="52545778"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="52545778"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2024 05:25:29 -0700
-X-CSE-ConnectionGUID: +f3TicRJTZq2NjAptPqMFg==
-X-CSE-MsgGUID: VkB/78qRQWa3Inerqq6zaA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,245,1725346800"; d="scan'208";a="82405310"
-Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.122])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2024 05:25:26 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Cc: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>, "Roper,
- Matthew D" <matthew.d.roper@intel.com>, "De Marchi, Lucas"
- <lucas.demarchi@intel.com>
-Subject: RE: [PATCH v3] drm/i915/display: use x100 version for full version
- and release
-In-Reply-To: <SN7PR11MB6750CA63975504433B808DAFE3542@SN7PR11MB6750.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241029155536.753413-1-jani.nikula@intel.com>
- <SN7PR11MB6750CA63975504433B808DAFE3542@SN7PR11MB6750.namprd11.prod.outlook.com>
-Date: Wed, 30 Oct 2024 14:25:24 +0200
-Message-ID: <87jzdplqvf.fsf@intel.com>
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DFC1E10E7A2;
+ Wed, 30 Oct 2024 12:41:39 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0351859407528470865=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915=3A_Implement_Dbuf_?=
+ =?utf-8?q?overlap_detection_feature_starting_from_LNL_=28rev7=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stanislav Lisovskiy" <stanislav.lisovskiy@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 30 Oct 2024 12:41:39 -0000
+Message-ID: <173029209990.1363581.4561898924289332336@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241030103319.207235-1-vinod.govindapillai@intel.com>
+In-Reply-To: <20241030103319.207235-1-vinod.govindapillai@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,56 +37,142 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 30 Oct 2024, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
->> -----Original Message-----
->> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of J=
-ani
->> Nikula
->> Sent: Tuesday, October 29, 2024 9:26 PM
->> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
->> Cc: Nikula, Jani <jani.nikula@intel.com>; ville.syrjala@linux.intel.com;=
- Roper,
->> Matthew D <matthew.d.roper@intel.com>; De Marchi, Lucas
->> <lucas.demarchi@intel.com>
->> Subject: [PATCH v3] drm/i915/display: use x100 version for full version =
-and
->> release
->>
->> Use x100, or ver * 100 + rel, versions for full IP version checks, simil=
-ar to what
->> xe driver does:
->>
->> - Replace IP_VER(14, 1) inline with 1401, etc.
->>
->> - Convert DISPLAY_VER_FULL() to DISPLAY_VERx100()
->>
->> - Convert IS_DISPLAY_VER_FULL() to IS_DISPLAY_VERx100()
->>
->> - Convert IS_DISPLAY_VER_STEP() to IS_DISPLAY_VERx100_STEP()
->>
->> This makes ver.rel versions easier to use, follows the xe driver pattern=
-, and
->> drops the dependency on the IP_VER() macro.
->>
->> v2: Rebase, drop IP_VER() from xe compat headers
->>
->> v3: Rebase
->>
->> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->> Acked-by: Matt Roper <matthew.d.roper@intel.com>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> LGTM,
-> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+--===============0351859407528470865==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Thanks for the review, pushed to din.
+== Series Details ==
 
-BR,
-Jani.
+Series: drm/i915: Implement Dbuf overlap detection feature starting from LNL (rev7)
+URL   : https://patchwork.freedesktop.org/series/136884/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_15610 -> Patchwork_136884v7
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136884v7/index.html
+
+Participating hosts (47 -> 46)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_136884v7 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@i915_selftest@live:
+    - bat-arlh-3:         [ABORT][1] ([i915#12133]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15610/bat-arlh-3/igt@i915_selftest@live.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136884v7/bat-arlh-3/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arlh-3:         [ABORT][3] ([i915#12061]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15610/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136884v7/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#12133]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133
 
 
---=20
-Jani Nikula, Intel
+Build changes
+-------------
+
+  * Linux: CI_DRM_15610 -> Patchwork_136884v7
+
+  CI-20190529: 20190529
+  CI_DRM_15610: dc3552b1791e1f3bbeab6abbe964d99178b34241 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8088: 0030d5bc92b8e4ac991db1c88af1f0ad7593812a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_136884v7: dc3552b1791e1f3bbeab6abbe964d99178b34241 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136884v7/index.html
+
+--===============0351859407528470865==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Implement Dbuf overlap detection feature starting from LNL (rev7)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/136884/">https://patchwork.freedesktop.org/series/136884/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136884v7/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136884v7/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_15610 -&gt; Patchwork_136884v7</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136884v7/index.html</p>
+<h2>Participating hosts (47 -&gt; 46)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_136884v7 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15610/bat-arlh-3/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133">i915#12133</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136884v7/bat-arlh-3/igt@i915_selftest@live.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15610/bat-arlh-3/igt@i915_selftest@live@workarounds.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136884v7/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_15610 -&gt; Patchwork_136884v7</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_15610: dc3552b1791e1f3bbeab6abbe964d99178b34241 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8088: 0030d5bc92b8e4ac991db1c88af1f0ad7593812a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_136884v7: dc3552b1791e1f3bbeab6abbe964d99178b34241 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============0351859407528470865==--
