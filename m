@@ -2,60 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD3E89B6398
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Oct 2024 13:59:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B663E9B63F6
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Oct 2024 14:22:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C2FE10E2CE;
-	Wed, 30 Oct 2024 12:59:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABDF910E2BF;
+	Wed, 30 Oct 2024 13:22:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oBnSGau/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ftRbSbDY";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F61510E2CE;
- Wed, 30 Oct 2024 12:59:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9650010E2BF
+ for <intel-gfx@lists.freedesktop.org>; Wed, 30 Oct 2024 13:22:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730293160; x=1761829160;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=z+NpbMqY7g+e83u8biIDK4OUuDL89sStoSmnRsGndks=;
- b=oBnSGau/GMVbFkdPyVebp8KOIeo8h+lGQ9Fe2jgbHng1tmkF5Cj00PIt
- mws8Oys8GKe1USFqfI/CZAXL/6c6W0RJ6OgMEMpCFqsZnn/6rYdTVyfsw
- OrwnY2nzhcw8rzfjWBt3VsSi6PRFmWaOpE0XQUVp4JDLRBTsJJtDPWS8b
- ydDzrfKjsAuRQkwIXeSqdIk/FgJjDPeNW+qN7SGynGYArf/km3lRIKxtJ
- 4IP9SqYmSl71vcTjZFqTge8d5qA/1mx1PvFp3BKdyXiZq3C5lUfzkWz3t
- N2kM/+BNIqF096STq/83B+TJV6IdeiqKwX2KJsjYXtpZ7fvqSWOjjj0zD Q==;
-X-CSE-ConnectionGUID: UYl4hjp4T7qhad9jwDkxQA==
-X-CSE-MsgGUID: GCCpvjskSXuechIRqepahA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="30140394"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="30140394"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2024 05:59:20 -0700
-X-CSE-ConnectionGUID: uxjB6pK9Ru2MAeqDHz0OKg==
-X-CSE-MsgGUID: a4r84RGzRme+PlN50VCprg==
+ t=1730294542; x=1761830542;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=WRdr1H2vTKNFB60Uw7aZriqo09C8Pi1KHCG3zJWwmkk=;
+ b=ftRbSbDYpviF984LSmf6mWwvqI+VMX7aAj4p67P+yy0SWI7eqSnNmISj
+ Txd+eRIZ+IeR/6loFIU38IdNEsoOBcKvFtYEv8PieUOb2nNrigcLgU22k
+ WY8omcAZkruqUgQMEQR6ClzdxcMJxUgJ8AnGzttWFCHXF7MauKi7sRw2H
+ 68+TmoZZLJfSXvUxg2p0CciqT64Y2kjLFSMejLnZE5HytaC9J8URviMZL
+ oz+G9tKHCuF/QIlVu+Fw2KN5zOlRR4SLN27hAFjPPvAR8/XT3rAjEsVYi
+ 0JiI+a2z1B3REbVpf34Jixn7Z5yKicVJSW/UO7F+1A66UYwALLPrWVdOe Q==;
+X-CSE-ConnectionGUID: Yk2EpPoeSMyMzZLANWeIzw==
+X-CSE-MsgGUID: 2JE/tod4T5CMYLeajMYFNg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11241"; a="40566412"
+X-IronPort-AV: E=Sophos;i="6.11,245,1725346800"; d="scan'208";a="40566412"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2024 06:22:21 -0700
+X-CSE-ConnectionGUID: 5pGJGC8mTPKRvGkqMcsv6w==
+X-CSE-MsgGUID: JEVxUkIXSX2SA2Yv0mxxRQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,245,1725346800"; d="scan'208";a="113114789"
-Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.122])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2024 05:59:18 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: I915-ci-infra@lists.freedesktop.org
+X-IronPort-AV: E=Sophos;i="6.11,245,1725346800"; d="scan'208";a="82425730"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 30 Oct 2024 06:22:18 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 30 Oct 2024 15:22:17 +0200
+Date: Wed, 30 Oct 2024 15:22:17 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: =?utf-8?Q?=E2=9C=97?= Fi.CI.BAT: failure for drm/i915: add
- dedicated lock for each sideband (rev3)
-In-Reply-To: <875xpanebc.fsf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1730193891.git.jani.nikula@intel.com>
- <173024786373.1362048.16983004525018468080@2413ebb6fbb6>
- <875xpanebc.fsf@intel.com>
-Date: Wed, 30 Oct 2024 14:59:14 +0200
-Message-ID: <87h68tlpb1.fsf@intel.com>
+Subject: Re: [PATCH 06/11] drm/i915/cdclk: Extract vlv_dsi_min_cdclk()
+Message-ID: <ZyIzCZ1f7QDQPB5G@intel.com>
+References: <20241029215217.3697-1-ville.syrjala@linux.intel.com>
+ <20241029215217.3697-7-ville.syrjala@linux.intel.com>
+ <87frodn7sh.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <87frodn7sh.fsf@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,102 +72,163 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 30 Oct 2024, Jani Nikula <jani.nikula@intel.com> wrote:
-> On Wed, 30 Oct 2024, Patchwork <patchwork@emeril.freedesktop.org> wrote:
->> == Series Details ==
->>
->> Series: drm/i915: add dedicated lock for each sideband (rev3)
->> URL   : https://patchwork.freedesktop.org/series/139437/
->> State : failure
->>
->> == Summary ==
->>
->> CI Bug Log - changes from CI_DRM_15607 -> Patchwork_139437v3
->> ====================================================
->>
->> Summary
->> -------
->>
->>   **FAILURE**
->>
->>   Serious unknown changes coming with Patchwork_139437v3 absolutely need to be
->>   verified manually.
->>   
->>   If you think the reported changes have nothing to do with the changes
->>   introduced in Patchwork_139437v3, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
->>   to document this new failure mode, which will reduce false positives in CI.
->>
->>   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139437v3/index.html
->>
->> Participating hosts (47 -> 46)
->> ------------------------------
->>
->>   Missing    (1): fi-snb-2520m 
->>
->> Possible new issues
->> -------------------
->>
->>   Here are the unknown changes that may have been introduced in Patchwork_139437v3:
->>
->> ### IGT changes ###
->>
->> #### Possible regressions ####
->>
->>   * igt@i915_selftest@live:
->>     - bat-jsl-1:          [PASS][1] -> [DMESG-WARN][2] +1 other test dmesg-warn
->>    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15607/bat-jsl-1/igt@i915_selftest@live.html
->>    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139437v3/bat-jsl-1/igt@i915_selftest@live.html
->
-> Unrelated.
+On Wed, Oct 30, 2024 at 01:34:38PM +0200, Jani Nikula wrote:
+> On Tue, 29 Oct 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >
+> > Pull the DSI min cdclk calculation into a helper and hide
+> > it inside vlv_dsi.c in order to keep most DSI related
+> > details in one place.
+> >
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_cdclk.c | 23 ++------------------
+> >  drivers/gpu/drm/i915/display/vlv_dsi.c     | 25 ++++++++++++++++++++++
+> >  drivers/gpu/drm/i915/display/vlv_dsi.h     |  8 +++++++
+> >  3 files changed, 35 insertions(+), 21 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > index 89d12c521411..e10378744607 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > @@ -46,6 +46,7 @@
+> >  #include "intel_vdsc.h"
+> >  #include "skl_watermark.h"
+> >  #include "skl_watermark_regs.h"
+> > +#include "vlv_dsi.h"
+> >  #include "vlv_sideband.h"
+> >  
+> >  /**
+> > @@ -2849,8 +2850,6 @@ static int intel_vdsc_min_cdclk(const struct intel_crtc_state *crtc_state)
+> >  
+> >  int intel_crtc_compute_min_cdclk(const struct intel_crtc_state *crtc_state)
+> >  {
+> > -	struct intel_display *display = to_intel_display(crtc_state);
+> > -	struct drm_i915_private *dev_priv = to_i915(display->drm);
+> >  	int min_cdclk;
+> >  
+> >  	if (!crtc_state->hw.enable)
+> > @@ -2859,25 +2858,7 @@ int intel_crtc_compute_min_cdclk(const struct intel_crtc_state *crtc_state)
+> >  	min_cdclk = intel_pixel_rate_to_cdclk(crtc_state);
+> >  	min_cdclk = max(hsw_ips_min_cdclk(crtc_state), min_cdclk);
+> >  	min_cdclk = max(intel_audio_min_cdclk(crtc_state), min_cdclk);
+> > -
+> > -	/*
+> > -	 * On Valleyview some DSI panels lose (v|h)sync when the clock is lower
+> > -	 * than 320000KHz.
+> > -	 */
+> > -	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DSI) &&
+> > -	    IS_VALLEYVIEW(dev_priv))
+> > -		min_cdclk = max(320000, min_cdclk);
+> > -
+> > -	/*
+> > -	 * On Geminilake once the CDCLK gets as low as 79200
+> > -	 * picture gets unstable, despite that values are
+> > -	 * correct for DSI PLL and DE PLL.
+> > -	 */
+> > -	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DSI) &&
+> > -	    IS_GEMINILAKE(dev_priv))
+> > -		min_cdclk = max(158400, min_cdclk);
+> > -
+> > -	/* Account for additional needs from the planes */
+> > +	min_cdclk = max(vlv_dsi_min_cdclk(crtc_state), min_cdclk);
+> >  	min_cdclk = max(intel_planes_min_cdclk(crtc_state), min_cdclk);
+> >  
+> >  	if (crtc_state->dsc.compression_enable)
+> > diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
+> > index 9383eedee2d4..49a895589150 100644
+> > --- a/drivers/gpu/drm/i915/display/vlv_dsi.c
+> > +++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
+> > @@ -1760,6 +1760,31 @@ static void vlv_dphy_param_init(struct intel_dsi *intel_dsi)
+> >  	intel_dsi_log_params(intel_dsi);
+> >  }
+> >  
+> > +int vlv_dsi_min_cdclk(const struct intel_crtc_state *crtc_state)
+> > +{
+> > +	struct drm_i915_private *dev_priv = to_i915(crtc_state->uapi.crtc->dev);
+> > +	int min_cdclk = 0;
+> > +
+> > +	/*
+> > +	 * On Valleyview some DSI panels lose (v|h)sync when the clock is lower
+> > +	 * than 320000KHz.
+> > +	 */
+> > +	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DSI) &&
+> > +	    IS_VALLEYVIEW(dev_priv))
+> > +		min_cdclk = max(320000, min_cdclk);
+> > +
+> > +	/*
+> > +	 * On Geminilake once the CDCLK gets as low as 79200
+> > +	 * picture gets unstable, despite that values are
+> > +	 * correct for DSI PLL and DE PLL.
+> > +	 */
+> > +	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DSI) &&
+> > +	    IS_GEMINILAKE(dev_priv))
+> > +		min_cdclk = max(158400, min_cdclk);
+> > +
+> > +	return min_cdclk;
+> > +}
+> > +
+> >  typedef void (*vlv_dsi_dmi_quirk_func)(struct intel_dsi *intel_dsi);
+> >  
+> >  /*
+> > diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.h b/drivers/gpu/drm/i915/display/vlv_dsi.h
+> > index cf9d7b82f288..5f99059b4c48 100644
+> > --- a/drivers/gpu/drm/i915/display/vlv_dsi.h
+> > +++ b/drivers/gpu/drm/i915/display/vlv_dsi.h
+> > @@ -8,13 +8,17 @@
+> >  
+> >  #include <linux/types.h>
+> >  
+> > +#include <drm/drm_mipi_dsi.h>
+> > +
+> 
+> Huh, why is this required? At least it's unrelated to the patch.
 
-And by that I mean, please re-report.
+Sorry meant to note that in the commit msg, but forgot.
 
->
->>
->>   
->> Known issues
->> ------------
->>
->>   Here are the changes found in Patchwork_139437v3 that come from known issues:
->>
->> ### IGT changes ###
->>
->> #### Possible fixes ####
->>
->>   * igt@i915_selftest@live:
->>     - bat-mtlp-8:         [ABORT][3] ([i915#12133] / [i915#12216]) -> [PASS][4]
->>    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15607/bat-mtlp-8/igt@i915_selftest@live.html
->>    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139437v3/bat-mtlp-8/igt@i915_selftest@live.html
->>
->>   * igt@i915_selftest@live@workarounds:
->>     - bat-mtlp-8:         [ABORT][5] ([i915#12216]) -> [PASS][6]
->>    [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15607/bat-mtlp-8/igt@i915_selftest@live@workarounds.html
->>    [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139437v3/bat-mtlp-8/igt@i915_selftest@live@workarounds.html
->>
->>   * igt@kms_chamelium_frames@dp-crc-fast:
->>     - bat-dg2-13:         [DMESG-WARN][7] ([i915#12253]) -> [PASS][8]
->>    [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15607/bat-dg2-13/igt@kms_chamelium_frames@dp-crc-fast.html
->>    [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139437v3/bat-dg2-13/igt@kms_chamelium_frames@dp-crc-fast.html
->>
->>   
->>   [i915#12133]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133
->>   [i915#12216]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12216
->>   [i915#12253]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12253
->>
->>
->> Build changes
->> -------------
->>
->>   * Linux: CI_DRM_15607 -> Patchwork_139437v3
->>
->>   CI-20190529: 20190529
->>   CI_DRM_15607: fb2691707e2d5a8c704ae5e48bc5a314a308b0e0 @ git://anongit.freedesktop.org/gfx-ci/linux
->>   IGT_8087: 7abd9c49a49a9ff1f3300d7c51a92a5af8a789f1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
->>   Patchwork_139437v3: fb2691707e2d5a8c704ae5e48bc5a314a308b0e0 @ git://anongit.freedesktop.org/gfx-ci/linux
->>
->> == Logs ==
->>
->> For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139437v3/index.html
+xe fails to build without this:
+../drivers/gpu/drm/i915/display/vlv_dsi.h:28:42: error: return type is an incomplete type
+
+It looks like a forward declaration is not enough for
+return types of static inline functions. i915 on the other
+hand builds fine.
+
+I suppose one alternative would be to declare is as just
+'int' for xe.
+
+> 
+> Other than that,
+> 
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> 
+> 
+> >  enum port;
+> >  struct drm_i915_private;
+> > +struct intel_crtc_state;
+> >  struct intel_dsi;
+> >  
+> >  #ifdef I915
+> >  void vlv_dsi_wait_for_fifo_empty(struct intel_dsi *intel_dsi, enum port port);
+> >  enum mipi_dsi_pixel_format pixel_format_from_register_bits(u32 fmt);
+> > +int vlv_dsi_min_cdclk(const struct intel_crtc_state *crtc_state);
+> >  void vlv_dsi_init(struct drm_i915_private *dev_priv);
+> >  #else
+> >  static inline void vlv_dsi_wait_for_fifo_empty(struct intel_dsi *intel_dsi, enum port port)
+> > @@ -24,6 +28,10 @@ static inline enum mipi_dsi_pixel_format pixel_format_from_register_bits(u32 fmt
+> >  {
+> >  	return 0;
+> >  }
+> > +static inline int vlv_dsi_min_cdclk(const struct intel_crtc_state *crtc_state)
+> > +{
+> > +	return 0;
+> > +}
+> >  static inline void vlv_dsi_init(struct drm_i915_private *dev_priv)
+> >  {
+> >  }
+> 
+> -- 
+> Jani Nikula, Intel
 
 -- 
-Jani Nikula, Intel
+Ville Syrjälä
+Intel
