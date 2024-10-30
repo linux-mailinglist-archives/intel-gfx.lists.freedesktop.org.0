@@ -2,57 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0DCF9B615D
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Oct 2024 12:23:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F57B9B615F
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Oct 2024 12:23:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C20A10E05C;
-	Wed, 30 Oct 2024 11:23:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2810610E79C;
+	Wed, 30 Oct 2024 11:23:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZXNUqpZd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IuKw9WrQ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 017EA10E05C
- for <intel-gfx@lists.freedesktop.org>; Wed, 30 Oct 2024 11:23:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E58610E794
+ for <intel-gfx@lists.freedesktop.org>; Wed, 30 Oct 2024 11:23:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730287387; x=1761823387;
+ t=1730287400; x=1761823400;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=wQjkUr5iQTSmxUUqPVwf5ANO04FR8IQC6EkiYi1yZwM=;
- b=ZXNUqpZdc+RQkwvCsLeV8LEvyqtWgv+z/BAxqqkIG/ljwzrbeTAyiH0R
- FzM0qkFAPLwLyTzPUzV+NDjQwVssVX8sV8ddNQKmQIecuuAO44XpyJ2sT
- 09r+SYH7DLM7Rf1d61Blz+o0v3LATMxMUpPuNlIFC5uw7W97aIGgaVuhy
- Kd2JvTtrQmHk5XgaaCU9XglpcvyUGTTcitYjZD6nhtBkkIhKW8ZLato7y
- Z9zOQlGq8ohsDlIxpnSIl7bMhxZuIG+SK5+/AUuW2KN6kYCy377dnB7JW
- eXaXK8+uL0+b//T4eeA5YbgpKtsqmBgdVL2nIEXzHWvRT+yudu+kLE597 g==;
-X-CSE-ConnectionGUID: HPeBX5z4Ri6pMJkXCwjvKA==
-X-CSE-MsgGUID: X07hDh3XRW61stDbWIosOQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11240"; a="47457931"
-X-IronPort-AV: E=Sophos;i="6.11,245,1725346800"; d="scan'208";a="47457931"
+ bh=rJ5wlBuCx+z4w5dwagb2oaiIO8NNWstKvth9Xh8j5Cc=;
+ b=IuKw9WrQyuaILtr75uVSq/cqFG6NRr/PY9AoxTBP65vNuBsGewn04WWT
+ whchdK8BZ0Ggl6AimONrK0p2MlG4KqFPHADpLd1WjoRmQTRdOBfJh1RDc
+ XlKNfMFDDqsHF3583kPtiK7CXtvfhyFP1ytYDMP5Xq9fSoYDyxLRZl6Wz
+ x2GMD907TyA4uUcY2ll8QVKNbbi2jPUhh5jqosjYdDq/em+JkNiWTlXvV
+ +Hv9J4V+4AI0OUBMjrjZ226Ucxi7mdcZRxrjcbkrSCuDgq+hKLG+SwiPj
+ dBobJbr5x4jQqdt6wMEQBVfhb3mNcc/xji/Wy5K8jUueyP9jSkvuoxcE2 g==;
+X-CSE-ConnectionGUID: aYPDCRrRSBiLbbNO7oppag==
+X-CSE-MsgGUID: 2vAulhZITfOfErtgX1U+Mw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11240"; a="47457940"
+X-IronPort-AV: E=Sophos;i="6.11,245,1725346800"; d="scan'208";a="47457940"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2024 04:23:07 -0700
-X-CSE-ConnectionGUID: zF75mAOsTxiTI20yq/UHYw==
-X-CSE-MsgGUID: hgH5WrWoRA2Nrnind1N/Jw==
+ 30 Oct 2024 04:23:20 -0700
+X-CSE-ConnectionGUID: eRcpYkj9R2e65BG/l7OC+w==
+X-CSE-MsgGUID: iO2eufM8RU2xaDVCgcxNvQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,245,1725346800"; d="scan'208";a="81840871"
+X-IronPort-AV: E=Sophos;i="6.11,245,1725346800"; d="scan'208";a="81840899"
 Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.246.122])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2024 04:23:05 -0700
+ 30 Oct 2024 04:23:19 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 02/11] drm/i915/cdclk: Extract intel_cdclk_guardband()
- and intel_cdclk_ppc()
-In-Reply-To: <20241029215217.3697-3-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 01/11] drm/i915: Introduce HAS_DOUBLE_WIDE()
+In-Reply-To: <20241029215217.3697-2-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20241029215217.3697-1-ville.syrjala@linux.intel.com>
- <20241029215217.3697-3-ville.syrjala@linux.intel.com>
-Date: Wed, 30 Oct 2024 13:23:02 +0200
-Message-ID: <87ttctn8bt.fsf@intel.com>
+ <20241029215217.3697-2-ville.syrjala@linux.intel.com>
+Date: Wed, 30 Oct 2024 13:23:16 +0200
+Message-ID: <87r07xn8bf.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -74,101 +73,73 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Tue, 29 Oct 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> We are duplicating the CDCLK guardband and "pixels per clock"
-> figures in two places. Pull those out into small helpers that
-> can be used by both places.
-
-Oh, it's not just that, it's great to untangle the conflated two things!
+> Make the code a bit more self documenting by adding
+> HAS_DOUBLE_WIDE().
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_cdclk.c | 50 +++++++++++-----------
->  1 file changed, 26 insertions(+), 24 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_cdclk.c          | 2 +-
+>  drivers/gpu/drm/i915/display/intel_display.c        | 4 ++--
+>  drivers/gpu/drm/i915/display/intel_display_device.h | 1 +
+>  3 files changed, 4 insertions(+), 3 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm=
 /i915/display/intel_cdclk.c
-> index 6cef3ca3a069..977fcdaa7372 100644
+> index 96523526a2c3..6cef3ca3a069 100644
 > --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
 > +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> @@ -2761,23 +2761,34 @@ intel_set_cdclk_post_plane_update(struct intel_at=
-omic_state *state)
->  			"Post changing CDCLK to");
+> @@ -3462,7 +3462,7 @@ static int intel_compute_max_dotclk(struct intel_di=
+splay *display)
+>  		return max_cdclk_freq;
+>  	else if (IS_CHERRYVIEW(dev_priv))
+>  		return max_cdclk_freq*95/100;
+> -	else if (DISPLAY_VER(display) < 4)
+> +	else if (HAS_DOUBLE_WIDE(display))
+>  		return 2*max_cdclk_freq*90/100;
+>  	else
+>  		return max_cdclk_freq*90/100;
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index 0e6d6c8354ef..9a5102224c59 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -2371,7 +2371,7 @@ static bool intel_crtc_supports_double_wide(const s=
+truct intel_crtc *crtc)
+>  	const struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+>=20=20
+>  	/* GDG double wide on either pipe, otherwise pipe A only */
+> -	return DISPLAY_VER(dev_priv) < 4 &&
+> +	return HAS_DOUBLE_WIDE(dev_priv) &&
+>  		(crtc->pipe =3D=3D PIPE_A || IS_I915G(dev_priv));
 >  }
 >=20=20
-> +/* pixels per CDCLK */
-> +static int intel_cdclk_ppc(struct intel_display *display, bool double_wi=
-de)
-> +{
-> +	return DISPLAY_VER(display) >=3D 10 || double_wide ? 2 : 1;
-> +}
-> +
-> +/* max pixel rate as % of CDCLK (not accounting for PPC) */
-> +static int intel_cdclk_guardband(struct intel_display *display)
-> +{
-> +	struct drm_i915_private *dev_priv =3D to_i915(display->drm);
-> +
-> +	if (DISPLAY_VER(display) >=3D 9 ||
-> +	    IS_BROADWELL(dev_priv) || IS_HASWELL(dev_priv))
-> +		return 100;
-> +	else if (IS_CHERRYVIEW(dev_priv))
-> +		return 95;
-> +	else
-> +		return 90;
-> +}
-> +
->  static int intel_pixel_rate_to_cdclk(const struct intel_crtc_state *crtc=
-_state)
->  {
->  	struct intel_display *display =3D to_intel_display(crtc_state);
-> -	struct drm_i915_private *dev_priv =3D to_i915(display->drm);
-> +	int ppc =3D intel_cdclk_ppc(display, crtc_state->double_wide);
-> +	int guardband =3D intel_cdclk_guardband(display);
->  	int pixel_rate =3D crtc_state->pixel_rate;
+> @@ -3207,7 +3207,7 @@ static bool i9xx_get_pipe_config(struct intel_crtc =
+*crtc,
 >=20=20
-> -	if (DISPLAY_VER(display) >=3D 10)
-> -		return DIV_ROUND_UP(pixel_rate, 2);
-> -	else if (DISPLAY_VER(display) =3D=3D 9 ||
-> -		 IS_BROADWELL(dev_priv) || IS_HASWELL(dev_priv))
-> -		return pixel_rate;
-> -	else if (IS_CHERRYVIEW(dev_priv))
-> -		return DIV_ROUND_UP(pixel_rate * 100, 95);
-> -	else if (crtc_state->double_wide)
-> -		return DIV_ROUND_UP(pixel_rate * 100, 90 * 2);
-> -	else
-> -		return DIV_ROUND_UP(pixel_rate * 100, 90);
-> +	return DIV_ROUND_UP(pixel_rate * 100, guardband * ppc);
->  }
+>  	intel_color_get_config(pipe_config);
 >=20=20
->  static int intel_planes_min_cdclk(const struct intel_crtc_state *crtc_st=
-ate)
-> @@ -3452,20 +3463,11 @@ int intel_modeset_calc_cdclk(struct intel_atomic_=
-state *state)
+> -	if (DISPLAY_VER(dev_priv) < 4)
+> +	if (HAS_DOUBLE_WIDE(dev_priv))
+>  		pipe_config->double_wide =3D tmp & TRANSCONF_DOUBLE_WIDE;
 >=20=20
->  static int intel_compute_max_dotclk(struct intel_display *display)
->  {
-> -	struct drm_i915_private *dev_priv =3D to_i915(display->drm);
-> +	int ppc =3D intel_cdclk_ppc(display, HAS_DOUBLE_WIDE(display));
-> +	int guardband =3D intel_cdclk_guardband(display);
->  	int max_cdclk_freq =3D display->cdclk.max_cdclk_freq;
->=20=20
-> -	if (DISPLAY_VER(display) >=3D 10)
-> -		return 2 * max_cdclk_freq;
-> -	else if (DISPLAY_VER(display) =3D=3D 9 ||
-> -		 IS_BROADWELL(dev_priv) || IS_HASWELL(dev_priv))
-> -		return max_cdclk_freq;
-> -	else if (IS_CHERRYVIEW(dev_priv))
-> -		return max_cdclk_freq*95/100;
-> -	else if (HAS_DOUBLE_WIDE(display))
-> -		return 2*max_cdclk_freq*90/100;
-> -	else
-> -		return max_cdclk_freq*90/100;
-> +	return ppc * max_cdclk_freq * guardband / 100;
->  }
->=20=20
->  /**
+>  	intel_get_transcoder_timings(crtc, pipe_config);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/driver=
+s/gpu/drm/i915/display/intel_display_device.h
+> index 410f8b33a8a1..ae7a35cf44ca 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_device.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+> @@ -129,6 +129,7 @@ enum intel_display_subplatform {
+>  #define HAS_DISPLAY(i915)		(DISPLAY_RUNTIME_INFO(i915)->pipe_mask !=3D 0)
+>  #define HAS_DMC(i915)			(DISPLAY_RUNTIME_INFO(i915)->has_dmc)
+>  #define HAS_DOUBLE_BUFFERED_M_N(i915)	(DISPLAY_VER(i915) >=3D 9 || IS_BR=
+OADWELL(i915))
+> +#define HAS_DOUBLE_WIDE(i915)		(DISPLAY_VER(i915) < 4)
+>  #define HAS_DP_MST(i915)		(DISPLAY_INFO(i915)->has_dp_mst)
+>  #define HAS_DP20(i915)			(IS_DG2(i915) || DISPLAY_VER(i915) >=3D 14)
+>  #define HAS_DPT(i915)			(DISPLAY_VER(i915) >=3D 13)
 
 --=20
 Jani Nikula, Intel
