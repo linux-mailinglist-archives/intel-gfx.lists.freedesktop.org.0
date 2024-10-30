@@ -2,58 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BC809B660F
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Oct 2024 15:35:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A6BF9B66DA
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Oct 2024 16:03:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F027110E7BC;
-	Wed, 30 Oct 2024 14:35:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 249FB10E7B7;
+	Wed, 30 Oct 2024 15:03:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YI2M4ydd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RxVc9zGK";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6036610E7AA
- for <intel-gfx@lists.freedesktop.org>; Wed, 30 Oct 2024 14:35:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5CDDB10E7B7
+ for <intel-gfx@lists.freedesktop.org>; Wed, 30 Oct 2024 15:03:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730298951; x=1761834951;
- h=date:from:to:cc:subject:message-id:reply-to:references:
+ t=1730300583; x=1761836583;
+ h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=j6Skm4dbN1VbY7hOPSySOVw5NH6kAlvb3bTiij7EO7I=;
- b=YI2M4yddTcnlW9V0/9vVWfrDcN3EvnYDC5vlXFj21LMLMNURCa+VcBYk
- 5/4D0ZTHVr1Qk9pphfvxnIkeEr05JZQNDdJ5pn5nPvNXYPu6CWnkrVZXJ
- QhGNPlna+NZBvF/n463HW9Ygw1elWJXGIR9+ANxhnQU3A4MWaQt9KRl2F
- SXRMCDsUsZaWqtX0jDmXYcqx3+ByeZ3DKz8IGDIpD9llIYmVv+2oXTNw7
- vdK7OOCQIYaWXeW3cGUfuJbu8lFcoDvUO4BX1UMQCsN2+5Cvb7nwaiBmX
- sqA8/Jgcbgnf0a2dMjN4/sP8IbCIJE4vG7jIRA11DiFTDg8hfZtw/dPtR A==;
-X-CSE-ConnectionGUID: Q9ePBb78QBmAObjbU4G/AQ==
-X-CSE-MsgGUID: S+YbQBp/Qm6O9z4K5VoKUw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="40535853"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="40535853"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2024 07:35:51 -0700
-X-CSE-ConnectionGUID: xaL+Bn+KSkuPh9ht+QXwKA==
-X-CSE-MsgGUID: +PnJ/4COQGmAEgwhwu+AdA==
+ bh=kQcIwxmYh1Mw9VwQcUO9YZZ9uEC5S8Q1wwGXoT0sLrU=;
+ b=RxVc9zGKcPA6Ok603FVzbUISp3A5eskX2LRyfc/1o9V12K1yOOq8Ib5M
+ mbQrtxBzk4DR9M9LHBDJHBKgzhy+USTMk28WV4/WNGcK5S2ORHVouXVmf
+ mzI6VfiyAXVbD+MkQHHi7FMgLMSNLIllODLAyXb2RqLf/MgmvJkJabUcK
+ hJ72beNHKOH+9M3slHMZp3YOdNClhw86UQkQLebVJ+o3/hEVriJnvD2H3
+ InIRUwcwQkCTOgJCYK9ebf/2ihW2k08kxbbD+AFjtkYTKr3Hnfw1TxQE0
+ RMupbTzUB5cXYvPrv6nytE224k7L98nzQPE1IAcy+bRCGu77SsIgyAhEH g==;
+X-CSE-ConnectionGUID: g5xDGVFGTrGM0PQAIcPovA==
+X-CSE-MsgGUID: 05eWAWJLT5yGrp8CAEDWNw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="30156951"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="30156951"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2024 08:03:03 -0700
+X-CSE-ConnectionGUID: hR5J6B1iQsKEaXbDIm6Trg==
+X-CSE-MsgGUID: M9Grio+IRp+PTtUooFC45g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,245,1725346800"; d="scan'208";a="82445750"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2024 07:35:49 -0700
-Date: Wed, 30 Oct 2024 16:36:20 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 2/4] drm/i915/dp: Export intel_ddi_config_transcoder_dp2()
-Message-ID: <ZyJEZA3orJ3PDr90@ideak-desk.fi.intel.com>
-References: <20241029191215.3889861-1-imre.deak@intel.com>
- <20241029191215.3889861-3-imre.deak@intel.com>
- <878qu6ofh5.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,245,1725346800"; d="scan'208";a="119792422"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.245.246.147])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2024 08:03:00 -0700
+Date: Wed, 30 Oct 2024 16:02:55 +0100
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: "Karas, Krzysztof" <krzysztof.karas@intel.com>
+Cc: intel-gfx@lists.freedesktop.org,
+	Andi Shyti <andi.shyti@linux.intel.com>
+Subject: Re: [PATCH v4] drm/i915: ensure segment offset never exceeds allowed
+ max
+Message-ID: <ZyJKn7hbuxXqrH35@ashyti-mobl2.lan>
+References: <kjsmgowrerhkk2d7qxsbccosjb55usqhfmxse6lesxfqwxtvhu@twuaxfazvq2a>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <878qu6ofh5.fsf@intel.com>
+In-Reply-To: <kjsmgowrerhkk2d7qxsbccosjb55usqhfmxse6lesxfqwxtvhu@twuaxfazvq2a>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,103 +67,71 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Oct 29, 2024 at 09:51:02PM +0200, Jani Nikula wrote:
-> On Tue, 29 Oct 2024, Imre Deak <imre.deak@intel.com> wrote:
-> > Export intel_ddi_config_transcoder_dp2() taken into use by the MST
-> > encoder in the next patch. Move the HAS_DP20() check to the function, so
-> > it doesn't need to be checked for each caller. Besides enabling the DP2
-> > configuration also add a way to disable it, required by the MST slave
-> > transcoder disabling sequence in the next patch.
-> 
-> Did you consider making intel_ddi_config_transcoder_dp2() enable part of
-> intel_ddi_config_transcoder_func() 
+Hi Krzysztof,
 
-Ok, makes sense, will do that.
+First of all I need to apologize for not being responsive on your
+patches. We had offline reviews and some discussions though, but
+they were not reported in the v1-v3 reviews. Next time, the
+reviews need to have more visibility for the community.
 
-> and disable part of intel_ddi_disable_transcoder_func()?
+On Mon, Oct 28, 2024 at 04:00:48PM +0000, Karas, Krzysztof wrote:
+> Commit 255fc1703e42 ("drm/i915/gem: Calculate object page offset for
+> partial memory mapping") introduced a new offset that is compared to
+> sg_dma_len(r.sgt.sgp) in remap_io_sg() function. However, later in
+> remap_sg() the offset (which at that point resides in r->sgt.curr)
+> is compared to r->sgt.max. Scatter-gather list's max relies on one
 
-That's the correct place for the slave transcoder sequence, but it's
-done only later for the master transcoder (which is still missing as I
-realized now). Can add the DP2 disabling to the correct places for both,
-keeping intel_ddi_config_transcoder_dp2() static.
+what we compare to max is not the offset, but the current sg
+item, right? Or did I miss something?
 
-> It's a bit much to add new functions for single register updates.
+> of two values (see i915_scatterlist.h):
+>  a) sg_dma_len(s.sgp) when `dma` is true,
+>  b) s.sgp->length otherwise.
+> This suggests that in cases where `dma` is false, we should use
+> s.sgp->length to determine the max value instead of sg_dma_len(),
+> which is used regardless in remap_io_sg() (use_dma(iobase) might return
+> false there).
 > 
-> BR,
-> Jani.
+> This patch uses r.sgt.max to check if offset is within allowed bounds,
+> because that max value is already set according to the `dma` value.
+
+are you trying to fix any issues here? If so, which one?
+
+> v3:
+>  - instead of checking if r.sgt.curr would exceed allowed max, changed
+> the value in the while loop to be aligned with `dma` value.
 > 
+> v4:
+>  - remove unnecessary parent relation
 > 
-> >
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_ddi.c | 15 +++++++++------
-> >  drivers/gpu/drm/i915/display/intel_ddi.h |  3 +++
-> >  2 files changed, 12 insertions(+), 6 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > index 6bbfe0762cafa..5ff7d23775d82 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > @@ -454,15 +454,19 @@ static u32 bdw_trans_port_sync_master_select(enum transcoder master_transcoder)
-> >  		return master_transcoder + 1;
-> >  }
-> >  
-> > -static void
-> > +void
-> >  intel_ddi_config_transcoder_dp2(struct intel_encoder *encoder,
-> > -				const struct intel_crtc_state *crtc_state)
-> > +				const struct intel_crtc_state *crtc_state,
-> > +				bool enable)
-> >  {
-> >  	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-> >  	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-> >  	u32 val = 0;
-> >  
-> > -	if (intel_dp_is_uhbr(crtc_state))
-> > +	if (!HAS_DP20(i915))
-> > +		return;
-> > +
-> > +	if (enable && intel_dp_is_uhbr(crtc_state))
-> >  		val = TRANS_DP2_128B132B_CHANNEL_CODING;
-> >  
-> >  	intel_de_write(i915, TRANS_DP2_CTL(cpu_transcoder), val);
-> > @@ -2549,7 +2553,7 @@ static void mtl_ddi_pre_enable_dp(struct intel_atomic_state *state,
-> >  	/*
-> >  	 * 6.b If DP v2.0/128b mode - Configure TRANS_DP2_CTL register settings.
-> >  	 */
-> > -	intel_ddi_config_transcoder_dp2(encoder, crtc_state);
-> > +	intel_ddi_config_transcoder_dp2(encoder, crtc_state, true);
-> >  
-> >  	/*
-> >  	 * 6.c Configure TRANS_DDI_FUNC_CTL DDI Select, DDI Mode Select & MST
-> > @@ -2686,8 +2690,7 @@ static void tgl_ddi_pre_enable_dp(struct intel_atomic_state *state,
-> >  	 */
-> >  	intel_ddi_enable_transcoder_clock(encoder, crtc_state);
-> >  
-> > -	if (HAS_DP20(dev_priv))
-> > -		intel_ddi_config_transcoder_dp2(encoder, crtc_state);
-> > +	intel_ddi_config_transcoder_dp2(encoder, crtc_state, true);
-> >  
-> >  	/*
-> >  	 * 7.b Configure TRANS_DDI_FUNC_CTL DDI Select, DDI Mode Select & MST
-> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.h b/drivers/gpu/drm/i915/display/intel_ddi.h
-> > index 1aa2e3a190aee..bf27b2fbb08e9 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_ddi.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.h
-> > @@ -65,6 +65,9 @@ void intel_ddi_disable_transcoder_func(const struct intel_crtc_state *crtc_state
-> >  void intel_ddi_enable_transcoder_clock(struct intel_encoder *encoder,
-> >  				       const struct intel_crtc_state *crtc_state);
-> >  void intel_ddi_disable_transcoder_clock(const  struct intel_crtc_state *crtc_state);
-> > +void intel_ddi_config_transcoder_dp2(struct intel_encoder *encoder,
-> > +				     const struct intel_crtc_state *crtc_state,
-> > +				     bool enable);
-> >  void intel_ddi_wait_for_fec_status(struct intel_encoder *encoder,
-> >  				   const struct intel_crtc_state *crtc_state,
-> >  				   bool enabled);
+> Signed-off-by: Krzysztof Karas <krzysztof.karas@intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_mm.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
+> diff --git a/drivers/gpu/drm/i915/i915_mm.c b/drivers/gpu/drm/i915/i915_mm.c
+> index f5c97a620962..76e2801619f0 100644
+> --- a/drivers/gpu/drm/i915/i915_mm.c
+> +++ b/drivers/gpu/drm/i915/i915_mm.c
+> @@ -143,8 +143,8 @@ int remap_io_sg(struct vm_area_struct *vma,
+>  	/* We rely on prevalidation of the io-mapping to skip track_pfn(). */
+>  	GEM_BUG_ON((vma->vm_flags & EXPECTED_FLAGS) != EXPECTED_FLAGS);
+>  
+> -	while (offset >= sg_dma_len(r.sgt.sgp) >> PAGE_SHIFT) {
+> -		offset -= sg_dma_len(r.sgt.sgp) >> PAGE_SHIFT;
+> +	while (offset >= r.sgt.max >> PAGE_SHIFT) {
+> +		offset -= r.sgt.max >> PAGE_SHIFT;
+
+To me looks right sg_dma_len(), why max?
+
+Thanks a lot for your patch,
+Andi
+
+>  		r.sgt = __sgt_iter(__sg_next(r.sgt.sgp), use_dma(iobase));
+>  		if (!r.sgt.sgp)
+>  			return -EINVAL;
 > -- 
-> Jani Nikula, Intel
+> 2.34.1
