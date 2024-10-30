@@ -2,56 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BF689B6215
-	for <lists+intel-gfx@lfdr.de>; Wed, 30 Oct 2024 12:41:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C9F9A9B622A
+	for <lists+intel-gfx@lfdr.de>; Wed, 30 Oct 2024 12:46:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E0D8610E092;
-	Wed, 30 Oct 2024 11:41:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 376E310E067;
+	Wed, 30 Oct 2024 11:46:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gLW1l4Cz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DO3lflZk";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49CAC10E092
- for <intel-gfx@lists.freedesktop.org>; Wed, 30 Oct 2024 11:41:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 14B3C10E067
+ for <intel-gfx@lists.freedesktop.org>; Wed, 30 Oct 2024 11:46:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730288497; x=1761824497;
+ t=1730288806; x=1761824806;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=ImDw2K01aJFG6G02KuNb/G9/k3tlKnH/ZDqWSmOcky0=;
- b=gLW1l4Czm5st3ylG4qRknWXwip0awhqkGp2MDGbbEOBLTT/ojiGx40HS
- z/ltPfb6qG5s56FEApI0l13TioyDuWAEo2r6A+yg4QJFulhZojWUetT/C
- dt2l2oD15gZqZViPT5wy6ZU7ObMYSJtssds66f8QQwW7xpflY/Pm7ng2Q
- 7JGPZbpce+I32qAYcufg4xoANw7ZZGidw0r524i7WEo5RofuzwD4o0M+u
- RxvnPgmJNboQzuz6K04apDhTqVm2pq7f/r4Og1zbrD1ANSSd6IYhibu0V
- 2DvrYr5bju5g3wTjvEJP2md1p3C6hTDeaZ6ZEX8Vimwsod+MxuX96B74/ A==;
-X-CSE-ConnectionGUID: zekyPSHpQpuOFPxiUHcPHQ==
-X-CSE-MsgGUID: 4Kl0vA6aTKmd7XHR540hfw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11240"; a="32824926"
-X-IronPort-AV: E=Sophos;i="6.11,245,1725346800"; d="scan'208";a="32824926"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2024 04:41:37 -0700
-X-CSE-ConnectionGUID: Js26a+4VRmqFiVeLqzTtbg==
-X-CSE-MsgGUID: N09eEXAcSgaC/1q+mYhTLQ==
+ bh=1zsmq+kjsKDwMwJlMUWZtinPRyFFXO8K9R1ddhKThIQ=;
+ b=DO3lflZk+ySyieHPZiCy5AI2fPAkfYNwtl0bDBs6Dv2j7daGG0u2Y6NN
+ 9IbQ5cDO6vCCJxfSIK2fQ/1W+8ndWJPKuNoTTF+vVHYemGPNjMnkiydv6
+ F1g1YSmz6vYFrtM+pPxKDWKIAMPkcM2Z71B2DTrS3I9vVjs+omqTroxl2
+ t7dAFcLvXFh8UIHT4iGP1nUP8Np/AwmIxbXDrsq1CKC0c/MoFMH3L69O4
+ BIRHAClRdTpSnuV4M5qOtBPFuSoZvmCK9/l6BRgugEpmRtbo9UVDnMgcR
+ P31GykSPk1kJ+cfA1lygPjJJ+RZ4kj/HJe8m7NwEkAFqPeGOg9QDuIKPf Q==;
+X-CSE-ConnectionGUID: pF/Mk7KHSpW4m/ZZxqiYzg==
+X-CSE-MsgGUID: LHhWHx99TBe9ZB5tHtWpqA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="40516211"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="40516211"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2024 04:46:45 -0700
+X-CSE-ConnectionGUID: KP0VWVznTTuCSrA34+6qow==
+X-CSE-MsgGUID: dR6eJC6GTuiaWaLseDQyaA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,245,1725346800"; d="scan'208";a="82602863"
+X-IronPort-AV: E=Sophos;i="6.11,245,1725346800"; d="scan'208";a="87066557"
 Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.246.122])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2024 04:41:35 -0700
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2024 04:46:44 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 11/11] drm/i915/cdclk: Unify cdclk max() parameter order
-In-Reply-To: <20241029215217.3697-12-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 1/9] drm/i915/scaler: s/intel_crtc/crtc/ etc.
+In-Reply-To: <20241029211030.13255-2-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241029215217.3697-1-ville.syrjala@linux.intel.com>
- <20241029215217.3697-12-ville.syrjala@linux.intel.com>
-Date: Wed, 30 Oct 2024 13:41:32 +0200
-Message-ID: <871pzxn7gz.fsf@intel.com>
+References: <20241029211030.13255-1-ville.syrjala@linux.intel.com>
+ <20241029211030.13255-2-ville.syrjala@linux.intel.com>
+Date: Wed, 30 Oct 2024 13:46:41 +0200
+Message-ID: <87y125lsny.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -73,142 +73,173 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Tue, 29 Oct 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> In some places we do
->  min_cdclk =3D max(min_cdclk, other_min_cdclk)
-> and in other places we have the arguments swapped as
->  min_cdclk =3D max(other_min_cdclk, min_cdclk)
->
-> Unify everyone to use the first order of arguments, because
-> it looks cleaner, especially within intel_crtc_compute_min_cdclk()
-> which is doing a lot of these back-to-back.
+> Rename some variables from the intel_foo to just foo, to match
+> the more modern style used throughout the driver.
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/display/intel_audio.c |  8 ++++----
->  drivers/gpu/drm/i915/display/intel_bw.c    |  2 +-
->  drivers/gpu/drm/i915/display/intel_cdclk.c | 18 +++++++++---------
->  3 files changed, 14 insertions(+), 14 deletions(-)
+>  drivers/gpu/drm/i915/display/skl_scaler.c | 33 +++++++++++------------
+>  drivers/gpu/drm/i915/display/skl_scaler.h |  2 +-
+>  2 files changed, 17 insertions(+), 18 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm=
-/i915/display/intel_audio.c
-> index af0bfdc44072..047cc5a2ef1f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_audio.c
-> +++ b/drivers/gpu/drm/i915/display/intel_audio.c
-> @@ -997,10 +997,10 @@ int intel_audio_min_cdclk(const struct intel_crtc_s=
-tate *crtc_state)
->  	    crtc_state->lane_count =3D=3D 4) {
->  		if (DISPLAY_VER(display) =3D=3D 10) {
->  			/* Display WA #1145: glk */
-> -			min_cdclk =3D max(316800, min_cdclk);
-> +			min_cdclk =3D max(min_cdclk, 316800);
->  		} else if (DISPLAY_VER(display) =3D=3D 9 || IS_BROADWELL(dev_priv)) {
->  			/* Display WA #1144: skl,bxt */
-> -			min_cdclk =3D max(432000, min_cdclk);
-> +			min_cdclk =3D max(min_cdclk, 432000);
+> diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/=
+i915/display/skl_scaler.c
+> index 7dbc99b02eaa..b6a4effee5de 100644
+> --- a/drivers/gpu/drm/i915/display/skl_scaler.c
+> +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+> @@ -268,20 +268,19 @@ int skl_update_scaler_crtc(struct intel_crtc_state =
+*crtc_state)
+>  int skl_update_scaler_plane(struct intel_crtc_state *crtc_state,
+>  			    struct intel_plane_state *plane_state)
+>  {
+> -	struct intel_plane *intel_plane =3D
+> -		to_intel_plane(plane_state->uapi.plane);
+> -	struct drm_i915_private *dev_priv =3D to_i915(intel_plane->base.dev);
+> +	struct intel_plane *plane =3D to_intel_plane(plane_state->uapi.plane);
+> +	struct drm_i915_private *dev_priv =3D to_i915(plane->base.dev);
+>  	struct drm_framebuffer *fb =3D plane_state->hw.fb;
+>  	bool force_detach =3D !fb || !plane_state->uapi.visible;
+>  	bool need_scaler =3D false;
+>=20=20
+>  	/* Pre-gen11 and SDR planes always need a scaler for planar formats. */
+> -	if (!icl_is_hdr_plane(dev_priv, intel_plane->id) &&
+> +	if (!icl_is_hdr_plane(dev_priv, plane->id) &&
+>  	    fb && intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier))
+>  		need_scaler =3D true;
+>=20=20
+>  	return skl_update_scaler(crtc_state, force_detach,
+> -				 drm_plane_index(&intel_plane->base),
+> +				 drm_plane_index(&plane->base),
+>  				 &plane_state->scaler_id,
+>  				 drm_rect_width(&plane_state->uapi.src) >> 16,
+>  				 drm_rect_height(&plane_state->uapi.src) >> 16,
+> @@ -293,18 +292,18 @@ int skl_update_scaler_plane(struct intel_crtc_state=
+ *crtc_state,
+>  }
+>=20=20
+>  static int intel_atomic_setup_scaler(struct intel_crtc_scaler_state *sca=
+ler_state,
+> -				     int num_scalers_need, struct intel_crtc *intel_crtc,
+> +				     int num_scalers_need, struct intel_crtc *crtc,
+>  				     const char *name, int idx,
+>  				     struct intel_plane_state *plane_state,
+>  				     int *scaler_id)
+>  {
+> -	struct drm_i915_private *dev_priv =3D to_i915(intel_crtc->base.dev);
+> +	struct drm_i915_private *dev_priv =3D to_i915(crtc->base.dev);
+>  	int j;
+>  	u32 mode;
+>=20=20
+>  	if (*scaler_id < 0) {
+>  		/* find a free scaler */
+> -		for (j =3D 0; j < intel_crtc->num_scalers; j++) {
+> +		for (j =3D 0; j < crtc->num_scalers; j++) {
+>  			if (scaler_state->scalers[j].in_use)
+>  				continue;
+>=20=20
+> @@ -344,7 +343,7 @@ static int intel_atomic_setup_scaler(struct intel_crt=
+c_scaler_state *scaler_stat
 >  		}
+>  	} else if (DISPLAY_VER(dev_priv) >=3D 10) {
+>  		mode =3D PS_SCALER_MODE_NORMAL;
+> -	} else if (num_scalers_need =3D=3D 1 && intel_crtc->num_scalers > 1) {
+> +	} else if (num_scalers_need =3D=3D 1 && crtc->num_scalers > 1) {
+>  		/*
+>  		 * when only 1 scaler is in use on a pipe with 2 scalers
+>  		 * scaler 0 operates in high quality (HQ) mode.
+> @@ -419,7 +418,7 @@ static int intel_atomic_setup_scaler(struct intel_crt=
+c_scaler_state *scaler_stat
 >  	}
 >=20=20
-> @@ -1009,7 +1009,7 @@ int intel_audio_min_cdclk(const struct intel_crtc_s=
-tate *crtc_state)
->  	 * the frequency of the Azalia BCLK." and BCLK is 96 MHz by default.
+>  	drm_dbg_kms(&dev_priv->drm, "Attached scaler id %u.%u to %s:%d\n",
+> -		    intel_crtc->pipe, *scaler_id, name, idx);
+> +		    crtc->pipe, *scaler_id, name, idx);
+>  	scaler_state->scalers[*scaler_id].mode =3D mode;
+>=20=20
+>  	return 0;
+> @@ -428,7 +427,7 @@ static int intel_atomic_setup_scaler(struct intel_crt=
+c_scaler_state *scaler_stat
+>  /**
+>   * intel_atomic_setup_scalers() - setup scalers for crtc per staged requ=
+ests
+>   * @dev_priv: i915 device
+> - * @intel_crtc: intel crtc
+> + * @crtc: intel crtc
+>   * @crtc_state: incoming crtc_state to validate and setup scalers
+>   *
+>   * This function sets up scalers based on staged scaling requests for
+> @@ -443,7 +442,7 @@ static int intel_atomic_setup_scaler(struct intel_crt=
+c_scaler_state *scaler_stat
+>   *         error code - otherwise
+>   */
+>  int intel_atomic_setup_scalers(struct drm_i915_private *dev_priv,
+> -			       struct intel_crtc *intel_crtc,
+> +			       struct intel_crtc *crtc,
+>  			       struct intel_crtc_state *crtc_state)
+>  {
+>  	struct drm_plane *plane =3D NULL;
+> @@ -470,10 +469,10 @@ int intel_atomic_setup_scalers(struct drm_i915_priv=
+ate *dev_priv,
 >  	 */
->  	if (DISPLAY_VER(display) >=3D 9)
-> -		min_cdclk =3D max(2 * 96000, min_cdclk);
-> +		min_cdclk =3D max(min_cdclk, 2 * 96000);
 >=20=20
->  	/*
->  	 * "For DP audio configuration, cdclk frequency shall be set to
-> @@ -1020,7 +1020,7 @@ int intel_audio_min_cdclk(const struct intel_crtc_s=
-tate *crtc_state)
->  	 */
->  	if ((IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) &&
->  	    intel_crtc_has_dp_encoder(crtc_state))
-> -		min_cdclk =3D max(crtc_state->port_clock, min_cdclk);
-> +		min_cdclk =3D max(min_cdclk, crtc_state->port_clock);
+>  	/* fail if required scalers > available scalers */
+> -	if (num_scalers_need > intel_crtc->num_scalers) {
+> +	if (num_scalers_need > crtc->num_scalers) {
+>  		drm_dbg_kms(&dev_priv->drm,
+>  			    "Too many scaling requests %d > %d\n",
+> -			    num_scalers_need, intel_crtc->num_scalers);
+> +			    num_scalers_need, crtc->num_scalers);
+>  		return -EINVAL;
+>  	}
 >=20=20
->  	return min_cdclk;
->  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i9=
-15/display/intel_bw.c
-> index 47036d4abb33..5f91b009df0d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bw.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-> @@ -1256,7 +1256,7 @@ int intel_bw_min_cdclk(struct drm_i915_private *i91=
-5,
->  	min_cdclk =3D intel_bw_dbuf_min_cdclk(i915, bw_state);
+> @@ -490,7 +489,7 @@ int intel_atomic_setup_scalers(struct drm_i915_privat=
+e *dev_priv,
 >=20=20
->  	for_each_pipe(i915, pipe)
-> -		min_cdclk =3D max(bw_state->min_cdclk[pipe], min_cdclk);
-> +		min_cdclk =3D max(min_cdclk, bw_state->min_cdclk[pipe]);
+>  		if (i =3D=3D SKL_CRTC_INDEX) {
+>  			name =3D "CRTC";
+> -			idx =3D intel_crtc->base.base.id;
+> +			idx =3D crtc->base.base.id;
 >=20=20
->  	return min_cdclk;
->  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm=
-/i915/display/intel_cdclk.c
-> index 9f38dd14b2d8..f16a37ef7316 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> @@ -2799,7 +2799,7 @@ static int intel_planes_min_cdclk(const struct inte=
-l_crtc_state *crtc_state)
->  	int min_cdclk =3D 0;
+>  			/* panel fitter case: assign as a crtc scaler */
+>  			scaler_id =3D &scaler_state->scaler_id;
+> @@ -531,7 +530,7 @@ int intel_atomic_setup_scalers(struct drm_i915_privat=
+e *dev_priv,
 >=20=20
->  	for_each_intel_plane_on_crtc(display->drm, crtc, plane)
-> -		min_cdclk =3D max(crtc_state->min_cdclk[plane->id], min_cdclk);
-> +		min_cdclk =3D max(min_cdclk, crtc_state->min_cdclk[plane->id]);
+>  			/* plane on different crtc cannot be a scaler user of this crtc */
+>  			if (drm_WARN_ON(&dev_priv->drm,
+> -					intel_plane->pipe !=3D intel_crtc->pipe))
+> +					intel_plane->pipe !=3D crtc->pipe))
+>  				continue;
 >=20=20
->  	return min_cdclk;
->  }
-> @@ -2812,10 +2812,10 @@ int intel_crtc_compute_min_cdclk(const struct int=
-el_crtc_state *crtc_state)
->  		return 0;
+>  			plane_state =3D intel_atomic_get_new_plane_state(intel_state,
+> @@ -540,7 +539,7 @@ int intel_atomic_setup_scalers(struct drm_i915_privat=
+e *dev_priv,
+>  		}
 >=20=20
->  	min_cdclk =3D intel_pixel_rate_to_cdclk(crtc_state);
-> -	min_cdclk =3D max(hsw_ips_min_cdclk(crtc_state), min_cdclk);
-> -	min_cdclk =3D max(intel_audio_min_cdclk(crtc_state), min_cdclk);
-> -	min_cdclk =3D max(vlv_dsi_min_cdclk(crtc_state), min_cdclk);
-> -	min_cdclk =3D max(intel_planes_min_cdclk(crtc_state), min_cdclk);
-> +	min_cdclk =3D max(min_cdclk, hsw_ips_min_cdclk(crtc_state));
-> +	min_cdclk =3D max(min_cdclk, intel_audio_min_cdclk(crtc_state));
-> +	min_cdclk =3D max(min_cdclk, vlv_dsi_min_cdclk(crtc_state));
-> +	min_cdclk =3D max(min_cdclk, intel_planes_min_cdclk(crtc_state));
->  	min_cdclk =3D max(min_cdclk, intel_vdsc_min_cdclk(crtc_state));
+>  		ret =3D intel_atomic_setup_scaler(scaler_state, num_scalers_need,
+> -						intel_crtc, name, idx,
+> +						crtc, name, idx,
+>  						plane_state, scaler_id);
+>  		if (ret < 0)
+>  			return ret;
+> diff --git a/drivers/gpu/drm/i915/display/skl_scaler.h b/drivers/gpu/drm/=
+i915/display/skl_scaler.h
+> index 63f93ca03c89..7a9ccdfd1cbb 100644
+> --- a/drivers/gpu/drm/i915/display/skl_scaler.h
+> +++ b/drivers/gpu/drm/i915/display/skl_scaler.h
+> @@ -21,7 +21,7 @@ int skl_update_scaler_plane(struct intel_crtc_state *cr=
+tc_state,
+>  			    struct intel_plane_state *plane_state);
 >=20=20
->  	return min_cdclk;
-> @@ -2868,7 +2868,7 @@ static int intel_compute_min_cdclk(struct intel_ato=
-mic_state *state)
->  	min_cdclk =3D max(cdclk_state->force_min_cdclk,
->  			cdclk_state->bw_min_cdclk);
->  	for_each_pipe(display, pipe)
-> -		min_cdclk =3D max(cdclk_state->min_cdclk[pipe], min_cdclk);
-> +		min_cdclk =3D max(min_cdclk, cdclk_state->min_cdclk[pipe]);
+>  int intel_atomic_setup_scalers(struct drm_i915_private *dev_priv,
+> -			       struct intel_crtc *intel_crtc,
+> +			       struct intel_crtc *crtc,
+>  			       struct intel_crtc_state *crtc_state);
 >=20=20
->  	/*
->  	 * Avoid glk_force_audio_cdclk() causing excessive screen
-> @@ -2880,7 +2880,7 @@ static int intel_compute_min_cdclk(struct intel_ato=
-mic_state *state)
->  	 */
->  	if (IS_GEMINILAKE(dev_priv) && cdclk_state->active_pipes &&
->  	    !is_power_of_2(cdclk_state->active_pipes))
-> -		min_cdclk =3D max(2 * 96000, min_cdclk);
-> +		min_cdclk =3D max(min_cdclk, 2 * 96000);
->=20=20
->  	if (min_cdclk > display->cdclk.max_cdclk_freq) {
->  		drm_dbg_kms(display->drm,
-> @@ -2936,8 +2936,8 @@ static int bxt_compute_min_voltage_level(struct int=
-el_atomic_state *state)
->=20=20
->  	min_voltage_level =3D 0;
->  	for_each_pipe(display, pipe)
-> -		min_voltage_level =3D max(cdclk_state->min_voltage_level[pipe],
-> -					min_voltage_level);
-> +		min_voltage_level =3D max(min_voltage_level,
-> +					cdclk_state->min_voltage_level[pipe]);
->=20=20
->  	return min_voltage_level;
->  }
+>  void skl_pfit_enable(const struct intel_crtc_state *crtc_state);
 
 --=20
 Jani Nikula, Intel
