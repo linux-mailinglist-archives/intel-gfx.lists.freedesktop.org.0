@@ -2,64 +2,82 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D6E79B8EA2
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Nov 2024 11:08:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 826B39B8EA9
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Nov 2024 11:08:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C02110E95E;
-	Fri,  1 Nov 2024 10:08:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B3EA10E96E;
+	Fri,  1 Nov 2024 10:08:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=sfcompute.com header.i=@sfcompute.com header.b="Clfzhii4";
+	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="imO88o/y";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="TC7Bdeih";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="z4inUp5d";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="QTvKxQNY";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com
- [209.85.219.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67C2310E809
- for <intel-gfx@lists.freedesktop.org>; Wed, 30 Oct 2024 22:40:58 +0000 (UTC)
-Received: by mail-qv1-f42.google.com with SMTP id
- 6a1803df08f44-6cbd1ae26a6so2125366d6.1
- for <intel-gfx@lists.freedesktop.org>; Wed, 30 Oct 2024 15:40:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=sfcompute.com; s=google; t=1730328057; x=1730932857;
- darn=lists.freedesktop.org; 
- h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
- :date:message-id:reply-to;
- bh=LjCZUxEl/JBx7Yf0MHCwgA3+3rwDTnE3ZlftiN1X5mY=;
- b=Clfzhii4jJmgEu5NN38YVdRzcHC6jHVUzOry2PHJ0XLtVtuWrvWs7MSAk/yHR7sy7U
- U9GK6sKP7IIwnAwABXQ2GYdcac5lhi+JhhkxE7bmxvQ3o9CUZhs8XmU7Zweph6bRVXs+
- MElo0KipirlBz5O+qfDfJwH1pwCDkNptZTtsE2b/LxJFmVyy+dN4sI8++EH9zHIiRwPs
- fFN4BNFjQvCDpUmh69/U6fJfo1dJ17OnlWlNtwQ7+979lL+5qYQzBiPk1ajziA25mVIL
- 8utl1mxqhXUvRLmALzUhO6lnGgbKTmN8x04/4NitZb7jVMZdNN29i+lqFAN4m8dgeFkq
- dyug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1730328057; x=1730932857;
- h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=LjCZUxEl/JBx7Yf0MHCwgA3+3rwDTnE3ZlftiN1X5mY=;
- b=jx9Tyw8C4sjjN7A0ZXSpBjNCGtIj9iFcLPn1jCQUaQK8EjnldhuELXzx4jRReaxpbv
- rqt2uM+AoZulmeTda4BoILM48NAoRbaPdM7FfK0yvNAo+jQVwS5T4h8warrNkXJu5Kaa
- KeCgJP/AodebJOedrc02Zp/ZobCjZMZIqRge+06rWnRY6ll7njlThFQtHaBuHWkytmtj
- gZQxGeCVsuO864qZ2X0x3ewu7eKo6/4JATzzQQystf/FPngC/aLj/K0Rhm5c4kqNnlgL
- ptxmIx9r1KX10YsqmwDn29Ps6MDR08Uzjj3GmPaV2YIacVC1ZXHPo31BAlxMIRPDpDP6
- lZYg==
-X-Gm-Message-State: AOJu0Yxw4VL1oke1Gbsm19+WXgLXemEITZCj40dnqOsHTrg3CJcmDMC8
- TaWeIK8Iai0Fp6YL63LVTwrqt+jsiS65Gp4P1b+iqjvzBvEFPSvgkLnXPWotf/3T2FE6MbxxHbc
- eh4Ct5heoz8ZnqfPEZQP4KJyYlXbF3kwr/J50GV0wnb8g8EpKD6Zv8w==
-X-Google-Smtp-Source: AGHT+IFXzTP5vw8KJmdAEhMQpwoItKI8Ys6u1rbtrEP+sqfyLiQgP+AqU26it+yyP7ovQswMyNmWzzWEf3OasbrLg9o=
-X-Received: by 2002:a05:6214:3c98:b0:6cb:f79a:cb38 with SMTP id
- 6a1803df08f44-6d185672abemr253141286d6.5.1730328054377; Wed, 30 Oct 2024
- 15:40:54 -0700 (PDT)
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 57E0A10E8A7
+ for <intel-gfx@lists.freedesktop.org>; Thu, 31 Oct 2024 14:22:00 +0000 (UTC)
+From: Nam Cao <namcao@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1730384517;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=R7vOaJqgRV5DMd7ehGld0+MjD00sARx0fKoxOtfItm0=;
+ b=imO88o/y0XVN6kdToHVMViXMRUk0cuBXo74W1Q/jLdQS/fSyb1mE7rrdtKszHKYJk4mwYp
+ xKB+HTzDiMLGMAxmvOoIs7Ezq4wqzxY1joPy06QGqDGS5h7IB8pY+fd14FIiiyHPQQ5jEn
+ +kRqynflD+2Ki0AJZrm+cNSeOEaEze0NeVw648ZZiWTmO0HAzpCVYzASbwd46rJUM1PVrJ
+ 0/bRrtPWJc7bBQreuSKLFPsxY0OhyNO970EbplqzVKMSK48Ba4yAcvOA3z38CdpBGWUCEQ
+ lqkMLP3Z19n46zpXzDCbPy6/4soTeTE6dYIWW9WYElSdV6p3ah/Nt8iDooqOfA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1730384517;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=R7vOaJqgRV5DMd7ehGld0+MjD00sARx0fKoxOtfItm0=;
+ b=TC7BdeihIW5XV4aaoNEyVInfQhW2BG0q5+AS3lEUVFct/hE3jLvzM9jDENqQh2vbJLNYxl
+ itaDDCS2WULo9dBw==
+To: Anna-Maria Behnsen <anna-maria@linutronix.de>,
+ Frederic Weisbecker <frederic@kernel.org>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Miguel Ojeda <ojeda@kernel.org>,
+ Kees Cook <kees@kernel.org>, linux-kernel@vger.kernel.org
+Cc: Nam Cao <namcao@linutronix.de>, Jani Nikula <jani.nikula@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, Sean Christopherson <seanjc@google.com>,
+ Paolo Bonzini <pbonzini@redhat.com>, x86@kernel.org,
+ Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,
+ Jens Axboe <axboe@kernel.dk>, Christian Brauner <brauner@kernel.org>,
+ Peter Zijlstra <peterz@infradead.org>, John Stultz <jstultz@google.com>,
+ Oliver Hartkopp <socketcan@hartkopp.net>, kvm@vger.kernel.org,
+ linux-wireless@vger.kernel.org
+Subject: [PATCH v2 00/19] hrtimers: Consolidate hrtimer initialization - Part 1
+Date: Thu, 31 Oct 2024 15:19:21 +0100
+Message-Id: <20241031-hrtimer_setup_p1_v2-v2-0-23400656575a@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de; s=2020;
+ t=1730357378;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id: to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=I8wtw/HtQVPpoZ+xdIpGlIz4pHbw619bvfWfK0qjbEY=;
+ b=z4inUp5dIlviaMA0ilIMg1r3Wg887s0wq70vQLQA4h+YYh09sTCrh/tTQ4396QwOvDdZ0e
+ SKqjs5VdfgBd3k0qMBTJwcQWS1Hj5itUE4MzYV/Ymvzsp6QL8X31rtZr8sb8moFlqNDrir
+ mbDJy2IDYSvFmqx/Lp9lEPpFO6ojydIxSG3GuikuFHKGnp/ZwOrZeoaq/shuHp2UGI79Z8
+ ceHQIIleDz2XCwQN3O37mDeI9q+mr7IWzQfmlhwBj2S5txfA22eDQMQ3jXi6jqaRetvejj
+ SdX18VKh74Qu6DnDsZhYnK5HywFvgjbqI1TwCQK0ZbYwHO7NP7VvbHFDTxV/cg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1730357378;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id: to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=I8wtw/HtQVPpoZ+xdIpGlIz4pHbw619bvfWfK0qjbEY=;
+ b=QTvKxQNY73n06PZINa661hFYsJRXgyOH6WpwJevcy1LruABl4pbMeCJknE4R2b8wI1Hdlp
+ XEyP0ZdHqKWlkMAw==
 MIME-Version: 1.0
-From: Alexander Coffin <acoffin@sfcompute.com>
-Date: Wed, 30 Oct 2024 15:40:43 -0700
-Message-ID: <CANDg6HitgouwdeM9rCrr5LCjeCqNFeZZuf3KXaZBD072HNeJzA@mail.gmail.com>
-Subject: i915 potential deadlock
-To: intel-gfx@lists.freedesktop.org
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+X-Change-ID: 20241029-hrtimer_setup_p1_v2-0396321bee07
+Status: RO
+Lines: 89
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Fri, 01 Nov 2024 10:08:01 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -76,3736 +94,2346 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hello,
+This is a follow up to version 1, which can be found here:
 
-I was attempting to investigate an issue that I believe may be related
-to iwlwifi, but managed to stumble across this lockdep report first
-when I was attempting to debug the kernel in general. This is from
-Linux Kernel version v6.1.112 (technically the Debian patched version,
-but I don't think that is relevant to this issue).
+    https://lore.kernel.org/lkml/cover.1729864615.git.namcao@linutronix.de/
 
-I haven't had a chance to read this code yet, but I thought that I
-would report it so that someone more familiar with this code base
-could have a chance to investigate before I do (if I have time). As
-far as I can see there weren't any changes to i915 after 6.1.112 that
-were relevant (I only see "drm/i915/gem: fix bitwise and logical AND
-mixup") so unless a backport is missing I believe that this issue
-would also affect mainline version.
+hrtimers must be initialized with a hrtimer_init() variant, and after that
+the timer's callback function must be setup separately.
 
-I am including 3 text files.
-1. A log from `journalctl -k`
-2. The same log from before but with the relevant portion highlighted
-3. An annotated version of the prior relevant portion (passed through
-`./scripts/decode_stacktrace.sh -r 6.1.112`).
+This seperate initialization is error prone and awkward to use. The
+seperate initialization is also problematic for a clean Rust abstraction.
 
-File 1
-```
-Oct 30 10:41:34 acoffin-xps-15 kernel: Linux version 6.1.112
-(acoffin@acoffin-xps-15) (gcc (Debian 12.2.0-14) 12.2.0, GNU ld (GNU
-Binutils for Debian) 2.40) #2 SMP PREEMPT_DYNAMIC Tue Oct 29 19:43:36
-PDT 2024
-Oct 30 10:41:34 acoffin-xps-15 kernel: Command line:
-BOOT_IMAGE=/vmlinuz-6.1.112 root=/dev/mapper/acoffin--xps--15--vg-root
-ro quiet
-Oct 30 10:41:34 acoffin-xps-15 kernel: BIOS-provided physical RAM map:
-Oct 30 10:41:34 acoffin-xps-15 kernel: BIOS-e820: [mem
-0x0000000000000000-0x000000000009efff] usable
-Oct 30 10:41:34 acoffin-xps-15 kernel: BIOS-e820: [mem
-0x000000000009f000-0x00000000000fffff] reserved
-Oct 30 10:41:34 acoffin-xps-15 kernel: BIOS-e820: [mem
-0x0000000000100000-0x000000005bf6efff] usable
-Oct 30 10:41:34 acoffin-xps-15 kernel: BIOS-e820: [mem
-0x000000005bf6f000-0x000000005c191fff] type 20
-Oct 30 10:41:34 acoffin-xps-15 kernel: BIOS-e820: [mem
-0x000000005c192000-0x0000000060d10fff] reserved
-Oct 30 10:41:34 acoffin-xps-15 kernel: BIOS-e820: [mem
-0x0000000060d11000-0x0000000061571fff] ACPI NVS
-Oct 30 10:41:34 acoffin-xps-15 kernel: BIOS-e820: [mem
-0x0000000061572000-0x00000000617fefff] ACPI data
-Oct 30 10:41:34 acoffin-xps-15 kernel: BIOS-e820: [mem
-0x00000000617ff000-0x00000000617fffff] usable
-Oct 30 10:41:34 acoffin-xps-15 kernel: BIOS-e820: [mem
-0x0000000061800000-0x00000000663fffff] reserved
-Oct 30 10:41:34 acoffin-xps-15 kernel: BIOS-e820: [mem
-0x0000000066e00000-0x00000000707fffff] reserved
-Oct 30 10:41:34 acoffin-xps-15 kernel: BIOS-e820: [mem
-0x00000000c0000000-0x00000000cfffffff] reserved
-Oct 30 10:41:34 acoffin-xps-15 kernel: BIOS-e820: [mem
-0x00000000f9000000-0x00000000f9ffffff] reserved
-Oct 30 10:41:34 acoffin-xps-15 kernel: BIOS-e820: [mem
-0x00000000fed20000-0x00000000fed7ffff] reserved
-Oct 30 10:41:34 acoffin-xps-15 kernel: BIOS-e820: [mem
-0x00000000ff000000-0x00000000ffffffff] reserved
-Oct 30 10:41:34 acoffin-xps-15 kernel: BIOS-e820: [mem
-0x0000000100000000-0x000000108f7fffff] usable
-Oct 30 10:41:34 acoffin-xps-15 kernel: NX (Execute Disable) protection: active
-Oct 30 10:41:34 acoffin-xps-15 kernel: efi: EFI v2.70 by Dell
-Oct 30 10:41:34 acoffin-xps-15 kernel: efi: ACPI=0x617fe000 ACPI
-2.0=0x617fe014 SMBIOS=0x5c800000 ESRT=0x5c798718 MEMATTR=0x56a04118
-MOKvar=0x5c7ca000
-Oct 30 10:41:34 acoffin-xps-15 kernel: secureboot: Secure boot disabled
-Oct 30 10:41:34 acoffin-xps-15 kernel: SMBIOS 3.6 present.
-Oct 30 10:41:34 acoffin-xps-15 kernel: DMI: Dell Inc. XPS 15
-9530/013F3N, BIOS 1.15.0 07/08/2024
-Oct 30 10:41:34 acoffin-xps-15 kernel: tsc: Detected 2900.000 MHz processor
-Oct 30 10:41:34 acoffin-xps-15 kernel: tsc: Detected 2918.400 MHz TSC
-Oct 30 10:41:34 acoffin-xps-15 kernel: e820: update [mem
-0x00000000-0x00000fff] usable ==> reserved
-Oct 30 10:41:34 acoffin-xps-15 kernel: e820: remove [mem
-0x000a0000-0x000fffff] usable
-Oct 30 10:41:34 acoffin-xps-15 kernel: last_pfn = 0x108f800
-max_arch_pfn = 0x400000000
-Oct 30 10:41:34 acoffin-xps-15 kernel: x86/PAT: Configuration [0-7]:
-WB  WC  UC- UC  WB  WP  UC- WT
-Oct 30 10:41:34 acoffin-xps-15 kernel: last_pfn = 0x61800 max_arch_pfn
-= 0x400000000
-Oct 30 10:41:34 acoffin-xps-15 kernel: esrt: Reserving ESRT space from
-0x000000005c798718 to 0x000000005c798778.
-Oct 30 10:41:34 acoffin-xps-15 kernel: Using GB pages for direct mapping
-Oct 30 10:41:34 acoffin-xps-15 kernel: Incomplete global flushes, disabling PCID
-Oct 30 10:41:34 acoffin-xps-15 kernel: RAMDISK: [mem 0x30137000-0x34092fff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Early table checksum
-verification disabled
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: RSDP 0x00000000617FE014
-000024 (v02 DELL  )
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: XSDT 0x000000006171F188
-000114 (v01 DELL   Dell Inc 00000002      01000013)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: FACP 0x00000000617EA000
-000114 (v06 DELL   Dell Inc 00000002      01000013)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: DSDT 0x000000006174B000
-09B815 (v02 DELL   Dell Inc 00000002      01000013)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: FACS 0x00000000614DB000 000040
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: SSDT 0x00000000617FC000
-00038C (v02 PmaxDv Pmax_Dev 00000001 INTL 20200717)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: SSDT 0x00000000617FB000
-000177 (v01 CIRRUS SPKRAMPS 00000002 INTL 20200717)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: SSDT 0x00000000617F5000
-005C55 (v02 CpuRef CpuSsdt  00003000 INTL 20200717)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: SSDT 0x00000000617EB000
-009D65 (v02 DptfTb DptfTabl 00001000 INTL 20200717)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: HPET 0x00000000617E9000
-000038 (v01 DELL   Dell Inc 00000002      01000013)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: APIC 0x00000000617E8000
-0001DC (v05 DELL   Dell Inc 00000002      01000013)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: MCFG 0x00000000617E7000
-00003C (v01 DELL   Dell Inc 00000002      01000013)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: SSDT 0x0000000061747000
-00386C (v02 DELL   DellRtd3 00001000 INTL 20200717)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: SSDT 0x0000000061744000
-002FD3 (v02 SaSsdt SaSsdt   00003000 INTL 20200717)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: SSDT 0x0000000061742000
-001343 (v02 INTEL  IgfxSsdt 00003000 INTL 20200717)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: SSDT 0x0000000061734000
-00D7C2 (v02 INTEL  TcssSsdt 00001000 INTL 20200717)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: NHLT 0x0000000061732000
-001214 (v00 DELL   Dell Inc 00000002      01000013)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: SSDT 0x0000000061730000
-0010C0 (v02 DELL   UsbCTabl 00001000 INTL 20200717)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: LPIT 0x000000006172F000
-0000CC (v01 DELL   Dell Inc 00000002      01000013)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: WSMT 0x000000006172E000
-000028 (v01 DELL   Dell Inc 00000002      01000013)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: SSDT 0x000000006172D000
-000B44 (v02 DELL   PtidDevc 00001000 INTL 20200717)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: SSDT 0x0000000061723000
-0092F4 (v02 DELL   TbtTypeC 00000000 INTL 20200717)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: DBGP 0x0000000061722000
-000034 (v01 DELL   Dell Inc 00000002      01000013)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: DBG2 0x0000000061721000
-000054 (v00 DELL   Dell Inc 00000002      01000013)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: BOOT 0x0000000061720000
-000028 (v01 DELL   CBX3     00000002      01000013)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: MSDM 0x00000000617FD000
-000055 (v03 DELL   CBX3     06222004 AMI  00010013)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: DMAR 0x000000006171E000
-000088 (v01 INTEL  Dell Inc 00000002      01000013)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: FPDT 0x000000006171D000
-000034 (v01 DELL   Dell Inc 00000002      01000013)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: SSDT 0x000000006171C000
-000999 (v02 DELL   xh_Dell_ 00000000 INTL 20200717)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: SSDT 0x0000000061718000
-0039DA (v02 SocGpe SocGpe   00003000 INTL 20200717)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: SSDT 0x0000000061714000
-0039DA (v02 SocCmn SocCmn   00003000 INTL 20200717)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: SSDT 0x0000000061713000
-000144 (v02 Intel  ADebTabl 00001000 INTL 20200717)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: PHAT 0x0000000061712000
-000506 (v01 DELL   Dell Inc 00000005 MSFT 0100000D)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: BGRT 0x0000000061711000
-000038 (v01 DELL   Dell Inc 00000002      01000013)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Reserving FACP table
-memory at [mem 0x617ea000-0x617ea113]
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Reserving DSDT table
-memory at [mem 0x6174b000-0x617e6814]
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Reserving FACS table
-memory at [mem 0x614db000-0x614db03f]
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Reserving SSDT table
-memory at [mem 0x617fc000-0x617fc38b]
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Reserving SSDT table
-memory at [mem 0x617fb000-0x617fb176]
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Reserving SSDT table
-memory at [mem 0x617f5000-0x617fac54]
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Reserving SSDT table
-memory at [mem 0x617eb000-0x617f4d64]
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Reserving HPET table
-memory at [mem 0x617e9000-0x617e9037]
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Reserving APIC table
-memory at [mem 0x617e8000-0x617e81db]
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Reserving MCFG table
-memory at [mem 0x617e7000-0x617e703b]
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Reserving SSDT table
-memory at [mem 0x61747000-0x6174a86b]
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Reserving SSDT table
-memory at [mem 0x61744000-0x61746fd2]
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Reserving SSDT table
-memory at [mem 0x61742000-0x61743342]
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Reserving SSDT table
-memory at [mem 0x61734000-0x617417c1]
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Reserving NHLT table
-memory at [mem 0x61732000-0x61733213]
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Reserving SSDT table
-memory at [mem 0x61730000-0x617310bf]
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Reserving LPIT table
-memory at [mem 0x6172f000-0x6172f0cb]
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Reserving WSMT table
-memory at [mem 0x6172e000-0x6172e027]
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Reserving SSDT table
-memory at [mem 0x6172d000-0x6172db43]
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Reserving SSDT table
-memory at [mem 0x61723000-0x6172c2f3]
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Reserving DBGP table
-memory at [mem 0x61722000-0x61722033]
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Reserving DBG2 table
-memory at [mem 0x61721000-0x61721053]
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Reserving BOOT table
-memory at [mem 0x61720000-0x61720027]
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Reserving MSDM table
-memory at [mem 0x617fd000-0x617fd054]
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Reserving DMAR table
-memory at [mem 0x6171e000-0x6171e087]
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Reserving FPDT table
-memory at [mem 0x6171d000-0x6171d033]
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Reserving SSDT table
-memory at [mem 0x6171c000-0x6171c998]
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Reserving SSDT table
-memory at [mem 0x61718000-0x6171b9d9]
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Reserving SSDT table
-memory at [mem 0x61714000-0x617179d9]
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Reserving SSDT table
-memory at [mem 0x61713000-0x61713143]
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Reserving PHAT table
-memory at [mem 0x61712000-0x61712505]
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Reserving BGRT table
-memory at [mem 0x61711000-0x61711037]
-Oct 30 10:41:34 acoffin-xps-15 kernel: No NUMA configuration found
-Oct 30 10:41:34 acoffin-xps-15 kernel: Faking a node at [mem
-0x0000000000000000-0x000000108f7fffff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: NODE_DATA(0) allocated [mem
-0x108f7d5000-0x108f7fffff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: Zone ranges:
-Oct 30 10:41:34 acoffin-xps-15 kernel:   DMA      [mem
-0x0000000000001000-0x0000000000ffffff]
-Oct 30 10:41:34 acoffin-xps-15 kernel:   DMA32    [mem
-0x0000000001000000-0x00000000ffffffff]
-Oct 30 10:41:34 acoffin-xps-15 kernel:   Normal   [mem
-0x0000000100000000-0x000000108f7fffff]
-Oct 30 10:41:34 acoffin-xps-15 kernel:   Device   empty
-Oct 30 10:41:34 acoffin-xps-15 kernel: Movable zone start for each node
-Oct 30 10:41:34 acoffin-xps-15 kernel: Early memory node ranges
-Oct 30 10:41:34 acoffin-xps-15 kernel:   node   0: [mem
-0x0000000000001000-0x000000000009efff]
-Oct 30 10:41:34 acoffin-xps-15 kernel:   node   0: [mem
-0x0000000000100000-0x000000005bf6efff]
-Oct 30 10:41:34 acoffin-xps-15 kernel:   node   0: [mem
-0x00000000617ff000-0x00000000617fffff]
-Oct 30 10:41:34 acoffin-xps-15 kernel:   node   0: [mem
-0x0000000100000000-0x000000108f7fffff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: Initmem setup node 0 [mem
-0x0000000000001000-0x000000108f7fffff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: On node 0, zone DMA: 1 pages in
-unavailable ranges
-Oct 30 10:41:34 acoffin-xps-15 kernel: On node 0, zone DMA: 97 pages
-in unavailable ranges
-Oct 30 10:41:34 acoffin-xps-15 kernel: On node 0, zone DMA32: 22672
-pages in unavailable ranges
-Oct 30 10:41:34 acoffin-xps-15 kernel: On node 0, zone Normal: 26624
-pages in unavailable ranges
-Oct 30 10:41:34 acoffin-xps-15 kernel: On node 0, zone Normal: 2048
-pages in unavailable ranges
-Oct 30 10:41:34 acoffin-xps-15 kernel: Reserving Intel graphics memory
-at [mem 0x6c800000-0x707fffff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: PM-Timer IO Port: 0x1808
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: LAPIC_NMI (acpi_id[0x01]
-high edge lint[0x1])
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: LAPIC_NMI (acpi_id[0x02]
-high edge lint[0x1])
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: LAPIC_NMI (acpi_id[0x03]
-high edge lint[0x1])
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: LAPIC_NMI (acpi_id[0x04]
-high edge lint[0x1])
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: LAPIC_NMI (acpi_id[0x05]
-high edge lint[0x1])
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: LAPIC_NMI (acpi_id[0x06]
-high edge lint[0x1])
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: LAPIC_NMI (acpi_id[0x07]
-high edge lint[0x1])
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: LAPIC_NMI (acpi_id[0x08]
-high edge lint[0x1])
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: LAPIC_NMI (acpi_id[0x09]
-high edge lint[0x1])
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: LAPIC_NMI (acpi_id[0x0a]
-high edge lint[0x1])
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: LAPIC_NMI (acpi_id[0x0b]
-high edge lint[0x1])
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: LAPIC_NMI (acpi_id[0x0c]
-high edge lint[0x1])
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: LAPIC_NMI (acpi_id[0x0d]
-high edge lint[0x1])
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: LAPIC_NMI (acpi_id[0x0e]
-high edge lint[0x1])
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: LAPIC_NMI (acpi_id[0x0f]
-high edge lint[0x1])
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: LAPIC_NMI (acpi_id[0x10]
-high edge lint[0x1])
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: LAPIC_NMI (acpi_id[0x11]
-high edge lint[0x1])
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: LAPIC_NMI (acpi_id[0x12]
-high edge lint[0x1])
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: LAPIC_NMI (acpi_id[0x13]
-high edge lint[0x1])
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: LAPIC_NMI (acpi_id[0x14]
-high edge lint[0x1])
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: LAPIC_NMI (acpi_id[0x15]
-high edge lint[0x1])
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: LAPIC_NMI (acpi_id[0x16]
-high edge lint[0x1])
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: LAPIC_NMI (acpi_id[0x17]
-high edge lint[0x1])
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: LAPIC_NMI (acpi_id[0x00]
-high edge lint[0x1])
-Oct 30 10:41:34 acoffin-xps-15 kernel: IOAPIC[0]: apic_id 2, version
-32, address 0xfec00000, GSI 0-119
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: INT_SRC_OVR (bus 0
-bus_irq 0 global_irq 2 dfl dfl)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: INT_SRC_OVR (bus 0
-bus_irq 9 global_irq 9 high level)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Using ACPI (MADT) for SMP
-configuration information
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: HPET id: 0x8086a201 base:
-0xfed00000
-Oct 30 10:41:34 acoffin-xps-15 kernel: e820: update [mem
-0x56981000-0x569dbfff] usable ==> reserved
-Oct 30 10:41:34 acoffin-xps-15 kernel: TSC deadline timer available
-Oct 30 10:41:34 acoffin-xps-15 kernel: smpboot: Allowing 16 CPUs, 0 hotplug CPUs
-Oct 30 10:41:34 acoffin-xps-15 kernel: PM: hibernation: Registered
-nosave memory: [mem 0x00000000-0x00000fff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: PM: hibernation: Registered
-nosave memory: [mem 0x0009f000-0x000fffff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: PM: hibernation: Registered
-nosave memory: [mem 0x56981000-0x569dbfff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: PM: hibernation: Registered
-nosave memory: [mem 0x5bf6f000-0x5c191fff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: PM: hibernation: Registered
-nosave memory: [mem 0x5c192000-0x60d10fff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: PM: hibernation: Registered
-nosave memory: [mem 0x60d11000-0x61571fff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: PM: hibernation: Registered
-nosave memory: [mem 0x61572000-0x617fefff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: PM: hibernation: Registered
-nosave memory: [mem 0x61800000-0x663fffff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: PM: hibernation: Registered
-nosave memory: [mem 0x66400000-0x66dfffff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: PM: hibernation: Registered
-nosave memory: [mem 0x66e00000-0x707fffff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: PM: hibernation: Registered
-nosave memory: [mem 0x70800000-0xbfffffff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: PM: hibernation: Registered
-nosave memory: [mem 0xc0000000-0xcfffffff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: PM: hibernation: Registered
-nosave memory: [mem 0xd0000000-0xf8ffffff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: PM: hibernation: Registered
-nosave memory: [mem 0xf9000000-0xf9ffffff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: PM: hibernation: Registered
-nosave memory: [mem 0xfa000000-0xfed1ffff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: PM: hibernation: Registered
-nosave memory: [mem 0xfed20000-0xfed7ffff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: PM: hibernation: Registered
-nosave memory: [mem 0xfed80000-0xfeffffff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: PM: hibernation: Registered
-nosave memory: [mem 0xff000000-0xffffffff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: [mem 0x70800000-0xbfffffff]
-available for PCI devices
-Oct 30 10:41:34 acoffin-xps-15 kernel: Booting paravirtualized kernel
-on bare hardware
-Oct 30 10:41:34 acoffin-xps-15 kernel: clocksource: refined-jiffies:
-mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645519600211568
-ns
-Oct 30 10:41:34 acoffin-xps-15 kernel: setup_percpu: NR_CPUS:8192
-nr_cpumask_bits:16 nr_cpu_ids:16 nr_node_ids:1
-Oct 30 10:41:34 acoffin-xps-15 kernel: percpu: Embedded 64 pages/cpu
-s225280 r8192 d28672 u262144
-Oct 30 10:41:34 acoffin-xps-15 kernel: pcpu-alloc: s225280 r8192
-d28672 u262144 alloc=1*2097152
-Oct 30 10:41:34 acoffin-xps-15 kernel: pcpu-alloc: [0] 00 01 02 03 04
-05 06 07 [0] 08 09 10 11 12 13 14 15
-Oct 30 10:41:34 acoffin-xps-15 kernel: Fallback order for Node 0: 0
-Oct 30 10:41:34 acoffin-xps-15 kernel: Built 1 zonelists, mobility
-grouping on.  Total pages: 16432018
-Oct 30 10:41:34 acoffin-xps-15 kernel: Policy zone: Normal
-Oct 30 10:41:34 acoffin-xps-15 kernel: Kernel command line:
-BOOT_IMAGE=/vmlinuz-6.1.112 root=/dev/mapper/acoffin--xps--15--vg-root
-ro quiet
-Oct 30 10:41:34 acoffin-xps-15 kernel: Unknown kernel command line
-parameters "BOOT_IMAGE=/vmlinuz-6.1.112", will be passed to user
-space.
-Oct 30 10:41:34 acoffin-xps-15 kernel: random: crng init done
-Oct 30 10:41:34 acoffin-xps-15 kernel: Dentry cache hash table
-entries: 8388608 (order: 14, 67108864 bytes, linear)
-Oct 30 10:41:34 acoffin-xps-15 kernel: Inode-cache hash table entries:
-4194304 (order: 13, 33554432 bytes, linear)
-Oct 30 10:41:34 acoffin-xps-15 kernel: mem auto-init: stack:all(zero),
-heap alloc:on, heap free:off
-Oct 30 10:41:34 acoffin-xps-15 kernel: software IO TLB: area num 16.
-Oct 30 10:41:34 acoffin-xps-15 kernel: Memory: 1411804K/66772024K
-available (14342K kernel code, 2982K rwdata, 9252K rodata, 2820K init,
-28836K bss, 1440968K reserved, 0K cma-reserved)
-Oct 30 10:41:34 acoffin-xps-15 kernel: SLUB: HWalign=64, Order=0-3,
-MinObjects=0, CPUs=16, Nodes=1
-Oct 30 10:41:34 acoffin-xps-15 kernel: ftrace: allocating 40485
-entries in 159 pages
-Oct 30 10:41:34 acoffin-xps-15 kernel: ftrace: allocated 159 pages with 6 groups
-Oct 30 10:41:34 acoffin-xps-15 kernel: Dynamic Preempt: voluntary
-Oct 30 10:41:34 acoffin-xps-15 kernel: Running RCU self tests
-Oct 30 10:41:34 acoffin-xps-15 kernel: rcu: Preemptible hierarchical
-RCU implementation.
-Oct 30 10:41:34 acoffin-xps-15 kernel: rcu:         RCU lockdep
-checking is enabled.
-Oct 30 10:41:34 acoffin-xps-15 kernel: rcu:         RCU restricting
-CPUs from NR_CPUS=8192 to nr_cpu_ids=16.
-Oct 30 10:41:34 acoffin-xps-15 kernel:         Trampoline variant of
-Tasks RCU enabled.
-Oct 30 10:41:34 acoffin-xps-15 kernel:         Rude variant of Tasks
-RCU enabled.
-Oct 30 10:41:34 acoffin-xps-15 kernel:         Tracing variant of
-Tasks RCU enabled.
-Oct 30 10:41:34 acoffin-xps-15 kernel: rcu: RCU calculated value of
-scheduler-enlistment delay is 25 jiffies.
-Oct 30 10:41:34 acoffin-xps-15 kernel: rcu: Adjusting geometry for
-rcu_fanout_leaf=16, nr_cpu_ids=16
-Oct 30 10:41:34 acoffin-xps-15 kernel: NR_IRQS: 524544, nr_irqs: 2184,
-preallocated irqs: 16
-Oct 30 10:41:34 acoffin-xps-15 kernel: rcu: srcu_init: Setting
-srcu_struct sizes based on contention.
-Oct 30 10:41:34 acoffin-xps-15 kernel: Console: colour dummy device 80x25
-Oct 30 10:41:34 acoffin-xps-15 kernel: printk: console [tty0] enabled
-Oct 30 10:41:34 acoffin-xps-15 kernel: Lock dependency validator:
-Copyright (c) 2006 Red Hat, Inc., Ingo Molnar
-Oct 30 10:41:34 acoffin-xps-15 kernel: ... MAX_LOCKDEP_SUBCLASSES:  8
-Oct 30 10:41:34 acoffin-xps-15 kernel: ... MAX_LOCK_DEPTH:          48
-Oct 30 10:41:34 acoffin-xps-15 kernel: ... MAX_LOCKDEP_KEYS:        8192
-Oct 30 10:41:34 acoffin-xps-15 kernel: ... CLASSHASH_SIZE:          4096
-Oct 30 10:41:34 acoffin-xps-15 kernel: ... MAX_LOCKDEP_ENTRIES:     32768
-Oct 30 10:41:34 acoffin-xps-15 kernel: ... MAX_LOCKDEP_CHAINS:      65536
-Oct 30 10:41:34 acoffin-xps-15 kernel: ... CHAINHASH_SIZE:          32768
-Oct 30 10:41:34 acoffin-xps-15 kernel:  memory used by lock dependency
-info: 6365 kB
-Oct 30 10:41:34 acoffin-xps-15 kernel:  memory used for stack traces: 4224 kB
-Oct 30 10:41:34 acoffin-xps-15 kernel:  per task-struct memory
-footprint: 1920 bytes
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Core revision 20220331
-Oct 30 10:41:34 acoffin-xps-15 kernel: hpet: HPET dysfunctional in
-PC10. Force disabled.
-Oct 30 10:41:34 acoffin-xps-15 kernel: APIC: Switch to symmetric I/O mode setup
-Oct 30 10:41:34 acoffin-xps-15 kernel: DMAR: Host address width 39
-Oct 30 10:41:34 acoffin-xps-15 kernel: DMAR: DRHD base:
-0x000000fed90000 flags: 0x0
-Oct 30 10:41:34 acoffin-xps-15 kernel: DMAR: dmar0: reg_base_addr
-fed90000 ver 4:0 cap 1c0000c40660462 ecap 29a00f0505e
-Oct 30 10:41:34 acoffin-xps-15 kernel: DMAR: DRHD base:
-0x000000fed91000 flags: 0x1
-Oct 30 10:41:34 acoffin-xps-15 kernel: DMAR: dmar1: reg_base_addr
-fed91000 ver 5:0 cap d2008c40660462 ecap f050da
-Oct 30 10:41:34 acoffin-xps-15 kernel: DMAR: RMRR base:
-0x0000006c000000 end: 0x000000707fffff
-Oct 30 10:41:34 acoffin-xps-15 kernel: DMAR-IR: IOAPIC id 2 under DRHD
-base  0xfed91000 IOMMU 1
-Oct 30 10:41:34 acoffin-xps-15 kernel: DMAR-IR: HPET id 0 under DRHD
-base 0xfed91000
-Oct 30 10:41:34 acoffin-xps-15 kernel: DMAR-IR: Queued invalidation
-will be enabled to support x2apic and Intr-remapping.
-Oct 30 10:41:34 acoffin-xps-15 kernel: DMAR-IR: Enabled IRQ remapping
-in x2apic mode
-Oct 30 10:41:34 acoffin-xps-15 kernel: x2apic enabled
-Oct 30 10:41:34 acoffin-xps-15 kernel: Switched APIC routing to cluster x2apic.
-Oct 30 10:41:34 acoffin-xps-15 kernel: clocksource: tsc-early: mask:
-0xffffffffffffffff max_cycles: 0x2a11290c0c8, max_idle_ns:
-440795344938 ns
-Oct 30 10:41:34 acoffin-xps-15 kernel: Calibrating delay loop
-(skipped), value calculated using timer frequency.. 5836.80 BogoMIPS
-(lpj=11673600)
-Oct 30 10:41:34 acoffin-xps-15 kernel: CPU0: Thermal monitoring enabled (TM1)
-Oct 30 10:41:34 acoffin-xps-15 kernel: x86/cpu: User Mode Instruction
-Prevention (UMIP) activated
-Oct 30 10:41:34 acoffin-xps-15 kernel: process: using mwait in idle threads
-Oct 30 10:41:34 acoffin-xps-15 kernel: Last level iTLB entries: 4KB 0,
-2MB 0, 4MB 0
-Oct 30 10:41:34 acoffin-xps-15 kernel: Last level dTLB entries: 4KB 0,
-2MB 0, 4MB 0, 1GB 0
-Oct 30 10:41:34 acoffin-xps-15 kernel: Spectre V1 : Mitigation:
-usercopy/swapgs barriers and __user pointer sanitization
-Oct 30 10:41:34 acoffin-xps-15 kernel: Spectre V2 : Mitigation:
-Enhanced / Automatic IBRS
-Oct 30 10:41:34 acoffin-xps-15 kernel: Spectre V2 : Spectre v2 /
-SpectreRSB mitigation: Filling RSB on context switch
-Oct 30 10:41:34 acoffin-xps-15 kernel: Spectre V2 : Spectre v2 /
-PBRSB-eIBRS: Retire a single CALL on VMEXIT
-Oct 30 10:41:34 acoffin-xps-15 kernel: Spectre V2 : mitigation:
-Enabling conditional Indirect Branch Prediction Barrier
-Oct 30 10:41:34 acoffin-xps-15 kernel: Speculative Store Bypass:
-Mitigation: Speculative Store Bypass disabled via prctl
-Oct 30 10:41:34 acoffin-xps-15 kernel: Register File Data Sampling:
-Mitigation: Clear Register File
-Oct 30 10:41:34 acoffin-xps-15 kernel: x86/fpu: Supporting XSAVE
-feature 0x001: 'x87 floating point registers'
-Oct 30 10:41:34 acoffin-xps-15 kernel: x86/fpu: Supporting XSAVE
-feature 0x002: 'SSE registers'
-Oct 30 10:41:34 acoffin-xps-15 kernel: x86/fpu: Supporting XSAVE
-feature 0x004: 'AVX registers'
-Oct 30 10:41:34 acoffin-xps-15 kernel: x86/fpu: Supporting XSAVE
-feature 0x200: 'Protection Keys User registers'
-Oct 30 10:41:34 acoffin-xps-15 kernel: x86/fpu: xstate_offset[2]:
-576, xstate_sizes[2]:  256
-Oct 30 10:41:34 acoffin-xps-15 kernel: x86/fpu: xstate_offset[9]:
-832, xstate_sizes[9]:    8
-Oct 30 10:41:34 acoffin-xps-15 kernel: x86/fpu: Enabled xstate
-features 0x207, context size is 840 bytes, using 'compacted' format.
-Oct 30 10:41:34 acoffin-xps-15 kernel: Freeing SMP alternatives memory: 32K
-Oct 30 10:41:34 acoffin-xps-15 kernel: pid_max: default: 32768 minimum: 301
-Oct 30 10:41:34 acoffin-xps-15 kernel: LSM: Security Framework initializing
-Oct 30 10:41:34 acoffin-xps-15 kernel: landlock: Up and running.
-Oct 30 10:41:34 acoffin-xps-15 kernel: Yama: disabled by default;
-enable with sysctl kernel.yama.*
-Oct 30 10:41:34 acoffin-xps-15 kernel: AppArmor: AppArmor initialized
-Oct 30 10:41:34 acoffin-xps-15 kernel: TOMOYO Linux initialized
-Oct 30 10:41:34 acoffin-xps-15 kernel: LSM support for eBPF active
-Oct 30 10:41:34 acoffin-xps-15 kernel: Mount-cache hash table entries:
-131072 (order: 8, 1048576 bytes, linear)
-Oct 30 10:41:34 acoffin-xps-15 kernel: Mountpoint-cache hash table
-entries: 131072 (order: 8, 1048576 bytes, linear)
-Oct 30 10:41:34 acoffin-xps-15 kernel: smpboot: CPU0: 13th Gen
-Intel(R) Core(TM) i7-13620H (family: 0x6, model: 0xba, stepping: 0x2)
-Oct 30 10:41:34 acoffin-xps-15 kernel: cblist_init_generic: Setting
-adjustable number of callback queues.
-Oct 30 10:41:34 acoffin-xps-15 kernel: cblist_init_generic: Setting
-shift to 4 and lim to 1.
-Oct 30 10:41:34 acoffin-xps-15 kernel: cblist_init_generic: Setting
-adjustable number of callback queues.
-Oct 30 10:41:34 acoffin-xps-15 kernel: cblist_init_generic: Setting
-shift to 4 and lim to 1.
-Oct 30 10:41:34 acoffin-xps-15 kernel: cblist_init_generic: Setting
-adjustable number of callback queues.
-Oct 30 10:41:34 acoffin-xps-15 kernel: cblist_init_generic: Setting
-shift to 4 and lim to 1.
-Oct 30 10:41:34 acoffin-xps-15 kernel: Running RCU-tasks wait API self tests
-Oct 30 10:41:34 acoffin-xps-15 kernel: Performance Events: XSAVE
-Architectural LBR, PEBS fmt4+-baseline,  AnyThread deprecated,
-Alderlake Hybrid events, 32-deep LBR, full-width counters, Intel PMU
-driver.
-Oct 30 10:41:34 acoffin-xps-15 kernel: core: cpu_core PMU driver:
-Oct 30 10:41:34 acoffin-xps-15 kernel: ... version:                5
-Oct 30 10:41:34 acoffin-xps-15 kernel: ... bit width:              48
-Oct 30 10:41:34 acoffin-xps-15 kernel: ... generic registers:      8
-Oct 30 10:41:34 acoffin-xps-15 kernel: ... value mask:
-0000ffffffffffff
-Oct 30 10:41:34 acoffin-xps-15 kernel: ... max period:
-00007fffffffffff
-Oct 30 10:41:34 acoffin-xps-15 kernel: ... fixed-purpose events:   4
-Oct 30 10:41:34 acoffin-xps-15 kernel: ... event mask:
-0001000f000000ff
-Oct 30 10:41:34 acoffin-xps-15 kernel: signal: max sigframe size: 3632
-Oct 30 10:41:34 acoffin-xps-15 kernel: Estimated ratio of average max
-frequency by base frequency (times 1024): 1659
-Oct 30 10:41:34 acoffin-xps-15 kernel: rcu: Hierarchical SRCU implementation.
-Oct 30 10:41:34 acoffin-xps-15 kernel: rcu:         Max phase no-delay
-instances is 1000.
-Oct 30 10:41:34 acoffin-xps-15 kernel: NMI watchdog: Enabled.
-Permanently consumes one hw-PMU counter.
-Oct 30 10:41:34 acoffin-xps-15 kernel: smp: Bringing up secondary CPUs ...
-Oct 30 10:41:34 acoffin-xps-15 kernel: x86: Booting SMP configuration:
-Oct 30 10:41:34 acoffin-xps-15 kernel: .... node  #0, CPUs:        #1
-#2  #3  #4  #5  #6  #7  #8  #9 #10 #11 #12
-Oct 30 10:41:34 acoffin-xps-15 kernel: core: cpu_atom PMU driver: PEBS-via-PT
-Oct 30 10:41:34 acoffin-xps-15 kernel: ... version:                5
-Oct 30 10:41:34 acoffin-xps-15 kernel: ... bit width:              48
-Oct 30 10:41:34 acoffin-xps-15 kernel: ... generic registers:      6
-Oct 30 10:41:34 acoffin-xps-15 kernel: ... value mask:
-0000ffffffffffff
-Oct 30 10:41:34 acoffin-xps-15 kernel: ... max period:
-00007fffffffffff
-Oct 30 10:41:34 acoffin-xps-15 kernel: ... fixed-purpose events:   3
-Oct 30 10:41:34 acoffin-xps-15 kernel: ... event mask:
-000000070000003f
-Oct 30 10:41:34 acoffin-xps-15 kernel: Callback from
-call_rcu_tasks_trace() invoked.
-Oct 30 10:41:34 acoffin-xps-15 kernel:  #13 #14 #15
-Oct 30 10:41:34 acoffin-xps-15 kernel: smp: Brought up 1 node, 16 CPUs
-Oct 30 10:41:34 acoffin-xps-15 kernel: smpboot: Max logical packages: 1
-Oct 30 10:41:34 acoffin-xps-15 kernel: smpboot: Total of 16 processors
-activated (93388.80 BogoMIPS)
-Oct 30 10:41:34 acoffin-xps-15 kernel: node 0 deferred pages initialised in 28ms
-Oct 30 10:41:34 acoffin-xps-15 kernel: devtmpfs: initialized
-Oct 30 10:41:34 acoffin-xps-15 kernel: x86/mm: Memory block size: 2048MB
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: PM: Registering ACPI NVS
-region [mem 0x60d11000-0x61571fff] (8785920 bytes)
-Oct 30 10:41:34 acoffin-xps-15 kernel: clocksource: jiffies: mask:
-0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645041785100000 ns
-Oct 30 10:41:34 acoffin-xps-15 kernel: futex hash table entries: 4096
-(order: 7, 524288 bytes, linear)
-Oct 30 10:41:34 acoffin-xps-15 kernel: pinctrl core: initialized
-pinctrl subsystem
-Oct 30 10:41:34 acoffin-xps-15 kernel: NET: Registered
-PF_NETLINK/PF_ROUTE protocol family
-Oct 30 10:41:34 acoffin-xps-15 kernel: DMA: preallocated 4096 KiB
-GFP_KERNEL pool for atomic allocations
-Oct 30 10:41:34 acoffin-xps-15 kernel: DMA: preallocated 4096 KiB
-GFP_KERNEL|GFP_DMA pool for atomic allocations
-Oct 30 10:41:34 acoffin-xps-15 kernel: DMA: preallocated 4096 KiB
-GFP_KERNEL|GFP_DMA32 pool for atomic allocations
-Oct 30 10:41:34 acoffin-xps-15 kernel: audit: initializing netlink
-subsys (disabled)
-Oct 30 10:41:34 acoffin-xps-15 kernel: audit: type=2000
-audit(1730309556.188:1): state=initialized audit_enabled=0 res=1
-Oct 30 10:41:34 acoffin-xps-15 kernel: thermal_sys: Registered thermal
-governor 'fair_share'
-Oct 30 10:41:34 acoffin-xps-15 kernel: thermal_sys: Registered thermal
-governor 'bang_bang'
-Oct 30 10:41:34 acoffin-xps-15 kernel: thermal_sys: Registered thermal
-governor 'step_wise'
-Oct 30 10:41:34 acoffin-xps-15 kernel: thermal_sys: Registered thermal
-governor 'user_space'
-Oct 30 10:41:34 acoffin-xps-15 kernel: thermal_sys: Registered thermal
-governor 'power_allocator'
-Oct 30 10:41:34 acoffin-xps-15 kernel: cpuidle: using governor ladder
-Oct 30 10:41:34 acoffin-xps-15 kernel: cpuidle: using governor menu
-Oct 30 10:41:34 acoffin-xps-15 kernel: Simple Boot Flag at 0x47 set to 0x80
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI FADT declares the system
-doesn't support PCIe ASPM, so disable it
-Oct 30 10:41:34 acoffin-xps-15 kernel: acpiphp: ACPI Hot Plug PCI
-Controller Driver version: 0.5
-Oct 30 10:41:34 acoffin-xps-15 kernel: PCI: MMCONFIG for domain 0000
-[bus 00-ff] at [mem 0xc0000000-0xcfffffff] (base 0xc0000000)
-Oct 30 10:41:34 acoffin-xps-15 kernel: PCI: MMCONFIG at [mem
-0xc0000000-0xcfffffff] reserved in E820
-Oct 30 10:41:34 acoffin-xps-15 kernel: PCI: Using configuration type 1
-for base access
-Oct 30 10:41:34 acoffin-xps-15 kernel: ENERGY_PERF_BIAS: Set to
-'normal', was 'performance'
-Oct 30 10:41:34 acoffin-xps-15 kernel: kprobes: kprobe
-jump-optimization is enabled. All kprobes are optimized if possible.
-Oct 30 10:41:34 acoffin-xps-15 kernel: HugeTLB: registered 1.00 GiB
-page size, pre-allocated 0 pages
-Oct 30 10:41:34 acoffin-xps-15 kernel: HugeTLB: 16380 KiB vmemmap can
-be freed for a 1.00 GiB page
-Oct 30 10:41:34 acoffin-xps-15 kernel: HugeTLB: registered 2.00 MiB
-page size, pre-allocated 0 pages
-Oct 30 10:41:34 acoffin-xps-15 kernel: HugeTLB: 28 KiB vmemmap can be
-freed for a 2.00 MiB page
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Added _OSI(Module Device)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Added _OSI(Processor Device)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Added _OSI(3.0 _SCP Extensions)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Added _OSI(Processor
-Aggregator Device)
-Oct 30 10:41:34 acoffin-xps-15 kernel: Callback from
-call_rcu_tasks_rude() invoked.
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: 16 ACPI AML tables
-successfully acquired and loaded
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Dynamic OEM Table Load:
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: SSDT 0xFFFF9E0641C03800
-0001AB (v02 PmRef  Cpu0Psd  00003000 INTL 20200717)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: \_SB_.PR00: _OSC native
-thermal LVT Acked
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: USB4 _OSC: OS supports
-USB3+ DisplayPort+ PCIe+ XDomain+
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: USB4 _OSC: OS controls
-USB3+ DisplayPort+ PCIe+ XDomain+
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Dynamic OEM Table Load:
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: SSDT 0xFFFF9E0642023000
-000540 (v02 PmRef  Cpu0Cst  00003001 INTL 20200717)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Dynamic OEM Table Load:
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: SSDT 0xFFFF9E0642027800
-000668 (v02 PmRef  Cpu0Ist  00003000 INTL 20200717)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Dynamic OEM Table Load:
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: SSDT 0xFFFF9E0642022000
-0004CF (v02 PmRef  Cpu0Hwp  00003000 INTL 20200717)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Dynamic OEM Table Load:
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: SSDT 0xFFFF9E0642018000
-001BAF (v02 PmRef  ApIst    00003000 INTL 20200717)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Dynamic OEM Table Load:
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: SSDT 0xFFFF9E064201A000
-001038 (v02 PmRef  ApHwp    00003000 INTL 20200717)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Dynamic OEM Table Load:
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: SSDT 0xFFFF9E0642040000
-001349 (v02 PmRef  ApPsd    00003000 INTL 20200717)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Dynamic OEM Table Load:
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: SSDT 0xFFFF9E0642031000
-000FBB (v02 PmRef  ApCst    00003000 INTL 20200717)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: EC: EC started
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: EC: interrupt blocked
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: EC: EC_CMD/EC_SC=0x934,
-EC_DATA=0x930
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: \_SB_.PC00.LPCB.ECDV:
-Boot DSDT EC used to handle transactions
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Interpreter enabled
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: PM: (supports S0 S4 S5)
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Using IOAPIC for interrupt routing
-Oct 30 10:41:34 acoffin-xps-15 kernel: PCI: Using host bridge windows
-from ACPI; if necessary, use "pci=nocrs" and report a bug
-Oct 30 10:41:34 acoffin-xps-15 kernel: PCI: Ignoring E820 reservations
-for host bridge windows
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: Enabled 8 GPEs in block 00 to 7F
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: PM: Power Resource [BTRT]
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: PM: Power Resource [WRST]
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: PM: Power Resource [TBT0]
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: PM: Power Resource [TBT1]
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: PM: Power Resource [D3C]
-Oct 30 10:41:34 acoffin-xps-15 kernel: Callback from call_rcu_tasks() invoked.
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: PM: Power Resource [PIN]
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: PCI Root Bridge [PC00]
-(domain 0000 [bus 00-fe])
-Oct 30 10:41:34 acoffin-xps-15 kernel: acpi PNP0A08:00: _OSC: OS
-supports [ExtendedConfig ASPM ClockPM Segments MSI HPX-Type3]
-Oct 30 10:41:34 acoffin-xps-15 kernel: acpi PNP0A08:00: _OSC: platform
-does not support [AER]
-Oct 30 10:41:34 acoffin-xps-15 kernel: acpi PNP0A08:00: _OSC: OS now
-controls [PCIeHotplug SHPCHotplug PME PCIeCapability LTR]
-Oct 30 10:41:34 acoffin-xps-15 kernel: acpi PNP0A08:00: FADT indicates
-ASPM is unsupported, using BIOS configuration
-Oct 30 10:41:34 acoffin-xps-15 kernel: PCI host bridge to bus 0000:00
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci_bus 0000:00: root bus
-resource [io  0x0000-0x0cf7 window]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci_bus 0000:00: root bus
-resource [io  0x0d00-0xffff window]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci_bus 0000:00: root bus
-resource [mem 0x000a0000-0x000bffff window]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci_bus 0000:00: root bus
-resource [mem 0x70800000-0xbfffffff window]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci_bus 0000:00: root bus
-resource [mem 0x4000000000-0x7fffffffff window]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci_bus 0000:00: root bus
-resource [bus 00-fe]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:00.0: [8086:a715]
-type 00 class 0x060000
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:02.0: [8086:a7a8]
-type 00 class 0x030000
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:02.0: reg 0x10:
-[mem 0x6076000000-0x6076ffffff 64bit]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:02.0: reg 0x18:
-[mem 0x4000000000-0x400fffffff 64bit pref]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:02.0: reg 0x20: [io
- 0x3000-0x303f]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:02.0: BAR 2:
-assigned to efifb
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:02.0: DMAR: Skip
-IOMMU disabling for graphics
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:02.0: Video device
-with shadowed ROM at [mem 0x000c0000-0x000dffff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:02.0: reg 0x344:
-[mem 0x00000000-0x00ffffff 64bit]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:02.0: VF(n) BAR0
-space: [mem 0x00000000-0x06ffffff 64bit] (contains BAR0 for 7 VFs)
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:02.0: reg 0x34c:
-[mem 0x00000000-0x1fffffff 64bit pref]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:02.0: VF(n) BAR2
-space: [mem 0x00000000-0xdfffffff 64bit pref] (contains BAR2 for 7
-VFs)
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:04.0: [8086:a71d]
-type 00 class 0x118000
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:04.0: reg 0x10:
-[mem 0x6077140000-0x607715ffff 64bit]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:06.0: [8086:a74d]
-type 01 class 0x060400
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:06.0: PME#
-supported from D0 D3hot D3cold
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:06.0: PTM enabled
-(root), 4ns granularity
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:06.2: [8086:a73d]
-type 01 class 0x060400
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:06.2: PME#
-supported from D0 D3hot D3cold
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:06.2: PTM enabled
-(root), 4ns granularity
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:07.0: [8086:a76e]
-type 01 class 0x060400
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:07.0: PME#
-supported from D0 D3hot D3cold
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:07.0: PTM enabled
-(root), 4ns granularity
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:07.1: [8086:a73f]
-type 01 class 0x060400
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:07.1: PME#
-supported from D0 D3hot D3cold
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:07.1: PTM enabled
-(root), 4ns granularity
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:08.0: [8086:a74f]
-type 00 class 0x088000
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:08.0: reg 0x10:
-[mem 0x60771b3000-0x60771b3fff 64bit]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:0a.0: [8086:a77d]
-type 00 class 0x118000
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:0a.0: reg 0x10:
-[mem 0x6077190000-0x6077197fff 64bit]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:0a.0: enabling Extended Tags
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:0d.0: [8086:a71e]
-type 00 class 0x0c0330
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:0d.0: reg 0x10:
-[mem 0x6077180000-0x607718ffff 64bit]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:0d.0: PME#
-supported from D3hot D3cold
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:0d.2: [8086:a73e]
-type 00 class 0x0c0340
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:0d.2: reg 0x10:
-[mem 0x6077100000-0x607713ffff 64bit]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:0d.2: reg 0x18:
-[mem 0x60771b2000-0x60771b2fff 64bit]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:0d.2: supports D1 D2
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:0d.2: PME#
-supported from D0 D1 D2 D3hot D3cold
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:12.0: [8086:51fc]
-type 00 class 0x070000
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:12.0: reg 0x10:
-[mem 0x6077170000-0x607717ffff 64bit]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:12.0: PME#
-supported from D0 D3hot
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:12.6: [8086:51fb]
-type 00 class 0x0c8000
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:12.6: reg 0x10:
-[mem 0x00000000-0x00000fff 64bit]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:14.0: [8086:51ed]
-type 00 class 0x0c0330
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:14.0: reg 0x10:
-[mem 0x6077160000-0x607716ffff 64bit]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:14.0: PME#
-supported from D3hot D3cold
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:14.2: [8086:51ef]
-type 00 class 0x050000
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:14.2: reg 0x10:
-[mem 0x60771a8000-0x60771abfff 64bit]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:14.2: reg 0x18:
-[mem 0x60771b0000-0x60771b0fff 64bit]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:14.3: [8086:51f1]
-type 00 class 0x028000
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:14.3: reg 0x10:
-[mem 0x60771a4000-0x60771a7fff 64bit]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:14.3: PME#
-supported from D0 D3hot D3cold
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:15.0: [8086:51e8]
-type 00 class 0x0c8000
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:15.0: reg 0x10:
-[mem 0x00000000-0x00000fff 64bit]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:15.1: [8086:51e9]
-type 00 class 0x0c8000
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:15.1: reg 0x10:
-[mem 0x00000000-0x00000fff 64bit]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:16.0: [8086:51e0]
-type 00 class 0x078000
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:16.0: reg 0x10:
-[mem 0x60771ad000-0x60771adfff 64bit]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:16.0: PME#
-supported from D3hot
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:1c.0: [8086:51bb]
-type 01 class 0x060400
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:1c.0: PME#
-supported from D0 D3hot D3cold
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:1c.0: PTM enabled
-(root), 4ns granularity
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:1f.0: [8086:519d]
-type 00 class 0x060100
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:1f.3: [8086:51ca]
-type 00 class 0x040100
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:1f.3: reg 0x10:
-[mem 0x60771a0000-0x60771a3fff 64bit]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:1f.3: reg 0x20:
-[mem 0x6077000000-0x60770fffff 64bit]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:1f.3: PME#
-supported from D3hot D3cold
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:1f.4: [8086:51a3]
-type 00 class 0x0c0500
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:1f.4: reg 0x10:
-[mem 0x60771ac000-0x60771ac0ff 64bit]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:1f.4: reg 0x20: [io
- 0xefa0-0xefbf]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:1f.5: [8086:51a4]
-type 00 class 0x0c8000
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:1f.5: reg 0x10:
-[mem 0xfe010000-0xfe010fff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:01:00.0: [2646:5017]
-type 00 class 0x010802
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:01:00.0: reg 0x10:
-[mem 0xba300000-0xba303fff 64bit]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:06.0: PCI bridge to [bus 01]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:06.0:   bridge
-window [mem 0xba300000-0xba3fffff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:02:00.0: [2646:5017]
-type 00 class 0x010802
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:02:00.0: reg 0x10:
-[mem 0xba200000-0xba203fff 64bit]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:06.2: PCI bridge to [bus 02]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:06.2:   bridge
-window [mem 0xba200000-0xba2fffff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:07.0: PCI bridge to
-[bus 03-53]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:07.0:   bridge
-window [mem 0x98000000-0xba0fffff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:07.0:   bridge
-window [mem 0x6000000000-0x6035ffffff 64bit pref]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:07.1: PCI bridge to
-[bus 54-a4]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:07.1:   bridge
-window [mem 0x74000000-0x960fffff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:07.1:   bridge
-window [mem 0x6040000000-0x6075ffffff 64bit pref]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:a5:00.0: [10ec:5260]
-type 00 class 0xff0000
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:a5:00.0: reg 0x10:
-[mem 0xba100000-0xba100fff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:a5:00.0: supports D1 D2
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:a5:00.0: PME#
-supported from D1 D2 D3hot D3cold
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:1c.0: PCI bridge to [bus a5]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:1c.0:   bridge
-window [mem 0xba100000-0xba1fffff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: Low-power S0 idle used by
-default for system suspend
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: EC: interrupt unblocked
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: EC: event unblocked
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: EC: EC_CMD/EC_SC=0x934,
-EC_DATA=0x930
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: EC: GPE=0x6e
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: \_SB_.PC00.LPCB.ECDV:
-Boot DSDT EC initialization complete
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: \_SB_.PC00.LPCB.ECDV: EC:
-Used to handle transactions and events
-Oct 30 10:41:34 acoffin-xps-15 kernel: iommu: Default domain type: Translated
-Oct 30 10:41:34 acoffin-xps-15 kernel: iommu: DMA domain TLB
-invalidation policy: lazy mode
-Oct 30 10:41:34 acoffin-xps-15 kernel: pps_core: LinuxPPS API ver. 1 registered
-Oct 30 10:41:34 acoffin-xps-15 kernel: pps_core: Software ver. 5.3.6 -
-Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
-Oct 30 10:41:34 acoffin-xps-15 kernel: PTP clock support registered
-Oct 30 10:41:34 acoffin-xps-15 kernel: EDAC MC: Ver: 3.0.0
-Oct 30 10:41:34 acoffin-xps-15 kernel: Registered efivars operations
-Oct 30 10:41:34 acoffin-xps-15 kernel: NetLabel: Initializing
-Oct 30 10:41:34 acoffin-xps-15 kernel: NetLabel:  domain hash size = 128
-Oct 30 10:41:34 acoffin-xps-15 kernel: NetLabel:  protocols =
-UNLABELED CIPSOv4 CALIPSO
-Oct 30 10:41:34 acoffin-xps-15 kernel: NetLabel:  unlabeled traffic
-allowed by default
-Oct 30 10:41:34 acoffin-xps-15 kernel: PCI: Using ACPI for IRQ routing
-Oct 30 10:41:34 acoffin-xps-15 kernel: PCI: pci_cache_line_size set to 64 bytes
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:1f.5: can't claim
-BAR 0 [mem 0xfe010000-0xfe010fff]: no compatible bridge window
-Oct 30 10:41:34 acoffin-xps-15 kernel: e820: reserve RAM buffer [mem
-0x0009f000-0x0009ffff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: e820: reserve RAM buffer [mem
-0x56981000-0x57ffffff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: e820: reserve RAM buffer [mem
-0x5bf6f000-0x5bffffff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: e820: reserve RAM buffer [mem
-0x61800000-0x63ffffff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: e820: reserve RAM buffer [mem
-0x108f800000-0x108fffffff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:02.0: vgaarb:
-setting as boot VGA device
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:02.0: vgaarb:
-bridge control possible
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:02.0: vgaarb: VGA
-device added: decodes=io+mem,owns=io+mem,locks=none
-Oct 30 10:41:34 acoffin-xps-15 kernel: vgaarb: loaded
-Oct 30 10:41:34 acoffin-xps-15 kernel: clocksource: Switched to
-clocksource tsc-early
-Oct 30 10:41:34 acoffin-xps-15 kernel: VFS: Disk quotas dquot_6.6.0
-Oct 30 10:41:34 acoffin-xps-15 kernel: VFS: Dquot-cache hash table
-entries: 512 (order 0, 4096 bytes)
-Oct 30 10:41:34 acoffin-xps-15 kernel: AppArmor: AppArmor Filesystem Enabled
-Oct 30 10:41:34 acoffin-xps-15 kernel: pnp: PnP ACPI init
-Oct 30 10:41:34 acoffin-xps-15 kernel: system 00:00: [io
-0x0680-0x069f] has been reserved
-Oct 30 10:41:34 acoffin-xps-15 kernel: system 00:00: [io
-0x164e-0x164f] has been reserved
-Oct 30 10:41:34 acoffin-xps-15 kernel: system 00:02: [io
-0x1854-0x1857] has been reserved
-Oct 30 10:41:34 acoffin-xps-15 kernel: pnp 00:05: disabling [mem
-0xc0000000-0xcfffffff] because it overlaps 0000:00:02.0 BAR 9 [mem
-0x00000000-0xdfffffff 64bit pref]
-Oct 30 10:41:34 acoffin-xps-15 kernel: system 00:05: [mem
-0xfedc0000-0xfedc7fff] has been reserved
-Oct 30 10:41:34 acoffin-xps-15 kernel: system 00:05: [mem
-0xfeda0000-0xfeda0fff] has been reserved
-Oct 30 10:41:34 acoffin-xps-15 kernel: system 00:05: [mem
-0xfeda1000-0xfeda1fff] has been reserved
-Oct 30 10:41:34 acoffin-xps-15 kernel: system 00:05: [mem
-0xfed20000-0xfed7ffff] has been reserved
-Oct 30 10:41:34 acoffin-xps-15 kernel: system 00:05: [mem
-0xfed90000-0xfed93fff] could not be reserved
-Oct 30 10:41:34 acoffin-xps-15 kernel: system 00:05: [mem
-0xfed45000-0xfed8ffff] could not be reserved
-Oct 30 10:41:34 acoffin-xps-15 kernel: system 00:05: [mem
-0xfee00000-0xfeefffff] has been reserved
-Oct 30 10:41:34 acoffin-xps-15 kernel: system 00:06: [io
-0x2000-0x20fe] has been reserved
-Oct 30 10:41:34 acoffin-xps-15 kernel: pnp: PnP ACPI: found 8 devices
-Oct 30 10:41:34 acoffin-xps-15 kernel: clocksource: acpi_pm: mask:
-0xffffff max_cycles: 0xffffff, max_idle_ns: 2085701024 ns
-Oct 30 10:41:34 acoffin-xps-15 kernel: NET: Registered PF_INET protocol family
-Oct 30 10:41:34 acoffin-xps-15 kernel: IP idents hash table entries:
-262144 (order: 9, 2097152 bytes, linear)
-Oct 30 10:41:34 acoffin-xps-15 kernel: tcp_listen_portaddr_hash hash
-table entries: 32768 (order: 9, 2359296 bytes, linear)
-Oct 30 10:41:34 acoffin-xps-15 kernel: Table-perturb hash table
-entries: 65536 (order: 6, 262144 bytes, linear)
-Oct 30 10:41:34 acoffin-xps-15 kernel: TCP established hash table
-entries: 524288 (order: 10, 4194304 bytes, linear)
-Oct 30 10:41:34 acoffin-xps-15 kernel: TCP bind hash table entries:
-65536 (order: 11, 9437184 bytes, vmalloc hugepage)
-Oct 30 10:41:34 acoffin-xps-15 kernel: TCP: Hash tables configured
-(established 524288 bind 65536)
-Oct 30 10:41:34 acoffin-xps-15 kernel: MPTCP token hash table entries:
-65536 (order: 10, 5767168 bytes, vmalloc hugepage)
-Oct 30 10:41:34 acoffin-xps-15 kernel: UDP hash table entries: 32768
-(order: 10, 5242880 bytes, vmalloc hugepage)
-Oct 30 10:41:34 acoffin-xps-15 kernel: UDP-Lite hash table entries:
-32768 (order: 10, 5242880 bytes, vmalloc hugepage)
-Oct 30 10:41:34 acoffin-xps-15 kernel: NET: Registered
-PF_UNIX/PF_LOCAL protocol family
-Oct 30 10:41:34 acoffin-xps-15 kernel: NET: Registered PF_XDP protocol family
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci_bus 0000:00: max bus depth:
-1 pci_try_num: 2
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:02.0: BAR 9:
-assigned [mem 0x4020000000-0x40ffffffff 64bit pref]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:02.0: BAR 7:
-assigned [mem 0x4010000000-0x4016ffffff 64bit]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:07.0: BAR 13:
-assigned [io  0x4000-0x4fff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:07.1: BAR 13:
-assigned [io  0x5000-0x5fff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:12.6: BAR 0:
-assigned [mem 0x4017000000-0x4017000fff 64bit]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:15.0: BAR 0:
-assigned [mem 0x4017001000-0x4017001fff 64bit]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:15.1: BAR 0:
-assigned [mem 0x4017002000-0x4017002fff 64bit]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:1f.5: BAR 0:
-assigned [mem 0x70800000-0x70800fff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:06.0: PCI bridge to [bus 01]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:06.0:   bridge
-window [mem 0xba300000-0xba3fffff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:06.2: PCI bridge to [bus 02]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:06.2:   bridge
-window [mem 0xba200000-0xba2fffff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:07.0: PCI bridge to
-[bus 03-53]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:07.0:   bridge
-window [io  0x4000-0x4fff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:07.0:   bridge
-window [mem 0x98000000-0xba0fffff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:07.0:   bridge
-window [mem 0x6000000000-0x6035ffffff 64bit pref]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:07.1: PCI bridge to
-[bus 54-a4]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:07.1:   bridge
-window [io  0x5000-0x5fff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:07.1:   bridge
-window [mem 0x74000000-0x960fffff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:07.1:   bridge
-window [mem 0x6040000000-0x6075ffffff 64bit pref]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:1c.0: PCI bridge to [bus a5]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:1c.0:   bridge
-window [mem 0xba100000-0xba1fffff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci_bus 0000:00: resource 4 [io
- 0x0000-0x0cf7 window]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci_bus 0000:00: resource 5 [io
- 0x0d00-0xffff window]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci_bus 0000:00: resource 6
-[mem 0x000a0000-0x000bffff window]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci_bus 0000:00: resource 7
-[mem 0x70800000-0xbfffffff window]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci_bus 0000:00: resource 8
-[mem 0x4000000000-0x7fffffffff window]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci_bus 0000:01: resource 1
-[mem 0xba300000-0xba3fffff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci_bus 0000:02: resource 1
-[mem 0xba200000-0xba2fffff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci_bus 0000:03: resource 0 [io
- 0x4000-0x4fff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci_bus 0000:03: resource 1
-[mem 0x98000000-0xba0fffff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci_bus 0000:03: resource 2
-[mem 0x6000000000-0x6035ffffff 64bit pref]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci_bus 0000:54: resource 0 [io
- 0x5000-0x5fff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci_bus 0000:54: resource 1
-[mem 0x74000000-0x960fffff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci_bus 0000:54: resource 2
-[mem 0x6040000000-0x6075ffffff 64bit pref]
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci_bus 0000:a5: resource 1
-[mem 0xba100000-0xba1fffff]
-Oct 30 10:41:34 acoffin-xps-15 kernel: PCI: CLS 0 bytes, default 64
-Oct 30 10:41:34 acoffin-xps-15 kernel: DMAR: No ATSR found
-Oct 30 10:41:34 acoffin-xps-15 kernel: DMAR: No SATC found
-Oct 30 10:41:34 acoffin-xps-15 kernel: DMAR: IOMMU feature
-fl1gp_support inconsistent
-Oct 30 10:41:34 acoffin-xps-15 kernel: DMAR: IOMMU feature pgsel_inv
-inconsistent
-Oct 30 10:41:34 acoffin-xps-15 kernel: DMAR: IOMMU feature nwfs inconsistent
-Oct 30 10:41:34 acoffin-xps-15 kernel: DMAR: IOMMU feature dit inconsistent
-Oct 30 10:41:34 acoffin-xps-15 kernel: DMAR: IOMMU feature sc_support
-inconsistent
-Oct 30 10:41:34 acoffin-xps-15 kernel: DMAR: IOMMU feature
-dev_iotlb_support inconsistent
-Oct 30 10:41:34 acoffin-xps-15 kernel: DMAR: dmar0: Using Queued invalidation
-Oct 30 10:41:34 acoffin-xps-15 kernel: DMAR: dmar1: Using Queued invalidation
-Oct 30 10:41:34 acoffin-xps-15 kernel: Trying to unpack rootfs image
-as initramfs...
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:02.0: Adding to iommu group 0
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:00.0: Adding to iommu group 1
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:04.0: Adding to iommu group 2
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:06.0: Adding to iommu group 3
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:06.2: Adding to iommu group 4
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:07.0: Adding to iommu group 5
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:07.1: Adding to iommu group 6
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:08.0: Adding to iommu group 7
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:0a.0: Adding to iommu group 8
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:0d.0: Adding to iommu group 9
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:0d.2: Adding to iommu group 9
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:12.0: Adding to
-iommu group 10
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:12.6: Adding to
-iommu group 10
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:14.0: Adding to
-iommu group 11
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:14.2: Adding to
-iommu group 11
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:14.3: Adding to
-iommu group 12
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:15.0: Adding to
-iommu group 13
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:15.1: Adding to
-iommu group 13
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:16.0: Adding to
-iommu group 14
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:1c.0: Adding to
-iommu group 15
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:1f.0: Adding to
-iommu group 16
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:1f.3: Adding to
-iommu group 16
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:1f.4: Adding to
-iommu group 16
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:00:1f.5: Adding to
-iommu group 16
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:01:00.0: Adding to
-iommu group 17
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:02:00.0: Adding to
-iommu group 18
-Oct 30 10:41:34 acoffin-xps-15 kernel: pci 0000:a5:00.0: Adding to
-iommu group 19
-Oct 30 10:41:34 acoffin-xps-15 kernel: DMAR: Intel(R) Virtualization
-Technology for Directed I/O
-Oct 30 10:41:34 acoffin-xps-15 kernel: PCI-DMA: Using software bounce
-buffering for IO (SWIOTLB)
-Oct 30 10:41:34 acoffin-xps-15 kernel: software IO TLB: mapped [mem
-0x000000004cfa4000-0x0000000050fa4000] (64MB)
-Oct 30 10:41:34 acoffin-xps-15 kernel: clocksource: tsc: mask:
-0xffffffffffffffff max_cycles: 0x2a11290c0c8, max_idle_ns:
-440795344938 ns
-Oct 30 10:41:34 acoffin-xps-15 kernel: clocksource: Switched to clocksource tsc
-Oct 30 10:41:34 acoffin-xps-15 kernel: Initialise system trusted keyrings
-Oct 30 10:41:34 acoffin-xps-15 kernel: Key type blacklist registered
-Oct 30 10:41:34 acoffin-xps-15 kernel: workingset: timestamp_bits=36
-max_order=24 bucket_order=0
-Oct 30 10:41:34 acoffin-xps-15 kernel: zbud: loaded
-Oct 30 10:41:34 acoffin-xps-15 kernel: integrity: Platform Keyring initialized
-Oct 30 10:41:34 acoffin-xps-15 kernel: integrity: Machine keyring initialized
-Oct 30 10:41:34 acoffin-xps-15 kernel: Key type asymmetric registered
-Oct 30 10:41:34 acoffin-xps-15 kernel: Asymmetric key parser 'x509' registered
-Oct 30 10:41:34 acoffin-xps-15 kernel: Freeing initrd memory: 64880K
-Oct 30 10:41:34 acoffin-xps-15 kernel: alg: self-tests for CTR-KDF
-(hmac(sha256)) passed
-Oct 30 10:41:34 acoffin-xps-15 kernel: Block layer SCSI generic (bsg)
-driver version 0.4 loaded (major 248)
-Oct 30 10:41:34 acoffin-xps-15 kernel: io scheduler mq-deadline registered
-Oct 30 10:41:34 acoffin-xps-15 kernel: pcieport 0000:00:06.0: PME:
-Signaling with IRQ 122
-Oct 30 10:41:34 acoffin-xps-15 kernel: pcieport 0000:00:06.2: PME:
-Signaling with IRQ 123
-Oct 30 10:41:34 acoffin-xps-15 kernel: pcieport 0000:00:07.0: PME:
-Signaling with IRQ 124
-Oct 30 10:41:34 acoffin-xps-15 kernel: pcieport 0000:00:07.0: pciehp:
-Slot #3 AttnBtn- PwrCtrl- MRL- AttnInd- PwrInd- HotPlug+ Surprise+
-Interlock- NoCompl+ IbPresDis- LLActRep+
-Oct 30 10:41:34 acoffin-xps-15 kernel: pcieport 0000:00:07.1: PME:
-Signaling with IRQ 125
-Oct 30 10:41:34 acoffin-xps-15 kernel: pcieport 0000:00:07.1: pciehp:
-Slot #4 AttnBtn- PwrCtrl- MRL- AttnInd- PwrInd- HotPlug+ Surprise+
-Interlock- NoCompl+ IbPresDis- LLActRep+
-Oct 30 10:41:34 acoffin-xps-15 kernel: pcieport 0000:00:1c.0: PME:
-Signaling with IRQ 126
-Oct 30 10:41:34 acoffin-xps-15 kernel: shpchp: Standard Hot Plug PCI
-Controller Driver version: 0.4
-Oct 30 10:41:34 acoffin-xps-15 kernel: Monitor-Mwait will be used to
-enter C-1 state
-Oct 30 10:41:34 acoffin-xps-15 kernel: Monitor-Mwait will be used to
-enter C-2 state
-Oct 30 10:41:34 acoffin-xps-15 kernel: Monitor-Mwait will be used to
-enter C-3 state
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: \_SB_.PR00: Found 3 idle states
-Oct 30 10:41:34 acoffin-xps-15 kernel: Serial: 8250/16550 driver, 4
-ports, IRQ sharing enabled
-Oct 30 10:41:34 acoffin-xps-15 kernel: serial 0000:00:12.0: enabling
-device (0000 -> 0002)
-Oct 30 10:41:34 acoffin-xps-15 kernel: hpet_acpi_add: no address or irqs in _CRS
-Oct 30 10:41:34 acoffin-xps-15 kernel: Linux agpgart interface v0.103
-Oct 30 10:41:34 acoffin-xps-15 kernel: AMD-Vi: AMD IOMMUv2
-functionality not available on this system - This is not a bug.
-Oct 30 10:41:34 acoffin-xps-15 kernel: i8042: PNP: PS/2 Controller
-[PNP0303:PS2K,PNP0f13:PS2M] at 0x60,0x64 irq 1,12
-Oct 30 10:41:34 acoffin-xps-15 kernel: i8042: Warning: Keylock active
-Oct 30 10:41:34 acoffin-xps-15 kernel: serio: i8042 KBD port at 0x60,0x64 irq 1
-Oct 30 10:41:34 acoffin-xps-15 kernel: serio: i8042 AUX port at 0x60,0x64 irq 12
-Oct 30 10:41:34 acoffin-xps-15 kernel: mousedev: PS/2 mouse device
-common for all mice
-Oct 30 10:41:34 acoffin-xps-15 kernel: rtc_cmos 00:01: RTC can wake from S4
-Oct 30 10:41:34 acoffin-xps-15 kernel: rtc_cmos 00:01: registered as rtc0
-Oct 30 10:41:34 acoffin-xps-15 kernel: rtc_cmos 00:01: setting system
-clock to 2024-10-30T17:32:39 UTC (1730309559)
-Oct 30 10:41:34 acoffin-xps-15 kernel: rtc_cmos 00:01: alarms up to
-one month, y3k, 242 bytes nvram
-Oct 30 10:41:34 acoffin-xps-15 kernel: input: AT Translated Set 2
-keyboard as /devices/platform/i8042/serio0/input/input0
-Oct 30 10:41:34 acoffin-xps-15 kernel: intel_pstate: Intel P-state
-driver initializing
-Oct 30 10:41:34 acoffin-xps-15 kernel: intel_pstate: HWP enabled
-Oct 30 10:41:34 acoffin-xps-15 kernel: ledtrig-cpu: registered to
-indicate activity on CPUs
-Oct 30 10:41:34 acoffin-xps-15 kernel: efifb: probing for efifb
-Oct 30 10:41:34 acoffin-xps-15 kernel: efifb: framebuffer at
-0x4000000000, using 9024k, total 9024k
-Oct 30 10:41:34 acoffin-xps-15 kernel: efifb: mode is 1920x1200x32,
-linelength=7680, pages=1
-Oct 30 10:41:34 acoffin-xps-15 kernel: efifb: scrolling: redraw
-Oct 30 10:41:34 acoffin-xps-15 kernel: efifb: Truecolor: size=8:8:8:8,
-shift=24:16:8:0
-Oct 30 10:41:34 acoffin-xps-15 kernel: Console: switching to colour
-frame buffer device 240x75
-Oct 30 10:41:34 acoffin-xps-15 kernel: fb0: EFI VGA frame buffer device
-Oct 30 10:41:34 acoffin-xps-15 kernel: NET: Registered PF_INET6 protocol family
-Oct 30 10:41:34 acoffin-xps-15 kernel: Segment Routing with IPv6
-Oct 30 10:41:34 acoffin-xps-15 kernel: In-situ OAM (IOAM) with IPv6
-Oct 30 10:41:34 acoffin-xps-15 kernel: mip6: Mobile IPv6
-Oct 30 10:41:34 acoffin-xps-15 kernel: NET: Registered PF_PACKET protocol family
-Oct 30 10:41:34 acoffin-xps-15 kernel: mpls_gso: MPLS GSO support
-Oct 30 10:41:34 acoffin-xps-15 kernel: microcode: sig=0xb06a2,
-pf=0x80, revision=0x4122
-Oct 30 10:41:34 acoffin-xps-15 kernel: microcode: Microcode Update Driver: v2.2.
-Oct 30 10:41:34 acoffin-xps-15 kernel: IPI shorthand broadcast: enabled
-Oct 30 10:41:34 acoffin-xps-15 kernel: sched_clock: Marking stable
-(2412003589, 6595147)->(2439856048, -21257312)
-Oct 30 10:41:34 acoffin-xps-15 kernel: registered taskstats version 1
-Oct 30 10:41:34 acoffin-xps-15 kernel: Loading compiled-in X.509 certificates
-Oct 30 10:41:34 acoffin-xps-15 kernel: Loaded X.509 cert 'Build time
-autogenerated kernel key: 871dc49a8b01bc8c6ba7afeae78d9c0aa8d2c6a6'
-Oct 30 10:41:34 acoffin-xps-15 kernel: zswap: loaded using pool lzo/zbud
-Oct 30 10:41:34 acoffin-xps-15 kernel: Key type .fscrypt registered
-Oct 30 10:41:34 acoffin-xps-15 kernel: Key type fscrypt-provisioning registered
-Oct 30 10:41:34 acoffin-xps-15 kernel: Key type encrypted registered
-Oct 30 10:41:34 acoffin-xps-15 kernel: AppArmor: AppArmor sha1 policy
-hashing enabled
-Oct 30 10:41:34 acoffin-xps-15 kernel: integrity: Loading X.509
-certificate: UEFI:db
-Oct 30 10:41:34 acoffin-xps-15 kernel: integrity: Loaded X.509 cert
-'Dell Inc.: Dell Bios DB Key:
-637fa7a9f74471b406de0511557071fd41dd5487'
-Oct 30 10:41:34 acoffin-xps-15 kernel: integrity: Loading X.509
-certificate: UEFI:db
-Oct 30 10:41:34 acoffin-xps-15 kernel: integrity: Loaded X.509 cert
-'Dell Inc.: Dell Bios FW Aux Authority 2018:
-dd4df7c3f5ce7e5a77847915abc37b031f6b10bd'
-Oct 30 10:41:34 acoffin-xps-15 kernel: integrity: Loading X.509
-certificate: UEFI:db
-Oct 30 10:41:34 acoffin-xps-15 kernel: integrity: Loaded X.509 cert
-'Microsoft Windows Production PCA 2011:
-a92902398e16c49778cd90f99e4f9ae17c55af53'
-Oct 30 10:41:34 acoffin-xps-15 kernel: integrity: Loading X.509
-certificate: UEFI:db
-Oct 30 10:41:34 acoffin-xps-15 kernel: integrity: Loaded X.509 cert
-'Microsoft Corporation UEFI CA 2011:
-13adbf4309bd82709c8cd54f316ed522988a1bd4'
-Oct 30 10:41:34 acoffin-xps-15 kernel: ima: No TPM chip found,
-activating TPM-bypass!
-Oct 30 10:41:34 acoffin-xps-15 kernel: ima: Allocated hash algorithm: sha256
-Oct 30 10:41:34 acoffin-xps-15 kernel: ima: No architecture policies found
-Oct 30 10:41:34 acoffin-xps-15 kernel: evm: Initialising EVM extended
-attributes:
-Oct 30 10:41:34 acoffin-xps-15 kernel: evm: security.selinux
-Oct 30 10:41:34 acoffin-xps-15 kernel: evm: security.SMACK64 (disabled)
-Oct 30 10:41:34 acoffin-xps-15 kernel: evm: security.SMACK64EXEC (disabled)
-Oct 30 10:41:34 acoffin-xps-15 kernel: evm: security.SMACK64TRANSMUTE (disabled)
-Oct 30 10:41:34 acoffin-xps-15 kernel: evm: security.SMACK64MMAP (disabled)
-Oct 30 10:41:34 acoffin-xps-15 kernel: evm: security.apparmor
-Oct 30 10:41:34 acoffin-xps-15 kernel: evm: security.ima
-Oct 30 10:41:34 acoffin-xps-15 kernel: evm: security.capability
-Oct 30 10:41:34 acoffin-xps-15 kernel: evm: HMAC attrs: 0x1
-Oct 30 10:41:34 acoffin-xps-15 kernel: clk: Disabling unused clocks
-Oct 30 10:41:34 acoffin-xps-15 kernel: Freeing unused decrypted memory: 2036K
-Oct 30 10:41:34 acoffin-xps-15 kernel: Freeing unused kernel image
-(initmem) memory: 2820K
-Oct 30 10:41:34 acoffin-xps-15 kernel: Write protecting the kernel
-read-only data: 26624k
-Oct 30 10:41:34 acoffin-xps-15 kernel: Freeing unused kernel image
-(text/rodata gap) memory: 2040K
-Oct 30 10:41:34 acoffin-xps-15 kernel: Freeing unused kernel image
-(rodata/data gap) memory: 988K
-Oct 30 10:41:34 acoffin-xps-15 kernel: x86/mm: Checked W+X mappings:
-passed, no W+X pages found.
-Oct 30 10:41:34 acoffin-xps-15 kernel: Run /init as init process
-Oct 30 10:41:34 acoffin-xps-15 kernel:   with arguments:
-Oct 30 10:41:34 acoffin-xps-15 kernel:     /init
-Oct 30 10:41:34 acoffin-xps-15 kernel:   with environment:
-Oct 30 10:41:34 acoffin-xps-15 kernel:     HOME=/
-Oct 30 10:41:34 acoffin-xps-15 kernel:     TERM=linux
-Oct 30 10:41:34 acoffin-xps-15 kernel:     BOOT_IMAGE=/vmlinuz-6.1.112
-Oct 30 10:41:34 acoffin-xps-15 kernel: wmi_bus wmi_bus-PNP0C14:02:
-WQBC data block query control method not found
-Oct 30 10:41:34 acoffin-xps-15 kernel: hid: raw HID events driver (C)
-Jiri Kosina
-Oct 30 10:41:34 acoffin-xps-15 kernel: input: Lid Switch as
-/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0C0D:00/input/input2
-Oct 30 10:41:34 acoffin-xps-15 kernel: rtsx_pci 0000:a5:00.0: enabling
-device (0000 -> 0002)
-Oct 30 10:41:34 acoffin-xps-15 kernel: cryptd: max_cpu_qlen set to 1000
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: bus type thunderbolt registered
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: button: Lid Switch [LID0]
-Oct 30 10:41:34 acoffin-xps-15 kernel: input: Power Button as
-/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0C0C:00/input/input4
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: button: Power Button [PBTN]
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: bus type drm_connector registered
-Oct 30 10:41:34 acoffin-xps-15 kernel: AVX2 version of gcm_enc/dec engaged.
-Oct 30 10:41:34 acoffin-xps-15 kernel: AES CTR mode by8 optimization enabled
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: battery: Slot [BAT0]
-(battery present)
-Oct 30 10:41:34 acoffin-xps-15 kernel: i801_smbus 0000:00:1f.4:
-enabling device (0000 -> 0003)
-Oct 30 10:41:34 acoffin-xps-15 kernel: i801_smbus 0000:00:1f.4: SPD
-Write Disable is set
-Oct 30 10:41:34 acoffin-xps-15 kernel: i801_smbus 0000:00:1f.4: SMBus
-using PCI interrupt
-Oct 30 10:41:34 acoffin-xps-15 kernel: intel-lpss 0000:00:12.6:
-enabling device (0004 -> 0006)
-Oct 30 10:41:34 acoffin-xps-15 kernel: idma64 idma64.0: Found Intel
-integrated DMA 64-bit
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: bus type USB registered
-Oct 30 10:41:34 acoffin-xps-15 kernel: usbcore: registered new
-interface driver usbfs
-Oct 30 10:41:34 acoffin-xps-15 kernel: usbcore: registered new
-interface driver hub
-Oct 30 10:41:34 acoffin-xps-15 kernel: usbcore: registered new device driver usb
-Oct 30 10:41:34 acoffin-xps-15 kernel: intel-lpss 0000:00:15.0:
-enabling device (0000 -> 0002)
-Oct 30 10:41:34 acoffin-xps-15 kernel: idma64 idma64.1: Found Intel
-integrated DMA 64-bit
-Oct 30 10:41:34 acoffin-xps-15 kernel: i2c i2c-0: 2/2 memory slots
-populated (from DMI)
-Oct 30 10:41:34 acoffin-xps-15 kernel: i2c i2c-0: Memory type 0x22 not
-supported yet, not instantiating SPD
-Oct 30 10:41:34 acoffin-xps-15 kernel: xhci_hcd 0000:00:14.0: xHCI
-Host Controller
-Oct 30 10:41:34 acoffin-xps-15 kernel: xhci_hcd 0000:00:14.0: new USB
-bus registered, assigned bus number 1
-Oct 30 10:41:34 acoffin-xps-15 kernel: xhci_hcd 0000:00:14.0: hcc
-params 0x20007fc1 hci version 0x120 quirks 0x0000100200009810
-Oct 30 10:41:34 acoffin-xps-15 kernel: xhci_hcd 0000:00:14.0: xHCI
-Host Controller
-Oct 30 10:41:34 acoffin-xps-15 kernel: xhci_hcd 0000:00:14.0: new USB
-bus registered, assigned bus number 2
-Oct 30 10:41:34 acoffin-xps-15 kernel: xhci_hcd 0000:00:14.0: Host
-supports USB 3.1 Enhanced SuperSpeed
-Oct 30 10:41:34 acoffin-xps-15 kernel: usb usb1: New USB device found,
-idVendor=1d6b, idProduct=0002, bcdDevice= 6.01
-Oct 30 10:41:34 acoffin-xps-15 kernel: usb usb1: New USB device
-strings: Mfr=3, Product=2, SerialNumber=1
-Oct 30 10:41:34 acoffin-xps-15 kernel: usb usb1: Product: xHCI Host Controller
-Oct 30 10:41:34 acoffin-xps-15 kernel: usb usb1: Manufacturer: Linux
-6.1.112 xhci-hcd
-Oct 30 10:41:34 acoffin-xps-15 kernel: usb usb1: SerialNumber: 0000:00:14.0
-Oct 30 10:41:34 acoffin-xps-15 kernel: nvme 0000:01:00.0: platform
-quirk: setting simple suspend
-Oct 30 10:41:34 acoffin-xps-15 kernel: hub 1-0:1.0: USB hub found
-Oct 30 10:41:34 acoffin-xps-15 kernel: hub 1-0:1.0: 12 ports detected
-Oct 30 10:41:34 acoffin-xps-15 kernel: nvme nvme0: pci function 0000:01:00.0
-Oct 30 10:41:34 acoffin-xps-15 kernel: nvme 0000:02:00.0: platform
-quirk: setting simple suspend
-Oct 30 10:41:34 acoffin-xps-15 kernel: nvme nvme1: pci function 0000:02:00.0
-Oct 30 10:41:34 acoffin-xps-15 kernel: intel-lpss 0000:00:15.1:
-enabling device (0000 -> 0002)
-Oct 30 10:41:34 acoffin-xps-15 kernel: usb usb2: New USB device found,
-idVendor=1d6b, idProduct=0003, bcdDevice= 6.01
-Oct 30 10:41:34 acoffin-xps-15 kernel: usb usb2: New USB device
-strings: Mfr=3, Product=2, SerialNumber=1
-Oct 30 10:41:34 acoffin-xps-15 kernel: usb usb2: Product: xHCI Host Controller
-Oct 30 10:41:34 acoffin-xps-15 kernel: usb usb2: Manufacturer: Linux
-6.1.112 xhci-hcd
-Oct 30 10:41:34 acoffin-xps-15 kernel: usb usb2: SerialNumber: 0000:00:14.0
-Oct 30 10:41:34 acoffin-xps-15 kernel: hub 2-0:1.0: USB hub found
-Oct 30 10:41:34 acoffin-xps-15 kernel: hub 2-0:1.0: 4 ports detected
-Oct 30 10:41:34 acoffin-xps-15 kernel: idma64 idma64.2: Found Intel
-integrated DMA 64-bit
-Oct 30 10:41:34 acoffin-xps-15 kernel: nvme nvme1: allocated 64 MiB
-host memory buffer.
-Oct 30 10:41:34 acoffin-xps-15 kernel: nvme nvme0: allocated 64 MiB
-host memory buffer.
-Oct 30 10:41:34 acoffin-xps-15 kernel: nvme nvme1: 8/0/0
-default/read/poll queues
-Oct 30 10:41:34 acoffin-xps-15 kernel: nvme nvme0: 8/0/0
-default/read/poll queues
-Oct 30 10:41:34 acoffin-xps-15 kernel:  nvme1n1:
-Oct 30 10:41:34 acoffin-xps-15 kernel:  nvme0n1: p1 p2 p3
-Oct 30 10:41:34 acoffin-xps-15 kernel: input: VEN_04F3:00 04F3:32AA
-Mouse as /devices/pci0000:00/0000:00:15.1/i2c_designware.2/i2c-2/i2c-VEN_04F3:00/0018:04F3:32AA.0001/input/input5
-Oct 30 10:41:34 acoffin-xps-15 kernel: input: VEN_04F3:00 04F3:32AA
-Touchpad as /devices/pci0000:00/0000:00:15.1/i2c_designware.2/i2c-2/i2c-VEN_04F3:00/0018:04F3:32AA.0001/input/input6
-Oct 30 10:41:34 acoffin-xps-15 kernel: hid-generic
-0018:04F3:32AA.0001: input,hidraw0: I2C HID v1.00 Mouse [VEN_04F3:00
-04F3:32AA] on i2c-VEN_04F3:00
-Oct 30 10:41:34 acoffin-xps-15 kernel: i915 0000:00:02.0: [drm] VT-d
-active for gfx access
-Oct 30 10:41:34 acoffin-xps-15 kernel: Console: switching to colour
-dummy device 80x25
-Oct 30 10:41:34 acoffin-xps-15 kernel: i915 0000:00:02.0: vgaarb:
-deactivate vga console
-Oct 30 10:41:34 acoffin-xps-15 kernel: i915 0000:00:02.0: [drm] Using
-Transparent Hugepages
-Oct 30 10:41:34 acoffin-xps-15 kernel: i915 0000:00:02.0: vgaarb:
-changed VGA decodes: olddecodes=io+mem,decodes=io+mem:owns=io+mem
-Oct 30 10:41:34 acoffin-xps-15 kernel: i915 0000:00:02.0: firmware:
-direct-loading firmware i915/adlp_dmc_ver2_16.bin
-Oct 30 10:41:34 acoffin-xps-15 kernel: i915 0000:00:02.0: [drm]
-Finished loading DMC firmware i915/adlp_dmc_ver2_16.bin (v2.16)
-Oct 30 10:41:34 acoffin-xps-15 kernel: i915 0000:00:02.0: firmware:
-direct-loading firmware i915/adlp_guc_70.bin
-Oct 30 10:41:34 acoffin-xps-15 kernel: i915 0000:00:02.0: firmware:
-direct-loading firmware i915/tgl_huc.bin
-Oct 30 10:41:34 acoffin-xps-15 kernel: xhci_hcd 0000:00:0d.0: xHCI
-Host Controller
-Oct 30 10:41:34 acoffin-xps-15 kernel: xhci_hcd 0000:00:0d.0: new USB
-bus registered, assigned bus number 3
-Oct 30 10:41:34 acoffin-xps-15 kernel: xhci_hcd 0000:00:0d.0: hcc
-params 0x20007fc1 hci version 0x120 quirks 0x0000000200009810
-Oct 30 10:41:34 acoffin-xps-15 kernel: xhci_hcd 0000:00:0d.0: xHCI
-Host Controller
-Oct 30 10:41:34 acoffin-xps-15 kernel: xhci_hcd 0000:00:0d.0: new USB
-bus registered, assigned bus number 4
-Oct 30 10:41:34 acoffin-xps-15 kernel: xhci_hcd 0000:00:0d.0: Host
-supports USB 3.2 Enhanced SuperSpeed
-Oct 30 10:41:34 acoffin-xps-15 kernel: usb usb3: New USB device found,
-idVendor=1d6b, idProduct=0002, bcdDevice= 6.01
-Oct 30 10:41:34 acoffin-xps-15 kernel: usb usb3: New USB device
-strings: Mfr=3, Product=2, SerialNumber=1
-Oct 30 10:41:34 acoffin-xps-15 kernel: usb usb3: Product: xHCI Host Controller
-Oct 30 10:41:34 acoffin-xps-15 kernel: usb usb3: Manufacturer: Linux
-6.1.112 xhci-hcd
-Oct 30 10:41:34 acoffin-xps-15 kernel: usb usb3: SerialNumber: 0000:00:0d.0
-Oct 30 10:41:34 acoffin-xps-15 kernel: hub 3-0:1.0: USB hub found
-Oct 30 10:41:34 acoffin-xps-15 kernel: hub 3-0:1.0: 1 port detected
-Oct 30 10:41:34 acoffin-xps-15 kernel: usb usb4: New USB device found,
-idVendor=1d6b, idProduct=0003, bcdDevice= 6.01
-Oct 30 10:41:34 acoffin-xps-15 kernel: usb usb4: New USB device
-strings: Mfr=3, Product=2, SerialNumber=1
-Oct 30 10:41:34 acoffin-xps-15 kernel: usb usb4: Product: xHCI Host Controller
-Oct 30 10:41:34 acoffin-xps-15 kernel: usb usb4: Manufacturer: Linux
-6.1.112 xhci-hcd
-Oct 30 10:41:34 acoffin-xps-15 kernel: usb usb4: SerialNumber: 0000:00:0d.0
-Oct 30 10:41:34 acoffin-xps-15 kernel: hub 4-0:1.0: USB hub found
-Oct 30 10:41:34 acoffin-xps-15 kernel: hub 4-0:1.0: 2 ports detected
-Oct 30 10:41:34 acoffin-xps-15 kernel: input: VEN_04F3:00 04F3:32AA
-Mouse as /devices/pci0000:00/0000:00:15.1/i2c_designware.2/i2c-2/i2c-VEN_04F3:00/0018:04F3:32AA.0001/input/input8
-Oct 30 10:41:34 acoffin-xps-15 kernel: input: VEN_04F3:00 04F3:32AA
-Touchpad as /devices/pci0000:00/0000:00:15.1/i2c_designware.2/i2c-2/i2c-VEN_04F3:00/0018:04F3:32AA.0001/input/input9
-Oct 30 10:41:34 acoffin-xps-15 kernel: hid-multitouch
-0018:04F3:32AA.0001: input,hidraw0: I2C HID v1.00 Mouse [VEN_04F3:00
-04F3:32AA] on i2c-VEN_04F3:00
-Oct 30 10:41:34 acoffin-xps-15 kernel: i915 0000:00:02.0: [drm] GuC
-firmware i915/adlp_guc_70.bin version 70.5.1
-Oct 30 10:41:34 acoffin-xps-15 kernel: i915 0000:00:02.0: [drm] HuC
-firmware i915/tgl_huc.bin version 7.9.3
-Oct 30 10:41:34 acoffin-xps-15 kernel: i915 0000:00:02.0: [drm] HuC
-authenticated
-Oct 30 10:41:34 acoffin-xps-15 kernel: i915 0000:00:02.0: [drm] GuC
-submission enabled
-Oct 30 10:41:34 acoffin-xps-15 kernel: i915 0000:00:02.0: [drm] GuC SLPC enabled
-Oct 30 10:41:34 acoffin-xps-15 kernel: i915 0000:00:02.0: [drm] GuC RC: enabled
-Oct 30 10:41:34 acoffin-xps-15 kernel: usb 1-2: new full-speed USB
-device number 2 using xhci_hcd
-Oct 30 10:41:34 acoffin-xps-15 kernel: usb 1-2: New USB device found,
-idVendor=1050, idProduct=0407, bcdDevice= 5.71
-Oct 30 10:41:34 acoffin-xps-15 kernel: usb 1-2: New USB device
-strings: Mfr=1, Product=2, SerialNumber=0
-Oct 30 10:41:34 acoffin-xps-15 kernel: usb 1-2: Product: YubiKey OTP+FIDO+CCID
-Oct 30 10:41:34 acoffin-xps-15 kernel: usb 1-2: Manufacturer: Yubico
-Oct 30 10:41:34 acoffin-xps-15 kernel: input: Yubico YubiKey
-OTP+FIDO+CCID as
-/devices/pci0000:00/0000:00:14.0/usb1/1-2/1-2:1.0/0003:1050:0407.0002/input/input11
-Oct 30 10:41:34 acoffin-xps-15 kernel: ish-hid
-{33AECD58-B679-4E54-9BD9-A04D34F0C226}: [hid-ish]: enum_devices_done
-OK, num_hid_devices=1
-Oct 30 10:41:34 acoffin-xps-15 kernel: hid-generic
-001F:8087:0AC2.0003: hidraw1: SENSOR HUB HID v2.00 Device [hid-ishtp
-8087:0AC2] on
-Oct 30 10:41:34 acoffin-xps-15 kernel: input: PS/2 Generic Mouse as
-/devices/platform/i8042/serio1/input/input3
-Oct 30 10:41:34 acoffin-xps-15 kernel: usb 1-6: new high-speed USB
-device number 3 using xhci_hcd
-Oct 30 10:41:34 acoffin-xps-15 kernel: hid-generic
-0003:1050:0407.0002: input,hidraw1: USB HID v1.10 Keyboard [Yubico
-YubiKey OTP+FIDO+CCID] on usb-0000:00:14.0-2/input0
-Oct 30 10:41:34 acoffin-xps-15 kernel: hid-generic
-0003:1050:0407.0004: hiddev0,hidraw2: USB HID v1.10 Device [Yubico
-YubiKey OTP+FIDO+CCID] on usb-0000:00:14.0-2/input1
-Oct 30 10:41:34 acoffin-xps-15 kernel: usbcore: registered new
-interface driver usbhid
-Oct 30 10:41:34 acoffin-xps-15 kernel: usbhid: USB HID core driver
-Oct 30 10:41:34 acoffin-xps-15 kernel: usb 1-6: New USB device found,
-idVendor=0bda, idProduct=5559, bcdDevice=22.81
-Oct 30 10:41:34 acoffin-xps-15 kernel: usb 1-6: New USB device
-strings: Mfr=3, Product=1, SerialNumber=2
-Oct 30 10:41:34 acoffin-xps-15 kernel: usb 1-6: Product: Integrated_Webcam_HD
-Oct 30 10:41:34 acoffin-xps-15 kernel: usb 1-6: Manufacturer:
-CN0679GY8LG0043SC3YGA01
-Oct 30 10:41:34 acoffin-xps-15 kernel: usb 1-6: SerialNumber: 200901010001
-Oct 30 10:41:34 acoffin-xps-15 kernel: usb 1-10: new full-speed USB
-device number 4 using xhci_hcd
-Oct 30 10:41:34 acoffin-xps-15 kernel: usb 1-10: New USB device found,
-idVendor=8087, idProduct=0033, bcdDevice= 0.00
-Oct 30 10:41:34 acoffin-xps-15 kernel: usb 1-10: New USB device
-strings: Mfr=0, Product=0, SerialNumber=0
-Oct 30 10:41:34 acoffin-xps-15 kernel: [drm] Initialized i915 1.6.0
-20201103 for 0000:00:02.0 on minor 0
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: video: Video Device
-[GFX0] (multi-head: yes  rom: no  post: no)
-Oct 30 10:41:34 acoffin-xps-15 kernel: input: Video Bus as
-/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A08:00/LNXVIDEO:00/input/input12
-Oct 30 10:41:34 acoffin-xps-15 kernel: fbcon: i915drmfb (fb0) is primary device
-Oct 30 10:41:34 acoffin-xps-15 kernel: Console: switching to colour
-frame buffer device 240x75
-Oct 30 10:41:34 acoffin-xps-15 kernel: i915 0000:00:02.0: [drm] fb0:
-i915drmfb frame buffer device
-Oct 30 10:41:34 acoffin-xps-15 kernel: device-mapper: core:
-CONFIG_IMA_DISABLE_HTABLE is disabled. Duplicate IMA measurements will
-not be recorded in the IMA log.
-Oct 30 10:41:34 acoffin-xps-15 kernel: device-mapper: uevent: version 1.0.3
-Oct 30 10:41:34 acoffin-xps-15 kernel: device-mapper: ioctl:
-4.47.0-ioctl (2022-07-28) initialised: dm-devel@redhat.com
-Oct 30 10:41:34 acoffin-xps-15 kernel: raid6: avx2x4   gen() 38474 MB/s
-Oct 30 10:41:34 acoffin-xps-15 kernel: raid6: avx2x2   gen() 45938 MB/s
-Oct 30 10:41:34 acoffin-xps-15 kernel: raid6: avx2x1   gen() 43588 MB/s
-Oct 30 10:41:34 acoffin-xps-15 kernel: raid6: using algorithm avx2x2
-gen() 45938 MB/s
-Oct 30 10:41:34 acoffin-xps-15 kernel: raid6: .... xor() 33090 MB/s, rmw enabled
-Oct 30 10:41:34 acoffin-xps-15 kernel: raid6: using avx2x2 recovery algorithm
-Oct 30 10:41:34 acoffin-xps-15 kernel: xor: automatically using best
-checksumming function   avx
-Oct 30 10:41:34 acoffin-xps-15 kernel: async_tx: api initialized (async)
-Oct 30 10:41:34 acoffin-xps-15 kernel: Btrfs loaded,
-crc32c=crc32c-intel, zoned=yes, fsverity=yes
-Oct 30 10:41:34 acoffin-xps-15 kernel: PM: Image not found (code -22)
-Oct 30 10:41:34 acoffin-xps-15 kernel: EXT4-fs (dm-1): mounted
-filesystem with ordered data mode. Quota mode: none.
-Oct 30 10:41:34 acoffin-xps-15 kernel: Not activating Mandatory Access
-Control as /sbin/tomoyo-init does not exist.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Inserted module 'autofs4'
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: systemd 252.30-1~deb12u2
-running in system mode (+PAM +AUDIT +SELINUX +APPARMOR +IMA +SMACK
-+SECCOMP +GCRYPT -GNUTLS +OPENSSL +ACL +BLKID +CURL +ELFUTILS +FIDO2
-+IDN2 -IDN +IPTC +KMOD +LIBCRYPTSETUP +LIBFDISK +PCRE2 -PWQUALITY
-+P11KIT +QRENCODE +TPM2 +BZIP2 +LZ4 +XZ +ZLIB +ZSTD -BPF_FRAMEWORK
--XKBCOMMON +UTMP +SYSVINIT default-hierarchy=unified)
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Detected architecture x86-64.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Hostname set to <acoffin-xps-15>.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Queued start job for
-default target graphical.target.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Created slice machine.slice
-- Virtual Machine and Container Slice.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Created slice
-system-getty.slice - Slice /system/getty.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Created slice
-system-modprobe.slice - Slice /system/modprobe.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Created slice
-system-systemd\x2dcryptsetup.slice - Cryptsetup Units Slice.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Created slice
-system-systemd\x2dfsck.slice - Slice /system/systemd-fsck.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Created slice user.slice -
-User and Session Slice.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Started
-systemd-ask-password-wall.path - Forward Password Requests to Wall
-Directory Watch.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Set up automount
-proc-sys-fs-binfmt_misc.automount - Arbitrary Executable File Formats
-File System Automount Point.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Expecting device
-dev-disk-by\x2duuid-634628ed\x2daeb0\x2d4a64\x2dafbc\x2d70c93f9277e9.device
-- /dev/disk/by-uuid/634628ed-aeb0-4a64-afbc-70c93f9277e9...
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Expecting device
-dev-disk-by\x2duuid-88f8b68c\x2dda84\x2d417e\x2dac9c\x2d8867f950af50.device
-- /dev/disk/by-uuid/88f8b68c-da84-417e-ac9c-8867f950af50...
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Expecting device
-dev-disk-by\x2duuid-9999\x2dDA60.device -
-/dev/disk/by-uuid/9999-DA60...
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Expecting device
-dev-mapper-acoffin\x2d\x2dxps\x2d\x2d15\x2d\x2dvg\x2dswap.device -
-/dev/mapper/acoffin--xps--15--vg-swap...
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Reached target
-integritysetup.target - Local Integrity Protected Volumes.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Reached target
-network-pre.target - Preparation for Network.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Reached target
-remote-fs.target - Remote File Systems.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Reached target
-slices.target - Slice Units.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Reached target
-time-set.target - System Time Set.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Reached target
-veritysetup.target - Local Verity Protected Volumes.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Reached target
-virt-guest-shutdown.target - Libvirt guests shutdown.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Listening on
-dm-event.socket - Device-mapper event daemon FIFOs.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Listening on
-lvm2-lvmpolld.socket - LVM2 poll daemon socket.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Listening on syslog.socket
-- Syslog Socket.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Listening on
-systemd-fsckd.socket - fsck to fsckd communication Socket.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Listening on
-systemd-initctl.socket - initctl Compatibility Named Pipe.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Listening on
-systemd-journald-audit.socket - Journal Audit Socket.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Listening on
-systemd-journald-dev-log.socket - Journal Socket (/dev/log).
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Listening on
-systemd-journald.socket - Journal Socket.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Listening on
-systemd-udevd-control.socket - udev Control Socket.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Listening on
-systemd-udevd-kernel.socket - udev Kernel Socket.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Mounting
-dev-hugepages.mount - Huge Pages File System...
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Mounting dev-mqueue.mount -
-POSIX Message Queue File System...
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Mounting
-sys-kernel-debug.mount - Kernel Debug File System...
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Mounting
-sys-kernel-tracing.mount - Kernel Trace File System...
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Finished
-blk-availability.service - Availability of block devices.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Starting
-keyboard-setup.service - Set the console keyboard layout...
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Starting
-kmod-static-nodes.service - Create List of Static Device Nodes...
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Starting
-lvm2-monitor.service - Monitoring of LVM2 mirrors, snapshots etc.
-using dmeventd or progress polling...
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Starting
-modprobe@configfs.service - Load Kernel Module configfs...
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Starting
-modprobe@dm_mod.service - Load Kernel Module dm_mod...
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Starting
-modprobe@drm.service - Load Kernel Module drm...
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Starting
-modprobe@efi_pstore.service - Load Kernel Module efi_pstore...
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Starting
-modprobe@fuse.service - Load Kernel Module fuse...
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Starting
-modprobe@loop.service - Load Kernel Module loop...
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: systemd-fsck-root.service -
-File System Check on Root Device was skipped because of an unmet
-condition check (ConditionPathExists=!/run/initramfs/fsck-root).
-Oct 30 10:41:34 acoffin-xps-15 kernel: pstore: Using crash dump
-compression: deflate
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Starting
-systemd-journald.service - Journal Service...
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Starting
-systemd-modules-load.service - Load Kernel Modules...
-Oct 30 10:41:34 acoffin-xps-15 kernel: fuse: init (API version 7.38)
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Starting
-systemd-remount-fs.service - Remount Root and Kernel File Systems...
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Starting
-systemd-udev-trigger.service - Coldplug All udev Devices...
-Oct 30 10:41:34 acoffin-xps-15 kernel: pstore: Registered efi as
-persistent store backend
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Mounted dev-hugepages.mount
-- Huge Pages File System.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Mounted dev-mqueue.mount -
-POSIX Message Queue File System.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Mounted
-sys-kernel-debug.mount - Kernel Debug File System.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Mounted
-sys-kernel-tracing.mount - Kernel Trace File System.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Finished
-keyboard-setup.service - Set the console keyboard layout.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Finished
-kmod-static-nodes.service - Create List of Static Device Nodes.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: modprobe@configfs.service:
-Deactivated successfully.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Finished
-modprobe@configfs.service - Load Kernel Module configfs.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: modprobe@dm_mod.service:
-Deactivated successfully.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Finished
-modprobe@dm_mod.service - Load Kernel Module dm_mod.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: modprobe@drm.service:
-Deactivated successfully.
-Oct 30 10:41:34 acoffin-xps-15 kernel: loop: module loaded
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Finished
-modprobe@drm.service - Load Kernel Module drm.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]:
-modprobe@efi_pstore.service: Deactivated successfully.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Finished
-modprobe@efi_pstore.service - Load Kernel Module efi_pstore.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: modprobe@fuse.service:
-Deactivated successfully.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Finished
-modprobe@fuse.service - Load Kernel Module fuse.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: modprobe@loop.service:
-Deactivated successfully.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Finished
-modprobe@loop.service - Load Kernel Module loop.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Mounting
-sys-fs-fuse-connections.mount - FUSE Control File System...
-Oct 30 10:41:34 acoffin-xps-15 kernel: EXT4-fs (dm-1): re-mounted.
-Quota mode: none.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Mounting
-sys-kernel-config.mount - Kernel Configuration File System...
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: systemd-repart.service -
-Repartition Root Disk was skipped because no trigger condition checks
-were met.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Finished
-systemd-remount-fs.service - Remount Root and Kernel File Systems.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: systemd-firstboot.service -
-First Boot Wizard was skipped because of an unmet condition check
-(ConditionFirstBoot=yes).
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: systemd-pstore.service -
-Platform Persistent Storage Archival was skipped because of an unmet
-condition check (ConditionDirectoryNotEmpty=/sys/fs/pstore).
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Starting
-systemd-random-seed.service - Load/Save Random Seed...
-Oct 30 10:41:34 acoffin-xps-15 kernel: lp: driver loaded but no devices found
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Starting
-systemd-sysusers.service - Create System Users...
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Mounted
-sys-fs-fuse-connections.mount - FUSE Control File System.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Mounted
-sys-kernel-config.mount - Kernel Configuration File System.
-Oct 30 10:41:34 acoffin-xps-15 kernel: ppdev: user-space parallel port driver
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Finished
-systemd-modules-load.service - Load Kernel Modules.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Starting
-systemd-sysctl.service - Apply Kernel Variables...
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Finished
-systemd-random-seed.service - Load/Save Random Seed.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: first-boot-complete.target
-- First Boot Complete was skipped because of an unmet condition check
-(ConditionFirstBoot=yes).
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Finished
-systemd-sysusers.service - Create System Users.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Starting
-systemd-tmpfiles-setup-dev.service - Create Static Device Nodes in
-/dev...
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Finished
-systemd-sysctl.service - Apply Kernel Variables.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Finished
-systemd-tmpfiles-setup-dev.service - Create Static Device Nodes in
-/dev.
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Starting
-systemd-udevd.service - Rule-based Manager for Device Events and
-Files...
-Oct 30 10:41:34 acoffin-xps-15 systemd[1]: Started
-systemd-journald.service - Journal Service.
-Oct 30 10:41:34 acoffin-xps-15 systemd-journald[752]: Received client
-request to flush runtime journal.
-Oct 30 10:41:34 acoffin-xps-15 kernel: ACPI: AC: AC Adapter [AC] (on-line)
-Oct 30 10:41:34 acoffin-xps-15 kernel: Adding 67108860k swap on
-/dev/mapper/acoffin--xps--15--vg-swap.  Priority:-2 extents:1
-across:67108860k SSFS
-Oct 30 10:41:35 acoffin-xps-15 kernel: intel_pmc_core INT33A1:00:  initialized
-Oct 30 10:41:35 acoffin-xps-15 kernel: Consider using thermal netlink
-events interface
-Oct 30 10:41:35 acoffin-xps-15 kernel: input: Intel HID events as
-/devices/platform/INTC1078:00/input/input13
-Oct 30 10:41:35 acoffin-xps-15 kernel: intel-hid INTC1078:00: platform
-supports 5 button array
-Oct 30 10:41:35 acoffin-xps-15 kernel: input: Intel HID 5 button array
-as /devices/platform/INTC1078:00/input/input14
-Oct 30 10:41:35 acoffin-xps-15 kernel: Serial bus multi instantiate
-pseudo device driver CSC3551:00: Instantiated 2 SPI devices.
-Oct 30 10:41:35 acoffin-xps-15 kernel: mc: Linux media interface: v0.10
-Oct 30 10:41:35 acoffin-xps-15 kernel: iTCO_vendor_support: vendor-support=0
-Oct 30 10:41:35 acoffin-xps-15 kernel: mei_me 0000:00:16.0: enabling
-device (0000 -> 0002)
-Oct 30 10:41:35 acoffin-xps-15 kernel: iTCO_wdt iTCO_wdt: Found a
-Intel PCH TCO device (Version=6, TCOBASE=0x0400)
-Oct 30 10:41:35 acoffin-xps-15 kernel: iTCO_wdt iTCO_wdt: initialized.
-heartbeat=30 sec (nowayout=0)
-Oct 30 10:41:35 acoffin-xps-15 kernel: videodev: Linux video capture
-interface: v2.00
-Oct 30 10:41:35 acoffin-xps-15 kernel: cfg80211: Loading compiled-in
-X.509 certificates for regulatory database
-Oct 30 10:41:35 acoffin-xps-15 kernel: cfg80211: Loaded X.509 cert
-'benh@debian.org: 577e021cb980e0e820821ba7b54b4961b8b4fadf'
-Oct 30 10:41:35 acoffin-xps-15 kernel: cfg80211: Loaded X.509 cert
-'romain.perier@gmail.com: 3abbc6ec146e09d1b6016ab9d6cf71dd233f0328'
-Oct 30 10:41:35 acoffin-xps-15 kernel: cfg80211: Loaded X.509 cert
-'sforshee: 00b28ddf47aef9cea7'
-Oct 30 10:41:35 acoffin-xps-15 kernel: cfg80211: Loaded X.509 cert
-'wens: 61c038651aabdcf94bd0ac7ff06c7248db18c600'
-Oct 30 10:41:35 acoffin-xps-15 kernel: proc_thermal_pci 0000:00:04.0:
-enabling device (0000 -> 0002)
-Oct 30 10:41:35 acoffin-xps-15 kernel: dell_smm_hwmon: unable to get
-SMM Dell signature
-Oct 30 10:41:35 acoffin-xps-15 kernel: platform regulatory.0:
-firmware: direct-loading firmware regulatory.db
-Oct 30 10:41:35 acoffin-xps-15 kernel: input: PC Speaker as
-/devices/platform/pcspkr/input/input15
-Oct 30 10:41:35 acoffin-xps-15 kernel: platform regulatory.0:
-firmware: direct-loading firmware regulatory.db.p7s
-Oct 30 10:41:35 acoffin-xps-15 kernel: alg: No test for
-fips(ansi_cprng) (fips_ansi_cprng)
-Oct 30 10:41:35 acoffin-xps-15 kernel: intel_rapl_common: Found RAPL
-domain package
-Oct 30 10:41:35 acoffin-xps-15 kernel: Intel(R) Wireless WiFi driver for Linux
-Oct 30 10:41:35 acoffin-xps-15 kernel: iwlwifi 0000:00:14.3: enabling
-device (0000 -> 0002)
-Oct 30 10:41:35 acoffin-xps-15 kernel: RAPL PMU: API unit is 2^-32
-Joules, 4 fixed counters, 655360 ms ovfl timer
-Oct 30 10:41:35 acoffin-xps-15 kernel: RAPL PMU: hw unit of domain
-pp0-core 2^-14 Joules
-Oct 30 10:41:35 acoffin-xps-15 kernel: RAPL PMU: hw unit of domain
-package 2^-14 Joules
-Oct 30 10:41:35 acoffin-xps-15 kernel: RAPL PMU: hw unit of domain
-pp1-gpu 2^-14 Joules
-Oct 30 10:41:35 acoffin-xps-15 kernel: RAPL PMU: hw unit of domain
-psys 2^-14 Joules
-Oct 30 10:41:35 acoffin-xps-15 kernel: usb 1-6: Found UVC 1.10 device
-Integrated_Webcam_HD (0bda:5559)
-Oct 30 10:41:35 acoffin-xps-15 kernel: cs35l41-hda
-spi0-CSC3551:00-cs35l41-hda.0: Error: ACPI _DSD Properties are missing
-for HID CSC3551.
-Oct 30 10:41:35 acoffin-xps-15 kernel: cs35l41-hda
-spi0-CSC3551:00-cs35l41-hda.0: error -EINVAL: Platform not supported
-Oct 30 10:41:35 acoffin-xps-15 kernel: cs35l41-hda: probe of
-spi0-CSC3551:00-cs35l41-hda.0 failed with error -22
-Oct 30 10:41:35 acoffin-xps-15 kernel: cs35l41-hda
-spi0-CSC3551:00-cs35l41-hda.1: Error: ACPI _DSD Properties are missing
-for HID CSC3551.
-Oct 30 10:41:35 acoffin-xps-15 kernel: cs35l41-hda
-spi0-CSC3551:00-cs35l41-hda.1: error -EINVAL: Platform not supported
-Oct 30 10:41:35 acoffin-xps-15 kernel: cs35l41-hda: probe of
-spi0-CSC3551:00-cs35l41-hda.1 failed with error -22
-Oct 30 10:41:35 acoffin-xps-15 kernel: iwlwifi 0000:00:14.3: firmware:
-direct-loading firmware iwlwifi-so-a0-gf-a0-72.ucode
-Oct 30 10:41:35 acoffin-xps-15 kernel: iwlwifi 0000:00:14.3: api flags
-index 2 larger than supported by driver
-Oct 30 10:41:35 acoffin-xps-15 kernel: iwlwifi 0000:00:14.3:
-TLV_FW_FSEQ_VERSION: FSEQ Version: 0.0.2.36
-Oct 30 10:41:35 acoffin-xps-15 kernel: iwlwifi 0000:00:14.3: firmware:
-failed to load iwl-debug-yoyo.bin (-2)
-Oct 30 10:41:35 acoffin-xps-15 kernel: firmware_class: See
-https://wiki.debian.org/Firmware for information about missing
-firmware
-Oct 30 10:41:35 acoffin-xps-15 kernel: iwlwifi 0000:00:14.3: firmware:
-failed to load iwl-debug-yoyo.bin (-2)
-Oct 30 10:41:35 acoffin-xps-15 kernel: iwlwifi 0000:00:14.3: loaded
-firmware version 72.daa05125.0 so-a0-gf-a0-72.ucode op_mode iwlmvm
-Oct 30 10:41:35 acoffin-xps-15 kernel: intel_rapl_msr: PL4 support detected.
-Oct 30 10:41:35 acoffin-xps-15 kernel: intel_rapl_common: Found RAPL
-domain package
-Oct 30 10:41:35 acoffin-xps-15 kernel: intel_rapl_common: Found RAPL domain core
-Oct 30 10:41:35 acoffin-xps-15 kernel: intel_rapl_common: Found RAPL
-domain uncore
-Oct 30 10:41:35 acoffin-xps-15 kernel: intel_rapl_common: Found RAPL domain psys
-Oct 30 10:41:35 acoffin-xps-15 kernel: input: Dell WMI hotkeys as
-/devices/platform/PNP0C14:02/wmi_bus/wmi_bus-PNP0C14:02/9DBB5994-A997-11DA-B012-B622A1EF5492/input/input16
-Oct 30 10:41:35 acoffin-xps-15 kernel: snd_hda_intel 0000:00:1f.3: DSP
-detected with PCI class/subclass/prog-if info 0x040100
-Oct 30 10:41:35 acoffin-xps-15 kernel: snd_hda_intel 0000:00:1f.3:
-Digital mics found on Skylake+ platform, using SOF driver
-Oct 30 10:41:35 acoffin-xps-15 kernel: input: Integrated_Webcam_HD:
-Integrate as /devices/pci0000:00/0000:00:14.0/usb1/1-6/1-6:1.0/input/input17
-Oct 30 10:41:35 acoffin-xps-15 kernel: usb 1-6: Found UVC 1.50 device
-Integrated_Webcam_HD (0bda:5559)
-Oct 30 10:41:35 acoffin-xps-15 kernel: input: Integrated_Webcam_HD:
-Integrate as /devices/pci0000:00/0000:00:14.0/usb1/1-6/1-6:1.2/input/input18
-Oct 30 10:41:35 acoffin-xps-15 kernel: usbcore: registered new
-interface driver uvcvideo
-Oct 30 10:41:35 acoffin-xps-15 kernel: mei_hdcp
-0000:00:16.0-b638ab7e-94e2-4ea2-a552-d1c54b627f04: bound 0000:00:02.0
-(ops i915_hdcp_component_ops [i915])
-Oct 30 10:41:35 acoffin-xps-15 kernel: Bluetooth: Core ver 2.22
-Oct 30 10:41:35 acoffin-xps-15 kernel: NET: Registered PF_BLUETOOTH
-protocol family
-Oct 30 10:41:35 acoffin-xps-15 kernel: Bluetooth: HCI device and
-connection manager initialized
-Oct 30 10:41:35 acoffin-xps-15 kernel: Bluetooth: HCI socket layer initialized
-Oct 30 10:41:35 acoffin-xps-15 kernel: Bluetooth: L2CAP socket layer initialized
-Oct 30 10:41:35 acoffin-xps-15 kernel: Bluetooth: SCO socket layer initialized
-Oct 30 10:41:35 acoffin-xps-15 kernel: usbcore: registered new
-interface driver btusb
-Oct 30 10:41:35 acoffin-xps-15 kernel: Bluetooth: hci0: Device revision is 0
-Oct 30 10:41:35 acoffin-xps-15 kernel: Bluetooth: hci0: Secure boot is enabled
-Oct 30 10:41:35 acoffin-xps-15 kernel: Bluetooth: hci0: OTP lock is enabled
-Oct 30 10:41:35 acoffin-xps-15 kernel: Bluetooth: hci0: API lock is enabled
-Oct 30 10:41:35 acoffin-xps-15 kernel: Bluetooth: hci0: Debug lock is disabled
-Oct 30 10:41:35 acoffin-xps-15 kernel: Bluetooth: hci0: Minimum
-firmware build 1 week 10 2014
-Oct 30 10:41:35 acoffin-xps-15 kernel: Bluetooth: hci0: Bootloader
-timestamp 2019.40 buildtype 1 build 38
-Oct 30 10:41:35 acoffin-xps-15 kernel: bluetooth hci0: firmware:
-direct-loading firmware intel/ibt-0040-0041.sfi
-Oct 30 10:41:35 acoffin-xps-15 kernel: Bluetooth: hci0: Found device
-firmware: intel/ibt-0040-0041.sfi
-Oct 30 10:41:35 acoffin-xps-15 kernel: Bluetooth: hci0: Boot Address: 0x100800
-Oct 30 10:41:35 acoffin-xps-15 kernel: Bluetooth: hci0: Firmware
-Version: 107-51.22
-Oct 30 10:41:35 acoffin-xps-15 kernel: iwlwifi 0000:00:14.3: Detected
-Intel(R) Wi-Fi 6E AX211 160MHz, REV=0x370
-Oct 30 10:41:35 acoffin-xps-15 kernel: thermal thermal_zone13: failed
-to read out thermal zone (-61)
-Oct 30 10:41:35 acoffin-xps-15 kernel: sof-audio-pci-intel-tgl
-0000:00:1f.3: DSP detected with PCI class/subclass/prog-if info
-0x040100
-Oct 30 10:41:35 acoffin-xps-15 kernel: sof-audio-pci-intel-tgl
-0000:00:1f.3: Digital mics found on Skylake+ platform, using SOF
-driver
-Oct 30 10:41:35 acoffin-xps-15 kernel: sof-audio-pci-intel-tgl
-0000:00:1f.3: enabling device (0000 -> 0002)
-Oct 30 10:41:35 acoffin-xps-15 kernel: sof-audio-pci-intel-tgl
-0000:00:1f.3: DSP detected with PCI class/subclass/prog-if 0x040100
-Oct 30 10:41:35 acoffin-xps-15 kernel: sof-audio-pci-intel-tgl
-0000:00:1f.3: bound 0000:00:02.0 (ops i915_audio_component_bind_ops
-[i915])
-Oct 30 10:41:35 acoffin-xps-15 kernel: sof-audio-pci-intel-tgl
-0000:00:1f.3: use msi interrupt mode
-Oct 30 10:41:35 acoffin-xps-15 kernel: sof-audio-pci-intel-tgl
-0000:00:1f.3: hda codecs found, mask 5
-Oct 30 10:41:35 acoffin-xps-15 kernel: sof-audio-pci-intel-tgl
-0000:00:1f.3: using HDA machine driver skl_hda_dsp_generic now
-Oct 30 10:41:35 acoffin-xps-15 kernel: sof-audio-pci-intel-tgl
-0000:00:1f.3: DMICs detected in NHLT tables: 2
-Oct 30 10:41:35 acoffin-xps-15 kernel: sof-audio-pci-intel-tgl
-0000:00:1f.3: firmware: direct-loading firmware intel/sof/sof-rpl.ri
-Oct 30 10:41:35 acoffin-xps-15 kernel: sof-audio-pci-intel-tgl
-0000:00:1f.3: Firmware info: version 2:2:0-57864
-Oct 30 10:41:35 acoffin-xps-15 kernel: sof-audio-pci-intel-tgl
-0000:00:1f.3: Firmware: ABI 3:22:1 Kernel ABI 3:23:0
-Oct 30 10:41:35 acoffin-xps-15 kernel: sof-audio-pci-intel-tgl
-0000:00:1f.3: unknown sof_ext_man header type 3 size 0x30
-Oct 30 10:41:35 acoffin-xps-15 kernel: iwlwifi 0000:00:14.3: firmware:
-direct-loading firmware iwlwifi-so-a0-gf-a0.pnvm
-Oct 30 10:41:35 acoffin-xps-15 kernel: iwlwifi 0000:00:14.3: loaded
-PNVM version 64acdc51
-Oct 30 10:41:35 acoffin-xps-15 kernel: sof-audio-pci-intel-tgl
-0000:00:1f.3: Firmware info: version 2:2:0-57864
-Oct 30 10:41:35 acoffin-xps-15 kernel: sof-audio-pci-intel-tgl
-0000:00:1f.3: Firmware: ABI 3:22:1 Kernel ABI 3:23:0
-Oct 30 10:41:35 acoffin-xps-15 kernel: iwlwifi 0000:00:14.3: Detected
-RF GF, rfid=0x2010d000
-Oct 30 10:41:35 acoffin-xps-15 kernel: sof-audio-pci-intel-tgl
-0000:00:1f.3: firmware: direct-loading firmware
-intel/sof-tplg/sof-hda-generic-2ch.tplg
-Oct 30 10:41:35 acoffin-xps-15 kernel: sof-audio-pci-intel-tgl
-0000:00:1f.3: Topology: ABI 3:22:1 Kernel ABI 3:23:0
-Oct 30 10:41:35 acoffin-xps-15 kernel: skl_hda_dsp_generic
-skl_hda_dsp_generic: ASoC: Parent card not yet available, widget card
-binding deferred
-Oct 30 10:41:35 acoffin-xps-15 kernel: snd_hda_codec_realtek
-ehdaudio0D0: autoconfig for ALC289: line_outs=1 (0x14/0x0/0x0/0x0/0x0)
-type:speaker
-Oct 30 10:41:35 acoffin-xps-15 kernel: snd_hda_codec_realtek
-ehdaudio0D0:    speaker_outs=0 (0x0/0x0/0x0/0x0/0x0)
-Oct 30 10:41:35 acoffin-xps-15 kernel: snd_hda_codec_realtek
-ehdaudio0D0:    hp_outs=1 (0x21/0x0/0x0/0x0/0x0)
-Oct 30 10:41:35 acoffin-xps-15 kernel: snd_hda_codec_realtek
-ehdaudio0D0:    mono: mono_out=0x0
-Oct 30 10:41:35 acoffin-xps-15 kernel: snd_hda_codec_realtek
-ehdaudio0D0:    inputs:
-Oct 30 10:41:35 acoffin-xps-15 kernel: snd_hda_codec_realtek
-ehdaudio0D0:      Headset Mic=0x19
-Oct 30 10:41:35 acoffin-xps-15 kernel: snd_hda_codec_realtek
-ehdaudio0D0:      Headphone Mic=0x1b
-Oct 30 10:41:35 acoffin-xps-15 kernel: iwlwifi 0000:00:14.3: base HW
-address: a0:02:a5:7e:c4:2b
-Oct 30 10:41:35 acoffin-xps-15 kernel: EXT4-fs (nvme0n1p2): mounting
-ext2 file system using the ext4 subsystem
-Oct 30 10:41:35 acoffin-xps-15 kernel: EXT4-fs (nvme0n1p2): mounted
-filesystem without journal. Quota mode: none.
-Oct 30 10:41:35 acoffin-xps-15 kernel: audit: type=1400
-audit(1730310095.820:2): apparmor="STATUS" operation="profile_load"
-profile="unconfined" name="libreoffice-xpdfimport" pid=1004
-comm="apparmor_parser"
-Oct 30 10:41:35 acoffin-xps-15 kernel: audit: type=1400
-audit(1730310095.820:3): apparmor="STATUS" operation="profile_load"
-profile="unconfined" name="libreoffice-senddoc" pid=1002
-comm="apparmor_parser"
-Oct 30 10:41:35 acoffin-xps-15 kernel: audit: type=1400
-audit(1730310095.824:4): apparmor="STATUS" operation="profile_load"
-profile="unconfined" name="libreoffice-oosplash" pid=1001
-comm="apparmor_parser"
-Oct 30 10:41:35 acoffin-xps-15 kernel: audit: type=1400
-audit(1730310095.824:5): apparmor="STATUS" operation="profile_load"
-profile="unconfined" name="/usr/bin/man" pid=999
-comm="apparmor_parser"
-Oct 30 10:41:35 acoffin-xps-15 kernel: audit: type=1400
-audit(1730310095.824:6): apparmor="STATUS" operation="profile_load"
-profile="unconfined" name="man_filter" pid=999 comm="apparmor_parser"
-Oct 30 10:41:35 acoffin-xps-15 kernel: audit: type=1400
-audit(1730310095.824:7): apparmor="STATUS" operation="profile_load"
-profile="unconfined" name="man_groff" pid=999 comm="apparmor_parser"
-Oct 30 10:41:35 acoffin-xps-15 kernel: audit: type=1400
-audit(1730310095.824:8): apparmor="STATUS" operation="profile_load"
-profile="unconfined" name="nvidia_modprobe" pid=996
-comm="apparmor_parser"
-Oct 30 10:41:35 acoffin-xps-15 kernel: audit: type=1400
-audit(1730310095.824:9): apparmor="STATUS" operation="profile_load"
-profile="unconfined" name="nvidia_modprobe//kmod" pid=996
-comm="apparmor_parser"
-Oct 30 10:41:35 acoffin-xps-15 kernel: audit: type=1400
-audit(1730310095.824:10): apparmor="STATUS" operation="profile_load"
-profile="unconfined" name="/usr/sbin/chronyd" pid=1006
-comm="apparmor_parser"
-Oct 30 10:41:35 acoffin-xps-15 kernel: audit: type=1400
-audit(1730310095.824:11): apparmor="STATUS" operation="profile_load"
-profile="unconfined" name="libvirtd" pid=1009 comm="apparmor_parser"
-Oct 30 10:41:35 acoffin-xps-15 kernel: iwlwifi 0000:00:14.3 wlp0s20f3:
-renamed from wlan0
-Oct 30 10:41:35 acoffin-xps-15 kernel: Bluetooth: BNEP (Ethernet
-Emulation) ver 1.3
-Oct 30 10:41:35 acoffin-xps-15 kernel: Bluetooth: BNEP filters:
-protocol multicast
-Oct 30 10:41:35 acoffin-xps-15 kernel: Bluetooth: BNEP socket layer initialized
-Oct 30 10:41:36 acoffin-xps-15 kernel: IPMI message handler: version 39.2
-Oct 30 10:41:36 acoffin-xps-15 kernel: ipmi device interface
-Oct 30 10:41:36 acoffin-xps-15 kernel: ipmi_si: IPMI System Interface driver
-Oct 30 10:41:36 acoffin-xps-15 kernel: ipmi_si: Unable to find any
-System Interface(s)
-Oct 30 10:41:36 acoffin-xps-15 kernel: NET: Registered PF_QIPCRTR
-protocol family
-Oct 30 10:41:36 acoffin-xps-15 kernel: skl_hda_dsp_generic
-skl_hda_dsp_generic: hda_dsp_hdmi_build_controls: no PCM in topology
-for HDMI converter 3
-Oct 30 10:41:36 acoffin-xps-15 kernel: input: sof-hda-dsp Headphone
-Mic as /devices/pci0000:00/0000:00:1f.3/skl_hda_dsp_generic/sound/card0/input19
-Oct 30 10:41:36 acoffin-xps-15 kernel: input: sof-hda-dsp
-HDMI/DP,pcm=3 as
-/devices/pci0000:00/0000:00:1f.3/skl_hda_dsp_generic/sound/card0/input20
-Oct 30 10:41:36 acoffin-xps-15 kernel: input: sof-hda-dsp
-HDMI/DP,pcm=4 as
-/devices/pci0000:00/0000:00:1f.3/skl_hda_dsp_generic/sound/card0/input21
-Oct 30 10:41:36 acoffin-xps-15 kernel: input: sof-hda-dsp
-HDMI/DP,pcm=5 as
-/devices/pci0000:00/0000:00:1f.3/skl_hda_dsp_generic/sound/card0/input22
-Oct 30 10:41:36 acoffin-xps-15 kernel: bridge: filtering via
-arp/ip/ip6tables is no longer available by default. Update your
-scripts to load br_netfilter if you need this.
-Oct 30 10:41:37 acoffin-xps-15 kernel: tun: Universal TUN/TAP device driver, 1.6
-Oct 30 10:41:37 acoffin-xps-15 kernel: Bluetooth: hci0: Waiting for
-firmware download to complete
-Oct 30 10:41:37 acoffin-xps-15 kernel: Bluetooth: hci0: Firmware
-loaded in 1578843 usecs
-Oct 30 10:41:37 acoffin-xps-15 kernel: Bluetooth: hci0: Waiting for
-device to boot
-Oct 30 10:41:37 acoffin-xps-15 kernel: Bluetooth: hci0: Device booted
-in 16625 usecs
-Oct 30 10:41:37 acoffin-xps-15 kernel: bluetooth hci0: firmware:
-direct-loading firmware intel/ibt-0040-0041.ddc
-Oct 30 10:41:37 acoffin-xps-15 kernel: Bluetooth: hci0: Found Intel
-DDC parameters: intel/ibt-0040-0041.ddc
-Oct 30 10:41:37 acoffin-xps-15 kernel: Bluetooth: hci0: Applying Intel
-DDC parameters completed
-Oct 30 10:41:37 acoffin-xps-15 kernel: Bluetooth: hci0: Firmware
-timestamp 2022.51 buildtype 1 build 56683
-Oct 30 10:41:37 acoffin-xps-15 kernel: Bluetooth: MGMT ver 1.22
-Oct 30 10:41:37 acoffin-xps-15 kernel: NET: Registered PF_ALG protocol family
-Oct 30 10:41:38 acoffin-xps-15 kernel: Bluetooth: RFCOMM TTY layer initialized
-Oct 30 10:41:38 acoffin-xps-15 kernel: Bluetooth: RFCOMM socket layer
-initialized
-Oct 30 10:41:38 acoffin-xps-15 kernel: Bluetooth: RFCOMM ver 1.11
-Oct 30 10:41:39 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-94:a6:7e:e6:77:75
-Oct 30 10:41:39 acoffin-xps-15 kernel: wlp0s20f3: 80 MHz not
-supported, disabling VHT
-Oct 30 10:41:39 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-94:a6:7e:e6:77:75 (try 1/3)
-Oct 30 10:41:39 acoffin-xps-15 kernel: wlp0s20f3: authenticated
-Oct 30 10:41:39 acoffin-xps-15 kernel: wlp0s20f3: associate with
-94:a6:7e:e6:77:75 (try 1/3)
-Oct 30 10:41:39 acoffin-xps-15 kernel: wlp0s20f3: RX AssocResp from
-94:a6:7e:e6:77:75 (capab=0x431 status=0 aid=1)
-Oct 30 10:41:39 acoffin-xps-15 kernel: wlp0s20f3: associated
-Oct 30 10:41:39 acoffin-xps-15 kernel: IPv6: ADDRCONF(NETDEV_CHANGE):
-wlp0s20f3: link becomes ready
-Oct 30 10:41:40 acoffin-xps-15 kernel: Initializing XFRM netlink socket
-Oct 30 11:07:43 acoffin-xps-15 kernel: iwlwifi 0000:00:14.3: reached
-20 old SN frames from 94:a6:7e:e6:77:75 on queue 3, stopping BA
-session on TID 0
-Oct 30 11:26:37 acoffin-xps-15 kernel: iwlwifi 0000:00:14.3: reached
-20 old SN frames from 94:a6:7e:e6:77:75 on queue 3, stopping BA
-session on TID 0
-Oct 30 11:32:41 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-94:a6:7e:e6:77:75
-Oct 30 11:32:41 acoffin-xps-15 kernel: wlp0s20f3: 80 MHz not
-supported, disabling VHT
-Oct 30 11:32:41 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-94:a6:7e:e6:77:75 (try 1/3)
-Oct 30 11:32:41 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-94:a6:7e:e6:77:75 (try 2/3)
-Oct 30 11:32:41 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-94:a6:7e:e6:77:75 (try 3/3)
-Oct 30 11:32:41 acoffin-xps-15 kernel: wlp0s20f3: authentication with
-94:a6:7e:e6:77:75 timed out
-Oct 30 11:34:26 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-94:a6:7e:e6:77:75
-Oct 30 11:34:26 acoffin-xps-15 kernel: wlp0s20f3: 80 MHz not
-supported, disabling VHT
-Oct 30 11:34:26 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-94:a6:7e:e6:77:75 (try 1/3)
-Oct 30 11:34:26 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-94:a6:7e:e6:77:75 (try 2/3)
-Oct 30 11:34:26 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-94:a6:7e:e6:77:75 (try 3/3)
-Oct 30 11:34:26 acoffin-xps-15 kernel: wlp0s20f3: authentication with
-94:a6:7e:e6:77:75 timed out
-Oct 30 11:34:36 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-94:a6:7e:e6:77:75
-Oct 30 11:34:36 acoffin-xps-15 kernel: wlp0s20f3: 80 MHz not
-supported, disabling VHT
-Oct 30 11:34:36 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-94:a6:7e:e6:77:75 (try 1/3)
-Oct 30 11:34:36 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-94:a6:7e:e6:77:75 (try 2/3)
-Oct 30 11:34:37 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-94:a6:7e:e6:77:75 (try 3/3)
-Oct 30 11:34:37 acoffin-xps-15 kernel: wlp0s20f3: authentication with
-94:a6:7e:e6:77:75 timed out
-Oct 30 11:34:49 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-94:a6:7e:e6:77:75
-Oct 30 11:34:49 acoffin-xps-15 kernel: wlp0s20f3: 80 MHz not
-supported, disabling VHT
-Oct 30 11:34:49 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-94:a6:7e:e6:77:75 (try 1/3)
-Oct 30 11:34:49 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-94:a6:7e:e6:77:75 (try 2/3)
-Oct 30 11:34:49 acoffin-xps-15 kernel: wlp0s20f3: authenticated
-Oct 30 11:34:49 acoffin-xps-15 kernel: wlp0s20f3: associate with
-94:a6:7e:e6:77:75 (try 1/3)
-Oct 30 11:34:49 acoffin-xps-15 kernel: wlp0s20f3: RX AssocResp from
-94:a6:7e:e6:77:75 (capab=0x431 status=0 aid=1)
-Oct 30 11:34:49 acoffin-xps-15 kernel: wlp0s20f3: associated
-Oct 30 11:34:50 acoffin-xps-15 kernel: IPv6: ADDRCONF(NETDEV_CHANGE):
-wlp0s20f3: link becomes ready
-Oct 30 11:34:51 acoffin-xps-15 kernel: wlp0s20f3: Connection to AP
-94:a6:7e:e6:77:75 lost
-Oct 30 11:35:00 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-94:a6:7e:e6:77:75
-Oct 30 11:35:00 acoffin-xps-15 kernel: wlp0s20f3: 80 MHz not
-supported, disabling VHT
-Oct 30 11:35:00 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-94:a6:7e:e6:77:75 (try 1/3)
-Oct 30 11:35:01 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-94:a6:7e:e6:77:75 (try 2/3)
-Oct 30 11:35:01 acoffin-xps-15 kernel: wlp0s20f3: authenticated
-Oct 30 11:35:01 acoffin-xps-15 kernel: wlp0s20f3: associate with
-94:a6:7e:e6:77:75 (try 1/3)
-Oct 30 11:35:01 acoffin-xps-15 kernel: wlp0s20f3: RX AssocResp from
-94:a6:7e:e6:77:75 (capab=0x431 status=0 aid=1)
-Oct 30 11:35:01 acoffin-xps-15 kernel: wlp0s20f3: associated
-Oct 30 11:35:04 acoffin-xps-15 kernel: wlp0s20f3: deauthenticated from
-94:a6:7e:e6:77:75 (Reason: 15=4WAY_HANDSHAKE_TIMEOUT)
-Oct 30 11:35:06 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-94:a6:7e:e6:77:75
-Oct 30 11:35:06 acoffin-xps-15 kernel: wlp0s20f3: 80 MHz not
-supported, disabling VHT
-Oct 30 11:35:06 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-94:a6:7e:e6:77:75 (try 1/3)
-Oct 30 11:35:06 acoffin-xps-15 kernel: wlp0s20f3: authenticated
-Oct 30 11:35:06 acoffin-xps-15 kernel: wlp0s20f3: associate with
-94:a6:7e:e6:77:75 (try 1/3)
-Oct 30 11:35:06 acoffin-xps-15 kernel: wlp0s20f3: associate with
-94:a6:7e:e6:77:75 (try 2/3)
-Oct 30 11:35:06 acoffin-xps-15 kernel: wlp0s20f3: associate with
-94:a6:7e:e6:77:75 (try 3/3)
-Oct 30 11:35:06 acoffin-xps-15 kernel: wlp0s20f3: association with
-94:a6:7e:e6:77:75 timed out
-Oct 30 11:35:08 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-94:a6:7e:e6:77:75
-Oct 30 11:35:08 acoffin-xps-15 kernel: wlp0s20f3: 80 MHz not
-supported, disabling VHT
-Oct 30 11:35:08 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-94:a6:7e:e6:77:75 (try 1/3)
-Oct 30 11:35:08 acoffin-xps-15 kernel: wlp0s20f3: authenticated
-Oct 30 11:35:08 acoffin-xps-15 kernel: wlp0s20f3: associate with
-94:a6:7e:e6:77:75 (try 1/3)
-Oct 30 11:35:08 acoffin-xps-15 kernel: wlp0s20f3: RX AssocResp from
-94:a6:7e:e6:77:75 (capab=0x431 status=0 aid=1)
-Oct 30 11:35:08 acoffin-xps-15 kernel: wlp0s20f3: associated
-Oct 30 11:35:24 acoffin-xps-15 kernel: wlp0s20f3: Connection to AP
-94:a6:7e:e6:77:75 lost
-Oct 30 11:37:51 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-24:2d:6c:95:ed:8a
-Oct 30 11:37:51 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:8a (try 1/3)
-Oct 30 11:37:51 acoffin-xps-15 kernel: wlp0s20f3: authenticated
-Oct 30 11:37:51 acoffin-xps-15 kernel: wlp0s20f3: associate with
-24:2d:6c:95:ed:8a (try 1/3)
-Oct 30 11:37:51 acoffin-xps-15 kernel: wlp0s20f3: RX AssocResp from
-24:2d:6c:95:ed:8a (capab=0x1111 status=0 aid=5)
-Oct 30 11:37:51 acoffin-xps-15 kernel: wlp0s20f3: associated
-Oct 30 11:37:51 acoffin-xps-15 kernel: wlp0s20f3: Limiting TX power to
-27 (30 - 3) dBm as advertised by 24:2d:6c:95:ed:8a
-Oct 30 11:37:51 acoffin-xps-15 kernel: IPv6: ADDRCONF(NETDEV_CHANGE):
-wlp0s20f3: link becomes ready
-Oct 30 11:38:24 acoffin-xps-15 kernel: wlp0s20f3: disconnect from AP
-24:2d:6c:95:ed:8a for new auth to 24:2d:6c:95:ed:88
-Oct 30 11:38:24 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-24:2d:6c:95:ed:88
-Oct 30 11:38:24 acoffin-xps-15 kernel: wlp0s20f3: 80 MHz not
-supported, disabling VHT
-Oct 30 11:38:24 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:88 (try 1/3)
-Oct 30 11:38:24 acoffin-xps-15 kernel: wlp0s20f3: authenticated
-Oct 30 11:38:24 acoffin-xps-15 kernel: wlp0s20f3: associate with
-24:2d:6c:95:ed:88 (try 1/3)
-Oct 30 11:38:24 acoffin-xps-15 kernel: wlp0s20f3: RX ReassocResp from
-24:2d:6c:95:ed:88 (capab=0x1431 status=0 aid=5)
-Oct 30 11:38:24 acoffin-xps-15 kernel: wlp0s20f3: associated
-Oct 30 11:38:24 acoffin-xps-15 kernel: wlp0s20f3: Limiting TX power to
-30 (30 - 0) dBm as advertised by 24:2d:6c:95:ed:88
-Oct 30 11:38:33 acoffin-xps-15 kernel: wlp0s20f3: disconnect from AP
-24:2d:6c:95:ed:88 for new auth to 24:2d:6c:95:ed:8a
-Oct 30 11:38:33 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-24:2d:6c:95:ed:8a
-Oct 30 11:38:33 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:8a (try 1/3)
-Oct 30 11:38:33 acoffin-xps-15 kernel: wlp0s20f3: authenticated
-Oct 30 11:38:33 acoffin-xps-15 kernel: wlp0s20f3: associate with
-24:2d:6c:95:ed:8a (try 1/3)
-Oct 30 11:38:33 acoffin-xps-15 kernel: wlp0s20f3: RX ReassocResp from
-24:2d:6c:95:ed:8a (capab=0x1111 status=0 aid=5)
-Oct 30 11:38:33 acoffin-xps-15 kernel: wlp0s20f3: associated
-Oct 30 11:38:33 acoffin-xps-15 kernel: wlp0s20f3: Limiting TX power to
-27 (30 - 3) dBm as advertised by 24:2d:6c:95:ed:8a
-Oct 30 11:39:06 acoffin-xps-15 kernel: wlp0s20f3: disconnect from AP
-24:2d:6c:95:ed:8a for new auth to 24:2d:6c:95:ed:88
-Oct 30 11:39:06 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-24:2d:6c:95:ed:88
-Oct 30 11:39:06 acoffin-xps-15 kernel: wlp0s20f3: 80 MHz not
-supported, disabling VHT
-Oct 30 11:39:06 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:88 (try 1/3)
-Oct 30 11:39:06 acoffin-xps-15 kernel: wlp0s20f3: authenticated
-Oct 30 11:39:06 acoffin-xps-15 kernel: wlp0s20f3: associate with
-24:2d:6c:95:ed:88 (try 1/3)
-Oct 30 11:39:06 acoffin-xps-15 kernel: wlp0s20f3: RX ReassocResp from
-24:2d:6c:95:ed:88 (capab=0x1431 status=0 aid=5)
-Oct 30 11:39:06 acoffin-xps-15 kernel: wlp0s20f3: associated
-Oct 30 11:39:06 acoffin-xps-15 kernel: wlp0s20f3: disassociated from
-24:2d:6c:95:ed:88 (Reason: 34=DISASSOC_LOW_ACK)
-Oct 30 11:39:07 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-24:2d:6c:95:ed:8a
-Oct 30 11:39:07 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:8a (try 1/3)
-Oct 30 11:39:07 acoffin-xps-15 kernel: wlp0s20f3: authenticated
-Oct 30 11:39:07 acoffin-xps-15 kernel: wlp0s20f3: associate with
-24:2d:6c:95:ed:8a (try 1/3)
-Oct 30 11:39:07 acoffin-xps-15 kernel: wlp0s20f3: RX AssocResp from
-24:2d:6c:95:ed:8a (capab=0x1111 status=0 aid=5)
-Oct 30 11:39:07 acoffin-xps-15 kernel: wlp0s20f3: associated
-Oct 30 11:39:07 acoffin-xps-15 kernel: wlp0s20f3: Limiting TX power to
-27 (30 - 3) dBm as advertised by 24:2d:6c:95:ed:8a
-Oct 30 11:39:41 acoffin-xps-15 kernel: wlp0s20f3: disconnect from AP
-24:2d:6c:95:ed:8a for new auth to e8:d3:eb:29:a0:86
-Oct 30 11:39:41 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-e8:d3:eb:29:a0:86
-Oct 30 11:39:41 acoffin-xps-15 kernel: wlp0s20f3: 80 MHz not
-supported, disabling VHT
-Oct 30 11:39:41 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-e8:d3:eb:29:a0:86 (try 1/3)
-Oct 30 11:39:41 acoffin-xps-15 kernel: wlp0s20f3: authenticated
-Oct 30 11:39:41 acoffin-xps-15 kernel: wlp0s20f3: associate with
-e8:d3:eb:29:a0:86 (try 1/3)
-Oct 30 11:39:41 acoffin-xps-15 kernel: wlp0s20f3: RX ReassocResp from
-e8:d3:eb:29:a0:86 (capab=0x1431 status=0 aid=2)
-Oct 30 11:39:41 acoffin-xps-15 kernel: wlp0s20f3: associated
-Oct 30 11:39:41 acoffin-xps-15 kernel: wlp0s20f3: Limiting TX power to
-30 (30 - 0) dBm as advertised by e8:d3:eb:29:a0:86
-Oct 30 11:40:21 acoffin-xps-15 kernel: wlp0s20f3: disconnect from AP
-e8:d3:eb:29:a0:86 for new auth to 24:2d:6c:95:ed:88
-Oct 30 11:40:21 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-24:2d:6c:95:ed:88
-Oct 30 11:40:21 acoffin-xps-15 kernel: wlp0s20f3: 80 MHz not
-supported, disabling VHT
-Oct 30 11:40:21 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:88 (try 1/3)
-Oct 30 11:40:21 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:88 (try 2/3)
-Oct 30 11:40:21 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:88 (try 3/3)
-Oct 30 11:40:21 acoffin-xps-15 kernel: wlp0s20f3: authentication with
-24:2d:6c:95:ed:88 timed out
-Oct 30 11:40:24 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-24:2d:6c:95:ed:8a
-Oct 30 11:40:24 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:8a (try 1/3)
-Oct 30 11:40:24 acoffin-xps-15 kernel: wlp0s20f3: authenticated
-Oct 30 11:40:24 acoffin-xps-15 kernel: wlp0s20f3: associate with
-24:2d:6c:95:ed:8a (try 1/3)
-Oct 30 11:40:24 acoffin-xps-15 kernel: wlp0s20f3: RX AssocResp from
-24:2d:6c:95:ed:8a (capab=0x1111 status=0 aid=5)
-Oct 30 11:40:24 acoffin-xps-15 kernel: wlp0s20f3: associated
-Oct 30 11:40:24 acoffin-xps-15 kernel: wlp0s20f3: Limiting TX power to
-27 (30 - 3) dBm as advertised by 24:2d:6c:95:ed:8a
-Oct 30 11:41:32 acoffin-xps-15 kernel: wlp0s20f3: disconnect from AP
-24:2d:6c:95:ed:8a for new auth to 24:2d:6c:95:ed:88
-Oct 30 11:41:32 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-24:2d:6c:95:ed:88
-Oct 30 11:41:32 acoffin-xps-15 kernel: wlp0s20f3: 80 MHz not
-supported, disabling VHT
-Oct 30 11:41:32 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:88 (try 1/3)
-Oct 30 11:41:32 acoffin-xps-15 kernel: wlp0s20f3: authenticated
-Oct 30 11:41:32 acoffin-xps-15 kernel: wlp0s20f3: associate with
-24:2d:6c:95:ed:88 (try 1/3)
-Oct 30 11:41:32 acoffin-xps-15 kernel: wlp0s20f3: RX ReassocResp from
-24:2d:6c:95:ed:88 (capab=0x1431 status=0 aid=5)
-Oct 30 11:41:32 acoffin-xps-15 kernel: wlp0s20f3: associated
-Oct 30 11:41:32 acoffin-xps-15 kernel: wlp0s20f3: Limiting TX power to
-30 (30 - 0) dBm as advertised by 24:2d:6c:95:ed:88
-Oct 30 11:43:14 acoffin-xps-15 kernel: wlp0s20f3: disconnect from AP
-24:2d:6c:95:ed:88 for new auth to 24:2d:6c:95:ed:8a
-Oct 30 11:43:14 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-24:2d:6c:95:ed:8a
-Oct 30 11:43:14 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:8a (try 1/3)
-Oct 30 11:43:14 acoffin-xps-15 kernel: wlp0s20f3: authenticated
-Oct 30 11:43:14 acoffin-xps-15 kernel: wlp0s20f3: associate with
-24:2d:6c:95:ed:8a (try 1/3)
-Oct 30 11:43:14 acoffin-xps-15 kernel: wlp0s20f3: RX ReassocResp from
-24:2d:6c:95:ed:8a (capab=0x1111 status=0 aid=5)
-Oct 30 11:43:14 acoffin-xps-15 kernel: wlp0s20f3: associated
-Oct 30 11:43:14 acoffin-xps-15 kernel: wlp0s20f3: Limiting TX power to
-27 (30 - 3) dBm as advertised by 24:2d:6c:95:ed:8a
-Oct 30 11:43:23 acoffin-xps-15 kernel: show_signal_msg: 24 callbacks suppressed
-Oct 30 11:43:23 acoffin-xps-15 kernel: fuzz[20137]: segfault at 4 ip
-00007fe675d8312d sp 00007ffc90266d70 error 4 in
-libz3.so[7fe674698000+1730000] likely on CPU 3 (core 4, socket 0)
-Oct 30 11:43:23 acoffin-xps-15 kernel: Code: e9 3f ff ff ff 0f 1f 84
-00 00 00 00 00 f3 0f 1e fa 48 83 ec 08 48 8b 05 a9 d4 40 00 80 78 08
-00 74 43 48 8b 38 be 01 00 00 00 <48> 8b 07 ff 50 10 48 8b 05 8e d4 40
-00 80 78 09 00 75 08 48 83 c4
-Oct 30 11:43:33 acoffin-xps-15 kernel: wlp0s20f3: disconnect from AP
-24:2d:6c:95:ed:8a for new auth to 24:2d:6c:95:ed:88
-Oct 30 11:43:33 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-24:2d:6c:95:ed:88
-Oct 30 11:43:33 acoffin-xps-15 kernel: wlp0s20f3: 80 MHz not
-supported, disabling VHT
-Oct 30 11:43:33 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:88 (try 1/3)
-Oct 30 11:43:33 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:88 (try 2/3)
-Oct 30 11:43:33 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:88 (try 3/3)
-Oct 30 11:43:33 acoffin-xps-15 kernel: wlp0s20f3: authentication with
-24:2d:6c:95:ed:88 timed out
-Oct 30 11:43:34 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-24:2d:6c:95:ed:8a
-Oct 30 11:43:34 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:8a (try 1/3)
-Oct 30 11:43:34 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:8a (try 2/3)
-Oct 30 11:43:34 acoffin-xps-15 kernel: wlp0s20f3: authenticated
-Oct 30 11:43:34 acoffin-xps-15 kernel: wlp0s20f3: associate with
-24:2d:6c:95:ed:8a (try 1/3)
-Oct 30 11:43:34 acoffin-xps-15 kernel: wlp0s20f3: RX AssocResp from
-24:2d:6c:95:ed:8a (capab=0x1111 status=0 aid=5)
-Oct 30 11:43:34 acoffin-xps-15 kernel: wlp0s20f3: associated
-Oct 30 11:43:34 acoffin-xps-15 kernel: wlp0s20f3: Limiting TX power to
-27 (30 - 3) dBm as advertised by 24:2d:6c:95:ed:8a
-Oct 30 11:44:08 acoffin-xps-15 kernel: wlp0s20f3: disconnect from AP
-24:2d:6c:95:ed:8a for new auth to 24:2d:6c:95:ed:88
-Oct 30 11:44:08 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-24:2d:6c:95:ed:88
-Oct 30 11:44:08 acoffin-xps-15 kernel: wlp0s20f3: 80 MHz not
-supported, disabling VHT
-Oct 30 11:44:08 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:88 (try 1/3)
-Oct 30 11:44:08 acoffin-xps-15 kernel: wlp0s20f3: authenticated
-Oct 30 11:44:08 acoffin-xps-15 kernel: wlp0s20f3: associate with
-24:2d:6c:95:ed:88 (try 1/3)
-Oct 30 11:44:08 acoffin-xps-15 kernel: wlp0s20f3: RX ReassocResp from
-24:2d:6c:95:ed:88 (capab=0x1431 status=0 aid=5)
-Oct 30 11:44:08 acoffin-xps-15 kernel: wlp0s20f3: associated
-Oct 30 11:44:08 acoffin-xps-15 kernel: wlp0s20f3: Limiting TX power to
-30 (30 - 0) dBm as advertised by 24:2d:6c:95:ed:88
-Oct 30 11:46:56 acoffin-xps-15 kernel: wlp0s20f3: disconnect from AP
-24:2d:6c:95:ed:88 for new auth to 24:2d:6c:95:ed:8a
-Oct 30 11:46:56 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-24:2d:6c:95:ed:8a
-Oct 30 11:46:57 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:8a (try 1/3)
-Oct 30 11:46:57 acoffin-xps-15 kernel: wlp0s20f3: authenticated
-Oct 30 11:46:57 acoffin-xps-15 kernel: wlp0s20f3: associate with
-24:2d:6c:95:ed:8a (try 1/3)
-Oct 30 11:46:57 acoffin-xps-15 kernel: wlp0s20f3: RX ReassocResp from
-24:2d:6c:95:ed:8a (capab=0x1111 status=0 aid=8)
-Oct 30 11:46:57 acoffin-xps-15 kernel: wlp0s20f3: associated
-Oct 30 11:46:57 acoffin-xps-15 kernel: wlp0s20f3: Limiting TX power to
-27 (30 - 3) dBm as advertised by 24:2d:6c:95:ed:8a
-Oct 30 11:47:30 acoffin-xps-15 kernel: wlp0s20f3: disconnect from AP
-24:2d:6c:95:ed:8a for new auth to 24:2d:6c:95:ed:88
-Oct 30 11:47:30 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-24:2d:6c:95:ed:88
-Oct 30 11:47:30 acoffin-xps-15 kernel: wlp0s20f3: 80 MHz not
-supported, disabling VHT
-Oct 30 11:47:30 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:88 (try 1/3)
-Oct 30 11:47:30 acoffin-xps-15 kernel: wlp0s20f3: authenticated
-Oct 30 11:47:30 acoffin-xps-15 kernel: wlp0s20f3: associate with
-24:2d:6c:95:ed:88 (try 1/3)
-Oct 30 11:47:30 acoffin-xps-15 kernel: wlp0s20f3: RX ReassocResp from
-24:2d:6c:95:ed:88 (capab=0x1431 status=0 aid=5)
-Oct 30 11:47:30 acoffin-xps-15 kernel: wlp0s20f3: associated
-Oct 30 11:47:30 acoffin-xps-15 kernel: wlp0s20f3: Limiting TX power to
-30 (30 - 0) dBm as advertised by 24:2d:6c:95:ed:88
-Oct 30 11:51:15 acoffin-xps-15 kernel: wlp0s20f3: AP 24:2d:6c:95:ed:88
-changed bandwidth, new config is 2437.000 MHz, width 1 (2437.000/0
-MHz)
-Oct 30 11:52:14 acoffin-xps-15 kernel: wlp0s20f3: disconnect from AP
-24:2d:6c:95:ed:88 for new auth to 24:2d:6c:95:ed:8a
-Oct 30 11:52:14 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-24:2d:6c:95:ed:8a
-Oct 30 11:52:14 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:8a (try 1/3)
-Oct 30 11:52:14 acoffin-xps-15 kernel: wlp0s20f3: authenticated
-Oct 30 11:52:14 acoffin-xps-15 kernel: wlp0s20f3: associate with
-24:2d:6c:95:ed:8a (try 1/3)
-Oct 30 11:52:14 acoffin-xps-15 kernel: wlp0s20f3: RX ReassocResp from
-24:2d:6c:95:ed:8a (capab=0x1111 status=0 aid=15)
-Oct 30 11:52:14 acoffin-xps-15 kernel: wlp0s20f3: associated
-Oct 30 11:52:14 acoffin-xps-15 kernel: wlp0s20f3: Limiting TX power to
-27 (30 - 3) dBm as advertised by 24:2d:6c:95:ed:8a
-Oct 30 11:54:29 acoffin-xps-15 kernel: wlp0s20f3: disconnect from AP
-24:2d:6c:95:ed:8a for new auth to 24:2d:6c:95:ed:88
-Oct 30 11:54:29 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-24:2d:6c:95:ed:88
-Oct 30 11:54:29 acoffin-xps-15 kernel: wlp0s20f3: 80 MHz not
-supported, disabling VHT
-Oct 30 11:54:29 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:88 (try 1/3)
-Oct 30 11:54:29 acoffin-xps-15 kernel: wlp0s20f3: authenticated
-Oct 30 11:54:29 acoffin-xps-15 kernel: wlp0s20f3: associate with
-24:2d:6c:95:ed:88 (try 1/3)
-Oct 30 11:54:29 acoffin-xps-15 kernel: wlp0s20f3: RX ReassocResp from
-24:2d:6c:95:ed:88 (capab=0x1431 status=0 aid=2)
-Oct 30 11:54:29 acoffin-xps-15 kernel: wlp0s20f3: associated
-Oct 30 11:54:29 acoffin-xps-15 kernel: wlp0s20f3: Limiting TX power to
-30 (30 - 0) dBm as advertised by 24:2d:6c:95:ed:88
-Oct 30 11:57:51 acoffin-xps-15 kernel: wlp0s20f3: AP 24:2d:6c:95:ed:88
-changed bandwidth, new config is 2437.000 MHz, width 2 (2427.000/0
-MHz)
-Oct 30 11:58:53 acoffin-xps-15 kernel: wlp0s20f3: disconnect from AP
-24:2d:6c:95:ed:88 for new auth to e8:d3:eb:29:a0:86
-Oct 30 11:58:53 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-e8:d3:eb:29:a0:86
-Oct 30 11:58:53 acoffin-xps-15 kernel: wlp0s20f3: 80 MHz not
-supported, disabling VHT
-Oct 30 11:58:53 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-e8:d3:eb:29:a0:86 (try 1/3)
-Oct 30 11:58:54 acoffin-xps-15 kernel: wlp0s20f3: authenticated
-Oct 30 11:58:54 acoffin-xps-15 kernel: wlp0s20f3: associate with
-e8:d3:eb:29:a0:86 (try 1/3)
-Oct 30 11:58:54 acoffin-xps-15 kernel: wlp0s20f3: RX ReassocResp from
-e8:d3:eb:29:a0:86 (capab=0x1431 status=0 aid=2)
-Oct 30 11:58:54 acoffin-xps-15 kernel: wlp0s20f3: associated
-Oct 30 11:58:54 acoffin-xps-15 kernel: wlp0s20f3: Limiting TX power to
-30 (30 - 0) dBm as advertised by e8:d3:eb:29:a0:86
-Oct 30 11:59:19 acoffin-xps-15 kernel: wlp0s20f3: disconnect from AP
-e8:d3:eb:29:a0:86 for new auth to 24:2d:6c:95:ed:88
-Oct 30 11:59:19 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-24:2d:6c:95:ed:88
-Oct 30 11:59:19 acoffin-xps-15 kernel: wlp0s20f3: 80 MHz not
-supported, disabling VHT
-Oct 30 11:59:19 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:88 (try 1/3)
-Oct 30 11:59:19 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:88 (try 2/3)
-Oct 30 11:59:19 acoffin-xps-15 kernel: wlp0s20f3: authenticated
-Oct 30 11:59:19 acoffin-xps-15 kernel: wlp0s20f3: associate with
-24:2d:6c:95:ed:88 (try 1/3)
-Oct 30 11:59:19 acoffin-xps-15 kernel: wlp0s20f3: RX ReassocResp from
-24:2d:6c:95:ed:88 (capab=0x1431 status=0 aid=2)
-Oct 30 11:59:19 acoffin-xps-15 kernel: wlp0s20f3: associated
-Oct 30 11:59:19 acoffin-xps-15 kernel: wlp0s20f3: Limiting TX power to
-30 (30 - 0) dBm as advertised by 24:2d:6c:95:ed:88
-Oct 30 12:00:53 acoffin-xps-15 kernel: wlp0s20f3: disconnect from AP
-24:2d:6c:95:ed:88 for new auth to 24:2d:6c:95:ed:8a
-Oct 30 12:00:53 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-24:2d:6c:95:ed:8a
-Oct 30 12:00:53 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:8a (try 1/3)
-Oct 30 12:00:54 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:8a (try 2/3)
-Oct 30 12:00:54 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:8a (try 3/3)
-Oct 30 12:00:54 acoffin-xps-15 kernel: wlp0s20f3: authenticated
-Oct 30 12:00:54 acoffin-xps-15 kernel: wlp0s20f3: associate with
-24:2d:6c:95:ed:8a (try 1/3)
-Oct 30 12:00:54 acoffin-xps-15 kernel: wlp0s20f3: associate with
-24:2d:6c:95:ed:8a (try 2/3)
-Oct 30 12:00:54 acoffin-xps-15 kernel: wlp0s20f3: RX ReassocResp from
-24:2d:6c:95:ed:8a (capab=0x1111 status=0 aid=15)
-Oct 30 12:00:54 acoffin-xps-15 kernel: wlp0s20f3: associated
-Oct 30 12:00:54 acoffin-xps-15 kernel: wlp0s20f3: Limiting TX power to
-27 (30 - 3) dBm as advertised by 24:2d:6c:95:ed:8a
-Oct 30 12:01:28 acoffin-xps-15 kernel: wlp0s20f3: disconnect from AP
-24:2d:6c:95:ed:8a for new auth to 24:2d:6c:95:ed:88
-Oct 30 12:01:28 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-24:2d:6c:95:ed:88
-Oct 30 12:01:28 acoffin-xps-15 kernel: wlp0s20f3: 80 MHz not
-supported, disabling VHT
-Oct 30 12:01:28 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:88 (try 1/3)
-Oct 30 12:01:28 acoffin-xps-15 kernel: wlp0s20f3: authenticated
-Oct 30 12:01:28 acoffin-xps-15 kernel: wlp0s20f3: associate with
-24:2d:6c:95:ed:88 (try 1/3)
-Oct 30 12:01:28 acoffin-xps-15 kernel: wlp0s20f3: RX ReassocResp from
-24:2d:6c:95:ed:88 (capab=0x1431 status=0 aid=2)
-Oct 30 12:01:28 acoffin-xps-15 kernel: wlp0s20f3: associated
-Oct 30 12:01:28 acoffin-xps-15 kernel: wlp0s20f3: AP 24:2d:6c:95:ed:88
-changed bandwidth, new config is 2437.000 MHz, width 1 (2437.000/0
-MHz)
-Oct 30 12:01:28 acoffin-xps-15 kernel: wlp0s20f3: Limiting TX power to
-30 (30 - 0) dBm as advertised by 24:2d:6c:95:ed:88
-Oct 30 12:03:39 acoffin-xps-15 kernel: wlp0s20f3: AP 24:2d:6c:95:ed:88
-changed bandwidth, new config is 2437.000 MHz, width 2 (2427.000/0
-MHz)
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-======================================================
-Oct 30 12:06:41 acoffin-xps-15 kernel: WARNING: possible circular
-locking dependency detected
-Oct 30 12:06:41 acoffin-xps-15 kernel: 6.1.112 #2 Not tainted
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-------------------------------------------------------
-Oct 30 12:06:41 acoffin-xps-15 kernel: Xorg/1263 is trying to acquire lock:
-Oct 30 12:06:41 acoffin-xps-15 kernel: ffffffff871e3380
-(fs_reclaim){+.+.}-{0:0}, at: __kmem_cache_alloc_node+0x4a/0x290
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-                                       but task is already holding lock:
-Oct 30 12:06:41 acoffin-xps-15 kernel: ffff9e0694bdc810
-(wakeref.mutex#2/1){+.+.}-{3:3}, at:
-__intel_wakeref_get_first+0x1f/0x90 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-                                       which lock already depends on
-the new lock.
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-                                       the existing dependency chain
-(in reverse order) is:
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-                                       -> #2 (wakeref.mutex#2/1){+.+.}-{3:3}:
-Oct 30 12:06:41 acoffin-xps-15 kernel:        __mutex_lock+0xbe/0xb90
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-__intel_wakeref_get_first+0x1f/0x90 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:        __i915_vma_active+0xa3/0xb0 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-i915_active_acquire+0x56/0xd0 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:        i915_vma_pin_ww+0x1b2/0x9c0 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-intel_pin_fb_obj_dpt.constprop.0+0x209/0x350 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-intel_plane_pin_fb+0xb2/0x100 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-intel_prepare_plane_fb+0xf5/0x2f0 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-drm_atomic_helper_prepare_planes+0x71/0x160 [drm_kms_helper]
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-intel_atomic_commit+0x8e/0x3c0 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-drm_atomic_helper_page_flip+0x5f/0xd0 [drm_kms_helper]
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-drm_mode_page_flip_ioctl+0x604/0x6d0 [drm]
-Oct 30 12:06:41 acoffin-xps-15 kernel:        drm_ioctl_kernel+0xcd/0x170 [drm]
-Oct 30 12:06:41 acoffin-xps-15 kernel:        drm_ioctl+0x22f/0x410 [drm]
-Oct 30 12:06:41 acoffin-xps-15 kernel:        __x64_sys_ioctl+0x8d/0xd0
-Oct 30 12:06:41 acoffin-xps-15 kernel:        do_syscall_64+0x55/0xb0
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-entry_SYSCALL_64_after_hwframe+0x6e/0xd8
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-                                       -> #1 (i915_active){+.+.}-{3:3}:
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-i915_vma_instance+0x13c/0x580 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-intel_alloc_initial_plane_obj.isra.0+0x15d/0x520 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-intel_crtc_initial_plane_config+0x86/0x2d0 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-intel_modeset_init_nogem+0x359/0xeb0 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-i915_driver_probe+0x604/0xe60 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:        local_pci_probe+0x3e/0x80
-Oct 30 12:06:41 acoffin-xps-15 kernel:        pci_device_probe+0xc3/0x240
-Oct 30 12:06:41 acoffin-xps-15 kernel:        really_probe+0xdb/0x380
-Oct 30 12:06:41 acoffin-xps-15 kernel:        __driver_probe_device+0x78/0x120
-Oct 30 12:06:41 acoffin-xps-15 kernel:        driver_probe_device+0x1f/0x90
-Oct 30 12:06:41 acoffin-xps-15 kernel:        __driver_attach+0xd2/0x1c0
-Oct 30 12:06:41 acoffin-xps-15 kernel:        bus_for_each_dev+0x87/0xd0
-Oct 30 12:06:41 acoffin-xps-15 kernel:        bus_add_driver+0x1b1/0x200
-Oct 30 12:06:41 acoffin-xps-15 kernel:        driver_register+0x89/0xe0
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-get_max_energy_counter+0x1f/0x50 [intel_rapl_common]
-Oct 30 12:06:41 acoffin-xps-15 kernel:        do_one_initcall+0x6d/0x280
-Oct 30 12:06:41 acoffin-xps-15 kernel:        do_init_module+0x4a/0x1f0
-Oct 30 12:06:41 acoffin-xps-15 kernel:        __do_sys_finit_module+0xac/0x120
-Oct 30 12:06:41 acoffin-xps-15 kernel:        do_syscall_64+0x55/0xb0
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-entry_SYSCALL_64_after_hwframe+0x6e/0xd8
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-                                       -> #0 (fs_reclaim){+.+.}-{0:0}:
-Oct 30 12:06:41 acoffin-xps-15 kernel:        __lock_acquire+0x12f4/0x2000
-Oct 30 12:06:41 acoffin-xps-15 kernel:        lock_acquire+0xc4/0x2a0
-Oct 30 12:06:41 acoffin-xps-15 kernel:        fs_reclaim_acquire+0xa2/0xe0
-Oct 30 12:06:41 acoffin-xps-15 kernel:        __kmem_cache_alloc_node+0x4a/0x290
-Oct 30 12:06:41 acoffin-xps-15 kernel:        __kmalloc+0x4d/0x150
-Oct 30 12:06:41 acoffin-xps-15 kernel:        acpi_ns_internalize_name+0x93/0xf0
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-acpi_ns_get_node_unlocked+0x80/0x110
-Oct 30 12:06:41 acoffin-xps-15 kernel:        acpi_ns_get_node+0x3a/0x60
-Oct 30 12:06:41 acoffin-xps-15 kernel:        acpi_get_handle+0x57/0xb0
-Oct 30 12:06:41 acoffin-xps-15 kernel:        acpi_has_method+0x29/0x50
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-acpi_pci_set_power_state+0x44/0x110
-Oct 30 12:06:41 acoffin-xps-15 kernel:        pci_power_up+0x2e/0x180
-Oct 30 12:06:41 acoffin-xps-15 kernel:        pci_pm_runtime_resume+0x2f/0xe0
-Oct 30 12:06:41 acoffin-xps-15 kernel:        __rpm_callback+0x41/0x170
-Oct 30 12:06:41 acoffin-xps-15 kernel:        rpm_callback+0x5d/0x70
-Oct 30 12:06:41 acoffin-xps-15 kernel:        rpm_resume+0x5e7/0x830
-Oct 30 12:06:41 acoffin-xps-15 kernel:        __pm_runtime_resume+0x47/0x90
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-intel_runtime_pm_get+0x1a/0x80 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-__intel_wakeref_get_first+0x31/0x90 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-i915_gem_do_execbuffer+0x2417/0x2cc0 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-i915_gem_execbuffer2_ioctl+0x11a/0x2b0 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:        drm_ioctl_kernel+0xcd/0x170 [drm]
-Oct 30 12:06:41 acoffin-xps-15 kernel:        drm_ioctl+0x22f/0x410 [drm]
-Oct 30 12:06:41 acoffin-xps-15 kernel:        __x64_sys_ioctl+0x8d/0xd0
-Oct 30 12:06:41 acoffin-xps-15 kernel:        do_syscall_64+0x55/0xb0
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-entry_SYSCALL_64_after_hwframe+0x6e/0xd8
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-                                       other info that might help us debug this:
-Oct 30 12:06:41 acoffin-xps-15 kernel: Chain exists of:
-                                         fs_reclaim --> i915_active
---> wakeref.mutex#2/1
-Oct 30 12:06:41 acoffin-xps-15 kernel:  Possible unsafe locking scenario:
-Oct 30 12:06:41 acoffin-xps-15 kernel:        CPU0                    CPU1
-Oct 30 12:06:41 acoffin-xps-15 kernel:        ----                    ----
-Oct 30 12:06:41 acoffin-xps-15 kernel:   lock(wakeref.mutex#2/1);
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-lock(i915_active);
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-lock(wakeref.mutex#2/1);
-Oct 30 12:06:41 acoffin-xps-15 kernel:   lock(fs_reclaim);
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-                                        *** DEADLOCK ***
-Oct 30 12:06:41 acoffin-xps-15 kernel: 1 lock held by Xorg/1263:
-Oct 30 12:06:41 acoffin-xps-15 kernel:  #0: ffff9e0694bdc810
-(wakeref.mutex#2/1){+.+.}-{3:3}, at:
-__intel_wakeref_get_first+0x1f/0x90 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-                                       stack backtrace:
-Oct 30 12:06:41 acoffin-xps-15 kernel: CPU: 8 PID: 1263 Comm: Xorg Not
-tainted 6.1.112 #2
-Oct 30 12:06:41 acoffin-xps-15 kernel: Hardware name: Dell Inc. XPS 15
-9530/013F3N, BIOS 1.15.0 07/08/2024
-Oct 30 12:06:41 acoffin-xps-15 kernel: Call Trace:
-Oct 30 12:06:41 acoffin-xps-15 kernel:  <TASK>
-Oct 30 12:06:41 acoffin-xps-15 kernel:  dump_stack_lvl+0x5b/0x77
-Oct 30 12:06:41 acoffin-xps-15 kernel:  check_noncircular+0x11c/0x130
-Oct 30 12:06:41 acoffin-xps-15 kernel:  __lock_acquire+0x12f4/0x2000
-Oct 30 12:06:41 acoffin-xps-15 kernel:  lock_acquire+0xc4/0x2a0
-Oct 30 12:06:41 acoffin-xps-15 kernel:  ? __kmem_cache_alloc_node+0x4a/0x290
-Oct 30 12:06:41 acoffin-xps-15 kernel:  ? save_trace+0x3e/0x2c0
-Oct 30 12:06:41 acoffin-xps-15 kernel:  fs_reclaim_acquire+0xa2/0xe0
-Oct 30 12:06:41 acoffin-xps-15 kernel:  ? __kmem_cache_alloc_node+0x4a/0x290
-Oct 30 12:06:41 acoffin-xps-15 kernel:  __kmem_cache_alloc_node+0x4a/0x290
-Oct 30 12:06:41 acoffin-xps-15 kernel:  ? acpi_ns_internalize_name+0x93/0xf0
-Oct 30 12:06:41 acoffin-xps-15 kernel:  ? acpi_ns_internalize_name+0x93/0xf0
-Oct 30 12:06:41 acoffin-xps-15 kernel:  __kmalloc+0x4d/0x150
-Oct 30 12:06:41 acoffin-xps-15 kernel:  acpi_ns_internalize_name+0x93/0xf0
-Oct 30 12:06:41 acoffin-xps-15 kernel:  ? lock_acquire+0xc4/0x2a0
-Oct 30 12:06:41 acoffin-xps-15 kernel:  acpi_ns_get_node_unlocked+0x80/0x110
-Oct 30 12:06:41 acoffin-xps-15 kernel:  ? down_timeout+0x4b/0x70
-Oct 30 12:06:41 acoffin-xps-15 kernel:  ? acpi_ns_get_node+0x3a/0x60
-Oct 30 12:06:41 acoffin-xps-15 kernel:  acpi_ns_get_node+0x3a/0x60
-Oct 30 12:06:41 acoffin-xps-15 kernel:  acpi_get_handle+0x57/0xb0
-Oct 30 12:06:41 acoffin-xps-15 kernel:  acpi_has_method+0x29/0x50
-Oct 30 12:06:41 acoffin-xps-15 kernel:  acpi_pci_set_power_state+0x44/0x110
-Oct 30 12:06:41 acoffin-xps-15 kernel:  pci_power_up+0x2e/0x180
-Oct 30 12:06:41 acoffin-xps-15 kernel:  pci_pm_runtime_resume+0x2f/0xe0
-Oct 30 12:06:41 acoffin-xps-15 kernel:  ? pci_pm_restore_noirq+0xc0/0xc0
-Oct 30 12:06:41 acoffin-xps-15 kernel:  __rpm_callback+0x41/0x170
-Oct 30 12:06:41 acoffin-xps-15 kernel:  ? pci_pm_restore_noirq+0xc0/0xc0
-Oct 30 12:06:41 acoffin-xps-15 kernel:  rpm_callback+0x5d/0x70
-Oct 30 12:06:41 acoffin-xps-15 kernel:  ? pci_pm_restore_noirq+0xc0/0xc0
-Oct 30 12:06:41 acoffin-xps-15 kernel:  rpm_resume+0x5e7/0x830
-Oct 30 12:06:41 acoffin-xps-15 kernel:  __pm_runtime_resume+0x47/0x90
-Oct 30 12:06:41 acoffin-xps-15 kernel:  intel_runtime_pm_get+0x1a/0x80 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-__intel_wakeref_get_first+0x31/0x90 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-i915_gem_do_execbuffer+0x2417/0x2cc0 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-i915_gem_execbuffer2_ioctl+0x11a/0x2b0 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:  ?
-i915_gem_do_execbuffer+0x2cc0/0x2cc0 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:  drm_ioctl_kernel+0xcd/0x170 [drm]
-Oct 30 12:06:41 acoffin-xps-15 kernel:  drm_ioctl+0x22f/0x410 [drm]
-Oct 30 12:06:41 acoffin-xps-15 kernel:  ?
-i915_gem_do_execbuffer+0x2cc0/0x2cc0 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:  __x64_sys_ioctl+0x8d/0xd0
-Oct 30 12:06:41 acoffin-xps-15 kernel:  do_syscall_64+0x55/0xb0
-Oct 30 12:06:41 acoffin-xps-15 kernel:  ? kfree+0x107/0x140
-Oct 30 12:06:41 acoffin-xps-15 kernel:  ? ___sys_recvmsg+0x9c/0xe0
-Oct 30 12:06:41 acoffin-xps-15 kernel:  ? __sys_recvmsg+0xa7/0xc0
-Oct 30 12:06:41 acoffin-xps-15 kernel:  ? exit_to_user_mode_prepare+0x19e/0x250
-Oct 30 12:06:41 acoffin-xps-15 kernel:  ? lockdep_hardirqs_on_prepare+0xdc/0x190
-Oct 30 12:06:41 acoffin-xps-15 kernel:  ? do_syscall_64+0x61/0xb0
-Oct 30 12:06:41 acoffin-xps-15 kernel:  entry_SYSCALL_64_after_hwframe+0x6e/0xd8
-Oct 30 12:06:41 acoffin-xps-15 kernel: RIP: 0033:0x7f258ef06c5b
-Oct 30 12:06:41 acoffin-xps-15 kernel: Code: 00 48 89 44 24 18 31 c0
-48 8d 44 24 60 c7 04 24 10 00 00 00 48 89 44 24 08 48 8d 44 24 20 48
-89 44 24 10 b8 10 00 00 00 0f 05 <89> c2 3d 00 f0 ff ff 77 1c 48 8b 44
-24 18 64 48 2b 04 25 28 00 00
-Oct 30 12:06:41 acoffin-xps-15 kernel: RSP: 002b:00007ffcd0ee2350
-EFLAGS: 00000246 ORIG_RAX: 0000000000000010
-Oct 30 12:06:41 acoffin-xps-15 kernel: RAX: ffffffffffffffda RBX:
-0000557019e70950 RCX: 00007f258ef06c5b
-Oct 30 12:06:41 acoffin-xps-15 kernel: RDX: 00007ffcd0ee2400 RSI:
-0000000040406469 RDI: 0000000000000012
-Oct 30 12:06:41 acoffin-xps-15 kernel: RBP: 00007ffcd0ee2490 R08:
-0000000000000007 R09: 000055701b5d64f0
-Oct 30 12:06:41 acoffin-xps-15 kernel: R10: 3002f0996e1d00f9 R11:
-0000000000000246 R12: 0000000000000000
-Oct 30 12:06:41 acoffin-xps-15 kernel: R13: 00007ffcd0ee2400 R14:
-0000000000000012 R15: 000055701b743fd0
-Oct 30 12:06:41 acoffin-xps-15 kernel:  </TASK>
-Oct 30 12:08:44 acoffin-xps-15 kernel: wlp0s20f3: AP 24:2d:6c:95:ed:88
-changed bandwidth, new config is 2437.000 MHz, width 1 (2437.000/0
-MHz)
-Oct 30 12:13:16 acoffin-xps-15 kernel: iwlwifi 0000:00:14.3: Unhandled
-alg: 0x703
-Oct 30 12:13:51 acoffin-xps-15 kernel: iwlwifi 0000:00:14.3: Unhandled
-alg: 0x703
-Oct 30 12:13:51 acoffin-xps-15 kernel: iwlwifi 0000:00:14.3: Unhandled
-alg: 0x400703
-Oct 30 12:16:10 acoffin-xps-15 kernel: wlp0s20f3: AP 24:2d:6c:95:ed:88
-changed bandwidth, new config is 2437.000 MHz, width 2 (2427.000/0
-MHz)
-Oct 30 12:21:11 acoffin-xps-15 kernel: iwlwifi 0000:00:14.3: Unhandled
-alg: 0x703
-Oct 30 12:25:23 acoffin-xps-15 kernel: wlp0s20f3: AP 24:2d:6c:95:ed:88
-changed bandwidth, new config is 2437.000 MHz, width 1 (2437.000/0
-MHz)
-Oct 30 12:34:01 acoffin-xps-15 kernel: wlp0s20f3: AP 24:2d:6c:95:ed:88
-changed bandwidth, new config is 2437.000 MHz, width 2 (2427.000/0
-MHz)
-Oct 30 12:34:17 acoffin-xps-15 kernel: wlp0s20f3: AP 24:2d:6c:95:ed:88
-changed bandwidth, new config is 2437.000 MHz, width 1 (2437.000/0
-MHz)
-Oct 30 12:37:37 acoffin-xps-15 kernel: wlp0s20f3: AP 24:2d:6c:95:ed:88
-changed bandwidth, new config is 2437.000 MHz, width 2 (2427.000/0
-MHz)
-Oct 30 12:41:31 acoffin-xps-15 kernel: iwlwifi 0000:00:14.3: Unhandled
-alg: 0x703
-Oct 30 12:44:33 acoffin-xps-15 kernel: wlp0s20f3: AP 24:2d:6c:95:ed:88
-changed bandwidth, new config is 2437.000 MHz, width 1 (2437.000/0
-MHz)
-Oct 30 12:46:30 acoffin-xps-15 kernel: wlp0s20f3: disconnect from AP
-24:2d:6c:95:ed:88 for new auth to e8:d3:eb:29:a0:86
-Oct 30 12:46:31 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-e8:d3:eb:29:a0:86
-Oct 30 12:46:31 acoffin-xps-15 kernel: wlp0s20f3: 80 MHz not
-supported, disabling VHT
-Oct 30 12:46:31 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-e8:d3:eb:29:a0:86 (try 1/3)
-Oct 30 12:46:31 acoffin-xps-15 kernel: wlp0s20f3: authenticated
-Oct 30 12:46:31 acoffin-xps-15 kernel: wlp0s20f3: associate with
-e8:d3:eb:29:a0:86 (try 1/3)
-Oct 30 12:46:31 acoffin-xps-15 kernel: wlp0s20f3: RX ReassocResp from
-e8:d3:eb:29:a0:86 (capab=0x1431 status=0 aid=2)
-Oct 30 12:46:31 acoffin-xps-15 kernel: wlp0s20f3: associated
-Oct 30 12:46:31 acoffin-xps-15 kernel: wlp0s20f3: Limiting TX power to
-30 (30 - 0) dBm as advertised by e8:d3:eb:29:a0:86
-Oct 30 12:46:34 acoffin-xps-15 kernel: iwlwifi 0000:00:14.3: Unhandled
-alg: 0x71b
-Oct 30 12:47:04 acoffin-xps-15 kernel: wlp0s20f3: disconnect from AP
-e8:d3:eb:29:a0:86 for new auth to 24:2d:6c:95:ed:8a
-Oct 30 12:47:04 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-24:2d:6c:95:ed:8a
-Oct 30 12:47:04 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:8a (try 1/3)
-Oct 30 12:47:04 acoffin-xps-15 kernel: wlp0s20f3: authenticated
-Oct 30 12:47:04 acoffin-xps-15 kernel: wlp0s20f3: associate with
-24:2d:6c:95:ed:8a (try 1/3)
-Oct 30 12:47:04 acoffin-xps-15 kernel: wlp0s20f3: RX ReassocResp from
-24:2d:6c:95:ed:8a (capab=0x1111 status=0 aid=17)
-Oct 30 12:47:04 acoffin-xps-15 kernel: wlp0s20f3: associated
-Oct 30 12:47:04 acoffin-xps-15 kernel: wlp0s20f3: Limiting TX power to
-27 (30 - 3) dBm as advertised by 24:2d:6c:95:ed:8a
-Oct 30 12:47:36 acoffin-xps-15 kernel: wlp0s20f3: disconnect from AP
-24:2d:6c:95:ed:8a for new auth to e8:d3:eb:29:a0:86
-Oct 30 12:47:36 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-e8:d3:eb:29:a0:86
-Oct 30 12:47:36 acoffin-xps-15 kernel: wlp0s20f3: 80 MHz not
-supported, disabling VHT
-Oct 30 12:47:36 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-e8:d3:eb:29:a0:86 (try 1/3)
-Oct 30 12:47:36 acoffin-xps-15 kernel: wlp0s20f3: authenticated
-Oct 30 12:47:36 acoffin-xps-15 kernel: wlp0s20f3: associate with
-e8:d3:eb:29:a0:86 (try 1/3)
-Oct 30 12:47:36 acoffin-xps-15 kernel: wlp0s20f3: RX ReassocResp from
-e8:d3:eb:29:a0:86 (capab=0x1431 status=0 aid=2)
-Oct 30 12:47:36 acoffin-xps-15 kernel: wlp0s20f3: associated
-Oct 30 12:47:36 acoffin-xps-15 kernel: wlp0s20f3: Limiting TX power to
-30 (30 - 0) dBm as advertised by e8:d3:eb:29:a0:86
-Oct 30 12:52:30 acoffin-xps-15 kernel: wlp0s20f3: disconnect from AP
-e8:d3:eb:29:a0:86 for new auth to 24:2d:6c:95:ed:88
-Oct 30 12:52:30 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-24:2d:6c:95:ed:88
-Oct 30 12:52:30 acoffin-xps-15 kernel: wlp0s20f3: 80 MHz not
-supported, disabling VHT
-Oct 30 12:52:30 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:88 (try 1/3)
-Oct 30 12:52:31 acoffin-xps-15 kernel: wlp0s20f3: authenticated
-Oct 30 12:52:31 acoffin-xps-15 kernel: wlp0s20f3: associate with
-24:2d:6c:95:ed:88 (try 1/3)
-Oct 30 12:52:31 acoffin-xps-15 kernel: wlp0s20f3: RX ReassocResp from
-24:2d:6c:95:ed:88 (capab=0x1431 status=0 aid=4)
-Oct 30 12:52:31 acoffin-xps-15 kernel: wlp0s20f3: associated
-Oct 30 12:52:31 acoffin-xps-15 kernel: wlp0s20f3: disassociated from
-24:2d:6c:95:ed:88 (Reason: 34=DISASSOC_LOW_ACK)
-Oct 30 12:52:31 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-e8:d3:eb:29:a0:86
-Oct 30 12:52:31 acoffin-xps-15 kernel: wlp0s20f3: 80 MHz not
-supported, disabling VHT
-Oct 30 12:52:31 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-e8:d3:eb:29:a0:86 (try 1/3)
-Oct 30 12:52:31 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-e8:d3:eb:29:a0:86 (try 2/3)
-Oct 30 12:52:31 acoffin-xps-15 kernel: wlp0s20f3: authenticated
-Oct 30 12:52:31 acoffin-xps-15 kernel: wlp0s20f3: associate with
-e8:d3:eb:29:a0:86 (try 1/3)
-Oct 30 12:52:31 acoffin-xps-15 kernel: wlp0s20f3: RX AssocResp from
-e8:d3:eb:29:a0:86 (capab=0x1431 status=0 aid=2)
-Oct 30 12:52:31 acoffin-xps-15 kernel: wlp0s20f3: associated
-Oct 30 12:52:31 acoffin-xps-15 kernel: wlp0s20f3: Limiting TX power to
-30 (30 - 0) dBm as advertised by e8:d3:eb:29:a0:86
-Oct 30 12:53:08 acoffin-xps-15 kernel: wlp0s20f3: disconnect from AP
-e8:d3:eb:29:a0:86 for new auth to 24:2d:6c:95:ed:88
-Oct 30 12:53:08 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-24:2d:6c:95:ed:88
-Oct 30 12:53:08 acoffin-xps-15 kernel: wlp0s20f3: 80 MHz not
-supported, disabling VHT
-Oct 30 12:53:08 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:88 (try 1/3)
-Oct 30 12:53:08 acoffin-xps-15 kernel: wlp0s20f3: authenticated
-Oct 30 12:53:08 acoffin-xps-15 kernel: wlp0s20f3: associate with
-24:2d:6c:95:ed:88 (try 1/3)
-Oct 30 12:53:08 acoffin-xps-15 kernel: wlp0s20f3: RX ReassocResp from
-24:2d:6c:95:ed:88 (capab=0x1431 status=0 aid=4)
-Oct 30 12:53:08 acoffin-xps-15 kernel: wlp0s20f3: associated
-Oct 30 12:53:08 acoffin-xps-15 kernel: wlp0s20f3: Limiting TX power to
-30 (30 - 0) dBm as advertised by 24:2d:6c:95:ed:88
-Oct 30 12:53:40 acoffin-xps-15 kernel: wlp0s20f3: disconnect from AP
-24:2d:6c:95:ed:88 for new auth to 24:2d:6c:95:ed:8a
-Oct 30 12:53:40 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-24:2d:6c:95:ed:8a
-Oct 30 12:53:40 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:8a (try 1/3)
-Oct 30 12:53:40 acoffin-xps-15 kernel: wlp0s20f3: authenticated
-Oct 30 12:53:40 acoffin-xps-15 kernel: wlp0s20f3: associate with
-24:2d:6c:95:ed:8a (try 1/3)
-Oct 30 12:53:40 acoffin-xps-15 kernel: wlp0s20f3: RX ReassocResp from
-24:2d:6c:95:ed:8a (capab=0x1111 status=0 aid=17)
-Oct 30 12:53:40 acoffin-xps-15 kernel: wlp0s20f3: associated
-Oct 30 12:53:40 acoffin-xps-15 kernel: wlp0s20f3: Limiting TX power to
-27 (30 - 3) dBm as advertised by 24:2d:6c:95:ed:8a
-Oct 30 12:55:16 acoffin-xps-15 kernel: wlp0s20f3: disconnect from AP
-24:2d:6c:95:ed:8a for new auth to e8:d3:eb:29:a0:86
-Oct 30 12:55:16 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-e8:d3:eb:29:a0:86
-Oct 30 12:55:16 acoffin-xps-15 kernel: wlp0s20f3: 80 MHz not
-supported, disabling VHT
-Oct 30 12:55:16 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-e8:d3:eb:29:a0:86 (try 1/3)
-Oct 30 12:55:16 acoffin-xps-15 kernel: wlp0s20f3: authenticated
-Oct 30 12:55:16 acoffin-xps-15 kernel: wlp0s20f3: associate with
-e8:d3:eb:29:a0:86 (try 1/3)
-Oct 30 12:55:16 acoffin-xps-15 kernel: wlp0s20f3: RX ReassocResp from
-e8:d3:eb:29:a0:86 (capab=0x1431 status=0 aid=2)
-Oct 30 12:55:16 acoffin-xps-15 kernel: wlp0s20f3: associated
-Oct 30 12:55:16 acoffin-xps-15 kernel: wlp0s20f3: Limiting TX power to
-30 (30 - 0) dBm as advertised by e8:d3:eb:29:a0:86
-Oct 30 12:55:53 acoffin-xps-15 kernel: wlp0s20f3: disconnect from AP
-e8:d3:eb:29:a0:86 for new auth to 24:2d:6c:95:ed:8a
-Oct 30 12:55:53 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-24:2d:6c:95:ed:8a
-Oct 30 12:55:53 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:8a (try 1/3)
-Oct 30 12:55:53 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:8a (try 2/3)
-Oct 30 12:55:53 acoffin-xps-15 kernel: wlp0s20f3: authenticated
-Oct 30 12:55:53 acoffin-xps-15 kernel: wlp0s20f3: associate with
-24:2d:6c:95:ed:8a (try 1/3)
-Oct 30 12:55:53 acoffin-xps-15 kernel: wlp0s20f3: RX ReassocResp from
-24:2d:6c:95:ed:8a (capab=0x1111 status=0 aid=17)
-Oct 30 12:55:53 acoffin-xps-15 kernel: wlp0s20f3: associated
-Oct 30 12:55:53 acoffin-xps-15 kernel: wlp0s20f3: Limiting TX power to
-27 (30 - 3) dBm as advertised by 24:2d:6c:95:ed:8a
-Oct 30 12:57:29 acoffin-xps-15 kernel: wlp0s20f3: disconnect from AP
-24:2d:6c:95:ed:8a for new auth to 24:2d:6c:95:ed:88
-Oct 30 12:57:29 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-24:2d:6c:95:ed:88
-Oct 30 12:57:29 acoffin-xps-15 kernel: wlp0s20f3: 80 MHz not
-supported, disabling VHT
-Oct 30 12:57:29 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:88 (try 1/3)
-Oct 30 12:57:29 acoffin-xps-15 kernel: wlp0s20f3: authenticated
-Oct 30 12:57:29 acoffin-xps-15 kernel: wlp0s20f3: associate with
-24:2d:6c:95:ed:88 (try 1/3)
-Oct 30 12:57:30 acoffin-xps-15 kernel: wlp0s20f3: RX ReassocResp from
-24:2d:6c:95:ed:88 (capab=0x1431 status=0 aid=2)
-Oct 30 12:57:30 acoffin-xps-15 kernel: wlp0s20f3: associated
-Oct 30 12:57:30 acoffin-xps-15 kernel: wlp0s20f3: Limiting TX power to
-30 (30 - 0) dBm as advertised by 24:2d:6c:95:ed:88
-Oct 30 12:58:35 acoffin-xps-15 kernel: wlp0s20f3: disconnect from AP
-24:2d:6c:95:ed:88 for new auth to 24:2d:6c:95:ed:8a
-Oct 30 12:58:35 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-24:2d:6c:95:ed:8a
-Oct 30 12:58:36 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:8a (try 1/3)
-Oct 30 12:58:36 acoffin-xps-15 kernel: wlp0s20f3: authenticated
-Oct 30 12:58:36 acoffin-xps-15 kernel: wlp0s20f3: associate with
-24:2d:6c:95:ed:8a (try 1/3)
-Oct 30 12:58:36 acoffin-xps-15 kernel: wlp0s20f3: RX ReassocResp from
-24:2d:6c:95:ed:8a (capab=0x1111 status=0 aid=17)
-Oct 30 12:58:36 acoffin-xps-15 kernel: wlp0s20f3: associated
-Oct 30 12:58:36 acoffin-xps-15 kernel: wlp0s20f3: Limiting TX power to
-27 (30 - 3) dBm as advertised by 24:2d:6c:95:ed:8a
-Oct 30 12:59:40 acoffin-xps-15 kernel: wlp0s20f3: disconnect from AP
-24:2d:6c:95:ed:8a for new auth to 24:2d:6c:95:ed:88
-Oct 30 12:59:40 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-24:2d:6c:95:ed:88
-Oct 30 12:59:40 acoffin-xps-15 kernel: wlp0s20f3: 80 MHz not
-supported, disabling VHT
-Oct 30 12:59:40 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:88 (try 1/3)
-Oct 30 12:59:40 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:88 (try 2/3)
-Oct 30 12:59:40 acoffin-xps-15 kernel: wlp0s20f3: authenticated
-Oct 30 12:59:40 acoffin-xps-15 kernel: wlp0s20f3: associate with
-24:2d:6c:95:ed:88 (try 1/3)
-Oct 30 12:59:40 acoffin-xps-15 kernel: wlp0s20f3: associate with
-24:2d:6c:95:ed:88 (try 2/3)
-Oct 30 12:59:40 acoffin-xps-15 kernel: wlp0s20f3: associate with
-24:2d:6c:95:ed:88 (try 3/3)
-Oct 30 12:59:40 acoffin-xps-15 kernel: wlp0s20f3: RX ReassocResp from
-24:2d:6c:95:ed:88 (capab=0x1431 status=0 aid=2)
-Oct 30 12:59:40 acoffin-xps-15 kernel: wlp0s20f3: associated
-Oct 30 12:59:40 acoffin-xps-15 kernel: wlp0s20f3: Limiting TX power to
-30 (30 - 0) dBm as advertised by 24:2d:6c:95:ed:88
-Oct 30 13:01:15 acoffin-xps-15 kernel: iwlwifi 0000:00:14.3: Unhandled
-alg: 0x703
-Oct 30 13:01:15 acoffin-xps-15 kernel: iwlwifi 0000:00:14.3: Unhandled
-alg: 0x703
-Oct 30 13:05:41 acoffin-xps-15 kernel: wlp0s20f3: AP 24:2d:6c:95:ed:88
-changed bandwidth, new config is 2437.000 MHz, width 2 (2427.000/0
-MHz)
-Oct 30 13:06:31 acoffin-xps-15 kernel: wlp0s20f3: AP 24:2d:6c:95:ed:88
-changed bandwidth, new config is 2437.000 MHz, width 1 (2437.000/0
-MHz)
-Oct 30 13:07:39 acoffin-xps-15 kernel: iwlwifi 0000:00:14.3: Unhandled
-alg: 0x703
-Oct 30 13:07:39 acoffin-xps-15 kernel: iwlwifi 0000:00:14.3: Unhandled
-alg: 0x400703
-Oct 30 13:07:39 acoffin-xps-15 kernel: iwlwifi 0000:00:14.3: Unhandled
-alg: 0x400703
-Oct 30 13:10:06 acoffin-xps-15 kernel: iwlwifi 0000:00:14.3: Unhandled
-alg: 0x703
-Oct 30 13:10:06 acoffin-xps-15 kernel: iwlwifi 0000:00:14.3: Unhandled
-alg: 0x400703
-Oct 30 13:12:14 acoffin-xps-15 kernel: wlp0s20f3: disconnect from AP
-24:2d:6c:95:ed:88 for new auth to 24:2d:6c:95:ed:8a
-Oct 30 13:12:14 acoffin-xps-15 kernel: iwlwifi 0000:00:14.3: Unhandled
-alg: 0x71b
-Oct 30 13:12:14 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-24:2d:6c:95:ed:8a
-Oct 30 13:12:14 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:8a (try 1/3)
-Oct 30 13:12:15 acoffin-xps-15 kernel: wlp0s20f3: authenticated
-Oct 30 13:12:15 acoffin-xps-15 kernel: wlp0s20f3: associate with
-24:2d:6c:95:ed:8a (try 1/3)
-Oct 30 13:12:15 acoffin-xps-15 kernel: wlp0s20f3: RX ReassocResp from
-24:2d:6c:95:ed:8a (capab=0x1111 status=0 aid=11)
-Oct 30 13:12:15 acoffin-xps-15 kernel: wlp0s20f3: associated
-Oct 30 13:12:15 acoffin-xps-15 kernel: wlp0s20f3: Limiting TX power to
-27 (30 - 3) dBm as advertised by 24:2d:6c:95:ed:8a
-Oct 30 13:13:48 acoffin-xps-15 kernel: wlp0s20f3: disconnect from AP
-24:2d:6c:95:ed:8a for new auth to 24:2d:6c:95:ed:88
-Oct 30 13:13:48 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-24:2d:6c:95:ed:88
-Oct 30 13:13:48 acoffin-xps-15 kernel: wlp0s20f3: 80 MHz not
-supported, disabling VHT
-Oct 30 13:13:48 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:88 (try 1/3)
-Oct 30 13:13:48 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:88 (try 2/3)
-Oct 30 13:13:48 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:88 (try 3/3)
-Oct 30 13:13:48 acoffin-xps-15 kernel: wlp0s20f3: authentication with
-24:2d:6c:95:ed:88 timed out
-Oct 30 13:13:49 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-24:2d:6c:95:ed:8a
-Oct 30 13:13:49 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:8a (try 1/3)
-Oct 30 13:13:49 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:8a (try 2/3)
-Oct 30 13:13:49 acoffin-xps-15 kernel: wlp0s20f3: authenticated
-Oct 30 13:13:49 acoffin-xps-15 kernel: wlp0s20f3: associate with
-24:2d:6c:95:ed:8a (try 1/3)
-Oct 30 13:13:49 acoffin-xps-15 kernel: wlp0s20f3: RX AssocResp from
-24:2d:6c:95:ed:8a (capab=0x1111 status=0 aid=11)
-Oct 30 13:13:49 acoffin-xps-15 kernel: wlp0s20f3: associated
-Oct 30 13:13:49 acoffin-xps-15 kernel: wlp0s20f3: Limiting TX power to
-27 (30 - 3) dBm as advertised by 24:2d:6c:95:ed:8a
-Oct 30 13:15:53 acoffin-xps-15 kernel: wlp0s20f3: disconnect from AP
-24:2d:6c:95:ed:8a for new auth to 24:2d:6c:95:ed:88
-Oct 30 13:15:53 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-24:2d:6c:95:ed:88
-Oct 30 13:15:53 acoffin-xps-15 kernel: wlp0s20f3: 80 MHz not
-supported, disabling VHT
-Oct 30 13:15:53 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:88 (try 1/3)
-Oct 30 13:15:53 acoffin-xps-15 kernel: wlp0s20f3: authenticated
-Oct 30 13:15:53 acoffin-xps-15 kernel: wlp0s20f3: associate with
-24:2d:6c:95:ed:88 (try 1/3)
-Oct 30 13:15:53 acoffin-xps-15 kernel: wlp0s20f3: RX ReassocResp from
-24:2d:6c:95:ed:88 (capab=0x1431 status=0 aid=2)
-Oct 30 13:15:54 acoffin-xps-15 kernel: wlp0s20f3: associated
-Oct 30 13:15:54 acoffin-xps-15 kernel: wlp0s20f3: Limiting TX power to
-30 (30 - 0) dBm as advertised by 24:2d:6c:95:ed:88
-Oct 30 13:16:34 acoffin-xps-15 kernel: wlp0s20f3: disconnect from AP
-24:2d:6c:95:ed:88 for new auth to e8:d3:eb:29:a0:87
-Oct 30 13:16:35 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-e8:d3:eb:29:a0:87
-Oct 30 13:16:35 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-e8:d3:eb:29:a0:87 (try 1/3)
-Oct 30 13:16:35 acoffin-xps-15 kernel: wlp0s20f3: authenticated
-Oct 30 13:16:35 acoffin-xps-15 kernel: wlp0s20f3: associate with
-e8:d3:eb:29:a0:87 (try 1/3)
-Oct 30 13:16:35 acoffin-xps-15 kernel: wlp0s20f3: RX ReassocResp from
-e8:d3:eb:29:a0:87 (capab=0x1111 status=0 aid=3)
-Oct 30 13:16:35 acoffin-xps-15 kernel: wlp0s20f3: associated
-Oct 30 13:16:35 acoffin-xps-15 kernel: wlp0s20f3: Limiting TX power to
-27 (30 - 3) dBm as advertised by e8:d3:eb:29:a0:87
-Oct 30 13:17:38 acoffin-xps-15 kernel: wlp0s20f3: disconnect from AP
-e8:d3:eb:29:a0:87 for new auth to 24:2d:6c:95:ed:88
-Oct 30 13:17:38 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-24:2d:6c:95:ed:88
-Oct 30 13:17:38 acoffin-xps-15 kernel: wlp0s20f3: 80 MHz not
-supported, disabling VHT
-Oct 30 13:17:38 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:88 (try 1/3)
-Oct 30 13:17:38 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:88 (try 2/3)
-Oct 30 13:17:38 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:88 (try 3/3)
-Oct 30 13:17:38 acoffin-xps-15 kernel: wlp0s20f3: authentication with
-24:2d:6c:95:ed:88 timed out
-Oct 30 13:17:39 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-e8:d3:eb:29:a0:87
-Oct 30 13:17:39 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-e8:d3:eb:29:a0:87 (try 1/3)
-Oct 30 13:17:39 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-e8:d3:eb:29:a0:87 (try 2/3)
-Oct 30 13:17:39 acoffin-xps-15 kernel: wlp0s20f3: authenticated
-Oct 30 13:17:39 acoffin-xps-15 kernel: wlp0s20f3: associate with
-e8:d3:eb:29:a0:87 (try 1/3)
-Oct 30 13:17:39 acoffin-xps-15 kernel: wlp0s20f3: RX AssocResp from
-e8:d3:eb:29:a0:87 (capab=0x1111 status=0 aid=3)
-Oct 30 13:17:39 acoffin-xps-15 kernel: wlp0s20f3: associated
-Oct 30 13:17:39 acoffin-xps-15 kernel: wlp0s20f3: Limiting TX power to
-27 (30 - 3) dBm as advertised by e8:d3:eb:29:a0:87
-Oct 30 13:18:10 acoffin-xps-15 kernel: wlp0s20f3: disconnect from AP
-e8:d3:eb:29:a0:87 for new auth to 24:2d:6c:95:ed:88
-Oct 30 13:18:10 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-24:2d:6c:95:ed:88
-Oct 30 13:18:10 acoffin-xps-15 kernel: wlp0s20f3: 80 MHz not
-supported, disabling VHT
-Oct 30 13:18:10 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:88 (try 1/3)
-Oct 30 13:18:11 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:88 (try 2/3)
-Oct 30 13:18:11 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:88 (try 3/3)
-Oct 30 13:18:11 acoffin-xps-15 kernel: wlp0s20f3: authentication with
-24:2d:6c:95:ed:88 timed out
-Oct 30 13:18:14 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-e8:d3:eb:29:a0:86
-Oct 30 13:18:14 acoffin-xps-15 kernel: wlp0s20f3: 80 MHz not
-supported, disabling VHT
-Oct 30 13:18:14 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-e8:d3:eb:29:a0:86 (try 1/3)
-Oct 30 13:18:14 acoffin-xps-15 kernel: wlp0s20f3: authenticated
-Oct 30 13:18:14 acoffin-xps-15 kernel: wlp0s20f3: associate with
-e8:d3:eb:29:a0:86 (try 1/3)
-Oct 30 13:18:14 acoffin-xps-15 kernel: wlp0s20f3: RX AssocResp from
-e8:d3:eb:29:a0:86 (capab=0x1431 status=0 aid=2)
-Oct 30 13:18:14 acoffin-xps-15 kernel: wlp0s20f3: associated
-Oct 30 13:18:14 acoffin-xps-15 kernel: wlp0s20f3: Limiting TX power to
-30 (30 - 0) dBm as advertised by e8:d3:eb:29:a0:86
-Oct 30 13:19:17 acoffin-xps-15 kernel: wlp0s20f3: disconnect from AP
-e8:d3:eb:29:a0:86 for new auth to 24:2d:6c:95:ed:88
-Oct 30 13:19:17 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-24:2d:6c:95:ed:88
-Oct 30 13:19:17 acoffin-xps-15 kernel: wlp0s20f3: 80 MHz not
-supported, disabling VHT
-Oct 30 13:19:17 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:88 (try 1/3)
-Oct 30 13:19:18 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:88 (try 2/3)
-Oct 30 13:19:18 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-24:2d:6c:95:ed:88 (try 3/3)
-Oct 30 13:19:18 acoffin-xps-15 kernel: wlp0s20f3: authentication with
-24:2d:6c:95:ed:88 timed out
-Oct 30 13:19:19 acoffin-xps-15 kernel: wlp0s20f3: authenticate with
-e8:d3:eb:29:a0:86
-Oct 30 13:19:19 acoffin-xps-15 kernel: wlp0s20f3: 80 MHz not
-supported, disabling VHT
-Oct 30 13:19:19 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-e8:d3:eb:29:a0:86 (try 1/3)
-Oct 30 13:19:19 acoffin-xps-15 kernel: wlp0s20f3: send auth to
-e8:d3:eb:29:a0:86 (try 2/3)
-Oct 30 13:19:19 acoffin-xps-15 kernel: wlp0s20f3: authenticated
-Oct 30 13:19:19 acoffin-xps-15 kernel: wlp0s20f3: associate with
-e8:d3:eb:29:a0:86 (try 1/3)
-Oct 30 13:19:19 acoffin-xps-15 kernel: wlp0s20f3: RX AssocResp from
-e8:d3:eb:29:a0:86 (capab=0x1431 status=0 aid=2)
-Oct 30 13:19:19 acoffin-xps-15 kernel: wlp0s20f3: associated
-```
+A combined setup function like timer_setup() is less error prone and
+simpler to use.
 
-File 2
-```
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-======================================================
-Oct 30 12:06:41 acoffin-xps-15 kernel: WARNING: possible circular
-locking dependency detected
-Oct 30 12:06:41 acoffin-xps-15 kernel: 6.1.112 #2 Not tainted
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-------------------------------------------------------
-Oct 30 12:06:41 acoffin-xps-15 kernel: Xorg/1263 is trying to acquire lock:
-Oct 30 12:06:41 acoffin-xps-15 kernel: ffffffff871e3380
-(fs_reclaim){+.+.}-{0:0}, at: __kmem_cache_alloc_node+0x4a/0x290
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-                                       but task is already holding lock:
-Oct 30 12:06:41 acoffin-xps-15 kernel: ffff9e0694bdc810
-(wakeref.mutex#2/1){+.+.}-{3:3}, at:
-__intel_wakeref_get_first+0x1f/0x90 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-                                       which lock already depends on
-the new lock.
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-                                       the existing dependency chain
-(in reverse order) is:
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-                                       -> #2 (wakeref.mutex#2/1){+.+.}-{3:3}:
-Oct 30 12:06:41 acoffin-xps-15 kernel:        __mutex_lock+0xbe/0xb90
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-__intel_wakeref_get_first+0x1f/0x90 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:        __i915_vma_active+0xa3/0xb0 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-i915_active_acquire+0x56/0xd0 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:        i915_vma_pin_ww+0x1b2/0x9c0 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-intel_pin_fb_obj_dpt.constprop.0+0x209/0x350 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-intel_plane_pin_fb+0xb2/0x100 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-intel_prepare_plane_fb+0xf5/0x2f0 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-drm_atomic_helper_prepare_planes+0x71/0x160 [drm_kms_helper]
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-intel_atomic_commit+0x8e/0x3c0 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-drm_atomic_helper_page_flip+0x5f/0xd0 [drm_kms_helper]
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-drm_mode_page_flip_ioctl+0x604/0x6d0 [drm]
-Oct 30 12:06:41 acoffin-xps-15 kernel:        drm_ioctl_kernel+0xcd/0x170 [drm]
-Oct 30 12:06:41 acoffin-xps-15 kernel:        drm_ioctl+0x22f/0x410 [drm]
-Oct 30 12:06:41 acoffin-xps-15 kernel:        __x64_sys_ioctl+0x8d/0xd0
-Oct 30 12:06:41 acoffin-xps-15 kernel:        do_syscall_64+0x55/0xb0
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-entry_SYSCALL_64_after_hwframe+0x6e/0xd8
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-                                       -> #1 (i915_active){+.+.}-{3:3}:
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-i915_vma_instance+0x13c/0x580 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-intel_alloc_initial_plane_obj.isra.0+0x15d/0x520 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-intel_crtc_initial_plane_config+0x86/0x2d0 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-intel_modeset_init_nogem+0x359/0xeb0 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-i915_driver_probe+0x604/0xe60 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:        local_pci_probe+0x3e/0x80
-Oct 30 12:06:41 acoffin-xps-15 kernel:        pci_device_probe+0xc3/0x240
-Oct 30 12:06:41 acoffin-xps-15 kernel:        really_probe+0xdb/0x380
-Oct 30 12:06:41 acoffin-xps-15 kernel:        __driver_probe_device+0x78/0x120
-Oct 30 12:06:41 acoffin-xps-15 kernel:        driver_probe_device+0x1f/0x90
-Oct 30 12:06:41 acoffin-xps-15 kernel:        __driver_attach+0xd2/0x1c0
-Oct 30 12:06:41 acoffin-xps-15 kernel:        bus_for_each_dev+0x87/0xd0
-Oct 30 12:06:41 acoffin-xps-15 kernel:        bus_add_driver+0x1b1/0x200
-Oct 30 12:06:41 acoffin-xps-15 kernel:        driver_register+0x89/0xe0
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-get_max_energy_counter+0x1f/0x50 [intel_rapl_common]
-Oct 30 12:06:41 acoffin-xps-15 kernel:        do_one_initcall+0x6d/0x280
-Oct 30 12:06:41 acoffin-xps-15 kernel:        do_init_module+0x4a/0x1f0
-Oct 30 12:06:41 acoffin-xps-15 kernel:        __do_sys_finit_module+0xac/0x120
-Oct 30 12:06:41 acoffin-xps-15 kernel:        do_syscall_64+0x55/0xb0
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-entry_SYSCALL_64_after_hwframe+0x6e/0xd8
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-                                       -> #0 (fs_reclaim){+.+.}-{0:0}:
-Oct 30 12:06:41 acoffin-xps-15 kernel:        __lock_acquire+0x12f4/0x2000
-Oct 30 12:06:41 acoffin-xps-15 kernel:        lock_acquire+0xc4/0x2a0
-Oct 30 12:06:41 acoffin-xps-15 kernel:        fs_reclaim_acquire+0xa2/0xe0
-Oct 30 12:06:41 acoffin-xps-15 kernel:        __kmem_cache_alloc_node+0x4a/0x290
-Oct 30 12:06:41 acoffin-xps-15 kernel:        __kmalloc+0x4d/0x150
-Oct 30 12:06:41 acoffin-xps-15 kernel:        acpi_ns_internalize_name+0x93/0xf0
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-acpi_ns_get_node_unlocked+0x80/0x110
-Oct 30 12:06:41 acoffin-xps-15 kernel:        acpi_ns_get_node+0x3a/0x60
-Oct 30 12:06:41 acoffin-xps-15 kernel:        acpi_get_handle+0x57/0xb0
-Oct 30 12:06:41 acoffin-xps-15 kernel:        acpi_has_method+0x29/0x50
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-acpi_pci_set_power_state+0x44/0x110
-Oct 30 12:06:41 acoffin-xps-15 kernel:        pci_power_up+0x2e/0x180
-Oct 30 12:06:41 acoffin-xps-15 kernel:        pci_pm_runtime_resume+0x2f/0xe0
-Oct 30 12:06:41 acoffin-xps-15 kernel:        __rpm_callback+0x41/0x170
-Oct 30 12:06:41 acoffin-xps-15 kernel:        rpm_callback+0x5d/0x70
-Oct 30 12:06:41 acoffin-xps-15 kernel:        rpm_resume+0x5e7/0x830
-Oct 30 12:06:41 acoffin-xps-15 kernel:        __pm_runtime_resume+0x47/0x90
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-intel_runtime_pm_get+0x1a/0x80 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-__intel_wakeref_get_first+0x31/0x90 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-i915_gem_do_execbuffer+0x2417/0x2cc0 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-i915_gem_execbuffer2_ioctl+0x11a/0x2b0 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:        drm_ioctl_kernel+0xcd/0x170 [drm]
-Oct 30 12:06:41 acoffin-xps-15 kernel:        drm_ioctl+0x22f/0x410 [drm]
-Oct 30 12:06:41 acoffin-xps-15 kernel:        __x64_sys_ioctl+0x8d/0xd0
-Oct 30 12:06:41 acoffin-xps-15 kernel:        do_syscall_64+0x55/0xb0
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-entry_SYSCALL_64_after_hwframe+0x6e/0xd8
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-                                       other info that might help us debug this:
-Oct 30 12:06:41 acoffin-xps-15 kernel: Chain exists of:
-                                         fs_reclaim --> i915_active
---> wakeref.mutex#2/1
-Oct 30 12:06:41 acoffin-xps-15 kernel:  Possible unsafe locking scenario:
-Oct 30 12:06:41 acoffin-xps-15 kernel:        CPU0                    CPU1
-Oct 30 12:06:41 acoffin-xps-15 kernel:        ----                    ----
-Oct 30 12:06:41 acoffin-xps-15 kernel:   lock(wakeref.mutex#2/1);
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-lock(i915_active);
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-lock(wakeref.mutex#2/1);
-Oct 30 12:06:41 acoffin-xps-15 kernel:   lock(fs_reclaim);
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-                                        *** DEADLOCK ***
-Oct 30 12:06:41 acoffin-xps-15 kernel: 1 lock held by Xorg/1263:
-Oct 30 12:06:41 acoffin-xps-15 kernel:  #0: ffff9e0694bdc810
-(wakeref.mutex#2/1){+.+.}-{3:3}, at:
-__intel_wakeref_get_first+0x1f/0x90 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-                                       stack backtrace:
-Oct 30 12:06:41 acoffin-xps-15 kernel: CPU: 8 PID: 1263 Comm: Xorg Not
-tainted 6.1.112 #2
-Oct 30 12:06:41 acoffin-xps-15 kernel: Hardware name: Dell Inc. XPS 15
-9530/013F3N, BIOS 1.15.0 07/08/2024
-Oct 30 12:06:41 acoffin-xps-15 kernel: Call Trace:
-Oct 30 12:06:41 acoffin-xps-15 kernel:  <TASK>
-Oct 30 12:06:41 acoffin-xps-15 kernel:  dump_stack_lvl+0x5b/0x77
-Oct 30 12:06:41 acoffin-xps-15 kernel:  check_noncircular+0x11c/0x130
-Oct 30 12:06:41 acoffin-xps-15 kernel:  __lock_acquire+0x12f4/0x2000
-Oct 30 12:06:41 acoffin-xps-15 kernel:  lock_acquire+0xc4/0x2a0
-Oct 30 12:06:41 acoffin-xps-15 kernel:  ? __kmem_cache_alloc_node+0x4a/0x290
-Oct 30 12:06:41 acoffin-xps-15 kernel:  ? save_trace+0x3e/0x2c0
-Oct 30 12:06:41 acoffin-xps-15 kernel:  fs_reclaim_acquire+0xa2/0xe0
-Oct 30 12:06:41 acoffin-xps-15 kernel:  ? __kmem_cache_alloc_node+0x4a/0x290
-Oct 30 12:06:41 acoffin-xps-15 kernel:  __kmem_cache_alloc_node+0x4a/0x290
-Oct 30 12:06:41 acoffin-xps-15 kernel:  ? acpi_ns_internalize_name+0x93/0xf0
-Oct 30 12:06:41 acoffin-xps-15 kernel:  ? acpi_ns_internalize_name+0x93/0xf0
-Oct 30 12:06:41 acoffin-xps-15 kernel:  __kmalloc+0x4d/0x150
-Oct 30 12:06:41 acoffin-xps-15 kernel:  acpi_ns_internalize_name+0x93/0xf0
-Oct 30 12:06:41 acoffin-xps-15 kernel:  ? lock_acquire+0xc4/0x2a0
-Oct 30 12:06:41 acoffin-xps-15 kernel:  acpi_ns_get_node_unlocked+0x80/0x110
-Oct 30 12:06:41 acoffin-xps-15 kernel:  ? down_timeout+0x4b/0x70
-Oct 30 12:06:41 acoffin-xps-15 kernel:  ? acpi_ns_get_node+0x3a/0x60
-Oct 30 12:06:41 acoffin-xps-15 kernel:  acpi_ns_get_node+0x3a/0x60
-Oct 30 12:06:41 acoffin-xps-15 kernel:  acpi_get_handle+0x57/0xb0
-Oct 30 12:06:41 acoffin-xps-15 kernel:  acpi_has_method+0x29/0x50
-Oct 30 12:06:41 acoffin-xps-15 kernel:  acpi_pci_set_power_state+0x44/0x110
-Oct 30 12:06:41 acoffin-xps-15 kernel:  pci_power_up+0x2e/0x180
-Oct 30 12:06:41 acoffin-xps-15 kernel:  pci_pm_runtime_resume+0x2f/0xe0
-Oct 30 12:06:41 acoffin-xps-15 kernel:  ? pci_pm_restore_noirq+0xc0/0xc0
-Oct 30 12:06:41 acoffin-xps-15 kernel:  __rpm_callback+0x41/0x170
-Oct 30 12:06:41 acoffin-xps-15 kernel:  ? pci_pm_restore_noirq+0xc0/0xc0
-Oct 30 12:06:41 acoffin-xps-15 kernel:  rpm_callback+0x5d/0x70
-Oct 30 12:06:41 acoffin-xps-15 kernel:  ? pci_pm_restore_noirq+0xc0/0xc0
-Oct 30 12:06:41 acoffin-xps-15 kernel:  rpm_resume+0x5e7/0x830
-Oct 30 12:06:41 acoffin-xps-15 kernel:  __pm_runtime_resume+0x47/0x90
-Oct 30 12:06:41 acoffin-xps-15 kernel:  intel_runtime_pm_get+0x1a/0x80 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-__intel_wakeref_get_first+0x31/0x90 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-i915_gem_do_execbuffer+0x2417/0x2cc0 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-i915_gem_execbuffer2_ioctl+0x11a/0x2b0 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:  ?
-i915_gem_do_execbuffer+0x2cc0/0x2cc0 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:  drm_ioctl_kernel+0xcd/0x170 [drm]
-Oct 30 12:06:41 acoffin-xps-15 kernel:  drm_ioctl+0x22f/0x410 [drm]
-Oct 30 12:06:41 acoffin-xps-15 kernel:  ?
-i915_gem_do_execbuffer+0x2cc0/0x2cc0 [i915]
-Oct 30 12:06:41 acoffin-xps-15 kernel:  __x64_sys_ioctl+0x8d/0xd0
-Oct 30 12:06:41 acoffin-xps-15 kernel:  do_syscall_64+0x55/0xb0
-Oct 30 12:06:41 acoffin-xps-15 kernel:  ? kfree+0x107/0x140
-Oct 30 12:06:41 acoffin-xps-15 kernel:  ? ___sys_recvmsg+0x9c/0xe0
-Oct 30 12:06:41 acoffin-xps-15 kernel:  ? __sys_recvmsg+0xa7/0xc0
-Oct 30 12:06:41 acoffin-xps-15 kernel:  ? exit_to_user_mode_prepare+0x19e/0x250
-Oct 30 12:06:41 acoffin-xps-15 kernel:  ? lockdep_hardirqs_on_prepare+0xdc/0x190
-Oct 30 12:06:41 acoffin-xps-15 kernel:  ? do_syscall_64+0x61/0xb0
-Oct 30 12:06:41 acoffin-xps-15 kernel:  entry_SYSCALL_64_after_hwframe+0x6e/0xd8
-Oct 30 12:06:41 acoffin-xps-15 kernel: RIP: 0033:0x7f258ef06c5b
-Oct 30 12:06:41 acoffin-xps-15 kernel: Code: 00 48 89 44 24 18 31 c0
-48 8d 44 24 60 c7 04 24 10 00 00 00 48 89 44 24 08 48 8d 44 24 20 48
-89 44 24 10 b8 10 00 00 00 0f 05 <89> c2 3d 00 f0 ff ff 77 1c 48 8b 44
-24 18 64 48 2b 04 25 28 00 00
-Oct 30 12:06:41 acoffin-xps-15 kernel: RSP: 002b:00007ffcd0ee2350
-EFLAGS: 00000246 ORIG_RAX: 0000000000000010
-Oct 30 12:06:41 acoffin-xps-15 kernel: RAX: ffffffffffffffda RBX:
-0000557019e70950 RCX: 00007f258ef06c5b
-Oct 30 12:06:41 acoffin-xps-15 kernel: RDX: 00007ffcd0ee2400 RSI:
-0000000040406469 RDI: 0000000000000012
-Oct 30 12:06:41 acoffin-xps-15 kernel: RBP: 00007ffcd0ee2490 R08:
-0000000000000007 R09: 000055701b5d64f0
-Oct 30 12:06:41 acoffin-xps-15 kernel: R10: 3002f0996e1d00f9 R11:
-0000000000000246 R12: 0000000000000000
-Oct 30 12:06:41 acoffin-xps-15 kernel: R13: 00007ffcd0ee2400 R14:
-0000000000000012 R15: 000055701b743fd0
-```
+This first part of the conversion provides:
 
-File 3
-```
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-======================================================
-Oct 30 12:06:41 acoffin-xps-15 kernel: WARNING: possible circular
-locking dependency detected
-Oct 30 12:06:41 acoffin-xps-15 kernel: 6.1.112 #2 Not tainted
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-------------------------------------------------------
-Oct 30 12:06:41 acoffin-xps-15 kernel: Xorg/1263 is trying to acquire lock:
-Oct 30 12:06:41 acoffin-xps-15 kernel: ffffffff871e3380
-(fs_reclaim){+.+.}-{0:0}, at: __kmem_cache_alloc_node
-(./include/linux/sched/mm.h:272 mm/slab.h:710 mm/slub.c:3318
-mm/slub.c:3437)
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-but task is already holding lock:
-Oct 30 12:06:41 acoffin-xps-15 kernel: ffff9e0694bdc810
-(wakeref.mutex#2/1){+.+.}-{3:3}, at: __intel_wakeref_get_first
-(./arch/x86/include/asm/atomic.h:29
-./include/linux/atomic/atomic-instrumented.h:28
-drivers/gpu/drm/i915/intel_wakeref.c:34) i915
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-which lock already depends on the new lock.
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-the existing dependency chain (in reverse order) is:
-Oct 30 12:06:41 acoffin-xps-15 kernel:
--> #2 (wakeref.mutex#2/1){+.+.}-{3:3}:
-Oct 30 12:06:41 acoffin-xps-15 kernel: __mutex_lock
-(./arch/x86/include/asm/jump_label.h:27
-./include/linux/jump_label.h:207 ./include/trace/events/lock.h:95
-kernel/locking/mutex.c:605 kernel/locking/mutex.c:747)
-Oct 30 12:06:41 acoffin-xps-15 kernel: __intel_wakeref_get_first
-(./arch/x86/include/asm/atomic.h:29
-./include/linux/atomic/atomic-instrumented.h:28
-drivers/gpu/drm/i915/intel_wakeref.c:34) i915
-Oct 30 12:06:41 acoffin-xps-15 kernel: __i915_vma_active
-(./drivers/gpu/drm/i915/intel_wakeref.h:85
-drivers/gpu/drm/i915/gt/intel_gt_pm.h:21
-drivers/gpu/drm/i915/i915_vma.c:112) i915
-Oct 30 12:06:41 acoffin-xps-15 kernel: i915_active_acquire
-(drivers/gpu/drm/i915/i915_active.c:520
-drivers/gpu/drm/i915/i915_active.c:503) i915
-Oct 30 12:06:41 acoffin-xps-15 kernel: i915_vma_pin_ww
-(drivers/gpu/drm/i915/i915_vma.c:1506) i915
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-intel_pin_fb_obj_dpt.constprop.0
-(drivers/gpu/drm/i915/display/intel_fb_pin.c:85) i915
-Oct 30 12:06:41 acoffin-xps-15 kernel: intel_plane_pin_fb
-(drivers/gpu/drm/i915/display/intel_fb_pin.c:269) i915
-Oct 30 12:06:41 acoffin-xps-15 kernel: intel_prepare_plane_fb
-(drivers/gpu/drm/i915/display/intel_atomic_plane.c:1032) i915
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-drm_atomic_helper_prepare_planes
-(drivers/gpu/drm/drm_atomic_helper.c:2571
-drivers/gpu/drm/drm_atomic_helper.c:2547) drm_kms_helper
-Oct 30 12:06:41 acoffin-xps-15 kernel: intel_atomic_commit
-(drivers/gpu/drm/i915/display/intel_display.c:6964
-drivers/gpu/drm/i915/display/intel_display.c:7757) i915
-Oct 30 12:06:41 acoffin-xps-15 kernel: drm_atomic_helper_page_flip
-(drivers/gpu/drm/drm_atomic_helper.c:3596) drm_kms_helper
-Oct 30 12:06:41 acoffin-xps-15 kernel: drm_mode_page_flip_ioctl
-(drivers/gpu/drm/drm_plane.c:1368) drm
-Oct 30 12:06:41 acoffin-xps-15 kernel: drm_ioctl_kernel
-(drivers/gpu/drm/drm_ioctl.c:788) drm
-Oct 30 12:06:41 acoffin-xps-15 kernel: drm_ioctl
-(./include/linux/thread_info.h:199 ./include/linux/thread_info.h:235
-./include/linux/uaccess.h:168 drivers/gpu/drm/drm_ioctl.c:892) drm
-Oct 30 12:06:41 acoffin-xps-15 kernel: __x64_sys_ioctl (fs/ioctl.c:51
-fs/ioctl.c:870 fs/ioctl.c:856 fs/ioctl.c:856)
-Oct 30 12:06:41 acoffin-xps-15 kernel: do_syscall_64
-(arch/x86/entry/common.c:51 arch/x86/entry/common.c:81)
-Oct 30 12:06:41 acoffin-xps-15 kernel: entry_SYSCALL_64_after_hwframe
-(arch/x86/entry/entry_64.S:121)
-Oct 30 12:06:41 acoffin-xps-15 kernel:
--> #1 (i915_active){+.+.}-{3:3}:
-Oct 30 12:06:41 acoffin-xps-15 kernel: i915_vma_instance
-(drivers/gpu/drm/i915/i915_vma.c:159
-drivers/gpu/drm/i915/i915_vma.c:325) i915
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-intel_alloc_initial_plane_obj.isra.0
-(drivers/gpu/drm/i915/display/intel_plane_initial.c:139
-drivers/gpu/drm/i915/display/intel_plane_initial.c:183) i915
-Oct 30 12:06:41 acoffin-xps-15 kernel: intel_crtc_initial_plane_config
-(drivers/gpu/drm/i915/display/intel_plane_initial.c:229
-drivers/gpu/drm/i915/display/intel_plane_initial.c:320) i915
-Oct 30 12:06:41 acoffin-xps-15 kernel: intel_modeset_init_nogem
-(drivers/gpu/drm/i915/display/intel_display.c:8794 (discriminator 2))
-i915
-Oct 30 12:06:41 acoffin-xps-15 kernel: i915_driver_probe
-(drivers/gpu/drm/i915/i915_driver.c:951) i915
-Oct 30 12:06:41 acoffin-xps-15 kernel: local_pci_probe
-(drivers/pci/pci-driver.c:324)
-Oct 30 12:06:41 acoffin-xps-15 kernel: pci_device_probe
-(drivers/pci/pci-driver.c:392 drivers/pci/pci-driver.c:417
-drivers/pci/pci-driver.c:460)
-Oct 30 12:06:41 acoffin-xps-15 kernel: really_probe
-(drivers/base/dd.c:560 drivers/base/dd.c:639)
-Oct 30 12:06:41 acoffin-xps-15 kernel: __driver_probe_device
-(drivers/base/dd.c:785)
-Oct 30 12:06:41 acoffin-xps-15 kernel: driver_probe_device
-(drivers/base/dd.c:815)
-Oct 30 12:06:41 acoffin-xps-15 kernel: __driver_attach (drivers/base/dd.c:1202)
-Oct 30 12:06:41 acoffin-xps-15 kernel: bus_for_each_dev (drivers/base/bus.c:301)
-Oct 30 12:06:41 acoffin-xps-15 kernel: bus_add_driver (drivers/base/bus.c:618)
-Oct 30 12:06:41 acoffin-xps-15 kernel: driver_register
-(drivers/base/driver.c:246)
-Oct 30 12:06:41 acoffin-xps-15 kernel: get_max_energy_counter
-(drivers/powercap/intel_rapl_common.c:643
-drivers/powercap/intel_rapl_common.c:194) intel_rapl_common
-Oct 30 12:06:41 acoffin-xps-15 kernel: do_one_initcall (init/main.c:1298)
-Oct 30 12:06:41 acoffin-xps-15 kernel: do_init_module
-(kernel/module/main.c:2469)
-Oct 30 12:06:41 acoffin-xps-15 kernel: __do_sys_finit_module
-(kernel/module/main.c:2978)
-Oct 30 12:06:41 acoffin-xps-15 kernel: do_syscall_64
-(arch/x86/entry/common.c:51 arch/x86/entry/common.c:81)
-Oct 30 12:06:41 acoffin-xps-15 kernel: entry_SYSCALL_64_after_hwframe
-(arch/x86/entry/entry_64.S:121)
-Oct 30 12:06:41 acoffin-xps-15 kernel:
--> #0 (fs_reclaim){+.+.}-{0:0}:
-Oct 30 12:06:41 acoffin-xps-15 kernel: __lock_acquire
-(kernel/locking/lockdep.c:3091 kernel/locking/lockdep.c:3209
-kernel/locking/lockdep.c:3825 kernel/locking/lockdep.c:5049)
-Oct 30 12:06:41 acoffin-xps-15 kernel: lock_acquire
-(kernel/locking/lockdep.c:467 kernel/locking/lockdep.c:5664
-kernel/locking/lockdep.c:5627)
-Oct 30 12:06:41 acoffin-xps-15 kernel: fs_reclaim_acquire
-(mm/page_alloc.c:4682 mm/page_alloc.c:4695)
-Oct 30 12:06:41 acoffin-xps-15 kernel: __kmem_cache_alloc_node
-(./include/linux/sched/mm.h:272 mm/slab.h:710 mm/slub.c:3318
-mm/slub.c:3437)
-Oct 30 12:06:41 acoffin-xps-15 kernel: __kmalloc (mm/slab_common.c:937
-mm/slab_common.c:949)
-Oct 30 12:06:41 acoffin-xps-15 kernel: acpi_ns_internalize_name
-(./include/linux/slab.h:562 ./include/linux/slab.h:693
-./include/acpi/platform/aclinuxex.h:57
-drivers/acpi/acpica/nsutils.c:331)
-Oct 30 12:06:41 acoffin-xps-15 kernel: acpi_ns_get_node_unlocked
-(drivers/acpi/acpica/nsutils.c:666)
-Oct 30 12:06:41 acoffin-xps-15 kernel: acpi_ns_get_node
-(drivers/acpi/acpica/nsutils.c:729)
-Oct 30 12:06:41 acoffin-xps-15 kernel: acpi_get_handle
-(drivers/acpi/acpica/nsxfname.c:99)
-Oct 30 12:06:41 acoffin-xps-15 kernel: acpi_has_method
-(drivers/acpi/utils.c:591)
-Oct 30 12:06:41 acoffin-xps-15 kernel: acpi_pci_set_power_state
-(drivers/pci/pci-acpi.c:1069 (discriminator 1))
-Oct 30 12:06:41 acoffin-xps-15 kernel: pci_power_up (drivers/pci/pci.c:1212)
-Oct 30 12:06:41 acoffin-xps-15 kernel: pci_pm_runtime_resume
-(drivers/pci/pci-driver.c:570 (discriminator 4)
-drivers/pci/pci-driver.c:575 (discriminator 4)
-drivers/pci/pci-driver.c:1349 (discriminator 4))
-Oct 30 12:06:41 acoffin-xps-15 kernel: __rpm_callback
-(drivers/base/power/runtime.c:395)
-Oct 30 12:06:41 acoffin-xps-15 kernel: rpm_callback
-(drivers/base/power/runtime.c:532)
-Oct 30 12:06:41 acoffin-xps-15 kernel: rpm_resume
-(drivers/base/power/runtime.c:912)
-Oct 30 12:06:41 acoffin-xps-15 kernel: __pm_runtime_resume
-(./include/linux/spinlock.h:406 drivers/base/power/runtime.c:1171)
-Oct 30 12:06:41 acoffin-xps-15 kernel: intel_runtime_pm_get
-(drivers/gpu/drm/i915/intel_runtime_pm.c:358
-drivers/gpu/drm/i915/intel_runtime_pm.c:402) i915
-Oct 30 12:06:41 acoffin-xps-15 kernel: __intel_wakeref_get_first
-(drivers/gpu/drm/i915/intel_wakeref.c:39) i915
-Oct 30 12:06:41 acoffin-xps-15 kernel: i915_gem_do_execbuffer
-(./drivers/gpu/drm/i915/intel_wakeref.h:85
-./drivers/gpu/drm/i915/gt/intel_gt_pm.h:21
-drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:2710
-drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:3430) i915
-Oct 30 12:06:41 acoffin-xps-15 kernel: i915_gem_execbuffer2_ioctl
-(drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:3580) i915
-Oct 30 12:06:41 acoffin-xps-15 kernel: drm_ioctl_kernel
-(drivers/gpu/drm/drm_ioctl.c:788) drm
-Oct 30 12:06:41 acoffin-xps-15 kernel: drm_ioctl
-(./include/linux/thread_info.h:199 ./include/linux/thread_info.h:235
-./include/linux/uaccess.h:168 drivers/gpu/drm/drm_ioctl.c:892) drm
-Oct 30 12:06:41 acoffin-xps-15 kernel: __x64_sys_ioctl (fs/ioctl.c:51
-fs/ioctl.c:870 fs/ioctl.c:856 fs/ioctl.c:856)
-Oct 30 12:06:41 acoffin-xps-15 kernel: do_syscall_64
-(arch/x86/entry/common.c:51 arch/x86/entry/common.c:81)
-Oct 30 12:06:41 acoffin-xps-15 kernel: entry_SYSCALL_64_after_hwframe
-(arch/x86/entry/entry_64.S:121)
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-other info that might help us debug this:
-Oct 30 12:06:41 acoffin-xps-15 kernel: Chain exists of:
-fs_reclaim --> i915_active --> wakeref.mutex#2/1
-Oct 30 12:06:41 acoffin-xps-15 kernel:  Possible unsafe locking scenario:
-Oct 30 12:06:41 acoffin-xps-15 kernel:        CPU0                    CPU1
-Oct 30 12:06:41 acoffin-xps-15 kernel:        ----                    ----
-Oct 30 12:06:41 acoffin-xps-15 kernel:   lock(wakeref.mutex#2/1);
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-lock(i915_active);
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-lock(wakeref.mutex#2/1);
-Oct 30 12:06:41 acoffin-xps-15 kernel:   lock(fs_reclaim);
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-*** DEADLOCK ***
-Oct 30 12:06:41 acoffin-xps-15 kernel: 1 lock held by Xorg/1263:
-Oct 30 12:06:41 acoffin-xps-15 kernel: #0: ffff9e0694bdc810
-(wakeref.mutex#2/1){+.+.}-{3:3}, at: __intel_wakeref_get_first
-(./arch/x86/include/asm/atomic.h:29
-./include/linux/atomic/atomic-instrumented.h:28
-drivers/gpu/drm/i915/intel_wakeref.c:34) i915
-Oct 30 12:06:41 acoffin-xps-15 kernel:
-stack backtrace:
-Oct 30 12:06:41 acoffin-xps-15 kernel: CPU: 8 PID: 1263 Comm: Xorg Not
-tainted 6.1.112 #2
-Oct 30 12:06:41 acoffin-xps-15 kernel: Hardware name: Dell Inc. XPS 15
-9530/013F3N, BIOS 1.15.0 07/08/2024
-Oct 30 12:06:41 acoffin-xps-15 kernel: Call Trace:
-Oct 30 12:06:41 acoffin-xps-15 kernel:  <TASK>
-Oct 30 12:06:41 acoffin-xps-15 kernel: dump_stack_lvl
-(lib/dump_stack.c:110 (discriminator 4))
-Oct 30 12:06:41 acoffin-xps-15 kernel: check_noncircular
-(kernel/locking/lockdep.c:2173)
-Oct 30 12:06:41 acoffin-xps-15 kernel: __lock_acquire
-(kernel/locking/lockdep.c:3091 kernel/locking/lockdep.c:3209
-kernel/locking/lockdep.c:3825 kernel/locking/lockdep.c:5049)
-Oct 30 12:06:41 acoffin-xps-15 kernel: lock_acquire
-(kernel/locking/lockdep.c:467 kernel/locking/lockdep.c:5664
-kernel/locking/lockdep.c:5627)
-Oct 30 12:06:41 acoffin-xps-15 kernel: ? __kmem_cache_alloc_node
-(./include/linux/sched/mm.h:272 mm/slab.h:710 mm/slub.c:3318
-mm/slub.c:3437)
-Oct 30 12:06:41 acoffin-xps-15 kernel: ? save_trace
-(kernel/locking/lockdep.c:584)
-Oct 30 12:06:41 acoffin-xps-15 kernel: fs_reclaim_acquire
-(mm/page_alloc.c:4682 mm/page_alloc.c:4695)
-Oct 30 12:06:41 acoffin-xps-15 kernel: ? __kmem_cache_alloc_node
-(./include/linux/sched/mm.h:272 mm/slab.h:710 mm/slub.c:3318
-mm/slub.c:3437)
-Oct 30 12:06:41 acoffin-xps-15 kernel: __kmem_cache_alloc_node
-(./include/linux/sched/mm.h:272 mm/slab.h:710 mm/slub.c:3318
-mm/slub.c:3437)
-Oct 30 12:06:41 acoffin-xps-15 kernel: ? acpi_ns_internalize_name
-(./include/linux/slab.h:562 ./include/linux/slab.h:693
-./include/acpi/platform/aclinuxex.h:57
-drivers/acpi/acpica/nsutils.c:331)
-Oct 30 12:06:41 acoffin-xps-15 kernel: ? acpi_ns_internalize_name
-(./include/linux/slab.h:562 ./include/linux/slab.h:693
-./include/acpi/platform/aclinuxex.h:57
-drivers/acpi/acpica/nsutils.c:331)
-Oct 30 12:06:41 acoffin-xps-15 kernel: __kmalloc (mm/slab_common.c:937
-mm/slab_common.c:949)
-Oct 30 12:06:41 acoffin-xps-15 kernel: acpi_ns_internalize_name
-(./include/linux/slab.h:562 ./include/linux/slab.h:693
-./include/acpi/platform/aclinuxex.h:57
-drivers/acpi/acpica/nsutils.c:331)
-Oct 30 12:06:41 acoffin-xps-15 kernel: ? lock_acquire
-(kernel/locking/lockdep.c:467 kernel/locking/lockdep.c:5664
-kernel/locking/lockdep.c:5627)
-Oct 30 12:06:41 acoffin-xps-15 kernel: acpi_ns_get_node_unlocked
-(drivers/acpi/acpica/nsutils.c:666)
-Oct 30 12:06:41 acoffin-xps-15 kernel: ? down_timeout
-(kernel/locking/semaphore.c:173)
-Oct 30 12:06:41 acoffin-xps-15 kernel: ? acpi_ns_get_node
-(drivers/acpi/acpica/nsutils.c:729)
-Oct 30 12:06:41 acoffin-xps-15 kernel: acpi_ns_get_node
-(drivers/acpi/acpica/nsutils.c:729)
-Oct 30 12:06:41 acoffin-xps-15 kernel: acpi_get_handle
-(drivers/acpi/acpica/nsxfname.c:99)
-Oct 30 12:06:41 acoffin-xps-15 kernel: acpi_has_method
-(drivers/acpi/utils.c:591)
-Oct 30 12:06:41 acoffin-xps-15 kernel: acpi_pci_set_power_state
-(drivers/pci/pci-acpi.c:1069 (discriminator 1))
-Oct 30 12:06:41 acoffin-xps-15 kernel: pci_power_up (drivers/pci/pci.c:1212)
-Oct 30 12:06:41 acoffin-xps-15 kernel: pci_pm_runtime_resume
-(drivers/pci/pci-driver.c:570 (discriminator 4)
-drivers/pci/pci-driver.c:575 (discriminator 4)
-drivers/pci/pci-driver.c:1349 (discriminator 4))
-Oct 30 12:06:41 acoffin-xps-15 kernel: ? pci_pm_restore_noirq
-(drivers/pci/pci-driver.c:1338)
-Oct 30 12:06:41 acoffin-xps-15 kernel: __rpm_callback
-(drivers/base/power/runtime.c:395)
-Oct 30 12:06:41 acoffin-xps-15 kernel: ? pci_pm_restore_noirq
-(drivers/pci/pci-driver.c:1338)
-Oct 30 12:06:41 acoffin-xps-15 kernel: rpm_callback
-(drivers/base/power/runtime.c:532)
-Oct 30 12:06:41 acoffin-xps-15 kernel: ? pci_pm_restore_noirq
-(drivers/pci/pci-driver.c:1338)
-Oct 30 12:06:41 acoffin-xps-15 kernel: rpm_resume
-(drivers/base/power/runtime.c:912)
-Oct 30 12:06:41 acoffin-xps-15 kernel: __pm_runtime_resume
-(./include/linux/spinlock.h:406 drivers/base/power/runtime.c:1171)
-Oct 30 12:06:41 acoffin-xps-15 kernel: intel_runtime_pm_get
-(drivers/gpu/drm/i915/intel_runtime_pm.c:358
-drivers/gpu/drm/i915/intel_runtime_pm.c:402) i915
-Oct 30 12:06:41 acoffin-xps-15 kernel: __intel_wakeref_get_first
-(drivers/gpu/drm/i915/intel_wakeref.c:39) i915
-Oct 30 12:06:41 acoffin-xps-15 kernel: i915_gem_do_execbuffer
-(./drivers/gpu/drm/i915/intel_wakeref.h:85
-./drivers/gpu/drm/i915/gt/intel_gt_pm.h:21
-drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:2710
-drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:3430) i915
-Oct 30 12:06:41 acoffin-xps-15 kernel: i915_gem_execbuffer2_ioctl
-(drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:3580) i915
-Oct 30 12:06:41 acoffin-xps-15 kernel: ? i915_gem_do_execbuffer
-(drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:3548) i915
-Oct 30 12:06:41 acoffin-xps-15 kernel: drm_ioctl_kernel
-(drivers/gpu/drm/drm_ioctl.c:788) drm
-Oct 30 12:06:41 acoffin-xps-15 kernel: drm_ioctl
-(./include/linux/thread_info.h:199 ./include/linux/thread_info.h:235
-./include/linux/uaccess.h:168 drivers/gpu/drm/drm_ioctl.c:892) drm
-Oct 30 12:06:41 acoffin-xps-15 kernel: ? i915_gem_do_execbuffer
-(drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c:3548) i915
-Oct 30 12:06:41 acoffin-xps-15 kernel: __x64_sys_ioctl (fs/ioctl.c:51
-fs/ioctl.c:870 fs/ioctl.c:856 fs/ioctl.c:856)
-Oct 30 12:06:41 acoffin-xps-15 kernel: do_syscall_64
-(arch/x86/entry/common.c:51 arch/x86/entry/common.c:81)
-Oct 30 12:06:41 acoffin-xps-15 kernel: ? kfree
-(./include/trace/events/kmem.h:94 mm/slab_common.c:975)
-Oct 30 12:06:41 acoffin-xps-15 kernel: ? ___sys_recvmsg (net/socket.c:2778)
-Oct 30 12:06:41 acoffin-xps-15 kernel: ? __sys_recvmsg
-(./include/linux/file.h:33 net/socket.c:2807)
-Oct 30 12:06:41 acoffin-xps-15 kernel: ? exit_to_user_mode_prepare
-(./arch/x86/include/asm/entry-common.h:57 kernel/entry/common.c:212)
-Oct 30 12:06:41 acoffin-xps-15 kernel: ? lockdep_hardirqs_on_prepare
-(kernel/locking/lockdep.c:4256 kernel/locking/lockdep.c:4315
-kernel/locking/lockdep.c:4267)
-Oct 30 12:06:41 acoffin-xps-15 kernel: ? do_syscall_64
-(arch/x86/entry/common.c:88)
-Oct 30 12:06:41 acoffin-xps-15 kernel: entry_SYSCALL_64_after_hwframe
-(arch/x86/entry/entry_64.S:121)
-Oct 30 12:06:41 acoffin-xps-15 kernel: RIP: 0033:0x7f258ef06c5b
-Oct 30 12:06:41 acoffin-xps-15 kernel: Code: 00 48 89 44 24 18 31 c0
-48 8d 44 24 60 c7 04 24 10 00 00 00 48 89 44 24 08 48 8d 44 24 20 48
-89 44 24 10 b8 10 00 00 00 0f 05 <89> c2 3d 00 f0 ff ff 77 1c 48 8b 44
-24 18 64 48 2b 04 25 28 00 00
-All code
-========
-   0:    00 48 89                 add    %cl,-0x77(%rax)
-   3:    44 24 18                 rex.R and $0x18,%al
-   6:    31 c0                    xor    %eax,%eax
-   8:    48 8d 44 24 60           lea    0x60(%rsp),%rax
-   d:    c7 04 24 10 00 00 00     movl   $0x10,(%rsp)
-  14:    48 89 44 24 08           mov    %rax,0x8(%rsp)
-  19:    48 8d 44 24 20           lea    0x20(%rsp),%rax
-  1e:    48 89 44 24 10           mov    %rax,0x10(%rsp)
-  23:    b8 10 00 00 00           mov    $0x10,%eax
-  28:    0f 05                    syscall
-  2a:*    89 c2                    mov    %eax,%edx        <--
-trapping instruction
-  2c:    3d 00 f0 ff ff           cmp    $0xfffff000,%eax
-  31:    77 1c                    ja     0x4f
-  33:    48 8b 44 24 18           mov    0x18(%rsp),%rax
-  38:    64                       fs
-  39:    48                       rex.W
-  3a:    2b                       .byte 0x2b
-  3b:    04 25                    add    $0x25,%al
-  3d:    28 00                    sub    %al,(%rax)
-    ...
+  - a set of hrtimer_setup*() variants, which take the function pointer as
+    argument.
 
-Code starting with the faulting instruction
-===========================================
-   0:    89 c2                    mov    %eax,%edx
-   2:    3d 00 f0 ff ff           cmp    $0xfffff000,%eax
-   7:    77 1c                    ja     0x25
-   9:    48 8b 44 24 18           mov    0x18(%rsp),%rax
-   e:    64                       fs
-   f:    48                       rex.W
-  10:    2b                       .byte 0x2b
-  11:    04 25                    add    $0x25,%al
-  13:    28 00                    sub    %al,(%rax)
-    ...
-Oct 30 12:06:41 acoffin-xps-15 kernel: RSP: 002b:00007ffcd0ee2350
-EFLAGS: 00000246 ORIG_RAX: 0000000000000010
-Oct 30 12:06:41 acoffin-xps-15 kernel: RAX: ffffffffffffffda RBX:
-0000557019e70950 RCX: 00007f258ef06c5b
-Oct 30 12:06:41 acoffin-xps-15 kernel: RDX: 00007ffcd0ee2400 RSI:
-0000000040406469 RDI: 0000000000000012
-Oct 30 12:06:41 acoffin-xps-15 kernel: RBP: 00007ffcd0ee2490 R08:
-0000000000000007 R09: 000055701b5d64f0
-Oct 30 12:06:41 acoffin-xps-15 kernel: R10: 3002f0996e1d00f9 R11:
-0000000000000246 R12: 0000000000000000
-Oct 30 12:06:41 acoffin-xps-15 kernel: R13: 00007ffcd0ee2400 R14:
-0000000000000012 R15: 000055701b743fd0
-```
+  - hrtimer_update_function() which allows to change the callback function
+    after initialization with the proper safety checks in place.
 
-Best wishes,
-Alex Coffin
+  - conversion of the hrtimer_init*_on_stack() variants
+
+  - some minor cleanups
+
+The remaining users will be converted in follow up series.
+
+Most conversions were done with Coccinelle. See sematic patch below.
+
+Changes versus v1:
+  - Open code kvm_xen_init_vcpu() (Sean)
+  - Drop the can/bcm patch (Oliver)
+  - Folded the removal of hrtimer_init_sleeper() (tglx)
+  - Update change logs and cover letter
+
+The series applies on top of:
+
+    git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip.git timers/core
+
+and is also available from git:
+
+    git://git.kernel.org/pub/scm/linux/kernel/git/tglx/devel.git hrtimer-se=
+tup-part1-v2
+
+Best regards,
+
+Nam
+
+---
+virtual patch
+@@ expression timer, clock, mode, func; @@
+- hrtimer_init(timer, clock, mode);
+  ...
+- timer->function =3D func;
++ hrtimer_setup(timer, func, clock, mode);
+
+@@ expression timer, clock, mode, func; @@
+- hrtimer_init(&timer, clock, mode);
+  ...
+- timer.function =3D func;
++ hrtimer_setup(&timer, func, clock, mode);
+
+@@ expression timer, clock, mode, func; @@
+- hrtimer_init_on_stack(&timer, clock, mode);
+  ...
+- timer.function =3D func;
++ hrtimer_setup_on_stack(&timer, func, clock, mode);
+
+@@ expression timer, clock, mode; @@
+- hrtimer_init_sleeper_on_stack(timer, clock, mode);
++ hrtimer_setup_sleeper_on_stack(timer, clock, mode);
+
+---
+ arch/x86/kvm/xen.c                             |  12 +--
+ drivers/gpu/drm/i915/i915_request.c            |  17 ++--
+ drivers/net/wireless/ralink/rt2x00/rt2x00usb.c |   2 -
+ fs/aio.c                                       |   2 +-
+ include/linux/hrtimer.h                        |  51 +++++++-----
+ include/linux/wait.h                           |   4 +-
+ io_uring/io_uring.c                            |   7 +-
+ io_uring/timeout.c                             |   1 -
+ kernel/futex/core.c                            |   6 +-
+ kernel/sched/idle.c                            |   4 +-
+ kernel/time/alarmtimer.c                       |   9 +-
+ kernel/time/hrtimer.c                          | 110 ++++++++++++++++++---=
+----
+ kernel/time/sleep_timeout.c                    |   2 +-
+ net/core/pktgen.c                              |   2 +-
+ 14 files changed, 136 insertions(+), 93 deletions(-)
+---
+base-commit: 875cf0b1f0eb4fcd9007a0ac0891125d2ce9766b
+
+
+From namcao@linutronix.de Thu Oct 31 07:49:39 2024
+Return-Path: <namcao@linutronix.de>
+Received: from galois.linutronix.de
+	by Galois.linutronix.de with LMTP
+	id 4DQ6C4MoI2cuEAAAEMDZNw
+	(envelope-from <namcao@linutronix.de>); Thu, 31 Oct 2024 07:49:39 +0100
+From: Nam Cao <namcao@linutronix.de>
+DKIM-Signature: v=3D1; a=3Drsa-sha256; c=3Drelaxed/relaxed; d=3Dlinutronix.=
+de;
+	s=3D2020; t=3D1730357379;
+	h=3Dfrom:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3DSlWulzgnMEFh94QnWgZOC3I74EHL27xJhw0Iun1RM+E=3D;
+	b=3DpOzt0e+Oz6noqitNHk3WKiQL1mwQoPhrKkrRkHSGNyT6bzDGbPTlXcrjE4Jy7F9e7lRV7I
+	E8Hhu7hVAtLq4S0ORRjVlynGmHRCP/yPnR1r1tpY/VAAonxY0HkTSOBPmaoTp3r6v9rbzP
+	f5vXlvZSsNPLMriNPgjm7et93OVk1mBxwVQFazaIANbmIdK0B22f9oBeBEC7oXUJ1l38F6
+	0J3eXt8ZJihIL4+R6i+mLKhpNjKYd6oQ0x39Shyp+sO7GBxc1cm/VYbt8KcdfxAaEN5+Wm
+	Ct8AEV2wMXL5Tyy9qOnoVQOiXmay9QTg+cfnHnhiglI3e+0UH7hx51npbA4ICw=3D=3D
+DKIM-Signature: v=3D1; a=3Ded25519-sha256; c=3Drelaxed/relaxed; d=3Dlinutro=
+nix.de;
+	s=3D2020e; t=3D1730357379;
+	h=3Dfrom:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3DSlWulzgnMEFh94QnWgZOC3I74EHL27xJhw0Iun1RM+E=3D;
+	b=3DkkrvwcWFuoGuMm0lpq9mhWZsxY3tJ1zyo6GyzkRrN51jPYWfs/IMmidfmZYn20y/cbvluA
+	Ytc6J2O1mB4XxdDw=3D=3D
+Date: Thu, 31 Oct 2024 06:49:24 +0000
+Subject: [PATCH v2 01/19] hrtimers: Add missing hrtimer_init() trace points
+MIME-Version: 1.0
+Content-Type: text/plain; charset=3D"utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20241031-hrtimer_setup_p1_v2-v2-1-23400656575a@linutronix.de>
+References: <20241031-hrtimer_setup_p1_v2-v2-0-23400656575a@linutronix.de>
+In-Reply-To: <20241031-hrtimer_setup_p1_v2-v2-0-23400656575a@linutronix.de>
+To: Anna-Maria Behnsen <anna-maria@linutronix.de>,=20
+ Frederic Weisbecker <frederic@kernel.org>,=20
+ Thomas Gleixner <tglx@linutronix.de>,=20
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com=
+>,=20
+ Miguel Ojeda <ojeda@kernel.org>, Kees Cook <kees@kernel.org>,=20
+ linux-kernel@vger.kernel.org
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,=20
+ intel-gfx@lists.freedesktop.org, Sean Christopherson <seanjc@google.com>,=
+=20
+ Paolo Bonzini <pbonzini@redhat.com>, x86@kernel.org,=20
+ Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,=20
+ Jens Axboe <axboe@kernel.dk>, Christian Brauner <brauner@kernel.org>,=20
+ Peter Zijlstra <peterz@infradead.org>, John Stultz <jstultz@google.com>,=20
+ Nam Cao <namcao@linutronix.de>
+Status: RO
+Content-Length: 6512
+Lines: 179
+
+hrtimer_init*_on_stack() is not covered by tracing when
+CONFIG_DEBUG_OBJECTS_TIMERS=3Dy.
+
+Rework the functions similar to hrtimer_init() and hrtimer_init_sleeper()
+so that the hrtimer_init() tracepoint is unconditionally available.
+
+The rework makes hrtimer_init_sleeper() unused. Delete it.
+
+Signed-off-by: Nam Cao <namcao@linutronix.de>
+---
+ include/linux/hrtimer.h | 19 +--------------
+ kernel/time/hrtimer.c   | 65 +++++++++++++++++++++++++++------------------=
+----
+ 2 files changed, 37 insertions(+), 47 deletions(-)
+
+diff --git a/include/linux/hrtimer.h b/include/linux/hrtimer.h
+index aa1e65ccb6158414fed519c984e8b0ca8dc11dcf..5aa9d57528c4b691defbd99e66d=
+200cca18a2dd6 100644
+--- a/include/linux/hrtimer.h
++++ b/include/linux/hrtimer.h
+@@ -228,32 +228,15 @@ static inline void hrtimer_cancel_wait_running(struct=
+ hrtimer *timer)
+ /* Initialize timers: */
+ extern void hrtimer_init(struct hrtimer *timer, clockid_t which_clock,
+ 			 enum hrtimer_mode mode);
+-extern void hrtimer_init_sleeper(struct hrtimer_sleeper *sl, clockid_t clo=
+ck_id,
+-				 enum hrtimer_mode mode);
+-
+-#ifdef CONFIG_DEBUG_OBJECTS_TIMERS
+ extern void hrtimer_init_on_stack(struct hrtimer *timer, clockid_t which_c=
+lock,
+ 				  enum hrtimer_mode mode);
+ extern void hrtimer_init_sleeper_on_stack(struct hrtimer_sleeper *sl,
+ 					  clockid_t clock_id,
+ 					  enum hrtimer_mode mode);
+=20
++#ifdef CONFIG_DEBUG_OBJECTS_TIMERS
+ extern void destroy_hrtimer_on_stack(struct hrtimer *timer);
+ #else
+-static inline void hrtimer_init_on_stack(struct hrtimer *timer,
+-					 clockid_t which_clock,
+-					 enum hrtimer_mode mode)
+-{
+-	hrtimer_init(timer, which_clock, mode);
+-}
+-
+-static inline void hrtimer_init_sleeper_on_stack(struct hrtimer_sleeper *s=
+l,
+-						 clockid_t clock_id,
+-						 enum hrtimer_mode mode)
+-{
+-	hrtimer_init_sleeper(sl, clock_id, mode);
+-}
+-
+ static inline void destroy_hrtimer_on_stack(struct hrtimer *timer) { }
+ #endif
+=20
+diff --git a/kernel/time/hrtimer.c b/kernel/time/hrtimer.c
+index 04f7d8a392c3979504a42c2a907d06ba3b55e13a..4b0507cf38ea07dccc40dd67e65=
+1fd40e5adfef7 100644
+--- a/kernel/time/hrtimer.c
++++ b/kernel/time/hrtimer.c
+@@ -417,6 +417,11 @@ static inline void debug_hrtimer_init(struct hrtimer *=
+timer)
+ 	debug_object_init(timer, &hrtimer_debug_descr);
+ }
+=20
++static inline void debug_hrtimer_init_on_stack(struct hrtimer *timer)
++{
++	debug_object_init_on_stack(timer, &hrtimer_debug_descr);
++}
++
+ static inline void debug_hrtimer_activate(struct hrtimer *timer,
+ 					  enum hrtimer_mode mode)
+ {
+@@ -428,28 +433,6 @@ static inline void debug_hrtimer_deactivate(struct hrt=
+imer *timer)
+ 	debug_object_deactivate(timer, &hrtimer_debug_descr);
+ }
+=20
+-static void __hrtimer_init(struct hrtimer *timer, clockid_t clock_id,
+-			   enum hrtimer_mode mode);
+-
+-void hrtimer_init_on_stack(struct hrtimer *timer, clockid_t clock_id,
+-			   enum hrtimer_mode mode)
+-{
+-	debug_object_init_on_stack(timer, &hrtimer_debug_descr);
+-	__hrtimer_init(timer, clock_id, mode);
+-}
+-EXPORT_SYMBOL_GPL(hrtimer_init_on_stack);
+-
+-static void __hrtimer_init_sleeper(struct hrtimer_sleeper *sl,
+-				   clockid_t clock_id, enum hrtimer_mode mode);
+-
+-void hrtimer_init_sleeper_on_stack(struct hrtimer_sleeper *sl,
+-				   clockid_t clock_id, enum hrtimer_mode mode)
+-{
+-	debug_object_init_on_stack(&sl->timer, &hrtimer_debug_descr);
+-	__hrtimer_init_sleeper(sl, clock_id, mode);
+-}
+-EXPORT_SYMBOL_GPL(hrtimer_init_sleeper_on_stack);
+-
+ void destroy_hrtimer_on_stack(struct hrtimer *timer)
+ {
+ 	debug_object_free(timer, &hrtimer_debug_descr);
+@@ -459,6 +442,7 @@ EXPORT_SYMBOL_GPL(destroy_hrtimer_on_stack);
+ #else
+=20
+ static inline void debug_hrtimer_init(struct hrtimer *timer) { }
++static inline void debug_hrtimer_init_on_stack(struct hrtimer *timer) { }
+ static inline void debug_hrtimer_activate(struct hrtimer *timer,
+ 					  enum hrtimer_mode mode) { }
+ static inline void debug_hrtimer_deactivate(struct hrtimer *timer) { }
+@@ -472,6 +456,13 @@ debug_init(struct hrtimer *timer, clockid_t clockid,
+ 	trace_hrtimer_init(timer, clockid, mode);
+ }
+=20
++static inline void debug_init_on_stack(struct hrtimer *timer, clockid_t cl=
+ockid,
++				       enum hrtimer_mode mode)
++{
++	debug_hrtimer_init_on_stack(timer);
++	trace_hrtimer_init(timer, clockid, mode);
++}
++
+ static inline void debug_activate(struct hrtimer *timer,
+ 				  enum hrtimer_mode mode)
+ {
+@@ -1600,6 +1591,23 @@ void hrtimer_init(struct hrtimer *timer, clockid_t c=
+lock_id,
+ }
+ EXPORT_SYMBOL_GPL(hrtimer_init);
+=20
++/**
++ * hrtimer_init_on_stack - initialize a timer in stack memory
++ * @timer:	The timer to be initialized
++ * @clock_id:	The clock to be used
++ * @mode:       The timer mode
++ *
++ * Similar to hrtimer_init(), except that this one must be used if struct =
+hrtimer is in stack
++ * memory.
++ */
++void hrtimer_init_on_stack(struct hrtimer *timer, clockid_t clock_id,
++			   enum hrtimer_mode mode)
++{
++	debug_init_on_stack(timer, clock_id, mode);
++	__hrtimer_init(timer, clock_id, mode);
++}
++EXPORT_SYMBOL_GPL(hrtimer_init_on_stack);
++
+ /*
+  * A timer is active, when it is enqueued into the rbtree or the
+  * callback function is running or it's in the state of being migrated
+@@ -1944,7 +1952,7 @@ void hrtimer_sleeper_start_expires(struct hrtimer_sle=
+eper *sl,
+ 	 * Make the enqueue delivery mode check work on RT. If the sleeper
+ 	 * was initialized for hard interrupt delivery, force the mode bit.
+ 	 * This is a special case for hrtimer_sleepers because
+-	 * hrtimer_init_sleeper() determines the delivery mode on RT so the
++	 * __hrtimer_init_sleeper() determines the delivery mode on RT so the
+ 	 * fiddling with this decision is avoided at the call sites.
+ 	 */
+ 	if (IS_ENABLED(CONFIG_PREEMPT_RT) && sl->timer.is_hard)
+@@ -1987,19 +1995,18 @@ static void __hrtimer_init_sleeper(struct hrtimer_s=
+leeper *sl,
+ }
+=20
+ /**
+- * hrtimer_init_sleeper - initialize sleeper to the given clock
++ * hrtimer_init_sleeper_on_stack - initialize a sleeper in stack memory
+  * @sl:		sleeper to be initialized
+  * @clock_id:	the clock to be used
+  * @mode:	timer mode abs/rel
+  */
+-void hrtimer_init_sleeper(struct hrtimer_sleeper *sl, clockid_t clock_id,
+-			  enum hrtimer_mode mode)
++void hrtimer_init_sleeper_on_stack(struct hrtimer_sleeper *sl,
++				   clockid_t clock_id, enum hrtimer_mode mode)
+ {
+-	debug_init(&sl->timer, clock_id, mode);
++	debug_init_on_stack(&sl->timer, clock_id, mode);
+ 	__hrtimer_init_sleeper(sl, clock_id, mode);
+-
+ }
+-EXPORT_SYMBOL_GPL(hrtimer_init_sleeper);
++EXPORT_SYMBOL_GPL(hrtimer_init_sleeper_on_stack);
+=20
+ int nanosleep_copyout(struct restart_block *restart, struct timespec64 *ts)
+ {
+
+--=20
+2.45.2
+
+
+From namcao@linutronix.de Thu Oct 31 07:49:39 2024
+Return-Path: <namcao@linutronix.de>
+Received: from galois.linutronix.de
+	by Galois.linutronix.de with LMTP
+	id iNuiF4MoI2cwEAAAEMDZNw
+	(envelope-from <namcao@linutronix.de>); Thu, 31 Oct 2024 07:49:39 +0100
+From: Nam Cao <namcao@linutronix.de>
+DKIM-Signature: v=3D1; a=3Drsa-sha256; c=3Drelaxed/relaxed; d=3Dlinutronix.=
+de;
+	s=3D2020; t=3D1730357379;
+	h=3Dfrom:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3D7o6iz9WZPOSmxfH4/hB47mM++q620ntmdDoeyZiVTqQ=3D;
+	b=3Dee/2ULxU8zXOadI31irSpt9ECkgDttc+1vIIJksMWhKjoopu9rU3AVBtAWwaiE6n+zMYwH
+	iU22bTKpBeB9WuVMVV2QyEpFF18e1WImJRBe57j9MNATFn8fUaTWwk46hdyGmTcv8rlA//
+	yOWhnlAfoLkl6CWyIDFSm/cUSnWSHnmcFyJMBooXmGAmqouB/dmy5uzJ2gtdvE3d8PS1+S
+	Rqeq1mnUfBOKOKIl8BTPQqO0t6Y+5CHgO4Aktzw1zHjguTfXCBgDiYHWwWFR+VDHTL4YC2
+	/5oHX9rEWtOdvU6HhuHcgOLbuziP1/CuHbhN824/l3l35XesbJTfzFU6ph5uVA=3D=3D
+DKIM-Signature: v=3D1; a=3Ded25519-sha256; c=3Drelaxed/relaxed; d=3Dlinutro=
+nix.de;
+	s=3D2020e; t=3D1730357379;
+	h=3Dfrom:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3D7o6iz9WZPOSmxfH4/hB47mM++q620ntmdDoeyZiVTqQ=3D;
+	b=3DoQnS96gO8UFgPFDfLVRUhPzsSHvxbdV3QPUcXiJLHpU2Z/pcJbf3D4zCcflU1PpDo59r2/
+	vi+cJRJcnaw7RYAw=3D=3D
+Date: Thu, 31 Oct 2024 06:49:25 +0000
+Subject: [PATCH v2 02/19] drm/i915/request: Remove unnecessary modification
+ of hrtimer::function
+MIME-Version: 1.0
+Content-Type: text/plain; charset=3D"utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20241031-hrtimer_setup_p1_v2-v2-2-23400656575a@linutronix.de>
+References: <20241031-hrtimer_setup_p1_v2-v2-0-23400656575a@linutronix.de>
+In-Reply-To: <20241031-hrtimer_setup_p1_v2-v2-0-23400656575a@linutronix.de>
+To: Anna-Maria Behnsen <anna-maria@linutronix.de>,=20
+ Frederic Weisbecker <frederic@kernel.org>,=20
+ Thomas Gleixner <tglx@linutronix.de>,=20
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com=
+>,=20
+ Miguel Ojeda <ojeda@kernel.org>, Kees Cook <kees@kernel.org>,=20
+ linux-kernel@vger.kernel.org
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,=20
+ intel-gfx@lists.freedesktop.org, Sean Christopherson <seanjc@google.com>,=
+=20
+ Paolo Bonzini <pbonzini@redhat.com>, x86@kernel.org,=20
+ Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,=20
+ Jens Axboe <axboe@kernel.dk>, Christian Brauner <brauner@kernel.org>,=20
+ Peter Zijlstra <peterz@infradead.org>, John Stultz <jstultz@google.com>,=20
+ Nam Cao <namcao@linutronix.de>
+Status: RO
+Content-Length: 2694
+Lines: 76
+
+When a request is created, the hrtimer is not initialized and only its
+'function' field is set to NULL. The hrtimer is only initialized when the
+request is enqueued. The point of setting 'function' to NULL is that, it
+can be used to check whether hrtimer_try_to_cancel() should be called while
+retiring the request.
+
+This "trick" is unnecessary, because hrtimer_try_to_cancel() already does
+its own check whether the timer is armed. If the timer is not armed,
+hrtimer_try_to_cancel() returns 0.
+
+Fully initialize the timer when the request is created, which allows to
+make the hrtimer::function field private once all users of hrtimer_init()
+are converted to hrtimer_setup(), which requires a valid callback function
+to be set.
+
+Because hrtimer_try_to_cancel() returns 0 if the timer is not armed, the
+logic to check whether to call i915_request_put() remains equivalent.
+
+Signed-off-by: Nam Cao <namcao@linutronix.de>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+---
+ drivers/gpu/drm/i915/i915_request.c | 17 +++++++++--------
+ 1 file changed, 9 insertions(+), 8 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i91=
+5_request.c
+index 519e096c607cd8b1943dbc8e5bff14ccf48822db..8f62cfa23fb768bbaac58955186=
+8a2749f8c7e79 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -273,11 +273,6 @@ i915_request_active_engine(struct i915_request *rq,
+ 	return ret;
+ }
+=20
+-static void __rq_init_watchdog(struct i915_request *rq)
+-{
+-	rq->watchdog.timer.function =3D NULL;
+-}
+-
+ static enum hrtimer_restart __rq_watchdog_expired(struct hrtimer *hrtimer)
+ {
+ 	struct i915_request *rq =3D
+@@ -294,6 +289,14 @@ static enum hrtimer_restart __rq_watchdog_expired(stru=
+ct hrtimer *hrtimer)
+ 	return HRTIMER_NORESTART;
+ }
+=20
++static void __rq_init_watchdog(struct i915_request *rq)
++{
++	struct i915_request_watchdog *wdg =3D &rq->watchdog;
++
++	hrtimer_init(&wdg->timer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
++	wdg->timer.function =3D __rq_watchdog_expired;
++}
++
+ static void __rq_arm_watchdog(struct i915_request *rq)
+ {
+ 	struct i915_request_watchdog *wdg =3D &rq->watchdog;
+@@ -304,8 +307,6 @@ static void __rq_arm_watchdog(struct i915_request *rq)
+=20
+ 	i915_request_get(rq);
+=20
+-	hrtimer_init(&wdg->timer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
+-	wdg->timer.function =3D __rq_watchdog_expired;
+ 	hrtimer_start_range_ns(&wdg->timer,
+ 			       ns_to_ktime(ce->watchdog.timeout_us *
+ 					   NSEC_PER_USEC),
+@@ -317,7 +318,7 @@ static void __rq_cancel_watchdog(struct i915_request *r=
+q)
+ {
+ 	struct i915_request_watchdog *wdg =3D &rq->watchdog;
+=20
+-	if (wdg->timer.function && hrtimer_try_to_cancel(&wdg->timer) > 0)
++	if (hrtimer_try_to_cancel(&wdg->timer) > 0)
+ 		i915_request_put(rq);
+ }
+=20
+
+--=20
+2.45.2
+
+
+From namcao@linutronix.de Thu Oct 31 07:49:39 2024
+Return-Path: <namcao@linutronix.de>
+Received: from galois.linutronix.de
+	by Galois.linutronix.de with LMTP
+	id a2JAIIMoI2dDEAAAEMDZNw
+	(envelope-from <namcao@linutronix.de>); Thu, 31 Oct 2024 07:49:39 +0100
+From: Nam Cao <namcao@linutronix.de>
+DKIM-Signature: v=3D1; a=3Drsa-sha256; c=3Drelaxed/relaxed; d=3Dlinutronix.=
+de;
+	s=3D2020; t=3D1730357379;
+	h=3Dfrom:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3DsZl3RkO/dCw6pWs/KFGEaEj4mICdMH2sXunBd/7ALZ8=3D;
+	b=3DoOB4VNG0xqH+TthUxEZ8gbXzrPVyesC4izzlYW/mp8pjMd2rt1Dgue4H015/ydfGns6cwV
+	hjif7kAmMh7Q+I1K/1LKQVDLJWPZ6pDfYr6y1ZE+5jduWn07FUF7RyxLIyoWqVa5eveSte
+	Y3jOU9H0FuKsweSK65/t+mmcGqWwiAkWwujoMZuCIfIe/fVAdRwR6Wi6OC7ec8zMQqKlzU
+	PyFh0GQ2ixkQcFkmOAPHCCmDw7We4nZwcVU+RYKcSNboBgRoNfeyS93gwAPdciyOR6koWQ
+	UoOeRfl9v/CQhZ76tssPtczuxoqI2dHawG1O/qSOMSNPJl+7bsju6xgYRLwROg=3D=3D
+DKIM-Signature: v=3D1; a=3Ded25519-sha256; c=3Drelaxed/relaxed; d=3Dlinutro=
+nix.de;
+	s=3D2020e; t=3D1730357379;
+	h=3Dfrom:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3DsZl3RkO/dCw6pWs/KFGEaEj4mICdMH2sXunBd/7ALZ8=3D;
+	b=3DWIRg7jdNKDvN2c17LwRqwRTL8B8IGL10ssbPKdNExa/Et8MpbzkDcAfSUaEwA+lPOnhxX1
+	AioNoqQUYRNaUlBw=3D=3D
+Date: Thu, 31 Oct 2024 06:49:26 +0000
+Subject: [PATCH v2 03/19] KVM: x86/xen: Initialize hrtimer in
+ kvm_xen_init_vcpu()
+MIME-Version: 1.0
+Content-Type: text/plain; charset=3D"utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20241031-hrtimer_setup_p1_v2-v2-3-23400656575a@linutronix.de>
+References: <20241031-hrtimer_setup_p1_v2-v2-0-23400656575a@linutronix.de>
+In-Reply-To: <20241031-hrtimer_setup_p1_v2-v2-0-23400656575a@linutronix.de>
+To: Anna-Maria Behnsen <anna-maria@linutronix.de>,=20
+ Frederic Weisbecker <frederic@kernel.org>,=20
+ Thomas Gleixner <tglx@linutronix.de>,=20
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com=
+>,=20
+ Miguel Ojeda <ojeda@kernel.org>, Kees Cook <kees@kernel.org>,=20
+ linux-kernel@vger.kernel.org
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,=20
+ intel-gfx@lists.freedesktop.org, Sean Christopherson <seanjc@google.com>,=
+=20
+ Paolo Bonzini <pbonzini@redhat.com>, x86@kernel.org,=20
+ Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,=20
+ Jens Axboe <axboe@kernel.dk>, Christian Brauner <brauner@kernel.org>,=20
+ Peter Zijlstra <peterz@infradead.org>, John Stultz <jstultz@google.com>,=20
+ Nam Cao <namcao@linutronix.de>
+Status: RO
+Content-Length: 2250
+Lines: 61
+
+The hrtimer is initialized in the KVM_XEN_VCPU_SET_ATTR ioctl. That caused
+problem in the past, because the hrtimer can be initialized multiple times,
+which was fixed by commit af735db31285 ("KVM: x86/xen: Initialize Xen timer
+only once"). This commit avoids initializing the timer multiple times by
+checking the field 'function' of struct hrtimer to determine if it has
+already been initialized.
+
+This is not required and in the way to make the function field private.
+
+Move the hrtimer initialization into kvm_xen_init_vcpu() so that it will
+only be initialized once.
+
+Signed-off-by: Nam Cao <namcao@linutronix.de>
+Acked-by: Sean Christopherson <seanjc@google.com>
+Cc: Paolo Bonzini <pbonzini@redhat.com>
+Cc: x86@kernel.org
+Cc: kvm@vger.kernel.org
+---
+v2: drop kvm_xen_init_timer() and open code its content
+---
+ arch/x86/kvm/xen.c | 12 ++----------
+ 1 file changed, 2 insertions(+), 10 deletions(-)
+
+diff --git a/arch/x86/kvm/xen.c b/arch/x86/kvm/xen.c
+index 622fe24da910646ced4300a84ab92fce4ac8e00a..a909b817b9c0da1714169d937c1=
+35474e8a9cf7d 100644
+--- a/arch/x86/kvm/xen.c
++++ b/arch/x86/kvm/xen.c
+@@ -263,13 +263,6 @@ static void kvm_xen_stop_timer(struct kvm_vcpu *vcpu)
+ 	atomic_set(&vcpu->arch.xen.timer_pending, 0);
+ }
+=20
+-static void kvm_xen_init_timer(struct kvm_vcpu *vcpu)
+-{
+-	hrtimer_init(&vcpu->arch.xen.timer, CLOCK_MONOTONIC,
+-		     HRTIMER_MODE_ABS_HARD);
+-	vcpu->arch.xen.timer.function =3D xen_timer_callback;
+-}
+-
+ static void kvm_xen_update_runstate_guest(struct kvm_vcpu *v, bool atomic)
+ {
+ 	struct kvm_vcpu_xen *vx =3D &v->arch.xen;
+@@ -1070,9 +1063,6 @@ int kvm_xen_vcpu_set_attr(struct kvm_vcpu *vcpu, stru=
+ct kvm_xen_vcpu_attr *data)
+ 			break;
+ 		}
+=20
+-		if (!vcpu->arch.xen.timer.function)
+-			kvm_xen_init_timer(vcpu);
+-
+ 		/* Stop the timer (if it's running) before changing the vector */
+ 		kvm_xen_stop_timer(vcpu);
+ 		vcpu->arch.xen.timer_virq =3D data->u.timer.port;
+@@ -2235,6 +2225,8 @@ void kvm_xen_init_vcpu(struct kvm_vcpu *vcpu)
+ 	vcpu->arch.xen.poll_evtchn =3D 0;
+=20
+ 	timer_setup(&vcpu->arch.xen.poll_timer, cancel_evtchn_poll, 0);
++	hrtimer_init(&vcpu->arch.xen.timer, CLOCK_MONOTONIC, HRTIMER_MODE_ABS_HAR=
+D);
++	vcpu->arch.xen.timer.function =3D xen_timer_callback;
+=20
+ 	kvm_gpc_init(&vcpu->arch.xen.runstate_cache, vcpu->kvm);
+ 	kvm_gpc_init(&vcpu->arch.xen.runstate2_cache, vcpu->kvm);
+
+--=20
+2.45.2
+
+
+From namcao@linutronix.de Thu Oct 31 07:49:39 2024
+Return-Path: <namcao@linutronix.de>
+Received: from galois.linutronix.de
+	by Galois.linutronix.de with LMTP
+	id gMNcKIMoI2cuEAAAEMDZNw
+	(envelope-from <namcao@linutronix.de>); Thu, 31 Oct 2024 07:49:39 +0100
+From: Nam Cao <namcao@linutronix.de>
+DKIM-Signature: v=3D1; a=3Drsa-sha256; c=3Drelaxed/relaxed; d=3Dlinutronix.=
+de;
+	s=3D2020; t=3D1730357379;
+	h=3Dfrom:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3DqxetqWETKPRS/EosOKw7DR7D7Elqj1yonxarUw92zuI=3D;
+	b=3Dn9jTzaHwuO+cWLQ2V9h9syWzhES+vpNPoxjLcC0KKBeQVND7hm4FaMVk07N6nN9Olg9v+K
+	r+hcGNXjIB9qxhYJ1nuqDs9Imvvg4o+Q7tmzm/MjR930+F9Dx8sauRpzuIGJ6jLxiUpsV+
+	c0kw4UyxXFpVQX+O93rPB2a1jP2bWq39jShjN0Fh/i6aCQ0fWy+FU50p6iMgUXcR+JmiGo
+	5oL5HcOTLqEqlKvgFMcovmIpeph6JGIEI+hK35ukUcmAcFLROcZ+eZ/DxRs6mHJKjNU/xB
+	sscd7qLU+LAAN8txnQXS04IIqDL3P188neHACZCPeTn8730GFO+FIzFByJU5fw=3D=3D
+DKIM-Signature: v=3D1; a=3Ded25519-sha256; c=3Drelaxed/relaxed; d=3Dlinutro=
+nix.de;
+	s=3D2020e; t=3D1730357379;
+	h=3Dfrom:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3DqxetqWETKPRS/EosOKw7DR7D7Elqj1yonxarUw92zuI=3D;
+	b=3DGEEli77n25Ra3B1bBasav1g/B8SQIQQIjdJYa6EQ4xInnAa4uAkV9zZaHXnTDr5uh12xry
+	EBBj4J91a2zVWYBg=3D=3D
+Date: Thu, 31 Oct 2024 06:49:27 +0000
+Subject: [PATCH v2 04/19] wifi: rt2x00: Remove redundant hrtimer_init()
+MIME-Version: 1.0
+Content-Type: text/plain; charset=3D"utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20241031-hrtimer_setup_p1_v2-v2-4-23400656575a@linutronix.de>
+References: <20241031-hrtimer_setup_p1_v2-v2-0-23400656575a@linutronix.de>
+In-Reply-To: <20241031-hrtimer_setup_p1_v2-v2-0-23400656575a@linutronix.de>
+To: Anna-Maria Behnsen <anna-maria@linutronix.de>,=20
+ Frederic Weisbecker <frederic@kernel.org>,=20
+ Thomas Gleixner <tglx@linutronix.de>,=20
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com=
+>,=20
+ Miguel Ojeda <ojeda@kernel.org>, Kees Cook <kees@kernel.org>,=20
+ linux-kernel@vger.kernel.org
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,=20
+ intel-gfx@lists.freedesktop.org, Sean Christopherson <seanjc@google.com>,=
+=20
+ Paolo Bonzini <pbonzini@redhat.com>, x86@kernel.org,=20
+ Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,=20
+ Jens Axboe <axboe@kernel.dk>, Christian Brauner <brauner@kernel.org>,=20
+ Peter Zijlstra <peterz@infradead.org>, John Stultz <jstultz@google.com>,=20
+ Nam Cao <namcao@linutronix.de>
+Status: RO
+Content-Length: 1044
+Lines: 28
+
+rt2x00usb_probe() executes a hrtimer_init() for txstatus_timer. Afterwards,
+rt2x00lib_probe_dev() is called which also initializes this txstatus_timer
+with the same settings.
+
+Remove the redundant hrtimer_init() call in rt2x00usb_probe().
+
+Signed-off-by: Nam Cao <namcao@linutronix.de>
+Acked-by: Kalle Valo <kvalo@kernel.org>
+Cc: linux-wireless@vger.kernel.org
+---
+ drivers/net/wireless/ralink/rt2x00/rt2x00usb.c | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/drivers/net/wireless/ralink/rt2x00/rt2x00usb.c b/drivers/net/w=
+ireless/ralink/rt2x00/rt2x00usb.c
+index 8fd22c69855fa463c1a794eb26368a5fc4aa5696..a6d50149e0c3eb4f379f1964986=
+d102c7e6ca659 100644
+--- a/drivers/net/wireless/ralink/rt2x00/rt2x00usb.c
++++ b/drivers/net/wireless/ralink/rt2x00/rt2x00usb.c
+@@ -823,8 +823,6 @@ int rt2x00usb_probe(struct usb_interface *usb_intf,
+=20
+ 	INIT_WORK(&rt2x00dev->rxdone_work, rt2x00usb_work_rxdone);
+ 	INIT_WORK(&rt2x00dev->txdone_work, rt2x00usb_work_txdone);
+-	hrtimer_init(&rt2x00dev->txstatus_timer, CLOCK_MONOTONIC,
+-		     HRTIMER_MODE_REL);
+=20
+ 	retval =3D rt2x00usb_alloc_reg(rt2x00dev);
+ 	if (retval)
+
+--=20
+2.45.2
+
+
+From namcao@linutronix.de Thu Oct 31 07:49:40 2024
+Return-Path: <namcao@linutronix.de>
+Received: from galois.linutronix.de
+	by Galois.linutronix.de with LMTP
+	id fngmNIMoI2dFEAAAEMDZNw
+	(envelope-from <namcao@linutronix.de>); Thu, 31 Oct 2024 07:49:39 +0100
+From: Nam Cao <namcao@linutronix.de>
+DKIM-Signature: v=3D1; a=3Drsa-sha256; c=3Drelaxed/relaxed; d=3Dlinutronix.=
+de;
+	s=3D2020; t=3D1730357379;
+	h=3Dfrom:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3DekeK5Vx/mEvxlQz/WIkRnnnDrgTBFmkjwLIFiYmCI/o=3D;
+	b=3DvToVyyWaB7Z8DjFqxAadYUvRNeB/UY7hRO4Oa0D5oDEACX5fNmMZwqMVXo+D0albFjLSH0
+	agEOLoF1OjrzXM8ETgXaivRSsqdDETu0xlUM+ryJVsS2yB4I4yUHbCvJTAxd7lDi5BvrA+
+	Stgv7KdTTuk50rsRkWVSrHLaktDeJi00bP48Y0z9nSv7OhLC/7raRWavIHW2CmxuYcWy9L
+	bw8pcVsdOuVjLSsE8Sw6BypKmbhOAoTEk44GiRSm01SuBO0muTxBdcWUiSoCmm3ffcaAyO
+	tYr5lo9tckG59/56C5sRr/l9eXjMjDw08anM9qae6aJ294vfAXOHdM82rZwQrA=3D=3D
+DKIM-Signature: v=3D1; a=3Ded25519-sha256; c=3Drelaxed/relaxed; d=3Dlinutro=
+nix.de;
+	s=3D2020e; t=3D1730357379;
+	h=3Dfrom:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3DekeK5Vx/mEvxlQz/WIkRnnnDrgTBFmkjwLIFiYmCI/o=3D;
+	b=3D0eY+mxT2R0zhK64BG73V2LvjwDAC3KrYalALuu5G//59SZTKoP1a2JxYvssHY9xc0oLqSP
+	pI3GmOjLWDgMptBw=3D=3D
+Date: Thu, 31 Oct 2024 06:49:28 +0000
+Subject: [PATCH v2 05/19] io_uring: Remove redundant hrtimer's callback
+ function setup
+MIME-Version: 1.0
+Content-Type: text/plain; charset=3D"utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20241031-hrtimer_setup_p1_v2-v2-5-23400656575a@linutronix.de>
+References: <20241031-hrtimer_setup_p1_v2-v2-0-23400656575a@linutronix.de>
+In-Reply-To: <20241031-hrtimer_setup_p1_v2-v2-0-23400656575a@linutronix.de>
+To: Anna-Maria Behnsen <anna-maria@linutronix.de>,=20
+ Frederic Weisbecker <frederic@kernel.org>,=20
+ Thomas Gleixner <tglx@linutronix.de>,=20
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com=
+>,=20
+ Miguel Ojeda <ojeda@kernel.org>, Kees Cook <kees@kernel.org>,=20
+ linux-kernel@vger.kernel.org
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,=20
+ intel-gfx@lists.freedesktop.org, Sean Christopherson <seanjc@google.com>,=
+=20
+ Paolo Bonzini <pbonzini@redhat.com>, x86@kernel.org,=20
+ Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,=20
+ Jens Axboe <axboe@kernel.dk>, Christian Brauner <brauner@kernel.org>,=20
+ Peter Zijlstra <peterz@infradead.org>, John Stultz <jstultz@google.com>,=20
+ Nam Cao <namcao@linutronix.de>
+Status: RO
+Content-Length: 997
+Lines: 28
+
+The IORING_OP_TIMEOUT command uses hrtimer underneath. The timer's callback
+function is setup in io_timeout(), and then the callback function is setup
+again when the timer is rearmed.
+
+Since the callback function is the same for both cases, the latter setup is
+redundant, therefore remove it.
+
+Signed-off-by: Nam Cao <namcao@linutronix.de>
+Cc: Jens Axboe <axboe@kernel.dk>
+---
+ io_uring/timeout.c | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/io_uring/timeout.c b/io_uring/timeout.c
+index 9973876d91b0ef32010691e60b249988a76bdbe9..2ffe5e1dc68aeb92aa7bc5c4dc3=
+ba28cafe03c09 100644
+--- a/io_uring/timeout.c
++++ b/io_uring/timeout.c
+@@ -76,7 +76,6 @@ static void io_timeout_complete(struct io_kiocb *req, str=
+uct io_tw_state *ts)
+ 			/* re-arm timer */
+ 			spin_lock_irq(&ctx->timeout_lock);
+ 			list_add(&timeout->list, ctx->timeout_list.prev);
+-			data->timer.function =3D io_timeout_fn;
+ 			hrtimer_start(&data->timer, timespec64_to_ktime(data->ts), data->mode);
+ 			spin_unlock_irq(&ctx->timeout_lock);
+ 			return;
+
+--=20
+2.45.2
+
+
+From namcao@linutronix.de Thu Oct 31 07:49:40 2024
+Return-Path: <namcao@linutronix.de>
+Received: from galois.linutronix.de
+	by Galois.linutronix.de with LMTP
+	id ToWmAoQoI2dIEAAAEMDZNw
+	(envelope-from <namcao@linutronix.de>); Thu, 31 Oct 2024 07:49:40 +0100
+From: Nam Cao <namcao@linutronix.de>
+DKIM-Signature: v=3D1; a=3Drsa-sha256; c=3Drelaxed/relaxed; d=3Dlinutronix.=
+de;
+	s=3D2020; t=3D1730357379;
+	h=3Dfrom:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3DVHVkMLFiIiICwk5zJUEefXOVMFBq3qj9ujpVe1+PqII=3D;
+	b=3DUltjtuwgigL/kXdFGIuuXD3ehVCd5B1upWlJex3nCHF+nht+DDGmf8ystq21w6HjCKYma5
+	UIkMCpL44FXuvipvZ8ceNHNov/lMOn/1UMz/ezfo4mV613d7EXVxFoiTFZFU8Ozvaxrkxy
+	bG6GM57YzG+lIPuYy4qyUPaoayznoQvH7uCtRZXZNKjfUPF5K6idq/MS4xyG7xPwKkz1Gq
+	EA1TPFOSxGp5h39iyfiD0SqvIEjhffltBroB1JW9Dp4C+lD0vMm0K1h2Km5xAZI7uEsB0g
+	WsY4JPkKVBJZero3hEmyECwBq/pbxBvU5ntUlEG9HeYeII/zoyd7V1uLwtTaeg=3D=3D
+DKIM-Signature: v=3D1; a=3Ded25519-sha256; c=3Drelaxed/relaxed; d=3Dlinutro=
+nix.de;
+	s=3D2020e; t=3D1730357379;
+	h=3Dfrom:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3DVHVkMLFiIiICwk5zJUEefXOVMFBq3qj9ujpVe1+PqII=3D;
+	b=3D12SrmnVaYZXeqneA0PY7EarxqHcZfIV5xvYxJjPyyQcJm7yLMLyzvsJc6JCG3Ht7VBlbBZ
+	KCkXaOJ/4gqi9nBg=3D=3D
+Date: Thu, 31 Oct 2024 06:49:29 +0000
+Subject: [PATCH v2 06/19] hrtimers: Introduce hrtimer_setup() to replace
+ hrtimer_init()
+MIME-Version: 1.0
+Content-Type: text/plain; charset=3D"utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20241031-hrtimer_setup_p1_v2-v2-6-23400656575a@linutronix.de>
+References: <20241031-hrtimer_setup_p1_v2-v2-0-23400656575a@linutronix.de>
+In-Reply-To: <20241031-hrtimer_setup_p1_v2-v2-0-23400656575a@linutronix.de>
+To: Anna-Maria Behnsen <anna-maria@linutronix.de>,=20
+ Frederic Weisbecker <frederic@kernel.org>,=20
+ Thomas Gleixner <tglx@linutronix.de>,=20
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com=
+>,=20
+ Miguel Ojeda <ojeda@kernel.org>, Kees Cook <kees@kernel.org>,=20
+ linux-kernel@vger.kernel.org
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,=20
+ intel-gfx@lists.freedesktop.org, Sean Christopherson <seanjc@google.com>,=
+=20
+ Paolo Bonzini <pbonzini@redhat.com>, x86@kernel.org,=20
+ Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,=20
+ Jens Axboe <axboe@kernel.dk>, Christian Brauner <brauner@kernel.org>,=20
+ Peter Zijlstra <peterz@infradead.org>, John Stultz <jstultz@google.com>,=20
+ Nam Cao <namcao@linutronix.de>
+Status: RO
+Content-Length: 3627
+Lines: 98
+
+To initialize hrtimer, hrtimer_init() needs to be called and also
+hrtimer::function must be set. This is error-prone and awkward to use.
+
+Introduce hrtimer_setup() which does both of these things, so that users of
+hrtimer can be simplified.
+
+The new setup function also has a sanity check for the provided function
+pointer. If NULL, a warning is emitted and a dummy callback installed.
+
+hrtimer_init() will be removed as soon as all of its users have been
+converted to the new function.
+
+Signed-off-by: Nam Cao <namcao@linutronix.de>
+---
+ include/linux/hrtimer.h |  2 ++
+ kernel/time/hrtimer.c   | 38 ++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 40 insertions(+)
+
+diff --git a/include/linux/hrtimer.h b/include/linux/hrtimer.h
+index 5aa9d57528c4b691defbd99e66d200cca18a2dd6..bcc0715c59a84165402480d0245=
+4716f5ea68f42 100644
+--- a/include/linux/hrtimer.h
++++ b/include/linux/hrtimer.h
+@@ -228,6 +228,8 @@ static inline void hrtimer_cancel_wait_running(struct h=
+rtimer *timer)
+ /* Initialize timers: */
+ extern void hrtimer_init(struct hrtimer *timer, clockid_t which_clock,
+ 			 enum hrtimer_mode mode);
++extern void hrtimer_setup(struct hrtimer *timer, enum hrtimer_restart (*fu=
+nction)(struct hrtimer *),
++			  clockid_t clock_id, enum hrtimer_mode mode);
+ extern void hrtimer_init_on_stack(struct hrtimer *timer, clockid_t which_c=
+lock,
+ 				  enum hrtimer_mode mode);
+ extern void hrtimer_init_sleeper_on_stack(struct hrtimer_sleeper *sl,
+diff --git a/kernel/time/hrtimer.c b/kernel/time/hrtimer.c
+index 4b0507cf38ea07dccc40dd67e651fd40e5adfef7..a5ef67edcda92f5a810ba20020d=
+032f985cda88f 100644
+--- a/kernel/time/hrtimer.c
++++ b/kernel/time/hrtimer.c
+@@ -1535,6 +1535,11 @@ static inline int hrtimer_clockid_to_base(clockid_t =
+clock_id)
+ 	return HRTIMER_BASE_MONOTONIC;
+ }
+=20
++static enum hrtimer_restart hrtimer_dummy_timeout(struct hrtimer *unused)
++{
++	return HRTIMER_NORESTART;
++}
++
+ static void __hrtimer_init(struct hrtimer *timer, clockid_t clock_id,
+ 			   enum hrtimer_mode mode)
+ {
+@@ -1571,6 +1576,18 @@ static void __hrtimer_init(struct hrtimer *timer, cl=
+ockid_t clock_id,
+ 	timerqueue_init(&timer->node);
+ }
+=20
++static void __hrtimer_setup(struct hrtimer *timer,
++			    enum hrtimer_restart (*function)(struct hrtimer *),
++			    clockid_t clock_id, enum hrtimer_mode mode)
++{
++	__hrtimer_init(timer, clock_id, mode);
++
++	if (WARN_ON_ONCE(!function))
++		timer->function =3D hrtimer_dummy_timeout;
++	else
++		timer->function =3D function;
++}
++
+ /**
+  * hrtimer_init - initialize a timer to the given clock
+  * @timer:	the timer to be initialized
+@@ -1591,6 +1608,27 @@ void hrtimer_init(struct hrtimer *timer, clockid_t c=
+lock_id,
+ }
+ EXPORT_SYMBOL_GPL(hrtimer_init);
+=20
++/**
++ * hrtimer_setup - initialize a timer to the given clock
++ * @timer:	the timer to be initialized
++ * @function:	the callback function
++ * @clock_id:	the clock to be used
++ * @mode:       The modes which are relevant for initialization:
++ *              HRTIMER_MODE_ABS, HRTIMER_MODE_REL, HRTIMER_MODE_ABS_SOFT,
++ *              HRTIMER_MODE_REL_SOFT
++ *
++ *              The PINNED variants of the above can be handed in,
++ *              but the PINNED bit is ignored as pinning happens
++ *              when the hrtimer is started
++ */
++void hrtimer_setup(struct hrtimer *timer, enum hrtimer_restart (*function)=
+(struct hrtimer *),
++		   clockid_t clock_id, enum hrtimer_mode mode)
++{
++	debug_init(timer, clock_id, mode);
++	__hrtimer_setup(timer, function, clock_id, mode);
++}
++EXPORT_SYMBOL_GPL(hrtimer_setup);
++
+ /**
+  * hrtimer_init_on_stack - initialize a timer in stack memory
+  * @timer:	The timer to be initialized
+
+--=20
+2.45.2
+
+
+From namcao@linutronix.de Thu Oct 31 07:49:40 2024
+Return-Path: <namcao@linutronix.de>
+Received: from galois.linutronix.de
+	by Galois.linutronix.de with LMTP
+	id 6OcnCIQoI2cwEAAAEMDZNw
+	(envelope-from <namcao@linutronix.de>); Thu, 31 Oct 2024 07:49:40 +0100
+From: Nam Cao <namcao@linutronix.de>
+DKIM-Signature: v=3D1; a=3Drsa-sha256; c=3Drelaxed/relaxed; d=3Dlinutronix.=
+de;
+	s=3D2020; t=3D1730357380;
+	h=3Dfrom:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3DpeW09FFbPjPf6IH9VA6OF97Ue7Nm9rs4HTBmBMQiZgo=3D;
+	b=3Dr/dKH+vi+Pkacu4fAM7NKrVfZsDbg+KuQxmxuUGs2BhXmBJZK1Zia4bJj3xcCj1rs4JBM0
+	K8+/5dWh7fhC9JYlLhnyj7K916bjm0DKvC+foqK8p2cCpljUn9soatmUUUFoV1XVSrxrhe
+	gILDNEAVYkr4zoVViOtN77vvSflvx7TPKTGLmmDl7L/liB6kmqG+FXcpXe2KmzPPOEwnhW
+	BCXHJ9DsDyWvlqcEd8I+pAuQFkjsl2bmsnzq2yz2XVuS4zaUKgwjtQKPImOiS1DhafbDK5
+	gt8DngATjaV+B5Hw8GPNfx484D8ir4Hqo+Qf+yqG/1/uAqlpbNv0R4HHuXmwnw=3D=3D
+DKIM-Signature: v=3D1; a=3Ded25519-sha256; c=3Drelaxed/relaxed; d=3Dlinutro=
+nix.de;
+	s=3D2020e; t=3D1730357380;
+	h=3Dfrom:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3DpeW09FFbPjPf6IH9VA6OF97Ue7Nm9rs4HTBmBMQiZgo=3D;
+	b=3DeTQUM02Dd4QVLoA7QwZwb/iBFhhOvWYwjF87UptbIy130elVrTHRDR72SiDIU+dbhdzv3L
+	3fxyiHWMK7du9QCA=3D=3D
+Date: Thu, 31 Oct 2024 06:49:30 +0000
+Subject: [PATCH v2 07/19] hrtimers: Introduce hrtimer_setup_on_stack()
+MIME-Version: 1.0
+Content-Type: text/plain; charset=3D"utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20241031-hrtimer_setup_p1_v2-v2-7-23400656575a@linutronix.de>
+References: <20241031-hrtimer_setup_p1_v2-v2-0-23400656575a@linutronix.de>
+In-Reply-To: <20241031-hrtimer_setup_p1_v2-v2-0-23400656575a@linutronix.de>
+To: Anna-Maria Behnsen <anna-maria@linutronix.de>,=20
+ Frederic Weisbecker <frederic@kernel.org>,=20
+ Thomas Gleixner <tglx@linutronix.de>,=20
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com=
+>,=20
+ Miguel Ojeda <ojeda@kernel.org>, Kees Cook <kees@kernel.org>,=20
+ linux-kernel@vger.kernel.org
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,=20
+ intel-gfx@lists.freedesktop.org, Sean Christopherson <seanjc@google.com>,=
+=20
+ Paolo Bonzini <pbonzini@redhat.com>, x86@kernel.org,=20
+ Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,=20
+ Jens Axboe <axboe@kernel.dk>, Christian Brauner <brauner@kernel.org>,=20
+ Peter Zijlstra <peterz@infradead.org>, John Stultz <jstultz@google.com>,=20
+ Nam Cao <namcao@linutronix.de>
+Status: RO
+Content-Length: 2634
+Lines: 67
+
+To initialize hrtimer on stack, hrtimer_init_on_stack() needs to be called
+and also hrtimer::function must be set. This is error-prone and awkward to
+use.
+
+Introduce hrtimer_setup_on_stack() which does both of these things, so that
+users of hrtimer can be simplified.
+
+The new setup function also has a sanity check for the provided function
+pointer. If NULL, a warning is emitted and a dummy callback installed.
+
+hrtimer_init_on_stack() will be removed as soon as all of its users have
+been converted to the new function.
+
+Signed-off-by: Nam Cao <namcao@linutronix.de>
+---
+ include/linux/hrtimer.h |  3 +++
+ kernel/time/hrtimer.c   | 19 +++++++++++++++++++
+ 2 files changed, 22 insertions(+)
+
+diff --git a/include/linux/hrtimer.h b/include/linux/hrtimer.h
+index bcc0715c59a84165402480d02454716f5ea68f42..2da513f8d66acc628ac420c93da=
+e2cbed5680a27 100644
+--- a/include/linux/hrtimer.h
++++ b/include/linux/hrtimer.h
+@@ -232,6 +232,9 @@ extern void hrtimer_setup(struct hrtimer *timer, enum h=
+rtimer_restart (*function
+ 			  clockid_t clock_id, enum hrtimer_mode mode);
+ extern void hrtimer_init_on_stack(struct hrtimer *timer, clockid_t which_c=
+lock,
+ 				  enum hrtimer_mode mode);
++extern void hrtimer_setup_on_stack(struct hrtimer *timer,
++				   enum hrtimer_restart (*function)(struct hrtimer *),
++				   clockid_t clock_id, enum hrtimer_mode mode);
+ extern void hrtimer_init_sleeper_on_stack(struct hrtimer_sleeper *sl,
+ 					  clockid_t clock_id,
+ 					  enum hrtimer_mode mode);
+diff --git a/kernel/time/hrtimer.c b/kernel/time/hrtimer.c
+index a5ef67edcda92f5a810ba20020d032f985cda88f..daee4e27f839509236c35b867dd=
+d979733d1170d 100644
+--- a/kernel/time/hrtimer.c
++++ b/kernel/time/hrtimer.c
+@@ -1646,6 +1646,25 @@ void hrtimer_init_on_stack(struct hrtimer *timer, cl=
+ockid_t clock_id,
+ }
+ EXPORT_SYMBOL_GPL(hrtimer_init_on_stack);
+=20
++/**
++ * hrtimer_setup_on_stack - initialize a timer on stack memory
++ * @timer:	The timer to be initialized
++ * @function:	the callback function
++ * @clock_id:	The clock to be used
++ * @mode:       The timer mode
++ *
++ * Similar to hrtimer_setup(), except that this one must be used if struct=
+ hrtimer is in stack
++ * memory.
++ */
++void hrtimer_setup_on_stack(struct hrtimer *timer,
++			    enum hrtimer_restart (*function)(struct hrtimer *),
++			    clockid_t clock_id, enum hrtimer_mode mode)
++{
++	debug_init_on_stack(timer, clock_id, mode);
++	__hrtimer_setup(timer, function, clock_id, mode);
++}
++EXPORT_SYMBOL_GPL(hrtimer_setup_on_stack);
++
+ /*
+  * A timer is active, when it is enqueued into the rbtree or the
+  * callback function is running or it's in the state of being migrated
+
+--=20
+2.45.2
+
+
+From namcao@linutronix.de Thu Oct 31 07:49:40 2024
+Return-Path: <namcao@linutronix.de>
+Received: from galois.linutronix.de
+	by Galois.linutronix.de with LMTP
+	id sHGfEYQoI2cuEAAAEMDZNw
+	(envelope-from <namcao@linutronix.de>); Thu, 31 Oct 2024 07:49:40 +0100
+From: Nam Cao <namcao@linutronix.de>
+DKIM-Signature: v=3D1; a=3Drsa-sha256; c=3Drelaxed/relaxed; d=3Dlinutronix.=
+de;
+	s=3D2020; t=3D1730357380;
+	h=3Dfrom:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3DJxNyqU0anoavs2ukgZNM8gi0nXQw57bANXcy5SuK+Eo=3D;
+	b=3D0R5ElHJ7BFCffCrDvkcLk5LvQLxdHzEBF+WoFp46TOqcBr4amUxk/Jluog5QKGes7QaHEh
+	s/wxsg+ZOjw7romb4nHtukL9p19QEaQtDixOqPoRIqvjGuy0194wX8Ll5cg40/F9vzr/sR
+	f1rmDIA7YSKCLChGHxMM/4tw89Xyn2YVt90IkmPzfr7yNYXHWYbYg6PsdppTNaudW4AVRY
+	z3Y+uq0FRXIjMn0R4z7gPYiBVSHEbp+gl+JDoAEIcxOrcub9vFmlhR2M9eOUzBWQ8WETjI
+	/AAoFE6ZWj+VxJCyj2ETgHJr8Ercvw6Aa0/bopMs+gAfoDks/X9QTUYUF4Sx2A=3D=3D
+DKIM-Signature: v=3D1; a=3Ded25519-sha256; c=3Drelaxed/relaxed; d=3Dlinutro=
+nix.de;
+	s=3D2020e; t=3D1730357380;
+	h=3Dfrom:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3DJxNyqU0anoavs2ukgZNM8gi0nXQw57bANXcy5SuK+Eo=3D;
+	b=3D92OgkfubgCG0MkhI8IypELn5bmLOQkjpmohXk4SSwt70knAvx+XaMQWPPC7KUtKUh2K28x
+	04Jx4h6FyBAcflCg=3D=3D
+Date: Thu, 31 Oct 2024 06:49:31 +0000
+Subject: [PATCH v2 08/19] hrtimers: Introduce
+ hrtimer_setup_sleeper_on_stack()
+MIME-Version: 1.0
+Content-Type: text/plain; charset=3D"utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20241031-hrtimer_setup_p1_v2-v2-8-23400656575a@linutronix.de>
+References: <20241031-hrtimer_setup_p1_v2-v2-0-23400656575a@linutronix.de>
+In-Reply-To: <20241031-hrtimer_setup_p1_v2-v2-0-23400656575a@linutronix.de>
+To: Anna-Maria Behnsen <anna-maria@linutronix.de>,=20
+ Frederic Weisbecker <frederic@kernel.org>,=20
+ Thomas Gleixner <tglx@linutronix.de>,=20
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com=
+>,=20
+ Miguel Ojeda <ojeda@kernel.org>, Kees Cook <kees@kernel.org>,=20
+ linux-kernel@vger.kernel.org
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,=20
+ intel-gfx@lists.freedesktop.org, Sean Christopherson <seanjc@google.com>,=
+=20
+ Paolo Bonzini <pbonzini@redhat.com>, x86@kernel.org,=20
+ Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,=20
+ Jens Axboe <axboe@kernel.dk>, Christian Brauner <brauner@kernel.org>,=20
+ Peter Zijlstra <peterz@infradead.org>, John Stultz <jstultz@google.com>,=20
+ Nam Cao <namcao@linutronix.de>
+Status: RO
+Content-Length: 2208
+Lines: 58
+
+The hrtimer_init*() API is replaced by hrtimer_setup*() variants to
+initialize the timer including the callback function at once.
+
+hrtimer_init_sleeper_on_stack() does not need user to setup the callback
+function separately, so a new variant would not be strictly necessary.
+
+Nonetheless, to keep the naming convention consistent, introduce
+hrtimer_setup_sleeper_on_stack(). hrtimer_init_on_stack() will be removed
+once all users are converted.
+
+Signed-off-by: Nam Cao <namcao@linutronix.de>
+---
+ include/linux/hrtimer.h |  2 ++
+ kernel/time/hrtimer.c   | 14 ++++++++++++++
+ 2 files changed, 16 insertions(+)
+
+diff --git a/include/linux/hrtimer.h b/include/linux/hrtimer.h
+index 2da513f8d66acc628ac420c93dae2cbed5680a27..48872a2b40718cc7d0c18936517=
+67a3c992483b9 100644
+--- a/include/linux/hrtimer.h
++++ b/include/linux/hrtimer.h
+@@ -238,6 +238,8 @@ extern void hrtimer_setup_on_stack(struct hrtimer *time=
+r,
+ extern void hrtimer_init_sleeper_on_stack(struct hrtimer_sleeper *sl,
+ 					  clockid_t clock_id,
+ 					  enum hrtimer_mode mode);
++extern void hrtimer_setup_sleeper_on_stack(struct hrtimer_sleeper *sl, clo=
+ckid_t clock_id,
++					   enum hrtimer_mode mode);
+=20
+ #ifdef CONFIG_DEBUG_OBJECTS_TIMERS
+ extern void destroy_hrtimer_on_stack(struct hrtimer *timer);
+diff --git a/kernel/time/hrtimer.c b/kernel/time/hrtimer.c
+index daee4e27f839509236c35b867ddd979733d1170d..1d1f5c03673cef90474e54c09e1=
+6ba840d91a19c 100644
+--- a/kernel/time/hrtimer.c
++++ b/kernel/time/hrtimer.c
+@@ -2065,6 +2065,20 @@ void hrtimer_init_sleeper_on_stack(struct hrtimer_sl=
+eeper *sl,
+ }
+ EXPORT_SYMBOL_GPL(hrtimer_init_sleeper_on_stack);
+=20
++/**
++ * hrtimer_setup_sleeper_on_stack - initialize a sleeper in stack memory
++ * @sl:		sleeper to be initialized
++ * @clock_id:	the clock to be used
++ * @mode:	timer mode abs/rel
++ */
++void hrtimer_setup_sleeper_on_stack(struct hrtimer_sleeper *sl,
++				    clockid_t clock_id, enum hrtimer_mode mode)
++{
++	debug_init_on_stack(&sl->timer, clock_id, mode);
++	__hrtimer_init_sleeper(sl, clock_id, mode);
++}
++EXPORT_SYMBOL_GPL(hrtimer_setup_sleeper_on_stack);
++
+ int nanosleep_copyout(struct restart_block *restart, struct timespec64 *ts)
+ {
+ 	switch(restart->nanosleep.type) {
+
+--=20
+2.45.2
+
+
+From namcao@linutronix.de Thu Oct 31 07:49:40 2024
+Return-Path: <namcao@linutronix.de>
+Received: from galois.linutronix.de
+	by Galois.linutronix.de with LMTP
+	id qEahGoQoI2dDEAAAEMDZNw
+	(envelope-from <namcao@linutronix.de>); Thu, 31 Oct 2024 07:49:40 +0100
+From: Nam Cao <namcao@linutronix.de>
+DKIM-Signature: v=3D1; a=3Drsa-sha256; c=3Drelaxed/relaxed; d=3Dlinutronix.=
+de;
+	s=3D2020; t=3D1730357380;
+	h=3Dfrom:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3DTnLuBLEZcGHPhBkTIHXa3HWi2nu5vBAHhmyfApw0/do=3D;
+	b=3DZfqZCwxU7unK0wTAISGC2C7DaUIvb5uI7bjYdj8YPEvniuXkFyTHfrrFpaZgq50ImsOX/i
+	uizGrMKX1+dV8wmYIWLC9pYEybCTyAp/TtiLD0AzdVrenz+V4zskVnL/lhKObzj+qlp3SP
+	XLQ7Vu3GBjXfR1Qg2ANKkICQVq2SQ0koU7kytEGPUWZEE698pAhblHKQUs1v7XTvaC7Ot6
+	87628Brx3qFx7Y6AzLF2PSCGrvsZKNg8egt3im5jiDiK/TOAHlGkvuOlT8yrFuDYT5oLcH
+	N/NYhwcCsTY5fXpLsp3Eda7z2cOUUwleY5Au/GdqoQ1+Bm6UX3aUvXqmW3JdDg=3D=3D
+DKIM-Signature: v=3D1; a=3Ded25519-sha256; c=3Drelaxed/relaxed; d=3Dlinutro=
+nix.de;
+	s=3D2020e; t=3D1730357380;
+	h=3Dfrom:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3DTnLuBLEZcGHPhBkTIHXa3HWi2nu5vBAHhmyfApw0/do=3D;
+	b=3DHdWmkCNuPmrT2AvJWjEhHannlbzUJ5EjFpDLWrVZ5ho0BT/e2N+Gv5yPiT1bkT+3e2dgfe
+	9pL/83Qjtn1QkECQ=3D=3D
+Date: Thu, 31 Oct 2024 06:49:32 +0000
+Subject: [PATCH v2 09/19] hrtimers: Introduce hrtimer_update_function()
+MIME-Version: 1.0
+Content-Type: text/plain; charset=3D"utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20241031-hrtimer_setup_p1_v2-v2-9-23400656575a@linutronix.de>
+References: <20241031-hrtimer_setup_p1_v2-v2-0-23400656575a@linutronix.de>
+In-Reply-To: <20241031-hrtimer_setup_p1_v2-v2-0-23400656575a@linutronix.de>
+To: Anna-Maria Behnsen <anna-maria@linutronix.de>,=20
+ Frederic Weisbecker <frederic@kernel.org>,=20
+ Thomas Gleixner <tglx@linutronix.de>,=20
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com=
+>,=20
+ Miguel Ojeda <ojeda@kernel.org>, Kees Cook <kees@kernel.org>,=20
+ linux-kernel@vger.kernel.org
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,=20
+ intel-gfx@lists.freedesktop.org, Sean Christopherson <seanjc@google.com>,=
+=20
+ Paolo Bonzini <pbonzini@redhat.com>, x86@kernel.org,=20
+ Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,=20
+ Jens Axboe <axboe@kernel.dk>, Christian Brauner <brauner@kernel.org>,=20
+ Peter Zijlstra <peterz@infradead.org>, John Stultz <jstultz@google.com>,=20
+ Nam Cao <namcao@linutronix.de>
+Status: RO
+Content-Length: 1767
+Lines: 53
+
+Some users of hrtimer need to change the callback function after the
+initial setup. They write to hrtimer::function directly.
+
+That's not safe under all circumstances as the write is lockless and a
+concurrent timer expiry might end up using the wrong function pointer.
+
+Introduce hrtimer_update_function(), which also performs runtime checks
+whether it is safe to modify the callback.
+
+This allows to make hrtimer::function private once all users are converted.
+
+Signed-off-by: Nam Cao <namcao@linutronix.de>
+---
+ include/linux/hrtimer.h | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
+
+diff --git a/include/linux/hrtimer.h b/include/linux/hrtimer.h
+index 48872a2b40718cc7d0c1893651767a3c992483b9..6e026730e80392d9640e8de6fd1=
+a2490f5640581 100644
+--- a/include/linux/hrtimer.h
++++ b/include/linux/hrtimer.h
+@@ -327,6 +327,28 @@ static inline int hrtimer_callback_running(struct hrti=
+mer *timer)
+ 	return timer->base->running =3D=3D timer;
+ }
+=20
++/**
++ * hrtimer_update_function - Update the timer's callback function
++ * @timer:	Timer to update
++ * @function:	New callback function
++ *
++ * Only safe to call if the timer is not enqueued. Can be called in the ca=
+llback function if the
++ * timer is not enqueued at the same time (see the comments above HRTIMER_=
+STATE_ENQUEUED).
++ */
++static inline void hrtimer_update_function(struct hrtimer *timer,
++					   enum hrtimer_restart (*function)(struct hrtimer *))
++{
++	guard(raw_spinlock_irqsave)(&timer->base->cpu_base->lock);
++
++	if (WARN_ON_ONCE(hrtimer_is_queued(timer)))
++		return;
++
++	if (WARN_ON_ONCE(!function))
++		return;
++
++	timer->function =3D function;
++}
++
+ /* Forward a hrtimer so it expires after now: */
+ extern u64
+ hrtimer_forward(struct hrtimer *timer, ktime_t now, ktime_t interval);
+
+--=20
+2.45.2
+
+
+From namcao@linutronix.de Thu Oct 31 07:49:40 2024
+Return-Path: <namcao@linutronix.de>
+Received: from galois.linutronix.de
+	by Galois.linutronix.de with LMTP
+	id +LSCJYQoI2dFEAAAEMDZNw
+	(envelope-from <namcao@linutronix.de>); Thu, 31 Oct 2024 07:49:40 +0100
+From: Nam Cao <namcao@linutronix.de>
+DKIM-Signature: v=3D1; a=3Drsa-sha256; c=3Drelaxed/relaxed; d=3Dlinutronix.=
+de;
+	s=3D2020; t=3D1730357380;
+	h=3Dfrom:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3DfyN9KPwpunCt2TejiBEKMAsujKnatYfcy9dQM5Jx9mg=3D;
+	b=3DvEtBVEl3vsVU4ZKvhGBQgPKbnhNRVcbQ4BYoDzIo7bNWEzgDEtFAuy+7T/brz/iThzxobp
+	vnm+2YYEPFgcEgU0qBirXamRvlnoX2V8IOKsmokiuyMWqR8Rh6P65nojzwYFVvuTJUJpFV
+	5iE/g0MupI5siU2Q6Dz1a8OQKabmvqTdd6my0ovivYa/4hobNNB3IcmO8FKcPuvuCizB2U
+	zZuwAm7DfjuRUGZVAt+NSBXx0kojQnwo57ys7GvofuVpqk94ARQEqb4OGM97orgLzuI+vT
+	JLMRL3Kk1i3YzgVruVuWyHW1HVMXj6hvAsCDWNXbOmWukN6OXs5jb4MHI8j94g=3D=3D
+DKIM-Signature: v=3D1; a=3Ded25519-sha256; c=3Drelaxed/relaxed; d=3Dlinutro=
+nix.de;
+	s=3D2020e; t=3D1730357380;
+	h=3Dfrom:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3DfyN9KPwpunCt2TejiBEKMAsujKnatYfcy9dQM5Jx9mg=3D;
+	b=3DZM67cTblvIjkukb6s35To+LE4Td0ED0nG6T4D1cMEQH3G4aDuK/auFph9clwxuS+oB4n/Q
+	W3/2cG8fedvsG8Cw=3D=3D
+Date: Thu, 31 Oct 2024 06:49:33 +0000
+Subject: [PATCH v2 10/19] fs/aio: Switch to use
+ hrtimer_setup_sleeper_on_stack()
+MIME-Version: 1.0
+Content-Type: text/plain; charset=3D"utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20241031-hrtimer_setup_p1_v2-v2-10-23400656575a@linutronix.de>
+References: <20241031-hrtimer_setup_p1_v2-v2-0-23400656575a@linutronix.de>
+In-Reply-To: <20241031-hrtimer_setup_p1_v2-v2-0-23400656575a@linutronix.de>
+To: Anna-Maria Behnsen <anna-maria@linutronix.de>,=20
+ Frederic Weisbecker <frederic@kernel.org>,=20
+ Thomas Gleixner <tglx@linutronix.de>,=20
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com=
+>,=20
+ Miguel Ojeda <ojeda@kernel.org>, Kees Cook <kees@kernel.org>,=20
+ linux-kernel@vger.kernel.org
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,=20
+ intel-gfx@lists.freedesktop.org, Sean Christopherson <seanjc@google.com>,=
+=20
+ Paolo Bonzini <pbonzini@redhat.com>, x86@kernel.org,=20
+ Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,=20
+ Jens Axboe <axboe@kernel.dk>, Christian Brauner <brauner@kernel.org>,=20
+ Peter Zijlstra <peterz@infradead.org>, John Stultz <jstultz@google.com>,=20
+ Nam Cao <namcao@linutronix.de>
+Status: RO
+Content-Length: 979
+Lines: 27
+
+hrtimer_setup_sleeper_on_stack() replaces hrtimer_init_sleeper_on_stack()
+to keep the naming convention consistent.
+
+Convert the usage site over to it. The conversion was done with Coccinelle.
+
+Signed-off-by: Nam Cao <namcao@linutronix.de>
+Cc: Christian Brauner <brauner@kernel.org>
+---
+ fs/aio.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/fs/aio.c b/fs/aio.c
+index e8920178b50f73267306a6da8f177785267f0c15..a5d331f29943226a17916fbff00=
+948eb0f49a07a 100644
+--- a/fs/aio.c
++++ b/fs/aio.c
+@@ -1335,7 +1335,7 @@ static long read_events(struct kioctx *ctx, long min_=
+nr, long nr,
+ 	if (until =3D=3D 0 || ret < 0 || ret >=3D min_nr)
+ 		return ret;
+=20
+-	hrtimer_init_sleeper_on_stack(&t, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
++	hrtimer_setup_sleeper_on_stack(&t, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
+ 	if (until !=3D KTIME_MAX) {
+ 		hrtimer_set_expires_range_ns(&t.timer, until, current->timer_slack_ns);
+ 		hrtimer_sleeper_start_expires(&t, HRTIMER_MODE_REL);
+
+--=20
+2.45.2
+
+
+From namcao@linutronix.de Thu Oct 31 07:49:41 2024
+Return-Path: <namcao@linutronix.de>
+Received: from galois.linutronix.de
+	by Galois.linutronix.de with LMTP
+	id IGvwLoQoI2cwEAAAEMDZNw
+	(envelope-from <namcao@linutronix.de>); Thu, 31 Oct 2024 07:49:40 +0100
+From: Nam Cao <namcao@linutronix.de>
+DKIM-Signature: v=3D1; a=3Drsa-sha256; c=3Drelaxed/relaxed; d=3Dlinutronix.=
+de;
+	s=3D2020; t=3D1730357380;
+	h=3Dfrom:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3DVwH2lm2fQbgh8TkHVkU0HIxCHwKkhedZRqVurQrog5o=3D;
+	b=3Dzs6zow8IpSTN2OJfAba508fLms56qNGnOXKuJe1aILvILfVboGgtyGLzfb6nD0/OMyJ70+
+	9eMIbvX9G7W1mhQZzZUsHSD6XTA9sBvOJHxPzh213MTp4jNY7e5gv8CDgpmKRvlU1oRlzY
+	F5K0Y/t2zD5QpRCGlTvg8MSrOV4NkWfgUSv9+QBJnpGIf2WfhqhzW7EQ72aFV1fregLpbE
+	hQ7MXCkklY6YZ9lA7jchqnXxLVIsbavE/jOxJSS1dUwR5C9dUPGy9U7zYjRSAcydgpa48+
+	pTj3fjE6ESYXl4g6hj1ZgApHVvGiNN2LtW4bCnv5gsIHEpMTyfZdhKKzaSrTcA=3D=3D
+DKIM-Signature: v=3D1; a=3Ded25519-sha256; c=3Drelaxed/relaxed; d=3Dlinutro=
+nix.de;
+	s=3D2020e; t=3D1730357380;
+	h=3Dfrom:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3DVwH2lm2fQbgh8TkHVkU0HIxCHwKkhedZRqVurQrog5o=3D;
+	b=3DKP3XmD81yPhJnHnCuDOQXSEDHfkeNYdE3tYlP3YqH8ePATg0EWiTsiHf9WnL2kJEnaW91r
+	Ze4f/QbuHsPdlmDg=3D=3D
+Date: Thu, 31 Oct 2024 06:49:34 +0000
+Subject: [PATCH v2 11/19] futex: Switch to use
+ hrtimer_setup_sleeper_on_stack()
+MIME-Version: 1.0
+Content-Type: text/plain; charset=3D"utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20241031-hrtimer_setup_p1_v2-v2-11-23400656575a@linutronix.de>
+References: <20241031-hrtimer_setup_p1_v2-v2-0-23400656575a@linutronix.de>
+In-Reply-To: <20241031-hrtimer_setup_p1_v2-v2-0-23400656575a@linutronix.de>
+To: Anna-Maria Behnsen <anna-maria@linutronix.de>,=20
+ Frederic Weisbecker <frederic@kernel.org>,=20
+ Thomas Gleixner <tglx@linutronix.de>,=20
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com=
+>,=20
+ Miguel Ojeda <ojeda@kernel.org>, Kees Cook <kees@kernel.org>,=20
+ linux-kernel@vger.kernel.org
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,=20
+ intel-gfx@lists.freedesktop.org, Sean Christopherson <seanjc@google.com>,=
+=20
+ Paolo Bonzini <pbonzini@redhat.com>, x86@kernel.org,=20
+ Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,=20
+ Jens Axboe <axboe@kernel.dk>, Christian Brauner <brauner@kernel.org>,=20
+ Peter Zijlstra <peterz@infradead.org>, John Stultz <jstultz@google.com>,=20
+ Nam Cao <namcao@linutronix.de>
+Status: RO
+Content-Length: 1118
+Lines: 31
+
+hrtimer_setup_sleeper_on_stack() replaces hrtimer_init_sleeper_on_stack()
+to keep the naming convention consistent.
+
+Convert the usage site over to it. The conversion was done with Coccinelle.
+
+Signed-off-by: Nam Cao <namcao@linutronix.de>
+Cc: Peter Zijlstra <peterz@infradead.org>
+---
+ kernel/futex/core.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/kernel/futex/core.c b/kernel/futex/core.c
+index 136768ae26375fafcebf8815ae965f13a3161adf..fb7214c7a36f7377b7fd2dc8a23=
+2bc96b1d0d953 100644
+--- a/kernel/futex/core.c
++++ b/kernel/futex/core.c
+@@ -140,9 +140,9 @@ futex_setup_timer(ktime_t *time, struct hrtimer_sleeper=
+ *timeout,
+ 	if (!time)
+ 		return NULL;
+=20
+-	hrtimer_init_sleeper_on_stack(timeout, (flags & FLAGS_CLOCKRT) ?
+-				      CLOCK_REALTIME : CLOCK_MONOTONIC,
+-				      HRTIMER_MODE_ABS);
++	hrtimer_setup_sleeper_on_stack(timeout,
++				       (flags & FLAGS_CLOCKRT) ? CLOCK_REALTIME : CLOCK_MONOTONIC,
++				       HRTIMER_MODE_ABS);
+ 	/*
+ 	 * If range_ns is 0, calling hrtimer_set_expires_range_ns() is
+ 	 * effectively the same as calling hrtimer_set_expires().
+
+--=20
+2.45.2
+
+
+From namcao@linutronix.de Thu Oct 31 07:49:41 2024
+Return-Path: <namcao@linutronix.de>
+Received: from galois.linutronix.de
+	by Galois.linutronix.de with LMTP
+	id YBWJOIQoI2dIEAAAEMDZNw
+	(envelope-from <namcao@linutronix.de>); Thu, 31 Oct 2024 07:49:40 +0100
+From: Nam Cao <namcao@linutronix.de>
+DKIM-Signature: v=3D1; a=3Drsa-sha256; c=3Drelaxed/relaxed; d=3Dlinutronix.=
+de;
+	s=3D2020; t=3D1730357380;
+	h=3Dfrom:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3DHxHIzP9qMm1kJpF85XCGAjs4+UOr4o5SoYMkBDy3Iac=3D;
+	b=3DXYXBDkUybJJLCfmRytIY52rLcke0sEL982MrtFglYikQ+5cMCd0ksjrynsbhVXzU8W8ipW
+	GDsFNemiz9+tRJ9CIK7Twpm3Dic1gs0Q1bu2DFgeTy6gwOistlx3V5zPE7XAUmCf10zKUi
+	27Lxj7mWESsrjd5Rn1J8HpF3zZUJNVoGp/HDhlWvCXO2mTWBDVpqzMlLNuhAH20NXUqrvZ
+	18a/A+JnlEst1n6al80nveu9BdLdIketrQWBCPeDmPuXAuWGbkEpsaJZ/iO2/AcMxvN01i
+	rK7rJybrefLCoyZOueVfzGuQnYK+F05gA1om+tqNElxpjm1FpKSlUrAtc43SAw=3D=3D
+DKIM-Signature: v=3D1; a=3Ded25519-sha256; c=3Drelaxed/relaxed; d=3Dlinutro=
+nix.de;
+	s=3D2020e; t=3D1730357380;
+	h=3Dfrom:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3DHxHIzP9qMm1kJpF85XCGAjs4+UOr4o5SoYMkBDy3Iac=3D;
+	b=3DTG64FwexHhpTBeQTpLyc5Ny7Yy++5CeioRbF1r2JWWU5TAPJJnVe7FA4CgDCYa1mhm2CrR
+	6gTz02YKgMNF7BBw=3D=3D
+Date: Thu, 31 Oct 2024 06:49:35 +0000
+Subject: [PATCH v2 12/19] net: pktgen: Switch to use
+ hrtimer_setup_sleeper_on_stack()
+MIME-Version: 1.0
+Content-Type: text/plain; charset=3D"utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20241031-hrtimer_setup_p1_v2-v2-12-23400656575a@linutronix.de>
+References: <20241031-hrtimer_setup_p1_v2-v2-0-23400656575a@linutronix.de>
+In-Reply-To: <20241031-hrtimer_setup_p1_v2-v2-0-23400656575a@linutronix.de>
+To: Anna-Maria Behnsen <anna-maria@linutronix.de>,=20
+ Frederic Weisbecker <frederic@kernel.org>,=20
+ Thomas Gleixner <tglx@linutronix.de>,=20
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com=
+>,=20
+ Miguel Ojeda <ojeda@kernel.org>, Kees Cook <kees@kernel.org>,=20
+ linux-kernel@vger.kernel.org
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,=20
+ intel-gfx@lists.freedesktop.org, Sean Christopherson <seanjc@google.com>,=
+=20
+ Paolo Bonzini <pbonzini@redhat.com>, x86@kernel.org,=20
+ Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,=20
+ Jens Axboe <axboe@kernel.dk>, Christian Brauner <brauner@kernel.org>,=20
+ Peter Zijlstra <peterz@infradead.org>, John Stultz <jstultz@google.com>,=20
+ Nam Cao <namcao@linutronix.de>
+Status: RO
+Content-Length: 953
+Lines: 27
+
+hrtimer_setup_sleeper_on_stack() replaces hrtimer_init_sleeper_on_stack()
+to keep the naming convention consistent.
+
+Convert the usage site over to it. The conversion was done with Coccinelle.
+
+Signed-off-by: Nam Cao <namcao@linutronix.de>
+Cc: Jakub Kicinski <kuba@kernel.org>
+---
+ net/core/pktgen.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/net/core/pktgen.c b/net/core/pktgen.c
+index 34f68ef74b8f2cd2dbf8ba497b1e323d0636124b..7e23cacbe66e4ad8185a32e9eb5=
+e005070a8ab1c 100644
+--- a/net/core/pktgen.c
++++ b/net/core/pktgen.c
+@@ -2285,7 +2285,7 @@ static void spin(struct pktgen_dev *pkt_dev, ktime_t =
+spin_until)
+ 	s64 remaining;
+ 	struct hrtimer_sleeper t;
+=20
+-	hrtimer_init_sleeper_on_stack(&t, CLOCK_MONOTONIC, HRTIMER_MODE_ABS);
++	hrtimer_setup_sleeper_on_stack(&t, CLOCK_MONOTONIC, HRTIMER_MODE_ABS);
+ 	hrtimer_set_expires(&t.timer, spin_until);
+=20
+ 	remaining =3D ktime_to_ns(hrtimer_expires_remaining(&t.timer));
+
+--=20
+2.45.2
+
+
+From namcao@linutronix.de Thu Oct 31 07:49:41 2024
+Return-Path: <namcao@linutronix.de>
+Received: from galois.linutronix.de
+	by Galois.linutronix.de with LMTP
+	id wD9eBoUoI2cuEAAAEMDZNw
+	(envelope-from <namcao@linutronix.de>); Thu, 31 Oct 2024 07:49:41 +0100
+From: Nam Cao <namcao@linutronix.de>
+DKIM-Signature: v=3D1; a=3Drsa-sha256; c=3Drelaxed/relaxed; d=3Dlinutronix.=
+de;
+	s=3D2020; t=3D1730357381;
+	h=3Dfrom:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3DiwJQWZBJsv5nf8IPFheER53FrbWd2biEMZzodjj8yss=3D;
+	b=3DsB26+aDhL1Pfn/R0rAp3xe2UVX0IGqAiD4JfNC2E/JNeVhZNWfqohCmU8bKgu3m1wyJ9sA
+	GZ36ueIyc1vrA60BoWmhn+r2cK0hZkpjCqhtlnGAFVlaAxskrb6VVWREw8LMQsQwfCIIq1
+	98LpljkbBdZEVpDtMo1PC9zjQ7VDyoFpbubAAnRQf85q0t8UTg7BX6s2XsdUhvgNs0HBmL
+	2S9Xv4Tdf41Cz0PP/AtCaBO3JKmbEcqORc6RQlqOmEglS34CXqsqISoz7wIJDrXW/ohmP9
+	Fn1E73hD8qP673Bz95FCnJgZSv8wY+8t0vyna/u99lw2ePa2D8M9YfRGg6FMjQ=3D=3D
+DKIM-Signature: v=3D1; a=3Ded25519-sha256; c=3Drelaxed/relaxed; d=3Dlinutro=
+nix.de;
+	s=3D2020e; t=3D1730357381;
+	h=3Dfrom:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3DiwJQWZBJsv5nf8IPFheER53FrbWd2biEMZzodjj8yss=3D;
+	b=3DnkPle7eB7VJ4X2trLwWshonLsRndKwwYLAI/iResoi9R2569fq8dS59ij9Y+P9V+uJScPh
+	mVDn9MvCdJju6wBA=3D=3D
+Date: Thu, 31 Oct 2024 06:49:36 +0000
+Subject: [PATCH v2 13/19] timers: Switch to use
+ hrtimer_setup_sleeper_on_stack()
+MIME-Version: 1.0
+Content-Type: text/plain; charset=3D"utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20241031-hrtimer_setup_p1_v2-v2-13-23400656575a@linutronix.de>
+References: <20241031-hrtimer_setup_p1_v2-v2-0-23400656575a@linutronix.de>
+In-Reply-To: <20241031-hrtimer_setup_p1_v2-v2-0-23400656575a@linutronix.de>
+To: Anna-Maria Behnsen <anna-maria@linutronix.de>,=20
+ Frederic Weisbecker <frederic@kernel.org>,=20
+ Thomas Gleixner <tglx@linutronix.de>,=20
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com=
+>,=20
+ Miguel Ojeda <ojeda@kernel.org>, Kees Cook <kees@kernel.org>,=20
+ linux-kernel@vger.kernel.org
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,=20
+ intel-gfx@lists.freedesktop.org, Sean Christopherson <seanjc@google.com>,=
+=20
+ Paolo Bonzini <pbonzini@redhat.com>, x86@kernel.org,=20
+ Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,=20
+ Jens Axboe <axboe@kernel.dk>, Christian Brauner <brauner@kernel.org>,=20
+ Peter Zijlstra <peterz@infradead.org>, John Stultz <jstultz@google.com>,=20
+ Nam Cao <namcao@linutronix.de>
+Status: RO
+Content-Length: 2004
+Lines: 52
+
+hrtimer_setup_sleeper_on_stack() replaces hrtimer_init_sleeper_on_stack()
+to keep the naming convention consistent.
+
+Convert the usage sites over to it. The conversion was done with
+Coccinelle.
+
+Signed-off-by: Nam Cao <namcao@linutronix.de>
+---
+ kernel/time/hrtimer.c       | 5 ++---
+ kernel/time/sleep_timeout.c | 2 +-
+ 2 files changed, 3 insertions(+), 4 deletions(-)
+
+diff --git a/kernel/time/hrtimer.c b/kernel/time/hrtimer.c
+index 1d1f5c03673cef90474e54c09e16ba840d91a19c..69430467a17dbd8eafc9bcb611f=
+a33e0c573c855 100644
+--- a/kernel/time/hrtimer.c
++++ b/kernel/time/hrtimer.c
+@@ -2138,8 +2138,7 @@ static long __sched hrtimer_nanosleep_restart(struct =
+restart_block *restart)
+ 	struct hrtimer_sleeper t;
+ 	int ret;
+=20
+-	hrtimer_init_sleeper_on_stack(&t, restart->nanosleep.clockid,
+-				      HRTIMER_MODE_ABS);
++	hrtimer_setup_sleeper_on_stack(&t, restart->nanosleep.clockid, HRTIMER_MO=
+DE_ABS);
+ 	hrtimer_set_expires_tv64(&t.timer, restart->nanosleep.expires);
+ 	ret =3D do_nanosleep(&t, HRTIMER_MODE_ABS);
+ 	destroy_hrtimer_on_stack(&t.timer);
+@@ -2153,7 +2152,7 @@ long hrtimer_nanosleep(ktime_t rqtp, const enum hrtim=
+er_mode mode,
+ 	struct hrtimer_sleeper t;
+ 	int ret =3D 0;
+=20
+-	hrtimer_init_sleeper_on_stack(&t, clockid, mode);
++	hrtimer_setup_sleeper_on_stack(&t, clockid, mode);
+ 	hrtimer_set_expires_range_ns(&t.timer, rqtp, current->timer_slack_ns);
+ 	ret =3D do_nanosleep(&t, mode);
+ 	if (ret !=3D -ERESTART_RESTARTBLOCK)
+diff --git a/kernel/time/sleep_timeout.c b/kernel/time/sleep_timeout.c
+index 3054e5232d208fdb9d782d196a95ca389ae4de45..dfe939f6e4ecf2845919199d8c5=
+578f81e01b27c 100644
+--- a/kernel/time/sleep_timeout.c
++++ b/kernel/time/sleep_timeout.c
+@@ -208,7 +208,7 @@ int __sched schedule_hrtimeout_range_clock(ktime_t *exp=
+ires, u64 delta,
+ 		return -EINTR;
+ 	}
+=20
+-	hrtimer_init_sleeper_on_stack(&t, clock_id, mode);
++	hrtimer_setup_sleeper_on_stack(&t, clock_id, mode);
+ 	hrtimer_set_expires_range_ns(&t.timer, *expires, delta);
+ 	hrtimer_sleeper_start_expires(&t, mode);
+=20
+
+--=20
+2.45.2
+
+
+From namcao@linutronix.de Thu Oct 31 07:49:41 2024
+Return-Path: <namcao@linutronix.de>
+Received: from galois.linutronix.de
+	by Galois.linutronix.de with LMTP
+	id wDbfEIUoI2dFEAAAEMDZNw
+	(envelope-from <namcao@linutronix.de>); Thu, 31 Oct 2024 07:49:41 +0100
+From: Nam Cao <namcao@linutronix.de>
+DKIM-Signature: v=3D1; a=3Drsa-sha256; c=3Drelaxed/relaxed; d=3Dlinutronix.=
+de;
+	s=3D2020; t=3D1730357381;
+	h=3Dfrom:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3D/8VTE/SliaJLbLlZSwIFR6dqx4nYT1RPW4jziqApoIA=3D;
+	b=3DxK3Hs1x7jRTFyQwl9OkCfuKT5JU4rPcdXBjgm9iCkshRcXS5VBA6cy7ZyH/311KnFMEia6
+	kLGBAYHsrHdQNhEGaQ969cRHnQ6uGwivQipqntipMnoZkw6/Z79pyWyprO3EVDMm4VDqLA
+	SMLgCDsvzlpMDnTlhNmyPpl7MLkUDLvNMVFvq6J9snGebcKWOeqXb/oQU3XPNq4k36CXUl
+	thNk0FaDUzeY8haCY7RDz3bM1nsA6rFuGyZ0NZo3PcpmZQ262SDd434RuglQ++p0gkXHS9
+	Cg//6W4SlXtN35E71vIitHed6ZSILh8Dq9lktMENUBH4m+qSQs8lb80swC2btg=3D=3D
+DKIM-Signature: v=3D1; a=3Ded25519-sha256; c=3Drelaxed/relaxed; d=3Dlinutro=
+nix.de;
+	s=3D2020e; t=3D1730357381;
+	h=3Dfrom:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3D/8VTE/SliaJLbLlZSwIFR6dqx4nYT1RPW4jziqApoIA=3D;
+	b=3DMa/uQv6vTg98W/K3c1MK/SSAy1ET9PhT16gxR91P1OFRBjAsnM0+YczBoVRgLO0Zp9wDYw
+	T9FVe+dumvBUHNCg=3D=3D
+Date: Thu, 31 Oct 2024 06:49:37 +0000
+Subject: [PATCH v2 14/19] wait: Switch to use
+ hrtimer_setup_sleeper_on_stack()
+MIME-Version: 1.0
+Content-Type: text/plain; charset=3D"utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20241031-hrtimer_setup_p1_v2-v2-14-23400656575a@linutronix.de>
+References: <20241031-hrtimer_setup_p1_v2-v2-0-23400656575a@linutronix.de>
+In-Reply-To: <20241031-hrtimer_setup_p1_v2-v2-0-23400656575a@linutronix.de>
+To: Anna-Maria Behnsen <anna-maria@linutronix.de>,=20
+ Frederic Weisbecker <frederic@kernel.org>,=20
+ Thomas Gleixner <tglx@linutronix.de>,=20
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com=
+>,=20
+ Miguel Ojeda <ojeda@kernel.org>, Kees Cook <kees@kernel.org>,=20
+ linux-kernel@vger.kernel.org
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,=20
+ intel-gfx@lists.freedesktop.org, Sean Christopherson <seanjc@google.com>,=
+=20
+ Paolo Bonzini <pbonzini@redhat.com>, x86@kernel.org,=20
+ Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,=20
+ Jens Axboe <axboe@kernel.dk>, Christian Brauner <brauner@kernel.org>,=20
+ Peter Zijlstra <peterz@infradead.org>, John Stultz <jstultz@google.com>,=20
+ Nam Cao <namcao@linutronix.de>
+Status: RO
+Content-Length: 976
+Lines: 29
+
+hrtimer_setup_sleeper_on_stack() replaces hrtimer_init_sleeper_on_stack()
+to keep the naming convention consistent.
+
+Convert the usage site over to it.
+
+Signed-off-by: Nam Cao <namcao@linutronix.de>
+Cc: Peter Zijlstra <peterz@infradead.org>
+---
+ include/linux/wait.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/include/linux/wait.h b/include/linux/wait.h
+index 8aa3372f21a080caf2738799700bd965fbd2198f..643b7c7bf376a42b546f1abfab2=
+0068b72cf9c81 100644
+--- a/include/linux/wait.h
++++ b/include/linux/wait.h
+@@ -541,8 +541,8 @@ do {										\
+ 	int __ret =3D 0;								\
+ 	struct hrtimer_sleeper __t;						\
+ 										\
+-	hrtimer_init_sleeper_on_stack(&__t, CLOCK_MONOTONIC,			\
+-				      HRTIMER_MODE_REL);			\
++	hrtimer_setup_sleeper_on_stack(&__t, CLOCK_MONOTONIC,			\
++				       HRTIMER_MODE_REL);			\
+ 	if ((timeout) !=3D KTIME_MAX) {						\
+ 		hrtimer_set_expires_range_ns(&__t.timer, timeout,		\
+ 					current->timer_slack_ns);		\
+
+--=20
+2.45.2
+
+
+From namcao@linutronix.de Thu Oct 31 07:49:41 2024
+Return-Path: <namcao@linutronix.de>
+Received: from galois.linutronix.de
+	by Galois.linutronix.de with LMTP
+	id GCG6G4UoI2dDEAAAEMDZNw
+	(envelope-from <namcao@linutronix.de>); Thu, 31 Oct 2024 07:49:41 +0100
+From: Nam Cao <namcao@linutronix.de>
+DKIM-Signature: v=3D1; a=3Drsa-sha256; c=3Drelaxed/relaxed; d=3Dlinutronix.=
+de;
+	s=3D2020; t=3D1730357381;
+	h=3Dfrom:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3DFOgmfXXck2l4TZk6Q/VKQVLacF0gp4JnsCVX7G8quZU=3D;
+	b=3DfIUffKc7+U4H+kUg94YJM9ZSh4JrL5bWQNIdbBabiK7Oj2U/V2J0fhQROI8XSs8mEIYTaf
+	Bdys6ewiqBvsfjY1IMJXG0w2wHHw7+lLF4fgROBNP3maLjSf82guban7+y3Rr2vSFkgHKv
+	xJGbuFf5HencCtYHeAVGJ0uuotEZWfSWecKSHDnIIg/TClBufE8s78KAkWDGXH9WjNjMMG
+	IGzkBB2ASHuwvMTzsfnWdmqp3n5YSbb+C2L+X3IpKKnr1VArlGoEK3xDBp8W0+/vlQrqgM
+	gSo0F/kddIDyVh4zvn7cIC2uZEAqyfUsEhAvGfz9Ws2q1sjl3YeU8+POiKwvbg=3D=3D
+DKIM-Signature: v=3D1; a=3Ded25519-sha256; c=3Drelaxed/relaxed; d=3Dlinutro=
+nix.de;
+	s=3D2020e; t=3D1730357381;
+	h=3Dfrom:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3DFOgmfXXck2l4TZk6Q/VKQVLacF0gp4JnsCVX7G8quZU=3D;
+	b=3DyImj2zBa7d4BdmXmKxXv+xsLSXORGjeRrkfcxJqR+BNLgcgPn33tZ7TluQ+2dQ8t4kq6wI
+	jxfxtUNyGsGhhmAA=3D=3D
+Date: Thu, 31 Oct 2024 06:49:38 +0000
+Subject: [PATCH v2 15/19] hrtimers: Delete hrtimer_init_sleeper_on_stack()
+MIME-Version: 1.0
+Content-Type: text/plain; charset=3D"utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20241031-hrtimer_setup_p1_v2-v2-15-23400656575a@linutronix.de>
+References: <20241031-hrtimer_setup_p1_v2-v2-0-23400656575a@linutronix.de>
+In-Reply-To: <20241031-hrtimer_setup_p1_v2-v2-0-23400656575a@linutronix.de>
+To: Anna-Maria Behnsen <anna-maria@linutronix.de>,=20
+ Frederic Weisbecker <frederic@kernel.org>,=20
+ Thomas Gleixner <tglx@linutronix.de>,=20
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com=
+>,=20
+ Miguel Ojeda <ojeda@kernel.org>, Kees Cook <kees@kernel.org>,=20
+ linux-kernel@vger.kernel.org
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,=20
+ intel-gfx@lists.freedesktop.org, Sean Christopherson <seanjc@google.com>,=
+=20
+ Paolo Bonzini <pbonzini@redhat.com>, x86@kernel.org,=20
+ Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,=20
+ Jens Axboe <axboe@kernel.dk>, Christian Brauner <brauner@kernel.org>,=20
+ Peter Zijlstra <peterz@infradead.org>, John Stultz <jstultz@google.com>,=20
+ Nam Cao <namcao@linutronix.de>
+Status: RO
+Content-Length: 1883
+Lines: 51
+
+hrtimer_init_sleeper_on_stack() is now unused. Delete it.
+
+Signed-off-by: Nam Cao <namcao@linutronix.de>
+---
+ include/linux/hrtimer.h |  3 ---
+ kernel/time/hrtimer.c   | 14 --------------
+ 2 files changed, 17 deletions(-)
+
+diff --git a/include/linux/hrtimer.h b/include/linux/hrtimer.h
+index 6e026730e80392d9640e8de6fd1a2490f5640581..4e4f04b3c0c20c9b1ffac2108ac=
+f7b4a9008027d 100644
+--- a/include/linux/hrtimer.h
++++ b/include/linux/hrtimer.h
+@@ -235,9 +235,6 @@ extern void hrtimer_init_on_stack(struct hrtimer *timer=
+, clockid_t which_clock,
+ extern void hrtimer_setup_on_stack(struct hrtimer *timer,
+ 				   enum hrtimer_restart (*function)(struct hrtimer *),
+ 				   clockid_t clock_id, enum hrtimer_mode mode);
+-extern void hrtimer_init_sleeper_on_stack(struct hrtimer_sleeper *sl,
+-					  clockid_t clock_id,
+-					  enum hrtimer_mode mode);
+ extern void hrtimer_setup_sleeper_on_stack(struct hrtimer_sleeper *sl, clo=
+ckid_t clock_id,
+ 					   enum hrtimer_mode mode);
+=20
+diff --git a/kernel/time/hrtimer.c b/kernel/time/hrtimer.c
+index 69430467a17dbd8eafc9bcb611fa33e0c573c855..376b8182b72e4327c4a99b105fe=
+4ba40991687f9 100644
+--- a/kernel/time/hrtimer.c
++++ b/kernel/time/hrtimer.c
+@@ -2051,20 +2051,6 @@ static void __hrtimer_init_sleeper(struct hrtimer_sl=
+eeper *sl,
+ 	sl->task =3D current;
+ }
+=20
+-/**
+- * hrtimer_init_sleeper_on_stack - initialize a sleeper in stack memory
+- * @sl:		sleeper to be initialized
+- * @clock_id:	the clock to be used
+- * @mode:	timer mode abs/rel
+- */
+-void hrtimer_init_sleeper_on_stack(struct hrtimer_sleeper *sl,
+-				   clockid_t clock_id, enum hrtimer_mode mode)
+-{
+-	debug_init_on_stack(&sl->timer, clock_id, mode);
+-	__hrtimer_init_sleeper(sl, clock_id, mode);
+-}
+-EXPORT_SYMBOL_GPL(hrtimer_init_sleeper_on_stack);
+-
+ /**
+  * hrtimer_setup_sleeper_on_stack - initialize a sleeper in stack memory
+  * @sl:		sleeper to be initialized
+
+--=20
+2.45.2
+
+
+From namcao@linutronix.de Thu Oct 31 07:49:41 2024
+Return-Path: <namcao@linutronix.de>
+Received: from galois.linutronix.de
+	by Galois.linutronix.de with LMTP
+	id 2NuhJ4UoI2cwEAAAEMDZNw
+	(envelope-from <namcao@linutronix.de>); Thu, 31 Oct 2024 07:49:41 +0100
+From: Nam Cao <namcao@linutronix.de>
+DKIM-Signature: v=3D1; a=3Drsa-sha256; c=3Drelaxed/relaxed; d=3Dlinutronix.=
+de;
+	s=3D2020; t=3D1730357381;
+	h=3Dfrom:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3DHW9STkMcXc5XEKLv2at0C6ak9fVb7uWJfrgsYsckmwU=3D;
+	b=3DWcoyP8IBaIqYSV+qsGe+x3Ri3l+hEH1QO6F6DlUj7nyqnjrQbWt3ObDaM1SGAZRf0JviaK
+	rpkcQJE5Bvijd/weTKdxuJD9ORvSRfmwx0vwaV1tDaQmkPZ/t/JCALG3RN0M5qE2GrJcTQ
+	ihCte+4YU3F5pKZ06vFgcxWf95vPxGAA2g4w3Zq98+iGFQUW1VY+ZtQWzQPCnklMTprj6S
+	5UMHHloqPBcmwBR/Gv8PqUmaV0bEh+tUTw9sY7JeHPFV8DffB9tMgFDr5+6FJntWUhnCHX
+	YbAOok0ILr3j9DFGZmIkUGCaPyILkjr5f1aIItNz8iXdi6jS8Ghz9cjUhWC2eQ=3D=3D
+DKIM-Signature: v=3D1; a=3Ded25519-sha256; c=3Drelaxed/relaxed; d=3Dlinutro=
+nix.de;
+	s=3D2020e; t=3D1730357381;
+	h=3Dfrom:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3DHW9STkMcXc5XEKLv2at0C6ak9fVb7uWJfrgsYsckmwU=3D;
+	b=3Dh0RLgitb/gznsMKLZ7feVJBppuGMP3E2V4K27L7DegPr/Uq8G9eIcCTW/NlqUtbA8uFLGE
+	f1A6D5997qR3bdBQ=3D=3D
+Date: Thu, 31 Oct 2024 06:49:39 +0000
+Subject: [PATCH v2 16/19] sched/idle: Switch to use
+ hrtimer_setup_on_stack()
+MIME-Version: 1.0
+Content-Type: text/plain; charset=3D"utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20241031-hrtimer_setup_p1_v2-v2-16-23400656575a@linutronix.de>
+References: <20241031-hrtimer_setup_p1_v2-v2-0-23400656575a@linutronix.de>
+In-Reply-To: <20241031-hrtimer_setup_p1_v2-v2-0-23400656575a@linutronix.de>
+To: Anna-Maria Behnsen <anna-maria@linutronix.de>,=20
+ Frederic Weisbecker <frederic@kernel.org>,=20
+ Thomas Gleixner <tglx@linutronix.de>,=20
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com=
+>,=20
+ Miguel Ojeda <ojeda@kernel.org>, Kees Cook <kees@kernel.org>,=20
+ linux-kernel@vger.kernel.org
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,=20
+ intel-gfx@lists.freedesktop.org, Sean Christopherson <seanjc@google.com>,=
+=20
+ Paolo Bonzini <pbonzini@redhat.com>, x86@kernel.org,=20
+ Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,=20
+ Jens Axboe <axboe@kernel.dk>, Christian Brauner <brauner@kernel.org>,=20
+ Peter Zijlstra <peterz@infradead.org>, John Stultz <jstultz@google.com>,=20
+ Nam Cao <namcao@linutronix.de>
+Status: RO
+Content-Length: 1119
+Lines: 32
+
+hrtimer_setup_on_stack() takes the callback function pointer as argument
+and initializes the timer completely.
+
+Replace hrtimer_init_on_stack() and the open coded initialization of
+hrtimer::function with the new setup mechanism.
+
+The conversion was done with Coccinelle.
+
+Signed-off-by: Nam Cao <namcao@linutronix.de>
+Cc: Peter Zijlstra <peterz@infradead.org>
+---
+ kernel/sched/idle.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/kernel/sched/idle.c b/kernel/sched/idle.c
+index d2f096bb274c3f42390ccf0ba6d0d14dccb0b816..631e428029259a6f5094a7c0544=
+2c22689883687 100644
+--- a/kernel/sched/idle.c
++++ b/kernel/sched/idle.c
+@@ -399,8 +399,8 @@ void play_idle_precise(u64 duration_ns, u64 latency_ns)
+ 	cpuidle_use_deepest_state(latency_ns);
+=20
+ 	it.done =3D 0;
+-	hrtimer_init_on_stack(&it.timer, CLOCK_MONOTONIC, HRTIMER_MODE_REL_HARD);
+-	it.timer.function =3D idle_inject_timer_fn;
++	hrtimer_setup_on_stack(&it.timer, idle_inject_timer_fn, CLOCK_MONOTONIC,
++			       HRTIMER_MODE_REL_HARD);
+ 	hrtimer_start(&it.timer, ns_to_ktime(duration_ns),
+ 		      HRTIMER_MODE_REL_PINNED_HARD);
+=20
+
+--=20
+2.45.2
+
+
+From namcao@linutronix.de Thu Oct 31 07:49:41 2024
+Return-Path: <namcao@linutronix.de>
+Received: from galois.linutronix.de
+	by Galois.linutronix.de with LMTP
+	id UL8uMIUoI2dIEAAAEMDZNw
+	(envelope-from <namcao@linutronix.de>); Thu, 31 Oct 2024 07:49:41 +0100
+From: Nam Cao <namcao@linutronix.de>
+DKIM-Signature: v=3D1; a=3Drsa-sha256; c=3Drelaxed/relaxed; d=3Dlinutronix.=
+de;
+	s=3D2020; t=3D1730357381;
+	h=3Dfrom:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3D9LGPfnUbT+OyazUp5Eo2cVJJXFsXzyW6wswHN13y5ew=3D;
+	b=3DF3M6+awSWtsDVdFJQ6+M3U67c6moX/SwnVUOcOPb3lggkLpg0u/lXuoLWC7cCVDTHpDt/R
+	CIktSqU13JOWfjcbIZaalBjXXTPkq0R9ky6H35LI4vaTUgznUX0Hsbhq0i1btoyEK6itq0
+	uqQkNEqLaoVfxGg+EgfIGous1yXJlwjk6qFynZChehAvNpKye9gjIv8GNzxASNXSDVmcwK
+	BDk1t1EtMFJ6bn6xuyGj78JePO5RSM+NGY0z+ccfu8WKcSjXrFQNuTFcq3o3fVhTCAoOVj
+	WLn4+DM9xmr1wuYF+wEdT8dxKtHSR23fELaU1+PMeA3iz7QI34/B2ZTgdc/zfA=3D=3D
+DKIM-Signature: v=3D1; a=3Ded25519-sha256; c=3Drelaxed/relaxed; d=3Dlinutro=
+nix.de;
+	s=3D2020e; t=3D1730357381;
+	h=3Dfrom:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3D9LGPfnUbT+OyazUp5Eo2cVJJXFsXzyW6wswHN13y5ew=3D;
+	b=3DOiMGhoRxUKfg+qlQYJsvE8ZlPswzj4byg4Gdq2riui2dXa3OEtRUPZHTqt9xnXECRQnZLo
+	1GqtP41/dZNeOvCQ=3D=3D
+Date: Thu, 31 Oct 2024 06:49:40 +0000
+Subject: [PATCH v2 17/19] io_uring: Switch to use hrtimer_setup_on_stack()
+MIME-Version: 1.0
+Content-Type: text/plain; charset=3D"utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20241031-hrtimer_setup_p1_v2-v2-17-23400656575a@linutronix.de>
+References: <20241031-hrtimer_setup_p1_v2-v2-0-23400656575a@linutronix.de>
+In-Reply-To: <20241031-hrtimer_setup_p1_v2-v2-0-23400656575a@linutronix.de>
+To: Anna-Maria Behnsen <anna-maria@linutronix.de>,=20
+ Frederic Weisbecker <frederic@kernel.org>,=20
+ Thomas Gleixner <tglx@linutronix.de>,=20
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com=
+>,=20
+ Miguel Ojeda <ojeda@kernel.org>, Kees Cook <kees@kernel.org>,=20
+ linux-kernel@vger.kernel.org
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,=20
+ intel-gfx@lists.freedesktop.org, Sean Christopherson <seanjc@google.com>,=
+=20
+ Paolo Bonzini <pbonzini@redhat.com>, x86@kernel.org,=20
+ Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,=20
+ Jens Axboe <axboe@kernel.dk>, Christian Brauner <brauner@kernel.org>,=20
+ Peter Zijlstra <peterz@infradead.org>, John Stultz <jstultz@google.com>,=20
+ Nam Cao <namcao@linutronix.de>
+Status: RO
+Content-Length: 1275
+Lines: 37
+
+hrtimer_setup_on_stack() takes the callback function pointer as argument
+and initializes the timer completely.
+
+Replace hrtimer_init_on_stack() and the open coded initialization of
+hrtimer::function with the new setup mechanism.
+
+Signed-off-by: Nam Cao <namcao@linutronix.de>
+Cc: Jens Axboe <axboe@kernel.dk>
+---
+ io_uring/io_uring.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+
+diff --git a/io_uring/io_uring.c b/io_uring/io_uring.c
+index feb61d68dca68e6f71461af9b7c293d05f7ecd7f..0842aa3f60e7a53e682bb61392b=
+1ab23a9b275b0 100644
+--- a/io_uring/io_uring.c
++++ b/io_uring/io_uring.c
+@@ -2435,13 +2435,14 @@ static int io_cqring_schedule_timeout(struct io_wai=
+t_queue *iowq,
+ {
+ 	ktime_t timeout;
+=20
+-	hrtimer_init_on_stack(&iowq->t, clock_id, HRTIMER_MODE_ABS);
+ 	if (iowq->min_timeout) {
+ 		timeout =3D ktime_add_ns(iowq->min_timeout, start_time);
+-		iowq->t.function =3D io_cqring_min_timer_wakeup;
++		hrtimer_setup_on_stack(&iowq->t, io_cqring_min_timer_wakeup, clock_id,
++				       HRTIMER_MODE_ABS);
+ 	} else {
+ 		timeout =3D iowq->timeout;
+-		iowq->t.function =3D io_cqring_timer_wakeup;
++		hrtimer_setup_on_stack(&iowq->t, io_cqring_timer_wakeup, clock_id,
++				       HRTIMER_MODE_ABS);
+ 	}
+=20
+ 	hrtimer_set_expires_range_ns(&iowq->t, timeout, 0);
+
+--=20
+2.45.2
+
+
+From namcao@linutronix.de Thu Oct 31 07:49:42 2024
+Return-Path: <namcao@linutronix.de>
+Received: from galois.linutronix.de
+	by Galois.linutronix.de with LMTP
+	id iGEIO4UoI2dDEAAAEMDZNw
+	(envelope-from <namcao@linutronix.de>); Thu, 31 Oct 2024 07:49:41 +0100
+From: Nam Cao <namcao@linutronix.de>
+DKIM-Signature: v=3D1; a=3Drsa-sha256; c=3Drelaxed/relaxed; d=3Dlinutronix.=
+de;
+	s=3D2020; t=3D1730357381;
+	h=3Dfrom:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3DqqSxTgxTBXm23RWr0LdlivKq9i+M3qnIKLtAIMbZhXA=3D;
+	b=3DB0WHZTU2zwqc3WwQYzkYHO8KEs+Z5HIu4fOL/J/PR0xoUsCBvLFBDDIOdMKBZYhjUPekxZ
+	1zoHj1ckL1zG6LhLt0bvY2ls40Gh6mXfgJj6e2hpheBMy0SXVXxcJmY1+6J49zxfIK41nj
+	YstbgN86ph3JysURVYZNiLZYHWnMPtzs8jK48WlIsfOKfEdMjYL6T5+l+6IQbylHEwQ8Et
+	nirl8ipdfzFInabEV28Awp64kRAg5TqI6nqkvLEkkge6zfHqYeEY57jRkEnpqSlRnNaiJN
+	SgiYhlbK0Llr0eoOh7jEHZjzkZsaAJc4Aj8i+K/dtCVYzSkHdQMMgNpJVyWZ9w=3D=3D
+DKIM-Signature: v=3D1; a=3Ded25519-sha256; c=3Drelaxed/relaxed; d=3Dlinutro=
+nix.de;
+	s=3D2020e; t=3D1730357381;
+	h=3Dfrom:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3DqqSxTgxTBXm23RWr0LdlivKq9i+M3qnIKLtAIMbZhXA=3D;
+	b=3DKWfxUkhOAfOYn7PLIkZ/nWR9kOVn2eCTMS1iPNtu4+hdSuQZY5TEwams4KbiecZ1hEQ4c2
+	xSSwJ0n0fSbYHICA=3D=3D
+Date: Thu, 31 Oct 2024 06:49:41 +0000
+Subject: [PATCH v2 18/19] alarmtimer: Switch to use hrtimer_setup() and
+ hrtimer_setup_on_stack()
+MIME-Version: 1.0
+Content-Type: text/plain; charset=3D"utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20241031-hrtimer_setup_p1_v2-v2-18-23400656575a@linutronix.de>
+References: <20241031-hrtimer_setup_p1_v2-v2-0-23400656575a@linutronix.de>
+In-Reply-To: <20241031-hrtimer_setup_p1_v2-v2-0-23400656575a@linutronix.de>
+To: Anna-Maria Behnsen <anna-maria@linutronix.de>,=20
+ Frederic Weisbecker <frederic@kernel.org>,=20
+ Thomas Gleixner <tglx@linutronix.de>,=20
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com=
+>,=20
+ Miguel Ojeda <ojeda@kernel.org>, Kees Cook <kees@kernel.org>,=20
+ linux-kernel@vger.kernel.org
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,=20
+ intel-gfx@lists.freedesktop.org, Sean Christopherson <seanjc@google.com>,=
+=20
+ Paolo Bonzini <pbonzini@redhat.com>, x86@kernel.org,=20
+ Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,=20
+ Jens Axboe <axboe@kernel.dk>, Christian Brauner <brauner@kernel.org>,=20
+ Peter Zijlstra <peterz@infradead.org>, John Stultz <jstultz@google.com>,=20
+ Nam Cao <namcao@linutronix.de>
+Status: RO
+Content-Length: 1949
+Lines: 51
+
+hrtimer_setup() and hrtimer_setup_on_stack() take the callback function
+pointer as argument and initialize the timer completely.
+
+Replace the hrtimer_init*() variants and the open coded initialization of
+hrtimer::function with the new setup mechanism.
+
+Switch to use the new functions.
+
+Signed-off-by: Nam Cao <namcao@linutronix.de>
+Cc: John Stultz <jstultz@google.com>
+---
+ kernel/time/alarmtimer.c | 9 ++++-----
+ 1 file changed, 4 insertions(+), 5 deletions(-)
+
+diff --git a/kernel/time/alarmtimer.c b/kernel/time/alarmtimer.c
+index 452d8aa2f6e0133fc7afe058d2102c4f28f38c91..f581868e1b3e596b847490198a3=
+5c6997ad795ad 100644
+--- a/kernel/time/alarmtimer.c
++++ b/kernel/time/alarmtimer.c
+@@ -337,7 +337,6 @@ __alarm_init(struct alarm *alarm, enum alarmtimer_type =
+type,
+ 	     enum alarmtimer_restart (*function)(struct alarm *, ktime_t))
+ {
+ 	timerqueue_init(&alarm->node);
+-	alarm->timer.function =3D alarmtimer_fired;
+ 	alarm->function =3D function;
+ 	alarm->type =3D type;
+ 	alarm->state =3D ALARMTIMER_STATE_INACTIVE;
+@@ -352,8 +351,8 @@ __alarm_init(struct alarm *alarm, enum alarmtimer_type =
+type,
+ void alarm_init(struct alarm *alarm, enum alarmtimer_type type,
+ 		enum alarmtimer_restart (*function)(struct alarm *, ktime_t))
+ {
+-	hrtimer_init(&alarm->timer, alarm_bases[type].base_clockid,
+-		     HRTIMER_MODE_ABS);
++	hrtimer_setup(&alarm->timer, alarmtimer_fired, alarm_bases[type].base_clo=
+ckid,
++		      HRTIMER_MODE_ABS);
+ 	__alarm_init(alarm, type, function);
+ }
+ EXPORT_SYMBOL_GPL(alarm_init);
+@@ -816,8 +815,8 @@ static void
+ alarm_init_on_stack(struct alarm *alarm, enum alarmtimer_type type,
+ 		    enum alarmtimer_restart (*function)(struct alarm *, ktime_t))
+ {
+-	hrtimer_init_on_stack(&alarm->timer, alarm_bases[type].base_clockid,
+-			      HRTIMER_MODE_ABS);
++	hrtimer_setup_on_stack(&alarm->timer, alarmtimer_fired, alarm_bases[type]=
+.base_clockid,
++			       HRTIMER_MODE_ABS);
+ 	__alarm_init(alarm, type, function);
+ }
+=20
+
+--=20
+2.45.2
+
+
+From namcao@linutronix.de Thu Oct 31 07:49:42 2024
+Return-Path: <namcao@linutronix.de>
+Received: from galois.linutronix.de
+	by Galois.linutronix.de with LMTP
+	id KP35CIYoI2dFEAAAEMDZNw
+	(envelope-from <namcao@linutronix.de>); Thu, 31 Oct 2024 07:49:42 +0100
+From: Nam Cao <namcao@linutronix.de>
+DKIM-Signature: v=3D1; a=3Drsa-sha256; c=3Drelaxed/relaxed; d=3Dlinutronix.=
+de;
+	s=3D2020; t=3D1730357382;
+	h=3Dfrom:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3DHx2vs6gncUvuDlyYXH9CTSqfSa9NhktAI9RFz1ZC2zA=3D;
+	b=3DsOU4h1r/PntxblDlPA78aBkuRYyXYKHKwKLeP/wDBnrKVPQKDVxQDD+41D+2VzHED3sSAH
+	X1a3xa0eL/OU6uXFKTA9qk2HomTPkuBhPu5SmDPsDO3+mVr/o4y8vlObOVRXIwILZNw+ZY
+	5y+Jq5gIoTEAmeGOnXieXsg1rJNrpz3dwqC3ev02uChq0WN6fzhQvmlpK/YE1wukDcRIsP
+	Ejz11ZxUM3L21y2n4YouTaLibJ7H3eN/teiQa+g8DmhuLir/lLCbZjglfF/mmoFzXedtCQ
+	4ENM/6vfh0jI7abWqNfIe4TOR/5olqDXF1tLufnxheXalebH46H/pfhx1c0HjQ=3D=3D
+DKIM-Signature: v=3D1; a=3Ded25519-sha256; c=3Drelaxed/relaxed; d=3Dlinutro=
+nix.de;
+	s=3D2020e; t=3D1730357382;
+	h=3Dfrom:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3DHx2vs6gncUvuDlyYXH9CTSqfSa9NhktAI9RFz1ZC2zA=3D;
+	b=3DN84dTMeFM1Rj1OcJ24onssa5LjfAyJcvFXL23rUhJokChK8K7OuDeJKkSbWlHF3ERgGKbC
+	BU9imWFZm+rPbHDA=3D=3D
+Date: Thu, 31 Oct 2024 06:49:42 +0000
+Subject: [PATCH v2 19/19] hrtimers: Delete hrtimer_init_on_stack()
+MIME-Version: 1.0
+Content-Type: text/plain; charset=3D"utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20241031-hrtimer_setup_p1_v2-v2-19-23400656575a@linutronix.de>
+References: <20241031-hrtimer_setup_p1_v2-v2-0-23400656575a@linutronix.de>
+In-Reply-To: <20241031-hrtimer_setup_p1_v2-v2-0-23400656575a@linutronix.de>
+To: Anna-Maria Behnsen <anna-maria@linutronix.de>,=20
+ Frederic Weisbecker <frederic@kernel.org>,=20
+ Thomas Gleixner <tglx@linutronix.de>,=20
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com=
+>,=20
+ Miguel Ojeda <ojeda@kernel.org>, Kees Cook <kees@kernel.org>,=20
+ linux-kernel@vger.kernel.org
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,=20
+ intel-gfx@lists.freedesktop.org, Sean Christopherson <seanjc@google.com>,=
+=20
+ Paolo Bonzini <pbonzini@redhat.com>, x86@kernel.org,=20
+ Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,=20
+ Jens Axboe <axboe@kernel.dk>, Christian Brauner <brauner@kernel.org>,=20
+ Peter Zijlstra <peterz@infradead.org>, John Stultz <jstultz@google.com>,=20
+ Nam Cao <namcao@linutronix.de>
+Status: RO
+Content-Length: 2004
+Lines: 53
+
+hrtimer_init_on_stack() is now unused. Delete it.
+
+Signed-off-by: Nam Cao <namcao@linutronix.de>
+---
+ include/linux/hrtimer.h |  2 --
+ kernel/time/hrtimer.c   | 17 -----------------
+ 2 files changed, 19 deletions(-)
+
+diff --git a/include/linux/hrtimer.h b/include/linux/hrtimer.h
+index 4e4f04b3c0c20c9b1ffac2108acf7b4a9008027d..7ef5f7ef31a911cd213e971cf1f=
+13ebe2db8c512 100644
+--- a/include/linux/hrtimer.h
++++ b/include/linux/hrtimer.h
+@@ -230,8 +230,6 @@ extern void hrtimer_init(struct hrtimer *timer, clockid=
+_t which_clock,
+ 			 enum hrtimer_mode mode);
+ extern void hrtimer_setup(struct hrtimer *timer, enum hrtimer_restart (*fu=
+nction)(struct hrtimer *),
+ 			  clockid_t clock_id, enum hrtimer_mode mode);
+-extern void hrtimer_init_on_stack(struct hrtimer *timer, clockid_t which_c=
+lock,
+-				  enum hrtimer_mode mode);
+ extern void hrtimer_setup_on_stack(struct hrtimer *timer,
+ 				   enum hrtimer_restart (*function)(struct hrtimer *),
+ 				   clockid_t clock_id, enum hrtimer_mode mode);
+diff --git a/kernel/time/hrtimer.c b/kernel/time/hrtimer.c
+index 376b8182b72e4327c4a99b105fe4ba40991687f9..55e9ffbcd49ad466c0f02279e6e=
+624e15f58613d 100644
+--- a/kernel/time/hrtimer.c
++++ b/kernel/time/hrtimer.c
+@@ -1629,23 +1629,6 @@ void hrtimer_setup(struct hrtimer *timer, enum hrtim=
+er_restart (*function)(struc
+ }
+ EXPORT_SYMBOL_GPL(hrtimer_setup);
+=20
+-/**
+- * hrtimer_init_on_stack - initialize a timer in stack memory
+- * @timer:	The timer to be initialized
+- * @clock_id:	The clock to be used
+- * @mode:       The timer mode
+- *
+- * Similar to hrtimer_init(), except that this one must be used if struct =
+hrtimer is in stack
+- * memory.
+- */
+-void hrtimer_init_on_stack(struct hrtimer *timer, clockid_t clock_id,
+-			   enum hrtimer_mode mode)
+-{
+-	debug_init_on_stack(timer, clock_id, mode);
+-	__hrtimer_init(timer, clock_id, mode);
+-}
+-EXPORT_SYMBOL_GPL(hrtimer_init_on_stack);
+-
+ /**
+  * hrtimer_setup_on_stack - initialize a timer on stack memory
+  * @timer:	The timer to be initialized
+
+--=20
+2.45.2
+
+
