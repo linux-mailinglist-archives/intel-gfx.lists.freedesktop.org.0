@@ -2,20 +2,20 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B24369B8EA8
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Nov 2024 11:08:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D9709B8EAB
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Nov 2024 11:08:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C19D10E96B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9AD710E970;
 	Fri,  1 Nov 2024 10:08:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="ea2gljGc";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="CqstlxLr";
+	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="D8R3JnkO";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="vSyDZ/mN";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D41A10E079
- for <intel-gfx@lists.freedesktop.org>; Thu, 31 Oct 2024 15:15:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B13410E079
+ for <intel-gfx@lists.freedesktop.org>; Thu, 31 Oct 2024 15:15:04 +0000 (UTC)
 From: Nam Cao <namcao@linutronix.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
  s=2020; t=1730387702;
@@ -23,21 +23,21 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=3OpuVlVfGmDS4KDeN2Jbqf77TDzf3Zc1fr7oejFCTSM=;
- b=ea2gljGc/BV+BoVMvgLFNEi8043sU9vyqQDpS0h+ftCl0Wo6cCP6sHwDIGQrOTV95ZvkTy
- 9lJYGcmCAJJaLxAmMOdTboAmsH3HAOERGu7XsxcKIGqxJ8VsWL9AqZ2KQmXwuBU/0cMPsb
- nFn0+qyC03e1F931j/X2DBldlmMJQqe0AFutcjqtyQi3xooASdmfqqAw4F63/+fGF299+x
- SeSwZ06mK7IEVX42pHSFi+kzM6odRmdXbCd+m1r1J4bte8XJaFVR5gW+Sagirx10tlc7F0
- QBiXvt9n2O+uGEqNpTvA0iRzAsZxQiQtdDIzHn/cFQM4c9ISdF+dvS+/GT5nmA==
+ bh=HdVqhgFUx4wGhiyBVzB1j0RExe8nGmkufQErz8orPxA=;
+ b=D8R3JnkO+m2baGKosWMEPCCgHEh93eEj3i5YM9IrL8ArYpE8sw2m3aMJr+wEoCSXY8Sk0o
+ cNAwkYpIWaFLG/Hq2XJiVUcS+2TwzoEBxaJdnGTgTdUNaZDYPxCUahyT1R1Q2ZLKgAtlkC
+ RGS4x58PXmjWRlEO06mYDbfjn42Bl5gCV5yLqmk+XU+l7pzFjdQcD1DB4hvBdhkbxvKYVn
+ VQIs9hdbp/4lysS0E9Lr73R3hrjyUE0TZ1qUF3uy/S4GxCdrvN8y8ONJx8mE8TcNJpaftx
+ o+H+v+lYJ5bnvSf7068cGQ9ReuPpyPFB2jhD2I6tEYa4wi9D8UuYsg7tL5wujQ==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
  s=2020e; t=1730387702;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=3OpuVlVfGmDS4KDeN2Jbqf77TDzf3Zc1fr7oejFCTSM=;
- b=CqstlxLr48wIYSYPze9/lcB0CHD7PTlEaV2YbBlsmr81hdWcaBWQN3POAvCfgwPaaNUEDK
- j3818nENSXCm8yCg==
+ bh=HdVqhgFUx4wGhiyBVzB1j0RExe8nGmkufQErz8orPxA=;
+ b=vSyDZ/mNZsHFwmAZ5X6uDDFZnl5blvdtESX/4yICVSJ/nHMJu3Ss4nFWwbP39h1ewJkXLG
+ oKAz3ELATfAAFmAA==
 To: Anna-Maria Behnsen <anna-maria@linutronix.de>,
  Frederic Weisbecker <frederic@kernel.org>,
  Thomas Gleixner <tglx@linutronix.de>,
@@ -50,11 +50,12 @@ Cc: Jani Nikula <jani.nikula@linux.intel.com>, intel-gfx@lists.freedesktop.org,
  Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,
  Jens Axboe <axboe@kernel.dk>, Christian Brauner <brauner@kernel.org>,
  Peter Zijlstra <peterz@infradead.org>, John Stultz <jstultz@google.com>,
- Nam Cao <namcao@linutronix.de>, Oliver Hartkopp <socketcan@hartkopp.net>
-Subject: [RESEND PATCH v2 02/19] drm/i915/request: Remove unnecessary
- modification of hrtimer::function
-Date: Thu, 31 Oct 2024 16:14:16 +0100
-Message-Id: <50f865045aa672a9730343ad131543da332b1d8d.1730386209.git.namcao@linutronix.de>
+ Nam Cao <namcao@linutronix.de>, Oliver Hartkopp <socketcan@hartkopp.net>,
+ kvm@vger.kernel.org
+Subject: [RESEND PATCH v2 03/19] KVM: x86/xen: Initialize hrtimer in
+ kvm_xen_init_vcpu()
+Date: Thu, 31 Oct 2024 16:14:17 +0100
+Message-Id: <9c33c7224d97d08f4fa30d3cc8687981c1d3e953.1730386209.git.namcao@linutronix.de>
 In-Reply-To: <cover.1730386209.git.namcao@linutronix.de>
 References: <cover.1730386209.git.namcao@linutronix.de>
 MIME-Version: 1.0
@@ -75,82 +76,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-When a request is created, the hrtimer is not initialized and only its
-'function' field is set to NULL. The hrtimer is only initialized when the
-request is enqueued. The point of setting 'function' to NULL is that, it
-can be used to check whether hrtimer_try_to_cancel() should be called while
-retiring the request.
+The hrtimer is initialized in the KVM_XEN_VCPU_SET_ATTR ioctl. That caused
+problem in the past, because the hrtimer can be initialized multiple times,
+which was fixed by commit af735db31285 ("KVM: x86/xen: Initialize Xen timer
+only once"). This commit avoids initializing the timer multiple times by
+checking the field 'function' of struct hrtimer to determine if it has
+already been initialized.
 
-This "trick" is unnecessary, because hrtimer_try_to_cancel() already does
-its own check whether the timer is armed. If the timer is not armed,
-hrtimer_try_to_cancel() returns 0.
+This is not required and in the way to make the function field private.
 
-Fully initialize the timer when the request is created, which allows to
-make the hrtimer::function field private once all users of hrtimer_init()
-are converted to hrtimer_setup(), which requires a valid callback function
-to be set.
-
-Because hrtimer_try_to_cancel() returns 0 if the timer is not armed, the
-logic to check whether to call i915_request_put() remains equivalent.
+Move the hrtimer initialization into kvm_xen_init_vcpu() so that it will
+only be initialized once.
 
 Signed-off-by: Nam Cao <namcao@linutronix.de>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Acked-by: Sean Christopherson <seanjc@google.com>
+Cc: Paolo Bonzini <pbonzini@redhat.com>
+Cc: x86@kernel.org
+Cc: kvm@vger.kernel.org
 ---
- drivers/gpu/drm/i915/i915_request.c | 17 +++++++++--------
- 1 file changed, 9 insertions(+), 8 deletions(-)
+ arch/x86/kvm/xen.c | 12 ++----------
+ 1 file changed, 2 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i91=
-5_request.c
-index 519e096c607c..8f62cfa23fb7 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -273,11 +273,6 @@ i915_request_active_engine(struct i915_request *rq,
- 	return ret;
+diff --git a/arch/x86/kvm/xen.c b/arch/x86/kvm/xen.c
+index 622fe24da910..a909b817b9c0 100644
+--- a/arch/x86/kvm/xen.c
++++ b/arch/x86/kvm/xen.c
+@@ -263,13 +263,6 @@ static void kvm_xen_stop_timer(struct kvm_vcpu *vcpu)
+ 	atomic_set(&vcpu->arch.xen.timer_pending, 0);
  }
 =20
--static void __rq_init_watchdog(struct i915_request *rq)
+-static void kvm_xen_init_timer(struct kvm_vcpu *vcpu)
 -{
--	rq->watchdog.timer.function =3D NULL;
+-	hrtimer_init(&vcpu->arch.xen.timer, CLOCK_MONOTONIC,
+-		     HRTIMER_MODE_ABS_HARD);
+-	vcpu->arch.xen.timer.function =3D xen_timer_callback;
 -}
 -
- static enum hrtimer_restart __rq_watchdog_expired(struct hrtimer *hrtimer)
+ static void kvm_xen_update_runstate_guest(struct kvm_vcpu *v, bool atomic)
  {
- 	struct i915_request *rq =3D
-@@ -294,6 +289,14 @@ static enum hrtimer_restart __rq_watchdog_expired(stru=
-ct hrtimer *hrtimer)
- 	return HRTIMER_NORESTART;
- }
+ 	struct kvm_vcpu_xen *vx =3D &v->arch.xen;
+@@ -1070,9 +1063,6 @@ int kvm_xen_vcpu_set_attr(struct kvm_vcpu *vcpu, stru=
+ct kvm_xen_vcpu_attr *data)
+ 			break;
+ 		}
 =20
-+static void __rq_init_watchdog(struct i915_request *rq)
-+{
-+	struct i915_request_watchdog *wdg =3D &rq->watchdog;
-+
-+	hrtimer_init(&wdg->timer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
-+	wdg->timer.function =3D __rq_watchdog_expired;
-+}
-+
- static void __rq_arm_watchdog(struct i915_request *rq)
- {
- 	struct i915_request_watchdog *wdg =3D &rq->watchdog;
-@@ -304,8 +307,6 @@ static void __rq_arm_watchdog(struct i915_request *rq)
+-		if (!vcpu->arch.xen.timer.function)
+-			kvm_xen_init_timer(vcpu);
+-
+ 		/* Stop the timer (if it's running) before changing the vector */
+ 		kvm_xen_stop_timer(vcpu);
+ 		vcpu->arch.xen.timer_virq =3D data->u.timer.port;
+@@ -2235,6 +2225,8 @@ void kvm_xen_init_vcpu(struct kvm_vcpu *vcpu)
+ 	vcpu->arch.xen.poll_evtchn =3D 0;
 =20
- 	i915_request_get(rq);
+ 	timer_setup(&vcpu->arch.xen.poll_timer, cancel_evtchn_poll, 0);
++	hrtimer_init(&vcpu->arch.xen.timer, CLOCK_MONOTONIC, HRTIMER_MODE_ABS_HAR=
+D);
++	vcpu->arch.xen.timer.function =3D xen_timer_callback;
 =20
--	hrtimer_init(&wdg->timer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
--	wdg->timer.function =3D __rq_watchdog_expired;
- 	hrtimer_start_range_ns(&wdg->timer,
- 			       ns_to_ktime(ce->watchdog.timeout_us *
- 					   NSEC_PER_USEC),
-@@ -317,7 +318,7 @@ static void __rq_cancel_watchdog(struct i915_request *r=
-q)
- {
- 	struct i915_request_watchdog *wdg =3D &rq->watchdog;
-=20
--	if (wdg->timer.function && hrtimer_try_to_cancel(&wdg->timer) > 0)
-+	if (hrtimer_try_to_cancel(&wdg->timer) > 0)
- 		i915_request_put(rq);
- }
-=20
+ 	kvm_gpc_init(&vcpu->arch.xen.runstate_cache, vcpu->kvm);
+ 	kvm_gpc_init(&vcpu->arch.xen.runstate2_cache, vcpu->kvm);
 --=20
 2.39.5
 
