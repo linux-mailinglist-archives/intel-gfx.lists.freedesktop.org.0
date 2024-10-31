@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F115C9B79D6
-	for <lists+intel-gfx@lfdr.de>; Thu, 31 Oct 2024 12:38:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D1CD9B79D7
+	for <lists+intel-gfx@lfdr.de>; Thu, 31 Oct 2024 12:38:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37B3D10E82F;
-	Thu, 31 Oct 2024 11:38:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3987810E83E;
+	Thu, 31 Oct 2024 11:38:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CB0MZKCk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hcLbQAX9";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 774A910E82F;
- Thu, 31 Oct 2024 11:38:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF96F10E83E;
+ Thu, 31 Oct 2024 11:38:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730374726; x=1761910726;
+ t=1730374732; x=1761910732;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=YPItdNKoG6BUBTd6Dpt2JugywaFLRR0HJKHy2qsMUjM=;
- b=CB0MZKCkzmQ04KxbDQuoIIC57iAMvSb/DeBFbC9YOwWL7pvvZQ8jToSX
- M/lrFS3ysrL205830FEpXia+QJ3ZqGcEWCj5kyoURMwcEzSbJQ9du4NsD
- boHDeDIjQCw0BdbdZ8ulNP4TiyxpiHs+s7RKgjTkPm6ScRqJSHkYUqMEE
- 9xfW5I4o0pRXoTFA2snR8pYK4t3RdVw4KLRSn3U5WdgrIg/Ct03dF9Icn
- vpJj6v2sUfofmxNoPNHgp1ButvEIU4WvL1FzQGPSbgdFi60NTBCWlDJaV
- Jk2CHVAyeulQ9QWU649T10qQeOkU9zlwfZgQsIuFrbftCPMgyu7Jxxd8B w==;
-X-CSE-ConnectionGUID: yc1EFuvyQn2+YO71G9TRaw==
-X-CSE-MsgGUID: Kc4YXGP2SAy2OQb3wCzknw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11241"; a="40682205"
-X-IronPort-AV: E=Sophos;i="6.11,247,1725346800"; d="scan'208";a="40682205"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2024 04:38:46 -0700
-X-CSE-ConnectionGUID: pACiGDJ6TC6jOxhhEsqPzA==
-X-CSE-MsgGUID: xhhlULFKQzmjqOi5H6ioJA==
+ bh=QePzbLKRn+PY2zCjH/xwZCmLdtt/iH8JePWg+CJi6A0=;
+ b=hcLbQAX92pCNzq4e4uMwPeIOPjpEQrJNa96LvA0JqZ2xPU9Yl9sXE4B/
+ 6Cf5eV75woU/dJAxvVAziykOt2ssVjEJ+mdTJWVv2YxDrMHvo5x83I2OZ
+ fx6Nt19ySA5UstTMxvrdxnhI2rLIXqmNrBk4wL4BrAQizZNImNCu4T3wV
+ Dm62QJxBZpaxpCUDL/QagVJ7bgUNu9xdz4oV1F2Q+xNrY1s6Ssa8LKtvm
+ hyMgfYDcPVh+rdCvOiuGYEVSa6dbF8m/2zW8Jb/0AzUoq0DsH4L85HW6F
+ 99BuNM4lW4XrZ3JPCuhfRc8wToeUMi/6psmpQEBLlC6oWuNu4Bf5iyPyB w==;
+X-CSE-ConnectionGUID: 0iC9cep9QXKki/E6Gj6Ptg==
+X-CSE-MsgGUID: rOdpPA8pTnC70AsHyWbULA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11241"; a="30000638"
+X-IronPort-AV: E=Sophos;i="6.11,247,1725346800"; d="scan'208";a="30000638"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Oct 2024 04:38:51 -0700
+X-CSE-ConnectionGUID: 3dGk7gsmTomzCaytTnI9Zg==
+X-CSE-MsgGUID: mtZohnoOTyKBDTM2iduoSA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,247,1725346800"; d="scan'208";a="82724578"
+X-IronPort-AV: E=Sophos;i="6.11,247,1725346800"; d="scan'208";a="87744354"
 Received: from sschumil-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.204])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2024 04:38:44 -0700
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Oct 2024 04:38:49 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 1/6] drm/i915/gvt: always pass struct intel_display * to
- register macros
-Date: Thu, 31 Oct 2024 13:38:31 +0200
-Message-Id: <ce6da9f4440016b8fd1cbedf52e08f7147a56f67.1730374470.git.jani.nikula@intel.com>
+Subject: [PATCH 2/6] drm/i915: extract intel_uncore_trace.[ch]
+Date: Thu, 31 Oct 2024 13:38:32 +0200
+Message-Id: <a4fc526c1c0638c5492478fbc0055c892abdcecf.1730374470.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1730374470.git.jani.nikula@intel.com>
 References: <cover.1730374470.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,532 +71,214 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The long term goal is to remove the __to_intel_display() generics from
-display macros, such as register macros. This requires that all such
-macro usage passes struct intel_display * rather than struct
-drm_i915_private * to the macros.
+The i915_reg_rw tracing is a small isolated part of i915_trace.h. Its
+users are orthogonal to the other i915_trace.h users as well, and its
+implementation does not require all the includes of i915_trace.h. Split
+i915_reg_rw tracing to separate intel_uncore_trace.[ch].
 
-The short term goal is to hide the struct drm_i915_private access in
-intel_display_conversions.h into a function. This is problematic with
-gvt, because it's a separate module, and the conversion function would
-need to be exported.
-
-Make the conversion to always passing struct intel_display * in gvt to
-unblock both of the above.
+The main underlying goal is to reduce implicit includes of i915_drv.h
+from display code.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/gvt/cmd_parser.c | 17 +++---
- drivers/gpu/drm/i915/gvt/display.c    | 80 ++++++++++++++-------------
- drivers/gpu/drm/i915/gvt/fb_decoder.c | 21 ++++---
- drivers/gpu/drm/i915/gvt/handlers.c   | 44 ++++++++-------
- 4 files changed, 89 insertions(+), 73 deletions(-)
+ drivers/gpu/drm/i915/Makefile                 |  1 +
+ drivers/gpu/drm/i915/display/intel_de.h       |  2 +-
+ drivers/gpu/drm/i915/display/intel_dp_aux.c   |  2 +-
+ drivers/gpu/drm/i915/i915_trace.h             | 28 -----------
+ drivers/gpu/drm/i915/intel_uncore.c           |  2 +-
+ drivers/gpu/drm/i915/intel_uncore_trace.c     |  7 +++
+ drivers/gpu/drm/i915/intel_uncore_trace.h     | 49 +++++++++++++++++++
+ drivers/gpu/drm/i915/vlv_suspend.c            |  1 +
+ .../{i915_trace.h => intel_uncore_trace.h}    |  0
+ 9 files changed, 61 insertions(+), 31 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/intel_uncore_trace.c
+ create mode 100644 drivers/gpu/drm/i915/intel_uncore_trace.h
+ rename drivers/gpu/drm/xe/compat-i915-headers/{i915_trace.h => intel_uncore_trace.h} (100%)
 
-diff --git a/drivers/gpu/drm/i915/gvt/cmd_parser.c b/drivers/gpu/drm/i915/gvt/cmd_parser.c
-index 81d67a46cd9e..6439c8e91a8d 100644
---- a/drivers/gpu/drm/i915/gvt/cmd_parser.c
-+++ b/drivers/gpu/drm/i915/gvt/cmd_parser.c
-@@ -1286,6 +1286,7 @@ static int gen8_decode_mi_display_flip(struct parser_exec_state *s,
- 		struct mi_display_flip_command_info *info)
+diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+index 31710d98cad5..ac47d7e988fc 100644
+--- a/drivers/gpu/drm/i915/Makefile
++++ b/drivers/gpu/drm/i915/Makefile
+@@ -43,6 +43,7 @@ i915-y += \
+ 	intel_sbi.o \
+ 	intel_step.o \
+ 	intel_uncore.o \
++	intel_uncore_trace.o \
+ 	intel_wakeref.o \
+ 	vlv_sideband.o \
+ 	vlv_suspend.o
+diff --git a/drivers/gpu/drm/i915/display/intel_de.h b/drivers/gpu/drm/i915/display/intel_de.h
+index bb51f974e9e2..fa9cc253867a 100644
+--- a/drivers/gpu/drm/i915/display/intel_de.h
++++ b/drivers/gpu/drm/i915/display/intel_de.h
+@@ -7,9 +7,9 @@
+ #define __INTEL_DE_H__
+ 
+ #include "i915_drv.h"
+-#include "i915_trace.h"
+ #include "intel_dsb.h"
+ #include "intel_uncore.h"
++#include "intel_uncore_trace.h"
+ 
+ static inline struct intel_uncore *__to_uncore(struct intel_display *display)
  {
- 	struct drm_i915_private *dev_priv = s->engine->i915;
-+	struct intel_display *display = &dev_priv->display;
- 	struct plane_code_mapping gen8_plane_code[] = {
- 		[0] = {PIPE_A, PLANE_A, PRIMARY_A_FLIP_DONE},
- 		[1] = {PIPE_B, PLANE_A, PRIMARY_B_FLIP_DONE},
-@@ -1314,9 +1315,9 @@ static int gen8_decode_mi_display_flip(struct parser_exec_state *s,
- 	info->async_flip = ((dword2 & GENMASK(1, 0)) == 0x1);
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+index 04a7acd7f73c..61b3757521f7 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+@@ -5,7 +5,6 @@
  
- 	if (info->plane == PLANE_A) {
--		info->ctrl_reg = DSPCNTR(dev_priv, info->pipe);
--		info->stride_reg = DSPSTRIDE(dev_priv, info->pipe);
--		info->surf_reg = DSPSURF(dev_priv, info->pipe);
-+		info->ctrl_reg = DSPCNTR(display, info->pipe);
-+		info->stride_reg = DSPSTRIDE(display, info->pipe);
-+		info->surf_reg = DSPSURF(display, info->pipe);
- 	} else if (info->plane == PLANE_B) {
- 		info->ctrl_reg = SPRCTL(info->pipe);
- 		info->stride_reg = SPRSTRIDE(info->pipe);
-@@ -1332,6 +1333,7 @@ static int skl_decode_mi_display_flip(struct parser_exec_state *s,
- 		struct mi_display_flip_command_info *info)
- {
- 	struct drm_i915_private *dev_priv = s->engine->i915;
-+	struct intel_display *display = &dev_priv->display;
- 	struct intel_vgpu *vgpu = s->vgpu;
- 	u32 dword0 = cmd_val(s, 0);
- 	u32 dword1 = cmd_val(s, 1);
-@@ -1380,9 +1382,9 @@ static int skl_decode_mi_display_flip(struct parser_exec_state *s,
- 	info->surf_val = (dword2 & GENMASK(31, 12)) >> 12;
- 	info->async_flip = ((dword2 & GENMASK(1, 0)) == 0x1);
+ #include "i915_drv.h"
+ #include "i915_reg.h"
+-#include "i915_trace.h"
+ #include "intel_bios.h"
+ #include "intel_de.h"
+ #include "intel_display_types.h"
+@@ -15,6 +14,7 @@
+ #include "intel_pps.h"
+ #include "intel_quirks.h"
+ #include "intel_tc.h"
++#include "intel_uncore_trace.h"
  
--	info->ctrl_reg = DSPCNTR(dev_priv, info->pipe);
--	info->stride_reg = DSPSTRIDE(dev_priv, info->pipe);
--	info->surf_reg = DSPSURF(dev_priv, info->pipe);
-+	info->ctrl_reg = DSPCNTR(display, info->pipe);
-+	info->stride_reg = DSPSTRIDE(display, info->pipe);
-+	info->surf_reg = DSPSURF(display, info->pipe);
+ #define AUX_CH_NAME_BUFSIZE	6
  
- 	return 0;
- }
-@@ -1419,6 +1421,7 @@ static int gen8_update_plane_mmio_from_mi_display_flip(
- 		struct mi_display_flip_command_info *info)
- {
- 	struct drm_i915_private *dev_priv = s->engine->i915;
-+	struct intel_display *display = &dev_priv->display;
- 	struct intel_vgpu *vgpu = s->vgpu;
+diff --git a/drivers/gpu/drm/i915/i915_trace.h b/drivers/gpu/drm/i915/i915_trace.h
+index 09d89bdf82f4..7ed41ce9b708 100644
+--- a/drivers/gpu/drm/i915/i915_trace.h
++++ b/drivers/gpu/drm/i915/i915_trace.h
+@@ -642,34 +642,6 @@ DEFINE_EVENT(i915_request, i915_request_wait_end,
+ 	    TP_ARGS(rq)
+ );
  
- 	set_mask_bits(&vgpu_vreg_t(vgpu, info->surf_reg), GENMASK(31, 12),
-@@ -1436,7 +1439,7 @@ static int gen8_update_plane_mmio_from_mi_display_flip(
- 	}
+-TRACE_EVENT_CONDITION(i915_reg_rw,
+-	TP_PROTO(bool write, i915_reg_t reg, u64 val, int len, bool trace),
+-
+-	TP_ARGS(write, reg, val, len, trace),
+-
+-	TP_CONDITION(trace),
+-
+-	TP_STRUCT__entry(
+-		__field(u64, val)
+-		__field(u32, reg)
+-		__field(u16, write)
+-		__field(u16, len)
+-		),
+-
+-	TP_fast_assign(
+-		__entry->val = (u64)val;
+-		__entry->reg = i915_mmio_reg_offset(reg);
+-		__entry->write = write;
+-		__entry->len = len;
+-		),
+-
+-	TP_printk("%s reg=0x%x, len=%d, val=(0x%x, 0x%x)",
+-		__entry->write ? "write" : "read",
+-		__entry->reg, __entry->len,
+-		(u32)(__entry->val & 0xffffffff),
+-		(u32)(__entry->val >> 32))
+-);
+-
+ /**
+  * DOC: i915_ppgtt_create and i915_ppgtt_release tracepoints
+  *
+diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
+index 6aa179a3e92a..04b4a3b6d5d6 100644
+--- a/drivers/gpu/drm/i915/intel_uncore.c
++++ b/drivers/gpu/drm/i915/intel_uncore.c
+@@ -31,8 +31,8 @@
+ #include "i915_drv.h"
+ #include "i915_iosf_mbi.h"
+ #include "i915_reg.h"
+-#include "i915_trace.h"
+ #include "i915_vgpu.h"
++#include "intel_uncore_trace.h"
  
- 	if (info->plane == PLANE_PRIMARY)
--		vgpu_vreg_t(vgpu, PIPE_FLIPCOUNT_G4X(dev_priv, info->pipe))++;
-+		vgpu_vreg_t(vgpu, PIPE_FLIPCOUNT_G4X(display, info->pipe))++;
+ #define FORCEWAKE_ACK_TIMEOUT_MS 50
+ #define GT_FIFO_TIMEOUT_MS	 10
+diff --git a/drivers/gpu/drm/i915/intel_uncore_trace.c b/drivers/gpu/drm/i915/intel_uncore_trace.c
+new file mode 100644
+index 000000000000..86f0c3942b1d
+--- /dev/null
++++ b/drivers/gpu/drm/i915/intel_uncore_trace.c
+@@ -0,0 +1,7 @@
++// SPDX-License-Identifier: GPL-2.0
++/* Copyright © 2024 Intel Corporation */
++
++#ifndef __CHECKER__
++#define CREATE_TRACE_POINTS
++#include "intel_uncore_trace.h"
++#endif
+diff --git a/drivers/gpu/drm/i915/intel_uncore_trace.h b/drivers/gpu/drm/i915/intel_uncore_trace.h
+new file mode 100644
+index 000000000000..f13ff71edf2d
+--- /dev/null
++++ b/drivers/gpu/drm/i915/intel_uncore_trace.h
+@@ -0,0 +1,49 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/* Copyright © 2024 Intel Corporation */
++
++#undef TRACE_SYSTEM
++#define TRACE_SYSTEM i915
++
++#if !defined(__INTEL_UNCORE_TRACE_H__) || defined(TRACE_HEADER_MULTI_READ)
++#define __INTEL_UNCORE_TRACE_H__
++
++#include "i915_reg_defs.h"
++
++#include <linux/types.h>
++#include <linux/tracepoint.h>
++
++TRACE_EVENT_CONDITION(i915_reg_rw,
++	TP_PROTO(bool write, i915_reg_t reg, u64 val, int len, bool trace),
++
++	TP_ARGS(write, reg, val, len, trace),
++
++	TP_CONDITION(trace),
++
++	TP_STRUCT__entry(
++		__field(u64, val)
++		__field(u32, reg)
++		__field(u16, write)
++		__field(u16, len)
++		),
++
++	TP_fast_assign(
++		__entry->val = (u64)val;
++		__entry->reg = i915_mmio_reg_offset(reg);
++		__entry->write = write;
++		__entry->len = len;
++		),
++
++	TP_printk("%s reg=0x%x, len=%d, val=(0x%x, 0x%x)",
++		__entry->write ? "write" : "read",
++		__entry->reg, __entry->len,
++		(u32)(__entry->val & 0xffffffff),
++		(u32)(__entry->val >> 32))
++);
++#endif /* __INTEL_UNCORE_TRACE_H__ */
++
++/* This part must be outside protection */
++#undef TRACE_INCLUDE_PATH
++#undef TRACE_INCLUDE_FILE
++#define TRACE_INCLUDE_PATH ../../drivers/gpu/drm/i915
++#define TRACE_INCLUDE_FILE intel_uncore_trace
++#include <trace/define_trace.h>
+diff --git a/drivers/gpu/drm/i915/vlv_suspend.c b/drivers/gpu/drm/i915/vlv_suspend.c
+index 94595dde2b96..fc9f311ea1db 100644
+--- a/drivers/gpu/drm/i915/vlv_suspend.c
++++ b/drivers/gpu/drm/i915/vlv_suspend.c
+@@ -13,6 +13,7 @@
+ #include "i915_trace.h"
+ #include "i915_utils.h"
+ #include "intel_clock_gating.h"
++#include "intel_uncore_trace.h"
+ #include "vlv_suspend.h"
  
- 	if (info->async_flip)
- 		intel_vgpu_trigger_virtual_event(vgpu, info->event);
-diff --git a/drivers/gpu/drm/i915/gvt/display.c b/drivers/gpu/drm/i915/gvt/display.c
-index 17f74cb244bb..1bc4abf34bf3 100644
---- a/drivers/gpu/drm/i915/gvt/display.c
-+++ b/drivers/gpu/drm/i915/gvt/display.c
-@@ -68,8 +68,9 @@ static int get_edp_pipe(struct intel_vgpu *vgpu)
- static int edp_pipe_is_enabled(struct intel_vgpu *vgpu)
- {
- 	struct drm_i915_private *dev_priv = vgpu->gvt->gt->i915;
-+	struct intel_display *display = &dev_priv->display;
- 
--	if (!(vgpu_vreg_t(vgpu, TRANSCONF(dev_priv, TRANSCODER_EDP)) & TRANSCONF_ENABLE))
-+	if (!(vgpu_vreg_t(vgpu, TRANSCONF(display, TRANSCODER_EDP)) & TRANSCONF_ENABLE))
- 		return 0;
- 
- 	if (!(vgpu_vreg(vgpu, _TRANS_DDI_FUNC_CTL_EDP) & TRANS_DDI_FUNC_ENABLE))
-@@ -80,12 +81,13 @@ static int edp_pipe_is_enabled(struct intel_vgpu *vgpu)
- int pipe_is_enabled(struct intel_vgpu *vgpu, int pipe)
- {
- 	struct drm_i915_private *dev_priv = vgpu->gvt->gt->i915;
-+	struct intel_display *display = &dev_priv->display;
- 
- 	if (drm_WARN_ON(&dev_priv->drm,
- 			pipe < PIPE_A || pipe >= I915_MAX_PIPES))
- 		return -EINVAL;
- 
--	if (vgpu_vreg_t(vgpu, TRANSCONF(dev_priv, pipe)) & TRANSCONF_ENABLE)
-+	if (vgpu_vreg_t(vgpu, TRANSCONF(display, pipe)) & TRANSCONF_ENABLE)
- 		return 1;
- 
- 	if (edp_pipe_is_enabled(vgpu) &&
-@@ -180,6 +182,7 @@ static u8 dpcd_fix_data[DPCD_HEADER_SIZE] = {
- static void emulate_monitor_status_change(struct intel_vgpu *vgpu)
- {
- 	struct drm_i915_private *dev_priv = vgpu->gvt->gt->i915;
-+	struct intel_display *display = &dev_priv->display;
- 	int pipe;
- 
- 	if (IS_BROXTON(dev_priv)) {
-@@ -192,21 +195,21 @@ static void emulate_monitor_status_change(struct intel_vgpu *vgpu)
- 			  GEN8_DE_PORT_HOTPLUG(HPD_PORT_B) |
- 			  GEN8_DE_PORT_HOTPLUG(HPD_PORT_C));
- 
--		for_each_pipe(dev_priv, pipe) {
--			vgpu_vreg_t(vgpu, TRANSCONF(dev_priv, pipe)) &=
-+		for_each_pipe(display, pipe) {
-+			vgpu_vreg_t(vgpu, TRANSCONF(display, pipe)) &=
- 				~(TRANSCONF_ENABLE | TRANSCONF_STATE_ENABLE);
--			vgpu_vreg_t(vgpu, DSPCNTR(dev_priv, pipe)) &= ~DISP_ENABLE;
-+			vgpu_vreg_t(vgpu, DSPCNTR(display, pipe)) &= ~DISP_ENABLE;
- 			vgpu_vreg_t(vgpu, SPRCTL(pipe)) &= ~SPRITE_ENABLE;
--			vgpu_vreg_t(vgpu, CURCNTR(dev_priv, pipe)) &= ~MCURSOR_MODE_MASK;
--			vgpu_vreg_t(vgpu, CURCNTR(dev_priv, pipe)) |= MCURSOR_MODE_DISABLE;
-+			vgpu_vreg_t(vgpu, CURCNTR(display, pipe)) &= ~MCURSOR_MODE_MASK;
-+			vgpu_vreg_t(vgpu, CURCNTR(display, pipe)) |= MCURSOR_MODE_DISABLE;
- 		}
- 
- 		for (trans = TRANSCODER_A; trans <= TRANSCODER_EDP; trans++) {
--			vgpu_vreg_t(vgpu, TRANS_DDI_FUNC_CTL(dev_priv, trans)) &=
-+			vgpu_vreg_t(vgpu, TRANS_DDI_FUNC_CTL(display, trans)) &=
- 				~(TRANS_DDI_BPC_MASK | TRANS_DDI_MODE_SELECT_MASK |
- 				  TRANS_DDI_PORT_MASK | TRANS_DDI_FUNC_ENABLE);
- 		}
--		vgpu_vreg_t(vgpu, TRANS_DDI_FUNC_CTL(dev_priv, TRANSCODER_A)) &=
-+		vgpu_vreg_t(vgpu, TRANS_DDI_FUNC_CTL(display, TRANSCODER_A)) &=
- 			~(TRANS_DDI_BPC_MASK | TRANS_DDI_MODE_SELECT_MASK |
- 			  TRANS_DDI_PORT_MASK);
- 
-@@ -254,8 +257,8 @@ static void emulate_monitor_status_change(struct intel_vgpu *vgpu)
- 		 *   TRANSCODER_A can be enabled. PORT_x depends on the input of
- 		 *   setup_virtual_dp_monitor.
- 		 */
--		vgpu_vreg_t(vgpu, TRANSCONF(dev_priv, TRANSCODER_A)) |= TRANSCONF_ENABLE;
--		vgpu_vreg_t(vgpu, TRANSCONF(dev_priv, TRANSCODER_A)) |= TRANSCONF_STATE_ENABLE;
-+		vgpu_vreg_t(vgpu, TRANSCONF(display, TRANSCODER_A)) |= TRANSCONF_ENABLE;
-+		vgpu_vreg_t(vgpu, TRANSCONF(display, TRANSCODER_A)) |= TRANSCONF_STATE_ENABLE;
- 
- 		/*
- 		 * Golden M/N are calculated based on:
-@@ -263,11 +266,11 @@ static void emulate_monitor_status_change(struct intel_vgpu *vgpu)
- 		 *   DP link clk 1620 MHz and non-constant_n.
- 		 * TODO: calculate DP link symbol clk and stream clk m/n.
- 		 */
--		vgpu_vreg_t(vgpu, PIPE_DATA_M1(dev_priv, TRANSCODER_A)) = TU_SIZE(64);
--		vgpu_vreg_t(vgpu, PIPE_DATA_M1(dev_priv, TRANSCODER_A)) |= 0x5b425e;
--		vgpu_vreg_t(vgpu, PIPE_DATA_N1(dev_priv, TRANSCODER_A)) = 0x800000;
--		vgpu_vreg_t(vgpu, PIPE_LINK_M1(dev_priv, TRANSCODER_A)) = 0x3cd6e;
--		vgpu_vreg_t(vgpu, PIPE_LINK_N1(dev_priv, TRANSCODER_A)) = 0x80000;
-+		vgpu_vreg_t(vgpu, PIPE_DATA_M1(display, TRANSCODER_A)) = TU_SIZE(64);
-+		vgpu_vreg_t(vgpu, PIPE_DATA_M1(display, TRANSCODER_A)) |= 0x5b425e;
-+		vgpu_vreg_t(vgpu, PIPE_DATA_N1(display, TRANSCODER_A)) = 0x800000;
-+		vgpu_vreg_t(vgpu, PIPE_LINK_M1(display, TRANSCODER_A)) = 0x3cd6e;
-+		vgpu_vreg_t(vgpu, PIPE_LINK_N1(display, TRANSCODER_A)) = 0x80000;
- 
- 		/* Enable per-DDI/PORT vreg */
- 		if (intel_vgpu_has_monitor_on_port(vgpu, PORT_A)) {
-@@ -290,7 +293,7 @@ static void emulate_monitor_status_change(struct intel_vgpu *vgpu)
- 			vgpu_vreg_t(vgpu, DDI_BUF_CTL(PORT_A)) &=
- 				~DDI_BUF_IS_IDLE;
- 			vgpu_vreg_t(vgpu,
--				    TRANS_DDI_FUNC_CTL(dev_priv, TRANSCODER_EDP)) |=
-+				    TRANS_DDI_FUNC_CTL(display, TRANSCODER_EDP)) |=
- 				(TRANS_DDI_BPC_8 | TRANS_DDI_MODE_SELECT_DP_SST |
- 				 TRANS_DDI_FUNC_ENABLE);
- 			vgpu_vreg_t(vgpu, PCH_PORT_HOTPLUG) |=
-@@ -320,7 +323,7 @@ static void emulate_monitor_status_change(struct intel_vgpu *vgpu)
- 			vgpu_vreg_t(vgpu, DDI_BUF_CTL(PORT_B)) &=
- 				~DDI_BUF_IS_IDLE;
- 			vgpu_vreg_t(vgpu,
--				    TRANS_DDI_FUNC_CTL(dev_priv, TRANSCODER_A)) |=
-+				    TRANS_DDI_FUNC_CTL(display, TRANSCODER_A)) |=
- 				(TRANS_DDI_BPC_8 | TRANS_DDI_MODE_SELECT_DP_SST |
- 				 (PORT_B << TRANS_DDI_PORT_SHIFT) |
- 				 TRANS_DDI_FUNC_ENABLE);
-@@ -351,7 +354,7 @@ static void emulate_monitor_status_change(struct intel_vgpu *vgpu)
- 			vgpu_vreg_t(vgpu, DDI_BUF_CTL(PORT_C)) &=
- 				~DDI_BUF_IS_IDLE;
- 			vgpu_vreg_t(vgpu,
--				    TRANS_DDI_FUNC_CTL(dev_priv, TRANSCODER_A)) |=
-+				    TRANS_DDI_FUNC_CTL(display, TRANSCODER_A)) |=
- 				(TRANS_DDI_BPC_8 | TRANS_DDI_MODE_SELECT_DP_SST |
- 				 (PORT_B << TRANS_DDI_PORT_SHIFT) |
- 				 TRANS_DDI_FUNC_ENABLE);
-@@ -400,11 +403,11 @@ static void emulate_monitor_status_change(struct intel_vgpu *vgpu)
- 		 *   DP link clk 1620 MHz and non-constant_n.
- 		 * TODO: calculate DP link symbol clk and stream clk m/n.
- 		 */
--		vgpu_vreg_t(vgpu, PIPE_DATA_M1(dev_priv, TRANSCODER_A)) = TU_SIZE(64);
--		vgpu_vreg_t(vgpu, PIPE_DATA_M1(dev_priv, TRANSCODER_A)) |= 0x5b425e;
--		vgpu_vreg_t(vgpu, PIPE_DATA_N1(dev_priv, TRANSCODER_A)) = 0x800000;
--		vgpu_vreg_t(vgpu, PIPE_LINK_M1(dev_priv, TRANSCODER_A)) = 0x3cd6e;
--		vgpu_vreg_t(vgpu, PIPE_LINK_N1(dev_priv, TRANSCODER_A)) = 0x80000;
-+		vgpu_vreg_t(vgpu, PIPE_DATA_M1(display, TRANSCODER_A)) = TU_SIZE(64);
-+		vgpu_vreg_t(vgpu, PIPE_DATA_M1(display, TRANSCODER_A)) |= 0x5b425e;
-+		vgpu_vreg_t(vgpu, PIPE_DATA_N1(display, TRANSCODER_A)) = 0x800000;
-+		vgpu_vreg_t(vgpu, PIPE_LINK_M1(display, TRANSCODER_A)) = 0x3cd6e;
-+		vgpu_vreg_t(vgpu, PIPE_LINK_N1(display, TRANSCODER_A)) = 0x80000;
- 	}
- 
- 	if (intel_vgpu_has_monitor_on_port(vgpu, PORT_B)) {
-@@ -415,10 +418,10 @@ static void emulate_monitor_status_change(struct intel_vgpu *vgpu)
- 		vgpu_vreg_t(vgpu, DPLL_CTRL2) |=
- 			DPLL_CTRL2_DDI_SEL_OVERRIDE(PORT_B);
- 		vgpu_vreg_t(vgpu, SFUSE_STRAP) |= SFUSE_STRAP_DDIB_DETECTED;
--		vgpu_vreg_t(vgpu, TRANS_DDI_FUNC_CTL(dev_priv, TRANSCODER_A)) &=
-+		vgpu_vreg_t(vgpu, TRANS_DDI_FUNC_CTL(display, TRANSCODER_A)) &=
- 			~(TRANS_DDI_BPC_MASK | TRANS_DDI_MODE_SELECT_MASK |
- 			TRANS_DDI_PORT_MASK);
--		vgpu_vreg_t(vgpu, TRANS_DDI_FUNC_CTL(dev_priv, TRANSCODER_A)) |=
-+		vgpu_vreg_t(vgpu, TRANS_DDI_FUNC_CTL(display, TRANSCODER_A)) |=
- 			(TRANS_DDI_BPC_8 | TRANS_DDI_MODE_SELECT_DP_SST |
- 			(PORT_B << TRANS_DDI_PORT_SHIFT) |
- 			TRANS_DDI_FUNC_ENABLE);
-@@ -441,10 +444,10 @@ static void emulate_monitor_status_change(struct intel_vgpu *vgpu)
- 		vgpu_vreg_t(vgpu, DPLL_CTRL2) |=
- 			DPLL_CTRL2_DDI_SEL_OVERRIDE(PORT_C);
- 		vgpu_vreg_t(vgpu, SDEISR) |= SDE_PORTC_HOTPLUG_CPT;
--		vgpu_vreg_t(vgpu, TRANS_DDI_FUNC_CTL(dev_priv, TRANSCODER_A)) &=
-+		vgpu_vreg_t(vgpu, TRANS_DDI_FUNC_CTL(display, TRANSCODER_A)) &=
- 			~(TRANS_DDI_BPC_MASK | TRANS_DDI_MODE_SELECT_MASK |
- 			TRANS_DDI_PORT_MASK);
--		vgpu_vreg_t(vgpu, TRANS_DDI_FUNC_CTL(dev_priv, TRANSCODER_A)) |=
-+		vgpu_vreg_t(vgpu, TRANS_DDI_FUNC_CTL(display, TRANSCODER_A)) |=
- 			(TRANS_DDI_BPC_8 | TRANS_DDI_MODE_SELECT_DP_SST |
- 			(PORT_C << TRANS_DDI_PORT_SHIFT) |
- 			TRANS_DDI_FUNC_ENABLE);
-@@ -467,10 +470,10 @@ static void emulate_monitor_status_change(struct intel_vgpu *vgpu)
- 		vgpu_vreg_t(vgpu, DPLL_CTRL2) |=
- 			DPLL_CTRL2_DDI_SEL_OVERRIDE(PORT_D);
- 		vgpu_vreg_t(vgpu, SDEISR) |= SDE_PORTD_HOTPLUG_CPT;
--		vgpu_vreg_t(vgpu, TRANS_DDI_FUNC_CTL(dev_priv, TRANSCODER_A)) &=
-+		vgpu_vreg_t(vgpu, TRANS_DDI_FUNC_CTL(display, TRANSCODER_A)) &=
- 			~(TRANS_DDI_BPC_MASK | TRANS_DDI_MODE_SELECT_MASK |
- 			TRANS_DDI_PORT_MASK);
--		vgpu_vreg_t(vgpu, TRANS_DDI_FUNC_CTL(dev_priv, TRANSCODER_A)) |=
-+		vgpu_vreg_t(vgpu, TRANS_DDI_FUNC_CTL(display, TRANSCODER_A)) |=
- 			(TRANS_DDI_BPC_8 | TRANS_DDI_MODE_SELECT_DP_SST |
- 			(PORT_D << TRANS_DDI_PORT_SHIFT) |
- 			TRANS_DDI_FUNC_ENABLE);
-@@ -508,14 +511,14 @@ static void emulate_monitor_status_change(struct intel_vgpu *vgpu)
- 		vgpu_vreg_t(vgpu, PCH_ADPA) &= ~ADPA_CRT_HOTPLUG_MONITOR_MASK;
- 
- 	/* Disable Primary/Sprite/Cursor plane */
--	for_each_pipe(dev_priv, pipe) {
--		vgpu_vreg_t(vgpu, DSPCNTR(dev_priv, pipe)) &= ~DISP_ENABLE;
-+	for_each_pipe(display, pipe) {
-+		vgpu_vreg_t(vgpu, DSPCNTR(display, pipe)) &= ~DISP_ENABLE;
- 		vgpu_vreg_t(vgpu, SPRCTL(pipe)) &= ~SPRITE_ENABLE;
--		vgpu_vreg_t(vgpu, CURCNTR(dev_priv, pipe)) &= ~MCURSOR_MODE_MASK;
--		vgpu_vreg_t(vgpu, CURCNTR(dev_priv, pipe)) |= MCURSOR_MODE_DISABLE;
-+		vgpu_vreg_t(vgpu, CURCNTR(display, pipe)) &= ~MCURSOR_MODE_MASK;
-+		vgpu_vreg_t(vgpu, CURCNTR(display, pipe)) |= MCURSOR_MODE_DISABLE;
- 	}
- 
--	vgpu_vreg_t(vgpu, TRANSCONF(dev_priv, TRANSCODER_A)) |= TRANSCONF_ENABLE;
-+	vgpu_vreg_t(vgpu, TRANSCONF(display, TRANSCODER_A)) |= TRANSCONF_ENABLE;
- }
- 
- static void clean_virtual_dp_monitor(struct intel_vgpu *vgpu, int port_num)
-@@ -631,6 +634,7 @@ void vgpu_update_vblank_emulation(struct intel_vgpu *vgpu, bool turnon)
- static void emulate_vblank_on_pipe(struct intel_vgpu *vgpu, int pipe)
- {
- 	struct drm_i915_private *dev_priv = vgpu->gvt->gt->i915;
-+	struct intel_display *display = &dev_priv->display;
- 	struct intel_vgpu_irq *irq = &vgpu->irq;
- 	int vblank_event[] = {
- 		[PIPE_A] = PIPE_A_VBLANK,
-@@ -652,17 +656,19 @@ static void emulate_vblank_on_pipe(struct intel_vgpu *vgpu, int pipe)
- 	}
- 
- 	if (pipe_is_enabled(vgpu, pipe)) {
--		vgpu_vreg_t(vgpu, PIPE_FRMCOUNT_G4X(dev_priv, pipe))++;
-+		vgpu_vreg_t(vgpu, PIPE_FRMCOUNT_G4X(display, pipe))++;
- 		intel_vgpu_trigger_virtual_event(vgpu, vblank_event[pipe]);
- 	}
- }
- 
- void intel_vgpu_emulate_vblank(struct intel_vgpu *vgpu)
- {
-+	struct drm_i915_private *i915 = vgpu->gvt->gt->i915;
-+	struct intel_display *display = &i915->display;
- 	int pipe;
- 
- 	mutex_lock(&vgpu->vgpu_lock);
--	for_each_pipe(vgpu->gvt->gt->i915, pipe)
-+	for_each_pipe(display, pipe)
- 		emulate_vblank_on_pipe(vgpu, pipe);
- 	mutex_unlock(&vgpu->vgpu_lock);
- }
-diff --git a/drivers/gpu/drm/i915/gvt/fb_decoder.c b/drivers/gpu/drm/i915/gvt/fb_decoder.c
-index c454e25b2b0f..15cce973e1ae 100644
---- a/drivers/gpu/drm/i915/gvt/fb_decoder.c
-+++ b/drivers/gpu/drm/i915/gvt/fb_decoder.c
-@@ -154,8 +154,9 @@ static u32 intel_vgpu_get_stride(struct intel_vgpu *vgpu, int pipe,
- 	u32 tiled, int stride_mask, int bpp)
- {
- 	struct drm_i915_private *dev_priv = vgpu->gvt->gt->i915;
-+	struct intel_display *display = &dev_priv->display;
- 
--	u32 stride_reg = vgpu_vreg_t(vgpu, DSPSTRIDE(dev_priv, pipe)) & stride_mask;
-+	u32 stride_reg = vgpu_vreg_t(vgpu, DSPSTRIDE(display, pipe)) & stride_mask;
- 	u32 stride = stride_reg;
- 
- 	if (GRAPHICS_VER(dev_priv) >= 9) {
-@@ -210,6 +211,7 @@ int intel_vgpu_decode_primary_plane(struct intel_vgpu *vgpu,
- 	struct intel_vgpu_primary_plane_format *plane)
- {
- 	struct drm_i915_private *dev_priv = vgpu->gvt->gt->i915;
-+	struct intel_display *display = &dev_priv->display;
- 	u32 val, fmt;
- 	int pipe;
- 
-@@ -217,7 +219,7 @@ int intel_vgpu_decode_primary_plane(struct intel_vgpu *vgpu,
- 	if (pipe >= I915_MAX_PIPES)
- 		return -ENODEV;
- 
--	val = vgpu_vreg_t(vgpu, DSPCNTR(dev_priv, pipe));
-+	val = vgpu_vreg_t(vgpu, DSPCNTR(display, pipe));
- 	plane->enabled = !!(val & DISP_ENABLE);
- 	if (!plane->enabled)
- 		return -ENODEV;
-@@ -251,7 +253,7 @@ int intel_vgpu_decode_primary_plane(struct intel_vgpu *vgpu,
- 
- 	plane->hw_format = fmt;
- 
--	plane->base = vgpu_vreg_t(vgpu, DSPSURF(dev_priv, pipe)) & I915_GTT_PAGE_MASK;
-+	plane->base = vgpu_vreg_t(vgpu, DSPSURF(display, pipe)) & I915_GTT_PAGE_MASK;
- 	if (!vgpu_gmadr_is_valid(vgpu, plane->base))
- 		return  -EINVAL;
- 
-@@ -267,14 +269,14 @@ int intel_vgpu_decode_primary_plane(struct intel_vgpu *vgpu,
- 		(_PRI_PLANE_STRIDE_MASK >> 6) :
- 		_PRI_PLANE_STRIDE_MASK, plane->bpp);
- 
--	plane->width = (vgpu_vreg_t(vgpu, PIPESRC(dev_priv, pipe)) & _PIPE_H_SRCSZ_MASK) >>
-+	plane->width = (vgpu_vreg_t(vgpu, PIPESRC(display, pipe)) & _PIPE_H_SRCSZ_MASK) >>
- 		_PIPE_H_SRCSZ_SHIFT;
- 	plane->width += 1;
--	plane->height = (vgpu_vreg_t(vgpu, PIPESRC(dev_priv, pipe)) &
-+	plane->height = (vgpu_vreg_t(vgpu, PIPESRC(display, pipe)) &
- 			 _PIPE_V_SRCSZ_MASK) >> _PIPE_V_SRCSZ_SHIFT;
- 	plane->height += 1;	/* raw height is one minus the real value */
- 
--	val = vgpu_vreg_t(vgpu, DSPTILEOFF(dev_priv, pipe));
-+	val = vgpu_vreg_t(vgpu, DSPTILEOFF(display, pipe));
- 	plane->x_offset = (val & _PRI_PLANE_X_OFF_MASK) >>
- 		_PRI_PLANE_X_OFF_SHIFT;
- 	plane->y_offset = (val & _PRI_PLANE_Y_OFF_MASK) >>
-@@ -340,6 +342,7 @@ int intel_vgpu_decode_cursor_plane(struct intel_vgpu *vgpu,
- 	struct intel_vgpu_cursor_plane_format *plane)
- {
- 	struct drm_i915_private *dev_priv = vgpu->gvt->gt->i915;
-+	struct intel_display *display = &dev_priv->display;
- 	u32 val, mode, index;
- 	u32 alpha_plane, alpha_force;
- 	int pipe;
-@@ -348,7 +351,7 @@ int intel_vgpu_decode_cursor_plane(struct intel_vgpu *vgpu,
- 	if (pipe >= I915_MAX_PIPES)
- 		return -ENODEV;
- 
--	val = vgpu_vreg_t(vgpu, CURCNTR(dev_priv, pipe));
-+	val = vgpu_vreg_t(vgpu, CURCNTR(display, pipe));
- 	mode = val & MCURSOR_MODE_MASK;
- 	plane->enabled = (mode != MCURSOR_MODE_DISABLE);
- 	if (!plane->enabled)
-@@ -374,7 +377,7 @@ int intel_vgpu_decode_cursor_plane(struct intel_vgpu *vgpu,
- 		gvt_dbg_core("alpha_plane=0x%x, alpha_force=0x%x\n",
- 			alpha_plane, alpha_force);
- 
--	plane->base = vgpu_vreg_t(vgpu, CURBASE(dev_priv, pipe)) & I915_GTT_PAGE_MASK;
-+	plane->base = vgpu_vreg_t(vgpu, CURBASE(display, pipe)) & I915_GTT_PAGE_MASK;
- 	if (!vgpu_gmadr_is_valid(vgpu, plane->base))
- 		return  -EINVAL;
- 
-@@ -385,7 +388,7 @@ int intel_vgpu_decode_cursor_plane(struct intel_vgpu *vgpu,
- 		return  -EINVAL;
- 	}
- 
--	val = vgpu_vreg_t(vgpu, CURPOS(dev_priv, pipe));
-+	val = vgpu_vreg_t(vgpu, CURPOS(display, pipe));
- 	plane->x_pos = (val & _CURSOR_POS_X_MASK) >> _CURSOR_POS_X_SHIFT;
- 	plane->x_sign = (val & _CURSOR_SIGN_X_MASK) >> _CURSOR_SIGN_X_SHIFT;
- 	plane->y_pos = (val & _CURSOR_POS_Y_MASK) >> _CURSOR_POS_Y_SHIFT;
-diff --git a/drivers/gpu/drm/i915/gvt/handlers.c b/drivers/gpu/drm/i915/gvt/handlers.c
-index 9494d812c00a..3335d0e501db 100644
---- a/drivers/gpu/drm/i915/gvt/handlers.c
-+++ b/drivers/gpu/drm/i915/gvt/handlers.c
-@@ -655,11 +655,12 @@ static u32 skl_vgpu_get_dp_bitrate(struct intel_vgpu *vgpu, enum port port)
- static void vgpu_update_refresh_rate(struct intel_vgpu *vgpu)
- {
- 	struct drm_i915_private *dev_priv = vgpu->gvt->gt->i915;
-+	struct intel_display *display = &dev_priv->display;
- 	enum port port;
- 	u32 dp_br, link_m, link_n, htotal, vtotal;
- 
- 	/* Find DDI/PORT assigned to TRANSCODER_A, expect B or D */
--	port = (vgpu_vreg_t(vgpu, TRANS_DDI_FUNC_CTL(dev_priv, TRANSCODER_A)) &
-+	port = (vgpu_vreg_t(vgpu, TRANS_DDI_FUNC_CTL(display, TRANSCODER_A)) &
- 		TRANS_DDI_PORT_MASK) >> TRANS_DDI_PORT_SHIFT;
- 	if (port != PORT_B && port != PORT_D) {
- 		gvt_dbg_dpy("vgpu-%d unsupported PORT_%c\n", vgpu->id, port_name(port));
-@@ -675,12 +676,12 @@ static void vgpu_update_refresh_rate(struct intel_vgpu *vgpu)
- 		dp_br = skl_vgpu_get_dp_bitrate(vgpu, port);
- 
- 	/* Get DP link symbol clock M/N */
--	link_m = vgpu_vreg_t(vgpu, PIPE_LINK_M1(dev_priv, TRANSCODER_A));
--	link_n = vgpu_vreg_t(vgpu, PIPE_LINK_N1(dev_priv, TRANSCODER_A));
-+	link_m = vgpu_vreg_t(vgpu, PIPE_LINK_M1(display, TRANSCODER_A));
-+	link_n = vgpu_vreg_t(vgpu, PIPE_LINK_N1(display, TRANSCODER_A));
- 
- 	/* Get H/V total from transcoder timing */
--	htotal = (vgpu_vreg_t(vgpu, TRANS_HTOTAL(dev_priv, TRANSCODER_A)) >> TRANS_HTOTAL_SHIFT);
--	vtotal = (vgpu_vreg_t(vgpu, TRANS_VTOTAL(dev_priv, TRANSCODER_A)) >> TRANS_VTOTAL_SHIFT);
-+	htotal = (vgpu_vreg_t(vgpu, TRANS_HTOTAL(display, TRANSCODER_A)) >> TRANS_HTOTAL_SHIFT);
-+	vtotal = (vgpu_vreg_t(vgpu, TRANS_VTOTAL(display, TRANSCODER_A)) >> TRANS_VTOTAL_SHIFT);
- 
- 	if (dp_br && link_n && htotal && vtotal) {
- 		u64 pixel_clk = 0;
-@@ -1011,22 +1012,23 @@ static int south_chicken2_mmio_write(struct intel_vgpu *vgpu,
- 	return 0;
- }
- 
--#define DSPSURF_TO_PIPE(dev_priv, offset) \
--	calc_index(offset, DSPSURF(dev_priv, PIPE_A), DSPSURF(dev_priv, PIPE_B), DSPSURF(dev_priv, PIPE_C))
-+#define DSPSURF_TO_PIPE(display, offset) \
-+	calc_index(offset, DSPSURF(display, PIPE_A), DSPSURF(display, PIPE_B), DSPSURF(display, PIPE_C))
- 
- static int pri_surf_mmio_write(struct intel_vgpu *vgpu, unsigned int offset,
- 		void *p_data, unsigned int bytes)
- {
- 	struct drm_i915_private *dev_priv = vgpu->gvt->gt->i915;
--	u32 pipe = DSPSURF_TO_PIPE(dev_priv, offset);
-+	struct intel_display *display = &dev_priv->display;
-+	u32 pipe = DSPSURF_TO_PIPE(display, offset);
- 	int event = SKL_FLIP_EVENT(pipe, PLANE_PRIMARY);
- 
- 	write_vreg(vgpu, offset, p_data, bytes);
--	vgpu_vreg_t(vgpu, DSPSURFLIVE(dev_priv, pipe)) = vgpu_vreg(vgpu, offset);
-+	vgpu_vreg_t(vgpu, DSPSURFLIVE(display, pipe)) = vgpu_vreg(vgpu, offset);
- 
--	vgpu_vreg_t(vgpu, PIPE_FLIPCOUNT_G4X(dev_priv, pipe))++;
-+	vgpu_vreg_t(vgpu, PIPE_FLIPCOUNT_G4X(display, pipe))++;
- 
--	if (vgpu_vreg_t(vgpu, DSPCNTR(dev_priv, pipe)) & PLANE_CTL_ASYNC_FLIP)
-+	if (vgpu_vreg_t(vgpu, DSPCNTR(display, pipe)) & PLANE_CTL_ASYNC_FLIP)
- 		intel_vgpu_trigger_virtual_event(vgpu, event);
- 	else
- 		set_bit(event, vgpu->irq.flip_done_event[pipe]);
-@@ -1059,14 +1061,15 @@ static int reg50080_mmio_write(struct intel_vgpu *vgpu,
- 			       unsigned int bytes)
- {
- 	struct drm_i915_private *dev_priv = vgpu->gvt->gt->i915;
-+	struct intel_display *display = &dev_priv->display;
- 	enum pipe pipe = REG_50080_TO_PIPE(offset);
- 	enum plane_id plane = REG_50080_TO_PLANE(offset);
- 	int event = SKL_FLIP_EVENT(pipe, plane);
- 
- 	write_vreg(vgpu, offset, p_data, bytes);
- 	if (plane == PLANE_PRIMARY) {
--		vgpu_vreg_t(vgpu, DSPSURFLIVE(dev_priv, pipe)) = vgpu_vreg(vgpu, offset);
--		vgpu_vreg_t(vgpu, PIPE_FLIPCOUNT_G4X(dev_priv, pipe))++;
-+		vgpu_vreg_t(vgpu, DSPSURFLIVE(display, pipe)) = vgpu_vreg(vgpu, offset);
-+		vgpu_vreg_t(vgpu, PIPE_FLIPCOUNT_G4X(display, pipe))++;
- 	} else {
- 		vgpu_vreg_t(vgpu, SPRSURFLIVE(pipe)) = vgpu_vreg(vgpu, offset);
- 	}
-@@ -2192,6 +2195,7 @@ static int csfe_chicken1_mmio_write(struct intel_vgpu *vgpu,
- static int init_generic_mmio_info(struct intel_gvt *gvt)
- {
- 	struct drm_i915_private *dev_priv = gvt->gt->i915;
-+	struct intel_display *display = &dev_priv->display;
- 	int ret;
- 
- 	MMIO_RING_DFH(RING_IMR, D_ALL, 0, NULL,
-@@ -2280,21 +2284,21 @@ static int init_generic_mmio_info(struct intel_gvt *gvt)
- 	MMIO_DFH(GEN7_HALF_SLICE_CHICKEN1, D_ALL, F_MODE_MASK | F_CMD_ACCESS, NULL, NULL);
- 
- 	/* display */
--	MMIO_DH(TRANSCONF(dev_priv, TRANSCODER_A), D_ALL, NULL,
-+	MMIO_DH(TRANSCONF(display, TRANSCODER_A), D_ALL, NULL,
- 		pipeconf_mmio_write);
--	MMIO_DH(TRANSCONF(dev_priv, TRANSCODER_B), D_ALL, NULL,
-+	MMIO_DH(TRANSCONF(display, TRANSCODER_B), D_ALL, NULL,
- 		pipeconf_mmio_write);
--	MMIO_DH(TRANSCONF(dev_priv, TRANSCODER_C), D_ALL, NULL,
-+	MMIO_DH(TRANSCONF(display, TRANSCODER_C), D_ALL, NULL,
- 		pipeconf_mmio_write);
--	MMIO_DH(TRANSCONF(dev_priv, TRANSCODER_EDP), D_ALL, NULL,
-+	MMIO_DH(TRANSCONF(display, TRANSCODER_EDP), D_ALL, NULL,
- 		pipeconf_mmio_write);
--	MMIO_DH(DSPSURF(dev_priv, PIPE_A), D_ALL, NULL, pri_surf_mmio_write);
-+	MMIO_DH(DSPSURF(display, PIPE_A), D_ALL, NULL, pri_surf_mmio_write);
- 	MMIO_DH(REG_50080(PIPE_A, PLANE_PRIMARY), D_ALL, NULL,
- 		reg50080_mmio_write);
--	MMIO_DH(DSPSURF(dev_priv, PIPE_B), D_ALL, NULL, pri_surf_mmio_write);
-+	MMIO_DH(DSPSURF(display, PIPE_B), D_ALL, NULL, pri_surf_mmio_write);
- 	MMIO_DH(REG_50080(PIPE_B, PLANE_PRIMARY), D_ALL, NULL,
- 		reg50080_mmio_write);
--	MMIO_DH(DSPSURF(dev_priv, PIPE_C), D_ALL, NULL, pri_surf_mmio_write);
-+	MMIO_DH(DSPSURF(display, PIPE_C), D_ALL, NULL, pri_surf_mmio_write);
- 	MMIO_DH(REG_50080(PIPE_C, PLANE_PRIMARY), D_ALL, NULL,
- 		reg50080_mmio_write);
- 	MMIO_DH(SPRSURF(PIPE_A), D_ALL, NULL, spr_surf_mmio_write);
+ #include "gt/intel_gt_regs.h"
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_trace.h b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore_trace.h
+similarity index 100%
+rename from drivers/gpu/drm/xe/compat-i915-headers/i915_trace.h
+rename to drivers/gpu/drm/xe/compat-i915-headers/intel_uncore_trace.h
 -- 
 2.39.5
 
