@@ -2,61 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A03F49B7B53
-	for <lists+intel-gfx@lfdr.de>; Thu, 31 Oct 2024 14:06:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EDA59B7B8F
+	for <lists+intel-gfx@lfdr.de>; Thu, 31 Oct 2024 14:20:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C74210E88A;
-	Thu, 31 Oct 2024 13:06:23 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZeSqaoyG";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id D53E910E888;
+	Thu, 31 Oct 2024 13:20:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE80110E888;
- Thu, 31 Oct 2024 13:06:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730379981; x=1761915981;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=7W1lgWgm64FvSUcF1YciB9bIYGUT9WfT8bwxW/O3Mls=;
- b=ZeSqaoyGAPE/Z1VMt1lt+RuYT4xo8DaLFWZrzZJSnJ4Zy+JOkZjL2M22
- ey9/89Qlc/hBlW2p2pHtLWlTuwP5nECH5oTUkjOi9jtUbAI2Zw7FyrFYD
- 0t7Avw87BfamK6hlox+WfaczhahKjCPzJWLR+eladrogsNQZPoX0UyKlU
- qHZo20hjTNg6xns4upGWzbPK57G1w4WTDIJp50uqeRTblYlDON/6J3Ilx
- 7pLY2b9OpTnwGWw6XhOCEq+nJeWLQbWh09MmBSUq5dew/R2T2i65ziw4W
- eFyE8grfgh6Sp4ClCM9LMppcW8+3NMCWXFL0IkfUmawEzKfvadQ7zPnzG g==;
-X-CSE-ConnectionGUID: El9M78I/RT+6DZfD5nw8Wg==
-X-CSE-MsgGUID: SiT+pL5XTJuEvEXsicTnnQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11242"; a="30327778"
-X-IronPort-AV: E=Sophos;i="6.11,247,1725346800"; d="scan'208";a="30327778"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2024 06:06:21 -0700
-X-CSE-ConnectionGUID: D1cCEpS7SlmIht3h5kcIPQ==
-X-CSE-MsgGUID: HoP+P11yQjKMIXfT3KMAMQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,247,1725346800"; d="scan'208";a="83046160"
-Received: from sschumil-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.204])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2024 06:06:19 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Raag Jadav <raag.jadav@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 3/6] drm/i915/display: add intel_display_conversion.c to
- hide stuff better
-In-Reply-To: <ZyN9LdA6yGjtWuQy@black.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1730374470.git.jani.nikula@intel.com>
- <f08d3740e464b52bffd80b344e8abf5b1fda975c.1730374470.git.jani.nikula@intel.com>
- <ZyN9LdA6yGjtWuQy@black.fi.intel.com>
-Date: Thu, 31 Oct 2024 15:06:16 +0200
-Message-ID: <87plngjubb.fsf@intel.com>
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 303A510E011;
+ Thu, 31 Oct 2024 13:20:01 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/cdclk=3A_De?=
+ =?utf-8?q?clutter_CDCLK_code_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 31 Oct 2024 13:20:01 -0000
+Message-ID: <173038080119.1365305.9487576818279917120@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241029215217.3697-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20241029215217.3697-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,110 +37,45 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 31 Oct 2024, Raag Jadav <raag.jadav@intel.com> wrote:
-> On Thu, Oct 31, 2024 at 01:38:33PM +0200, Jani Nikula wrote:
->> The __to_intel_display() generics require the definition of struct
->> drm_i915_private i.e. inclusion of i915_drv.h. Add
->> intel_display_conversion.c with a __i915_to_display() function to do the
->> conversion without the intel_display_conversion.h having an implicit
->> dependency on i915_drv.h.
->>=20
->> The long term goal is to remove __to_intel_display() and the
->> intel_display_conversion.[ch] files altoghether, and this is merely a
->> transitional step to make the dependencies on i915_drv.h explicit.
->>=20
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/i915/Makefile                           | 1 +
->>  drivers/gpu/drm/i915/display/intel_display_conversion.c | 9 +++++++++
->>  drivers/gpu/drm/i915/display/intel_display_conversion.h | 9 +++++++--
->>  drivers/gpu/drm/xe/Makefile                             | 1 +
->>  4 files changed, 18 insertions(+), 2 deletions(-)
->>  create mode 100644 drivers/gpu/drm/i915/display/intel_display_conversio=
-n.c
->>=20
->> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefi=
-le
->> index ac47d7e988fc..43686d843ef7 100644
->> --- a/drivers/gpu/drm/i915/Makefile
->> +++ b/drivers/gpu/drm/i915/Makefile
->> @@ -237,6 +237,7 @@ i915-y +=3D \
->>  	display/intel_crtc_state_dump.o \
->>  	display/intel_cursor.o \
->>  	display/intel_display.o \
->> +	display/intel_display_conversion.o \
->>  	display/intel_display_driver.o \
->>  	display/intel_display_irq.o \
->>  	display/intel_display_params.o \
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_conversion.c b/d=
-rivers/gpu/drm/i915/display/intel_display_conversion.c
->> new file mode 100644
->> index 000000000000..bdd947f5ccd8
->> --- /dev/null
->> +++ b/drivers/gpu/drm/i915/display/intel_display_conversion.c
->> @@ -0,0 +1,9 @@
->> +// SPDX-License-Identifier: MIT
->> +/* Copyright =C2=A9 2024 Intel Corporation */
->> +
->> +#include "i915_drv.h"
->> +
->> +struct intel_display *__i915_to_display(struct drm_i915_private *i915)
->> +{
->> +	return &i915->display;
->> +}
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_conversion.h b/d=
-rivers/gpu/drm/i915/display/intel_display_conversion.h
->> index ad8545c8055d..790d0be698dc 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_conversion.h
->> +++ b/drivers/gpu/drm/i915/display/intel_display_conversion.h
->> @@ -8,14 +8,19 @@
->>  #ifndef __INTEL_DISPLAY_CONVERSION__
->>  #define __INTEL_DISPLAY_CONVERSION__
->>=20=20
->> +struct drm_i915_private;
->> +struct intel_display;
->> +
->> +struct intel_display *__i915_to_display(struct drm_i915_private *i915);
->> +
->>  /*
->>   * Transitional macro to optionally convert struct drm_i915_private * t=
-o struct
->>   * intel_display *, also accepting the latter.
->>   */
->>  #define __to_intel_display(p)						\
->>  	_Generic(p,							\
->> -		 const struct drm_i915_private *: (&((const struct drm_i915_private *=
-)(p))->display), \
->> -		 struct drm_i915_private *: (&((struct drm_i915_private *)(p))->displ=
-ay), \
->> +		 const struct drm_i915_private *: __i915_to_display((struct drm_i915_=
-private *)(p)), \
->> +		 struct drm_i915_private *: __i915_to_display((struct drm_i915_privat=
-e *)(p)), \
->>  		 const struct intel_display *: (p),			\
->>  		 struct intel_display *: (p))
->
-> Perhaps,
->
-> #define TYPE_ENTRY(type, x)	\
-> 	const type: x,		\
-> 	type: x
->
-> May snip the duplication.
+== Series Details ==
 
-Yeah I don't really care because this is supposed to go away soon.
+Series: drm/i915/cdclk: Declutter CDCLK code (rev2)
+URL   : https://patchwork.freedesktop.org/series/140697/
+State : warning
 
-See to_intel_display() in intel_display_types.h for what the nicer
-implementation is, for the more permanent stuff.
+== Summary ==
 
-BR,
-Jani.
+Error: dim checkpatch failed
+d8c52943046e drm/i915: Introduce HAS_DOUBLE_WIDE()
+2baaa2d9b614 drm/i915/cdclk: Extract intel_cdclk_guardband() and intel_cdclk_ppc()
+1e6f8f727313 drm/i915/cdclk: Extract hsw_ips_min_cdclk()
+-:16: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#16: 
++ min_cdclk = max(DIV_ROUND_UP(crtc_state->pixel_rate * 100, 95), min_cdclk)
 
->
-> Raag
+-:76: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#76: FILE: drivers/gpu/drm/i915/display/hsw_ips.h:45:
+ }
++static inline int hsw_ips_min_cdclk(const struct intel_crtc_state *crtc_state)
 
---=20
-Jani Nikula, Intel
+total: 0 errors, 1 warnings, 1 checks, 58 lines checked
+6d2a43667aad drm/i915/cdclk: Extract intel_audio_min_cdclk()
+69906fad0988 drm/i915/cdclk: Factor out has_audio check in intel_audio_min_cdclk()
+5377ab4abb63 drm/i915/cdclk: Extract vlv_dsi_min_cdclk()
+-:126: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#126: FILE: drivers/gpu/drm/i915/display/vlv_dsi.h:31:
+ }
++static inline int vlv_dsi_min_cdclk(const struct intel_crtc_state *crtc_state)
+
+total: 0 errors, 0 warnings, 1 checks, 99 lines checked
+cea5a791510f drm/i915/cdclk: Factor out INTEL_OUTPUT_DSI check in vlv_dsi_min_cdclk()
+e89f3af380be drm/i915/cdclk: Suck the compression_enable check into intel_vdsc_min_cdclk()
+de864b393cb9 drm/i915/cdclk: Drop pointles max_t() usage in intel_vdsc_min_cdclk()
+edb8e292f20a drm/i915/cdclk: Relocate intel_vdsc_min_cdclk()
+d440b77a3370 drm/i915/cdclk: Unify cdclk max() parameter order
+
+
