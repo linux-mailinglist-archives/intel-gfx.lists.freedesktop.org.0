@@ -2,63 +2,88 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 464159B7DE0
-	for <lists+intel-gfx@lfdr.de>; Thu, 31 Oct 2024 16:13:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 693E69B7E3A
+	for <lists+intel-gfx@lfdr.de>; Thu, 31 Oct 2024 16:21:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD25910E00C;
-	Thu, 31 Oct 2024 15:12:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D1EC10E12C;
+	Thu, 31 Oct 2024 15:21:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BnAJbUak";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel-dk.20230601.gappssmtp.com header.i=@kernel-dk.20230601.gappssmtp.com header.b="2MkmxrEE";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 887A110E00C
- for <intel-gfx@lists.freedesktop.org>; Thu, 31 Oct 2024 15:12:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730387579; x=1761923579;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=U/+++vywUAGhlTPiRcpPvo28q2Pp6878gpjBviubkgA=;
- b=BnAJbUakUwuU6mQIMwszmJgh5Dn91+AcpuiqftHdtbl8xXtQs4ffHRNM
- q69IfmJKC+mNa417GEl4FZyZ4btTQhnbD4M6Mx90Yt5lsEfxb4Hztg6a8
- jvfZdzB+X89bXJt4XGZleMZxPR1mylGdiBn5l6aH87LHQOWhvodE2MkQO
- lJiIZPqgYTKVXv+bR0leEa+hEVvQaSYpD18JGi4/IHCequpubvG6j+5JA
- j3XuVGLQXgCo+SUP0oSyu0a0scX0yqX1cAEOM4B6JaJAab8n54+9RE9d4
- YEPljU3X8M1vPvB5eXyWFShtIbSB/h3k22/dGVAKplJu7RAC2zJHiD/7I w==;
-X-CSE-ConnectionGUID: ldGAFvvhSbi2J55ukthvgA==
-X-CSE-MsgGUID: 5Y9WncH5QfGGUtPTgFs3HA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11242"; a="30349714"
-X-IronPort-AV: E=Sophos;i="6.11,247,1725346800"; d="scan'208";a="30349714"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2024 08:12:58 -0700
-X-CSE-ConnectionGUID: jtzvyHgxS0e9AN6M9ZaVxQ==
-X-CSE-MsgGUID: FrgZE1FcTW2WAYZ+fLlP5A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,247,1725346800"; d="scan'208";a="83457733"
-Received: from black.fi.intel.com ([10.237.72.28])
- by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2024 08:12:57 -0700
-Date: Thu, 31 Oct 2024 17:12:53 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: "Kahola, Mika" <mika.kahola@intel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Sousa, Gustavo" <gustavo.sousa@intel.com>,
- "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>
-Subject: Re: [PATCH v3 1/2] drm/i915/xe3lpd: Power request
- asserting/deasserting
-Message-ID: <ZyOedbhfZlSldnaZ@black.fi.intel.com>
-References: <20241031114027.225217-1-mika.kahola@intel.com>
- <20241031114027.225217-2-mika.kahola@intel.com>
- <ZyN-K6kvCJdri7Lj@black.fi.intel.com>
- <MW4PR11MB70547BFB1F1942AAA3E94889EF552@MW4PR11MB7054.namprd11.prod.outlook.com>
- <ZyOZJ-hDIpT7G91_@black.fi.intel.com>
+Received: from mail-io1-f41.google.com (mail-io1-f41.google.com
+ [209.85.166.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18D1B10E12C
+ for <intel-gfx@lists.freedesktop.org>; Thu, 31 Oct 2024 15:21:46 +0000 (UTC)
+Received: by mail-io1-f41.google.com with SMTP id
+ ca18e2360f4ac-83aacecc8efso63855239f.0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 31 Oct 2024 08:21:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=kernel-dk.20230601.gappssmtp.com; s=20230601; t=1730388106; x=1730992906;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=h6DRLiaAF06vSTpnmWA/JzrGwHB4JSnoNRs6CjLzTOo=;
+ b=2MkmxrEELTdUansICuSR6lRPjn1is2KuLnaMVUoGQqU85pIX03BMrvGYk064INYJGo
+ zT1Jrh24NA6S9F/hm4HOdthuUdeFFaSmT5FiIcU2l/DanT8E0KMc1WTgWev5jm1ik37q
+ 1ue7NyDgHXl4WBNu/cWTMrJfHn99PKfEzHd4OF3bMzIcqp8x5AXTpbCqjo1eCYjD5/JJ
+ fjMH1IBrADrv0abYQgAAtWuIrcwLvE1oqzcgN3igOz85eft0bL7jQs+zhk8mZpXf28SL
+ hybx4o18k+g6Xsy6plfBBkTPeQhDV2uK/QfRzzRNBwQrk0F6cdK5HUyvSwcH8YHxuPbO
+ Yk2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1730388106; x=1730992906;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=h6DRLiaAF06vSTpnmWA/JzrGwHB4JSnoNRs6CjLzTOo=;
+ b=pnnLf1scP1q19tpqvcwHqV23zSqwujN3nm3AqkH1t2oR/1VwAhT+HGKB3QoFvt3LqD
+ sx3gk9wJhDzXE0vQm87voQ5l15x1oDLjZpnd/pgjIC5SIXi6lEjLBRJOB5kAF/VJef4t
+ 6VHT2CayLBfJ0ct44bg9TOvOAOhIlJW7tcaNceOp2Hmu6obHAzLdADqXWRPxlXGshCVS
+ 9ng4MZi+HbwBXJWmQJJbj3D4bUZflCCscO34uZN8mek8jCMBsdQDcBn3DJz+QqpuO5P/
+ GapFQCjze0OOowPztqx47/lEzAtalkQayeuxP5ZRJft7q0lr+qK+R5xuTOSJthme9dF3
+ dj2g==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVoSR7u9vZQhVvwaLGOpHuYaqmOdMVHQ4X1mldCgQCBQSWecw0JAukoeC5Xc579PFIk/gHUHMF0O7Q=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxLKk1Cai164amI76Tn1itlafnGtt2VGMcx0wTkAYq0e5TlPNao
+ BgpBBNU1adcwSRY5hfxoDhJEMXQr59407Sixy4/vm2VcrwlC41m5tzMERJKjIdU=
+X-Google-Smtp-Source: AGHT+IGGUaCMfX5oSCNwHpwRyR3bCSWZZozym4dVHbPqPiHULcwzzh+N6aXDrwQ+xURGyI+4gG/rGw==
+X-Received: by 2002:a92:4b0b:0:b0:3a0:abd0:122 with SMTP id
+ e9e14a558f8ab-3a6aff502e2mr2996645ab.8.1730388105857; 
+ Thu, 31 Oct 2024 08:21:45 -0700 (PDT)
+Received: from [192.168.1.116] ([96.43.243.2])
+ by smtp.gmail.com with ESMTPSA id
+ 8926c6da1cb9f-4de049a43efsm332466173.128.2024.10.31.08.21.43
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 31 Oct 2024 08:21:45 -0700 (PDT)
+Message-ID: <878a0ef4-2870-49a8-83dd-ede33b513c40@kernel.dk>
+Date: Thu, 31 Oct 2024 09:21:43 -0600
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZyOZJ-hDIpT7G91_@black.fi.intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RESEND PATCH v2 05/19] io_uring: Remove redundant hrtimer's
+ callback function setup
+To: Nam Cao <namcao@linutronix.de>,
+ Anna-Maria Behnsen <anna-maria@linutronix.de>,
+ Frederic Weisbecker <frederic@kernel.org>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
+ Miguel Ojeda <ojeda@kernel.org>, Kees Cook <kees@kernel.org>,
+ linux-kernel@vger.kernel.org
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, Sean Christopherson <seanjc@google.com>,
+ Paolo Bonzini <pbonzini@redhat.com>, x86@kernel.org,
+ Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,
+ Christian Brauner <brauner@kernel.org>, Peter Zijlstra
+ <peterz@infradead.org>, John Stultz <jstultz@google.com>,
+ Oliver Hartkopp <socketcan@hartkopp.net>
+References: <cover.1730386209.git.namcao@linutronix.de>
+ <07b28dfd5691478a2d250f379c8b90dd37f9bb9a.1730386209.git.namcao@linutronix.de>
+Content-Language: en-US
+From: Jens Axboe <axboe@kernel.dk>
+In-Reply-To: <07b28dfd5691478a2d250f379c8b90dd37f9bb9a.1730386209.git.namcao@linutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,23 +99,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 31, 2024 at 04:50:20PM +0200, Raag Jadav wrote:
-> On Thu, Oct 31, 2024 at 07:59:16PM +0530, Kahola, Mika wrote:
+On 10/31/24 9:14 AM, Nam Cao wrote:
+> The IORING_OP_TIMEOUT command uses hrtimer underneath. The timer's callback
+> function is setup in io_timeout(), and then the callback function is setup
+> again when the timer is rearmed.
 > 
-> ...
+> Since the callback function is the same for both cases, the latter setup is
+> redundant, therefore remove it.
 > 
-> > > > +static void wa_14020908590(struct intel_display *display,
-> > > > +			   bool enable)
-> > > 
-> > > Can be one line?
-> > 
-> > Could be. This should fit within expected line length.
+> Signed-off-by: Nam Cao <namcao@linutronix.de>
+> Cc: Jens Axboe <axboe@kernel.dk>
+> ---
+>  io_uring/timeout.c | 1 -
+>  1 file changed, 1 deletion(-)
 > 
-> With that,
-> 
-> Reviewed-by: Raag Jadav <raag.jadav@intel.com>
+> diff --git a/io_uring/timeout.c b/io_uring/timeout.c
+> index 9973876d91b0..2ffe5e1dc68a 100644
+> --- a/io_uring/timeout.c
+> +++ b/io_uring/timeout.c
+> @@ -76,7 +76,6 @@ static void io_timeout_complete(struct io_kiocb *req, struct io_tw_state *ts)
+>  			/* re-arm timer */
+>  			spin_lock_irq(&ctx->timeout_lock);
+>  			list_add(&timeout->list, ctx->timeout_list.prev);
+> -			data->timer.function = io_timeout_fn;
+>  			hrtimer_start(&data->timer, timespec64_to_ktime(data->ts), data->mode);
+>  			spin_unlock_irq(&ctx->timeout_lock);
+>  			return;
 
-Btw, this looks like a v4 with missing changelogs.
-So make sure to update it too.
+Should be fine, io_timeout_complete() is only used for non-linked
+timeouts.
 
-Raag
+Reviewed-by: Jens Axboe <axboe@kernel.dk:
+
+-- 
+Jens Axboe
