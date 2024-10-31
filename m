@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B20D9B7F61
-	for <lists+intel-gfx@lfdr.de>; Thu, 31 Oct 2024 16:56:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DC889B7F62
+	for <lists+intel-gfx@lfdr.de>; Thu, 31 Oct 2024 16:57:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BAD510E043;
-	Thu, 31 Oct 2024 15:56:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 24A5D10E41B;
+	Thu, 31 Oct 2024 15:57:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IMkRFaHo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BMSJEiKG";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2FDCE10E41B
- for <intel-gfx@lists.freedesktop.org>; Thu, 31 Oct 2024 15:56:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC84E10E08F
+ for <intel-gfx@lists.freedesktop.org>; Thu, 31 Oct 2024 15:56:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730390215; x=1761926215;
+ t=1730390218; x=1761926218;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=Az3zC6WX1OfTmfjWC4AXzIHSdF+63WohMU1+xuVo914=;
- b=IMkRFaHoUHvtBG2DP7Z8Ah6lOSarinhu7TTOCrEzVNoFT5AEEkDCcgTl
- +kcWKLRwVSy6f86iI5eM511hGxASLXllNWPexx8t0VYiwBL2HOi2E37df
- 8lBKOw5zqmo0or+rYtS0/mcppvKAbt+hV+590A03zrrD+nTX+2vt1fx5S
- DpTg6wVDPa+90Btte0YlfDoM8Zli6jVIIWnSdHGCFOo+99ilF5V68mbuz
- KL+9M761P3XmuOFLwxyri6JRbtrae/8oy0D62JtTkOqJCprRBRXmARFtA
- A5FTN5yTOdkmDO26Jgt7NYXV2egXo6DQJAEjhz5/fIX5x1338Hay61wym g==;
-X-CSE-ConnectionGUID: gwMlLI/JTBqljF7RbQzDJA==
-X-CSE-MsgGUID: YPInVwCUTeKwWkHMHIjLPg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11242"; a="29575326"
-X-IronPort-AV: E=Sophos;i="6.11,247,1725346800"; d="scan'208";a="29575326"
+ bh=NKd86sc6/BVdSzwriozNTp5GyLjPk2yj2YggCZMyWLE=;
+ b=BMSJEiKG1xKJT1km4JAs93pjgrSjJVjRlXWhO7JxEeTqKD1xYbvY8Sr9
+ aTt1V1dqJ+t5JUksdREuV5cK/RYbXP35fQqCU0zSSfUzdYNNGe/+crJPq
+ e6X2maE4keTCzpAKVsh8oSY58N1QX8g8M+yDR//s8N9fz7N4Ya99CgK0/
+ UqSouGB1SViunvQNy+zSU6l2OR8UnBQc8PYsRVT0YLj3AAK24uNPV6YKU
+ 2884awTf3PMNxePYHFUq6VMfsvvLOkdgeJLgLSMiS2mEO1Jy5slVdVCiB
+ vszbcxw+L+SrDzAQm/bIux5bwG7/NRPESdEXvTS9mV2rUNbWF7X6IF1ct g==;
+X-CSE-ConnectionGUID: 0JL71AiHRTeuUSNdPmg2hg==
+X-CSE-MsgGUID: j90tbbctR02p80m8hMP2jw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11242"; a="29575331"
+X-IronPort-AV: E=Sophos;i="6.11,247,1725346800"; d="scan'208";a="29575331"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2024 08:56:55 -0700
-X-CSE-ConnectionGUID: XEjBYkORS0GtpTp6AaMXyA==
-X-CSE-MsgGUID: SFsR1eJ6RCevAcdut5d97g==
+ 31 Oct 2024 08:56:58 -0700
+X-CSE-ConnectionGUID: k1b/9P5gQ4epuGPe0qsFLw==
+X-CSE-MsgGUID: Jv3acSuySA2nfdB2NJN8Fw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,247,1725346800"; d="scan'208";a="82791569"
+X-IronPort-AV: E=Sophos;i="6.11,247,1725346800"; d="scan'208";a="82791571"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 31 Oct 2024 08:56:53 -0700
+ by fmviesa008.fm.intel.com with SMTP; 31 Oct 2024 08:56:55 -0700
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 31 Oct 2024 17:56:52 +0200
+ Thu, 31 Oct 2024 17:56:55 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 2/6] drm/i915: Extract pipe_mbus_dbox_ctl()
-Date: Thu, 31 Oct 2024 17:56:42 +0200
-Message-ID: <20241031155646.15165-3-ville.syrjala@linux.intel.com>
+Subject: [PATCH 3/6] drm/i915: Extract pipe_mbus_dbox_ctl_update()
+Date: Thu, 31 Oct 2024 17:56:43 +0200
+Message-ID: <20241031155646.15165-4-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241031155646.15165-1-ville.syrjala@linux.intel.com>
 References: <20241031155646.15165-1-ville.syrjala@linux.intel.com>
@@ -71,106 +71,49 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
 We'll be wanting reprogram the PIPE_MBUS_DBOX_CTL registers
-during an upcoming MBUS sanitation stage. To make that easier
-extract a helper that computes the full register value for us.
+during an upcoming MBUS sanitation stage. Extract the reprogramming
+loop into a helper that doesn't depend on the full atomic state
+so that it can be reused.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_watermark.c | 63 +++++++++++---------
- 1 file changed, 34 insertions(+), 29 deletions(-)
+ drivers/gpu/drm/i915/display/skl_watermark.c | 15 +++++++++++----
+ 1 file changed, 11 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index 92794dfbd3bd..7a7caaf7e87d 100644
+index 7a7caaf7e87d..8a31508f94bb 100644
 --- a/drivers/gpu/drm/i915/display/skl_watermark.c
 +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -3271,23 +3271,12 @@ static bool xelpdp_is_only_pipe_per_dbuf_bank(enum pipe pipe, u8 active_pipes)
- 	return false;
+@@ -3319,11 +3319,20 @@ static u32 pipe_mbus_dbox_ctl(const struct intel_crtc *crtc,
+ 	return val;
  }
  
--static void intel_mbus_dbox_update(struct intel_atomic_state *state)
-+static u32 pipe_mbus_dbox_ctl(const struct intel_crtc *crtc,
-+			      const struct intel_dbuf_state *dbuf_state)
- {
--	struct drm_i915_private *i915 = to_i915(state->base.dev);
--	const struct intel_dbuf_state *new_dbuf_state, *old_dbuf_state;
--	const struct intel_crtc *crtc;
-+	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
- 	u32 val = 0;
- 
--	if (DISPLAY_VER(i915) < 11)
--		return;
--
--	new_dbuf_state = intel_atomic_get_new_dbuf_state(state);
--	old_dbuf_state = intel_atomic_get_old_dbuf_state(state);
--	if (!new_dbuf_state ||
--	    (new_dbuf_state->joined_mbus == old_dbuf_state->joined_mbus &&
--	     new_dbuf_state->active_pipes == old_dbuf_state->active_pipes))
--		return;
--
- 	if (DISPLAY_VER(i915) >= 14)
- 		val |= MBUS_DBOX_I_CREDIT(2);
- 
-@@ -3298,12 +3287,12 @@ static void intel_mbus_dbox_update(struct intel_atomic_state *state)
- 	}
- 
- 	if (DISPLAY_VER(i915) >= 14)
--		val |= new_dbuf_state->joined_mbus ? MBUS_DBOX_A_CREDIT(12) :
--						     MBUS_DBOX_A_CREDIT(8);
-+		val |= dbuf_state->joined_mbus ?
-+			MBUS_DBOX_A_CREDIT(12) : MBUS_DBOX_A_CREDIT(8);
- 	else if (IS_ALDERLAKE_P(i915))
- 		/* Wa_22010947358:adl-p */
--		val |= new_dbuf_state->joined_mbus ? MBUS_DBOX_A_CREDIT(6) :
--						     MBUS_DBOX_A_CREDIT(4);
-+		val |= dbuf_state->joined_mbus ?
-+			MBUS_DBOX_A_CREDIT(6) : MBUS_DBOX_A_CREDIT(4);
- 	else
- 		val |= MBUS_DBOX_A_CREDIT(2);
- 
-@@ -3320,19 +3309,35 @@ static void intel_mbus_dbox_update(struct intel_atomic_state *state)
- 		val |= MBUS_DBOX_B_CREDIT(8);
- 	}
- 
--	for_each_intel_crtc_in_pipe_mask(&i915->drm, crtc, new_dbuf_state->active_pipes) {
--		u32 pipe_val = val;
-+	if (DISPLAY_VERx100(i915) == 1400) {
-+		if (xelpdp_is_only_pipe_per_dbuf_bank(crtc->pipe, dbuf_state->active_pipes))
-+			val |= MBUS_DBOX_BW_8CREDITS_MTL;
-+		else
-+			val |= MBUS_DBOX_BW_4CREDITS_MTL;
-+	}
- 
--		if (DISPLAY_VERx100(i915) == 1400) {
--			if (xelpdp_is_only_pipe_per_dbuf_bank(crtc->pipe,
--							      new_dbuf_state->active_pipes))
--				pipe_val |= MBUS_DBOX_BW_8CREDITS_MTL;
--			else
--				pipe_val |= MBUS_DBOX_BW_4CREDITS_MTL;
--		}
-+	return val;
-+}
- 
--		intel_de_write(i915, PIPE_MBUS_DBOX_CTL(crtc->pipe), pipe_val);
--	}
-+static void intel_mbus_dbox_update(struct intel_atomic_state *state)
++static void pipe_mbus_dbox_ctl_update(struct drm_i915_private *i915,
++				      const struct intel_dbuf_state *dbuf_state)
 +{
-+	struct drm_i915_private *i915 = to_i915(state->base.dev);
-+	const struct intel_dbuf_state *new_dbuf_state, *old_dbuf_state;
-+	const struct intel_crtc *crtc;
++	struct intel_crtc *crtc;
 +
-+	if (DISPLAY_VER(i915) < 11)
-+		return;
-+
-+	new_dbuf_state = intel_atomic_get_new_dbuf_state(state);
-+	old_dbuf_state = intel_atomic_get_old_dbuf_state(state);
-+	if (!new_dbuf_state ||
-+	    (new_dbuf_state->joined_mbus == old_dbuf_state->joined_mbus &&
-+	     new_dbuf_state->active_pipes == old_dbuf_state->active_pipes))
-+		return;
-+
-+	for_each_intel_crtc_in_pipe_mask(&i915->drm, crtc, new_dbuf_state->active_pipes)
++	for_each_intel_crtc_in_pipe_mask(&i915->drm, crtc, dbuf_state->active_pipes)
 +		intel_de_write(i915, PIPE_MBUS_DBOX_CTL(crtc->pipe),
-+			       pipe_mbus_dbox_ctl(crtc, new_dbuf_state));
++			       pipe_mbus_dbox_ctl(crtc, dbuf_state));
++}
++
+ static void intel_mbus_dbox_update(struct intel_atomic_state *state)
+ {
+ 	struct drm_i915_private *i915 = to_i915(state->base.dev);
+ 	const struct intel_dbuf_state *new_dbuf_state, *old_dbuf_state;
+-	const struct intel_crtc *crtc;
+ 
+ 	if (DISPLAY_VER(i915) < 11)
+ 		return;
+@@ -3335,9 +3344,7 @@ static void intel_mbus_dbox_update(struct intel_atomic_state *state)
+ 	     new_dbuf_state->active_pipes == old_dbuf_state->active_pipes))
+ 		return;
+ 
+-	for_each_intel_crtc_in_pipe_mask(&i915->drm, crtc, new_dbuf_state->active_pipes)
+-		intel_de_write(i915, PIPE_MBUS_DBOX_CTL(crtc->pipe),
+-			       pipe_mbus_dbox_ctl(crtc, new_dbuf_state));
++	pipe_mbus_dbox_ctl_update(i915, new_dbuf_state);
  }
  
  int intel_dbuf_state_set_mdclk_cdclk_ratio(struct intel_atomic_state *state,
