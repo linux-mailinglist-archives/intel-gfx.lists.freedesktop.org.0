@@ -2,114 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A75E39B7D2B
-	for <lists+intel-gfx@lfdr.de>; Thu, 31 Oct 2024 15:43:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A2F489B7D44
+	for <lists+intel-gfx@lfdr.de>; Thu, 31 Oct 2024 15:48:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 41CCB10E8B3;
-	Thu, 31 Oct 2024 14:43:53 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="xCgs1Nsh";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="FBBdGlph";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="xCgs1Nsh";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="FBBdGlph";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6886C10E054;
+	Thu, 31 Oct 2024 14:48:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 51DCB10E8B3;
- Thu, 31 Oct 2024 14:43:52 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id B700C2200C;
- Thu, 31 Oct 2024 14:43:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1730385830; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=KRY5ozCABIKUrV1nd/Idhi/2iqQFOD2nknyFedKN/cg=;
- b=xCgs1Nshcwa05QJ+ZTWoWkgwRBxShwiF99UBE7e6J9j/BZV+4uaCsRvqpwVOGWJVUQydj8
- /8IyPhQtCWWnpvjWZk/2SPsY9aVnl0udjfSOumK6EqCIoflh2EEMRhXhVP2/EC2M+RoRcl
- PmhjfmZHhXT+38Sv3xe2eKKAInRR98w=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1730385830;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=KRY5ozCABIKUrV1nd/Idhi/2iqQFOD2nknyFedKN/cg=;
- b=FBBdGlphnV/xbBK7OrZqN4WXQWEb/6697MHEZWNjKlQW9giqXFwidnVGcXCm/csILCu0IF
- IHgNMqricAQkZ9Cg==
-Authentication-Results: smtp-out1.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=xCgs1Nsh;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=FBBdGlph
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1730385830; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=KRY5ozCABIKUrV1nd/Idhi/2iqQFOD2nknyFedKN/cg=;
- b=xCgs1Nshcwa05QJ+ZTWoWkgwRBxShwiF99UBE7e6J9j/BZV+4uaCsRvqpwVOGWJVUQydj8
- /8IyPhQtCWWnpvjWZk/2SPsY9aVnl0udjfSOumK6EqCIoflh2EEMRhXhVP2/EC2M+RoRcl
- PmhjfmZHhXT+38Sv3xe2eKKAInRR98w=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1730385830;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type;
- bh=KRY5ozCABIKUrV1nd/Idhi/2iqQFOD2nknyFedKN/cg=;
- b=FBBdGlphnV/xbBK7OrZqN4WXQWEb/6697MHEZWNjKlQW9giqXFwidnVGcXCm/csILCu0IF
- IHgNMqricAQkZ9Cg==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 519B2136A5;
- Thu, 31 Oct 2024 14:43:50 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id 6wsvEqaXI2dAEgAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Thu, 31 Oct 2024 14:43:50 +0000
-Date: Thu, 31 Oct 2024 15:43:48 +0100
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-fixes
-Message-ID: <20241031144348.GA7826@linux-2.fritz.box>
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8579C10E8BB;
+ Thu, 31 Oct 2024 14:47:59 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8072620874976377872=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Rspamd-Queue-Id: B700C2200C
-X-Spam-Score: -4.51
-X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-4.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- MX_GOOD(-0.01)[]; MIME_TRACE(0.00)[0:+];
- FUZZY_BLOCKED(0.00)[rspamd.com];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
- RCPT_COUNT_TWELVE(0.00)[16];
- RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
- FREEMAIL_TO(0.00)[gmail.com,ffwll.ch]; ARC_NA(0.00)[];
- FREEMAIL_ENVRCPT(0.00)[gmail.com]; TO_DN_SOME(0.00)[];
- RCVD_COUNT_TWO(0.00)[2]; FROM_EQ_ENVFROM(0.00)[];
- FROM_HAS_DN(0.00)[]; TO_MATCH_ENVRCPT_ALL(0.00)[];
- RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
- MISSING_XM_UA(0.00)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
- RCVD_TLS_ALL(0.00)[]; DKIM_TRACE(0.00)[suse.de:+];
- DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:rdns,
- imap1.dmz-prg2.suse.org:helo, suse.de:dkim]
-X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
-X-Spam-Flag: NO
-X-Spam-Level: 
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/color=3A_Stop_usin?=
+ =?utf-8?q?g_non-posted_DSB_writes_for_legacy_LUT_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 31 Oct 2024 14:47:59 -0000
+Message-ID: <173038607953.1384746.16980146597066468437@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241030210750.6550-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20241030210750.6550-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -122,103 +37,171 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Sima,
+--===============8072620874976377872==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-this is the week's PR for drm-misc-fixes.
+== Series Details ==
 
-Best regards
-Thomas
+Series: drm/i915/color: Stop using non-posted DSB writes for legacy LUT (rev2)
+URL   : https://patchwork.freedesktop.org/series/140739/
+State : success
 
-drm-misc-fixes-2024-10-31:
-Short summary of fixes pull:
+== Summary ==
 
-ivpu:
-- Fix firewall IRQ handling
+CI Bug Log - changes from CI_DRM_15619 -> Patchwork_140739v2
+====================================================
 
-panthor:
-- Fix firmware initialization wrt page sizes
-- Fix handling and reporting of dead job groups
+Summary
+-------
 
-sched:
-- Guarantee forward progress via WC_MEM_RECLAIM
+  **SUCCESS**
 
-tests:
-- Fix memory leak in drm_display_mode_from_cea_vic()
-The following changes since commit 4d95a12beba146b0ca2de59c7ce905bc0aadfd0c:
+  No regressions found.
 
-  Merge tag 'drm-xe-fixes-2024-10-24-1' of https://gitlab.freedesktop.org/drm/xe/kernel into drm-fixes (2024-10-25 16:55:39 +1000)
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140739v2/index.html
 
-are available in the Git repository at:
+Participating hosts (46 -> 45)
+------------------------------
 
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2024-10-31
+  Missing    (1): fi-snb-2520m 
 
-for you to fetch changes up to add4163aca0d4a86e9fe4aa513865e4237db8aef:
+Known issues
+------------
 
-  drm/tests: hdmi: Fix memory leaks in drm_display_mode_from_cea_vic() (2024-10-31 10:31:35 +0100)
+  Here are the changes found in Patchwork_140739v2 that come from known issues:
 
-----------------------------------------------------------------
-Short summary of fixes pull:
+### IGT changes ###
 
-ivpu:
-- Fix firewall IRQ handling
+#### Issues hit ####
 
-panthor:
-- Fix firmware initialization wrt page sizes
-- Fix handling and reporting of dead job groups
+  * igt@i915_selftest@live@late_gt_pm:
+    - bat-atsm-1:         [PASS][1] -> [ABORT][2] ([i915#12133]) +1 other test abort
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15619/bat-atsm-1/igt@i915_selftest@live@late_gt_pm.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140739v2/bat-atsm-1/igt@i915_selftest@live@late_gt_pm.html
 
-sched:
-- Guarantee forward progress via WC_MEM_RECLAIM
+  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
+    - bat-dg2-11:         [PASS][3] -> [SKIP][4] ([i915#9197]) +2 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15619/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140739v2/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
 
-tests:
-- Fix memory leak in drm_display_mode_from_cea_vic()
+  
+#### Possible fixes ####
 
-----------------------------------------------------------------
-Andrzej Kacprowski (1):
-      accel/ivpu: Fix NOC firewall interrupt handling
+  * igt@i915_selftest@live:
+    - bat-mtlp-6:         [ABORT][5] ([i915#12133] / [i915#12216]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15619/bat-mtlp-6/igt@i915_selftest@live.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140739v2/bat-mtlp-6/igt@i915_selftest@live.html
 
-Boris Brezillon (3):
-      drm/panthor: Fix firmware initialization on systems with a page size > 4k
-      drm/panthor: Fail job creation when the group is dead
-      drm/panthor: Report group as timedout when we fail to properly suspend
+  * igt@i915_selftest@live@workarounds:
+    - bat-mtlp-6:         [ABORT][7] ([i915#12216]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15619/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140739v2/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
 
-Dan Carpenter (1):
-      drm/tegra: Fix NULL vs IS_ERR() check in probe()
+  
+  [i915#12133]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133
+  [i915#12216]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12216
+  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
 
-Jinjie Ruan (3):
-      drm/tests: helpers: Add helper for drm_display_mode_from_cea_vic()
-      drm/connector: hdmi: Fix memory leak in drm_display_mode_from_cea_vic()
-      drm/tests: hdmi: Fix memory leaks in drm_display_mode_from_cea_vic()
 
-Matthew Brost (1):
-      drm/sched: Mark scheduler work queues with WQ_MEM_RECLAIM
+Build changes
+-------------
 
-Thomas Zimmermann (1):
-      Merge drm/drm-fixes into drm-misc-fixes
+  * Linux: CI_DRM_15619 -> Patchwork_140739v2
 
- drivers/accel/ivpu/ivpu_debugfs.c                  |  9 +++++
- drivers/accel/ivpu/ivpu_hw.c                       |  1 +
- drivers/accel/ivpu/ivpu_hw.h                       |  1 +
- drivers/accel/ivpu/ivpu_hw_ip.c                    |  5 ++-
- drivers/gpu/drm/panthor/panthor_fw.c               |  4 +--
- drivers/gpu/drm/panthor/panthor_gem.c              | 11 ++++--
- drivers/gpu/drm/panthor/panthor_mmu.c              | 16 +++++++--
- drivers/gpu/drm/panthor/panthor_mmu.h              |  1 +
- drivers/gpu/drm/panthor/panthor_sched.c            | 20 ++++++++---
- drivers/gpu/drm/scheduler/sched_main.c             |  5 +--
- drivers/gpu/drm/tegra/drm.c                        |  4 +--
- drivers/gpu/drm/tests/drm_connector_test.c         | 24 ++++++-------
- drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c |  8 ++---
- drivers/gpu/drm/tests/drm_kunit_helpers.c          | 42 ++++++++++++++++++++++
- include/drm/drm_kunit_helpers.h                    |  4 +++
- 15 files changed, 122 insertions(+), 33 deletions(-)
+  CI-20190529: 20190529
+  CI_DRM_15619: fa53c85519aa642bf10aa1692a1b99d1930d2809 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8091: 8091
+  Patchwork_140739v2: fa53c85519aa642bf10aa1692a1b99d1930d2809 @ git://anongit.freedesktop.org/gfx-ci/linux
 
--- 
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140739v2/index.html
+
+--===============8072620874976377872==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/color: Stop using non-posted DSB writes for legacy LUT (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/140739/">https://patchwork.freedesktop.org/series/140739/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140739v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140739v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_15619 -&gt; Patchwork_140739v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140739v2/index.html</p>
+<h2>Participating hosts (46 -&gt; 45)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_140739v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@late_gt_pm:</p>
+<ul>
+<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15619/bat-atsm-1/igt@i915_selftest@live@late_gt_pm.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140739v2/bat-atsm-1/igt@i915_selftest@live@late_gt_pm.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133">i915#12133</a>) +1 other test abort</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
+<ul>
+<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15619/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140739v2/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197">i915#9197</a>) +2 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15619/bat-mtlp-6/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133">i915#12133</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12216">i915#12216</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140739v2/bat-mtlp-6/igt@i915_selftest@live.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15619/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12216">i915#12216</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140739v2/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_15619 -&gt; Patchwork_140739v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_15619: fa53c85519aa642bf10aa1692a1b99d1930d2809 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8091: 8091<br />
+  Patchwork_140739v2: fa53c85519aa642bf10aa1692a1b99d1930d2809 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============8072620874976377872==--
