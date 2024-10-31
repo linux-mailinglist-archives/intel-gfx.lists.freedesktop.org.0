@@ -2,62 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AE6E9B7943
-	for <lists+intel-gfx@lfdr.de>; Thu, 31 Oct 2024 12:02:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EAF6B9B7947
+	for <lists+intel-gfx@lfdr.de>; Thu, 31 Oct 2024 12:03:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA14410E87F;
-	Thu, 31 Oct 2024 11:02:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F81B10E861;
+	Thu, 31 Oct 2024 11:03:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iUeuVZf5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lXd+4JWr";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 23D3010E873
- for <intel-gfx@lists.freedesktop.org>; Thu, 31 Oct 2024 11:02:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4593210E861
+ for <intel-gfx@lists.freedesktop.org>; Thu, 31 Oct 2024 11:03:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730372551; x=1761908551;
- h=date:from:to:cc:subject:message-id:references:
+ t=1730372595; x=1761908595;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
  mime-version:in-reply-to;
- bh=pxhxJ7ADGw8c5ZFFXdGWFKlMZ6uYF/3qyC4Ds/gJ2xQ=;
- b=iUeuVZf52ScJL8QV0kRPKLHnN22+XG+YztpzJevA8k9ld54Pe9hxdlTU
- oAVkPfUF+ebsGDJkbVPUj9v6T4UE28fx9NkoWOVkqR0RCbYWiNkC/WSyT
- F6x0IginCBzqr7MHZvtA20//kHOr4GRYB41j6mWUlzF2V7e235yjEIevp
- y3+ufqc1XWi6j88JM9dusECadYh73kZk+Y1MKHjteymEWJWvVHEiNbUb1
- ai2s2kgWB2r0cSOWu4SV1pAXXIkXBzDvA7LajOYeuJMSYqBOCR5CZeZgK
- qq+7dqgUcHiHGDJ7E0DZHb5cWPoiWbQ9BoxkvAxyN5o/+1qXRv5xNph3p Q==;
-X-CSE-ConnectionGUID: aNfYb0BTQmCy/pnDZGz2NA==
-X-CSE-MsgGUID: 47nVBDETQO2uHgu6Lh6Xag==
-X-IronPort-AV: E=McAfee;i="6700,10204,11241"; a="41474203"
-X-IronPort-AV: E=Sophos;i="6.11,247,1725346800"; d="scan'208";a="41474203"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2024 04:02:30 -0700
-X-CSE-ConnectionGUID: M+73a91rTbCnJWQEAYmMNw==
-X-CSE-MsgGUID: EH6OFQqVQx6rIEfiwYDM5w==
+ bh=+PR+r7bQLVdTKvawCru9E1yhE/rDi6XcqcWwVMAmJzE=;
+ b=lXd+4JWrTJ7nGQDf0VN+SuTqKvjHMudydbYVNvkHtbHKjM92E+JhFyh5
+ j5G2xNRGixIZMoK9UKmR49xVHStawVHIDE7ory51ylBwQIfRHvY0j3AmR
+ wXKme/5Tcqe7YwOl1d6UKiXSOULj1Re3cLvoBu2QnkPWppdKOuDfJDpt1
+ 1eoVRhLCT0CI1coX7FRd3IFj6Y5VDCZmztUeT0fZnryxOlNreTTHIU+JX
+ Rl4hi53fZ9hvcVzP+u3NkNuf64vPDMeKH/SaT1ro8gN939fUr8sDKGWj6
+ uo6d3yHUkcvRZb5KPOa3MSJT7U3cG3ZcfleXPN06AboL0La/gJLLxZR6o w==;
+X-CSE-ConnectionGUID: AXaLiJj5ROe0v4YIvhHYyQ==
+X-CSE-MsgGUID: ernYW1uxS5SmYpoKkXe7EQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11241"; a="32941139"
+X-IronPort-AV: E=Sophos;i="6.11,247,1725346800"; d="scan'208";a="32941139"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Oct 2024 04:03:15 -0700
+X-CSE-ConnectionGUID: TYN47QlFTBa2qiaDO4b+CA==
+X-CSE-MsgGUID: YSOwpsivTZi6O2BHmPyhTA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,247,1725346800"; d="scan'208";a="82134465"
-Received: from black.fi.intel.com ([10.237.72.28])
- by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2024 04:02:28 -0700
-Date: Thu, 31 Oct 2024 13:02:25 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
- matthew.d.roper@intel.com, andi.shyti@linux.intel.com,
- intel-gfx@lists.freedesktop.org, anshuman.gupta@intel.com,
- badal.nilawar@intel.com, riana.tauro@intel.com
-Subject: Re: [PATCH v3 4/4] drm/i915/dg2: Implement Wa_14022698537
-Message-ID: <ZyNjwZgLX85wG5r8@black.fi.intel.com>
-References: <20241030143418.410406-1-raag.jadav@intel.com>
- <20241030143418.410406-5-raag.jadav@intel.com>
- <875xp9l9jw.fsf@intel.com> <ZyNFEJxRklBuzFc3@black.fi.intel.com>
- <871pzwlj12.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,247,1725346800"; d="scan'208";a="87136533"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Oct 2024 04:03:14 -0700
+Date: Thu, 31 Oct 2024 13:03:47 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Luca Coelho <luca@coelho.fi>
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH v2 5/5] drm/i915/adlp+/dp_mst: Align master transcoder
+ disabling with spec wrt. DP2 config
+Message-ID: <ZyNkE9KNAohAOVh9@ideak-desk.fi.intel.com>
+References: <20241030192313.4030617-1-imre.deak@intel.com>
+ <20241030192313.4030617-6-imre.deak@intel.com>
+ <a26cf220d39a9898a8856c042e5c70542bc41be1.camel@coelho.fi>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <871pzwlj12.fsf@intel.com>
+In-Reply-To: <a26cf220d39a9898a8856c042e5c70542bc41be1.camel@coelho.fi>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,34 +67,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 31, 2024 at 11:27:05AM +0200, Jani Nikula wrote:
-> On Thu, 31 Oct 2024, Raag Jadav <raag.jadav@intel.com> wrote:
-> > On Wed, Oct 30, 2024 at 08:39:31PM +0200, Jani Nikula wrote:
-> > > On Wed, 30 Oct 2024, Raag Jadav <raag.jadav@intel.com> wrote:
-> > > > G8 power state entry is disabled due to a limitation on DG2, so we
-> > > > enable it from driver with Wa_14022698537. For now we enable it for
-> > > > all DG2 devices with the exception of a few, for which, we enable
-> > > > only when paired with whitelisted CPU models. This works with Native
-> > > > ASMP and reduces idle power consumption.
+On Thu, Oct 31, 2024 at 12:56:15PM +0200, Luca Coelho wrote:
+> On Wed, 2024-10-30 at 21:23 +0200, Imre Deak wrote:
+> > On ADLP+ during modeset disabling, disable the DP2 configuration for MST
+> > master transcoders as required by the specification.
 > > 
-> >  ...
-> > 
-> > > > +/* Wa_14022698537:dg2 */
-> > > > +static void i915_enable_g8(struct drm_i915_private *i915)
-> > > > +{
-> > > > +	if (IS_DG2(i915)) {
-> > > > +		if (IS_DG2_D(i915) && !intel_match_g8_cpu())
-> > > > +			return;
-> > > 
-> > > You don't need to check for DG2 twice.
-> >
-> > My understanding is that DG2_D is a subset of DG2.
+> > Bspec: 55424, 54128, 65448, 68849
 > 
-> Sorry, I misread the code. *facepalm*.
+> Just curious how this change is related to so many bspecs...?
 
-Yeah, we definitely need the coffee :D
+The Display Port modeset sequences - where the programming step added
+here is described - are different or at least described separately for
+different platforms on the above pages.
 
-Raag
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_ddi.c | 2 ++
+> >  1 file changed, 2 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > index d82bc1bf8b68f..6adbc7d0b90d9 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > @@ -3062,6 +3062,8 @@ static void intel_ddi_post_disable_dp(struct intel_atomic_state *state,
+> >  
+> >  	intel_dp_sink_set_fec_ready(intel_dp, old_crtc_state, false);
+> >  
+> > +	intel_ddi_config_transcoder_dp2(old_crtc_state, false);
+> > +
+> >  	/*
+> >  	 * From TGL spec: "If single stream or multi-stream master transcoder:
+> >  	 * Configure Transcoder Clock select to direct no clock to the
+> 
+> Regardless:
+> 
+> Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
+> 
+> --
+> Cheers,
+> Luca.
