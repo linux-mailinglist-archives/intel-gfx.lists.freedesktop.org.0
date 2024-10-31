@@ -2,63 +2,106 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8E979B8EA7
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Nov 2024 11:08:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C11169B8EAE
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Nov 2024 11:08:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16DED10E96A;
-	Fri,  1 Nov 2024 10:08:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED99C10E975;
+	Fri,  1 Nov 2024 10:08:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="QkxjHHWw";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="P2Pk2/hy";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="IHw4qBYt";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1FFDB10E8AF
- for <intel-gfx@lists.freedesktop.org>; Thu, 31 Oct 2024 14:36:19 +0000 (UTC)
-Date: Thu, 31 Oct 2024 15:36:09 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1730385377;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=zFWtjZRQTdWduLAor0O9LykkVJ5XjmX1JLbKlMKlkpk=;
- b=QkxjHHWwmKJ1qdobe4I2Y+atw8qx+ISgFF1tjNZwtDSp0ORfysW1Jcz5dp7zR6Js79bRy0
- i226xrqs413mzDeBgw1jRomNbeGJzDtZ7nBO8IhD3ecS8/pVOatosqp4tnkxCAtEL79Rzw
- AOwBVAxC7aT6UbutjROR9VsFXnKPNja80g5Bbudr1qkS/7EXziQvg4/kUep7ghULm/MhJq
- CPy4J2UlWVH4QqRN7yanD/6ZWYAmHUF0rieqmdbhcgHGxoEUG6WmEKhoEtF+ZlJZVuiams
- KVYeGXjlzGMc6rW3IS9kkkUjYwTDunfgJIxnWdO+pv5552kLTu4iVR2YXuJ/EQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1730385377;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=zFWtjZRQTdWduLAor0O9LykkVJ5XjmX1JLbKlMKlkpk=;
- b=P2Pk2/hy3uejlXJUrAHf0UJ4GdC6Jir4eJmEy04sEuesJqD6RKJD3sEgNSp8aqGq+J/BLQ
- +Y3OU1IHoExp3wDQ==
-From: Nam Cao <namcao@linutronix.de>
-To: Anna-Maria Behnsen <anna-maria@linutronix.de>,
- Frederic Weisbecker <frederic@kernel.org>,
- Thomas Gleixner <tglx@linutronix.de>,
- Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Miguel Ojeda <ojeda@kernel.org>,
- Kees Cook <kees@kernel.org>, linux-kernel@vger.kernel.org
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, intel-gfx@lists.freedesktop.org,
- Sean Christopherson <seanjc@google.com>,
- Paolo Bonzini <pbonzini@redhat.com>, x86@kernel.org,
- Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,
- Jens Axboe <axboe@kernel.dk>, Christian Brauner <brauner@kernel.org>,
- Peter Zijlstra <peterz@infradead.org>, John Stultz <jstultz@google.com>,
- Oliver Hartkopp <socketcan@hartkopp.net>, kvm@vger.kernel.org,
- linux-wireless@vger.kernel.org
-Subject: Re: [PATCH v2 00/19] hrtimers: Consolidate hrtimer initialization -
- Part 1
-Message-ID: <20241031143609.bX-WHDeK@linutronix.de>
-References: <20241031-hrtimer_setup_p1_v2-v2-0-23400656575a@linutronix.de>
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com
+ [209.85.221.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E4EBA10E8C5
+ for <intel-gfx@lists.freedesktop.org>; Thu, 31 Oct 2024 15:13:07 +0000 (UTC)
+Received: by mail-wr1-f44.google.com with SMTP id
+ ffacd0b85a97d-37d6ff1cbe1so769237f8f.3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 31 Oct 2024 08:13:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1730387586; x=1730992386; darn=lists.freedesktop.org;
+ h=cc:to:content-transfer-encoding:mime-version:message-id:date
+ :subject:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=QK6XObohq4uefX4FllQNUsdSLzEjHl95slKcZ/jajZE=;
+ b=IHw4qBYt2blqFXP8yPx9FtGHZltRzN056lWzoXabDMRs+FBhuCv7HnsRsM/r3b1T3X
+ 13zpZqQEjlS/ADZNb7B7dMTKSBPRWrL60PJ0/su6kGHeGBZPBxnZDRWrrVOsGdxGiCeQ
+ wzYjyfD2bEMX+41iPj0arp9Zxmg1uRb/RTxqNH09xggB9m11Tc7LXQ8InzorsMDAjx4F
+ lmv9QSHiLe2G48wo84an93tGr4hJOcnG+NUjq3NFLZj+SVkgG7NfdimvP6pspMPjqDHR
+ BifNRsMF12/ZeG5hVzcXU/xWFBJH82lMFqWdS8bZYwaC3MVIACZ0V/6krq9buoZ+rP6k
+ /58A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1730387586; x=1730992386;
+ h=cc:to:content-transfer-encoding:mime-version:message-id:date
+ :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=QK6XObohq4uefX4FllQNUsdSLzEjHl95slKcZ/jajZE=;
+ b=p0po34i1HiqHMD6cRh1bvxbkgptUcubhnzS845mC9+AgFY5YHvlB3ULcAGBEFGdHt2
+ fDd7C1FCcON+udsmb+GrxCVw4vMeYPPrrsF67aOn0A4NbDIpVwhT5T7tzGswyf4EmJn9
+ fEiX7pvTDEmjRyVWxtNHA30v33uqY3Y6qqGE87NCCLGnKqMNQkZX73s+40Y0qpitHf8N
+ Uc3TiYLYLrxktbEgtEUHb3OBAabkh+dTePq3HlU4kkXMqRNQyw/mzvdAcRVgRIvQ5POj
+ GZtZb67WEAGJOwgkqghdgKgTW1gSIQgpqFESTrrDCfwzif6n6H/DFsxpFoo0WUJtN1RW
+ oWhQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCW0PJiY4/cQUUTValXuPmFPS6GRHQZoHBhK+AxCydA9x5yMWRPMKSw5oyHKhBvuAyuM2wawNqa5aOs=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxeiRi0xg7T7yA8K/MLpQHgGsxib6NP0KgCYEPEzLpt6j/ivM+c
+ 9ND3qGRYIB5zMIq0yfVn0n4C1KfxF9AlVp992H9HLufObCtQqdmBiZTofOMto/c=
+X-Google-Smtp-Source: AGHT+IH/XyinT4aMIAmYRz/XaV52NMVVzbhuefR97ibNrrBU8D+UOohufjTYAz8u3fZprURgTQGTFQ==
+X-Received: by 2002:a5d:64c7:0:b0:37d:4cd6:6f2b with SMTP id
+ ffacd0b85a97d-381be7c6d38mr3172585f8f.14.1730387586155; 
+ Thu, 31 Oct 2024 08:13:06 -0700 (PDT)
+Received: from [127.0.1.1] ([82.76.168.176]) by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-381c10e734csm2418920f8f.60.2024.10.31.08.13.04
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 31 Oct 2024 08:13:05 -0700 (PDT)
+From: Abel Vesa <abel.vesa@linaro.org>
+Subject: [PATCH RFC 0/4] drm/dp: Rework LTTPR transparent mode handling and
+ add support to msm driver
+Date: Thu, 31 Oct 2024 17:12:44 +0200
+Message-Id: <20241031-drm-dp-msm-add-lttpr-transparent-mode-set-v1-0-cafbb9855f40@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241031-hrtimer_setup_p1_v2-v2-0-23400656575a@linutronix.de>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGyeI2cC/x3NTQrCQAxA4auUrA3MtP6AW8EDdCsuxibVgDMdk
+ iBC6d0dXH6b91YwVmGDc7eC8kdMltIQdx1Mr1SejELN0Id+H8MQkTQjVcyWMRHh270quqZiNSk
+ Xx7wQo7FjHI4THR4zcThB61XlWb7/1w3G6wXu2/YDCFEeP4AAAAA=
+X-Change-ID: 20241031-drm-dp-msm-add-lttpr-transparent-mode-set-136cd5bfde07
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>, 
+ Danilo Krummrich <dakr@redhat.com>, 
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, Rob Clark <robdclark@gmail.com>, 
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>, 
+ Marijn Suijten <marijn.suijten@somainline.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Johan Hovold <johan@kernel.org>, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, 
+ freedreno@lists.freedesktop.org, Abel Vesa <abel.vesa@linaro.org>
+X-Mailer: b4 0.15-dev-dedf8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1865; i=abel.vesa@linaro.org; 
+ h=from:subject:message-id;
+ bh=Rn1RYLNCY+va9n7q8LPSyO8/hYLl0U5QTd9LaR9C9cQ=; 
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBnI55w2gGvSWDHYern33C/bnQFSzNPqE4J8vopZ
+ EoyMlfQF8uJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZyOecAAKCRAbX0TJAJUV
+ VgJcEACbGTPeHw0+Q/6YIPqnU7F3yFTCeTLPbJVrwZN2m/7kCuENAobZov43TD5zZG18pIx7ch2
+ ecQLN/QlgWU6g0oll1X0ody4i6kKCsREC8ACcaSt6HhxFCCmY076kxQjU2B7VV3r0zLfl6Gy3ZW
+ L7O86IZVvUTASSYBy3rrdbkhGi6JqUVJf7p3VM5ehGeuc/cdqH25LpQecwfOmq16OC6520DIFqH
+ mch27QHafcyo+lBH4FqwaW+OE84jHhWHUUSPtOnJkj5m/nwNirepSoykqv0gT+YU0plToBHtFBF
+ 7xshbfaEdzDD5Y73PdB01xzcYWKJcBFd0Z7syDG/INa1w8xb3WclLBZNOP08LnITbDtMKqAJiyt
+ Olv27jx+HU2H55J972oIw7rVhUbW4crjCHmrOfQOjHtASg3ZeY6cekuSSNU/em34/+uLs7P2OIQ
+ UJg4BXEvOKhfc1+72APJ++dH+765KrsKLDoV1/LQ1Bh0LRbEWG26PkxuZbvA8ARQafNsFuWyyXe
+ gca3pn4JJqcYzFUNHZS9vNChOotfgbe0DS2q8XeoQiH6w5CkgnAHJl7AP2DatujIiymGr8jzxEL
+ Emzm22xV2yTlsIi0Ze2itmEIg/8E7n0HPhQOqDSYCdZU41Dsh8/wNITpjfCiP7Q0iCeg4yPBshb
+ 9qM/ZQtKSkxXFjQ==
+X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
+ fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
 X-Mailman-Approved-At: Fri, 01 Nov 2024 10:08:01 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -75,54 +118,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-I just learned the hard way that git-send-email doesn't work for a .mbox
-file including multiple emails. Sorry for the noises, please ignore this
-one. I will resend it shortly.
+Looking at both i915 and nouveau DP drivers, both are setting the first
+LTTPR (if found) in transparent mode first and then in non-transparent
+mode, just like the DP v2.0 specification mentions in section 3.6.6.1.
 
-On Thu, Oct 31, 2024 at 03:19:21PM +0100, Nam Cao wrote:
-> This is a follow up to version 1, which can be found here:
-> 
->     https://lore.kernel.org/lkml/cover.1729864615.git.namcao@linutronix.de/
-> 
-> hrtimers must be initialized with a hrtimer_init() variant, and after that
-> the timer's callback function must be setup separately.
-> 
-> This seperate initialization is error prone and awkward to use. The
-> seperate initialization is also problematic for a clean Rust abstraction.
-> 
-> A combined setup function like timer_setup() is less error prone and
-> simpler to use.
-> 
-> This first part of the conversion provides:
-> 
->   - a set of hrtimer_setup*() variants, which take the function pointer as
->     argument.
-> 
->   - hrtimer_update_function() which allows to change the callback function
->     after initialization with the proper safety checks in place.
-> 
->   - conversion of the hrtimer_init*_on_stack() variants
-> 
->   - some minor cleanups
-> 
-> The remaining users will be converted in follow up series.
-> 
-> Most conversions were done with Coccinelle. See sematic patch below.
-> 
-> Changes versus v1:
->   - Open code kvm_xen_init_vcpu() (Sean)
->   - Drop the can/bcm patch (Oliver)
->   - Folded the removal of hrtimer_init_sleeper() (tglx)
->   - Update change logs and cover letter
-> 
-> The series applies on top of:
-> 
->     git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip.git timers/core
-> 
-> and is also available from git:
-> 
->     git://git.kernel.org/pub/scm/linux/kernel/git/tglx/devel.git hrtimer-setup-part1-v2
-> 
-> Best regards,
-> 
-> Nam
+Being part of the standard, setting the LTTPR in a specific operation mode
+can be easily moved in the generic framework. So do that by adding a new
+helper.
+
+Then, the msm DP driver is lacking any kind of support for LTTPR handling,
+so add it by reading the LTTPR caps for figuring out the number of LTTPRs
+found on plug detect and then do exactly what the i915 and nouveau drivers
+do with respect to toggling through operating modes, just like the
+up-mentioned section from DP spec describes.
+
+At some point, link training per sub-segment will probably be needed, but
+for now, toggling the operating modes seems to be enough at least for the
+X Elite-based platforms that this patchset has been tested on.
+
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+---
+Abel Vesa (4):
+      drm/dp: Add helper to set LTTPRs in transparent mode
+      drm/nouveau/dp: Use the generic helper to control LTTPR transparent mode
+      drm/i915/dp: Use the generic helper to control LTTPR transparent mode
+      drm/msm/dp: Add support for LTTPR handling
+
+ drivers/gpu/drm/display/drm_dp_helper.c            | 17 +++++++++++++++
+ .../gpu/drm/i915/display/intel_dp_link_training.c  |  2 +-
+ drivers/gpu/drm/msm/dp/dp_display.c                | 25 ++++++++++++++++++++++
+ drivers/gpu/drm/nouveau/nouveau_dp.c               |  9 +++-----
+ include/drm/display/drm_dp_helper.h                |  1 +
+ 5 files changed, 47 insertions(+), 7 deletions(-)
+---
+base-commit: 6fb2fa9805c501d9ade047fc511961f3273cdcb5
+change-id: 20241031-drm-dp-msm-add-lttpr-transparent-mode-set-136cd5bfde07
+
+Best regards,
+-- 
+Abel Vesa <abel.vesa@linaro.org>
+
