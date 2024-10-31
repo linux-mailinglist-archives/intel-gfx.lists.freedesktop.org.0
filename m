@@ -2,62 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B0D09B7D49
-	for <lists+intel-gfx@lfdr.de>; Thu, 31 Oct 2024 15:50:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 772C19B7D5A
+	for <lists+intel-gfx@lfdr.de>; Thu, 31 Oct 2024 15:56:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D1C1210E8BB;
-	Thu, 31 Oct 2024 14:50:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA85910E406;
+	Thu, 31 Oct 2024 14:56:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eRV0mwlx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kRCMQuy6";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC8B510E8BB
- for <intel-gfx@lists.freedesktop.org>; Thu, 31 Oct 2024 14:50:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB2FB10E406
+ for <intel-gfx@lists.freedesktop.org>; Thu, 31 Oct 2024 14:56:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730386222; x=1761922222;
+ t=1730386563; x=1761922563;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=BzBamUX3xGrAaQWHip/O1XHSRE9FxCXSfcVm6qXZqI0=;
- b=eRV0mwlxif2SrMdDLLC3roz/m5Rp5Vk5C99BTxDVIz8p881fwpF2d6/a
- oSII1me2Vdg2pVfwJIc5bawzwhHA6hNGLAspM/J7C8WGORWf2sMHh4ECN
- TuyQpt6qkZPyN0h10fx2i7eFvo+Kc4iPRBJVrXETGbfor9Tjy3rKmwfcq
- YRrV4vmCG8EKCFAoh+RvMzMJkHtXHkmvtdi/S7MvNkUrJUp/wePCIbHDA
- 66FcGJGXfry4o3TEEZ7YEfJmI0R9LVesiMkZsaIJUHbWE8G5Nyr/aXcF6
- q4jJTPdsIUkK4RvYjBZedD0phihtNY/3/35K17nTEsouBQonky/stJeUJ A==;
-X-CSE-ConnectionGUID: PXntLSTuRu+ZC1SGoo6CuA==
-X-CSE-MsgGUID: pHwWXxNeQA6CKQRfxiGZeg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11242"; a="30344816"
-X-IronPort-AV: E=Sophos;i="6.11,247,1725346800"; d="scan'208";a="30344816"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2024 07:50:20 -0700
-X-CSE-ConnectionGUID: FF9HiWgySZKJDTXBDE1WnA==
-X-CSE-MsgGUID: VDrycngoRyqg+8UYixZWAw==
+ bh=TYoKocrXmoWPpEwvF06eZ4iXoYwvkrUkJWfUt4bnotg=;
+ b=kRCMQuy6YRajT1XaY6rfWj38OrT8brTT6mfCEtU/CYZTVPzSAI3rYEJv
+ IPl556mRPID710JzqvRXED/qosHI3bFCLibR01kLmdUAJ15QndiJ/UXy9
+ hv4TjCvCVLJGLVE1jgyvc/aEpPdOoC2BZVJlKEG8wuXKi304FN2xoqqcW
+ hUj4Y4uquR2wtyS8J3NFxExe+KiGtyjwWfYpsK1UetbFswUC+e6OIUJxB
+ /HZeiofRT2lrdwD2zwZ3B6qnhpzFBP9m8oK8Ek5H+MsddmAcfTtiuaaY4
+ CF9vSMqDsWN8YRq8zWb1Sqo1fq5YFrNejbuIHps/NgBHWW+CentSLxbU6 A==;
+X-CSE-ConnectionGUID: f03PhFrlQ9uQGadA+56XEQ==
+X-CSE-MsgGUID: v0mzbID8SF2bDOT3Mj5psQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11242"; a="29546656"
+X-IronPort-AV: E=Sophos;i="6.11,247,1725346800"; d="scan'208";a="29546656"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Oct 2024 07:55:23 -0700
+X-CSE-ConnectionGUID: A9qKMayPQ9KjAW5BzZdOIQ==
+X-CSE-MsgGUID: OqLxCR5FSwOCbeBszRSn9g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,247,1725346800"; d="scan'208";a="113495180"
+X-IronPort-AV: E=Sophos;i="6.11,247,1725346800"; d="scan'208";a="113433104"
 Received: from black.fi.intel.com ([10.237.72.28])
- by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2024 07:50:18 -0700
-Date: Thu, 31 Oct 2024 16:50:15 +0200
+ by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Oct 2024 07:55:21 -0700
+Date: Thu, 31 Oct 2024 16:55:18 +0200
 From: Raag Jadav <raag.jadav@intel.com>
 To: "Kahola, Mika" <mika.kahola@intel.com>
 Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
  "Sousa, Gustavo" <gustavo.sousa@intel.com>,
  "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>
-Subject: Re: [PATCH v3 1/2] drm/i915/xe3lpd: Power request
+Subject: Re: [PATCH v3 0/2] drm/i915/display: Power request
  asserting/deasserting
-Message-ID: <ZyOZJ-hDIpT7G91_@black.fi.intel.com>
+Message-ID: <ZyOaVjZgHMg5mvAz@black.fi.intel.com>
 References: <20241031114027.225217-1-mika.kahola@intel.com>
- <20241031114027.225217-2-mika.kahola@intel.com>
- <ZyN-K6kvCJdri7Lj@black.fi.intel.com>
- <MW4PR11MB70547BFB1F1942AAA3E94889EF552@MW4PR11MB7054.namprd11.prod.outlook.com>
+ <ZyN_FKqlDfQBH_24@black.fi.intel.com>
+ <MW4PR11MB705490B264289108778C8133EF552@MW4PR11MB7054.namprd11.prod.outlook.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <MW4PR11MB70547BFB1F1942AAA3E94889EF552@MW4PR11MB7054.namprd11.prod.outlook.com>
+In-Reply-To: <MW4PR11MB705490B264289108778C8133EF552@MW4PR11MB7054.namprd11.prod.outlook.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,17 +72,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Oct 31, 2024 at 07:59:16PM +0530, Kahola, Mika wrote:
-
-...
-
-> > > +static void wa_14020908590(struct intel_display *display,
-> > > +			   bool enable)
+On Thu, Oct 31, 2024 at 07:58:19PM +0530, Kahola, Mika wrote:
+> > -----Original Message-----
+> > From: Jadav, Raag <raag.jadav@intel.com>
+> > Sent: Thursday, 31 October 2024 14.59
+> > To: Kahola, Mika <mika.kahola@intel.com>
+> > Cc: intel-gfx@lists.freedesktop.org; Sousa, Gustavo <gustavo.sousa@intel.com>;
+> > jani.nikula@linux.intel.com
+> > Subject: Re: [PATCH v3 0/2] drm/i915/display: Power request
+> > asserting/deasserting
 > > 
-> > Can be one line?
+> > On Thu, Oct 31, 2024 at 01:40:25PM +0200, Mika Kahola wrote:
+> > > There is a HW issue that arises when there are race conditions between
+> > > TCSS entering/exiting TC7 or TC10 states while the driver is
+> > > asserting/deasserting TCSS power request. As a workaround, Display
+> > > driver will implement a mailbox sequence to ensure that the TCSS is in
+> > > TC0 when TCSS power request is asserted/deasserted.
+> > >
+> > > The sequence is the following
+> > >
+> > > 1. Read mailbox command status and wait until run/busy bit is
+> > >    clear
+> > > 2. Write mailbox data value '1' for power request asserting
+> > >    and '0' for power request deasserting 3. Write mailbox command
+> > > run/busy bit and command value with 0x1 4. Read mailbox command and
+> > > wait until run/busy bit is clear
+> > >    before continuing power request.
+> > >
+> > > while at it, let's start using struct intel_display instead of struct
+> > > drm_i915_private as well.
+> > 
+> > Perhaps this needs to be its own patch since it's unrelated to the series.
 > 
-> Could be. This should fit within expected line length.
+> There was a request from Jani to start using intel_display instead of
+> drm_i915_private also with the calling function. So this is perhaps
+> remotely related to this WA I included this here.
 
-With that,
+Yes, he has a series WIP for it. Perhaps worth collaborating.
 
-Reviewed-by: Raag Jadav <raag.jadav@intel.com>
+Raag
