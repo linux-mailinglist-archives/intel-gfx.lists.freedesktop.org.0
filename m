@@ -2,62 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C307C9B79BB
-	for <lists+intel-gfx@lfdr.de>; Thu, 31 Oct 2024 12:34:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B26029B79D5
+	for <lists+intel-gfx@lfdr.de>; Thu, 31 Oct 2024 12:38:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2ECB010E837;
-	Thu, 31 Oct 2024 11:34:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BC1610E3F6;
+	Thu, 31 Oct 2024 11:38:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fnf/3hqB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W7klQdVs";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CC7C10E0A1;
- Thu, 31 Oct 2024 11:34:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D4C1810E3F6;
+ Thu, 31 Oct 2024 11:38:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730374443; x=1761910443;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=rad7u463xWi2MhcMG4ACZLpipTH5MAEkEWxnR7IUYzI=;
- b=fnf/3hqBrUp7nek6inX+8wAcZ7PhWFb3xgK/ElS/+Ww1eFDMcHmXKE6/
- MMsrR8Hjr2TerIiRr5CYRa/x7LLKMiZ7Z+AjEAmHx1bZeXVfeTuq7bj+c
- io9E1ysWlQKzfS9cm27UIt9wUL0zPjugBnm58VXI/XFitA8W92KyT5yjh
- +ww3X6z4Ty9/zk3gXf3QfLCw6Q1GGAoFy8VlGzN5+dNg5qtpy3TB5+p7m
- 9PUy7N83MGlifYJTr1H2WqDvhSFtfqmNHojtmFdWhaKdXrvaeY3DOeqUt
- 4TS6xu0noTOqvwNF2NTxqELr5PM/JfoZVzl2Pp8Cau2HVEETHqRmixID/ Q==;
-X-CSE-ConnectionGUID: hE68/RwJQmSfT8PohQG5dQ==
-X-CSE-MsgGUID: G66Ka3hySrSswn/oA3O4mw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11241"; a="17748624"
-X-IronPort-AV: E=Sophos;i="6.11,247,1725346800"; d="scan'208";a="17748624"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2024 04:34:02 -0700
-X-CSE-ConnectionGUID: n9sV0ysrS3+sj260hNjB0A==
-X-CSE-MsgGUID: H+CxxR49Tbedvhi14tGNmw==
+ t=1730374722; x=1761910722;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=MgCJf/ONKMtTscMnUn/3v2oeEHj9O1SBmVKf/YHzq3M=;
+ b=W7klQdVsNQAWwOinm2/pBxL8pMJHEH5jYbWb5MqHG8U0hMeARxYKATuS
+ gGmEQmcToZZ4i12xRChDAd2eaaPM8bJbLR8hyT0Vu1/6CmmUWhQln5OA2
+ MsWbOsSP+f+O8ZQsE1nngS5wAcnruja5uPlYmHUoneyhHL3aVjJcZytt2
+ zi+JQhpWY7WzrQzZ2ROKatX//pXHJnWGoHxn6P/n/61uxhAk2xTswThZi
+ OOj4LHN78Tq5E1pteiW3WVio2OJyO3AgLC5Tlb5N+PW+mqnm4J6iccMeK
+ 0Za56H7NlY7XIAoxQscrbZGMfJ0wj+1oginE/QZFWTc49BXlwdL0sksMH g==;
+X-CSE-ConnectionGUID: tRX9KxSCRnidoBnyALXjsQ==
+X-CSE-MsgGUID: fXVY76joTgattqJHbj8W+g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11241"; a="40682195"
+X-IronPort-AV: E=Sophos;i="6.11,247,1725346800"; d="scan'208";a="40682195"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Oct 2024 04:38:41 -0700
+X-CSE-ConnectionGUID: X1eXbxl2SAmLjm2bjylM8g==
+X-CSE-MsgGUID: fsqUVzl5TyyC3tNj7b1MIg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,247,1725346800"; d="scan'208";a="87202121"
+X-IronPort-AV: E=Sophos;i="6.11,247,1725346800"; d="scan'208";a="82724562"
 Received: from sschumil-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.204])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2024 04:33:58 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Sergey Senozhatsky <senozhatsky@chromium.org>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, Sergey
- Senozhatsky <senozhatsky@chromium.org>
-Subject: Re: [RFC][PATCH] drm: i915: do not NULL deref hdmi attached_connector
-In-Reply-To: <20241031105145.2140590-1-senozhatsky@chromium.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241031105145.2140590-1-senozhatsky@chromium.org>
-Date: Thu, 31 Oct 2024 13:33:55 +0200
-Message-ID: <87y124jyl8.fsf@intel.com>
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Oct 2024 04:38:40 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH 0/6] drm/i915/display: make all i915_drv.h includes explicit
+Date: Thu, 31 Oct 2024 13:38:30 +0200
+Message-Id: <cover.1730374470.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Content-Type: text/plain
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,122 +68,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 31 Oct 2024, Sergey Senozhatsky <senozhatsky@chromium.org> wrote:
-> 	*** RFC ***
->
-> intel_ddi_init() may skip connector initialization, for instance,
-> both intel_ddi_init_dp_connector() and intel_ddi_init_hdmi_connector()
-> are optional.  This leads to situation that ->attached_connector may
-> be NULL for some connectors.  For instance, on my setup 'DDI A/PHY A'
-> and 'DDI TC1/PHY TC1' are not initialized.
->
-> However, functions like intel_dp_dual_mode_set_tmds_output() and
-> friends don't take this into consideration.  This leads to NULL
-> ptr-derefs:
->
-> KASAN: null-ptr-deref in range [0x0000000000000848-0x000000000000084f]
-> RIP: 0010:intel_hdmi_encoder_shutdown+0x105/0x230
-> Call Trace:
-> <TASK>
-> i915_driver_shutdown+0x2d8/0x490
-> pci_device_shutdown+0x83/0x150
-> device_shutdown+0x4ad/0x660
-> __se_sys_reboot+0x29c/0x4d0
-> do_syscall_64+0x60/0x90
->
-> Add a new helper to avoid NULL ->attached_connector derefs and
-> switch some intel_hdmi function to it.  I'm not sure if we need
-> to switch all or just intel_dp_dual_mode_set_tmds_output() (I
-> have only seen this one doing NULL derefs so far).
+Drop all implicit includes of i915_drv.h via other headers in display
+code, and make the includes explicit.
 
-I think the question is, what are we doing running this code if the
-connector initialization was skipped?
+With this, we can use:
+
+$ git grep '#include "i915_drv.h"' -- drivers/gpu/drm/i915/display/
+
+to track the progress of struct drm_i915_private -> struct intel_display
+conversion, and in general the progress of breaking ties with everything
+that comes out of i915_drv.h. Before this, removing the i915_drv.h
+includes was meaningless, because we'd always get it through some other
+route.
 
 BR,
 Jani.
 
->
-> Signed-off-by: Sergey Senozhatsky <senozhatsky@chromium.org>
-> ---
->  drivers/gpu/drm/i915/display/intel_hdmi.c | 27 ++++++++++++++++++-----
->  1 file changed, 22 insertions(+), 5 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> index e1a1351bc94f..c089dd20972b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> @@ -1256,12 +1256,19 @@ static void hsw_set_infoframes(struct intel_encoder *encoder,
->  			      &crtc_state->infoframes.drm);
->  }
->  
-> +static struct i2c_adapter *to_ddc(struct intel_hdmi *hdmi)
-> +{
-> +	if (hdmi->attached_connector)
-> +		return hdmi->attached_connector->base.ddc;
-> +	return NULL;
-> +}
-> +
->  void intel_dp_dual_mode_set_tmds_output(struct intel_hdmi *hdmi, bool enable)
->  {
->  	struct intel_display *display = to_intel_display(hdmi);
-> -	struct i2c_adapter *ddc = hdmi->attached_connector->base.ddc;
-> +	struct i2c_adapter *ddc = to_ddc(hdmi);
->  
-> -	if (hdmi->dp_dual_mode.type < DRM_DP_DUAL_MODE_TYPE2_DVI)
-> +	if (!ddc || hdmi->dp_dual_mode.type < DRM_DP_DUAL_MODE_TYPE2_DVI)
->  		return;
->  
->  	drm_dbg_kms(display->drm, "%s DP dual mode adaptor TMDS output\n",
-> @@ -1275,7 +1282,7 @@ static int intel_hdmi_hdcp_read(struct intel_digital_port *dig_port,
->  				unsigned int offset, void *buffer, size_t size)
->  {
->  	struct intel_hdmi *hdmi = &dig_port->hdmi;
-> -	struct i2c_adapter *ddc = hdmi->attached_connector->base.ddc;
-> +	struct i2c_adapter *ddc = to_ddc(hdmi);
->  	int ret;
->  	u8 start = offset & 0xff;
->  	struct i2c_msg msgs[] = {
-> @@ -1292,6 +1299,10 @@ static int intel_hdmi_hdcp_read(struct intel_digital_port *dig_port,
->  			.buf = buffer
->  		}
->  	};
-> +
-> +	if (!ddc)
-> +		return -EINVAL;
-> +
->  	ret = i2c_transfer(ddc, msgs, ARRAY_SIZE(msgs));
->  	if (ret == ARRAY_SIZE(msgs))
->  		return 0;
-> @@ -1302,11 +1313,14 @@ static int intel_hdmi_hdcp_write(struct intel_digital_port *dig_port,
->  				 unsigned int offset, void *buffer, size_t size)
->  {
->  	struct intel_hdmi *hdmi = &dig_port->hdmi;
-> -	struct i2c_adapter *ddc = hdmi->attached_connector->base.ddc;
-> +	struct i2c_adapter *ddc = to_ddc(hdmi);
->  	int ret;
->  	u8 *write_buf;
->  	struct i2c_msg msg;
->  
-> +	if (!ddc)
-> +		return -EINVAL;
-> +
->  	write_buf = kzalloc(size + 1, GFP_KERNEL);
->  	if (!write_buf)
->  		return -ENOMEM;
-> @@ -1335,9 +1349,12 @@ int intel_hdmi_hdcp_write_an_aksv(struct intel_digital_port *dig_port,
->  {
->  	struct intel_display *display = to_intel_display(dig_port);
->  	struct intel_hdmi *hdmi = &dig_port->hdmi;
-> -	struct i2c_adapter *ddc = hdmi->attached_connector->base.ddc;
-> +	struct i2c_adapter *ddc = to_ddc(hdmi);
->  	int ret;
->  
-> +	if (!ddc)
-> +		return -EINVAL;
-> +
->  	ret = intel_hdmi_hdcp_write(dig_port, DRM_HDCP_DDC_AN, an,
->  				    DRM_HDCP_AN_LEN);
->  	if (ret) {
+Jani Nikula (6):
+  drm/i915/gvt: always pass struct intel_display * to register macros
+  drm/i915: extract intel_uncore_trace.[ch]
+  drm/i915/display: add intel_display_conversion.c to hide stuff better
+  drm/i915/uncore: add to_intel_uncore() and use it
+  drm/i915/display: add struct drm_device to struct intel_display
+    conversion function
+  drm/i915/display: drop i915_drv.h include from intel_display_trace.h
+
+ drivers/gpu/drm/i915/Makefile                 |  2 +
+ drivers/gpu/drm/i915/display/g4x_dp.c         |  1 +
+ drivers/gpu/drm/i915/display/g4x_hdmi.c       |  1 +
+ drivers/gpu/drm/i915/display/i9xx_plane.c     |  1 +
+ drivers/gpu/drm/i915/display/icl_dsi.c        |  1 +
+ drivers/gpu/drm/i915/display/intel_alpm.c     |  1 +
+ .../gpu/drm/i915/display/intel_atomic_plane.c |  1 +
+ .../gpu/drm/i915/display/intel_backlight.c    |  1 +
+ drivers/gpu/drm/i915/display/intel_cdclk.c    |  1 +
+ drivers/gpu/drm/i915/display/intel_color.c    |  1 +
+ .../gpu/drm/i915/display/intel_combo_phy.c    |  1 +
+ drivers/gpu/drm/i915/display/intel_crtc.c     |  1 +
+ drivers/gpu/drm/i915/display/intel_cursor.c   |  1 +
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  |  2 +
+ drivers/gpu/drm/i915/display/intel_de.h       |  8 +-
+ .../i915/display/intel_display_conversion.c   | 14 ++++
+ .../i915/display/intel_display_conversion.h   | 10 ++-
+ .../drm/i915/display/intel_display_debugfs.c  |  1 +
+ .../drm/i915/display/intel_display_trace.h    |  2 +-
+ .../drm/i915/display/intel_display_types.h    |  3 +-
+ drivers/gpu/drm/i915/display/intel_dmc_wl.c   |  1 +
+ drivers/gpu/drm/i915/display/intel_dp_aux.c   |  2 +-
+ drivers/gpu/drm/i915/display/intel_dp_hdcp.c  |  1 +
+ drivers/gpu/drm/i915/display/intel_dpio_phy.c |  1 +
+ drivers/gpu/drm/i915/display/intel_dpll.c     |  1 +
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  1 +
+ .../gpu/drm/i915/display/intel_dpt_common.c   |  1 +
+ drivers/gpu/drm/i915/display/intel_fdi.c      |  1 +
+ drivers/gpu/drm/i915/display/intel_lspcon.c   |  1 +
+ .../gpu/drm/i915/display/intel_pch_display.c  |  1 +
+ .../gpu/drm/i915/display/intel_pch_refclk.c   |  1 +
+ drivers/gpu/drm/i915/display/intel_pipe_crc.c |  1 +
+ drivers/gpu/drm/i915/display/intel_snps_phy.c |  1 +
+ drivers/gpu/drm/i915/display/skl_scaler.c     |  1 +
+ drivers/gpu/drm/i915/gvt/cmd_parser.c         | 17 ++--
+ drivers/gpu/drm/i915/gvt/display.c            | 80 ++++++++++---------
+ drivers/gpu/drm/i915/gvt/fb_decoder.c         | 21 ++---
+ drivers/gpu/drm/i915/gvt/handlers.c           | 44 +++++-----
+ drivers/gpu/drm/i915/i915_trace.h             | 28 -------
+ drivers/gpu/drm/i915/intel_uncore.c           |  7 +-
+ drivers/gpu/drm/i915/intel_uncore.h           |  2 +
+ drivers/gpu/drm/i915/intel_uncore_trace.c     |  7 ++
+ drivers/gpu/drm/i915/intel_uncore_trace.h     | 49 ++++++++++++
+ drivers/gpu/drm/i915/vlv_suspend.c            |  1 +
+ drivers/gpu/drm/xe/Makefile                   |  1 +
+ .../drm/xe/compat-i915-headers/intel_uncore.h |  5 ++
+ .../{i915_trace.h => intel_uncore_trace.h}    |  0
+ 47 files changed, 221 insertions(+), 110 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_display_conversion.c
+ create mode 100644 drivers/gpu/drm/i915/intel_uncore_trace.c
+ create mode 100644 drivers/gpu/drm/i915/intel_uncore_trace.h
+ rename drivers/gpu/drm/xe/compat-i915-headers/{i915_trace.h => intel_uncore_trace.h} (100%)
 
 -- 
-Jani Nikula, Intel
+2.39.5
+
