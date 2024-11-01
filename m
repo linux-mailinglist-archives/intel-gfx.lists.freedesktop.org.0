@@ -2,92 +2,126 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20D729B9936
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Nov 2024 21:12:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 528D89B9A30
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Nov 2024 22:26:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C23B10E9FF;
-	Fri,  1 Nov 2024 20:12:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E630D10EA09;
+	Fri,  1 Nov 2024 21:26:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="cehXVlHl";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="V7D9L2vU";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com
- [209.85.167.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 165C310E0BC
- for <intel-gfx@lists.freedesktop.org>; Fri,  1 Nov 2024 20:12:21 +0000 (UTC)
-Received: by mail-lf1-f49.google.com with SMTP id
- 2adb3069b0e04-539fe76e802so2920193e87.1
- for <intel-gfx@lists.freedesktop.org>; Fri, 01 Nov 2024 13:12:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1730491939; x=1731096739; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=XRuudTPNmMwLHY1n1kU3xhjTGMpQc0UfbLasNRVgYtU=;
- b=cehXVlHlYopBBlkinAfTLIr1ZjhzYZvoGn8MOluK6YsUcVUqN6JYU1Ok0R8HGn1zZQ
- J3iBH4BUljq2rWOjTg4N+r6JyFPFwry3TxtxArxq/N49ccNb8jPtQidFkw89N/LFPBTn
- BM++HRrTVaUM5HLi/sAiL1uij76LTtTaJYxXFin6jmsANUEpGowXhbs3cs8pNClrTAEE
- eckTH0bud2aY92I0ZbZlGa70fVujmg+/4FbACVKu989Kn8KWmQyWz8kEdPbezFORvRGS
- DTxKzSgjrwya080SmKfMGDEWRFWwmt+5b8h2JAJ+86Sl/emqBmhNqBd3L3tSuaixeubB
- 7/Pg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1730491939; x=1731096739;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=XRuudTPNmMwLHY1n1kU3xhjTGMpQc0UfbLasNRVgYtU=;
- b=moFF+soNdVAxOE6jiRv23cDbLZqivT8MXZ9eHab+riEWBDLeLW1GIBB8M45CKAUrHM
- RfYhYI0J4codqKUd7PwMHorF57Okc4DZXenWRprsriGHkz4XMSv+RSBKlpX9cCdWnfCc
- Dyb1u2LtTGbRNc/fZbcVBeDY06HrBjrlDmk+a9NSR/ybVpY2YQZX9+LDSVeLh0bJ+cpp
- Sge9Hwi2ro2AWGiAv1MLoT5nyrKv0g/mApzikRk54tH5IazTgK0rBNSJZ++0GW9YIzaS
- z3CNxhSKeelmtAhY6YlpwejeJKGwNFVmtsm1EeQ7OnHOZevd65MuieFi10uiQZv5oFQb
- XiYw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCX8hv+XeCemlfdy4zYwXTrjwEH8YAextXELC1KrStKyw3N91+7i6aCGIuMcn8aWqO7c+0DD7q77peg=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzmLGvGjn0d7Bch1Inf0bqS26Bs+NH9l9JFokjBj7NnP276g18i
- jNTYZTfWrK/1S/9Of/K4UL+8lfoxIbv7qjPPRTFbY4zW568NrEceIaM2ZyUdK28=
-X-Google-Smtp-Source: AGHT+IGIvW5ByRLM9GHWvfJdsh1B2I5joze+CQnZ10eSEsQVXQNXZharaJdv+roZF+ZF+jW9UKOllQ==
-X-Received: by 2002:a05:6512:3d21:b0:53c:7363:90c with SMTP id
- 2adb3069b0e04-53d65df7d34mr2770112e87.35.1730491938782; 
- Fri, 01 Nov 2024 13:12:18 -0700 (PDT)
-Received: from eriador.lumag.spb.ru
- (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
- by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-53c7bcce3d9sm656782e87.161.2024.11.01.13.12.17
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 01 Nov 2024 13:12:18 -0700 (PDT)
-Date: Fri, 1 Nov 2024 22:12:16 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Imre Deak <imre.deak@intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
- Abel Vesa <abel.vesa@linaro.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>, 
- Danilo Krummrich <dakr@redhat.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
- Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
- Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
- Johan Hovold <johan@kernel.org>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, 
- nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, 
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org
-Subject: Re: [PATCH RFC 1/4] drm/dp: Add helper to set LTTPRs in transparent
- mode
-Message-ID: <skyowhfl2qoaaoa4gyj5mf4j3nlznmtc6l5b3oicopmc5u5nxb@f3i2iif3r6ya>
-References: <20241031-drm-dp-msm-add-lttpr-transparent-mode-set-v1-0-cafbb9855f40@linaro.org>
- <20241031-drm-dp-msm-add-lttpr-transparent-mode-set-v1-1-cafbb9855f40@linaro.org>
- <ZyPxLpykHkO9Xx_R@ideak-desk.fi.intel.com>
- <87msijjol6.fsf@intel.com>
- <ZyTbDELVW5vqFoMS@ideak-desk.fi.intel.com>
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2042.outbound.protection.outlook.com [40.107.243.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D28C910E161;
+ Fri,  1 Nov 2024 21:26:03 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=VIssfzek7jZ4PeDbup/IDJQx3R41Q+OAwZ8X+HIEWdOWV2gKP3iO9gv0nnAjYso31laUOu/9cPlaWDnkvm5DZ5yKIPHY2V+SsN0IV1ClTgNyd5A+6bVhm71tKbGTPFoLMxgZ8Vea972lZT+EbiL79X3a3bjLo3mRD7WuN47bs4fFjctUZ3BglRwTTLxgZaPC/GElDY0dzQuvjGldhuIlBcEjbkSTZSZvjK5ZUD7ERh6jZ7pkw5961tskNVb1QKXbZwbNmoo1kULtK9i+hdcCpHcTUrHiTDhbBCkNbdm/NJNE7EH98+KPApS9hM1wt2jPPHDrgHEKnstITqR/8MWflA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=2tYaTkG/AQ2z7uuEyoiZ/xXEtC0YGGWrK/eatL5AqT8=;
+ b=U8wU06ykqrH7skTqVCCwjiUjjwo8xU6aLYtIgvu7rhD+rMpGnt2kIEN1YcHz0vk8+gV5frHYaNtLzCrdisBLFZLG3Rl42dw90Jg/Xg4bkNN1nzbLol1bOIfvFM+xX4tOtdr97hKRrxoDmyjpQhNp3qHumTOTwWGRtdzOY5EfBmuPMCoDFbAPpSXjZoThZtTCLVAet792EDSzdJoTgallXFElj2vfOrDQ8jNmuMuu8o2dWBbqXFB0zA1jvDRqh4cCCLgQ7RyVgGrs9mN5iH88I+GyyxPuDoBl9C9sLuFGbENKJxEBHqLdYayQkfOKpkw7tPgWpGivp0RFzhFcERXZLg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2tYaTkG/AQ2z7uuEyoiZ/xXEtC0YGGWrK/eatL5AqT8=;
+ b=V7D9L2vUeoILQhn5z3Q6TuYIjJpkucvoQ2kVCRxYIDjZAhMvApqKP+edtakUkD8q3OQwYHZfZFzKMggaH70dwd5up1UTZzpS56HYNw8Jp68c7HhITc/flYw+TWGkqW6Sl1tyXsPqUuJ4zcbd2jXV3oe6NpIgvn0FkIH1w8pEHF0=
+Received: from DM6PR11CA0035.namprd11.prod.outlook.com (2603:10b6:5:190::48)
+ by CY5PR12MB9053.namprd12.prod.outlook.com (2603:10b6:930:37::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8093.27; Fri, 1 Nov
+ 2024 21:26:01 +0000
+Received: from DS2PEPF0000343E.namprd02.prod.outlook.com
+ (2603:10b6:5:190:cafe::7c) by DM6PR11CA0035.outlook.office365.com
+ (2603:10b6:5:190::48) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8114.22 via Frontend
+ Transport; Fri, 1 Nov 2024 21:26:01 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ DS2PEPF0000343E.mail.protection.outlook.com (10.167.18.41) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8114.16 via Frontend Transport; Fri, 1 Nov 2024 21:26:01 +0000
+Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 1 Nov
+ 2024 16:26:01 -0500
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB06.amd.com
+ (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 1 Nov
+ 2024 16:26:00 -0500
+Received: from jzuo-linux.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
+ Transport; Fri, 1 Nov 2024 16:26:00 -0500
+From: Fangzhi Zuo <Jerry.Zuo@amd.com>
+To: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>, <lyude@redhat.com>,
+ <jani.nikula@intel.com>, <imre.deak@intel.com>, <simona@ffwll.ch>,
+ <wayne.lin@amd.com>
+CC: <harry.wentland@amd.com>, <rodrigo.siqueira@amd.com>, Fangzhi Zuo
+ <Jerry.Zuo@amd.com>
+Subject: [PATCH v2 0/2] Refactor MST DSC Determination Policy
+Date: Fri, 1 Nov 2024 17:24:15 -0400
+Message-ID: <20241101212546.4060-1-Jerry.Zuo@amd.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZyTbDELVW5vqFoMS@ideak-desk.fi.intel.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS2PEPF0000343E:EE_|CY5PR12MB9053:EE_
+X-MS-Office365-Filtering-Correlation-Id: eb297048-c16b-4411-d12b-08dcfabbc8f5
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|36860700013|82310400026|1800799024|376014; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?b9p5o5N1jaUtzm4JIuRF1M/2VbmmGerAfCV2ECu6uVYeqN/amf2nM2SJJbHe?=
+ =?us-ascii?Q?g8bpmV9zHgUDw4IhA+I1NgRU6ime15pCwg5clRPxLkAZL6yrqxOEp7kzKDaw?=
+ =?us-ascii?Q?jkVti+eRpF5QLzmM1c/bKSAVxLU/uQ82PZxOQidA8hw+bRQfDZAkPi6Qd/Yb?=
+ =?us-ascii?Q?fydvS7gCDF7H8Mx/JPwZVHvuFUkLalLLBmBvI01Yg2qfjpkhjH0BgPiVpQVG?=
+ =?us-ascii?Q?tc/4zqnc7wbmE9mTTqM55b1duzDSQm4VRlQ/uneWuF+vSrTYLIFXZ5vo2ups?=
+ =?us-ascii?Q?p1mMdjugSVySI7A9GdHA3lnE6nEnz7Wvcw18s5UKs4FNitMMdEyehH9/LXxF?=
+ =?us-ascii?Q?Xu516Eor99M/AbTjkqN4phbYuK8xD7KH8msdnFXtMp1GJuQY3EuKz+oqlXPW?=
+ =?us-ascii?Q?7oy4JXtPXDBSfRQMSvkCNqqEh5ebWnj3bj68ZKLOY19Nh+d/DRfS313+PI47?=
+ =?us-ascii?Q?lE7uUh8xRvl1v68b51qxm0M5NmEZXqyGdW23aQPsBkwjsNH1XLu1t7TsRkte?=
+ =?us-ascii?Q?hmk+6+zpHhqtLKz4obWxIzGVLJ44zdvR7kNv4nfJhiGAnhk+rn/LLp6RZtfz?=
+ =?us-ascii?Q?Y9U+puL1P21qLRZfjLOocgTxCwQC5TB8qoPYts0ucZ1EwyBtaI/IuUzCuMwk?=
+ =?us-ascii?Q?q+R5gNT9TziRu2OGFTeCmvtTDBwfnnJ4Lcm9CuXDvYIbOF+XFAj3vS9gaXM7?=
+ =?us-ascii?Q?gtKdP59J5yaNKBkKYl8ruHZZg58XwNd4iikemNqF/GYi+eLnnXGvVrtrfuZM?=
+ =?us-ascii?Q?yOpHpQiC5Wd+PYGwXzrFShYFds9AVcWaq6/UP6RawwvFafauJwrAzX0QPgyI?=
+ =?us-ascii?Q?JOB8473lnmWRRxNik0HvuozsZjRKowTOmf0pfB4QpXbKaMFrByXdoNOFGLad?=
+ =?us-ascii?Q?sPv6E7p15iFelgVv0gBUJiAKBI8Zltq+ltmNNBvicyPP1TJnEU4Viq0Uuab4?=
+ =?us-ascii?Q?ffczJ6i3gHaKnRoyhan95oPo9l/wl1ER50i206x4/Ss8dTp8lpjb6P/FtGIz?=
+ =?us-ascii?Q?ftSDOeGkDTikWoYrWPV8jHZYwqezYZpS4fjJT1R5WF7dRrJWxWiAVfcvvZCX?=
+ =?us-ascii?Q?1qJUPoM3wKBkRhyvyYlJRL5okkEbCf5Yl2mjfNaRdsamdF7P7mcFFKqeD2wP?=
+ =?us-ascii?Q?qFaNnYcMg1osc3CzXuCpEB4fMsTOA+lTDM0ecKY7oUIx0cOwr39Po2JM+zA3?=
+ =?us-ascii?Q?M09RJJilGyTlHyJUAe15UaGsxHKRv+nnEdaKVyU3sNIb8VJepYbDeDHchJHr?=
+ =?us-ascii?Q?2Up9lw1nF2qer7Zd2yaDpDoYfUc28aodTzIhORNvmYz0WNsqHPhS6s6gsWRJ?=
+ =?us-ascii?Q?k9+y84dJJVEoL1f4gMeS/jrp4kkVsz75LUUNk809JGG2gIoZ+WbZiSyNiUw0?=
+ =?us-ascii?Q?9JErFTHBm+jiZQTU0K7UJ9hdKd2KDUgUmaHAQd8zuqOeTyCPjA=3D=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB03.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(36860700013)(82310400026)(1800799024)(376014); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Nov 2024 21:26:01.6211 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: eb297048-c16b-4411-d12b-08dcfabbc8f5
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: DS2PEPF0000343E.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB9053
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,90 +137,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Nov 01, 2024 at 03:43:40PM +0200, Imre Deak wrote:
-> On Fri, Nov 01, 2024 at 11:22:13AM +0200, Jani Nikula wrote:
-> > On Thu, 31 Oct 2024, Imre Deak <imre.deak@intel.com> wrote:
-> > > On Thu, Oct 31, 2024 at 05:12:45PM +0200, Abel Vesa wrote:
-> > >> According to the DisplayPort standard, LTTPRs have two operating
-> > >> modes:
-> > >>  - non-transparent - it replies to DPCD LTTPR field specific AUX
-> > >>    requests, while passes through all other AUX requests
-> > >>  - transparent - it passes through all AUX requests.
-> > >> 
-> > >> Switching between this two modes is done by the DPTX by issuing
-> > >> an AUX write to the DPCD PHY_REPEATER_MODE register.
-> > >> 
-> > >> Add a generic helper that allows switching between these modes.
-> > >> 
-> > >> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> > >> ---
-> > >>  drivers/gpu/drm/display/drm_dp_helper.c | 17 +++++++++++++++++
-> > >>  include/drm/display/drm_dp_helper.h     |  1 +
-> > >>  2 files changed, 18 insertions(+)
-> > >> 
-> > >> diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
-> > >> index 6ee51003de3ce616c3a52653c2f1979ad7658e21..38d612345986ad54b42228902ea718a089d169c4 100644
-> > >> --- a/drivers/gpu/drm/display/drm_dp_helper.c
-> > >> +++ b/drivers/gpu/drm/display/drm_dp_helper.c
-> > >> @@ -2694,6 +2694,23 @@ int drm_dp_lttpr_max_link_rate(const u8 caps[DP_LTTPR_COMMON_CAP_SIZE])
-> > >>  }
-> > >>  EXPORT_SYMBOL(drm_dp_lttpr_max_link_rate);
-> > >>  
-> > >> +/**
-> > >> + * drm_dp_lttpr_set_transparent_mode - set the LTTPR in transparent mode
-> > >> + * @aux: DisplayPort AUX channel
-> > >> + * @enable: Enable or disable transparent mode
-> > >> + *
-> > >> + * Returns 0 on success or a negative error code on failure.
-> > >
-> > > Should be "Returns 1 on success".
-> > 
-> > But is that a sensible return value?
-> 
-> It matches what the function returns, but yes, would make more sense to
-> fix the return value instead to be 0 in case of success.
+The patch series is to refactor existing dsc determination policy for
+dsc decompression and dsc passthrough given a mst output port.
 
-I think returning 0 is better in case of this function.
+Original routine was written based on different peer device types
+which is not accurate and shows difficulty when expanding support of
+products that do not fully comply with DP specs.
 
-> 
-> > >
-> > >> + */
-> > >> +
-> > 
-> > Superfluous newline.
-> > 
-> > >> +int drm_dp_lttpr_set_transparent_mode(struct drm_dp_aux *aux, bool enable)
-> > >> +{
-> > >> +	u8 val = enable ? DP_PHY_REPEATER_MODE_TRANSPARENT :
-> > >> +			  DP_PHY_REPEATER_MODE_NON_TRANSPARENT;
-> > >> +
-> > >> +	return drm_dp_dpcd_writeb(aux, DP_PHY_REPEATER_MODE, val);
-> > >> +}
-> > >> +EXPORT_SYMBOL(drm_dp_lttpr_set_transparent_mode);
-> > >> +
-> > >>  /**
-> > >>   * drm_dp_lttpr_max_lane_count - get the maximum lane count supported by all LTTPRs
-> > >>   * @caps: LTTPR common capabilities
-> > >> diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
-> > >> index 279624833ea9259809428162f4e845654359f8c9..8821ab2d36b0e04d38ccbdddcb703b34de7ed680 100644
-> > >> --- a/include/drm/display/drm_dp_helper.h
-> > >> +++ b/include/drm/display/drm_dp_helper.h
-> > >> @@ -625,6 +625,7 @@ int drm_dp_read_lttpr_phy_caps(struct drm_dp_aux *aux,
-> > >>  			       u8 caps[DP_LTTPR_PHY_CAP_SIZE]);
-> > >>  int drm_dp_lttpr_count(const u8 cap[DP_LTTPR_COMMON_CAP_SIZE]);
-> > >>  int drm_dp_lttpr_max_link_rate(const u8 caps[DP_LTTPR_COMMON_CAP_SIZE]);
-> > >> +int drm_dp_lttpr_set_transparent_mode(struct drm_dp_aux *aux, bool enable);
-> > >>  int drm_dp_lttpr_max_lane_count(const u8 caps[DP_LTTPR_COMMON_CAP_SIZE]);
-> > >>  bool drm_dp_lttpr_voltage_swing_level_3_supported(const u8 caps[DP_LTTPR_PHY_CAP_SIZE]);
-> > >>  bool drm_dp_lttpr_pre_emphasis_level_3_supported(const u8 caps[DP_LTTPR_PHY_CAP_SIZE]);
-> > >> 
-> > >> -- 
-> > >> 2.34.1
-> > >> 
-> > 
-> > -- 
-> > Jani Nikula, Intel
+To make the routine more accurate and generic, the series includes below changes:
+1. Refactor MST DSC determination policy solely based on
+   topology connection status and dsc dpcd capability info.
+2. Dependency changes required for each vendor due to interface change.
+
+Fangzhi Zuo (2):
+  drm/display/dsc: Refactor DRM MST DSC Determination Policy
+  drm/display/dsc: MST DSC Interface Change
+
+ .../amd/display/amdgpu_dm/amdgpu_dm_debugfs.c |   2 +-
+ .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c |  20 +-
+ .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |  30 +-
+ drivers/gpu/drm/display/drm_dp_mst_topology.c | 258 ++++++++----------
+ drivers/gpu/drm/i915/display/intel_dp.c       |   2 +-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |   3 +-
+ include/drm/display/drm_dp_mst_helper.h       |   9 +-
+ 7 files changed, 145 insertions(+), 179 deletions(-)
 
 -- 
-With best wishes
-Dmitry
+2.43.0
+
