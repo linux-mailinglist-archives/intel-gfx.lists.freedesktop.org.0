@@ -2,56 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E48E79B8F24
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Nov 2024 11:27:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F3739B8F32
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Nov 2024 11:29:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AA3910E992;
-	Fri,  1 Nov 2024 10:27:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A616E10E994;
+	Fri,  1 Nov 2024 10:29:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LvM/y5im";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qd2EUrDn";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 185D310E992
- for <intel-gfx@lists.freedesktop.org>; Fri,  1 Nov 2024 10:27:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2DF1810E994
+ for <intel-gfx@lists.freedesktop.org>; Fri,  1 Nov 2024 10:29:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730456832; x=1761992832;
+ t=1730456948; x=1761992948;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=wJ12pgEJjhNRAlwT7L7fVd+e8QyhrWD5sJMCL4BzYm8=;
- b=LvM/y5imPyuYMXvqt6SLjIPYGepTXpJ33V+aotHpC5syNhC7iLnkJV/3
- sY7fUtVx7N1jmrWBtalZvgVH6QSecxxhMoVJV2NQF4BzbK6o5srfs7SNw
- sBpvjvozlNYUpwj+UziVhnM4AfXj7T53mzg+x/NigeW8lTdrSJu60FkpI
- 6Gk7zE867NGMb/GGnqzZOp0d+BUllOuT2WrbM2QNMcDNVPLc0wVvkmM/h
- IgbVDfWTOwIDHYKTe4aY5YodGfxJ4QazvRxl6/CNl2x0qhmo9knyoc/qj
- ruRUZVvz6NnTH7MGU/Sn12pzVfcSCX2Nuyfpyf5RL9oQcYako/KH0MEEY Q==;
-X-CSE-ConnectionGUID: vDkdDiWcTb6YE2uWY2ZosQ==
-X-CSE-MsgGUID: GSQvi2SKQNq4whNPlYEixw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="30407639"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="30407639"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2024 03:27:12 -0700
-X-CSE-ConnectionGUID: o7ukbAp8TpWMwU38T4YVIg==
-X-CSE-MsgGUID: +FmjirWMQSuvPVRLoiZVMA==
+ bh=Pl0iae61k0W0RcBGyQF1cTYFVyJYinwCOILkIG52+fg=;
+ b=Qd2EUrDnQkLvovAZTF3lyeoVMK5I8YiNA59N7JVtOsc5WJWXc7XgS4Fg
+ giU8X4DtO1pGHOqjn4mgbUzH7e+Kgz49lxYUqEcxqTn3oLstJrxPQoByz
+ klGKWTFHuJUI0MlGucS86o/4FTV4k0jNZUupRGcPp4b5QYPdI9X95B4ZL
+ S97ZAI0XNTLpHB64YzA7ozsUkLf7+g1SyoB1tXg8kFFXWO1c7I4zucD0l
+ TbQ+2Y0rvV3ztvEqSp8wlnL0Odsmst363crsLuOF0MB31NXCaMi34GR7I
+ t4VP0CaUsS8EhKQI3wfc0PoU50jOnowjJoFl+yPz5h1wJtiDopGTINVt6 Q==;
+X-CSE-ConnectionGUID: DcQCkwivQNCY6fThpCUSLQ==
+X-CSE-MsgGUID: Xi9hZG0fR7GpT+cByjYBtw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="33911041"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="33911041"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Nov 2024 03:29:08 -0700
+X-CSE-ConnectionGUID: e20U2cf3TemdQ9uY0+aAWw==
+X-CSE-MsgGUID: lWavLs+JRxCccdZclQC4/g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,249,1725346800"; d="scan'208";a="113711068"
+X-IronPort-AV: E=Sophos;i="6.11,249,1725346800"; d="scan'208";a="87465505"
 Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.246.234])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2024 03:27:10 -0700
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Nov 2024 03:29:06 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 2/6] drm/i915: Extract pipe_mbus_dbox_ctl()
-In-Reply-To: <20241031155646.15165-3-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 3/6] drm/i915: Extract pipe_mbus_dbox_ctl_update()
+In-Reply-To: <20241031155646.15165-4-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20241031155646.15165-1-ville.syrjala@linux.intel.com>
- <20241031155646.15165-3-ville.syrjala@linux.intel.com>
-Date: Fri, 01 Nov 2024 12:27:07 +0200
-Message-ID: <87frobjll0.fsf@intel.com>
+ <20241031155646.15165-4-ville.syrjala@linux.intel.com>
+Date: Fri, 01 Nov 2024 12:29:03 +0200
+Message-ID: <87cyjfjlhs.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -77,115 +77,60 @@ On Thu, 31 Oct 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 
 wanting *to* reprogram
 
+I would've wanted to see conversion to struct intel_display here too, or
+at least a mention we're keeping it this way for backports, or
+something. A patch on top changing everything in one go is fine too.
+
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-> during an upcoming MBUS sanitation stage. To make that easier
-> extract a helper that computes the full register value for us.
+> during an upcoming MBUS sanitation stage. Extract the reprogramming
+> loop into a helper that doesn't depend on the full atomic state
+> so that it can be reused.
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 > ---
->  drivers/gpu/drm/i915/display/skl_watermark.c | 63 +++++++++++---------
->  1 file changed, 34 insertions(+), 29 deletions(-)
+>  drivers/gpu/drm/i915/display/skl_watermark.c | 15 +++++++++++----
+>  1 file changed, 11 insertions(+), 4 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/d=
 rm/i915/display/skl_watermark.c
-> index 92794dfbd3bd..7a7caaf7e87d 100644
+> index 7a7caaf7e87d..8a31508f94bb 100644
 > --- a/drivers/gpu/drm/i915/display/skl_watermark.c
 > +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-> @@ -3271,23 +3271,12 @@ static bool xelpdp_is_only_pipe_per_dbuf_bank(enu=
-m pipe pipe, u8 active_pipes)
->  	return false;
+> @@ -3319,11 +3319,20 @@ static u32 pipe_mbus_dbox_ctl(const struct intel_=
+crtc *crtc,
+>  	return val;
 >  }
 >=20=20
-> -static void intel_mbus_dbox_update(struct intel_atomic_state *state)
-> +static u32 pipe_mbus_dbox_ctl(const struct intel_crtc *crtc,
-> +			      const struct intel_dbuf_state *dbuf_state)
+> +static void pipe_mbus_dbox_ctl_update(struct drm_i915_private *i915,
+> +				      const struct intel_dbuf_state *dbuf_state)
+> +{
+> +	struct intel_crtc *crtc;
+> +
+> +	for_each_intel_crtc_in_pipe_mask(&i915->drm, crtc, dbuf_state->active_p=
+ipes)
+> +		intel_de_write(i915, PIPE_MBUS_DBOX_CTL(crtc->pipe),
+> +			       pipe_mbus_dbox_ctl(crtc, dbuf_state));
+> +}
+> +
+>  static void intel_mbus_dbox_update(struct intel_atomic_state *state)
 >  {
-> -	struct drm_i915_private *i915 =3D to_i915(state->base.dev);
-> -	const struct intel_dbuf_state *new_dbuf_state, *old_dbuf_state;
+>  	struct drm_i915_private *i915 =3D to_i915(state->base.dev);
+>  	const struct intel_dbuf_state *new_dbuf_state, *old_dbuf_state;
 > -	const struct intel_crtc *crtc;
-> +	struct drm_i915_private *i915 =3D to_i915(crtc->base.dev);
->  	u32 val =3D 0;
 >=20=20
-> -	if (DISPLAY_VER(i915) < 11)
-> -		return;
-> -
-> -	new_dbuf_state =3D intel_atomic_get_new_dbuf_state(state);
-> -	old_dbuf_state =3D intel_atomic_get_old_dbuf_state(state);
-> -	if (!new_dbuf_state ||
-> -	    (new_dbuf_state->joined_mbus =3D=3D old_dbuf_state->joined_mbus &&
-> -	     new_dbuf_state->active_pipes =3D=3D old_dbuf_state->active_pipes))
-> -		return;
-> -
->  	if (DISPLAY_VER(i915) >=3D 14)
->  		val |=3D MBUS_DBOX_I_CREDIT(2);
->=20=20
-> @@ -3298,12 +3287,12 @@ static void intel_mbus_dbox_update(struct intel_a=
-tomic_state *state)
->  	}
->=20=20
->  	if (DISPLAY_VER(i915) >=3D 14)
-> -		val |=3D new_dbuf_state->joined_mbus ? MBUS_DBOX_A_CREDIT(12) :
-> -						     MBUS_DBOX_A_CREDIT(8);
-> +		val |=3D dbuf_state->joined_mbus ?
-> +			MBUS_DBOX_A_CREDIT(12) : MBUS_DBOX_A_CREDIT(8);
->  	else if (IS_ALDERLAKE_P(i915))
->  		/* Wa_22010947358:adl-p */
-> -		val |=3D new_dbuf_state->joined_mbus ? MBUS_DBOX_A_CREDIT(6) :
-> -						     MBUS_DBOX_A_CREDIT(4);
-> +		val |=3D dbuf_state->joined_mbus ?
-> +			MBUS_DBOX_A_CREDIT(6) : MBUS_DBOX_A_CREDIT(4);
->  	else
->  		val |=3D MBUS_DBOX_A_CREDIT(2);
->=20=20
-> @@ -3320,19 +3309,35 @@ static void intel_mbus_dbox_update(struct intel_a=
-tomic_state *state)
->  		val |=3D MBUS_DBOX_B_CREDIT(8);
->  	}
+>  	if (DISPLAY_VER(i915) < 11)
+>  		return;
+> @@ -3335,9 +3344,7 @@ static void intel_mbus_dbox_update(struct intel_ato=
+mic_state *state)
+>  	     new_dbuf_state->active_pipes =3D=3D old_dbuf_state->active_pipes))
+>  		return;
 >=20=20
 > -	for_each_intel_crtc_in_pipe_mask(&i915->drm, crtc, new_dbuf_state->acti=
-ve_pipes) {
-> -		u32 pipe_val =3D val;
-> +	if (DISPLAY_VERx100(i915) =3D=3D 1400) {
-> +		if (xelpdp_is_only_pipe_per_dbuf_bank(crtc->pipe, dbuf_state->active_p=
-ipes))
-> +			val |=3D MBUS_DBOX_BW_8CREDITS_MTL;
-> +		else
-> +			val |=3D MBUS_DBOX_BW_4CREDITS_MTL;
-> +	}
->=20=20
-> -		if (DISPLAY_VERx100(i915) =3D=3D 1400) {
-> -			if (xelpdp_is_only_pipe_per_dbuf_bank(crtc->pipe,
-> -							      new_dbuf_state->active_pipes))
-> -				pipe_val |=3D MBUS_DBOX_BW_8CREDITS_MTL;
-> -			else
-> -				pipe_val |=3D MBUS_DBOX_BW_4CREDITS_MTL;
-> -		}
-> +	return val;
-> +}
->=20=20
-> -		intel_de_write(i915, PIPE_MBUS_DBOX_CTL(crtc->pipe), pipe_val);
-> -	}
-> +static void intel_mbus_dbox_update(struct intel_atomic_state *state)
-> +{
-> +	struct drm_i915_private *i915 =3D to_i915(state->base.dev);
-> +	const struct intel_dbuf_state *new_dbuf_state, *old_dbuf_state;
-> +	const struct intel_crtc *crtc;
-> +
-> +	if (DISPLAY_VER(i915) < 11)
-> +		return;
-> +
-> +	new_dbuf_state =3D intel_atomic_get_new_dbuf_state(state);
-> +	old_dbuf_state =3D intel_atomic_get_old_dbuf_state(state);
-> +	if (!new_dbuf_state ||
-> +	    (new_dbuf_state->joined_mbus =3D=3D old_dbuf_state->joined_mbus &&
-> +	     new_dbuf_state->active_pipes =3D=3D old_dbuf_state->active_pipes))
-> +		return;
-> +
-> +	for_each_intel_crtc_in_pipe_mask(&i915->drm, crtc, new_dbuf_state->acti=
 ve_pipes)
-> +		intel_de_write(i915, PIPE_MBUS_DBOX_CTL(crtc->pipe),
-> +			       pipe_mbus_dbox_ctl(crtc, new_dbuf_state));
+> -		intel_de_write(i915, PIPE_MBUS_DBOX_CTL(crtc->pipe),
+> -			       pipe_mbus_dbox_ctl(crtc, new_dbuf_state));
+> +	pipe_mbus_dbox_ctl_update(i915, new_dbuf_state);
 >  }
 >=20=20
 >  int intel_dbuf_state_set_mdclk_cdclk_ratio(struct intel_atomic_state *st=
