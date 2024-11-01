@@ -2,61 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FD019B9248
-	for <lists+intel-gfx@lfdr.de>; Fri,  1 Nov 2024 14:46:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32A019B92F4
+	for <lists+intel-gfx@lfdr.de>; Fri,  1 Nov 2024 15:17:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AC9010E2DF;
-	Fri,  1 Nov 2024 13:46:10 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nn4+s+tD";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 609A910E1EE;
+	Fri,  1 Nov 2024 14:17:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E55A410E2DF
- for <intel-gfx@lists.freedesktop.org>; Fri,  1 Nov 2024 13:46:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730468769; x=1762004769;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=19LhWhQ6fXeAj7d0YbxwECp3DSJv+88tWxoD3uda18Q=;
- b=nn4+s+tDuIgkBza8Wped0G66VMzt5Fy5bE1om2FLHMIFabVm7eU5RPyd
- a5zJY6Vg4tpomePz+eNE1jfQjs14iDEkFsNeidlHp5zM/7CAjILBJzqoi
- qDfgvoxPW7O/dhycwEPiSSqH9EYZi+7c/KodmtkYQ+vZYDErNjuEHyT5Z
- Zw3YB3KbfsVkfT/PJg5s6TtIDAA00HwLwYJRlVF835qDc60nChO54alBa
- in0p6yfTMhpKUvW6o5i2M4wAN/MTLnbtJ+Dsz1BtmLseTxRujXwXH0gfW
- mhGRIk01Cyz737O4Zzo++cHZGSC+H1bj1QZfTfcx7GTiRCwKDgYZLM63K A==;
-X-CSE-ConnectionGUID: JNvlK9c8T+SiaSY6mZqVOg==
-X-CSE-MsgGUID: krMTcVEVTb+OGU1AlBUCrw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="40778903"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="40778903"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2024 06:46:08 -0700
-X-CSE-ConnectionGUID: zF41a7WoSJiCWwJwewvtkQ==
-X-CSE-MsgGUID: M5Xsbn29RRGfwU2oacHl7Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,249,1725346800"; d="scan'208";a="83092997"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 01 Nov 2024 06:46:07 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 01 Nov 2024 15:46:05 +0200
-Date: Fri, 1 Nov 2024 15:46:05 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 3/6] drm/i915: Extract pipe_mbus_dbox_ctl_update()
-Message-ID: <ZyTbnVxcHnwvwi0K@intel.com>
-References: <20241031155646.15165-1-ville.syrjala@linux.intel.com>
- <20241031155646.15165-4-ville.syrjala@linux.intel.com>
- <87cyjfjlhs.fsf@intel.com>
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47D6210E1EE;
+ Fri,  1 Nov 2024 14:17:52 +0000 (UTC)
+Received: from 91-155-254-188.elisa-laajakaista.fi ([91.155.254.188]
+ helo=[192.168.100.133])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.97) (envelope-from <luca@coelho.fi>)
+ id 1t6sT8-00000001Fa7-1OzP; Fri, 01 Nov 2024 16:17:50 +0200
+Message-ID: <7d67cf10d39068d17a4a348b628b15f69cde264b.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Gustavo Sousa <gustavo.sousa@intel.com>,
+ intel-gfx@lists.freedesktop.org, 	intel-xe@lists.freedesktop.org
+Cc: Luca Coelho <luciano.coelho@intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>
+Date: Fri, 01 Nov 2024 16:17:40 +0200
+In-Reply-To: <20241021222744.294371-10-gustavo.sousa@intel.com>
+References: <20241021222744.294371-1-gustavo.sousa@intel.com>
+ <20241021222744.294371-10-gustavo.sousa@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.1-1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <87cyjfjlhs.fsf@intel.com>
-X-Patchwork-Hint: comment
+X-Spam-Checker-Version: SpamAssassin 4.0.1-pre1 (2023-11-21) on
+ farmhouse.coelho.fi
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
+ TVD_RCVD_IP,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+ version=4.0.1-pre1
+Subject: Re: [PATCH 09/13] drm/i915/dmc_wl: Deal with existing references
+ when disabling
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,83 +54,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Nov 01, 2024 at 12:29:03PM +0200, Jani Nikula wrote:
-> On Thu, 31 Oct 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >
-> > We'll be wanting reprogram the PIPE_MBUS_DBOX_CTL registers
-> 
-> wanting *to* reprogram
-> 
-> I would've wanted to see conversion to struct intel_display here too, or
-> at least a mention we're keeping it this way for backports, or
-> something. A patch on top changing everything in one go is fine too.
+On Mon, 2024-10-21 at 19:27 -0300, Gustavo Sousa wrote:
+> It is possible that there are active wakelock references at the time we
+> are disabling the DMC wakelock mechanism. We need to deal with that in
+> two ways:
+>=20
+> (A) Implement the missing step from Bspec:
+>=20
+>     The Bspec instructs us to clear any existing wakelock request bit
+>     after disabling the mechanism. That gives a clue that it is okay to
+>     disable while there are locks held and we do not need to wait for
+>     them. However, since the spec is not explicit about it, we need
+>     still to get confirmation with the hardware team. Let's thus
+>     implement the spec and add a TODO note.
+>=20
+> (B) Ensure a consistent driver state:
+>=20
+>     The enable/disable logic would be problematic if the following
+>     sequence of events would happen:
+>=20
+>     1. Function A calls intel_dmc_wl_get();
+>     2. Some function calls intel_dmc_wl_disable();
+>     3. Some function calls intel_dmc_wl_enable();
+>     4. Function A is done and calls intel_dmc_wl_put().
+>=20
+>     At (2), the refcount becomes zero and then (4) causes an invalid
+>     decrement to the refcount. That would cause some issues:
+>=20
+>         - At the time between (3) and (4), function A would think that
+>           the hardware lock is held but it could not be really held
+>           until intel_dmc_wl_get() is called by something else.
+>         - The call made to (4) could cause the refcount to become zero
+>           and consequently the hardware lock to be released while there
+>           could be innocent paths trusting they still have the lock.
+>=20
+>     To fix that, we need to keep the refcount correctly in sync with
+>     intel_dmc_wl_{get,put}() calls and retake the hardware lock when
+>     enabling the DMC wakelock with a non-zero refcount.
+>=20
+>     One missing piece left to be handled here is the following scenario:
+>=20
+>     1. Function A calls intel_dmc_wl_get();
+>     2. Some function calls intel_dmc_wl_disable();
+>     3. Some function calls intel_dmc_wl_enable();
+>     4. Concurrently with (3), function A performs the MMIO in between
+>        setting DMC_WAKELOCK_CFG_ENABLE and asserting the lock with
+>        __intel_dmc_wl_take().
+>=20
+>     I'm mostly sure this would cause issues future display IPs if DMC
+>     trap implementation was completely removed. We need to check with
+>     the hardware team whether it would be safe to assert the hardware
+>     lock before setting DMC_WAKELOCK_CFG_ENABLE to avoid this scenario.
+>     If not, then we would have to deal with that via software
+>     synchronization.
+>=20
+> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+> ---
 
-Yeah, IIRC I did it with intel_display originally but changed it
-in case we need to backport this. I can toss in a note stating
-as much.
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 
-I think I tried to do a full conversion of skl_watermark.c at some
-point but at the time there were still so many depedencies left that
-it looked rather pointless. I can have another look at it now that
-we've progressed a bit further.
-
-> 
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
-Ta.
-
-> 
-> > during an upcoming MBUS sanitation stage. Extract the reprogramming
-> > loop into a helper that doesn't depend on the full atomic state
-> > so that it can be reused.
-> >
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/skl_watermark.c | 15 +++++++++++----
-> >  1 file changed, 11 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-> > index 7a7caaf7e87d..8a31508f94bb 100644
-> > --- a/drivers/gpu/drm/i915/display/skl_watermark.c
-> > +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-> > @@ -3319,11 +3319,20 @@ static u32 pipe_mbus_dbox_ctl(const struct intel_crtc *crtc,
-> >  	return val;
-> >  }
-> >  
-> > +static void pipe_mbus_dbox_ctl_update(struct drm_i915_private *i915,
-> > +				      const struct intel_dbuf_state *dbuf_state)
-> > +{
-> > +	struct intel_crtc *crtc;
-> > +
-> > +	for_each_intel_crtc_in_pipe_mask(&i915->drm, crtc, dbuf_state->active_pipes)
-> > +		intel_de_write(i915, PIPE_MBUS_DBOX_CTL(crtc->pipe),
-> > +			       pipe_mbus_dbox_ctl(crtc, dbuf_state));
-> > +}
-> > +
-> >  static void intel_mbus_dbox_update(struct intel_atomic_state *state)
-> >  {
-> >  	struct drm_i915_private *i915 = to_i915(state->base.dev);
-> >  	const struct intel_dbuf_state *new_dbuf_state, *old_dbuf_state;
-> > -	const struct intel_crtc *crtc;
-> >  
-> >  	if (DISPLAY_VER(i915) < 11)
-> >  		return;
-> > @@ -3335,9 +3344,7 @@ static void intel_mbus_dbox_update(struct intel_atomic_state *state)
-> >  	     new_dbuf_state->active_pipes == old_dbuf_state->active_pipes))
-> >  		return;
-> >  
-> > -	for_each_intel_crtc_in_pipe_mask(&i915->drm, crtc, new_dbuf_state->active_pipes)
-> > -		intel_de_write(i915, PIPE_MBUS_DBOX_CTL(crtc->pipe),
-> > -			       pipe_mbus_dbox_ctl(crtc, new_dbuf_state));
-> > +	pipe_mbus_dbox_ctl_update(i915, new_dbuf_state);
-> >  }
-> >  
-> >  int intel_dbuf_state_set_mdclk_cdclk_ratio(struct intel_atomic_state *state,
-> 
-> -- 
-> Jani Nikula, Intel
-
--- 
-Ville Syrjälä
-Intel
+--
+Cheers,
+Luca.
