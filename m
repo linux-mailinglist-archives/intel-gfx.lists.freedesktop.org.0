@@ -2,29 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C4E79BB86E
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 Nov 2024 16:02:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC8019BB9F6
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 Nov 2024 17:15:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B56FF10E458;
-	Mon,  4 Nov 2024 15:02:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D97E010E3E3;
+	Mon,  4 Nov 2024 16:15:39 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=cyberialabs.net header.i=@cyberialabs.net header.b="XHBjF0U2";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=purelymail.com header.i=@purelymail.com header.b="iEHwTryQ";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F33F510E458;
- Mon,  4 Nov 2024 15:02:16 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0123151984438646654=="
+Received: from sendmail.purelymail.com (sendmail.purelymail.com
+ [34.202.193.197])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C6E310E064
+ for <intel-gfx@lists.freedesktop.org>; Sat,  2 Nov 2024 01:46:19 +0000 (UTC)
+DKIM-Signature: a=rsa-sha256;
+ b=XHBjF0U25oHci1aOe5RMyTIJZ6jSAA62N6KiWXUtPUjQJMs9g0eTmzLbYTCrB3tM1qoTpfLCd9hIibcgS2zJpyENiY3bRolIZ6egmMejhPnIg0WLsm3NK9/UoNytl5vuXqQUSKJS57qcB/Ylh++RF6/mFXCkqtieYNWW6zDTPXSfM/XAo7KbRhwcw6ezU1UPqw5i46Jn0BN3yOdJkeYFTX6e9dGyAswFKXN4Vu3nqfhVrx1YbVSkkhq9kYZv6XmNUDRNAa8kcs0d7PUQiLzUzP7VGGLYdCNpQRMBjLByZcJvuHaHAPWrp7JHjJJ4gO9q2qrzzJqOavHIYwXa/6/klQ==;
+ s=purelymail3; d=cyberialabs.net; v=1;
+ bh=DmlX6wo3RK9EmE1nVgjuz5yzjZTOGWAIY+q6s2XE3DI=;
+ h=Received:Date:From:To:Subject; 
+DKIM-Signature: a=rsa-sha256;
+ b=iEHwTryQLdMJMLE4v774o/UjWVutrPA0M90AUuJFBanjeOs5N1n54I3N7xsOMBcuo3CgXEorkK4ozB4EVCQ5Xn2nkHPYaBHEwuFyPGjxFhtT1gxzwH0H9LROVWzMeDBjP+pLcA3A+hv3/UpfEYMXa6T+byyjBq6iqk1d1ZLG/nnPdMppKfI76lx6Kn4edDYYlujxmD6PCe9E/26HIrzapr+D2qIKQMDVdxAyOPhIVXSWNIzxjuVCiBjkKnunNtlNQ1BR8pKWmNlSUmqyxbEoS7Ob2CeEpHteDT9jYjc9+4auWGPEqV/kxbWIQdjxVSVjHI+Ei7sYEZlrt3KfcJSIsA==;
+ s=purelymail3; d=purelymail.com; v=1;
+ bh=DmlX6wo3RK9EmE1nVgjuz5yzjZTOGWAIY+q6s2XE3DI=;
+ h=Feedback-ID:Received:Date:From:To:Subject; 
+Feedback-ID: 6229:1532:null:purelymail
+X-Pm-Original-To: intel-gfx@lists.freedesktop.org
+Received: by smtp.purelymail.com (Purelymail SMTP) with ESMTPA id 1216398469; 
+ Sat, 02 Nov 2024 01:46:15 +0000 (UTC)
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/hdcp=3A_Fix_when_t?=
- =?utf-8?q?he_first_read_and_write_are_retried?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 04 Nov 2024 15:02:16 -0000
-Message-ID: <173073253698.1390867.7657043662614301044@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241104035951.517837-1-suraj.kandpal@intel.com>
-In-Reply-To: <20241104035951.517837-1-suraj.kandpal@intel.com>
+Date: Sat, 02 Nov 2024 01:46:15 +0000
+From: Alexander Coffin <alex@cyberialabs.net>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>
+Subject: Re: i915 potential deadlock
+In-Reply-To: <ZyU1SQjAfUQBgbPF@intel.com>
+References: <50b67f9f-e615-414d-abf5-4ee82e35a353@cyberialabs.net>
+ <ZyU1SQjAfUQBgbPF@intel.com>
+User-Agent: Purely Mail via Roundcube/1.6.8
+Message-ID: <ebe1c5bc56eb2e84e791ba5e9bf2c714@purelymail.com>
+X-Sender: alex@cyberialabs.net
+Content-Type: multipart/alternative;
+ boundary="=_c76a562ab226270784a59fb23864d94b"
+X-Mailman-Approved-At: Mon, 04 Nov 2024 16:15:38 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,170 +60,119 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0123151984438646654==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
+--=_c76a562ab226270784a59fb23864d94b
 Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 
-== Series Details ==
+Hi Rodrigo,
 
-Series: drm/i915/hdcp: Fix when the first read and write are retried
-URL   : https://patchwork.freedesktop.org/series/140854/
-State : success
+> I'm sorry for that. Our list is moderated for non-subscribers because 
+> of the amount of spams we receive daily. But I eventually got to your 
+> msg and allowed it to go through.
 
-== Summary ==
+I am sorry about sending the email twice in that case. In hindsight, I 
+probably should have subscribed to the list and then sent the email to 
+avoid this issue, but I don't interact with email lists that often so I 
+didn't think of doing that.
 
-CI Bug Log - changes from CI_DRM_15626 -> Patchwork_140854v1
-====================================================
+> Could you please file a bug in our gitlab?
 
-Summary
--------
+Of course. https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12677
 
-  **SUCCESS**
+> Well, so many things changed from 6.1... Is it possible to test with a 
+> drm-tip kernel and see if it is still reproduced?
 
-  No regressions found.
+Sorry, I mispoke in my last email that 6.1 is the latest LTS release. 
+6.6 is the latest LTS release. 6.1 is the default for Debian though and 
+isn't considered old there, and that is the kernel that I use on my 
+personal desktop, personal laptop, server, and work laptop.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140854v1/index.html
+I was hoping that this bug could be debugged (or at least attempted) 
+with a single deadlock report (that has worked well most other times I 
+have reported similar issues to kernel maintainers for other drivers).
 
-Participating hosts (45 -> 43)
-------------------------------
+If I knew how to recreate this issue I would gladly try out any kernel 
+version for a quick test. Or if you have any things that you 
+specifically want me to test then I would be happy to try a newer kernel 
+version. However, I am not really comfortable daily driving a bleeding 
+edge kernel version on my work laptop as of right now. I may be able to 
+read through the source code to try to understand what could be 
+triggering this issue and then figure out how to use that information to 
+recreate it on a newer version, but as I don't think I have seen the 
+issue since I reported it I'm not sure how likely it is that I stumble 
+upon the issue by chance again. I would feel comfortable daily driving 
+random kernels on my personal laptop, but I use an XPS 9370 for my 
+personal laptop and I believe an XPS 15 9530 at work (if this is helpful 
+information I can double check this and provide more system details) so 
+they aren't the same hardware (I have no idea if the hardware is 
+relevant).
 
-  Missing    (2): bat-arls-1 fi-snb-2520m 
+Do you know where I could find information on the versions supported by 
+Intel of the i915 driver? I can't seem to find anything from doing a few 
+minutes of Google searching.
 
-Known issues
-------------
+Best wishes,
 
-  Here are the changes found in Patchwork_140854v1 that come from known issues:
+Alex Coffin
+--=_c76a562ab226270784a59fb23864d94b
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=UTF-8
 
-### IGT changes ###
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; charset=
+=3DUTF-8" /></head><body style=3D'font-size: 10pt; font-family: Helvetica,A=
+rial,sans-serif'>
+<p>Hi Rodrigo,</p>
+<p><br /></p>
+<p>&gt; I'm sorry for that. Our list is moderated for non-subscribers becau=
+se of the amount of spams we receive daily. But I eventually got to your ms=
+g and allowed it to go through.</p>
+<p>I am sorry about sending the email twice in that case. In hindsight, I p=
+robably should have subscribed to the list and then sent the email to avoid=
+ this issue, but I don't interact with email lists that often so I didn't t=
+hink of doing that.</p>
+<div id=3D"signature"></div>
+<p><br /></p>
+<p>&gt; Could you please file a bug in our gitlab?<br /><br />Of course. <a=
+ href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12677">htt=
+ps://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12677</a></p>
+<p><br /></p>
+<p>&gt; Well, so many things changed from 6.1... Is it possible to test wit=
+h a drm-tip kernel and see if it is still reproduced?</p>
+<p><br /></p>
+<p>Sorry, I mispoke in my last email that 6.1 is the latest LTS release. 6.=
+6 is the latest LTS release. 6.1 is the default for Debian though and isn't=
+ considered old there, and that is the kernel that I use on my personal des=
+ktop, personal laptop, server, and work laptop.</p>
+<p><br /></p>
+<p>I was hoping that this bug could be debugged (or at least attempted) wit=
+h a single deadlock report (that has worked well most other times I have re=
+ported similar issues to kernel maintainers for other drivers).</p>
+<p><br /></p>
+<p>If I knew how to recreate this issue I would gladly try out any kernel v=
+ersion for a quick test. Or if you have any things that you specifically wa=
+nt me to test then I would be happy to try a newer kernel version. However,=
+ I am not really comfortable daily driving a bleeding edge kernel version o=
+n my work laptop as of right now. I may be able to read through the source =
+code to try to understand what could be triggering this issue and then figu=
+re out how to use that information to recreate it on a newer version, but a=
+s I don't think I have seen the issue since I reported it I'm not sure how =
+likely it is that I stumble upon the issue by chance again. I would feel co=
+mfortable daily driving random kernels on my personal laptop, but I use an =
+XPS 9370 for my personal laptop and I believe an XPS 15 9530 at work (if th=
+is is helpful information I can double check this and provide more system d=
+etails) so they aren't the same hardware (I have no idea if the hardware is=
+ relevant).</p>
+<p><br /></p>
+<p>Do you know where I could find information on the versions supported by =
+Intel of the i915 driver? I can't seem to find anything from doing a few mi=
+nutes of Google searching.</p>
+<p><br /></p>
+<p>Best wishes,</p>
+<p>Alex Coffin</p>
+</body></html>
 
-#### Issues hit ####
-
-  * igt@i915_selftest@live:
-    - bat-arlh-3:         [PASS][1] -> [ABORT][2] ([i915#12133])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15626/bat-arlh-3/igt@i915_selftest@live.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140854v1/bat-arlh-3/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arlh-3:         [PASS][3] -> [ABORT][4] ([i915#12061])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15626/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140854v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live:
-    - bat-arlh-2:         [ABORT][5] ([i915#12133]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15626/bat-arlh-2/igt@i915_selftest@live.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140854v1/bat-arlh-2/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arlh-2:         [ABORT][7] ([i915#12061]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15626/bat-arlh-2/igt@i915_selftest@live@workarounds.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140854v1/bat-arlh-2/igt@i915_selftest@live@workarounds.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12133]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15626 -> Patchwork_140854v1
-
-  CI-20190529: 20190529
-  CI_DRM_15626: 96601a4d7eea2e037627eec7085efd3ae11138af @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8091: 8091
-  Patchwork_140854v1: 96601a4d7eea2e037627eec7085efd3ae11138af @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140854v1/index.html
-
---===============0123151984438646654==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/hdcp: Fix when the first read and write are retried</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/140854/">https://patchwork.freedesktop.org/series/140854/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140854v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140854v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_15626 -&gt; Patchwork_140854v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140854v1/index.html</p>
-<h2>Participating hosts (45 -&gt; 43)</h2>
-<p>Missing    (2): bat-arls-1 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_140854v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15626/bat-arlh-3/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140854v1/bat-arlh-3/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133">i915#12133</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15626/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140854v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-arlh-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15626/bat-arlh-2/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133">i915#12133</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140854v1/bat-arlh-2/igt@i915_selftest@live.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-arlh-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15626/bat-arlh-2/igt@i915_selftest@live@workarounds.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140854v1/bat-arlh-2/igt@i915_selftest@live@workarounds.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_15626 -&gt; Patchwork_140854v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_15626: 96601a4d7eea2e037627eec7085efd3ae11138af @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8091: 8091<br />
-  Patchwork_140854v1: 96601a4d7eea2e037627eec7085efd3ae11138af @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============0123151984438646654==--
+--=_c76a562ab226270784a59fb23864d94b--
