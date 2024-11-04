@@ -2,54 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A26C9BBBB6
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 Nov 2024 18:20:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 943FF9BBBBB
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 Nov 2024 18:20:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE02F10E498;
-	Mon,  4 Nov 2024 17:20:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 36A5610E49D;
+	Mon,  4 Nov 2024 17:20:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JzURb1+X";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DsyfOcTA";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A9AB310E48E;
- Mon,  4 Nov 2024 17:20:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2925010E49C;
+ Mon,  4 Nov 2024 17:20:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730740842; x=1762276842;
+ t=1730740846; x=1762276846;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=VPphU6qHLCduHzwZF8um3wyYahO1gR95dnMs7La4RpQ=;
- b=JzURb1+XuAlUkUS2c2iNzcyA6kYz86mfpMRQib+rLKDFk8u8nJaGK+0+
- aJ6c1iLn582QODEaDa2SogDC45ZjrvaijaXdGaFXRIP+P7we/K/KC1qVf
- U2hF6bWSqeJHLI5h6JpFsXq7c3uXMy49aLCMDT34CFvYTqukuG3BXYoNZ
- shzUygLXqL5F+3j/wGzv4kvFBp7jirKJAXGFEXx9tnE7RqxKO0AM9Smw6
- nHfXDetFVUz6h7qw2gyPu7Cmtc1Yud8ccZ4ZpkXzprRRqAOQ2hC4BVtos
- qsa1GeCpqKvKCPXrsU63oYgnp3tkk0ZCDJbQfSeTLGfNL9aIgIdmg/O8G Q==;
-X-CSE-ConnectionGUID: 6VNT18qWRsWYIJJenXAT9Q==
-X-CSE-MsgGUID: xQSRHTM2RUOka0fCGrlLZg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11246"; a="18070908"
-X-IronPort-AV: E=Sophos;i="6.11,257,1725346800"; d="scan'208";a="18070908"
+ bh=l4CZCsjrMecdj21oc5FPC6x64uqeZBHMm8RXmptmSqc=;
+ b=DsyfOcTAYnFDRnWSpSZES5FZyDSTg3E9TTsy1u2Q4lj9IJpZmEbSSkZv
+ fVG5EdLabGkzHm8h90ll+364P/0bIIzFW0NeG608HFNxOAdCHYVmd4XTk
+ MX+Cm1jkFaZcrb53j/teVgxF5Ryeqqva6EkmbjHJoQ5r66sVdidpWJ3On
+ HhA+08sYdCX9HBdQt9Agt1yf3FrKALPOsSQ1O/C+xvMPi+gcqEYUiFhgs
+ vHAiz8G0FQTy3hpq/AmBwj8rcuuV++BoeHhYB+BeD6yrmbqw+ZUSLTCkY
+ +GaplnzWAUHkLu2hH1IAIUAAH5fKAHgEAb7l3s8hR+DyLdNJstZdgs8I4 Q==;
+X-CSE-ConnectionGUID: yRjwGPYLT1qKSUkoynTodg==
+X-CSE-MsgGUID: smshlikIQ3ey8/ZT41kckg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11246"; a="18070933"
+X-IronPort-AV: E=Sophos;i="6.11,257,1725346800"; d="scan'208";a="18070933"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2024 09:20:41 -0800
-X-CSE-ConnectionGUID: /jagrA1OSQG0FOIe8dJI1A==
-X-CSE-MsgGUID: rhBnJzhFTT6yPgEUcYuPGw==
+ 04 Nov 2024 09:20:46 -0800
+X-CSE-ConnectionGUID: wVT4UQvOT5KtdBziEOfGuA==
+X-CSE-MsgGUID: Sb2YHhcuT/K4MDtchrZ7mw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,257,1725346800"; d="scan'208";a="83841290"
+X-IronPort-AV: E=Sophos;i="6.11,257,1725346800"; d="scan'208";a="83841297"
 Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.33])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2024 09:20:40 -0800
+ 04 Nov 2024 09:20:45 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 14/15] drm/i915/display: pass struct pci_dev * to
- intel_display_device_probe()
-Date: Mon,  4 Nov 2024 19:19:28 +0200
-Message-Id: <ad1b3446adc741cf94051efa5d69e7a82f6aee87.1730740629.git.jani.nikula@intel.com>
+Subject: [PATCH 15/15] drm/i915/display: add mobile platform group
+Date: Mon,  4 Nov 2024 19:19:29 +0200
+Message-Id: <e9277a5635fc02106ca69b9071928c2249323500.1730740629.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1730740629.git.jani.nikula@intel.com>
 References: <cover.1730740629.git.jani.nikula@intel.com>
@@ -71,129 +70,215 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Convert intel_display_device_probe() to accept struct pci_dev * instead
-of struct drm_i915_private *. Return struct intel_display * in
-preparation of allocating the memory of it later.
+Identify mobile platforms separately in display, using the platform
+group mechanism. This enables dropping the dependency on i915_drv.h
+IS_MOBILE() from display code.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_device.c | 10 ++++++----
- drivers/gpu/drm/i915/display/intel_display_device.h |  4 ++--
- drivers/gpu/drm/i915/i915_driver.c                  |  2 +-
- drivers/gpu/drm/i915/selftests/mock_gem_device.c    |  2 +-
- drivers/gpu/drm/xe/display/xe_display.c             |  5 +++--
- 5 files changed, 13 insertions(+), 10 deletions(-)
+ .../drm/i915/display/intel_display_device.c   | 104 ++++++++++++------
+ .../drm/i915/display/intel_display_device.h   |   1 +
+ 2 files changed, 70 insertions(+), 35 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
-index aabf6ece40c4..8ba1b4652ca9 100644
+index 8ba1b4652ca9..5689c5e5db0e 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_device.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-@@ -16,6 +16,7 @@
- #include "intel_display_params.h"
- #include "intel_display_power.h"
- #include "intel_display_reg_defs.h"
-+#include "intel_display_types.h"
- #include "intel_fbc.h"
- #include "intel_step.h"
+@@ -253,6 +253,7 @@ static const struct intel_display_device_info no_display = {};
  
-@@ -1569,10 +1570,9 @@ static void display_platforms_or(struct intel_display_platforms *dst,
- 	bitmap_or(dst->bitmap, dst->bitmap, src->bitmap, display_platforms_num_bits());
- }
+ static const struct platform_desc i830_desc = {
+ 	PLATFORM(i830),
++	PLATFORM_GROUP(mobile),
+ 	.info = &(const struct intel_display_device_info) {
+ 		I830_DISPLAY,
  
--void intel_display_device_probe(struct drm_i915_private *i915)
-+struct intel_display *intel_display_device_probe(struct pci_dev *pdev)
- {
--	struct intel_display *display = &i915->display;
--	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
-+	struct intel_display *display = to_intel_display(pdev);
- 	const struct intel_display_device_info *info;
- 	struct intel_display_ip_ver ip_ver = {};
- 	const struct platform_desc *desc;
-@@ -1649,10 +1649,12 @@ void intel_display_device_probe(struct drm_i915_private *i915)
- 		 DISPLAY_RUNTIME_INFO(display)->ip.rel,
- 		 step != STEP_NONE ? intel_step_name(step) : "N/A");
+@@ -271,6 +272,7 @@ static const struct platform_desc i845_desc = {
  
--	return;
-+	return display;
+ static const struct platform_desc i85x_desc = {
+ 	PLATFORM(i85x),
++	PLATFORM_GROUP(mobile),
+ 	.info = &(const struct intel_display_device_info) {
+ 		I830_DISPLAY,
  
- no_display:
- 	DISPLAY_INFO(display) = &no_display;
-+
-+	return display;
- }
+@@ -313,6 +315,7 @@ static const struct platform_desc i915g_desc = {
  
- void intel_display_device_remove(struct intel_display *display)
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index 01e3cc0fde4b..e1398689cda5 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -12,9 +12,9 @@
- #include "intel_display_conversion.h"
- #include "intel_display_limits.h"
+ static const struct platform_desc i915gm_desc = {
+ 	PLATFORM(i915gm),
++	PLATFORM_GROUP(mobile),
+ 	.info = &(const struct intel_display_device_info) {
+ 		GEN3_DISPLAY,
+ 		I9XX_COLORS,
+@@ -337,6 +340,7 @@ static const struct platform_desc i945g_desc = {
  
--struct drm_i915_private;
- struct drm_printer;
- struct intel_display;
-+struct pci_dev;
- 
- /*
-  * Display platforms and subplatforms. Keep platforms in display version based
-@@ -288,7 +288,7 @@ struct intel_display_device_info {
+ static const struct platform_desc i945gm_desc = {
+ 	PLATFORM(i915gm),
++	PLATFORM_GROUP(mobile),
+ 	.info = &(const struct intel_display_device_info) {
+ 		GEN3_DISPLAY,
+ 		I9XX_COLORS,
+@@ -358,13 +362,21 @@ static const struct platform_desc g33_desc = {
+ 	},
  };
  
- bool intel_display_device_enabled(struct intel_display *display);
--void intel_display_device_probe(struct drm_i915_private *i915);
-+struct intel_display *intel_display_device_probe(struct pci_dev *pdev);
- void intel_display_device_remove(struct intel_display *display);
- void intel_display_device_info_runtime_init(struct intel_display *display);
+-static const struct platform_desc pnv_desc = {
++static const struct intel_display_device_info pnv_display = {
++	GEN3_DISPLAY,
++	I9XX_COLORS,
++	.has_hotplug = 1,
++};
++
++static const struct platform_desc pnv_g_desc = {
+ 	PLATFORM(pineview),
+-	.info = &(const struct intel_display_device_info) {
+-		GEN3_DISPLAY,
+-		I9XX_COLORS,
+-		.has_hotplug = 1,
+-	},
++	.info = &pnv_display,
++};
++
++static const struct platform_desc pnv_m_desc = {
++	PLATFORM(pineview),
++	PLATFORM_GROUP(mobile),
++	.info = &pnv_display,
+ };
  
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index 596aaf940d0c..310c0a2e9e26 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -732,7 +732,7 @@ i915_driver_create(struct pci_dev *pdev, const struct pci_device_id *ent)
- 	/* Set up device info and initial runtime info. */
- 	intel_device_info_driver_create(i915, pdev->device, match_info);
+ #define GEN4_DISPLAY \
+@@ -391,6 +403,7 @@ static const struct platform_desc i965g_desc = {
  
--	intel_display_device_probe(i915);
-+	intel_display_device_probe(pdev);
+ static const struct platform_desc i965gm_desc = {
+ 	PLATFORM(i965gm),
++	PLATFORM_GROUP(mobile),
+ 	.info = &(const struct intel_display_device_info) {
+ 		GEN4_DISPLAY,
+ 		.has_overlay = 1,
+@@ -414,6 +427,7 @@ static const struct platform_desc g45_desc = {
+ static const struct platform_desc gm45_desc = {
+ 	PLATFORM(gm45),
+ 	PLATFORM_GROUP(g4x),
++	PLATFORM_GROUP(mobile),
+ 	.info = &(const struct intel_display_device_info) {
+ 		GEN4_DISPLAY,
+ 		.supports_tv = 1,
+@@ -444,6 +458,7 @@ static const struct platform_desc ilk_d_desc = {
  
- 	return i915;
- }
-diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-index ae57eb03dfca..a77e5b26542c 100644
---- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-+++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
-@@ -180,7 +180,7 @@ struct drm_i915_private *mock_gem_device(void)
- 	/* Set up device info and initial runtime info. */
- 	intel_device_info_driver_create(i915, pdev->device, &mock_info);
+ static const struct platform_desc ilk_m_desc = {
+ 	PLATFORM(ironlake),
++	PLATFORM_GROUP(mobile),
+ 	.info = &(const struct intel_display_device_info) {
+ 		ILK_DISPLAY,
  
--	intel_display_device_probe(i915);
-+	intel_display_device_probe(pdev);
+@@ -451,38 +466,54 @@ static const struct platform_desc ilk_m_desc = {
+ 	},
+ };
  
- 	dev_pm_domain_set(&pdev->dev, &pm_domain);
- 	pm_runtime_enable(&pdev->dev);
-diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index 9b8acf2074e0..60ff48604e3b 100644
---- a/drivers/gpu/drm/xe/display/xe_display.c
-+++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -502,13 +502,14 @@ static void display_device_remove(struct drm_device *dev, void *arg)
+-static const struct platform_desc snb_desc = {
++const struct intel_display_device_info snb_display = {
++	.has_hotplug = 1,
++	I9XX_PIPE_OFFSETS,
++	I9XX_CURSOR_OFFSETS,
++	ILK_COLORS,
++
++	.__runtime_defaults.ip.ver = 6,
++	.__runtime_defaults.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B),
++	.__runtime_defaults.cpu_transcoder_mask =
++	BIT(TRANSCODER_A) | BIT(TRANSCODER_B),
++	.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D), /* DP A, SDVO/HDMI/DP B, HDMI/DP C/D */
++	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A),
++};
++
++static const struct platform_desc snb_d_desc = {
+ 	PLATFORM(sandybridge),
+-	.info = &(const struct intel_display_device_info) {
+-		.has_hotplug = 1,
+-		I9XX_PIPE_OFFSETS,
+-		I9XX_CURSOR_OFFSETS,
+-		ILK_COLORS,
++	.info = &snb_display,
++};
  
- int xe_display_probe(struct xe_device *xe)
- {
--	struct intel_display *display = &xe->display;
-+	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-+	struct intel_display *display;
- 	int err;
+-		.__runtime_defaults.ip.ver = 6,
+-		.__runtime_defaults.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B),
+-		.__runtime_defaults.cpu_transcoder_mask =
+-		BIT(TRANSCODER_A) | BIT(TRANSCODER_B),
+-		.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D), /* DP A, SDVO/HDMI/DP B, HDMI/DP C/D */
+-		.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A),
+-	},
++static const struct platform_desc snb_m_desc = {
++	PLATFORM(sandybridge),
++	PLATFORM_GROUP(mobile),
++	.info = &snb_display,
++};
++
++static const struct intel_display_device_info ivb_display = {
++	.has_hotplug = 1,
++	IVB_PIPE_OFFSETS,
++	IVB_CURSOR_OFFSETS,
++	IVB_COLORS,
++
++	.__runtime_defaults.ip.ver = 7,
++	.__runtime_defaults.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C),
++	.__runtime_defaults.cpu_transcoder_mask =
++	BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | BIT(TRANSCODER_C),
++	.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D), /* DP A, SDVO/HDMI/DP B, HDMI/DP C/D */
++	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A),
+ };
  
- 	if (!xe->info.probe_display)
- 		goto no_display;
+-static const struct platform_desc ivb_desc = {
++static const struct platform_desc ivb_d_desc = {
+ 	PLATFORM(ivybridge),
+-	.info = &(const struct intel_display_device_info) {
+-		.has_hotplug = 1,
+-		IVB_PIPE_OFFSETS,
+-		IVB_CURSOR_OFFSETS,
+-		IVB_COLORS,
++	.info = &ivb_display,
++};
  
--	intel_display_device_probe(xe);
-+	display = intel_display_device_probe(pdev);
+-		.__runtime_defaults.ip.ver = 7,
+-		.__runtime_defaults.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C),
+-		.__runtime_defaults.cpu_transcoder_mask =
+-		BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | BIT(TRANSCODER_C),
+-		.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D), /* DP A, SDVO/HDMI/DP B, HDMI/DP C/D */
+-		.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A),
+-	},
++static const struct platform_desc ivb_m_desc = {
++	PLATFORM(ivybridge),
++	PLATFORM_GROUP(mobile),
++	.info = &ivb_display,
+ };
  
- 	err = drmm_add_action_or_reset(&xe->drm, display_device_remove, display);
- 	if (err)
+ static const struct platform_desc vlv_desc = {
+@@ -1385,11 +1416,14 @@ static const struct {
+ 	INTEL_I965GM_IDS(INTEL_DISPLAY_DEVICE, &i965gm_desc),
+ 	INTEL_GM45_IDS(INTEL_DISPLAY_DEVICE, &gm45_desc),
+ 	INTEL_G45_IDS(INTEL_DISPLAY_DEVICE, &g45_desc),
+-	INTEL_PNV_IDS(INTEL_DISPLAY_DEVICE, &pnv_desc),
++	INTEL_PNV_G_IDS(INTEL_DISPLAY_DEVICE, &pnv_g_desc),
++	INTEL_PNV_M_IDS(INTEL_DISPLAY_DEVICE, &pnv_m_desc),
+ 	INTEL_ILK_D_IDS(INTEL_DISPLAY_DEVICE, &ilk_d_desc),
+ 	INTEL_ILK_M_IDS(INTEL_DISPLAY_DEVICE, &ilk_m_desc),
+-	INTEL_SNB_IDS(INTEL_DISPLAY_DEVICE, &snb_desc),
+-	INTEL_IVB_IDS(INTEL_DISPLAY_DEVICE, &ivb_desc),
++	INTEL_SNB_D_IDS(INTEL_DISPLAY_DEVICE, &snb_d_desc),
++	INTEL_SNB_M_IDS(INTEL_DISPLAY_DEVICE, &snb_m_desc),
++	INTEL_IVB_D_IDS(INTEL_DISPLAY_DEVICE, &ivb_d_desc),
++	INTEL_IVB_M_IDS(INTEL_DISPLAY_DEVICE, &ivb_m_desc),
+ 	INTEL_HSW_IDS(INTEL_DISPLAY_DEVICE, &hsw_desc),
+ 	INTEL_VLV_IDS(INTEL_DISPLAY_DEVICE, &vlv_desc),
+ 	INTEL_BDW_IDS(INTEL_DISPLAY_DEVICE, &bdw_desc),
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+index e1398689cda5..84378c787923 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.h
++++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+@@ -24,6 +24,7 @@ struct pci_dev;
+ #define INTEL_DISPLAY_PLATFORMS(func) \
+ 	/* Platform group aliases */ \
+ 	func(g4x) /* g45 and gm45 */ \
++	func(mobile) /* mobile platforms */ \
+ 	func(dgfx) /* discrete graphics */ \
+ 	/* Display ver 2 */ \
+ 	func(i830) \
 -- 
 2.39.5
 
