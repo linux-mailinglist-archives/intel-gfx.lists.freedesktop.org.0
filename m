@@ -2,51 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 014969BC02B
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 Nov 2024 22:35:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 34F969BC02D
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 Nov 2024 22:35:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0DE310E4DF;
-	Mon,  4 Nov 2024 21:35:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3940D10E4E2;
+	Mon,  4 Nov 2024 21:35:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D1xKCyFG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OJUumKW/";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6975810E4D9
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 76A1210E4DC
  for <intel-gfx@lists.freedesktop.org>; Mon,  4 Nov 2024 21:35:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1730756135; x=1762292135;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=VPBJ8ID2BW7bPUgKVqop80BvIm0NyjE07ho1LSj3/wM=;
- b=D1xKCyFG/3lJ/iGF8vU6BavbE/Y/HK7+JtRq60u5MEbzWop45QoiJssI
- cxmhpwJppnAO9f/8UsacMoAVsVwYjsKEZELVdJVhPawNVoBv/0P2/DVCP
- kiPpk+3oQKE8yOAg6SY32vfbxxV/kioRrkPrUyt42CTjN1PWXVq+VPptm
- wD7JC93I64+J38VqgI4Y4aOg+pTPq8vR/AFssIzN6b7EWHLMRDvsKc9qv
- uuFayzY2u4DNKB21wPzaWfgk4Pus5XrtESLnWzJUD/4kQpsymcJiIHSFj
- JUlLuGyoHxS/DM01Pg5Ui39g73fDCgyBfkFTh2204QSsXokL8B/LDWa+c w==;
-X-CSE-ConnectionGUID: vV3TwY0bQgWTta7XyhPoaQ==
-X-CSE-MsgGUID: 1CwepKeKQ5a1jPZap92S6Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="30420298"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="30420298"
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=w5SktQyGKbBe8qPKvgzsxLWrebJygdTFb7XRNX/il1k=;
+ b=OJUumKW/oskFywznLGz1rYbAK7XsJ9dNf4pWORxOZ/TNJ47W2yUNfBEn
+ q1W6f/iL+VG7oxdr2FwFU3e0A17gcLPVfWx3EcplpL2Ya7n0Xt5u996Wc
+ 0bSqnKopXJPjoAvmkIlYTR/GSy7h6ycQvrwBg0BIQ1jOGHKAXuUUZMnpf
+ c8w6TTG4K+afg8Zl+i1lEhsYV9t2irlwfIyEeU8xhQuEfyTBRyVJpSz7B
+ S07fZBPQxGZc2wxtQqw+BWS2Wp6X9aM84jFVT9LsPwYNs+qH2G5StBbg2
+ ENgJ0h3eBtgcH443qdy9wQVEiSsZLa55ttAvyoSSGZUVS8OHVIWL+hDjm w==;
+X-CSE-ConnectionGUID: ZlYMYjpURzqR6BW/Hg8GVg==
+X-CSE-MsgGUID: +kU8xSaHStmSv8IDEmpnBQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="30420299"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="30420299"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  04 Nov 2024 13:35:35 -0800
-X-CSE-ConnectionGUID: m2jh4JsxQjWZGFYQ4GFaLA==
-X-CSE-MsgGUID: nkQ4FonHRzmklgxAkqL0ug==
+X-CSE-ConnectionGUID: X4VnAC+/ROeHdASvf/faJA==
+X-CSE-MsgGUID: Nv7U7RFxQGaedfmzcGmlrA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,258,1725346800"; d="scan'208";a="114562840"
+X-IronPort-AV: E=Sophos;i="6.11,258,1725346800"; d="scan'208";a="114562843"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  04 Nov 2024 13:35:35 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 0/4] drm/i915/pmu: Refactors
-Date: Mon,  4 Nov 2024 13:35:08 -0800
-Message-ID: <20241104213512.2314930-1-lucas.demarchi@intel.com>
+Subject: [PATCH 1/4] drm/i915/pmu: Rename cpuhp_slot to cpuhp_state
+Date: Mon,  4 Nov 2024 13:35:09 -0800
+Message-ID: <20241104213512.2314930-2-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.47.0
+In-Reply-To: <20241104213512.2314930-1-lucas.demarchi@intel.com>
+References: <20241104213512.2314930-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -64,26 +66,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Extract refactors from https://patchwork.freedesktop.org/series/136362/
-to land them independently. With recent developments in the perf side,
-the fixes won't be needed anymore as perf_pmu_unregister() should be
-able to do the right thing. See https://lore.kernel.org/all/20241104133909.669111662@infradead.org/
+Both the documentation and most of other users call the return of
+cpuhp_setup_state_multi() as "state". Follow that.
 
-With that, we can drop a few patches, keeping just the generic
-refactors my series included. And in future, with a fixed
-perf_pmu_unregister() we may simplify our checks by
-pmu->registered too.
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/i915/i915_pmu.c | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
-Lucas De Marchi (4):
-  drm/i915/pmu: Rename cpuhp_slot to cpuhp_state
-  drm/i915/pmu: Stop setting event_init to NULL
-  drm/i915/pmu: Replace closed with registered
-  drm/i915/pmu: Remove pointless synchronize_rcu() call
-
- drivers/gpu/drm/i915/i915_pmu.c | 50 +++++++++++++--------------------
- drivers/gpu/drm/i915/i915_pmu.h |  4 +--
- 2 files changed, 22 insertions(+), 32 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
+index 93fbf53578da2..8706957ddc0a3 100644
+--- a/drivers/gpu/drm/i915/i915_pmu.c
++++ b/drivers/gpu/drm/i915/i915_pmu.c
+@@ -1218,7 +1218,7 @@ static int i915_pmu_cpu_offline(unsigned int cpu, struct hlist_node *node)
+ 	return 0;
+ }
+ 
+-static enum cpuhp_state cpuhp_slot = CPUHP_INVALID;
++static enum cpuhp_state cpuhp_state = CPUHP_INVALID;
+ 
+ int i915_pmu_init(void)
+ {
+@@ -1232,28 +1232,28 @@ int i915_pmu_init(void)
+ 		pr_notice("Failed to setup cpuhp state for i915 PMU! (%d)\n",
+ 			  ret);
+ 	else
+-		cpuhp_slot = ret;
++		cpuhp_state = ret;
+ 
+ 	return 0;
+ }
+ 
+ void i915_pmu_exit(void)
+ {
+-	if (cpuhp_slot != CPUHP_INVALID)
+-		cpuhp_remove_multi_state(cpuhp_slot);
++	if (cpuhp_state != CPUHP_INVALID)
++		cpuhp_remove_multi_state(cpuhp_state);
+ }
+ 
+ static int i915_pmu_register_cpuhp_state(struct i915_pmu *pmu)
+ {
+-	if (cpuhp_slot == CPUHP_INVALID)
++	if (cpuhp_state == CPUHP_INVALID)
+ 		return -EINVAL;
+ 
+-	return cpuhp_state_add_instance(cpuhp_slot, &pmu->cpuhp.node);
++	return cpuhp_state_add_instance(cpuhp_state, &pmu->cpuhp.node);
+ }
+ 
+ static void i915_pmu_unregister_cpuhp_state(struct i915_pmu *pmu)
+ {
+-	cpuhp_state_remove_instance(cpuhp_slot, &pmu->cpuhp.node);
++	cpuhp_state_remove_instance(cpuhp_state, &pmu->cpuhp.node);
+ }
+ 
+ void i915_pmu_register(struct drm_i915_private *i915)
 -- 
 2.47.0
 
