@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 601A39BBBAC
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 Nov 2024 18:20:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA7DC9BBBB1
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 Nov 2024 18:20:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 08D5610E493;
-	Mon,  4 Nov 2024 17:20:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 69A5D10E494;
+	Mon,  4 Nov 2024 17:20:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="laGSEJyM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iOe0oyU6";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5885D10E48E;
- Mon,  4 Nov 2024 17:20:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9847310E494;
+ Mon,  4 Nov 2024 17:20:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730740823; x=1762276823;
+ t=1730740830; x=1762276830;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=z24wU1Z/IpCE6XT6NVOhpqHxpcfJirXV7pIF7RRbmHY=;
- b=laGSEJyMtr/5UbkfN6wKMxd6F/LEdh6e8AQtGxZzx/Z7AUaVa9zxP1tx
- Ip/czNxPYKFtSy9STrVrUJhGEdvOJMgb2ZdZC2c6GiBoes4HQUzZEbjN+
- HOrkKRCMonwonH8eMEmVHfav5fjm/q2cuUtFh74B4YNDEAd6dhPx7mQDe
- DZ4uoJYbeGD0vgRQDPMe9B4+ZCjTmJDfvTGwQaq7kP3RbE15TfLsL6Err
- WeNlfVaknX9tne3urLgxwEtqQos4rD2fBWEEe6zoFQ+Ylt0HhJJhrBQe1
- mW7k98fgSRiU04wTC+IeECH96VWaqErQd7QyXnLFyPAgR79lV4Zg9bcEb w==;
-X-CSE-ConnectionGUID: ZPSmpgX4R02SlngE5r41cQ==
-X-CSE-MsgGUID: ES9iEM+1QimRJy99YKruNw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11246"; a="30563931"
-X-IronPort-AV: E=Sophos;i="6.11,257,1725346800"; d="scan'208";a="30563931"
+ bh=lI6o+pXsYuB58P7h+6NgACsPx+tEO8QJsRZBfFxWq6w=;
+ b=iOe0oyU6cdFMXQYyXPXLfsCLP06D3ZAUeToaES0Rsfqn29+6d/h1KddB
+ 5Kkv3cnH3csO2CvlBZ/OWOW44KxuiBhZoOs1nEZ1emOAQ6wtGzQ5lpAMx
+ 3Krn5WBkmpMA+MZOTrNNgS6WzB+/oFhAblkpi5cX3HN4QhE+BnA1ebqD5
+ muJOK8kGn+QIOzx9ItIdwuCNf6mJvSoGIg64c+1bCbZiqAKec2sFDgvOk
+ pTx+9QuK+4WYsytTMywMjW1zrdiO9h0w/KSn6Gud2lXntR7W4m7zxzfoo
+ Kh70WnzyimyPQdMr5Xf1SxJX9y65VtDvIA5sx7wbC9o0slRt6WO1iksNL A==;
+X-CSE-ConnectionGUID: BsqTo6edRUKs/VJ4+aLh0g==
+X-CSE-MsgGUID: 4ZKFsyxGSiCGqQL4YJjarQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11246"; a="30563965"
+X-IronPort-AV: E=Sophos;i="6.11,257,1725346800"; d="scan'208";a="30563965"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2024 09:20:21 -0800
-X-CSE-ConnectionGUID: qoXb2r5zRuiw8c7jkggbKQ==
-X-CSE-MsgGUID: wLkRzqUQQxKukcxLJqbH5A==
+ 04 Nov 2024 09:20:26 -0800
+X-CSE-ConnectionGUID: 3vJ3PdsUTBeE8jwxiduGQg==
+X-CSE-MsgGUID: 2bXWwN9LTZ+7nBZtZey4Wg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,257,1725346800"; d="scan'208";a="83815821"
+X-IronPort-AV: E=Sophos;i="6.11,257,1725346800"; d="scan'208";a="83815841"
 Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.33])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2024 09:20:20 -0800
+ 04 Nov 2024 09:20:24 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 10/15] drm/i915/display: convert HAS_HW_SAGV_WM() to struct
+Subject: [PATCH 11/15] drm/i915/display: convert HAS_ULTRAJOINER() to struct
  intel_display
-Date: Mon,  4 Nov 2024 19:19:24 +0200
-Message-Id: <f8e93ac7bd3c9d7e3bebaf0153eabef74a9b9896.1730740629.git.jani.nikula@intel.com>
+Date: Mon,  4 Nov 2024 19:19:25 +0200
+Message-Id: <ea4d7f4694ba92c87b00258cd9786d668a09c313.1730740629.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1730740629.git.jani.nikula@intel.com>
 References: <cover.1730740629.git.jani.nikula@intel.com>
@@ -71,210 +71,114 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Convert HAS_HW_SAGV_WM() to struct intel_display. Do minimal drive-by
+Convert HAS_ULTRAJOINER() to struct intel_display. Do minimal drive-by
 conversions to struct intel_display in the callers while at it.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cursor.c   |  5 ++-
- .../drm/i915/display/intel_display_device.h   |  2 +-
- .../drm/i915/display/skl_universal_plane.c    |  7 ++--
- drivers/gpu/drm/i915/display/skl_watermark.c  | 33 +++++++++++--------
- 4 files changed, 25 insertions(+), 22 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c         | 10 ++++++----
+ drivers/gpu/drm/i915/display/intel_display_debugfs.c |  4 ++--
+ drivers/gpu/drm/i915/display/intel_display_device.h  |  6 +++---
+ drivers/gpu/drm/i915/display/intel_dp.c              |  5 ++---
+ 4 files changed, 13 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index 9ba77970dab7..ed88a28a3afa 100644
---- a/drivers/gpu/drm/i915/display/intel_cursor.c
-+++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -619,7 +619,6 @@ static void skl_write_cursor_wm(struct intel_dsb *dsb,
- 				const struct intel_crtc_state *crtc_state)
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index f53611e83502..a3924bbb0d2a 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -3746,12 +3746,13 @@ static u8 fixup_ultrajoiner_secondary_pipes(u8 ultrajoiner_primary_pipes,
+ static void enabled_ultrajoiner_pipes(struct drm_i915_private *i915,
+ 				      u8 *primary_pipes, u8 *secondary_pipes)
  {
- 	struct intel_display *display = to_intel_display(plane->base.dev);
--	struct drm_i915_private *i915 = to_i915(plane->base.dev);
- 	enum plane_id plane_id = plane->id;
- 	enum pipe pipe = plane->pipe;
- 	const struct skl_pipe_wm *pipe_wm = &crtc_state->wm.skl.optimal;
-@@ -627,14 +626,14 @@ static void skl_write_cursor_wm(struct intel_dsb *dsb,
- 		&crtc_state->wm.skl.plane_ddb[plane_id];
- 	int level;
++	struct intel_display *display = &i915->display;
+ 	struct intel_crtc *crtc;
  
--	for (level = 0; level < i915->display.wm.num_levels; level++)
-+	for (level = 0; level < display->wm.num_levels; level++)
- 		intel_de_write_dsb(display, dsb, CUR_WM(pipe, level),
- 				   skl_cursor_wm_reg_val(skl_plane_wm_level(pipe_wm, plane_id, level)));
+ 	*primary_pipes = 0;
+ 	*secondary_pipes = 0;
  
- 	intel_de_write_dsb(display, dsb, CUR_WM_TRANS(pipe),
- 			   skl_cursor_wm_reg_val(skl_plane_trans_wm(pipe_wm, plane_id)));
+-	if (!HAS_ULTRAJOINER(i915))
++	if (!HAS_ULTRAJOINER(display))
+ 		return;
  
--	if (HAS_HW_SAGV_WM(i915)) {
-+	if (HAS_HW_SAGV_WM(display)) {
- 		const struct skl_plane_wm *wm = &pipe_wm->planes[plane_id];
+ 	for_each_intel_crtc_in_pipe_mask(&i915->drm, crtc,
+@@ -8310,11 +8311,12 @@ void intel_setup_outputs(struct drm_i915_private *dev_priv)
  
- 		intel_de_write_dsb(display, dsb, CUR_WM_SAGV(pipe),
+ static int max_dotclock(struct drm_i915_private *i915)
+ {
+-	int max_dotclock = i915->display.cdclk.max_dotclk_freq;
++	struct intel_display *display = &i915->display;
++	int max_dotclock = display->cdclk.max_dotclk_freq;
+ 
+-	if (HAS_ULTRAJOINER(i915))
++	if (HAS_ULTRAJOINER(display))
+ 		max_dotclock *= 4;
+-	else if (HAS_UNCOMPRESSED_JOINER(i915) || HAS_BIGJOINER(i915))
++	else if (HAS_UNCOMPRESSED_JOINER(display) || HAS_BIGJOINER(display))
+ 		max_dotclock *= 2;
+ 
+ 	return max_dotclock;
+diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+index 11aff485d8fa..2874867aae2b 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
++++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+@@ -1331,7 +1331,7 @@ static ssize_t i915_joiner_write(struct file *file,
+ {
+ 	struct seq_file *m = file->private_data;
+ 	struct intel_connector *connector = m->private;
+-	struct drm_i915_private *i915 = to_i915(connector->base.dev);
++	struct intel_display *display = to_intel_display(connector);
+ 	int force_joined_pipes = 0;
+ 	int ret;
+ 
+@@ -1349,7 +1349,7 @@ static ssize_t i915_joiner_write(struct file *file,
+ 		connector->force_joined_pipes = force_joined_pipes;
+ 		break;
+ 	case 4:
+-		if (HAS_ULTRAJOINER(i915)) {
++		if (HAS_ULTRAJOINER(display)) {
+ 			connector->force_joined_pipes = force_joined_pipes;
+ 			break;
+ 		}
 diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index c23823769911..e1e718fced3c 100644
+index e1e718fced3c..548256401d0a 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_device.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -162,7 +162,7 @@ struct intel_display_platforms {
- #define HAS_GMBUS_IRQ(i915)		(DISPLAY_VER(i915) >= 4)
- #define HAS_GMBUS_BURST_READ(__display)	(DISPLAY_VER(__display) >= 10 || (__display)->platform.kabylake)
- #define HAS_GMCH(i915)			(DISPLAY_INFO(i915)->has_gmch)
--#define HAS_HW_SAGV_WM(i915)		(DISPLAY_VER(i915) >= 13 && !IS_DGFX(i915))
-+#define HAS_HW_SAGV_WM(__display)	(DISPLAY_VER(__display) >= 13 && !(__display)->platform.dgfx)
- #define HAS_IPC(i915)			(DISPLAY_INFO(i915)->has_ipc)
- #define HAS_IPS(__display)		((__display)->platform.haswell_ult || (__display)->platform.broadwell)
- #define HAS_LRR(i915)			(DISPLAY_VER(i915) >= 12)
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 28f7f2405ef3..4c7bcf6806ff 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -736,7 +736,6 @@ static void skl_write_plane_wm(struct intel_dsb *dsb,
- 			       const struct intel_crtc_state *crtc_state)
+@@ -178,9 +178,9 @@ struct intel_display_platforms {
+ #define HAS_TRANSCODER(i915, trans)	((DISPLAY_RUNTIME_INFO(i915)->cpu_transcoder_mask & \
+ 					  BIT(trans)) != 0)
+ #define HAS_UNCOMPRESSED_JOINER(i915)	(DISPLAY_VER(i915) >= 13)
+-#define HAS_ULTRAJOINER(i915)		((DISPLAY_VER(i915) >= 20 || \
+-					  (IS_DGFX(i915) && DISPLAY_VER(i915) == 14)) && \
+-					 HAS_DSC(i915))
++#define HAS_ULTRAJOINER(__display)	((DISPLAY_VER(__display) >= 20 || \
++					  ((__display)->platform.dgfx && DISPLAY_VER(__display) == 14)) && \
++					 HAS_DSC(__display))
+ #define HAS_VRR(i915)			(DISPLAY_VER(i915) >= 11)
+ #define HAS_AS_SDP(i915)		(DISPLAY_VER(i915) >= 13)
+ #define HAS_CMRR(i915)			(DISPLAY_VER(i915) >= 20)
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index a27da96d2c60..7d65945c9563 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -1333,16 +1333,15 @@ int intel_dp_num_joined_pipes(struct intel_dp *intel_dp,
+ 			      int hdisplay, int clock)
  {
- 	struct intel_display *display = to_intel_display(plane->base.dev);
--	struct drm_i915_private *i915 = to_i915(plane->base.dev);
- 	enum plane_id plane_id = plane->id;
- 	enum pipe pipe = plane->pipe;
- 	const struct skl_pipe_wm *pipe_wm = &crtc_state->wm.skl.optimal;
-@@ -746,14 +745,14 @@ static void skl_write_plane_wm(struct intel_dsb *dsb,
- 		&crtc_state->wm.skl.plane_ddb_y[plane_id];
- 	int level;
+ 	struct intel_display *display = to_intel_display(intel_dp);
+-	struct drm_i915_private *i915 = to_i915(display->drm);
  
--	for (level = 0; level < i915->display.wm.num_levels; level++)
-+	for (level = 0; level < display->wm.num_levels; level++)
- 		intel_de_write_dsb(display, dsb, PLANE_WM(pipe, plane_id, level),
- 				   skl_plane_wm_reg_val(skl_plane_wm_level(pipe_wm, plane_id, level)));
+ 	if (connector->force_joined_pipes)
+ 		return connector->force_joined_pipes;
  
- 	intel_de_write_dsb(display, dsb, PLANE_WM_TRANS(pipe, plane_id),
- 			   skl_plane_wm_reg_val(skl_plane_trans_wm(pipe_wm, plane_id)));
+-	if (HAS_ULTRAJOINER(i915) &&
++	if (HAS_ULTRAJOINER(display) &&
+ 	    intel_dp_needs_joiner(intel_dp, connector, hdisplay, clock, 4))
+ 		return 4;
  
--	if (HAS_HW_SAGV_WM(i915)) {
-+	if (HAS_HW_SAGV_WM(display)) {
- 		const struct skl_plane_wm *wm = &pipe_wm->planes[plane_id];
+-	if ((HAS_BIGJOINER(i915) || HAS_UNCOMPRESSED_JOINER(i915)) &&
++	if ((HAS_BIGJOINER(display) || HAS_UNCOMPRESSED_JOINER(display)) &&
+ 	    intel_dp_needs_joiner(intel_dp, connector, hdisplay, clock, 2))
+ 		return 2;
  
- 		intel_de_write_dsb(display, dsb, PLANE_WM_SAGV(pipe, plane_id),
-@@ -765,7 +764,7 @@ static void skl_write_plane_wm(struct intel_dsb *dsb,
- 	intel_de_write_dsb(display, dsb, PLANE_BUF_CFG(pipe, plane_id),
- 			   skl_plane_ddb_reg_val(ddb));
- 
--	if (DISPLAY_VER(i915) < 11)
-+	if (DISPLAY_VER(display) < 11)
- 		intel_de_write_dsb(display, dsb, PLANE_NV12_BUF_CFG(pipe, plane_id),
- 				   skl_plane_ddb_reg_val(ddb_y));
- }
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index 09af693da586..060e0cfcb47f 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -449,6 +449,7 @@ bool intel_can_enable_sagv(struct drm_i915_private *i915,
- 
- static int intel_compute_sagv_mask(struct intel_atomic_state *state)
- {
-+	struct intel_display *display = to_intel_display(state);
- 	struct drm_i915_private *i915 = to_i915(state->base.dev);
- 	int ret;
- 	struct intel_crtc *crtc;
-@@ -484,7 +485,7 @@ static int intel_compute_sagv_mask(struct intel_atomic_state *state)
- 		 * other crtcs can't be allowed to use the more optimal
- 		 * normal (ie. non-SAGV) watermarks.
- 		 */
--		pipe_wm->use_sagv_wm = !HAS_HW_SAGV_WM(i915) &&
-+		pipe_wm->use_sagv_wm = !HAS_HW_SAGV_WM(display) &&
- 			DISPLAY_VER(i915) >= 12 &&
- 			intel_crtc_can_enable_sagv(new_crtc_state);
- 
-@@ -2748,10 +2749,10 @@ static bool skl_plane_selected_wm_equals(struct intel_plane *plane,
- 					 const struct skl_pipe_wm *old_pipe_wm,
- 					 const struct skl_pipe_wm *new_pipe_wm)
- {
--	struct drm_i915_private *i915 = to_i915(plane->base.dev);
-+	struct intel_display *display = to_intel_display(plane);
- 	int level;
- 
--	for (level = 0; level < i915->display.wm.num_levels; level++) {
-+	for (level = 0; level < display->wm.num_levels; level++) {
- 		/*
- 		 * We don't check uv_wm as the hardware doesn't actually
- 		 * use it. It only gets used for calculating the required
-@@ -2762,7 +2763,7 @@ static bool skl_plane_selected_wm_equals(struct intel_plane *plane,
- 			return false;
- 	}
- 
--	if (HAS_HW_SAGV_WM(i915)) {
-+	if (HAS_HW_SAGV_WM(display)) {
- 		const struct skl_plane_wm *old_wm = &old_pipe_wm->planes[plane->id];
- 		const struct skl_plane_wm *new_wm = &new_pipe_wm->planes[plane->id];
- 
-@@ -2937,6 +2938,7 @@ static void skl_wm_level_from_reg_val(u32 val, struct skl_wm_level *level)
- static void skl_pipe_wm_get_hw_state(struct intel_crtc *crtc,
- 				     struct skl_pipe_wm *out)
- {
-+	struct intel_display *display = to_intel_display(crtc);
- 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
- 	enum pipe pipe = crtc->pipe;
- 	enum plane_id plane_id;
-@@ -2962,7 +2964,7 @@ static void skl_pipe_wm_get_hw_state(struct intel_crtc *crtc,
- 
- 		skl_wm_level_from_reg_val(val, &wm->trans_wm);
- 
--		if (HAS_HW_SAGV_WM(i915)) {
-+		if (HAS_HW_SAGV_WM(display)) {
- 			if (plane_id != PLANE_CURSOR)
- 				val = intel_de_read(i915, PLANE_WM_SAGV(pipe, plane_id));
- 			else
-@@ -3131,6 +3133,7 @@ static void skl_wm_get_hw_state_and_sanitize(struct drm_i915_private *i915)
- void intel_wm_state_verify(struct intel_atomic_state *state,
- 			   struct intel_crtc *crtc)
- {
-+	struct intel_display *display = to_intel_display(state);
- 	struct drm_i915_private *i915 = to_i915(state->base.dev);
- 	const struct intel_crtc_state *new_crtc_state =
- 		intel_atomic_get_new_crtc_state(state, crtc);
-@@ -3205,7 +3208,7 @@ void intel_wm_state_verify(struct intel_atomic_state *state,
- 		hw_wm_level = &hw->wm.planes[plane->id].sagv.wm0;
- 		sw_wm_level = &sw_wm->planes[plane->id].sagv.wm0;
- 
--		if (HAS_HW_SAGV_WM(i915) &&
-+		if (HAS_HW_SAGV_WM(display) &&
- 		    !skl_wm_level_equals(hw_wm_level, sw_wm_level)) {
- 			drm_err(&i915->drm,
- 				"[PLANE:%d:%s] mismatch in SAGV WM (expected e=%d b=%u l=%u, got e=%d b=%u l=%u)\n",
-@@ -3221,7 +3224,7 @@ void intel_wm_state_verify(struct intel_atomic_state *state,
- 		hw_wm_level = &hw->wm.planes[plane->id].sagv.trans_wm;
- 		sw_wm_level = &sw_wm->planes[plane->id].sagv.trans_wm;
- 
--		if (HAS_HW_SAGV_WM(i915) &&
-+		if (HAS_HW_SAGV_WM(display) &&
- 		    !skl_wm_level_equals(hw_wm_level, sw_wm_level)) {
- 			drm_err(&i915->drm,
- 				"[PLANE:%d:%s] mismatch in SAGV trans WM (expected e=%d b=%u l=%u, got e=%d b=%u l=%u)\n",
-@@ -3392,17 +3395,19 @@ static void skl_read_wm_latency(struct drm_i915_private *i915, u16 wm[])
- 
- static void skl_setup_wm_latency(struct drm_i915_private *i915)
- {
--	if (HAS_HW_SAGV_WM(i915))
--		i915->display.wm.num_levels = 6;
-+	struct intel_display *display = &i915->display;
-+
-+	if (HAS_HW_SAGV_WM(display))
-+		display->wm.num_levels = 6;
- 	else
--		i915->display.wm.num_levels = 8;
-+		display->wm.num_levels = 8;
- 
--	if (DISPLAY_VER(i915) >= 14)
--		mtl_read_wm_latency(i915, i915->display.wm.skl_latency);
-+	if (DISPLAY_VER(display) >= 14)
-+		mtl_read_wm_latency(i915, display->wm.skl_latency);
- 	else
--		skl_read_wm_latency(i915, i915->display.wm.skl_latency);
-+		skl_read_wm_latency(i915, display->wm.skl_latency);
- 
--	intel_print_wm_latency(i915, "Gen9 Plane", i915->display.wm.skl_latency);
-+	intel_print_wm_latency(i915, "Gen9 Plane", display->wm.skl_latency);
- }
- 
- static const struct intel_wm_funcs skl_wm_funcs = {
 -- 
 2.39.5
 
