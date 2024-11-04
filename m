@@ -2,59 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 943FF9BBBBB
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 Nov 2024 18:20:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E73AC9BBC5F
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 Nov 2024 18:51:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 36A5610E49D;
-	Mon,  4 Nov 2024 17:20:48 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DsyfOcTA";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B15410E10C;
+	Mon,  4 Nov 2024 17:51:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2925010E49C;
- Mon,  4 Nov 2024 17:20:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730740846; x=1762276846;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=l4CZCsjrMecdj21oc5FPC6x64uqeZBHMm8RXmptmSqc=;
- b=DsyfOcTAYnFDRnWSpSZES5FZyDSTg3E9TTsy1u2Q4lj9IJpZmEbSSkZv
- fVG5EdLabGkzHm8h90ll+364P/0bIIzFW0NeG608HFNxOAdCHYVmd4XTk
- MX+Cm1jkFaZcrb53j/teVgxF5Ryeqqva6EkmbjHJoQ5r66sVdidpWJ3On
- HhA+08sYdCX9HBdQt9Agt1yf3FrKALPOsSQ1O/C+xvMPi+gcqEYUiFhgs
- vHAiz8G0FQTy3hpq/AmBwj8rcuuV++BoeHhYB+BeD6yrmbqw+ZUSLTCkY
- +GaplnzWAUHkLu2hH1IAIUAAH5fKAHgEAb7l3s8hR+DyLdNJstZdgs8I4 Q==;
-X-CSE-ConnectionGUID: yRjwGPYLT1qKSUkoynTodg==
-X-CSE-MsgGUID: smshlikIQ3ey8/ZT41kckg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11246"; a="18070933"
-X-IronPort-AV: E=Sophos;i="6.11,257,1725346800"; d="scan'208";a="18070933"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2024 09:20:46 -0800
-X-CSE-ConnectionGUID: wVT4UQvOT5KtdBziEOfGuA==
-X-CSE-MsgGUID: Sb2YHhcuT/K4MDtchrZ7mw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,257,1725346800"; d="scan'208";a="83841297"
-Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.33])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2024 09:20:45 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH 15/15] drm/i915/display: add mobile platform group
-Date: Mon,  4 Nov 2024 19:19:29 +0200
-Message-Id: <e9277a5635fc02106ca69b9071928c2249323500.1730740629.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1730740629.git.jani.nikula@intel.com>
-References: <cover.1730740629.git.jani.nikula@intel.com>
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD88010E10C;
+ Mon,  4 Nov 2024 17:51:32 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/display=3A_?=
+ =?utf-8?q?convert_display_feature_helpers_to_struct_intel=5Fdisplay?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 04 Nov 2024 17:51:32 -0000
+Message-ID: <173074269277.1400593.10451648486621408067@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <cover.1730740629.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1730740629.git.jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,218 +37,194 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Identify mobile platforms separately in display, using the platform
-group mechanism. This enables dropping the dependency on i915_drv.h
-IS_MOBILE() from display code.
+== Series Details ==
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- .../drm/i915/display/intel_display_device.c   | 104 ++++++++++++------
- .../drm/i915/display/intel_display_device.h   |   1 +
- 2 files changed, 70 insertions(+), 35 deletions(-)
+Series: drm/i915/display: convert display feature helpers to struct intel_display
+URL   : https://patchwork.freedesktop.org/series/140886/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
-index 8ba1b4652ca9..5689c5e5db0e 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-@@ -253,6 +253,7 @@ static const struct intel_display_device_info no_display = {};
- 
- static const struct platform_desc i830_desc = {
- 	PLATFORM(i830),
-+	PLATFORM_GROUP(mobile),
- 	.info = &(const struct intel_display_device_info) {
- 		I830_DISPLAY,
- 
-@@ -271,6 +272,7 @@ static const struct platform_desc i845_desc = {
- 
- static const struct platform_desc i85x_desc = {
- 	PLATFORM(i85x),
-+	PLATFORM_GROUP(mobile),
- 	.info = &(const struct intel_display_device_info) {
- 		I830_DISPLAY,
- 
-@@ -313,6 +315,7 @@ static const struct platform_desc i915g_desc = {
- 
- static const struct platform_desc i915gm_desc = {
- 	PLATFORM(i915gm),
-+	PLATFORM_GROUP(mobile),
- 	.info = &(const struct intel_display_device_info) {
- 		GEN3_DISPLAY,
- 		I9XX_COLORS,
-@@ -337,6 +340,7 @@ static const struct platform_desc i945g_desc = {
- 
- static const struct platform_desc i945gm_desc = {
- 	PLATFORM(i915gm),
-+	PLATFORM_GROUP(mobile),
- 	.info = &(const struct intel_display_device_info) {
- 		GEN3_DISPLAY,
- 		I9XX_COLORS,
-@@ -358,13 +362,21 @@ static const struct platform_desc g33_desc = {
- 	},
- };
- 
--static const struct platform_desc pnv_desc = {
-+static const struct intel_display_device_info pnv_display = {
-+	GEN3_DISPLAY,
-+	I9XX_COLORS,
-+	.has_hotplug = 1,
-+};
-+
-+static const struct platform_desc pnv_g_desc = {
- 	PLATFORM(pineview),
--	.info = &(const struct intel_display_device_info) {
--		GEN3_DISPLAY,
--		I9XX_COLORS,
--		.has_hotplug = 1,
--	},
-+	.info = &pnv_display,
-+};
-+
-+static const struct platform_desc pnv_m_desc = {
-+	PLATFORM(pineview),
-+	PLATFORM_GROUP(mobile),
-+	.info = &pnv_display,
- };
- 
- #define GEN4_DISPLAY \
-@@ -391,6 +403,7 @@ static const struct platform_desc i965g_desc = {
- 
- static const struct platform_desc i965gm_desc = {
- 	PLATFORM(i965gm),
-+	PLATFORM_GROUP(mobile),
- 	.info = &(const struct intel_display_device_info) {
- 		GEN4_DISPLAY,
- 		.has_overlay = 1,
-@@ -414,6 +427,7 @@ static const struct platform_desc g45_desc = {
- static const struct platform_desc gm45_desc = {
- 	PLATFORM(gm45),
- 	PLATFORM_GROUP(g4x),
-+	PLATFORM_GROUP(mobile),
- 	.info = &(const struct intel_display_device_info) {
- 		GEN4_DISPLAY,
- 		.supports_tv = 1,
-@@ -444,6 +458,7 @@ static const struct platform_desc ilk_d_desc = {
- 
- static const struct platform_desc ilk_m_desc = {
- 	PLATFORM(ironlake),
-+	PLATFORM_GROUP(mobile),
- 	.info = &(const struct intel_display_device_info) {
- 		ILK_DISPLAY,
- 
-@@ -451,38 +466,54 @@ static const struct platform_desc ilk_m_desc = {
- 	},
- };
- 
--static const struct platform_desc snb_desc = {
-+const struct intel_display_device_info snb_display = {
-+	.has_hotplug = 1,
-+	I9XX_PIPE_OFFSETS,
-+	I9XX_CURSOR_OFFSETS,
-+	ILK_COLORS,
-+
-+	.__runtime_defaults.ip.ver = 6,
-+	.__runtime_defaults.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B),
-+	.__runtime_defaults.cpu_transcoder_mask =
-+	BIT(TRANSCODER_A) | BIT(TRANSCODER_B),
+== Summary ==
+
+Error: dim checkpatch failed
+53184469be94 drm/i915/display: identify discrete graphics
+ee81f136f724 drm/i915/display: convert HAS_D12_PLANE_MINIMIZATION() to struct intel_display
+-:34: WARNING:LONG_LINE: line length of 119 exceeds 100 columns
+#34: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:147:
++#define HAS_D12_PLANE_MINIMIZATION(__display)	((__display)->platform.rocketlake || (__display)->platform.alderlake_s)
+
+-:34: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__display' - possible side-effects?
+#34: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:147:
++#define HAS_D12_PLANE_MINIMIZATION(__display)	((__display)->platform.rocketlake || (__display)->platform.alderlake_s)
+
+total: 0 errors, 1 warnings, 1 checks, 68 lines checked
+93fd1fe4ac07 drm/i915/display: convert HAS_4TILE() to struct intel_display
+-:20: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__display' - possible side-effects?
+#20: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:141:
++#define HAS_4TILE(__display)		((__display)->platform.dg2 || DISPLAY_VER(__display) >= 14)
+
+total: 0 errors, 0 warnings, 1 checks, 56 lines checked
+9afa92b7a8d2 drm/i915/display: convert HAS_DOUBLE_BUFFERED_M_N() to struct intel_display
+-:42: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
+#42: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:152:
++#define HAS_DOUBLE_BUFFERED_M_N(__display)	(DISPLAY_VER(__display) >= 9 || (__display)->platform.broadwell)
+
+-:42: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__display' - possible side-effects?
+#42: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:152:
++#define HAS_DOUBLE_BUFFERED_M_N(__display)	(DISPLAY_VER(__display) >= 9 || (__display)->platform.broadwell)
+
+total: 0 errors, 1 warnings, 1 checks, 48 lines checked
+8a57e86596b6 drm/i915/display: convert HAS_DP20() to struct intel_display
+-:142: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__display' - possible side-effects?
+#142: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:154:
++#define HAS_DP20(__display)		((__display)->platform.dg2 || DISPLAY_VER(__display) >= 14)
+
+total: 0 errors, 0 warnings, 1 checks, 146 lines checked
+dfb23d4815a7 drm/i915/display: convert HAS_GMBUS_BURST_READ() to struct intel_display
+-:21: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#21: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:163:
++#define HAS_GMBUS_BURST_READ(__display)	(DISPLAY_VER(__display) >= 10 || (__display)->platform.kabylake)
+
+-:21: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__display' - possible side-effects?
+#21: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:163:
++#define HAS_GMBUS_BURST_READ(__display)	(DISPLAY_VER(__display) >= 10 || (__display)->platform.kabylake)
+
+total: 0 errors, 1 warnings, 1 checks, 23 lines checked
+0ed6a2d6a910 drm/i915/display: convert HAS_IPS() to struct intel_display
+-:56: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
+#56: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:167:
++#define HAS_IPS(__display)		((__display)->platform.haswell_ult || (__display)->platform.broadwell)
+
+-:56: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__display' - possible side-effects?
+#56: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:167:
++#define HAS_IPS(__display)		((__display)->platform.haswell_ult || (__display)->platform.broadwell)
+
+total: 0 errors, 1 warnings, 1 checks, 33 lines checked
+e8b5d5cae62b drm/i915/display: convert HAS_MBUS_JOINING() to struct intel_display
+-:21: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#21: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:170:
++#define HAS_MBUS_JOINING(__display)	((__display)->platform.alderlake_p || DISPLAY_VER(__display) >= 14)
+
+-:21: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__display' - possible side-effects?
+#21: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:170:
++#define HAS_MBUS_JOINING(__display)	((__display)->platform.alderlake_p || DISPLAY_VER(__display) >= 14)
+
+total: 0 errors, 1 warnings, 1 checks, 61 lines checked
+6137c255aa0c drm/i915/display: convert HAS_SAGV() to struct intel_display
+-:20: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__display' - possible side-effects?
+#20: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:176:
++#define HAS_SAGV(__display)		(DISPLAY_VER(__display) >= 9 && \
++					 !(__display)->platform.broxton && !(__display)->platform.geminilake)
+
+-:21: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#21: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:177:
++					 !(__display)->platform.broxton && !(__display)->platform.geminilake)
+
+total: 0 errors, 1 warnings, 1 checks, 115 lines checked
+b4e771cdb0f4 drm/i915/display: convert HAS_HW_SAGV_WM() to struct intel_display
+-:50: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#50: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:165:
++#define HAS_HW_SAGV_WM(__display)	(DISPLAY_VER(__display) >= 13 && !(__display)->platform.dgfx)
+
+-:50: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__display' - possible side-effects?
+#50: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:165:
++#define HAS_HW_SAGV_WM(__display)	(DISPLAY_VER(__display) >= 13 && !(__display)->platform.dgfx)
+
+total: 0 errors, 1 warnings, 1 checks, 161 lines checked
+a77de9a6cfd5 drm/i915/display: convert HAS_ULTRAJOINER() to struct intel_display
+-:80: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__display' - possible side-effects?
+#80: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:181:
++#define HAS_ULTRAJOINER(__display)	((DISPLAY_VER(__display) >= 20 || \
++					  ((__display)->platform.dgfx && DISPLAY_VER(__display) == 14)) && \
++					 HAS_DSC(__display))
+
+-:81: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#81: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:182:
++					  ((__display)->platform.dgfx && DISPLAY_VER(__display) == 14)) && \
+
+total: 0 errors, 1 warnings, 1 checks, 75 lines checked
+73f7fcbd0c1e drm/i915/display: rename i915 parameter to __display in feature helpers
+-:27: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__display' - possible side-effects?
+#27: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:143:
++#define HAS_BIGJOINER(__display)	(DISPLAY_VER(__display) >= 11 && HAS_DSC(__display))
+
+-:30: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__display' - possible side-effects?
+#30: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:146:
++#define HAS_CUR_FBC(__display)		(!HAS_GMCH(__display) && IS_DISPLAY_VER(__display, 7, 13))
+
+-:36: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#36: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:148:
++#define HAS_DBUF_OVERLAP_DETECTION(__display)	(DISPLAY_RUNTIME_INFO(__display)->has_dbuf_overlap_detection)
+
+-:55: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__display' - possible side-effects?
+#55: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:158:
++#define HAS_DSC_MST(__display)		(DISPLAY_VER(__display) >= 12 && HAS_DSC(__display))
+
+-:87: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#87: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:178:
++#define HAS_TRANSCODER(__display, trans)	((DISPLAY_RUNTIME_INFO(__display)->cpu_transcoder_mask & \
+
+-:110: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__display' - possible side-effects?
+#110: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:193:
++#define IS_DISPLAY_VERx100(__display, from, until) ( \
+ 	BUILD_BUG_ON_ZERO((from) < 200) + \
++	(DISPLAY_VERx100(__display) >= (from) && \
++	 DISPLAY_VERx100(__display) <= (until)))
+
+-:110: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'from' - possible side-effects?
+#110: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:193:
++#define IS_DISPLAY_VERx100(__display, from, until) ( \
+ 	BUILD_BUG_ON_ZERO((from) < 200) + \
++	(DISPLAY_VERx100(__display) >= (from) && \
++	 DISPLAY_VERx100(__display) <= (until)))
+
+-:134: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__display' - possible side-effects?
+#134: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:213:
++#define IS_DISPLAY_VERx100_STEP(__display, ipver, from, until) \
++	(IS_DISPLAY_VERx100((__display), (ipver), (ipver)) && \
++	 IS_DISPLAY_STEP((__display), (from), (until)))
+
+-:134: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'ipver' - possible side-effects?
+#134: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:213:
++#define IS_DISPLAY_VERx100_STEP(__display, ipver, from, until) \
++	(IS_DISPLAY_VERx100((__display), (ipver), (ipver)) && \
++	 IS_DISPLAY_STEP((__display), (from), (until)))
+
+-:149: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__display' - possible side-effects?
+#149: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:221:
++#define DISPLAY_VERx100(__display)	(DISPLAY_RUNTIME_INFO(__display)->ip.ver * 100 + \
++					 DISPLAY_RUNTIME_INFO(__display)->ip.rel)
+
+-:151: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__display' - possible side-effects?
+#151: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:223:
++#define IS_DISPLAY_VER(__display, from, until) \
++	(DISPLAY_VER(__display) >= (from) && DISPLAY_VER(__display) <= (until))
+
+-:160: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__display' - possible side-effects?
+#160: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:228:
++#define IS_DISPLAY_STEP(__display, since, until) \
++	(drm_WARN_ON(__to_intel_display(__display)->drm, INTEL_DISPLAY_STEP(__display) == STEP_NONE), \
++	 INTEL_DISPLAY_STEP(__display) >= (since) && INTEL_DISPLAY_STEP(__display) < (until))
+
+-:161: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#161: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:229:
++	(drm_WARN_ON(__to_intel_display(__display)->drm, INTEL_DISPLAY_STEP(__display) == STEP_NONE), \
+
+total: 0 errors, 3 warnings, 10 checks, 147 lines checked
+38bff7af6490 drm/i915/display: convert display device identification to struct intel_display
+54aba0c85fe6 drm/i915/display: pass struct pci_dev * to intel_display_device_probe()
+0a75e50a17cc drm/i915/display: add mobile platform group
+-:115: WARNING:LONG_LINE_COMMENT: line length of 134 exceeds 100 columns
+#115: FILE: drivers/gpu/drm/i915/display/intel_display_device.c:479:
 +	.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D), /* DP A, SDVO/HDMI/DP B, HDMI/DP C/D */
-+	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A),
-+};
-+
-+static const struct platform_desc snb_d_desc = {
- 	PLATFORM(sandybridge),
--	.info = &(const struct intel_display_device_info) {
--		.has_hotplug = 1,
--		I9XX_PIPE_OFFSETS,
--		I9XX_CURSOR_OFFSETS,
--		ILK_COLORS,
-+	.info = &snb_display,
-+};
- 
--		.__runtime_defaults.ip.ver = 6,
--		.__runtime_defaults.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B),
--		.__runtime_defaults.cpu_transcoder_mask =
--		BIT(TRANSCODER_A) | BIT(TRANSCODER_B),
--		.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D), /* DP A, SDVO/HDMI/DP B, HDMI/DP C/D */
--		.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A),
--	},
-+static const struct platform_desc snb_m_desc = {
-+	PLATFORM(sandybridge),
-+	PLATFORM_GROUP(mobile),
-+	.info = &snb_display,
-+};
-+
-+static const struct intel_display_device_info ivb_display = {
-+	.has_hotplug = 1,
-+	IVB_PIPE_OFFSETS,
-+	IVB_CURSOR_OFFSETS,
-+	IVB_COLORS,
-+
-+	.__runtime_defaults.ip.ver = 7,
-+	.__runtime_defaults.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C),
-+	.__runtime_defaults.cpu_transcoder_mask =
-+	BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | BIT(TRANSCODER_C),
+
+-:152: WARNING:LONG_LINE_COMMENT: line length of 134 exceeds 100 columns
+#152: FILE: drivers/gpu/drm/i915/display/intel_display_device.c:504:
 +	.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D), /* DP A, SDVO/HDMI/DP B, HDMI/DP C/D */
-+	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A),
- };
- 
--static const struct platform_desc ivb_desc = {
-+static const struct platform_desc ivb_d_desc = {
- 	PLATFORM(ivybridge),
--	.info = &(const struct intel_display_device_info) {
--		.has_hotplug = 1,
--		IVB_PIPE_OFFSETS,
--		IVB_CURSOR_OFFSETS,
--		IVB_COLORS,
-+	.info = &ivb_display,
-+};
- 
--		.__runtime_defaults.ip.ver = 7,
--		.__runtime_defaults.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C),
--		.__runtime_defaults.cpu_transcoder_mask =
--		BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | BIT(TRANSCODER_C),
--		.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D), /* DP A, SDVO/HDMI/DP B, HDMI/DP C/D */
--		.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A),
--	},
-+static const struct platform_desc ivb_m_desc = {
-+	PLATFORM(ivybridge),
-+	PLATFORM_GROUP(mobile),
-+	.info = &ivb_display,
- };
- 
- static const struct platform_desc vlv_desc = {
-@@ -1385,11 +1416,14 @@ static const struct {
- 	INTEL_I965GM_IDS(INTEL_DISPLAY_DEVICE, &i965gm_desc),
- 	INTEL_GM45_IDS(INTEL_DISPLAY_DEVICE, &gm45_desc),
- 	INTEL_G45_IDS(INTEL_DISPLAY_DEVICE, &g45_desc),
--	INTEL_PNV_IDS(INTEL_DISPLAY_DEVICE, &pnv_desc),
-+	INTEL_PNV_G_IDS(INTEL_DISPLAY_DEVICE, &pnv_g_desc),
-+	INTEL_PNV_M_IDS(INTEL_DISPLAY_DEVICE, &pnv_m_desc),
- 	INTEL_ILK_D_IDS(INTEL_DISPLAY_DEVICE, &ilk_d_desc),
- 	INTEL_ILK_M_IDS(INTEL_DISPLAY_DEVICE, &ilk_m_desc),
--	INTEL_SNB_IDS(INTEL_DISPLAY_DEVICE, &snb_desc),
--	INTEL_IVB_IDS(INTEL_DISPLAY_DEVICE, &ivb_desc),
-+	INTEL_SNB_D_IDS(INTEL_DISPLAY_DEVICE, &snb_d_desc),
-+	INTEL_SNB_M_IDS(INTEL_DISPLAY_DEVICE, &snb_m_desc),
-+	INTEL_IVB_D_IDS(INTEL_DISPLAY_DEVICE, &ivb_d_desc),
-+	INTEL_IVB_M_IDS(INTEL_DISPLAY_DEVICE, &ivb_m_desc),
- 	INTEL_HSW_IDS(INTEL_DISPLAY_DEVICE, &hsw_desc),
- 	INTEL_VLV_IDS(INTEL_DISPLAY_DEVICE, &vlv_desc),
- 	INTEL_BDW_IDS(INTEL_DISPLAY_DEVICE, &bdw_desc),
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index e1398689cda5..84378c787923 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -24,6 +24,7 @@ struct pci_dev;
- #define INTEL_DISPLAY_PLATFORMS(func) \
- 	/* Platform group aliases */ \
- 	func(g4x) /* g45 and gm45 */ \
-+	func(mobile) /* mobile platforms */ \
- 	func(dgfx) /* discrete graphics */ \
- 	/* Display ver 2 */ \
- 	func(i830) \
--- 
-2.39.5
+
+total: 0 errors, 2 warnings, 0 checks, 180 lines checked
+
 
