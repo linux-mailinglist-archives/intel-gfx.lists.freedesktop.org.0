@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B12A9BBBA5
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 Nov 2024 18:20:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A1629BBBA7
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 Nov 2024 18:20:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF0DB10E3E7;
-	Mon,  4 Nov 2024 17:20:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E962D10E297;
+	Mon,  4 Nov 2024 17:20:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AlMhUG9M";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OSDBJJgw";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 301AA10E297;
- Mon,  4 Nov 2024 17:20:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1990510E008;
+ Mon,  4 Nov 2024 17:20:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730740808; x=1762276808;
+ t=1730740813; x=1762276813;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=tURMYCQ483St9mqCsJrO3UNjysMWjgd9uuH0epOxZ8w=;
- b=AlMhUG9MKmAgwQul/TvIW7RXr+v1WOxALU0xePAkcH07b25Y1eaRJTal
- wJpYaYRG5gBCmnfa5wMJHHtS9BKENZiQgQ8ouu9x0LE8l/7W4BM+LSi92
- pO9d6gfbtnFjI+fXc/AC9p9PhCEWkodBQUku//sGhpK9cXGTcl8btEG34
- rSqpv7RGVP+12DAW8HqKToOQ4NcuvNmNFuOgSIYVhZbTlF+wJt/P29LnP
- FJD2Ve7YlCB3xZEZl1wpgWImDvyanTzmocLraCP7W1/M5GiMrzpX9i0jV
- QLi/A94hh+Bciknu9Cc7+ImUImFbQVczomowOtCMTUgAFS4P5ePWzEXJE w==;
-X-CSE-ConnectionGUID: WZx9au9XS0e0Kck85pcOUQ==
-X-CSE-MsgGUID: HPyxCke9R6qlKKVINdRsOQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11246"; a="30563855"
-X-IronPort-AV: E=Sophos;i="6.11,257,1725346800"; d="scan'208";a="30563855"
+ bh=EyXPUF9cBaoZ43OnI9T3ngUojKFKdXF4uYHQwQ3qgL4=;
+ b=OSDBJJgwz1VW8ghWtWXqs7IauusJhdm0kiWMYXIpmsDg45AORK9PKdbW
+ zi3dic0DI8lfldlbe8uz19EatmLbc95oFBmrMVOVOP0W2tdpd5GjqPLRp
+ z384DEHOoXnSWSIWq5rZwyNcMrAMakJzfs/rk9RkWVlDyQbANJvb67LZf
+ KRoat/P4BWx/GA/p7TvMTLe5b1JlQT7HR5VYCPTyGZqU7jKQ2BvTnXQUE
+ dSPIAgkeyaCQMmGi573oKQY7VvV4PqdEKroK/QJrEbsCfsx1ZRycMOPje
+ M5CCJhI2U92DQX5aODh1v1yQAJ2rJua8xEkNyI1hA42olMuBu/2R8MlX3 A==;
+X-CSE-ConnectionGUID: UAEYyuu4Q3i5Yr2qwEdCsw==
+X-CSE-MsgGUID: UsFvxrRQRy2PJukGi69xJg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11246"; a="30563869"
+X-IronPort-AV: E=Sophos;i="6.11,257,1725346800"; d="scan'208";a="30563869"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2024 09:20:08 -0800
-X-CSE-ConnectionGUID: Uu8RyqHnRfW+410XaSLdoQ==
-X-CSE-MsgGUID: GvfmFjmtTruv1Izi4fUtAA==
+ 04 Nov 2024 09:20:13 -0800
+X-CSE-ConnectionGUID: d5sCMbQNRG2uR9IAGiHkQw==
+X-CSE-MsgGUID: s3vB6bryRU+6af3wnSHw7w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,257,1725346800"; d="scan'208";a="83815788"
+X-IronPort-AV: E=Sophos;i="6.11,257,1725346800"; d="scan'208";a="83815796"
 Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.33])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2024 09:20:06 -0800
+ 04 Nov 2024 09:20:11 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 07/15] drm/i915/display: convert HAS_IPS() to struct
+Subject: [PATCH 08/15] drm/i915/display: convert HAS_MBUS_JOINING() to struct
  intel_display
-Date: Mon,  4 Nov 2024 19:19:21 +0200
-Message-Id: <aa1279f5f04ed29b053209d49bb0137eea99119e.1730740629.git.jani.nikula@intel.com>
+Date: Mon,  4 Nov 2024 19:19:22 +0200
+Message-Id: <754f1d16612082ef48e7e33b1240418549ed1407.1730740629.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1730740629.git.jani.nikula@intel.com>
 References: <cover.1730740629.git.jani.nikula@intel.com>
@@ -71,65 +71,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Convert HAS_IPS() to struct intel_display. Do minimal drive-by
+Convert HAS_MBUS_JOINING() to struct intel_display. Do minimal drive-by
 conversions to struct intel_display in the callers while at it.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/hsw_ips.c              | 4 +++-
- drivers/gpu/drm/i915/display/intel_display.c        | 3 ++-
- drivers/gpu/drm/i915/display/intel_display_device.h | 2 +-
- 3 files changed, 6 insertions(+), 3 deletions(-)
+ .../drm/i915/display/intel_display_device.h    |  2 +-
+ drivers/gpu/drm/i915/display/skl_watermark.c   | 18 ++++++++++--------
+ 2 files changed, 11 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/hsw_ips.c b/drivers/gpu/drm/i915/display/hsw_ips.c
-index 34c5d28fc866..ee815e0344e8 100644
---- a/drivers/gpu/drm/i915/display/hsw_ips.c
-+++ b/drivers/gpu/drm/i915/display/hsw_ips.c
-@@ -185,7 +185,9 @@ void hsw_ips_post_update(struct intel_atomic_state *state,
- /* IPS only exists on ULT machines and is tied to pipe A. */
- bool hsw_crtc_supports_ips(struct intel_crtc *crtc)
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+index b85b1d3ff708..a0fed40b7779 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.h
++++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+@@ -167,7 +167,7 @@ struct intel_display_platforms {
+ #define HAS_IPS(__display)		((__display)->platform.haswell_ult || (__display)->platform.broadwell)
+ #define HAS_LRR(i915)			(DISPLAY_VER(i915) >= 12)
+ #define HAS_LSPCON(i915)		(IS_DISPLAY_VER(i915, 9, 10))
+-#define HAS_MBUS_JOINING(i915)		(IS_ALDERLAKE_P(i915) || DISPLAY_VER(i915) >= 14)
++#define HAS_MBUS_JOINING(__display)	((__display)->platform.alderlake_p || DISPLAY_VER(__display) >= 14)
+ #define HAS_MSO(i915)			(DISPLAY_VER(i915) >= 12)
+ #define HAS_OVERLAY(i915)		(DISPLAY_INFO(i915)->has_overlay)
+ #define HAS_PSR(i915)			(DISPLAY_INFO(i915)->has_psr)
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index 3b0e87edbacf..83e2cbbfcaf0 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -2496,6 +2496,7 @@ static u8 intel_dbuf_enabled_slices(const struct intel_dbuf_state *dbuf_state)
+ static int
+ skl_compute_ddb(struct intel_atomic_state *state)
  {
--	return HAS_IPS(to_i915(crtc->base.dev)) && crtc->pipe == PIPE_A;
-+	struct intel_display *display = to_intel_display(crtc);
-+
-+	return HAS_IPS(display) && crtc->pipe == PIPE_A;
- }
- 
- bool hsw_crtc_state_ips_capable(const struct intel_crtc_state *crtc_state)
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 57b42554d656..f53611e83502 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -4545,6 +4545,7 @@ static int hsw_compute_linetime_wm(struct intel_atomic_state *state,
- static int intel_crtc_atomic_check(struct intel_atomic_state *state,
- 				   struct intel_crtc *crtc)
- {
-+	struct intel_display *display = to_intel_display(crtc);
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	struct intel_crtc_state *crtc_state =
- 		intel_atomic_get_new_crtc_state(state, crtc);
-@@ -4586,7 +4587,7 @@ static int intel_crtc_atomic_check(struct intel_atomic_state *state,
++	struct intel_display *display = to_intel_display(state);
+ 	struct drm_i915_private *i915 = to_i915(state->base.dev);
+ 	const struct intel_dbuf_state *old_dbuf_state;
+ 	struct intel_dbuf_state *new_dbuf_state = NULL;
+@@ -2524,7 +2525,7 @@ skl_compute_ddb(struct intel_atomic_state *state)
  			return ret;
  	}
  
--	if (HAS_IPS(dev_priv)) {
-+	if (HAS_IPS(display)) {
- 		ret = hsw_ips_compute_config(state, crtc);
- 		if (ret)
- 			return ret;
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index 6279c6c6e831..b85b1d3ff708 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -164,7 +164,7 @@ struct intel_display_platforms {
- #define HAS_GMCH(i915)			(DISPLAY_INFO(i915)->has_gmch)
- #define HAS_HW_SAGV_WM(i915)		(DISPLAY_VER(i915) >= 13 && !IS_DGFX(i915))
- #define HAS_IPC(i915)			(DISPLAY_INFO(i915)->has_ipc)
--#define HAS_IPS(i915)			(IS_HASWELL_ULT(i915) || IS_BROADWELL(i915))
-+#define HAS_IPS(__display)		((__display)->platform.haswell_ult || (__display)->platform.broadwell)
- #define HAS_LRR(i915)			(DISPLAY_VER(i915) >= 12)
- #define HAS_LSPCON(i915)		(IS_DISPLAY_VER(i915, 9, 10))
- #define HAS_MBUS_JOINING(i915)		(IS_ALDERLAKE_P(i915) || DISPLAY_VER(i915) >= 14)
+-	if (HAS_MBUS_JOINING(i915)) {
++	if (HAS_MBUS_JOINING(display)) {
+ 		new_dbuf_state->joined_mbus =
+ 			adlp_check_mbus_joined(new_dbuf_state->active_pipes);
+ 
+@@ -2984,7 +2985,7 @@ static void skl_wm_get_hw_state(struct drm_i915_private *i915)
+ 		to_intel_dbuf_state(i915->display.dbuf.obj.state);
+ 	struct intel_crtc *crtc;
+ 
+-	if (HAS_MBUS_JOINING(i915))
++	if (HAS_MBUS_JOINING(display))
+ 		dbuf_state->joined_mbus = intel_de_read(i915, MBUS_CTL) & MBUS_JOIN;
+ 
+ 	dbuf_state->mdclk_cdclk_ratio = intel_mdclk_cdclk_ratio(display, &display->cdclk.hw);
+@@ -3562,23 +3563,24 @@ int intel_dbuf_state_set_mdclk_cdclk_ratio(struct intel_atomic_state *state,
+ void intel_dbuf_mdclk_cdclk_ratio_update(struct drm_i915_private *i915,
+ 					 int ratio, bool joined_mbus)
+ {
++	struct intel_display *display = &i915->display;
+ 	enum dbuf_slice slice;
+ 
+-	if (!HAS_MBUS_JOINING(i915))
++	if (!HAS_MBUS_JOINING(display))
+ 		return;
+ 
+-	if (DISPLAY_VER(i915) >= 20)
+-		intel_de_rmw(i915, MBUS_CTL, MBUS_TRANSLATION_THROTTLE_MIN_MASK,
++	if (DISPLAY_VER(display) >= 20)
++		intel_de_rmw(display, MBUS_CTL, MBUS_TRANSLATION_THROTTLE_MIN_MASK,
+ 			     MBUS_TRANSLATION_THROTTLE_MIN(ratio - 1));
+ 
+ 	if (joined_mbus)
+ 		ratio *= 2;
+ 
+-	drm_dbg_kms(&i915->drm, "Updating dbuf ratio to %d (mbus joined: %s)\n",
++	drm_dbg_kms(display->drm, "Updating dbuf ratio to %d (mbus joined: %s)\n",
+ 		    ratio, str_yes_no(joined_mbus));
+ 
+-	for_each_dbuf_slice(i915, slice)
+-		intel_de_rmw(i915, DBUF_CTL_S(slice),
++	for_each_dbuf_slice(display, slice)
++		intel_de_rmw(display, DBUF_CTL_S(slice),
+ 			     DBUF_MIN_TRACKER_STATE_SERVICE_MASK,
+ 			     DBUF_MIN_TRACKER_STATE_SERVICE(ratio - 1));
+ }
 -- 
 2.39.5
 
