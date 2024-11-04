@@ -2,168 +2,163 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A67F9BBCF8
-	for <lists+intel-gfx@lfdr.de>; Mon,  4 Nov 2024 19:13:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B52ED9BBD01
+	for <lists+intel-gfx@lfdr.de>; Mon,  4 Nov 2024 19:15:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C68310E4AA;
-	Mon,  4 Nov 2024 18:13:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5319310E0B5;
+	Mon,  4 Nov 2024 18:15:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V8Kh2xOy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JoftMsBe";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7774310E4AA;
- Mon,  4 Nov 2024 18:13:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C42710E0B5;
+ Mon,  4 Nov 2024 18:15:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730744032; x=1762280032;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=PIIc5F05MyRvLBZPn1dlsSgv29AmCvTvbgXdSY4ivwo=;
- b=V8Kh2xOytyd6GgEXwxcTQMWan+DetYUWV3W0Z99kD56v6xoHhEBXqd/0
- AiFndMRK+NP+iLNynHu+dQGHvY8e4AR7XZiVC50dxLr833/T6N65FEfzF
- xYR5UpMLnjM9kWgb5AgLBjieoTAcectlMvSSNE68al2rsLgZzNKT+eLiu
- Pt9rnFv86X+zgvCdZGhRBsJBGIzaXbdY/zPioNNgOZgaiFUAJO1gbC3oD
- /yZO4LQb9LScAbnM73h7x4XBzmaKof4k997l1cm3WyueHQ+i5lrehaypX
- mGHSnsomLj612WwV9z2YgkBa0vPN8/BF9p/KpjnCd8BrzYuD60snwypBz A==;
-X-CSE-ConnectionGUID: mCTPO7x4QuGfn4VgtZlUiA==
-X-CSE-MsgGUID: h/hX4NCGSAaQjZCcBud5pA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11246"; a="41847099"
-X-IronPort-AV: E=Sophos;i="6.11,257,1725346800"; d="scan'208";a="41847099"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2024 10:13:51 -0800
-X-CSE-ConnectionGUID: s/kE7bTuRG2j/sQzymiNVQ==
-X-CSE-MsgGUID: l1E8Wa4FTnyRgZJje0QkBQ==
+ t=1730744105; x=1762280105;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=BYCYMvmwTBDBDGr+MnajW3pvLH2ESNQsOFtAF5cM/18=;
+ b=JoftMsBeX/H+L9iRxaYMQI1TFOaE4AsjO2/na+dGlZ6UC+uDY6gPv0dP
+ C9eXH2zqa9pAxnkF6fYjm1HcsVvoScWfAXL/v6qye7+BBpFJJuPi/jYAb
+ W9Wuv0MULB6grTTUA+ZyBDeJhaeS/971ddGphKS/FtfN1mV/OP9sWGhmw
+ /9rts+gDwXWhRuc0IpqLpAuQPQS3NqYBs5x3l7QLCC4XcB1MRYHLZwRBZ
+ OAYqy9Sy8XfVX9qut9+jR6+fb1KtXkz+xmB91er7tICvgZwnLOX/69/RR
+ cPttXootrMu7VpggGA9ncAwDFKty02RR5ATAoHodqgee9hWudM4ubEZnE A==;
+X-CSE-ConnectionGUID: hPdEGfw5TXi39nEYvEj0aA==
+X-CSE-MsgGUID: Vmzm43R+RUazWLVFW0/qNA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11246"; a="18078731"
+X-IronPort-AV: E=Sophos;i="6.11,257,1725346800"; d="scan'208";a="18078731"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Nov 2024 10:15:04 -0800
+X-CSE-ConnectionGUID: 8psu3UpHS1+EZ2AeYzaYfg==
+X-CSE-MsgGUID: uvrqr1QBSL6HpOfW9JreFw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,257,1725346800"; d="scan'208";a="114535608"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmviesa001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 04 Nov 2024 10:13:50 -0800
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.11,257,1725346800"; d="scan'208";a="121211779"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orviesa001.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 04 Nov 2024 10:15:03 -0800
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Mon, 4 Nov 2024 10:13:50 -0800
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ 15.1.2507.39; Mon, 4 Nov 2024 10:15:03 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Mon, 4 Nov 2024 10:13:50 -0800
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.46) by
- edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Mon, 4 Nov 2024 10:15:03 -0800
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.46) by
+ edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Mon, 4 Nov 2024 10:13:49 -0800
+ 15.1.2507.39; Mon, 4 Nov 2024 10:15:03 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=t2uzmTZTKWdBXTPrYfX4idnKtUJljHSEvH/CPTpJrB+7QJFSmjhsAT0CBMCuMvpicpaGzJxpKjhDnG00bMtqKCIvwZjDmQvplFunlJcWq2FtePi0tKU1/1uXfo6nGucuVHtYAwqGGlkZ+XQAjmFYMa3DUNoqzbbxM3+mi4NsIwsly2mJ7sdutK+zvAHeYv+y1PHm21xRYBtqGTZ0J2fnVON0aeOvS+VLwvhMaoQG45gr23HUxeokCc9loZXgRM4/S7YVdvVU0qUCePwP4+31Pd7rzzRaIK41LpDKss6P+DAw3Uc/L/i0M1DTNq5dZNUeKA50zc1znhWV6CPUht+haQ==
+ b=kaHTYElJib88LhCfsKii4esYWOroeBPs2BO/xZqLdlSlQ91LyAn6Irzl6fqL6z86NQTTROL9qCusnHPYsgt0mY1GCT6MxZKApOFXmKS8C0MMOSYPoVrelS0R5R02tZ2nS6BRFGZzp6/TzgNYBaR2fWf5ct8zl2MoGSQ3bSdXQg4lY6waOo6OCRrNWZI54mhRsK4oVQ6V3IRLfceKGOqIq9X0pTQqjr2I4aAtzTg9nE/bk9Fe/Zw77K6SaZ6z7axe2xQfI+M0zUhaRva01YGDHeDMaTrf2A5lYVCXUZ5ZatwFOsyoDY8dQ8TLcCRmtkAMJVE+nvFlI4oBX0qah6mltw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0EZr3jXOgNLmMGeo8NZHdIkVRmkJ3583MgkJXbTvn0k=;
- b=IsMaMbgsw+TK6wghl782mekkg0qRb6bDwAU9S7SGnTXsmc5EybQNDHFAlgMeRQsTHW1VVfE4sZJvFlX3u1mY45V1XEfYEfV6A6ppCMDbqtxzAiF+G0gB0Yo0S0SISFZpNgqXY1lrrc6f2KSW4w8Smh0XfcYkYgwQET32AD0yHASF6m+DPgunFug54evyk+4tTHfIBhAKX8tQL5v6+TR/ui7gtrSYk5qVULC8Op9uRJyxsjpccbeP8qnqO5ymtgqgpbAsP9ZnyrHLwhLrOC1eLWQJQIj1i0Pp6HbUh2sI3AAlMPkp4EcYb//hFxMyqUKZLqAvrDh2JZUGHU8jnHDKJQ==
+ bh=gsO/63whK2S/3fvzlhIMp11L+MkehVJejokx6fe14CQ=;
+ b=uskgCvFp9eFOIlyXtNwfB+qhv6XGv6fgcE5qeVq1Wl6DmPQzryhYsdL/4QhvJ19mnN+DwELbGiRhOKWDzxw1UrgsK9pEc9gF/GuTb3Gh+pUPbZs6NvXYPXfNUnWRTnFz/Tp29V2ZO6ABPcnX8eDhKCKArEQ5Rp6+sb7yGXdb3FfBtQDPH3tfwx8E2A0rSBMaQF87KPVw5M3DVhBzP0gkU+lylWKI/LdiQyYh3w9Bj/qaU+E7b7WdzYHEFpgAq7pJoCiuVItNsemuNFGrB814LpwvGS/BVpu5E1wnqo3lV43d0BIiM9lScZD0bU3F9QYJ6RTnF5bE62X8j2oV97CZEg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from SN7PR11MB6750.namprd11.prod.outlook.com (2603:10b6:806:266::21)
- by SA1PR11MB6896.namprd11.prod.outlook.com (2603:10b6:806:2bd::8)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8114.30; Mon, 4 Nov
- 2024 18:13:46 +0000
-Received: from SN7PR11MB6750.namprd11.prod.outlook.com
- ([fe80::9570:169d:a0d5:527]) by SN7PR11MB6750.namprd11.prod.outlook.com
- ([fe80::9570:169d:a0d5:527%3]) with mapi id 15.20.8114.028; Mon, 4 Nov 2024
- 18:13:46 +0000
-From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-To: "Roper, Matthew D" <matthew.d.roper@intel.com>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH 1/2] drm/i915/xe3lpd: Disable HDCP Line Rekeying for Xe3
-Thread-Topic: [PATCH 1/2] drm/i915/xe3lpd: Disable HDCP Line Rekeying for Xe3
-Thread-Index: AQHbLpQOJRk/svtockiq4lviLwW3trKnaBSAgAACyYCAAAGrcA==
-Date: Mon, 4 Nov 2024 18:13:46 +0000
-Message-ID: <SN7PR11MB675075442C0A012AF41B1F65E3512@SN7PR11MB6750.namprd11.prod.outlook.com>
-References: <20241104083143.631760-1-suraj.kandpal@intel.com>
- <20241104175439.GB5725@mdroper-desk1.amr.corp.intel.com>
- <20241104180437.GJ4891@mdroper-desk1.amr.corp.intel.com>
-In-Reply-To: <20241104180437.GJ4891@mdroper-desk1.amr.corp.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SN7PR11MB6750:EE_|SA1PR11MB6896:EE_
-x-ms-office365-filtering-correlation-id: 6b6251f8-36d3-48d0-438e-08dcfcfc6c72
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|376014|366016|1800799024|38070700018;
-x-microsoft-antispam-message-info: =?us-ascii?Q?nxroCBD1yOm8k2/aUr+KSbnPGCAQiTYGsli119+A8042Bfr5bti2MeR0D7kx?=
- =?us-ascii?Q?ojnlI4sXCw7TPWSoW5VFHvhYl4COOSKK9qVwcxWPVD6FzZmBmgLxa2eYYHaH?=
- =?us-ascii?Q?Lj/CptdMw/nyQZQxdhNVypDb94FXn8piWT0go/bzbefVGVTNMtJ28IKBBoMd?=
- =?us-ascii?Q?UXJCCBTyP1bVWpnwDU/+trgu+tLT8kJ9m15eq76pRzs6Yx7gcosel+O0nynf?=
- =?us-ascii?Q?y2NFmVpx1X718FffEMzUo8eKNreoOO9Rez7aui2cM/ni9KTVajaqlfOIW4Uc?=
- =?us-ascii?Q?CEot/qDauml5iHS8pdR8oIiywThFVO0x9hnPx111s49ZhzS4lq/uP86YDM8p?=
- =?us-ascii?Q?4V2zwy3ZTtxvzUTEGHJK5wsEznYyCyiCgw4cpGlzsb/JtpLrto4J9jUk504M?=
- =?us-ascii?Q?JqMNjlAJHP0BaUfBLVTr2opGEnTIfFMhSxYmNAmR6zBO8gHuLvF1B/rJL+8O?=
- =?us-ascii?Q?oQSIxIG1KSsZ7npW39rwZxvV0l2vcug3e3A2GIUNBybQvyv52zCNrXn3cEY4?=
- =?us-ascii?Q?4OozGTpvHP6rw/UHIKRLFad1Bke8hcs9rKfClGsoxd5a5b+VkoxjzMjt+G5L?=
- =?us-ascii?Q?C/d6kwDvZQ7pLaEzUZhcMARkHHzyw5Xgl+0WRsVlKYzDvbe3w7w2T/JL5NK9?=
- =?us-ascii?Q?cLjS9irNNJb8Wk+GvYV/mut2IyE0ACzNXy6AZ6cEYxmvOWaT15Uho3EV1T/f?=
- =?us-ascii?Q?bhb9fAMXfD6PXD2aAJtLsMxeiORHFUzloSUqBSp4I95ZCi8llaH7VntCMM09?=
- =?us-ascii?Q?+Wvw3skSavI87la5oWKs8oSoZxLy3VJFqS7L1eJkF+vu+MQZwlru3yof5K6S?=
- =?us-ascii?Q?AAWebIyKytYHP8723QXOE8ot7ZooRsHwSYXyM6IchlLqS1F6caLg0/uViQTH?=
- =?us-ascii?Q?Q+8UaPQbmlofXZEdLC+86P2pHCBOj0gxbCM6p5XiGf1tZwFMHLhl6lW62L1t?=
- =?us-ascii?Q?8cRup+Mm3hfabVvG5tf7h3QWhenVb0zXSQ0zzwniR+K0DB+1yxNFxC4YUwx8?=
- =?us-ascii?Q?ED1tFL7ss2eGyt1RmhkOsQwrkKr55/tKwMxXWMpNs9nW0yhcKtGUfxy+jGDf?=
- =?us-ascii?Q?dW4MhpdJhkeZmiPCEewI6gatp5FmkQL+yzvUszTEaUoeBqGlgyyz5a2YwdXL?=
- =?us-ascii?Q?uI4HyQiI0TaGYBH80WucbKE/LQ9K9h3j3jLQ7xNQYqvUM++pTZQWGMsEtyY0?=
- =?us-ascii?Q?2FstgTnvx+lA4IwPeiy3o/A1t144MuuxpQssW/HQU0kjyMfPhuDGNmbOVzQS?=
- =?us-ascii?Q?u/K8spbRDDT0OuGPMFP3bHRy5KbaPYNgDSKZvuYvwv8hX1jUvZwfyJz6OoT1?=
- =?us-ascii?Q?fGyQaXwknBHFjcS0kVmCWbNysBnyLfULNV9a0lUBifoKE9W8l5zWXDEnMnKz?=
- =?us-ascii?Q?nHiMTBc=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SN7PR11MB6750.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(38070700018); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?G55IwRziLhrhp9WSRMvh5XIE9Eo0+luc1BhcTqr+SiCYJWjGYyKP5z+ri3T8?=
- =?us-ascii?Q?4A+vDLFln8ILMKZfd7mLbcmlUQ3CscyUCCeMzSF3XG/O8ES6AWAVvGOKNs6a?=
- =?us-ascii?Q?Vh3YSypkQLNUCA1IbeT375aKW1ohRQIHRbp0/JwKXCLlvMU5WODgaxs4RZDu?=
- =?us-ascii?Q?Vctgx8nSTvKjTCKioGu8np0lcyCZlDJwhxH91Ngb+vonYFSaNxteetA8ojcV?=
- =?us-ascii?Q?Bcd2/vYI8TL6TF67LxTUuVh9W4ZtLIU9Tl4PvwiJmwnVpcDcltSoSqkEyy4u?=
- =?us-ascii?Q?S8SRiaEvah1Leam13kNN+Kca83t6d25HoE80f+HRwKa81TcElc1qQhA+JXoo?=
- =?us-ascii?Q?scW5o17nQ0nVwkUoa9Uj8uAaRREH2LDa0v5WpjjBqkbAbXjH+XzQen+3ugB4?=
- =?us-ascii?Q?l2z/3Ntiulr/pfq0FXR0IKP6JqHoOj+vlnFMMOBeOGvgPGzNWQigu519gbb4?=
- =?us-ascii?Q?OKy1PXNPyUM/77+w+KJk7egLvew7auNdkBV1/65lAIjg4NNvRiUtmoLIcSu6?=
- =?us-ascii?Q?BTRkLluXbbOCvfyCjVFPHvVRktf4Hsjq7jRYowfhJPA+g/8ljfcnKTADcuI5?=
- =?us-ascii?Q?HQ9decqeUpwSFk2fMSqPjzb13IrznAIZUijXIiaMiQdwQsDy+dUNsykyM8Js?=
- =?us-ascii?Q?LIR05M27lXYhpLAzE+auFbtkSy0f6EnOFUBEI4Q/Fr9malDI+aA/PPNNMMM0?=
- =?us-ascii?Q?AHWmnNjfHjb3kgukW7lb/igW/oj5BCRzSChad9fwybF/IdC19n/pHKibYo4K?=
- =?us-ascii?Q?0xnK0//5/cUL4y6oEZLY7BYMBKnCmdVUCtgln2ZBIXHaMoiAqTRfdShuJOoF?=
- =?us-ascii?Q?HQb+14v7jFCVbqsu7OSUxYOZ0iL5H5OLwRhzf11HzuQtykO+/nn2Y9WcsLj4?=
- =?us-ascii?Q?Fa9Yoc8dnAofxHCS/8gbx1qOfvqJbwkx8ODKHWKU/qezt0AG0DXT1xu/J2qH?=
- =?us-ascii?Q?KOiDGXjCr1+GhffgFHOhLFDpF09YiKvlaPbGHJ/0hfHM2jToezh2VPaVphsk?=
- =?us-ascii?Q?muUcDHCCNsUa5ZGGicIEcwOdOJr9BbwzaPzkbXlVct52oc2x5T7Vy7nPj748?=
- =?us-ascii?Q?fhoRN3Mr2/J775QW22VU27ssLDTcX9Wd7ruUg707XLritYMIWHVK/IH9QPhg?=
- =?us-ascii?Q?Q8yll9NA0pygbhPjTD1MkzHgTHpBRHqUMOhqF5uugKECERwqi8ErnS4kz6AY?=
- =?us-ascii?Q?CM8kV+OwPsDvpFEVSSuGM5WmB281wR1Ct13ujD1Ojxa/nEnqNP5L4Z0QXhhq?=
- =?us-ascii?Q?NtCwMoPVQHscB3ClHSt+1j2rd5Trwva+Kb07EH4qQ+8eThxdsnBIJgkLYnEo?=
- =?us-ascii?Q?bFuq/+8hIjBmZ2VDTmAiavS++Qi78ljZg+8b/s4ESoOhgeGrjVsPniAhKlTG?=
- =?us-ascii?Q?Ow5AR5NlKO50GU1cHkE6hXn8gj1rVgyVInIZ0x0R3h9WeVd+LxolRnnXrQiG?=
- =?us-ascii?Q?cWdwHBEMfDaOUhOmZT7r5SgMpn89OLKhOcaQ/NblY67x1TtqqWXG8zDDhqoK?=
- =?us-ascii?Q?GtZKYO0/h5slGYKk5dK3Lis0pA7vsE3xm221i+g/68hoi0GnQ0mEDHYZl0sp?=
- =?us-ascii?Q?xN7xIigU9Dj9/qIHD7eC5HC1ntHPZFJbEc91bPGM?=
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
+ by SJ1PR11MB6202.namprd11.prod.outlook.com (2603:10b6:a03:45b::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8114.30; Mon, 4 Nov
+ 2024 18:15:00 +0000
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::8dd1:f169:5266:e16e]) by DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::8dd1:f169:5266:e16e%7]) with mapi id 15.20.8114.028; Mon, 4 Nov 2024
+ 18:15:00 +0000
+Date: Mon, 4 Nov 2024 10:14:57 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH 2/2] drm/i915/hdcp: Handle HDCP Line Rekeying for HDCP 1.4
+Message-ID: <20241104181457.GK4891@mdroper-desk1.amr.corp.intel.com>
+References: <20241104083143.631760-1-suraj.kandpal@intel.com>
+ <20241104083143.631760-2-suraj.kandpal@intel.com>
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
+In-Reply-To: <20241104083143.631760-2-suraj.kandpal@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0153.namprd03.prod.outlook.com
+ (2603:10b6:a03:338::8) To DS0PR11MB8182.namprd11.prod.outlook.com
+ (2603:10b6:8:163::17)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|SJ1PR11MB6202:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0374cab4-1fad-400a-3d12-08dcfcfc987c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?qb6YRuAFUdALa3rFsctbVKKDEWFPsaHusLL5JG+qfKfrHonQzjFf9MZXpW5k?=
+ =?us-ascii?Q?fFsosNd/JSZIh8VaKKebfuXG07KMdaLbGHulKDxhZlp6idpqtr23Sr4Otq3f?=
+ =?us-ascii?Q?AvKTSu9vQpLxaZAUGPgUl8yvzT0SxRpwe4vk1mzy2GI06uM2aGPF2SLAjA9U?=
+ =?us-ascii?Q?Ue2ig58rL7vTLCBRvtdHyoK/CpKzbiJ7rq0Yd8boOAxFQT5b/dnF4BV7vFaJ?=
+ =?us-ascii?Q?oMuQI1P01bUos+g48rvfiyCjcf/C+RVmSbub5qBdSvCZvPlO3K5FUXo38EvS?=
+ =?us-ascii?Q?/0WRCiQpcEyb15HZulnXjkKXeGCCaPgJWntlswIYQSdte3/iqgczi4AJAZpn?=
+ =?us-ascii?Q?UDeH7aQAjo395VKpTXy5YYJ4vj7kfDVmHu6EBVdj+2tvFQbeeGAilo0APTEi?=
+ =?us-ascii?Q?1jzHRXI6qrxgv6CMDqokRz0aL46ClRlgWWIE251yKr6N8XCP3YGj3bGOtEI+?=
+ =?us-ascii?Q?exCQMEE2jFEAiSQj18+FQZBI4G+KCqNLgVDYJ23/4KhYvMvpuomIctLhD/fU?=
+ =?us-ascii?Q?M5vSuC/C1P5LI7ESbnBI0Z63YROckWjXdTk70ayG+w88n9Gb+VWHUx5O9zqi?=
+ =?us-ascii?Q?rnRZ36jPBfhc9cBaRZwurEhqwerIJyqfhRC1LFzEtcw+VcUXLI5k0JSYEJx/?=
+ =?us-ascii?Q?CV0ppmhfVF5JQrtR4R8ZGn7k3PhCR97m/nwXs0caq0LP5zMBg9Qlguv6E6gr?=
+ =?us-ascii?Q?s4xwt2iotY2Y4d9lifoPTCMZYwZhaU9FAobSdHhjdd90sAh7R7vcmWd0hZG3?=
+ =?us-ascii?Q?evap+3Oj65kCaBDz8tRhT49H2Red6zv10Iv4hdxCenzsdWWE2hmI/yib1btN?=
+ =?us-ascii?Q?dle8tkpm8K0vKNc0DHj7cBqmylPCrt9S56MijTBKUDK0MDtASpiBOFFDzoO/?=
+ =?us-ascii?Q?Ul5xRi18komVdr6K0z/nWPrzFG/j8NOh5V77uvIMikKEvruZXuFhS4unDFjx?=
+ =?us-ascii?Q?7eGS1SgcsmxuUn6ePIrUl3X2hIE5aKgHuo8IOttCoAo1zRC5zgO0uBReL8Ab?=
+ =?us-ascii?Q?3UoUluDFOTuUvh+Dwe/2mC6M01OMR9HDEI8P6jaZq1gr5e5u/N/4+0p38UmA?=
+ =?us-ascii?Q?WE2FybUepLCJ6F175c2PcAH/Em6VVbT339iQwhUTEPA5eAd2lSRAJjbZErv9?=
+ =?us-ascii?Q?3IyUD49JwQP2Xnz5H3diols94NHWqLLbbaZL9lw5uw36E/q7T4FGDGgg1eY3?=
+ =?us-ascii?Q?fxqkyeH8thp+3xomVxTI/d0WE+6R/hcLNY3+sqFXb5DFKXJlMGQ1wF3hkLSx?=
+ =?us-ascii?Q?haN8ZfqtZic/1jnZOLs0yvR8qa067Axn6NyZqM9ioXXCRsK129nMVPwQ4/RC?=
+ =?us-ascii?Q?uk+RHHo8i5e9u6DrulLa3rYz?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?zfIN1hrybIWbxMpwkmhWbPzGjUw/s1OEVvAbqpIpbP0M4Jw2TPYEaq4HkaQa?=
+ =?us-ascii?Q?ZhvRTp4bJml3kW06gs3i8H/LGssA7Ry/7VekdjLSOmlCoU5i578CRhmFUZee?=
+ =?us-ascii?Q?UHYEYEI/5s8jBprjhctOo0lOjMQtJdn2MkkriGT3X6SW+ByYRlK3W3sMAlbI?=
+ =?us-ascii?Q?/lE2KZYLCGvzVqybPdQp4xd+JVU5JreyGUDmVnExMc0RHT/V7ODMR89zPhGk?=
+ =?us-ascii?Q?oduS0X2RT6YW/EMbcy8yfH7IgnviOr5qJIqNJtLlXZGu4PTMwAEpGMtOQAsa?=
+ =?us-ascii?Q?SHLSpRnyuPwP5DTu1I4QbiYJwsu04M4PiGhdvVrZsPK1/ENwV+MjOTM/zhYW?=
+ =?us-ascii?Q?Ea6Vjq/Bx1hlVsCfFRcsS+SQkagkGCRBr6z/kaYt4BZ7VEGbSGuVog+u3rC2?=
+ =?us-ascii?Q?ABv/qhOrT5+URZuJXp57mr2HUILt5wgwButnZDNbNZSZCNntWkDgnYSZ/Avi?=
+ =?us-ascii?Q?1KYq/wG+vNFGx/l5DQNPpYW6jPb1MN+ES0qnAfqiGjJmh/QXLwPqRD2G1hdX?=
+ =?us-ascii?Q?f2oLxdXjZer0khleDHTKr0hDU0pvyxn9PZVLjjsG0JzpgtVOemIurw7YMyRz?=
+ =?us-ascii?Q?rhNFn/e68HdWWfbT0gC+S2EuOId7LHUDmhffQjubv5Ggm8nPQMmKoPoiy/pY?=
+ =?us-ascii?Q?SBezlSSwUjiFqYp9/KVmg1SlOtpO3VDH/qLNBHQEEcFvqj9oSFrsYjCaeEyf?=
+ =?us-ascii?Q?vteWy6hEnoe+aP57GjUBkltCQRbecX9k/fbDA4loCstul/k5xGXuYq7E6DcR?=
+ =?us-ascii?Q?4uiZajw2oGAKyTCGeuNYQxzcwv2hN3GfKVZW8PWx/vy1V1u/3S1ZZcgMJFD6?=
+ =?us-ascii?Q?soHQx0abQEsyuXgHCfGhAoEcshukgravG0lLKy+ICvhO3lfiFetbu99Ta8Iy?=
+ =?us-ascii?Q?/Se8txzI0zLNzknZw5nPPX5Rp5gMLXdmp/aDtMD68meNcW3luRyl41y/8Rq2?=
+ =?us-ascii?Q?+b0OCviYP9EB6aExZxzt8jNghTEBewQDDfctbiENilS/6VfcQMzbP3YccAds?=
+ =?us-ascii?Q?/4WFxW8hGMK+cAVlHxKC64rgRg3/YJjcy/Ue+kAtq9pRA4Joj/m9DfyUe4Om?=
+ =?us-ascii?Q?eEnkyvY2nNhCXTKdR82sx1YsgCWqU3tTXyH/BYmPnS+YCpmBBZPVY0cdY9V4?=
+ =?us-ascii?Q?Bj+jT2Urn1wyrRwZPUUWsXsC2yX9C9fnPyAKxrVv5xkGXswZcc7fVRi5ff8q?=
+ =?us-ascii?Q?ZNHoCK3o8MP3kW8TeZIqYjnQAwYozHuG/i4DcvUJt3R9+vVQvXy8JT+pcOeD?=
+ =?us-ascii?Q?eZ9ksC4DXNL9SWyZyaR7Q1vBDxcjFKc4Uur9/PBo+UgpeQBkY4S4DNldxCJf?=
+ =?us-ascii?Q?GuiX8VhClMw9autPH9Fb3JE79eTfxox3pabADkh9ZE2iAR9wHIgs5ubK6jap?=
+ =?us-ascii?Q?2tx77l4QnXrAHtw+NyA8T1MxujNsjR4qe/LMsAz+xzjFVkgESRPwnklwReuE?=
+ =?us-ascii?Q?R/sp/XksyYV1GFHLRQhN8V1T4ATkgTOEPSjrQTNyC0ND1zK+auhE0wBweLfs?=
+ =?us-ascii?Q?CO4CHVFCerBfzL0ty70jh3VjVoHf7yxz6MCGylXVtVDZj5HgmnXwvA0GZ0T3?=
+ =?us-ascii?Q?bKtoThwf+F25ZCx+Lgmmia3P2lsLAJ6BXmrKbzX+wvZuGlF2pJn+RxE4zhl/?=
+ =?us-ascii?Q?yA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0374cab4-1fad-400a-3d12-08dcfcfc987c
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB6750.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6b6251f8-36d3-48d0-438e-08dcfcfc6c72
-X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Nov 2024 18:13:46.0982 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: gTsrYBGwKLdImBjHXfH2cndTLjNB/5WJ2k+qA5c/txjI4m8dfVJ0hLrDAg3TjElCs4u6QBWFscqefnAPgCxaQA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB6896
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2024 18:15:00.1817 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: DyTDwo9xPp1cn6S3TO+lbKEfjZq/xixu+JYUpKOyHd4x1gN8pkukkUVByOwjkWsT3azXTdos4SW5qh7kR710rpI3bONvCYfYnMTVII4uEdc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR11MB6202
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -180,145 +175,118 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Mon, Nov 04, 2024 at 02:01:43PM +0530, Suraj Kandpal wrote:
+> TRANS_DDI_FUNC_CTL asks us to disable hdcp line rekeying when not in
+> hdcp 2.2 and we are not using an hdmi transcoder and it need to be
+> enabled when we are using an HDMI transcoder to enable HDCP 1.4.
+> We use intel_de_rmw cycles to update TRANS_DDI_FUNC_CTL register so
+> we cannot depend on the value being 0 by default everytime which calls
+> for seprate handling of HDCP 1.4 case.
+> 
+> Bspec: 69964, 50493, 50054
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_hdcp.c | 28 +++++++++++++++++++++++
+>  1 file changed, 28 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> index 8bca532d1176..54efba65ef5a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> @@ -31,6 +31,32 @@
+>  #define KEY_LOAD_TRIES	5
+>  #define HDCP2_LC_RETRY_CNT			3
+>  
+> +static void
+> +intel_hdcp_enable_hdcp_line_rekeying(struct intel_encoder *encoder,
+> +				     struct intel_hdcp *hdcp)
+> +{
+> +	struct intel_display *display = to_intel_display(encoder);
+> +
+> +	/* Here we assume HDMI is in TMDS mode of operation */
+> +	if (encoder->type != INTEL_OUTPUT_HDMI)
+> +		return;
+> +
+> +	if (DISPLAY_VER(display) >= 14) {
+
+As noted on the previous patch, this outer 'if' doesn't do anything
+since none of the nested if's will match versions less than 14.
+
+> +		if (DISPLAY_VER(display) >= 30)
+> +			intel_de_rmw(display,
+> +				     TRANS_DDI_FUNC_CTL(display, hdcp->cpu_transcoder),
+> +				     XE3_TRANS_DDI_HDCP_LINE_REKEY_DISABLE, 0);
+> +		else if (IS_DISPLAY_VERx100_STEP(display, 1400, STEP_D0, STEP_FOREVER))
+> +			intel_de_rmw(display, MTL_CHICKEN_TRANS(hdcp->cpu_transcoder),
+> +				     HDCP_LINE_REKEY_DISABLE, 0);
+> +		else if (IS_DISPLAY_VERx100_STEP(display, 1401, STEP_B0, STEP_FOREVER) ||
+> +			 IS_DISPLAY_VERx100_STEP(display, 2000, STEP_B0, STEP_FOREVER))
+
+For new code we should definitely be ordering if/else ladders in
+descending order.  So the Xe2 clause here should come before the MTL
+clause.
+
+Although it might be cleaner to just have a single function that takes a
+boolean parameter to enable/disable rekeying?  E.g., something along the
+lines of:
+
+    static void
+    intel_hdcp_adjust_hdcp_line_rekeying(struct intel_encoder *encoder,
+                                         struct intel_hdcp *hdcp,
+                                         bool enable)
+    {
+        struct intel_reg reky_reg;
+        u32 rekey_bit;
+
+        if (DISPLAY_VER(display) >= 30) {
+            rekey_reg = TRANS_DDI_FUNC_CTL;
+            rekey_bit = XE3_TRANS_DDI_HDCP_LINE_REKEY_DISABLE;
+        } else if (DISPLAY_VERx100(display) >= 1401) {
+            rekey_reg = TRANS_DDI_FUNC_CTL;
+            rekey_bit = TRANS_DDI_HDCP_LINE_REKEY_DISABLE;
+        } else if (DISPLAY_VERx100(display) == 1400)
+            rekey_reg = MTL_CHICKEN_TRANS(hdcp->cpu_transcoder);
+            rekey_bit = HDCP_LINE_REKEY_DISABLE;
+        } else {
+            return;
+        }
+
+        intel_de_rmw(display, rekey_reg, rekey_bit,
+                     enable ? 0 : rekey_bit);
+     }
+
+And we can move the stepping-specific workaround implementation to the
+callsite to make it clear that the implementation of enabling/disabling
+is separate from the decision whether to enable/disable (as impacted by
+the workaround).
 
 
-> -----Original Message-----
-> From: Roper, Matthew D <matthew.d.roper@intel.com>
-> Sent: Monday, November 4, 2024 11:35 PM
-> To: Kandpal, Suraj <suraj.kandpal@intel.com>
-> Cc: intel-xe@lists.freedesktop.org; intel-gfx@lists.freedesktop.org
-> Subject: Re: [PATCH 1/2] drm/i915/xe3lpd: Disable HDCP Line Rekeying for =
-Xe3
->=20
-> On Mon, Nov 04, 2024 at 09:54:39AM -0800, Matt Roper wrote:
-> > On Mon, Nov 04, 2024 at 02:01:42PM +0530, Suraj Kandpal wrote:
-> > > We need to disable HDCP Line Rekeying for Xe3 when we are using an
-> > > HDMI encoder. Also remove the Wa comment tag as this follows the
-> > > bspec and does not implement the wa.
-> > >
-> > > v2: add additional definition instead of function, commit message
-> > > typo fix and update.
-> > > v3: restore lost conditional from v2.
-> > > v4: subject line and subject message updated, fix the if ladder
-> > > order, fix the bit definition order.
-> > > v5: Add the bspec link and remove the Wa comment tag
-> > > v6: Rebase over new changes
-> > >
-> > > Bspec: 69964
-> > > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> >
-> > I think the code changes are fine now (although you seem to have
-> > dropped the general ladder re-order that was done in v4; was that
-> > intentional or a mistake?), but the subject/commit message seem
-> > misleading since the change this patch is making isn't changing
-> > if/when rekeying is disabled, all it's doing is changing the bit used.
-> > So a commit message more along the lines of
-> >
-> >         drm/i915/xe3lpd: Update HDCP rekying bit
-> >
-> >         The TRANS_DDI_FUNC_CTL bit used to enable/disable HDCP rekeying
-> >         has moved from bit 12 (Xe2) to bit 15 (Xe3); update the RMW
-> >         toggle accordingly.
-> >
-> >         Also drop the misleading workaround comment tag on this functio=
-n
-> >         since disabling of HDCP rekeying is something that happens on
-> >         all platforms, not just those impacted by that workaround.
-> >
-> > If you decide to reinstate the ladder re-order that you had on an
-> > earlier version of this patch, you could add another sentence like
-> >
-> >         While we're here, also re-order the if/else ladder to use
-> >         standard "newest platform first" order.
-> >
-> > Anyway, with some kind of commit message cleanup,
-> >
-> >         Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-> >
-> >
-> > Matt
-> >
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_hdcp.c | 7 +++++--
-> > >  drivers/gpu/drm/i915/i915_reg.h           | 1 +
-> > >  2 files changed, 6 insertions(+), 2 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> > > b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> > > index f6d42ec6949e..8bca532d1176 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> > > @@ -31,7 +31,6 @@
-> > >  #define KEY_LOAD_TRIES	5
-> > >  #define HDCP2_LC_RETRY_CNT			3
-> > >
-> > > -/* WA: 16022217614 */
-> > >  static void
-> > >  intel_hdcp_disable_hdcp_line_rekeying(struct intel_encoder *encoder,
-> > >  				      struct intel_hdcp *hdcp)
-> > > @@ -43,7 +42,11 @@ intel_hdcp_disable_hdcp_line_rekeying(struct
-> intel_encoder *encoder,
-> > >  		return;
-> > >
-> > >  	if (DISPLAY_VER(display) >=3D 14) {
->=20
-> Actually one other thing...do we even need this outer 'if?'  All of the n=
-ested
-> conditions work on specific versions that are >=3D 14 already, so it does=
-n't
-> appear that this has any effect.
->=20
+Matt
 
-Added that in to avoid the code for display_ver < 14 from going through the=
- extra unnecessary
-If and else if block which it will end up failing anyways also the ladder m=
-ay grow if the bit gets changed
-again for the future platforms.
+> +			intel_de_rmw(display,
+> +				     TRANS_DDI_FUNC_CTL(display, hdcp->cpu_transcoder),
+> +				     TRANS_DDI_HDCP_LINE_REKEY_DISABLE, 0);
+> +	}
+> +}
+> +
+>  static void
+>  intel_hdcp_disable_hdcp_line_rekeying(struct intel_encoder *encoder,
+>  				      struct intel_hdcp *hdcp)
+> @@ -1051,6 +1077,8 @@ static int intel_hdcp1_enable(struct intel_connector *connector)
+>  		return ret;
+>  	}
+>  
+> +	intel_hdcp_enable_hdcp_line_rekeying(connector->encoder, hdcp);
+> +
+>  	/* Incase of authentication failures, HDCP spec expects reauth. */
+>  	for (i = 0; i < tries; i++) {
+>  		ret = intel_hdcp_auth(connector);
+> -- 
+> 2.34.1
+> 
 
-Regards,
-Suraj Kandpal
->=20
-> Matt
->=20
-> > > -		if (IS_DISPLAY_VERx100_STEP(display, 1400, STEP_D0,
-> STEP_FOREVER))
-> > > +		if (DISPLAY_VER(display) >=3D 30)
-> > > +			intel_de_rmw(display,
-> > > +				     TRANS_DDI_FUNC_CTL(display, hdcp-
-> >cpu_transcoder),
-> > > +				     0,
-> XE3_TRANS_DDI_HDCP_LINE_REKEY_DISABLE);
-> > > +		else if (IS_DISPLAY_VERx100_STEP(display, 1400, STEP_D0,
-> > > +STEP_FOREVER))
-> > >  			intel_de_rmw(display, MTL_CHICKEN_TRANS(hdcp-
-> >cpu_transcoder),
-> > >  				     0, HDCP_LINE_REKEY_DISABLE);
-> > >  		else if (IS_DISPLAY_VERx100_STEP(display, 1401, STEP_B0,
-> > > STEP_FOREVER) || diff --git a/drivers/gpu/drm/i915/i915_reg.h
-> > > b/drivers/gpu/drm/i915/i915_reg.h index 22be4a731d27..c160e087972a
-> > > 100644
-> > > --- a/drivers/gpu/drm/i915/i915_reg.h
-> > > +++ b/drivers/gpu/drm/i915/i915_reg.h
-> > > @@ -3819,6 +3819,7 @@ enum skl_power_gate {
-> > >  #define  TRANS_DDI_PVSYNC		(1 << 17)
-> > >  #define  TRANS_DDI_PHSYNC		(1 << 16)
-> > >  #define  TRANS_DDI_PORT_SYNC_ENABLE	REG_BIT(15)
-> > > +#define  XE3_TRANS_DDI_HDCP_LINE_REKEY_DISABLE	REG_BIT(15)
-> > >  #define  TRANS_DDI_EDP_INPUT_MASK	(7 << 12)
-> > >  #define  TRANS_DDI_EDP_INPUT_A_ON	(0 << 12)
-> > >  #define  TRANS_DDI_EDP_INPUT_A_ONOFF	(4 << 12)
-> > > --
-> > > 2.34.1
-> > >
-> >
-> > --
-> > Matt Roper
-> > Graphics Software Engineer
-> > Linux GPU Platform Enablement
-> > Intel Corporation
->=20
-> --
-> Matt Roper
-> Graphics Software Engineer
-> Linux GPU Platform Enablement
-> Intel Corporation
+-- 
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
