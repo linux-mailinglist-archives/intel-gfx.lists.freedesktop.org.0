@@ -2,59 +2,80 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89D589C435F
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Nov 2024 18:16:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 975B99C43F6
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Nov 2024 18:44:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34C8710E1F4;
-	Mon, 11 Nov 2024 17:16:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B399F10E4F1;
+	Mon, 11 Nov 2024 17:43:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kEq17KxX";
+	dkim=pass (2048-bit key; unprotected) header.d=oracle.com header.i=@oracle.com header.b="d2TFOJ1B";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E91810E169;
- Mon, 11 Nov 2024 17:16:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731345391; x=1762881391;
- h=date:from:to:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=dsNH5IGffU+vZMCcWWTvgYm08N/jAHVkHaYwVhxcTBU=;
- b=kEq17KxXv/ixU7Y7vo2C+R11MYAiazfob79jcLMWO15+qBJZONB6uTie
- 7MbcjNAyaZ61f1yc9FZb3rW6Lo9nWucTrW/GoOGNmdHWAEvkFdzoe/fPq
- Yv3UODUTNz1hctZykO9kbmjYbB0gkhkBkktNfsQNCf+2RBtMANswf5cKR
- tHne6HhsuAHyf3PTzASj4VSDHM6fqY80Zn8ZKb0NfhnA2HUF9xyvWmFgd
- fiRoNu+1XINp7dOtCisqKbf1tukr2S/OFCMQsoJM6a9/Z0MtGSNFqOug1
- gWGwDvqb6lzOmnRsoHeP0mkqhYZ/28GltxUN0MMCD0/J+fhG2f2AzttuT g==;
-X-CSE-ConnectionGUID: oV/B1jCFSdmYt9r59d3RAw==
-X-CSE-MsgGUID: ANjNpd7SQLuODiRgRToERw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11253"; a="18773150"
-X-IronPort-AV: E=Sophos;i="6.12,145,1728975600"; d="scan'208";a="18773150"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2024 09:16:31 -0800
-X-CSE-ConnectionGUID: dMnLCIdQQfqMSBoKR8KsBg==
-X-CSE-MsgGUID: 6dBRD7MqTBmwhK7S5RuNsA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,145,1728975600"; d="scan'208";a="86745932"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2024 09:16:29 -0800
-Date: Mon, 11 Nov 2024 19:17:04 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, ville.syrjala@linux.intel.com
-Subject: Re: [PATCH 7/8] drm/i915/mst: change naming from fake encoders to
- MST stream encoders
-Message-ID: <ZzI8EItLYhfFjgzf@ideak-desk.fi.intel.com>
-References: <cover.1731011435.git.jani.nikula@intel.com>
- <dcf0df2dc04b16d9093ac9f9b10d5bbc2fc802f3.1731011435.git.jani.nikula@intel.com>
- <ZzI3uDJM39B_ow4-@ideak-desk.fi.intel.com>
+Received: from mx0a-00069f02.pphosted.com (mx0a-00069f02.pphosted.com
+ [205.220.165.32])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9194210E06C;
+ Mon,  4 Nov 2024 19:10:46 +0000 (UTC)
+Received: from pps.filterd (m0246627.ppops.net [127.0.0.1])
+ by mx0b-00069f02.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A4IMVM6004434;
+ Mon, 4 Nov 2024 19:10:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=cc
+ :content-transfer-encoding:date:from:message-id:mime-version
+ :subject:to; s=corp-2023-11-20; bh=4ZZRS8dHCjLH4dXy/hPA0VAA1ekeT
+ 9riEc6CLiyfZrU=; b=d2TFOJ1B0J47+aoYEBQYYGFfDHArARYLoutE9RXCHBgik
+ hJw9RH3bLFeYBRR8fx86HMUWvuIecGJmmU2Py48bngEIHm5w38h++PInZFr+bhS8
+ WFGCDvp7Q/1DVH0CErjpd0fQC4nVM+7fUTOv9D5TrA1T2zL+Kt5fnV1ssPKeiBPB
+ 6ZefiK8H9uYqhUM+VZPv1IQTvVgSCKtuNHV/KU8q/CVjJFLLcnkVf+Lrk6qD4UOl
+ J+dE1t2s6C4BjvdDY/mw0I5vRj6u1clyJHp7S5pzMZ3AQ8hewXaILl7VWEdsDgSg
+ W+NAAVArFI25WDUIaDrhqI04Src7Errn3JGXJP5NQ==
+Received: from iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com
+ (iadpaimrmta02.appoci.oracle.com [147.154.18.20])
+ by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 42nanyundg-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Mon, 04 Nov 2024 19:10:26 +0000 (GMT)
+Received: from pps.filterd
+ (iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
+ by iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (8.18.1.2/8.18.1.2)
+ with ESMTP id 4A4Hu8Ma036171; Mon, 4 Nov 2024 19:10:25 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+ by iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTPS id
+ 42nahcf29j-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Mon, 04 Nov 2024 19:10:24 +0000
+Received: from iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com
+ (iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
+ by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 4A4JAOGu013414;
+ Mon, 4 Nov 2024 19:10:24 GMT
+Received: from ca-dev112.us.oracle.com (ca-dev112.us.oracle.com
+ [10.129.136.47])
+ by iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTP id
+ 42nahcf28e-1; Mon, 04 Nov 2024 19:10:24 +0000
+From: Sherry Yang <sherry.yang@oracle.com>
+To: stable@vger.kernel.org, sashal@kernel.org, gregkh@linuxfoundation.org
+Cc: sherry.yang@oracle.com, jani.nikula@linux.intel.com,
+ joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
+ airlied@linux.ie, daniel@ffwll.ch, tvrtko.ursulin@intel.com,
+ robdclark@chromium.org, chentao@kylinos.cn, chris@chris-wilson.co.uk,
+ mika.kuoppala@linux.intel.com, jason@jlekstrand.net,
+ aravind.iddamsetty@intel.com, umesh.nerlige.ramappa@intel.com,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Subject: [PATCH 5.15.y] drm/i915: Fix potential context UAFs
+Date: Mon,  4 Nov 2024 11:10:21 -0800
+Message-ID: <20241104191021.3334875-1-sherry.yang@oracle.com>
+X-Mailer: git-send-email 2.46.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZzI3uDJM39B_ow4-@ideak-desk.fi.intel.com>
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.62.30
+ definitions=2024-11-04_17,2024-11-04_01,2024-09-30_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0
+ malwarescore=0
+ spamscore=0 mlxlogscore=999 mlxscore=0 phishscore=0 adultscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2409260000 definitions=main-2411040157
+X-Proofpoint-ORIG-GUID: bYvtKvEXdYGJo-raSa0RreUwVVwTSiDS
+X-Proofpoint-GUID: bYvtKvEXdYGJo-raSa0RreUwVVwTSiDS
+X-Mailman-Approved-At: Mon, 11 Nov 2024 17:43:52 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,466 +88,98 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Nov 11, 2024 at 06:58:32PM +0200, Imre Deak wrote:
-> On Thu, Nov 07, 2024 at 10:32:20PM +0200, Jani Nikula wrote:
-> > The fake encoders pretty much match individual MST streams. The encoders
-> > remain as fake as ever, but change the naming to MST stream
-> > encoders. Rename all the encoder hooks and related functions called from
-> > them to mst_stream_* to clarify what type of encoders the hooks are
-> > called on.
-> > 
-> > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> 
-> Reviewed-by: Imre Deak <imre.deak@intel.com>
-> 
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_dp_mst.c | 204 ++++++++++----------
-> >  1 file changed, 100 insertions(+), 104 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > index 481510819cc6..0c08212e70ac 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > @@ -53,7 +53,7 @@
-> >  #include "intel_vdsc.h"
-> >  #include "skl_scaler.h"
-> >  
-> > -/* From fake MST encoder to primary encoder */
-> > +/* From fake MST stream encoder to primary encoder */
-> >  static struct intel_encoder *to_primary_encoder(struct intel_encoder *encoder)
-> >  {
-> >  	struct intel_dp_mst_encoder *intel_mst = enc_to_mst(encoder);
-> > @@ -62,7 +62,7 @@ static struct intel_encoder *to_primary_encoder(struct intel_encoder *encoder)
-> >  	return &dig_port->base;
-> >  }
-> >  
-> > -/* From fake MST encoder to primary DP */
-> > +/* From fake MST stream encoder to primary DP */
-> >  static struct intel_dp *to_primary_dp(struct intel_encoder *encoder)
-> >  {
-> >  	struct intel_dp_mst_encoder *intel_mst = enc_to_mst(encoder);
-> > @@ -179,14 +179,12 @@ static int intel_dp_mst_dsc_get_slice_count(const struct intel_connector *connec
-> >  					    num_joined_pipes);
-> >  }
-> >  
-> > -static int intel_dp_mst_find_vcpi_slots_for_bpp(struct intel_encoder *encoder,
-> > -						struct intel_crtc_state *crtc_state,
-> > -						int max_bpp,
-> > -						int min_bpp,
-> > -						struct link_config_limits *limits,
-> > -						struct drm_connector_state *conn_state,
-> > -						int step,
-> > -						bool dsc)
-> > +static int mst_stream_find_vcpi_slots_for_bpp(struct intel_encoder *encoder,
-> > +					      struct intel_crtc_state *crtc_state,
-> > +					      int max_bpp, int min_bpp,
-> > +					      struct link_config_limits *limits,
-> > +					      struct drm_connector_state *conn_state,
-> > +					      int step, bool dsc)
-> >  {
-> >  	struct intel_display *display = to_intel_display(encoder);
-> >  	struct drm_atomic_state *state = crtc_state->uapi.state;
-> > @@ -333,10 +331,10 @@ static int intel_dp_mst_find_vcpi_slots_for_bpp(struct intel_encoder *encoder,
-> >  	return slots;
-> >  }
-> >  
-> > -static int intel_dp_mst_compute_link_config(struct intel_encoder *encoder,
-> > -					    struct intel_crtc_state *crtc_state,
-> > -					    struct drm_connector_state *conn_state,
-> > -					    struct link_config_limits *limits)
-> > +static int mst_stream_compute_link_config(struct intel_encoder *encoder,
-> > +					  struct intel_crtc_state *crtc_state,
-> > +					  struct drm_connector_state *conn_state,
-> > +					  struct link_config_limits *limits)
-> >  {
-> >  	int slots = -EINVAL;
-> >  
-> > @@ -344,11 +342,11 @@ static int intel_dp_mst_compute_link_config(struct intel_encoder *encoder,
-> >  	 * FIXME: allocate the BW according to link_bpp, which in the case of
-> >  	 * YUV420 is only half of the pipe bpp value.
-> >  	 */
-> > -	slots = intel_dp_mst_find_vcpi_slots_for_bpp(encoder, crtc_state,
-> > -						     fxp_q4_to_int(limits->link.max_bpp_x16),
-> > -						     fxp_q4_to_int(limits->link.min_bpp_x16),
-> > -						     limits,
-> > -						     conn_state, 2 * 3, false);
-> > +	slots = mst_stream_find_vcpi_slots_for_bpp(encoder, crtc_state,
-> > +						   fxp_q4_to_int(limits->link.max_bpp_x16),
-> > +						   fxp_q4_to_int(limits->link.min_bpp_x16),
-> > +						   limits,
-> > +						   conn_state, 2 * 3, false);
-> >  
-> >  	if (slots < 0)
-> >  		return slots;
-> > @@ -356,10 +354,10 @@ static int intel_dp_mst_compute_link_config(struct intel_encoder *encoder,
-> >  	return 0;
-> >  }
-> >  
-> > -static int intel_dp_dsc_mst_compute_link_config(struct intel_encoder *encoder,
-> > -						struct intel_crtc_state *crtc_state,
-> > -						struct drm_connector_state *conn_state,
-> > -						struct link_config_limits *limits)
-> > +static int mst_stream_dsc_compute_link_config(struct intel_encoder *encoder,
-> > +					      struct intel_crtc_state *crtc_state,
-> > +					      struct drm_connector_state *conn_state,
-> > +					      struct link_config_limits *limits)
-> >  {
-> >  	struct intel_display *display = to_intel_display(encoder);
-> >  	struct intel_connector *connector = to_intel_connector(conn_state->connector);
-> > @@ -426,18 +424,19 @@ static int intel_dp_dsc_mst_compute_link_config(struct intel_encoder *encoder,
-> >  	min_compressed_bpp = intel_dp_dsc_nearest_valid_bpp(i915, min_compressed_bpp,
-> >  							    crtc_state->pipe_bpp);
-> >  
-> > -	slots = intel_dp_mst_find_vcpi_slots_for_bpp(encoder, crtc_state, max_compressed_bpp,
-> > -						     min_compressed_bpp, limits,
-> > -						     conn_state, 1, true);
-> > +	slots = mst_stream_find_vcpi_slots_for_bpp(encoder, crtc_state, max_compressed_bpp,
-> > +						   min_compressed_bpp, limits,
-> > +						   conn_state, 1, true);
-> >  
-> >  	if (slots < 0)
-> >  		return slots;
-> >  
-> >  	return 0;
-> >  }
-> > -static int intel_dp_mst_update_slots(struct intel_encoder *encoder,
-> > -				     struct intel_crtc_state *crtc_state,
-> > -				     struct drm_connector_state *conn_state)
-> > +
-> > +static int mst_stream_update_slots(struct intel_encoder *encoder,
-> > +				   struct intel_crtc_state *crtc_state,
-> > +				   struct drm_connector_state *conn_state)
+From: Rob Clark <robdclark@chromium.org>
 
-Side note: an additional thing that could be done is to pass intel_dp
-instead of intel_encoder to all the above functions, since it's clear
-what the former is (no separate stream vs. primary instances) and
-intel_encoder is used anyway only to get to intel_dp.
+commit afce71ff6daa9c0f852df0727fe32c6fb107f0fa upstream.
 
-> >  {
-> >  	struct intel_display *display = to_intel_display(encoder);
-> >  	struct intel_dp *intel_dp = to_primary_dp(encoder);
-> > @@ -550,11 +549,11 @@ adjust_limits_for_dsc_hblank_expansion_quirk(const struct intel_connector *conne
-> >  }
-> >  
-> >  static bool
-> > -intel_dp_mst_compute_config_limits(struct intel_dp *intel_dp,
-> > -				   const struct intel_connector *connector,
-> > -				   struct intel_crtc_state *crtc_state,
-> > -				   bool dsc,
-> > -				   struct link_config_limits *limits)
-> > +mst_stream_compute_config_limits(struct intel_dp *intel_dp,
-> > +				 const struct intel_connector *connector,
-> > +				 struct intel_crtc_state *crtc_state,
-> > +				 bool dsc,
-> > +				 struct link_config_limits *limits)
-> >  {
-> >  	/*
-> >  	 * for MST we always configure max link bw - the spec doesn't
-> > @@ -591,9 +590,9 @@ intel_dp_mst_compute_config_limits(struct intel_dp *intel_dp,
-> >  							    dsc);
-> >  }
-> >  
-> > -static int intel_dp_mst_compute_config(struct intel_encoder *encoder,
-> > -				       struct intel_crtc_state *pipe_config,
-> > -				       struct drm_connector_state *conn_state)
-> > +static int mst_stream_compute_config(struct intel_encoder *encoder,
-> > +				     struct intel_crtc_state *pipe_config,
-> > +				     struct drm_connector_state *conn_state)
-> >  {
-> >  	struct intel_display *display = to_intel_display(encoder);
-> >  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-> > @@ -629,15 +628,12 @@ static int intel_dp_mst_compute_config(struct intel_encoder *encoder,
-> >  	joiner_needs_dsc = intel_dp_joiner_needs_dsc(dev_priv, num_joined_pipes);
-> >  
-> >  	dsc_needed = joiner_needs_dsc || intel_dp->force_dsc_en ||
-> > -		     !intel_dp_mst_compute_config_limits(intel_dp,
-> > -							 connector,
-> > -							 pipe_config,
-> > -							 false,
-> > -							 &limits);
-> > +		!mst_stream_compute_config_limits(intel_dp, connector,
-> > +						  pipe_config, false, &limits);
-> >  
-> >  	if (!dsc_needed) {
-> > -		ret = intel_dp_mst_compute_link_config(encoder, pipe_config,
-> > -						       conn_state, &limits);
-> > +		ret = mst_stream_compute_link_config(encoder, pipe_config,
-> > +						     conn_state, &limits);
-> >  
-> >  		if (ret == -EDEADLK)
-> >  			return ret;
-> > @@ -655,11 +651,9 @@ static int intel_dp_mst_compute_config(struct intel_encoder *encoder,
-> >  		if (!intel_dp_supports_dsc(connector, pipe_config))
-> >  			return -EINVAL;
-> >  
-> > -		if (!intel_dp_mst_compute_config_limits(intel_dp,
-> > -							connector,
-> > -							pipe_config,
-> > -							true,
-> > -							&limits))
-> > +		if (!mst_stream_compute_config_limits(intel_dp, connector,
-> > +						      pipe_config, true,
-> > +						      &limits))
-> >  			return -EINVAL;
-> >  
-> >  		/*
-> > @@ -674,8 +668,8 @@ static int intel_dp_mst_compute_config(struct intel_encoder *encoder,
-> >  		 */
-> >  		drm_dbg_kms(display->drm, "Trying to find VCPI slots in DSC mode\n");
-> >  
-> > -		ret = intel_dp_dsc_mst_compute_link_config(encoder, pipe_config,
-> > -							   conn_state, &limits);
-> > +		ret = mst_stream_dsc_compute_link_config(encoder, pipe_config,
-> > +							 conn_state, &limits);
-> >  		if (ret < 0)
-> >  			return ret;
-> >  
-> > @@ -687,7 +681,7 @@ static int intel_dp_mst_compute_config(struct intel_encoder *encoder,
-> >  	if (ret)
-> >  		return ret;
-> >  
-> > -	ret = intel_dp_mst_update_slots(encoder, pipe_config, conn_state);
-> > +	ret = mst_stream_update_slots(encoder, pipe_config, conn_state);
-> >  	if (ret)
-> >  		return ret;
-> >  
-> > @@ -868,9 +862,9 @@ int intel_dp_mst_atomic_check_link(struct intel_atomic_state *state,
-> >  	return 0;
-> >  }
-> >  
-> > -static int intel_dp_mst_compute_config_late(struct intel_encoder *encoder,
-> > -					    struct intel_crtc_state *crtc_state,
-> > -					    struct drm_connector_state *conn_state)
-> > +static int mst_stream_compute_config_late(struct intel_encoder *encoder,
-> > +					  struct intel_crtc_state *crtc_state,
-> > +					  struct drm_connector_state *conn_state)
-> >  {
-> >  	struct intel_atomic_state *state = to_intel_atomic_state(conn_state->state);
-> >  	struct intel_dp *intel_dp = to_primary_dp(encoder);
-> > @@ -996,10 +990,10 @@ static void wait_for_act_sent(struct intel_encoder *encoder,
-> >  	drm_dp_check_act_status(&intel_dp->mst_mgr);
-> >  }
-> >  
-> > -static void intel_mst_disable_dp(struct intel_atomic_state *state,
-> > -				 struct intel_encoder *encoder,
-> > -				 const struct intel_crtc_state *old_crtc_state,
-> > -				 const struct drm_connector_state *old_conn_state)
-> > +static void mst_stream_disable(struct intel_atomic_state *state,
-> > +			       struct intel_encoder *encoder,
-> > +			       const struct intel_crtc_state *old_crtc_state,
-> > +			       const struct drm_connector_state *old_conn_state)
-> >  {
-> >  	struct intel_display *display = to_intel_display(state);
-> >  	struct intel_dp_mst_encoder *intel_mst = enc_to_mst(encoder);
-> > @@ -1018,10 +1012,10 @@ static void intel_mst_disable_dp(struct intel_atomic_state *state,
-> >  	intel_dp_sink_disable_decompression(state, connector, old_crtc_state);
-> >  }
-> >  
-> > -static void intel_mst_post_disable_dp(struct intel_atomic_state *state,
-> > -				      struct intel_encoder *encoder,
-> > -				      const struct intel_crtc_state *old_crtc_state,
-> > -				      const struct drm_connector_state *old_conn_state)
-> > +static void mst_stream_post_disable(struct intel_atomic_state *state,
-> > +				    struct intel_encoder *encoder,
-> > +				    const struct intel_crtc_state *old_crtc_state,
-> > +				    const struct drm_connector_state *old_conn_state)
-> >  {
-> >  	struct intel_display *display = to_intel_display(encoder);
-> >  	struct intel_dp_mst_encoder *intel_mst = enc_to_mst(encoder);
-> > @@ -1114,10 +1108,10 @@ static void intel_mst_post_disable_dp(struct intel_atomic_state *state,
-> >  		    intel_dp->active_mst_links);
-> >  }
-> >  
-> > -static void intel_mst_post_pll_disable_dp(struct intel_atomic_state *state,
-> > -					  struct intel_encoder *encoder,
-> > -					  const struct intel_crtc_state *old_crtc_state,
-> > -					  const struct drm_connector_state *old_conn_state)
-> > +static void mst_stream_post_pll_disable(struct intel_atomic_state *state,
-> > +					struct intel_encoder *encoder,
-> > +					const struct intel_crtc_state *old_crtc_state,
-> > +					const struct drm_connector_state *old_conn_state)
-> >  {
-> >  	struct intel_encoder *primary_encoder = to_primary_encoder(encoder);
-> >  	struct intel_dp *intel_dp = to_primary_dp(encoder);
-> > @@ -1127,10 +1121,10 @@ static void intel_mst_post_pll_disable_dp(struct intel_atomic_state *state,
-> >  		primary_encoder->post_pll_disable(state, primary_encoder, old_crtc_state, old_conn_state);
-> >  }
-> >  
-> > -static void intel_mst_pre_pll_enable_dp(struct intel_atomic_state *state,
-> > -					struct intel_encoder *encoder,
-> > -					const struct intel_crtc_state *pipe_config,
-> > -					const struct drm_connector_state *conn_state)
-> > +static void mst_stream_pre_pll_enable(struct intel_atomic_state *state,
-> > +				      struct intel_encoder *encoder,
-> > +				      const struct intel_crtc_state *pipe_config,
-> > +				      const struct drm_connector_state *conn_state)
-> >  {
-> >  	struct intel_encoder *primary_encoder = to_primary_encoder(encoder);
-> >  	struct intel_dp *intel_dp = to_primary_dp(encoder);
-> > @@ -1174,10 +1168,10 @@ static void intel_mst_reprobe_topology(struct intel_dp *intel_dp,
-> >  					 crtc_state->port_clock, crtc_state->lane_count);
-> >  }
-> >  
-> > -static void intel_mst_pre_enable_dp(struct intel_atomic_state *state,
-> > -				    struct intel_encoder *encoder,
-> > -				    const struct intel_crtc_state *pipe_config,
-> > -				    const struct drm_connector_state *conn_state)
-> > +static void mst_stream_pre_enable(struct intel_atomic_state *state,
-> > +				  struct intel_encoder *encoder,
-> > +				  const struct intel_crtc_state *pipe_config,
-> > +				  const struct drm_connector_state *conn_state)
-> >  {
-> >  	struct intel_display *display = to_intel_display(state);
-> >  	struct intel_dp_mst_encoder *intel_mst = enc_to_mst(encoder);
-> > @@ -1274,10 +1268,10 @@ static void enable_bs_jitter_was(const struct intel_crtc_state *crtc_state)
-> >  	intel_de_rmw(display, CHICKEN_MISC_3, clear, set);
-> >  }
-> >  
-> > -static void intel_mst_enable_dp(struct intel_atomic_state *state,
-> > -				struct intel_encoder *encoder,
-> > -				const struct intel_crtc_state *pipe_config,
-> > -				const struct drm_connector_state *conn_state)
-> > +static void mst_stream_enable(struct intel_atomic_state *state,
-> > +			      struct intel_encoder *encoder,
-> > +			      const struct intel_crtc_state *pipe_config,
-> > +			      const struct drm_connector_state *conn_state)
-> >  {
-> >  	struct intel_display *display = to_intel_display(encoder);
-> >  	struct intel_encoder *primary_encoder = to_primary_encoder(encoder);
-> > @@ -1345,8 +1339,8 @@ static void intel_mst_enable_dp(struct intel_atomic_state *state,
-> >  	intel_hdcp_enable(state, encoder, pipe_config, conn_state);
-> >  }
-> >  
-> > -static bool intel_dp_mst_enc_get_hw_state(struct intel_encoder *encoder,
-> > -				      enum pipe *pipe)
-> > +static bool mst_stream_get_hw_state(struct intel_encoder *encoder,
-> > +				    enum pipe *pipe)
-> >  {
-> >  	struct intel_dp_mst_encoder *intel_mst = enc_to_mst(encoder);
-> >  	*pipe = intel_mst->pipe;
-> > @@ -1355,16 +1349,16 @@ static bool intel_dp_mst_enc_get_hw_state(struct intel_encoder *encoder,
-> >  	return false;
-> >  }
-> >  
-> > -static void intel_dp_mst_enc_get_config(struct intel_encoder *encoder,
-> > -					struct intel_crtc_state *pipe_config)
-> > +static void mst_stream_get_config(struct intel_encoder *encoder,
-> > +				  struct intel_crtc_state *pipe_config)
-> >  {
-> >  	struct intel_encoder *primary_encoder = to_primary_encoder(encoder);
-> >  
-> >  	primary_encoder->get_config(primary_encoder, pipe_config);
-> >  }
-> >  
-> > -static bool intel_dp_mst_initial_fastset_check(struct intel_encoder *encoder,
-> > -					       struct intel_crtc_state *crtc_state)
-> > +static bool mst_stream_initial_fastset_check(struct intel_encoder *encoder,
-> > +					     struct intel_crtc_state *crtc_state)
-> >  {
-> >  	struct intel_encoder *primary_encoder = to_primary_encoder(encoder);
-> >  
-> > @@ -1597,7 +1591,7 @@ static const struct drm_connector_helper_funcs intel_dp_mst_connector_helper_fun
-> >  	.detect_ctx = intel_dp_mst_detect,
-> >  };
-> >  
-> > -static void intel_dp_mst_encoder_destroy(struct drm_encoder *encoder)
-> > +static void mst_stream_encoder_destroy(struct drm_encoder *encoder)
-> >  {
-> >  	struct intel_dp_mst_encoder *intel_mst = enc_to_mst(to_intel_encoder(encoder));
-> >  
-> > @@ -1605,8 +1599,8 @@ static void intel_dp_mst_encoder_destroy(struct drm_encoder *encoder)
-> >  	kfree(intel_mst);
-> >  }
-> >  
-> > -static const struct drm_encoder_funcs intel_dp_mst_enc_funcs = {
-> > -	.destroy = intel_dp_mst_encoder_destroy,
-> > +static const struct drm_encoder_funcs mst_stream_encoder_funcs = {
-> > +	.destroy = mst_stream_encoder_destroy,
-> >  };
-> >  
-> >  static bool intel_dp_mst_get_hw_state(struct intel_connector *connector)
-> > @@ -1786,8 +1780,9 @@ static const struct drm_dp_mst_topology_cbs mst_cbs = {
-> >  	.poll_hpd_irq = intel_dp_mst_poll_hpd_irq,
-> >  };
-> >  
-> > +/* Create a fake encoder for an individual MST stream */
-> >  static struct intel_dp_mst_encoder *
-> > -intel_dp_create_fake_mst_encoder(struct intel_digital_port *dig_port, enum pipe pipe)
-> > +mst_stream_encoder_create(struct intel_digital_port *dig_port, enum pipe pipe)
-> >  {
-> >  	struct intel_display *display = to_intel_display(dig_port);
-> >  	struct intel_encoder *primary_encoder = &dig_port->base;
-> > @@ -1803,7 +1798,7 @@ intel_dp_create_fake_mst_encoder(struct intel_digital_port *dig_port, enum pipe
-> >  	encoder = &intel_mst->base;
-> >  	intel_mst->primary = dig_port;
-> >  
-> > -	drm_encoder_init(display->drm, &encoder->base, &intel_dp_mst_enc_funcs,
-> > +	drm_encoder_init(display->drm, &encoder->base, &mst_stream_encoder_funcs,
-> >  			 DRM_MODE_ENCODER_DPMST, "DP-MST %c", pipe_name(pipe));
-> >  
-> >  	encoder->type = INTEL_OUTPUT_DP_MST;
-> > @@ -1820,34 +1815,35 @@ intel_dp_create_fake_mst_encoder(struct intel_digital_port *dig_port, enum pipe
-> >  	 */
-> >  	encoder->pipe_mask = ~0;
-> >  
-> > -	encoder->compute_config = intel_dp_mst_compute_config;
-> > -	encoder->compute_config_late = intel_dp_mst_compute_config_late;
-> > -	encoder->disable = intel_mst_disable_dp;
-> > -	encoder->post_disable = intel_mst_post_disable_dp;
-> > -	encoder->post_pll_disable = intel_mst_post_pll_disable_dp;
-> > +	encoder->compute_config = mst_stream_compute_config;
-> > +	encoder->compute_config_late = mst_stream_compute_config_late;
-> > +	encoder->disable = mst_stream_disable;
-> > +	encoder->post_disable = mst_stream_post_disable;
-> > +	encoder->post_pll_disable = mst_stream_post_pll_disable;
-> >  	encoder->update_pipe = intel_ddi_update_pipe;
-> > -	encoder->pre_pll_enable = intel_mst_pre_pll_enable_dp;
-> > -	encoder->pre_enable = intel_mst_pre_enable_dp;
-> > -	encoder->enable = intel_mst_enable_dp;
-> > +	encoder->pre_pll_enable = mst_stream_pre_pll_enable;
-> > +	encoder->pre_enable = mst_stream_pre_enable;
-> > +	encoder->enable = mst_stream_enable;
-> >  	encoder->audio_enable = intel_audio_codec_enable;
-> >  	encoder->audio_disable = intel_audio_codec_disable;
-> > -	encoder->get_hw_state = intel_dp_mst_enc_get_hw_state;
-> > -	encoder->get_config = intel_dp_mst_enc_get_config;
-> > -	encoder->initial_fastset_check = intel_dp_mst_initial_fastset_check;
-> > +	encoder->get_hw_state = mst_stream_get_hw_state;
-> > +	encoder->get_config = mst_stream_get_config;
-> > +	encoder->initial_fastset_check = mst_stream_initial_fastset_check;
-> >  
-> >  	return intel_mst;
-> >  
-> >  }
-> >  
-> > +/* Create the fake encoders for MST streams */
-> >  static bool
-> > -intel_dp_create_fake_mst_encoders(struct intel_digital_port *dig_port)
-> > +mst_stream_encoders_create(struct intel_digital_port *dig_port)
-> >  {
-> >  	struct intel_display *display = to_intel_display(dig_port);
-> >  	struct intel_dp *intel_dp = &dig_port->dp;
-> >  	enum pipe pipe;
-> >  
-> >  	for_each_pipe(display, pipe)
-> > -		intel_dp->mst_encoders[pipe] = intel_dp_create_fake_mst_encoder(dig_port, pipe);
-> > +		intel_dp->mst_encoders[pipe] = mst_stream_encoder_create(dig_port, pipe);
-> >  	return true;
-> >  }
-> >  
-> > @@ -1877,7 +1873,7 @@ intel_dp_mst_encoder_init(struct intel_digital_port *dig_port, int conn_base_id)
-> >  	intel_dp->mst_mgr.cbs = &mst_cbs;
-> >  
-> >  	/* create encoders */
-> > -	intel_dp_create_fake_mst_encoders(dig_port);
-> > +	mst_stream_encoders_create(dig_port);
-> >  	ret = drm_dp_mst_topology_mgr_init(&intel_dp->mst_mgr, display->drm,
-> >  					   &intel_dp->aux, 16, 3, conn_base_id);
-> >  	if (ret) {
-> > -- 
-> > 2.39.5
-> > 
+gem_context_register() makes the context visible to userspace, and which
+point a separate thread can trigger the I915_GEM_CONTEXT_DESTROY ioctl.
+So we need to ensure that nothing uses the ctx ptr after this.  And we
+need to ensure that adding the ctx to the xarray is the *last* thing
+that gem_context_register() does with the ctx pointer.
+
+Signed-off-by: Rob Clark <robdclark@chromium.org>
+Fixes: eb4dedae920a ("drm/i915/gem: Delay tracking the GEM context until it is registered")
+Fixes: a4c1cdd34e2c ("drm/i915/gem: Delay context creation (v3)")
+Fixes: 49bd54b390c2 ("drm/i915: Track all user contexts per client")
+Cc: <stable@vger.kernel.org> # v5.10+
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+[tursulin: Stable and fixes tags add/tidy.]
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20230103234948.1218393-1-robdclark@gmail.com
+(cherry picked from commit bed4b455cf5374e68879be56971c1da563bcd90c)
+Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+[Sherry: bp to fix CVE-2023-52913, ignore context conflicts due to
+missing commit 49bd54b390c2 "drm/i915: Track all user contexts per
+client")]
+Signed-off-by: Sherry Yang <sherry.yang@oracle.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_context.c | 24 +++++++++++++++------
+ 1 file changed, 18 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+index 0eb4a0739fa2..0a7c4548b77f 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+@@ -1436,6 +1436,10 @@ void i915_gem_init__contexts(struct drm_i915_private *i915)
+ 	init_contexts(&i915->gem.contexts);
+ }
+ 
++/*
++ * Note that this implicitly consumes the ctx reference, by placing
++ * the ctx in the context_xa.
++ */
+ static void gem_context_register(struct i915_gem_context *ctx,
+ 				 struct drm_i915_file_private *fpriv,
+ 				 u32 id)
+@@ -1449,13 +1453,13 @@ static void gem_context_register(struct i915_gem_context *ctx,
+ 	snprintf(ctx->name, sizeof(ctx->name), "%s[%d]",
+ 		 current->comm, pid_nr(ctx->pid));
+ 
+-	/* And finally expose ourselves to userspace via the idr */
+-	old = xa_store(&fpriv->context_xa, id, ctx, GFP_KERNEL);
+-	WARN_ON(old);
+-
+ 	spin_lock(&i915->gem.contexts.lock);
+ 	list_add_tail(&ctx->link, &i915->gem.contexts.list);
+ 	spin_unlock(&i915->gem.contexts.lock);
++
++	/* And finally expose ourselves to userspace via the idr */
++	old = xa_store(&fpriv->context_xa, id, ctx, GFP_KERNEL);
++	WARN_ON(old);
+ }
+ 
+ int i915_gem_context_open(struct drm_i915_private *i915,
+@@ -1932,14 +1936,22 @@ finalize_create_context_locked(struct drm_i915_file_private *file_priv,
+ 	if (IS_ERR(ctx))
+ 		return ctx;
+ 
++	/*
++	 * One for the xarray and one for the caller.  We need to grab
++	 * the reference *prior* to making the ctx visble to userspace
++	 * in gem_context_register(), as at any point after that
++	 * userspace can try to race us with another thread destroying
++	 * the context under our feet.
++	 */
++	i915_gem_context_get(ctx);
++
+ 	gem_context_register(ctx, file_priv, id);
+ 
+ 	old = xa_erase(&file_priv->proto_context_xa, id);
+ 	GEM_BUG_ON(old != pc);
+ 	proto_context_close(pc);
+ 
+-	/* One for the xarray and one for the caller */
+-	return i915_gem_context_get(ctx);
++	return ctx;
+ }
+ 
+ struct i915_gem_context *
+-- 
+2.46.0
+
