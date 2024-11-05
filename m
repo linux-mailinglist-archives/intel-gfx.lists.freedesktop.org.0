@@ -2,61 +2,185 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C3859BD739
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Nov 2024 21:48:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AF539BD776
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Nov 2024 22:12:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A2E710E17A;
-	Tue,  5 Nov 2024 20:48:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E003810E114;
+	Tue,  5 Nov 2024 21:12:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aoKJ7YiE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aHYulJHJ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E73710E17A;
- Tue,  5 Nov 2024 20:48:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB80B10E114;
+ Tue,  5 Nov 2024 21:12:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730839731; x=1762375731;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=O+UCtqG1h9LcdLR0ShAEQ4c+93aZzXDmoLnxRFGQ5qY=;
- b=aoKJ7YiEKPixxNUGEuBy33rGgWemu+eS8sHJP5HSe5DpgtnSLx6UEfzW
- ux29pJSnd2il5CpSM6tatVHorfQHS1M5YYvOt5/il7Eo1kPZEuq/klYtE
- xxKZeiq7PM7bZiACi35p3K4GJDEJ1TOWnUDncv8T2EVQv1lCGv9nr2CIV
- CC6sjZN9gAL0CNjdfImdyugQN4QV/9jXQOEgtOjCAWu3hlyqYtojpRe9D
- nOTA0TwIaay0/9HKet7RGDcd0qttktdSj/U2Drhqg5N56+1QyxvtAj1cz
- mgPAg5mgpN0YQmB9+EvU4BX6t75mNKF9Gc0g3FOLhPvmzz+LZmqpmUs6b A==;
-X-CSE-ConnectionGUID: h/HonsrMQ5OxtYZ6rv3QDg==
-X-CSE-MsgGUID: epbU6q/8TfSisWT2AcmNwA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="34307224"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="34307224"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2024 12:48:51 -0800
-X-CSE-ConnectionGUID: rz0DLgUaTTW4UAXUGcXSng==
-X-CSE-MsgGUID: LL8cV2+kRiaEZXd/rUVePA==
+ t=1730841167; x=1762377167;
+ h=content-transfer-encoding:in-reply-to:references:subject:
+ from:cc:to:date:message-id:mime-version;
+ bh=OHCgIME3CbDb/KEi6iI3xcUBzngIESyHJ+rRSszZ6Ng=;
+ b=aHYulJHJoW75QAwnlyIczwRwyh1DfCLW5Txm98ynbF+CFkJ9fAYKwv1u
+ yf+NqHNakIp7XG0zKFfrJZvuunt6JCXvWMkY20BvVhbvzidpgcLArhyxm
+ zWzfY/TDwcALgN/EO1qcZP4PYx/1Uwr7UMjxk7PBjxx+57NKwcmcFqCB+
+ 3zd/bW5FejtdEFbk9TZuN7hHu3IWIOFepTmYsImQYjQHcolN/hCUOaW87
+ LurFZKdjV7r2QA1PqGyAd25Besh2WZvWSwcrWHz3Ie4YlJn123k8HrR+b
+ vt40uYYTV47+9xCoIkJSRNLw/sygZY5llC1tZXej+JkTh08tJt2cueSI/ A==;
+X-CSE-ConnectionGUID: qaybVuYeTSKEdzbxNp2CKA==
+X-CSE-MsgGUID: W9pLcVtZQO+oDNYwY2HZFQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11247"; a="34399111"
+X-IronPort-AV: E=Sophos;i="6.11,261,1725346800"; d="scan'208";a="34399111"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2024 13:12:46 -0800
+X-CSE-ConnectionGUID: KY3dIU07QzePS5HkWBixvA==
+X-CSE-MsgGUID: 7Lmb0mZPQ7qN3HwJD9XX0A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,261,1725346800"; d="scan'208";a="88117725"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
- by fmviesa003.fm.intel.com with ESMTP; 05 Nov 2024 12:48:48 -0800
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1t8QTl-000mSH-2m;
- Tue, 05 Nov 2024 20:48:45 +0000
-Date: Wed, 6 Nov 2024 04:48:17 +0800
-From: kernel test robot <lkp@intel.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
- intel-gfx@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: Re: [PATCH 2/9] drm/xe/display: Add intel_plane_initial_vblank_wait
-Message-ID: <202411060402.TB3RmJ09-lkp@intel.com>
-References: <20241105121857.17389-2-maarten.lankhorst@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,261,1725346800"; d="scan'208";a="88668126"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmviesa005.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 05 Nov 2024 13:12:46 -0800
+Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Tue, 5 Nov 2024 13:12:45 -0800
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Tue, 5 Nov 2024 13:12:45 -0800
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.40) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Tue, 5 Nov 2024 13:12:45 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Ifm3PLGuEW+j8l3K94TJRICiWU+tQ3oYorbwSIutUo6p7i8dTVFhGwz3s4z4eVyREEsbp9V7w+SlDZihPTcj2ajkRL8fIXqGNxBPQW6r6alXdMsum44RnQV9appnuGN8W06+LrHSSzBcvVOiHvIzMOGCiqMZOtO1Zoss0RaNl7TWUYnlvPTzqc0zBEl5Lo7jv0i6ur0C7T4dhTSwEoO0UYAchJH4pgF3HFVzSOZgohHBhLC79rCEWnvivNg/71GxHxj3DhTRhsKT3cT0GxkSKUp4VkXQKvO4cYJE1faWs7Zgo3oTqsbZ1B2qNvJtQIIuTEBh0igO2/fwP1bE56xTyA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=XYYizS1779nBbLtw+ovyA25lkusEsM0E7zaeZpBQBwE=;
+ b=dwazXZmaUqDZ/pHVvtr2dtqu3rqRKbgUyjXs4M96MSrmxugYgbjbQ0RLdyA+aJQG6nd61KCeX28szpXHLH+JkFSD+p1CwC0z6gGAnTfFOLcArryG/LIPDa+PK3hEF796g4qDc++UpLMS6eF95RAaijajo/cg1zZ1kRTcxfYNsAjAeIrG86OJBVdj9e5A43SkeF12xbvUA7JiO9/Vp3Jpmn34XIOzBRDlIheZBoQUknR2RO17PDTG0ovkIXv4jArWEzJxSJroCVMnavxNYitJObwJGgRpVWf1Q0E95873+ur9+FBcSNhxnDyicgPoLSH9z9VpvBlkXdkfQOGCOasdAw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
+ by CO1PR11MB5027.namprd11.prod.outlook.com (2603:10b6:303:9d::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8114.31; Tue, 5 Nov
+ 2024 21:12:43 +0000
+Received: from PH8PR11MB8287.namprd11.prod.outlook.com
+ ([fe80::7e8b:2e5:8ce4:2350]) by PH8PR11MB8287.namprd11.prod.outlook.com
+ ([fe80::7e8b:2e5:8ce4:2350%5]) with mapi id 15.20.8114.028; Tue, 5 Nov 2024
+ 21:12:43 +0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <173081441222.2525.7518849812502214612@intel.com>
+References: <20241021222744.294371-1-gustavo.sousa@intel.com>
+ <20241021222744.294371-14-gustavo.sousa@intel.com>
+ <1b9bcc81c5eada5cf7d3cc4610cee6ef9b69aac9.camel@coelho.fi>
+ <173081441222.2525.7518849812502214612@intel.com>
+Subject: Re: [PATCH 13/13] drm/i915/xe3lpd: Use DMC wakelock by default
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+CC: Luca Coelho <luciano.coelho@intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>
+To: Luca Coelho <luca@coelho.fi>, <intel-gfx@lists.freedesktop.org>,
+ <intel-xe@lists.freedesktop.org>
+Date: Tue, 5 Nov 2024 18:12:37 -0300
+Message-ID: <173084115737.12577.10442741716639148688@intel.com>
+User-Agent: alot/0.10
+X-ClientProxiedBy: MW4PR03CA0315.namprd03.prod.outlook.com
+ (2603:10b6:303:dd::20) To PH8PR11MB8287.namprd11.prod.outlook.com
+ (2603:10b6:510:1c7::14)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241105121857.17389-2-maarten.lankhorst@linux.intel.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|CO1PR11MB5027:EE_
+X-MS-Office365-Filtering-Correlation-Id: 14d58bcd-49ed-4341-854b-08dcfdde9672
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?blRMeEZDWDVYZ3pLWFZCalBRWWtQckg5cWZyb3NsR09sLytONGVtMHEyQVA0?=
+ =?utf-8?B?d2xSaXZOUWNTL0pKQjBRdWlOaTYyNmlVczBHb3FZVm1leWJ0UXNHNU5xMEZK?=
+ =?utf-8?B?YWZBVk10WkVKZGhkei9VazZZVkx4NFhxR21ieG9jbXFPblk0Zi93b1dWR09q?=
+ =?utf-8?B?TFc1UWhmU1VJMDN1RnZvd0FQY2VTQjNlMEQyWm9EaTRTZkd4TU5oS3laWTZM?=
+ =?utf-8?B?VjEzTjJoV3gwMkpRQlo3cVdoRHFyaVRhTTZQNGtaZ2NOQjk4WEgzSkRnR3NI?=
+ =?utf-8?B?MjF3NUNhZHVFUFVwVVhTMnB5QXRDMVBmbXFveW9WaG03M3hmenlVTzVOU3Z6?=
+ =?utf-8?B?YnBmN1lsUERTTFNnY1MxdXhVVlJWMmgzdmM1WWxMa2JnT3pUZGVmdm5Wb0F3?=
+ =?utf-8?B?QzlxVXlmOVFGbkllR21SRWd5ZFFPYlRncEE0bkdRVGhFelNPYXRHOGlXdU9U?=
+ =?utf-8?B?dUptd2U0RkU4eFpQYnNFaTdTWVkvb2g3V1hzU0cxdXpqTzZJYlhkOU1yOHpW?=
+ =?utf-8?B?MkdDVzBFNVdpL1pzL0FwWjhZR1FxNmlzMmd3ejBhbCtYQU5mNFBsUjBkUGhT?=
+ =?utf-8?B?WWhqZGdRdGVWdEZyZXVVL2hzTUwxMWcrRXlxOFArdHp6akR5RUtqbkxTTUcw?=
+ =?utf-8?B?VHhaNXE1Mm9PZk5pakFySDF5Q0d3bmJvSUVmWkhrTUZEeGlTcnBJenhIcFli?=
+ =?utf-8?B?WDJYUUZaRGFDeTd1dkluUTFXT1dKTUJ2cEx4TDhRK21HMkQrVkRraEwwd2pk?=
+ =?utf-8?B?NVN0ZFpRc2ZwSkUycEVSc2NRTmMzVW56RXNMcU5nZlBLYWZXZGNTM1dHUy96?=
+ =?utf-8?B?NTFWQis5WXVUTGhwTlRpcy9nUDgvUE9wZ09QcU5oaUdVWXZLaHZsQ0t3d3Q4?=
+ =?utf-8?B?MU41TGU2UDBSMDN6ME9SWWdpdFYxV1ZCRW5KZ2IybjRWdU80bTgxMG9VREZw?=
+ =?utf-8?B?cmtyc0dOVmlxQk1OMmNZYXNqUWNIaWo0T1BoU3lQa0ErUVpIZFErUTlFOG80?=
+ =?utf-8?B?cEN0MEFWbitGQWRSdHJ1bHBrS1BGYm4vN0lHcnVTeXFSZEtHcUdUK3dQVGN0?=
+ =?utf-8?B?NmRCdGNhRUcrY05GUDJNQUdwQmttM3dEYk80ZGFHMUxOMWQ5NFdWajJxSThR?=
+ =?utf-8?B?WUtRbHN3YjVBTENuN091OHhnakV3ZlRveVBOSDNQWXgvRG9lbGNsakZaR1hn?=
+ =?utf-8?B?MHBTVWlrQlhhYm0xOGsxUzBlSXZ0M01jL1lXbXlsaXduQkluZHNkKzM2QmZj?=
+ =?utf-8?B?TG9obFArc2Nyb1dXMmJuNkJTVXVtL2k2RzhLbngwRklGcms3QWY3ZEFNR1Fs?=
+ =?utf-8?B?RUxDd2ZuQTJoVXRoSUV5aWlyMlJGaS9lOXllWTltbjhHTG95M3h4NlFVcnZK?=
+ =?utf-8?B?eGNXQW5BRmpmMzJMTmZLbkNHWjBaSUVtSnFPbHdFSDBLVHRBaUhiNEJlRHMz?=
+ =?utf-8?B?WlBnOElnMjNsZVc5U0Q3djNKd3IvL2lxZGszZTh1ajQzSTZLZFpaOHg5VEx5?=
+ =?utf-8?B?cmo0MEhVMXFWK2N1amVPMUgraWloMjFpbXdXV3lRY2NNcFMxdzZmWVRhblVM?=
+ =?utf-8?B?LzVmM21lOEpUSjh3K0EvME9oYmZCUjlWL21CMk9Zd1hmUkdneGFKc2thYy9O?=
+ =?utf-8?B?N20ybUVqWFh4eE9hWnJBU2xoSlNIOWp4ZmlKb3E1OVUrdkxHancxT3RJY2dM?=
+ =?utf-8?B?VjB1b0wwWi94aVJLWXFWWnlSZUhFUHhhbGowUXJuZVNwUFozS09QdE13K1dx?=
+ =?utf-8?Q?dtFVhi4zCJeXu795/EDIl708fmPixq+qb2JLFwO?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UncvdGR4WjROTHAvSGxGN2NDWXVBb1BaZDh2eGtYNWpjUmgwK2JZOFQyVENQ?=
+ =?utf-8?B?RDhEZzZGTTB6S2FUSU11YS94OWVpYlJWNE8raGtBaUVPVXlFc0tDeW9kM3pG?=
+ =?utf-8?B?YzFnb2p2YkxmTTBwR3BYR20vUHZpeDkxK21OclNlYzZROTZUOWRlREo4ZDN2?=
+ =?utf-8?B?aURqSlBUUnlNU3FpRlFlWVJpODZ3cGF5YlBlOFJnb2dBK2F3cDl2aXZCakF3?=
+ =?utf-8?B?L2pobHZMc0ZIQUF6Zk9laTFpQnJTY1ZLQ0ZVbU1zUXd4ZFJjdFBLUXR5R1ZE?=
+ =?utf-8?B?SGpPb29KdTF6d1czdzBjMk9udStUVU9pcGNKMmJ4T1JoTkQzUGlxbU1MUlQ2?=
+ =?utf-8?B?TWhwcjZiRDd0WGh5MFZXQmVYK2djbWpnTGpGU1NXdVdXSXNvcTIzRlJqbS9z?=
+ =?utf-8?B?dHVrckFhbWN6REd3YjhiNHBoQ253aGg1d3dIZ1U5SS9CbHNWN2Z4RHBTYVo0?=
+ =?utf-8?B?dlU5L21SY0RQUFRsSlBYbm8vQTh3NHZMSHVWbFJMY2NEWUtidmhhVHhpekxh?=
+ =?utf-8?B?ZjRaVjM2c0xHam1vK1VKZVU4dW1NQWpoa3lkbTUyVzJvZzQrangva2tSV3lJ?=
+ =?utf-8?B?cUJQV1FJankxN3UyUG95a2xUZEVPV0Z5RWliaGtjODN6U0YyUlBic1VtWXJS?=
+ =?utf-8?B?L0hGbEVXZnNnbTZQR3lzdVh2QXFMQi93UmZCQUhqTlBYajdTamRDdTVFdGNW?=
+ =?utf-8?B?Z0hqeWtIdVRLYk1wOEoyVnlJUGN2SmRqdEI5WU5Rak1nNzhpR3kyeDd5QldU?=
+ =?utf-8?B?Nk9TK1VldE41WWVxUHVHR1g3VVpWamRkNzFHRVFsQ2Rwa2hUbmNEc0JHcld1?=
+ =?utf-8?B?UHVPYmdvZlJrOS9BOWRodTZXYWRHWHlOWEcwcTVlRUI0a0h0VngzN1VNVXM1?=
+ =?utf-8?B?cmZ5UTVvYlZRb2Y3Ky9zNHlMVXlGZzdTYklTN0ZqY3VIYnVnTzFwanJNWFFq?=
+ =?utf-8?B?S3NuOG5JNGpIUldlWVhaOERvaDNtU0pvNlNuOTMxRFRzdGVKYm04TVJDRWdv?=
+ =?utf-8?B?dHhxMWw5K2VhbmVJZllSSC9QQko1RWV4ZjlOd2VKMWxNdUpvZDBJSUI2YktH?=
+ =?utf-8?B?WGlXSWZtWjJiT3V2Y0xFT0Y2UDZwM25qUFd2QjgzMGxlaDFtNUxGdm9QVTFI?=
+ =?utf-8?B?ZEJvQWhPSlMyajh1NDVLSFNVY2d6cUxrYkJQVjFTaWtqRzY0V1NpUHRrVk1k?=
+ =?utf-8?B?NWJEYlJpRUVjdUFCdVZFckt0TXdHZFhJWDJDdGpTbEZCaFdyN3FMbXhvUDBC?=
+ =?utf-8?B?dUtPTzBTSEVsbXkwZkVUZ1d2QWZPZ0F5Q0tEZmt1K3BKRzZrQ3hPTEVCM0tj?=
+ =?utf-8?B?M1IrTFREWlRNZWp1YW5KampMV2hyNXFlT0x4U09EeGF2ak9KTmF3RVBrZW1q?=
+ =?utf-8?B?QkJmMTdNc0hDS29YSzBERE9XWXRIamZ3ellNNHpPRkFjWWZIekZqUUJCUHNv?=
+ =?utf-8?B?RGVuMDNycFp3cEZtTmtDWW5CVkNhK25MR2t4dFhZb2Iyek9tSGtCckliWUNu?=
+ =?utf-8?B?MEs1MHhNdmhYUE5qUGFvU0FvaEJiYWZlUmVnYVh0a29UWGczb1B5VWZyTmxT?=
+ =?utf-8?B?NXpIWkpwQ1ZNWFl3dFBjUGx4QkRnRlNyYzcyV1Jxa0I4UG1HNnlDT0FHeXEz?=
+ =?utf-8?B?MFYzQzV0aU1UWGQwVERwVnV2SUNqQjlERUdobmF0SUZRbVhkbFV2NzZDNEZX?=
+ =?utf-8?B?UG1waUhyZ05QWDg2U2Q2NzZscTdDMGw0ZklteWVMczlIQ3k1aTJZdGFNa1pT?=
+ =?utf-8?B?ajRteGVhV3JqRkZhTWQ3cEFYaHVYZ2lYQzNhVXdGV1o2SXJINEVwRWlTWkMr?=
+ =?utf-8?B?eVFBaEFZTVVxWDNjTDNIOWU1QWhYdGE3eUZ1b3Z5VVFaNW83dkQ3QXNDbjBS?=
+ =?utf-8?B?VktnZmI2Nm9yL3lOV0tYMCtwVVdTdXZHT25DNXZDVFE0Y2ptV1B3NENiVTBj?=
+ =?utf-8?B?RGUwZWtFVDFuZnNrWDdIaW5Gc2VpUU5tOWEzdml3NnlXUGFYNVRtK0NMRG1Q?=
+ =?utf-8?B?Ry9nd092dytqL3p3T05RcEtQWFcrRHB3czJ5eVk3d0htcFlTdCt5TzVxVVJ1?=
+ =?utf-8?B?ak9QVS9lbmtxa3RmdU5MZzg0aGYxVWdWanlSY0R4Ym9adDlPQ1hPczVxZ2tv?=
+ =?utf-8?B?UVNwcUlJbjFSRDhKSXJUZ1N2enR5ZnZVYTRVNFd5VkRwVFlkQ0l5QTBEL1dt?=
+ =?utf-8?B?cmc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 14d58bcd-49ed-4341-854b-08dcfdde9672
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Nov 2024 21:12:43.0951 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 8MPFPYMyK2MUaHz1wewodj0pxHn2Ppw0p2aqGrnDh+NIDvn6T8hGN6MkT4YXX6qJuIrJkUiq4VCii7EAKY50MQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB5027
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,76 +196,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Maarten,
+Quoting Gustavo Sousa (2024-11-05 10:46:52-03:00)
+>Quoting Luca Coelho (2024-11-01 11:27:10-03:00)
+>>On Mon, 2024-10-21 at 19:27 -0300, Gustavo Sousa wrote:
+>>> Although Bspec doesn't explicitly mentions that, as of Xe3_LPD, using
+>>> DMC wakelock is the officially recommended way of accessing registers
+>>> that would be off during DC5/DC6 and the legacy method (where the DMC
+>>> intercepts MMIO to wake up the hardware) is to be avoided.
+>>>=20
+>>> As such, update the driver to use the DMC wakelock by default starting
+>>> with Xe3_LPD. Since the feature is somewhat new to the driver, also
+>>> allow disabling it via a module parameter for debugging purposes.
+>>>=20
+>>> For that, make the existing parameter allow values -1 (per-chip
+>>> default), 0 (disabled) and 1 (enabled), similarly to what is done for
+>>> other parameters.
+>>>=20
+>>> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+>>> ---
+>>>  drivers/gpu/drm/i915/display/intel_display_params.c | 4 ++--
+>>>  drivers/gpu/drm/i915/display/intel_display_params.h | 2 +-
+>>>  drivers/gpu/drm/i915/display/intel_dmc_wl.c         | 6 +++++-
+>>>  3 files changed, 8 insertions(+), 4 deletions(-)
+>>>=20
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_display_params.c b/driv=
+ers/gpu/drm/i915/display/intel_display_params.c
+>>> index 024de8abcb1a..bf00e5f1f145 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_display_params.c
+>>> +++ b/drivers/gpu/drm/i915/display/intel_display_params.c
+>>> @@ -123,10 +123,10 @@ intel_display_param_named_unsafe(enable_psr2_sel_=
+fetch, bool, 0400,
+>>>          "(0=3Ddisabled, 1=3Denabled) "
+>>>          "Default: 1");
+>>> =20
+>>> -intel_display_param_named_unsafe(enable_dmc_wl, bool, 0400,
+>>> +intel_display_param_named_unsafe(enable_dmc_wl, int, 0400,
+>>>          "Enable DMC wakelock "
+>>>          "(0=3Ddisabled, 1=3Denabled) "
+>>> -        "Default: 0");
+>>> +        "Default: -1 (use per-chip default)");
+>>
+>>We're already explaining the possible values in the previous
+>>parentheses, so maybe the -1 should also be explained there?
+>
+>Yep that makes sense. I was following the trend of what was done for
+>enable_fbc and enable_psr, but I guess following other examples in this
+>same file where we tag the default one with "[default]" is better.
 
-kernel test robot noticed the following build errors:
+Ended up simply doing this:
 
-[auto build test ERROR on drm-xe/drm-xe-next]
-[also build test ERROR on next-20241105]
-[cannot apply to linus/master drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-tip/drm-tip v6.12-rc6]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+    diff --git a/drivers/gpu/drm/i915/display/intel_display_params.c b/driv=
+ers/gpu/drm/i915/display/intel_display_params.c
+    index bf00e5f1f145..dc666aefa362 100644
+    --- a/drivers/gpu/drm/i915/display/intel_display_params.c
+    +++ b/drivers/gpu/drm/i915/display/intel_display_params.c
+    @@ -125,8 +125,8 @@ intel_display_param_named_unsafe(enable_psr2_sel_fe=
+tch, bool, 0400,
+    =20
+     intel_display_param_named_unsafe(enable_dmc_wl, int, 0400,
+     	"Enable DMC wakelock "
+    -	"(0=3Ddisabled, 1=3Denabled) "
+    -	"Default: -1 (use per-chip default)");
+    +	"(-1=3Duse per-chip default, 0=3Ddisabled, 1=3Denabled) "
+    +	"Default: -1");
+    =20
+     __maybe_unused
+     static void _param_print_bool(struct drm_printer *p, const char *drive=
+r_name,
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Maarten-Lankhorst/drm-xe-display-Add-intel_plane_initial_vblank_wait/20241105-202047
-base:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-patch link:    https://lore.kernel.org/r/20241105121857.17389-2-maarten.lankhorst%40linux.intel.com
-patch subject: [PATCH 2/9] drm/xe/display: Add intel_plane_initial_vblank_wait
-config: i386-defconfig (https://download.01.org/0day-ci/archive/20241106/202411060402.TB3RmJ09-lkp@intel.com/config)
-compiler: clang version 19.1.3 (https://github.com/llvm/llvm-project ab51eccf88f5321e7c60591c5546b254b6afab99)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241106/202411060402.TB3RmJ09-lkp@intel.com/reproduce)
+, because repeating the word "default" in "(-1=3Duse per-chip default
+[default], 0=3Ddisabled, 1=3Denabled)" looked weird.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202411060402.TB3RmJ09-lkp@intel.com/
+--
+Gustavo Sousa
 
-All errors (new ones prefixed by >>):
-
-   In file included from drivers/gpu/drm/i915/display/intel_plane_initial.c:8:
-   In file included from drivers/gpu/drm/i915/i915_drv.h:40:
-   In file included from drivers/gpu/drm/i915/display/intel_display_core.h:16:
-   In file included from include/drm/drm_connector.h:32:
-   In file included from include/drm/drm_util.h:36:
-   In file included from include/linux/kgdb.h:19:
-   In file included from include/linux/kprobes.h:28:
-   In file included from include/linux/ftrace.h:13:
-   In file included from include/linux/kallsyms.h:13:
-   In file included from include/linux/mm.h:2213:
-   include/linux/vmstat.h:518:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
-     518 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
-         |                               ~~~~~~~~~~~ ^ ~~~
->> drivers/gpu/drm/i915/display/intel_plane_initial.c:17:38: error: a parameter list without types is only allowed in a function definition
-      17 | void intel_plane_initial_vblank_wait(plane);(struct intel_plane *plane)
-         |                                      ^
->> drivers/gpu/drm/i915/display/intel_plane_initial.c:17:46: error: expected identifier or '('
-      17 | void intel_plane_initial_vblank_wait(plane);(struct intel_plane *plane)
-         |                                              ^
->> drivers/gpu/drm/i915/display/intel_plane_initial.c:17:46: error: expected ')'
-   drivers/gpu/drm/i915/display/intel_plane_initial.c:17:45: note: to match this '('
-      17 | void intel_plane_initial_vblank_wait(plane);(struct intel_plane *plane)
-         |                                             ^
->> drivers/gpu/drm/i915/display/intel_plane_initial.c:448:4: error: call to undeclared function 'intel_initial_vblank_wait'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     448 |                         intel_initial_vblank_wait(crtc);
-         |                         ^
-   drivers/gpu/drm/i915/display/intel_plane_initial.c:448:4: note: did you mean 'intel_plane_initial_vblank_wait'?
-   drivers/gpu/drm/i915/display/intel_plane_initial.h:11:6: note: 'intel_plane_initial_vblank_wait' declared here
-      11 | void intel_plane_initial_vblank_wait(struct intel_plane *plane);
-         |      ^
-   1 warning and 4 errors generated.
-
-
-vim +17 drivers/gpu/drm/i915/display/intel_plane_initial.c
-
-    16	
-  > 17	void intel_plane_initial_vblank_wait(plane);(struct intel_plane *plane)
-    18	{
-    19		struct intel_crtc *crtc = intel_crtc_for_pipe(to_intel_display(plane), plane->pipe);
-    20	
-    21		intel_crtc_wait_for_next_vblank(crtc);
-    22	}
-    23	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+>
+>Thanks! I'll update this on the next version.
+>
+>--
+>Gustavo Sousa
