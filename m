@@ -2,60 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D0E09BC8AA
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Nov 2024 10:08:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 087B59BC8AD
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Nov 2024 10:09:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D1DF210E53B;
-	Tue,  5 Nov 2024 09:08:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A428E10E40C;
+	Tue,  5 Nov 2024 09:09:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QhDMHi0j";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ye8bv/Jc";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89E2910E53B;
- Tue,  5 Nov 2024 09:08:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 443B710E3FE;
+ Tue,  5 Nov 2024 09:09:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730797725; x=1762333725;
+ t=1730797772; x=1762333772;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=PB+BNMTxWbxJm4E6H/iXG/hQxaI2IglYPi5dMh/Zlxo=;
- b=QhDMHi0jFyQmsSxx2GATyOjYnqMhd4o4wvu6x394NjdUDedMKjFAzJj8
- uqeHjzUtInOD/f2MDHe5i8NTo+qAThmzsFU15JHCFPwjUyplNmY40yVVC
- fKYOCJeuvBj0mRbZJFVCdRFRq1co3SR6bas08a5+m8mSeAuFfFuZTZ3Vi
- Edz1CF0OY6ABjsZ4Lwtok+Pj/kmh/DyQXqqwedrdUk1q7LlzZyL/fg1i7
- OoJfmSY/E+qRo5p/+wY9jVzUzyAqPrEzSBGzcihnLV90ikqLMivvGK8H8
- dT/8x7u2dXtQMNDyR7TKwqQCijOOGnpsCBviNDR9WhZrA6xd8/C1Z11rt w==;
-X-CSE-ConnectionGUID: SoG5fVIVSvW5E2xz2XW5aw==
-X-CSE-MsgGUID: 3v5Xr2sHTySRhU+/2KAzgw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11246"; a="41124323"
-X-IronPort-AV: E=Sophos;i="6.11,259,1725346800"; d="scan'208";a="41124323"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2024 01:08:45 -0800
-X-CSE-ConnectionGUID: 5HtVn4yzS2i/rs0iObj0cw==
-X-CSE-MsgGUID: 1BMTPIDjTyaU+XzFAU7NFQ==
+ bh=rHTgjJRc6ooVo+mhUoFuiOIZ7Y8TMzzzJ0y/yoRtoBc=;
+ b=Ye8bv/JcH3AlTnpQTIBk9J7u/TSKMZmG1aWKxrYp21cUReH676+1boZu
+ vY5cAWtJU42epq1dJSEIRYXxYwzOT3PZLgMQ6id8eDu663spTqStijX3c
+ wkakT3XaOQNxVjFzErwgYHcjz1f2Lh/16IX9i+Eeo+03PDZhCHd0xDg95
+ bCI1quBCsc5culUAitqCl4FVp7+xMCkCIBi9ViOI482uf8Lp3grEyoY82
+ vcpe4I503l5N3xY0nljY3Q01ef/TDfuw2JXbnoHQSwqrkLKUldHnt4L3f
+ 8W+X/Z0Iwbkdi9okBxPtl+WXFPsgn/cQvfTjMTv/SjTeZxHjC2vMVCYjI g==;
+X-CSE-ConnectionGUID: cfVdhryWQuCVW8MKjqt3Rw==
+X-CSE-MsgGUID: 8t5+5U3eTcyxHV1F+dC++w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11246"; a="48039017"
+X-IronPort-AV: E=Sophos;i="6.11,259,1725346800"; d="scan'208";a="48039017"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2024 01:09:32 -0800
+X-CSE-ConnectionGUID: kOpkNVxJTAGy0IHfCj+swQ==
+X-CSE-MsgGUID: C2bLzkE4So+cQAgORh8zkg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,259,1725346800"; d="scan'208";a="114722707"
+X-IronPort-AV: E=Sophos;i="6.11,259,1725346800"; d="scan'208";a="87880608"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.82])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2024 01:08:43 -0800
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2024 01:09:30 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: Vinod Govindapillai <vinod.govindapillai@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- ville.syrjala@linux.intel.com
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 Cc: vinod.govindapillai@intel.com, ville.syrjala@intel.com,
  jani.saarinen@intel.com
-Subject: Re: [PATCH 3/8] drm/i915/display: update use_minimal_wm0_only to
- use intel_display
-In-Reply-To: <20241105071600.235338-4-vinod.govindapillai@intel.com>
+Subject: Re: [PATCH 5/8] drm/i915/display: update skl_plane_wm_equals to use
+ intel_display
+In-Reply-To: <20241105071600.235338-6-vinod.govindapillai@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20241105071600.235338-1-vinod.govindapillai@intel.com>
- <20241105071600.235338-4-vinod.govindapillai@intel.com>
-Date: Tue, 05 Nov 2024 11:08:40 +0200
-Message-ID: <87ses6gi93.fsf@intel.com>
+ <20241105071600.235338-6-vinod.govindapillai@intel.com>
+Date: Tue, 05 Nov 2024 11:09:27 +0200
+Message-ID: <87plnagi7s.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -74,50 +73,48 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Tue, 05 Nov 2024, Vinod Govindapillai <vinod.govindapillai@intel.com> wrote:
-> Avoid using struct drm_i915_private reference and use intel_display
-> instead. This is in preparation for the rest of the patches in this
-> series where hw support for the minimum and interim ddb allocations
-> for async flip is added
-
-This is technically correct, but it's self-contained in a single
-function. I've preferred two approaches over this:
-
-- Convert entire files (sometimes internally first, with the external
-  interface changes in a separate patch, depending on how big the patch
-  becomes).
-
-- Convert single functions which are widely used and have struct
-  intel_display as parameter, to limit the size of the patch (as opposed
-  to doing the conversion as part of an entire file change).
-
-I think Ville said he's had a go at converting skl_watermark.c. Ville,
-do you have a patch for that?
-
-BR,
-Jani.
-
+> Use intel_display object instead of struct drm_i915_private in
+> skl_plane_wm_equals(). This is in preparation for the rest of
+> the patches in this series where hw support for the minimum and
+> interim ddb allocations for async flip is added
 >
 > Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/skl_watermark.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+>  drivers/gpu/drm/i915/display/skl_watermark.c | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-> index 2afc95e7533c..2018abc35c8a 100644
+> index 2018abc35c8a..a01b1dc01348 100644
 > --- a/drivers/gpu/drm/i915/display/skl_watermark.c
 > +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-> @@ -1372,9 +1372,9 @@ static bool
->  use_minimal_wm0_only(const struct intel_crtc_state *crtc_state,
->  		     struct intel_plane *plane)
->  {
-> -	struct drm_i915_private *i915 = to_i915(plane->base.dev);
-> +	struct intel_display *display = to_intel_display(plane);
->  
-> -	return DISPLAY_VER(i915) >= 13 &&
-> +	return DISPLAY_VER(display) >= 13 &&
->  	       crtc_state->uapi.async_flip &&
->  	       plane->async_flip;
+> @@ -2384,13 +2384,13 @@ static bool skl_wm_level_equals(const struct skl_wm_level *l1,
+>  		l1->blocks == l2->blocks;
 >  }
+>  
+> -static bool skl_plane_wm_equals(struct drm_i915_private *i915,
+> +static bool skl_plane_wm_equals(struct intel_display *display,
+>  				const struct skl_plane_wm *wm1,
+>  				const struct skl_plane_wm *wm2)
+>  {
+>  	int level;
+>  
+> -	for (level = 0; level < i915->display.wm.num_levels; level++) {
+> +	for (level = 0; level < display->wm.num_levels; level++) {
+>  		/*
+>  		 * We don't check uv_wm as the hardware doesn't actually
+>  		 * use it. It only gets used for calculating the required
+> @@ -2650,7 +2650,7 @@ skl_print_wm_changes(struct intel_atomic_state *state)
+>  			old_wm = &old_pipe_wm->planes[plane_id];
+>  			new_wm = &new_pipe_wm->planes[plane_id];
+>  
+> -			if (skl_plane_wm_equals(i915, old_wm, new_wm))
+> +			if (skl_plane_wm_equals(&i915->display, old_wm, new_wm))
+
+Please don't use "&i915->display" inline.c
+
+>  				continue;
+>  
+>  			drm_dbg_kms(&i915->drm,
 
 -- 
 Jani Nikula, Intel
