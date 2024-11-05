@@ -2,54 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 240929BCB1B
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Nov 2024 11:58:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96AB69BCB3C
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Nov 2024 12:05:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D3D2110E570;
-	Tue,  5 Nov 2024 10:58:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2BF5F10E411;
+	Tue,  5 Nov 2024 11:05:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZDrskZmi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TG8xi31g";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC3B610E56A
- for <intel-gfx@lists.freedesktop.org>; Tue,  5 Nov 2024 10:58:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89E0810E411
+ for <intel-gfx@lists.freedesktop.org>; Tue,  5 Nov 2024 11:05:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730804325; x=1762340325;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=3r497nfKfo8wgja1BIzNsH9Jc372V9zJlrSG3R3rAQU=;
- b=ZDrskZmi5PdjjYd7dt3xzbQB7D6T6hjdQA5IeZ/mf4eOkKpCf8O8hWty
- sMmeWlOirW9wEwePeVkdIWrsIWr6mxdGXd82X//bA89dR8W1b/8dobz6Q
- p+iaRIKy3fdiPjf6Tx1E/WmybeXVe6/Db07YOjCjxRJdR5D0ZhUh3VP1f
- 6n/M+wSAyxLXbp10q3C/xNGiF6J1+mD9AeWM9AtpuNGuMVPXQIAoEHWoT
- +lvyfTXKw/l3z/if8ngeVcd/xiw7YtGLjJ5swTugtsqCHy4hiHmwR3i7n
- unoL5iormheE8XFiAxSIISfgRlX0bi+aKgFEJwK+Y5bBII7zMdhWRMR1p w==;
-X-CSE-ConnectionGUID: 6gRiEExqQqqmAZ+k/Xu7lg==
-X-CSE-MsgGUID: xaXe1GdbTe2gHRZRxjXNJw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11246"; a="34328441"
-X-IronPort-AV: E=Sophos;i="6.11,259,1725346800"; d="scan'208";a="34328441"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2024 02:58:45 -0800
-X-CSE-ConnectionGUID: 3umqjHKuQwSlQXMHAgltuA==
-X-CSE-MsgGUID: 71GA4lZjRfSPvWi0mg+u5A==
+ t=1730804706; x=1762340706;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=nTE0Bxqej7KjoS3159oMNb84q+xNu2RhMnJw5yStVSA=;
+ b=TG8xi31ghJp0erftq2lXRHKnfqXw4Z488yR+pV3hv6MrQsb3Np/BHJOs
+ nwylKjA6D1IC6r9nlSSDFANUwOhTmvnuxElFg27RirJLb9U77did4QjSy
+ 2508EsjsU9aphHn6PhgkmHTTlghhIxAnuCUpCxo2bemcpaQzhMCkp3oTx
+ sLmuXJP1k1ddKdn0aCxl8/U9lDQFS4ZSNGTYElEF7mUrnXjiQIiy64Um+
+ CEp1WyK6PTQn4TAPIhp9IvbQWBa+bfnuICDEzzdA2h1BT4XYaKSHl6SGV
+ RT/IgH9kdD20HfWYw3PnT5JnqXEFKcL55lElviLAgGAaGJsdfn8MsZOnl Q==;
+X-CSE-ConnectionGUID: weFNcejSSEa7Q5gbWr4ddA==
+X-CSE-MsgGUID: 9qRPBkO7QLmovSHmfEsCOQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11246"; a="30767769"
+X-IronPort-AV: E=Sophos;i="6.11,259,1725346800"; d="scan'208";a="30767769"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2024 03:05:05 -0800
+X-CSE-ConnectionGUID: fgSj3RI/QemPMaM0L9Stvg==
+X-CSE-MsgGUID: nORTtCMxR7anEtQxC4zhdQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,259,1725346800"; d="scan'208";a="84306110"
-Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
- by fmviesa010.fm.intel.com with ESMTP; 05 Nov 2024 02:58:42 -0800
-From: Animesh Manna <animesh.manna@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: jouni.hogander@intel.com, jani.nikula@intel.com, nemesa.garg@intel.com,
- Animesh Manna <animesh.manna@intel.com>
-Subject: [PATCH v2] drm/i915/psr: Disable psr1 if setup_time > vblank
-Date: Tue,  5 Nov 2024 16:09:16 +0530
-Message-Id: <20241105103916.1857731-1-animesh.manna@intel.com>
-X-Mailer: git-send-email 2.29.0
+X-IronPort-AV: E=Sophos;i="6.11,259,1725346800"; d="scan'208";a="84096307"
+Received: from iklimasz-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.102])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2024 03:05:03 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Hogander, Jouni" <jouni.hogander@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Subject: Re: [RESEND 0/4] drm/i915: add dedicated lock for each sideband
+In-Reply-To: <b8c94f1da0b0da9b5dadbe01dd11772d02bb53d1.camel@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1730193891.git.jani.nikula@intel.com>
+ <b8c94f1da0b0da9b5dadbe01dd11772d02bb53d1.camel@intel.com>
+Date: Tue, 05 Nov 2024 13:05:01 +0200
+Message-ID: <87ikt2gcv6.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,56 +70,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Issue is seen when PSR enabled with setup frames and when try to disable
-PSR at SRDONACK State (0x1). PSR FSM is stuck at SRDONACK(0x1) for more
-than 5 seconds. Issue not seen with Setup frames disabled. Currently
-disable psr1 if setuptime > vblank to workaround the above issue.
+On Tue, 29 Oct 2024, "Hogander, Jouni" <jouni.hogander@intel.com> wrote:
+> On Tue, 2024-10-29 at 11:25 +0200, Jani Nikula wrote:
+>> It's misleading to use the same sideband mutex for LPT/WPT IOSF,
+>> VLV/CHV
+>> IOSF, and punit. Add dedicated locks for clarity.
+>
+> For the whole series:
+>
+> Reviewed-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
 
-HSD: 16024594674
-WA: 18037818876
+Thanks for the review, pushed to din.
 
-v1: Initial version
-v2: Add debug log and some cosmetic changes. [Jouni, Jani, Nemesa]
+BR,
+Jani.
 
-Signed-off-by: Animesh Manna <animesh.manna@intel.com>
----
- drivers/gpu/drm/i915/display/intel_psr.c | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+>
+>>
+>> Jani Nikula (4):
+>>   drm/i915/sbi: add intel_sbi_{lock,unlock}()
+>>   drm/i915/sbi: add a dedicated mutex for LPT/WPT IOSF sideband
+>>   drm/i915: add a dedicated mutex for VLV/CHV IOSF sideband
+>>   drm/i915: hide VLV PUNIT IOSF sideband qos handling better
+>>
+>>  .../gpu/drm/i915/display/intel_pch_refclk.c   | 26 ++++++++---------
+>>  drivers/gpu/drm/i915/i915_driver.c            |  8 ++++--
+>>  drivers/gpu/drm/i915/i915_drv.h               | 10 ++++++-
+>>  drivers/gpu/drm/i915/intel_sbi.c              | 22 ++++++++++++++-
+>>  drivers/gpu/drm/i915/intel_sbi.h              |  4 +++
+>>  drivers/gpu/drm/i915/vlv_sideband.c           | 28 +++++++++++++++--
+>> --
+>>  drivers/gpu/drm/i915/vlv_sideband.h           |  3 ++
+>>  7 files changed, 79 insertions(+), 22 deletions(-)
+>>
+>
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 4176163ec19a..d8eb0d427d8c 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1640,6 +1640,15 @@ _panel_replay_compute_config(struct intel_dp *intel_dp,
- 	return true;
- }
- 
-+static bool intel_psr_needs_wa_18037818876(struct intel_dp *intel_dp,
-+					   struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_display *display = to_intel_display(intel_dp);
-+
-+	return (DISPLAY_VER(display) == 20 && intel_dp->psr.entry_setup_frames > 0 &&
-+		!crtc_state->has_sel_update);
-+}
-+
- void intel_psr_compute_config(struct intel_dp *intel_dp,
- 			      struct intel_crtc_state *crtc_state,
- 			      struct drm_connector_state *conn_state)
-@@ -1686,6 +1695,13 @@ void intel_psr_compute_config(struct intel_dp *intel_dp,
- 		return;
- 
- 	crtc_state->has_sel_update = intel_sel_update_config_valid(intel_dp, crtc_state);
-+
-+	/* Wa_18037818876 */
-+	if (intel_psr_needs_wa_18037818876(intel_dp, crtc_state)) {
-+		crtc_state->has_psr = false;
-+		drm_dbg_kms(display->drm,
-+			    "PSR disabled to workaround PSR FSM hang issue\n");
-+	}
- }
- 
- void intel_psr_get_config(struct intel_encoder *encoder,
--- 
-2.29.0
-
+--=20
+Jani Nikula, Intel
