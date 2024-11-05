@@ -2,54 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 901DF9BCA95
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Nov 2024 11:36:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 240929BCB1B
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Nov 2024 11:58:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0529E10E567;
-	Tue,  5 Nov 2024 10:35:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3D2110E570;
+	Tue,  5 Nov 2024 10:58:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dmFSLnPp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZDrskZmi";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 997EC10E564;
- Tue,  5 Nov 2024 10:35:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC3B610E56A
+ for <intel-gfx@lists.freedesktop.org>; Tue,  5 Nov 2024 10:58:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730802956; x=1762338956;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=oCgS8k7/uxaQcuWl5W5YeVYEW2EcGG8QYH537cMXFq4=;
- b=dmFSLnPpSfbhdBSbBTvSA+ctC9gmnHTXeefkKliiCcYg0dxqeAjjLUI4
- Q47hnjvHpgWrKU/35rTkFgKi/T9YCLk2BfHis6KfpPc151+rvZoxdD/uP
- 0uyZFyvfX2O45Sot+ebR+A98MPLYgbsghu1fR5IYFNBBIchiob0qiLbKh
- HUEnyb1yeRHu0NMTKA80q8ceBwF7eTkBKT+gkciERO7053+al9or4y3GO
- tnRaJafQTvF00evkL/CuA6cNU04xZRqGIcZOiJeh1IfEP8qG8lrqmDRqW
- hpCyyrlCFQ+TfFYfODOjODBhRcFOcBhi43klxWYt4/d/wVg2cH2XMTzKD A==;
-X-CSE-ConnectionGUID: +VrqQ7SHSPy9VAiZ0jWbdg==
-X-CSE-MsgGUID: qANx2wkBSOa/Yl2UngiU7g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="34230856"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="34230856"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2024 02:35:56 -0800
-X-CSE-ConnectionGUID: 4kqE3FhDTUy9SdPcbFaklA==
-X-CSE-MsgGUID: 5TF/mbYOR8GzE+pllpstVQ==
+ t=1730804325; x=1762340325;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=3r497nfKfo8wgja1BIzNsH9Jc372V9zJlrSG3R3rAQU=;
+ b=ZDrskZmi5PdjjYd7dt3xzbQB7D6T6hjdQA5IeZ/mf4eOkKpCf8O8hWty
+ sMmeWlOirW9wEwePeVkdIWrsIWr6mxdGXd82X//bA89dR8W1b/8dobz6Q
+ p+iaRIKy3fdiPjf6Tx1E/WmybeXVe6/Db07YOjCjxRJdR5D0ZhUh3VP1f
+ 6n/M+wSAyxLXbp10q3C/xNGiF6J1+mD9AeWM9AtpuNGuMVPXQIAoEHWoT
+ +lvyfTXKw/l3z/if8ngeVcd/xiw7YtGLjJ5swTugtsqCHy4hiHmwR3i7n
+ unoL5iormheE8XFiAxSIISfgRlX0bi+aKgFEJwK+Y5bBII7zMdhWRMR1p w==;
+X-CSE-ConnectionGUID: 6gRiEExqQqqmAZ+k/Xu7lg==
+X-CSE-MsgGUID: xaXe1GdbTe2gHRZRxjXNJw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11246"; a="34328441"
+X-IronPort-AV: E=Sophos;i="6.11,259,1725346800"; d="scan'208";a="34328441"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2024 02:58:45 -0800
+X-CSE-ConnectionGUID: 3umqjHKuQwSlQXMHAgltuA==
+X-CSE-MsgGUID: 71GA4lZjRfSPvWi0mg+u5A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,259,1725346800"; d="scan'208";a="83485581"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by fmviesa006.fm.intel.com with ESMTP; 05 Nov 2024 02:35:54 -0800
-From: Arun R Murthy <arun.r.murthy@intel.com>
-To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: Arun R Murthy <arun.r.murthy@intel.com>
-Subject: [PATCH 4/4] drm/i915/display: Add async supported formats/modifiers
-Date: Tue,  5 Nov 2024 15:56:08 +0530
-Message-Id: <20241105102608.3912133-5-arun.r.murthy@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20241105102608.3912133-1-arun.r.murthy@intel.com>
-References: <20241105102608.3912133-1-arun.r.murthy@intel.com>
+X-IronPort-AV: E=Sophos;i="6.11,259,1725346800"; d="scan'208";a="84306110"
+Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
+ by fmviesa010.fm.intel.com with ESMTP; 05 Nov 2024 02:58:42 -0800
+From: Animesh Manna <animesh.manna@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: jouni.hogander@intel.com, jani.nikula@intel.com, nemesa.garg@intel.com,
+ Animesh Manna <animesh.manna@intel.com>
+Subject: [PATCH v2] drm/i915/psr: Disable psr1 if setup_time > vblank
+Date: Tue,  5 Nov 2024 16:09:16 +0530
+Message-Id: <20241105103916.1857731-1-animesh.manna@intel.com>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -67,61 +65,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add the formats/modifiers supported by asynchronous flips by the
-platform based on the plane capabilities.
+Issue is seen when PSR enabled with setup frames and when try to disable
+PSR at SRDONACK State (0x1). PSR FSM is stuck at SRDONACK(0x1) for more
+than 5 seconds. Issue not seen with Setup frames disabled. Currently
+disable psr1 if setuptime > vblank to workaround the above issue.
 
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+HSD: 16024594674
+WA: 18037818876
+
+v1: Initial version
+v2: Add debug log and some cosmetic changes. [Jouni, Jani, Nemesa]
+
+Signed-off-by: Animesh Manna <animesh.manna@intel.com>
 ---
- .../drm/i915/display/skl_universal_plane.c    | 22 +++++++++++++++++++
- 1 file changed, 22 insertions(+)
+ drivers/gpu/drm/i915/display/intel_psr.c | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 54cf2c9374cb..bead0c01af10 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -27,6 +27,18 @@
- #include "skl_watermark.h"
- #include "pxp/intel_pxp.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 4176163ec19a..d8eb0d427d8c 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -1640,6 +1640,15 @@ _panel_replay_compute_config(struct intel_dp *intel_dp,
+ 	return true;
+ }
  
-+static u32 skl_async_plane_formats[] = {
-+	DRM_FORMAT_RGB565,
-+	DRM_FORMAT_XRGB8888,
-+	DRM_FORMAT_XBGR8888,
-+	DRM_FORMAT_ARGB8888,
-+	DRM_FORMAT_ABGR8888,
-+	DRM_FORMAT_XRGB2101010,
-+	DRM_FORMAT_XBGR2101010,
-+	DRM_FORMAT_XRGB16161616F,
-+	DRM_FORMAT_XBGR16161616F,
-+};
++static bool intel_psr_needs_wa_18037818876(struct intel_dp *intel_dp,
++					   struct intel_crtc_state *crtc_state)
++{
++	struct intel_display *display = to_intel_display(intel_dp);
 +
- static const u32 skl_plane_formats[] = {
- 	DRM_FORMAT_C8,
- 	DRM_FORMAT_RGB565,
-@@ -2660,6 +2672,9 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
- 		formats = skl_get_plane_formats(dev_priv, pipe,
- 						plane_id, &num_formats);
++	return (DISPLAY_VER(display) == 20 && intel_dp->psr.entry_setup_frames > 0 &&
++		!crtc_state->has_sel_update);
++}
++
+ void intel_psr_compute_config(struct intel_dp *intel_dp,
+ 			      struct intel_crtc_state *crtc_state,
+ 			      struct drm_connector_state *conn_state)
+@@ -1686,6 +1695,13 @@ void intel_psr_compute_config(struct intel_dp *intel_dp,
+ 		return;
  
-+	plane->base.async_format_count = ARRAY_SIZE(skl_async_plane_formats);
-+	plane->base.async_format_types = skl_async_plane_formats;
+ 	crtc_state->has_sel_update = intel_sel_update_config_valid(intel_dp, crtc_state);
 +
- 	if (DISPLAY_VER(dev_priv) >= 12)
- 		plane_funcs = &tgl_plane_funcs;
- 	else if (DISPLAY_VER(dev_priv) == 11)
-@@ -2672,6 +2687,13 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
- 	else
- 		plane_type = DRM_PLANE_TYPE_OVERLAY;
++	/* Wa_18037818876 */
++	if (intel_psr_needs_wa_18037818876(intel_dp, crtc_state)) {
++		crtc_state->has_psr = false;
++		drm_dbg_kms(display->drm,
++			    "PSR disabled to workaround PSR FSM hang issue\n");
++	}
+ }
  
-+	plane->base.async_modifier_count = intel_fb_plane_get_modifiers_count(dev_priv,
-+									      skl_get_plane_caps(dev_priv, pipe, plane_id),
-+									      true);
-+	plane->base.async_modifiers = intel_fb_plane_get_modifiers(dev_priv,
-+								   skl_get_plane_caps(dev_priv, pipe, plane_id),
-+								   true);
-+
- 	modifiers = intel_fb_plane_get_modifiers(dev_priv,
- 						 skl_get_plane_caps(dev_priv, pipe, plane_id),
- 						 false);
+ void intel_psr_get_config(struct intel_encoder *encoder,
 -- 
-2.25.1
+2.29.0
 
