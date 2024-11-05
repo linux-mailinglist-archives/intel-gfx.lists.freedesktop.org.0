@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75B1A9BC85A
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Nov 2024 09:53:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA67D9BC87C
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Nov 2024 09:59:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1AD2110E534;
-	Tue,  5 Nov 2024 08:53:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02B7E10E539;
+	Tue,  5 Nov 2024 08:59:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q/27vmWd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fPMRi7qz";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1475210E534;
- Tue,  5 Nov 2024 08:53:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 098E610E2D0;
+ Tue,  5 Nov 2024 08:58:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730796783; x=1762332783;
+ t=1730797138; x=1762333138;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=8EWyoFFjM3heozIIvwJGg/AGosl6owusNHkdbM5ifQs=;
- b=Q/27vmWdXvKA5xHJrapOVygg/iVTECjZdA2lM6lnI3rjZReAcVFAQ3hq
- RMEKsNc2fWRaXTI8Y/WIg1J0lXAcM1HBKUIefSqfyI1XTOmCAf98k9wja
- uXlbthS2TmXsowXed2v+TJkk0QXnvUcjTQoBHygI9TNemgmo7ouxCJwmn
- +yX7W2lvuXk2v4pclOpYxWfQgAXahcM+DRE96uKbno1S7Oka5xNDqlDaM
- REAFlgUg3EObQBqzZG2VYu8ttom1rAybV6PNXO4jiSBI5t3k/FrBCaBTT
- Cp1olXTjhi5fcPGFevi/xsSWlRsqqMCGqbutsAV0aT3zgYUNjh2wIG79K Q==;
-X-CSE-ConnectionGUID: aG6n/k+dR8muq7WAKMPjyQ==
-X-CSE-MsgGUID: Hg9Yq8HBR36sYEslN8FVqg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="30485132"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="30485132"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2024 00:53:03 -0800
-X-CSE-ConnectionGUID: jps3bpfvQ8+Hys1Iadyh1g==
-X-CSE-MsgGUID: cllisc7rRq6DZcpB3hC4BQ==
+ bh=Rc31WzG8XOq0b06P9oFun1UDTWm0DEJ3qijU9AzkF/A=;
+ b=fPMRi7qz2fE/lG+uIKgZXvPR+yOtNgSt0kO7ZNTpqumFvIrhKCjFJM4w
+ OgiGKTwzdF2sCm2x8Iotz5Sv5iw6S1wPYimTyVJQu5+6goHozM4N3NqEC
+ Kfg2t4WM8oPuQjHRO3DDVavTlUSBI5SrhezmqXRydBUE0oNTL8IPixZ+h
+ ki3KmnxELQPeNQbgyOJ/NIYH0xdWsM4VzoyOHqS2pBuYRaN6Sr0+d25j6
+ KXc5CyL1P9f2UKK0V6XXh8kyUVK3r+pwe47h6WPxE/lGZpfaCNHBRJfa+
+ 31Gy9Su8BKotY6Zkd2xpQJMv0NmUPLnKwcRHJG0uD6wQeY1p7bcSZQdSV w==;
+X-CSE-ConnectionGUID: 2YBUDD3GQl+n8Lr+VJqfLQ==
+X-CSE-MsgGUID: XgZzDjGURwSveqV3yYDebQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11246"; a="41902134"
+X-IronPort-AV: E=Sophos;i="6.11,259,1725346800"; d="scan'208";a="41902134"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2024 00:58:58 -0800
+X-CSE-ConnectionGUID: FHp736QXRdaPPR5Nggbgkg==
+X-CSE-MsgGUID: byoFT3wjQgW1AI1va+LA9g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,259,1725346800"; d="scan'208";a="83823569"
+X-IronPort-AV: E=Sophos;i="6.11,259,1725346800"; d="scan'208";a="84050806"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.82])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2024 00:53:00 -0800
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2024 00:58:55 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: Vinod Govindapillai <vinod.govindapillai@intel.com>,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 Cc: vinod.govindapillai@intel.com, ville.syrjala@intel.com,
  jani.saarinen@intel.com
-Subject: Re: [PATCH 1/8] drm/i915/display: update
- intel_enabled_dbuf_slices_mask to use intel_display
-In-Reply-To: <20241105071600.235338-2-vinod.govindapillai@intel.com>
+Subject: Re: [PATCH 2/8] drm/i9i5/display: use intel_display in
+ intel_de_read calls of skl_watermark.c
+In-Reply-To: <20241105071600.235338-3-vinod.govindapillai@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20241105071600.235338-1-vinod.govindapillai@intel.com>
- <20241105071600.235338-2-vinod.govindapillai@intel.com>
-Date: Tue, 05 Nov 2024 10:52:58 +0200
-Message-ID: <8734k6hxjp.fsf@intel.com>
+ <20241105071600.235338-3-vinod.govindapillai@intel.com>
+Date: Tue, 05 Nov 2024 10:58:52 +0200
+Message-ID: <87zfmegipf.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -73,115 +73,207 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Tue, 05 Nov 2024, Vinod Govindapillai <vinod.govindapillai@intel.com> wrote:
-> Update intel_enabled_dbuf_slices_mask to use intel_display instead
-> of drm_i915_private object. This is a prepratory patch for the next
-> patch in the series, where all intel_de_read calls in skl_watermarks.c
-> are updated to use intel_display instead of drm_i915_private.
+> Convert all intel_de_read() to use intel_display instead of
+> struct drm_i915_private object. This is in preparation for
+> the rest of the patches in this series where hw support for
+> the minimum and interim ddb allocations for async flip is
+> added.
 >
 > Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_display_power.c      | 2 +-
->  drivers/gpu/drm/i915/display/intel_display_power_well.c | 2 +-
->  drivers/gpu/drm/i915/display/skl_watermark.c            | 9 +++++----
->  drivers/gpu/drm/i915/display/skl_watermark.h            | 3 ++-
->  4 files changed, 9 insertions(+), 7 deletions(-)
+>  drivers/gpu/drm/i915/display/skl_watermark.c | 48 +++++++++++---------
+>  1 file changed, 26 insertions(+), 22 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-> index 2766fd9208b0..62e0faffca40 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> @@ -1090,7 +1090,7 @@ static void gen9_dbuf_enable(struct drm_i915_private *dev_priv)
->  	u8 slices_mask;
->  
->  	dev_priv->display.dbuf.enabled_slices =
-> -		intel_enabled_dbuf_slices_mask(dev_priv);
-> +		intel_enabled_dbuf_slices_mask(&dev_priv->display);
-
-Please add a local struct intel_display *display variable and pass that
-to intel_enabled_dbuf_slices_mask().
-
-The point is, all of the i915/dev_priv references need to go, and if you
-add &dev_priv->display, this line needs to be updated again.
-
->  
->  	slices_mask = BIT(DBUF_S1) | dev_priv->display.dbuf.enabled_slices;
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-> index f0131dd853de..f792db191fcf 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-> @@ -973,7 +973,7 @@ static bool gen9_dc_off_power_well_enabled(struct drm_i915_private *dev_priv,
->  
->  static void gen9_assert_dbuf_enabled(struct drm_i915_private *dev_priv)
->  {
-> -	u8 hw_enabled_dbuf_slices = intel_enabled_dbuf_slices_mask(dev_priv);
-> +	u8 hw_enabled_dbuf_slices = intel_enabled_dbuf_slices_mask(&dev_priv->display);
-
-Ditto.
-
->  	u8 enabled_dbuf_slices = dev_priv->display.dbuf.enabled_slices;
->  
->  	drm_WARN(&dev_priv->drm,
 > diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-> index 3b0e87edbacf..d9d7238f0fb4 100644
+> index d9d7238f0fb4..2afc95e7533c 100644
 > --- a/drivers/gpu/drm/i915/display/skl_watermark.c
 > +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-> @@ -52,13 +52,13 @@ struct skl_wm_params {
->  	u32 dbuf_block_size;
->  };
+> @@ -82,12 +82,14 @@ intel_has_sagv(struct drm_i915_private *i915)
+>  }
 >  
-> -u8 intel_enabled_dbuf_slices_mask(struct drm_i915_private *i915)
-> +u8 intel_enabled_dbuf_slices_mask(struct intel_display *display)
+>  static u32
+> -intel_sagv_block_time(struct drm_i915_private *i915)
+> +intel_sagv_block_time(struct intel_display *display)
 >  {
->  	u8 enabled_slices = 0;
->  	enum dbuf_slice slice;
+> +	struct drm_i915_private *i915 = to_i915(display->drm);
+> +
+>  	if (DISPLAY_VER(i915) >= 14) {
+
+Please don't limit to changing just the intel_de_* per function. Convert
+all you can.
+
+>  		u32 val;
 >  
-> -	for_each_dbuf_slice(i915, slice) {
-> -		if (intel_de_read(i915, DBUF_CTL_S(slice)) & DBUF_POWER_STATE)
-> +	for_each_dbuf_slice(display, slice) {
-> +		if (intel_de_read(display, DBUF_CTL_S(slice)) & DBUF_POWER_STATE)
->  			enabled_slices |= BIT(slice);
+> -		val = intel_de_read(i915, MTL_LATENCY_SAGV);
+> +		val = intel_de_read(display, MTL_LATENCY_SAGV);
+>  
+>  		return REG_FIELD_GET(MTL_LATENCY_QCLK_SAGV, val);
+>  	} else if (DISPLAY_VER(i915) >= 12) {
+> @@ -126,7 +128,7 @@ static void intel_sagv_init(struct drm_i915_private *i915)
+>  
+>  	drm_WARN_ON(&i915->drm, i915->display.sagv.status == I915_SAGV_UNKNOWN);
+>  
+> -	i915->display.sagv.block_time_us = intel_sagv_block_time(i915);
+> +	i915->display.sagv.block_time_us = intel_sagv_block_time(&i915->display);
+
+Please add struct intel_display *display local variable.
+
+You don't need to change everything here (in the caller side) in one go,
+but quite obviously the function would benefit from further changes.
+
+>  
+>  	drm_dbg_kms(&i915->drm, "SAGV supported: %s, original SAGV block time: %u us\n",
+>  		    str_yes_no(intel_has_sagv(i915)), i915->display.sagv.block_time_us);
+> @@ -791,7 +793,7 @@ static void skl_ddb_entry_init_from_hw(struct skl_ddb_entry *entry, u32 reg)
+>  }
+>  
+>  static void
+> -skl_ddb_get_hw_plane_state(struct drm_i915_private *i915,
+> +skl_ddb_get_hw_plane_state(struct intel_display *display,
+>  			   const enum pipe pipe,
+>  			   const enum plane_id plane_id,
+>  			   struct skl_ddb_entry *ddb,
+> @@ -801,18 +803,18 @@ skl_ddb_get_hw_plane_state(struct drm_i915_private *i915,
+>  
+>  	/* Cursor doesn't support NV12/planar, so no extra calculation needed */
+>  	if (plane_id == PLANE_CURSOR) {
+> -		val = intel_de_read(i915, CUR_BUF_CFG(pipe));
+> +		val = intel_de_read(display, CUR_BUF_CFG(pipe));
+>  		skl_ddb_entry_init_from_hw(ddb, val);
+>  		return;
 >  	}
 >  
-> @@ -3126,6 +3126,7 @@ void intel_wm_state_verify(struct intel_atomic_state *state,
->  			   struct intel_crtc *crtc)
+> -	val = intel_de_read(i915, PLANE_BUF_CFG(pipe, plane_id));
+> +	val = intel_de_read(display, PLANE_BUF_CFG(pipe, plane_id));
+>  	skl_ddb_entry_init_from_hw(ddb, val);
+>  
+> -	if (DISPLAY_VER(i915) >= 11)
+> +	if (DISPLAY_VER(display) >= 11)
+>  		return;
+>  
+> -	val = intel_de_read(i915, PLANE_NV12_BUF_CFG(pipe, plane_id));
+> +	val = intel_de_read(display, PLANE_NV12_BUF_CFG(pipe, plane_id));
+>  	skl_ddb_entry_init_from_hw(ddb_y, val);
+>  }
+>  
+> @@ -832,7 +834,7 @@ static void skl_pipe_ddb_get_hw_state(struct intel_crtc *crtc,
+>  		return;
+>  
+>  	for_each_plane_id_on_crtc(crtc, plane_id)
+> -		skl_ddb_get_hw_plane_state(i915, pipe,
+> +		skl_ddb_get_hw_plane_state(&i915->display, pipe,
+
+Please add the local variable.
+
+>  					   plane_id,
+>  					   &ddb[plane_id],
+>  					   &ddb_y[plane_id]);
+> @@ -2932,6 +2934,7 @@ static void skl_pipe_wm_get_hw_state(struct intel_crtc *crtc,
+>  				     struct skl_pipe_wm *out)
 >  {
->  	struct drm_i915_private *i915 = to_i915(state->base.dev);
-> +	struct intel_display *display = to_intel_display(state);
+>  	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+> +	struct intel_display *display = &i915->display;
 
-Please prefer putting the display variable first if at all possible.
+Please initialize struct intel_display *display using
+to_intel_display(...) when possible instead of i915. Here, it would be:
 
+	struct intel_display *display = to_intel_display(crtc);
 
->  	const struct intel_crtc_state *new_crtc_state =
->  		intel_atomic_get_new_crtc_state(state, crtc);
->  	struct skl_hw_state {
-> @@ -3149,7 +3150,7 @@ void intel_wm_state_verify(struct intel_atomic_state *state,
+That doesn't need to be changed anymore, &i915->display does.
+
+And please put the display variable first.
+
+>  	enum pipe pipe = crtc->pipe;
+>  	enum plane_id plane_id;
+>  	int level;
+> @@ -2942,32 +2945,32 @@ static void skl_pipe_wm_get_hw_state(struct intel_crtc *crtc,
 >  
->  	skl_pipe_ddb_get_hw_state(crtc, hw->ddb, hw->ddb_y);
+>  		for (level = 0; level < i915->display.wm.num_levels; level++) {
+
+Please don't limit to changing just intel_de_*. This should be
+display->wm.num_levels. Etc.
+
+>  			if (plane_id != PLANE_CURSOR)
+> -				val = intel_de_read(i915, PLANE_WM(pipe, plane_id, level));
+> +				val = intel_de_read(display, PLANE_WM(pipe, plane_id, level));
+>  			else
+> -				val = intel_de_read(i915, CUR_WM(pipe, level));
+> +				val = intel_de_read(display, CUR_WM(pipe, level));
 >  
-> -	hw_enabled_slices = intel_enabled_dbuf_slices_mask(i915);
-> +	hw_enabled_slices = intel_enabled_dbuf_slices_mask(display);
+>  			skl_wm_level_from_reg_val(val, &wm->wm[level]);
+>  		}
 >  
->  	if (DISPLAY_VER(i915) >= 11 &&
->  	    hw_enabled_slices != i915->display.dbuf.enabled_slices)
-> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.h b/drivers/gpu/drm/i915/display/skl_watermark.h
-> index e73baec94873..990793e36272 100644
-> --- a/drivers/gpu/drm/i915/display/skl_watermark.h
-> +++ b/drivers/gpu/drm/i915/display/skl_watermark.h
-> @@ -17,11 +17,12 @@ struct intel_atomic_state;
->  struct intel_bw_state;
->  struct intel_crtc;
->  struct intel_crtc_state;
-> +struct intel_display;
->  struct intel_plane;
->  struct skl_pipe_wm;
->  struct skl_wm_level;
+>  		if (plane_id != PLANE_CURSOR)
+> -			val = intel_de_read(i915, PLANE_WM_TRANS(pipe, plane_id));
+> +			val = intel_de_read(display, PLANE_WM_TRANS(pipe, plane_id));
+>  		else
+> -			val = intel_de_read(i915, CUR_WM_TRANS(pipe));
+> +			val = intel_de_read(display, CUR_WM_TRANS(pipe));
 >  
-> -u8 intel_enabled_dbuf_slices_mask(struct drm_i915_private *i915);
-> +u8 intel_enabled_dbuf_slices_mask(struct intel_display *display);
+>  		skl_wm_level_from_reg_val(val, &wm->trans_wm);
 >  
->  void intel_sagv_pre_plane_update(struct intel_atomic_state *state);
->  void intel_sagv_post_plane_update(struct intel_atomic_state *state);
+>  		if (HAS_HW_SAGV_WM(i915)) {
+>  			if (plane_id != PLANE_CURSOR)
+> -				val = intel_de_read(i915, PLANE_WM_SAGV(pipe, plane_id));
+> +				val = intel_de_read(display, PLANE_WM_SAGV(pipe, plane_id));
+>  			else
+> -				val = intel_de_read(i915, CUR_WM_SAGV(pipe));
+> +				val = intel_de_read(display, CUR_WM_SAGV(pipe));
+>  
+>  			skl_wm_level_from_reg_val(val, &wm->sagv.wm0);
+>  
+>  			if (plane_id != PLANE_CURSOR)
+> -				val = intel_de_read(i915, PLANE_WM_SAGV_TRANS(pipe, plane_id));
+> +				val = intel_de_read(display, PLANE_WM_SAGV_TRANS(pipe, plane_id));
+>  			else
+> -				val = intel_de_read(i915, CUR_WM_SAGV_TRANS(pipe));
+> +				val = intel_de_read(display, CUR_WM_SAGV_TRANS(pipe));
+>  
+>  			skl_wm_level_from_reg_val(val, &wm->sagv.trans_wm);
+>  		} else if (DISPLAY_VER(i915) >= 12) {
+> @@ -2985,7 +2988,7 @@ static void skl_wm_get_hw_state(struct drm_i915_private *i915)
+>  	struct intel_crtc *crtc;
+>  
+>  	if (HAS_MBUS_JOINING(i915))
+> -		dbuf_state->joined_mbus = intel_de_read(i915, MBUS_CTL) & MBUS_JOIN;
+> +		dbuf_state->joined_mbus = intel_de_read(display, MBUS_CTL) & MBUS_JOIN;
+>  
+>  	dbuf_state->mdclk_cdclk_ratio = intel_mdclk_cdclk_ratio(display, &display->cdclk.hw);
+>  
+> @@ -3014,7 +3017,7 @@ static void skl_wm_get_hw_state(struct drm_i915_private *i915)
+>  			if (!crtc_state->hw.active)
+>  				continue;
+>  
+> -			skl_ddb_get_hw_plane_state(i915, crtc->pipe,
+> +			skl_ddb_get_hw_plane_state(display, crtc->pipe,
+>  						   plane_id, ddb, ddb_y);
+>  
+>  			skl_ddb_entry_union(&dbuf_state->ddb[pipe], ddb);
+> @@ -3330,18 +3333,19 @@ adjust_wm_latency(struct drm_i915_private *i915,
+>  
+>  static void mtl_read_wm_latency(struct drm_i915_private *i915, u16 wm[])
+>  {
+> +	struct intel_display *display = &i915->display;
+>  	int num_levels = i915->display.wm.num_levels;
+
+display->wm.num_levels
+
+>  	u32 val;
+>  
+> -	val = intel_de_read(i915, MTL_LATENCY_LP0_LP1);
+> +	val = intel_de_read(display, MTL_LATENCY_LP0_LP1);
+>  	wm[0] = REG_FIELD_GET(MTL_LATENCY_LEVEL_EVEN_MASK, val);
+>  	wm[1] = REG_FIELD_GET(MTL_LATENCY_LEVEL_ODD_MASK, val);
+>  
+> -	val = intel_de_read(i915, MTL_LATENCY_LP2_LP3);
+> +	val = intel_de_read(display, MTL_LATENCY_LP2_LP3);
+>  	wm[2] = REG_FIELD_GET(MTL_LATENCY_LEVEL_EVEN_MASK, val);
+>  	wm[3] = REG_FIELD_GET(MTL_LATENCY_LEVEL_ODD_MASK, val);
+>  
+> -	val = intel_de_read(i915, MTL_LATENCY_LP4_LP5);
+> +	val = intel_de_read(display, MTL_LATENCY_LP4_LP5);
+>  	wm[4] = REG_FIELD_GET(MTL_LATENCY_LEVEL_EVEN_MASK, val);
+>  	wm[5] = REG_FIELD_GET(MTL_LATENCY_LEVEL_ODD_MASK, val);
 
 -- 
 Jani Nikula, Intel
