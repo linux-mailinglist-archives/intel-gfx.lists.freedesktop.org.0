@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B5459BCC66
-	for <lists+intel-gfx@lfdr.de>; Tue,  5 Nov 2024 13:10:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1CF09BCC67
+	for <lists+intel-gfx@lfdr.de>; Tue,  5 Nov 2024 13:10:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7CBE10E3F9;
-	Tue,  5 Nov 2024 12:10:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6F8310E579;
+	Tue,  5 Nov 2024 12:10:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6474110E579;
- Tue,  5 Nov 2024 12:10:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA7D110E579;
+ Tue,  5 Nov 2024 12:10:41 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Expose_modifiers/for?=
- =?utf-8?q?mats_supported_by_async_flips?=
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_Expose_modifiers/formats?=
+ =?utf-8?q?_supported_by_async_flips?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Arun R Murthy" <arun.r.murthy@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 05 Nov 2024 12:10:39 -0000
-Message-ID: <173080863940.1411787.13700456405354622884@2413ebb6fbb6>
+Date: Tue, 05 Nov 2024 12:10:41 -0000
+Message-ID: <173080864175.1411787.5584818731459491820@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241105102608.3912133-1-arun.r.murthy@intel.com>
 In-Reply-To: <20241105102608.3912133-1-arun.r.murthy@intel.com>
@@ -49,28 +49,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-7d835ef6b236 drm/plane: Add new plane property IN_FORMATS_ASYNC
--:158: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
-#158: FILE: include/drm/drm_plane.h:662:
-+	uint32_t *async_format_types;
-
--:168: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u64' over 'uint64_t'
-#168: FILE: include/drm/drm_plane.h:672:
-+	uint64_t *async_modifiers;
-
-total: 0 errors, 0 warnings, 2 checks, 137 lines checked
-4e8bf91fe858 drm/i915/fb: Add async field to the modifiers description
-abe5736d332f drm/i915/display: Add async_flip flag in get_modifiers
-dc0ca9af7913 drm/i915/display: Add async supported formats/modifiers
--:49: WARNING:LONG_LINE: line length of 123 exceeds 100 columns
-#49: FILE: drivers/gpu/drm/i915/display/skl_universal_plane.c:2691:
-+									      skl_get_plane_caps(dev_priv, pipe, plane_id),
-
--:52: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
-#52: FILE: drivers/gpu/drm/i915/display/skl_universal_plane.c:2694:
-+								   skl_get_plane_caps(dev_priv, pipe, plane_id),
-
-total: 0 errors, 2 warnings, 0 checks, 40 lines checked
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
