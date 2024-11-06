@@ -2,64 +2,124 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 331519BF0A2
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Nov 2024 15:47:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 845619BF11F
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Nov 2024 16:05:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA48610E1FB;
-	Wed,  6 Nov 2024 14:47:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 230D110E711;
+	Wed,  6 Nov 2024 15:05:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eyWiBxmX";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="x8X+LaTM";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 367AC10E1FB;
- Wed,  6 Nov 2024 14:47:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730904437; x=1762440437;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=C7dwBqLAVEAR/w0GzMaFZR5yOuZSPb0I3R6wkXNKnmY=;
- b=eyWiBxmXbia1KT3jAtDkdAeQ7kUC9mIZXVEIZLdX3YBxL/EfiuUQhuqo
- khNauNWVswRC4xk8lYBz6soOQx7cJOHu+i3omjsFtXFscIM7hqReF6j0h
- X+xx7KtUNOvLRhjaqQn58E+WSwvTUDO26h4rTnjVaQ0rOCUiiPwW5gbeN
- pth8pKz7jzxiTGEPjKwBfol900QA3HRsJnd45dueRpuMdynqu1n7LUacJ
- 22JWnC+yBNe+Oof1SNfSBp8hxlzhtRip7KVVJJBA6wjDFw+1ZC9g47T1r
- xJEDYLsY/1B7zvQ6EeHWkBAOBhgoEmiKrknDhQzIXERhjSztD4vJODPTm g==;
-X-CSE-ConnectionGUID: 2mZg8SDuTtyMLng4JS2W+g==
-X-CSE-MsgGUID: WN67zJ5gSi+Xpo/hjjChTg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11248"; a="18328978"
-X-IronPort-AV: E=Sophos;i="6.11,263,1725346800"; d="scan'208";a="18328978"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2024 06:47:16 -0800
-X-CSE-ConnectionGUID: pHEA9BuoT4iNJG4uD+JtTw==
-X-CSE-MsgGUID: 51cgJJKVSLyFFMVd2nom2w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,263,1725346800"; d="scan'208";a="84672898"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 06 Nov 2024 06:47:14 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 06 Nov 2024 16:47:13 +0200
-Date: Wed, 6 Nov 2024 16:47:13 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-Subject: Re: [PATCH 1/4] drm/plane: Add new plane property IN_FORMATS_ASYNC
-Message-ID: <ZyuBcUwDT8j2dh85@intel.com>
-References: <20241105102608.3912133-1-arun.r.murthy@intel.com>
- <20241105102608.3912133-2-arun.r.murthy@intel.com>
- <Zyt2lLQZca4FzbXo@intel.com>
- <IA0PR11MB73075C7117AC1F0CF0344C29BA532@IA0PR11MB7307.namprd11.prod.outlook.com>
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam04on2040.outbound.protection.outlook.com [40.107.101.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A407E10E70C;
+ Wed,  6 Nov 2024 15:05:07 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=wCCRYdRkdO0migYqM08N2I0clXfn/X9WCKXs/P0f/Eu++YgcQ3xsb+pnzJ8zJiMWYY7+nZbYyaJ1RBvM7Dg600F8yGa2pL5CzsDxqg9SwQ1PXCoHv8E8WlY5W/1YnmlemL6aK936kzAP/FPe/dLReCDOwkpZBcxFrompbEY6IKMZulSxqBE0ZfFr6CsaTm+Chfe7+N1RQA4AA9CJA+sqJK17d+xgkenD4hj4Yn00YE0ACe+lHU2DdoLTCdgcYNjWRG4X57daC+HSBBPwiJEV79HIPTMVSLhPAOxUYzGofy1pJK8cxrFC6zQPnnhMUBSaVLFlzyTg0LijqQRPJSYzzw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=kXglTitnOjAMuN9KsN6Dn8zzFMOBB8dNLjio1/a6v5E=;
+ b=KCaa1MJ4IlFxqhVjoRmbTwAgvadHFNUo/FMZayRWDpziBfsm0xusDXD19mnoF+1Vd8Zhj+JDDZsyh0fiFLb7uL4vuPyO3cRK8DDQ60G3g7s/SOuRx9R2NKzPCwZGU+u/gFn/rouIuW3/E2IpX/AWb92LouYSAwPETNTD5zaswWBkw5QgtdIDFVV8k3w0mGG8CX6TRbuE4fQ1h3ZipC/ShTVnk6xKXP38/HEpB3ltBnRLD/vUfaz6jJ1eFHdXzBz2f9igeRQA8jeVeTfFC0uWKVGI4p2lFDIuKlf4MPgy0IDqjeRTgJ62i/6YKKl65zbup+CUxtycN4iNo+hTYcTHfg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kXglTitnOjAMuN9KsN6Dn8zzFMOBB8dNLjio1/a6v5E=;
+ b=x8X+LaTMP1GJRr/ukpS//nJQFIkDam77yIrckvij9slXTSrr1lyBxIOYNYTcdM2jlAMH/SkGXCUn2XOK34AcUnic+FZqBRH6wshsaCcQ1E3JZ3HllvgiogNlpsVzEd/DOl5c+85Hg4zRjp7xTk18+BHF54e5WbQMvOOpDNcZOMg=
+Received: from BY3PR05CA0051.namprd05.prod.outlook.com (2603:10b6:a03:39b::26)
+ by PH8PR12MB7304.namprd12.prod.outlook.com (2603:10b6:510:217::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8137.19; Wed, 6 Nov
+ 2024 15:04:59 +0000
+Received: from SJ5PEPF00000207.namprd05.prod.outlook.com
+ (2603:10b6:a03:39b:cafe::3e) by BY3PR05CA0051.outlook.office365.com
+ (2603:10b6:a03:39b::26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8137.18 via Frontend
+ Transport; Wed, 6 Nov 2024 15:04:59 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ SJ5PEPF00000207.mail.protection.outlook.com (10.167.244.40) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8137.17 via Frontend Transport; Wed, 6 Nov 2024 15:04:59 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 6 Nov
+ 2024 09:04:58 -0600
+Received: from jzuo-linux.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
+ Transport; Wed, 6 Nov 2024 09:04:58 -0600
+From: Fangzhi Zuo <Jerry.Zuo@amd.com>
+To: <dri-devel@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>, <lyude@redhat.com>,
+ <jani.nikula@intel.com>, <imre.deak@intel.com>, <simona@ffwll.ch>,
+ <wayne.lin@amd.com>
+CC: <harry.wentland@amd.com>, <rodrigo.siqueira@amd.com>, Fangzhi Zuo
+ <Jerry.Zuo@amd.com>
+Subject: [PATCH v3 0/2] Refactor MST DSC Determination Policy
+Date: Wed, 6 Nov 2024 10:03:11 -0500
+Message-ID: <20241106150444.424579-1-Jerry.Zuo@amd.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <IA0PR11MB73075C7117AC1F0CF0344C29BA532@IA0PR11MB7307.namprd11.prod.outlook.com>
-X-Patchwork-Hint: comment
+Content-Type: text/plain
+Received-SPF: None (SATLEXMB04.amd.com: Jerry.Zuo@amd.com does not designate
+ permitted sender hosts)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ5PEPF00000207:EE_|PH8PR12MB7304:EE_
+X-MS-Office365-Filtering-Correlation-Id: c233880a-7b0f-4c93-9db9-08dcfe746212
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|36860700013|376014|82310400026|1800799024; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?uei2DMnQQE9Ox1SbrzI2B3gzJXA9qGxOfBrAtSVJbXu740gtNMhIITbuyBRB?=
+ =?us-ascii?Q?0lVXqIFJSlS3ufMD/uHrxo5mFjN3m4zuXyRfqTbuNqNpVGJUpd7cpxDh+LuY?=
+ =?us-ascii?Q?AUbhBj1LX908EMt/iSDB6igPzvFygGkW6facmZgxLY+yUZ08njJxFJ5FJyS4?=
+ =?us-ascii?Q?HU0kFBpmJlkr+pXkgUSnjaXU+VAIoQaoEYSlY2Y9aGO6QAx6TJBq0fGww37z?=
+ =?us-ascii?Q?c67NJKR4xIs3j8ogEle9tVnq/8aVlYE71THWvRVVeFRDSMlyfYYBaCoLJm5q?=
+ =?us-ascii?Q?FjN7hnjzECe6kWFdSsWucgvhewBHzEDtbCWrd2vQ2ccoqKOqgrq5PdzKs1kE?=
+ =?us-ascii?Q?fU1nm+JRFIpxOWcqKq36IJuMeSWdt8m5j3BksRPjcxA3Wu/2Pv4Pw0ZfaOHt?=
+ =?us-ascii?Q?NXnx34JUCMto8mNJvnuNlaaaup9WMJPgUSC0XYPCKhsNCSJP9J+U7HHYBhMf?=
+ =?us-ascii?Q?KhX0p1H6mXdNMWehAVl0kONi/b4C/qlMkN3tw1KIMmte4PaimYaGohopdMcY?=
+ =?us-ascii?Q?8QXMLOYECKu9IdnSrQhmq0Ico5tpOI/aBl0RctXFC0O3NIUn5Tr3oLgIcnA4?=
+ =?us-ascii?Q?WobknugiFu3kxnzCOOn9/BkRFy71E7yEhcUs2i0Dm8HQZTAgzujb/fT4W4lP?=
+ =?us-ascii?Q?yQJtB7i732ERjIN/B4uNEtYNARgfI/vHITlsYjiS5Vpgujb7I4bDPnm96qBA?=
+ =?us-ascii?Q?w6EL9FU8qSAU1KpR9HijZW3FQ+y2bQgX9K/b2fTwvA/wxYb2m7z7PPN3IfeM?=
+ =?us-ascii?Q?Gn33NmVGjSWysj1glFVTGcrMk6Ob672b0IRnLwYNLTFO1JZBigVCZGOUrHn8?=
+ =?us-ascii?Q?4XiFnRwh5Yu4NIbAC2vC3PThUbNXrN5WVpq+HtaMosWotYMxbDDRwbLBci++?=
+ =?us-ascii?Q?Q71WTYe5idwGj1k75aNiZkMUVe2yFljOuWYZartUbQN9zdjqGPL+CV4BaRY0?=
+ =?us-ascii?Q?+TCcQdqd+lVa46YIK8yymI15VHkyufQLnJzSmwlTPYPXkSwK+KVRaMkyyLOl?=
+ =?us-ascii?Q?3QV6VUu23Cu+MCDNSTJRB8cO3Nj9oUNOsJz80olouNCVe1wDSdwGaRGlVJO9?=
+ =?us-ascii?Q?HOmW777Ln6DF7JxsxhA1hG0nCmeH5T2xORxZhheC1sChQS9kr8aB0rkGTOIa?=
+ =?us-ascii?Q?uJKm+7ca+/kqNiYhQm6eCiMIo8OK+npi5E5lqvha2rqGCF4+WzjpRFw1RzxD?=
+ =?us-ascii?Q?RneQdey1Bvy8CrwgLxUzbCjGpwwIZtPq75bqeOLBh2rQCjz1t7ACjlEPFbdM?=
+ =?us-ascii?Q?5BvAsDwPCMi+/TKVmGrZFKvHlwP4Uw58lNUfefxbqoBs4dq/d6+gC4s7fnJ0?=
+ =?us-ascii?Q?8/m+k7nVhK2NvSco85SKYy7iukQ4e0jWFs8YOIEkssNpMXG2LoPRyEg1oyLN?=
+ =?us-ascii?Q?dDY4i4na2p+wSx6dEgS/SSQf8qAw4++Vax7kWJFxceO5OoqVsA=3D=3D?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(36860700013)(376014)(82310400026)(1800799024); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Nov 2024 15:04:59.3253 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c233880a-7b0f-4c93-9db9-08dcfe746212
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF00000207.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB7304
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,241 +135,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Nov 06, 2024 at 02:32:28PM +0000, Murthy, Arun R wrote:
-> > -----Original Message-----
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > Sent: Wednesday, November 6, 2024 7:31 PM
-> > To: Murthy, Arun R <arun.r.murthy@intel.com>
-> > Cc: intel-xe@lists.freedesktop.org; intel-gfx@lists.freedesktop.org; dri-
-> > devel@lists.freedesktop.org
-> > Subject: Re: [PATCH 1/4] drm/plane: Add new plane property
-> > IN_FORMATS_ASYNC
-> > 
-> > On Tue, Nov 05, 2024 at 03:56:05PM +0530, Arun R Murthy wrote:
-> > > There exists a property IN_FORMATS which exposes the plane supported
-> > > modifiers/formats to the user. In some platforms when asynchronous
-> > > flips are used all of modifiers/formats mentioned in IN_FORMATS are
-> > > not supported. This patch adds a new plane property IN_FORMATS_ASYNC
-> > > to expose the async flips supported modifiers/formats so that user can
-> > > use this information ahead and done flips with unsupported
-> > > formats/modifiers. This will save flips failures.
-> > >
-> > > Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/drm_mode_config.c |  7 +++
-> > >  drivers/gpu/drm/drm_plane.c       | 73
-> > +++++++++++++++++++++++++++++++
-> > >  include/drm/drm_mode_config.h     |  6 +++
-> > >  include/drm/drm_plane.h           | 10 +++++
-> > >  4 files changed, 96 insertions(+)
-> > >
-> > > diff --git a/drivers/gpu/drm/drm_mode_config.c
-> > > b/drivers/gpu/drm/drm_mode_config.c
-> > > index 37d2e0a4ef4b..cff189a2e751 100644
-> > > --- a/drivers/gpu/drm/drm_mode_config.c
-> > > +++ b/drivers/gpu/drm/drm_mode_config.c
-> > > @@ -379,6 +379,13 @@ static int
-> > drm_mode_create_standard_properties(struct drm_device *dev)
-> > >  		return -ENOMEM;
-> > >  	dev->mode_config.size_hints_property = prop;
-> > >
-> > > +	prop = drm_property_create(dev,
-> > > +				   DRM_MODE_PROP_IMMUTABLE |
-> > DRM_MODE_PROP_BLOB,
-> > > +				   "IN_FORMATS_ASYNC", 0);
-> > > +	if (!prop)
-> > > +		return -ENOMEM;
-> > > +	dev->mode_config.async_modifiers_property = prop;
-> > > +
-> > >  	return 0;
-> > >  }
-> > >
-> > > diff --git a/drivers/gpu/drm/drm_plane.c b/drivers/gpu/drm/drm_plane.c
-> > > index a28b22fdd7a4..01b8e6932fda 100644
-> > > --- a/drivers/gpu/drm/drm_plane.c
-> > > +++ b/drivers/gpu/drm/drm_plane.c
-> > > @@ -141,6 +141,12 @@
-> > >   *     various bugs in this area with inconsistencies between the capability
-> > >   *     flag and per-plane properties.
-> > >   *
-> > > + * IN_FORMATS_ASYNC:
-> > > + *     Blob property which contains the set of buffer format and modifier
-> > > + *     pairs supported by this plane for asynchronous flips. The blob is a struct
-> > > + *     drm_format_modifier_blob. Without this property the plane doesn't
-> > > + *     support buffers with modifiers. Userspace cannot change this property.
-> > > + *
-> > >   * SIZE_HINTS:
-> > >   *     Blob property which contains the set of recommended plane size
-> > >   *     which can used for simple "cursor like" use cases (eg. no scaling).
-> > > @@ -249,6 +255,70 @@ static int create_in_format_blob(struct drm_device
-> > *dev, struct drm_plane *plane
-> > >  	return 0;
-> > >  }
-> > >
-> > > +static int create_in_format_async_blob(struct drm_device *dev, struct
-> > > +drm_plane *plane) {
-> > > +	const struct drm_mode_config *config = &dev->mode_config;
-> > > +	struct drm_property_blob *blob;
-> > > +	struct drm_format_modifier *async_mod;
-> > > +	size_t blob_size, async_formats_size, async_modifiers_size;
-> > > +	struct drm_format_modifier_blob *blob_data;
-> > > +	unsigned int i, j;
-> > > +
-> > > +	async_formats_size = sizeof(__u32) * plane->async_format_count;
-> > > +	if (WARN_ON(!async_formats_size)) {
-> > > +		/* 0 formats are never expected */
-> > > +		return 0;
-> > > +	}
-> > > +
-> > > +	async_modifiers_size =
-> > > +		sizeof(struct drm_format_modifier) * plane-
-> > >async_modifier_count;
-> > > +
-> > > +	blob_size = sizeof(struct drm_format_modifier_blob);
-> > > +	/* Modifiers offset is a pointer to a struct with a 64 bit field so it
-> > > +	 * should be naturally aligned to 8B.
-> > > +	 */
-> > > +	BUILD_BUG_ON(sizeof(struct drm_format_modifier_blob) % 8);
-> > > +	blob_size += ALIGN(async_formats_size, 8);
-> > > +	blob_size += async_modifiers_size;
-> > > +
-> > > +	blob = drm_property_create_blob(dev, blob_size, NULL);
-> > > +	if (IS_ERR(blob))
-> > > +		return -1;
-> > > +
-> > > +	blob_data = blob->data;
-> > > +	blob_data->version = FORMAT_BLOB_CURRENT;
-> > > +	blob_data->count_formats = plane->async_format_count;
-> > > +	blob_data->formats_offset = sizeof(struct drm_format_modifier_blob);
-> > > +	blob_data->count_modifiers = plane->async_modifier_count;
-> > > +
-> > > +	blob_data->modifiers_offset =
-> > > +		ALIGN(blob_data->formats_offset + async_formats_size, 8);
-> > > +
-> > > +	memcpy(formats_ptr(blob_data), plane->async_format_types,
-> > > +async_formats_size);
-> > > +
-> > > +	async_mod = modifiers_ptr(blob_data);
-> > > +	for (i = 0; i < plane->async_modifier_count; i++) {
-> > > +		for (j = 0; j < plane->async_format_count; j++) {
-> > > +			if (!plane->funcs->format_mod_supported ||
-> > > +			    plane->funcs->format_mod_supported(plane,
-> > > +							       plane-
-> > >async_format_types[j],
-> > > +							       plane-
-> > >async_modifiers[i])) {
-> > > +				async_mod->formats |= 1ULL << j;
-> > > +			}
-> > > +		}
-> > > +
-> > > +		async_mod->modifier = plane->async_modifiers[i];
-> > > +		async_mod->offset = 0;
-> > > +		async_mod->pad = 0;
-> > > +		async_mod++;
-> > > +	}
-> > > +
-> > > +	drm_object_attach_property(&plane->base, config-
-> > >async_modifiers_property,
-> > > +				   blob->base.id);
-> > > +
-> > > +	return 0;
-> > > +}
-> > 
-> > That is a verbatim copy of the existing code. Please refactor the current code so
-> > that it can be reused.
-> > 
-> Ok will look into it in the next revision.
-> 
-> > > +
-> > >  /**
-> > >   * DOC: hotspot properties
-> > >   *
-> > > @@ -472,6 +542,9 @@ static int __drm_universal_plane_init(struct
-> > drm_device *dev,
-> > >  	if (format_modifier_count)
-> > >  		create_in_format_blob(dev, plane);
-> > >
-> > > +	if (plane->async_modifier_count)
-> > > +		create_in_format_async_blob(dev, plane);
-> > > +
-> > >  	return 0;
-> > >  }
-> > >
-> > > diff --git a/include/drm/drm_mode_config.h
-> > > b/include/drm/drm_mode_config.h index 271765e2e9f2..0c116d6dfd27
-> > > 100644
-> > > --- a/include/drm/drm_mode_config.h
-> > > +++ b/include/drm/drm_mode_config.h
-> > > @@ -936,6 +936,12 @@ struct drm_mode_config {
-> > >  	 */
-> > >  	struct drm_property *modifiers_property;
-> > >
-> > > +	/**
-> > > +	 * @async_modifiers_property: Plane property to list support
-> > modifier/format
-> > > +	 * combination for asynchronous flips.
-> > > +	 */
-> > > +	struct drm_property *async_modifiers_property;
-> > > +
-> > >  	/**
-> > >  	 * @size_hints_property: Plane SIZE_HINTS property.
-> > >  	 */
-> > > diff --git a/include/drm/drm_plane.h b/include/drm/drm_plane.h index
-> > > dd718c62ac31..d9571265251a 100644
-> > > --- a/include/drm/drm_plane.h
-> > > +++ b/include/drm/drm_plane.h
-> > > @@ -658,11 +658,21 @@ struct drm_plane {
-> > >  	 */
-> > >  	bool format_default;
-> > >
-> > > +	/** @format_types: array of formats supported by this plane */
-> > > +	uint32_t *async_format_types;
-> > > +	/** @format_count: Size of the array pointed at by @format_types. */
-> > > +	unsigned int async_format_count;
-> > > +
-> > >  	/** @modifiers: array of modifiers supported by this plane */
-> > >  	uint64_t *modifiers;
-> > >  	/** @modifier_count: Size of the array pointed at by @modifier_count.
-> > */
-> > >  	unsigned int modifier_count;
-> > >
-> > > +	/** @modifiers: array of modifiers supported by this plane */
-> > > +	uint64_t *async_modifiers;
-> > > +	/** @modifier_count: Size of the array pointed at by @modifier_count.
-> > */
-> > > +	unsigned int async_modifier_count;
-> > 
-> > I'm not sure adding any of this is really useful. I think we could just add a new
-> > .format_mod_supported_async() hook instead (which could be implemented in
-> > terms of the current thing + something like
-> > https://patchwork.freedesktop.org/patch/619047/?series=139807&rev=3
-> > 
-> > That would also be more flexible since it can allow specific
-> > format+modifier combinations to be either accepted or rejected.
-> > 
-> This would not serve the purpose. The purpose here is to expose the supported list to the user so that user can have this ahead and check for the modifier/format before sending the flip. This would avoid async flip failures due to unsupported modifier/format.
+The patch series is to refactor existing dsc determination policy for
+dsc decompression and dsc passthrough given a mst output port.
 
-It would work just fine, and wouldn't affect the uapi at all.
-The difference is that you don't have to bloat the plane struct
-with those mostly unnecessary format/modifier lists.
+Original routine was written based on different peer device types
+which is not accurate and shows difficulty when expanding support of
+products that do not fully comply with DP specs.
 
-> 
-> This approach has been acknowledged from the userspace which can be located @ https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/4063
-> 
-> Thanks and Regards,
-> Arun R Murthy
-> -------------------
-> > > +
-> > >  	/**
-> > >  	 * @crtc:
-> > >  	 *
-> > > --
-> > > 2.25.1
-> > 
-> > --
-> > Ville Syrjälä
-> > Intel
+To make the routine more accurate and generic, the series includes below changes:
+1. Refactor MST DSC determination policy solely based on
+   topology connection status and dsc dpcd capability info.
+2. Dependency changes required for each vendor due to interface change.
+
+v2: split original single patch into two
+v3: rebase against the latest code
+
+Fangzhi Zuo (2):
+  drm/display/dsc: Refactor DRM MST DSC Determination Policy
+  drm/display/dsc: MST DSC Interface Change
+
+ .../amd/display/amdgpu_dm/amdgpu_dm_debugfs.c |   2 +-
+ .../amd/display/amdgpu_dm/amdgpu_dm_helpers.c |  20 +-
+ .../display/amdgpu_dm/amdgpu_dm_mst_types.c   |  28 +-
+ drivers/gpu/drm/display/drm_dp_mst_topology.c | 258 ++++++++----------
+ drivers/gpu/drm/i915/display/intel_dp.c       |   2 +-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |   3 +-
+ include/drm/display/drm_dp_mst_helper.h       |   9 +-
+ 7 files changed, 144 insertions(+), 178 deletions(-)
 
 -- 
-Ville Syrjälä
-Intel
+2.43.0
+
