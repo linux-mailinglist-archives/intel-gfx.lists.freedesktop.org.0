@@ -2,52 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E95939BE98B
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Nov 2024 13:35:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF3009BE86B
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Nov 2024 13:25:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 816AF10E6D9;
-	Wed,  6 Nov 2024 12:35:21 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="uLupVrnT";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57B2B10E6C7;
+	Wed,  6 Nov 2024 12:25:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4712210E6D8;
- Wed,  6 Nov 2024 12:35:20 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id EECDD5C0765;
- Wed,  6 Nov 2024 12:34:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0777EC4CECD;
- Wed,  6 Nov 2024 12:35:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1730896519;
- bh=BZxL/1w8NeAAXupQuSA55lgzgK0burY+28b44lpkrck=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=uLupVrnTRPEliPnR+NWOc1uQ7EtBuHrno/G7yndwTK2Pe9MCgCQ7MPz2xTFc7tDx1
- PPhNjVDifJb8rKzgI1O9LNgVrW4xZQPO6QecGkhvvCfPKEPACzUqwvVAWEI76KoWez
- ocIFPFFy5aa4mtc/gRdAKW30oPTszEOl4eYpZuCg=
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: stable@vger.kernel.org
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, patches@lists.linux.dev,
- Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
- Arun R Murthy <arun.r.murthy@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH 6.11 228/245] drm/i915/display/dp: Compute AS SDP when vrr is
- also enabled
-Date: Wed,  6 Nov 2024 13:04:41 +0100
-Message-ID: <20241106120324.873113765@linuxfoundation.org>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20241106120319.234238499@linuxfoundation.org>
-References: <20241106120319.234238499@linuxfoundation.org>
-User-Agent: quilt/0.67
-X-stable: review
-X-Patchwork-Hint: ignore
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F2CCA10E6C7;
+ Wed,  6 Nov 2024 12:25:06 +0000 (UTC)
+Received: from 37-33-128-53.bb.dnainternet.fi ([37.33.128.53]
+ helo=[192.168.8.139])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.97) (envelope-from <luca@coelho.fi>)
+ id 1t8f5s-00000001UOL-2xGb; Wed, 06 Nov 2024 14:25:05 +0200
+Message-ID: <fcfcdefef53bc333a8b7015fc603da21fd11a406.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Gustavo Sousa <gustavo.sousa@intel.com>,
+ intel-gfx@lists.freedesktop.org, 	intel-xe@lists.freedesktop.org
+Cc: Luca Coelho <luciano.coelho@intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>
+Date: Wed, 06 Nov 2024 14:23:32 +0200
+In-Reply-To: <173081414310.2525.7600840303352098383@intel.com>
+References: <20241021222744.294371-1-gustavo.sousa@intel.com>
+ <20241021222744.294371-9-gustavo.sousa@intel.com>
+ <39ca0bca034ed369700b2ecc1b1a411c824bd3b0.camel@coelho.fi>
+ <173081414310.2525.7600840303352098383@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.1-1 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-Spam-Checker-Version: SpamAssassin 4.0.1-pre1 (2023-11-21) on
+ farmhouse.coelho.fi
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
+ TVD_RCVD_IP,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+ version=4.0.1-pre1
+Subject: Re: [PATCH 08/13] drm/i915/dmc_wl: Allow simpler syntax for single
+ reg in range tables
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,48 +56,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-6.11-stable review patch.  If anyone has any objections, please let me know.
+On Tue, 2024-11-05 at 10:42 -0300, Gustavo Sousa wrote:
+> Quoting Luca Coelho (2024-11-01 09:58:33-03:00)
+> > On Mon, 2024-10-21 at 19:27 -0300, Gustavo Sousa wrote:
+> > > Allow simpler syntax for defining entries for single registers in ran=
+ge
+> > > tables. That makes them easier to type as well as to read, allowing o=
+ne
+> > > to quickly tell whether a range actually refers to a single register =
+or
+> > > a "true range".
+> > >=20
+> > > Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_dmc_wl.c | 118 ++++++++++--------=
+--
+> > >  1 file changed, 60 insertions(+), 58 deletions(-)
+> > >=20
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gp=
+u/drm/i915/display/intel_dmc_wl.c
+> > > index 8bf2f32be859..6992ce654e75 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+> > > @@ -54,82 +54,82 @@ static struct intel_dmc_wl_range lnl_wl_range[] =
+=3D {
+> > >  };
+> > > =20
+> > >  static struct intel_dmc_wl_range xe3lpd_dc5_dc6_wl_ranges[] =3D {
+> > > -        { .start =3D 0x45500, .end =3D 0x45500 }, /* DC_STATE_SEL */
+> > > +        { .start =3D 0x45500 }, /* DC_STATE_SEL */
+> > >          { .start =3D 0x457a0, .end =3D 0x457b0 }, /* DC*_RESIDENCY_C=
+OUNTER */
+> > > -        { .start =3D 0x45504, .end =3D 0x45504 }, /* DC_STATE_EN */
+> > > +        { .start =3D 0x45504 }, /* DC_STATE_EN */
+> > >          { .start =3D 0x45400, .end =3D 0x4540c }, /* PWR_WELL_CTL_* =
+*/
+> > > -        { .start =3D 0x454f0, .end =3D 0x454f0 }, /* RETENTION_CTRL =
+*/
+> > > +        { .start =3D 0x454f0 }, /* RETENTION_CTRL */
+> > > =20
+> > >          /* DBUF_CTL_* */
+> > > -        { .start =3D 0x44300, .end =3D 0x44300 },
+> > > -        { .start =3D 0x44304, .end =3D 0x44304 },
+> > > -        { .start =3D 0x44f00, .end =3D 0x44f00 },
+> > > -        { .start =3D 0x44f04, .end =3D 0x44f04 },
+> > > -        { .start =3D 0x44fe8, .end =3D 0x44fe8 },
+> > > -        { .start =3D 0x45008, .end =3D 0x45008 },
+> > > +        { .start =3D 0x44300 },
+> > > +        { .start =3D 0x44304 },
+> > > +        { .start =3D 0x44f00 },
+> > > +        { .start =3D 0x44f04 },
+> > > +        { .start =3D 0x44fe8 },
+> > > +        { .start =3D 0x45008 },
+> > > =20
+> > > -        { .start =3D 0x46070, .end =3D 0x46070 }, /* CDCLK_PLL_ENABL=
+E */
+> > > -        { .start =3D 0x46000, .end =3D 0x46000 }, /* CDCLK_CTL */
+> > > -        { .start =3D 0x46008, .end =3D 0x46008 }, /* CDCLK_SQUASH_CT=
+L */
+> > > +        { .start =3D 0x46070 }, /* CDCLK_PLL_ENABLE */
+> > > +        { .start =3D 0x46000 }, /* CDCLK_CTL */
+> > > +        { .start =3D 0x46008 }, /* CDCLK_SQUASH_CTL */
+> >=20
+> > Many of these are probably actually ranges.  I'm not a HW guy, but
+> > these are probably blocks that need the wakelock and it just happens
+> > that many of those addresses are actually not used, but would need a
+> > wakelock if they were used?
+> >=20
+> > IOW, e.g. all these DBUF_CTL registers are probably in the same range
+> > that needs wakelocks (i.e. 0x44300-0x46fff)? Do we really need to
+> > define many of these individually?
+> >=20
+> > This is related to the previous patch as well, but I decided to comment
+> > it here because it becomes clearer.
+>=20
+> Maybe my reply on the previous patch clarifies this? I.e., these
+> offset or offset ranges represent offsets that the DMC touches when on
+> specific DC states.
 
-------------------
+Yeah, but I think this idea of blocks is still valid.  I think it's
+very unlikely that only certain _addresses_ and not full blocks of
+addresses are affected in the HW.
 
-From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+For instance:
 
-commit eb53e5b933b9ff315087305b3dc931af3067d19c upstream.
+         /* DBUF_CTL_* */
+-        { .start =3D 0x44300, .end =3D 0x44300 },
+-        { .start =3D 0x44304, .end =3D 0x44304 },
+-        { .start =3D 0x44f00, .end =3D 0x44f00 },
+-        { .start =3D 0x44f04, .end =3D 0x44f04 },
+-        { .start =3D 0x44fe8, .end =3D 0x44fe8 },
 
-AS SDP should be computed when VRR timing generator is also enabled.
-Correct the compute condition to compute params of Adaptive sync SDP
-when VRR timing genrator is enabled along with sink support indication.
+This probably means that _all_ the block, from at least 0x44300 till
+0x44fff, needs to be protected.  What I'm trying to say is that even
+though we don't access e.g. 0x44400, if we did, it would most likely
+also have to be protected, because it's in the same block of addresses.
 
---v2:
-Modify if condition (Jani).
+I guess this doesn't matter _that_ much, but it would be just cleaner
+to know the actual ranges where the wakelocks are _potentially_ needed.
 
-Fixes: b2013783c445 ("drm/i915/display: Cache adpative sync caps to use it later")
-Cc: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-Cc: Arun R Murthy <arun.r.murthy@intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-(added prefix drm in subject)
-Link: https://patchwork.freedesktop.org/patch/msgid/20240730040941.396862-1-mitulkumar.ajitkumar.golani@intel.com
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
----
- drivers/gpu/drm/i915/display/intel_dp.c |    2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2627,7 +2627,7 @@ static void intel_dp_compute_as_sdp(stru
- 	const struct drm_display_mode *adjusted_mode =
- 		&crtc_state->hw.adjusted_mode;
- 
--	if (!crtc_state->vrr.enable || intel_dp->as_sdp_supported)
-+	if (!crtc_state->vrr.enable || !intel_dp->as_sdp_supported)
- 		return;
- 
- 	crtc_state->infoframes.enable |= intel_hdmi_infoframe_enable(DP_SDP_ADAPTIVE_SYNC);
-
-
+--
+Cheers,
+Luca.
