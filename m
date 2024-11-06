@@ -2,29 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 498EA9BF971
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Nov 2024 23:46:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 553689BF973
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Nov 2024 23:47:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E793E10E79A;
-	Wed,  6 Nov 2024 22:46:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFFB410E7AF;
+	Wed,  6 Nov 2024 22:47:03 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WzoInvZn";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 03E3510E79A;
- Wed,  6 Nov 2024 22:46:38 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5457931952487977323=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9502010E7A7;
+ Wed,  6 Nov 2024 22:47:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1730933224; x=1762469224;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=9+qqroiDHbkQzw3AE5zj6uV2uMIQ37XQPwpPQM7joXU=;
+ b=WzoInvZn7aSbpA8yqla6CP4KCoxM4kRVsV0P4lZG0kQ/m+mF/MF2UUcc
+ wprwaV5NJMuQt5QPAXmgoT6NUqC1FTQ7HIzXkph6UEkrOfqXRtWtaLcBt
+ 8U66lOwooK8oolRjQzuAT2RMMB3Vf2ElbgGULcHvxcDOo4uvD8q0nlo96
+ ZlSaUuj9cf3o149eCa9wLDgew3f8xFJsVu7SYdeFDy0rpREU7+/zHgZK/
+ ih3qof/sLWip06LDD1HN6lJtXP/WZ+00ogpctziStzSnQ7nYIr1BTDxhn
+ euf+K5VUg9T0V556mU4aI25pwfeSGlIW+xt1wwGMnpYUmUYNMiXP6GXBe w==;
+X-CSE-ConnectionGUID: RHZij5RoRfuqUazEM4sS7Q==
+X-CSE-MsgGUID: 22wR5MOASjW5/StLwjavfQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="30613043"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="30613043"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2024 14:47:03 -0800
+X-CSE-ConnectionGUID: VoolTkhoQoOEplqRqZnYHg==
+X-CSE-MsgGUID: rK3LIUzASca2W7ypEAOqiQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,264,1725346800"; d="scan'208";a="84899237"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 06 Nov 2024 14:47:00 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 07 Nov 2024 00:46:59 +0200
+Date: Thu, 7 Nov 2024 00:46:59 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Vinod Govindapillai <vinod.govindapillai@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ jani.nikula@intel.com, ville.syrjala@intel.com, jani.saarinen@intel.com
+Subject: Re: [PATCH 8/8] drm/i915/debugfs: add dbuf alloc status as part of
+ i915_ddb_info
+Message-ID: <Zyvx49k6xg6vA83T@intel.com>
+References: <20241105071600.235338-1-vinod.govindapillai@intel.com>
+ <20241105071600.235338-9-vinod.govindapillai@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_drm/i915/dmc=5Fwl=3A_Fixes_?=
- =?utf-8?q?and_enablement_for_Xe3=5FLPD_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gustavo Sousa" <gustavo.sousa@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 06 Nov 2024 22:46:38 -0000
-Message-ID: <173093319800.1419327.4176339865702994369@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <20241106215231.103474-1-gustavo.sousa@intel.com>
-In-Reply-To: <20241106215231.103474-1-gustavo.sousa@intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241105071600.235338-9-vinod.govindapillai@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,215 +70,105 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5457931952487977323==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, Nov 05, 2024 at 09:16:00AM +0200, Vinod Govindapillai wrote:
+> >From xe3 onwards, there is a provision to define and
+> use min ddb and interim ddb allocations for async flip
+> use case. Add the dbuf allocation status as part of
+> i915_ddb_info as well to show if min or interim ddb
+> is being used.
+> 
+> Bspec: 72053
+> Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+> ---
+>  .../drm/i915/display/intel_display_debugfs.c  | 23 ++++++++++++++++---
+>  .../i915/display/skl_universal_plane_regs.h   |  1 +
+>  2 files changed, 21 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> index 11aff485d8fa..bce4a1ab05c0 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> @@ -39,6 +39,7 @@
+>  #include "intel_pps.h"
+>  #include "intel_psr.h"
+>  #include "intel_psr_regs.h"
+> +#include "skl_universal_plane_regs.h"
+>  #include "intel_vdsc.h"
+>  #include "intel_wm.h"
+>  
+> @@ -688,9 +689,24 @@ static int i915_shared_dplls_info(struct seq_file *m, void *unused)
+>  	return 0;
+>  }
+>  
+> +static u32 dbuf_alloc_status(struct intel_display *display,
+> +			     enum pipe pipe, enum plane_id plane_id)
+> +{
+> +	u32 val = 0;
+> +
+> +	if (DISPLAY_VER(display) >= 30) {
+> +		u32 reg = intel_de_read(display,
+> +					PLANE_MIN_BUF_CFG(pipe, plane_id));
+> +		val = REG_FIELD_GET(PLANE_DBUF_ALLOC_STATUS_MASK, reg);
+> +	}
+> +
+> +	return val;
+> +}
+> +
+>  static int i915_ddb_info(struct seq_file *m, void *unused)
+>  {
+>  	struct drm_i915_private *dev_priv = node_to_i915(m->private);
+> +	struct intel_display *display = &dev_priv->display;
+>  	struct skl_ddb_entry *entry;
+>  	struct intel_crtc *crtc;
+>  
+> @@ -699,7 +715,7 @@ static int i915_ddb_info(struct seq_file *m, void *unused)
+>  
+>  	drm_modeset_lock_all(&dev_priv->drm);
+>  
+> -	seq_printf(m, "%-15s%8s%8s%8s\n", "", "Start", "End", "Size");
+> +	seq_printf(m, "%-15s%8s%8s%8s%16s\n", "", "Start", "End", "Size", "Alloc Status");
 
-== Series Details ==
+This guy is meant ot just print the software state. The hardware might
+not even be awake here. So this doesn't belong here. It would be better
+to add it to the intel_watermark tool instead.
 
-Series: drm/i915/dmc_wl: Fixes and enablement for Xe3_LPD (rev2)
-URL   : https://patchwork.freedesktop.org/series/140282/
-State : failure
+>  
+>  	for_each_intel_crtc(&dev_priv->drm, crtc) {
+>  		struct intel_crtc_state *crtc_state =
+> @@ -711,9 +727,10 @@ static int i915_ddb_info(struct seq_file *m, void *unused)
+>  
+>  		for_each_plane_id_on_crtc(crtc, plane_id) {
+>  			entry = &crtc_state->wm.skl.plane_ddb[plane_id];
+> -			seq_printf(m, "  Plane%-8d%8u%8u%8u\n", plane_id + 1,
+> +			seq_printf(m, "  Plane%-8d%8u%8u%8u%8u\n", plane_id + 1,
+>  				   entry->start, entry->end,
+> -				   skl_ddb_entry_size(entry));
+> +				   skl_ddb_entry_size(entry),
+> +				   dbuf_alloc_status(display, pipe, plane_id));
+>  		}
+>  
+>  		entry = &crtc_state->wm.skl.plane_ddb[PLANE_CURSOR];
+> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h b/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
+> index 65a5482fae60..53550356430d 100644
+> --- a/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
+> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane_regs.h
+> @@ -390,6 +390,7 @@
+>  
+>  #define PLANE_AUTO_MIN_DBUF_EN			REG_BIT(31)
+>  #define PLANE_MIN_DDB_BLOCKS_MASK		REG_GENMASK(27, 16)
+> +#define PLANE_DBUF_ALLOC_STATUS_MASK		REG_GENMASK(15, 14)
 
-== Summary ==
+Do these bits actually mean something?
 
-CI Bug Log - changes from CI_DRM_15648 -> Patchwork_140282v2
-====================================================
+>  #define PLANE_INTERIM_DDB_BLOCKS_MASK		REG_GENMASK(11, 0)
+>  
+>  /* tgl+ */
+> -- 
+> 2.34.1
 
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_140282v2 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_140282v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140282v2/index.html
-
-Participating hosts (45 -> 43)
-------------------------------
-
-  Missing    (2): fi-snb-2520m bat-jsl-3 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_140282v2:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_module_load@load:
-    - fi-cfl-8109u:       [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15648/fi-cfl-8109u/igt@i915_module_load@load.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140282v2/fi-cfl-8109u/igt@i915_module_load@load.html
-
-  * igt@i915_selftest@live:
-    - bat-twl-1:          [PASS][3] -> [INCOMPLETE][4] +1 other test incomplete
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15648/bat-twl-1/igt@i915_selftest@live.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140282v2/bat-twl-1/igt@i915_selftest@live.html
-    - fi-skl-6600u:       [PASS][5] -> [ABORT][6] +1 other test abort
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15648/fi-skl-6600u/igt@i915_selftest@live.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140282v2/fi-skl-6600u/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@uncore:
-    - fi-glk-j4005:       [PASS][7] -> [ABORT][8] +1 other test abort
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15648/fi-glk-j4005/igt@i915_selftest@live@uncore.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140282v2/fi-glk-j4005/igt@i915_selftest@live@uncore.html
-
-  * igt@kms_busy@basic@flip:
-    - fi-cfl-8109u:       [PASS][9] -> [INCOMPLETE][10] +1 other test incomplete
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15648/fi-cfl-8109u/igt@kms_busy@basic@flip.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140282v2/fi-cfl-8109u/igt@kms_busy@basic@flip.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_140282v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live:
-    - bat-adlp-6:         [PASS][11] -> [INCOMPLETE][12] ([i915#9413]) +1 other test incomplete
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15648/bat-adlp-6/igt@i915_selftest@live.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140282v2/bat-adlp-6/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-mtlp-6:         [PASS][13] -> [ABORT][14] ([i915#12061]) +1 other test abort
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15648/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140282v2/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#9413]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15648 -> Patchwork_140282v2
-
-  CI-20190529: 20190529
-  CI_DRM_15648: 5ce87c5ad2cbfd2b89a0347e4e4f75de2762b7a3 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8100: 84e42580f918da926481fd2fb37be01451d6ee9a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_140282v2: 5ce87c5ad2cbfd2b89a0347e4e4f75de2762b7a3 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140282v2/index.html
-
---===============5457931952487977323==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dmc_wl: Fixes and enablement for Xe3_LPD (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/140282/">https://patchwork.freedesktop.org/series/140282/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140282v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140282v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_15648 -&gt; Patchwork_140282v2</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_140282v2 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_140282v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140282v2/index.html</p>
-<h2>Participating hosts (45 -&gt; 43)</h2>
-<p>Missing    (2): fi-snb-2520m bat-jsl-3 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_140282v2:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@i915_module_load@load:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15648/fi-cfl-8109u/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140282v2/fi-cfl-8109u/igt@i915_module_load@load.html">DMESG-WARN</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-twl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15648/bat-twl-1/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140282v2/bat-twl-1/igt@i915_selftest@live.html">INCOMPLETE</a> +1 other test incomplete</li>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15648/fi-skl-6600u/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140282v2/fi-skl-6600u/igt@i915_selftest@live.html">ABORT</a> +1 other test abort</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@uncore:</p>
-<ul>
-<li>fi-glk-j4005:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15648/fi-glk-j4005/igt@i915_selftest@live@uncore.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140282v2/fi-glk-j4005/igt@i915_selftest@live@uncore.html">ABORT</a> +1 other test abort</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_busy@basic@flip:</p>
-<ul>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15648/fi-cfl-8109u/igt@kms_busy@basic@flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140282v2/fi-cfl-8109u/igt@kms_busy@basic@flip.html">INCOMPLETE</a> +1 other test incomplete</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_140282v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-adlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15648/bat-adlp-6/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140282v2/bat-adlp-6/igt@i915_selftest@live.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413">i915#9413</a>) +1 other test incomplete</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15648/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140282v2/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test abort</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_15648 -&gt; Patchwork_140282v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_15648: 5ce87c5ad2cbfd2b89a0347e4e4f75de2762b7a3 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8100: 84e42580f918da926481fd2fb37be01451d6ee9a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_140282v2: 5ce87c5ad2cbfd2b89a0347e4e4f75de2762b7a3 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============5457931952487977323==--
+-- 
+Ville Syrjälä
+Intel
