@@ -2,165 +2,169 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AB519BF390
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Nov 2024 17:47:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 720C39BF3AC
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Nov 2024 17:53:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD85210E72D;
-	Wed,  6 Nov 2024 16:47:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E19AB10E742;
+	Wed,  6 Nov 2024 16:53:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QSw4F+KL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NxEuwBAk";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6748C10E72D;
- Wed,  6 Nov 2024 16:47:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 12BF110E741;
+ Wed,  6 Nov 2024 16:53:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730911672; x=1762447672;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=a0Tnq447epj0AbJUnDQ5wuT3FOPLYkcXY7xJ3a6rPdM=;
- b=QSw4F+KLICLpK2zaEnhTFD/OjJrvzCpwzyhz8DQpszNiZPmkrropF7c9
- eOnn/kAOq3cTe80PT12zFx7Ilzrc/0ZnkZF4INPeBR47hrKd9mz41he04
- 9aazVd1qhn3B4VBr3Dk7nzs+5afzLA3K1BMk/KBtaAiPpzq4R7Ng8nkbW
- mTESKGEni3PiscDKju/Apl/SZe9Y5RDkk//KPvTpMhTbAXFCjlRAQfcqj
- 6oyicsLTrNW5Vre4+//8+JVJR8W/K53DzX+TqzgvPt+JqRD1THxcQWxCM
- fFJ79/ZNTeDCBLAwltP9zYDoLRQHxQp9fU1LHSgaEHco3+8rZXfvCcxZe A==;
-X-CSE-ConnectionGUID: +zjLFcv8Tye5AbNH0WhIsw==
-X-CSE-MsgGUID: TtjeifibSWGm6uQVC/I04w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11248"; a="48237617"
-X-IronPort-AV: E=Sophos;i="6.11,263,1725346800"; d="scan'208";a="48237617"
+ t=1730912030; x=1762448030;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=eC6chfafNKugU3neHrWN4xlVDGXIQbNxpMbO9eldjUM=;
+ b=NxEuwBAkZUaAiQpG+fBVCI7ObGPgq+bgVgWno4O2YN1XNTBbZN+RKprU
+ mIy9tdOAhuf2GSybKjP/TOYT5IEqhVn1RehTN2v0jr805V2CSb7xUDYUW
+ 7SEYk0tD2GoyaIGRthszZAOkYlRk2sN7QHG84Yr59TxU5e+T7QB0rIwJS
+ odbhKcxKLl+x+Ea0Om/UvGuTveE1UVbEp89ncCOMcYw8MF+UwvCOXOc8W
+ JRMliCrbOFd2vRDgMlJ1QWSwjz8KTY4Pw+9FQKNKJT4b7hdwEMBHrSnFv
+ X1ev7zi2STKBzBofP3DnLWjSqoG+7rQTKzFfc9R32qZeECLS5vwWNpcRe g==;
+X-CSE-ConnectionGUID: X8WlYUIcTJmeNEB2qFStxA==
+X-CSE-MsgGUID: fVHetPZnRwGo7BmwEKhDiw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11248"; a="30836428"
+X-IronPort-AV: E=Sophos;i="6.11,263,1725346800"; d="scan'208";a="30836428"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2024 08:47:52 -0800
-X-CSE-ConnectionGUID: R5zhe18BSo2IO+iV2zC4+w==
-X-CSE-MsgGUID: gDA2il68QWaMaGyRIiumzg==
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2024 08:53:50 -0800
+X-CSE-ConnectionGUID: oGwlhO/pTPKtQP666eqbug==
+X-CSE-MsgGUID: kWo/B8dbQMigj4qTufaNyg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,263,1725346800"; d="scan'208";a="107954847"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+X-IronPort-AV: E=Sophos;i="6.11,263,1725346800"; d="scan'208";a="107957710"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
  by fmviesa002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 06 Nov 2024 08:47:52 -0800
+ 06 Nov 2024 08:53:49 -0800
 Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Wed, 6 Nov 2024 08:47:51 -0800
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ 15.1.2507.39; Wed, 6 Nov 2024 08:53:49 -0800
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
  fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Wed, 6 Nov 2024 08:47:51 -0800
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.169)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Wed, 6 Nov 2024 08:53:49 -0800
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.44) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Wed, 6 Nov 2024 08:47:51 -0800
+ 15.1.2507.39; Wed, 6 Nov 2024 08:53:48 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=s1zG06VIBT11A2eT+lz7HW3LRHuCFLhs5wsoF6Hn12P6cnJ95hH2aJ6Pp0g2IQCqbw38DLzb3ZSXASSAiZEeZNSfaT7nHdX5M/NL00LoFHAF1P0jjXiMIPsAIwLWtuzrKx8PXfrK2PoSFmmNPhousGhIjTHnmWyDk/pQWNhgGbXjWF/rWs8n/aDWP5iddcImJJWrXCtVP6zxmmohjBc+wkXo0q37smRamKAO4Kd99y2IhISVaizD9BpAkMNuCfcA53zFKUfPH6I0OceaMzBsOn8VB+MxuO9wNgnOKnllCjD2cqb43Q3GpU1SvWBjtccZIu66yGY/wKgibLVpUhm5rw==
+ b=ep/LQGWAHhQNDhXA8F8sFO3BEGGki8pu04DPhPdtMGB9nDuzVTBcYj91Y1oQu5Nxoi+nxVxWRFXzlbjeKD9Hf8oto7IbrpYP7np00naDoCYan7NOiKrqc7G/kOVN5Iya7cKG/s1un6PIKAEl2VSNY3lBDnY/yanqZ0jkQhEgIv8aheO3A3ZHg+UIeM4KvRyJBsYV2NfPGQqWXO3sieZMqfgYFyB7C96btYhubF21zn70whRtgABOlCHpa+w4ro9Ku2SMiPoB3X98bGe9AHEhR/ITTZMbCXdJWCK0ik1nY/eLm2PQCf85wOo9dRaPX5W6bam52jDPuX7wtbkFSDvfSg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9vex3IwowtwGZ3Pa1kunZUmqCjqvCR7qYeMEtG9vCoo=;
- b=kjBti3qM2aAVWloRD6MJvU48sq+XLJLD5T1ux2lEo+VP9Ni4GfI/9UBP6zHATuNkOschI0Zm7hQ2+2B/2lvc8Haxta6et2cpxeq0iOj2YmEa/mxz2f3JUlla7LbA0Iag9zi5oDufpKiorbAjFkKKxcmH8AEAOgAOuVHvrj4SWMehWVh9CugNtMhFlTUhv4wt8WGfr4mKY5fvD6BL3Ybk6jsgzgvwd9sXhRgJJiTxRVv41JfrpkHZ29+ZZIvR9HhGYbhhhU87Ed6Ys3xgJT6CectW2UjEeqoWZ6+eJu0aKMOycZkMkmLAVua3DmmblX4SyljJ9LUxQaT4cXPy721Y1g==
+ bh=csb6pdG5nraecF29V77f++z1G0NKLynx+fr2mh6kR7w=;
+ b=GzgyPtrxGZr1ObGHOGTUA9bjg96ZbAy6aIoHQ6L7j3fTNZG2DP1bXrxvQnWFeM3aE1TaUyxNFiMGNLYUX4GCmuEUq1SJxLTVmsDGy8n7Z5KFvZVhnq8eV4cB4jVQmOuXUqn0Nky2+xgNvxCm7FW4OGSijTIvFUJISfvZ8v3HBFjm2+HhmCB4pckShq+gihXGZdvfYBh5zufOpf7lsBUs2vMDo+QHn7eav3O1Nb3zC/A+8g15pFaEX1y3a9rKWY9dVVIaB/3BU9ufQmcxDTZEjx7e1C+HGCq9Fw0LXJg6ijlq2KcXcxyJBArTdyNI7D7oYZo3LX6aNIEZyw/7PkiXag==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BYAPR11MB2854.namprd11.prod.outlook.com (2603:10b6:a02:c9::12)
- by CY8PR11MB6963.namprd11.prod.outlook.com (2603:10b6:930:58::10)
+Received: from SN7PR11MB6750.namprd11.prod.outlook.com (2603:10b6:806:266::21)
+ by CY8PR11MB7316.namprd11.prod.outlook.com (2603:10b6:930:9f::14)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8114.31; Wed, 6 Nov
- 2024 16:47:48 +0000
-Received: from BYAPR11MB2854.namprd11.prod.outlook.com
- ([fe80::8a98:4745:7147:ed42]) by BYAPR11MB2854.namprd11.prod.outlook.com
- ([fe80::8a98:4745:7147:ed42%7]) with mapi id 15.20.8114.020; Wed, 6 Nov 2024
- 16:47:48 +0000
-Date: Wed, 6 Nov 2024 11:47:44 -0500
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 05/15] drm/i915/display: convert HAS_DP20() to struct
- intel_display
-Message-ID: <ZyudsLrJK_goDuvd@intel.com>
-References: <cover.1730740629.git.jani.nikula@intel.com>
- <b133e7ed50ae860e81916fd7a44947397e1df641.1730740629.git.jani.nikula@intel.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8114.30; Wed, 6 Nov
+ 2024 16:53:46 +0000
+Received: from SN7PR11MB6750.namprd11.prod.outlook.com
+ ([fe80::9570:169d:a0d5:527]) by SN7PR11MB6750.namprd11.prod.outlook.com
+ ([fe80::9570:169d:a0d5:527%3]) with mapi id 15.20.8114.032; Wed, 6 Nov 2024
+ 16:53:46 +0000
+From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+CC: "Roper, Matthew D" <matthew.d.roper@intel.com>
+Subject: RE: [PATCH] drm/i915/hdcp: Handle HDCP Line Rekeying for HDCP 1.4
+Thread-Topic: [PATCH] drm/i915/hdcp: Handle HDCP Line Rekeying for HDCP 1.4
+Thread-Index: AQHbMEqfzxKpZCIT60udDQ03iHkYUrKqcYWAgAAGUqA=
+Date: Wed, 6 Nov 2024 16:53:45 +0000
+Message-ID: <SN7PR11MB6750A2E02B5E883F24045D21E3532@SN7PR11MB6750.namprd11.prod.outlook.com>
+References: <20241106125100.852609-1-suraj.kandpal@intel.com>
+ <87ses4fhqu.fsf@intel.com>
+In-Reply-To: <87ses4fhqu.fsf@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SN7PR11MB6750:EE_|CY8PR11MB7316:EE_
+x-ms-office365-filtering-correlation-id: 938198de-1549-40bb-3133-08dcfe83942a
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230040|1800799024|366016|376014|38070700018;
+x-microsoft-antispam-message-info: =?us-ascii?Q?Iqa5fwnfyz2h3ZByEcZdIL31BdaGucX6OuW5QARMUoY9SsAm3FUK3oKoAIja?=
+ =?us-ascii?Q?0PXintF796Lk1snA6rRPVklTf8fmFaXVwgaCAE2/oQZdbK0x7Gfwn2ypIGjS?=
+ =?us-ascii?Q?m9/RYxg94geH5qyoSkYZXc0SmVIVRvR3Zv/NwGiZ+aE1B9b8lpwtzqQTLe13?=
+ =?us-ascii?Q?x0pnUwtooC5tkoe+cwgr6ohjQ90jK1ZqzgQXnmsHCrwLlfJWo4EypjEqoc0X?=
+ =?us-ascii?Q?0Kv7Wn1yZeOCf1Jd99DD39TeJ3eQLWE5Tg45uUoSubduH8QU1IHOGfBK2Ypg?=
+ =?us-ascii?Q?7b5E5czhEILwbHCdnxK4wkoASX/6MCfmRoG4spuYvx+d66I2pzsd7Z3HDqV7?=
+ =?us-ascii?Q?yoP+9znzZ4ATQy9teS+tqRKVbeAvjQEvW8VH1tRduVJRzzzgLGnbyKpITppx?=
+ =?us-ascii?Q?BoocZCHKs/3P+gvC9hW9ZiM3LFeAefsqwStfgpv9wDrrAIzgGjyOvLhX50rw?=
+ =?us-ascii?Q?ORCWIWfaG2oAvtXRz5A1ZsdSbE5CWcv4bQevkDfHiud0R3AV7O4UxGFAZ8xB?=
+ =?us-ascii?Q?LYTDfsf541gcqeuM9GOGlouiPVLc8qIUZZFl0FSrPziIur5M/MNG2adwJYpH?=
+ =?us-ascii?Q?fmLdZCW/M2ALhAAxsukcVi5etv9KzevOzyJViPcFOl00pICpymWcTkg938pO?=
+ =?us-ascii?Q?1gUCFtrTclW4B1+NomHo0IfbmdkylCF9vJoqHNb2POFWVNKNVPkGmmiOaO0v?=
+ =?us-ascii?Q?xxWkhpy/AxUySMHD60XGe5cvdzwe23h2impsOTziNbszNtIJ4FjB4o/+BqtL?=
+ =?us-ascii?Q?+fnh90VyEoaXonH3HwWea83zdxh6kmSB7vgnhB1ZkvZLaIRtauFfVFFSKehU?=
+ =?us-ascii?Q?GFIdYE5HEFBhC17b9ROQaCFf6O1afKqtH+yjUyov5s+lP7Y60eShempMVxrF?=
+ =?us-ascii?Q?jHz4qBhe6NxOPC3KczWt0cl9+hJktnB7aevAJlwyjonM8HK1nr/f/wx1qnS9?=
+ =?us-ascii?Q?lQ+ejAnVMckJTqqme+NrTUoV/oBENsrSS2xiNES2mMUEZGEloTMBbPhz9REw?=
+ =?us-ascii?Q?4fcDihf6KeCLDQlUmJgXcwSaj+sbAikvL1ROo3cYwMLIaWGvWW4VQxsAQ8pR?=
+ =?us-ascii?Q?3UePDEkHmItUtJ9YKK9AcQ8QgzOWhdnFkNVT2FQNm1mut/n2xRIQADqCIj+c?=
+ =?us-ascii?Q?s/oIZJQXvZ+qAXcykxNWmiEX/9+Qync2yplmxemVpP0uWYFkjZjBGJVEhm2r?=
+ =?us-ascii?Q?NqGETtwAyUuCFPlBhSCEHNgHoK9i7zgqW+ASJgt5Yny/ZDTtR8TRXGKM3RVD?=
+ =?us-ascii?Q?jKA4DyoIj2njmDQfPRvGTKMP/EGa3rKEo7s1Lm9dXgPaUyDZzlqESPMQK7G9?=
+ =?us-ascii?Q?UlkEdxhfynJUThpeYhnXzgqK+sVCMtGNysH/JvsiAMD0NAupUQXmP2TJ/JTn?=
+ =?us-ascii?Q?zPlMmKs=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SN7PR11MB6750.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(38070700018); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?vCMameGUtmjuensggcgI4jqzuUrBJ+LyDZ3nstcrUStMrF6dFxK3i/mcrH3J?=
+ =?us-ascii?Q?i5iXAWUKIhEuxBXFjMGUt0UJwLlBff/2X3XUK9yo4x1KDtYXbLVkyvG1QSf5?=
+ =?us-ascii?Q?9KiqtI8WU00nPYmw60xjvsM41XT2cnnAdkyyNpR0HE1TFqxsbYt4Vx1/vLgb?=
+ =?us-ascii?Q?OKzdGO/jM0LS1HTbpRXpZ/SYz0mL3VJJRa+brFSCqQncViI5nJOaXx4PzqTf?=
+ =?us-ascii?Q?IeJEa3GEJknCRUrs2FhUC2xgDwX59UreIj4mwefXmnNc3yPxyR6VbE9vqgYt?=
+ =?us-ascii?Q?4PA7UrZSM8LJVUp2f+uSCjaLz6/y46YPQFFjd0FBlBq7voR+Hs1YHilIQ13/?=
+ =?us-ascii?Q?G3FRCEFdquqIF6qoFu/1F13ZDQhDt6N+MrRpDuG4F5Ya4oLQ6t4AQ+zhRx5p?=
+ =?us-ascii?Q?11AiDFnbahAxe6VtnhkBulqN6f9wE+nmiPi2geBmTZvfnzCVqscfLNYIkDH+?=
+ =?us-ascii?Q?6mB10KYGyPSCoub0MyjIIC9hF081N8ChM7z5sS2a0iKhH67SKEO1KT+uHcG0?=
+ =?us-ascii?Q?sx61XVLyC0wPzhguCih3ZS76obdiKeShBAQBSAEuUKqQlL5lmADFRM4eIo/m?=
+ =?us-ascii?Q?0deiZ70ScKfnE6eA12A1R09KeQXQbahNEEEG2uSm+iGXdNzHNegp+js3e7yL?=
+ =?us-ascii?Q?VIYhe2sZVEIcJn6u2o2kNlOOwz5NDuz+Op2MuD0ZPdebhwHIZkWZUImvIoRa?=
+ =?us-ascii?Q?PHnziE7/BABKMEfgVMzharru7jUby77nJV3cMsSCAEFkJMgoVnQPX/0u1ABZ?=
+ =?us-ascii?Q?KfNrQCdYXvOrihmfuVftpqseBICs8hntXLUkPYw1Cn6l3TC4s5cXt27ygK19?=
+ =?us-ascii?Q?inDQkPlzJOEGKTG9r6rStUgkUjTrnvg9ymlRw88wTBBMYrPNmzJcPaUw/pbK?=
+ =?us-ascii?Q?aOVEJeS+plnKlC0PIfpsqZmnqfdWvzqnGM11/4xMksEDEfzFOzu7R9coTGPy?=
+ =?us-ascii?Q?Fi4jYbmoGaVtNgLWD/MO/Gzo8UrMvHmfWI3Z4n2XY3UxFS0Ap4DHzPDOdaEA?=
+ =?us-ascii?Q?Ih8joINBCviaoDCW3htJ/TU51a78tURiObP09KjDjUy3hx8sl1KPxT+iudKR?=
+ =?us-ascii?Q?3RSOYqjLno5BPJ3fZLQHTZ9QxcwnPJK50kxmo1BzE1zetl0GZ95lCv4QMd1n?=
+ =?us-ascii?Q?hSpu6HVyOWTkfAm/S/uvjdas5S2WKlJuYwobOxB2QZccCnCS80iwgXla4EU5?=
+ =?us-ascii?Q?h1/1vN+dN/N+sScbv6wCv81p6UNq+8VzVeFUy6Gn+FWSV54QXJdnxRJt/RpC?=
+ =?us-ascii?Q?G7yjQfwH16FMRe0Ulhobkg21lViwb9rPYk5QQywIdNDhSXyvV+7JGWRNE2fb?=
+ =?us-ascii?Q?2pKlNZQxRdgENJK3I9+31Qt/nNoLz6WWqV+Ye65Bhh4PV/YLzQmBLJYvtnVZ?=
+ =?us-ascii?Q?UgMPOiBAICbvlCZaaAcb8sH3kXZYtXcvVxWXf0FloFx0BRdHAhFN+ApJZp41?=
+ =?us-ascii?Q?hD46+1542Q4PAy8Xqc0VoMmY3/yCDZ4cWRZfJGPMe1sT1p7ba9VdtfLe/D0k?=
+ =?us-ascii?Q?1QpvZp9jbiAuF3z0jyoW9Zc09KQmj4AAZjYu5SML+7U0fdLUaNTn16ksEhT1?=
+ =?us-ascii?Q?5UxAhwV/Jczx8bv7ZkOLSgNkfsr17k8RhADAwEQz?=
 Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <b133e7ed50ae860e81916fd7a44947397e1df641.1730740629.git.jani.nikula@intel.com>
-X-ClientProxiedBy: BYAPR06CA0011.namprd06.prod.outlook.com
- (2603:10b6:a03:d4::24) To BYAPR11MB2854.namprd11.prod.outlook.com
- (2603:10b6:a02:c9::12)
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BYAPR11MB2854:EE_|CY8PR11MB6963:EE_
-X-MS-Office365-Filtering-Correlation-Id: a9789b1c-759e-445e-4aff-08dcfe82be3e
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?DeiJKauaRQdAGp4ntXwMhowHqriRJ8d6L3X4rrvddPHg89pugTciZPvdiomu?=
- =?us-ascii?Q?zEOLgiZsI+XTDRtbiaXekA9RBPBAIp0MuW1LBj8Alnhk9stExR9yTlo94puX?=
- =?us-ascii?Q?Hwme5cm3d9iQ/O9n/+TYiWgPpryBSFjf/zaoOeu7f62fX4LUtB/YNXJ8VwdK?=
- =?us-ascii?Q?CxDO2xYuIwhzdDzmR/EDliweyCiLHvSRQdm4BM9+Ya+j1TIW5bapdXrTNbGt?=
- =?us-ascii?Q?3r7pbc0m4iE+nujfUkvZUzZT3B8KNf668/FqWnLhcS4NRgVTpd0qhxxhaTB5?=
- =?us-ascii?Q?fdGdNShYq9PUtT5cvLhWd9kgdRq+rfDRwUoOzAnlX/rMN4hC3Sn4gSGZmI5w?=
- =?us-ascii?Q?bWw/tfZpcqg9pzAOLdCSkoNWTh0KW2mYcvXxuN9F8QxL/Kql0hnfEHVJ45PM?=
- =?us-ascii?Q?+4l+UvgvXw+cUa4VYbdOxPBGsZn98zZomJ3wlW+GNYcKGDx1MrXav7J4ouXB?=
- =?us-ascii?Q?YjmkIKnHKqRwzSbHFm5TA3eCpRbwT8DaMJCtbvJYf+mIF4OSsEI6OxVc/noC?=
- =?us-ascii?Q?I6v9MKIYOOG+Y+O55dmgPBoi3DNoxY3FO96h39H+wPQYT5gL7okoaNp3D+ol?=
- =?us-ascii?Q?C2Yg7FJYLf01L/BJh2vr757DbWXJnODmE896bGAiVb4s0PixDK2XsPX+rdmF?=
- =?us-ascii?Q?sTxA+i1AnzV3pOI+3hGlV5BrUHbLSVIfcEgEUxXbHiEs2PwODd+1xkkLjCE+?=
- =?us-ascii?Q?b4i3xUxP4lFKNSWafzpK8Q7LILK/Zj9srkN8U6Vj56IByNKOiJ4w6bK44BAv?=
- =?us-ascii?Q?YJTNDt8tjhhN/Db0UljVviF5jtDIp0EsPlUO7LHLbZDx0CdmOoOr9k5A/XLk?=
- =?us-ascii?Q?A/Ox+zywrCbEFN1DiqJ+XXVaECQbrXnerrDL3T1atrT5zRp+uEwjNsiwKv+l?=
- =?us-ascii?Q?ZevtnJwyaMUt7+z8IkDx/FiqKrJ2CAW8tDnDSqSA+WpmJQ4WQ1uM91AJkYTK?=
- =?us-ascii?Q?xGWQdEYisJW4EKxQqmPC2G9/tr6Ex31QDlyyHZbyRPKRa3vlywiThjIuGbof?=
- =?us-ascii?Q?TGSuKvJnaE4G3qHO9I4E04FLaBxFrxYWMx8T37Vm4m0PPLbK6re0XzKMn87w?=
- =?us-ascii?Q?6Cpa2vyOXXaumm/t1wM/xjw48ZgtQT1wPysUXapKz36NDcEc28/RCH7G2aR7?=
- =?us-ascii?Q?OS3ldlVpceIr/96KND5osKQFWQwsb2vOviygVnq6FWCjhuHUM+iBnjsIEQaV?=
- =?us-ascii?Q?/lPF+Op03VZkasvSlm5b8cXC4y1Vgr1nYWlPQOJscT0LNTQots+dzxO/fJpF?=
- =?us-ascii?Q?EMqO14oy1e80eW4cFoi+DrlLeJCmS+zDkcTl/jCaFzo+pYY6qi7qjBV7heiV?=
- =?us-ascii?Q?cCuGcvBavYX3gds6FVpmgRqT?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BYAPR11MB2854.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?sdU0IJear5EIOSaOd9B+FzUctYiKFlBHLe6MClreb+O0qbPXZy3Bb4Dsm+Xi?=
- =?us-ascii?Q?HtuaapY0D+8lvukQNVIgCA4hIjQihuEm4hcKPhEYpJ0P6KrgOUCMaQga9DVu?=
- =?us-ascii?Q?AhkMa7+OPhDk9WNR992j1Zt4c2A24b6+0lvircuHtcU2IlA/Jd5a7qm8Ysiv?=
- =?us-ascii?Q?hXaw14FHLUOmithMGN3u5bwx7UZlOpaMoMLqMGS0qVYue6p6kBzJGvldFE9I?=
- =?us-ascii?Q?Y/yi4EBOaBgAI9v9UaXYOmq2GuECutVr2Wg3mo3f5sjgdURqM7HcTvfy4Glx?=
- =?us-ascii?Q?GZY4DqqVydK3nuGogNovC7PXFLFDCuL1N8KunGBwnrRq49hEPX2mPIMy01GX?=
- =?us-ascii?Q?hDdzRUvt0fJci5i9lWdM82ScSpSX7JpoIdHSSjQ/HWDkR3rLRvrlT9V0+zJC?=
- =?us-ascii?Q?cnF8iFVIY7iakC+O8LfKwt6/XGK2Pev0wclVCM/Yma2fpXudPYGfLlMJrgXY?=
- =?us-ascii?Q?M704QUTzMVmUcdpVAonwd8QfhOQldwJEymn2dcDOmt8Rm9X3HBb7JAlpXTRn?=
- =?us-ascii?Q?JSdFR1tgXV4psVLHNUOeXOmABtKh6MajM4fgax8iZtTEjgkr1GCB13UF49U1?=
- =?us-ascii?Q?98UXP9uIP0z8+hSHqT2KUtQ0MWEwwFKrBw6ul8FhK0FmNL5JEGL0bCpDzvvT?=
- =?us-ascii?Q?/k+hLeIH2ge+FZlz4Vh7UpXRC95H5zG3/4xu3Rl/Od/iD/A2sgmHETChIAZd?=
- =?us-ascii?Q?bjp7Hrawhz1p0t5rWEaJq3YA4iRiDuoxkMvHrQXzsgqPJLmFn5kU0NQWZO8s?=
- =?us-ascii?Q?k3Iyi9OiM4Iq5Exd35oJ2TTr0rWwGydGNEccqXMCmonID8764GUF0YgqA73u?=
- =?us-ascii?Q?3moJtZ3N4/WqzoADXJesbexWJCZbKtvelPxXpCPcSqxYBLM+AxsKJ3horsK+?=
- =?us-ascii?Q?D+Hdfnrh49w7m9mfgVUz/nENYP4I5Q5R0KPed5r7I4us/WLjxoAyTbeA5OrO?=
- =?us-ascii?Q?VZJf/yJPBYbaYMXGmblKcv+1za4ggP5j0XOvt9HEKxVaW0d8x/AXBGb1TRkN?=
- =?us-ascii?Q?VawPcDpLjftwufIgNDoGyIH9n67/tKtq5UOjWmB87RjAD9lPNrDRBHxIVwHB?=
- =?us-ascii?Q?PMFbHWGODo1YKi8LR6p4yB75F8Wjui9eHKQ5DqGU2B7LUXaMtGYi99Eo56kg?=
- =?us-ascii?Q?yjOVWPmaRI5yfefYb9s0iyxvNIBxDD3hRCNtLyXscX6SgckS9ZV/A1FWD9Mt?=
- =?us-ascii?Q?xSazBLyjWaFeOQpqtr2N8h5Jk579TWLWm3TBVEJOSvLJ8OTDuDRNbUYBq/rk?=
- =?us-ascii?Q?ccNwbPyRIdMw/CU6iizcPRSprStzTfhjB38H9WXoVTgZz0owJx/aeEaaaOzj?=
- =?us-ascii?Q?mpIHHVlGTRFzw9+pkq2FKbS+frlHWdYOlI6efMGXrU+PeB/2l0WahgPgrjn6?=
- =?us-ascii?Q?aAyyq5AuBfayg3t46lUunH+0DlN4U6ZPzh2KU4UFxUnllsJC50CEWeGbUoQz?=
- =?us-ascii?Q?7g4KrE9yGtPFWB4yov91xtggFg8PPd8wgzjq6bdFP9D14v2/QnZsIFwcxGP5?=
- =?us-ascii?Q?e0iQ7KKKvCbPtzau6UMw74DkaWINfznR7PsPGpmCB0cCtTBx2VgvUDpDYtXV?=
- =?us-ascii?Q?JsZgCqTWDl4Ixs7k4cerUDdLRn/HGe8GN6um5gd5OZ3UZvSrq0qJrFlll96O?=
- =?us-ascii?Q?ig=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: a9789b1c-759e-445e-4aff-08dcfe82be3e
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB2854.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Nov 2024 16:47:47.9622 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qRwua/YAUMm9AoZtkHX7aUhfSUOG5yCY8TaVsM174xkVxnUS7xDtv5DNlFp0fE5ejkAE347OqAja8AxrrsWskg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB6963
+X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB6750.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 938198de-1549-40bb-3133-08dcfe83942a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Nov 2024 16:53:45.9505 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: DcBLMaSSLRbQ8R66uMyyESxwtjpqniIS3VbGU9HtIcwfBmKq52NPU7wVx31Ix45Xy1A1NIaMQF/WJSCHQBYhTQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7316
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -177,199 +181,146 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Nov 04, 2024 at 07:19:19PM +0200, Jani Nikula wrote:
-> Convert HAS_DP20() to struct intel_display. Do minimal drive-by
-> conversions to struct intel_display in the callers while at it.
 
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-> 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_audio.c    |  7 +++--
->  drivers/gpu/drm/i915/display/intel_ddi.c      | 26 ++++++++++---------
->  .../drm/i915/display/intel_display_device.h   |  2 +-
->  drivers/gpu/drm/i915/display/intel_psr.c      |  8 +++---
->  4 files changed, 21 insertions(+), 22 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
-> index 32aa9ec1a204..4cc70da8f467 100644
-> --- a/drivers/gpu/drm/i915/display/intel_audio.c
-> +++ b/drivers/gpu/drm/i915/display/intel_audio.c
-> @@ -681,12 +681,11 @@ static void ibx_audio_codec_enable(struct intel_encoder *encoder,
->  
->  void intel_audio_sdp_split_update(const struct intel_crtc_state *crtc_state)
->  {
-> -	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> -	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-> +	struct intel_display *display = to_intel_display(crtc_state);
->  	enum transcoder trans = crtc_state->cpu_transcoder;
->  
-> -	if (HAS_DP20(i915))
-> -		intel_de_rmw(i915, AUD_DP_2DOT0_CTRL(trans), AUD_ENABLE_SDP_SPLIT,
-> +	if (HAS_DP20(display))
-> +		intel_de_rmw(display, AUD_DP_2DOT0_CTRL(trans), AUD_ENABLE_SDP_SPLIT,
->  			     crtc_state->sdp_split_enable ? AUD_ENABLE_SDP_SPLIT : 0);
->  }
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index 49b5cc01ce40..46b7b90d3d98 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -700,8 +700,8 @@ int intel_ddi_toggle_hdcp_bits(struct intel_encoder *intel_encoder,
->  
->  bool intel_ddi_connector_get_hw_state(struct intel_connector *intel_connector)
->  {
-> -	struct drm_device *dev = intel_connector->base.dev;
-> -	struct drm_i915_private *dev_priv = to_i915(dev);
-> +	struct intel_display *display = to_intel_display(intel_connector);
-> +	struct drm_i915_private *dev_priv = to_i915(display->drm);
->  	struct intel_encoder *encoder = intel_attached_encoder(intel_connector);
->  	int type = intel_connector->base.connector_type;
->  	enum port port = encoder->port;
-> @@ -747,7 +747,7 @@ bool intel_ddi_connector_get_hw_state(struct intel_connector *intel_connector)
->  		break;
->  
->  	case TRANS_DDI_MODE_SELECT_FDI_OR_128B132B:
-> -		if (HAS_DP20(dev_priv))
-> +		if (HAS_DP20(display))
->  			/* 128b/132b */
->  			ret = false;
->  		else
-> @@ -769,8 +769,8 @@ bool intel_ddi_connector_get_hw_state(struct intel_connector *intel_connector)
->  static void intel_ddi_get_encoder_pipes(struct intel_encoder *encoder,
->  					u8 *pipe_mask, bool *is_dp_mst)
->  {
-> -	struct drm_device *dev = encoder->base.dev;
-> -	struct drm_i915_private *dev_priv = to_i915(dev);
-> +	struct intel_display *display = to_intel_display(encoder);
-> +	struct drm_i915_private *dev_priv = to_i915(display->drm);
->  	enum port port = encoder->port;
->  	intel_wakeref_t wakeref;
->  	enum pipe p;
-> @@ -840,7 +840,7 @@ static void intel_ddi_get_encoder_pipes(struct intel_encoder *encoder,
->  			continue;
->  
->  		if ((tmp & TRANS_DDI_MODE_SELECT_MASK) == TRANS_DDI_MODE_SELECT_DP_MST ||
-> -		    (HAS_DP20(dev_priv) &&
-> +		    (HAS_DP20(display) &&
->  		     (tmp & TRANS_DDI_MODE_SELECT_MASK) == TRANS_DDI_MODE_SELECT_FDI_OR_128B132B))
->  			mst_pipe_mask |= BIT(p);
->  
-> @@ -2653,6 +2653,7 @@ static void tgl_ddi_pre_enable_dp(struct intel_atomic_state *state,
->  				  const struct intel_crtc_state *crtc_state,
->  				  const struct drm_connector_state *conn_state)
->  {
-> +	struct intel_display *display = to_intel_display(encoder);
->  	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
->  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->  	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
-> @@ -2721,7 +2722,7 @@ static void tgl_ddi_pre_enable_dp(struct intel_atomic_state *state,
->  	 */
->  	intel_ddi_enable_transcoder_clock(encoder, crtc_state);
->  
-> -	if (HAS_DP20(dev_priv))
-> +	if (HAS_DP20(display))
->  		intel_ddi_config_transcoder_dp2(encoder, crtc_state);
->  
->  	/*
-> @@ -2862,9 +2863,9 @@ static void intel_ddi_pre_enable_dp(struct intel_atomic_state *state,
->  				    const struct intel_crtc_state *crtc_state,
->  				    const struct drm_connector_state *conn_state)
->  {
-> -	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-> +	struct intel_display *display = to_intel_display(encoder);
->  
-> -	if (HAS_DP20(dev_priv))
-> +	if (HAS_DP20(display))
->  		intel_dp_128b132b_sdp_crc16(enc_to_intel_dp(encoder),
->  					    crtc_state);
->  
-> @@ -2872,9 +2873,9 @@ static void intel_ddi_pre_enable_dp(struct intel_atomic_state *state,
->  	if (crtc_state->has_panel_replay)
->  		intel_psr_enable_sink(enc_to_intel_dp(encoder), crtc_state);
->  
-> -	if (DISPLAY_VER(dev_priv) >= 14)
-> +	if (DISPLAY_VER(display) >= 14)
->  		mtl_ddi_pre_enable_dp(state, encoder, crtc_state, conn_state);
-> -	else if (DISPLAY_VER(dev_priv) >= 12)
-> +	else if (DISPLAY_VER(display) >= 12)
->  		tgl_ddi_pre_enable_dp(state, encoder, crtc_state, conn_state);
->  	else
->  		hsw_ddi_pre_enable_dp(state, encoder, crtc_state, conn_state);
-> @@ -3871,6 +3872,7 @@ static void bdw_get_trans_port_sync_config(struct intel_crtc_state *crtc_state)
->  static void intel_ddi_read_func_ctl(struct intel_encoder *encoder,
->  				    struct intel_crtc_state *pipe_config)
->  {
-> +	struct intel_display *display = to_intel_display(encoder);
->  	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
->  	struct intel_crtc *crtc = to_intel_crtc(pipe_config->uapi.crtc);
->  	enum transcoder cpu_transcoder = pipe_config->cpu_transcoder;
-> @@ -3960,7 +3962,7 @@ static void intel_ddi_read_func_ctl(struct intel_encoder *encoder,
->  				intel_hdmi_infoframes_enabled(encoder, pipe_config);
->  		break;
->  	case TRANS_DDI_MODE_SELECT_FDI_OR_128B132B:
-> -		if (!HAS_DP20(dev_priv)) {
-> +		if (!HAS_DP20(display)) {
->  			/* FDI */
->  			pipe_config->output_types |= BIT(INTEL_OUTPUT_ANALOG);
->  			pipe_config->enhanced_framing =
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-> index e11993a6f042..c861a61839b8 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_device.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-> @@ -151,7 +151,7 @@ struct intel_display_platforms {
->  #define HAS_DMC(i915)			(DISPLAY_RUNTIME_INFO(i915)->has_dmc)
->  #define HAS_DOUBLE_BUFFERED_M_N(__display)	(DISPLAY_VER(__display) >= 9 || (__display)->platform.broadwell)
->  #define HAS_DP_MST(i915)		(DISPLAY_INFO(i915)->has_dp_mst)
-> -#define HAS_DP20(i915)			(IS_DG2(i915) || DISPLAY_VER(i915) >= 14)
-> +#define HAS_DP20(__display)		((__display)->platform.dg2 || DISPLAY_VER(__display) >= 14)
->  #define HAS_DPT(i915)			(DISPLAY_VER(i915) >= 13)
->  #define HAS_DSB(i915)			(DISPLAY_INFO(i915)->has_dsb)
->  #define HAS_DSC(__i915)			(DISPLAY_RUNTIME_INFO(__i915)->has_dsc)
-> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-> index a784c0b81556..74c2e3635d9e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_psr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-> @@ -3335,11 +3335,10 @@ void intel_psr_flush(struct intel_display *display,
->  void intel_psr_init(struct intel_dp *intel_dp)
->  {
->  	struct intel_display *display = to_intel_display(intel_dp);
-> -	struct drm_i915_private *dev_priv = to_i915(display->drm);
->  	struct intel_connector *connector = intel_dp->attached_connector;
->  	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
->  
-> -	if (!(HAS_PSR(display) || HAS_DP20(dev_priv)))
-> +	if (!(HAS_PSR(display) || HAS_DP20(display)))
->  		return;
->  
->  	/*
-> @@ -3357,7 +3356,7 @@ void intel_psr_init(struct intel_dp *intel_dp)
->  		return;
->  	}
->  
-> -	if ((HAS_DP20(dev_priv) && !intel_dp_is_edp(intel_dp)) ||
-> +	if ((HAS_DP20(display) && !intel_dp_is_edp(intel_dp)) ||
->  	    DISPLAY_VER(display) >= 20)
->  		intel_dp->psr.source_panel_replay_support = true;
->  
-> @@ -3974,7 +3973,6 @@ DEFINE_SHOW_ATTRIBUTE(i915_psr_status);
->  void intel_psr_connector_debugfs_add(struct intel_connector *connector)
->  {
->  	struct intel_display *display = to_intel_display(connector);
-> -	struct drm_i915_private *i915 = to_i915(connector->base.dev);
->  	struct dentry *root = connector->base.debugfs_entry;
->  
->  	if (connector->base.connector_type != DRM_MODE_CONNECTOR_eDP &&
-> @@ -3984,7 +3982,7 @@ void intel_psr_connector_debugfs_add(struct intel_connector *connector)
->  	debugfs_create_file("i915_psr_sink_status", 0444, root,
->  			    connector, &i915_psr_sink_status_fops);
->  
-> -	if (HAS_PSR(display) || HAS_DP20(i915))
-> +	if (HAS_PSR(display) || HAS_DP20(display))
->  		debugfs_create_file("i915_psr_status", 0444, root,
->  				    connector, &i915_psr_status_fops);
->  }
-> -- 
-> 2.39.5
-> 
+> -----Original Message-----
+> From: Nikula, Jani <jani.nikula@intel.com>
+> Sent: Wednesday, November 6, 2024 9:59 PM
+> To: Kandpal, Suraj <suraj.kandpal@intel.com>; intel-xe@lists.freedesktop.=
+org;
+> intel-gfx@lists.freedesktop.org
+> Cc: Roper, Matthew D <matthew.d.roper@intel.com>; Kandpal, Suraj
+> <suraj.kandpal@intel.com>
+> Subject: Re: [PATCH] drm/i915/hdcp: Handle HDCP Line Rekeying for HDCP 1.=
+4
+>=20
+> On Wed, 06 Nov 2024, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
+> > TRANS_DDI_FUNC_CTL asks us to disable hdcp line rekeying when not in
+> > hdcp 2.2 and we are not using an hdmi transcoder and it need to be
+> > enabled when we are using an HDMI transcoder to enable HDCP 1.4.
+> > We use intel_de_rmw cycles to update TRANS_DDI_FUNC_CTL register so
+> we
+> > cannot depend on the value being 0 by default everytime which calls
+> > for seprate handling of HDCP 1.4 case.
+> >
+> > --v2
+> > -Use the exising function and modify it based on a bool rather than
+> > have a different function [Matt]
+> >
+> > --v3
+> > -No need for kzalloc [Jani]
+>=20
+> The code still needs to make sense! You can't just remove allocation and =
+use
+> whatever stack garbage rekey_reg happens to point at. Look at all the oth=
+er
+> code that uses i915_reg_t. You can't possibly assume I would've needed to
+> say "it shouldn't be a pointer at all"?
+>=20
+
+Sure Jani ill fix that, I thought I had changed it from a pointer to a norm=
+al variable,
+Seems to have missed it.
+
+Regards,
+Suraj Kandpal
+
+> BR,
+> Jani.
+>=20
+> >
+> > Bspec: 69964, 50493, 50054
+> > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_hdcp.c | 36
+> > +++++++++++++----------
+> >  1 file changed, 21 insertions(+), 15 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > index 4e937fbba4d2..6ad5efc9711c 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> > @@ -32,27 +32,31 @@
+> >  #define HDCP2_LC_RETRY_CNT			3
+> >
+> >  static void
+> > -intel_hdcp_disable_hdcp_line_rekeying(struct intel_encoder *encoder,
+> > -				      struct intel_hdcp *hdcp)
+> > +intel_hdcp_adjust_hdcp_line_rekeying(struct intel_encoder *encoder,
+> > +				     struct intel_hdcp *hdcp,
+> > +				     bool enable)
+> >  {
+> >  	struct intel_display *display =3D to_intel_display(encoder);
+> > +	i915_reg_t *rekey_reg;
+> > +	u32 rekey_bit;
+> >
+> >  	/* Here we assume HDMI is in TMDS mode of operation */
+> >  	if (encoder->type !=3D INTEL_OUTPUT_HDMI)
+> >  		return;
+> >
+> > -	if (DISPLAY_VER(display) >=3D 30)
+> > -		intel_de_rmw(display,
+> > -			     TRANS_DDI_FUNC_CTL(display, hdcp-
+> >cpu_transcoder),
+> > -			     0, XE3_TRANS_DDI_HDCP_LINE_REKEY_DISABLE);
+> > -	else if (IS_DISPLAY_VERx100_STEP(display, 1401, STEP_B0,
+> STEP_FOREVER) ||
+> > -		 IS_DISPLAY_VERx100_STEP(display, 2000, STEP_B0,
+> STEP_FOREVER))
+> > -		intel_de_rmw(display,
+> > -			     TRANS_DDI_FUNC_CTL(display, hdcp-
+> >cpu_transcoder),
+> > -			     0, TRANS_DDI_HDCP_LINE_REKEY_DISABLE);
+> > -	else if (IS_DISPLAY_VERx100_STEP(display, 1400, STEP_D0,
+> STEP_FOREVER))
+> > -		intel_de_rmw(display, MTL_CHICKEN_TRANS(hdcp-
+> >cpu_transcoder),
+> > -			     0, HDCP_LINE_REKEY_DISABLE);
+> > +	if (DISPLAY_VER(display) >=3D 30) {
+> > +		*rekey_reg =3D TRANS_DDI_FUNC_CTL(display, hdcp-
+> >cpu_transcoder);
+> > +		rekey_bit =3D XE3_TRANS_DDI_HDCP_LINE_REKEY_DISABLE;
+> > +	} else if (IS_DISPLAY_VERx100_STEP(display, 1401, STEP_B0,
+> STEP_FOREVER) ||
+> > +		   IS_DISPLAY_VERx100_STEP(display, 2000, STEP_B0,
+> STEP_FOREVER)) {
+> > +		*rekey_reg =3D TRANS_DDI_FUNC_CTL(display, hdcp-
+> >cpu_transcoder);
+> > +		rekey_bit =3D TRANS_DDI_HDCP_LINE_REKEY_DISABLE;
+> > +	} else if (IS_DISPLAY_VERx100_STEP(display, 1400, STEP_D0,
+> STEP_FOREVER)) {
+> > +		*rekey_reg =3D MTL_CHICKEN_TRANS(hdcp->cpu_transcoder);
+> > +		rekey_bit =3D HDCP_LINE_REKEY_DISABLE;
+> > +	}
+> > +
+> > +	intel_de_rmw(display, *rekey_reg, rekey_bit, enable ? 0 :
+> > +rekey_bit);
+> >  }
+> >
+> >  static int intel_conn_to_vcpi(struct intel_atomic_state *state, @@
+> > -1049,6 +1053,8 @@ static int intel_hdcp1_enable(struct intel_connector
+> *connector)
+> >  		return ret;
+> >  	}
+> >
+> > +	intel_hdcp_adjust_hdcp_line_rekeying(connector->encoder, hdcp,
+> > +true);
+> > +
+> >  	/* Incase of authentication failures, HDCP spec expects reauth. */
+> >  	for (i =3D 0; i < tries; i++) {
+> >  		ret =3D intel_hdcp_auth(connector);
+> > @@ -2062,7 +2068,7 @@ static int _intel_hdcp2_enable(struct
+> intel_atomic_state *state,
+> >  		    connector->base.base.id, connector->base.name,
+> >  		    hdcp->content_type);
+> >
+> > -	intel_hdcp_disable_hdcp_line_rekeying(connector->encoder, hdcp);
+> > +	intel_hdcp_adjust_hdcp_line_rekeying(connector->encoder, hdcp,
+> > +false);
+> >
+> >  	ret =3D hdcp2_authenticate_and_encrypt(state, connector);
+> >  	if (ret) {
+>=20
+> --
+> Jani Nikula, Intel
