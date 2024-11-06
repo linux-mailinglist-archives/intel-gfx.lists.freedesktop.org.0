@@ -2,58 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 582259BE36D
-	for <lists+intel-gfx@lfdr.de>; Wed,  6 Nov 2024 11:03:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD93A9BE409
+	for <lists+intel-gfx@lfdr.de>; Wed,  6 Nov 2024 11:17:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDAB510E6A4;
-	Wed,  6 Nov 2024 10:03:40 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AUuv3xI1";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id A55D010E6A6;
+	Wed,  6 Nov 2024 10:17:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1F7610E00B;
- Wed,  6 Nov 2024 10:03:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730887420; x=1762423420;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=rORZ7DdPh1vCl4Z7tzyaSSHNvDeN/vsaiN+3v1f07Ec=;
- b=AUuv3xI1HMeFs39z3lWeDwYpyhZARglLYZueQjYJTG4cK8Fm1FqzrenA
- 6rePz4kUN7YibmOE8hKbOcXHVJhgi2ZR1G7OzkUbAyHd2HgEiSGZK1Br3
- TG3YcbGImkn3zGtsgaH6bmXKfzO526PfsE1kZVh8u9wqGJ4Ngy100sui3
- 7Bguq60uG5rNoG/0blc+NfRWuf1hufj6DwyDoL+fPADzQw2qlRCjhroyq
- O248EaVuefG0HKXuNqmiEQdmut5MdeN8ePor25ExNGLbRbygRX4R9b3/o
- KWr2HVS/S7MRTjDLybkPdS2jzUJ2bw3PlxQvhnWZCFMyy2Fc/ZKGYxN5B A==;
-X-CSE-ConnectionGUID: a5Gd9vVvQFKgiVKxzy8zWA==
-X-CSE-MsgGUID: qr8bnTnxToeePt6K96swIA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11247"; a="34603583"
-X-IronPort-AV: E=Sophos;i="6.11,262,1725346800"; d="scan'208";a="34603583"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2024 02:03:40 -0800
-X-CSE-ConnectionGUID: FIxKBy/jRdiwe2RLJ0GFPg==
-X-CSE-MsgGUID: Vn4bODQsRxGyvIT05QMhBA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,262,1725346800"; d="scan'208";a="88405050"
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.246.143])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2024 02:03:37 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com, Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: Re: [PATCH] drm/i915/hdcp: Handle HDCP Line Rekeying for HDCP 1.4
-In-Reply-To: <20241106093840.847932-1-suraj.kandpal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241106093840.847932-1-suraj.kandpal@intel.com>
-Date: Wed, 06 Nov 2024 12:03:34 +0200
-Message-ID: <87zfmcfzm1.fsf@intel.com>
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80FE710E6A6;
+ Wed,  6 Nov 2024 10:17:43 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6264492619844239754=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_convert?=
+ =?utf-8?q?_display_feature_helpers_to_struct_intel=5Fdisplay_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 06 Nov 2024 10:17:43 -0000
+Message-ID: <173088826352.1415993.6748602555411362107@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <cover.1730740629.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1730740629.git.jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,107 +37,183 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 06 Nov 2024, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> TRANS_DDI_FUNC_CTL asks us to disable hdcp line rekeying when not in
-> hdcp 2.2 and we are not using an hdmi transcoder and it need to be
-> enabled when we are using an HDMI transcoder to enable HDCP 1.4.
-> We use intel_de_rmw cycles to update TRANS_DDI_FUNC_CTL register so
-> we cannot depend on the value being 0 by default everytime which calls
-> for seprate handling of HDCP 1.4 case.
->
-> --v2
-> -Use the exising function and modify it based on a bool rather than
-> have a different function [Matt]
->
-> Bspec: 69964, 50493, 50054
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_hdcp.c | 41 ++++++++++++++---------
->  1 file changed, 26 insertions(+), 15 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> index 4e937fbba4d2..0530cf855463 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-> @@ -32,27 +32,36 @@
->  #define HDCP2_LC_RETRY_CNT			3
->  
->  static void
-> -intel_hdcp_disable_hdcp_line_rekeying(struct intel_encoder *encoder,
-> -				      struct intel_hdcp *hdcp)
-> +intel_hdcp_adjust_hdcp_line_rekeying(struct intel_encoder *encoder,
-> +				     struct intel_hdcp *hdcp,
-> +				     bool enable)
->  {
->  	struct intel_display *display = to_intel_display(encoder);
-> +	i915_reg_t *rekey_reg;
-> +	u32 rekey_bit;
->  
->  	/* Here we assume HDMI is in TMDS mode of operation */
->  	if (encoder->type != INTEL_OUTPUT_HDMI)
->  		return;
->  
-> -	if (DISPLAY_VER(display) >= 30)
-> -		intel_de_rmw(display,
-> -			     TRANS_DDI_FUNC_CTL(display, hdcp->cpu_transcoder),
-> -			     0, XE3_TRANS_DDI_HDCP_LINE_REKEY_DISABLE);
-> -	else if (IS_DISPLAY_VERx100_STEP(display, 1401, STEP_B0, STEP_FOREVER) ||
-> -		 IS_DISPLAY_VERx100_STEP(display, 2000, STEP_B0, STEP_FOREVER))
-> -		intel_de_rmw(display,
-> -			     TRANS_DDI_FUNC_CTL(display, hdcp->cpu_transcoder),
-> -			     0, TRANS_DDI_HDCP_LINE_REKEY_DISABLE);
-> -	else if (IS_DISPLAY_VERx100_STEP(display, 1400, STEP_D0, STEP_FOREVER))
-> -		intel_de_rmw(display, MTL_CHICKEN_TRANS(hdcp->cpu_transcoder),
-> -			     0, HDCP_LINE_REKEY_DISABLE);
-> +	rekey_reg = kzalloc(sizeof(*rekey_reg), GFP_KERNEL);
+--===============6264492619844239754==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-No, there's absolutely no reason to allocate this.
+== Series Details ==
 
-BR,
-Jani.
+Series: drm/i915/display: convert display feature helpers to struct intel_display (rev3)
+URL   : https://patchwork.freedesktop.org/series/140886/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_15642 -> Patchwork_140886v3
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140886v3/index.html
+
+Participating hosts (46 -> 45)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_140886v3 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - {bat-mtlp-9}:       [SKIP][1] ([i915#12705]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15642/bat-mtlp-9/igt@i915_pm_rpm@module-reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140886v3/bat-mtlp-9/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live:
+    - bat-mtlp-8:         [ABORT][3] ([i915#12061] / [i915#12133]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15642/bat-mtlp-8/igt@i915_selftest@live.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140886v3/bat-mtlp-8/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-mtlp-8:         [ABORT][5] ([i915#12061]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15642/bat-mtlp-8/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140886v3/bat-mtlp-8/igt@i915_selftest@live@workarounds.html
+
+  * igt@kms_chamelium_edid@hdmi-edid-read:
+    - bat-dg2-13:         [DMESG-WARN][7] ([i915#12253]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15642/bat-dg2-13/igt@kms_chamelium_edid@hdmi-edid-read.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140886v3/bat-dg2-13/igt@kms_chamelium_edid@hdmi-edid-read.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
+    - bat-dg2-11:         [SKIP][9] ([i915#9197]) -> [PASS][10] +2 other tests pass
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15642/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140886v3/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#12133]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133
+  [i915#12253]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12253
+  [i915#12705]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12705
+  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
 
 
-> +	if (!rekey_reg)
-> +		return;
-> +
-> +	if (DISPLAY_VER(display) >= 30) {
-> +		*rekey_reg = TRANS_DDI_FUNC_CTL(display, hdcp->cpu_transcoder);
-> +		rekey_bit = XE3_TRANS_DDI_HDCP_LINE_REKEY_DISABLE;
-> +	} else if (IS_DISPLAY_VERx100_STEP(display, 1401, STEP_B0, STEP_FOREVER) ||
-> +		   IS_DISPLAY_VERx100_STEP(display, 2000, STEP_B0, STEP_FOREVER)) {
-> +		*rekey_reg = TRANS_DDI_FUNC_CTL(display, hdcp->cpu_transcoder);
-> +		rekey_bit = TRANS_DDI_HDCP_LINE_REKEY_DISABLE;
-> +	} else if (IS_DISPLAY_VERx100_STEP(display, 1400, STEP_D0, STEP_FOREVER)) {
-> +		*rekey_reg = MTL_CHICKEN_TRANS(hdcp->cpu_transcoder);
-> +		rekey_bit = HDCP_LINE_REKEY_DISABLE;
-> +	}
-> +
-> +	intel_de_rmw(display, *rekey_reg, rekey_bit, enable ? 0 : rekey_bit);
-> +	kfree(rekey_reg);
->  }
->  
->  static int intel_conn_to_vcpi(struct intel_atomic_state *state,
-> @@ -1049,6 +1058,8 @@ static int intel_hdcp1_enable(struct intel_connector *connector)
->  		return ret;
->  	}
->  
-> +	intel_hdcp_adjust_hdcp_line_rekeying(connector->encoder, hdcp, true);
-> +
->  	/* Incase of authentication failures, HDCP spec expects reauth. */
->  	for (i = 0; i < tries; i++) {
->  		ret = intel_hdcp_auth(connector);
-> @@ -2062,7 +2073,7 @@ static int _intel_hdcp2_enable(struct intel_atomic_state *state,
->  		    connector->base.base.id, connector->base.name,
->  		    hdcp->content_type);
->  
-> -	intel_hdcp_disable_hdcp_line_rekeying(connector->encoder, hdcp);
-> +	intel_hdcp_adjust_hdcp_line_rekeying(connector->encoder, hdcp, false);
->  
->  	ret = hdcp2_authenticate_and_encrypt(state, connector);
->  	if (ret) {
+Build changes
+-------------
 
--- 
-Jani Nikula, Intel
+  * Linux: CI_DRM_15642 -> Patchwork_140886v3
+
+  CI-20190529: 20190529
+  CI_DRM_15642: e6ccd1b8868ec5bc1569c0dbd0dbbd46148cc541 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8099: 27be46dee80b6b0de80f9fa3cd9bb5f55edccaf8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_140886v3: e6ccd1b8868ec5bc1569c0dbd0dbbd46148cc541 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140886v3/index.html
+
+--===============6264492619844239754==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: convert display feature helpers to struct intel_display (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/140886/">https://patchwork.freedesktop.org/series/140886/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140886v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140886v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_15642 -&gt; Patchwork_140886v3</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140886v3/index.html</p>
+<h2>Participating hosts (46 -&gt; 45)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_140886v3 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>{bat-mtlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15642/bat-mtlp-9/igt@i915_pm_rpm@module-reload.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12705">i915#12705</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140886v3/bat-mtlp-9/igt@i915_pm_rpm@module-reload.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15642/bat-mtlp-8/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12133">i915#12133</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140886v3/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15642/bat-mtlp-8/igt@i915_selftest@live@workarounds.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140886v3/bat-mtlp-8/igt@i915_selftest@live@workarounds.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_edid@hdmi-edid-read:</p>
+<ul>
+<li>bat-dg2-13:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15642/bat-dg2-13/igt@kms_chamelium_edid@hdmi-edid-read.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12253">i915#12253</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140886v3/bat-dg2-13/igt@kms_chamelium_edid@hdmi-edid-read.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
+<ul>
+<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15642/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197">i915#9197</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140886v3/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">PASS</a> +2 other tests pass</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_15642 -&gt; Patchwork_140886v3</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_15642: e6ccd1b8868ec5bc1569c0dbd0dbbd46148cc541 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8099: 27be46dee80b6b0de80f9fa3cd9bb5f55edccaf8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_140886v3: e6ccd1b8868ec5bc1569c0dbd0dbbd46148cc541 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============6264492619844239754==--
