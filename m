@@ -2,54 +2,27 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2F0A9C0416
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Nov 2024 12:32:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F277F9C0430
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Nov 2024 12:36:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96C6310E806;
-	Thu,  7 Nov 2024 11:32:54 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eatBtcpg";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9201710E80C;
+	Thu,  7 Nov 2024 11:35:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A67EA10E806;
- Thu,  7 Nov 2024 11:32:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730979174; x=1762515174;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=URCCoCJtMS1GSdi5drU05RHYAzls2m6y4/qERNn2Qlk=;
- b=eatBtcpg3WvvO9fNL2KDnOcv8ENdkkBfdzBdsyiXVJtmIZkDJyOHmlSI
- rzETdVqFgoWb/QNWSMPoikrXjJ6u7zUVmt+a42TnXTf6+3Mh1YyqS7jQG
- +9hXCmReriDl4IyeqaGKWJVHzTFXGBqAEIenPUXF/Op/63yBNZbVV/1G9
- gJUI6v7CQAgreMNXBhfcKlTBhJAgmgQbtlipgr1hg9xrQLijQT0Ll+A/1
- ZC4AYAkXCqrEtQ8MBwvDr+g0O5tOyVrbE0Hk9w+cH3Fnscb4KAD3nS+V8
- 9bfkfIm/TW2zD2RfycDa08bWYztGWl4b24ucjBWjfGlPjwhUS20YOcRL1 w==;
-X-CSE-ConnectionGUID: /v0Ro7WITQyl3ttYq9zSBQ==
-X-CSE-MsgGUID: o/KBy4V2SKqYWo3Hml9UEg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="30989772"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="30989772"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2024 03:32:53 -0800
-X-CSE-ConnectionGUID: aMXjSg0mTMGeDY61n4RROQ==
-X-CSE-MsgGUID: hnZ4PsO3SyCh/RD+8ooZ+w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,265,1725346800"; d="scan'208";a="115876316"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa001.fm.intel.com with ESMTP; 07 Nov 2024 03:32:52 -0800
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: vinod.govindapillai@intel.com,
-	Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH] drm/i914/watermark: Modify latency programmed into
- PKG_C_LATENCY
-Date: Thu,  7 Nov 2024 17:02:40 +0530
-Message-Id: <20241107113240.887316-1-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.34.1
+Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E08B10E80A;
+ Thu,  7 Nov 2024 11:35:57 +0000 (UTC)
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maarten@mblankhorst.nl, Lankhorst@mblankhorst.nl, dev@lankhorst.se
+Subject: [PATCH] drm/xe/display: Add intel_plane_initial_vblank_wait
+Date: Thu,  7 Nov 2024 12:36:17 +0100
+Message-ID: <20241107113617.349916-1-maarten.lankhorst@linux.intel.com>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20241107100140.292928-2-maarten.lankhorst@linux.intel.com>
+References: <20241107100140.292928-2-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -67,83 +40,136 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Increase the latency programmed into PKG_C_LATENCY latency to be
-a multiple of line time which is written into WM_LINETIME.
+We're changing the driver to have no interrupts during early init for
+Xe, so we poll the PIPE_FRMSTMSMP counter instead.
 
-WA: 22020299601
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20241105121857.17389-2-maarten.lankhorst@linux.intel.com
+Signed-off-by: Maarten Lankhorst,,, <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/display/skl_watermark.c | 26 ++++++++++++++------
- 1 file changed, 18 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c  |  6 +++---
+ .../drm/i915/display/intel_plane_initial.c    |  9 ++++++++-
+ .../drm/i915/display/intel_plane_initial.h    |  2 ++
+ drivers/gpu/drm/xe/display/xe_plane_initial.c | 19 ++++++++++++++++++-
+ 4 files changed, 31 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index d3bbf335c749..856b20a683fd 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -2848,9 +2848,11 @@ static int skl_wm_add_affected_planes(struct intel_atomic_state *state,
-  * Program PKG_C_LATENCY Added Wake Time = 0
-  */
- static void
--skl_program_dpkgc_latency(struct drm_i915_private *i915, bool enable_dpkgc)
-+skl_program_dpkgc_latency(struct drm_i915_private *i915,
-+			  bool enable_dpkgc,
-+			  u32 max_linetime)
- {
--	u32 max_latency = 0;
-+	u32 adjusted_latency = 0;
- 	u32 clear = 0, val = 0;
- 	u32 added_wake_time = 0;
- 
-@@ -2858,18 +2860,23 @@ skl_program_dpkgc_latency(struct drm_i915_private *i915, bool enable_dpkgc)
- 		return;
- 
- 	if (enable_dpkgc) {
--		max_latency = skl_watermark_max_latency(i915, 1);
--		if (max_latency == 0)
--			max_latency = LNL_PKG_C_LATENCY_MASK;
-+		adjusted_latency = skl_watermark_max_latency(i915, 1);
-+		if (adjusted_latency == 0)
-+			adjusted_latency = LNL_PKG_C_LATENCY_MASK;
-+
-+		/* Wa_22020299601 */
-+		if (IS_DISPLAY_VERx100(i915, 2000, 3000))
-+			adjusted_latency = max_linetime *
-+				DIV_ROUND_UP(adjusted_latency, max_linetime);
- 		added_wake_time = DSB_EXE_TIME +
- 			i915->display.sagv.block_time_us;
- 	} else {
--		max_latency = LNL_PKG_C_LATENCY_MASK;
-+		adjusted_latency = LNL_PKG_C_LATENCY_MASK;
- 		added_wake_time = 0;
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index d7f92dc56d1e9..7bd6da2bb36f7 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -795,7 +795,7 @@ void intel_plane_disable_noatomic(struct intel_crtc *crtc,
+ 	if ((crtc_state->active_planes & ~BIT(PLANE_CURSOR)) == 0 &&
+ 	    hsw_ips_disable(crtc_state)) {
+ 		crtc_state->ips_enabled = false;
+-		intel_crtc_wait_for_next_vblank(crtc);
++		intel_plane_initial_vblank_wait(plane);
  	}
  
- 	clear |= LNL_ADDED_WAKE_TIME_MASK | LNL_PKG_C_LATENCY_MASK;
--	val |= REG_FIELD_PREP(LNL_PKG_C_LATENCY_MASK, max_latency);
-+	val |= REG_FIELD_PREP(LNL_PKG_C_LATENCY_MASK, adjusted_latency);
- 	val |= REG_FIELD_PREP(LNL_ADDED_WAKE_TIME_MASK, added_wake_time);
+ 	/*
+@@ -809,7 +809,7 @@ void intel_plane_disable_noatomic(struct intel_crtc *crtc,
+ 	 */
+ 	if (HAS_GMCH(dev_priv) &&
+ 	    intel_set_memory_cxsr(dev_priv, false))
+-		intel_crtc_wait_for_next_vblank(crtc);
++		intel_plane_initial_vblank_wait(plane);
  
- 	intel_uncore_rmw(&i915->uncore, LNL_PKG_C_LATENCY, clear, val);
-@@ -2882,6 +2889,7 @@ skl_compute_wm(struct intel_atomic_state *state)
- 	struct intel_crtc_state __maybe_unused *new_crtc_state;
- 	int ret, i;
- 	bool enable_dpkgc = false;
-+	u32 max_linetime;
+ 	/*
+ 	 * Gen2 reports pipe underruns whenever all planes are disabled.
+@@ -819,7 +819,7 @@ void intel_plane_disable_noatomic(struct intel_crtc *crtc,
+ 		intel_set_cpu_fifo_underrun_reporting(dev_priv, crtc->pipe, false);
  
- 	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
- 		ret = skl_build_pipe_wm(state, crtc);
-@@ -2911,9 +2919,11 @@ skl_compute_wm(struct intel_atomic_state *state)
- 		     new_crtc_state->vrr.vmin == new_crtc_state->vrr.flipline) ||
- 		    !new_crtc_state->vrr.enable)
- 			enable_dpkgc = true;
+ 	intel_plane_disable_arm(NULL, plane, crtc_state);
+-	intel_crtc_wait_for_next_vblank(crtc);
++	intel_plane_initial_vblank_wait(plane);
+ }
+ 
+ unsigned int
+diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.c b/drivers/gpu/drm/i915/display/intel_plane_initial.c
+index 62401f6a04e4f..77eb2b763be5e 100644
+--- a/drivers/gpu/drm/i915/display/intel_plane_initial.c
++++ b/drivers/gpu/drm/i915/display/intel_plane_initial.c
+@@ -14,6 +14,13 @@
+ #include "intel_frontbuffer.h"
+ #include "intel_plane_initial.h"
+ 
++void intel_plane_initial_vblank_wait(struct intel_plane *plane)
++{
++	struct intel_crtc *crtc = intel_crtc_for_pipe(to_intel_display(plane->base.dev), plane->pipe);
 +
-+		max_linetime = max(new_crtc_state->linetime, max_linetime);
++	intel_crtc_wait_for_next_vblank(crtc);
++}
++
+ static bool
+ intel_reuse_initial_plane_obj(struct intel_crtc *this,
+ 			      const struct intel_initial_plane_config plane_configs[],
+@@ -438,7 +445,7 @@ void intel_initial_plane_config(struct drm_i915_private *i915)
+ 		intel_find_initial_plane_obj(crtc, plane_configs);
+ 
+ 		if (i915->display.funcs.display->fixup_initial_plane_config(crtc, plane_config))
+-			intel_crtc_wait_for_next_vblank(crtc);
++			intel_plane_initial_vblank_wait(to_intel_plane(crtc->base.primary));
+ 
+ 		plane_config_fini(plane_config);
  	}
+diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.h b/drivers/gpu/drm/i915/display/intel_plane_initial.h
+index 64ab95239cd45..149b1bf1bc1f8 100644
+--- a/drivers/gpu/drm/i915/display/intel_plane_initial.h
++++ b/drivers/gpu/drm/i915/display/intel_plane_initial.h
+@@ -7,7 +7,9 @@
+ #define __INTEL_PLANE_INITIAL_H__
  
--	skl_program_dpkgc_latency(to_i915(state->base.dev), enable_dpkgc);
-+	skl_program_dpkgc_latency(to_i915(state->base.dev), enable_dpkgc, max_linetime);
+ struct drm_i915_private;
++struct intel_plane;
  
- 	skl_print_wm_changes(state);
++void intel_plane_initial_vblank_wait(struct intel_plane *plane);
+ void intel_initial_plane_config(struct drm_i915_private *i915);
  
+ #endif
+diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+index 668f544a7ac80..9252cfeef0a1f 100644
+--- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
++++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+@@ -8,7 +8,9 @@
+ 
+ #include "regs/xe_gtt_defs.h"
+ #include "xe_ggtt.h"
++#include "xe_mmio.h"
+ 
++#include "i915_reg.h"
+ #include "intel_atomic_plane.h"
+ #include "intel_crtc.h"
+ #include "intel_display.h"
+@@ -22,6 +24,21 @@
+ 
+ #include <generated/xe_wa_oob.h>
+ 
++void intel_plane_initial_vblank_wait(struct intel_plane *plane)
++{
++	/* Early xe has no irq */
++	struct xe_device *xe = to_xe_device(plane->base.dev);
++	struct xe_reg pipe_frmtmstmp = XE_REG(i915_mmio_reg_offset(PIPE_FRMTMSTMP(plane->pipe)));
++	u32 timestamp;
++	int ret;
++
++	timestamp = xe_mmio_read32(xe_root_tile_mmio(xe), pipe_frmtmstmp);
++
++	ret = xe_mmio_wait32_not(xe_root_tile_mmio(xe), pipe_frmtmstmp, ~0U, timestamp, 40000U, &timestamp, false);
++	if (ret < 0)
++		drm_warn(&xe->drm, "waiting for early vblank failed with %i\n", ret);
++}
++
+ static bool
+ intel_reuse_initial_plane_obj(struct intel_crtc *this,
+ 			      const struct intel_initial_plane_config plane_configs[],
+@@ -293,7 +310,7 @@ void intel_initial_plane_config(struct drm_i915_private *i915)
+ 		intel_find_initial_plane_obj(crtc, plane_configs);
+ 
+ 		if (i915->display.funcs.display->fixup_initial_plane_config(crtc, plane_config))
+-			intel_crtc_wait_for_next_vblank(crtc);
++			intel_plane_initial_vblank_wait(to_intel_plane(crtc->base.primary));
+ 
+ 		plane_config_fini(plane_config);
+ 	}
 -- 
-2.34.1
+2.45.2
 
