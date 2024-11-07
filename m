@@ -2,24 +2,24 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDEC39C01C3
+	by mail.lfdr.de (Postfix) with ESMTPS id E07BC9C01C1
 	for <lists+intel-gfx@lfdr.de>; Thu,  7 Nov 2024 11:02:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6EB0110E7EA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 16F4910E7E7;
 	Thu,  7 Nov 2024 10:01:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CD8810E7E2;
- Thu,  7 Nov 2024 10:01:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3714310E7E2;
+ Thu,  7 Nov 2024 10:01:57 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maarten@mblankhorst.nl, Lankhorst@mblankhorst.nl, dev@lankhorst.se
-Subject: [PATCH 3/9] drm/xe: Move suballocator init to after display init
-Date: Thu,  7 Nov 2024 11:01:34 +0100
-Message-ID: <20241107100140.292928-3-maarten.lankhorst@linux.intel.com>
+Subject: [PATCH 4/9] drm/xe: Defer irq init until after xe_display_init_noaccel
+Date: Thu,  7 Nov 2024 11:01:35 +0100
+Message-ID: <20241107100140.292928-4-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241107100140.292928-1-maarten.lankhorst@linux.intel.com>
 References: <20241107100140.292928-1-maarten.lankhorst@linux.intel.com>
@@ -40,77 +40,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-No allocations should be done before we have had a chance to preserve
-the display fb.
+Technically, I believe this means that xe_display_init_noirq and
+xe_display_init_noaccel can be merged together now.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20241105121857.17389-3-maarten.lankhorst@linux.intel.com
+Link: https://patchwork.freedesktop.org/patch/msgid/20241105121857.17389-4-maarten.lankhorst@linux.intel.com
 Signed-off-by: Maarten Lankhorst,,, <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/xe_device.c |  6 ++++++
- drivers/gpu/drm/xe/xe_tile.c   | 12 ++++++++----
- drivers/gpu/drm/xe/xe_tile.h   |  1 +
- 3 files changed, 15 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c | 12 ++++--------
+ drivers/gpu/drm/xe/xe_tile.c   |  7 +++++++
+ 2 files changed, 11 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index a0d29d5cb7b70..cef782f244e1a 100644
+index cef782f244e1a..b9948b2dc8d1d 100644
 --- a/drivers/gpu/drm/xe/xe_device.c
 +++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -730,6 +730,12 @@ int xe_device_probe(struct xe_device *xe)
+@@ -41,7 +41,6 @@
+ #include "xe_hw_engine_group.h"
+ #include "xe_hwmon.h"
+ #include "xe_irq.h"
+-#include "xe_memirq.h"
+ #include "xe_mmio.h"
+ #include "xe_module.h"
+ #include "xe_observation.h"
+@@ -673,9 +672,6 @@ int xe_device_probe(struct xe_device *xe)
+ 		err = xe_ggtt_init_early(tile->mem.ggtt);
+ 		if (err)
+ 			return err;
+-		err = xe_memirq_init(&tile->memirq);
+-		if (err)
+-			return err;
+ 	}
+ 
+ 	for_each_gt(gt, xe, id) {
+@@ -695,10 +691,6 @@ int xe_device_probe(struct xe_device *xe)
+ 	if (err)
+ 		return err;
+ 
+-	err = xe_irq_install(xe);
+-	if (err)
+-		goto err;
+-
+ 	err = probe_has_flat_ccs(xe);
  	if (err)
  		goto err;
+@@ -736,6 +728,10 @@ int xe_device_probe(struct xe_device *xe)
+ 			goto err;
+ 	}
  
-+	for_each_tile(tile, xe, id) {
-+		err = xe_tile_init(tile);
-+		if (err)
-+			goto err;
-+	}
++	err = xe_irq_install(xe);
++	if (err)
++		goto err;
 +
  	for_each_gt(gt, xe, id) {
  		last_gt = id;
  
 diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
-index 07cf7cfe4abd5..2825553b568f7 100644
+index 2825553b568f7..d07c1fba793ca 100644
 --- a/drivers/gpu/drm/xe/xe_tile.c
 +++ b/drivers/gpu/drm/xe/xe_tile.c
-@@ -170,10 +170,6 @@ int xe_tile_init_noalloc(struct xe_tile *tile)
- 	if (err)
- 		return err;
+@@ -10,6 +10,7 @@
+ #include "xe_device.h"
+ #include "xe_ggtt.h"
+ #include "xe_gt.h"
++#include "xe_memirq.h"
+ #include "xe_migrate.h"
+ #include "xe_pcode.h"
+ #include "xe_sa.h"
+@@ -179,6 +180,12 @@ int xe_tile_init_noalloc(struct xe_tile *tile)
  
--	tile->mem.kernel_bb_pool = xe_sa_bo_manager_init(tile, SZ_1M, 16);
--	if (IS_ERR(tile->mem.kernel_bb_pool))
--		return PTR_ERR(tile->mem.kernel_bb_pool);
--
- 	xe_wa_apply_tile_workarounds(tile);
- 
- 	err = xe_tile_sysfs_init(tile);
-@@ -181,6 +177,14 @@ int xe_tile_init_noalloc(struct xe_tile *tile)
- 	return 0;
- }
- 
-+int xe_tile_init(struct xe_tile *tile)
-+{
-+	tile->mem.kernel_bb_pool = xe_sa_bo_manager_init(tile, SZ_1M, 16);
-+	if (IS_ERR(tile->mem.kernel_bb_pool))
-+		return PTR_ERR(tile->mem.kernel_bb_pool);
-+
-+	return 0;
-+}
- void xe_tile_migrate_wait(struct xe_tile *tile)
+ int xe_tile_init(struct xe_tile *tile)
  {
- 	xe_migrate_wait(tile->migrate);
-diff --git a/drivers/gpu/drm/xe/xe_tile.h b/drivers/gpu/drm/xe/xe_tile.h
-index 1c9e42ade6b05..eb939316d55b0 100644
---- a/drivers/gpu/drm/xe/xe_tile.h
-+++ b/drivers/gpu/drm/xe/xe_tile.h
-@@ -12,6 +12,7 @@ struct xe_tile;
- 
- int xe_tile_init_early(struct xe_tile *tile, struct xe_device *xe, u8 id);
- int xe_tile_init_noalloc(struct xe_tile *tile);
-+int xe_tile_init(struct xe_tile *tile);
- 
- void xe_tile_migrate_wait(struct xe_tile *tile);
- 
++	int err;
++
++	err = xe_memirq_init(&tile->memirq);
++	if (err)
++		return err;
++
+ 	tile->mem.kernel_bb_pool = xe_sa_bo_manager_init(tile, SZ_1M, 16);
+ 	if (IS_ERR(tile->mem.kernel_bb_pool))
+ 		return PTR_ERR(tile->mem.kernel_bb_pool);
 -- 
 2.45.2
 
