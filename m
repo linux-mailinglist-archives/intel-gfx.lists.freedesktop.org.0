@@ -2,60 +2,174 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 166109C1116
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Nov 2024 22:38:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 961C89C1118
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Nov 2024 22:39:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A713810E8F2;
-	Thu,  7 Nov 2024 21:38:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B9EF610E8FF;
+	Thu,  7 Nov 2024 21:39:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IqzEHNf7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f1NXGFmT";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52F1E10E8F7;
- Thu,  7 Nov 2024 21:38:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E38BB10E906;
+ Thu,  7 Nov 2024 21:38:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731015494; x=1762551494;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=1rAZ5OBUwfih28MLFfqJAiRPnCNBGJ9+E6m+bzID0Uk=;
- b=IqzEHNf7Wi6unLSBWE8WWTaiY+BilR3jGkjjYzJuPkuQYFHATHhAsaAj
- mI8iNQFDDVhACntp0VG1IRyxyOIQf89nnfLVge+33krF3KPmMDxZoy9nR
- 2GzfKzvBFy/3j9USfhRASwDB+BqZdryDv5/texk27l6BS/9eVL+0iPKAE
- XIyHzp82xT6xZvy5bvYKuMp2ncOWNKmsSlUpQ0WqLN+Nl97RzQjNJHgBI
- kwExIqvXc8nQVPrPaQhxWEM6IL2kGSefVq+W2nWkkfEZm0aOiZmToiYZX
- ICD1SklUnVcTn/iWZbh9m9GpFbm93ZKPzmqFyzUIoEEFqhp5Vrqx2NMQG w==;
-X-CSE-ConnectionGUID: zhG9/dYwSKuy/U/pJ+jS3g==
-X-CSE-MsgGUID: gk4P7vkoT0m8jGiKXSeKUg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11249"; a="56283051"
-X-IronPort-AV: E=Sophos;i="6.12,136,1728975600"; d="scan'208";a="56283051"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2024 13:38:14 -0800
-X-CSE-ConnectionGUID: YTITAPCjTH2Zr53wGsrHjQ==
-X-CSE-MsgGUID: uE5FYAE8QMilJHRquVptVg==
+ t=1731015537; x=1762551537;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=nAKxxRp9KUlbjkSeTG5LG0mq8GKYEZIMNtv1LVfHeu4=;
+ b=f1NXGFmT+6sJ+25pDk2qbS3wfvuKII2dzH4XTZeUbvxQHPzdDkhxwMyr
+ a1UmM9oqJS31421ceOfPC86NZHZHqtEQAu5z1Oc4ovKRId2GYPunvtShw
+ Sbe/IEFU1AF+CG18FLQDZMUK8BGEkiTC/PBHO2DnMmFQtHt/DufT3jypV
+ gkfm/LaUxvci/AuRLEzsHTYe2xbcQPDEqA2e1A4tBeCj7LAqIra9cwxAb
+ dakCBMxQfHekiz+9C4Ma7u4110R4JLjve1OKcTa8sVmroeOYDK2BpL/Cp
+ MOGKkD1kqKtrYeMSIGQNOjqd6kmSY46vpRZ0Wic2GMTRKs/ODKW+dMpcX Q==;
+X-CSE-ConnectionGUID: T/HLOzU7TJuPnijV0ApHpA==
+X-CSE-MsgGUID: cjXWO5bzSXmL44NuXEoQjA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11249"; a="30285386"
+X-IronPort-AV: E=Sophos;i="6.12,136,1728975600"; d="scan'208";a="30285386"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Nov 2024 13:38:57 -0800
+X-CSE-ConnectionGUID: wde8YiTaRsCUcPaefGKHpw==
+X-CSE-MsgGUID: gnHwkvgNSam7R/zAxGgaeA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,136,1728975600"; d="scan'208";a="85574940"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.233])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2024 13:38:12 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com, Vinod Govindapillai <vinod.govindapillai@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [CI v2 v2 15/15] drm/i915/display: add mobile platform group
-Date: Thu,  7 Nov 2024 23:36:49 +0200
-Message-Id: <77d9cf006c6dde46c0ffdd35b2ecbc20cda447ef.1731015334.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1731015333.git.jani.nikula@intel.com>
-References: <cover.1731015333.git.jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,136,1728975600"; d="scan'208";a="84863802"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 07 Nov 2024 13:38:58 -0800
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Thu, 7 Nov 2024 13:38:57 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Thu, 7 Nov 2024 13:38:57 -0800
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.176)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Thu, 7 Nov 2024 13:38:57 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=d1BDpe4AtjzeuFqM1TJ2nmUVvVjPtXosqZnYD5Y95SrFkZ/VTIxLv2wg7SYZKcdy8KalFNq1ZnqiWl3ZcUz+NK2TcMj6M7eJ4LTLpyxR0Os/cc4O3iHnEajzSVD1kyjN6JPmiT0xdbtRvdAZ1MPRogFVGxXRj3O1S2419kzQfnAQIiUMtnCF2o4+Z4ncNLCsPa+khEjGdUGhpm8shrmQrDk3R5FECM2QZ/JclQyVqSHJVEMXsxEq85/PD+HeONNMuS+0qxj6IyMNMzhibSQnN9Ozo5KtwiMMHe4lx1uhXe4aHMPOvxaGYs66XT6l74XMpGEEb8/I3mQSPBcujGe20w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=j15/7T7riphkMci4SsEF2pUFGN0j20IFXlWyEpLd/RI=;
+ b=Dga1W6oxLHGsvAERC8lF1Ajk2jZFJ1cL6dDxEYP8dlBvrERtlF8hYCZ8fYAFGcTxVA64HqQ6a4LVwp7viF03ipshz5EHvx/cmT8nHFDc8VFwLunTmjaE0KSPtN9jNNJq83g83MDAFmqiU7cE35jvk16LI+Rs7QmsTYDREdwRF92cDqxvqcA4ySowNy3Nw8Hmhtuh4Gi7bIvrsNxCAbSAou1foyc4ocMNNPyWQxjSuIREOngjP+g0j9dFlhHO8oDGrgYBtzgoV9aHUj2eOvNniJl94AsUsu33i6/ordY4PDKUS/GSJdMAqr2oheiBWDUWHHa+Z/08GVvnvplKn85BDw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BYAPR11MB2854.namprd11.prod.outlook.com (2603:10b6:a02:c9::12)
+ by SJ0PR11MB4799.namprd11.prod.outlook.com (2603:10b6:a03:2ae::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8137.20; Thu, 7 Nov
+ 2024 21:38:55 +0000
+Received: from BYAPR11MB2854.namprd11.prod.outlook.com
+ ([fe80::8a98:4745:7147:ed42]) by BYAPR11MB2854.namprd11.prod.outlook.com
+ ([fe80::8a98:4745:7147:ed42%7]) with mapi id 15.20.8114.020; Thu, 7 Nov 2024
+ 21:38:55 +0000
+Date: Thu, 7 Nov 2024 16:38:50 -0500
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Alexander Usyskin <alexander.usyskin@intel.com>
+CC: Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger
+ <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, Lucas De Marchi
+ <lucas.demarchi@intel.com>, Thomas =?iso-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Oren Weil <oren.jer.weil@intel.com>,
+ <linux-mtd@lists.infradead.org>, <dri-devel@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 10/10] drm/xe/nvm: add support for access mode
+Message-ID: <Zy0zalKiZXB2G1-X@intel.com>
+References: <20241107131356.2796969-1-alexander.usyskin@intel.com>
+ <20241107131356.2796969-11-alexander.usyskin@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20241107131356.2796969-11-alexander.usyskin@intel.com>
+X-ClientProxiedBy: MW4P220CA0012.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:303:115::17) To BYAPR11MB2854.namprd11.prod.outlook.com
+ (2603:10b6:a02:c9::12)
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BYAPR11MB2854:EE_|SJ0PR11MB4799:EE_
+X-MS-Office365-Filtering-Correlation-Id: 11d8e3c6-7014-440c-27b8-08dcff749470
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?VLBaNOeVAxJfOEI/jNzGuz4KPTB1pDxKoD27aYQYYGJfEAEJ++hzIsjcgowI?=
+ =?us-ascii?Q?5q1mLNa2K3gjNXsqlCcgUz/QvG3R5C5rTF4c8Ba1dSeTblQMGl5bWStlssPs?=
+ =?us-ascii?Q?uqTS48sKNncK7oHVq8qNgFPQtKyBG3cfR4bDrKUX+dPbwKWVJpTVVEHoZLQQ?=
+ =?us-ascii?Q?FHm+BPsbSWV+h/D2uGY+i71LWRYeLU5aVEubZWj8NcMvSGIRyp/2hBXG7Ara?=
+ =?us-ascii?Q?1ixZ2Xpn1K4TBKp/MlF8ZICIEgLHbwpvUBNkusSfJ2ZbBo1ZJ87zTSyu48uC?=
+ =?us-ascii?Q?7vQ3gsWwpnm9N25L/ni63VKRJPe04PuWmoWLf6qRv1HCe662yBacgsRKV3xZ?=
+ =?us-ascii?Q?h/gasIPkf6REH0VbUiDJXhjEKjk/dwbUMeX7+MzNYg46gYH1Mj0DZpT6uO/I?=
+ =?us-ascii?Q?U1mjGvxRH3qRbLKUS0tyuieoE/nUWPF7/x5Kt1wTrujBGfJiE2UJ0Y6H5u/I?=
+ =?us-ascii?Q?DsrmMUjabUjt8/pnoDT+ZDjzSpRDs8f5IlCVIlWlUpGz1ypq96nJ0yQ+Psrc?=
+ =?us-ascii?Q?OeZFUp1wLtO3/Zd52GzHRn0NLw/riwZGAZRnIeEXLIuQ1kPr0POK+3wQtsqg?=
+ =?us-ascii?Q?95gIKcX5KiUCy3ZnEn0s4AlytxyyuRkeZZAAlfJyuHln03WSf3LDh50O0wqd?=
+ =?us-ascii?Q?xMwr4NcTxztB4J/Q2VcSL6w7ffVAnoTJ6Y0SHWz5HFgkY0u3a29xD+Cx889z?=
+ =?us-ascii?Q?2MqE4JGkhAKglwMmJA/RMJ+TCdigegpoGtKSADquJLaBmhlNb/gApVRuM3sB?=
+ =?us-ascii?Q?rfSieNpTaryTHuMKioAs0FJMMy/3hboI/aGxlUMcnxT9FEneHtRkqSzIRvyB?=
+ =?us-ascii?Q?g1LMv/TchFsAkJfD06WTdHk/OM0+I/rdGza7+TpZqc8cfm3jkqWQ8liAz15P?=
+ =?us-ascii?Q?oNe86nPz/WimIl9S2p+prt+P58X8EAGtKbOe8WKTSVHtGflEYUI7uYBCgMPw?=
+ =?us-ascii?Q?bEjQDlDFRsc7oRRexmwOhNW6zFNrE896OGoqpZ1qANOETXrPLI6yBllpK04H?=
+ =?us-ascii?Q?NJ5TuhRf5F2kn9BuKdI7vPeMOZaseYbQpcIeDfC5xJJxOZlbbfDudnW0Hect?=
+ =?us-ascii?Q?vadvoZTBYkK52FZcbleTatJ7o8yPzPMytaGpoT5urN1mLVJW7qKc+hCrQo41?=
+ =?us-ascii?Q?6EoMaU3msC5FpF5QL9geCF6SwW4FDOMNIi7eogRyqCSzSE4TCaA1c67p9lBZ?=
+ =?us-ascii?Q?zhX80ClZD5Jkoal1fpyDhaOcm4oMOukl6A2yMmrKkKo7FFVcg1TTacfmZwQP?=
+ =?us-ascii?Q?6cZxTwsxTG1K+pvQAVfcjABwd6S0OzVzwDudeHtazbOAmonWsOKRkPfIkIe8?=
+ =?us-ascii?Q?d1hC/mMgpyX0qNyn3ejRiwAP?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BYAPR11MB2854.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(7416014)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?KbBJe+snlQLLDioZPSWbFRgXmH0B6fBFQ2Gq3is1Y1ztc/xva08NO8LCcI8j?=
+ =?us-ascii?Q?F4OheZOSN3cGBtwk5y9HrPc/XyAhzO4J2N3+Jit4lUlcDlzailZY8m38o3Xq?=
+ =?us-ascii?Q?8oaCTH7+i9Kx+tyutJLY9ka5FED1HxB4saZ9T2c+8cijYW0egYaNz8AueW9u?=
+ =?us-ascii?Q?6l3NJKf2FmQBMx2nsrlNePdquT2VTZrkBUkXZMPlLimIMK9tFqJhPQGFO+Bc?=
+ =?us-ascii?Q?eFq65Tzcxy6R616g0pm/9GMsTWowPGi5rGsQlejhHm1ReCOwwYAUrcU65PTJ?=
+ =?us-ascii?Q?39AG4CChrNxNotwFLu8Am9/rqw3nLzIww6L4cSQFt/mmeuqo2hM5L5fHqlDA?=
+ =?us-ascii?Q?TaEkYh0hBI/RTWdznZdShas1X1/EuJdU4KgH0P5z4iwOCO3UFuJrhMDTfkIR?=
+ =?us-ascii?Q?ulixs7d5OE8eGsaPGDIU1TnSssX6lqB9F1pxE6QjiR/x5e++WYcPjrPl1g4z?=
+ =?us-ascii?Q?bU4kO7b9129bvNS57QSCZHQWrAvW0nY0ThiT83u7yZtEdtarWHz1TGKDrjha?=
+ =?us-ascii?Q?kQZwfiHHVDkR4Eax5Mo3LJCfyhSAhgqjdQ9mK8TeE8ToeSoU0qqfbDl2Fnxq?=
+ =?us-ascii?Q?1OKYv7pgS6GHbB3f2m+gLlgBRoKWNiwMrxxMDEAgdPo0ZoPFYoG/+HUq7zMs?=
+ =?us-ascii?Q?Qkq1khsrJdMW8EK5wHFcUa00ztDYeg19J2djm029TxWuVg+guxMDd8HywppT?=
+ =?us-ascii?Q?47wBo94yG0PbtM6MLdKBVzx6r20qKlwtWKarzKwoVo48sIGMT5hGqC6TvAiH?=
+ =?us-ascii?Q?WsqKLf8fImHZcW+D3cHU77VawYq2BHzVitRhwRXT4mnBjY0W/f11a6d7nv9R?=
+ =?us-ascii?Q?Sl6a438DrQOP7yJ3HZkYyQDCx5HghfOWS4uB+xcU6+O8zGA024j8EW+il/lo?=
+ =?us-ascii?Q?YemPakD0LgJvuActuwWuoGEEvE6KN2SNzVbtrB2mwEFHdNKXq/ES2vIv5410?=
+ =?us-ascii?Q?BZXsrdIgRWvvBEGnTpVBiZx3Y8idAFxYmw+qqU8obB35N+aAvTCst7GDClXp?=
+ =?us-ascii?Q?+8hG5vK3CZNIwrOiEZGxpqApdDTjqWByag5HIrS61MxRDDgI7XQZPPE4fLds?=
+ =?us-ascii?Q?9+aNE1N5Hk7U/sgOd0eRZyKMXYDzJWGiDaJPuv2x7DQ+vYncus1zitf9ScpR?=
+ =?us-ascii?Q?Rq5IMs1jKLREurcEW65PX++m7C/bf1IERKMp33gw9KtoyQbtnbNgSoRO1kWr?=
+ =?us-ascii?Q?AnJS8x0m4oU/c63qBLEQZv/9AlkVlYo4fdx2z2wsnxMBf6mn/uMlj1Rewhnt?=
+ =?us-ascii?Q?WqsfDP5eBtB3O9oNqbBX9BfgT6rWCkXaxTrxuhU760t0kW5DY/WWZ51bln/w?=
+ =?us-ascii?Q?2jpRSoyqEDxFXz3aNLgP5q5Lu1MHVsg8RM98MgmKooyW7SY6k1QiDN7GfGXC?=
+ =?us-ascii?Q?Ep7+NkeLu5B/xKWZNAWF5p15eaZ6YZs5rLow2lva2X+mrpVE0HFCR0wfCr6a?=
+ =?us-ascii?Q?kapszzUbDTMBOG7WfACsbigYyM3s1D8eOLbNGt41ZuuDTZy/7e+c3DZIxqb6?=
+ =?us-ascii?Q?qRZe6anMDGRJLNb976POUqlrOCIufuIhGTyTb2IWI98zMOZ3CespGKdFJBTO?=
+ =?us-ascii?Q?XMBuvUhF6GyRrysQ8+W6wbl2negAgp+I2T9CPsEVedZidmgThxX71nFiGstp?=
+ =?us-ascii?Q?Ng=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 11d8e3c6-7014-440c-27b8-08dcff749470
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB2854.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Nov 2024 21:38:55.4480 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: WBlhys088Ry7EwKakU3QVSbLQAsCZ2CDvgfoUhl1hQaMUhmttQiOrDJDP+EOxKButqk7ImZ5zd9VdwstxwHcTQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB4799
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,219 +185,114 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Identify mobile platforms separately in display, using the platform
-group mechanism. This enables dropping the dependency on i915_drv.h
-IS_MOBILE() from display code.
+On Thu, Nov 07, 2024 at 03:13:56PM +0200, Alexander Usyskin wrote:
+> Check NVM access mode from GSC FW status registers
+> and overwrite access status read from SPI descriptor, if needed.
 
-v2: Make snb_display static (kernel test robot)
-
-Reviewed-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- .../drm/i915/display/intel_display_device.c   | 104 ++++++++++++------
- .../drm/i915/display/intel_display_device.h   |   1 +
- 2 files changed, 70 insertions(+), 35 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
-index 41df7a8fd32e..68cb7f9b9ef3 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-@@ -253,6 +253,7 @@ static const struct intel_display_device_info no_display = {};
- 
- static const struct platform_desc i830_desc = {
- 	PLATFORM(i830),
-+	PLATFORM_GROUP(mobile),
- 	.info = &(const struct intel_display_device_info) {
- 		I830_DISPLAY,
- 
-@@ -271,6 +272,7 @@ static const struct platform_desc i845_desc = {
- 
- static const struct platform_desc i85x_desc = {
- 	PLATFORM(i85x),
-+	PLATFORM_GROUP(mobile),
- 	.info = &(const struct intel_display_device_info) {
- 		I830_DISPLAY,
- 
-@@ -313,6 +315,7 @@ static const struct platform_desc i915g_desc = {
- 
- static const struct platform_desc i915gm_desc = {
- 	PLATFORM(i915gm),
-+	PLATFORM_GROUP(mobile),
- 	.info = &(const struct intel_display_device_info) {
- 		GEN3_DISPLAY,
- 		I9XX_COLORS,
-@@ -337,6 +340,7 @@ static const struct platform_desc i945g_desc = {
- 
- static const struct platform_desc i945gm_desc = {
- 	PLATFORM(i915gm),
-+	PLATFORM_GROUP(mobile),
- 	.info = &(const struct intel_display_device_info) {
- 		GEN3_DISPLAY,
- 		I9XX_COLORS,
-@@ -358,13 +362,21 @@ static const struct platform_desc g33_desc = {
- 	},
- };
- 
--static const struct platform_desc pnv_desc = {
-+static const struct intel_display_device_info pnv_display = {
-+	GEN3_DISPLAY,
-+	I9XX_COLORS,
-+	.has_hotplug = 1,
-+};
-+
-+static const struct platform_desc pnv_g_desc = {
- 	PLATFORM(pineview),
--	.info = &(const struct intel_display_device_info) {
--		GEN3_DISPLAY,
--		I9XX_COLORS,
--		.has_hotplug = 1,
--	},
-+	.info = &pnv_display,
-+};
-+
-+static const struct platform_desc pnv_m_desc = {
-+	PLATFORM(pineview),
-+	PLATFORM_GROUP(mobile),
-+	.info = &pnv_display,
- };
- 
- #define GEN4_DISPLAY \
-@@ -391,6 +403,7 @@ static const struct platform_desc i965g_desc = {
- 
- static const struct platform_desc i965gm_desc = {
- 	PLATFORM(i965gm),
-+	PLATFORM_GROUP(mobile),
- 	.info = &(const struct intel_display_device_info) {
- 		GEN4_DISPLAY,
- 		.has_overlay = 1,
-@@ -414,6 +427,7 @@ static const struct platform_desc g45_desc = {
- static const struct platform_desc gm45_desc = {
- 	PLATFORM(gm45),
- 	PLATFORM_GROUP(g4x),
-+	PLATFORM_GROUP(mobile),
- 	.info = &(const struct intel_display_device_info) {
- 		GEN4_DISPLAY,
- 		.supports_tv = 1,
-@@ -444,6 +458,7 @@ static const struct platform_desc ilk_d_desc = {
- 
- static const struct platform_desc ilk_m_desc = {
- 	PLATFORM(ironlake),
-+	PLATFORM_GROUP(mobile),
- 	.info = &(const struct intel_display_device_info) {
- 		ILK_DISPLAY,
- 
-@@ -451,38 +466,54 @@ static const struct platform_desc ilk_m_desc = {
- 	},
- };
- 
--static const struct platform_desc snb_desc = {
-+static const struct intel_display_device_info snb_display = {
-+	.has_hotplug = 1,
-+	I9XX_PIPE_OFFSETS,
-+	I9XX_CURSOR_OFFSETS,
-+	ILK_COLORS,
-+
-+	.__runtime_defaults.ip.ver = 6,
-+	.__runtime_defaults.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B),
-+	.__runtime_defaults.cpu_transcoder_mask =
-+	BIT(TRANSCODER_A) | BIT(TRANSCODER_B),
-+	.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D), /* DP A, SDVO/HDMI/DP B, HDMI/DP C/D */
-+	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A),
-+};
-+
-+static const struct platform_desc snb_d_desc = {
- 	PLATFORM(sandybridge),
--	.info = &(const struct intel_display_device_info) {
--		.has_hotplug = 1,
--		I9XX_PIPE_OFFSETS,
--		I9XX_CURSOR_OFFSETS,
--		ILK_COLORS,
-+	.info = &snb_display,
-+};
- 
--		.__runtime_defaults.ip.ver = 6,
--		.__runtime_defaults.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B),
--		.__runtime_defaults.cpu_transcoder_mask =
--		BIT(TRANSCODER_A) | BIT(TRANSCODER_B),
--		.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D), /* DP A, SDVO/HDMI/DP B, HDMI/DP C/D */
--		.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A),
--	},
-+static const struct platform_desc snb_m_desc = {
-+	PLATFORM(sandybridge),
-+	PLATFORM_GROUP(mobile),
-+	.info = &snb_display,
-+};
-+
-+static const struct intel_display_device_info ivb_display = {
-+	.has_hotplug = 1,
-+	IVB_PIPE_OFFSETS,
-+	IVB_CURSOR_OFFSETS,
-+	IVB_COLORS,
-+
-+	.__runtime_defaults.ip.ver = 7,
-+	.__runtime_defaults.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C),
-+	.__runtime_defaults.cpu_transcoder_mask =
-+	BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | BIT(TRANSCODER_C),
-+	.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D), /* DP A, SDVO/HDMI/DP B, HDMI/DP C/D */
-+	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A),
- };
- 
--static const struct platform_desc ivb_desc = {
-+static const struct platform_desc ivb_d_desc = {
- 	PLATFORM(ivybridge),
--	.info = &(const struct intel_display_device_info) {
--		.has_hotplug = 1,
--		IVB_PIPE_OFFSETS,
--		IVB_CURSOR_OFFSETS,
--		IVB_COLORS,
-+	.info = &ivb_display,
-+};
- 
--		.__runtime_defaults.ip.ver = 7,
--		.__runtime_defaults.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C),
--		.__runtime_defaults.cpu_transcoder_mask =
--		BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | BIT(TRANSCODER_C),
--		.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D), /* DP A, SDVO/HDMI/DP B, HDMI/DP C/D */
--		.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A),
--	},
-+static const struct platform_desc ivb_m_desc = {
-+	PLATFORM(ivybridge),
-+	PLATFORM_GROUP(mobile),
-+	.info = &ivb_display,
- };
- 
- static const struct platform_desc vlv_desc = {
-@@ -1385,11 +1416,14 @@ static const struct {
- 	INTEL_I965GM_IDS(INTEL_DISPLAY_DEVICE, &i965gm_desc),
- 	INTEL_GM45_IDS(INTEL_DISPLAY_DEVICE, &gm45_desc),
- 	INTEL_G45_IDS(INTEL_DISPLAY_DEVICE, &g45_desc),
--	INTEL_PNV_IDS(INTEL_DISPLAY_DEVICE, &pnv_desc),
-+	INTEL_PNV_G_IDS(INTEL_DISPLAY_DEVICE, &pnv_g_desc),
-+	INTEL_PNV_M_IDS(INTEL_DISPLAY_DEVICE, &pnv_m_desc),
- 	INTEL_ILK_D_IDS(INTEL_DISPLAY_DEVICE, &ilk_d_desc),
- 	INTEL_ILK_M_IDS(INTEL_DISPLAY_DEVICE, &ilk_m_desc),
--	INTEL_SNB_IDS(INTEL_DISPLAY_DEVICE, &snb_desc),
--	INTEL_IVB_IDS(INTEL_DISPLAY_DEVICE, &ivb_desc),
-+	INTEL_SNB_D_IDS(INTEL_DISPLAY_DEVICE, &snb_d_desc),
-+	INTEL_SNB_M_IDS(INTEL_DISPLAY_DEVICE, &snb_m_desc),
-+	INTEL_IVB_D_IDS(INTEL_DISPLAY_DEVICE, &ivb_d_desc),
-+	INTEL_IVB_M_IDS(INTEL_DISPLAY_DEVICE, &ivb_m_desc),
- 	INTEL_HSW_IDS(INTEL_DISPLAY_DEVICE, &hsw_desc),
- 	INTEL_VLV_IDS(INTEL_DISPLAY_DEVICE, &vlv_desc),
- 	INTEL_BDW_IDS(INTEL_DISPLAY_DEVICE, &bdw_desc),
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index 26b2c246b87d..4f098f5a5a40 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -24,6 +24,7 @@ struct pci_dev;
- #define INTEL_DISPLAY_PLATFORMS(func) \
- 	/* Platform group aliases */ \
- 	func(g4x) /* g45 and gm45 */ \
-+	func(mobile) /* mobile platforms */ \
- 	func(dgfx) /* discrete graphics */ \
- 	/* Display ver 2 */ \
- 	func(i830) \
--- 
-2.39.5
-
+> 
+> Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
+> ---
+>  drivers/gpu/drm/xe/regs/xe_gsc_regs.h |  4 ++++
+>  drivers/gpu/drm/xe/xe_heci_gsc.c      |  5 +----
+>  drivers/gpu/drm/xe/xe_nvm.c           | 32 ++++++++++++++++++++++++++-
+>  3 files changed, 36 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/regs/xe_gsc_regs.h b/drivers/gpu/drm/xe/regs/xe_gsc_regs.h
+> index 7702364b65f1..9b66cc972a63 100644
+> --- a/drivers/gpu/drm/xe/regs/xe_gsc_regs.h
+> +++ b/drivers/gpu/drm/xe/regs/xe_gsc_regs.h
+> @@ -16,6 +16,10 @@
+>  #define MTL_GSC_HECI1_BASE	0x00116000
+>  #define MTL_GSC_HECI2_BASE	0x00117000
+>  
+> +#define DG1_GSC_HECI2_BASE	0x00259000
+> +#define PVC_GSC_HECI2_BASE	0x00285000
+> +#define DG2_GSC_HECI2_BASE	0x00374000
+> +
+>  #define HECI_H_CSR(base)	XE_REG((base) + 0x4)
+>  #define   HECI_H_CSR_IE		REG_BIT(0)
+>  #define   HECI_H_CSR_IS		REG_BIT(1)
+> diff --git a/drivers/gpu/drm/xe/xe_heci_gsc.c b/drivers/gpu/drm/xe/xe_heci_gsc.c
+> index 65b2e147c4b9..27734085164e 100644
+> --- a/drivers/gpu/drm/xe/xe_heci_gsc.c
+> +++ b/drivers/gpu/drm/xe/xe_heci_gsc.c
+> @@ -11,14 +11,11 @@
+>  #include "xe_device_types.h"
+>  #include "xe_drv.h"
+>  #include "xe_heci_gsc.h"
+> +#include "regs/xe_gsc_regs.h"
+>  #include "xe_platform_types.h"
+>  
+>  #define GSC_BAR_LENGTH  0x00000FFC
+>  
+> -#define DG1_GSC_HECI2_BASE			0x259000
+> -#define PVC_GSC_HECI2_BASE			0x285000
+> -#define DG2_GSC_HECI2_BASE			0x374000
+> -
+>  static void heci_gsc_irq_mask(struct irq_data *d)
+>  {
+>  	/* generic irq handling */
+> diff --git a/drivers/gpu/drm/xe/xe_nvm.c b/drivers/gpu/drm/xe/xe_nvm.c
+> index 787272761e42..3396bec29c97 100644
+> --- a/drivers/gpu/drm/xe/xe_nvm.c
+> +++ b/drivers/gpu/drm/xe/xe_nvm.c
+> @@ -5,8 +5,11 @@
+>  
+>  #include <linux/intel_dg_nvm_aux.h>
+>  #include <linux/pci.h>
+> +#include "xe_device.h"
+>  #include "xe_device_types.h"
+> +#include "xe_mmio.h"
+>  #include "xe_nvm.h"
+> +#include "regs/xe_gsc_regs.h"
+>  #include "xe_sriov.h"
+>  
+>  #define GEN12_GUNIT_NVM_BASE 0x00102040
+> @@ -24,6 +27,33 @@ static void xe_nvm_release_dev(struct device *dev)
+>  {
+>  }
+>  
+> +static bool xe_nvm_writeable_override(struct xe_device *xe)
+> +{
+> +	struct xe_gt *gt = xe_root_mmio_gt(xe);
+> +	resource_size_t base;
+> +	bool writeable_override;
+> +
+> +	if (xe->info.platform == XE_BATTLEMAGE) {
+> +		base = DG2_GSC_HECI2_BASE;
+> +	} else if (xe->info.platform == XE_PVC) {
+> +		base = PVC_GSC_HECI2_BASE;
+> +	} else if (xe->info.platform == XE_DG2) {
+> +		base = DG2_GSC_HECI2_BASE;
+> +	} else if (xe->info.platform == XE_DG1) {
+> +		base = DG1_GSC_HECI2_BASE;
+> +	} else {
+> +		drm_err(&xe->drm, "Unknown platform\n");
+> +		return true;
+> +	}
+> +
+> +	writeable_override =
+> +		!(xe_mmio_read32(&gt->mmio, HECI_FWSTS2(base)) &
+> +		  HECI_FW_STATUS_2_NVM_ACCESS_MODE);
+> +	if (writeable_override)
+> +		drm_info(&xe->drm, "NVM access overridden by jumper\n");
+> +	return writeable_override;
+> +}
+> +
+>  void xe_nvm_init(struct xe_device *xe)
+>  {
+>  	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+> @@ -48,7 +78,7 @@ void xe_nvm_init(struct xe_device *xe)
+>  
+>  	nvm = xe->nvm;
+>  
+> -	nvm->writeable_override = false;
+> +	nvm->writeable_override = xe_nvm_writeable_override(xe);
+>  	nvm->bar.parent = &pdev->resource[0];
+>  	nvm->bar.start = GEN12_GUNIT_NVM_BASE + pdev->resource[0].start;
+>  	nvm->bar.end = nvm->bar.start + GEN12_GUNIT_NVM_SIZE - 1;
+> -- 
+> 2.43.0
+> 
