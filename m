@@ -2,55 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 288579C1111
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Nov 2024 22:37:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A48E79C1113
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Nov 2024 22:38:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8D1A10E8F3;
-	Thu,  7 Nov 2024 21:37:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D47210E8F6;
+	Thu,  7 Nov 2024 21:38:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DXF3TZVG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IfHyBttx";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBA0510E8F3;
- Thu,  7 Nov 2024 21:37:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D123310E8F2;
+ Thu,  7 Nov 2024 21:38:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731015476; x=1762551476;
+ t=1731015483; x=1762551483;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=H1rxC8y68yKLceB1p4FzHqY9yP8y6/npqA0d0ztb9js=;
- b=DXF3TZVGxXtfKL5bUBk8gYzzmjg3S1uKflQICkbMJ42dtWHgkO70922+
- U8Rq99PQ3EdJ+oN/FOaG1RFGajkoFi36lIcx+Ect4bGV+o87eWViUtMeu
- IdQiRNmceO0KMPzRubHiZA8GthiTSigMtZ3z/peZ9YHmAu1Eu03kugIxb
- iV9QnqMXSNlXHeUe6qVgIBX7Auu2Y0CsE8kJ+Y3ozd3XDiEX3Lh3yDVV5
- YThqBpvzF0N0g6hHQrGhxc+BUqVFYpexsbA6iZOi3Ex47nBIrv8270t+9
- Kh48j/TyDGyuOjsOStFMk4UBNyJwDVsmKdRn76JP8SeIllURJi7KWbh8A A==;
-X-CSE-ConnectionGUID: En8aXMpeTZ2T4y0AEAI28A==
-X-CSE-MsgGUID: wSOZdB7FRCWW8xJ0G9zraQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11249"; a="56283020"
-X-IronPort-AV: E=Sophos;i="6.12,136,1728975600"; d="scan'208";a="56283020"
+ bh=dK53HawkgMIcS8twWSgDHTmI30ecBsEI3EYhH7QwKcI=;
+ b=IfHyBttxQT17WGSYxnlb8czgCJy/q8JIxCR9zDKl64FPOxKnIjvqgbg2
+ +3jUHLH1wSM1W8UuLafVJ19pjQT9egaLQuWBsoXkX0XnLQRkdGFDGuyMC
+ 3aIkb24X8IusoCld8Ul2j8A6bqHyBOSDa+9XQWtSpqtEis02NwVNYhSAI
+ f7So90z7TYgMXz8eHTQWGiK3Fr5QyyqBKgHwc2SYJWo3a6Pe32zqF5pr/
+ 3Z+pATvZnTYaMSsJYS64DzIuXZvP8kezdAWcfotGR+OU/PTz6Rj9b6rRn
+ SS705E6VhzXLuWO31JlNpaCkEaOsueJ6Ph/gWMtATtV+v9VJZR6wii7y7 A==;
+X-CSE-ConnectionGUID: EHnVbH8YTYOtC5zOMNTylw==
+X-CSE-MsgGUID: 1AJwaWCUQ6Ky5CMaYpBBOw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11249"; a="56283034"
+X-IronPort-AV: E=Sophos;i="6.12,136,1728975600"; d="scan'208";a="56283034"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2024 13:37:56 -0800
-X-CSE-ConnectionGUID: oXFZUoyjSM2vau2KXzwoTg==
-X-CSE-MsgGUID: T83l+ie+RfKBYjaZpcgwjA==
+ 07 Nov 2024 13:37:59 -0800
+X-CSE-ConnectionGUID: +drSqPYGTkOj2JqNjjn7ww==
+X-CSE-MsgGUID: 8y0Bv08ASFiYiFrgTPBOKQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,136,1728975600"; d="scan'208";a="85574895"
+X-IronPort-AV: E=Sophos;i="6.12,136,1728975600"; d="scan'208";a="85574907"
 Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.233])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2024 13:37:52 -0800
+ 07 Nov 2024 13:37:57 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com, Vinod Govindapillai <vinod.govindapillai@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [CI v2 v2 11/15] drm/i915/display: convert HAS_ULTRAJOINER() to
- struct intel_display
-Date: Thu,  7 Nov 2024 23:36:45 +0200
-Message-Id: <666a146cc1531d31f8a98f89d59dcb7f0d645828.1731015334.git.jani.nikula@intel.com>
+Cc: jani.nikula@intel.com, Vinod Govindapillai <vinod.govindapillai@intel.com>
+Subject: [CI v2 v2 12/15] drm/i915/display: rename i915 parameter to __display
+ in feature helpers
+Date: Thu,  7 Nov 2024 23:36:46 +0200
+Message-Id: <a39887940a292f23a4eecf8e62d6e98e28066787.1731015334.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1731015333.git.jani.nikula@intel.com>
 References: <cover.1731015333.git.jani.nikula@intel.com>
@@ -72,116 +71,171 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Convert HAS_ULTRAJOINER() to struct intel_display. Do minimal drive-by
-conversions to struct intel_display in the callers while at it.
+All the feature check helpers now support (and some require) passing
+struct intel_display. Rename the parameter to __display to reflect the
+fact.
 
 Reviewed-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c         | 10 ++++++----
- drivers/gpu/drm/i915/display/intel_display_debugfs.c |  4 ++--
- drivers/gpu/drm/i915/display/intel_display_device.h  |  6 +++---
- drivers/gpu/drm/i915/display/intel_dp.c              |  5 ++---
- 4 files changed, 13 insertions(+), 12 deletions(-)
+ .../drm/i915/display/intel_display_device.h   | 114 +++++++++---------
+ 1 file changed, 57 insertions(+), 57 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 04d9a176cb12..de97cd11aa7c 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -3746,12 +3746,13 @@ static u8 fixup_ultrajoiner_secondary_pipes(u8 ultrajoiner_primary_pipes,
- static void enabled_ultrajoiner_pipes(struct drm_i915_private *i915,
- 				      u8 *primary_pipes, u8 *secondary_pipes)
- {
-+	struct intel_display *display = &i915->display;
- 	struct intel_crtc *crtc;
- 
- 	*primary_pipes = 0;
- 	*secondary_pipes = 0;
- 
--	if (!HAS_ULTRAJOINER(i915))
-+	if (!HAS_ULTRAJOINER(display))
- 		return;
- 
- 	for_each_intel_crtc_in_pipe_mask(&i915->drm, crtc,
-@@ -8310,11 +8311,12 @@ void intel_setup_outputs(struct drm_i915_private *dev_priv)
- 
- static int max_dotclock(struct drm_i915_private *i915)
- {
--	int max_dotclock = i915->display.cdclk.max_dotclk_freq;
-+	struct intel_display *display = &i915->display;
-+	int max_dotclock = display->cdclk.max_dotclk_freq;
- 
--	if (HAS_ULTRAJOINER(i915))
-+	if (HAS_ULTRAJOINER(display))
- 		max_dotclock *= 4;
--	else if (HAS_UNCOMPRESSED_JOINER(i915) || HAS_BIGJOINER(i915))
-+	else if (HAS_UNCOMPRESSED_JOINER(display) || HAS_BIGJOINER(display))
- 		max_dotclock *= 2;
- 
- 	return max_dotclock;
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index 11aff485d8fa..2874867aae2b 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -1331,7 +1331,7 @@ static ssize_t i915_joiner_write(struct file *file,
- {
- 	struct seq_file *m = file->private_data;
- 	struct intel_connector *connector = m->private;
--	struct drm_i915_private *i915 = to_i915(connector->base.dev);
-+	struct intel_display *display = to_intel_display(connector);
- 	int force_joined_pipes = 0;
- 	int ret;
- 
-@@ -1349,7 +1349,7 @@ static ssize_t i915_joiner_write(struct file *file,
- 		connector->force_joined_pipes = force_joined_pipes;
- 		break;
- 	case 4:
--		if (HAS_ULTRAJOINER(i915)) {
-+		if (HAS_ULTRAJOINER(display)) {
- 			connector->force_joined_pipes = force_joined_pipes;
- 			break;
- 		}
 diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index d01b91b71a90..e8197dacb676 100644
+index e8197dacb676..df805a82e623 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_device.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -179,9 +179,9 @@ struct intel_display_platforms {
- #define HAS_TRANSCODER(i915, trans)	((DISPLAY_RUNTIME_INFO(i915)->cpu_transcoder_mask & \
- 					  BIT(trans)) != 0)
- #define HAS_UNCOMPRESSED_JOINER(i915)	(DISPLAY_VER(i915) >= 13)
--#define HAS_ULTRAJOINER(i915)		((DISPLAY_VER(i915) >= 20 || \
--					  (IS_DGFX(i915) && DISPLAY_VER(i915) == 14)) && \
--					 HAS_DSC(i915))
-+#define HAS_ULTRAJOINER(__display)	((DISPLAY_VER(__display) >= 20 || \
-+					  ((__display)->platform.dgfx && DISPLAY_VER(__display) == 14)) && \
-+					 HAS_DSC(__display))
- #define HAS_VRR(i915)			(DISPLAY_VER(i915) >= 11)
- #define HAS_AS_SDP(i915)		(DISPLAY_VER(i915) >= 13)
- #define HAS_CMRR(i915)			(DISPLAY_VER(i915) >= 20)
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index b7ee6eec72a8..a5049f449dcb 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1352,16 +1352,15 @@ int intel_dp_num_joined_pipes(struct intel_dp *intel_dp,
- 			      int hdisplay, int clock)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
--	struct drm_i915_private *i915 = to_i915(display->drm);
+@@ -139,62 +139,62 @@ struct intel_display_platforms {
+ 	func(supports_tv);
  
- 	if (connector->force_joined_pipes)
- 		return connector->force_joined_pipes;
+ #define HAS_4TILE(__display)		((__display)->platform.dg2 || DISPLAY_VER(__display) >= 14)
+-#define HAS_ASYNC_FLIPS(i915)		(DISPLAY_VER(i915) >= 5)
+-#define HAS_BIGJOINER(i915)		(DISPLAY_VER(i915) >= 11 && HAS_DSC(i915))
+-#define HAS_CDCLK_CRAWL(i915)		(DISPLAY_INFO(i915)->has_cdclk_crawl)
+-#define HAS_CDCLK_SQUASH(i915)		(DISPLAY_INFO(i915)->has_cdclk_squash)
+-#define HAS_CUR_FBC(i915)		(!HAS_GMCH(i915) && IS_DISPLAY_VER(i915, 7, 13))
++#define HAS_ASYNC_FLIPS(__display)	(DISPLAY_VER(__display) >= 5)
++#define HAS_BIGJOINER(__display)	(DISPLAY_VER(__display) >= 11 && HAS_DSC(__display))
++#define HAS_CDCLK_CRAWL(__display)	(DISPLAY_INFO(__display)->has_cdclk_crawl)
++#define HAS_CDCLK_SQUASH(__display)	(DISPLAY_INFO(__display)->has_cdclk_squash)
++#define HAS_CUR_FBC(__display)		(!HAS_GMCH(__display) && IS_DISPLAY_VER(__display, 7, 13))
+ #define HAS_D12_PLANE_MINIMIZATION(__display)	((__display)->platform.rocketlake || (__display)->platform.alderlake_s)
+-#define HAS_DBUF_OVERLAP_DETECTION(__i915) (DISPLAY_RUNTIME_INFO(__i915)->has_dbuf_overlap_detection)
+-#define HAS_DDI(i915)			(DISPLAY_INFO(i915)->has_ddi)
+-#define HAS_DISPLAY(i915)		(DISPLAY_RUNTIME_INFO(i915)->pipe_mask != 0)
+-#define HAS_DMC(i915)			(DISPLAY_RUNTIME_INFO(i915)->has_dmc)
++#define HAS_DBUF_OVERLAP_DETECTION(__display)	(DISPLAY_RUNTIME_INFO(__display)->has_dbuf_overlap_detection)
++#define HAS_DDI(__display)		(DISPLAY_INFO(__display)->has_ddi)
++#define HAS_DISPLAY(__display)		(DISPLAY_RUNTIME_INFO(__display)->pipe_mask != 0)
++#define HAS_DMC(__display)		(DISPLAY_RUNTIME_INFO(__display)->has_dmc)
+ #define HAS_DOUBLE_BUFFERED_M_N(__display)	(DISPLAY_VER(__display) >= 9 || (__display)->platform.broadwell)
+-#define HAS_DOUBLE_WIDE(i915)		(DISPLAY_VER(i915) < 4)
+-#define HAS_DP_MST(i915)		(DISPLAY_INFO(i915)->has_dp_mst)
++#define HAS_DOUBLE_WIDE(__display)	(DISPLAY_VER(__display) < 4)
++#define HAS_DP_MST(__display)		(DISPLAY_INFO(__display)->has_dp_mst)
+ #define HAS_DP20(__display)		((__display)->platform.dg2 || DISPLAY_VER(__display) >= 14)
+-#define HAS_DPT(i915)			(DISPLAY_VER(i915) >= 13)
+-#define HAS_DSB(i915)			(DISPLAY_INFO(i915)->has_dsb)
+-#define HAS_DSC(__i915)			(DISPLAY_RUNTIME_INFO(__i915)->has_dsc)
+-#define HAS_DSC_MST(__i915)		(DISPLAY_VER(__i915) >= 12 && HAS_DSC(__i915))
+-#define HAS_FBC(i915)			(DISPLAY_RUNTIME_INFO(i915)->fbc_mask != 0)
+-#define HAS_FPGA_DBG_UNCLAIMED(i915)	(DISPLAY_INFO(i915)->has_fpga_dbg)
+-#define HAS_FW_BLC(i915)		(DISPLAY_VER(i915) >= 3)
+-#define HAS_GMBUS_IRQ(i915)		(DISPLAY_VER(i915) >= 4)
++#define HAS_DPT(__display)		(DISPLAY_VER(__display) >= 13)
++#define HAS_DSB(__display)		(DISPLAY_INFO(__display)->has_dsb)
++#define HAS_DSC(__display)		(DISPLAY_RUNTIME_INFO(__display)->has_dsc)
++#define HAS_DSC_MST(__display)		(DISPLAY_VER(__display) >= 12 && HAS_DSC(__display))
++#define HAS_FBC(__display)		(DISPLAY_RUNTIME_INFO(__display)->fbc_mask != 0)
++#define HAS_FPGA_DBG_UNCLAIMED(__display)	(DISPLAY_INFO(__display)->has_fpga_dbg)
++#define HAS_FW_BLC(__display)		(DISPLAY_VER(__display) >= 3)
++#define HAS_GMBUS_IRQ(__display)	(DISPLAY_VER(__display) >= 4)
+ #define HAS_GMBUS_BURST_READ(__display)	(DISPLAY_VER(__display) >= 10 || (__display)->platform.kabylake)
+-#define HAS_GMCH(i915)			(DISPLAY_INFO(i915)->has_gmch)
++#define HAS_GMCH(__display)		(DISPLAY_INFO(__display)->has_gmch)
+ #define HAS_HW_SAGV_WM(__display)	(DISPLAY_VER(__display) >= 13 && !(__display)->platform.dgfx)
+-#define HAS_IPC(i915)			(DISPLAY_INFO(i915)->has_ipc)
++#define HAS_IPC(__display)		(DISPLAY_INFO(__display)->has_ipc)
+ #define HAS_IPS(__display)		((__display)->platform.haswell_ult || (__display)->platform.broadwell)
+-#define HAS_LRR(i915)			(DISPLAY_VER(i915) >= 12)
+-#define HAS_LSPCON(i915)		(IS_DISPLAY_VER(i915, 9, 10))
++#define HAS_LRR(__display)		(DISPLAY_VER(__display) >= 12)
++#define HAS_LSPCON(__display)		(IS_DISPLAY_VER(__display, 9, 10))
+ #define HAS_MBUS_JOINING(__display)	((__display)->platform.alderlake_p || DISPLAY_VER(__display) >= 14)
+-#define HAS_MSO(i915)			(DISPLAY_VER(i915) >= 12)
+-#define HAS_OVERLAY(i915)		(DISPLAY_INFO(i915)->has_overlay)
+-#define HAS_PSR(i915)			(DISPLAY_INFO(i915)->has_psr)
+-#define HAS_PSR_HW_TRACKING(i915)	(DISPLAY_INFO(i915)->has_psr_hw_tracking)
+-#define HAS_PSR2_SEL_FETCH(i915)	(DISPLAY_VER(i915) >= 12)
++#define HAS_MSO(__display)		(DISPLAY_VER(__display) >= 12)
++#define HAS_OVERLAY(__display)		(DISPLAY_INFO(__display)->has_overlay)
++#define HAS_PSR(__display)		(DISPLAY_INFO(__display)->has_psr)
++#define HAS_PSR_HW_TRACKING(__display)	(DISPLAY_INFO(__display)->has_psr_hw_tracking)
++#define HAS_PSR2_SEL_FETCH(__display)	(DISPLAY_VER(__display) >= 12)
+ #define HAS_SAGV(__display)		(DISPLAY_VER(__display) >= 9 && \
+ 					 !(__display)->platform.broxton && !(__display)->platform.geminilake)
+-#define HAS_TRANSCODER(i915, trans)	((DISPLAY_RUNTIME_INFO(i915)->cpu_transcoder_mask & \
+-					  BIT(trans)) != 0)
+-#define HAS_UNCOMPRESSED_JOINER(i915)	(DISPLAY_VER(i915) >= 13)
++#define HAS_TRANSCODER(__display, trans)	((DISPLAY_RUNTIME_INFO(__display)->cpu_transcoder_mask & \
++						  BIT(trans)) != 0)
++#define HAS_UNCOMPRESSED_JOINER(__display)	(DISPLAY_VER(__display) >= 13)
+ #define HAS_ULTRAJOINER(__display)	((DISPLAY_VER(__display) >= 20 || \
+ 					  ((__display)->platform.dgfx && DISPLAY_VER(__display) == 14)) && \
+ 					 HAS_DSC(__display))
+-#define HAS_VRR(i915)			(DISPLAY_VER(i915) >= 11)
+-#define HAS_AS_SDP(i915)		(DISPLAY_VER(i915) >= 13)
+-#define HAS_CMRR(i915)			(DISPLAY_VER(i915) >= 20)
+-#define INTEL_NUM_PIPES(i915)		(hweight8(DISPLAY_RUNTIME_INFO(i915)->pipe_mask))
+-#define I915_HAS_HOTPLUG(i915)		(DISPLAY_INFO(i915)->has_hotplug)
+-#define OVERLAY_NEEDS_PHYSICAL(i915)	(DISPLAY_INFO(i915)->overlay_needs_physical)
+-#define SUPPORTS_TV(i915)		(DISPLAY_INFO(i915)->supports_tv)
++#define HAS_VRR(__display)		(DISPLAY_VER(__display) >= 11)
++#define HAS_AS_SDP(__display)		(DISPLAY_VER(__display) >= 13)
++#define HAS_CMRR(__display)		(DISPLAY_VER(__display) >= 20)
++#define INTEL_NUM_PIPES(__display)	(hweight8(DISPLAY_RUNTIME_INFO(__display)->pipe_mask))
++#define I915_HAS_HOTPLUG(__display)	(DISPLAY_INFO(__display)->has_hotplug)
++#define OVERLAY_NEEDS_PHYSICAL(__display)	(DISPLAY_INFO(__display)->overlay_needs_physical)
++#define SUPPORTS_TV(__display)		(DISPLAY_INFO(__display)->supports_tv)
  
--	if (HAS_ULTRAJOINER(i915) &&
-+	if (HAS_ULTRAJOINER(display) &&
- 	    intel_dp_needs_joiner(intel_dp, connector, hdisplay, clock, 4))
- 		return 4;
+ /* Check that device has a display IP version within the specific range. */
+-#define IS_DISPLAY_VERx100(__i915, from, until) ( \
++#define IS_DISPLAY_VERx100(__display, from, until) ( \
+ 	BUILD_BUG_ON_ZERO((from) < 200) + \
+-	(DISPLAY_VERx100(__i915) >= (from) && \
+-	 DISPLAY_VERx100(__i915) <= (until)))
++	(DISPLAY_VERx100(__display) >= (from) && \
++	 DISPLAY_VERx100(__display) <= (until)))
  
--	if ((HAS_BIGJOINER(i915) || HAS_UNCOMPRESSED_JOINER(i915)) &&
-+	if ((HAS_BIGJOINER(display) || HAS_UNCOMPRESSED_JOINER(display)) &&
- 	    intel_dp_needs_joiner(intel_dp, connector, hdisplay, clock, 2))
- 		return 2;
+ /*
+  * Check if a device has a specific IP version as well as a stepping within the
+@@ -205,30 +205,30 @@ struct intel_display_platforms {
+  * hardware fix is present and the software workaround is no longer necessary.
+  * E.g.,
+  *
+- *    IS_DISPLAY_VERx100_STEP(i915, 1400, STEP_A0, STEP_B2)
+- *    IS_DISPLAY_VERx100_STEP(i915, 1400, STEP_C0, STEP_FOREVER)
++ *    IS_DISPLAY_VERx100_STEP(display, 1400, STEP_A0, STEP_B2)
++ *    IS_DISPLAY_VERx100_STEP(display, 1400, STEP_C0, STEP_FOREVER)
+  *
+  * "STEP_FOREVER" can be passed as "until" for workarounds that have no upper
+  * stepping bound for the specified IP version.
+  */
+-#define IS_DISPLAY_VERx100_STEP(__i915, ipver, from, until) \
+-	(IS_DISPLAY_VERx100((__i915), (ipver), (ipver)) && \
+-	 IS_DISPLAY_STEP((__i915), (from), (until)))
++#define IS_DISPLAY_VERx100_STEP(__display, ipver, from, until) \
++	(IS_DISPLAY_VERx100((__display), (ipver), (ipver)) && \
++	 IS_DISPLAY_STEP((__display), (from), (until)))
  
+-#define DISPLAY_INFO(i915)		(__to_intel_display(i915)->info.__device_info)
+-#define DISPLAY_RUNTIME_INFO(i915)	(&__to_intel_display(i915)->info.__runtime_info)
++#define DISPLAY_INFO(__display)		(__to_intel_display(__display)->info.__device_info)
++#define DISPLAY_RUNTIME_INFO(__display)	(&__to_intel_display(__display)->info.__runtime_info)
+ 
+-#define DISPLAY_VER(i915)	(DISPLAY_RUNTIME_INFO(i915)->ip.ver)
+-#define DISPLAY_VERx100(i915)	(DISPLAY_RUNTIME_INFO(i915)->ip.ver * 100 + \
+-				 DISPLAY_RUNTIME_INFO(i915)->ip.rel)
+-#define IS_DISPLAY_VER(i915, from, until) \
+-	(DISPLAY_VER(i915) >= (from) && DISPLAY_VER(i915) <= (until))
++#define DISPLAY_VER(__display)		(DISPLAY_RUNTIME_INFO(__display)->ip.ver)
++#define DISPLAY_VERx100(__display)	(DISPLAY_RUNTIME_INFO(__display)->ip.ver * 100 + \
++					 DISPLAY_RUNTIME_INFO(__display)->ip.rel)
++#define IS_DISPLAY_VER(__display, from, until) \
++	(DISPLAY_VER(__display) >= (from) && DISPLAY_VER(__display) <= (until))
+ 
+-#define INTEL_DISPLAY_STEP(__i915) (DISPLAY_RUNTIME_INFO(__i915)->step)
++#define INTEL_DISPLAY_STEP(__display)	(DISPLAY_RUNTIME_INFO(__display)->step)
+ 
+-#define IS_DISPLAY_STEP(__i915, since, until) \
+-	(drm_WARN_ON(__to_intel_display(__i915)->drm, INTEL_DISPLAY_STEP(__i915) == STEP_NONE), \
+-	 INTEL_DISPLAY_STEP(__i915) >= (since) && INTEL_DISPLAY_STEP(__i915) < (until))
++#define IS_DISPLAY_STEP(__display, since, until) \
++	(drm_WARN_ON(__to_intel_display(__display)->drm, INTEL_DISPLAY_STEP(__display) == STEP_NONE), \
++	 INTEL_DISPLAY_STEP(__display) >= (since) && INTEL_DISPLAY_STEP(__display) < (until))
+ 
+ struct intel_display_runtime_info {
+ 	struct intel_display_ip_ver {
 -- 
 2.39.5
 
