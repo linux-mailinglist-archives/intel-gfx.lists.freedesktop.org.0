@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 670109C0AEB
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Nov 2024 17:11:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA0D59C0AEE
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Nov 2024 17:11:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B79210E870;
-	Thu,  7 Nov 2024 16:11:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9816510E877;
+	Thu,  7 Nov 2024 16:11:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mE4mq0Yf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Tu3TzO3y";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE1EB10E13D
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Nov 2024 16:11:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 738FF10E13D
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 Nov 2024 16:11:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1730995896; x=1762531896;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=p/mR3sIDURgV78e7CDnjPwGxqZbZrJS2b1ik3CHsPl0=;
- b=mE4mq0YfxBG7pY0g0IDyFxuQx7noY4d4WZAj7hRXptvqd5Y9WuowRMrU
- q74Tt6e16weqSYEgoZLRykbIeRJmiUKH5ZnnKhIzjEclYPeu68g8houH2
- tYGOaXB87RlYsLjCDvTMtpA25/0rKpx9EFWXPpno4FRGMNsdFHkJwYMly
- Wzoc9jmyLJQqwAk+l9JYjHAcBhfRC/7ohHsxFWA2I32zYPqYAfp3D/Dqg
- QQihf75x8+bLRdyh3UgualrGgiX9ZEEmiTuvH4wXTRT4teYHa4XIXdc1O
- 08N0dRTLiJ1J9dFkAvaP9n7Yx90JC0AMOtvgKLO4ZoZtQSEf75CEocFAw A==;
-X-CSE-ConnectionGUID: Gbu6tk/GQuygs1Zx9Xk09w==
-X-CSE-MsgGUID: 0O0s5BjoSmusESyzv32l6g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11249"; a="41443032"
-X-IronPort-AV: E=Sophos;i="6.12,135,1728975600"; d="scan'208";a="41443032"
+ bh=QbudKIqyCqeXaREQ5EyZ7fOQMH14qT8lC0v1mxnT6W4=;
+ b=Tu3TzO3ySare6p7cEmgGY6KTxr/yQSG4VKCoASa+NcXJFJkOt3HlYrwG
+ hU/yzR38LHqCvOTIE81NNhv14kT8XG7JfrMB+SQTeJF0kpaBEIruaxXEo
+ JorelcA3OnN3s9POyiMLz0R8gWK4V3WOwnhDD/5ellU/OMXT14QjkEcIo
+ J075UVKeYFJ6YZ7C+nmEr5uMq51wlVAiwQcpVCYTKQ6v7pAae962mMh2/
+ 9n8JKwOo6dK6j/tg+THiyKPH0swMz8jmQ30nhfNx57BE7+c7xGNBPdHNH
+ uGGhch5n6jqzsfXMSMjC6z0Xeq8MwZoGBQ8BvfI+ZlPRjYos4bQUfkp2I w==;
+X-CSE-ConnectionGUID: Y3DBzMQQQ2q3VSzUflaPyA==
+X-CSE-MsgGUID: AkO7hbPPQyaa5QKNk7pbrQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11249"; a="41443045"
+X-IronPort-AV: E=Sophos;i="6.12,135,1728975600"; d="scan'208";a="41443045"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2024 08:11:31 -0800
-X-CSE-ConnectionGUID: e6jvWepnTI6YgYkvejiX4Q==
-X-CSE-MsgGUID: Qgesr2f+STCXZ+kJ5P9Mfg==
+ 07 Nov 2024 08:11:34 -0800
+X-CSE-ConnectionGUID: z9LUaBtKS3OJn8MQ9n2JXw==
+X-CSE-MsgGUID: JRMa/3NVQXKiI8wHhJDa0g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,135,1728975600"; d="scan'208";a="85277842"
+X-IronPort-AV: E=Sophos;i="6.12,135,1728975600"; d="scan'208";a="85277849"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 07 Nov 2024 08:11:29 -0800
+ by fmviesa008.fm.intel.com with SMTP; 07 Nov 2024 08:11:32 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 07 Nov 2024 18:11:28 +0200
+ Thu, 07 Nov 2024 18:11:31 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 02/10] drm/i915/crt: Split long line
-Date: Thu,  7 Nov 2024 18:11:15 +0200
-Message-ID: <20241107161123.16269-3-ville.syrjala@linux.intel.com>
+Subject: [PATCH 03/10] drm/i915/crt: Drop the unused ADPA_DPMS bit definitions
+Date: Thu,  7 Nov 2024 18:11:16 +0200
+Message-ID: <20241107161123.16269-4-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241107161123.16269-1-ville.syrjala@linux.intel.com>
 References: <20241107161123.16269-1-ville.syrjala@linux.intel.com>
@@ -70,28 +70,31 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Split an overly long line in the CRT code.
+The ADPA_DPMS bit definitions aer just an alias for the
+sync disable bits, and unused one at that. Drop the
+pointless definitions.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_crt.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/i915_reg.h | 5 -----
+ 1 file changed, 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
-index 1be55bdb48b9..134a4e6a4ac0 100644
---- a/drivers/gpu/drm/i915/display/intel_crt.c
-+++ b/drivers/gpu/drm/i915/display/intel_crt.c
-@@ -1047,7 +1047,9 @@ void intel_crt_init(struct intel_display *display)
- 		 * it and see what happens.
- 		 */
- 		intel_de_write(display, adpa_reg,
--			       adpa | ADPA_DAC_ENABLE | ADPA_HSYNC_CNTL_DISABLE | ADPA_VSYNC_CNTL_DISABLE);
-+			       adpa | ADPA_DAC_ENABLE |
-+			       ADPA_HSYNC_CNTL_DISABLE |
-+			       ADPA_VSYNC_CNTL_DISABLE);
- 		if ((intel_de_read(display, adpa_reg) & ADPA_DAC_ENABLE) == 0)
- 			return;
- 		intel_de_write(display, adpa_reg, adpa);
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index c160e087972a..f0757c4491f1 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -1188,11 +1188,6 @@
+ #define   ADPA_VSYNC_ACTIVE_LOW	0
+ #define   ADPA_HSYNC_ACTIVE_HIGH (1 << 3)
+ #define   ADPA_HSYNC_ACTIVE_LOW	0
+-#define   ADPA_DPMS_MASK	(~(3 << 10))
+-#define   ADPA_DPMS_ON		(0 << 10)
+-#define   ADPA_DPMS_SUSPEND	(1 << 10)
+-#define   ADPA_DPMS_STANDBY	(2 << 10)
+-#define   ADPA_DPMS_OFF		(3 << 10)
+ 
+ /* Hotplug control (945+ only) */
+ #define PORT_HOTPLUG_EN(dev_priv)		_MMIO(DISPLAY_MMIO_BASE(dev_priv) + 0x61110)
 -- 
 2.45.2
 
