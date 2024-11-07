@@ -2,56 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 060AD9C0103
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Nov 2024 10:20:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 25E8E9C0105
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Nov 2024 10:20:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A6FDD10E7CB;
-	Thu,  7 Nov 2024 09:20:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA9C710E7D3;
+	Thu,  7 Nov 2024 09:20:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GqjxxKXR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HV5ncb8t";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B76910E7CB
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Nov 2024 09:20:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D34910E7D3
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 Nov 2024 09:20:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730971231; x=1762507231;
+ t=1730971242; x=1762507242;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=bRSnJOhjvRVtmJU86avaVYc/1MlEKchlilNS8XsG8jg=;
- b=GqjxxKXRvrZHlWGzY1uLMRpUh1r4/4K41MOPYogxvaFOIMWXi9I8LBsS
- juLgAMFU54NSNt5/jhJ1i8pMQAbm9Ei5BLPQSHpoaK0RiXSs2TLNC8MNR
- pcewGFvNP5h9yBotMEmMVmt/tmJbPbz6UqihbghoMlQ4ZvEm56dxES2kN
- WjAyGxvfxBLEbcHK+ya1OrVmX9LtqfACDbecYddFO7iopQnPjz4448iWT
- Q4qHV4I8QwGFLX3dYWyxZ0w9Bqskh8k9jYkovHdpofd/M2S95+KZYOvdD
- Iht8PYMeD3PG03kqQ5HrdWscplsBJ0WAu9JYNNAaagnjzsYLhr/solRTm A==;
-X-CSE-ConnectionGUID: t3o3oZFTQJqg0uxTaa8lyQ==
-X-CSE-MsgGUID: KvrfFPxuTZWISxBtaaB0PA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11248"; a="41399284"
-X-IronPort-AV: E=Sophos;i="6.11,265,1725346800"; d="scan'208";a="41399284"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2024 01:20:28 -0800
-X-CSE-ConnectionGUID: 3NZqsvcgQ+mC3EDlbgA9ig==
-X-CSE-MsgGUID: hJzPcQODTTKJxzNsaq1gnQ==
+ bh=mObu0BgPsofeurWXGCM9lEQsKoI983wDiGBm7ihL/2g=;
+ b=HV5ncb8t1SXdk/LjifbKR6vozxRKqjMKYccKciOBEfvAZdKiEBBMLSru
+ p/Mwb5VM92U1CvmXFDHDsyQX8baVVXarAf1RT3GFapd+9LOnB8nckZYQ5
+ L3tyTYTCxbkwXAmWFUBDPDYEgh23goUk1AHnaFX+jeDyoWKMW2hw/ssRx
+ ORfBMZpacmNyvxS369XiB4eH3lAk2v08Vg5iodWY3ADb5ISvX3Mptw1o3
+ xDyUWFdDR5FgB2uZlzVaNMafwudhgtlepX1xSEJVqVnEdymq82L3KK2oo
+ gVjdCNnx9idG9jBxY1cK1qvqcNVLc6tiRMLQv5YRzNQxU2v7nt+QWIprv A==;
+X-CSE-ConnectionGUID: IDI3IJQDQIq2NMNd07D8hA==
+X-CSE-MsgGUID: jcqMdUmOQM21lv/8YeOBJg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11248"; a="42182417"
+X-IronPort-AV: E=Sophos;i="6.11,265,1725346800"; d="scan'208";a="42182417"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Nov 2024 01:20:42 -0800
+X-CSE-ConnectionGUID: 23p+GEtjRc+eXFTfFZpUFQ==
+X-CSE-MsgGUID: OShgjDYMSY2CzBwFmL+A+g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="89806488"
+X-IronPort-AV: E=Sophos;i="6.11,265,1725346800"; d="scan'208";a="85345071"
 Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.201])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2024 01:20:27 -0800
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Nov 2024 01:20:41 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 7/8] drm/i915/pps: Extract pps_units_to_msecs()
-In-Reply-To: <20241106215859.25446-8-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 8/8] drm/i915/pps: Eliminate pointless get_delay() macro
+In-Reply-To: <20241106215859.25446-9-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20241106215859.25446-1-ville.syrjala@linux.intel.com>
- <20241106215859.25446-8-ville.syrjala@linux.intel.com>
-Date: Thu, 07 Nov 2024 11:20:24 +0200
-Message-ID: <8734k3flif.fsf@intel.com>
+ <20241106215859.25446-9-ville.syrjala@linux.intel.com>
+Date: Thu, 07 Nov 2024 11:20:37 +0200
+Message-ID: <87zfmbe6xm.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -73,44 +73,48 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Wed, 06 Nov 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Add pps_units_to_msecs() as the counterpart to msecs_pps_units_to().
+> Now that we have pps_units_to_msecs(), get_delay() looks
+> rather pointless. Nuke it.
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/display/intel_pps.c | 8 +++++++-
->  1 file changed, 7 insertions(+), 1 deletion(-)
+>  drivers/gpu/drm/i915/display/intel_pps.c | 12 +++++-------
+>  1 file changed, 5 insertions(+), 7 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i=
 915/display/intel_pps.c
-> index 5be2903c6aaf..378a525eec16 100644
+> index 378a525eec16..173bcae5f0e2 100644
 > --- a/drivers/gpu/drm/i915/display/intel_pps.c
 > +++ b/drivers/gpu/drm/i915/display/intel_pps.c
-> @@ -1468,6 +1468,12 @@ static int msecs_to_pps_units(int msecs)
->  	return msecs * 10;
->  }
->=20=20
-> +static int pps_units_to_msecs(int val)
-> +{
-> +	/* PPS uses 100us units */
-> +	return DIV_ROUND_UP(val, 10);
-> +}
-> +
->  static void pps_init_delays_bios(struct intel_dp *intel_dp,
->  				 struct intel_pps_delays *bios)
->  {
-> @@ -1554,7 +1560,7 @@ static void pps_init_delays(struct intel_dp *intel_=
-dp)
+> @@ -1560,13 +1560,11 @@ static void pps_init_delays(struct intel_dp *inte=
+l_dp)
 >  	assign_final(power_cycle);
 >  #undef assign_final
 >=20=20
-> -#define get_delay(field)	(DIV_ROUND_UP(final->field, 10))
-> +#define get_delay(field)	pps_units_to_msecs(final->field)
->  	intel_dp->pps.panel_power_up_delay =3D get_delay(power_up);
->  	intel_dp->pps.backlight_on_delay =3D get_delay(backlight_on);
->  	intel_dp->pps.backlight_off_delay =3D get_delay(backlight_off);
+> -#define get_delay(field)	pps_units_to_msecs(final->field)
+> -	intel_dp->pps.panel_power_up_delay =3D get_delay(power_up);
+> -	intel_dp->pps.backlight_on_delay =3D get_delay(backlight_on);
+> -	intel_dp->pps.backlight_off_delay =3D get_delay(backlight_off);
+> -	intel_dp->pps.panel_power_down_delay =3D get_delay(power_down);
+> -	intel_dp->pps.panel_power_cycle_delay =3D get_delay(power_cycle);
+> -#undef get_delay
+> +	intel_dp->pps.panel_power_up_delay =3D pps_units_to_msecs(final->power_=
+up);
+> +	intel_dp->pps.backlight_on_delay =3D pps_units_to_msecs(final->backligh=
+t_on);
+> +	intel_dp->pps.backlight_off_delay =3D pps_units_to_msecs(final->backlig=
+ht_off);
+> +	intel_dp->pps.panel_power_down_delay =3D pps_units_to_msecs(final->powe=
+r_down);
+> +	intel_dp->pps.panel_power_cycle_delay =3D pps_units_to_msecs(final->pow=
+er_cycle);
+>=20=20
+>  	drm_dbg_kms(display->drm,
+>  		    "panel power up delay %d, power down delay %d, power cycle delay %=
+d\n",
 
 --=20
 Jani Nikula, Intel
