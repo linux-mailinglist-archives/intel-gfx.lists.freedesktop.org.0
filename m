@@ -2,54 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B70A9C0DCF
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Nov 2024 19:30:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BED4B9C0DD0
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Nov 2024 19:30:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D95CD10E8C5;
-	Thu,  7 Nov 2024 18:30:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 524DE10E8CD;
+	Thu,  7 Nov 2024 18:30:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qp2m+Xdh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZmXp3YUJ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE1E010E8C6;
- Thu,  7 Nov 2024 18:30:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6119010E8BD;
+ Thu,  7 Nov 2024 18:30:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731004208; x=1762540208;
+ t=1731004210; x=1762540210;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=QJJen7MpNXR+De4D49TvAQUhlitXDkW8aYzmwvIPWUk=;
- b=Qp2m+XdhqSbEwUwZ9EXKJpu7VXzXrYMX4N1qXqD1ynIxQ9dd56v1Zp9k
- JLBKr2CgSsW2dHcgbbeIfyFDSyQJb9uMjmzrom5sEjtYTH+1El3s+75Pc
- lR0pMbRJD6YPfe1P45Z3EY/hbT52n8IyCOdr4J/g/yf358Bzgw/9xcVsb
- iizIjhGGVIFZcdHHEEDdy1eWKgPSK7yjRWyHzaaD+oAHIHZJfH+YPmWqq
- EoL5jL8i8BnolIIMmIvKImEF9hM5lu5e2DLElVRIF4/0ayvwU62GLdP8D
- DlMzloNu0dM9iFUxQdB/EigW8I8Yf2uJIV89CJno4KCfn5z7lOCMzG5UN w==;
-X-CSE-ConnectionGUID: pE54BTqNTgig226chD6QIg==
-X-CSE-MsgGUID: nmqm+UwdSp6CJphgdLybuw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11249"; a="18494899"
-X-IronPort-AV: E=Sophos;i="6.12,135,1728975600"; d="scan'208";a="18494899"
+ bh=VkjUxIf+jwXhdXWFbLELHPIqWN6TTQQKMM0Iy3TtLj0=;
+ b=ZmXp3YUJYnifZQ9DrxjUWhN4azfFzCaXiMxsA2KFNITY7G1W8UTzNLai
+ XRqQBiTL3eF8g+j4nBjnu3gBhvwR+rvi2YXfGgmc6Z54JfU/awU/i1bgr
+ 0HQ42VLZG5QqG6YleGoDLwNlJV8qZk8wduwYpqPV95lrN5IoXX/+FgosD
+ xlRohv5tGTD65KZqlkwMIDgMOu4wBUZ2tN7rcAFAIzAlK4qPDiWQSfCNF
+ sbZxYiR8wp+a0WlOq0n6sVKbg9yGkLHw5gDAzkg3O4/1RLVI/BGEslrEv
+ +gV5ASEzAcpsqeZDg0VpVR7lSKPTTZx8m3nozLIwW5qHQH0C5XZZyFe8q Q==;
+X-CSE-ConnectionGUID: 7XNxbH8nTnCKCckHDeEbsw==
+X-CSE-MsgGUID: TwMvAASmQzio5iANehk1Ew==
+X-IronPort-AV: E=McAfee;i="6700,10204,11249"; a="18494908"
+X-IronPort-AV: E=Sophos;i="6.12,135,1728975600"; d="scan'208";a="18494908"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2024 10:30:08 -0800
-X-CSE-ConnectionGUID: bZ60YVS+SaO+2018reHm1A==
-X-CSE-MsgGUID: hpcnXvpKQ3OjFilSNgoqcA==
+ 07 Nov 2024 10:30:10 -0800
+X-CSE-ConnectionGUID: IrRzgaugQEarnBEzElo1+w==
+X-CSE-MsgGUID: av/tPHYeQQWKZlT1O2nibQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,135,1728975600"; d="scan'208";a="85329721"
+X-IronPort-AV: E=Sophos;i="6.12,135,1728975600"; d="scan'208";a="85329731"
 Received: from rchatre-mobl4.amr.corp.intel.com (HELO
  gjsousa-mobl2.corp.amr.intel.com) ([10.125.110.154])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2024 10:30:07 -0800
+ 07 Nov 2024 10:30:09 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Luca Coelho <luciano.coelho@intel.com>, Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v3 16/18] drm/i915/dmc_wl: Sanitize enable_dmc_wl according to
- hardware support
-Date: Thu,  7 Nov 2024 15:27:21 -0300
-Message-ID: <20241107182921.102193-17-gustavo.sousa@intel.com>
+Subject: [PATCH v3 17/18] drm/i915/dmc_wl: Do nothing until initialized
+Date: Thu,  7 Nov 2024 15:27:22 -0300
+Message-ID: <20241107182921.102193-18-gustavo.sousa@intel.com>
 X-Mailer: git-send-email 2.47.0
 In-Reply-To: <20241107182921.102193-1-gustavo.sousa@intel.com>
 References: <20241107182921.102193-1-gustavo.sousa@intel.com>
@@ -70,62 +69,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Instead of checking for HAS_DMC_WAKELOCK() multiple times, let's use it
-to sanitize the enable_dmc_wl parameter and use that variable when
-necessary.
+There is a bit of a chicken and egg situation where we depend on runtime
+info to know that DMC and wakelock are supported by the hardware, and
+such information is grabbed via display MMIO functions, which in turns
+call intel_dmc_wl_get() and intel_dmc_wl_put() as part of their regular
+flow.
 
-Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
+Since we do not expect DC states (and consequently the wakelock
+mechanism) to be enabled until DMC and DMC wakelock software structures
+are initialized, a simple and safe solution to this is to turn
+intel_dmc_wl_get() and intel_dmc_wl_put() into no-op until we have
+properly initialized.
+
+Let's implement that via a new field "initialized". Not that, since we
+expect __intel_dmc_wl_supported() to be used for most non-static DMC
+wakelock functions, let's add a drm_WARN_ONCE() there for when it is
+called prior to initialization.
+
+The only exception of functions that can be called before initialization
+are intel_dmc_wl_get() and intel_dmc_wl_put(), so we bail before
+calling __intel_dmc_wl_supported() if not initialized.
+
+An alternative solution would be to revise MMIO-related stuff in the
+whole driver initialization sequence, but that would possibly come with
+the cost of some added ordering dependencies and complexity to the
+source code.
+
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dmc_wl.c | 21 ++++++++++++++-------
- 1 file changed, 14 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dmc_wl.c | 13 +++++++++++++
+ drivers/gpu/drm/i915/display/intel_dmc_wl.h | 11 +++++++++++
+ 2 files changed, 24 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-index 4ca2b990ec6a..c164ac6e1ada 100644
+index c164ac6e1ada..aae5ea0c72ff 100644
 --- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
 +++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-@@ -5,6 +5,8 @@
- 
- #include <linux/kernel.h>
- 
-+#include <drm/drm_print.h>
-+
- #include "i915_reg.h"
- #include "intel_de.h"
- #include "intel_dmc.h"
-@@ -262,20 +264,25 @@ static bool intel_dmc_wl_check_range(i915_reg_t reg, u32 dc_state)
+@@ -264,6 +264,11 @@ static bool intel_dmc_wl_check_range(i915_reg_t reg, u32 dc_state)
  
  static bool __intel_dmc_wl_supported(struct intel_display *display)
  {
--	if (!HAS_DMC_WAKELOCK(display) ||
--	    !intel_dmc_has_payload(display) ||
--	    !display->params.enable_dmc_wl)
--		return false;
-+	return display->params.enable_dmc_wl && intel_dmc_has_payload(display);
-+}
- 
--	return true;
-+static void intel_dmc_wl_sanitize_param(struct intel_display *display)
-+{
-+	if (!HAS_DMC_WAKELOCK(display))
-+		display->params.enable_dmc_wl = false;
++	struct intel_dmc_wl *wl = &display->wl;
 +
-+	drm_dbg_kms(display->drm, "Sanitized enable_dmc_wl value: %d\n",
-+		    display->params.enable_dmc_wl);
++	if (drm_WARN_ON(display->drm, !wl->initialized))
++		return false;
++
+ 	return display->params.enable_dmc_wl && intel_dmc_has_payload(display);
  }
  
- void intel_dmc_wl_init(struct intel_display *display)
- {
- 	struct intel_dmc_wl *wl = &display->wl;
+@@ -282,6 +287,8 @@ void intel_dmc_wl_init(struct intel_display *display)
  
--	/* don't call __intel_dmc_wl_supported(), DMC is not loaded yet */
--	if (!HAS_DMC_WAKELOCK(display) || !display->params.enable_dmc_wl)
-+	intel_dmc_wl_sanitize_param(display);
+ 	intel_dmc_wl_sanitize_param(display);
+ 
++	wl->initialized = true;
 +
-+	if (!display->params.enable_dmc_wl)
+ 	if (!display->params.enable_dmc_wl)
  		return;
  
- 	INIT_DELAYED_WORK(&wl->work, intel_dmc_wl_work);
+@@ -378,6 +385,9 @@ void intel_dmc_wl_get(struct intel_display *display, i915_reg_t reg)
+ 	struct intel_dmc_wl *wl = &display->wl;
+ 	unsigned long flags;
+ 
++	if (!wl->initialized)
++		return;
++
+ 	if (!__intel_dmc_wl_supported(display))
+ 		return;
+ 
+@@ -410,6 +420,9 @@ void intel_dmc_wl_put(struct intel_display *display, i915_reg_t reg)
+ 	struct intel_dmc_wl *wl = &display->wl;
+ 	unsigned long flags;
+ 
++	if (!wl->initialized)
++		return;
++
+ 	if (!__intel_dmc_wl_supported(display))
+ 		return;
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.h b/drivers/gpu/drm/i915/display/intel_dmc_wl.h
+index 147eeb4d8432..06c8b61d7e87 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc_wl.h
++++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.h
+@@ -15,6 +15,17 @@
+ struct intel_display;
+ 
+ struct intel_dmc_wl {
++	/*
++	 * There is a bit of a chicken and egg situation where we depend
++	 * on runtime info to know that DMC and wakelock are supported
++	 * by the hardware, and such information is grabbed via display
++	 * MMIO functions, which in turns call intel_dmc_wl_get() and
++	 * intel_dmc_wl_put() as part of their regular flow.
++	 *
++	 * So we need the initialized field to ensure that we turn the
++	 * get/put routines into a no-op until we have initialized.
++	 */
++	bool initialized;
+ 	spinlock_t lock; /* protects enabled, taken, dc_state and refcount */
+ 	bool enabled;
+ 	bool taken;
 -- 
 2.47.0
 
