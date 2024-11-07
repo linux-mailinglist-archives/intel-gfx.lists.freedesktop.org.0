@@ -2,53 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1C579C05C0
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Nov 2024 13:27:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 460099C05C1
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Nov 2024 13:27:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74BD810E81B;
-	Thu,  7 Nov 2024 12:27:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C2DA310E81D;
+	Thu,  7 Nov 2024 12:27:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LWJEHQmQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J5NlYpdm";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 32FF610E81B
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Nov 2024 12:27:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0372E10E81D
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 Nov 2024 12:27:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730982436; x=1762518436;
+ t=1730982439; x=1762518439;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=nESNKav9W22lrO+x1BloXZ2bSSVDMc5wrtE1CT4ghLM=;
- b=LWJEHQmQsW1ynU2YqVAS2p8mbKFZgclb0enY64W2TlIwTwnoSq1f0LLU
- drgm9UVDesEtb7vNeBmhdQB29sWa1Rx6XTTPzpc/mnas/XEpu455i6fPg
- m1ETkLDAUjmGKsoiTFUut1fZVhmG5/pDy0Nob/7otuUhnLH3Kivw0jdsE
- Y1Wh1n6CEvdXOFt1na7TWK44oVIoGHyd8Uq2O0KaOWnPiPbSmqyKe9XoV
- UUk1eqm3L/y0VlR2D5XFLtMvKxf6gRd2pFgvPLiY6CmsI6CGiBOwZaHmg
- DZiXJTh+mJRl7qYOxBOMHY+FmwxiMgxtDKSgUXHLvw8R1zj6Sao9wCcUr Q==;
-X-CSE-ConnectionGUID: disacplnS0O3Ccqy9gVFOg==
-X-CSE-MsgGUID: SWVXCz3PQDCKYdmQ82Mowg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="34516036"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="34516036"
+ bh=uTiH0SMzlqLtR62PM3E9zppy1+9saiUeb/sqHvsomJk=;
+ b=J5NlYpdmJxtCInIKo6soUpi4u+wj+HfCnbNo2xtjfk40TBVnt/Y22cfp
+ dafi/r9t41wnFC4HbeBU4Vq5MzRVv0SUKIuk3nwR73KoU8Gx6ZNzo+AUA
+ 8Tpaq8F+vSKKJ6/wLDO/kc6MVRfbsV9mwOspgMlbS7Jt9MPyLzYrqIZ6+
+ s6zAk0l0afZ/0RNuh9qBbNib5Xf5EHTFK101DwnNnLNGmXyyGJZhfx/bl
+ ZIrZwjKHi/krKSk2MlSKbV5+wNdneFxWnH9Z9IbFytLyeIAxdgVmtHuHJ
+ fnTaxPgtJSJ0IhD5UYikODDzUqFuswk6FMAymod5dWfF6jkNHn3dikeHW A==;
+X-CSE-ConnectionGUID: 4OGWSkFxQYOqCDZff/666g==
+X-CSE-MsgGUID: Ac2X4oRDRBCsdWWA56lp4Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="34516042"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="34516042"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2024 04:27:16 -0800
-X-CSE-ConnectionGUID: JtGEmZGVQZCQucCqAGMc7g==
-X-CSE-MsgGUID: CkIxwSvUSNOXQuGN2Di7lA==
+ 07 Nov 2024 04:27:19 -0800
+X-CSE-ConnectionGUID: yNoaP9hhSyShklNw3cpTjQ==
+X-CSE-MsgGUID: OP1xal1USFew4YKL/TSohg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,266,1728975600"; d="scan'208";a="85189421"
+X-IronPort-AV: E=Sophos;i="6.12,266,1728975600"; d="scan'208";a="85189464"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 07 Nov 2024 04:27:13 -0800
+ by fmviesa008.fm.intel.com with SMTP; 07 Nov 2024 04:27:16 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 07 Nov 2024 14:27:12 +0200
+ Thu, 07 Nov 2024 14:27:15 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v2 5/8] drm/i915/scaler: Convert the scaler code to
- intel_display
-Date: Thu,  7 Nov 2024 14:26:55 +0200
-Message-ID: <20241107122658.21901-6-ville.syrjala@linux.intel.com>
+Cc: Luca Coelho <luciano.coelho@intel.com>
+Subject: [PATCH v2 6/8] drm/i915/scaler: Carve up intel_atomic_setup_scalers()
+Date: Thu,  7 Nov 2024 14:26:56 +0200
+Message-ID: <20241107122658.21901-7-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241107122658.21901-1-ville.syrjala@linux.intel.com>
 References: <20241107122658.21901-1-ville.syrjala@linux.intel.com>
@@ -72,387 +71,137 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-struct intel_display will replace struct drm_i915_private as
-the main thing for display code. Convert the scaler code to
-use it (as much as possible at this stage).
+Declutter intel_atomic_setup_scalers() a bit by splitting
+the crtc scaling/pfit vs. plane scaling cases into their
+own functions.
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_scaler.c | 105 +++++++++++-----------
- 1 file changed, 53 insertions(+), 52 deletions(-)
+ drivers/gpu/drm/i915/display/skl_scaler.c | 92 ++++++++++++++---------
+ 1 file changed, 56 insertions(+), 36 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
-index 9f11ecf7066d..437fc19972c6 100644
+index 437fc19972c6..e29e29c4cbc3 100644
 --- a/drivers/gpu/drm/i915/display/skl_scaler.c
 +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-@@ -105,10 +105,10 @@ skl_update_scaler(struct intel_crtc_state *crtc_state, bool force_detach,
- 		  const struct drm_format_info *format,
- 		  u64 modifier, bool need_scaler)
- {
-+	struct intel_display *display = to_intel_display(crtc_state);
- 	struct intel_crtc_scaler_state *scaler_state =
- 		&crtc_state->scaler_state;
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
--	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	const struct drm_display_mode *adjusted_mode =
- 		&crtc_state->hw.adjusted_mode;
- 	int pipe_src_w = drm_rect_width(&crtc_state->pipe_src);
-@@ -130,9 +130,9 @@ skl_update_scaler(struct intel_crtc_state *crtc_state, bool force_detach,
- 	 * Once NV12 is enabled, handle it here while allocating scaler
- 	 * for NV12.
- 	 */
--	if (DISPLAY_VER(dev_priv) >= 9 && crtc_state->hw.enable &&
-+	if (DISPLAY_VER(display) >= 9 && crtc_state->hw.enable &&
- 	    need_scaler && adjusted_mode->flags & DRM_MODE_FLAG_INTERLACE) {
--		drm_dbg_kms(&dev_priv->drm,
-+		drm_dbg_kms(display->drm,
- 			    "Pipe/Plane scaling not supported with IF-ID mode\n");
- 		return -EINVAL;
- 	}
-@@ -152,7 +152,7 @@ skl_update_scaler(struct intel_crtc_state *crtc_state, bool force_detach,
- 			scaler_state->scaler_users &= ~(1 << scaler_user);
- 			scaler_state->scalers[*scaler_id].in_use = 0;
- 
--			drm_dbg_kms(&dev_priv->drm,
-+			drm_dbg_kms(display->drm,
- 				    "scaler_user index %u.%u: "
- 				    "Staged freeing scaler id %d scaler_users = 0x%x\n",
- 				    crtc->pipe, scaler_user, *scaler_id,
-@@ -164,7 +164,7 @@ skl_update_scaler(struct intel_crtc_state *crtc_state, bool force_detach,
- 
- 	if (format && intel_format_info_is_yuv_semiplanar(format, modifier) &&
- 	    (src_h < SKL_MIN_YUV_420_SRC_H || src_w < SKL_MIN_YUV_420_SRC_W)) {
--		drm_dbg_kms(&dev_priv->drm,
-+		drm_dbg_kms(display->drm,
- 			    "Planar YUV: src dimensions not met\n");
- 		return -EINVAL;
- 	}
-@@ -174,17 +174,17 @@ skl_update_scaler(struct intel_crtc_state *crtc_state, bool force_detach,
- 	min_dst_w = SKL_MIN_DST_W;
- 	min_dst_h = SKL_MIN_DST_H;
- 
--	if (DISPLAY_VER(dev_priv) < 11) {
-+	if (DISPLAY_VER(display) < 11) {
- 		max_src_w = SKL_MAX_SRC_W;
- 		max_src_h = SKL_MAX_SRC_H;
- 		max_dst_w = SKL_MAX_DST_W;
- 		max_dst_h = SKL_MAX_DST_H;
--	} else if (DISPLAY_VER(dev_priv) < 12) {
-+	} else if (DISPLAY_VER(display) < 12) {
- 		max_src_w = ICL_MAX_SRC_W;
- 		max_src_h = ICL_MAX_SRC_H;
- 		max_dst_w = ICL_MAX_DST_W;
- 		max_dst_h = ICL_MAX_DST_H;
--	} else if (DISPLAY_VER(dev_priv) < 14) {
-+	} else if (DISPLAY_VER(display) < 14) {
- 		max_src_w = TGL_MAX_SRC_W;
- 		max_src_h = TGL_MAX_SRC_H;
- 		max_dst_w = TGL_MAX_DST_W;
-@@ -201,7 +201,7 @@ skl_update_scaler(struct intel_crtc_state *crtc_state, bool force_detach,
- 	    dst_w < min_dst_w || dst_h < min_dst_h ||
- 	    src_w > max_src_w || src_h > max_src_h ||
- 	    dst_w > max_dst_w || dst_h > max_dst_h) {
--		drm_dbg_kms(&dev_priv->drm,
-+		drm_dbg_kms(display->drm,
- 			    "scaler_user index %u.%u: src %ux%u dst %ux%u "
- 			    "size is out of scaler range\n",
- 			    crtc->pipe, scaler_user, src_w, src_h,
-@@ -218,7 +218,7 @@ skl_update_scaler(struct intel_crtc_state *crtc_state, bool force_detach,
- 	 * now.
- 	 */
- 	if (pipe_src_w > max_dst_w || pipe_src_h > max_dst_h) {
--		drm_dbg_kms(&dev_priv->drm,
-+		drm_dbg_kms(display->drm,
- 			    "scaler_user index %u.%u: pipe src size %ux%u "
- 			    "is out of scaler range\n",
- 			    crtc->pipe, scaler_user, pipe_src_w, pipe_src_h);
-@@ -227,7 +227,7 @@ skl_update_scaler(struct intel_crtc_state *crtc_state, bool force_detach,
- 
- 	/* mark this plane as a scaler user in crtc_state */
- 	scaler_state->scaler_users |= (1 << scaler_user);
--	drm_dbg_kms(&dev_priv->drm, "scaler_user index %u.%u: "
-+	drm_dbg_kms(display->drm, "scaler_user index %u.%u: "
- 		    "staged scaling request for %ux%u->%ux%u scaler_users = 0x%x\n",
- 		    crtc->pipe, scaler_user, src_w, src_h, dst_w, dst_h,
- 		    scaler_state->scaler_users);
-@@ -297,6 +297,7 @@ static int intel_atomic_setup_scaler(struct intel_crtc_scaler_state *scaler_stat
- 				     struct intel_plane_state *plane_state,
- 				     int *scaler_id)
- {
-+	struct intel_display *display = to_intel_display(crtc);
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	int j;
- 	u32 mode;
-@@ -313,7 +314,7 @@ static int intel_atomic_setup_scaler(struct intel_crtc_scaler_state *scaler_stat
- 		}
- 	}
- 
--	if (drm_WARN(&dev_priv->drm, *scaler_id < 0,
-+	if (drm_WARN(display->drm, *scaler_id < 0,
- 		     "Cannot find scaler for %s:%d\n", name, idx))
- 		return -EINVAL;
- 
-@@ -323,7 +324,7 @@ static int intel_atomic_setup_scaler(struct intel_crtc_scaler_state *scaler_stat
- 	    plane_state->hw.fb->format->num_planes > 1) {
- 		struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
- 
--		if (DISPLAY_VER(dev_priv) == 9) {
-+		if (DISPLAY_VER(display) == 9) {
- 			mode = SKL_PS_SCALER_MODE_NV12;
- 		} else if (icl_is_hdr_plane(dev_priv, plane->id)) {
- 			/*
-@@ -341,7 +342,7 @@ static int intel_atomic_setup_scaler(struct intel_crtc_scaler_state *scaler_stat
- 			if (linked)
- 				mode |= PS_BINDING_Y_PLANE(linked->id);
- 		}
--	} else if (DISPLAY_VER(dev_priv) >= 10) {
-+	} else if (DISPLAY_VER(display) >= 10) {
- 		mode = PS_SCALER_MODE_NORMAL;
- 	} else if (num_scalers_need == 1 && crtc->num_scalers > 1) {
- 		/*
-@@ -375,7 +376,7 @@ static int intel_atomic_setup_scaler(struct intel_crtc_scaler_state *scaler_stat
- 		 * unnecessarily.
- 		 */
- 
--		if (DISPLAY_VER(dev_priv) >= 14) {
-+		if (DISPLAY_VER(display) >= 14) {
- 			/*
- 			 * On versions 14 and up, only the first
- 			 * scaler supports a vertical scaling factor
-@@ -388,7 +389,7 @@ static int intel_atomic_setup_scaler(struct intel_crtc_scaler_state *scaler_stat
- 			else
- 				max_vscale = 0x10000;
- 
--		} else if (DISPLAY_VER(dev_priv) >= 10 ||
-+		} else if (DISPLAY_VER(display) >= 10 ||
- 			   !intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier)) {
- 			max_hscale = 0x30000 - 1;
- 			max_vscale = 0x30000 - 1;
-@@ -407,7 +408,7 @@ static int intel_atomic_setup_scaler(struct intel_crtc_scaler_state *scaler_stat
- 		vscale = drm_rect_calc_vscale(src, dst, 1, max_vscale);
- 
- 		if (hscale < 0 || vscale < 0) {
--			drm_dbg_kms(&dev_priv->drm,
-+			drm_dbg_kms(display->drm,
- 				    "Scaler %d doesn't support required plane scaling\n",
- 				    *scaler_id);
- 			drm_rect_debug_print("src: ", src, true);
-@@ -417,7 +418,7 @@ static int intel_atomic_setup_scaler(struct intel_crtc_scaler_state *scaler_stat
- 		}
- 	}
- 
--	drm_dbg_kms(&dev_priv->drm, "Attached scaler id %u.%u to %s:%d\n",
-+	drm_dbg_kms(display->drm, "Attached scaler id %u.%u to %s:%d\n",
- 		    crtc->pipe, *scaler_id, name, idx);
- 	scaler_state->scalers[*scaler_id].mode = mode;
- 
-@@ -443,7 +444,7 @@ static int intel_atomic_setup_scaler(struct intel_crtc_scaler_state *scaler_stat
- int intel_atomic_setup_scalers(struct intel_atomic_state *state,
- 			       struct intel_crtc *crtc)
- {
--	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-+	struct intel_display *display = to_intel_display(crtc);
- 	struct intel_crtc_state *crtc_state =
- 		intel_atomic_get_new_crtc_state(state, crtc);
- 	struct intel_crtc_scaler_state *scaler_state =
-@@ -467,7 +468,7 @@ int intel_atomic_setup_scalers(struct intel_atomic_state *state,
- 
- 	/* fail if required scalers > available scalers */
- 	if (num_scalers_need > crtc->num_scalers) {
--		drm_dbg_kms(&dev_priv->drm,
-+		drm_dbg_kms(display->drm,
- 			    "Too many scaling requests %d > %d\n",
- 			    num_scalers_need, crtc->num_scalers);
- 		return -EINVAL;
-@@ -492,10 +493,10 @@ int intel_atomic_setup_scalers(struct intel_atomic_state *state,
- 			scaler_id = &scaler_state->scaler_id;
- 		} else {
- 			struct intel_plane *plane =
--				to_intel_plane(drm_plane_from_index(&dev_priv->drm, i));
-+				to_intel_plane(drm_plane_from_index(display->drm, i));
- 
- 			/* plane on different crtc cannot be a scaler user of this crtc */
--			if (drm_WARN_ON(&dev_priv->drm, plane->pipe != crtc->pipe))
-+			if (drm_WARN_ON(display->drm, plane->pipe != crtc->pipe))
- 				continue;
- 
- 			plane_state = intel_atomic_get_new_plane_state(state, plane);
-@@ -505,7 +506,7 @@ int intel_atomic_setup_scalers(struct intel_atomic_state *state,
- 			 * isn't necessary to change between HQ and dyn mode
- 			 * on those platforms.
- 			 */
--			if (!plane_state && DISPLAY_VER(dev_priv) >= 10)
-+			if (!plane_state && DISPLAY_VER(display) >= 10)
- 				continue;
- 
- 			plane_state = intel_atomic_get_plane_state(state, plane);
-@@ -574,12 +575,12 @@ static u16 glk_nearest_filter_coef(int t)
-  *
-  */
- 
--static void glk_program_nearest_filter_coefs(struct drm_i915_private *dev_priv,
-+static void glk_program_nearest_filter_coefs(struct intel_display *display,
- 					     enum pipe pipe, int id, int set)
- {
- 	int i;
- 
--	intel_de_write_fw(dev_priv, GLK_PS_COEF_INDEX_SET(pipe, id, set),
-+	intel_de_write_fw(display, GLK_PS_COEF_INDEX_SET(pipe, id, set),
- 			  PS_COEF_INDEX_AUTO_INC);
- 
- 	for (i = 0; i < 17 * 7; i += 2) {
-@@ -592,11 +593,11 @@ static void glk_program_nearest_filter_coefs(struct drm_i915_private *dev_priv,
- 		t = glk_coef_tap(i + 1);
- 		tmp |= glk_nearest_filter_coef(t) << 16;
- 
--		intel_de_write_fw(dev_priv, GLK_PS_COEF_DATA_SET(pipe, id, set),
-+		intel_de_write_fw(display, GLK_PS_COEF_DATA_SET(pipe, id, set),
- 				  tmp);
- 	}
- 
--	intel_de_write_fw(dev_priv, GLK_PS_COEF_INDEX_SET(pipe, id, set), 0);
-+	intel_de_write_fw(display, GLK_PS_COEF_INDEX_SET(pipe, id, set), 0);
+@@ -425,6 +425,55 @@ static int intel_atomic_setup_scaler(struct intel_crtc_scaler_state *scaler_stat
+ 	return 0;
  }
  
- static u32 skl_scaler_get_filter_select(enum drm_scaling_filter filter, int set)
-@@ -612,14 +613,14 @@ static u32 skl_scaler_get_filter_select(enum drm_scaling_filter filter, int set)
- 	return PS_FILTER_MEDIUM;
- }
++static int setup_crtc_scaler(struct intel_atomic_state *state,
++			     struct intel_crtc *crtc)
++{
++	struct intel_crtc_state *crtc_state =
++		intel_atomic_get_new_crtc_state(state, crtc);
++	struct intel_crtc_scaler_state *scaler_state =
++		&crtc_state->scaler_state;
++
++	return intel_atomic_setup_scaler(scaler_state,
++					 hweight32(scaler_state->scaler_users),
++					 crtc, "CRTC", crtc->base.base.id,
++					 NULL, &scaler_state->scaler_id);
++}
++
++static int setup_plane_scaler(struct intel_atomic_state *state,
++			      struct intel_crtc *crtc,
++			      struct intel_plane *plane)
++{
++	struct intel_display *display = to_intel_display(state);
++	struct intel_crtc_state *crtc_state =
++		intel_atomic_get_new_crtc_state(state, crtc);
++	struct intel_crtc_scaler_state *scaler_state =
++		&crtc_state->scaler_state;
++	struct intel_plane_state *plane_state;
++
++	/* plane on different crtc cannot be a scaler user of this crtc */
++	if (drm_WARN_ON(display->drm, plane->pipe != crtc->pipe))
++		return 0;
++
++	plane_state = intel_atomic_get_new_plane_state(state, plane);
++
++	/*
++	 * GLK+ scalers don't have a HQ mode so it
++	 * isn't necessary to change between HQ and dyn mode
++	 * on those platforms.
++	 */
++	if (!plane_state && DISPLAY_VER(display) >= 10)
++		return 0;
++
++	plane_state = intel_atomic_get_plane_state(state, plane);
++	if (IS_ERR(plane_state))
++		return PTR_ERR(plane_state);
++
++	return intel_atomic_setup_scaler(scaler_state,
++					 hweight32(scaler_state->scaler_users),
++					 crtc, "PLANE", plane->base.base.id,
++					 plane_state, &plane_state->scaler_id);
++}
++
+ /**
+  * intel_atomic_setup_scalers() - setup scalers for crtc per staged requests
+  * @state: atomic state
+@@ -476,53 +525,24 @@ int intel_atomic_setup_scalers(struct intel_atomic_state *state,
  
--static void skl_scaler_setup_filter(struct drm_i915_private *dev_priv, enum pipe pipe,
-+static void skl_scaler_setup_filter(struct intel_display *display, enum pipe pipe,
- 				    int id, int set, enum drm_scaling_filter filter)
- {
- 	switch (filter) {
- 	case DRM_SCALING_FILTER_DEFAULT:
- 		break;
- 	case DRM_SCALING_FILTER_NEAREST_NEIGHBOR:
--		glk_program_nearest_filter_coefs(dev_priv, pipe, id, set);
-+		glk_program_nearest_filter_coefs(display, pipe, id, set);
- 		break;
- 	default:
- 		MISSING_CASE(filter);
-@@ -628,8 +629,8 @@ static void skl_scaler_setup_filter(struct drm_i915_private *dev_priv, enum pipe
+ 	/* walkthrough scaler_users bits and start assigning scalers */
+ 	for (i = 0; i < sizeof(scaler_state->scaler_users) * 8; i++) {
+-		struct intel_plane_state *plane_state = NULL;
+-		int *scaler_id;
+-		const char *name;
+-		int idx, ret;
++		int ret;
  
- void skl_pfit_enable(const struct intel_crtc_state *crtc_state)
- {
-+	struct intel_display *display = to_intel_display(crtc_state);
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
--	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	const struct intel_crtc_scaler_state *scaler_state =
- 		&crtc_state->scaler_state;
- 	const struct drm_rect *dst = &crtc_state->pch_pfit.dst;
-@@ -647,7 +648,7 @@ void skl_pfit_enable(const struct intel_crtc_state *crtc_state)
- 	if (!crtc_state->pch_pfit.enabled)
- 		return;
- 
--	if (drm_WARN_ON(&dev_priv->drm,
-+	if (drm_WARN_ON(display->drm,
- 			crtc_state->scaler_state.scaler_id < 0))
- 		return;
- 
-@@ -666,18 +667,18 @@ void skl_pfit_enable(const struct intel_crtc_state *crtc_state)
- 	ps_ctrl = PS_SCALER_EN | PS_BINDING_PIPE | scaler_state->scalers[id].mode |
- 		skl_scaler_get_filter_select(crtc_state->hw.scaling_filter, 0);
- 
--	skl_scaler_setup_filter(dev_priv, pipe, id, 0,
-+	skl_scaler_setup_filter(display, pipe, id, 0,
- 				crtc_state->hw.scaling_filter);
- 
--	intel_de_write_fw(dev_priv, SKL_PS_CTRL(pipe, id), ps_ctrl);
-+	intel_de_write_fw(display, SKL_PS_CTRL(pipe, id), ps_ctrl);
- 
--	intel_de_write_fw(dev_priv, SKL_PS_VPHASE(pipe, id),
-+	intel_de_write_fw(display, SKL_PS_VPHASE(pipe, id),
- 			  PS_Y_PHASE(0) | PS_UV_RGB_PHASE(uv_rgb_vphase));
--	intel_de_write_fw(dev_priv, SKL_PS_HPHASE(pipe, id),
-+	intel_de_write_fw(display, SKL_PS_HPHASE(pipe, id),
- 			  PS_Y_PHASE(0) | PS_UV_RGB_PHASE(uv_rgb_hphase));
--	intel_de_write_fw(dev_priv, SKL_PS_WIN_POS(pipe, id),
-+	intel_de_write_fw(display, SKL_PS_WIN_POS(pipe, id),
- 			  PS_WIN_XPOS(x) | PS_WIN_YPOS(y));
--	intel_de_write_fw(dev_priv, SKL_PS_WIN_SZ(pipe, id),
-+	intel_de_write_fw(display, SKL_PS_WIN_SZ(pipe, id),
- 			  PS_WIN_XSIZE(width) | PS_WIN_YSIZE(height));
- }
- 
-@@ -686,6 +687,7 @@ skl_program_plane_scaler(struct intel_plane *plane,
- 			 const struct intel_crtc_state *crtc_state,
- 			 const struct intel_plane_state *plane_state)
- {
-+	struct intel_display *display = to_intel_display(plane);
- 	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
- 	const struct drm_framebuffer *fb = plane_state->hw.fb;
- 	enum pipe pipe = plane->pipe;
-@@ -729,28 +731,27 @@ skl_program_plane_scaler(struct intel_plane *plane,
- 	ps_ctrl = PS_SCALER_EN | PS_BINDING_PLANE(plane->id) | scaler->mode |
- 		skl_scaler_get_filter_select(plane_state->hw.scaling_filter, 0);
- 
--	skl_scaler_setup_filter(dev_priv, pipe, scaler_id, 0,
-+	skl_scaler_setup_filter(display, pipe, scaler_id, 0,
- 				plane_state->hw.scaling_filter);
- 
--	intel_de_write_fw(dev_priv, SKL_PS_CTRL(pipe, scaler_id), ps_ctrl);
--	intel_de_write_fw(dev_priv, SKL_PS_VPHASE(pipe, scaler_id),
-+	intel_de_write_fw(display, SKL_PS_CTRL(pipe, scaler_id), ps_ctrl);
-+	intel_de_write_fw(display, SKL_PS_VPHASE(pipe, scaler_id),
- 			  PS_Y_PHASE(y_vphase) | PS_UV_RGB_PHASE(uv_rgb_vphase));
--	intel_de_write_fw(dev_priv, SKL_PS_HPHASE(pipe, scaler_id),
-+	intel_de_write_fw(display, SKL_PS_HPHASE(pipe, scaler_id),
- 			  PS_Y_PHASE(y_hphase) | PS_UV_RGB_PHASE(uv_rgb_hphase));
--	intel_de_write_fw(dev_priv, SKL_PS_WIN_POS(pipe, scaler_id),
-+	intel_de_write_fw(display, SKL_PS_WIN_POS(pipe, scaler_id),
- 			  PS_WIN_XPOS(crtc_x) | PS_WIN_YPOS(crtc_y));
--	intel_de_write_fw(dev_priv, SKL_PS_WIN_SZ(pipe, scaler_id),
-+	intel_de_write_fw(display, SKL_PS_WIN_SZ(pipe, scaler_id),
- 			  PS_WIN_XSIZE(crtc_w) | PS_WIN_YSIZE(crtc_h));
- }
- 
- static void skl_detach_scaler(struct intel_crtc *crtc, int id)
- {
--	struct drm_device *dev = crtc->base.dev;
--	struct drm_i915_private *dev_priv = to_i915(dev);
-+	struct intel_display *display = to_intel_display(crtc);
- 
--	intel_de_write_fw(dev_priv, SKL_PS_CTRL(crtc->pipe, id), 0);
--	intel_de_write_fw(dev_priv, SKL_PS_WIN_POS(crtc->pipe, id), 0);
--	intel_de_write_fw(dev_priv, SKL_PS_WIN_SZ(crtc->pipe, id), 0);
-+	intel_de_write_fw(display, SKL_PS_CTRL(crtc->pipe, id), 0);
-+	intel_de_write_fw(display, SKL_PS_WIN_POS(crtc->pipe, id), 0);
-+	intel_de_write_fw(display, SKL_PS_WIN_SZ(crtc->pipe, id), 0);
- }
- 
- /*
-@@ -781,8 +782,8 @@ void skl_scaler_disable(const struct intel_crtc_state *old_crtc_state)
- 
- void skl_scaler_get_config(struct intel_crtc_state *crtc_state)
- {
-+	struct intel_display *display = to_intel_display(crtc_state);
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
--	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	struct intel_crtc_scaler_state *scaler_state = &crtc_state->scaler_state;
- 	int id = -1;
- 	int i;
-@@ -791,15 +792,15 @@ void skl_scaler_get_config(struct intel_crtc_state *crtc_state)
- 	for (i = 0; i < crtc->num_scalers; i++) {
- 		u32 ctl, pos, size;
- 
--		ctl = intel_de_read(dev_priv, SKL_PS_CTRL(crtc->pipe, i));
-+		ctl = intel_de_read(display, SKL_PS_CTRL(crtc->pipe, i));
- 		if ((ctl & (PS_SCALER_EN | PS_BINDING_MASK)) != (PS_SCALER_EN | PS_BINDING_PIPE))
+ 		/* skip if scaler not required */
+ 		if (!(scaler_state->scaler_users & (1 << i)))
  			continue;
  
- 		id = i;
- 		crtc_state->pch_pfit.enabled = true;
+ 		if (i == SKL_CRTC_INDEX) {
+-			name = "CRTC";
+-			idx = crtc->base.base.id;
+-
+-			/* panel fitter case: assign as a crtc scaler */
+-			scaler_id = &scaler_state->scaler_id;
++			ret = setup_crtc_scaler(state, crtc);
++			if (ret)
++				return ret;
+ 		} else {
+ 			struct intel_plane *plane =
+ 				to_intel_plane(drm_plane_from_index(display->drm, i));
  
--		pos = intel_de_read(dev_priv, SKL_PS_WIN_POS(crtc->pipe, i));
--		size = intel_de_read(dev_priv, SKL_PS_WIN_SZ(crtc->pipe, i));
-+		pos = intel_de_read(display, SKL_PS_WIN_POS(crtc->pipe, i));
-+		size = intel_de_read(display, SKL_PS_WIN_SZ(crtc->pipe, i));
+-			/* plane on different crtc cannot be a scaler user of this crtc */
+-			if (drm_WARN_ON(display->drm, plane->pipe != crtc->pipe))
+-				continue;
+-
+-			plane_state = intel_atomic_get_new_plane_state(state, plane);
+-
+-			/*
+-			 * GLK+ scalers don't have a HQ mode so it
+-			 * isn't necessary to change between HQ and dyn mode
+-			 * on those platforms.
+-			 */
+-			if (!plane_state && DISPLAY_VER(display) >= 10)
+-				continue;
+-
+-			plane_state = intel_atomic_get_plane_state(state, plane);
+-			if (IS_ERR(plane_state))
+-				return PTR_ERR(plane_state);
+-
+-			name = "PLANE";
+-			idx = plane->base.base.id;
+-			scaler_id = &plane_state->scaler_id;
++			ret = setup_plane_scaler(state, crtc, plane);
++			if (ret)
++				return ret;
+ 		}
+-
+-		ret = intel_atomic_setup_scaler(scaler_state, num_scalers_need,
+-						crtc, name, idx,
+-						plane_state, scaler_id);
+-		if (ret < 0)
+-			return ret;
+ 	}
  
- 		drm_rect_init(&crtc_state->pch_pfit.dst,
- 			      REG_FIELD_GET(PS_WIN_XPOS_MASK, pos),
+ 	return 0;
 -- 
 2.45.2
 
