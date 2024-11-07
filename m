@@ -2,53 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76F339C0DCC
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Nov 2024 19:30:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D8AEA9C0DCD
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Nov 2024 19:30:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BAE510E8C3;
-	Thu,  7 Nov 2024 18:30:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B06B10E8B3;
+	Thu,  7 Nov 2024 18:30:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I/YusnOI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CkIDjv4f";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09F7510E8AD;
- Thu,  7 Nov 2024 18:30:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85CF510E8C7;
+ Thu,  7 Nov 2024 18:30:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731004204; x=1762540204;
+ t=1731004205; x=1762540205;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=LqcFK/TmYZMoq2cOnMb1ZurbNOcL7clXuUs1T6a/9eo=;
- b=I/YusnOIj7aMA/uBCmIXmH5TZbKv/MLkDORHURMpw0s49qLb3Ws/Tp6e
- O05u1O4Hmb/TOeT04fzvN1nchRWm+mSkqw/rHnzacKBwhFg26y3ZPzkIX
- kSMUeVydsEl7PEmffHeKAzio10RJMiHZy7M8Cnovq6AUVjPdXeHe6e8FK
- 29CnovnVzsa/avi55HAudNnyyLAyTQo88kuwve3TR9nUfmCggr9Bk09SS
- c1bdL18Tz3SDsnTkDzFT5tbPWVkkBQB7PFk9jcIbZTW51Uf/hHP+xjgnV
- 8OWxSBQ+r80WVkhWub/cmEHcP2hgbplmD0meZ0Gha3kWhx6ROLae7rx9z Q==;
-X-CSE-ConnectionGUID: ceiF2BzBR5G2O8Bkki+UdQ==
-X-CSE-MsgGUID: lut7MAyfR9yBbz2/Yg7D3A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11249"; a="18494884"
-X-IronPort-AV: E=Sophos;i="6.12,135,1728975600"; d="scan'208";a="18494884"
+ bh=Iad2CKhcAUELaMjfgsKbpibE+MrNNnE3xGaCB/3iNN8=;
+ b=CkIDjv4f/Z8gSWFoya5OqiwGUy6FqElwEuPtpHLCDKcLKuI2nKxpmQEC
+ CC/duWXjZ9SatpRwo4u7b9EZjDQ7/XqwTV+FvluasUDmW6IccZKm+2sN9
+ cAlR4m4sz/7ST+AEJrvVkphdLTj+m8UDgcvYdKf+4w0+rddQIGe1OyGly
+ wtn8YWFHHT9A7+vcC0n1iKcamKpyuwZeC9PHVqiNQLI+MknShvQ/qi6hu
+ XI2neP9uOUON/yCtPFgKOGFEeWd0cqZfUEOLOmP25Fjv4qtaxP4YUUQq5
+ kyM9t0+ahpdBAWShzqwR1uIxvmGWtVJ1l5Wqvh7NGmYUq+0zJCSn6JAxA g==;
+X-CSE-ConnectionGUID: owmAJPB4QTOjUmYFM93bxg==
+X-CSE-MsgGUID: qpZ5U+iKQWimEEmO+sUF9w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11249"; a="18494889"
+X-IronPort-AV: E=Sophos;i="6.12,135,1728975600"; d="scan'208";a="18494889"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2024 10:30:03 -0800
-X-CSE-ConnectionGUID: sd2vP4bKRFqMS1jIVrt93A==
-X-CSE-MsgGUID: xULtniqmRAGeakA8iX38SA==
+ 07 Nov 2024 10:30:05 -0800
+X-CSE-ConnectionGUID: sXFWKVFKSkenGrKmM+lJRg==
+X-CSE-MsgGUID: giMJ9s9KRA6mVN1VkIRPgQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,135,1728975600"; d="scan'208";a="85329684"
+X-IronPort-AV: E=Sophos;i="6.12,135,1728975600"; d="scan'208";a="85329708"
 Received: from rchatre-mobl4.amr.corp.intel.com (HELO
  gjsousa-mobl2.corp.amr.intel.com) ([10.125.110.154])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2024 10:30:02 -0800
+ 07 Nov 2024 10:30:04 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Luca Coelho <luciano.coelho@intel.com>, Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v3 13/18] drm/i915/dmc_wl: Add and use HAS_DMC_WAKELOCK()
-Date: Thu,  7 Nov 2024 15:27:18 -0300
-Message-ID: <20241107182921.102193-14-gustavo.sousa@intel.com>
+Subject: [PATCH v3 14/18] drm/i915/dmc_wl: Init only after we have runtime
+ device info
+Date: Thu,  7 Nov 2024 15:27:19 -0300
+Message-ID: <20241107182921.102193-15-gustavo.sousa@intel.com>
 X-Mailer: git-send-email 2.47.0
 In-Reply-To: <20241107182921.102193-1-gustavo.sousa@intel.com>
 References: <20241107182921.102193-1-gustavo.sousa@intel.com>
@@ -69,56 +70,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-A HAS_DMC_WAKELOCK() macro gives more semantic than openly checking the
-display version. Define it and use it where appropriate.
+We should be able to use the DMC wakelock only if the display hardware
+has support for DMC. We will add a check for that in an upcoming change.
 
-v2:
-  - Make this patch contain only the non-functional refactor. Functional
-    changes related to including HAS_DMC() in the macro are done in
-    upcoming changes. (Jani)
+Since info for DMC availability (HAS_DMC()) needs runtime device info,
+move the call to intel_dmc_wl_init() to a place where we know we have
+the hardware has been probed for such an info (i.e. after
+intel_display_device_info_runtime_init()).
 
-Cc: Jani Nikula <jani.nikula@intel.com>
 Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_device.h | 1 +
- drivers/gpu/drm/i915/display/intel_dmc_wl.c         | 4 ++--
- 2 files changed, 3 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_driver.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index 14d16d111ae3..a8a0b4332247 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -147,6 +147,7 @@ struct intel_display_platforms {
- #define HAS_DDI(i915)			(DISPLAY_INFO(i915)->has_ddi)
- #define HAS_DISPLAY(i915)		(DISPLAY_RUNTIME_INFO(i915)->pipe_mask != 0)
- #define HAS_DMC(i915)			(DISPLAY_RUNTIME_INFO(i915)->has_dmc)
-+#define HAS_DMC_WAKELOCK(i915)		(DISPLAY_VER(i915) >= 20)
- #define HAS_DOUBLE_BUFFERED_M_N(i915)	(DISPLAY_VER(i915) >= 9 || IS_BROADWELL(i915))
- #define HAS_DOUBLE_WIDE(i915)		(DISPLAY_VER(i915) < 4)
- #define HAS_DP_MST(i915)		(DISPLAY_INFO(i915)->has_dp_mst)
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-index f2d64954916a..4ca2b990ec6a 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-@@ -262,7 +262,7 @@ static bool intel_dmc_wl_check_range(i915_reg_t reg, u32 dc_state)
+diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+index 56b78cf6b854..4257cc380475 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_driver.c
++++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+@@ -200,7 +200,6 @@ void intel_display_driver_early_probe(struct drm_i915_private *i915)
+ 	intel_dpll_init_clock_hook(i915);
+ 	intel_init_display_hooks(i915);
+ 	intel_fdi_init_hook(i915);
+-	intel_dmc_wl_init(&i915->display);
+ }
  
- static bool __intel_dmc_wl_supported(struct intel_display *display)
- {
--	if (DISPLAY_VER(display) < 20 ||
-+	if (!HAS_DMC_WAKELOCK(display) ||
- 	    !intel_dmc_has_payload(display) ||
- 	    !display->params.enable_dmc_wl)
- 		return false;
-@@ -275,7 +275,7 @@ void intel_dmc_wl_init(struct intel_display *display)
- 	struct intel_dmc_wl *wl = &display->wl;
+ /* part #1: call before irq install */
+@@ -238,6 +237,7 @@ int intel_display_driver_probe_noirq(struct drm_i915_private *i915)
+ 		return 0;
  
- 	/* don't call __intel_dmc_wl_supported(), DMC is not loaded yet */
--	if (DISPLAY_VER(display) < 20 || !display->params.enable_dmc_wl)
-+	if (!HAS_DMC_WAKELOCK(display) || !display->params.enable_dmc_wl)
- 		return;
+ 	intel_dmc_init(display);
++	intel_dmc_wl_init(display);
  
- 	INIT_DELAYED_WORK(&wl->work, intel_dmc_wl_work);
+ 	i915->display.wq.modeset = alloc_ordered_workqueue("i915_modeset", 0);
+ 	i915->display.wq.flip = alloc_workqueue("i915_flip", WQ_HIGHPRI |
 -- 
 2.47.0
 
