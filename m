@@ -2,54 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EE7D9C0DBF
+	by mail.lfdr.de (Postfix) with ESMTPS id E243F9C0DC0
 	for <lists+intel-gfx@lfdr.de>; Thu,  7 Nov 2024 19:29:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C023010E8A1;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBD2510E8A7;
 	Thu,  7 Nov 2024 18:29:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YSTaDRLD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ed5rspj1";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 29C6210E8A1;
- Thu,  7 Nov 2024 18:29:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7FEA410E8A1;
+ Thu,  7 Nov 2024 18:29:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731004183; x=1762540183;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=KccBUcCjbdm6/leEX0NdaVb+C+hU8/dYMaiGNA3QEtI=;
- b=YSTaDRLDpM8AF922UCk34WYYoyAphuDgPZdVwocSFT1/L1j7r8mUIIje
- ZG9+1qIgp3GGAak0lhd9YU25sp5Gm2zDbYL985GBsmw0tpksIvQlfDKJE
- kkWBLyFGs0ZCA55joU+3JVigcey7ANyG4U7yBvVc44hMyfY6ge4bp+zu8
- zagCXfR4CaTy0fVTmwKFLrg/01nEzPBNVaOM4lyogjRww3al4jVNllbxg
- wFBfZjBH4VRaXmjL7j6akuhsDR2EPTyiS+yfOCJeehPiC3LWBQ2M2LcCT
- PvAnfDHH11hT6K9SOKSWcdVyz8nl4ihwSp/8mikHqtGiUqWpEW3EtiYz7 w==;
-X-CSE-ConnectionGUID: BraGIMs0QQaNel2100Po0A==
-X-CSE-MsgGUID: cMlXXZegQ7i8hRyoFSafmw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11249"; a="18494835"
-X-IronPort-AV: E=Sophos;i="6.12,135,1728975600"; d="scan'208";a="18494835"
+ t=1731004184; x=1762540184;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=K6I+UG1ro/PCMoBy6LL6IWVTYI48329yETnRx1L9Srw=;
+ b=ed5rspj18WUlB/IXzz2v7Z9MxPaJNwjuXDNC7wn33TcbwtT6ZYYDK0QY
+ 9JmrZCuhpX081yrAeD6PNNoPKpZQGdBjiCVaCTFkg8lgNCaOs6WkCvlbu
+ wYJ6NhTZekH5tqlxZXwOriC+4aq9tpu53CS/goZs2LXplrP+DFOQI2yRL
+ ylmuWPjGDdHyX2OWcSClAyAneYMeJioVv+yQcNYJm89Ye6AfqZrNsJUaF
+ JpMNmPfKK2zqtiOS0hiZCMfsY+2lPcjlq/SNQS9DC4dns5iqngU2lf9fG
+ HrcXlS8hk/UpZVKeNf6dp3ALgF5IDKPBfjg5IdTZhqOpDoXl4PCpl5pHD A==;
+X-CSE-ConnectionGUID: Ix9OAP1HSe+OO6HnuSyUVQ==
+X-CSE-MsgGUID: IJOf0Z9GQLivKrhglmcXHw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11249"; a="18494836"
+X-IronPort-AV: E=Sophos;i="6.12,135,1728975600"; d="scan'208";a="18494836"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2024 10:29:42 -0800
-X-CSE-ConnectionGUID: /9YMOmLlR1ed9R9/OB7MWQ==
-X-CSE-MsgGUID: +KnQZoX4QOqruekwaHQd4g==
+ 07 Nov 2024 10:29:44 -0800
+X-CSE-ConnectionGUID: 3auE/RKOR9yOJuPi5lpGtw==
+X-CSE-MsgGUID: CdAflu3STi2jVd9n6t6+SQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,135,1728975600"; d="scan'208";a="85329557"
+X-IronPort-AV: E=Sophos;i="6.12,135,1728975600"; d="scan'208";a="85329564"
 Received: from rchatre-mobl4.amr.corp.intel.com (HELO
  gjsousa-mobl2.corp.amr.intel.com) ([10.125.110.154])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2024 10:29:41 -0800
+ 07 Nov 2024 10:29:43 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Luca Coelho <luciano.coelho@intel.com>, Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v3 00/18] drm/i915/dmc_wl: Fixes and enablement for Xe3_LPD
-Date: Thu,  7 Nov 2024 15:27:05 -0300
-Message-ID: <20241107182921.102193-1-gustavo.sousa@intel.com>
+Subject: [PATCH v3 01/18] drm/i915/dmc_wl: Use i915_mmio_reg_offset() instead
+ of reg.reg
+Date: Thu,  7 Nov 2024 15:27:06 -0300
+Message-ID: <20241107182921.102193-2-gustavo.sousa@intel.com>
 X-Mailer: git-send-email 2.47.0
+In-Reply-To: <20241107182921.102193-1-gustavo.sousa@intel.com>
+References: <20241107182921.102193-1-gustavo.sousa@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -67,43 +70,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Using the DMC wakelock is the official recommendation for Xe3_LPD. This
-series apply fixes to the current DMC wakelock implementation and
-enables it by default for Xe3_LPD. The series has been tested with a PTL
-machine.
+The macro i915_mmio_reg_offset() is the proper interface to get a
+register's offset. Use that instead of looking directly at reg.reg.
 
-Gustavo Sousa (18):
-  drm/i915/dmc_wl: Use i915_mmio_reg_offset() instead of reg.reg
-  drm/xe: Mimic i915 behavior for non-sleeping MMIO wait
-  drm/i915/dmc_wl: Use non-sleeping variant of MMIO wait
-  drm/i915/dmc_wl: Check for non-zero refcount in release work
-  drm/i915/dmc_wl: Get wakelock when disabling dynamic DC states
-  drm/i915/dmc_wl: Use sentinel item for range tables
-  drm/i915/dmc_wl: Extract intel_dmc_wl_reg_in_range()
-  drm/i915/dmc_wl: Rename lnl_wl_range to powered_off_ranges
-  drm/i915/dmc_wl: Track registers touched by the DMC
-  drm/i915/dmc_wl: Allow simpler syntax for single reg in range tables
-  drm/i915/dmc_wl: Deal with existing references when disabling
-  drm/i915/dmc_wl: Couple enable/disable with dynamic DC states
-  drm/i915/dmc_wl: Add and use HAS_DMC_WAKELOCK()
-  drm/i915/dmc_wl: Init only after we have runtime device info
-  drm/i915/dmc_wl: Use HAS_DMC() in HAS_DMC_WAKELOCK()
-  drm/i915/dmc_wl: Sanitize enable_dmc_wl according to hardware support
-  drm/i915/dmc_wl: Do nothing until initialized
-  drm/i915/xe3lpd: Use DMC wakelock by default
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
+Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dmc_wl.c | 11 ++++++-----
+ 1 file changed, 6 insertions(+), 5 deletions(-)
 
- drivers/gpu/drm/i915/display/intel_de.h       |  10 +
- .../drm/i915/display/intel_display_device.h   |   1 +
- .../drm/i915/display/intel_display_driver.c   |   2 +-
- .../drm/i915/display/intel_display_params.c   |   6 +-
- .../drm/i915/display/intel_display_params.h   |   2 +-
- .../i915/display/intel_display_power_well.c   |  19 +-
- drivers/gpu/drm/i915/display/intel_dmc.c      |   4 -
- drivers/gpu/drm/i915/display/intel_dmc_wl.c   | 311 ++++++++++++++----
- drivers/gpu/drm/i915/display/intel_dmc_wl.h   |  24 +-
- .../drm/xe/compat-i915-headers/intel_uncore.h |  11 +-
- 10 files changed, 317 insertions(+), 73 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+index 5634ff07269d..05892a237d3a 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
++++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+@@ -91,14 +91,15 @@ static void intel_dmc_wl_work(struct work_struct *work)
+ 	spin_unlock_irqrestore(&wl->lock, flags);
+ }
+ 
+-static bool intel_dmc_wl_check_range(u32 address)
++static bool intel_dmc_wl_check_range(i915_reg_t reg)
+ {
+ 	int i;
+ 	bool wl_needed = false;
++	u32 offset = i915_mmio_reg_offset(reg);
+ 
+ 	for (i = 0; i < ARRAY_SIZE(lnl_wl_range); i++) {
+-		if (address >= lnl_wl_range[i].start &&
+-		    address <= lnl_wl_range[i].end) {
++		if (offset >= lnl_wl_range[i].start &&
++		    offset <= lnl_wl_range[i].end) {
+ 			wl_needed = true;
+ 			break;
+ 		}
+@@ -191,7 +192,7 @@ void intel_dmc_wl_get(struct intel_display *display, i915_reg_t reg)
+ 	if (!__intel_dmc_wl_supported(display))
+ 		return;
+ 
+-	if (!intel_dmc_wl_check_range(reg.reg))
++	if (!intel_dmc_wl_check_range(reg))
+ 		return;
+ 
+ 	spin_lock_irqsave(&wl->lock, flags);
+@@ -239,7 +240,7 @@ void intel_dmc_wl_put(struct intel_display *display, i915_reg_t reg)
+ 	if (!__intel_dmc_wl_supported(display))
+ 		return;
+ 
+-	if (!intel_dmc_wl_check_range(reg.reg))
++	if (!intel_dmc_wl_check_range(reg))
+ 		return;
+ 
+ 	spin_lock_irqsave(&wl->lock, flags);
 -- 
 2.47.0
 
