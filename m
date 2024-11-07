@@ -2,60 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80A749C0114
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Nov 2024 10:23:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BB88E9C01C0
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Nov 2024 11:02:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CE6E10E7D9;
-	Thu,  7 Nov 2024 09:23:44 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YYiIUiDd";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8C8410E7E1;
+	Thu,  7 Nov 2024 10:01:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD0EB10E7D9;
- Thu,  7 Nov 2024 09:23:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730971423; x=1762507423;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=OBUD/204qlj6bzQRg79Gn2Ndm493ntuSBndlDDRNH5k=;
- b=YYiIUiDdW/APQqw5zWmarUXsLQnasM1/jNJYibEUR059SjxMGt7JO+nb
- +SicwFQbmrDCmYpiHBvvLF3wEpf4HywdwD1jW2nvqQa3JLRoMhL46ifNU
- D1fO0TLuLCzu05AWhV1Ckd0IStlD7V49odaRerCJS9iszFdghh96eCJmK
- YE/pRRtC2M0+mMia2qoozt9fTiugQUjT+88l8L6hmYupBUVI5v5IPpCnt
- I0/ucZpdCrwZV8EBbo9BdKFkprTwpC4gVCelDUlgbj/r0VajqtBd4cYPP
- WTYl2DTqnimIGbOkQ4dPPqh3hYoECMbVEd1k51qR/zKJl6jDBNm6j2r72 A==;
-X-CSE-ConnectionGUID: tEfegkR8Q52aJFNw/O74GA==
-X-CSE-MsgGUID: 5p5iuWwnQy6OphjQiRA3QQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="41356526"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="41356526"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2024 01:23:43 -0800
-X-CSE-ConnectionGUID: q16qvZvQSSiT7HQOiOokIw==
-X-CSE-MsgGUID: AhpkYlsKR5qDmdqo6fiB2A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,265,1725346800"; d="scan'208";a="84557207"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.201])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2024 01:23:40 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: Luca Coelho <luciano.coelho@intel.com>
-Subject: Re: [PATCH v2 01/17] drm/i915/dmc_wl: Use i915_mmio_reg_offset()
- instead of reg.reg
-In-Reply-To: <20241106215231.103474-2-gustavo.sousa@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241106215231.103474-1-gustavo.sousa@intel.com>
- <20241106215231.103474-2-gustavo.sousa@intel.com>
-Date: Thu, 07 Nov 2024 11:23:37 +0200
-Message-ID: <87ttcje6sm.fsf@intel.com>
+Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0AD0B10E7E0;
+ Thu,  7 Nov 2024 10:01:55 +0000 (UTC)
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Vinod Govindapillai <vinod.govindapillai@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Maarten@mblankhorst.nl,
+ Lankhorst@mblankhorst.nl, dev@lankhorst.se
+Subject: [PATCH 1/9] drm/xe: Remove double pageflip
+Date: Thu,  7 Nov 2024 11:01:32 +0100
+Message-ID: <20241107100140.292928-1-maarten.lankhorst@linux.intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,60 +42,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 06 Nov 2024, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
-> The macro i915_mmio_reg_offset() is the proper interface to get a
-> register's offset. Use that instead of looking directly at reg.reg.
->
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+This is already handled below by fixup_initial_plane_config.
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Fixes: a8153627520a ("drm/i915: Try to relocate the BIOS fb to the start of ggtt")
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Reviewed-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20241105121857.17389-1-maarten.lankhorst@linux.intel.com
+Signed-off-by: Maarten Lankhorst,,, <dev@lankhorst.se>
+---
+ drivers/gpu/drm/xe/display/xe_plane_initial.c | 10 ----------
+ 1 file changed, 10 deletions(-)
 
-> ---
->  drivers/gpu/drm/i915/display/intel_dmc_wl.c | 11 ++++++-----
->  1 file changed, 6 insertions(+), 5 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-> index 5634ff07269d..05892a237d3a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-> @@ -91,14 +91,15 @@ static void intel_dmc_wl_work(struct work_struct *work)
->  	spin_unlock_irqrestore(&wl->lock, flags);
->  }
->  
-> -static bool intel_dmc_wl_check_range(u32 address)
-> +static bool intel_dmc_wl_check_range(i915_reg_t reg)
->  {
->  	int i;
->  	bool wl_needed = false;
-> +	u32 offset = i915_mmio_reg_offset(reg);
->  
->  	for (i = 0; i < ARRAY_SIZE(lnl_wl_range); i++) {
-> -		if (address >= lnl_wl_range[i].start &&
-> -		    address <= lnl_wl_range[i].end) {
-> +		if (offset >= lnl_wl_range[i].start &&
-> +		    offset <= lnl_wl_range[i].end) {
->  			wl_needed = true;
->  			break;
->  		}
-> @@ -191,7 +192,7 @@ void intel_dmc_wl_get(struct intel_display *display, i915_reg_t reg)
->  	if (!__intel_dmc_wl_supported(display))
->  		return;
->  
-> -	if (!intel_dmc_wl_check_range(reg.reg))
-> +	if (!intel_dmc_wl_check_range(reg))
->  		return;
->  
->  	spin_lock_irqsave(&wl->lock, flags);
-> @@ -239,7 +240,7 @@ void intel_dmc_wl_put(struct intel_display *display, i915_reg_t reg)
->  	if (!__intel_dmc_wl_supported(display))
->  		return;
->  
-> -	if (!intel_dmc_wl_check_range(reg.reg))
-> +	if (!intel_dmc_wl_check_range(reg))
->  		return;
->  
->  	spin_lock_irqsave(&wl->lock, flags);
-
+diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+index 8c113463a3d55..668f544a7ac80 100644
+--- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
++++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
+@@ -194,8 +194,6 @@ intel_find_initial_plane_obj(struct intel_crtc *crtc,
+ 		to_intel_plane(crtc->base.primary);
+ 	struct intel_plane_state *plane_state =
+ 		to_intel_plane_state(plane->base.state);
+-	struct intel_crtc_state *crtc_state =
+-		to_intel_crtc_state(crtc->base.state);
+ 	struct drm_framebuffer *fb;
+ 	struct i915_vma *vma;
+ 
+@@ -241,14 +239,6 @@ intel_find_initial_plane_obj(struct intel_crtc *crtc,
+ 	atomic_or(plane->frontbuffer_bit, &to_intel_frontbuffer(fb)->bits);
+ 
+ 	plane_config->vma = vma;
+-
+-	/*
+-	 * Flip to the newly created mapping ASAP, so we can re-use the
+-	 * first part of GGTT for WOPCM, prevent flickering, and prevent
+-	 * the lookup of sysmem scratch pages.
+-	 */
+-	plane->check_plane(crtc_state, plane_state);
+-	plane->async_flip(NULL, plane, crtc_state, plane_state, true);
+ 	return;
+ 
+ nofb:
 -- 
-Jani Nikula, Intel
+2.45.2
+
