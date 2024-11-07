@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D66C9C00F5
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Nov 2024 10:18:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DBAA9C00F8
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Nov 2024 10:18:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 365B610E31A;
-	Thu,  7 Nov 2024 09:18:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EAACC10E573;
+	Thu,  7 Nov 2024 09:18:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C+XNBSQy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NwsJm0Rk";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 869EC10E31A
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Nov 2024 09:18:07 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1FB010E573
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 Nov 2024 09:18:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730971088; x=1762507088;
+ t=1730971123; x=1762507123;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=DGR5oShtHQB/3gkphzuoUrAuyBNOXEnreBJCU6MC7VM=;
- b=C+XNBSQySx0cvYmGinpWiGkMkBeZ886a2VAb/bqsxvFUOou3gRTfwczK
- rQk0wUPTW66r4duWV3BKFeSxL+XCJbB4LxvkaiygGXFpAtLpG/6241u3v
- QiSMbEnrXWpTAyq2BT2tlFKZZnkEV7lwwGkwDs7mMIuSMov22xHdL7Sau
- smSj1zL+CYyb2WpP6yOWw4fbhlkiZn+9lbJjV3aCHIhnNshtlleqjycvX
- zLqVORfUXzjq0UGxZOPLKofM73Tk5QB50OVgJazqS2RHC/kB3qU6vlgT1
- KzuAjsjEEfMejNrfXwpOOCePu3xCAPB0W2O0tCSE7jKMwxxm0u5tZPsZn w==;
-X-CSE-ConnectionGUID: oY23cpHxS3CXOX+UqaetMw==
-X-CSE-MsgGUID: 2qzhDe6BSISupcqdockv2w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11248"; a="30684521"
-X-IronPort-AV: E=Sophos;i="6.11,265,1725346800"; d="scan'208";a="30684521"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2024 01:18:07 -0800
-X-CSE-ConnectionGUID: f6zwvsOmQWC5OS4dpgWBpw==
-X-CSE-MsgGUID: 8aQEOBkPTqangnOorb3RKA==
+ bh=S36r2Tz8OxAW/ontW9f4yu3GXHvMJGooN2zS9My1JfE=;
+ b=NwsJm0Rk7ZR4wmgB0XLJGYqbRAl4tp+5MckTztbs26wx99kdocoGd9bg
+ lUH3EKAXtIifmgTRxHe2bcNKgF7Xzm22rKZ+viAuZ3iXTLrh93S4j6c/E
+ Zyi+aZ5K7Cv5dvpkVg7OfbMCjuMXL6zjmyMo/FOn//7uTSM7YKjkxA2k/
+ O2e6LiWhLqMrp3VOMm4zdlrc+VwSplKARO7wk7a5NzpFcvibG6dJ7I8Mv
+ fCOYxD+sMcHgrdMV9RbSqt0CqmOjgUDlRxgU30X/3WplLp2Sy3NcJXwdr
+ PsCxWnY0WdaD1WxQGeAo4+Mwb/d/pZlY2dVvnIYRuXNqnWk7mlqpKYwbd g==;
+X-CSE-ConnectionGUID: 0CPLS1FMS3S7hG0lsFTmmQ==
+X-CSE-MsgGUID: HN/XEbNnTpuDPGafO0elzA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="53358741"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="53358741"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Nov 2024 01:18:42 -0800
+X-CSE-ConnectionGUID: bC0VRzP1QZ2myGGjar+4rw==
+X-CSE-MsgGUID: FfvNhKZ1Qg2ETFj7rHSWmQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,265,1725346800"; d="scan'208";a="84620807"
+X-IronPort-AV: E=Sophos;i="6.11,265,1725346800"; d="scan'208";a="88954828"
 Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.201])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2024 01:18:05 -0800
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Nov 2024 01:18:40 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 1/8] drm/i915/pps: Store the power cycle delay without
- the +1
-In-Reply-To: <20241106215859.25446-2-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 2/8] drm/i915/pps: Decouple pps delays from VBT struct
+ definition
+In-Reply-To: <20241106215859.25446-3-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20241106215859.25446-1-ville.syrjala@linux.intel.com>
- <20241106215859.25446-2-ville.syrjala@linux.intel.com>
-Date: Thu, 07 Nov 2024 11:18:02 +0200
-Message-ID: <87jzdfflmd.fsf@intel.com>
+ <20241106215859.25446-3-ville.syrjala@linux.intel.com>
+Date: Thu, 07 Nov 2024 11:18:37 +0200
+Message-ID: <87h68jflle.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -74,108 +74,259 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Wed, 06 Nov 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> The code initializing the power sequencing delays is a bit
-> hard to follow. One confusing thing is that we keep doing the
-> +/-1 adjustment for the hardware register value in several places.
-> Simplify this a bit by doing the adjustment only when reading or
-> writing the actual register.
->
-> This also matches how the LVDS code does things.
+> We currently lack a proper struct definition for the VBT power
+> squecing delays, and instead we use the same struct definition
+
+*sequencing
+
+> (in intel_bios.h) for both the VBT layout and our driver side
+> state. Decouple those two things by moving the current struct
+> into intel_vbt_defs.h and adding a new one for the driver's use.
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-
 > ---
->  drivers/gpu/drm/i915/display/intel_pps.c | 28 ++++++++++--------------
->  1 file changed, 12 insertions(+), 16 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_bios.c     | 15 +++++++++++---
+>  drivers/gpu/drm/i915/display/intel_bios.h     |  8 --------
+>  .../drm/i915/display/intel_display_types.h    | 15 +++++++++++---
+>  drivers/gpu/drm/i915/display/intel_dp_aux.c   |  1 -
+>  drivers/gpu/drm/i915/display/intel_pps.c      | 20 +++++++++----------
+>  drivers/gpu/drm/i915/display/intel_vbt_defs.h |  8 ++++++++
+>  6 files changed, 42 insertions(+), 25 deletions(-)
 >
+> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
+i915/display/intel_bios.c
+> index a4cdd82c4a75..31398de08e7f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+> @@ -1402,12 +1402,21 @@ parse_power_conservation_features(struct intel_di=
+splay *display,
+>  					    panel_type);
+>  }
+>=20=20
+> +static void vbt_edp_to_pps_delays(struct intel_pps_delays *pps,
+> +				  const struct edp_power_seq *edp_pps)
+> +{
+> +	pps->t1_t3 =3D edp_pps->t1_t3;
+> +	pps->t8 =3D edp_pps->t8;
+> +	pps->t9 =3D edp_pps->t9;
+> +	pps->t10 =3D edp_pps->t10;
+> +	pps->t11_t12 =3D edp_pps->t11_t12;
+> +}
+> +
+>  static void
+>  parse_edp(struct intel_display *display,
+>  	  struct intel_panel *panel)
+>  {
+>  	const struct bdb_edp *edp;
+> -	const struct edp_power_seq *edp_pps;
+>  	const struct edp_fast_link_params *edp_link_params;
+>  	int panel_type =3D panel->vbt.panel_type;
+>=20=20
+> @@ -1428,10 +1437,10 @@ parse_edp(struct intel_display *display,
+>  	}
+>=20=20
+>  	/* Get the eDP sequencing and link info */
+> -	edp_pps =3D &edp->power_seqs[panel_type];
+>  	edp_link_params =3D &edp->fast_link_params[panel_type];
+>=20=20
+> -	panel->vbt.edp.pps =3D *edp_pps;
+> +	vbt_edp_to_pps_delays(&panel->vbt.edp.pps,
+> +			      &edp->power_seqs[panel_type]);
+>=20=20
+>  	if (display->vbt.version >=3D 224) {
+>  		panel->vbt.edp.rate =3D
+> diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/=
+i915/display/intel_bios.h
+> index 8b703f6cfe17..f9841f0498c6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bios.h
+> +++ b/drivers/gpu/drm/i915/display/intel_bios.h
+> @@ -50,14 +50,6 @@ enum intel_backlight_type {
+>  	INTEL_BACKLIGHT_VESA_EDP_AUX_INTERFACE,
+>  };
+>=20=20
+> -struct edp_power_seq {
+> -	u16 t1_t3;
+> -	u16 t8;
+> -	u16 t9;
+> -	u16 t10;
+> -	u16 t11_t12;
+> -} __packed;
+> -
+>  /*
+>   * MIPI Sequence Block definitions
+>   *
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
+/gpu/drm/i915/display/intel_display_types.h
+> index d3a1aa7c919f..62cf5d007872 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -301,6 +301,15 @@ struct intel_panel_bl_funcs {
+>  	u32 (*hz_to_pwm)(struct intel_connector *connector, u32 hz);
+>  };
+>=20=20
+> +/* in 100us units */
+> +struct intel_pps_delays {
+> +	u16 t1_t3;
+> +	u16 t8;
+> +	u16 t9;
+> +	u16 t10;
+> +	u16 t11_t12;
+> +};
+> +
+>  enum drrs_type {
+>  	DRRS_TYPE_NONE,
+>  	DRRS_TYPE_STATIC,
+> @@ -328,7 +337,7 @@ struct intel_vbt_panel_data {
+>  		int preemphasis;
+>  		int vswing;
+>  		int bpp;
+> -		struct edp_power_seq pps;
+> +		struct intel_pps_delays pps;
+>  		u8 drrs_msa_timing_delay;
+>  		bool low_vswing;
+>  		bool hobl;
+> @@ -1568,8 +1577,8 @@ struct intel_pps {
+>  	 * requiring a reinitialization. Only relevant on BXT+.
+>  	 */
+>  	bool bxt_pps_reset;
+> -	struct edp_power_seq pps_delays;
+> -	struct edp_power_seq bios_pps_delays;
+> +	struct intel_pps_delays pps_delays;
+> +	struct intel_pps_delays bios_pps_delays;
+>  };
+>=20=20
+>  struct intel_psr {
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/dr=
+m/i915/display/intel_dp_aux.c
+> index 04a7acd7f73c..7daa8a95dc70 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+> @@ -6,7 +6,6 @@
+>  #include "i915_drv.h"
+>  #include "i915_reg.h"
+>  #include "i915_trace.h"
+> -#include "intel_bios.h"
+>  #include "intel_de.h"
+>  #include "intel_display_types.h"
+>  #include "intel_dp.h"
 > diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i=
 915/display/intel_pps.c
-> index 093fe37a3983..83d65105f32b 100644
+> index 83d65105f32b..c57b9aca5a31 100644
 > --- a/drivers/gpu/drm/i915/display/intel_pps.c
 > +++ b/drivers/gpu/drm/i915/display/intel_pps.c
-> @@ -1390,7 +1390,7 @@ static void
->  intel_pps_readout_hw_state(struct intel_dp *intel_dp, struct edp_power_s=
-eq *seq)
->  {
->  	struct intel_display *display =3D to_intel_display(intel_dp);
-> -	u32 pp_on, pp_off, pp_ctl;
-> +	u32 pp_on, pp_off, pp_ctl, power_cycle_delay;
->  	struct pps_registers regs;
->=20=20
->  	intel_pps_get_registers(intel_dp, &regs);
-> @@ -1415,10 +1415,13 @@ intel_pps_readout_hw_state(struct intel_dp *intel=
-_dp, struct edp_power_seq *seq)
->=20=20
->  		pp_div =3D intel_de_read(display, regs.pp_div);
->=20=20
-> -		seq->t11_t12 =3D REG_FIELD_GET(PANEL_POWER_CYCLE_DELAY_MASK, pp_div) *=
- 1000;
-> +		power_cycle_delay =3D REG_FIELD_GET(PANEL_POWER_CYCLE_DELAY_MASK, pp_d=
-iv);
->  	} else {
-> -		seq->t11_t12 =3D REG_FIELD_GET(BXT_POWER_CYCLE_DELAY_MASK, pp_ctl) * 1=
-000;
-> +		power_cycle_delay =3D REG_FIELD_GET(BXT_POWER_CYCLE_DELAY_MASK, pp_ctl=
-);
->  	}
-> +
-> +	/* hardware wants <delay>+1 in 100ms units */
-> +	seq->t11_t12 =3D power_cycle_delay ? (power_cycle_delay - 1) * 1000 : 0;
+> @@ -1387,7 +1387,7 @@ static void pps_init_timestamps(struct intel_dp *in=
+tel_dp)
 >  }
 >=20=20
 >  static void
-> @@ -1494,12 +1497,6 @@ static void pps_init_delays_vbt(struct intel_dp *i=
-ntel_dp,
->  			    vbt->t11_t12);
+> -intel_pps_readout_hw_state(struct intel_dp *intel_dp, struct edp_power_s=
+eq *seq)
+> +intel_pps_readout_hw_state(struct intel_dp *intel_dp, struct intel_pps_d=
+elays *seq)
+>  {
+>  	struct intel_display *display =3D to_intel_display(intel_dp);
+>  	u32 pp_on, pp_off, pp_ctl, power_cycle_delay;
+> @@ -1426,7 +1426,7 @@ intel_pps_readout_hw_state(struct intel_dp *intel_d=
+p, struct edp_power_seq *seq)
+>=20=20
+>  static void
+>  intel_pps_dump_state(struct intel_dp *intel_dp, const char *state_name,
+> -		     const struct edp_power_seq *seq)
+> +		     const struct intel_pps_delays *seq)
+>  {
+>  	struct intel_display *display =3D to_intel_display(intel_dp);
+>=20=20
+> @@ -1440,8 +1440,8 @@ static void
+>  intel_pps_verify_state(struct intel_dp *intel_dp)
+>  {
+>  	struct intel_display *display =3D to_intel_display(intel_dp);
+> -	struct edp_power_seq hw;
+> -	struct edp_power_seq *sw =3D &intel_dp->pps.pps_delays;
+> +	struct intel_pps_delays hw;
+> +	struct intel_pps_delays *sw =3D &intel_dp->pps.pps_delays;
+>=20=20
+>  	intel_pps_readout_hw_state(intel_dp, &hw);
+>=20=20
+> @@ -1453,14 +1453,14 @@ intel_pps_verify_state(struct intel_dp *intel_dp)
 >  	}
->=20=20
-> -	/* T11_T12 delay is special and actually in units of 100ms, but zero
-> -	 * based in the hw (so we need to add 100 ms). But the sw vbt
-> -	 * table multiplies it with 1000 to make it in units of 100usec,
-> -	 * too. */
-> -	vbt->t11_t12 +=3D 100 * 10;
-> -
->  	intel_pps_dump_state(intel_dp, "vbt", vbt);
 >  }
 >=20=20
-> @@ -1516,11 +1513,7 @@ static void pps_init_delays_spec(struct intel_dp *=
-intel_dp,
->  	spec->t8 =3D 50 * 10; /* no limit for t8, use t7 instead */
->  	spec->t9 =3D 50 * 10; /* no limit for t9, make it symmetric with t8 */
->  	spec->t10 =3D 500 * 10;
-> -	/* This one is special and actually in units of 100ms, but zero
-> -	 * based in the hw (so we need to add 100 ms). But the sw vbt
-> -	 * table multiplies it with 1000 to make it in units of 100usec,
-> -	 * too. */
-> -	spec->t11_t12 =3D (510 + 100) * 10;
-> +	spec->t11_t12 =3D 510 * 10;
->=20=20
->  	intel_pps_dump_state(intel_dp, "spec", spec);
+> -static bool pps_delays_valid(struct edp_power_seq *delays)
+> +static bool pps_delays_valid(struct intel_pps_delays *delays)
+>  {
+>  	return delays->t1_t3 || delays->t8 || delays->t9 ||
+>  		delays->t10 || delays->t11_t12;
 >  }
-> @@ -1665,11 +1658,14 @@ static void pps_init_registers(struct intel_dp *i=
-ntel_dp, bool force_disable_vdd
->  	 */
->  	if (i915_mmio_reg_valid(regs.pp_div))
->  		intel_de_write(display, regs.pp_div,
-> -			       REG_FIELD_PREP(PP_REFERENCE_DIVIDER_MASK, (100 * div) / 2 - 1)=
- | REG_FIELD_PREP(PANEL_POWER_CYCLE_DELAY_MASK, DIV_ROUND_UP(seq->t11_t12, =
-1000)));
-> +			       REG_FIELD_PREP(PP_REFERENCE_DIVIDER_MASK,
-> +					      (100 * div) / 2 - 1) |
-> +			       REG_FIELD_PREP(PANEL_POWER_CYCLE_DELAY_MASK,
-> +					      DIV_ROUND_UP(seq->t11_t12, 1000) + 1));
->  	else
->  		intel_de_rmw(display, regs.pp_ctrl, BXT_POWER_CYCLE_DELAY_MASK,
->  			     REG_FIELD_PREP(BXT_POWER_CYCLE_DELAY_MASK,
-> -					    DIV_ROUND_UP(seq->t11_t12, 1000)));
-> +					    DIV_ROUND_UP(seq->t11_t12, 1000) + 1));
 >=20=20
->  	drm_dbg_kms(display->drm,
->  		    "panel power sequencer register settings: PP_ON %#x, PP_OFF %#x, P=
-P_DIV %#x\n",
+>  static void pps_init_delays_bios(struct intel_dp *intel_dp,
+> -				 struct edp_power_seq *bios)
+> +				 struct intel_pps_delays *bios)
+>  {
+>  	struct intel_display *display =3D to_intel_display(intel_dp);
+>=20=20
+> @@ -1475,7 +1475,7 @@ static void pps_init_delays_bios(struct intel_dp *i=
+ntel_dp,
+>  }
+>=20=20
+>  static void pps_init_delays_vbt(struct intel_dp *intel_dp,
+> -				struct edp_power_seq *vbt)
+> +				struct intel_pps_delays *vbt)
+>  {
+>  	struct intel_display *display =3D to_intel_display(intel_dp);
+>  	struct intel_connector *connector =3D intel_dp->attached_connector;
+> @@ -1501,7 +1501,7 @@ static void pps_init_delays_vbt(struct intel_dp *in=
+tel_dp,
+>  }
+>=20=20
+>  static void pps_init_delays_spec(struct intel_dp *intel_dp,
+> -				 struct edp_power_seq *spec)
+> +				 struct intel_pps_delays *spec)
+>  {
+>  	struct intel_display *display =3D to_intel_display(intel_dp);
+>=20=20
+> @@ -1521,7 +1521,7 @@ static void pps_init_delays_spec(struct intel_dp *i=
+ntel_dp,
+>  static void pps_init_delays(struct intel_dp *intel_dp)
+>  {
+>  	struct intel_display *display =3D to_intel_display(intel_dp);
+> -	struct edp_power_seq cur, vbt, spec,
+> +	struct intel_pps_delays cur, vbt, spec,
+>  		*final =3D &intel_dp->pps.pps_delays;
+>=20=20
+>  	lockdep_assert_held(&display->pps.mutex);
+> @@ -1589,7 +1589,7 @@ static void pps_init_registers(struct intel_dp *int=
+el_dp, bool force_disable_vdd
+>  	int div =3D DISPLAY_RUNTIME_INFO(display)->rawclk_freq / 1000;
+>  	struct pps_registers regs;
+>  	enum port port =3D dp_to_dig_port(intel_dp)->base.port;
+> -	const struct edp_power_seq *seq =3D &intel_dp->pps.pps_delays;
+> +	const struct intel_pps_delays *seq =3D &intel_dp->pps.pps_delays;
+>=20=20
+>  	lockdep_assert_held(&display->pps.mutex);
+>=20=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/=
+drm/i915/display/intel_vbt_defs.h
+> index 42022756bbd5..e9b809568cd4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
+> @@ -1014,6 +1014,14 @@ struct bdb_tv_options {
+>   * Block 27 - eDP VBT Block
+>   */
+>=20=20
+> +struct edp_power_seq {
+> +	u16 t1_t3;
+> +	u16 t8;
+> +	u16 t9;
+> +	u16 t10;
+> +	u16 t11_t12;
+> +} __packed;
+> +
+>  #define EDP_18BPP	0
+>  #define EDP_24BPP	1
+>  #define EDP_30BPP	2
 
 --=20
 Jani Nikula, Intel
