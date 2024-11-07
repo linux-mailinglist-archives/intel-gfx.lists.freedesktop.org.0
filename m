@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29ECA9C0AF2
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Nov 2024 17:11:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 934959C0AF5
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Nov 2024 17:12:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C39A010E87B;
-	Thu,  7 Nov 2024 16:11:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3381410E87F;
+	Thu,  7 Nov 2024 16:12:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ctwuo4cK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iKk+kxJD";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B67810E87B
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Nov 2024 16:11:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 293D010E87C
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 Nov 2024 16:12:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730995913; x=1762531913;
+ t=1730995924; x=1762531924;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=P9TsUEf0EbSyYMHQsHRZEz0Qcf1eXFxGEfP7RIYMWLU=;
- b=Ctwuo4cKOLeBVK0AnxY9Q7nEyI2Bc38dfbYPuRWXB/Y+naAwZ1XIc4DD
- V1Nc6Z2mJJuvofBV02F0WuTbZfd9TIzTTGUzznq0U11a7WONv7YBacBGh
- KufZGqpWbhfb7kD2HzPL6tE3MCZRfT6eSaMP6xupkiWMYCC4ix7J/zFMZ
- 3qm6QBI0tSLO9ljIMW+Q2NhINv6Qmx8yEVKmlPC2N4Yxkw3I6iF9pJUlD
- k1QLoWQgsZGkfrPuMAUcWzi51ntYQbtbFLnVXlss2vu1KO1cx7aaP/rM8
- ipDZyccMaWlYph6OSQLCn+JZ+JnPQ3sLHpmxR33tBxeTXmu0Ewzb23U9h g==;
-X-CSE-ConnectionGUID: DdIiEf9yRgy+MyoZ1vDjMQ==
-X-CSE-MsgGUID: ngoj0c5xSDihyZ2Tnn42ZA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11249"; a="41443203"
-X-IronPort-AV: E=Sophos;i="6.12,135,1728975600"; d="scan'208";a="41443203"
+ bh=kwta/A+6rU9Ps4CXfqYZeJoXVnSA5w4gqoBnY6hUpzM=;
+ b=iKk+kxJDPppdxIFDXjH95qjT8xg97FxgZ8nCNQVwxMLvGfxcTNeQcwUW
+ AyGdu9y4o60hkdiSUhrhSW4j3QzRbkY4bjrFWZn/6QxGskSxGxKw6dvto
+ OF4vQhhHEZRZw+Mbtkdp/JPPxWMiJCNo0M/zIQA/wDFjHCLsgVmGVlSBX
+ DMPHEG4tFdk/JJQgM2O0Y1eqO2EQSShI9F2BLHByoTWBpzN/vNNWNO4oT
+ HBjYqmSM3X5CCFaZg/uaArDk8OWAsBBuRowOavHEbqnFXnNMHS1a9fBX6
+ lSeiimFovvqThuujCb6rbjDEmI22CzLg5lMgO6VHZywu48KFWiP4sP9Fo Q==;
+X-CSE-ConnectionGUID: 6yZHcEeFSjC8MDZYrSAJqQ==
+X-CSE-MsgGUID: Keq6J9V+SNy1Yz2VmTsOVQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11249"; a="41443284"
+X-IronPort-AV: E=Sophos;i="6.12,135,1728975600"; d="scan'208";a="41443284"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2024 08:11:43 -0800
-X-CSE-ConnectionGUID: +FtetY6/RHGSxvV2ZC4TaQ==
-X-CSE-MsgGUID: XfU6nP9+Sk2lcs0VGdV8yw==
+ 07 Nov 2024 08:11:45 -0800
+X-CSE-ConnectionGUID: 2G3MMq58TAiB+y/BRfLoyQ==
+X-CSE-MsgGUID: 6bLkKqc4R+WhnLG0bNNBUw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,135,1728975600"; d="scan'208";a="85277859"
+X-IronPort-AV: E=Sophos;i="6.12,135,1728975600"; d="scan'208";a="85277867"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 07 Nov 2024 08:11:40 -0800
+ by fmviesa008.fm.intel.com with SMTP; 07 Nov 2024 08:11:44 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 07 Nov 2024 18:11:39 +0200
+ Thu, 07 Nov 2024 18:11:43 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 06/10] drm/i915/crt: Extract intel_crt_regs.h
-Date: Thu,  7 Nov 2024 18:11:19 +0200
-Message-ID: <20241107161123.16269-7-ville.syrjala@linux.intel.com>
+Subject: [PATCH 07/10] drm/i915/crt: s/pipe_config/crtc_state/
+Date: Thu,  7 Nov 2024 18:11:20 +0200
+Message-ID: <20241107161123.16269-8-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241107161123.16269-1-ville.syrjala@linux.intel.com>
 References: <20241107161123.16269-1-ville.syrjala@linux.intel.com>
@@ -70,184 +70,157 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Move the analog port register definitions into their
-own file.
+Call the crtc state 'crtc_state' rather than 'pipe_config',
+as is the modern style.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_crt.c      |  1 +
- drivers/gpu/drm/i915/display/intel_crt_regs.h | 48 +++++++++++++++++++
- .../gpu/drm/i915/display/intel_pch_display.c  |  1 +
- drivers/gpu/drm/i915/gvt/display.c            |  1 +
- drivers/gpu/drm/i915/gvt/handlers.c           |  1 +
- drivers/gpu/drm/i915/i915_reg.h               | 38 ---------------
- drivers/gpu/drm/i915/intel_gvt_mmio_table.c   |  1 +
- 7 files changed, 53 insertions(+), 38 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_crt_regs.h
+ drivers/gpu/drm/i915/display/intel_crt.c | 62 ++++++++++++------------
+ 1 file changed, 31 insertions(+), 31 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
-index e21e402f85c8..4784a858b4a2 100644
+index 4784a858b4a2..0962a239288b 100644
 --- a/drivers/gpu/drm/i915/display/intel_crt.c
 +++ b/drivers/gpu/drm/i915/display/intel_crt.c
-@@ -38,6 +38,7 @@
- #include "i915_reg.h"
- #include "intel_connector.h"
- #include "intel_crt.h"
-+#include "intel_crt_regs.h"
- #include "intel_crtc.h"
- #include "intel_ddi.h"
- #include "intel_ddi_buf_trans.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_crt_regs.h b/drivers/gpu/drm/i915/display/intel_crt_regs.h
-new file mode 100644
-index 000000000000..9a93020b9a7e
---- /dev/null
-+++ b/drivers/gpu/drm/i915/display/intel_crt_regs.h
-@@ -0,0 +1,48 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#ifndef __INTEL_CRT_REGS_H__
-+#define __INTEL_CRT_REGS_H__
-+
-+#include "intel_display_reg_defs.h"
-+
-+#define ADPA			_MMIO(0x61100)
-+#define PCH_ADPA		_MMIO(0xe1100)
-+#define VLV_ADPA		_MMIO(VLV_DISPLAY_BASE + 0x61100)
-+#define   ADPA_DAC_ENABLE			REG_BIT(31)
-+#define   ADPA_PIPE_SEL_MASK			REG_BIT(30)
-+#define   ADPA_PIPE_SEL(pipe)			REG_FIELD_PREP(ADPA_PIPE_SEL_MASK, (pipe))
-+#define   ADPA_PIPE_SEL_MASK_CPT		REG_GENMASK(30, 29)
-+#define   ADPA_PIPE_SEL_CPT(pipe)		REG_FIELD_PREP(ADPA_PIPE_SEL_MASK_CPT, (pipe))
-+#define   ADPA_CRT_HOTPLUG_MONITOR_MASK		REG_GENMASK(25, 24)
-+#define   ADPA_CRT_HOTPLUG_MONITOR_NONE		REG_FIELD_PREP(ADPA_CRT_HOTPLUG_MONITOR_MASK, 0)
-+#define   ADPA_CRT_HOTPLUG_MONITOR_COLOR	REG_FIELD_PREP(ADPA_CRT_HOTPLUG_MONITOR_MASK, 3)
-+#define   ADPA_CRT_HOTPLUG_MONITOR_MONO		REG_FIELD_PREP(ADPA_CRT_HOTPLUG_MONITOR_MASK, 2)
-+#define   ADPA_CRT_HOTPLUG_ENABLE		REG_BIT(23)
-+#define   ADPA_CRT_HOTPLUG_PERIOD_MASK		REG_BIT(22)
-+#define   ADPA_CRT_HOTPLUG_PERIOD_64		REG_FIELD_PREP(ADPA_CRT_HOTPLUG_PERIOD_MASK, 0)
-+#define   ADPA_CRT_HOTPLUG_PERIOD_128		REG_FIELD_PREP(ADPA_CRT_HOTPLUG_PERIOD_MASK, 1)
-+#define   ADPA_CRT_HOTPLUG_WARMUP_MASK		REG_BIT(21)
-+#define   ADPA_CRT_HOTPLUG_WARMUP_5MS		REG_FIELD_PREP(ADPA_CRT_HOTPLUG_WARMUP_MASK, 0)
-+#define   ADPA_CRT_HOTPLUG_WARMUP_10MS		REG_FIELD_PREP(ADPA_CRT_HOTPLUG_WARMUP_MASK, 1)
-+#define   ADPA_CRT_HOTPLUG_SAMPLE_MASK		REG_BIT(20)
-+#define   ADPA_CRT_HOTPLUG_SAMPLE_2S		REG_FIELD_PREP(ADPA_CRT_HOTPLUG_SAMPLE_MASK, 0)
-+#define   ADPA_CRT_HOTPLUG_SAMPLE_4S		REG_FIELD_PREP(ADPA_CRT_HOTPLUG_SAMPLE_MASK, 1)
-+#define   ADPA_CRT_HOTPLUG_VOLTAGE_MASK		REG_GENMASK(19, 18)
-+#define   ADPA_CRT_HOTPLUG_VOLTAGE_40		REG_FIELD_PREP(ADPA_CRT_HOTPLUG_VOLTAGE_MASK, 0)
-+#define   ADPA_CRT_HOTPLUG_VOLTAGE_50		REG_FIELD_PREP(ADPA_CRT_HOTPLUG_VOLTAGE_MASK, 1)
-+#define   ADPA_CRT_HOTPLUG_VOLTAGE_60		REG_FIELD_PREP(ADPA_CRT_HOTPLUG_VOLTAGE_MASK, 2)
-+#define   ADPA_CRT_HOTPLUG_VOLTAGE_70		REG_FIELD_PREP(ADPA_CRT_HOTPLUG_VOLTAGE_MASK, 3)
-+#define   ADPA_CRT_HOTPLUG_VOLREF_MASK		REG_BIT(17)
-+#define   ADPA_CRT_HOTPLUG_VOLREF_325MV		REG_FIELD_PREP(ADPA_CRT_HOTPLUG_VOLREF_MASK, 0)
-+#define   ADPA_CRT_HOTPLUG_VOLREF_475MV		REG_FIELD_PREP(ADPA_CRT_HOTPLUG_VOLREF_MASK, 1)
-+#define   ADPA_CRT_HOTPLUG_FORCE_TRIGGER	REG_BIT(16)
-+#define   ADPA_USE_VGA_HVPOLARITY		REG_BIT(15)
-+#define   ADPA_HSYNC_CNTL_DISABLE		REG_BIT(11)
-+#define   ADPA_VSYNC_CNTL_DISABLE		REG_BIT(10)
-+#define   ADPA_VSYNC_ACTIVE_HIGH		REG_BIT(4)
-+#define   ADPA_HSYNC_ACTIVE_HIGH		REG_BIT(3)
-+
-+#endif /* __INTEL_CRT_REGS_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_pch_display.c b/drivers/gpu/drm/i915/display/intel_pch_display.c
-index 4210de87a0a2..cd48d3e6cf42 100644
---- a/drivers/gpu/drm/i915/display/intel_pch_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_pch_display.c
-@@ -6,6 +6,7 @@
- #include "g4x_dp.h"
- #include "i915_reg.h"
- #include "intel_crt.h"
-+#include "intel_crt_regs.h"
- #include "intel_de.h"
- #include "intel_display_types.h"
- #include "intel_dpll.h"
-diff --git a/drivers/gpu/drm/i915/gvt/display.c b/drivers/gpu/drm/i915/gvt/display.c
-index 17f74cb244bb..b6136825d213 100644
---- a/drivers/gpu/drm/i915/gvt/display.c
-+++ b/drivers/gpu/drm/i915/gvt/display.c
-@@ -40,6 +40,7 @@
+@@ -150,27 +150,27 @@ static unsigned int intel_crt_get_flags(struct intel_encoder *encoder)
+ }
  
- #include "display/bxt_dpio_phy_regs.h"
- #include "display/i9xx_plane_regs.h"
-+#include "display/intel_crt_regs.h"
- #include "display/intel_cursor_regs.h"
- #include "display/intel_display.h"
- #include "display/intel_dpio_phy.h"
-diff --git a/drivers/gpu/drm/i915/gvt/handlers.c b/drivers/gpu/drm/i915/gvt/handlers.c
-index 9494d812c00a..25acb9ddb12c 100644
---- a/drivers/gpu/drm/i915/gvt/handlers.c
-+++ b/drivers/gpu/drm/i915/gvt/handlers.c
-@@ -45,6 +45,7 @@
- #include "intel_mchbar_regs.h"
- #include "display/bxt_dpio_phy_regs.h"
- #include "display/i9xx_plane_regs.h"
-+#include "display/intel_crt_regs.h"
- #include "display/intel_cursor_regs.h"
- #include "display/intel_display_types.h"
- #include "display/intel_dmc_regs.h"
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 6391f2e9d530..8a0a478051a6 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -1147,44 +1147,6 @@
- #define _TRANS_MULT_B		0x6102c
- #define TRANS_MULT(dev_priv, trans)	_MMIO_TRANS2(dev_priv, (trans), _TRANS_MULT_A)
+ static void intel_crt_get_config(struct intel_encoder *encoder,
+-				 struct intel_crtc_state *pipe_config)
++				 struct intel_crtc_state *crtc_state)
+ {
+-	pipe_config->output_types |= BIT(INTEL_OUTPUT_ANALOG);
++	crtc_state->output_types |= BIT(INTEL_OUTPUT_ANALOG);
  
--/* VGA port control */
--#define ADPA			_MMIO(0x61100)
--#define PCH_ADPA                _MMIO(0xe1100)
--#define VLV_ADPA		_MMIO(VLV_DISPLAY_BASE + 0x61100)
--#define   ADPA_DAC_ENABLE			REG_BIT(31)
--#define   ADPA_PIPE_SEL_MASK			REG_BIT(30)
--#define   ADPA_PIPE_SEL(pipe)			REG_FIELD_PREP(ADPA_PIPE_SEL_MASK, (pipe))
--#define   ADPA_PIPE_SEL_MASK_CPT		REG_GENMASK(30, 29)
--#define   ADPA_PIPE_SEL_CPT(pipe)		REG_FIELD_PREP(ADPA_PIPE_SEL_MASK_CPT, (pipe))
--#define   ADPA_CRT_HOTPLUG_MONITOR_MASK		REG_GENMASK(25, 24)
--#define   ADPA_CRT_HOTPLUG_MONITOR_NONE		REG_FIELD_PREP(ADPA_CRT_HOTPLUG_MONITOR_MASK, 0)
--#define   ADPA_CRT_HOTPLUG_MONITOR_COLOR	REG_FIELD_PREP(ADPA_CRT_HOTPLUG_MONITOR_MASK, 3)
--#define   ADPA_CRT_HOTPLUG_MONITOR_MONO		REG_FIELD_PREP(ADPA_CRT_HOTPLUG_MONITOR_MASK, 2)
--#define   ADPA_CRT_HOTPLUG_ENABLE		REG_BIT(23)
--#define   ADPA_CRT_HOTPLUG_PERIOD_MASK		REG_BIT(22)
--#define   ADPA_CRT_HOTPLUG_PERIOD_64		REG_FIELD_PREP(ADPA_CRT_HOTPLUG_PERIOD_MASK, 0)
--#define   ADPA_CRT_HOTPLUG_PERIOD_128		REG_FIELD_PREP(ADPA_CRT_HOTPLUG_PERIOD_MASK, 1)
--#define   ADPA_CRT_HOTPLUG_WARMUP_MASK		REG_BIT(21)
--#define   ADPA_CRT_HOTPLUG_WARMUP_5MS		REG_FIELD_PREP(ADPA_CRT_HOTPLUG_WARMUP_MASK, 0)
--#define   ADPA_CRT_HOTPLUG_WARMUP_10MS		REG_FIELD_PREP(ADPA_CRT_HOTPLUG_WARMUP_MASK, 1)
--#define   ADPA_CRT_HOTPLUG_SAMPLE_MASK		REG_BIT(20)
--#define   ADPA_CRT_HOTPLUG_SAMPLE_2S		REG_FIELD_PREP(ADPA_CRT_HOTPLUG_SAMPLE_MASK, 0)
--#define   ADPA_CRT_HOTPLUG_SAMPLE_4S		REG_FIELD_PREP(ADPA_CRT_HOTPLUG_SAMPLE_MASK, 1)
--#define   ADPA_CRT_HOTPLUG_VOLTAGE_MASK		REG_GENMASK(19, 18)
--#define   ADPA_CRT_HOTPLUG_VOLTAGE_40		REG_FIELD_PREP(ADPA_CRT_HOTPLUG_VOLTAGE_MASK, 0)
--#define   ADPA_CRT_HOTPLUG_VOLTAGE_50		REG_FIELD_PREP(ADPA_CRT_HOTPLUG_VOLTAGE_MASK, 1)
--#define   ADPA_CRT_HOTPLUG_VOLTAGE_60		REG_FIELD_PREP(ADPA_CRT_HOTPLUG_VOLTAGE_MASK, 2)
--#define   ADPA_CRT_HOTPLUG_VOLTAGE_70		REG_FIELD_PREP(ADPA_CRT_HOTPLUG_VOLTAGE_MASK, 3)
--#define   ADPA_CRT_HOTPLUG_VOLREF_MASK		REG_BIT(17)
--#define   ADPA_CRT_HOTPLUG_VOLREF_325MV		REG_FIELD_PREP(ADPA_CRT_HOTPLUG_VOLREF_MASK, 0)
--#define   ADPA_CRT_HOTPLUG_VOLREF_475MV		REG_FIELD_PREP(ADPA_CRT_HOTPLUG_VOLREF_MASK, 1)
--#define   ADPA_CRT_HOTPLUG_FORCE_TRIGGER	REG_BIT(16)
--#define   ADPA_USE_VGA_HVPOLARITY		REG_BIT(15)
--#define   ADPA_HSYNC_CNTL_DISABLE		REG_BIT(11)
--#define   ADPA_VSYNC_CNTL_DISABLE		REG_BIT(10)
--#define   ADPA_VSYNC_ACTIVE_HIGH		REG_BIT(4)
--#define   ADPA_HSYNC_ACTIVE_HIGH		REG_BIT(3)
--
- /* Hotplug control (945+ only) */
- #define PORT_HOTPLUG_EN(dev_priv)		_MMIO(DISPLAY_MMIO_BASE(dev_priv) + 0x61110)
- #define   PORTB_HOTPLUG_INT_EN			(1 << 29)
-diff --git a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-index 955c9a33212a..63849389f39a 100644
---- a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-+++ b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-@@ -8,6 +8,7 @@
- #include "display/intel_audio_regs.h"
- #include "display/intel_backlight_regs.h"
- #include "display/intel_color_regs.h"
-+#include "display/intel_crt_regs.h"
- #include "display/intel_cursor_regs.h"
- #include "display/intel_display_types.h"
- #include "display/intel_dmc_regs.h"
+-	pipe_config->hw.adjusted_mode.flags |= intel_crt_get_flags(encoder);
++	crtc_state->hw.adjusted_mode.flags |= intel_crt_get_flags(encoder);
+ 
+-	pipe_config->hw.adjusted_mode.crtc_clock = pipe_config->port_clock;
++	crtc_state->hw.adjusted_mode.crtc_clock = crtc_state->port_clock;
+ }
+ 
+ static void hsw_crt_get_config(struct intel_encoder *encoder,
+-			       struct intel_crtc_state *pipe_config)
++			       struct intel_crtc_state *crtc_state)
+ {
+-	lpt_pch_get_config(pipe_config);
++	lpt_pch_get_config(crtc_state);
+ 
+-	hsw_ddi_get_config(encoder, pipe_config);
++	hsw_ddi_get_config(encoder, crtc_state);
+ 
+-	pipe_config->hw.adjusted_mode.flags &= ~(DRM_MODE_FLAG_PHSYNC |
+-					      DRM_MODE_FLAG_NHSYNC |
+-					      DRM_MODE_FLAG_PVSYNC |
+-					      DRM_MODE_FLAG_NVSYNC);
+-	pipe_config->hw.adjusted_mode.flags |= intel_crt_get_flags(encoder);
++	crtc_state->hw.adjusted_mode.flags &= ~(DRM_MODE_FLAG_PHSYNC |
++						DRM_MODE_FLAG_NHSYNC |
++						DRM_MODE_FLAG_PVSYNC |
++						DRM_MODE_FLAG_NVSYNC);
++	crtc_state->hw.adjusted_mode.flags |= intel_crt_get_flags(encoder);
+ }
+ 
+ /* Note: The caller is required to filter out dpms modes not supported by the
+@@ -408,48 +408,48 @@ intel_crt_mode_valid(struct drm_connector *connector,
+ }
+ 
+ static int intel_crt_compute_config(struct intel_encoder *encoder,
+-				    struct intel_crtc_state *pipe_config,
++				    struct intel_crtc_state *crtc_state,
+ 				    struct drm_connector_state *conn_state)
+ {
+ 	struct drm_display_mode *adjusted_mode =
+-		&pipe_config->hw.adjusted_mode;
++		&crtc_state->hw.adjusted_mode;
+ 
+ 	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN)
+ 		return -EINVAL;
+ 
+-	pipe_config->sink_format = INTEL_OUTPUT_FORMAT_RGB;
+-	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
++	crtc_state->sink_format = INTEL_OUTPUT_FORMAT_RGB;
++	crtc_state->output_format = INTEL_OUTPUT_FORMAT_RGB;
+ 
+ 	return 0;
+ }
+ 
+ static int pch_crt_compute_config(struct intel_encoder *encoder,
+-				  struct intel_crtc_state *pipe_config,
++				  struct intel_crtc_state *crtc_state,
+ 				  struct drm_connector_state *conn_state)
+ {
+ 	struct drm_display_mode *adjusted_mode =
+-		&pipe_config->hw.adjusted_mode;
++		&crtc_state->hw.adjusted_mode;
+ 
+ 	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN)
+ 		return -EINVAL;
+ 
+-	pipe_config->has_pch_encoder = true;
+-	if (!intel_fdi_compute_pipe_bpp(pipe_config))
++	crtc_state->has_pch_encoder = true;
++	if (!intel_fdi_compute_pipe_bpp(crtc_state))
+ 		return -EINVAL;
+ 
+-	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
++	crtc_state->output_format = INTEL_OUTPUT_FORMAT_RGB;
+ 
+ 	return 0;
+ }
+ 
+ static int hsw_crt_compute_config(struct intel_encoder *encoder,
+-				  struct intel_crtc_state *pipe_config,
++				  struct intel_crtc_state *crtc_state,
+ 				  struct drm_connector_state *conn_state)
+ {
+ 	struct intel_display *display = to_intel_display(encoder);
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 	struct drm_display_mode *adjusted_mode =
+-		&pipe_config->hw.adjusted_mode;
++		&crtc_state->hw.adjusted_mode;
+ 
+ 	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN)
+ 		return -EINVAL;
+@@ -459,30 +459,30 @@ static int hsw_crt_compute_config(struct intel_encoder *encoder,
+ 	    adjusted_mode->crtc_hblank_start > 4096)
+ 		return -EINVAL;
+ 
+-	pipe_config->has_pch_encoder = true;
+-	if (!intel_fdi_compute_pipe_bpp(pipe_config))
++	crtc_state->has_pch_encoder = true;
++	if (!intel_fdi_compute_pipe_bpp(crtc_state))
+ 		return -EINVAL;
+ 
+-	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
++	crtc_state->output_format = INTEL_OUTPUT_FORMAT_RGB;
+ 
+ 	/* LPT FDI RX only supports 8bpc. */
+ 	if (HAS_PCH_LPT(dev_priv)) {
+ 		/* TODO: Check crtc_state->max_link_bpp_x16 instead of bw_constrained */
+-		if (pipe_config->bw_constrained && pipe_config->pipe_bpp < 24) {
++		if (crtc_state->bw_constrained && crtc_state->pipe_bpp < 24) {
+ 			drm_dbg_kms(display->drm,
+ 				    "LPT only supports 24bpp\n");
+ 			return -EINVAL;
+ 		}
+ 
+-		pipe_config->pipe_bpp = 24;
++		crtc_state->pipe_bpp = 24;
+ 	}
+ 
+ 	/* FDI must always be 2.7 GHz */
+-	pipe_config->port_clock = 135000 * 2;
++	crtc_state->port_clock = 135000 * 2;
+ 
+-	pipe_config->enhanced_framing = true;
++	crtc_state->enhanced_framing = true;
+ 
+-	adjusted_mode->crtc_clock = lpt_iclkip(pipe_config);
++	adjusted_mode->crtc_clock = lpt_iclkip(crtc_state);
+ 
+ 	return 0;
+ }
 -- 
 2.45.2
 
