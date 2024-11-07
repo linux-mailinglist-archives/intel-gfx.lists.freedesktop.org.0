@@ -2,79 +2,80 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 975B99C43F6
+	by mail.lfdr.de (Postfix) with ESMTPS id BC3C29C43F7
 	for <lists+intel-gfx@lfdr.de>; Mon, 11 Nov 2024 18:44:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B399F10E4F1;
-	Mon, 11 Nov 2024 17:43:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80B7110E4EC;
+	Mon, 11 Nov 2024 17:43:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=oracle.com header.i=@oracle.com header.b="d2TFOJ1B";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="VqScTgeL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0a-00069f02.pphosted.com (mx0a-00069f02.pphosted.com
- [205.220.165.32])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9194210E06C;
- Mon,  4 Nov 2024 19:10:46 +0000 (UTC)
-Received: from pps.filterd (m0246627.ppops.net [127.0.0.1])
- by mx0b-00069f02.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4A4IMVM6004434;
- Mon, 4 Nov 2024 19:10:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=cc
- :content-transfer-encoding:date:from:message-id:mime-version
- :subject:to; s=corp-2023-11-20; bh=4ZZRS8dHCjLH4dXy/hPA0VAA1ekeT
- 9riEc6CLiyfZrU=; b=d2TFOJ1B0J47+aoYEBQYYGFfDHArARYLoutE9RXCHBgik
- hJw9RH3bLFeYBRR8fx86HMUWvuIecGJmmU2Py48bngEIHm5w38h++PInZFr+bhS8
- WFGCDvp7Q/1DVH0CErjpd0fQC4nVM+7fUTOv9D5TrA1T2zL+Kt5fnV1ssPKeiBPB
- 6ZefiK8H9uYqhUM+VZPv1IQTvVgSCKtuNHV/KU8q/CVjJFLLcnkVf+Lrk6qD4UOl
- J+dE1t2s6C4BjvdDY/mw0I5vRj6u1clyJHp7S5pzMZ3AQ8hewXaILl7VWEdsDgSg
- W+NAAVArFI25WDUIaDrhqI04Src7Errn3JGXJP5NQ==
-Received: from iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com
- (iadpaimrmta02.appoci.oracle.com [147.154.18.20])
- by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 42nanyundg-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Mon, 04 Nov 2024 19:10:26 +0000 (GMT)
-Received: from pps.filterd
- (iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
- by iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (8.18.1.2/8.18.1.2)
- with ESMTP id 4A4Hu8Ma036171; Mon, 4 Nov 2024 19:10:25 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
- by iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTPS id
- 42nahcf29j-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Mon, 04 Nov 2024 19:10:24 +0000
-Received: from iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com
- (iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
- by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 4A4JAOGu013414;
- Mon, 4 Nov 2024 19:10:24 GMT
-Received: from ca-dev112.us.oracle.com (ca-dev112.us.oracle.com
- [10.129.136.47])
- by iadpaimrmta02.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTP id
- 42nahcf28e-1; Mon, 04 Nov 2024 19:10:24 +0000
-From: Sherry Yang <sherry.yang@oracle.com>
-To: stable@vger.kernel.org, sashal@kernel.org, gregkh@linuxfoundation.org
-Cc: sherry.yang@oracle.com, jani.nikula@linux.intel.com,
- joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
- airlied@linux.ie, daniel@ffwll.ch, tvrtko.ursulin@intel.com,
- robdclark@chromium.org, chentao@kylinos.cn, chris@chris-wilson.co.uk,
- mika.kuoppala@linux.intel.com, jason@jlekstrand.net,
- aravind.iddamsetty@intel.com, umesh.nerlige.ramappa@intel.com,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: [PATCH 5.15.y] drm/i915: Fix potential context UAFs
-Date: Mon,  4 Nov 2024 11:10:21 -0800
-Message-ID: <20241104191021.3334875-1-sherry.yang@oracle.com>
-X-Mailer: git-send-email 2.46.0
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com
+ [209.85.218.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA6C610E02B;
+ Thu,  7 Nov 2024 08:21:34 +0000 (UTC)
+Received: by mail-ej1-f47.google.com with SMTP id
+ a640c23a62f3a-a7aa086b077so81878566b.0; 
+ Thu, 07 Nov 2024 00:21:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1730967693; x=1731572493; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=5VOR5CG5z5tJAz08GO5kOR/f1vtcXPoi8DLyImsNBw4=;
+ b=VqScTgeL8JxMFGywNHC6z+TuRhmQe+FMfAcgQiWZnn2733UGnhy1PrYsRw7cu7Voyt
+ d9dDHycUSIjgE1ZSdbgulaVWPR4NRxDjbxKn+hLZ/FR5sB5tQPEogJGCK9ZlVamn7TtX
+ qn/BpEcBwTgCymMtALY/6UZ5j+OoTm+FeyBj3Ydo9MZTpbjsq8Zjn3M9CCkwNXBB9ZsH
+ O5e/sQlL5xSa3QKHfNwlscP+er9tiTdGBMFYAu34OM1PSGIGH5Josr974JkB1io/8Wp3
+ hGKE/DCdzI6/bY8O34Xlqll5T3JZdrRs5Z02lA5iKztyYKbsQvHNnNIn1jNWoAD/mFpS
+ RJRw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1730967693; x=1731572493;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=5VOR5CG5z5tJAz08GO5kOR/f1vtcXPoi8DLyImsNBw4=;
+ b=IUzOBQjlE9xm+5P3uAKPdYTGp2UHFrvDZcSXT/XPpK7v8n86hUSZTvTBtofEGuIFA5
+ fbYzrHbqguKSfiqBn3l5GiGjUCK5GJczeZSFcxDWxhae1tbByraV/wmVP7FTr9U8k3Zd
+ iSCGsML8R7OZ5XMAYMP5PNyO1PpuCtpuy7SmUFMsY7/pZ7F1gcGsmpSHzzqwzRbv0pik
+ +lD99Cy16SIz782qelFzrLouIiMNA3JQJ/Fh7SY+lWd8uMkQKD9mzViIpHh64rVrUvgL
+ 7FPTN6uBD3zvlQKI72hjnAEbB/Kgv3IIRXmeo1rodOfZK6ApnQ6BWJqV5crSCmRTtZp0
+ M7CA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCW+b+WNZCmcbuKIKJ3nAKuU/5RQzEI8hlrX/qaFdrXkN9XPnTo0jDX4IPWGrQnyCN+d440qlPrNX4E=@lists.freedesktop.org,
+ AJvYcCWpTyOouBMUTNmyaKRPmYhTH6TulEmYMrPnpyoCGJ/3ZT6tAREGoGhK/rlsTjF3wplO9M6rwyBP0f8=@lists.freedesktop.org,
+ AJvYcCXi4q90dqeheo0FHR7Cyf2X6zqI3I9r+Kah+p2qoDQiP5eQ56etTk31AeWoyGqEziP0jaKC4uRN2X+Q@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx5pX2jzdm7BWGwq0OBoRADZGJi81ezZjYYOlQSjsIggv77OYUD
+ plSKV146f51borJFTCyWgHi5g+mWOz2Qbw35aFoRTG+1R5SRohvHu3JQkiCGhBNcTnlxmbCohTl
+ X9P6JlUD0l+d5GOJxX3nkKhnJa28=
+X-Google-Smtp-Source: AGHT+IGzp4ZhM15P5BuZqJNwFlSO7u7lx6xlY6hASCP8GFqOKEug7q8+mJvAPBHNOu1UYfSi3ksydcl56G/UnZhJGfY=
+X-Received: by 2002:a17:907:9622:b0:a99:5234:c56c with SMTP id
+ a640c23a62f3a-a9ee74cae8amr8688466b.33.1730967692918; Thu, 07 Nov 2024
+ 00:21:32 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.62.30
- definitions=2024-11-04_17,2024-11-04_01,2024-09-30_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0
- malwarescore=0
- spamscore=0 mlxlogscore=999 mlxscore=0 phishscore=0 adultscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2409260000 definitions=main-2411040157
-X-Proofpoint-ORIG-GUID: bYvtKvEXdYGJo-raSa0RreUwVVwTSiDS
-X-Proofpoint-GUID: bYvtKvEXdYGJo-raSa0RreUwVVwTSiDS
+References: <20241017075725.207384-1-giedriuswork@gmail.com>
+ <CALt+6nqxMZjuZuOKaj8Cx4dcNZx0n-0F9aa97d-vZoMWeN=bOw@mail.gmail.com>
+ <Zyk8dFthM0EA2A_K@intel.com>
+In-Reply-To: <Zyk8dFthM0EA2A_K@intel.com>
+From: =?UTF-8?Q?Giedrius_Statkevi=C4=8Dius?= <giedriuswork@gmail.com>
+Date: Thu, 7 Nov 2024 10:21:21 +0200
+Message-ID: <CALt+6nrS2aRHYCyrba5uBUXsHdPntELdj0MYPbv69PupHBKMtA@mail.gmail.com>
+Subject: Re: [PATCH v2] drm/i915/lspcon: do not hardcode settle timeout
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, 
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Mon, 11 Nov 2024 17:43:52 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -91,95 +92,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Rob Clark <robdclark@chromium.org>
+Hello,
 
-commit afce71ff6daa9c0f852df0727fe32c6fb107f0fa upstream.
+On Mon, 4 Nov 2024 at 23:28, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+>
+> On Mon, Nov 04, 2024 at 02:09:46PM +0200, Giedrius Statkevi=C4=8Dius wrot=
+e:
+> > Hello,
+> >
+> > Kind ping.
+>
+> There was a pipe underun in CI... I honestly don't believe this patch is
+> causing it, but anyway I decided to trigger a retest there before I push =
+this.
+>
+> Thanks for the patch and review.
 
-gem_context_register() makes the context visible to userspace, and which
-point a separate thread can trigger the I915_GEM_CONTEXT_DESTROY ioctl.
-So we need to ensure that nothing uses the ctx ptr after this.  And we
-need to ensure that adding the ctx to the xarray is the *last* thing
-that gem_context_register() does with the ctx pointer.
+I don't see that on my laptop. Resuming sometimes still doesn't work but
+this helps a little from my testing. I will continue the investigation.
 
-Signed-off-by: Rob Clark <robdclark@chromium.org>
-Fixes: eb4dedae920a ("drm/i915/gem: Delay tracking the GEM context until it is registered")
-Fixes: a4c1cdd34e2c ("drm/i915/gem: Delay context creation (v3)")
-Fixes: 49bd54b390c2 ("drm/i915: Track all user contexts per client")
-Cc: <stable@vger.kernel.org> # v5.10+
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
-[tursulin: Stable and fixes tags add/tidy.]
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20230103234948.1218393-1-robdclark@gmail.com
-(cherry picked from commit bed4b455cf5374e68879be56971c1da563bcd90c)
-Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-[Sherry: bp to fix CVE-2023-52913, ignore context conflicts due to
-missing commit 49bd54b390c2 "drm/i915: Track all user contexts per
-client")]
-Signed-off-by: Sherry Yang <sherry.yang@oracle.com>
----
- drivers/gpu/drm/i915/gem/i915_gem_context.c | 24 +++++++++++++++------
- 1 file changed, 18 insertions(+), 6 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-index 0eb4a0739fa2..0a7c4548b77f 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
-@@ -1436,6 +1436,10 @@ void i915_gem_init__contexts(struct drm_i915_private *i915)
- 	init_contexts(&i915->gem.contexts);
- }
- 
-+/*
-+ * Note that this implicitly consumes the ctx reference, by placing
-+ * the ctx in the context_xa.
-+ */
- static void gem_context_register(struct i915_gem_context *ctx,
- 				 struct drm_i915_file_private *fpriv,
- 				 u32 id)
-@@ -1449,13 +1453,13 @@ static void gem_context_register(struct i915_gem_context *ctx,
- 	snprintf(ctx->name, sizeof(ctx->name), "%s[%d]",
- 		 current->comm, pid_nr(ctx->pid));
- 
--	/* And finally expose ourselves to userspace via the idr */
--	old = xa_store(&fpriv->context_xa, id, ctx, GFP_KERNEL);
--	WARN_ON(old);
--
- 	spin_lock(&i915->gem.contexts.lock);
- 	list_add_tail(&ctx->link, &i915->gem.contexts.list);
- 	spin_unlock(&i915->gem.contexts.lock);
-+
-+	/* And finally expose ourselves to userspace via the idr */
-+	old = xa_store(&fpriv->context_xa, id, ctx, GFP_KERNEL);
-+	WARN_ON(old);
- }
- 
- int i915_gem_context_open(struct drm_i915_private *i915,
-@@ -1932,14 +1936,22 @@ finalize_create_context_locked(struct drm_i915_file_private *file_priv,
- 	if (IS_ERR(ctx))
- 		return ctx;
- 
-+	/*
-+	 * One for the xarray and one for the caller.  We need to grab
-+	 * the reference *prior* to making the ctx visble to userspace
-+	 * in gem_context_register(), as at any point after that
-+	 * userspace can try to race us with another thread destroying
-+	 * the context under our feet.
-+	 */
-+	i915_gem_context_get(ctx);
-+
- 	gem_context_register(ctx, file_priv, id);
- 
- 	old = xa_erase(&file_priv->proto_context_xa, id);
- 	GEM_BUG_ON(old != pc);
- 	proto_context_close(pc);
- 
--	/* One for the xarray and one for the caller */
--	return i915_gem_context_get(ctx);
-+	return ctx;
- }
- 
- struct i915_gem_context *
--- 
-2.46.0
-
+Best regards,
+Giedrius
