@@ -2,58 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EE199C0113
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Nov 2024 10:23:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 80A749C0114
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Nov 2024 10:23:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BF7C10E7D6;
-	Thu,  7 Nov 2024 09:23:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1CE6E10E7D9;
+	Thu,  7 Nov 2024 09:23:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Byvvnj6I";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YYiIUiDd";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ABFD210E7D6
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 Nov 2024 09:22:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD0EB10E7D9;
+ Thu,  7 Nov 2024 09:23:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1730971379; x=1762507379;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=r7XY3zE3TihKGfckCWYvzdH6hCQ/tH70+dxNStVfPq8=;
- b=Byvvnj6IjjtCm3tL5/yCWG1pjRBXQ1u9zcb3a24ADC4rAraOHlNueyEj
- leWjZFWk6QkwXC9O17qeLxj44Iz8xMXW6iVIpiqQX4U7KGGYJVnaPwuOq
- NwECvilmIznb1JaEg9f0XmiQ1j08Va6eVVaBeCKSzueCdjdTCv3SNOQ67
- hpDy27KAvWy3xSaHV9wxaIQLvWwX8GMbEXgpTRF/LJCY/ahMGbXlL6W7A
- jYgWYX/FGNbDb4rgOKXeBTRiFdHF8kHwrikkE0Uqmk4hIhLZK4tAKNAKN
- bix64+w7DULyRUq7n2FpZsupo6zQWkMSRaJL18mlbqg6AwQZWz5ZW1n/d A==;
-X-CSE-ConnectionGUID: SW1jZuAaQHif+81O/MFjUg==
-X-CSE-MsgGUID: eaPUnFzPSA+T9D3aR118zQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11248"; a="18427021"
-X-IronPort-AV: E=Sophos;i="6.11,265,1725346800"; d="scan'208";a="18427021"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2024 01:22:58 -0800
-X-CSE-ConnectionGUID: 6/KEaQmbQwKOmzjd9JOJ5g==
-X-CSE-MsgGUID: B+6h0I6vT1eDm8nR1Lxywg==
+ t=1730971423; x=1762507423;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=OBUD/204qlj6bzQRg79Gn2Ndm493ntuSBndlDDRNH5k=;
+ b=YYiIUiDdW/APQqw5zWmarUXsLQnasM1/jNJYibEUR059SjxMGt7JO+nb
+ +SicwFQbmrDCmYpiHBvvLF3wEpf4HywdwD1jW2nvqQa3JLRoMhL46ifNU
+ D1fO0TLuLCzu05AWhV1Ckd0IStlD7V49odaRerCJS9iszFdghh96eCJmK
+ YE/pRRtC2M0+mMia2qoozt9fTiugQUjT+88l8L6hmYupBUVI5v5IPpCnt
+ I0/ucZpdCrwZV8EBbo9BdKFkprTwpC4gVCelDUlgbj/r0VajqtBd4cYPP
+ WTYl2DTqnimIGbOkQ4dPPqh3hYoECMbVEd1k51qR/zKJl6jDBNm6j2r72 A==;
+X-CSE-ConnectionGUID: tEfegkR8Q52aJFNw/O74GA==
+X-CSE-MsgGUID: 5p5iuWwnQy6OphjQiRA3QQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="41356526"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="41356526"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Nov 2024 01:23:43 -0800
+X-CSE-ConnectionGUID: q16qvZvQSSiT7HQOiOokIw==
+X-CSE-MsgGUID: AhpkYlsKR5qDmdqo6fiB2A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,265,1725346800"; d="scan'208";a="85416722"
+X-IronPort-AV: E=Sophos;i="6.11,265,1725346800"; d="scan'208";a="84557207"
 Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.201])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2024 01:22:57 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 0/8] drm/i915/pps: Some PPS cleanups
-In-Reply-To: <20241106215859.25446-1-ville.syrjala@linux.intel.com>
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Nov 2024 01:23:40 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: Luca Coelho <luciano.coelho@intel.com>
+Subject: Re: [PATCH v2 01/17] drm/i915/dmc_wl: Use i915_mmio_reg_offset()
+ instead of reg.reg
+In-Reply-To: <20241106215231.103474-2-gustavo.sousa@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241106215859.25446-1-ville.syrjala@linux.intel.com>
-Date: Thu, 07 Nov 2024 11:22:53 +0200
-Message-ID: <87wmhfe6tu.fsf@intel.com>
+References: <20241106215231.103474-1-gustavo.sousa@intel.com>
+ <20241106215231.103474-2-gustavo.sousa@intel.com>
+Date: Thu, 07 Nov 2024 11:23:37 +0200
+Message-ID: <87ttcje6sm.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,43 +71,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 06 Nov 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+On Wed, 06 Nov 2024, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
+> The macro i915_mmio_reg_offset() is the proper interface to get a
+> register's offset. Use that instead of looking directly at reg.reg.
 >
-> I just wanted to defuse the mess around struct
-> edp_power_seq, but ended up super confused by the PPS
-> delay initialization code and so ended up untangling
-> some of that mess as well.
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 
-Thanks, this was long overdue, nice cleanup.
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-The one thing I missed (that could be added on top) was units in the
-debug logs, 100 us for struct intel_pps_delays, and ms for struct
-intel_pps *_delay members.
-
-BR,
-Jani
-
+> ---
+>  drivers/gpu/drm/i915/display/intel_dmc_wl.c | 11 ++++++-----
+>  1 file changed, 6 insertions(+), 5 deletions(-)
 >
-> Ville Syrj=C3=A4l=C3=A4 (8):
->   drm/i915/pps: Store the power cycle delay without the +1
->   drm/i915/pps: Decouple pps delays from VBT struct definition
->   drm/i915/pps: Rename intel_pps_delay members
->   drm/i915/lvds: Use struct intel_pps_delays for LVDS power sequencing
->   drm/i915/pps: Spell out the eDP spec power sequencing delays a bit
->     more clearly
->   drm/i915/pps: Extract msecs_to_pps_units()
->   drm/i915/pps: Extract pps_units_to_msecs()
->   drm/i915/pps: Eliminate pointless get_delay() macro
->
->  drivers/gpu/drm/i915/display/intel_bios.c     |  15 +-
->  drivers/gpu/drm/i915/display/intel_bios.h     |   8 -
->  .../drm/i915/display/intel_display_types.h    |  15 +-
->  drivers/gpu/drm/i915/display/intel_dp_aux.c   |   1 -
->  drivers/gpu/drm/i915/display/intel_lvds.c     |  49 +++---
->  drivers/gpu/drm/i915/display/intel_pps.c      | 149 ++++++++++--------
->  drivers/gpu/drm/i915/display/intel_vbt_defs.h |   8 +
->  7 files changed, 136 insertions(+), 109 deletions(-)
+> diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+> index 5634ff07269d..05892a237d3a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+> @@ -91,14 +91,15 @@ static void intel_dmc_wl_work(struct work_struct *work)
+>  	spin_unlock_irqrestore(&wl->lock, flags);
+>  }
+>  
+> -static bool intel_dmc_wl_check_range(u32 address)
+> +static bool intel_dmc_wl_check_range(i915_reg_t reg)
+>  {
+>  	int i;
+>  	bool wl_needed = false;
+> +	u32 offset = i915_mmio_reg_offset(reg);
+>  
+>  	for (i = 0; i < ARRAY_SIZE(lnl_wl_range); i++) {
+> -		if (address >= lnl_wl_range[i].start &&
+> -		    address <= lnl_wl_range[i].end) {
+> +		if (offset >= lnl_wl_range[i].start &&
+> +		    offset <= lnl_wl_range[i].end) {
+>  			wl_needed = true;
+>  			break;
+>  		}
+> @@ -191,7 +192,7 @@ void intel_dmc_wl_get(struct intel_display *display, i915_reg_t reg)
+>  	if (!__intel_dmc_wl_supported(display))
+>  		return;
+>  
+> -	if (!intel_dmc_wl_check_range(reg.reg))
+> +	if (!intel_dmc_wl_check_range(reg))
+>  		return;
+>  
+>  	spin_lock_irqsave(&wl->lock, flags);
+> @@ -239,7 +240,7 @@ void intel_dmc_wl_put(struct intel_display *display, i915_reg_t reg)
+>  	if (!__intel_dmc_wl_supported(display))
+>  		return;
+>  
+> -	if (!intel_dmc_wl_check_range(reg.reg))
+> +	if (!intel_dmc_wl_check_range(reg))
+>  		return;
+>  
+>  	spin_lock_irqsave(&wl->lock, flags);
 
---=20
+-- 
 Jani Nikula, Intel
