@@ -2,184 +2,184 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1D6E9C0F93
-	for <lists+intel-gfx@lfdr.de>; Thu,  7 Nov 2024 21:14:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DF9D9C0FA3
+	for <lists+intel-gfx@lfdr.de>; Thu,  7 Nov 2024 21:22:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E841C10E313;
-	Thu,  7 Nov 2024 20:14:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1AD5C10E8D5;
+	Thu,  7 Nov 2024 20:22:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MlvwLizx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T6/6MZel";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF3B310E17F;
- Thu,  7 Nov 2024 20:14:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F72610E8D3;
+ Thu,  7 Nov 2024 20:22:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731010486; x=1762546486;
+ t=1731010973; x=1762546973;
  h=content-transfer-encoding:in-reply-to:references:subject:
  from:cc:to:date:message-id:mime-version;
- bh=27F+Qpvb9Ts1WHHnpVMZwq0NyFeRjCiS3G+KGKffgSM=;
- b=MlvwLizxJd2Dea4ZecYxG4qJzf67sZnSnR+5sJNMCN8PbzNhIi2aUUS4
- /xay6XjsLQpjS7feI7FEc8ZnU924+IGCVtv+jDYGFXd7/sx57++eYyGtY
- oSqWKO6s9DN8/HBAysKIBaVaAVM8444n+SwvlsF+nkbmZdyaUmen5+YeS
- OtdivQYRMnyWt6CL/gt2ZfNHL8matOpbap507s3q+hjUBMnD8l6Be9wbv
- kmAu5vDx228wzQY2c0c8alibHsf/4+N16lqj4Gfae54qaOM7sddA46T+9
- 1g39tQXvXl2J75Y4mDqOMA4ZsWJPK9kaQ6FUrwEWcgxT0G5WRimRoVsnN w==;
-X-CSE-ConnectionGUID: OJlrs8BCRDSgomKK9IupLQ==
-X-CSE-MsgGUID: Mc4j2/TXR7OAnr+jsiEhcw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11249"; a="33722664"
-X-IronPort-AV: E=Sophos;i="6.12,136,1728975600"; d="scan'208";a="33722664"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2024 12:14:44 -0800
-X-CSE-ConnectionGUID: UBMiXYCWQj+74dFJbLW/ag==
-X-CSE-MsgGUID: 5sTPfTaSRCGDw6Nuuea2Lw==
+ bh=lECyN6N5WPYZm+ESEKESIE+GiBNt/RqcL65uL440acU=;
+ b=T6/6MZelz3G0e8v/uu9UL0aRfFUiADpjQupov192MrPt5fvVTdjHI8WF
+ znR0wQoZuKmYuFaGeI/rtsxuZgmNRBd9sSzaGSXMn3Y4hTydVjUwRN0qN
+ Q3L8yKbo2Wg0yGdkuGMo1ANJTHIP6SUOGsKCkVq4Rd4IXUlyPDklATNdE
+ xzk+66NBrsDEYVffXqUZ1f9TObP4z3BUBvPS1A0KxqGWfTYx5fkODCrb+
+ JSR92LtYb/88w+pFDgaqFZCVMstWEir7rcX/vmVx1ZLIPAEkLLvWvewJf
+ g2XO1J4Jg+tShBE3SUDlXfbk+LA6zSk208oZlqzARaFp85kbAZEa99F1R g==;
+X-CSE-ConnectionGUID: R3Nr7UrOT1q/yrYSs5MJlg==
+X-CSE-MsgGUID: gQJynk0ERoC+NZ12wkOvEQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11249"; a="18505449"
+X-IronPort-AV: E=Sophos;i="6.12,136,1728975600"; d="scan'208";a="18505449"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Nov 2024 12:22:52 -0800
+X-CSE-ConnectionGUID: lwlTgQxeQSWCj4LQAi3Whg==
+X-CSE-MsgGUID: 2N5MZ1AXT969zHDHbMUocg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,136,1728975600"; d="scan'208";a="90349871"
+X-IronPort-AV: E=Sophos;i="6.12,136,1728975600"; d="scan'208";a="89863714"
 Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orviesa004.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 07 Nov 2024 12:14:45 -0800
+ by fmviesa004.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 07 Nov 2024 12:22:52 -0800
 Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
  ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 7 Nov 2024 12:14:44 -0800
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ 15.1.2507.39; Thu, 7 Nov 2024 12:22:51 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
  orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Thu, 7 Nov 2024 12:14:44 -0800
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.43) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Thu, 7 Nov 2024 12:22:51 -0800
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.169)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Thu, 7 Nov 2024 12:14:43 -0800
+ 15.1.2507.39; Thu, 7 Nov 2024 12:22:51 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=dJdwvgjq6qJWBXLVppPnaqF1OIdQloBKZeBG1U6vzfD/nEdhoGhteWl1Jk6Pw3pUUhGq+YRg9ex2M8lM88nzuE+e85VhvJOVUQ62EACBfQM/hcfm8udAcKCM9S66qpHfgJbp8L8XgHFiiTFVFkd1azFLpbaTFe5j0eCqcbdBS3T1dCDZpnWVQcE3zt02Xt724tYDx7g58mEYrtvdA3V2yYsDZTjIwDaPOXGMEPSbQzScujv9PbB2PMnlmHUjGs2lXb/gafjZtD+lm0SfTb5ETakZVxqHzMO2EzaJb8sD9eN0BiQWCGOGie42tgbNpzz9qY6trojSMmU1rGaM5yW6Dw==
+ b=irpUGVk3CZc8leMbOoxLEglqh5m+fND96jcNy3/JROi0a2jKo57/PYhU0hBQJQAPlrV/6/NEPMYDtKYZuziQlgZIGJ3XhLZYOqaV00PB5gUGT2mt9WWzuU4vCIwV7ensiaY2nemcAG/CljIBjC9xuU4N5mGr/KrOM/gsNgnhxalE0emJu/pWjaU4ckJ0npH8XREWlCUhdpZLf/Ma/32MJCY02CIfyAtHPd8aQF4KgOysQIpw/IL+vPpDFSJTlnwojzlKWmVFKxbT/FA8Q5pSlLd7v1Y+VP2E/vj7yMNXkbi4LcBE3htFoO5Spg3diNidbAzmK7vQJkjskAHVcYNc1Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=w5qQBJ2VvJtCMLjmLoJSXNDMR6rNvuS1kz+ZFx9kpRc=;
- b=QoC5D8C8Mbfz9igUATOwc1tdZstZLbzSS4afAqItRK2YJ7m0ZJnyT/AphXYHF1cZwDuTl/VM7BW76J70tTcWn/lMllER/7AJBhIsgJRasdDhbVS2Qiq+Bhe5aYoy/i6t8qud8OtxK3EO+yFbRFzcpKTxgOsYfoQkli7n0UT1ZNucsq4zchdloM/T0s3+d9pgd9iCcKUbkL0pByOB0/3uO5SDm8A63IECx/jeEG4hvL4rthd5GbDCn+wJsurkb/cldIg+m9FJ2fcpqZn5aBZKEPlPOTxm0XBm+gpWEA4z1CQW18bRHFTz/VJOG8QquURW2XxQbYDvcMlopv0Kefoomw==
+ bh=o2b2OBX5hDSQhfuBsVemdkQOu4DpyJemY7fRhDfq/qU=;
+ b=mhXWbFtnfaZ4tJt+fL7Y43B0VObuZwn/eolYks+LaNIviPHyZa2xfUHw+B5ZvFhKSrro/Mj3Rl/gPnTFEcLsD3z1aTNbwE67iNxGxQiDQTnYH6tRhvv4kJ2Zwoj08k+7gPdU/zpas3xjWTVc4kox5eilNd0toIGor/iTM1iv52c0uBJR1KsYSdg14lIYbuWhFmQxI8XlnwLFbO799Yxi/MudoUxfl9wr0nBA6v1KYZL4YB3t0+UvCimWvQbPfvznN3Ug1Rf43AuP9U1J9JsjuA1Bw6MIpdAPKMclRnt1pS3FMVGapS99H6sK8i8zGRC2dPz2xJsiwvVKwdDl/yTaAg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
- by CY8PR11MB6819.namprd11.prod.outlook.com (2603:10b6:930:61::16)
+ by SA2PR11MB5036.namprd11.prod.outlook.com (2603:10b6:806:114::24)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8137.19; Thu, 7 Nov
- 2024 20:14:41 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8137.21; Thu, 7 Nov
+ 2024 20:22:48 +0000
 Received: from PH8PR11MB8287.namprd11.prod.outlook.com
  ([fe80::7e8b:2e5:8ce4:2350]) by PH8PR11MB8287.namprd11.prod.outlook.com
  ([fe80::7e8b:2e5:8ce4:2350%5]) with mapi id 15.20.8114.028; Thu, 7 Nov 2024
- 20:14:41 +0000
+ 20:22:48 +0000
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <57edfe78f9da272e0312ad77ee8ff7060932ae8c.camel@coelho.fi>
+In-Reply-To: <173101047610.92682.5793541337752745725@intel.com>
 References: <20241107182921.102193-1-gustavo.sousa@intel.com>
  <20241107182921.102193-18-gustavo.sousa@intel.com>
  <57edfe78f9da272e0312ad77ee8ff7060932ae8c.camel@coelho.fi>
+ <173101047610.92682.5793541337752745725@intel.com>
 Subject: Re: [PATCH v3 17/18] drm/i915/dmc_wl: Do nothing until initialized
 From: Gustavo Sousa <gustavo.sousa@intel.com>
 CC: Luca Coelho <luciano.coelho@intel.com>, Jani Nikula <jani.nikula@intel.com>
 To: Luca Coelho <luca@coelho.fi>, <intel-gfx@lists.freedesktop.org>,
  <intel-xe@lists.freedesktop.org>
-Date: Thu, 7 Nov 2024 17:14:36 -0300
-Message-ID: <173101047610.92682.5793541337752745725@intel.com>
+Date: Thu, 7 Nov 2024 17:22:43 -0300
+Message-ID: <173101096307.92682.12411368075185471884@intel.com>
 User-Agent: alot/0.10
-X-ClientProxiedBy: MW4PR03CA0050.namprd03.prod.outlook.com
- (2603:10b6:303:8e::25) To PH8PR11MB8287.namprd11.prod.outlook.com
+X-ClientProxiedBy: MW2PR16CA0015.namprd16.prod.outlook.com (2603:10b6:907::28)
+ To PH8PR11MB8287.namprd11.prod.outlook.com
  (2603:10b6:510:1c7::14)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|CY8PR11MB6819:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8248b42b-3d81-4152-4eea-08dcff68d023
+X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|SA2PR11MB5036:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5ed4245f-2215-43a1-c178-08dcff69f1fd
 X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0; ARA:13230040|366016|1800799024|376014|16122699012;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?RWo0SkppL2xpMEluMEM3U0dGTEdsbU5vRlVzZUVnWXkyeG5VeTB4RTl6dVdl?=
- =?utf-8?B?UUFWN0VOT0VlU0ZOZmRTckNCTDlraEs5bjlFbzkwWkU3VWtWSlVxVytwU1Ns?=
- =?utf-8?B?L1hjN3haZExEQ0g5cVF6U0VkbkYxVlFvTGo3UmZ2MGVPN3o0ZHFiVmNjUmVl?=
- =?utf-8?B?QVJpNG54TkZWZ29ra1EyZnQ1cmJYYzNCTUhiMk5PaDcyUTZLL1dVU09BUVgz?=
- =?utf-8?B?Qjl5eUlJcXZSMGtxMWd4cWhFUWpKdU5pYTdOYWNqQnZURkJaR3VmVjUwTnpN?=
- =?utf-8?B?cmtjWTViRTlLWXhOYThlTVdLa1ZCVGZmWEpDVnBIakxZU0NvQ292RGxTVVRO?=
- =?utf-8?B?am15eWdaRjVkYzhtcWZ5UU5yd3VDbnFVSUFGUUJWWFZvNDNPTFMyc3BsVUtR?=
- =?utf-8?B?SlhLM2RZSm91Tm1mVzl4OHYxeDRRSWpCV21Vb3VIM1VCWHl6RmI4OEJQZzha?=
- =?utf-8?B?VTRwYjJGNkJtMnF1M2lHRjhVL0pIbFpuVjVjVXpyUzV4ZnZ0dmMvWGFVellN?=
- =?utf-8?B?UlF6a3ZTVFZ2c1ZRbXA5QkNxVkZ6K2xVL3o5ZElaRll4dGxOLzZmRGZpM0Zx?=
- =?utf-8?B?OVQ4WEZXTUpBYmdLTUFkMVc5Yy9SWWh1Vk91ZDhya0N4eERwb0dwRXFmblpn?=
- =?utf-8?B?WENVRzd2dFVOaFo2ekZJODlhNGxQOGVWR29hU2VBNG5rOFIybkJWWmpoQTI3?=
- =?utf-8?B?M3FYOC9EZE9iZzlUMU1zemJOVkxub3hERE9BU05oTDJ0cVc2SW9WQitqL21Z?=
- =?utf-8?B?bXRZL3UxVWkrdTh2SXhMYjdlQWlaaFkzb0d6Uk90VWxMM1J2M3hpQjRKZ3Vh?=
- =?utf-8?B?dit4MTM4bWFLZGt4S1NyS1dQMEFLWC9DaER5MkNsQmJ3VTNkZnZCQTBHT3Ry?=
- =?utf-8?B?aWR0MmJiU0Q2NUtwd3Qzby9GZERNSDdIY3huTERxRmE1TnkvRVBha2FXOWVl?=
- =?utf-8?B?SXF6R3ArSTUxUEdMMk1aY3l6dUdaa2tZMVVOTVRFS3dYU1dkTzFVblduT24x?=
- =?utf-8?B?UHRTTnJqenV6UG4ra2ZWc2l4dlhqVDJEUGZVSzIza2JIMlZQaFl6UU00OVJX?=
- =?utf-8?B?M290d0JyV3dOQXZnZDhpR0NFUmcrb3QvWmE0MExWdGJZTmRSSTJSa1hmeDg4?=
- =?utf-8?B?Z1kwTEdCREMxV1ZMYTNudjVIc0RGZzJMVjIyTmxNbHVPUGMrVGg2MTY0T1BE?=
- =?utf-8?B?a2RWdjhCc25ZSW5nTGdXZyttbXI3WlFvREtvL0N0N2pJSTNQdGp1YjNkbmNU?=
- =?utf-8?B?YnQ3RFo1TnVWMnJGVnZtL1NVK21Ia3d0MUNUUnN1b2Y4d1pIOWl1NjJsVVRC?=
- =?utf-8?B?dDQyYkdiY0M1SWdPTW5xZEdlSzdVa2kxemRQbFAxckl6T09xTEFpeUpXMUdF?=
- =?utf-8?B?SFNGSGd3L3F1VDBodEIzbXhZMVJlUEs4azV6aVJYQmlUbmhZa3R4WUMxN1Q1?=
- =?utf-8?B?eG9SMTVRNFFtWXpKQ3RhSGlLTHhZdkw5bnQyQkhlanR1NUdYQ0ZRSlpZL1lW?=
- =?utf-8?B?RUZFMGl1N2t5SEo3Uk1rTitmOWdwQldSUXFmM0ozUUZQeksxaHdndXlwSFVi?=
- =?utf-8?B?WU12anlDdFNJSmkyVlBDQkZJSEhrY1RRVGV2N1paMjFOWEFVR1NOOUJTU2t1?=
- =?utf-8?B?amc2aDFiQW1BSk9EN3h4RkQ1eGliTytLTkZjMlhFSXhLcU8ybE9KcW4wb1FK?=
- =?utf-8?B?dlpIMVlGMUx3cjlKQW1HQnlXZCtnQnZFT2FyNmJmVnd3NDluL0FRZ25sUXJ5?=
- =?utf-8?B?bmlTN2hjNHE0YW9WR2FjSlZ1WHhKTFI2ZlJ1ajRtZi9DS0NVcy9BYVpGMjZw?=
- =?utf-8?Q?0KC3J33CsgrmzLuNoraX02bxq4ZESM4c6O/Fc=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?K3VvZEx3SHNzRXBRU1Y3eHorS2xCTGkvV2tSckNxQUhTTHpCb2UwQnhYb1Nr?=
+ =?utf-8?B?U2daaVBNdEU0MXh4VGd6Z3czZytNOHBWUkJHeTdtTWdnYnVvOTZ1Rk1hVSsr?=
+ =?utf-8?B?RWVkN2Mza051VEVLNjBpaUFUT0FJT2laTlBYbDk1YzhINEpZSlJXVTdhaGwr?=
+ =?utf-8?B?TjhvT2IwYlFJb3BJdkxIdWhFbSszekFqdnhtUGZ4M1JFV1lwMkFNa0tDSzZ5?=
+ =?utf-8?B?dm9QTHJuU056d05Yb3FRWUgrMlkwU2FoMkVEa1ZpbU5lVGw0c1dYc3RUd2JN?=
+ =?utf-8?B?RmgrK2hDa2VZQVE2ZnJOQUtqZDdPZXhiMGJhTmlPc3FuN3U4eko0dC9pYnlO?=
+ =?utf-8?B?NlhZbWVCUVZWeUhLOUt2WGdGSmtkUGpmUTR4Q3RDcXlNNlpqV1RENU5zVkY4?=
+ =?utf-8?B?dlRZNDZZbmk5TFIwYW5PM1cyQ2w2TitGZjVNNmVlaXZ3SThHTzhxSWpadzF0?=
+ =?utf-8?B?dWN1bERmZi85YzdRK1dISVF0dnZkT1VIaWxGUVlrN0xUZGttYjRQZHJoN2lN?=
+ =?utf-8?B?dlhsMkVyZ0ZjYUg2dmRxT1RCQjBlVXRZL0xHazdBekZrR3Zna2dvcWZ0SXNj?=
+ =?utf-8?B?ZWdTMUpQU3cyMmdmUzJtelhDdWxHemszVjBtK0hpS2pnT3FJOS9UTEVwM1Zy?=
+ =?utf-8?B?MzNNYTRNLzZNT2FjWVlwS1M3d1RmazJ2WXFud3lld0RKb3QwemE3MmVDLzkz?=
+ =?utf-8?B?UkdyYjh2UG5LcnVpa0tibms1QVNOaVNoZjRYLzFPYVQvSytsWmE0bDA1ZFRN?=
+ =?utf-8?B?elk3WWZPUGdMbDlxMnkvZ0xSMGRoOEZUbk40dnhxNmRQOEdFeFF3MkcxaGFB?=
+ =?utf-8?B?YUhqUCtYQ0cvL1FtTEhLWVJac1NGU09xbDNNR2JPV1dqbTBmN2F2ZlcwS0NS?=
+ =?utf-8?B?dW1SSWdmb0Z6YjZ3M2EzVWVaTlI1ckN2Yzk5UHZRTEZBZ3VLRXVvYXFla2Ra?=
+ =?utf-8?B?NUoxeFdobW9tTEVVbVVScEhxbWRvVUduenBvM3dJOVRYVFdBRWQ3VnNBTi9T?=
+ =?utf-8?B?U0xoM1p1azFpNmVIZW83ZWpmU0RyQThGZ0lFTkM4bG15ekRtUzFqWStsREtX?=
+ =?utf-8?B?cU5Zd3hUT25KQmVVVHk0N1BJVHVZTHhsZVh5L1IzVDNmVTRGRlYwaVhVU01U?=
+ =?utf-8?B?SzNBK3BVaTUrOXhVbThWZnYzc1llSmpaOUVIc2hLVjJjUGdkNTBpc0V6bS91?=
+ =?utf-8?B?RFRnbWxXaTdHZkNoZFNuMnR0eVRubzNxTis5YVZDNzFpTEJiWjJMUUgrZWlY?=
+ =?utf-8?B?cVV5b0JvUS9lelF2RnVHY1RyaUtxVThDVzlCRm1LS0Z3MVliOGdnQW8waGMr?=
+ =?utf-8?B?RHVJNm9XeGRmcmg3SUZQMHVKS1VkWHFUbHNBbnBQOWdsNlFWelM2Ymp3eE1i?=
+ =?utf-8?B?cEZtajU3MXVUQncxMlFzLzZIdDZWbytIb1krUldMemZMZVp3Vm5vTVRpRHNO?=
+ =?utf-8?B?VHhJSDh1RDFTRjBBSVBrQ00rWkRIT0JZbklORStkdThoQnE0Smgya25pbTZ4?=
+ =?utf-8?B?Q3VFVDZsZmxFVlk1QVJCYmhoY2ovb2xBQXM4SHFRaTlRMy92VVhwMk55aDBE?=
+ =?utf-8?B?Y0kzVDVLMGo0QWh2WUtvQ2p6R2N5YnlrdXJ3S2VMekdpVVNzVVBmVW5UUllz?=
+ =?utf-8?B?WGtCRFdYYjFoa3lSYkM3Z2tPazY3TDh6NEJGeUNxZkdxY0xTbE5HdndTTW1o?=
+ =?utf-8?B?Q1prcnQxdk9VdmJqRkkwVkkzZHhzYm8xSlFXUHJ5RXR2UDE4dmJSeENaOHRN?=
+ =?utf-8?Q?rW2RMOA9sOnXExZCSGGkHayIkmePUgf2zgJ9pSx?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(16122699012); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bytBMGdIZkxvWGplWjJiSnZKQ3JKekdrVC9Yb2VYMUZma1JJblpLVDJlUURR?=
- =?utf-8?B?cWQ4NU5jT0dYWTZTaUloRWhHVXQ3MFFPSzFoYjFqbGx6MmhYUzJ5OTQrQ3Vv?=
- =?utf-8?B?c2JVQXZpakxJdFlWZDhSdlBaSUNRZlY4WG84RHVmZ0xHMjgzWDB0MTN0amgz?=
- =?utf-8?B?ZEJMTHNwS0FRM3NTRHZDdkRzRHExZUxCRWdXdGI1MWdSNURCM0hDWVdjUmlh?=
- =?utf-8?B?SXZRVGorRmZBOEFwUnJDYmFmSFgwVWtVa0JDdUI2eG9CQllwV0RIL21WcVZq?=
- =?utf-8?B?S2tZQlpTQm96RlAxdXVjZWJyY29MNStKYXNRYzVEZlMzU3FHMVdsNE9nNDZE?=
- =?utf-8?B?U0xsRDhQVFFIandRN2IzeVRRaFlOTlhvRDRGODJFNmV3WkVCNGpCQTM1VFFR?=
- =?utf-8?B?ejV3YmlPSkR5Q1djTEd3bVlWQ3BXdlF4NW5QOStWS002WmhNdCtDNnphL2lW?=
- =?utf-8?B?aXFWMjNzSnI4THhZN1hOSmZsS2FiajFkdFN2WHlHYkc4aW44WkpDdGp2bTRm?=
- =?utf-8?B?M1RqQUF5UHUvTlRmeW9BTEJ0WmdZYzdQcUIxV3VNcUZWM01TNVhhS1NKcTZO?=
- =?utf-8?B?Sno0cmY1bUhIMDYrcTJxQ2grTXFxRjVlcWs3bWlvL1BEbzRtQldDSGhjbklO?=
- =?utf-8?B?WFBUc3dMLzh1SlhzZUc0OXgvSTg1TUhPbitPWFRUdFl2alI2d2pqcmt0YnVL?=
- =?utf-8?B?QS9sRVczUFdTZWxNbmxrUlRmRjV3dFQ3VWhhWG8rSEliYXlXYlo1WjUzUm9y?=
- =?utf-8?B?N1lacGQwYXdlRGo0eGpCVDBQcXZhUXVZSkRySmNqUUhGV3BvQWhrZEZKZE9u?=
- =?utf-8?B?U3RRRnFVUHVKa2dMalZlZlZ5aXYxbHZ0OGZsUHNzMUl6WUtuNGpvNEFmcy90?=
- =?utf-8?B?ZWtPM203ZzRlUFBLTUgzWjExU09zbFBPcGRzd2xseDBzUjQvYkJ2SnVLOVpu?=
- =?utf-8?B?ZzVxS0JzbEM2QkEwbzB3TUEwT1BwOGFYMVhUUm5QaE4xdEJGbFhUVllHZG5B?=
- =?utf-8?B?K0RkeGhwZVo1TXNtQ3dnM21jL1ViSTRNQjdTbDd3SndJdS9qbmFQMHFIc0RM?=
- =?utf-8?B?QXZCaDExTysxZk0vYmdiR2JVdE1FeWlLeENROFB6OGZOYU1GV1R4ODNGRlZF?=
- =?utf-8?B?azlSYjNPdTk5cWNTL3Ftc3hmR2ZhOUhmODJwZ1JzUWZiTGlmZ3VWYkRwb0J4?=
- =?utf-8?B?VjZ0RW0zaVV1bWZJc0pIUmJLYUt4UmhSazdGckdaWGxWY2tkK2ZiWWNFZlFR?=
- =?utf-8?B?Y2lqQ00xV3lYb3NZczMxc0JIc00zdnF6YTRrUUFSaWoxVWhzN1M2cW9hRkVp?=
- =?utf-8?B?RDA1R3lTOHBGUjBZdFIvWHE5Nm5ERjdiQ2R4ZGtJa3c4VmpQZ28ySlByOHRL?=
- =?utf-8?B?YXFmYzJNOEZ3VVpPdnZka0RhVTFCWi9yMURZd0hNbDlFQXZXdEgxTjFadmhy?=
- =?utf-8?B?QnpQbFJzdFk2YkVrRmp1N0oyeTIrbjE4L0Uxc0xid3hLV0g3T2E2Vnlsa3M5?=
- =?utf-8?B?WnVqWVk0aUNuckZkem5helRsOFRHZURlUDZYNjRIbVA1aEk0TlFWWm91azdS?=
- =?utf-8?B?SWRQRkRocy9LbUNyR0VuUmxFWXZXNlJBa2ZqWFp4ZXd0VHJQZ2E4ZTgvQWQz?=
- =?utf-8?B?RjZHUW16RmpXQm5DT1RzM1U0SU1qS3lGQUw4d1drQ2RFVmRUaGkwSExTMFpI?=
- =?utf-8?B?Y0p3ZkR4ZUN4NmdPa0g3Z1ZaWHI1WGhvT09wVUVpZGM0TnVVZnJlTGlyVVJj?=
- =?utf-8?B?cXJMdWxDUFpnVUdvUGlrVXpYcFpONEthdncxdVFWSW5ScmJ1NFBHaVg5WlF4?=
- =?utf-8?B?V1Z2ZlRUSFlwalgvOFNjSlh5VTA2cFlWaTZvajg4M3A1dE1xdHE4WGVVUEd2?=
- =?utf-8?B?NGRQaWs4ajB1VjJLV0VVVnBKd081YncxcnorM0c2dDBEQmtRSnpxYi9QZHdY?=
- =?utf-8?B?dzU3bFd5OE5qL05wYWFKTldyZWVycmRKUEJkYTg3aWppTmxlUjVmbGhmZVBu?=
- =?utf-8?B?eWw4N28rZ2JTK3NYUTF6WjNOZnk2aXF3ekZ3K251dmdMTFVBM0ZnclFMVzBL?=
- =?utf-8?B?ckd4QTYxMy82YTl6Z0NqUGlJVHZpZjFaMzdBM3U1a1pha3g2QkUrM2RRZm9s?=
- =?utf-8?B?ZDA3N05uOXozcnROZ3RUV1BRVmtjVXhmUDBNanBNb0lSUzJYeHdRRjZ3dEdm?=
- =?utf-8?B?Mnc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8248b42b-3d81-4152-4eea-08dcff68d023
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?d2dsM1BnZzFhN08yMDBnQVI1R2V2WFR5YjBOMnl3a2JUajVtMTFQZ3Z5eStI?=
+ =?utf-8?B?U3NBNjBmOXozV1hHb3NNbXdKTHdncjQ5WXJmeW5OYmZHbjNsNDNUSEFPbnd0?=
+ =?utf-8?B?R3pET1RJQ0JVMnpPTm5aVjFZQzR4SE9ja2dMbkNCbXlLeGZmSlhibUhKN3NZ?=
+ =?utf-8?B?QnU2Y0dmY0tMbHNpaFdXY2UyTmVTMjBvNEUwMVdHVTVHUTFNWWRZUUNzdEsy?=
+ =?utf-8?B?ODNpYnJ1WDdkeXovSXZ3L1gyZjRVYUwzRE1EK0c5SmJubjFEdEdHQ1BSVTZD?=
+ =?utf-8?B?ZU04UTdlcWdKTDBXVDE0M3B1Vk51cHlPNTdncERiWEk1bXRZbWs3M2hFN3Nm?=
+ =?utf-8?B?RzlEc2c3NjVXbGx1MXp0RmJ6Q0RZeTBnZWx2dUs3U280d2c3NEg0NnBZc1Fm?=
+ =?utf-8?B?MzZySEhobFdLbHY3bTd5M3ZKUURhR0ltRTE4WWZwWXRUKzFtWkh5dVh4WTZh?=
+ =?utf-8?B?S0QwV3dhUUtWbnBNdVVkZG41eEliZVUxZjVHUlZrUlNBVFg2emgyNTEzc09r?=
+ =?utf-8?B?ZkpxcWFSQkRhbVRITmJlMmRPdTdsQUJiZTg5WVJKMmo1M2FodEZzOVFsajhy?=
+ =?utf-8?B?UHUrdXZ2MWpoZDVqOGxheEtKZ0t0RW1wWmN2NCtxcmd4TzdiNUhoWTBxMHJl?=
+ =?utf-8?B?SSszNmlIM2E4M3hXWkFMdS9yNkJqU0VFKzVnQ1lvN3I3Uk5PbEpiTWhHTE1r?=
+ =?utf-8?B?a3dBR3VNdlF4QU9HbHNDdjkySlZYMUFXQkZqWStnQ2pwamlPK0RYYkJoRzZO?=
+ =?utf-8?B?VVRQRDZ6bENMZlBDTnRRY2tZQXMxdXNSN0hveU01RnlpSmFKZ0UvZEZTdllY?=
+ =?utf-8?B?ODZlR21rVFpnK0g4dStzSkVLam12YzVRTlVNQkV6dzUrc05KTnJyR2hZZnU1?=
+ =?utf-8?B?bXQyTTRNK05iUzV3a0dLMEw0enNUaUV6SXAxUDV5M0wybUU3N0YyMDl2aTUv?=
+ =?utf-8?B?VitUcWMyN09Gc05sdzc3ZzJudjIvZW5UbC9oc21hU2pIUThNQW5mUkZLckh5?=
+ =?utf-8?B?R0pFRHdlVzRNYzVIRlloMnlXVjN4cVRpVk5UR2J4V2hLZXk3bU9DZmJnYmNY?=
+ =?utf-8?B?T21KWnJ5OUxVa3JmNnpveTY2OUJvdHo1QVoyUitpYXV2VGdIdVVrSnRXRmlM?=
+ =?utf-8?B?SzM5aFNncHFrbmhQSnEvNEhyc2VwV3gzbXNLN0VROEY1dlB0ekwrQ0RIN21Z?=
+ =?utf-8?B?cE5CV2piNXArbXlaREFwbG9qaTcxVVVGSDVQMWdOZU1vK2NLUFF0KzVMQThK?=
+ =?utf-8?B?aEhSbUlsNk9VdWtjR3V0NWFFWi9nalJuTkUrTnpvMDhPMjlSVEphZ3Z4WW9u?=
+ =?utf-8?B?c2VkcWtTUnB3RmM5Y2l1d0tjRGMvSXVES0l4TXlUdDVOQ1dJekIvd1hIOWtK?=
+ =?utf-8?B?RVJocXZSTHJKbG1hWWRzY3pseHY4bS9EdWxJVi9nMGFONmhQR284L1hNTXBB?=
+ =?utf-8?B?ejFscVFtYVhGQU50WWhnUzJRZUtqeE5uN1FIemFpbDlsR3BsSjk3c3hXbHBj?=
+ =?utf-8?B?UUdrOGh0RE02YjBDckk3VlJHTzR4R2lHQVNHUUt5Z3Q5MngyeU1VaXp3TTB5?=
+ =?utf-8?B?NkF1T1ExREZhK29aTloxQUZ3SElGY0JXTytrRVlKVmxQOFgvV0pkelkrSHZK?=
+ =?utf-8?B?M1FlM0duQitKekI2cnBmWGk1Um9FOVZCaEhUa2lTSU85S1lDL1BlNUdYVXFv?=
+ =?utf-8?B?cEF4Z2VHNjBiaG5sdjM2NmlGWldObDlUMGxLOUhxY0YrYmFSZksvMHpIUzlq?=
+ =?utf-8?B?QjBJbXcrZG1tZnhQdUdtU0dmUzE0S0k2QWFzM1pTaXc3WFVQc0ZpT0xKeWhM?=
+ =?utf-8?B?MWRyckp4WEFpZjErclNKQ090VWFJTlJDaUJIUjhhWnRpbFZkTmVKcTRlcnpC?=
+ =?utf-8?B?ODlRRDNTNDlkRll4QWFuRmFzUFc1d3QyK2ZHL0Z3TEJGaUFpYUNZdDc0Nldl?=
+ =?utf-8?B?Qk5leDcxSjk5QzFBMjhYRWRPRWt6aitQUEdCdytxdWVPZ1djSkJscmZWclZJ?=
+ =?utf-8?B?MGh0ZDZ6NU1ObUpwUWFUYlppRzVDV2Fkd0d2MUc0TEZkR2J6bUZMMDlveEkz?=
+ =?utf-8?B?S0xnSHJOemtzWkFuTzJ6bFFtVmozOTVQd1IzNmo0cDhBS3V5Wm5velhmZndu?=
+ =?utf-8?B?S3NwL0FVWm9OcWdFdVBqTXdodUU3U0ZBTnVxYjFOOHcxWm5LOTVSVmNGVy9O?=
+ =?utf-8?B?cWc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5ed4245f-2215-43a1-c178-08dcff69f1fd
 X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Nov 2024 20:14:41.6030 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Nov 2024 20:22:47.9408 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: enSUCFNtXf8DKyfbdtZ/RUdlnhRjIvK4EVzFCAb31Hig9Zvb0r3/9MfDULYTOudD2DYZoKIgjdR3hCgxqEi8LQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB6819
+X-MS-Exchange-CrossTenant-UserPrincipalName: uahMRZiikFqzb6hRYsY2s5DJnVbW0eO8eDEit032QDxliE1+ko9K8+99sk3MlYEruQgXGzaojKC58w8N8fH0UQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5036
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -196,102 +196,207 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Luca Coelho (2024-11-07 16:23:06-03:00)
->On Thu, 2024-11-07 at 15:27 -0300, Gustavo Sousa wrote:
->> There is a bit of a chicken and egg situation where we depend on runtime
->> info to know that DMC and wakelock are supported by the hardware, and
->> such information is grabbed via display MMIO functions, which in turns
->> call intel_dmc_wl_get() and intel_dmc_wl_put() as part of their regular
->> flow.
+Quoting Gustavo Sousa (2024-11-07 17:14:36-03:00)
+>Quoting Luca Coelho (2024-11-07 16:23:06-03:00)
+>>On Thu, 2024-11-07 at 15:27 -0300, Gustavo Sousa wrote:
+>>> There is a bit of a chicken and egg situation where we depend on runtim=
+e
+>>> info to know that DMC and wakelock are supported by the hardware, and
+>>> such information is grabbed via display MMIO functions, which in turns
+>>> call intel_dmc_wl_get() and intel_dmc_wl_put() as part of their regular
+>>> flow.
+>>
+>>s/which in turns call/which in turn calls/
 >
->s/which in turns call/which in turn calls/
-
-Thanks!
-
-I'll do
-
-  s/which in turns call/which in turn call/
-
-as the subject for "call" is "display MMIO functions".
-
+>Thanks!
 >
+>I'll do
 >
->> Since we do not expect DC states (and consequently the wakelock
->> mechanism) to be enabled until DMC and DMC wakelock software structures
->> are initialized, a simple and safe solution to this is to turn
->> intel_dmc_wl_get() and intel_dmc_wl_put() into no-op until we have
->> properly initialized.
+>  s/which in turns call/which in turn call/
 >
+>as the subject for "call" is "display MMIO functions".
 >
->About "safe" here... Can we be sure this will be race-free?
-
-The initialization is done only once, during driver load. The wakelock
-will be enabled only at a later moment. So, we are good in that regard.
-
-However, now that you mentioned, yeah, we should also consider that that
-we do concurrent work during initialization (e.g. loading the DMC).
-Based on that, we will need to protect "initialized", which means:
-
-- initializing the lock early together with the other ones;
-- always going for the lock, even for hardware that does not support the
-  wakelock.
-
-Ugh... I don't like the latter very much... But, with those provided, I
-believe we should be safe.
-
-Thoughts?
-
+>>
+>>
+>>> Since we do not expect DC states (and consequently the wakelock
+>>> mechanism) to be enabled until DMC and DMC wakelock software structures
+>>> are initialized, a simple and safe solution to this is to turn
+>>> intel_dmc_wl_get() and intel_dmc_wl_put() into no-op until we have
+>>> properly initialized.
+>>
+>>
+>>About "safe" here... Can we be sure this will be race-free?
 >
+>The initialization is done only once, during driver load. The wakelock
+>will be enabled only at a later moment. So, we are good in that regard.
 >
->> Let's implement that via a new field "initialized". Not that, since we
->> expect __intel_dmc_wl_supported() to be used for most non-static DMC
->> wakelock functions, let's add a drm_WARN_ONCE() there for when it is
->> called prior to initialization.
+>However, now that you mentioned, yeah, we should also consider that that
+>we do concurrent work during initialization (e.g. loading the DMC).
+>Based on that, we will need to protect "initialized", which means:
 >
->
->s/not that/note that/
+>- initializing the lock early together with the other ones;
+>- always going for the lock, even for hardware that does not support the
 
-Thanks!
+Oh, to be clear: I meant the spin lock here :-)
 
->
->
->> The only exception of functions that can be called before initialization
->> are intel_dmc_wl_get() and intel_dmc_wl_put(), so we bail before
->> calling __intel_dmc_wl_supported() if not initialized.
->>=20
->> An alternative solution would be to revise MMIO-related stuff in the
->> whole driver initialization sequence, but that would possibly come with
->> the cost of some added ordering dependencies and complexity to the
->> source code.
->
->I think this can be kept out of the commit message.  It's not very
->clear what you mean and it sounds much more complex than the solution
->you implemented.  Unless race can really be an issue here, but then the
->whole commit message should be changed to an eventual more complex
->solution.
+Something along the lines of:
 
-I meant that we would need to revise the initialization code and find
-the correct place to put the DMC Wakelock software initialization call.
-That might also come with changes in some places where we do probe the
-hardware for info:
-
-  - We need our initialization to happen before
-    intel_display_device_info_runtime_init(), because we want to check
-    HAS_DMC().
-
-  - Currently, __intel_display_device_info_runtime_init() is using
-    intel_re_read(), which in turn uses
-    intel_dmc_wl_get()/intel_dmc_wl_put().
-
-  - The alternative solution to using the "initialized" flag would be to
-    make sure that function does not use the MMIO functions that take
-    the DMC wakelock path.
-
-  - However, __intel_display_device_info_runtime_init() is not necessary
-    the only function that would need to be changed, but rather
-    basically everything that does MMIO before the initialization!
-
-I hope it is clearer now :-)
+    diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/driv=
+ers/gpu/drm/i915/display/intel_display_driver.c
+    index 4257cc380475..e6d4f6328c33 100644
+    --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
+    +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+    @@ -186,6 +186,7 @@ void intel_display_driver_early_probe(struct drm_i9=
+15_private *i915)
+     		return;
+    =20
+     	spin_lock_init(&i915->display.fb_tracking.lock);
+    +	spin_lock_init(&i915->display.wl.lock);
+     	mutex_init(&i915->display.backlight.lock);
+     	mutex_init(&i915->display.audio.mutex);
+     	mutex_init(&i915->display.wm.wm_mutex);
+    diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gpu/=
+drm/i915/display/intel_dmc_wl.c
+    index e43077453a99..bf8d3b04336d 100644
+    --- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+    +++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+    @@ -307,11 +307,11 @@ void intel_dmc_wl_enable(struct intel_display *di=
+splay, u32 dc_state)
+     	struct intel_dmc_wl *wl =3D &display->wl;
+     	unsigned long flags;
+    =20
+    -	if (!__intel_dmc_wl_supported(display))
+    -		return;
+    -
+     	spin_lock_irqsave(&wl->lock, flags);
+    =20
+    +	if (!__intel_dmc_wl_supported(display))
+    +		goto out_unlock;
+    +
+     	wl->dc_state =3D dc_state;
+    =20
+     	if (drm_WARN_ON(display->drm, wl->enabled))
+    @@ -353,13 +353,13 @@ void intel_dmc_wl_disable(struct intel_display *d=
+isplay)
+     	struct intel_dmc_wl *wl =3D &display->wl;
+     	unsigned long flags;
+    =20
+    +	spin_lock_irqsave(&wl->lock, flags);
+    +
+     	if (!__intel_dmc_wl_supported(display))
+    -		return;
+    +		goto out_unlock;
+    =20
+     	flush_delayed_work(&wl->work);
+    =20
+    -	spin_lock_irqsave(&wl->lock, flags);
+    -
+     	if (drm_WARN_ON(display->drm, !wl->enabled))
+     		goto out_unlock;
+    =20
+    @@ -389,13 +389,13 @@ void intel_dmc_wl_get(struct intel_display *displ=
+ay, i915_reg_t reg)
+     	struct intel_dmc_wl *wl =3D &display->wl;
+     	unsigned long flags;
+    =20
+    +	spin_lock_irqsave(&wl->lock, flags);
+    +
+     	if (!wl->initialized)
+    -		return;
+    +		goto out_unlock;
+    =20
+     	if (!__intel_dmc_wl_supported(display))
+    -		return;
+    -
+    -	spin_lock_irqsave(&wl->lock, flags);
+    +		goto out_unlock;
+    =20
+     	if (i915_mmio_reg_valid(reg) && !intel_dmc_wl_check_range(reg, wl->dc=
+_state))
+     		goto out_unlock;
+    @@ -424,13 +424,13 @@ void intel_dmc_wl_put(struct intel_display *displ=
+ay, i915_reg_t reg)
+     	struct intel_dmc_wl *wl =3D &display->wl;
+     	unsigned long flags;
+    =20
+    +	spin_lock_irqsave(&wl->lock, flags);
+    +
+     	if (!wl->initialized)
+    -		return;
+    +		goto out_unlock;
+    =20
+     	if (!__intel_dmc_wl_supported(display))
+    -		return;
+    -
+    -	spin_lock_irqsave(&wl->lock, flags);
+    +		goto out_unlock;
+    =20
+     	if (i915_mmio_reg_valid(reg) && !intel_dmc_wl_check_range(reg, wl->dc=
+_state))
+     		goto out_unlock;
 
 --
 Gustavo Sousa
+
+>  wakelock.
+>
+>Ugh... I don't like the latter very much... But, with those provided, I
+>believe we should be safe.
+>
+>Thoughts?
+>
+>>
+>>
+>>> Let's implement that via a new field "initialized". Not that, since we
+>>> expect __intel_dmc_wl_supported() to be used for most non-static DMC
+>>> wakelock functions, let's add a drm_WARN_ONCE() there for when it is
+>>> called prior to initialization.
+>>
+>>
+>>s/not that/note that/
+>
+>Thanks!
+>
+>>
+>>
+>>> The only exception of functions that can be called before initializatio=
+n
+>>> are intel_dmc_wl_get() and intel_dmc_wl_put(), so we bail before
+>>> calling __intel_dmc_wl_supported() if not initialized.
+>>>=20
+>>> An alternative solution would be to revise MMIO-related stuff in the
+>>> whole driver initialization sequence, but that would possibly come with
+>>> the cost of some added ordering dependencies and complexity to the
+>>> source code.
+>>
+>>I think this can be kept out of the commit message.  It's not very
+>>clear what you mean and it sounds much more complex than the solution
+>>you implemented.  Unless race can really be an issue here, but then the
+>>whole commit message should be changed to an eventual more complex
+>>solution.
+>
+>I meant that we would need to revise the initialization code and find
+>the correct place to put the DMC Wakelock software initialization call.
+>That might also come with changes in some places where we do probe the
+>hardware for info:
+>
+>  - We need our initialization to happen before
+>    intel_display_device_info_runtime_init(), because we want to check
+>    HAS_DMC().
+>
+>  - Currently, __intel_display_device_info_runtime_init() is using
+>    intel_re_read(), which in turn uses
+>    intel_dmc_wl_get()/intel_dmc_wl_put().
+>
+>  - The alternative solution to using the "initialized" flag would be to
+>    make sure that function does not use the MMIO functions that take
+>    the DMC wakelock path.
+>
+>  - However, __intel_display_device_info_runtime_init() is not necessary
+>    the only function that would need to be changed, but rather
+>    basically everything that does MMIO before the initialization!
+>
+>I hope it is clearer now :-)
+>
+>--
+>Gustavo Sousa
