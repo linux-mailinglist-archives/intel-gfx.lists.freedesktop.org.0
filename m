@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 638DA9C1D7E
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Nov 2024 14:03:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 731AC9C1D86
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Nov 2024 14:03:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4745D10E980;
-	Fri,  8 Nov 2024 13:03:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0ACBD10E9A1;
+	Fri,  8 Nov 2024 13:03:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Bg7A8PrK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZrGZ6htz";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A939510E980;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 07C0310E980;
  Fri,  8 Nov 2024 13:03:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1731070983; x=1762606983;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=K6I+UG1ro/PCMoBy6LL6IWVTYI48329yETnRx1L9Srw=;
- b=Bg7A8PrKQQojDVwjvoh/bjG+tXQJ5jLxpWs/nuMMsfWH/1VcUcvYCdxj
- w4leEqDuXuk9DJPVNDvyxMOhb1Jin08jlp9No4mx/mlHtJ5YS1OQ2D3o3
- wFn2eTjmh00zuY88IYEH5ddXqcakm3GwL64qkhs4OlTpoBaLhEWOxzdjy
- 4qzLA6AATkgJbGafnid7SDRLAbVZbxNnO9n1xR28EU4xoX/hHLyWxnSvF
- +lDde0pyLuztug0hCbec7AVWMlQLv5hGX1AB/VKNpQhJRygQBHYxFJeAN
- I5JBnlJSSIL8/ArhE4Kg/49ZRlV2J1IQTPNnO2t/53o+ucAI2Nrmxlk+D g==;
-X-CSE-ConnectionGUID: J78Y/CynTOGksSJcegac+w==
-X-CSE-MsgGUID: VwNTV6v+Qs+JK1i8ue4oiA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="41513123"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="41513123"
+ bh=mBIY7pSU8m8SQP+gRuQ3qa81qmpOpi0OGk7F4PaP3s0=;
+ b=ZrGZ6htzBVE/rfkJOeE9/wxbyewf45e5P2MS3zR7Ivmau2PTvUBrd0I2
+ 3iTdoJYQErapeUJqNh7gfe9LYltkYkJVmAlSpIybMSKKXx/qK+1180dx2
+ OsbY2tPUe/iqqDqlZiq3emhwhIwqxzeLJ6qNmrtk5cuNTaN29tlZKtkfl
+ CqiU5MGY2aEouhS5pJh/CttCmy7mYf9mZogpm74JqdaVGGAlb9+JQ8oxv
+ xQuQvzJiShxwUJWSmR95fGY1mQ1DyGs7MUzJeVL6iAF379aiELE5GBg+N
+ 1F+5i0k4J9vnExha4jkezEdRDHRUWI/ejU2A54Qws267X5/Z2oLcSZ9GC g==;
+X-CSE-ConnectionGUID: 77g7uAj7Sg+PPn3G+0liiw==
+X-CSE-MsgGUID: iswslDzjQKq6h2vNS6iQkQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="41513124"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="41513124"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2024 05:03:02 -0800
-X-CSE-ConnectionGUID: OetnX2U2SdGAZqFeVkMZDQ==
-X-CSE-MsgGUID: dYTwE/unT66DK4gj9XbZQA==
+ 08 Nov 2024 05:03:03 -0800
+X-CSE-ConnectionGUID: e+7TRj9JTgmvird81LBEhg==
+X-CSE-MsgGUID: kJ/o2XGNTKCXe0HfrK4HrQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,138,1728975600"; d="scan'208";a="85692465"
+X-IronPort-AV: E=Sophos;i="6.12,138,1728975600"; d="scan'208";a="85692468"
 Received: from ldmartin-desk2.corp.intel.com (HELO
  gjsousa-mobl2.corp.amr.intel.com) ([10.125.110.232])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2024 05:02:42 -0800
+ 08 Nov 2024 05:02:44 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Luca Coelho <luciano.coelho@intel.com>, Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v4 01/15] drm/i915/dmc_wl: Use i915_mmio_reg_offset() instead
- of reg.reg
-Date: Fri,  8 Nov 2024 09:57:06 -0300
-Message-ID: <20241108130218.24125-2-gustavo.sousa@intel.com>
+Subject: [PATCH v4 02/15] drm/xe: Mimic i915 behavior for non-sleeping MMIO
+ wait
+Date: Fri,  8 Nov 2024 09:57:07 -0300
+Message-ID: <20241108130218.24125-3-gustavo.sousa@intel.com>
 X-Mailer: git-send-email 2.47.0
 In-Reply-To: <20241108130218.24125-1-gustavo.sousa@intel.com>
 References: <20241108130218.24125-1-gustavo.sousa@intel.com>
@@ -70,57 +70,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The macro i915_mmio_reg_offset() is the proper interface to get a
-register's offset. Use that instead of looking directly at reg.reg.
+In upcoming display changes, we will modify the DMC wakelock MMIO
+waiting code to choose a non-sleeping variant implementation, because
+the wakelock is also taking in atomic context.
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+While xe provides an explicit parameter (namely "atomic") to prevent
+xe_mmio_wait32() from sleeping, i915 does not and implements that
+behavior when slow_timeout_ms is zero.
+
+So, for now, let's mimic what i915 does to allow for display to use
+non-sleeping MMIO wait. In the future, we should come up with a better
+and explicit interface for this behavior in i915, at least while display
+code is not an independent entity with proper interfaces between xe and
+i915.
+
+v2:
+  - Make the tone in comment the comment added in
+    __intel_wait_for_register() more explanatory than a FIXME-like text.
+    (Luca)
+
 Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dmc_wl.c | 11 ++++++-----
- 1 file changed, 6 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-index 5634ff07269d..05892a237d3a 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-@@ -91,14 +91,15 @@ static void intel_dmc_wl_work(struct work_struct *work)
- 	spin_unlock_irqrestore(&wl->lock, flags);
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
+index 0382beb4035b..686c39f320e4 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
+@@ -117,10 +117,19 @@ __intel_wait_for_register(struct intel_uncore *uncore, i915_reg_t i915_reg,
+ 			  unsigned int slow_timeout_ms, u32 *out_value)
+ {
+ 	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
++	bool atomic;
++
++	/*
++	 * Replicate the behavior from i915 here, in which sleep is not
++	 * performed if slow_timeout_ms == 0. This is necessary because
++	 * of some paths in display code where waits are done in atomic
++	 * context.
++	 */
++	atomic = !slow_timeout_ms && fast_timeout_us > 0;
+ 
+ 	return xe_mmio_wait32(__compat_uncore_to_mmio(uncore), reg, mask, value,
+ 			      fast_timeout_us + 1000 * slow_timeout_ms,
+-			      out_value, false);
++			      out_value, atomic);
  }
  
--static bool intel_dmc_wl_check_range(u32 address)
-+static bool intel_dmc_wl_check_range(i915_reg_t reg)
- {
- 	int i;
- 	bool wl_needed = false;
-+	u32 offset = i915_mmio_reg_offset(reg);
- 
- 	for (i = 0; i < ARRAY_SIZE(lnl_wl_range); i++) {
--		if (address >= lnl_wl_range[i].start &&
--		    address <= lnl_wl_range[i].end) {
-+		if (offset >= lnl_wl_range[i].start &&
-+		    offset <= lnl_wl_range[i].end) {
- 			wl_needed = true;
- 			break;
- 		}
-@@ -191,7 +192,7 @@ void intel_dmc_wl_get(struct intel_display *display, i915_reg_t reg)
- 	if (!__intel_dmc_wl_supported(display))
- 		return;
- 
--	if (!intel_dmc_wl_check_range(reg.reg))
-+	if (!intel_dmc_wl_check_range(reg))
- 		return;
- 
- 	spin_lock_irqsave(&wl->lock, flags);
-@@ -239,7 +240,7 @@ void intel_dmc_wl_put(struct intel_display *display, i915_reg_t reg)
- 	if (!__intel_dmc_wl_supported(display))
- 		return;
- 
--	if (!intel_dmc_wl_check_range(reg.reg))
-+	if (!intel_dmc_wl_check_range(reg))
- 		return;
- 
- 	spin_lock_irqsave(&wl->lock, flags);
+ static inline u32 intel_uncore_read_fw(struct intel_uncore *uncore,
 -- 
 2.47.0
 
