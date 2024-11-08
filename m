@@ -2,56 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 875EE9C1D7C
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Nov 2024 14:01:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1426C9C1D80
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Nov 2024 14:03:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6325810E97A;
-	Fri,  8 Nov 2024 13:01:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6303A10E98F;
+	Fri,  8 Nov 2024 13:03:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W8b6mF1C";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YMoDP9rE";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 303A610E97A
- for <intel-gfx@lists.freedesktop.org>; Fri,  8 Nov 2024 13:01:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1C6410E97C
+ for <intel-gfx@lists.freedesktop.org>; Fri,  8 Nov 2024 13:03:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731070906; x=1762606906;
+ t=1731070982; x=1762606982;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=8KX3QgmK/5qFJIy6uawkdLB3AcBcOqG3TljtnkDUNPY=;
- b=W8b6mF1CtTwQXo+MAZzuQHcINjWuybg10SMS+2H2JEyUToAcSblSqVS0
- l9pYyvH8nH/lsDSFld+xN4t5rDbfbI2Bkr3eoH6DWksEc2G7KbcOdX7ml
- eT+eEeijrEdhvNWRLiKpFTyXrajXLno4t+8nk93OkQGg1Izydz9MCHTm4
- ONZ5dNA3CHghOLBw19Twa5Xk5JZwkxVKilcXSCevBhfcz5HZjtqRESxpT
- euBaaYgZpCDk4JP++TVO5nZ2k2/3xQ9f6r8qd+EMg2ur0+Hzxd+9d63XI
- 90E2LQ7WMQH+TNJLstl6S4/luPmRKRYN0GbjxgMpprmujzARxI3gRYg2x Q==;
-X-CSE-ConnectionGUID: eIZNL/ZWRkOcytb6Swq9YQ==
-X-CSE-MsgGUID: 316jS8QASS67pU1nI+giog==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="41512863"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="41512863"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2024 05:01:46 -0800
-X-CSE-ConnectionGUID: tXiFCJlwQIG6dcWueHaeuA==
-X-CSE-MsgGUID: zOOxERKfSHOZAZbpfQpVow==
+ bh=P9XmF5PfjIeuiV6nGfDsQ2aZ3JVfBS+SmKcX/VuNSUw=;
+ b=YMoDP9rECnjC8O7A/gZY0sAqjiNedAi6Ib1I2PkQppDXI8ZFQlreuwuK
+ 7swusbpBVdCuZr1+ft/vi8WSOBm//jWApjN9wYUzpHAXh2pHCFLRmVkfg
+ H+QKi4Ikd5DZpqWsbYbNHKijxHnSEHLoHe/V0oThSwI3BWELWxJVtF7m/
+ /UvMGE9AQC7KokCDDAXPR8FeyaW+fg/dUG3V11nJXcYyoS1OV80w8t4la
+ 0d40pa7vymNECroG9GD7XkpORv+YJxE5icA9qPebcDCXFBZ/9aBw9NymD
+ 3LbJzq312qSqrgiCeDuzBUO+a+tRUlp22/PRFJQ9ETPJ7CXeiVgYC+HQ3 A==;
+X-CSE-ConnectionGUID: /afiLZa0RTOw26rUzVvSug==
+X-CSE-MsgGUID: uF9E5ULuTymwZ9871nGMOA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="53513593"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="53513593"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Nov 2024 05:03:02 -0800
+X-CSE-ConnectionGUID: auzEmxcCTietbhki+1Sr+Q==
+X-CSE-MsgGUID: GkFyICvbROOcT8lfpoU1fA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,138,1728975600"; d="scan'208";a="90093339"
+X-IronPort-AV: E=Sophos;i="6.12,138,1728975600"; d="scan'208";a="85651464"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.252])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2024 05:01:44 -0800
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Nov 2024 05:03:00 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 02/10] drm/i915/crt: Split long line
-In-Reply-To: <20241107161123.16269-3-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 03/10] drm/i915/crt: Drop the unused ADPA_DPMS bit
+ definitions
+In-Reply-To: <20241107161123.16269-4-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20241107161123.16269-1-ville.syrjala@linux.intel.com>
- <20241107161123.16269-3-ville.syrjala@linux.intel.com>
-Date: Fri, 08 Nov 2024 15:01:41 +0200
-Message-ID: <87ses1ev62.fsf@intel.com>
+ <20241107161123.16269-4-ville.syrjala@linux.intel.com>
+Date: Fri, 08 Nov 2024 15:02:56 +0200
+Message-ID: <87pln5ev3z.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -73,33 +74,41 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Thu, 07 Nov 2024, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Split an overly long line in the CRT code.
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> The ADPA_DPMS bit definitions aer just an alias for the
+
+*are
+
+> sync disable bits, and unused one at that. Drop the
+> pointless definitions.
+
+Pedantic mode, there's some singular/plural asymmetry going on here. :p
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-> ---
->  drivers/gpu/drm/i915/display/intel_crt.c | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i=
-915/display/intel_crt.c
-> index 1be55bdb48b9..134a4e6a4ac0 100644
-> --- a/drivers/gpu/drm/i915/display/intel_crt.c
-> +++ b/drivers/gpu/drm/i915/display/intel_crt.c
-> @@ -1047,7 +1047,9 @@ void intel_crt_init(struct intel_display *display)
->  		 * it and see what happens.
->  		 */
->  		intel_de_write(display, adpa_reg,
-> -			       adpa | ADPA_DAC_ENABLE | ADPA_HSYNC_CNTL_DISABLE | ADPA_VSYNC_=
-CNTL_DISABLE);
-> +			       adpa | ADPA_DAC_ENABLE |
-> +			       ADPA_HSYNC_CNTL_DISABLE |
-> +			       ADPA_VSYNC_CNTL_DISABLE);
->  		if ((intel_de_read(display, adpa_reg) & ADPA_DAC_ENABLE) =3D=3D 0)
->  			return;
->  		intel_de_write(display, adpa_reg, adpa);
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_reg.h | 5 -----
+>  1 file changed, 5 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_=
+reg.h
+> index c160e087972a..f0757c4491f1 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -1188,11 +1188,6 @@
+>  #define   ADPA_VSYNC_ACTIVE_LOW	0
+>  #define   ADPA_HSYNC_ACTIVE_HIGH (1 << 3)
+>  #define   ADPA_HSYNC_ACTIVE_LOW	0
+> -#define   ADPA_DPMS_MASK	(~(3 << 10))
+> -#define   ADPA_DPMS_ON		(0 << 10)
+> -#define   ADPA_DPMS_SUSPEND	(1 << 10)
+> -#define   ADPA_DPMS_STANDBY	(2 << 10)
+> -#define   ADPA_DPMS_OFF		(3 << 10)
+>=20=20
+>  /* Hotplug control (945+ only) */
+>  #define PORT_HOTPLUG_EN(dev_priv)		_MMIO(DISPLAY_MMIO_BASE(dev_priv) + 0=
+x61110)
 
 --=20
 Jani Nikula, Intel
