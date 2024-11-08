@@ -2,56 +2,113 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23B5F9C1865
-	for <lists+intel-gfx@lfdr.de>; Fri,  8 Nov 2024 09:51:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 054889C1862
+	for <lists+intel-gfx@lfdr.de>; Fri,  8 Nov 2024 09:51:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA5C610E937;
-	Fri,  8 Nov 2024 08:51:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9EACA10E935;
+	Fri,  8 Nov 2024 08:51:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cvyMvw6X";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="j9xwbzqP";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="1lDr3fSj";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="j9xwbzqP";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="1lDr3fSj";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E419510E937;
- Fri,  8 Nov 2024 08:51:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731055874; x=1762591874;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ChRXIwI2T/EMoXB7+pDb4Qovu1ELbEfUOFVYhGkSvmg=;
- b=cvyMvw6X3et4VDxfvOPrIa7oCuNZicVXJ1BQuavxGxrc+LmCzT9ST/a6
- AjtZXLXcbkWj8t/7bKzM7FWBjt8RDvXzaTejXPzmGlQwq8vHdPkxCP/65
- /nsDcer2HtXhpRTHBpQ8qtZbfiaveK6MrFQwM3LsCAF9wn4uSyzbgEFA5
- Ad7RD/TrtQvub/iswdB6RuxhT3xa5e+Ff628sh/qwx4TRoQAgDLblC5If
- x1Czikt0Yq3rMwh9+7ZbdkqjmW+stGYHgTCV0ZPIlmruIlZ2vMN+QP6O9
- KV5OtJ1kOhJ+pxFf4UMt0SQSDDmAsiHBWd+7GNBjDgFhOmZQuUFB31D9z g==;
-X-CSE-ConnectionGUID: JrCGLgzuTDGpQI/ChYB9oA==
-X-CSE-MsgGUID: kbtVhJJNQTun6sRRH7n9LQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="53490976"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="53490976"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2024 00:51:12 -0800
-X-CSE-ConnectionGUID: +6G/veDFR7WsQtTZq2fvDA==
-X-CSE-MsgGUID: zoHE9XMDRxe+MYZF3Yzzbg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,137,1728975600"; d="scan'208";a="90333558"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by orviesa005.jf.intel.com with ESMTP; 08 Nov 2024 00:51:09 -0800
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: vinod.govindapillai@intel.com, sai.teja.pottumuttu@intel.com,
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH] drm/i915/watermark: Modify latency programmed into
- PKG_C_LATENCY
-Date: Fri,  8 Nov 2024 14:20:49 +0530
-Message-Id: <20241108085048.919665-1-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.34.1
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4FF910E935;
+ Fri,  8 Nov 2024 08:51:01 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 27BDA21D25;
+ Fri,  8 Nov 2024 08:51:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1731055860; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=T4wIbT0WSkFiQJB3A0D8LfUreoJWNFCNmwNTUDVygsc=;
+ b=j9xwbzqPdRLj7dnPgW9BDFtU0sj/LPuChI/cEBeOeDI7cZ9CWC/a7k1YMq+JJ9+A1areIO
+ HHVsxLDu/qBQgMnD5G870ZoL8ojVy67Bfl0cCgM4N14DLku/A43BJM9JRTZw3kArj87k1d
+ TCjeo72nANkhPd4ca/JUUiKaliX5oys=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1731055860;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=T4wIbT0WSkFiQJB3A0D8LfUreoJWNFCNmwNTUDVygsc=;
+ b=1lDr3fSjY5ICGTR21hY3Qp61RLL3gtpmzSHvWJQkaNphY4AUWfYjzuDugBvlmOT1FCSkif
+ KpnamejlsVHBh7Cw==
+Authentication-Results: smtp-out1.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=j9xwbzqP;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=1lDr3fSj
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1731055860; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=T4wIbT0WSkFiQJB3A0D8LfUreoJWNFCNmwNTUDVygsc=;
+ b=j9xwbzqPdRLj7dnPgW9BDFtU0sj/LPuChI/cEBeOeDI7cZ9CWC/a7k1YMq+JJ9+A1areIO
+ HHVsxLDu/qBQgMnD5G870ZoL8ojVy67Bfl0cCgM4N14DLku/A43BJM9JRTZw3kArj87k1d
+ TCjeo72nANkhPd4ca/JUUiKaliX5oys=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1731055860;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type;
+ bh=T4wIbT0WSkFiQJB3A0D8LfUreoJWNFCNmwNTUDVygsc=;
+ b=1lDr3fSjY5ICGTR21hY3Qp61RLL3gtpmzSHvWJQkaNphY4AUWfYjzuDugBvlmOT1FCSkif
+ KpnamejlsVHBh7Cw==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id B53B61394A;
+ Fri,  8 Nov 2024 08:50:59 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id 0sf1KvPQLWdrFgAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Fri, 08 Nov 2024 08:50:59 +0000
+Date: Fri, 8 Nov 2024 09:50:58 +0100
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-fixes
+Message-ID: <20241108085058.GA37468@linux.fritz.box>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Rspamd-Queue-Id: 27BDA21D25
+X-Spam-Score: -4.51
+X-Rspamd-Action: no action
+X-Spamd-Result: default: False [-4.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ MX_GOOD(-0.01)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
+ FREEMAIL_TO(0.00)[gmail.com,ffwll.ch]; ARC_NA(0.00)[];
+ MISSING_XM_UA(0.00)[];
+ ASN(0.00)[asn:25478, ipnet:::/0, country:RU];
+ RCPT_COUNT_TWELVE(0.00)[16]; MIME_TRACE(0.00)[0:+];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com];
+ FUZZY_BLOCKED(0.00)[rspamd.com];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ RCVD_TLS_ALL(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
+ FROM_HAS_DN(0.00)[]; TO_DN_SOME(0.00)[];
+ RCVD_COUNT_TWO(0.00)[2]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:dkim];
+ URIBL_BLOCKED(0.00)[imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo,suse.de:dkim,linux.fritz.box:mid,gitlab.freedesktop.org:url];
+ DKIM_TRACE(0.00)[suse.de:+]
+X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
+X-Spam-Flag: NO
+X-Spam-Level: 
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,88 +124,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Increase the latency programmed into PKG_C_LATENCY latency to be
-a multiple of line time which is written into WM_LINETIME.
+Hi Dave, Sima,
 
---v2
--Fix commit subject line [Sai Teja]
--Use individual DISPLAY_VER checks instead of range [Sai Teja]
--Initialize max_linetime [Sai Teja]
+here's the drm-misc-fixes PR for this week. Apologies for being late.
 
-WA: 22020299601
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/skl_watermark.c | 26 ++++++++++++++------
- 1 file changed, 18 insertions(+), 8 deletions(-)
+Best regards
+Thomas
 
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index d3bbf335c749..9e208db55abb 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -2848,9 +2848,11 @@ static int skl_wm_add_affected_planes(struct intel_atomic_state *state,
-  * Program PKG_C_LATENCY Added Wake Time = 0
-  */
- static void
--skl_program_dpkgc_latency(struct drm_i915_private *i915, bool enable_dpkgc)
-+skl_program_dpkgc_latency(struct drm_i915_private *i915,
-+			  bool enable_dpkgc,
-+			  u32 max_linetime)
- {
--	u32 max_latency = 0;
-+	u32 adjusted_latency = 0;
- 	u32 clear = 0, val = 0;
- 	u32 added_wake_time = 0;
- 
-@@ -2858,18 +2860,23 @@ skl_program_dpkgc_latency(struct drm_i915_private *i915, bool enable_dpkgc)
- 		return;
- 
- 	if (enable_dpkgc) {
--		max_latency = skl_watermark_max_latency(i915, 1);
--		if (max_latency == 0)
--			max_latency = LNL_PKG_C_LATENCY_MASK;
-+		adjusted_latency = skl_watermark_max_latency(i915, 1);
-+		if (adjusted_latency == 0)
-+			adjusted_latency = LNL_PKG_C_LATENCY_MASK;
-+
-+		/* Wa_22020299601 */
-+		if (DISPLAY_VER(i915) == 20 || DISPLAY_VER(i915) == 30)
-+			adjusted_latency = max_linetime *
-+				DIV_ROUND_UP(adjusted_latency, max_linetime);
- 		added_wake_time = DSB_EXE_TIME +
- 			i915->display.sagv.block_time_us;
- 	} else {
--		max_latency = LNL_PKG_C_LATENCY_MASK;
-+		adjusted_latency = LNL_PKG_C_LATENCY_MASK;
- 		added_wake_time = 0;
- 	}
- 
- 	clear |= LNL_ADDED_WAKE_TIME_MASK | LNL_PKG_C_LATENCY_MASK;
--	val |= REG_FIELD_PREP(LNL_PKG_C_LATENCY_MASK, max_latency);
-+	val |= REG_FIELD_PREP(LNL_PKG_C_LATENCY_MASK, adjusted_latency);
- 	val |= REG_FIELD_PREP(LNL_ADDED_WAKE_TIME_MASK, added_wake_time);
- 
- 	intel_uncore_rmw(&i915->uncore, LNL_PKG_C_LATENCY, clear, val);
-@@ -2882,6 +2889,7 @@ skl_compute_wm(struct intel_atomic_state *state)
- 	struct intel_crtc_state __maybe_unused *new_crtc_state;
- 	int ret, i;
- 	bool enable_dpkgc = false;
-+	u32 max_linetime = 0;
- 
- 	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
- 		ret = skl_build_pipe_wm(state, crtc);
-@@ -2911,9 +2919,11 @@ skl_compute_wm(struct intel_atomic_state *state)
- 		     new_crtc_state->vrr.vmin == new_crtc_state->vrr.flipline) ||
- 		    !new_crtc_state->vrr.enable)
- 			enable_dpkgc = true;
-+
-+		max_linetime = max(new_crtc_state->linetime, max_linetime);
- 	}
- 
--	skl_program_dpkgc_latency(to_i915(state->base.dev), enable_dpkgc);
-+	skl_program_dpkgc_latency(to_i915(state->base.dev), enable_dpkgc, max_linetime);
- 
- 	skl_print_wm_changes(state);
- 
+drm-misc-fixes-2024-11-08:
+Short summary of fixes pull:
+
+imagination:
+- Track PVR context per file
+- Break ref-counting cycle
+
+panel-orientation-quirks:
+- Fix matching Lenovo Yoga Tab 3 X90F
+
+panthor:
+- Lock VM array
+- Be strict about I/O mapping flags
+The following changes since commit 59b723cd2adbac2a34fc8e12c74ae26ae45bf230:
+
+  Linux 6.12-rc6 (2024-11-03 14:05:52 -1000)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2024-11-08
+
+for you to fetch changes up to f432a1621f049bb207e78363d9d0e3c6fa2da5db:
+
+  drm/panthor: Be stricter about IO mapping flags (2024-11-07 16:39:53 +0000)
+
+----------------------------------------------------------------
+Short summary of fixes pull:
+
+imagination:
+- Track PVR context per file
+- Break ref-counting cycle
+
+panel-orientation-quirks:
+- Fix matching Lenovo Yoga Tab 3 X90F
+
+panthor:
+- Lock VM array
+- Be strict about I/O mapping flags
+
+----------------------------------------------------------------
+Brendan King (2):
+      drm/imagination: Add a per-file PVR context list
+      drm/imagination: Break an object reference loop
+
+Hans de Goede (1):
+      drm: panel-orientation-quirks: Make Lenovo Yoga Tab 3 X90F DMI match less strict
+
+Jann Horn (1):
+      drm/panthor: Be stricter about IO mapping flags
+
+Liviu Dudau (1):
+      drm/panthor: Lock XArray when getting entries for the VM
+
+Thomas Zimmermann (1):
+      Merge drm/drm-fixes into drm-misc-fixes
+
+ drivers/gpu/drm/drm_panel_orientation_quirks.c |  1 -
+ drivers/gpu/drm/imagination/pvr_context.c      | 33 ++++++++++++++++++++++++++
+ drivers/gpu/drm/imagination/pvr_context.h      | 21 ++++++++++++++++
+ drivers/gpu/drm/imagination/pvr_device.h       | 10 ++++++++
+ drivers/gpu/drm/imagination/pvr_drv.c          |  3 +++
+ drivers/gpu/drm/imagination/pvr_vm.c           | 22 +++++++++++++----
+ drivers/gpu/drm/imagination/pvr_vm.h           |  1 +
+ drivers/gpu/drm/panthor/panthor_device.c       |  4 ++++
+ drivers/gpu/drm/panthor/panthor_mmu.c          |  2 ++
+ 9 files changed, 92 insertions(+), 5 deletions(-)
+
 -- 
-2.34.1
-
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
