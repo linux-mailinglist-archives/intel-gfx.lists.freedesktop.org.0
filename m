@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C0299C3E97
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Nov 2024 13:42:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 11CDD9C3E98
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Nov 2024 13:44:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 855FF10E4A1;
-	Mon, 11 Nov 2024 12:42:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9ED0510E4A2;
+	Mon, 11 Nov 2024 12:44:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ThEVHukz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jISo6m9H";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4ADDB10E4A1
- for <intel-gfx@lists.freedesktop.org>; Mon, 11 Nov 2024 12:42:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5AACB10E13A
+ for <intel-gfx@lists.freedesktop.org>; Mon, 11 Nov 2024 12:44:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731328951; x=1762864951;
+ t=1731329061; x=1762865061;
  h=date:from:to:cc:subject:in-reply-to:message-id:
  references:mime-version;
- bh=h2jJ/sFK8eQmrR9MTzuo7NmB4b5lsa7ym5I0eR2b+h0=;
- b=ThEVHukz7e8PgSIPr/eskUxo2MCu5yLleoPQg9IE7l67ZnF2KIkTnOHD
- 6mJHAPqLzQpIPBzi1kKXV9qLKeXtSOjjLkaDTOO8UnAG5ZvmOYdsc5rTr
- MPiqUwEGvIYsJfrSOZxzESo9GaXxKo5UbIY/i1OdwRbKv5ceRLj71afxR
- 7CDq5rTg7caJsCJ99BG7i11MOSsnV3I4Ivere8wYHMDhw4fG1imCsRzBN
- kik2MJjNp+/dtGSP32MgnifXjmi8qcId0EvvuCtOCfEjdqTvqQcp7e+xg
- g39otBLRc326JAb6piAVMk1Ijkjt25/RICWgsSlMCnDFKpuFyONZqUyZZ w==;
-X-CSE-ConnectionGUID: lfb1qSjdS0OOJwC9wFW07w==
-X-CSE-MsgGUID: rQvOML8PQ7SRH9QMFIx53Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11253"; a="42516725"
-X-IronPort-AV: E=Sophos;i="6.12,145,1728975600"; d="scan'208";a="42516725"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2024 04:42:31 -0800
-X-CSE-ConnectionGUID: cu/Ww3kkTre92hXSgd3seA==
-X-CSE-MsgGUID: gmsQd6L0RcWnSpUrWD4RyA==
+ bh=+6YPBaogIInYEfjG7QRygpg1y+/boLSso9XW9+nbEcg=;
+ b=jISo6m9HMdkomJLTnSqajqrgyx+7SCVQsOFZXBMjj+AH0omfzfVx1zIZ
+ P7W3CqYuKdwyzssywgd1cAhg7mZQ1QpwaTrsG7C8n2EX88L0z/W6uaVbp
+ 8LyqFoDZqtM5phV98lHr2WqQO9yWVT+u7JRctlclTyvMTI90oA3Wfu/Oh
+ i6meLlh0GdhLiR7FAI+8knt4seh5DQ/OszrxjRM833MKIKFdgZ1EURnNJ
+ 0q8LZexDNIDAL+m0D5VaM14GWmI7Cb4+UX8cl9wCTnh13mysIvjzIqeS9
+ sYgJufEIqEq4RWwtAIdt0FVJdKX8bgokEu8sMg/xumnYDy/K279bdfJ7f A==;
+X-CSE-ConnectionGUID: 4DXzxv3CR0OT+X5rVyUT8w==
+X-CSE-MsgGUID: ym7Z5sZ6QYW+Tcsm8bT/XQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="31092369"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="31092369"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2024 04:44:21 -0800
+X-CSE-ConnectionGUID: Yu9GpNUUSfiwoaQVxizTZQ==
+X-CSE-MsgGUID: LcRkpkWdQZKl05nQ0JDAuQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,145,1728975600"; d="scan'208";a="86870969"
+X-IronPort-AV: E=Sophos;i="6.12,145,1728975600"; d="scan'208";a="117723687"
 Received: from eliteleevi.tm.intel.com ([10.237.54.20])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2024 04:42:30 -0800
-Date: Mon, 11 Nov 2024 14:35:59 +0200 (EET)
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2024 04:44:20 -0800
+Date: Mon, 11 Nov 2024 14:37:49 +0200 (EET)
 From: Kai Vehmanen <kai.vehmanen@linux.intel.com>
 X-X-Sender: kvehmane@eliteleevi.tm.intel.com
 To: Vinod Govindapillai <vinod.govindapillai@intel.com>
 cc: intel-gfx@lists.freedesktop.org, jani.nikula@intel.com, 
  ville.syrjala@intel.com, kai.vehmanen@intel.com, jani.saarinen@intel.com
-Subject: Re: [PATCH 8/9] drm/i815/disaply: limit the audio bw check with DP2
- config
-In-Reply-To: <20241008082327.342020-9-vinod.govindapillai@intel.com>
-Message-ID: <alpine.DEB.2.22.394.2411111432400.14041@eliteleevi.tm.intel.com>
+Subject: Re: [PATCH 4/9] drm/i915/display: update logic to determine crtcstate
+ has audio support
+In-Reply-To: <20241008082327.342020-5-vinod.govindapillai@intel.com>
+Message-ID: <alpine.DEB.2.22.394.2411111436490.14041@eliteleevi.tm.intel.com>
 References: <20241008082327.342020-1-vinod.govindapillai@intel.com>
- <20241008082327.342020-9-vinod.govindapillai@intel.com>
+ <20241008082327.342020-5-vinod.govindapillai@intel.com>
 User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7 02160 Espoo
 MIME-Version: 1.0
@@ -76,20 +76,24 @@ Hi,
 
 On Tue, 8 Oct 2024, Vinod Govindapillai wrote:
 
-> Limit the audio bw check with DP2 configurations only
-[...]
-> @@ -3048,7 +3048,8 @@ intel_dp_audio_compute_config(struct intel_encoder *encoder,
+> In intel_dp_audio_compute_config() pipe_config->has_audio decision
+> is now based on combination of two condition checks. Split out these
+> condition as two separate checks to facilitate handling has_audio
+> decision when we introduce audio bw checks in the follow up patches.
+[..]
+> @@ -2999,8 +2999,9 @@ intel_dp_audio_compute_config(struct intel_encoder *encoder,
+>  			      struct intel_crtc_state *pipe_config,
+>  			      struct drm_connector_state *conn_state)
 >  {
->  	pipe_config->has_audio = intel_dp_has_audio(encoder, conn_state);
->  
-> -	pipe_config->has_audio = pipe_config->has_audio &&
-> +	if (intel_dp_is_uhbr(pipe_config))
-> +		pipe_config->has_audio = pipe_config->has_audio &&
->  		intel_dp_audio_compute_bw_limits(pipe_config, conn_state);
+> -	pipe_config->has_audio =
+> -		intel_dp_has_audio(encoder, conn_state) &&
+> +	pipe_config->has_audio = intel_dp_has_audio(encoder, conn_state);
+> +
+> +	pipe_config->has_audio = pipe_config->has_audio &&
+>  		intel_audio_compute_config(pipe_config, conn_state);
 
-title has "drm/i815...".
-
-Other than that, this seems a bit extra, maybe squash this to patch 5 in 
-the series. This fixing code that is added in the series..
+this seems a bit superfluous as well to have as a separate patch. Maybe 
+just squash to patch 5 where has_audio logic is extended?
 
 Br, Kai
+
