@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C41AB9C3A92
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Nov 2024 10:10:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F12E79C3A91
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Nov 2024 10:10:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5ACDB10E457;
-	Mon, 11 Nov 2024 09:10:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8187510E44E;
+	Mon, 11 Nov 2024 09:10:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="irwtdXK5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ehq9sq0X";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C79A810E44E;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F2B810E44E;
  Mon, 11 Nov 2024 09:10:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1731316247; x=1762852247;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=PGHC0LWeK/uoH+g8xfaPO/gb7o6hPmbj9Xjs2sP5KOA=;
- b=irwtdXK59QTnQ7EvoTWsL4xEWAuEOhJWoRM4fI0uVL2YTB2aK10FVoLl
- V8EOeuV9v6RMTEz0Enna+JFpO342Am5S+1CfFwsQ3FJYa1c9TxTr1ucBe
- VyC0DgX7AN5bIGpQJ1j9IRuBdh3i9RiPlg8UwShDd3Q0Bb4eN3PSa1sr3
- 4Z3mowZDxqktxOdz/q2USxDp7UMVarTP+U5slYHeX7TVeUq22ZzOmE7zB
- +jiagVbGYsXN9q+0I+F1PLjGebUyAmGEIOyhhggZh9iXmGWFBzviHs2E/
- TaWqSCwYLQWoqfadCeJMWlh1o+x5mIK5QHBMxc3Evv8kSb5ohX/65GxNq w==;
-X-CSE-ConnectionGUID: bPZkXAL6QVCgR98ne5ltiA==
-X-CSE-MsgGUID: JzQPENIWSgawQ4gXQsxIpw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11252"; a="35052504"
-X-IronPort-AV: E=Sophos;i="6.12,144,1728975600"; d="scan'208";a="35052504"
+ bh=oboRSnq1uqsL2XEgJUbxINb+rRzOzWtQNDTp3fnM/vo=;
+ b=ehq9sq0XuYaaUo0BEqUYOJ8u5Sj+6IH127NJg9KEUFQUm27LHeEyQqE1
+ n3CFBxtuMWbxz1+RW/uQOwQ1us4bawsPAvEOARFRlVAHVqsC9sDSrg51C
+ x+W3QJqEbVKaSFvaIUwSqupQzR2SenzWHgi5+RiQDsic29wAuQZ7zLN19
+ cKMHOfoLV3DCDW6QSK48GuOpqZEFgfJcanNq0gnTg05PE2fWsp8y5WdJX
+ 6hEy0vHaCxnyAg8S5XCa6IbMH+xUdBrL3G8oOJ30tkxvjM6gOIED3V0as
+ S97KTFfuIcCfk/RLlhHo+aC+9C7bsKQlmwNs9t0CwuD9mICo9I9GTTgtk w==;
+X-CSE-ConnectionGUID: eH0ozxt/RBC9JZnajYJkDg==
+X-CSE-MsgGUID: 2f8av6kJQHWdvNrh7gByhw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11252"; a="35052510"
+X-IronPort-AV: E=Sophos;i="6.12,144,1728975600"; d="scan'208";a="35052510"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Nov 2024 01:10:42 -0800
-X-CSE-ConnectionGUID: yN1kEfGlR929wo6VycsMBQ==
-X-CSE-MsgGUID: NXkwj2eMSdayYzCBafjUXA==
+X-CSE-ConnectionGUID: ATdzpGvqSZ68smfLHLiNNQ==
+X-CSE-MsgGUID: bbfKtXgrQfqd++2wjY6hOg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,144,1728975600"; d="scan'208";a="86762740"
+X-IronPort-AV: E=Sophos;i="6.12,144,1728975600"; d="scan'208";a="86762756"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2024 01:10:38 -0800
+ 11 Nov 2024 01:10:40 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
  ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 22/23] drm/i915/vrr: Always use VRR timing generator for
- XE2LPD+
-Date: Mon, 11 Nov 2024 14:42:20 +0530
-Message-ID: <20241111091221.2992818-23-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 23/23] drm/i915/display: Use VRR timings for XE2LPD+ in
+ modeset sequence
+Date: Mon, 11 Nov 2024 14:42:21 +0530
+Message-ID: <20241111091221.2992818-24-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241111091221.2992818-1-ankit.k.nautiyal@intel.com>
 References: <20241111091221.2992818-1-ankit.k.nautiyal@intel.com>
@@ -69,125 +69,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently VRR timing generator is used only when VRR is enabled by
-userspace. From XE2LPD+, gradually move away from older timing
-generator and use VRR timing generator for fixed refresh rate also.
-
-In such a case, Flipline Vmin and Vmax all are set to the Vtotal of the
-mode, which effectively makes the VRR timing generator work in
-fixed refresh rate mode.
-The MSA Vtotal is derived from Vmax register.
+While enabling pipe currently we use the non vrr timings first and then
+enable the VRR timings later.
+From XE2LPD+ we will always have VRR timing generarator in use, so start
+the transcoder in vrr mode.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vrr.c | 78 +++++++++++++++++++++---
- 1 file changed, 70 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 12 ++++++++++--
+ drivers/gpu/drm/i915/display/intel_vblank.c  |  8 +++++---
+ 2 files changed, 15 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index c27886ace0a9..a2798a7ab9dc 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -235,9 +235,27 @@ void intel_vrr_compute_vrr_timings(struct intel_crtc_state *crtc_state, int vmin
- 	crtc_state->mode_flags |= I915_MODE_FLAG_VRR;
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index a62353948686..6d12a9b620be 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -7142,8 +7142,16 @@ static void intel_enable_crtc(struct intel_atomic_state *state,
+ 		const struct intel_crtc_state *pipe_crtc_state =
+ 			intel_atomic_get_new_crtc_state(state, pipe_crtc);
  
--void
--intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
--			 struct drm_connector_state *conn_state)
-+static
-+void intel_vrr_compute_fixed_rr_timings(struct intel_crtc_state *crtc_state)
-+{
-+	/*
-+	 * For fixed refresh rate mode Vmin, Vmax and Flipline all are set to
-+	 * Vtotal value. The sink uses MSA timings for the fixed refresh rate
-+	 * mode. The HW prepares the Vtotal for the MSA from the VMAX register.
-+	 * Since the MSA Vtotal is one-based while Vmax is zero-based we need to
-+	 * take care of this while setting Vmax value.
-+	 */
-+	crtc_state->vrr.vmax = crtc_state->hw.adjusted_mode.vtotal - 1;
-+	crtc_state->vrr.vmin = crtc_state->vrr.vmax;
-+	crtc_state->vrr.flipline = crtc_state->vrr.vmax;
-+	crtc_state->vrr.tg_enable = true;
-+	crtc_state->vrr.mode = INTEL_VRRTG_MODE_FIXED_RR;
-+	crtc_state->mode_flags |= I915_MODE_FLAG_VRR;
-+}
+-		/* VRR will be enable later, if required */
+-		intel_crtc_update_active_timings(pipe_crtc_state, false);
++		/*
++		 * For XE2LPD+ we are always using VRR TG.
++		 * For previous platforms VRR will be enable later, if required
++		 */
++		if (DISPLAY_VER(dev_priv) >= 20)
++			intel_crtc_update_active_timings(pipe_crtc_state,
++							 pipe_crtc_state->vrr.tg_enable);
++		else
++			intel_crtc_update_active_timings(pipe_crtc_state, false);
 +
-+static
-+void intel_vrr_compute_xe2lpd_timings(struct intel_crtc_state *crtc_state,
-+				      struct drm_connector_state *conn_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
- 	struct intel_connector *connector =
-@@ -245,13 +263,36 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
- 	struct intel_dp *intel_dp = intel_attached_dp(connector);
- 	bool is_edp = intel_dp_is_edp(intel_dp);
- 	struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
--	int vmin, vmax;
-+	int vmin = 0, vmax = 0;
+ 	}
  
--	if (adjusted_mode->flags & DRM_MODE_FLAG_INTERLACE)
--		return;
-+	if (crtc_state->vrr.in_range) {
-+		if (HAS_LRR(display))
-+			crtc_state->update_lrr = true;
-+
-+		vmin = intel_vrr_compute_vmin(connector, adjusted_mode);
-+		vmax = intel_vrr_compute_vmax(connector, adjusted_mode);
-+	}
-+
-+	if (vmin < vmax && crtc_state->uapi.vrr_enabled)
-+		intel_vrr_compute_vrr_timings(crtc_state, vmin, vmax);
-+	else if (vmin < vmax && is_cmrr_frac_required(crtc_state) && is_edp)
-+		intel_vrr_compute_cmrr_timings(crtc_state);
-+	else
-+		intel_vrr_compute_fixed_rr_timings(crtc_state);
-+}
-+
-+static
-+void intel_vrr_compute_xelpd_timings(struct intel_crtc_state *crtc_state,
-+				     struct drm_connector_state *conn_state)
-+{
-+	struct intel_display *display = to_intel_display(crtc_state);
-+	struct intel_connector *connector =
-+		to_intel_connector(conn_state->connector);
-+	struct intel_dp *intel_dp = intel_attached_dp(connector);
-+	bool is_edp = intel_dp_is_edp(intel_dp);
-+	struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
-+	int vmin, vmax;
+ 	dev_priv->display.funcs.display->crtc_enable(state, crtc);
+diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
+index a95fb3349eba..ca4a6add6926 100644
+--- a/drivers/gpu/drm/i915/display/intel_vblank.c
++++ b/drivers/gpu/drm/i915/display/intel_vblank.c
+@@ -626,9 +626,11 @@ void intel_vblank_evade_init(const struct intel_crtc_state *old_crtc_state,
+ 	adjusted_mode = &crtc_state->hw.adjusted_mode;
  
--	crtc_state->vrr.in_range =
--		intel_vrr_is_in_range(connector, drm_mode_vrefresh(adjusted_mode));
- 	if (!crtc_state->vrr.in_range)
- 		return;
+ 	if (crtc->mode_flags & I915_MODE_FLAG_VRR) {
+-		/* timing changes should happen with VRR disabled */
+-		drm_WARN_ON(crtc->base.dev, intel_crtc_needs_modeset(new_crtc_state) ||
+-			    new_crtc_state->update_m_n || new_crtc_state->update_lrr);
++		/* Prior to XE2LPD+, timing changes should happen with VRR disabled */
++		if (DISPLAY_VER(display) < 20) {
++			drm_WARN_ON(crtc->base.dev, intel_crtc_needs_modeset(new_crtc_state) ||
++				    new_crtc_state->update_m_n || new_crtc_state->update_lrr);
++		}
  
-@@ -270,6 +311,27 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
- 		intel_vrr_compute_cmrr_timings(crtc_state);
- 	else
- 		intel_vrr_prepare_vrr_timings(crtc_state, vmin, vmax);
-+}
-+
-+void
-+intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
-+			 struct drm_connector_state *conn_state)
-+{
-+	struct intel_display *display = to_intel_display(crtc_state);
-+	struct intel_connector *connector =
-+		to_intel_connector(conn_state->connector);
-+	struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
-+
-+	if (adjusted_mode->flags & DRM_MODE_FLAG_INTERLACE)
-+		return;
-+
-+	crtc_state->vrr.in_range =
-+		intel_vrr_is_in_range(connector, drm_mode_vrefresh(adjusted_mode));
-+
-+	if (DISPLAY_VER(display) >= 20)
-+		intel_vrr_compute_xe2lpd_timings(crtc_state, conn_state);
-+	else
-+		intel_vrr_compute_xelpd_timings(crtc_state, conn_state);
- 
- 	if (HAS_AS_SDP(display)) {
- 		crtc_state->vrr.vsync_start =
+ 		if (intel_vrr_is_push_sent(crtc_state))
+ 			evade->vblank_start = intel_vrr_vmin_vblank_start(crtc_state);
 -- 
 2.45.2
 
