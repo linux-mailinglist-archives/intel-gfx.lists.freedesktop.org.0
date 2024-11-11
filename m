@@ -2,61 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87DA89C3AC2
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Nov 2024 10:20:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B974F9C3AF5
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Nov 2024 10:35:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 287DC10E44A;
-	Mon, 11 Nov 2024 09:20:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 008DA10E0E0;
+	Mon, 11 Nov 2024 09:35:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Iz72NJ5R";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CSL9LDBx";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C37BB10E1C8;
- Mon, 11 Nov 2024 09:20:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9AE4C10E455;
+ Mon, 11 Nov 2024 09:35:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731316850; x=1762852850;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=RGc1SS3lm2asaj6Vy6zs8wIo7/m4Km+vkLkx35RnrGY=;
- b=Iz72NJ5RGtCdzcqMUsZozTBeW45bTLA+W7h3pTPe3xII0QyUDrCQ2N4v
- lvqefVKeZRBqZXLFcPZrONLeYH/ZsGMGkq7qR/r1Q0EHT8yVeZsIoxC7G
- DQ9RXeoIfnrZR27CT1eQPA+T6dFIbspYywOiavhI8ooWrde944d2aAzit
- 0aOsGB+fh2KO/iRv3FvvrWi3l9oCgpDzoZ+yCPceC0C76hEx7JeIiUizA
- ULEblG139mO3ynjkF1Z4woBN8XRFugQyDimu17XXrFBIBBLQwwyj879IQ
- U7nqgK6HvYT8Yv/4r5DUhHKYP+Gbn6GZpJlPyR7MJuPSyvROfoJGG5LgQ A==;
-X-CSE-ConnectionGUID: Z3bMUGV8SuO+hMVvNZkq5w==
-X-CSE-MsgGUID: h2Q/8W/DR2yDS6AYQN/Upw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11252"; a="31213596"
-X-IronPort-AV: E=Sophos;i="6.12,144,1728975600"; d="scan'208";a="31213596"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2024 01:20:49 -0800
-X-CSE-ConnectionGUID: jayIRjZSSxGTkgI/aoOuUw==
-X-CSE-MsgGUID: bj7SeBbvQ7SbCwCTjq1GzA==
+ t=1731317749; x=1762853749;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=4WFlBEcAQRtjYfnX+09TSOQscnYgL7f5RYFlFWy0+v4=;
+ b=CSL9LDBxJjsxJkCsBbq4cTMsQ0al1lPtqkEE35443jSbVCN/u6ietfS/
+ gtsvPgDPz7EgzOhRfoGeoFA5s8Z5/POMFW+5z8VA+S0jcBo7hR90P3MCD
+ sFIIy+Sja+IAxyeu93h+hPGyfFkoncmfjd16Rr3OvsdyzHLbNxbVN1fju
+ twz5dxM5qjBpe6KFVCBLtXZPVQgapPPdwKzhm+6IWJb2b3EvZPF/sP3Ho
+ c9d7hKivdlgsNDb195Wm/Smwp2EQdsGI4LwS9zfkQsxMtU6+kJsz3EXHj
+ Ho9HXOAbWTj5AAc0c2+M12osfCDXdaX4zTXzZs8pZ7+v+HJW/BhpGtHhm A==;
+X-CSE-ConnectionGUID: 7OknJ1NFRtqto+YzApp5gQ==
+X-CSE-MsgGUID: ITSUsG4aRMO99unSOhxYHw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="42213882"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="42213882"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2024 01:35:49 -0800
+X-CSE-ConnectionGUID: pWVHuSrxQN+35Ob5vr0ftg==
+X-CSE-MsgGUID: OlUvVnDqQjuRqvdEJwzPNQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,144,1728975600"; d="scan'208";a="91767026"
-Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.75])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2024 01:20:48 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>, intel-gfx@lists.freedesktop.org,
- I915-ci-infra@lists.freedesktop.org
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>
-Subject: Re: =?utf-8?Q?=E2=9C=93?= Fi.CI.IGT: success for drm/i915/dmc_wl:
- Fixes and enablement for Xe3_LPD (rev4)
-In-Reply-To: <20241108180821.GU4891@mdroper-desk1.amr.corp.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241108130218.24125-1-gustavo.sousa@intel.com>
- <173107953029.1426848.2416792718594299210@2413ebb6fbb6>
- <20241108180821.GU4891@mdroper-desk1.amr.corp.intel.com>
-Date: Mon, 11 Nov 2024 11:20:44 +0200
-Message-ID: <87r07icej7.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,144,1728975600"; d="scan'208";a="86992883"
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by orviesa006.jf.intel.com with ESMTP; 11 Nov 2024 01:35:47 -0800
+From: Arun R Murthy <arun.r.murthy@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: Arun R Murthy <arun.r.murthy@intel.com>
+Subject: [PATCHv4] drm/i915/dp: Guarantee a minimum HBlank time
+Date: Mon, 11 Nov 2024 14:56:08 +0530
+Message-Id: <20241111092608.129410-1-arun.r.murthy@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,21 +65,124 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 08 Nov 2024, Matt Roper <matthew.d.roper@intel.com> wrote:
-> Although I just realized I confused the i915 results with the Xe results
-> and the full Xe run is still going...woops.  Xe BAT was fine, but if it
-> turns out there's a problem with the full Xe shard run, we can deal with
-> that once we see the results.
+Mandate a minimum Hblank symbol cycle count between BS and BE in 8b/10b
+MST and 12b/132b mode.
+Spec: DP2.1a
 
-I think the CI messaging should have more clarity on what's being run.
+v2: Affine calculation/updation of min HBlank to dp_mst (Jani)
+v3: moved min_hblank from struct intel_dp to intel_crtc_state (Jani)
+v4: use max/min functions, change intel_xx *intel_xx to intel_xx *xx
+    (Jani)
+    Limit hblank to 511 and accomodate BS/BE in calculated value
+    (Srikanth)
 
-Fi.CI.BAT vs. CI.BAT and Fi.CI.IGT vs. CI.FULL.
+Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+---
+ .../drm/i915/display/intel_crtc_state_dump.c  |  1 +
+ .../drm/i915/display/intel_display_types.h    |  1 +
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   | 35 +++++++++++++++++++
+ drivers/gpu/drm/i915/i915_reg.h               |  4 +++
+ 4 files changed, 41 insertions(+)
 
-You just have to know "Fi" means i915 and lack of it means xe.
-
-
-BR,
-Jani.
-
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+index 705ec5ad385c..f8c1d1dd66a3 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
++++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+@@ -258,6 +258,7 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
+ 			   str_enabled_disabled(pipe_config->has_sel_update),
+ 			   str_enabled_disabled(pipe_config->has_panel_replay),
+ 			   str_enabled_disabled(pipe_config->enable_psr2_sel_fetch));
++		drm_printf(&p, "minimum HBlank: %d\n", pipe_config->min_hblank);
+ 	}
+ 
+ 	drm_printf(&p, "framestart delay: %d, MSA timing delay: %d\n",
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index d3a1aa7c919f..d2716addf88e 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1075,6 +1075,7 @@ struct intel_crtc_state {
+ 
+ 	int max_link_bpp_x16;	/* in 1/16 bpp units */
+ 	int pipe_bpp;		/* in 1 bpp units */
++	int min_hblank;		/* min HBlank for DP2.1 */
+ 	struct intel_link_m_n dp_m_n;
+ 
+ 	/* m2_n2 for eDP downclock */
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+index 13449c85162d..1e7482efe95c 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+@@ -161,6 +161,35 @@ static int intel_dp_mst_dsc_get_slice_count(const struct intel_connector *connec
+ 					    num_joined_pipes);
+ }
+ 
++static void intel_dp_mst_compute_min_hblank(struct intel_crtc_state *crtc_state,
++					    struct intel_connector *connector,
++					    int bpp_x16)
++{
++	struct intel_encoder *encoder = connector->encoder;
++	struct intel_display *display = to_intel_display(encoder);
++	const struct drm_display_mode *adjusted_mode =
++					&crtc_state->hw.adjusted_mode;
++	int symbol_size = intel_dp_is_uhbr(crtc_state) ? 32 : 8;
++	int hblank;
++
++	if (DISPLAY_VER(display) < 20)
++		return;
++
++	/* Calculate min Hblank Link Layer Symbol Cycle Count for 8b/10b MST & 128b/132b */
++	hblank = DIV_ROUND_UP((DIV_ROUND_UP(adjusted_mode->htotal - adjusted_mode->hdisplay, 4) * bpp_x16), symbol_size);
++
++	/* bit 8:0 minimum hblank symbol cylce count, i.e maximul value would be 511 */
++	hblank = min(511, hblank);
++
++	/* Software needs to adjust the BS/BE framing control from the valculated value */
++	hblank = hblank - 2;
++
++	if (intel_dp_is_uhbr(crtc_state))
++		crtc_state->min_hblank = max(hblank, 5);
++	else
++		crtc_state->min_hblank = max(hblank, 3);
++}
++
+ static int intel_dp_mst_find_vcpi_slots_for_bpp(struct intel_encoder *encoder,
+ 						struct intel_crtc_state *crtc_state,
+ 						int max_bpp,
+@@ -238,6 +267,8 @@ static int intel_dp_mst_find_vcpi_slots_for_bpp(struct intel_encoder *encoder,
+ 		remote_bw_overhead = intel_dp_mst_bw_overhead(crtc_state, connector,
+ 							      true, dsc_slice_count, link_bpp_x16);
+ 
++		intel_dp_mst_compute_min_hblank(crtc_state, connector, link_bpp_x16);
++
+ 		intel_dp_mst_compute_m_n(crtc_state, connector,
+ 					 local_bw_overhead,
+ 					 link_bpp_x16,
+@@ -1295,6 +1326,10 @@ static void intel_mst_enable_dp(struct intel_atomic_state *state,
+ 			       TRANS_DP2_VFREQ_PIXEL_CLOCK(crtc_clock_hz & 0xffffff));
+ 	}
+ 
++	if (DISPLAY_VER(display) >= 20)
++		intel_de_write(display, DP_MIN_HBLANK_CTL(trans),
++			       pipe_config->min_hblank);
++
+ 	enable_bs_jitter_was(pipe_config);
+ 
+ 	intel_ddi_enable_transcoder_func(encoder, pipe_config);
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index c160e087972a..0bd123276b9e 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -3485,6 +3485,10 @@
+ #define _TRANS_DP2_VFREQLOW_D			0x630a8
+ #define TRANS_DP2_VFREQLOW(trans)		_MMIO_TRANS(trans, _TRANS_DP2_VFREQLOW_A, _TRANS_DP2_VFREQLOW_B)
+ 
++#define _DP_MIN_HBLANK_CTL_A			0x600ac
++#define _DP_MIN_HBLANK_CTL_B			0x610ac
++#define DP_MIN_HBLANK_CTL(trans)		_MMIO_TRANS(trans, _DP_MIN_HBLANK_CTL_A, _DP_MIN_HBLANK_CTL_B)
++
+ /* SNB eDP training params */
+ /* SNB A-stepping */
+ #define  EDP_LINK_TRAIN_400MV_0DB_SNB_A		(0x38 << 22)
 -- 
-Jani Nikula, Intel
+2.25.1
+
