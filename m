@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77D0A9C3A79
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Nov 2024 10:10:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B19B9C3A7C
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Nov 2024 10:10:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D70810E443;
-	Mon, 11 Nov 2024 09:10:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1177C10E448;
+	Mon, 11 Nov 2024 09:10:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TFbmdX+c";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bkGgCXKw";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B01D10E443;
- Mon, 11 Nov 2024 09:10:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D94E10E44C;
+ Mon, 11 Nov 2024 09:10:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731316208; x=1762852208;
+ t=1731316210; x=1762852210;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=StZu4SAgdEs5quLcfVUjz2ewu0S3B/zfGv+O+pWqtvQ=;
- b=TFbmdX+csCH94AGq5mgJ9uc7yzpK1lfimbbAmzOB1W0xZM+09hq3StH2
- iytOT9QitkPudEwUnEW9pvynxS/XiaT8Xcy0PEc3tJpXG3fy7lZr6KOE7
- dCHyJsMiYP9uH+fXcO/G/aYbKxuFjkczcWP4cnPgFsnV4Mb/fqdZG9JDw
- t/FRXVXzrL/aZPqL9EsR/SFWwWYiG6XerTLzqNNJK8ghl4ZxKLYUUyCT8
- 8hQZJowVZz2kz3RGqPhMryV0bLvdiE7Jf6WAVTAFeSDY2jUyCCC+PSqJX
- x+4QIE3UhyHu2vQe5TvrRuIjyo/g/aNuT4w1b4eJesVlsDKcVIhkmgRhN w==;
-X-CSE-ConnectionGUID: FAJAlXaZQsSChLbGqKMWjA==
-X-CSE-MsgGUID: EQrNhgRlRJiAMtrjCdVIvQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11252"; a="35052334"
-X-IronPort-AV: E=Sophos;i="6.12,144,1728975600"; d="scan'208";a="35052334"
+ bh=wuJQYu8I4tlscB8o9bpwo6jfK0cGyL/B+D1XYLny1UQ=;
+ b=bkGgCXKwmPxW+8BssBV7Sc0N6CxqndynuvP8AFIGpme+F8jsRI3OG9qf
+ ATdWuy+ob6+8KtQQcyqohA7EAR0FHQQ0jPK9sEaysCrW9IwSz4NEx7MxE
+ iy0BSBAOouAfkJQuiJO4OFq4eJreokyKm5oVe60cUByX4zRJiGy6s7qWi
+ znTop4t2IKN0/5Tw7vb3uiLzt0Zop6XUlBBBMquqPda+pzIkhb0h0ajOO
+ 4O8lAt1JZbDrYbyKQp41rfWtU+rGOBDUT+7aSfx41seohmwwCRYCACcxJ
+ cgg7bfQl1yz2aY+VkcBPeHlRG4oZoxm287NQ1WvgVXDcXm8WZa/32bA47 w==;
+X-CSE-ConnectionGUID: wTUYwhAyTyKOYgHIsM47/g==
+X-CSE-MsgGUID: E1OkIF4LQfyiRhx2DYWXmw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11252"; a="35052342"
+X-IronPort-AV: E=Sophos;i="6.12,144,1728975600"; d="scan'208";a="35052342"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2024 01:10:07 -0800
-X-CSE-ConnectionGUID: VWjJdxweQn22cwmwYFPrVg==
-X-CSE-MsgGUID: eMAvUg1aTzqvVfGOJNErXw==
+ 11 Nov 2024 01:10:10 -0800
+X-CSE-ConnectionGUID: AVPa3lWfTT+pELrnkFYCLQ==
+X-CSE-MsgGUID: xn8HQq3DTHiXgeChPBoH4Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,144,1728975600"; d="scan'208";a="86762604"
+X-IronPort-AV: E=Sophos;i="6.12,144,1728975600"; d="scan'208";a="86762619"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2024 01:10:05 -0800
+ 11 Nov 2024 01:10:07 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
  ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 07/23] drm/i915/display: Add vrr mode to crtc_state dump
-Date: Mon, 11 Nov 2024 14:42:05 +0530
-Message-ID: <20241111091221.2992818-8-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 08/23] drm/i915/vrr: Remove condition flipline > vmin for LNL
+Date: Mon, 11 Nov 2024 14:42:06 +0530
+Message-ID: <20241111091221.2992818-9-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241111091221.2992818-1-ankit.k.nautiyal@intel.com>
 References: <20241111091221.2992818-1-ankit.k.nautiyal@intel.com>
@@ -68,28 +68,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Print Vrr mode along with other vrr members in crtc_state dump.
+For LNL+ the condition that flipline > vmin is no more required.
+Only for platforms before LNL, set the vmin - 1 to have flipline > vmin.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_crtc_state_dump.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_vrr.c | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-index e2ce417b1990..abec61bb4334 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-@@ -296,8 +296,9 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
- 		intel_dump_buffer("ELD: ", pipe_config->eld,
- 				  drm_eld_size(pipe_config->eld));
- 
--	drm_printf(&p, "vrr_tg: %s, vmin: %d, vmax: %d, pipeline full: %d, guardband: %d flipline: %d, vmin vblank: %d, vmax vblank: %d\n",
-+	drm_printf(&p, "vrr_tg: %s, mode: %d vmin: %d, vmax: %d, pipeline full: %d, guardband: %d flipline: %d, vmin vblank: %d, vmax vblank: %d\n",
- 		   str_yes_no(pipe_config->vrr.tg_enable),
-+		   pipe_config->vrr.mode,
- 		   pipe_config->vrr.vmin, pipe_config->vrr.vmax,
- 		   pipe_config->vrr.pipeline_full, pipe_config->vrr.guardband,
- 		   pipe_config->vrr.flipline,
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+index 83b11f3d5eb5..0c0e78622073 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr.c
++++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+@@ -210,12 +210,18 @@ int intel_vrr_compute_vmax(struct intel_connector *connector,
+ static
+ void intel_vrr_prepare_vrr_timings(struct intel_crtc_state *crtc_state, int vmin, int vmax)
+ {
++	struct intel_display *display = to_intel_display(crtc_state);
++
+ 	/*
+ 	 * flipline determines the min vblank length the hardware will
+-	 * generate, and flipline>=vmin+1, hence we reduce vmin by one
++	 * generate. For pre LNL flipline>=vmin+1, hence we reduce vmin by one
+ 	 * to make sure we can get the actual min vblank length.
++	 * For LNL+ there is no such restrictions.
+ 	 */
+-	crtc_state->vrr.vmin = vmin - 1;
++	if (DISPLAY_VER(display) >= 20)
++		crtc_state->vrr.vmin = vmin;
++	else
++		crtc_state->vrr.vmin = vmin - 1;
+ 	crtc_state->vrr.vmax = vmax;
+ 	crtc_state->vrr.flipline = crtc_state->vrr.vmin + 1;
+ }
 -- 
 2.45.2
 
