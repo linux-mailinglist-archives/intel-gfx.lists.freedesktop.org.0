@@ -2,29 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 603E09C3F8A
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Nov 2024 14:26:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5748C9C3F8E
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Nov 2024 14:28:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A95210E1EB;
-	Mon, 11 Nov 2024 13:26:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE5BA10E4AF;
+	Mon, 11 Nov 2024 13:28:19 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="JaZyU7dG";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C49210E4AF;
- Mon, 11 Nov 2024 13:26:51 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0437651755259290389=="
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDE8B10E4AF
+ for <intel-gfx@lists.freedesktop.org>; Mon, 11 Nov 2024 13:28:17 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id B91F9A41636
+ for <intel-gfx@lists.freedesktop.org>; Mon, 11 Nov 2024 13:26:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDB97C4AF0B
+ for <intel-gfx@lists.freedesktop.org>; Mon, 11 Nov 2024 13:28:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1731331696;
+ bh=QA+UdmVAeLa1VBvB6rchMMzqUMFVoJt4nfDCtXXBIlM=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=JaZyU7dGwspmK5ez/G8RKBn1XeIVVdFC5QX8oQnpfq06ztusogipW1kufCofj+W3E
+ NdiD9M7IfZRTayw2HYe/qKCYl5q50MtpxECNMwrZ6DrGfOV/L3HvYFaohpwJplk6EM
+ VTSjNmOXJVXoM0bTp5VPdZgb47TiO2kEBtFM35XhWn2eRo7YoigBxYcAGT5jeZ8Y6U
+ z2/ND5V3WfQQLIZsAj31EwxK/ppHoLPoSVRu8C8MGwYq0la1k0+oYIhOz9UWqdeM/H
+ kPmmHFZDJavpb1D3HOTV1MxKYGrtYOeFa8GN4ghaOqTfpgpHU7PmgnPgO7dQVoqDxg
+ Uy/3e9kvtxDXg==
+Received: by mail-oa1-f47.google.com with SMTP id
+ 586e51a60fabf-2884910c846so1977896fac.0
+ for <intel-gfx@lists.freedesktop.org>; Mon, 11 Nov 2024 05:28:16 -0800 (PST)
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXr/CnJs/8sernUIN8lZNFsy0J0g6+1zg8ZQoyLrcI7cmngJ6d7y96mesl+o5XLgQ54IRSmLz5uayI=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxDeFIYTtLh+Lprf2sG5Ml94eKcu2kpa1G1V2n9hkJsOfqLgSRb
+ ll1TbLvfRcYvIfIIvOe/LJ/VCgm+E4oAQZsS0/O6uw1IXEIjep5nZ6IAiF9TB/a6tI/rW+ADjUH
+ qbwHb3CwCqznR6owAcO4zN7DK50U=
+X-Google-Smtp-Source: AGHT+IGYgR8ourgCdqtWaq9Sms7fV0VS34c6acRTtQ+CE85dZjybhdxjOKmldO/dg1mzLHFs7QlfdsGO+dQDeW5yPEo=
+X-Received: by 2002:a05:6871:a987:b0:270:449:291e with SMTP id
+ 586e51a60fabf-295603213camr8598049fac.36.1731331696069; Mon, 11 Nov 2024
+ 05:28:16 -0800 (PST)
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_convert?=
- =?utf-8?q?_display_feature_helpers_to_struct_intel=5Fdisplay_=28rev6=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 11 Nov 2024 13:26:51 -0000
-Message-ID: <173133161117.2578636.10184372058707220819@2413ebb6fbb6>
-X-Patchwork-Hint: ignore
-References: <cover.1731321183.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1731321183.git.jani.nikula@intel.com>
+References: <SJ1PR11MB6129EDBF22F8A90FC3A3EDC8B9582@SJ1PR11MB6129.namprd11.prod.outlook.com>
+In-Reply-To: <SJ1PR11MB6129EDBF22F8A90FC3A3EDC8B9582@SJ1PR11MB6129.namprd11.prod.outlook.com>
+From: "Rafael J. Wysocki" <rafael@kernel.org>
+Date: Mon, 11 Nov 2024 14:28:01 +0100
+X-Gmail-Original-Message-ID: <CAJZ5v0gpg7sd3Qx25WFSbGxFN6-nptxK+QtkHZMMtXW-dnaozg@mail.gmail.com>
+Message-ID: <CAJZ5v0gpg7sd3Qx25WFSbGxFN6-nptxK+QtkHZMMtXW-dnaozg@mail.gmail.com>
+Subject: Re: Regression on linux-next (next-20241106)
+To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
+Cc: "Wysocki, Rafael J" <rafael.j.wysocki@intel.com>, 
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
+ "Kurmi, Suresh Kumar" <suresh.kumar.kurmi@intel.com>, "Saarinen,
+ Jani" <jani.saarinen@intel.com>, "Nikula, Jani" <jani.nikula@intel.com>, 
+ "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>, 
+ "srinivas.pandruvada@linux.intel.com" <srinivas.pandruvada@linux.intel.com>, 
+ "ricardo.neri-calderon@linux.intel.com"
+ <ricardo.neri-calderon@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,201 +73,85 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0437651755259290389==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Chaitanya,
 
-== Series Details ==
+On Mon, Nov 11, 2024 at 6:41=E2=80=AFAM Borah, Chaitanya Kumar
+<chaitanya.kumar.borah@intel.com> wrote:
+>
+> Hello Rafael,
+>
+> Hope you are doing well. I am Chaitanya from the linux graphics team in I=
+ntel.
+>
+> This mail is regarding a regression we are seeing in our CI runs[1] on li=
+nux-next repository.
+>
+> Since the version next-20241106 [2], we are seeing the following regressi=
+on
+>
+> `````````````````````````````````````````````````````````````````````````=
+````````
+> <4>[    7.246473] WARNING: possible circular locking dependency detected
+> <4>[    7.246476] 6.12.0-rc6-next-20241106-next-20241106-g5b913f5d7d7f+ #=
+1 Not tainted
+> <4>[    7.246479] ------------------------------------------------------
+> <4>[    7.246481] swapper/0/1 is trying to acquire lock:
+> <4>[    7.246483] ffffffff8264aef0 (cpu_hotplug_lock){++++}-{0:0}, at: st=
+atic_key_enable+0xd/0x20
+> <4>[    7.246493]
+>                   but task is already holding lock:
+> <4>[    7.246495] ffffffff82832068 (hybrid_capacity_lock){+.+.}-{4:4}, at=
+: intel_pstate_register_driver+0xd3/0x1c0
+> `````````````````````````````````````````````````````````````````````````=
+````````
+> Details log can be found in [3].
 
-Series: drm/i915/display: convert display feature helpers to struct intel_display (rev6)
-URL   : https://patchwork.freedesktop.org/series/140886/
-State : success
+Thanks for the report!
 
-== Summary ==
+> After bisecting the tree, the following patch [4] seems to be the first "=
+bad"
+> commit
+>
+> `````````````````````````````````````````````````````````````````````````=
+````````````````````````````````
+> commit 92447aa5f6e7fbad9427a3fd1bb9e0679c403206
+> Author: Rafael J. Wysocki mailto:rafael.j.wysocki@intel.com
+> Date:   Mon Nov 4 19:53:53 2024 +0100
+>
+>     cpufreq: intel_pstate: Update asym capacity for CPUs that were offlin=
+e initially
+> `````````````````````````````````````````````````````````````````````````=
+````````````````````````````````
+>
+> We also verified that if we revert the patch the issue is not seen.
+>
+> Could you please check why the patch causes this regression and provide a=
+ fix if necessary?
+>
+> [1] https://intel-gfx-ci.01.org/tree/linux-next/combined-alt.html?
+> [2] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/c=
+ommit/?h=3Dnext-20241106
+> [3] https://intel-gfx-ci.01.org/tree/linux-next/next-20241106/bat-arls-1/=
+boot0.txt
+> [4] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/c=
+ommit/?h=3Dnext-20241106&id=3D92447aa5f6e7fbad9427a3fd1bb9e0679c403206
 
-CI Bug Log - changes from CI_DRM_15673 -> Patchwork_140886v6
-====================================================
+The problem is that cpus_read_lock() should not be called under
+hybrid_capacity_lock because the latter is acquired in CPU
+online/offline paths and this is exposed by the above commit, but if
+I'm not mistaken, the issue is there regardless of it.
 
-Summary
--------
+A good news is that is should be addressed by a patch that has been
+posted already:
 
-  **SUCCESS**
+https://lore.kernel.org/linux-pm/12554508.O9o76ZdvQC@rjwysocki.net/
 
-  No regressions found.
+so please let me know if it makes the splat go away.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140886v6/index.html
+Even if its changelog says that it has no functional impact, this is
+not really the case.
 
-Participating hosts (44 -> 45)
-------------------------------
-
-  Additional (2): fi-skl-6600u fi-kbl-8809g 
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_140886v6 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_huc_copy@huc-copy:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][1] ([i915#2190])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140886v6/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html
-    - fi-skl-6600u:       NOTRUN -> [SKIP][2] ([i915#2190])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140886v6/fi-skl-6600u/igt@gem_huc_copy@huc-copy.html
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][3] ([i915#4613]) +3 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140886v6/fi-kbl-8809g/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  * igt@gem_lmem_swapping@random-engines:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][4] ([i915#4613]) +3 other tests skip
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140886v6/fi-skl-6600u/igt@gem_lmem_swapping@random-engines.html
-
-  * igt@kms_dsc@dsc-basic:
-    - fi-kbl-8809g:       NOTRUN -> [SKIP][5] +30 other tests skip
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140886v6/fi-kbl-8809g/igt@kms_dsc@dsc-basic.html
-    - fi-skl-6600u:       NOTRUN -> [SKIP][6] +9 other tests skip
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140886v6/fi-skl-6600u/igt@kms_dsc@dsc-basic.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live:
-    - bat-mtlp-8:         [ABORT][7] ([i915#12061]) -> [PASS][8] +1 other test pass
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15673/bat-mtlp-8/igt@i915_selftest@live.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140886v6/bat-mtlp-8/igt@i915_selftest@live.html
-    - fi-glk-j4005:       [DMESG-FAIL][9] -> [PASS][10] +1 other test pass
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15673/fi-glk-j4005/igt@i915_selftest@live.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140886v6/fi-glk-j4005/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-mtlp-6:         [ABORT][11] ([i915#12061]) -> [PASS][12] +1 other test pass
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15673/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140886v6/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#2190]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190
-  [i915#4613]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15673 -> Patchwork_140886v6
-
-  CI-20190529: 20190529
-  CI_DRM_15673: 1b6c1f0fc1513b0d5c257118b3479048c5e36032 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8102: a05b40911bfb79c9bdf6ff7e8ab1a68948afbbf6 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_140886v6: 1b6c1f0fc1513b0d5c257118b3479048c5e36032 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140886v6/index.html
-
---===============0437651755259290389==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: convert display feature helpers to struct intel_display (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/140886/">https://patchwork.freedesktop.org/series/140886/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140886v6/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140886v6/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_15673 -&gt; Patchwork_140886v6</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140886v6/index.html</p>
-<h2>Participating hosts (44 -&gt; 45)</h2>
-<p>Additional (2): fi-skl-6600u fi-kbl-8809g <br />
-  Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_140886v6 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_huc_copy@huc-copy:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140886v6/fi-kbl-8809g/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190">i915#2190</a>)</li>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140886v6/fi-skl-6600u/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190">i915#2190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140886v6/fi-kbl-8809g/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@random-engines:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140886v6/fi-skl-6600u/igt@gem_lmem_swapping@random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>fi-kbl-8809g:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140886v6/fi-kbl-8809g/igt@kms_dsc@dsc-basic.html">SKIP</a> +30 other tests skip</li>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140886v6/fi-skl-6600u/igt@kms_dsc@dsc-basic.html">SKIP</a> +9 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15673/bat-mtlp-8/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140886v6/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
-<li>fi-glk-j4005:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15673/fi-glk-j4005/igt@i915_selftest@live.html">DMESG-FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140886v6/fi-glk-j4005/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15673/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140886v6/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_15673 -&gt; Patchwork_140886v6</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_15673: 1b6c1f0fc1513b0d5c257118b3479048c5e36032 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8102: a05b40911bfb79c9bdf6ff7e8ab1a68948afbbf6 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_140886v6: 1b6c1f0fc1513b0d5c257118b3479048c5e36032 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============0437651755259290389==--
+Thanks!
