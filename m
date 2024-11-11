@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 241B79C3E58
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Nov 2024 13:18:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B565F9C3E7E
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Nov 2024 13:36:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32A6210E486;
-	Mon, 11 Nov 2024 12:18:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23D5210E4A3;
+	Mon, 11 Nov 2024 12:36:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TrhSzy3O";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QI36pvJc";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0298E10E486
- for <intel-gfx@lists.freedesktop.org>; Mon, 11 Nov 2024 12:18:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBC1A10E4A1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 11 Nov 2024 12:36:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731327500; x=1762863500;
+ t=1731328585; x=1762864585;
  h=date:from:to:cc:subject:in-reply-to:message-id:
  references:mime-version;
- bh=WFcr6e0aBMBxSNKa7MTzoj9nlpyCrT82hxy6vXfX1bE=;
- b=TrhSzy3OHiPjzJf1QJsv5rKJceZi7ozY3dJgmXQVqY+hxlbfVcaCVcHe
- i74InUV0I75mB83mgCfUbzMc2ap0h204R5GR22jhb/W69XgsjYyVKFMxB
- SJ4sW23vD6tglGcVzR9zZ91+VDTADG5OIvBSutLSDPdJ4wzpwuaRznlYJ
- zc32niwnfaqrcc9gg96L6KljoKTGiSsS4LbOoOOx/r6Bdw+alnbV75R4g
- blx2lFscyGPINBNPVzWCLQ/m5ZmwIBebEQpLcdAv127XLPQn8cE7XmxBN
- eee9IM0G9tZP04rJ4p/YuwLQiJnujCUzP3bo54ZiG7qNihKeDvxt5yqUu w==;
-X-CSE-ConnectionGUID: bUqtAQ5MQjaGzCAZzB80Ww==
-X-CSE-MsgGUID: sekDiNRqQA+zKZg01zRsfw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11252"; a="18749739"
-X-IronPort-AV: E=Sophos;i="6.12,145,1728975600"; d="scan'208";a="18749739"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2024 04:18:19 -0800
-X-CSE-ConnectionGUID: u1LjES0dSXq2jU4/XiGHpQ==
-X-CSE-MsgGUID: nw9gbIqFToKstBD2vgdNLA==
+ bh=dFsezA+CbBintUlhJ4FVVBMePIw94bGnIOxtUgIlvaY=;
+ b=QI36pvJc8rRW3Lj8vtVI5vm+oxLGGFs/WwqkwvvQx8plyW2kd3qr5ez5
+ AbOjGD0fxJuA2HCXDMVdvAaIMhQSLx7NJzvia/LSWCSu1xaP63Hg6jdst
+ niXGuI7nB2AE8iPJpuz5tsn3TJgUABQcyYc5fUtCARHH+bq5pdkOHPwu9
+ +V5YRWPsylfYddiglPtREiBToPfVjQN+BKRgjNwHuA6BWMTQPHx1S2vJQ
+ U+RAmkOLGXd5SxotrKgT+nvuCwgDwm314u/caLbnnZ7CFotzFH4LOUIvE
+ poWetEfiMWtJvaxoPE8Y9UtvyjIomYPhOwR0dui0BQQYuPfb1FKMTA3H+ Q==;
+X-CSE-ConnectionGUID: wfoikLnZSTWu0nsEA3SxWA==
+X-CSE-MsgGUID: EvTt0KFlTyqq1Ofmr3TY3A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11253"; a="41745334"
+X-IronPort-AV: E=Sophos;i="6.12,145,1728975600"; d="scan'208";a="41745334"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2024 04:36:25 -0800
+X-CSE-ConnectionGUID: TOcc7Jh7Sea/rT0kTJXVJg==
+X-CSE-MsgGUID: gI/HziO4TbOHsdZVBS38tw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,145,1728975600"; d="scan'208";a="87010240"
+X-IronPort-AV: E=Sophos;i="6.12,145,1728975600"; d="scan'208";a="87047623"
 Received: from eliteleevi.tm.intel.com ([10.237.54.20])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2024 04:18:17 -0800
-Date: Mon, 11 Nov 2024 14:11:41 +0200 (EET)
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2024 04:36:22 -0800
+Date: Mon, 11 Nov 2024 14:29:54 +0200 (EET)
 From: Kai Vehmanen <kai.vehmanen@linux.intel.com>
 X-X-Sender: kvehmane@eliteleevi.tm.intel.com
 To: Vinod Govindapillai <vinod.govindapillai@intel.com>
 cc: intel-gfx@lists.freedesktop.org, jani.nikula@intel.com, 
  ville.syrjala@intel.com, kai.vehmanen@intel.com, jani.saarinen@intel.com
-Subject: Re: [PATCH 3/9] drm/i915/display: update call to
- intel_dp_audio_compute_config
-In-Reply-To: <20241008082327.342020-4-vinod.govindapillai@intel.com>
-Message-ID: <alpine.DEB.2.22.394.2411111402570.14041@eliteleevi.tm.intel.com>
+Subject: Re: [PATCH 2/9] drm/i915/display: create a common function to check
+ validity of ELD
+In-Reply-To: <20241008082327.342020-3-vinod.govindapillai@intel.com>
+Message-ID: <alpine.DEB.2.22.394.2411111429190.14041@eliteleevi.tm.intel.com>
 References: <20241008082327.342020-1-vinod.govindapillai@intel.com>
- <20241008082327.342020-4-vinod.govindapillai@intel.com>
+ <20241008082327.342020-3-vinod.govindapillai@intel.com>
 User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7 02160 Espoo
 MIME-Version: 1.0
@@ -76,15 +76,10 @@ Hey,
 
 On Tue, 8 Oct 2024, Vinod Govindapillai wrote:
 
-> For the complete audio compute config calculations, we would
-> need to have the transcoder M/N values as well. So move
-> intel_dp_audio_compute_config after the transcoder M/N values
-> are calculated in intel_link_compute_m_n().This becomes more
-> relevant after the follow-up patches where we will need to
-> assess if an audio frequency can be supported with a pipe config.
+> We would need to check the validity of connector ELD from multiple
+> places in the follow up patches. So create a separate function to
+> check the validity for ELD.
 
-looks good:
 Reviewed-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
 
 Br, Kai
-
