@@ -2,53 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80E549C3A89
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Nov 2024 10:10:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1346E9C3A8C
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Nov 2024 10:10:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0444410E461;
-	Mon, 11 Nov 2024 09:10:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E8AE10E462;
+	Mon, 11 Nov 2024 09:10:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gBTVsYwT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Baw1cRxq";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B30810E461;
- Mon, 11 Nov 2024 09:10:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A9F7B10E462;
+ Mon, 11 Nov 2024 09:10:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731316233; x=1762852233;
+ t=1731316235; x=1762852235;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=8W9K4QP99GbFnCuGfZd9MKtMQsx0zC1eROPJoFPVOYo=;
- b=gBTVsYwTc2Kc0JbMAzqRw8yv9b8VPbU0jPdFSeQu+h7DXADkqhJER9Xd
- 4rKhoFAamdIqNSz4K1yTN+lxzx1RCYcUzf9KAtfmVhmg6g6m5nL5ItCjV
- 5q3qGMmIdnm2xsVv0OsDTQRl78VnnKpCPXMbw6CxeOecB8Af7H2QOCykB
- igOH3h+GvoeFrwiGenOusp7+efb28xoodMeGoWtFDUFFqwcgrXem4EI6D
- ndc5uKAtDPaPbyyi2Yrs13CtMYfcHfYLuxmLNKz1f+ce3+ox8PblHgs4y
- w7o957DbBkRYX+eurIzUI77d6+NSN/pH2fEg6GhM8MwqvJAwTxC650GgK g==;
-X-CSE-ConnectionGUID: DAyHviPxReGa7Ahjkujk9A==
-X-CSE-MsgGUID: c+7MHFEBSA6gnKgxFUTvWA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11252"; a="35052420"
-X-IronPort-AV: E=Sophos;i="6.12,144,1728975600"; d="scan'208";a="35052420"
+ bh=i2cgQYwCzHkJZ6li6uIrE+jvmoZmX9ru1cQv2MG7goE=;
+ b=Baw1cRxqdSISVlQU9FolrNsq9YiooVQkK/r9Wrq/dc9tLnKZ3ObFE7V5
+ k9k4xiRUQli5sDt6HXIV7sVblmp64fwWBqRvPzPKDLz8Yay6IJTMkErhe
+ 6fsfujDb/lqk/umEWXgymXKVT95fi+E5SksabZpXo55wVIIwRlPHvocIx
+ l3MNsezMEV9nmJ/Mkj0p7kZebNzjnkJoBCfKnC9MxG7yu+DH+iPIp6SF7
+ bSl91ZqTiNBCMktFpYWN8kFPvE1NH8IjUJcOtKlFlV6QhzGILrlXGKYzA
+ yU6KAvkQvMIRARualSWh1Spt0H21odyq+yquCXZb7EN7g7q5dGQ0Pl02S w==;
+X-CSE-ConnectionGUID: kR51x3VFT5yulIrCaWkiXA==
+X-CSE-MsgGUID: UDCQdpjNTvSUcqlo9KrYZA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11252"; a="35052429"
+X-IronPort-AV: E=Sophos;i="6.12,144,1728975600"; d="scan'208";a="35052429"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2024 01:10:33 -0800
-X-CSE-ConnectionGUID: 61VeJTLaSle7t6YTpORGFw==
-X-CSE-MsgGUID: Ht0+mtScTgWUNfMVgrNQ7A==
+ 11 Nov 2024 01:10:35 -0800
+X-CSE-ConnectionGUID: sriNzN6bQS+ywDfJ0qariw==
+X-CSE-MsgGUID: reHRZ0sbSHKWHVCzSFAzvQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,144,1728975600"; d="scan'208";a="86762713"
+X-IronPort-AV: E=Sophos;i="6.12,144,1728975600"; d="scan'208";a="86762719"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2024 01:10:30 -0800
+ 11 Nov 2024 01:10:32 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
  ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 19/23] drm/i915/vrr: Avoid sending PUSH when VRR TG is used
- with Fixed refresh rate
-Date: Mon, 11 Nov 2024 14:42:17 +0530
-Message-ID: <20241111091221.2992818-20-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 20/23] drm/i915/display: Disable PSR before disabling VRR
+Date: Mon, 11 Nov 2024 14:42:18 +0530
+Message-ID: <20241111091221.2992818-21-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241111091221.2992818-1-ankit.k.nautiyal@intel.com>
 References: <20241111091221.2992818-1-ankit.k.nautiyal@intel.com>
@@ -69,64 +68,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As per Bspec:68925: Push enable must be set if not configuring for a
-fixed refresh rate (i.e Vmin == Flipline == Vmax is not true).
-
-v2: Use helper intel_vrr_use_push(). (Ville)
+As per bspec 49268: Disable PSR before disabling VRR.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Reviewed-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com> (v1)
 ---
- drivers/gpu/drm/i915/display/intel_vrr.c | 15 +++++++++++----
- 1 file changed, 11 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index bc3b78a6bf8b..c27886ace0a9 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -356,6 +356,12 @@ void intel_vrr_set_transcoder_timings(const struct intel_crtc_state *crtc_state)
- 		       crtc_state->vrr.flipline - 1);
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 6d7f54804542..a62353948686 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -1306,6 +1306,8 @@ static void intel_pre_plane_update(struct intel_atomic_state *state,
+ 		intel_atomic_get_new_crtc_state(state, crtc);
+ 	enum pipe pipe = crtc->pipe;
  
-+static bool intel_vrr_use_push(const struct intel_crtc_state *crtc_state)
-+{
-+	return crtc_state->vrr.tg_enable &&
-+	       crtc_state->vrr.mode != INTEL_VRRTG_MODE_FIXED_RR;
-+}
++	intel_psr_pre_plane_update(state, crtc);
 +
- void intel_vrr_send_push(const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
-@@ -364,7 +370,7 @@ void intel_vrr_send_push(const struct intel_crtc_state *crtc_state)
- 	if (intel_crtc_is_joiner_secondary(crtc_state))
- 		return;
+ 	if (intel_crtc_vrr_disabling(state, crtc)) {
+ 		intel_vrr_disable(old_crtc_state);
+ 		intel_crtc_update_active_timings(old_crtc_state, false);
+@@ -1316,8 +1318,6 @@ static void intel_pre_plane_update(struct intel_atomic_state *state,
  
--	if (!crtc_state->vrr.tg_enable)
-+	if (!intel_vrr_use_push(crtc_state))
- 		return;
+ 	intel_drrs_deactivate(old_crtc_state);
  
- 	intel_de_write(display, TRANS_PUSH(display, cpu_transcoder),
-@@ -376,7 +382,7 @@ bool intel_vrr_is_push_sent(const struct intel_crtc_state *crtc_state)
- 	struct intel_display *display = to_intel_display(crtc_state);
- 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+-	intel_psr_pre_plane_update(state, crtc);
+-
+ 	if (hsw_ips_pre_update(state, crtc))
+ 		intel_crtc_wait_for_next_vblank(crtc);
  
--	if (!crtc_state->vrr.tg_enable)
-+	if (!intel_vrr_use_push(crtc_state))
- 		return false;
- 
- 	return intel_de_read(display, TRANS_PUSH(display, cpu_transcoder)) & TRANS_PUSH_SEND;
-@@ -393,8 +399,9 @@ void intel_vrr_enable(const struct intel_crtc_state *crtc_state)
- 	if (!crtc_state->vrr.tg_enable)
- 		return;
- 
--	intel_de_write(display, TRANS_PUSH(display, cpu_transcoder),
--		       TRANS_PUSH_EN);
-+	if (intel_vrr_use_push(crtc_state))
-+		intel_de_write(display, TRANS_PUSH(display, cpu_transcoder),
-+			       TRANS_PUSH_EN);
- 
- 	if (HAS_AS_SDP(display))
- 		intel_de_write(display,
 -- 
 2.45.2
 
