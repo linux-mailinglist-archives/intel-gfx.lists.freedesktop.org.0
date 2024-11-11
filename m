@@ -2,55 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F218A9C3C0C
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Nov 2024 11:34:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70BA79C3C0E
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Nov 2024 11:34:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB90C10E466;
-	Mon, 11 Nov 2024 10:34:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 126D110E469;
+	Mon, 11 Nov 2024 10:34:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kBMF/QOx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GDnr85lL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 31ABA10E2FD;
- Mon, 11 Nov 2024 10:34:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8059810E165;
+ Mon, 11 Nov 2024 10:34:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731321250; x=1762857250;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=qm49Rw2VwAx8uTdFq9x1I1EDBmp4C6GBntrl/anThgM=;
- b=kBMF/QOxd4RHYfBNrBxC1wkd3rB7h6ebx1MqFxRyrXO79qMsJgw2B815
- AgwE8CFwbVkn4wm15DzvFZIbIiTEXXdIHG3035qT0aNxbbGkNvGrJXysg
- hvyB8mJgkbMswGF+qrEWgS3Tru3VUScCvaZ+3V2CzMhOX8cqFrH7opc+C
- Jfzh1+yE+tKjaRHVZCR7MJCo7LdxGvTtyEZOZja3uYq6kDpVc2yW9V4JC
- smjUNkuC1Rjc8vBMPyZ1+vY27UqN/+PQoxObS3BA7YCp49u8JjUX+EqDA
- VlvSzRwVeN6Bek+L5JpsEb7tcjuTo/qBkyIg3hVG41Ml515vNke2oSg4j Q==;
-X-CSE-ConnectionGUID: 25BU6qT3QYqsHPOJTJhT8A==
-X-CSE-MsgGUID: sHIDKAgaRo6mNP8l+vIrcA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11252"; a="31343988"
-X-IronPort-AV: E=Sophos;i="6.12,144,1728975600"; d="scan'208";a="31343988"
+ t=1731321254; x=1762857254;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=gBvNYN6omZDRuGXeGnYYJhtTrVlvu4sqslhlP43C9R4=;
+ b=GDnr85lL7FLwnpVeo8aQDmWMRTHjIFQE5RRW/yDfeyJGtMKfWYJ318zN
+ UgzVwunl4n3//GAf8gNxxaV7FmXAe4WOuQ98A5n1VTgtmpR0c/onIQWIt
+ l3rBghxfadkwbDkhmMGhaBXRd9Xv6QqFfTCb3yD5fGiT1iHcxZFHQTPz6
+ eo6fnLVJKuFEW8MQyDMT+G0pzW70O1DAUX47EycHFA23Po8MDlJn1PWge
+ JWEKm/7vx7FQYSjOHOd5ObzctRe7KPfU1qQwzcPyVGK+wC3r5gWnVksc3
+ ue45G4adAmBqlAU3jLR8HnNKVg+IJB6pg21/VbNJch0SyPYK6vGL8DJPB g==;
+X-CSE-ConnectionGUID: aBotkhW0TjWlH7x/SBjbjg==
+X-CSE-MsgGUID: PKg4wkHdTlmTVR9tj/6hyA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11252"; a="31343992"
+X-IronPort-AV: E=Sophos;i="6.12,144,1728975600"; d="scan'208";a="31343992"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2024 02:34:09 -0800
-X-CSE-ConnectionGUID: F7Ix/2uLR/K0SYKatOqEzw==
-X-CSE-MsgGUID: SB/SOfJ/R2K9RFw4hdQ3Hw==
+ 11 Nov 2024 02:34:14 -0800
+X-CSE-ConnectionGUID: CXF/WBp4QqG4nBefp3ovFA==
+X-CSE-MsgGUID: SxW5S+/DRT6Jqh0qdRmBxA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,144,1728975600"; d="scan'208";a="87196281"
+X-IronPort-AV: E=Sophos;i="6.12,144,1728975600"; d="scan'208";a="87196293"
 Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.75])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2024 02:34:08 -0800
+ 11 Nov 2024 02:34:12 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [CI v3 00/15] drm/i915/display: convert display feature helpers to
- struct intel_display
-Date: Mon, 11 Nov 2024 12:33:49 +0200
-Message-Id: <cover.1731321183.git.jani.nikula@intel.com>
+Cc: jani.nikula@intel.com,
+	Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [CI v3 01/15] drm/i915/display: identify discrete graphics
+Date: Mon, 11 Nov 2024 12:33:50 +0200
+Message-Id: <c02230d26cc0d9dbd7ddcc064661b2ad03739b6a.1731321183.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
+In-Reply-To: <cover.1731321183.git.jani.nikula@intel.com>
+References: <cover.1731321183.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
@@ -69,64 +71,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Another rebase, v3 of [1].
+Identify discrete graphics separately in display, using the platform
+group mechanism. This enables dropping the dependency on i915_drv.h
+IS_DGFX() from display code.
 
-BR,
-Jani.
+Start grouping platform groups separately in INTEL_DISPLAY_PLATFORMS()
+in anticipation of more groups to come.
 
-[1] https://lore.kernel.org/r/cover.1731015333.git.jani.nikula@intel.com
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_device.c | 8 ++++++--
+ drivers/gpu/drm/i915/display/intel_display_device.h | 4 +++-
+ 2 files changed, 9 insertions(+), 3 deletions(-)
 
-Jani Nikula (15):
-  drm/i915/display: identify discrete graphics
-  drm/i915/display: convert HAS_D12_PLANE_MINIMIZATION() to struct
-    intel_display
-  drm/i915/display: convert HAS_4TILE() to struct intel_display
-  drm/i915/display: convert HAS_DOUBLE_BUFFERED_M_N() to struct
-    intel_display
-  drm/i915/display: convert HAS_DP20() to struct intel_display
-  drm/i915/display: convert HAS_GMBUS_BURST_READ() to struct
-    intel_display
-  drm/i915/display: convert HAS_IPS() to struct intel_display
-  drm/i915/display: convert HAS_MBUS_JOINING() to struct intel_display
-  drm/i915/display: convert HAS_SAGV() to struct intel_display
-  drm/i915/display: convert HAS_HW_SAGV_WM() to struct intel_display
-  drm/i915/display: convert HAS_ULTRAJOINER() to struct intel_display
-  drm/i915/display: rename i915 parameter to __display in feature
-    helpers
-  drm/i915/display: convert display device identification to struct
-    intel_display
-  drm/i915/display: pass struct pci_dev * to
-    intel_display_device_probe()
-  drm/i915/display: add mobile platform group
-
- drivers/gpu/drm/i915/display/hsw_ips.c        |   4 +-
- drivers/gpu/drm/i915/display/intel_audio.c    |   7 +-
- drivers/gpu/drm/i915/display/intel_crt.c      |   2 +-
- drivers/gpu/drm/i915/display/intel_cursor.c   |   5 +-
- drivers/gpu/drm/i915/display/intel_ddi.c      |  28 +-
- drivers/gpu/drm/i915/display/intel_display.c  |  16 +-
- .../drm/i915/display/intel_display_debugfs.c  |   4 +-
- .../drm/i915/display/intel_display_device.c   | 274 ++++++++++--------
- .../drm/i915/display/intel_display_device.h   | 157 +++++-----
- .../gpu/drm/i915/display/intel_display_irq.c  |  12 +-
- drivers/gpu/drm/i915/display/intel_dp.c       |  12 +-
- drivers/gpu/drm/i915/display/intel_dp_mst.c   |   3 +-
- drivers/gpu/drm/i915/display/intel_drrs.c     |   4 +-
- drivers/gpu/drm/i915/display/intel_dvo.c      |   3 +-
- drivers/gpu/drm/i915/display/intel_gmbus.c    |   3 +-
- drivers/gpu/drm/i915/display/intel_hdmi.c     |   2 +-
- drivers/gpu/drm/i915/display/intel_hotplug.c  |   4 +-
- drivers/gpu/drm/i915/display/intel_panel.c    |   3 +-
- drivers/gpu/drm/i915/display/intel_psr.c      |   8 +-
- drivers/gpu/drm/i915/display/intel_sdvo.c     |   3 +-
- drivers/gpu/drm/i915/display/intel_tv.c       |   2 +-
- .../drm/i915/display/skl_universal_plane.c    |  25 +-
- drivers/gpu/drm/i915/display/skl_watermark.c  | 108 ++++---
- drivers/gpu/drm/i915/i915_driver.c            |   8 +-
- .../gpu/drm/i915/selftests/mock_gem_device.c  |   2 +-
- drivers/gpu/drm/xe/display/xe_display.c       |  12 +-
- 26 files changed, 395 insertions(+), 316 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
+index 5f98e1b2a401..47957384d56d 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.c
++++ b/drivers/gpu/drm/i915/display/intel_display_device.c
+@@ -1011,6 +1011,7 @@ static const enum intel_step dg1_steppings[] = {
+ 
+ static const struct platform_desc dg1_desc = {
+ 	PLATFORM(dg1),
++	PLATFORM_GROUP(dgfx),
+ 	.info = &(const struct intel_display_device_info) {
+ 		XE_D_DISPLAY,
+ 
+@@ -1238,6 +1239,7 @@ static const enum intel_step dg2_g12_steppings[] = {
+ 
+ static const struct platform_desc dg2_desc = {
+ 	PLATFORM(dg2),
++	PLATFORM_GROUP(dgfx),
+ 	.subplatforms = (const struct subplatform_desc[]) {
+ 		{
+ 			SUBPLATFORM(dg2, g10),
+@@ -1338,6 +1340,7 @@ static const struct platform_desc lnl_desc = {
+ 
+ static const struct platform_desc bmg_desc = {
+ 	PLATFORM(battlemage),
++	PLATFORM_GROUP(dgfx),
+ };
+ 
+ static const struct platform_desc ptl_desc = {
+@@ -1636,9 +1639,10 @@ void intel_display_device_probe(struct drm_i915_private *i915)
+ 
+ 	DISPLAY_RUNTIME_INFO(i915)->step = step;
+ 
+-	drm_info(&i915->drm, "Found %s%s%s (device ID %04x) display version %u.%02u stepping %s\n",
++	drm_info(&i915->drm, "Found %s%s%s (device ID %04x) %s display version %u.%02u stepping %s\n",
+ 		 desc->name, subdesc ? "/" : "", subdesc ? subdesc->name : "",
+-		 pdev->device, DISPLAY_RUNTIME_INFO(i915)->ip.ver,
++		 pdev->device, display->platform.dgfx ? "discrete" : "integrated",
++		 DISPLAY_RUNTIME_INFO(i915)->ip.ver,
+ 		 DISPLAY_RUNTIME_INFO(i915)->ip.rel,
+ 		 step != STEP_NONE ? intel_step_name(step) : "N/A");
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+index a8a0b4332247..962a46e54499 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.h
++++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+@@ -21,6 +21,9 @@ struct drm_printer;
+  * platform.
+  */
+ #define INTEL_DISPLAY_PLATFORMS(func) \
++	/* Platform group aliases */ \
++	func(g4x) /* g45 and gm45 */ \
++	func(dgfx) /* discrete graphics */ \
+ 	/* Display ver 2 */ \
+ 	func(i830) \
+ 	func(i845g) \
+@@ -38,7 +41,6 @@ struct drm_printer;
+ 	func(i965gm) \
+ 	func(g45) \
+ 	func(gm45) \
+-	func(g4x) /* group alias for g45 and gm45 */ \
+ 	/* Display ver 5 */ \
+ 	func(ironlake) \
+ 	/* Display ver 6 */ \
 -- 
 2.39.5
 
