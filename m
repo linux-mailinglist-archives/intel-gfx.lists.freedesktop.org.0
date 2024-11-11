@@ -2,29 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 209C39C3CAE
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Nov 2024 12:08:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AD109C3D2C
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Nov 2024 12:27:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 774DE10E27F;
-	Mon, 11 Nov 2024 11:08:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C8F510E00B;
+	Mon, 11 Nov 2024 11:27:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EDA0A10E27F;
- Mon, 11 Nov 2024 11:08:33 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0900914232842997158=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D859210E00B;
+ Mon, 11 Nov 2024 11:27:43 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915/dp=3A_Guarantee_a_?=
- =?utf-8?q?minimum_HBlank_time_=28rev4=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/display=3A_?=
+ =?utf-8?q?convert_display_feature_helpers_to_struct_intel=5Fdisplay_=28rev5?=
+ =?utf-8?q?=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arun R Murthy" <arun.r.murthy@intel.com>
+To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 11 Nov 2024 11:08:33 -0000
-Message-ID: <173132331396.2561525.8850949112352731193@2413ebb6fbb6>
+Date: Mon, 11 Nov 2024 11:27:43 -0000
+Message-ID: <173132446387.2561525.7521861044451903526@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
-References: <20241111092608.129410-1-arun.r.murthy@intel.com>
-In-Reply-To: <20241111092608.129410-1-arun.r.murthy@intel.com>
+References: <cover.1731321183.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1731321183.git.jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,124 +42,190 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0900914232842997158==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/dp: Guarantee a minimum HBlank time (rev4)
-URL   : https://patchwork.freedesktop.org/series/139267/
-State : success
+Series: drm/i915/display: convert display feature helpers to struct intel_display (rev5)
+URL   : https://patchwork.freedesktop.org/series/140886/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_15671 -> Patchwork_139267v4
-====================================================
+Error: dim checkpatch failed
+895765b7842d drm/i915/display: identify discrete graphics
+c2f82f26a756 drm/i915/display: convert HAS_D12_PLANE_MINIMIZATION() to struct intel_display
+-:36: WARNING:LONG_LINE: line length of 119 exceeds 100 columns
+#36: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:147:
++#define HAS_D12_PLANE_MINIMIZATION(__display)	((__display)->platform.rocketlake || (__display)->platform.alderlake_s)
 
-Summary
--------
+-:36: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__display' - possible side-effects?
+#36: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:147:
++#define HAS_D12_PLANE_MINIMIZATION(__display)	((__display)->platform.rocketlake || (__display)->platform.alderlake_s)
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 1 checks, 68 lines checked
+9df508e1de8d drm/i915/display: convert HAS_4TILE() to struct intel_display
+-:22: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__display' - possible side-effects?
+#22: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:141:
++#define HAS_4TILE(__display)		((__display)->platform.dg2 || DISPLAY_VER(__display) >= 14)
 
-  No regressions found.
+total: 0 errors, 0 warnings, 1 checks, 56 lines checked
+687eb7ebab46 drm/i915/display: convert HAS_DOUBLE_BUFFERED_M_N() to struct intel_display
+-:46: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
+#46: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:153:
++#define HAS_DOUBLE_BUFFERED_M_N(__display)	(DISPLAY_VER(__display) >= 9 || (__display)->platform.broadwell)
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139267v4/index.html
+-:46: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__display' - possible side-effects?
+#46: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:153:
++#define HAS_DOUBLE_BUFFERED_M_N(__display)	(DISPLAY_VER(__display) >= 9 || (__display)->platform.broadwell)
 
-Participating hosts (46 -> 45)
-------------------------------
+total: 0 errors, 1 warnings, 1 checks, 48 lines checked
+33b6f04901fa drm/i915/display: convert HAS_DP20() to struct intel_display
+-:149: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__display' - possible side-effects?
+#149: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:156:
++#define HAS_DP20(__display)		((__display)->platform.dg2 || DISPLAY_VER(__display) >= 14)
 
-  Missing    (1): fi-snb-2520m 
+total: 0 errors, 0 warnings, 1 checks, 150 lines checked
+93b0cfb50560 drm/i915/display: convert HAS_GMBUS_BURST_READ() to struct intel_display
+-:23: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#23: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:165:
++#define HAS_GMBUS_BURST_READ(__display)	(DISPLAY_VER(__display) >= 10 || (__display)->platform.kabylake)
 
-Known issues
-------------
+-:23: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__display' - possible side-effects?
+#23: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:165:
++#define HAS_GMBUS_BURST_READ(__display)	(DISPLAY_VER(__display) >= 10 || (__display)->platform.kabylake)
 
-  Here are the changes found in Patchwork_139267v4 that come from known issues:
+total: 0 errors, 1 warnings, 1 checks, 23 lines checked
+9ffb49c87c22 drm/i915/display: convert HAS_IPS() to struct intel_display
+-:58: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
+#58: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:169:
++#define HAS_IPS(__display)		((__display)->platform.haswell_ult || (__display)->platform.broadwell)
 
-### IGT changes ###
+-:58: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__display' - possible side-effects?
+#58: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:169:
++#define HAS_IPS(__display)		((__display)->platform.haswell_ult || (__display)->platform.broadwell)
 
-#### Issues hit ####
+total: 0 errors, 1 warnings, 1 checks, 33 lines checked
+cd1fd2c0750c drm/i915/display: convert HAS_MBUS_JOINING() to struct intel_display
+-:25: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#25: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:172:
++#define HAS_MBUS_JOINING(__display)	((__display)->platform.alderlake_p || DISPLAY_VER(__display) >= 14)
 
-  * igt@i915_selftest@live@workarounds:
-    - bat-twl-1:          [PASS][1] -> [INCOMPLETE][2] ([i915#9413]) +1 other test incomplete
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15671/bat-twl-1/igt@i915_selftest@live@workarounds.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139267v4/bat-twl-1/igt@i915_selftest@live@workarounds.html
+-:25: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__display' - possible side-effects?
+#25: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:172:
++#define HAS_MBUS_JOINING(__display)	((__display)->platform.alderlake_p || DISPLAY_VER(__display) >= 14)
 
-  
-  [i915#9413]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413
+total: 0 errors, 1 warnings, 1 checks, 82 lines checked
+1f944841d369 drm/i915/display: convert HAS_SAGV() to struct intel_display
+-:22: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__display' - possible side-effects?
+#22: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:178:
++#define HAS_SAGV(__display)		(DISPLAY_VER(__display) >= 9 && \
++					 !(__display)->platform.broxton && !(__display)->platform.geminilake)
+
+-:23: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#23: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:179:
++					 !(__display)->platform.broxton && !(__display)->platform.geminilake)
+
+total: 0 errors, 1 warnings, 1 checks, 115 lines checked
+72640e6c943a drm/i915/display: convert HAS_HW_SAGV_WM() to struct intel_display
+-:54: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#54: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:167:
++#define HAS_HW_SAGV_WM(__display)	(DISPLAY_VER(__display) >= 13 && !(__display)->platform.dgfx)
+
+-:54: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__display' - possible side-effects?
+#54: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:167:
++#define HAS_HW_SAGV_WM(__display)	(DISPLAY_VER(__display) >= 13 && !(__display)->platform.dgfx)
+
+total: 0 errors, 1 warnings, 1 checks, 161 lines checked
+03a69c4bd89c drm/i915/display: convert HAS_ULTRAJOINER() to struct intel_display
+-:82: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__display' - possible side-effects?
+#82: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:183:
++#define HAS_ULTRAJOINER(__display)	((DISPLAY_VER(__display) >= 20 || \
++					  ((__display)->platform.dgfx && DISPLAY_VER(__display) == 14)) && \
++					 HAS_DSC(__display))
+
+-:83: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#83: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:184:
++					  ((__display)->platform.dgfx && DISPLAY_VER(__display) == 14)) && \
+
+total: 0 errors, 1 warnings, 1 checks, 75 lines checked
+a67357b16dc1 drm/i915/display: rename i915 parameter to __display in feature helpers
+-:30: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__display' - possible side-effects?
+#30: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:143:
++#define HAS_BIGJOINER(__display)	(DISPLAY_VER(__display) >= 11 && HAS_DSC(__display))
+
+-:33: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__display' - possible side-effects?
+#33: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:146:
++#define HAS_CUR_FBC(__display)		(!HAS_GMCH(__display) && IS_DISPLAY_VER(__display, 7, 13))
+
+-:40: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#40: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:148:
++#define HAS_DBUF_OVERLAP_DETECTION(__display)	(DISPLAY_RUNTIME_INFO(__display)->has_dbuf_overlap_detection)
+
+-:62: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__display' - possible side-effects?
+#62: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:160:
++#define HAS_DSC_MST(__display)		(DISPLAY_VER(__display) >= 12 && HAS_DSC(__display))
+
+-:94: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#94: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:180:
++#define HAS_TRANSCODER(__display, trans)	((DISPLAY_RUNTIME_INFO(__display)->cpu_transcoder_mask & \
+
+-:117: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__display' - possible side-effects?
+#117: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:195:
++#define IS_DISPLAY_VERx100(__display, from, until) ( \
+ 	BUILD_BUG_ON_ZERO((from) < 200) + \
++	(DISPLAY_VERx100(__display) >= (from) && \
++	 DISPLAY_VERx100(__display) <= (until)))
+
+-:117: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'from' - possible side-effects?
+#117: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:195:
++#define IS_DISPLAY_VERx100(__display, from, until) ( \
+ 	BUILD_BUG_ON_ZERO((from) < 200) + \
++	(DISPLAY_VERx100(__display) >= (from) && \
++	 DISPLAY_VERx100(__display) <= (until)))
+
+-:141: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__display' - possible side-effects?
+#141: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:215:
++#define IS_DISPLAY_VERx100_STEP(__display, ipver, from, until) \
++	(IS_DISPLAY_VERx100((__display), (ipver), (ipver)) && \
++	 IS_DISPLAY_STEP((__display), (from), (until)))
+
+-:141: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'ipver' - possible side-effects?
+#141: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:215:
++#define IS_DISPLAY_VERx100_STEP(__display, ipver, from, until) \
++	(IS_DISPLAY_VERx100((__display), (ipver), (ipver)) && \
++	 IS_DISPLAY_STEP((__display), (from), (until)))
+
+-:156: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__display' - possible side-effects?
+#156: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:223:
++#define DISPLAY_VERx100(__display)	(DISPLAY_RUNTIME_INFO(__display)->ip.ver * 100 + \
++					 DISPLAY_RUNTIME_INFO(__display)->ip.rel)
+
+-:158: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__display' - possible side-effects?
+#158: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:225:
++#define IS_DISPLAY_VER(__display, from, until) \
++	(DISPLAY_VER(__display) >= (from) && DISPLAY_VER(__display) <= (until))
+
+-:167: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__display' - possible side-effects?
+#167: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:230:
++#define IS_DISPLAY_STEP(__display, since, until) \
++	(drm_WARN_ON(__to_intel_display(__display)->drm, INTEL_DISPLAY_STEP(__display) == STEP_NONE), \
++	 INTEL_DISPLAY_STEP(__display) >= (since) && INTEL_DISPLAY_STEP(__display) < (until))
+
+-:168: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#168: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:231:
++	(drm_WARN_ON(__to_intel_display(__display)->drm, INTEL_DISPLAY_STEP(__display) == STEP_NONE), \
+
+total: 0 errors, 3 warnings, 10 checks, 151 lines checked
+77e1c5ebd773 drm/i915/display: convert display device identification to struct intel_display
+1f70ed539e6a drm/i915/display: pass struct pci_dev * to intel_display_device_probe()
+ab6853526ac5 drm/i915/display: add mobile platform group
+-:119: WARNING:LONG_LINE_COMMENT: line length of 134 exceeds 100 columns
+#119: FILE: drivers/gpu/drm/i915/display/intel_display_device.c:479:
++	.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D), /* DP A, SDVO/HDMI/DP B, HDMI/DP C/D */
+
+-:156: WARNING:LONG_LINE_COMMENT: line length of 134 exceeds 100 columns
+#156: FILE: drivers/gpu/drm/i915/display/intel_display_device.c:504:
++	.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D), /* DP A, SDVO/HDMI/DP B, HDMI/DP C/D */
+
+total: 0 errors, 2 warnings, 0 checks, 180 lines checked
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_15671 -> Patchwork_139267v4
-
-  CI-20190529: 20190529
-  CI_DRM_15671: 3f866f737f2b5b35056783cd2b8bce2c1b00ab47 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8102: a05b40911bfb79c9bdf6ff7e8ab1a68948afbbf6 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_139267v4: 3f866f737f2b5b35056783cd2b8bce2c1b00ab47 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139267v4/index.html
-
---===============0900914232842997158==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dp: Guarantee a minimum HBlank time (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/139267/">https://patchwork.freedesktop.org/series/139267/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139267v4/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139267v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_15671 -&gt; Patchwork_139267v4</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139267v4/index.html</p>
-<h2>Participating hosts (46 -&gt; 45)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_139267v4 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>bat-twl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15671/bat-twl-1/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139267v4/bat-twl-1/igt@i915_selftest@live@workarounds.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413">i915#9413</a>) +1 other test incomplete</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_15671 -&gt; Patchwork_139267v4</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_15671: 3f866f737f2b5b35056783cd2b8bce2c1b00ab47 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8102: a05b40911bfb79c9bdf6ff7e8ab1a68948afbbf6 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_139267v4: 3f866f737f2b5b35056783cd2b8bce2c1b00ab47 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============0900914232842997158==--
