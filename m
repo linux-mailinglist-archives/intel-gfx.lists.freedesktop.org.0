@@ -2,60 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 306BE9C3C1E
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Nov 2024 11:35:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FBC89C3C81
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Nov 2024 11:57:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C373310E475;
-	Mon, 11 Nov 2024 10:35:52 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NMZLREkJ";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id A654B10E199;
+	Mon, 11 Nov 2024 10:57:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACDE410E475;
- Mon, 11 Nov 2024 10:35:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731321352; x=1762857352;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=12AVUo6e9ilS17tFghWmKwoEQ6ZiJy4Ucx4BjKIRQhQ=;
- b=NMZLREkJwnZnp1z3jnHLkkpHM4azOuXQ1z2NmpPVWKywbpO2NuTTyhiF
- 3FYjzUUDwe9Nwo0tdqf7Rs+Pvx1zBl7hG52TB0vPy8Kbu0tykY+C2sjsY
- R+c4Vp/Lwp9YrT8tqUa2oNzUEQ7DcsWqxaBkbgzQHBING5Sn+P73ny7Ye
- f3BqCSjNE4Hbn6wxY1nI9ng1bjmbMB4EbZ+tPTGUW7tk0u410OqNDe+Hg
- C42BMOBtODdrVfeHX3wIsVNQYKV4QclQsOs+G3bcSxDOfv7nq5fTUHmIx
- YtQEGvWhA1ucxfVVtE0lVnAMHzN+euSTgRl4RhmlHhi04Jg9uUmH6Z5LL A==;
-X-CSE-ConnectionGUID: qXz4kPkOSlK1oARsAnatCw==
-X-CSE-MsgGUID: WT9VVFIeQLqgg3c6ISeteQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11252"; a="42507829"
-X-IronPort-AV: E=Sophos;i="6.12,144,1728975600"; d="scan'208";a="42507829"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2024 02:35:31 -0800
-X-CSE-ConnectionGUID: D4PkVbnaQdyafdYdkMks5A==
-X-CSE-MsgGUID: jO6WembrSeavo30Y4Umi5w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,144,1728975600"; d="scan'208";a="87009840"
-Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.75])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2024 02:35:28 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com, Vinod Govindapillai <vinod.govindapillai@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [CI v3 15/15] drm/i915/display: add mobile platform group
-Date: Mon, 11 Nov 2024 12:34:04 +0200
-Message-Id: <2389fd58446e83a79ec57bc0b037679662037b9e.1731321183.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1731321183.git.jani.nikula@intel.com>
-References: <cover.1731321183.git.jani.nikula@intel.com>
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4503089135;
+ Mon, 11 Nov 2024 10:57:55 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/dp=3A_Guara?=
+ =?utf-8?q?ntee_a_minimum_HBlank_time_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arun R Murthy" <arun.r.murthy@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 11 Nov 2024 10:57:55 -0000
+Message-ID: <173132267527.2561525.10523634979796445399@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241111092608.129410-1-arun.r.murthy@intel.com>
+In-Reply-To: <20241111092608.129410-1-arun.r.murthy@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,222 +37,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Identify mobile platforms separately in display, using the platform
-group mechanism. This enables dropping the dependency on i915_drv.h
-IS_MOBILE() from display code.
+== Series Details ==
 
-v2: Make snb_display static (kernel test robot)
+Series: drm/i915/dp: Guarantee a minimum HBlank time (rev4)
+URL   : https://patchwork.freedesktop.org/series/139267/
+State : warning
 
-Reviewed-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- .../drm/i915/display/intel_display_device.c   | 104 ++++++++++++------
- .../drm/i915/display/intel_display_device.h   |   1 +
- 2 files changed, 70 insertions(+), 35 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
-index 41df7a8fd32e..68cb7f9b9ef3 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-@@ -253,6 +253,7 @@ static const struct intel_display_device_info no_display = {};
- 
- static const struct platform_desc i830_desc = {
- 	PLATFORM(i830),
-+	PLATFORM_GROUP(mobile),
- 	.info = &(const struct intel_display_device_info) {
- 		I830_DISPLAY,
- 
-@@ -271,6 +272,7 @@ static const struct platform_desc i845_desc = {
- 
- static const struct platform_desc i85x_desc = {
- 	PLATFORM(i85x),
-+	PLATFORM_GROUP(mobile),
- 	.info = &(const struct intel_display_device_info) {
- 		I830_DISPLAY,
- 
-@@ -313,6 +315,7 @@ static const struct platform_desc i915g_desc = {
- 
- static const struct platform_desc i915gm_desc = {
- 	PLATFORM(i915gm),
-+	PLATFORM_GROUP(mobile),
- 	.info = &(const struct intel_display_device_info) {
- 		GEN3_DISPLAY,
- 		I9XX_COLORS,
-@@ -337,6 +340,7 @@ static const struct platform_desc i945g_desc = {
- 
- static const struct platform_desc i945gm_desc = {
- 	PLATFORM(i915gm),
-+	PLATFORM_GROUP(mobile),
- 	.info = &(const struct intel_display_device_info) {
- 		GEN3_DISPLAY,
- 		I9XX_COLORS,
-@@ -358,13 +362,21 @@ static const struct platform_desc g33_desc = {
- 	},
- };
- 
--static const struct platform_desc pnv_desc = {
-+static const struct intel_display_device_info pnv_display = {
-+	GEN3_DISPLAY,
-+	I9XX_COLORS,
-+	.has_hotplug = 1,
-+};
-+
-+static const struct platform_desc pnv_g_desc = {
- 	PLATFORM(pineview),
--	.info = &(const struct intel_display_device_info) {
--		GEN3_DISPLAY,
--		I9XX_COLORS,
--		.has_hotplug = 1,
--	},
-+	.info = &pnv_display,
-+};
-+
-+static const struct platform_desc pnv_m_desc = {
-+	PLATFORM(pineview),
-+	PLATFORM_GROUP(mobile),
-+	.info = &pnv_display,
- };
- 
- #define GEN4_DISPLAY \
-@@ -391,6 +403,7 @@ static const struct platform_desc i965g_desc = {
- 
- static const struct platform_desc i965gm_desc = {
- 	PLATFORM(i965gm),
-+	PLATFORM_GROUP(mobile),
- 	.info = &(const struct intel_display_device_info) {
- 		GEN4_DISPLAY,
- 		.has_overlay = 1,
-@@ -414,6 +427,7 @@ static const struct platform_desc g45_desc = {
- static const struct platform_desc gm45_desc = {
- 	PLATFORM(gm45),
- 	PLATFORM_GROUP(g4x),
-+	PLATFORM_GROUP(mobile),
- 	.info = &(const struct intel_display_device_info) {
- 		GEN4_DISPLAY,
- 		.supports_tv = 1,
-@@ -444,6 +458,7 @@ static const struct platform_desc ilk_d_desc = {
- 
- static const struct platform_desc ilk_m_desc = {
- 	PLATFORM(ironlake),
-+	PLATFORM_GROUP(mobile),
- 	.info = &(const struct intel_display_device_info) {
- 		ILK_DISPLAY,
- 
-@@ -451,38 +466,54 @@ static const struct platform_desc ilk_m_desc = {
- 	},
- };
- 
--static const struct platform_desc snb_desc = {
-+static const struct intel_display_device_info snb_display = {
-+	.has_hotplug = 1,
-+	I9XX_PIPE_OFFSETS,
-+	I9XX_CURSOR_OFFSETS,
-+	ILK_COLORS,
-+
-+	.__runtime_defaults.ip.ver = 6,
-+	.__runtime_defaults.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B),
-+	.__runtime_defaults.cpu_transcoder_mask =
-+	BIT(TRANSCODER_A) | BIT(TRANSCODER_B),
-+	.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D), /* DP A, SDVO/HDMI/DP B, HDMI/DP C/D */
-+	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A),
-+};
-+
-+static const struct platform_desc snb_d_desc = {
- 	PLATFORM(sandybridge),
--	.info = &(const struct intel_display_device_info) {
--		.has_hotplug = 1,
--		I9XX_PIPE_OFFSETS,
--		I9XX_CURSOR_OFFSETS,
--		ILK_COLORS,
-+	.info = &snb_display,
-+};
- 
--		.__runtime_defaults.ip.ver = 6,
--		.__runtime_defaults.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B),
--		.__runtime_defaults.cpu_transcoder_mask =
--		BIT(TRANSCODER_A) | BIT(TRANSCODER_B),
--		.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D), /* DP A, SDVO/HDMI/DP B, HDMI/DP C/D */
--		.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A),
--	},
-+static const struct platform_desc snb_m_desc = {
-+	PLATFORM(sandybridge),
-+	PLATFORM_GROUP(mobile),
-+	.info = &snb_display,
-+};
-+
-+static const struct intel_display_device_info ivb_display = {
-+	.has_hotplug = 1,
-+	IVB_PIPE_OFFSETS,
-+	IVB_CURSOR_OFFSETS,
-+	IVB_COLORS,
-+
-+	.__runtime_defaults.ip.ver = 7,
-+	.__runtime_defaults.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C),
-+	.__runtime_defaults.cpu_transcoder_mask =
-+	BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | BIT(TRANSCODER_C),
-+	.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D), /* DP A, SDVO/HDMI/DP B, HDMI/DP C/D */
-+	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A),
- };
- 
--static const struct platform_desc ivb_desc = {
-+static const struct platform_desc ivb_d_desc = {
- 	PLATFORM(ivybridge),
--	.info = &(const struct intel_display_device_info) {
--		.has_hotplug = 1,
--		IVB_PIPE_OFFSETS,
--		IVB_CURSOR_OFFSETS,
--		IVB_COLORS,
-+	.info = &ivb_display,
-+};
- 
--		.__runtime_defaults.ip.ver = 7,
--		.__runtime_defaults.pipe_mask = BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C),
--		.__runtime_defaults.cpu_transcoder_mask =
--		BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | BIT(TRANSCODER_C),
--		.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D), /* DP A, SDVO/HDMI/DP B, HDMI/DP C/D */
--		.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A),
--	},
-+static const struct platform_desc ivb_m_desc = {
-+	PLATFORM(ivybridge),
-+	PLATFORM_GROUP(mobile),
-+	.info = &ivb_display,
- };
- 
- static const struct platform_desc vlv_desc = {
-@@ -1385,11 +1416,14 @@ static const struct {
- 	INTEL_I965GM_IDS(INTEL_DISPLAY_DEVICE, &i965gm_desc),
- 	INTEL_GM45_IDS(INTEL_DISPLAY_DEVICE, &gm45_desc),
- 	INTEL_G45_IDS(INTEL_DISPLAY_DEVICE, &g45_desc),
--	INTEL_PNV_IDS(INTEL_DISPLAY_DEVICE, &pnv_desc),
-+	INTEL_PNV_G_IDS(INTEL_DISPLAY_DEVICE, &pnv_g_desc),
-+	INTEL_PNV_M_IDS(INTEL_DISPLAY_DEVICE, &pnv_m_desc),
- 	INTEL_ILK_D_IDS(INTEL_DISPLAY_DEVICE, &ilk_d_desc),
- 	INTEL_ILK_M_IDS(INTEL_DISPLAY_DEVICE, &ilk_m_desc),
--	INTEL_SNB_IDS(INTEL_DISPLAY_DEVICE, &snb_desc),
--	INTEL_IVB_IDS(INTEL_DISPLAY_DEVICE, &ivb_desc),
-+	INTEL_SNB_D_IDS(INTEL_DISPLAY_DEVICE, &snb_d_desc),
-+	INTEL_SNB_M_IDS(INTEL_DISPLAY_DEVICE, &snb_m_desc),
-+	INTEL_IVB_D_IDS(INTEL_DISPLAY_DEVICE, &ivb_d_desc),
-+	INTEL_IVB_M_IDS(INTEL_DISPLAY_DEVICE, &ivb_m_desc),
- 	INTEL_HSW_IDS(INTEL_DISPLAY_DEVICE, &hsw_desc),
- 	INTEL_VLV_IDS(INTEL_DISPLAY_DEVICE, &vlv_desc),
- 	INTEL_BDW_IDS(INTEL_DISPLAY_DEVICE, &bdw_desc),
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index 0dd48737804d..9a333d9e6601 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -24,6 +24,7 @@ struct pci_dev;
- #define INTEL_DISPLAY_PLATFORMS(func) \
- 	/* Platform group aliases */ \
- 	func(g4x) /* g45 and gm45 */ \
-+	func(mobile) /* mobile platforms */ \
- 	func(dgfx) /* discrete graphics */ \
- 	/* Display ver 2 */ \
- 	func(i830) \
--- 
-2.39.5
+Error: dim checkpatch failed
+37aff9d5f323 drm/i915/dp: Guarantee a minimum HBlank time
+-:14: WARNING:TYPO_SPELLING: 'accomodate' may be misspelled - perhaps 'accommodate'?
+#14: 
+    Limit hblank to 511 and accomodate BS/BE in calculated value
+                            ^^^^^^^^^^
+
+-:66: WARNING:LONG_LINE: line length of 121 exceeds 100 columns
+#66: FILE: drivers/gpu/drm/i915/display/intel_dp_mst.c:179:
++	hblank = DIV_ROUND_UP((DIV_ROUND_UP(adjusted_mode->htotal - adjusted_mode->hdisplay, 4) * bpp_x16), symbol_size);
+
+-:113: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
+#113: FILE: drivers/gpu/drm/i915/i915_reg.h:3490:
++#define DP_MIN_HBLANK_CTL(trans)		_MMIO_TRANS(trans, _DP_MIN_HBLANK_CTL_A, _DP_MIN_HBLANK_CTL_B)
+
+total: 0 errors, 3 warnings, 0 checks, 77 lines checked
+
 
