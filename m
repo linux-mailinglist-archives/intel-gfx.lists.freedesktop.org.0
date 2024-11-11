@@ -2,61 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B565F9C3E7E
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Nov 2024 13:36:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 42A069C3E72
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Nov 2024 13:33:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 23D5210E4A3;
-	Mon, 11 Nov 2024 12:36:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B650710E1CE;
+	Mon, 11 Nov 2024 12:33:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QI36pvJc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="klqfwdX+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DBC1A10E4A1
- for <intel-gfx@lists.freedesktop.org>; Mon, 11 Nov 2024 12:36:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 818D010E1CE;
+ Mon, 11 Nov 2024 12:33:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731328585; x=1762864585;
- h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=dFsezA+CbBintUlhJ4FVVBMePIw94bGnIOxtUgIlvaY=;
- b=QI36pvJc8rRW3Lj8vtVI5vm+oxLGGFs/WwqkwvvQx8plyW2kd3qr5ez5
- AbOjGD0fxJuA2HCXDMVdvAaIMhQSLx7NJzvia/LSWCSu1xaP63Hg6jdst
- niXGuI7nB2AE8iPJpuz5tsn3TJgUABQcyYc5fUtCARHH+bq5pdkOHPwu9
- +V5YRWPsylfYddiglPtREiBToPfVjQN+BKRgjNwHuA6BWMTQPHx1S2vJQ
- U+RAmkOLGXd5SxotrKgT+nvuCwgDwm314u/caLbnnZ7CFotzFH4LOUIvE
- poWetEfiMWtJvaxoPE8Y9UtvyjIomYPhOwR0dui0BQQYuPfb1FKMTA3H+ Q==;
-X-CSE-ConnectionGUID: wfoikLnZSTWu0nsEA3SxWA==
-X-CSE-MsgGUID: EvTt0KFlTyqq1Ofmr3TY3A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11253"; a="41745334"
-X-IronPort-AV: E=Sophos;i="6.12,145,1728975600"; d="scan'208";a="41745334"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2024 04:36:25 -0800
-X-CSE-ConnectionGUID: TOcc7Jh7Sea/rT0kTJXVJg==
-X-CSE-MsgGUID: gI/HziO4TbOHsdZVBS38tw==
+ t=1731328394; x=1762864394;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=usJ5SbqaIE8MO9G9bm1YPDmExe6i6wMCBQTvFjbT2T4=;
+ b=klqfwdX+2e/VEpdByC9Ng2XJfe3TKg7+ELgKMBen42U5PFSzTjF5xzQD
+ 6qH1+dDVqc+j9zzqvP1/OaTH2/kfIHSeA5cBiHm+v8s2nM4aEAe5tO51y
+ Od0gHnYyGAkakzro/5gjaYxtUlbVb8Wy7FZHD++2F9RiS68wWnos7EZtl
+ xVu9G9lbGmnH/Vue6fFLLay4DSSI7uxj9ULbtS+xRRWef8mBJjge9n8nh
+ kWhuiNeXqLF+FK45a8db7h5lhtv7j4isufh1gx5W7AfllIxDlAUo0Ru+q
+ qaisi8Y4Lb3f/GYQGo8W6Bc3+mO0X0p7dLt2yG0HAFJ8sr0iblHha+tl7 A==;
+X-CSE-ConnectionGUID: ofUgpn7cQx+FVDb7kR0VkQ==
+X-CSE-MsgGUID: /WZ6SH9VTpyDVVvpNu4SrQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11252"; a="35068043"
+X-IronPort-AV: E=Sophos;i="6.12,145,1728975600"; d="scan'208";a="35068043"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2024 04:33:14 -0800
+X-CSE-ConnectionGUID: RD8Yj8yvTGmuCb0un7e1Dg==
+X-CSE-MsgGUID: YSgD/RjLQuGpC3vdqjvozA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,145,1728975600"; d="scan'208";a="87047623"
-Received: from eliteleevi.tm.intel.com ([10.237.54.20])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2024 04:36:22 -0800
-Date: Mon, 11 Nov 2024 14:29:54 +0200 (EET)
-From: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-X-X-Sender: kvehmane@eliteleevi.tm.intel.com
-To: Vinod Govindapillai <vinod.govindapillai@intel.com>
-cc: intel-gfx@lists.freedesktop.org, jani.nikula@intel.com, 
- ville.syrjala@intel.com, kai.vehmanen@intel.com, jani.saarinen@intel.com
-Subject: Re: [PATCH 2/9] drm/i915/display: create a common function to check
- validity of ELD
-In-Reply-To: <20241008082327.342020-3-vinod.govindapillai@intel.com>
-Message-ID: <alpine.DEB.2.22.394.2411111429190.14041@eliteleevi.tm.intel.com>
-References: <20241008082327.342020-1-vinod.govindapillai@intel.com>
- <20241008082327.342020-3-vinod.govindapillai@intel.com>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7 02160 Espoo
+X-IronPort-AV: E=Sophos;i="6.12,145,1728975600"; d="scan'208";a="117823239"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
+ by fmviesa001.fm.intel.com with ESMTP; 11 Nov 2024 04:33:13 -0800
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: vinod.govindapillai@intel.com,
+	Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH 1/3] drm/i915/watermark: Initialize latency variable to
+ appropriate value
+Date: Mon, 11 Nov 2024 18:02:57 +0530
+Message-Id: <20241111123259.1072534-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,14 +67,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hey,
+Initialize max_latency variable to LNL_PKG_C_LATENCY_MASK which helps
+to eliminate the else block and make the whole code a lot cleaner.
 
-On Tue, 8 Oct 2024, Vinod Govindapillai wrote:
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ drivers/gpu/drm/i915/display/skl_watermark.c | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
 
-> We would need to check the validity of connector ELD from multiple
-> places in the follow up patches. So create a separate function to
-> check the validity for ELD.
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index d3bbf335c749..a97e90ac643f 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -2850,7 +2850,7 @@ static int skl_wm_add_affected_planes(struct intel_atomic_state *state,
+ static void
+ skl_program_dpkgc_latency(struct drm_i915_private *i915, bool enable_dpkgc)
+ {
+-	u32 max_latency = 0;
++	u32 max_latency = LNL_PKG_C_LATENCY_MASK;
+ 	u32 clear = 0, val = 0;
+ 	u32 added_wake_time = 0;
+ 
+@@ -2863,9 +2863,6 @@ skl_program_dpkgc_latency(struct drm_i915_private *i915, bool enable_dpkgc)
+ 			max_latency = LNL_PKG_C_LATENCY_MASK;
+ 		added_wake_time = DSB_EXE_TIME +
+ 			i915->display.sagv.block_time_us;
+-	} else {
+-		max_latency = LNL_PKG_C_LATENCY_MASK;
+-		added_wake_time = 0;
+ 	}
+ 
+ 	clear |= LNL_ADDED_WAKE_TIME_MASK | LNL_PKG_C_LATENCY_MASK;
+-- 
+2.34.1
 
-Reviewed-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-
-Br, Kai
