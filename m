@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FE8E9C3A84
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 Nov 2024 10:10:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 77E499C3A85
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 Nov 2024 10:10:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5F6F10E454;
-	Mon, 11 Nov 2024 09:10:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D0F710E447;
+	Mon, 11 Nov 2024 09:10:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GLAGUV6t";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d7TAO6wj";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D7D4010E454;
- Mon, 11 Nov 2024 09:10:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB0F610E45B;
+ Mon, 11 Nov 2024 09:10:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731316218; x=1762852218;
+ t=1731316220; x=1762852220;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=7fHdmHLYHB6kD0ak4tocGkICf9NGTLGYbHDXg5PDE2Q=;
- b=GLAGUV6tm6i7ahsvEhyl2nTqXZ+m9mCqXDC0YcJeEjlBPh4zTY4UMG76
- kWfrPDZ7FJU8dQCmMpsKfAXE+HRbb9VyHgY9rfd3YTlD5eEbDA8rTIauz
- LwjDC5AY6oeh7TZQsbGyWojFNcda9YNFdCB8NkUugYj+KUcVXLmJI2IOv
- B1+tieadXNxRJnyBuci++OX8zJS8KcLY2JB428DsrxEVfyuM0NCPX6b3V
- lHsesKZnU5MTkmnVcso03Cz5YhRrCc1iqRIDMyuRyxPe0LzBaDbTTZfbf
- u967KR5NwXzcnCy5nPhm6p4H8JEl4ba+RaBvGvRVsQUIS8Es99VKDgZFv Q==;
-X-CSE-ConnectionGUID: El6wHSVzT2aPK1L2z2gxfw==
-X-CSE-MsgGUID: +ecQ8JAXRXep3kzE7ETl9g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11252"; a="35052382"
-X-IronPort-AV: E=Sophos;i="6.12,144,1728975600"; d="scan'208";a="35052382"
+ bh=SnndnHidnWah7kAjnEtb7qQbeDRdeOWHJDDxYPUFrhQ=;
+ b=d7TAO6wja41AxksvrrG1n4zxnd49udnRy4rRufc/qDWFXwKJKTmEaTH4
+ o7I6kd1yq+o63DgaasCym3VI+cHW3SwK4hsl6b7xW/Mh3+uiqJ3GoNP9a
+ q9pliHo7Y55YhyMyuDH+haRx6KEztxx1epO6QFv6kDyN4FvASPughw0Me
+ NxrOg5vMdOojw4edg+PKoh5Kfc0qiqrMaokW7DsaNFLYw7/8/sjkyxkoe
+ Ac+v1pwHdFbwhtSDLuWNdcdZEEObZ/rXnuFEyUwzItMD9X9DmZUOV6A3P
+ hyDNkM5sWdbwqG9+I/kL7rxUH3W8c9wrVjIJhaYWX+HXj/W7MZ6sq/Czy Q==;
+X-CSE-ConnectionGUID: 4GJ0cphFRRSbot1on50beQ==
+X-CSE-MsgGUID: WonqqHW+Qbm+7o3sexV61g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11252"; a="35052388"
+X-IronPort-AV: E=Sophos;i="6.12,144,1728975600"; d="scan'208";a="35052388"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2024 01:10:18 -0800
-X-CSE-ConnectionGUID: eMKHgvAgSMO+tox4c8Refg==
-X-CSE-MsgGUID: E1WcqKvJTS+iW1IRxiUQmQ==
+ 11 Nov 2024 01:10:20 -0800
+X-CSE-ConnectionGUID: VaaPcg7zTLqK8czjIoZp9w==
+X-CSE-MsgGUID: O3Y5cy4sSQ6zFjqVnnqi+A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,144,1728975600"; d="scan'208";a="86762658"
+X-IronPort-AV: E=Sophos;i="6.12,144,1728975600"; d="scan'208";a="86762667"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2024 01:10:16 -0800
+ 11 Nov 2024 01:10:18 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
  ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 12/23] drm/i915/hdmi: Use VRR Timing generator for HDMI
-Date: Mon, 11 Nov 2024 14:42:10 +0530
-Message-ID: <20241111091221.2992818-13-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 13/23] drm/i915/vrr: Handle joiner with vrr
+Date: Mon, 11 Nov 2024 14:42:11 +0530
+Message-ID: <20241111091221.2992818-14-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241111091221.2992818-1-ankit.k.nautiyal@intel.com>
 References: <20241111091221.2992818-1-ankit.k.nautiyal@intel.com>
@@ -68,34 +68,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add support for using VRR Timing generator for HDMI panels.
+Do not program transcoder registers for VRR for the secondary pipe of
+the joiner. Remove check to skip VRR for joiner case.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Reviewed-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_hdmi.c | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/i915/display/intel_vrr.c | 19 ++++++++++++-------
+ 1 file changed, 12 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index c6ce6bb88d7c..8582f23a514f 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -64,6 +64,7 @@
- #include "intel_panel.h"
- #include "intel_pfit.h"
- #include "intel_snps_phy.h"
-+#include "intel_vrr.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+index 5a7a4dbf699c..ecd4b06cb273 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr.c
++++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+@@ -247,13 +247,6 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
+ 	struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
+ 	int vmin, vmax;
  
- static void
- assert_hdmi_port_disabled(struct intel_hdmi *intel_hdmi)
-@@ -2399,6 +2400,8 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
- 		}
- 	}
+-	/*
+-	 * FIXME all joined pipes share the same transcoder.
+-	 * Need to account for that during VRR toggle/push/etc.
+-	 */
+-	if (crtc_state->joiner_pipes)
+-		return;
+-
+ 	if (adjusted_mode->flags & DRM_MODE_FLAG_INTERLACE)
+ 		return;
  
-+	intel_vrr_compute_config(pipe_config, conn_state);
+@@ -324,6 +317,9 @@ void intel_vrr_set_transcoder_timings(const struct intel_crtc_state *crtc_state)
+ 	struct intel_display *display = to_intel_display(crtc_state);
+ 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+ 
++	if (intel_crtc_is_joiner_secondary(crtc_state))
++		return;
 +
- 	intel_hdmi_compute_gcp_infoframe(encoder, pipe_config,
- 					 conn_state);
+ 	/*
+ 	 * This bit seems to have two meanings depending on the platform:
+ 	 * TGL: generate VRR "safe window" for DSB vblank waits
+@@ -365,6 +361,9 @@ void intel_vrr_send_push(const struct intel_crtc_state *crtc_state)
+ 	struct intel_display *display = to_intel_display(crtc_state);
+ 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+ 
++	if (intel_crtc_is_joiner_secondary(crtc_state))
++		return;
++
+ 	if (!crtc_state->vrr.tg_enable)
+ 		return;
+ 
+@@ -388,6 +387,9 @@ void intel_vrr_enable(const struct intel_crtc_state *crtc_state)
+ 	struct intel_display *display = to_intel_display(crtc_state);
+ 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+ 
++	if (intel_crtc_is_joiner_secondary(crtc_state))
++		return;
++
+ 	if (!crtc_state->vrr.tg_enable)
+ 		return;
+ 
+@@ -415,6 +417,9 @@ void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state)
+ 	struct intel_display *display = to_intel_display(old_crtc_state);
+ 	enum transcoder cpu_transcoder = old_crtc_state->cpu_transcoder;
+ 
++	if (intel_crtc_is_joiner_secondary(old_crtc_state))
++		return;
++
+ 	if (!old_crtc_state->vrr.tg_enable)
+ 		return;
  
 -- 
 2.45.2
