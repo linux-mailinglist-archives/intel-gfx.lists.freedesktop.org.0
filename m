@@ -2,50 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 328699C6954
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 Nov 2024 07:33:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 85DD89C694A
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 Nov 2024 07:32:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEE4A10E261;
-	Wed, 13 Nov 2024 06:33:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA37F10E34E;
+	Wed, 13 Nov 2024 06:31:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="LBjR4DNQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B6YrHqsC";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5CC2810E261;
- Wed, 13 Nov 2024 06:33:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1731479619;
- bh=ygUXM9cyet0rOB7Ae8SPe/FAe67XouoFd1A9KN8VhFY=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=LBjR4DNQ26MEoHy9VbkBURZir4obe0otR8txLnT/CaIaxhqKzg2fExa4OByRaQAIo
- Txgk5kBo/docNDW2qjePZ9TNdIZAqEwaRh+WGMGHabok7qlY1bsxpb6nHtL2Hmaojm
- aFhaF9s0p1RtDGc9rDxWuMr6pwgIiqVwItYhTMRGFuH7Pr2t/67mbHLHV5jbnn6sVC
- vQn+U7puqSlfqP68sSfNUCF+TFb0256uDV7o5Q/h7jXeYYGF/beMHPrdpjENhn9avy
- xIgi6kY7Gs34ATVtPYN5yiJzhdGnP/3Qup20PEXmfvqA/dUGd/AgcwgJMRFWHb5wIV
- D1pBUo0Yyqn+g==
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (Client did not present a certificate)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4XpD4y4f7bz4wc3;
- Wed, 13 Nov 2024 17:33:38 +1100 (AEDT)
-Date: Wed, 13 Nov 2024 17:33:40 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Dave Airlie <airlied@redhat.com>
-Cc: Simona Vetter <simona.vetter@ffwll.ch>, Philipp Stanner
- <pstanner@redhat.com>, Intel Graphics <intel-gfx@lists.freedesktop.org>,
- DRI <dri-devel@lists.freedesktop.org>, Linux Kernel Mailing List
- <linux-kernel@vger.kernel.org>, Linux Next Mailing List
- <linux-next@vger.kernel.org>
-Subject: Re: linux-next: build warning after merge of the drm-misc tree
-Message-ID: <20241113173340.345a196e@canb.auug.org.au>
-In-Reply-To: <20241108175655.6d3fcfb7@canb.auug.org.au>
-References: <20241108175655.6d3fcfb7@canb.auug.org.au>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E4D710E261;
+ Wed, 13 Nov 2024 06:31:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1731479514; x=1763015514;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=f9PbtuxHNWC0ETgKN8/bG+cgKqsQUNlol+gLZrMPGbU=;
+ b=B6YrHqsC+xHoguu8LRslixXygrAG3EgySzQzH3ndAoV2n8Xs27XyTgyw
+ orEYKIwkNzLr/UmVx6RmK8G888EshTxc1rZJLgkNUQ4yPo82I8De2a0tr
+ uRAyVjua9h9n6G36060oOo0N2tgJkQmupevc/Fef8coreUWx/1jGZCfAA
+ 059+ni5uy+v98pkvmorbJMYQcsisHHc/e7Ue92qIx9IsfQckWM4mC0wKQ
+ VQVvlbSeP9KlRq+8PHM0IqnaJFncwpSixfBqpsh0jGe3nrC7LaD4dCe9D
+ ugwr9htzWmzPY0n+FxDvSNmC9rzPJ+zSETBUyz1hW4u2wDS9nDo71Dp7H w==;
+X-CSE-ConnectionGUID: aXYhqrDeTvGOAqVbac9zNA==
+X-CSE-MsgGUID: 5RcJ4Q/IRdeIlVu8oEQZkw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="48810478"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="48810478"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Nov 2024 22:31:54 -0800
+X-CSE-ConnectionGUID: HjZbDFEDSLSopmMosHXQoA==
+X-CSE-MsgGUID: fTee5+e5QRi4JMQYjU7uvA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,150,1728975600"; d="scan'208";a="92844874"
+Received: from zwan2-desk1.sh.intel.com ([10.239.160.154])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Nov 2024 22:22:51 -0800
+From: Zhenyu Wang <zhenyuw@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-gvt-dev@lists.freedesktop.org
+Cc: Zhi Wang <zhi.wang.linux@gmail.com>, Zhiyuan Lv <zhiyuan.lv@intel.com>,
+ James Wu <james.y.wu@intel.com>, Zhenyu Wang <zhenyuw.linux@gmail.com>
+Subject: [PATCH] MAINTAINERS: switch my mail address for GVT driver
+Date: Wed, 13 Nov 2024 14:37:00 +0800
+Message-ID: <20241113063700.4460-1-zhenyuw@linux.intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/q7TG3z8kTKztApVEjDuHvF=";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,45 +67,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/q7TG3z8kTKztApVEjDuHvF=
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+I won't be able to use intel account, so this switchs address to my
+gmail account.
 
-Hi all,
+Cc: Zhi Wang <zhi.wang.linux@gmail.com>
+Cc: Zhiyuan Lv <zhiyuan.lv@intel.com>
+Cc: James Wu <james.y.wu@intel.com>
+Cc: Zhenyu Wang <zhenyuw.linux@gmail.com>
+Signed-off-by: Zhenyu Wang <zhenyuw@linux.intel.com>
+---
+ MAINTAINERS | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-On Fri, 8 Nov 2024 17:56:55 +1100 Stephen Rothwell <sfr@canb.auug.org.au> w=
-rote:
->
-> After merging the drm-misc tree, today's linux-next build (htmldocs)
-> produced this warning:
->=20
-> Documentation/gpu/drm-mm:571: drivers/gpu/drm/scheduler/sched_main.c:1359=
-: ERROR: Unexpected indentation.
->=20
-> Introduced by commit
->=20
->   baf4afc58314 ("drm/sched: Improve teardown documentation")
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 21fdaa19229a..5170ab32654c 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -11423,7 +11423,7 @@ F:	drivers/gpio/gpio-tangier.c
+ F:	drivers/gpio/gpio-tangier.h
+ 
+ INTEL GVT-g DRIVERS (Intel GPU Virtualization)
+-M:	Zhenyu Wang <zhenyuw@linux.intel.com>
++M:	Zhenyu Wang <zhenyuw.linux@gmail.com>
+ M:	Zhi Wang <zhi.wang.linux@gmail.com>
+ L:	intel-gvt-dev@lists.freedesktop.org
+ L:	intel-gfx@lists.freedesktop.org
+-- 
+2.45.2
 
-I am still seeing this warning (now in the drm tree)
-
---=20
-Cheers,
-Stephen Rothwell
-
---Sig_/q7TG3z8kTKztApVEjDuHvF=
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmc0SEQACgkQAVBC80lX
-0GxDNgf/THbv3cMa7n0KQ39opRw5GvltAffCB8zEM4unatKuWQcaYn+BgvVPUM4F
-I32JGSduDqXPlUVlSGJmYPClmCzIHOub7vwbnE85d1UvcwfBO22FY5+TenCPjbZD
-QtEEpOGYDQlgzcM9m9JqaQPjso0hpXswCfmmyf95UGyFRn/CXT0R4kXoWxVEKeUF
-EWJci4iiWveDwvIWeIIYOnYM/FnoIWxDobuX1KGjDsO/7wfbpU9VzdnGb0jrw0eu
-i05/QLAoOlpwpuPnsZT7Zlil4uwIh5jZLKCEoTwF8cNPeKHviNNigT3YInJqi4n/
-NUhK/E0PAQ1pBkyraaSjDcBHo/5XGg==
-=INO/
------END PGP SIGNATURE-----
-
---Sig_/q7TG3z8kTKztApVEjDuHvF=--
