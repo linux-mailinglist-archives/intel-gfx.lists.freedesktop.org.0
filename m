@@ -2,27 +2,27 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11B8B9C7EB9
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Nov 2024 00:19:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D28269C7EBA
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Nov 2024 00:19:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3185E10E29B;
-	Wed, 13 Nov 2024 23:19:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B0DA10E29C;
+	Wed, 13 Nov 2024 23:19:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4CB5010E29B;
- Wed, 13 Nov 2024 23:19:36 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2360382225289332623=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1079310E29C;
+ Wed, 13 Nov 2024 23:19:49 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_series_starting_with_=5BCI?=
- =?utf-8?q?=2C1/7=5D_drm/i915=3A_Remove_vga_and_gmbus_seq_out_of_i915=5Frest?=
- =?utf-8?q?ore=5Fdisplay?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_series_starting_with?=
+ =?utf-8?q?_=5BCI=2C1/7=5D_drm/i915=3A_Remove_vga_and_gmbus_seq_out_of_i915?=
+ =?utf-8?q?=5Frestore=5Fdisplay?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 13 Nov 2024 23:19:36 -0000
-Message-ID: <173153997630.3859304.4435796947749570846@2413ebb6fbb6>
+Date: Wed, 13 Nov 2024 23:19:49 -0000
+Message-ID: <173153998906.3859304.10286937930850132513@2413ebb6fbb6>
 X-Patchwork-Hint: ignore
 References: <20241113225016.208673-1-rodrigo.vivi@intel.com>
 In-Reply-To: <20241113225016.208673-1-rodrigo.vivi@intel.com>
@@ -42,161 +42,67 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2360382225289332623==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
 Series: series starting with [CI,1/7] drm/i915: Remove vga and gmbus seq out of i915_restore_display
 URL   : https://patchwork.freedesktop.org/series/141324/
-State : success
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_15691 -> Patchwork_141324v1
-====================================================
+Error: dim checkpatch failed
+12ebc90c5c17 drm/i915: Remove vga and gmbus seq out of i915_restore_display
+5b386fdd51fd drm/i915/display: Convert i915_suspend into i9xx_display_sr
+-:46: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#46: 
+new file mode 100644
 
-Summary
--------
+-:70: CHECK:CAMELCASE: Avoid CamelCase: <saveSWF0>
+#70: FILE: drivers/gpu/drm/i915/display/i9xx_display_sr.c:20:
++			i915->regfile.saveSWF0[i] = intel_de_read(i915, SWF0(i915, i));
 
-  **SUCCESS**
+-:71: CHECK:CAMELCASE: Avoid CamelCase: <saveSWF1>
+#71: FILE: drivers/gpu/drm/i915/display/i9xx_display_sr.c:21:
++			i915->regfile.saveSWF1[i] = intel_de_read(i915, SWF1(i915, i));
 
-  No regressions found.
+-:74: CHECK:CAMELCASE: Avoid CamelCase: <saveSWF3>
+#74: FILE: drivers/gpu/drm/i915/display/i9xx_display_sr.c:24:
++			i915->regfile.saveSWF3[i] = intel_de_read(i915, SWF3(i915, i));
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141324v1/index.html
+-:122: CHECK:CAMELCASE: Avoid CamelCase: <saveDSPARB>
+#122: FILE: drivers/gpu/drm/i915/display/i9xx_display_sr.c:72:
++		i915->regfile.saveDSPARB = intel_de_read(i915, DSPARB(i915));
 
-Participating hosts (46 -> 45)
-------------------------------
+-:125: CHECK:CAMELCASE: Avoid CamelCase: <saveGCDGMBUS>
+#125: FILE: drivers/gpu/drm/i915/display/i9xx_display_sr.c:75:
++		pci_read_config_word(pdev, GCDGMBUS, &i915->regfile.saveGCDGMBUS);
 
-  Missing    (1): fi-snb-2520m 
+total: 0 errors, 1 warnings, 5 checks, 153 lines checked
+f20b2c496693 drm/i915/display: Move regfile registers intel_display.restore
+-:30: CHECK:CAMELCASE: Avoid CamelCase: <saveSWF0>
+#30: FILE: drivers/gpu/drm/i915/display/i9xx_display_sr.c:21:
++			display->restore.saveSWF0[i] = intel_de_read(display, SWF0(i915, i));
 
-Known issues
-------------
+-:31: CHECK:CAMELCASE: Avoid CamelCase: <saveSWF1>
+#31: FILE: drivers/gpu/drm/i915/display/i9xx_display_sr.c:22:
++			display->restore.saveSWF1[i] = intel_de_read(display, SWF1(i915, i));
 
-  Here are the changes found in Patchwork_141324v1 that come from known issues:
+-:35: CHECK:CAMELCASE: Avoid CamelCase: <saveSWF3>
+#35: FILE: drivers/gpu/drm/i915/display/i9xx_display_sr.c:25:
++			display->restore.saveSWF3[i] = intel_de_read(display, SWF3(i915, i));
 
-### IGT changes ###
+-:97: CHECK:CAMELCASE: Avoid CamelCase: <saveDSPARB>
+#97: FILE: drivers/gpu/drm/i915/display/i9xx_display_sr.c:75:
++		display->restore.saveDSPARB = intel_de_read(display, DSPARB(i915));
 
-#### Issues hit ####
+-:101: CHECK:CAMELCASE: Avoid CamelCase: <saveGCDGMBUS>
+#101: FILE: drivers/gpu/drm/i915/display/i9xx_display_sr.c:78:
++		pci_read_config_word(pdev, GCDGMBUS, &display->restore.saveGCDGMBUS);
 
-  * igt@i915_selftest@live:
-    - bat-twl-1:          [PASS][1] -> [INCOMPLETE][2] ([i915#10341] / [i915#9413])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15691/bat-twl-1/igt@i915_selftest@live.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141324v1/bat-twl-1/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@gt_lrc:
-    - bat-twl-1:          [PASS][3] -> [INCOMPLETE][4] ([i915#9413])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15691/bat-twl-1/igt@i915_selftest@live@gt_lrc.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141324v1/bat-twl-1/igt@i915_selftest@live@gt_lrc.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-adlp-9:         [PASS][5] -> [INCOMPLETE][6] ([i915#9413]) +1 other test incomplete
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15691/bat-adlp-9/igt@i915_selftest@live@workarounds.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141324v1/bat-adlp-9/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         [PASS][7] -> [SKIP][8] ([i915#9197]) +3 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15691/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141324v1/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  
-  [i915#10341]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10341
-  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
-  [i915#9413]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15691 -> Patchwork_141324v1
-
-  CI-20190529: 20190529
-  CI_DRM_15691: d8d960b20b0dc59b06c24fc210387b9c158edf70 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8107: 0362b0deec80daaecdfa3dd0676dcabb6f14bd9c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_141324v1: d8d960b20b0dc59b06c24fc210387b9c158edf70 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141324v1/index.html
-
---===============2360382225289332623==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 0 warnings, 5 checks, 135 lines checked
+de7921290cda drm/{i915, xe}/display: Move DP MST calls to display_driver
+6e407d4f8633 drm/xe/display: Delay hpd_init resume
+c8831922d5b6 drm/xe/display: Delay dsm handler registration
+80f6bfec532d drm/{i915, xe}: Move power_domains suspend/resume to display_power
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [CI,1/7] drm/i915: Remove vga and gmbus seq out of i915_restore_display</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/141324/">https://patchwork.freedesktop.org/series/141324/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141324v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141324v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_15691 -&gt; Patchwork_141324v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141324v1/index.html</p>
-<h2>Participating hosts (46 -&gt; 45)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_141324v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-twl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15691/bat-twl-1/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141324v1/bat-twl-1/igt@i915_selftest@live.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10341">i915#10341</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413">i915#9413</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_lrc:</p>
-<ul>
-<li>bat-twl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15691/bat-twl-1/igt@i915_selftest@live@gt_lrc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141324v1/bat-twl-1/igt@i915_selftest@live@gt_lrc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413">i915#9413</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-adlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15691/bat-adlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141324v1/bat-adlp-9/igt@i915_selftest@live@workarounds.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413">i915#9413</a>) +1 other test incomplete</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15691/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141324v1/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197">i915#9197</a>) +3 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_15691 -&gt; Patchwork_141324v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_15691: d8d960b20b0dc59b06c24fc210387b9c158edf70 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8107: 0362b0deec80daaecdfa3dd0676dcabb6f14bd9c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_141324v1: d8d960b20b0dc59b06c24fc210387b9c158edf70 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============2360382225289332623==--
