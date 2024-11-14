@@ -2,165 +2,164 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF2999C9124
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Nov 2024 18:52:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FF949C912F
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Nov 2024 18:55:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75AF810E0B1;
-	Thu, 14 Nov 2024 17:52:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 39A4910E824;
+	Thu, 14 Nov 2024 17:55:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JBY0IYsZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SxtWZ7Dl";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C99A10E0B1;
- Thu, 14 Nov 2024 17:52:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 549A010E36A;
+ Thu, 14 Nov 2024 17:55:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731606754; x=1763142754;
+ t=1731606931; x=1763142931;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=QHMmZLdZUyomvFV49ZIQk01L45+MC3MCBO+y/WpMAxI=;
- b=JBY0IYsZsn/usnsLDgY0wvKwgG3VGRMm+0+GZzIizJTX7Z1qLn9GwknZ
- CbWsDnDnJCSj429SHK7aYL3unCbESqjyeKal9cScyaAZtPag2qu3YkYLZ
- hSpNFMLC8nLDbCFz4zYlK7MO1y72P6Bnt4itETNCf311o6tGczFZwlUw4
- mBNCiXZGpEUpmg+JBnSSbncaAy8pNE+xdP+qXSm/+D3LNcfal9x4AUUUp
- al/x7mcSKknLC6/dFr7bVzy2/yYFf8gRTncwHQxY5Uc91MvaTfTGTVdvY
- EkV8n7GxLvTuuB5V9SADPLKvmD3+MH5vHXj2ztntjH4oYlQN0JG+HprmR w==;
-X-CSE-ConnectionGUID: CWGr8SEhT6KiBU+evSl6Hw==
-X-CSE-MsgGUID: vujnuyTmQTOrrgsyWpVAWw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11256"; a="31478574"
-X-IronPort-AV: E=Sophos;i="6.12,154,1728975600"; d="scan'208";a="31478574"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2024 09:52:34 -0800
-X-CSE-ConnectionGUID: Y942wqzrS/Scubwe1QJ8PQ==
-X-CSE-MsgGUID: LVkKlYhcS4uw0eTykvJNlg==
+ bh=TeJfOyc1/RUO/MfHg99Jw3WOGfdnkLUvIWmYxgmuqr0=;
+ b=SxtWZ7DlN3pUwv+5vSZggRV47yipCHKzxW6YpGBzSCOzi3ViPesnsYXo
+ Ps7slttnmc6P68rJBQdVjLjaCqZmTem4Cn27rMsZUfzdbt4T5ebs4Wo82
+ wos9Gp6xs6MmkH4Ywr0XcJ3JR/KpfxxF5a0ZkwuIu2tHNwhz3IeSUMclY
+ mm6C17wF+WFx1H68aHzKrLrY5AGd6qpASCA2RjrTd8cXXVlNiNRckNJ4F
+ WegNSSdTaI18APgZQok9OlrEcaMdFy1ywQU9rsnKVaWeVTzhCb5ykBVuh
+ 7G41YHP/gCBA6ik0U3Lfxz7DXxmhBsVanRpZrMbw8QzCPB/n77xGXsD9B A==;
+X-CSE-ConnectionGUID: aG5KW71tTk+uCOOiCd7/1A==
+X-CSE-MsgGUID: M80bIvbjRrqd/b/neae8JQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="31738650"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="31738650"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2024 09:55:31 -0800
+X-CSE-ConnectionGUID: fsohnZyETkObuP6IOF0TAA==
+X-CSE-MsgGUID: j/4IUEASRfqaDLOFXZQjjg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,154,1728975600"; d="scan'208";a="125814979"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orviesa001.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 14 Nov 2024 09:52:34 -0800
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.12,154,1728975600"; d="scan'208";a="88283934"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orviesa009.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 14 Nov 2024 09:55:31 -0800
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 14 Nov 2024 09:52:33 -0800
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ 15.1.2507.39; Thu, 14 Nov 2024 09:55:30 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Thu, 14 Nov 2024 09:52:33 -0800
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.49) by
- edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.39 via Frontend Transport; Thu, 14 Nov 2024 09:55:30 -0800
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.44) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Thu, 14 Nov 2024 09:52:33 -0800
+ 15.1.2507.39; Thu, 14 Nov 2024 09:55:29 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NgVIa5kkVQETHyqRYEZzyJyEuy07UyiyR3YL+jLdC2yiXiQ0Rf3dh9FTF9qtY8IX2WOSrp7nQ6mOJeXfUN5PLqfmLuRvmdbo8NiWCx4qfhIXBeYu6wi/vt9lSQDVrBVY5MCrgWPcn+O/UPydQhrxbT13B81HETyqm7EXhgPngWz5DygKjmq/RgV8SPCsChDiosfykZqoMCGy3dwgzgExTZIo41bcsGHwsqhwAdAqtVsed9Tc5ehkECgK2wXse6PHePNww7Y3akkhep/1Yan1tBDbM/cnvDO6YoIHNCjgD0b4khDn+vqZmUJCdEmw7Hxtae1j5jRrgBUEdTMnXKiyhg==
+ b=u/+0kk2aXb7by6Qfn4i44gfiCLOtpq+Hc6ENFZIn0j0MYgy0T2+Xc1ckfZYlMA/IrCzw6CF0fsBJSsvrrg4/htvPebh72UF/u8/7zGJPyLUQGteYWv9PW47v/twUWr7bYmqV7Qm+y13N6v2q8BzhqYQvbDubtJmmQVgSVsnqmXrD3zUPv8xLuRtniwr/aakU/fxhbUZnmB+j435sUFdNCrJOtiGWQ0B2quF2Is2l/oxNG7Mmq8AHOd9eFmnvO3SM4UnHJ97XavY+8fMQG/BnjpG62G9zQAAkF0P/oKBPl0Tl1cOjiN9twRvE4IM/GaCApRJXqU9vSVkhqHdJibPXNg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=B1Mp+cWwZ7GSBimoqDIj73SD31teHN5ao40kSaVhq8A=;
- b=oxw9vQ3/W2NlvDojTGeBpEpArCNbrEo7KNWFqAyt4XNVsln2d8JEWHKTmLso9qXPtSGYu+TWHSVv4sFIQfoe3agcyauxVVYsQVS/f0Yp/A4JotgO2YrdRWIGylRFxX6uPG/zI8I+GjaEGqcvaldcUYnc/dYWwoNLNe+8wjvrWl6CrcV+X85NAUiO+uuAmq90dm1W5N1wVpbETUZQhRKMluf463qjZsw3R41DyTX6/5spZHTsjJzxHLCVh79qvuJC7htE9WFndRzeVfGcVvh39TPzZqsTHWwc11xTZAilDsNv7e6CQMQ0ttWnfSh+++WbefbKwzp/795yexDmEZpZDw==
+ bh=yBq4xFgpwMKWK+A9iWYzOHVDl4NKx/0rjqjOr7JW1GE=;
+ b=SFLUS4yKHgOs//Nn2HXhIEkRnpMVPv9k+VFZ0ZDJ6neEovy5aqND7s0g0rOeBdEN4bUKW0ICG0eYanILzQtfw7U7lWyTBTjqs07TAE9bnJ3y/gNnqsNxE+5K5DS9Fffz/dYED84yexQo+3Fp8ZHO/Sf1XvxPBqbMH0xJTr7fugukjsFT7a+8quLiZX4mHoBlxvtntW8j8MCkc6DwNealAVSuO1SLqhHrmwSO/0NOFuBlD/4vIY55oMi2E2JCUY71pvo3fDy1Gu9RKAF/O91wy5DrpuwOyYJZ7n9zLHBi98tTZWrzR/RkfrTcQAE1y8uQTufKp8wZZrY3xY6OUiLSEw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from BYAPR11MB2854.namprd11.prod.outlook.com (2603:10b6:a02:c9::12)
- by CY8PR11MB7135.namprd11.prod.outlook.com (2603:10b6:930:61::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8137.29; Thu, 14 Nov
- 2024 17:52:26 +0000
+ by PH7PR11MB7718.namprd11.prod.outlook.com (2603:10b6:510:2b6::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.18; Thu, 14 Nov
+ 2024 17:55:15 +0000
 Received: from BYAPR11MB2854.namprd11.prod.outlook.com
  ([fe80::8a98:4745:7147:ed42]) by BYAPR11MB2854.namprd11.prod.outlook.com
  ([fe80::8a98:4745:7147:ed42%7]) with mapi id 15.20.8114.020; Thu, 14 Nov 2024
- 17:52:25 +0000
-Date: Thu, 14 Nov 2024 12:52:22 -0500
+ 17:55:15 +0000
+Date: Thu, 14 Nov 2024 12:55:11 -0500
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
 CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 3/5] drm/i915/plane: convert initial plane setup to
- struct intel_display
-Message-ID: <ZzY41udgvMJIqV9n@intel.com>
+Subject: Re: [PATCH 4/5] drm/i915/irq: hide display_irqs_enabled access
+Message-ID: <ZzY5f-p1ERZwH7mj@intel.com>
 References: <cover.1731347547.git.jani.nikula@intel.com>
- <360fc078c5204f9199d31c207abc3ac3d9f918ed.1731347547.git.jani.nikula@intel.com>
+ <6dcb90c7786532c7df0281e29a3e680c9551f060.1731347547.git.jani.nikula@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <360fc078c5204f9199d31c207abc3ac3d9f918ed.1731347547.git.jani.nikula@intel.com>
-X-ClientProxiedBy: MW3PR05CA0029.namprd05.prod.outlook.com
- (2603:10b6:303:2b::34) To BYAPR11MB2854.namprd11.prod.outlook.com
+In-Reply-To: <6dcb90c7786532c7df0281e29a3e680c9551f060.1731347547.git.jani.nikula@intel.com>
+X-ClientProxiedBy: MW3PR05CA0021.namprd05.prod.outlook.com
+ (2603:10b6:303:2b::26) To BYAPR11MB2854.namprd11.prod.outlook.com
  (2603:10b6:a02:c9::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BYAPR11MB2854:EE_|CY8PR11MB7135:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4766c917-5095-4680-9b32-08dd04d51948
+X-MS-TrafficTypeDiagnostic: BYAPR11MB2854:EE_|PH7PR11MB7718:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6b28185f-4d5d-4038-4929-08dd04d57e1c
 X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?BucuVr9IEqrg4MADBkGD8mL0mUqfck6l8tMGvRgHKCVwv7m4iQmqiYiHdm1U?=
- =?us-ascii?Q?xaieBDfIsAe3IlVR/0WNIsU1KF35qroRbj3CllGOmkMiFGyYrlJScDyU5wYw?=
- =?us-ascii?Q?oS6ZhYxPkCUw2JojqTeThpWi/3UM9SUkwQwXxlo4eixS1KIjfLfuaw0PknSa?=
- =?us-ascii?Q?N+pufG/hl1R4KkoBEhHcjSDuJNjs6M0uchtae5Y7mxuw8qSVjVVAD7AwQ+Xk?=
- =?us-ascii?Q?+l3sgyx6ZEmK9qaT9/+oSOM5qdJ++Z12395cNmvqBqH790/ZIT9Ut/2j0ynk?=
- =?us-ascii?Q?Yogapl3IVBxJp9vaC8Bh60YscuOHj9v22bcatzkchLwYRr4szST3nhAlqDPU?=
- =?us-ascii?Q?yJoBupqD+pYaVVp6PTjdLHv1C5L00aX4ZhBlO1E4TiMs22K2z7KS+FD8+wsG?=
- =?us-ascii?Q?EzhucB8K77u1an0m7sJEWyNPZwZyWpeCNEn17WImxC0FFDIVzajajrN8+nuZ?=
- =?us-ascii?Q?SJxP9QvgKVG8DgUks4w0LrgBEszsdfoUf5GLUdQxMEjxtPBKWtwyfMF75gmF?=
- =?us-ascii?Q?xg9msGINeaYTgOyotaJNOasGK7PwDE4CHhKFyZsDcIcWQXs3cEwlllkYgmaw?=
- =?us-ascii?Q?8Vzl4QxPLfoWuqXvS9b6TrGEo3u22rM9LumuCnOCr0mxYVowhWEuPgExV8/u?=
- =?us-ascii?Q?/3bTvSCNpwiWL7pMJLt0vXYgZY4hygMLmBPs78bOIu1PPNTkCMGY5w672KcQ?=
- =?us-ascii?Q?B9rMvFyo1tHh6BjVFQ1uaJW1dAIb0YNKLdOHtQAL+qhd1T8LTMbVZCG5Wx0w?=
- =?us-ascii?Q?T+dhKfjW6wAZxX4itYEoixnXWiuj5aNH5Hp9sioj/9fwF988X50gpGW0Zo8N?=
- =?us-ascii?Q?s9SsLdP4JCwhSYWpGQNMlhL4HqiwMu17JkxQ7u2wfc70UruSvCsjQCJLGD20?=
- =?us-ascii?Q?KCOWIdhkP8ZxA1THL4oNm1VfYkNsIiVedCgwfGjQqvD5AYG3+Op76PJE2xmo?=
- =?us-ascii?Q?Q6Gzm65OOFJ3QbevtjplUecIjLB9Md9caOgNkYq09QHP8FK+/UWOfeRWQmC3?=
- =?us-ascii?Q?fc7wU/mJrpRGGGTRsydeANMUHZ4Y6sMPKOKPsELJTuryeXRMPsxtpwKSAmSs?=
- =?us-ascii?Q?DtMHJ3ffHYw7DuWNV1V1LsPUhpyQlw/m76VYnVUakJ2kPh/0h40cLTMyAD3n?=
- =?us-ascii?Q?oNSTsdWlXznXmPGArbTJ1taqcgF/9E6R4SLgFKpsfFEZ28wMbUNZ2vemnjvl?=
- =?us-ascii?Q?VKDwgNAuw+uLiQ2NrfRUvlUas+ASF6yotLac/vCmLIEuNEZ7nIqwLGWkVtTa?=
- =?us-ascii?Q?uES5NAKg5nq5c1NZjcJtvWA4SsWLW1x40UpipsM4WsQgdnQ5FCxN2pLJGHLK?=
- =?us-ascii?Q?uEk0DuTY6uIM5GBxcTT5gCCy?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?U738SJyT3IOG6rRosYWYXVfAE8clR3uWHXnTdFDLjTEbRPz5N4j+LcumJpXv?=
+ =?us-ascii?Q?4KuoIE4OfyLLouoV/Cu+EhUD+lnUvUIiBiwiFnoLezRHTYXBV16dMfivd3TK?=
+ =?us-ascii?Q?T90v1d0O7kl+R3lTwkF8vyMBE/Pu6FRP7MHu7lKFHJwS38R5xfj9Hu2WlR9z?=
+ =?us-ascii?Q?fNqZlILbsg5n82ei68Rk1u4WNT8rgc1nWwzxdENtYXSRjsFxDzj144/1k6u5?=
+ =?us-ascii?Q?wBcKWICR+GXJongkqnNoDmUOK31Eh8wIM09GI7yaVX3O8XYustFdIEr++UPx?=
+ =?us-ascii?Q?edX2hObqbX/fITFHszz32C1s03/d670p4tobQgTKg/L+i3Oo271rWdT4hzwl?=
+ =?us-ascii?Q?cOC97VsnMI+PEz7XGgDl8NCRs+tjLlhWQVCR4f8hi+rkfqCsrzXcsNQOiJBh?=
+ =?us-ascii?Q?u76LfCKWKsayj62TpMN/u3K6xFsf7WfdhTyWFPXulH77GMPPnFBuHV5mpP03?=
+ =?us-ascii?Q?rCKg08OD+WeyAUU9TgO0C5VUaMbEkt8KZCSHkfoQG8Ox4jRlI4WLiZG+dKRb?=
+ =?us-ascii?Q?xmSVx5QGjVAJeCfzDDMSu0xLJCz/RhkZhumc9ffAGWd1NrQD8t17nqUvVhgd?=
+ =?us-ascii?Q?dGZ9fBeSS9clg52DS2UnEItnkzRxEqaTF+lemLjHoQHP0DEInGROoG9Gmx/q?=
+ =?us-ascii?Q?ePIpYB44q3VdpeolGXqUlNrkIzXTiUVo/GIEsAxVVTx4JH6Ec2xlQpBxjC1F?=
+ =?us-ascii?Q?ET+wsxMUkenvpBI4/5XthfToxJCKx1FfRDYghR8pQwpFBwuVUPsfGyiAozDM?=
+ =?us-ascii?Q?0f3XjIBpEj1DIW/tV/KepLKHOgq4OaiqtE2pPxnPnRlFokEknpL154zG7B/h?=
+ =?us-ascii?Q?MHD95GI+881izc5LUIwjHq20upnbgwu7zmQX7Q3szsqPV+8L0lRlJpHobutG?=
+ =?us-ascii?Q?6bxg3U4XJnhAI+BpMQXx0k4Gtxzn98uS1qA46K3eivQGo4wp/CH4C/x7Kyd6?=
+ =?us-ascii?Q?wweWNhiKf0H7FcjucBkIKCa7WTNSDctX5uyDyqnKTIvei6BlXXFF9SIs1YEd?=
+ =?us-ascii?Q?OGnbocYnNAp5qD9ob2GPcNP+XJZyMb3UJi02LIQB6JQlWe8gQDQs6DFyyqki?=
+ =?us-ascii?Q?s4nD4lKcqRWZxta6E6MJg528OPGcu8yJvX2PJpkZyz4BwJ3vprapTwuS2g6I?=
+ =?us-ascii?Q?N87ahqRftsfTDbJC7zdP8YmsBn+uGOPYBNhjyMLSOFIKnsXWOcrfgr7Z7/zA?=
+ =?us-ascii?Q?7kbObzDH3nzxNHlcDAUnDbzRL40rKMW8Mbo9i3ojb0btZMNCoXQ2HID8h9V9?=
+ =?us-ascii?Q?YfoBldDHOOfIAoM+m8QDb7BhKsLeN1k+PKdU9fzPmiCQAJNQqfRIagnh1FlP?=
+ =?us-ascii?Q?dTq26S7m+kS1ggfODa9PW6wL?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:BYAPR11MB2854.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?wNgTb9EVGh5LO/KoDFTAHAAXLWEzITCKJfk1ftZrSbQZtrTdMmJPzvjKTGF1?=
- =?us-ascii?Q?4WAlTFD8GNoZkUHEmaSAXtC7VIj+UDu6hRAKbqBTpI0PiOl8VkH5iIctPxE5?=
- =?us-ascii?Q?0qJ/u0fFoQ3eL2ADHTNJTMut+Ya3SmQJykqJQh8vZvqvs62LR/hTcqJYpgaQ?=
- =?us-ascii?Q?aE1wTSOhdXWkPo++RQfvuRHffvJIztcrXA6ubU8fiQwCFmP5pj3JM1I8NEeh?=
- =?us-ascii?Q?kuWffCzUAQ9wC4pXf5Ds/o3auD7mnKavimI1guKFzVkbF7VZQ+iqZdRi4VeO?=
- =?us-ascii?Q?fycRl8UrN/4geBWQF45gAkTUTOyP331sVURFHdZ2Uid02uwTQPdoiMZsC/18?=
- =?us-ascii?Q?RFsRJw7AcMja2cCvJ4PL28gAVoEVnKRslCZ6335xHm0W8kJl9HkOixsC5NUZ?=
- =?us-ascii?Q?dY8zLwuu3EfA/m/VEXTUYk8AXW8tKdS40WmlSVEvgXtkAeSewZXHwXr40fKv?=
- =?us-ascii?Q?w96BqV+kCReFZQelQHqbofwIpxP4iNyYGCD1DxbMMYPSbe0o49Vg9iEkr+0x?=
- =?us-ascii?Q?1Nnp412QalWi1VD1JgwsYLokVBlZ1RGz2ISi5cAv9gurhq78LfYLJcXXsOLc?=
- =?us-ascii?Q?pgfJPKaTx4m8vbkjdAYZ4R6aX1lSYimSid/u8CaPlB1j8B2oZzZxPqQDlF/S?=
- =?us-ascii?Q?93VsMVH6mBExapJ5v/UrgUWm3STTs2qOS9wr+veP2iGxpHeE808G78jJChPI?=
- =?us-ascii?Q?2q5/WsZ89WanI4dSLSUxcQz8JUy5MsJlx/K0XheNQeb5gQ9bfkG5bNBdGRug?=
- =?us-ascii?Q?6ZdWVonqHl76YbTIRGPHOre4WA2JlxfI/mE+LSoLoC63CNxnWnMeI4852OZ6?=
- =?us-ascii?Q?myS/4ZSZEkcYjh9OsFGZL5WjK73ZOa16VT9M730sr+pu0ppCMtM52NOULUvt?=
- =?us-ascii?Q?gIR4d8d429ESi17Bzj9pCjN/dDY4sS5gwgEvRZQsGcvKufn384W1XP1Ihz5K?=
- =?us-ascii?Q?0OzG0+/1gcaFX7Qj7g8es/RcMOHuLAQAroPOjx84sQm2+CbnHUFOPaa2WFKJ?=
- =?us-ascii?Q?MvtqVoQd403JfpEAlT/zMXFGnNEqLZ1V4rfnXEmRaPXGVSydr4kPDOVj06e0?=
- =?us-ascii?Q?RSd4g/L5V9TndPENkxns4EgSo0h33H/1wIvj1FZgPcBGMmZJ34JDAqQmoPx/?=
- =?us-ascii?Q?wi2X6HT98yx+tOT9rDXtSTaMHqmC+P+iNYXIzaYzSoHvnO1dDYLOWp+GWkT1?=
- =?us-ascii?Q?4CFRM8SZ77QRRjAIoDXMxT6+7efiAEroVPeq2d3h7YAUZiIC0yO+W5E2eIfA?=
- =?us-ascii?Q?CZ81BHR6UtKkQvDYOfwj4gdO14nMGIvWewlVlQxZOmXevQCtbyATM4cMftgY?=
- =?us-ascii?Q?9Ijr4nlv2rcx9o0APEl9iBQSPwnBsy3py1RqVowdWAHFG9yZCqhjUjqYHaYZ?=
- =?us-ascii?Q?U+SiBmxy01/chtv7WGX/jc6ATbV6x+iPkY4rHHudzQVPGczba6iXkaZOmgN0?=
- =?us-ascii?Q?mIr7xaSJxyoQ5vt/p/llgBcLAJOej7AIyJ6pg3eN/XIFQFUEAgwXfFznKjbo?=
- =?us-ascii?Q?1g4LpFdwgj6e9aO8eRUuim/8kXutPhcD2eKEG+3uOi66TBcINRSc0j3nTlIC?=
- =?us-ascii?Q?hGgHOMv8Uce40IKxI+9aGqBHOcUMpfaoBKaiit46ONhUK7659VSy0+2RoGKR?=
- =?us-ascii?Q?nA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4766c917-5095-4680-9b32-08dd04d51948
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?BlEa4vJvEkMTbuOFUTxhIjnj+SGAIBUysoCF4E0tk4hlbtobp8ipAzI/WM2u?=
+ =?us-ascii?Q?P/Nxes7jqUpBkhlrZvE4ILugcmLE2rHi4V5odTmEiT04JXc9w8WW3iqLG9xG?=
+ =?us-ascii?Q?icBOnfpm8eDbb2z4Ch+ffrQt1HiYFB4DZoW/JbBS1rLB9JS34tSJq7uJrm8v?=
+ =?us-ascii?Q?XlPB/KxAnWaWjxTzt2jY4ttBnNroWSG5JR1fBCDQNIJJmloMMauHj79KXKIw?=
+ =?us-ascii?Q?EUiiVvFfsHo4dv5YkZSdoJy/mwIebkbCPE23WiB2mUJ0ug1z2l3zHV1nqJ7h?=
+ =?us-ascii?Q?r7D4ztYQ38xJnQtWGMjR+IXQLX5G73C4YIY++m8eBQfgsLF+wtoQ7s2WELFv?=
+ =?us-ascii?Q?yNortyVnlvPOxgI4IRql2JL6at/X8IulAwM9XcgNindKGbFgJHQzSC44NoPv?=
+ =?us-ascii?Q?IR8M6/tIg05PUjlUUifown/NNJ+FIwsQJMg+29nCMy6t9eTOBK6f6uJ/eeWE?=
+ =?us-ascii?Q?YWrxgsrso6Tt+N3x8RsJ86bqWpIIliDEU5O9bPosBFd6flac6nqnO1pzxeUY?=
+ =?us-ascii?Q?C5E1nQ4kSINd4oc0Io0vKNXCYrxo+B9OkKmfSTTRT5IKec7GAFmBhRasM0Ce?=
+ =?us-ascii?Q?m3Yw97Yj3sqA4nd7QSc9gt8rhMMYiCDSHrjb1MbT7ywyEAf9Gk+AsFy0vghf?=
+ =?us-ascii?Q?s40s1XLI3XO8/GuUXMUVh9BtihWK8NRFV/NLphEKzL/Tdd5UsS7R6nWys3ym?=
+ =?us-ascii?Q?hSmNXxwvmBi6NUr0NGoQycs4DmJ6jhRMitKyeIXDoB4ErX6/azu28iElEW9N?=
+ =?us-ascii?Q?P6Z6W+1VrCGuOhNmrFsBZ1zer3NADAy6qOJkiqEyStQgo9wLjudew4mRTGWK?=
+ =?us-ascii?Q?7Vdb5+3CZlEuy0BrykCqmp6nXk+xCBAGNuupKwH/iS4hvDtaEF9XAvvj8XpH?=
+ =?us-ascii?Q?Et/F75AdWzE5jpS93AuzJy786NnSzeOzVseQ/G3eHm4PBW69qYFyHUx38wGw?=
+ =?us-ascii?Q?lp++MbjZOSAos89oQMXULGXSED4JtkRJGlLDKCte1S+MlcmMBcZleEOPc2+1?=
+ =?us-ascii?Q?/9CXCVu2LAf9TEBeBaFwfyrHHFF7tFxZ8fjEjw7Yo6o566HBC3HpCIcbHYY3?=
+ =?us-ascii?Q?evam6xsNlEIinbdSjzpmkA4bX2ru1XqJM5Wd46JyP7d2IVfjU0MOn/mT+pPQ?=
+ =?us-ascii?Q?ZsVn0dRbEyrIPRjm5tvSxWknyvvbi2+EyeCPuPvEz2sBpzf/4+JlvBtGeVTg?=
+ =?us-ascii?Q?FPNHbWbEkYge+tiN7PdvKUzU0LkFRGKuos09IDp/VTTCbN8NrxMiAULuqGiQ?=
+ =?us-ascii?Q?Mzk1ivGJxCgxP1Tgy4KoFoGFhzv0YJZucsoPx0fpbpAnGd4i/Awhe7mGQbiQ?=
+ =?us-ascii?Q?NoXjWW6ojpRwUWLZ8DTYBgwvnu+jnY4f1AuMknAFt8Mn8z6WoKEDccWasYWZ?=
+ =?us-ascii?Q?1OQ9wIuuq2G/wey7Ecpbas7R6NM1Zg6a/gt+uOn27vtejfgDG+DgNJ0ZEopn?=
+ =?us-ascii?Q?plhCtXvepS5Sk7jyCnU5zFmNmUbMAqYznEIUGRGvd00kZJ9sGOiU91sWz6Gd?=
+ =?us-ascii?Q?Dn1X6YmyNbd+tqHfgI7SaVnGOaXa/2vWcerRD2gWngId7Wke1GV0Fat83Kqd?=
+ =?us-ascii?Q?YrNGxTuZWITw5wuWJoUKGaaHdvh4g1hN8jtVBmbcmCPkg2M3ZW8ht7EezAaQ?=
+ =?us-ascii?Q?8w=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6b28185f-4d5d-4038-4929-08dd04d57e1c
 X-MS-Exchange-CrossTenant-AuthSource: BYAPR11MB2854.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Nov 2024 17:52:25.8061 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Nov 2024 17:55:15.0184 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: K3gLLTjSYr8YpeOhZwP1TYFoZ+w0IJFDD2xUNxXtgUzGRIlBz0zqMRX51a5lc360axTWziSRomIJZ6kaYWHUyA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7135
+X-MS-Exchange-CrossTenant-UserPrincipalName: SJGai+lmbp6XJeYkzqWRN1riv7hWOTgoXjozM76hq2Eup/PVr9PpBTFlcyfPi/aDF43VKMIi0fYN2ehzE7Ol8Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7718
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -177,302 +176,121 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Nov 11, 2024 at 07:53:32PM +0200, Jani Nikula wrote:
-> struct intel_display replaces struct drm_i915_private as the main
-> display device pointer. Convert initial plane setup to it, as much as
-> possible.
-
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-
+On Mon, Nov 11, 2024 at 07:53:33PM +0200, Jani Nikula wrote:
+> Move the check for display_irqs_enabled within vlv_display_irq_reset()
+> and vlv_display_irq_postinstall() to avoid looking at struct
+> intel_display members within i915 core irq code.
+> 
+> Within display irq code, vlv_display_irq_reset() may need to be called
+> with !display_irqs_enabled, so add a small wrapper.
 > 
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 > ---
->  .../drm/i915/display/intel_display_driver.c   |  2 +-
->  .../drm/i915/display/intel_plane_initial.c    | 56 ++++++++++---------
->  .../drm/i915/display/intel_plane_initial.h    |  4 +-
->  drivers/gpu/drm/xe/display/xe_plane_initial.c |  8 +--
->  4 files changed, 37 insertions(+), 33 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_display_irq.c | 15 ++++++++++++---
+>  drivers/gpu/drm/i915/i915_irq.c                  | 12 ++++--------
+>  2 files changed, 16 insertions(+), 11 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-> index 5983570b510f..8daf48d2ba7d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-> @@ -472,7 +472,7 @@ int intel_display_driver_probe_nogem(struct drm_i915_private *i915)
->  	intel_acpi_assign_connector_fwnodes(display);
->  	drm_modeset_unlock_all(dev);
->  
-> -	intel_initial_plane_config(i915);
-> +	intel_initial_plane_config(display);
->  
->  	/*
->  	 * Make sure hardware watermarks really match the state we read out.
-> diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.c b/drivers/gpu/drm/i915/display/intel_plane_initial.c
-> index 62401f6a04e4..6789b7f14095 100644
-> --- a/drivers/gpu/drm/i915/display/intel_plane_initial.c
-> +++ b/drivers/gpu/drm/i915/display/intel_plane_initial.c
-> @@ -20,10 +20,10 @@ intel_reuse_initial_plane_obj(struct intel_crtc *this,
->  			      struct drm_framebuffer **fb,
->  			      struct i915_vma **vma)
->  {
-> -	struct drm_i915_private *i915 = to_i915(this->base.dev);
-> +	struct intel_display *display = to_intel_display(this);
->  	struct intel_crtc *crtc;
->  
-> -	for_each_intel_crtc(&i915->drm, crtc) {
-> +	for_each_intel_crtc(display->drm, crtc) {
->  		struct intel_plane *plane =
->  			to_intel_plane(crtc->base.primary);
->  		const struct intel_plane_state *plane_state =
-> @@ -48,9 +48,10 @@ intel_reuse_initial_plane_obj(struct intel_crtc *this,
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
+> index e1547ebce60e..d5458b0d976b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
+> @@ -1479,7 +1479,7 @@ void bdw_disable_vblank(struct drm_crtc *_crtc)
+>  		schedule_work(&display->irq.vblank_dc_work);
 >  }
 >  
->  static bool
-> -initial_plane_phys_lmem(struct drm_i915_private *i915,
-> +initial_plane_phys_lmem(struct intel_display *display,
->  			struct intel_initial_plane_config *plane_config)
+> -void vlv_display_irq_reset(struct drm_i915_private *dev_priv)
+> +static void _vlv_display_irq_reset(struct drm_i915_private *dev_priv)
 >  {
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
->  	gen8_pte_t __iomem *gte = to_gt(i915)->ggtt->gsm;
->  	struct intel_memory_region *mem;
->  	dma_addr_t dma_addr;
-> @@ -63,7 +64,7 @@ initial_plane_phys_lmem(struct drm_i915_private *i915,
+>  	struct intel_uncore *uncore = &dev_priv->uncore;
 >  
->  	pte = ioread64(gte);
->  	if (!(pte & GEN12_GGTT_PTE_LM)) {
-> -		drm_err(&i915->drm,
-> +		drm_err(display->drm,
->  			"Initial plane programming missing PTE_LM bit\n");
->  		return false;
->  	}
-> @@ -75,7 +76,7 @@ initial_plane_phys_lmem(struct drm_i915_private *i915,
->  	else
->  		mem = i915->mm.stolen_region;
->  	if (!mem) {
-> -		drm_dbg_kms(&i915->drm,
-> +		drm_dbg_kms(display->drm,
->  			    "Initial plane memory region not initialized\n");
->  		return false;
->  	}
-> @@ -85,13 +86,13 @@ initial_plane_phys_lmem(struct drm_i915_private *i915,
->  	 * ever be placed in the stolen portion.
->  	 */
->  	if (dma_addr < mem->region.start || dma_addr > mem->region.end) {
-> -		drm_err(&i915->drm,
-> +		drm_err(display->drm,
->  			"Initial plane programming using invalid range, dma_addr=%pa (%s [%pa-%pa])\n",
->  			&dma_addr, mem->region.name, &mem->region.start, &mem->region.end);
->  		return false;
->  	}
->  
-> -	drm_dbg(&i915->drm,
-> +	drm_dbg(display->drm,
->  		"Using dma_addr=%pa, based on initial plane programming\n",
->  		&dma_addr);
->  
-> @@ -102,9 +103,10 @@ initial_plane_phys_lmem(struct drm_i915_private *i915,
+> @@ -1497,6 +1497,12 @@ void vlv_display_irq_reset(struct drm_i915_private *dev_priv)
+>  	dev_priv->irq_mask = ~0u;
 >  }
 >  
->  static bool
-> -initial_plane_phys_smem(struct drm_i915_private *i915,
-> +initial_plane_phys_smem(struct intel_display *display,
->  			struct intel_initial_plane_config *plane_config)
->  {
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
->  	struct intel_memory_region *mem;
->  	u32 base;
->  
-> @@ -112,7 +114,7 @@ initial_plane_phys_smem(struct drm_i915_private *i915,
->  
->  	mem = i915->mm.stolen_region;
->  	if (!mem) {
-> -		drm_dbg_kms(&i915->drm,
-> +		drm_dbg_kms(display->drm,
->  			    "Initial plane memory region not initialized\n");
->  		return false;
->  	}
-> @@ -125,19 +127,22 @@ initial_plane_phys_smem(struct drm_i915_private *i915,
->  }
->  
->  static bool
-> -initial_plane_phys(struct drm_i915_private *i915,
-> +initial_plane_phys(struct intel_display *display,
->  		   struct intel_initial_plane_config *plane_config)
->  {
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
+> +void vlv_display_irq_reset(struct drm_i915_private *dev_priv)
+> +{
+> +	if (dev_priv->display.irq.display_irqs_enabled)
+> +		_vlv_display_irq_reset(dev_priv);
+> +}
 > +
->  	if (IS_DGFX(i915) || HAS_LMEMBAR_SMEM_STOLEN(i915))
-> -		return initial_plane_phys_lmem(i915, plane_config);
-> +		return initial_plane_phys_lmem(display, plane_config);
->  	else
-> -		return initial_plane_phys_smem(i915, plane_config);
-> +		return initial_plane_phys_smem(display, plane_config);
->  }
->  
->  static struct i915_vma *
-> -initial_plane_vma(struct drm_i915_private *i915,
-> +initial_plane_vma(struct intel_display *display,
->  		  struct intel_initial_plane_config *plane_config)
+>  void i9xx_display_irq_reset(struct drm_i915_private *i915)
 >  {
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
->  	struct intel_memory_region *mem;
->  	struct drm_i915_gem_object *obj;
->  	struct drm_mm_node orig_mm = {};
-> @@ -149,7 +154,7 @@ initial_plane_vma(struct drm_i915_private *i915,
->  	if (plane_config->size == 0)
->  		return NULL;
+>  	if (I915_HAS_HOTPLUG(i915)) {
+> @@ -1516,6 +1522,9 @@ void vlv_display_irq_postinstall(struct drm_i915_private *dev_priv)
+>  	u32 enable_mask;
+>  	enum pipe pipe;
 >  
-> -	if (!initial_plane_phys(i915, plane_config))
-> +	if (!initial_plane_phys(display, plane_config))
->  		return NULL;
+> +	if (!dev_priv->display.irq.display_irqs_enabled)
+> +		return;
+
+I got confused here. this likely deserves a separate patch?
+
+> +
+>  	pipestat_mask = PIPE_CRC_DONE_INTERRUPT_STATUS;
 >  
->  	phys_base = plane_config->phys_base;
-> @@ -168,7 +173,7 @@ initial_plane_vma(struct drm_i915_private *i915,
->  	if (IS_ENABLED(CONFIG_FRAMEBUFFER_CONSOLE) &&
->  	    mem == i915->mm.stolen_region &&
->  	    size * 2 > i915->dsm.usable_size) {
-> -		drm_dbg_kms(&i915->drm, "Initial FB size exceeds half of stolen, discarding\n");
-> +		drm_dbg_kms(display->drm, "Initial FB size exceeds half of stolen, discarding\n");
->  		return NULL;
->  	}
+>  	i915_enable_pipestat(dev_priv, PIPE_A, PIPE_GMBUS_INTERRUPT_STATUS);
+> @@ -1694,7 +1703,7 @@ void valleyview_enable_display_irqs(struct drm_i915_private *dev_priv)
+>  	dev_priv->display.irq.display_irqs_enabled = true;
 >  
-> @@ -176,7 +181,7 @@ initial_plane_vma(struct drm_i915_private *i915,
->  					       I915_BO_ALLOC_USER |
->  					       I915_BO_PREALLOC);
->  	if (IS_ERR(obj)) {
-> -		drm_dbg_kms(&i915->drm, "Failed to preallocate initial FB in %s\n",
-> +		drm_dbg_kms(display->drm, "Failed to preallocate initial FB in %s\n",
->  			    mem->region.name);
->  		return NULL;
->  	}
-> @@ -254,7 +259,7 @@ initial_plane_vma(struct drm_i915_private *i915,
->  	if (drm_mm_node_allocated(&orig_mm))
->  		drm_mm_remove_node(&orig_mm);
->  
-> -	drm_dbg_kms(&i915->drm,
-> +	drm_dbg_kms(display->drm,
->  		    "Initial plane fb bound to 0x%x in the ggtt (original 0x%x)\n",
->  		    i915_ggtt_offset(vma), plane_config->base);
->  
-> @@ -271,8 +276,7 @@ static bool
->  intel_alloc_initial_plane_obj(struct intel_crtc *crtc,
->  			      struct intel_initial_plane_config *plane_config)
->  {
-> -	struct drm_device *dev = crtc->base.dev;
-> -	struct drm_i915_private *dev_priv = to_i915(dev);
-> +	struct intel_display *display = to_intel_display(crtc);
->  	struct drm_mode_fb_cmd2 mode_cmd = {};
->  	struct drm_framebuffer *fb = &plane_config->fb->base;
->  	struct i915_vma *vma;
-> @@ -284,13 +288,13 @@ intel_alloc_initial_plane_obj(struct intel_crtc *crtc,
->  	case I915_FORMAT_MOD_4_TILED:
->  		break;
->  	default:
-> -		drm_dbg(&dev_priv->drm,
-> +		drm_dbg(display->drm,
->  			"Unsupported modifier for initial FB: 0x%llx\n",
->  			fb->modifier);
->  		return false;
->  	}
->  
-> -	vma = initial_plane_vma(dev_priv, plane_config);
-> +	vma = initial_plane_vma(display, plane_config);
->  	if (!vma)
->  		return false;
->  
-> @@ -303,7 +307,7 @@ intel_alloc_initial_plane_obj(struct intel_crtc *crtc,
->  
->  	if (intel_framebuffer_init(to_intel_framebuffer(fb),
->  				   intel_bo_to_drm_bo(vma->obj), &mode_cmd)) {
-> -		drm_dbg_kms(&dev_priv->drm, "intel fb init failed\n");
-> +		drm_dbg_kms(display->drm, "intel fb init failed\n");
->  		goto err_vma;
->  	}
->  
-> @@ -410,12 +414,12 @@ static void plane_config_fini(struct intel_initial_plane_config *plane_config)
->  		i915_vma_put(plane_config->vma);
->  }
->  
-> -void intel_initial_plane_config(struct drm_i915_private *i915)
-> +void intel_initial_plane_config(struct intel_display *display)
->  {
->  	struct intel_initial_plane_config plane_configs[I915_MAX_PIPES] = {};
->  	struct intel_crtc *crtc;
->  
-> -	for_each_intel_crtc(&i915->drm, crtc) {
-> +	for_each_intel_crtc(display->drm, crtc) {
->  		struct intel_initial_plane_config *plane_config =
->  			&plane_configs[crtc->pipe];
->  
-> @@ -429,7 +433,7 @@ void intel_initial_plane_config(struct drm_i915_private *i915)
->  		 * can even allow for smooth boot transitions if the BIOS
->  		 * fb is large enough for the active pipe configuration.
->  		 */
-> -		i915->display.funcs.display->get_initial_plane_config(crtc, plane_config);
-> +		display->funcs.display->get_initial_plane_config(crtc, plane_config);
->  
->  		/*
->  		 * If the fb is shared between multiple heads, we'll
-> @@ -437,7 +441,7 @@ void intel_initial_plane_config(struct drm_i915_private *i915)
->  		 */
->  		intel_find_initial_plane_obj(crtc, plane_configs);
->  
-> -		if (i915->display.funcs.display->fixup_initial_plane_config(crtc, plane_config))
-> +		if (display->funcs.display->fixup_initial_plane_config(crtc, plane_config))
->  			intel_crtc_wait_for_next_vblank(crtc);
->  
->  		plane_config_fini(plane_config);
-> diff --git a/drivers/gpu/drm/i915/display/intel_plane_initial.h b/drivers/gpu/drm/i915/display/intel_plane_initial.h
-> index 64ab95239cd4..6c6aa717ed21 100644
-> --- a/drivers/gpu/drm/i915/display/intel_plane_initial.h
-> +++ b/drivers/gpu/drm/i915/display/intel_plane_initial.h
-> @@ -6,8 +6,8 @@
->  #ifndef __INTEL_PLANE_INITIAL_H__
->  #define __INTEL_PLANE_INITIAL_H__
->  
-> -struct drm_i915_private;
-> +struct intel_display;
->  
-> -void intel_initial_plane_config(struct drm_i915_private *i915);
-> +void intel_initial_plane_config(struct intel_display *display);
->  
->  #endif
-> diff --git a/drivers/gpu/drm/xe/display/xe_plane_initial.c b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-> index 8c113463a3d5..2eb9633f163a 100644
-> --- a/drivers/gpu/drm/xe/display/xe_plane_initial.c
-> +++ b/drivers/gpu/drm/xe/display/xe_plane_initial.c
-> @@ -275,12 +275,12 @@ static void plane_config_fini(struct intel_initial_plane_config *plane_config)
+>  	if (intel_irqs_enabled(dev_priv)) {
+> -		vlv_display_irq_reset(dev_priv);
+> +		_vlv_display_irq_reset(dev_priv);
+>  		vlv_display_irq_postinstall(dev_priv);
 >  	}
 >  }
+> @@ -1709,7 +1718,7 @@ void valleyview_disable_display_irqs(struct drm_i915_private *dev_priv)
+>  	dev_priv->display.irq.display_irqs_enabled = false;
 >  
-> -void intel_initial_plane_config(struct drm_i915_private *i915)
-> +void intel_initial_plane_config(struct intel_display *display)
->  {
->  	struct intel_initial_plane_config plane_configs[I915_MAX_PIPES] = {};
->  	struct intel_crtc *crtc;
+>  	if (intel_irqs_enabled(dev_priv))
+> -		vlv_display_irq_reset(dev_priv);
+> +		_vlv_display_irq_reset(dev_priv);
+>  }
 >  
-> -	for_each_intel_crtc(&i915->drm, crtc) {
-> +	for_each_intel_crtc(display->drm, crtc) {
->  		struct intel_initial_plane_config *plane_config =
->  			&plane_configs[crtc->pipe];
+>  void ilk_de_irq_postinstall(struct drm_i915_private *i915)
+> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+> index f75cbf5b8a1c..7920ad9585ae 100644
+> --- a/drivers/gpu/drm/i915/i915_irq.c
+> +++ b/drivers/gpu/drm/i915/i915_irq.c
+> @@ -658,8 +658,7 @@ static void valleyview_irq_reset(struct drm_i915_private *dev_priv)
+>  	gen5_gt_irq_reset(to_gt(dev_priv));
 >  
-> @@ -294,7 +294,7 @@ void intel_initial_plane_config(struct drm_i915_private *i915)
->  		 * can even allow for smooth boot transitions if the BIOS
->  		 * fb is large enough for the active pipe configuration.
->  		 */
-> -		i915->display.funcs.display->get_initial_plane_config(crtc, plane_config);
-> +		display->funcs.display->get_initial_plane_config(crtc, plane_config);
+>  	spin_lock_irq(&dev_priv->irq_lock);
+> -	if (dev_priv->display.irq.display_irqs_enabled)
+> -		vlv_display_irq_reset(dev_priv);
+> +	vlv_display_irq_reset(dev_priv);
+>  	spin_unlock_irq(&dev_priv->irq_lock);
+>  }
 >  
->  		/*
->  		 * If the fb is shared between multiple heads, we'll
-> @@ -302,7 +302,7 @@ void intel_initial_plane_config(struct drm_i915_private *i915)
->  		 */
->  		intel_find_initial_plane_obj(crtc, plane_configs);
+> @@ -723,8 +722,7 @@ static void cherryview_irq_reset(struct drm_i915_private *dev_priv)
+>  	gen2_irq_reset(uncore, GEN8_PCU_IRQ_REGS);
 >  
-> -		if (i915->display.funcs.display->fixup_initial_plane_config(crtc, plane_config))
-> +		if (display->funcs.display->fixup_initial_plane_config(crtc, plane_config))
->  			intel_crtc_wait_for_next_vblank(crtc);
+>  	spin_lock_irq(&dev_priv->irq_lock);
+> -	if (dev_priv->display.irq.display_irqs_enabled)
+> -		vlv_display_irq_reset(dev_priv);
+> +	vlv_display_irq_reset(dev_priv);
+>  	spin_unlock_irq(&dev_priv->irq_lock);
+>  }
 >  
->  		plane_config_fini(plane_config);
+> @@ -740,8 +738,7 @@ static void valleyview_irq_postinstall(struct drm_i915_private *dev_priv)
+>  	gen5_gt_irq_postinstall(to_gt(dev_priv));
+>  
+>  	spin_lock_irq(&dev_priv->irq_lock);
+> -	if (dev_priv->display.irq.display_irqs_enabled)
+> -		vlv_display_irq_postinstall(dev_priv);
+> +	vlv_display_irq_postinstall(dev_priv);
+>  	spin_unlock_irq(&dev_priv->irq_lock);
+>  
+>  	intel_uncore_write(&dev_priv->uncore, VLV_MASTER_IER, MASTER_INTERRUPT_ENABLE);
+> @@ -794,8 +791,7 @@ static void cherryview_irq_postinstall(struct drm_i915_private *dev_priv)
+>  	gen8_gt_irq_postinstall(to_gt(dev_priv));
+>  
+>  	spin_lock_irq(&dev_priv->irq_lock);
+> -	if (dev_priv->display.irq.display_irqs_enabled)
+> -		vlv_display_irq_postinstall(dev_priv);
+> +	vlv_display_irq_postinstall(dev_priv);
+>  	spin_unlock_irq(&dev_priv->irq_lock);
+>  
+>  	intel_uncore_write(&dev_priv->uncore, GEN8_MASTER_IRQ, GEN8_MASTER_IRQ_CONTROL);
 > -- 
 > 2.39.5
 > 
