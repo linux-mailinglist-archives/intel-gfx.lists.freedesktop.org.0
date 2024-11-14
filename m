@@ -2,60 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACE7E9C8EBA
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Nov 2024 16:52:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 01AAC9C8EC5
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Nov 2024 16:54:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D1CAB10E818;
-	Thu, 14 Nov 2024 15:52:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D2BE10E80B;
+	Thu, 14 Nov 2024 15:53:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SmPkAM99";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YNJ42KWi";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8958110E80B;
- Thu, 14 Nov 2024 15:52:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9970910E80B;
+ Thu, 14 Nov 2024 15:53:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731599559; x=1763135559;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=YO1PAjAVnQkyYyQFFpnKoLjvPI952FfF0POQAYq0+p4=;
- b=SmPkAM99lph05JpTVVwsbWIV4UYRW0G3glJjOgt+/XG8bUdoqTXD18K/
- 3C1XOHKcFQmvw/rWxbk8BGobUu2lciwakbFQgp9syFqHGzilQkGcftp77
- o7jdoasPyllxXruEDTVFeNuEMaFIRIPPQ0Rfhr9GbMUckyA9awxHBMtmH
- hPUBZtkomsZeQJ4RXUvdmAMAnJhgi48lI7HFwQX9kP/xOiZ01IS9MMb4g
- GfAbDsCyjuRB4zly6/wLuxAULpWOlcxcMeOcziXmsNGbUZ0yMplkif2dJ
- rIZ5zv9mZUHubPpzbQ8mUVjdpzKKuXoWM2J3Qy6lIr1AVs56/dKvgnKJU g==;
-X-CSE-ConnectionGUID: WKJSiqcPT3m1w3KjpEBttw==
-X-CSE-MsgGUID: ag4td3nZQhmnNuCG7Zd5Xg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="35269719"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="35269719"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2024 07:52:39 -0800
-X-CSE-ConnectionGUID: CXnAXE5uSk2q4OdnICOtAQ==
-X-CSE-MsgGUID: gxe4FssoSheGwc9Bc8uT7A==
+ t=1731599639; x=1763135639;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=/+SRlLPVSoEcqhnEB8irN9IMlpg5pF84WuBgpr4BvI4=;
+ b=YNJ42KWim8XhS8jrDJdLjjksdI5DZ1htI2SkIj38uiJ/o9v2TNb9qLN0
+ 8xYyK7fsZezRb9djj2DJ3DbL7TBuhVj2eo/B5HKy+VBtpRk80oZ5Xj+Pt
+ RBeG0hl7h5pj9+aAUrtub1AqUZ/bO5/oajyj8HbS8/mJblQ/H6xf+Eyt5
+ q4kMTVOTIjhu0D/5YXIHmvxBpZqbpIG4bpvO616TNYc5457b0Mkr9RrZW
+ tP36q9rFLJP1dImunZSNZ1Qhnii0h5mRnHjaqXZIu8utm9pgQbo242Idr
+ vzEp0mYQXrjl56+in7O3hu+PuGoVHZg/yKe6z6/DEsHtI3DUmwmcOo3w7 A==;
+X-CSE-ConnectionGUID: QezS6rPPQ6itdF5wc3Rnyg==
+X-CSE-MsgGUID: a+WkSGWUR+an4HxAzZvGYg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="31420263"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="31420263"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2024 07:53:58 -0800
+X-CSE-ConnectionGUID: ca6lHrFMTKih0NmqmX/crA==
+X-CSE-MsgGUID: ikoNUm1aRsKw6pFS4HukvA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,154,1728975600"; d="scan'208";a="88646168"
+X-IronPort-AV: E=Sophos;i="6.12,154,1728975600"; d="scan'208";a="93324440"
 Received: from unknown (HELO localhost) ([10.237.66.160])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2024 07:52:37 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com, Sergey Senozhatsky <senozhatsky@chromium.org>,
- Ville Syrjala <ville.syrjala@linux.intel.com>
-Subject: [PATCH 3/3] drm/i915/ddi: propagate errors from
- intel_ddi_init_hdmi_connector()
-Date: Thu, 14 Nov 2024 17:52:17 +0200
-Message-Id: <9e8840b3815919370a1f15c515772e151a32cc06.1731599468.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1731599468.git.jani.nikula@intel.com>
-References: <cover.1731599468.git.jani.nikula@intel.com>
-MIME-Version: 1.0
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2024 07:53:51 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Sergey Senozhatsky <senozhatsky@chromium.org>, Sergey Senozhatsky
+ <senozhatsky@chromium.org>
+Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ ville.syrjala@linux.intel.com
+Subject: Re: [RFC][PATCH] drm: i915: do not NULL deref hdmi attached_connector
+In-Reply-To: <87msi3bidr.fsf@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+References: <20241031105145.2140590-1-senozhatsky@chromium.org>
+ <20241113083920.GH1458936@google.com> <87msi3bidr.fsf@intel.com>
+Date: Thu, 14 Nov 2024 17:53:46 +0200
+Message-ID: <87cyix6cc5.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,35 +74,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Propagate connector init errors from
-intel_ddi_init_hdmi_connector(). The caller already handles the
-allocation failures, and this is all similar to
-intel_ddi_init_dp_connector().
+On Wed, 13 Nov 2024, Jani Nikula <jani.nikula@linux.intel.com> wrote:
+> On Wed, 13 Nov 2024, Sergey Senozhatsky <senozhatsky@chromium.org> wrote:
+>> On (24/10/31 19:51), Sergey Senozhatsky wrote:
+>>> intel_ddi_init() may skip connector initialization, for instance,
+>>> both intel_ddi_init_dp_connector() and intel_ddi_init_hdmi_connector()
+>>> are optional.  This leads to situation that ->attached_connector may
+>>> be NULL for some connectors.  For instance, on my setup 'DDI A/PHY A'
+>>> and 'DDI TC1/PHY TC1' are not initialized.
+>>> 
+>>> However, functions like intel_dp_dual_mode_set_tmds_output() and
+>>> friends don't take this into consideration.  This leads to NULL
+>>> ptr-derefs:
+>>> 
+>>> KASAN: null-ptr-deref in range [0x0000000000000848-0x000000000000084f]
+>>> RIP: 0010:intel_hdmi_encoder_shutdown+0x105/0x230
+>>> Call Trace:
+>>> <TASK>
+>>> i915_driver_shutdown+0x2d8/0x490
+>>> pci_device_shutdown+0x83/0x150
+>>> device_shutdown+0x4ad/0x660
+>>> __se_sys_reboot+0x29c/0x4d0
+>>> do_syscall_64+0x60/0x90
+>>> 
+>>> Add a new helper to avoid NULL ->attached_connector derefs and
+>>> switch some intel_hdmi function to it.  I'm not sure if we need
+>>> to switch all or just intel_dp_dual_mode_set_tmds_output() (I
+>>> have only seen this one doing NULL derefs so far).
+>>
+>> Folks, any more comments / opinions on this?
+>> What should be the way forward?
+>
+> Ville, we handle intel_ddi_init_dp_connector() failures but not
+> intel_ddi_init_hdmi_connector() failures. Do you recall if there's a
+> reason for that? Something like a dual-mode port where DP works but HDMI
+> gets rejected because of bogus VBT info?
+>
+> My gut feeling is to propagate errors from intel_hdmi_init_connector()
+> and handle them properly in g4x_hdmi_init() and
+> intel_ddi_init_hdmi_connector().
+>
+> Of course, we have cases where hdmi is just not initialized on DDI, and
+> those should be handled. But I don't think hdmi->attached_connector !=
+> NULL is really the right check for that.
 
-Cc: Sergey Senozhatsky <senozhatsky@chromium.org>
-Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_ddi.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+I'm hoping [1] would solve the issue.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index f3368cf52641..276b73bed07f 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -4705,7 +4705,11 @@ intel_ddi_init_hdmi_connector(struct intel_digital_port *dig_port)
- 		return NULL;
- 
- 	dig_port->hdmi.hdmi_reg = DDI_BUF_CTL(port);
--	intel_hdmi_init_connector(dig_port, connector);
-+
-+	if (!intel_hdmi_init_connector(dig_port, connector)) {
-+		kfree(connector);
-+		return NULL;
-+	}
- 
- 	return connector;
- }
+BR,
+Jani.
+
+[1] https://lore.kernel.org/r/cover.1731599468.git.jani.nikula@intel.com
+
+
 -- 
-2.39.5
-
+Jani Nikula, Intel
