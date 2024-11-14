@@ -2,58 +2,187 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 045679C85CE
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 Nov 2024 10:15:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E6DDA9C8658
+	for <lists+intel-gfx@lfdr.de>; Thu, 14 Nov 2024 10:40:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76C9910E0FC;
-	Thu, 14 Nov 2024 09:15:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A0F110E7C7;
+	Thu, 14 Nov 2024 09:40:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jxOeXsfV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="brGo/pYM";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0084D10E0FC
- for <intel-gfx@lists.freedesktop.org>; Thu, 14 Nov 2024 09:15:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C68E10E7C7
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 Nov 2024 09:40:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731575709; x=1763111709;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=krk9SbMUbPvspwT/VUh8XDAUsOenCkMK9v8sdOgeWLk=;
- b=jxOeXsfVWa2lo3FhemueqVqSZ4eta6V05qDFoBv2F2acsuCz4XE1r0nf
- Uxn4O8njApNepjfRZFMS0nKz7Ui066PJc2FXo8nqpQDasMWdLdh3IxnFA
- i7p2SBaTl1mz3yDCQG9B2QWZOYdUrz6BgLZ8kRJBiJhubhsdJzX2RiWZo
- Gb38b5H3RTQYyVjspb4cjH7puN3LQ9MznDOEAJFAp2UxB92bqP0zgNWqY
- pLopkwwnIkGfkwJUX+cfdd0quTdP2UhEjZ8RUuAsSXZwAe46gjN26znWf
- 66yJEjWBtYDdI42MtqniME3KippUGWMCbcCuw1yXNil47ZMP+P34T3qa5 g==;
-X-CSE-ConnectionGUID: 7gMvHMKaSaSXCFLyS0X+Ow==
-X-CSE-MsgGUID: 8hJFd6KMRX2LK3EmGd8PlQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11255"; a="42885112"
-X-IronPort-AV: E=Sophos;i="6.12,153,1728975600"; d="scan'208";a="42885112"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2024 01:15:08 -0800
-X-CSE-ConnectionGUID: oZR97hX9QbmJpNDPNN60Xw==
-X-CSE-MsgGUID: eaeO3yqbQ1qaOo4AT3E4dA==
+ t=1731577239; x=1763113239;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-id:content-transfer-encoding: mime-version;
+ bh=danmLjs1MrClxRgIrKllDc4oEzcamGabGjC2ErCGzsc=;
+ b=brGo/pYMguJmdj5seV9C3Tf0JESsBno6f8DgCgK05MHYmOr3SXlLJbin
+ XYaFchZEAlLgjuEcNNo9RXoQSQuhkGfB0uftelqw/aHRldBDftXUkuXGC
+ 6LkH87ghJi2cLK2SMreu4N4VBWX8aOmhoWTJ9GWc3OtCvs/S/UurPsa/0
+ a+sKQKHwchDOaipLvgIlofXm0C+DSydb3lgNC2s+OC+/IiEVjF9HCGvc+
+ bUvaXzVLh/fgQoc2bfextZIxdlpqG8NqbLNL2PU+CyE0tL4NgrqrQUtJ+
+ XOG0SG6wlhnXGGJfgK5k9Pid1DOkZMPhVFrg9yGdmJHVyNb1RKpq0n//i Q==;
+X-CSE-ConnectionGUID: F549CWvDRoulrcEaq/6TWQ==
+X-CSE-MsgGUID: eGCRfh+9R/O/AH5Wu31tzg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11255"; a="30913158"
+X-IronPort-AV: E=Sophos;i="6.12,153,1728975600"; d="scan'208";a="30913158"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2024 01:40:38 -0800
+X-CSE-ConnectionGUID: UTqDaG4bQhGt053DLR+Cmw==
+X-CSE-MsgGUID: NP0CmI11Qh2Ix6xe123vxQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,153,1728975600"; d="scan'208";a="92594237"
-Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.240])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2024 01:15:07 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Bhadane, Dnyaneshwar" <dnyaneshwar.bhadane@intel.com>,
+X-IronPort-AV: E=Sophos;i="6.12,153,1728975600"; d="scan'208";a="119080770"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 14 Nov 2024 01:40:39 -0800
+Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Thu, 14 Nov 2024 01:40:38 -0800
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Thu, 14 Nov 2024 01:40:38 -0800
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.168)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Thu, 14 Nov 2024 01:40:38 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Qe5zPMgiM8O2rn71ZDDsuLenqDirZ8Bc9B5xu2OI0y9iN9BFH7j/DSH5jCP+cw9Ga8SUBl9/rl00KV/SqTPIVQt2s/SZ1/NLXirBYiOzt7ZIfsMrMI6252gi+00vIzGW7O8mNN3/CsAheA3P8Qx6SGKmVWcnIhf4NP2VR/VxrC8UsyBgGWJAbsO5zTqEEDfiJHEtVhCg3UFU3DLAZ5skanJ5ErIqcCmqXY8YSFbytS/WgOXzlQ1EIT/FwC5mO1Gj5vzfXD+OsRno4oOsWyQpODnVZOnoeZCrIYGprgeNwuSxCWf7tMEPFm1XII1LF/eIOq9fvWPBfBxn8O0Dnmwhzg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=danmLjs1MrClxRgIrKllDc4oEzcamGabGjC2ErCGzsc=;
+ b=JzQ+WGBkiThdxN3K76tgJLuhfWC/B+b4jIUQatp7u0/CRYWDsBp3Srcg0SYgfTrCxs6yI/8zD/gw/t4pHxdDR7IIn8Bs7uGYszZDB15MEmmUmgUa60jSkbqRewGwCmIBH+Yu/Gkqm8yqJw2Y4WhPm6cmLZmaVCYiicTFWuFisEF7M7MnS7sk1mgEblnaH5Dt4SUlP3Df/N8PJH6M0D1+pSE/jj7LTpZ7uyMBZfYSPT6KZn3D5oL/VcuvQhyXqLUuvSFyBnc2lmHKFh4aFVM3O6clTZ+NHkH452uQ1fJje+u5uYqLvEp4UnY3QTJ3dlGatZTSKcopWc3lE/JE5JXNSA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM4PR11MB6019.namprd11.prod.outlook.com (2603:10b6:8:60::5) by
+ PH8PR11MB6610.namprd11.prod.outlook.com (2603:10b6:510:1cd::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.18; Thu, 14 Nov
+ 2024 09:40:30 +0000
+Received: from DM4PR11MB6019.namprd11.prod.outlook.com
+ ([fe80::fc1:e80f:134c:5ed2]) by DM4PR11MB6019.namprd11.prod.outlook.com
+ ([fe80::fc1:e80f:134c:5ed2%4]) with mapi id 15.20.8137.027; Thu, 14 Nov 2024
+ 09:40:30 +0000
+From: "Hogander, Jouni" <jouni.hogander@intel.com>
+To: "Manna, Animesh" <animesh.manna@intel.com>,
  "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Subject: RE: [RFC] drm/i915/cx0_phy: Update HDMI TMDS C20 algorithm value
-In-Reply-To: <IA1PR11MB6266CEFC2A73DDC75817A5F6E25A2@IA1PR11MB6266.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241113104453.1813674-1-dnyaneshwar.bhadane@intel.com>
- <87iksrb80l.fsf@intel.com>
- <IA1PR11MB6266CEFC2A73DDC75817A5F6E25A2@IA1PR11MB6266.namprd11.prod.outlook.com>
-Date: Thu, 14 Nov 2024 11:15:04 +0200
-Message-ID: <87frnub2hz.fsf@intel.com>
+CC: "Nikula, Jani" <jani.nikula@intel.com>, "Garg, Nemesa"
+ <nemesa.garg@intel.com>
+Subject: Re: [PATCH v2] drm/i915/psr: Disable psr1 if setup_time > vblank
+Thread-Topic: [PATCH v2] drm/i915/psr: Disable psr1 if setup_time > vblank
+Thread-Index: AQHbL3G8VPyyUd7VX0ap17NX4aq2ArK2k5eA
+Date: Thu, 14 Nov 2024 09:40:30 +0000
+Message-ID: <bade2dc028aa9decb75a99d5bd3dd9a99ce6b3aa.camel@intel.com>
+References: <20241105103916.1857731-1-animesh.manna@intel.com>
+In-Reply-To: <20241105103916.1857731-1-animesh.manna@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR11MB6019:EE_|PH8PR11MB6610:EE_
+x-ms-office365-filtering-correlation-id: d07edf8f-b26b-41cc-7598-08dd04906127
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230040|376014|1800799024|366016|38070700018;
+x-microsoft-antispam-message-info: =?utf-8?B?V2tnUnJxRTRVa05GVTlEcVN6alAwRlFOSG9Nb0EvU2xxWkVvLzJuY3RnU3BK?=
+ =?utf-8?B?QnFsWmsxSXI3RkgzMXh4dHJuazg5cWdMTytQeGF3YkNtT1pwdHJ0UkFzWHp3?=
+ =?utf-8?B?Z0VBbTJaWU5Qc3o3WHAxaU1BakhwcVFBSHNnZVlqMVYyb2pwcHVadi9JcXFY?=
+ =?utf-8?B?cTN2eXdwM1h0WmZSRS8vRkkyNk81R3MxSklXRDhucXhJNDRNWU5ZemFzZXI5?=
+ =?utf-8?B?ZzlhY21tRnhOM1FuSFlXNFB6TW9rR0ZONXlLRTh0ejhBczlYZGdpQWpIeTQy?=
+ =?utf-8?B?R01hdko5cmNzZFJOZFdhMzB1Rm5OMng4WWJMZlkzSHVQbXV4azYxTnFLNEZm?=
+ =?utf-8?B?MzNWMjlCZ1R5dXdhbkdvY2ZhOFJvUlJKTThjVUFjN0l0dGxGVVY2REplbkFB?=
+ =?utf-8?B?R09jZFZMYk9QL0ZhSW5tSUpsdHFKVmhkSW5kMnFpeFRITTd6dFVic3RmVm92?=
+ =?utf-8?B?U01XUHBUOGV1WERSd3VyR0F6aFYvUnM3OVdFM2s1Yk50UjhncTZ5RDNwTlF2?=
+ =?utf-8?B?Rk5hdU9CSEEvUTlIY05PK0RpcGdOcy8wdVA3ais0M1NQOGtIOUQwSURsenRr?=
+ =?utf-8?B?WCtldDh4U1U1SURMR3V2WU9YUFE3SkVMenI2aCsvM1R5MDVTMzRFcm5tYjQy?=
+ =?utf-8?B?ZTN5T2p0cXZTenBYU1kxL3VCcm1BZHhIVTBhMnBKaEpXMnJSS0NUdXJHeitY?=
+ =?utf-8?B?Mkllazd5U3d3ckNaYTVOVDNUNVpFRTFJT1VZQVB6UC83bTVrMEpVZWRsSnZ1?=
+ =?utf-8?B?eVh3QkErOXhJN09XOFVCd3N2bnFZUXJqbFNaZS9HT2RTVUFpVjJseWw1T0Vi?=
+ =?utf-8?B?eUF0ekNFekV4WFhjRkM0Z2YyZFpFMDlVT09pVWZBbUdqU0IrZE1ySEVwd2dm?=
+ =?utf-8?B?aGlpTTdaWU0rd2ZuNk9hYUc5TGFOM0laQVhFRUVwUWNOT0tqSnJVcnZkRFgw?=
+ =?utf-8?B?Mkh5M3lyakR2SDQvdSs5MWhjdFhGWVBqc3RrdFVIaVhucVBwVXBHckUxQm5I?=
+ =?utf-8?B?YzFvUUpmT0hjSkVtNTNGTTVCSnJhYjA5WTI0MExrMGxYdGVKVGRKQzE1K1J0?=
+ =?utf-8?B?b1pjbHNpNXRRTWVsaVRxYWtzZkQ0Qk9CUG9rRy9TOHM0K05QNzQreEFjUWhC?=
+ =?utf-8?B?Y0x1YTFxZ1hPdHo4VmdHTlhRbUFzZnRTNVJQdXl2eW1HbmcrV0V1N2RTUStH?=
+ =?utf-8?B?YitvYTRqZEtCTlQrb2h5ajRjS1ZzYUIvdVJZYUVqaFVwUU1RVGllWTFzNUM2?=
+ =?utf-8?B?VzJaOTltV2lqSHduMVZGejJkWnF3WVM3TytEYUd1SVMxZ09LTm53S1lLL3ln?=
+ =?utf-8?B?WXhoUTNDRC9FZkZzNkJSRld4NGZuODJ3Z0NoQjZ1MTRVSVVVK1JOWm04ck5n?=
+ =?utf-8?B?bURubjdpMGR2eG5rbDNOc0hhNjR1K0hrWEhPdHlsRHhTaWROaEQ5SXRhaUox?=
+ =?utf-8?B?aWk0bFRBeTJabEdlTjJwaHZzVld3WHRhRHFBNXQxM3FMUEZ3RXAvZDhrZnM1?=
+ =?utf-8?B?SFBXTTJyT2s0OUxTdzdEZkhDOFlWNWJaMjdtNTlDdm4wRXdmQkIwMitFa1ov?=
+ =?utf-8?B?NkNGSW4wdkdhWXFQSWtBTGV6eU10djd3ZjA4T1FUZzJTSUM4UWRUTGtVdU1R?=
+ =?utf-8?B?RTdPa2s0NTU1V2QxRml6dGRzeU9XVG83cDNYMGNYeVlsTndRamtmTFNXSGZO?=
+ =?utf-8?B?U29KcGhYa0x6RmVUUUpCUnlveDBybEpROHlET0pETmpJNVJacEJkVU5ubGll?=
+ =?utf-8?B?b09icG42R3BVeXZxbHNBKzJyaFFMWnFDc3dST1Roa2dMYldJK2dGc2FQYzI0?=
+ =?utf-8?Q?XjDe9vBVvt09fpCcA42hTkEL/HoeaQAOS/aqI=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB6019.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016)(38070700018); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?MXV2YXFhSkhXbm43WUlJUmc3cE4yLzJFMmZmRndaZjJnSm56L2I5RTRPNEVh?=
+ =?utf-8?B?REhyU015M0lDRlF5bXY5a1JMWng4NGVRZUk2S0NKL1BWNFVnb1o4ODZRV1U1?=
+ =?utf-8?B?M2hTMWxBWVRIQ0ZGQ3lXaHRoMGhoME4yVjgydDBaYzE1TUpGRXVETTkrbi96?=
+ =?utf-8?B?aStqUStrMXJsbVIvQ0o2ajhMakVieUFGS3BzQzdwc2tJZHNLSXFvQmpMb0FT?=
+ =?utf-8?B?ZzFUa29NQ1hrZDN2bEZoWHoxc1QrRDNaM3FKSXhObUE2T2J4Z0llOHlnZWIr?=
+ =?utf-8?B?a2RRWkVpMUhyR3ovaWNGSitud3dUeGIyYnVuV015ZktGL2gwMk15azE5c1FG?=
+ =?utf-8?B?SGUvcUxzQW1qWkIzOVJlV1pNU1RKeThDek5HWHFLU1UrZC9UbnhZWmNYT1dr?=
+ =?utf-8?B?SFZxOWlKZ0gwdDVYTEcwMkNnYWJKcExhaE50T1hld21yRjdyUzdMK1FlS2hO?=
+ =?utf-8?B?NkNBakE0RDJqVk14TVFpRHVYY0pzTlMyVE5saEo4c3QwUzZ1QjFTZHpoMEh1?=
+ =?utf-8?B?S25MMWFUdkRDMGJWYnZYL3ZITCtRWTdjeURKekZNSFJVajRUVTVjQ08zSVZJ?=
+ =?utf-8?B?ekROT1ZNMjF1MWZ1dGxxRzNOYjhyWGFRNDRaakg2NHZVTWl5RENtVC9nRnNB?=
+ =?utf-8?B?dldZck1mTERjUW10bmpXRWw0U1dzaE95cllvOVgyY3FiWUNSaDZPdG9qVTR5?=
+ =?utf-8?B?OWpLQ3BNSFpVZ3pmRW8zai9KcmhLTkVFRzVRZzgzRkNRcmdWbWNzSWJHbFhQ?=
+ =?utf-8?B?Z3cvN1Qwb2t6bFh0UE5hTThMNU9jS0hiaG16d2lIK0VaeWlETVZmcXU0MlpV?=
+ =?utf-8?B?L3dQNXAxazA5VE1iQ2FLL0JmK1BxK0dGblR0NW9mRHBvQkhwMlJSNWovb0Mv?=
+ =?utf-8?B?OCtLU0N3MG1hUUUrejNJbUtXTE9XWUJoUERoYkdNcDkxZDRMUjlzNmRGOTdm?=
+ =?utf-8?B?dVdxODQ2ZHFQa0paYW5Ob05NaTYzV3luaDNYTGtaYldlWWg0UTBBVW53c0RM?=
+ =?utf-8?B?SDVaRWtUcnoxbCtFSFMzOXFETVNRYzJzRlFLbnRVZnBFbkdFTEVuamdxWERo?=
+ =?utf-8?B?NmhLNjdRTVZEM1lVMUZzWkV4eUo3M045ZUlYemdYKzY3V3dRcEtGQmVTTUFU?=
+ =?utf-8?B?Njc1emlOUlhXUTZNQ3ZpZmJwSnl0VUlRR3ZXU0JuM3d4TmtZamZJcDJZSGVR?=
+ =?utf-8?B?cnphWkg4cnd1WXJCSi8vMENoT0xtTytZcGVJRUFHRkJRcHNPT1pKcjFPaTE1?=
+ =?utf-8?B?aE5vckRvM2h6V2Y1V2lFZTBpTy9nSW50WjhHcWF3UUh3T1NhTjlZdVlXQnUr?=
+ =?utf-8?B?NUk4WlpyVG1jaDlwbDFwWXpMNnlJYXdVTmoyV3ZFQVdlejdIeUtWTVJXYUZl?=
+ =?utf-8?B?ZTZhdWNRaDc2Sm04aENnMzZMVlR6dE4zbW1HeHBhRFdGdm9vN1k0Z1FhVjdr?=
+ =?utf-8?B?Z3ByZVVZbkhldmc3RmtNdGozbGdhcGEwVmU1WXdlZ2xJeVFUbTJwR1N4aTNB?=
+ =?utf-8?B?bHBFOFB6aDZZRkZHbllLZStmZGw5aisrR0JrdTV3RFpTVU51VzhHY2lacVU3?=
+ =?utf-8?B?UU9wcXNCWWtlWlJaOHNkQmczZlE4bHFtNEVFOGpVOERDR2lXYXNrdjdzZ3JL?=
+ =?utf-8?B?bkxwRUswa2d0SjM2YUljU0QxdUdLdmtjZHp6QVNDRXBkU1ZKY2NFejVxc2sy?=
+ =?utf-8?B?Zjg1WDB0Y0tvWklESXpPaXNiRWc0TUs1QmZiNGFsY3JWYU0wU3hycS8wMW80?=
+ =?utf-8?B?dmtSZzJGY0Fta1dheGpsdE5mck91a3FxMFlFMVBtTlJwbkwwUVpiekJac1FO?=
+ =?utf-8?B?SFNvcG1KbVFVcGtJaHlVQmMxd0VoaXo4K1E1bXpTNlpwOVVtRW1lTVVTM0xT?=
+ =?utf-8?B?WjIrTVovMGt4VG9ucjRqeTRZN0J6Zmk0RUdYZTZSb2pKYkoxVms2UDNxQVlx?=
+ =?utf-8?B?cUVTa0FMb0dTK3h3TFJmYWUxOFJQcXZERnM2V1loUVVXc3Y4czl1TWlaQ0to?=
+ =?utf-8?B?OHlkYnBJend0VlJ0amRacExXSGV6UFFzYWxhSTlNbXpIVHdhMzd4VjEzSkUr?=
+ =?utf-8?B?Y0JmSGVOYldDT0pWZTkvRWtRNXZMa1E2MmI0UnJvaEg2ejRseXFDeGZqdm44?=
+ =?utf-8?B?cU91b01XcWY3NUIyVytWNk1EUEJ5L0F5VTd4dnJoUGhFcHRmcjRXYUV0WGFx?=
+ =?utf-8?B?VHc9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <C024FB41913BD84C93EB0E1FB9EE2279@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6019.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d07edf8f-b26b-41cc-7598-08dd04906127
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Nov 2024 09:40:30.7654 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: KE3bbna+GPkN1sGb4eYq9u4fT6K1BdbZ7ElG9DR/d0P3eib3XBhucabZJpboQtWD3zbwWS5ZW8pRTNNTP3ek0DnqM/p6vIqw12faM50V3xM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6610
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,316 +198,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 13 Nov 2024, "Bhadane, Dnyaneshwar" <dnyaneshwar.bhadane@intel.com> wrote:
->> -----Original Message-----
->> From: Jani Nikula <jani.nikula@linux.intel.com>
->> Sent: Wednesday, November 13, 2024 6:34 PM
->> To: Bhadane, Dnyaneshwar <dnyaneshwar.bhadane@intel.com>; intel-
->> gfx@lists.freedesktop.org
->> Cc: Bhadane, Dnyaneshwar <dnyaneshwar.bhadane@intel.com>
->> Subject: Re: [RFC] drm/i915/cx0_phy: Update HDMI TMDS C20 algorithm value
->> 
->> On Wed, 13 Nov 2024, Dnyaneshwar Bhadane
->> <dnyaneshwar.bhadane@intel.com> wrote:
->> > In the C20 algorithm for HDMI TMDS, certain fields have been updated
->> > in the BSpec to set values for SRAM_GENERIC_<A/B>_TX_CNTX_CFG_1, such
->> > as tx_misc and dac_ctrl_range.
->> > This patch covers fields that need to be set based on the platform type.
->> > here for xe2lpd, xe2HPD and MTL/ARL platform.
->> >
->> > Some SoCs cannot be directly distinguished by their GMD version Id,
->> > Specifically to set value of tx_misc, so direct device PCI IDs and PCI
->> > Host Bridge IDs are used for differentiation.
-> I will rephrase this as per new changes. 
->> >
->> > Bspec:74165,74491
->> > Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
->> > ---
->> >  drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 57
->> > ++++++++++++++++---  drivers/gpu/drm/i915/display/intel_cx0_phy.h  |
->> > 11 ++++  .../gpu/drm/i915/display/intel_cx0_phy_regs.h | 19 ++++++-
->> >  include/drm/intel/pciids.h                    |  8 ++-
->> >  4 files changed, 82 insertions(+), 13 deletions(-)
->> >
->> > diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
->> > b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
->> > index 8ad19106fee1..018add48b8ad 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
->> > @@ -6,6 +6,7 @@
->> >  #include <linux/log2.h>
->> >  #include <linux/math64.h>
->> >  #include "i915_reg.h"
->> > +#include <drm/intel/pciids.h>
->> 
->> No. Do not look at PCI IDs directly inline.
-> #1 
-> Sure, I am removing this does here. The reason was that earlier plan was 
-> without using sub platform macros but recently It got introduce in codebase.
->> 
->> >  #include "intel_cx0_phy.h"
->> >  #include "intel_cx0_phy_regs.h"
->> >  #include "intel_ddi.h"
->> > @@ -2164,9 +2165,55 @@ static void intel_c10pll_dump_hw_state(struct
->> drm_i915_private *i915,
->> >  			    i + 2, hw_state->pll[i + 2], i + 3, hw_state->pll[i + 3]);
->> }
->> >
->> > +static bool intel_c20_tx_mics_3_platform(struct drm_i915_private
->> > +*dev_priv)
->> 
->> No new struct drm_i915_private uses please.
->> 
->> > +{
->> > +	u16 devid = INTEL_DEVID(dev_priv);
->> 
->> No. Do not use INTEL_DEVID() in display code. There are no current users and
->> we intend to keep it that way.
->
-> This will be removed as part of #1 comment. 
->> 
->> > +	u16 host_bridge_pci_dev_id;
->> > +	struct pci_dev *pdev = NULL;
->> > +	bool check = false;
->> > +	/*
->> > +	 * Some SoCs have the same PCI IDs, so differentiate them based
->> > +	 * on the host bridge PCI device ID to use the correct txx_mics value
->> > +	 */
->> > +	while ((pdev = pci_get_class(PCI_CLASS_BRIDGE_HOST << 8, pdev)))
->> > +		host_bridge_pci_dev_id = pdev->device;
->> > +
->> > +	check = (pdev &&
->> > +
->> (IS_HOST_BRIDGE_PCI_ID_TXX_MICS_3(host_bridge_pci_dev_id)));
->> > +
->> > +	return ((devid == MTL_TXX_MISC3_PLATFORM_ID) ||
-> Condition will be change with correct macro.
->> > +		(devid == ARL_TXX_MISC3_PLATFORM_ID) || check); }
->> 
->> None of this belongs in cx0 PHY code.
-> #3
-> Earlier the c20 TMDS algorithm was display version specific and generic but now we need 
-> compare with platform type for selecting correct value for tx_misc , tx_term_ctrl 
-> Please suggest correct place not to sure to place here as par of the condition below.
-
-The point is, this file is about cx0 PHY implementation, it's not about
-platform identification. Like, what if there'll be another place that
-needs this?
-
-The right place *might* be intel_display_device.[ch] but it might be
-intel_quirks.[ch] too. Or it might be a new file under soc/. Depends.
-
-Is there really no other way than looking at host bridge?
-
->
->> > +
->> > +static u16 intel_c20_hdmi_tmds_tx_cgf_1(struct intel_crtc_state
->> > +*crtc_state) {
->> > +	struct drm_i915_private *dev_priv = to_i915(crtc_state->uapi.crtc-
->> >dev);
->> > +	u16 tx_misc;
->> > +	u16 tx_dcc_cal_dac_ctrl_range = 8;
->> > +	u16 tx_dcc_bypass = 1;
->> > +	u16 tx_term_ctrl;
->> > +
->> > +	if (IS_BATTLEMAGE(dev_priv)) {
->> > +		tx_misc = 0;
->> > +		tx_term_ctrl = 2;
->> > +
->> > +	} else if (DISPLAY_VER(dev_priv) >= 20) {
->> > +		tx_misc = 5;
->> > +		tx_term_ctrl = 4;
->> > +	} else if (IS_METEORLAKE(dev_priv)) {
->> > +		if (intel_c20_tx_mics_3_platform(dev_priv))
->> > +			tx_misc = 3;
->> > +		else
->> > +			tx_misc = 7;
->> > +
->> > +		tx_term_ctrl = 2;
->> > +	}
->> > +	return PHY_C20_A_B_TX_CNTX_CFG_1(tx_misc,
->> tx_dcc_cal_dac_ctrl_range,
->> > +					 tx_dcc_bypass, tx_term_ctrl);
->> > +}
->> > +
->> >  static int intel_c20_compute_hdmi_tmds_pll(struct intel_crtc_state
->> > *crtc_state)  {
->> > -	struct intel_display *display = to_intel_display(crtc_state);
->> >  	struct intel_c20pll_state *pll_state = &crtc_state-
->> >dpll_hw_state.cx0pll.c20;
->> >  	u64 datarate;
->> >  	u64 mpll_tx_clk_div;
->> > @@ -2176,7 +2223,6 @@ static int
->> intel_c20_compute_hdmi_tmds_pll(struct intel_crtc_state *crtc_state)
->> >  	u64 mpll_multiplier;
->> >  	u64 mpll_fracn_quot;
->> >  	u64 mpll_fracn_rem;
->> > -	u16 tx_misc;
->> >  	u8  mpllb_ana_freq_vco;
->> >  	u8  mpll_div_multiplier;
->> >
->> > @@ -2196,11 +2242,6 @@ static int
->> intel_c20_compute_hdmi_tmds_pll(struct intel_crtc_state *crtc_state)
->> >  	mpll_div_multiplier = min_t(u8, div64_u64((vco_freq * 16 + (datarate
->> >> 1)),
->> >  						  datarate), 255);
->> >
->> > -	if (DISPLAY_VER(display) >= 20)
->> > -		tx_misc = 0x5;
->> > -	else
->> > -		tx_misc = 0x0;
->> > -
->> >  	if (vco_freq <= DATARATE_3000000000)
->> >  		mpllb_ana_freq_vco = MPLLB_ANA_FREQ_VCO_3;
->> >  	else if (vco_freq <= DATARATE_3500000000) @@ -2212,7 +2253,7 @@
->> > static int intel_c20_compute_hdmi_tmds_pll(struct intel_crtc_state
->> > *crtc_state)
->> >
->> >  	pll_state->clock	= crtc_state->port_clock;
->> >  	pll_state->tx[0]	= 0xbe88;
->> > -	pll_state->tx[1]	= 0x9800 | C20_PHY_TX_MISC(tx_misc);
->> > +	pll_state->tx[1]	= intel_c20_hdmi_tmds_tx_cgf_1(crtc_state);
->> >  	pll_state->tx[2]	= 0x0000;
->> >  	pll_state->cmn[0]	= 0x0500;
->> >  	pll_state->cmn[1]	= 0x0005;
->> > diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
->> > b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
->> > index 9004b99bb51f..b2417c58ae20 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
->> > +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
->> > @@ -9,6 +9,17 @@
->> >  #include <linux/types.h>
->> >  #include <linux/bitfield.h>
->> >  #include <linux/bits.h>
->> > +#include <linux/pci.h>
->> > +
->> > +#define HOST_BRIDGE_PCI_DEV_ID1 0x7D1C #define
->> > +HOST_BRIDGE_PCI_DEV_ID2 0x7D2D #define HOST_BRIDGE_PCI_DEV_ID3
->> 0x7D2E
->> > +#define HOST_BRIDGE_PCI_DEV_ID4 0x7D2F #define
->> > +IS_HOST_BRIDGE_PCI_ID_TXX_MICS_3(id)  \
->> > +	(((id) == HOST_BRIDGE_PCI_DEV_ID1) || \
->> > +	 ((id) == HOST_BRIDGE_PCI_DEV_ID2) || \
->> > +	 ((id) == HOST_BRIDGE_PCI_DEV_ID3) || \
->> > +	 ((id) == HOST_BRIDGE_PCI_DEV_ID4))
->> >
->> 
->> None of this belongs in cx0 PHY code.
-> Is intel_display_reg_defs.h is good place ?.
-
-No. There's nothing like this in there. And you shouldn't make all the
-macros be about "TXX MISC 3". Identify the platform in one place, in a
-generic way, and use that information in another.
-
-Again, what if there's another part of the driver that needs the same
-identification? It would be really odd to call that "TXX MISC 3".
-
->> 
->> >  enum icl_port_dpll_id;
->> >  struct drm_i915_private;
->> > diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
->> > b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
->> > index 582d6277d20c..b586e569434f 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
->> > +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
->> > @@ -279,9 +279,22 @@
->> >  		((_IS_XE2HPD_C20(i915) ? _XE2HPD_C20_A_TX_CNTX_CFG :
->> > _MTL_C20_A_TX_CNTX_CFG) - (idx))  #define
->> PHY_C20_B_TX_CNTX_CFG(i915, idx) \
->> >  		((_IS_XE2HPD_C20(i915) ? _XE2HPD_C20_B_TX_CNTX_CFG :
->> _MTL_C20_B_TX_CNTX_CFG) - (idx))
->> > -#define   C20_PHY_TX_RATE		REG_GENMASK(2, 0)
->> > -#define   C20_PHY_TX_MISC_MASK		REG_GENMASK16(7, 0)
->> > -#define   C20_PHY_TX_MISC(val)
->> 	REG_FIELD_PREP16(C20_PHY_TX_MISC_MASK, (val))
->> > +#define  C20_PHY_TX_RATE REG_GENMASK(2, 0)
->> > +#define  C20_PHY_TX_MISC_MASK		REG_GENMASK16(7, 0)
->> > +#define  C20_PHY_TX_MISC(val)
->> 	REG_FIELD_PREP16(C20_PHY_TX_MISC_MASK, (val))
->> > +#define  C20_PHY_TX_DCC_CAL_RANGE_MASK	REG_GENMASK16(11,
->> 8)
->> > +#define  C20_PHY_TX_DCC_CAL_RANGE(val) \
->> > +		REG_FIELD_PREP16(C20_PHY_TX_DCC_CAL_RANGE_MASK,
->> (val))
->> > +#define  C20_PHY_TX_DCC_BYPASS_SET	REG_BIT(12)
->> > +#define  C20_PHY_TX_DCC_BYPASS(val)	(val ?
->> C20_PHY_TX_DCC_BYPASS_SET : 0)
->> > +#define  C20_PHY_TX_TERM_CTL_MASK	REG_GENMASK16(15, 13)
->> > +#define  C20_PHY_TX_TERM_CTL(val)
->> 	REG_FIELD_PREP16(C20_PHY_TX_TERM_CTL_MASK, (val))
->> > +#define PHY_C20_A_B_TX_CNTX_CFG_1(tx_misc,
->> tx_dcc_cal_dac_ctrl_range,	\
->> > +				  tx_dcc_bypass, tx_term_ctrl)		\
->> > +		(C20_PHY_TX_MISC(tx_misc) |				\
->> > +		 C20_PHY_TX_DCC_CAL_RANGE(tx_dcc_cal_dac_ctrl_range) |
->> 	\
->> > +		 C20_PHY_TX_DCC_BYPASS(tx_dcc_bypass) |
->> 	\
->> > +		 C20_PHY_TX_TERM_CTL(tx_term_ctrl))
->> 
->> Explain.
-> Yes, 
-> tx[1] (SRAM_GENERIC_<A/B>_TX_CNTX_CFG_1) field is 16 bit field.
-> With  tx_mics mapped to [0:7] bit , txX_dcc_cal_dac_ctrl_range [8:11]
-> txX_dcc_bypass  is 12th bit and txX_term_ctrl mapped to [13:15] bit.
-
-But we only describe the register bits and bitfields here. We don't add
-macros that group a lot of stuff together. You do that where the
-information is used.
-
-Pretty much imagine that the register macros could one day be
-automatically generated, and you'd only have the register fields here,
-nothing else.
-
-BR,
-Jani.
-
->
-> I will add this explanation as well in commit message.
->> 
->> >
->> >  #define PHY_C20_A_CMN_CNTX_CFG(i915, idx) \
->> >  		((_IS_XE2HPD_C20(i915) ? _XE2HPD_C20_A_CMN_CNTX_CFG
->> :
->> > _MTL_C20_A_CMN_CNTX_CFG) - (idx)) diff --git
->> > a/include/drm/intel/pciids.h b/include/drm/intel/pciids.h index
->> > 7632507af166..d88c58534148 100644
->> > --- a/include/drm/intel/pciids.h
->> > +++ b/include/drm/intel/pciids.h
->> > @@ -765,8 +765,12 @@
->> >  	INTEL_ATS_M75_IDS(MACRO__, ## __VA_ARGS__)
->> >
->> >  /* ARL */
->> > +
->> > +#define ARL_TXX_MISC3_PLATFORM_ID 0x7D41 #define
->> > +MTL_TXX_MISC3_PLATFORM_ID 0x7D45
->> 
->> No. Look around you. Do you see a single thing like this?
-> It will be removed as per comment #1.
->
-> Thank you jani for reviewing.
->
-> Dnyaneshwar,
->> 
->> > +
->> >  #define INTEL_ARL_IDS(MACRO__, ...) \
->> > -	MACRO__(0x7D41, ## __VA_ARGS__), \
->> > +	MACRO__(ARL_TXX_MISC3_PLATFORM_ID, ## __VA_ARGS__), \
->> >  	MACRO__(0x7D51, ## __VA_ARGS__), \
->> >  	MACRO__(0x7D67, ## __VA_ARGS__), \
->> >  	MACRO__(0x7DD1, ## __VA_ARGS__), \
->> > @@ -775,7 +779,7 @@
->> >  /* MTL */
->> >  #define INTEL_MTL_IDS(MACRO__, ...) \
->> >  	MACRO__(0x7D40, ## __VA_ARGS__), \
->> > -	MACRO__(0x7D45, ## __VA_ARGS__), \
->> > +	MACRO__(MTL_TXX_MISC3_PLATFORM_ID, ## __VA_ARGS__), \
->> >  	MACRO__(0x7D55, ## __VA_ARGS__), \
->> >  	MACRO__(0x7D60, ## __VA_ARGS__), \
->> >  	MACRO__(0x7DD5, ## __VA_ARGS__)
->> 
->> --
->> Jani Nikula, Intel
-
--- 
-Jani Nikula, Intel
+T24gVHVlLCAyMDI0LTExLTA1IGF0IDE2OjA5ICswNTMwLCBBbmltZXNoIE1hbm5hIHdyb3RlOgo+
+IElzc3VlIGlzIHNlZW4gd2hlbiBQU1IgZW5hYmxlZCB3aXRoIHNldHVwIGZyYW1lcyBhbmQgd2hl
+biB0cnkgdG8KPiBkaXNhYmxlCj4gUFNSIGF0IFNSRE9OQUNLIFN0YXRlICgweDEpLiBQU1IgRlNN
+IGlzIHN0dWNrIGF0IFNSRE9OQUNLKDB4MSkgZm9yCj4gbW9yZQo+IHRoYW4gNSBzZWNvbmRzLiBJ
+c3N1ZSBub3Qgc2VlbiB3aXRoIFNldHVwIGZyYW1lcyBkaXNhYmxlZC4gQ3VycmVudGx5Cj4gZGlz
+YWJsZSBwc3IxIGlmIHNldHVwdGltZSA+IHZibGFuayB0byB3b3JrYXJvdW5kIHRoZSBhYm92ZSBp
+c3N1ZS4KPiAKPiBIU0Q6IDE2MDI0NTk0Njc0Cj4gV0E6IDE4MDM3ODE4ODc2Cj4gCj4gdjE6IElu
+aXRpYWwgdmVyc2lvbgo+IHYyOiBBZGQgZGVidWcgbG9nIGFuZCBzb21lIGNvc21ldGljIGNoYW5n
+ZXMuIFtKb3VuaSwgSmFuaSwgTmVtZXNhXQo+IAo+IFNpZ25lZC1vZmYtYnk6IEFuaW1lc2ggTWFu
+bmEgPGFuaW1lc2gubWFubmFAaW50ZWwuY29tPgoKUmV2aWV3ZWQtYnk6IEpvdW5pIEjDtmdhbmRl
+ciA8am91bmkuaG9nYW5kZXJAaW50ZWwuY29tPgoKPiAtLS0KPiDCoGRyaXZlcnMvZ3B1L2RybS9p
+OTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMgfCAxNiArKysrKysrKysrKysrKysrCj4gwqAxIGZpbGUg
+Y2hhbmdlZCwgMTYgaW5zZXJ0aW9ucygrKQo+IAo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
+cm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jCj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
+bGF5L2ludGVsX3Bzci5jCj4gaW5kZXggNDE3NjE2M2VjMTlhLi5kOGViMGQ0MjdkOGMgMTAwNjQ0
+Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYwo+ICsrKyBi
+L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMKPiBAQCAtMTY0MCw2ICsx
+NjQwLDE1IEBAIF9wYW5lbF9yZXBsYXlfY29tcHV0ZV9jb25maWcoc3RydWN0IGludGVsX2RwCj4g
+KmludGVsX2RwLAo+IMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gdHJ1ZTsKPiDCoH0KPiDCoAo+ICtz
+dGF0aWMgYm9vbCBpbnRlbF9wc3JfbmVlZHNfd2FfMTgwMzc4MTg4NzYoc3RydWN0IGludGVsX2Rw
+Cj4gKmludGVsX2RwLAo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHN0cnVjdCBpbnRlbF9j
+cnRjX3N0YXRlCj4gKmNydGNfc3RhdGUpCj4gK3sKPiArwqDCoMKgwqDCoMKgwqBzdHJ1Y3QgaW50
+ZWxfZGlzcGxheSAqZGlzcGxheSA9IHRvX2ludGVsX2Rpc3BsYXkoaW50ZWxfZHApOwo+ICsKPiAr
+wqDCoMKgwqDCoMKgwqByZXR1cm4gKERJU1BMQVlfVkVSKGRpc3BsYXkpID09IDIwICYmIGludGVs
+X2RwLQo+ID5wc3IuZW50cnlfc2V0dXBfZnJhbWVzID4gMCAmJgo+ICvCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqAhY3J0Y19zdGF0ZS0+aGFzX3NlbF91cGRhdGUpOwo+ICt9Cj4gKwo+IMKg
+dm9pZCBpbnRlbF9wc3JfY29tcHV0ZV9jb25maWcoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCwK
+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgIHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlICpjcnRjX3N0YXRlLAo+IMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgc3RydWN0IGRybV9j
+b25uZWN0b3Jfc3RhdGUgKmNvbm5fc3RhdGUpCj4gQEAgLTE2ODYsNiArMTY5NSwxMyBAQCB2b2lk
+IGludGVsX3Bzcl9jb21wdXRlX2NvbmZpZyhzdHJ1Y3QgaW50ZWxfZHAKPiAqaW50ZWxfZHAsCj4g
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXR1cm47Cj4gwqAKPiDCoMKgwqDCoMKg
+wqDCoMKgY3J0Y19zdGF0ZS0+aGFzX3NlbF91cGRhdGUgPQo+IGludGVsX3NlbF91cGRhdGVfY29u
+ZmlnX3ZhbGlkKGludGVsX2RwLCBjcnRjX3N0YXRlKTsKPiArCj4gK8KgwqDCoMKgwqDCoMKgLyog
+V2FfMTgwMzc4MTg4NzYgKi8KPiArwqDCoMKgwqDCoMKgwqBpZiAoaW50ZWxfcHNyX25lZWRzX3dh
+XzE4MDM3ODE4ODc2KGludGVsX2RwLCBjcnRjX3N0YXRlKSkgewo+ICvCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqBjcnRjX3N0YXRlLT5oYXNfcHNyID0gZmFsc2U7Cj4gK8KgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoGRybV9kYmdfa21zKGRpc3BsYXktPmRybSwKPiArwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAiUFNSIGRpc2FibGVk
+IHRvIHdvcmthcm91bmQgUFNSIEZTTSBoYW5nCj4gaXNzdWVcbiIpOwo+ICvCoMKgwqDCoMKgwqDC
+oH0KPiDCoH0KPiDCoAo+IMKgdm9pZCBpbnRlbF9wc3JfZ2V0X2NvbmZpZyhzdHJ1Y3QgaW50ZWxf
+ZW5jb2RlciAqZW5jb2RlciwKCg==
