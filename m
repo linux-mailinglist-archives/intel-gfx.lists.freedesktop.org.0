@@ -2,59 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DEE89CF60D
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Nov 2024 21:30:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D73E99CF661
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Nov 2024 21:51:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6925410E3E1;
-	Fri, 15 Nov 2024 20:29:54 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GaWrZ8zT";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA93810E173;
+	Fri, 15 Nov 2024 20:51:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1390A10E3E1;
- Fri, 15 Nov 2024 20:29:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731702594; x=1763238594;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=XSUv9m5qVvNMSRmKF5P6IsrVhp+zWJUrO/gtkor3KpE=;
- b=GaWrZ8zTP0musaNmgKLXn9g7rqsdIffoG905cVEYcx34YnJjMVa3U5QK
- U41bd+y5WZIsBdQvLCVEE6wAgr5L2dW3lVlDbj5PqdYRQf0uQgtusSOZy
- LVMXbtvbbOjBi+xaTyDG/h0urCzUAomckkJ2pMuHweP2/tIjq7uaUzNzp
- ioSvN6zrE/Gt0YCiEoTon+zvEscelqZh3RYLBIU7V0/Vx1zidE9Q0hVk7
- dNDrtuV7rQ3aNNZNDTZvO6TrLTgDhCcc6pvNcs0XzQIk3w32nFQXXgJr8
- lm8wcmncSk49eD8q4t60VvGUZLNRZsFOsm1/ANeqyMdlbldY5Ov/QmHSp g==;
-X-CSE-ConnectionGUID: /nMYzdlzRpGITXfwrM9xNQ==
-X-CSE-MsgGUID: hgC2c8+WQqGcRpVoWISruQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11257"; a="54229273"
-X-IronPort-AV: E=Sophos;i="6.12,157,1728975600"; d="scan'208";a="54229273"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2024 12:29:47 -0800
-X-CSE-ConnectionGUID: Kqshr5sLRRaTnHCWvk8xdA==
-X-CSE-MsgGUID: 88m3Nl0GSvWRKV1TCIVpbA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,157,1728975600"; d="scan'208";a="93752174"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2024 12:29:46 -0800
-Date: Fri, 15 Nov 2024 22:30:12 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Jani Nikula <jani.nikula@intel.com>
-Subject: Re: [PATCH 1/4] drm/i915/dp_mst: Fix connector initialization in
- intel_dp_add_mst_connector()
-Message-ID: <ZzevVE-MM4iFz1T_@ideak-desk.fi.intel.com>
-References: <20241115164159.1081675-1-imre.deak@intel.com>
- <ZzetKr-rApPqmehO@intel.com>
+Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CAB2F10E173;
+ Fri, 15 Nov 2024 20:51:21 +0000 (UTC)
+Message-ID: <35d58bad-670e-46db-85fa-33d8f97c453e@lankhorst.se>
+Date: Fri, 15 Nov 2024 21:51:19 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZzetKr-rApPqmehO@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 6/9] drm/xe/sriov: Move VF bootstrap and query_config to
+ vf_guc_init
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Maarten Lankhorst <maarten@lankhorst.se>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+References: <20241107100140.292928-1-maarten.lankhorst@linux.intel.com>
+ <20241107100140.292928-6-maarten.lankhorst@linux.intel.com>
+ <ZzYguKUVI6DSpNvL@intel.com>
+ <4698fb99-209c-4e66-a364-232884bcdf9b@lankhorst.se>
+ <ZzebyT2n7Yawvugg@intel.com>
+ <ba5aef93-83a9-45f0-8d92-c9871fb264b5@lankhorst.se>
+ <Zzeo2Ntxaq3fQgbC@intel.com>
+Content-Language: en-US
+From: Maarten Lankhorst <dev@lankhorst.se>
+In-Reply-To: <Zzeo2Ntxaq3fQgbC@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,69 +47,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Nov 15, 2024 at 03:20:58PM -0500, Rodrigo Vivi wrote:
-> On Fri, Nov 15, 2024 at 06:41:56PM +0200, Imre Deak wrote:
-> > The connector initialization in intel_dp_add_mst_connector() depends on
-> > the device pointer in connector to be valid, at least by connector
-> > debug printing. The device pointer is initialized by drm_connector_init(),
-> > however that function also exposes the connector to in-kernel users,
-> > which can't be done before the connector is fully initialized. For now
-> > make sure the device pointer is valid before it's used, until a
-> > follow-up change moving this to DRM core.
-> > 
-> > This issue was revealed by the commit in the Fixes: line below, before
-> > which the above debug printing checked and handled a NULL device pointer
-> > gracefully in DRM core.
-> > 
-> > Cc: Jani Nikula <jani.nikula@intel.com>
-> > Fixes: 529798bd786a ("drm/i915/mst: convert to struct intel_display")
-> 
-> This is awkward. This patch actually removes callers of base.dev.
-> I don't see how that it could be causing this new null dereference.
 
-It adds
 
-struct intel_display *display = to_intel_display(connector);
+Den 2024-11-15 kl. 21:02, skrev Rodrigo Vivi:
+> On Fri, Nov 15, 2024 at 08:50:01PM +0100, Maarten Lankhorst wrote:
+>> Hey,
+>>
+>> Den 2024-11-15 kl. 20:06, skrev Rodrigo Vivi:
+>>> On Fri, Nov 15, 2024 at 03:21:43PM +0100, Maarten Lankhorst wrote:
+>>>> Hey,
+>>>>
+>>>> Den 2024-11-14 kl. 17:09, skrev Rodrigo Vivi:
+>>>>> On Thu, Nov 07, 2024 at 11:01:37AM +0100, Maarten Lankhorst wrote:
+>>>>>> We want to split up GUC init to an alloc and noalloc part to keep the
+>>>>>> init path the same for VF and !VF as much as possible.
+>>>>>>
+>>>>>> Everything in vf_guc_init should be done as early as possible, otherwise
+>>>>>> VRAM probing becomes impossible.
+>>>>>>
+>>>>>> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+>>>>>> Link: https://patchwork.freedesktop.org/patch/msgid/20241105121857.17389-6-maarten.lankhorst@linux.intel.com
+>>>>>> Signed-off-by: Maarten Lankhorst,,, <dev@lankhorst.se>
+>>>>>> ---
+>>>>>>    drivers/gpu/drm/xe/xe_gt_sriov_vf.c |  1 -
+>>>>>>    drivers/gpu/drm/xe/xe_guc.c         | 17 +++++++++--------
+>>>>>>    2 files changed, 9 insertions(+), 9 deletions(-)
+>>>>>>
+>>>>>> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+>>>>>> index cca5d57328021..997438047a037 100644
+>>>>>> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+>>>>>> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+>>>>>> @@ -948,7 +948,6 @@ u32 xe_gt_sriov_vf_read32(struct xe_gt *gt, struct xe_reg reg)
+>>>>>>    	struct vf_runtime_reg *rr;
+>>>>>>    	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
+>>>>>> -	xe_gt_assert(gt, gt->sriov.vf.pf_version.major);
+>>>>>>    	xe_gt_assert(gt, !reg.vf);
+>>>>>>    	if (reg.addr == GMD_ID.addr) {
+>>>>>> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+>>>>>> index 7224593c9ce9b..5a050a5379911 100644
+>>>>>> --- a/drivers/gpu/drm/xe/xe_guc.c
+>>>>>> +++ b/drivers/gpu/drm/xe/xe_guc.c
+>>>>>> @@ -301,6 +301,7 @@ static int xe_guc_realloc_post_hwconfig(struct xe_guc *guc)
+>>>>>>    static int vf_guc_init(struct xe_guc *guc)
+>>>>>>    {
+>>>>>> +	struct xe_gt *gt = guc_to_gt(guc);
+>>>>>>    	int err;
+>>>>>>    	xe_guc_comm_init_early(guc);
+>>>>>> @@ -313,6 +314,14 @@ static int vf_guc_init(struct xe_guc *guc)
+>>>>>>    	if (err)
+>>>>>>    		return err;
+>>>>>> +	err = xe_gt_sriov_vf_bootstrap(gt);
+>>>>>> +	if (err)
+>>>>>> +		return err;
+>>>>>> +
+>>>>>> +	err = xe_gt_sriov_vf_query_config(gt);
+>>>>>> +	if (err)
+>>>>>> +		return err;
+>>>>>> +
+>>>>>>    	return 0;
+>>>>>>    }
+>>>>>> @@ -753,14 +762,6 @@ static int vf_guc_min_load_for_hwconfig(struct xe_guc *guc)
+>>>>> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>>>>>
+>>>>> as I believe there was a good reason for these functions to be called this early.
+>>>>
+>>>> This is in fact called slightly earlier than before. It's now called in xe_uc_init instead of xe_uc_init_hwconfig. :-)
+>>>
+>>> Oh! Indeed! one step earlier actually... that name min_for_hwconfig got me confused, I'm sorry.
+>>>
+>>> The only difference that I see now is that this functions are not avoided anymore if xe.force_execlist=1...
+>>>
+>>> We should probably add some skips inside the function? I know I know we likely have many other bugs
+>>> if using force_execlists, but let's at least try to avoid introducing more cases...
+>>
+>> I don't think it's even possible to use execists in VF mode. :-)
+> 
+> yeap, it is not... this is why we should ensure these functions are not called, liked
+> they were not called before this patch...
+Why are we even here with execlists in VF mode? This is insane..
 
-which will be NULL since connector->base.dev is NULL and later display
-is dereferenced.
+Should refuse to load as soon as VF mode is detected.
 
-> > Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12799
-> 
-> But well, trusting more the tests then my eyes, let's move forward.
-> 
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> 
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_dp_mst.c | 10 ++++++++++
-> >  1 file changed, 10 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > index df7edcfe885b6..f058360a26413 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > @@ -1727,6 +1727,16 @@ static struct drm_connector *intel_dp_add_mst_connector(struct drm_dp_mst_topolo
-> >  
-> >  	intel_dp_init_modeset_retry_work(intel_connector);
-> >  
-> > +	/*
-> > +	 * TODO: The following drm_connector specific initialization belongs
-> > +	 * to DRM core, however it happens atm too late in
-> > +	 * drm_connector_init(). That function will also expose the connector
-> > +	 * to in-kernel users, so it can't be called until the connector is
-> > +	 * sufficiently initialized; init the device pointer used by the
-> > +	 * following DSC setup, until a fix moving this to DRM core.
-> > +	 */
-> > +	intel_connector->base.dev = mgr->dev;
-> > +
-> >  	intel_connector->dp.dsc_decompression_aux = drm_dp_mst_dsc_aux_for_port(port);
-> >  	intel_dp_mst_read_decompression_port_dsc_caps(intel_dp, intel_connector);
-> >  	intel_connector->dp.dsc_hblank_expansion_quirk =
-> > -- 
-> > 2.44.2
-> > 
+Cheers,
+~Maarten
