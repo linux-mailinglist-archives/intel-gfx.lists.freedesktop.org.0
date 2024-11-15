@@ -2,65 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43D759CD95E
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Nov 2024 07:59:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 780A79CD6A2
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Nov 2024 06:46:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB6FD10E3A0;
-	Fri, 15 Nov 2024 06:59:33 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G2PBNUf9";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2406210E05A;
+	Fri, 15 Nov 2024 05:46:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 417EF10E00F;
- Fri, 15 Nov 2024 06:59:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731653972; x=1763189972;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=1jlZEkviRKioQw0a2Kvop97hPoGUlRhDmZt3HdTyPGA=;
- b=G2PBNUf9LS7R00yqMGmjtbCHCyRgDMXqyZMHIUgTH3OJTesUgJGloNcx
- CyMNH7GE1mIn/YL2oaF5QGmyDWC/imXr9BjUse5rVo7gt9rUM+XdRQYYv
- luQgIlGWdkiIuhGJcX43kya2+XETZPS5oradUPX3TQjH4TWYZh2MYM16i
- FhMgqGsvefIGz7PKnooHhw04308yq4qaHlam16sHOlMKJQf0uw2K5Il7T
- uIqSUM8YMlB/f4ZeXDPtxhRp3G84HDk+F6U/i7mHze9LwGFFnanHOikZr
- vF+rHj+HVx/ORr4G4ILLnSMmR9w6wx34+j31Pj9gB16vW+icZt5k1Xa7w g==;
-X-CSE-ConnectionGUID: JXX0Of5zQImHnsiMzxBxxw==
-X-CSE-MsgGUID: l+wTzVHNQ8CxS9FMUCVT4g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11256"; a="31780014"
-X-IronPort-AV: E=Sophos;i="6.12,156,1728975600"; d="scan'208";a="31780014"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2024 16:03:24 -0800
-X-CSE-ConnectionGUID: ZMwCYSwNStuoCVH1gtD6MQ==
-X-CSE-MsgGUID: nnQdEjCmQqa9JtQcU2ihuQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,155,1728975600"; d="scan'208";a="93440706"
-Received: from ldmartin-desk2.corp.intel.com (HELO ldmartin-desk2)
- ([10.125.108.90])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2024 16:03:21 -0800
-Date: Thu, 14 Nov 2024 18:03:13 -0600
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Dave Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-xe-fixes
-Message-ID: <5ntcf2ssmmvo5dsf2mdcee4guwwmpbm3xrlufgt2pdfmznzjo3@62ygo3bxkock>
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 20FB810E05A;
+ Fri, 15 Nov 2024 05:46:33 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Introduce_DRM_device?=
+ =?utf-8?q?_wedged_event_=28rev7=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Raag Jadav" <raag.jadav@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 15 Nov 2024 05:46:33 -0000
+Message-ID: <173164959312.90813.15189305095661788819@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241115050733.806934-1-raag.jadav@intel.com>
+In-Reply-To: <20241115050733.806934-1-raag.jadav@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,55 +37,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave and Simona,
+== Series Details ==
 
-A few more drm-xe fixes for this week.
+Series: Introduce DRM device wedged event (rev7)
+URL   : https://patchwork.freedesktop.org/series/138069/
+State : warning
 
-thanks
-Lucas De Marchi
+== Summary ==
 
-drm-xe-fixes-2024-11-14:
-Driver Changes:
-- Fix unlock on exec ioctl error path (Matthew Brost)
-- Fix hibernation on LNL due to ggtt getting lost
-   (Matthew Brost / Matthew Auld)
-- Fix missing runtime PM in OA release (Ashutosh)
-The following changes since commit 2d5404caa8c7bb5c4e0435f94b28834ae5456623:
+Error: dim checkpatch failed
+06ae6f60e8d0 drm: Introduce device wedged event
+-:177: WARNING:STATIC_CONST_CHAR_ARRAY: char * array declaration might be better as static const
+#177: FILE: drivers/gpu/drm/drm_drv.c:539:
++	char *envp[] = { event_string, NULL };
 
-   Linux 6.12-rc7 (2024-11-10 14:19:35 -0800)
+total: 0 errors, 1 warnings, 0 checks, 102 lines checked
+11b8a665faa0 drm/doc: Document device wedged event
+1a472f3ac74e drm/xe: Use device wedged event
+-:20: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#20: 
+KERNEL[265.802982] change   /devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/0000:03:00.0/drm/card0 (drm)
 
-are available in the Git repository at:
+total: 0 errors, 1 warnings, 0 checks, 24 lines checked
+3a89da3a5080 drm/i915: Use device wedged event
 
-   https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-fixes-2024-11-14
 
-for you to fetch changes up to c0403e4ceecaefbeaf78263dffcd3e3f06a19f6b:
-
-   drm/xe/oa: Fix "Missing outer runtime PM protection" warning (2024-11-13 11:37:22 -0800)
-
-----------------------------------------------------------------
-Driver Changes:
-- Fix unlock on exec ioctl error path (Matthew Brost)
-- Fix hibernation on LNL due to ggtt getting lost
-   (Matthew Brost / Matthew Auld)
-- Fix missing runtime PM in OA release (Ashutosh)
-
-----------------------------------------------------------------
-Ashutosh Dixit (1):
-       drm/xe/oa: Fix "Missing outer runtime PM protection" warning
-
-Matthew Auld (2):
-       drm/xe: improve hibernation on igpu
-       drm/xe: handle flat ccs during hibernation on igpu
-
-Matthew Brost (2):
-       drm/xe: Ensure all locks released in exec IOCTL
-       drm/xe: Restore system memory GGTT mappings
-
-  drivers/gpu/drm/xe/xe_bo.c       | 43 +++++++++++++++++++++-------------------
-  drivers/gpu/drm/xe/xe_bo_evict.c | 20 +++++++++++--------
-  drivers/gpu/drm/xe/xe_exec.c     |  4 ++--
-  drivers/gpu/drm/xe/xe_oa.c       |  2 ++
-  4 files changed, 39 insertions(+), 30 deletions(-)
