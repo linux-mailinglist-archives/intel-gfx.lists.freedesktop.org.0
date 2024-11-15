@@ -2,57 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D98C79CF1CF
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Nov 2024 17:41:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 58E5A9CF261
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Nov 2024 18:08:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2614710E8A2;
-	Fri, 15 Nov 2024 16:41:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6336110E8AA;
+	Fri, 15 Nov 2024 17:08:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VlWZjcNz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kUPyX7ZJ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D4BF810E187;
- Fri, 15 Nov 2024 16:41:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E8FEF10E115;
+ Fri, 15 Nov 2024 17:08:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731688888; x=1763224888;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=1MkKQOlRR6eQEXqw3+vcN6WiR3YDSGfckt5F1GJLyHY=;
- b=VlWZjcNzfPj+HRW0u6b+9xlLXF/V/S1wpsPkmtqmXv77oaPQwQjlxlNO
- oheast5a5vzMNpO/zh2BXjte9lL8zAJQgp52QziE8bYht/bzEZCce7O97
- WGZNkrKCgtSiqONWV+/TRFDpsq5n75QS+3f6OggEFXuXF7lgmnFhjcHBc
- PbinmNa3gzdMjdWbq2F14xl8aDQv94BptOrE8wKw5DS7mELvRa2bOWPBr
- BgssFe2rigUujzka5W7Hris73f0A3K6qSsglW4Eap+vtv99dH3941jhRb
- gWfLdrEFCLbQd1Qa64Ul8RkGj48ZCL9yFn46plPXot5urWwXngm2uk9ii g==;
-X-CSE-ConnectionGUID: /SnVuNkJTSuEAq+kubvdzA==
-X-CSE-MsgGUID: g6WoW4dgTcSzMh3tkJo7Fw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11257"; a="31087079"
-X-IronPort-AV: E=Sophos;i="6.12,157,1728975600"; d="scan'208";a="31087079"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2024 08:41:27 -0800
-X-CSE-ConnectionGUID: KkcCBGWTRPmWbEed8zLxqg==
-X-CSE-MsgGUID: 1dk9/6uhSOWmwUoo+EWm0Q==
+ t=1731690499; x=1763226499;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=fqLyprx/EZWTVQNpk3Uy2PjBQSkjQuKKklPivbHeUlg=;
+ b=kUPyX7ZJcAELWcu+CPaTe7cPLvjSy+vudL3oVKunts0ppxAHR3HIfquO
+ zYtLAk4aLlBUMAO2MtTUZ20PL90+bPsw75JZejR+QaIMuoeThJubU9vAd
+ 9hU0KsUv9HrHCdE3a/xCnxXQjwdurqttVp/ZuA0IfjFHxebjH4v3kmdBX
+ gasqvuagTILqz6PxHISFqimzARqdVe2e0yu8p3fuDLO78xt+0Tn/baEzi
+ nZmrAvz3XyqNYzUW2kN+LZqkRJIZi0aXnME27K2C28XKxJ1FyLCpaWvIj
+ Vt9wkIm2ATMhUanY/oYHjs8hvM+tdsQS59joaL5iNcJhbcb71o8mF87Mw A==;
+X-CSE-ConnectionGUID: DSqd+qF6S26+IAfZgKcvmQ==
+X-CSE-MsgGUID: BpnJkk9PTFi1MJMxRejqSg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11257"; a="31463592"
+X-IronPort-AV: E=Sophos;i="6.12,157,1728975600"; d="scan'208";a="31463592"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2024 09:08:19 -0800
+X-CSE-ConnectionGUID: G2W2d6L/SP6LDyrkE2nY1A==
+X-CSE-MsgGUID: WLFxe9dOQhiGdV+26D4OVg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,157,1728975600"; d="scan'208";a="119554624"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2024 08:41:27 -0800
-From: Imre Deak <imre.deak@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Subject: [PATCH 4/4] drm/i915/dp_mst: Fix error handling while adding a
- connector
-Date: Fri, 15 Nov 2024 18:41:59 +0200
-Message-ID: <20241115164159.1081675-4-imre.deak@intel.com>
-X-Mailer: git-send-email 2.44.2
-In-Reply-To: <20241115164159.1081675-1-imre.deak@intel.com>
-References: <20241115164159.1081675-1-imre.deak@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,157,1728975600"; d="scan'208";a="93689812"
+Received: from kamilkon-desk.igk.intel.com (HELO localhost) ([10.102.138.187])
+ by orviesa004-auth.jf.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Nov 2024 09:08:18 -0800
+Date: Fri, 15 Nov 2024 18:08:02 +0100
+From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+Cc: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH i-g-t] intel-ci: Blocklist igt@i915_module_load@load
+Message-ID: <20241115170802.vl3acfneqswfjwgz@kamilkon-desk.igk.intel.com>
+Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ igt-dev@lists.freedesktop.org,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+References: <20241115145854.19330-2-janusz.krzysztofik@linux.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20241115145854.19330-2-janusz.krzysztofik@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,61 +72,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-After an error during adding an MST connector the MST port and the
-intel_connector object could be leaked, fix this up.
+Hi Janusz,
+On 2024-11-15 at 15:58:19 +0100, Janusz Krzysztofik wrote:
+> This test expects the i915 module not loaded, and it SKIPs if it finds one
+> already loaded.  It was intended only for CI BAT runs as the very first
+> test executed.  It's not suitable for CI runs with random test selection
+> and ordering.
+> 
+> Since omitting it from non-BAT runs doesn't affect coverage, blocklist it
+> instead of maintaining as expected SKIP.
+> 
+> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6227
+> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 
-Signed-off-by: Imre Deak <imre.deak@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 17 +++++++++--------
- 1 file changed, 9 insertions(+), 8 deletions(-)
+Acked-by: Kamil Konieczny <kamil.konieczny@linux.intel.com>
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index d91a1d1fb26f4..70daa9131c92d 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -1731,11 +1731,8 @@ static struct drm_connector *intel_dp_add_mst_connector(struct drm_dp_mst_topolo
- 
- 	ret = drm_connector_init_core(display->drm, connector, &intel_dp_mst_connector_funcs,
- 				      DRM_MODE_CONNECTOR_DisplayPort);
--	if (ret) {
--		drm_dp_mst_put_port_malloc(port);
--		intel_connector_free(intel_connector);
--		return NULL;
--	}
-+	if (ret)
-+		goto err_put_port;
- 
- 	intel_connector->dp.dsc_decompression_aux = drm_dp_mst_dsc_aux_for_port(port);
- 	intel_dp_mst_read_decompression_port_dsc_caps(intel_dp, intel_connector);
-@@ -1750,12 +1747,12 @@ static struct drm_connector *intel_dp_add_mst_connector(struct drm_dp_mst_topolo
- 
- 		ret = drm_connector_attach_encoder(&intel_connector->base, enc);
- 		if (ret)
--			goto err;
-+			goto err_cleanup_connector;
- 	}
- 
- 	ret = intel_dp_mst_add_properties(intel_dp, connector, pathprop);
- 	if (ret)
--		goto err;
-+		goto err_cleanup_connector;
- 
- 	ret = intel_dp_hdcp_init(dig_port, intel_connector);
- 	if (ret)
-@@ -1766,8 +1763,12 @@ static struct drm_connector *intel_dp_add_mst_connector(struct drm_dp_mst_topolo
- 
- 	return connector;
- 
--err:
-+err_cleanup_connector:
- 	drm_connector_cleanup(connector);
-+err_put_port:
-+	drm_dp_mst_put_port_malloc(port);
-+	intel_connector_free(intel_connector);
-+
- 	return NULL;
- }
- 
--- 
-2.44.2
-
+> ---
+>  tests/intel-ci/blacklist.txt | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
+> diff --git a/tests/intel-ci/blacklist.txt b/tests/intel-ci/blacklist.txt
+> index cfc5491d53..cdbfbcaef9 100644
+> --- a/tests/intel-ci/blacklist.txt
+> +++ b/tests/intel-ci/blacklist.txt
+> @@ -4,6 +4,16 @@
+>  igt@xe.*
+>  
+>  igt@meta_test(@.*)?
+> +
+> +###############################################
+> +# Expects the i915 module not loaded, SKIPs if one is loaded.
+> +# Intended only for CI BAT runs as the very first test executed.
+> +# Not suitable for CI runs with random test selection and ordering.
+> +# Omitting it from non-BAT runs doesn't affect coverage, then
+> +# let's blocklist it instead of maintainig as expected SKIP.
+> +###############################################
+> +igt@i915_module_load@load
+> +
+>  ###############################################
+>  # Handle module reloads with great care!
+>  #
+> -- 
+> 2.47.0
+> 
