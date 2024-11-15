@@ -2,36 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44D379CF187
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Nov 2024 17:33:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E60529CF0DF
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Nov 2024 17:01:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EEC0610E8A0;
-	Fri, 15 Nov 2024 16:33:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 04DAD10E2D3;
+	Fri, 15 Nov 2024 16:01:30 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ptv1rnbi";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A583882AF;
- Wed, 13 Nov 2024 16:29:43 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id 1E460A40851;
- Wed, 13 Nov 2024 16:27:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5815DC4CEC3;
- Wed, 13 Nov 2024 16:29:40 +0000 (UTC)
-Date: Wed, 13 Nov 2024 18:29:34 +0200
-From: Zhi Wang <zhiw@nvidia.com>
-To: Zhenyu Wang <zhenyuw@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
- Zhi Wang <zhi.wang.linux@gmail.com>, Zhiyuan Lv <zhiyuan.lv@intel.com>,
- James Wu <james.y.wu@intel.com>, Zhenyu Wang <zhenyuw.linux@gmail.com>
-Subject: Re: [PATCH] MAINTAINERS: switch my mail address for GVT driver
-Message-ID: <20241113182934.00001919.zhiw@nvidia.com>
-In-Reply-To: <20241113063700.4460-1-zhenyuw@linux.intel.com>
-References: <20241113063700.4460-1-zhenyuw@linux.intel.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.34; x86_64-w64-mingw32)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA2CA10E0A3;
+ Fri, 15 Nov 2024 16:01:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1731686489; x=1763222489;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=XsTeGkmG9i6S6OiNlnKzy5a/WQ30dIM4QBUohrPHpGQ=;
+ b=Ptv1rnbiofWKMjJOzE1CF+MFsZ96WScwUAP6wKnrU5ayVdq2tbW2OF2w
+ zppokHpdaJyixhsex373RpCR/6BUK1uso33/x4RJIWpSNNe91rzHE3oCi
+ RcUddFW/4pg+58GPJXzVo1n5cTxCf4JVrQBMJfA4jZ2Lw9vV3rnRp1UJi
+ 1fz2hOlZC7qlS1IFYRS+h7fj+SE4l03iX14Pmj0tZ90BZY62dbx3PI/xq
+ mj5DAoRV/G7yYbx7s4LYEzNEMZo69uoi5n7vdYLA+CQ5C6s5wkviHlZXK
+ xvfPH5/Z460zHNVFZlL8LWCAzAV6vKhqmUEsm23cPV8juec8BvQKXkBAu Q==;
+X-CSE-ConnectionGUID: 7slcn0KVTDK6c7rUvJQYIQ==
+X-CSE-MsgGUID: 10xRveSaRhifPy60zeJzHQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11257"; a="31456777"
+X-IronPort-AV: E=Sophos;i="6.12,157,1728975600"; d="scan'208";a="31456777"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2024 08:01:28 -0800
+X-CSE-ConnectionGUID: 5aB7TvDVSGyc6sexrUXG+w==
+X-CSE-MsgGUID: CMJb3B75S46386j9M9U7Lg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,157,1728975600"; d="scan'208";a="88760617"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
+ by orviesa006.jf.intel.com with ESMTP; 15 Nov 2024 08:01:26 -0800
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: vinod.govindapillai@intel.com, jani.nikula@intel.com,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH 1/6] drm/i915/wm: Initialize max_latency variable to
+ appropriate value
+Date: Fri, 15 Nov 2024 21:31:11 +0530
+Message-Id: <20241115160116.1436521-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Fri, 15 Nov 2024 16:33:22 +0000
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,34 +67,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 13 Nov 2024 14:37:00 +0800
-Zhenyu Wang <zhenyuw@linux.intel.com> wrote:
+Initialize max_latency variable to LNL_PKG_C_LATENCY_MASK which helps
+to eliminate the else block and make the whole code a lot cleaner.
+While we are at it group the initialized variable together.
 
-Acked-by: Zhi Wang <zhiwang@kernel.org>
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ drivers/gpu/drm/i915/display/skl_watermark.c | 6 +-----
+ 1 file changed, 1 insertion(+), 5 deletions(-)
 
-> I won't be able to use intel account, so this switchs address to my
-> gmail account.
-> 
-> Cc: Zhi Wang <zhi.wang.linux@gmail.com>
-> Cc: Zhiyuan Lv <zhiyuan.lv@intel.com>
-> Cc: James Wu <james.y.wu@intel.com>
-> Cc: Zhenyu Wang <zhenyuw.linux@gmail.com>
-> Signed-off-by: Zhenyu Wang <zhenyuw@linux.intel.com>
-> ---
->  MAINTAINERS | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 21fdaa19229a..5170ab32654c 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -11423,7 +11423,7 @@ F:	drivers/gpio/gpio-tangier.c
->  F:	drivers/gpio/gpio-tangier.h
->  
->  INTEL GVT-g DRIVERS (Intel GPU Virtualization)
-> -M:	Zhenyu Wang <zhenyuw@linux.intel.com>
-> +M:	Zhenyu Wang <zhenyuw.linux@gmail.com>
->  M:	Zhi Wang <zhi.wang.linux@gmail.com>
->  L:	intel-gvt-dev@lists.freedesktop.org
->  L:	intel-gfx@lists.freedesktop.org
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index 1a4c1fa24820..a49e8915346e 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -2857,9 +2857,8 @@ static int skl_wm_add_affected_planes(struct intel_atomic_state *state,
+ static void
+ skl_program_dpkgc_latency(struct drm_i915_private *i915, bool enable_dpkgc)
+ {
+-	u32 max_latency = 0;
++	u32 max_latency = LNL_PKG_C_LATENCY_MASK, added_wake_time = 0;
+ 	u32 clear = 0, val = 0;
+-	u32 added_wake_time = 0;
+ 
+ 	if (DISPLAY_VER(i915) < 20)
+ 		return;
+@@ -2870,9 +2869,6 @@ skl_program_dpkgc_latency(struct drm_i915_private *i915, bool enable_dpkgc)
+ 			max_latency = LNL_PKG_C_LATENCY_MASK;
+ 		added_wake_time = DSB_EXE_TIME +
+ 			i915->display.sagv.block_time_us;
+-	} else {
+-		max_latency = LNL_PKG_C_LATENCY_MASK;
+-		added_wake_time = 0;
+ 	}
+ 
+ 	clear |= LNL_ADDED_WAKE_TIME_MASK | LNL_PKG_C_LATENCY_MASK;
+-- 
+2.34.1
 
