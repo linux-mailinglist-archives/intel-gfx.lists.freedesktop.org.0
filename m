@@ -2,64 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 199819CDD42
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 Nov 2024 12:11:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA4A39CDDA5
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 Nov 2024 12:44:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D62EE10E857;
-	Fri, 15 Nov 2024 11:10:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 00C4110E124;
+	Fri, 15 Nov 2024 11:44:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mko7yFdP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c4YwuRn5";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3977210E002;
- Fri, 15 Nov 2024 11:10:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3836F10E124;
+ Fri, 15 Nov 2024 11:44:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1731669057; x=1763205057;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=inicd7qMAXnWNGd+kIssvayBlHuA+3dQZDjZmsPDGUY=;
- b=mko7yFdPfPRHl+PJitN0EWRE2hgo0wBSVk2kJYs8qZLfqVJGgKR77Yes
- VQqg1sWLhtlH74yNNRTzGJKGyBusYxCCXe8p3hJ/ZBMjkipZjL3thdTQk
- RMsRo+eqqy6f4TVwGIfyhl7YxXHoGWW+C8LbsUT52HA8pn+VHbyn4wbEc
- 3ux/pIpmY6n7f+6XhX6tBe75+M9t9DgkswhA7vCQL0P+jJbNu2YMCPX90
- HuGnznJNv0shVaBHGk5nKJKlerWobVa4k5QjJYwYD/m1N/BbGNGhjuFZX
- nr0QbUv23lCmQlKJWD9Zk6t/kHd0tW+P7gpTWB6P4ysagKWN83s5f114A g==;
-X-CSE-ConnectionGUID: k0mJVDbKT8m/+5cw+dWITg==
-X-CSE-MsgGUID: Kf9yh/FIT4Wc6qwQfRMtbA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11256"; a="57088006"
-X-IronPort-AV: E=Sophos;i="6.12,156,1728975600"; d="scan'208";a="57088006"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2024 03:10:56 -0800
-X-CSE-ConnectionGUID: OvvfHNylTme7qaEqkaPPTg==
-X-CSE-MsgGUID: taTsBs9rRSyzsTeO/UHYJA==
+ t=1731671056; x=1763207056;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=e3VUqcB0z8GQT/NfcjCoDhUlNNQ4/oKCH2EfpnkhlG0=;
+ b=c4YwuRn5XCa3mGTrUI8YE+J2bZ9oOF1PxPGD3hMqIBI06KOERw1l8NvC
+ YveUceVgk5rY+9wddQY5tlt9YmbO6k0Vt/8g5/8mOATdpzTldORGSwojc
+ kzODPjHZyiG5nAPRt9HyLbuRMD6JhsdxjsBfAxvjBDFCqisuSBRj7vctE
+ HPFagSUO/UUcF9+0iB8EBUiAwQzEWeOf686HJOjP5xGGMrMviAh8IDdIL
+ fMHnImdS+K6qsTV0kpiRWfsEaB+rxGrsvbPUWMI2MVeWMHcR3jJ+s39QT
+ kuRZa+PnkmrJBJnGksM7/WseSYgqmoCEnkKvn7YrUT8beg4D3wqmFtg+Z w==;
+X-CSE-ConnectionGUID: 3Rgg+Wl7Sn2yneQARJdSuw==
+X-CSE-MsgGUID: /+4ar1H9QO+JfyGBklvwzQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11256"; a="31431285"
+X-IronPort-AV: E=Sophos;i="6.12,156,1728975600"; d="scan'208";a="31431285"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2024 03:44:16 -0800
+X-CSE-ConnectionGUID: BlpwiVj4RL2Ef6Qgay4U1A==
+X-CSE-MsgGUID: jdja135gRbadMiCMJgQshw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,156,1728975600"; d="scan'208";a="88695222"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO fedora)
- ([10.245.246.56])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2024 03:10:51 -0800
-Date: Fri, 15 Nov 2024 12:10:41 +0100
-From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-xe-next-fixes
-Message-ID: <ZzcsMT_FEqBE0cAW@fedora>
+X-IronPort-AV: E=Sophos;i="6.12,156,1728975600"; d="scan'208";a="88942744"
+Received: from smile.fi.intel.com ([10.237.72.154])
+ by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2024 03:44:11 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+ (envelope-from <andriy.shevchenko@linux.intel.com>)
+ id 1tBukC-0000000F2g1-340h; Fri, 15 Nov 2024 13:44:08 +0200
+Date: Fri, 15 Nov 2024 13:44:08 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Cc: Raag Jadav <raag.jadav@intel.com>, airlied@gmail.com, simona@ffwll.ch,
+ lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
+ jani.nikula@linux.intel.com, lina@asahilina.net,
+ michal.wajdeczko@intel.com, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ himal.prasad.ghimiray@intel.com, aravind.iddamsetty@linux.intel.com,
+ anshuman.gupta@intel.com, alexander.deucher@amd.com,
+ andrealmeid@igalia.com, amd-gfx@lists.freedesktop.org,
+ kernel-dev@igalia.com
+Subject: Re: [PATCH v9 2/4] drm/doc: Document device wedged event
+Message-ID: <Zzc0CIb_qxi3HB5K@smile.fi.intel.com>
+References: <20241115050733.806934-1-raag.jadav@intel.com>
+ <20241115050733.806934-3-raag.jadav@intel.com>
+ <b5798f03-51d2-4517-8866-8e3368e4531d@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <b5798f03-51d2-4517-8866-8e3368e4531d@amd.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,36 +82,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Simona
+On Fri, Nov 15, 2024 at 10:19:42AM +0100, Christian König wrote:
+> Am 15.11.24 um 06:07 schrieb Raag Jadav:
+> > Add documentation for device wedged event in a new 'Device wedging'
+> > chapter. The describes basic definitions and consumer expectations
+> > along with an example.
+> > 
+> > v8: Improve documentation (Christian, Rodrigo)
+> > v9: Add prerequisites section (Christian)
+> > 
+> > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+> 
+> Sounds totally sane to me, but I'm not a native speaker of English so other
+> should probably look at it as well.
 
-A single NULL ptr deref fix this week.
+> Anyway feel free to add Reviewed-by: Christian König
+> <christian.koenig@amd.com>.
 
-Thanks,
-Thomas
+Side note: I don't believe tools support embedded tags, so we usually give
+a tag as one tag per one line without. Otherwise it adds a manual job to
+harvest them and ensure no typos made during that.
 
-drm-xe-next-fixes-2024-11-15:
-Driver Changes:
-- Fix a NULL pointer deref (Everest K.C.)
+-- 
+With Best Regards,
+Andy Shevchenko
 
-The following changes since commit 56b70bf9ec460ad7d7d94dfb7a54a8829741e16e:
 
-  Merge tag 'drm-misc-next-2024-11-08' of https://gitlab.freedesktop.org/drm/misc/kernel into drm-next (2024-11-11 12:10:49 +1000)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-next-fixes-2024-11-15
-
-for you to fetch changes up to 6d9f9115c091c88cacf78734d8ea34c8609e8680:
-
-  drm/xe/guc: Fix dereference before NULL check (2024-11-14 14:55:01 +0100)
-
-----------------------------------------------------------------
-Driver Changes:
-- Fix a NULL pointer deref (Everest K.C.)
-
-----------------------------------------------------------------
-Everest K.C. (1):
-      drm/xe/guc: Fix dereference before NULL check
-
- drivers/gpu/drm/xe/xe_guc_capture.c | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
