@@ -2,66 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D3DB9CFD81
-	for <lists+intel-gfx@lfdr.de>; Sat, 16 Nov 2024 10:34:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 03D769CFDBC
+	for <lists+intel-gfx@lfdr.de>; Sat, 16 Nov 2024 11:02:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D38D89DA5;
-	Sat, 16 Nov 2024 09:34:37 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="a6f3jqa+";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id D99B910E3EF;
+	Sat, 16 Nov 2024 10:02:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA11710E029
- for <intel-gfx@lists.freedesktop.org>; Sat, 16 Nov 2024 09:34:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1731749675;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=pAf+Qe0ud5sHOSH6k8HTdTMeftLfO4sxECxvpooLaiU=;
- b=a6f3jqa+L+7COsF/qlg0CFwfagH3D5iwKV6vHjcxwobJuDBIE6OHnyesVP5cvxlRyYBCDg
- mlVfQPbFMz0Z16T9QVWRfilyRumnfDWHScvksKSPPyi/rPzZA/yk7GKxeA97XrRGwG4xtE
- q3e/Qf3DZ0kqoJeGTNqUGLTmrHvoe5A=
-Received: from mx-prod-mc-02.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-103-k7lHsCGEOdK4hnVevpyPYQ-1; Sat,
- 16 Nov 2024 04:34:31 -0500
-X-MC-Unique: k7lHsCGEOdK4hnVevpyPYQ-1
-X-Mimecast-MFC-AGG-ID: k7lHsCGEOdK4hnVevpyPYQ
-Received: from mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com
- (mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.17])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by mx-prod-mc-02.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id 025C21955F43; Sat, 16 Nov 2024 09:34:30 +0000 (UTC)
-Received: from shalem.redhat.com (unknown [10.39.192.52])
- by mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id 7FE8A19560A3; Sat, 16 Nov 2024 09:34:27 +0000 (UTC)
-From: Hans de Goede <hdegoede@redhat.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
-Cc: Hans de Goede <hdegoede@redhat.com>,
- intel-gfx <intel-gfx@lists.freedesktop.org>,
- dri-devel@lists.freedesktop.org
-Subject: [PATCH] drm/i915/bios: Apply vlv_fixup_mipi_sequences() to v2
- mipi-sequences too
-Date: Sat, 16 Nov 2024 10:34:26 +0100
-Message-ID: <20241116093426.4989-1-hdegoede@redhat.com>
+Received: from 2413ebb6fbb6 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 971F510E3ED;
+ Sat, 16 Nov 2024 10:02:17 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2524390189137979088=="
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.17
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: T9fkEutisV7DfHDYBBwb78hmxEBHw0iR6gx_L7pgME4_1731749670
-X-Mimecast-Originator: redhat.com
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset="US-ASCII"; x-default=true
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBAT=3A_failure_for_drm/i915/bios=3A_Apply_vlv?=
+ =?utf-8?q?=5Ffixup=5Fmipi=5Fsequences=28=29_to_v2_mipi-sequences_too?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Hans de Goede" <hdegoede@redhat.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Sat, 16 Nov 2024 10:02:17 -0000
+Message-ID: <173175133762.436711.4035403043174383530@2413ebb6fbb6>
+X-Patchwork-Hint: ignore
+References: <20241116093426.4989-1-hdegoede@redhat.com>
+In-Reply-To: <20241116093426.4989-1-hdegoede@redhat.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,90 +37,199 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-It turns out that the fixup from vlv_fixup_mipi_sequences() is necessary
-for some DSI panel's with version 2 mipi-sequences too.
+--===============2524390189137979088==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Specifically the Acer Iconia One 8 A1-840 (not to be confused with the
-A1-840FHD which is different) has the following sequences:
+== Series Details ==
 
-BDB block 53 (1284 bytes) - MIPI sequence block:
-	Sequence block version v2
-	Panel 0 *
+Series: drm/i915/bios: Apply vlv_fixup_mipi_sequences() to v2 mipi-sequences too
+URL   : https://patchwork.freedesktop.org/series/141443/
+State : failure
 
-Sequence 2 - MIPI_SEQ_INIT_OTP
-	GPIO index 9, source 0, set 0 (0x00)
-	Delay: 50000 us
-	GPIO index 9, source 0, set 1 (0x01)
-	Delay: 6000 us
-	GPIO index 9, source 0, set 0 (0x00)
-	Delay: 6000 us
-	GPIO index 9, source 0, set 1 (0x01)
-	Delay: 25000 us
-	Send DCS: Port A, VC 0, LP, Type 39, Length 5, Data ff aa 55 a5 80
-	Send DCS: Port A, VC 0, LP, Type 39, Length 3, Data 6f 11 00
-	...
-	Send DCS: Port A, VC 0, LP, Type 05, Length 1, Data 29
-	Delay: 120000 us
+== Summary ==
 
-Sequence 4 - MIPI_SEQ_DISPLAY_OFF
-	Send DCS: Port A, VC 0, LP, Type 05, Length 1, Data 28
-	Delay: 105000 us
-	Send DCS: Port A, VC 0, LP, Type 05, Length 2, Data 10 00
-	Delay: 10000 us
+CI Bug Log - changes from CI_DRM_15710 -> Patchwork_141443v1
+====================================================
 
-Sequence 5 - MIPI_SEQ_ASSERT_RESET
-	Delay: 10000 us
-	GPIO index 9, source 0, set 0 (0x00)
+Summary
+-------
 
-Notice how there is no MIPI_SEQ_DEASSERT_RESET, instead the deassert
-is done at the beginning of MIPI_SEQ_INIT_OTP, which is exactly what
-the fixup from vlv_fixup_mipi_sequences() fixes up.
+  **FAILURE**
 
-Extend it to also apply to v2 sequences, this fixes the panel not working
-on the Acer Iconia One 8 A1-840.
+  Serious unknown changes coming with Patchwork_141443v1 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_141443v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-Signed-off-by: Hans de Goede <hdegoede@redhat.com>
----
- drivers/gpu/drm/i915/display/intel_bios.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141443v1/index.html
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index bed485374ab0..855176c8d943 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -1929,7 +1929,7 @@ static int get_init_otp_deassert_fragment_len(struct intel_display *display,
- 	int index, len;
- 
- 	if (drm_WARN_ON(display->drm,
--			!data || panel->vbt.dsi.seq_version != 1))
-+			!data || panel->vbt.dsi.seq_version >= 3))
- 		return 0;
- 
- 	/* index = 1 to skip sequence byte */
-@@ -1952,7 +1952,7 @@ static int get_init_otp_deassert_fragment_len(struct intel_display *display,
- }
- 
- /*
-- * Some v1 VBT MIPI sequences do the deassert in the init OTP sequence.
-+ * Some v1/v2 VBT MIPI sequences do the deassert in the init OTP sequence.
-  * The deassert must be done before calling intel_dsi_device_ready, so for
-  * these devices we split the init OTP sequence into a deassert sequence and
-  * the actual init OTP part.
-@@ -1963,9 +1963,9 @@ static void vlv_fixup_mipi_sequences(struct intel_display *display,
- 	u8 *init_otp;
- 	int len;
- 
--	/* Limit this to v1 vid-mode sequences */
-+	/* Limit this to v1/v2 vid-mode sequences */
- 	if (panel->vbt.dsi.config->is_cmd_mode ||
--	    panel->vbt.dsi.seq_version != 1)
-+	    panel->vbt.dsi.seq_version >= 3)
- 		return;
- 
- 	/* Only do this if there are otp and assert seqs and no deassert seq */
--- 
-2.47.0
+Participating hosts (47 -> 46)
+------------------------------
 
+  Missing    (1): fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_141443v1:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live:
+    - bat-arls-5:         [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15710/bat-arls-5/igt@i915_selftest@live.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141443v1/bat-arls-5/igt@i915_selftest@live.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_141443v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-5:         [PASS][3] -> [ABORT][4] ([i915#12061])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15710/bat-arls-5/igt@i915_selftest@live@workarounds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141443v1/bat-arls-5/igt@i915_selftest@live@workarounds.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live:
+    - bat-mtlp-8:         [ABORT][5] ([i915#12061]) -> [PASS][6] +1 other test pass
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15710/bat-mtlp-8/igt@i915_selftest@live.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141443v1/bat-mtlp-8/igt@i915_selftest@live.html
+    - {bat-arls-6}:       [ABORT][7] -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15710/bat-arls-6/igt@i915_selftest@live.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141443v1/bat-arls-6/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@workarounds:
+    - {bat-arls-6}:       [ABORT][9] ([i915#12061]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15710/bat-arls-6/igt@i915_selftest@live@workarounds.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141443v1/bat-arls-6/igt@i915_selftest@live@workarounds.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_15710 -> Patchwork_141443v1
+
+  CI-20190529: 20190529
+  CI_DRM_15710: 9a7388467f79fb74c67a2444c5b1add91652f89e @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8114: 8114
+  Patchwork_141443v1: 9a7388467f79fb74c67a2444c5b1add91652f89e @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141443v1/index.html
+
+--===============2524390189137979088==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/bios: Apply vlv_fixup_mipi_sequences() to v2 mipi-sequences too</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/141443/">https://patchwork.freedesktop.org/series/141443/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141443v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141443v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_15710 -&gt; Patchwork_141443v1</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_141443v1 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_141443v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141443v1/index.html</p>
+<h2>Participating hosts (47 -&gt; 46)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_141443v1:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_selftest@live:<ul>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15710/bat-arls-5/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141443v1/bat-arls-5/igt@i915_selftest@live.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_141443v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15710/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141443v1/bat-arls-5/igt@i915_selftest@live@workarounds.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15710/bat-mtlp-8/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141443v1/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
+<li>{bat-arls-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15710/bat-arls-6/igt@i915_selftest@live.html">ABORT</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141443v1/bat-arls-6/igt@i915_selftest@live.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>{bat-arls-6}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15710/bat-arls-6/igt@i915_selftest@live@workarounds.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141443v1/bat-arls-6/igt@i915_selftest@live@workarounds.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_15710 -&gt; Patchwork_141443v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_15710: 9a7388467f79fb74c67a2444c5b1add91652f89e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8114: 8114<br />
+  Patchwork_141443v1: 9a7388467f79fb74c67a2444c5b1add91652f89e @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============2524390189137979088==--
