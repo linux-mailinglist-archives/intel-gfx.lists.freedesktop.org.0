@@ -2,123 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 822D99D071E
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Nov 2024 00:56:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A42C59D0900
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Nov 2024 06:43:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94D4C10E311;
-	Sun, 17 Nov 2024 23:56:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F0BD10E313;
+	Mon, 18 Nov 2024 05:43:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="nCgWnzLq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KFijyku5";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com
- [209.85.128.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0EF2B10E473
- for <intel-gfx@lists.freedesktop.org>; Sun, 17 Nov 2024 23:56:06 +0000 (UTC)
-Received: by mail-yw1-f172.google.com with SMTP id
- 00721157ae682-6ee8e894deeso2924037b3.0
- for <intel-gfx@lists.freedesktop.org>; Sun, 17 Nov 2024 15:56:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1731887765; x=1732492565; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=Ec/Hk8LFdU6/qTj98SnoNsMivsG+0SE1lo+pLnCS5cs=;
- b=nCgWnzLqzjmDVLlwv4iFYgwY0jjEa0wwH/Uvv7QHLwDgal/kTAJj3lHvWYzDIE8wHS
- aUybbPO3cXVRD9vAwBuyTuHA/dEmn9OgqiHyZmeMeTSwsL3OHie1ZeMpKPU1v+865K2E
- BSe/jOI0OiY1ueRzGHthXxDrxVUJ+x43NhQq3e2yTZZK7qAnYmDUcwhxnZc6Wmgg8lZe
- 99XiA7pnnWM9+Uoxhbev0AqofTYdW99FaviJSYoz5Q8gMf9ZZRp6fc/1EniOUkf++GEw
- zgXcNdNKhNO7rptxBVXaxbqAWNgnT4utNlIOoLBFRHZiQB8wiligAujDcQsdj5gBFJyp
- FAfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1731887765; x=1732492565;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=Ec/Hk8LFdU6/qTj98SnoNsMivsG+0SE1lo+pLnCS5cs=;
- b=ep5x8gNr/gz8kjU8NjsSoHYw+cLTS325Ab7DlKZFyu8SZy5lhCqi/F/gXl4K9vcIGr
- 8N9mpYRzTBzc+xY1Z/jbUbNLKyGSfdFJvK1vHcyEUPleSP9FU1HHhPU6yJYS+flKwWqk
- ln/cR0OhgdPO7hJjlmZ5nKxChzHNUl9P4hTmXxBiaixVXLtTC4Xbtjq8NWx0HYSi0MnJ
- Bd2pWxB/F07iAXvJUl14t+hst2jpQbUaP5UPdT443Dy/t/7EnvCtPOyYaI/QxnlGwbLc
- l+Jtqz0eG9WKxiGGqwE9uluKpPnkMZMSntJlQqet0mMYdGFB3Il0yhH9YkeFDn5QVm6m
- PJvA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCU+HEyTxINtgrqUPMlBpv+Cx8QcASQ25av/Vl8avaCHW13HE/4DF+tE9yy2+KY0yVlQRR7Ol/67UyY=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwkGv8s3n72V6UT4LWCzx7vGlbAI+qBf0nYTXE7bd1R4wNG11MS
- VdX3EARHrVI7P1riJShCA2x+ZrP0y73jxd6ildw9+4A0oE+/8g0wbyDnDkM/VZqMWKIz04QbAMs
- fGmGrhLwzqBhfq9bG17H3l0AYMx4uaOG8FHQdIg==
-X-Google-Smtp-Source: AGHT+IGdPgjTWzOdmSZKhRLhwp47xWv9WolMRYt8LQitXBXOFxH5M2pSFFLUJPVswZmbkhncp4AJ66Q6lhrBlLmxMBA=
-X-Received: by 2002:a05:690c:6384:b0:6ee:3f5e:1c18 with SMTP id
- 00721157ae682-6ee55a2abddmr96890087b3.4.1731887764985; Sun, 17 Nov 2024
- 15:56:04 -0800 (PST)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB24310E313
+ for <intel-gfx@lists.freedesktop.org>; Mon, 18 Nov 2024 05:43:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1731908583; x=1763444583;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Hgs18MLeixs3BrQGFITjDP3gVLBQXgLxlix73sOJsW8=;
+ b=KFijyku5lrAO0+WWhYs0OhSvDFkRQE1cT/hmLcIrEqw+XoJ/Pv/iL7i8
+ U2zHapihyGsqL29HGoYYKouG+xKLc0ifliukNm2e+gkW96/AcHplIqv7h
+ dM1OObCGb/Kb6xa/gsnfWFYuCHP8b5lbU4oRH7t5AcqmWR3VxqZ9XdEjv
+ naA331m3toi3IxO4HZ3BiZDE7JyA5l/7+iR4xr0Y5LcmEHD/BO9DgaOXK
+ am9HS4zcWfEOSv1ENFILtS7IzkGh90i9OZjJ9Y+O36oFYL9Mx6mbcTjL1
+ VazFGk6Z7GNah7ME4sjtGnPJLWVJViBo1k1gK9RIk2SxBTa9ey+XSeT87 g==;
+X-CSE-ConnectionGUID: Z103P5CoSz+x+NxJ9p+ZzQ==
+X-CSE-MsgGUID: zQqHgljyTbSC6nSj43f5aA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11259"; a="31255805"
+X-IronPort-AV: E=Sophos;i="6.12,163,1728975600"; d="scan'208";a="31255805"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2024 21:43:03 -0800
+X-CSE-ConnectionGUID: u2CmAxfUQrStW2OPUY99XQ==
+X-CSE-MsgGUID: EItKtJ/GSRqjUJSw5mp0bA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,163,1728975600"; d="scan'208";a="89905881"
+Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
+ by orviesa008.jf.intel.com with ESMTP; 17 Nov 2024 21:43:01 -0800
+From: Animesh Manna <animesh.manna@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: suraj.kandpal@intel.com,
+	Animesh Manna <animesh.manna@intel.com>
+Subject: [PATCH] drm/i915/display: Adjust Added Wake Time with PKG_C_LATENCY
+Date: Mon, 18 Nov 2024 10:53:27 +0530
+Message-Id: <20241118052327.2475743-1-animesh.manna@intel.com>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-References: <20241115-drm-connector-mode-valid-const-v1-0-b1b523156f71@linaro.org>
- <20241115-drm-connector-mode-valid-const-v1-1-b1b523156f71@linaro.org>
- <20241117205426.GE12409@pendragon.ideasonboard.com>
- <CAA8EJpr=4AQVRKbtR2MaCQfguGW0a=3ay-ttew-mFR4f086Uyg@mail.gmail.com>
- <20241117233250.GK12409@pendragon.ideasonboard.com>
-In-Reply-To: <20241117233250.GK12409@pendragon.ideasonboard.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 18 Nov 2024 01:55:54 +0200
-Message-ID: <CAA8EJpq6Gkp4W=rGbpY6ASPgoDt=64HTFDk4_OZsTmbSUxhhGw@mail.gmail.com>
-Subject: Re: [PATCH 1/5] drm/encoder_slave: make mode_valid accept const
- struct drm_display_mode
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, Karol Herbst <kherbst@redhat.com>,
- Lyude Paul <lyude@redhat.com>, 
- Danilo Krummrich <dakr@redhat.com>, Harry Wentland <harry.wentland@amd.com>,
- Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, 
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Xinhui Pan <Xinhui.Pan@amd.com>, Alain Volmat <alain.volmat@foss.st.com>, 
- Raphael Gallais-Pou <rgallaispou@gmail.com>, Liviu Dudau <liviu.dudau@arm.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Peter Senna Tschudin <peter.senna@gmail.com>, 
- Ian Ray <ian.ray@ge.com>, Martyn Welch <martyn.welch@collabora.co.uk>, 
- Inki Dae <inki.dae@samsung.com>, Seung-Woo Kim <sw0312.kim@samsung.com>, 
- Kyungmin Park <kyungmin.park@samsung.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, 
- Alim Akhtar <alim.akhtar@samsung.com>, Stefan Agner <stefan@agner.ch>, 
- Alison Wang <alison.wang@nxp.com>,
- Patrik Jakobsson <patrik.r.jakobsson@gmail.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, Rob Clark <robdclark@gmail.com>, 
- Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, 
- Marijn Suijten <marijn.suijten@somainline.org>,
- Dave Airlie <airlied@redhat.com>, 
- Gerd Hoffmann <kraxel@redhat.com>, Sandy Huang <hjc@rock-chips.com>, 
- =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
- Andy Yan <andy.yan@rock-chips.com>, Chen-Yu Tsai <wens@csie.org>, 
- Samuel Holland <samuel@sholland.org>, Thierry Reding <thierry.reding@gmail.com>,
- Mikko Perttunen <mperttunen@nvidia.com>, Jonathan Hunter <jonathanh@nvidia.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- =?UTF-8?B?TWHDrXJhIENhbmFs?= <mcanal@igalia.com>, 
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>, 
- Chia-I Wu <olvaffe@gmail.com>, Zack Rusin <zack.rusin@broadcom.com>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
- intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org, 
- amd-gfx@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, 
- linux-samsung-soc@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, 
- virtualization@lists.linux.dev, spice-devel@lists.freedesktop.org, 
- linux-rockchip@lists.infradead.org, linux-sunxi@lists.linux.dev, 
- linux-tegra@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -134,107 +65,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 18 Nov 2024 at 01:33, Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
->
-> On Mon, Nov 18, 2024 at 01:22:12AM +0200, Dmitry Baryshkov wrote:
-> > On Sun, 17 Nov 2024 at 22:54, Laurent Pinchart wrote:
-> > > On Fri, Nov 15, 2024 at 11:09:26PM +0200, Dmitry Baryshkov wrote:
-> > > > The mode_valid() callbacks of drm_encoder, drm_crtc and drm_bridge
-> > > > accept const struct drm_display_mode argument. Change the mode_valid
-> > > > callback of drm_encoder_slave to also accept const argument.
-> > > >
-> > > > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > >
-> > > Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> > >
-> > > On a side note, there's only two I2C slave encoder drivers left... I
-> > > wonder if we could so something about them. The ch7006 and sil164
-> > > drivers seem to be used by nouveau only, could they be moved to
-> > > drivers/gpu/drm/nouveau/ ? We would move the whole drm_encoder_slave
-> > > implementation there too, and leave it to die (or get taken out of limbo
-> > > and fixed) with dispnv04.
-> >
-> > Or it might be better to switch to drm_bridge. Currently we also have
-> > sil164 (sub)drivers in ast and i915 drivers. I don't know if there is
-> > any common code to share or not. If there is some, it might be nice to
-> > use common framework.
->
-> That would require porting nouveau and i915 to drm_bridge. As much as
-> I'd love to see that happening, I won't hold my breath.
+The PKG_C_LATENCY Added Wake Time field is not working.
+When added wake time is needed, such as for flip queue
+DSB execution, increase the PKG_C_LATENCY Pkg C Latency
+field by the added wake time.
 
-Me neither. Probably moving those two and drm_encoder_slave to nouveau
-is really the best course for now.
+HSD: 14023564296
+WA: 22020432604
 
->
-> > > > ---
-> > > >  drivers/gpu/drm/i2c/ch7006_drv.c          | 2 +-
-> > > >  drivers/gpu/drm/i2c/sil164_drv.c          | 2 +-
-> > > >  drivers/gpu/drm/nouveau/dispnv04/tvnv17.c | 2 +-
-> > > >  include/drm/drm_encoder_slave.h           | 2 +-
-> > > >  4 files changed, 4 insertions(+), 4 deletions(-)
-> > > >
-> > > > diff --git a/drivers/gpu/drm/i2c/ch7006_drv.c b/drivers/gpu/drm/i2c/ch7006_drv.c
-> > > > index 131512a5f3bd996ad1e2eb869ffa09837daba0c7..a57f0a41c1a9e2006142fe0bad2914b0c344c82a 100644
-> > > > --- a/drivers/gpu/drm/i2c/ch7006_drv.c
-> > > > +++ b/drivers/gpu/drm/i2c/ch7006_drv.c
-> > > > @@ -104,7 +104,7 @@ static bool ch7006_encoder_mode_fixup(struct drm_encoder *encoder,
-> > > >  }
-> > > >
-> > > >  static int ch7006_encoder_mode_valid(struct drm_encoder *encoder,
-> > > > -                                  struct drm_display_mode *mode)
-> > > > +                                  const struct drm_display_mode *mode)
-> > > >  {
-> > > >       if (ch7006_lookup_mode(encoder, mode))
-> > > >               return MODE_OK;
-> > > > diff --git a/drivers/gpu/drm/i2c/sil164_drv.c b/drivers/gpu/drm/i2c/sil164_drv.c
-> > > > index ff23422727fce290a188e495d343e32bc2c373ec..708e119072fcb50c31b5596b75dc341429b93697 100644
-> > > > --- a/drivers/gpu/drm/i2c/sil164_drv.c
-> > > > +++ b/drivers/gpu/drm/i2c/sil164_drv.c
-> > > > @@ -255,7 +255,7 @@ sil164_encoder_restore(struct drm_encoder *encoder)
-> > > >
-> > > >  static int
-> > > >  sil164_encoder_mode_valid(struct drm_encoder *encoder,
-> > > > -                       struct drm_display_mode *mode)
-> > > > +                       const struct drm_display_mode *mode)
-> > > >  {
-> > > >       struct sil164_priv *priv = to_sil164_priv(encoder);
-> > > >
-> > > > diff --git a/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c b/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c
-> > > > index 3ecb101d23e949b753b873d24eec01ad6fe7f5d6..35ad4e10d27323c87704a3ff35b7dc26462c82bd 100644
-> > > > --- a/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c
-> > > > +++ b/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c
-> > > > @@ -308,7 +308,7 @@ static int nv17_tv_get_modes(struct drm_encoder *encoder,
-> > > >  }
-> > > >
-> > > >  static int nv17_tv_mode_valid(struct drm_encoder *encoder,
-> > > > -                           struct drm_display_mode *mode)
-> > > > +                           const struct drm_display_mode *mode)
-> > > >  {
-> > > >       struct nv17_tv_norm_params *tv_norm = get_tv_norm(encoder);
-> > > >
-> > > > diff --git a/include/drm/drm_encoder_slave.h b/include/drm/drm_encoder_slave.h
-> > > > index 49172166a164474f43e4afb2eeeb3cde8ae7c61a..b526643833dcf78bae29f9fbbe27de3f730b55d8 100644
-> > > > --- a/include/drm/drm_encoder_slave.h
-> > > > +++ b/include/drm/drm_encoder_slave.h
-> > > > @@ -85,7 +85,7 @@ struct drm_encoder_slave_funcs {
-> > > >        * @mode_valid: Analogous to &drm_encoder_helper_funcs @mode_valid.
-> > > >        */
-> > > >       int (*mode_valid)(struct drm_encoder *encoder,
-> > > > -                       struct drm_display_mode *mode);
-> > > > +                       const struct drm_display_mode *mode);
-> > > >       /**
-> > > >        * @mode_set: Analogous to &drm_encoder_helper_funcs @mode_set
-> > > >        * callback. Wrapped by drm_i2c_encoder_mode_set().
-> > > >
->
-> --
-> Regards,
->
-> Laurent Pinchart
+Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+---
+ drivers/gpu/drm/i915/display/skl_watermark.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-
-
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index 1a4c1fa24820..9be38ca5346d 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -2875,6 +2875,12 @@ skl_program_dpkgc_latency(struct drm_i915_private *i915, bool enable_dpkgc)
+ 		added_wake_time = 0;
+ 	}
+ 
++	/* Wa_22020432604 */
++	if (DISPLAY_VER(i915) == 30) {
++		max_latency += added_wake_time;
++		added_wake_time = 0;
++	}
++
+ 	clear |= LNL_ADDED_WAKE_TIME_MASK | LNL_PKG_C_LATENCY_MASK;
+ 	val |= REG_FIELD_PREP(LNL_PKG_C_LATENCY_MASK, max_latency);
+ 	val |= REG_FIELD_PREP(LNL_ADDED_WAKE_TIME_MASK, added_wake_time);
 -- 
-With best wishes
-Dmitry
+2.29.0
+
