@@ -2,68 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 755499D1260
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 Nov 2024 14:44:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 527F79D14B5
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 Nov 2024 16:47:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C98E89125;
-	Mon, 18 Nov 2024 13:44:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F05BC10E524;
+	Mon, 18 Nov 2024 15:47:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="NqLyQOr9";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="JuIHoMgO";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com
- [209.85.214.181])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 59A5389125;
- Mon, 18 Nov 2024 13:44:51 +0000 (UTC)
-Received: by mail-pl1-f181.google.com with SMTP id
- d9443c01a7336-20c9978a221so43200715ad.1; 
- Mon, 18 Nov 2024 05:44:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1731937491; x=1732542291; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=+htDK99fcgbIKtI9OofxBvjOrzY8sEAl5Q9mYcbS7R4=;
- b=NqLyQOr9i9ck6rByvlJFnjKm3/ntfd9zhhC/3epva7+B4e+sGwT6HCcy0/A1E9y30+
- KqJBsbsBwhBPpUfneMdR8RUHI9mHwnXqAFSYeRsjFi68S5UcertrmgswprjLsGFk14Mv
- GmKCXf9+xayI/uoTiXJ9/bEXVgcxDOtQLIhG5xVbE0PMMs+7Zf6xt1czHEhnFa2deXxl
- b4Hf9jcj9MwtmlF5TSy5LQKXPjuhSiRWZOHNNs4mEXZ+b0pbXyWKkflIj5yLDsnVJSlY
- 9gCmN42XZscvhjQIl67UBWexoPT83UWR8WWQYfciATxSOs/Sjv5Kr7F9AKCBbEASoWwv
- 3JWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1731937491; x=1732542291;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=+htDK99fcgbIKtI9OofxBvjOrzY8sEAl5Q9mYcbS7R4=;
- b=KgJBQbt35HGPpEnmH1bnh1KJKW5AA6TDPf637EFewDW3IDYrxghJSsDEvoQZxQemlV
- O0LUKJjxTc/okaGQbG+DHkw3E65wam0Nwen+0JALKjosKc4vsc2rfSKbENJAA4eDBkkM
- bzcMBjF6e29TNkbKqrPJI01zcBRWCJg1kxzfwvnm9Nx8Ew0g8amBfC5j1wQEPKk902fl
- BAh/m1kJ26jDjHGZXasYyAMeDhdZLuxK3NiWKQL8Jy8AwirCLOY0GsIUAi8VYX27+IgQ
- gnYie/aBS5LU+4GG7yThX8YSiXNefZJCAP6Pafyu2cVb/RputNKMHWRvfkuHGFf5hZG9
- NZNA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCV7CfskGia0tyiCku5sWSt7JZtebXi+xbx73iIAU4m98kixwGOlUxwQ7OKXnPE1lZdCiMwTJpA00w==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxOTutQByhUMiYIlmM6y4dxs3niq3AR+pCFTBXSVamQBU+HkEfJ
- e1i3lVE0ipkH0WPlqHpix9IZO7EzxdtET7Yq9ETY1aAw/qMQmdrSioIo0zK6guSMXxs+/7HgC01
- /Z9/Li5NTlpCptEsGaneMO91rWJJKUpKhwCEZNA==
-X-Google-Smtp-Source: AGHT+IFUBFcmBiaX+cumFjfhyfoZ3i7BxSHhXCdHQPrTOcH+RuSv+fqmwNOZuncLqETRj1eOWj3GWHwkjIfQ/xK6KOQ=
-X-Received: by 2002:a17:903:41c9:b0:20e:57c8:6aad with SMTP id
- d9443c01a7336-211d0d4c19emr179849245ad.2.1731937490599; Mon, 18 Nov 2024
- 05:44:50 -0800 (PST)
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6508210E11E;
+ Mon, 18 Nov 2024 14:11:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=e8UfdNR329P2M7potRTmyDk47Jb38kQfn6K1ctH8OHc=; b=JuIHoMgOUMmJ3a+WxUe2xXnCxV
+ bpd0KDm2dqLnlSlDwqARYd8q/z8MaoYwxsLNHJp8ldFzBkB6SE0DdawY7yU/pKrl0dqRY5HuiPvAX
+ TQhDB3tfi9KNgBHg/bzjbMjmnurpEQvhjQkHi7VZawoYV2PRRz8DWFf/C3Itjq/B5H2cGuKngTSRM
+ ShJ9CZLTp4m6pQYRmUxckWTcRSxONductOX80xhPuGpDbXz0D6y1seosqwDuIEwmfxsrk7nIkO9OL
+ NytSMO6Xmbo4/UgFikO36rI/ehNfeW9vquOyTKbPDLwWGS83Hf2OYpKGuiEslg5IJA8dA67dvTJSt
+ IKA7VxrA==;
+Received: from [90.241.98.187] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1tD2Td-008XPK-I3; Mon, 18 Nov 2024 15:11:41 +0100
+Message-ID: <e917bc49-11fc-4f6c-b003-8015f53c0caa@igalia.com>
+Date: Mon, 18 Nov 2024 14:11:40 +0000
 MIME-Version: 1.0
-References: <20241113115531.3394962-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20241113115531.3394962-1-ankit.k.nautiyal@intel.com>
-From: =?UTF-8?Q?Juha=2DPekka_Heikkil=C3=A4?= <juhapekka.heikkila@gmail.com>
-Date: Mon, 18 Nov 2024 15:44:38 +0200
-Message-ID: <CAJ=qYWTMYzkKCT_eVEBeP=q=L1mXykdcv+DER6DB=toXU8+KxQ@mail.gmail.com>
-Subject: Re: [PATCH] drm/i915/display/xe3lpd: Avoid setting YUV420_MODE in
- PIPE_MISC
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 2/5] drm: make drm-active- stats optional
+To: Yunxiang Li <Yunxiang.Li@amd.com>, amd-gfx@lists.freedesktop.org,
+ christian.koenig@amd.com
+Cc: Alexander.Deucher@amd.com, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+References: <20241116044452.5925-1-Yunxiang.Li@amd.com>
+ <20241116044452.5925-3-Yunxiang.Li@amd.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <20241116044452.5925-3-Yunxiang.Li@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Mon, 18 Nov 2024 15:47:31 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,70 +64,143 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-These display patches probably should go through i915 ci also since it
-changes code on i915.
 
-patch itself look ok,
+On 16/11/2024 04:44, Yunxiang Li wrote:
+> When memory stats is generated fresh everytime by going though all the
+> BOs, their active information is quite easy to get. But if the stats are
+> tracked with BO's state this becomes harder since the job scheduling
+> part doesn't really deal with individual buffers.
+> 
+> Make drm-active- optional to enable amdgpu to switch to the second
+> method.
 
-Reviewed-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Perhaps you missed 
+https://lore.kernel.org/dri-devel/3706dc4f-db98-45e0-b870-f10368ab1ab9@igalia.com/ 
+?
 
-On Wed, Nov 13, 2024 at 1:53=E2=80=AFPM Ankit Nautiyal
-<ankit.k.nautiyal@intel.com> wrote:
->
-> For Xe3_LPD the PIPE_MISC YUV420 Enable (bit 27), already implies enablin=
-g
-> full blend YUV420 mode and YUV420 Mode (bit 26) is removed.
-> Therefore, avoid setting YUV420 Mode for Xe3_LPD+ while programming
-> PIPE_MISC for YCbCr420 output format.
->
-> Bspec: 69749
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Regards,
+
+Tvrtko
+
+> Signed-off-by: Yunxiang Li <Yunxiang.Li@amd.com>
+> CC: dri-devel@lists.freedesktop.org
+> CC: intel-gfx@lists.freedesktop.org
+> CC: amd-gfx@lists.freedesktop.org
 > ---
->  drivers/gpu/drm/i915/display/intel_display.c | 15 ++++++++++-----
->  1 file changed, 10 insertions(+), 5 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index e790a2de5b3d..9db255bb1230 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -3137,9 +3137,14 @@ bdw_get_pipe_misc_output_format(struct intel_crtc =
-*crtc)
->         tmp =3D intel_de_read(dev_priv, PIPE_MISC(crtc->pipe));
->
->         if (tmp & PIPE_MISC_YUV420_ENABLE) {
-> -               /* We support 4:2:0 in full blend mode only */
-> -               drm_WARN_ON(&dev_priv->drm,
-> -                           (tmp & PIPE_MISC_YUV420_MODE_FULL_BLEND) =3D=
-=3D 0);
-> +               /*
-> +                * We support 4:2:0 in full blend mode only.
-> +                * For xe3_lpd+ this is implied in YUV420 Enable bit.
-> +                * Ensure the same for prior platforms in YUV420 Mode bit=
-.
-> +                */
-> +               if (DISPLAY_VER(dev_priv) < 30)
-> +                       drm_WARN_ON(&dev_priv->drm,
-> +                                   (tmp & PIPE_MISC_YUV420_MODE_FULL_BLE=
-ND) =3D=3D 0);
->
->                 return INTEL_OUTPUT_FORMAT_YCBCR420;
->         } else if (tmp & PIPE_MISC_OUTPUT_COLORSPACE_YUV) {
-> @@ -3388,8 +3393,8 @@ static void bdw_set_pipe_misc(struct intel_dsb *dsb=
-,
->                 val |=3D PIPE_MISC_OUTPUT_COLORSPACE_YUV;
->
->         if (crtc_state->output_format =3D=3D INTEL_OUTPUT_FORMAT_YCBCR420=
-)
-> -               val |=3D PIPE_MISC_YUV420_ENABLE |
-> -                       PIPE_MISC_YUV420_MODE_FULL_BLEND;
-> +               val |=3D DISPLAY_VER(display) >=3D 30 ? PIPE_MISC_YUV420_=
-ENABLE :
-> +                       PIPE_MISC_YUV420_ENABLE | PIPE_MISC_YUV420_MODE_F=
-ULL_BLEND;
->
->         if (DISPLAY_VER(dev_priv) >=3D 11 && is_hdr_mode(crtc_state))
->                 val |=3D PIPE_MISC_HDR_MODE_PRECISION;
-> --
-> 2.45.2
->
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c |  1 +
+>   drivers/gpu/drm/drm_file.c                 | 13 +++++++------
+>   drivers/gpu/drm/i915/i915_drm_client.c     |  1 +
+>   drivers/gpu/drm/xe/xe_drm_client.c         |  1 +
+>   include/drm/drm_gem.h                      | 14 ++++++++------
+>   5 files changed, 18 insertions(+), 12 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c
+> index df2cf5c339255..7717e3e4f05b5 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c
+> @@ -97,6 +97,7 @@ void amdgpu_show_fdinfo(struct drm_printer *p, struct drm_file *file)
+>   
+>   		drm_print_memory_stats(p,
+>   				       &stats[i].drm,
+> +				       DRM_GEM_OBJECT_ACTIVE |
+>   				       DRM_GEM_OBJECT_RESIDENT |
+>   				       DRM_GEM_OBJECT_PURGEABLE,
+>   				       pl_name[i]);
+> diff --git a/drivers/gpu/drm/drm_file.c b/drivers/gpu/drm/drm_file.c
+> index e285fcc28c59c..fd06671054723 100644
+> --- a/drivers/gpu/drm/drm_file.c
+> +++ b/drivers/gpu/drm/drm_file.c
+> @@ -884,7 +884,9 @@ void drm_print_memory_stats(struct drm_printer *p,
+>   {
+>   	print_size(p, "total", region, stats->private + stats->shared);
+>   	print_size(p, "shared", region, stats->shared);
+> -	print_size(p, "active", region, stats->active);
+> +
+> +	if (supported_status & DRM_GEM_OBJECT_ACTIVE)
+> +		print_size(p, "active", region, stats->active);
+>   
+>   	if (supported_status & DRM_GEM_OBJECT_RESIDENT)
+>   		print_size(p, "resident", region, stats->resident);
+> @@ -917,15 +919,13 @@ void drm_show_memory_stats(struct drm_printer *p, struct drm_file *file)
+>   
+>   		if (obj->funcs && obj->funcs->status) {
+>   			s = obj->funcs->status(obj);
+> -			supported_status = DRM_GEM_OBJECT_RESIDENT |
+> -					DRM_GEM_OBJECT_PURGEABLE;
+> +			supported_status |= s;
+>   		}
+>   
+> -		if (drm_gem_object_is_shared_for_memory_stats(obj)) {
+> +		if (drm_gem_object_is_shared_for_memory_stats(obj))
+>   			status.shared += obj->size;
+> -		} else {
+> +		else
+>   			status.private += obj->size;
+> -		}
+>   
+>   		if (s & DRM_GEM_OBJECT_RESIDENT) {
+>   			status.resident += add_size;
+> @@ -938,6 +938,7 @@ void drm_show_memory_stats(struct drm_printer *p, struct drm_file *file)
+>   
+>   		if (!dma_resv_test_signaled(obj->resv, dma_resv_usage_rw(true))) {
+>   			status.active += add_size;
+> +			supported_status |= DRM_GEM_OBJECT_ACTIVE;
+>   
+>   			/* If still active, don't count as purgeable: */
+>   			s &= ~DRM_GEM_OBJECT_PURGEABLE;
+> diff --git a/drivers/gpu/drm/i915/i915_drm_client.c b/drivers/gpu/drm/i915/i915_drm_client.c
+> index f586825054918..168d7375304bc 100644
+> --- a/drivers/gpu/drm/i915/i915_drm_client.c
+> +++ b/drivers/gpu/drm/i915/i915_drm_client.c
+> @@ -102,6 +102,7 @@ static void show_meminfo(struct drm_printer *p, struct drm_file *file)
+>   	for_each_memory_region(mr, i915, id)
+>   		drm_print_memory_stats(p,
+>   				       &stats[id],
+> +				       DRM_GEM_OBJECT_ACTIVE |
+>   				       DRM_GEM_OBJECT_RESIDENT |
+>   				       DRM_GEM_OBJECT_PURGEABLE,
+>   				       mr->uabi_name);
+> diff --git a/drivers/gpu/drm/xe/xe_drm_client.c b/drivers/gpu/drm/xe/xe_drm_client.c
+> index 6a26923fa10e0..54941b4e850c4 100644
+> --- a/drivers/gpu/drm/xe/xe_drm_client.c
+> +++ b/drivers/gpu/drm/xe/xe_drm_client.c
+> @@ -229,6 +229,7 @@ static void show_meminfo(struct drm_printer *p, struct drm_file *file)
+>   		if (man) {
+>   			drm_print_memory_stats(p,
+>   					       &stats[mem_type],
+> +					       DRM_GEM_OBJECT_ACTIVE |
+>   					       DRM_GEM_OBJECT_RESIDENT |
+>   					       (mem_type != XE_PL_SYSTEM ? 0 :
+>   					       DRM_GEM_OBJECT_PURGEABLE),
+> diff --git a/include/drm/drm_gem.h b/include/drm/drm_gem.h
+> index bae4865b2101a..584ffdf5c2542 100644
+> --- a/include/drm/drm_gem.h
+> +++ b/include/drm/drm_gem.h
+> @@ -48,19 +48,21 @@ struct drm_gem_object;
+>    * enum drm_gem_object_status - bitmask of object state for fdinfo reporting
+>    * @DRM_GEM_OBJECT_RESIDENT: object is resident in memory (ie. not unpinned)
+>    * @DRM_GEM_OBJECT_PURGEABLE: object marked as purgeable by userspace
+> + * @DRM_GEM_OBJECT_ACTIVE: object is currently used by an active submission
+>    *
+>    * Bitmask of status used for fdinfo memory stats, see &drm_gem_object_funcs.status
+> - * and drm_show_fdinfo().  Note that an object can DRM_GEM_OBJECT_PURGEABLE if
+> - * it still active or not resident, in which case drm_show_fdinfo() will not
+> + * and drm_show_fdinfo().  Note that an object can report DRM_GEM_OBJECT_PURGEABLE
+> + * and be active or not resident, in which case drm_show_fdinfo() will not
+>    * account for it as purgeable.  So drivers do not need to check if the buffer
+> - * is idle and resident to return this bit.  (Ie. userspace can mark a buffer
+> - * as purgeable even while it is still busy on the GPU.. it does not _actually_
+> - * become puregeable until it becomes idle.  The status gem object func does
+> - * not need to consider this.)
+> + * is idle and resident to return this bit, i.e. userspace can mark a buffer as
+> + * purgeable even while it is still busy on the GPU. It whill not get reported
+> + * in the puregeable stats until it becomes idle.  The status gem object func
+> + * does not need to consider this.
+>    */
+>   enum drm_gem_object_status {
+>   	DRM_GEM_OBJECT_RESIDENT  = BIT(0),
+>   	DRM_GEM_OBJECT_PURGEABLE = BIT(1),
+> +	DRM_GEM_OBJECT_ACTIVE = BIT(2),
+>   };
+>   
+>   /**
