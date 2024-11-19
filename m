@@ -2,60 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AA079D299F
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Nov 2024 16:29:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 02E5D9D2A3E
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Nov 2024 16:55:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B25CA10E349;
-	Tue, 19 Nov 2024 15:29:40 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F2d/F237";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id E152C10E08D;
+	Tue, 19 Nov 2024 15:55:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C52910E349;
- Tue, 19 Nov 2024 15:29:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732030180; x=1763566180;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=S55hiPsq2WmEhLeO0d4Zp1YDd7HbUo9/9w1rivKgl2Y=;
- b=F2d/F237NjM3e8CWZa7ikpgznm6QHtvBNf+83baoE0rCL8TD7IXmJfYZ
- A2l5YlJ29+ChcrTgpePD8IijgflgmEbrNEr2qzbcvINg25FzimcY/a/oQ
- MuWh7MmJozVlxoF59edjUTnNLIj8Q7fvqaZP2Q7gfBEM9v9PM3NeSwOrK
- OyrI2lWH60rYxo9cInSqwv/VG6Zx9Rk+AspXUOS8qsfooIENUKKilBl7T
- RV0I2mwlzZ+H19tOJc+HChh6HaB8MCOUemXQ3ccRj6eRmxmOBiqT3jCs5
- bUNa5V5EhvwapkQw85/+4KvveyH3LgwC9UAl+JlDT/87mEnX/bw+ZbjtJ A==;
-X-CSE-ConnectionGUID: UQrryaTWQ6Ov3oTDWfJQWA==
-X-CSE-MsgGUID: cqWVZozgQZK2G5wA/ciKMw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11261"; a="54536428"
-X-IronPort-AV: E=Sophos;i="6.12,166,1728975600"; d="scan'208";a="54536428"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2024 07:29:40 -0800
-X-CSE-ConnectionGUID: OeYQF7nQQjKhZW7U/3jXkA==
-X-CSE-MsgGUID: UMVkdlJqT7KouCG7/VxRwg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,166,1728975600"; d="scan'208";a="89716741"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.202])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2024 07:29:39 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 06/11] drm/i915/reg: convert DP_TP_CTL/DP_TP_STATUS to
- REG_BIT() and friends
-In-Reply-To: <Zzx6zqUeUzUQlAgc@ideak-desk.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1731941270.git.jani.nikula@intel.com>
- <9c54e8d7a3ff5039e4537cccb97214e63b9805c9.1731941270.git.jani.nikula@intel.com>
- <Zzx6zqUeUzUQlAgc@ideak-desk.fi.intel.com>
-Date: Tue, 19 Nov 2024 17:29:35 +0200
-Message-ID: <87cyir2qe8.fsf@intel.com>
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E035510E08D;
+ Tue, 19 Nov 2024 15:55:18 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915=3A_MST_and_?=
+ =?utf-8?q?DDI_cleanups_and_refactoring_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 19 Nov 2024 15:55:18 -0000
+Message-ID: <173203171893.358893.17230180950861324818@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <cover.1731941270.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1731941270.git.jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,22 +37,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 19 Nov 2024, Imre Deak <imre.deak@intel.com> wrote:
-> On Mon, Nov 18, 2024 at 04:49:01PM +0200, Jani Nikula wrote:
->> +#define   DP_TP_STATUS_STREAMS_ENABLED_MASK	REG_GENMASK(21, 19)
->
-> I assume the above is the 'Streams Enabled' field and that is bits 18:16
-> on the platforms I checked. Bits 21:19 is 'DP Init Status'.
+== Series Details ==
 
-It's 18:16 on TGL+ and 17:16 on HSW, but bit 18 is MBZ on HSW so I just
-set to 18:16 in v2.
+Series: drm/i915: MST and DDI cleanups and refactoring (rev3)
+URL   : https://patchwork.freedesktop.org/series/141500/
+State : warning
 
-BR,
-Jani.
+== Summary ==
+
+Error: dim checkpatch failed
+f00cf2e59b11 drm/i915/mst: pass intel_dp around in mst stream helpers
+3f2680de11a7 drm/i915/mst: unify MST connector function naming to mst_connector_*
+a367e854e7d3 drm/i915/mst: simplify mst_connector_get_hw_state()
+563d1adfc62e drm/i915/mst: unify MST topology callback naming to mst_topology_*
+14eec67a0456 drm/i915/ddi: use intel_ddi_* naming convention for encoder enable/disable
+e0868eee758c drm/i915/reg: convert DP_TP_CTL/DP_TP_STATUS to REG_BIT() and friends
+-:86: WARNING:LONG_LINE_COMMENT: line length of 101 exceeds 100 columns
+#86: FILE: drivers/gpu/drm/i915/i915_reg.h:3857:
++#define   DP_TP_STATUS_STREAMS_ENABLED_MASK	REG_GENMASK(18, 16) /* 17:16 on hsw but bit 18 mbz */
+
+total: 0 errors, 1 warnings, 0 checks, 68 lines checked
+812179ef8170 drm/i915/dp: refactor clear/wait for act sent
+aa57f5e17380 drm/i915/ddi: rename temp to ddi_func_ctl in intel_ddi_read_func_ctl()
+b8b987da4749 drm/i915/ddi: split up intel_ddi_read_func_ctl() by output type
+3306ad87d765 drm/i915/ddi: refactor intel_ddi_connector_get_hw_state()
+e1641c1cefae drm/i915/ddi: simplify intel_ddi_get_encoder_pipes() slightly
 
 
--- 
-Jani Nikula, Intel
