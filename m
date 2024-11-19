@@ -2,58 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D029A9D21DA
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Nov 2024 09:51:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B36F9D21DF
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Nov 2024 09:52:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D535D10E5FA;
-	Tue, 19 Nov 2024 08:51:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FEAA10E5FB;
+	Tue, 19 Nov 2024 08:51:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kywRPGXM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ejAvqaN4";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 97CE310E5F5;
- Tue, 19 Nov 2024 08:51:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B5CE10E5F5;
+ Tue, 19 Nov 2024 08:51:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732006261; x=1763542261;
+ t=1732006318; x=1763542318;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=sqUuRMLAVnXsatzVq3rg/GqH88M/QJ9ri1DkR1oL0qw=;
- b=kywRPGXM1eN5Ma580BoZqTCFppZic/2Vs9LmJxubdRnmXb6qF+iHTKho
- AI0iuTXsR6vAjvh+mOSNjSX0oJPg1wqG/olr/X0BiONz9CQGJd76x1DeE
- lT2W+1QdUfv0vt3OstsIfOuWXZR78qTu84Kqs0brAaigShOMJ+FOLC+We
- fjkq8J7vqy7BGWtjhNTMox8w8TP4QhcjpKT/C2RsmyTbd4EmYxJOvZigm
- IUQ1LMR0UpxPtCzi78Gx8DjZRZt4c0T+bF4Zf8HbNDAMY3GYHkv6TMFyO
- kP3J6q5kCOaddBH+cHHLnLkb5eya/h3g/WX1ibz0wLxTlLFlTQpQTvrBs g==;
-X-CSE-ConnectionGUID: VtNufpOlSLueQMgjCgROWQ==
-X-CSE-MsgGUID: WPXX2C87QaWNSR9Ibd6v/Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11260"; a="32098514"
-X-IronPort-AV: E=Sophos;i="6.12,165,1728975600"; d="scan'208";a="32098514"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2024 00:51:00 -0800
-X-CSE-ConnectionGUID: ZULKYDE2SeunCtq4TBhGVQ==
-X-CSE-MsgGUID: BXrTNGh+RRi8yFOmjofmyw==
+ bh=by2CvSNBSrpTwWdIkia6qomkVjRNshRC0+Ct5507tKw=;
+ b=ejAvqaN4GzwHhyQcxQLjdkeQuRStLOiW5C+j3O7yygIixQtuYIQF2mbb
+ t9Dtu1HxnyUG8dFuJgyXAH9lg7FPWNUYF6UjMob1tN//Pw5f7NMkfn9g2
+ AZXIaNZwKkrdFyx3KlbWOE0dAfC/1yn80zbtRoka1HY+GvdYVBjFWWoxd
+ 0EjATWTOBEzbCVk6DGFv1X2IYnU5bB4lMGat/EmR/WOT9hDC+xuGEQWSL
+ 02pD4R+JZRmcOywHnpNomYdRLCg8R1ga0A0RuiJYF7fWvboGF7OEinWWF
+ vPrVvYfXt+swrfZQemXxJ6SWHU1iT+5Ave/dZRnwrwz+BJXJ53UDCD60Z g==;
+X-CSE-ConnectionGUID: Pb/gXxGCS++JBDMhyPfAgQ==
+X-CSE-MsgGUID: CsH0SKB3TiObPGEID6iOEg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11260"; a="32050751"
+X-IronPort-AV: E=Sophos;i="6.12,165,1728975600"; d="scan'208";a="32050751"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2024 00:51:58 -0800
+X-CSE-ConnectionGUID: 4NMmpi2aRbyUSm2CbVcfTQ==
+X-CSE-MsgGUID: bp/TdSLfR1u1qSWySGuXOw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,165,1728975600"; d="scan'208";a="90291403"
+X-IronPort-AV: E=Sophos;i="6.12,165,1728975600"; d="scan'208";a="94558838"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.202])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2024 00:50:57 -0800
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2024 00:51:55 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Vinod Govindapillai <vinod.govindapillai@intel.com>,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 Cc: vinod.govindapillai@intel.com, ville.syrjala@intel.com,
  jani.saarinen@intel.com
-Subject: Re: [RFC PATCH 3/4] drm/i915/xe3: add dirty rect support for FBC
-In-Reply-To: <20241118235325.353010-4-vinod.govindapillai@intel.com>
+Subject: Re: [RFC PATCH 4/4] drm/i915/xe3: disable FBC if PSR2 selective
+ fetch is enabled
+In-Reply-To: <20241118235325.353010-5-vinod.govindapillai@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20241118235325.353010-1-vinod.govindapillai@intel.com>
- <20241118235325.353010-4-vinod.govindapillai@intel.com>
-Date: Tue, 19 Nov 2024 10:50:54 +0200
-Message-ID: <87wmgz38up.fsf@intel.com>
+ <20241118235325.353010-5-vinod.govindapillai@intel.com>
+Date: Tue, 19 Nov 2024 10:51:52 +0200
+Message-ID: <87ttc338t3.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -72,237 +73,45 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Tue, 19 Nov 2024, Vinod Govindapillai <vinod.govindapillai@intel.com> wrote:
-> Dirty rectangle feature allows FBC to recompress a subsection
-> of a frame. When this feature is enabled, display will read
-> the scan lines between dirty rectangle start line and dirty
-> rectangle end line in subsequent frames.
+> FBC dirty rect support and PSR2 selective fetch canno be enabled
+> together. In xe3 driver enables the FBC dirty rect feature by
+> default. So PSR2 is enabled, then mark that plane as FBC cannot
+> be enabled. Later on we need to find a way to select between
+> FBC and PSR2 based on amount of damaged areas.
 >
-> Bspec: 71675, 73424
+> Bspec: 68881
 > Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_fbc.c      | 130 ++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_fbc.h      |   3 +
->  .../drm/i915/display/skl_universal_plane.c    |   2 +
->  3 files changed, 135 insertions(+)
+>  drivers/gpu/drm/i915/display/intel_fbc.c | 9 +++++++--
+>  1 file changed, 7 insertions(+), 2 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-> index 1fdb1a3e3fbe..01080171790f 100644
+> index 01080171790f..e1d55f5f2938 100644
 > --- a/drivers/gpu/drm/i915/display/intel_fbc.c
 > +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-> @@ -42,6 +42,7 @@
->  #include <linux/string_helpers.h>
->  
->  #include <drm/drm_blend.h>
-> +#include <drm/drm_damage_helper.h>
->  #include <drm/drm_fourcc.h>
->  
->  #include "gem/i915_gem_stolen.h"
-> @@ -58,6 +59,7 @@
->  #include "intel_display_trace.h"
->  #include "intel_display_types.h"
->  #include "intel_display_wa.h"
-> +#include "intel_dsb.h"
->  #include "intel_fbc.h"
->  #include "intel_fbc_regs.h"
->  #include "intel_frontbuffer.h"
-> @@ -126,6 +128,8 @@ struct intel_fbc {
+> @@ -1346,9 +1346,14 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
+>  	 * Display 12+ is not supporting FBC with PSR2.
+>  	 * Recommendation is to keep this combination disabled
+>  	 * Bspec: 50422 HSD: 14010260002
+> +	 *
+> +	 * In Xe3, PSR2 selective fetch and FBC dirty rect feature cannot
+> +	 * coexist. So if PSR2 selective fetch is supported then mark that
+> +	 * FBC is not supported.
+> +	 * TODO: Need a logic to decide between PSR2 and FBC Dirty rect
 >  	 */
->  	struct intel_fbc_state state;
->  	const char *no_fbc_reason;
-> +
-> +	struct drm_rect dirty_rect;
->  };
->  
->  /* plane stride in pixels */
-> @@ -670,6 +674,10 @@ static void ivb_fbc_activate(struct intel_fbc *fbc)
->  	if (DISPLAY_VER(display) >= 20)
->  		intel_de_write(display, ILK_DPFC_CONTROL(fbc->id), dpfc_ctl);
->  
-> +	if (DISPLAY_VER(display) >= 30)
-> +		intel_de_write(display, XE3_FBC_DIRTY_CTL(fbc->id),
-> +			       FBC_DIRTY_RECT_EN);
-> +
->  	intel_de_write(display, ILK_DPFC_CONTROL(fbc->id),
->  		       DPFC_CTL_EN | dpfc_ctl);
->  }
-> @@ -1664,6 +1672,113 @@ void intel_fbc_flush(struct drm_i915_private *i915,
->  		__intel_fbc_flush(fbc, frontbuffer_bits, origin);
->  }
->  
-> +void
-> +intel_fbc_program_dirty_rect(struct intel_dsb *dsb, struct intel_plane *plane)
-> +{
-> +	struct intel_display *display = to_intel_display(plane);
-> +	struct intel_fbc *fbc = plane->fbc;
-> +
-> +	if (DISPLAY_VER(display) < 30)
-> +		return;
-> +
-> +	if (!fbc)
-> +		return;
-> +
-> +	intel_de_write_dsb(display, dsb, XE3_FBC_DIRTY_RECT(fbc->id),
-> +			   FBC_DIRTY_RECT_START_LINE(fbc->dirty_rect.y1) |
-> +			   FBC_DIRTY_RECT_END_LINE(fbc->dirty_rect.y2));
-> +}
-> +
-> +static bool
-> +intel_fbc_need_full_region_update(struct intel_plane_state *old_plane_state,
-> +				  struct intel_plane_state *new_plane_state)
-> +{
-> +	const struct drm_framebuffer *old_fb = old_plane_state->hw.fb;
-> +	const struct drm_framebuffer *new_fb = new_plane_state->hw.fb;
-> +
-> +	if (!old_fb || !new_fb)
-> +		return true;
-> +
-> +	if (old_fb->format->format != new_fb->format->format)
-> +		return true;
-> +
-> +	if (old_fb->modifier != new_fb->modifier)
-> +		return true;
-> +
-> +	if (intel_fbc_plane_stride(old_plane_state) !=
-> +	    intel_fbc_plane_stride(new_plane_state))
-> +		return true;
-> +
-> +	if (intel_fbc_cfb_stride(old_plane_state) !=
-> +	    intel_fbc_cfb_stride(new_plane_state))
-> +		return true;
-> +
-> +	if (intel_fbc_cfb_size(old_plane_state) !=
-> +	    intel_fbc_cfb_size(new_plane_state))
-> +		return true;
-> +
-> +	return false;
-> +}
-> +
-> +static void
-> +update_dirty_rect_to_full_region(struct intel_plane_state *plane_state,
-> +				 struct drm_rect *dirty_rect)
-> +{
-> +	int y_offset = plane_state->view.color_plane[0].y;
-> +	int plane_height = drm_rect_height(&plane_state->uapi.src) >> 16;
-> +
-> +	dirty_rect->y1 = y_offset;
-> +	dirty_rect->y2 = y_offset + plane_height;
-> +}
-> +
-> +static void validate_and_clip_dirty_rect(struct intel_plane_state *plane_state,
-> +					 struct drm_rect *dirty_rect)
-> +{
-> +	int y_offset = plane_state->view.color_plane[0].y;
-> +	int plane_height = drm_rect_height(&plane_state->uapi.src) >> 16;
-> +	int max_endline = y_offset + plane_height;
-> +
-> +	dirty_rect->y1 = clamp(dirty_rect->y1, y_offset, max_endline);
-> +	dirty_rect->y2 = clamp(dirty_rect->y2, dirty_rect->y1, max_endline);
-> +}
-> +
-> +static void intel_fbc_compute_dirty_rect(struct intel_plane *plane,
-> +					struct intel_plane_state *old_plane_state,
-> +					struct intel_plane_state *new_plane_state,
-> +					bool need_full_region_update)
-> +{
-> +	struct intel_display *display = to_intel_display(plane);
-> +	struct intel_fbc *fbc = plane->fbc;
-> +	struct drm_rect *fbc_dirty_rect = &fbc->dirty_rect;
-> +
-> +	if (need_full_region_update) {
-> +		drm_dbg_kms(display->drm,
-> +			    "[PLANE:%d:%s] Full region update needed\n",
-> +			    plane->base.base.id, plane->base.name);
-> +		update_dirty_rect_to_full_region(new_plane_state, fbc_dirty_rect);
-> +		goto out;
-> +	}
-> +
-> +	if (drm_atomic_helper_damage_merged(&old_plane_state->uapi,
-> +					    &new_plane_state->uapi,
-> +					    fbc_dirty_rect)) {
-> +		validate_and_clip_dirty_rect(new_plane_state, fbc_dirty_rect);
-> +	} else {
-> +		drm_dbg_kms(display->drm,
-> +			    "[PLANE:%d:%s] Damage clips merge cal failed. Use full region\n",
-> +			    plane->base.base.id, plane->base.name);
-> +
-> +		/* TODO! if the drm call failed, update full region? */
-> +		update_dirty_rect_to_full_region(new_plane_state, fbc_dirty_rect);
-> +	}
-> +
-> +out:
-> +	drm_dbg_kms(display->drm,
-> +		    "[PLANE:%d:%s] Dirty rect start line: %d End line: %d\n",
-> +		    plane->base.base.id, plane->base.name, fbc_dirty_rect->y1,
-> +		    fbc_dirty_rect->y2);
-> +}
-> +
->  int intel_fbc_atomic_check(struct intel_atomic_state *state)
->  {
->  	struct intel_plane_state __maybe_unused *new_plane_state;
-> @@ -1673,11 +1788,26 @@ int intel_fbc_atomic_check(struct intel_atomic_state *state)
->  
->  	for_each_oldnew_intel_plane_in_state(state, plane, old_plane_state,
->  					     new_plane_state, i) {
-> +		bool full_region_update;
->  		int ret;
->  
-> +		if (!plane->fbc)
-> +			continue;
-> +
->  		ret = intel_fbc_check_plane(state, plane);
->  		if (ret)
->  			return ret;
-> +
-> +		if (!new_plane_state->no_fbc_reason)
-> +			continue;
-> +
-> +		full_region_update =
-> +			intel_fbc_need_full_region_update(old_plane_state,
-> +							  new_plane_state);
+> -	if (IS_DISPLAY_VER(display, 12, 14) && crtc_state->has_sel_update &&
+> -	    !crtc_state->has_panel_replay) {
+> +	if (IS_DISPLAY_VER(display, 12, 14) && DISPLAY_VER(display) >= 30 &&
 
-Drive-by comment, you could drop the __maybe_unused annotations with
-this.
+This will never be true.
 
-> +
-> +		intel_fbc_compute_dirty_rect(plane, old_plane_state,
-> +					     new_plane_state,
-> +					     full_region_update);
+BR,
+Jani.
+
+> +	    crtc_state->has_sel_update && !crtc_state->has_panel_replay) {
+>  		plane_state->no_fbc_reason = "PSR2 enabled";
+>  		return 0;
 >  	}
->  
->  	return 0;
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.h b/drivers/gpu/drm/i915/display/intel_fbc.h
-> index ceae55458e14..073d671ea94d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbc.h
-> +++ b/drivers/gpu/drm/i915/display/intel_fbc.h
-> @@ -14,6 +14,7 @@ struct intel_atomic_state;
->  struct intel_crtc;
->  struct intel_crtc_state;
->  struct intel_display;
-> +struct intel_dsb;
->  struct intel_fbc;
->  struct intel_plane;
->  struct intel_plane_state;
-> @@ -48,5 +49,7 @@ void intel_fbc_handle_fifo_underrun_irq(struct intel_display *display);
->  void intel_fbc_reset_underrun(struct intel_display *display);
->  void intel_fbc_crtc_debugfs_add(struct intel_crtc *crtc);
->  void intel_fbc_debugfs_register(struct intel_display *display);
-> +void intel_fbc_program_dirty_rect(struct intel_dsb *dsb,
-> +				  struct intel_plane *plane);
->  
->  #endif /* __INTEL_FBC_H__ */
-> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> index 4c7bcf6806ff..fd3611323ec0 100644
-> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> @@ -1510,6 +1510,8 @@ icl_plane_update_noarm(struct intel_dsb *dsb,
->  		icl_plane_csc_load_black(dsb, plane, crtc_state);
->  
->  	icl_plane_update_sel_fetch_noarm(dsb, plane, crtc_state, plane_state, color_plane);
-> +
-> +	intel_fbc_program_dirty_rect(dsb, plane);
->  }
->  
->  static void icl_plane_update_sel_fetch_arm(struct intel_dsb *dsb,
 
 -- 
 Jani Nikula, Intel
