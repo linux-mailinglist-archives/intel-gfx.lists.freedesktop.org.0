@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B6489D266B
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 Nov 2024 14:09:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 051839D2680
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 Nov 2024 14:11:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 36EBF10E34A;
-	Tue, 19 Nov 2024 13:09:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8480410E633;
+	Tue, 19 Nov 2024 13:11:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ibHK7Hw0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FzIhNZtF";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB49710E27B;
- Tue, 19 Nov 2024 13:09:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6AC8610E633;
+ Tue, 19 Nov 2024 13:11:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732021794; x=1763557794;
+ t=1732021878; x=1763557878;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=xplUgtG5Xd3qLlnacR3Ok7o4lxNH0Q48twDzhE93rIw=;
- b=ibHK7Hw06O6lCdcopT47PK4GqtY4nkhKo3zhzWOJKotXop9++eM3ZVg0
- PkY3Q7CpqJefKLMf4Lg0dNo5frmp8gQFhyAitK8IurXOupzwngQFdsJM/
- x6epfUk6DrcIMZxDzSuogvfrWCeyg68nPRMvwcRrrVx4fO1sxfK4y6wgW
- /i1Ea4q+aHl4s3BVoVt3D5U8FElyX1pCuNV4Y0RE56XGpkx7+NTbZ5BtN
- MCNXOd/iRAj3nYgnqX8jGH+FJIBAizY8jDZ7GKzTwXQT8oROLdoyzWPfI
- a020Yg/pDeLoVynGPyYGe1yxl4Th9sZrmNG6yfHk3JMbBRuu1CjwJ4HnO w==;
-X-CSE-ConnectionGUID: q2dCFD8+ScKXO3LbI1DFRw==
-X-CSE-MsgGUID: 2Y0jq7ysQEy3TVbWIIWGQQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11261"; a="31871792"
-X-IronPort-AV: E=Sophos;i="6.12,166,1728975600"; d="scan'208";a="31871792"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2024 05:09:54 -0800
-X-CSE-ConnectionGUID: 4J8E8oCURC+R25Tc3knhSg==
-X-CSE-MsgGUID: LzS+xtHCSpq+3ZkX1O2G0w==
+ bh=O66ndQEWiMw7NF0ucuubiUrZaDXPqU0ziQ90v2ZhdMA=;
+ b=FzIhNZtFtghyCKCl9FJwTMYml9v8Xth3U50phi31ROt8+X1xarwl8Oj5
+ /dNxgIx+vNVSh0wIhSSDhdoMqcyIAko6SPKVhnA3TQ4UYFVhYpL/3seBN
+ 9R9xHMfaIxpEYYb5TSFkrAGV4IiBPB4gIBIiR6UvhDf7nYT8phisGH5nh
+ FOUaRWAUfRaO8MrdyZG4lKKfpyl/57x9s7B7xZyTgPIcO831RQojxzpAf
+ 3iz5hj1MLVQZ0NRp+8R4+Ou4hIDOQbt1fwLClBQd1DOu7QNsemCUunBeC
+ zFX/NvzRz/LQW3t/LhfP4drQ33blT83RP4b6ks76tQcfSm1eOV2v06Oa9 w==;
+X-CSE-ConnectionGUID: 14ICWqtqRaSQY0OxW0GP7w==
+X-CSE-MsgGUID: hcqSDXIySF61hqzzhoPx4w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11261"; a="31770793"
+X-IronPort-AV: E=Sophos;i="6.12,166,1728975600"; d="scan'208";a="31770793"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2024 05:11:17 -0800
+X-CSE-ConnectionGUID: drzCGTLRSzCYhAfPk2K6Hg==
+X-CSE-MsgGUID: brvLmYV+Qi2vyVNaa5Vdrg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,166,1728975600"; d="scan'208";a="90358301"
+X-IronPort-AV: E=Sophos;i="6.12,166,1728975600"; d="scan'208";a="120481906"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.202])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2024 05:09:52 -0800
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2024 05:11:15 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: imre.deak@intel.com
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 06/11] drm/i915/reg: convert DP_TP_CTL/DP_TP_STATUS to
- REG_BIT() and friends
-In-Reply-To: <Zzx6zqUeUzUQlAgc@ideak-desk.fi.intel.com>
+Subject: Re: [PATCH 11/11] drm/i915/ddi: simplify
+ intel_ddi_get_encoder_pipes() slightly
+In-Reply-To: <Zzx5IKsm7us1CcBP@ideak-desk.fi.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <cover.1731941270.git.jani.nikula@intel.com>
- <9c54e8d7a3ff5039e4537cccb97214e63b9805c9.1731941270.git.jani.nikula@intel.com>
- <Zzx6zqUeUzUQlAgc@ideak-desk.fi.intel.com>
-Date: Tue, 19 Nov 2024 15:09:49 +0200
-Message-ID: <87iksj2wv6.fsf@intel.com>
+ <0aa1274597fa84a0dc3c9ccf7bb20997d1d154bf.1731941270.git.jani.nikula@intel.com>
+ <Zzx5IKsm7us1CcBP@ideak-desk.fi.intel.com>
+Date: Tue, 19 Nov 2024 15:11:12 +0200
+Message-ID: <87frnn2wsv.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -72,100 +72,56 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Tue, 19 Nov 2024, Imre Deak <imre.deak@intel.com> wrote:
-> On Mon, Nov 18, 2024 at 04:49:01PM +0200, Jani Nikula wrote:
->> Use the modern style for defining register contents. Expand the status
->> register contents a bit.
->> 
->> TODO: The payload mapping fields have more bits on more recent
->> platforms.
+> On Mon, Nov 18, 2024 at 04:49:06PM +0200, Jani Nikula wrote:
+>> Use a temporary variable for DDI mode to simplify the conditions. This
+>> is in line with the other places that read DDI mode.
 >> 
 >> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 >> ---
->>  drivers/gpu/drm/i915/i915_reg.h | 57 +++++++++++++++++----------------
->>  1 file changed, 30 insertions(+), 27 deletions(-)
+>>  drivers/gpu/drm/i915/display/intel_ddi.c | 9 +++++----
+>>  1 file changed, 5 insertions(+), 4 deletions(-)
 >> 
->> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
->> index 7a35be56b7ef..9c198405349d 100644
->> --- a/drivers/gpu/drm/i915/i915_reg.h
->> +++ b/drivers/gpu/drm/i915/i915_reg.h
->> @@ -3823,25 +3823,26 @@ enum skl_power_gate {
->>  #define _TGL_DP_TP_CTL_A		0x60540
->>  #define DP_TP_CTL(port) _MMIO_PORT(port, _DP_TP_CTL_A, _DP_TP_CTL_B)
->>  #define TGL_DP_TP_CTL(dev_priv, tran) _MMIO_TRANS2(dev_priv, (tran), _TGL_DP_TP_CTL_A)
->> -#define  DP_TP_CTL_ENABLE			(1 << 31)
->> -#define  DP_TP_CTL_FEC_ENABLE			(1 << 30)
->> -#define  DP_TP_CTL_MODE_SST			(0 << 27)
->> -#define  DP_TP_CTL_MODE_MST			(1 << 27)
->> -#define  DP_TP_CTL_FORCE_ACT			(1 << 25)
->> -#define  DP_TP_CTL_TRAIN_PAT4_SEL_MASK		(3 << 19)
->> -#define  DP_TP_CTL_TRAIN_PAT4_SEL_TP4A		(0 << 19)
->> -#define  DP_TP_CTL_TRAIN_PAT4_SEL_TP4B		(1 << 19)
->> -#define  DP_TP_CTL_TRAIN_PAT4_SEL_TP4C		(2 << 19)
->> -#define  DP_TP_CTL_ENHANCED_FRAME_ENABLE	(1 << 18)
->> -#define  DP_TP_CTL_FDI_AUTOTRAIN		(1 << 15)
->> -#define  DP_TP_CTL_LINK_TRAIN_MASK		(7 << 8)
->> -#define  DP_TP_CTL_LINK_TRAIN_PAT1		(0 << 8)
->> -#define  DP_TP_CTL_LINK_TRAIN_PAT2		(1 << 8)
->> -#define  DP_TP_CTL_LINK_TRAIN_PAT3		(4 << 8)
->> -#define  DP_TP_CTL_LINK_TRAIN_PAT4		(5 << 8)
->> -#define  DP_TP_CTL_LINK_TRAIN_IDLE		(2 << 8)
->> -#define  DP_TP_CTL_LINK_TRAIN_NORMAL		(3 << 8)
->> -#define  DP_TP_CTL_SCRAMBLE_DISABLE		(1 << 7)
->> +#define   DP_TP_CTL_ENABLE			REG_BIT(31)
->> +#define   DP_TP_CTL_FEC_ENABLE			REG_BIT(30)
->> +#define   DP_TP_CTL_MODE_MASK			REG_BIT(27)
->> +#define   DP_TP_CTL_MODE_SST			REG_FIELD_PREP(DP_TP_CTL_MODE_MASK, 0)
->> +#define   DP_TP_CTL_MODE_MST			REG_FIELD_PREP(DP_TP_CTL_MODE_MASK, 1)
->> +#define   DP_TP_CTL_FORCE_ACT			REG_BIT(25)
->> +#define   DP_TP_CTL_TRAIN_PAT4_SEL_MASK		REG_GENMASK(20, 19)
->> +#define   DP_TP_CTL_TRAIN_PAT4_SEL_TP4A		REG_FIELD_PREP(DP_TP_CTL_TRAIN_PAT4_SEL_MASK, 0)
->> +#define   DP_TP_CTL_TRAIN_PAT4_SEL_TP4B		REG_FIELD_PREP(DP_TP_CTL_TRAIN_PAT4_SEL_MASK, 1)
->> +#define   DP_TP_CTL_TRAIN_PAT4_SEL_TP4C		REG_FIELD_PREP(DP_TP_CTL_TRAIN_PAT4_SEL_MASK, 2)
->> +#define   DP_TP_CTL_ENHANCED_FRAME_ENABLE	REG_BIT(18)
->> +#define   DP_TP_CTL_FDI_AUTOTRAIN		REG_BIT(15)
->> +#define   DP_TP_CTL_LINK_TRAIN_MASK		REG_GENMASK(10, 8)
->> +#define   DP_TP_CTL_LINK_TRAIN_PAT1		REG_FIELD_PREP(DP_TP_CTL_LINK_TRAIN_MASK, 0)
->> +#define   DP_TP_CTL_LINK_TRAIN_PAT2		REG_FIELD_PREP(DP_TP_CTL_LINK_TRAIN_MASK, 1)
->> +#define   DP_TP_CTL_LINK_TRAIN_PAT3		REG_FIELD_PREP(DP_TP_CTL_LINK_TRAIN_MASK, 4)
->> +#define   DP_TP_CTL_LINK_TRAIN_PAT4		REG_FIELD_PREP(DP_TP_CTL_LINK_TRAIN_MASK, 5)
->> +#define   DP_TP_CTL_LINK_TRAIN_IDLE		REG_FIELD_PREP(DP_TP_CTL_LINK_TRAIN_MASK, 2)
->> +#define   DP_TP_CTL_LINK_TRAIN_NORMAL		REG_FIELD_PREP(DP_TP_CTL_LINK_TRAIN_MASK, 3)
->> +#define   DP_TP_CTL_SCRAMBLE_DISABLE		REG_BIT(7)
+>> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+>> index 33628cbc0f72..e25b712bf03b 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+>> @@ -818,7 +818,7 @@ static void intel_ddi_get_encoder_pipes(struct intel_encoder *encoder,
+>>  	mst_pipe_mask = 0;
+>>  	for_each_pipe(dev_priv, p) {
+>>  		enum transcoder cpu_transcoder = (enum transcoder)p;
+>> -		unsigned int port_mask, ddi_select;
+>> +		u32 port_mask, ddi_select, ddi_mode;
+>>  		intel_wakeref_t trans_wakeref;
 >>  
->>  /* DisplayPort Transport Status */
->>  #define _DP_TP_STATUS_A			0x64044
->> @@ -3849,14 +3850,16 @@ enum skl_power_gate {
->>  #define _TGL_DP_TP_STATUS_A		0x60544
->>  #define DP_TP_STATUS(port) _MMIO_PORT(port, _DP_TP_STATUS_A, _DP_TP_STATUS_B)
->>  #define TGL_DP_TP_STATUS(dev_priv, tran) _MMIO_TRANS2(dev_priv, (tran), _TGL_DP_TP_STATUS_A)
->> -#define  DP_TP_STATUS_FEC_ENABLE_LIVE		(1 << 28)
->> -#define  DP_TP_STATUS_IDLE_DONE			(1 << 25)
->> -#define  DP_TP_STATUS_ACT_SENT			(1 << 24)
->> -#define  DP_TP_STATUS_MODE_STATUS_MST		(1 << 23)
->> -#define  DP_TP_STATUS_AUTOTRAIN_DONE		(1 << 12)
->> -#define  DP_TP_STATUS_PAYLOAD_MAPPING_VC2	(3 << 8)
->> -#define  DP_TP_STATUS_PAYLOAD_MAPPING_VC1	(3 << 4)
->> -#define  DP_TP_STATUS_PAYLOAD_MAPPING_VC0	(3 << 0)
->> +#define   DP_TP_STATUS_FEC_ENABLE_LIVE		REG_BIT(28)
->> +#define   DP_TP_STATUS_IDLE_DONE		REG_BIT(25)
->> +#define   DP_TP_STATUS_ACT_SENT			REG_BIT(24)
->> +#define   DP_TP_STATUS_MODE_STATUS_MST		REG_BIT(23)
->> +#define   DP_TP_STATUS_AUTOTRAIN_DONE		REG_BIT(12)
->> +#define   DP_TP_STATUS_STREAMS_ENABLED_MASK	REG_GENMASK(21, 19)
+>>  		trans_wakeref = intel_display_power_get_if_enabled(dev_priv,
+>> @@ -842,9 +842,10 @@ static void intel_ddi_get_encoder_pipes(struct intel_encoder *encoder,
+>>  		if ((tmp & port_mask) != ddi_select)
+>>  			continue;
+>>  
+>> -		if ((tmp & TRANS_DDI_MODE_SELECT_MASK) == TRANS_DDI_MODE_SELECT_DP_MST ||
+>> -		    (HAS_DP20(display) &&
+>> -		     (tmp & TRANS_DDI_MODE_SELECT_MASK) == TRANS_DDI_MODE_SELECT_FDI_OR_128B132B))
+>> +		ddi_mode = tmp & TRANS_DDI_MODE_SELECT_MASK;
+>> +
+>> +		if (ddi_mode == TRANS_DDI_MODE_SELECT_DP_MST ||
+>> +		    (ddi_mode == TRANS_DDI_MODE_SELECT_FDI_OR_128B132B && HAS_DP20(display)))
 >
-> I assume the above is the 'Streams Enabled' field and that is bits 18:16
-> on the platforms I checked. Bits 21:19 is 'DP Init Status'.
+> nit: the above condition and the fdi counterpart is used elsewhere too,
+> so could use a helper. The patchset looks ok regardless:
 
-You're right. Good catch, thanks!
+It'll need to change anyway going forward, as the latter needs better
+SST vs. MST detection.
+
+> Reviewed-by: Imre Deak <imre.deak@intel.com>
+
+Thanks,
+Jani.
+
 
 >
->> +#define   DP_TP_STATUS_PAYLOAD_MAPPING_VC3_MASK REG_GENMASK(13, 12)
->> +#define   DP_TP_STATUS_PAYLOAD_MAPPING_VC2_MASK REG_GENMASK(9, 8)
->> +#define   DP_TP_STATUS_PAYLOAD_MAPPING_VC1_MASK	REG_GENMASK(5, 4)
->> +#define   DP_TP_STATUS_PAYLOAD_MAPPING_VC0_MASK	REG_GENMASK(1, 0)
+>>  			mst_pipe_mask |= BIT(p);
 >>  
->>  /* DDI Buffer Control */
->>  #define _DDI_BUF_CTL_A				0x64000
+>>  		*pipe_mask |= BIT(p);
 >> -- 
 >> 2.39.5
 >> 
