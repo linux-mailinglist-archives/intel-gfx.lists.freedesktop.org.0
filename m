@@ -2,53 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A9639D404B
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Nov 2024 17:41:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 84CD39D404F
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Nov 2024 17:41:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9FEDC10E18A;
-	Wed, 20 Nov 2024 16:41:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BEE8110E78F;
+	Wed, 20 Nov 2024 16:41:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D7pD6Xln";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MuCbfrLM";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7CCFD10E79E
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Nov 2024 16:41:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 357BF10E2D3
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 Nov 2024 16:41:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732120900; x=1763656900;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Lp1XsOjfEdnhtE95S3d9mElLCXp65ltf+bTb949N1gA=;
- b=D7pD6XlnrxIUgbx/nR/cmU8vYvZ7fCNiKAmK6tAuJPqc8km6ibjs2BaS
- nFU71tyj4iPcVQXJUA5e0/JgJob4EYl4bsECXilqKRxAoHUBvfthwMD1c
- 5ZSFkBvpDUGY5l7SBHGojKTsrKBaib97aijIiPJAQEq8DUrTePfXsLMuN
- 48QqPnlMZ+j8gPEQoh0yaWKKFBAtDBMgvX7w+Zefy+R7FWzwLn/wJms0u
- fEqfkaLwZuW0V2PdalTeAjTjZ474HL4sFcXZeKeBpZdvcYNWs9tQDAlRa
- EJ6js/BVsng35r/iH72ehZhrVRlE5LhqPp7ZmAJECWbyJAEqmR59VzfGx A==;
-X-CSE-ConnectionGUID: N07YYqhqThWlLC22IdBptQ==
-X-CSE-MsgGUID: jznXexN6RT6ymdjECCl+Vw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11262"; a="49620316"
-X-IronPort-AV: E=Sophos;i="6.12,170,1728975600"; d="scan'208";a="49620316"
+ t=1732120911; x=1763656911;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=D0JMaCkdmCyhxqk/vJeFo/DhxxVH5lE4XbJMDTTf0EA=;
+ b=MuCbfrLMdiYc8ZqdukyLvZhKy46+46ypQol8DmbK8pVrZaoYeN9t+IVl
+ qju1Ph/ni02NCGswBtfkfZR/jJzvZlRX5pu1e2NUip9jhf0ACdWMzcpxr
+ g+2N+QYzfke0g5EjA8qOGY7WlpHjfJLDkHhy/sPl46ly6t1/zlFYiQ3dI
+ JxDz26+OKcd6ErLf2OtOrQ9u0ozXsXy55+sBWCql9S7fBdun9k7NC7f5e
+ I8fmhltiy8hT4dbXqaeIva1Z2/VWVbW9LJgYDq35AbVlUHYL4904E9q80
+ rMNEnztwgRTbL54BplYpjvyIf2EqMupMKXGpl+uDXG6yMZI6RvSAQYJVN w==;
+X-CSE-ConnectionGUID: 1RBqKLRsQAylcc+bzPEr4g==
+X-CSE-MsgGUID: 9rUJkkAAQWaUFBG/O29ljw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11262"; a="49620335"
+X-IronPort-AV: E=Sophos;i="6.12,170,1728975600"; d="scan'208";a="49620335"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2024 08:41:31 -0800
-X-CSE-ConnectionGUID: 8Bl7c7onSzio3udjPW59BQ==
-X-CSE-MsgGUID: qMTWedN2SeWFfZUjz6xghg==
+ 20 Nov 2024 08:41:34 -0800
+X-CSE-ConnectionGUID: imFnWCpzSqaI0FDpQPtj1g==
+X-CSE-MsgGUID: mW8huab0T3SeIPGjt4tnYg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,170,1728975600"; d="scan'208";a="90137166"
+X-IronPort-AV: E=Sophos;i="6.12,170,1728975600"; d="scan'208";a="90137173"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 20 Nov 2024 08:41:30 -0800
+ by fmviesa008.fm.intel.com with SMTP; 20 Nov 2024 08:41:33 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 20 Nov 2024 18:41:28 +0200
+ Wed, 20 Nov 2024 18:41:31 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: stable@vger.kernel.org
-Subject: [PATCH 2/4] drm/i915/color: Stop using non-posted DSB writes for
- legacy LUT
-Date: Wed, 20 Nov 2024 18:41:21 +0200
-Message-ID: <20241120164123.12706-3-ville.syrjala@linux.intel.com>
+Subject: [PATCH 3/4] drm/i915/dsb: Nuke the MMIO->indexed register write logic
+Date: Wed, 20 Nov 2024 18:41:22 +0200
+Message-ID: <20241120164123.12706-4-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241120164123.12706-1-ville.syrjala@linux.intel.com>
 References: <20241120164123.12706-1-ville.syrjala@linux.intel.com>
@@ -72,96 +70,105 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-DSB LUT register writes vs. palette anti-collision logic
-appear to interact in interesting ways:
-- posted DSB writes simply vanish into thin air while
-  anti-collision is active
-- non-posted DSB writes actually get blocked by the anti-collision
-  logic, but unfortunately this ends up hogging the bus for
-  long enough that unrelated parallel CPU MMIO accesses start
-  to disappear instead
+We've determined that indexed DSB writes are only faster
+than MMIO writes when writing the same register ~5 or more
+times. That seems very unlikely to happen in any other case
+than when using indexed LUT registers. Simplify the code
+by removing the MMIO->indexed write conversion logic and
+just emit the instruction as an indexed write from the get go.
 
-Even though we are updating the LUT during vblank we aren't
-immune to the anti-collision logic because it kicks in brifly
-for pipe prefill (initiated at frame start). The safe time
-window for performing the LUT update is thus between the
-undelayed vblank and frame start. Turns out that with low
-enough CDCLK frequency (DSB execution speed depends on CDCLK)
-we can exceed that.
-
-As we are currently using non-posted writes for the legacy LUT
-updates, in which case we can hit the far more severe failure
-mode. The problem is exacerbated by the fact that non-posted
-writes are much slower than posted writes (~4x it seems).
-
-To mititage the problem let's switch to using posted DSB
-writes for legacy LUT updates (which will involve using the
-double write approach to avoid other problems with DSB
-vs. legacy LUT writes). Despite writing each register twice
-this will in fact make the legacy LUT update faster when
-compared to the non-posted write approach, making the
-problem less likely to appear. The failure mode is also
-less severe.
-
-This isn't the 100% solution we need though. That will involve
-estimating how long the LUT update will take, and pushing
-frame start and/or delayed vblank forward to guarantee that
-the update will have finished by the time the pipe prefill
-starts...
-
-Cc: stable@vger.kernel.org
-Fixes: 34d8311f4a1c ("drm/i915/dsb: Re-instate DSB for LUT updates")
-Fixes: 25ea3411bd23 ("drm/i915/dsb: Use non-posted register writes for legacy LUT")
-Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12494
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_color.c | 30 ++++++++++++++--------
- 1 file changed, 20 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dsb.c | 58 ++++++------------------
+ 1 file changed, 14 insertions(+), 44 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-index 6ea3d5c58cb1..7cd902bbd244 100644
---- a/drivers/gpu/drm/i915/display/intel_color.c
-+++ b/drivers/gpu/drm/i915/display/intel_color.c
-@@ -1368,19 +1368,29 @@ static void ilk_load_lut_8(const struct intel_crtc_state *crtc_state,
- 	lut = blob->data;
- 
- 	/*
--	 * DSB fails to correctly load the legacy LUT
--	 * unless we either write each entry twice,
--	 * or use non-posted writes
-+	 * DSB fails to correctly load the legacy LUT unless
-+	 * we either write each entry twice when using posted
-+	 * writes, or we use non-posted writes.
-+	 *
-+	 * If palette anti-collision is active during LUT
-+	 * register writes:
-+	 * - posted writes simply get dropped and thus the LUT
-+	 *   contents may not be correctly updated
-+	 * - non-posted writes are blocked and thus the LUT
-+	 *   contents are always correct, but simultaneous CPU
-+	 *   MMIO access will start to fail
-+	 *
-+	 * Choose the lesser of two evils and use posted writes.
-+	 * Using posted writes is also faster, even when having
-+	 * to write each register twice.
- 	 */
--	if (crtc_state->dsb_color_vblank)
--		intel_dsb_nonpost_start(crtc_state->dsb_color_vblank);
--
--	for (i = 0; i < 256; i++)
-+	for (i = 0; i < 256; i++) {
- 		ilk_lut_write(crtc_state, LGC_PALETTE(pipe, i),
- 			      i9xx_lut_8(&lut[i]));
--
--	if (crtc_state->dsb_color_vblank)
--		intel_dsb_nonpost_end(crtc_state->dsb_color_vblank);
-+		if (crtc_state->dsb_color_vblank)
-+			ilk_lut_write(crtc_state, LGC_PALETTE(pipe, i),
-+				      i9xx_lut_8(&lut[i]));
-+	}
+diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
+index 4d3785f5cb52..e6f8fc743fb4 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsb.c
++++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+@@ -256,15 +256,6 @@ static bool intel_dsb_prev_ins_is_write(struct intel_dsb *dsb,
+ 	return prev_opcode == opcode && prev_reg == i915_mmio_reg_offset(reg);
  }
  
- static void ilk_load_lut_10(const struct intel_crtc_state *crtc_state,
+-static bool intel_dsb_prev_ins_is_mmio_write(struct intel_dsb *dsb, i915_reg_t reg)
+-{
+-	/* only full byte-enables can be converted to indexed writes */
+-	return intel_dsb_prev_ins_is_write(dsb,
+-					   DSB_OPCODE_MMIO_WRITE << DSB_OPCODE_SHIFT |
+-					   DSB_BYTE_EN << DSB_BYTE_EN_SHIFT,
+-					   reg);
+-}
+-
+ static bool intel_dsb_prev_ins_is_indexed_write(struct intel_dsb *dsb, i915_reg_t reg)
+ {
+ 	return intel_dsb_prev_ins_is_write(dsb,
+@@ -273,7 +264,7 @@ static bool intel_dsb_prev_ins_is_indexed_write(struct intel_dsb *dsb, i915_reg_
+ }
+ 
+ /**
+- * intel_dsb_reg_write_indexed() - Emit register wriite to the DSB context
++ * intel_dsb_reg_write_indexed() - Emit indexed register write to the DSB context
+  * @dsb: DSB context
+  * @reg: register address.
+  * @val: value.
+@@ -304,44 +295,23 @@ void intel_dsb_reg_write_indexed(struct intel_dsb *dsb,
+ 	 * we are writing odd no of dwords, Zeros will be added in the end for
+ 	 * padding.
+ 	 */
+-	if (!intel_dsb_prev_ins_is_mmio_write(dsb, reg) &&
+-	    !intel_dsb_prev_ins_is_indexed_write(dsb, reg)) {
+-		intel_dsb_emit(dsb, val,
+-			       (DSB_OPCODE_MMIO_WRITE << DSB_OPCODE_SHIFT) |
+-			       (DSB_BYTE_EN << DSB_BYTE_EN_SHIFT) |
++	if (!intel_dsb_prev_ins_is_indexed_write(dsb, reg))
++		intel_dsb_emit(dsb, 0, /* count */
++			       (DSB_OPCODE_INDEXED_WRITE << DSB_OPCODE_SHIFT) |
+ 			       i915_mmio_reg_offset(reg));
+-	} else {
+-		if (!assert_dsb_has_room(dsb))
+-			return;
+-
+-		/* convert to indexed write? */
+-		if (intel_dsb_prev_ins_is_mmio_write(dsb, reg)) {
+-			u32 prev_val = dsb->ins[0];
+ 
+-			dsb->ins[0] = 1; /* count */
+-			dsb->ins[1] = (DSB_OPCODE_INDEXED_WRITE << DSB_OPCODE_SHIFT) |
+-				i915_mmio_reg_offset(reg);
+-
+-			intel_dsb_buffer_write(&dsb->dsb_buf, dsb->ins_start_offset + 0,
+-					       dsb->ins[0]);
+-			intel_dsb_buffer_write(&dsb->dsb_buf, dsb->ins_start_offset + 1,
+-					       dsb->ins[1]);
+-			intel_dsb_buffer_write(&dsb->dsb_buf, dsb->ins_start_offset + 2,
+-					       prev_val);
+-
+-			dsb->free_pos++;
+-		}
++	if (!assert_dsb_has_room(dsb))
++		return;
+ 
+-		intel_dsb_buffer_write(&dsb->dsb_buf, dsb->free_pos++, val);
+-		/* Update the count */
+-		dsb->ins[0]++;
+-		intel_dsb_buffer_write(&dsb->dsb_buf, dsb->ins_start_offset + 0,
+-				       dsb->ins[0]);
++	/* Update the count */
++	dsb->ins[0]++;
++	intel_dsb_buffer_write(&dsb->dsb_buf, dsb->ins_start_offset + 0,
++			       dsb->ins[0]);
+ 
+-		/* if number of data words is odd, then the last dword should be 0.*/
+-		if (dsb->free_pos & 0x1)
+-			intel_dsb_buffer_write(&dsb->dsb_buf, dsb->free_pos, 0);
+-	}
++	intel_dsb_buffer_write(&dsb->dsb_buf, dsb->free_pos++, val);
++	/* if number of data words is odd, then the last dword should be 0.*/
++	if (dsb->free_pos & 0x1)
++		intel_dsb_buffer_write(&dsb->dsb_buf, dsb->free_pos, 0);
+ }
+ 
+ void intel_dsb_reg_write(struct intel_dsb *dsb,
 -- 
 2.45.2
 
