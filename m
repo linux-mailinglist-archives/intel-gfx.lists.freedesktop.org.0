@@ -2,60 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68B409D3991
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Nov 2024 12:36:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4768A9D39B5
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Nov 2024 12:43:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6CB4810E16F;
-	Wed, 20 Nov 2024 11:36:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D9D6610E2CA;
+	Wed, 20 Nov 2024 11:43:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="INO6/Oso";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Li6Vf30t";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1FDE710E16F;
- Wed, 20 Nov 2024 11:36:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 08BE210E2CA
+ for <intel-gfx@lists.freedesktop.org>; Wed, 20 Nov 2024 11:43:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732102564; x=1763638564;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=Scx5nxJYWuWrgP1IzPOrGYsNvadNlMJc+Wz4meOIizo=;
- b=INO6/OsoaOhzFnGJLEyYBPcUglTpCHnOJ4KkXG0ADMFBaGEIRneH/n/j
- vXD6MGYwNfRiln8HEz2ZMSNkAZu2hBJrZMhpFsovPpLfXWRADba1p9pAJ
- DCTHwIch6HXZRTh4UVKzCraGTIBNdVR/Hm+O0Jk0TnobrZw1pZ24d3Gqs
- 6tBAfgVk1U/V7VS3guTMvA0YZ5xrnBDOyRZjDVAy4Xp21Zyf/FXfEeadP
- 48197oXpoWDla+hfQm5N3Csp43RMpEQYgWqoFtdMzO2n930a3ImxXCUpJ
- CVsDoVXBqmIM7gU/O5pY8Y+49ZgKpp523bsQ99yh1ARVv+/1uRH/ueTL9 g==;
-X-CSE-ConnectionGUID: e9t9Ub2ESLGTy4/6rmrK7A==
-X-CSE-MsgGUID: gfCH4TNERVOpb+f6GA56GQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11261"; a="32213264"
-X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; d="scan'208";a="32213264"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2024 03:36:04 -0800
-X-CSE-ConnectionGUID: OMRV2S3YSLifmzf96YzLDw==
-X-CSE-MsgGUID: nQO2di1YQIC5BFmISayzUQ==
+ t=1732102997; x=1763638997;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=uH1uFL08+dIdR05jD3oOuPHvW/RKyLEwKTGxLKwtL04=;
+ b=Li6Vf30t9nUvCKdEtcrzPX9xoFbrYBHs8Ayq/p3diIERoCUE30iEfcsH
+ vbZiLIKBicaDePka65kzA1L+qJ1+NvY7+JHCoQ6WRHG9agxaP/1V1lP/E
+ MdFHoruyhZWKYIlJzD5X1xuMxnsNrz/r0iZy6FsU0bM93QgitA3Q2NVnC
+ AuMQIxaodvtwZXitjSvzmr28oNn5rKBNhkiqMsSTLtP9rgu/wclPYch05
+ bILPF57ef2QVKjNFth3fWlN84ugtFG/HSc3sJz2nD+hgPiH5GQAL4RKU1
+ PpuBbrMoWaQ9rUDmqyoiO/ZPtUWxVKCfjyh2XmG9DQskjU5WlX/YK2cLc g==;
+X-CSE-ConnectionGUID: fndhx9sXRrqyQHGaAcjYjw==
+X-CSE-MsgGUID: Q/aAOvbITYisB00VFexr/w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11261"; a="54656351"
+X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; d="scan'208";a="54656351"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2024 03:43:17 -0800
+X-CSE-ConnectionGUID: t/tH4qpMRHa/ufJAtfB7EQ==
+X-CSE-MsgGUID: mhuGGQUCQ5muLStYC5YFJQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; d="scan'208";a="93950055"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.28])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2024 03:36:01 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 11/11] drm/i915/ddi: simplify
- intel_ddi_get_encoder_pipes() slightly
-In-Reply-To: <Zzx5IKsm7us1CcBP@ideak-desk.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1731941270.git.jani.nikula@intel.com>
- <0aa1274597fa84a0dc3c9ccf7bb20997d1d154bf.1731941270.git.jani.nikula@intel.com>
- <Zzx5IKsm7us1CcBP@ideak-desk.fi.intel.com>
-Date: Wed, 20 Nov 2024 13:35:59 +0200
-Message-ID: <875xoi2l40.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; d="scan'208";a="90046955"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO intel.com)
+ ([10.245.246.40])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2024 03:43:15 -0800
+Date: Wed, 20 Nov 2024 12:43:12 +0100
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: Eugene Kobyak <eugene.kobyak@intel.com>, intel-gfx@lists.freedesktop.org,
+ John Harrison <John.C.Harrison@intel.com>
+Subject: Re: [PATCH] drm/i915: Fixed NULL pointer dereference in capture_engine
+Message-ID: <Zz3LUG_OpCkPX1sv@ashyti-mobl2.lan>
+References: <5a42bhkoaoed2mky6343qz35pdyzfz6pqgyczrywqgwb4ezipv@be2aiql3bmih>
+ <Zz24DtYMdbPGfpXh@ashyti-mobl2.lan>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Zz24DtYMdbPGfpXh@ashyti-mobl2.lan>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,62 +70,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 19 Nov 2024, Imre Deak <imre.deak@intel.com> wrote:
-> On Mon, Nov 18, 2024 at 04:49:06PM +0200, Jani Nikula wrote:
->> Use a temporary variable for DDI mode to simplify the conditions. This
->> is in line with the other places that read DDI mode.
->> 
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_ddi.c | 9 +++++----
->>  1 file changed, 5 insertions(+), 4 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
->> index 33628cbc0f72..e25b712bf03b 100644
->> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
->> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
->> @@ -818,7 +818,7 @@ static void intel_ddi_get_encoder_pipes(struct intel_encoder *encoder,
->>  	mst_pipe_mask = 0;
->>  	for_each_pipe(dev_priv, p) {
->>  		enum transcoder cpu_transcoder = (enum transcoder)p;
->> -		unsigned int port_mask, ddi_select;
->> +		u32 port_mask, ddi_select, ddi_mode;
->>  		intel_wakeref_t trans_wakeref;
->>  
->>  		trans_wakeref = intel_display_power_get_if_enabled(dev_priv,
->> @@ -842,9 +842,10 @@ static void intel_ddi_get_encoder_pipes(struct intel_encoder *encoder,
->>  		if ((tmp & port_mask) != ddi_select)
->>  			continue;
->>  
->> -		if ((tmp & TRANS_DDI_MODE_SELECT_MASK) == TRANS_DDI_MODE_SELECT_DP_MST ||
->> -		    (HAS_DP20(display) &&
->> -		     (tmp & TRANS_DDI_MODE_SELECT_MASK) == TRANS_DDI_MODE_SELECT_FDI_OR_128B132B))
->> +		ddi_mode = tmp & TRANS_DDI_MODE_SELECT_MASK;
->> +
->> +		if (ddi_mode == TRANS_DDI_MODE_SELECT_DP_MST ||
->> +		    (ddi_mode == TRANS_DDI_MODE_SELECT_FDI_OR_128B132B && HAS_DP20(display)))
->
-> nit: the above condition and the fdi counterpart is used elsewhere too,
-> so could use a helper. The patchset looks ok regardless:
->
-> Reviewed-by: Imre Deak <imre.deak@intel.com>
+Hi Eugene,
 
-Hum, so was this for the entire series? Also how about v2 of patch 6?
+> >  	intel_engine_get_hung_entity(engine, &ce, &rq);
+> > -	if (rq && !i915_request_started(rq))
+> > -		drm_info(&engine->gt->i915->drm, "Got hung context on %s with active request %lld:%lld [0x%04X] not yet started\n",
+> > -			 engine->name, rq->fence.context, rq->fence.seqno, ce->guc_id.id);
+> > -
+> >  	if (rq) {
+> > +		if (!i915_request_started(rq)) {
+> 
+> why are you breaking the if here?
 
-Please consider either replying to the cover letter or for each
-individual patch, so that b4 gather the trailers automagically.
+Just to be clear, this is not a binding comment as you are
+merging to "if (rq)". But I prefer the previous style as the line
+of this drm_info() is already too long and with one more level of
+indentation is even longer.
 
-BR,
-Jani.
+In any case:
 
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com> 
 
->
->>  			mst_pipe_mask |= BIT(p);
->>  
->>  		*pipe_mask |= BIT(p);
->> -- 
->> 2.39.5
->> 
+and now I'm really cc'eing John.
 
--- 
-Jani Nikula, Intel
+Andi
+
+> > +			u16 guc_id = ce ? ce->guc_id.id : 0;
+> 
+> good catch!
+> 
+> Andi
+> 
+> > +			drm_info(&engine->gt->i915->drm, "Got hung context on %s with active request %lld:%lld [0x%04X] not yet started\n",
+> > +				 engine->name, rq->fence.context, rq->fence.seqno, guc_id);
+> > +		}
+> >  		capture = intel_engine_coredump_add_request(ee, rq, ATOMIC_MAYFAIL);
+> >  		i915_request_put(rq);
+> >  	} else if (ce) {
+> > -- 
+> > 2.34.1
