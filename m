@@ -2,53 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0ED429D386F
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Nov 2024 11:35:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 622339D3870
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Nov 2024 11:35:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8EFA510E6ED;
-	Wed, 20 Nov 2024 10:35:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 97A5A10E6F0;
+	Wed, 20 Nov 2024 10:35:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lxppHzz2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fVx3ucFT";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 20B2810E6EB;
- Wed, 20 Nov 2024 10:35:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7F6510E6EE;
+ Wed, 20 Nov 2024 10:35:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732098926; x=1763634926;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=kRNYDm8WM5lMGNAiIGhO6YgMLGjMZ78ExbMHgUGicpk=;
- b=lxppHzz2sTwNwdjRLCX5RWuiohqdomTiPQPh6aCNRKPFJdNxf1m4SFqa
- M5K+EUARApb0YTmy4ybWafTa/GhP7hRRWfTMmM3lvViGJCgvRBtu0srQd
- ClsoVfZUxSST0yhF6yafosM27uOTeFilKQLEjr0dVk3vfOXI7aHCNydQu
- 3vKc3L+51fXQZk75j4ZtV6rpObxL9tusWgumEy604dLTDt85TBvUvGX/6
- +3RHxJrm5+Kc6PER34Ga6UJLmbmRkzrTr73NaG/ZdopqiR2VQy2ORkwlN
- qM+cISZsRm+QWub2OPnNia2T/60H+PUCUtetZxkO0dhy6l9nC5gRy2cFn g==;
-X-CSE-ConnectionGUID: ePWUqNyfSqSilM7WVN7crQ==
-X-CSE-MsgGUID: GxiAqPIMSgyrFfFaChrCLQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11261"; a="31520049"
-X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; d="scan'208";a="31520049"
+ t=1732098928; x=1763634928;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=tiZl1GlHAB3kw3j59dPFXqo23mfr7roOrnOAgLTnowA=;
+ b=fVx3ucFTk0362oMfVWFbXZMJNvGN3wv1dRu0/8MVlsPEq+DeOPoTTH8G
+ grUn16zVXyIvhPGToLGqm4o/WAu8D6Vy0hvypz+I5NOfNATr7hxgmGgSH
+ JmW7zpVV3IcyLzgmKy25OVzGom7bNUZ9nWIbckbiqYMJdeHrxboqA3aO0
+ 3H+MH56GmUxmPln44OpPQyWyudceobXfmEx30sd2ZsiA6tPmQbAvslBw6
+ hg8VM4WNMkp/6Hz0twbmw3VqOp0oo8EP/Q02OWF1H8VihXTmrwBe0Xbcn
+ JMUhZWGXBKN+EsmKK5byZT7dXNZk0gZrt/epWC4IDz7R4yIQgEz7n+Eje g==;
+X-CSE-ConnectionGUID: kkH80VkXRcWYLoOjMOxrxQ==
+X-CSE-MsgGUID: iyx+6e/3Q2mlgfS4ZMl8Mw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11261"; a="31520050"
+X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; d="scan'208";a="31520050"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2024 02:35:25 -0800
-X-CSE-ConnectionGUID: LujEmT8DSKOKn3rgmV5aHw==
-X-CSE-MsgGUID: oBX3szaiRMCZScDUtZIbLg==
+ 20 Nov 2024 02:35:27 -0800
+X-CSE-ConnectionGUID: ctbn/SoDQIOUXhCEH3nreg==
+X-CSE-MsgGUID: +IZpxFdQTJKjC9LGZXJsnQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; d="scan'208";a="89674029"
+X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; d="scan'208";a="89674044"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2024 02:35:24 -0800
+ 20 Nov 2024 02:35:26 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, suraj.kandpal@intel.com,
  jani.nikula@linux.intel.com, imre.deak@intel.com
-Subject: [PATCH 00/12] DP DSC min/max src bpc fixes
-Date: Wed, 20 Nov 2024 16:07:50 +0530
-Message-ID: <20241120103802.134295-1-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 01/12] drm/i915/dp: Refactor FEC support check in
+ intel_dp_supports_dsc
+Date: Wed, 20 Nov 2024 16:07:51 +0530
+Message-ID: <20241120103802.134295-2-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20241120103802.134295-1-ankit.k.nautiyal@intel.com>
+References: <20241120103802.134295-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -66,49 +69,103 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use helpers for source min/max src bpc appropriately for dp mst case and
-to limit max_requested_bpc property min/max values. 
+Forward Error Correction is required for DP if we are using DSC but
+is optional for eDP.
 
-Rev2: Drop patch to limit max_requested_bpc based on src DSC bpc
-limits. Instead add change to ignore max_requested_bpc if its
-too low for DSC.
+Currently the helper intel_dp_supports_dsc checks if fec_enable is set for
+DP or not. The helper is called after fec_enable is set in crtc_state.
 
-Rev3: Update patch#1 commit message.
+Instead of this a better approach would be to:
+first, call intel_dp_supports_dsc to check for DSC support
+(along with FEC requirement for DP) and then set fec_enable for DP
+(if not already set) in crtc_state.
 
-Rev4: Rebase.
+To achieve this, remove the check for fec_enable in the helper and instead
+check for FEC support for DP. With this change the helper
+intel_dp_supports_dsc can be called earlier and return early if DSC is
+not supported. The structure intel_dp is added to the helper to get the
+FEC support for DP.
 
-Rev5: Address Jani's comment on patch#3.
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c     | 8 +++++---
+ drivers/gpu/drm/i915/display/intel_dp.h     | 3 ++-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c | 5 +++--
+ 3 files changed, 10 insertions(+), 6 deletions(-)
 
-Rev6: Rebase.
-
-Rev7: Add patch to fix return type for dsc_min/max_src bpc helpers to
-int.
-
-Rev8:
--Drop the first patch.
--Refactor helpers for fec support.
--Add patches to refactor pipe_bpp limits and link limits.
-
-Ankit Nautiyal (12):
-  drm/i915/dp: Refactor FEC support check in intel_dp_supports_dsc
-  drm/i915/dp: Return early if DSC not supported
-  drm/i915/dp: Separate out helper for compute fec_enable
-  drm/i915/dp: Remove HAS_DSC macro for intel_dp_dsc_max_src_input_bpc
-  drm/i915/dp: Return int from dsc_max/min_src_input_bpc helpers
-  drm/i915/dp_mst: Use helpers to get dsc min/max input bpc
-  drm/i915/dp: Drop max_requested_bpc for dsc pipe_min/max bpp
-  drm/i915/dp: Refactor pipe_bpp limits with dsc
-  drm/i915/dp_mst: Refactor pipe_bpp limits with dsc for mst
-  drm/i915/dp: Use clamp for pipe_bpp limits with DSC
-  drm/i915/dp: Make dsc helpers accept const crtc_state pointers
-  drm/i915/dp: Set the DSC link limits
-    intel_dp_compute_config_link_bpp_limits
-
- drivers/gpu/drm/i915/display/intel_dp.c     | 189 +++++++++++---------
- drivers/gpu/drm/i915/display/intel_dp.h     |  14 +-
- drivers/gpu/drm/i915/display/intel_dp_mst.c |  18 +-
- 3 files changed, 120 insertions(+), 101 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 053a9a4182e7..db9ddbcdd159 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -1632,13 +1632,15 @@ bool intel_dp_supports_fec(struct intel_dp *intel_dp,
+ 		drm_dp_sink_supports_fec(connector->dp.fec_capability);
+ }
+ 
+-bool intel_dp_supports_dsc(const struct intel_connector *connector,
++bool intel_dp_supports_dsc(struct intel_dp *intel_dp,
++			   const struct intel_connector *connector,
+ 			   const struct intel_crtc_state *crtc_state)
+ {
+ 	if (!intel_dp_has_dsc(connector))
+ 		return false;
+ 
+-	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP) && !crtc_state->fec_enable)
++	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP) &&
++	    !intel_dp_supports_fec(intel_dp, connector, crtc_state))
+ 		return false;
+ 
+ 	return intel_dsc_source_support(crtc_state);
+@@ -2376,7 +2378,7 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+ 		 intel_dp_supports_fec(intel_dp, connector, pipe_config) &&
+ 		 !intel_dp_is_uhbr(pipe_config));
+ 
+-	if (!intel_dp_supports_dsc(connector, pipe_config))
++	if (!intel_dp_supports_dsc(intel_dp, connector, pipe_config))
+ 		return -EINVAL;
+ 
+ 	if (!intel_dp_dsc_supports_format(connector, pipe_config->output_format))
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
+index 48f10876be65..4ae54e9718ce 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.h
++++ b/drivers/gpu/drm/i915/display/intel_dp.h
+@@ -170,7 +170,8 @@ bool intel_dp_supports_fec(struct intel_dp *intel_dp,
+ 			   const struct intel_connector *connector,
+ 			   const struct intel_crtc_state *pipe_config);
+ 
+-bool intel_dp_supports_dsc(const struct intel_connector *connector,
++bool intel_dp_supports_dsc(struct intel_dp *intel_dp,
++			   const struct intel_connector *connector,
+ 			   const struct intel_crtc_state *crtc_state);
+ 
+ u32 intel_dp_dsc_nearest_valid_bpp(struct drm_i915_private *i915, u32 bpp, u32 pipe_bpp);
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+index f058360a2641..0662736849ac 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+@@ -498,12 +498,13 @@ adjust_limits_for_dsc_hblank_expansion_quirk(const struct intel_connector *conne
+ 	struct intel_display *display = to_intel_display(connector);
+ 	const struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	int min_bpp_x16 = limits->link.min_bpp_x16;
++	struct intel_dp *intel_dp = connector->mst_port;
+ 
+ 	if (!hblank_expansion_quirk_needs_dsc(connector, crtc_state, limits))
+ 		return true;
+ 
+ 	if (!dsc) {
+-		if (intel_dp_supports_dsc(connector, crtc_state)) {
++		if (intel_dp_supports_dsc(intel_dp, connector, crtc_state)) {
+ 			drm_dbg_kms(display->drm,
+ 				    "[CRTC:%d:%s][CONNECTOR:%d:%s] DSC needed by hblank expansion quirk\n",
+ 				    crtc->base.base.id, crtc->base.name,
+@@ -648,7 +649,7 @@ static int mst_stream_compute_config(struct intel_encoder *encoder,
+ 			    str_yes_no(ret), str_yes_no(joiner_needs_dsc),
+ 			    str_yes_no(intel_dp->force_dsc_en));
+ 
+-		if (!intel_dp_supports_dsc(connector, pipe_config))
++		if (!intel_dp_supports_dsc(intel_dp, connector, pipe_config))
+ 			return -EINVAL;
+ 
+ 		if (!mst_stream_compute_config_limits(intel_dp, connector,
 -- 
 2.45.2
 
