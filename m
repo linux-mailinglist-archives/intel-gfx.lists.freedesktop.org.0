@@ -2,61 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 667519D3986
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Nov 2024 12:31:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 68B409D3991
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Nov 2024 12:36:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F2C710E715;
-	Wed, 20 Nov 2024 11:31:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CB4810E16F;
+	Wed, 20 Nov 2024 11:36:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EHUimwn0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="INO6/Oso";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF02610E715;
- Wed, 20 Nov 2024 11:31:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FDE710E16F;
+ Wed, 20 Nov 2024 11:36:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732102264; x=1763638264;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=EKyqmMuUla1IlMDQ1T+KnElig4p6umKx0c8yijIGTpw=;
- b=EHUimwn0xo97McmZiVCx2Rv4/iykNUI88Ia5XxQ4jNDR3tQDcmucj2LT
- +F5HY+W0nj9DukYZG57rvsStwsWxA+mRrV3JmrW2YsYTa3YjFD+4Rjfis
- wqgctzvKbTp7JKKsIQbUCocqLrWh1FfTLYti2eB1xe4+a05n7o1LQRQTK
- u89+yDab7ZYXN5V29CtH0rTJlz8Je2Uq4AsL7NCichhOc7ua9gz9qhBwP
- +G3x1xSFIw+vDKA7VtP74GN8BPbWeEO6N1LLTfd8Znkm8yD4XPcryGI/T
- lxAGhSstkkf2tZmuWk5Damptbgm055ThYsegJwzaI6MDsRuJzdN7eVUT6 g==;
-X-CSE-ConnectionGUID: SajbK0tiQFu4qRP/GAZ75g==
-X-CSE-MsgGUID: 7O+rTmgcStyQ5EfeOa5+HA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11261"; a="32266699"
-X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; d="scan'208";a="32266699"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2024 03:31:04 -0800
-X-CSE-ConnectionGUID: TEouYn8cR8i06Pe4AhinWA==
-X-CSE-MsgGUID: otmHzPn7R1upbJUpZpBR1A==
+ t=1732102564; x=1763638564;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=Scx5nxJYWuWrgP1IzPOrGYsNvadNlMJc+Wz4meOIizo=;
+ b=INO6/OsoaOhzFnGJLEyYBPcUglTpCHnOJ4KkXG0ADMFBaGEIRneH/n/j
+ vXD6MGYwNfRiln8HEz2ZMSNkAZu2hBJrZMhpFsovPpLfXWRADba1p9pAJ
+ DCTHwIch6HXZRTh4UVKzCraGTIBNdVR/Hm+O0Jk0TnobrZw1pZ24d3Gqs
+ 6tBAfgVk1U/V7VS3guTMvA0YZ5xrnBDOyRZjDVAy4Xp21Zyf/FXfEeadP
+ 48197oXpoWDla+hfQm5N3Csp43RMpEQYgWqoFtdMzO2n930a3ImxXCUpJ
+ CVsDoVXBqmIM7gU/O5pY8Y+49ZgKpp523bsQ99yh1ARVv+/1uRH/ueTL9 g==;
+X-CSE-ConnectionGUID: e9t9Ub2ESLGTy4/6rmrK7A==
+X-CSE-MsgGUID: gfCH4TNERVOpb+f6GA56GQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11261"; a="32213264"
+X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; d="scan'208";a="32213264"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2024 03:36:04 -0800
+X-CSE-ConnectionGUID: OMRV2S3YSLifmzf96YzLDw==
+X-CSE-MsgGUID: nQO2di1YQIC5BFmISayzUQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; d="scan'208";a="94951549"
+X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; d="scan'208";a="93950055"
 Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.28])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2024 03:31:02 -0800
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2024 03:36:01 -0800
 From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
-	Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [CI 5/5] drm/i915/irq: emphasize display_irqs_enabled is only about
- VLV/CHV
-Date: Wed, 20 Nov 2024 13:30:33 +0200
-Message-Id: <f60104ea59687cb8c65b18b4f9ddd832a643407d.1732102179.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1732102179.git.jani.nikula@intel.com>
-References: <cover.1732102179.git.jani.nikula@intel.com>
-MIME-Version: 1.0
+To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 11/11] drm/i915/ddi: simplify
+ intel_ddi_get_encoder_pipes() slightly
+In-Reply-To: <Zzx5IKsm7us1CcBP@ideak-desk.fi.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+References: <cover.1731941270.git.jani.nikula@intel.com>
+ <0aa1274597fa84a0dc3c9ccf7bb20997d1d154bf.1731941270.git.jani.nikula@intel.com>
+ <Zzx5IKsm7us1CcBP@ideak-desk.fi.intel.com>
+Date: Wed, 20 Nov 2024 13:35:59 +0200
+Message-ID: <875xoi2l40.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,130 +71,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use display_irqs_enabled only on VLV/CHV where it's relevant. Rename to
-vlv_display_irqs_enabled, to emphasize it's really only about VLV/CHV.
+On Tue, 19 Nov 2024, Imre Deak <imre.deak@intel.com> wrote:
+> On Mon, Nov 18, 2024 at 04:49:06PM +0200, Jani Nikula wrote:
+>> Use a temporary variable for DDI mode to simplify the conditions. This
+>> is in line with the other places that read DDI mode.
+>> 
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_ddi.c | 9 +++++----
+>>  1 file changed, 5 insertions(+), 4 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+>> index 33628cbc0f72..e25b712bf03b 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+>> @@ -818,7 +818,7 @@ static void intel_ddi_get_encoder_pipes(struct intel_encoder *encoder,
+>>  	mst_pipe_mask = 0;
+>>  	for_each_pipe(dev_priv, p) {
+>>  		enum transcoder cpu_transcoder = (enum transcoder)p;
+>> -		unsigned int port_mask, ddi_select;
+>> +		u32 port_mask, ddi_select, ddi_mode;
+>>  		intel_wakeref_t trans_wakeref;
+>>  
+>>  		trans_wakeref = intel_display_power_get_if_enabled(dev_priv,
+>> @@ -842,9 +842,10 @@ static void intel_ddi_get_encoder_pipes(struct intel_encoder *encoder,
+>>  		if ((tmp & port_mask) != ddi_select)
+>>  			continue;
+>>  
+>> -		if ((tmp & TRANS_DDI_MODE_SELECT_MASK) == TRANS_DDI_MODE_SELECT_DP_MST ||
+>> -		    (HAS_DP20(display) &&
+>> -		     (tmp & TRANS_DDI_MODE_SELECT_MASK) == TRANS_DDI_MODE_SELECT_FDI_OR_128B132B))
+>> +		ddi_mode = tmp & TRANS_DDI_MODE_SELECT_MASK;
+>> +
+>> +		if (ddi_mode == TRANS_DDI_MODE_SELECT_DP_MST ||
+>> +		    (ddi_mode == TRANS_DDI_MODE_SELECT_FDI_OR_128B132B && HAS_DP20(display)))
+>
+> nit: the above condition and the fdi counterpart is used elsewhere too,
+> so could use a helper. The patchset looks ok regardless:
+>
+> Reviewed-by: Imre Deak <imre.deak@intel.com>
 
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- .../gpu/drm/i915/display/intel_display_core.h |  9 ++++++-
- .../gpu/drm/i915/display/intel_display_irq.c  | 26 ++++++-------------
- .../gpu/drm/i915/display/intel_hotplug_irq.c  |  6 ++++-
- 3 files changed, 21 insertions(+), 20 deletions(-)
+Hum, so was this for the entire series? Also how about v2 of patch 6?
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index f6c1bedf1c31..62b0597aa91e 100644
---- a/drivers/gpu/drm/i915/display/intel_display_core.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -453,7 +453,14 @@ struct intel_display {
- 	} ips;
- 
- 	struct {
--		bool display_irqs_enabled;
-+		/*
-+		 * Most platforms treat the display irq block as an always-on
-+		 * power domain. vlv/chv can disable it at runtime and need
-+		 * special care to avoid writing any of the display block
-+		 * registers outside of the power domain. We defer setting up
-+		 * the display irqs in this case to the runtime pm.
-+		 */
-+		bool vlv_display_irqs_enabled;
- 
- 		/* For i915gm/i945gm vblank irq workaround */
- 		u8 vblank_enabled;
-diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-index 6467a208184e..cb79c2796e3a 100644
---- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-@@ -434,7 +434,8 @@ void i9xx_pipestat_irq_ack(struct drm_i915_private *dev_priv,
- 
- 	spin_lock(&dev_priv->irq_lock);
- 
--	if (!dev_priv->display.irq.display_irqs_enabled) {
-+	if ((IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) &&
-+	    !dev_priv->display.irq.vlv_display_irqs_enabled) {
- 		spin_unlock(&dev_priv->irq_lock);
- 		return;
- 	}
-@@ -1501,7 +1502,7 @@ static void _vlv_display_irq_reset(struct drm_i915_private *dev_priv)
- 
- void vlv_display_irq_reset(struct drm_i915_private *dev_priv)
- {
--	if (dev_priv->display.irq.display_irqs_enabled)
-+	if (dev_priv->display.irq.vlv_display_irqs_enabled)
- 		_vlv_display_irq_reset(dev_priv);
- }
- 
-@@ -1524,7 +1525,7 @@ void vlv_display_irq_postinstall(struct drm_i915_private *dev_priv)
- 	u32 enable_mask;
- 	enum pipe pipe;
- 
--	if (!dev_priv->display.irq.display_irqs_enabled)
-+	if (!dev_priv->display.irq.vlv_display_irqs_enabled)
- 		return;
- 
- 	pipestat_mask = PIPE_CRC_DONE_INTERRUPT_STATUS;
-@@ -1699,10 +1700,10 @@ void valleyview_enable_display_irqs(struct drm_i915_private *dev_priv)
- {
- 	lockdep_assert_held(&dev_priv->irq_lock);
- 
--	if (dev_priv->display.irq.display_irqs_enabled)
-+	if (dev_priv->display.irq.vlv_display_irqs_enabled)
- 		return;
- 
--	dev_priv->display.irq.display_irqs_enabled = true;
-+	dev_priv->display.irq.vlv_display_irqs_enabled = true;
- 
- 	if (intel_irqs_enabled(dev_priv)) {
- 		_vlv_display_irq_reset(dev_priv);
-@@ -1714,10 +1715,10 @@ void valleyview_disable_display_irqs(struct drm_i915_private *dev_priv)
- {
- 	lockdep_assert_held(&dev_priv->irq_lock);
- 
--	if (!dev_priv->display.irq.display_irqs_enabled)
-+	if (!dev_priv->display.irq.vlv_display_irqs_enabled)
- 		return;
- 
--	dev_priv->display.irq.display_irqs_enabled = false;
-+	dev_priv->display.irq.vlv_display_irqs_enabled = false;
- 
- 	if (intel_irqs_enabled(dev_priv))
- 		_vlv_display_irq_reset(dev_priv);
-@@ -1913,17 +1914,6 @@ void intel_display_irq_init(struct drm_i915_private *i915)
- {
- 	i915->drm.vblank_disable_immediate = true;
- 
--	/*
--	 * Most platforms treat the display irq block as an always-on power
--	 * domain. vlv/chv can disable it at runtime and need special care to
--	 * avoid writing any of the display block registers outside of the power
--	 * domain. We defer setting up the display irqs in this case to the
--	 * runtime pm.
--	 */
--	i915->display.irq.display_irqs_enabled = true;
--	if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915))
--		i915->display.irq.display_irqs_enabled = false;
--
- 	intel_hotplug_irq_init(i915);
- 
- 	INIT_WORK(&i915->display.irq.vblank_dc_work,
-diff --git a/drivers/gpu/drm/i915/display/intel_hotplug_irq.c b/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
-index cb64c6f0ad1b..476ac88087e0 100644
---- a/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
-+++ b/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
-@@ -1457,7 +1457,11 @@ void intel_hpd_enable_detection(struct intel_encoder *encoder)
- 
- void intel_hpd_irq_setup(struct drm_i915_private *i915)
- {
--	if (i915->display.irq.display_irqs_enabled && i915->display.funcs.hotplug)
-+	if ((IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915)) &&
-+	    !i915->display.irq.vlv_display_irqs_enabled)
-+		return;
-+
-+	if (i915->display.funcs.hotplug)
- 		i915->display.funcs.hotplug->hpd_irq_setup(i915);
- }
- 
+Please consider either replying to the cover letter or for each
+individual patch, so that b4 gather the trailers automagically.
+
+BR,
+Jani.
+
+
+>
+>>  			mst_pipe_mask |= BIT(p);
+>>  
+>>  		*pipe_mask |= BIT(p);
+>> -- 
+>> 2.39.5
+>> 
+
 -- 
-2.39.5
-
+Jani Nikula, Intel
