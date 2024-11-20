@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA75E9D3A2A
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Nov 2024 13:04:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AC0839D3A2B
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Nov 2024 13:04:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7293910E731;
-	Wed, 20 Nov 2024 12:04:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 52DFA10E728;
+	Wed, 20 Nov 2024 12:04:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TDkz5S3/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HsWuhysT";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B5EB10E72E;
- Wed, 20 Nov 2024 12:04:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1948710E733;
+ Wed, 20 Nov 2024 12:04:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732104246; x=1763640246;
+ t=1732104251; x=1763640251;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=AUV1tRWQ3hPxuoy+IKe7YDWBfinsgF+0ZOy8wYwzDjE=;
- b=TDkz5S3/cxUy1IbSAJm0utn97sNHnxndDA7X/K/lWO3NP/NXjYizfmDQ
- aaFa1073bcQKatTUKXn5H2a2IeIdsy3rlwocV/p/Hz2Q2H/cCvg/cqeX8
- iV8Q4dCUeaoyONzVp1NbWiFQ3rgT0aX9mRY71Sq5M2DEGhxq9J3qAwza8
- JAO23Ta2OucqJ5+om44FD0SoBMXccAAq9fT/Kv6uC67kryEkn6lYj5jqu
- q7levwGbgJDzNSuXTBToYGzgrf5Kk7gXkIMqn01JiYpbXIzrcwI57xEIv
- VFr+VDGiu5ovkfcRCHecECCQDwhAhH5MjpfwaCkOqFKr2a0JInJqoUgBK Q==;
-X-CSE-ConnectionGUID: Kd7dSyaRTmaf70Hr2uty8Q==
-X-CSE-MsgGUID: CcISMyvpSaGARHHNqtqvSA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11261"; a="43540137"
-X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; d="scan'208";a="43540137"
+ bh=+3rJatvMFK2sCXkv7kDKAOL2fakZI2A0g4GkRwRleEU=;
+ b=HsWuhysT1ImXb4iTkv2hMSeE2yaNorsE8KAlV3Mki7CZXuKdWysZozx2
+ KSgxCUrUGUZCY0lXZVJQ0SLDdn5Fhbn1dAKOtiJ0DaJUxc0gQjHMmyvOZ
+ dxVDPZLnIgqtcw0kwI6csd64WnXN1YN/pvmwYZEHvNgc4XyXdnbFLaKEn
+ H9weQgjY//+EBz+VhzReD0ZvyMgzVrCjudWaINk7da7EeJkYNopNmZfxh
+ sPAFRTtScCVC3c/aSCJrvY2Zp5UDXVGvPR4Vf+2E50TNsxcU8ytcDueji
+ SEEZggppbP09jewUmHInWTuLbdRC5tSVpMz9vl3g8bge+PqxOMTM1hfDC Q==;
+X-CSE-ConnectionGUID: nr8NamYMSiyKKlL2ZRF8bA==
+X-CSE-MsgGUID: YsKDQFnoSU6hj0TfqR/ZkA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11261"; a="43540150"
+X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; d="scan'208";a="43540150"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2024 04:04:06 -0800
-X-CSE-ConnectionGUID: 57dHQKd8TsOV4ZeWlZAYWA==
-X-CSE-MsgGUID: EVcnzrYLT6O+gDaXapTG4w==
+ 20 Nov 2024 04:04:11 -0800
+X-CSE-ConnectionGUID: 3AI0GSm9RLylik/JQ0w5xQ==
+X-CSE-MsgGUID: F6Hh0fkBTtS8UvLVOuQslQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; d="scan'208";a="90277935"
+X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; d="scan'208";a="90277944"
 Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.54])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2024 04:04:05 -0800
+ 20 Nov 2024 04:04:09 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [RESEND 5/6] drm/i915/display: add struct drm_device to struct
- intel_display conversion function
-Date: Wed, 20 Nov 2024 14:03:36 +0200
-Message-Id: <cbbf26fa58ef662946303c972b1a1ff1547ddcfe.1732104170.git.jani.nikula@intel.com>
+Subject: [RESEND 6/6] drm/i915/display: drop i915_drv.h include from
+ intel_display_trace.h
+Date: Wed, 20 Nov 2024 14:03:37 +0200
+Message-Id: <c51352a2152cebd56ab3597ae5a791d2bb41439e.1732104170.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1732104170.git.jani.nikula@intel.com>
 References: <cover.1732104170.git.jani.nikula@intel.com>
@@ -71,77 +71,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add a __drm_to_display() conversion function to hide the to_i915() usage
-and the implicit dependency on i915_drv.h from intel_display_types.h.
-
-The goal is for this implementation to be a transitional helper
-only. One idea I've floated around in the past would be to require a
-struct intel_display pointer member to be placed right after struct
-drm_device member in struct drm_i915_private and struct xe_device
-[1][2].
-
-[1] https://lore.kernel.org/r/7777ff70e2be0663de4398aa6f75f0c54146cbfc.1709727127.git.jani.nikula@intel.com
-[2] https://lore.kernel.org/r/0b9459da6c8cba0f74bf2781d69182fa6801cd97.1709727127.git.jani.nikula@intel.com
+Finish the job of removing implicit dependencies on i915_drv.h via other
+includes in display code. Add a few missing explicit includes.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_conversion.c | 5 +++++
- drivers/gpu/drm/i915/display/intel_display_conversion.h | 3 ++-
- drivers/gpu/drm/i915/display/intel_display_types.h      | 3 ++-
- 3 files changed, 9 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_atomic_plane.c  | 1 +
+ drivers/gpu/drm/i915/display/intel_crtc.c          | 1 +
+ drivers/gpu/drm/i915/display/intel_display_trace.h | 2 +-
+ 3 files changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_conversion.c b/drivers/gpu/drm/i915/display/intel_display_conversion.c
-index bdd947f5ccd8..0578b68404da 100644
---- a/drivers/gpu/drm/i915/display/intel_display_conversion.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_conversion.c
-@@ -7,3 +7,8 @@ struct intel_display *__i915_to_display(struct drm_i915_private *i915)
- {
- 	return &i915->display;
- }
-+
-+struct intel_display *__drm_to_display(struct drm_device *drm)
-+{
-+	return __i915_to_display(to_i915(drm));
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_display_conversion.h b/drivers/gpu/drm/i915/display/intel_display_conversion.h
-index 790d0be698dc..46c7208d42ba 100644
---- a/drivers/gpu/drm/i915/display/intel_display_conversion.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_conversion.h
-@@ -8,11 +8,12 @@
- #ifndef __INTEL_DISPLAY_CONVERSION__
- #define __INTEL_DISPLAY_CONVERSION__
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+index d89630b2d5c1..55894199c856 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
++++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+@@ -40,6 +40,7 @@
+ #include <drm/drm_gem.h>
+ #include <drm/drm_gem_atomic_helper.h>
  
-+struct drm_device;
- struct drm_i915_private;
- struct intel_display;
++#include "i915_drv.h"
+ #include "i915_config.h"
+ #include "i9xx_plane_regs.h"
+ #include "intel_atomic_plane.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+index a2c528d707f4..c910168602d2 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc.c
++++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+@@ -12,6 +12,7 @@
+ #include <drm/drm_vblank.h>
+ #include <drm/drm_vblank_work.h>
  
- struct intel_display *__i915_to_display(struct drm_i915_private *i915);
--
-+struct intel_display *__drm_to_display(struct drm_device *drm);
- /*
-  * Transitional macro to optionally convert struct drm_i915_private * to struct
-  * intel_display *, also accepting the latter.
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 339e4b0f7698..2098e14b7ae7 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -45,6 +45,7 @@
- #include "i915_vma_types.h"
- #include "intel_bios.h"
- #include "intel_display.h"
-+#include "intel_display_conversion.h"
++#include "i915_drv.h"
+ #include "i915_vgpu.h"
+ #include "i9xx_plane.h"
+ #include "icl_dsi.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_display_trace.h b/drivers/gpu/drm/i915/display/intel_display_trace.h
+index 9bd8f1e505b0..338b9f7b20b8 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_trace.h
++++ b/drivers/gpu/drm/i915/display/intel_display_trace.h
+@@ -14,8 +14,8 @@
+ #include <linux/types.h>
+ #include <linux/tracepoint.h>
+ 
+-#include "i915_drv.h"
+ #include "intel_crtc.h"
++#include "intel_display_core.h"
  #include "intel_display_limits.h"
- #include "intel_display_power.h"
- #include "intel_dpll_mgr.h"
-@@ -2086,7 +2087,7 @@ to_intel_frontbuffer(struct drm_framebuffer *fb)
-  * intel_display pointer.
-  */
- #define __drm_device_to_intel_display(p) \
--	((p) ? &to_i915(p)->display : NULL)
-+	((p) ? __drm_to_display(p) : NULL)
- #define __device_to_intel_display(p)				\
- 	__drm_device_to_intel_display(dev_get_drvdata(p))
- #define __pci_dev_to_intel_display(p)				\
+ #include "intel_display_types.h"
+ #include "intel_vblank.h"
 -- 
 2.39.5
 
