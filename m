@@ -2,54 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D51D79D3AD9
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Nov 2024 13:43:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 21D739D3ADA
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Nov 2024 13:43:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A9B610E741;
-	Wed, 20 Nov 2024 12:43:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC8A710E745;
+	Wed, 20 Nov 2024 12:43:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WlEFYxFc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CkqousYE";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EC9510E740;
- Wed, 20 Nov 2024 12:43:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E4EC10E733;
+ Wed, 20 Nov 2024 12:43:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732106619; x=1763642619;
+ t=1732106623; x=1763642623;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=3gAIjvDLWpZoNRLENQuC2BYTnLVbUd07hY9zLFV2Hak=;
- b=WlEFYxFctpswQrUfeezrpFz7QrpX8wtvg+18gUnfJngMhhXjZGop3M8O
- 47X8XIDnKV/4VIBN+nV0sh36sOCh+jYntyK27ZF7elpPAcidh/mjndD1u
- zTbyt1b6TUfurgpm+8HPnOZLQKYzLSojh7U/rkZokZFOdqgWbAUcu14WS
- OO0C9HxkUHABup0RAk+bzJjUCMWmm//M/VG1RaaUIAO88eTG0wCaZyI8n
- kFM996NDE38OqRd7Mtcnlp0h39ANgNCh6sBc+zk16JARfAL9Q4ksiQEA7
- wHdVb7HHSDBEnF8ksxFuT17kgn0Fv/snQYigUIHDdMm0UZHCSAWuRU0u/ A==;
-X-CSE-ConnectionGUID: UBIS4NxQSdO9pA+jBmfS/w==
-X-CSE-MsgGUID: w3jDxp8OSR6eWgPzkbWYkg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11261"; a="42783340"
-X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; d="scan'208";a="42783340"
+ bh=JnPDUsI72aIWqi0d5Iw2Xs9jf3B6RTOWrbw86fg+Caw=;
+ b=CkqousYEBxonHPuZs5wPfWae++6i3YRIg29HsJwmYktePFfQb47+CJaB
+ VZUV6drPCrt4aftIXitHjiOympETxG3AZjW+vuGePfDxrU/W5vKR1YUSA
+ fLLfRu0Q3j4mYXz93Xpe6n8dxi7ynPSeQkCeX3OlIDXmJBY0ApX/KWr8x
+ bSwSAC7/Q1xDhDaeyv1P61dJwytfcw/MJ8t/9T85Qbyw3o1XxdWQ5MOgD
+ iKniFEc5KpaCxTurN0RQLoHGdPXJ9+fZUrVpq+PXjSV+giiwl7h8oecDT
+ K9w2n4zARt4tUur42rs6Ty82EFvnbNzalB7b6ZClrQRGpgeXrkYUCjh2q A==;
+X-CSE-ConnectionGUID: nqN5aEX/SEq9liNv1hlxsw==
+X-CSE-MsgGUID: ilAUeTmKTa6rtCAUO26ANA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11261"; a="42783348"
+X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; d="scan'208";a="42783348"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2024 04:43:38 -0800
-X-CSE-ConnectionGUID: v3EqYY99Sjyo0IaE5mB76w==
-X-CSE-MsgGUID: 9sFr2iwoReemsIdAupq7Nw==
+ 20 Nov 2024 04:43:43 -0800
+X-CSE-ConnectionGUID: oIU3y+usRiis50xRynfNMw==
+X-CSE-MsgGUID: lYImcNy2R4S8NJapQ6WiIg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; d="scan'208";a="94363477"
+X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; d="scan'208";a="94363489"
 Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.54])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2024 04:43:36 -0800
+ 20 Nov 2024 04:43:41 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	Imre Deak <imre.deak@intel.com>
-Subject: [CI 03/11] drm/i915/mst: simplify mst_connector_get_hw_state()
-Date: Wed, 20 Nov 2024 14:43:11 +0200
-Message-Id: <eb8595ae36c6330cce1615059bd2c89a7db79668.1732106557.git.jani.nikula@intel.com>
+Subject: [CI 04/11] drm/i915/mst: unify MST topology callback naming to
+ mst_topology_*
+Date: Wed, 20 Nov 2024 14:43:12 +0200
+Message-Id: <e8efc8fddc3ca93e1256a1dad13bc4eca07c3382.1732106557.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1732106557.git.jani.nikula@intel.com>
 References: <cover.1732106557.git.jani.nikula@intel.com>
@@ -71,40 +72,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use a variable for the encoder to simplify.
+Make it easier to keep track of what belongs where.
 
 Reviewed-by: Imre Deak <imre.deak@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 15 ++++++++-------
- 1 file changed, 8 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp_mst.c | 25 +++++++++++----------
+ 1 file changed, 13 insertions(+), 12 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 56b2db02893d..b5e8db579e20 100644
+index b5e8db579e20..9dd8d2d9048b 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -1605,13 +1605,14 @@ static const struct drm_encoder_funcs mst_stream_encoder_funcs = {
- 
- static bool mst_connector_get_hw_state(struct intel_connector *connector)
- {
--	if (intel_attached_encoder(connector) && connector->base.state->crtc) {
--		enum pipe pipe;
--		if (!intel_attached_encoder(connector)->get_hw_state(intel_attached_encoder(connector), &pipe))
--			return false;
--		return true;
--	}
--	return false;
-+	/* This is the MST stream encoder set in ->pre_enable, if any */
-+	struct intel_encoder *encoder = intel_attached_encoder(connector);
-+	enum pipe pipe;
-+
-+	if (!encoder || !connector->base.state->crtc)
-+		return false;
-+
-+	return encoder->get_hw_state(encoder, &pipe);
+@@ -1615,9 +1615,9 @@ static bool mst_connector_get_hw_state(struct intel_connector *connector)
+ 	return encoder->get_hw_state(encoder, &pipe);
  }
  
- static int intel_dp_mst_add_properties(struct intel_dp *intel_dp,
+-static int intel_dp_mst_add_properties(struct intel_dp *intel_dp,
+-				       struct drm_connector *connector,
+-				       const char *pathprop)
++static int mst_topology_add_connector_properties(struct intel_dp *intel_dp,
++						 struct drm_connector *connector,
++						 const char *pathprop)
+ {
+ 	struct intel_display *display = to_intel_display(intel_dp);
+ 
+@@ -1703,9 +1703,10 @@ static bool detect_dsc_hblank_expansion_quirk(const struct intel_connector *conn
+ 	return true;
+ }
+ 
+-static struct drm_connector *intel_dp_add_mst_connector(struct drm_dp_mst_topology_mgr *mgr,
+-							struct drm_dp_mst_port *port,
+-							const char *pathprop)
++static struct drm_connector *
++mst_topology_add_connector(struct drm_dp_mst_topology_mgr *mgr,
++			   struct drm_dp_mst_port *port,
++			   const char *pathprop)
+ {
+ 	struct intel_dp *intel_dp = container_of(mgr, struct intel_dp, mst_mgr);
+ 	struct intel_display *display = to_intel_display(intel_dp);
+@@ -1762,7 +1763,7 @@ static struct drm_connector *intel_dp_add_mst_connector(struct drm_dp_mst_topolo
+ 			goto err;
+ 	}
+ 
+-	ret = intel_dp_mst_add_properties(intel_dp, connector, pathprop);
++	ret = mst_topology_add_connector_properties(intel_dp, connector, pathprop);
+ 	if (ret)
+ 		goto err;
+ 
+@@ -1779,16 +1780,16 @@ static struct drm_connector *intel_dp_add_mst_connector(struct drm_dp_mst_topolo
+ }
+ 
+ static void
+-intel_dp_mst_poll_hpd_irq(struct drm_dp_mst_topology_mgr *mgr)
++mst_topology_poll_hpd_irq(struct drm_dp_mst_topology_mgr *mgr)
+ {
+ 	struct intel_dp *intel_dp = container_of(mgr, struct intel_dp, mst_mgr);
+ 
+ 	intel_hpd_trigger_irq(dp_to_dig_port(intel_dp));
+ }
+ 
+-static const struct drm_dp_mst_topology_cbs mst_cbs = {
+-	.add_connector = intel_dp_add_mst_connector,
+-	.poll_hpd_irq = intel_dp_mst_poll_hpd_irq,
++static const struct drm_dp_mst_topology_cbs mst_topology_cbs = {
++	.add_connector = mst_topology_add_connector,
++	.poll_hpd_irq = mst_topology_poll_hpd_irq,
+ };
+ 
+ /* Create a fake encoder for an individual MST stream */
+@@ -1881,7 +1882,7 @@ intel_dp_mst_encoder_init(struct intel_digital_port *dig_port, int conn_base_id)
+ 	if (DISPLAY_VER(display) < 11 && port == PORT_E)
+ 		return 0;
+ 
+-	intel_dp->mst_mgr.cbs = &mst_cbs;
++	intel_dp->mst_mgr.cbs = &mst_topology_cbs;
+ 
+ 	/* create encoders */
+ 	mst_stream_encoders_create(dig_port);
 -- 
 2.39.5
 
