@@ -2,29 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EFA69D3E1E
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Nov 2024 15:54:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35D019D3E47
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Nov 2024 15:59:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7248D10E05B;
-	Wed, 20 Nov 2024 14:54:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A411E10E0DE;
+	Wed, 20 Nov 2024 14:59:12 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lhI3hGm5";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D1FC10E05B;
- Wed, 20 Nov 2024 14:54:46 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5865854458137064480=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC63810E011;
+ Wed, 20 Nov 2024 14:59:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1732114751; x=1763650751;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=O3wbiLpz2mkfs+UzhYv0kqD2BkYYzNTcjMmWJVbyR9M=;
+ b=lhI3hGm51qRHyEDAKcUZMbeS8c60DK5tc2jacJ4YJhLgYLXmZU6oC7pq
+ SmQUoitO7YjwpiJzJ/IrMN880lTU1zyEU5h7WcVqM1+B+LbA6YRqDbA/J
+ sRXCNweOtWH57akJ+r0gkty97DYwAhbUYLJK/o0d5BwhZ4UFrDH2ePkx0
+ 8I9fnpS0GN/yk1l6cbiajQvGNFNqxuYIwn9sFNijMl3guRtJ3hg5ePiA/
+ o40oV/EqxJymhc30tCy0YwmuygtQXbsZnzc9UrMPXB6OPCuD7/ofWn8ad
+ Ch7UQWTgFpXzdiVFcMasMwCJ7i/flwh8CMQZd0j+W5YtXdWjlO3wZ0sHA Q==;
+X-CSE-ConnectionGUID: wbhR/EqLQ/C/ILqyzVfOCg==
+X-CSE-MsgGUID: 4Rhk7saNQp+Xk8Vcm7mGvA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11262"; a="49607954"
+X-IronPort-AV: E=Sophos;i="6.12,170,1728975600"; d="scan'208";a="49607954"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2024 06:59:11 -0800
+X-CSE-ConnectionGUID: gy/lr4RIT7ClMMvY3vyIgg==
+X-CSE-MsgGUID: WsRbIOPORcqCAuAOxjJxVg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,170,1728975600"; d="scan'208";a="120881705"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2024 06:59:09 -0800
+Date: Wed, 20 Nov 2024 16:59:43 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: Lyude Paul <lyude@redhat.com>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 1/3] drm/dp: extract drm_dp_dpcd_poll_act_handled()
+Message-ID: <Zz345xhVgGlshsJN@ideak-desk.fi.intel.com>
+References: <cover.1731942780.git.jani.nikula@intel.com>
+ <3d91f7b6639960fe688eb6ae0236254adae3e82d.1731942780.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Fi=2ECI=2EBAT=3A_success_for_drm/i915=3A_ensure_segment_?=
- =?utf-8?q?offset_never_exceeds_allowed_max_=28rev8=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Krzysztof Karas" <krzysztof.karas@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 20 Nov 2024 14:54:46 -0000
-Message-ID: <173211448646.751870.15863919556501587234@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <upbjdavlbcxku63ns4vstp5kgbn2anxwewpmnppszgb67fn66t@tfclfgkqijue>
-In-Reply-To: <upbjdavlbcxku63ns4vstp5kgbn2anxwewpmnppszgb67fn66t@tfclfgkqijue>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3d91f7b6639960fe688eb6ae0236254adae3e82d.1731942780.git.jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,235 +66,198 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
+Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5865854458137064480==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, Nov 18, 2024 at 05:14:52PM +0200, Jani Nikula wrote:
+> SST with 128b/132b channel coding needs this too. Extract to a separate
+> helper, independent of MST.
+> 
+> Pass timeout in as a parameter, anticipating that we can reduce the
+> timeout for SST.
 
-== Series Details ==
+I wish there was a DP Standard section making the above clear,
+but I suppose we just deduct that except of the side-band messaging,
+every other payload programming and ACT signaling is required for
+128b/132b SST.
 
-Series: drm/i915: ensure segment offset never exceeds allowed max (rev8)
-URL   : https://patchwork.freedesktop.org/series/140374/
-State : success
+> 
 
-== Summary ==
+Cc: Lyude Paul <lyude@redhat.com>
 
-CI Bug Log - changes from CI_DRM_15724 -> Patchwork_140374v8
-====================================================
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/display/drm_dp_helper.c       | 54 ++++++++++++++++++-
+>  drivers/gpu/drm/display/drm_dp_mst_topology.c | 36 +------------
+>  include/drm/display/drm_dp_helper.h           |  2 +
+>  3 files changed, 57 insertions(+), 35 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
+> index 6ee51003de3c..b7e03bf02cd8 100644
+> --- a/drivers/gpu/drm/display/drm_dp_helper.c
+> +++ b/drivers/gpu/drm/display/drm_dp_helper.c
+> @@ -22,15 +22,16 @@
+>  
+>  #include <linux/backlight.h>
+>  #include <linux/delay.h>
+> +#include <linux/dynamic_debug.h>
+>  #include <linux/errno.h>
+>  #include <linux/i2c.h>
+>  #include <linux/init.h>
+> +#include <linux/iopoll.h>
+>  #include <linux/kernel.h>
+>  #include <linux/module.h>
+>  #include <linux/sched.h>
+>  #include <linux/seq_file.h>
+>  #include <linux/string_helpers.h>
+> -#include <linux/dynamic_debug.h>
+>  
+>  #include <drm/display/drm_dp_helper.h>
+>  #include <drm/display/drm_dp_mst_helper.h>
+> @@ -779,6 +780,57 @@ int drm_dp_dpcd_read_phy_link_status(struct drm_dp_aux *aux,
+>  }
+>  EXPORT_SYMBOL(drm_dp_dpcd_read_phy_link_status);
+>  
+> +static int read_payload_update_status(struct drm_dp_aux *aux)
+> +{
+> +	int ret;
+> +	u8 status;
+> +
+> +	ret = drm_dp_dpcd_readb(aux, DP_PAYLOAD_TABLE_UPDATE_STATUS, &status);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	return status;
+> +}
+> +
+> +/**
+> + * drm_dp_dpcd_poll_act_handled() - Polls for ACT handled status.
+> + * @aux: DisplayPort AUX channel
+> + * @timeout_ms: Timeout in ms
+> + *
+> + * Tries waiting for the sink to finish updating its payload table by polling
+> + * for the ACT handled bit for up to @timeout_ms milliseconds, defaulting to
+> + * 3000 ms if 0.
+> + *
+> + * Returns:
+> + * 0 if the ACT was handled in time, negative error code on failure.
+> + */
+> +int drm_dp_dpcd_poll_act_handled(struct drm_dp_aux *aux, int timeout_ms)
 
-Summary
--------
+I wonder if it'd make sense to namespace these helpers using ll_mtp or mtp.
 
-  **SUCCESS**
+> +{
+> +	int ret, status;
+> +
 
-  No regressions found.
+Extra w/s.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v8/index.html
+Regardless of the namespace comment:
 
-Participating hosts (46 -> 45)
-------------------------------
+Reviewed-by: Imre Deak <imre.deak@intel.com>
 
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_140374v8 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-twl-1:          [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15724/bat-twl-1/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v8/bat-twl-1/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@dmabuf@all-tests:
-    - bat-apl-1:          [PASS][3] -> [INCOMPLETE][4] ([i915#12904]) +1 other test incomplete
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15724/bat-apl-1/igt@dmabuf@all-tests.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v8/bat-apl-1/igt@dmabuf@all-tests.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - bat-dg2-11:         [PASS][5] -> [FAIL][6] ([i915#12903])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15724/bat-dg2-11/igt@i915_pm_rpm@module-reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v8/bat-dg2-11/igt@i915_pm_rpm@module-reload.html
-    - bat-rpls-4:         [PASS][7] -> [FAIL][8] ([i915#12903])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15724/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v8/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live:
-    - bat-mtlp-6:         [PASS][9] -> [ABORT][10] ([i915#12829])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15724/bat-mtlp-6/igt@i915_selftest@live.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v8/bat-mtlp-6/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-mtlp-6:         [PASS][11] -> [ABORT][12] ([i915#12915])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15724/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v8/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         [PASS][13] -> [SKIP][14] ([i915#9197]) +3 other tests skip
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15724/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v8/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live:
-    - bat-arlh-3:         [ABORT][15] ([i915#12829]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15724/bat-arlh-3/igt@i915_selftest@live.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v8/bat-arlh-3/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arlh-3:         [ABORT][17] ([i915#12061]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15724/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v8/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_chamelium_edid@hdmi-edid-read:
-    - bat-dg2-13:         [DMESG-WARN][19] ([i915#12253]) -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15724/bat-dg2-13/igt@kms_chamelium_edid@hdmi-edid-read.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v8/bat-dg2-13/igt@kms_chamelium_edid@hdmi-edid-read.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12253]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12253
-  [i915#12829]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12829
-  [i915#12903]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12903
-  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
-  [i915#12915]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12915
-  [i915#1982]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982
-  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15724 -> Patchwork_140374v8
-
-  CI-20190529: 20190529
-  CI_DRM_15724: 0cb17ecec562c61d45997a2fced4e5ed99b31f99 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8118: 17707095f1e5d3c30f463b43022f01c0160579b6 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_140374v8: 0cb17ecec562c61d45997a2fced4e5ed99b31f99 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v8/index.html
-
---===============5865854458137064480==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: ensure segment offset never exceeds allowed max (rev8)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/140374/">https://patchwork.freedesktop.org/series/140374/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v8/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v8/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_15724 -&gt; Patchwork_140374v8</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v8/index.html</p>
-<h2>Participating hosts (46 -&gt; 45)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_140374v8 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>bat-twl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15724/bat-twl-1/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v8/bat-twl-1/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982">i915#1982</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@dmabuf@all-tests:</p>
-<ul>
-<li>bat-apl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15724/bat-apl-1/igt@dmabuf@all-tests.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v8/bat-apl-1/igt@dmabuf@all-tests.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) +1 other test incomplete</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15724/bat-dg2-11/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v8/bat-dg2-11/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12903">i915#12903</a>)</li>
-<li>bat-rpls-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15724/bat-rpls-4/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v8/bat-rpls-4/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12903">i915#12903</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15724/bat-mtlp-6/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v8/bat-mtlp-6/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12829">i915#12829</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15724/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v8/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12915">i915#12915</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15724/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v8/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197">i915#9197</a>) +3 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15724/bat-arlh-3/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12829">i915#12829</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v8/bat-arlh-3/igt@i915_selftest@live.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15724/bat-arlh-3/igt@i915_selftest@live@workarounds.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v8/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_edid@hdmi-edid-read:</p>
-<ul>
-<li>bat-dg2-13:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15724/bat-dg2-13/igt@kms_chamelium_edid@hdmi-edid-read.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12253">i915#12253</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140374v8/bat-dg2-13/igt@kms_chamelium_edid@hdmi-edid-read.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_15724 -&gt; Patchwork_140374v8</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_15724: 0cb17ecec562c61d45997a2fced4e5ed99b31f99 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8118: 17707095f1e5d3c30f463b43022f01c0160579b6 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_140374v8: 0cb17ecec562c61d45997a2fced4e5ed99b31f99 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============5865854458137064480==--
+> +	/* default to 3 seconds, this is arbitrary */
+> +	timeout_ms = timeout_ms ?: 3000;
+> +
+> +	ret = readx_poll_timeout(read_payload_update_status, aux, status,
+> +				 status & DP_PAYLOAD_ACT_HANDLED || status < 0,
+> +				 200, timeout_ms * USEC_PER_MSEC);
+> +	if (ret < 0 && status >= 0) {
+> +		drm_err(aux->drm_dev, "Failed to get ACT after %d ms, last status: %02x\n",
+> +			timeout_ms, status);
+> +		return -EINVAL;
+> +	} else if (status < 0) {
+> +		/*
+> +		 * Failure here isn't unexpected - the hub may have
+> +		 * just been unplugged
+> +		 */
+> +		drm_dbg_kms(aux->drm_dev, "Failed to read payload table status: %d\n", status);
+> +		return status;
+> +	}
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(drm_dp_dpcd_poll_act_handled);
+> +
+>  static bool is_edid_digital_input_dp(const struct drm_edid *drm_edid)
+>  {
+>  	/* FIXME: get rid of drm_edid_raw() */
+> diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c b/drivers/gpu/drm/display/drm_dp_mst_topology.c
+> index ac90118b9e7a..2bdbc1eb282b 100644
+> --- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
+> +++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
+> @@ -29,7 +29,6 @@
+>  #include <linux/random.h>
+>  #include <linux/sched.h>
+>  #include <linux/seq_file.h>
+> -#include <linux/iopoll.h>
+>  
+>  #if IS_ENABLED(CONFIG_DRM_DEBUG_DP_MST_TOPOLOGY_REFS)
+>  #include <linux/stacktrace.h>
+> @@ -4723,18 +4722,6 @@ static int drm_dp_dpcd_write_payload(struct drm_dp_mst_topology_mgr *mgr,
+>  	return ret;
+>  }
+>  
+> -static int do_get_act_status(struct drm_dp_aux *aux)
+> -{
+> -	int ret;
+> -	u8 status;
+> -
+> -	ret = drm_dp_dpcd_readb(aux, DP_PAYLOAD_TABLE_UPDATE_STATUS, &status);
+> -	if (ret < 0)
+> -		return ret;
+> -
+> -	return status;
+> -}
+> -
+>  /**
+>   * drm_dp_check_act_status() - Polls for ACT handled status.
+>   * @mgr: manager to use
+> @@ -4752,28 +4739,9 @@ int drm_dp_check_act_status(struct drm_dp_mst_topology_mgr *mgr)
+>  	 * There doesn't seem to be any recommended retry count or timeout in
+>  	 * the MST specification. Since some hubs have been observed to take
+>  	 * over 1 second to update their payload allocations under certain
+> -	 * conditions, we use a rather large timeout value.
+> +	 * conditions, we use a rather large timeout value of 3 seconds.
+>  	 */
+> -	const int timeout_ms = 3000;
+> -	int ret, status;
+> -
+> -	ret = readx_poll_timeout(do_get_act_status, mgr->aux, status,
+> -				 status & DP_PAYLOAD_ACT_HANDLED || status < 0,
+> -				 200, timeout_ms * USEC_PER_MSEC);
+> -	if (ret < 0 && status >= 0) {
+> -		drm_err(mgr->dev, "Failed to get ACT after %dms, last status: %02x\n",
+> -			timeout_ms, status);
+> -		return -EINVAL;
+> -	} else if (status < 0) {
+> -		/*
+> -		 * Failure here isn't unexpected - the hub may have
+> -		 * just been unplugged
+> -		 */
+> -		drm_dbg_kms(mgr->dev, "Failed to read payload table status: %d\n", status);
+> -		return status;
+> -	}
+> -
+> -	return 0;
+> +	return drm_dp_dpcd_poll_act_handled(mgr->aux, 3000);
+>  }
+>  EXPORT_SYMBOL(drm_dp_check_act_status);
+>  
+> diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
+> index 279624833ea9..38eea21d1082 100644
+> --- a/include/drm/display/drm_dp_helper.h
+> +++ b/include/drm/display/drm_dp_helper.h
+> @@ -567,6 +567,8 @@ int drm_dp_dpcd_read_phy_link_status(struct drm_dp_aux *aux,
+>  				     enum drm_dp_phy dp_phy,
+>  				     u8 link_status[DP_LINK_STATUS_SIZE]);
+>  
+> +int drm_dp_dpcd_poll_act_handled(struct drm_dp_aux *aux, int timeout_ms);
+> +
+>  bool drm_dp_send_real_edid_checksum(struct drm_dp_aux *aux,
+>  				    u8 real_edid_checksum);
+>  
+> -- 
+> 2.39.5
+> 
