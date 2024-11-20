@@ -2,55 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CBDE9D3ADE
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Nov 2024 13:43:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BAD99D3AE0
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Nov 2024 13:43:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E421210E746;
-	Wed, 20 Nov 2024 12:43:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7E3210E740;
+	Wed, 20 Nov 2024 12:43:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VyeqdpYb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mSauvmmp";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BAD1D10E742;
- Wed, 20 Nov 2024 12:43:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 51D2510E740;
+ Wed, 20 Nov 2024 12:43:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732106633; x=1763642633;
+ t=1732106637; x=1763642637;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=el61+cc6kMY72eA62CJdYfMP76PIOHd+jbXAxjj5EpE=;
- b=VyeqdpYbX/x0+pdvq22eaAO2sFf/qsKnw1znHFO+HXiNt+BCoKN+5052
- EGMvneOHPHdtivDO1W/vljxcUkapRHmhlLccsetZPihNS1ViSCBHjA04l
- dOFoihKlxltYdTouH5yMFqU/eOqsNCwNRdIR+19Sg7Jsiim10zih4Qsz2
- odhnBmUp8D5MPQpgOIHXGa0ZRK6F/fM16i+zdz2s8/zFPMZmmqtSZo2pm
- mX6j+hGR0Npb8C+S6bKyQwvp71Rnoo3odjaRxynjwxscGU9rnZx1SHJEm
- o7+ga5URFri/V8MRoZ5v7AZ791ca9yyfjm5mad+HsYyZa2LAzU49tcJW3 Q==;
-X-CSE-ConnectionGUID: iGu9Q8NOSjWYVPShqrVT5g==
-X-CSE-MsgGUID: eaEVhS1+QA2c+KDI2gb4Uw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11261"; a="42783360"
-X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; d="scan'208";a="42783360"
+ bh=qEOLQdAhPv00EAza4BTIcnokpHTrlOXGkaJnTf95Zes=;
+ b=mSauvmmpOpgnc1BefPR2DMnOpDQsa23QC/1r36ck2d19bLeS7uSSPRi/
+ tql2GiTkmuIkFEtKGN1iFYo/6XD8FvkCOz5OK9a+uvf82fTrB6dxHWnMW
+ 5OwNzjVrsJP3A6G1KCQSPf99M3gd2/J37qOJAkh+ZPavX10Qru3/UXZyK
+ FVBjLdUqbpLY9fjsTt6TQDka7WnwjCRd+mGC66n8ofPJf2DGhpLpWhbnX
+ 59rc72abYIifUAKLvDCeY/D+kym/H9pmDceycG7eTGUIhulBUfLoXMXQR
+ FlCIpuhkhuIlcmrrJbMX1rdScD4wvmDWMTqvOvifHOneYjmRHpkMgZ3ZT A==;
+X-CSE-ConnectionGUID: eOxLeCsXSbe3A+eEu8fdJA==
+X-CSE-MsgGUID: tzpzyqsPTKOrXOJpqGSK0w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11261"; a="42783375"
+X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; d="scan'208";a="42783375"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2024 04:43:52 -0800
-X-CSE-ConnectionGUID: zj0YA3ugRia/L+iP3EUDgw==
-X-CSE-MsgGUID: 1M0TUUBXRMSl6mHisSviOQ==
+ 20 Nov 2024 04:43:57 -0800
+X-CSE-ConnectionGUID: 49hqO5JnSc+1gojNsZQU7w==
+X-CSE-MsgGUID: etPqNJGhT2iZjrFxt3RIvw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; d="scan'208";a="94363509"
+X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; d="scan'208";a="94363523"
 Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.54])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2024 04:43:50 -0800
+ 20 Nov 2024 04:43:55 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	Imre Deak <imre.deak@intel.com>
-Subject: [CI 06/11] drm/i915/reg: convert DP_TP_CTL/DP_TP_STATUS to REG_BIT()
- and friends
-Date: Wed, 20 Nov 2024 14:43:14 +0200
-Message-Id: <1ef15e6bb58ca847f89c9b39cbc9771cb57db408.1732106557.git.jani.nikula@intel.com>
+Subject: [CI 07/11] drm/i915/dp: refactor clear/wait for act sent
+Date: Wed, 20 Nov 2024 14:43:15 +0200
+Message-Id: <ef05f5bc222e8ba48d84f75a9ea5dd29667055d2.1732106557.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1732106557.git.jani.nikula@intel.com>
 References: <cover.1732106557.git.jani.nikula@intel.com>
@@ -72,97 +71,147 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use the modern style for defining register contents. Expand the status
-register contents a bit.
+Move clear_act_sent() and wait_for_act_sent() to intel_ddi.[ch] and make
+independent of DP MST. They'll be needed for 128b/132b SST
+operation. Rename accordingly.
 
-TODO: There are more VC payload mapping fields, spanning more registers,
-and have more bits on more recent platforms.
-
-v2:
-- Fix DP_TP_STATUS_STREAMS_ENABLED_MASK mask (Imre)
-- Drop status VC3 payload mapping for now
-
-Cc: Imre Deak <imre.deak@intel.com>
 Reviewed-by: Imre Deak <imre.deak@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/i915_reg.h | 56 +++++++++++++++++----------------
- 1 file changed, 29 insertions(+), 27 deletions(-)
+ drivers/gpu/drm/i915/display/intel_ddi.c    | 23 +++++++++++++--
+ drivers/gpu/drm/i915/display/intel_ddi.h    |  8 ++++--
+ drivers/gpu/drm/i915/display/intel_dp_mst.c | 32 ++++-----------------
+ 3 files changed, 33 insertions(+), 30 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 7a35be56b7ef..f48b5c809cec 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -3823,25 +3823,26 @@ enum skl_power_gate {
- #define _TGL_DP_TP_CTL_A		0x60540
- #define DP_TP_CTL(port) _MMIO_PORT(port, _DP_TP_CTL_A, _DP_TP_CTL_B)
- #define TGL_DP_TP_CTL(dev_priv, tran) _MMIO_TRANS2(dev_priv, (tran), _TGL_DP_TP_CTL_A)
--#define  DP_TP_CTL_ENABLE			(1 << 31)
--#define  DP_TP_CTL_FEC_ENABLE			(1 << 30)
--#define  DP_TP_CTL_MODE_SST			(0 << 27)
--#define  DP_TP_CTL_MODE_MST			(1 << 27)
--#define  DP_TP_CTL_FORCE_ACT			(1 << 25)
--#define  DP_TP_CTL_TRAIN_PAT4_SEL_MASK		(3 << 19)
--#define  DP_TP_CTL_TRAIN_PAT4_SEL_TP4A		(0 << 19)
--#define  DP_TP_CTL_TRAIN_PAT4_SEL_TP4B		(1 << 19)
--#define  DP_TP_CTL_TRAIN_PAT4_SEL_TP4C		(2 << 19)
--#define  DP_TP_CTL_ENHANCED_FRAME_ENABLE	(1 << 18)
--#define  DP_TP_CTL_FDI_AUTOTRAIN		(1 << 15)
--#define  DP_TP_CTL_LINK_TRAIN_MASK		(7 << 8)
--#define  DP_TP_CTL_LINK_TRAIN_PAT1		(0 << 8)
--#define  DP_TP_CTL_LINK_TRAIN_PAT2		(1 << 8)
--#define  DP_TP_CTL_LINK_TRAIN_PAT3		(4 << 8)
--#define  DP_TP_CTL_LINK_TRAIN_PAT4		(5 << 8)
--#define  DP_TP_CTL_LINK_TRAIN_IDLE		(2 << 8)
--#define  DP_TP_CTL_LINK_TRAIN_NORMAL		(3 << 8)
--#define  DP_TP_CTL_SCRAMBLE_DISABLE		(1 << 7)
-+#define   DP_TP_CTL_ENABLE			REG_BIT(31)
-+#define   DP_TP_CTL_FEC_ENABLE			REG_BIT(30)
-+#define   DP_TP_CTL_MODE_MASK			REG_BIT(27)
-+#define   DP_TP_CTL_MODE_SST			REG_FIELD_PREP(DP_TP_CTL_MODE_MASK, 0)
-+#define   DP_TP_CTL_MODE_MST			REG_FIELD_PREP(DP_TP_CTL_MODE_MASK, 1)
-+#define   DP_TP_CTL_FORCE_ACT			REG_BIT(25)
-+#define   DP_TP_CTL_TRAIN_PAT4_SEL_MASK		REG_GENMASK(20, 19)
-+#define   DP_TP_CTL_TRAIN_PAT4_SEL_TP4A		REG_FIELD_PREP(DP_TP_CTL_TRAIN_PAT4_SEL_MASK, 0)
-+#define   DP_TP_CTL_TRAIN_PAT4_SEL_TP4B		REG_FIELD_PREP(DP_TP_CTL_TRAIN_PAT4_SEL_MASK, 1)
-+#define   DP_TP_CTL_TRAIN_PAT4_SEL_TP4C		REG_FIELD_PREP(DP_TP_CTL_TRAIN_PAT4_SEL_MASK, 2)
-+#define   DP_TP_CTL_ENHANCED_FRAME_ENABLE	REG_BIT(18)
-+#define   DP_TP_CTL_FDI_AUTOTRAIN		REG_BIT(15)
-+#define   DP_TP_CTL_LINK_TRAIN_MASK		REG_GENMASK(10, 8)
-+#define   DP_TP_CTL_LINK_TRAIN_PAT1		REG_FIELD_PREP(DP_TP_CTL_LINK_TRAIN_MASK, 0)
-+#define   DP_TP_CTL_LINK_TRAIN_PAT2		REG_FIELD_PREP(DP_TP_CTL_LINK_TRAIN_MASK, 1)
-+#define   DP_TP_CTL_LINK_TRAIN_PAT3		REG_FIELD_PREP(DP_TP_CTL_LINK_TRAIN_MASK, 4)
-+#define   DP_TP_CTL_LINK_TRAIN_PAT4		REG_FIELD_PREP(DP_TP_CTL_LINK_TRAIN_MASK, 5)
-+#define   DP_TP_CTL_LINK_TRAIN_IDLE		REG_FIELD_PREP(DP_TP_CTL_LINK_TRAIN_MASK, 2)
-+#define   DP_TP_CTL_LINK_TRAIN_NORMAL		REG_FIELD_PREP(DP_TP_CTL_LINK_TRAIN_MASK, 3)
-+#define   DP_TP_CTL_SCRAMBLE_DISABLE		REG_BIT(7)
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index cbd5d3dd7adc..afa86f8302a4 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -2211,8 +2211,8 @@ i915_reg_t dp_tp_ctl_reg(struct intel_encoder *encoder,
+ 		return DP_TP_CTL(encoder->port);
+ }
  
- /* DisplayPort Transport Status */
- #define _DP_TP_STATUS_A			0x64044
-@@ -3849,14 +3850,15 @@ enum skl_power_gate {
- #define _TGL_DP_TP_STATUS_A		0x60544
- #define DP_TP_STATUS(port) _MMIO_PORT(port, _DP_TP_STATUS_A, _DP_TP_STATUS_B)
- #define TGL_DP_TP_STATUS(dev_priv, tran) _MMIO_TRANS2(dev_priv, (tran), _TGL_DP_TP_STATUS_A)
--#define  DP_TP_STATUS_FEC_ENABLE_LIVE		(1 << 28)
--#define  DP_TP_STATUS_IDLE_DONE			(1 << 25)
--#define  DP_TP_STATUS_ACT_SENT			(1 << 24)
--#define  DP_TP_STATUS_MODE_STATUS_MST		(1 << 23)
--#define  DP_TP_STATUS_AUTOTRAIN_DONE		(1 << 12)
--#define  DP_TP_STATUS_PAYLOAD_MAPPING_VC2	(3 << 8)
--#define  DP_TP_STATUS_PAYLOAD_MAPPING_VC1	(3 << 4)
--#define  DP_TP_STATUS_PAYLOAD_MAPPING_VC0	(3 << 0)
-+#define   DP_TP_STATUS_FEC_ENABLE_LIVE		REG_BIT(28)
-+#define   DP_TP_STATUS_IDLE_DONE		REG_BIT(25)
-+#define   DP_TP_STATUS_ACT_SENT			REG_BIT(24)
-+#define   DP_TP_STATUS_MODE_STATUS_MST		REG_BIT(23)
-+#define   DP_TP_STATUS_STREAMS_ENABLED_MASK	REG_GENMASK(18, 16) /* 17:16 on hsw but bit 18 mbz */
-+#define   DP_TP_STATUS_AUTOTRAIN_DONE		REG_BIT(12)
-+#define   DP_TP_STATUS_PAYLOAD_MAPPING_VC2_MASK REG_GENMASK(9, 8)
-+#define   DP_TP_STATUS_PAYLOAD_MAPPING_VC1_MASK	REG_GENMASK(5, 4)
-+#define   DP_TP_STATUS_PAYLOAD_MAPPING_VC0_MASK	REG_GENMASK(1, 0)
+-i915_reg_t dp_tp_status_reg(struct intel_encoder *encoder,
+-			    const struct intel_crtc_state *crtc_state)
++static i915_reg_t dp_tp_status_reg(struct intel_encoder *encoder,
++				   const struct intel_crtc_state *crtc_state)
+ {
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
  
- /* DDI Buffer Control */
- #define _DDI_BUF_CTL_A				0x64000
+@@ -2223,6 +2223,25 @@ i915_reg_t dp_tp_status_reg(struct intel_encoder *encoder,
+ 		return DP_TP_STATUS(encoder->port);
+ }
+ 
++void intel_ddi_clear_act_sent(struct intel_encoder *encoder,
++			      const struct intel_crtc_state *crtc_state)
++{
++	struct intel_display *display = to_intel_display(encoder);
++
++	intel_de_write(display, dp_tp_status_reg(encoder, crtc_state),
++		       DP_TP_STATUS_ACT_SENT);
++}
++
++void intel_ddi_wait_for_act_sent(struct intel_encoder *encoder,
++				 const struct intel_crtc_state *crtc_state)
++{
++	struct intel_display *display = to_intel_display(encoder);
++
++	if (intel_de_wait_for_set(display, dp_tp_status_reg(encoder, crtc_state),
++				  DP_TP_STATUS_ACT_SENT, 1))
++		drm_err(display->drm, "Timed out waiting for ACT sent\n");
++}
++
+ static void intel_dp_sink_set_msa_timing_par_ignore_state(struct intel_dp *intel_dp,
+ 							  const struct intel_crtc_state *crtc_state,
+ 							  bool enable)
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.h b/drivers/gpu/drm/i915/display/intel_ddi.h
+index 0d5d820740f6..2faadd1441e2 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.h
++++ b/drivers/gpu/drm/i915/display/intel_ddi.h
+@@ -26,8 +26,12 @@ enum transcoder;
+ 
+ i915_reg_t dp_tp_ctl_reg(struct intel_encoder *encoder,
+ 			 const struct intel_crtc_state *crtc_state);
+-i915_reg_t dp_tp_status_reg(struct intel_encoder *encoder,
+-			    const struct intel_crtc_state *crtc_state);
++
++void intel_ddi_clear_act_sent(struct intel_encoder *encoder,
++			      const struct intel_crtc_state *crtc_state);
++void intel_ddi_wait_for_act_sent(struct intel_encoder *encoder,
++				 const struct intel_crtc_state *crtc_state);
++
+ void intel_ddi_fdi_post_disable(struct intel_atomic_state *state,
+ 				struct intel_encoder *intel_encoder,
+ 				const struct intel_crtc_state *old_crtc_state,
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+index 9dd8d2d9048b..c59c2c14679c 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+@@ -966,28 +966,6 @@ mst_connector_atomic_check(struct drm_connector *connector,
+ 						intel_connector->port);
+ }
+ 
+-static void clear_act_sent(struct intel_encoder *encoder,
+-			   const struct intel_crtc_state *crtc_state)
+-{
+-	struct intel_display *display = to_intel_display(encoder);
+-
+-	intel_de_write(display, dp_tp_status_reg(encoder, crtc_state),
+-		       DP_TP_STATUS_ACT_SENT);
+-}
+-
+-static void wait_for_act_sent(struct intel_encoder *encoder,
+-			      const struct intel_crtc_state *crtc_state)
+-{
+-	struct intel_display *display = to_intel_display(encoder);
+-	struct intel_dp *intel_dp = to_primary_dp(encoder);
+-
+-	if (intel_de_wait_for_set(display, dp_tp_status_reg(encoder, crtc_state),
+-				  DP_TP_STATUS_ACT_SENT, 1))
+-		drm_err(display->drm, "Timed out waiting for ACT sent\n");
+-
+-	drm_dp_check_act_status(&intel_dp->mst_mgr);
+-}
+-
+ static void mst_stream_disable(struct intel_atomic_state *state,
+ 			       struct intel_encoder *encoder,
+ 			       const struct intel_crtc_state *old_crtc_state,
+@@ -1049,13 +1027,14 @@ static void mst_stream_post_disable(struct intel_atomic_state *state,
+ 
+ 	drm_dp_remove_payload_part1(&intel_dp->mst_mgr, new_mst_state, new_payload);
+ 
+-	clear_act_sent(encoder, old_crtc_state);
++	intel_ddi_clear_act_sent(encoder, old_crtc_state);
+ 
+ 	intel_de_rmw(display,
+ 		     TRANS_DDI_FUNC_CTL(display, old_crtc_state->cpu_transcoder),
+ 		     TRANS_DDI_DP_VC_PAYLOAD_ALLOC, 0);
+ 
+-	wait_for_act_sent(encoder, old_crtc_state);
++	intel_ddi_wait_for_act_sent(encoder, old_crtc_state);
++	drm_dp_check_act_status(&intel_dp->mst_mgr);
+ 
+ 	drm_dp_remove_payload_part2(&intel_dp->mst_mgr, new_mst_state,
+ 				    old_payload, new_payload);
+@@ -1299,7 +1278,7 @@ static void mst_stream_enable(struct intel_atomic_state *state,
+ 
+ 	intel_ddi_enable_transcoder_func(encoder, pipe_config);
+ 
+-	clear_act_sent(encoder, pipe_config);
++	intel_ddi_clear_act_sent(encoder, pipe_config);
+ 
+ 	intel_de_rmw(display, TRANS_DDI_FUNC_CTL(display, trans), 0,
+ 		     TRANS_DDI_DP_VC_PAYLOAD_ALLOC);
+@@ -1307,7 +1286,8 @@ static void mst_stream_enable(struct intel_atomic_state *state,
+ 	drm_dbg_kms(display->drm, "active links %d\n",
+ 		    intel_dp->active_mst_links);
+ 
+-	wait_for_act_sent(encoder, pipe_config);
++	intel_ddi_wait_for_act_sent(encoder, pipe_config);
++	drm_dp_check_act_status(&intel_dp->mst_mgr);
+ 
+ 	if (first_mst_stream)
+ 		intel_ddi_wait_for_fec_status(encoder, pipe_config, true);
 -- 
 2.39.5
 
