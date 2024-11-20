@@ -2,52 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D2F29D387A
+	by mail.lfdr.de (Postfix) with ESMTPS id 3392E9D3879
 	for <lists+intel-gfx@lfdr.de>; Wed, 20 Nov 2024 11:36:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E805210E6F5;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2CCEB10E6FF;
 	Wed, 20 Nov 2024 10:35:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E1uR9rjA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FApySC3+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D4D3A10E6F5;
- Wed, 20 Nov 2024 10:35:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D09AC10E6F5;
+ Wed, 20 Nov 2024 10:35:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732098945; x=1763634945;
+ t=1732098947; x=1763634947;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=MU4mI+QrT5HyKS2L5XFv4b4pfaHk/ZGk08115BTMSgU=;
- b=E1uR9rjA2x/hYT24uGjnQFdb8GaHdhC1J6zURT9gRBQe7wahK2slgmob
- sfaBxtg9UQQAfewaDVlt0TE49pAFFWJACWvS/919Z/HkaUQQMP201A0ip
- iMtji2tqp1df8fO0WnfnhHwPFHOXczF3iw/D8QvR5QyOY1sjff+PoqV6+
- qXNEs96zAwMdk7XpbGBN4hrMPhssBp13vcnzmwJaONLlD+F+O8C6bvbxv
- xWB9vhoQ1dKQwMDQ202qchepVyXCznHgqa0d5UpFlsOte63pRim7r5IwN
- 1NwAjWx+QEHqFj6mZ8o3r3hZsi6+CatKTzYyfNMfh2CDmPzXS5nOsnrVb Q==;
-X-CSE-ConnectionGUID: e1vU9zstTkusH7qxN889/Q==
-X-CSE-MsgGUID: EMbQ9xg6Rce9WZUPEIexjA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11261"; a="31520069"
-X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; d="scan'208";a="31520069"
+ bh=GCM3Jw2O015iDUBpV+iRaISX64nJUxBZIEtBmdXPf+w=;
+ b=FApySC3+4qP2r6jDip1COLVn9kzeX1Ezgx0jFP7Qg3IGIjyZtiC3QXEn
+ quLMm62fakLuUCeEozlzjMbOtlo5x5EdNvJgsgNZcnFoq3fyoJyZyMp8B
+ cq0IREPWJgAfixaMMeGpVhzswfIO6q/UN5P80Fc/SX0+YFKsSVyHU4tCW
+ WMfjLEm5qRexn3ojGRg2TZ4ulkNgW2illR1RVDLP/jt7mE15bf3B71XJu
+ /3UCwg1rhGvqD65Jjb96fJry4xFl06/b8JwDquNOkRM51jE7gK7R8B7Jp
+ J60lJvIH90OhJHHSB808L6JavARfvfPwamW+8YbwPiS4objyGBVv236lf g==;
+X-CSE-ConnectionGUID: 56bwAz1PQkOT/Fb3QCgz7Q==
+X-CSE-MsgGUID: I5A1iU3eR2CVgYpBB2G6uQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11261"; a="31520070"
+X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; d="scan'208";a="31520070"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2024 02:35:45 -0800
-X-CSE-ConnectionGUID: D4xKvKMDRmy76h1warqlPg==
-X-CSE-MsgGUID: Ul2lqV2tSjafYkwCdgl/5g==
+ 20 Nov 2024 02:35:47 -0800
+X-CSE-ConnectionGUID: pPlO+yHjREG2F7pKk5Kh4A==
+X-CSE-MsgGUID: WFPX62DtQn+QyagvYm7y0g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; d="scan'208";a="89674108"
+X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; d="scan'208";a="89674113"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2024 02:35:44 -0800
+ 20 Nov 2024 02:35:46 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, suraj.kandpal@intel.com,
  jani.nikula@linux.intel.com, imre.deak@intel.com
-Subject: [PATCH 10/12] drm/i915/dp: Use clamp for pipe_bpp limits with DSC
-Date: Wed, 20 Nov 2024 16:08:00 +0530
-Message-ID: <20241120103802.134295-11-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 11/12] drm/i915/dp: Make dsc helpers accept const crtc_state
+ pointers
+Date: Wed, 20 Nov 2024 16:08:01 +0530
+Message-ID: <20241120103802.134295-12-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241120103802.134295-1-ankit.k.nautiyal@intel.com>
 References: <20241120103802.134295-1-ankit.k.nautiyal@intel.com>
@@ -68,39 +69,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Currently to get the max pipe_bpp with dsc we take the min of
-limits->pipe.max_bpp and dsc max bpp (dsc max bpc * 3). This can result
-in problems when limits->pipe.max_bpp is less than the computed dsc min bpp
-(dsc min bpc * 3).
+Modify the dsc helpers to get max/min compressed bpp to accept
+`const struct intel_crtc_state *` pointers instead of
+`struct intel_crtc_state *`.
 
-Replace the min/max functions with clamp while computing
-limits->pipe.max/min_bpp to ensure that the pipe_bpp limits are constrained
-within the DSC-defined minimum and maximum values.
+These helpers are not supposed to modify `crtc_state`.
+Accepting const pointers will allow these helpers to be called from
+functions that have const pointer to crtc_state.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 6 +++---
+ drivers/gpu/drm/i915/display/intel_dp.h | 4 ++--
+ 2 files changed, 5 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 827368b6cdb9..6cd3ae2db1a9 100644
+index 6cd3ae2db1a9..1adde61c5b76 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2520,8 +2520,11 @@ intel_dp_dsc_compute_pipe_bpp_limits(struct intel_dp *intel_dp,
- 	int dsc_min_bpc = intel_dp_dsc_min_src_input_bpc(display);
- 	int dsc_max_bpc = intel_dp_dsc_max_src_input_bpc(display);
+@@ -1980,7 +1980,7 @@ static int dsc_compute_link_config(struct intel_dp *intel_dp,
  
--	limits->pipe.max_bpp = min(limits->pipe.max_bpp, dsc_max_bpc * 3);
--	limits->pipe.min_bpp = max(limits->pipe.min_bpp, dsc_min_bpc * 3);
-+	limits->pipe.max_bpp = clamp(limits->pipe.max_bpp,
-+				     dsc_min_bpc * 3, dsc_max_bpc * 3);
-+
-+	limits->pipe.min_bpp = clamp(limits->pipe.min_bpp,
-+				     dsc_min_bpc * 3, dsc_max_bpc * 3);
+ static
+ u16 intel_dp_dsc_max_sink_compressed_bppx16(const struct intel_connector *connector,
+-					    struct intel_crtc_state *pipe_config,
++					    const struct intel_crtc_state *pipe_config,
+ 					    int bpc)
+ {
+ 	u16 max_bppx16 = drm_edp_dsc_sink_output_bpp(connector->dp.dsc_dpcd);
+@@ -2005,7 +2005,7 @@ u16 intel_dp_dsc_max_sink_compressed_bppx16(const struct intel_connector *connec
+ 	return 0;
  }
  
- static bool
+-int intel_dp_dsc_sink_min_compressed_bpp(struct intel_crtc_state *pipe_config)
++int intel_dp_dsc_sink_min_compressed_bpp(const struct intel_crtc_state *pipe_config)
+ {
+ 	/* From Mandatory bit rate range Support Table 2-157 (DP v2.0) */
+ 	switch (pipe_config->output_format) {
+@@ -2023,7 +2023,7 @@ int intel_dp_dsc_sink_min_compressed_bpp(struct intel_crtc_state *pipe_config)
+ }
+ 
+ int intel_dp_dsc_sink_max_compressed_bpp(const struct intel_connector *connector,
+-					 struct intel_crtc_state *pipe_config,
++					 const struct intel_crtc_state *pipe_config,
+ 					 int bpc)
+ {
+ 	return intel_dp_dsc_max_sink_compressed_bppx16(connector,
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
+index 973b2aa0da1d..eac517c1d445 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.h
++++ b/drivers/gpu/drm/i915/display/intel_dp.h
+@@ -145,9 +145,9 @@ u16 intel_dp_dsc_get_max_compressed_bpp(struct drm_i915_private *i915,
+ 					enum intel_output_format output_format,
+ 					u32 pipe_bpp,
+ 					u32 timeslots);
+-int intel_dp_dsc_sink_min_compressed_bpp(struct intel_crtc_state *pipe_config);
++int intel_dp_dsc_sink_min_compressed_bpp(const struct intel_crtc_state *pipe_config);
+ int intel_dp_dsc_sink_max_compressed_bpp(const struct intel_connector *connector,
+-					 struct intel_crtc_state *pipe_config,
++					 const struct intel_crtc_state *pipe_config,
+ 					 int bpc);
+ u8 intel_dp_dsc_get_slice_count(const struct intel_connector *connector,
+ 				int mode_clock, int mode_hdisplay,
 -- 
 2.45.2
 
