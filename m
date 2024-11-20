@@ -2,59 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4768A9D39B5
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 Nov 2024 12:43:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 98B139D39F0
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 Nov 2024 12:52:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9D6610E2CA;
-	Wed, 20 Nov 2024 11:43:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3ECA910E723;
+	Wed, 20 Nov 2024 11:52:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Li6Vf30t";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aIvnFjfR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 08BE210E2CA
- for <intel-gfx@lists.freedesktop.org>; Wed, 20 Nov 2024 11:43:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 451A710E723;
+ Wed, 20 Nov 2024 11:52:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732102997; x=1763638997;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=uH1uFL08+dIdR05jD3oOuPHvW/RKyLEwKTGxLKwtL04=;
- b=Li6Vf30t9nUvCKdEtcrzPX9xoFbrYBHs8Ayq/p3diIERoCUE30iEfcsH
- vbZiLIKBicaDePka65kzA1L+qJ1+NvY7+JHCoQ6WRHG9agxaP/1V1lP/E
- MdFHoruyhZWKYIlJzD5X1xuMxnsNrz/r0iZy6FsU0bM93QgitA3Q2NVnC
- AuMQIxaodvtwZXitjSvzmr28oNn5rKBNhkiqMsSTLtP9rgu/wclPYch05
- bILPF57ef2QVKjNFth3fWlN84ugtFG/HSc3sJz2nD+hgPiH5GQAL4RKU1
- PpuBbrMoWaQ9rUDmqyoiO/ZPtUWxVKCfjyh2XmG9DQskjU5WlX/YK2cLc g==;
-X-CSE-ConnectionGUID: fndhx9sXRrqyQHGaAcjYjw==
-X-CSE-MsgGUID: Q/aAOvbITYisB00VFexr/w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11261"; a="54656351"
-X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; d="scan'208";a="54656351"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2024 03:43:17 -0800
-X-CSE-ConnectionGUID: t/tH4qpMRHa/ufJAtfB7EQ==
-X-CSE-MsgGUID: mhuGGQUCQ5muLStYC5YFJQ==
+ t=1732103549; x=1763639549;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=WVbXCUMFXXCq4OTcNuzOZciUoV9JdsFyGoTGTuiXdCM=;
+ b=aIvnFjfRVYYyqV4t1Wt9tzieSeNudKQhrjDiLZ/sC+u9O947EcoCyYx7
+ 8fFq3bEqpzzf0l7uchhKKyDiFpyYJ3Ck9FqUSHz8zReVjkjZqGPWvZ2Je
+ APveITXCZZ1mb3RDXNvnN2iVE4m4EX4fife9ubMHpvG3++YUcfs0HlMEf
+ krpcF+HaK/s3GejAxehduBtQrRJtIsAlUZ5wyb5oiBczzNMl87wRq0tTw
+ 9IjbMnmC9bTccGaoO99eB2nh5nr6dHgGH8xetPB9gb9n5BIhM04zHYXJU
+ ywS6o9o0mHKWa9GIziEiaQAb0EXGhguV5sDrLk/R1UPEXHlrj30uHJAka Q==;
+X-CSE-ConnectionGUID: elco88yzRa612HJDVCEBkw==
+X-CSE-MsgGUID: 7aRvfzdBQnKFJQZZSLUulQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11261"; a="42666447"
+X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; d="scan'208";a="42666447"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2024 03:52:29 -0800
+X-CSE-ConnectionGUID: C8X7EADOSIShNLEk5nFMkQ==
+X-CSE-MsgGUID: et1gM8DUTk6tNs0EMA3PAg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; d="scan'208";a="90046955"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO intel.com)
- ([10.245.246.40])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2024 03:43:15 -0800
-Date: Wed, 20 Nov 2024 12:43:12 +0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>
-Cc: Eugene Kobyak <eugene.kobyak@intel.com>, intel-gfx@lists.freedesktop.org,
- John Harrison <John.C.Harrison@intel.com>
-Subject: Re: [PATCH] drm/i915: Fixed NULL pointer dereference in capture_engine
-Message-ID: <Zz3LUG_OpCkPX1sv@ashyti-mobl2.lan>
-References: <5a42bhkoaoed2mky6343qz35pdyzfz6pqgyczrywqgwb4ezipv@be2aiql3bmih>
- <Zz24DtYMdbPGfpXh@ashyti-mobl2.lan>
+X-IronPort-AV: E=Sophos;i="6.12,169,1728975600"; d="scan'208";a="90284278"
+Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.54])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2024 03:52:27 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, suraj.kandpal@intel.com,
+ imre.deak@intel.com
+Subject: Re: [PATCH 03/12] drm/i915/dp: Separate out helper for compute
+ fec_enable
+In-Reply-To: <20241120103802.134295-4-ankit.k.nautiyal@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20241120103802.134295-1-ankit.k.nautiyal@intel.com>
+ <20241120103802.134295-4-ankit.k.nautiyal@intel.com>
+Date: Wed, 20 Nov 2024 13:52:24 +0200
+Message-ID: <871pz62kcn.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Zz24DtYMdbPGfpXh@ashyti-mobl2.lan>
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,42 +72,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Eugene,
+On Wed, 20 Nov 2024, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
+> Make a separate function for setting fec_enable in crtc_state.
+> Drop the check for FEC support as its already checked while checking for
+> DSC support.
 
-> >  	intel_engine_get_hung_entity(engine, &ce, &rq);
-> > -	if (rq && !i915_request_started(rq))
-> > -		drm_info(&engine->gt->i915->drm, "Got hung context on %s with active request %lld:%lld [0x%04X] not yet started\n",
-> > -			 engine->name, rq->fence.context, rq->fence.seqno, ce->guc_id.id);
-> > -
-> >  	if (rq) {
-> > +		if (!i915_request_started(rq)) {
-> 
-> why are you breaking the if here?
+That's two changes that generally shouldn't be bundled together.
 
-Just to be clear, this is not a binding comment as you are
-merging to "if (rq)". But I prefer the previous style as the line
-of this drm_info() is already too long and with one more level of
-indentation is even longer.
+Aim for separating non-functional refactoring and functional
+changes. (Well, arguably dropping the FEC check should also be
+non-functional, but you know what I mean.)
 
-In any case:
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 30 +++++++++++++++++--------
+>  1 file changed, 21 insertions(+), 9 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index dee15a05e7fd..d82e25d0dc5a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -2352,6 +2352,26 @@ static int intel_edp_dsc_compute_pipe_bpp(struct intel_dp *intel_dp,
+>  	return 0;
+>  }
+>  
+> +static void intel_dp_compute_fec_config(struct intel_dp *intel_dp,
+> +					struct intel_crtc_state *pipe_config)
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com> 
+I think all encoder->callback_name hooks should be named
+something_something_callback_name(), and the same goes for helpers
+specifically aimed at this.
 
-and now I'm really cc'eing John.
+This would make the function intel_dp_fec_compute_config().
 
-Andi
+Yes, in many ways "compute fec config" reads better, but there's value
+in being able to search for "_compute_config", and to know this is only
+for he ->compute_config path.
 
-> > +			u16 guc_id = ce ? ce->guc_id.id : 0;
-> 
-> good catch!
-> 
-> Andi
-> 
-> > +			drm_info(&engine->gt->i915->drm, "Got hung context on %s with active request %lld:%lld [0x%04X] not yet started\n",
-> > +				 engine->name, rq->fence.context, rq->fence.seqno, guc_id);
-> > +		}
-> >  		capture = intel_engine_coredump_add_request(ee, rq, ATOMIC_MAYFAIL);
-> >  		i915_request_put(rq);
-> >  	} else if (ce) {
-> > -- 
-> > 2.34.1
+BR,
+Jani.
+
+
+> +{
+> +	if (pipe_config->fec_enable)
+> +		return;
+> +
+> +	/*
+> +	 * Though eDP v1.5 supports FEC with DSC, unlike DP, it is optional.
+> +	 * Since, FEC is a bandwidth overhead, continue to not enable it for
+> +	 * eDP. Until, there is a good reason to do so.
+> +	 */
+> +	if (intel_dp_is_edp(intel_dp))
+> +		return;
+> +
+> +	if (intel_dp_is_uhbr(pipe_config))
+> +		return;
+> +
+> +	pipe_config->fec_enable = true;
+> +}
+> +
+>  int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+>  				struct intel_crtc_state *pipe_config,
+>  				struct drm_connector_state *conn_state,
+> @@ -2368,15 +2388,7 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+>  	int num_joined_pipes = intel_crtc_num_joined_pipes(pipe_config);
+>  	int ret;
+>  
+> -	/*
+> -	 * Though eDP v1.5 supports FEC with DSC, unlike DP, it is optional.
+> -	 * Since, FEC is a bandwidth overhead, continue to not enable it for
+> -	 * eDP. Until, there is a good reason to do so.
+> -	 */
+> -	pipe_config->fec_enable = pipe_config->fec_enable ||
+> -		(!intel_dp_is_edp(intel_dp) &&
+> -		 intel_dp_supports_fec(intel_dp, connector, pipe_config) &&
+> -		 !intel_dp_is_uhbr(pipe_config));
+> +	intel_dp_compute_fec_config(intel_dp, pipe_config);
+>  
+>  	if (!intel_dp_dsc_supports_format(connector, pipe_config->output_format))
+>  		return -EINVAL;
+
+-- 
+Jani Nikula, Intel
