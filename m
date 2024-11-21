@@ -2,59 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EAE89D4AFB
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Nov 2024 11:41:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D6EBC9D4BDC
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Nov 2024 12:27:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0759F10E8DF;
-	Thu, 21 Nov 2024 10:41:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B03E010E1C2;
+	Thu, 21 Nov 2024 11:27:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CPXIA7jc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g+/hqL3X";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C653E10E8E0;
- Thu, 21 Nov 2024 10:41:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FAB310E1BB;
+ Thu, 21 Nov 2024 11:27:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732185705; x=1763721705;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Z6Ar+/x2+ubkfntXhieRnaRBMOLWlRceSxfJKEFKE8g=;
- b=CPXIA7jcdwHYbde3B34IfCn1nH5dcETY7BCZ7tUCDIgw6tIqUFKHANo+
- DMcNmmyQuBV9UIUVp6MCwy/7rDi9jMUlzFsH3NZNgqWWI5rJ9i7lWOgqN
- 9viCv4+A5pjT5KLuGptjcCMt+XcD5LG7ajZ0Bhp4SghRYM6WAS68vj6rq
- o1RFf7s07Ct5C0QbJRAFRrjK5U7N+FEtXeiugRXYZaAKZUOAJHXdcLDke
- lHAt8INo4QUu9PVk5y4oo3E5xqumXWfHt4ZDvuoQt3VpQIpgzuXw8wVvQ
- ETTHiv84/kPMzbIRX2UmwW6kWXO4cv3norp9PBcFGvMb/xm1RD9fr/401 w==;
-X-CSE-ConnectionGUID: l7JpyObwSkuHqMMz0neulQ==
-X-CSE-MsgGUID: bXKqs9ekQwCK5HbbHAFpYQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11262"; a="32406868"
-X-IronPort-AV: E=Sophos;i="6.12,172,1728975600"; d="scan'208";a="32406868"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2024 02:41:44 -0800
-X-CSE-ConnectionGUID: nvKE0PyUTPGYSWS/qRLFfQ==
-X-CSE-MsgGUID: rdAvhzgGSwWTClTn5mDppQ==
+ t=1732188460; x=1763724460;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=9deqdZC0u8OcDT/Chgb4t9piw7d6DQFUUyjpJ2oseE0=;
+ b=g+/hqL3XyTwQOfsuhlva7Eh8oQ/uoL1APqJ2mj3msBiVP/NwIf93JjD6
+ mF5XyZMk53hkoqWVGwUd0A/Aa+9nN3S7dzP69Eo/eveU3AvLUoMr6HRMq
+ /WPih9HzxfrdqJ+iQyLY5EEA36wWejKXj5rGFL2ahIlNPL8Y5ntnhPcN6
+ UeKEqhUDHmhnbv7Nm6AjlKmHgYaPkH8iGYwoSQf3hjoEY5JYUfNEXl94p
+ g3YOB5pbQvG19XsxIhAxL04XEh7lntP8n/4oNUvwnh9b3sSalzWj1uMGe
+ 4G1ARxg/6efOdNbjLAeABB/qRFVBYcyDgeJCDAgEnOLoLZoGgrHmcoPw2 w==;
+X-CSE-ConnectionGUID: OMlN6cqcQl2pCTKZkhp1Pg==
+X-CSE-MsgGUID: /ZwQvVW5R2mQVCPGKi3U0Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11262"; a="49821029"
+X-IronPort-AV: E=Sophos;i="6.12,172,1728975600"; d="scan'208";a="49821029"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2024 03:27:40 -0800
+X-CSE-ConnectionGUID: fsGfR3rZQJu2s6EfH+/YRA==
+X-CSE-MsgGUID: DtITExBVRyaEo5ZexvY+Jw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,172,1728975600"; d="scan'208";a="91022948"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.105])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2024 02:41:41 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org,
- Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- =?UTF-8?q?Zbigniew=20Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>,
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Subject: [PATCH i-g-t 2/2] tests/gem_mmap_offset: Fix OOM hits
-Date: Thu, 21 Nov 2024 11:39:28 +0100
-Message-ID: <20241121104039.314188-6-janusz.krzysztofik@linux.intel.com>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20241121104039.314188-4-janusz.krzysztofik@linux.intel.com>
-References: <20241121104039.314188-4-janusz.krzysztofik@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,172,1728975600"; d="scan'208";a="90165728"
+Received: from vgovind2-mobl3.fi.intel.com ([10.237.66.37])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2024 03:27:38 -0800
+From: Vinod Govindapillai <vinod.govindapillai@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: vinod.govindapillai@intel.com, jani.nikula@intel.com,
+ ville.syrjala@intel.com, jani.saarinen@intel.com
+Subject: [PATCH v2 0/3] use hw support for min/interim ddb allocation for
+ async flip
+Date: Thu, 21 Nov 2024 13:27:23 +0200
+Message-Id: <20241121112726.510220-1-vinod.govindapillai@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,37 +69,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The 'clear' subtest exercises correctness of object memory clearing on
-passing a batch with the object to GPU for processing.  The exercise is
-executed in several parallel threads, one per CPU.  Each thread repeats
-the exercise in a time only limited loop, with no delay between
-consecutive iterations.  In case of system memory objects, that happens
-to exhaust all available physical memory, which is neither the goal nor
-requirement of the exercise.
+In Xe3, hw can automatically switch to minimum / interim ddb allocations
+for async flip use case. Configure the minimum and interim ddb
+configurations. As usage of intel_display is recommended instead of
+drm_i915_private, few preparatory patches were added for that purpose.
 
-Make sure sufficient amount of physical memory is available before calling
-another execbuf.
+v2: Addressed review comments
+    Dropped few patches which do replacing i915 with intel_display
+    Dropped the debugfs patch to print dbuf allocation stats as
+    part of ddb info
 
-Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11738
-Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
----
- tests/intel/gem_mmap_offset.c | 3 +++
- 1 file changed, 3 insertions(+)
+Stanislav Lisovskiy (1):
+  drm/i915/xe3: Use hw support for min/interim ddb allocations for async
+    flip
 
-diff --git a/tests/intel/gem_mmap_offset.c b/tests/intel/gem_mmap_offset.c
-index 20dca17378..4b8c25c56b 100644
---- a/tests/intel/gem_mmap_offset.c
-+++ b/tests/intel/gem_mmap_offset.c
-@@ -745,6 +745,9 @@ static void *thread_clear(void *data)
- 		npages = get_npages(&arg->max, npages);
- 		size = npages << 12;
- 
-+		/* Execbuf requires sufficient amount of free physical memory */
-+		if (arg->flags & CLEAR_IN_EXECBUF)
-+			igt_require_memory(1, size, CHECK_RAM);
- 		igt_assert_eq(__gem_create_in_memory_region_list(i915, &handle, &size, 0, &arg->region, 1), 0);
- 		/* Zero-init bo in execbuf or pagefault handler path as requested */
- 		if (arg->flags & CLEAR_IN_EXECBUF)
+Vinod Govindapillai (2):
+  drm/i915/display: update to plane_wm register access function
+  drm/i915/display: update to relative data rate handling
+
+ .../gpu/drm/i915/display/intel_atomic_plane.c |  27 +---
+ .../drm/i915/display/intel_display_types.h    |   8 ++
+ .../drm/i915/display/skl_universal_plane.c    |  26 ++++
+ .../i915/display/skl_universal_plane_regs.h   |  15 ++
+ drivers/gpu/drm/i915/display/skl_watermark.c  | 135 +++++++++++++-----
+ drivers/gpu/drm/i915/display/skl_watermark.h  |   4 +
+ 6 files changed, 160 insertions(+), 55 deletions(-)
+
 -- 
-2.47.0
+2.34.1
 
