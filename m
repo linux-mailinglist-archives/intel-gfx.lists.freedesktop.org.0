@@ -2,56 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8261E9D4CF0
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Nov 2024 13:36:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EA399D4CCE
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Nov 2024 13:32:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3071D10E928;
-	Thu, 21 Nov 2024 12:35:58 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hj7zkL/O";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F47F10E1CF;
+	Thu, 21 Nov 2024 12:32:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 94A8C10E923;
- Thu, 21 Nov 2024 12:35:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732192557; x=1763728557;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=l2cUaZi8Ie81OusqbqDDFeoeLYipHVOLAqo560ZSq/U=;
- b=hj7zkL/OaNDMxtkkQMpNGh+0sswuvd9h5FCROGXIDdswMc04mvZqR99I
- DjuzL4/FoaTenhOTt9+riBvFEvbnzp1tGj/0ZsTOHPS7HZ3Sp3WcoTohh
- PcGapopeWOd32zsZN9oWlTuxBZGhFMK6cTB3cy2TIXQQhxHyg4N98DCyA
- QPD4oXoJGRtnBRA3MSLwSCqeINwpN7Zu9QcnGUCSec9Ku/bybjzEKV8bs
- y6evK/Y43gUXo6VBmrVlWraUUUSIAIbJOcshhxjcL0sAZNvU1kTeV51n/
- RI3ApPxuGLI3XV6sUjDqFak88gxYyDVyaExRZjoHxMr+B1B3RaY/XjcAz g==;
-X-CSE-ConnectionGUID: CpkKNpY7RlqFd2iOpqZRiw==
-X-CSE-MsgGUID: 1hBKVcXJRn2gdx5SvA+bsA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11263"; a="32230357"
-X-IronPort-AV: E=Sophos;i="6.12,172,1728975600"; d="scan'208";a="32230357"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2024 04:35:56 -0800
-X-CSE-ConnectionGUID: 3QZtKnLcSJaadYFe64Ld0A==
-X-CSE-MsgGUID: 0IkGx0YkSomKJOPy8Ikj8A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,172,1728975600"; d="scan'208";a="127766028"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by orviesa001.jf.intel.com with ESMTP; 21 Nov 2024 04:35:55 -0800
-From: Arun R Murthy <arun.r.murthy@intel.com>
-To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: Arun R Murthy <arun.r.murthy@intel.com>
-Subject: [PATCH 8/8] drm/i915/histogram: Enable pipe dithering
-Date: Thu, 21 Nov 2024 17:56:03 +0530
-Message-Id: <20241121122603.736267-9-arun.r.murthy@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20241121122603.736267-1-arun.r.murthy@intel.com>
-References: <20241121122603.736267-1-arun.r.murthy@intel.com>
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 96DAE10E1CF;
+ Thu, 21 Nov 2024 12:32:01 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_use_hw_support_for_m?=
+ =?utf-8?q?in/interim_ddb_allocation_for_async_flip_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vinod Govindapillai" <vinod.govindapillai@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 21 Nov 2024 12:32:01 -0000
+Message-ID: <173219232163.1148499.8925956935878688633@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241121112726.510220-1-vinod.govindapillai@intel.com>
+In-Reply-To: <20241121112726.510220-1-vinod.govindapillai@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,45 +37,34 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Enable pipe dithering while enabling histogram to overcome some
-atrifacts seen on the screen.
+== Series Details ==
 
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_histogram.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Series: use hw support for min/interim ddb allocation for async flip (rev2)
+URL   : https://patchwork.freedesktop.org/series/140926/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/display/intel_histogram.c b/drivers/gpu/drm/i915/display/intel_histogram.c
-index db4bc60be557..531df8a712fa 100644
---- a/drivers/gpu/drm/i915/display/intel_histogram.c
-+++ b/drivers/gpu/drm/i915/display/intel_histogram.c
-@@ -29,6 +29,13 @@ struct intel_histogram {
- 	u32 bin_data[HISTOGRAM_BIN_COUNT];
- };
- 
-+static void intel_histogram_enable_dithering(struct intel_display *display,
-+					     enum pipe pipe)
-+{
-+	intel_de_rmw(display, PIPE_MISC(pipe), PIPE_MISC_DITHER_ENABLE,
-+		     PIPE_MISC_DITHER_ENABLE);
-+}
-+
- static void set_bin_index_0(struct intel_display *display, enum pipe pipe)
- {
- 	if (DISPLAY_VER(display) >= 20)
-@@ -197,6 +204,9 @@ static int intel_histogram_enable(struct intel_crtc *intel_crtc)
- 	if (histogram->enable)
- 		return 0;
- 
-+	/* Pipe Dithering should be enabled with histogram */
-+	intel_histogram_enable_dithering(display, pipe);
-+
- 	 /* enable histogram, clear DPST_BIN reg and select TC function */
- 	if (DISPLAY_VER(display) >= 20)
- 		intel_de_rmw(display, DPST_CTL(pipe),
--- 
-2.25.1
+== Summary ==
+
+Error: dim checkpatch failed
+d6ecfa64fafa drm/i915/display: update to plane_wm register access function
+768a456cf746 drm/i915/display: update to relative data rate handling
+d2e9432eeaeb drm/i915/xe3: Use hw support for min/interim ddb allocations for async flip
+-:133: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#133: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:389:
++							_PLANE_MIN_BUF_CFG_1_A, _PLANE_MIN_BUF_CFG_1_B, \
+
+-:134: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#134: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:390:
++							_PLANE_MIN_BUF_CFG_2_A, _PLANE_MIN_BUF_CFG_2_B)
+
+-:139: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#139: FILE: drivers/gpu/drm/i915/display/skl_universal_plane_regs.h:395:
++#define	  PLANE_INTERIM_DBUF_BLOCKS(val)	REG_FIELD_PREP(PLANE_INTERIM_DBUF_BLOCKS_MASK, (val))
+
+total: 0 errors, 3 warnings, 0 checks, 357 lines checked
+
 
