@@ -2,189 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F2C99D4E99
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Nov 2024 15:22:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AB1D9D4F03
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Nov 2024 15:49:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 63DB210E970;
-	Thu, 21 Nov 2024 14:22:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA41F10E979;
+	Thu, 21 Nov 2024 14:49:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kHIVuf56";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ft38+i3p";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4210C10E970;
- Thu, 21 Nov 2024 14:22:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 65E0110E13A;
+ Thu, 21 Nov 2024 14:49:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732198954; x=1763734954;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=gpoitsy66d2NoesigHCTH3GiKnvjS+Vmt6mvh36NWqE=;
- b=kHIVuf56QKiLjH9LsvE/CVsRIgqARe98LZBmPCQPAOpVedz2kejzHWL3
- 12mnLZGPA8wgcLUekkWj7eWSBcjTP7SYaE7++y14vrVYdkdRtjr1UCoy2
- dsXhvSSBgVFyebkIepMY3/GETJeLOTnIIPqwzY1EqSPJWRxQHiZp8jhCQ
- qtjDTwYuUFK8p3Ls+ik8fsfPLHnOXCF9Zf5P7QghpxmH74NzKSvMWt2BH
- Fd9n8LA2/MyukqPj7R6o8L1bAr636sPEMBRgZkDHEcbf1iPHM//dIETh6
- 2aYKtxr6foCtDUpEfkwY5a67acUYoSCLZck37Zsgm2jiifU44iewa3oGq A==;
-X-CSE-ConnectionGUID: pPwx45W2QQmEeW6iTIj9Kg==
-X-CSE-MsgGUID: c5UbYl9pQD6UozXxiYWZBg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11263"; a="32163134"
-X-IronPort-AV: E=Sophos;i="6.12,173,1728975600"; d="scan'208";a="32163134"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2024 06:22:34 -0800
-X-CSE-ConnectionGUID: PhcLF5iRQ1+UAAzR441sLA==
-X-CSE-MsgGUID: I9SH74GuRPizbKxTma0AaA==
+ t=1732200570; x=1763736570;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=/ThqUmGGNKKgY2srQVBHd3lpg4p7tOFhMC8bczAf/9U=;
+ b=ft38+i3pZ0JG6b8fZQmvaoQr1mL1m3bP2P/ODUN7H10oa5l5mKzEg0Lp
+ cZ6yyoShesBGWLU1zMGLYQcFewmVI2ketST66FNT9A4Ri700eVMR98JKr
+ P1qgoKD76Mr9G5w27+r3/qu2RxNf4lIgGSkG7cb7q3qOUylIDpOPQenKq
+ YHLkOIPWrNpYja+1Gr3/4gekED6/de5yGB9GCsWcqsH+2EskfhsCPU3Ra
+ qS4g/ra96+O5dVTfzzvtgtMGF+yDkRVCTFLiRkKVL3pojQVYiMTKRGbeN
+ pGUoc+lyTZkcIwqEWSzbFg+V3fE8Jm3R8mkYSiTnakljDDr8JrVqviIgS w==;
+X-CSE-ConnectionGUID: yIrNpqcmQEWtVEovLW0QlQ==
+X-CSE-MsgGUID: qkCJf333TLao+w/pWVlsWQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11263"; a="35177560"
+X-IronPort-AV: E=Sophos;i="6.12,173,1728975600"; d="scan'208";a="35177560"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2024 06:49:30 -0800
+X-CSE-ConnectionGUID: WQ8G0ovkQ5OIZRfYb1DBAQ==
+X-CSE-MsgGUID: pdqhOftPRZKK1DYVymVNyA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,173,1728975600"; d="scan'208";a="91082865"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orviesa008.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 21 Nov 2024 06:22:34 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 21 Nov 2024 06:22:33 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Thu, 21 Nov 2024 06:22:33 -0800
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.41) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Thu, 21 Nov 2024 06:22:33 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=rOUzIN4qE+cnwyY2dnH35+Gvh8s6LOjMj/2avyONX1+lEg5lmcHju7swUv/w4uiAXsSRaYvNimOS0qgL3jBTO4UXGmlotDoKvVyXq5/8+lZS2Y7jOSnqYNndSeFrfVfvcJu8AfP4ZXIzJHuZ0deZ4MHZkZIkfk1d7OTbtGtunwLpH6PU4oWPbZ7CpD+axShaUmlsnMXmsId/CD/LPehNVDGQL7Qcy+5pNEEtCJtLXvvHIAxMk6JV0GC3N5gmDjOcc4M1N35ex64BmB/NAVFbqVoAycB3kM/V3K3hi839PeD/rppZAotQ2uuiNcNg9VABg7A7TUdZPi26vB/dsiw3ow==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gpoitsy66d2NoesigHCTH3GiKnvjS+Vmt6mvh36NWqE=;
- b=hPOfp6O69Brheu8PDH2kLnnCbZ+8FHu7Oi8MUfuiYjiHrRGyuzd4mudWG7mmS44vs/9JHXOFqqcX5n98EeZRIdrH2QjGoS0eYklWetmvdQzMWObxq2wYoiQ4bXkm1mEz2MLExn8wcARYCKytz9ceyz2gh0hIzjaPBJAeTaEA4J3DejpR6jhXa7RJN73VAs6FrpIIzNSXvFCU/vBLyXkZX27EtdHDWCUz2MrwVoR/yhzAoJW+Y1ru2SDo3xZs5Q7hQg5Ogh8Xn+Gh4mp1wfG5djuebkTdxpmddm3FOAiHoEyr6U8xUODKuhrZQnTUbXElocBmJWJ5ZmcnuPD/FacC9w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from IA0PR11MB7307.namprd11.prod.outlook.com (2603:10b6:208:437::10)
- by CY8PR11MB6889.namprd11.prod.outlook.com (2603:10b6:930:5e::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8182.15; Thu, 21 Nov
- 2024 14:22:30 +0000
-Received: from IA0PR11MB7307.namprd11.prod.outlook.com
- ([fe80::dafa:d38d:8ac1:e843]) by IA0PR11MB7307.namprd11.prod.outlook.com
- ([fe80::dafa:d38d:8ac1:e843%4]) with mapi id 15.20.8093.027; Thu, 21 Nov 2024
- 14:22:30 +0000
-From: "Murthy, Arun R" <arun.r.murthy@intel.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-Subject: RE: [PATCHv5 2/8] drm/i915/histogram: Add support for histogram
-Thread-Topic: [PATCHv5 2/8] drm/i915/histogram: Add support for histogram
-Thread-Index: AQHbPBH6UXfbewPm/kaGyIoJSho07bLBvsMAgAAJw1A=
-Date: Thu, 21 Nov 2024 14:22:30 +0000
-Message-ID: <IA0PR11MB7307E91BD16BE0FB5E8CCB7EBA222@IA0PR11MB7307.namprd11.prod.outlook.com>
-References: <20241121122603.736267-1-arun.r.murthy@intel.com>
- <20241121122603.736267-3-arun.r.murthy@intel.com>
- <SN7PR11MB6750046B3BFA76FE597C4E57E3222@SN7PR11MB6750.namprd11.prod.outlook.com>
-In-Reply-To: <SN7PR11MB6750046B3BFA76FE597C4E57E3222@SN7PR11MB6750.namprd11.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: IA0PR11MB7307:EE_|CY8PR11MB6889:EE_
-x-ms-office365-filtering-correlation-id: 3abc07c0-9c99-4728-5f69-08dd0a37ef16
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|10070799003|376014|1800799024|366016|7053199007|38070700018; 
-x-microsoft-antispam-message-info: =?utf-8?B?VytuLzhPY2FXVE5MaUpzamVkNEV4TGVXTGl4Yklra0ppYUk0WUl0VDBUbk9i?=
- =?utf-8?B?b0hLRnFXTGEvSVZFWVFIRVBrZjlhcjNPR1RycUtZeDltZ3NoWW1BL3p1dUZs?=
- =?utf-8?B?ZkowKy94bUJqZ0hMUXpaK3dtbXpKckw5SllIY3VnL0t3NWdxVUtFaGhVRUpp?=
- =?utf-8?B?OEsrS3hRdmtOc0tiWGF5TGZMZUx5WHNhTC9DZVp4bjVYLy84Q2pWeWJPSTkz?=
- =?utf-8?B?NmdoM2lzNzlaUkFldWsrRkRIcEJPTktqU2ZndUE1U1BJSHY1dUp2RnRCUGc0?=
- =?utf-8?B?L1YzUmFWMllubTYvQ0VyR0tncHRMUERwUGF5VFcrRjcvb0tlY1hhc1N3TDFj?=
- =?utf-8?B?M1UyM0ZIdEhnd01ENmZDSDBpOUJCTkJXYm1IOUFTSXRyTFpyaUdWcWhiSFBJ?=
- =?utf-8?B?UGduaVllTWJNSUFETnhLNUZ4S25JVC8yZGV5ZTdSWTN4Z05vSDVlaENqeVYr?=
- =?utf-8?B?Ym0vMnRHTC9yWDhJVWpUZXZGckVaVXEweTVXWGhreEZlWlF5K21pTndPM1RH?=
- =?utf-8?B?S3JJWjRYeWpYcVBud1V6eTBxRDQ3TWtGYnBPWVk4dXhVRkpqQ0tKODVzdkx1?=
- =?utf-8?B?NXV2S3A0bnVZbCtNKzlPQW1ZaEk1K3ltaDVHZkFZcGFRMnNtdGxrdlRzSmln?=
- =?utf-8?B?TGk0UDZWUThOUitvMzc2ZUVIVm50RVFqb05SRU9DYnJibVZscFVuUnJLS1Nv?=
- =?utf-8?B?NHZQVVlXVHJSMUpEVzNjbTc0T0ZRR1RFS2pJeWMzdW4xeVJLNzkydW5nYTEy?=
- =?utf-8?B?dHBQY2pSeXRCVmNEQURScFdkL0pMT2lmQURsallmQlRpRDhJRGxKOVNETU1P?=
- =?utf-8?B?VnJLMk9ZU1NtTmZjVnEvSVlldGlXQWVaU0tudjdCZERKUFBqMkNJWC9ncGFI?=
- =?utf-8?B?NjVoU3ppcGcxZUNES3BGNnpRTlk3MHNkUFNpS0ZRWEtTU2Z4Yk9VS1VOYVM2?=
- =?utf-8?B?dWhWQU9yaGdabFVJd0ZYalJnQmZMZ3g3WUMzbkZOUkV2dkUrNWVuVWNlUS85?=
- =?utf-8?B?ZEVzeldUWmdhKy8wOC9SbTZObkhnUW10am9CdVdaWkMxOXpycDUwS3paU3Yz?=
- =?utf-8?B?SmF5b0tyNS9JUU11ZFRFdWJoMmlvcHZEY0FUbDNpU2hIbmdJUzQzQk8rQzZD?=
- =?utf-8?B?cXJuRk5WTkxJZVZ5V3Zid3NQY1FvZG5NZzV0ZU9mZFdzV3NDUnFOSkZ5N3U0?=
- =?utf-8?B?ZjErN1NBQjZaQXg0M2hjZEY2U0F0RjFRRmJvYVpoRE5CVUx0QlUwT01yemZ0?=
- =?utf-8?B?T1JoeXZXVVJGa1djUXlFOGdxNU9BNzBqczg3RHhDN2VpYzlxeXF5OHR0V3ZE?=
- =?utf-8?B?cUIzeit3UFZLRVZQMzY2a2xjNXZXRjZETGwrZWRONVdrVkdYSjJScDhnTUQz?=
- =?utf-8?B?WTBXTnl2QUNiZEl5dUlDOUVUdlZMcmtYb0pKZzJlRlR3RC9sZzF0VzZzTklH?=
- =?utf-8?B?M0RpQ1psUE5wb285bU1xOTd2VTNTeVl5SGh4SUxESmYyS3hwZ3VkNFZPdi8x?=
- =?utf-8?B?ZFMzWW8vancxb0NKajBMSEpRSkp4am9aUnRKaXJWMVBXaVl6NHNWVFlBN2NY?=
- =?utf-8?B?eXpXVzJQTkpwRXk4TWErQjYwclV1Q1BxU3E1bzZraWtKaXBoTmpJUWcrNmdM?=
- =?utf-8?B?NUtlQ0NRV3hSN2dvTENhSE1GSjRyRDhZQXY2ZGdmWWtsenkzZUx1ZFpTR01Y?=
- =?utf-8?B?V0VlOTlHR2M0TUJZbUtQR0pJZS9TM0ZNZzVoM2VuLy9LTGJzQ1ZQd2dtZVg4?=
- =?utf-8?B?VTBhRmRHaDVTdjdodkRBZjhSaFpRTXhlNlpORnI0aFdESFhpajQrbytiUkJx?=
- =?utf-8?Q?yS2mJK8XT/Izsjqpui8hbxqNt1MloD4dwyjDE=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA0PR11MB7307.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(10070799003)(376014)(1800799024)(366016)(7053199007)(38070700018);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?TWtqY0dCN0plTlVrTnZHYSswL2xCRzVmUkxWOFJkQzVDdHB6amVyNklQdUlJ?=
- =?utf-8?B?b2tGclhmaHJrWE1SeGF5Z1VTUzh6aHNQN1kxVHk5N2hIcGNqekQ2bHJndEMw?=
- =?utf-8?B?Znc2ZDFUQ3dQcmowNFFxMHhOTlh4YmlJTGEwdHBaT1R2MzZFczh3YUxabSs5?=
- =?utf-8?B?VHh1N2c0TjRpQTB1MFYwdGcyV0llNVp6VE5zUEloUlNJbm13bkNrdmZlUXdn?=
- =?utf-8?B?RjJlaXpoOGFxNGQ3MG1KU1NwQXNac2NQeHNDNXpCc2tYWGtIbmh3SW02MDA5?=
- =?utf-8?B?MzJOSno2cmRhd2xaOEVLK2NHUTdhMFBMQW9GNm9DTVJuZ0xDWDl5K21YT24v?=
- =?utf-8?B?dzRZOVdXTU5GOVQ3ancrV0tWR3ZtUU83UXVIbXlLTWV3a3pxanNiWmVmaEsy?=
- =?utf-8?B?bThldGFhbWlPRVArY3Q2MGF4SjFjYURlejM4VTFLS1hKRW5XNEcwb240OE9K?=
- =?utf-8?B?cWRkWHNCYldnenByU0tNbnJxWG05bUlFdk56dTdUUVBRWGZ6RDBtMThtUjAv?=
- =?utf-8?B?WlNPU0FENXBNQmp1cU85eTZDajZ4WWYyWWU5S29VRzRkR1cxZzRpR29CVC8v?=
- =?utf-8?B?azQ4cjloQW5KU0JXbW4rTkVNbUVkcnBZeVl6YkNvVjRZbmJMTURBWmozblR6?=
- =?utf-8?B?eFVaL1dudG9vU1NIWjc1WWxwZkNXTDlhcGROcjRlaUdOV1lyS3VCQmc5anlh?=
- =?utf-8?B?REFQQ2graXh0N3ROMVdDbml3K083dURCTjV1bkphb1FpVUtXK0M1cnAzdE9N?=
- =?utf-8?B?a1dyb2pFZStBcnoveGNaV2pNNGlWcDJLRGhKVldlbGplVjF3V2RUNnlkdXdk?=
- =?utf-8?B?YzNIb3VxUEtsa2JqRURUR0NkdFdRcDI5dlIveURLbmJxTGNZaS9pTm9Gclhy?=
- =?utf-8?B?MlFzaFJWalgxbUNnZmQ0Qm5ic3Yra2ZwVE56NlNzZkpDNTZrRGxLbi8zU0hq?=
- =?utf-8?B?c2dHMUFPQjZ6WTRzRUlCUmJuby9oRWtFSW96ekRrNDdhS1VoUm1EUnlaejln?=
- =?utf-8?B?OWozZlR3UG1XdEV1dk5zM056eUJENzlTb1pDeU45bUFxWEJQM2llL2lKVEhB?=
- =?utf-8?B?aHhpN2tTdkw2WjNGTnRIdWZGZEhwZEhzZEgxazhWdDhjeU5vcUlscWNWSVhR?=
- =?utf-8?B?L1pEQWpVQW9iZDlSMmFhS0tUSVVoV21aTWhoMWdFaENOL3hZc1hldVBieFpI?=
- =?utf-8?B?blVFaFlBZ1dNaE5PYThVb0ZjblFFRkNaMjRERzJnRlRCQ3BuUmxYSmZPNGdq?=
- =?utf-8?B?QmJPV0tFMlI4ZTZOZGlpOVd5VlFYNzh2NXNNUlgvKzJ3SnFvTUFYdms1K2pi?=
- =?utf-8?B?SXc0VTlrbEYrZGlaZ0RJNmtRM3NyMDBKK0JINlJvdlowdDJpZEMvSUduUE9i?=
- =?utf-8?B?dGxWNTl4a2JJcXJ5YklEa3lwdmNPL1BOclBVTGQzejZiMDNyb1RZUEhldHls?=
- =?utf-8?B?ZmxCV2tuWUpoVitHUkdQN1BQaTdtRzdVMytLRDAyMjZJS25xQmlxMlBOanpr?=
- =?utf-8?B?SUdJR0NkTW5iUlpQWDUwOXRSTGVRWnpoSys1VEt3L3hlZDlvNFUvandUZE9y?=
- =?utf-8?B?alJGamJtOG1NTDVWYnVocDdlUU40K1cxelZYVkFZdGR4M3cva0RnVkp5dzV5?=
- =?utf-8?B?VzlZK01tcXJ6aWFrcm43eVBjMG9GNmxSL0xlZDJHUkQ5L0paRGFCWFZCdnVt?=
- =?utf-8?B?OHpkSFdQeHF4WmszZnlwL0tnRzFkVG8yQnRhOVFiR2VWYlgrUWpjaVNxdEda?=
- =?utf-8?B?cEZCWjhlR3Nzajh4b3BzdGMwUzI4L3oyM0JoQmRVZjQxcDEyYU05NVpOZmlH?=
- =?utf-8?B?a1ErdHl4anpKVUxtMEVSWjdVVGlMRDdZektjRkdEVWRad3NSeHpsdG5URXEw?=
- =?utf-8?B?MDRtb0V2L1FkRGJkZjFMeTlYR0pVZHBRbm1iMUNuRkovRzd6enRUSXY5Wjll?=
- =?utf-8?B?VEJxQjFGMGo1RGh3c05RQUtMU0FuUExwSEVOYVV1WWhPOVBUUmJMM1V3SXFl?=
- =?utf-8?B?c3RkWUs2czh0ckFQMnU3cVRyVmpySDlud2NoOTdaWWcrU3ZNVXNWeHlRNVZT?=
- =?utf-8?B?Z3hNNjFzOHoxWmFhbWFMZXA2UHBaanhSVFJkcGRqMlhzQkNzUzlLOE9sQjMz?=
- =?utf-8?B?NTRIajJDbU9NdjNoVmlvQVgyL24rcjRVaHlldVo3dmVhV0RCNEQwWlN4ZklU?=
- =?utf-8?Q?DTlFroX2N5jQUUvT74CsHd7L8taVtf9pmTptcgEaqc/w?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-IronPort-AV: E=Sophos;i="6.12,173,1728975600"; d="scan'208";a="90202328"
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by orviesa010.jf.intel.com with ESMTP; 21 Nov 2024 06:49:27 -0800
+From: Arun R Murthy <arun.r.murthy@intel.com>
+To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: Arun R Murthy <arun.r.murthy@intel.com>,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCHv5 2/8] drm/i915/histogram: Add support for histogram
+Date: Thu, 21 Nov 2024 20:09:47 +0530
+Message-Id: <20241121143949.748980-1-arun.r.murthy@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: IA0PR11MB7307.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3abc07c0-9c99-4728-5f69-08dd0a37ef16
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Nov 2024 14:22:30.6614 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: O8PTiSXXDacQSkX/5VQlDtbZuXOiVlGg2IpG4jsVVNba1FpAzuj8qwCZXUtCVl5zgpOrXQopmR2CDwWXZ+B/EQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB6889
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -200,171 +67,290 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-PiA+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+ID4gRnJvbTogSW50ZWwteGUgPGludGVs
-LXhlLWJvdW5jZXNAbGlzdHMuZnJlZWRlc2t0b3Aub3JnPiBPbiBCZWhhbGYgT2YNCj4gPiBBcnVu
-IFIgTXVydGh5DQo+ID4gU2VudDogVGh1cnNkYXksIE5vdmVtYmVyIDIxLCAyMDI0IDU6NTYgUE0N
-Cj4gPiBUbzogaW50ZWwteGVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnOyBpbnRlbC1nZnhAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnOw0KPiA+IGRyaS0gZGV2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+
-ID4gQ2M6IE11cnRoeSwgQXJ1biBSIDxhcnVuLnIubXVydGh5QGludGVsLmNvbT4NCj4gPiBTdWJq
-ZWN0OiBbUEFUQ0h2NSAyLzhdIGRybS9pOTE1L2hpc3RvZ3JhbTogQWRkIHN1cHBvcnQgZm9yIGhp
-c3RvZ3JhbQ0KPiA+DQo+ID4gU3RhdGlzdGljcyBpcyBnZW5lcmF0ZWQgZnJvbSB0aGUgaW1hZ2Ug
-ZnJhbWUgdGhhdCBpcyBjb21pbmcgdG8gZGlzcGxheQ0KPiA+IGFuZCBhbiBldmVudCBpcyBzZW50
-IHRvIHVzZXIgYWZ0ZXIgcmVhZGluZyB0aGlzIGhpc3RvZ3JhbSBkYXRhLg0KPiA+IFRoaXMgc3Rh
-dGlzdGljcy9oaXN0b2dyYW0gaXMgdGhlbiBzaGFyZWQgd2l0aCB0aGUgdXNlciB1cG9uIGdldHRp
-bmcgYQ0KPiA+IHJlcXVlc3QgZnJvbSB1c2VyLiBVc2VyIGNhbiB0aGVuIHVzZSB0aGlzIGhpc3Rv
-Z3JhbSBhbmQgZ2VuZXJhdGUgYW4NCj4gPiBlbmhhbmNlbWVudCBmYWN0b3IuIFRoaXMgZW5oYW5j
-ZW1lbnQgZmFjdG9yIGNhbiBiZSBtdWx0aXBsaWVkL2FkZGVkDQo+ID4gd2l0aCB0aGUgaW5jb21p
-bmcgcGl4ZWwgZGF0YSBmcmFtZS4NCj4gPg0KPiA+IHYyOiBmb3J3YXJkIGRlY2xhcmF0aW9uIGlu
-IGhlYWRlciBmaWxlIGFsb25nIHdpdGggZXJyb3IgaGFuZGxpbmcNCj4gPiAoSmFuaSkNCj4gPiB2
-MzogUmVwbGFjZWQgaTkxNSB3aXRoIGludGVsX2Rpc3BsYXkgKFN1cmFqKQ0KPiA+IHY0OiBSZW1v
-dmVkIGRpdGhlcmluZyBlbmFibGUvZGlzYWJsZSAoVmFuZGl0YSkNCj4gPiAgICAgTmV3IHBhdGNo
-IGZvciBoaXN0b2dyYW0gcmVnaXN0ZXIgZGVmaW5pdGlvbnMgKFN1cmFqKQ0KPiA+IHY1OiBJRVQg
-TFVUIHBnbSBmb2xsb3cgdGhlIHNlcSBpbiBzcGVjIGFuZCByZW1vdmVkIGNoYW5nZSB0byBUQyBh
-dCBlbmQNCj4gPiAgICAgKFN1cmFqKQ0KPiA+DQo+IA0KPiBJIHRoaW5rIHNvbWUgY29tbWVudHMg
-d2VyZSBtaXNzZWQgbmVlZCB0byBhZGRyZXNzIHRoZW0gYnV0IG5vdGhpbmcgbWFqb3INCj4gDQo+
-ID4gU2lnbmVkLW9mZi1ieTogQXJ1biBSIE11cnRoeSA8YXJ1bi5yLm11cnRoeUBpbnRlbC5jb20+
-DQo+ID4gLS0tDQo+ID4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L01ha2VmaWxlICAgICAgICAgICAg
-ICAgICB8ICAgMSArDQo+ID4gIC4uLi9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlw
-ZXMuaCAgICB8ICAgMiArDQo+ID4gIC4uLi9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9oaXN0
-b2dyYW0uYyAgICB8IDE5MCArKysrKysrKysrKysrKysrKysNCj4gPiAgLi4uL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX2hpc3RvZ3JhbS5oICAgIHwgIDM1ICsrKysNCj4gPiAgNCBmaWxlcyBj
-aGFuZ2VkLCAyMjggaW5zZXJ0aW9ucygrKQ0KPiA+ICBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9oaXN0b2dyYW0uYw0KPiA+ICBjcmVhdGUgbW9k
-ZSAxMDA2NDQgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9oaXN0b2dyYW0uaA0K
-PiA+DQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L01ha2VmaWxlDQo+ID4g
-Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9NYWtlZmlsZSBpbmRleCBlNDY1ODI4ZDc0OGYuLjk3MTQx
-YjRkZWYzYg0KPiA+IDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L01ha2Vm
-aWxlDQo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvTWFrZWZpbGUNCj4gPiBAQCAtMjY3
-LDYgKzI2Nyw3IEBAIGk5MTUteSArPSBcDQo+ID4gIAlkaXNwbGF5L2ludGVsX2hkY3AubyBcDQo+
-ID4gIAlkaXNwbGF5L2ludGVsX2hkY3BfZ3NjLm8gXA0KPiA+ICAJZGlzcGxheS9pbnRlbF9oZGNw
-X2dzY19tZXNzYWdlLm8gXA0KPiA+ICsJZGlzcGxheS9pbnRlbF9oaXN0b2dyYW0ubyBcDQo+ID4g
-IAlkaXNwbGF5L2ludGVsX2hvdHBsdWcubyBcDQo+ID4gIAlkaXNwbGF5L2ludGVsX2hvdHBsdWdf
-aXJxLm8gXA0KPiA+ICAJZGlzcGxheS9pbnRlbF9odGkubyBcDQo+ID4gZGlmZiAtLWdpdCBhL2Ry
-aXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV90eXBlcy5oDQo+ID4gYi9k
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaA0KPiA+IGlu
-ZGV4IDMzOWU0YjBmNzY5OC4uMzUxNDQxZWZkMTBhIDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV90eXBlcy5oDQo+ID4gKysrIGIvZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5cGVzLmgNCj4gPiBAQCAt
-MTQxNCw2ICsxNDE0LDggQEAgc3RydWN0IGludGVsX2NydGMgew0KPiA+ICAJLyogZm9yIGxvYWRp
-bmcgc2luZ2xlIGJ1ZmZlcmVkIHJlZ2lzdGVycyBkdXJpbmcgdmJsYW5rICovDQo+ID4gIAlzdHJ1
-Y3QgcG1fcW9zX3JlcXVlc3QgdmJsYW5rX3BtX3FvczsNCj4gPg0KPiA+ICsJc3RydWN0IGludGVs
-X2hpc3RvZ3JhbSAqaGlzdG9ncmFtOw0KPiA+ICsNCj4gPiAgI2lmZGVmIENPTkZJR19ERUJVR19G
-Uw0KPiA+ICAJc3RydWN0IGludGVsX3BpcGVfY3JjIHBpcGVfY3JjOw0KPiA+ICAjZW5kaWYNCj4g
-PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9oaXN0b2dy
-YW0uYw0KPiA+IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9oaXN0b2dyYW0u
-Yw0KPiA+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0DQo+ID4gaW5kZXggMDAwMDAwMDAwMDAwLi5iMmRk
-YTg4YTgwOTMNCj4gPiAtLS0gL2Rldi9udWxsDQo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9pbnRlbF9oaXN0b2dyYW0uYw0KPiA+IEBAIC0wLDAgKzEsMTkwIEBADQo+ID4g
-Ky8vIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBNSVQNCj4gPiArLyoNCj4gPiArICogQ29weXJp
-Z2h0IMKpIDIwMjQgSW50ZWwgQ29ycG9yYXRpb24gICovDQo+ID4gKw0KPiA+ICsjaW5jbHVkZSA8
-ZHJtL2RybV9kZXZpY2UuaD4NCj4gPiArI2luY2x1ZGUgPGRybS9kcm1fZmlsZS5oPg0KPiA+ICsj
-aW5jbHVkZSA8ZHJtL2RybV92YmxhbmsuaD4NCj4gPiArDQo+ID4gKyNpbmNsdWRlICJpOTE1X3Jl
-Zy5oIg0KPiA+ICsjaW5jbHVkZSAiaTkxNV9kcnYuaCINCj4gPiArI2luY2x1ZGUgImludGVsX2Rl
-LmgiDQo+ID4gKyNpbmNsdWRlICJpbnRlbF9kaXNwbGF5LmgiDQo+ID4gKyNpbmNsdWRlICJpbnRl
-bF9kaXNwbGF5X3R5cGVzLmgiDQo+ID4gKyNpbmNsdWRlICJpbnRlbF9oaXN0b2dyYW0uaCINCj4g
-PiArI2luY2x1ZGUgImludGVsX2hpc3RvZ3JhbV9yZWdzLmgiDQo+ID4gKw0KPiA+ICsvKiAzLjAl
-IG9mIHRoZSBwaXBlJ3MgY3VycmVudCBwaXhlbCBjb3VudCwgaHcgZG9lcyB4NCAqLyAjZGVmaW5l
-DQo+ID4gK0hJU1RPR1JBTV9HVUFSREJBTkRfVEhSRVNIT0xEX0RFRkFVTFQgMzAwDQo+ID4gKy8q
-IFByZWNpc2lvbiBmYWN0b3IgZm9yIHRocmVzaG9sZCBndWFyZGJhbmQgKi8gI2RlZmluZQ0KPiA+
-ICtISVNUT0dSQU1fR1VBUkRCQU5EX1BSRUNJU0lPTl9GQUNUT1IgMTAwMDAgI2RlZmluZQ0KPiA+
-ICtISVNUT0dSQU1fREVGQVVMVF9HVUFSREJBTkRfREVMQVkgMHgwNA0KPiA+ICsNCj4gPiArc3Ry
-dWN0IGludGVsX2hpc3RvZ3JhbSB7DQo+ID4gKwlzdHJ1Y3QgaW50ZWxfY3J0YyAqY3J0YzsNCj4g
-PiArCXN0cnVjdCBkZWxheWVkX3dvcmsgd29yazsNCj4gPiArCWJvb2wgZW5hYmxlOw0KPiA+ICsJ
-Ym9vbCBjYW5fZW5hYmxlOw0KPiA+ICsJdTMyIGJpbl9kYXRhW0hJU1RPR1JBTV9CSU5fQ09VTlRd
-Ow0KPiA+ICt9Ow0KPiA+ICsNCj4gPiAraW50IGludGVsX2hpc3RvZ3JhbV9hdG9taWNfY2hlY2so
-c3RydWN0IGludGVsX2NydGMgKmludGVsX2NydGMpIHsNCj4gPiArCXN0cnVjdCBpbnRlbF9oaXN0
-b2dyYW0gKmhpc3RvZ3JhbSA9IGludGVsX2NydGMtPmhpc3RvZ3JhbTsNCj4gPiArDQo+ID4gKwkv
-KiBUT0RPOiBSZXN0cmljdGlvbnMgZm9yIGVuYWJsaW5nIGhpc3RvZ3JhbSAqLw0KPiA+ICsJaGlz
-dG9ncmFtLT5jYW5fZW5hYmxlID0gdHJ1ZTsNCj4gPiArDQo+ID4gKwlyZXR1cm4gMDsNCj4gPiAr
-fQ0KPiA+ICsNCj4gPiArc3RhdGljIGludCBpbnRlbF9oaXN0b2dyYW1fZW5hYmxlKHN0cnVjdCBp
-bnRlbF9jcnRjICppbnRlbF9jcnRjKSB7DQo+ID4gKwlzdHJ1Y3QgaW50ZWxfZGlzcGxheSAqZGlz
-cGxheSA9IHRvX2ludGVsX2Rpc3BsYXkoaW50ZWxfY3J0Yyk7DQo+ID4gKwlzdHJ1Y3QgaW50ZWxf
-aGlzdG9ncmFtICpoaXN0b2dyYW0gPSBpbnRlbF9jcnRjLT5oaXN0b2dyYW07DQo+ID4gKwlpbnQg
-cGlwZSA9IGludGVsX2NydGMtPnBpcGU7DQo+ID4gKwl1NjQgcmVzOw0KPiA+ICsJdTMyIGdiYW5k
-dGhyZXNob2xkOw0KPiA+ICsNCj4gPiArCWlmICghaGlzdG9ncmFtKQ0KPiA+ICsJCXJldHVybiAt
-RUlOVkFMOw0KPiA+ICsNCj4gPiArCWlmICghaGlzdG9ncmFtLT5jYW5fZW5hYmxlKQ0KPiA+ICsJ
-CXJldHVybiAtRUlOVkFMOw0KPiANCj4gTml0OiB0aGUgYWJvdmUgdHdvIGNvbmRpdGlvbnMgY2Fu
-IGJlIGNvbWJpbmVkIHdpdGggJiYNCj4gDQpEb25lDQoNCj4gPiArDQo+ID4gKwlpZiAoaGlzdG9n
-cmFtLT5lbmFibGUpDQo+ID4gKwkJcmV0dXJuIDA7DQo+ID4gKw0KPiA+ICsJIC8qIGVuYWJsZSBo
-aXN0b2dyYW0sIGNsZWFyIERQU1RfQ1RMIGJpbiByZWcgZnVuYyBzZWxlY3QgdG8gVEMgKi8NCj4g
-PiArCWludGVsX2RlX3JtdyhkaXNwbGF5LCBEUFNUX0NUTChwaXBlKSwNCj4gPiArCQkgICAgIERQ
-U1RfQ1RMX0JJTl9SRUdfRlVOQ19TRUwgfCBEUFNUX0NUTF9JRV9ISVNUX0VOIHwNCj4gPiArCQkg
-ICAgIERQU1RfQ1RMX0hJU1RfTU9ERSB8DQo+ID4gRFBTVF9DVExfSUVfVEFCTEVfVkFMVUVfRk9S
-TUFUIHwNCj4gPiArCQkgICAgIERQU1RfQ1RMX0VOSEFOQ0VNRU5UX01PREVfTUFTSyB8DQo+ID4g
-RFBTVF9DVExfSUVfTU9ESV9UQUJMRV9FTiwNCj4gPiArCQkgICAgIERQU1RfQ1RMX0JJTl9SRUdf
-RlVOQ19UQyB8IERQU1RfQ1RMX0lFX0hJU1RfRU4gfA0KPiA+ICsJCSAgICAgRFBTVF9DVExfSElT
-VF9NT0RFX0hTViB8DQo+ID4gKwkJICAgICBEUFNUX0NUTF9JRV9UQUJMRV9WQUxVRV9GT1JNQVRf
-MUlOVF85RlJBQyB8DQo+ID4gKwkJICAgICBEUFNUX0NUTF9FTl9NVUxUSVBMSUNBVElWRSB8DQo+
-ID4gRFBTVF9DVExfSUVfTU9ESV9UQUJMRV9FTik7DQo+ID4gKw0KPiA+ICsJLyogUmUtVmlzaXQ6
-IGNoZWNrIGlmIHdhaXQgZm9yIG9uZSB2YmxhbmsgaXMgcmVxdWlyZWQgKi8NCj4gPiArCWRybV9j
-cnRjX3dhaXRfb25lX3ZibGFuaygmaW50ZWxfY3J0Yy0+YmFzZSk7DQo+ID4gKw0KPiA+ICsJLyog
-VE9ETzogUHJvZ3JhbSBHdWFyZEJhbmQgVGhyZXNob2xkOiBUbyBiZSBtb3ZlZCB0byBtb2Rlc2V0
-DQo+ID4gcGF0aCAqLw0KPiANCj4gSSB3YW50ZWQgdGhpcyB0byBiZSBzb21ldGhpbmcgbGlrZSB0
-aGlzDQo+IC8qIFRPRE86IFByb2dyYW0gR3VhcmRCYW5kIFRocmVzaG9sZCBuZWVkcyB0byBiZSBt
-b3ZlZCB0byBtb2Rlc2V0IHBhdGgNCj4gKi8NCj4gDQo+IA0KRG9uZQ0KDQo+ID4gKwlyZXMgPSAo
-aW50ZWxfY3J0Yy0+Y29uZmlnLT5ody5hZGp1c3RlZF9tb2RlLnZ0b3RhbCAqDQo+ID4gKwkgICAg
-ICAgaW50ZWxfY3J0Yy0+Y29uZmlnLT5ody5hZGp1c3RlZF9tb2RlLmh0b3RhbCk7DQo+ID4gKw0K
-PiA+ICsJZ2JhbmR0aHJlc2hvbGQgPSAocmVzICoNCj4gPiAJSElTVE9HUkFNX0dVQVJEQkFORF9U
-SFJFU0hPTERfREVGQVVMVCkgLw0KPiA+ICsJCQkgIEhJU1RPR1JBTV9HVUFSREJBTkRfUFJFQ0lT
-SU9OX0ZBQ1RPUjsNCj4gPiArDQo+ID4gKwkvKiBFbmFibGUgaGlzdG9ncmFtIGludGVycnVwdCBt
-b2RlICovDQo+ID4gKwlpbnRlbF9kZV9ybXcoZGlzcGxheSwgRFBTVF9HVUFSRChwaXBlKSwNCj4g
-PiArCQkgICAgIERQU1RfR1VBUkRfVEhSRVNIT0xEX0dCX01BU0sgfA0KPiA+ICsJCSAgICAgRFBT
-VF9HVUFSRF9JTlRFUlJVUFRfREVMQVlfTUFTSyB8DQo+ID4gRFBTVF9HVUFSRF9ISVNUX0lOVF9F
-TiwNCj4gPiArCQkgICAgIERQU1RfR1VBUkRfVEhSRVNIT0xEX0dCKGdiYW5kdGhyZXNob2xkKSB8
-DQo+ID4gKw0KPiA+IERQU1RfR1VBUkRfSU5URVJSVVBUX0RFTEFZKEhJU1RPR1JBTV9ERUZBVUxU
-X0dVQVJEQkFORF9ERUxBDQo+ID4gWSkgfA0KPiA+ICsJCSAgICAgRFBTVF9HVUFSRF9ISVNUX0lO
-VF9FTik7DQo+ID4gKw0KPiA+ICsJLyogQ2xlYXIgcGVuZGluZyBpbnRlcnJ1cHRzIGhhcyB0byBi
-ZSBkb25lIG9uIHNlcGFyYXRlIHdyaXRlICovDQo+ID4gKwlpbnRlbF9kZV9ybXcoZGlzcGxheSwg
-RFBTVF9HVUFSRChwaXBlKSwNCj4gPiArCQkgICAgIERQU1RfR1VBUkRfSElTVF9FVkVOVF9TVEFU
-VVMsIDEpOw0KPiA+ICsNCj4gPiArCWhpc3RvZ3JhbS0+ZW5hYmxlID0gdHJ1ZTsNCj4gPiArDQo+
-ID4gKwlyZXR1cm4gMDsNCj4gPiArfQ0KPiA+ICsNCj4gPiArc3RhdGljIHZvaWQgaW50ZWxfaGlz
-dG9ncmFtX2Rpc2FibGUoc3RydWN0IGludGVsX2NydGMgKmludGVsX2NydGMpIHsNCj4gPiArCXN0
-cnVjdCBpbnRlbF9kaXNwbGF5ICpkaXNwbGF5ID0gdG9faW50ZWxfZGlzcGxheShpbnRlbF9jcnRj
-KTsNCj4gPiArCXN0cnVjdCBpbnRlbF9oaXN0b2dyYW0gKmhpc3RvZ3JhbSA9IGludGVsX2NydGMt
-Pmhpc3RvZ3JhbTsNCj4gPiArCWludCBwaXBlID0gaW50ZWxfY3J0Yy0+cGlwZTsNCj4gPiArDQo+
-ID4gKwlpZiAoIWhpc3RvZ3JhbSkNCj4gPiArCQlyZXR1cm47DQo+ID4gKw0KPiA+ICsJLyogSWYg
-YWxyZWFkeSBkaXNhYmxlZCByZXR1cm4gKi8NCj4gPiArCWlmIChoaXN0b2dyYW0tPmVuYWJsZSkN
-Cj4gPiArCQlyZXR1cm47DQo+ID4gKw0KPiA+ICsJLyogQ2xlYXIgcGVuZGluZyBpbnRlcnJ1cHRz
-IGFuZCBkaXNhYmxlIGludGVycnVwdHMgKi8NCj4gPiArCWludGVsX2RlX3JtdyhkaXNwbGF5LCBE
-UFNUX0dVQVJEKHBpcGUpLA0KPiA+ICsJCSAgICAgRFBTVF9HVUFSRF9ISVNUX0lOVF9FTiB8DQo+
-ID4gRFBTVF9HVUFSRF9ISVNUX0VWRU5UX1NUQVRVUywgMCk7DQo+ID4gKw0KPiA+ICsJLyogZGlz
-YWJsZSBEUFNUX0NUTCBIaXN0b2dyYW0gbW9kZSAqLw0KPiA+ICsJaW50ZWxfZGVfcm13KGRpc3Bs
-YXksIERQU1RfQ1RMKHBpcGUpLA0KPiA+ICsJCSAgICAgRFBTVF9DVExfSUVfSElTVF9FTiwgMCk7
-DQo+ID4gKw0KPiA+ICsJaGlzdG9ncmFtLT5lbmFibGUgPSBmYWxzZTsNCj4gPiArfQ0KPiA+ICsN
-Cj4gPiAraW50IGludGVsX2hpc3RvZ3JhbV91cGRhdGUoc3RydWN0IGludGVsX2NydGMgKmludGVs
-X2NydGMsIGJvb2wNCj4gPiArZW5hYmxlKSB7DQo+ID4gKwlpZiAoZW5hYmxlKQ0KPiA+ICsJCXJl
-dHVybiBpbnRlbF9oaXN0b2dyYW1fZW5hYmxlKGludGVsX2NydGMpOw0KPiA+ICsNCj4gPiArCWlu
-dGVsX2hpc3RvZ3JhbV9kaXNhYmxlKGludGVsX2NydGMpOw0KPiA+ICsJcmV0dXJuIDA7DQo+ID4g
-K30NCj4gPiArDQo+ID4gK2ludCBpbnRlbF9oaXN0b2dyYW1fc2V0X2lldF9sdXQoc3RydWN0IGlu
-dGVsX2NydGMgKmludGVsX2NydGMsIHUzMg0KPiA+ICsqZGF0YSkgew0KPiA+ICsJc3RydWN0IGlu
-dGVsX2hpc3RvZ3JhbSAqaGlzdG9ncmFtID0gaW50ZWxfY3J0Yy0+aGlzdG9ncmFtOw0KPiA+ICsJ
-c3RydWN0IGludGVsX2Rpc3BsYXkgKmRpc3BsYXkgPSB0b19pbnRlbF9kaXNwbGF5KGludGVsX2Ny
-dGMpOw0KPiA+ICsJaW50IHBpcGUgPSBpbnRlbF9jcnRjLT5waXBlOw0KPiA+ICsJaW50IGkgPSAw
-Ow0KPiA+ICsNCj4gPiArCWlmICghaGlzdG9ncmFtKQ0KPiA+ICsJCXJldHVybiAtRUlOVkFMOw0K
-PiA+ICsNCj4gPiArCWlmICghaGlzdG9ncmFtLT5lbmFibGUpIHsNCj4gPiArCQlkcm1fZXJyKGRp
-c3BsYXktPmRybSwgImhpc3RvZ3JhbSBub3QgZW5hYmxlZCIpOw0KPiA+ICsJCXJldHVybiAtRUlO
-VkFMOw0KPiA+ICsJfQ0KPiA+ICsNCj4gPiArCWlmICghZGF0YSkgew0KPiA+ICsJCWRybV9lcnIo
-ZGlzcGxheS0+ZHJtLCAiZW5oYW5jZW1lbnQgTFVUIGRhdGEgaXMgTlVMTCIpOw0KPiA+ICsJCXJl
-dHVybiAtRUlOVkFMOw0KPiA+ICsJfQ0KPiA+ICsNCj4gPiArCS8qIFNldCBEUFNUX0NUTCBCaW4g
-UmVnIGZ1bmN0aW9uIHNlbGVjdCB0byBJRSAmIHdhaXQgZm9yIGEgdmJsYWJrICovDQo+ID4gKwlp
-bnRlbF9kZV9ybXcoZGlzcGxheSwgRFBTVF9DVEwocGlwZSksDQo+ID4gKwkJICAgICBEUFNUX0NU
-TF9CSU5fUkVHX0ZVTkNfU0VMLA0KPiA+IERQU1RfQ1RMX0JJTl9SRUdfRlVOQ19JRSk7DQo+ID4g
-Kw0KPiA+ICsJZHJtX2NydGNfd2FpdF9vbmVfdmJsYW5rKCZpbnRlbF9jcnRjLT5iYXNlKTsNCj4g
-PiArDQo+ID4gKwkgLyogU2V0IERQU1RfQ1RMIEJpbiBSZWdpc3RlciBJbmRleCB0byAwICovDQo+
-ID4gKwlpbnRlbF9kZV9ybXcoZGlzcGxheSwgRFBTVF9DVEwocGlwZSksDQo+ID4gKwkJICAgICBE
-UFNUX0NUTF9CSU5fUkVHX01BU0ssIERQU1RfQ1RMX0JJTl9SRUdfQ0xFQVIpOw0KPiA+ICsNCj4g
-PiArCWZvciAoaSA9IDA7IGkgPCBISVNUT0dSQU1fSUVUX0xFTkdUSDsgaSsrKSB7DQo+ID4gKwkJ
-aW50ZWxfZGVfcm13KGRpc3BsYXksIERQU1RfQklOKHBpcGUpLA0KPiA+ICsJCQkgICAgIERQU1Rf
-QklOX0RBVEFfTUFTSywgZGF0YVtpXSk7DQo+ID4gKwkJZHJtX2RiZ19hdG9taWMoZGlzcGxheS0+
-ZHJtLCAiaWV0X2x1dFslZF09JXhcbiIsIGksDQo+ID4gZGF0YVtpXSk7DQo+ID4gKwl9DQo+ID4g
-Kw0KPiA+ICsJcmV0dXJuIDA7DQo+ID4gK30NCj4gPiArDQo+ID4gK3ZvaWQgaW50ZWxfaGlzdG9n
-cmFtX2ZpbmlzaChzdHJ1Y3QgaW50ZWxfY3J0YyAqaW50ZWxfY3J0Yykgew0KPiA+ICsJc3RydWN0
-IGludGVsX2hpc3RvZ3JhbSAqaGlzdG9ncmFtID0gaW50ZWxfY3J0Yy0+aGlzdG9ncmFtOw0KPiA+
-ICsNCj4gPiArCWtmcmVlKGhpc3RvZ3JhbSk7DQo+ID4gK30NCj4gPiArDQo+ID4gK2ludCBpbnRl
-bF9oaXN0b2dyYW1faW5pdChzdHJ1Y3QgaW50ZWxfY3J0YyAqaW50ZWxfY3J0Yykgew0KPiA+ICsJ
-c3RydWN0IGludGVsX2hpc3RvZ3JhbSAqaGlzdG9ncmFtOw0KPiA+ICsNCj4gPiArCS8qIEFsbG9j
-YXRlIGhpc3RvZ3JhbSBpbnRlcm5hbCBzdHJ1Y3QgKi8NCj4gPiArCWhpc3RvZ3JhbSA9IGt6YWxs
-b2Moc2l6ZW9mKCpoaXN0b2dyYW0pLCBHRlBfS0VSTkVMKTsNCj4gPiArCWlmICghaGlzdG9ncmFt
-KSB7DQo+ID4gKwkJcmV0dXJuIC1FTk9NRU07DQo+ID4gKwl9DQo+IA0KPiBZb3UgZG9u4oCZdCBu
-ZWVkIHRoZSB7fSBicmFja2V0cyBoZXJlIGZvciBpZg0KPiANCkRvbmUNCg0KVGhhbmtzIGFuZCBS
-ZWdhcmRzLA0KQXJ1biBSIE11cnRoeQ0KLS0tLS0tLS0tLS0tLS0tLS0tLS0NCg==
+Statistics is generated from the image frame that is coming to display
+and an event is sent to user after reading this histogram data.
+This statistics/histogram is then shared with the user upon getting a
+request from user. User can then use this histogram and generate an
+enhancement factor. This enhancement factor can be multiplied/added with
+the incoming pixel data frame.
+
+v2: forward declaration in header file along with error handling (Jani)
+v3: Replaced i915 with intel_display (Suraj)
+v4: Removed dithering enable/disable (Vandita)
+    New patch for histogram register definitions (Suraj)
+v5: IET LUT pgm follow the seq in spec and removed change to TC at end
+    (Suraj)
+
+Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ .../drm/i915/display/intel_display_types.h    |   2 +
+ .../gpu/drm/i915/display/intel_histogram.c    | 187 ++++++++++++++++++
+ .../gpu/drm/i915/display/intel_histogram.h    |  35 ++++
+ 4 files changed, 225 insertions(+)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_histogram.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_histogram.h
+
+diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+index e465828d748f..97141b4def3b 100644
+--- a/drivers/gpu/drm/i915/Makefile
++++ b/drivers/gpu/drm/i915/Makefile
+@@ -267,6 +267,7 @@ i915-y += \
+ 	display/intel_hdcp.o \
+ 	display/intel_hdcp_gsc.o \
+ 	display/intel_hdcp_gsc_message.o \
++	display/intel_histogram.o \
+ 	display/intel_hotplug.o \
+ 	display/intel_hotplug_irq.o \
+ 	display/intel_hti.o \
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 339e4b0f7698..351441efd10a 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1414,6 +1414,8 @@ struct intel_crtc {
+ 	/* for loading single buffered registers during vblank */
+ 	struct pm_qos_request vblank_pm_qos;
+ 
++	struct intel_histogram *histogram;
++
+ #ifdef CONFIG_DEBUG_FS
+ 	struct intel_pipe_crc pipe_crc;
+ #endif
+diff --git a/drivers/gpu/drm/i915/display/intel_histogram.c b/drivers/gpu/drm/i915/display/intel_histogram.c
+new file mode 100644
+index 000000000000..12b70936c91c
+--- /dev/null
++++ b/drivers/gpu/drm/i915/display/intel_histogram.c
+@@ -0,0 +1,187 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2024 Intel Corporation
++ */
++
++#include <drm/drm_device.h>
++#include <drm/drm_file.h>
++#include <drm/drm_vblank.h>
++
++#include "i915_reg.h"
++#include "i915_drv.h"
++#include "intel_de.h"
++#include "intel_display.h"
++#include "intel_display_types.h"
++#include "intel_histogram.h"
++#include "intel_histogram_regs.h"
++
++/* 3.0% of the pipe's current pixel count, hw does x4 */
++#define HISTOGRAM_GUARDBAND_THRESHOLD_DEFAULT 300
++/* Precision factor for threshold guardband */
++#define HISTOGRAM_GUARDBAND_PRECISION_FACTOR 10000
++#define HISTOGRAM_DEFAULT_GUARDBAND_DELAY 0x04
++
++struct intel_histogram {
++	struct intel_crtc *crtc;
++	struct delayed_work work;
++	bool enable;
++	bool can_enable;
++	u32 bin_data[HISTOGRAM_BIN_COUNT];
++};
++
++int intel_histogram_atomic_check(struct intel_crtc *intel_crtc)
++{
++	struct intel_histogram *histogram = intel_crtc->histogram;
++
++	/* TODO: Restrictions for enabling histogram */
++	histogram->can_enable = true;
++
++	return 0;
++}
++
++static int intel_histogram_enable(struct intel_crtc *intel_crtc)
++{
++	struct intel_display *display = to_intel_display(intel_crtc);
++	struct intel_histogram *histogram = intel_crtc->histogram;
++	int pipe = intel_crtc->pipe;
++	u64 res;
++	u32 gbandthreshold;
++
++	if (!histogram || !histogram->can_enable)
++		return -EINVAL;
++
++	if (histogram->enable)
++		return 0;
++
++	 /* enable histogram, clear DPST_CTL bin reg func select to TC */
++	intel_de_rmw(display, DPST_CTL(pipe),
++		     DPST_CTL_BIN_REG_FUNC_SEL | DPST_CTL_IE_HIST_EN |
++		     DPST_CTL_HIST_MODE | DPST_CTL_IE_TABLE_VALUE_FORMAT |
++		     DPST_CTL_ENHANCEMENT_MODE_MASK | DPST_CTL_IE_MODI_TABLE_EN,
++		     DPST_CTL_BIN_REG_FUNC_TC | DPST_CTL_IE_HIST_EN |
++		     DPST_CTL_HIST_MODE_HSV |
++		     DPST_CTL_IE_TABLE_VALUE_FORMAT_1INT_9FRAC |
++		     DPST_CTL_EN_MULTIPLICATIVE | DPST_CTL_IE_MODI_TABLE_EN);
++
++	/* Re-Visit: check if wait for one vblank is required */
++	drm_crtc_wait_one_vblank(&intel_crtc->base);
++
++	/* TODO: Program GuardBand Threshold needs to be moved to modeset path */
++	res = (intel_crtc->config->hw.adjusted_mode.vtotal *
++	       intel_crtc->config->hw.adjusted_mode.htotal);
++
++	gbandthreshold = (res *	HISTOGRAM_GUARDBAND_THRESHOLD_DEFAULT) /
++			  HISTOGRAM_GUARDBAND_PRECISION_FACTOR;
++
++	/* Enable histogram interrupt mode */
++	intel_de_rmw(display, DPST_GUARD(pipe),
++		     DPST_GUARD_THRESHOLD_GB_MASK |
++		     DPST_GUARD_INTERRUPT_DELAY_MASK | DPST_GUARD_HIST_INT_EN,
++		     DPST_GUARD_THRESHOLD_GB(gbandthreshold) |
++		     DPST_GUARD_INTERRUPT_DELAY(HISTOGRAM_DEFAULT_GUARDBAND_DELAY) |
++		     DPST_GUARD_HIST_INT_EN);
++
++	/* Clear pending interrupts has to be done on separate write */
++	intel_de_rmw(display, DPST_GUARD(pipe),
++		     DPST_GUARD_HIST_EVENT_STATUS, 1);
++
++	histogram->enable = true;
++
++	return 0;
++}
++
++static void intel_histogram_disable(struct intel_crtc *intel_crtc)
++{
++	struct intel_display *display = to_intel_display(intel_crtc);
++	struct intel_histogram *histogram = intel_crtc->histogram;
++	int pipe = intel_crtc->pipe;
++
++	if (!histogram)
++		return;
++
++	/* If already disabled return */
++	if (histogram->enable)
++		return;
++
++	/* Clear pending interrupts and disable interrupts */
++	intel_de_rmw(display, DPST_GUARD(pipe),
++		     DPST_GUARD_HIST_INT_EN | DPST_GUARD_HIST_EVENT_STATUS, 0);
++
++	/* disable DPST_CTL Histogram mode */
++	intel_de_rmw(display, DPST_CTL(pipe),
++		     DPST_CTL_IE_HIST_EN, 0);
++
++	histogram->enable = false;
++}
++
++int intel_histogram_update(struct intel_crtc *intel_crtc, bool enable)
++{
++	if (enable)
++		return intel_histogram_enable(intel_crtc);
++
++	intel_histogram_disable(intel_crtc);
++	return 0;
++}
++
++int intel_histogram_set_iet_lut(struct intel_crtc *intel_crtc, u32 *data)
++{
++	struct intel_histogram *histogram = intel_crtc->histogram;
++	struct intel_display *display = to_intel_display(intel_crtc);
++	int pipe = intel_crtc->pipe;
++	int i = 0;
++
++	if (!histogram)
++		return -EINVAL;
++
++	if (!histogram->enable) {
++		drm_err(display->drm, "histogram not enabled");
++		return -EINVAL;
++	}
++
++	if (!data) {
++		drm_err(display->drm, "enhancement LUT data is NULL");
++		return -EINVAL;
++	}
++
++	/* Set DPST_CTL Bin Reg function select to IE & wait for a vblabk */
++	intel_de_rmw(display, DPST_CTL(pipe),
++		     DPST_CTL_BIN_REG_FUNC_SEL, DPST_CTL_BIN_REG_FUNC_IE);
++
++	drm_crtc_wait_one_vblank(&intel_crtc->base);
++
++	 /* Set DPST_CTL Bin Register Index to 0 */
++	intel_de_rmw(display, DPST_CTL(pipe),
++		     DPST_CTL_BIN_REG_MASK, DPST_CTL_BIN_REG_CLEAR);
++
++	for (i = 0; i < HISTOGRAM_IET_LENGTH; i++) {
++		intel_de_rmw(display, DPST_BIN(pipe),
++			     DPST_BIN_DATA_MASK, data[i]);
++		drm_dbg_atomic(display->drm, "iet_lut[%d]=%x\n", i, data[i]);
++	}
++
++	return 0;
++}
++
++void intel_histogram_finish(struct intel_crtc *intel_crtc)
++{
++	struct intel_histogram *histogram = intel_crtc->histogram;
++
++	kfree(histogram);
++}
++
++int intel_histogram_init(struct intel_crtc *intel_crtc)
++{
++	struct intel_histogram *histogram;
++
++	/* Allocate histogram internal struct */
++	histogram = kzalloc(sizeof(*histogram), GFP_KERNEL);
++	if (!histogram) {
++		return -ENOMEM;
++	}
++
++	intel_crtc->histogram = histogram;
++	histogram->crtc = intel_crtc;
++	histogram->can_enable = false;
++
++	return 0;
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_histogram.h b/drivers/gpu/drm/i915/display/intel_histogram.h
+new file mode 100644
+index 000000000000..9d66724f9c53
+--- /dev/null
++++ b/drivers/gpu/drm/i915/display/intel_histogram.h
+@@ -0,0 +1,35 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2024 Intel Corporation
++ */
++
++#ifndef __INTEL_HISTOGRAM_H__
++#define __INTEL_HISTOGRAM_H__
++
++#include <linux/types.h>
++
++struct intel_crtc;
++
++#define HISTOGRAM_BIN_COUNT                    32
++#define HISTOGRAM_IET_LENGTH                   33
++
++enum intel_global_hist_status {
++	INTEL_HISTOGRAM_ENABLE,
++	INTEL_HISTOGRAM_DISABLE,
++};
++
++enum intel_global_histogram {
++	INTEL_HISTOGRAM,
++};
++
++enum intel_global_hist_lut {
++	INTEL_HISTOGRAM_PIXEL_FACTOR,
++};
++
++int intel_histogram_atomic_check(struct intel_crtc *intel_crtc);
++int intel_histogram_update(struct intel_crtc *intel_crtc, bool enable);
++int intel_histogram_set_iet_lut(struct intel_crtc *intel_crtc, u32 *data);
++int intel_histogram_init(struct intel_crtc *intel_crtc);
++void intel_histogram_finish(struct intel_crtc *intel_crtc);
++
++#endif /* __INTEL_HISTOGRAM_H__ */
+-- 
+2.25.1
+
