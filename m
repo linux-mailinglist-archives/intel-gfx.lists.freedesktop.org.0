@@ -2,58 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31B009D4DC4
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Nov 2024 14:29:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E8FA9D4DCE
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Nov 2024 14:33:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 584EA10E944;
-	Thu, 21 Nov 2024 13:29:11 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="etaxwujL";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 04CFB10E1CE;
+	Thu, 21 Nov 2024 13:33:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1BEA310E940;
- Thu, 21 Nov 2024 13:29:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732195749; x=1763731749;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=ljRw7GiHhgGV8PhdV5IdFOlm1Kjgw73PhXBUovmZreg=;
- b=etaxwujLSXaci2yLeTkimvRzE3X8prIiSlI91yl/Sq7ZzHH+ek+oGg3f
- 6hivQDr5LrIiUe6FpvnGYfA4WblRtjWeU557RyvwWk/gPHf8YD2N7PAO2
- Cn7D84WNDQeFlO66XOLlouvvBSwd2lbAXbwk0fJBHjoHUsBjhWk5jzvcQ
- 5lG2FobzdmdZ2VlkOdDaN2oIIfMjXoNg6WEQM9Nios+NWBKfn4GCofqIB
- bfqukO0nsRwWC5x81bq5Rfo4yTHU05gBdJKmKaLbH4I0ktpr6tk+YtJIe
- J02FRWKo6GYP2PNu0K+R5njbDL5oRQWGH5/B9cDFpfsFJx5IxIbRD3d9Q A==;
-X-CSE-ConnectionGUID: Qc/FfVziR9efwwflaPkgZA==
-X-CSE-MsgGUID: u1m3KTQLRB6iRKPlgvlECg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11263"; a="32423050"
-X-IronPort-AV: E=Sophos;i="6.12,172,1728975600"; d="scan'208";a="32423050"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2024 05:29:08 -0800
-X-CSE-ConnectionGUID: lYKwb9qASlCqlmc8iPcM3g==
-X-CSE-MsgGUID: d8c0MbKoRZyKFQph0gNuoA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,172,1728975600"; d="scan'208";a="90071471"
-Received: from unknown (HELO localhost) ([10.237.66.160])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2024 05:29:08 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: I915-ci-infra@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: =?utf-8?Q?=E2=9C=97?= Fi.CI.BAT: failure for drm/i915: MST and
- DDI cleanups and refactoring (rev4)
-In-Reply-To: <173211289837.742969.7471609695790087491@b555e5b46a47>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1732106557.git.jani.nikula@intel.com>
- <173211289837.742969.7471609695790087491@b555e5b46a47>
-Date: Thu, 21 Nov 2024 15:29:04 +0200
-Message-ID: <87y11czpen.fsf@intel.com>
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CAF9210E1CE;
+ Thu, 21 Nov 2024 13:33:16 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Display_Global_Histo?=
+ =?utf-8?q?gram_=28rev7=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arun R Murthy" <arun.r.murthy@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 21 Nov 2024 13:33:16 -0000
+Message-ID: <173219599684.1171207.9799450634953730342@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241121122603.736267-1-arun.r.murthy@intel.com>
+In-Reply-To: <20241121122603.736267-1-arun.r.murthy@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,123 +37,153 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 20 Nov 2024, Patchwork <patchwork@emeril.freedesktop.org> wrote:
-> == Series Details ==
->
-> Series: drm/i915: MST and DDI cleanups and refactoring (rev4)
-> URL   : https://patchwork.freedesktop.org/series/141500/
-> State : failure
->
-> == Summary ==
->
-> CI Bug Log - changes from CI_DRM_15724 -> Patchwork_141500v4
-> ====================================================
->
-> Summary
-> -------
->
->   **FAILURE**
->
->   Serious unknown changes coming with Patchwork_141500v4 absolutely need to be
->   verified manually.
->   
->   If you think the reported changes have nothing to do with the changes
->   introduced in Patchwork_141500v4, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
->   to document this new failure mode, which will reduce false positives in CI.
->
->   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141500v4/index.html
->
-> Participating hosts (46 -> 45)
-> ------------------------------
->
->   Missing    (1): fi-snb-2520m 
->
-> Possible new issues
-> -------------------
->
->   Here are the unknown changes that may have been introduced in Patchwork_141500v4:
->
-> ### IGT changes ###
->
-> #### Possible regressions ####
->
->   * igt@i915_selftest@live@gem_contexts:
->     - bat-arlh-3:         NOTRUN -> [INCOMPLETE][1]
->    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141500v4/bat-arlh-3/igt@i915_selftest@live@gem_contexts.html
+== Series Details ==
 
-Unrelated, please re-report.
+Series: Display Global Histogram (rev7)
+URL   : https://patchwork.freedesktop.org/series/135793/
+State : warning
 
-BR,
-Jani.
+== Summary ==
 
->
->   
-> Known issues
-> ------------
->
->   Here are the changes found in Patchwork_141500v4 that come from known issues:
->
-> ### IGT changes ###
->
-> #### Issues hit ####
->
->   * igt@i915_pm_rpm@module-reload:
->     - bat-dg2-11:         [PASS][2] -> [FAIL][3] ([i915#12903])
->    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15724/bat-dg2-11/igt@i915_pm_rpm@module-reload.html
->    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141500v4/bat-dg2-11/igt@i915_pm_rpm@module-reload.html
->     - bat-adls-6:         [PASS][4] -> [FAIL][5] ([i915#12903])
->    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15724/bat-adls-6/igt@i915_pm_rpm@module-reload.html
->    [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141500v4/bat-adls-6/igt@i915_pm_rpm@module-reload.html
->
->   * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
->     - bat-dg2-11:         [PASS][6] -> [SKIP][7] ([i915#9197]) +3 other tests skip
->    [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15724/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
->    [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141500v4/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
->
->   * igt@runner@aborted:
->     - bat-dg2-13:         NOTRUN -> [FAIL][8] ([i915#12658])
->    [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141500v4/bat-dg2-13/igt@runner@aborted.html
->
->   
-> #### Possible fixes ####
->
->   * igt@i915_selftest@live@workarounds:
->     - bat-arlh-3:         [ABORT][9] ([i915#12061]) -> [PASS][10]
->    [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15724/bat-arlh-3/igt@i915_selftest@live@workarounds.html
->    [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141500v4/bat-arlh-3/igt@i915_selftest@live@workarounds.html
->
->   
-> #### Warnings ####
->
->   * igt@i915_selftest@live:
->     - bat-arlh-3:         [ABORT][11] ([i915#12829]) -> [INCOMPLETE][12] ([i915#12829])
->    [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15724/bat-arlh-3/igt@i915_selftest@live.html
->    [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141500v4/bat-arlh-3/igt@i915_selftest@live.html
->
->   
->   [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
->   [i915#12658]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12658
->   [i915#12829]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12829
->   [i915#12903]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12903
->   [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
->
->
-> Build changes
-> -------------
->
->   * Linux: CI_DRM_15724 -> Patchwork_141500v4
->
->   CI-20190529: 20190529
->   CI_DRM_15724: 0cb17ecec562c61d45997a2fced4e5ed99b31f99 @ git://anongit.freedesktop.org/gfx-ci/linux
->   IGT_8118: 17707095f1e5d3c30f463b43022f01c0160579b6 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
->   Patchwork_141500v4: 0cb17ecec562c61d45997a2fced4e5ed99b31f99 @ git://anongit.freedesktop.org/gfx-ci/linux
->
-> == Logs ==
->
-> For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141500v4/index.html
+Error: dim checkpatch failed
+630fdd086913 drm/i915/histogram: Define registers for histogram
+-:15: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#15: 
+new file mode 100644
 
--- 
-Jani Nikula, Intel
+-:20: WARNING:SPDX_LICENSE_TAG: Improper SPDX comment style for 'drivers/gpu/drm/i915/display/intel_histogram_regs.h', please use '/*' instead
+#20: FILE: drivers/gpu/drm/i915/display/intel_histogram_regs.h:1:
++// SPDX-License-Identifier: MIT
+
+-:20: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#20: FILE: drivers/gpu/drm/i915/display/intel_histogram_regs.h:1:
++// SPDX-License-Identifier: MIT
+
+-:39: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#39: FILE: drivers/gpu/drm/i915/display/intel_histogram_regs.h:20:
++#define  DPST_CTL_EN_MULTIPLICATIVE			REG_FIELD_PREP(DPST_CTL_ENHANCEMENT_MODE_MASK, 2)
+
+-:46: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#46: FILE: drivers/gpu/drm/i915/display/intel_histogram_regs.h:27:
++#define  DPST_CTL_IE_TABLE_VALUE_FORMAT_2INT_8FRAC	REG_FIELD_PREP(DPST_CTL_IE_TABLE_VALUE_FORMAT, 1)
+
+-:47: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#47: FILE: drivers/gpu/drm/i915/display/intel_histogram_regs.h:28:
++#define  DPST_CTL_IE_TABLE_VALUE_FORMAT_1INT_9FRAC	REG_FIELD_PREP(DPST_CTL_IE_TABLE_VALUE_FORMAT, 0)
+
+-:53: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#53: FILE: drivers/gpu/drm/i915/display/intel_histogram_regs.h:34:
++#define DPST_GUARD(pipe)				_MMIO_PIPE(pipe, _DPST_GUARD_A, _DPST_GUARD_B)
+
+-:57: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
+#57: FILE: drivers/gpu/drm/i915/display/intel_histogram_regs.h:38:
++#define  DPST_GUARD_INTERRUPT_DELAY(val)			REG_FIELD_PREP(DPST_GUARD_INTERRUPT_DELAY_MASK, val)
+
+-:59: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#59: FILE: drivers/gpu/drm/i915/display/intel_histogram_regs.h:40:
++#define  DPST_GUARD_THRESHOLD_GB(val)			REG_FIELD_PREP(DPST_GUARD_THRESHOLD_GB_MASK, val)
+
+total: 0 errors, 9 warnings, 0 checks, 48 lines checked
+eeac34d6f2f5 drm/i915/histogram: Add support for histogram
+-:48: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#48: 
+new file mode 100644
+
+-:233: WARNING:BRACES: braces {} are not necessary for single statement blocks
+#233: FILE: drivers/gpu/drm/i915/display/intel_histogram.c:181:
++	if (!histogram) {
++		return -ENOMEM;
++	}
+
+-:249: WARNING:SPDX_LICENSE_TAG: Improper SPDX comment style for 'drivers/gpu/drm/i915/display/intel_histogram.h', please use '/*' instead
+#249: FILE: drivers/gpu/drm/i915/display/intel_histogram.h:1:
++// SPDX-License-Identifier: MIT
+
+-:249: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#249: FILE: drivers/gpu/drm/i915/display/intel_histogram.h:1:
++// SPDX-License-Identifier: MIT
+
+total: 0 errors, 4 warnings, 0 checks, 240 lines checked
+686e95e38338 drm/xe: Add histogram support to Xe builds
+25e056817d07 drm/i915/histogram: histogram interrupt handling
+-:6: WARNING:TYPO_SPELLING: 'trigerred' may be misspelled - perhaps 'triggered'?
+#6: 
+Upon enabling histogram an interrupt is trigerred after the generation
+                                        ^^^^^^^^^
+
+-:76: WARNING:BRACES: braces {} are not necessary for any arm of this statement
+#76: FILE: drivers/gpu/drm/i915/display/intel_histogram.c:41:
++		if (!(dpstbin & DPST_BIN_BUSY)) {
+[...]
++		} else
+[...]
+
+-:78: CHECK:BRACES: Unbalanced braces around else statement
+#78: FILE: drivers/gpu/drm/i915/display/intel_histogram.c:43:
++		} else
+
+-:91: WARNING:STATIC_CONST_CHAR_ARRAY: char * array declaration might be better as static const
+#91: FILE: drivers/gpu/drm/i915/display/intel_histogram.c:56:
++	char *histogram_event[] = { event, pipe_id, NULL };
+
+total: 0 errors, 3 warnings, 1 checks, 184 lines checked
+95126191be97 drm/i915/histogram: Add crtc properties for global histogram
+-:326: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#326: FILE: drivers/gpu/drm/i915/display/intel_display.c:7915:
++						    (u32 *)new_crtc_state->histogram.global_iet->data);
+
+-:370: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#370: FILE: drivers/gpu/drm/i915/display/intel_histogram.c:72:
++			drm_property_replace_global_blob(display->drm,
++				&intel_crtc->config->histogram.histogram,
+
+total: 0 errors, 1 warnings, 1 checks, 320 lines checked
+e291995781c4 drm/i915/histogram: histogram delay counter doesnt reset
+-:4: WARNING:TYPO_SPELLING: 'doesnt' may be misspelled - perhaps 'doesn't'?
+#4: 
+Subject: [PATCH] drm/i915/histogram: histogram delay counter doesnt reset
+                                                             ^^^^^^
+
+-:41: WARNING:LONG_LINE_COMMENT: line length of 103 exceeds 100 columns
+#41: FILE: drivers/gpu/drm/i915/display/intel_histogram.c:96:
++		/* Write the value read from DPST_CTL to DPST_CTL.Interrupt Delay Counter(bit 23:16) */
+
+-:60: WARNING:LONG_LINE: line length of 115 exceeds 100 columns
+#60: FILE: drivers/gpu/drm/i915/display/intel_histogram_regs.h:20:
++#define  DPST_CTL_GUARDBAND_INTERRUPT_DELAY(val)	REG_FIELD_PREP(DPST_CTL_GUARDBAND_INTERRUPT_DELAY_CNT, val)
+
+total: 0 errors, 3 warnings, 0 checks, 34 lines checked
+d13b08406daf drm/i915/histogram: Histogram changes for Display 20+
+-:37: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#37: FILE: drivers/gpu/drm/i915/display/intel_histogram.c:44:
++static void write_iet(struct intel_display *display, enum pipe pipe,
++			      u32 *data)
+
+-:188: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
+#188: FILE: drivers/gpu/drm/i915/display/intel_histogram_regs.h:53:
++#define DPST_HIST_INDEX(pipe)				_MMIO_PIPE(pipe, _DPST_HIST_INDEX_A, _DPST_HIST_INDEX_B)
+
+-:190: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#190: FILE: drivers/gpu/drm/i915/display/intel_histogram_regs.h:55:
++#define  DPST_HIST_BIN_INDEX(val)			REG_FIELD_PREP(DPST_HIST_BIN_INDEX_MASK, val)
+
+-:194: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#194: FILE: drivers/gpu/drm/i915/display/intel_histogram_regs.h:59:
++#define DPST_HIST_BIN(pipe)				_MMIO_PIPE(pipe, _DPST_HIST_BIN_A, _DPST_HIST_BIN_B)
+
+-:200: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#200: FILE: drivers/gpu/drm/i915/display/intel_histogram_regs.h:65:
++#define DPST_IE_BIN(pipe)				_MMIO_PIPE(pipe, _DPST_IE_BIN_A, _DPST_IE_BIN_B)
+
+-:206: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#206: FILE: drivers/gpu/drm/i915/display/intel_histogram_regs.h:71:
++#define DPST_IE_INDEX(pipe)				_MMIO_PIPE(pipe, _DPST_IE_INDEX_A, _DPST_IE_INDEX_B)
+
+total: 0 errors, 5 warnings, 1 checks, 179 lines checked
+2b82a7808300 drm/i915/histogram: Enable pipe dithering
+
+
