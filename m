@@ -2,56 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4300D9D48F4
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Nov 2024 09:38:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA0A09D48F6
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Nov 2024 09:38:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6970010E899;
-	Thu, 21 Nov 2024 08:38:06 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="dBsgoE3h";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 81D3910E89A;
+	Thu, 21 Nov 2024 08:38:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A939B10E410;
- Thu, 21 Nov 2024 08:38:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Type:MIME-Version:Message-ID:Subject:Cc:To:From:Date:
- Sender:Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=VtBi+f20ClxPstpY1s34ETTNl1yj/o2tuMHXizWHhj0=; b=dBsgoE3hqpU8Z/qnmEvukyl159
- Ox7tzTF4IPnVC+bfk+kVWAH7lHYsjyqYfVvLi4Q4uq1PDNqoiow/ty5ufiCB3VOOK/vRYhdBHuUC3
- UjJCRlmDf51FQDt1CkoUiK64YJIOlu2WLYmMyQ6L0+FKKxTdewxk5bna6DeprTOwEciQgxtcJh6aR
- QmSgxzzUNlJ+Yl6YpJwD79nrCQt4Xm9V/mXE4EWYGwRPUZo4ecBpxE7RUFLSD+MuN2ldJJGkBEMCY
- kQFvNZKhsbwTUPOu7VLAjR1I7Fud+9A3IJ4m/mEpAe/PcQ8ymEkRhysqjMGXS8m+8GiapYNwAdBTB
- zgZBVKMQ==;
-Received: from [90.241.98.187] (helo=localhost)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1tE2h8-00AJd9-Cg; Thu, 21 Nov 2024 09:37:46 +0100
-Date: Thu, 21 Nov 2024 08:37:45 +0000
-From: Tvrtko Ursulin <tursulin@igalia.com>
-To: Dave Airlie <airlied@gmail.com>, Daniel Vetter <daniel.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-intel-next-fixes
-Message-ID: <Zz7xWbodMn9zZD_C@linux>
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C0D1410E89A;
+ Thu, 21 Nov 2024 08:38:17 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_Fix_some_races/bugs_in_G?=
+ =?utf-8?q?uC_engine_busyness_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 21 Nov 2024 08:38:17 -0000
+Message-ID: <173217829780.1051558.3418837140143191785@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241118232223.53639-1-umesh.nerlige.ramappa@intel.com>
+In-Reply-To: <20241118232223.53639-1-umesh.nerlige.ramappa@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,39 +37,20 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-Hi Dave, Sima,
+Series: Fix some races/bugs in GuC engine busyness (rev3)
+URL   : https://patchwork.freedesktop.org/series/141522/
+State : warning
 
-Just one fix for the merge window this week - fixing the HDCP flows on
-HDMI connectors.
+== Summary ==
 
-Regards,
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
-Tvrtko
 
-drm-intel-next-fixes-2024-11-21:
-- Fix when the first read and write are retried [hdcp] (Suraj Kandpal)
-The following changes since commit a163b895077861598be48c1cf7f4a88413c28b22:
-
-  Merge tag 'drm-xe-next-fixes-2024-11-15' of https://gitlab.freedesktop.org/drm/xe/kernel into drm-next (2024-11-18 13:38:46 +1000)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-next-fixes-2024-11-21
-
-for you to fetch changes up to 376a33c4a0d8344bb575e1a6eeb748ee4d4675d3:
-
-  drm/i915/hdcp: Fix when the first read and write are retried (2024-11-19 08:11:11 +0000)
-
-----------------------------------------------------------------
-- Fix when the first read and write are retried [hdcp] (Suraj Kandpal)
-
-----------------------------------------------------------------
-Suraj Kandpal (1):
-      drm/i915/hdcp: Fix when the first read and write are retried
-
- drivers/gpu/drm/i915/display/intel_hdcp.c | 32 +++++++++++++++++++------------
- 1 file changed, 20 insertions(+), 12 deletions(-)
