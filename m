@@ -2,56 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A7139D4F06
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 Nov 2024 15:49:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B0199D537D
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 Nov 2024 20:40:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C820C10E988;
-	Thu, 21 Nov 2024 14:49:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C33C310E169;
+	Thu, 21 Nov 2024 19:40:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KzYrgPpg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NPMymUz0";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB16B10E989;
- Thu, 21 Nov 2024 14:49:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F37BF10E169;
+ Thu, 21 Nov 2024 19:40:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732200577; x=1763736577;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=PYuO4Gu9dVpXD/TXm9R3URq1yy4KzS9YkO68MEegmho=;
- b=KzYrgPpgpHXOwEIt/Jd39Uic9N6ITQ+7KLbHgVdmv1WAJzYpzYB4TYBZ
- g7lDcmNROCQiB7RD3PYrzps/6CwxEVJM/UKI5kVAV1gdM2Ib2CfsA/sJm
- g49XEVN2oMVBBt4WQr5EaZDUuJlUbXWYOmFQpUnAHe3dN7s6Da13ii4lo
- QlmrRWaNagUbSAI5aRml1yDNSX79DzGcMcRmznAPNTTHcTKJ9VRf+mWIq
- Q+08+QDaCOqpGGYsCkXHJkUrG3mmd46u4ew4ddjR7Vc50ZXR+zlL3Kfwg
- ALIgBodNWm0LZ3fR/MwbAEz2KjDiriFXeZn+yfN+70KdKc2dPBwQdUTPO g==;
-X-CSE-ConnectionGUID: J3h4lJ0sRhSPlLeTAr7leQ==
-X-CSE-MsgGUID: h3kCKdyNQj2sqAQj2P+VAA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11263"; a="35177575"
-X-IronPort-AV: E=Sophos;i="6.12,173,1728975600"; d="scan'208";a="35177575"
+ t=1732218023; x=1763754023;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=nufxwgwyom9rkfg2vzG4dt3losmETl9RTondmUdLhM0=;
+ b=NPMymUz0dANFuAESbI5y3Sm/OCvFx6kOkbUYHiVWyuj/VibboxNnCXAh
+ b9V8YAHb7rKni0nZIEJtMCUMNh6FEgmjvX6+tcuA/meo3ybB3YqDNTJVy
+ 0dpGv9LYL+JZSURdBZU9sd2KsBVViaY3NpmLaW+FmrhH95RzP1ojNMczf
+ bcOau84DMpWw7QprydbGgPz5a4WxYe/JYlYpY52klgsmfcLv6JlzBY3i+
+ IvS3aNjT197IrrpDZ2Yx6k1F7cNWlYADEOcSc4XWplxPXnZv2hrmeNsvH
+ Ec1sZCm3sttasmk5/G5xnskgrl1I1cCNB/CsrzELJ9QXmgj0qybIoBKX/ Q==;
+X-CSE-ConnectionGUID: tlR2xfb8TGmecg9GYR7mLw==
+X-CSE-MsgGUID: 2nQt4iRnTvi5DNzV+xDJRg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11263"; a="32499816"
+X-IronPort-AV: E=Sophos;i="6.12,173,1728975600"; d="scan'208";a="32499816"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2024 06:49:37 -0800
-X-CSE-ConnectionGUID: zjaVvHccQYa1acLCnPEZaQ==
-X-CSE-MsgGUID: lcmbRCCCS+WM3ZEKD1KFKA==
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2024 11:40:22 -0800
+X-CSE-ConnectionGUID: teiCY3ulTc6A5G39lLXEJw==
+X-CSE-MsgGUID: 8gDD11eUTCqgjjvCfBk+Zw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,173,1728975600"; d="scan'208";a="90202338"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by orviesa010.jf.intel.com with ESMTP; 21 Nov 2024 06:49:33 -0800
-From: Arun R Murthy <arun.r.murthy@intel.com>
-To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: Arun R Murthy <arun.r.murthy@intel.com>
-Subject: [PATCHv6 7/8] drm/i915/histogram: Histogram changes for Display 20+
-Date: Thu, 21 Nov 2024 20:09:49 +0530
-Message-Id: <20241121143949.748980-3-arun.r.murthy@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20241121143949.748980-1-arun.r.murthy@intel.com>
-References: <20241121143949.748980-1-arun.r.murthy@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,173,1728975600"; d="scan'208";a="90288768"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO fedora)
+ ([10.245.246.104])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2024 11:40:19 -0800
+Date: Thu, 21 Nov 2024 20:39:53 +0100
+From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-xe-next-fixes
+Message-ID: <Zz-MiVLFjOZQLrlc@fedora>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,216 +75,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In Display 20+, new registers are added for setting index, reading
-histogram and writing the IET.
+Hi Dave, Simona
 
-v2: Removed duplicate code (Jani)
-v3: Moved histogram core changes to earlier patches (Jani/Suraj)
-v4: Rebased after addressing comments on patch 1
-v5: Added the retry logic from patch3 and rebased the patch series
-v6: optimize wite_iet() (Suraj)
+A couple of fixes to drm-xe-next. I'm currently looking into as to why they are
+not CC'd stable and will ensure they get backported if needed.
 
-Bspec: 68895
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
----
- .../gpu/drm/i915/display/intel_histogram.c    | 105 +++++++++++++-----
- .../drm/i915/display/intel_histogram_regs.h   |  25 +++++
- 2 files changed, 103 insertions(+), 27 deletions(-)
+Thanks,
+Thomas
 
-diff --git a/drivers/gpu/drm/i915/display/intel_histogram.c b/drivers/gpu/drm/i915/display/intel_histogram.c
-index 7b27c7227a8a..475d29441612 100644
---- a/drivers/gpu/drm/i915/display/intel_histogram.c
-+++ b/drivers/gpu/drm/i915/display/intel_histogram.c
-@@ -29,6 +29,37 @@ struct intel_histogram {
- 	u32 bin_data[HISTOGRAM_BIN_COUNT];
- };
- 
-+static void set_bin_index_0(struct intel_display *display, enum pipe pipe)
-+{
-+	if (DISPLAY_VER(display) >= 20)
-+		intel_de_rmw(display, DPST_IE_INDEX(pipe),
-+			     DPST_IE_BIN_INDEX_MASK, DPST_IE_BIN_INDEX(0));
-+	else
-+		intel_de_rmw(display, DPST_CTL(pipe),
-+			     DPST_CTL_BIN_REG_MASK,
-+			     DPST_CTL_BIN_REG_CLEAR);
-+}
-+
-+static void write_iet(struct intel_display *display, enum pipe pipe,
-+			      u32 *data)
-+{
-+	int i;
-+
-+	for (i = 0; i < HISTOGRAM_IET_LENGTH; i++) {
-+		if (DISPLAY_VER(display) >= 20)
-+			intel_de_rmw(display, DPST_IE_BIN(pipe),
-+				     DPST_IE_BIN_DATA_MASK,
-+				     DPST_IE_BIN_DATA(data[i]));
-+		else
-+			intel_de_rmw(display, DPST_BIN(pipe),
-+				     DPST_BIN_DATA_MASK,
-+				     DPST_BIN_DATA(data[i]));
-+
-+		drm_dbg_atomic(display->drm, "iet_lut[%d]=%x\n",
-+			       i, data[i]);
-+	}
-+}
-+
- static bool intel_histogram_get_data(struct intel_crtc *intel_crtc)
- {
- 	struct intel_display *display = to_intel_display(intel_crtc);
-@@ -36,12 +67,27 @@ static bool intel_histogram_get_data(struct intel_crtc *intel_crtc)
- 	int index;
- 	u32 dpstbin;
- 
-+	if (DISPLAY_VER(display) >= 20)
-+		intel_de_rmw(display, DPST_HIST_INDEX(intel_crtc->pipe),
-+			     DPST_HIST_BIN_INDEX_MASK,
-+			     DPST_HIST_BIN_INDEX(0));
-+	else
-+		intel_de_rmw(display, DPST_CTL(intel_crtc->pipe),
-+			     DPST_CTL_BIN_REG_FUNC_SEL | DPST_CTL_BIN_REG_MASK, 0);
-+
- 	for (index = 0; index < ARRAY_SIZE(histogram->bin_data); index++) {
--		dpstbin = intel_de_read(display, DPST_BIN(intel_crtc->pipe));
-+		dpstbin = intel_de_read(display, (DISPLAY_VER(display) >= 20 ?
-+					DPST_HIST_BIN(intel_crtc->pipe) :
-+					DPST_BIN(intel_crtc->pipe)));
- 		if (!(dpstbin & DPST_BIN_BUSY)) {
--			histogram->bin_data[index] = dpstbin & DPST_BIN_DATA_MASK;
--		} else
-+			histogram->bin_data[index] = dpstbin & (DISPLAY_VER(display) >= 20 ?
-+								DPST_HIST_BIN_DATA_MASK :
-+								DPST_BIN_DATA_MASK);
-+		} else {
-+			drm_err(display->drm, "Histogram bin busy, retyring\n");
-+			fsleep(2);
- 			return false;
-+		}
- 	}
- 	return true;
- }
-@@ -69,8 +115,6 @@ static void intel_histogram_handle_int_work(struct work_struct *work)
- 	 * Set DPST_CTL Bin Reg function select to TC
- 	 * Set DPST_CTL Bin Register Index to 0
- 	 */
--	intel_de_rmw(display, DPST_CTL(intel_crtc->pipe),
--		     DPST_CTL_BIN_REG_FUNC_SEL | DPST_CTL_BIN_REG_MASK, 0);
- 	for (retry = 0; retry < HISTOGRAM_BIN_READ_RETRY_COUNT; retry++) {
- 		if (intel_histogram_get_data(intel_crtc)) {
- 			drm_property_replace_global_blob(display->drm,
-@@ -150,15 +194,26 @@ static int intel_histogram_enable(struct intel_crtc *intel_crtc)
- 	if (histogram->enable)
- 		return 0;
- 
--	 /* enable histogram, clear DPST_CTL bin reg func select to TC */
--	intel_de_rmw(display, DPST_CTL(pipe),
--		     DPST_CTL_BIN_REG_FUNC_SEL | DPST_CTL_IE_HIST_EN |
--		     DPST_CTL_HIST_MODE | DPST_CTL_IE_TABLE_VALUE_FORMAT |
--		     DPST_CTL_ENHANCEMENT_MODE_MASK | DPST_CTL_IE_MODI_TABLE_EN,
--		     DPST_CTL_BIN_REG_FUNC_TC | DPST_CTL_IE_HIST_EN |
--		     DPST_CTL_HIST_MODE_HSV |
--		     DPST_CTL_IE_TABLE_VALUE_FORMAT_1INT_9FRAC |
--		     DPST_CTL_EN_MULTIPLICATIVE | DPST_CTL_IE_MODI_TABLE_EN);
-+	 /* enable histogram, clear DPST_BIN reg and select TC function */
-+	if (DISPLAY_VER(display) >= 20)
-+		intel_de_rmw(display, DPST_CTL(pipe),
-+			     DPST_CTL_IE_HIST_EN |
-+			     DPST_CTL_HIST_MODE,
-+			     DPST_CTL_IE_HIST_EN |
-+			     DPST_CTL_HIST_MODE_HSV);
-+	else
-+		 /* enable histogram, clear DPST_BIN reg and select TC function */
-+		intel_de_rmw(display, DPST_CTL(pipe),
-+			     DPST_CTL_BIN_REG_FUNC_SEL | DPST_CTL_IE_HIST_EN |
-+			     DPST_CTL_HIST_MODE |
-+			     DPST_CTL_IE_TABLE_VALUE_FORMAT |
-+			     DPST_CTL_ENHANCEMENT_MODE_MASK |
-+			     DPST_CTL_IE_MODI_TABLE_EN,
-+			     DPST_CTL_BIN_REG_FUNC_TC | DPST_CTL_IE_HIST_EN |
-+			     DPST_CTL_HIST_MODE_HSV |
-+			     DPST_CTL_IE_TABLE_VALUE_FORMAT_1INT_9FRAC |
-+			     DPST_CTL_EN_MULTIPLICATIVE |
-+			     DPST_CTL_IE_MODI_TABLE_EN);
- 
- 	/* Re-Visit: check if wait for one vblank is required */
- 	drm_crtc_wait_one_vblank(&intel_crtc->base);
-@@ -227,7 +282,6 @@ int intel_histogram_set_iet_lut(struct intel_crtc *intel_crtc, u32 *data)
- 	struct intel_histogram *histogram = intel_crtc->histogram;
- 	struct intel_display *display = to_intel_display(intel_crtc);
- 	int pipe = intel_crtc->pipe;
--	int i = 0;
- 
- 	if (!histogram)
- 		return -EINVAL;
-@@ -242,22 +296,19 @@ int intel_histogram_set_iet_lut(struct intel_crtc *intel_crtc, u32 *data)
- 		return -EINVAL;
- 	}
- 
--	/* Set DPST_CTL Bin Reg function select to IE & wait for a vblabk */
--	intel_de_rmw(display, DPST_CTL(pipe),
--		     DPST_CTL_BIN_REG_FUNC_SEL, DPST_CTL_BIN_REG_FUNC_IE);
- 
--	drm_crtc_wait_one_vblank(&intel_crtc->base);
-+	if (DISPLAY_VER(display) < 20) {
-+		/* Set DPST_CTL Bin Reg function select to IE & wait for a vblabk */
-+		intel_de_rmw(display, DPST_CTL(pipe),
-+			     DPST_CTL_BIN_REG_FUNC_SEL,
-+			     DPST_CTL_BIN_REG_FUNC_IE);
- 
--	 /* Set DPST_CTL Bin Register Index to 0 */
--	intel_de_rmw(display, DPST_CTL(pipe),
--		     DPST_CTL_BIN_REG_MASK, DPST_CTL_BIN_REG_CLEAR);
--
--	for (i = 0; i < HISTOGRAM_IET_LENGTH; i++) {
--		intel_de_rmw(display, DPST_BIN(pipe),
--			     DPST_BIN_DATA_MASK, data[i]);
--		drm_dbg_atomic(display->drm, "iet_lut[%d]=%x\n", i, data[i]);
-+		drm_crtc_wait_one_vblank(&intel_crtc->base);
- 	}
- 
-+	set_bin_index_0(display, pipe);
-+	write_iet(display, pipe, data);
-+
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_histogram_regs.h b/drivers/gpu/drm/i915/display/intel_histogram_regs.h
-index 213c9f483567..3fbb9c2deaae 100644
---- a/drivers/gpu/drm/i915/display/intel_histogram_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_histogram_regs.h
-@@ -45,6 +45,31 @@
- #define _DPST_BIN_B					0x491C4
- #define DPST_BIN(pipe)					_MMIO_PIPE(pipe, _DPST_BIN_A, _DPST_BIN_B)
- #define  DPST_BIN_DATA_MASK				REG_GENMASK(23, 0)
-+#define  DPST_BIN_DATA(val)				REG_FIELD_PREP(DPST_BIN_DATA_MASK, val)
- #define  DPST_BIN_BUSY					REG_BIT(31)
- 
-+#define _DPST_HIST_INDEX_A				0x490D8
-+#define _DPST_HIST_INDEX_B				0x491D8
-+#define DPST_HIST_INDEX(pipe)				_MMIO_PIPE(pipe, _DPST_HIST_INDEX_A, _DPST_HIST_INDEX_B)
-+#define  DPST_HIST_BIN_INDEX_MASK			REG_GENMASK(4, 0)
-+#define  DPST_HIST_BIN_INDEX(val)			REG_FIELD_PREP(DPST_HIST_BIN_INDEX_MASK, val)
-+
-+#define _DPST_HIST_BIN_A				0x490C4
-+#define _DPST_HIST_BIN_B				0x491C4
-+#define DPST_HIST_BIN(pipe)				_MMIO_PIPE(pipe, _DPST_HIST_BIN_A, _DPST_HIST_BIN_B)
-+#define  DPST_HIST_BIN_BUSY				REG_BIT(31)
-+#define  DPST_HIST_BIN_DATA_MASK				REG_GENMASK(30, 0)
-+
-+#define _DPST_IE_BIN_A					0x490CC
-+#define _DPST_IE_BIN_B					0x491CC
-+#define DPST_IE_BIN(pipe)				_MMIO_PIPE(pipe, _DPST_IE_BIN_A, _DPST_IE_BIN_B)
-+#define	 DPST_IE_BIN_DATA_MASK				REG_GENMASK(9, 0)
-+#define  DPST_IE_BIN_DATA(val)				REG_FIELD_PREP(DPST_IE_BIN_DATA_MASK, val)
-+
-+#define _DPST_IE_INDEX_A				0x490DC
-+#define _DPST_IE_INDEX_B				0x491DC
-+#define DPST_IE_INDEX(pipe)				_MMIO_PIPE(pipe, _DPST_IE_INDEX_A, _DPST_IE_INDEX_B)
-+#define  DPST_IE_BIN_INDEX_MASK				REG_GENMASK(6, 0)
-+#define  DPST_IE_BIN_INDEX(val)				REG_FIELD_PREP(DPST_IE_BIN_INDEX_MASK, val)
-+
- #endif /* __INTEL_HISTOGRAM_REGS_H__ */
--- 
-2.25.1
+drm-xe-next-fixes-2024-11-21:
+Driver Changes:
+- Wake up waiters after wait condition set to true (Nirmoy Das)
+- Mark the preempt fence workqueue as reclaim. (Matthew Brost)
+The following changes since commit 6d9f9115c091c88cacf78734d8ea34c8609e8680:
 
+  drm/xe/guc: Fix dereference before NULL check (2024-11-14 14:55:01 +0100)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-next-fixes-2024-11-21
+
+for you to fetch changes up to ed31ba0aa7e93ecac62cfd445c3228345bdd87e6:
+
+  drm/xe: Mark preempt fence workqueue as reclaim (2024-11-21 17:16:38 +0100)
+
+----------------------------------------------------------------
+Driver Changes:
+- Wake up waiters after wait condition set to true (Nirmoy Das)
+- Mark the preempt fence workqueue as reclaim. (Matthew Brost)
+
+----------------------------------------------------------------
+Matthew Brost (1):
+      drm/xe: Mark preempt fence workqueue as reclaim
+
+Nirmoy Das (1):
+      drm/xe/ufence: Wake up waiters after setting ufence->signalled
+
+ drivers/gpu/drm/xe/xe_device.c | 3 ++-
+ drivers/gpu/drm/xe/xe_sync.c   | 6 +++++-
+ 2 files changed, 7 insertions(+), 2 deletions(-)
