@@ -2,60 +2,175 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8019C9D58C7
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Nov 2024 05:03:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EC749D58D1
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Nov 2024 05:25:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1664610E20C;
-	Fri, 22 Nov 2024 04:03:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4054310E1B8;
+	Fri, 22 Nov 2024 04:25:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LrTv4jNt";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fIj8iRcD";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7EFA610E20C;
- Fri, 22 Nov 2024 04:03:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D24010E1B8;
+ Fri, 22 Nov 2024 04:25:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732248222; x=1763784222;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=p8RrRIoEC76MiLWzvgZDPtwyE+MVK50HaVjwQaAWoJM=;
- b=LrTv4jNtx7ZNXWhP8rSYgR+Tu5Ed9DDnLoky9fhd5pH4SUw8TWd6g4FO
- 9C7chRmhr2hzLxsJZGiLrhLKEf8k2Y2Mf1J+9rw975i5LI4jHN0Gu6vu9
- MzPwlyOKsdkiOhOvak4Wd7jYhcWcXDsPlws53aYP2n+qX5P8dXDKMr9Qv
- dfZBzlB7aUM72llMPzciVxo3npkcLxv8E8LJ/bYJCHW94VGmJwpaLpGeg
- cKO9r7oBVsd5EdGU2Ds3a1QEDq2yWQX7naQvgBv+VUJ0m41DIFKgMj1Zt
- BR//sDamntRx3MNfqdmV1+T485RYCghFZFjhNZ28h99PnD+W5kTv0CnmM g==;
-X-CSE-ConnectionGUID: K4u5bSVqQ820Q1MHV0BNXw==
-X-CSE-MsgGUID: 4cu78uP+S964f7nj7XoA+w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11263"; a="31781298"
-X-IronPort-AV: E=Sophos;i="6.12,174,1728975600"; d="scan'208";a="31781298"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2024 20:03:42 -0800
-X-CSE-ConnectionGUID: 2qHIMj6/TR6T7aqaFuwAsQ==
-X-CSE-MsgGUID: PMOODfGARu2ll9GU0VzFRQ==
+ t=1732249512; x=1763785512;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=ovNEuuz7QE53Pr5kkiVBRV3ZsP7H9Z474mZM+0qtB28=;
+ b=fIj8iRcDOe31wHceSiffJx4MWlng8ITCrr7UAU+Mm+LRWroJf55mbYp5
+ zXD8hQdz5xSLQF1GIOdAIKtnF6AgIvgs2Wrlji3hfgB0YBjJ0FzlXtzf+
+ KdWM9vU2l5GGduPmFlgu7brnI2H0QnDd2Z0DoFvJu7iTb5/abQG0GVOLT
+ 2Cfy+9t5ko70CnPcWrG5uB2uCk5auQG37Gvs7R8czJcOPZq3P5W9CkEKE
+ JdFUoBXpeHR6RpDW5Vn/MmzqF/nbZstP1b7sPy6ildlQ74riLw1Lnb296
+ igGgfvnDjc0D48L3rpm41T34soH02GjejDf8uDkcXkt2Q/sfLOXVo0vAn Q==;
+X-CSE-ConnectionGUID: y2MM9mA6TTugQFiJs0qj/Q==
+X-CSE-MsgGUID: 8Q4d2ILuT9O7I0g3yQhW+w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11263"; a="35251589"
+X-IronPort-AV: E=Sophos;i="6.12,174,1728975600"; d="scan'208";a="35251589"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2024 20:25:12 -0800
+X-CSE-ConnectionGUID: IgE+2P+cThyb1XtTb+mEag==
+X-CSE-MsgGUID: DpygCeiaS6SS4InrSa4+UA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,174,1728975600"; d="scan'208";a="95538724"
-Received: from lkp-server01.sh.intel.com (HELO 8122d2fc1967) ([10.239.97.150])
- by orviesa004.jf.intel.com with ESMTP; 21 Nov 2024 20:03:40 -0800
-Received: from kbuild by 8122d2fc1967 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1tEKtO-0003eV-0E;
- Fri, 22 Nov 2024 04:03:38 +0000
-Date: Fri, 22 Nov 2024 12:02:53 +0800
-From: kernel test robot <lkp@intel.com>
-To: Arun R Murthy <arun.r.murthy@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: oe-kbuild-all@lists.linux.dev, Arun R Murthy <arun.r.murthy@intel.com>
-Subject: Re: [PATCHv2 3/3] drm/i915/display: Populate list of async supported
- formats/modifiers
-Message-ID: <202411221109.nlXeWx72-lkp@intel.com>
-References: <20241118075315.466009-4-arun.r.murthy@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,174,1728975600"; d="scan'208";a="121410089"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 21 Nov 2024 20:25:09 -0800
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Thu, 21 Nov 2024 20:25:08 -0800
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Thu, 21 Nov 2024 20:25:08 -0800
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.48) by
+ edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Thu, 21 Nov 2024 20:25:08 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=IIa9N0b4/8BYAasgS+R+d5GClI9hIHlofD4mnX3X7pQTNK5wJPXS72hEs4SykimZ8b9cXciNEYNXSv27g1NvmEh/m4M0oqEXbiWd6p1thvjL63HDD7HgdlYntE9zxUBeSD5cAIKqFXkEZp/ZpAIYXOYSHW8hWCXwd2zr+ZBc6va6qabB8t6BPoNRx6KXTSGWKyoMtAGQQ0UmsM3eAJl5Iu71J1orHweTCjUhsUK00oQUBrvAE1Uc1j/REWVDaES9OSG5lrde3XrmO1nfZb8HBLnYvLPivR9AoZOLAhcR+7vzcqYFfA3pZeTYJPY7O/AEb3aRKDJD3wsZn5uyl5T1AA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=yAiQZvZv02sDXwl+C8/pmKBpeWqeYW/5apqPdqx/9sw=;
+ b=tsqpmoROyFpWDv9+ck0aBmOW1w+XgPHIsdzb+tQYAn0A+0vkJLNqL4e+Hacfl7JZMY+Gm2qp5dldaIkz6ZMdVFJZnHhUqQQXgrDUTJOcOHPxXY1UQHnS98BoqYt8xb/A/ODM+ULMJJ9mI4d1KsHBdWFdyotBZf60cVqBicD5ZwEeUc1zn2zmH51x9XsqP0ZhqRrkFBrMnTLO05dRBDYL6fP6Kom6+5jbIPgluEgM1ioUDiC7fvx/pkNSp9os/ibAtiWLRqoZNQxt3QHbjIGn0RpaMP0iVDZaTuHGsj5VcMRyUlIXT1/K+VpUjI1iP21SU4zbmI89p4pp9cFlBr7VvQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from IA0PR11MB7307.namprd11.prod.outlook.com (2603:10b6:208:437::10)
+ by PH7PR11MB6932.namprd11.prod.outlook.com (2603:10b6:510:207::5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.22; Fri, 22 Nov
+ 2024 04:24:59 +0000
+Received: from IA0PR11MB7307.namprd11.prod.outlook.com
+ ([fe80::dafa:d38d:8ac1:e843]) by IA0PR11MB7307.namprd11.prod.outlook.com
+ ([fe80::dafa:d38d:8ac1:e843%4]) with mapi id 15.20.8093.027; Fri, 22 Nov 2024
+ 04:24:59 +0000
+From: "Murthy, Arun R" <arun.r.murthy@intel.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Subject: RE: [PATCHv6 5/8] drm/i915/histogram: Add crtc properties for global
+ histogram
+Thread-Topic: [PATCHv6 5/8] drm/i915/histogram: Add crtc properties for global
+ histogram
+Thread-Index: AQHbPBHyjJ9QkG83RUayJ5zlEgjYXrLCXeuAgABWSxA=
+Date: Fri, 22 Nov 2024 04:24:58 +0000
+Message-ID: <IA0PR11MB730794BF402FC82BA5FEC1D4BA232@IA0PR11MB7307.namprd11.prod.outlook.com>
+References: <20241121122603.736267-1-arun.r.murthy@intel.com>
+ <20241121122603.736267-6-arun.r.murthy@intel.com>
+ <thqbnbw2yiqbfya7bh2izzf5qwr6fkir5m5luqkrhqj6vnltad@w2562fgo75g5>
+In-Reply-To: <thqbnbw2yiqbfya7bh2izzf5qwr6fkir5m5luqkrhqj6vnltad@w2562fgo75g5>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: IA0PR11MB7307:EE_|PH7PR11MB6932:EE_
+x-ms-office365-filtering-correlation-id: 301cd38e-23fe-4ec8-3146-08dd0aada033
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|1800799024|366016|376014|10070799003|38070700018; 
+x-microsoft-antispam-message-info: =?us-ascii?Q?PDYF3po3Ke0nmhipD+EbogxFaP2KVHQVEh6aXMMm4hozpkrsdcgT4A+z0Z+O?=
+ =?us-ascii?Q?yy7Ww9/R5pqCh6Fz8wjcIitjILg0beC9LRv4jHOT8FtWFOfUopRCoDeRKA+6?=
+ =?us-ascii?Q?Cq9PZly1mob1wS+5AoHQ+0YVYLBs+4+w0Nwvkjrq0yxYY0Pw3XSrGHXegl0t?=
+ =?us-ascii?Q?dR1ULn1LckD6NKtdsCqx0YFelLr8iXuusnlkL7rMNjBLcbgxEG0BsNNBh+l+?=
+ =?us-ascii?Q?vhxnt9zIhGRfnb27CxXskcqxCQLNCIed7Oh5fjJG8BWe4bBEyLUnZfDTw7lQ?=
+ =?us-ascii?Q?ApKW6sVM5HlBFmA0hRn+KNewiuDsCggVvofCBgv88AaT3D5Mk50bbNWZcswd?=
+ =?us-ascii?Q?d7cbu/zrb74plCRDdKGqPOvFcTuZZ21tKD/8oHYJmZ1A9y75xaFKeJSNFMhX?=
+ =?us-ascii?Q?d3iSZ9QKO+jgSVfVn4983McZgn88IWvGQsqoeXMnsNwpfvZXKA1Qwv0gGRhg?=
+ =?us-ascii?Q?EWR6wzvuQnotCMNODy5qzcitue2lLshXDaUS/nsydGd87oWdoTEc5n1fHm2c?=
+ =?us-ascii?Q?ri2M5wq4jjkM9I6MD8l7ainWC8zNuXfHBWvAv1cxG32txDfGnRCDkKfyCkHc?=
+ =?us-ascii?Q?j2NluGNC7QXfxAYP89WH7AzVuKNGYGZZMQV+IsQ4uuYcKhB3S6/ikjrVSEXQ?=
+ =?us-ascii?Q?KqsAE3DjKRtl1IfheU6CUqQcL2Smh5cb660BlABvliS6QnRenmSbzqE0kbok?=
+ =?us-ascii?Q?xaH+bSvZQsjVvv8XtgDuq/5vDp0penI7oqBgIh/KqwqUe4lUWT+WlgMXmtwo?=
+ =?us-ascii?Q?mYZiQqJiQtfhzzuEd5JcS5B/xpxYo+kf/NSsb0rkRpUWxLbid7yaGiy+WtaJ?=
+ =?us-ascii?Q?X6kz56mdBRaBe31+CekiJGGKD7kTupp2/BTzPua+5CvxRbTdXKfLSQpeXC3R?=
+ =?us-ascii?Q?QD+kvuPw2wtWmx6TCexTLMTF9esL54G/2scVU6qQPA0JWygu8uRr3ffSrv11?=
+ =?us-ascii?Q?xHXAhTcxd+DghmAp2hiCp5aT4W3Kaa6oAYzmFDaYRg9jRK0VvuHA36TeMZoA?=
+ =?us-ascii?Q?eG9Z9+VIjJbYLoVOalUs4vHiFon8ngb2rudfQJLZ7buQuj+MnqYJRjx2fG6R?=
+ =?us-ascii?Q?70/ROrre5+Bn8IgrOxhEcN9Qwz+DvbiOFqDeU4/b3VuYXE7EHUWWxcd2OJ9e?=
+ =?us-ascii?Q?ApWtTuUzEgT1/cbFiQwKuXLKvD/tkzVPnQfKSVSviwDeEQXKWKLSXAPODE6w?=
+ =?us-ascii?Q?KpZBF6DtiqnI3zAFdu102VFMnbsKBWUGZ90q6GuNB0kw0eJQjGG3DPEDkoN+?=
+ =?us-ascii?Q?O92E/TCyP8J5k2QjLs11rz1BwxJdFgCQsY61LrA0/zuZUJmfE487APEzV7iQ?=
+ =?us-ascii?Q?x9rDInUXs3nZdAEcXtuEoveC3AFTfs8ifZwYi3xnDgO9a6WkuSbUhDqNd2VS?=
+ =?us-ascii?Q?vlNj5TY=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:IA0PR11MB7307.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(10070799003)(38070700018); DIR:OUT;
+ SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?OjQg9GddYad1DDym1mn0PblatLihAL6bp+SF+UcOqXFkJ51gV0Go7gmJ0rqC?=
+ =?us-ascii?Q?/n6MM4XrCfylaJprbmDzhFulZFSCO5U/UZ34g6lqZUQih+WOILl+JoQunuCw?=
+ =?us-ascii?Q?c9Tt9FCsRyFzNIZjcKhUqxMNGAVT+cS9q85AEMC2vz+qrYAt0A246bXBYE91?=
+ =?us-ascii?Q?Sqe1Bg1Ztj3Yui5MJlHGt/UiCU1TI4V7+cnmx4I8vO2CNYYCqSiJAHq4/77Q?=
+ =?us-ascii?Q?jEEEncXbMbbNylFpPnDrbh/bg0uva65MEvCTOOcaZZ8KSQbiTUn1YvLjhGHv?=
+ =?us-ascii?Q?bO+JkowpCHIdp/8gk1880SmEOhQL4HPEuxXgfuW7hULL8gl8CfiuVJR0nCcK?=
+ =?us-ascii?Q?QfExsJZtCe5WrcH5H/6czZzr5ARmD4cd9bjtWRTvhML6oV4wjdkILYTQWzA6?=
+ =?us-ascii?Q?5o8UiK57KHI2urTe1isUWy+ywt/Az9hhoDhYMY1XcVjGQaOoRXU++0IJ9gmL?=
+ =?us-ascii?Q?TO9A/UZHIkPLDToCPS7axaLY7dQgtgJQa8adj8EEBJQmki9N7MkSkUjsiZ5h?=
+ =?us-ascii?Q?jV+9WVbo0pTSDTiwfxRFzE/mWaye4s41gyoIcrWfwfvsa4t4L6bTThahYA6N?=
+ =?us-ascii?Q?UgXwEuci+TV8JhcPchUUHufF19iShF9tCdXtmOl8GHh4X+zn6qkgEWUI/Bau?=
+ =?us-ascii?Q?QkXH2pYtfn7N9v4eDPW46OCpfhsV6QQWYSnI72kg6LKSxEhoDEv7S1keLlWl?=
+ =?us-ascii?Q?Dl6Gyd8mQnR5wmk5j2O2RVK4chtJePSrzhBKJ04Nw8aRwtcffIjw1EOry9ol?=
+ =?us-ascii?Q?vP4188BAnUJoeTLA/aLR17/tmTtZx0ZFbwGv8vfqjDTkw267lq5AD7bPrsqV?=
+ =?us-ascii?Q?nE/B+mYfcd4D530MEw6YwZHxDTs4Jb/02h0IW8gZ7v2Dg0hCAzfu/aMrmUWh?=
+ =?us-ascii?Q?46XQEOuhml+wkIVvFDplHIyjOp/ZDnVkwy4m88KesavB2Gmh9qyu6LRJ1/xl?=
+ =?us-ascii?Q?DwP6c8iMMqqkQoEOCSl+lITfVXUpEtMEBMRutEeuVe+QvQQizFTVpknM8/g7?=
+ =?us-ascii?Q?RqisXTfRdRcf7cemdpSiixIOt32TRu4Chh4SLKzwRkVam51z/RdRZlSZLXNo?=
+ =?us-ascii?Q?JOYJoNNt8eZTvRSB6sYxfqT6PGtgAE8HevDxiM3vhwuH6I1VFgVKXIHuSWCJ?=
+ =?us-ascii?Q?sZ2BEDPCthdAKZcPSoPlU8JU3Wef0MFhTaDW9rWbL8ZF6Deo083DX6RBzd2o?=
+ =?us-ascii?Q?Y/DMU/Edlx+4TsZoHgPN/EUF7NCXV4q3HNkT41wQGe6W1M0KS0o4GidAb3Dy?=
+ =?us-ascii?Q?PHrsafkv27Tt6pVUcBFXrGBXZFRDImZEZfCHv49iwJh7g257V5h3Wa22XEWU?=
+ =?us-ascii?Q?TwKKslI8HFXok55TbepJ7hwG8My2fVP4R4aP76NrRJq2kzrgVEzdSSqelEAB?=
+ =?us-ascii?Q?9RKMz9U24kFdZBrd92mp10ktQzS23dXutTHxbLzkT30NnL3KZRzI8NjFY3VY?=
+ =?us-ascii?Q?21kFG6OIJ3XlphaqAlKopWtDwEfZg8vZyn0LootnzYJME9uquzBXcg7qbspI?=
+ =?us-ascii?Q?PeM3yxhFXimwiuGJ+b08RBLgAgMV1+kKRy+yCDVRycpEtwrPcF6dDQqZrjEj?=
+ =?us-ascii?Q?BsgTHAbtxZrPZRot4UVXI0skRp9yTel+5MPxk08JroNlJhRu/lsY4LC4fw6A?=
+ =?us-ascii?Q?48HZnnbGYcVOSqwLUb8Gc4+LGwCMUMhVqU19aOxBwDGy?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241118075315.466009-4-arun.r.murthy@intel.com>
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: IA0PR11MB7307.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 301cd38e-23fe-4ec8-3146-08dd0aada033
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Nov 2024 04:24:58.9791 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: NHJh48DJVVvOZKGP3ARty8qgK2WKNFm3GgMyfNq7pcRuJJP+gfZxgw/6ZsU71M1zIeA8t+7y5lHGZV9A+uNgQg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6932
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,206 +186,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Arun,
+> On Thu, Nov 21, 2024 at 05:56:00PM +0530, Arun R Murthy wrote:
+> > CRTC properties have been added for enable/disable histogram, reading
+> > the histogram data and writing the IET data.
+> > "HISTOGRAM_EN" is the crtc property to enable/disable the global
+> > histogram and takes a value 0/1 accordingly.
+> > "Histogram" is a crtc property to read the binary histogram data.
+> > "Global IET" is a crtc property to write the IET binary LUT data.
+> >
+> > v2: Read the histogram blob data before sending uevent (Jani)
+> > v3: use drm_property_replace_blob_from_id (Vandita)
+> >     Add substruct for histogram in intel_crtc_state (Jani)
+> > v4:  Rebased after addressing comments on patch 1
+> > v5: histogram check with old/new crtc_state (Suraj)
+> > v6: Rebase
+> >
+> > Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_atomic.c   |   5 +
+> >  drivers/gpu/drm/i915/display/intel_crtc.c     | 166 +++++++++++++++++-
+> >  drivers/gpu/drm/i915/display/intel_crtc.h     |   5 +
+> >  drivers/gpu/drm/i915/display/intel_display.c  |  16 ++
+> >  .../drm/i915/display/intel_display_types.h    |  13 ++
+> >  .../gpu/drm/i915/display/intel_histogram.c    |   6 +
+> >  6 files changed, 210 insertions(+), 1 deletion(-)
+>=20
+> Please provide the documentation for these properties: binary format, etc=
+. Also,
+> ideally such a properties should be defined in a vendor-neutral way, so t=
+hat
+> other drivers also can implement support for similar functionality.
+>=20
+I assumed that there are no other users of this histogram. Hence had it int=
+ernal to i915 driver.
+Will move these properties to drm-crtc, making it useable by other users as=
+ well.
 
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on drm-intel/for-linux-next-fixes]
-[also build test WARNING on v6.12 next-20241121]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Arun-R-Murthy/drm-plane-Expose-function-to-create-format-modifier-blob/20241121-105652
-base:   git://anongit.freedesktop.org/drm-intel for-linux-next-fixes
-patch link:    https://lore.kernel.org/r/20241118075315.466009-4-arun.r.murthy%40intel.com
-patch subject: [PATCHv2 3/3] drm/i915/display: Populate list of async supported formats/modifiers
-config: x86_64-randconfig-103-20241121 (https://download.01.org/0day-ci/archive/20241122/202411221109.nlXeWx72-lkp@intel.com/config)
-compiler: gcc-11 (Debian 11.3.0-12) 11.3.0
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202411221109.nlXeWx72-lkp@intel.com/
-
-cocci warnings: (new ones prefixed by >>)
->> drivers/gpu/drm/i915/display/skl_universal_plane.c:2626:26-32: ERROR: application of sizeof to pointer
-
-vim +2626 drivers/gpu/drm/i915/display/skl_universal_plane.c
-
-  2510	
-  2511	struct intel_plane *
-  2512	skl_universal_plane_create(struct drm_i915_private *dev_priv,
-  2513				   enum pipe pipe, enum plane_id plane_id)
-  2514	{
-  2515		const struct drm_plane_funcs *plane_funcs;
-  2516		struct intel_plane *plane;
-  2517		enum drm_plane_type plane_type;
-  2518		unsigned int supported_rotations;
-  2519		unsigned int supported_csc;
-  2520		const u64 *modifiers;
-  2521		u64 *async_modifiers;
-  2522		const u32 *formats;
-  2523		int num_formats;
-  2524		int ret;
-  2525	
-  2526		plane = intel_plane_alloc();
-  2527		if (IS_ERR(plane))
-  2528			return plane;
-  2529	
-  2530		plane->pipe = pipe;
-  2531		plane->id = plane_id;
-  2532		plane->frontbuffer_bit = INTEL_FRONTBUFFER(pipe, plane_id);
-  2533	
-  2534		intel_fbc_add_plane(skl_plane_fbc(dev_priv, pipe, plane_id), plane);
-  2535	
-  2536		if (DISPLAY_VER(dev_priv) >= 11) {
-  2537			plane->min_width = icl_plane_min_width;
-  2538			if (icl_is_hdr_plane(dev_priv, plane_id))
-  2539				plane->max_width = icl_hdr_plane_max_width;
-  2540			else
-  2541				plane->max_width = icl_sdr_plane_max_width;
-  2542			plane->max_height = icl_plane_max_height;
-  2543			plane->min_cdclk = icl_plane_min_cdclk;
-  2544		} else if (DISPLAY_VER(dev_priv) >= 10) {
-  2545			plane->max_width = glk_plane_max_width;
-  2546			plane->max_height = skl_plane_max_height;
-  2547			plane->min_cdclk = glk_plane_min_cdclk;
-  2548		} else {
-  2549			plane->max_width = skl_plane_max_width;
-  2550			plane->max_height = skl_plane_max_height;
-  2551			plane->min_cdclk = skl_plane_min_cdclk;
-  2552		}
-  2553	
-  2554		if (DISPLAY_VER(dev_priv) >= 13)
-  2555			plane->max_stride = adl_plane_max_stride;
-  2556		else
-  2557			plane->max_stride = skl_plane_max_stride;
-  2558	
-  2559		if (DISPLAY_VER(dev_priv) >= 12)
-  2560			plane->min_alignment = tgl_plane_min_alignment;
-  2561		else
-  2562			plane->min_alignment = skl_plane_min_alignment;
-  2563	
-  2564		if (DISPLAY_VER(dev_priv) >= 11) {
-  2565			plane->update_noarm = icl_plane_update_noarm;
-  2566			plane->update_arm = icl_plane_update_arm;
-  2567			plane->disable_arm = icl_plane_disable_arm;
-  2568		} else {
-  2569			plane->update_noarm = skl_plane_update_noarm;
-  2570			plane->update_arm = skl_plane_update_arm;
-  2571			plane->disable_arm = skl_plane_disable_arm;
-  2572		}
-  2573		plane->get_hw_state = skl_plane_get_hw_state;
-  2574		plane->check_plane = skl_plane_check;
-  2575	
-  2576		if (plane_id == PLANE_1) {
-  2577			plane->need_async_flip_toggle_wa = IS_DISPLAY_VER(dev_priv, 9, 10);
-  2578			plane->async_flip = skl_plane_async_flip;
-  2579			plane->enable_flip_done = skl_plane_enable_flip_done;
-  2580			plane->disable_flip_done = skl_plane_disable_flip_done;
-  2581		}
-  2582	
-  2583		if (DISPLAY_VER(dev_priv) >= 11)
-  2584			formats = icl_get_plane_formats(dev_priv, pipe,
-  2585							plane_id, &num_formats);
-  2586		else if (DISPLAY_VER(dev_priv) >= 10)
-  2587			formats = glk_get_plane_formats(dev_priv, pipe,
-  2588							plane_id, &num_formats);
-  2589		else
-  2590			formats = skl_get_plane_formats(dev_priv, pipe,
-  2591							plane_id, &num_formats);
-  2592	
-  2593		if (DISPLAY_VER(dev_priv) >= 12)
-  2594			plane_funcs = &gen12_plane_funcs;
-  2595		else
-  2596			plane_funcs = &skl_plane_funcs;
-  2597	
-  2598		if (plane_id == PLANE_1)
-  2599			plane_type = DRM_PLANE_TYPE_PRIMARY;
-  2600		else
-  2601			plane_type = DRM_PLANE_TYPE_OVERLAY;
-  2602	
-  2603		modifiers = intel_fb_plane_get_modifiers(dev_priv,
-  2604							 skl_get_plane_caps(dev_priv, pipe, plane_id));
-  2605	
-  2606		ret = drm_universal_plane_init(&dev_priv->drm, &plane->base,
-  2607					       0, plane_funcs,
-  2608					       formats, num_formats, modifiers,
-  2609					       plane_type,
-  2610					       "plane %d%c", plane_id + 1,
-  2611					       pipe_name(pipe));
-  2612	
-  2613		kfree(modifiers);
-  2614	
-  2615		if (ret)
-  2616			goto fail;
-  2617	
-  2618		if (DISPLAY_VER(dev_priv) >= 12)
-  2619			async_modifiers = tgl_asyn_modifiers;
-  2620		else if (DISPLAY_VER(dev_priv) == 11)
-  2621			async_modifiers = icl_async_modifiers;
-  2622		else
-  2623			async_modifiers = skl_async_modifiers;
-  2624	
-  2625		drm_plane_create_format_blob(&dev_priv->drm, &plane->base,
-> 2626					     async_modifiers, sizeof(async_modifiers),
-  2627					     intel_async_formats,
-  2628					     sizeof(intel_async_formats), true);
-  2629	
-  2630		if (DISPLAY_VER(dev_priv) >= 13)
-  2631			supported_rotations = DRM_MODE_ROTATE_0 | DRM_MODE_ROTATE_180;
-  2632		else
-  2633			supported_rotations =
-  2634				DRM_MODE_ROTATE_0 | DRM_MODE_ROTATE_90 |
-  2635				DRM_MODE_ROTATE_180 | DRM_MODE_ROTATE_270;
-  2636	
-  2637		if (DISPLAY_VER(dev_priv) >= 11)
-  2638			supported_rotations |= DRM_MODE_REFLECT_X;
-  2639	
-  2640		drm_plane_create_rotation_property(&plane->base,
-  2641						   DRM_MODE_ROTATE_0,
-  2642						   supported_rotations);
-  2643	
-  2644		supported_csc = BIT(DRM_COLOR_YCBCR_BT601) | BIT(DRM_COLOR_YCBCR_BT709);
-  2645	
-  2646		if (DISPLAY_VER(dev_priv) >= 10)
-  2647			supported_csc |= BIT(DRM_COLOR_YCBCR_BT2020);
-  2648	
-  2649		drm_plane_create_color_properties(&plane->base,
-  2650						  supported_csc,
-  2651						  BIT(DRM_COLOR_YCBCR_LIMITED_RANGE) |
-  2652						  BIT(DRM_COLOR_YCBCR_FULL_RANGE),
-  2653						  DRM_COLOR_YCBCR_BT709,
-  2654						  DRM_COLOR_YCBCR_LIMITED_RANGE);
-  2655	
-  2656		drm_plane_create_alpha_property(&plane->base);
-  2657		drm_plane_create_blend_mode_property(&plane->base,
-  2658						     BIT(DRM_MODE_BLEND_PIXEL_NONE) |
-  2659						     BIT(DRM_MODE_BLEND_PREMULTI) |
-  2660						     BIT(DRM_MODE_BLEND_COVERAGE));
-  2661	
-  2662		drm_plane_create_zpos_immutable_property(&plane->base, plane_id);
-  2663	
-  2664		if (DISPLAY_VER(dev_priv) >= 12)
-  2665			drm_plane_enable_fb_damage_clips(&plane->base);
-  2666	
-  2667		if (DISPLAY_VER(dev_priv) >= 11)
-  2668			drm_plane_create_scaling_filter_property(&plane->base,
-  2669							BIT(DRM_SCALING_FILTER_DEFAULT) |
-  2670							BIT(DRM_SCALING_FILTER_NEAREST_NEIGHBOR));
-  2671	
-  2672		intel_plane_helper_add(plane);
-  2673	
-  2674		return plane;
-  2675	
-  2676	fail:
-  2677		intel_plane_free(plane);
-  2678	
-  2679		return ERR_PTR(ret);
-  2680	}
-  2681	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Thanks and Regards,
+Arun R Murthy
+--------------------
