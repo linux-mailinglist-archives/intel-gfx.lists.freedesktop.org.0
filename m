@@ -2,69 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E21E89D61AF
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Nov 2024 17:02:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A534A9D644B
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Nov 2024 19:46:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B85510EBE0;
-	Fri, 22 Nov 2024 16:02:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB1F510E1D4;
+	Fri, 22 Nov 2024 18:46:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MnxVOmUh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Xt9OeBVu";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1A5F10E301;
- Fri, 22 Nov 2024 16:02:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F12710E1D4;
+ Fri, 22 Nov 2024 18:46:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732291375; x=1763827375;
+ t=1732301160; x=1763837160;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=QRr37RA14akjZg3hT7KJvo3SRw4lq5ZSzKxt1VhKt3c=;
- b=MnxVOmUhJtx2tmsCjh9cBn1FVXZJMveTpLp+abS119EEbEDqWfj+PlzQ
- gev+gAaNO+xJHXd8OORFnNzzMwNwkEVeXzmCdQOo4dzqc8T943i5c/MLt
- H52ngeMXtAoU+GwtmBczCpfLl2v2nX28Fxwy54k3n/6PyoKv2VB6b8lZv
- P6Cf1lDRmfaA+Fnkzc3QF/Z7AXHoHvHqf1Wj4ZbmiH6396P7LmWEFzaAS
- Dll3ORmcFP4FvSFO9TrbvMp0z8H7RI1k0eeFqxjQtq5s0c7ONRSPM4Z/T
- piAcnNeIC52c8ft66xWEliJQznUcsCTgmqvZTBmzRfBABvK0U2gFuv5cL g==;
-X-CSE-ConnectionGUID: OzkhO8e6SQmBT4hITFuGhg==
-X-CSE-MsgGUID: TaOIuaiuQKm/BKbqTEPqHg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11264"; a="32602270"
-X-IronPort-AV: E=Sophos;i="6.12,176,1728975600"; d="scan'208";a="32602270"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2024 08:02:55 -0800
-X-CSE-ConnectionGUID: 6L6QQQs1R0Ow/CMsbIOrnw==
-X-CSE-MsgGUID: uANIV3POT0usWdgqIyN+mg==
+ bh=pL+wbSYtCQG9arTxEVhGuaT0bG8Y+GMbIVvevnJOhL0=;
+ b=Xt9OeBVuyW4GFwxJ2i/KDzdUlZDN93Xu+0YmkcpPh3FAZPgUekEBUr56
+ 45P+jXDoDj60lbXPdgNu1W9W4anSo9+4iI5nG5H4p7WkWWdT+QuSXT+ei
+ KGbh5t076nQ6t77SJxsfHLoPsu7MJVltPJh/Df/ncXPooKR12Gcd2V7IU
+ 58FponS4wYAhvfZcaynJjukwEc67I1n6pUgAu5aiS4O7WNa7z0BEQsCrM
+ OlV/9j6Uc95X5safeUlNIcPB6+MnLiwR3gsSJs3V1vvsHHFgO5FjOLfZ4
+ YGUzMStiPoHD5qmSldlNreUz25yTY5exI/WuK1mTVc0VqqThGqWBLGLk/ A==;
+X-CSE-ConnectionGUID: h4bhoqNPRDGsQdqT/OZr1A==
+X-CSE-MsgGUID: A14Yihu7QdqcuLGgVm1EYw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11264"; a="32209594"
+X-IronPort-AV: E=Sophos;i="6.12,176,1728975600"; d="scan'208";a="32209594"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2024 10:46:00 -0800
+X-CSE-ConnectionGUID: hBbLJjsJSgmDoXTM78+gWw==
+X-CSE-MsgGUID: dOO7aH4xTwm6AtUfd9l2dw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,176,1728975600"; d="scan'208";a="90251722"
-Received: from black.fi.intel.com ([10.237.72.28])
- by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2024 08:02:50 -0800
-Date: Fri, 22 Nov 2024 18:02:47 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Cc: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>,
- airlied@gmail.com, simona@ffwll.ch, lucas.demarchi@intel.com,
- rodrigo.vivi@intel.com, jani.nikula@linux.intel.com,
- andriy.shevchenko@linux.intel.com, lina@asahilina.net,
- michal.wajdeczko@intel.com, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- himal.prasad.ghimiray@intel.com, anshuman.gupta@intel.com,
- alexander.deucher@amd.com, andrealmeid@igalia.com,
- amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com
-Subject: Re: [PATCH v9 1/4] drm: Introduce device wedged event
-Message-ID: <Z0CrJ3C3wJqtySLp@black.fi.intel.com>
-References: <20241115050733.806934-1-raag.jadav@intel.com>
- <20241115050733.806934-2-raag.jadav@intel.com>
- <8c7292c3-8459-4ddc-a899-b56b1d93076f@linux.intel.com>
- <Z0Atv3Zw1d0N8hvv@black.fi.intel.com>
- <3644d364-6021-46fe-b3a2-689821551984@amd.com>
+X-IronPort-AV: E=Sophos;i="6.12,176,1728975600"; d="scan'208";a="90829338"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 22 Nov 2024 10:45:58 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 22 Nov 2024 20:45:57 +0200
+Date: Fri, 22 Nov 2024 20:45:57 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Nemesa Garg <nemesa.garg@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 1/6] drm/i915/display: Disable joiner and pfit
+Message-ID: <Z0DRZZ91gyhHqVSq@intel.com>
+References: <20241120053838.3794419-1-nemesa.garg@intel.com>
+ <20241120053838.3794419-2-nemesa.garg@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <3644d364-6021-46fe-b3a2-689821551984@amd.com>
+In-Reply-To: <20241120053838.3794419-2-nemesa.garg@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,53 +71,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Nov 22, 2024 at 11:09:32AM +0100, Christian König wrote:
-> Am 22.11.24 um 08:07 schrieb Raag Jadav:
-> > On Mon, Nov 18, 2024 at 08:26:37PM +0530, Aravind Iddamsetty wrote:
-> > > On 15/11/24 10:37, Raag Jadav wrote:
-> > > > Introduce device wedged event, which notifies userspace of 'wedged'
-> > > > (hanged/unusable) state of the DRM device through a uevent. This is
-> > > > useful especially in cases where the device is no longer operating as
-> > > > expected and has become unrecoverable from driver context. Purpose of
-> > > > this implementation is to provide drivers a generic way to recover with
-> > > > the help of userspace intervention without taking any drastic measures
-> > > > in the driver.
-> > > > 
-> > > > A 'wedged' device is basically a dead device that needs attention. The
-> > > > uevent is the notification that is sent to userspace along with a hint
-> > > > about what could possibly be attempted to recover the device and bring
-> > > > it back to usable state. Different drivers may have different ideas of
-> > > > a 'wedged' device depending on their hardware implementation, and hence
-> > > > the vendor agnostic nature of the event. It is up to the drivers to
-> > > > decide when they see the need for recovery and how they want to recover
-> > > > from the available methods.
-> > > > 
-> > > > Prerequisites
-> > > > -------------
-> > > > 
-> > > > The driver, before opting for recovery, needs to make sure that the
-> > > > 'wedged' device doesn't harm the system as a whole by taking care of the
-> > > > prerequisites. Necessary actions must include disabling DMA to system
-> > > > memory as well as any communication channels with other devices. Further,
-> > > > the driver must ensure that all dma_fences are signalled and any device
-> > > > state that the core kernel might depend on are cleaned up. Once the event
-> > > > is sent, the device must be kept in 'wedged' state until the recovery is
-> > > > performed. New accesses to the device (IOCTLs) should be blocked,
-> > > > preferably with an error code that resembles the type of failure the
-> > > > device has encountered. This will signify the reason for wegeding which
-> > > > can be reported to the application if needed.
-> > > should we even drop the mmaps we created?
-> > Whatever is required for a clean recovery, yes.
-> > 
-> > Although how would this play out? Do we risk loosing display?
-> > Or any other possible side-effects?
+On Wed, Nov 20, 2024 at 11:08:33AM +0530, Nemesa Garg wrote:
+> Disable panel fitting if joiner is enabled as
+> backporting of joiner part is required in case
+> of pfit.
 > 
-> Before sending a wedge event all DMA transfers of the device have to be
-> blocked.
+> Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_pfit.c | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
-> So yes, all display, mmap() and file descriptor connections you had with the
-> device would need to be re-created.
+> diff --git a/drivers/gpu/drm/i915/display/intel_pfit.c b/drivers/gpu/drm/i915/display/intel_pfit.c
+> index 50861aa78a89..e214e19f8174 100644
+> --- a/drivers/gpu/drm/i915/display/intel_pfit.c
+> +++ b/drivers/gpu/drm/i915/display/intel_pfit.c
+> @@ -187,6 +187,9 @@ static int pch_panel_fitting(struct intel_crtc_state *crtc_state,
+>  	int pipe_src_h = drm_rect_height(&crtc_state->pipe_src);
+>  	int ret, x, y, width, height;
+>  
+> +	if (crtc_state->joiner_pipes)
+> +		return 0;
+> +
 
-Does it mean we'd have to rely on userspace to unmap()?
+This needs to return an error, and it needs to be checked after we've
+determined that pfit is in fact needed.
 
-Raag
+>  	/* Native modes don't need fitting */
+>  	if (adjusted_mode->crtc_hdisplay == pipe_src_w &&
+>  	    adjusted_mode->crtc_vdisplay == pipe_src_h &&
+> -- 
+> 2.25.1
+
+-- 
+Ville Syrjälä
+Intel
