@@ -2,29 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B112C9D60E9
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Nov 2024 15:55:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E21E89D61AF
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Nov 2024 17:02:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B0FD10E16A;
-	Fri, 22 Nov 2024 14:55:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6B85510EBE0;
+	Fri, 22 Nov 2024 16:02:56 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MnxVOmUh";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C28E10E16A;
- Fri, 22 Nov 2024 14:55:10 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1A5F10E301;
+ Fri, 22 Nov 2024 16:02:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1732291375; x=1763827375;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=QRr37RA14akjZg3hT7KJvo3SRw4lq5ZSzKxt1VhKt3c=;
+ b=MnxVOmUhJtx2tmsCjh9cBn1FVXZJMveTpLp+abS119EEbEDqWfj+PlzQ
+ gev+gAaNO+xJHXd8OORFnNzzMwNwkEVeXzmCdQOo4dzqc8T943i5c/MLt
+ H52ngeMXtAoU+GwtmBczCpfLl2v2nX28Fxwy54k3n/6PyoKv2VB6b8lZv
+ P6Cf1lDRmfaA+Fnkzc3QF/Z7AXHoHvHqf1Wj4ZbmiH6396P7LmWEFzaAS
+ Dll3ORmcFP4FvSFO9TrbvMp0z8H7RI1k0eeFqxjQtq5s0c7ONRSPM4Z/T
+ piAcnNeIC52c8ft66xWEliJQznUcsCTgmqvZTBmzRfBABvK0U2gFuv5cL g==;
+X-CSE-ConnectionGUID: OzkhO8e6SQmBT4hITFuGhg==
+X-CSE-MsgGUID: TaOIuaiuQKm/BKbqTEPqHg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11264"; a="32602270"
+X-IronPort-AV: E=Sophos;i="6.12,176,1728975600"; d="scan'208";a="32602270"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2024 08:02:55 -0800
+X-CSE-ConnectionGUID: 6L6QQQs1R0Ow/CMsbIOrnw==
+X-CSE-MsgGUID: uANIV3POT0usWdgqIyN+mg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,176,1728975600"; d="scan'208";a="90251722"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2024 08:02:50 -0800
+Date: Fri, 22 Nov 2024 18:02:47 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Cc: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>,
+ airlied@gmail.com, simona@ffwll.ch, lucas.demarchi@intel.com,
+ rodrigo.vivi@intel.com, jani.nikula@linux.intel.com,
+ andriy.shevchenko@linux.intel.com, lina@asahilina.net,
+ michal.wajdeczko@intel.com, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ himal.prasad.ghimiray@intel.com, anshuman.gupta@intel.com,
+ alexander.deucher@amd.com, andrealmeid@igalia.com,
+ amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com
+Subject: Re: [PATCH v9 1/4] drm: Introduce device wedged event
+Message-ID: <Z0CrJ3C3wJqtySLp@black.fi.intel.com>
+References: <20241115050733.806934-1-raag.jadav@intel.com>
+ <20241115050733.806934-2-raag.jadav@intel.com>
+ <8c7292c3-8459-4ddc-a899-b56b1d93076f@linux.intel.com>
+ <Z0Atv3Zw1d0N8hvv@black.fi.intel.com>
+ <3644d364-6021-46fe-b3a2-689821551984@amd.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_drm/i915/dpt=3A_Restrict_?=
- =?utf-8?q?shrinker_to_DPT_objects_not_mapped?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Vidya Srinivas" <vidya.srinivas@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 22 Nov 2024 14:55:10 -0000
-Message-ID: <173228731039.1728786.8240680649909770409@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241122110741.405941-1-vidya.srinivas@intel.com>
-In-Reply-To: <20241122110741.405941-1-vidya.srinivas@intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <3644d364-6021-46fe-b3a2-689821551984@amd.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,111 +77,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, Nov 22, 2024 at 11:09:32AM +0100, Christian König wrote:
+> Am 22.11.24 um 08:07 schrieb Raag Jadav:
+> > On Mon, Nov 18, 2024 at 08:26:37PM +0530, Aravind Iddamsetty wrote:
+> > > On 15/11/24 10:37, Raag Jadav wrote:
+> > > > Introduce device wedged event, which notifies userspace of 'wedged'
+> > > > (hanged/unusable) state of the DRM device through a uevent. This is
+> > > > useful especially in cases where the device is no longer operating as
+> > > > expected and has become unrecoverable from driver context. Purpose of
+> > > > this implementation is to provide drivers a generic way to recover with
+> > > > the help of userspace intervention without taking any drastic measures
+> > > > in the driver.
+> > > > 
+> > > > A 'wedged' device is basically a dead device that needs attention. The
+> > > > uevent is the notification that is sent to userspace along with a hint
+> > > > about what could possibly be attempted to recover the device and bring
+> > > > it back to usable state. Different drivers may have different ideas of
+> > > > a 'wedged' device depending on their hardware implementation, and hence
+> > > > the vendor agnostic nature of the event. It is up to the drivers to
+> > > > decide when they see the need for recovery and how they want to recover
+> > > > from the available methods.
+> > > > 
+> > > > Prerequisites
+> > > > -------------
+> > > > 
+> > > > The driver, before opting for recovery, needs to make sure that the
+> > > > 'wedged' device doesn't harm the system as a whole by taking care of the
+> > > > prerequisites. Necessary actions must include disabling DMA to system
+> > > > memory as well as any communication channels with other devices. Further,
+> > > > the driver must ensure that all dma_fences are signalled and any device
+> > > > state that the core kernel might depend on are cleaned up. Once the event
+> > > > is sent, the device must be kept in 'wedged' state until the recovery is
+> > > > performed. New accesses to the device (IOCTLs) should be blocked,
+> > > > preferably with an error code that resembles the type of failure the
+> > > > device has encountered. This will signify the reason for wegeding which
+> > > > can be reported to the application if needed.
+> > > should we even drop the mmaps we created?
+> > Whatever is required for a clean recovery, yes.
+> > 
+> > Although how would this play out? Do we risk loosing display?
+> > Or any other possible side-effects?
+> 
+> Before sending a wedge event all DMA transfers of the device have to be
+> blocked.
+> 
+> So yes, all display, mmap() and file descriptor connections you had with the
+> device would need to be re-created.
 
-Series: drm/i915/dpt: Restrict shrinker to DPT objects not mapped
-URL   : https://patchwork.freedesktop.org/series/141695/
-State : failure
+Does it mean we'd have to rely on userspace to unmap()?
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_15731 -> Patchwork_141695v1
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_141695v1 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_141695v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141695v1/index.html
-
-Participating hosts (45 -> 43)
-------------------------------
-
-  Missing    (2): bat-adlp-11 fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_141695v1:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live:
-    - bat-mtlp-6:         [PASS][1] -> [ABORT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15731/bat-mtlp-6/igt@i915_selftest@live.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141695v1/bat-mtlp-6/igt@i915_selftest@live.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_141695v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arls-5:         [PASS][3] -> [ABORT][4] ([i915#12061]) +1 other test abort
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15731/bat-arls-5/igt@i915_selftest@live@workarounds.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141695v1/bat-arls-5/igt@i915_selftest@live@workarounds.html
-    - bat-mtlp-6:         [PASS][5] -> [ABORT][6] ([i915#12061])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15731/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141695v1/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_chamelium_frames@dp-crc-fast:
-    - bat-dg2-13:         [PASS][7] -> [FAIL][8] ([i915#12440])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15731/bat-dg2-13/igt@kms_chamelium_frames@dp-crc-fast.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141695v1/bat-dg2-13/igt@kms_chamelium_frames@dp-crc-fast.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - bat-dg1-7:          [FAIL][9] ([i915#12903]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15731/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141695v1/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
-
-  
-#### Warnings ####
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:
-    - fi-cfl-8109u:       [DMESG-WARN][11] ([i915#11621] / [i915#1982]) -> [DMESG-WARN][12] ([i915#11621])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15731/fi-cfl-8109u/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141695v1/fi-cfl-8109u/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-
-  
-  [i915#11621]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11621
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12440]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12440
-  [i915#12903]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12903
-  [i915#1982]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15731 -> Patchwork_141695v1
-
-  CI-20190529: 20190529
-  CI_DRM_15731: a381faddbfc974e7bd57efe953a738415afccd6a @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8122: 8122
-  Patchwork_141695v1: a381faddbfc974e7bd57efe953a738415afccd6a @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141695v1/index.html
+Raag
