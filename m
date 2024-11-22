@@ -2,182 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD2509D56C5
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Nov 2024 01:37:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8019C9D58C7
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Nov 2024 05:03:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20A3810EA90;
-	Fri, 22 Nov 2024 00:37:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1664610E20C;
+	Fri, 22 Nov 2024 04:03:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Sar/1tmM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LrTv4jNt";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E02AC10EA90
- for <intel-gfx@lists.freedesktop.org>; Fri, 22 Nov 2024 00:37:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7EFA610E20C;
+ Fri, 22 Nov 2024 04:03:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732235862; x=1763771862;
- h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=JGBR9C5wOwb8kwM/JvxzNPLT8r6GRM9RBwhuXj5PVQI=;
- b=Sar/1tmM+ZAqDGY869k+ZYKKcx2bqN3hVXQT3UhFmwcy3gYVazjSY78/
- swdA4gVp3Nc8MBZGKfJ++0sixyhjXkzGWwUvjJuuoOGklTbdfqNlNcN4d
- QZu19ooeGqHxYaQJaj7Io8nURWXvb5lS8R3uEfUP6MmAhBqfo+l3N/3RR
- FFmVQ5yCWJcYnV2Ev8J5eVvQNiuBIsmPtUzEiB149LJl+wH8itleCukH5
- qweKM+yKOEv8G3G3Wwm9GR74Ih5mUV7sOqBSKZntx0n0jLy9D+FKAoD4x
- OCHcvoSc8fZ9cAFIx8ly9houdaOuj9c88jOOUCNS68YolQTODVbTcPlku g==;
-X-CSE-ConnectionGUID: EOc7YdRcQ1axKUD6aksCtw==
-X-CSE-MsgGUID: w3Cwf+yRQF+oXKqxtY42gg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11263"; a="43442326"
-X-IronPort-AV: E=Sophos;i="6.12,174,1728975600"; d="scan'208";a="43442326"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2024 16:37:42 -0800
-X-CSE-ConnectionGUID: 7MisQ7aXRw63Ja3NIxUCHg==
-X-CSE-MsgGUID: BLdCWa7aTaqVTygDT+OZBg==
+ t=1732248222; x=1763784222;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=p8RrRIoEC76MiLWzvgZDPtwyE+MVK50HaVjwQaAWoJM=;
+ b=LrTv4jNtx7ZNXWhP8rSYgR+Tu5Ed9DDnLoky9fhd5pH4SUw8TWd6g4FO
+ 9C7chRmhr2hzLxsJZGiLrhLKEf8k2Y2Mf1J+9rw975i5LI4jHN0Gu6vu9
+ MzPwlyOKsdkiOhOvak4Wd7jYhcWcXDsPlws53aYP2n+qX5P8dXDKMr9Qv
+ dfZBzlB7aUM72llMPzciVxo3npkcLxv8E8LJ/bYJCHW94VGmJwpaLpGeg
+ cKO9r7oBVsd5EdGU2Ds3a1QEDq2yWQX7naQvgBv+VUJ0m41DIFKgMj1Zt
+ BR//sDamntRx3MNfqdmV1+T485RYCghFZFjhNZ28h99PnD+W5kTv0CnmM g==;
+X-CSE-ConnectionGUID: K4u5bSVqQ820Q1MHV0BNXw==
+X-CSE-MsgGUID: 4cu78uP+S964f7nj7XoA+w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11263"; a="31781298"
+X-IronPort-AV: E=Sophos;i="6.12,174,1728975600"; d="scan'208";a="31781298"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2024 20:03:42 -0800
+X-CSE-ConnectionGUID: 2qHIMj6/TR6T7aqaFuwAsQ==
+X-CSE-MsgGUID: PMOODfGARu2ll9GU0VzFRQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="95456432"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orviesa003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 21 Nov 2024 16:37:42 -0800
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Thu, 21 Nov 2024 16:37:41 -0800
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Thu, 21 Nov 2024 16:37:41 -0800
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.177)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Thu, 21 Nov 2024 16:37:40 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=rM3vVNhlvCo+KZOvVhWsJ9AbBIIO02YvURLmaASV8NeMOGywyw+QUp9thvLNVDPW8ucN2il7a1CsAgKX2GSTSTY/8AAWS+fn2jBW30sF/4JVqBT1/OMulRAvbM7zdeR3ZQuB8NhzmF8ejUirS0ImMIP/02p+fp5ZqO6aPdp8UQ4WMB53a9/SFXrXO26R7Aa1omak6j0ezF0CqjjLnzgkMcwEsSeqcKTGHdKBr4mq6Yowot7TvwwV4/6KgSVOUTOfWstq/u75j9zJaPKpEiOSTfstot5PfgzhAdyLOq7i0jqPZCXDUUtc5I6Yvvm/hfugjGe75QxkOwREWCklMnSMPg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/Xu3uoh0n/OAmLSMKQCbJm+qV9bIwWBw0VV4TA+bHuo=;
- b=d1L5v8+1y08B35YRrLjHMI+S12kDy19vGFq8RqkCXLaDIki+5C11bEfnvP7m9q+D6LfLVoe+Gc1zHs8QzUmjBiEcWWZ8JDPcwryTPsA2hGshyKCqCW+2Gue/1mZn0E0CYDRFptss8eRhyzAT0SKyA6HtUdlSySQF0ru9cbmy1/Ok4Bq6iFiGL8KTIkcjAx0dc1l4IcpXnq+Jm9fHTvncqxNZVwq2nUjzuIWvS5CS5mvOqNsWhC2vtSpI4MHncpNxc+h4CznOyBHN4M2d94f+PPzyLlX/+QDcAH5nXIWbr/Rqv/TgFsVQbXx/+ha1eQURfA4kSSEtxyutF/jq1fM5LA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CH3PR11MB8441.namprd11.prod.outlook.com (2603:10b6:610:1bc::12)
- by SA1PR11MB7013.namprd11.prod.outlook.com (2603:10b6:806:2be::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8158.18; Fri, 22 Nov
- 2024 00:37:33 +0000
-Received: from CH3PR11MB8441.namprd11.prod.outlook.com
- ([fe80::bc66:f083:da56:8550]) by CH3PR11MB8441.namprd11.prod.outlook.com
- ([fe80::bc66:f083:da56:8550%3]) with mapi id 15.20.8158.023; Fri, 22 Nov 2024
- 00:37:33 +0000
-Message-ID: <f3974eb2-e694-4ed7-a827-dd9dc1c1c55a@intel.com>
-Date: Thu, 21 Nov 2024 16:37:31 -0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] i915/guc: Accumulate active runtime on gt reset
-To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
- <intel-gfx@lists.freedesktop.org>
-References: <20241118232223.53639-1-umesh.nerlige.ramappa@intel.com>
- <20241118232223.53639-4-umesh.nerlige.ramappa@intel.com>
-Content-Language: en-GB
-From: John Harrison <john.c.harrison@intel.com>
-In-Reply-To: <20241118232223.53639-4-umesh.nerlige.ramappa@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MW4PR04CA0355.namprd04.prod.outlook.com
- (2603:10b6:303:8a::30) To CH3PR11MB8441.namprd11.prod.outlook.com
- (2603:10b6:610:1bc::12)
+X-IronPort-AV: E=Sophos;i="6.12,174,1728975600"; d="scan'208";a="95538724"
+Received: from lkp-server01.sh.intel.com (HELO 8122d2fc1967) ([10.239.97.150])
+ by orviesa004.jf.intel.com with ESMTP; 21 Nov 2024 20:03:40 -0800
+Received: from kbuild by 8122d2fc1967 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1tEKtO-0003eV-0E;
+ Fri, 22 Nov 2024 04:03:38 +0000
+Date: Fri, 22 Nov 2024 12:02:53 +0800
+From: kernel test robot <lkp@intel.com>
+To: Arun R Murthy <arun.r.murthy@intel.com>, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: oe-kbuild-all@lists.linux.dev, Arun R Murthy <arun.r.murthy@intel.com>
+Subject: Re: [PATCHv2 3/3] drm/i915/display: Populate list of async supported
+ formats/modifiers
+Message-ID: <202411221109.nlXeWx72-lkp@intel.com>
+References: <20241118075315.466009-4-arun.r.murthy@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PR11MB8441:EE_|SA1PR11MB7013:EE_
-X-MS-Office365-Filtering-Correlation-Id: 85536391-8220-495c-3c35-08dd0a8ddae0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?dXNYdTNDWjZTUkM5dEVUdWhHZm8vNzhkdzZ4eFhHcTNVQXp0NHhPWlVnNFhh?=
- =?utf-8?B?QWEyc015eXJvT0RFYzBuS1JwTW9zMlBrOVdYdUlLT25wd0pXNFk3a2FjR20v?=
- =?utf-8?B?NEVhTkhFTUtIbjdWMDlRNWlYSGE1Rm5iUjBEc3pJZFc0bkFhaFNLUVllMXpX?=
- =?utf-8?B?OGh6L1F6cy9iTklmSHhmbHdCVjgyeDhxZFhpOEVDdW5mVUROL2htd0RBWFh6?=
- =?utf-8?B?Rm1FZEx5RUl4b3pSWHVuNFhxQnNaYlVtT2VZTzhiQUptT2lHaXh3VkgyeFl5?=
- =?utf-8?B?d0xWdUNhQWtyam93Wk9zcmdWYmNIMUpRWGVHVnpKeUlSSXVmNFpIRzFHTWJU?=
- =?utf-8?B?Uk9CYXlXRE1Md1dkcGk1WW15VW15aExvNFQxL2FTL1kvMlNza1M3b0J3Rk1l?=
- =?utf-8?B?dFdDNGxWSkhneTk5OExUYlJ5bkg3d3hWK3RMUHlRRzVUcFBvckJwQytMcTh6?=
- =?utf-8?B?bTd5WDdpRmNpb0thdkZ4c0NGRStJRlNSelZweDFVNFAyWVp2Nmt3WDYwU3Fx?=
- =?utf-8?B?YjNwZ0s1SjBGcGR6SC9yQWc3Kzg0VFlEVTV5ZGVtSEh1YnBvaXN0U3JxYjhC?=
- =?utf-8?B?QmkwVDRtMkJ5bG0zWE00UnNPMkZvbDZlcmhZYkVNZVAraGwvNEVIb2pGZCtQ?=
- =?utf-8?B?KzcyVi9xWGszank3RHFBZC8zeGpWWUtETlR3NWxjQ2lub1JJODJkbUpGcG9K?=
- =?utf-8?B?ZHhXalhPd1VZbit4T0llZXp5dS9RMyt3Y09QRUgvYWUyNUR2T1h1WVN5RmM0?=
- =?utf-8?B?REFjUllhR3hjdFAzN2VwNjFPZnFBMDVwWmljYXRMakdTUDZSdG8yY0VlRStU?=
- =?utf-8?B?VWErZDJVeDVvaXJpYUdhd2NvbkFIR3V1ZWdkVElRdWg1ZU0wZ0I5UmluQTc4?=
- =?utf-8?B?cll1UC9aK2l2VWkzWnVnelMrRlpYVkxGdXlsZ0MwcGU4dmhHb0c3QWVRQ3hj?=
- =?utf-8?B?S3BoSXBMWUdDQkFwZEV2VmIxenc1UU54TWc5L3cra1Via0xkc1h3OSt5N2V2?=
- =?utf-8?B?andsNmdCYmtTV2wzTTF5QTVWMzNPWjFiVHZrZ29xNGJjVUdvcXVxaXVQUXBC?=
- =?utf-8?B?c3UweGRWMjdvK1J3SkZiNWVsN0FmWm03c1U4RTg0Sml1Qks0Rm9SQmdYVi9J?=
- =?utf-8?B?M0R6S2M1VTcvWkNkdGQvSFRoM0U2ZzJ2b2dvM0xzbm96NVNyYU5DZTRjVDBh?=
- =?utf-8?B?M0xMdFpEaGNNS3lNbWEwODJpYjJ3TURjR2FBRThFWS9PRllHL2hicVlIelFa?=
- =?utf-8?B?bEFnQW40NEJqeFh3bC9aNTFCcE9UcG9XbGEwRDNkTmVwbzF3eXBSQ1lHZ0g1?=
- =?utf-8?B?SXBjV20wWlFqNnlzZEczdVV1NWw3ZUsvdHVnU2hUM2NnSkNSRzloQXlkQzNU?=
- =?utf-8?B?a0ZFVzFPaXBIWEswckY0ZmplcEJCeXo4Uk9uNjJ3Qk1TTUJZemZBYlhUZm1r?=
- =?utf-8?B?cG1qVlo3UUlGbnBqSHdwelc0K1JsVDlyZ2EzSFZRM2hTQnhOeWRDRkVTNWF2?=
- =?utf-8?B?RUIxa0ZYTXREaSsvczR0Qi9sU25Vc0hEb0dYTHpmK2hGQXA5OEd0MWxoSU5h?=
- =?utf-8?B?K2hCbEllSCttNXFVNEVVL056S08zL3hKR3YydVcyNEVRSVR6T3BqSTFwZHpj?=
- =?utf-8?B?MmRaM1NyUmxqQitUdm1IZU1kcDBMcXFMN2dvOWVzMjFkM2wvK0VWTngxeDZM?=
- =?utf-8?B?Mzg1OTNGRVV4VkVmQlFiMzBCR29XVUJnOVdXSTcycmFyUExuRE0veFZQN3o3?=
- =?utf-8?Q?80IJ61ias01znB/+uRMLBGGKRMp0nfTTfRFEodr?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH3PR11MB8441.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Q3VnWmtlQ09PZStEbHhQdUs0cGsvTVhydFNFNzBrZVhmcmpTNUlkVGpiZVhm?=
- =?utf-8?B?Z215eTZIaVRmN0trUHY4OHVqTTFGU1cyMndEOGc0N3dQbmdBbnJLRVBjb2dZ?=
- =?utf-8?B?d2NVZktxT1hGcFB4WFBDdGdVUld6VmhBcDhNRDNNM2xicHJjc3JpYU5DU2pj?=
- =?utf-8?B?czBkTkxONEJpYXhaT1dpbEYvUm43eTV6ck9tVHBaK0RFRTVUd3dWU1lLOXBW?=
- =?utf-8?B?MUJhNEM2MENLZUNNSlp4ZUNvdnVpbUdXWWRXQUdNVENTb2pMMDhWcjM0c0gx?=
- =?utf-8?B?WE5SMHNYNFYxaGhicmRpVW1PaUo0RjEvUWhrR2JMNVVOZnpTNkdyQ2V0dHJG?=
- =?utf-8?B?SmxpQXhwMlNlRFpqeWhLTFpzTFhidzRHNVhYRU5xN3l3a0xaSlB0VTc5Zk1x?=
- =?utf-8?B?ZGVhdUlIbVBTOTE0ZnlOTjBFbDFnN1hLZjExa1ZIYnkxa0lXN1I1TllFdFNN?=
- =?utf-8?B?WCt6OHpSQkwxYnVXcnhuS2dQOXM3SVpmTHpudWUvL0E5aUg2Mk5sbFRVZTg1?=
- =?utf-8?B?RFd6VFJzR0NidklNZXVLZW9iaTBmVWtwR0NaOFJpVWN1aS9IYW8xc08raldL?=
- =?utf-8?B?aEo2bVhWU2RJSVlOc2w3eUZPaXkvZTBScVpsMThVWkMxYzEwSEtMelhuUlJ5?=
- =?utf-8?B?VnZqdENhWE83QlgwLzBiMWw4WXk2NzNwYmxRcU1vTXpka2M3bW1CVEYxUGpj?=
- =?utf-8?B?WFdxa3dBd2ZBeGd5QzllZ0JJbkRWcDQ4ai9aKzJZVU13VWM3YTY2aHEzK01E?=
- =?utf-8?B?R1V6aStrdVh2K1RMUjM3aU52S0NRUGN1dWxQdWJ1N2d0K1hsVWJFd01pZEJU?=
- =?utf-8?B?SmJoNVFWdVNZOWZOZ2tndmtQZWxwUWdvaXZqckRybmVNbktFZUNEOGV2RlBP?=
- =?utf-8?B?N3hlb0NpTnkrbXhHTFlNV0NiSWN1Q2h2SDhIY0E4cXorTEJPVWlMUlRyZnF3?=
- =?utf-8?B?SzU2eHJkQklFRTV1RG1lTXBGUFZWNkczeXNFZGxDKy9iTkdUVXRlUGZ0c0lL?=
- =?utf-8?B?N3dQSC9HNGZDbXNDRUJOVnl4YTBvN2pRNzNmQjRFZHJwYlB1bG5NNjVXd3Fz?=
- =?utf-8?B?UXA4OWZCTWFNQnRYdVlldDlacTVGVlVwUVBwVkdLYXQ2S1U3Y1I3eFhoeG5W?=
- =?utf-8?B?UThMTHNmVlBhODRTQ1dBcFMvU1R2RDRyVFFXVWpDdENJUHR4TXRSYWc0Q0R6?=
- =?utf-8?B?YWFzWFVpQmgzMzg2ZG1iNFRtUThjRm9RNG5HeWE3bFZockJyYXl0TkttTHNN?=
- =?utf-8?B?QWMrT0NtVXBpeHhGaE1HM1J5R0lNT3o4cWgwRkhvTHlCczNrRE1ERWVYNFNa?=
- =?utf-8?B?NUJDNFJKQTZ3RzUrQ0l3SDRtbWd5M1JDcWNyU3Q4b3Zzc1dWRlk3TnJtYkMz?=
- =?utf-8?B?VFFFdlltOGlTOTZWTC9KWmErUGlKbk9NTmh0VXBFbkRTNmpJZVNqMnYxcTJj?=
- =?utf-8?B?dlB2bGxsOXA2S21hZmNldHZYaEhNVUxqZytIejRpRzdaemtuWFVMK0EremRJ?=
- =?utf-8?B?STlWMGFyNjgyendvbHVVcU02WDdKM3hKeUJWMDFTUjFpUUpSSzRQVTlxQjRr?=
- =?utf-8?B?QThmU1VDTFlXUzRpSTRwbG01QkZJbmdJOWZYY2lRRTYzVmNGRFdRbkhEL1Y0?=
- =?utf-8?B?N1pKb0l6TzQ4czAvaUREOW5XNnd4M2E5QllaVTlOYmpwZUYwMGs5eW5wcFBH?=
- =?utf-8?B?T0p6TmxnQmdRcDF4K3g5bGFtWFovdWM1QlNvOUIwNytFLzVDbGRSRE94VHhw?=
- =?utf-8?B?YlVZTTN4WWZxZ1NiWWMwMVRhMjd3VzFpRis2SUxHeDFpd1hUOWgrSkQ1bmFx?=
- =?utf-8?B?TDRQUDE3NzRyR2RRdFN4OUR3d0xKeStQWmcrcjZtd2l2RTJRb3VmeXhUTTNL?=
- =?utf-8?B?ZHZ6Q3hnZW5adnNMdS9ERnIwK2E5MFEyaW9OdkF2TTFQOW5NZjI2QU1mcUFX?=
- =?utf-8?B?VGxQZ0p4ZjltNU42TTNnZW82WDNUQ3ExWDVJZjgycXFpU3N5UTZDOUhNbWVC?=
- =?utf-8?B?ck9BMTA3K2hMWEtjN1RsTXFWYklRTFEzNW1kOFpsREFFdThMTHd2VmpUS3ZU?=
- =?utf-8?B?RnRvYXZXenFIZ1lGcDlsSUJsRUdhVUt0NXJtRHhtcGRsOFQxNFBFWXc5Z2hy?=
- =?utf-8?B?TTNZOWROU2lTcmEwTGMrUGw0UE0zT0E1ZGhOd1RKN3BESDF1NjBSMldMMGZp?=
- =?utf-8?B?a1E9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 85536391-8220-495c-3c35-08dd0a8ddae0
-X-MS-Exchange-CrossTenant-AuthSource: CH3PR11MB8441.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Nov 2024 00:37:33.6881 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: JSoQ1jhFTUbUDu//m9qcf4Ob8bEJySSRtyC0opZVk4Vrd+6GTRdx0Udo5zkEq3ruQhisLYOnd0ykz1WKJ1drT6QMWb0wbOSG5DNS5oxeOnY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB7013
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241118075315.466009-4-arun.r.murthy@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -193,51 +71,206 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 11/18/2024 15:22, Umesh Nerlige Ramappa wrote:
-> On gt reset, if a context is running, then accumulate it's active time
-> into the busyness counter since there will be no chance for the context
-> to switch out and update it's run time.
->
-> Fixes: 77cdd054dd2c ("drm/i915/pmu: Connect engine busyness stats from GuC to pmu")
-> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-> ---
->   drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 15 ++++++++++++++-
->   1 file changed, 14 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> index 56be9f385270..0c204b7f3b2b 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-> @@ -1449,8 +1449,21 @@ static void __reset_guc_busyness_stats(struct intel_guc *guc)
->   
->   	guc_update_pm_timestamp(guc, &unused);
->   	for_each_engine(engine, gt, id) {
-> +		struct intel_engine_guc_stats *stats = &engine->stats.guc;
-> +
->   		guc_update_engine_gt_clks(engine);
-> -		engine->stats.guc.prev_total = 0;
-> +
+Hi Arun,
 
-I think the comment should be here given that this is the 'if' that it 
-starts with.
-> +		if (stats->running) {
-> +			u64 clk = guc->timestamp.gt_stamp - stats->start_gt_clk;
-> +
-> +			/*
-> +			 * If resetting a running context, accumulate the active
-> +			 * time as well since there will be no context switch.
-> +			 */
-Having the comment here implies the calculation below has some kind of 
-condition, which it doesn't. Plus the comment also refers to the 
-calculation above that determines the 'active time' it mentions.
+kernel test robot noticed the following build warnings:
 
-John.
+[auto build test WARNING on drm-intel/for-linux-next-fixes]
+[also build test WARNING on v6.12 next-20241121]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-> +			stats->total_gt_clks += clk;
-> +		}
-> +		stats->prev_total = 0;
-> +		stats->running = 0;
->   	}
->   
->   	spin_unlock_irqrestore(&guc->timestamp.lock, flags);
+url:    https://github.com/intel-lab-lkp/linux/commits/Arun-R-Murthy/drm-plane-Expose-function-to-create-format-modifier-blob/20241121-105652
+base:   git://anongit.freedesktop.org/drm-intel for-linux-next-fixes
+patch link:    https://lore.kernel.org/r/20241118075315.466009-4-arun.r.murthy%40intel.com
+patch subject: [PATCHv2 3/3] drm/i915/display: Populate list of async supported formats/modifiers
+config: x86_64-randconfig-103-20241121 (https://download.01.org/0day-ci/archive/20241122/202411221109.nlXeWx72-lkp@intel.com/config)
+compiler: gcc-11 (Debian 11.3.0-12) 11.3.0
 
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202411221109.nlXeWx72-lkp@intel.com/
+
+cocci warnings: (new ones prefixed by >>)
+>> drivers/gpu/drm/i915/display/skl_universal_plane.c:2626:26-32: ERROR: application of sizeof to pointer
+
+vim +2626 drivers/gpu/drm/i915/display/skl_universal_plane.c
+
+  2510	
+  2511	struct intel_plane *
+  2512	skl_universal_plane_create(struct drm_i915_private *dev_priv,
+  2513				   enum pipe pipe, enum plane_id plane_id)
+  2514	{
+  2515		const struct drm_plane_funcs *plane_funcs;
+  2516		struct intel_plane *plane;
+  2517		enum drm_plane_type plane_type;
+  2518		unsigned int supported_rotations;
+  2519		unsigned int supported_csc;
+  2520		const u64 *modifiers;
+  2521		u64 *async_modifiers;
+  2522		const u32 *formats;
+  2523		int num_formats;
+  2524		int ret;
+  2525	
+  2526		plane = intel_plane_alloc();
+  2527		if (IS_ERR(plane))
+  2528			return plane;
+  2529	
+  2530		plane->pipe = pipe;
+  2531		plane->id = plane_id;
+  2532		plane->frontbuffer_bit = INTEL_FRONTBUFFER(pipe, plane_id);
+  2533	
+  2534		intel_fbc_add_plane(skl_plane_fbc(dev_priv, pipe, plane_id), plane);
+  2535	
+  2536		if (DISPLAY_VER(dev_priv) >= 11) {
+  2537			plane->min_width = icl_plane_min_width;
+  2538			if (icl_is_hdr_plane(dev_priv, plane_id))
+  2539				plane->max_width = icl_hdr_plane_max_width;
+  2540			else
+  2541				plane->max_width = icl_sdr_plane_max_width;
+  2542			plane->max_height = icl_plane_max_height;
+  2543			plane->min_cdclk = icl_plane_min_cdclk;
+  2544		} else if (DISPLAY_VER(dev_priv) >= 10) {
+  2545			plane->max_width = glk_plane_max_width;
+  2546			plane->max_height = skl_plane_max_height;
+  2547			plane->min_cdclk = glk_plane_min_cdclk;
+  2548		} else {
+  2549			plane->max_width = skl_plane_max_width;
+  2550			plane->max_height = skl_plane_max_height;
+  2551			plane->min_cdclk = skl_plane_min_cdclk;
+  2552		}
+  2553	
+  2554		if (DISPLAY_VER(dev_priv) >= 13)
+  2555			plane->max_stride = adl_plane_max_stride;
+  2556		else
+  2557			plane->max_stride = skl_plane_max_stride;
+  2558	
+  2559		if (DISPLAY_VER(dev_priv) >= 12)
+  2560			plane->min_alignment = tgl_plane_min_alignment;
+  2561		else
+  2562			plane->min_alignment = skl_plane_min_alignment;
+  2563	
+  2564		if (DISPLAY_VER(dev_priv) >= 11) {
+  2565			plane->update_noarm = icl_plane_update_noarm;
+  2566			plane->update_arm = icl_plane_update_arm;
+  2567			plane->disable_arm = icl_plane_disable_arm;
+  2568		} else {
+  2569			plane->update_noarm = skl_plane_update_noarm;
+  2570			plane->update_arm = skl_plane_update_arm;
+  2571			plane->disable_arm = skl_plane_disable_arm;
+  2572		}
+  2573		plane->get_hw_state = skl_plane_get_hw_state;
+  2574		plane->check_plane = skl_plane_check;
+  2575	
+  2576		if (plane_id == PLANE_1) {
+  2577			plane->need_async_flip_toggle_wa = IS_DISPLAY_VER(dev_priv, 9, 10);
+  2578			plane->async_flip = skl_plane_async_flip;
+  2579			plane->enable_flip_done = skl_plane_enable_flip_done;
+  2580			plane->disable_flip_done = skl_plane_disable_flip_done;
+  2581		}
+  2582	
+  2583		if (DISPLAY_VER(dev_priv) >= 11)
+  2584			formats = icl_get_plane_formats(dev_priv, pipe,
+  2585							plane_id, &num_formats);
+  2586		else if (DISPLAY_VER(dev_priv) >= 10)
+  2587			formats = glk_get_plane_formats(dev_priv, pipe,
+  2588							plane_id, &num_formats);
+  2589		else
+  2590			formats = skl_get_plane_formats(dev_priv, pipe,
+  2591							plane_id, &num_formats);
+  2592	
+  2593		if (DISPLAY_VER(dev_priv) >= 12)
+  2594			plane_funcs = &gen12_plane_funcs;
+  2595		else
+  2596			plane_funcs = &skl_plane_funcs;
+  2597	
+  2598		if (plane_id == PLANE_1)
+  2599			plane_type = DRM_PLANE_TYPE_PRIMARY;
+  2600		else
+  2601			plane_type = DRM_PLANE_TYPE_OVERLAY;
+  2602	
+  2603		modifiers = intel_fb_plane_get_modifiers(dev_priv,
+  2604							 skl_get_plane_caps(dev_priv, pipe, plane_id));
+  2605	
+  2606		ret = drm_universal_plane_init(&dev_priv->drm, &plane->base,
+  2607					       0, plane_funcs,
+  2608					       formats, num_formats, modifiers,
+  2609					       plane_type,
+  2610					       "plane %d%c", plane_id + 1,
+  2611					       pipe_name(pipe));
+  2612	
+  2613		kfree(modifiers);
+  2614	
+  2615		if (ret)
+  2616			goto fail;
+  2617	
+  2618		if (DISPLAY_VER(dev_priv) >= 12)
+  2619			async_modifiers = tgl_asyn_modifiers;
+  2620		else if (DISPLAY_VER(dev_priv) == 11)
+  2621			async_modifiers = icl_async_modifiers;
+  2622		else
+  2623			async_modifiers = skl_async_modifiers;
+  2624	
+  2625		drm_plane_create_format_blob(&dev_priv->drm, &plane->base,
+> 2626					     async_modifiers, sizeof(async_modifiers),
+  2627					     intel_async_formats,
+  2628					     sizeof(intel_async_formats), true);
+  2629	
+  2630		if (DISPLAY_VER(dev_priv) >= 13)
+  2631			supported_rotations = DRM_MODE_ROTATE_0 | DRM_MODE_ROTATE_180;
+  2632		else
+  2633			supported_rotations =
+  2634				DRM_MODE_ROTATE_0 | DRM_MODE_ROTATE_90 |
+  2635				DRM_MODE_ROTATE_180 | DRM_MODE_ROTATE_270;
+  2636	
+  2637		if (DISPLAY_VER(dev_priv) >= 11)
+  2638			supported_rotations |= DRM_MODE_REFLECT_X;
+  2639	
+  2640		drm_plane_create_rotation_property(&plane->base,
+  2641						   DRM_MODE_ROTATE_0,
+  2642						   supported_rotations);
+  2643	
+  2644		supported_csc = BIT(DRM_COLOR_YCBCR_BT601) | BIT(DRM_COLOR_YCBCR_BT709);
+  2645	
+  2646		if (DISPLAY_VER(dev_priv) >= 10)
+  2647			supported_csc |= BIT(DRM_COLOR_YCBCR_BT2020);
+  2648	
+  2649		drm_plane_create_color_properties(&plane->base,
+  2650						  supported_csc,
+  2651						  BIT(DRM_COLOR_YCBCR_LIMITED_RANGE) |
+  2652						  BIT(DRM_COLOR_YCBCR_FULL_RANGE),
+  2653						  DRM_COLOR_YCBCR_BT709,
+  2654						  DRM_COLOR_YCBCR_LIMITED_RANGE);
+  2655	
+  2656		drm_plane_create_alpha_property(&plane->base);
+  2657		drm_plane_create_blend_mode_property(&plane->base,
+  2658						     BIT(DRM_MODE_BLEND_PIXEL_NONE) |
+  2659						     BIT(DRM_MODE_BLEND_PREMULTI) |
+  2660						     BIT(DRM_MODE_BLEND_COVERAGE));
+  2661	
+  2662		drm_plane_create_zpos_immutable_property(&plane->base, plane_id);
+  2663	
+  2664		if (DISPLAY_VER(dev_priv) >= 12)
+  2665			drm_plane_enable_fb_damage_clips(&plane->base);
+  2666	
+  2667		if (DISPLAY_VER(dev_priv) >= 11)
+  2668			drm_plane_create_scaling_filter_property(&plane->base,
+  2669							BIT(DRM_SCALING_FILTER_DEFAULT) |
+  2670							BIT(DRM_SCALING_FILTER_NEAREST_NEIGHBOR));
+  2671	
+  2672		intel_plane_helper_add(plane);
+  2673	
+  2674		return plane;
+  2675	
+  2676	fail:
+  2677		intel_plane_free(plane);
+  2678	
+  2679		return ERR_PTR(ret);
+  2680	}
+  2681	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
