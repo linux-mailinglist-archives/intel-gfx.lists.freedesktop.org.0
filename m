@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A39F9D644C
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Nov 2024 19:47:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C1F2C9D644E
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Nov 2024 19:49:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F24510E27C;
-	Fri, 22 Nov 2024 18:47:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CF5310E8A6;
+	Fri, 22 Nov 2024 18:49:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d7d0QqSr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IHtkgMq7";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCDF810E27C;
- Fri, 22 Nov 2024 18:47:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C34A210E300;
+ Fri, 22 Nov 2024 18:49:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732301258; x=1763837258;
+ t=1732301349; x=1763837349;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=Lm8HZtOzv3L4j1jbqbPBxZadqpeezyXLGzrzvt0JNfE=;
- b=d7d0QqSrU0wj2LV9s5y1Sa7Fd+dWX/AbGJqKmpbw7jAGJ7tbl1lHABZO
- Ls17J1VE2K+25SeVQfleDK8IQ5cE2Ay9LH07nAVttSbtnjKfWbUFW8dgo
- NZk/uygEL1cHc7CTn5ubM/eDieYfQMmA+hdCPy+Tnlw8Td9357fU1muDW
- BV0nN6scH28XJmcLzeVnEI/2Hp0aJ9z6L33+Phn87myhxFFFO5IMW0SS3
- UJcnS9L+R1/P97FGQTOhhNegZOh1A5TdwAy6bV0r75fGw9owvSVcrzbFY
- pxs7ICErlAhg60EMgjH8U5IbiKqc+QhLmC85sIIjOI3BaoibsLw/XTohW Q==;
-X-CSE-ConnectionGUID: VYrbV3IPRwi5rg/2J//vHg==
-X-CSE-MsgGUID: V/ozrQXhSuyhSGNhSeXAOA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11264"; a="32209701"
-X-IronPort-AV: E=Sophos;i="6.12,176,1728975600"; d="scan'208";a="32209701"
+ bh=e2/XP1mSahEYmc2jYYg1IB+koUSxtx1SgHTdmaBwphQ=;
+ b=IHtkgMq7ioFCR/dia1/+2TnnCCNPUH/DG4IQWInWerjL1Xw5lkMlhm9B
+ tq+/KdyNWSegykjE812ZL8f6iEiuYWizJKTVqivk3B6HiD8xsg0Hduh0i
+ KwSFiW6mPrPPPvGWQ9aXnhYZXGiaAldWeCmZiWas4awlaZivrnvRo/zGU
+ R9jxu0lpk3GrKWStQZtinnqEk7xple1u7h7dyt5BEoejHXJ0OusT1G4Km
+ ykY6Hg7Z+2W7XVW2VnxuF+bGCtw9VMldy3yGOfOpa0gG7e2JKlbACQM40
+ Skl2CLrTp7J2YYL23bn7u0JuCRMyn8oxVb+/nwyPQosqw3RL/yxxHfzwa A==;
+X-CSE-ConnectionGUID: QZd7SBZhQUmrx4VlTHNRvQ==
+X-CSE-MsgGUID: dSoNTn4qRwGE4OR4okKOiQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11264"; a="32209782"
+X-IronPort-AV: E=Sophos;i="6.12,176,1728975600"; d="scan'208";a="32209782"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2024 10:47:38 -0800
-X-CSE-ConnectionGUID: eXEyXqRWTrGOOSY2MXbLrA==
-X-CSE-MsgGUID: ggw/VFvIRcSOqmi/DgvuJg==
+ 22 Nov 2024 10:49:08 -0800
+X-CSE-ConnectionGUID: 6IHqsfeCQRq/AgYYS/kX4g==
+X-CSE-MsgGUID: 0YTo26vQQF2T/0vV+7odGQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,176,1728975600"; d="scan'208";a="90829475"
+X-IronPort-AV: E=Sophos;i="6.12,176,1728975600"; d="scan'208";a="90829573"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 22 Nov 2024 10:47:35 -0800
+ by fmviesa008.fm.intel.com with SMTP; 22 Nov 2024 10:48:57 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 22 Nov 2024 20:47:34 +0200
-Date: Fri, 22 Nov 2024 20:47:34 +0200
+ Fri, 22 Nov 2024 20:48:56 +0200
+Date: Fri, 22 Nov 2024 20:48:56 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Nemesa Garg <nemesa.garg@intel.com>
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 Subject: Re: [PATCH v5 2/6] drm/i915/display: Add gmch_panel_fitting in all
  encoders
-Message-ID: <Z0DRxu2oK0mrHlxb@intel.com>
+Message-ID: <Z0DSGC5FF0Wdbxyh@intel.com>
 References: <20241120053838.3794419-1-nemesa.garg@intel.com>
  <20241120053838.3794419-3-nemesa.garg@intel.com>
 MIME-Version: 1.0
@@ -102,6 +102,10 @@ On Wed, Nov 20, 2024 at 11:08:34AM +0530, Nemesa Garg wrote:
 > -	if (ret)
 > -		return ret;
 > -
+
+I don't you adding the pch_panel_fitting() call anywhere,
+so this patch looks completely broken on ilk+.
+
 >  	adjusted_mode->flags = 0;
 >  
 >  	/* Dual link goes to trancoder DSI'0' */
@@ -200,10 +204,6 @@ On Wed, Nov 20, 2024 at 11:08:34AM +0530, Nemesa Garg wrote:
 > +{
 > +	return pch_panel_fitting(crtc_state, conn_state);
 >  }
-
-These wrappers look pointless. You can just rename the actual functions.
-
-
 > diff --git a/drivers/gpu/drm/i915/display/intel_pfit.h b/drivers/gpu/drm/i915/display/intel_pfit.h
 > index add8d78de2c9..1365ab86c89c 100644
 > --- a/drivers/gpu/drm/i915/display/intel_pfit.h
