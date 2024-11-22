@@ -2,66 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73C649D59C0
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 Nov 2024 08:08:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BCFD49D5A6A
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 Nov 2024 08:53:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99A8D10EAD1;
-	Fri, 22 Nov 2024 07:08:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3079810EADD;
+	Fri, 22 Nov 2024 07:53:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WS4rgxUF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GOzLMqG/";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F6EE10E082;
- Fri, 22 Nov 2024 07:08:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE40C10EADD;
+ Fri, 22 Nov 2024 07:53:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732259298; x=1763795298;
+ t=1732261985; x=1763797985;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=euGw3dtXA1ltlsc5+XqXfQexRPcnAxDPo0W1W8gAIno=;
- b=WS4rgxUFUpSWHSgLJ6HDOzJcw6xmSYbHnVlTgsLH+/aBwzpNsx1PWW7N
- LsJ82r8jLg0YXXqXJZzJejj1hm2kM4tK9HOl0UKQXQl7j4y74atffRyUN
- 482CCni99LL5v0ha15jcEnl/Sv9GvAxxm349tQOlr76j53m0U4PWTwYBi
- ODYAAsUZg4HGhH8R4I4XfDS9Z6O0sSuJfJiztxD+KpFlbCbJRzra7Gspv
- eaUO7SBcRKE9PGeJuvrX9TdZqLJu053CKWnCXUzcLoU33oqK0X3/fOpSW
- B+9oPlH38ipjyFxXWvG/f+P01PjFmU54ztDzbtsSgyFGlV0O+pXhoB9UR g==;
-X-CSE-ConnectionGUID: 5bLCxap3SI++gdeVWLc8cg==
-X-CSE-MsgGUID: QUHRDVOiRUqruX9giE+6YQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11263"; a="43467074"
-X-IronPort-AV: E=Sophos;i="6.12,175,1728975600"; d="scan'208";a="43467074"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2024 23:07:51 -0800
-X-CSE-ConnectionGUID: IB0ACSyWTqCIMsr7NGKLBQ==
-X-CSE-MsgGUID: 4f9Jg2fFQFWEeyNozHwXmw==
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=X+VwR58De4jblrBnkiqkIz3UqxR9LcQ+hZSQS3TRtso=;
+ b=GOzLMqG/rtkATruFDWsKQlPw2rzMXqy3r8s8SuyiHcbqcmOg+yOxHaO0
+ fdB/Si3F+gZxzxl7qQYHIkQnd8Mv5bInU+OwIeXW9gfjbFHHIXFurxmGK
+ /hWdyfcEMkkPrx4zEcucHHXoky50qh+Oq0KH1WnYsA6b6tGb/bgoupBit
+ 93qhf9/rW2Ln5SVc84KfqvB0DjGk3uDZdINmzpxxRJY3wrGBesXW69xXH
+ Gz2ocRn5BYoae4IJer+RsyfO5ck4JzNy8Msr2pRRT5kZn5mr4qMCumAT7
+ Ti3KLEDK21equ5Y6BIYVz3dL0yBfo0Ed/4ci4WBKY9j6YkiTCOLH+ML+S A==;
+X-CSE-ConnectionGUID: Ly5SlbDoT+qUYSBn3NQmmw==
+X-CSE-MsgGUID: v92wl0fpRkidCGnL8YgJvg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11263"; a="43054350"
+X-IronPort-AV: E=Sophos;i="6.12,175,1728975600"; d="scan'208";a="43054350"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Nov 2024 23:53:05 -0800
+X-CSE-ConnectionGUID: axFzI8QKTlKJOCzTHBmbiA==
+X-CSE-MsgGUID: 7WSpUUPsQj+239x5KgQxVA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,175,1728975600"; d="scan'208";a="90429696"
-Received: from black.fi.intel.com ([10.237.72.28])
- by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2024 23:07:46 -0800
-Date: Fri, 22 Nov 2024 09:07:43 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-Cc: airlied@gmail.com, simona@ffwll.ch, lucas.demarchi@intel.com,
- rodrigo.vivi@intel.com, jani.nikula@linux.intel.com,
- andriy.shevchenko@linux.intel.com, lina@asahilina.net,
- michal.wajdeczko@intel.com, christian.koenig@amd.com,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
- anshuman.gupta@intel.com, alexander.deucher@amd.com,
- andrealmeid@igalia.com, amd-gfx@lists.freedesktop.org,
- kernel-dev@igalia.com
-Subject: Re: [PATCH v9 1/4] drm: Introduce device wedged event
-Message-ID: <Z0Atv3Zw1d0N8hvv@black.fi.intel.com>
-References: <20241115050733.806934-1-raag.jadav@intel.com>
- <20241115050733.806934-2-raag.jadav@intel.com>
- <8c7292c3-8459-4ddc-a899-b56b1d93076f@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,175,1728975600"; d="scan'208";a="90663868"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 21 Nov 2024 23:53:03 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 22 Nov 2024 09:53:02 +0200
+Date: Fri, 22 Nov 2024 09:53:02 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [RFC v1 0/4] Update VRR guardband for HRR panel
+Message-ID: <Z0A4XvcYDJ3jeI9a@intel.com>
+References: <20241112085039.1258860-1-mitulkumar.ajitkumar.golani@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <8c7292c3-8459-4ddc-a899-b56b1d93076f@linux.intel.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241112085039.1258860-1-mitulkumar.ajitkumar.golani@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,45 +70,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Nov 18, 2024 at 08:26:37PM +0530, Aravind Iddamsetty wrote:
-> On 15/11/24 10:37, Raag Jadav wrote:
-> > Introduce device wedged event, which notifies userspace of 'wedged'
-> > (hanged/unusable) state of the DRM device through a uevent. This is
-> > useful especially in cases where the device is no longer operating as
-> > expected and has become unrecoverable from driver context. Purpose of
-> > this implementation is to provide drivers a generic way to recover with
-> > the help of userspace intervention without taking any drastic measures
-> > in the driver.
-> >
-> > A 'wedged' device is basically a dead device that needs attention. The
-> > uevent is the notification that is sent to userspace along with a hint
-> > about what could possibly be attempted to recover the device and bring
-> > it back to usable state. Different drivers may have different ideas of
-> > a 'wedged' device depending on their hardware implementation, and hence
-> > the vendor agnostic nature of the event. It is up to the drivers to
-> > decide when they see the need for recovery and how they want to recover
-> > from the available methods.
-> >
-> > Prerequisites
-> > -------------
-> >
-> > The driver, before opting for recovery, needs to make sure that the
-> > 'wedged' device doesn't harm the system as a whole by taking care of the
-> > prerequisites. Necessary actions must include disabling DMA to system
-> > memory as well as any communication channels with other devices. Further,
-> > the driver must ensure that all dma_fences are signalled and any device
-> > state that the core kernel might depend on are cleaned up. Once the event
-> > is sent, the device must be kept in 'wedged' state until the recovery is
-> > performed. New accesses to the device (IOCTLs) should be blocked,
-> > preferably with an error code that resembles the type of failure the
-> > device has encountered. This will signify the reason for wegeding which
-> > can be reported to the application if needed.
+On Tue, Nov 12, 2024 at 02:20:35PM +0530, Mitul Golani wrote:
+> Compute guardband based on enabled feature latency.
 > 
-> should we even drop the mmaps we created?
 
-Whatever is required for a clean recovery, yes.
+We already have some of this stuff in skl_wm_check_vblank().
+But it's missing some of scaler/dsc/etc. prefill stuff. That is
+the place where all this needs to be checked.
 
-Although how would this play out? Do we risk loosing display?
-Or any other possible side-effects?
+> Mitul Golani (4):
+>   drm/i915/scaler: Calculate scaler prefill latency
+>   drm/i915/watermark: Add WM0 prefill latency
+>   drm/i915/psr: Add latency for PSR
+>   display/vrr: Update guardband based on enabled latency
+> 
+>  drivers/gpu/drm/i915/display/intel_psr.c     | 23 ++++++++++++
+>  drivers/gpu/drm/i915/display/intel_psr.h     |  1 +
+>  drivers/gpu/drm/i915/display/intel_vrr.c     | 18 ++++++++-
+>  drivers/gpu/drm/i915/display/skl_scaler.c    | 39 ++++++++++++++++++++
+>  drivers/gpu/drm/i915/display/skl_scaler.h    |  1 +
+>  drivers/gpu/drm/i915/display/skl_watermark.c | 21 +++++++++++
+>  drivers/gpu/drm/i915/display/skl_watermark.h |  1 +
+>  7 files changed, 102 insertions(+), 2 deletions(-)
+> 
+> -- 
+> 2.46.0
 
-Raag
+-- 
+Ville Syrjälä
+Intel
