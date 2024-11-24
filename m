@@ -2,56 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B21369D7059
-	for <lists+intel-gfx@lfdr.de>; Sun, 24 Nov 2024 14:33:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EDF7C9D70D2
+	for <lists+intel-gfx@lfdr.de>; Sun, 24 Nov 2024 14:41:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52F0910E4BC;
-	Sun, 24 Nov 2024 13:33:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D82E10E4F9;
+	Sun, 24 Nov 2024 13:41:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Vaoeu/IL";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="VHxT2Skk";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3CE1410E4BC;
- Sun, 24 Nov 2024 13:33:19 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 261A910E4F5;
+ Sun, 24 Nov 2024 13:41:07 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id 48B66A40A4B;
- Sun, 24 Nov 2024 13:31:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E8C1C4CED1;
- Sun, 24 Nov 2024 13:33:16 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTP id B304A5C4A5F;
+ Sun, 24 Nov 2024 13:40:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA686C4CECC;
+ Sun, 24 Nov 2024 13:41:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1732455198;
- bh=M8vWynzc5IbnBUi2s8iUj8xr3SRbhHvpKk1BCl3C+H8=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=Vaoeu/ILfPRj0gHzZtN8IQ7OupROBm3ImThcnFT+7cntDe/vEyTTEtB516EL2xxFS
- WGybTrNL6pmwwJ1P+Wr1/d0fRMXIW2M9lwH6ceozcAxzGUYNlfCj6rkgTBri4+c8kJ
- aUH3StyUuTpZvQE7hqaupRpstNiDMZhXwd/r6CPyVf4lOU6EjZv2HEgrl0PkHOEE7y
- ofkluPJOGeocM3kIk7FOLvekLF9Y2rfW0ynzEA3cTZqE5egYWOL6IiBBQ7ob0B5DbK
- f5BG+qnHaSO1RtIWctwMPyC2SXc5KaESMS+OAxZuBXs5oUescwAtJRmSAmhjIMQJhu
- hiW11JAtNzesg==
+ s=k20201202; t=1732455666;
+ bh=cIKtMrcV2rEjOhLuX0Jd/uzPUs7Pfub37mdd5xM0grI=;
+ h=From:To:Cc:Subject:Date:From;
+ b=VHxT2SkkbthM1ziVgJI4oUF9IkjsELTTJQmC92Rx7R3d9pe8nrq5/eJKH/FC01xDn
+ 3FAnYLjL4IyK6p+As5rF5f2+dHTQv3bIOZQ5jLQZjFbhYkt5rKbE1YHxFxOM3BrBXv
+ sXQybXMAmxbBJfyIsHSAv+lOqpOPyGhzMZZcuByLxLxOKc7BspEJLsNw2ofLl4IIbG
+ dicL8MsWfuVlTe0xU92dzhtSMrsh8RaMLMYYh+Mb5OZRykmMmLS+vY5jW4FOWuU05P
+ cozW1SzPdZVDSBmby3lLaJ1luhROcHKDW5V2t1EEdEDWPYjd8DMdoUb27C/8vOGfcp
+ zwicVApleP+Ng==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>,
+Cc: Jani Nikula <jani.nikula@intel.com>,
  Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>,
- Tejas Upadhyay <tejas.upadhyay@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>, Sasha Levin <sashal@kernel.org>,
- jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
- lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com,
- joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, airlied@gmail.com,
- simona@ffwll.ch, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: [PATCH AUTOSEL 6.12 008/107] drm/xe/pciid: Add new PCI id for ARL
-Date: Sun, 24 Nov 2024 08:28:28 -0500
-Message-ID: <20241124133301.3341829-8-sashal@kernel.org>
+ Sasha Levin <sashal@kernel.org>, lucas.demarchi@intel.com,
+ thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@gmail.com, simona@ffwll.ch, jani.nikula@linux.intel.com,
+ joonas.lahtinen@linux.intel.com, tursulin@ursulin.net,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Subject: [PATCH AUTOSEL 6.11 01/87] drm/xe/pciids: separate RPL-U and RPL-P
+ PCI IDs
+Date: Sun, 24 Nov 2024 08:37:39 -0500
+Message-ID: <20241124134102.3344326-1-sashal@kernel.org>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20241124133301.3341829-1-sashal@kernel.org>
-References: <20241124133301.3341829-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.12.1
+X-stable-base: Linux 6.11.10
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,38 +67,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+From: Jani Nikula <jani.nikula@intel.com>
 
-[ Upstream commit 35667a0330612bb25a689e4d3a687d47cede1d7a ]
+[ Upstream commit d454902a690db47f1880f963514bbf0fc7a129a8 ]
 
-Add new PCI id for ARL platform.
+Avoid including PCI IDs for one platform to the PCI IDs of another. It's
+more clear to deal with them completely separately at the PCI ID macro
+level.
 
-v2: Fix typo in PCI id (SaiTeja)
-
-Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 Reviewed-by: Sai Teja Pottumuttu <sai.teja.pottumuttu@intel.com>
-Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20240912115906.2730577-1-dnyaneshwar.bhadane@intel.com
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/4868d36fbfa8c38ea2d490bca82cf6370b8d65dd.1725443121.git.jani.nikula@intel.com
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- include/drm/intel/xe_pciids.h | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_pci.c   | 1 +
+ include/drm/intel/xe_pciids.h | 1 -
+ 2 files changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 5929ac61dbe0a..dde4a929f5873 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -383,6 +383,7 @@ static const struct pci_device_id pciidlist[] = {
+ 	XE_ADLS_IDS(INTEL_VGA_DEVICE, &adl_s_desc),
+ 	XE_ADLP_IDS(INTEL_VGA_DEVICE, &adl_p_desc),
+ 	XE_ADLN_IDS(INTEL_VGA_DEVICE, &adl_n_desc),
++	XE_RPLU_IDS(INTEL_VGA_DEVICE, &adl_p_desc),
+ 	XE_RPLP_IDS(INTEL_VGA_DEVICE, &adl_p_desc),
+ 	XE_RPLS_IDS(INTEL_VGA_DEVICE, &adl_s_desc),
+ 	XE_DG1_IDS(INTEL_VGA_DEVICE, &dg1_desc),
 diff --git a/include/drm/intel/xe_pciids.h b/include/drm/intel/xe_pciids.h
-index 59233eb008628..4ba88d2dccd4b 100644
+index 644872a35c352..7ee7524141f10 100644
 --- a/include/drm/intel/xe_pciids.h
 +++ b/include/drm/intel/xe_pciids.h
-@@ -179,7 +179,8 @@
- 	MACRO__(0x7D41, ## __VA_ARGS__),	\
- 	MACRO__(0x7D51, ## __VA_ARGS__),        \
- 	MACRO__(0x7D67, ## __VA_ARGS__),	\
--	MACRO__(0x7DD1, ## __VA_ARGS__)
-+	MACRO__(0x7DD1, ## __VA_ARGS__),	\
-+	MACRO__(0xB640, ## __VA_ARGS__)
+@@ -120,7 +120,6 @@
  
- /* MTL */
- #define XE_MTL_IDS(MACRO__, ...)		\
+ /* RPL-P */
+ #define XE_RPLP_IDS(MACRO__, ...)		\
+-	XE_RPLU_IDS(MACRO__, ## __VA_ARGS__),	\
+ 	MACRO__(0xA720, ## __VA_ARGS__),	\
+ 	MACRO__(0xA7A0, ## __VA_ARGS__),	\
+ 	MACRO__(0xA7A8, ## __VA_ARGS__),	\
 -- 
 2.43.0
 
