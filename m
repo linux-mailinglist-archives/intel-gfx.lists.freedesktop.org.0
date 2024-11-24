@@ -2,54 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC96E9D7051
-	for <lists+intel-gfx@lfdr.de>; Sun, 24 Nov 2024 14:33:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 155469D7057
+	for <lists+intel-gfx@lfdr.de>; Sun, 24 Nov 2024 14:33:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3579A10E33F;
-	Sun, 24 Nov 2024 13:33:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BFCE10E4B9;
+	Sun, 24 Nov 2024 13:33:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="qhk60pfP";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="tw3sr+en";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 44AB210E2AA;
- Sun, 24 Nov 2024 13:33:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E0F310E4B6;
+ Sun, 24 Nov 2024 13:33:15 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id F21955C53B8;
- Sun, 24 Nov 2024 13:32:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52EC7C4CED1;
- Sun, 24 Nov 2024 13:33:05 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTP id 020905C4CFC;
+ Sun, 24 Nov 2024 13:32:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A00C5C4CED1;
+ Sun, 24 Nov 2024 13:33:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1732455187;
- bh=O5uKdhFDwApNZ4ixrJbiNr5VxSiGJbzLyfAt+ZlVGfQ=;
+ s=k20201202; t=1732455194;
+ bh=hQ5NY1jaizmgk7a+NJFuengPPuLOsa5k6ked4uj/5pA=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=qhk60pfPHdPzm4OF0DOjQmbm55rLWJdWSOHCt+eIneU1hO/p0EEFt3XKhY9P1Otc7
- tse0qvSz7ZSBc7x7ubeStrw/89F9EDayMOe87ZHEULcnrbD6KgjEG5Na0vQPSsjluq
- MBxJ06bNWFCFWDm7GaSXdHg1oVtWqBP1uKOmyUWssPHndtWzRg/6mPnZUolgesdQHD
- NFXjGWrTJGTRKco8wO4OiC8HHNUacUCypvh/ofN3GgH0B0fCekgwsBBFQAyUIbIeSQ
- W+qrEwwH1LaRkDVStLEYoD0dPS0qaAanBQtBpbcCcSYkXGcJ2D+qpNagCxoQQ3XUL+
- 8D6KGeZzKDB4w==
+ b=tw3sr+enxbn1sRA54Rjp4hNQ6xS+FIbajuASedcJl2sZn6Z7cuSx6VrA2wzsfGS2k
+ /3NCK9EFukZXZxsYu4gn2ef3+ztGsOWdapqLjA/q1Iwue+ZaqJdaaW2IGSduiUDfpG
+ Dbe2P+rFbqBwo27xTk6gwcbOJswXSQXxJtl7wkjQr5YyLdN8JUURRzR2xjEhu1rBwt
+ jItnWpxPIz8jK4GesDWXM7cAQd06n/lp7ilhQGVIJcKn1OMdVUrvOViFmdC1R5bTS0
+ 3J5sv8i3HVPaU19/BQM6+mKWZnR3N/9NFzJEu/l8BIvFS49LvtarZE8V23rhphxySW
+ cZXJaCQnsQZEw==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Jani Nikula <jani.nikula@intel.com>,
- Shekhar Chauhan <shekhar.chauhan@intel.com>,
- Sasha Levin <sashal@kernel.org>, lucas.demarchi@intel.com,
- thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- airlied@gmail.com, simona@ffwll.ch, jani.nikula@linux.intel.com,
- joonas.lahtinen@linux.intel.com, tursulin@ursulin.net,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Subject: [PATCH AUTOSEL 6.12 002/107] drm/xe/pciids: separate ARL and MTL PCI
- IDs
-Date: Sun, 24 Nov 2024 08:28:22 -0500
-Message-ID: <20241124133301.3341829-2-sashal@kernel.org>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Simona Vetter <simona.vetter@ffwll.ch>,
+ Jani Nikula <jani.nikula@intel.com>, Sasha Levin <sashal@kernel.org>,
+ jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ tursulin@ursulin.net, airlied@gmail.com, simona@ffwll.ch,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Subject: [PATCH AUTOSEL 6.12 006/107] drm/xe/pciids: Add PVC's PCI device ID
+ macros
+Date: Sun, 24 Nov 2024 08:28:26 -0500
+Message-ID: <20241124133301.3341829-6-sashal@kernel.org>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20241124133301.3341829-1-sashal@kernel.org>
 References: <20241124133301.3341829-1-sashal@kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-stable-base: Linux 6.12.1
@@ -69,64 +71,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Jani Nikula <jani.nikula@intel.com>
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-[ Upstream commit cdb56a63f7eef34e89b045fc8bcae8d326bbdb19 ]
+[ Upstream commit 5b40191152282e1f25d7b9826bcda41be927b39f ]
 
-Avoid including PCI IDs for one platform to the PCI IDs of another. It's
-more clear to deal with them completely separately at the PCI ID macro
-level.
+Add PVC PCI IDs to the xe_pciids.h header. They're not yet used in the
+driver.
 
-Reviewed-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Acked-by: Simona Vetter <simona.vetter@ffwll.ch>
+Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/a30cb0da7694a8eccceba66d676ac59aa0e96176.1725443121.git.jani.nikula@intel.com
+Link: https://patchwork.freedesktop.org/patch/msgid/6ac1829493a53a3fec889c746648d627a0296892.1725624296.git.jani.nikula@intel.com
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- drivers/gpu/drm/xe/xe_pci.c   |  1 +
- include/drm/intel/xe_pciids.h | 13 ++++++++-----
- 2 files changed, 9 insertions(+), 5 deletions(-)
+ include/drm/intel/xe_pciids.h | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 8563206f643e6..025d649434673 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -388,6 +388,7 @@ static const struct pci_device_id pciidlist[] = {
- 	XE_RPLS_IDS(INTEL_VGA_DEVICE, &adl_s_desc),
- 	XE_DG1_IDS(INTEL_VGA_DEVICE, &dg1_desc),
- 	XE_ATS_M_IDS(INTEL_VGA_DEVICE, &ats_m_desc),
-+	XE_ARL_IDS(INTEL_VGA_DEVICE, &mtl_desc),
- 	XE_DG2_IDS(INTEL_VGA_DEVICE, &dg2_desc),
- 	XE_MTL_IDS(INTEL_VGA_DEVICE, &mtl_desc),
- 	XE_LNL_IDS(INTEL_VGA_DEVICE, &lnl_desc),
 diff --git a/include/drm/intel/xe_pciids.h b/include/drm/intel/xe_pciids.h
-index 7ee7524141f10..67dad09e62bc8 100644
+index 67dad09e62bc8..59233eb008628 100644
 --- a/include/drm/intel/xe_pciids.h
 +++ b/include/drm/intel/xe_pciids.h
-@@ -174,16 +174,19 @@
- 	XE_ATS_M150_IDS(MACRO__, ## __VA_ARGS__),\
- 	XE_ATS_M75_IDS(MACRO__, ## __VA_ARGS__)
- 
--/* MTL / ARL */
-+/* ARL */
-+#define XE_ARL_IDS(MACRO__, ...)		\
-+	MACRO__(0x7D41, ## __VA_ARGS__),	\
-+	MACRO__(0x7D51, ## __VA_ARGS__),        \
-+	MACRO__(0x7D67, ## __VA_ARGS__),	\
-+	MACRO__(0x7DD1, ## __VA_ARGS__)
-+
-+/* MTL */
- #define XE_MTL_IDS(MACRO__, ...)		\
- 	MACRO__(0x7D40, ## __VA_ARGS__),	\
--	MACRO__(0x7D41, ## __VA_ARGS__),	\
- 	MACRO__(0x7D45, ## __VA_ARGS__),	\
--	MACRO__(0x7D51, ## __VA_ARGS__),        \
- 	MACRO__(0x7D55, ## __VA_ARGS__),	\
+@@ -189,6 +189,22 @@
  	MACRO__(0x7D60, ## __VA_ARGS__),	\
--	MACRO__(0x7D67, ## __VA_ARGS__),	\
--	MACRO__(0x7DD1, ## __VA_ARGS__),        \
  	MACRO__(0x7DD5, ## __VA_ARGS__)
  
++/* PVC */
++#define XE_PVC_IDS(MACRO__, ...)		\
++	MACRO__(0x0B69, ## __VA_ARGS__),	\
++	MACRO__(0x0B6E, ## __VA_ARGS__),	\
++	MACRO__(0x0BD4, ## __VA_ARGS__),	\
++	MACRO__(0x0BD5, ## __VA_ARGS__),	\
++	MACRO__(0x0BD6, ## __VA_ARGS__),	\
++	MACRO__(0x0BD7, ## __VA_ARGS__),	\
++	MACRO__(0x0BD8, ## __VA_ARGS__),	\
++	MACRO__(0x0BD9, ## __VA_ARGS__),	\
++	MACRO__(0x0BDA, ## __VA_ARGS__),	\
++	MACRO__(0x0BDB, ## __VA_ARGS__),	\
++	MACRO__(0x0BE0, ## __VA_ARGS__),	\
++	MACRO__(0x0BE1, ## __VA_ARGS__),	\
++	MACRO__(0x0BE5, ## __VA_ARGS__)
++
  #define XE_LNL_IDS(MACRO__, ...) \
+ 	MACRO__(0x6420, ## __VA_ARGS__), \
+ 	MACRO__(0x64A0, ## __VA_ARGS__), \
 -- 
 2.43.0
 
