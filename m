@@ -2,165 +2,175 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BDD19D931B
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 Nov 2024 09:13:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 395BC9D93C3
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 Nov 2024 10:03:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46DD710E7CF;
-	Tue, 26 Nov 2024 08:13:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4C6710E413;
+	Tue, 26 Nov 2024 09:03:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ppv52o+W";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VoG1+RwS";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2070.outbound.protection.outlook.com [40.107.94.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0701910E08A;
- Tue, 26 Nov 2024 08:12:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C205910E7F2
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 Nov 2024 09:03:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1732611837; x=1764147837;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=KrwnYb4lqgpSx5/2h28W0tMSrZoDxBdWM2FAIMdxgRM=;
+ b=VoG1+RwSWqm5SbgfWtJsMYb0dVyYs7vQHx1LHPpbHtwfjA3vpjL7h7Dd
+ XZjoR46d6apcGprqEaNd7sI+eP1MrjCweemYgOYzvL3ZGYr6UysraxYRv
+ k6QlSiUrq0eq8dt2Kk2z6MXYfYVE7C6fjIj48pBIgm4GcoLtkyKZX9fH7
+ FhsYKuBrDBpDzm9ts+VabSB6wKqARDnHApYyOMngloe0pCsFgl1V7ZAAl
+ wx1nfnRtQm3aP9LcSrPSqwRo9of7eOINmImWn4ki6e6jvL0kFi652FR7v
+ HlmVtuRTg+INv7haydEtSlFwnMOdP6P9/NKr1FWM8wQu44jLbMqqXt5MI Q==;
+X-CSE-ConnectionGUID: nh0iifycQyOva7rVaBw+gw==
+X-CSE-MsgGUID: 6QaVV8zUQqiJAK/hmkOwCg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11267"; a="44143132"
+X-IronPort-AV: E=Sophos;i="6.12,185,1728975600"; d="scan'208";a="44143132"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Nov 2024 01:03:56 -0800
+X-CSE-ConnectionGUID: q4WqRz2+S2a6mBmrRqwOOA==
+X-CSE-MsgGUID: 5CgsmFRTQvSqW/Y5860W8Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,185,1728975600"; d="scan'208";a="122405305"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orviesa002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 26 Nov 2024 01:03:57 -0800
+Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Tue, 26 Nov 2024 01:03:56 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Tue, 26 Nov 2024 01:03:56 -0800
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.40) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Tue, 26 Nov 2024 01:03:55 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Ovq4eYuX4l9qvNcpWBa/ahQdwdQ+H/KJWsHAj8J//xnWgikPVzbBedYG7e3bXLkq881SLXOTVzOhvK21+H3h+Coe9QDXk2KvI27YI/XZt83jQDa0274l+dwSQk/7DEXoWK+6zEcQC0Mhem6Xwve2HtVNbAXEofXly3kBHNJ0pM8AE4lD9Hd9T6MX4FIZCpA5dKQysJh7QP5/dkoc9V7ae1TXgz8EwqFoOhdYkmu53tJVAS5Diz+4ZOEmDKpp63xrQWby9eaoEuK34N52B7Y/sXNcVG0ND8C6qKNK+uD/oyuJMZ7zQbIBrr3TBbo/nMRbIzxs0x3p06Vuk12s/Y8bew==
+ b=QdOcroRKIAXY3Oc/jtpQvVUxa1h9i9KqetrRm2idnAdu6vvfFr3kx50DdqZ39VGlyozBZds+Z0c3/6vxe1vpaUgpKDX/CufmF0RX4cna0pyxshCI+mLdN7VUuGih3uuFJfglp8elRd+McdK/EfBqjwqOm/Y6PVz50qgXttVkOcT8ew85Xsyz/1YkWg2GbJy1fXqMWyWuW2iegJWgtnzWAw4IYMaCx54gms4iLSg5YPE1Tb1uJOvA8MZhQcpUgikwGrq+6B7zTfj4P3k4TeLsBdHI30LhEB9OAMk/e/m/bGnqUg7UjMMHge0QQ4kV1lfL5ZR+M2KEBbytZ9fgq087eQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=01b/NJ5Hb6lAONpmtoOvkw4iDBH1nRkxLFKmQL2y1hg=;
- b=NPtpHhVyr/NoRXjbWkOG0Mhr+WmPawrdKxxUr1378hRcTnvid0ODO8aqXTK6DyYcds/6cUzB3kNFuSsp1SGq5q1evSbOkz6Tdyvr930SRaxF2Db+F5M1bnz8gx4xlbLVjZyh7Xu1EIjZFTXtirIyd/qQJADTez7EJ8WcxCJlAPhuClvfWb41xyqSnXHD35SDjf+lKioYT6QLKOZIDTaboGtqbV+si2LW5BZMPrM1J0tTJazkVPyel/JJbhZOv9/MkS55hm8skFYd2r+82gqUTvP0xHAhx0ls9ONWEtV8eAUW5xKhrFJhlK3v31aeTC4kh8HLvXr+ruUDFyIzf6yhnQ==
+ bh=6XF8/rttSQa+0xUyPM5MOaMpZQ+Fo0ya3AdOFeBaCMc=;
+ b=C2Vz/wCRz+TyqXYoXurJUSyG7GTIZXKfLq6NH5y19MQky83UUvoHAw0v74xz7E+LUWbTQnrGr2HcOQoFyX2PLc8RZjuqihOHXkKplSj0G98GBrt5pMTpWgKjLnsSlnV1TE7ywRsNSYb3PDMjOd36ekzVar0xG81QSGkTH+/i0zYwgdgUVWPPNwvWfrPYK4qO/vCB4lsUvXsPtt21Y3E7DsgzH1LKWK7p1tbevv/EAXpVq7dI2UhT4RihM3M1duBX038PXFw8IBPdobK3y4ziIBFKBr1sSDb3zWURuvN8mh83CO9+EiD4VL8yZiYwTQ1M7x/MSJ97vvrA/rbMzBstUg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=01b/NJ5Hb6lAONpmtoOvkw4iDBH1nRkxLFKmQL2y1hg=;
- b=ppv52o+WpB3MwON4R/RanxZZYG/cAqZB+vAkOGE0cRxoaHgBS4tSxxA9bXYWZVuKM9bs9Tem6EYmy4xj2QlKAxkVGzRF9/+c05pSzl3tWi/5iiDPRESCrGhgYa2KnqGkdjMOxwWsChR61mgpW49m81EP/x62fYDO8XDiyMJ6OrU=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by DS7PR12MB5888.namprd12.prod.outlook.com (2603:10b6:8:7b::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8182.18; Tue, 26 Nov
- 2024 08:12:55 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5%5]) with mapi id 15.20.8182.019; Tue, 26 Nov 2024
- 08:12:53 +0000
-Content-Type: multipart/alternative;
- boundary="------------FgvlyC9YSfyydV35mxNAZr1l"
-Message-ID: <4a99aedb-e98f-420d-a2ff-69b2a7827a09@amd.com>
-Date: Tue, 26 Nov 2024 09:12:45 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 1/4] drm: Introduce device wedged event
-To: Raag Jadav <raag.jadav@intel.com>
-Cc: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>,
- airlied@gmail.com, simona@ffwll.ch, lucas.demarchi@intel.com,
- rodrigo.vivi@intel.com, jani.nikula@linux.intel.com,
- andriy.shevchenko@linux.intel.com, lina@asahilina.net,
- michal.wajdeczko@intel.com, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- himal.prasad.ghimiray@intel.com, anshuman.gupta@intel.com,
- alexander.deucher@amd.com, andrealmeid@igalia.com,
- amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com
-References: <20241115050733.806934-1-raag.jadav@intel.com>
- <20241115050733.806934-2-raag.jadav@intel.com>
- <8c7292c3-8459-4ddc-a899-b56b1d93076f@linux.intel.com>
- <Z0Atv3Zw1d0N8hvv@black.fi.intel.com>
- <3644d364-6021-46fe-b3a2-689821551984@amd.com>
- <Z0CrJ3C3wJqtySLp@black.fi.intel.com>
- <1018930b-98cc-432a-a4fe-6898ffa51d29@amd.com>
- <Z0VtA5o2cW_snZbf@black.fi.intel.com>
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from SJ1PR11MB6129.namprd11.prod.outlook.com (2603:10b6:a03:488::12)
+ by IA1PR11MB6394.namprd11.prod.outlook.com (2603:10b6:208:3ad::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8182.20; Tue, 26 Nov
+ 2024 09:03:47 +0000
+Received: from SJ1PR11MB6129.namprd11.prod.outlook.com
+ ([fe80::21c3:4b36:8cc5:b525]) by SJ1PR11MB6129.namprd11.prod.outlook.com
+ ([fe80::21c3:4b36:8cc5:b525%4]) with mapi id 15.20.8182.019; Tue, 26 Nov 2024
+ 09:03:47 +0000
+From: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
+To: "Kahola, Mika" <mika.kahola@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+CC: "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>, "Sousa,
+ Gustavo" <gustavo.sousa@intel.com>, "Jadav, Raag" <raag.jadav@intel.com>,
+ "Kahola, Mika" <mika.kahola@intel.com>
+Subject: RE: [PATCH v5 2/2] drm/i915/display: Use struct intel_display instead
+ of struct drm_i915_private
+Thread-Topic: [PATCH v5 2/2] drm/i915/display: Use struct intel_display
+ instead of struct drm_i915_private
+Thread-Index: AQHbL4ZZzK5cc+oAkEaxSenjLHhhWrLJZIQw
+Date: Tue, 26 Nov 2024 09:03:47 +0000
+Message-ID: <SJ1PR11MB612907562E3497573C531DA6B92F2@SJ1PR11MB6129.namprd11.prod.outlook.com>
+References: <20241105131732.331436-1-mika.kahola@intel.com>
+ <20241105131732.331436-3-mika.kahola@intel.com>
+In-Reply-To: <20241105131732.331436-3-mika.kahola@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <Z0VtA5o2cW_snZbf@black.fi.intel.com>
-X-ClientProxiedBy: FR3P281CA0156.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:a2::17) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|DS7PR12MB5888:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0038b3d0-3a62-42f5-7b6e-08dd0df2205d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|366016|376014|7416014|8096899003; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?ZHlNZm1sQkVKWDl6U0pNVUkrTXVXNVRvL3JXY0c4L1dKVlh2RXpaL1k4NnVU?=
- =?utf-8?B?Y3N6aFJjb2pFcFVUbE9TM0wvYWNuTSsxMmpSVXgvMXdCWkdpT2ZYM2ViZ1pq?=
- =?utf-8?B?MXQwOUJUNVp2WFhob0pWV2RxejB3cFg1bTkwdUcrZU9LcUlDV2tWcGFEZXJD?=
- =?utf-8?B?NWVUNDExWHhkcE5OYzFqc0V6OHFUMjZaZitGNC9zQVlVUlZWd09yNXlCYU5O?=
- =?utf-8?B?N1JMajBJcVVxOG9ZYUpUNEJCU3NMdTNBREM5S01sbHYrcWNkK2syUmtXdWIv?=
- =?utf-8?B?OFY1bk01K1ViNVhnYzhEQ0svVTd4bEsyRDcvOGR2eHQ4UEtyWGxaV2NxMHEw?=
- =?utf-8?B?RzJIRVZIZklvdFVHZjhxSGZMeWk5aUJid2dQU2lVaHVYUUZ2bDA4YTllVCsz?=
- =?utf-8?B?UVpXN25TejRrUCtYRHFTS2Vtc0YvZnpsNGQzVVJHT0tNQ1lnZnRsY2ZpOGdx?=
- =?utf-8?B?eFVtNzNoZXFYZVpibkNoZkdMNkMxdWtla014TWgybzBjNDUzK0NWZlBOTm94?=
- =?utf-8?B?MXQ1ZHNJMWlWTS8xT2lRUjFGbWtrSFpLQnc4SU1qK25IWmdZY25yU1E0QWha?=
- =?utf-8?B?Q2g1WkFLK2UvMTNBaGN2NmRacUtlWUlleklMZ21MQm16ODc3aWk2cHVQck1W?=
- =?utf-8?B?UmFkT2d2V3ROKzZLQzRFb1hDRVVJZ3BZZFJ0dlFVRGtwL1dxRitJTzhaRERB?=
- =?utf-8?B?b1F1NnlQTUMyeWRXbm9xT0Q4MUdSMjNWR1NNQlJzbU5yTit3TU1tWE5sTkxC?=
- =?utf-8?B?aXRpY0xJYmtVTTJWM2VBZ2ZTeEw5dVBJV3JSNEdpS1NWaHFEczd2Rm5zVDdp?=
- =?utf-8?B?NVhXdXFxS1BKUjRIeXJ6aVBSYWJjQUREK0NsRyszcjBvMWYyRGVYdnJDenlB?=
- =?utf-8?B?eE0waytWNGxRTCt1dEZ2N3kwUDdLa3V0bnpQVXdCczlOcmpvQS9VLzZFcTE2?=
- =?utf-8?B?S05FM0grNjkweSs5WFpZejVzWGRsT3FtRnh2R25WK25CaW4wZTYwZ2xQa1lw?=
- =?utf-8?B?aWJ2RnRva2huMTBGQXBiNGp6OU90UzJEYmI1cis3Z3ZaZk4wNTU1Y3UwbkJC?=
- =?utf-8?B?SUdMVXMzenh6VjVMN2QrV3FPTHVzMmVyYm9yYWdBcjdMS2hoY0Npam9hVHhK?=
- =?utf-8?B?aE1KQUdBTjBVdFVFSElaa2lEVlJDbzBWc3V6STNnVHZmMTUyRzN3MW9oaldQ?=
- =?utf-8?B?eng0cEdsOWowUjl2WTNDMHpTVlVMMm9lUlpPOHFoTXhuVGZRS05GQkt6bUVU?=
- =?utf-8?B?VzNFZVpjUWp4REw3SHM2c0F2eUNxVFJJRnY0Uy9hNWlmWmlUalAvYUoxNk9m?=
- =?utf-8?B?R1dEbENuTWxwSzB2cmtPWWw1eGJJWnNFOUhvYzRKdi9aaVZrMytuU0FaSWlk?=
- =?utf-8?B?cDNNZG0vVUY2T2sySERma3RPUk5NZi9aUytJMUFZSThVcldjVFIrZmhlYVBQ?=
- =?utf-8?B?UE5KSXprZVhQU0ttS1Jua3hzMjd6MkhzczBtNUxsL1V5eUJvN0U3NEhRL0gv?=
- =?utf-8?B?eGthRGNZYVVPYVVsZ3hyMmg3ZDFCV1ZDdWVyZDNraHFPZmpXQmh6S3JTOXlJ?=
- =?utf-8?B?TTRIQzVHdlpkVEtyaEg4am9QQ1VFYTN6VldCeWVlMXJ6RXlRUkk5eTBBQ2k2?=
- =?utf-8?B?eHlsYWlYakF5eGRTOFNaWHBJaDFXQWtIWGRQRWlwVW1iNWZPRGp6RHZZNFcv?=
- =?utf-8?B?b1ovcnNpck1RdVN1Sm9JaXl0Z1NKQ2xKT0pEVGxJOUoyZTc5bkpOTzRGWWpK?=
- =?utf-8?B?UlVwQ0lnL01PQmJVNWFvLzZGRmZMZnNORm9oRHJpeFFvR29NSDY2VHhWb0dE?=
- =?utf-8?B?cDU0dnZrZjNMbkl6Si9udz09?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(7416014)(8096899003); DIR:OUT;
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SJ1PR11MB6129:EE_|IA1PR11MB6394:EE_
+x-ms-office365-filtering-correlation-id: 4561ccaa-ad68-422b-67bc-08dd0df93cda
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|376014|1800799024|366016|7053199007|38070700018; 
+x-microsoft-antispam-message-info: =?us-ascii?Q?QV6X8Vxsj9cP9YXjV0Ij2ZBpLWLtS/aUC+0imA1Up141NoGC2NELnmpEOPOU?=
+ =?us-ascii?Q?dOKsHp4og2dO+nLTuR8b6emQYJTO6KVyiU6fZbBzfrr2hkYQXB4l6So2PHFJ?=
+ =?us-ascii?Q?0vch9pj/SaENxHlBG0/YMh+B9HaSRXVufdk8Rwn8F/iQR0yMJH2L3w2MNf+Y?=
+ =?us-ascii?Q?+xvbiodrZscR70J2iXk9v2nnskOo2CtZBtuDmahhghL4kN5df3Rof4W2Dku+?=
+ =?us-ascii?Q?l7rA3e6CXNrEtr5C8wmYTt/xJlH/s6qImIpkdIIRD44U/NSbrGRt/zZafM/D?=
+ =?us-ascii?Q?vRUgslI9p8dQy5jdgCDAv4gBgGAl/kdh5vs1a+F2xIK1keh2w6FTqNyokTcy?=
+ =?us-ascii?Q?IBCUNQT6JR1RreYVifCiudLtH9eMrIuKkmiJ1ywKzr8+WhxeHECUXmKtCDgn?=
+ =?us-ascii?Q?onyHxLpOoh6LnSibSsWQQMCF9/IOQcx7sFqfTAzu4k/uyY8A0qx2ylVi+/ii?=
+ =?us-ascii?Q?5mecOojzFK580gDqwGKJv7sk8dJO8ksB8AlkRuL+dNFUqEqeUj5RLSt5yoGX?=
+ =?us-ascii?Q?nZ18Y1b+M5OcvBzEEhdbQPe5Da7oLUvvmQqM7Msywf4uqdOiaiU6cB2WO+3b?=
+ =?us-ascii?Q?SUa8+r/k9Ctk0N/3amDAV19dmkIMZQd2dvUp9KKpZmcxATziOwRaONHDw0OP?=
+ =?us-ascii?Q?DfK3NDDXWZP5FGOlKya4gRjuEO8pMYCqZb++AjsePCGzw5sPWh9m14O8BxuR?=
+ =?us-ascii?Q?DIX7jehjVCVn4lHlminc5aLb2Hg8Rv/hApfYFNi0ra+Hh9Ob4+gTjcht6rMF?=
+ =?us-ascii?Q?/s4z4LmtBkF35EAdYseFZGVxca7ILWHce6Oj6Q+1YxzO+sBfNqnDb21OCvIZ?=
+ =?us-ascii?Q?rWjnpQ6Ye0UDQXketGNnn6MvgpnUKWW9kAfXiIoGj5kQSP2iu8DI+1sDysBO?=
+ =?us-ascii?Q?1mZtS7MRk2BTJKppOSzfErHG+pTrv7HNGeyh02vbQdF2XQ/eLCX6b1bRY+hV?=
+ =?us-ascii?Q?eWrpuZi4DIzarzaZzypgyUHkgGTCjIKJSkUkg4glc1PZHuM3n1i2EeBguiyF?=
+ =?us-ascii?Q?vvN/ch07FKfVA1dUcxFqcqpA6YW9UhhxLdWiAy9M7ph3OarLODBZq9RrM7Ms?=
+ =?us-ascii?Q?3XRl2ByUwpr2b/y2dM4u9APYFLuH9Oy6QI8Dq9QOVcRC20IaJ5QIVyPEAqvg?=
+ =?us-ascii?Q?bjFQFoP12xP/Yeqf20btXw8c+6HvxYoo035nB4Fht7hrdzRerp/bxE5cNZU5?=
+ =?us-ascii?Q?D6z/b/peXXqifZEcyMAp8Y9ohxR0FPa+RTxDpgRS252opDFQA10uImZbIRgW?=
+ =?us-ascii?Q?lqQa3dtur24fiWNmYW2zvy/exadRDsaQ4FrO7h7eKdLMkRT1vQLUTdB0mZu6?=
+ =?us-ascii?Q?O5O+N+b0Kvzqj33H41JRfoa1NIKoiv6oOe+uj5NX6Tfh7RPxxt4b8hu2qsSF?=
+ =?us-ascii?Q?TlqAlE4U/LRVMateGQ2JGPBlR29eByELqsl4sn1a7Qae8m/FRQ=3D=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SJ1PR11MB6129.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016)(7053199007)(38070700018); DIR:OUT;
  SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MDYrMU9kZ1QyaVBqT0pqdjBnNDlYRVVzS3NYZWMxNnVsYlFGOFpDK2tuc1NG?=
- =?utf-8?B?QVYyRjM1OUx1NmVZaCt2dzV1d3VlTmY0RVFZVnBMbDIxdnppN3pwMEdtQ2RU?=
- =?utf-8?B?NVkzY2NRaWd5V013dk11SkxaSDlXNDV5V2E2Tno2cm9ibHFHZmZxQVcxWTVl?=
- =?utf-8?B?QjFkNHM2Q29YWlVtc3p1TFZBYTY2Vm03OVF6amlaa3d4cG45T1N3MXZwSHlI?=
- =?utf-8?B?clpmb1ovVVJ1SUhSRFo1WHl1Um9CSEo5VStUaWduTnNMbXVWVUV5OUFJYnl1?=
- =?utf-8?B?aUVRWjF0V0J3TnBPTXBOMys2U3pHZFFxclc1TFhVTytmTmRtRW9PZ1dDRzlk?=
- =?utf-8?B?NXA4VHJZTmhVWjdOSHhoalY5WFErbFhBWnU5djJrL1Y2c2U1U2ZZbUpwZXBj?=
- =?utf-8?B?cnRiUGorUWZqY1FBMmNjUE1lNzl4SDAwMXZpbWdvOEMrRUVUNHpwWXc5ZGNS?=
- =?utf-8?B?MWFMbXQ1UThTckhhSnRqZ0h3dXZaWEFMWmxqczcvRjhtK2V2bEJkMXdaMDV5?=
- =?utf-8?B?OTNlK3NWUEJiSm9FVzVUbXlaSnZNY0pVdFhWM0c0K3FXYm5ZNk02MHROeDNO?=
- =?utf-8?B?VngwRU1jUkpMa3VyWUw5Y2kyaHhHcHRpNFhKZExWNmlSRUZvdDFEQmJQSlJL?=
- =?utf-8?B?cUhGUEd2MGN2S0VQaVdxaEUxZ3lKbmh3ZTJlTE5MTXFkOFlkZ3p0eW9NdUha?=
- =?utf-8?B?TUE0b0FkaFFlalkwdXZtZFh3QWt1MUw4UkhJcWRoQ0N2MlJQV1ZPbW5yYzNB?=
- =?utf-8?B?WGNDTHUxZVdzREpxVlVveTQxVEs5dXFyaG5EWnh2ZDAvRWVHU0Y5Wm1DMk5G?=
- =?utf-8?B?bHB2REtLb3kyUzZEQ2FWMEozYU9jWW1OdGdSWS9NOFdBOWJ0SlYyaG13L0d6?=
- =?utf-8?B?M2tCZFprL2FLRGl0eGQ3R1phYzVtYUlETkgrNmV3OXQxQWlqclR0SnJBdFJL?=
- =?utf-8?B?d0FZRTRTOWhhSW5qejZRb2JWU0p3bGV3dGJUVEp4anluSFYwcDk1MWh2Wjly?=
- =?utf-8?B?MGJScHF0aWRBKzh1WmpZOGdxVFAxeVJNdkdRUHdhTDROZURiTm9ja012OEJ2?=
- =?utf-8?B?dXh6VlNBMEdLZzQrRDRtTzd5RE82NnIxNTIrSmo4VzFPM1IvSXlWVHhvV1hD?=
- =?utf-8?B?bXJOc1RKNWRUbFJ6VklHZ2NRNlBsd3ZnTVRQY0RoUTlqOWYzWmRveWpyOUxL?=
- =?utf-8?B?L3BtbHNyeDUxL1BDc2RCMHdiNHMxRGZOVnNwb2VSM1RiUi9TTGF5cVNLVElo?=
- =?utf-8?B?TnpRZmRHcTRSZThWS3lvWnMrMHdwdjNDVUhxc3NsMXgzL1I5c2svMGFRcyth?=
- =?utf-8?B?ajk0RmJMQWxoMVJ6aEliUlZlMm1iV1R4U2JqOHpkdTUydVVvRjVDY3ZhVk4v?=
- =?utf-8?B?cldQclhjY0VWUU80QjhCbnR4NWJ6THhxdzVjVzhiZEt3RzdNN09jRDQ2eXY3?=
- =?utf-8?B?MlFxS3BOaS9pSE5VVWZDM1ZsWGJ2T3dKLyt2MEZGdnFPL2lGTEZwSEFIZTVy?=
- =?utf-8?B?NzZ5VXFaTWYwalIvZ1VYOGJEMzQ1dWtBbVVPOWJVbFpsYTBkcGgwQlk2bmNy?=
- =?utf-8?B?MlREQUNUNGhYWStpamtUcmR4Vk9SRmN2NlBBeGN4ZHNieStVUnJWUkMxZHZT?=
- =?utf-8?B?eExBUE5aOFN6bnF2MVB6RGVsdTJaRVZ5dXBOdjVRRUQzT1NlM054c2FEMkxK?=
- =?utf-8?B?SnVFVGtURWtTMjRmSWxVaURnQndjeHdFL09KUGNidjc0UVlWY01JOHpFb3Bw?=
- =?utf-8?B?QTJnN1E0TUl0cGhBK0RLQ3VPV0dWQXNJYmdYQXRsTG5HdUZEVms1dnRrVFMw?=
- =?utf-8?B?RmNLbWpGZVE5QncyODJ0V1lSWlRoK2hPM2xPWGVVSEsrbENPVm9vT3RWUEhI?=
- =?utf-8?B?YXNpWlo1QmFMSmJULzJLMmREZytrcmkwWjRERTU1QThramZ6dCszNDFCL2lW?=
- =?utf-8?B?MjRXL3MyRWFVU2lBOER5WHg2QkpUZnlSQys2S2JuVmRKUDhudSt1YlFtWlNp?=
- =?utf-8?B?bnF3V3F2WmNpL0NiWjVFQ1RKZ2sycmNiMy81eWcwdWp6a1JxZkxQR2dXeENo?=
- =?utf-8?B?VGZSRUNRVkdWMktWYkdqMURCZFNHRW1HYjFWVUo2MUlBZDRsenlVVE1mNU1N?=
- =?utf-8?Q?ZbG3nPjw4a8pkyq5Hy5fBz9xa?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0038b3d0-3a62-42f5-7b6e-08dd0df2205d
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?83uSettVcopMDjaKHHnuRSK1I/z7KNreF19PGm6F9+zmEoOk8TqMmeiy7wVE?=
+ =?us-ascii?Q?nCNLMGHoU7EFOVRbypAS51HjwcZ2nZ8XHm3WAeAZEartm9mI7sIoVn0hpnzz?=
+ =?us-ascii?Q?cfh9br1WeKiW2+xFwNxhElWlQljLFeuEZ7WTUt/BZqCaq/7o0zC9F9WAeJ8t?=
+ =?us-ascii?Q?sx1lYyk0C8QOpys7PYw0tlHZnV3ogOvPcKVLCqkJElSjoCPZmMXHxIUcpwUG?=
+ =?us-ascii?Q?b8DFNoRGqhG6y9B84a25VyXlYJ9qFgQX3GcUtQvSAMLcLxzIRXHYiBH67PUD?=
+ =?us-ascii?Q?q0HL+GNMa6tc1bumKq7GP3bWybCIj1ssmksTnqPDWme8b4bWEKUjtLKRnktO?=
+ =?us-ascii?Q?Ms9bowCb6k98qgN7O2Wgaq8kzZwtaRQD10U97f5GQHciH1WgmcCOEIxS3+xQ?=
+ =?us-ascii?Q?96LJLnt1l0VnaGH+p9p/N2mdV9iehjxtl5M+hp310SMmQW6BTyd0YytFkAb+?=
+ =?us-ascii?Q?sRHGoP/t7NgM5aOxemiae5dyWPcaVqfC8VWGkIAAN7OtQy1vo7D50EZJ29Yk?=
+ =?us-ascii?Q?9NBxpAO6J49weD0YManXuT+/q3ydfKjxY4hiIiHfG34seVcU1QNdv5RHQMXA?=
+ =?us-ascii?Q?/ONV4rHRXED4PFno+Or05ZmrgKGMVG5jjavRt5NlikXEhPI6MiDGsITv38OT?=
+ =?us-ascii?Q?3V8Pw9BHDuo7OEalHSTT37wDaNznYNPAkalSPD9sp/cCxStGxe10L36fN1tC?=
+ =?us-ascii?Q?gsexLaljheV/5h0h1kOKBSJuwcubPYQ8eVxZBdQnMGElvONwcu+58RV/8rox?=
+ =?us-ascii?Q?VIwQuxxUsrsQpxlHTp6FSv8pZUU5lw5lvFDVetsiiQ0KYkTXVSpWvxun0ARD?=
+ =?us-ascii?Q?WstHk4y2zpj/qizOVS8S+klWgf2sBdiy/ytz0J5hdzW9zq/Xj/Dt9Qcvj1Zj?=
+ =?us-ascii?Q?iXQ/hG2rfHguhSQ3+4g3BtUAOu793YNhxZ4gndvhdYIISSg7Zno3Pqm5suPO?=
+ =?us-ascii?Q?Gu88A26d3TABEB93Grh2FEPpMCES8B1+X13eM9jTKx92AutxqghQOJpgVXKJ?=
+ =?us-ascii?Q?oKlHgM0nMU8csNYuRHgJSPujGzZ2n+APmKbnbGKld6QPF1+tDjIWoT0k3NSb?=
+ =?us-ascii?Q?WZYX4tQIxBDsVK9crJARI83K9QS38m2rTVxWFfDLn+v/GnAuhmkBcnPCVjAS?=
+ =?us-ascii?Q?LAijxAnr/71LGbap2sSK4AiUUXpoqOs+cEXlFxO2qj+BxPO+VvT1qg1NYolL?=
+ =?us-ascii?Q?zmQP7GrhiXbi+S8pcwUaLj+Cpu5NNlpJ/0FUT26VlvoqUtRm3zsfPrUa0jRB?=
+ =?us-ascii?Q?IXA+sLh0+T0F4CpbTfYtGfnft7b5YffmrXy5pPREquM7ZgqHcqWA9WXo+S3b?=
+ =?us-ascii?Q?i2fFWbQ4Xjh39ArfBFPI8cz0wRP82pvcn/NFqraG6xfwFZasVKR6S6SdHKt0?=
+ =?us-ascii?Q?48G3nxPkdZvzgk/jEAN7J5bTLkow45iFxhvImFcS8VhPFvGTE3kdqACjqRAj?=
+ =?us-ascii?Q?poHGILI5nP9Df8Bn3EnVNz99b0wqBFh5SriDUmanzn0ZnPP7nx6cqokfWNDy?=
+ =?us-ascii?Q?/28UuijbJ9eISvlRzXQdII9mo31ARpqBxmVvJsu5YCS2fLU1+B2yEw4ZysJk?=
+ =?us-ascii?Q?oBSlEPpY/wJmxlCTePOeXb0t8+J+e0hWiTFspoZK85RWTxZA4G8ZhtRGD7ow?=
+ =?us-ascii?Q?Hg=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Nov 2024 08:12:53.5884 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: tdHabfWSfMSnvkQT40SSGOzzKG+GD9qYQMb/9ISP98sBRQihYb6xiyvRzLTll+g9
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB5888
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PR11MB6129.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4561ccaa-ad68-422b-67bc-08dd0df93cda
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Nov 2024 09:03:47.4846 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: sMHlCiLX8+7PO+Id5EwgSkU24JPdTYj/kG7357a1qS7v8080BRZW6HQZdPYOfwhjU2zmX8CZmh18a1iB8b8txMAlWvuPWlsZ7o1Djjw34lA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6394
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -176,252 +186,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---------------FgvlyC9YSfyydV35mxNAZr1l
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
 
-Am 26.11.24 um 07:38 schrieb Raag Jadav:
-> On Mon, Nov 25, 2024 at 10:32:42AM +0100, Christian König wrote:
->> Am 22.11.24 um 17:02 schrieb Raag Jadav:
->>> On Fri, Nov 22, 2024 at 11:09:32AM +0100, Christian König wrote:
->>>> Am 22.11.24 um 08:07 schrieb Raag Jadav:
->>>>> On Mon, Nov 18, 2024 at 08:26:37PM +0530, Aravind Iddamsetty wrote:
->>>>>> On 15/11/24 10:37, Raag Jadav wrote:
->>>>>>> Introduce device wedged event, which notifies userspace of 'wedged'
->>>>>>> (hanged/unusable) state of the DRM device through a uevent. This is
->>>>>>> useful especially in cases where the device is no longer operating as
->>>>>>> expected and has become unrecoverable from driver context. Purpose of
->>>>>>> this implementation is to provide drivers a generic way to recover with
->>>>>>> the help of userspace intervention without taking any drastic measures
->>>>>>> in the driver.
->>>>>>>
->>>>>>> A 'wedged' device is basically a dead device that needs attention. The
->>>>>>> uevent is the notification that is sent to userspace along with a hint
->>>>>>> about what could possibly be attempted to recover the device and bring
->>>>>>> it back to usable state. Different drivers may have different ideas of
->>>>>>> a 'wedged' device depending on their hardware implementation, and hence
->>>>>>> the vendor agnostic nature of the event. It is up to the drivers to
->>>>>>> decide when they see the need for recovery and how they want to recover
->>>>>>> from the available methods.
->>>>>>>
->>>>>>> Prerequisites
->>>>>>> -------------
->>>>>>>
->>>>>>> The driver, before opting for recovery, needs to make sure that the
->>>>>>> 'wedged' device doesn't harm the system as a whole by taking care of the
->>>>>>> prerequisites. Necessary actions must include disabling DMA to system
->>>>>>> memory as well as any communication channels with other devices. Further,
->>>>>>> the driver must ensure that all dma_fences are signalled and any device
->>>>>>> state that the core kernel might depend on are cleaned up. Once the event
->>>>>>> is sent, the device must be kept in 'wedged' state until the recovery is
->>>>>>> performed. New accesses to the device (IOCTLs) should be blocked,
->>>>>>> preferably with an error code that resembles the type of failure the
->>>>>>> device has encountered. This will signify the reason for wegeding which
->>>>>>> can be reported to the application if needed.
->>>>>> should we even drop the mmaps we created?
->>>>> Whatever is required for a clean recovery, yes.
->>>>>
->>>>> Although how would this play out? Do we risk loosing display?
->>>>> Or any other possible side-effects?
->>>> Before sending a wedge event all DMA transfers of the device have to be
->>>> blocked.
->>>>
->>>> So yes, all display, mmap() and file descriptor connections you had with the
->>>> device would need to be re-created.
->>> Does it mean we'd have to rely on userspace to unmap()?
->> Yes and no :)
->>
->> The handling should be similar to how hotplug is handled. E.g. the device
->> becomes inaccessible by normal applications all mappings become invalid.
-> Isn't that just unbind (which is already part of recovery)?
 
-No, unbind just invalidates all mappings but it doesn't catches any page 
-faults which would validate them again.
+> -----Original Message-----
+> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Mi=
+ka
+> Kahola
+> Sent: Tuesday, November 5, 2024 6:48 PM
+> To: intel-gfx@lists.freedesktop.org
+> Cc: jani.nikula@linux.intel.com; Sousa, Gustavo <gustavo.sousa@intel.com>=
+;
+> Jadav, Raag <raag.jadav@intel.com>; Kahola, Mika <mika.kahola@intel.com>
+> Subject: [PATCH v5 2/2] drm/i915/display: Use struct intel_display instea=
+d of
+> struct drm_i915_private
+>=20
+> Let's start using struct intel_display instead of struct drm_i915_private=
+ when
+> introducing new code. No functional changes.
+>=20
+> v2: Drop tc_to_intel_display() helper funtion (Jani)
+>=20
 
-The driver or framework must make sure that page faults now get 
-redirected to a dummy page. See ttm_bo_vm_dummy_page() for how TTM 
-handles that for all drivers using it.
+LGTM. Should we also send this series to xe to get CI results?
 
-Not sure about i915, since it never deals with device memory it can 
-potentially just keep the access to the allocated system memory intact.
 
->> But we don't send a SIGBUS or similar on access, instead all mappings
->> redirected to a dummy page which basically shallows all writes and gives
->> undefined data on reads.
->>
->> On IOCTLs the applications should get an error code and eventually restart
->> or at least unmap all their mappings.
-> Thanks for the detailed explanation.
->
-> Rethinking about this, the criteria set for prerequisites is to not do
-> anything that could possibly harm the system. So I think the important
-> question is,
->
-> with fences signalled and ioctls already blocked, is live mmap on a wedged
-> device capable of producing harmful behaviour or unintended side-effects
-> (atleast until the application has the opportunity to unmap() as part of
-> recovery)?
+Reviewed-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 
-I think we are already rather good there.
+> Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_tc.c | 12 ++++++------
+>  1 file changed, 6 insertions(+), 6 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_tc.c
+> b/drivers/gpu/drm/i915/display/intel_tc.c
+> index e40d55f4c0c4..d78f57190f3c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_tc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_tc.c
+> @@ -1039,9 +1039,9 @@ static void wa_14020908590(struct intel_display
+> *display, bool enable)
+>=20
+>  static void __xelpdp_tc_phy_enable_tcss_power(struct intel_tc_port *tc, =
+bool
+> enable)  {
+> -	struct drm_i915_private *i915 =3D tc_to_i915(tc);
+> +	struct intel_display *display =3D to_intel_display(tc->dig_port);
+>  	enum port port =3D tc->dig_port->base.port;
+> -	i915_reg_t reg =3D XELPDP_PORT_BUF_CTL1(i915, port);
+> +	i915_reg_t reg =3D XELPDP_PORT_BUF_CTL1(display, port);
+>  	u32 val;
+>=20
+>  	assert_tc_cold_blocked(tc);
+> @@ -1050,15 +1050,15 @@ static void
+> __xelpdp_tc_phy_enable_tcss_power(struct intel_tc_port *tc, bool ena
+>  	 * Gfx driver WA 14020908590 for PTL tcss_rxdetect_clkswb_req/ack
+>  	 * handshake violation when pwwreq=3D 0->1 during TC7/10 entry
+>  	 */
+> -	if (DISPLAY_VER(i915) =3D=3D 30)
+> -		wa_14020908590(&i915->display, enable);
+> +	if (DISPLAY_VER(display) =3D=3D 30)
+> +		wa_14020908590(display, enable);
+>=20
+> -	val =3D intel_de_read(i915, reg);
+> +	val =3D intel_de_read(display, reg);
+>  	if (enable)
+>  		val |=3D XELPDP_TCSS_POWER_REQUEST;
+>  	else
+>  		val &=3D ~XELPDP_TCSS_POWER_REQUEST;
+> -	intel_de_write(i915, reg, val);
+> +	intel_de_write(display, reg, val);
+>  }
+>=20
+>  static bool xelpdp_tc_phy_enable_tcss_power(struct intel_tc_port *tc, bo=
+ol
+> enable)
+> --
+> 2.43.0
 
-The potential options are to redirect everything to a dummy page or to 
-crash the application by sending a SIGBUS.
-
-Redirecting everything to the dummy page sounds like the more defensive 
-approach.
-
-Regards,
-Christian.
-
->
-> Raag
-
---------------FgvlyC9YSfyydV35mxNAZr1l
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-<!DOCTYPE html><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body>
-    Am 26.11.24 um 07:38 schrieb Raag Jadav:<br>
-    <blockquote type="cite" cite="mid:Z0VtA5o2cW_snZbf@black.fi.intel.com">
-      <pre class="moz-quote-pre" wrap="">On Mon, Nov 25, 2024 at 10:32:42AM +0100, Christian König wrote:
-</pre>
-      <blockquote type="cite">
-        <pre class="moz-quote-pre" wrap="">Am 22.11.24 um 17:02 schrieb Raag Jadav:
-</pre>
-        <blockquote type="cite">
-          <pre class="moz-quote-pre" wrap="">On Fri, Nov 22, 2024 at 11:09:32AM +0100, Christian König wrote:
-</pre>
-          <blockquote type="cite">
-            <pre class="moz-quote-pre" wrap="">Am 22.11.24 um 08:07 schrieb Raag Jadav:
-</pre>
-            <blockquote type="cite">
-              <pre class="moz-quote-pre" wrap="">On Mon, Nov 18, 2024 at 08:26:37PM +0530, Aravind Iddamsetty wrote:
-</pre>
-              <blockquote type="cite">
-                <pre class="moz-quote-pre" wrap="">On 15/11/24 10:37, Raag Jadav wrote:
-</pre>
-                <blockquote type="cite">
-                  <pre class="moz-quote-pre" wrap="">Introduce device wedged event, which notifies userspace of 'wedged'
-(hanged/unusable) state of the DRM device through a uevent. This is
-useful especially in cases where the device is no longer operating as
-expected and has become unrecoverable from driver context. Purpose of
-this implementation is to provide drivers a generic way to recover with
-the help of userspace intervention without taking any drastic measures
-in the driver.
-
-A 'wedged' device is basically a dead device that needs attention. The
-uevent is the notification that is sent to userspace along with a hint
-about what could possibly be attempted to recover the device and bring
-it back to usable state. Different drivers may have different ideas of
-a 'wedged' device depending on their hardware implementation, and hence
-the vendor agnostic nature of the event. It is up to the drivers to
-decide when they see the need for recovery and how they want to recover
-from the available methods.
-
-Prerequisites
--------------
-
-The driver, before opting for recovery, needs to make sure that the
-'wedged' device doesn't harm the system as a whole by taking care of the
-prerequisites. Necessary actions must include disabling DMA to system
-memory as well as any communication channels with other devices. Further,
-the driver must ensure that all dma_fences are signalled and any device
-state that the core kernel might depend on are cleaned up. Once the event
-is sent, the device must be kept in 'wedged' state until the recovery is
-performed. New accesses to the device (IOCTLs) should be blocked,
-preferably with an error code that resembles the type of failure the
-device has encountered. This will signify the reason for wegeding which
-can be reported to the application if needed.
-</pre>
-                </blockquote>
-                <pre class="moz-quote-pre" wrap="">should we even drop the mmaps we created?
-</pre>
-              </blockquote>
-              <pre class="moz-quote-pre" wrap="">Whatever is required for a clean recovery, yes.
-
-Although how would this play out? Do we risk loosing display?
-Or any other possible side-effects?
-</pre>
-            </blockquote>
-            <pre class="moz-quote-pre" wrap="">Before sending a wedge event all DMA transfers of the device have to be
-blocked.
-
-So yes, all display, mmap() and file descriptor connections you had with the
-device would need to be re-created.
-</pre>
-          </blockquote>
-          <pre class="moz-quote-pre" wrap="">Does it mean we'd have to rely on userspace to unmap()?
-</pre>
-        </blockquote>
-        <pre class="moz-quote-pre" wrap="">
-Yes and no :)
-
-The handling should be similar to how hotplug is handled. E.g. the device
-becomes inaccessible by normal applications all mappings become invalid.
-</pre>
-      </blockquote>
-      <pre class="moz-quote-pre" wrap="">
-Isn't that just unbind (which is already part of recovery)?</pre>
-    </blockquote>
-    <br>
-    No, unbind just invalidates all mappings but it doesn't catches any
-    page faults which would validate them again.<br>
-    <br>
-    The driver or framework must make sure that page faults now get
-    redirected to a dummy page. See ttm_bo_vm_dummy_page() for how TTM
-    handles that for all drivers using it.<br>
-    <br>
-    Not sure about i915, since it never deals with device memory it can
-    potentially just keep the access to the allocated system memory
-    intact.<br>
-    <br>
-    <span style="white-space: pre-wrap">
-</span>
-    <blockquote type="cite" cite="mid:Z0VtA5o2cW_snZbf@black.fi.intel.com">
-      <blockquote type="cite">
-        <pre class="moz-quote-pre" wrap="">But we don't send a SIGBUS or similar on access, instead all mappings
-redirected to a dummy page which basically shallows all writes and gives
-undefined data on reads.
-
-On IOCTLs the applications should get an error code and eventually restart
-or at least unmap all their mappings.
-</pre>
-      </blockquote>
-      <pre class="moz-quote-pre" wrap="">
-Thanks for the detailed explanation.
-
-Rethinking about this, the criteria set for prerequisites is to not do
-anything that could possibly harm the system. So I think the important
-question is,
-
-with fences signalled and ioctls already blocked, is live mmap on a wedged
-device capable of producing harmful behaviour or unintended side-effects
-(atleast until the application has the opportunity to unmap() as part of
-recovery)?</pre>
-    </blockquote>
-    <br>
-    I think we are already rather good there.<br>
-    <br>
-    The potential options are to redirect everything to a dummy page or
-    to crash the application by sending a SIGBUS.<br>
-    <br>
-    Redirecting everything to the dummy page sounds like the more
-    defensive approach.<br>
-    <br>
-    Regards,<br>
-    Christian.<br>
-    <br>
-    <blockquote type="cite" cite="mid:Z0VtA5o2cW_snZbf@black.fi.intel.com">
-      <pre class="moz-quote-pre" wrap="">
-
-Raag
-</pre>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------FgvlyC9YSfyydV35mxNAZr1l--
