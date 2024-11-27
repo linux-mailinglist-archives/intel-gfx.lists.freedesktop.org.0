@@ -2,52 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12A419DB537
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Nov 2024 11:04:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D7F6F9DA2CD
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Nov 2024 08:08:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2533810E318;
-	Thu, 28 Nov 2024 10:04:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7448C10E9EC;
+	Wed, 27 Nov 2024 07:08:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=xry111.site header.i=@xry111.site header.b="JJUmbWdx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V4VpHPtw";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from xry111.site (xry111.site [89.208.246.23])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8CBA610E9EC
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 Nov 2024 06:58:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xry111.site;
- s=default; t=1732690721;
- bh=pw1X6H8/zY0wZ7mt16egIeszIWBhazuzEjcVI8qOGeE=;
- h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
- b=JJUmbWdxVGQgCMjrWyH4Z+Yhkhe/oyB3CYiH5iflUSc7GjGymyvQKB3jtBOZ73GEw
- 8FKn1x3bp7ewMN06pqtv/YR/+fGYYjRhStgfHiyW6XgpBkA4CdwzIYXwoStn8EinB1
- bn4kyXyo/5RN/WlTSQZDjGJQLED7fPy+L1gMNClY=
-Received: from [192.168.124.9] (unknown [113.200.174.84])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (prime256v1) server-signature ECDSA (secp384r1)
- server-digest SHA384) (Client did not present a certificate)
- (Authenticated sender: xry111@xry111.site)
- by xry111.site (Postfix) with ESMTPSA id 977A766AB3;
- Wed, 27 Nov 2024 01:58:40 -0500 (EST)
-Message-ID: <e5d6b1364af9b95181719370763cdc7e96ec930e.camel@xry111.site>
-Subject: Re: [PATCH 3/7] drm/i915: Enable 10bpc + CCS on TGL+
-From: Xi Ruoyao <xry111@xry111.site>
-To: Ville =?ISO-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Cc: juhapekka.heikkila@gmail.com, intel-gfx@lists.freedesktop.org
-Date: Wed, 27 Nov 2024 14:58:38 +0800
-In-Reply-To: <Z0a0tRnfv8UKorJo@intel.com>
-References: <20240918144445.5716-1-ville.syrjala@linux.intel.com>
- <20240918144445.5716-4-ville.syrjala@linux.intel.com>
- <e30b033c-c242-47ef-aa9e-ba2ee734ca09@gmail.com>
- <ZwAt5SfK8wzYoQb1@intel.com>
- <60c4b7c8-6ae8-469f-937d-d1a877c9b16c@gmail.com>
- <45a5bba8de009347262d86a4acb27169d9ae0d9f.camel@xry111.site>
- <Z0a0tRnfv8UKorJo@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.2 
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D106B10E9E2;
+ Wed, 27 Nov 2024 07:08:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1732691335; x=1764227335;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=LWU0d0onJO+dvFmwDbKF3Z7oLAaWIkT1fuXb3LDMILs=;
+ b=V4VpHPtwASJLOkLDAZB8yAlZaAo+qO4XbzBXo25f2w3q0sCiLr8m5Txo
+ BcbOod8kI5ivAGiNP2oCczE4X616CQnVPQHQsVp0zUdt53IApxvtdtHB5
+ cEhzGmtJ9gH8JwWQ3oEGNobnZn7sIfko9X7zN3QocplglR6+4RtVRwbIT
+ cogXC9yn2QoRwOClD5n+DwwGa/UuR9C3/tA/rsiRxSvqGD8+H73hGbNwg
+ rQzgT7kDlzgrvzCqiEXD+NOSKOiWdhmtjMrRDzyipInEAkZ/X5J/tnbdi
+ 9a/TS41MgTD/z746vVEeHOI0Ssvcl2Z0yDxzHxqoilNi6NEAV3tW5s3tz Q==;
+X-CSE-ConnectionGUID: BZKmTvAySrS3KZ1eXL4PEg==
+X-CSE-MsgGUID: SFqTzhFKTAm3y/naIL092g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11268"; a="36667880"
+X-IronPort-AV: E=Sophos;i="6.12,188,1728975600"; d="scan'208";a="36667880"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Nov 2024 23:08:54 -0800
+X-CSE-ConnectionGUID: tVuuDCiiT5KdAEyHTTdudw==
+X-CSE-MsgGUID: v75kWB5HR86v6uVzIwP18g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,188,1728975600"; d="scan'208";a="96270360"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Nov 2024 23:08:52 -0800
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
+ ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
+Subject: [PATCH 0/7] Refactor VRR for different VRR timing generator
+Date: Wed, 27 Nov 2024 12:41:29 +0530
+Message-ID: <20241127071136.1017190-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-X-Mailman-Approved-At: Thu, 28 Nov 2024 10:04:47 +0000
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,106 +66,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 2024-11-27 at 07:57 +0200, Ville Syrj=C3=A4l=C3=A4 wrote:
-> On Mon, Nov 25, 2024 at 02:55:34PM +0800, Xi Ruoyao wrote:
-> > On Tue, 2024-10-08 at 12:01 +0300, Juha-Pekka Heikkila wrote:
-> > > On 4.10.2024 21.03, Ville Syrj=C3=A4l=C3=A4 wrote:
-> > > > On Fri, Oct 04, 2024 at 04:35:17PM +0300, Juha-Pekka Heikkila wrote=
-:
-> > > > > On 18.9.2024 17.44, Ville Syrjala wrote:
-> > > > > > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> > > > > >=20
-> > > > > > TGL+ support 10bpc compressed scanout. Enable it.
-> > > > > >=20
-> > > > > > v2: Set .depth=3D30 for all variants to match drm_fourcc.c
-> > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Set clear color block size to 0x=
-0
-> > > > > >=20
-> > > > > > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.int=
-el.com>
-> > > > > > ---
-> > > > > > =C2=A0=C2=A0 drivers/gpu/drm/i915/display/intel_fb.c=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 36 +++++++++++++++++++
-> > > > > > =C2=A0=C2=A0 .../drm/i915/display/skl_universal_plane.c=C2=A0=
-=C2=A0=C2=A0 |=C2=A0 8 ++---
-> > > > > > =C2=A0=C2=A0 2 files changed, 40 insertions(+), 4 deletions(-)
-> > > > > >=20
-> > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/=
-gpu/drm/i915/display/intel_fb.c
-> > > > > > index bcf0d016f499..9b9da4f71f73 100644
-> > > > > > --- a/drivers/gpu/drm/i915/display/intel_fb.c
-> > > > > > +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-> > > > > > @@ -67,6 +67,18 @@ static const struct drm_format_info gen12_cc=
-s_formats[] =3D {
-> > > > > > =C2=A0=C2=A0=C2=A0	{ .format =3D DRM_FORMAT_ABGR8888, .depth =
-=3D 32, .num_planes =3D 2,
-> > > > > > =C2=A0=C2=A0=C2=A0	=C2=A0 .char_per_block =3D { 4, 1 }, .block_=
-w =3D { 1, 2 }, .block_h =3D { 1, 1 },
-> > > > > > =C2=A0=C2=A0=C2=A0	=C2=A0 .hsub =3D 1, .vsub =3D 1, .has_alpha =
-=3D true },
-> > > > > > +	{ .format =3D DRM_FORMAT_XRGB2101010, .depth =3D 30, .num_pla=
-nes =3D 2,
-> > > > > > +	=C2=A0 .char_per_block =3D { 4, 1 }, .block_w =3D { 1, 2 }, .=
-block_h =3D { 1, 1 },
-> > > > > > +	=C2=A0 .hsub =3D 1, .vsub =3D 1, },
-> > > > > > +	{ .format =3D DRM_FORMAT_XBGR2101010, .depth =3D 30, .num_pla=
-nes =3D 2,
-> > > > > > +	=C2=A0 .char_per_block =3D { 4, 1 }, .block_w =3D { 1, 2 }, .=
-block_h =3D { 1, 1 },
-> > > > > > +	=C2=A0 .hsub =3D 1, .vsub =3D 1, },
-> > > > > > +	{ .format =3D DRM_FORMAT_ARGB2101010, .depth =3D 30, .num_pla=
-nes =3D 2,
-> > > > >=20
-> > > > > Is that comment about depth=3D30 for all variants because of thes=
-e alpha
-> > > > > formats? Why is that? Here on other formats alpha is taken as par=
-t of
-> > > > > depth, like in above "DRM_FORMAT_ABGR8888, .depth =3D 32"
-> > > >=20
-> > > > That stuff is just legacy compatibility stuff, and back in
-> > > > the day peope decided that depth=3D=3D32 simply means ARGB8888.
-> > > > I'm not sure we should even state depth=3D30 on ARGB2101010
-> > > > at all, or would it be better to leave it at 0.
-> > > >=20
-> > > > Another option might be to just set .depth=3D0 on absolutely
-> > > > all compressed formats. Using these with some legacy uapi
-> > > > which only talks in terms of bpp and depth doesn't seem
-> > > > feasible anyway.
-> > > >=20
-> > > > But for now I think we just want to match drm_fourcc.c since
-> > > > that's what we did for the other compressed formats.
-> > >=20
-> > > ack. patch set is
-> > >=20
-> > > Reviewed-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-> >=20
-> > Hi Ville and Juha-Pekka,
-> >=20
-> > Unfortunately this commit has caused gnome-shell to display nothing on
-> > my system.=C2=A0 Its log contains error messages:
-> >=20
-> > =C2=A0=C2=A0=C2=A0 Failed to ensure KMS FB ID on /dev/dri/card1: drmMod=
-eAddFB2WithModifiers failed: Invalid argument
-> > =C2=A0=C2=A0=C2=A0 meta_frame_native_release: assertion '!frame_native-=
->kms_update' failed
-> >=20
-> > Reverting commits 7c35015fab5d ("drm/i915: Enable fp16 + CCS on TGL+")
-> > and c315fbfa44f4 (this one) "fixes" the issue for me.
-> >=20
-> > The system does have a TGL (i5-11300H) but I don't think my monitor
-> > (it's just the display panel of a budget laptop) supports 10bpc.
-> >=20
-> > Any pointer on debugging this further?
->=20
-> Please file a new bug at
-> https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/new
->=20
-> Boot with 'drm.debug=3D0x1e log_buf_len=3D4M' added to the kernel cmdline
-> and attach the resulting dmesg to the bug.
+The VRR timing generator supports multiple modes:
+dynamic refresh rate (VRR), content-matched refresh rate (CMRR), and
+fixed refresh rate (Fixed_RR).
 
-https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13057
+To better track the different operational modes of the VRR timing generator
+refactor the existing vrr members and functions.
+This will also help to add support for Fixed refresh rate mode and move from
+legacy timing generator to VRR timing generator.
 
+This series is a spinoff from the original series:
+https://patchwork.freedesktop.org/series/141152/
 
---=20
-Xi Ruoyao <xry111@xry111.site>
-School of Aerospace Science and Technology, Xidian University
+Ankit Nautiyal (7):
+  drm/i915/vrr: Refactor VRR Timing Computation
+  drm/i915/vrr: Simplify CMRR Enable Check in intel_vrr_get_config
+  drm/i915/vrr: Introduce new field for VRR mode
+  drm/i915/vrr: Fill VRR timing generator mode for CMRR and VRR
+  drm/i915/display: Remove vrr.enable and instead check vrr.mode != NONE
+  drm/i915/display: Absorb cmrr attributes into vrr struct
+  drm/i915/display: Add vrr mode to crtc_state dump
+
+ .../drm/i915/display/intel_crtc_state_dump.c  |  19 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c      |   3 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |  33 ++--
+ .../drm/i915/display/intel_display_types.h    |  16 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       |   6 +-
+ drivers/gpu/drm/i915/display/intel_dsb.c      |   2 +-
+ .../drm/i915/display/intel_modeset_setup.c    |   3 +-
+ drivers/gpu/drm/i915/display/intel_psr.c      |   5 +-
+ drivers/gpu/drm/i915/display/intel_vrr.c      | 164 +++++++++++-------
+ drivers/gpu/drm/i915/display/intel_vrr.h      |   1 +
+ drivers/gpu/drm/i915/display/skl_watermark.c  |   3 +-
+ 11 files changed, 154 insertions(+), 101 deletions(-)
+
+-- 
+2.45.2
+
