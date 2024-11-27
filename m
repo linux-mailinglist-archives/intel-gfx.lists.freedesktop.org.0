@@ -2,64 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C21B9DA1E0
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Nov 2024 06:57:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EEFC09DA200
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Nov 2024 07:11:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6CE310E20C;
-	Wed, 27 Nov 2024 05:57:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6621310E214;
+	Wed, 27 Nov 2024 06:11:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aKTrMzgZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eQbB5aai";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EEE4910E20C
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 Nov 2024 05:57:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F356B10E214
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 Nov 2024 06:11:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732687033; x=1764223033;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=/XdSlsi1i+92UWiC/R4B3epYTSsGQ8h5263Lmw9JuEs=;
- b=aKTrMzgZeeBX8Z2xKCZohJCa6h9/NJKy/P5IF6pN7G9jGDGuOmsxizIp
- k2poE/0u3bFmPf0ldEi25nbPplWZT907TVasP7cG+SxcGSxfO7EB/ChAf
- 4oAHHRyG1RMRXDVyzoGmG/Xj0Wt+RZ0FoDKXVpmXa7v2bB9vU68P/u6/9
- suRwuYG5dVHZNxjb0lirY5M1Oh3uuSPYjK8wy0lqlyAeuyoaiogNuc5r7
- WGZGsuUvlBTlBNGf7/v0wHpqfPZb8Dk6T6P7245To7zqmZtkmK6HgZSbI
- VfvDrvTNEQwo1Bl9NiSX+fYJObnR3dmJkddQkEphCxWkzPXD0k1QbAF1Z w==;
-X-CSE-ConnectionGUID: spa1TyylSRyig/vJlwajvw==
-X-CSE-MsgGUID: SJOHSgcaRaWKzkV+p9tntA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11268"; a="33123881"
-X-IronPort-AV: E=Sophos;i="6.12,188,1728975600"; d="scan'208";a="33123881"
+ t=1732687882; x=1764223882;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=w3ruouxBqQ67WOj0uoQe8G6DhKnjsjXlMKiUWKEdSZE=;
+ b=eQbB5aaiEhj9rDdqANWBN/ZR0hA0+t85Da6bEwxJMH6hvIWCMopmzwJh
+ 3/b82lDfUh3KMAToR7Ij5Dhc9if4TZW1RqPHwPzRtv06uKE03sHL9sko7
+ ff3M8uKD3/loJxnP1NpDg+yHenzi6frQB17VpoDpaIb6rw74brseiTiKU
+ tIulgJdrvVsqiG+q7eumrrPR6DIVCDtRO+KHMDxdO74Wz0goghDYt//5u
+ seSPsdnhFa/ZGJK4/+uykfMb6McXl2QzHSpsYBp/jIli+A+qq6IZ9OGwC
+ pvT4glVQzI7yNP546e12A4FAvyuazA187weg0sjsqQCx7Hf5cQExb/MQC g==;
+X-CSE-ConnectionGUID: 28RLFgFgTVWCpPn4fJTA5w==
+X-CSE-MsgGUID: 5C5yz9IfQuaBvhoYHGS0gA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11268"; a="33125360"
+X-IronPort-AV: E=Sophos;i="6.12,188,1728975600"; d="scan'208";a="33125360"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2024 21:57:13 -0800
-X-CSE-ConnectionGUID: 3T7L53mKQSKiMcf14l1MoQ==
-X-CSE-MsgGUID: ZGG8MRkrR+iqopcPaPAOLA==
+ 26 Nov 2024 22:11:22 -0800
+X-CSE-ConnectionGUID: Hx/DrI0FRPy8g9CyTfaqJQ==
+X-CSE-MsgGUID: rTako7KkSQmHhfHcXWKkgA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,188,1728975600"; d="scan'208";a="91977757"
+X-IronPort-AV: E=Sophos;i="6.12,188,1728975600"; d="scan'208";a="91981992"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 26 Nov 2024 21:57:10 -0800
+ by fmviesa008.fm.intel.com with SMTP; 26 Nov 2024 22:11:18 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 27 Nov 2024 07:57:09 +0200
-Date: Wed, 27 Nov 2024 07:57:09 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Xi Ruoyao <xry111@xry111.site>
-Cc: juhapekka.heikkila@gmail.com, intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 3/7] drm/i915: Enable 10bpc + CCS on TGL+
-Message-ID: <Z0a0tRnfv8UKorJo@intel.com>
-References: <20240918144445.5716-1-ville.syrjala@linux.intel.com>
- <20240918144445.5716-4-ville.syrjala@linux.intel.com>
- <e30b033c-c242-47ef-aa9e-ba2ee734ca09@gmail.com>
- <ZwAt5SfK8wzYoQb1@intel.com>
- <60c4b7c8-6ae8-469f-937d-d1a877c9b16c@gmail.com>
- <45a5bba8de009347262d86a4acb27169d9ae0d9f.camel@xry111.site>
+ Wed, 27 Nov 2024 08:11:17 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Brian Geffon <bgeffon@google.com>,
+ Vidya Srinivas <vidya.srinivas@intel.com>
+Subject: [PATCH 0/4] drm/i915/dpt: Try to make DPT shrinkable again
+Date: Wed, 27 Nov 2024 08:11:13 +0200
+Message-ID: <20241127061117.25622-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <45a5bba8de009347262d86a4acb27169d9ae0d9f.camel@xry111.site>
-X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,83 +68,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Nov 25, 2024 at 02:55:34PM +0800, Xi Ruoyao wrote:
-> On Tue, 2024-10-08 at 12:01 +0300, Juha-Pekka Heikkila wrote:
-> > On 4.10.2024 21.03, Ville Syrj‰l‰ wrote:
-> > > On Fri, Oct 04, 2024 at 04:35:17PM +0300, Juha-Pekka Heikkila wrote:
-> > > > On 18.9.2024 17.44, Ville Syrjala wrote:
-> > > > > From: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
-> > > > > 
-> > > > > TGL+ support 10bpc compressed scanout. Enable it.
-> > > > > 
-> > > > > v2: Set .depth=30 for all variants to match drm_fourcc.c
-> > > > > ††††† Set clear color block size to 0x0
-> > > > > 
-> > > > > Signed-off-by: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
-> > > > > ---
-> > > > > †† drivers/gpu/drm/i915/display/intel_fb.c†††††† | 36 +++++++++++++++++++
-> > > > > †† .../drm/i915/display/skl_universal_plane.c††† |† 8 ++---
-> > > > > †† 2 files changed, 40 insertions(+), 4 deletions(-)
-> > > > > 
-> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-> > > > > index bcf0d016f499..9b9da4f71f73 100644
-> > > > > --- a/drivers/gpu/drm/i915/display/intel_fb.c
-> > > > > +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-> > > > > @@ -67,6 +67,18 @@ static const struct drm_format_info gen12_ccs_formats[] = {
-> > > > > †††	{ .format = DRM_FORMAT_ABGR8888, .depth = 32, .num_planes = 2,
-> > > > > †††	† .char_per_block = { 4, 1 }, .block_w = { 1, 2 }, .block_h = { 1, 1 },
-> > > > > †††	† .hsub = 1, .vsub = 1, .has_alpha = true },
-> > > > > +	{ .format = DRM_FORMAT_XRGB2101010, .depth = 30, .num_planes = 2,
-> > > > > +	† .char_per_block = { 4, 1 }, .block_w = { 1, 2 }, .block_h = { 1, 1 },
-> > > > > +	† .hsub = 1, .vsub = 1, },
-> > > > > +	{ .format = DRM_FORMAT_XBGR2101010, .depth = 30, .num_planes = 2,
-> > > > > +	† .char_per_block = { 4, 1 }, .block_w = { 1, 2 }, .block_h = { 1, 1 },
-> > > > > +	† .hsub = 1, .vsub = 1, },
-> > > > > +	{ .format = DRM_FORMAT_ARGB2101010, .depth = 30, .num_planes = 2,
-> > > > 
-> > > > Is that comment about depth=30 for all variants because of these alpha
-> > > > formats? Why is that? Here on other formats alpha is taken as part of
-> > > > depth, like in above "DRM_FORMAT_ABGR8888, .depth = 32"
-> > > 
-> > > That stuff is just legacy compatibility stuff, and back in
-> > > the day peope decided that depth==32 simply means ARGB8888.
-> > > I'm not sure we should even state depth=30 on ARGB2101010
-> > > at all, or would it be better to leave it at 0.
-> > > 
-> > > Another option might be to just set .depth=0 on absolutely
-> > > all compressed formats. Using these with some legacy uapi
-> > > which only talks in terms of bpp and depth doesn't seem
-> > > feasible anyway.
-> > > 
-> > > But for now I think we just want to match drm_fourcc.c since
-> > > that's what we did for the other compressed formats.
-> > 
-> > ack. patch set is
-> > 
-> > Reviewed-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-> 
-> Hi Ville and Juha-Pekka,
-> 
-> Unfortunately this commit has caused gnome-shell to display nothing on
-> my system.  Its log contains error messages:
-> 
->     Failed to ensure KMS FB ID on /dev/dri/card1: drmModeAddFB2WithModifiers failed: Invalid argument
->     meta_frame_native_release: assertion '!frame_native->kms_update' failed
-> 
-> Reverting commits 7c35015fab5d ("drm/i915: Enable fp16 + CCS on TGL+")
-> and c315fbfa44f4 (this one) "fixes" the issue for me.
-> 
-> The system does have a TGL (i5-11300H) but I don't think my monitor
-> (it's just the display panel of a budget laptop) supports 10bpc.
-> 
-> Any pointer on debugging this further?
+From: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
 
-Please file a new bug at
-https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/new
+Try to make DPT objects shrinakble once again. To overcome
+the earlier suspend/resume issues we'll just make sure all
+DPT VMAs are evicted during suspend, and thus resume won't
+care whether the DPT objects got kicked out or not. 
 
-Boot with 'drm.debug=0x1e log_buf_len=4M' added to the kernel cmdline
-and attach the resulting dmesg to the bug.
+The proper solution would perhaps be to do the DPT CPU
+mapping on demand in dpt insert_{page,range}() but that
+would require a bunch of extra thought (especially for
+DPTs allocated from stolen).
+
+Cc: Brian Geffon <bgeffon@google.com>
+Cc: Vidya Srinivas <vidya.srinivas@intel.com>
+
+Ville Syrj√§l√§ (4):
+  drm/i915: Don't reuse commit_work for the cleanup
+  drm/i915: Intruduce display.wq.cleanup
+  drm/i915/dpt: Evict all DPT VMAs on suspend
+  Revert "drm/i915/dpt: Make DPT object unshrinkable"
+
+ drivers/gpu/drm/i915/display/intel_display.c  |  6 +++---
+ .../gpu/drm/i915/display/intel_display_core.h |  3 +++
+ .../drm/i915/display/intel_display_driver.c   |  6 ++++++
+ .../drm/i915/display/intel_display_types.h    |  2 ++
+ drivers/gpu/drm/i915/display/intel_dpt.c      |  4 ++--
+ drivers/gpu/drm/i915/gem/i915_gem_object.h    |  4 +---
+ drivers/gpu/drm/i915/gt/intel_ggtt.c          | 19 ++++++++++++++-----
+ drivers/gpu/drm/i915/gt/intel_gtt.h           |  4 ++--
+ 8 files changed, 33 insertions(+), 15 deletions(-)
 
 -- 
-Ville Syrj‰l‰
-Intel
+2.45.2
+
