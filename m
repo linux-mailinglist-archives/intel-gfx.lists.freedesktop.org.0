@@ -2,29 +2,80 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E97D9DAD6D
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Nov 2024 19:57:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB80C9DB536
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Nov 2024 11:04:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B560D10EBCC;
-	Wed, 27 Nov 2024 18:57:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D99110E1AE;
+	Thu, 28 Nov 2024 10:04:49 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="hqKk7Ks6";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D2CA10EBB5;
- Wed, 27 Nov 2024 18:57:50 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com
+ [209.85.160.178])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 44CF910E1A1;
+ Wed, 27 Nov 2024 20:10:47 +0000 (UTC)
+Received: by mail-qt1-f178.google.com with SMTP id
+ d75a77b69052e-4668486df76so1324581cf.3; 
+ Wed, 27 Nov 2024 12:10:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1732738246; x=1733343046; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=mblefla9njkVPYJmF7+4lumH+f/65iphlvMfUcC2UiM=;
+ b=hqKk7Ks6oU1kQQVsyn7OnEFcSGa1QbUI61zAoIusLOjBbHx7Z+EOtF7fW9xkH9DR9G
+ KMY/K/CFuuvTAjWS/BJHoWlldBd8HY88eLFPIIXPqxv1+hs14bwbXU+WCgxYp9roso3m
+ T8WJIMLq/WGSSENEzR7YhSqvgUUCva40gv+hp1nGCMV8PcbH1InCt9ci9kMM2Szu0HJv
+ qu4enUT2VEvOv9BA+JBeIw9cc1Dt8zeYxjs9IIzbi9uB5tI0cEMvjJsnJ+umsFwT5Pzt
+ 5cQEU69d3jza60nRSpTihq4uIXPaPxn7cHQ7Vytsq9qQBE82OZZO8gGMmj9Wcnmi8AWx
+ lSKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1732738246; x=1733343046;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=mblefla9njkVPYJmF7+4lumH+f/65iphlvMfUcC2UiM=;
+ b=pfVNZWHLcCzAiU6Ln81piKvNTvsBxFiAI3fI0QbyFNV7pelhFl6M0jNxyEyURHmyvb
+ pQACe/H0XtnEU7hJHSoLyIe9GZiFfFe0AGf1+fBKj3OxwZ8fxipvkc+PMVQZ6R85D18K
+ yv4snQjdkrUIpmRpGBo9Sq2NgEIPrwZJTkxQJ8jNyi91RhVEST8pqWKPVcpN1tlcEk7V
+ +9IHFEDkaNZcMkjTTDXGq/oYLchz92Jp7NIwu3hw9QLrb6q7mUqsH12mKJq0DmHZnJO/
+ BFxkgcQpquTyuMbb7WnHweNQMYiEQ+3VDd5P31N2idKmxULK020Pkx7i5OOMyV1qEkrA
+ 3fXw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWs9dwtbbXLHTP6OXRf8cWtLa/kZMFydgy2ZzP9Tc1pUBIrodRZH7Mtw9SjR8njibBlKYIhq4vybWg=@lists.freedesktop.org,
+ AJvYcCXN8Uj1QTaAMZ1yO2fQ5rQYUULqLgxbdViV785g9A3/Y6mOtUqt5m0/dlU2o6ib2gZPlrjQjfowGi+k@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx61mF8/q3tXREjZYpCpvRAg9D9cIO8GbM7YD5WIGwzKzsSz2iF
+ akEuQ/N5ibkPwLFPbuJLl7ZEzP57kEywERCTKxHJCEZym8G2MXE5
+X-Gm-Gg: ASbGncuVKkXu+XxfkE1XSKnkZ8LYPrYjvWrBmftkbNiFfIhlX3qqHM7r03Abob00XoW
+ rUQR+hA7oajVwcvRZ466UX4vcAV6/Nj0xY9uFe4sY6QYA1sxodXkHxbEiLgiOmGisMbzdC70QNN
+ VgrUjTBwmsMoZyr2ciB1QfBF9tYEoyCmlK9Izc5CALXGXiVq94vs/l7vxZD2FET1Al7zDPKvZTW
+ R3Y01mRLpdn7rur7dFv17sxbOeCkleGPcCre8Bz+bMnky2feJ2uDZ7cC8aety1ZT0NMspVC
+X-Google-Smtp-Source: AGHT+IGXO3DPEwrzdtMEulE3VhY7JlQ+MgBKS5s1oo9cMdxXkiSfRsPCWUfk8wMsJreCYQsvHzy5tQ==
+X-Received: by 2002:ac8:5987:0:b0:461:9d9:15c2 with SMTP id
+ d75a77b69052e-466b3554a2amr73534731cf.1.1732738246079; 
+ Wed, 27 Nov 2024 12:10:46 -0800 (PST)
+Received: from newman.cs.purdue.edu ([128.10.127.250])
+ by smtp.gmail.com with ESMTPSA id
+ af79cd13be357-7b679c8d982sm138536285a.14.2024.11.27.12.10.45
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 27 Nov 2024 12:10:45 -0800 (PST)
+From: Jiasheng Jiang <jiashengjiangcool@gmail.com>
+To: nirmoy.das@linux.intel.com
+Cc: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, tursulin@ursulin.net, airlied@gmail.com,
+ daniel@ffwll.ch, chris@chris-wilson.co.uk, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Jiasheng Jiang <jiashengjiangcool@outlook.com>, stable@vger.kernel.org,
+ Nirmoy Das <nirmoy.das@intel.com>
+Subject: [PATCH RESEND v2] drm/i915: Fix memory leak by correcting cache
+ object name in error handler
+Date: Wed, 27 Nov 2024 20:10:42 +0000
+Message-Id: <20241127201042.29620-1-jiashengjiangcool@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_Fix_some_races/bugs_in_Gu?=
- =?utf-8?q?C_engine_busyness_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 27 Nov 2024 18:57:50 -0000
-Message-ID: <173273387024.3835350.412876881247003116@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241127174006.190128-1-umesh.nerlige.ramappa@intel.com>
-In-Reply-To: <20241127174006.190128-1-umesh.nerlige.ramappa@intel.com>
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Thu, 28 Nov 2024 10:04:47 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,92 +88,40 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: Jiasheng Jiang <jiashengjiangcool@outlook.com>
 
-Series: Fix some races/bugs in GuC engine busyness (rev4)
-URL   : https://patchwork.freedesktop.org/series/141522/
-State : success
+Replace "slab_priorities" with "slab_dependencies" in the error handler
+to avoid memory leak.
 
-== Summary ==
+Fixes: 32eb6bcfdda9 ("drm/i915: Make request allocation caches global")
+Cc: <stable@vger.kernel.org> # v5.2+
+Reviewed-by: Nirmoy Das <nirmoy.das@intel.com>
+Signed-off-by: Jiasheng Jiang <jiashengjiangcool@outlook.com>
+---
+Changelog:
 
-CI Bug Log - changes from CI_DRM_15754 -> Patchwork_141522v4
-====================================================
+v1 -> v2:
 
-Summary
--------
+1. Alter the subject.
+---
+ drivers/gpu/drm/i915/i915_scheduler.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-  **SUCCESS**
+diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
+index 762127dd56c5..70a854557e6e 100644
+--- a/drivers/gpu/drm/i915/i915_scheduler.c
++++ b/drivers/gpu/drm/i915/i915_scheduler.c
+@@ -506,6 +506,6 @@ int __init i915_scheduler_module_init(void)
+ 	return 0;
+ 
+ err_priorities:
+-	kmem_cache_destroy(slab_priorities);
++	kmem_cache_destroy(slab_dependencies);
+ 	return -ENOMEM;
+ }
+-- 
+2.25.1
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141522v4/index.html
-
-Participating hosts (44 -> 43)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_141522v4 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - bat-adls-6:         [PASS][1] -> [FAIL][2] ([i915#12903])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15754/bat-adls-6/igt@i915_pm_rpm@module-reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141522v4/bat-adls-6/igt@i915_pm_rpm@module-reload.html
-    - bat-rpls-4:         [PASS][3] -> [FAIL][4] ([i915#12903])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15754/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141522v4/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live:
-    - bat-arlh-2:         [ABORT][5] -> [PASS][6] +1 other test pass
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15754/bat-arlh-2/igt@i915_selftest@live.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141522v4/bat-arlh-2/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arls-5:         [ABORT][7] ([i915#12061]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15754/bat-arls-5/igt@i915_selftest@live@workarounds.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141522v4/bat-arls-5/igt@i915_selftest@live@workarounds.html
-    - bat-mtlp-6:         [ABORT][9] ([i915#12061]) -> [PASS][10] +1 other test pass
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15754/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141522v4/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         [SKIP][11] ([i915#9197]) -> [PASS][12] +3 other tests pass
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15754/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141522v4/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12903]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12903
-  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15754 -> Patchwork_141522v4
-
-  CI-20190529: 20190529
-  CI_DRM_15754: 24e36a5200d65a337d37827d4abcae11c9693f6f @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8127: 433ecaf95ccaed2b5adcb40d27fa5b7a08a2e03d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_141522v4: 24e36a5200d65a337d37827d4abcae11c9693f6f @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141522v4/index.html
