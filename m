@@ -2,55 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E6FD9DA2D3
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Nov 2024 08:09:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B3359DA339
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Nov 2024 08:40:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0146210E9FD;
-	Wed, 27 Nov 2024 07:09:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2719810E9E7;
+	Wed, 27 Nov 2024 07:40:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mEST4Bel";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FS7cgXqc";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8279910E9FA;
- Wed, 27 Nov 2024 07:09:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E927910E082;
+ Wed, 27 Nov 2024 07:40:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732691348; x=1764227348;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Ah2GySoK0PJ5LmWdhCp1TAf8jaRHm0UBKxqBWQNee+8=;
- b=mEST4Bel4B/iyMGuqc0+4x5S22l0kzXpBFBCChHGzSfen6F/1tueRz8T
- sCGuTyysxjq3X81YiwhBor7gC/n6hmjCOfP2KxGye6p4Vv8Z2GAT0nVN2
- ytlMIaX2awopo2N32aHCBL4dzMzBQUBz0J2WKstWvmzljj6dQqte1Aqzs
- 2gkurPjhM+VLwJxIc1V/t5bMFrTNsRiJCVUHdGs37hDwfSyvSFoG3xQs7
- dTOAqwf+kUfpjldF1lLTLdR1qolQSCG5NDBdwiQJqOMoHL3LiEu2y/6g9
- h4fdU6fAFTFu2LiUHK+0Ltvo1qaxoK0DiLfzwtLbVJgkmE820UMdm0GQb Q==;
-X-CSE-ConnectionGUID: b463qhi1TAmtwI5Oa0BWug==
-X-CSE-MsgGUID: pDCBaNvmRPGt1r80Y0dRjg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11268"; a="36667894"
-X-IronPort-AV: E=Sophos;i="6.12,188,1728975600"; d="scan'208";a="36667894"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ t=1732693252; x=1764229252;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=uauErpTZ1be0TM1pe8s3J7IXZDPyNJ6aGY0maIvmD6k=;
+ b=FS7cgXqcSb1qXk2wCVj5YQrtW3HC6zQgQ74pr4eGoycFgCI+fDfklS2n
+ C+Npnmz5hy8Jmm3NuvBHYd+BBzSfEORURgiks13j4ptk21xHYIhWYo1ne
+ L/GFky6PrVMX4u8GUxLvfLCYtmeYJRDsKMzrDG1vOtEj/9qh1+0sz1uBL
+ SlUBlZwWsg977rc0rJAG3sZb2luUxhh9s0vxYBGPKt6aS8Y85413i1k9S
+ 4TuH1wo7XKrXszKmSxJCw16E85GxUKL3DNJFwSlTH6ruLBFepvO2E5+0j
+ PHlWDPUI4NdE86M4pPRx3VcEbxlP3BRucB9u68vU2OkE2WwQzgItyEf1D A==;
+X-CSE-ConnectionGUID: 8ihLHdh6Rpm2f8/jDF44XA==
+X-CSE-MsgGUID: 3QSeqLo8SVe3EP2o9UW4gw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11268"; a="36670644"
+X-IronPort-AV: E=Sophos;i="6.12,189,1728975600"; d="scan'208";a="36670644"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2024 23:09:08 -0800
-X-CSE-ConnectionGUID: XiqizkHOS5S9tH/BSSILsg==
-X-CSE-MsgGUID: nfYEH5BlSyCbZcd3wHgwbA==
+ 26 Nov 2024 23:40:52 -0800
+X-CSE-ConnectionGUID: UM9NqqCzTni92KfHR8DaDw==
+X-CSE-MsgGUID: j9tIfI6dQyeGfCGUcPY/Gg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,188,1728975600"; d="scan'208";a="96270394"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2024 23:09:06 -0800
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
- ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 7/7] drm/i915/display: Add vrr mode to crtc_state dump
-Date: Wed, 27 Nov 2024 12:41:36 +0530
-Message-ID: <20241127071136.1017190-8-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241127071136.1017190-1-ankit.k.nautiyal@intel.com>
-References: <20241127071136.1017190-1-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,189,1728975600"; d="scan'208";a="129376603"
+Received: from sorvi2.fi.intel.com ([10.237.72.194])
+ by orviesa001.jf.intel.com with ESMTP; 26 Nov 2024 23:40:50 -0800
+From: Mika Kahola <mika.kahola@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@linux.intel.com,
+	Mika Kahola <mika.kahola@intel.com>
+Subject: [PATCH v6 0/2] drm/i915/display: Power request asserting/deasserting
+Date: Wed, 27 Nov 2024 09:31:58 +0200
+Message-ID: <20241127073200.124907-1-mika.kahola@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -68,49 +66,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Print Vrr mode along with other vrr members in crtc_state dump.
+There is a HW issue that arises when there are race conditions
+between TCSS entering/exiting TC7 or TC10 states while the
+driver is asserting/deasserting TCSS power request. As a
+workaround, Display driver will implement a mailbox sequence
+to ensure that the TCSS is in TC0 when TCSS power request is
+asserted/deasserted.
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- .../drm/i915/display/intel_crtc_state_dump.c    | 17 ++++++++++++++++-
- 1 file changed, 16 insertions(+), 1 deletion(-)
+The sequence is the following
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-index bc9e761a3d1a..bd337ce8d4ad 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-@@ -181,6 +181,20 @@ vlv_dump_csc(struct drm_printer *p, const char *name,
- 			   csc->coeff[3 * i + 2]);
- }
- 
-+static const char * const vrrtg_mode_str[] = {
-+	[INTEL_VRRTG_MODE_NONE] = "none",
-+	[INTEL_VRRTG_MODE_VRR] = "vrr",
-+	[INTEL_VRRTG_MODE_CMRR] = "cmrr",
-+};
-+
-+static const char *intel_vrrtg_mode_name(enum intel_vrrtg_mode mode)
-+{
-+	if (mode >= ARRAY_SIZE(vrrtg_mode_str))
-+		return "invalid";
-+
-+	return vrrtg_mode_str[mode];
-+}
-+
- void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
- 			   struct intel_atomic_state *state,
- 			   const char *context)
-@@ -296,8 +310,9 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
- 		intel_dump_buffer("ELD: ", pipe_config->eld,
- 				  drm_eld_size(pipe_config->eld));
- 
--	drm_printf(&p, "vrr: %s, vmin: %d, vmax: %d, pipeline full: %d, guardband: %d flipline: %d, vmin vblank: %d, vmax vblank: %d\n",
-+	drm_printf(&p, "vrr: %s, mode: %s vmin: %d, vmax: %d, pipeline full: %d, guardband: %d flipline: %d, vmin vblank: %d, vmax vblank: %d\n",
- 		   str_yes_no(intel_vrrtg_is_enabled(pipe_config)),
-+		   intel_vrrtg_mode_name(pipe_config->vrr.mode),
- 		   pipe_config->vrr.vmin, pipe_config->vrr.vmax,
- 		   pipe_config->vrr.pipeline_full, pipe_config->vrr.guardband,
- 		   pipe_config->vrr.flipline,
+1. Read mailbox command status and wait until run/busy bit is
+   clear
+2. Write mailbox data value '1' for power request asserting
+   and '0' for power request deasserting
+3. Write mailbox command run/busy bit and command value with 0x1
+4. Read mailbox command and wait until run/busy bit is clear
+   before continuing power request.
+
+while at it, let's start using struct intel_display instead of
+struct drm_i915_private as well.
+
+Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+
+Mika Kahola (2):
+  drm/i915/xe3lpd: Power request asserting/deasserting
+  drm/i915/display: Use struct intel_display instead of struct
+    drm_i915_private
+
+ .../gpu/drm/i915/display/intel_cx0_phy_regs.h |  7 ++++
+ drivers/gpu/drm/i915/display/intel_tc.c       | 39 +++++++++++++++++--
+ 2 files changed, 42 insertions(+), 4 deletions(-)
+
 -- 
-2.45.2
+2.43.0
 
