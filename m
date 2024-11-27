@@ -2,57 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8E399DA85B
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Nov 2024 14:18:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B89B79DA9BD
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Nov 2024 15:14:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6683B10E03E;
-	Wed, 27 Nov 2024 13:18:44 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ia0XyWqN";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90DCE10EB0F;
+	Wed, 27 Nov 2024 14:14:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE38310E03E;
- Wed, 27 Nov 2024 13:18:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732713524; x=1764249524;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=8NBpQHJen3D1FXzBl748Iu2FemRHjAXTXRghVENhrEM=;
- b=ia0XyWqNRYEch8r/py0Rymvs7kZ4fSQFu3Ok+RH8Wwq4I4OWzImSPiIN
- kJog/FwvrtrRFnPm98lo9rncsgLlkzxJM621Fqx3lUr7ZzxkOVMRVqY3W
- 79KnkOiWa+rCQoZZznPilG0gPAUJIfs/hPRR6J/VJSRX0FwbIrw3bIdJI
- XSdVvZvZZh/grI2UyztSe4Lnms7tclEiTqMAoe/RTPCo3HjGy1eK3/jqk
- TCGM+sneNbMSozBiEJj1kNuSIVePL9gya5JJjHspDQoasGJmPlu5kfs1T
- gEwB4sD5Saq+ZvUexggLFKpuXi8EbyvfQK3RXPzLI8wk+Mu3qpjRPq0uz g==;
-X-CSE-ConnectionGUID: cZN0PXx9TRKGxhbFZnedWw==
-X-CSE-MsgGUID: aUp//mTjRYyGmCVJEO9JmA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11268"; a="35779023"
-X-IronPort-AV: E=Sophos;i="6.12,189,1728975600"; d="scan'208";a="35779023"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2024 05:18:43 -0800
-X-CSE-ConnectionGUID: Djs6rZlsQnKn2QyA7WSBNw==
-X-CSE-MsgGUID: oC4o6lZrQ0m6lV3SlIXMeA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,189,1728975600"; d="scan'208";a="96876476"
-Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.110])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2024 05:18:42 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH] drm/i915/dp: use seq buf for printing rates
-Date: Wed, 27 Nov 2024 15:18:38 +0200
-Message-Id: <20241127131838.3268735-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6093F10EAF9;
+ Wed, 27 Nov 2024 14:14:24 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_drm/i915/dp=3A_use_seq_bu?=
+ =?utf-8?q?f_for_printing_rates?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 27 Nov 2024 14:14:24 -0000
+Message-ID: <173271686438.3737589.2860729581870715186@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241127131838.3268735-1-jani.nikula@intel.com>
+In-Reply-To: <20241127131838.3268735-1-jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,86 +37,119 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hand rolling the buffer overflow handling with snprintf() is a bit
-tedious. The seq_buf interface is made for this. Switch to it.
+== Series Details ==
 
-Use struct intel_display while at it.
+Series: drm/i915/dp: use seq buf for printing rates
+URL   : https://patchwork.freedesktop.org/series/141841/
+State : failure
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 36 ++++++++++---------------
- 1 file changed, 14 insertions(+), 22 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 053a9a4182e7..4471c8fcd478 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -28,6 +28,7 @@
- #include <linux/export.h>
- #include <linux/i2c.h>
- #include <linux/notifier.h>
-+#include <linux/seq_buf.h>
- #include <linux/slab.h>
- #include <linux/sort.h>
- #include <linux/string_helpers.h>
-@@ -1506,41 +1507,32 @@ bool intel_dp_source_supports_tps4(struct drm_i915_private *i915)
- 	return DISPLAY_VER(i915) >= 10;
- }
- 
--static void snprintf_int_array(char *str, size_t len,
--			       const int *array, int nelem)
-+static void seq_buf_print_array(struct seq_buf *s, const int *array, int nelem)
- {
- 	int i;
- 
--	str[0] = '\0';
--
--	for (i = 0; i < nelem; i++) {
--		int r = snprintf(str, len, "%s%d", i ? ", " : "", array[i]);
--		if (r >= len)
--			return;
--		str += r;
--		len -= r;
--	}
-+	for (i = 0; i < nelem; i++)
-+		seq_buf_printf(s, "%s%d", i ? ", " : "", array[i]);
- }
- 
- static void intel_dp_print_rates(struct intel_dp *intel_dp)
- {
--	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
--	char str[128]; /* FIXME: too big for stack? */
-+	struct intel_display *display = to_intel_display(intel_dp);
-+	DECLARE_SEQ_BUF(s, 128); /* FIXME: too big for stack? */
- 
- 	if (!drm_debug_enabled(DRM_UT_KMS))
- 		return;
- 
--	snprintf_int_array(str, sizeof(str),
--			   intel_dp->source_rates, intel_dp->num_source_rates);
--	drm_dbg_kms(&i915->drm, "source rates: %s\n", str);
-+	seq_buf_print_array(&s, intel_dp->source_rates, intel_dp->num_source_rates);
-+	drm_dbg_kms(display->drm, "source rates: %s\n", seq_buf_str(&s));
- 
--	snprintf_int_array(str, sizeof(str),
--			   intel_dp->sink_rates, intel_dp->num_sink_rates);
--	drm_dbg_kms(&i915->drm, "sink rates: %s\n", str);
-+	seq_buf_clear(&s);
-+	seq_buf_print_array(&s, intel_dp->sink_rates, intel_dp->num_sink_rates);
-+	drm_dbg_kms(display->drm, "sink rates: %s\n", seq_buf_str(&s));
- 
--	snprintf_int_array(str, sizeof(str),
--			   intel_dp->common_rates, intel_dp->num_common_rates);
--	drm_dbg_kms(&i915->drm, "common rates: %s\n", str);
-+	seq_buf_clear(&s);
-+	seq_buf_print_array(&s, intel_dp->common_rates, intel_dp->num_common_rates);
-+	drm_dbg_kms(display->drm, "common rates: %s\n", seq_buf_str(&s));
- }
- 
- static int forced_link_rate(struct intel_dp *intel_dp)
--- 
-2.39.5
+CI Bug Log - changes from CI_DRM_15753 -> Patchwork_141841v1
+====================================================
 
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_141841v1 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_141841v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141841v1/index.html
+
+Participating hosts (45 -> 43)
+------------------------------
+
+  Missing    (2): fi-snb-2520m bat-jsl-3 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_141841v1:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live:
+    - bat-mtlp-8:         [PASS][1] -> [INCOMPLETE][2] +1 other test incomplete
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15753/bat-mtlp-8/igt@i915_selftest@live.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141841v1/bat-mtlp-8/igt@i915_selftest@live.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_141841v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - bat-adls-6:         [PASS][3] -> [FAIL][4] ([i915#12903])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15753/bat-adls-6/igt@i915_pm_rpm@module-reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141841v1/bat-adls-6/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arlh-3:         [PASS][5] -> [ABORT][6] ([i915#12061]) +1 other test abort
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15753/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141841v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+
+  
+#### Possible fixes ####
+
+  * igt@dmabuf@all-tests:
+    - bat-apl-1:          [INCOMPLETE][7] ([i915#12904]) -> [PASS][8] +1 other test pass
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15753/bat-apl-1/igt@dmabuf@all-tests.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141841v1/bat-apl-1/igt@dmabuf@all-tests.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - bat-dg1-7:          [FAIL][9] ([i915#12903]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15753/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141841v1/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live:
+    - bat-mtlp-6:         [ABORT][11] -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15753/bat-mtlp-6/igt@i915_selftest@live.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141841v1/bat-mtlp-6/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-5:         [ABORT][13] ([i915#12061]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15753/bat-arls-5/igt@i915_selftest@live@workarounds.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141841v1/bat-arls-5/igt@i915_selftest@live@workarounds.html
+    - bat-mtlp-6:         [ABORT][15] ([i915#12061]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15753/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141841v1/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#12903]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12903
+  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_15753 -> Patchwork_141841v1
+
+  CI-20190529: 20190529
+  CI_DRM_15753: 4e5e3c93cf642f47374ed6e003f0a55b8af0f25b @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8127: 433ecaf95ccaed2b5adcb40d27fa5b7a08a2e03d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_141841v1: 4e5e3c93cf642f47374ed6e003f0a55b8af0f25b @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141841v1/index.html
