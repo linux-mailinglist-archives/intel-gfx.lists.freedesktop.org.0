@@ -2,52 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D113B9DACA2
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 Nov 2024 18:40:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D0DBD9DACA0
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 Nov 2024 18:40:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7866A10EB99;
-	Wed, 27 Nov 2024 17:40:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E439910EB7E;
+	Wed, 27 Nov 2024 17:40:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JfRlvBjz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Bu6GsP8Y";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D33F10E146
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 Nov 2024 17:40:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB68C10E306
+ for <intel-gfx@lists.freedesktop.org>; Wed, 27 Nov 2024 17:40:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1732729213; x=1764265213;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=C5oejJhcP80eKbWNggaR2g0rAZ+tVBIt5DeZGGs7T5A=;
- b=JfRlvBjzXw88OXyTPaDr/OwBVTJEFdvN9s0o9ysjsn+95XMqd3ngLbSn
- HysGnIt6L8TlCjVyjIOTQCWhbkHsiZkJFtZkjPMIkm1BnELVnt2o2KnT+
- MsJZ1uzRv6bd8Z9ptrTMhEEYGsUNZJ+XPYwb8YvwtpJDJiSAAxieqfSYq
- slqjmxYGa2iIv9oAM0BoGg2pICggsS1Acxzkss1zyirN0IS7NuLuGMWQW
- tc7CMR8d+A23iz4ZpZhVD8VmeXfpwUkNKReQKymZABguZHNDNrsVn3FyW
- 3TNKb3Ki+ZIJWrPlOwsmt1R6yegqtOPZa2QxjAeHjMhKS2RO0C5gaQ3ox Q==;
-X-CSE-ConnectionGUID: ntSM9ZftT1m8XdHK4VhqhA==
-X-CSE-MsgGUID: Wk3eOJatRw2PyHTEeCR3YQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11269"; a="50470703"
-X-IronPort-AV: E=Sophos;i="6.12,189,1728975600"; d="scan'208";a="50470703"
+ bh=ZPBiT8eJ0V1+Jo+IR8jSZBd1gUn12FlLpuRHFBeO7gk=;
+ b=Bu6GsP8Yh6iYlJAKFWjt1FvELGUlUOF4Tq3Mqs+YSa3AOy/qJXS3KsNA
+ 7CfxgsefyH/DvcIzpUfCdZowK7HavEUtVJYVHORm2KGJfVVU1tNgROcxF
+ NygY4X3EJPsjT3GPb958me9DlSTgi/ME1pKYgkTOY1LVUWb6V56ik3l1m
+ wM0U8JJs3lIvrNNUtpi72ao6Vt8vY1baT73UAlLZNZtfKFwk0jvDbEUhA
+ OIBsLCw2BkrZshbtE1GtM82/9Y9MQ1X6GpH/XIYgFBkehEuUZt7Wk4Fie
+ QjZTmHwEdtdqJvnGsqAMNYZvxiwZnp+qQuu7wkzaTW9rdLK32MoS8iq7h Q==;
+X-CSE-ConnectionGUID: MAKNXDSSS+mtQ/stAnPfyw==
+X-CSE-MsgGUID: x5VUkD1vR4GoqkV+sUzD/w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11269"; a="50470704"
+X-IronPort-AV: E=Sophos;i="6.12,189,1728975600"; d="scan'208";a="50470704"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Nov 2024 09:40:12 -0800
-X-CSE-ConnectionGUID: TAWW0d3ERwSzcug9vqTrTg==
-X-CSE-MsgGUID: yiBSk+SXSgqFWyM4/c4uRw==
+X-CSE-ConnectionGUID: 3R0F3IB0S86XDE11iiyHnw==
+X-CSE-MsgGUID: T6V5KzWlS7CGuUKq1L3FGg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,189,1728975600"; d="scan'208";a="91818800"
+X-IronPort-AV: E=Sophos;i="6.12,189,1728975600"; d="scan'208";a="91818803"
 Received: from dut7231atsm.jf.intel.com ([10.75.202.213])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Nov 2024 09:40:11 -0800
 From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	john.c.harrison@intel.com
-Subject: [PATCH 1/3] i915/guc: Reset engine utilization buffer before
- registration
-Date: Wed, 27 Nov 2024 09:40:04 -0800
-Message-Id: <20241127174006.190128-2-umesh.nerlige.ramappa@intel.com>
+Subject: [PATCH 2/3] i915/guc: Ensure busyness counter increases motonically
+Date: Wed, 27 Nov 2024 09:40:05 -0800
+Message-Id: <20241127174006.190128-3-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241127174006.190128-1-umesh.nerlige.ramappa@intel.com>
 References: <20241127174006.190128-1-umesh.nerlige.ramappa@intel.com>
@@ -68,67 +67,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On GT reset, we store total busyness counts for all engines and
-re-register the utilization buffer with GuC. At that time we should
-reset the buffer, so that we don't get spurious busyness counts on
-subsequent queries.
+Active busyness of an engine is calculated using gt timestamp and the
+context switch in time. While capturing the gt timestamp, it's possible
+that the context switches out. This race could result in an active
+busyness value that is greater than the actual context runtime value by a
+small amount. This leads to a negative delta and throws off busyness
+calculations for the user.
 
-To repro this issue, run igt@perf_pmu@busy-hang followed by
-igt@perf_pmu@most-busy-idle-check-all for a couple iterations.
+If a subsequent count is smaller than the previous one, just return the
+previous one, since we expect the busyness to catch up.
 
 Fixes: 77cdd054dd2c ("drm/i915/pmu: Connect engine busyness stats from GuC to pmu")
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
 ---
- .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 21 +++++++++++++++++++
- 1 file changed, 21 insertions(+)
+ drivers/gpu/drm/i915/gt/intel_engine_types.h      | 5 +++++
+ drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c | 5 ++++-
+ 2 files changed, 9 insertions(+), 1 deletion(-)
 
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+index ba55c059063d..fe1f85e5dda3 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
+@@ -343,6 +343,11 @@ struct intel_engine_guc_stats {
+ 	 * @start_gt_clk: GT clock time of last idle to active transition.
+ 	 */
+ 	u64 start_gt_clk;
++
++	/**
++	 * @total: The last value of total returned
++	 */
++	u64 total;
+ };
+ 
+ union intel_engine_tlb_inv_reg {
 diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-index 353a9167c9a4..c71aedcbce43 100644
+index c71aedcbce43..56be9f385270 100644
 --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
 +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-@@ -1243,6 +1243,21 @@ static void __get_engine_usage_record(struct intel_engine_cs *engine,
- 	} while (++i < 6);
+@@ -1378,9 +1378,12 @@ static ktime_t guc_engine_busyness(struct intel_engine_cs *engine, ktime_t *now)
+ 		total += intel_gt_clock_interval_to_ns(gt, clk);
+ 	}
+ 
++	if (total > stats->total)
++		stats->total = total;
++
+ 	spin_unlock_irqrestore(&guc->timestamp.lock, flags);
+ 
+-	return ns_to_ktime(total);
++	return ns_to_ktime(stats->total);
  }
  
-+static void __set_engine_usage_record(struct intel_engine_cs *engine,
-+				      u32 last_in, u32 id, u32 total)
-+{
-+	struct iosys_map rec_map = intel_guc_engine_usage_record_map(engine);
-+
-+#define record_write(map_, field_, val_) \
-+	iosys_map_wr_field(map_, 0, struct guc_engine_usage_record, field_, val_)
-+
-+	record_write(&rec_map, last_switch_in_stamp, last_in);
-+	record_write(&rec_map, current_context_index, id);
-+	record_write(&rec_map, total_runtime, total);
-+
-+#undef record_write
-+}
-+
- static void guc_update_engine_gt_clks(struct intel_engine_cs *engine)
- {
- 	struct intel_engine_guc_stats *stats = &engine->stats.guc;
-@@ -1543,6 +1558,9 @@ static void guc_timestamp_ping(struct work_struct *wrk)
- 
- static int guc_action_enable_usage_stats(struct intel_guc *guc)
- {
-+	struct intel_gt *gt = guc_to_gt(guc);
-+	struct intel_engine_cs *engine;
-+	enum intel_engine_id id;
- 	u32 offset = intel_guc_engine_usage_offset(guc);
- 	u32 action[] = {
- 		INTEL_GUC_ACTION_SET_ENG_UTIL_BUFF,
-@@ -1550,6 +1568,9 @@ static int guc_action_enable_usage_stats(struct intel_guc *guc)
- 		0,
- 	};
- 
-+	for_each_engine(engine, gt, id)
-+		__set_engine_usage_record(engine, 0, 0xffffffff, 0);
-+
- 	return intel_guc_send(guc, action, ARRAY_SIZE(action));
- }
- 
+ static void guc_enable_busyness_worker(struct intel_guc *guc)
 -- 
 2.34.1
 
