@@ -2,59 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 268ED9DB624
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Nov 2024 12:00:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 374179DB65C
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Nov 2024 12:18:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D183510E012;
-	Thu, 28 Nov 2024 11:00:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C938410E343;
+	Thu, 28 Nov 2024 11:18:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d+9Rp/C/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R78phttC";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E54B10E012
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Nov 2024 11:00:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A13EA10E337;
+ Thu, 28 Nov 2024 11:18:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732791610; x=1764327610;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=aHk+fF94gLWJQrlGt1qIQopvEH1iICLRc4lkji1U3pw=;
- b=d+9Rp/C/NGaUnlzGZDZtVLfHtuAhWesTACH2kURWW/eHVEXWpJf2cDBd
- qN7JNc4Es1+FTT1Sd7oO6njrEZLe+fatU4NQSPiNISUD8OhouDUakgFXz
- 7xsvACOAT6M+poICPiMabZeQWYk8DAu46RJaM7uof3l0PV7NAg3W8DE4Y
- 6M7kKE3nmE/yWK5P5Oqdh8piHRCtG+X5B8InqExlW2RyMUz0PQtA7+UMB
- 7xtsi9TIEOGczDpkFtbkx+FozcGgJldoQQO4nP4goiiTPfocbWcawz9d2
- MMV75Jqq1Jq2rB8vZhdObf793hJkw2mF86Vj+FzCQAMXbvtDxM8chJaLo Q==;
-X-CSE-ConnectionGUID: v+1kC5RlRWCbJwKlGIXDDQ==
-X-CSE-MsgGUID: c1mwPVlySyyLiTwEcyLKrA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11269"; a="32388790"
-X-IronPort-AV: E=Sophos;i="6.12,192,1728975600"; d="scan'208";a="32388790"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Nov 2024 03:00:10 -0800
-X-CSE-ConnectionGUID: 2xj2QaE8TqSwZNdD5BCQ2A==
-X-CSE-MsgGUID: mJjG+w19R02cGdnh38vwzA==
+ t=1732792724; x=1764328724;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=RVdUlgnz9OMV9YSr4TxTiBlogfGcnCZEVRKdAU/WPCQ=;
+ b=R78phttCQoJBxm365y0E8K/4xmciFWIGIJ5VFWdIrSI530is39C94h9Q
+ Y8Wz3DmyyrdyVb97clOKmjYut2kfzCMxqKTo1pNSGeLjy/lJDgZ8Qkbav
+ fYVxuV9nU7hZtfI4ymnWXn6b5/CDjgav7xia5fBMG1j/EOL6KomIj2Rp3
+ tjxcgsV6XvytbZit4pjFIK5hVQkeHqz6IM+/2G1iJa/3OsfLQdCaB8+ix
+ LrDbOpjsrfa5I9U0Za/eDqx1IaWMPxESOxlmkKZmK00/7D8AGQPHuk+K+
+ xu0tWvuWlQ8VPI4b+0giZDU1e1kSLjlQoHS1AscH79nkhvaJgf6XZ0QHv g==;
+X-CSE-ConnectionGUID: 4OfZIEapSp2zJIqpPwzuyg==
+X-CSE-MsgGUID: 6OSqO05pQQCts8pD2mrrYg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11269"; a="36806592"
+X-IronPort-AV: E=Sophos;i="6.12,192,1728975600"; d="scan'208";a="36806592"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Nov 2024 03:18:43 -0800
+X-CSE-ConnectionGUID: OGoDgU1URu+TsRRwcf40wA==
+X-CSE-MsgGUID: o1ko4yYCRhW758H/CJhsYA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,192,1728975600"; d="scan'208";a="92303570"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO intel.com)
- ([10.245.246.166])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Nov 2024 03:00:08 -0800
-Date: Thu, 28 Nov 2024 12:00:04 +0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Eugene Kobyak <eugene.kobyak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, John.C.Harrison@intel.com,
- andi.shyti@linux.intel.com
-Subject: Re: [PATCH v3] drm/i915: Fixed NULL pointer dereference in
- capture_engine
-Message-ID: <Z0hNNPLktl4e1haH@ashyti-mobl2.lan>
-References: <etwgucaj4hu7buvrvzgxkhxjtl526qd6fdyfmxzsdacphrg667@nrd35hese3t5>
+X-IronPort-AV: E=Sophos;i="6.12,192,1728975600"; d="scan'208";a="92143087"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.170])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Nov 2024 03:18:41 -0800
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org,
+ Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ =?UTF-8?q?Zbigniew=20Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>,
+ Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Subject: [PATCH i-g-t v2 0/2] tests/gem_mmap_offset: Fix OOM hits
+Date: Thu, 28 Nov 2024 12:16:34 +0100
+Message-ID: <20241128111822.836089-4-janusz.krzysztofik@linux.intel.com>
+X-Mailer: git-send-email 2.47.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <etwgucaj4hu7buvrvzgxkhxjtl526qd6fdyfmxzsdacphrg667@nrd35hese3t5>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,44 +69,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+The 'clear' subtest used to exercise correctness of object memory clearing
+on passing a batch with the object to GPU for processing.  However, commit
+e25913a1a79d ("i915/gem_mmap_offset: Ignore ENOSPC error for making
+residency execbuf"), while resolving an issue of unnecessary failures on
+ENOSPC errors, introduced an alternative method of clearing the object
+memory, with random selection of one of those methods on each iteration.
+The new method expects the memory to be cleared in pagefault handler path.
+Since those two methods may give different results, mixing them in one
+exercise may make the picture unclear, especially if something goes wrong.
 
-On Mon, Nov 25, 2024 at 03:27:11PM +0000, Eugene Kobyak wrote:
-> When the intel_context structure contains NULL,
-> it raises a NULL pointer dereference error in drm_info().
-> 
-> Fixes: e8a3319c31a1 ("drm/i915: Allow error capture without a request")
-> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12309
-> 
-> Signed-off-by: Eugene Kobyak <eugene.kobyak@intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_gpu_error.c | 13 ++++++++++---
->  1 file changed, 10 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-> index 135ded17334e..1c614c74c2cf 100644
-> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
-> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-> @@ -1643,9 +1643,16 @@ capture_engine(struct intel_engine_cs *engine,
->  		return NULL;
->  
->  	intel_engine_get_hung_entity(engine, &ce, &rq);
-> -	if (rq && !i915_request_started(rq))
-> -		drm_info(&engine->gt->i915->drm, "Got hung context on %s with active request %lld:%lld [0x%04X] not yet started\n",
-> -			 engine->name, rq->fence.context, rq->fence.seqno, ce->guc_id.id);
-> +	if (rq && !i915_request_started(rq)) {
-> +		char guc_id[9];
-> +		if (ce)
-> +			scnprintf(guc_id, sizeof(guc_id), "[0x%04X]", ce->guc_id.id);
-> +		else
-> +			scnprintf(guc_id, sizeof(guc_id), " ");
-> +
-> +		drm_info(&engine->gt->i915->drm, "Got hung context on %s with active request %lld:%lld%s not yet started\n",
-> +			 engine->name, rq->fence.context, rq->fence.seqno, guc_id);
-> +	}
+The exercise is executed in several parallel threads, one per CPU.  Each
+thread repeats the exercise in a time only limited loop, with no delay
+between consecutive iterations.  In case of passing system memory objects
+to execbuf, that happens to exhaust all available physical memory, which
+is neither the matter nor the goal nor requirement of the exercise.
 
-I've discussed offline with Eugene this scenario and we tested
-the cases when ce is NULL. I'm looking forward to your v4.
+Move the pagefault method, free from the issue, to a new separate subtest,
+and make sure sufficient amount of physical memory is available before
+calling another execbuf.
 
-Thanks,
-Andi
+v2: Limit the scope of the fix to SMEM exercise.
+
+Janusz Krzysztofik (2):
+  tests/gem_mmap_offset: Split 'clear' subtest
+  tests/gem_mmap_offset: Fix OOM hits
+
+ tests/intel/gem_mmap_offset.c | 22 ++++++++++++++++++----
+ 1 file changed, 18 insertions(+), 4 deletions(-)
+
+-- 
+2.47.0
+
