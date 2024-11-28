@@ -2,64 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 175689DBAB4
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Nov 2024 16:40:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 964A59DBAB8
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Nov 2024 16:40:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96F3610ECFC;
-	Thu, 28 Nov 2024 15:40:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2FE2410ECF4;
+	Thu, 28 Nov 2024 15:40:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IldQAYeC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cJkJ88SJ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EDEC210ECF6;
- Thu, 28 Nov 2024 15:40:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80EF310ECF4
+ for <intel-gfx@lists.freedesktop.org>; Thu, 28 Nov 2024 15:40:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732808403; x=1764344403;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=huCa5X2VbCt5mlaPLKedPAFZgM5dZ0fXcet3cjR/1z8=;
- b=IldQAYeC/z+gB+crhVVcqlbiMoRCt9f23onr0UIAzrqgDNgms0SmDBRb
- I71Gfy1clJPvKXhwQitb7A8GBWkulq5S/uDUbRYcDznltIZWNEKHLadOd
- SDBLtQw86dwQ/fO8+FiUYuODkSJPgDAErjwELEfq1XA8Z8WiYPewh+e1+
- sQQTBiCXT4BpxJHXDWZyCs1ltuYFlOzH2G7H6jhpCJDpeHHnNjVnoZYgl
- XtkFsDVAQuLnYY3eScvmvtovGOdSeg8SqVAqVhXEnIugkCgiUh2/CZZy9
- psb+A/DFS6QDbacE9QYTsU/5qllOrubu+vxJtuxDrXJXr8bufCuoY9x8n g==;
-X-CSE-ConnectionGUID: TUChNay5Q6SLA3WUkstg9w==
-X-CSE-MsgGUID: nEpAIpY2RyGNIF55UXXaGw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11270"; a="20635970"
-X-IronPort-AV: E=Sophos;i="6.12,192,1728975600"; d="scan'208";a="20635970"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Nov 2024 07:40:02 -0800
-X-CSE-ConnectionGUID: iG0wdZBkSj2QKvzIrA7GpA==
-X-CSE-MsgGUID: cojZ9awxQCOkLG4tJHmF+Q==
+ t=1732808453; x=1764344453;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=ciIAfb3OB8il0vgAKFf+PKj6YbGFf1QVhzxp6NcwJaQ=;
+ b=cJkJ88SJP5nZrGulf2Y3JMlGf2Yxp0/VKeNyM6AMHzEC1IoGS+fDMJg2
+ rmqG4Sg9OnvuHzZd6PUVjiloUSIq4NovhVU60s2lAseRZcMIqUFE9MUij
+ Rjs8cOcG/NGRJCDueFTw+iFEESxXoemWxXM4JWpIQcVUxq+ZTDDzc7+R0
+ B719KnpdhMgiSld2MOOv1KeM+fTLa2+KkIc95fb9RsPOrV8dqqzh8HXTJ
+ i9RuCczpxRMfLFIC4+gjsYta/W292ShvOjLhii0QcpXhrgjFAj1H3y+ct
+ LkhLdKIBaosRPPMsGIX7ZvJjoHY03cghRp2u2JYJZyFYoeYOoPVGlxCda g==;
+X-CSE-ConnectionGUID: NPgkYQLaSeaZzSMW5ykgnw==
+X-CSE-MsgGUID: AgUff+/ASRSfefVbbWiMOw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11270"; a="35909026"
+X-IronPort-AV: E=Sophos;i="6.12,192,1728975600"; d="scan'208";a="35909026"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Nov 2024 07:40:53 -0800
+X-CSE-ConnectionGUID: nyoyvqOfTcOkT0niUQVN3w==
+X-CSE-MsgGUID: 8AzjMBieSE+CjKmbyWZz5A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,192,1728975600"; d="scan'208";a="129767054"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO fedora)
- ([10.245.246.195])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Nov 2024 07:39:59 -0800
-Date: Thu, 28 Nov 2024 16:39:46 +0100
-From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-xe-next-fixes
-Message-ID: <Z0iOjKwEGVo_DmgY@fedora>
+X-IronPort-AV: E=Sophos;i="6.12,192,1728975600"; d="scan'208";a="92437648"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 28 Nov 2024 07:40:51 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 28 Nov 2024 17:40:50 +0200
+Date: Thu, 28 Nov 2024 17:40:50 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Brian Geffon <bgeffon@google.com>,
+ Vidya Srinivas <vidya.srinivas@intel.com>
+Subject: Re: [PATCH 0/4] drm/i915/dpt: Try to make DPT shrinkable again
+Message-ID: <Z0iPApqoGFAoS53j@intel.com>
+References: <20241127061117.25622-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241127061117.25622-1-ville.syrjala@linux.intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,55 +71,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Simona
+On Wed, Nov 27, 2024 at 08:11:13AM +0200, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> Try to make DPT objects shrinakble once again. To overcome
+> the earlier suspend/resume issues we'll just make sure all
+> DPT VMAs are evicted during suspend, and thus resume won't
+> care whether the DPT objects got kicked out or not. 
+> 
+> The proper solution would perhaps be to do the DPT CPU
+> mapping on demand in dpt insert_{page,range}() but that
+> would require a bunch of extra thought (especially for
+> DPTs allocated from stolen).
+> 
+> Cc: Brian Geffon <bgeffon@google.com>
+> Cc: Vidya Srinivas <vidya.srinivas@intel.com>
+> 
+> Ville Syrjälä (4):
+>   drm/i915: Don't reuse commit_work for the cleanup
+>   drm/i915: Intruduce display.wq.cleanup
+>   drm/i915/dpt: Evict all DPT VMAs on suspend
+>   Revert "drm/i915/dpt: Make DPT object unshrinkable"
 
-An all-Matt drm-xe-next-fixes PR this week.
+Series pushed to drm-intel-next. Thanks Brian and Vidya.
 
-Thanks,
-Thomas
+> 
+>  drivers/gpu/drm/i915/display/intel_display.c  |  6 +++---
+>  .../gpu/drm/i915/display/intel_display_core.h |  3 +++
+>  .../drm/i915/display/intel_display_driver.c   |  6 ++++++
+>  .../drm/i915/display/intel_display_types.h    |  2 ++
+>  drivers/gpu/drm/i915/display/intel_dpt.c      |  4 ++--
+>  drivers/gpu/drm/i915/gem/i915_gem_object.h    |  4 +---
+>  drivers/gpu/drm/i915/gt/intel_ggtt.c          | 19 ++++++++++++++-----
+>  drivers/gpu/drm/i915/gt/intel_gtt.h           |  4 ++--
+>  8 files changed, 33 insertions(+), 15 deletions(-)
+> 
+> -- 
+> 2.45.2
 
-drm-xe-next-fixes-2024-11-28:
-Driver Changes:
-- Update xe2 graphics name string (Matt Roper)
-- Fix a couple of guc submit races (Matt Auld)
-- Fix pat index usage in migrate (Matt Auld)
-- Ensure non-cached migrate pagetable bo mappings (Matt Auld)
-- Take a PM ref in the delayed snapshot capture worker (Matt Brost)
-The following changes since commit ed31ba0aa7e93ecac62cfd445c3228345bdd87e6:
-
-  drm/xe: Mark preempt fence workqueue as reclaim (2024-11-21 17:16:38 +0100)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-next-fixes-2024-11-28
-
-for you to fetch changes up to aef0b4a07277f715bfc2a0d76a16da2bc4e89205:
-
-  drm/xe: Take PM ref in delayed snapshot capture worker (2024-11-28 15:22:36 +0100)
-
-----------------------------------------------------------------
-Driver Changes:
-- Update xe2 graphics name string (Matt Roper)
-- Fix a couple of guc submit races (Matt Auld)
-- Fix pat index usage in migrate (Matt Auld)
-- Ensure non-cached migrate pagetable bo mappings (Matt Auld)
-- Take a PM ref in the delayed snapshot capture worker (Matt Brost)
-
-----------------------------------------------------------------
-Matt Roper (1):
-      drm/xe: Update xe2_graphics name string
-
-Matthew Auld (4):
-      drm/xe/guc_submit: fix race around pending_disable
-      drm/xe/guc_submit: fix race around suspend_pending
-      drm/xe/migrate: fix pat index usage
-      drm/xe/migrate: use XE_BO_FLAG_PAGETABLE
-
-Matthew Brost (1):
-      drm/xe: Take PM ref in delayed snapshot capture worker
-
- drivers/gpu/drm/xe/xe_devcoredump.c |  6 ++++++
- drivers/gpu/drm/xe/xe_guc_submit.c  | 34 +++++++++++++++++++++++++---------
- drivers/gpu/drm/xe/xe_migrate.c     |  6 ++++--
- drivers/gpu/drm/xe/xe_pci.c         |  2 +-
- 4 files changed, 36 insertions(+), 12 deletions(-)
+-- 
+Ville Syrjälä
+Intel
