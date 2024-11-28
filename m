@@ -2,59 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 221749DBAAB
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Nov 2024 16:39:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 175689DBAB4
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Nov 2024 16:40:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C31D110ECF0;
-	Thu, 28 Nov 2024 15:39:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 96F3610ECFC;
+	Thu, 28 Nov 2024 15:40:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iwG6RlCa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IldQAYeC";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E86F10ECED;
- Thu, 28 Nov 2024 15:39:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDEC210ECF6;
+ Thu, 28 Nov 2024 15:40:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732808361; x=1764344361;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=Zk4pfNG1Qug3n1ibpl7ceEsF8TMCiNeQN0PrOgKqw6k=;
- b=iwG6RlCa06XbgSc9BCSGG5kHUZ+5cP/uXhiz1Xj+zFpQw49zFmrVVEzb
- i+08U1mQh7QIr3SLeTGGmrKE0tTiGVZb8eiAmP5dgvNukxjMrr6VOHMkK
- wY7x73eup4eC27dVjYGSncf3aVKdy5E9FYJn2Ooa6eTe/0VuLJH5nEVw8
- XZDJ+SHl2HaqDzYR5jUruIg9w+NNsst9TlGHOFSJIdMdzO4dT5NR+YQtr
- aXMWmM5Zus+q9ywulfUzYT2BmYTFzTH27M//EBzmW0aPtuBYPngzdKYcr
- aejrKTb3BBN1UqFoOXbtFqGxkbfGh8Zp7mmRqNDv9xnvVqLnm1tfOo5uP g==;
-X-CSE-ConnectionGUID: jPKmgLlmQQOL4GfRQbV2bw==
-X-CSE-MsgGUID: ljoizOytQ9+2n50Wz/QeoQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11270"; a="32412431"
-X-IronPort-AV: E=Sophos;i="6.12,192,1728975600"; d="scan'208";a="32412431"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Nov 2024 07:39:21 -0800
-X-CSE-ConnectionGUID: oP5doEh7RFS6ZbZQLibF4Q==
-X-CSE-MsgGUID: aFJ/hN1LRDa6kgMiQ4X1zQ==
+ t=1732808403; x=1764344403;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=huCa5X2VbCt5mlaPLKedPAFZgM5dZ0fXcet3cjR/1z8=;
+ b=IldQAYeC/z+gB+crhVVcqlbiMoRCt9f23onr0UIAzrqgDNgms0SmDBRb
+ I71Gfy1clJPvKXhwQitb7A8GBWkulq5S/uDUbRYcDznltIZWNEKHLadOd
+ SDBLtQw86dwQ/fO8+FiUYuODkSJPgDAErjwELEfq1XA8Z8WiYPewh+e1+
+ sQQTBiCXT4BpxJHXDWZyCs1ltuYFlOzH2G7H6jhpCJDpeHHnNjVnoZYgl
+ XtkFsDVAQuLnYY3eScvmvtovGOdSeg8SqVAqVhXEnIugkCgiUh2/CZZy9
+ psb+A/DFS6QDbacE9QYTsU/5qllOrubu+vxJtuxDrXJXr8bufCuoY9x8n g==;
+X-CSE-ConnectionGUID: TUChNay5Q6SLA3WUkstg9w==
+X-CSE-MsgGUID: nEpAIpY2RyGNIF55UXXaGw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11270"; a="20635970"
+X-IronPort-AV: E=Sophos;i="6.12,192,1728975600"; d="scan'208";a="20635970"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Nov 2024 07:40:02 -0800
+X-CSE-ConnectionGUID: iG0wdZBkSj2QKvzIrA7GpA==
+X-CSE-MsgGUID: cojZ9awxQCOkLG4tJHmF+Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,192,1728975600"; d="scan'208";a="92362331"
-Received: from unknown (HELO localhost) ([10.237.66.160])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Nov 2024 07:39:18 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: imre.deak@intel.com, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 1/7] drm/i915/display: simplify conditional compilation
- on runtime PM debug
-In-Reply-To: <Z0hjo8xx1D6cwp0Q@ideak-desk.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1732727056.git.jani.nikula@intel.com>
- <566defd545f4ea021b0baa1e62d506befbf68a91.1732727056.git.jani.nikula@intel.com>
- <Z0himvZ-5JqTlSpU@ideak-desk.fi.intel.com>
- <Z0hjo8xx1D6cwp0Q@ideak-desk.fi.intel.com>
-Date: Thu, 28 Nov 2024 17:39:14 +0200
-Message-ID: <87y11374gt.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,192,1728975600"; d="scan'208";a="129767054"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO fedora)
+ ([10.245.246.195])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Nov 2024 07:39:59 -0800
+Date: Thu, 28 Nov 2024 16:39:46 +0100
+From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-xe-next-fixes
+Message-ID: <Z0iOjKwEGVo_DmgY@fedora>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,211 +75,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 28 Nov 2024, Imre Deak <imre.deak@intel.com> wrote:
-> On Thu, Nov 28, 2024 at 02:31:22PM +0200, Imre Deak wrote:
->> On Wed, Nov 27, 2024 at 07:06:02PM +0200, Jani Nikula wrote:
->> > Simplify conditional compilation on CONFIG_DRM_I915_DEBUG_RUNTIME_PM.
->> > Hide it all inside intel_display_power.c.
->> > 
->> > This will unnecessarily pass in the wakeref also when debug is disabled,
->> > but it should not matter a whole lot.
->> 
->> Ftr: there are a lot of callers of these functions and so this change
->> removing the optimization increases the code by >1kB in the non-debug
->> build:
->> 
->> $ size ~/i915-opt.ko  ~/i915-noopt.ko
->>    text	   data	    bss	    dec	    hex	filename
->> 3346869	 325789	   7680	3680338	 382852	/home/imre/i915-opt.ko
->> 3345708	 325773	   7680	3679161	 3823b9	/home/imre/i915-noopt.ko
->
-> sorry, confused up the image names, correctly it is:
->
-> $ size ~/i915-opt.ko  ~/i915-noopt.ko
->    text	   data	    bss	    dec	    hex	filename
-> 3345708	 325773	   7680	3679161	 3823b9	/home/imre/i915-opt.ko
-> 3346869	 325789	   7680	3680338	 382852	/home/imre/i915-noopt.ko
+Hi Dave, Simona
 
-Thanks, I dropped this and posted v2. This is really not the important
-part of the series, shouldn't have included it in the first place. I'll
-look into it again later.
+An all-Matt drm-xe-next-fixes PR this week.
 
-BR,
-Jani.
+Thanks,
+Thomas
 
+drm-xe-next-fixes-2024-11-28:
+Driver Changes:
+- Update xe2 graphics name string (Matt Roper)
+- Fix a couple of guc submit races (Matt Auld)
+- Fix pat index usage in migrate (Matt Auld)
+- Ensure non-cached migrate pagetable bo mappings (Matt Auld)
+- Take a PM ref in the delayed snapshot capture worker (Matt Brost)
+The following changes since commit ed31ba0aa7e93ecac62cfd445c3228345bdd87e6:
 
->
->> > Cc: Imre Deak <imre.deak@intel.com>
->> > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> > ---
->> >  .../drm/i915/display/intel_display_power.c    | 49 +++++++++-------
->> >  .../drm/i915/display/intel_display_power.h    | 56 +++----------------
->> >  2 files changed, 37 insertions(+), 68 deletions(-)
->> > 
->> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
->> > index 59dee2dc0552..fe94ef310f6b 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_display_power.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
->> > @@ -706,10 +706,10 @@ intel_display_power_put_async_work(struct work_struct *work)
->> >   * The power down is delayed by @delay_ms if this is >= 0, or by a default
->> >   * 100 ms otherwise.
->> >   */
->> > -void __intel_display_power_put_async(struct drm_i915_private *i915,
->> > -				     enum intel_display_power_domain domain,
->> > -				     intel_wakeref_t wakeref,
->> > -				     int delay_ms)
->> > +static void __intel_display_power_put_async(struct drm_i915_private *i915,
->> > +					    enum intel_display_power_domain domain,
->> > +					    intel_wakeref_t wakeref,
->> > +					    int delay_ms)
->> >  {
->> >  	struct i915_power_domains *power_domains = &i915->display.power.domains;
->> >  	struct intel_runtime_pm *rpm = &i915->runtime_pm;
->> > @@ -750,6 +750,27 @@ void __intel_display_power_put_async(struct drm_i915_private *i915,
->> >  	intel_runtime_pm_put(rpm, wakeref);
->> >  }
->> >  
->> > +void intel_display_power_put_async(struct drm_i915_private *i915,
->> > +				   enum intel_display_power_domain domain,
->> > +				   intel_wakeref_t wakeref)
->> > +{
->> > +	if (!IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM))
->> > +		wakeref = INTEL_WAKEREF_DEF;
->> > +
->> > +	__intel_display_power_put_async(i915, domain, wakeref, -1);
->> > +}
->> > +
->> > +void intel_display_power_put_async_delay(struct drm_i915_private *i915,
->> > +					 enum intel_display_power_domain domain,
->> > +					 intel_wakeref_t wakeref,
->> > +					 int delay_ms)
->> > +{
->> > +	if (!IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM))
->> > +		wakeref = INTEL_WAKEREF_DEF;
->> > +
->> > +	__intel_display_power_put_async(i915, domain, wakeref, delay_ms);
->> > +}
->> > +
->> >  /**
->> >   * intel_display_power_flush_work - flushes the async display power disabling work
->> >   * @i915: i915 device instance
->> > @@ -807,7 +828,6 @@ intel_display_power_flush_work_sync(struct drm_i915_private *i915)
->> >  	drm_WARN_ON(&i915->drm, power_domains->async_put_wakeref);
->> >  }
->> >  
->> > -#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
->> >  /**
->> >   * intel_display_power_put - release a power domain reference
->> >   * @dev_priv: i915 device instance
->> > @@ -818,6 +838,7 @@ intel_display_power_flush_work_sync(struct drm_i915_private *i915)
->> >   * intel_display_power_get() and might power down the corresponding hardware
->> >   * block right away if this is the last reference.
->> >   */
->> > +#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
->> >  void intel_display_power_put(struct drm_i915_private *dev_priv,
->> >  			     enum intel_display_power_domain domain,
->> >  			     intel_wakeref_t wakeref)
->> > @@ -826,21 +847,9 @@ void intel_display_power_put(struct drm_i915_private *dev_priv,
->> >  	intel_runtime_pm_put(&dev_priv->runtime_pm, wakeref);
->> >  }
->> >  #else
->> > -/**
->> > - * intel_display_power_put_unchecked - release an unchecked power domain reference
->> > - * @dev_priv: i915 device instance
->> > - * @domain: power domain to reference
->> > - *
->> > - * This function drops the power domain reference obtained by
->> > - * intel_display_power_get() and might power down the corresponding hardware
->> > - * block right away if this is the last reference.
->> > - *
->> > - * This function is only for the power domain code's internal use to suppress wakeref
->> > - * tracking when the correspondig debug kconfig option is disabled, should not
->> > - * be used otherwise.
->> > - */
->> > -void intel_display_power_put_unchecked(struct drm_i915_private *dev_priv,
->> > -				       enum intel_display_power_domain domain)
->> > +void intel_display_power_put(struct drm_i915_private *dev_priv,
->> > +			     enum intel_display_power_domain domain,
->> > +			     intel_wakeref_t wakeref)
->> >  {
->> >  	__intel_display_power_put(dev_priv, domain);
->> >  	intel_runtime_pm_put_unchecked(&dev_priv->runtime_pm);
->> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
->> > index 688f3b60b5c5..c6bd4f122487 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_display_power.h
->> > +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
->> > @@ -190,60 +190,20 @@ intel_wakeref_t intel_display_power_get(struct drm_i915_private *dev_priv,
->> >  intel_wakeref_t
->> >  intel_display_power_get_if_enabled(struct drm_i915_private *dev_priv,
->> >  				   enum intel_display_power_domain domain);
->> > -void __intel_display_power_put_async(struct drm_i915_private *i915,
->> > -				     enum intel_display_power_domain domain,
->> > -				     intel_wakeref_t wakeref,
->> > -				     int delay_ms);
->> >  void intel_display_power_flush_work(struct drm_i915_private *i915);
->> > -#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
->> > +
->> >  void intel_display_power_put(struct drm_i915_private *dev_priv,
->> >  			     enum intel_display_power_domain domain,
->> >  			     intel_wakeref_t wakeref);
->> > -static inline void
->> > -intel_display_power_put_async(struct drm_i915_private *i915,
->> > -			      enum intel_display_power_domain domain,
->> > -			      intel_wakeref_t wakeref)
->> > -{
->> > -	__intel_display_power_put_async(i915, domain, wakeref, -1);
->> > -}
->> >  
->> > -static inline void
->> > -intel_display_power_put_async_delay(struct drm_i915_private *i915,
->> > -				    enum intel_display_power_domain domain,
->> > -				    intel_wakeref_t wakeref,
->> > -				    int delay_ms)
->> > -{
->> > -	__intel_display_power_put_async(i915, domain, wakeref, delay_ms);
->> > -}
->> > -#else
->> > -void intel_display_power_put_unchecked(struct drm_i915_private *dev_priv,
->> > -				       enum intel_display_power_domain domain);
->> > +void intel_display_power_put_async(struct drm_i915_private *i915,
->> > +				   enum intel_display_power_domain domain,
->> > +				   intel_wakeref_t wakeref);
->> >  
->> > -static inline void
->> > -intel_display_power_put(struct drm_i915_private *i915,
->> > -			enum intel_display_power_domain domain,
->> > -			intel_wakeref_t wakeref)
->> > -{
->> > -	intel_display_power_put_unchecked(i915, domain);
->> > -}
->> > -
->> > -static inline void
->> > -intel_display_power_put_async(struct drm_i915_private *i915,
->> > -			      enum intel_display_power_domain domain,
->> > -			      intel_wakeref_t wakeref)
->> > -{
->> > -	__intel_display_power_put_async(i915, domain, INTEL_WAKEREF_DEF, -1);
->> > -}
->> > -
->> > -static inline void
->> > -intel_display_power_put_async_delay(struct drm_i915_private *i915,
->> > -				    enum intel_display_power_domain domain,
->> > -				    intel_wakeref_t wakeref,
->> > -				    int delay_ms)
->> > -{
->> > -	__intel_display_power_put_async(i915, domain, INTEL_WAKEREF_DEF, delay_ms);
->> > -}
->> > -#endif
->> > +void intel_display_power_put_async_delay(struct drm_i915_private *i915,
->> > +					 enum intel_display_power_domain domain,
->> > +					 intel_wakeref_t wakeref,
->> > +					 int delay_ms);
->> >  
->> >  void
->> >  intel_display_power_get_in_set(struct drm_i915_private *i915,
->> > -- 
->> > 2.39.5
->> > 
+  drm/xe: Mark preempt fence workqueue as reclaim (2024-11-21 17:16:38 +0100)
 
--- 
-Jani Nikula, Intel
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-next-fixes-2024-11-28
+
+for you to fetch changes up to aef0b4a07277f715bfc2a0d76a16da2bc4e89205:
+
+  drm/xe: Take PM ref in delayed snapshot capture worker (2024-11-28 15:22:36 +0100)
+
+----------------------------------------------------------------
+Driver Changes:
+- Update xe2 graphics name string (Matt Roper)
+- Fix a couple of guc submit races (Matt Auld)
+- Fix pat index usage in migrate (Matt Auld)
+- Ensure non-cached migrate pagetable bo mappings (Matt Auld)
+- Take a PM ref in the delayed snapshot capture worker (Matt Brost)
+
+----------------------------------------------------------------
+Matt Roper (1):
+      drm/xe: Update xe2_graphics name string
+
+Matthew Auld (4):
+      drm/xe/guc_submit: fix race around pending_disable
+      drm/xe/guc_submit: fix race around suspend_pending
+      drm/xe/migrate: fix pat index usage
+      drm/xe/migrate: use XE_BO_FLAG_PAGETABLE
+
+Matthew Brost (1):
+      drm/xe: Take PM ref in delayed snapshot capture worker
+
+ drivers/gpu/drm/xe/xe_devcoredump.c |  6 ++++++
+ drivers/gpu/drm/xe/xe_guc_submit.c  | 34 +++++++++++++++++++++++++---------
+ drivers/gpu/drm/xe/xe_migrate.c     |  6 ++++--
+ drivers/gpu/drm/xe/xe_pci.c         |  2 +-
+ 4 files changed, 36 insertions(+), 12 deletions(-)
