@@ -2,57 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B52A9DB811
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Nov 2024 13:57:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 838FB9DB82F
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Nov 2024 14:00:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6DDF10E44B;
-	Thu, 28 Nov 2024 12:57:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9090210EC74;
+	Thu, 28 Nov 2024 13:00:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OuCy7DTD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iXBIUtt+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE3DF10E44B
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Nov 2024 12:57:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1A2610E45D;
+ Thu, 28 Nov 2024 13:00:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732798673; x=1764334673;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=Rc1jniLwfDacdCCZS/qWEci6UT8XbtcHIyW5IGT8lmM=;
- b=OuCy7DTDXMfZa0uJOQW5F64wteb5DGlu/kt/midyPjgS2qMk3VzJygqL
- QnnOzjTC1UsW47F35JgLOIEPKOr2gZL+9tsP7tXicxZZ+IhPQOsvPctXv
- NEwvamfZ+Ce2fuGygbXvuK8M6q7PrvXP+1orRVXUyVZiIjr/YPIxqgwgj
- iS6Uge9XDkhygdBYmBoaht/OUsunbkMJ+f5IWKOvfot7WzI7VADA3j0S7
- 8N/8chGF3xBiMGn3ZDuqeup3DQVUMWb/MQ2CFA5mUq799NvWMBlvUEJQv
- eHREAwAX7Gj5ng3UW/2yCdbfzTzh8oWJ0x9LzkFLMqD5S1ZVIbli8/LHS g==;
-X-CSE-ConnectionGUID: BuJRrDTSRiq5K8ePWiJdZg==
-X-CSE-MsgGUID: /eJ8hytDQ161OuENORfF3Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11270"; a="33172538"
-X-IronPort-AV: E=Sophos;i="6.12,192,1728975600"; d="scan'208";a="33172538"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Nov 2024 04:57:53 -0800
-X-CSE-ConnectionGUID: u6zZre43SXWAwv94m3NSOQ==
-X-CSE-MsgGUID: WYpuNAiySNqjAJFwusxHkA==
+ t=1732798854; x=1764334854;
+ h=message-id:date:mime-version:from:to:cc:subject:
+ content-transfer-encoding;
+ bh=01hNUZF9YkEcB3gHMxeLzf1hwYC080O692qRSMWqVUs=;
+ b=iXBIUtt+dPACNHeHzOV3A0/jOgeGUTHFsUiIOva/2fH9oSROLajq3Xvx
+ EhJ0UdXAPSQ9qFhosrYtjIdIk4aSIDvx3VR1PcP7AwSEiu7AlP/eLEZr3
+ BCPf6VkArwYBjVd19//gv9QGjc1kdpkO8aZ5TBBzJ24seXkQ4BTQlXI7l
+ a6GlhKd6a2DtKzMY5hyf3NMiJ/CndWdAwvpvBhCCNyqTtilBMHHB3/lQE
+ GujS/QOIBf+L7nqBPw7EPSbG6tCJfpElAUCts3OoN4oVswJw/nztub68Y
+ Wdik+Dlw7XcZOI7LKT7NCzAG2Xw6/lt6qiktObObSbsaTdpC6x1j6YK7Y w==;
+X-CSE-ConnectionGUID: kSbd7h4sTc2GfM/56kpTlw==
+X-CSE-MsgGUID: 8Wfj70FNTiuvLnTRsAsYpQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11270"; a="33182850"
+X-IronPort-AV: E=Sophos;i="6.12,192,1728975600"; d="scan'208";a="33182850"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Nov 2024 05:00:54 -0800
+X-CSE-ConnectionGUID: l+yG+xBASl2R/4C8Vv22kg==
+X-CSE-MsgGUID: z3HdnXFgSvSxe6f4/T7vIg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,192,1728975600"; d="scan'208";a="92037931"
-Received: from unknown (HELO localhost) ([10.237.66.160])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Nov 2024 04:57:48 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Eugene Kobyak <eugene.kobyak@intel.com>, intel-gfx@lists.freedesktop.org
-Cc: John.C.Harrison@intel.com, andi.shyti@linux.intel.com
-Subject: Re: [PATCH v3] drm/i915: Fixed NULL pointer dereference in
- capture_engine
-In-Reply-To: <etwgucaj4hu7buvrvzgxkhxjtl526qd6fdyfmxzsdacphrg667@nrd35hese3t5>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <etwgucaj4hu7buvrvzgxkhxjtl526qd6fdyfmxzsdacphrg667@nrd35hese3t5>
-Date: Thu, 28 Nov 2024 14:57:46 +0200
-Message-ID: <874j3r8qid.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,192,1728975600"; d="scan'208";a="129734156"
+Received: from fpallare-mobl4.ger.corp.intel.com (HELO [10.245.245.49])
+ ([10.245.245.49])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Nov 2024 05:00:49 -0800
+Message-ID: <1f91eeaa-d3e4-4eca-9375-24c467f6976d@linux.intel.com>
+Date: Thu, 28 Nov 2024 14:01:17 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Simona Vetter <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
+Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Oded Gabbay
+ <ogabbay@kernel.org>, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+Subject: [PULL] drm-misc-next-fixes
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,50 +77,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 25 Nov 2024, Eugene Kobyak <eugene.kobyak@intel.com> wrote:
-> When the intel_context structure contains NULL,
-> it raises a NULL pointer dereference error in drm_info().
->
-> Fixes: e8a3319c31a1 ("drm/i915: Allow error capture without a request")
-> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12309
->
+Hi Dave, Simona,
 
-Superfluous newline in the middle of commit trailers.
+A pull request with a single obvious patch in it. Consequently it's very likely to break the world and everything in it. As famous last words I'll add: "the affected source file seems to compile on 32-bits and 64-bits x86".
 
-Please use the imperative mood in the subject, i.e. s/Fixed/Fix/.
+Cheers,
+~Maarten
 
-BR,
-Jani.
+drm-misc-next-fixes-2024-11-28:
+A single buildfix for 32-bits rockchip compilation.
+The following changes since commit a163b895077861598be48c1cf7f4a88413c28b22:
 
-> Signed-off-by: Eugene Kobyak <eugene.kobyak@intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_gpu_error.c | 13 ++++++++++---
->  1 file changed, 10 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-> index 135ded17334e..1c614c74c2cf 100644
-> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
-> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-> @@ -1643,9 +1643,16 @@ capture_engine(struct intel_engine_cs *engine,
->  		return NULL;
->  
->  	intel_engine_get_hung_entity(engine, &ce, &rq);
-> -	if (rq && !i915_request_started(rq))
-> -		drm_info(&engine->gt->i915->drm, "Got hung context on %s with active request %lld:%lld [0x%04X] not yet started\n",
-> -			 engine->name, rq->fence.context, rq->fence.seqno, ce->guc_id.id);
-> +	if (rq && !i915_request_started(rq)) {
-> +		char guc_id[9];
-> +		if (ce)
-> +			scnprintf(guc_id, sizeof(guc_id), "[0x%04X]", ce->guc_id.id);
-> +		else
-> +			scnprintf(guc_id, sizeof(guc_id), " ");
-> +
-> +		drm_info(&engine->gt->i915->drm, "Got hung context on %s with active request %lld:%lld%s not yet started\n",
-> +			 engine->name, rq->fence.context, rq->fence.seqno, guc_id);
-> +	}
->  
->  	if (rq) {
->  		capture = intel_engine_coredump_add_request(ee, rq, ATOMIC_MAYFAIL);
+  Merge tag 'drm-xe-next-fixes-2024-11-15' of https://gitlab.freedesktop.org/drm/xe/kernel into drm-next (2024-11-18 13:38:46 +1000)
 
--- 
-Jani Nikula, Intel
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-fixes-2024-11-28
+
+for you to fetch changes up to 818956c76517e127fad8cf02cd29866e0a852072:
+
+  drm/rockchip: avoid 64-bit division (2024-11-22 10:11:39 +0100)
+
+----------------------------------------------------------------
+A single buildfix for 32-bits rockchip compilation.
+
+----------------------------------------------------------------
+Arnd Bergmann (1):
+      drm/rockchip: avoid 64-bit division
+
+ drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
