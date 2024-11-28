@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45A299DBBEB
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Nov 2024 18:45:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DEC0D9DBBEC
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Nov 2024 18:45:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E986610E460;
-	Thu, 28 Nov 2024 17:45:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3582010E481;
+	Thu, 28 Nov 2024 17:45:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AECFD10E460;
- Thu, 28 Nov 2024 17:45:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2112610E481;
+ Thu, 28 Nov 2024 17:45:12 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Introduce_DRM_device?=
- =?utf-8?q?_wedged_event_=28rev8=29?=
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_Introduce_DRM_device_wed?=
+ =?utf-8?q?ged_event_=28rev8=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Raag Jadav" <raag.jadav@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 28 Nov 2024 17:45:09 -0000
-Message-ID: <173281590970.4185936.12643616608712970861@b555e5b46a47>
+Date: Thu, 28 Nov 2024 17:45:12 -0000
+Message-ID: <173281591213.4180181.8210855672942559055@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20241128153707.1294347-1-raag.jadav@intel.com>
 In-Reply-To: <20241128153707.1294347-1-raag.jadav@intel.com>
@@ -49,20 +49,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-48e6db3a81e0 drm: Introduce device wedged event
--:189: WARNING:STATIC_CONST_CHAR_ARRAY: char * array declaration might be better as static const
-#189: FILE: drivers/gpu/drm/drm_drv.c:542:
-+	char *envp[] = { event_string, NULL };
-
-total: 0 errors, 1 warnings, 0 checks, 105 lines checked
-cef184e3b461 drm/doc: Document device wedged event
-d6cc8aa527ee drm/xe: Use device wedged event
--:20: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#20: 
-KERNEL[265.802982] change   /devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/0000:03:00.0/drm/card0 (drm)
-
-total: 0 errors, 1 warnings, 0 checks, 24 lines checked
-fa8ec2e1147a drm/i915: Use device wedged event
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
