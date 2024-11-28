@@ -2,60 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 964A59DBAB8
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Nov 2024 16:40:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 45A299DBBEB
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Nov 2024 18:45:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FE2410ECF4;
-	Thu, 28 Nov 2024 15:40:54 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cJkJ88SJ";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id E986610E460;
+	Thu, 28 Nov 2024 17:45:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 80EF310ECF4
- for <intel-gfx@lists.freedesktop.org>; Thu, 28 Nov 2024 15:40:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732808453; x=1764344453;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=ciIAfb3OB8il0vgAKFf+PKj6YbGFf1QVhzxp6NcwJaQ=;
- b=cJkJ88SJP5nZrGulf2Y3JMlGf2Yxp0/VKeNyM6AMHzEC1IoGS+fDMJg2
- rmqG4Sg9OnvuHzZd6PUVjiloUSIq4NovhVU60s2lAseRZcMIqUFE9MUij
- Rjs8cOcG/NGRJCDueFTw+iFEESxXoemWxXM4JWpIQcVUxq+ZTDDzc7+R0
- B719KnpdhMgiSld2MOOv1KeM+fTLa2+KkIc95fb9RsPOrV8dqqzh8HXTJ
- i9RuCczpxRMfLFIC4+gjsYta/W292ShvOjLhii0QcpXhrgjFAj1H3y+ct
- LkhLdKIBaosRPPMsGIX7ZvJjoHY03cghRp2u2JYJZyFYoeYOoPVGlxCda g==;
-X-CSE-ConnectionGUID: NPgkYQLaSeaZzSMW5ykgnw==
-X-CSE-MsgGUID: AgUff+/ASRSfefVbbWiMOw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11270"; a="35909026"
-X-IronPort-AV: E=Sophos;i="6.12,192,1728975600"; d="scan'208";a="35909026"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Nov 2024 07:40:53 -0800
-X-CSE-ConnectionGUID: nyoyvqOfTcOkT0niUQVN3w==
-X-CSE-MsgGUID: 8AzjMBieSE+CjKmbyWZz5A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,192,1728975600"; d="scan'208";a="92437648"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 28 Nov 2024 07:40:51 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 28 Nov 2024 17:40:50 +0200
-Date: Thu, 28 Nov 2024 17:40:50 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: Brian Geffon <bgeffon@google.com>,
- Vidya Srinivas <vidya.srinivas@intel.com>
-Subject: Re: [PATCH 0/4] drm/i915/dpt: Try to make DPT shrinkable again
-Message-ID: <Z0iPApqoGFAoS53j@intel.com>
-References: <20241127061117.25622-1-ville.syrjala@linux.intel.com>
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AECFD10E460;
+ Thu, 28 Nov 2024 17:45:09 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241127061117.25622-1-ville.syrjala@linux.intel.com>
-X-Patchwork-Hint: comment
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Introduce_DRM_device?=
+ =?utf-8?q?_wedged_event_=28rev8=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Raag Jadav" <raag.jadav@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 28 Nov 2024 17:45:09 -0000
+Message-ID: <173281590970.4185936.12643616608712970861@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241128153707.1294347-1-raag.jadav@intel.com>
+In-Reply-To: <20241128153707.1294347-1-raag.jadav@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,47 +37,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Nov 27, 2024 at 08:11:13AM +0200, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> Try to make DPT objects shrinakble once again. To overcome
-> the earlier suspend/resume issues we'll just make sure all
-> DPT VMAs are evicted during suspend, and thus resume won't
-> care whether the DPT objects got kicked out or not. 
-> 
-> The proper solution would perhaps be to do the DPT CPU
-> mapping on demand in dpt insert_{page,range}() but that
-> would require a bunch of extra thought (especially for
-> DPTs allocated from stolen).
-> 
-> Cc: Brian Geffon <bgeffon@google.com>
-> Cc: Vidya Srinivas <vidya.srinivas@intel.com>
-> 
-> Ville Syrjälä (4):
->   drm/i915: Don't reuse commit_work for the cleanup
->   drm/i915: Intruduce display.wq.cleanup
->   drm/i915/dpt: Evict all DPT VMAs on suspend
->   Revert "drm/i915/dpt: Make DPT object unshrinkable"
+== Series Details ==
 
-Series pushed to drm-intel-next. Thanks Brian and Vidya.
+Series: Introduce DRM device wedged event (rev8)
+URL   : https://patchwork.freedesktop.org/series/138069/
+State : warning
 
-> 
->  drivers/gpu/drm/i915/display/intel_display.c  |  6 +++---
->  .../gpu/drm/i915/display/intel_display_core.h |  3 +++
->  .../drm/i915/display/intel_display_driver.c   |  6 ++++++
->  .../drm/i915/display/intel_display_types.h    |  2 ++
->  drivers/gpu/drm/i915/display/intel_dpt.c      |  4 ++--
->  drivers/gpu/drm/i915/gem/i915_gem_object.h    |  4 +---
->  drivers/gpu/drm/i915/gt/intel_ggtt.c          | 19 ++++++++++++++-----
->  drivers/gpu/drm/i915/gt/intel_gtt.h           |  4 ++--
->  8 files changed, 33 insertions(+), 15 deletions(-)
-> 
-> -- 
-> 2.45.2
+== Summary ==
 
--- 
-Ville Syrjälä
-Intel
+Error: dim checkpatch failed
+48e6db3a81e0 drm: Introduce device wedged event
+-:189: WARNING:STATIC_CONST_CHAR_ARRAY: char * array declaration might be better as static const
+#189: FILE: drivers/gpu/drm/drm_drv.c:542:
++	char *envp[] = { event_string, NULL };
+
+total: 0 errors, 1 warnings, 0 checks, 105 lines checked
+cef184e3b461 drm/doc: Document device wedged event
+d6cc8aa527ee drm/xe: Use device wedged event
+-:20: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#20: 
+KERNEL[265.802982] change   /devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/0000:03:00.0/drm/card0 (drm)
+
+total: 0 errors, 1 warnings, 0 checks, 24 lines checked
+fa8ec2e1147a drm/i915: Use device wedged event
+
+
