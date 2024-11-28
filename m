@@ -2,29 +2,123 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75D169DBC21
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Nov 2024 19:22:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F1119DBC4C
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Nov 2024 19:54:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BF1910E277;
-	Thu, 28 Nov 2024 18:22:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4CB3010ED38;
+	Thu, 28 Nov 2024 18:54:36 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="epx7aDIN";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0606210E277;
- Thu, 28 Nov 2024 18:22:07 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2045.outbound.protection.outlook.com [40.107.237.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67CAF10ED36;
+ Thu, 28 Nov 2024 18:54:34 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=bWnbe2z1BCao6v7JH0YLaWgh+hJt/wefml7ROjuwdG4My9eqTHiijLl7mD62W02ZGMZkwgS/82Pv1EbhK2UkUZIrOvGdTnKwdVYRdMYPwcKvPnKaAmE7Zud4aU2QZVI32UOq7eR1LZ7EOqgbxw32XcGZNL1wr/fSZA3WctuYAEKHYO+aBQ1j4CEwvY2as3ZC8aJbEzbO+MPTBl0kEXvwfR2WX0XjzxZdbc0D11oyW0dWQcQxcDY174kD0uiiyHDMqVyRQpQ36z9dc/mX9Os7O+Upbbpnc3Rn9cCPVwez0uYw2Fk+bHpQ91YtO28alsmlC6rYrETQi9SbsCetXhqTpg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=lLHTfjcTCiXPpPtnlIDOB9p8wCkYTu0iaOqlmuXjixU=;
+ b=eBx1gwZ7EX43oltYILALMSRuCQN4PEzP9QVdE9MMbB5Nm+5rJdJ88TvyTN1CmshG52jdELgwUyEkMP+jw3gzKf8NEX3bRaizPysqgMTJGCHtjz9UJndtxhrhOi6h24QXUnIEYu8QWqn87R9FUJvvEDoeziXAX/iV55ndRz/4hvItv8R4dcTS49za0y6gnGKQcyKG2xSCHNxxi3pmx7ajf9B9l5YitYQnsSCiXlaClh+7ZDdy4bftjjsjpgSIHpz0PvLOIUmA2BAxMwCcnYWCPo3/BTF34L2fZhgIXmnJ2eXWBng3h8OeDb6QVENZiNnPbIUubR3kdg/v210wU8VD8A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lLHTfjcTCiXPpPtnlIDOB9p8wCkYTu0iaOqlmuXjixU=;
+ b=epx7aDINJzsBB5aiKf658OMc9WsMD4mlynNnlGWhvBkMkB9wtPo/ncDttYqR31dEq1uWeUALArATbjvqmjdiD1xqsKa6OReedQonmcYWHyiZWGyeNSi+ELrdzmKlWXyJfF4yWevjHrGVgQeDvzCCjoK0vml17v15cDEwHB30lCg=
+Received: from MN2PR02CA0019.namprd02.prod.outlook.com (2603:10b6:208:fc::32)
+ by SJ1PR12MB6339.namprd12.prod.outlook.com (2603:10b6:a03:454::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8207.15; Thu, 28 Nov
+ 2024 18:54:27 +0000
+Received: from MN1PEPF0000ECD9.namprd02.prod.outlook.com
+ (2603:10b6:208:fc:cafe::20) by MN2PR02CA0019.outlook.office365.com
+ (2603:10b6:208:fc::32) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8182.18 via Frontend Transport; Thu,
+ 28 Nov 2024 18:54:26 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ MN1PEPF0000ECD9.mail.protection.outlook.com (10.167.242.138) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8207.12 via Frontend Transport; Thu, 28 Nov 2024 18:54:26 +0000
+Received: from MKM-L10-YUNXIA9.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Thu, 28 Nov
+ 2024 12:54:25 -0600
+From: Yunxiang Li <Yunxiang.Li@amd.com>
+To: <amd-gfx@lists.freedesktop.org>, <christian.koenig@amd.com>,
+ <tvrtko.ursulin@igalia.com>
+CC: <Alexander.Deucher@amd.com>, Yunxiang Li <Yunxiang.Li@amd.com>,
+ <dri-devel@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>
+Subject: [PATCH v9 2/5] drm: make drm-active- stats optional
+Date: Thu, 28 Nov 2024 13:54:01 -0500
+Message-ID: <20241128185404.2672-3-Yunxiang.Li@amd.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20241128185404.2672-1-Yunxiang.Li@amd.com>
+References: <20241128185404.2672-1-Yunxiang.Li@amd.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_drm/i915/display=3A_power?=
- =?utf-8?q?_conversion_to_struct_intel=5Fdisplay_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 28 Nov 2024 18:22:07 -0000
-Message-ID: <173281812701.4193954.11132455123941109084@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <cover.1732808222.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1732808222.git.jani.nikula@intel.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.180.168.240]
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN1PEPF0000ECD9:EE_|SJ1PR12MB6339:EE_
+X-MS-Office365-Filtering-Correlation-Id: 505b216f-ccd1-439a-4a94-08dd0fde1527
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|376014|82310400026|36860700013|7053199007; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?hiRpFA1OHgfU/hjHGHFLnEqrFupFR1j17jyhwPhU8sv80ZnPIJeXZcPGcc6Z?=
+ =?us-ascii?Q?nz4vSLP3+dpvgulq0aXfhAyXM25HTMl2oZMSbU/zWo2cBmdbtpEdXfkF2kcL?=
+ =?us-ascii?Q?5fPT3337rw6GFsik/nqKWpsQ3hcNfZMpkxqdTLdhxie7uFx2s2OQlUd1audT?=
+ =?us-ascii?Q?FtOULjDui2ZsZIqVFyl8s1RoZyuhiXtmgFY0FvqaUkZ2KIlrjuh1PHoAHo5V?=
+ =?us-ascii?Q?gs8debLjKL7zxJ6RU3iom/rVVhT8V12ibEIIPA1RSUjj/rgUWx+3LySqAlP0?=
+ =?us-ascii?Q?xNanQ9D4ThxJUDjhGYZqTItGddCrdx9fXbUd1ZakxyMtUakPLwnu+oRX4trn?=
+ =?us-ascii?Q?Syn6Nf4JrfLnSQ2lk4ta+VmtGm95H2ACU61UG0ZTRiLS9q4BwmV7+LcnRElJ?=
+ =?us-ascii?Q?1QLaqKXSxQ1Ea5VomQQpdo4YT+eucCJFlFyLuOlnmF9AtLTy5j2CzJDpVJdq?=
+ =?us-ascii?Q?sSpka9Odm3h67U38NOE0MFGdkGdMgmxs6MxjEds/ruP3a8FV5xHhGwp8+c7N?=
+ =?us-ascii?Q?9oWNyIgNQ+tTDf31gIooGJZsX13b52LpyQOATGCDa7NXfKLnLjEoOiyL8spR?=
+ =?us-ascii?Q?rcMK+d15n0evCEQnsVveNeikuqwfACrR+CmV4H/HP84MDWfb/5p7A8I3RzUS?=
+ =?us-ascii?Q?w4AqZGcgAnupuiFFbk1l2Mf98CwvcwCqKrXBd1ugLtqWTdG+KCA41pcHkzPA?=
+ =?us-ascii?Q?r3gVYdQiKKaylDBdhvspVLuIVYwVqTrH86WihZBBfOaTywqYNSvobgfCMQm9?=
+ =?us-ascii?Q?r78ktvzEWa9OjRrGg0VSurNQE25qa33/fMp8jBvbQT4D3LL9Uqwa4uEquxwn?=
+ =?us-ascii?Q?lAHLjoC5OlVKeMvv/FfzPUL4zgbi9xJjI/+dbO2c+sz8dIugiZyTmMlXb/vE?=
+ =?us-ascii?Q?lU8lAJNTYdN2JYUC5oKdULkLr3Su5BDDrkRVJgRVTxc7rxQVPNLc6tzSTCxG?=
+ =?us-ascii?Q?8HuUrhQPoyOLEn6TIDK1rSZZvCsSy2awQ7E/GFEgHjz0nq8blgsjsGs08Lf0?=
+ =?us-ascii?Q?X4MwBUSNZNHUPW1CPB4DkTuNgQ64SZ6pxI7rzGFKfhegSijtlenjVq9abbgg?=
+ =?us-ascii?Q?TWoBhrWUw9U0yqPmtnJk9wRTWXgH+L9gfs4LBKe4JMP9R+Fe+kXftxxicflS?=
+ =?us-ascii?Q?NuOB8BL5j89hgybnLFsmFlu8yeO4fBkAAdyfvzUi4FZMnotPUhaGOITwAY6Q?=
+ =?us-ascii?Q?HlbSUKuP6JWEm0pnIA6gfrTkE1WsYqEKp57SUyrzy1nN9oruBpHRZZS/23Vk?=
+ =?us-ascii?Q?0CZ303i17Pw+WJGNWJqT8vjb3EdeoZLYUEkL4ph1i4YCkZq/jsxDCvci7Mcl?=
+ =?us-ascii?Q?rmC3zBEWPv3/B3g6AnzlmunCtz62Io84BNTqI9FlhSxDNcIDVRdEh6+AIItf?=
+ =?us-ascii?Q?vJkxHwz0zqQnvSDrz9fC01njfEiDcmCVdstzvr4qNp5Gzjq12OfHdcGdtYkE?=
+ =?us-ascii?Q?xwS8H2cFA7SrHflbikUfhtmzHCKgvMI2?=
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(82310400026)(36860700013)(7053199007);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Nov 2024 18:54:26.7906 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 505b216f-ccd1-439a-4a94-08dd0fde1527
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: MN1PEPF0000ECD9.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR12MB6339
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,115 +131,139 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+When memory stats is generated fresh everytime by going though all the
+BOs, their active information is quite easy to get. But if the stats are
+tracked with BO's state this becomes harder since the job scheduling
+part doesn't really deal with individual buffers.
 
-Series: drm/i915/display: power conversion to struct intel_display (rev2)
-URL   : https://patchwork.freedesktop.org/series/141846/
-State : failure
+Make drm-active- optional to enable amdgpu to switch to the second
+method.
 
-== Summary ==
+Signed-off-by: Yunxiang Li <Yunxiang.Li@amd.com>
+CC: dri-devel@lists.freedesktop.org
+CC: intel-gfx@lists.freedesktop.org
+CC: amd-gfx@lists.freedesktop.org
+---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c |  1 +
+ drivers/gpu/drm/drm_file.c                 | 13 +++++++------
+ drivers/gpu/drm/i915/i915_drm_client.c     |  1 +
+ drivers/gpu/drm/xe/xe_drm_client.c         |  1 +
+ include/drm/drm_gem.h                      | 14 ++++++++------
+ 5 files changed, 18 insertions(+), 12 deletions(-)
 
-CI Bug Log - changes from CI_DRM_15759 -> Patchwork_141846v2
-====================================================
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c
+index df2cf5c339255..7717e3e4f05b5 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c
+@@ -97,6 +97,7 @@ void amdgpu_show_fdinfo(struct drm_printer *p, struct drm_file *file)
+ 
+ 		drm_print_memory_stats(p,
+ 				       &stats[i].drm,
++				       DRM_GEM_OBJECT_ACTIVE |
+ 				       DRM_GEM_OBJECT_RESIDENT |
+ 				       DRM_GEM_OBJECT_PURGEABLE,
+ 				       pl_name[i]);
+diff --git a/drivers/gpu/drm/drm_file.c b/drivers/gpu/drm/drm_file.c
+index e285fcc28c59c..fd06671054723 100644
+--- a/drivers/gpu/drm/drm_file.c
++++ b/drivers/gpu/drm/drm_file.c
+@@ -884,7 +884,9 @@ void drm_print_memory_stats(struct drm_printer *p,
+ {
+ 	print_size(p, "total", region, stats->private + stats->shared);
+ 	print_size(p, "shared", region, stats->shared);
+-	print_size(p, "active", region, stats->active);
++
++	if (supported_status & DRM_GEM_OBJECT_ACTIVE)
++		print_size(p, "active", region, stats->active);
+ 
+ 	if (supported_status & DRM_GEM_OBJECT_RESIDENT)
+ 		print_size(p, "resident", region, stats->resident);
+@@ -917,15 +919,13 @@ void drm_show_memory_stats(struct drm_printer *p, struct drm_file *file)
+ 
+ 		if (obj->funcs && obj->funcs->status) {
+ 			s = obj->funcs->status(obj);
+-			supported_status = DRM_GEM_OBJECT_RESIDENT |
+-					DRM_GEM_OBJECT_PURGEABLE;
++			supported_status |= s;
+ 		}
+ 
+-		if (drm_gem_object_is_shared_for_memory_stats(obj)) {
++		if (drm_gem_object_is_shared_for_memory_stats(obj))
+ 			status.shared += obj->size;
+-		} else {
++		else
+ 			status.private += obj->size;
+-		}
+ 
+ 		if (s & DRM_GEM_OBJECT_RESIDENT) {
+ 			status.resident += add_size;
+@@ -938,6 +938,7 @@ void drm_show_memory_stats(struct drm_printer *p, struct drm_file *file)
+ 
+ 		if (!dma_resv_test_signaled(obj->resv, dma_resv_usage_rw(true))) {
+ 			status.active += add_size;
++			supported_status |= DRM_GEM_OBJECT_ACTIVE;
+ 
+ 			/* If still active, don't count as purgeable: */
+ 			s &= ~DRM_GEM_OBJECT_PURGEABLE;
+diff --git a/drivers/gpu/drm/i915/i915_drm_client.c b/drivers/gpu/drm/i915/i915_drm_client.c
+index f586825054918..168d7375304bc 100644
+--- a/drivers/gpu/drm/i915/i915_drm_client.c
++++ b/drivers/gpu/drm/i915/i915_drm_client.c
+@@ -102,6 +102,7 @@ static void show_meminfo(struct drm_printer *p, struct drm_file *file)
+ 	for_each_memory_region(mr, i915, id)
+ 		drm_print_memory_stats(p,
+ 				       &stats[id],
++				       DRM_GEM_OBJECT_ACTIVE |
+ 				       DRM_GEM_OBJECT_RESIDENT |
+ 				       DRM_GEM_OBJECT_PURGEABLE,
+ 				       mr->uabi_name);
+diff --git a/drivers/gpu/drm/xe/xe_drm_client.c b/drivers/gpu/drm/xe/xe_drm_client.c
+index 6a26923fa10e0..54941b4e850c4 100644
+--- a/drivers/gpu/drm/xe/xe_drm_client.c
++++ b/drivers/gpu/drm/xe/xe_drm_client.c
+@@ -229,6 +229,7 @@ static void show_meminfo(struct drm_printer *p, struct drm_file *file)
+ 		if (man) {
+ 			drm_print_memory_stats(p,
+ 					       &stats[mem_type],
++					       DRM_GEM_OBJECT_ACTIVE |
+ 					       DRM_GEM_OBJECT_RESIDENT |
+ 					       (mem_type != XE_PL_SYSTEM ? 0 :
+ 					       DRM_GEM_OBJECT_PURGEABLE),
+diff --git a/include/drm/drm_gem.h b/include/drm/drm_gem.h
+index bae4865b2101a..da11c16e212aa 100644
+--- a/include/drm/drm_gem.h
++++ b/include/drm/drm_gem.h
+@@ -48,19 +48,21 @@ struct drm_gem_object;
+  * enum drm_gem_object_status - bitmask of object state for fdinfo reporting
+  * @DRM_GEM_OBJECT_RESIDENT: object is resident in memory (ie. not unpinned)
+  * @DRM_GEM_OBJECT_PURGEABLE: object marked as purgeable by userspace
++ * @DRM_GEM_OBJECT_ACTIVE: object is currently used by an active submission
+  *
+  * Bitmask of status used for fdinfo memory stats, see &drm_gem_object_funcs.status
+- * and drm_show_fdinfo().  Note that an object can DRM_GEM_OBJECT_PURGEABLE if
+- * it still active or not resident, in which case drm_show_fdinfo() will not
++ * and drm_show_fdinfo().  Note that an object can report DRM_GEM_OBJECT_PURGEABLE
++ * and be active or not resident, in which case drm_show_fdinfo() will not
+  * account for it as purgeable.  So drivers do not need to check if the buffer
+- * is idle and resident to return this bit.  (Ie. userspace can mark a buffer
+- * as purgeable even while it is still busy on the GPU.. it does not _actually_
+- * become puregeable until it becomes idle.  The status gem object func does
+- * not need to consider this.)
++ * is idle and resident to return this bit, i.e. userspace can mark a buffer as
++ * purgeable even while it is still busy on the GPU. It will not get reported in
++ * the puregeable stats until it becomes idle.  The status gem object func does
++ * not need to consider this.
+  */
+ enum drm_gem_object_status {
+ 	DRM_GEM_OBJECT_RESIDENT  = BIT(0),
+ 	DRM_GEM_OBJECT_PURGEABLE = BIT(1),
++	DRM_GEM_OBJECT_ACTIVE    = BIT(2),
+ };
+ 
+ /**
+-- 
+2.34.1
 
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_141846v2 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_141846v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141846v2/index.html
-
-Participating hosts (45 -> 44)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_141846v2:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-dp-1:
-    - fi-cfl-8109u:       [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15759/fi-cfl-8109u/igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-dp-1.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141846v2/fi-cfl-8109u/igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-dp-1.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_141846v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arlh-3:         [PASS][3] -> [ABORT][4] ([i915#12061]) +1 other test abort
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15759/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141846v2/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-    - bat-mtlp-6:         [PASS][5] -> [ABORT][6] ([i915#12061]) +1 other test abort
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15759/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141846v2/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_flip@basic-flip-vs-modeset@b-dp1:
-    - bat-apl-1:          [PASS][7] -> [DMESG-WARN][8] ([i915#12918]) +1 other test dmesg-warn
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15759/bat-apl-1/igt@kms_flip@basic-flip-vs-modeset@b-dp1.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141846v2/bat-apl-1/igt@kms_flip@basic-flip-vs-modeset@b-dp1.html
-
-  * igt@kms_pipe_crc_basic@hang-read-crc:
-    - fi-cfl-8109u:       [PASS][9] -> [DMESG-WARN][10] ([i915#12914]) +1 other test dmesg-warn
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15759/fi-cfl-8109u/igt@kms_pipe_crc_basic@hang-read-crc.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141846v2/fi-cfl-8109u/igt@kms_pipe_crc_basic@hang-read-crc.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gt_pm:
-    - bat-twl-2:          [ABORT][11] ([i915#12919]) -> [PASS][12] +1 other test pass
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15759/bat-twl-2/igt@i915_selftest@live@gt_pm.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141846v2/bat-twl-2/igt@i915_selftest@live@gt_pm.html
-
-  * igt@i915_selftest@live@workarounds:
-    - {bat-arls-6}:       [ABORT][13] ([i915#12061]) -> [PASS][14] +1 other test pass
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15759/bat-arls-6/igt@i915_selftest@live@workarounds.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141846v2/bat-arls-6/igt@i915_selftest@live@workarounds.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12914]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12914
-  [i915#12918]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12918
-  [i915#12919]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12919
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15759 -> Patchwork_141846v2
-
-  CI-20190529: 20190529
-  CI_DRM_15759: 5379d0a88558b73308ad82f163e80b863626e90b @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8129: 363499a879fee5b9b7eda8acf7c772bce3423493 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_141846v2: 5379d0a88558b73308ad82f163e80b863626e90b @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141846v2/index.html
