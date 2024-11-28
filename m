@@ -2,29 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A73049DBC0A
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 Nov 2024 18:59:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ADD5B9DBC11
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 Nov 2024 19:13:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 90D0810E0BE;
-	Thu, 28 Nov 2024 17:59:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4CF1410E142;
+	Thu, 28 Nov 2024 18:13:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 68E3810E0BE;
- Thu, 28 Nov 2024 17:59:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D42F10ED3F;
+ Thu, 28 Nov 2024 18:13:30 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_Introduce_DRM_device_wedg?=
- =?utf-8?q?ed_event_=28rev8=29?=
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/display=3A_?=
+ =?utf-8?q?power_conversion_to_struct_intel=5Fdisplay_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Raag Jadav" <raag.jadav@intel.com>
+To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 28 Nov 2024 17:59:43 -0000
-Message-ID: <173281678342.4192673.18404705641675797248@b555e5b46a47>
+Date: Thu, 28 Nov 2024 18:13:30 -0000
+Message-ID: <173281761018.4193973.13371264058515883650@b555e5b46a47>
 X-Patchwork-Hint: ignore
-References: <20241128153707.1294347-1-raag.jadav@intel.com>
-In-Reply-To: <20241128153707.1294347-1-raag.jadav@intel.com>
+References: <cover.1732808222.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1732808222.git.jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,117 +43,97 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: Introduce DRM device wedged event (rev8)
-URL   : https://patchwork.freedesktop.org/series/138069/
-State : failure
+Series: drm/i915/display: power conversion to struct intel_display (rev2)
+URL   : https://patchwork.freedesktop.org/series/141846/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_15759 -> Patchwork_138069v8
-====================================================
+Error: dim checkpatch failed
+cd780c372c31 drm/i915/display: convert for_each_power_well() to struct intel_display
+-:118: CHECK:MACRO_ARG_REUSE: Macro argument reuse '___display' - possible side-effects?
+#118: FILE: drivers/gpu/drm/i915/display/intel_display_power_well.h:18:
++#define for_each_power_well(___display, __power_well)			\
++	for ((__power_well) = (___display)->power.domains.power_wells;	\
++	     (__power_well) - (___display)->power.domains.power_wells <	\
++		     (___display)->power.domains.power_well_count;	\
+ 	     (__power_well)++)
 
-Summary
--------
+-:118: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__power_well' - possible side-effects?
+#118: FILE: drivers/gpu/drm/i915/display/intel_display_power_well.h:18:
++#define for_each_power_well(___display, __power_well)			\
++	for ((__power_well) = (___display)->power.domains.power_wells;	\
++	     (__power_well) - (___display)->power.domains.power_wells <	\
++		     (___display)->power.domains.power_well_count;	\
+ 	     (__power_well)++)
 
-  **FAILURE**
+-:128: CHECK:MACRO_ARG_REUSE: Macro argument reuse '___display' - possible side-effects?
+#128: FILE: drivers/gpu/drm/i915/display/intel_display_power_well.h:24:
++#define for_each_power_well_reverse(___display, __power_well)		\
++	for ((__power_well) = (___display)->power.domains.power_wells +	\
++		     (___display)->power.domains.power_well_count - 1;	\
++	     (__power_well) - (___display)->power.domains.power_wells >= 0; \
+ 	     (__power_well)--)
 
-  Serious unknown changes coming with Patchwork_138069v8 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_138069v8, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+-:128: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__power_well' - possible side-effects?
+#128: FILE: drivers/gpu/drm/i915/display/intel_display_power_well.h:24:
++#define for_each_power_well_reverse(___display, __power_well)		\
++	for ((__power_well) = (___display)->power.domains.power_wells +	\
++		     (___display)->power.domains.power_well_count - 1;	\
++	     (__power_well) - (___display)->power.domains.power_wells >= 0; \
+ 	     (__power_well)--)
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138069v8/index.html
+total: 0 errors, 0 warnings, 4 checks, 102 lines checked
+45b65941930b drm/i915/display: convert for_each_power_domain_well() to struct intel_display
+-:24: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#24: FILE: drivers/gpu/drm/i915/display/intel_display_power.c:31:
++#define for_each_power_domain_well(__display, __power_well, __domain)	\
++	for_each_power_well((__display), __power_well)			\
+ 		for_each_if(test_bit((__domain), (__power_well)->domains.bits))
 
-Participating hosts (45 -> 44)
-------------------------------
+-:24: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__power_well' - possible side-effects?
+#24: FILE: drivers/gpu/drm/i915/display/intel_display_power.c:31:
++#define for_each_power_domain_well(__display, __power_well, __domain)	\
++	for_each_power_well((__display), __power_well)			\
+ 		for_each_if(test_bit((__domain), (__power_well)->domains.bits))
 
-  Missing    (1): fi-snb-2520m 
+-:30: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#30: FILE: drivers/gpu/drm/i915/display/intel_display_power.c:35:
++#define for_each_power_domain_well_reverse(__display, __power_well, __domain) \
++	for_each_power_well_reverse((__display), __power_well) \
+ 		for_each_if(test_bit((__domain), (__power_well)->domains.bits))
 
-Possible new issues
--------------------
+-:30: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__power_well' - possible side-effects?
+#30: FILE: drivers/gpu/drm/i915/display/intel_display_power.c:35:
++#define for_each_power_domain_well_reverse(__display, __power_well, __domain) \
++	for_each_power_well_reverse((__display), __power_well) \
+ 		for_each_if(test_bit((__domain), (__power_well)->domains.bits))
 
-  Here are the unknown changes that may have been introduced in Patchwork_138069v8:
+total: 2 errors, 0 warnings, 2 checks, 61 lines checked
+d78a69328472 drm/i915/display: convert power wells to struct intel_display
+520ef50d09b0 drm/i915/display: convert power domain code internally to struct intel_display
+-:141: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#141: FILE: drivers/gpu/drm/i915/display/intel_display_power.c:382:
++	drm_dbg_kms(display->drm, "%s (%d):\n", prefix, bitmap_weight(mask->bits, POWER_DOMAIN_NUM));
 
-### IGT changes ###
+-:1662: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#1662: FILE: drivers/gpu/drm/i915/display/intel_display_power.c:2182:
++			    intel_power_well_name(power_well), intel_power_well_refcount(power_well));
 
-#### Possible regressions ####
+-:1907: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#1907: FILE: drivers/gpu/drm/i915/display/intel_display_power.c:2563:
++	const struct intel_ddi_port_domains *domains = intel_port_domains_for_aux_ch(display, aux_ch);
 
-  * igt@kms_flip@basic-flip-vs-dpms@a-dp1:
-    - fi-cfl-8109u:       [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15759/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-dpms@a-dp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138069v8/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-dpms@a-dp1.html
+-:1920: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#1920: FILE: drivers/gpu/drm/i915/display/intel_display_power.c:2575:
++	const struct intel_ddi_port_domains *domains = intel_port_domains_for_aux_ch(display, aux_ch);
 
-  
-Known issues
-------------
+-:1933: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#1933: FILE: drivers/gpu/drm/i915/display/intel_display_power.c:2587:
++	const struct intel_ddi_port_domains *domains = intel_port_domains_for_aux_ch(display, aux_ch);
 
-  Here are the changes found in Patchwork_138069v8 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - bat-dg1-7:          [PASS][3] -> [FAIL][4] ([i915#12903])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15759/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138069v8/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live:
-    - bat-mtlp-8:         [PASS][5] -> [ABORT][6] ([i915#12061]) +1 other test abort
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15759/bat-mtlp-8/igt@i915_selftest@live.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138069v8/bat-mtlp-8/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arlh-3:         [PASS][7] -> [ABORT][8] ([i915#12061]) +1 other test abort
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15759/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138069v8/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-    - bat-arlh-2:         [PASS][9] -> [ABORT][10] ([i915#12061]) +1 other test abort
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15759/bat-arlh-2/igt@i915_selftest@live@workarounds.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138069v8/bat-arlh-2/igt@i915_selftest@live@workarounds.html
-    - bat-mtlp-6:         [PASS][11] -> [ABORT][12] ([i915#12061]) +1 other test abort
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15759/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138069v8/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_chamelium_edid@dp-edid-read:
-    - bat-dg2-13:         [PASS][13] -> [FAIL][14] ([i915#12505])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15759/bat-dg2-13/igt@kms_chamelium_edid@dp-edid-read.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138069v8/bat-dg2-13/igt@kms_chamelium_edid@dp-edid-read.html
-
-  * igt@kms_flip@basic-flip-vs-dpms:
-    - fi-cfl-8109u:       [PASS][15] -> [DMESG-WARN][16] ([i915#12914])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15759/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-dpms.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138069v8/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-dpms.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@workarounds:
-    - {bat-arls-6}:       [ABORT][17] ([i915#12061]) -> [PASS][18] +1 other test pass
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15759/bat-arls-6/igt@i915_selftest@live@workarounds.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138069v8/bat-arls-6/igt@i915_selftest@live@workarounds.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12505]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12505
-  [i915#12903]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12903
-  [i915#12914]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12914
+total: 0 errors, 5 warnings, 0 checks, 1832 lines checked
+ee3522a32636 drm/i915/display: convert high level power interfaces to struct intel_display
+e90f1ec218e5 drm/i915/display: convert power map to struct intel_display
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_15759 -> Patchwork_138069v8
-
-  CI-20190529: 20190529
-  CI_DRM_15759: 5379d0a88558b73308ad82f163e80b863626e90b @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8129: 363499a879fee5b9b7eda8acf7c772bce3423493 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_138069v8: 5379d0a88558b73308ad82f163e80b863626e90b @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_138069v8/index.html
