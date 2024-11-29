@@ -2,60 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 128999DE8E2
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Nov 2024 15:46:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 832AF9DE8E3
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Nov 2024 15:46:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B8CC10E4D6;
-	Fri, 29 Nov 2024 14:46:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3716810E4C9;
+	Fri, 29 Nov 2024 14:46:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HA95FTEG";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Bb+orOM4";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D364810E4DB;
- Fri, 29 Nov 2024 14:46:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732891565; x=1764427565;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=KP8EKWW8H9ie5NUFrI98sY3B5n/1dq3Ly9A4SLSyceU=;
- b=HA95FTEGNNpI4KUrgcYVJhwAbgYKdUEn9mSVSDC8Cl/muc9msn8YkdK5
- BP2jeROpbWqoeNk0fQA0XgomC0xWPj8QL+xXis/0cZDchGEabx1LwaulI
- YhSh83EaWaS+f8w2pnHgaVfDj1XoAnRX/Gpl+jIXCsGHYNT0LO6+YGMOE
- PCbvBTyQBx7QD2DByEEHHQluC1a5bKk5SvgQWzyogB4AyE8cp5DF6DJ/i
- HGH8C0UGboRQGVuI4xqxHszCkPI0S5meReSOCYlczIFBR5hipjphOmqH9
- H4hOFQqBjZWeO3EWGfCdqbSVNOadNwi2WFt8U/FKdxpLDbCSD57uhKVYP g==;
-X-CSE-ConnectionGUID: fye8eLVdT3iYbWeHjcmdew==
-X-CSE-MsgGUID: OcvjNcadSvyy2d086BNl6A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11271"; a="50650268"
-X-IronPort-AV: E=Sophos;i="6.12,195,1728975600"; d="scan'208";a="50650268"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Nov 2024 06:46:05 -0800
-X-CSE-ConnectionGUID: FbH7QMDATWWJwi3wlCEQTg==
-X-CSE-MsgGUID: ytOWIuvNR2uTKG7msU6leg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,195,1728975600"; d="scan'208";a="93346766"
-Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.241])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Nov 2024 06:46:04 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH 5/5] drm/i915/dp: finish link training conversion to struct
- intel_display
-Date: Fri, 29 Nov 2024 16:45:33 +0200
-Message-Id: <25601501c7c4383fd453aac85c847e0053f10142.1732891498.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1732891498.git.jani.nikula@intel.com>
-References: <cover.1732891498.git.jani.nikula@intel.com>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 728D410E4C9;
+ Fri, 29 Nov 2024 14:46:32 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id B1DE45C3EF9;
+ Fri, 29 Nov 2024 14:45:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49CB8C4CECF;
+ Fri, 29 Nov 2024 14:46:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1732891591;
+ bh=f2K0d4Gf4NcPcxTfrmJW92LltgMzXKs8eShY8ZRdUZ4=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=Bb+orOM4Z3SiJEB3LjufZ4NJg1RY43FNWQRizQw6eSrPO1zad/Inc/L1I8+RVjw0H
+ D1+pEF+DQQ6e1KCPzRkv3wV+uAWHpuOkoH8IV6RWeevtG52VhlTQIimPmQrHtgum7P
+ WKRv4i3XHZIYiFKwGdi5doXyaxgmlz07azbf9FzoKJyVXcaveQW3TZwPQROnwyr7Ax
+ z8cCLv2z/2T/HDwUMuG/DKFSFtthmXiByneo0KaMHL0ALDoVDJ+QPePVlYH/f6VMcK
+ xCWzNESXWmiU5/QuyYYqXMCa7zQtypDH5oxlRWvVafn+Ib+RHJT2FcwPbKnag2jDKi
+ 29NDhLALoX27g==
+Date: Fri, 29 Nov 2024 15:46:28 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Imre Deak <imre.deak@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, 
+ Dave Airlie <airlied@redhat.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, 
+ dri-devel@lists.freedesktop.org, Jani Nikula <jani.nikula@intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: Re: [PATCH v2 1/4] drm/dp: Add a way to init/add a connector in
+ separate steps
+Message-ID: <20241129-wild-cobra-of-thunder-829d1f@houat>
+References: <20241126161859.1858058-1-imre.deak@intel.com>
+ <20241126161859.1858058-2-imre.deak@intel.com>
+ <Z0nO-bwpbWPVryd6@ideak-desk.fi.intel.com>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="xcz5bvphmetbkzt2"
+Content-Disposition: inline
+In-Reply-To: <Z0nO-bwpbWPVryd6@ideak-desk.fi.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,64 +65,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Convert the final stragglers to struct intel_display now that we have
-platform identification via it too.
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp_link_training.c | 9 +++------
- 1 file changed, 3 insertions(+), 6 deletions(-)
+--xcz5bvphmetbkzt2
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v2 1/4] drm/dp: Add a way to init/add a connector in
+ separate steps
+MIME-Version: 1.0
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-index b84fee94c0a0..02ad0fbb1859 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-@@ -221,7 +221,6 @@ static int intel_dp_init_lttpr(struct intel_dp *intel_dp, const u8 dpcd[DP_RECEI
- int intel_dp_read_dprx_caps(struct intel_dp *intel_dp, u8 dpcd[DP_RECEIVER_CAP_SIZE])
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
--	struct drm_i915_private *i915 = to_i915(display->drm);
- 
- 	if (intel_dp_is_edp(intel_dp))
- 		return 0;
-@@ -230,7 +229,7 @@ int intel_dp_read_dprx_caps(struct intel_dp *intel_dp, u8 dpcd[DP_RECEIVER_CAP_S
- 	 * Detecting LTTPRs must be avoided on platforms with an AUX timeout
- 	 * period < 3.2ms. (see DP Standard v2.0, 2.11.2, 3.6.6.1).
- 	 */
--	if (DISPLAY_VER(display) >= 10 && !IS_GEMINILAKE(i915))
-+	if (DISPLAY_VER(display) >= 10 && !display->platform.geminilake)
- 		if (drm_dp_dpcd_probe(&intel_dp->aux,
- 				      DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV))
- 			return -EIO;
-@@ -262,7 +261,6 @@ int intel_dp_read_dprx_caps(struct intel_dp *intel_dp, u8 dpcd[DP_RECEIVER_CAP_S
- int intel_dp_init_lttpr_and_dprx_caps(struct intel_dp *intel_dp)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
--	struct drm_i915_private *i915 = to_i915(display->drm);
- 	int lttpr_count = 0;
- 
- 	/*
-@@ -270,7 +268,7 @@ int intel_dp_init_lttpr_and_dprx_caps(struct intel_dp *intel_dp)
- 	 * period < 3.2ms. (see DP Standard v2.0, 2.11.2, 3.6.6.1).
- 	 */
- 	if (!intel_dp_is_edp(intel_dp) &&
--	    (DISPLAY_VER(display) >= 10 && !IS_GEMINILAKE(i915))) {
-+	    (DISPLAY_VER(display) >= 10 && !display->platform.geminilake)) {
- 		u8 dpcd[DP_RECEIVER_CAP_SIZE];
- 		int err = intel_dp_read_dprx_caps(intel_dp, dpcd);
- 
-@@ -391,10 +389,9 @@ static bool has_per_lane_signal_levels(struct intel_dp *intel_dp,
- 				       enum drm_dp_phy dp_phy)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
--	struct drm_i915_private *i915 = to_i915(display->drm);
- 
- 	return !intel_dp_phy_is_downstream_of_source(intel_dp, dp_phy) ||
--		DISPLAY_VER(display) >= 10 || IS_BROXTON(i915);
-+		DISPLAY_VER(display) >= 10 || display->platform.broxton;
- }
- 
- /* 128b/132b */
--- 
-2.39.5
+On Fri, Nov 29, 2024 at 04:26:01PM +0200, Imre Deak wrote:
+> Adding more people from DRM core domain. Any comment, objection to this
+> change?
+>=20
+> On Tue, Nov 26, 2024 at 06:18:56PM +0200, Imre Deak wrote:
+> > Atm when the connector is added to the drm_mode_config::connector_list,
+> > the connector may not be fully initialized yet. This is not a problem
+> > for user space, which will see the connector only after it's registered
+> > later, it could be a problem for in-kernel users looking up connectors
+> > via the above list.
 
+It could be, or it actually is a problem? If so, in what situation?
+
+> > To resolve the above issue, add a way to separately initialize the DRM
+> > core specific parts of the connector and add it to the above list. This
+> > will move adding the connector to the list after the properties on the
+> > connector have been added, this is ok since these steps don't have a
+> > dependency.
+> >
+> > v2: (Jani)
+> > - Let initing DDC as well via drm_connector_init_core().
+> > - Rename __drm_connector_init to drm_connector_init_core_and_add().
+> >=20
+> > Cc: Jani Nikula <jani.nikula@intel.com>
+> > Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com> (v1)
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+
+If we do have an actual problem to solve, we'll need kunit tests too.
+
+Maxime
+
+--xcz5bvphmetbkzt2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZ0nTvgAKCRAnX84Zoj2+
+dqOqAYDIlSTmWt9+l/1el1175mzeD0UaGoMeo3N6ZNVn/DrV23/MyjRCiMtZf6nI
+mCpbiicBgKNiKNZNITZu3wRb2V049EWoWVEhTnnTnwMob31YeJ9n7pNkia/HwKDO
+qHyaJHu1Kw==
+=6vCg
+-----END PGP SIGNATURE-----
+
+--xcz5bvphmetbkzt2--
