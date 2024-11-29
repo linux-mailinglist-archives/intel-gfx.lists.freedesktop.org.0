@@ -2,29 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A314B9DC0ED
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Nov 2024 09:57:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 75AED9DC10C
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Nov 2024 10:05:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A58E10E198;
-	Fri, 29 Nov 2024 08:57:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C36210E2A4;
+	Fri, 29 Nov 2024 09:05:40 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kKJq777w";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 901E710E198;
- Fri, 29 Nov 2024 08:57:53 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5814410E126;
+ Fri, 29 Nov 2024 09:05:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1732871139; x=1764407139;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=J4ci7D0ecLEUQbcpuaJID3m85eIHkkbfg+OCDlekOpo=;
+ b=kKJq777wKElgsYS36A+5K3Xss0TIrXI895//NHFptw0/5RPYA8qFyFHr
+ StgE1zgiA300Gb+9ctXun/Wqsw8nlilCN0VZeK0Cfkf1Pc7UqHjQ8dg97
+ Ql0OL4xqLiGnB6jjj+DG4O7pRyXbL5eOl3v+vYc4Ds2ahxKJdjmOPTpF4
+ r3GgRFOp7hC18Fvlw6G7E7eTib/4QpzuhAji32sG/3BnOSfS1OsOS/pVK
+ uMI3TxAwkjT7k/rod7wRGayOmDpcAOq33aHMBgiwpd/s6R3KkklmzZhPM
+ Rfh8wp5Uc0lV851H5FYci0pxPRBJvSMdcKiGaCHFUcjL+ltm0I5+po57c Q==;
+X-CSE-ConnectionGUID: 42c+lOL0TUadNqSkw93YMg==
+X-CSE-MsgGUID: 2iVo/GXISFSVnvv4cGJSBg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11270"; a="37036672"
+X-IronPort-AV: E=Sophos;i="6.12,195,1728975600"; d="scan'208";a="37036672"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Nov 2024 01:05:38 -0800
+X-CSE-ConnectionGUID: L+Ab97I4RLawYcOEFaN3Kg==
+X-CSE-MsgGUID: 8UD6Q4TEQMSelGJ5p3aBjA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,195,1728975600"; d="scan'208";a="92549046"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
+ by orviesa006.jf.intel.com with ESMTP; 29 Nov 2024 01:05:37 -0800
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com,
+	Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH] drm/i915/hdcp: Change log level for HDMI HDCP LIC check
+Date: Fri, 29 Nov 2024 14:35:30 +0530
+Message-Id: <20241129090530.1814774-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/fb=3A_Deal_with_?=
- =?utf-8?q?Mesa_clear_color_alignment_regression_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 29 Nov 2024 08:57:53 -0000
-Message-ID: <173287067358.229265.12205473133027747262@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241129065014.8363-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20241129065014.8363-1-ville.syrjala@linux.intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,100 +63,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+We don't need to shout out loud if there is a Link Integrity
+Failure. This does not mean HDCP has failed, it is expected and
+taken into account in the HDCP Spec. The real failure happens when
+we are not able to reauthenticate and get HDCP running again for
+which we already have the right logging.
 
-Series: drm/i915/fb: Deal with Mesa clear color alignment regression (rev2)
-URL   : https://patchwork.freedesktop.org/series/141911/
-State : success
+--v2
+-Remove the log altogether [Ankit]
 
-== Summary ==
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_hdmi.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-CI Bug Log - changes from CI_DRM_15762 -> Patchwork_141911v2
-====================================================
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index 23c270a8c4aa..4e1a9d6ae862 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -1607,7 +1607,6 @@ bool intel_hdmi_hdcp_check_link(struct intel_digital_port *dig_port,
+ 		if (intel_hdmi_hdcp_check_link_once(dig_port, connector))
+ 			return true;
+ 
+-	drm_err(display->drm, "Link check failed\n");
+ 	return false;
+ }
+ 
+-- 
+2.34.1
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141911v2/index.html
-
-Participating hosts (45 -> 44)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_141911v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@dmabuf@all-tests@dma_fence_chain:
-    - fi-bsw-nick:        [PASS][1] -> [INCOMPLETE][2] ([i915#12904]) +1 other test incomplete
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15762/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141911v2/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         [PASS][3] -> [SKIP][4] ([i915#9197]) +2 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15762/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141911v2/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_tiled_blits@basic:
-    - fi-pnv-d510:        [SKIP][5] -> [PASS][6] +2 other tests pass
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15762/fi-pnv-d510/igt@gem_tiled_blits@basic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141911v2/fi-pnv-d510/igt@gem_tiled_blits@basic.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - bat-dg2-11:         [FAIL][7] ([i915#12903]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15762/bat-dg2-11/igt@i915_pm_rpm@module-reload.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141911v2/bat-dg2-11/igt@i915_pm_rpm@module-reload.html
-    - bat-rpls-4:         [FAIL][9] ([i915#12903]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15762/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141911v2/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - bat-jsl-3:          [DMESG-FAIL][11] -> [PASS][12] +1 other test pass
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15762/bat-jsl-3/igt@i915_selftest@live@gt_pm.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141911v2/bat-jsl-3/igt@i915_selftest@live@gt_pm.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arls-5:         [ABORT][13] ([i915#12061]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15762/bat-arls-5/igt@i915_selftest@live@workarounds.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141911v2/bat-arls-5/igt@i915_selftest@live@workarounds.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12903]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12903
-  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
-  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15762 -> Patchwork_141911v2
-
-  CI-20190529: 20190529
-  CI_DRM_15762: 4f5b3a832a6480c82639b5500d731d7222b7eee7 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8130: 52c84deb5f45bcbd3c2b22d1fcff01d4c522cb62 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_141911v2: 4f5b3a832a6480c82639b5500d731d7222b7eee7 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141911v2/index.html
