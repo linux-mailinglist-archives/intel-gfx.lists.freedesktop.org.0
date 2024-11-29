@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43E809DEB32
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Nov 2024 17:40:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 501109DEB34
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Nov 2024 17:40:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD28210E533;
-	Fri, 29 Nov 2024 16:40:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 894D110E541;
+	Fri, 29 Nov 2024 16:40:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y8jDLVco";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PvkNo6jx";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 91DF510E533;
- Fri, 29 Nov 2024 16:40:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C07110E539;
+ Fri, 29 Nov 2024 16:40:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732898429; x=1764434429;
+ t=1732898430; x=1764434430;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=oLU8kPIBL1v5Utt5EyvERDCCOVpgsEArKmvb7b2WzkE=;
- b=Y8jDLVcorEwYAF15A9p9YxGL2XVhpJnjJMKGkjkipK6D7vJGt4UuwKug
- Ns0MRsG/I9u2ZEmnocL8P9Ez+mxVk3dkP58spkIR/GAli8/3+MEmnB9cU
- AE4NDEso/XjpwkjbLX/CHxlNIRYOXXs6CtgOI82UEsoBW4ouQPDGAZ0iw
- clpRryZd0Sln1Rlwf/Tw6aGRf3Lqkr6kUnmTpbZX+/GrpMK24zn1OaBZE
- cFWRit+8PyFMjZ3p5i3Y61IlQlp8eBsuOi08XiIKhYhaY58Dxi8xkSkzI
- 8cash3gYSjVLFkp8B5StLiOr1XcwJFNOEoPQ5LHpdGwTEEmGMv5g0V4dl g==;
-X-CSE-ConnectionGUID: tEpp5FGhSgmto8EzkMYzmQ==
-X-CSE-MsgGUID: 1R92KOCxQxyUXTrEsVis8w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11271"; a="33291176"
-X-IronPort-AV: E=Sophos;i="6.12,196,1728975600"; d="scan'208";a="33291176"
+ bh=nKrKvg9lKHS/Cxhtp9+NYa7UCrI/cqI0uquD/oLdFGA=;
+ b=PvkNo6jx27LGubk02W43/0OtyD86mK1p4tMvrb9DqM4dWc4RGNbGoQph
+ R+VY7zqn0dSM3D26zyhbU43mqo5lh628VS6mmXef5gU9sM+jrLhXUTdu7
+ p3bWWrXaJOR1wn02TPcV4L29jlZRx0QqwhmpEUkGu20htA8mV4xBURC3m
+ dnzdL4CAZz74e3maDZz45N1/XKcJaEh/tKoFYC7vzyzuKhSUWW6eYlFYk
+ 60fx4QzDTNrmoLqdThI3i55nbf2ZjpOqj+k88L4nZZ1MAnl7Be6VMDjip
+ o11p01bUOwASAIULTE/T6Ab3kTJyWcehmpFOw/ZodgIlRVH4vFWsHX3Ri A==;
+X-CSE-ConnectionGUID: 0CJGZ2f5QBKD0xJLdmDOKA==
+X-CSE-MsgGUID: kke7qyVeRIeKrtVoydGPvg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11271"; a="33291178"
+X-IronPort-AV: E=Sophos;i="6.12,196,1728975600"; d="scan'208";a="33291178"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Nov 2024 08:40:28 -0800
-X-CSE-ConnectionGUID: cqwgKf7jQt2Xp0ZdsfhtEQ==
-X-CSE-MsgGUID: /1FbiiEpQnydExpb/B5NPA==
+ 29 Nov 2024 08:40:30 -0800
+X-CSE-ConnectionGUID: SNPzBBENQum7PwFPiBFIQQ==
+X-CSE-MsgGUID: PTKRZaTMT/ao8C9Zi2wONQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,196,1728975600"; d="scan'208";a="96956936"
+X-IronPort-AV: E=Sophos;i="6.12,196,1728975600"; d="scan'208";a="96956945"
 Received: from eamartin-mobl1.amr.corp.intel.com (HELO
  gjsousa-mobl2.corp.amr.intel.com) ([10.125.111.90])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Nov 2024 08:40:27 -0800
+ 29 Nov 2024 08:40:29 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: Luca Coelho <luciano.coelho@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v2 2/3] drm/xe/display: Extract
- xe_display_pm_runtime_suspend_late()
-Date: Fri, 29 Nov 2024 13:37:55 -0300
-Message-ID: <20241129164010.29887-3-gustavo.sousa@intel.com>
+Subject: [PATCH v2 3/3] drm/xe/display: Flush DMC wakelock release work on
+ runtime suspend
+Date: Fri, 29 Nov 2024 13:37:56 -0300
+Message-ID: <20241129164010.29887-4-gustavo.sousa@intel.com>
 X-Mailer: git-send-email 2.47.0
 In-Reply-To: <20241129164010.29887-1-gustavo.sousa@intel.com>
 References: <20241129164010.29887-1-gustavo.sousa@intel.com>
@@ -71,83 +71,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The current behavior for the runtime suspend case is that
-xe_display_pm_suspend_late() is only called when D3cold is allowed.
-Let's incorporate that behavior into a function specific to runtime PM
-and call it xe_display_pm_runtime_suspend_late().
+We currently are not calling display runtime suspend functions when
+D3cold is not allowed. Because of that, we end up not disabling dynamic
+DC states (and do not go to DC9). With dynamic DC states enabled, we
+will also have DMC wakelock enabled. Since we use a delayed work to
+release the DMC wakelock, the work might get executed a little too late
+(after the PCI device has been put to D3hot) and we get a timeout
+warning ("DMC wakelock release timed out") because the MMIO for
+releasing the wakelock will be invalid after that point.
 
-With that, we keep stuff a bit more self-contained and allow having a
-place for adding more "late display runtime suspend"-related logic that
-isn't dependent on the "D3cold allowed" state.
-
-v2:
-  - Fix typo in that caused xe_display_pm_runtime_suspend_late() to call
-    itself instead of xe_display_pm_suspend_late().
-  - Add the empty version of xe_display_pm_runtime_suspend_late() for
-    the !CONFIG_DRM_XE_DISPLAY case.
+To fix that, make sure we flush the release work at the end of
+xe_display_pm_runtime_suspend_late(). We can do that unconditionally
+because, if there is no pending work, that turns into a no-op.
 
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_display.c | 9 +++++++++
- drivers/gpu/drm/xe/display/xe_display.h | 2 ++
- drivers/gpu/drm/xe/xe_pm.c              | 4 ++--
- 3 files changed, 13 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/display/xe_display.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index 69c828f38cb6..739db5b7b01f 100644
+index 739db5b7b01f..eec91ab1b311 100644
 --- a/drivers/gpu/drm/xe/display/xe_display.c
 +++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -407,6 +407,15 @@ void xe_display_pm_suspend_late(struct xe_device *xe)
- 	intel_display_power_suspend_late(xe, s2idle);
+@@ -22,6 +22,7 @@
+ #include "intel_display_irq.h"
+ #include "intel_display_types.h"
+ #include "intel_dmc.h"
++#include "intel_dmc_wl.h"
+ #include "intel_dp.h"
+ #include "intel_encoder.h"
+ #include "intel_fbdev.h"
+@@ -409,11 +410,20 @@ void xe_display_pm_suspend_late(struct xe_device *xe)
+ 
+ void xe_display_pm_runtime_suspend_late(struct xe_device *xe)
+ {
++	struct intel_display *display = &xe->display;
++
+ 	if (!xe->info.probe_display)
+ 		return;
+ 
+ 	if (xe->d3cold.allowed)
+ 		xe_display_pm_suspend_late(xe);
++
++	/*
++	 * If xe_display_pm_suspend_late() is not called, it is likely
++	 * that we will be on dynamic DC states with DMC wakelock enabled. We
++	 * need to flush the release work in that case.
++	 */
++	intel_dmc_wl_flush_release_work(display);
  }
  
-+void xe_display_pm_runtime_suspend_late(struct xe_device *xe)
-+{
-+	if (!xe->info.probe_display)
-+		return;
-+
-+	if (xe->d3cold.allowed)
-+		xe_display_pm_suspend_late(xe);
-+}
-+
  void xe_display_pm_shutdown_late(struct xe_device *xe)
- {
- 	if (!xe->info.probe_display)
-diff --git a/drivers/gpu/drm/xe/display/xe_display.h b/drivers/gpu/drm/xe/display/xe_display.h
-index 17afa537aee5..233f81a26c25 100644
---- a/drivers/gpu/drm/xe/display/xe_display.h
-+++ b/drivers/gpu/drm/xe/display/xe_display.h
-@@ -41,6 +41,7 @@ void xe_display_pm_shutdown_late(struct xe_device *xe);
- void xe_display_pm_resume_early(struct xe_device *xe);
- void xe_display_pm_resume(struct xe_device *xe);
- void xe_display_pm_runtime_suspend(struct xe_device *xe);
-+void xe_display_pm_runtime_suspend_late(struct xe_device *xe);
- void xe_display_pm_runtime_resume(struct xe_device *xe);
- 
- #else
-@@ -74,6 +75,7 @@ static inline void xe_display_pm_shutdown_late(struct xe_device *xe) {}
- static inline void xe_display_pm_resume_early(struct xe_device *xe) {}
- static inline void xe_display_pm_resume(struct xe_device *xe) {}
- static inline void xe_display_pm_runtime_suspend(struct xe_device *xe) {}
-+static inline void xe_display_pm_runtime_suspend_late(struct xe_device *xe) {}
- static inline void xe_display_pm_runtime_resume(struct xe_device *xe) {}
- 
- #endif /* CONFIG_DRM_XE_DISPLAY */
-diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-index 80699dbeb2e9..a6761cb769b2 100644
---- a/drivers/gpu/drm/xe/xe_pm.c
-+++ b/drivers/gpu/drm/xe/xe_pm.c
-@@ -414,8 +414,8 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
- 
- 	xe_irq_suspend(xe);
- 
--	if (xe->d3cold.allowed)
--		xe_display_pm_suspend_late(xe);
-+	xe_display_pm_runtime_suspend_late(xe);
-+
- out:
- 	if (err)
- 		xe_display_pm_runtime_resume(xe);
 -- 
 2.47.0
 
