@@ -2,64 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E5789DEAB8
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Nov 2024 17:11:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A0C99DEAC9
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Nov 2024 17:19:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6A8210E523;
-	Fri, 29 Nov 2024 16:11:26 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RWf2sD/t";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0288D10E510;
+	Fri, 29 Nov 2024 16:19:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E9A3110E511;
- Fri, 29 Nov 2024 16:11:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732896686; x=1764432686;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=bGCoPdIaflH1sREVF20uKevBtvi3xK0jmS6oC2Xf8gI=;
- b=RWf2sD/tY+AJQc7QKyQw9hfT2ZNsh+Ns8FgK9eNa5a3k4V4Da7tqvrNk
- P6sCn+w+s+T0f5gUreYEDcPF8XZ70CNYEHCrfHH+MSYHdRKFTQduDlekb
- Z3GvbVUGkV+o+6RAmAywVr6p6Wk3Z2bEDhAKBbX8eR+slem/RpwjFqIrl
- 2U0+sxHKsEUJRyzhy3hTvlSXCwungnnGPRaQzsC8lzKdqaY9IZzaM7sJw
- htzlnQE5UNk22keRtrDtQxo1L5QmbDdK63r4dUSEc4wYx12pa9abi/yYU
- m1oTxW6W/3Is31iVW5+rxCzVvzAjpi3uP39baUosE7yls6LAE6lGBzcaY g==;
-X-CSE-ConnectionGUID: GrkPho2AS3y8IVFhs1nWew==
-X-CSE-MsgGUID: YAaaAYtgSHq4LLR8m1UThg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11271"; a="36804165"
-X-IronPort-AV: E=Sophos;i="6.12,196,1728975600"; d="scan'208";a="36804165"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Nov 2024 08:11:25 -0800
-X-CSE-ConnectionGUID: ne8gN1eLRE6F139Z4jN5Gw==
-X-CSE-MsgGUID: 6Fyv2xYcRBCe7ZPOX0frLA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,196,1728975600"; d="scan'208";a="96598889"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Nov 2024 08:11:23 -0800
-Date: Fri, 29 Nov 2024 18:12:01 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Maxime Ripard <mripard@kernel.org>
-Cc: intel-gfx@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, Dave Airlie <airlied@redhat.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>, dri-devel@lists.freedesktop.org,
- Jani Nikula <jani.nikula@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH v2 1/4] drm/dp: Add a way to init/add a connector in
- separate steps
-Message-ID: <Z0nn0VzawSCdOCKY@ideak-desk.fi.intel.com>
-References: <20241126161859.1858058-1-imre.deak@intel.com>
- <20241126161859.1858058-2-imre.deak@intel.com>
- <Z0nO-bwpbWPVryd6@ideak-desk.fi.intel.com>
- <20241129-wild-cobra-of-thunder-829d1f@houat>
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 201C110E1B2;
+ Fri, 29 Nov 2024 16:19:22 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241129-wild-cobra-of-thunder-829d1f@houat>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_Flush_DMC_wakelock_releas?=
+ =?utf-8?q?e_work_at_the_end_of_runtime_suspend?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gustavo Sousa" <gustavo.sousa@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 29 Nov 2024 16:19:22 -0000
+Message-ID: <173289716212.335762.15921460496439804950@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241129151754.22015-1-gustavo.sousa@intel.com>
+In-Reply-To: <20241129151754.22015-1-gustavo.sousa@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,53 +37,189 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Nov 29, 2024 at 03:46:28PM +0100, Maxime Ripard wrote:
-> On Fri, Nov 29, 2024 at 04:26:01PM +0200, Imre Deak wrote:
-> > Adding more people from DRM core domain. Any comment, objection to this
-> > change?
-> > 
-> > On Tue, Nov 26, 2024 at 06:18:56PM +0200, Imre Deak wrote:
-> > > Atm when the connector is added to the drm_mode_config::connector_list,
-> > > the connector may not be fully initialized yet. This is not a problem
-> > > for user space, which will see the connector only after it's registered
-> > > later, it could be a problem for in-kernel users looking up connectors
-> > > via the above list.
-> 
-> It could be, or it actually is a problem? If so, in what situation?
+== Series Details ==
 
-An actual problem is that after an MST connector is created and added to
-the connector list, the connector could be probed without the connector
-being fully initialized during a hotplug event handling along with all
-the other connectors on the list. The connector's helper functions could
-be still unset leading to a NULL deref while trying to call the
-connector's detect/detect_ctx callbacks, or if these callbacks are set
-already, the detect handler could see a connector which is not yet
-initialized fully.
+Series: Flush DMC wakelock release work at the end of runtime suspend
+URL   : https://patchwork.freedesktop.org/series/141932/
+State : failure
 
-> > > To resolve the above issue, add a way to separately initialize the DRM
-> > > core specific parts of the connector and add it to the above list. This
-> > > will move adding the connector to the list after the properties on the
-> > > connector have been added, this is ok since these steps don't have a
-> > > dependency.
-> > >
-> > > v2: (Jani)
-> > > - Let initing DDC as well via drm_connector_init_core().
-> > > - Rename __drm_connector_init to drm_connector_init_core_and_add().
-> > > 
-> > > Cc: Jani Nikula <jani.nikula@intel.com>
-> > > Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com> (v1)
-> > > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> 
-> If we do have an actual problem to solve, we'll need kunit tests too.
+== Summary ==
 
-I don't have a good idea for this. The problem is not in a parituclar
-function, rather in the order a connector is initialized and added to
-the connector list. The above is an actual problem though, so I don't
-think fixing that should be blocked by this.
+CI Bug Log - changes from CI_DRM_15763 -> Patchwork_141932v1
+====================================================
 
-> 
-> Maxime
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_141932v1 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_141932v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141932v1/index.html
+
+Participating hosts (46 -> 44)
+------------------------------
+
+  Missing    (2): fi-glk-j4005 fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_141932v1:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live:
+    - bat-mtlp-8:         [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15763/bat-mtlp-8/igt@i915_selftest@live.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141932v1/bat-mtlp-8/igt@i915_selftest@live.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_141932v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@debugfs_test@basic-hwmon:
+    - bat-twl-2:          NOTRUN -> [SKIP][3] ([i915#9318])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141932v1/bat-twl-2/igt@debugfs_test@basic-hwmon.html
+
+  * igt@gem_lmem_swapping@basic:
+    - bat-twl-2:          NOTRUN -> [SKIP][4] ([i915#10213] / [i915#11671]) +3 other tests skip
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141932v1/bat-twl-2/igt@gem_lmem_swapping@basic.html
+
+  * igt@gem_tiled_blits@basic:
+    - fi-pnv-d510:        [PASS][5] -> [SKIP][6] +2 other tests skip
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15763/fi-pnv-d510/igt@gem_tiled_blits@basic.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141932v1/fi-pnv-d510/igt@gem_tiled_blits@basic.html
+
+  * igt@gem_tiled_pread_basic:
+    - bat-twl-2:          NOTRUN -> [SKIP][7] ([i915#11031])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141932v1/bat-twl-2/igt@gem_tiled_pread_basic.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - bat-arls-5:         [PASS][8] -> [DMESG-WARN][9] ([i915#4423])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15763/bat-arls-5/igt@i915_pm_rpm@module-reload.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141932v1/bat-arls-5/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_pm_rps@basic-api:
+    - bat-twl-2:          NOTRUN -> [SKIP][10] ([i915#10209] / [i915#11681])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141932v1/bat-twl-2/igt@i915_pm_rps@basic-api.html
+
+  * igt@i915_selftest@live:
+    - bat-arls-5:         NOTRUN -> [ABORT][11] ([i915#12061])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141932v1/bat-arls-5/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arlh-3:         [PASS][12] -> [ABORT][13] ([i915#12061]) +1 other test abort
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15763/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141932v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+    - bat-arls-5:         [PASS][14] -> [ABORT][15] ([i915#12061])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15763/bat-arls-5/igt@i915_selftest@live@workarounds.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141932v1/bat-arls-5/igt@i915_selftest@live@workarounds.html
+    - bat-mtlp-6:         [PASS][16] -> [ABORT][17] ([i915#12061]) +1 other test abort
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15763/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141932v1/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+    - bat-mtlp-8:         [PASS][18] -> [ABORT][19] ([i915#12061])
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15763/bat-mtlp-8/igt@i915_selftest@live@workarounds.html
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141932v1/bat-mtlp-8/igt@i915_selftest@live@workarounds.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - bat-twl-2:          NOTRUN -> [SKIP][20] ([i915#11030] / [i915#11731]) +1 other test skip
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141932v1/bat-twl-2/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
+
+  * igt@kms_dsc@dsc-basic:
+    - bat-twl-2:          NOTRUN -> [SKIP][21] ([i915#9886])
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141932v1/bat-twl-2/igt@kms_dsc@dsc-basic.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - bat-twl-2:          NOTRUN -> [SKIP][22] ([i915#11032])
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141932v1/bat-twl-2/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_setmode@basic-clone-single-crtc:
+    - bat-twl-2:          NOTRUN -> [SKIP][23] ([i915#8809])
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141932v1/bat-twl-2/igt@kms_setmode@basic-clone-single-crtc.html
+
+  * igt@prime_vgem@basic-fence-read:
+    - bat-twl-2:          NOTRUN -> [SKIP][24] ([i915#10212] / [i915#3708])
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141932v1/bat-twl-2/igt@prime_vgem@basic-fence-read.html
+
+  * igt@prime_vgem@basic-read:
+    - bat-twl-2:          NOTRUN -> [SKIP][25] ([i915#10214] / [i915#3708])
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141932v1/bat-twl-2/igt@prime_vgem@basic-read.html
+
+  * igt@prime_vgem@basic-write:
+    - bat-twl-2:          NOTRUN -> [SKIP][26] ([i915#10216] / [i915#3708])
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141932v1/bat-twl-2/igt@prime_vgem@basic-write.html
+
+  
+#### Possible fixes ####
+
+  * igt@dmabuf@all-tests:
+    - bat-apl-1:          [INCOMPLETE][27] ([i915#12904]) -> [PASS][28] +1 other test pass
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15763/bat-apl-1/igt@dmabuf@all-tests.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141932v1/bat-apl-1/igt@dmabuf@all-tests.html
+
+  * igt@i915_selftest@live:
+    - bat-twl-1:          [ABORT][29] ([i915#12919]) -> [PASS][30] +1 other test pass
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15763/bat-twl-1/igt@i915_selftest@live.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141932v1/bat-twl-1/igt@i915_selftest@live.html
+
+  * igt@kms_busy@basic@flip:
+    - fi-cfl-8109u:       [DMESG-WARN][31] -> [PASS][32] +2 other tests pass
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15763/fi-cfl-8109u/igt@kms_busy@basic@flip.html
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141932v1/fi-cfl-8109u/igt@kms_busy@basic@flip.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#10209]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10209
+  [i915#10212]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10212
+  [i915#10213]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10213
+  [i915#10214]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10214
+  [i915#10216]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10216
+  [i915#11030]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11030
+  [i915#11031]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11031
+  [i915#11032]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11032
+  [i915#11671]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11671
+  [i915#11681]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11681
+  [i915#11731]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11731
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
+  [i915#12919]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12919
+  [i915#3708]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3708
+  [i915#4423]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4423
+  [i915#8809]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8809
+  [i915#9318]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9318
+  [i915#9886]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9886
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_15763 -> Patchwork_141932v1
+
+  CI-20190529: 20190529
+  CI_DRM_15763: 108f610005f88de624c1a8c4f85d5cab9f530ddb @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8131: f846ef8f7ddf051c88504c607136a9b5392bdef7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_141932v1: 108f610005f88de624c1a8c4f85d5cab9f530ddb @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141932v1/index.html
