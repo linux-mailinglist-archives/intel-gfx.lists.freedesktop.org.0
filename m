@@ -2,30 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2846D9DC330
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Nov 2024 13:00:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C7969DC33E
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Nov 2024 13:12:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BCD9B10E4A7;
-	Fri, 29 Nov 2024 12:00:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5109110E025;
+	Fri, 29 Nov 2024 12:12:33 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WTGrboxP";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B72B410E4A7;
- Fri, 29 Nov 2024 12:00:45 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB4B110E025
+ for <intel-gfx@lists.freedesktop.org>; Fri, 29 Nov 2024 12:12:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1732882352; x=1764418352;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=nDwDtKbnuLQ0drmniz/mTOenLaOdNPG0xsucaU8Nwe8=;
+ b=WTGrboxPPgC5RH0zM7tC4llKe7DRcSGAs9lqG3WAbpqFpD3w7pwnKoW1
+ 9Xn/vyKDqhkyIawT4Zih3HwROmBKj2HRG1hnWF2VfeSfRxORGDt41VXib
+ eEhClOATL6xN4q+iMr9Y5nTmCZzq7Qb5XWVDMeQa2XJGi25xdZAvACUki
+ yIu9Ha+5C6jBq+U9ECPwmJ7uyG5zHccC9jVT6j2cQLf23a4+oGUlNpufZ
+ g4eUx6zYbB553Vi1nIa5CkAtHmxZWA+lsPZcOqNYxrXH5IDngsvDelER1
+ x85rG0z47rEGfYBrzFQb1o77Vn1Ywt0wTsrAacHZdgJz1bzxfvA+selHz Q==;
+X-CSE-ConnectionGUID: lXnKRewCQs2J45yXEdHcbg==
+X-CSE-MsgGUID: 01aRaCpDTem/t2a06OnAXQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11270"; a="37050110"
+X-IronPort-AV: E=Sophos;i="6.12,195,1728975600"; d="scan'208";a="37050110"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Nov 2024 04:12:32 -0800
+X-CSE-ConnectionGUID: Jnuh+FmTQR65GZWKWljbNA==
+X-CSE-MsgGUID: 0Z8MghGoR+arywaqGI0rHw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,195,1728975600"; d="scan'208";a="92588348"
+Received: from carterle-desk.ger.corp.intel.com (HELO intel.com)
+ ([10.245.246.213])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Nov 2024 04:12:29 -0800
+Date: Fri, 29 Nov 2024 13:12:25 +0100
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: John Harrison <john.c.harrison@intel.com>
+Cc: Eugene Kobyak <eugene.kobyak@intel.com>,
+ intel-gfx@lists.freedesktop.org, andi.shyti@linux.intel.com,
+ jani.nikula@linux.intel.com
+Subject: Re: [PATCH v4] drm/i915: Fix NULL pointer dereference in
+ capture_engine
+Message-ID: <Z0mvqW3K2UMEpwGD@ashyti-mobl2.lan>
+References: <sspixcrejd5nbhijuo7o3z5agbgyq637wc7gph7ajrs3lnls6g@5ljanfmvccyf>
+ <c74dd6ad-e9b4-41c7-a93f-c08370360fd3@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_series_starting_with_=5B1?=
- =?utf-8?q?/2=5D_drm/i915/display=3A_add_hdcp_sub-struct_to_struct_intel=5Fd?=
- =?utf-8?q?igital=5Fport?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 29 Nov 2024 12:00:45 -0000
-Message-ID: <173288164574.269820.6878686649688885237@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241129112012.474228-1-jani.nikula@intel.com>
-In-Reply-To: <20241129112012.474228-1-jani.nikula@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c74dd6ad-e9b4-41c7-a93f-c08370360fd3@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,94 +69,44 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, Nov 28, 2024 at 06:32:28PM -0800, John Harrison wrote:
+> On 11/28/2024 13:28, Eugene Kobyak wrote:
+> > When the intel_context structure contains NULL,
+> > it raises a NULL pointer dereference error in drm_info().
+> > 
+> > Fixes: e8a3319c31a1 ("drm/i915: Allow error capture without a request")
+> > Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12309
+> > Cc: John Harrison <John.C.Harrison@Intel.com>
+> > Cc: <stable@vger.kernel.org> # v6.3+
+> > Signed-off-by: Eugene Kobyak <eugene.kobyak@intel.com>
+> > ---
+> > v2:
+> >    - return drm_info to separate condition
+> > v3:
+> >    - create separate condition which generate string if intel_context exist
+> > v4:
+> >    - rollback and add check intel_context in log condition
+> >   drivers/gpu/drm/i915/i915_gpu_error.c | 2 +-
+> >   1 file changed, 1 insertion(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
+> > index 135ded17334e..56f05a18870c 100644
+> > --- a/drivers/gpu/drm/i915/i915_gpu_error.c
+> > +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+> > @@ -1643,7 +1643,7 @@ capture_engine(struct intel_engine_cs *engine,
+> >   		return NULL;
+> >   	intel_engine_get_hung_entity(engine, &ce, &rq);
+> > -	if (rq && !i915_request_started(rq))
+> > +	if (rq && !i915_request_started(rq) && ce)
+> >   		drm_info(&engine->gt->i915->drm, "Got hung context on %s with active request %lld:%lld [0x%04X] not yet started\n",
+> >   			 engine->name, rq->fence.context, rq->fence.seqno, ce->guc_id.id);
+> But now you don't get a message when there is a request without the context
+> pointer. Which can clearly happen because otherwise you wouldn't have hit a
+> null pointer dereference in the first place.
 
-Series: series starting with [1/2] drm/i915/display: add hdcp sub-struct to struct intel_digital_port
-URL   : https://patchwork.freedesktop.org/series/141923/
-State : success
+do we need the guc_id at all?
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_15762 -> Patchwork_141923v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141923v1/index.html
-
-Participating hosts (45 -> 43)
-------------------------------
-
-  Missing    (2): bat-arls-6 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_141923v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - bat-dg1-7:          [PASS][1] -> [FAIL][2] ([i915#12903])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15762/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141923v1/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         [PASS][3] -> [SKIP][4] ([i915#9197]) +3 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15762/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141923v1/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_tiled_blits@basic:
-    - fi-pnv-d510:        [SKIP][5] -> [PASS][6] +2 other tests pass
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15762/fi-pnv-d510/igt@gem_tiled_blits@basic.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141923v1/fi-pnv-d510/igt@gem_tiled_blits@basic.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - bat-dg2-11:         [FAIL][7] ([i915#12903]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15762/bat-dg2-11/igt@i915_pm_rpm@module-reload.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141923v1/bat-dg2-11/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - bat-jsl-3:          [DMESG-FAIL][9] ([i915#13132]) -> [PASS][10] +1 other test pass
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15762/bat-jsl-3/igt@i915_selftest@live@gt_pm.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141923v1/bat-jsl-3/igt@i915_selftest@live@gt_pm.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arlh-3:         [ABORT][11] ([i915#12061]) -> [PASS][12] +1 other test pass
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15762/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141923v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12903]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12903
-  [i915#13132]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13132
-  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15762 -> Patchwork_141923v1
-
-  CI-20190529: 20190529
-  CI_DRM_15762: 4f5b3a832a6480c82639b5500d731d7222b7eee7 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8130: 52c84deb5f45bcbd3c2b22d1fcff01d4c522cb62 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_141923v1: 4f5b3a832a6480c82639b5500d731d7222b7eee7 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141923v1/index.html
+Andi
