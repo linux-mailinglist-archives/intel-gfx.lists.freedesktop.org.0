@@ -2,54 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 832AF9DE8E3
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Nov 2024 15:46:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C18A9DE8E5
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Nov 2024 15:46:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3716810E4C9;
-	Fri, 29 Nov 2024 14:46:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3481010E4DF;
+	Fri, 29 Nov 2024 14:46:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Bb+orOM4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b/WvJbBw";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 728D410E4C9;
- Fri, 29 Nov 2024 14:46:32 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id B1DE45C3EF9;
- Fri, 29 Nov 2024 14:45:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49CB8C4CECF;
- Fri, 29 Nov 2024 14:46:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1732891591;
- bh=f2K0d4Gf4NcPcxTfrmJW92LltgMzXKs8eShY8ZRdUZ4=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=Bb+orOM4Z3SiJEB3LjufZ4NJg1RY43FNWQRizQw6eSrPO1zad/Inc/L1I8+RVjw0H
- D1+pEF+DQQ6e1KCPzRkv3wV+uAWHpuOkoH8IV6RWeevtG52VhlTQIimPmQrHtgum7P
- WKRv4i3XHZIYiFKwGdi5doXyaxgmlz07azbf9FzoKJyVXcaveQW3TZwPQROnwyr7Ax
- z8cCLv2z/2T/HDwUMuG/DKFSFtthmXiByneo0KaMHL0ALDoVDJ+QPePVlYH/f6VMcK
- xCWzNESXWmiU5/QuyYYqXMCa7zQtypDH5oxlRWvVafn+Ib+RHJT2FcwPbKnag2jDKi
- 29NDhLALoX27g==
-Date: Fri, 29 Nov 2024 15:46:28 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Imre Deak <imre.deak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, 
- Dave Airlie <airlied@redhat.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, 
- dri-devel@lists.freedesktop.org, Jani Nikula <jani.nikula@intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH v2 1/4] drm/dp: Add a way to init/add a connector in
- separate steps
-Message-ID: <20241129-wild-cobra-of-thunder-829d1f@houat>
-References: <20241126161859.1858058-1-imre.deak@intel.com>
- <20241126161859.1858058-2-imre.deak@intel.com>
- <Z0nO-bwpbWPVryd6@ideak-desk.fi.intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 25ED510E4DB;
+ Fri, 29 Nov 2024 14:46:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1732891616; x=1764427616;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=fB1xlsAE3XRui4xeZBJ67jrEqpCfHBG32DsR7Aq8OPI=;
+ b=b/WvJbBwyOAs43jSMeyjQeshRSlkYcMEdGbKUtFqfKpreAMUJjJUbQG2
+ nWU0TcW28kVGREIvDOQph1c8kFCrsItXiiumky0oC/iSjbLV/27aP+Tua
+ wAeFhsDqTLRV9JYL00Fka18jZwp2MeUPfp7PFbrWlGcC6jLkcz+vbcaD6
+ sBe6Jhw/0JYLFVGpqpRzR7hZuSysaC5EWPd4UvXo8ChpJG8XO2LSkG3Lj
+ YgnfL5nhgKsg3BNB8nvd9+2tu5XKke2q2M1/uNwht2IC6j47/UpRPMAUl
+ u+fuleYn9j/Dtdasevijjvn7PQ7rAdvFzEP/PXEegchey41czfAILAB/Z Q==;
+X-CSE-ConnectionGUID: x7R2yOOEQUO8XUKBnGXI5w==
+X-CSE-MsgGUID: Xf/9VUN5Scu0vYUXDhqypw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11271"; a="58535431"
+X-IronPort-AV: E=Sophos;i="6.12,195,1728975600"; d="scan'208";a="58535431"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Nov 2024 06:46:55 -0800
+X-CSE-ConnectionGUID: zXst7OpnROav6K3Pq2O3NA==
+X-CSE-MsgGUID: dVtDqvZARcG0cA/zSMVDZA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,195,1728975600"; d="scan'208";a="92611213"
+Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.241])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Nov 2024 06:46:54 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v2 4/6] drm/i915/display: convert power domain code
+ internally to struct intel_display
+In-Reply-To: <Z0nNBKLObDJbnQdt@ideak-desk.fi.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1732808222.git.jani.nikula@intel.com>
+ <d3284b30b53dd2fec786775ccb8992939360d774.1732808222.git.jani.nikula@intel.com>
+ <Z0nNBKLObDJbnQdt@ideak-desk.fi.intel.com>
+Date: Fri, 29 Nov 2024 16:46:47 +0200
+Message-ID: <877c8m6qso.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="xcz5bvphmetbkzt2"
-Content-Disposition: inline
-In-Reply-To: <Z0nO-bwpbWPVryd6@ideak-desk.fi.intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,56 +71,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Fri, 29 Nov 2024, Imre Deak <imre.deak@intel.com> wrote:
+> On Thu, Nov 28, 2024 at 05:38:22PM +0200, Jani Nikula wrote:
+>> Going forward, struct intel_display is the main device data structure
+>> for display. Convert intel_display_power.c internally first, leaving
+>> external interfaces for follow-up.
+>> 
+>> v2: Rebase, checkpatch fixes
+>> 
+>> Cc: Imre Deak <imre.deak@intel.com>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  .../drm/i915/display/intel_display_power.c    | 806 +++++++++---------
+>>  1 file changed, 414 insertions(+), 392 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+>> index ade7192c0461..4043d6971c3e 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+>>  
+>> [...]
+>>
+>> -static void hsw_disable_pc8(struct drm_i915_private *dev_priv)
+>> +static void hsw_disable_pc8(struct intel_display *display)
+>>  {
+>> -	drm_dbg_kms(&dev_priv->drm, "Disabling package C8+\n");
+>> +	struct drm_i915_private *dev_priv = to_i915(display->drm);
+>> +
+>> +	drm_dbg_kms(display->drm, "Disabling package C8+\n");
+>>  
+>> -	hsw_restore_lcpll(dev_priv);
+>> +	hsw_restore_lcpll(display);
+>>  	intel_init_pch_refclk(dev_priv);
+>>  
+>>  	/* Many display registers don't survive PC8+ */
+>> +#ifdef I915 /* FIXME */
+>>  	intel_clock_gating_init(dev_priv);
+>> +#endif
+>
+> So before the call of hsw_disable_pc8() was optimized out, but now it's
+> not. For now ok, but imo this could've been in a separate patch.
 
---xcz5bvphmetbkzt2
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v2 1/4] drm/dp: Add a way to init/add a connector in
- separate steps
-MIME-Version: 1.0
+Yeah, stuck it in to fix the build, but forgot about it.
 
-On Fri, Nov 29, 2024 at 04:26:01PM +0200, Imre Deak wrote:
-> Adding more people from DRM core domain. Any comment, objection to this
-> change?
->=20
-> On Tue, Nov 26, 2024 at 06:18:56PM +0200, Imre Deak wrote:
-> > Atm when the connector is added to the drm_mode_config::connector_list,
-> > the connector may not be fully initialized yet. This is not a problem
-> > for user space, which will see the connector only after it's registered
-> > later, it could be a problem for in-kernel users looking up connectors
-> > via the above list.
+>
+>>  }
+>>  
 
-It could be, or it actually is a problem? If so, in what situation?
-
-> > To resolve the above issue, add a way to separately initialize the DRM
-> > core specific parts of the connector and add it to the above list. This
-> > will move adding the connector to the list after the properties on the
-> > connector have been added, this is ok since these steps don't have a
-> > dependency.
-> >
-> > v2: (Jani)
-> > - Let initing DDC as well via drm_connector_init_core().
-> > - Rename __drm_connector_init to drm_connector_init_core_and_add().
-> >=20
-> > Cc: Jani Nikula <jani.nikula@intel.com>
-> > Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com> (v1)
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-
-If we do have an actual problem to solve, we'll need kunit tests too.
-
-Maxime
-
---xcz5bvphmetbkzt2
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZ0nTvgAKCRAnX84Zoj2+
-dqOqAYDIlSTmWt9+l/1el1175mzeD0UaGoMeo3N6ZNVn/DrV23/MyjRCiMtZf6nI
-mCpbiicBgKNiKNZNITZu3wRb2V049EWoWVEhTnnTnwMob31YeJ9n7pNkia/HwKDO
-qHyaJHu1Kw==
-=6vCg
------END PGP SIGNATURE-----
-
---xcz5bvphmetbkzt2--
+-- 
+Jani Nikula, Intel
