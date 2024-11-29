@@ -2,60 +2,182 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6F1F9DBE0C
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 Nov 2024 00:21:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CB8F9DBEBB
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 Nov 2024 03:32:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8388F10ED6D;
-	Thu, 28 Nov 2024 23:21:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D48E10E44A;
+	Fri, 29 Nov 2024 02:32:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U6dqz22L";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mYx1KU47";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30BDD10E28B;
- Thu, 28 Nov 2024 23:21:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC21B10E44A
+ for <intel-gfx@lists.freedesktop.org>; Fri, 29 Nov 2024 02:32:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732836109; x=1764372109;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=q+/I5IgRBSrCLNP0fZIkciELO8IG24J6oy2+N/2gbJ0=;
- b=U6dqz22LrL4XfFbqCg0P9SxCIKKrWeqabnxsIwCbDMUkkbRkrboSgGb/
- Ly4zqOnCmW8M5bHHwsYkY7DUMplJAT+GWg9Jw1hLTrtkM9IaMdJt4v0Pf
- 2bDy87Y+cZykOTjCKs0B22XpAHUZzB0E+tBSsqkfvNlNMDTbUXV4dLiU8
- wB+nSqcF4GnykA7nfht30QCmr2EPAJGhpQxRmc/Lw2ZrSOrG9ST0yTn+y
- pAi/6xCrsEnH94mI5viKs9EW2hssiEISZKwLQ0w9yX9XqtA4KuxBViAvT
- LHIvN98ZfILFbk8E8gVPZJV+DC1V6HVz8Sgll4N+pz5TYK94kN96S3N2p Q==;
-X-CSE-ConnectionGUID: VRA+ctywQz241dc3rjJV7Q==
-X-CSE-MsgGUID: t7Iojv1hRy2CGHYMYBiY5w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11270"; a="32437424"
-X-IronPort-AV: E=Sophos;i="6.12,193,1728975600"; d="scan'208";a="32437424"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Nov 2024 15:21:49 -0800
-X-CSE-ConnectionGUID: LWwIaAuEQa+aetejzZYdLw==
-X-CSE-MsgGUID: b/9gZZeqTz6ussTk2HG1dQ==
+ t=1732847554; x=1764383554;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=zZu7Wff5YrFxmm+ryqpFVRW49uT8+7r9cENLDxECkvg=;
+ b=mYx1KU47Ed7Fn9ulJZEmWXoVQJtYjUzsPPMnd2GAigwsCl4w7mZcdvtU
+ 4pue7tmQemBHpeqtKcvJgKo6fNFtJ9t/mC+H6C//2mXuiMvzlADYOIjAF
+ eBVUJFbYMxe7rTVeszWSydXJPGMqVQM3H2loH4psGpq8abmv+JS0ZgXTY
+ iG9k4tSpGZcOjlyiWNCQ/bTmClbQZ7CFuXlh5JVXaZ6bS9SmvShVlvK2G
+ 3rxlfwNPUemn4LnF7wBvZ+47b7NBwS7O0vehGEoWdPAyrCPCqU7rxXkEn
+ Dgkjq4zRe9T+8QAf4e0oYB+A7vTecTWJS5LRf72rE58x3vZfKKpBSrQp9 Q==;
+X-CSE-ConnectionGUID: 48/xXV6jRFu5cid2s/5rgw==
+X-CSE-MsgGUID: SfZgUYCYR52l2mimlTuHfA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11270"; a="33014417"
+X-IronPort-AV: E=Sophos;i="6.12,194,1728975600"; d="scan'208";a="33014417"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Nov 2024 18:32:34 -0800
+X-CSE-ConnectionGUID: zx41Bk2hQz67WzvGAmYfpg==
+X-CSE-MsgGUID: ebY5T06WSEuoX6+aq6IVMQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,193,1728975600"; d="scan'208";a="96425289"
-Received: from lkp-server01.sh.intel.com (HELO 8122d2fc1967) ([10.239.97.150])
- by fmviesa003.fm.intel.com with ESMTP; 28 Nov 2024 15:21:47 -0800
-Received: from kbuild by 8122d2fc1967 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1tGnpR-000A9D-0Q;
- Thu, 28 Nov 2024 23:21:45 +0000
-Date: Fri, 29 Nov 2024 07:21:12 +0800
-From: kernel test robot <lkp@intel.com>
-To: Arun R Murthy <arun.r.murthy@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: oe-kbuild-all@lists.linux.dev, Arun R Murthy <arun.r.murthy@intel.com>
-Subject: Re: [PATCHv2 3/3] drm/i915/display: Populate list of async supported
- formats/modifiers
-Message-ID: <202411290757.FcxceZlQ-lkp@intel.com>
-References: <20241118075315.466009-4-arun.r.murthy@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,194,1728975600"; d="scan'208";a="92473113"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orviesa006.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 28 Nov 2024 18:32:33 -0800
+Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Thu, 28 Nov 2024 18:32:32 -0800
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Thu, 28 Nov 2024 18:32:32 -0800
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.176)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Thu, 28 Nov 2024 18:32:32 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=MiucYXMTnZO68xyUskvptAORs8nhQKi8BGICwH2VHAYqOiv2MKsefGm+/coqWWux3/q3P1zrBpGYvRP/oYlm5i9OBSt7PnZPT0Hrt95i635LJerrvp/GNISmPS7+yqNzrIk6v4ax+GzrdsBHMJuX2eprmfpnc7B5mA4r0Z0zMiBpkzSaswvqeuD1a0dLnMfcB3lwnrjKSEOY0SNgTyyYoIITWHvuVTUtBliaPExGHZlxZzObQwMKgp+pT3593iPbs6h8h98t6ERFsURZf//g/7ANGDTiSTkafx9EQHVL1NsyocWh8Q3GKgv8ZhXjsNaPDDHeHmT2ZL7WWX+l/IYC/g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/hLsoAlwcIO6BMTMVq1P/Nx5A2AiJIuXGHaAX+nadeM=;
+ b=XdX5fgz0srXge36SRjsWeaSPVCYE06Mow333cVKZTCinpDEcmP6U3ihD8xJ1zr1y4mlarOuirP/GfGe/ekjb4FO3d5cCMI6WcurCXH96wlp1Xe4RSKsa8r8FAeBWoNiLjpXmCdKO8DEZExvpqrNjr1NDxoUOeIqmm7DlxE4sFVbIfVr5JIIb5o/bpGGi1XlYim/n1Hoh8Z45xYTQj+rKtLo9jgks3E5fi/KWrdGJ26M82mvOyHEpQDuT/cR29PDN2dvO7lUf+m9YfNCoTHDzJwkQ23dy3JfBxPuoTne/NRnLmpLhmahOsuMIPFSO0RrWame4ULGULIkHDwIqR20GQA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CH3PR11MB8441.namprd11.prod.outlook.com (2603:10b6:610:1bc::12)
+ by MN2PR11MB4616.namprd11.prod.outlook.com (2603:10b6:208:26f::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8207.15; Fri, 29 Nov
+ 2024 02:32:30 +0000
+Received: from CH3PR11MB8441.namprd11.prod.outlook.com
+ ([fe80::bc66:f083:da56:8550]) by CH3PR11MB8441.namprd11.prod.outlook.com
+ ([fe80::bc66:f083:da56:8550%4]) with mapi id 15.20.8207.010; Fri, 29 Nov 2024
+ 02:32:30 +0000
+Message-ID: <c74dd6ad-e9b4-41c7-a93f-c08370360fd3@intel.com>
+Date: Thu, 28 Nov 2024 18:32:28 -0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4] drm/i915: Fix NULL pointer dereference in
+ capture_engine
+To: Eugene Kobyak <eugene.kobyak@intel.com>, <intel-gfx@lists.freedesktop.org>
+CC: <andi.shyti@linux.intel.com>, <jani.nikula@linux.intel.com>
+References: <sspixcrejd5nbhijuo7o3z5agbgyq637wc7gph7ajrs3lnls6g@5ljanfmvccyf>
+Content-Language: en-GB
+From: John Harrison <john.c.harrison@intel.com>
+In-Reply-To: <sspixcrejd5nbhijuo7o3z5agbgyq637wc7gph7ajrs3lnls6g@5ljanfmvccyf>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MW4PR03CA0167.namprd03.prod.outlook.com
+ (2603:10b6:303:8d::22) To CH3PR11MB8441.namprd11.prod.outlook.com
+ (2603:10b6:610:1bc::12)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241118075315.466009-4-arun.r.murthy@intel.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH3PR11MB8441:EE_|MN2PR11MB4616:EE_
+X-MS-Office365-Filtering-Correlation-Id: 47c430f3-a082-49a2-d21d-08dd101e1266
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?dXVxSFpDSXRQb2tWbzhjbW5CUFRHTVZHRzJNa0R1UlJ0THp0cGk0Q2JtRTZB?=
+ =?utf-8?B?YWdEMWs2UEtKV2RQWmYzeVlRcmwzSC84NlFaMzl5ejQ4OUM5a3hGZEpGa3Ro?=
+ =?utf-8?B?ekRoSnpOVDVESDZGVC9QaUdYQjZmT08yMnJOdkRkUEhkQkI0OFVETGpSdzZF?=
+ =?utf-8?B?TU4zcjEwYzFncllHWlFldVBQKzVaZ3F1UkJyY1dUUDZYbDk3ZHFGdGcrYnFX?=
+ =?utf-8?B?Z2trak91YWlsVXEyK2dWNjk0emN5Z2dWcTJXMDlSaUgwZlQ0eG54UFYyZi94?=
+ =?utf-8?B?eVdYZEhQa1dJSWQ3NjJ0UFNYM1JWeFZEVkFqNmhCV1U0RHBML2ZzK3JZelNE?=
+ =?utf-8?B?Z0RRVW5Mck9sL0x3QkhHV0RQTWNMNFp1NXNLWFlqTUZMOU5hbXF5VE40QmdD?=
+ =?utf-8?B?c0lOWHRQT3d1S1NJS2NVckxuOXR6eXcvRFhYaCtrWlUybDJwZmtQRzdXK1V5?=
+ =?utf-8?B?WlRQOTE5SjgxZk9CMjJTVkovVkwxMVVlTkFZbVRvN1kzNlRESGU5TGFEUm01?=
+ =?utf-8?B?dlgrVjZRSS9oZk1hQ2V0NTNYV0xYSmJvUDl2TUR5RitpSDFrQllLQ3FKZFFw?=
+ =?utf-8?B?ZkN0b3lJb3NZelhzRU5NNGN0dlJNb0cxVlljVEdxOFNSNkxKd2ZPQ0FpUlMz?=
+ =?utf-8?B?Z0pnL3g0THkwWlhqTW1hWkZpcFhyWU1HbExnRzJuaEJZYThtckw1b2s2Mk4v?=
+ =?utf-8?B?WFhMY1RaNStaZEx4QmpleHFqZ3IrZFYzUnRzMm9zT3U4MzE1cTBHYlJqRURC?=
+ =?utf-8?B?TjZFYzdBanJ3eXRMMW1wd1NRbk8wcm5JcWcyajM2a2NseG8vaHA3RVdXcE1o?=
+ =?utf-8?B?ajB1RTl6QmU4ZUx4bGdyUDV3SW5vZUpqRmUvWWd2cFRsK01PWm9tSUlUMW1j?=
+ =?utf-8?B?TkJRbU15ZEJQdGRBR1ViNm95U0dhMUFvVHhxZUNlL3JjWERIUXJrUVZMK3BP?=
+ =?utf-8?B?NTJOSVRmL09vMEFweVlsNnZVTlJ2RE1md3cwbkhldWN2RlJzcGZzY25CNHFi?=
+ =?utf-8?B?U1NlUUEyYURFdjZJSlkzaFAyOXR6cEpqb1A0ZXdjSnQzWGlrMmVIZjZ5bjdK?=
+ =?utf-8?B?UHB0bU0yQnhoTThPRVg0cjJ0U2FhdWpKSysrZGlQWVBjSGdhQVlWQmNRSytu?=
+ =?utf-8?B?UFNWeGIrMGZtV3BCM2tSSWJzVkVFSHFSNDFDb0VtcGhzV3krZXROWjJTUndS?=
+ =?utf-8?B?aWxUUSttM29qdG1NRDZMcVh4UnNwSVJsbmxzTDlPMC9RTnppb2cwS0h1MUIx?=
+ =?utf-8?B?YzBvMGxNUnVFeVppSDdxVUlRQVhhTko4OXV2TGYydXBnTXlCckVwcDdnZkVr?=
+ =?utf-8?B?dkYwcnc3cUFvTm4vYW1jWEhnMllvTlZXT1pjVXJKMXFEZHA5U3Q2a1dqbWo2?=
+ =?utf-8?B?eEhJL2NQdUtwY3pUM1dtRXFOV243TVlNRTJGRS9xeFNIQklvVVVVVVhHQTFy?=
+ =?utf-8?B?MUFqM0Fwekh3dzZXS2NseVJWSUl3NHBLRmdlbll6YjZ1Rm40emU5YzJ0bm9z?=
+ =?utf-8?B?OGVNRWtLc0VKbHJTT2x3ODViR29iV1dOcXp5VHZ1M1FzZEZEVU41Q0QwdjNO?=
+ =?utf-8?B?K1liZmhwbHo5WGxQUy96K3F5OUI1ZUZZdXU4Y0RTVngzSVh2NlVwZ1cveVBU?=
+ =?utf-8?B?Qmlzb2FmNEtBMThGRW1aSnBzTEVUZUdLaDJVZUx2bkhqR0VWUDlaT0xVUmo0?=
+ =?utf-8?B?UzdkdWNTWHRpTXJ5akQ2N0ZBc2c2amtrdFo5M3BIdTlvamJEV1JScmM4WE13?=
+ =?utf-8?Q?Ku4b00njLARzUjYD7A=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH3PR11MB8441.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NVBVRi94ZE41L0dkTU50M2EzT2ltUTlhU1FHTU1hcDBXZUNTWFh3MDJzd1pM?=
+ =?utf-8?B?RlNYTTRleVlPbEZyaGg4NEMvbWt2RldPOFJTQXY5VGlUQUtYUEJBSTBzb044?=
+ =?utf-8?B?RWNBbG1aVkdYQnJyU2dlQWZXaDVmLzlmNDBJVVV3TWZ2MHBoME0vbkNVT25i?=
+ =?utf-8?B?Wm9yQ0JMSVNhZmdMYmg5MEZ2NHlLSWkyeGpJTm1NSTZJNjdmRkJwNmYrd0Fz?=
+ =?utf-8?B?dzI2MkVCUHZUVTc0RlIwTjlKcjhHc1lwRHZRZDh2WE1pa1JmS1lxWXA0bEtM?=
+ =?utf-8?B?Z1A0WXVmNm5DNjdYRWs0VHVkQzF1TmlwbzNWYVh2T1lwMWo5ZE5DdVhYN042?=
+ =?utf-8?B?WmJVdVZYdEdCYjNCTnZselk4SEsvaThPSWpUQS9IenJka3VDYVZ2L1p0RmRt?=
+ =?utf-8?B?ekNiQzFqWjNsSW0wMVdhY3VVUFk2eTJJRjlxTUxpQ2tFajRPcWQ1eVhubDYw?=
+ =?utf-8?B?cWZ0aXB4ZkpmWFRxV1pYeFh5cVRrNElpVVNYYWZpd2lqUlRtZWZ0QWxadkdi?=
+ =?utf-8?B?NkhXNHNmZXZ1SERKdjJMTmJhK0NucytQZG5lQU5udDdnRmZTVTNQWWh5L1dE?=
+ =?utf-8?B?NytKMURkdU5IOVFaaGMxSVZHRXJwREx6djdZS3JxZHUyaTVoRERTSDdxU1JM?=
+ =?utf-8?B?ekZ1Y0N3aDdtSGUwYVZ1cElwN0lmd1M3SVZjRDZ6OXBSUzZWcU4vZ09QSzdr?=
+ =?utf-8?B?STNyeFJhaHBnSWJvOHRnN1lqai9NYkxYUTBLYk50ckRrdlE3VkJaVDBnTjNG?=
+ =?utf-8?B?NnY3MWRZTjZjbHhWd0lWcGRzR2NYR05DNURCYXlFK2MzdTFFVktsVURFVEZI?=
+ =?utf-8?B?Yk8xOUtNUGVMT1UrQTd2Y3hoT2YybDNCbVIyWW1HL0pORUdxam5kRzIyUzFU?=
+ =?utf-8?B?Q1VRRzhzTFRZU0dyOTY2WDE0c3VaNndPUzQ5bFJIVWQ1ODBTUlNYeStIRTZM?=
+ =?utf-8?B?R2NHdCtiOHlQSy9sT09wN0txZXpnOFhaZkFsZzRYZ3dHVHFLM0tlOGdiYTFO?=
+ =?utf-8?B?bHJBTEVmU3ordHpuOUUxT1ZtaFQxU0ZKekhOOFZDdUptaHZZUGd6VkdPUlNr?=
+ =?utf-8?B?aDc3R21PVVJML3dmbUgrQW9tRHI5UWN6YTJ0OHcvc2VzVGhJaGwwc3dLZHJj?=
+ =?utf-8?B?WUhZaFJMOE9tUVdqWUtRM0o3NVdoR0FJdTFPNXk4dDBQVFVBNWJsSktSSzBH?=
+ =?utf-8?B?OVhIMXpOSDRyL1JCQzJZVjVKNktDemowUHhITWR2UGVISFpnbWhkSVZsTFJV?=
+ =?utf-8?B?WkhveDRoNi9HdXRRZ3pyZnJWWXA0Wkp3MWdtYjlCb3BtSjl3TVByN0tDTVZR?=
+ =?utf-8?B?R1ZocDZvQVFBZEFiRG02VXhQM0lDYXJvYXRlRHR0OE1DWFFWMDBtY3F6MXhV?=
+ =?utf-8?B?dnUzOThwRUovWHE1bzhjN1BSTUJBVDlEcUYzaVliOGs1QXQ1TVN5UjloY2Jp?=
+ =?utf-8?B?aGFvZUJuWnQ1WXliSGpXVmZoQzE5dGxnLzZPaEt1bHkvVzAzdjlseEtKQk9J?=
+ =?utf-8?B?VEN0RFpaYXU1ZTdXN0N4RUliVmRZK1E5VjZuQloyMDJFeTZ6QktpWU9Ic2NE?=
+ =?utf-8?B?SDZMS0w3WG05NW5SYUI2TmI1WDU4aU52dGJvU2Q0RW8xWjJzZFcyV0o2TGc4?=
+ =?utf-8?B?RE5WVkZ0VGk1QnFudWdKeUlHcHZ3MHFGdlpQZGNtVHJNamtuSzJkeGloSWE4?=
+ =?utf-8?B?MjQ1WTJ2NTNReHowNWFBMjIwN0ttREt1M0hhRWdaby80SnBYNTQrVXRoR1BU?=
+ =?utf-8?B?RXRZRGRyTjN1ak9yWklOTE0vNGh4QnU1U1lIdFJ3SzNOVFlHVlNNNWt2Zm5z?=
+ =?utf-8?B?WmJ6Nml4K2ZLdVpsYS9WbTJIcnkvM1dqVms4WTdKRUtTOHdiTlp1djcvZ3FG?=
+ =?utf-8?B?elkzRncxbTlWUVhkRVlPNk81NFZyRmQ1TURvbDd2R1pMdHFoVVN4eFQzdDBM?=
+ =?utf-8?B?NVByMUs2cCtXVjRkaWw4QmF2eWdkZ0RuNStvLzg3UCtpamVSRzc4OFJSVitE?=
+ =?utf-8?B?YnI5U2tzdUZNUEdibjlmM3NjZVVKSk5PWkVINHY3SFk0WmFLVkh3U3JYSUNZ?=
+ =?utf-8?B?dVRRdk9oTmFkMmlwQ1FqNU1lam9DVmVVWGpuMVAzaVY1L2tQZ1BPdU0rMWl0?=
+ =?utf-8?B?emg3SVFYdGxrZmNVWGp5c3V6ZVY1OThKb2RiY1E0bHlkRHlrejZJYi85UWxi?=
+ =?utf-8?B?QlE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 47c430f3-a082-49a2-d21d-08dd101e1266
+X-MS-Exchange-CrossTenant-AuthSource: CH3PR11MB8441.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Nov 2024 02:32:30.1988 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: oy9Omb/Bzc8th9CLPJvKbpDL9rrDtTiNUzxIH9FxhOXoF6I75RZemVLcqoK9X5bdINStHehrx1qjUpZWXaLCZ+0THZBlFdrT9xflYiF7keo=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4616
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,206 +193,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Arun,
+On 11/28/2024 13:28, Eugene Kobyak wrote:
+> When the intel_context structure contains NULL,
+> it raises a NULL pointer dereference error in drm_info().
+>
+> Fixes: e8a3319c31a1 ("drm/i915: Allow error capture without a request")
+> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12309
+> Cc: John Harrison <John.C.Harrison@Intel.com>
+> Cc: <stable@vger.kernel.org> # v6.3+
+> Signed-off-by: Eugene Kobyak <eugene.kobyak@intel.com>
+> ---
+> v2:
+>    - return drm_info to separate condition
+> v3:
+>    - create separate condition which generate string if intel_context exist
+> v4:
+>    - rollback and add check intel_context in log condition
+>   drivers/gpu/drm/i915/i915_gpu_error.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
+> index 135ded17334e..56f05a18870c 100644
+> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
+> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+> @@ -1643,7 +1643,7 @@ capture_engine(struct intel_engine_cs *engine,
+>   		return NULL;
+>   
+>   	intel_engine_get_hung_entity(engine, &ce, &rq);
+> -	if (rq && !i915_request_started(rq))
+> +	if (rq && !i915_request_started(rq) && ce)
+>   		drm_info(&engine->gt->i915->drm, "Got hung context on %s with active request %lld:%lld [0x%04X] not yet started\n",
+>   			 engine->name, rq->fence.context, rq->fence.seqno, ce->guc_id.id);
+>   
+But now you don't get a message when there is a request without the 
+context pointer. Which can clearly happen because otherwise you wouldn't 
+have hit a null pointer dereference in the first place.
 
-kernel test robot noticed the following build warnings:
+John.
 
-[auto build test WARNING on drm-intel/for-linux-next-fixes]
-[also build test WARNING on v6.12 next-20241128]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Arun-R-Murthy/drm-plane-Expose-function-to-create-format-modifier-blob/20241121-105652
-base:   git://anongit.freedesktop.org/drm-intel for-linux-next-fixes
-patch link:    https://lore.kernel.org/r/20241118075315.466009-4-arun.r.murthy%40intel.com
-patch subject: [PATCHv2 3/3] drm/i915/display: Populate list of async supported formats/modifiers
-config: x86_64-randconfig-103-20241121 (https://download.01.org/0day-ci/archive/20241129/202411290757.FcxceZlQ-lkp@intel.com/config)
-compiler: gcc-11 (Debian 11.3.0-12) 11.3.0
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202411290757.FcxceZlQ-lkp@intel.com/
-
-cocci warnings: (new ones prefixed by >>)
->> drivers/gpu/drm/i915/display/skl_universal_plane.c:2626:26-32: ERROR: application of sizeof to pointer
-
-vim +2626 drivers/gpu/drm/i915/display/skl_universal_plane.c
-
-  2510	
-  2511	struct intel_plane *
-  2512	skl_universal_plane_create(struct drm_i915_private *dev_priv,
-  2513				   enum pipe pipe, enum plane_id plane_id)
-  2514	{
-  2515		const struct drm_plane_funcs *plane_funcs;
-  2516		struct intel_plane *plane;
-  2517		enum drm_plane_type plane_type;
-  2518		unsigned int supported_rotations;
-  2519		unsigned int supported_csc;
-  2520		const u64 *modifiers;
-  2521		u64 *async_modifiers;
-  2522		const u32 *formats;
-  2523		int num_formats;
-  2524		int ret;
-  2525	
-  2526		plane = intel_plane_alloc();
-  2527		if (IS_ERR(plane))
-  2528			return plane;
-  2529	
-  2530		plane->pipe = pipe;
-  2531		plane->id = plane_id;
-  2532		plane->frontbuffer_bit = INTEL_FRONTBUFFER(pipe, plane_id);
-  2533	
-  2534		intel_fbc_add_plane(skl_plane_fbc(dev_priv, pipe, plane_id), plane);
-  2535	
-  2536		if (DISPLAY_VER(dev_priv) >= 11) {
-  2537			plane->min_width = icl_plane_min_width;
-  2538			if (icl_is_hdr_plane(dev_priv, plane_id))
-  2539				plane->max_width = icl_hdr_plane_max_width;
-  2540			else
-  2541				plane->max_width = icl_sdr_plane_max_width;
-  2542			plane->max_height = icl_plane_max_height;
-  2543			plane->min_cdclk = icl_plane_min_cdclk;
-  2544		} else if (DISPLAY_VER(dev_priv) >= 10) {
-  2545			plane->max_width = glk_plane_max_width;
-  2546			plane->max_height = skl_plane_max_height;
-  2547			plane->min_cdclk = glk_plane_min_cdclk;
-  2548		} else {
-  2549			plane->max_width = skl_plane_max_width;
-  2550			plane->max_height = skl_plane_max_height;
-  2551			plane->min_cdclk = skl_plane_min_cdclk;
-  2552		}
-  2553	
-  2554		if (DISPLAY_VER(dev_priv) >= 13)
-  2555			plane->max_stride = adl_plane_max_stride;
-  2556		else
-  2557			plane->max_stride = skl_plane_max_stride;
-  2558	
-  2559		if (DISPLAY_VER(dev_priv) >= 12)
-  2560			plane->min_alignment = tgl_plane_min_alignment;
-  2561		else
-  2562			plane->min_alignment = skl_plane_min_alignment;
-  2563	
-  2564		if (DISPLAY_VER(dev_priv) >= 11) {
-  2565			plane->update_noarm = icl_plane_update_noarm;
-  2566			plane->update_arm = icl_plane_update_arm;
-  2567			plane->disable_arm = icl_plane_disable_arm;
-  2568		} else {
-  2569			plane->update_noarm = skl_plane_update_noarm;
-  2570			plane->update_arm = skl_plane_update_arm;
-  2571			plane->disable_arm = skl_plane_disable_arm;
-  2572		}
-  2573		plane->get_hw_state = skl_plane_get_hw_state;
-  2574		plane->check_plane = skl_plane_check;
-  2575	
-  2576		if (plane_id == PLANE_1) {
-  2577			plane->need_async_flip_toggle_wa = IS_DISPLAY_VER(dev_priv, 9, 10);
-  2578			plane->async_flip = skl_plane_async_flip;
-  2579			plane->enable_flip_done = skl_plane_enable_flip_done;
-  2580			plane->disable_flip_done = skl_plane_disable_flip_done;
-  2581		}
-  2582	
-  2583		if (DISPLAY_VER(dev_priv) >= 11)
-  2584			formats = icl_get_plane_formats(dev_priv, pipe,
-  2585							plane_id, &num_formats);
-  2586		else if (DISPLAY_VER(dev_priv) >= 10)
-  2587			formats = glk_get_plane_formats(dev_priv, pipe,
-  2588							plane_id, &num_formats);
-  2589		else
-  2590			formats = skl_get_plane_formats(dev_priv, pipe,
-  2591							plane_id, &num_formats);
-  2592	
-  2593		if (DISPLAY_VER(dev_priv) >= 12)
-  2594			plane_funcs = &gen12_plane_funcs;
-  2595		else
-  2596			plane_funcs = &skl_plane_funcs;
-  2597	
-  2598		if (plane_id == PLANE_1)
-  2599			plane_type = DRM_PLANE_TYPE_PRIMARY;
-  2600		else
-  2601			plane_type = DRM_PLANE_TYPE_OVERLAY;
-  2602	
-  2603		modifiers = intel_fb_plane_get_modifiers(dev_priv,
-  2604							 skl_get_plane_caps(dev_priv, pipe, plane_id));
-  2605	
-  2606		ret = drm_universal_plane_init(&dev_priv->drm, &plane->base,
-  2607					       0, plane_funcs,
-  2608					       formats, num_formats, modifiers,
-  2609					       plane_type,
-  2610					       "plane %d%c", plane_id + 1,
-  2611					       pipe_name(pipe));
-  2612	
-  2613		kfree(modifiers);
-  2614	
-  2615		if (ret)
-  2616			goto fail;
-  2617	
-  2618		if (DISPLAY_VER(dev_priv) >= 12)
-  2619			async_modifiers = tgl_asyn_modifiers;
-  2620		else if (DISPLAY_VER(dev_priv) == 11)
-  2621			async_modifiers = icl_async_modifiers;
-  2622		else
-  2623			async_modifiers = skl_async_modifiers;
-  2624	
-  2625		drm_plane_create_format_blob(&dev_priv->drm, &plane->base,
-> 2626					     async_modifiers, sizeof(async_modifiers),
-  2627					     intel_async_formats,
-  2628					     sizeof(intel_async_formats), true);
-  2629	
-  2630		if (DISPLAY_VER(dev_priv) >= 13)
-  2631			supported_rotations = DRM_MODE_ROTATE_0 | DRM_MODE_ROTATE_180;
-  2632		else
-  2633			supported_rotations =
-  2634				DRM_MODE_ROTATE_0 | DRM_MODE_ROTATE_90 |
-  2635				DRM_MODE_ROTATE_180 | DRM_MODE_ROTATE_270;
-  2636	
-  2637		if (DISPLAY_VER(dev_priv) >= 11)
-  2638			supported_rotations |= DRM_MODE_REFLECT_X;
-  2639	
-  2640		drm_plane_create_rotation_property(&plane->base,
-  2641						   DRM_MODE_ROTATE_0,
-  2642						   supported_rotations);
-  2643	
-  2644		supported_csc = BIT(DRM_COLOR_YCBCR_BT601) | BIT(DRM_COLOR_YCBCR_BT709);
-  2645	
-  2646		if (DISPLAY_VER(dev_priv) >= 10)
-  2647			supported_csc |= BIT(DRM_COLOR_YCBCR_BT2020);
-  2648	
-  2649		drm_plane_create_color_properties(&plane->base,
-  2650						  supported_csc,
-  2651						  BIT(DRM_COLOR_YCBCR_LIMITED_RANGE) |
-  2652						  BIT(DRM_COLOR_YCBCR_FULL_RANGE),
-  2653						  DRM_COLOR_YCBCR_BT709,
-  2654						  DRM_COLOR_YCBCR_LIMITED_RANGE);
-  2655	
-  2656		drm_plane_create_alpha_property(&plane->base);
-  2657		drm_plane_create_blend_mode_property(&plane->base,
-  2658						     BIT(DRM_MODE_BLEND_PIXEL_NONE) |
-  2659						     BIT(DRM_MODE_BLEND_PREMULTI) |
-  2660						     BIT(DRM_MODE_BLEND_COVERAGE));
-  2661	
-  2662		drm_plane_create_zpos_immutable_property(&plane->base, plane_id);
-  2663	
-  2664		if (DISPLAY_VER(dev_priv) >= 12)
-  2665			drm_plane_enable_fb_damage_clips(&plane->base);
-  2666	
-  2667		if (DISPLAY_VER(dev_priv) >= 11)
-  2668			drm_plane_create_scaling_filter_property(&plane->base,
-  2669							BIT(DRM_SCALING_FILTER_DEFAULT) |
-  2670							BIT(DRM_SCALING_FILTER_NEAREST_NEIGHBOR));
-  2671	
-  2672		intel_plane_helper_add(plane);
-  2673	
-  2674		return plane;
-  2675	
-  2676	fail:
-  2677		intel_plane_free(plane);
-  2678	
-  2679		return ERR_PTR(ret);
-  2680	}
-  2681	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
