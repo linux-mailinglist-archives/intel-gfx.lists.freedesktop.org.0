@@ -2,66 +2,82 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 168EF9DED9C
-	for <lists+intel-gfx@lfdr.de>; Sat, 30 Nov 2024 00:32:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 365B89DEF9D
+	for <lists+intel-gfx@lfdr.de>; Sat, 30 Nov 2024 10:38:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31DAE10E35C;
-	Fri, 29 Nov 2024 23:32:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C2FF310E395;
+	Sat, 30 Nov 2024 09:38:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="avJgrvOv";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="tA08bMJL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5DB6710E35C;
- Fri, 29 Nov 2024 23:32:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1732923129; x=1764459129;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=/Ia3JcLagSbCWdRqeUjniwRpu9mwa3O3fmerEjEIJ/M=;
- b=avJgrvOvtLyg1+w79GN8QgB9bMTaGobji5hS7FoEpIuvukIMozGDix+l
- bkVIQX//7cvkpBaAPxeffsawAIiEf5X9gmU0eg/GUc+og0QLn6o0KhB2r
- b5BCUa4B56xk/wXXLqaBCpOBFNnkTJ1xErgYdox3qHJ8zwx7gX/DXfsBF
- XJ9vZ2M2cC6rCAASjc9FigAsi0DkJz0GmphipKQ9yxV32BGDiVY3+pbNb
- 6d5fQsmbSprbf1+SQ7Nx68+88OxvMZSY3uNrSR+ZmOG5EZfi51huCjHoK
- RU3RdzFZQClkKztHqPr5v89AbljuT2BQMvV26p1rGdaV6XPM9i3TsM8J2 w==;
-X-CSE-ConnectionGUID: MKDlvqJSReWp0Yrh5uE90A==
-X-CSE-MsgGUID: IvUfDP2kRB+inc5vIyUuWA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11271"; a="36823602"
-X-IronPort-AV: E=Sophos;i="6.12,197,1728975600"; d="scan'208";a="36823602"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Nov 2024 15:32:08 -0800
-X-CSE-ConnectionGUID: U6YzJxjvSy29tT1rELYL+g==
-X-CSE-MsgGUID: l4WlfjnKRkeXyP2F8Nk4fg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,197,1728975600"; d="scan'208";a="123542066"
-Received: from lkp-server01.sh.intel.com (HELO 5e2646291792) ([10.239.97.150])
- by fmviesa001.fm.intel.com with ESMTP; 29 Nov 2024 15:32:05 -0800
-Received: from kbuild by 5e2646291792 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1tHASw-0000lN-1a;
- Fri, 29 Nov 2024 23:32:02 +0000
-Date: Sat, 30 Nov 2024 07:31:24 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jocelyn Falempe <jfalempe@redhat.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
- Jocelyn Falempe <jfalempe@redhat.com>
-Subject: Re: [PATCH 1/5] drm/i915/fbdev: Add intel_fbdev_getvaddr()
-Message-ID: <202411300759.H1yNqy6r-lkp@intel.com>
-References: <20241129162232.7594-2-jfalempe@redhat.com>
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com
+ [209.85.167.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 051A110E397
+ for <intel-gfx@lists.freedesktop.org>; Sat, 30 Nov 2024 09:38:10 +0000 (UTC)
+Received: by mail-lf1-f43.google.com with SMTP id
+ 2adb3069b0e04-53dde5262fdso2927423e87.2
+ for <intel-gfx@lists.freedesktop.org>; Sat, 30 Nov 2024 01:38:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1732959488; x=1733564288; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=rXbDCCZyHLHcmMdbmbUACkYa+PAWDK6pAgsVmGxmS7E=;
+ b=tA08bMJLIcHaSOH3/BnLTry7PkgZCPtO4wTqyx4xbT995gUVHSx7IUrZSyOvsaFnir
+ JezdWhk5rnijvzffjnxMTtXU5t6taapPgh7NIaOm7vyLnMnjubx227O27Jkfm0+fAf4i
+ JTCa8DRz5N/R0wp7PDaJPA5yuNGfVU6Fk+UsLXkIYZuiSjD4djEBIV4P6TIkMdOguZNB
+ eLHjhoN9EiXI5rKF0RYkFJZX+lJt1l8zWYIomd9l1hDQ0ScpbxQGDKakg9Rj8KvghXdo
+ zmPa59FnZyzoquKvxqtjwHXr3IX1CXtcF3tLa1gc0HEs8NnDTXDMkc+wqvBQREGkH9op
+ qz7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1732959488; x=1733564288;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=rXbDCCZyHLHcmMdbmbUACkYa+PAWDK6pAgsVmGxmS7E=;
+ b=pqXriuRY/UOE8bvQafn3bu7QGwEPQCOBAFVTBheEPz3hkt3JoqE819eafsKCjQWU6U
+ SvVb+2zJaGW4Y9DJmb1SORj9oAdUFFM4ivUCKFjaiFb9Nd9LIkGcHPQme3yqq9uqp1iU
+ alHtgeN1LmtUxjJH9UevwoskLCD1xKZpKLpv6eAqTyeOG1iAJjqVx4QILWsV5OarnzFJ
+ hB3j59FScTRPsCiDZN9TXYzNc218rFLo3bFKGKBlYPOOXJHt0u0SqwXge1FPOwknss6N
+ 2h4WBrqC+kLniQIPQgvbfGOWbaq6s2IRfPyUy9Pbgz4KqZNFimNc5IxpO57q1G5LDgtb
+ fW9Q==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCX78WZY/yYrAP17kKbwWHOyDqbQQvyJSjE+4Bux/fiFRRdek3fPFAa80+TfgTIrFBn+A3813wy3PHI=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwZIod1GswmDIOad0wEgvtnMLtzOsp4phqctPRROfZz9/lnJM4M
+ VU+VFO0ssAOxf7GeQYMbW77bT/6iftFCHfom0NffMqQhC+gN7SUiK6rV6b6MEB8=
+X-Gm-Gg: ASbGncv8Y+3IjEYD7eaRn9uChW3XtaU8dbvpPgy3tnnZpuFdlo6NAbTq/Z3GIrJsjkp
+ 0cz/pOweYQ09k5EqkiLCwNB8fqGHxKu6DOjvLGWzxc9zedap6hxjSCRnK6a6K5j3S1/TZyu7PLe
+ f051+M+PURjloDnbdCYqSoAvX6fGZsqlXNKAIiyhNHDNhEq75ZcSZDbBQtdsBr7zXUjWuUvvpEC
+ 2YdoEFzFnuOkjFyKeHPTulahJbk+l9xqa6cZqMcwYx/CClUfnb2Tj6NgvsU/BB+uf4CJHN44N0C
+ md4JXQSdSF5tle0fnWoBXpNB+MaGxw==
+X-Google-Smtp-Source: AGHT+IEwCyy0WLYAusUAieyWyy7Z2W/Lw9UaoxPrndoadcpQX8tCHP7mp6kBuNlB8fMn/6H2hs0LBA==
+X-Received: by 2002:a05:6512:3f1f:b0:53d:d3ff:77f6 with SMTP id
+ 2adb3069b0e04-53df010900cmr9843422e87.46.1732959488071; 
+ Sat, 30 Nov 2024 01:38:08 -0800 (PST)
+Received: from eriador.lumag.spb.ru
+ (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+ by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-53df6443199sm721008e87.98.2024.11.30.01.38.05
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 30 Nov 2024 01:38:06 -0800 (PST)
+Date: Sat, 30 Nov 2024 11:38:04 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Uma Shankar <uma.shankar@intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, ville.syrjala@linux.intel.com,
+ harry.wentland@amd.com, 
+ pekka.paalanen@haloniitty.fi, sebastian.wick@redhat.com, jadahl@redhat.com,
+ mwen@igalia.com, contact@emersion.fr, naveen1.kumar@intel.com, 
+ Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+Subject: Re: [v2 02/25] drm: Add support for 3x3 CTM
+Message-ID: <yalwndln5a7apkfj27txgbvwxjgfhdut27wlor6wm6pn2slx7m@jjm6rwfjbfdc>
+References: <20241126132730.1192571-1-uma.shankar@intel.com>
+ <20241126132730.1192571-3-uma.shankar@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241129162232.7594-2-jfalempe@redhat.com>
+In-Reply-To: <20241126132730.1192571-3-uma.shankar@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,198 +93,129 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Jocelyn,
+On Tue, Nov 26, 2024 at 06:57:07PM +0530, Uma Shankar wrote:
+> From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+> 
+> Add support for 3x3 Color Transformation Matrices in Color Pipeline.
+> 
+> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+> Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+> ---
+>  drivers/gpu/drm/drm_atomic.c      |  3 +++
+>  drivers/gpu/drm/drm_atomic_uapi.c |  3 +++
+>  drivers/gpu/drm/drm_colorop.c     | 29 +++++++++++++++++++++++++++++
+>  include/drm/drm_colorop.h         |  2 ++
+>  include/uapi/drm/drm_mode.h       |  8 ++++++++
+>  5 files changed, 45 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
+> index 3161e2ab4efc..8a75f4a0637a 100644
+> --- a/drivers/gpu/drm/drm_atomic.c
+> +++ b/drivers/gpu/drm/drm_atomic.c
+> @@ -802,6 +802,9 @@ static void drm_atomic_colorop_print_state(struct drm_printer *p,
+>  		drm_printf(p, "\tinterpolation=%s\n", drm_get_colorop_lut1d_interpolation_name(colorop->lut1d_interpolation));
+>  		drm_printf(p, "\tdata blob id=%d\n", state->data ? state->data->base.id : 0);
+>  		break;
+> +	case DRM_COLOROP_CTM_3X3:
+> +		drm_printf(p, "\tdata blob id=%d\n", state->data ? state->data->base.id : 0);
+> +		break;
+>  	case DRM_COLOROP_CTM_3X4:
+>  		drm_printf(p, "\tdata blob id=%d\n", state->data ? state->data->base.id : 0);
+>  		break;
+> diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
+> index d6c71135f290..ba68358c0ffe 100644
+> --- a/drivers/gpu/drm/drm_atomic_uapi.c
+> +++ b/drivers/gpu/drm/drm_atomic_uapi.c
+> @@ -708,6 +708,9 @@ static int drm_atomic_color_set_data_property(struct drm_colorop *colorop,
+>  	case DRM_COLOROP_CTM_3X4:
+>  		size = sizeof(struct drm_color_ctm_3x4);
+>  		break;
+> +	case DRM_COLOROP_CTM_3X3:
+> +		size = sizeof(struct drm_color_ctm);
+> +		break;
+>  	case DRM_COLOROP_3D_LUT:
+>  		index = state->lut_3d_mode_index;
+>  		if (index >= (state->lut_3d_modes->length / sizeof(struct drm_mode_3dlut_mode)))
+> diff --git a/drivers/gpu/drm/drm_colorop.c b/drivers/gpu/drm/drm_colorop.c
+> index fd1cd934df48..a427cfc5bbbc 100644
+> --- a/drivers/gpu/drm/drm_colorop.c
+> +++ b/drivers/gpu/drm/drm_colorop.c
+> @@ -315,6 +315,35 @@ int drm_colorop_ctm_3x4_init(struct drm_device *dev, struct drm_colorop *colorop
+>  }
+>  EXPORT_SYMBOL(drm_colorop_ctm_3x4_init);
+>  
+> +/**
+> + * drm_colorop_ctm_3x3 - Initialize a DRM_COLOROP_CTM_3X3
 
-kernel test robot noticed the following build errors:
+Please build with W=1 to trigger kerneldoc warnings. Here the prototype
+in the doc comment doesn't match the actual function name.
 
-[auto build test ERROR on 44cff6c5b0b17a78bc0b30372bcd816cf6dd282a]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Jocelyn-Falempe/drm-i915-fbdev-Add-intel_fbdev_getvaddr/20241130-002536
-base:   44cff6c5b0b17a78bc0b30372bcd816cf6dd282a
-patch link:    https://lore.kernel.org/r/20241129162232.7594-2-jfalempe%40redhat.com
-patch subject: [PATCH 1/5] drm/i915/fbdev: Add intel_fbdev_getvaddr()
-config: i386-buildonly-randconfig-005-20241130 (https://download.01.org/0day-ci/archive/20241130/202411300759.H1yNqy6r-lkp@intel.com/config)
-compiler: clang version 19.1.3 (https://github.com/llvm/llvm-project ab51eccf88f5321e7c60591c5546b254b6afab99)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241130/202411300759.H1yNqy6r-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202411300759.H1yNqy6r-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   In file included from drivers/gpu/drm/i915/display/intel_fbdev.c:30:
-   In file included from include/linux/fb.h:5:
-   In file included from include/uapi/linux/fb.h:6:
-   In file included from include/linux/i2c.h:19:
-   In file included from include/linux/regulator/consumer.h:35:
-   In file included from include/linux/suspend.h:5:
-   In file included from include/linux/swap.h:9:
-   In file included from include/linux/memcontrol.h:21:
-   In file included from include/linux/mm.h:2213:
-   include/linux/vmstat.h:518:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
-     518 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
-         |                               ~~~~~~~~~~~ ^ ~~~
->> drivers/gpu/drm/i915/display/intel_fbdev.c:701:31: error: no member named 'iomap' in 'struct i915_vma'
-     701 |         return READ_ONCE(fbdev->vma->iomap);
-         |                          ~~~~~~~~~~  ^
-   include/asm-generic/rwonce.h:49:33: note: expanded from macro 'READ_ONCE'
-      49 |         compiletime_assert_rwonce_type(x);                              \
-         |                                        ^
-   include/asm-generic/rwonce.h:36:35: note: expanded from macro 'compiletime_assert_rwonce_type'
-      36 |         compiletime_assert(__native_word(t) || sizeof(t) == sizeof(long long),  \
-         |                                          ^
-   include/linux/compiler_types.h:484:10: note: expanded from macro '__native_word'
-     484 |         (sizeof(t) == sizeof(char) || sizeof(t) == sizeof(short) || \
-         |                 ^
-   include/linux/compiler_types.h:517:22: note: expanded from macro 'compiletime_assert'
-     517 |         _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
-         |                             ^~~~~~~~~
-   include/linux/compiler_types.h:505:23: note: expanded from macro '_compiletime_assert'
-     505 |         __compiletime_assert(condition, msg, prefix, suffix)
-         |                              ^~~~~~~~~
-   include/linux/compiler_types.h:497:9: note: expanded from macro '__compiletime_assert'
-     497 |                 if (!(condition))                                       \
-         |                       ^~~~~~~~~
->> drivers/gpu/drm/i915/display/intel_fbdev.c:701:31: error: no member named 'iomap' in 'struct i915_vma'
-     701 |         return READ_ONCE(fbdev->vma->iomap);
-         |                          ~~~~~~~~~~  ^
-   include/asm-generic/rwonce.h:49:33: note: expanded from macro 'READ_ONCE'
-      49 |         compiletime_assert_rwonce_type(x);                              \
-         |                                        ^
-   include/asm-generic/rwonce.h:36:35: note: expanded from macro 'compiletime_assert_rwonce_type'
-      36 |         compiletime_assert(__native_word(t) || sizeof(t) == sizeof(long long),  \
-         |                                          ^
-   include/linux/compiler_types.h:484:39: note: expanded from macro '__native_word'
-     484 |         (sizeof(t) == sizeof(char) || sizeof(t) == sizeof(short) || \
-         |                                              ^
-   include/linux/compiler_types.h:517:22: note: expanded from macro 'compiletime_assert'
-     517 |         _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
-         |                             ^~~~~~~~~
-   include/linux/compiler_types.h:505:23: note: expanded from macro '_compiletime_assert'
-     505 |         __compiletime_assert(condition, msg, prefix, suffix)
-         |                              ^~~~~~~~~
-   include/linux/compiler_types.h:497:9: note: expanded from macro '__compiletime_assert'
-     497 |                 if (!(condition))                                       \
-         |                       ^~~~~~~~~
->> drivers/gpu/drm/i915/display/intel_fbdev.c:701:31: error: no member named 'iomap' in 'struct i915_vma'
-     701 |         return READ_ONCE(fbdev->vma->iomap);
-         |                          ~~~~~~~~~~  ^
-   include/asm-generic/rwonce.h:49:33: note: expanded from macro 'READ_ONCE'
-      49 |         compiletime_assert_rwonce_type(x);                              \
-         |                                        ^
-   include/asm-generic/rwonce.h:36:35: note: expanded from macro 'compiletime_assert_rwonce_type'
-      36 |         compiletime_assert(__native_word(t) || sizeof(t) == sizeof(long long),  \
-         |                                          ^
-   include/linux/compiler_types.h:485:10: note: expanded from macro '__native_word'
-     485 |          sizeof(t) == sizeof(int) || sizeof(t) == sizeof(long))
-         |                 ^
-   include/linux/compiler_types.h:517:22: note: expanded from macro 'compiletime_assert'
-     517 |         _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
-         |                             ^~~~~~~~~
-   include/linux/compiler_types.h:505:23: note: expanded from macro '_compiletime_assert'
-     505 |         __compiletime_assert(condition, msg, prefix, suffix)
-         |                              ^~~~~~~~~
-   include/linux/compiler_types.h:497:9: note: expanded from macro '__compiletime_assert'
-     497 |                 if (!(condition))                                       \
-         |                       ^~~~~~~~~
->> drivers/gpu/drm/i915/display/intel_fbdev.c:701:31: error: no member named 'iomap' in 'struct i915_vma'
-     701 |         return READ_ONCE(fbdev->vma->iomap);
-         |                          ~~~~~~~~~~  ^
-   include/asm-generic/rwonce.h:49:33: note: expanded from macro 'READ_ONCE'
-      49 |         compiletime_assert_rwonce_type(x);                              \
-         |                                        ^
-   include/asm-generic/rwonce.h:36:35: note: expanded from macro 'compiletime_assert_rwonce_type'
-      36 |         compiletime_assert(__native_word(t) || sizeof(t) == sizeof(long long),  \
-         |                                          ^
-   include/linux/compiler_types.h:485:38: note: expanded from macro '__native_word'
-     485 |          sizeof(t) == sizeof(int) || sizeof(t) == sizeof(long))
-         |                                             ^
-   include/linux/compiler_types.h:517:22: note: expanded from macro 'compiletime_assert'
-     517 |         _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
-         |                             ^~~~~~~~~
-   include/linux/compiler_types.h:505:23: note: expanded from macro '_compiletime_assert'
-     505 |         __compiletime_assert(condition, msg, prefix, suffix)
-         |                              ^~~~~~~~~
-   include/linux/compiler_types.h:497:9: note: expanded from macro '__compiletime_assert'
-     497 |                 if (!(condition))                                       \
-         |                       ^~~~~~~~~
->> drivers/gpu/drm/i915/display/intel_fbdev.c:701:31: error: no member named 'iomap' in 'struct i915_vma'
-     701 |         return READ_ONCE(fbdev->vma->iomap);
-         |                          ~~~~~~~~~~  ^
-   include/asm-generic/rwonce.h:49:33: note: expanded from macro 'READ_ONCE'
-      49 |         compiletime_assert_rwonce_type(x);                              \
-         |                                        ^
-   include/asm-generic/rwonce.h:36:48: note: expanded from macro 'compiletime_assert_rwonce_type'
-      36 |         compiletime_assert(__native_word(t) || sizeof(t) == sizeof(long long),  \
-         |                                                       ^
-   include/linux/compiler_types.h:517:22: note: expanded from macro 'compiletime_assert'
-     517 |         _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
-         |                             ^~~~~~~~~
-   include/linux/compiler_types.h:505:23: note: expanded from macro '_compiletime_assert'
-     505 |         __compiletime_assert(condition, msg, prefix, suffix)
-         |                              ^~~~~~~~~
-   include/linux/compiler_types.h:497:9: note: expanded from macro '__compiletime_assert'
-     497 |                 if (!(condition))                                       \
-         |                       ^~~~~~~~~
->> drivers/gpu/drm/i915/display/intel_fbdev.c:701:31: error: no member named 'iomap' in 'struct i915_vma'
-     701 |         return READ_ONCE(fbdev->vma->iomap);
-         |                          ~~~~~~~~~~  ^
-   include/asm-generic/rwonce.h:50:14: note: expanded from macro 'READ_ONCE'
-      50 |         __READ_ONCE(x);                                                 \
-         |                     ^
-   include/asm-generic/rwonce.h:44:65: note: expanded from macro '__READ_ONCE'
-      44 | #define __READ_ONCE(x)  (*(const volatile __unqual_scalar_typeof(x) *)&(x))
-         |                                                                  ^
-   include/linux/compiler_types.h:473:13: note: expanded from macro '__unqual_scalar_typeof'
-     473 |                 _Generic((x),                                           \
-         |                           ^
->> drivers/gpu/drm/i915/display/intel_fbdev.c:701:31: error: no member named 'iomap' in 'struct i915_vma'
-     701 |         return READ_ONCE(fbdev->vma->iomap);
-         |                          ~~~~~~~~~~  ^
-   include/asm-generic/rwonce.h:50:14: note: expanded from macro 'READ_ONCE'
-      50 |         __READ_ONCE(x);                                                 \
-         |                     ^
-   include/asm-generic/rwonce.h:44:65: note: expanded from macro '__READ_ONCE'
-      44 | #define __READ_ONCE(x)  (*(const volatile __unqual_scalar_typeof(x) *)&(x))
-         |                                                                  ^
-   include/linux/compiler_types.h:480:15: note: expanded from macro '__unqual_scalar_typeof'
-     480 |                          default: (x)))
-         |                                    ^
->> drivers/gpu/drm/i915/display/intel_fbdev.c:701:31: error: no member named 'iomap' in 'struct i915_vma'
-     701 |         return READ_ONCE(fbdev->vma->iomap);
-         |                          ~~~~~~~~~~  ^
-   include/asm-generic/rwonce.h:50:14: note: expanded from macro 'READ_ONCE'
-      50 |         __READ_ONCE(x);                                                 \
-         |                     ^
-   include/asm-generic/rwonce.h:44:72: note: expanded from macro '__READ_ONCE'
-      44 | #define __READ_ONCE(x)  (*(const volatile __unqual_scalar_typeof(x) *)&(x))
-         |                                                                         ^
->> drivers/gpu/drm/i915/display/intel_fbdev.c:701:9: error: returning 'void' from a function with incompatible result type 'void *'
-     701 |         return READ_ONCE(fbdev->vma->iomap);
-         |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/asm-generic/rwonce.h:47:28: note: expanded from macro 'READ_ONCE'
-      47 | #define READ_ONCE(x)                                                    \
-         |                                                                         ^
-      48 | ({                                                                      \
-         | ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      49 |         compiletime_assert_rwonce_type(x);                              \
-         |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      50 |         __READ_ONCE(x);                                                 \
-         |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      51 | })
-         | ~~
-   1 warning and 9 errors generated.
-
-
-vim +701 drivers/gpu/drm/i915/display/intel_fbdev.c
-
-   698	
-   699	void *intel_fbdev_getvaddr(struct intel_fbdev *fbdev)
-   700	{
- > 701		return READ_ONCE(fbdev->vma->iomap);
+> + *
+> + * @dev: DRM device
+> + * @colorop: The drm_colorop object to initialize
+> + * @plane: The associated drm_plane
+> + * @allow_bypass: true if BYPASS property should be created, false if bypass of
+> + *                this colorop is not possible
+> + * @return zero on success, -E value on failure
+> + */
+> +int drm_colorop_ctm_3x3_init(struct drm_device *dev, struct drm_colorop *colorop,
+> +			     struct drm_plane *plane, bool allow_bypass)
+> +{
+> +	int ret;
+> +
+> +	ret = drm_colorop_init(dev, colorop, plane, DRM_COLOROP_CTM_3X3, allow_bypass);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = drm_colorop_create_data_prop(dev, colorop);
+> +	if (ret)
+> +		return ret;
+> +
+> +	drm_colorop_reset(colorop);
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(drm_colorop_ctm_3x3_init);
+> +
+>  /**
+>   * drm_colorop_mult_init - Initialize a DRM_COLOROP_MULTIPLIER
+>   *
+> diff --git a/include/drm/drm_colorop.h b/include/drm/drm_colorop.h
+> index bf5117f30c80..56b51fafebdf 100644
+> --- a/include/drm/drm_colorop.h
+> +++ b/include/drm/drm_colorop.h
+> @@ -377,6 +377,8 @@ int drm_colorop_curve_1d_lut_init(struct drm_device *dev, struct drm_colorop *co
+>  				  struct drm_plane *plane, uint32_t lut_size,
+>  				  enum drm_colorop_lut1d_interpolation_type lut1d_interpolation,
+>  				  bool allow_bypass);
+> +int drm_colorop_ctm_3x3_init(struct drm_device *dev, struct drm_colorop *colorop,
+> +			     struct drm_plane *plane, bool allow_bypass);
+>  int drm_colorop_ctm_3x4_init(struct drm_device *dev, struct drm_colorop *colorop,
+>  			     struct drm_plane *plane, bool allow_bypass);
+>  int drm_colorop_mult_init(struct drm_device *dev, struct drm_colorop *colorop,
+> diff --git a/include/uapi/drm/drm_mode.h b/include/uapi/drm/drm_mode.h
+> index 290c2e32f692..a4a7ab689631 100644
+> --- a/include/uapi/drm/drm_mode.h
+> +++ b/include/uapi/drm/drm_mode.h
+> @@ -905,6 +905,14 @@ enum drm_colorop_type {
+>  	 */
+>  	DRM_COLOROP_CTM_3X4,
+>  
+> +	/**
+> +	 * @DRM_COLOROP_CTM_3X3:
+> +	 *
+> +	 * A 3x3 matrix. Its values are specified via the
+> +	 * &drm_color_ctm struct provided via the DATA property.
+> +	 */
+> +	DRM_COLOROP_CTM_3X3,
+> +
+>  	/**
+>  	 * @DRM_COLOROP_MULTIPLIER:
+>  	 *
+> -- 
+> 2.42.0
+> 
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+With best wishes
+Dmitry
