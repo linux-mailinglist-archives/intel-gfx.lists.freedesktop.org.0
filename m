@@ -2,69 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E07079E071A
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Dec 2024 16:31:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B58D89E0747
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Dec 2024 16:41:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5AB7010E7A6;
-	Mon,  2 Dec 2024 15:31:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CEB910E7A0;
+	Mon,  2 Dec 2024 15:41:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DpKl0AmQ";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="sRecaUse";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD39210E7A6;
- Mon,  2 Dec 2024 15:31:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733153487; x=1764689487;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=xy9bm06E42vnVMbka6YhC0lCJPaiurRtpUSaXv5qyNE=;
- b=DpKl0AmQhgRpTd8Z0vKawt2DSlxsWIveV6Ytn3S9nV2f9W/5fytseU9r
- iYXO+/rheoDs6a1hfxXiRDZAHeQue8eXigI5qApszFjvAskRjpdCaq44O
- Yfs0AScF+d+MeVn3LmwjOFLcjZjxostrvDhHm2Z+LpZuMXpmdcOyvLTpL
- oUtX6j+e7xezYIpgICrLNFYtjg+SysxhSX047jaG3c2yHd8wHlkidBcPJ
- ScnpH3gqleb/Pn8w9NFNk+fFMX8iIJ00Yvy/HRJs5xMHX+NMzDUIa8LHz
- EFu7xoXmDm9DNCCYhl1/tMMaGzLY56vT0CPJM0GanwzldTTSgOVNvctm1 Q==;
-X-CSE-ConnectionGUID: B9zZmsE4RuCOiXbOy7AyUA==
-X-CSE-MsgGUID: eCpbrZLoTUGdIR/U0uRcNg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11274"; a="33204325"
-X-IronPort-AV: E=Sophos;i="6.12,202,1728975600"; d="scan'208";a="33204325"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2024 07:31:09 -0800
-X-CSE-ConnectionGUID: IbnHEAmQQP6iKGMiB9P4nA==
-X-CSE-MsgGUID: kySFOHf8SlmLkDSxZuDvTg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,202,1728975600"; d="scan'208";a="116396332"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2024 07:31:04 -0800
-Date: Mon, 2 Dec 2024 17:31:43 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Maxime Ripard <mripard@kernel.org>
-Cc: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, Dave Airlie <airlied@redhat.com>,
- Daniel Vetter <daniel.vetter@ffwll.ch>, dri-devel@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH v2 1/4] drm/dp: Add a way to init/add a connector in
- separate steps
-Message-ID: <Z03S35Z-Vj94cW_7@ideak-desk.fi.intel.com>
-References: <20241126161859.1858058-1-imre.deak@intel.com>
- <20241126161859.1858058-2-imre.deak@intel.com>
- <Z0nO-bwpbWPVryd6@ideak-desk.fi.intel.com>
- <20241129-wild-cobra-of-thunder-829d1f@houat>
- <Z0nn0VzawSCdOCKY@ideak-desk.fi.intel.com>
- <20241202-real-benevolent-skunk-a9f5e0@houat>
- <87ldwy5lvb.fsf@intel.com>
- <Z021G3tmmRTi4iyl@ideak-desk.fi.intel.com>
- <20241202-bald-finicky-coyote-e9ff4c@houat>
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com
+ [209.85.214.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6703310E7A0
+ for <intel-gfx@lists.freedesktop.org>; Mon,  2 Dec 2024 15:41:13 +0000 (UTC)
+Received: by mail-pl1-f171.google.com with SMTP id
+ d9443c01a7336-21561f7d135so190885ad.1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 02 Dec 2024 07:41:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20230601; t=1733154073; x=1733758873;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=9q+sUrToGLNbVpeL9dFzZryPjEzZtRydtQpl1qi0Clo=;
+ b=sRecaUse7bFxJzKfUiVc01IcG9vmapXAhX+poKTNDpASmJExQRjFYxTPJgWXzJBMTV
+ aDxbiTDRyaxiU5MguLX9epftn2tsiHbFpNLrX4Dikp9EPdWWtQ0Md1Fs0S1vSYx2nMOI
+ 0qPTAtDQdJb/DgbtuLqd3mGnV5BPwwnQWOJzyzKN0tUa+Z/NpRdDiJ43XmfO6JZpjw9W
+ KCOeEnMdcngDdQjB+XZdjVkfnDBVmUzLnhQCDvU1w/3U4txyf01Jmh2n1AW1+v9T7ymK
+ RhuV3R+7X32NjdrOaaiXX5bnnpWrxeDCEEEdTxpmeRg7XOOkQYnfeGjfP5GzNQFJ/gM7
+ Hjng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1733154073; x=1733758873;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=9q+sUrToGLNbVpeL9dFzZryPjEzZtRydtQpl1qi0Clo=;
+ b=c1Wi0bRin7BeSDvFFyO6uQYFqXAAskh/dpzVKWBm3RI/F2EpgMOZRIJWJfhStEuxb5
+ U11Z+8aKfi1rwBcOr/FHBmAp7fczB/a0QxB7ln1gfO9hieCeL7jTJWMiaG/RYsOtSnC1
+ pCAZH+znPNxzwPqF85j90Vnm3kKzW3V/YOGjT4u4REp0ux9pivwulC4e5m9wI+zmF4w+
+ 9Ha1Ka0UaZQUURkZ6bkd0ZVIwFRtWzI0KsQwmMjfkjq5zQRBTskPdga2rCDzFQHhjJYi
+ u46UclscpUX1GeVHiEiHu2tXC7qs6ir0t4EIxNJD/xN6vvlc4EHeNOG0xTUT4sGGWmGc
+ aV9w==
+X-Gm-Message-State: AOJu0YxeLvXVXvCyEKgcjHl6zlapSPqVI0GD+FuycRoTiaj1M4UxvW/0
+ rTxWPNmHBpEJ2daMpHq4v2k1qtmp3tOg7q9eKxvWhqQG7COO9ZeE1Bia9V+W1M0DIAWeZcnDlml
+ HceKJTRUbLGDN7V8En6NMAXvtpktSyMGB7teALF6n2lbRTE67kQ==
+X-Gm-Gg: ASbGncsAwaiAkDlPaqyEhU5+1NT/O/6SnkCZBbvXC6IlJrZUP6FgbRTVvuXuPRlW8yh
+ HDL0ADf6nExSpq+F10Jc8pRHuc7fRQg==
+X-Google-Smtp-Source: AGHT+IH5W1yS1CQVTmIJtEHvq3DK4ER7IbJalfUq9VFmmgxpEr4Esx4j/FhrGOJ/k9bbr3IoX6Wock6cK1+kJyheSkE=
+X-Received: by 2002:a17:903:1447:b0:20c:e169:eb8c with SMTP id
+ d9443c01a7336-21521aca975mr6768665ad.1.1733154072657; Mon, 02 Dec 2024
+ 07:41:12 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241202-bald-finicky-coyote-e9ff4c@houat>
+References: <20241127061117.25622-1-ville.syrjala@linux.intel.com>
+ <20241127061117.25622-4-ville.syrjala@linux.intel.com>
+In-Reply-To: <20241127061117.25622-4-ville.syrjala@linux.intel.com>
+From: Brian Geffon <bgeffon@google.com>
+Date: Mon, 2 Dec 2024 10:40:36 -0500
+Message-ID: <CADyq12zaBCxJ_dZVadew+JMp1=uNVAJWYX-k45m76-G925UuTg@mail.gmail.com>
+Subject: Re: [PATCH 3/4] drm/i915/dpt: Evict all DPT VMAs on suspend
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Vidya Srinivas <vidya.srinivas@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,63 +77,204 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Dec 02, 2024 at 04:07:56PM +0100, Maxime Ripard wrote:
-> On Mon, Dec 02, 2024 at 03:24:43PM +0200, Imre Deak wrote:
-> > On Mon, Dec 02, 2024 at 02:07:36PM +0200, Jani Nikula wrote:
-> > > On Mon, 02 Dec 2024, Maxime Ripard <mripard@kernel.org> wrote:
-> > > > It's not about whether we have a problem or not: you introduce new
-> > > > framework functions, you need to have kunit tests to check their
-> > > > behaviour.
-> > > 
-> > > I don't fundamentally disagree with that goal, but it does seem like a
-> > > pretty drastic policy change. I don't recall a discussion where we made
-> > > that decision, nor can I find any documentation stating this. Or what
-> > > exactly the requirement is; it's totally unclear to me.
-> > > 
-> > > Had I been involved, I would've pointed out that while adding tests is
-> > > good, it inevitably increases the friction of adding new stuff to drm
-> > > core. It's super tempting for people to just get their jobs done. If
-> > > doing the right thing adds yet another hurdle, we may see more stuff
-> > > being added in drivers instead of drm core.
-> > > 
-> > > (Case in point, we already hacked around the problem being solved here
-> > > with commit d58f65df2dcb ("drm/i915/dp_mst: Fix connector initialization
-> > > in intel_dp_add_mst_connector()"). We could've just dropped the ball
-> > > right there.)
-> > 
-> > Fwiw, in this case adding tests for drm_connector_init_core() and
-> > drm_connector_add() looks simple enough.
-> > 
-> > IIUC it's the 3 testcases in drmm_connector_init_tests[] performed for
-> > drm_connector_init_core() and additional 3 test cases checking that (1)
-> > drm_connector_init_core() doesn't add the connector to the connector
-> > list, (2) drm_connector_add() adds it and (3) drm_connector_add() fails
-> > (by not adding the connector to the list and emitting a dmesg WARN) if
-> > drm_connector_init_core() was not called for the connector previously.
-> > For the last test I actually need to add the corresponding assert/early
-> > return to drm_connector_add().
-> > 
-> > If Maxim could confirm the above, I could resend the patchset adding
-> > these tests.
-> 
-> Yep, sounds great, thanks!
+On Wed, Nov 27, 2024 at 1:11=E2=80=AFAM Ville Syrjala
+<ville.syrjala@linux.intel.com> wrote:
+>
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> Currently intel_dpt_resume() tries to blindly rewrite all the
+> PTEs for currently bound DPT VMAs. That is problematic because
+> the CPU mapping for the DPT is only really guaranteed to exist
+> while the DPT object has been pinned. In the past we worked
+> around this issue by making DPT objects unshrinkable, but that
+> is undesirable as it'll waste physical RAM.
+>
+> Let's instead forcefully evict all the DPT VMAs on suspend,
+> thus guaranteeing that intel_dpt_resume() has nothing to do.
+> To guarantee that all the DPT VMAs are evictable by
+> intel_dpt_suspend() we need to flush the cleanup workqueue
+> after the display output has been shut down.
+>
+> And for good measure throw in a few extra WARNs to catch
+> any mistakes.
+>
+> Cc: Brian Geffon <bgeffon@google.com>
+> Cc: Vidya Srinivas <vidya.srinivas@intel.com>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  .../drm/i915/display/intel_display_driver.c   |  3 +++
+>  drivers/gpu/drm/i915/display/intel_dpt.c      |  4 ++--
+>  drivers/gpu/drm/i915/gt/intel_ggtt.c          | 19 ++++++++++++++-----
+>  drivers/gpu/drm/i915/gt/intel_gtt.h           |  4 ++--
+>  4 files changed, 21 insertions(+), 9 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/driver=
+s/gpu/drm/i915/display/intel_display_driver.c
+> index 286d6f893afa..973bee43b554 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+> @@ -680,6 +680,9 @@ int intel_display_driver_suspend(struct drm_i915_priv=
+ate *i915)
+>         else
+>                 i915->display.restore.modeset_state =3D state;
+>
+> +       /* ensure all DPT VMAs have been unpinned for intel_dpt_suspend()=
+ */
+> +       flush_workqueue(i915->display.wq.cleanup);
+> +
+>         intel_dp_mst_suspend(i915);
+>
+>         return ret;
+> diff --git a/drivers/gpu/drm/i915/display/intel_dpt.c b/drivers/gpu/drm/i=
+915/display/intel_dpt.c
+> index ce8c76e44e6a..8b1f0e92a11c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dpt.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dpt.c
+> @@ -205,7 +205,7 @@ void intel_dpt_resume(struct drm_i915_private *i915)
+>                 struct intel_framebuffer *fb =3D to_intel_framebuffer(drm=
+_fb);
+>
+>                 if (fb->dpt_vm)
+> -                       i915_ggtt_resume_vm(fb->dpt_vm);
+> +                       i915_ggtt_resume_vm(fb->dpt_vm, true);
+>         }
+>         mutex_unlock(&i915->drm.mode_config.fb_lock);
+>  }
+> @@ -233,7 +233,7 @@ void intel_dpt_suspend(struct drm_i915_private *i915)
+>                 struct intel_framebuffer *fb =3D to_intel_framebuffer(drm=
+_fb);
+>
+>                 if (fb->dpt_vm)
+> -                       i915_ggtt_suspend_vm(fb->dpt_vm);
+> +                       i915_ggtt_suspend_vm(fb->dpt_vm, true);
+>         }
+>
+>         mutex_unlock(&i915->drm.mode_config.fb_lock);
+> diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/=
+gt/intel_ggtt.c
+> index d60a6ca0cae5..f6c59f20832f 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> @@ -107,11 +107,12 @@ int i915_ggtt_init_hw(struct drm_i915_private *i915=
+)
+>  /**
+>   * i915_ggtt_suspend_vm - Suspend the memory mappings for a GGTT or DPT =
+VM
+>   * @vm: The VM to suspend the mappings for
+> + * @evict_all: Evict all VMAs
+>   *
+>   * Suspend the memory mappings for all objects mapped to HW via the GGTT=
+ or a
+>   * DPT page table.
+>   */
+> -void i915_ggtt_suspend_vm(struct i915_address_space *vm)
+> +void i915_ggtt_suspend_vm(struct i915_address_space *vm, bool evict_all)
+>  {
+>         struct i915_vma *vma, *vn;
+>         int save_skip_rewrite;
+> @@ -157,7 +158,7 @@ void i915_ggtt_suspend_vm(struct i915_address_space *=
+vm)
+>                         goto retry;
+>                 }
+>
+> -               if (!i915_vma_is_bound(vma, I915_VMA_GLOBAL_BIND)) {
+> +               if (evict_all || !i915_vma_is_bound(vma, I915_VMA_GLOBAL_=
+BIND)) {
 
-Ok. The subtest (3) above checking if drm_connector_add() fails as
-expected if drm_connector_init_core() was not called before would also
-generate a dmesg warn, via a
+I don't fully understand this part. Why can we safely assume we can do
+__i915_vma_evict(), shouldn't we want to __i915_vma_unbind() in the
+case where it was bound? Because of the unconditional evict_all we
+might be unbinding a bound vma, no? Is that safe? Please forgive my
+ignorance if this question doesn't make sense.
 
-	if (drm_WARN_ON(dev, !connector->funcs))
-		return;
-
-early return I'm adding to drm_connector_add() in the new version of the
-patchset. This fails the kunit test, as always when an error or warn is
-printed to the log. I couldn't find a good way to suppress this warn
-(don't want to modify the function being tested) to make the testcase
-pass. I think this test case could be omitted, since it's tested by all
-users implicitly anyway via the above assert. Is this acceptable?
-
-> Maxime
+>                         i915_vma_wait_for_bind(vma);
+>
+>                         __i915_vma_evict(vma, false);
+> @@ -172,13 +173,15 @@ void i915_ggtt_suspend_vm(struct i915_address_space=
+ *vm)
+>         vm->skip_pte_rewrite =3D save_skip_rewrite;
+>
+>         mutex_unlock(&vm->mutex);
+> +
+> +       drm_WARN_ON(&vm->i915->drm, evict_all && !list_empty(&vm->bound_l=
+ist));
+>  }
+>
+>  void i915_ggtt_suspend(struct i915_ggtt *ggtt)
+>  {
+>         struct intel_gt *gt;
+>
+> -       i915_ggtt_suspend_vm(&ggtt->vm);
+> +       i915_ggtt_suspend_vm(&ggtt->vm, false);
+>         ggtt->invalidate(ggtt);
+>
+>         list_for_each_entry(gt, &ggtt->gt_list, ggtt_link)
+> @@ -1545,6 +1548,7 @@ int i915_ggtt_enable_hw(struct drm_i915_private *i9=
+15)
+>  /**
+>   * i915_ggtt_resume_vm - Restore the memory mappings for a GGTT or DPT V=
+M
+>   * @vm: The VM to restore the mappings for
+> + * @all_evicted: Were all VMAs expected to be evicted on suspend?
+>   *
+>   * Restore the memory mappings for all objects mapped to HW via the GGTT=
+ or a
+>   * DPT page table.
+> @@ -1552,13 +1556,18 @@ int i915_ggtt_enable_hw(struct drm_i915_private *=
+i915)
+>   * Returns %true if restoring the mapping for any object that was in a w=
+rite
+>   * domain before suspend.
+>   */
+> -bool i915_ggtt_resume_vm(struct i915_address_space *vm)
+> +bool i915_ggtt_resume_vm(struct i915_address_space *vm, bool all_evicted=
+)
+>  {
+>         struct i915_vma *vma;
+>         bool write_domain_objs =3D false;
+>
+>         drm_WARN_ON(&vm->i915->drm, !vm->is_ggtt && !vm->is_dpt);
+>
+> +       if (all_evicted) {
+> +               drm_WARN_ON(&vm->i915->drm, !list_empty(&vm->bound_list))=
+;
+> +               return false;
+> +       }
+> +
+>         /* First fill our portion of the GTT with scratch pages */
+>         vm->clear_range(vm, 0, vm->total);
+>
+> @@ -1598,7 +1607,7 @@ void i915_ggtt_resume(struct i915_ggtt *ggtt)
+>         list_for_each_entry(gt, &ggtt->gt_list, ggtt_link)
+>                 intel_gt_check_and_clear_faults(gt);
+>
+> -       flush =3D i915_ggtt_resume_vm(&ggtt->vm);
+> +       flush =3D i915_ggtt_resume_vm(&ggtt->vm, false);
+>
+>         if (drm_mm_node_allocated(&ggtt->error_capture))
+>                 ggtt->vm.scratch_range(&ggtt->vm, ggtt->error_capture.sta=
+rt,
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/g=
+t/intel_gtt.h
+> index 6b85222ee3ea..0a36ea751b63 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gtt.h
+> +++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
+> @@ -608,8 +608,8 @@ int i915_ppgtt_init_hw(struct intel_gt *gt);
+>  struct i915_ppgtt *i915_ppgtt_create(struct intel_gt *gt,
+>                                      unsigned long lmem_pt_obj_flags);
+>
+> -void i915_ggtt_suspend_vm(struct i915_address_space *vm);
+> -bool i915_ggtt_resume_vm(struct i915_address_space *vm);
+> +void i915_ggtt_suspend_vm(struct i915_address_space *vm, bool evict_all)=
+;
+> +bool i915_ggtt_resume_vm(struct i915_address_space *vm, bool all_evicted=
+);
+>  void i915_ggtt_suspend(struct i915_ggtt *gtt);
+>  void i915_ggtt_resume(struct i915_ggtt *ggtt);
+>
+> --
+> 2.45.2
+>
