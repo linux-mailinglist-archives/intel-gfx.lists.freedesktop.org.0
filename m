@@ -2,73 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C63B69E08AE
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Dec 2024 17:35:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E51299E0907
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Dec 2024 17:51:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E43F910E7BE;
-	Mon,  2 Dec 2024 16:35:39 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="h9lWIjkT";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D63A10E7D8;
+	Mon,  2 Dec 2024 16:51:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com
- [209.85.128.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA77C10E7BE
- for <intel-gfx@lists.freedesktop.org>; Mon,  2 Dec 2024 16:35:38 +0000 (UTC)
-Received: by mail-wm1-f54.google.com with SMTP id
- 5b1f17b1804b1-434aabd688fso28854385e9.3
- for <intel-gfx@lists.freedesktop.org>; Mon, 02 Dec 2024 08:35:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1733157337; x=1733762137; darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=8eql7Ns+uGGm9HgifQjo4XUl6VBylMvV+veZoo9jkdI=;
- b=h9lWIjkTyQYDH3cNDmWiMqCRAeKNCphEGf5ypemO81AteYMsYn0qK/7mIFl3xKXmzk
- uqWr1r9IWmxTFnAu3+gIxNHjYGX9m5LxsrZE8TNFRzn9m9ANiDGC/ELfAZ6B+/QchB8J
- VFtOcoLuxXrUFps1TmpWIlslIlC8X92KQGNqA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1733157337; x=1733762137;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=8eql7Ns+uGGm9HgifQjo4XUl6VBylMvV+veZoo9jkdI=;
- b=Uo91xBN2nOCJF9d8qLYsiy2IkPLQBXv2QjXWHEsk1th3inQzVOp06ROsM8RFu9xRu8
- NbnE5SVhcPdRE84sbuJnPszSEQ3RRqssSZCp9Mi7d0sKhb5QKz4NoIDRbuS9gizYhwUt
- 66/WLI7/HWFFI37jx1yjJqH7QnE4VrH7zpENhfVDxiLPuBCGw5pIjNdEpPZOoVVqzGi0
- HXHGuQIVYlCA8B94BhtisiidvrPLihYAuhJd7SQVx824aJDoc9e08NXIg/c2PO3OekZ9
- ju1UP9TSEeG14HKtFH8JBnVjKGkj9Wlmym+cZENuAUgMGvSXl4tp4bVJimMA0beuti0u
- 50NQ==
-X-Gm-Message-State: AOJu0YxuwMSNWNussVUtX3lXpFqCnScSUaY+yidsBRYo7XQMcyYOFs+3
- MA5x5ud6Vhsnuy60SBZf3woHL2gq8UjDD2uvOct/MibZZ52A4h6lX+qQbqDFQ6M=
-X-Gm-Gg: ASbGncsTGxkZB4v/tSLUghjRdJNZrV0Eqcu8J/dPm0H5pf762JlBAxsLcGgn9axOaZX
- XnZXaVkFWScF98XZ+gYL53VjdlL09H7PJNXmFqMZUj/LgSRNWTscIruFANx/wXQT9jrdpuuONMu
- PRjetSBOTE1uesiLbOpY2Rksl0zPAwPR3bv6odQtUc+4fFbLSpVtzWCIU5eew56rXDhYCC9Le8h
- x+xmoc6qcvVGC9uM+4CaMlvV6+7LJBRlVdnDK8G1l0t2LOQnDapLVZ5DrM+XQ==
-X-Google-Smtp-Source: AGHT+IHWoz9VLXWA9E4fldx9+8VfACSCwdWfeadjeDtaCl1Ih1nC9+GCl9XUVwcqBqCLWfsjOZ4W4Q==
-X-Received: by 2002:a05:600c:3b25:b0:434:a830:936a with SMTP id
- 5b1f17b1804b1-434a9de78ddmr184200725e9.21.1733157337122; 
- Mon, 02 Dec 2024 08:35:37 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-434b0d9bc11sm161572615e9.4.2024.12.02.08.35.36
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 02 Dec 2024 08:35:36 -0800 (PST)
-Date: Mon, 2 Dec 2024 17:35:34 +0100
-From: Simona Vetter <simona.vetter@ffwll.ch>
-To: Imre Deak <imre.deak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Jani Nikula <jani.nikula@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH v2 1/4] drm/dp: Add a way to init/add a connector in
- separate steps
-Message-ID: <Z03h1uNoAGgS0Rek@phenom.ffwll.local>
-References: <20241126161859.1858058-1-imre.deak@intel.com>
- <20241126161859.1858058-2-imre.deak@intel.com>
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9862A10E7D4;
+ Mon,  2 Dec 2024 16:51:05 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241126161859.1858058-2-imre.deak@intel.com>
-X-Operating-System: Linux phenom 6.11.6-amd64 
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/selftests=3A_Add?=
+ =?utf-8?q?_delay_to_stabilize_frequency_in_live=5Frps=5Fpower?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Sk Anirban" <sk.anirban@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 02 Dec 2024 16:51:05 -0000
+Message-ID: <173315826561.1684343.5679169670166825119@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241202151514.2785289-1-sk.anirban@intel.com>
+In-Reply-To: <20241202151514.2785289-1-sk.anirban@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,288 +37,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, Nov 26, 2024 at 06:18:56PM +0200, Imre Deak wrote:
-> Atm when the connector is added to the drm_mode_config::connector_list,
-> the connector may not be fully initialized yet. This is not a problem
-> for user space, which will see the connector only after it's registered
-> later, it could be a problem for in-kernel users looking up connectors
-> via the above list.
-> 
-> To resolve the above issue, add a way to separately initialize the DRM
-> core specific parts of the connector and add it to the above list. This
-> will move adding the connector to the list after the properties on the
-> connector have been added, this is ok since these steps don't have a
-> dependency.
-> 
-> v2: (Jani)
-> - Let initing DDC as well via drm_connector_init_core().
-> - Rename __drm_connector_init to drm_connector_init_core_and_add().
-> 
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com> (v1)
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
+== Series Details ==
 
-So looking at the thread, I guess it'd be good to document some consensus
-stance on kunit tests, and whether or not we're at the point where for new
-things or extensions of functions that already have kunit coverage we need
-them. But I think that's orthogonal.
+Series: drm/i915/selftests: Add delay to stabilize frequency in live_rps_power
+URL   : https://patchwork.freedesktop.org/series/141995/
+State : success
 
-On the patch itself, I don't think it's the right fix. And by extension, I
-don't think the i915 fix is correct either, because we have a bigger mess
-here:
+== Summary ==
 
-- GETCONNECTOR does indeed not show a connector that's not yet registers.
+CI Bug Log - changes from CI_DRM_15770 -> Patchwork_141995v1
+====================================================
 
-- But GETRESOURCES happily lists them. Which means we have a very silly
-  race here, which isn't good.
+Summary
+-------
 
-- I think the correct solution is to move the list_add to the registration
-  step, which would also move connectors in-line with other dynamically
-  added kms objects like blobs or fbs (although those have a single-step
-  registration+init function, so it's less obvious what's going on).
+  **SUCCESS**
 
-- The same thing applies on the unregister side of things, once a
-  connector is unregistered I don't think it should stick around in any
-  list. But I'm not entirely sure, would need to check with Lyude to make
-  sure this doesn't break anything in mst helpers.
+  No regressions found.
 
-Now implementing this is going to be a bit a mess:
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141995v1/index.html
 
-- For static connectors drivers _really_ want the connectors to be on the
-  lists, otherwise a lot of the driver setup code just wont work. And
-  we've worked towards removing all the explicit drm_connector_register
-  calls, readding feels a bit silly.
+Participating hosts (43 -> 41)
+------------------------------
 
-- I think short-term we could just use the connector type to decide this,
-  if it's MST it's a dynamic connector, and the list_add would need to be
-  done late in drm_connector_register.
+  Missing    (2): fi-snb-2520m bat-jsl-3 
 
-- Once the need pops up for other connectors to be dynamic (like for
-  dynamic drm_bridge hotplug) we can add a drm_connector_dynamic_init or
-  similar. I don't think splitting up _init further like you do here in
-  two functions is correct, because the only place where it's correct to
-  add a dynamic/hotplugged connector to the lists is in
-  drm_connector_register, not anywhere else.
+Known issues
+------------
 
-- It would be really nice if we could add a check to
-  drm_connector_register to make sure it's not called for any connector
-  which is already on the connector list, since that's a driver bug. Of
-  course this would mean we'd need to split that from the internal version
-  we call from drm_dev_register.
+  Here are the changes found in Patchwork_141995v1 that come from known issues:
 
-  Unfortunately that's not yet doable because the following todo isn't
-  completed yet:
+### IGT changes ###
 
-  https://dri.freedesktop.org/docs/drm/gpu/todo.html#connector-register-unregister-fixes
+#### Issues hit ####
 
-  I guess just add another bullet there?
+  * igt@kms_flip@basic-plain-flip:
+    - fi-cfl-8109u:       [PASS][1] -> [DMESG-WARN][2] ([i915#12914]) +2 other tests dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15770/fi-cfl-8109u/igt@kms_flip@basic-plain-flip.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141995v1/fi-cfl-8109u/igt@kms_flip@basic-plain-flip.html
 
-Does this sound like a plan or am I completely wrong here?
+  
+#### Possible fixes ####
 
-Cheers, Sima
+  * igt@i915_pm_rpm@module-reload:
+    - bat-dg1-7:          [FAIL][3] ([i915#12903]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15770/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141995v1/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
+    - bat-rpls-4:         [FAIL][5] ([i915#12903]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15770/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141995v1/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arlh-3:         [ABORT][7] ([i915#12061]) -> [PASS][8] +1 other test pass
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15770/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141995v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+    - {bat-mtlp-9}:       [ABORT][9] ([i915#12061]) -> [PASS][10] +1 other test pass
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15770/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141995v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#12903]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12903
+  [i915#12914]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12914
 
 
-> ---
->  drivers/gpu/drm/drm_connector.c | 111 ++++++++++++++++++++++++++------
->  include/drm/drm_connector.h     |   6 ++
->  2 files changed, 97 insertions(+), 20 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
-> index fc35f47e2849e..fd7acae8656b2 100644
-> --- a/drivers/gpu/drm/drm_connector.c
-> +++ b/drivers/gpu/drm/drm_connector.c
-> @@ -218,11 +218,11 @@ void drm_connector_free_work_fn(struct work_struct *work)
->  	}
->  }
->  
-> -static int __drm_connector_init(struct drm_device *dev,
-> -				struct drm_connector *connector,
-> -				const struct drm_connector_funcs *funcs,
-> -				int connector_type,
-> -				struct i2c_adapter *ddc)
-> +static int __drm_connector_init_core(struct drm_device *dev,
-> +				     struct drm_connector *connector,
-> +				     const struct drm_connector_funcs *funcs,
-> +				     int connector_type,
-> +				     struct i2c_adapter *ddc)
->  {
->  	struct drm_mode_config *config = &dev->mode_config;
->  	int ret;
-> @@ -273,6 +273,7 @@ static int __drm_connector_init(struct drm_device *dev,
->  	/* provide ddc symlink in sysfs */
->  	connector->ddc = ddc;
->  
-> +	INIT_LIST_HEAD(&connector->head);
->  	INIT_LIST_HEAD(&connector->global_connector_list_entry);
->  	INIT_LIST_HEAD(&connector->probed_modes);
->  	INIT_LIST_HEAD(&connector->modes);
-> @@ -288,14 +289,6 @@ static int __drm_connector_init(struct drm_device *dev,
->  
->  	drm_connector_get_cmdline_mode(connector);
->  
-> -	/* We should add connectors at the end to avoid upsetting the connector
-> -	 * index too much.
-> -	 */
-> -	spin_lock_irq(&config->connector_list_lock);
-> -	list_add_tail(&connector->head, &config->connector_list);
-> -	config->num_connector++;
-> -	spin_unlock_irq(&config->connector_list_lock);
-> -
->  	if (connector_type != DRM_MODE_CONNECTOR_VIRTUAL &&
->  	    connector_type != DRM_MODE_CONNECTOR_WRITEBACK)
->  		drm_connector_attach_edid_property(connector);
-> @@ -332,6 +325,86 @@ static int __drm_connector_init(struct drm_device *dev,
->  	return ret;
->  }
->  
-> +/**
-> + * drm_connector_init_core - Initialize the core state of a preallocated connector
-> + * @dev: DRM device
-> + * @connector: the connector to init
-> + * @funcs: callbacks for this connector
-> + * @connector_type: user visible type of the connector
-> + * @ddc: pointer to the associated ddc adapter
-> + *
-> + * Initialises the core state of preallocated connector. This is
-> + * equivalent to drm_connector_init(), without adding the connector to
-> + * drm_mode_config::connector_list. This call must be followed by calling
-> + * drm_connector_add() during initialization to expose the connector to
-> + * in-kernel users via the above list.
-> + *
-> + * Returns:
-> + * Zero on success, error code on failure.
-> + */
-> +int drm_connector_init_core(struct drm_device *dev,
-> +			    struct drm_connector *connector,
-> +			    const struct drm_connector_funcs *funcs,
-> +			    int connector_type,
-> +			    struct i2c_adapter *ddc)
-> +{
-> +	if (drm_WARN_ON(dev, !(funcs && funcs->destroy)))
-> +		return -EINVAL;
-> +
-> +	return __drm_connector_init_core(dev, connector, funcs, connector_type, ddc);
-> +}
-> +EXPORT_SYMBOL(drm_connector_init_core);
-> +
-> +/**
-> + * drm_connector_add - Add the connector
-> + * @connector: the connector to add
-> + *
-> + * Add the connector to the drm_mode_config::connector_list, exposing the
-> + * connector to in-kernel users. This call must be preceded by a call to
-> + * drm_connector_init_core().
-> + */
-> +void drm_connector_add(struct drm_connector *connector)
-> +{
-> +	struct drm_device *dev = connector->dev;
-> +	struct drm_mode_config *config = &dev->mode_config;
-> +
-> +	spin_lock_irq(&config->connector_list_lock);
-> +	list_add_tail(&connector->head, &config->connector_list);
-> +	config->num_connector++;
-> +	spin_unlock_irq(&config->connector_list_lock);
-> +}
-> +EXPORT_SYMBOL(drm_connector_add);
-> +
-> +static void drm_connector_remove(struct drm_connector *connector)
-> +{
-> +	struct drm_device *dev = connector->dev;
-> +
-> +	if (list_empty(&connector->head))
-> +		return;
-> +
-> +	spin_lock_irq(&dev->mode_config.connector_list_lock);
-> +	list_del_init(&connector->head);
-> +	dev->mode_config.num_connector--;
-> +	spin_unlock_irq(&dev->mode_config.connector_list_lock);
-> +}
-> +
-> +static int drm_connector_init_core_and_add(struct drm_device *dev,
-> +					   struct drm_connector *connector,
-> +					   const struct drm_connector_funcs *funcs,
-> +					   int connector_type,
-> +					   struct i2c_adapter *ddc)
-> +{
-> +	int ret;
-> +
-> +	ret = __drm_connector_init_core(dev, connector, funcs, connector_type, ddc);
-> +	if (ret)
-> +		return ret;
-> +
-> +	drm_connector_add(connector);
-> +
-> +	return 0;
-> +}
-> +
->  /**
->   * drm_connector_init - Init a preallocated connector
->   * @dev: DRM device
-> @@ -361,7 +434,7 @@ int drm_connector_init(struct drm_device *dev,
->  	if (drm_WARN_ON(dev, !(funcs && funcs->destroy)))
->  		return -EINVAL;
->  
-> -	return __drm_connector_init(dev, connector, funcs, connector_type, NULL);
-> +	return drm_connector_init_core_and_add(dev, connector, funcs, connector_type, NULL);
->  }
->  EXPORT_SYMBOL(drm_connector_init);
->  
-> @@ -398,7 +471,7 @@ int drm_connector_init_with_ddc(struct drm_device *dev,
->  	if (drm_WARN_ON(dev, !(funcs && funcs->destroy)))
->  		return -EINVAL;
->  
-> -	return __drm_connector_init(dev, connector, funcs, connector_type, ddc);
-> +	return drm_connector_init_core_and_add(dev, connector, funcs, connector_type, ddc);
->  }
->  EXPORT_SYMBOL(drm_connector_init_with_ddc);
->  
-> @@ -442,7 +515,7 @@ int drmm_connector_init(struct drm_device *dev,
->  	if (drm_WARN_ON(dev, funcs && funcs->destroy))
->  		return -EINVAL;
->  
-> -	ret = __drm_connector_init(dev, connector, funcs, connector_type, ddc);
-> +	ret = drm_connector_init_core_and_add(dev, connector, funcs, connector_type, ddc);
->  	if (ret)
->  		return ret;
->  
-> @@ -659,10 +732,8 @@ void drm_connector_cleanup(struct drm_connector *connector)
->  	connector->name = NULL;
->  	fwnode_handle_put(connector->fwnode);
->  	connector->fwnode = NULL;
-> -	spin_lock_irq(&dev->mode_config.connector_list_lock);
-> -	list_del(&connector->head);
-> -	dev->mode_config.num_connector--;
-> -	spin_unlock_irq(&dev->mode_config.connector_list_lock);
-> +
-> +	drm_connector_remove(connector);
->  
->  	WARN_ON(connector->state && !connector->funcs->atomic_destroy_state);
->  	if (connector->state && connector->funcs->atomic_destroy_state)
-> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
-> index e3fa43291f449..2476dcbd3c34d 100644
-> --- a/include/drm/drm_connector.h
-> +++ b/include/drm/drm_connector.h
-> @@ -2122,6 +2122,12 @@ struct drm_connector {
->  
->  #define obj_to_connector(x) container_of(x, struct drm_connector, base)
->  
-> +int drm_connector_init_core(struct drm_device *dev,
-> +			    struct drm_connector *connector,
-> +			    const struct drm_connector_funcs *funcs,
-> +			    int connector_type,
-> +			    struct i2c_adapter *ddc);
-> +void drm_connector_add(struct drm_connector *connector);
->  int drm_connector_init(struct drm_device *dev,
->  		       struct drm_connector *connector,
->  		       const struct drm_connector_funcs *funcs,
-> -- 
-> 2.44.2
-> 
+Build changes
+-------------
 
--- 
-Simona Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+  * Linux: CI_DRM_15770 -> Patchwork_141995v1
+
+  CI-20190529: 20190529
+  CI_DRM_15770: 77777471ae59ce2f0d0e74d55c60014cf02bd4df @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8132: 7675e070cb74c6808050764367f978f6b74ebc36 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_141995v1: 77777471ae59ce2f0d0e74d55c60014cf02bd4df @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141995v1/index.html
