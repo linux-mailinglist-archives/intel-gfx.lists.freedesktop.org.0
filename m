@@ -2,56 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7DFB9DFB9D
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Dec 2024 09:06:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B9399DFB9F
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Dec 2024 09:08:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8165E10E644;
-	Mon,  2 Dec 2024 08:06:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9968E10E082;
+	Mon,  2 Dec 2024 08:08:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TnriXRAv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S4dfShbo";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BA1010E644
- for <intel-gfx@lists.freedesktop.org>; Mon,  2 Dec 2024 08:06:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 035B210E082;
+ Mon,  2 Dec 2024 08:07:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733126772; x=1764662772;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=u+2MUsp3YkZcNp1UpgOv52VR/TEa3Gos6SdHtpMM4Ug=;
- b=TnriXRAvlGVlGieTD6KeEgXotbqTOFDTktdh1gMOgo10/JmmMyiZOiZC
- tTx2+EK84AajX9fdwGT9RSPQyhLND0ZWVzwO47d/tCtYDXY0zDlxd733E
- LQHZBqyEyrVPqT4wx0pODheemCPB25Kxq2+LWTj8+7+PtDEyNHYNo4doR
- 21nr5HqqLEfwbASAJzEfEPfViZ4G/aeCIVRBfJ6HB7CYohUSP24S0qjJX
- w+rSMjXDeaqzKwNuRmHMkCOWcQVOos/ovQSX+RWNxvDEEib3eH1Bi5prR
- 70Ethn/k4H/y6TtzFyDR+mvr9EibIrnXN38mXeDytwHhV5FZJBEEdhugD Q==;
-X-CSE-ConnectionGUID: +0a68U1/RN2Mvt3VKpY0Vg==
-X-CSE-MsgGUID: lTrVYkQpT+2rvzvq4M6y5w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11273"; a="50694391"
-X-IronPort-AV: E=Sophos;i="6.12,201,1728975600"; d="scan'208";a="50694391"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2024 00:06:11 -0800
-X-CSE-ConnectionGUID: rbsuhpXbQ46XsHDzFklj6A==
-X-CSE-MsgGUID: Lxpj/QddSNKVFNHnNpj/1Q==
+ t=1733126880; x=1764662880;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=g1c8VLfHC911GFwkbszh1lMygP1JoQ4SivJ3Uzr/lns=;
+ b=S4dfShboluQS9O5xZAxNn09OLUanS1jyUWqNjOLqyjJ9wH1MFn2tQGrb
+ Wr+6y+8pqPPKf1wOKa4zz6ltw1+LO//wGoAB8qtefZeebLNpYy6KZlsoL
+ 6pKcCSh5F8GvkMWd64YgkYr3aJlJQIuEuIDxOtaIzzVBeqttYqi2McfWb
+ ZWJHmwOcn6p84waoRvD6ROhBKPUAdlsxSYJs+zq5UZlOd+LbqFhbgOz3L
+ RLCHS9NCQDZ3CVcnHRey/mzEDDmuyzcG53yslM8sNnjVb/rkXR7uPvV4d
+ yWNqnw/da0VhowmLmR9uErPHlnpjq33dC39gtRwCfYLnhlX82piKcR4gM w==;
+X-CSE-ConnectionGUID: ZXUN2IxJTiOErdyZEE9x+Q==
+X-CSE-MsgGUID: RVK6HpZLSsyawe9hylf3ZQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11273"; a="32636430"
+X-IronPort-AV: E=Sophos;i="6.12,201,1728975600"; d="scan'208";a="32636430"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Dec 2024 00:07:59 -0800
+X-CSE-ConnectionGUID: IKb2ij1+S9qJyPm1DZc/ug==
+X-CSE-MsgGUID: Vp2KeqXAQDylWJTXOOTNrQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,201,1728975600"; d="scan'208";a="93212339"
-Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
- by fmviesa008.fm.intel.com with ESMTP; 02 Dec 2024 00:06:10 -0800
-From: Animesh Manna <animesh.manna@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: jouni.hogander@intel.com, jeevan.b@intel.com,
- Animesh Manna <animesh.manna@intel.com>
-Subject: [PATCH 2/2] drm/i915/lobf: Add debug print for LOBF
-Date: Mon,  2 Dec 2024 13:16:14 +0530
-Message-Id: <20241202074615.3601692-3-animesh.manna@intel.com>
-X-Mailer: git-send-email 2.29.0
-In-Reply-To: <20241202074615.3601692-1-animesh.manna@intel.com>
-References: <20241202074615.3601692-1-animesh.manna@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,201,1728975600"; d="scan'208";a="130512551"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Dec 2024 00:07:54 -0800
+Date: Mon, 2 Dec 2024 10:07:51 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: =?iso-8859-1?Q?Andr=E9?= Almeida <andrealmeid@igalia.com>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
+ aravind.iddamsetty@linux.intel.com, christian.koenig@amd.com,
+ rodrigo.vivi@intel.com, michal.wajdeczko@intel.com,
+ lina@asahilina.net, anshuman.gupta@intel.com,
+ alexander.deucher@amd.com, amd-gfx@lists.freedesktop.org,
+ kernel-dev@igalia.com, airlied@gmail.com, simona@ffwll.ch,
+ lucas.demarchi@intel.com, jani.nikula@linux.intel.com,
+ andriy.shevchenko@linux.intel.com
+Subject: Re: [PATCH v10 1/4] drm: Introduce device wedged event
+Message-ID: <Z01q1-7OF7jgANEM@black.fi.intel.com>
+References: <20241128153707.1294347-1-raag.jadav@intel.com>
+ <20241128153707.1294347-2-raag.jadav@intel.com>
+ <1d448e67-0c28-4e21-afdd-223495346921@igalia.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <1d448e67-0c28-4e21-afdd-223495346921@igalia.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,31 +78,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Lobf is enabled part of ALPM configuration and if has_lobf
-is set to true respective bit for LOBF will be set. Add debug
-print while setting the bitfield of LOBF.
+On Fri, Nov 29, 2024 at 10:40:14AM -0300, André Almeida wrote:
+> Hi Raag,
+> 
+> Em 28/11/2024 12:37, Raag Jadav escreveu:
+> > Introduce device wedged event, which notifies userspace of 'wedged'
+> > (hanged/unusable) state of the DRM device through a uevent. This is
+> > useful especially in cases where the device is no longer operating as
+> > expected and has become unrecoverable from driver context. Purpose of
+> > this implementation is to provide drivers a generic way to recover with
+> > the help of userspace intervention without taking any drastic measures
+> > in the driver.
+> > 
+> > A 'wedged' device is basically a dead device that needs attention. The
+> > uevent is the notification that is sent to userspace along with a hint
+> > about what could possibly be attempted to recover the device and bring
+> > it back to usable state. Different drivers may have different ideas of
+> > a 'wedged' device depending on their hardware implementation, and hence
+> > the vendor agnostic nature of the event. It is up to the drivers to
+> > decide when they see the need for device recovery and how they want to
+> > recover from the available methods.
+> > 
+> 
+> Thank you for your work. Do you think you can add the optional PID
+> parameter, as the PID of the app that caused the reset? For SteamOS use case
+> it has been proved to be useful to kill the fault app as well. If the reset
+> was caused by a kthread, no PID can be provided hence it's an optional
+> parameter.
 
-Signed-off-by: Animesh Manna <animesh.manna@intel.com>
----
- drivers/gpu/drm/i915/display/intel_alpm.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+Hmm, I'm not sure if it really fits here since it doesn't seem like
+a generic usecase.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-index 45865a8d1dd2..fd77fcbd81aa 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.c
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-@@ -353,8 +353,10 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp,
- 			ALPM_CTL_EXTENDED_FAST_WAKE_TIME(intel_dp->alpm_parameters.fast_wake_lines);
- 	}
- 
--	if (crtc_state->has_lobf)
-+	if (crtc_state->has_lobf) {
- 		alpm_ctl |= ALPM_CTL_LOBF_ENABLE;
-+		drm_dbg_kms(display->drm, "Link off between frames (LOBF) enabled\n");
-+	}
- 
- 	alpm_ctl |= ALPM_CTL_ALPM_ENTRY_CHECK(intel_dp->alpm_parameters.check_entry_lines);
- 
--- 
-2.29.0
+I'd still be open for it if found useful by the drivers but perhaps
+as an extended feature in a separate series.
 
+Raag
