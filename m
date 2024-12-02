@@ -2,58 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 945EE9E0490
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Dec 2024 15:14:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D5BBA9E04EC
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Dec 2024 15:30:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B07C10E75E;
-	Mon,  2 Dec 2024 14:14:54 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Oq5DA4eD";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71A9D10E27E;
+	Mon,  2 Dec 2024 14:30:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 39A3310E75E
- for <intel-gfx@lists.freedesktop.org>; Mon,  2 Dec 2024 14:14:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733148894; x=1764684894;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=CFYr3jjhVaoHw7QEPZUQpCbwNjqQ/5WgXVYVOtRzKTc=;
- b=Oq5DA4eDb29MPD3WEZH2m/X6F3TOadbhJXuZOecSoG9fvolIpFD7TXxj
- RWopSIkLTiMmt84+d8FQK91pjIM26O14dudtEPgBDsGkKBIRTRIzCTDJp
- oVZJ+kPwu8FyDU/N8yAgaVIrf/z2EUZVkrCEQEnBV8+l5zoJ5uWgCHxn3
- z8P3QUheGqh4Qyezc/Qet5Ne3LnPyG7oTiVzMeKNF6ENa3xo8X2ULASjf
- E1t6OIJpT+Q0bNN+va6T+PkiM7Co22XYsTevX+2jOJFkObq2x2MsPD4/d
- BkY10LOmMNlioJFW0jFmFScVazHA9hRnf+K4l9SVer/3GiIlPRb8sXX6Y g==;
-X-CSE-ConnectionGUID: oT3pnjzRQxWdajZsxz64rA==
-X-CSE-MsgGUID: mVMOLaaVSQyfxuZqnz8GeA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11274"; a="55807273"
-X-IronPort-AV: E=Sophos;i="6.12,202,1728975600"; d="scan'208";a="55807273"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2024 06:14:53 -0800
-X-CSE-ConnectionGUID: HizgTLT9Q+GPS+LOHtEJJg==
-X-CSE-MsgGUID: MYdSz/ffTQK24ZWTJMOeHQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,202,1728975600"; d="scan'208";a="93287773"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 02 Dec 2024 06:14:51 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 02 Dec 2024 16:14:50 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v2 9/9] drm/i915: Carve up skl_get_plane_caps()
-Date: Mon,  2 Dec 2024 16:14:24 +0200
-Message-ID: <20241202141424.21446-10-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241202141424.21446-1-ville.syrjala@linux.intel.com>
-References: <20241202141424.21446-1-ville.syrjala@linux.intel.com>
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B20B10E27E;
+ Mon,  2 Dec 2024 14:30:03 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_remov?=
+ =?utf-8?q?e_unused_for=5Feach=5Fcrtc=28=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 02 Dec 2024 14:30:03 -0000
+Message-ID: <173314980356.1660722.2458398596336103671@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241202125437.1154945-1-jani.nikula@intel.com>
+In-Reply-To: <20241202125437.1154945-1-jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,144 +37,100 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+== Series Details ==
 
-Split skl_get_plane_caps() into four variants:
-skl_plane_caps(), glk_plane_caps(), icl_plane_caps(),
-tgl_plane_caps().
+Series: drm/i915/display: remove unused for_each_crtc()
+URL   : https://patchwork.freedesktop.org/series/141990/
+State : success
 
-Makes it easier to figure out what is actually going on there.
+== Summary ==
 
-v2: skl_plane_caps() should return u8 not bool
-v3: Rebase due to intel_display changes
+CI Bug Log - changes from CI_DRM_15769 -> Patchwork_141990v1
+====================================================
 
-Reviewed-by: Jouni Högander <jouni.hogander@intel.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- .../drm/i915/display/skl_universal_plane.c    | 81 +++++++++++++------
- 1 file changed, 57 insertions(+), 24 deletions(-)
+Summary
+-------
 
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index b06dc106305e..26a44da63352 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -2589,48 +2589,74 @@ skl_plane_disable_flip_done(struct intel_plane *plane)
- static bool skl_plane_has_rc_ccs(struct drm_i915_private *i915,
- 				 enum pipe pipe, enum plane_id plane_id)
- {
--	if (DISPLAY_VER(i915) >= 11)
--		return true;
--
--	if (IS_GEMINILAKE(i915))
--		return pipe != PIPE_C;
--
- 	return pipe != PIPE_C &&
- 		(plane_id == PLANE_1 || plane_id == PLANE_2);
- }
- 
-+static u8 skl_plane_caps(struct drm_i915_private *i915,
-+			 enum pipe pipe, enum plane_id plane_id)
-+{
-+	u8 caps = INTEL_PLANE_CAP_TILING_X |
-+		INTEL_PLANE_CAP_TILING_Y |
-+		INTEL_PLANE_CAP_TILING_Yf;
-+
-+	if (skl_plane_has_rc_ccs(i915, pipe, plane_id))
-+		caps |= INTEL_PLANE_CAP_CCS_RC;
-+
-+	return caps;
-+}
-+
-+static bool glk_plane_has_rc_ccs(struct drm_i915_private *i915,
-+				 enum pipe pipe)
-+{
-+	return pipe != PIPE_C;
-+}
-+
-+static u8 glk_plane_caps(struct drm_i915_private *i915,
-+			 enum pipe pipe, enum plane_id plane_id)
-+{
-+	u8 caps = INTEL_PLANE_CAP_TILING_X |
-+		INTEL_PLANE_CAP_TILING_Y |
-+		INTEL_PLANE_CAP_TILING_Yf;
-+
-+	if (glk_plane_has_rc_ccs(i915, pipe))
-+		caps |= INTEL_PLANE_CAP_CCS_RC;
-+
-+	return caps;
-+}
-+
-+static u8 icl_plane_caps(struct drm_i915_private *i915,
-+			 enum pipe pipe, enum plane_id plane_id)
-+{
-+	return INTEL_PLANE_CAP_TILING_X |
-+		INTEL_PLANE_CAP_TILING_Y |
-+		INTEL_PLANE_CAP_TILING_Yf |
-+		INTEL_PLANE_CAP_CCS_RC;
-+}
-+
- static bool tgl_plane_has_mc_ccs(struct drm_i915_private *i915,
- 				 enum plane_id plane_id)
- {
--	if (DISPLAY_VER(i915) < 12)
--		return false;
--
- 	/* Wa_14010477008 */
- 	if (IS_DG1(i915) || IS_ROCKETLAKE(i915) ||
--		(IS_TIGERLAKE(i915) && IS_DISPLAY_STEP(i915, STEP_A0, STEP_D0)))
-+	    (IS_TIGERLAKE(i915) && IS_DISPLAY_STEP(i915, STEP_A0, STEP_D0)))
- 		return false;
- 
- 	return plane_id < PLANE_6;
- }
- 
--static u8 skl_get_plane_caps(struct drm_i915_private *i915,
--			     enum pipe pipe, enum plane_id plane_id)
-+static u8 tgl_plane_caps(struct drm_i915_private *i915,
-+			 enum pipe pipe, enum plane_id plane_id)
- {
- 	struct intel_display *display = &i915->display;
--	u8 caps = INTEL_PLANE_CAP_TILING_X;
-+	u8 caps = INTEL_PLANE_CAP_TILING_X |
-+		INTEL_PLANE_CAP_CCS_RC |
-+		INTEL_PLANE_CAP_CCS_RC_CC;
- 
--	if (DISPLAY_VER(display) < 13 || display->platform.alderlake_p)
--		caps |= INTEL_PLANE_CAP_TILING_Y;
--	if (DISPLAY_VER(display) < 12)
--		caps |= INTEL_PLANE_CAP_TILING_Yf;
- 	if (HAS_4TILE(display))
- 		caps |= INTEL_PLANE_CAP_TILING_4;
--
--	if (skl_plane_has_rc_ccs(i915, pipe, plane_id)) {
--		caps |= INTEL_PLANE_CAP_CCS_RC;
--		if (DISPLAY_VER(display) >= 12)
--			caps |= INTEL_PLANE_CAP_CCS_RC_CC;
--	}
-+	else
-+		caps |= INTEL_PLANE_CAP_TILING_Y;
- 
- 	if (tgl_plane_has_mc_ccs(i915, plane_id))
- 		caps |= INTEL_PLANE_CAP_CCS_MC;
-@@ -2746,7 +2772,14 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
- 	else
- 		plane_type = DRM_PLANE_TYPE_OVERLAY;
- 
--	caps = skl_get_plane_caps(dev_priv, pipe, plane_id);
-+	if (DISPLAY_VER(dev_priv) >= 12)
-+		caps = tgl_plane_caps(dev_priv, pipe, plane_id);
-+	else if (DISPLAY_VER(dev_priv) == 11)
-+		caps = icl_plane_caps(dev_priv, pipe, plane_id);
-+	else if (DISPLAY_VER(dev_priv) == 10)
-+		caps = glk_plane_caps(dev_priv, pipe, plane_id);
-+	else
-+		caps = skl_plane_caps(dev_priv, pipe, plane_id);
- 
- 	/* FIXME: xe has problems with AUX */
- 	if (!IS_ENABLED(I915) && !HAS_FLAT_CCS(dev_priv))
--- 
-2.45.2
+  **SUCCESS**
 
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141990v1/index.html
+
+Participating hosts (44 -> 42)
+------------------------------
+
+  Missing    (2): bat-arls-6 fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_141990v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - bat-dg1-7:          [PASS][1] -> [FAIL][2] ([i915#12903])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15769/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141990v1/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
+
+  * igt@kms_pipe_crc_basic@read-crc:
+    - bat-dg2-11:         [PASS][3] -> [SKIP][4] ([i915#9197])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15769/bat-dg2-11/igt@kms_pipe_crc_basic@read-crc.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141990v1/bat-dg2-11/igt@kms_pipe_crc_basic@read-crc.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live:
+    - bat-mtlp-8:         [ABORT][5] ([i915#12061]) -> [PASS][6] +1 other test pass
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15769/bat-mtlp-8/igt@i915_selftest@live.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141990v1/bat-mtlp-8/igt@i915_selftest@live.html
+    - fi-tgl-1115g4:      [DMESG-FAIL][7] -> [PASS][8] +1 other test pass
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15769/fi-tgl-1115g4/igt@i915_selftest@live.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141990v1/fi-tgl-1115g4/igt@i915_selftest@live.html
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - {bat-mtlp-9}:       [FAIL][9] ([i915#11989]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15769/bat-mtlp-9/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141990v1/bat-mtlp-9/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@b-dp6:
+    - {bat-mtlp-9}:       [FAIL][11] -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15769/bat-mtlp-9/igt@kms_flip@basic-flip-vs-wf_vblank@b-dp6.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141990v1/bat-mtlp-9/igt@kms_flip@basic-flip-vs-wf_vblank@b-dp6.html
+
+  * igt@kms_pm_rpm@basic-pci-d3-state:
+    - fi-kbl-7567u:       [DMESG-WARN][13] -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15769/fi-kbl-7567u/igt@kms_pm_rpm@basic-pci-d3-state.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141990v1/fi-kbl-7567u/igt@kms_pm_rpm@basic-pci-d3-state.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#11989]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11989
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#12903]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12903
+  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_15769 -> Patchwork_141990v1
+
+  CI-20190529: 20190529
+  CI_DRM_15769: 4ca0f09b17f7d61413bc13bff715747419c5d325 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8132: 7675e070cb74c6808050764367f978f6b74ebc36 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_141990v1: 4ca0f09b17f7d61413bc13bff715747419c5d325 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141990v1/index.html
