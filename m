@@ -2,29 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D76569E05A5
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Dec 2024 15:56:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ACB449E061E
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Dec 2024 16:01:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF1E610E784;
-	Mon,  2 Dec 2024 14:56:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D23210E78E;
+	Mon,  2 Dec 2024 15:01:53 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XJxIjvYf";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 488E110E784;
- Mon,  2 Dec 2024 14:56:17 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A6A5810E78D;
+ Mon,  2 Dec 2024 15:01:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1733151711; x=1764687711;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=7J4RXD6BuY21QkH0nj14TfCXOaSXwMjvrpYYEMSM3MU=;
+ b=XJxIjvYfYkqEOx5OCCAxZQmeMYiA0M5KowD2hBXk3tghtP+di4kmjOBT
+ zwMyXyNo6hFZrkdRKNSGxhsaL5JWKmvzNzW2vHsyC6zHl8nl9Ksh3n1KP
+ JcweW7meaxrh7eDt0mnb3piNpyriJo2F0SQtJDaDk8TR6x1PUbx9i4jgA
+ YMSXTmCFNajSArZV9db27M5P0YqAwloImA89dwMb7vXDWVkYOd+VY4M7r
+ PAm/RDhjGbfcIU+NY3KmRIabT2sUgfTzTr77bg0uaLppKAj219TOAAJRV
+ 9NOdZakOYWbBwfD7LYhpFiF4vtDi2cek8wxsI0jLjvK72KM1laQvUe5c1 A==;
+X-CSE-ConnectionGUID: Ae8v7fMpQTCyFKWvJ+MOFg==
+X-CSE-MsgGUID: VeXMzJsXQAug7AqErQ83BQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11274"; a="37098075"
+X-IronPort-AV: E=Sophos;i="6.12,202,1728975600"; d="scan'208";a="37098075"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Dec 2024 07:01:51 -0800
+X-CSE-ConnectionGUID: 9lWl16+bQ1mWxMjyUMuPCQ==
+X-CSE-MsgGUID: 0LXc3enATruoOYam6o9MQQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,202,1728975600"; d="scan'208";a="93963303"
+Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.77])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Dec 2024 07:01:49 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH] drm/i915/display: replace dig_port->saved_port_bits
+ with flags
+In-Reply-To: <173314429606.2905.1225130957745348760@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20241129102503.452272-1-jani.nikula@intel.com>
+ <173314429606.2905.1225130957745348760@intel.com>
+Date: Mon, 02 Dec 2024 17:01:37 +0200
+Message-ID: <87h67m5dta.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915=3A_Async_flip_+_?=
- =?utf-8?q?compression=2C_and_some_plane_cleanups_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 02 Dec 2024 14:56:17 -0000
-Message-ID: <173315137729.1660722.3268387935297537616@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241202141424.21446-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20241202141424.21446-1-ville.syrjala@linux.intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,103 +66,25 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, 02 Dec 2024, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
+> Quoting Jani Nikula (2024-11-29 07:25:03-03:00)
+>>dig_port->saved_port_bits is used to permanently store two DDI_BUF_CTL
+>>bits, DDI_BUF_PORT_REVERSAL and DDI_A_4_LANES. Store them separately as
+>>bools to make their use more logical and less about storing state as
+>>register bits.
+>>
+>>Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
 
-Series: drm/i915: Async flip + compression, and some plane cleanups (rev4)
-URL   : https://patchwork.freedesktop.org/series/139807/
-State : success
+Thanks, pushed to din.
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_15769 -> Patchwork_139807v4
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139807v4/index.html
-
-Participating hosts (44 -> 42)
-------------------------------
-
-  Missing    (2): bat-arls-6 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_139807v4 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - bat-dg1-7:          [PASS][1] -> [FAIL][2] ([i915#12903])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15769/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139807v4/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
-    - bat-rpls-4:         [PASS][3] -> [FAIL][4] ([i915#12903])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15769/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139807v4/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live:
-    - bat-mtlp-8:         [ABORT][5] ([i915#12061]) -> [PASS][6] +1 other test pass
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15769/bat-mtlp-8/igt@i915_selftest@live.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139807v4/bat-mtlp-8/igt@i915_selftest@live.html
-    - fi-tgl-1115g4:      [DMESG-FAIL][7] -> [PASS][8] +1 other test pass
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15769/fi-tgl-1115g4/igt@i915_selftest@live.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139807v4/fi-tgl-1115g4/igt@i915_selftest@live.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank:
-    - {bat-mtlp-9}:       [FAIL][9] ([i915#11989]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15769/bat-mtlp-9/igt@kms_flip@basic-flip-vs-wf_vblank.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139807v4/bat-mtlp-9/igt@kms_flip@basic-flip-vs-wf_vblank.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@b-dp6:
-    - {bat-mtlp-9}:       [FAIL][11] -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15769/bat-mtlp-9/igt@kms_flip@basic-flip-vs-wf_vblank@b-dp6.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139807v4/bat-mtlp-9/igt@kms_flip@basic-flip-vs-wf_vblank@b-dp6.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         [SKIP][13] ([i915#9197]) -> [PASS][14] +1 other test pass
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15769/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139807v4/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  * igt@kms_pm_rpm@basic-pci-d3-state:
-    - fi-kbl-7567u:       [DMESG-WARN][15] -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15769/fi-kbl-7567u/igt@kms_pm_rpm@basic-pci-d3-state.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139807v4/fi-kbl-7567u/igt@kms_pm_rpm@basic-pci-d3-state.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#11989]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11989
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12903]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12903
-  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
+BR,
+Jani.
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_15769 -> Patchwork_139807v4
-
-  CI-20190529: 20190529
-  CI_DRM_15769: 4ca0f09b17f7d61413bc13bff715747419c5d325 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8132: 7675e070cb74c6808050764367f978f6b74ebc36 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_139807v4: 4ca0f09b17f7d61413bc13bff715747419c5d325 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139807v4/index.html
+-- 
+Jani Nikula, Intel
