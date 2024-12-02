@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFAB19DF906
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Dec 2024 03:43:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 462F69DF907
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Dec 2024 03:43:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9AB2210E416;
-	Mon,  2 Dec 2024 02:43:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E204310E2F7;
+	Mon,  2 Dec 2024 02:43:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T1pLqHrZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IqmBrE3C";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9072C10E414;
- Mon,  2 Dec 2024 02:43:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73BD210E629;
+ Mon,  2 Dec 2024 02:43:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733107417; x=1764643417;
+ t=1733107419; x=1764643419;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=kr8KxyBE1N1kKfxYgvvzkIjxZnFGbta9wTlPFcdY6p8=;
- b=T1pLqHrZjuy2tKCEw9Di8jRgVwEzLAUR/ESs6We0G/1ZSDrb4ibUym7/
- zwURSI2+X0Q557WqWsWKROoX051btQfDvWNml77g88ZS7zayH/kc6adVi
- t2Ep0LNUJ/eKND0d/wiiA5aoP5CEvhF/5t5qPkOm6urDBltHR6JkRBzWy
- dHsOS3GDpxK6SAwcF8/N3v8e4PdyE2HjM9OKdxNM3V8Qeywqyq6HiOfKe
- H/m2fb0nVRvE+kQ79O9LD7Xyp2kkKTj20wxDtfxrYnjzxOcgHZ3uw4TAI
- 2Rl4sE665nREPqc45ZwIWk0lw9ME4D1SrfwtPyjEVUB4MI+CCQlzA4NaO A==;
-X-CSE-ConnectionGUID: qpypqZbTSBqF+zViRYZKKA==
-X-CSE-MsgGUID: 4RXIUhPJSbCKPVwhdE/RpA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11273"; a="44634853"
-X-IronPort-AV: E=Sophos;i="6.12,201,1728975600"; d="scan'208";a="44634853"
+ bh=lz4Xt3OiTLKV1FNq/MFN6Lft1td7esa608UCVvSd96s=;
+ b=IqmBrE3CLbB8yE6HBlGcrjy1bx94pnNcBKW3qCU5HMVmAs27F83qoUZg
+ AbAhhLPlqu+v74j5Kn80SUTULCzGpWOWJy0XzWal+7uLV0ccwYEKs1ZGl
+ kol7Jr97me0U0ENoApTbn81aa7ghFVrxZrsrCvJ3WjN13jChhKpHTfBIJ
+ 3QNvfHxbq7+oFjnkPpoCwbNR36LY8RTF4BUx3I/GaAr53d7Op868201y/
+ wQJPui5oWXXLO0tBcKZx/sUQL/p8kNFi8vfQn/+qDk2qsQNvHiO7HSRO5
+ ul4dycJqOzdGL22zXAUrBUBj+RSq+1sPB1k1qJ+6l9sCuhym0re16aHZT w==;
+X-CSE-ConnectionGUID: 3OhroNCGSOeV1mohfToymQ==
+X-CSE-MsgGUID: Xo+OG61WSX+NWP3bgm5Gaw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11273"; a="44634858"
+X-IronPort-AV: E=Sophos;i="6.12,201,1728975600"; d="scan'208";a="44634858"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2024 18:43:37 -0800
-X-CSE-ConnectionGUID: 0yaniby9S7io78qLqSwQQQ==
-X-CSE-MsgGUID: ylbwZqviS9eKggRwjC8Vsw==
+ 01 Dec 2024 18:43:39 -0800
+X-CSE-ConnectionGUID: iVdU/hCdQM+rofkLVyoCBg==
+X-CSE-MsgGUID: FNi2ZoBpRKaNx5iqerG6QQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,201,1728975600"; d="scan'208";a="92878207"
+X-IronPort-AV: E=Sophos;i="6.12,201,1728975600"; d="scan'208";a="92878212"
 Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by orviesa010.jf.intel.com with ESMTP; 01 Dec 2024 18:43:35 -0800
+ by orviesa010.jf.intel.com with ESMTP; 01 Dec 2024 18:43:37 -0800
 From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, ville.syrjala@linux.intel.com,
  jani.nikula@intel.com, ankit.k.nautiyal@intel.com
-Subject: [PATCH v5 4/6] drm/i915/dp: Compute as_sdp.vtotal based on vrr timings
-Date: Mon,  2 Dec 2024 08:15:38 +0530
-Message-ID: <20241202024540.2578856-5-mitulkumar.ajitkumar.golani@intel.com>
+Subject: [PATCH v5 5/6] drm/i915/dp: Compute as_sdp based on if vrr possible
+Date: Mon,  2 Dec 2024 08:15:39 +0530
+Message-ID: <20241202024540.2578856-6-mitulkumar.ajitkumar.golani@intel.com>
 X-Mailer: git-send-email 2.46.0
 In-Reply-To: <20241202024540.2578856-1-mitulkumar.ajitkumar.golani@intel.com>
 References: <20241202024540.2578856-1-mitulkumar.ajitkumar.golani@intel.com>
@@ -67,41 +67,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Compute as_sdp.vtotal based on minimum vtotal calculated
-during vrr computation.
+Adaptive sync sdp param computation, we can configure during
+full modeset as well when sink is having vrr support, where
+it doesn't need dependency on vrr.enable status and can also
+match vrr enable/disable fastset requirement.
 
 --v2:
- - make a separate patch and update to vmin only [Ankit].
-
---v3:
- - Update vtotal to vmin for cmrr case as well [Ankit].
+ - Separate the change from as_sdp.vtotal. [Ankit]
 
 Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 306c00cab57e..98573dd69028 100644
+index 98573dd69028..73a1a839e0a1 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2815,15 +2815,14 @@ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
- 	as_sdp->sdp_type = DP_SDP_ADAPTIVE_SYNC;
- 	as_sdp->length = 0x9;
- 	as_sdp->duration_incr_ms = 0;
-+	as_sdp->vtotal = crtc_state->vrr.vmin;
+@@ -2807,7 +2807,7 @@ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
+ 	const struct drm_display_mode *adjusted_mode =
+ 		&crtc_state->hw.adjusted_mode;
  
- 	if (crtc_state->cmrr.enable) {
- 		as_sdp->mode = DP_AS_SDP_FAVT_TRR_REACHED;
--		as_sdp->vtotal = adjusted_mode->vtotal;
- 		as_sdp->target_rr = drm_mode_vrefresh(adjusted_mode);
- 		as_sdp->target_rr_divider = true;
- 	} else {
- 		as_sdp->mode = DP_AS_SDP_AVT_DYNAMIC_VTOTAL;
--		as_sdp->vtotal = adjusted_mode->vtotal;
- 		as_sdp->target_rr = 0;
- 	}
- }
+-	if (!crtc_state->vrr.enable || !intel_dp->as_sdp_supported)
++	if (!intel_vrr_possible(crtc_state) || !intel_dp->as_sdp_supported)
+ 		return;
+ 
+ 	crtc_state->infoframes.enable |= intel_hdmi_infoframe_enable(DP_SDP_ADAPTIVE_SYNC);
 -- 
 2.46.0
 
