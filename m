@@ -2,79 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4281F9E0125
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Dec 2024 13:00:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 07B729E0189
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Dec 2024 13:07:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9FE410E6EF;
-	Mon,  2 Dec 2024 12:00:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7C9410E70E;
+	Mon,  2 Dec 2024 12:07:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="YNJkDSvb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KxNExCnw";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 44EC510E6F2;
- Mon,  2 Dec 2024 12:00:27 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 7E8635C6468;
- Mon,  2 Dec 2024 11:59:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89875C4CED2;
- Mon,  2 Dec 2024 12:00:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1733140826;
- bh=uq6P50nPVqYzYznK6CDOgelQtYASy802lUz2VNa3X4k=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=YNJkDSvbo8lkY9GLqT/hIrlkLQ08AZHdWUxs5r6bl3m2EBQ5pBgHM/mjPWR+I6JMf
- WHkFLn1IDnuQbsHQe0nadbr8vKz3xRW21XdUSdb4xT+i2Zor5fgGmzAoSEMfYcJPEX
- fwGe0wsbkhNxUqOwQeGiP8NfPPrneSL6Q9Sw24mlIlLforIDucg4Oz6evGeFxOliV0
- MWA8nqkra3Zn8VhWEpF06jAI0MaT8iKhzitPgCHIdv1qO0FwMpYUOE7uBvzD2uekk0
- +LA/RyRMTlyePXs6iJYth+3uw/OLHT4f3rvhAG9K2jgL+C9JqGuyzaknOpMmRTdq0t
- 0COIRkOoz/T+w==
-Date: Mon, 2 Dec 2024 13:00:23 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- freedreno@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, 
- linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, 
- linux-samsung-soc@vger.kernel.org, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
- Alain Volmat <alain.volmat@foss.st.com>,
- Alex Deucher <alexander.deucher@amd.com>, 
- Alim Akhtar <alim.akhtar@samsung.com>, Andrzej Hajda <andrzej.hajda@intel.com>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>, 
- David Airlie <airlied@gmail.com>, Harry Wentland <harry.wentland@amd.com>, 
- Inki Dae <inki.dae@samsung.com>, Jani Nikula <jani.nikula@linux.intel.com>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, Jonas Karlman <jonas@kwiboo.se>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, 
- Kyungmin Park <kyungmin.park@samsung.com>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Leo Li <sunpeng.li@amd.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Marijn Suijten <marijn.suijten@somainline.org>,
- =?utf-8?B?TWHDrXJh?= Canal <mcanal@igalia.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Phong LE <ple@baylibre.com>, 
- Raphael Gallais-Pou <rgallaispou@gmail.com>,
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>, 
- Rob Clark <robdclark@gmail.com>, Robert Foss <rfoss@kernel.org>, 
- Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Sean Paul <sean@poorly.run>, Seung-Woo Kim <sw0312.kim@samsung.com>, 
- Simona Vetter <simona@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, Xinhui Pan <Xinhui.Pan@amd.com>
-Subject: Re: [PATCH 00/10] drm/connector: add eld_mutex to protect
- connector->eld
-Message-ID: <20241202-hummingbird-of-hypothetical-aptitude-646def@houat>
-References: <20241201-drm-connector-eld-mutex-v1-0-ba56a6545c03@linaro.org>
- <77545786331df8bfaf5fdcb309437358@kernel.org>
- <ohbtatnn33jj6y3q4milf4txi4n7yirnny2eefdjddlkn2dnhp@eqjedetct4q3>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0AAE410E708;
+ Mon,  2 Dec 2024 12:07:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1733141273; x=1764677273;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=fOU/S4oUDE/hjQVQOFSJF1sFnSg8KnhfYYQKiCqEG5E=;
+ b=KxNExCnw9JYsyBjZqneGKnjdiFxFlTd3IFmsxB2NSAxsKmchXVGoU34Q
+ Vg1/2hgI2CwUDySQ8IlUOwwfTwUNvmVF3wuqfof55LHVeNB9NPvVqVoFr
+ tVumTIpo1SStN/FDqWSCnyv0CKODPWf+xHEoR5dTiymtYIQKcSN3TsPOO
+ uby1C4L4rE9Xx6HLRtzV5433zlbx3HgOFCEDBqoPSQ6VMtTA4yVvN9Ybu
+ 5FCn7ZgEqowhYUnPf8gSSqDE7OXoQcV0lmUDIIfYp7FAfW74QXiWBD/l1
+ EoqxP6Aw2yj/y1NHzwHNxHB/Gg9uiVwi/uBtd3KmiZiFfl48B1KfkCk+h w==;
+X-CSE-ConnectionGUID: f2rdcIakRyyMO2xQVfl6Dw==
+X-CSE-MsgGUID: 5MCvuJ5TTdyr233U2SgDyA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11274"; a="43917078"
+X-IronPort-AV: E=Sophos;i="6.12,202,1728975600"; d="scan'208";a="43917078"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Dec 2024 04:07:52 -0800
+X-CSE-ConnectionGUID: LAiXbn+0TdaTWG1Erq+GUQ==
+X-CSE-MsgGUID: qQ8yMfiWS2W6luHXtuEZjg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="98120309"
+Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.77])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Dec 2024 04:07:50 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Maxime Ripard <mripard@kernel.org>, Imre Deak <imre.deak@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, Dave Airlie <airlied@redhat.com>, Daniel Vetter
+ <daniel.vetter@ffwll.ch>, dri-devel@lists.freedesktop.org, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>
+Subject: Re: [PATCH v2 1/4] drm/dp: Add a way to init/add a connector in
+ separate steps
+In-Reply-To: <20241202-real-benevolent-skunk-a9f5e0@houat>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20241126161859.1858058-1-imre.deak@intel.com>
+ <20241126161859.1858058-2-imre.deak@intel.com>
+ <Z0nO-bwpbWPVryd6@ideak-desk.fi.intel.com>
+ <20241129-wild-cobra-of-thunder-829d1f@houat>
+ <Z0nn0VzawSCdOCKY@ideak-desk.fi.intel.com>
+ <20241202-real-benevolent-skunk-a9f5e0@houat>
+Date: Mon, 02 Dec 2024 14:07:36 +0200
+Message-ID: <87ldwy5lvb.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="rf5ewnb7ayc4e2uu"
-Content-Disposition: inline
-In-Reply-To: <ohbtatnn33jj6y3q4milf4txi4n7yirnny2eefdjddlkn2dnhp@eqjedetct4q3>
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,49 +78,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Mon, 02 Dec 2024, Maxime Ripard <mripard@kernel.org> wrote:
+> It's not about whether we have a problem or not: you introduce new
+> framework functions, you need to have kunit tests to check their
+> behaviour.
 
---rf5ewnb7ayc4e2uu
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 00/10] drm/connector: add eld_mutex to protect
- connector->eld
-MIME-Version: 1.0
+I don't fundamentally disagree with that goal, but it does seem like a
+pretty drastic policy change. I don't recall a discussion where we made
+that decision, nor can I find any documentation stating this. Or what
+exactly the requirement is; it's totally unclear to me.
 
-On Mon, Dec 02, 2024 at 01:03:07PM +0200, Dmitry Baryshkov wrote:
-> On Mon, Dec 02, 2024 at 10:19:41AM +0000, Maxime Ripard wrote:
-> > On Sun, 1 Dec 2024 01:55:17 +0200, Dmitry Baryshkov wrote:
-> > > The connector->eld is accessed by the .get_eld() callback. This access
-> > > can collide with the drm_edid_to_eld() updating the data at the same
-> > > time. Add drm_connector.eld_mutex to protect the data from concurrenct
-> > > access.
-> > >=20
-> > >=20
-> > > [ ... ]
-> >=20
-> > Reviewed-by: Maxime Ripard <mripard@kernel.org>
->=20
-> Thanks!
->=20
-> I'm going to post v2 to fix Jani's comment, but what should be the merge
-> strategy? Merge patches 1-3, 5, 9-10 through drm-misc and the rest (AMD,
-> i915, MSM, radeon) through the driver trees?
+Had I been involved, I would've pointed out that while adding tests is
+good, it inevitably increases the friction of adding new stuff to drm
+core. It's super tempting for people to just get their jobs done. If
+doing the right thing adds yet another hurdle, we may see more stuff
+being added in drivers instead of drm core.
 
-The easiest is probably to merge everything through drm-misc if everyone ag=
-rees.
+(Case in point, we already hacked around the problem being solved here
+with commit d58f65df2dcb ("drm/i915/dp_mst: Fix connector initialization
+in intel_dp_add_mst_connector()"). We could've just dropped the ball
+right there.)
 
-Maxime
+BR,
+Jani.
 
---rf5ewnb7ayc4e2uu
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZ02hVgAKCRAnX84Zoj2+
-did2AYCKqjIX2aHftKtybJaUPI3aEKi2s1lRBLYyjb1Uwicsybws1tIK08t+OLLX
-OfIShgYBfiJJHZ+4Gj/u8uuAs91T4EvzTss9Zo2aF+YDFdrV47edIsjbVE2McJQO
-YLEiS8Wy0Q==
-=Idbn
------END PGP SIGNATURE-----
-
---rf5ewnb7ayc4e2uu--
+-- 
+Jani Nikula, Intel
