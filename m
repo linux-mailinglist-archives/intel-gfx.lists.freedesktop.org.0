@@ -2,60 +2,76 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EE589DFE13
-	for <lists+intel-gfx@lfdr.de>; Mon,  2 Dec 2024 11:06:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 10CD79DFEAB
+	for <lists+intel-gfx@lfdr.de>; Mon,  2 Dec 2024 11:19:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED19610E692;
-	Mon,  2 Dec 2024 10:06:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5ED4D10E21D;
+	Mon,  2 Dec 2024 10:19:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EpXySKbO";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="kmhsd5qN";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6528B10E692
- for <intel-gfx@lists.freedesktop.org>; Mon,  2 Dec 2024 10:06:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733133965; x=1764669965;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=BJjGtVVLcRp+UK8Z5HJOxATgDKqyATqT9DyK3mngB8g=;
- b=EpXySKbOhPp8D8meUR99Ho4QytXKdpze9HJvXzNKAchHWkpJpOWeFtUD
- zZhQsDJihayvPFoMcTTUpHX/w5L9549NxIsYwu+K6DNNEs2lrNLbsG6Qa
- 63qu0gV3he9ugvh1vlOyeGJw5QOrTO1PeEWWHAUq+41cUd1VnmExqs06/
- C+E+K6q3+T2eEd6gsVKYp/+d2GNKNOK0/H7tHOM6mjwoJIi454P4eXrED
- mutkIeXWqIi1LLQ0oQH6I+xz5AsRWf/EDRgCg2IhMee2aWNViq6OgtChv
- Juj+giU1pvZXGTyZvdTPwrOz9ap018lxF/p+N4Wj/zj62o5kV3axPAvb8 Q==;
-X-CSE-ConnectionGUID: rxO/LOJwTd+vIxn6m0tN1g==
-X-CSE-MsgGUID: OiMqTNEkTder+lVYetAm+Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11273"; a="50708483"
-X-IronPort-AV: E=Sophos;i="6.12,202,1728975600"; d="scan'208";a="50708483"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2024 02:06:04 -0800
-X-CSE-ConnectionGUID: 0Xzczko3RXq7N9sSp8BP1Q==
-X-CSE-MsgGUID: n7fTpHx+TMSSPu1N+0bhmg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,202,1728975600"; d="scan'208";a="93902756"
-Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.77])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2024 02:06:02 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Animesh Manna <animesh.manna@intel.com>, intel-gfx@lists.freedesktop.org
-Cc: jouni.hogander@intel.com, jeevan.b@intel.com, Animesh Manna
- <animesh.manna@intel.com>
-Subject: Re: [PATCH 1/2] drm/i915/lobf: Add lobf enablement in post plane
- update
-In-Reply-To: <20241202074615.3601692-2-animesh.manna@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241202074615.3601692-1-animesh.manna@intel.com>
- <20241202074615.3601692-2-animesh.manna@intel.com>
-Date: Mon, 02 Dec 2024 12:05:49 +0200
-Message-ID: <87ttbm5ria.fsf@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FFEF10E1E7;
+ Mon,  2 Dec 2024 10:19:45 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 90CA45C4BDF;
+ Mon,  2 Dec 2024 10:19:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA1B3C4CED1;
+ Mon,  2 Dec 2024 10:19:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1733134784;
+ bh=0nLS4J9qXeFv/L92DDeQg9+azIKURqKYfy9mdnxjm3k=;
+ h=Date:From:To:Subject:In-Reply-To:References:Cc:From;
+ b=kmhsd5qNP8PjnFw7JW1cgOBNkW9mQLZPH4pXX5/8dwKvqwnJuyfirt1aqyztIlDdV
+ IH1fjkg7XyFypJst+r31tBHNAEr7/qTjDQF2oM/8PA2tPcxtUxuYqdYsN77yJxxDxE
+ D49bbL44XFfS1wbpfVfBn5YTyxG+t99wmK43EiWT1WvygzcP6G28C/zlIKWPnlzfCe
+ zAxLiPTwPN1zh6Klz9GCZ0auLZ+9TcEQ0RsSi8QLjmsaMREjCrwaybirjM8aDu7HJp
+ PiDC4e0R7txSroxQpjqcg7C7CBbHK/g+gMX1VhGs3ZGwVqMxES1G+5DNd4QBX8vEir
+ 0VvpMFIv5dbLw==
+Message-ID: <77545786331df8bfaf5fdcb309437358@kernel.org>
+Date: Mon, 02 Dec 2024 10:19:41 +0000
+From: "Maxime Ripard" <mripard@kernel.org>
+To: "Dmitry Baryshkov" <dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH 00/10] drm/connector: add eld_mutex to protect
+ connector->eld
+In-Reply-To: <20241201-drm-connector-eld-mutex-v1-0-ba56a6545c03@linaro.org>
+References: <20241201-drm-connector-eld-mutex-v1-0-ba56a6545c03@linaro.org>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
+ linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-samsung-soc@vger.kernel.org, "Abhinav
+ Kumar" <quic_abhinavk@quicinc.com>, "Alain Volmat" <alain.volmat@foss.st.com>,
+ "Alex
+ Deucher" <alexander.deucher@amd.com>, "Alim Akhtar" <alim.akhtar@samsung.com>,
+ "Andrzej Hajda" <andrzej.hajda@intel.com>,
+ =?utf-8?b?Q2hyaXN0aWFuIEvDtm5pZw==?= <christian.koenig@amd.com>, "Dave
+ Stevenson" <dave.stevenson@raspberrypi.com>, "David Airlie" <airlied@gmail.com>,
+ "Harry
+ Wentland" <harry.wentland@amd.com>, "Inki Dae" <inki.dae@samsung.com>, "Jani
+ Nikula" <jani.nikula@linux.intel.com>,
+ "Jernej Skrabec" <jernej.skrabec@gmail.com>, "Jonas
+ Karlman" <jonas@kwiboo.se>, "Joonas Lahtinen" <joonas.lahtinen@linux.intel.com>,
+ "Krzysztof
+ Kozlowski" <krzk@kernel.org>, "Kyungmin Park" <kyungmin.park@samsung.com>,
+ "Laurent
+ Pinchart" <Laurent.pinchart@ideasonboard.com>, "Leo Li" <sunpeng.li@amd.com>,
+ "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
+ "Marijn Suijten" <marijn.suijten@somainline.org>, "Maxime
+ Ripard" <mripard@kernel.org>, =?utf-8?b?TWHDrXJhIENhbmFs?= <mcanal@igalia.com>,
+ "Neil
+ Armstrong" <neil.armstrong@linaro.org>, "Phong LE" <ple@baylibre.com>, "Raphael
+ Gallais-Pou" <rgallaispou@gmail.com>,
+ "Raspberry Pi Kernel Maintenance" <kernel-list@raspberrypi.com>, "Rob
+ Clark" <robdclark@gmail.com>, "Robert Foss" <rfoss@kernel.org>, "Rodrigo
+ Siqueira" <Rodrigo.Siqueira@amd.com>, "Rodrigo Vivi" <rodrigo.vivi@intel.com>,
+ "Sean
+ Paul" <sean@poorly.run>, "Seung-Woo Kim" <sw0312.kim@samsung.com>, "Simona
+ Vetter" <simona@ffwll.ch>, "Thomas Zimmermann" <tzimmermann@suse.de>, "Tvrtko
+ Ursulin" <tursulin@ursulin.net>, "Xinhui Pan" <Xinhui.Pan@amd.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,100 +87,16 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 02 Dec 2024, Animesh Manna <animesh.manna@intel.com> wrote:
-> Enablement of LOBF is added in post plane update whenever
-> has_lobf flag is set. As LOBF can be enabled in non-psr
-> case as well so adding in post plane update. There is no
-> change of configuring alpm with psr path.
->
-> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_alpm.c    | 19 +++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_alpm.h    |  4 ++++
->  drivers/gpu/drm/i915/display/intel_display.c |  3 +++
->  3 files changed, 26 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-> index 55f3ae1e68c9..45865a8d1dd2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_alpm.c
-> +++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-> @@ -367,6 +367,25 @@ void intel_alpm_configure(struct intel_dp *intel_dp,
->  	lnl_alpm_configure(intel_dp, crtc_state);
->  }
->  
-> +void intel_alpm_post_plane_update(struct intel_atomic_state *state,
-> +				  struct intel_crtc *crtc)
-> +{
-> +	struct intel_display *display = to_intel_display(state);
-> +	const struct intel_crtc_state *crtc_state =
-> +		intel_atomic_get_new_crtc_state(state, crtc);
-> +	struct intel_encoder *encoder;
-> +
-> +	if (!crtc_state->has_lobf)
-> +		return;
-> +
-> +	for_each_intel_dp(display->drm, encoder) {
-> +		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-> +
-> +		if (intel_dp_is_edp(intel_dp))
-> +			intel_alpm_configure(intel_dp, crtc_state);
+On Sun, 1 Dec 2024 01:55:17 +0200, Dmitry Baryshkov wrote:
+> The connector->eld is accessed by the .get_eld() callback. This access
+> can collide with the drm_edid_to_eld() updating the data at the same
+> time. Add drm_connector.eld_mutex to protect the data from concurrenct
+> access.
+> 
+> 
+> [ ... ]
 
-This gets called on all eDP, regardless of whether they have anything to
-do with the crtc state.
+Reviewed-by: Maxime Ripard <mripard@kernel.org>
 
-BR,
-Jani.
-
-
-> +	}
-> +}
-> +
->  static int i915_edp_lobf_info_show(struct seq_file *m, void *data)
->  {
->  	struct intel_connector *connector = m->private;
-> diff --git a/drivers/gpu/drm/i915/display/intel_alpm.h b/drivers/gpu/drm/i915/display/intel_alpm.h
-> index 8c409b10dce6..2f862b0476a8 100644
-> --- a/drivers/gpu/drm/i915/display/intel_alpm.h
-> +++ b/drivers/gpu/drm/i915/display/intel_alpm.h
-> @@ -12,6 +12,8 @@ struct intel_dp;
->  struct intel_crtc_state;
->  struct drm_connector_state;
->  struct intel_connector;
-> +struct intel_atomic_state;
-> +struct intel_crtc;
->  
->  void intel_alpm_init_dpcd(struct intel_dp *intel_dp);
->  bool intel_alpm_compute_params(struct intel_dp *intel_dp,
-> @@ -21,6 +23,8 @@ void intel_alpm_lobf_compute_config(struct intel_dp *intel_dp,
->  				    struct drm_connector_state *conn_state);
->  void intel_alpm_configure(struct intel_dp *intel_dp,
->  			  const struct intel_crtc_state *crtc_state);
-> +void intel_alpm_post_plane_update(struct intel_atomic_state *state,
-> +				  struct intel_crtc *crtc);
->  void intel_alpm_lobf_debugfs_add(struct intel_connector *connector);
->  bool intel_alpm_aux_wake_supported(struct intel_dp *intel_dp);
->  bool intel_alpm_aux_less_wake_supported(struct intel_dp *intel_dp);
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index a0351c97c445..d279029e90f6 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -55,6 +55,7 @@
->  #include "i9xx_plane.h"
->  #include "i9xx_plane_regs.h"
->  #include "i9xx_wm.h"
-> +#include "intel_alpm.h"
->  #include "intel_atomic.h"
->  #include "intel_atomic_plane.h"
->  #include "intel_audio.h"
-> @@ -1185,6 +1186,8 @@ static void intel_post_plane_update(struct intel_atomic_state *state,
->  
->  	intel_psr_post_plane_update(state, crtc);
->  
-> +	intel_alpm_post_plane_update(state, crtc);
-> +
->  	intel_frontbuffer_flip(dev_priv, new_crtc_state->fb_bits);
->  
->  	if (new_crtc_state->update_wm_post && new_crtc_state->hw.active)
-
--- 
-Jani Nikula, Intel
+Thanks!
+Maxime
