@@ -2,61 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE0E19E2C8D
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Dec 2024 21:00:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B98869E2CA7
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Dec 2024 21:05:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8718710E0D0;
-	Tue,  3 Dec 2024 20:00:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4673610EB36;
+	Tue,  3 Dec 2024 20:05:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fxCfFjCz";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="H4gNRBJd";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ADCF010E0D0;
- Tue,  3 Dec 2024 20:00:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733256032; x=1764792032;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=YPLd1DjAX7gNniFPSLTOWYkyjTh0BKWZSf83E6y5uoo=;
- b=fxCfFjCzesMnjBYT1jNxLHTe9L6XdX+p3SzasFIFmyQp+monEaqPWqjk
- v2b3c2kCcqxU1RX4Ewson6kRGUKDbQrqL3LDQkBSYGQh6BDxiMB8XCPZA
- kiSN8nuuQBZsOwFLHoh6EpbOyeuQk3bjJhUs+YaDBi6lgKj37F/ynzjcM
- TzoQWseuUzcFZdohAxM8b81Lf7RfhcWrt1rqerpbmKtNoxuABjWk5MJeB
- XKkw8aMgykdcFZ3FkAFMaDNZ5RY7UORFkxC/D6OT9bQl4sQ0/CLrlPCwA
- pV7V4lO4vU84+KiqdusJHvOKTY9/LGMay9d923RaDmz6+uF3321kGu9wm w==;
-X-CSE-ConnectionGUID: PULSQOXkQ5WaxgUaHExTlA==
-X-CSE-MsgGUID: 8D/njRgmQ/qsah9gs1DVJA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11275"; a="32836190"
-X-IronPort-AV: E=Sophos;i="6.12,206,1728975600"; d="scan'208";a="32836190"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2024 12:00:31 -0800
-X-CSE-ConnectionGUID: FBet2v0pT5mgv6lPdcazhg==
-X-CSE-MsgGUID: wXQ+BAo+QP2yS9DL5khdyA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,206,1728975600"; d="scan'208";a="98523157"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2024 12:00:31 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: linux-usb@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- <intel-xe@lists.freedesktop.org>, intel-gfx@lists.freedesktop.org,
- =?UTF-8?q?Thomas=20Wei=C3=9Fschuh?= <linux@weissschuh.net>,
- chaitanya.kumar.borah@intel.com, Luca Coelho <luca@coelho.fi>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH] usb: typec: ucsi: Fix connector status writing past buffer
- size
-Date: Tue,  3 Dec 2024 12:00:10 -0800
-Message-ID: <20241203200010.2821132-1-lucas.demarchi@intel.com>
-X-Mailer: git-send-email 2.47.0
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A6DCE10E887;
+ Tue,  3 Dec 2024 20:05:35 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id 2DD60A4183A;
+ Tue,  3 Dec 2024 20:03:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F21EDC4CECF;
+ Tue,  3 Dec 2024 20:05:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1733256334;
+ bh=Yrbc/l+xD4S/+XGL1vpPMBgFYNpUEoULuxt7XeELIQ0=;
+ h=Date:From:To:Cc:Subject:From;
+ b=H4gNRBJdg9Ivv4L/m83TP2Jqkg7jqALzF5q273mkarIkOTVUawzu+C+lVc31b8byV
+ njlpQb3gpfA0sLERXtPAISP54eF8AeffcYWxVrUr3tgcXryax0qUV+T0Qx+zg07JzQ
+ G+DgJVDeUPiHKS5vmHFveLgeose8lyT7V0sU3fTguATjYabwjRwICOOjpkW7InbSzY
+ odXRvjm4h9BvqLQmAXC06thNpT/KeqPGuWiDwYYF9nlZwl/XkOjehy+8O91LyhUTMb
+ 8rCsETFtGxG/XZP/l6LT+w8Qx59nx+c2TfQPzXUlvsZTLr7umoack8KzvPyaF1U5vv
+ gCZuwLSsQM7+Q==
+Date: Tue, 3 Dec 2024 20:05:29 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Simona Vetter <simona.vetter@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ DRI <dri-devel@lists.freedesktop.org>
+Cc: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Subject: linux-next: manual merge of the drm-intel tree with the
+ drm-intel-fixes tree
+Message-ID: <Z09kidsTlxhP51ff@sirena.org.uk>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="TJMdyoU9CQls9ZU9"
+Content-Disposition: inline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,66 +64,132 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Similar to commit 65c4c9447bfc ("usb: typec: ucsi: Fix a missing bits to
-bytes conversion in ucsi_init()"), there was a missing conversion from
-bits to bytes. Here the outcome is worse though: since the value is
-lower than UCSI_MAX_DATA_LENGTH, instead of bailing out with an error,
-it writes past the buffer size.
 
-The error is then seen in other places like below:
+--TJMdyoU9CQls9ZU9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-	Oops: general protection fault, probably for non-canonical address 0x891e812cd0ed968: 0000 [#1] PREEMPT SMP NOPTI
-	CPU: 3 UID: 110 PID: 906 Comm: prometheus-node Not tainted 6.13.0-rc1-xe #1
-	Hardware name: Intel Corporation Lunar Lake Client Platform/LNL-M LP5 RVP1, BIOS LNLMFWI1.R00.3222.D84.2410171025 10/17/2024
-	RIP: 0010:power_supply_get_property+0x3e/0xe0
-	Code: 85 c0 7e 4f 4c 8b 07 89 f3 49 89 d4 49 8b 48 20 48 85 c9 74 72 49 8b 70 18 31 d2 31 c0 eb 0b 83 c2 01 48 63 c2 48 39 c8 73 5d <3b> 1c 86 75 f0 49 8b 40 28 4c 89 e2 89 de ff d0 0f 1f 00 5b 41 5c
-	RSP: 0018:ffffc900017dfa50 EFLAGS: 00010246
-	RAX: 0000000000000000 RBX: 0000000000000011 RCX: c963b02c06092008
-	RDX: 0000000000000000 RSI: 0891e812cd0ed968 RDI: ffff888121dd6800
-	RBP: ffffc900017dfa68 R08: ffff88810a4024b8 R09: 0000000000000000
-	R10: 0000000000000000 R11: 0000000000000000 R12: ffffc900017dfa78
-	R13: ffff888121dd6800 R14: ffff888138ad2c00 R15: ffff88810c57c528
-	FS:  00007713a2ffd6c0(0000) GS:ffff88846f380000(0000) knlGS:0000000000000000
-	CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-	CR2: 000000c0004b1000 CR3: 0000000121ce8003 CR4: 0000000000f72ef0
-	DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-	DR3: 0000000000000000 DR6: 00000000ffff07f0 DR7: 0000000000000400
-	PKRU: 55555554
-	Call Trace:
-	 <TASK>
-	 ? show_regs+0x6c/0x80
-	 ? die_addr+0x37/0xa0
-	 ? exc_general_protection+0x1c1/0x440
-	 ? asm_exc_general_protection+0x27/0x30
-	 ? power_supply_get_property+0x3e/0xe0
-	 power_supply_hwmon_read+0x50/0xe0
-	 hwmon_attr_show+0x46/0x170
-	 dev_attr_show+0x1a/0x70
-	 sysfs_kf_seq_show+0xaa/0x120
-	 kernfs_seq_show+0x41/0x60
+Hi all,
 
-Just use the buffer size as argument to fix it.
+Today's linux-next merge of the drm-intel tree got a conflict in:
 
-Fixes: 226ff2e681d0 ("usb: typec: ucsi: Convert connector specific commands to bitmaps")
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/usb/typec/ucsi/ucsi.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+  drivers/gpu/drm/i915/display/intel_dsb.c
 
-diff --git a/drivers/usb/typec/ucsi/ucsi.c b/drivers/usb/typec/ucsi/ucsi.c
-index c435c0835744a..69caae84879e9 100644
---- a/drivers/usb/typec/ucsi/ucsi.c
-+++ b/drivers/usb/typec/ucsi/ucsi.c
-@@ -651,7 +651,8 @@ static void ucsi_unregister_altmodes(struct ucsi_connector *con, u8 recipient)
- static int ucsi_get_connector_status(struct ucsi_connector *con, bool conn_ack)
- {
- 	u64 command = UCSI_GET_CONNECTOR_STATUS | UCSI_CONNECTOR_NUMBER(con->num);
--	size_t size = min(UCSI_GET_CONNECTOR_STATUS_SIZE, UCSI_MAX_DATA_LENGTH(con->ucsi));
-+	size_t size = min(sizeof(con->status),
-+			  UCSI_MAX_DATA_LENGTH(con->ucsi));
- 	int ret;
- 
- 	ret = ucsi_send_command_common(con->ucsi, command, &con->status, size, conn_ack);
--- 
-2.47.0
+between commit:
 
+  ebd1e5faa72af ("drm/i915/dsb: Don't use indexed register writes needlessl=
+y")
+
+=66rom the drm-intel-fixes tree and commit:
+
+  ecba559a88ab8 ("drm/i915/dsb: Don't use indexed register writes needlessl=
+y")
+
+=66rom the drm-intel tree.
+
+I fixed it up (see below) and can carry the fix as necessary. This
+is now fixed as far as linux-next is concerned, but any non trivial
+conflicts should be mentioned to your upstream maintainer when your tree
+is submitted for merging.  You may also want to consider cooperating
+with the maintainer of the conflicting tree to minimise any particularly
+complex conflicts.
+
+diff --cc drivers/gpu/drm/i915/display/intel_dsb.c
+index 4d3785f5cb525,e6f8fc743fb40..0000000000000
+--- a/drivers/gpu/drm/i915/display/intel_dsb.c
++++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+@@@ -304,55 -295,34 +295,43 @@@ void intel_dsb_reg_write_indexed(struc
+  	 * we are writing odd no of dwords, Zeros will be added in the end for
+  	 * padding.
+  	 */
+- 	if (!intel_dsb_prev_ins_is_mmio_write(dsb, reg) &&
+- 	    !intel_dsb_prev_ins_is_indexed_write(dsb, reg)) {
+- 		intel_dsb_emit(dsb, val,
+- 			       (DSB_OPCODE_MMIO_WRITE << DSB_OPCODE_SHIFT) |
+- 			       (DSB_BYTE_EN << DSB_BYTE_EN_SHIFT) |
++ 	if (!intel_dsb_prev_ins_is_indexed_write(dsb, reg))
++ 		intel_dsb_emit(dsb, 0, /* count */
++ 			       (DSB_OPCODE_INDEXED_WRITE << DSB_OPCODE_SHIFT) |
+  			       i915_mmio_reg_offset(reg));
+- 	} else {
+- 		if (!assert_dsb_has_room(dsb))
+- 			return;
+ =20
+- 		/* convert to indexed write? */
+- 		if (intel_dsb_prev_ins_is_mmio_write(dsb, reg)) {
+- 			u32 prev_val =3D dsb->ins[0];
++ 	if (!assert_dsb_has_room(dsb))
++ 		return;
+ =20
+- 			dsb->ins[0] =3D 1; /* count */
+- 			dsb->ins[1] =3D (DSB_OPCODE_INDEXED_WRITE << DSB_OPCODE_SHIFT) |
+- 				i915_mmio_reg_offset(reg);
++ 	/* Update the count */
++ 	dsb->ins[0]++;
++ 	intel_dsb_buffer_write(&dsb->dsb_buf, dsb->ins_start_offset + 0,
++ 			       dsb->ins[0]);
+ =20
+- 			intel_dsb_buffer_write(&dsb->dsb_buf, dsb->ins_start_offset + 0,
+- 					       dsb->ins[0]);
+- 			intel_dsb_buffer_write(&dsb->dsb_buf, dsb->ins_start_offset + 1,
+- 					       dsb->ins[1]);
+- 			intel_dsb_buffer_write(&dsb->dsb_buf, dsb->ins_start_offset + 2,
+- 					       prev_val);
++ 	intel_dsb_buffer_write(&dsb->dsb_buf, dsb->free_pos++, val);
++ 	/* if number of data words is odd, then the last dword should be 0.*/
++ 	if (dsb->free_pos & 0x1)
++ 		intel_dsb_buffer_write(&dsb->dsb_buf, dsb->free_pos, 0);
++ }
+ =20
+- 			dsb->free_pos++;
+- 		}
+-=20
+- 		intel_dsb_buffer_write(&dsb->dsb_buf, dsb->free_pos++, val);
+- 		/* Update the count */
+- 		dsb->ins[0]++;
+- 		intel_dsb_buffer_write(&dsb->dsb_buf, dsb->ins_start_offset + 0,
+- 				       dsb->ins[0]);
+-=20
+- 		/* if number of data words is odd, then the last dword should be 0.*/
+- 		if (dsb->free_pos & 0x1)
+- 			intel_dsb_buffer_write(&dsb->dsb_buf, dsb->free_pos, 0);
+- 	}
++ void intel_dsb_reg_write(struct intel_dsb *dsb,
++ 			 i915_reg_t reg, u32 val)
++ {
++ 	intel_dsb_emit(dsb, val,
++ 		       (DSB_OPCODE_MMIO_WRITE << DSB_OPCODE_SHIFT) |
++ 		       (DSB_BYTE_EN << DSB_BYTE_EN_SHIFT) |
++ 		       i915_mmio_reg_offset(reg));
+  }
+ =20
+ +void intel_dsb_reg_write(struct intel_dsb *dsb,
+ +			 i915_reg_t reg, u32 val)
+ +{
+ +	intel_dsb_emit(dsb, val,
+ +		       (DSB_OPCODE_MMIO_WRITE << DSB_OPCODE_SHIFT) |
+ +		       (DSB_BYTE_EN << DSB_BYTE_EN_SHIFT) |
+ +		       i915_mmio_reg_offset(reg));
+ +}
+ +
+  static u32 intel_dsb_mask_to_byte_en(u32 mask)
+  {
+  	return (!!(mask & 0xff000000) << 3 |
+
+--TJMdyoU9CQls9ZU9
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmdPZIgACgkQJNaLcl1U
+h9DfIQf/SoCA06H1HA7SzYcLnmr1j91iBNfuorL7JDrOYYJo7s4u+iNplrl4z1w2
+DpqO4w9khwF+DHpxo8aHkLz+T6/B/TGjFHNrXuWYxIXDCn07Q20oz+nI05ty99XP
+7X6LnVyVxeymUiDwlfg87S+2SlhcAhWMXZBl31+snLaiol8tCcrdpEzYqyRBIDl9
+ADFOIgVtmKOZTohrtoDfC+XmWz0PjowzYIUUI+cnTdN6mlczxdAsyvYQX8ks94PV
+ngxPZy3TNYqf/FnyVmi9srN/aVkNNecL4v/rj5VFKWz2zd2w+NPzcqhvf0CnVTqy
+jISI1uZutV477SMwsKnYvXdqrzRKBw==
+=t1ob
+-----END PGP SIGNATURE-----
+
+--TJMdyoU9CQls9ZU9--
