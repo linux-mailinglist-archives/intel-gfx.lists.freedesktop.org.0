@@ -2,29 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 799859E2539
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Dec 2024 16:58:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 022969E257D
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Dec 2024 17:01:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 25A1510E335;
-	Tue,  3 Dec 2024 15:58:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F12B810EA82;
+	Tue,  3 Dec 2024 16:01:46 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KYhVbOUk";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB14110E335;
- Tue,  3 Dec 2024 15:58:23 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E50410EA81;
+ Tue,  3 Dec 2024 16:01:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1733241705; x=1764777705;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=IBt0zdjIG2M4j7yfCoXZQVIiWRGbFzvUILZeItIpcx8=;
+ b=KYhVbOUkYkSJJND8814/b81FgqxNvtGXoP/p/bu484j+n36xbkYTnnIy
+ rNFQYw2SLMLGyMxVm1GVEGCY20YtRzOiAs1wxBxZ//HtPtOOdp+l6NcWX
+ 2UCGqA0SoJ4/nf3yZ1C/ak8l++MO6kWOUN+MPEZdS9UF8yz4FiTenZ7nw
+ C7khj+5uWgNWUoCT6eorAMAmcMGsUOSDTWcFtCvkGQnWstdBQNLvmbxtk
+ rgi1vcqHFACnIwxnx2kMJMy6FyMxw8dpbEJb/xvTAryLIEDMV1x8m9c1B
+ vuHkCwcWedtA2ZILUdpXetbisMAKgZ2fyTa/a3zc8fscq6rQo4s3i09bZ A==;
+X-CSE-ConnectionGUID: tsdE0D5xSdeP7YG646NV6g==
+X-CSE-MsgGUID: ftW6zSDuRU2IexoM2u3rNg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11275"; a="37236017"
+X-IronPort-AV: E=Sophos;i="6.12,205,1728975600"; d="scan'208";a="37236017"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2024 08:01:45 -0800
+X-CSE-ConnectionGUID: htA1bWNGTFKX8fQyqHRTpA==
+X-CSE-MsgGUID: +aQVg58wSoShwfpvf5JxLQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,205,1728975600"; d="scan'208";a="93313023"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2024 08:01:43 -0800
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org,
+	Lyude Paul <lyude@redhat.com>
+Subject: [PATCH 0/7] drm/dp_mst: Fix a few side-band message handling issues
+Date: Tue,  3 Dec 2024 18:02:16 +0200
+Message-ID: <20241203160223.2926014-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.44.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_drm/i915=3A_Fix_NULL_poin?=
- =?utf-8?q?ter_dereference_in_capture=5Fengine_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Eugene Kobyak" <eugene.kobyak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 03 Dec 2024 15:58:23 -0000
-Message-ID: <173324150389.2060734.15601733964565774244@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <xmsgfynkhycw3cf56akp4he2ffg44vuratocsysaowbsnhutzi@augnqbm777at>
-In-Reply-To: <xmsgfynkhycw3cf56akp4he2ffg44vuratocsysaowbsnhutzi@augnqbm777at>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,121 +63,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+This patchset fixes a few issues related to MST side-band message
+handling reported by IGT CI (patch 1), by a user (patch 2) and ones I
+noticed during debugging (patch 4-6). 
 
-Series: drm/i915: Fix NULL pointer dereference in capture_engine (rev3)
-URL   : https://patchwork.freedesktop.org/series/141903/
-State : failure
+Cc: Lyude Paul <lyude@redhat.com>
 
-== Summary ==
+Imre Deak (7):
+  drm/dp_mst: Fix resetting msg rx state after topology removal
+  drm/dp_mst: Verify request type in the corresponding down message
+    reply
+  drm/dp_mst: Simplify error path in drm_dp_mst_handle_down_rep()
+  drm/dp_mst: Fix down request message timeout handling
+  drm/dp_mst: Ensure mst_primary pointer is valid in
+    drm_dp_mst_handle_up_req()
+  drm/dp_mst: Reset message rx state after OOM in
+    drm_dp_mst_handle_up_req()
+  drm/dp_mst: Use reset_msg_rx_state() instead of open coding it
 
-CI Bug Log - changes from CI_DRM_15778 -> Patchwork_141903v3
-====================================================
+ drivers/gpu/drm/display/drm_dp_mst_topology.c | 100 ++++++++++++++----
+ include/drm/display/drm_dp_mst_helper.h       |   7 ++
+ 2 files changed, 87 insertions(+), 20 deletions(-)
 
-Summary
--------
+-- 
+2.44.2
 
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_141903v3 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_141903v3, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141903v3/index.html
-
-Participating hosts (42 -> 41)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_141903v3:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@gt_tlb:
-    - bat-twl-1:          [PASS][1] -> [ABORT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15778/bat-twl-1/igt@i915_selftest@live@gt_tlb.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141903v3/bat-twl-1/igt@i915_selftest@live@gt_tlb.html
-
-  * igt@i915_selftest@live@vma:
-    - bat-adlp-11:        [PASS][3] -> [ABORT][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15778/bat-adlp-11/igt@i915_selftest@live@vma.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141903v3/bat-adlp-11/igt@i915_selftest@live@vma.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_141903v3 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - bat-dg2-11:         [PASS][5] -> [FAIL][6] ([i915#12903])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15778/bat-dg2-11/igt@i915_pm_rpm@module-reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141903v3/bat-dg2-11/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live:
-    - bat-twl-1:          [PASS][7] -> [ABORT][8] ([i915#12919])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15778/bat-twl-1/igt@i915_selftest@live.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141903v3/bat-twl-1/igt@i915_selftest@live.html
-    - bat-adlp-11:        [PASS][9] -> [ABORT][10] ([i915#12435])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15778/bat-adlp-11/igt@i915_selftest@live.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141903v3/bat-adlp-11/igt@i915_selftest@live.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_module_load@load:
-    - bat-adlp-6:         [DMESG-WARN][11] ([i915#12253]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15778/bat-adlp-6/igt@i915_module_load@load.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141903v3/bat-adlp-6/igt@i915_module_load@load.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-cfl-guc:         [FAIL][13] ([i915#12903]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15778/fi-cfl-guc/igt@i915_pm_rpm@module-reload.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141903v3/fi-cfl-guc/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arlh-3:         [ABORT][15] ([i915#12061]) -> [PASS][16] +1 other test pass
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15778/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141903v3/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-    - bat-arlh-2:         [ABORT][17] ([i915#12061]) -> [PASS][18] +1 other test pass
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15778/bat-arlh-2/igt@i915_selftest@live@workarounds.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141903v3/bat-arlh-2/igt@i915_selftest@live@workarounds.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12253]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12253
-  [i915#12435]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12435
-  [i915#12903]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12903
-  [i915#12919]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12919
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15778 -> Patchwork_141903v3
-
-  CI-20190529: 20190529
-  CI_DRM_15778: 5779fb3c12faf12589054127d60b1d36d56ba219 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8135: c6840f5e3c3b942aa79727ee4978a5b79f290b67 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_141903v3: 5779fb3c12faf12589054127d60b1d36d56ba219 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141903v3/index.html
