@@ -2,49 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B7909E13A7
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Dec 2024 07:58:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CB9A9E13CE
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Dec 2024 08:16:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2357A10E009;
-	Tue,  3 Dec 2024 06:58:46 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=weissschuh.net header.i=@weissschuh.net header.b="YgTqxsxv";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9F7B10E915;
+	Tue,  3 Dec 2024 07:16:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 466 seconds by postgrey-1.36 at gabe;
- Tue, 03 Dec 2024 06:58:44 UTC
-Received: from todd.t-8ch.de (todd.t-8ch.de [159.69.126.157])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 704C010E009;
- Tue,  3 Dec 2024 06:58:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=weissschuh.net;
- s=mail; t=1733208656;
- bh=6/hy5WoqGn8qJtQlfBenG3SJbexf/MpVLxIfNfIo004=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=YgTqxsxv6DmKMeEdGEeqJcI/KkxSMmTikgxQ0pwBRE7jIm2Civk3AVnYUdBrmyk6T
- mtKpDnn74U6WZVODnRGp0ngDct9NvwxGSF3PeYnCn2uaiiNAj9Sgv1Ga9DNB3hKg+n
- yhWjnzIZ00IfKLDvlqcSIw5jpgx8b30UwpNzwTPU=
-Date: Tue, 3 Dec 2024 07:50:55 +0100
-From: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <linux@weissschuh.net>
-To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-Cc: "Kurmi, Suresh Kumar" <suresh.kumar.kurmi@intel.com>, 
- "Coelho, Luciano" <luciano.coelho@intel.com>, "Saarinen,
- Jani" <jani.saarinen@intel.com>, 
- "Nikula, Jani" <jani.nikula@intel.com>, "De Marchi,
- Lucas" <lucas.demarchi@intel.com>, 
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>
-Subject: Re: Regression on linux-next (next-20241120) and drm-tip
-Message-ID: <5e405ad4-34d6-4507-978f-3d81d4af2455@t-8ch.de>
-References: <SJ1PR11MB6129CCD82CD78D8EE6E27EF4B9362@SJ1PR11MB6129.namprd11.prod.outlook.com>
- <SJ1PR11MB612965ACA3E84745346F0400B9362@SJ1PR11MB6129.namprd11.prod.outlook.com>
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5D5310E254;
+ Tue,  3 Dec 2024 07:16:21 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <SJ1PR11MB612965ACA3E84745346F0400B9362@SJ1PR11MB6129.namprd11.prod.outlook.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/selftests=3A_Add?=
+ =?utf-8?q?_delay_to_stabilize_frequency_in_live=5Frps=5Fpower_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Sk Anirban" <sk.anirban@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 03 Dec 2024 07:16:21 -0000
+Message-ID: <173321018167.1923230.12403287484264385275@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241203061114.2790448-1-sk.anirban@intel.com>
+In-Reply-To: <20241203061114.2790448-1-sk.anirban@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,67 +37,98 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-(+Cc Sebastian)
+== Series Details ==
 
-Hi Chaitanya,
+Series: drm/i915/selftests: Add delay to stabilize frequency in live_rps_power (rev2)
+URL   : https://patchwork.freedesktop.org/series/141995/
+State : success
 
-On 2024-12-03 05:07:47+0000, Borah, Chaitanya Kumar wrote:
-> Hope you are doing well. I am Chaitanya from the linux graphics team in Intel.
-> 
-> This mail is regarding a regression we are seeing in our CI runs[1] on linux-next repository.
+== Summary ==
 
-Thanks for the report.
+CI Bug Log - changes from CI_DRM_15775 -> Patchwork_141995v2
+====================================================
 
-> Since the version next-20241120 [2], we are seeing the following regression
-> 
-> `````````````````````````````````````````````````````````````````````````````````
-> <4>[   19.990743] Oops: general protection fault, probably for non-canonical address 0xb11675ef8d1ccbce: 0000 [#1] PREEMPT SMP NOPTI
-> <4>[   19.990760] CPU: 21 UID: 110 PID: 867 Comm: prometheus-node Not tainted 6.12.0-next-20241120-next-20241120-gac24e26aa08f+ #1
-> <4>[   19.990771] Hardware name: Intel Corporation Arrow Lake Client Platform/MTL-S UDIMM 2DPC EVCRB, BIOS MTLSFWI1.R00.4400.D85.2410100007 10/10/2024
-> <4>[   19.990782] RIP: 0010:power_supply_get_property+0x3e/0xe0
-> `````````````````````````````````````````````````````````````````````````````````
-> Details log can be found in [3]. 
-> 
-> After bisecting the tree, the following patch [4] seems to be the first "bad"
-> commit
-> 
-> `````````````````````````````````````````````````````````````````````````````````````````````````````````
-> Commit 49000fee9e639f62ba1f965ed2ae4c5ad18d19e2
-> Author:     Thomas Weißschuh <mailto:linux@weissschuh.net>
-> AuthorDate: Sat Oct 5 12:05:03 2024 +0200
-> Commit:     Sebastian Reichel <mailto:sebastian.reichel@collabora.com>
-> CommitDate: Tue Oct 15 22:22:20 2024 +0200
->     power: supply: core: add wakeup source inhibit by power_supply_config    
-> `````````````````````````````````````````````````````````````````````````````````````````````````````````
-> 
-> This is now seen in our drm-tip runs as well. [5]
-> 
-> Could you please check why the patch causes this regression and provide a fix if necessary?
+Summary
+-------
 
-I don't see how this patch can lead to this error.
-Could you doublecheck the bisect?
+  **WARNING**
 
-Note: Having line numbers in the trace would be very useful.
+  Minor unknown changes coming with Patchwork_141995v2 need to be verified
+  manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_141995v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-> Thank you.
-> 
-> Regards
-> 
-> Chaitanya
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141995v2/index.html
 
-Thanks,
-Thomas
+Participating hosts (42 -> 41)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_141995v2:
+
+### IGT changes ###
+
+#### Warnings ####
+
+  * igt@i915_selftest@live:
+    - bat-mtlp-8:         [ABORT][1] ([i915#12061]) -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15775/bat-mtlp-8/igt@i915_selftest@live.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141995v2/bat-mtlp-8/igt@i915_selftest@live.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_141995v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - bat-rpls-4:         [PASS][3] -> [FAIL][4] ([i915#12903])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15775/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141995v2/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live:
+    - bat-adlp-6:         [ABORT][5] ([i915#9413]) -> [PASS][6] +1 other test pass
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15775/bat-adlp-6/igt@i915_selftest@live.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141995v2/bat-adlp-6/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arlh-3:         [ABORT][7] ([i915#12061]) -> [PASS][8] +1 other test pass
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15775/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141995v2/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#12903]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12903
+  [i915#9413]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413
 
 
-> 
-> P.S. We could not revert the patch cleanly and therefore we are yet to verify the bisect but we are currently working on it.
-> 
-> 
-> [1] https://intel-gfx-ci.01.org/tree/linux-next/combined-alt.html?
-> [2]https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?h=next-20241120
-> [3] https://intel-gfx-ci.01.org/tree/linux-next/next-20241120/bat-arls-6/boot0.txt                                                                                                                                        
-> [4] https://cgit.freedesktop.org/drm-tip/commit/?id=49000fee9e639f62ba1f965ed2ae4c5ad18d19e2
-> [5] https://intel-gfx-ci.01.org/tree/drm-tip/index.html?
+Build changes
+-------------
+
+  * Linux: CI_DRM_15775 -> Patchwork_141995v2
+
+  CI-20190529: 20190529
+  CI_DRM_15775: 4de82d50b8de6a278c1483a7f76ae830c89d1824 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8134: 027fbf68a00630d7bb8ae200c620296e2bad971d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_141995v2: 4de82d50b8de6a278c1483a7f76ae830c89d1824 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141995v2/index.html
