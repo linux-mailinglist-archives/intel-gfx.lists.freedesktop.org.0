@@ -2,175 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B49A09E12A3
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Dec 2024 06:07:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C6E59E130E
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Dec 2024 07:05:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A9C210E776;
-	Tue,  3 Dec 2024 05:07:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 35F0C10E8EB;
+	Tue,  3 Dec 2024 06:05:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Kq/FyiGz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CL2WjXWN";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A00410E776;
- Tue,  3 Dec 2024 05:07:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 68E5410E8EB;
+ Tue,  3 Dec 2024 06:05:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733202470; x=1764738470;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=yUVR815D+eBQqDUgBePQzE2zCmD1Q4QDe0TZOpm9WWA=;
- b=Kq/FyiGztCVICEIRoTPAY/rpq+XragcF/cTc7+uecPOjWH0y2fyruYeJ
- aKwg22oB4YAf/pBU4Tfx1RV0T2LFFfDk7q4MQws0wCIq1DydxAq7pFJL7
- YHL7G/8D8DNMjC7wY3qxoV8rju/5d0+zQT6TFLA59F6jwyzAFZVSKnN1Q
- CrRfhpX7tqiuwUpmCVKHTdt+v5DgoeDJWTNE5nu85qfFtstrCt85F5oUF
- xqm3aaFFMqW791VBcedJ6R80QpYfpTyLCkJnHCD3ItWxT6YM+Tmtt6pXU
- pjdWRrM9hnEPeR4bQeE3XvdyuflpyuFE2SevYwKWFgjnuzDeXjN2ItGh8 g==;
-X-CSE-ConnectionGUID: KnRRG67sSj+GvOzTIxmw5A==
-X-CSE-MsgGUID: Ky5Uske9She+ZOdLZlNPCQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11274"; a="36252882"
-X-IronPort-AV: E=Sophos;i="6.12,204,1728975600"; d="scan'208";a="36252882"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2024 21:07:50 -0800
-X-CSE-ConnectionGUID: e7G4AhxGS0KEKU+itdSgZA==
-X-CSE-MsgGUID: iBb/bthgTdO8W3mvQe/TZA==
+ t=1733205901; x=1764741901;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=WsneDXu2cc6IEhKV4/R2d3h/CdyS/UrhBDuIxXKYe+0=;
+ b=CL2WjXWNy+49yFba5yBtuMQJJgfbfcUgOehYNnJxE/E7futLsDmJ/X03
+ t0F5KPNU3lRFid9r/abWYTmX/vPBie9WkUV5EiWHL6ePAs7gi2G3Zrixk
+ UTw0wB0dGglHXLtvlFh4ET0pwc5MGz+bmyjJChFAGKbbDb9sD2MCF8ODL
+ DhJCYs1HRDdV8e3VATljStmi7VxetDKn9gG45Vp20q0FXmZzmqdRrVmDY
+ VwJblqYf+AZ8NU8kNLo2fN5dfDHCO37K+qt2eEc6lIdQ2zArygkttvMjL
+ ulqENSDosXXYkl6sEgK2rWRiJ0Ve+digYAqlMzsFLkA7sSUDcTX5uAP8/ A==;
+X-CSE-ConnectionGUID: htTUfSLTQNGJXtwMcLrdlA==
+X-CSE-MsgGUID: DNA3jiADSYiFePoTQBJ3FA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11274"; a="37058824"
+X-IronPort-AV: E=Sophos;i="6.12,204,1728975600"; d="scan'208";a="37058824"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Dec 2024 22:05:01 -0800
+X-CSE-ConnectionGUID: 2neWbqSqRC2YpzDXx27KPg==
+X-CSE-MsgGUID: LIqZSNlzTv6oOUaj1D+qqw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,204,1728975600"; d="scan'208";a="97752052"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmviesa005.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 02 Dec 2024 21:07:51 -0800
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Mon, 2 Dec 2024 21:07:49 -0800
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39 via Frontend Transport; Mon, 2 Dec 2024 21:07:49 -0800
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.174)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.39; Mon, 2 Dec 2024 21:07:49 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=pef3fYsvc8zvbm6ZSRzfLkLAZwAmnEoUSZ08P9bhU53xXnNQWMm4U6iudn5mbD9BvTv7QmshWrDXTJ4SiasS+Aj9/Lunt3TIhjiMPxqoRZ92ZVtUQITuETwOECeE8jDTrsFZbzxmpkMeXffht2AoGfUFYkgWuC5/KTkhLJQ1BF7V+fHJC5tzvom8BG7CSnbeipv6OUCkcHGaivGz+xhmlyc+K2loHh9h/WnZiZAnLSsTcFgOiYfAOD5rc/4wNF52udApA//C07RoionRpV+6q9z2zizjPW5pepGz0GU63i+/RwUy5JiwT/1ERmiCbJ7bWENEnv93JPXv04zwHYeIZQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=yUVR815D+eBQqDUgBePQzE2zCmD1Q4QDe0TZOpm9WWA=;
- b=X3kDFEW+gJBKFyoB/c8HNJfWtUZtqsCocU/InXEoYsjaDNGhUoRiBWoXJXe4zfP9G2s02k8MDnqZIWCNfCSUXcM8OCTIZKOJrk25yu6wekpO0BwzVzYb9yepTIbbBSnq2219aS+LShlhWoK1QoGFis0bDNhL9iNbHfllWyHF3XIecIE+PHh0nuYdCbX9cv6lYAc75UTe4bRN02J4xk1yWJTf5xkFpHslCLPt8lHVOjRNE9dKEcK5vixnRPAuzmQ7e1efVtx0+XC4dZpeh9b6LBaGA9M4ojeVbpwB64xrrGm3oDYohLDz8Em7YqxHjmgQKa7oHS7Tt8EzuQB3I2DtOA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from SJ1PR11MB6129.namprd11.prod.outlook.com (2603:10b6:a03:488::12)
- by SA1PR11MB8328.namprd11.prod.outlook.com (2603:10b6:806:376::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8207.18; Tue, 3 Dec
- 2024 05:07:47 +0000
-Received: from SJ1PR11MB6129.namprd11.prod.outlook.com
- ([fe80::21c3:4b36:8cc5:b525]) by SJ1PR11MB6129.namprd11.prod.outlook.com
- ([fe80::21c3:4b36:8cc5:b525%4]) with mapi id 15.20.8207.017; Tue, 3 Dec 2024
- 05:07:47 +0000
-From: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-To: =?iso-8859-1?Q?Thomas_Wei=DFschuh?= <linux@weissschuh.net>
-CC: "Kurmi, Suresh Kumar" <suresh.kumar.kurmi@intel.com>, "Coelho, Luciano"
- <luciano.coelho@intel.com>, "Saarinen, Jani" <jani.saarinen@intel.com>,
- "Nikula, Jani" <jani.nikula@intel.com>, "De Marchi, Lucas"
- <lucas.demarchi@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>, "linux-pm@vger.kernel.org"
- <linux-pm@vger.kernel.org>
-Subject: Regression on linux-next (next-20241120) and drm-tip
-Thread-Topic: Regression on linux-next (next-20241120) and drm-tip
-Thread-Index: AdtFPvBukA2w7biuRBKjE+4t+kPk7gAAkQcQ
-Date: Tue, 3 Dec 2024 05:07:47 +0000
-Message-ID: <SJ1PR11MB612965ACA3E84745346F0400B9362@SJ1PR11MB6129.namprd11.prod.outlook.com>
-References: <SJ1PR11MB6129CCD82CD78D8EE6E27EF4B9362@SJ1PR11MB6129.namprd11.prod.outlook.com>
-In-Reply-To: <SJ1PR11MB6129CCD82CD78D8EE6E27EF4B9362@SJ1PR11MB6129.namprd11.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ1PR11MB6129:EE_|SA1PR11MB8328:EE_
-x-ms-office365-filtering-correlation-id: 043f610e-7aed-4277-31b7-08dd13586d75
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|376014|366016|1800799024|38070700018;
-x-microsoft-antispam-message-info: =?iso-8859-1?Q?WTkYbcuKcussvW33v7osgZhRDdF/VfM7D82ItSjY7DhhwrdC4TEvBtiMcj?=
- =?iso-8859-1?Q?UDp1T++zmX9QnTO2hfxun9zo6TpD+3TOzpVFdpBmXWjOEbsO8AnWbNNj8k?=
- =?iso-8859-1?Q?iJVD4Hk3p8IiE95cXv77jd+t5Sw7ZrXqp5mp2jTY15yRXjF75D35L/anm1?=
- =?iso-8859-1?Q?kt5SenaeIR7KcSAAMO5Oku38lvtiZRPGLshFPOx69F2OtzFqWWqGTBiMpn?=
- =?iso-8859-1?Q?lCD8+7ROUeAONXogwCamGCpf/KUIFJ1mp+54Bvi5h20c5Bxya0beO7UZR2?=
- =?iso-8859-1?Q?XOOHMPo7tJo49k7/zFcvE4I3htlPJsqCye5Yhnj+nQ1HtBzYwqv5DTAd0F?=
- =?iso-8859-1?Q?TftAyDBNZcSBx51MFvDwWSHtSLWk3ABaY7r4TM2yCcBxeSBi5LN8T2aazz?=
- =?iso-8859-1?Q?rTvpG/t8S7p24Cnna0z76OvWER2rIIEZA+d7nsb5cEEO1C8HQ1JUmC7u/c?=
- =?iso-8859-1?Q?fDI3x7A9K5H1U/NeiStFNlF+KgIYvTPPJ2TS129f2CGrZujsIqpTBp+ycI?=
- =?iso-8859-1?Q?KKWFYSAjkpv1pbIsnxVtd28LdwTD20XQ/JctZuKOzh8y2/Dp0+c9YpktVV?=
- =?iso-8859-1?Q?GCph/XKwEl5MCRXe8h0Xqxy7Rmpb2rJMjzRwZ+Dog2RpH/7zBsYd6mDsUt?=
- =?iso-8859-1?Q?aadqlkDHvzeQKy6P+InYkuGWY2whi8Swdjpg0IezYalDv7xHm+3xrCP+EM?=
- =?iso-8859-1?Q?H7652KjOnq88DrpmXZEjaSMAZ6vF8hoWVBI87mQW3r8uj6UOMNsEkpzeph?=
- =?iso-8859-1?Q?lsXjYVxSNYAHsOeJE9q5oX1DTdprrEZA22Cl6K1ckYgyBMyeL2yGg+JP+q?=
- =?iso-8859-1?Q?Nb84gZc0U4CwMGT5YVX1vFQnRhQ9Pku+wOlVaj4s8ONdkyNc7jBfWrc+N+?=
- =?iso-8859-1?Q?R02eqeBVmV6STr7rX8TKia2EbdUeJ+zVuZYNVrpwYbYgHLT+o37WJE+Csw?=
- =?iso-8859-1?Q?O4QD/ZVz5j/4+jn6SVmaDH+V0S1btgDItNbnX8Nrs4IjBh5/+7jWWeFPXk?=
- =?iso-8859-1?Q?s9r/X6amKY6fFNN55hPA7t00A58h+l9Yd9jWR3Dw0dOi8Anz//lVeZvCzI?=
- =?iso-8859-1?Q?cW8Hmug+dfd91MPxKvUdFgf9MrY3ilJ1G7I3+4Vnt1AOjEcjl/QiHOQjFm?=
- =?iso-8859-1?Q?5UA4L0eVS3U5gaNOozUExlelHcJ0d6HSyYQ5LL3JkXvRJ/IZ2YTYzPW1Nz?=
- =?iso-8859-1?Q?Az5XKQy7GoSVjfW9p3kYD5ic5PNdZPA6ott0IZwbwJRJFWVb3W9oE4Qz05?=
- =?iso-8859-1?Q?AF+qgNI3rp4SMxnxZUohfWXTxMikgHjnOCcUwXujkttDEO3L1S1tS8xTZu?=
- =?iso-8859-1?Q?LD0bNkSlo7iPH40b7Mf6Cv+6InJLGF4etos8d3O682stJdgQtd4vhp8nwP?=
- =?iso-8859-1?Q?7yxSaW/2ZuWCIM6u2/8Yqna2JpMNyg/fY9/ktSGpy5VHVQlaQD4JQ=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ1PR11MB6129.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(38070700018); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?c47zag522SLjlcE/MaRK4PWkfIsFkMuEb6LX3P1x1GSj0lRHmrYaszoEd+?=
- =?iso-8859-1?Q?mhuWcXQUS+erPe75ufqS1i2XM+rYxKpN5cfn+V3eC+pFIp4b74dNAHalpc?=
- =?iso-8859-1?Q?YxnTJ2qztC0MhgjcTlxtigD+ga4JeBPTG/a+LVo6qa0sybWxiXWspxKLPO?=
- =?iso-8859-1?Q?VWjjNMNdr2Ern8ZSbQ6LCmsffkGdjyUSmzuRqAdFDRLTgv+Evdc2kGpOmK?=
- =?iso-8859-1?Q?WUbeH3jxz3AX8EQyOM/rI+OZ9QrwQaQHZqUyrwF0njgvrusKzgXdueSKEd?=
- =?iso-8859-1?Q?GXOrGmW8zDqKHNSSYlT9wyZUTKusLxR+kjtt+ZkXIBqqS36mSLJAWzTE9P?=
- =?iso-8859-1?Q?WBE/bRKm1pizIOIRMkMesYVA73vw6NAvqaHRLA19t9VZTy4TlC9Iep4iZp?=
- =?iso-8859-1?Q?K2rzxrflA7RUXrfXwq1i7HWLF39z1AyBYNP+R33CWQKaeXn8RWhnhjIU++?=
- =?iso-8859-1?Q?WkiZJQ1H1ol58LzY8l28ndt6ro/0GguxxvQZlOQdP53+dzQmymUbYezsIq?=
- =?iso-8859-1?Q?hggeKV4zhLPO8rG4I7sHGz8Abqa7x9dct3Ct6o/GP4yMvUjI3Hu/c6wjtA?=
- =?iso-8859-1?Q?8vqP5977UuxDQ9U6+MZhU3Bmw30Gh6BHdTOhkqe7jMDksWRI4guNDtrv0S?=
- =?iso-8859-1?Q?JK1U2R0f/bavO2AtRHZtSrdi2shnQf1vq+iJQGdUyRuKuWEewfMeAgf5v9?=
- =?iso-8859-1?Q?LQVPCvFzDQwbh5KXLfO//WNbbUCJQcnpq8J5NIVXzxFUlFNCyp9Mt6juvs?=
- =?iso-8859-1?Q?ajq/6a57DnXaAdbl1dKxHbJdBy7otbGj4MxU1t2c/fe6vzC3EaJgMS902q?=
- =?iso-8859-1?Q?Eq3XddVgAYaBaXOhXb/tmRn7sEUC0AYJ+5a4J4iVcDpZ8BZgRZEhWdRNsw?=
- =?iso-8859-1?Q?Ll7uNweTqYLtEwv9i4JnQ/WUQGupa34ZOzzDS49IBYcS9NNBwn8ffpfIz3?=
- =?iso-8859-1?Q?Y67nHfiXAE0/MLyh2Gc0excdHI8OBsVZ1R60VSLZ5/OGMzn7oC4M1ylK5C?=
- =?iso-8859-1?Q?cqZ1vZCPOjgI7TXzk5HSDQcrcce6OeS1vLiZKd06FOARFVdq3rlpCefbqy?=
- =?iso-8859-1?Q?8buz8n8iIicYuvSzaCnGsBWvPxSVmw4tbpTMMKqkG/DffTlUmYi3PKIKcS?=
- =?iso-8859-1?Q?RIADFOzZz8xd3kMm3Nn/R4I0o9HQJ6XZGNMcQVnJv8Fd4jDd6hiFDkd9cS?=
- =?iso-8859-1?Q?/vV+a7MI4VGlp58DlzxcAjfYKPmSnF72Dp2nxGIRFYOxWTEpYAa/x1sYk6?=
- =?iso-8859-1?Q?q3OFs9OFGrycikTDRvlrmWjSCIm9q7WLSWXVV6EeilIlEbKVLbQPgT1l7v?=
- =?iso-8859-1?Q?RLAv2ZISYd/KK0edTlmPZXr8bzcHNxa+CPo0REl0aytdKzqexanmrR9FvZ?=
- =?iso-8859-1?Q?5IbRD9JydfH+inXDjLIwgRjba2Wlj3ghYNvu8YH6h43fIpUEDOVotXIneR?=
- =?iso-8859-1?Q?0vQ0uTXFVVbIQjPTP0mZFh1XYsViRxvS+7PUINl3mofvncMqGeCAVJRZU2?=
- =?iso-8859-1?Q?53kQWfMYYj8k8r0o39Tj5vwtMbwBKq6ivgW9X4+8IPdBtbT153OMxz03wM?=
- =?iso-8859-1?Q?x8eKJLuVWwITlXKRiUUS71p/lgTtjUeIVAXbl3MD5aheB86wEl/cSKdcGR?=
- =?iso-8859-1?Q?nw6nyFDRmrQbRtk6VGqMF9Soh5VCJaY8IT+G1iedafN7n7tCKCBuQpkg?=
- =?iso-8859-1?Q?=3D=3D?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=Sophos;i="6.12,204,1728975600"; d="scan'208";a="124163803"
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by orviesa002.jf.intel.com with ESMTP; 02 Dec 2024 22:05:00 -0800
+From: Arun R Murthy <arun.r.murthy@intel.com>
+To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: Arun R Murthy <arun.r.murthy@intel.com>
+Subject: [PATCHv9 00/10] Display Global Histogram
+Date: Tue,  3 Dec 2024 11:25:10 +0530
+Message-Id: <20241203055520.1704661-1-arun.r.murthy@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PR11MB6129.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 043f610e-7aed-4277-31b7-08dd13586d75
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Dec 2024 05:07:47.0770 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Roy7XiF/DiYK8PbnBMCPGv7ZpemK7zvQ6Ouz+qz6IWt4vSRAwFjv/7F5ImpCn59fOdNfSeDnD5Rs3Hr9L+IvUpvj31k1jTYIMGRVpcFwTkY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB8328
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -186,74 +65,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-[Resend in Plain Text]
+Display histogram is a hardware functionality where a statistics for 'x'
+number of frames is generated to form a histogram data. This is notified
+to the user via histogram event. Compositor will then upon sensing the
+histogram event will read the histogram data from KMD via crtc property.
+A library can be developed to take this generated histogram as an
+input and apply some algorithm to generate an Image EnhancemenT(IET).
+This is further fed back to the KMD via crtc property. KMD will use this
+IET as a multiplicand factor to multiply with the incoming pixels at the
+end of the pipe which is then pushed onto the display.
 
-Hello Thomas,
+One such library Global Histogram Enhancement(GHE) will take the histogram
+as input and applied the algorithm to enhance the density and then
+return the enhanced factor. This library can be located @
+https://github.com/intel/ghe
 
-Hope you are doing well. I am Chaitanya from the linux graphics team in Int=
-el.
+The corresponding mutter changes to enable/disable histogram, read the
+histogram data, communicate with the library and write the enhanced data
+back to the KMD is also pushed for review at https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3873
+and https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3873/diffs?commit_id=270808ca7c8be48513553d95b4a47541f5d40206
+The IGT changes for validating the histogram event and reading the
+histogram is also pushed for review at https://patchwork.freedesktop.org/series/135789/
 
-This mail is regarding a regression we are seeing in our CI runs[1] on linu=
-x-next repository.
+Test-with: 20240705091333.328322-1-mohammed.thasleem@intel.com
 
-Since the version next-20241120 [2], we are seeing the following regression
+Arun R Murthy (10):
+  drm/crtc: Add histogram properties
+  drm/crtc: Expose API to create drm crtc property for histogram
+  drm/i915/histogram: Define registers for histogram
+  drm/i915/histogram: Add support for histogram
+  drm/xe: Add histogram support to Xe builds
+  drm/i915/histogram: histogram interrupt handling
+  drm/i915/display: handle drm-crtc histogram property updates
+  drm/i915/histogram: histogram delay counter doesnt reset
+  drm/i915/histogram: Histogram changes for Display 20+
+  drm/i915/histogram: Enable pipe dithering
 
-```````````````````````````````````````````````````````````````````````````=
-``````
-<4>[=A0=A0 19.990743] Oops: general protection fault, probably for non-cano=
-nical address 0xb11675ef8d1ccbce: 0000 [#1] PREEMPT SMP NOPTI
-<4>[=A0=A0 19.990760] CPU: 21 UID: 110 PID: 867 Comm: prometheus-node Not t=
-ainted 6.12.0-next-20241120-next-20241120-gac24e26aa08f+ #1
-<4>[=A0=A0 19.990771] Hardware name: Intel Corporation Arrow Lake Client Pl=
-atform/MTL-S UDIMM 2DPC EVCRB, BIOS MTLSFWI1.R00.4400.D85.2410100007 10/10/=
-2024
-<4>[=A0=A0 19.990782] RIP: 0010:power_supply_get_property+0x3e/0xe0
-```````````````````````````````````````````````````````````````````````````=
-``````
-Details log can be found in [3].=20
+ drivers/gpu/drm/drm_atomic_state_helper.c     |   6 +
+ drivers/gpu/drm/drm_atomic_uapi.c             |  17 +
+ drivers/gpu/drm/drm_crtc.c                    |  30 ++
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ drivers/gpu/drm/i915/display/intel_atomic.c   |   1 +
+ drivers/gpu/drm/i915/display/intel_crtc.c     |   7 +
+ drivers/gpu/drm/i915/display/intel_display.c  |  17 +
+ .../gpu/drm/i915/display/intel_display_irq.c  |   6 +-
+ .../drm/i915/display/intel_display_types.h    |   4 +
+ .../gpu/drm/i915/display/intel_histogram.c    | 380 ++++++++++++++++++
+ .../gpu/drm/i915/display/intel_histogram.h    |  40 ++
+ .../drm/i915/display/intel_histogram_regs.h   |  75 ++++
+ drivers/gpu/drm/i915/i915_reg.h               |   5 +-
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ include/drm/drm_crtc.h                        |  49 +++
+ include/uapi/drm/drm_mode.h                   |  11 +
+ 16 files changed, 647 insertions(+), 3 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_histogram.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_histogram.h
+ create mode 100644 drivers/gpu/drm/i915/display/intel_histogram_regs.h
 
-After bisecting the tree, the following patch [4] seems to be the first "ba=
-d"
-commit
+-- 
+2.25.1
 
-```````````````````````````````````````````````````````````````````````````=
-``````````````````````````````
-Commit 49000fee9e639f62ba1f965ed2ae4c5ad18d19e2
-Author: =A0 =A0 Thomas Wei=DFschuh <mailto:linux@weissschuh.net>
-AuthorDate: Sat Oct 5 12:05:03 2024 +0200
-Commit: =A0 =A0 Sebastian Reichel <mailto:sebastian.reichel@collabora.com>
-CommitDate: Tue Oct 15 22:22:20 2024 +0200
-=A0 =A0 power: supply: core: add wakeup source inhibit by power_supply_conf=
-ig=A0 =A0=A0
-```````````````````````````````````````````````````````````````````````````=
-``````````````````````````````
-
-This is now seen in our drm-tip runs as well. [5]
-
-Could you please check why the patch causes this regression and provide a f=
-ix if necessary?
-
-Thank you.
-
-Regards
-
-Chaitanya
-
-
-P.S. We could not revert the patch cleanly and therefore we are yet to veri=
-fy the bisect but we are currently working on it.
-
-
-[1] https://intel-gfx-ci.01.org/tree/linux-next/combined-alt.html?
-[2]https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/comm=
-it/?h=3Dnext-20241120
-[3] https://intel-gfx-ci.01.org/tree/linux-next/next-20241120/bat-arls-6/bo=
-ot0.txt=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=20
-[4] https://cgit.freedesktop.org/drm-tip/commit/?id=3D49000fee9e639f62ba1f9=
-65ed2ae4c5ad18d19e2
-[5] https://intel-gfx-ci.01.org/tree/drm-tip/index.html?
