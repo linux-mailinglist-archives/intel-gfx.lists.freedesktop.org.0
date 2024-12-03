@@ -2,56 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DEBB9E134B
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Dec 2024 07:20:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C34F59E1345
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Dec 2024 07:15:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B610310E0EE;
-	Tue,  3 Dec 2024 06:20:39 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R4lWkc2j";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34FBC10E8ED;
+	Tue,  3 Dec 2024 06:15:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D066310E0EE
- for <intel-gfx@lists.freedesktop.org>; Tue,  3 Dec 2024 06:20:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733206837; x=1764742837;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=PusbZ9lXoA1ruO8q9TQfnxpw7bTwdXAnJ3BvWVdkmxU=;
- b=R4lWkc2jqzVbCg7K3LKlUoTL95Rw75GuSqc57iQDIVL3C8ENO3T/4CuZ
- sUsJmB1iNvNgSWYsTlANKC+D56/5dWzdrz2wvlVGtGc8gFsnDVI9anubK
- qiVNZwN9PAHc1w2v+/kIz9y+11e/4HBWh6Bc2DmT4tA2RMCZZl0BbiFh0
- OS+IweS5jktfO7lIrPyFSCqnG/z2gLgmCJWmeDmoMZocXEWLVM4+0F/jU
- AjkVpok19Ue7kYdckn6N5oPoIB3G4qhON/s7Cz78DVeb613f8fNxKHZ3A
- mUPtcH/iR4KKZX3ZOhbjEXakCxEHXQEwmOUPmkP8DxLv4ulws1Kl4dnH7 A==;
-X-CSE-ConnectionGUID: Gr355qjBS2GiKojeDGnjVA==
-X-CSE-MsgGUID: m45IvSUrSkSwE+OJ4vVneg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11274"; a="33535029"
-X-IronPort-AV: E=Sophos;i="6.12,204,1728975600"; d="scan'208";a="33535029"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2024 22:20:37 -0800
-X-CSE-ConnectionGUID: w8hQjihOQjKkqM9QteUkvw==
-X-CSE-MsgGUID: uT8YGhhHQKO9byvH0YuBVw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,204,1728975600"; d="scan'208";a="124264957"
-Received: from anirban-z690i-a-ultra-plus.iind.intel.com ([10.145.169.150])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2024 22:20:35 -0800
-From: Sk Anirban <sk.anirban@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: badal.nilawar@intel.com, karthik.poosa@intel.com, anshuman.gupta@intel.com,
- Sk Anirban <sk.anirban@intel.com>
-Subject: [PATCH v2] drm/i915/selftests: Add delay to stabilize frequency in
- live_rps_power
-Date: Tue,  3 Dec 2024 11:41:14 +0530
-Message-Id: <20241203061114.2790448-1-sk.anirban@intel.com>
-X-Mailer: git-send-email 2.34.1
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDF6710E8ED;
+ Tue,  3 Dec 2024 06:15:55 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_Display_Global_Histogram_?=
+ =?utf-8?q?=28rev9=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arun R Murthy" <arun.r.murthy@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 03 Dec 2024 06:15:55 -0000
+Message-ID: <173320655596.1891689.5759080190072367168@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241203055520.1704661-1-arun.r.murthy@intel.com>
+In-Reply-To: <20241203055520.1704661-1-arun.r.murthy@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,32 +37,46 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add delays to allow frequency stabilization before power measurement
-to fix sporadic power conservation issues in live_rps_power test.
+== Series Details ==
 
-v2:
-  - Move delay to respective function (Badal)
+Series: Display Global Histogram (rev9)
+URL   : https://patchwork.freedesktop.org/series/135793/
+State : failure
 
-Signed-off-by: Sk Anirban <sk.anirban@intel.com>
----
- drivers/gpu/drm/i915/gt/selftest_rps.c | 1 +
- 1 file changed, 1 insertion(+)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
-index dcef8d498919..c207a4fb03bf 100644
---- a/drivers/gpu/drm/i915/gt/selftest_rps.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
-@@ -1125,6 +1125,7 @@ static u64 measure_power(struct intel_rps *rps, int *freq)
- static u64 measure_power_at(struct intel_rps *rps, int *freq)
- {
- 	*freq = rps_set_check(rps, *freq);
-+	msleep(100);
- 	return measure_power(rps, freq);
- }
- 
--- 
-2.34.1
+Error: make failed
+  CALL    scripts/checksyscalls.sh
+  DESCEND objtool
+  INSTALL libsubcmd_headers
+  CC [M]  drivers/gpu/drm/i915/display/intel_histogram.o
+In file included from ./include/linux/string.h:389,
+                 from ./include/linux/bitmap.h:13,
+                 from ./include/linux/cpumask.h:12,
+                 from ./arch/x86/include/asm/paravirt.h:21,
+                 from ./arch/x86/include/asm/irqflags.h:80,
+                 from ./include/linux/irqflags.h:18,
+                 from ./include/linux/spinlock.h:59,
+                 from ./include/linux/kref.h:16,
+                 from ./include/drm/drm_device.h:5,
+                 from drivers/gpu/drm/i915/display/intel_histogram.c:6:
+In function ‘fortify_memcpy_chk’,
+    inlined from ‘intel_histogram_handle_int_work’ at drivers/gpu/drm/i915/display/intel_histogram.c:135:4:
+./include/linux/fortify-string.h:571:25: error: call to ‘__write_overflow_field’ declared with attribute warning: detected write beyond size of field (1st parameter); maybe use struct_group()? [-Werror=attribute-warning]
+  571 |                         __write_overflow_field(p_size_field, size);
+      |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+cc1: all warnings being treated as errors
+make[6]: *** [scripts/Makefile.build:194: drivers/gpu/drm/i915/display/intel_histogram.o] Error 1
+make[5]: *** [scripts/Makefile.build:440: drivers/gpu/drm/i915] Error 2
+make[4]: *** [scripts/Makefile.build:440: drivers/gpu/drm] Error 2
+make[3]: *** [scripts/Makefile.build:440: drivers/gpu] Error 2
+make[2]: *** [scripts/Makefile.build:440: drivers] Error 2
+make[1]: *** [/home/kbuild2/kernel/Makefile:1989: .] Error 2
+make: *** [Makefile:251: __sub-make] Error 2
+Build failed, no error log produced
+
 
