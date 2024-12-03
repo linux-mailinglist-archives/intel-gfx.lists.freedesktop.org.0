@@ -2,59 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4BCD9E27CC
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Dec 2024 17:41:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 038529E281B
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Dec 2024 17:50:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B9E510EAB2;
-	Tue,  3 Dec 2024 16:41:29 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NgIfDEV9";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F82B10E487;
+	Tue,  3 Dec 2024 16:50:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5117F10EAAE
- for <intel-gfx@lists.freedesktop.org>; Tue,  3 Dec 2024 16:41:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733244088; x=1764780088;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=x+up0kWaXps5YZ2JA0eHCuxnSnfQYH/GSMLmWBOSO2U=;
- b=NgIfDEV9mEaJhUNzw3guQ7tTxWK9aLI4DWf4Zi8p4ZZginCyLUXauR0R
- O6+fD+m/+Evi2DPqXvbqJ/6qiv9A6fO0EqDaeS8olIwwxgvOqlE0YsyGE
- cPRhbW773Fi6oB+p0R8AdMoztAyhX/OUeADDuvU6Ad7y7GufjzCfK1CzU
- JGA/UVI5iiBGAEr3wNv7sSs8YpRHUx4TG4Ur1NajJdQ54tThoMmYnH1tK
- aIg8MQ9ikxNg53lr0WZeXtNaqhGikcVWTypX2uYJm8Zy/AbuJr9jDOg20
- vEZ6L6rYhxzGuBBD08WN5hVQNS2wPwRMQPqdDb9ff1+t9yE5sWYvPGgHl Q==;
-X-CSE-ConnectionGUID: nLS2+5loRhKwYxR+d9YUUA==
-X-CSE-MsgGUID: RdwgvefURnuVf0ITn+P6yg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11275"; a="33347532"
-X-IronPort-AV: E=Sophos;i="6.12,205,1728975600"; d="scan'208";a="33347532"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2024 08:41:28 -0800
-X-CSE-ConnectionGUID: gbWnd4IwRz2lWIbdJo/kjg==
-X-CSE-MsgGUID: OweyXxtwQEGDfasghiGvpw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,205,1728975600"; d="scan'208";a="93580543"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.135])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2024 08:41:27 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH 6/6] drm/i915/lspcon: rename interfaces to intel_lspcon_* to
- unify
-Date: Tue,  3 Dec 2024 18:40:56 +0200
-Message-Id: <10c174653dc07f5e9fdfe1109bdc5d065efacbb9.1733243959.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1733243959.git.jani.nikula@intel.com>
-References: <cover.1733243959.git.jani.nikula@intel.com>
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF53010E487;
+ Tue,  3 Dec 2024 16:50:49 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_drm/dp=5Fmst=3A_Fix_a_few?=
+ =?utf-8?q?_side-band_message_handling_issues?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 03 Dec 2024 16:50:49 -0000
+Message-ID: <173324464977.2079416.10103553173053470508@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241203160223.2926014-1-imre.deak@intel.com>
+In-Reply-To: <20241203160223.2926014-1-imre.deak@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,142 +37,120 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Rename all the main functions to have intel_lspcon_ prefix. Keep the
-infoframes hooks named lspcon_ for now, and grouped together, as there'd
-be a clash with intel_lspcon_infoframes_enabled().
+== Series Details ==
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c     | 10 +++++-----
- drivers/gpu/drm/i915/display/intel_lspcon.c | 10 +++++-----
- drivers/gpu/drm/i915/display/intel_lspcon.h | 14 ++++++++------
- 3 files changed, 18 insertions(+), 16 deletions(-)
+Series: drm/dp_mst: Fix a few side-band message handling issues
+URL   : https://patchwork.freedesktop.org/series/142057/
+State : failure
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 537476e456d3..9b95a1e1f664 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -3499,7 +3499,7 @@ void intel_dp_set_power(struct intel_dp *intel_dp, u8 mode)
- 	} else {
- 		struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
- 
--		lspcon_resume(dig_port);
-+		intel_lspcon_resume(dig_port);
- 
- 		/* Write the source OUI as early as possible */
- 		intel_dp_init_source_oui(intel_dp);
-@@ -3516,7 +3516,7 @@ void intel_dp_set_power(struct intel_dp *intel_dp, u8 mode)
- 		}
- 
- 		if (ret == 1 && intel_lspcon_active(dig_port))
--			lspcon_wait_pcon_mode(dig_port);
-+			intel_lspcon_wait_pcon_mode(dig_port);
- 	}
- 
- 	if (ret != 1)
-@@ -5352,7 +5352,7 @@ intel_dp_detect_dpcd(struct intel_dp *intel_dp)
- 	if (drm_WARN_ON(&i915->drm, intel_dp_is_edp(intel_dp)))
- 		return connector_status_connected;
- 
--	lspcon_resume(dig_port);
-+	intel_lspcon_resume(dig_port);
- 
- 	if (!intel_dp_get_dpcd(intel_dp))
- 		return connector_status_disconnected;
-@@ -5851,8 +5851,8 @@ intel_dp_connector_register(struct drm_connector *connector)
- 	 * ToDo: Clean this up to handle lspcon init and resume more
- 	 * efficiently and streamlined.
- 	 */
--	if (lspcon_init(dig_port)) {
--		if (lspcon_detect_hdr_capability(dig_port))
-+	if (intel_lspcon_init(dig_port)) {
-+		if (intel_lspcon_detect_hdr_capability(dig_port))
- 			drm_connector_attach_hdr_output_metadata_property(connector);
- 	}
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c b/drivers/gpu/drm/i915/display/intel_lspcon.c
-index add2461f4a13..1d3108c7011c 100644
---- a/drivers/gpu/drm/i915/display/intel_lspcon.c
-+++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
-@@ -125,7 +125,7 @@ static u32 get_hdr_status_reg(struct intel_lspcon *lspcon)
- 		return DPCD_PARADE_LSPCON_HDR_STATUS;
- }
- 
--bool lspcon_detect_hdr_capability(struct intel_digital_port *dig_port)
-+bool intel_lspcon_detect_hdr_capability(struct intel_digital_port *dig_port)
- {
- 	struct intel_lspcon *lspcon = &dig_port->lspcon;
- 	struct intel_dp *intel_dp = lspcon_to_intel_dp(lspcon);
-@@ -659,14 +659,14 @@ u32 lspcon_infoframes_enabled(struct intel_encoder *encoder,
- 	return val;
- }
- 
--void lspcon_wait_pcon_mode(struct intel_digital_port *dig_port)
-+void intel_lspcon_wait_pcon_mode(struct intel_digital_port *dig_port)
- {
- 	struct intel_lspcon *lspcon = &dig_port->lspcon;
- 
- 	lspcon_wait_mode(lspcon, DRM_LSPCON_MODE_PCON);
- }
- 
--bool lspcon_init(struct intel_digital_port *dig_port)
-+bool intel_lspcon_init(struct intel_digital_port *dig_port)
- {
- 	struct intel_display *display = to_intel_display(dig_port);
- 	struct intel_dp *intel_dp = &dig_port->dp;
-@@ -712,7 +712,7 @@ u32 intel_lspcon_infoframes_enabled(struct intel_encoder *encoder,
- 	return dig_port->infoframes_enabled(encoder, pipe_config);
- }
- 
--void lspcon_resume(struct intel_digital_port *dig_port)
-+void intel_lspcon_resume(struct intel_digital_port *dig_port)
- {
- 	struct intel_display *display = to_intel_display(dig_port);
- 	struct intel_lspcon *lspcon = &dig_port->lspcon;
-@@ -722,7 +722,7 @@ void lspcon_resume(struct intel_digital_port *dig_port)
- 		return;
- 
- 	if (!lspcon->active) {
--		if (!lspcon_init(dig_port)) {
-+		if (!intel_lspcon_init(dig_port)) {
- 			drm_err(display->drm, "LSPCON init failed on port %c\n",
- 				port_name(dig_port->base.port));
- 			return;
-diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.h b/drivers/gpu/drm/i915/display/intel_lspcon.h
-index 20581af1ddb2..41d142a5c440 100644
---- a/drivers/gpu/drm/i915/display/intel_lspcon.h
-+++ b/drivers/gpu/drm/i915/display/intel_lspcon.h
-@@ -13,11 +13,15 @@ struct intel_crtc_state;
- struct intel_digital_port;
- struct intel_encoder;
- 
--bool lspcon_init(struct intel_digital_port *dig_port);
-+bool intel_lspcon_init(struct intel_digital_port *dig_port);
- bool intel_lspcon_active(struct intel_digital_port *dig_port);
--bool lspcon_detect_hdr_capability(struct intel_digital_port *dig_port);
--void lspcon_resume(struct intel_digital_port *dig_port);
--void lspcon_wait_pcon_mode(struct intel_digital_port *dig_port);
-+bool intel_lspcon_detect_hdr_capability(struct intel_digital_port *dig_port);
-+void intel_lspcon_resume(struct intel_digital_port *dig_port);
-+void intel_lspcon_wait_pcon_mode(struct intel_digital_port *dig_port);
-+u32 intel_lspcon_infoframes_enabled(struct intel_encoder *encoder,
-+				    const struct intel_crtc_state *pipe_config);
-+
-+/* digital port infoframes hooks */
- void lspcon_write_infoframe(struct intel_encoder *encoder,
- 			    const struct intel_crtc_state *crtc_state,
- 			    unsigned int type,
-@@ -32,7 +36,5 @@ void lspcon_set_infoframes(struct intel_encoder *encoder,
- 			   const struct drm_connector_state *conn_state);
- u32 lspcon_infoframes_enabled(struct intel_encoder *encoder,
- 			      const struct intel_crtc_state *pipe_config);
--u32 intel_lspcon_infoframes_enabled(struct intel_encoder *encoder,
--				    const struct intel_crtc_state *pipe_config);
- 
- #endif /* __INTEL_LSPCON_H__ */
--- 
-2.39.5
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_15778 -> Patchwork_142057v1
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_142057v1 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_142057v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142057v1/index.html
+
+Participating hosts (42 -> 41)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_142057v1:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@kms_flip@basic-plain-flip@b-dp2:
+    - fi-cfl-8109u:       [PASS][1] -> [DMESG-WARN][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15778/fi-cfl-8109u/igt@kms_flip@basic-plain-flip@b-dp2.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142057v1/fi-cfl-8109u/igt@kms_flip@basic-plain-flip@b-dp2.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_142057v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - bat-dg1-7:          [PASS][3] -> [FAIL][4] ([i915#12903])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15778/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142057v1/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
+
+  * igt@kms_flip@basic-plain-flip:
+    - fi-cfl-8109u:       [PASS][5] -> [DMESG-WARN][6] ([i915#12914]) +1 other test dmesg-warn
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15778/fi-cfl-8109u/igt@kms_flip@basic-plain-flip.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142057v1/fi-cfl-8109u/igt@kms_flip@basic-plain-flip.html
+
+  * igt@kms_psr@psr-primary-mmap-gtt:
+    - fi-pnv-d510:        NOTRUN -> [SKIP][7] +36 other tests skip
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142057v1/fi-pnv-d510/igt@kms_psr@psr-primary-mmap-gtt.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_module_load@load:
+    - fi-pnv-d510:        [ABORT][8] ([i915#13203]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15778/fi-pnv-d510/igt@i915_module_load@load.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142057v1/fi-pnv-d510/igt@i915_module_load@load.html
+    - bat-adlp-6:         [DMESG-WARN][10] ([i915#12253]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15778/bat-adlp-6/igt@i915_module_load@load.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142057v1/bat-adlp-6/igt@i915_module_load@load.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - fi-cfl-guc:         [FAIL][12] ([i915#12903]) -> [PASS][13]
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15778/fi-cfl-guc/igt@i915_pm_rpm@module-reload.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142057v1/fi-cfl-guc/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arlh-3:         [ABORT][14] ([i915#12061]) -> [PASS][15] +1 other test pass
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15778/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142057v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+    - bat-arlh-2:         [ABORT][16] ([i915#12061]) -> [PASS][17] +1 other test pass
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15778/bat-arlh-2/igt@i915_selftest@live@workarounds.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142057v1/bat-arlh-2/igt@i915_selftest@live@workarounds.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#12253]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12253
+  [i915#12903]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12903
+  [i915#12914]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12914
+  [i915#13203]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13203
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_15778 -> Patchwork_142057v1
+
+  CI-20190529: 20190529
+  CI_DRM_15778: 5779fb3c12faf12589054127d60b1d36d56ba219 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8135: c6840f5e3c3b942aa79727ee4978a5b79f290b67 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_142057v1: 5779fb3c12faf12589054127d60b1d36d56ba219 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142057v1/index.html
