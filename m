@@ -2,59 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9DCA9E21CF
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Dec 2024 16:17:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 33E2C9E2353
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Dec 2024 16:35:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F52610EA64;
-	Tue,  3 Dec 2024 15:17:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC82810EA59;
+	Tue,  3 Dec 2024 15:35:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hvNYS0S2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A9w410pB";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C4E510EA64;
- Tue,  3 Dec 2024 15:17:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B15110EA59
+ for <intel-gfx@lists.freedesktop.org>; Tue,  3 Dec 2024 15:35:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733239054; x=1764775054;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=0OopfP+KRDpy6dyV6mcf3NsNvkKjOAClcLnOmrbZ37s=;
- b=hvNYS0S2nYZMj5kV6ohkNzOUg7O1A/JHYjIotoDT4zk0uznzYZmw62pK
- d2js8mvxmAGJbvTg7gca2y6eKpSMQUnd9PZFsZ0XNz5CS/33qpDgLIK++
- Ax7SJku8vz7DHErA0X9SNQuU5acqVU72BIFS/egk2CuVAEIJmtO6O/5AP
- 8WvSRKSf1Fk76EECMtZSO3/JmDg2+k567vjTr1jeZ2m+JC4QZ0iZ6lG/4
- g6RXjlUh1svHKOLeRnVDLepdJztRk1aXKRX/0RWjztsav8lTpd/6ZAhyc
- OYMdJB6rtBxXEz02jbCBTrXGeM1dMBKa8Ivf7A+s26rBTj7V4ZTfoNzqw A==;
-X-CSE-ConnectionGUID: hfe3wjnrQxarW3wRYeVKFg==
-X-CSE-MsgGUID: UyWgkjP2QtGVGPq2VYc4pA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11275"; a="33708783"
-X-IronPort-AV: E=Sophos;i="6.12,205,1728975600"; d="scan'208";a="33708783"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2024 07:17:34 -0800
-X-CSE-ConnectionGUID: bDUvC+e1SWeoOOLDXud+zQ==
-X-CSE-MsgGUID: KffNOO8AR1Gv2au5/EMn4A==
+ t=1733240121; x=1764776121;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=FCqOADz4JWIglHFJAv7H0CfDcI8oft+1XNzNjQgNbCo=;
+ b=A9w410pBs+LmAAt3RekuGC0RppguzVrxwMoM3jvVVlcJiWbu8jTVhWKb
+ f+ERgVUrXoDxjo0soWsySCOrGxQk3afvyz9WQLas9fHRw+xm5xQi+5fFo
+ syXiAQadylpRecuZUE0Xmnu5xRpelj8vnf8abcrOgXB3X8rsR3acBVkSF
+ mhB2NhYENXMuNXhHfgIDUuqdmUZwMufNhWSl/UrVoc9BSJXlCX+5moaIU
+ Rx5cE3q71tls1l9jX0Ubca6Bo/K2NXDk4R+LcUy8ZZ20i0dwO43RgVnwT
+ F8PyU7wgXp91Si5cZcLmS0JO3FfNOyKX3hKCJZWwRScl9+ScBzaFsqNby w==;
+X-CSE-ConnectionGUID: K2edihd/TCiy8HI42trkaw==
+X-CSE-MsgGUID: yzSHQ0JUSli/9VeAuVfvXg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11275"; a="21042896"
+X-IronPort-AV: E=Sophos;i="6.12,205,1728975600"; d="scan'208";a="21042896"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2024 07:35:19 -0800
+X-CSE-ConnectionGUID: BZfdepOOTB6JiGBe3jXwmg==
+X-CSE-MsgGUID: bTeda1OPQ+GWtj3tHXeX1A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,205,1728975600"; d="scan'208";a="97526292"
+X-IronPort-AV: E=Sophos;i="6.12,205,1728975600"; d="scan'208";a="116718157"
 Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.135])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2024 07:17:31 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com, imre.deak@intel.com, Lyude Paul <lyude@redhat.com>
-Subject: [PATCH v2 3/3] drm/dp: extract drm_dp_dpcd_clear_payload()
-Date: Tue,  3 Dec 2024 17:17:10 +0200
-Message-Id: <904fa73ea9ea976185062eeb493a08ffc43ed27e.1733238941.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1733238940.git.jani.nikula@intel.com>
-References: <cover.1733238940.git.jani.nikula@intel.com>
-MIME-Version: 1.0
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2024 07:35:17 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: chaitanya.kumar.borah@intel.com, uma.shankar@intel.com,
+ ankit.k.nautiyal@intel.com, dnyaneshwar.bhadane@intel.com, Suraj Kandpal
+ <suraj.kandpal@intel.com>
+Subject: Re: [PATCH] drm/i915/hdcp: Disable HDCP Line Rekeying for HDCP2.2
+ on HDMI
+In-Reply-To: <20240416033918.567386-2-suraj.kandpal@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+References: <20240416033918.567386-2-suraj.kandpal@intel.com>
+Date: Tue, 03 Dec 2024 17:35:13 +0200
+Message-ID: <871pyo4w5q.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,68 +71,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SST with 128b/132b channel coding needs this too. Extract to a separate
-helper, independent of MST.
+On Tue, 16 Apr 2024, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
+> Disable HDCP Line Rekeying when HDCP ver > 1.4 and when we are
+> on HDMI TMDS operation for DISPLAY_VEY >= 14.
+> WA: 16022217614
+> Bspec: 49273
+> Bspec: 69964
+>
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_hdcp.c | 16 ++++++++++++++++
+>  drivers/gpu/drm/i915/i915_reg.h           |  1 +
+>  2 files changed, 17 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> index d5ed4c7dfbc0..15af6e184ef8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> @@ -30,6 +30,20 @@
+>  #define KEY_LOAD_TRIES	5
+>  #define HDCP2_LC_RETRY_CNT			3
+>  
+> +static void
+> +intel_hdcp_disable_hdcp_line_rekeying(struct intel_encoder *encoder,
+> +				      struct intel_hdcp *hdcp)
+> +{
+> +	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+> +
+> +	if (encoder->type != INTEL_OUTPUT_HDMI)
+> +		return;
 
-Cc: Lyude Paul <lyude@redhat.com>
-Reviewed-by: Imre Deak <imre.deak@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/display/drm_dp_helper.c       | 14 ++++++++++++++
- drivers/gpu/drm/display/drm_dp_mst_topology.c |  2 +-
- include/drm/display/drm_dp_helper.h           |  1 +
- 3 files changed, 16 insertions(+), 1 deletion(-)
+Reading code, I came across this line, originating from commit
+6a3691ca4799 ("drm/i915/hdcp: Disable HDCP Line Rekeying for HDCP2.2 on
+HDMI") i.e. this patch here. The function has been expanded since, but
+this remains at the top of the function.
 
-diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
-index 55eca899ce18..da3c8521a7fa 100644
---- a/drivers/gpu/drm/display/drm_dp_helper.c
-+++ b/drivers/gpu/drm/display/drm_dp_helper.c
-@@ -849,6 +849,20 @@ int drm_dp_dpcd_write_payload(struct drm_dp_aux *aux,
- }
- EXPORT_SYMBOL(drm_dp_dpcd_write_payload);
- 
-+/**
-+ * drm_dp_dpcd_clear_payload() - Clear the entire VC Payload ID table
-+ * @aux: DisplayPort AUX channel
-+ *
-+ * Clear the entire VC Payload ID table.
-+ *
-+ * Returns: 0 on success, negative error code on errors.
-+ */
-+int drm_dp_dpcd_clear_payload(struct drm_dp_aux *aux)
-+{
-+	return drm_dp_dpcd_write_payload(aux, 0, 0, 0x3f);
-+}
-+EXPORT_SYMBOL(drm_dp_dpcd_clear_payload);
-+
- /**
-  * drm_dp_dpcd_poll_act_handled() - Poll for ACT handled status
-  * @aux: DisplayPort AUX channel
-diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c b/drivers/gpu/drm/display/drm_dp_mst_topology.c
-index 8da39b060f13..5d873bb19dc2 100644
---- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
-+++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
-@@ -3682,7 +3682,7 @@ int drm_dp_mst_topology_mgr_set_mst(struct drm_dp_mst_topology_mgr *mgr, bool ms
- 			goto out_unlock;
- 
- 		/* Write reset payload */
--		drm_dp_dpcd_write_payload(mgr->aux, 0, 0, 0x3f);
-+		drm_dp_dpcd_clear_payload(mgr->aux);
- 
- 		drm_dp_mst_queue_probe_work(mgr);
- 
-diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
-index 69793815aa82..8f4054a56039 100644
---- a/include/drm/display/drm_dp_helper.h
-+++ b/include/drm/display/drm_dp_helper.h
-@@ -569,6 +569,7 @@ int drm_dp_dpcd_read_phy_link_status(struct drm_dp_aux *aux,
- 
- int drm_dp_dpcd_write_payload(struct drm_dp_aux *aux,
- 			      int vcpid, u8 start_time_slot, u8 time_slot_count);
-+int drm_dp_dpcd_clear_payload(struct drm_dp_aux *aux);
- int drm_dp_dpcd_poll_act_handled(struct drm_dp_aux *aux, int timeout_ms);
- 
- bool drm_dp_send_real_edid_checksum(struct drm_dp_aux *aux,
+encoder->type == INTEL_OUTPUT_HDMI is only true for pre-DDI platforms,
+but they don't have HDCP.
+
+The entire function is a big NOP, and always has been.
+
+
+BR,
+Jani.
+
+
+> +
+> +	if (DISPLAY_VER(dev_priv) >= 14)
+> +		intel_de_rmw(dev_priv, TRANS_DDI_FUNC_CTL(hdcp->cpu_transcoder),
+> +			     TRANS_DDI_HDCP_LINE_REKEY_DISABLE, 1);
+> +}
+> +
+>  static int intel_conn_to_vcpi(struct intel_atomic_state *state,
+>  			      struct intel_connector *connector)
+>  {
+> @@ -2005,6 +2019,8 @@ static int _intel_hdcp2_enable(struct intel_atomic_state *state,
+>  		    connector->base.base.id, connector->base.name,
+>  		    hdcp->content_type);
+>  
+> +	intel_hdcp_disable_hdcp_line_rekeying(connector->encoder, hdcp);
+> +
+>  	ret = hdcp2_authenticate_and_encrypt(state, connector);
+>  	if (ret) {
+>  		drm_dbg_kms(&i915->drm, "HDCP2 Type%d  Enabling Failed. (%d)\n",
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index 3f34efcd7d6c..fbf4623cd536 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -5630,6 +5630,7 @@ enum skl_power_gate {
+>  #define  TRANS_DDI_EDP_INPUT_B_ONOFF	(5 << 12)
+>  #define  TRANS_DDI_EDP_INPUT_C_ONOFF	(6 << 12)
+>  #define  TRANS_DDI_EDP_INPUT_D_ONOFF	(7 << 12)
+> +#define  TRANS_DDI_HDCP_LINE_REKEY_DISABLE	REG_BIT(12)
+>  #define  TRANS_DDI_MST_TRANSPORT_SELECT_MASK	REG_GENMASK(11, 10)
+>  #define  TRANS_DDI_MST_TRANSPORT_SELECT(trans)	\
+>  	REG_FIELD_PREP(TRANS_DDI_MST_TRANSPORT_SELECT_MASK, trans)
+
 -- 
-2.39.5
-
+Jani Nikula, Intel
