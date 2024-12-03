@@ -2,55 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6754E9E196E
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Dec 2024 11:36:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 868EC9E19B2
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Dec 2024 11:46:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A1D510E9D7;
-	Tue,  3 Dec 2024 10:36:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0C3E10E317;
+	Tue,  3 Dec 2024 10:46:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MVHC2Pwi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EBEAzh7s";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA9A110E313;
- Tue,  3 Dec 2024 10:36:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E26CB10E317
+ for <intel-gfx@lists.freedesktop.org>; Tue,  3 Dec 2024 10:46:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733222181; x=1764758181;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=d0T59woWY78O4dek2DvUEcGZWmbW+rRBhoJSd1I4Li4=;
- b=MVHC2PwihYsiAOMCwVn/AEELEOzcPFS4iMRFU5DGyRyjrVPo1Fl18/1a
- eXKwxGwdW2KI0L2/TJ9uVG3i7pVd66yFp96dp0PEUmZ1cVZoS+h686Xjn
- I/hLi9mwzm9hZlEQ3V0ULk8mXFmlBZSStcwwRQFCVJRDcRrg19obY3AJO
- z82AVaNOo8DgDkuQ/nq3bdAlng5rUuPoXQpgOdJICleFg5TAz41WFZ58u
- PhaSfqMWYHmi/lNxwz2nb7m+3wsPosYZyykTu9tjOnzUgWCTxbPcANs1b
- R33RU6ZhiZXNdPF7JXs4GSqVtDLq4x5I9QSZiHao4joMULJj51VgE7jU3 A==;
-X-CSE-ConnectionGUID: B3wyqoNiSWuvCxFvcHcRYQ==
-X-CSE-MsgGUID: pRJoLiRATJeCMe11x3r5BQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11274"; a="44456556"
-X-IronPort-AV: E=Sophos;i="6.12,204,1728975600"; d="scan'208";a="44456556"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2024 02:36:21 -0800
-X-CSE-ConnectionGUID: O8TGm+eUSi2X4eZdXcr4Og==
-X-CSE-MsgGUID: +d/zy/r5TN2RNWBMmUmA/A==
+ t=1733222790; x=1764758790;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=w7cWusn6Bwj2bwK5IzqQncZkLc0kl2KycQ45c1hXDGo=;
+ b=EBEAzh7siE4znZ4b4griJm5/mVIp1uXVgFN67bmTA+Y1j3e9bFElyCtT
+ d4+KRW8zYln3+c/ZBbthRav4wHs6oJBfEMLd7cL2qqRm4i7eQ/PZNmPjL
+ 07hO9oBu70mpoMmAQ9VFS5K3Cdv4yB1dlRx5M3bG7k0D/x8Nl3kEd8/Lw
+ UJK2dvFdpWiu7if/1PFgJ8rSfui2ii/uGpC9/gQpxStzCJVWoBShYl9wp
+ 8Y9q5vxbCIH7PLAHcej8CYTF6WXYwPc6IcI0mj1ozP673FOh2C1emIV/o
+ gW9dy1DA/yumpBdDcq8uYy/Io8RZkhgSFQ3FSy/JeLmkQ+iTKDc8Vbb8J w==;
+X-CSE-ConnectionGUID: wD8Wm8wERKGNf3DT16wqiA==
+X-CSE-MsgGUID: PbNTrPCwTXazPivmbHZQyA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11274"; a="33172452"
+X-IronPort-AV: E=Sophos;i="6.12,205,1728975600"; d="scan'208";a="33172452"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2024 02:46:21 -0800
+X-CSE-ConnectionGUID: ocnpyV83QmmvMNrTQ5GuZQ==
+X-CSE-MsgGUID: WGeqVzSMQzmtV/hkEGp/oQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,204,1728975600"; d="scan'208";a="93727742"
+X-IronPort-AV: E=Sophos;i="6.12,205,1728975600"; d="scan'208";a="93483787"
 Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.135])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2024 02:36:18 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915/display: remove unused for_each_crtc()
-In-Reply-To: <173314475855.2905.12006003723478227624@intel.com>
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2024 02:46:18 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Sk Anirban <sk.anirban@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: badal.nilawar@intel.com, karthik.poosa@intel.com,
+ anshuman.gupta@intel.com, Sk Anirban <sk.anirban@intel.com>
+Subject: Re: [PATCH v2] drm/i915/selftests: Add delay to stabilize frequency
+ in live_rps_power
+In-Reply-To: <20241203061114.2790448-1-sk.anirban@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241202125437.1154945-1-jani.nikula@intel.com>
- <173314475855.2905.12006003723478227624@intel.com>
-Date: Tue, 03 Dec 2024 12:36:15 +0200
-Message-ID: <875xo15a00.fsf@intel.com>
+References: <20241203061114.2790448-1-sk.anirban@intel.com>
+Date: Tue, 03 Dec 2024 12:46:15 +0200
+Message-ID: <8734j559jc.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -68,45 +70,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 02 Dec 2024, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
-> Quoting Jani Nikula (2024-12-02 09:54:37-03:00)
->>This is essentially a duplicate of drm_for_each_crtc() anyway. Remove.
->
-> And it looks like commit 08dfd243abac ("drm/i915: Clean up
-> intel_fbdev_init_bios() a bit") was the one that made it unused.
->
->>
->>Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
+On Tue, 03 Dec 2024, Sk Anirban <sk.anirban@intel.com> wrote:
+> Add delays to allow frequency stabilization before power measurement
+> to fix sporadic power conservation issues in live_rps_power test.
 
-Thanks for the review, pushed to din.
+Looks like band-aid. What's the root cause?
 
 BR,
 Jani.
 
 >
->>---
->> drivers/gpu/drm/i915/display/intel_display.h | 3 ---
->> 1 file changed, 3 deletions(-)
->>
->>diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
->>index caef04f655c5..49a246feb1ae 100644
->>--- a/drivers/gpu/drm/i915/display/intel_display.h
->>+++ b/drivers/gpu/drm/i915/display/intel_display.h
->>@@ -238,9 +238,6 @@ enum phy_fia {
->>         for ((__phy) = PHY_A; (__phy) < I915_MAX_PHYS; (__phy)++)        \
->>                 for_each_if((__phys_mask) & BIT(__phy))
->> 
->>-#define for_each_crtc(dev, crtc) \
->>-        list_for_each_entry(crtc, &(dev)->mode_config.crtc_list, head)
->>-
->> #define for_each_intel_plane(dev, intel_plane) \
->>         list_for_each_entry(intel_plane,                        \
->>                             &(dev)->mode_config.plane_list,        \
->>-- 
->>2.39.5
->>
+> v2:
+>   - Move delay to respective function (Badal)
+>
+> Signed-off-by: Sk Anirban <sk.anirban@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/selftest_rps.c | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
+> index dcef8d498919..c207a4fb03bf 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_rps.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
+> @@ -1125,6 +1125,7 @@ static u64 measure_power(struct intel_rps *rps, int *freq)
+>  static u64 measure_power_at(struct intel_rps *rps, int *freq)
+>  {
+>  	*freq = rps_set_check(rps, *freq);
+> +	msleep(100);
+>  	return measure_power(rps, freq);
+>  }
 
 -- 
 Jani Nikula, Intel
