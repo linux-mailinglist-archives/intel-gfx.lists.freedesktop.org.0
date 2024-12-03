@@ -2,59 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88ED39E17CD
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Dec 2024 10:36:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ECCE59E1868
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Dec 2024 10:56:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C56110E9B7;
-	Tue,  3 Dec 2024 09:36:47 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="LAkHShM8";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7798810E9C4;
+	Tue,  3 Dec 2024 09:56:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B27510E9B7;
- Tue,  3 Dec 2024 09:36:46 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 1FF375C697C;
- Tue,  3 Dec 2024 09:36:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 752C2C4CED6;
- Tue,  3 Dec 2024 09:36:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1733218604;
- bh=SVgeimaxMCy/0f2AoMe1mCp1DAEBQJ4X3mcrC+82vu8=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=LAkHShM8v1EaacOOI6JrMuL7F2wP7Yllbl6bdB/wML1YeWiaVxpA0AOI8R7ZFFkcm
- yVS1h5Z1QOJVAE0hN+nYE/p9qPS2vF7P7aewrv8uvhwGy6uC5IwuxGd2FWnPPs1K/X
- dneKYnd8VUilyCpVmOngztT1WfsyfEU4c8pDulzvokQ6SWWjfLuTyNifOoNBlC8Y14
- jez9X05LjYsUl99pLp6iOUISN/MH6oYNdWAY8cGforpbGlOT0fT+B7zcvgOpT5Pe31
- KrFxOy1dnbBBfW85u2Wu6cxhobf8lCusYMaWnh2sMnXXMQ6haUda2CTRlM2iit9ION
- Eg+bQSqOS+EQg==
-Date: Tue, 3 Dec 2024 10:36:42 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, 
- Dave Airlie <airlied@redhat.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, 
- dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH v2 1/4] drm/dp: Add a way to init/add a connector in
- separate steps
-Message-ID: <20241203-simple-pigeon-of-infinity-babfee@houat>
-References: <20241126161859.1858058-1-imre.deak@intel.com>
- <20241126161859.1858058-2-imre.deak@intel.com>
- <Z0nO-bwpbWPVryd6@ideak-desk.fi.intel.com>
- <20241129-wild-cobra-of-thunder-829d1f@houat>
- <Z0nn0VzawSCdOCKY@ideak-desk.fi.intel.com>
- <20241202-real-benevolent-skunk-a9f5e0@houat>
- <87ldwy5lvb.fsf@intel.com>
- <20241202-accurate-jolly-hornet-8c2ca0@houat>
- <87bjxu5btw.fsf@intel.com>
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE6A010E315;
+ Tue,  3 Dec 2024 09:56:29 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="335vxtzobacwcmvi"
-Content-Disposition: inline
-In-Reply-To: <87bjxu5btw.fsf@intel.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_drm/i915=3A_Add_drm=5Fpa?=
+ =?utf-8?q?nic_support_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jocelyn Falempe" <jfalempe@redhat.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 03 Dec 2024 09:56:29 -0000
+Message-ID: <173321978997.1964850.16935328190799787853@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241203092836.426422-1-jfalempe@redhat.com>
+In-Reply-To: <20241203092836.426422-1-jfalempe@redhat.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,61 +37,20 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
---335vxtzobacwcmvi
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v2 1/4] drm/dp: Add a way to init/add a connector in
- separate steps
-MIME-Version: 1.0
+Series: drm/i915: Add drm_panic support (rev2)
+URL   : https://patchwork.freedesktop.org/series/141935/
+State : warning
 
-On Mon, Dec 02, 2024 at 05:44:27PM +0200, Jani Nikula wrote:
-> >> It's super tempting for people to just get their jobs done. If doing
-> >> the right thing adds yet another hurdle, we may see more stuff being
-> >> added in drivers instead of drm core.
-> >
-> > I really enjoy hidden threats.
->=20
-> None were implied. That's your interpretation of what I honestly think
-> is a plausible outcome.
+== Summary ==
 
-I obviously misinterpreted what you were saying then. Sorry for the
-whole tone of that mail.
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
-> I try to push people towards contributing to drm core instead of
-> drivers, and it's not always easy as it is. It's just a guess, but
-> I'll bet the majority of drm contributors have never run kunit tests
-> themselves.
 
-Right, but I don't think it's worth worrying over either. If one stops
-contributing because they are afraid of running one documented command
-that takes a few seconds, they would have done so at any other obstacle.
-We have much bigger barriers of entry, at several levels.
-
-All of them are here for a good reason, and because we have collectively
-judged that the trade-off between adding a barrier and increasing the
-quality of the framework was worth it.
-
-I believe tests are worth it too.
-
-But anyway, it's really not what I had in mind.
-
-Maxime
-
---335vxtzobacwcmvi
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZ07RJQAKCRAnX84Zoj2+
-dnwxAYDe/IszcN04v4HWortlFKTA1s7i2La9lFd8X6ZIU/KRLpkp6CYZzZdyOlwM
-1FT4QlQBf1zNZuEfheP4sas6up7A5DHcaMaTkoiYrRkR3pUnarv83HpYsj+PFEwh
-j5vmoKYo8w==
-=tMAm
------END PGP SIGNATURE-----
-
---335vxtzobacwcmvi--
