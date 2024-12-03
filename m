@@ -2,28 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9725D9E1CE4
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Dec 2024 14:00:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 262859E1D44
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Dec 2024 14:14:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D07D410E0B0;
-	Tue,  3 Dec 2024 12:59:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B853010EA11;
+	Tue,  3 Dec 2024 13:14:55 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NIVwL8pa";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6652210E0B0;
- Tue,  3 Dec 2024 12:59:58 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915=3A_Fix_NULL_poin?=
- =?utf-8?q?ter_dereference_in_capture=5Fengine_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Eugene Kobyak" <eugene.kobyak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 03 Dec 2024 12:59:58 -0000
-Message-ID: <173323079841.2011362.7065020491579187995@b555e5b46a47>
-X-Patchwork-Hint: ignore
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02DA610E36F
+ for <intel-gfx@lists.freedesktop.org>; Tue,  3 Dec 2024 13:14:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1733231694; x=1764767694;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=W+YqdOnCRcWdTXAD8kK9geGujdKuZHH2+uUbWwUWL6M=;
+ b=NIVwL8paeI8hjwoHX61Mzh8Egx+0ocKTfFra7JHFFVfqbj0X3vm9o3eh
+ l6HZuXL8WFnKivB8jxV1RyV9+K7veR41x87r+3j/qvRAHslV4VjCyN5T8
+ g4mzwMpO2eJaxXymszxgL8yf5Vny/08hq/7intCRERux0UZvqDx0ngTbg
+ egIcUAuMWzZ+enQqEXHvyGuQyu+voiuP6xLRXzyvJWetWSNjPJ9GzOtkj
+ NK1BCy+4H6X0kD8vDXy6GWsmPEK9KsGgC/QVDwXnSChK7EOK+kszwgErR
+ 3j3paj24FpsCc+QXUeh9CyKJVmFeNzYOF+DiXIEJFqOQiUozwERy15Otq w==;
+X-CSE-ConnectionGUID: O7d5Fqa4Qrid7YyhC9MjuQ==
+X-CSE-MsgGUID: 4ORFUZ4CTtCfSxnlqGbd7Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11274"; a="44053377"
+X-IronPort-AV: E=Sophos;i="6.12,205,1728975600"; d="scan'208";a="44053377"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2024 05:14:53 -0800
+X-CSE-ConnectionGUID: QnyvTKuWQ428ZtlEleFVyg==
+X-CSE-MsgGUID: 3uiXGs5SQ9yN30WfmOjUEw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,205,1728975600"; d="scan'208";a="97865711"
+Received: from lfiedoro-mobl.ger.corp.intel.com (HELO intel.com)
+ ([10.245.246.145])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2024 05:14:51 -0800
+Date: Tue, 3 Dec 2024 14:14:47 +0100
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Eugene Kobyak <eugene.kobyak@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, John.C.Harrison@intel.com,
+ andi.shyti@linux.intel.com, jani.nikula@linux.intel.com
+Subject: Re: [PATCH v5] drm/i915: Fix NULL pointer dereference in
+ capture_engine
+Message-ID: <Z08ER6VLWmVOvfU5@ashyti-mobl2.lan>
 References: <4yfdzisxkb3j3tig2astee5zd46ppt2jwhqffkhes2dwm3g5nb@snadyfwzl7g4>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 In-Reply-To: <4yfdzisxkb3j3tig2astee5zd46ppt2jwhqffkhes2dwm3g5nb@snadyfwzl7g4>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -37,75 +67,35 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Eugene,
 
-Series: drm/i915: Fix NULL pointer dereference in capture_engine (rev2)
-URL   : https://patchwork.freedesktop.org/series/141903/
-State : success
+> Cc: <stable@vger.kernel.org> # v6.3+
 
-== Summary ==
+Next time cc also the stable kernel mailing list for real,
+please.
 
-CI Bug Log - changes from CI_DRM_15775 -> Patchwork_141903v2
-====================================================
+> +	        drm_info(&engine->gt->i915->drm, "Got hung context on %s with active request %lld:%lld%snot yet started\n",
+> +	                 engine->name, rq->fence.context, rq->fence.seqno, guc_id);
 
-Summary
--------
+this is very ugly: %lld:%lld%snot I understand you leave a space
+from the seqno and "not", but the form is unreadable. Could it be
+better:
 
-  **SUCCESS**
+  if (ce)
+	drm_info(.... ->guc_id);
+  else
+	drm_info(...); <-- same thing without the guc_id
 
-  No regressions found.
+It looks like for making it easier we are making it harder.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141903v2/index.html
+If you decide to go this way, perhaps you can add a comment
+saying that ce might be NULL, but if it's not you want to keep
+the guc_id information.
 
-Participating hosts (42 -> 41)
-------------------------------
+Next time cc also the stable kernel mailing list, please.
 
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_141903v2 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@i915_selftest@live:
-    - bat-mtlp-8:         [ABORT][1] ([i915#12061]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15775/bat-mtlp-8/igt@i915_selftest@live.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141903v2/bat-mtlp-8/igt@i915_selftest@live.html
-    - bat-adlp-6:         [ABORT][3] ([i915#9413]) -> [PASS][4] +1 other test pass
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15775/bat-adlp-6/igt@i915_selftest@live.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141903v2/bat-adlp-6/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arlh-3:         [ABORT][5] ([i915#12061]) -> [PASS][6] +1 other test pass
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15775/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141903v2/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-    - bat-mtlp-6:         [ABORT][7] ([i915#12061]) -> [PASS][8] +1 other test pass
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15775/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141903v2/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#9413]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15775 -> Patchwork_141903v2
-
-  CI-20190529: 20190529
-  CI_DRM_15775: 4de82d50b8de6a278c1483a7f76ae830c89d1824 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8134: 027fbf68a00630d7bb8ae200c620296e2bad971d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_141903v2: 4de82d50b8de6a278c1483a7f76ae830c89d1824 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141903v2/index.html
+Thanks,
+Andi
