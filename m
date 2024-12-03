@@ -2,69 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 729279E1AB4
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Dec 2024 12:18:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 05AA79E1B6D
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Dec 2024 12:55:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D89F10E345;
-	Tue,  3 Dec 2024 11:18:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE5DE10E342;
+	Tue,  3 Dec 2024 11:55:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ftp26xns";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="swIpzDOq";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4DB810E012;
- Tue,  3 Dec 2024 11:18:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733224685; x=1764760685;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=iSYwKSzqksJiVZrwjnKzvyi92xdceEyo2oHtV6lBSZQ=;
- b=ftp26xnsyNuz7COUBAH/yq8YOakp6MkpGoD3j+//cedqQOCA4YrqtKFZ
- gM1YtP4ETQc61jHViMSGvsNXMuvcycTAX9Lsg5z3gTDP71abxe8d9f/Gj
- H020hd1U7hWh5uFY4S3E/Ll4d4OUTd8OluwUr/D8HwI0Z6KMCLN8nnOh1
- 4U2OixwVYu7zKmd5rUxobvmoqsjfSg5WbGBTV6auQVhGOHYp4iRMEOCe8
- kYQYu7MfI4rkbIva/3vGio36Lz5nyuW1lZrxX4HiMidKA8IRvG9AIseDD
- /DfCZ735AZZuncDl+n2Fu0vWX10SF8+DhmQJ0GDwME+QB8sONHbN8zl2x w==;
-X-CSE-ConnectionGUID: kWOMzAatQeSAK4bJ8E7epw==
-X-CSE-MsgGUID: Aqg4loJ4TbC41CvBXnsv6Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11274"; a="43917327"
-X-IronPort-AV: E=Sophos;i="6.12,205,1728975600"; d="scan'208";a="43917327"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2024 03:18:05 -0800
-X-CSE-ConnectionGUID: SVrPN2xYRF2RVOkoLVcaqA==
-X-CSE-MsgGUID: 7HF1SWf2RG+A1LaH4U4JkQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,205,1728975600"; d="scan'208";a="97482020"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.135])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2024 03:18:02 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Maxime Ripard <mripard@kernel.org>
-Cc: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, Dave Airlie <airlied@redhat.com>, Daniel Vetter
- <daniel.vetter@ffwll.ch>, dri-devel@lists.freedesktop.org, Rodrigo Vivi
- <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH v2 1/4] drm/dp: Add a way to init/add a connector in
- separate steps
-In-Reply-To: <20241203-simple-pigeon-of-infinity-babfee@houat>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241126161859.1858058-1-imre.deak@intel.com>
- <20241126161859.1858058-2-imre.deak@intel.com>
- <Z0nO-bwpbWPVryd6@ideak-desk.fi.intel.com>
- <20241129-wild-cobra-of-thunder-829d1f@houat>
- <Z0nn0VzawSCdOCKY@ideak-desk.fi.intel.com>
- <20241202-real-benevolent-skunk-a9f5e0@houat> <87ldwy5lvb.fsf@intel.com>
- <20241202-accurate-jolly-hornet-8c2ca0@houat> <87bjxu5btw.fsf@intel.com>
- <20241203-simple-pigeon-of-infinity-babfee@houat>
-Date: Tue, 03 Dec 2024 13:17:58 +0200
-Message-ID: <87v7w13ti1.fsf@intel.com>
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3768710E31D;
+ Tue,  3 Dec 2024 11:55:08 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id AF47BA41462;
+ Tue,  3 Dec 2024 11:53:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5D92C4CEDD;
+ Tue,  3 Dec 2024 11:55:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1733226906;
+ bh=N/o9QrpTvLGERh33N1iKh6DaRqNYdNgXwjWQfAK0g9k=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=swIpzDOqw+Ean7bXywtFyc96sxzlE+L9v2fFpXgTLoFrh4L8ISWn8Xl6P69kGerS1
+ p57OgE5hQwnvXODczvo39EhrCMS07BNHWB4UvrGANNhRkddda+3Jc68mNkjelb/YtJ
+ 2FQ3SfAmbEz2pVB8OcB/WM0IRxQMpC9xyNP+iUY1fx7I0UxGwhKB6DKVcfgyLSfcPF
+ gDzkIEZg8kC3k79Jh1uwO22VVPJ+v17v66O1yf3muzjkyW3UcbiGPj6KWMdUthzliw
+ n0IM6+qkCzYDX6sPgZbF0siM7zWo5a3SpLQdr7iSTYtulf0iJa4Jqqfvkh2EDGRdqE
+ MnFO/UPALfhMQ==
+Received: by mail-oo1-f43.google.com with SMTP id
+ 006d021491bc7-5f1cec20a77so1752371eaf.1; 
+ Tue, 03 Dec 2024 03:55:06 -0800 (PST)
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXjWCuLuM+n9LOnK6fpmrVpQfMMBj5bwMqU7q41GiTX9U+3uVKORSsKiqtiCM02+TQFRE17FUndwf4=@lists.freedesktop.org,
+ AJvYcCXsKZpEByQg2ytOIbbtbxeSJP/9Jm5fLWrWEh/LQFZZcbGjNpB230Z8gDX3n2ydI81gwdUrYrnL7pU=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yze0ryZL2qY/XqhNd9wQCUgB3bJBbPpwdXtbEmvt/UHFudSM4cV
+ PkpYEo10kYOK+mz5WyzagRLRO/0C5WtEZJ2OUhFwHf9Qa1W+A4PDS9sXTzpCjMI7TfoH09JONsl
+ wrfPXmzE4Uh3yesfNFG4Ibrl0T4g=
+X-Google-Smtp-Source: AGHT+IGwR11wmC26MnR8qrUzuGc81R3ZFhKQnYAGjMelBFIRYZk3yBB7hTR2KVin5ABaPEhvg7rYJaJEzZPTOUD7+lk=
+X-Received: by 2002:a05:6870:46ac:b0:29e:6b6a:d6f4 with SMTP id
+ 586e51a60fabf-29e8890fbccmr1953346fac.37.1733226905887; Tue, 03 Dec 2024
+ 03:55:05 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <SJ1PR11MB6129CCD82CD78D8EE6E27EF4B9362@SJ1PR11MB6129.namprd11.prod.outlook.com>
+ <SJ1PR11MB612965ACA3E84745346F0400B9362@SJ1PR11MB6129.namprd11.prod.outlook.com>
+ <5e405ad4-34d6-4507-978f-3d81d4af2455@t-8ch.de>
+In-Reply-To: <5e405ad4-34d6-4507-978f-3d81d4af2455@t-8ch.de>
+From: "Rafael J. Wysocki" <rafael@kernel.org>
+Date: Tue, 3 Dec 2024 12:54:54 +0100
+X-Gmail-Original-Message-ID: <CAJZ5v0iXKvaxz-hmW2+qwTcSmtPJ23Hv04CMnmT=qPE0ytNwLg@mail.gmail.com>
+Message-ID: <CAJZ5v0iXKvaxz-hmW2+qwTcSmtPJ23Hv04CMnmT=qPE0ytNwLg@mail.gmail.com>
+Subject: Re: Regression on linux-next (next-20241120) and drm-tip
+To: =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>
+Cc: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>, 
+ "Kurmi, Suresh Kumar" <suresh.kumar.kurmi@intel.com>, "Coelho,
+ Luciano" <luciano.coelho@intel.com>, 
+ "Saarinen, Jani" <jani.saarinen@intel.com>, "Nikula,
+ Jani" <jani.nikula@intel.com>, 
+ "De Marchi, Lucas" <lucas.demarchi@intel.com>, 
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, 
+ "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,48 +81,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 03 Dec 2024, Maxime Ripard <mripard@kernel.org> wrote:
-> On Mon, Dec 02, 2024 at 05:44:27PM +0200, Jani Nikula wrote:
->> >> It's super tempting for people to just get their jobs done. If doing
->> >> the right thing adds yet another hurdle, we may see more stuff being
->> >> added in drivers instead of drm core.
->> >
->> > I really enjoy hidden threats.
->> 
->> None were implied. That's your interpretation of what I honestly think
->> is a plausible outcome.
+On Tue, Dec 3, 2024 at 7:51=E2=80=AFAM Thomas Wei=C3=9Fschuh <linux@weisssc=
+huh.net> wrote:
 >
-> I obviously misinterpreted what you were saying then. Sorry for the
-> whole tone of that mail.
-
-Don't worry about it. Likewise, my mail wasn't a stellar example of
-communication either. Sorry about that. Let's move on.
-
->> I try to push people towards contributing to drm core instead of
->> drivers, and it's not always easy as it is. It's just a guess, but
->> I'll bet the majority of drm contributors have never run kunit tests
->> themselves.
+> (+Cc Sebastian)
 >
-> Right, but I don't think it's worth worrying over either. If one stops
-> contributing because they are afraid of running one documented command
-> that takes a few seconds, they would have done so at any other obstacle.
-> We have much bigger barriers of entry, at several levels.
+> Hi Chaitanya,
 >
-> All of them are here for a good reason, and because we have collectively
-> judged that the trade-off between adding a barrier and increasing the
-> quality of the framework was worth it.
+> On 2024-12-03 05:07:47+0000, Borah, Chaitanya Kumar wrote:
+> > Hope you are doing well. I am Chaitanya from the linux graphics team in=
+ Intel.
+> >
+> > This mail is regarding a regression we are seeing in our CI runs[1] on =
+linux-next repository.
 >
-> I believe tests are worth it too.
+> Thanks for the report.
 >
-> But anyway, it's really not what I had in mind.
+> > Since the version next-20241120 [2], we are seeing the following regres=
+sion
+> >
+> > ```````````````````````````````````````````````````````````````````````=
+``````````
+> > <4>[   19.990743] Oops: general protection fault, probably for non-cano=
+nical address 0xb11675ef8d1ccbce: 0000 [#1] PREEMPT SMP NOPTI
+> > <4>[   19.990760] CPU: 21 UID: 110 PID: 867 Comm: prometheus-node Not t=
+ainted 6.12.0-next-20241120-next-20241120-gac24e26aa08f+ #1
+> > <4>[   19.990771] Hardware name: Intel Corporation Arrow Lake Client Pl=
+atform/MTL-S UDIMM 2DPC EVCRB, BIOS MTLSFWI1.R00.4400.D85.2410100007 10/10/=
+2024
+> > <4>[   19.990782] RIP: 0010:power_supply_get_property+0x3e/0xe0
+> > ```````````````````````````````````````````````````````````````````````=
+``````````
+> > Details log can be found in [3].
+> >
+> > After bisecting the tree, the following patch [4] seems to be the first=
+ "bad"
+> > commit
+> >
+> > ```````````````````````````````````````````````````````````````````````=
+``````````````````````````````````
+> > Commit 49000fee9e639f62ba1f965ed2ae4c5ad18d19e2
+> > Author:     Thomas Wei=C3=9Fschuh <mailto:linux@weissschuh.net>
+> > AuthorDate: Sat Oct 5 12:05:03 2024 +0200
+> > Commit:     Sebastian Reichel <mailto:sebastian.reichel@collabora.com>
+> > CommitDate: Tue Oct 15 22:22:20 2024 +0200
+> >     power: supply: core: add wakeup source inhibit by power_supply_conf=
+ig
+> > ```````````````````````````````````````````````````````````````````````=
+``````````````````````````````````
+> >
+> > This is now seen in our drm-tip runs as well. [5]
+> >
+> > Could you please check why the patch causes this regression and provide=
+ a fix if necessary?
+>
+> I don't see how this patch can lead to this error.
 
-Would you mind drafting some ground rules for what you think the
-requirements for kunit tests should be? What's the bare minimum, what's
-the goal?
-
-BR,
-Jani.
+It looks like the cfg->no_wakeup_source access reaches beyond the
+struct boundary for some reason.
 
 
--- 
-Jani Nikula, Intel
+
+> Could you doublecheck the bisect?
+>
+> Note: Having line numbers in the trace would be very useful.
+>
+> > Thank you.
+> >
+> > Regards
+> >
+> > Chaitanya
+>
+> Thanks,
+> Thomas
+>
+>
+> >
+> > P.S. We could not revert the patch cleanly and therefore we are yet to =
+verify the bisect but we are currently working on it.
+> >
+> >
+> > [1] https://intel-gfx-ci.01.org/tree/linux-next/combined-alt.html?
+> > [2]https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/=
+commit/?h=3Dnext-20241120
+> > [3] https://intel-gfx-ci.01.org/tree/linux-next/next-20241120/bat-arls-=
+6/boot0.txt
+> > [4] https://cgit.freedesktop.org/drm-tip/commit/?id=3D49000fee9e639f62b=
+a1f965ed2ae4c5ad18d19e2
+> > [5] https://intel-gfx-ci.01.org/tree/drm-tip/index.html?
+>
