@@ -2,50 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C80C49E1B9D
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Dec 2024 13:04:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 744D99E1C1E
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Dec 2024 13:27:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 689C010E333;
-	Tue,  3 Dec 2024 12:04:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E820010E1A8;
+	Tue,  3 Dec 2024 12:27:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=weissschuh.net header.i=@weissschuh.net header.b="jk72wZPL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iYzVjMYw";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from todd.t-8ch.de (todd.t-8ch.de [159.69.126.157])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E83A910E333;
- Tue,  3 Dec 2024 12:04:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=weissschuh.net;
- s=mail; t=1733227447;
- bh=FogJV94VnnrNh403Rpk/Fao6/f4bwrpAHCEDVGU5rLI=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=jk72wZPLZLeUJCguNzSIYC0XBBFS6mBvFNNieygQwHsDb1XnfScQ+SSMPRfniqrWx
- KFTQ4aoOdqPxVbsOGPUrjITBR6I1RZhl3sZTXCByp3ZyTNnlizXhReZeaaKgN3G7j3
- ogAXHaeOYuH4rodIqXoA6/ztxszkSmbKBlvQvzzk=
-Date: Tue, 3 Dec 2024 13:04:06 +0100
-From: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <linux@weissschuh.net>
-To: "Rafael J. Wysocki" <rafael@kernel.org>
-Cc: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>, 
- "Kurmi, Suresh Kumar" <suresh.kumar.kurmi@intel.com>, "Coelho,
- Luciano" <luciano.coelho@intel.com>, 
- "Saarinen, Jani" <jani.saarinen@intel.com>, "Nikula,
- Jani" <jani.nikula@intel.com>, 
- "De Marchi, Lucas" <lucas.demarchi@intel.com>, 
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>
-Subject: Re: Regression on linux-next (next-20241120) and drm-tip
-Message-ID: <56d574c6-6eab-4388-8cb8-70cd615a8941@t-8ch.de>
-References: <SJ1PR11MB6129CCD82CD78D8EE6E27EF4B9362@SJ1PR11MB6129.namprd11.prod.outlook.com>
- <SJ1PR11MB612965ACA3E84745346F0400B9362@SJ1PR11MB6129.namprd11.prod.outlook.com>
- <5e405ad4-34d6-4507-978f-3d81d4af2455@t-8ch.de>
- <CAJZ5v0iXKvaxz-hmW2+qwTcSmtPJ23Hv04CMnmT=qPE0ytNwLg@mail.gmail.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB31510E1A8
+ for <intel-gfx@lists.freedesktop.org>; Tue,  3 Dec 2024 12:27:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1733228859; x=1764764859;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=uAjRJM4nz92VKmLOl+ZqfrpnLzY3fkTQZuMUaQrYgVE=;
+ b=iYzVjMYwjhVi3+InNBk2Mdt5wd+JrN1PblK5JmKH2czVJJW2CcVfof5d
+ 4YhVwqiWiCLP71WNdTuuKJid6+iRd8k2YllGZukfIVtmQgOL4W64uweIQ
+ eHoJQs+5bvy7rmhgNmBTVKKAb+/0tB1lngxxuP14RdH0QSO3lLzTmP6tO
+ aPEQpumSrwRp8RF3gIuG166ejTRMPKNYsu2fUuboeobdD/xEvoKe0fhM0
+ UECa0fD6PY1+paM+2QnrNjG34qSIVp9MMoeBXE9y21Q0HZI/aIhhJlJCv
+ QsqNF7DI4Dsi1VwIX1Qk5Rvbj3EUAzIKjnKy58UETm5TgqFyyUwQfWWwO Q==;
+X-CSE-ConnectionGUID: GFcu5zDZSbikrdK2Omc8gw==
+X-CSE-MsgGUID: ntomsMiHSxiIgxiFdB7I5g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11274"; a="33316958"
+X-IronPort-AV: E=Sophos;i="6.12,205,1728975600"; d="scan'208";a="33316958"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2024 04:27:39 -0800
+X-CSE-ConnectionGUID: 3MNul1yiT9qBTKdi7qmdxg==
+X-CSE-MsgGUID: oiXpDAjXQyCY583hjoRrxA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,205,1728975600"; d="scan'208";a="93822220"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.135])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2024 04:27:38 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Eugene Kobyak <eugene.kobyak@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: John.C.Harrison@intel.com, andi.shyti@linux.intel.com
+Subject: Re: [PATCH v5] drm/i915: Fix NULL pointer dereference in
+ capture_engine
+In-Reply-To: <4yfdzisxkb3j3tig2astee5zd46ppt2jwhqffkhes2dwm3g5nb@snadyfwzl7g4>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <4yfdzisxkb3j3tig2astee5zd46ppt2jwhqffkhes2dwm3g5nb@snadyfwzl7g4>
+Date: Tue, 03 Dec 2024 14:27:34 +0200
+Message-ID: <87mshd3qa1.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAJZ5v0iXKvaxz-hmW2+qwTcSmtPJ23Hv04CMnmT=qPE0ytNwLg@mail.gmail.com>
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,81 +69,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 2024-12-03 12:54:54+0100, Rafael J. Wysocki wrote:
-> On Tue, Dec 3, 2024 at 7:51 AM Thomas Weißschuh <linux@weissschuh.net> wrote:
-> >
-> > (+Cc Sebastian)
-> >
-> > Hi Chaitanya,
-> >
-> > On 2024-12-03 05:07:47+0000, Borah, Chaitanya Kumar wrote:
-> > > Hope you are doing well. I am Chaitanya from the linux graphics team in Intel.
-> > >
-> > > This mail is regarding a regression we are seeing in our CI runs[1] on linux-next repository.
-> >
-> > Thanks for the report.
-> >
-> > > Since the version next-20241120 [2], we are seeing the following regression
-> > >
-> > > `````````````````````````````````````````````````````````````````````````````````
-> > > <4>[   19.990743] Oops: general protection fault, probably for non-canonical address 0xb11675ef8d1ccbce: 0000 [#1] PREEMPT SMP NOPTI
-> > > <4>[   19.990760] CPU: 21 UID: 110 PID: 867 Comm: prometheus-node Not tainted 6.12.0-next-20241120-next-20241120-gac24e26aa08f+ #1
-> > > <4>[   19.990771] Hardware name: Intel Corporation Arrow Lake Client Platform/MTL-S UDIMM 2DPC EVCRB, BIOS MTLSFWI1.R00.4400.D85.2410100007 10/10/2024
-> > > <4>[   19.990782] RIP: 0010:power_supply_get_property+0x3e/0xe0
-> > > `````````````````````````````````````````````````````````````````````````````````
-> > > Details log can be found in [3].
-> > >
-> > > After bisecting the tree, the following patch [4] seems to be the first "bad"
-> > > commit
-> > >
-> > > `````````````````````````````````````````````````````````````````````````````````````````````````````````
-> > > Commit 49000fee9e639f62ba1f965ed2ae4c5ad18d19e2
-> > > Author:     Thomas Weißschuh <mailto:linux@weissschuh.net>
-> > > AuthorDate: Sat Oct 5 12:05:03 2024 +0200
-> > > Commit:     Sebastian Reichel <mailto:sebastian.reichel@collabora.com>
-> > > CommitDate: Tue Oct 15 22:22:20 2024 +0200
-> > >     power: supply: core: add wakeup source inhibit by power_supply_config
-> > > `````````````````````````````````````````````````````````````````````````````````````````````````````````
-> > >
-> > > This is now seen in our drm-tip runs as well. [5]
-> > >
-> > > Could you please check why the patch causes this regression and provide a fix if necessary?
-> >
-> > I don't see how this patch can lead to this error.
-> 
-> It looks like the cfg->no_wakeup_source access reaches beyond the
-> struct boundary for some reason.
+On Tue, 03 Dec 2024, Eugene Kobyak <eugene.kobyak@intel.com> wrote:
+> When the intel_context structure contains NULL,
+> it raises a NULL pointer dereference error in drm_info().
 
-But the access to this field is only done in __power_supply_register().
-The error reports however don't show this function at all,
-they come from power_supply_uevent() and power_supply_get_property() by
-which time the call to __power_supply_register() is long over.
+Blank line here between commit message body and trailers.
 
-FWIW there is an uninitialized 'struct power_supply_config' in
-drivers/hid/hid-corsair-void.c. But I highly doubt the test machines are
-using that. (I'll send a patch later for it)
+> Fixes: e8a3319c31a1 ("drm/i915: Allow error capture without a request")
+> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12309
+> Cc: John Harrison <John.C.Harrison@Intel.com>
+> Cc: <stable@vger.kernel.org> # v6.3+
+> Signed-off-by: Eugene Kobyak <eugene.kobyak@intel.com>
+> ---
+> v2:
+>   - return drm_info to separate condition
+> v3:
+>   - create separate condition which generate string if intel_context exist
+> v4:
+>   - rollback and add check intel_context in log condition
+> v5:
+>   - create separate string with guc_id if intel_context exist
+>  drivers/gpu/drm/i915/i915_gpu_error.c | 9 ++++++---
+>  1 file changed, 6 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
+> index 135ded17334e..4ca6b9872a48 100644
+> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
+> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+> @@ -1643,9 +1643,12 @@ capture_engine(struct intel_engine_cs *engine,
+>  		return NULL;
+>  
+>  	intel_engine_get_hung_entity(engine, &ce, &rq);
+> -	if (rq && !i915_request_started(rq))
+> -		drm_info(&engine->gt->i915->drm, "Got hung context on %s with active request %lld:%lld [0x%04X] not yet started\n",
+> -			 engine->name, rq->fence.context, rq->fence.seqno, ce->guc_id.id);
+> +	if (rq && !i915_request_started(rq)) {
+> +	        char guc_id[11];
+> +		ce ? snprintf(guc_id, sizeof(guc_id), " [0x%04x] ", ce->guc_id.id) : snprintf(guc_id, sizeof(guc_id), " ");
 
-> > Could you doublecheck the bisect?
-> >
-> > Note: Having line numbers in the trace would be very useful.
-> >
-> > > Thank you.
-> > >
-> > > Regards
-> > >
-> > > Chaitanya
-> >
-> > Thanks,
-> > Thomas
-> >
-> >
-> > >
-> > > P.S. We could not revert the patch cleanly and therefore we are yet to verify the bisect but we are currently working on it.
-> > >
-> > >
-> > > [1] https://intel-gfx-ci.01.org/tree/linux-next/combined-alt.html?
-> > > [2]https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?h=next-20241120
-> > > [3] https://intel-gfx-ci.01.org/tree/linux-next/next-20241120/bat-arls-6/boot0.txt
-> > > [4] https://cgit.freedesktop.org/drm-tip/commit/?id=49000fee9e639f62ba1f965ed2ae4c5ad18d19e2
-> > > [5] https://intel-gfx-ci.01.org/tree/drm-tip/index.html?
-> >
+I don't know if there's a separate coding style entry saying you
+shouldn't use a ternary operator like that, but you shouldn't use a
+ternary operator like that.
+
+BR,
+Jani.
+
+> +	        drm_info(&engine->gt->i915->drm, "Got hung context on %s with active request %lld:%lld%snot yet started\n",
+> +	                 engine->name, rq->fence.context, rq->fence.seqno, guc_id);
+> +	}
+>  
+>  	if (rq) {
+>  		capture = intel_engine_coredump_add_request(ee, rq, ATOMIC_MAYFAIL);
+
+-- 
+Jani Nikula, Intel
