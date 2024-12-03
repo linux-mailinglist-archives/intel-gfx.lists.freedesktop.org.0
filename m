@@ -2,59 +2,110 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 262859E1D44
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Dec 2024 14:14:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 55B6B9E1E6D
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Dec 2024 14:58:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B853010EA11;
-	Tue,  3 Dec 2024 13:14:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E512510E26D;
+	Tue,  3 Dec 2024 13:58:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NIVwL8pa";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="kzS0bno6";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02DA610E36F
- for <intel-gfx@lists.freedesktop.org>; Tue,  3 Dec 2024 13:14:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733231694; x=1764767694;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=W+YqdOnCRcWdTXAD8kK9geGujdKuZHH2+uUbWwUWL6M=;
- b=NIVwL8paeI8hjwoHX61Mzh8Egx+0ocKTfFra7JHFFVfqbj0X3vm9o3eh
- l6HZuXL8WFnKivB8jxV1RyV9+K7veR41x87r+3j/qvRAHslV4VjCyN5T8
- g4mzwMpO2eJaxXymszxgL8yf5Vny/08hq/7intCRERux0UZvqDx0ngTbg
- egIcUAuMWzZ+enQqEXHvyGuQyu+voiuP6xLRXzyvJWetWSNjPJ9GzOtkj
- NK1BCy+4H6X0kD8vDXy6GWsmPEK9KsGgC/QVDwXnSChK7EOK+kszwgErR
- 3j3paj24FpsCc+QXUeh9CyKJVmFeNzYOF+DiXIEJFqOQiUozwERy15Otq w==;
-X-CSE-ConnectionGUID: O7d5Fqa4Qrid7YyhC9MjuQ==
-X-CSE-MsgGUID: 4ORFUZ4CTtCfSxnlqGbd7Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11274"; a="44053377"
-X-IronPort-AV: E=Sophos;i="6.12,205,1728975600"; d="scan'208";a="44053377"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2024 05:14:53 -0800
-X-CSE-ConnectionGUID: QnyvTKuWQ428ZtlEleFVyg==
-X-CSE-MsgGUID: 3uiXGs5SQ9yN30WfmOjUEw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,205,1728975600"; d="scan'208";a="97865711"
-Received: from lfiedoro-mobl.ger.corp.intel.com (HELO intel.com)
- ([10.245.246.145])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2024 05:14:51 -0800
-Date: Tue, 3 Dec 2024 14:14:47 +0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Eugene Kobyak <eugene.kobyak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, John.C.Harrison@intel.com,
- andi.shyti@linux.intel.com, jani.nikula@linux.intel.com
-Subject: Re: [PATCH v5] drm/i915: Fix NULL pointer dereference in
- capture_engine
-Message-ID: <Z08ER6VLWmVOvfU5@ashyti-mobl2.lan>
-References: <4yfdzisxkb3j3tig2astee5zd46ppt2jwhqffkhes2dwm3g5nb@snadyfwzl7g4>
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com
+ [209.85.208.178])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8987E10E475
+ for <intel-gfx@lists.freedesktop.org>; Tue,  3 Dec 2024 13:58:12 +0000 (UTC)
+Received: by mail-lj1-f178.google.com with SMTP id
+ 38308e7fff4ca-2ffd796ba0aso54722641fa.3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 03 Dec 2024 05:58:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1733234291; x=1733839091; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=Pj5SaA33rGzeah/pbmVRQIoqaIyNVExU4n/MvIb6OOM=;
+ b=kzS0bno6VkoUaC6sICl5OB/3XbyxpU/aaO2kIlsL6o0CRZKNEXkgzAmHQNK4A+r4Rw
+ wCG53nqIWVrcA+FAh68x3Q1n7S2BfORvR8MlNEenXVibjdlPzGMOobwiO8Cj5MhUlOHE
+ tpzFhPyA42GKe1Ta85WPycoh3z7EZFNWpS8CDKXxvSrripw1jzehX0+W2obfBGAdDML8
+ 3jg16VcLw3h8VN8L1ZtKdpdrHwd5Y86GFSY6fZytB6Y3du9l1sDUqgoJV3fAgJG2Sgzt
+ mDODnErzAOrcLuY/CXJwc8cZLJVBuyTqjrmzJJSILNzvm2nzOl7hVgjon2XoQED+f3gG
+ 38jQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1733234291; x=1733839091;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=Pj5SaA33rGzeah/pbmVRQIoqaIyNVExU4n/MvIb6OOM=;
+ b=DlSdZkhJJhnqWFJYGlcAgGtMMk2APoR2Pqy23xG29hPrqbMNVYn2sh8w1bQ5fYKblY
+ HZUZfYzgV7xWUq7aDygfl2vC0D1gPcarp/TrBIUce/Koz8ZAgPwkeCZFeezTt9BuAK61
+ uiGiBXL9ADNrYzzaYd6N4rIJSZxdUdc7o31DIwP2607CiH4IzdytrO4bTUogqSpb8SPX
+ JwOgzSgrbZ3MJHJuIkNpxwQMlAn0+6UT0DjzWYhmb4K8Vsl380H1pN6bm6jXpjE5b9nZ
+ PefAj5eUshXis39plZMksBr9ujAsbcTLnku6BGpr6BLQC/W2r9olpfLj0F58/A4ngO3M
+ slSw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVZR55lFnsiIOP0E5H9hRXBEoHKM++RXNRA5mHqVNpuZCw6FnKanNEkQ4WocbhtkTyq7z1FtmV+zfs=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwjPC7CJmr9Wr5cmZK5N6wokd3fiSAzoUZssPkI3n9mOR3r4hXM
+ IgGqIq6aW3mGjEtCHqW1wS+VbMpGpVrCxpG8ihN3vAvFpd2YTwZ2J4PQa07pHUg=
+X-Gm-Gg: ASbGnculwzEWPq4A0HGHngavL6FovvZ1nUnbkQFeyJkEiQ2K2xU6w9YJLc1/2mD+dfW
+ PJXiQS9RZYH3a6uoSuMC3lHhrtbv3cmRcQnniXpPr6jf8asl6qQ5Xm4Ut4F5n4t20poGSQHPpbj
+ +1BGsMD/z3nbQPcccpdHOCWfpERRTCLzrV7n4P28s5oS6t8m2zIktTwLCQp++Bs/DC42TEOoEbq
+ z3VHLasYEwKr/7e/CW0WJfP+XRZMyW5ZzXcpNDFoY+ncYMyNkaoq29nt3vQ6DzSq1RwB1hxM5qA
+ EyZDDxcQnwweMA/pqK3nolj9opRY6w==
+X-Google-Smtp-Source: AGHT+IHfqup3wRu/YlQwHjftG9hZZW4Odf6KSlTWBL24IqkfpJKbOUgrh1DX0z2m6JH7KpitaUiUxw==
+X-Received: by 2002:a05:6512:2810:b0:53d:cf78:f240 with SMTP id
+ 2adb3069b0e04-53e12a2e9bcmr1842991e87.35.1733234290592; 
+ Tue, 03 Dec 2024 05:58:10 -0800 (PST)
+Received: from eriador.lumag.spb.ru
+ (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+ by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-53df6496a43sm1829234e87.213.2024.12.03.05.58.08
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 03 Dec 2024 05:58:09 -0800 (PST)
+Date: Tue, 3 Dec 2024 15:58:07 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Abhinav Kumar <quic_abhinavk@quicinc.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, 
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Xinhui Pan <Xinhui.Pan@amd.com>, Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Phong LE <ple@baylibre.com>, Inki Dae <inki.dae@samsung.com>, 
+ Seung-Woo Kim <sw0312.kim@samsung.com>,
+ Kyungmin Park <kyungmin.park@samsung.com>, 
+ Krzysztof Kozlowski <krzk@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, 
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Alain Volmat <alain.volmat@foss.st.com>, 
+ Raphael Gallais-Pou <rgallaispou@gmail.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, 
+ =?utf-8?B?TWHDrXJh?= Canal <mcanal@igalia.com>,
+ Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, 
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org
+Subject: Re: [PATCH 07/10] drm/msm/dp: use eld_mutex to protect access to
+ connector->eld
+Message-ID: <n2zmw4wquxzht6gvlx6yjurpobgwlsryh75n5gw65j5vjclhgr@jqubqjispqsr>
+References: <20241201-drm-connector-eld-mutex-v1-0-ba56a6545c03@linaro.org>
+ <20241201-drm-connector-eld-mutex-v1-7-ba56a6545c03@linaro.org>
+ <ca906dc4-ac72-4a76-a670-36c011c853c9@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <4yfdzisxkb3j3tig2astee5zd46ppt2jwhqffkhes2dwm3g5nb@snadyfwzl7g4>
+In-Reply-To: <ca906dc4-ac72-4a76-a670-36c011c853c9@quicinc.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,32 +121,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Eugene,
+On Mon, Dec 02, 2024 at 07:27:45PM -0800, Abhinav Kumar wrote:
+> 
+> 
+> On 11/30/2024 3:55 PM, Dmitry Baryshkov wrote:
+> > Reading access to connector->eld can happen at the same time the
+> > drm_edid_to_eld() updates the data. Take the newly added eld_mutex in
+> > order to protect connector->eld from concurrent access.
+> > 
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > ---
+> >   drivers/gpu/drm/msm/dp/dp_audio.c | 2 ++
+> >   1 file changed, 2 insertions(+)
+> > 
+> 
+> Reviewed-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
 
-> Cc: <stable@vger.kernel.org> # v6.3+
+Ack to merge through drm-misc?
 
-Next time cc also the stable kernel mailing list for real,
-please.
-
-> +	        drm_info(&engine->gt->i915->drm, "Got hung context on %s with active request %lld:%lld%snot yet started\n",
-> +	                 engine->name, rq->fence.context, rq->fence.seqno, guc_id);
-
-this is very ugly: %lld:%lld%snot I understand you leave a space
-from the seqno and "not", but the form is unreadable. Could it be
-better:
-
-  if (ce)
-	drm_info(.... ->guc_id);
-  else
-	drm_info(...); <-- same thing without the guc_id
-
-It looks like for making it easier we are making it harder.
-
-If you decide to go this way, perhaps you can add a comment
-saying that ce might be NULL, but if it's not you want to keep
-the guc_id information.
-
-Next time cc also the stable kernel mailing list, please.
-
-Thanks,
-Andi
+-- 
+With best wishes
+Dmitry
