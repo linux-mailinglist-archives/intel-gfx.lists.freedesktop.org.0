@@ -2,30 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66FA19E1760
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Dec 2024 10:26:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 88ED39E17CD
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Dec 2024 10:36:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D03B510E9A4;
-	Tue,  3 Dec 2024 09:26:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C56110E9B7;
+	Tue,  3 Dec 2024 09:36:47 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="LAkHShM8";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 56CE210E9A4;
- Tue,  3 Dec 2024 09:26:21 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B27510E9B7;
+ Tue,  3 Dec 2024 09:36:46 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 1FF375C697C;
+ Tue,  3 Dec 2024 09:36:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 752C2C4CED6;
+ Tue,  3 Dec 2024 09:36:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1733218604;
+ bh=SVgeimaxMCy/0f2AoMe1mCp1DAEBQJ4X3mcrC+82vu8=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=LAkHShM8v1EaacOOI6JrMuL7F2wP7Yllbl6bdB/wML1YeWiaVxpA0AOI8R7ZFFkcm
+ yVS1h5Z1QOJVAE0hN+nYE/p9qPS2vF7P7aewrv8uvhwGy6uC5IwuxGd2FWnPPs1K/X
+ dneKYnd8VUilyCpVmOngztT1WfsyfEU4c8pDulzvokQ6SWWjfLuTyNifOoNBlC8Y14
+ jez9X05LjYsUl99pLp6iOUISN/MH6oYNdWAY8cGforpbGlOT0fT+B7zcvgOpT5Pe31
+ KrFxOy1dnbBBfW85u2Wu6cxhobf8lCusYMaWnh2sMnXXMQ6haUda2CTRlM2iit9ION
+ Eg+bQSqOS+EQg==
+Date: Tue, 3 Dec 2024 10:36:42 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, 
+ Dave Airlie <airlied@redhat.com>, Daniel Vetter <daniel.vetter@ffwll.ch>, 
+ dri-devel@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: Re: [PATCH v2 1/4] drm/dp: Add a way to init/add a connector in
+ separate steps
+Message-ID: <20241203-simple-pigeon-of-infinity-babfee@houat>
+References: <20241126161859.1858058-1-imre.deak@intel.com>
+ <20241126161859.1858058-2-imre.deak@intel.com>
+ <Z0nO-bwpbWPVryd6@ideak-desk.fi.intel.com>
+ <20241129-wild-cobra-of-thunder-829d1f@houat>
+ <Z0nn0VzawSCdOCKY@ideak-desk.fi.intel.com>
+ <20241202-real-benevolent-skunk-a9f5e0@houat>
+ <87ldwy5lvb.fsf@intel.com>
+ <20241202-accurate-jolly-hornet-8c2ca0@houat>
+ <87bjxu5btw.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_series_starting_with_=5B1?=
- =?utf-8?q?/6=5D_drm/i915/wm=3A_Initialize_max=5Flatency_variable_to_appropr?=
- =?utf-8?q?iate_value?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Suraj Kandpal" <suraj.kandpal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 03 Dec 2024 09:26:21 -0000
-Message-ID: <173321798134.1964850.16759787165286165202@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241203084706.2126189-1-suraj.kandpal@intel.com>
-In-Reply-To: <20241203084706.2126189-1-suraj.kandpal@intel.com>
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="335vxtzobacwcmvi"
+Content-Disposition: inline
+In-Reply-To: <87bjxu5btw.fsf@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,114 +67,61 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: series starting with [1/6] drm/i915/wm: Initialize max_latency variable to appropriate value
-URL   : https://patchwork.freedesktop.org/series/142033/
-State : success
+--335vxtzobacwcmvi
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v2 1/4] drm/dp: Add a way to init/add a connector in
+ separate steps
+MIME-Version: 1.0
 
-== Summary ==
+On Mon, Dec 02, 2024 at 05:44:27PM +0200, Jani Nikula wrote:
+> >> It's super tempting for people to just get their jobs done. If doing
+> >> the right thing adds yet another hurdle, we may see more stuff being
+> >> added in drivers instead of drm core.
+> >
+> > I really enjoy hidden threats.
+>=20
+> None were implied. That's your interpretation of what I honestly think
+> is a plausible outcome.
 
-CI Bug Log - changes from CI_DRM_15775 -> Patchwork_142033v1
-====================================================
+I obviously misinterpreted what you were saying then. Sorry for the
+whole tone of that mail.
 
-Summary
--------
+> I try to push people towards contributing to drm core instead of
+> drivers, and it's not always easy as it is. It's just a guess, but
+> I'll bet the majority of drm contributors have never run kunit tests
+> themselves.
 
-  **SUCCESS**
+Right, but I don't think it's worth worrying over either. If one stops
+contributing because they are afraid of running one documented command
+that takes a few seconds, they would have done so at any other obstacle.
+We have much bigger barriers of entry, at several levels.
 
-  No regressions found.
+All of them are here for a good reason, and because we have collectively
+judged that the trade-off between adding a barrier and increasing the
+quality of the framework was worth it.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142033v1/index.html
+I believe tests are worth it too.
 
-Participating hosts (42 -> 41)
-------------------------------
+But anyway, it's really not what I had in mind.
 
-  Missing    (1): fi-snb-2520m 
+Maxime
 
-Known issues
-------------
+--335vxtzobacwcmvi
+Content-Type: application/pgp-signature; name="signature.asc"
 
-  Here are the changes found in Patchwork_142033v1 that come from known issues:
+-----BEGIN PGP SIGNATURE-----
 
-### IGT changes ###
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZ07RJQAKCRAnX84Zoj2+
+dnwxAYDe/IszcN04v4HWortlFKTA1s7i2La9lFd8X6ZIU/KRLpkp6CYZzZdyOlwM
+1FT4QlQBf1zNZuEfheP4sas6up7A5DHcaMaTkoiYrRkR3pUnarv83HpYsj+PFEwh
+j5vmoKYo8w==
+=tMAm
+-----END PGP SIGNATURE-----
 
-#### Issues hit ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - bat-rpls-4:         [PASS][1] -> [FAIL][2] ([i915#12903])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15775/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142033v1/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
-    - fi-tgl-1115g4:      [PASS][3] -> [FAIL][4] ([i915#12903])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15775/fi-tgl-1115g4/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142033v1/fi-tgl-1115g4/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_flip@basic-plain-flip@a-dp1:
-    - fi-kbl-7567u:       [PASS][5] -> [DMESG-WARN][6] ([i915#12920]) +1 other test dmesg-warn
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15775/fi-kbl-7567u/igt@kms_flip@basic-plain-flip@a-dp1.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142033v1/fi-kbl-7567u/igt@kms_flip@basic-plain-flip@a-dp1.html
-
-  * igt@kms_psr@psr-primary-mmap-gtt:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][7] +36 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142033v1/fi-pnv-d510/igt@kms_psr@psr-primary-mmap-gtt.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_module_load@load:
-    - fi-pnv-d510:        [ABORT][8] ([i915#13203]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15775/fi-pnv-d510/igt@i915_module_load@load.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142033v1/fi-pnv-d510/igt@i915_module_load@load.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - bat-dg1-7:          [FAIL][10] ([i915#12903]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15775/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142033v1/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live:
-    - bat-mtlp-8:         [ABORT][12] ([i915#12061]) -> [PASS][13] +1 other test pass
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15775/bat-mtlp-8/igt@i915_selftest@live.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142033v1/bat-mtlp-8/igt@i915_selftest@live.html
-    - bat-adlp-6:         [ABORT][14] ([i915#9413]) -> [PASS][15] +1 other test pass
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15775/bat-adlp-6/igt@i915_selftest@live.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142033v1/bat-adlp-6/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arlh-3:         [ABORT][16] ([i915#12061]) -> [PASS][17] +1 other test pass
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15775/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142033v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_pipe_crc_basic@read-crc-frame-sequence:
-    - bat-dg2-11:         [SKIP][18] ([i915#9197]) -> [PASS][19]
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15775/bat-dg2-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142033v1/bat-dg2-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12903]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12903
-  [i915#12920]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12920
-  [i915#13203]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13203
-  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
-  [i915#9413]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15775 -> Patchwork_142033v1
-
-  CI-20190529: 20190529
-  CI_DRM_15775: 4de82d50b8de6a278c1483a7f76ae830c89d1824 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8134: 027fbf68a00630d7bb8ae200c620296e2bad971d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_142033v1: 4de82d50b8de6a278c1483a7f76ae830c89d1824 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142033v1/index.html
+--335vxtzobacwcmvi--
