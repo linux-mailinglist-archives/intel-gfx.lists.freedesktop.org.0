@@ -2,29 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 542419E2743
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Dec 2024 17:23:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B3C49E2795
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Dec 2024 17:34:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCD5510E152;
-	Tue,  3 Dec 2024 16:23:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 86F3610EAA0;
+	Tue,  3 Dec 2024 16:34:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6060D10E152;
- Tue,  3 Dec 2024 16:23:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 370B610EAA0;
+ Tue,  3 Dec 2024 16:34:36 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/dp=3A_extract_payload?=
- =?utf-8?q?_helpers_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/dp=5Fmst=3A_Fix_?=
+ =?utf-8?q?a_few_side-band_message_handling_issues?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
+To: "Imre Deak" <imre.deak@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 03 Dec 2024 16:23:36 -0000
-Message-ID: <173324301638.2068984.4750385947840895431@b555e5b46a47>
+Date: Tue, 03 Dec 2024 16:34:36 -0000
+Message-ID: <173324367622.2068984.11300857989266733316@b555e5b46a47>
 X-Patchwork-Hint: ignore
-References: <cover.1733238940.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1733238940.git.jani.nikula@intel.com>
+References: <20241203160223.2926014-1-imre.deak@intel.com>
+In-Reply-To: <20241203160223.2926014-1-imre.deak@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,99 +43,22 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/dp: extract payload helpers (rev2)
-URL   : https://patchwork.freedesktop.org/series/141504/
-State : success
+Series: drm/dp_mst: Fix a few side-band message handling issues
+URL   : https://patchwork.freedesktop.org/series/142057/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_15778 -> Patchwork_141504v2
-====================================================
+Error: dim checkpatch failed
+fd9a8b4f79b0 drm/dp_mst: Fix resetting msg rx state after topology removal
+29e498a3ef8f drm/dp_mst: Verify request type in the corresponding down message reply
+-:70: WARNING:MISSING_FIXES_TAG: The commit message has 'stable@', perhaps it also needs a 'Fixes:' tag?
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141504v2/index.html
-
-Participating hosts (42 -> 41)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_141504v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@debugfs_test@basic-hwmon:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][1] +3 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141504v2/fi-pnv-d510/igt@debugfs_test@basic-hwmon.html
-
-  * igt@gem_exec_gttfill@basic:
-    - fi-pnv-d510:        NOTRUN -> [ABORT][2] ([i915#13169])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141504v2/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - bat-dg1-7:          [PASS][3] -> [FAIL][4] ([i915#12903])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15778/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141504v2/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
-    - bat-rpls-4:         [PASS][5] -> [FAIL][6] ([i915#12903])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15778/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141504v2/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_module_load@load:
-    - fi-pnv-d510:        [ABORT][7] ([i915#13203]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15778/fi-pnv-d510/igt@i915_module_load@load.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141504v2/fi-pnv-d510/igt@i915_module_load@load.html
-    - bat-adlp-6:         [DMESG-WARN][9] ([i915#12253]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15778/bat-adlp-6/igt@i915_module_load@load.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141504v2/bat-adlp-6/igt@i915_module_load@load.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - fi-cfl-guc:         [FAIL][11] ([i915#12903]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15778/fi-cfl-guc/igt@i915_pm_rpm@module-reload.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141504v2/fi-cfl-guc/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arlh-3:         [ABORT][13] ([i915#12061]) -> [PASS][14] +1 other test pass
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15778/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141504v2/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-    - bat-arlh-2:         [ABORT][15] ([i915#12061]) -> [PASS][16] +1 other test pass
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15778/bat-arlh-2/igt@i915_selftest@live@workarounds.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141504v2/bat-arlh-2/igt@i915_selftest@live@workarounds.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12253]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12253
-  [i915#12903]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12903
-  [i915#13169]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13169
-  [i915#13203]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13203
+total: 0 errors, 1 warnings, 0 checks, 43 lines checked
+d270f3ef5d46 drm/dp_mst: Simplify error path in drm_dp_mst_handle_down_rep()
+d45aea6f48d7 drm/dp_mst: Fix down request message timeout handling
+a767be37c0c2 drm/dp_mst: Ensure mst_primary pointer is valid in drm_dp_mst_handle_up_req()
+ef8bcf87bdcc drm/dp_mst: Reset message rx state after OOM in drm_dp_mst_handle_up_req()
+e0281a82b94c drm/dp_mst: Use reset_msg_rx_state() instead of open coding it
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_15778 -> Patchwork_141504v2
-
-  CI-20190529: 20190529
-  CI_DRM_15778: 5779fb3c12faf12589054127d60b1d36d56ba219 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8135: c6840f5e3c3b942aa79727ee4978a5b79f290b67 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_141504v2: 5779fb3c12faf12589054127d60b1d36d56ba219 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141504v2/index.html
