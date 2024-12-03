@@ -2,52 +2,73 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 944AB9E1ED7
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Dec 2024 15:17:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D5409E1F41
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Dec 2024 15:33:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EDFD10EA1A;
-	Tue,  3 Dec 2024 14:17:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2038A10EA36;
+	Tue,  3 Dec 2024 14:33:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="fnULkyrF";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="tgycmLxe";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D49C310EA20;
- Tue,  3 Dec 2024 14:17:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=9os0pCp6DorfTCNWcBNM8Qdpy2bJqgk0SCVCWt6e3mY=; b=fnULkyrFxkORVB4CUb52H7x2IW
- i7F5RY0P/VaWgYXpSSOs2j2Cy+3izMTgl5AjmG4h2hO1yphg8MnIzOGfsH57i+B/NutCZD+vJwHmW
- kw3fyzwhLBFfayVC/BsNbcQWkXVVvlRwScFudOYA6x1eRs+fhr7c1IRu4tevufBqJwzk+1h0CQ6mO
- ZBNaYGrbXuLtXn5w0aCqaWXwv1enmIMCKGeyggZ9lI0EsnnXsNIGnBEcy6A0F03o4vrDYYgWQQHQd
- 71F5M9n5FFDy1un/fMw7/YiSZH4ZDssKp/XK0PY+y5xHwOfaUE6rBestbz48UCTbH5BnjEJNNul/v
- Lo/5+ufg==;
-Received: from [90.241.98.187] (helo=[192.168.0.101])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1tITi0-00Fp9T-0B; Tue, 03 Dec 2024 15:17:00 +0100
-Message-ID: <db43b379-2100-40fa-ab32-5293779663ab@igalia.com>
-Date: Tue, 3 Dec 2024 14:16:59 +0000
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 37E6610EA34;
+ Tue,  3 Dec 2024 14:33:35 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id DD51CA4163E;
+ Tue,  3 Dec 2024 14:31:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D133EC4CED9;
+ Tue,  3 Dec 2024 14:33:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1733236413;
+ bh=vkfocJidFOsWJ8j4r+2upwNbeaCg2X4r0idWMhyeuzk=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=tgycmLxenk4BVErw7oDmDKzYWEi/lJ7j2qV1fODOZzNJ+DBrJOFj9wKp9h1vZucQL
+ mVX3bd/uYvyRkKFAANZREdfo6hmau6A8AwmNafB2ws4feDnzmEh28ulv32qRszIf2W
+ tJ/k48U3z0Pj4gfjskzqpJu9sXXf9bqa2FC9QtaeOH0XGRmAEh4OPB6zlo8h8LRlX+
+ mDqdDnRHEgm4lAEyxdIufrrH+Rhlz9jBeXl0ELbPsMjdKq9VVMSKeTuiBdy7Hjh44W
+ dNF01Zj30SIjSM0p1en7HNjWN40zgFz2WQWC5HicRJXNjMz1byjRgUjuDpQSVQ7tjc
+ zRhWOgpTqN+Xg==
+Received: by mail-oa1-f54.google.com with SMTP id
+ 586e51a60fabf-29e3721ded9so1960311fac.0; 
+ Tue, 03 Dec 2024 06:33:33 -0800 (PST)
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUJ6vtlSEyDfUGVbT22M12l9yHl70AcY/pjQzx1s/+a5A5v+/iQEYMybdcIuFiopNzcY5Y4HV2R0h4=@lists.freedesktop.org,
+ AJvYcCUszdQvbETzN9m9vXFN27qt7jJwu7BOedskZb0Pkwx1utHhRDdrRjqn1uSNCo6A9oZ+5ekJ22efuBs=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yz+JpND5UDIAL8wvhP5WslIWCOBv5Skie3vvHYUrMdMtG/KJLG/
+ 7V6ungKGbg+eydcASsCT8c7O6JSeSNRcvHLIU7SpFidqPdodEqC6Y6ed+glJmqme+pm6K2TFK4C
+ CmXPdR3EdkErh1szSNnURNDuLRR0=
+X-Google-Smtp-Source: AGHT+IHpr7QHC7AIP/SBz1FrBthPRXkSIECwIwn6uZOMArYMtH1Q7RTuZ78swhIHEAEOKi+pvFatzpdTEtl4v9YyFFo=
+X-Received: by 2002:a05:6871:606:b0:296:ee2e:a23c with SMTP id
+ 586e51a60fabf-29e88560c9bmr2902777fac.5.1733236413021; Tue, 03 Dec 2024
+ 06:33:33 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 2/5] drm: make drm-active- stats optional
-To: Yunxiang Li <Yunxiang.Li@amd.com>, amd-gfx@lists.freedesktop.org,
- christian.koenig@amd.com
-Cc: Alexander.Deucher@amd.com, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-References: <20241128185404.2672-1-Yunxiang.Li@amd.com>
- <20241128185404.2672-3-Yunxiang.Li@amd.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-In-Reply-To: <20241128185404.2672-3-Yunxiang.Li@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <SJ1PR11MB6129CCD82CD78D8EE6E27EF4B9362@SJ1PR11MB6129.namprd11.prod.outlook.com>
+ <SJ1PR11MB612965ACA3E84745346F0400B9362@SJ1PR11MB6129.namprd11.prod.outlook.com>
+ <5e405ad4-34d6-4507-978f-3d81d4af2455@t-8ch.de>
+ <CAJZ5v0iXKvaxz-hmW2+qwTcSmtPJ23Hv04CMnmT=qPE0ytNwLg@mail.gmail.com>
+ <56d574c6-6eab-4388-8cb8-70cd615a8941@t-8ch.de>
+In-Reply-To: <56d574c6-6eab-4388-8cb8-70cd615a8941@t-8ch.de>
+From: "Rafael J. Wysocki" <rafael@kernel.org>
+Date: Tue, 3 Dec 2024 15:33:21 +0100
+X-Gmail-Original-Message-ID: <CAJZ5v0gFwu+6Cm7ORs7+TAc5jzXZRBO1uGcttBTTvK4OqT3Q6g@mail.gmail.com>
+Message-ID: <CAJZ5v0gFwu+6Cm7ORs7+TAc5jzXZRBO1uGcttBTTvK4OqT3Q6g@mail.gmail.com>
+Subject: Re: Regression on linux-next (next-20241120) and drm-tip
+To: =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, 
+ "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>, 
+ "Kurmi, Suresh Kumar" <suresh.kumar.kurmi@intel.com>, "Coelho,
+ Luciano" <luciano.coelho@intel.com>, 
+ "Saarinen, Jani" <jani.saarinen@intel.com>, "Nikula,
+ Jani" <jani.nikula@intel.com>, 
+ "De Marchi, Lucas" <lucas.demarchi@intel.com>, 
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, 
+ "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,141 +84,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Tue, Dec 3, 2024 at 1:04=E2=80=AFPM Thomas Wei=C3=9Fschuh <linux@weisssc=
+huh.net> wrote:
+>
+> On 2024-12-03 12:54:54+0100, Rafael J. Wysocki wrote:
+> > On Tue, Dec 3, 2024 at 7:51=E2=80=AFAM Thomas Wei=C3=9Fschuh <linux@wei=
+ssschuh.net> wrote:
+> > >
+> > > (+Cc Sebastian)
+> > >
+> > > Hi Chaitanya,
+> > >
+> > > On 2024-12-03 05:07:47+0000, Borah, Chaitanya Kumar wrote:
+> > > > Hope you are doing well. I am Chaitanya from the linux graphics tea=
+m in Intel.
+> > > >
+> > > > This mail is regarding a regression we are seeing in our CI runs[1]=
+ on linux-next repository.
+> > >
+> > > Thanks for the report.
+> > >
+> > > > Since the version next-20241120 [2], we are seeing the following re=
+gression
+> > > >
+> > > > ```````````````````````````````````````````````````````````````````=
+``````````````
+> > > > <4>[   19.990743] Oops: general protection fault, probably for non-=
+canonical address 0xb11675ef8d1ccbce: 0000 [#1] PREEMPT SMP NOPTI
+> > > > <4>[   19.990760] CPU: 21 UID: 110 PID: 867 Comm: prometheus-node N=
+ot tainted 6.12.0-next-20241120-next-20241120-gac24e26aa08f+ #1
+> > > > <4>[   19.990771] Hardware name: Intel Corporation Arrow Lake Clien=
+t Platform/MTL-S UDIMM 2DPC EVCRB, BIOS MTLSFWI1.R00.4400.D85.2410100007 10=
+/10/2024
+> > > > <4>[   19.990782] RIP: 0010:power_supply_get_property+0x3e/0xe0
+> > > > ```````````````````````````````````````````````````````````````````=
+``````````````
+> > > > Details log can be found in [3].
+> > > >
+> > > > After bisecting the tree, the following patch [4] seems to be the f=
+irst "bad"
+> > > > commit
+> > > >
+> > > > ```````````````````````````````````````````````````````````````````=
+``````````````````````````````````````
+> > > > Commit 49000fee9e639f62ba1f965ed2ae4c5ad18d19e2
+> > > > Author:     Thomas Wei=C3=9Fschuh <mailto:linux@weissschuh.net>
+> > > > AuthorDate: Sat Oct 5 12:05:03 2024 +0200
+> > > > Commit:     Sebastian Reichel <mailto:sebastian.reichel@collabora.c=
+om>
+> > > > CommitDate: Tue Oct 15 22:22:20 2024 +0200
+> > > >     power: supply: core: add wakeup source inhibit by power_supply_=
+config
+> > > > ```````````````````````````````````````````````````````````````````=
+``````````````````````````````````````
+> > > >
+> > > > This is now seen in our drm-tip runs as well. [5]
+> > > >
+> > > > Could you please check why the patch causes this regression and pro=
+vide a fix if necessary?
+> > >
+> > > I don't see how this patch can lead to this error.
+> >
+> > It looks like the cfg->no_wakeup_source access reaches beyond the
+> > struct boundary for some reason.
+>
+> But the access to this field is only done in __power_supply_register().
+> The error reports however don't show this function at all,
+> they come from power_supply_uevent() and power_supply_get_property() by
+> which time the call to __power_supply_register() is long over.
+>
+> FWIW there is an uninitialized 'struct power_supply_config' in
+> drivers/hid/hid-corsair-void.c. But I highly doubt the test machines are
+> using that. (I'll send a patch later for it)
 
-On 28/11/2024 18:54, Yunxiang Li wrote:
-> When memory stats is generated fresh everytime by going though all the
-> BOs, their active information is quite easy to get. But if the stats are
-> tracked with BO's state this becomes harder since the job scheduling
-> part doesn't really deal with individual buffers.
-> 
-> Make drm-active- optional to enable amdgpu to switch to the second
-> method.
-> 
-> Signed-off-by: Yunxiang Li <Yunxiang.Li@amd.com>
-> CC: dri-devel@lists.freedesktop.org
-> CC: intel-gfx@lists.freedesktop.org
-> CC: amd-gfx@lists.freedesktop.org
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c |  1 +
->   drivers/gpu/drm/drm_file.c                 | 13 +++++++------
->   drivers/gpu/drm/i915/i915_drm_client.c     |  1 +
->   drivers/gpu/drm/xe/xe_drm_client.c         |  1 +
->   include/drm/drm_gem.h                      | 14 ++++++++------
->   5 files changed, 18 insertions(+), 12 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c
-> index df2cf5c339255..7717e3e4f05b5 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_fdinfo.c
-> @@ -97,6 +97,7 @@ void amdgpu_show_fdinfo(struct drm_printer *p, struct drm_file *file)
->   
->   		drm_print_memory_stats(p,
->   				       &stats[i].drm,
-> +				       DRM_GEM_OBJECT_ACTIVE |
->   				       DRM_GEM_OBJECT_RESIDENT |
->   				       DRM_GEM_OBJECT_PURGEABLE,
->   				       pl_name[i]);
-> diff --git a/drivers/gpu/drm/drm_file.c b/drivers/gpu/drm/drm_file.c
-> index e285fcc28c59c..fd06671054723 100644
-> --- a/drivers/gpu/drm/drm_file.c
-> +++ b/drivers/gpu/drm/drm_file.c
-> @@ -884,7 +884,9 @@ void drm_print_memory_stats(struct drm_printer *p,
->   {
->   	print_size(p, "total", region, stats->private + stats->shared);
->   	print_size(p, "shared", region, stats->shared);
-> -	print_size(p, "active", region, stats->active);
-> +
-> +	if (supported_status & DRM_GEM_OBJECT_ACTIVE)
-> +		print_size(p, "active", region, stats->active);
->   
->   	if (supported_status & DRM_GEM_OBJECT_RESIDENT)
->   		print_size(p, "resident", region, stats->resident);
-> @@ -917,15 +919,13 @@ void drm_show_memory_stats(struct drm_printer *p, struct drm_file *file)
->   
->   		if (obj->funcs && obj->funcs->status) {
->   			s = obj->funcs->status(obj);
-> -			supported_status = DRM_GEM_OBJECT_RESIDENT |
-> -					DRM_GEM_OBJECT_PURGEABLE;
-> +			supported_status |= s;
->   		}
->   
-> -		if (drm_gem_object_is_shared_for_memory_stats(obj)) {
-> +		if (drm_gem_object_is_shared_for_memory_stats(obj))
->   			status.shared += obj->size;
-> -		} else {
-> +		else
->   			status.private += obj->size;
-> -		}
->   
->   		if (s & DRM_GEM_OBJECT_RESIDENT) {
->   			status.resident += add_size;
-> @@ -938,6 +938,7 @@ void drm_show_memory_stats(struct drm_printer *p, struct drm_file *file)
->   
->   		if (!dma_resv_test_signaled(obj->resv, dma_resv_usage_rw(true))) {
->   			status.active += add_size;
-> +			supported_status |= DRM_GEM_OBJECT_ACTIVE;
->   
->   			/* If still active, don't count as purgeable: */
->   			s &= ~DRM_GEM_OBJECT_PURGEABLE;
-> diff --git a/drivers/gpu/drm/i915/i915_drm_client.c b/drivers/gpu/drm/i915/i915_drm_client.c
-> index f586825054918..168d7375304bc 100644
-> --- a/drivers/gpu/drm/i915/i915_drm_client.c
-> +++ b/drivers/gpu/drm/i915/i915_drm_client.c
-> @@ -102,6 +102,7 @@ static void show_meminfo(struct drm_printer *p, struct drm_file *file)
->   	for_each_memory_region(mr, i915, id)
->   		drm_print_memory_stats(p,
->   				       &stats[id],
-> +				       DRM_GEM_OBJECT_ACTIVE |
->   				       DRM_GEM_OBJECT_RESIDENT |
->   				       DRM_GEM_OBJECT_PURGEABLE,
->   				       mr->uabi_name);
-> diff --git a/drivers/gpu/drm/xe/xe_drm_client.c b/drivers/gpu/drm/xe/xe_drm_client.c
-> index 6a26923fa10e0..54941b4e850c4 100644
-> --- a/drivers/gpu/drm/xe/xe_drm_client.c
-> +++ b/drivers/gpu/drm/xe/xe_drm_client.c
-> @@ -229,6 +229,7 @@ static void show_meminfo(struct drm_printer *p, struct drm_file *file)
->   		if (man) {
->   			drm_print_memory_stats(p,
->   					       &stats[mem_type],
-> +					       DRM_GEM_OBJECT_ACTIVE |
->   					       DRM_GEM_OBJECT_RESIDENT |
->   					       (mem_type != XE_PL_SYSTEM ? 0 :
->   					       DRM_GEM_OBJECT_PURGEABLE),
-> diff --git a/include/drm/drm_gem.h b/include/drm/drm_gem.h
-> index bae4865b2101a..da11c16e212aa 100644
-> --- a/include/drm/drm_gem.h
-> +++ b/include/drm/drm_gem.h
-> @@ -48,19 +48,21 @@ struct drm_gem_object;
->    * enum drm_gem_object_status - bitmask of object state for fdinfo reporting
->    * @DRM_GEM_OBJECT_RESIDENT: object is resident in memory (ie. not unpinned)
->    * @DRM_GEM_OBJECT_PURGEABLE: object marked as purgeable by userspace
-> + * @DRM_GEM_OBJECT_ACTIVE: object is currently used by an active submission
->    *
->    * Bitmask of status used for fdinfo memory stats, see &drm_gem_object_funcs.status
-> - * and drm_show_fdinfo().  Note that an object can DRM_GEM_OBJECT_PURGEABLE if
-> - * it still active or not resident, in which case drm_show_fdinfo() will not
-> + * and drm_show_fdinfo().  Note that an object can report DRM_GEM_OBJECT_PURGEABLE
-> + * and be active or not resident, in which case drm_show_fdinfo() will not
->    * account for it as purgeable.  So drivers do not need to check if the buffer
-> - * is idle and resident to return this bit.  (Ie. userspace can mark a buffer
-> - * as purgeable even while it is still busy on the GPU.. it does not _actually_
-> - * become puregeable until it becomes idle.  The status gem object func does
-> - * not need to consider this.)
-> + * is idle and resident to return this bit, i.e. userspace can mark a buffer as
-> + * purgeable even while it is still busy on the GPU. It will not get reported in
-> + * the puregeable stats until it becomes idle.  The status gem object func does
-> + * not need to consider this.
->    */
->   enum drm_gem_object_status {
->   	DRM_GEM_OBJECT_RESIDENT  = BIT(0),
->   	DRM_GEM_OBJECT_PURGEABLE = BIT(1),
-> +	DRM_GEM_OBJECT_ACTIVE    = BIT(2),
->   };
->   
->   /**
+So the only way I can think about in which the commit in question may
+lead to the reported issues is that changing the size of struct
+power_supply_config or its alignment makes an unexpected functional
+difference somewhere.
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-
-Regards,
-
-Tvrtko
+AFAICS, this commit cannot be reverted by itself, so which commits on
+top of it need to be reverted in order to revert it cleanly?
