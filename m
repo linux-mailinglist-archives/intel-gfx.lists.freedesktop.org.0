@@ -2,58 +2,73 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 744D99E1C1E
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Dec 2024 13:27:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D24689E1C31
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Dec 2024 13:31:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E820010E1A8;
-	Tue,  3 Dec 2024 12:27:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C58910E43F;
+	Tue,  3 Dec 2024 12:31:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iYzVjMYw";
+	dkim=pass (1024-bit key; unprotected) header.d=chromium.org header.i=@chromium.org header.b="jZlZroRW";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB31510E1A8
- for <intel-gfx@lists.freedesktop.org>; Tue,  3 Dec 2024 12:27:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733228859; x=1764764859;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=uAjRJM4nz92VKmLOl+ZqfrpnLzY3fkTQZuMUaQrYgVE=;
- b=iYzVjMYwjhVi3+InNBk2Mdt5wd+JrN1PblK5JmKH2czVJJW2CcVfof5d
- 4YhVwqiWiCLP71WNdTuuKJid6+iRd8k2YllGZukfIVtmQgOL4W64uweIQ
- eHoJQs+5bvy7rmhgNmBTVKKAb+/0tB1lngxxuP14RdH0QSO3lLzTmP6tO
- aPEQpumSrwRp8RF3gIuG166ejTRMPKNYsu2fUuboeobdD/xEvoKe0fhM0
- UECa0fD6PY1+paM+2QnrNjG34qSIVp9MMoeBXE9y21Q0HZI/aIhhJlJCv
- QsqNF7DI4Dsi1VwIX1Qk5Rvbj3EUAzIKjnKy58UETm5TgqFyyUwQfWWwO Q==;
-X-CSE-ConnectionGUID: GFcu5zDZSbikrdK2Omc8gw==
-X-CSE-MsgGUID: ntomsMiHSxiIgxiFdB7I5g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11274"; a="33316958"
-X-IronPort-AV: E=Sophos;i="6.12,205,1728975600"; d="scan'208";a="33316958"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2024 04:27:39 -0800
-X-CSE-ConnectionGUID: 3MNul1yiT9qBTKdi7qmdxg==
-X-CSE-MsgGUID: oiXpDAjXQyCY583hjoRrxA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,205,1728975600"; d="scan'208";a="93822220"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.135])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2024 04:27:38 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Eugene Kobyak <eugene.kobyak@intel.com>, intel-gfx@lists.freedesktop.org
-Cc: John.C.Harrison@intel.com, andi.shyti@linux.intel.com
-Subject: Re: [PATCH v5] drm/i915: Fix NULL pointer dereference in
- capture_engine
-In-Reply-To: <4yfdzisxkb3j3tig2astee5zd46ppt2jwhqffkhes2dwm3g5nb@snadyfwzl7g4>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <4yfdzisxkb3j3tig2astee5zd46ppt2jwhqffkhes2dwm3g5nb@snadyfwzl7g4>
-Date: Tue, 03 Dec 2024 14:27:34 +0200
-Message-ID: <87mshd3qa1.fsf@intel.com>
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com
+ [209.85.214.182])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB1FA10E43F
+ for <intel-gfx@lists.freedesktop.org>; Tue,  3 Dec 2024 12:31:31 +0000 (UTC)
+Received: by mail-pl1-f182.google.com with SMTP id
+ d9443c01a7336-215bb7bb9f9so6035145ad.2
+ for <intel-gfx@lists.freedesktop.org>; Tue, 03 Dec 2024 04:31:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=chromium.org; s=google; t=1733229091; x=1733833891;
+ darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=rmCmdPZyqHTJueyoNUxdAbvih3/opUK1QlKGl2LuDMo=;
+ b=jZlZroRWmj9xAFX5Pe1gaB07XhbwXZphJ1mb0gi6Fwlbmg4m+EW4tKgSOCWYOhsGgF
+ mwn6cOE7e00VQOTfwx+2ahI6MTkwS4RD74smUf4cA+YOytA8Dt5Eu8XKkui2kS7DLEtY
+ Q6V+KpNztoAu4Jh224M8zKSv/F6izMOMuEqjg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1733229091; x=1733833891;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=rmCmdPZyqHTJueyoNUxdAbvih3/opUK1QlKGl2LuDMo=;
+ b=nEk59Xx4+5ObtlL83yJ8kImlPZhUuRrMhI+oOZuhInV+aM3uFQGZxoC+i7v/w1xXF/
+ 8c22FSvEyG9KhdgBGE+Q5CaT+1cTzBTZG59UKDNYZsfeLmftQGW5JPOoJLKDmQwxBg+0
+ ZW528ysKwrShvH3jErHgDeE2rWYmEnryHoBh3dPYqbvlZoifN4/AiiX7WSvDESD1Sxt+
+ ShN13cyscCYXyTjcKJwCXVEUrG9mswjanJALJAMg7Guwu/DFxugOz9Cweha0KtMpmYIt
+ f+z2gGuT19pZJMqdR/nISZU8i9KHmG1f+PeN7nLQlh3CE86iLBoRH/RLUsxlBRg6ZRQf
+ TftQ==
+X-Gm-Message-State: AOJu0Yw8QOtEvx7q8RMTRf8qKCttPd48LZOR12++Cxofrk5W9brkC11x
+ meEptiG7JZCX1aKLFG05BnYF9TJr4Qq/yGMSFT/rFEICIqTR/ECGI2R4bKHzTg==
+X-Gm-Gg: ASbGncvtTJHcew5oM9sItoOJ6vmAOniIYkaG9pO4ywxczNsesZ5ogJuxR+OgYIySEGL
+ 4YfMUdJf+HO9TOuC1UjLestIUeLj8GIH5eaoezP3nr9lpN+PBSI/yDmAs88fVt796zNrUDODLcE
+ NaCq+1rBjvYkAQYV4X5BROR0ikEJrt2DCR8xkY1O1a0FpT12m6BkUljGsyLX3zx6BNEyymWVJha
+ GWbTu3ngONCOBi9y9fP+ALrdgz83Nb6desQ8+S7NBVpj+sGWg==
+X-Google-Smtp-Source: AGHT+IEeV3az9GRG8rHDkVnd0yV9DLHvIcl9SNi2dwy+VteYziFOzLepiDVQvG1ilEE6bLVtEotHyQ==
+X-Received: by 2002:a17:902:cf0c:b0:215:b6f1:78df with SMTP id
+ d9443c01a7336-215bceb3813mr43179615ad.19.1733229091247; 
+ Tue, 03 Dec 2024 04:31:31 -0800 (PST)
+Received: from google.com ([2401:fa00:8f:203:f520:3e:d9a1:1de])
+ by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-215218f452csm93787225ad.48.2024.12.03.04.31.29
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 03 Dec 2024 04:31:30 -0800 (PST)
+Date: Tue, 3 Dec 2024 21:31:26 +0900
+From: Sergey Senozhatsky <senozhatsky@chromium.org>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Ville Syrjala <ville.syrjala@linux.intel.com>,
+ Sergey Senozhatsky <senozhatsky@chromium.org>
+Subject: Re: [PATCH 0/3] drm/i915/display: handle hdmi connector init failures
+Message-ID: <20241203123126.GE886051@google.com>
+References: <cover.1731599468.git.jani.nikula@intel.com>
+ <20241115050045.GM1458936@google.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241115050045.GM1458936@google.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,57 +84,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 03 Dec 2024, Eugene Kobyak <eugene.kobyak@intel.com> wrote:
-> When the intel_context structure contains NULL,
-> it raises a NULL pointer dereference error in drm_info().
+On (24/11/15 14:00), Sergey Senozhatsky wrote:
+> On (24/11/14 17:52), Jani Nikula wrote:
+> > This is an attempt to resolve [1].
+> > 
+> > [1] https://lore.kernel.org/r/20241031105145.2140590-1-senozhatsky@chromium.org
+> > 
+> > Jani Nikula (3):
+> >   drm/i915/hdmi: propagate errors from intel_hdmi_init_connector()
+> >   drm/i915/hdmi: add error handling in g4x_hdmi_init()
+> >   drm/i915/ddi: propagate errors from intel_ddi_init_hdmi_connector()
+> 
+> So these look reasonable and good to me, and I think landing them
+> makes a lot of sense.  For that part feel free to add:
+> 
+> Reported-and-tested-by: Sergey Senozhatsky <senozhatsky@chromium.org>
+> and FWIW
+> Reviewed-by: Sergey Senozhatsky <senozhatsky@chromium.org>
+> 
+> 
+> 
+> Now, regarding the issue in question - we are getting there, but not
+> quite there yet.
+> 
+> I'm still seeing multiple NULL-ptr derefs, namely on
+> 
+>  DDI A/PHY A
+>  DDI TC1/PHY TC1
+>  DDI TC2/PHY TC2
+>  DDI TC3/PHY TC3
+>  DDI TC4/PHY TC4
+> 
+> The thing is, all of them are DP connectors, we only ever call
+> intel_ddi_init_dp_connector() on them, so dig_port->hdmi
+> is not init-ed, wheres intel_hdmi_encoder_shutdown() doesn't
+> distinguish and treats everyone as HDMI connector, dereferencing
+> ->hdmi.
+> 
+> With the small addition I don't see null-ptr derefs anymore:
 
-Blank line here between commit message body and trailers.
-
-> Fixes: e8a3319c31a1 ("drm/i915: Allow error capture without a request")
-> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12309
-> Cc: John Harrison <John.C.Harrison@Intel.com>
-> Cc: <stable@vger.kernel.org> # v6.3+
-> Signed-off-by: Eugene Kobyak <eugene.kobyak@intel.com>
-> ---
-> v2:
->   - return drm_info to separate condition
-> v3:
->   - create separate condition which generate string if intel_context exist
-> v4:
->   - rollback and add check intel_context in log condition
-> v5:
->   - create separate string with guc_id if intel_context exist
->  drivers/gpu/drm/i915/i915_gpu_error.c | 9 ++++++---
->  1 file changed, 6 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-> index 135ded17334e..4ca6b9872a48 100644
-> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
-> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-> @@ -1643,9 +1643,12 @@ capture_engine(struct intel_engine_cs *engine,
->  		return NULL;
->  
->  	intel_engine_get_hung_entity(engine, &ce, &rq);
-> -	if (rq && !i915_request_started(rq))
-> -		drm_info(&engine->gt->i915->drm, "Got hung context on %s with active request %lld:%lld [0x%04X] not yet started\n",
-> -			 engine->name, rq->fence.context, rq->fence.seqno, ce->guc_id.id);
-> +	if (rq && !i915_request_started(rq)) {
-> +	        char guc_id[11];
-> +		ce ? snprintf(guc_id, sizeof(guc_id), " [0x%04x] ", ce->guc_id.id) : snprintf(guc_id, sizeof(guc_id), " ");
-
-I don't know if there's a separate coding style entry saying you
-shouldn't use a ternary operator like that, but you shouldn't use a
-ternary operator like that.
-
-BR,
-Jani.
-
-> +	        drm_info(&engine->gt->i915->drm, "Got hung context on %s with active request %lld:%lld%snot yet started\n",
-> +	                 engine->name, rq->fence.context, rq->fence.seqno, guc_id);
-> +	}
->  
->  	if (rq) {
->  		capture = intel_engine_coredump_add_request(ee, rq, ATOMIC_MAYFAIL);
-
--- 
-Jani Nikula, Intel
+Gentle ping on this.
