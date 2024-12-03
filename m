@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95B559E1323
-	for <lists+intel-gfx@lfdr.de>; Tue,  3 Dec 2024 07:05:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DEBB9E134B
+	for <lists+intel-gfx@lfdr.de>; Tue,  3 Dec 2024 07:20:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2174510E90E;
-	Tue,  3 Dec 2024 06:05:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B610310E0EE;
+	Tue,  3 Dec 2024 06:20:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dqvXsYF6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R4lWkc2j";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4750110E90D;
- Tue,  3 Dec 2024 06:05:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D066310E0EE
+ for <intel-gfx@lists.freedesktop.org>; Tue,  3 Dec 2024 06:20:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733205922; x=1764741922;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=2/arm92ZRfFfGNwDdUyFCh/ax0mL7M5jiATGXpYhvp0=;
- b=dqvXsYF6Juorhf/cxtoqJ6okLSiLWy4L2c8Unh9RLik4fKCNaHxcRz0e
- +8A61FuXAALYkXTvCC3qyqduVZkkfP/znYQJoY+dVqCbodXJ15c9Rq+jz
- T4Wsc2jJMdDSebBhRMIPNzQB+Mmqqq9vhGItVgpmPrd4/7qzWXP/y+36n
- pBkuZi6+oHYW3XVa11+R9/qTL+BrAZSQe1cA5XfBCWTWx4Zx9fAcVv/sk
- xLzgQBPgxEdWorbauSIrJpEbZ1CQU6Ro3XqHtzva8n1el54Sb/HTnb+cq
- fO1yEagZVlkOnnp8JH4QmAA5htlsIW51x+1cZpOc8sGge7Gv2v09hc+59 A==;
-X-CSE-ConnectionGUID: yOTSuZYRQiahQTnAXvTAgw==
-X-CSE-MsgGUID: nGfloqtARUuhXYpBlySSCg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11274"; a="37058879"
-X-IronPort-AV: E=Sophos;i="6.12,204,1728975600"; d="scan'208";a="37058879"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Dec 2024 22:05:22 -0800
-X-CSE-ConnectionGUID: YdTJ5rNxTbm90dHDc0H64w==
-X-CSE-MsgGUID: cj+TL1vQSYKAeDeFlrFHFQ==
+ t=1733206837; x=1764742837;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=PusbZ9lXoA1ruO8q9TQfnxpw7bTwdXAnJ3BvWVdkmxU=;
+ b=R4lWkc2jqzVbCg7K3LKlUoTL95Rw75GuSqc57iQDIVL3C8ENO3T/4CuZ
+ sUsJmB1iNvNgSWYsTlANKC+D56/5dWzdrz2wvlVGtGc8gFsnDVI9anubK
+ qiVNZwN9PAHc1w2v+/kIz9y+11e/4HBWh6Bc2DmT4tA2RMCZZl0BbiFh0
+ OS+IweS5jktfO7lIrPyFSCqnG/z2gLgmCJWmeDmoMZocXEWLVM4+0F/jU
+ AjkVpok19Ue7kYdckn6N5oPoIB3G4qhON/s7Cz78DVeb613f8fNxKHZ3A
+ mUPtcH/iR4KKZX3ZOhbjEXakCxEHXQEwmOUPmkP8DxLv4ulws1Kl4dnH7 A==;
+X-CSE-ConnectionGUID: Gr355qjBS2GiKojeDGnjVA==
+X-CSE-MsgGUID: m45IvSUrSkSwE+OJ4vVneg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11274"; a="33535029"
+X-IronPort-AV: E=Sophos;i="6.12,204,1728975600"; d="scan'208";a="33535029"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Dec 2024 22:20:37 -0800
+X-CSE-ConnectionGUID: w8hQjihOQjKkqM9QteUkvw==
+X-CSE-MsgGUID: uT8YGhhHQKO9byvH0YuBVw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,204,1728975600"; d="scan'208";a="124163912"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by orviesa002.jf.intel.com with ESMTP; 02 Dec 2024 22:05:21 -0800
-From: Arun R Murthy <arun.r.murthy@intel.com>
-To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: Arun R Murthy <arun.r.murthy@intel.com>
-Subject: [PATCH 10/10] drm/i915/histogram: Enable pipe dithering
-Date: Tue,  3 Dec 2024 11:25:20 +0530
-Message-Id: <20241203055520.1704661-11-arun.r.murthy@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20241203055520.1704661-1-arun.r.murthy@intel.com>
-References: <20241203055520.1704661-1-arun.r.murthy@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,204,1728975600"; d="scan'208";a="124264957"
+Received: from anirban-z690i-a-ultra-plus.iind.intel.com ([10.145.169.150])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Dec 2024 22:20:35 -0800
+From: Sk Anirban <sk.anirban@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: badal.nilawar@intel.com, karthik.poosa@intel.com, anshuman.gupta@intel.com,
+ Sk Anirban <sk.anirban@intel.com>
+Subject: [PATCH v2] drm/i915/selftests: Add delay to stabilize frequency in
+ live_rps_power
+Date: Tue,  3 Dec 2024 11:41:14 +0530
+Message-Id: <20241203061114.2790448-1-sk.anirban@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -67,42 +67,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Enable pipe dithering while enabling histogram to overcome some
-atrifacts seen on the screen.
+Add delays to allow frequency stabilization before power measurement
+to fix sporadic power conservation issues in live_rps_power test.
 
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+v2:
+  - Move delay to respective function (Badal)
+
+Signed-off-by: Sk Anirban <sk.anirban@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_histogram.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ drivers/gpu/drm/i915/gt/selftest_rps.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_histogram.c b/drivers/gpu/drm/i915/display/intel_histogram.c
-index 48495480107e..53d0c42049d8 100644
---- a/drivers/gpu/drm/i915/display/intel_histogram.c
-+++ b/drivers/gpu/drm/i915/display/intel_histogram.c
-@@ -29,6 +29,13 @@ struct intel_histogram {
- 	u32 bin_data[HISTOGRAM_BIN_COUNT];
- };
- 
-+static void intel_histogram_enable_dithering(struct intel_display *display,
-+					     enum pipe pipe)
-+{
-+	intel_de_rmw(display, PIPE_MISC(pipe), PIPE_MISC_DITHER_ENABLE,
-+		     PIPE_MISC_DITHER_ENABLE);
-+}
-+
- static void set_bin_index_0(struct intel_display *display, enum pipe pipe)
+diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
+index dcef8d498919..c207a4fb03bf 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_rps.c
++++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
+@@ -1125,6 +1125,7 @@ static u64 measure_power(struct intel_rps *rps, int *freq)
+ static u64 measure_power_at(struct intel_rps *rps, int *freq)
  {
- 	if (DISPLAY_VER(display) >= 20)
-@@ -209,6 +216,9 @@ static int intel_histogram_enable(struct intel_crtc *intel_crtc)
- 	if (histogram->enable)
- 		return 0;
+ 	*freq = rps_set_check(rps, *freq);
++	msleep(100);
+ 	return measure_power(rps, freq);
+ }
  
-+	/* Pipe Dithering should be enabled with histogram */
-+	intel_histogram_enable_dithering(display, pipe);
-+
- 	 /* enable histogram, clear DPST_BIN reg and select TC function */
- 	if (DISPLAY_VER(display) >= 20)
- 		intel_de_rmw(display, DPST_CTL(pipe),
 -- 
-2.25.1
+2.34.1
 
