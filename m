@@ -2,71 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 812839E3895
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Dec 2024 12:17:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 28C989E3904
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Dec 2024 12:39:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 61D8810ECDF;
-	Wed,  4 Dec 2024 11:17:29 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EWOcB1Dq";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id C776910E200;
+	Wed,  4 Dec 2024 11:39:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2537310E33C;
- Wed,  4 Dec 2024 11:17:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733311048; x=1764847048;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=r+IpPAuGZ/rPxn5AuiKI5+6CytqFNjN66IUaSyMmBVQ=;
- b=EWOcB1Dqtb18aFRedmpIoVMsFr+5y7JGC2+coa1pXLtaWTWWOErLmS6l
- vwtG0yh3GuqtVYXlHDkd98j/Y9SXWLDuIlYnx7OrjYaeVRmDm+uKiPfdQ
- 6zsuGkdGSwqqBeP1mVCQaLaRxE6JXUNA3ZTMwJcuocR/k9zArWq1yj4WV
- l6hL/amyQwiLKwaqx3pPIWGfBLTDdzR6GE+ODdhbunb1HMiq0+Z2M92OG
- ywlXBKLH5VRUv7qo74I3PG/+r+uUXqwv8o+P77Vumqu4A6YxLYQ7KHdJT
- Qi7CUeL7bZWvCKqfUPUPXvuzZKPpwExzCeImKq4FsuopvvaZcImpzYJNd Q==;
-X-CSE-ConnectionGUID: TtrovJd4QRqbgYspu/0Uig==
-X-CSE-MsgGUID: fw3yS55sTDKqTln2X8Z8PA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11275"; a="44182159"
-X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="44182159"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2024 03:17:25 -0800
-X-CSE-ConnectionGUID: wLX6PSf8S1KjWHYBhiHUKQ==
-X-CSE-MsgGUID: jwofyawjTWiqpGsZAB1mDw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="93627280"
-Received: from black.fi.intel.com ([10.237.72.28])
- by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2024 03:17:20 -0800
-Date: Wed, 4 Dec 2024 13:17:17 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de
-Cc: =?iso-8859-1?Q?Andr=E9?= Almeida <andrealmeid@igalia.com>,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
- aravind.iddamsetty@linux.intel.com, rodrigo.vivi@intel.com,
- michal.wajdeczko@intel.com, lina@asahilina.net,
- anshuman.gupta@intel.com, alexander.deucher@amd.com,
- amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com,
- airlied@gmail.com, simona@ffwll.ch, lucas.demarchi@intel.com,
- jani.nikula@linux.intel.com, andriy.shevchenko@linux.intel.com
-Subject: Re: [PATCH v10 1/4] drm: Introduce device wedged event
-Message-ID: <Z1A6PYFCUNL9edv6@black.fi.intel.com>
-References: <20241128153707.1294347-1-raag.jadav@intel.com>
- <20241128153707.1294347-2-raag.jadav@intel.com>
- <1d448e67-0c28-4e21-afdd-223495346921@igalia.com>
- <Z01q1-7OF7jgANEM@black.fi.intel.com>
- <Z06QUpm3o_izNjoV@black.fi.intel.com>
- <7d0660f8-ce78-4458-a084-b65ab71e8243@amd.com>
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 343A910E200;
+ Wed,  4 Dec 2024 11:39:03 +0000 (UTC)
+Received: from 91-155-254-100.elisa-laajakaista.fi ([91.155.254.100]
+ helo=[192.168.100.137])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.97) (envelope-from <luca@coelho.fi>)
+ id 1tInie-00000002dTg-1JnS; Wed, 04 Dec 2024 13:39:00 +0200
+Message-ID: <af860d5b9de4a1ded8fc655a3fd44a83ebb40eb6.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>, 
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Date: Wed, 04 Dec 2024 13:38:59 +0200
+In-Reply-To: <20241204060601.1813514-1-chaitanya.kumar.borah@intel.com>
+References: <20241204060601.1813514-1-chaitanya.kumar.borah@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.1-1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <7d0660f8-ce78-4458-a084-b65ab71e8243@amd.com>
+X-Spam-Checker-Version: SpamAssassin 4.0.1-pre1 (2023-11-21) on
+ farmhouse.coelho.fi
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
+ TVD_RCVD_IP,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+ autolearn_force=no version=4.0.1-pre1
+Subject: Re: [core-for-CI] nvme-pci: don't use dma_alloc_noncontiguous with
+ 0 merge boundary
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,54 +51,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-+ misc maintainers
+Hi Chaitanya,
 
-On Tue, Dec 03, 2024 at 11:18:00AM +0100, Christian König wrote:
-> Am 03.12.24 um 06:00 schrieb Raag Jadav:
-> > On Mon, Dec 02, 2024 at 10:07:59AM +0200, Raag Jadav wrote:
-> > > On Fri, Nov 29, 2024 at 10:40:14AM -0300, André Almeida wrote:
-> > > > Hi Raag,
-> > > > 
-> > > > Em 28/11/2024 12:37, Raag Jadav escreveu:
-> > > > > Introduce device wedged event, which notifies userspace of 'wedged'
-> > > > > (hanged/unusable) state of the DRM device through a uevent. This is
-> > > > > useful especially in cases where the device is no longer operating as
-> > > > > expected and has become unrecoverable from driver context. Purpose of
-> > > > > this implementation is to provide drivers a generic way to recover with
-> > > > > the help of userspace intervention without taking any drastic measures
-> > > > > in the driver.
-> > > > > 
-> > > > > A 'wedged' device is basically a dead device that needs attention. The
-> > > > > uevent is the notification that is sent to userspace along with a hint
-> > > > > about what could possibly be attempted to recover the device and bring
-> > > > > it back to usable state. Different drivers may have different ideas of
-> > > > > a 'wedged' device depending on their hardware implementation, and hence
-> > > > > the vendor agnostic nature of the event. It is up to the drivers to
-> > > > > decide when they see the need for device recovery and how they want to
-> > > > > recover from the available methods.
-> > > > > 
-> > > > Thank you for your work. Do you think you can add the optional PID
-> > > > parameter, as the PID of the app that caused the reset? For SteamOS use case
-> > > > it has been proved to be useful to kill the fault app as well. If the reset
-> > > > was caused by a kthread, no PID can be provided hence it's an optional
-> > > > parameter.
-> > > Hmm, I'm not sure if it really fits here since it doesn't seem like
-> > > a generic usecase.
-> > > 
-> > > I'd still be open for it if found useful by the drivers but perhaps
-> > > as an extended feature in a separate series.
-> > What do you think Chris, are we good to go with v10?
-> 
-> I agree with Andre that the PID and maybe the new DRM client name would be
-> really nice to have here.
-> 
-> We do have that in the device core dump we create, but if an application is
-> supervised by daemon for example then that would be really useful.
-> 
-> On the other hand I think we should merge the documentation and code as is
-> and then add the PID/name later on. That is essentially a separate
-> discussion.
+On Wed, 2024-12-04 at 11:36 +0530, Chaitanya Kumar Borah wrote:
+> From: Christoph Hellwig <hch@lst.de>
+>=20
+> Only call into nvme_alloc_host_mem_single which uses
+> dma_alloc_noncontiguous when there is non-null dma merge boundary.
+> Without this we'll call into dma_alloc_noncontiguous for device using
+> dma-direct, which can work fine as long as the preferred size is below th=
+e
+> MAX_ORDER of the page allocator, but blows up with a warning if it is
+> too large.
+>=20
+> Fixes: 63a5c7a4b4c4 ("nvme-pci: use dma_alloc_noncontigous if possible")
+> Reported-by: Leon Romanovsky <leon@kernel.org>
+> Reported-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+> Signed-off-by: Christoph Hellwig <hch@lst.de>
+> References: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13227
+> Link: https://lore.kernel.org/linux-nvme/39a67024-2926-4a20-8feb-77dd64ab=
+7c39@kernel.dk/T/#mfef47937b20e33aa3cc63a3af930f8a9f9baf8c2
+> ---
+>  drivers/nvme/host/pci.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/nvme/host/pci.c b/drivers/nvme/host/pci.c
+> index 4c644bb7f069..778f124c2e21 100644
+> --- a/drivers/nvme/host/pci.c
+> +++ b/drivers/nvme/host/pci.c
+> @@ -2172,6 +2172,7 @@ static int nvme_alloc_host_mem_multi(struct nvme_de=
+v *dev, u64 preferred,
+> =20
+>  static int nvme_alloc_host_mem(struct nvme_dev *dev, u64 min, u64 prefer=
+red)
+>  {
+> +	unsigned long dma_merge_moundary =3D dma_get_merge_boundary(dev->dev);
+>  	u64 min_chunk =3D min_t(u64, preferred, PAGE_SIZE * MAX_ORDER_NR_PAGES)=
+;
+>  	u64 hmminds =3D max_t(u32, dev->ctrl.hmminds * 4096, PAGE_SIZE * 2);
+>  	u64 chunk_size;
+> @@ -2180,7 +2181,7 @@ static int nvme_alloc_host_mem(struct nvme_dev *dev=
+, u64 min, u64 preferred)
+>  	 * If there is an IOMMU that can merge pages, try a virtually
+>  	 * non-contiguous allocation for a single segment first.
+>  	 */
+> -	if (!(PAGE_SIZE & dma_get_merge_boundary(dev->dev))) {
+> +	if (dma_merge_moundary && (PAGE_SIZE & dma_merge_moundary) =3D=3D 0) {
+>  		if (!nvme_alloc_host_mem_single(dev, preferred))
+>  			return 0;
+>  	}
 
-So how do we proceed, perhaps through misc tree?
+This looks sane and has already been reviewed in the linux-nvme mailing
+list.  So, FWIW, you have my:
 
-Raag
+Acked-by: Luca Coelho <luciano.coelho@intel.com>
+
+--
+Cheers,
+Luca.
