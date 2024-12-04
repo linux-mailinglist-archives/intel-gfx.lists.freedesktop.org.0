@@ -2,58 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 378759E3CBD
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Dec 2024 15:31:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B13249E3CC1
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Dec 2024 15:31:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC44B10E4BC;
-	Wed,  4 Dec 2024 14:31:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DA6210E2A7;
+	Wed,  4 Dec 2024 14:31:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jRJYLaVE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mYX+yngZ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10C9510E4BC;
- Wed,  4 Dec 2024 14:31:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D858B10E2A7;
+ Wed,  4 Dec 2024 14:31:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733322686; x=1764858686;
+ t=1733322695; x=1764858695;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=dTapqBXiBmZ3/iS1nkrTPcg40STqJyfdMGiif+W/trs=;
- b=jRJYLaVEnzDEskDryuJi5IFdUeMaxYhkBIRX0MSGBMGIHDUBMzoAqyEY
- SpBJuYQ2yKq0Kzy0+uDQYddiF70GYX4My9+FwIJXW6XSsNQNiTwkkaGD7
- OE614i7rx6dpYdpE9wHTSPqXp+MDtAO9xMAzhgzMjY5/WIi7Q/+D3s30e
- ZRBZgBlrLWjlpHC4g1IodipYyySn/v7i5JMiSboKO9nkFy2g6Vvo8+WSk
- ICMZu0iLD91B5eTkyuaaReufCmYkTXchZKBXxG7gKcHMFNyyWkh0g92/o
- pOL5B6jkufX7qpO3RkmYWPq9NXhIyAPypXprcyJeCcitn3/Q7EmesX/5r g==;
-X-CSE-ConnectionGUID: vAHpc7CATISU+MitoiSWWw==
-X-CSE-MsgGUID: cDuX4hsoQgCtx5c1r2VDwQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11276"; a="44255522"
-X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="44255522"
+ bh=WSnr9Gs28zd/o19K+x0F05ubgL2i+J58mbFo2QtcJhk=;
+ b=mYX+yngZKiGV69xEYAhyiy7CW3r1DVT2hrEQEdPl24IHsmO7R6k1iXl/
+ MFmMoGPPvQnL/T2NubVgm1oPh8MG4zTuLCYlMXXJ6rQquqC9UeK2gvuDy
+ kkfZVALKvMt/S6h8P81r/kcXdsEOMl9DZFqKMK/FYAMzQtC5gdAmD2yGn
+ 1Qu6RbQTBHPOkWvp50yivUI5FK5w2zojcUemIINz3OPQWQt83ebDLJjjH
+ h3NEiPZGAjuEGuYxatNPlXIo4WJlSWJyyYY1JMeHOlxv7uCmxkBCaZGl7
+ niKiIWMvVyRe3yGS8hUqB0kvhgZfkKiPIWvUJYvEpBoYstN5yQJLiqYkS g==;
+X-CSE-ConnectionGUID: ot4UcoelRi+ubsZ6CFkevw==
+X-CSE-MsgGUID: hr18bjdqQI2E9e4zkeiDRg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11276"; a="44255543"
+X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="44255543"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2024 06:31:26 -0800
-X-CSE-ConnectionGUID: qP9l167GS5WX+6j0tx76Uw==
-X-CSE-MsgGUID: 0lE6/Rr8R8asFhrmSkn/wg==
+ 04 Dec 2024 06:31:33 -0800
+X-CSE-ConnectionGUID: RWrVFwaDQJawuBy/TS9v0w==
+X-CSE-MsgGUID: qnG6y7WzQneJtDQJ8TxR0A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="93963339"
+X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="93963396"
 Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.205])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2024 06:31:21 -0800
+ 04 Dec 2024 06:31:28 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, Alex Deucher <alexander.deucher@amd.com>,
- Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
+ Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>,
+ David Airlie <airlied@gmail.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, xen-devel@lists.xenproject.org
-Subject: [PATCH v2 1/3] drm/xen: remove redundant initialization info print
-Date: Wed,  4 Dec 2024 16:31:10 +0200
-Message-Id: <900b3836c80a23923ede034ab10eb344be1e35bd.1733322525.git.jani.nikula@intel.com>
+ Maxime Ripard <mripard@kernel.org>, Oded Gabbay <ogabbay@kernel.org>,
+ Simona Vetter <simona@ffwll.ch>,
+ Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>
+Subject: [PATCH v2 2/3] accel/ivpu: remove DRIVER_DATE conditional drm_driver
+ init
+Date: Wed,  4 Dec 2024 16:31:11 +0200
+Message-Id: <0e4276552dde66dcdd275740cbc63d232cefd8f4.1733322525.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1733322525.git.jani.nikula@intel.com>
 References: <cover.1733322525.git.jani.nikula@intel.com>
@@ -75,45 +78,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-drm_dev_register() already prints the same information on successful
-init. Remove the redundant prints.
+The ivpu struct drm_driver has conditional initialization based on #ifdef
+DRIVER_DATE, which is never defined anywhere. Neither are the macros
+referenced within the block: DRIVER_DATE, DRIVER_MAJOR, DRIVER_MINOR,
+and DRIVER_PATCHLEVEL. With the struct drm_driver date member going away
+anyway, just remove the conditional compilation.
 
 Acked-by: Alex Deucher <alexander.deucher@amd.com>
+Reviewed-by: Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
 ---
 
-Note: I prefer to merge this together with the next patch via
+Note: I prefer to merge this together with the other patches via
 drm-misc-next.
 
-Cc: Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>
 Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: David Airlie <airlied@gmail.com>
+Cc: Oded Gabbay <ogabbay@kernel.org>
 Cc: Simona Vetter <simona@ffwll.ch>
+Cc: Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
 Cc: dri-devel@lists.freedesktop.org
-Cc: xen-devel@lists.xenproject.org
 ---
- drivers/gpu/drm/xen/xen_drm_front.c | 5 -----
- 1 file changed, 5 deletions(-)
+ drivers/accel/ivpu/ivpu_drv.c | 7 -------
+ 1 file changed, 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/xen/xen_drm_front.c b/drivers/gpu/drm/xen/xen_drm_front.c
-index aab79c5e34c2..931d855bfbe8 100644
---- a/drivers/gpu/drm/xen/xen_drm_front.c
-+++ b/drivers/gpu/drm/xen/xen_drm_front.c
-@@ -525,11 +525,6 @@ static int xen_drm_drv_init(struct xen_drm_front_info *front_info)
- 	if (ret)
- 		goto fail_register;
+diff --git a/drivers/accel/ivpu/ivpu_drv.c b/drivers/accel/ivpu/ivpu_drv.c
+index ca2bf47ce248..1f359dbe5150 100644
+--- a/drivers/accel/ivpu/ivpu_drv.c
++++ b/drivers/accel/ivpu/ivpu_drv.c
+@@ -458,15 +458,8 @@ static const struct drm_driver driver = {
+ 	.name = DRIVER_NAME,
+ 	.desc = DRIVER_DESC,
  
--	DRM_INFO("Initialized %s %d.%d.%d %s on minor %d\n",
--		 xen_drm_driver.name, xen_drm_driver.major,
--		 xen_drm_driver.minor, xen_drm_driver.patchlevel,
--		 xen_drm_driver.date, drm_dev->primary->index);
--
- 	return 0;
+-#ifdef DRIVER_DATE
+-	.date = DRIVER_DATE,
+-	.major = DRIVER_MAJOR,
+-	.minor = DRIVER_MINOR,
+-	.patchlevel = DRIVER_PATCHLEVEL,
+-#else
+ 	.date = UTS_RELEASE,
+ 	.major = 1,
+-#endif
+ };
  
- fail_register:
+ static void ivpu_context_abort_invalid(struct ivpu_device *vdev)
 -- 
 2.39.5
 
