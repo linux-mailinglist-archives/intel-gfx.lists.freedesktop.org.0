@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E45819E366E
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Dec 2024 10:24:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 443749E366F
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Dec 2024 10:24:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8637610EC92;
-	Wed,  4 Dec 2024 09:24:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DEE4D10EC93;
+	Wed,  4 Dec 2024 09:24:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Mg6QAOGo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V9Kyjje2";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3082410EC92;
- Wed,  4 Dec 2024 09:24:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4ADB010EC83;
+ Wed,  4 Dec 2024 09:24:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733304244; x=1764840244;
+ t=1733304246; x=1764840246;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=6/ep/5Sao+0qspuC9f6AFzzqKXUsix0ojwHosgoqY74=;
- b=Mg6QAOGooMR69oqxEFRmqlx7XonXxqlsxT6oI1gvTTaukEd8J5Jkqm5n
- EHsGRjOqaLMcwHVK+72/NeoNvbvOIU2w7OCON+EPQdrBP17GfNtPXZA5n
- ZoJZo0qJNurIGH6Igi+P8wdc+3fj04T+rQ39ri/nCtH3xpJAeJhgl4yk8
- 5d7Ss4wFZCx96X02O5ryA4V9x5DTuSWUbqZA79evPnByQL7HpVux0LOta
- wxe5GKq3otQgn5cnRayMdPPK08Y22HgFfiVn7b85ixFdjLx7CtHVFGakm
- FU6Xo2wM1Vhcq1eJotPe+tdBCdp8HVggtex+8XQUo6qlLk/AKN+wxM1dg Q==;
-X-CSE-ConnectionGUID: tZwuhDisQJu6BBG9tJzCMg==
-X-CSE-MsgGUID: +3Dt/wSFSpCsCMfvX3CTUQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11275"; a="44038456"
-X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="44038456"
+ bh=Kt7cjM1rItcQm4RXH/ps89bbKgmNn5y8EuBMWbhjCBc=;
+ b=V9Kyjje28ABbjU0UU04gSswmplHfEAbdXODozZBmLNj3PzMH88KXyDYk
+ /6ugl+l7wcZWxbqECzwI3M5bA3NeHCA3t1M0EcGxsqtOxMQkwtEavZesH
+ 4JdQ/EnK9NXoWkS6XIClo11RGIx1RZtc8Ej0TvwQ5gJ7Kw88rTFdxw0d+
+ ysSnoTliotC4AFmuCJ6q2a4zMQqrqI/u7pmSGLpLSODL7OHSWkxIPiwJ+
+ WtzC1B0JdJUM0OGwfvSvL6qS3MOrUzDfUoICer2cj91F8aE1wuWd66dQu
+ cXTMojjk9rFXGw7dtGjoGpP7V5KL2BJVvJYzB1lY05KOMAhq+8RYAzlil A==;
+X-CSE-ConnectionGUID: pfBBEb7gTCCSUn/Ju2ie9w==
+X-CSE-MsgGUID: tetfCVslR2SndsL1SOi+ow==
+X-IronPort-AV: E=McAfee;i="6700,10204,11275"; a="44038460"
+X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="44038460"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2024 01:24:03 -0800
-X-CSE-ConnectionGUID: 0ZymIKSpTJqtK5UShnmCfg==
-X-CSE-MsgGUID: OaHOJ2uTShGpWUrVM66f7w==
+ 04 Dec 2024 01:24:06 -0800
+X-CSE-ConnectionGUID: q9tznY/sSb6v0ri+zQxd2w==
+X-CSE-MsgGUID: DvJusBKFQn2GttMQrXMn6A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="93555108"
+X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="93555118"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2024 01:24:01 -0800
+ 04 Dec 2024 01:24:03 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, suraj.kandpal@intel.com,
  jani.nikula@linux.intel.com, imre.deak@intel.com
-Subject: [PATCH 04/14] drm/i915/dp: Drop check for FEC in
- intel_dp_fec_compute_config
-Date: Wed,  4 Dec 2024 14:56:32 +0530
-Message-ID: <20241204092642.1835807-5-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 05/14] drm/i915/dp: Remove HAS_DSC macro for
+ intel_dp_dsc_max_src_input_bpc
+Date: Wed,  4 Dec 2024 14:56:33 +0530
+Message-ID: <20241204092642.1835807-6-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241204092642.1835807-1-ankit.k.nautiyal@intel.com>
 References: <20241204092642.1835807-1-ankit.k.nautiyal@intel.com>
@@ -69,46 +69,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Support for FEC is already checked in intel_dp_supports_dsc().
-Therefore the check can be dropped from the helper
-intel_dp_fec_compute_config.
+DSC support is already checked before the helper
+intel_dp_dsc_max_src_input_bpc is called.
+Remove the check from the helper.
+
+v2: Drop the argument struct drm_i915_private *i915. (Suraj)
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 6 +-----
- 1 file changed, 1 insertion(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index ccc495842518..d48fa94b2705 100644
+index d48fa94b2705..3989873c9516 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2345,7 +2345,6 @@ static int intel_edp_dsc_compute_pipe_bpp(struct intel_dp *intel_dp,
+@@ -2184,10 +2184,10 @@ static int dsc_compute_compressed_bpp(struct intel_dp *intel_dp,
  }
  
- static void intel_dp_fec_compute_config(struct intel_dp *intel_dp,
--					const struct intel_connector *connector,
- 					struct intel_crtc_state *crtc_state)
+ static
+-u8 intel_dp_dsc_min_src_input_bpc(struct drm_i915_private *i915)
++u8 intel_dp_dsc_min_src_input_bpc(void)
  {
- 	if (crtc_state->fec_enable)
-@@ -2359,9 +2358,6 @@ static void intel_dp_fec_compute_config(struct intel_dp *intel_dp,
- 	if (intel_dp_is_edp(intel_dp))
- 		return;
+ 	/* Min DSC Input BPC for ICL+ is 8 */
+-	return HAS_DSC(i915) ? 8 : 0;
++	return 8;
+ }
  
--	if (!intel_dp_supports_fec(intel_dp, connector, crtc_state))
--		return;
--
- 	if (intel_dp_is_uhbr(crtc_state))
- 		return;
+ static
+@@ -2199,7 +2199,7 @@ bool is_dsc_pipe_bpp_sufficient(struct drm_i915_private *i915,
+ 	u8 dsc_max_bpc, dsc_min_bpc, dsc_max_pipe_bpp, dsc_min_pipe_bpp;
  
-@@ -2384,7 +2380,7 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
- 	int num_joined_pipes = intel_crtc_num_joined_pipes(pipe_config);
- 	int ret;
+ 	dsc_max_bpc = min(intel_dp_dsc_max_src_input_bpc(i915), conn_state->max_requested_bpc);
+-	dsc_min_bpc = intel_dp_dsc_min_src_input_bpc(i915);
++	dsc_min_bpc = intel_dp_dsc_min_src_input_bpc();
  
--	intel_dp_fec_compute_config(intel_dp, connector, pipe_config);
-+	intel_dp_fec_compute_config(intel_dp, pipe_config);
+ 	dsc_max_pipe_bpp = min(dsc_max_bpc * 3, limits->pipe.max_bpp);
+ 	dsc_min_pipe_bpp = max(dsc_min_bpc * 3, limits->pipe.min_bpp);
+@@ -2266,7 +2266,7 @@ static int intel_dp_dsc_compute_pipe_bpp(struct intel_dp *intel_dp,
+ 	dsc_max_bpc = min_t(u8, dsc_max_bpc, max_req_bpc);
+ 	dsc_max_bpp = min(dsc_max_bpc * 3, limits->pipe.max_bpp);
  
- 	if (!intel_dp_dsc_supports_format(connector, pipe_config->output_format))
- 		return -EINVAL;
+-	dsc_min_bpc = intel_dp_dsc_min_src_input_bpc(i915);
++	dsc_min_bpc = intel_dp_dsc_min_src_input_bpc();
+ 	dsc_min_bpp = max(dsc_min_bpc * 3, limits->pipe.min_bpp);
+ 
+ 	/*
 -- 
 2.45.2
 
