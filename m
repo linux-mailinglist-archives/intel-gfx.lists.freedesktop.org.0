@@ -2,29 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 493679E3AE5
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Dec 2024 14:12:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2ECA69E3B17
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Dec 2024 14:19:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC3C010E4CA;
-	Wed,  4 Dec 2024 13:12:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A6CB010E0D1;
+	Wed,  4 Dec 2024 13:19:30 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nvR7HkZE";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58B1010E4CA;
- Wed,  4 Dec 2024 13:12:09 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D66810E0D1;
+ Wed,  4 Dec 2024 13:19:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1733318369; x=1764854369;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Bl3YRY2ZNAyUOBZvgqu14yu+mKsPPDUgR1HwrQGFpi8=;
+ b=nvR7HkZENd4FWl5vF+kw0dgOgYgNr8U9mGxyGaNaPgDy+0/qnvxWMig8
+ JUVXgh/r63/3y5+TcR2UWSoT1zS0rRAKyvZL0ZlianmB/gZzL/vAXJZWx
+ 7ae/6OyL5UiEn3G3Eq9Tbj0a8Vx2K9Zg2txoy5dIYhuq/ZHAM9NXjVMTe
+ mZiVkBYGeDzEGnivyISS3Zc5Rt4WRa0p+g4OVylev3JCk8Q9d3NA/lgfI
+ mX1DDP554HRvknkMPriIeSMP71dITxfiwx/wHew7kJlb+8etpAQpYDCJY
+ EFFTZ/Ol4pGzKxhYWXvVtUGD4g96j611p0Qc9C7I6JRYe+TlJ7Q8y+Htg Q==;
+X-CSE-ConnectionGUID: PuNcHz+JTISiSxCOtdCwDg==
+X-CSE-MsgGUID: EtygWjIJQa+q5FOHubrVdg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11276"; a="51114460"
+X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="51114460"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2024 05:19:29 -0800
+X-CSE-ConnectionGUID: /78+7sWGQ7OBEeaBbF1TEw==
+X-CSE-MsgGUID: RiDIH8yNQyKXFyuMpCkoPw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="131218557"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2024 05:19:27 -0800
+From: Imre Deak <imre.deak@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org,
+	Lyude Paul <lyude@redhat.com>
+Subject: [PATCH v2 5/7] drm/dp_mst: Ensure mst_primary pointer is valid in
+ drm_dp_mst_handle_up_req()
+Date: Wed,  4 Dec 2024 15:20:07 +0200
+Message-ID: <20241204132007.3132494-1-imre.deak@intel.com>
+X-Mailer: git-send-email 2.44.2
+In-Reply-To: <20241203160223.2926014-6-imre.deak@intel.com>
+References: <20241203160223.2926014-6-imre.deak@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_LOBF_enablement_fix_=28re?=
- =?utf-8?q?v2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Manna, Animesh" <animesh.manna@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 04 Dec 2024 13:12:09 -0000
-Message-ID: <173331792935.2477718.5403519351741257859@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241204100328.3738778-1-animesh.manna@intel.com>
-In-Reply-To: <20241204100328.3738778-1-animesh.manna@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,112 +66,93 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+While receiving an MST up request message from one thread in
+drm_dp_mst_handle_up_req(), the MST topology could be removed from
+another thread via drm_dp_mst_topology_mgr_set_mst(false), freeing
+mst_primary and setting drm_dp_mst_topology_mgr::mst_primary to NULL.
+This could lead to a NULL deref/use-after-free of mst_primary in
+drm_dp_mst_handle_up_req().
 
-Series: LOBF enablement fix (rev2)
-URL   : https://patchwork.freedesktop.org/series/141974/
-State : failure
+Avoid the above by holding a reference for mst_primary in
+drm_dp_mst_handle_up_req() while it's used.
 
-== Summary ==
+v2: Fix kfreeing the request if getting an mst_primary reference fails.
 
-CI Bug Log - changes from CI_DRM_15786 -> Patchwork_141974v2
-====================================================
+Cc: Lyude Paul <lyude@redhat.com>
+Reviewed-by: Lyude Paul <lyude@redhat.com> (v1)
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+---
+ drivers/gpu/drm/display/drm_dp_mst_topology.c | 24 ++++++++++++++-----
+ 1 file changed, 18 insertions(+), 6 deletions(-)
 
-Summary
--------
+diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c b/drivers/gpu/drm/display/drm_dp_mst_topology.c
+index 895c78806f0c5..7a0e757b712c7 100644
+--- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
++++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
+@@ -4105,9 +4105,10 @@ static void drm_dp_mst_up_req_work(struct work_struct *work)
+ static int drm_dp_mst_handle_up_req(struct drm_dp_mst_topology_mgr *mgr)
+ {
+ 	struct drm_dp_pending_up_req *up_req;
++	struct drm_dp_mst_branch *mst_primary;
+ 
+ 	if (!drm_dp_get_one_sb_msg(mgr, true, NULL))
+-		goto out;
++		goto out_clear_reply;
+ 
+ 	if (!mgr->up_req_recv.have_eomt)
+ 		return 0;
+@@ -4125,10 +4126,19 @@ static int drm_dp_mst_handle_up_req(struct drm_dp_mst_topology_mgr *mgr)
+ 		drm_dbg_kms(mgr->dev, "Received unknown up req type, ignoring: %x\n",
+ 			    up_req->msg.req_type);
+ 		kfree(up_req);
+-		goto out;
++		goto out_clear_reply;
++	}
++
++	mutex_lock(&mgr->lock);
++	mst_primary = mgr->mst_primary;
++	if (!mst_primary || !drm_dp_mst_topology_try_get_mstb(mst_primary)) {
++		mutex_unlock(&mgr->lock);
++		kfree(up_req);
++		goto out_clear_reply;
+ 	}
++	mutex_unlock(&mgr->lock);
+ 
+-	drm_dp_send_up_ack_reply(mgr, mgr->mst_primary, up_req->msg.req_type,
++	drm_dp_send_up_ack_reply(mgr, mst_primary, up_req->msg.req_type,
+ 				 false);
+ 
+ 	if (up_req->msg.req_type == DP_CONNECTION_STATUS_NOTIFY) {
+@@ -4145,13 +4155,13 @@ static int drm_dp_mst_handle_up_req(struct drm_dp_mst_topology_mgr *mgr)
+ 			    conn_stat->peer_device_type);
+ 
+ 		mutex_lock(&mgr->probe_lock);
+-		handle_csn = mgr->mst_primary->link_address_sent;
++		handle_csn = mst_primary->link_address_sent;
+ 		mutex_unlock(&mgr->probe_lock);
+ 
+ 		if (!handle_csn) {
+ 			drm_dbg_kms(mgr->dev, "Got CSN before finish topology probing. Skip it.");
+ 			kfree(up_req);
+-			goto out;
++			goto out_put_primary;
+ 		}
+ 	} else if (up_req->msg.req_type == DP_RESOURCE_STATUS_NOTIFY) {
+ 		const struct drm_dp_resource_status_notify *res_stat =
+@@ -4168,7 +4178,9 @@ static int drm_dp_mst_handle_up_req(struct drm_dp_mst_topology_mgr *mgr)
+ 	mutex_unlock(&mgr->up_req_lock);
+ 	queue_work(system_long_wq, &mgr->up_req_work);
+ 
+-out:
++out_put_primary:
++	drm_dp_mst_topology_put_mstb(mst_primary);
++out_clear_reply:
+ 	memset(&mgr->up_req_recv, 0, sizeof(struct drm_dp_sideband_msg_rx));
+ 	return 0;
+ }
+-- 
+2.44.2
 
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_141974v2 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_141974v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141974v2/index.html
-
-Participating hosts (44 -> 43)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_141974v2:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:
-    - fi-kbl-7567u:       [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15786/fi-kbl-7567u/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141974v2/fi-kbl-7567u/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_141974v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_module_load@reload:
-    - bat-twl-1:          [PASS][3] -> [DMESG-WARN][4] ([i915#1982])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15786/bat-twl-1/igt@i915_module_load@reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141974v2/bat-twl-1/igt@i915_module_load@reload.html
-
-  * igt@i915_selftest@live@gt_mocs:
-    - bat-twl-2:          [PASS][5] -> [ABORT][6] ([i915#12919]) +1 other test abort
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15786/bat-twl-2/igt@i915_selftest@live@gt_mocs.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141974v2/bat-twl-2/igt@i915_selftest@live@gt_mocs.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_module_load@load:
-    - bat-twl-1:          [DMESG-WARN][7] ([i915#1982]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15786/bat-twl-1/igt@i915_module_load@load.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141974v2/bat-twl-1/igt@i915_module_load@load.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - bat-rpls-4:         [FAIL][9] ([i915#12903]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15786/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141974v2/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-mtlp-6:         [ABORT][11] ([i915#12061]) -> [PASS][12] +1 other test pass
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15786/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141974v2/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12903]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12903
-  [i915#12919]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12919
-  [i915#1982]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15786 -> Patchwork_141974v2
-
-  CI-20190529: 20190529
-  CI_DRM_15786: c8df5caf278df4f9ca0aba627047c5ee4318fc0d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8137: 8137
-  Patchwork_141974v2: c8df5caf278df4f9ca0aba627047c5ee4318fc0d @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141974v2/index.html
