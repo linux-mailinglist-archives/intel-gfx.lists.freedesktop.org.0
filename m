@@ -2,60 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 384D69E3D01
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Dec 2024 15:43:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 674199E3DC0
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Dec 2024 16:07:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D394010E039;
-	Wed,  4 Dec 2024 14:43:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A97410ED4F;
+	Wed,  4 Dec 2024 15:07:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y4FMXz+H";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h4cN7Q6Z";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BECE310E039
- for <intel-gfx@lists.freedesktop.org>; Wed,  4 Dec 2024 14:43:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B2BB410E4C0;
+ Wed,  4 Dec 2024 15:07:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733323397; x=1764859397;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=XRDQJ3uJ35zN6R8kc7/26DL0yooR1NcyHn5Pmxt6jag=;
- b=Y4FMXz+HPuKLkJ779BE2UlaKHBZb6PIaw2UYzkCyzUW/5pGI8ud7DFim
- bFmOmWkq5N5YbWqZ3HU8JkE2i38zRiyfGnvBuKbrD7Jyw5b9e+dOqKCnv
- oXEHR8JQ4ahZhrljTwQaPLVgnYi33ojFXB7drhFN3LyIRyr5KZ+wF3Bn/
- /fRBc/2boRvNWMCasEvXgghjQV/l/YTM2wPYqwZaeWWrZ1AAY2O43J7JL
- F/n/GZBZXnFU4n15ZnV31c0l+L3IB9Yp9es/4LuqZWx76knTz04m6JWrc
- yt2ra+WRjTtFfXtXzhphoGk8IfJqv8OFdr0dryu9JwUrOTUm3WcTRIt24 A==;
-X-CSE-ConnectionGUID: 4rhGLEl8RGCFTTy0qIGyOQ==
-X-CSE-MsgGUID: 0VdQU6YSSueENvaNeHnHCQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11276"; a="44984476"
-X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="44984476"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2024 06:43:16 -0800
-X-CSE-ConnectionGUID: N7iyW4ZpSymDoMrssnhieQ==
-X-CSE-MsgGUID: Xso6M9BuS/OxRImf2CLMNA==
+ t=1733324848; x=1764860848;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=whzLuXTBXHJhGtoOOK8YREUvTejNNUbA+eBAQlBFl5c=;
+ b=h4cN7Q6Z7+vY2OcIISaGxgzef2TGjczAXWLVV3ovJUpMdfcHRh6kBT/p
+ IvFMF/VXdmJoBeXq8+uDRHJ2emk0meNxuaTtv9Ctyn0/sz4gmeOcf7UxH
+ 1rNKybcZt6/HQtHwecGKhCaSk4TDOlOgcIuuneF19X2ZuSg9sVuLu4tBL
+ 5BandhSqGki7QdbTbIIE1tVWLm0lAB3jO9XwRPkIXd3L9mqV49wKSjsKZ
+ Vpf937SVlJfZoTKIviOtYT96Tw1RuwnbqlSPcrP+VBCQx675VbFNP+4bQ
+ Z3TKAA5Q4wNlS6wa9jONI7Ecgw7VcTpH8e+YSJRkm4VvByFJaFNWGzJmJ A==;
+X-CSE-ConnectionGUID: 9cQrJT0nTImTyQ1zgqNT3g==
+X-CSE-MsgGUID: KpK5/fEQSPqB3rekkMCzGg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11276"; a="33745666"
+X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="33745666"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2024 07:07:28 -0800
+X-CSE-ConnectionGUID: 4LqU56XMTyKi7iX9ReVb+A==
+X-CSE-MsgGUID: UA/OGNjUScC+Ud7f2XBQhA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="131235692"
-Received: from slindbla-desk.ger.corp.intel.com (HELO intel.com)
- ([10.245.246.225])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2024 06:43:14 -0800
-Date: Wed, 4 Dec 2024 15:43:09 +0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Eugene Kobyak <eugene.kobyak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, John.C.Harrison@intel.com,
- andi.shyti@linux.intel.com, jani.nikula@linux.intel.com,
- stable@vger.kernel.org
-Subject: Re: [PATCH v6] drm/i915: Fix NULL pointer dereference in
- capture_engine
-Message-ID: <Z1BqfTErA4t9L7Tc@ashyti-mobl2.lan>
-References: <xmsgfynkhycw3cf56akp4he2ffg44vuratocsysaowbsnhutzi@augnqbm777at>
+X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="117038222"
+Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.205])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2024 07:07:25 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com, Sergey Senozhatsky <senozhatsky@chromium.org>,
+ Ville Syrjala <ville.syrjala@linux.intel.com>
+Subject: [PATCH v2 0/5] drm/i915/display: handle hdmi connector init failures,
+ and no HDMI/DP cases
+Date: Wed,  4 Dec 2024 17:07:16 +0200
+Message-Id: <cover.1733324735.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <xmsgfynkhycw3cf56akp4he2ffg44vuratocsysaowbsnhutzi@augnqbm777at>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,20 +70,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Eugene,
+v2 of [1] attempting to resolve [2].
 
-On Tue, Dec 03, 2024 at 02:54:06PM +0000, Eugene Kobyak wrote:
-> When the intel_context structure contains NULL,
-> it raises a NULL pointer dereference error in drm_info().
-> 
-> Fixes: e8a3319c31a1 ("drm/i915: Allow error capture without a request")
-> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12309
-> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
-> Cc: John Harrison <John.C.Harrison@Intel.com>
-> Cc: <stable@vger.kernel.org> # v6.3+
-> Signed-off-by: Eugene Kobyak <eugene.kobyak@intel.com>
+BR,
+Jani.
 
-merged to drm-intel-next.
 
-Thank you,
-Andi
+Cc: Sergey Senozhatsky <senozhatsky@chromium.org>
+Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+
+[1] https://lore.kernel.org/r/cover.1731599468.git.jani.nikula@intel.com
+[2] https://lore.kernel.org/r/20241031105145.2140590-1-senozhatsky@chromium.org
+
+Jani Nikula (5):
+  drm/i915/hdmi: propagate errors from intel_hdmi_init_connector()
+  drm/i915/hdmi: add error handling in g4x_hdmi_init()
+  drm/i915/ddi: propagate errors from intel_ddi_init_hdmi_connector()
+  drm/i915/display: add intel_encoder_is_hdmi()
+  drm/i915/ddi: only call shutdown hooks for valid encoders
+
+ drivers/gpu/drm/i915/display/g4x_hdmi.c       | 35 ++++++++++++-------
+ drivers/gpu/drm/i915/display/g4x_hdmi.h       |  5 +--
+ drivers/gpu/drm/i915/display/intel_ddi.c      | 12 +++++--
+ .../drm/i915/display/intel_display_types.h    | 13 +++++++
+ drivers/gpu/drm/i915/display/intel_hdmi.c     | 10 +++---
+ drivers/gpu/drm/i915/display/intel_hdmi.h     |  2 +-
+ 6 files changed, 55 insertions(+), 22 deletions(-)
+
+-- 
+2.39.5
+
