@@ -2,55 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E3F89E3688
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Dec 2024 10:27:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B5D79E365F
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Dec 2024 10:21:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E08F510EC78;
-	Wed,  4 Dec 2024 09:27:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6BA810E2C6;
+	Wed,  4 Dec 2024 09:21:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V+Spjaog";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B3lSNOFf";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3865910EC78;
- Wed,  4 Dec 2024 09:27:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 26A5510E2C6;
+ Wed,  4 Dec 2024 09:21:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733304421; x=1764840421;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=sRvpxJNOJ0vNh9LaqG89Bdq5QLbubA4c6dwzAesnJU0=;
- b=V+SpjaogxZ4u2+saIKijl1uBvuc5bk8D/myXMtnVxQuMverI2rqLl9N2
- BCSpPzLoBn5rrBvHnqPSTnjA2ieU8Kn4K14z0xd9cpaGVgTcd5h6QAdhJ
- EJr/z8qzDXA2fiGIL8TOqyjeM5ZYCVIN0mllQEOVtLV2d2P8kTU71I4yO
- 68ilon8+5NjaDJYEidZI2BjUO0Hrp/HW1P1FgODyMMJEyWx5TYbE2REqT
- wowkxNj7Ota6cYpRrxDXd0IAKYAe+LUlVIny5GsvTm51ygky4li2lYYBA
- W6lpawlfXrgWBVgTWjeAUQANfcfvw07dhLMx9Ge7Ts3DOw5WO3jJ3RoG9 w==;
-X-CSE-ConnectionGUID: pYq2KfznTBqkSDMpf8lAMA==
-X-CSE-MsgGUID: zLpinXHNRpCN6+AWn2ifDQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11275"; a="44038763"
-X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="44038763"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2024 01:27:00 -0800
-X-CSE-ConnectionGUID: +/Q9B6slTU+WifnvKoT8Gw==
-X-CSE-MsgGUID: 30NLMe4zTYSotnu48MljFg==
+ t=1733304093; x=1764840093;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=UNbmFM/HnvK51OmxTpXNhEDiUgYfjylSDnx8bTqRB4E=;
+ b=B3lSNOFfKltyByu1WiFDC4beHpMhjfYzjsBNEL3QpQHuA5uBGMjuUUTI
+ M3ACfXzEVbUhsKK2tcB32hJF0rW0pSGroBXZ8QuyqBKNR1v55oqqI8OF4
+ QM7rfxyIh8URk5P1MQzwikya0SvBC74S1ZI1jCfKPOvMsoge6JaDRv6pw
+ n96trBfZXb4KkXeAiAKPXOuiTigsYtt/5JCeH1ps+JLyOKVZEIzI3TjG+
+ bkAwCBkZpGnUhceTdnXYZocsdQ8Yepu8cBCX6/3gZpJlDRK57aM+Q46en
+ EU9eO+YfUyoZtl6PhjYsk5oD60EhPeO944loJI+zZnz7VYTVkrPm4d3U+ g==;
+X-CSE-ConnectionGUID: NvRU8C7HStOTnVrSaSD5aA==
+X-CSE-MsgGUID: igPaEFttQg2nTY6VrM1sFA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11275"; a="37498740"
+X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="37498740"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2024 01:21:32 -0800
+X-CSE-ConnectionGUID: ljrALvL/RFCqI54abriVKg==
+X-CSE-MsgGUID: XGBMtb2aSvCNSYiDqYdbMw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="94138283"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by orviesa007.jf.intel.com with ESMTP; 04 Dec 2024 01:26:59 -0800
-From: Arun R Murthy <arun.r.murthy@intel.com>
-To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: Arun R Murthy <arun.r.murthy@intel.com>
-Subject: [PATCHv2 07/10] drm/i915/display: handle drm-crtc histogram property
- updates
-Date: Wed,  4 Dec 2024 14:47:19 +0530
-Message-Id: <20241204091719.1786072-1-arun.r.murthy@intel.com>
-X-Mailer: git-send-email 2.25.1
+X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="93894226"
+Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.205])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2024 01:21:31 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Kahola, Mika" <mika.kahola@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Subject: RE: [PATCH] drm/i915/cx0: split out mtl_get_cx0_buf_trans() to c10
+ and c20 variants
+In-Reply-To: <MW4PR11MB7054E2FC4DA3275E9FF14F42EF372@MW4PR11MB7054.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20241129114158.486418-1-jani.nikula@intel.com>
+ <MW4PR11MB7054E2FC4DA3275E9FF14F42EF372@MW4PR11MB7054.namprd11.prod.outlook.com>
+Date: Wed, 04 Dec 2024 11:21:28 +0200
+Message-ID: <87plm73isn.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,160 +70,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Check for any updates on drm_crtc property histogram_enable and
-histogram_iet_updated and call/act accordingly to update histogram or
-update the image enhancement LUT data API defined in i915 histogram.
+On Wed, 04 Dec 2024, "Kahola, Mika" <mika.kahola@intel.com> wrote:
+>> -----Original Message-----
+>> From: Nikula, Jani <jani.nikula@intel.com>
+>> Sent: Friday, 29 November 2024 13.42
+>> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
+>> Cc: Nikula, Jani <jani.nikula@intel.com>; Kahola, Mika <mika.kahola@intel.com>
+>> Subject: [PATCH] drm/i915/cx0: split out mtl_get_cx0_buf_trans() to c10 and c20
+>> variants
+>>
+>> The PHY is either c10 or c20, there's no need to check at runtime and complicate
+>> the conditions in mtl_get_cx0_buf_trans().
+>>
+>> While at it, replace the direct port clock check with intel_dp_is_uhbr().
+>>
+>> Cc: Mika Kahola <mika.kahola@intel.com>
+>
+> The change is reasonable and solid.
+>
+> Reviewed-by: Mika Kahola <mika.kahola@intel.com>
 
-v2: corrected the FORTIFY_SOURCE error
+Thanks, pushed to drm-intel-next.
 
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_atomic.c    |  1 +
- drivers/gpu/drm/i915/display/intel_crtc.c      |  7 +++++++
- drivers/gpu/drm/i915/display/intel_display.c   | 17 +++++++++++++++++
- .../gpu/drm/i915/display/intel_display_types.h |  2 ++
- drivers/gpu/drm/i915/display/intel_histogram.c | 18 ++++++++++++++++++
- 5 files changed, 45 insertions(+)
+BR,
+Jani.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic.c b/drivers/gpu/drm/i915/display/intel_atomic.c
-index 03dc54c802d3..dff130b3565a 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic.c
-@@ -278,6 +278,7 @@ intel_crtc_duplicate_state(struct drm_crtc *crtc)
- 	crtc_state->dsb_color_vblank = NULL;
- 	crtc_state->dsb_commit = NULL;
- 	crtc_state->use_dsb = false;
-+	crtc_state->histogram_updated = false;
- 
- 	return &crtc_state->uapi;
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index a2c528d707f4..0c8741ca9a71 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -27,6 +27,7 @@
- #include "intel_drrs.h"
- #include "intel_dsi.h"
- #include "intel_fifo_underrun.h"
-+#include "intel_histogram.h"
- #include "intel_pipe_crc.h"
- #include "intel_psr.h"
- #include "intel_sprite.h"
-@@ -210,6 +211,7 @@ static struct intel_crtc *intel_crtc_alloc(void)
- static void intel_crtc_free(struct intel_crtc *crtc)
- {
- 	intel_crtc_destroy_state(&crtc->base, crtc->base.state);
-+	intel_histogram_finish(crtc);
- 	kfree(crtc);
- }
- 
-@@ -380,10 +382,15 @@ int intel_crtc_init(struct drm_i915_private *dev_priv, enum pipe pipe)
- 						BIT(DRM_SCALING_FILTER_DEFAULT) |
- 						BIT(DRM_SCALING_FILTER_NEAREST_NEIGHBOR));
- 
-+	if (drm_crtc_create_histogram_property(&crtc->base))
-+		drm_err(&dev_priv->drm, "Failed to initialize histogram properties\n");
-+
- 	intel_color_crtc_init(crtc);
- 	intel_drrs_crtc_init(crtc);
- 	intel_crtc_crc_init(crtc);
- 
-+	intel_histogram_init(crtc);
-+
- 	cpu_latency_qos_add_request(&crtc->vblank_pm_qos, PM_QOS_DEFAULT_VALUE);
- 
- 	drm_WARN_ON(&dev_priv->drm, drm_crtc_index(&crtc->base) != crtc->pipe);
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 4805bf682d43..abad112cf7e4 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -93,6 +93,7 @@
- #include "intel_fifo_underrun.h"
- #include "intel_frontbuffer.h"
- #include "intel_hdmi.h"
-+#include "intel_histogram.h"
- #include "intel_hotplug.h"
- #include "intel_link_bw.h"
- #include "intel_lvds.h"
-@@ -4612,6 +4613,12 @@ static int intel_crtc_atomic_check(struct intel_atomic_state *state,
- 	if (ret)
- 		return ret;
- 
-+	if (crtc_state->histogram_updated) {
-+		ret = intel_histogram_atomic_check(crtc);
-+		if (ret)
-+			return ret;
-+	}
-+
- 	return 0;
- }
- 
-@@ -6831,6 +6838,10 @@ int intel_atomic_check(struct drm_device *dev,
- 		if (new_crtc_state->uapi.scaling_filter !=
- 		    old_crtc_state->uapi.scaling_filter)
- 			new_crtc_state->uapi.mode_changed = true;
-+
-+		if (new_crtc_state->uapi.histogram_enable |=
-+				old_crtc_state->uapi.histogram_enable)
-+			new_crtc_state->histogram_updated = true;
- 	}
- 
- 	intel_vrr_check_modeset(state);
-@@ -7897,6 +7908,12 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 		 */
- 		old_crtc_state->dsb_color_vblank = fetch_and_zero(&new_crtc_state->dsb_color_vblank);
- 		old_crtc_state->dsb_commit = fetch_and_zero(&new_crtc_state->dsb_commit);
-+
-+		if (new_crtc_state->histogram_updated)
-+			intel_histogram_update(crtc, crtc->base.state->histogram_enable);
-+		if (new_crtc_state->uapi.histogram_iet_updated)
-+			intel_histogram_set_iet_lut(crtc,
-+						    new_crtc_state->uapi.histogram_iet);
- 	}
- 
- 	/* Underruns don't always raise interrupts, so check manually */
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 0f50081b9957..15f4bd3ccc62 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1317,6 +1317,8 @@ struct intel_crtc_state {
- 
- 	/* LOBF flag */
- 	bool has_lobf;
-+
-+	bool histogram_updated;
- };
- 
- enum intel_pipe_crc_source {
-diff --git a/drivers/gpu/drm/i915/display/intel_histogram.c b/drivers/gpu/drm/i915/display/intel_histogram.c
-index 57bb45b36a03..39ab6d5c7c84 100644
---- a/drivers/gpu/drm/i915/display/intel_histogram.c
-+++ b/drivers/gpu/drm/i915/display/intel_histogram.c
-@@ -68,6 +68,24 @@ static void intel_histogram_handle_int_work(struct work_struct *work)
- 		     DPST_CTL_BIN_REG_FUNC_SEL | DPST_CTL_BIN_REG_MASK, 0);
- 	for (retry = 0; retry < HISTOGRAM_BIN_READ_RETRY_COUNT; retry++) {
- 		if (intel_histogram_get_data(intel_crtc)) {
-+			u32 *data;
-+			struct drm_histogram *hist;
-+
-+			data = kzalloc(sizeof(data) * sizeof(histogram->bin_data), GFP_KERNEL);
-+			if (!data)
-+				return;
-+			memcpy(histogram->bin_data, data, sizeof(histogram->bin_data));
-+			hist = kzalloc(sizeof(struct drm_histogram), GFP_KERNEL);
-+			if (!hist)
-+				return;
-+			hist->data_ptr = *data;
-+			hist->nr_elements = sizeof(histogram->bin_data);
-+
-+			drm_property_replace_global_blob(display->drm,
-+				&intel_crtc->base.state->histogram_data,
-+				sizeof(struct drm_histogram),
-+				hist, &intel_crtc->base.base,
-+				intel_crtc->base.histogram_data_property);
- 			/* Notify user for Histogram rediness */
- 			if (kobject_uevent_env(&display->drm->primary->kdev->kobj,
- 					       KOBJ_CHANGE, histogram_event))
+>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  .../drm/i915/display/intel_ddi_buf_trans.c    | 23 +++++++++++++------
+>>  1 file changed, 16 insertions(+), 7 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+>> b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+>> index 4d21ce734343..9389b295036e 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+>> @@ -1687,18 +1687,24 @@ dg2_get_snps_buf_trans(struct intel_encoder
+>> *encoder,  }
+>>
+>>  static const struct intel_ddi_buf_trans * -mtl_get_cx0_buf_trans(struct
+>> intel_encoder *encoder,
+>> +mtl_get_c10_buf_trans(struct intel_encoder *encoder,
+>>                     const struct intel_crtc_state *crtc_state,
+>>                     int *n_entries)
+>>  {
+>> -     if (intel_crtc_has_dp_encoder(crtc_state) && crtc_state->port_clock >=
+>> 1000000)
+>> +     return intel_get_buf_trans(&mtl_c10_trans_dp14, n_entries); }
+>> +
+>> +static const struct intel_ddi_buf_trans * mtl_get_c20_buf_trans(struct
+>> +intel_encoder *encoder,
+>> +                   const struct intel_crtc_state *crtc_state,
+>> +                   int *n_entries)
+>> +{
+>> +     if (intel_crtc_has_dp_encoder(crtc_state) &&
+>> +intel_dp_is_uhbr(crtc_state))
+>>               return intel_get_buf_trans(&mtl_c20_trans_uhbr, n_entries);
+>> -     else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI) &&
+>> !(intel_encoder_is_c10phy(encoder)))
+>> +     else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+>>               return intel_get_buf_trans(&mtl_c20_trans_hdmi, n_entries);
+>> -     else if (!intel_encoder_is_c10phy(encoder))
+>> -             return intel_get_buf_trans(&mtl_c20_trans_dp14, n_entries);
+>>       else
+>> -             return intel_get_buf_trans(&mtl_c10_trans_dp14, n_entries);
+>> +             return intel_get_buf_trans(&mtl_c20_trans_dp14, n_entries);
+>>  }
+>>
+>>  void intel_ddi_buf_trans_init(struct intel_encoder *encoder) @@ -1706,7
+>> +1712,10 @@ void intel_ddi_buf_trans_init(struct intel_encoder *encoder)
+>>       struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+>>
+>>       if (DISPLAY_VER(i915) >= 14) {
+>> -             encoder->get_buf_trans = mtl_get_cx0_buf_trans;
+>> +             if (intel_encoder_is_c10phy(encoder))
+>> +                     encoder->get_buf_trans = mtl_get_c10_buf_trans;
+>> +             else
+>> +                     encoder->get_buf_trans = mtl_get_c20_buf_trans;
+>>       } else if (IS_DG2(i915)) {
+>>               encoder->get_buf_trans = dg2_get_snps_buf_trans;
+>>       } else if (IS_ALDERLAKE_P(i915)) {
+>> --
+>> 2.39.5
+>
+
 -- 
-2.25.1
-
+Jani Nikula, Intel
