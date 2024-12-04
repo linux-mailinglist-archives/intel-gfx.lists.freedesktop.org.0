@@ -2,29 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B35CE9E3CA0
-	for <lists+intel-gfx@lfdr.de>; Wed,  4 Dec 2024 15:22:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 203AD9E3CBA
+	for <lists+intel-gfx@lfdr.de>; Wed,  4 Dec 2024 15:31:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33FE310E17E;
-	Wed,  4 Dec 2024 14:22:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5131D10E4B3;
+	Wed,  4 Dec 2024 14:31:20 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MFMd5SeP";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E62610E17E;
- Wed,  4 Dec 2024 14:22:41 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5534B10E2AA;
+ Wed,  4 Dec 2024 14:31:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1733322678; x=1764858678;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Nay1gnhVbkiMLBv1I4wuTvkENs2han/NjHOXtQx7SIs=;
+ b=MFMd5SePxLvcRlAgCaH284yf9kX8Tzenqtve85qYKwhDFewgwXwWIe2z
+ sFm4gQqw6lNR0LUETFpV/Bog+X17oWFkLk07xnHWCaJ3kQuXW1lOJGX2f
+ bCuIm9m3EQhDcRvHdqOAkLDne0diQM/YJXIRsBo17BFGiYqSySYsbNNo4
+ hBHRvhKkdUK56qSqEZAjcfCAbmJasiX9xfQHitRg19i+/6lx09xT0D1+d
+ lCYU0iFpyF5FiX527/qGIld25v4ONMRwPN7tIVuCIRZd3PwdhMB4OHYtQ
+ 6fPmzJRg3htj/HfM4/8PKly2sWc6qJis1N4VrLB8AnaBZjp/0wefQmYA9 A==;
+X-CSE-ConnectionGUID: YG1w9DX5TcKyMJNUG2nx5w==
+X-CSE-MsgGUID: +gq6QITARwy1UFWJ1Oqlfw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11276"; a="44255512"
+X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="44255512"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2024 06:31:18 -0800
+X-CSE-ConnectionGUID: OXUL59ePTK6if2kv+s8f4w==
+X-CSE-MsgGUID: S7NX28XMRxWXwWHN6J1N2Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,207,1728975600"; d="scan'208";a="93963312"
+Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.205])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2024 06:31:16 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH v2 0/3] drm: remove driver date
+Date: Wed,  4 Dec 2024 16:31:09 +0200
+Message-Id: <cover.1733322525.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/dp=5Fmst=3A_Fix_a_few?=
- =?utf-8?q?_side-band_message_handling_issues_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 04 Dec 2024 14:22:41 -0000
-Message-ID: <173332216111.2501704.12596279035666520484@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241203160223.2926014-1-imre.deak@intel.com>
-In-Reply-To: <20241203160223.2926014-1-imre.deak@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,102 +66,124 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Resend, crunched this through more configs enabled to be sure.
 
-Series: drm/dp_mst: Fix a few side-band message handling issues (rev3)
-URL   : https://patchwork.freedesktop.org/series/142057/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_15786 -> Patchwork_142057v3
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142057v3/index.html
-
-Participating hosts (44 -> 43)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_142057v3 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arlh-2:         [PASS][1] -> [ABORT][2] ([i915#12061]) +1 other test abort
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15786/bat-arlh-2/igt@i915_selftest@live@workarounds.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142057v3/bat-arlh-2/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_psr@psr-primary-mmap-gtt:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][3] +31 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142057v3/fi-pnv-d510/igt@kms_psr@psr-primary-mmap-gtt.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_module_load@load:
-    - bat-twl-1:          [DMESG-WARN][4] ([i915#1982]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15786/bat-twl-1/igt@i915_module_load@load.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142057v3/bat-twl-1/igt@i915_module_load@load.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - bat-rpls-4:         [FAIL][6] ([i915#12903]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15786/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142057v3/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-mtlp-6:         [ABORT][8] ([i915#12061]) -> [PASS][9] +1 other test pass
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15786/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142057v3/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_pipe_crc_basic@read-crc:
-    - bat-dg2-11:         [SKIP][10] ([i915#9197]) -> [PASS][11] +1 other test pass
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15786/bat-dg2-11/igt@kms_pipe_crc_basic@read-crc.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142057v3/bat-dg2-11/igt@kms_pipe_crc_basic@read-crc.html
-
-  
-#### Warnings ####
-
-  * igt@gem_exec_gttfill@basic:
-    - fi-pnv-d510:        [ABORT][12] ([i915#13169]) -> [SKIP][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15786/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142057v3/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12903]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12903
-  [i915#13169]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13169
-  [i915#1982]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982
-  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
+BR,
+Jani.
 
 
-Build changes
--------------
 
-  * Linux: CI_DRM_15786 -> Patchwork_142057v3
+Jani Nikula (3):
+  drm/xen: remove redundant initialization info print
+  accel/ivpu: remove DRIVER_DATE conditional drm_driver init
+  drm: remove driver date from struct drm_driver and all drivers
 
-  CI-20190529: 20190529
-  CI_DRM_15786: c8df5caf278df4f9ca0aba627047c5ee4318fc0d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8137: 8137
-  Patchwork_142057v3: c8df5caf278df4f9ca0aba627047c5ee4318fc0d @ git://anongit.freedesktop.org/gfx-ci/linux
+ drivers/accel/habanalabs/common/habanalabs_drv.c | 1 -
+ drivers/accel/ivpu/ivpu_drv.c                    | 8 --------
+ drivers/accel/qaic/qaic_drv.c                    | 1 -
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c          | 2 --
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.h          | 1 -
+ drivers/gpu/drm/arm/display/komeda/komeda_kms.c  | 1 -
+ drivers/gpu/drm/arm/hdlcd_drv.c                  | 1 -
+ drivers/gpu/drm/arm/malidp_drv.c                 | 1 -
+ drivers/gpu/drm/armada/armada_drv.c              | 1 -
+ drivers/gpu/drm/aspeed/aspeed_gfx_drv.c          | 1 -
+ drivers/gpu/drm/ast/ast_drv.c                    | 1 -
+ drivers/gpu/drm/ast/ast_drv.h                    | 1 -
+ drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c     | 1 -
+ drivers/gpu/drm/etnaviv/etnaviv_drv.c            | 1 -
+ drivers/gpu/drm/exynos/exynos_drm_drv.c          | 2 --
+ drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_drv.c        | 1 -
+ drivers/gpu/drm/gma500/psb_drv.c                 | 1 -
+ drivers/gpu/drm/gma500/psb_drv.h                 | 1 -
+ drivers/gpu/drm/gud/gud_drv.c                    | 1 -
+ drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c  | 1 -
+ drivers/gpu/drm/hisilicon/kirin/kirin_drm_ade.c  | 1 -
+ drivers/gpu/drm/hyperv/hyperv_drm_drv.c          | 2 --
+ drivers/gpu/drm/i915/i915_driver.c               | 1 -
+ drivers/gpu/drm/i915/i915_driver.h               | 1 -
+ drivers/gpu/drm/i915/i915_gpu_error.c            | 1 -
+ drivers/gpu/drm/imagination/pvr_drv.c            | 1 -
+ drivers/gpu/drm/imagination/pvr_drv.h            | 1 -
+ drivers/gpu/drm/imx/dcss/dcss-kms.c              | 1 -
+ drivers/gpu/drm/imx/ipuv3/imx-drm-core.c         | 1 -
+ drivers/gpu/drm/imx/lcdc/imx-lcdc.c              | 1 -
+ drivers/gpu/drm/ingenic/ingenic-drm-drv.c        | 1 -
+ drivers/gpu/drm/kmb/kmb_drv.c                    | 1 -
+ drivers/gpu/drm/kmb/kmb_drv.h                    | 1 -
+ drivers/gpu/drm/lima/lima_drv.c                  | 1 -
+ drivers/gpu/drm/logicvc/logicvc_drm.c            | 1 -
+ drivers/gpu/drm/loongson/lsdc_drv.c              | 2 --
+ drivers/gpu/drm/mcde/mcde_drv.c                  | 1 -
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c           | 2 --
+ drivers/gpu/drm/meson/meson_drv.c                | 1 -
+ drivers/gpu/drm/mgag200/mgag200_drv.c            | 1 -
+ drivers/gpu/drm/mgag200/mgag200_drv.h            | 1 -
+ drivers/gpu/drm/msm/msm_drv.c                    | 1 -
+ drivers/gpu/drm/mxsfb/lcdif_drv.c                | 1 -
+ drivers/gpu/drm/mxsfb/mxsfb_drv.c                | 1 -
+ drivers/gpu/drm/nouveau/nouveau_drm.c            | 5 -----
+ drivers/gpu/drm/nouveau/nouveau_drv.h            | 1 -
+ drivers/gpu/drm/omapdrm/omap_drv.c               | 2 --
+ drivers/gpu/drm/panfrost/panfrost_drv.c          | 1 -
+ drivers/gpu/drm/panthor/panthor_drv.c            | 1 -
+ drivers/gpu/drm/pl111/pl111_drv.c                | 1 -
+ drivers/gpu/drm/qxl/qxl_drv.c                    | 1 -
+ drivers/gpu/drm/qxl/qxl_drv.h                    | 1 -
+ drivers/gpu/drm/radeon/radeon_drv.c              | 1 -
+ drivers/gpu/drm/radeon/radeon_drv.h              | 1 -
+ drivers/gpu/drm/renesas/rcar-du/rcar_du_drv.c    | 1 -
+ drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.c     | 1 -
+ drivers/gpu/drm/renesas/shmobile/shmob_drm_drv.c | 1 -
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.c      | 2 --
+ drivers/gpu/drm/solomon/ssd130x.c                | 2 --
+ drivers/gpu/drm/sprd/sprd_drm.c                  | 2 --
+ drivers/gpu/drm/sti/sti_drv.c                    | 2 --
+ drivers/gpu/drm/stm/drv.c                        | 1 -
+ drivers/gpu/drm/sun4i/sun4i_drv.c                | 1 -
+ drivers/gpu/drm/tegra/drm.c                      | 2 --
+ drivers/gpu/drm/tidss/tidss_drv.c                | 1 -
+ drivers/gpu/drm/tilcdc/tilcdc_drv.c              | 1 -
+ drivers/gpu/drm/tiny/arcpgu.c                    | 1 -
+ drivers/gpu/drm/tiny/bochs.c                     | 1 -
+ drivers/gpu/drm/tiny/cirrus-qemu.c               | 2 --
+ drivers/gpu/drm/tiny/gm12u320.c                  | 2 --
+ drivers/gpu/drm/tiny/hx8357d.c                   | 1 -
+ drivers/gpu/drm/tiny/ili9163.c                   | 1 -
+ drivers/gpu/drm/tiny/ili9225.c                   | 1 -
+ drivers/gpu/drm/tiny/ili9341.c                   | 1 -
+ drivers/gpu/drm/tiny/ili9486.c                   | 1 -
+ drivers/gpu/drm/tiny/mi0283qt.c                  | 1 -
+ drivers/gpu/drm/tiny/ofdrm.c                     | 2 --
+ drivers/gpu/drm/tiny/panel-mipi-dbi.c            | 1 -
+ drivers/gpu/drm/tiny/repaper.c                   | 1 -
+ drivers/gpu/drm/tiny/sharp-memory.c              | 1 -
+ drivers/gpu/drm/tiny/simpledrm.c                 | 2 --
+ drivers/gpu/drm/tiny/st7586.c                    | 1 -
+ drivers/gpu/drm/tiny/st7735r.c                   | 1 -
+ drivers/gpu/drm/tve200/tve200_drv.c              | 1 -
+ drivers/gpu/drm/udl/udl_drv.c                    | 1 -
+ drivers/gpu/drm/udl/udl_drv.h                    | 1 -
+ drivers/gpu/drm/v3d/v3d_drv.c                    | 2 --
+ drivers/gpu/drm/vboxvideo/vbox_drv.c             | 1 -
+ drivers/gpu/drm/vboxvideo/vbox_drv.h             | 1 -
+ drivers/gpu/drm/vc4/vc4_drv.c                    | 3 ---
+ drivers/gpu/drm/vgem/vgem_drv.c                  | 2 --
+ drivers/gpu/drm/virtio/virtgpu_drv.c             | 1 -
+ drivers/gpu/drm/virtio/virtgpu_drv.h             | 1 -
+ drivers/gpu/drm/vkms/vkms_drv.c                  | 2 --
+ drivers/gpu/drm/vmwgfx/vmwgfx_drv.c              | 1 -
+ drivers/gpu/drm/vmwgfx/vmwgfx_drv.h              | 1 -
+ drivers/gpu/drm/xe/xe_device.c                   | 1 -
+ drivers/gpu/drm/xe/xe_drv.h                      | 1 -
+ drivers/gpu/drm/xen/xen_drm_front.c              | 6 ------
+ drivers/gpu/drm/xlnx/zynqmp_kms.c                | 1 -
+ include/drm/drm_drv.h                            | 2 --
+ 101 files changed, 138 deletions(-)
 
-== Logs ==
+-- 
+2.39.5
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142057v3/index.html
