@@ -2,54 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B083C9E5158
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Dec 2024 10:30:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B3B039E51B0
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Dec 2024 10:49:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBDF510E151;
-	Thu,  5 Dec 2024 09:30:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D4E710E387;
+	Thu,  5 Dec 2024 09:49:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HAESpsnk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AFpwGCiq";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 13AB910E14B;
- Thu,  5 Dec 2024 09:30:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 203F710E386;
+ Thu,  5 Dec 2024 09:49:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733391048; x=1764927048;
+ t=1733392182; x=1764928182;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=J0l3ePPcuoVTputNw+Z6U+R7yBnQHpsmtu9RqT/hv9w=;
- b=HAESpsnk7KTqSSOs+sHrotxDbPwT6HREiP4Yw+Wpe8139ZFq5lWa7tOF
- Pg+nyluCdR0Mg+JbxZDLlzpmCvSovfutW9Cw0Fl68/yH26AbrgTPbxso0
- Y8Jq98kHtfret/cT3bxu/d/9rRS08RuWKxnSx2lVvYXSb2sYLbUCxQZh5
- 2yxCVRIkNWnPk1AQpwCFa7hZMw5kRGtg2oHRn76rRpE6YhqeYVPhY4Me+
- Bwzgs9OAxJ5CPTF9JAtJMJj71FLs2AXptm3RcinstCJreIuDDvVe0rq1x
- SRw4xv6gvjQu4DYhGWh51aLxuUk6Q9RxonNEmsvmZit5iuU20NLphVvBW Q==;
-X-CSE-ConnectionGUID: J//5dxxCRkyFjF2j+fekpw==
-X-CSE-MsgGUID: bqDevt2wRSm8+BMifOvoAg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11276"; a="33432692"
-X-IronPort-AV: E=Sophos;i="6.12,209,1728975600"; d="scan'208";a="33432692"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2024 01:30:47 -0800
-X-CSE-ConnectionGUID: BBODizYHTNq8KEpieEihvg==
-X-CSE-MsgGUID: 1/mu1r5SS9y05tEkUkMVwg==
+ bh=DZCx6zBn1GOxFbWbp61kkKAjxV3QtXgFB+dvw5uJHBA=;
+ b=AFpwGCiqq3hWjB4ZWlO6mnttdV6xV2Gy/bZDvhC7EMAuKfqeHABrweZm
+ S9O5Un6ymALSmWO9x6r5mDCVFMJkR3Rjh2F1kk/jHfM3hqxNayyK37L7Y
+ gZ8tJhyj4nSn0qSexcUIwzUeNUYjCHe3LsoMUEZK+rE84X5mbooPRWnQi
+ gpjlZQtvA8mhFDeziJbqQBwpBTqJ8jodZFNT8bXkjbVB03dGijepo4lRG
+ S6rWm5UYyaaKtxaatOMy1ci+tTD6W6PVgKACjmRyEscii3G5afwx7v8eY
+ lpjrGGQuJEE/ujiInsI2bxj9AP3HpeS78bTBgLCb/3OsTvJlEMALGmQpR g==;
+X-CSE-ConnectionGUID: InBrXAOzR+CxERh8LXoEYQ==
+X-CSE-MsgGUID: qZrcYIW+QAW++2dXEa9+tQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11276"; a="33938931"
+X-IronPort-AV: E=Sophos;i="6.12,209,1728975600"; d="scan'208";a="33938931"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Dec 2024 01:49:41 -0800
+X-CSE-ConnectionGUID: tGN48ZQoQdOYyJUxGKvRyA==
+X-CSE-MsgGUID: OkY2glvFSB6+uj2T5hGD1w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,209,1728975600"; d="scan'208";a="93906131"
+X-IronPort-AV: E=Sophos;i="6.12,209,1728975600"; d="scan'208";a="124862164"
 Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.246.27])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2024 01:30:46 -0800
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Dec 2024 01:49:40 -0800
 From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
+To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH] drm/i915/display: clean up DP Adaptive Sync SDP state
- mismatch logging
-Date: Thu,  5 Dec 2024 11:30:42 +0200
-Message-Id: <20241205093042.3028608-1-jani.nikula@intel.com>
+Subject: [PATCH 0/3] drm: add drm_printer based hex dumper and use it
+Date: Thu,  5 Dec 2024 11:49:32 +0200
+Message-Id: <cover.1733392101.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
@@ -69,74 +68,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Pass the drm_printer from intel_pipe_config_compare(), and use it for
-logging, along with pipe_config_mismatch(), to simplify and unify.
+Add a hex dumper for drm_printer, and use it to simplify hex dumping in
+i915.
 
-While at it, differentiate the VSC and AS SDP log texts from each other.
+Jani Nikula (3):
+  drm/print: add drm_print_hex_dump()
+  drm/i915/display: use drm_print_hex_dump() for crtc state dump
+  drm/i915/display: use drm_print_hex_dump() for buffer mismatch dumps
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 29 +++++++-------------
- 1 file changed, 10 insertions(+), 19 deletions(-)
+ drivers/gpu/drm/drm_print.c                   | 23 +++++++++++++++++++
+ .../drm/i915/display/intel_crtc_state_dump.c  | 14 ++---------
+ drivers/gpu/drm/i915/display/intel_display.c  | 17 ++------------
+ include/drm/drm_print.h                       |  2 ++
+ 4 files changed, 29 insertions(+), 27 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 28c1b372cc95..1159f8c3d206 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -5216,7 +5216,7 @@ pipe_config_dp_vsc_sdp_mismatch(struct drm_printer *p, bool fastset,
- 				const struct drm_dp_vsc_sdp *a,
- 				const struct drm_dp_vsc_sdp *b)
- {
--	pipe_config_mismatch(p, fastset, crtc, name, "dp sdp");
-+	pipe_config_mismatch(p, fastset, crtc, name, "dp vsc sdp");
- 
- 	drm_printf(p, "expected:\n");
- 	drm_dp_vsc_sdp_log(p, a);
-@@ -5225,27 +5225,18 @@ pipe_config_dp_vsc_sdp_mismatch(struct drm_printer *p, bool fastset,
- }
- 
- static void
--pipe_config_dp_as_sdp_mismatch(struct drm_i915_private *i915,
--			       bool fastset, const char *name,
-+pipe_config_dp_as_sdp_mismatch(struct drm_printer *p, bool fastset,
-+			       const struct intel_crtc *crtc,
-+			       const char *name,
- 			       const struct drm_dp_as_sdp *a,
- 			       const struct drm_dp_as_sdp *b)
- {
--	struct drm_printer p;
-+	pipe_config_mismatch(p, fastset, crtc, name, "dp as sdp");
- 
--	if (fastset) {
--		p = drm_dbg_printer(&i915->drm, DRM_UT_KMS, NULL);
--
--		drm_printf(&p, "fastset requirement not met in %s dp sdp\n", name);
--	} else {
--		p = drm_err_printer(&i915->drm, NULL);
--
--		drm_printf(&p, "mismatch in %s dp sdp\n", name);
--	}
--
--	drm_printf(&p, "expected:\n");
--	drm_dp_as_sdp_log(&p, a);
--	drm_printf(&p, "found:\n");
--	drm_dp_as_sdp_log(&p, b);
-+	drm_printf(p, "expected:\n");
-+	drm_dp_as_sdp_log(p, a);
-+	drm_printf(p, "found:\n");
-+	drm_dp_as_sdp_log(p, b);
- }
- 
- /* Returns the length up to and including the last differing byte */
-@@ -5507,7 +5498,7 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- #define PIPE_CONF_CHECK_DP_AS_SDP(name) do { \
- 	if (!intel_compare_dp_as_sdp(&current_config->infoframes.name, \
- 				      &pipe_config->infoframes.name)) { \
--		pipe_config_dp_as_sdp_mismatch(dev_priv, fastset, __stringify(name), \
-+		pipe_config_dp_as_sdp_mismatch(&p, fastset, crtc, __stringify(name), \
- 						&current_config->infoframes.name, \
- 						&pipe_config->infoframes.name); \
- 		ret = false; \
 -- 
 2.39.5
 
