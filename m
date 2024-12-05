@@ -2,83 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DAA09E5EF4
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Dec 2024 20:39:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 571689E5EF2
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Dec 2024 20:39:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A6BA010EF9D;
-	Thu,  5 Dec 2024 19:39:28 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="AovqSWGK";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED8E610EF9A;
+	Thu,  5 Dec 2024 19:39:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com
- [209.85.208.181])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE02B10EF9B
- for <intel-gfx@lists.freedesktop.org>; Thu,  5 Dec 2024 19:39:26 +0000 (UTC)
-Received: by mail-lj1-f181.google.com with SMTP id
- 38308e7fff4ca-2ffd6af012eso13963651fa.2
- for <intel-gfx@lists.freedesktop.org>; Thu, 05 Dec 2024 11:39:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1733427565; x=1734032365; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=V/JR6tqjUEHZEvMHz1vJRKFUVCynxiJpP8/fbgMYoVQ=;
- b=AovqSWGKpHozLF44SFEo2JIQ5s0auo9GWdU7PPYiFTXEBmwDsVhnvsGqjRqiw4i7rt
- 1xUV3ienL+/EQ+rFsMV+dT96cGH3m0xYX/zKtLbeXkpK9HDYYa9oRwu72A1nVaMg39eY
- nxN4rOf8jCu2/mfG/kuGsR2zIf8h/ZHepTnRknSq0sG6CYopjVjQHd/wJkp5XjTbd+BE
- xy9xrMonGcvG2CDHbHfcluMrXpoS8h7Isszgs9JmPhw/zNArPaQ+MPR78o3u3WGE9ifP
- fnWtYqXPkanE61BJHmEED9Gu9aQJP2AXlU7wS2MUhG+2fg2jMLCLEsWqyxb8IecAG2xD
- TPaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1733427565; x=1734032365;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=V/JR6tqjUEHZEvMHz1vJRKFUVCynxiJpP8/fbgMYoVQ=;
- b=DaVh7y1tzZYSWSWWX3GaXHyiTOVCs9/0qtd6OIfMI+OSfuU2iDCvFUcMsk3/wgmasB
- q4jz4zbMHqK+0/nsxxA6hL+XMG/KQIThaZXtVXLf8cq74tsCnyqQsnyYKoe/h6WXaf8Q
- mDq9EKokDqRII8b16gVdJWH7FCzgOHIuysHRqW7Aw5CSzW+b+8UjqbeAaLB+wpuyXNPz
- qWL/JxJ5u01CdoOWfnrAaa1AkNcUy5K2KYASHcnvdPCTt3jnllCeNtr658pRAvQSbGFo
- +gIiQs8WCuuume76nj5YFSKsIokEec6moeep6P79uCjgGeGPumXpyYb5wZQkktsM7KGo
- esOQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXdIsgq6J/DGe3gcdyirS0qKyAPtCwm41q/OA+FTLaQTfPUapvAQsogxzRI+tQl++GOTRgF5AR8n2g=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yxa0zqJ86tDeg35vXCzJiM24zCdBr06AxePJUTwfKZ8wQohRCKF
- zIDWIybcQqjDK5yfviz62pwVHm9TVW7rBMs18RdEiQuIbMsPXW1/sm0r03KAL6VF8xUmd2odrDN
- /
-X-Gm-Gg: ASbGncvIyr/p8RgAsd/f9S09c3tlc/QInIYspeqpgJJnf/asLZ/xNy0GopOiTNr7bX0
- 4gl5uEsA3UIU2m6AgLkOHzfYIBDDe2+SlXaiurUrHqoq7Joisy2YwM3pewTqR7fWbNt8O71cXM3
- 35KZBRKKxgoSovnpmrZjV++h/61Pl7UgX8NgD3jygHJZAMnwtZZBlYsX+oyTFzIxlqmy50E+kQ5
- dwYtGt+RqJTAIJ8hb+jePIYBNkqE4L65AaeaKSI7CNg0mhfyOl/979gcqmiP4SFat4l08XKorOm
- A0DO/3X3Duc72z0BQjAjW6OOiM3aog==
-X-Google-Smtp-Source: AGHT+IFp4xulhZ02HEDAfcow6EI4I5Rc4PDVSiHBDYKEjN3lJ/as2VygnDosiTN5ElT9z0g8pyhVNg==
-X-Received: by 2002:a2e:8088:0:b0:300:2c32:4c39 with SMTP id
- 38308e7fff4ca-3002fc6445fmr493911fa.32.1733427564979; 
- Thu, 05 Dec 2024 11:39:24 -0800 (PST)
-Received: from eriador.lumag.spb.ru
- (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
- by smtp.gmail.com with ESMTPSA id
- 38308e7fff4ca-30020dbbd97sm2852951fa.65.2024.12.05.11.39.22
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 05 Dec 2024 11:39:23 -0800 (PST)
-Date: Thu, 5 Dec 2024 21:39:21 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, 
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-Subject: Re: [PATCHv2 01/10] drm/crtc: Add histogram properties
-Message-ID: <fev637ue37cbc5bstvqqvstserp75khqewpof3pc4loshnpghl@vp33ww6i6rdn>
-References: <20241204091456.1785858-1-arun.r.murthy@intel.com>
- <s3gkb36ga2pxmxocrhcjp5pcgbewx4x3joiyrpld3th4r4fvyi@rkpgbu4ekst3>
- <IA0PR11MB7307F22883ACF3AD873C3697BA302@IA0PR11MB7307.namprd11.prod.outlook.com>
- <CAA8EJpp4HjyEL9XSLzXr6tG7+8M2FmZO1S2WrLXmP64J_aKs-w@mail.gmail.com>
- <DM4PR11MB7302BD8409DEC33EF2F1B0BFBA302@DM4PR11MB7302.namprd11.prod.outlook.com>
+Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 745B210EF99;
+ Thu,  5 Dec 2024 19:39:04 +0000 (UTC)
+From: Maarten Lankhorst <dev@lankhorst.se>
+To: intel-xe@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org,
+	Maarten Lankhorst <dev@lankhorst.se>
+Subject: [PATCH] drm/xe/display: Re-use display vmas when possible
+Date: Thu,  5 Dec 2024 20:39:34 +0100
+Message-ID: <20241205193934.49526-1-dev@lankhorst.se>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DM4PR11MB7302BD8409DEC33EF2F1B0BFBA302@DM4PR11MB7302.namprd11.prod.outlook.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,74 +37,233 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 05, 2024 at 04:29:55PM +0000, Murthy, Arun R wrote:
-> > > > -----Original Message-----
-> > > > From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > > > Sent: Wednesday, December 4, 2024 5:17 PM
-> > > > To: Murthy, Arun R <arun.r.murthy@intel.com>
-> > > > Cc: intel-xe@lists.freedesktop.org; intel-gfx@lists.freedesktop.org;
-> > > > dri- devel@lists.freedesktop.org
-> > > > Subject: Re: [PATCHv2 01/10] drm/crtc: Add histogram properties
-> > > >
-> > > > On Wed, Dec 04, 2024 at 02:44:56PM +0530, Arun R Murthy wrote:
-> > > > > Add variables for histogram drm_property, its corrsponding
-> > > > > crtc_state variables and define the structure pointed by the blob property.
-> > > > > struct drm_histogram defined in include/uapi/drm/drm_mode.h The
-> > > > > blob data pointer will be the address of the struct drm_histogram.
-> > > > > The struct drm_histogram will be used for both reading the
-> > > > > histogram and writing the image enhanced data.
-> > > > > struct drm_histogram {
-> > > > >     u64 data_ptr;
-> > > > >     u32 nr_elements;
-> > > > > }
-> > > > > The element data_ptr holds the address of the histogram statistics
-> > > > > data and 'nr_elements' represents the number of elements pointed
-> > > > > by the pointer held in data_ptr.
-> > > > > The same element data_ptr in teh struct drm_histogram when writing
-> > > > > the image enahnced data from user to KMD holds the address to pixel
-> > factor.
-> > > > >
-> > > > > v2: Added blob description in commit message (Dmitry)
-> > > >
-> > > > No, it is not a proper description. What is the actual data format
-> > > > inside the blob? If I were to implement drm_histogram support for e.g.
-> > > > VKMS, what kind of data should the driver generate? What is the
-> > > > format of the response data from the userspace app? The ABI
-> > > > description should allow an independent but completely compatible
-> > > > implementation to be written from scratch.
-> > > >
-> > > The histogram is generated by the hardware.
-> > > Histogram represents integer which is the pixel count and when it
-> > > comes to the IET(Image Enhancement) to be written back to hardware its
-> > > again an integer, pixel factor.
-> > > Is this the information that you expected to be added or something else?
-> > 
-> > You are defining the interface between the kernel and userspace. The interface
-> > should be defined in a way that allows us (developers) to understand the data,
-> > make a decision whether it fits a generic namespace (which means that other
-> > drivers must be able to implement the same interface), it fits namespace
-> > specific to i915 / Xe (then we will have platform-specific properties for the
-> > feature that might be implemented by other platforms) or it doesn't fit
-> > anything at all.
-> > 
-> Sure will add the above information in the commit message and also in the kernel doc.
-> If there are no other review comments, then I will push the next version of patch implementing your comments.
-> 
-> > So the documentation must contain the specification of the binary data inside
-> > the blobs. An IGT, modetest or some other compositor must be able to parse
-> > the data and generate (some) response without using your library.
-> > 
-> IGT patch can be located at https://patchwork.freedesktop.org/series/135789/ This include test with and without library.
-> The corresponding compositor changes can be located at https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3873/diffs?commit_id=270808ca7c8be48513553d95b4a47541f5d40206
+i915 has this really nice, infrastructure where everything becomes
+complicated, GGTT needs eviction, etc..
 
-I know. But that's not a replacement for the documentation. Can I
-implement an alternative implementation without using your library?
+Lets not do that, and make the dumbest possible interface instead.
+Try to retrieve the VMA from old_plane_state, or intel_fbdev if kernel
+fb.
 
-> 
-> Thanks and Regards,
-> Arun R Murthy
-> --------------------
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+---
+ .../gpu/drm/i915/display/intel_atomic_plane.c |  2 +-
+ drivers/gpu/drm/i915/display/intel_cursor.c   |  2 +-
+ drivers/gpu/drm/i915/display/intel_fb_pin.c   |  3 +-
+ drivers/gpu/drm/i915/display/intel_fb_pin.h   |  3 +-
+ drivers/gpu/drm/i915/display/intel_fbdev.c    |  5 ++
+ drivers/gpu/drm/i915/display/intel_fbdev.h    |  8 ++++
+ .../gpu/drm/xe/compat-i915-headers/i915_vma.h |  3 ++
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        | 48 +++++++++++++++++--
+ 8 files changed, 65 insertions(+), 9 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+index d89630b2d5c19..632b2b0723dd7 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
++++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+@@ -1144,7 +1144,7 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
+ 	if (!obj)
+ 		return 0;
+ 
+-	ret = intel_plane_pin_fb(new_plane_state);
++	ret = intel_plane_pin_fb(new_plane_state, old_plane_state);
+ 	if (ret)
+ 		return ret;
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
+index ed88a28a3afae..5984310982e73 100644
+--- a/drivers/gpu/drm/i915/display/intel_cursor.c
++++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+@@ -864,7 +864,7 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
+ 	if (ret)
+ 		goto out_free;
+ 
+-	ret = intel_plane_pin_fb(new_plane_state);
++	ret = intel_plane_pin_fb(new_plane_state, old_plane_state);
+ 	if (ret)
+ 		goto out_free;
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.c b/drivers/gpu/drm/i915/display/intel_fb_pin.c
+index d3a86f9c6bc86..dd3ac7f98dfcc 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb_pin.c
++++ b/drivers/gpu/drm/i915/display/intel_fb_pin.c
+@@ -252,7 +252,8 @@ intel_plane_fb_min_phys_alignment(const struct intel_plane_state *plane_state)
+ 	return plane->min_alignment(plane, fb, 0);
+ }
+ 
+-int intel_plane_pin_fb(struct intel_plane_state *plane_state)
++int intel_plane_pin_fb(struct intel_plane_state *plane_state,
++		       const struct intel_plane_state *old_plane_state)
+ {
+ 	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
+ 	const struct intel_framebuffer *fb =
+diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.h b/drivers/gpu/drm/i915/display/intel_fb_pin.h
+index ac0319b53af08..0fc6d90446381 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb_pin.h
++++ b/drivers/gpu/drm/i915/display/intel_fb_pin.h
+@@ -23,7 +23,8 @@ intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
+ 
+ void intel_fb_unpin_vma(struct i915_vma *vma, unsigned long flags);
+ 
+-int intel_plane_pin_fb(struct intel_plane_state *plane_state);
++int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
++		       const struct intel_plane_state *old_plane_state);
+ void intel_plane_unpin_fb(struct intel_plane_state *old_plane_state);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
+index 00852ff5b2470..6c08081333976 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbdev.c
++++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+@@ -695,3 +695,8 @@ struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev)
+ 
+ 	return to_intel_framebuffer(fbdev->helper.fb);
+ }
++
++struct i915_vma *intel_fbdev_vma_pointer(struct intel_fbdev *fbdev)
++{
++	return fbdev ? fbdev->vma : NULL;
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.h b/drivers/gpu/drm/i915/display/intel_fbdev.h
+index 08de2d5b34338..24a3434558cb6 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbdev.h
++++ b/drivers/gpu/drm/i915/display/intel_fbdev.h
+@@ -17,6 +17,8 @@ struct intel_framebuffer;
+ void intel_fbdev_setup(struct drm_i915_private *dev_priv);
+ void intel_fbdev_set_suspend(struct drm_device *dev, int state, bool synchronous);
+ struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev);
++struct i915_vma *intel_fbdev_vma_pointer(struct intel_fbdev *fbdev);
++
+ #else
+ static inline void intel_fbdev_setup(struct drm_i915_private *dev_priv)
+ {
+@@ -30,6 +32,12 @@ static inline struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbd
+ {
+ 	return NULL;
+ }
++
++static inline struct i915_vma *intel_fbdev_vma_pointer(struct intel_fbdev *fbdev)
++{
++	return NULL;
++}
++
+ #endif
+ 
+ #endif /* __INTEL_FBDEV_H__ */
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
+index bdae8392e1253..4465c40f81341 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
+@@ -10,6 +10,8 @@
+ 
+ #include "xe_ggtt_types.h"
+ 
++#include <linux/refcount.h>
++
+ /* We don't want these from i915_drm.h in case of Xe */
+ #undef I915_TILING_X
+ #undef I915_TILING_Y
+@@ -19,6 +21,7 @@
+ struct xe_bo;
+ 
+ struct i915_vma {
++	refcount_t ref;
+ 	struct xe_bo *bo, *dpt;
+ 	struct xe_ggtt_node *node;
+ };
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index 761510ae06904..8c3a5debe0953 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -9,6 +9,7 @@
+ #include "intel_dpt.h"
+ #include "intel_fb.h"
+ #include "intel_fb_pin.h"
++#include "intel_fbdev.h"
+ #include "xe_bo.h"
+ #include "xe_device.h"
+ #include "xe_ggtt.h"
+@@ -287,6 +288,7 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
+ 	if (!vma)
+ 		return ERR_PTR(-ENODEV);
+ 
++	refcount_set(&vma->ref, 1);
+ 	if (IS_DGFX(to_xe_device(bo->ttm.base.dev)) &&
+ 	    intel_fb_rc_ccs_cc_plane(&fb->base) >= 0 &&
+ 	    !(bo->flags & XE_BO_FLAG_NEEDS_CPU_ACCESS)) {
+@@ -345,6 +347,9 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
+ 
+ static void __xe_unpin_fb_vma(struct i915_vma *vma)
+ {
++	if (!refcount_dec_and_test(&vma->ref))
++		return;
++
+ 	if (vma->dpt)
+ 		xe_bo_unpin_map_no_vm(vma->dpt);
+ 	else if (!xe_ggtt_node_allocated(vma->bo->ggtt_node) ||
+@@ -375,25 +380,58 @@ void intel_fb_unpin_vma(struct i915_vma *vma, unsigned long flags)
+ 	__xe_unpin_fb_vma(vma);
+ }
+ 
+-int intel_plane_pin_fb(struct intel_plane_state *plane_state)
++static bool reuse_vma(struct intel_plane_state *new_plane_state,
++		      const struct intel_plane_state *old_plane_state)
+ {
+-	struct drm_framebuffer *fb = plane_state->hw.fb;
++	struct intel_framebuffer *fb = to_intel_framebuffer(new_plane_state->hw.fb);
++	struct xe_device *xe = to_xe_device(fb->base.dev);
++	struct i915_vma *vma;
++
++	if (old_plane_state->hw.fb == new_plane_state->hw.fb &&
++	    !memcmp(&old_plane_state->view.gtt,
++		    &new_plane_state->view.gtt,
++	            sizeof(new_plane_state->view.gtt))) {
++		vma = old_plane_state->ggtt_vma;
++		goto found;
++	}
++
++	if (fb == intel_fbdev_framebuffer(xe->display.fbdev.fbdev)) {
++		vma = intel_fbdev_vma_pointer(xe->display.fbdev.fbdev);
++		if (vma)
++			goto found;
++	}
++
++	return false;
++
++found:
++	refcount_inc(&vma->ref);
++	new_plane_state->ggtt_vma = vma;
++	return true;
++}
++
++int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
++		       const struct intel_plane_state *old_plane_state)
++{
++	struct drm_framebuffer *fb = new_plane_state->hw.fb;
+ 	struct drm_gem_object *obj = intel_fb_bo(fb);
+ 	struct xe_bo *bo = gem_to_xe_bo(obj);
+ 	struct i915_vma *vma;
+ 	struct intel_framebuffer *intel_fb = to_intel_framebuffer(fb);
+-	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
++	struct intel_plane *plane = to_intel_plane(new_plane_state->uapi.plane);
+ 	u64 phys_alignment = plane->min_alignment(plane, fb, 0);
+ 
++	if (reuse_vma(new_plane_state, old_plane_state))
++		return 0;
++
+ 	/* We reject creating !SCANOUT fb's, so this is weird.. */
+ 	drm_WARN_ON(bo->ttm.base.dev, !(bo->flags & XE_BO_FLAG_SCANOUT));
+ 
+-	vma = __xe_pin_fb_vma(intel_fb, &plane_state->view.gtt, phys_alignment);
++	vma = __xe_pin_fb_vma(intel_fb, &new_plane_state->view.gtt, phys_alignment);
+ 
+ 	if (IS_ERR(vma))
+ 		return PTR_ERR(vma);
+ 
+-	plane_state->ggtt_vma = vma;
++	new_plane_state->ggtt_vma = vma;
+ 	return 0;
+ }
+ 
 -- 
-With best wishes
-Dmitry
+2.45.2
+
