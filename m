@@ -2,29 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46FEB9E5F08
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Dec 2024 20:43:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 952B39E5F1E
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Dec 2024 20:48:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21A1310EF90;
-	Thu,  5 Dec 2024 19:43:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46B4410EFA5;
+	Thu,  5 Dec 2024 19:48:14 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AXG54LWx";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 01EF810EF90;
- Thu,  5 Dec 2024 19:43:17 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0569510EFA2;
+ Thu,  5 Dec 2024 19:48:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1733428093; x=1764964093;
+ h=message-id:date:mime-version:from:to:cc:subject:
+ content-transfer-encoding;
+ bh=dEiIdUWvT3IrYQwyUuzrU1CFN7Q/6PEMyRLYgHq8uAg=;
+ b=AXG54LWxEb9jvZoRJ5yC0EyXgDc+sEHKgD5Upd/ZokIg+C9QfgOWXG+A
+ uP+oDWmKNvOjurAJ0Rcba7iw6oiUD013N0eQm5zHVqXZzknTr+v+TWize
+ Cjs+HACpSICPdkqC1HKt/Cm3psNdVY7rkBE9YIs/Q0QY60w7VhDsnXWFR
+ UO8Dz3P4jAUOMpZp1OVjfjaACIhM//AFcsmrHCPi+rhPq80ikub8PrRIf
+ HH23QA/QMsTZsociVWMGfbBtK4QFTYj5DleV7iJnRYd0ZKjqKPBaxxwKU
+ x/KhqyGoqWK2rfOKbAaaHkRKAuha0jlUlKbCqP16Ey1lfrPd8VQbC9mGz A==;
+X-CSE-ConnectionGUID: z7BKZZH8TWSuU8C8TjVX3A==
+X-CSE-MsgGUID: KQKDKOjgR/+eJpEqp35qVQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11277"; a="33502490"
+X-IronPort-AV: E=Sophos;i="6.12,211,1728975600"; d="scan'208";a="33502490"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Dec 2024 11:48:13 -0800
+X-CSE-ConnectionGUID: YHNm9szuQ3qu152gVJ18Yw==
+X-CSE-MsgGUID: ff/T3ZFdQaOdCtX3xuAcmw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,211,1728975600"; d="scan'208";a="98268615"
+Received: from dneilan-mobl1.ger.corp.intel.com (HELO [10.245.244.104])
+ ([10.245.244.104])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Dec 2024 11:48:08 -0800
+Message-ID: <2ce1650d-801f-4265-a876-5a8743f1c82b@linux.intel.com>
+Date: Thu, 5 Dec 2024 20:48:41 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/pps=3A_include_p?=
- =?utf-8?q?anel_power_cycle_delay_in_debugfs?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 05 Dec 2024 19:43:17 -0000
-Message-ID: <173342779798.3074111.3181990650746687342@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241205123720.3278727-1-jani.nikula@intel.com>
-In-Reply-To: <20241205123720.3278727-1-jani.nikula@intel.com>
+User-Agent: Mozilla Thunderbird
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Simona Vetter <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
+Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Oded Gabbay
+ <ogabbay@kernel.org>, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+Subject: [PULL] drm-misc-fixes
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,91 +74,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Dave, Simona,
 
-Series: drm/i915/pps: include panel power cycle delay in debugfs
-URL   : https://patchwork.freedesktop.org/series/142174/
-State : success
+Filled with pepernoten, still had to send a drm-misc-fixes pull request.
+May contain DP-MST fixes with traces of v3d. :-)
 
-== Summary ==
+Cheers,
+~Maarten
 
-CI Bug Log - changes from CI_DRM_15795 -> Patchwork_142174v1
-====================================================
+drm-misc-fixes-2024-12-05:
+drm-misc-fixes v6.13-rc2:
+- v3d performance counter fix.
+- A lot of DP-MST related fixes.
+The following changes since commit 86e8f94789dd6f3e705bfa821e1e416f97a2f863:
 
-Summary
--------
+  drm/sti: Add __iomem for mixer_dbg_mxn's parameter (2024-11-26 14:02:25 +0100)
 
-  **SUCCESS**
+are available in the Git repository at:
 
-  No regressions found.
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2024-12-05
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142174v1/index.html
+for you to fetch changes up to c98b10496b2f3c4f576af3482c71aadcfcbf765e:
 
-Participating hosts (44 -> 42)
-------------------------------
+  drm/v3d: Enable Performance Counters before clearing them (2024-12-05 14:27:57 -0300)
 
-  Missing    (2): fi-snb-2520m fi-pnv-d510 
+----------------------------------------------------------------
+drm-misc-fixes v6.13-rc2:
+- v3d performance counter fix.
+- A lot of DP-MST related fixes.
 
-Known issues
-------------
+----------------------------------------------------------------
+Imre Deak (7):
+      drm/dp_mst: Fix resetting msg rx state after topology removal
+      drm/dp_mst: Verify request type in the corresponding down message reply
+      drm/dp_mst: Simplify error path in drm_dp_mst_handle_down_rep()
+      drm/dp_mst: Fix down request message timeout handling
+      drm/dp_mst: Ensure mst_primary pointer is valid in drm_dp_mst_handle_up_req()
+      drm/dp_mst: Reset message rx state after OOM in drm_dp_mst_handle_up_req()
+      drm/dp_mst: Use reset_msg_rx_state() instead of open coding it
 
-  Here are the changes found in Patchwork_142174v1 that come from known issues:
+Maíra Canal (1):
+      drm/v3d: Enable Performance Counters before clearing them
 
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_module_load@reload:
-    - bat-twl-1:          [PASS][1] -> [DMESG-WARN][2] ([i915#1982])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15795/bat-twl-1/igt@i915_module_load@reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142174v1/bat-twl-1/igt@i915_module_load@reload.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arlh-3:         [PASS][3] -> [ABORT][4] ([i915#12061]) +1 other test abort
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15795/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142174v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-    - bat-arlh-2:         [PASS][5] -> [ABORT][6] ([i915#12061]) +1 other test abort
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15795/bat-arlh-2/igt@i915_selftest@live@workarounds.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142174v1/bat-arlh-2/igt@i915_selftest@live@workarounds.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - bat-arls-5:         [DMESG-WARN][7] ([i915#4423]) -> [PASS][8] +1 other test pass
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15795/bat-arls-5/igt@i915_pm_rpm@module-reload.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142174v1/bat-arls-5/igt@i915_pm_rpm@module-reload.html
-    - bat-rpls-4:         [FAIL][9] ([i915#12903]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15795/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142174v1/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         [SKIP][11] ([i915#9197]) -> [PASS][12] +3 other tests pass
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15795/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142174v1/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12903]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12903
-  [i915#1982]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982
-  [i915#4423]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4423
-  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15795 -> Patchwork_142174v1
-
-  CI-20190529: 20190529
-  CI_DRM_15795: ab26b8eb1a5191f86d7b778e71a15d34fb4737ce @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8138: 8138
-  Patchwork_142174v1: ab26b8eb1a5191f86d7b778e71a15d34fb4737ce @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142174v1/index.html
+ drivers/gpu/drm/display/drm_dp_mst_topology.c | 104 +++++++++++++++++++++-----
+ drivers/gpu/drm/v3d/v3d_perfmon.c             |   2 +-
+ include/drm/display/drm_dp_mst_helper.h       |   7 ++
+ 3 files changed, 92 insertions(+), 21 deletions(-)
