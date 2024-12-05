@@ -2,29 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3023C9E6037
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Dec 2024 22:45:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 126339E6044
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Dec 2024 22:54:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6356710E2D8;
-	Thu,  5 Dec 2024 21:45:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 976F710E5E5;
+	Thu,  5 Dec 2024 21:54:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86C2D10E2D8;
- Thu,  5 Dec 2024 21:45:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 83AC010E5E5;
+ Thu,  5 Dec 2024 21:54:04 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_i915/gt=3A_Reapply_w?=
- =?utf-8?q?orkarounds_in_case_the_previous_attempt_failed=2E?=
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_drm/xe/display=3A_Re-use_?=
+ =?utf-8?q?display_vmas_when_possible_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Sebastian Brzezinka" <sebastian.brzezinka@intel.com>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 05 Dec 2024 21:45:23 -0000
-Message-ID: <173343512354.3072218.10638784363679202780@b555e5b46a47>
+Date: Thu, 05 Dec 2024 21:54:04 -0000
+Message-ID: <173343564452.3077870.17841879777664587051@b555e5b46a47>
 X-Patchwork-Hint: ignore
-References: <aqoql4ri3vpe4larpkz4p6hxy76agq6pmn6gunt5xv56hxdbye@72ilwk7rpiu5>
-In-Reply-To: <aqoql4ri3vpe4larpkz4p6hxy76agq6pmn6gunt5xv56hxdbye@72ilwk7rpiu5>
+References: <20241205193934.49526-1-dev@lankhorst.se>
+In-Reply-To: <20241205193934.49526-1-dev@lankhorst.se>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,22 +43,25 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: i915/gt: Reapply workarounds in case the previous attempt failed.
-URL   : https://patchwork.freedesktop.org/series/142188/
-State : warning
+Series: drm/xe/display: Re-use display vmas when possible (rev2)
+URL   : https://patchwork.freedesktop.org/series/136034/
+State : failure
 
 == Summary ==
 
-Error: dim checkpatch failed
-254bcd8fe90b i915/gt: Reapply workarounds in case the previous attempt failed.
--:19: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#19: 
-This patch aims to resolve: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12668
-
--:31: ERROR:TRAILING_WHITESPACE: trailing whitespace
-#31: FILE: drivers/gpu/drm/i915/gt/intel_workarounds.c:1764:
-+^I^I^Iif ((val ^ wa->set) & wa->read) { $
-
-total: 1 errors, 1 warnings, 0 checks, 17 lines checked
+Error: patch https://patchwork.freedesktop.org/api/1.0/series/136034/revisions/2/mbox/ not applied
+Applying: drm/xe/display: Re-use display vmas when possible
+Using index info to reconstruct a base tree...
+M	drivers/gpu/drm/xe/display/xe_fb_pin.c
+Falling back to patching base and 3-way merge...
+Auto-merging drivers/gpu/drm/xe/display/xe_fb_pin.c
+CONFLICT (content): Merge conflict in drivers/gpu/drm/xe/display/xe_fb_pin.c
+error: Failed to merge in the changes.
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0001 drm/xe/display: Re-use display vmas when possible
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+Build failed, no error log produced
 
 
