@@ -2,52 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CADE9E58C4
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Dec 2024 15:45:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1690B9E58C5
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Dec 2024 15:45:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ADE0C10EE9A;
-	Thu,  5 Dec 2024 14:45:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B466410EEA8;
+	Thu,  5 Dec 2024 14:45:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AaNIm/6D";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GetfF4Fj";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D406510EE9A
- for <intel-gfx@lists.freedesktop.org>; Thu,  5 Dec 2024 14:45:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D87C410EEA2
+ for <intel-gfx@lists.freedesktop.org>; Thu,  5 Dec 2024 14:45:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733409945; x=1764945945;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=njXIqkdmIg9CZpcrEfPH5PkEH0BdzZOzbCvbLwtFWuI=;
- b=AaNIm/6DuSY7NIDbL+gzymVAG26/DPWKLLODnMe8zx8dftn5Jhk3SXWN
- EzupMiMzTn+yG/YYfbTkFeJuwTvPwW+e9GnJVlyHJNsVtoxcPvqRcc88J
- rhPJX6GevbyCUehrs+MSg1oYN6luC7fKn/ZCfu2f/i/wrKdufOIIlBoij
- wqHCuGeb7dhg4pF2te5KAH39mo87QP4YOuiCbDuos7wcvPJlWOSs9elKC
- vdZxecaEzn1ok/k5xsdhkC/wao5Na5W0+c30vrzoTvyrk3L/IFk5g0Ktf
- g3x2eTs1/zr9XnuIDEF4xv6I7TtEuVKitRW9deRLBu6TZ/UofB1swnAXV w==;
-X-CSE-ConnectionGUID: 0aqLrWa9SRWCrOC92jqcjw==
-X-CSE-MsgGUID: bdG4zgZYS2CN7yUcFZr55A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11277"; a="51139132"
-X-IronPort-AV: E=Sophos;i="6.12,210,1728975600"; d="scan'208";a="51139132"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2024 06:45:44 -0800
-X-CSE-ConnectionGUID: Djgv8+8mScOdWhgoljOErA==
-X-CSE-MsgGUID: +HyAeVAwS0iIp/0Ue8VAmA==
+ t=1733409948; x=1764945948;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=9CRhietudlbjjEZ8syYEmiovY9PyJCbP7FtiaA/3lUY=;
+ b=GetfF4Fj70pa8uoBeUWaFCy0lOPmmzYlf4X3BRwOAwoqgG55wwqAvpg8
+ TsqnEaY21JvJMlVT0q1s2hwt+NLq8O8MEkKlBz+IrSrjtXhBrN9KPsKT5
+ CkKUJ0003x6VqS5YHbYf4VyB/XfHr+4lQvHU/rLPwUaV3UPjDG4ghWRCa
+ 0WhDSQKxH5IgtRNGnCfBlJKJcZH7BCLXtDAuMP1QDEFj/fY+Hh05dGdlO
+ AXDHes8erfQ1mjr/zp7/yZDT1jgDFmOYUJ8TFJYTc2Wymh1NvZJM25FHA
+ qFbqvHkJIUELwDB/c3bKT9tr4ucGQUasD+kJz7JLYOzShiFfgKjIk3AOh w==;
+X-CSE-ConnectionGUID: bgL/FraSRW6ylWKebh8qvw==
+X-CSE-MsgGUID: k/a1/ZmjTua7rXlNjnIMFg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11277"; a="33640781"
+X-IronPort-AV: E=Sophos;i="6.12,210,1728975600"; d="scan'208";a="33640781"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Dec 2024 06:45:47 -0800
+X-CSE-ConnectionGUID: 4WQsVZESSSyABV1+aHm5nw==
+X-CSE-MsgGUID: VyBdEab5RzKlEDETwXGwfw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,210,1728975600"; d="scan'208";a="117357041"
+X-IronPort-AV: E=Sophos;i="6.12,210,1728975600"; d="scan'208";a="94589145"
 Received: from unknown (HELO localhost) ([10.237.66.160])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2024 06:45:43 -0800
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Dec 2024 06:45:47 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 0/5] drm/i915/dsi: add some missing dphy configuration
-Date: Thu,  5 Dec 2024 16:45:34 +0200
-Message-Id: <cover.1733409899.git.jani.nikula@intel.com>
+Subject: [PATCH 1/5] drm/i915/dsi: fix PIX_FMT_MASK width
+Date: Thu,  5 Dec 2024 16:45:35 +0200
+Message-Id: <0e1a433b3842d38df4334cf8e896c4b2f0a96f35.1733409899.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
+In-Reply-To: <cover.1733409899.git.jani.nikula@intel.com>
+References: <cover.1733409899.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
@@ -66,22 +68,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Untested.
+It's really bits 18:16 not 17:16.
 
-Jani Nikula (5):
-  drm/i915/dsi: fix PIX_FMT_MASK width
-  drm/i915/dsi: convert DSI_TRANS_FUNC_CONF to REG_BIT() and friends
-  drm/i915/dsi: add LP_CLOCK_DURING_LPM bit for DSI_TRANS_FUNC_CONF
-  drm/i915/vbt: define a few more DSI dphy config bits
-  drm/i915/dsi: set a few DSI_TRANS_FUNC_CONF bits according to VBT
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/icl_dsi_regs.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
- drivers/gpu/drm/i915/display/icl_dsi.c       | 10 +++
- drivers/gpu/drm/i915/display/icl_dsi_regs.h  | 75 +++++++++-----------
- drivers/gpu/drm/i915/display/intel_bios.h    |  4 +-
- drivers/gpu/drm/i915/display/intel_dsi.h     |  2 +
- drivers/gpu/drm/i915/display/intel_dsi_vbt.c |  2 +
- 5 files changed, 52 insertions(+), 41 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/icl_dsi_regs.h b/drivers/gpu/drm/i915/display/icl_dsi_regs.h
+index d4845ac65acc..0cb9a5f714d2 100644
+--- a/drivers/gpu/drm/i915/display/icl_dsi_regs.h
++++ b/drivers/gpu/drm/i915/display/icl_dsi_regs.h
+@@ -203,7 +203,7 @@
+ #define  VIDEO_MODE_SYNC_PULSE		(0x3 << 28)
+ #define  TE_SOURCE_GPIO			(1 << 27)
+ #define  LINK_READY			(1 << 20)
+-#define  PIX_FMT_MASK			(0x3 << 16)
++#define  PIX_FMT_MASK			(0x7 << 16)
+ #define  PIX_FMT_SHIFT			16
+ #define  PIX_FMT_RGB565			(0x0 << 16)
+ #define  PIX_FMT_RGB666_PACKED		(0x1 << 16)
 -- 
 2.39.5
 
