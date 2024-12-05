@@ -2,57 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF9999E5675
-	for <lists+intel-gfx@lfdr.de>; Thu,  5 Dec 2024 14:20:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 11C689E569E
+	for <lists+intel-gfx@lfdr.de>; Thu,  5 Dec 2024 14:23:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8530310EE76;
-	Thu,  5 Dec 2024 13:20:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0838F10EE61;
+	Thu,  5 Dec 2024 13:23:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aTwUUutV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G/KzLYkb";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 38FC610EE67
- for <intel-gfx@lists.freedesktop.org>; Thu,  5 Dec 2024 13:20:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1CD9D10EE61
+ for <intel-gfx@lists.freedesktop.org>; Thu,  5 Dec 2024 13:23:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733404812; x=1764940812;
+ t=1733404988; x=1764940988;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=tnBS5NT+SKvXIiq3cGOyeZmNTOEdINY608SSx0VlKXk=;
- b=aTwUUutVBCSHKedGD5FHwY6ODuweI1IQ9y5xzumBwNvjVhgvrCgKTTbM
- iQHwYhBagMgu3rProoBi36OePPPRciEbmDm/n+lkVzHekRHV3jte4GevR
- WmrEId6/n617c6DbtrOSkwN6cBd/mqhX6QAtVFEM42Az1pduCq23FRjOs
- 9EmfQxHAu7Ob28de1FvPfDtE415ZchjqdHNQlXeev6HYa3wtB54E9d/7d
- sKf/iB9RxyLobTrv05CUlQnTl32Lsi2FryYDAHWsu2iU+qTWAq4Z5/+U+
- eG3GRMXbGA0EehMcvHBL8UBnFlKzDBriwvJHdmPUgDFAI/HUQpdibnEfy A==;
-X-CSE-ConnectionGUID: oOUIgiIgSPaSYkgBtG42cA==
-X-CSE-MsgGUID: h5uISnhDR6Srun9iX7ZGNg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11276"; a="37650403"
-X-IronPort-AV: E=Sophos;i="6.12,210,1728975600"; d="scan'208";a="37650403"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2024 05:20:10 -0800
-X-CSE-ConnectionGUID: zKLxyhTUSzy68BM6f5N54A==
-X-CSE-MsgGUID: rarSNVidSgWXDLB4dvOHXw==
+ bh=2fCTBkfN7ktBrU7CnSluD3hJEaE2HGO0FcvWc86ucyE=;
+ b=G/KzLYkbcWuGGaLXUlOOBqMBH4pr+0Yvk62bpomD8IcgQ1nxOqD5Lueu
+ Dvxcm8tMLVVU6wT66wv9CqWzniVzAiiZoKpHlZq8HzGXQSNXfjUE5LxTB
+ Blzd+chFoyAAd0d7GGhdvIRiR2JKh0crY4vjzbKbzJn/Nuh+2OgJiq82m
+ HduRKM3EYtv/qwFIvwkO14ZsBpuqAT/jN6f7LOwT255sIAQ+ewJcO+A0i
+ V/yLI2tuw8o0uSUVdCom1vIy6dO0MaRpEcbPIvLRnQkUTaflKwhzf/SkQ
+ cxh2qsR7VLZ8exig7kA2gA968d8VPS9tX0NKrjXPyW3KbH+3xIUUp0dph Q==;
+X-CSE-ConnectionGUID: WNzdGhh2QpaO1QgQ9gM2ew==
+X-CSE-MsgGUID: //vwJYq6SBCWCH3hFLJ7eA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11276"; a="21301816"
+X-IronPort-AV: E=Sophos;i="6.12,210,1728975600"; d="scan'208";a="21301816"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Dec 2024 05:23:08 -0800
+X-CSE-ConnectionGUID: SJQLql/rTcmXGtGslt/z5Q==
+X-CSE-MsgGUID: 3fO8yh+lSyiSazVqmKArIA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,210,1728975600"; d="scan'208";a="98539247"
+X-IronPort-AV: E=Sophos;i="6.12,210,1728975600"; d="scan'208";a="98165127"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO intel.com)
  ([10.245.246.41])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2024 05:20:09 -0800
-Date: Thu, 5 Dec 2024 14:20:05 +0100
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Dec 2024 05:23:06 -0800
+Date: Thu, 5 Dec 2024 14:23:01 +0100
 From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Raag Jadav <raag.jadav@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, anshuman.gupta@intel.com
-Subject: Re: [PATCH v1] drm/i915/selftest: Log throttle reasons on failure
-Message-ID: <Z1Gohb83SdpCEU3K@ashyti-mobl2.lan>
-References: <20241205081413.1529252-1-raag.jadav@intel.com>
+To: Krzysztof Karas <krzysztof.karas@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: [RESEND] drm/i915: add GEM_WARN_ON to remap_io_sg
+Message-ID: <Z1GpNXaS5di7cd3Y@ashyti-mobl2.lan>
+References: <fzn3jb4cdylc7fj4og2hgy73onelzurxmmsrzqix6yswms4ite@d74hat7krnm6>
+ <g2d547gsiadgmcjqh5rgsqhm4diwk6fmd2hnic5pkatye2zpei@3sjc6v6qj6ex>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241205081413.1529252-1-raag.jadav@intel.com>
+In-Reply-To: <g2d547gsiadgmcjqh5rgsqhm4diwk6fmd2hnic5pkatye2zpei@3sjc6v6qj6ex>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,15 +69,14 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Raag,
+Hi Krzysztof,
 
-On Thu, Dec 05, 2024 at 01:44:13PM +0530, Raag Jadav wrote:
-> Log throttle reasons on selftest failure which will be useful for
-> debugging.
-> 
-> Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+On Thu, Nov 21, 2024 at 08:53:39AM +0000, Krzysztof Karas wrote:
+> Since we already have that warning inside `remap_sg` we can also catch
+> this condition inside `remap_io_sg`.
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+didn't we agree that this is redundant?
+If we hit the first what are the chances to hit the second?
 
 Thanks,
 Andi
