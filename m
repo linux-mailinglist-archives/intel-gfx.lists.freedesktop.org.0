@@ -2,60 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD9849E9779
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Dec 2024 14:43:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 711249E976E
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Dec 2024 14:43:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 47B3A10E785;
-	Mon,  9 Dec 2024 13:43:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B29B10E770;
+	Mon,  9 Dec 2024 13:43:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="NV8W7gCn";
+	dkim=pass (2048-bit key; unprotected) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="qx5Rl+fF";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from out.smtpout.orange.fr (out-16.smtpout.orange.fr [193.252.22.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E26F210E640;
- Sat,  7 Dec 2024 16:33:39 +0000 (UTC)
-Received: from mail-ej1-f43.google.com ([209.85.218.43])
+Received: from out.smtpout.orange.fr (out-15.smtpout.orange.fr [193.252.22.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4960410E18E;
+ Thu,  5 Dec 2024 21:47:22 +0000 (UTC)
+Received: from mail-lj1-f178.google.com ([209.85.208.178])
  by smtp.orange.fr with ESMTPSA
- id JxkPtxgHPOZ7nJxkQtzcNr; Sat, 07 Dec 2024 17:33:38 +0100
+ id JJgttdzItqhuoJJgutKMm7; Thu, 05 Dec 2024 22:47:20 +0100
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
- s=t20230301; t=1733589218;
- bh=EDV0uoUPSeCM4ycVbpiYzkI+GBIJXljO1W7VncV40gg=;
+ s=t20230301; t=1733435240;
+ bh=L5clrau1lRtsXlazqJvRaiJm9ebUB3H7RT0weXhH8So=;
  h=MIME-Version:From:Date:Message-ID:Subject:To;
- b=NV8W7gCn9oe/rL7MffkNOyoC+JVA07dJ8CtXAqGO01FxcpxpnPglRt1FM55fvOYgm
- wlzDPe6VvGoTVnLIsArQtK8gzApCZwPk8uKo94lvvsRFqT6tHpa5A+mwzgm/+UYUHH
- 9gPJSo5BvYq0cNTD+DYrWPGrjBLUvQfeB2/BfTJ2ss/kpRYuiirSjTotvhrTuD/PN2
- QIcz7jQxOdkqkTRz5lrKSHeKYJx+9reNQkTQL948+r0Xyg6nitKvd2zYKfcA6BL8sB
- 4HGNcm1zJ4O5zDVxFQ/tqrM/pfqlZOS8qzFCcFyBWJX1eNOmhaA5QeV15VbR/BR/vz
- wTmIHH8MH4fBQ==
-X-ME-Helo: mail-ej1-f43.google.com
+ b=qx5Rl+fF0W8lmvN1BcYjwmcBq6L/aTOeEY1iGuf/7C8OacrgGVFylGk3ZLAviOpXK
+ SnA55lG6EjkwQJzROMhfiGiwF/zj3fN8EXFbJ+yEEPD3XlehO4sYbhbFVyRCGeBfm/
+ raMxQxS66JNlbZRjw6iEIrVoURDOmuAf0cwSPbSaFm0CBO5fal25a8VyxJswnFsazQ
+ yi4ijQ2F5UfNHW0FNpTMCus/h7SyJb9RD8eiseIbNC06PkxLQyhAIXZtuiunpg+oAI
+ xKcVQwy3jnkejmdiMnqfYe97qEG9PSTIcEInJ+QtrR6Cvxa3V1tAWtRMPc6g+O5TL1
+ NFk4fJP7C3mpg==
+X-ME-Helo: mail-lj1-f178.google.com
 X-ME-Auth: bWFpbGhvbC52aW5jZW50QHdhbmFkb28uZnI=
-X-ME-Date: Sat, 07 Dec 2024 17:33:38 +0100
-X-ME-IP: 209.85.218.43
-Received: by mail-ej1-f43.google.com with SMTP id
- a640c23a62f3a-aa647af6804so178371066b.1; 
- Sat, 07 Dec 2024 08:33:38 -0800 (PST)
+X-ME-Date: Thu, 05 Dec 2024 22:47:20 +0100
+X-ME-IP: 209.85.208.178
+Received: by mail-lj1-f178.google.com with SMTP id
+ 38308e7fff4ca-30024c73101so10437121fa.1; 
+ Thu, 05 Dec 2024 13:47:20 -0800 (PST)
 X-Forwarded-Encrypted: i=1;
- AJvYcCVSXY1v5grG4+dAhFJ1w1V+qeKBKzMJmByAzVe1eBfi7wx8Hs8HiK9Cr+LFbj30V4M0+OmqzNW7cJ6t@lists.freedesktop.org,
- AJvYcCVvAspyxJa917UzoejUkkEV/JhzZ3bzlrrKuwA6E9e+yKRYwrz05QXun5kKxKueT6/V6guWiFzzaZ8=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxafH+shgTu3acOjAWoI9OnwT+mYrvsecz3qjwLp4QKhVak+kl1
- HlDPgHSK26AqJPCKupvbNg5k2V9KUZT6Gj500yipeUgQIoVx5KrRfP9xGOe5KUu4AHGsl5KChaY
- i3Er1d+OrkSYRy+NLNHT3JbZtS0k=
-X-Google-Smtp-Source: AGHT+IEENKH5q363NsvaDS9r/FGBH4NT8jK2UDZzhmMDEw1YQ0vbbHzKVnWBLQ5cMhIKh2zINR9br+tBOM6tHUnfBmY=
-X-Received: by 2002:a17:907:7759:b0:a99:5f45:cb69 with SMTP id
- a640c23a62f3a-aa6202f3295mr391454866b.4.1733413951191; Thu, 05 Dec 2024
- 07:52:31 -0800 (PST)
+ AJvYcCUP7CqaULWXpsjICC8EYU0fn8pIg4O/TarfBxChSMIr4Tv+bWNhkH1kFmStTs/aksmswXNBhDAtQvud@lists.freedesktop.org,
+ AJvYcCWcxHGL230IHsgkoQdrnVMglxJ5zALz3u+eFQu2zzIxFUr/XsHaBTGAkoogqO+FeL4KCcjAFlvCyCs=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Ywfj54Z/1fEQv+RPXIhnk2TuGn2IxVK8WBvjpB6//1372howFj5
+ SKk48TjLsrkQWTuSonCATXAo8Re3ctaT6+0nqrOmpnoIvSyq7OMJnZxFguM+1d9kPwQA/ApGLDX
+ 23kI3BtvvncCwbF9Eus0plD/mtpM=
+X-Google-Smtp-Source: AGHT+IH7WYy/8Hc8H+vVCwhqalxjzlWUoqcEyoqkjWQBBxloHACrRQF+5k7EKnQaTMOmRJCyI12iNEP09nDvxOtT4aY=
+X-Received: by 2002:a05:6402:358f:b0:5d0:fc12:79e3 with SMTP id
+ 4fb4d7f45d1cf-5d125063c34mr3565576a12.15.1733414047033; Thu, 05 Dec 2024
+ 07:54:07 -0800 (PST)
 MIME-Version: 1.0
 References: <20241203-is_constexpr-refactor-v1-0-4e4cbaecc216@wanadoo.fr>
- <20241203-is_constexpr-refactor-v1-5-4e4cbaecc216@wanadoo.fr>
- <8b8262389bd6484586007d749132346f@AcuMS.aculab.com>
-In-Reply-To: <8b8262389bd6484586007d749132346f@AcuMS.aculab.com>
+ <20241203-is_constexpr-refactor-v1-6-4e4cbaecc216@wanadoo.fr>
+ <ad4482cc835543578862051431f5174f@AcuMS.aculab.com>
+In-Reply-To: <ad4482cc835543578862051431f5174f@AcuMS.aculab.com>
 From: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
-Date: Fri, 6 Dec 2024 00:52:20 +0900
-X-Gmail-Original-Message-ID: <CAMZ6RqJPvbSr5i8N4Dm=2N6D8uSzefCM3TyK8HBNNNrybo5f2Q@mail.gmail.com>
-Message-ID: <CAMZ6RqJPvbSr5i8N4Dm=2N6D8uSzefCM3TyK8HBNNNrybo5f2Q@mail.gmail.com>
-Subject: Re: [PATCH 05/10] minmax: simplify __clamp_once() by using
- is_const_false()
+Date: Fri, 6 Dec 2024 00:53:56 +0900
+X-Gmail-Original-Message-ID: <CAMZ6RqJMXKaa_xDcyweGwb+FqvANrpvrkRvnjh6_s-J1ApVmaA@mail.gmail.com>
+Message-ID: <CAMZ6RqJMXKaa_xDcyweGwb+FqvANrpvrkRvnjh6_s-J1ApVmaA@mail.gmail.com>
+Subject: Re: [PATCH 06/10] fortify: replace __is_constexpr() by is_const() in
+ strlen()
 To: David Laight <David.Laight@aculab.com>
 Cc: Linus Torvalds <torvalds@linux-foundation.org>, 
  Luc Van Oostenryck <luc.vanoostenryck@gmail.com>,
@@ -98,32 +98,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu. 5 Dec. 2024 at 03:54, David Laight <David.Laight@aculab.com> wrote:
+On Thu. 5 Dec. 2024 at 03:58, David Laight <David.Laight@aculab.com> wrote:
 > From: Vincent Mailhol
 > > Sent: 02 December 2024 17:33
 > >
-> > In __clamp_once(),
+> > From: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
 > >
-> >   __builtin_choose_expr(__is_constexpr((lo) > (hi)), (lo) <= (hi), true)
+> > is_const() is a one to one replacement of __is_constexpr(). Do the
+> > replacement so that __is_constexpr() can be removed.
 > >
-> > is equivalent to:
+> > Signed-off-by: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
+> > ---
+> >  include/linux/fortify-string.h | 4 ++--
+> >  1 file changed, 2 insertions(+), 2 deletions(-)
 > >
-> >   !is_const_false((lo) <= (hi))
-> >
-> > Apply is_const_false() to simplify __clamp_once().
+> > diff --git a/include/linux/fortify-string.h b/include/linux/fortify-string.h
+> > index 0d99bf11d260a3482bbe46e35c7553c0ccfb8b94..e3f2f772c5439ef71eb4a904b4ce27956bc69743 100644
+> > --- a/include/linux/fortify-string.h
+> > +++ b/include/linux/fortify-string.h
+> > @@ -254,8 +254,8 @@ __FORTIFY_INLINE __kernel_size_t strnlen(const char * const POS p, __kernel_size
+> >   * Returns number of characters in @p (NOT including the final NUL).
+> >   *
+> >   */
+> > -#define strlen(p)                                                    \
+> > -     __builtin_choose_expr(__is_constexpr(__builtin_strlen(p)),      \
+> > +#define strlen(p)                                            \
+> > +     __builtin_choose_expr(is_const(__builtin_strlen(p)),    \
+> >               __builtin_strlen(p), __fortify_strlen(p))
 >
-> There is already a patch 'for next' that changes it use BUILD_BUG_ON_MSG()
-> and statically_true().
+> I'm sure Linus suggested a way of doing that without replicating
+> the __builtin_strlen().
+>
+> Indeed it may be valid to do:
+>         len = __builtin_strlen(p);
+>         __builtin_constant_p(len) ? len : __fortify_strlen(p);
 
-Found it!
+Then, wouldn't it be better for strlen() to be an inline function
+instead of a macro?
 
-  https://lore.kernel.org/all/34d53778977747f19cce2abb287bb3e6@AcuMS.aculab.com/
+  __FORTIFY_INLINE __kernel_size_t strlen(const char *p)
+  {
+          __kernel_size_t ret = __builtin_strlen(p);
 
-I think the easiest would be for me to cherry pick this patch. So that
-regardless which series is merged first, no conflict will occur, the
-patch will just be skipped the second time it is encountered.
+          if (__builtin_constant_p(ret))
+                  return ret;
+          return __fortify_strlen(p);
+  }
 
-Does this work for you?
+I tested it and it worked on an allyesconfig. So if I receive no
+objections, strlen() will become an inline function in v2.
 
 
 Yours sincerely,
