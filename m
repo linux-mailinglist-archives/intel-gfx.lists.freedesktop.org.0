@@ -2,54 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD69F9E7952
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Dec 2024 20:55:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D20E39E791D
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Dec 2024 20:39:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 121B810F19A;
-	Fri,  6 Dec 2024 19:55:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FFE010E619;
+	Fri,  6 Dec 2024 19:39:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 997 seconds by postgrey-1.36 at gabe;
- Fri, 06 Dec 2024 19:55:40 UTC
-Received: from 1wt.eu (ded1.1wt.eu [163.172.96.212])
- by gabe.freedesktop.org (Postfix) with ESMTP id C518210F19A;
- Fri,  6 Dec 2024 19:55:40 +0000 (UTC)
-Received: (from willy@localhost)
- by pcw.home.local (8.15.2/8.15.2/Submit) id 4B6JcarQ027033;
- Fri, 6 Dec 2024 20:38:36 +0100
-Date: Fri, 6 Dec 2024 20:38:36 +0100
-From: Willy Tarreau <w@1wt.eu>
-To: Linus Torvalds <torvalds@linux-foundation.org>
-Cc: David Laight <David.Laight@aculab.com>,
- Vincent Mailhol <vincent.mailhol@gmail.com>,
- Luc Van Oostenryck <luc.vanoostenryck@gmail.com>,
- Nathan Chancellor <nathan@kernel.org>,
- Nick Desaulniers <ndesaulniers@google.com>,
- Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>,
- Yury Norov <yury.norov@gmail.com>,
+Received: from eu-smtp-delivery-151.mimecast.com
+ (eu-smtp-delivery-151.mimecast.com [185.58.85.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 49BFD10E619
+ for <intel-gfx@lists.freedesktop.org>; Fri,  6 Dec 2024 19:39:30 +0000 (UTC)
+Received: from AcuMS.aculab.com (156.67.243.121 [156.67.243.121]) by
+ relay.mimecast.com with ESMTP with both STARTTLS and AUTH (version=TLSv1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ uk-mta-184-wSN4kbhlPXCqAnAYZUig_Q-1; Fri, 06 Dec 2024 19:39:27 +0000
+X-MC-Unique: wSN4kbhlPXCqAnAYZUig_Q-1
+X-Mimecast-MFC-AGG-ID: wSN4kbhlPXCqAnAYZUig_Q
+Received: from AcuMS.Aculab.com (10.202.163.6) by AcuMS.aculab.com
+ (10.202.163.6) with Microsoft SMTP Server (TLS) id 15.0.1497.48; Fri, 6 Dec
+ 2024 19:38:40 +0000
+Received: from AcuMS.Aculab.com ([::1]) by AcuMS.aculab.com ([::1]) with mapi
+ id 15.00.1497.048; Fri, 6 Dec 2024 19:38:40 +0000
+From: David Laight <David.Laight@ACULAB.COM>
+To: 'Linus Torvalds' <torvalds@linux-foundation.org>
+CC: Vincent Mailhol <vincent.mailhol@gmail.com>, Luc Van Oostenryck
+ <luc.vanoostenryck@gmail.com>, Nathan Chancellor <nathan@kernel.org>, "Nick
+ Desaulniers" <ndesaulniers@google.com>, Bill Wendling <morbo@google.com>,
+ Justin Stitt <justinstitt@google.com>, Yury Norov <yury.norov@gmail.com>,
  Rasmus Villemoes <linux@rasmusvillemoes.dk>, Kees Cook <kees@kernel.org>,
- "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Suzuki K Poulose <suzuki.poulose@arm.com>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Suzuki K Poulose <suzuki.poulose@arm.com>,
  Mike Leach <mike.leach@linaro.org>, James Clark <james.clark@linaro.org>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Rikard Falkeborn <rikard.falkeborn@gmail.com>,
- "linux-sparse@vger.kernel.org" <linux-sparse@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "llvm@lists.linux.dev" <llvm@lists.linux.dev>,
- "linux-hardening@vger.kernel.org" <linux-hardening@vger.kernel.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "coresight@lists.linaro.org" <coresight@lists.linaro.org>,
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
- "uecker@tugraz.at" <uecker@tugraz.at>
-Subject: Re: [PATCH 02/10] compiler.h: add is_const() as a replacement of
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>, Rikard Falkeborn
+ <rikard.falkeborn@gmail.com>, "linux-sparse@vger.kernel.org"
+ <linux-sparse@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>, "llvm@lists.linux.dev"
+ <llvm@lists.linux.dev>, "linux-hardening@vger.kernel.org"
+ <linux-hardening@vger.kernel.org>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
+ <dri-devel@lists.freedesktop.org>, "coresight@lists.linaro.org"
+ <coresight@lists.linaro.org>, "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>, "uecker@tugraz.at" <uecker@tugraz.at>
+Subject: RE: [PATCH 02/10] compiler.h: add is_const() as a replacement of
  __is_constexpr()
-Message-ID: <20241206193836.GA26860@1wt.eu>
+Thread-Topic: [PATCH 02/10] compiler.h: add is_const() as a replacement of
+ __is_constexpr()
+Thread-Index: AQHbROFPJXcuwP9wN0+yRzIQ2cx/pbLWa+gggAFf14CAACMqUIABpzoGgAAClHCAAAPoAIAAAwjg
+Date: Fri, 6 Dec 2024 19:38:40 +0000
+Message-ID: <0f5c07b827c3468c8fa3928a93a98bfa@AcuMS.aculab.com>
 References: <20241203-is_constexpr-refactor-v1-0-4e4cbaecc216@wanadoo.fr>
  <20241203-is_constexpr-refactor-v1-2-4e4cbaecc216@wanadoo.fr>
  <1d807c7471b9434aa8807e6e86c964ec@AcuMS.aculab.com>
@@ -60,11 +64,19 @@ References: <20241203-is_constexpr-refactor-v1-0-4e4cbaecc216@wanadoo.fr>
  <CAHk-=wiP8111QZZJNbcDNsYQ_JC-xvwRKr0qV9UdKn3HKK+-4Q@mail.gmail.com>
  <d23fe8a5dbe84bfeb18097fdef7aa4c4@AcuMS.aculab.com>
  <CAHk-=win8afdcergvJ6f2=rRrff8giGUW62qmYs9Ae6aw=wcnA@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 In-Reply-To: <CAHk-=win8afdcergvJ6f2=rRrff8giGUW62qmYs9Ae6aw=wcnA@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.202.205.107]
+MIME-Version: 1.0
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: dQK6wOGjRIX-QnbUS1EtbtREWNlAP7taf-1nntmOaJw_1733513966
+X-Mimecast-Originator: aculab.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: base64
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,58 +92,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Dec 06, 2024 at 11:15:20AM -0800, Linus Torvalds wrote:
-> On Fri, 6 Dec 2024 at 11:07, David Laight <David.Laight@aculab.com> wrote:
-> >
-> > I'm missing the compiler version and options to generate the error.
-> 
-> Just -Wall with most recent gcc versions seems to do it. At least I
-> can repro it with gcc-14.2.1 and something silly like this:
-> 
->   $ cat t.c
->   int fn(int a) { return (a<<2)?1:2; }
->   $ gcc -Wall -S t.c
->   t.c: In function 'fn':
->   t.c:1:26: warning: '<<' in boolean context, did you mean '<'?
-> [-Wint-in-bool-context]
-> 
-> > Does a '+ 0' help?  "(var << 2) + 0 ? 0 : 0"
-> 
-> Yeah, that actually works.
-> 
-> And "+0" is nice in that it should work in any context.
+RnJvbTogTGludXMgVG9ydmFsZHMNCj4gU2VudDogMDYgRGVjZW1iZXIgMjAyNCAxOToxNQ0KPiBP
+biBGcmksIDYgRGVjIDIwMjQgYXQgMTE6MDcsIERhdmlkIExhaWdodCA8RGF2aWQuTGFpZ2h0QGFj
+dWxhYi5jb20+IHdyb3RlOg0KPiA+DQo+ID4gSSdtIG1pc3NpbmcgdGhlIGNvbXBpbGVyIHZlcnNp
+b24gYW5kIG9wdGlvbnMgdG8gZ2VuZXJhdGUgdGhlIGVycm9yLg0KPiANCj4gSnVzdCAtV2FsbCB3
+aXRoIG1vc3QgcmVjZW50IGdjYyB2ZXJzaW9ucyBzZWVtcyB0byBkbyBpdC4gQXQgbGVhc3QgSQ0K
+PiBjYW4gcmVwcm8gaXQgd2l0aCBnY2MtMTQuMi4xIGFuZCBzb21ldGhpbmcgc2lsbHkgbGlrZSB0
+aGlzOg0KDQpJIG1heSBoYXZlIGp1c3QgbWlzc2VkIGdvbGJvbHQgcmV0dXJuaW5nIGEgd2Fybmlu
+Zy4NCi4uLg0KPiA+IERvZXMgYSAnKyAwJyBoZWxwPyAgIih2YXIgPDwgMikgKyAwID8gMCA6IDAi
+DQo+IA0KPiBZZWFoLCB0aGF0IGFjdHVhbGx5IHdvcmtzLg0KPiANCj4gQW5kICIrMCIgaXMgbmlj
+ZSBpbiB0aGF0IGl0IHNob3VsZCB3b3JrIGluIGFueSBjb250ZXh0Lg0KDQpVbmxlc3MgaXQgZmFs
+bHMgZm91bCBvZiB0aGUgY2xhbmcgdGVzdCBmb3IgYXJ0aG1ldGljIG9uIE5VTEwgcG9pbnRlcnMu
+DQooSSdtIHN1cmUgdGhhdCBpcyBvbmx5IGEgcHJvYmxlbSBpZiBOVUxMIGlzbid0IHRoZSBhbGwt
+emVybyBiaXQgcGF0dGVybi4NCkFuZCBwcmV0dHkgbXVjaCBubyBDIGNvZGUgaGFzIGV2ZXIgYmVl
+biAndGhhdCBwb3J0YWJsZScuKQ0KDQpBZGRpbmcgMCBjYW4gYWxzbyBoZWxwIHdoZW4gY29tcGxp
+ZXJzIGFyZSBiZWluZyBwaWNreSBhYm91dCBlbnVtcy4NClNpbmNlIG5vbmUgaGF2ZSAoeWV0KSBt
+YWRlIHRoZW0gbW9yZSBsaWtlIGEgMzJiaXQgcG9pbnRlciB0byBhIG9uZQ0KYnl0ZSBzdHJ1Y3R1
+cmUgKG9yIHRoZSBQYXNjYWwgZW51bSkuDQpJbiBjYXNlIHRoZSByZWxldmFudCBwZW9wbGUgYXJl
+IHJlYWRpbmcgdGhpcywgbWF5YmUgb25seSBkbyBhbnkNCm5vbi1pbnRlZ2VyIHdhcm5pbmdzIGZv
+ciBuYW1lZCBlbnVtcz8NCg0KPiA+ICNkZWZpbmUgY29uc3RfTlVMTCh4KSBfR2VuZXJpYygwID8g
+KHgpIDogKGNoYXIgKikwLCBjaGFyICo6IDEsIHZvaWQgKjogMCkNCj4gPiAjZGVmaW5lIGNvbnN0
+X3RydWUoeCkgY29uc3RfTlVMTCgoeCkgPyBOVUxMIDogKHZvaWQgKikxTCkpDQo+ID4gI2RlZmlu
+ZSBjb25zdF9leHByKHgpIGNvbnN0X05VTEwoKHgpID8gTlVMTCA6IE5VTEwpKQ0KPiA+IEkgc2Vu
+ZCB0aGlzIG1vcm5pbmcuDQo+ID4gTmVlZHMgJ3MvY2hhci9zdHJ1Y3Qga2pramtqa2p1aS8nIGFw
+cGxpZWQuDQo+IA0KPiBPaCBDaHJpc3QuIFlvdSByZWFsbHkgYXJlIHRha2luZyB0aGlzIHdob2xl
+IHVnbHkgdG8gYW5vdGhlciBsZXZlbC4NCg0KSSBzb3J0IG9mIGxpa2VkIHRoYXQgdmVyc2lvbiBp
+biBhIHBlcnZlcnNlIHNvcnQgb2Ygd2F5Lg0KSXQgZG9lcyBnaXZlIHlvdSBhIHNpbXBsZSB0ZXN0
+IGZvciBOVUxMICh1bmxlc3MgeW91J3ZlIHVzZWQgJ3N0cnVjdCBramtqa2pranVpJykuDQoNCglE
+YXZpZA0KDQotDQpSZWdpc3RlcmVkIEFkZHJlc3MgTGFrZXNpZGUsIEJyYW1sZXkgUm9hZCwgTW91
+bnQgRmFybSwgTWlsdG9uIEtleW5lcywgTUsxIDFQVCwgVUsNClJlZ2lzdHJhdGlvbiBObzogMTM5
+NzM4NiAoV2FsZXMpDQo=
 
-I've already used "+0" to shut certain warnings, I don't really remember
-which one, but also remember it was OK everywhere I needed.
-
-Another trick I've been using to shut up the compiler is a cast via typeof
-and an intermediary variable:
-
-  #define shut_up(expr)                           \
-          ({                                      \
-                  typeof(expr) _expr_ = expr;     \
-                  _expr_;                         \
-                  })
-  
-  int fn1(int a)
-  {
-          return shut_up(a << 2) ? 1 : 2;
-  }
-  
-  int fn2(int a)
-  {
-          return (a << 2) ? 1 : 2;
-  }
-
-  $ gcc -Wall -S t2.c
-  t2.c: In function 'fn2':
-  t2.c:15:19: warning: '<<' in boolean context, did you mean '<'? [-Wint-in-bool-context]
-     15 |         return (a << 2) ? 1 : 2;
-        |                ~~~^~~~~
-
-See ? It only complains on fn2() but not fn1(). Similarly I found it
-to be quite portable (at least I don't remember seeing it fail on me).
-It produces the exact same code, except at -O0 where it does really
-create a local variable.
-
-Willy
