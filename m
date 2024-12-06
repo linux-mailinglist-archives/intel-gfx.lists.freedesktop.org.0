@@ -2,30 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 916319E6CD0
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Dec 2024 12:09:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F09459E6D24
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Dec 2024 12:17:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 90FE610E18C;
-	Fri,  6 Dec 2024 11:09:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9142B10E3E2;
+	Fri,  6 Dec 2024 11:17:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C63D10E18C;
- Fri,  6 Dec 2024 11:09:39 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mx3.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2DBE810E3E2
+ for <intel-gfx@lists.freedesktop.org>; Fri,  6 Dec 2024 11:17:52 +0000 (UTC)
+Received: from [141.14.220.45] (g45.guest.molgen.mpg.de [141.14.220.45])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested) (Authenticated sender: pmenzel)
+ by mx.molgen.mpg.de (Postfix) with ESMTPSA id 0352B61E5FE05;
+ Fri, 06 Dec 2024 12:17:34 +0100 (CET)
+Message-ID: <97e55056-0f4f-4d4f-9c0c-fe8da4de147c@molgen.mpg.de>
+Date: Fri, 6 Dec 2024 12:17:34 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_series_starting_with_=5Bv?=
- =?utf-8?q?2=2C1/1=5D_drm/i915/gt=3A_Increase_a_time_to_retry_RING=5FHEAD_re?=
- =?utf-8?q?set_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nitin Gote" <nitin.r.gote@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/i915/pps: include panel power cycle delay in debugfs
+To: Jani Nikula <jani.nikula@intel.com>
+References: <20241205123720.3278727-1-jani.nikula@intel.com>
+Content-Language: en-US
 Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 06 Dec 2024 11:09:39 -0000
-Message-ID: <173348337917.3311458.1734339471399190374@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241206094543.1638580-1-nitin.r.gote@intel.com>
-In-Reply-To: <20241206094543.1638580-1-nitin.r.gote@intel.com>
+From: Paul Menzel <pmenzel@molgen.mpg.de>
+In-Reply-To: <20241205123720.3278727-1-jani.nikula@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,183 +43,50 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: series starting with [v2,1/1] drm/i915/gt: Increase a time to retry RING_HEAD reset (rev2)
-URL   : https://patchwork.freedesktop.org/series/142218/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_15800 -> Patchwork_142218v2
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_142218v2 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_142218v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142218v2/index.html
-
-Participating hosts (42 -> 41)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_142218v2:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@memory_region:
-    - bat-twl-2:          NOTRUN -> [ABORT][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142218v2/bat-twl-2/igt@i915_selftest@live@memory_region.html
-
-  * igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-dp-1:
-    - fi-kbl-7567u:       [PASS][2] -> [DMESG-WARN][3]
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15800/fi-kbl-7567u/igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-dp-1.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142218v2/fi-kbl-7567u/igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-dp-1.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_142218v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@debugfs_test@basic-hwmon:
-    - bat-adlp-6:         NOTRUN -> [SKIP][4] ([i915#9318])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142218v2/bat-adlp-6/igt@debugfs_test@basic-hwmon.html
-
-  * igt@gem_lmem_swapping@random-engines:
-    - bat-adlp-6:         NOTRUN -> [SKIP][5] ([i915#4613]) +3 other tests skip
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142218v2/bat-adlp-6/igt@gem_lmem_swapping@random-engines.html
-
-  * igt@gem_tiled_pread_basic:
-    - bat-adlp-6:         NOTRUN -> [SKIP][6] ([i915#3282])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142218v2/bat-adlp-6/igt@gem_tiled_pread_basic.html
-
-  * igt@i915_pm_rps@basic-api:
-    - bat-adlp-6:         NOTRUN -> [SKIP][7] ([i915#6621])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142218v2/bat-adlp-6/igt@i915_pm_rps@basic-api.html
-
-  * igt@i915_selftest@live:
-    - bat-twl-2:          NOTRUN -> [ABORT][8] ([i915#12435])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142218v2/bat-twl-2/igt@i915_selftest@live.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - bat-adlp-6:         NOTRUN -> [SKIP][9] ([i915#4103]) +1 other test skip
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142218v2/bat-adlp-6/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_dsc@dsc-basic:
-    - bat-adlp-6:         NOTRUN -> [SKIP][10] ([i915#3555] / [i915#3840])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142218v2/bat-adlp-6/igt@kms_dsc@dsc-basic.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - bat-adlp-6:         NOTRUN -> [SKIP][11]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142218v2/bat-adlp-6/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_pipe_crc_basic@hang-read-crc:
-    - fi-kbl-7567u:       [PASS][12] -> [DMESG-WARN][13] ([i915#12926])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15800/fi-kbl-7567u/igt@kms_pipe_crc_basic@hang-read-crc.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142218v2/fi-kbl-7567u/igt@kms_pipe_crc_basic@hang-read-crc.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - bat-adlp-6:         NOTRUN -> [SKIP][14] ([i915#3555])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142218v2/bat-adlp-6/igt@kms_setmode@basic-clone-single-crtc.html
-
-  * igt@prime_vgem@basic-write:
-    - bat-adlp-6:         NOTRUN -> [SKIP][15] ([i915#3291] / [i915#3708]) +2 other tests skip
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142218v2/bat-adlp-6/igt@prime_vgem@basic-write.html
-
-  
-#### Possible fixes ####
-
-  * igt@dmabuf@all-tests@dma_fence_chain:
-    - fi-bsw-nick:        [INCOMPLETE][16] ([i915#12904]) -> [PASS][17] +1 other test pass
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15800/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142218v2/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html
-
-  * igt@i915_module_load@load:
-    - bat-twl-1:          [DMESG-WARN][18] ([i915#1982]) -> [PASS][19]
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15800/bat-twl-1/igt@i915_module_load@load.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142218v2/bat-twl-1/igt@i915_module_load@load.html
-    - {bat-mtlp-9}:       [ABORT][20] ([i915#13268]) -> [PASS][21]
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15800/bat-mtlp-9/igt@i915_module_load@load.html
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142218v2/bat-mtlp-9/igt@i915_module_load@load.html
-
-  * igt@i915_selftest@live@gt_pm:
-    - bat-jsl-3:          [DMESG-FAIL][22] ([i915#13132]) -> [PASS][23] +1 other test pass
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15800/bat-jsl-3/igt@i915_selftest@live@gt_pm.html
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142218v2/bat-jsl-3/igt@i915_selftest@live@gt_pm.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         [SKIP][24] ([i915#9197]) -> [PASS][25] +2 other tests pass
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15800/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142218v2/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#10216]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10216
-  [i915#11681]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11681
-  [i915#12435]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12435
-  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
-  [i915#12926]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12926
-  [i915#13132]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13132
-  [i915#13268]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13268
-  [i915#1982]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982
-  [i915#3282]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3282
-  [i915#3291]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3291
-  [i915#3555]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555
-  [i915#3708]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3708
-  [i915#3840]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3840
-  [i915#4077]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4077
-  [i915#4079]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4079
-  [i915#4083]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4083
-  [i915#4103]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4103
-  [i915#4212]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4212
-  [i915#4213]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4213
-  [i915#4613]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613
-  [i915#5190]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5190
-  [i915#5274]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5274
-  [i915#6621]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6621
-  [i915#8809]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8809
-  [i915#9159]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9159
-  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
-  [i915#9318]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9318
-  [i915#9688]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9688
+Dear Jani,
 
 
-Build changes
--------------
+Thank you for the patch.
 
-  * Linux: CI_DRM_15800 -> Patchwork_142218v2
+Am 05.12.24 um 13:37 schrieb Jani Nikula:
+> The debugfs contains all the other timings except panel power cycle
+> delay. Add it for completeness.
 
-  CI-20190529: 20190529
-  CI_DRM_15800: 2e90353f058f2487798ad9236f0926df4ea54f02 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8141: e776f39da6b3666a2834f7e02a1eed9a87f21d74 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_142218v2: 2e90353f058f2487798ad9236f0926df4ea54f02 @ git://anongit.freedesktop.org/gfx-ci/linux
+For the record, here is the output from the Dell XPS 13 9360, and in 
+case you want to add it to the commit message.
 
-== Logs ==
+     $ sudo more /sys/kernel/debug/dri/0000:00:02.0/eDP-1/i915_panel_timings
+     Panel power up delay: 200
+     Panel power down delay: 50
+     Panel power cycle delay: 600
+     Backlight on delay: 1
+     Backlight off delay: 200
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142218v2/index.html
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>   drivers/gpu/drm/i915/display/intel_pps.c | 2 ++
+>   1 file changed, 2 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
+> index 7784b3b760db..e55c84685521 100644
+> --- a/drivers/gpu/drm/i915/display/intel_pps.c
+> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
+> @@ -1819,6 +1819,8 @@ static int intel_pps_show(struct seq_file *m, void *data)
+>   		   intel_dp->pps.panel_power_up_delay);
+>   	seq_printf(m, "Panel power down delay: %d\n",
+>   		   intel_dp->pps.panel_power_down_delay);
+> +	seq_printf(m, "Panel power cycle delay: %d\n",
+> +		   intel_dp->pps.panel_power_cycle_delay);
+>   	seq_printf(m, "Backlight on delay: %d\n",
+>   		   intel_dp->pps.backlight_on_delay);
+>   	seq_printf(m, "Backlight off delay: %d\n",
+
+Tested-by: Paul Menzel <pmenzel@molgen.mpg.de> # Dell XPS 13 9360
+
+
+Kind regards,
+
+Paul
