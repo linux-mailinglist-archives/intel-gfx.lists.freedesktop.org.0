@@ -2,60 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 389609E976A
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Dec 2024 14:43:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D16B9E9771
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Dec 2024 14:43:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9AD9E10E766;
-	Mon,  9 Dec 2024 13:43:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7ED6110E773;
+	Mon,  9 Dec 2024 13:43:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="Fr2FylXA";
+	dkim=pass (2048-bit key; unprotected) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="elCG8RSd";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from out.smtpout.orange.fr (out-17.smtpout.orange.fr [193.252.22.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9CB2F10E2D8;
- Thu,  5 Dec 2024 21:43:57 +0000 (UTC)
-Received: from mail-ed1-f47.google.com ([209.85.208.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C58D710F0E4;
+ Fri,  6 Dec 2024 13:22:58 +0000 (UTC)
+Received: from mail-lj1-f169.google.com ([209.85.208.169])
  by smtp.orange.fr with ESMTPSA
- id JJdbtamvwo2eYJJdbtXBPV; Thu, 05 Dec 2024 22:43:55 +0100
+ id JYIKtQXrLgyqpJYIKtcmXE; Fri, 06 Dec 2024 14:22:57 +0100
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
- s=t20230301; t=1733435035;
- bh=1FRoHoQWpZzbjWYvjotIUGh9Pf5+Jx2FZlKpO4hH6NM=;
+ s=t20230301; t=1733491377;
+ bh=Q1k59tg7g6ZR0AiJKHkbtvAsnBjYlK49uTsKYbfsQyM=;
  h=MIME-Version:From:Date:Message-ID:Subject:To;
- b=Fr2FylXA9m2UMqFj4uyKZwPTMcy6pn3IB5yA6fnTjtV4RrhdP9Uipdn8mn2RfZgq+
- bmzbAEOg1RIYbz84u9XDIvMCkkNPoh942LSUzWxqIeVSXs8VLQ7t9E941xZnNxnK8+
- mck0ZPSdxEaP0SaA0lkz9UDTWNkAMDzOdIJjkQSXl5B+av0sntjJnwK+bEEDWZJf4A
- rtOQycuZFrV3IABqI0ynxClSA6RXCwntHT2oWo7Lg3yajCXH1pPWt5A/ZmNpc6ycd+
- qMcpwbtiPTRq/Y57kARZ63Pdqx11WSkaFeOYOW9nJwgqR3vU/r1o40YlWqTv2pb7U2
- pyLJForVcHKkA==
-X-ME-Helo: mail-ed1-f47.google.com
+ b=elCG8RSdZ1YnCW+20fMypxjHM+XWZuvRTPLp2oPNPcaox891KwzGDFkgrFHKESHDS
+ LfxWuv++eVXkzGNHRuLPPLAVzVKwA1wYEqHmMq+19ArEsotYRk47fqbekSPsUuq5GV
+ MaUGBV7BRPWuA3QFcPtG4juwu3fdavvpmwvhNMfpfm2FWFOyFNnd+KGQSO/HNhWhIi
+ bLXY1Dr/dE/yi+QTtC1wyd8GiEkhiXL/oSaa7Wg4+R4HU7fbHpciunYZyiv7FybvXn
+ mQfTQOPXRAVvBBXxyOyBZZ8n2By/hm9B8gKn6YkKGH81Ei0jd4AkuuUm8+3XOfSGSx
+ pJv6M1ylVNelg==
+X-ME-Helo: mail-lj1-f169.google.com
 X-ME-Auth: bWFpbGhvbC52aW5jZW50QHdhbmFkb28uZnI=
-X-ME-Date: Thu, 05 Dec 2024 22:43:55 +0100
-X-ME-IP: 209.85.208.47
-Received: by mail-ed1-f47.google.com with SMTP id
- 4fb4d7f45d1cf-5d3ab136815so694529a12.1; 
- Thu, 05 Dec 2024 13:43:55 -0800 (PST)
+X-ME-Date: Fri, 06 Dec 2024 14:22:57 +0100
+X-ME-IP: 209.85.208.169
+Received: by mail-lj1-f169.google.com with SMTP id
+ 38308e7fff4ca-2ffd6882dcbso16984061fa.0; 
+ Fri, 06 Dec 2024 05:22:56 -0800 (PST)
 X-Forwarded-Encrypted: i=1;
- AJvYcCWEY93Qb0hKWug3mF+CPzw91SM+hP1M6EGApDkZJlviJ5uQrhRlaw+xqHpK+AjgbpRO79tqCT0haQQ=@lists.freedesktop.org,
- AJvYcCXQ2Ka0oS/fFGpPr1tNKcPyTMtfN32u2wTp7UZpin455/8O+BKAQUQhefu9PU/Er1HbK4R8Nx7S0cyA@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yzs4wMgL9/qc+bw4HyyAkma2O+CEygLR/eo3YUFl0xwE582T49Q
- acjffmeo409fpDf/0lZhrUDvBAF784MsD8is4xYNzXgZeExJHbBi+MXl8hdKocC2ybKSKHS9omf
- foRgoMVmrIGkcLFOyDkVo4MGjO84=
-X-Google-Smtp-Source: AGHT+IFYWIvr/wb1ttWAqU3XdgmdbVRXgljv2wGXYHxZGru+z8zfXAuY4J7uLgYbwqJhFyewdEilCwKv6EaVf4E+2bE=
-X-Received: by 2002:a17:907:270f:b0:a9e:b5d0:e5c with SMTP id
- a640c23a62f3a-aa5f7f6f2f8mr768523566b.61.1733414207483; Thu, 05 Dec 2024
- 07:56:47 -0800 (PST)
+ AJvYcCV1X/fmGXgZz2hY6pI+Xr+a31C+rClB41fBT9bgLMgSm4j4BCWl4F2pTzWwbOcX4MyA7kBOf2gn3ic=@lists.freedesktop.org,
+ AJvYcCVckI1Xqkk4QC7QFbxDvuXIicgP/qZAC99OvlAAR3kxij+WnkYeiCsDHTaf80714DN4E86syUwgHirB@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yxc3IL6moPQwdrxGNOojk1HZ4Oz9Yz2hmh3W26QGyP13GMu7SnV
+ NuE6fE0yfGqs0cbJy5b1VLvHlidQcSQvmeSArg+A2gLaANYqpVxqKmm+V0nLWWo+tBvcSHCHSzi
+ NcfLSTWK21ZtE/0h/E1pyhM9wpQw=
+X-Google-Smtp-Source: AGHT+IHLXgFQhA/c3KQxjVrMyKCAmSqwk42Fqpsfdz6EK+jIFFcEtdXEZClHZQiPmD1jBbv/RGy99L+br5F0PLvN22o=
+X-Received: by 2002:a17:907:7392:b0:aa5:427d:b101 with SMTP id
+ a640c23a62f3a-aa63a1109camr127306566b.36.1733460187056; Thu, 05 Dec 2024
+ 20:43:07 -0800 (PST)
 MIME-Version: 1.0
 References: <20241203-is_constexpr-refactor-v1-0-4e4cbaecc216@wanadoo.fr>
- <20241203-is_constexpr-refactor-v1-8-4e4cbaecc216@wanadoo.fr>
- <6597979088eb4ee7b98cfb99815a402e@AcuMS.aculab.com>
-In-Reply-To: <6597979088eb4ee7b98cfb99815a402e@AcuMS.aculab.com>
+ <20241203-is_constexpr-refactor-v1-1-4e4cbaecc216@wanadoo.fr>
+ <e115a4245e5342a994a7e596cc6357fa@AcuMS.aculab.com>
+ <CAMZ6Rq+n0vG9zObF-kY-Xo+iP_Y3P8A6_nEfB8F=UhqeQBepRw@mail.gmail.com>
+ <b48e2f5dd8d64cbab471629ae03c7511@AcuMS.aculab.com>
+In-Reply-To: <b48e2f5dd8d64cbab471629ae03c7511@AcuMS.aculab.com>
 From: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
-Date: Fri, 6 Dec 2024 00:56:35 +0900
-X-Gmail-Original-Message-ID: <CAMZ6Rq+XhOb+yn5A1dHD=qkbB1_FQXMA7_ydBB4nPTSnys3jkA@mail.gmail.com>
-Message-ID: <CAMZ6Rq+XhOb+yn5A1dHD=qkbB1_FQXMA7_ydBB4nPTSnys3jkA@mail.gmail.com>
-Subject: Re: [PATCH 08/10] drm/i915/reg: replace __is_const_expr() by
- is_const_true() or is_const()
+Date: Fri, 6 Dec 2024 13:42:56 +0900
+X-Gmail-Original-Message-ID: <CAMZ6RqKUH5VGHAuqv+dR_0o1JFTvV_gNV2qUwoMfcWCQUSX2Lg@mail.gmail.com>
+Message-ID: <CAMZ6RqKUH5VGHAuqv+dR_0o1JFTvV_gNV2qUwoMfcWCQUSX2Lg@mail.gmail.com>
+Subject: Re: [PATCH 01/10] compiler.h: add statically_false()
 To: David Laight <David.Laight@aculab.com>
 Cc: Linus Torvalds <torvalds@linux-foundation.org>, 
  Luc Van Oostenryck <luc.vanoostenryck@gmail.com>,
@@ -98,34 +99,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu. 5 Dec 2024 at 04:00, David Laight <David.Laight@aculab.com> wrote:
+On Fri. 6 Dec. 2024 at 12:39, David Laight <David.Laight@aculab.com> wrote:
 > From: Vincent Mailhol
-> > Sent: 02 December 2024 17:34
+> > Sent: 05 December 2024 15:26
 > >
-> > Most of the use of __is_const_expr() in i915_reg_defs.h are just to
-> > test whether an expression is known to be true. Because those checks
-> > are all done in a BUILD_BUG_ON_ZERO(), replace those with
-> > is_const_true().
+> > On Thu. 5 Dec 2024 at 03:30, David Laight <David.Laight@aculab.com> wrote:
+> > > From: Vincent Mailhol
+> > > > Sent: 02 December 2024 17:33
+> > > >
+> > > > From: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
+> > > >
+> > > > For completion, add statically_false() which is the equivalent of
+> > > > statically_true() except that it will return true only if the input is
+> > > > known to be false at compile time.
+> > >
+> > > This is pretty much pointless.
+> > > It is just as easy to invert the condition at the call site.
+> >
+> > To start with, I will argue that:
+> >
+> >   statically_false(foo)
+> >
+> > is more pretty than
+> >
+> >   statically_true(!(foo))
 >
-> Another place that could use statically_true() and BUILD_BUG_ON_MSG().
+> Except that the test is more likely to be:
+>         statically_false(x > y)
+> and the invert is then
+>         statically_true(x <= y)
+>
+> No different from C itself, there is no 'ifnot (condition) {...}'
+> (don't talk to me about perl...)
 
-Here also, BUILD_BUG_ON_MSG() is not suitable because it does not
-return a value.
+No need to talk about perl, just staying in C, it has both the #ifdef
+and the #ifndef directives (and since C23, it even has the #elifndef).
 
-__BUILD_BUG_ON_ZERO_MSG() could be used; but there is less benefit to
-do this at a driver scope. In this i915_reg_defs.h,
-BUILD_BUG_ON_ZERO() is used 20 times. Adding an error message each
-time will just make things ugly.
+Regardless, this was just a nitpick. You convinced me, I will remove
+both statically_false() and is_const_false() in v2.
 
-If we want more readable error messages here, the solution for me is
-just to redefine BUILD_BUG_ON_ZERO() to print a more meaningful error
-message by default. But this is not the scope of this series. I sent a
-separate patch for this:
+> I suspect you need to pretty much remove all the comments that
+> cross-refer to statically_true() from the other patches.
+>
+> So is_const_true() is just 'return true if the expression
+> is a 'non-zero constant integer expression'.
 
-  https://lore.kernel.org/all/20241205151316.1480255-2-mailhol.vincent@wanadoo.fr/
+No. Linus made it clear in
 
-Concerning statically_true() instead of is_const_true(), let me test,
-and if this works, then I will replace these in v2.
+  https://lore.kernel.org/all/CAHk-=wh5SNYdgx8-X+ggHP+ojbG2F7oyt3TLmMgqejYd5zn0Aw@mail.gmail.com/
+
+that we need an explanation of why statically_true() may not work in
+some contexts and I agree with this.
+
+As far as I like using proper nuances between the terms 'integer
+constant expression' and 'compile time constant', treating
+statically_true() and is_const_true() as completely different things
+as you are suggesting is not constructive. At the end, what matters
+the most in a comment, is that the final user properly understands how
+to use the thing correctly.
+
+Removing the cross reference would increase the risk of people using
+is_const_true() in places where it is not needed. I will keep the
+cross reference to statically_true().
 
 
 Yours sincerely,
