@@ -2,79 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E2509E788E
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Dec 2024 20:07:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD92F9E7891
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Dec 2024 20:07:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AE9A10F185;
-	Fri,  6 Dec 2024 19:07:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 771B310F18B;
+	Fri,  6 Dec 2024 19:07:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from eu-smtp-delivery-151.mimecast.com
- (eu-smtp-delivery-151.mimecast.com [185.58.86.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF40E10F185
- for <intel-gfx@lists.freedesktop.org>; Fri,  6 Dec 2024 19:07:08 +0000 (UTC)
-Received: from AcuMS.aculab.com (156.67.243.121 [156.67.243.121]) by
- relay.mimecast.com with ESMTP with both STARTTLS and AUTH (version=TLSv1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- uk-mta-203-g62EFoMcPseEjHbllHyR1Q-1; Fri, 06 Dec 2024 19:07:06 +0000
-X-MC-Unique: g62EFoMcPseEjHbllHyR1Q-1
-X-Mimecast-MFC-AGG-ID: g62EFoMcPseEjHbllHyR1Q
-Received: from AcuMS.Aculab.com (10.202.163.6) by AcuMS.aculab.com
- (10.202.163.6) with Microsoft SMTP Server (TLS) id 15.0.1497.48; Fri, 6 Dec
- 2024 19:06:18 +0000
-Received: from AcuMS.Aculab.com ([::1]) by AcuMS.aculab.com ([::1]) with mapi
- id 15.00.1497.048; Fri, 6 Dec 2024 19:06:18 +0000
-From: David Laight <David.Laight@ACULAB.COM>
-To: 'Linus Torvalds' <torvalds@linux-foundation.org>, Vincent Mailhol
- <vincent.mailhol@gmail.com>
-CC: Luc Van Oostenryck <luc.vanoostenryck@gmail.com>, Nathan Chancellor
- <nathan@kernel.org>, Nick Desaulniers <ndesaulniers@google.com>, "Bill
- Wendling" <morbo@google.com>, Justin Stitt <justinstitt@google.com>, "Yury
- Norov" <yury.norov@gmail.com>, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- Kees Cook <kees@kernel.org>, "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Suzuki K Poulose <suzuki.poulose@arm.com>,
- Mike Leach <mike.leach@linaro.org>, James Clark <james.clark@linaro.org>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>, Rikard Falkeborn
- <rikard.falkeborn@gmail.com>, "linux-sparse@vger.kernel.org"
- <linux-sparse@vger.kernel.org>, "linux-kernel@vger.kernel.org"
- <linux-kernel@vger.kernel.org>, "llvm@lists.linux.dev"
- <llvm@lists.linux.dev>, "linux-hardening@vger.kernel.org"
- <linux-hardening@vger.kernel.org>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
- <dri-devel@lists.freedesktop.org>, "coresight@lists.linaro.org"
- <coresight@lists.linaro.org>, "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>, "uecker@tugraz.at" <uecker@tugraz.at>
-Subject: RE: [PATCH 02/10] compiler.h: add is_const() as a replacement of
- __is_constexpr()
-Thread-Topic: [PATCH 02/10] compiler.h: add is_const() as a replacement of
- __is_constexpr()
-Thread-Index: AQHbROFPJXcuwP9wN0+yRzIQ2cx/pbLWa+gggAFf14CAACMqUIABpzoGgAAClHA=
-Date: Fri, 6 Dec 2024 19:06:18 +0000
-Message-ID: <d23fe8a5dbe84bfeb18097fdef7aa4c4@AcuMS.aculab.com>
-References: <20241203-is_constexpr-refactor-v1-0-4e4cbaecc216@wanadoo.fr>
- <20241203-is_constexpr-refactor-v1-2-4e4cbaecc216@wanadoo.fr>
- <1d807c7471b9434aa8807e6e86c964ec@AcuMS.aculab.com>
- <CAMZ6RqLJLP+4d8f5gLfBdFeDVgqy23O+Eo8HRgKCthqBjSHaaw@mail.gmail.com>
- <9ef03cebb4dd406885d8fdf79aaef043@AcuMS.aculab.com>
- <CAHk-=wjmeU6ahyuwAymqkSpxX-gCNa3Qc70UXjgnxNiC8eiyOw@mail.gmail.com>
- <CAMZ6Rq+SzTA25XcMZnMnOJcrrq1VZpeT1xceinarqbXgDDo8VA@mail.gmail.com>
- <CAHk-=wiP8111QZZJNbcDNsYQ_JC-xvwRKr0qV9UdKn3HKK+-4Q@mail.gmail.com>
-In-Reply-To: <CAHk-=wiP8111QZZJNbcDNsYQ_JC-xvwRKr0qV9UdKn3HKK+-4Q@mail.gmail.com>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.202.205.107]
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F0FE10F187;
+ Fri,  6 Dec 2024 19:07:21 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: U93CN0LZBwlOfWuQQq4YUMAHM_1WXp4qfMxzFg-LNL8_1733512024
-X-Mimecast-Originator: aculab.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_drm/xe/display=3A_Re-use_?=
+ =?utf-8?q?display_vmas_when_possible_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 06 Dec 2024 19:07:21 -0000
+Message-ID: <173351204158.3439572.15834382300464362900@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241206182032.196307-1-dev@lankhorst.se>
+In-Reply-To: <20241206182032.196307-1-dev@lankhorst.se>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,35 +37,117 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogTGludXMgVG9ydmFsZHMNCj4gU2VudDogMDYgRGVjZW1iZXIgMjAyNCAxODo1Mw0KPiAN
-Cj4gT24gRnJpLCA2IERlYyAyMDI0IGF0IDEwOjMxLCBWaW5jZW50IE1haWxob2wgPHZpbmNlbnQu
-bWFpbGhvbEBnbWFpbC5jb20+IHdyb3RlOg0KPiA+DQo+ID4gPiBjYXVzZXMgaXNzdWVzIHdoZW4g
-J3gnIGlzIG5vdCBhbiBpbnRlZ2VyIGV4cHJlc3Npb24gKHRoaW5rDQo+ID4gPiAiaXNfY29uc3Qo
-TlVMTCkiIG9yICJpc19jb25zdCgxID09IDIpIi4NCj4gPg0KPiA+IEJ1dCAxID09IDIgYWxyZWFk
-eSBoYXMgYW4gaW50ZWdlciB0eXBlIGFzIHByb3ZlbiBieToNCj4gDQo+IFllYWgsIEkgd2FzIGNv
-bmZ1c2VkIGFib3V0IGV4YWN0bHkgd2hhdCB0cmlnZ2VycyB0aGF0IG9kZA0KPiAnLVdpbnQtaW4t
-Ym9vbC1jb250ZXh0Jy4NCj4gDQo+IEl0J3Mgbm90IGFib3V0IHNvbWUgYWN0dWFsIGJvb2wgdHlw
-ZSwgaXQncyBsaXRlcmFsbHkgYSByYW5kb20NCj4gY29sbGVjdGlvbiBvZiBpbnRlZ2VyIG9wZXJh
-dGlvbnMgdXNlZCB3aXRoIGxvZ2ljYWwgb3BzLg0KPiANCj4gU28gaXQncyB0aGluZ3MgbGlrZSAi
-ISh2YXI8PDIpIiB0aGF0IGdlbmVyYXRlIHRoYXQgd2FybmluZywgYmVjYXVzZQ0KPiBzb21lIGNv
-bXBpbGVyIHBlcnNvbiBhdCBzb21lIHBvaW50IHdlbnQgIm1heWJlIHRoYXQgbGVmdCBzaGlmdCBz
-aG91bGQNCj4gaGF2ZSBiZWVuIGp1c3QgYSBjb21wYXJpc29uIGluc3RlYWQgJzwnIi4NCj4gDQo+
-IEJ1dCBpdCB0dXJucyBvdXQgdGhhdCAiKHZhciA8PDIpPzA6MCIgX2Fsc29fIHRyaWdnZXJzIHRo
-YXQgd2FybmluZy4NCj4gDQo+IEVuZCByZXN1bHQ6IEkgaGF2ZSAqbm8qIGlkZWEgaG93IHRvIHNo
-dXQgdGhhdCBjcmF6eSB3YXJuaW5nIHVwIGZvcg0KPiB0aGlzIGNhc2UsIGlmIHdlIHdhbnQgdG8g
-aGF2ZSBzb21lIGdlbmVyaWMgbWFjcm8gdGhhdCBzYXlzICJpcyB0aGlzDQo+IGNvbnN0YW50Ii4g
-QmVjYXVzZSBpdCBkYW1uIHdlbGwgaXMgcGVyZmVjdGx5IHNhbmUgdG8gYXNrICJpcyAoYSA8PCAz
-KQ0KPiBhIGNvbnN0YW50IGV4cHJlc3Npb24iLg0KDQpJJ20gbWlzc2luZyB0aGUgY29tcGlsZXIg
-dmVyc2lvbiBhbmQgb3B0aW9ucyB0byBnZW5lcmF0ZSB0aGUgZXJyb3IuDQpEb2VzIGEgJysgMCcg
-aGVscD8gICIodmFyIDw8IDIpICsgMCA/IDAgOiAwIg0KDQpJIHJlYWxpc2VkIHRoZToNCiNkZWZp
-bmUgY29uc3RfTlVMTCh4KSBfR2VuZXJpYygwID8gKHgpIDogKGNoYXIgKikwLCBjaGFyICo6IDEs
-IHZvaWQgKjogMCkNCiNkZWZpbmUgY29uc3RfdHJ1ZSh4KSBjb25zdF9OVUxMKCh4KSA/IE5VTEwg
-OiAodm9pZCAqKTFMKSkNCiNkZWZpbmUgY29uc3RfZXhwcih4KSBjb25zdF9OVUxMKCh4KSA/IE5V
-TEwgOiBOVUxMKSkNCkkgc2VuZCB0aGlzIG1vcm5pbmcuDQpOZWVkcyAncy9jaGFyL3N0cnVjdCBr
-amtqa2pranVpLycgYXBwbGllZC4NCg0KCURhdmlkDQoNCi0NClJlZ2lzdGVyZWQgQWRkcmVzcyBM
-YWtlc2lkZSwgQnJhbWxleSBSb2FkLCBNb3VudCBGYXJtLCBNaWx0b24gS2V5bmVzLCBNSzEgMVBU
-LCBVSw0KUmVnaXN0cmF0aW9uIE5vOiAxMzk3Mzg2IChXYWxlcykNCg==
+== Series Details ==
 
+Series: drm/xe/display: Re-use display vmas when possible (rev3)
+URL   : https://patchwork.freedesktop.org/series/136034/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_15803 -> Patchwork_136034v3
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_136034v3 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_136034v3, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136034v3/index.html
+
+Participating hosts (42 -> 41)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_136034v3:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@active:
+    - bat-jsl-3:          [PASS][1] -> [DMESG-FAIL][2] +1 other test dmesg-fail
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15803/bat-jsl-3/igt@i915_selftest@live@active.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136034v3/bat-jsl-3/igt@i915_selftest@live@active.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_136034v3 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - bat-dg1-7:          [PASS][3] -> [FAIL][4] ([i915#12903])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15803/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136034v3/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - bat-dg2-11:         [FAIL][5] ([i915#12903]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15803/bat-dg2-11/igt@i915_pm_rpm@module-reload.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136034v3/bat-dg2-11/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@gt_lrc:
+    - bat-twl-2:          [ABORT][7] ([i915#12919]) -> [PASS][8] +1 other test pass
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15803/bat-twl-2/igt@i915_selftest@live@gt_lrc.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136034v3/bat-twl-2/igt@i915_selftest@live@gt_lrc.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-mtlp-6:         [ABORT][9] ([i915#12061]) -> [PASS][10] +1 other test pass
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15803/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136034v3/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - {bat-mtlp-9}:       [FAIL][11] ([i915#11989]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15803/bat-mtlp-9/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136034v3/bat-mtlp-9/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-dp6:
+    - {bat-mtlp-9}:       [FAIL][13] -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15803/bat-mtlp-9/igt@kms_flip@basic-flip-vs-wf_vblank@c-dp6.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136034v3/bat-mtlp-9/igt@kms_flip@basic-flip-vs-wf_vblank@c-dp6.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#11989]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11989
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#12903]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12903
+  [i915#12919]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12919
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_15803 -> Patchwork_136034v3
+
+  CI-20190529: 20190529
+  CI_DRM_15803: 261a0301bda5af29477bd710465a8886e8609a4d @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8141: e776f39da6b3666a2834f7e02a1eed9a87f21d74 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_136034v3: 261a0301bda5af29477bd710465a8886e8609a4d @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_136034v3/index.html
