@@ -2,29 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3CC69E7862
-	for <lists+intel-gfx@lfdr.de>; Fri,  6 Dec 2024 19:53:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E216A9E7866
+	for <lists+intel-gfx@lfdr.de>; Fri,  6 Dec 2024 19:59:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5CD5610F170;
-	Fri,  6 Dec 2024 18:53:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 790F710F171;
+	Fri,  6 Dec 2024 18:59:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D303810F170;
- Fri,  6 Dec 2024 18:53:24 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD92710F171;
+ Fri,  6 Dec 2024 18:59:22 +0000 (UTC)
+From: Maarten Lankhorst <dev@lankhorst.se>
+To: intel-xe@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org,
+	Maarten Lankhorst <dev@lankhorst.se>
+Subject: [PATCH 0/5] drm/xe/display: Rework display init for reducing
+ flickering.
+Date: Fri,  6 Dec 2024 19:59:51 +0100
+Message-ID: <20241206185956.3290-1-dev@lankhorst.se>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/xe/display=3A_Re?=
- =?utf-8?q?-use_display_vmas_when_possible_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 06 Dec 2024 18:53:24 -0000
-Message-ID: <173351120485.3434802.6684132267534647482@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241206182032.196307-1-dev@lankhorst.se>
-In-Reply-To: <20241206182032.196307-1-dev@lankhorst.se>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,24 +36,30 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+I have rebased the previous series and took out the GuC parts. This makes it a lot easier to review missing parts,
+and not be dependent on GuC loading changes for merging.
 
-Series: drm/xe/display: Re-use display vmas when possible (rev3)
-URL   : https://patchwork.freedesktop.org/series/136034/
-State : warning
+Maarten Lankhorst (5):
+  drm/xe/display: Add intel_plane_initial_vblank_wait
+  drm/xe: Remove double pageflip
+  drm/xe: Move suballocator init to after display init
+  drm/xe: Defer irq init until after xe_display_init_noaccel
+  drm/xe/display: Use a single early init call for display
 
-== Summary ==
+ drivers/gpu/drm/i915/display/intel_display.c  |  6 +-
+ .../drm/i915/display/intel_plane_initial.c    |  7 +-
+ .../drm/i915/display/intel_plane_initial.h    |  2 +
+ drivers/gpu/drm/xe/display/xe_display.c       | 71 +++++--------------
+ drivers/gpu/drm/xe/display/xe_display.h       |  8 +--
+ drivers/gpu/drm/xe/display/xe_plane_initial.c | 29 +++++---
+ drivers/gpu/drm/xe/xe_device.c                | 28 +++-----
+ drivers/gpu/drm/xe/xe_tile.c                  | 19 +++--
+ drivers/gpu/drm/xe/xe_tile.h                  |  1 +
+ 9 files changed, 77 insertions(+), 94 deletions(-)
 
-Error: dim checkpatch failed
-7efb6bc72ad1 drm/xe/display: Re-use display vmas when possible
--:175: ERROR:CODE_INDENT: code indent should use tabs where possible
-#175: FILE: drivers/gpu/drm/xe/display/xe_fb_pin.c:395:
-+^I            sizeof(new_plane_state->view.gtt))) {$
-
-total: 1 errors, 0 warnings, 0 checks, 163 lines checked
-
+-- 
+2.45.2
 
