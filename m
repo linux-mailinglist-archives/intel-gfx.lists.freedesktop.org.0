@@ -2,61 +2,80 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 812989E7E89
-	for <lists+intel-gfx@lfdr.de>; Sat,  7 Dec 2024 07:22:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 455D79E7F89
+	for <lists+intel-gfx@lfdr.de>; Sat,  7 Dec 2024 11:34:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12C0410E0F6;
-	Sat,  7 Dec 2024 06:22:10 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GIrr8DqF";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id A31F410E07D;
+	Sat,  7 Dec 2024 10:34:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BA4F10E0F6
- for <intel-gfx@lists.freedesktop.org>; Sat,  7 Dec 2024 06:22:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733552529; x=1765088529;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=/nAxvB9okK7pqsgY+6NkI9FNUEGant1Nd6k5cMAPPKY=;
- b=GIrr8DqFjQZWiR9vAmxJ5BiPQe0JyWhTRHZxTvD7KXApJAxNSb56JtrS
- Faa+rm8OAIz2jK0xKVY7J95cZJzkb8oQlAtQAhPxbyuMLniFpZ3l87Bz4
- vMTpG1UPN4GUkoA02fNHiIN7JaDyYN+vSKwawc6cTanzyHhni4wkd0Rxy
- RyWMMkiPSk1IpI7oGkL3t0ZI/TIXQ31Qkc3nJUqyzz95Cjuw6aJyZAkOQ
- UatNeXXTuYu+s5vC5MBGP9Vu4V1P/nKLA/g8YTz7jJKlXaymmFW18tfQf
- zH0ZR0b6Mw6qydU3MiyRVlRr/2CakiejcW/9qhumkxuaDHvJChvWtyhlY Q==;
-X-CSE-ConnectionGUID: ZJQ99ebySLiuPNxzqkCHfw==
-X-CSE-MsgGUID: xSjdNHnPRsOudK97B67nog==
-X-IronPort-AV: E=McAfee;i="6700,10204,11278"; a="44587705"
-X-IronPort-AV: E=Sophos;i="6.12,215,1728975600"; d="scan'208";a="44587705"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Dec 2024 22:22:08 -0800
-X-CSE-ConnectionGUID: KtgdBenfRtCO82JE6lL8+A==
-X-CSE-MsgGUID: Bmjzn26HQRel4RrSA8kYjg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,215,1728975600"; d="scan'208";a="99408057"
-Received: from black.fi.intel.com ([10.237.72.28])
- by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Dec 2024 22:22:07 -0800
-Date: Sat, 7 Dec 2024 08:22:03 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: "Anirban, Sk" <sk.anirban@intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, badal.nilawar@intel.com,
- karthik.poosa@intel.com, anshuman.gupta@intel.com
-Subject: Re: [PATCH v2] drm/i915/selftests: Add delay to stabilize frequency
- in live_rps_power
-Message-ID: <Z1Ppixu7zLqp7Mqf@black.fi.intel.com>
-References: <20241203061114.2790448-1-sk.anirban@intel.com>
- <8734j559jc.fsf@intel.com>
- <261f6705-665e-4226-8fc7-b62ae95b7be1@intel.com>
+Received: from eu-smtp-delivery-151.mimecast.com
+ (eu-smtp-delivery-151.mimecast.com [185.58.85.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AAD6110E20E
+ for <intel-gfx@lists.freedesktop.org>; Sat,  7 Dec 2024 10:34:49 +0000 (UTC)
+Received: from AcuMS.aculab.com (156.67.243.121 [156.67.243.121]) by
+ relay.mimecast.com with ESMTP with both STARTTLS and AUTH (version=TLSv1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ uk-mta-30-fUbbpPZGNBC6w6iC4uvLBw-1; Sat, 07 Dec 2024 10:34:46 +0000
+X-MC-Unique: fUbbpPZGNBC6w6iC4uvLBw-1
+X-Mimecast-MFC-AGG-ID: fUbbpPZGNBC6w6iC4uvLBw
+Received: from AcuMS.Aculab.com (10.202.163.6) by AcuMS.aculab.com
+ (10.202.163.6) with Microsoft SMTP Server (TLS) id 15.0.1497.48; Sat, 7 Dec
+ 2024 10:33:56 +0000
+Received: from AcuMS.Aculab.com ([::1]) by AcuMS.aculab.com ([::1]) with mapi
+ id 15.00.1497.048; Sat, 7 Dec 2024 10:33:56 +0000
+From: David Laight <David.Laight@ACULAB.COM>
+To: 'Martin Uecker' <muecker@gwdg.de>, Vincent Mailhol
+ <mailhol.vincent@wanadoo.fr>
+CC: Linus Torvalds <torvalds@linux-foundation.org>, Luc Van Oostenryck
+ <luc.vanoostenryck@gmail.com>, Nathan Chancellor <nathan@kernel.org>, "Nick
+ Desaulniers" <ndesaulniers@google.com>, Bill Wendling <morbo@google.com>,
+ Justin Stitt <justinstitt@google.com>, Yury Norov <yury.norov@gmail.com>,
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>, Kees Cook <kees@kernel.org>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Suzuki K Poulose <suzuki.poulose@arm.com>,
+ Mike Leach <mike.leach@linaro.org>, James Clark <james.clark@linaro.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>, Rikard Falkeborn
+ <rikard.falkeborn@gmail.com>, "linux-sparse@vger.kernel.org"
+ <linux-sparse@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>, "llvm@lists.linux.dev"
+ <llvm@lists.linux.dev>, "linux-hardening@vger.kernel.org"
+ <linux-hardening@vger.kernel.org>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
+ <dri-devel@lists.freedesktop.org>, "coresight@lists.linaro.org"
+ <coresight@lists.linaro.org>, "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>
+Subject: RE: [PATCH 02/10] compiler.h: add is_const() as a replacement of
+ __is_constexpr()
+Thread-Topic: [PATCH 02/10] compiler.h: add is_const() as a replacement of
+ __is_constexpr()
+Thread-Index: AQHbSIOUJXcuwP9wN0+yRzIQ2cx/pbLajaFg
+Date: Sat, 7 Dec 2024 10:33:56 +0000
+Message-ID: <344b4cf41a474377b3d2cbf6302de703@AcuMS.aculab.com>
+References: <20241203-is_constexpr-refactor-v1-0-4e4cbaecc216@wanadoo.fr>
+ <20241203-is_constexpr-refactor-v1-2-4e4cbaecc216@wanadoo.fr>
+ <1d807c7471b9434aa8807e6e86c964ec@AcuMS.aculab.com>
+ <CAMZ6RqLJLP+4d8f5gLfBdFeDVgqy23O+Eo8HRgKCthqBjSHaaw@mail.gmail.com>
+ <9ef03cebb4dd406885d8fdf79aaef043@AcuMS.aculab.com>
+ <abdd7862f136aa676b2d2c324369f4a43ff9909c.camel@gwdg.de>
+ <CAMZ6RqKzGiRNMeLsQKRNrxvW_bXB-kEi11udQ82kKX6tGCrqcg@mail.gmail.com>
+ <9607300dfca5d71ca9570b1e1de0864e524f356b.camel@gwdg.de>
+In-Reply-To: <9607300dfca5d71ca9570b1e1de0864e524f356b.camel@gwdg.de>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.202.205.107]
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <261f6705-665e-4226-8fc7-b62ae95b7be1@intel.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: uU39DhjwdEQ5PwSGkrimgDVyRxNrUnEzSjWjxlp_mVM_1733567684
+X-Mimecast-Originator: aculab.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: base64
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,39 +91,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 05, 2024 at 12:07:53PM +0530, Anirban, Sk wrote:
-> On 03-12-2024 16:16, Jani Nikula wrote:
-> > On Tue, 03 Dec 2024, Sk Anirban <sk.anirban@intel.com> wrote:
-> > > Add delays to allow frequency stabilization before power measurement
-> > > to fix sporadic power conservation issues in live_rps_power test.
-> > Looks like band-aid. What's the root cause?
-> 
-> In some cases, we have observed that the power consumption at the minimum
-> frequency is greater than at the maximum frequency. This is likely due to
-> the actual frequency not settling. The issue is sporadic, and to address
-> this, we are adding a delay after setting the freq and before measuring the
-> power.
+RnJvbTogTWFydGluIFVlY2tlcg0KPiBTZW50OiAwNyBEZWNlbWJlciAyMDI0IDA4OjQwDQouLi4N
+Cj4gSSBmaW5kIGl0IGFtYXppbmcgaG93IG11Y2ggdGltZSB0aGUgTGludXgga2VybmVsIGNvbW11
+bml0eSBzcGVuZHMNCj4gcmV2aXNpbmcgY29kZSB0byBtYWtlIGl0IHdvcmsgcGVyZmVjdGx5Lg0K
+PiANCj4gU3RpbGwsIEkgYW0gd29uZGVyaW5nIHdoZXRoZXIgc29tZSBvZiB0aGlzIHRpbWUgYW5k
+IGVmZm9ydCBzaG91bGQgbm90DQo+IGJlIHRhcmdldGVkIGF0IEMgY29tcGlsZXJzIGFuZCBsYW5n
+dWFnZSB3b3JrIHRvIG1ha2UgdGhlc2UgbWFjcm8NCj4gaGFja3MgdW5uZWNlc3Nhcnk/DQoNCkkn
+bSBwcm9iYWJseSBub3QgYWxvbmUgaW4gdGhpbmtpbmcgdGhhdCBzb21ldGltZXMgdGhlIGNvbXBp
+bGVyIHdyaXRlcnMNCmFyZSBkb2luZyB0aGVpciBoYXJkZXN0IHRvIG1ha2UgbGlmZSBoYXJkIGZv
+ciBwZW9wbGUgd3JpdGluZyBsb3cgbGV2ZWwgY29kZS4NCg0KPiBJIGFscmVhZHkgZm91bmQgdGhl
+IG9yaWdpbmFsIG1vdGl2YXRpb24gZm9yIHRoZXNlIG1hY3JvcyB2ZXJ5IHF1ZXN0aW9uYWJsZS4N
+Cj4gUmVtb3ZpbmcgVkxBcyBhdCB0aGUgY29zdCBoYXZpbmcgaW1wcmVjaXNlIHdvcnN0LWNhc2Ug
+Ym91bmRzIHN0cmlrZXMNCj4gbWUgYXMgZnVuZGFtZW50YWxseSBtaXNndWlkZWQgLSBhdCBsZWFz
+dCBpZiBzZWN1cml0eSBpcyB0aGUgbW90aXZhdGlvbi4NCg0KVkxBIGJhc2ljYWxseSBjYW5ub3Qg
+YmUgYWxsb3dlZCBiZWNhdXNlIG9mIHRoZSB2ZXJ5IGxpbWl0ZWQgc3RhY2sgc3BhY2UuDQpFdmVu
+IHRoZSBwZXItZnJhbWUgbGltaXRzIGFyZW4ndCBhIHJlYWwgc29sdXRpb24gLSB0aGV5IGp1c3Qg
+Y2F0Y2ggdGhlDQpwbGFjZXMgdGhhdCBtb3N0IGxpa2VseSB0byBjYXVzZSBpc3N1ZXMuIFZlcnkg
+ZGVlcCBjYWxsIGNoYWlucyBhbmQgYW55DQpyZWN1cnNpb24gKHRoYXQgaXNuJ3QgdGlnaHRseSBi
+b3VuZGVkKSBjYW4gY2F1c2UgZ3JpZWYuDQoNCj4gU28gbWF5YmUgdGhlcmUgYXJlIG90aGVyIGdv
+b2QgcmVhc29ucyBmb3IgdGhpcywgZS5nLiBiYWQgY29kZQ0KPiBmb3IgVkxBcyBvciByaXNrIG9m
+IGp1bXBpbmcgdGhlIGd1YXJkIHBhZ2UgaWYgdGhlIGF0dGFja2VyIGNhbiBzb21laG93DQo+IGlu
+Zmx1ZW5jZSBpdHMgc2l6ZSAoYnV0IGZvciB0aGlzIHRoZXJlIGlzIC1XdmxhLWxhcmdlci10aGFu
+KS4gQnV0IGV2ZW4gdGhlbiwNCj4gd291bGRuJ3QgaXQgYmUgYSBtb3JlIHdvcnRod2hpbGUgYW5k
+IGludGVyZXN0aW5nIGludmVzdG1lbnQgb2YgZW5naW5lZXJpbmcNCj4gcmVzb3VyY2VzIHRvIGlt
+cHJvdmluZyBjb2RlIGdlbmVyYXRpb24gLyB3YXJuaW5ncyBhdCB0aGUgY29tcGlsZXIgbGV2ZWw/
+DQoNClRoaXMgaXMga2VybmVsIGNvZGUsIGFueSBhY2Nlc3MgaW50byBhIHN0YWNrIGd1YXJkIHBh
+Z2UgaXMgYmFzaWNhbGx5DQp1bnJlY292ZXJhYmxlIGZvciB0aGUgZW50aXJlIHN5c3RlbSAtIGEg
+a2VybmVsIGxvY2svbXV0ZXggY291bGQgYmUgaGVsZC4NCg0KV2l0aCBhIGxpc3Qgb2YgKGNhbGxp
+bmdfZm4sIGNhbGxlZF9mbiwgc3RhY2tfb2Zmc2V0KSBpdCBpcyBwb3NzaWJsZQ0KY2FsY3VsYXRl
+IGFuIGFjY3VyYXRlIG1heGltdW0gc3RhY2sgdXNhZ2UuDQpJbmRpcmVjdCBjYWxscyB3b3VsZCBu
+ZWVkIHRvIHVzZSB0aGUgKElJUkMpIEZJTkVfSUJUIGhhc2hlcyB0byBpZGVudGlmeQ0KdGhlIHBv
+c3NpYmxlIGZ1bmN0aW9ucyAoYW5kIEknbSBub3Qgc3VyZSB0aGFuIGhhcyBhbiBhdHRyaWJ1dGUg
+Zm9yIGEgJ3NlZWQnDQpzbyB0aGF0ICdpbnQgKCopKHZvaWQgKiknIGZ1bmN0aW9ucyBjYW4gYmUg
+c2VwYXJhdGVkIGludG8gZ3JvdXBzLg0KSSd2ZSBub3QgbG9va2VkIGF0IHdoZXRoZXIgb2JqdG9v
+bCBjb3VsZCBnZW5lcmF0ZSB0aGUgb3V0cHV0IC0gYnV0IGlzIGhhcw0KdG8gYmUgZWFzaWVyIGZv
+ciB0aGUgY29tcGlsZXIgdG8gZG8gaXQuDQoNCkkgaGF2ZSBkb25lIHRoYXQgY2FsY3VsYXRpb24g
+aW4gdGhlIHBhc3QgKHBhcnNpbmcgYSBjb21waWxlciBsaXN0aW5nIGZpbGUpDQphbmQgYmFzaWNh
+bGx5IGRpc2NvdmVyZWQgdGhlIHN5c3RlbSBkaWRuJ3QgYWN0dWFsbHkgaGF2ZSBlbm91Z2ggbWVt
+b3J5DQp0byBhbGxvY2F0ZSAnc2FmZScgc3RhY2tzISBUaGUgbWF4IHN0YWNrIHdhcyBwcmV0dHkg
+bXVjaCBhbHdheXMgKHRoZQ0KZXF1aXZhbGVudCBvZikgcHJpbnRmKCkgaW5zaWRlIGFuIGVycm9y
+IHBhdGggdGhhdCBuZXZlciBoYXBwZW5zLg0KSXQgbWlnaHQgYmUgaW50ZXJlc3RpbmcgdG8gc2Vl
+IGhvdyBiYWQgbGludXggaXMgKGFmdGVyIHNvcnRpbmcgb3V0DQpob3cgdG8gaGFuZGxlIHJlY3Vy
+c2l2ZSBjYWxscyAtIGhvcGVmdWxseSB0aGVyZSB3b24ndCBiZSB0b28gbWFueQ0KdW5leHBlY3Rl
+ZCBvbmVzLg0KDQo+IEFsc28gdGhlIGZvcnRpZmljYXRpb24gb2Ygc3RybGVuIGFuZCBjbyBzZWVt
+cyBzb21ldGhpbmcgd2hpY2ggY291bGQgYmUNCj4gbXVjaCBiZXR0ZXIgc29sdmVkIHdpdGggYW5u
+b3RhdGlvbnMgYW5kIHByb3BlciBjb21waWxlciBzdXBwb3J0Lg0KDQpUaGF0IG1pZ2h0IGJlIG5p
+Y2UsIGJ1dCBrZXJuZWwgaGF2ZSB0byBiZSBidWlsZGFibGUgd2l0aCByZWxhdGl2ZWx5DQpvbGQg
+Y29tcGlsZXJzLg0KDQpTb21lIHRoaW5ncyBtaWdodCBuZWVkIGxhbmd1YWdlL0FCSSBjaGFuZ2Vz
+IHRvIGJldHRlciBoYW5kbGUgcHRyK3NpemUuDQpUaGUgYWJpbGl0eSB0byByZXR1cm4gc3VjaCBh
+IHBhaXIgaW4gcmVnaXN0ZXJzIHdvdWxkIHByb2JhYmx5IGJlIHVzZWZ1bA0KKHdpdGhvdXQgZG9p
+bmcgaG9ycmlkIGdhbWVzIHdpdGggYSB1bmlvbiBhbmQgX19pbnQxMjgpLg0KDQoJRGF2aWQNCg0K
+LQ0KUmVnaXN0ZXJlZCBBZGRyZXNzIExha2VzaWRlLCBCcmFtbGV5IFJvYWQsIE1vdW50IEZhcm0s
+IE1pbHRvbiBLZXluZXMsIE1LMSAxUFQsIFVLDQpSZWdpc3RyYXRpb24gTm86IDEzOTczODYgKFdh
+bGVzKQ0K
 
-Why not use wait_for_freq()?
-
-Raag
-
-> > > v2:
-> > >    - Move delay to respective function (Badal)
-> > > 
-> > > Signed-off-by: Sk Anirban <sk.anirban@intel.com>
-> > > ---
-> > >   drivers/gpu/drm/i915/gt/selftest_rps.c | 1 +
-> > >   1 file changed, 1 insertion(+)
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
-> > > index dcef8d498919..c207a4fb03bf 100644
-> > > --- a/drivers/gpu/drm/i915/gt/selftest_rps.c
-> > > +++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
-> > > @@ -1125,6 +1125,7 @@ static u64 measure_power(struct intel_rps *rps, int *freq)
-> > >   static u64 measure_power_at(struct intel_rps *rps, int *freq)
-> > >   {
-> > >   	*freq = rps_set_check(rps, *freq);
-> > > +	msleep(100);
-> > >   	return measure_power(rps, freq);
-> > >   }
