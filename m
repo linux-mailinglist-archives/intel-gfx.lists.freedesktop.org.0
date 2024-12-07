@@ -2,59 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 436049E9781
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C3F89E9782
 	for <lists+intel-gfx@lfdr.de>; Mon,  9 Dec 2024 14:43:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D67510E777;
-	Mon,  9 Dec 2024 13:43:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 059E510E77D;
+	Mon,  9 Dec 2024 13:43:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="d+a65OxG";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="eyQObqwN";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com
- [209.85.218.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7AA5610E411;
- Fri,  6 Dec 2024 18:31:11 +0000 (UTC)
-Received: by mail-ej1-f49.google.com with SMTP id
- a640c23a62f3a-aa51bf95ce1so94081066b.3; 
- Fri, 06 Dec 2024 10:31:11 -0800 (PST)
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com
+ [209.85.218.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B352910E1B0;
+ Sat,  7 Dec 2024 07:42:54 +0000 (UTC)
+Received: by mail-ej1-f41.google.com with SMTP id
+ a640c23a62f3a-aa549d9dffdso402334366b.2; 
+ Fri, 06 Dec 2024 23:42:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1733509870; x=1734114670; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=g7buzdn3/PR+OZ7E9SojfZrudu0PKQFtLTRAFouRbM0=;
- b=d+a65OxGEKPNwBldvsPEyd7E97Q4vjc3yzL9YxUXDJMBXgIMR6f/v4ZCj0aDYCEZhF
- YXGXfGWRq3mQ127xhJR7/w2rSimP9wO0F1mJAN/BMKHajMMpLUq7WU3VHzDjdw8LpCYd
- 3YdhvnsFBHngZ9uxB28IUvQ4BXbqVqB6IVs5ShfTqKTdQ3jW8P3mMlCqXyOMO2VOu2Gi
- cQhC5GCqKeb4O6CXQRO51ecf9oHS660/WRx9ySop6k7QjxLXU29S6cy6PLHDIG180fkK
- SnntW0QgDMLaNYYlJNgP3KzD7M1WMaASKVmpRZ4qlz+cpvztJdaHkoPeO8Dek1w6VcYo
- 2e6A==
+ d=gmail.com; s=20230601; t=1733557373; x=1734162173; darn=lists.freedesktop.org;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=Hd+JXxg1Trx18tJn2WFf9QCw9lSZFwBnHLKDbtoBF3M=;
+ b=eyQObqwN4u300eHNtNcJzhMwYmhppIyVV336mi520iCm/Be/XVj50M/ET9HFkCCoti
+ fYWWsJXbm1lL2nJsg740eTR8i9UrFXzyHrMIqy0ISdo0nGvcetcvUNdvfBUThJnya0CK
+ EodiBZ3JKbm3noq6+Au02Hf/TBz63lpGD91fcK0NlRkopaoPgdDqb8JcsfCrFrOZynkt
+ Ozc1FNsw4FZITAfXvRczpCzz2ZF6eUrsAK0jhirKsm1tkP1xG+4kXm17RZ3Q5XYvoRrH
+ jYzWCDymhcXG0/rn0/874WvLIOIathefDcFDU4qo4Zng3puyd3hZkD2lzC0zBS1LmmEb
+ z55w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1733509870; x=1734114670;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=g7buzdn3/PR+OZ7E9SojfZrudu0PKQFtLTRAFouRbM0=;
- b=b8E2DXI2lCXnICtSQMzluLa10BZi5/5kh+0dtkEJGjkw1+nb4UuSWkvbDlM9TCAwnf
- oLHX6Pv33MAJBzXfpnddg2i3gmNXvclznMygt+BlDgZ9Qu2FDBM1SEAdCJ4IZkiK2cc/
- YUh+CBxFBZJFWe1I27fpoJgaSlXhE/vlqCoEBfgudigHtlRzEdl9VdT2OSGSf/rYtFzx
- InYIUTJ8y9bG7YBocvoIeBt6tWzb2LMv40Nxcz92rQOFJ9tgdnRMOUP1UrnufsqATlSH
- dZm9iaQtP0dQU2sQFUk7hCf27H2hH9aoqr05+7pFp4pibump7DqgwYtl6WDVDiISZBtF
- rxJQ==
+ d=1e100.net; s=20230601; t=1733557373; x=1734162173;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=Hd+JXxg1Trx18tJn2WFf9QCw9lSZFwBnHLKDbtoBF3M=;
+ b=GtjH8zQ1vpZQIPXqx2aRdhu+MFjivqPq/b8RhPhGhUMKPPXMPnsLMZe+5vL2zKudfi
+ IUj0q9MwToAkUaBvOeqGPbOZpBpPftWOSTrtOLMf/sXh8JbeIs7/Jjqu8zQZIgNoUdJF
+ flCv7AhoDsg8p3+QwHmI7tTMKRir9JU9Ks5CBy8ULH6rgyMEypb7rpdgic1nWXA9iyvi
+ +3WvxYyPxC3QCuiCSdWAVd8xnavfGFqSeI3sMEwVQeLqyAywBZ26cffSlCFdMPLti4Un
+ Hh9rQJNs9Yfuqo6vri9Vk2F1pfnXEwGoUJLDTAfT9z77OtBvolWtMYMI0IcS31sVSSOS
+ YYuA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVplMNOi5ewrG/KFuaTfY5FgqWmLsqEqVkeFcpD1zxr6BLnEA/HGUc7VZcMNkPI/slwvNa43KtHHOI=@lists.freedesktop.org,
- AJvYcCVtIIYkYP5AnrFYLtzTa+ucLpd9jMUUWzB/KYz5rhaetgxfbg60ShRvAtxOpLWR9po3/CEWXXPwGodU@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxJKzueqXHtvJK8iecIdq+fUp8EJQDqJ7EmBg3F1r80+KbmWTtn
- TrD5VjDhp481Zld8Wu6dC4ig20tnFpd2Mn6kzhSzt6DvDbsYn66s8jsqSDHzQrOzj2JwuPIpHxL
- MSw6BhCFzSliqUh3K0Uc1M/AGVlo=
-X-Gm-Gg: ASbGncsvqODYigOgA6RPnAa2jgOGeS1i0RNmER5crYv6QxTql2ruuLyhVM/0HoF4Duh
- n0CnIjnICDb5mKWciQyjgnDHBmYp9XOg=
-X-Google-Smtp-Source: AGHT+IFnd7xj5Pq9akTxmspxJbkFJbmmIA03mUFW2B6h+sDDSyh+/NdbCh8gBxT6LtqsX9b+RXGKw/QASht5Itx+9Lw=
-X-Received: by 2002:a17:907:7703:b0:aa5:46d3:4d88 with SMTP id
- a640c23a62f3a-aa639febbbfmr329138866b.15.1733509869483; Fri, 06 Dec 2024
- 10:31:09 -0800 (PST)
+ AJvYcCVy45LHJVzDElBy9WlfnoObVvWucq5gjuWZduEMwWzA7U5S59ND4BzIU2YZ+nyQ7krlo9EVPQDKhyY=@lists.freedesktop.org,
+ AJvYcCXezKlZC+CK+zwXsZrCNt0YOT/arVxrJHRDztragw9VB8swtcRLqv19y0g94Ki3wzmkRn6USLSKjfn4@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yytopbn2/FJdwS61psaUrpiU4DCYfm0mSa+m5UkJU4aP293IWSO
+ m8YiCL78ap7c0nnhUXDPjNLavEAoa+cYyhnlXzJz+J4JKAZIF5TXwKr7nP/Gh4E+TjywahOHm4Z
+ PoIpWjkv6DSLr2hLhs/hMKpmOs6c=
+X-Gm-Gg: ASbGncuBqHEnnnJkw2rAEvCvAAtcEXuyOkVslLeavnXobyRGuZBr/D/YuNpw2tbf6lO
+ WPaGAxjQsBNoopwuS2VvpRWRTLn154+k=
+X-Google-Smtp-Source: AGHT+IFtbq3U+qyH15cm3qJcpaS8xIxfktbIH2S26u2IkmcJ4yPTJg9aqWHgPR/Bx1zVWKXpdweVI0tjzLEF2jmrRv0=
+X-Received: by 2002:a17:906:31d1:b0:aa6:62d5:653 with SMTP id
+ a640c23a62f3a-aa662d50b73mr25238766b.54.1733557372613; Fri, 06 Dec 2024
+ 23:42:52 -0800 (PST)
 MIME-Version: 1.0
 References: <20241203-is_constexpr-refactor-v1-0-4e4cbaecc216@wanadoo.fr>
  <20241203-is_constexpr-refactor-v1-2-4e4cbaecc216@wanadoo.fr>
@@ -62,15 +61,21 @@ References: <20241203-is_constexpr-refactor-v1-0-4e4cbaecc216@wanadoo.fr>
  <CAMZ6RqLJLP+4d8f5gLfBdFeDVgqy23O+Eo8HRgKCthqBjSHaaw@mail.gmail.com>
  <9ef03cebb4dd406885d8fdf79aaef043@AcuMS.aculab.com>
  <CAHk-=wjmeU6ahyuwAymqkSpxX-gCNa3Qc70UXjgnxNiC8eiyOw@mail.gmail.com>
-In-Reply-To: <CAHk-=wjmeU6ahyuwAymqkSpxX-gCNa3Qc70UXjgnxNiC8eiyOw@mail.gmail.com>
+ <CAMZ6Rq+SzTA25XcMZnMnOJcrrq1VZpeT1xceinarqbXgDDo8VA@mail.gmail.com>
+ <CAHk-=wiP8111QZZJNbcDNsYQ_JC-xvwRKr0qV9UdKn3HKK+-4Q@mail.gmail.com>
+ <d23fe8a5dbe84bfeb18097fdef7aa4c4@AcuMS.aculab.com>
+ <CAHk-=win8afdcergvJ6f2=rRrff8giGUW62qmYs9Ae6aw=wcnA@mail.gmail.com>
+ <0f5c07b827c3468c8fa3928a93a98bfa@AcuMS.aculab.com>
+ <e806dd51b1ac4e289131297fbf30fc37@AcuMS.aculab.com>
+In-Reply-To: <e806dd51b1ac4e289131297fbf30fc37@AcuMS.aculab.com>
 From: Vincent Mailhol <vincent.mailhol@gmail.com>
-Date: Sat, 7 Dec 2024 03:30:57 +0900
-Message-ID: <CAMZ6Rq+SzTA25XcMZnMnOJcrrq1VZpeT1xceinarqbXgDDo8VA@mail.gmail.com>
+Date: Sat, 7 Dec 2024 16:42:41 +0900
+Message-ID: <CAMZ6RqLOR3aCRW_js2agV+VFiHdazb4S2+NdT5G4=WbDKNB8bA@mail.gmail.com>
 Subject: Re: [PATCH 02/10] compiler.h: add is_const() as a replacement of
  __is_constexpr()
-To: Linus Torvalds <torvalds@linux-foundation.org>
-Cc: David Laight <David.Laight@aculab.com>, 
- Luc Van Oostenryck <luc.vanoostenryck@gmail.com>,
+To: David Laight <David.Laight@aculab.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>, w@1wt.eu
+Cc: Luc Van Oostenryck <luc.vanoostenryck@gmail.com>,
  Nathan Chancellor <nathan@kernel.org>, 
  Nick Desaulniers <ndesaulniers@google.com>, Bill Wendling <morbo@google.com>, 
  Justin Stitt <justinstitt@google.com>, Yury Norov <yury.norov@gmail.com>, 
@@ -91,10 +96,9 @@ Cc: David Laight <David.Laight@aculab.com>,
  "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
  "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
  "coresight@lists.linaro.org" <coresight@lists.linaro.org>, 
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
- uecker@tugraz.at
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
+ "uecker@tugraz.at" <uecker@tugraz.at>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Mon, 09 Dec 2024 13:43:28 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -111,119 +115,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Grrr, I just realized that my emails are bouncing=E2=80=A6 Didn't happen
-before, I guess this is because my smtp server is unhappy with the
-many people in CC.
-
-Resending using another address (and, while at it, redacted two
-messages to combine them in one and added more details).
-
-My deep apologies for that, really sorry. Also, maybe the bouncing
-messages will finally find their way out? In that case, please just
-ignore them, and sorry for the noise.
-
-On Fri. 6 Dec. 2024 at 15:14, Linus Torvalds
-<torvalds@linux-foundation.org> wrote:
-> On Thu, 5 Dec 2024 at 18:26, David Laight <David.Laight@aculab.com> wrote=
-:
+On Sat. 7 Dec. 2024 at 05:24, David Laight <David.Laight@aculab.com> wrote:
+> > > > #define const_NULL(x) _Generic(0 ? (x) : (char *)0, char *: 1, void *: 0)
+> > > > #define const_true(x) const_NULL((x) ? NULL : (void *)1L))
+> > > > #define const_expr(x) const_NULL((x) ? NULL : NULL))
+> > > > I send this morning.
+> > > > Needs 's/char/struct kjkjkjkjui/' applied.
+> > >
+> > > Oh Christ. You really are taking this whole ugly to another level.
 > >
-> > From: Vincent Mailhol
-> > > ACK. Would adding a suggested--by Linus tag solve your concern?
+> > I sort of liked that version in a perverse sort of way.
+> > It does give you a simple test for NULL (unless you've used 'struct kjkjkjkjui').
 >
-> I'm genberally the one person who doesn't need any more credit ;)
+> Except const_NULL() really doesn't work at all - so you are lucky :-)
 >
-> > I actually suspect the first patches to change __is_constexpr() to
-> > use _Generic were from myself.
->
-> Yes. And David was also I think the one who suggested something else
-> than "!!" originally too.
+> So maybe the slightly long lines:
+> #define const_true(x) _Generic(0 ? (void *)((x) + 0 ? 0L : 1L) : (char *)0, char *: 1, void *: 0)
+> #define const_expr(x) _Generic(0 ? (void *)((x) + 0 ? 0L : 0L) : (char *)0, char *: 1, void *: 0)
 
-Ack. Then, I will add a suggested-by tag to credit David!
+This still throws a -Wnull-pointer-arithmetic on clang on const_expr(NULL):
 
-> I may have liked "!!" for being very idiomatic and traditional C, but
-> there were those pesky compilers that warn about "integer in bool
-> context" or whatever the annoying warning was when then doing the
-> "multiply by zero" to turn a constant expression into a constant zero
-> expression.
->
-> So that
->
->   #define is_const(x) __is_const_zero(0 * (x))
->
-> causes issues when 'x' is not an integer expression (think
-> "is_const(NULL)" or "is_const(1 =3D=3D 2)".
+  https://godbolt.org/z/vo5W7efdE
 
-But 1 =3D=3D 2 already has an integer type as proven by:
+I just do not see a method to silence that one. So three options:
 
-  #define is_int(x) _Generic(x, int: 1, default: 0)
-  static_assert(is_int(1 =3D=3D 2));
+  1. is_const() does not accept pointers and throws a constraint
+     violation:
 
-And regardless, __is_const_zero() performs a (long) cast, so
-__is_const_zero() works for any other scalar types. Even the u128
-works because after the (0 * (x)) multiplication, you are left with
-zero, preventing any loss of precision when casting to (long).
+       #define is_const(x) __is_const_zero(0 * (x))
 
-Here are some tests to prove my claims:
+     This is my current patch.
 
-  https://godbolt.org/z/beGs841sz
+  2. is_const() accept pointers but is_const(NULL) returns false:
 
-So, it leaves us with the is_const(pointer) case. To which I would
-question if we really want to support this. By definition, an
-expression with a pointer type can not be an *integer* constant
-expression. So one part of me tells me that it is a sane thing to
-*not* support this case and throw a warning if the user feeds
-is_const() with a pointer.
+       #define is_const(x) __is_const_zero((x) != (x))
 
-By the way, currently, __is_constexpr(NULL) returns false:
+     This keeps the current __is_constexpr() behaviour.
 
-  https://godbolt.org/z/f5P9oP9n5
+  3. is_const() accepts pointers and is_const(NULL) return true:
 
-and the reason this went unnotified in the kernel is because no one is
-using it that way. So instead of complicating the macro for a use case
-which currently does not exist (and which goes against the definition
-of an ICE in the C standard), why not say instead that this is not
-supported by just leaving the constraint violation in is_const()?
+       #define const_expr(x) _Generic(0 ? (void *)((x) + 0 ? 0L : 0L)
+: (char *)0, char *: 1, void *: 0)
 
-> Side note: I think "(x) =3D=3D 0" will make sparse unhappy when 'x' is a
-> pointer, because it results that horrid "use integer zero as NULL
-> without a cast" thing when the plain zero gets implicitly cast to a
-> pointer. Which is a really nasty and broken C pattern and should never
-> have been silent.
->
-> I think David suggested using ((x)?0:0) at some point. Silly
-> nonsensical and complex expression, but maybe that finally gets rid of
-> all the warnings:
->
->      #define is_const(x) __is_const_zero((x)?0:0)
->
-> might work regardless of the type of 'x'.
+     David's latest proposal, it requires to remove the
+     -Wnull-pointer-arithmetic clang warning.
 
-If we *really* want to go beyond the C standard and extend the meaning
-of integer constant expressions in the kernel to also include constant
-pointers, then what about:
+I vote for 1. or 2. (with a preference for 1.). IMHO, we are just
+adding an unreasonable level of complexity for making the macro treat
+NULL as an integer. Would someone find a solution for 3. that does not
+yield a warning, then why not. But if we have to remove a compiler
+check for a theoretical use case that does not even exist in the
+kernel, then it is not worth the trade off.
 
-  #define is_const(x) __is_const_zero((x) !=3D (x))
+Concerning is_const(var << 2), the patch I submitted works fine as-is
+with all scalars including that (var << 2):
 
-As established above, comparaisons return an int, thus making this
-pass all tests:
+  https://godbolt.org/z/xer4aMees
 
-  https://godbolt.org/z/f5zrzf44h
+And can we ignore the case (!(var << 2))? This is not a warning
+because of the macro, but because of the caller! If I do any of:
 
-And it is slightly more pretty than the ((x)?0:0).
+          if (!(var << 2)) {}
+          (void)__builtin_constant_p(!(var << 2));
 
-(...)
-
-Side question, Linus, what do you think about the __is_const_zero()
-documentation:
-
-  https://lore.kernel.org/all/20241203-is_constexpr-refactor-v1-2-4e4cbaecc=
-216@wanadoo.fr/
-
-Do you think I am too verbose as pointed out by David? Some people
-(including me and Yuri) like it that way. But if you also think this
-is too much, I will make it shorter.
-
-Thanks,
+I also got the warning. The point is that the macro should not
+generate *new* warnings. If the given argument already raises a
+warning, it is the caller's responsibility to fix.
 
 
 Yours sincerely,
