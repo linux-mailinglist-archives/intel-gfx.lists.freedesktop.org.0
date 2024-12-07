@@ -2,60 +2,72 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 503DB9E9789
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Dec 2024 14:43:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 66F3E9E9773
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Dec 2024 14:43:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 527F710E783;
-	Mon,  9 Dec 2024 13:43:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8724E10E774;
+	Mon,  9 Dec 2024 13:43:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="LGCUNPJ2";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gwdg.de header.i=@gwdg.de header.b="CbEoEgJJ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com
- [209.85.218.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1ED0210E2F7;
- Sat,  7 Dec 2024 13:50:55 +0000 (UTC)
-Received: by mail-ej1-f42.google.com with SMTP id
- a640c23a62f3a-aa6413fc7c5so182830866b.0; 
- Sat, 07 Dec 2024 05:50:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1733579453; x=1734184253; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=xHFw9+ZFS/5kCWej9Q2r4cNs9qWMsdVVVFbrLzYifFk=;
- b=LGCUNPJ2aqaATe4NurBfsOXP0cHDqOO9nLyC7/0tPkWIZg38NamIilP+t4jImdCijx
- fDqJA7rUb2eYNxbvV++a2H8Jq59La+H5meaSPpnynp1yr4YU4veE1+UvcNspg0/y65tN
- 2omdveD52YjpW0FkbZ0EcDAvoO6iSShuhn+0YddR9PHj3qG7d75SZEYHzZC9qn6L3l7o
- noC3xg4+B5dxUMXN7g0/rk34py04O6IVpd2MMm+/h9BWk5aQbPB1C1cMY8m2vFD5BVjb
- Dv9kPTzVlzabrJDJ2CUJHjVlFnSqpU4IjMXFixTU/YAwnYBUIlc9nQeXOY90Kl8ibG2A
- y8Iw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1733579453; x=1734184253;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=xHFw9+ZFS/5kCWej9Q2r4cNs9qWMsdVVVFbrLzYifFk=;
- b=c6i37y0Mbw/vJonMMLGeiXq0u/DQOOf47TE2vHFnooM4fYVn0aLF1uLFho5KyOq5fQ
- 80nPmtR8Y9Zj7cRLCBMWyvm2TnQaiQF4e5i6+Ib/wDE1+K73YCN8VDXxaD20Mqj2iO0p
- sS22J53f1GKRNMbs5laKQhjP0G9ov/st9TytST3eyuGPpDJrhkVtC5kGX0dnFSZlKu6o
- 8H/VBX7gmWlStNE4diZq3mM4SrVmpV9eZBzxty6KK9j0ffRmUHhlNMC7djYENhbReZiY
- Ii+ONYnewAQ7WV/jeuRoIm1zVWqtYJyigCg7zyox7GjH9dlEw5tyEQkeJ31v5P6mDEdn
- 6JkQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCURGYHNrQBJGUx6Sq7nRAvTgWSXJhmA5evgqVEuN+dImlSE4dNxHaXhvlL6KLKEgzQatLNRdxlaDzk=@lists.freedesktop.org,
- AJvYcCWJgzlZVhXA0jQbi7mCLm/z2X50yyowqvHdxbRsBwNY0sdRWCu9Qvm2VxlHwZu2i4oXT9KIgCMHsIHw@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yxe2rlR2FaejVuC0Z7FJv+Q9rwQWDYvc0jxQd/IVvfMojwPZkgM
- rdeu89Q67y7CUqd60/76+emn5oaHjc8dC9zpIFOoNPDFrIEtGdAkxWbHLvfkdTvBfOjC331bJRh
- t06lTq35vCEcTLIQvOxChCqn/JJE=
-X-Gm-Gg: ASbGncsfGBSkTOEcgMP/PLdtN/UMbNnxwcRG4iPztOyZv1U5g7BhqhyvBbLYjT0tbn7
- BGxqp33820kMYn7ZRor4ununB8CsGCSk=
-X-Google-Smtp-Source: AGHT+IH6k2GyIlgxnGFl/g0StSGsvarnhcm9pbDRqjwA6P99KliYB7aZHWQfO50sclN4sezlsrdFqfGV/df1a3TMj88=
-X-Received: by 2002:aa7:cf83:0:b0:5d3:d7c2:ca58 with SMTP id
- 4fb4d7f45d1cf-5d3d7c2cad3mr7104642a12.24.1733579453216; Sat, 07 Dec 2024
- 05:50:53 -0800 (PST)
-MIME-Version: 1.0
+Received: from mx-2023-1.gwdg.de (mx-2023-1.gwdg.de [134.76.10.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55FFD10E178;
+ Sat,  7 Dec 2024 14:59:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=gwdg.de;
+ s=2023-rsa; h=MIME-Version:Content-Transfer-Encoding:Content-Type:References:
+ In-Reply-To:Date:CC:To:From:Subject:Message-ID:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=1ZQZ2P4X11XUh3/AmfJ9LodEYUGwzm9ljaljfQMxpC8=; b=CbEoEgJJWkfk7etBghxPUIW3ao
+ jG9EXzXwhGOguUYccsOMcvF/dchUxm9KnfHzR0/ReGu/dSAUXjfNZHDirRMCj2Qkur15yeR4HMXZK
+ N3d5J8WClYuymxxW1Rc1oqjST4vSX35BORz1G6VQm5fjwc2ieDt8hVdLRDnEvhnD/RwkTrMo/yJLB
+ xZfTOtASEvh3e1Xd4RiprbqJeV3Ki8Q+uQy/1RkxdI7KodAv7UlV7fw7tHfPjt6EFJaoqcPD7pea3
+ 9L72aSh4ZzpkLlAMZVXRJ3KPRAVcPAxnw0S/vRb6V41B+ESFwv0puOkZEJsajK9li/HGkAdbVg5R+
+ FkP++QEg==;
+Received: from xmailer.gwdg.de ([134.76.10.29]:39687)
+ by mailer.gwdg.de with esmtp (GWDG Mailer)
+ (envelope-from <muecker@gwdg.de>) id 1tJwH9-004NAS-1N;
+ Sat, 07 Dec 2024 15:59:19 +0100
+Received: from mbx19-fmz-06.um.gwdg.de ([10.108.142.65] helo=email.gwdg.de)
+ by mailer.gwdg.de with esmtps (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+ (GWDG Mailer) (envelope-from <muecker@gwdg.de>) id 1tJwH9-000ADM-0y;
+ Sat, 07 Dec 2024 15:59:19 +0100
+Received: from [192.168.0.221] (10.250.9.200) by MBX19-FMZ-06.um.gwdg.de
+ (10.108.142.65) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.1544.14; Sat, 7 Dec
+ 2024 15:59:17 +0100
+Message-ID: <470b5f46d45063fdc21e4e19eac68c18cb42db48.camel@gwdg.de>
+Subject: Re: [PATCH 02/10] compiler.h: add is_const() as a replacement of
+ __is_constexpr()
+From: Martin Uecker <muecker@gwdg.de>
+To: Vincent Mailhol <vincent.mailhol@gmail.com>
+CC: David Laight <David.Laight@aculab.com>, Linus Torvalds
+ <torvalds@linux-foundation.org>, Luc Van Oostenryck
+ <luc.vanoostenryck@gmail.com>, Nathan Chancellor <nathan@kernel.org>, "Nick
+ Desaulniers" <ndesaulniers@google.com>, Bill Wendling <morbo@google.com>,
+ Justin Stitt <justinstitt@google.com>, Yury Norov <yury.norov@gmail.com>,
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>, Kees Cook <kees@kernel.org>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Suzuki K Poulose <suzuki.poulose@arm.com>,
+ Mike Leach <mike.leach@linaro.org>, James Clark <james.clark@linaro.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>, Rikard Falkeborn
+ <rikard.falkeborn@gmail.com>, "linux-sparse@vger.kernel.org"
+ <linux-sparse@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>, "llvm@lists.linux.dev"
+ <llvm@lists.linux.dev>, "linux-hardening@vger.kernel.org"
+ <linux-hardening@vger.kernel.org>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
+ <dri-devel@lists.freedesktop.org>, "coresight@lists.linaro.org"
+ <coresight@lists.linaro.org>, "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>
+Date: Sat, 7 Dec 2024 15:59:09 +0100
+In-Reply-To: <CAMZ6RqL+iS6GVsY20=O6GdQakRpp7XdewZJsUbmE5OCsKaHR6Q@mail.gmail.com>
 References: <20241203-is_constexpr-refactor-v1-0-4e4cbaecc216@wanadoo.fr>
  <20241203-is_constexpr-refactor-v1-2-4e4cbaecc216@wanadoo.fr>
  <1d807c7471b9434aa8807e6e86c964ec@AcuMS.aculab.com>
@@ -66,39 +78,18 @@ References: <20241203-is_constexpr-refactor-v1-0-4e4cbaecc216@wanadoo.fr>
  <9607300dfca5d71ca9570b1e1de0864e524f356b.camel@gwdg.de>
  <CAMZ6RqJGqBqvgxzp5yPFY1pk0WkkwEMM34qU-dZ3kXfsnKaqEg@mail.gmail.com>
  <429e7c6713ecc94494d9107e5f5a1f0c8e854f23.camel@gwdg.de>
-In-Reply-To: <429e7c6713ecc94494d9107e5f5a1f0c8e854f23.camel@gwdg.de>
-From: Vincent Mailhol <vincent.mailhol@gmail.com>
-Date: Sat, 7 Dec 2024 22:50:41 +0900
-Message-ID: <CAMZ6RqL+iS6GVsY20=O6GdQakRpp7XdewZJsUbmE5OCsKaHR6Q@mail.gmail.com>
-Subject: Re: [PATCH 02/10] compiler.h: add is_const() as a replacement of
- __is_constexpr()
-To: Martin Uecker <muecker@gwdg.de>
-Cc: David Laight <David.Laight@aculab.com>,
- Linus Torvalds <torvalds@linux-foundation.org>, 
- Luc Van Oostenryck <luc.vanoostenryck@gmail.com>,
- Nathan Chancellor <nathan@kernel.org>, 
- Nick Desaulniers <ndesaulniers@google.com>, Bill Wendling <morbo@google.com>, 
- Justin Stitt <justinstitt@google.com>, Yury Norov <yury.norov@gmail.com>, 
- Rasmus Villemoes <linux@rasmusvillemoes.dk>, Kees Cook <kees@kernel.org>, 
- "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Suzuki K Poulose <suzuki.poulose@arm.com>, 
- Mike Leach <mike.leach@linaro.org>, James Clark <james.clark@linaro.org>, 
- Alexander Shishkin <alexander.shishkin@linux.intel.com>, 
- Rikard Falkeborn <rikard.falkeborn@gmail.com>, 
- "linux-sparse@vger.kernel.org" <linux-sparse@vger.kernel.org>, 
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
- "llvm@lists.linux.dev" <llvm@lists.linux.dev>, 
- "linux-hardening@vger.kernel.org" <linux-hardening@vger.kernel.org>, 
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
- "coresight@lists.linaro.org" <coresight@lists.linaro.org>, 
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+ <CAMZ6RqL+iS6GVsY20=O6GdQakRpp7XdewZJsUbmE5OCsKaHR6Q@mail.gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
+MIME-Version: 1.0
+X-Originating-IP: [10.250.9.200]
+X-ClientProxiedBy: MBX19-FMZ-04.um.gwdg.de (10.108.142.63) To
+ MBX19-FMZ-06.um.gwdg.de (10.108.142.65)
+X-EndpointSecurity-0xde81-EV: v:7.9.17.458, d:out, a:y, w:t, t:5, sv:1733541190,
+ ts:1733583559
+X-Virus-Scanned: (clean) by clamav
+X-Spam-Level: -
 X-Mailman-Approved-At: Mon, 09 Dec 2024 13:43:28 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -115,63 +106,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat. 7 Dec. 2024 =C3=A0 22:19, Martin Uecker <muecker@gwdg.de> wrote:
-> Am Samstag, dem 07.12.2024 um 21:45 +0900 schrieb Vincent Mailhol:
-> > On Sat. 7 Dec. 2024 at 17:39, Martin Uecker <muecker@gwdg.de> wrote:
-> > > Am Freitag, dem 06.12.2024 um 16:26 +0900 schrieb Vincent Mailhol:
->
-> ...
->
-> > > I find it amazing how much time the Linux kernel community spends
-> > > revising code to make it work perfectly.
-> > >
-> > > Still, I am wondering whether some of this time and effort should not
-> > > be targeted at C compilers and language work to make these macro
-> > > hacks unnecessary?
-> >
-> > It seems to me that the long term solution to this problem are the
-> > constexpr functions.
->
-> How would constexpr functions help here?  (I am a bit sceptical about
-> constexpr functions.)
+Am Samstag, dem 07.12.2024 um 22:50 +0900 schrieb Vincent Mailhol:
+> On Sat. 7 Dec. 2024 =C3=A0 22:19, Martin Uecker <muecker@gwdg.de> wrote:
+> > Am Samstag, dem 07.12.2024 um 21:45 +0900 schrieb Vincent Mailhol:
+> > > On Sat. 7 Dec. 2024 at 17:39, Martin Uecker <muecker@gwdg.de> wrote:
+> > > > Am Freitag, dem 06.12.2024 um 16:26 +0900 schrieb Vincent Mailhol:
 
-I was thinking of some of the "side features" of constexpr functions. Namel=
-y:
-
-  - std::is_constant_evaluated
-  Link: https://en.cppreference.com/w/cpp/types/is_constant_evaluated
-
-  - if consteval
-  Link: https://en.cppreference.com/w/cpp/language/if#Consteval_if
-
-I did not try it, but looking at these, I believe that this would
-allow us to rewrite most of our macros into some constexpr functions.
-
-> > But the core issue is that before getting this support in Linux, we
-> > have to wait for this to be added to the C2Y draft, then implemented
-> > in the compilers (probably just reusing the C++ constexpr functions)
-> > and finally wait maybe one more decade for the C2Y support to reach
-> > the kernel. For reference the kernel supports C11 only from 2022=E2=80=
-=A6 So
-> > maybe we will see those in the kernel around 2037? Meanwhile, we have
-> > to deal with those hacks.
->
-> If we do not collaborate on proper solutions, then you might have
-> to wait much longer.
-
-I was invited to WG14 this September. For now, I am only lurking. The
-thing I have in mind right now is to write a paper to allow the use of
-static_assert() in expressions (i.e. make it return 0 on success).
-That should be a relatively small change, but would bring a nice
-quality of life improvement.
-
-For context, look at this:
-
-  https://lore.kernel.org/all/CAHk-=3DwjLSEcZ5LdW+3C+9rtjvNPHZT6zdk0POj67T5=
-k2ZpDbgA@mail.gmail.com/T/#m1ba33a804b4041154b72a1d0333f90ec7204c461
-
-And I will definitely follow the progress of constexpr functions in C2Y.
+...
 
 
-Yours sincerely,
-Vincent Mailhol
+> > > But the core issue is that before getting this support in Linux, we
+> > > have to wait for this to be added to the C2Y draft, then implemented
+> > > in the compilers (probably just reusing the C++ constexpr functions)
+> > > and finally wait maybe one more decade for the C2Y support to reach
+> > > the kernel. For reference the kernel supports C11 only from 2022=E2=
+=80=A6 So
+> > > maybe we will see those in the kernel around 2037? Meanwhile, we have
+> > > to deal with those hacks.
+> >=20
+> > If we do not collaborate on proper solutions, then you might have
+> > to wait much longer.
+>=20
+> I was invited to WG14 this September.=C2=A0For now, I am only lurking. Th=
+e
+> thing I have in mind right now is to write a paper to allow the use of
+> static_assert() in expressions (i.e. make it return 0 on success).
+> That should be a relatively small change, but would bring a nice
+> quality of life improvement.
+
+Excellent, then I was complaining to the wrong person.=20
+
+
+Martin
+
+>=20
+> For context, look at this:
+>=20
+>   https://lore.kernel.org/all/CAHk-=3DwjLSEcZ5LdW+3C+9rtjvNPHZT6zdk0POj67=
+T5k2ZpDbgA@mail.gmail.com/T/#m1ba33a804b4041154b72a1d0333f90ec7204c461
+>=20
+> And I will definitely follow the progress of constexpr functions in C2Y.
+>=20
+>=20
+> Yours sincerely,
+> Vincent Mailhol
+
