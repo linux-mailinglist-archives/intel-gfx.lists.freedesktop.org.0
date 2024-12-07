@@ -2,87 +2,83 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 150BD9E7FFB
-	for <lists+intel-gfx@lfdr.de>; Sat,  7 Dec 2024 13:59:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 770949E8172
+	for <lists+intel-gfx@lfdr.de>; Sat,  7 Dec 2024 19:08:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ABAD610E22C;
-	Sat,  7 Dec 2024 12:59:20 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="BG3tLMGs";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 835AB10E64A;
+	Sat,  7 Dec 2024 18:08:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com
- [209.85.167.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E03610E22C
- for <intel-gfx@lists.freedesktop.org>; Sat,  7 Dec 2024 12:59:19 +0000 (UTC)
-Received: by mail-lf1-f48.google.com with SMTP id
- 2adb3069b0e04-53e3a227b82so733066e87.0
- for <intel-gfx@lists.freedesktop.org>; Sat, 07 Dec 2024 04:59:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1733576358; x=1734181158; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:references
- :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
- :date:message-id:reply-to;
- bh=ljXro3CUSDnlyB+6+WZ7VT4s5tTUnVQ1S4YV7erXPLE=;
- b=BG3tLMGs/zJN1ESGNKLGGyUTVzcJ01bLLvXwBmY5jPtbHn1R4Dqj9vSNURGEqPzsw3
- Ze+BhYbktG8flrEsSHh7IRIQzWjtPSqCF3UfHXtutZQi5QIFYxWp1inWaTReSbDRgdAi
- mbvtyaLeqHhgFmKyvTJg1ErlEKs9WETwkKsCatl6TaZCzZLnQ3krwIGjlFRylVjO5EMq
- 0LsUSNwa2HNo4ll3SwoX5q8/nbyIYsYYW9vsvfLva9dbAMBLqC6GAMdV7HFfMrL2u+JE
- OtVj6J2xSzIaMIDi2v7Vzviz7YjMae03jGg3IhhE8M3Fh0RTgcH70ehIN+SAXzOiqn98
- CAWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1733576358; x=1734181158;
- h=content-transfer-encoding:mime-version:message-id:references
- :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=ljXro3CUSDnlyB+6+WZ7VT4s5tTUnVQ1S4YV7erXPLE=;
- b=bfbTcbmG8StSfMgduRYgdkjU0x19FfduUnobpWLkOzgJiIM9/Pt2zDsGHCpEqYH7Do
- VkPIkavTswhTdth7HjOrSk4xuvblrL1Sq+RvelOoauPDGRaSpghkabUvUhjWsSVzDaf3
- h8bGNkychKR3+TXGiuaFel5ZlBC+MFkaBJ0dtbKOKxYCMRb/u2oLWcBsm5PUDfFCJbjm
- fqemQIo95tjoj+lTaWENz8iZw+sCNcemcxFCJi9Y6ZwdDiez/S/qHzZsdWxbOOtRrWsB
- sy/ZlkVIboQ3OFQOZhOA3R7M8Pbqnkk4g3VewviLVru10Z346xcr6SSZoA+rTG4Pphz0
- 2hew==
-X-Forwarded-Encrypted: i=1;
- AJvYcCU6QrfCd0taFk3xsXOa6I6suiq7aLHtz5A5E3tjqEFp1NbP8181sq3cSGyniraNcUxYlLWRDjRGihk=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy32a0B0FSjwdNK22k4IC4pWbEzhPfyk2Gqj4zeuQfaOQwBiZia
- HAl8oULvj/HiHWU3PSDsDqsxKRjMvBtysNhYbPdFBMfWEC9S7MfE97wH/SgAJIzMS533w6NWkDH
- 7
-X-Gm-Gg: ASbGncvZntNaJsaKH14V/PxPqHptu5jtIVrnWgbgdYWvJwmtxQ+URehUdWD3inKIlsq
- mKVLmz8WGYehJMTfIRKg5fVvhOPrf5WK0Jol06sQY0XiXiuBVTgUOS3g9CIaiQeUtTf/VgVwu0P
- W9/iV9+b9S8KSLO2P163DIWQ6JVX1bRYupEFJpIERwVwFFMnY32k9+cx0JRpZilmrFn62AYRJ2l
- B+hpeIxjidRJ1CsJI18Blbl1ogfYnzEMHjmh1B6AX0HzteVTrHDSw2SuQgeURhjvXXvm16UQu3z
- /Jrpf9mGwCrfp8TT1w==
-X-Google-Smtp-Source: AGHT+IFQlF2BySpXoU/nr6i19DJQ8jQnT7ycVq1vckv++vHKocUoyXjUsvgg/+mbJM5H/Bl1OILXRA==
-X-Received: by 2002:a05:6512:33ca:b0:53e:28e0:cde5 with SMTP id
- 2adb3069b0e04-53e2c2c29f8mr3287001e87.31.1733576357453; 
- Sat, 07 Dec 2024 04:59:17 -0800 (PST)
-Received: from [127.0.0.1] (85-76-115-145-nat.elisa-mobile.fi. [85.76.115.145])
- by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-53e3ac318a8sm170700e87.177.2024.12.07.04.59.14
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sat, 07 Dec 2024 04:59:16 -0800 (PST)
-Date: Sat, 07 Dec 2024 14:59:13 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-Subject: RE: [PATCHv2 01/10] drm/crtc: Add histogram properties
-User-Agent: Thunderbird for Android
-In-Reply-To: <IA0PR11MB73079CFC62FE11A90C386CE6BA312@IA0PR11MB7307.namprd11.prod.outlook.com>
-References: <20241204091456.1785858-1-arun.r.murthy@intel.com>
- <s3gkb36ga2pxmxocrhcjp5pcgbewx4x3joiyrpld3th4r4fvyi@rkpgbu4ekst3>
- <IA0PR11MB7307F22883ACF3AD873C3697BA302@IA0PR11MB7307.namprd11.prod.outlook.com>
- <CAA8EJpp4HjyEL9XSLzXr6tG7+8M2FmZO1S2WrLXmP64J_aKs-w@mail.gmail.com>
- <DM4PR11MB7302BD8409DEC33EF2F1B0BFBA302@DM4PR11MB7302.namprd11.prod.outlook.com>
- <fev637ue37cbc5bstvqqvstserp75khqewpof3pc4loshnpghl@vp33ww6i6rdn>
- <IA0PR11MB73079CFC62FE11A90C386CE6BA312@IA0PR11MB7307.namprd11.prod.outlook.com>
-Message-ID: <AA8D959A-FFF9-4EE4-8C19-57E2F64BA4A7@linaro.org>
+Received: from eu-smtp-delivery-151.mimecast.com
+ (eu-smtp-delivery-151.mimecast.com [185.58.85.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 96BCE10E64A
+ for <intel-gfx@lists.freedesktop.org>; Sat,  7 Dec 2024 18:08:32 +0000 (UTC)
+Received: from AcuMS.aculab.com (156.67.243.121 [156.67.243.121]) by
+ relay.mimecast.com with ESMTP with both STARTTLS and AUTH (version=TLSv1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ uk-mta-90-ibaGRZ9SPyGPO9gonrHa7A-1; Sat, 07 Dec 2024 18:08:29 +0000
+X-MC-Unique: ibaGRZ9SPyGPO9gonrHa7A-1
+X-Mimecast-MFC-AGG-ID: ibaGRZ9SPyGPO9gonrHa7A
+Received: from AcuMS.Aculab.com (10.202.163.6) by AcuMS.aculab.com
+ (10.202.163.6) with Microsoft SMTP Server (TLS) id 15.0.1497.48; Sat, 7 Dec
+ 2024 18:07:38 +0000
+Received: from AcuMS.Aculab.com ([::1]) by AcuMS.aculab.com ([::1]) with mapi
+ id 15.00.1497.048; Sat, 7 Dec 2024 18:07:38 +0000
+From: David Laight <David.Laight@ACULAB.COM>
+To: 'Vincent Mailhol' <vincent.mailhol@gmail.com>, Martin Uecker
+ <muecker@gwdg.de>
+CC: Linus Torvalds <torvalds@linux-foundation.org>, Luc Van Oostenryck
+ <luc.vanoostenryck@gmail.com>, Nathan Chancellor <nathan@kernel.org>, "Nick
+ Desaulniers" <ndesaulniers@google.com>, Bill Wendling <morbo@google.com>,
+ Justin Stitt <justinstitt@google.com>, Yury Norov <yury.norov@gmail.com>,
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>, Kees Cook <kees@kernel.org>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Suzuki K Poulose <suzuki.poulose@arm.com>,
+ Mike Leach <mike.leach@linaro.org>, James Clark <james.clark@linaro.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>, Rikard Falkeborn
+ <rikard.falkeborn@gmail.com>, "linux-sparse@vger.kernel.org"
+ <linux-sparse@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>, "llvm@lists.linux.dev"
+ <llvm@lists.linux.dev>, "linux-hardening@vger.kernel.org"
+ <linux-hardening@vger.kernel.org>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
+ <dri-devel@lists.freedesktop.org>, "coresight@lists.linaro.org"
+ <coresight@lists.linaro.org>, "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>
+Subject: RE: [PATCH 02/10] compiler.h: add is_const() as a replacement of
+ __is_constexpr()
+Thread-Topic: [PATCH 02/10] compiler.h: add is_const() as a replacement of
+ __is_constexpr()
+Thread-Index: AQHbROFPJXcuwP9wN0+yRzIQ2cx/pbLWa+gggAFf14CAACMqUIAC5S1rgAA568A=
+Date: Sat, 7 Dec 2024 18:07:38 +0000
+Message-ID: <00d233a607a84f73942cd706cc29f088@AcuMS.aculab.com>
+References: <20241203-is_constexpr-refactor-v1-0-4e4cbaecc216@wanadoo.fr>
+ <20241203-is_constexpr-refactor-v1-2-4e4cbaecc216@wanadoo.fr>
+ <1d807c7471b9434aa8807e6e86c964ec@AcuMS.aculab.com>
+ <CAMZ6RqLJLP+4d8f5gLfBdFeDVgqy23O+Eo8HRgKCthqBjSHaaw@mail.gmail.com>
+ <9ef03cebb4dd406885d8fdf79aaef043@AcuMS.aculab.com>
+ <abdd7862f136aa676b2d2c324369f4a43ff9909c.camel@gwdg.de>
+ <CAMZ6RqKzGiRNMeLsQKRNrxvW_bXB-kEi11udQ82kKX6tGCrqcg@mail.gmail.com>
+ <9607300dfca5d71ca9570b1e1de0864e524f356b.camel@gwdg.de>
+ <CAMZ6RqJGqBqvgxzp5yPFY1pk0WkkwEMM34qU-dZ3kXfsnKaqEg@mail.gmail.com>
+ <429e7c6713ecc94494d9107e5f5a1f0c8e854f23.camel@gwdg.de>
+ <CAMZ6RqL+iS6GVsY20=O6GdQakRpp7XdewZJsUbmE5OCsKaHR6Q@mail.gmail.com>
+In-Reply-To: <CAMZ6RqL+iS6GVsY20=O6GdQakRpp7XdewZJsUbmE5OCsKaHR6Q@mail.gmail.com>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.202.205.107]
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: EHisBwVjpexQDf-5mCO3-BRkP4T4czP1vfRhIQcfZB4_1733594908
+X-Mimecast-Originator: aculab.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: base64
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,112 +94,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 6 December 2024 12:33:38 EET, "Murthy, Arun R" <arun=2Er=2Emurthy@intel=
-=2Ecom> wrote:
->> On Thu, Dec 05, 2024 at 04:29:55PM +0000, Murthy, Arun R wrote:
->> > > > > -----Original Message-----
->> > > > > From: Dmitry Baryshkov <dmitry=2Ebaryshkov@linaro=2Eorg>
->> > > > > Sent: Wednesday, December 4, 2024 5:17 PM
->> > > > > To: Murthy, Arun R <arun=2Er=2Emurthy@intel=2Ecom>
->> > > > > Cc: intel-xe@lists=2Efreedesktop=2Eorg;
->> > > > > intel-gfx@lists=2Efreedesktop=2Eorg;
->> > > > > dri- devel@lists=2Efreedesktop=2Eorg
->> > > > > Subject: Re: [PATCHv2 01/10] drm/crtc: Add histogram properties
->> > > > >
->> > > > > On Wed, Dec 04, 2024 at 02:44:56PM +0530, Arun R Murthy wrote:
->> > > > > > Add variables for histogram drm_property, its corrsponding
->> > > > > > crtc_state variables and define the structure pointed by the =
-blob
->> property=2E
->> > > > > > struct drm_histogram defined in include/uapi/drm/drm_mode=2Eh
->> > > > > > The blob data pointer will be the address of the struct drm_h=
-istogram=2E
->> > > > > > The struct drm_histogram will be used for both reading the
->> > > > > > histogram and writing the image enhanced data=2E
->> > > > > > struct drm_histogram {
->> > > > > >     u64 data_ptr;
->> > > > > >     u32 nr_elements;
->> > > > > > }
->> > > > > > The element data_ptr holds the address of the histogram
->> > > > > > statistics data and 'nr_elements' represents the number of
->> > > > > > elements pointed by the pointer held in data_ptr=2E
->> > > > > > The same element data_ptr in teh struct drm_histogram when
->> > > > > > writing the image enahnced data from user to KMD holds the
->> > > > > > address to pixel
->> > > factor=2E
->> > > > > >
->> > > > > > v2: Added blob description in commit message (Dmitry)
->> > > > >
->> > > > > No, it is not a proper description=2E What is the actual data
->> > > > > format inside the blob? If I were to implement drm_histogram su=
-pport
->> for e=2Eg=2E
->> > > > > VKMS, what kind of data should the driver generate? What is the
->> > > > > format of the response data from the userspace app? The ABI
->> > > > > description should allow an independent but completely
->> > > > > compatible implementation to be written from scratch=2E
->> > > > >
->> > > > The histogram is generated by the hardware=2E
->> > > > Histogram represents integer which is the pixel count and when it
->> > > > comes to the IET(Image Enhancement) to be written back to hardwar=
-e
->> > > > its again an integer, pixel factor=2E
->> > > > Is this the information that you expected to be added or somethin=
-g else?
->> > >
->> > > You are defining the interface between the kernel and userspace=2E =
-The
->> > > interface should be defined in a way that allows us (developers) to
->> > > understand the data, make a decision whether it fits a generic
->> > > namespace (which means that other drivers must be able to implement
->> > > the same interface), it fits namespace specific to i915 / Xe (then
->> > > we will have platform-specific properties for the feature that migh=
-t
->> > > be implemented by other platforms) or it doesn't fit anything at al=
-l=2E
->> > >
->> > Sure will add the above information in the commit message and also in=
- the
->> kernel doc=2E
->> > If there are no other review comments, then I will push the next vers=
-ion of
->> patch implementing your comments=2E
->> >
->> > > So the documentation must contain the specification of the binary
->> > > data inside the blobs=2E An IGT, modetest or some other compositor
->> > > must be able to parse the data and generate (some) response without=
- using
->> your library=2E
->> > >
->> > IGT patch can be located at
->> https://patchwork=2Efreedesktop=2Eorg/series/135789/ This include test =
-with and
->> without library=2E
->> > The corresponding compositor changes can be located at
->> > https://gitlab=2Egnome=2Eorg/GNOME/mutter/-
->> /merge_requests/3873/diffs?comm
->> > it_id=3D270808ca7c8be48513553d95b4a47541f5d40206
->>=20
->> I know=2E But that's not a replacement for the documentation=2E Can I i=
-mplement
->> an alternative implementation without using your library?
->>=20
->Yes, exposure of the properties is being done in this series and also sup=
-port
->from hardware is being done=2E The library/algorithm is open and the
->community is free to add their own and make use of the histogram and the
->image enhancement feature posted in this series
-
-Please excuse me if I am not clear enough=2E Please provide a description =
-of the data format used by these properties=2E If you need a criteria wheth=
-er to consider the specification to be good enough, here is one for you: by=
- using only the spec it should be possible to implement histogram support, =
-compatible with your library, in the vkms driver=2E Anything else is underd=
-ocumented=2E I don't think that we can accept uABI based on the undocumente=
-d blobs=2E
-
->
->Thanks and Regards,
->Arun R Murthy
->-------------------
+RnJvbTogVmluY2VudCBNYWlsaG9sDQo+IFNlbnQ6IDA3IERlY2VtYmVyIDIwMjQgMTM6NTENCi4u
+Lg0KPiA+ID4gSXQgc2VlbXMgdG8gbWUgdGhhdCB0aGUgbG9uZyB0ZXJtIHNvbHV0aW9uIHRvIHRo
+aXMgcHJvYmxlbSBhcmUgdGhlDQo+ID4gPiBjb25zdGV4cHIgZnVuY3Rpb25zLg0KPiA+DQo+ID4g
+SG93IHdvdWxkIGNvbnN0ZXhwciBmdW5jdGlvbnMgaGVscCBoZXJlPyAgKEkgYW0gYSBiaXQgc2Nl
+cHRpY2FsIGFib3V0DQo+ID4gY29uc3RleHByIGZ1bmN0aW9ucy4pDQo+IA0KPiBJIHdhcyB0aGlu
+a2luZyBvZiBzb21lIG9mIHRoZSAic2lkZSBmZWF0dXJlcyIgb2YgY29uc3RleHByIGZ1bmN0aW9u
+cy4gTmFtZWx5Og0KPiANCj4gICAtIHN0ZDo6aXNfY29uc3RhbnRfZXZhbHVhdGVkDQo+ICAgTGlu
+azogaHR0cHM6Ly9lbi5jcHByZWZlcmVuY2UuY29tL3cvY3BwL3R5cGVzL2lzX2NvbnN0YW50X2V2
+YWx1YXRlZA0KPiANCj4gICAtIGlmIGNvbnN0ZXZhbA0KPiAgIExpbms6IGh0dHBzOi8vZW4uY3Bw
+cmVmZXJlbmNlLmNvbS93L2NwcC9sYW5ndWFnZS9pZiNDb25zdGV2YWxfaWYNCj4gDQo+IEkgZGlk
+IG5vdCB0cnkgaXQsIGJ1dCBsb29raW5nIGF0IHRoZXNlLCBJIGJlbGlldmUgdGhhdCB0aGlzIHdv
+dWxkDQo+IGFsbG93IHVzIHRvIHJld3JpdGUgbW9zdCBvZiBvdXIgbWFjcm9zIGludG8gc29tZSBj
+b25zdGV4cHIgZnVuY3Rpb25zLg0KDQpJSVJDIChhbmQgdHJ5aW5nIHRvIHVuZGVyc3RhbmQgdGhl
+IGRlZmluaXRpb25zKSB0aGV5IGFyZSBiYWNrd2FyZHMNCmZyb20gd2hhdCB0aGUga2VybmVsIHRl
+c3RzIGFyZSB0cnlpbmcgdG8gYWNoaWV2ZS4NClRoZSBrZXJuZWwgd2FucyB0byBhZGQgYWRkaXRp
+b25hbCBjb21waWxlLXRpbWUgdGVzdHMgd2hlcmUgcG9zc2libGUuDQpUaGlzIGlzIG9mdGVuIHJl
+c3RyaWN0ZWQgdG8gY2hlY2tpbmcgdmFsdWVzIHRoYXQgYXJlIGNvbXBpbGUgdGltZQ0KY29uc3Rh
+bnRzIChmb3Igc29tZSBkZWZpbml0aW9uIG9mIGNvbnN0YW50KS4NClRoZSBDKysgJ2NvbnN0ZXhw
+cicgaXMgYWJvdXQgZGV0ZXJtaW5pbmcgdGhlIGNvbnRleHQgaW4gd2hpY2ggYQ0KZnVuY3Rpb24g
+aXMgY2FsbGVkLg0KDQpSZW1lbWJlciBpbiBDICdzdGF0aWMgaW50IHggPSBleHByOycgcmVxdWly
+ZXMgdGhhdCAnZXhwcicgaXMgYSBjb25zdGFudA0Kc28gdGhhdCB0aGUgYXNtIGNhbiBjb250YWlu
+ICd4OiAud29yZCB2YWx1ZScsIGJ1dCBDKysgaXMgcGVyZmVjdGx5IHdpbGxpbmcNCnRvIGFkZCBh
+biBlbnRyeSB0byB0aGUgJ2dsb2JhbCBjb25zdHJ1Y3RvcnMnIGFuZCBjYWxsIGEgZnVuY3Rpb24g
+Zm9yIHlvdS4NClRoaXMgaXMgbm90IHVzZWZ1bCBkZWZhdWx0IGJlaGF2aW91ci4NClRoZSAnY29u
+c3RleHByJyBzdHVmZiBzZWVtcyB0byBiZSBhYm91dCBkZXRlY3Rpbmcgc29tZSBvZiB0aGVzZSBj
+YXNlcw0Kc28gdGhlIGZ1bmN0aW9uIGNhbiByZXR1cm4gYSBkaWZmZXJlbnQgdmFsdWUgLSBhbmQg
+dGhlbiBwb3NzaWJseSBiZQ0Kb3B0aW1pc2VkIGF3YXkuDQpUaGUga2VybmVsIGlzIHRyeWluZyB0
+byBnZXQgc29tZSB0ZXN0IGNvdmVyYWdlIGF0IGNvbXBpbGUgdGltZQ0Kd2l0aG91dCBhZmZlY3Rp
+bmcgcnVuLXRpbWUuDQoNClRoZSBjb21waWxlLXRpbWUgY2hlY2tzIGFsbCBnZXQgbW9yZSBjb21w
+bGljYXRlZCBiZWNhdXNlIHRoaW5ncyBsaWtlDQppbml0aWFsaXNlcnMgaGF2ZSB0byBiZSAnaW50
+ZWdlciBjb25zdGFudCBleHByZXNzaW9ucycgcmF0aGVyIHRoYW4gdGhlDQptb3JlIHJlbGF4ZWQg
+J2NvbXBpbGUgdGltZSBjb25zdGFudCcgKGFycmF5IGJvdW5kcyBwcm9iYWJseSBkbyBuZWVkDQp0
+byBiZSB0aGUgZm9ybWVyKS4NClRoaXMgaXMgKHByb2JhYmx5KSB3aGF0IHN0b3BzICh7IGV4cHI7
+IH0pIGJlaW5nIHVzZWQgZm9yIGluaXRpYWxpc2Vycw0KZXZlbiB3aGVuIHRoZSB2YWx1ZSBpcyBh
+IGNvbXBpbGUgdGltZSBjb25zdGFudC4NClJlbGF4aW5nIHRoYXQgcnVsZSB3b3VsZCBiZSB1c2Vm
+dWwuDQoNClRoZW4gdGhlcmUgaXMgdGhlIGJyYWluLWRlYWQgZGVmaW5pdGlvbiBvZiBfU3RhdGlj
+X2Fzc2VydCgpIHRoYXQgbWFrZXMNCml0IHByZXR0eSBuZWFyIGNvbXBsZXRlbHkgdXNlbGVzcyAo
+SSBjYW4ndCByZW1lbWJlciBMaW51cydzIHdvcmRzKSBmb3INCmFueXRoaW5nIG5vbi10cml2aWFs
+Lg0KVG8gYmUgdXNlZnVsIGl0IHdvdWxkIG5lZWQgdG8gYmUgZGVmZXJyZWQgdW50aWwgYWZ0ZXIg
+dGhlIG9wdGltaXNlcg0KaGFzIGRvbmUgYWxsIGl0cyBwcm9jZXNzaW5nIGFuIG9ubHkgdHJpZ2dl
+ciBpZiB0aGUgY2FsbCBoYXNuJ3QgYmVlbg0Kb3B0aW1pc2VkIGF3YXkgYW5kIHRoZSBjb25kaXRp
+b24gaXMgZWl0aGVyIG5vbi1jb25zdGFudCBvciBmYWxzZS4NCmNsYW5nJ3MgJ2luZmluaXRlIHdp
+c2RvbScgZGVjaWRlZCB0byB1bmNvbmRpdGlvbmFsbHkgb3V0cHV0IHRoZSBjcHANCm91dHB1dCBv
+ZiB0aGUgZXhwcmVzc2lvbiBpbiB0aGUgZXJyb3IgbWVzc2FnZSAoZXZlbiB3aGVuIHRoZXJlIHdh
+cw0KYSBjYWxsZXIgcHJvdmlkZWQgbWVzc2FnZSkuIFdoZW4gbWluKCkgd2FzIHVzaW5nIGl0IHRo
+YXQgY291bGQgYmUNCmEgZmV3IGh1bmRyZWQgYnl0ZXMgb2YgaW1wZW5ldHJhYmxlIHRleHQgaW4g
+YSBub3JtYWwgY2FsbCAtIG5ldmVyDQptaW5kIHRoZSBuZXN0ZWQgb25lcyB0aGF0IGhpdCAxMCtN
+QiBiZWNhdXNlIG9mIGEgcmVxdWlyZW1lbnQgdG8gcmV0dXJuDQonY29uc3RhbnQgaW50ZWdlciBl
+eHByZXNzaW9ucycuDQoNCkl0IHdvdWxkIGFsc28gYmUgdXNlZnVsIHRvIGhhdmUgYSAnd2Fybmlu
+ZycgZm9ybSAob3IgZXZlbiBhbiAnaW5mbycNCnRoYXQgaXNuJ3QgYW4gZXJyb3IgZXZlbiB3aXRo
+IC1XZXJyb3IpLg0KDQpUaGVuIHlvdSBnZXQgX0dlbmVyaWMoKS4NCldURiBkbyB0aGUgdW5zZWxl
+Y3RlZCBjYXNlcyBub3Qgb25seSBoYXZlIHRvIGJlIHZhbGlkIEMgYnV0IGFsc28gZ2V0DQpjaGVj
+a2VkIGZvciBzb21lIHdhcm5pbmdzIChsaWtlIC1Xc2lnbi1jb21wYXJlIGFuZCAndW5zaWduZWQg
+Pj0gMCcpLg0KDQouLi4NCj4gSSB3YXMgaW52aXRlZCB0byBXRzE0IHRoaXMgU2VwdGVtYmVyLiBG
+b3Igbm93LCBJIGFtIG9ubHkgbHVya2luZy4gVGhlDQo+IHRoaW5nIEkgaGF2ZSBpbiBtaW5kIHJp
+Z2h0IG5vdyBpcyB0byB3cml0ZSBhIHBhcGVyIHRvIGFsbG93IHRoZSB1c2Ugb2YNCj4gc3RhdGlj
+X2Fzc2VydCgpIGluIGV4cHJlc3Npb25zIChpLmUuIG1ha2UgaXQgcmV0dXJuIDAgb24gc3VjY2Vz
+cykuDQo+IFRoYXQgc2hvdWxkIGJlIGEgcmVsYXRpdmVseSBzbWFsbCBjaGFuZ2UsIGJ1dCB3b3Vs
+ZCBicmluZyBhIG5pY2UNCj4gcXVhbGl0eSBvZiBsaWZlIGltcHJvdmVtZW50Lg0KDQpBZGRpbmcg
+Z2NjJ3MgKHsgZXhwcjsgfSkgdG8gdGhlIHN0YW5kYXJkIGFuZCBhbGxvd2luZyBpdHMgb3V0cHV0
+IHRvDQpiZSBhcyAnY29uc3RhbnQnIGFzIGFueXRoaW5nIGluICdleHByJyB3b3VsZCBzb2x2ZSBh
+IGxvdCBvZiBpc3N1ZXMuDQoNCllvdSBuZWVkIHRvIGJlIGFibGUgdG8gaGF2ZToNCglpZiAoeCkN
+CgkJc3RhdGljX2Fzc2VydCh5KQ0KZm9yIHN0YXRpY19hc3NlcnQoKSB0byBiZSB1c2FibGUgYXMg
+dGhlIG1haW4gbWV0aG9kIG9mIHJlcG9ydGluZw0KdGhlc2Ugc29ydCBvbiBtZXNzYWdlcy4NClRo
+ZSBiZXN0IG9uZSBpbiB0aGUga2VybmVsIChhYil1c2VzIHRoZSBtZXNzYWdlIGZvciBjYWxsaW5n
+IGEgZGVwcmVjYXRlZA0KZnVuY3Rpb24uDQoNClRoZXJlIGFyZSBvdGhlciB0aGluZ3MgdGhhdCBn
+ZXQgYW5ub3lpbmcuDQpJIHVuZGVyc3RhbmQgd2h5IG9mZnNldG9mKCkgbmVlZHMgdG8gYmUgYSAn
+Y29tcGlsZSB0aW1lIGNvbnN0YW50JywNCmJ1dCB0aGF0IHNob3VsZCBvbmx5IGJlIGZvciBjb25z
+dGFudCBpbnB1dC4NClRoZXJlIGlzIG5vIHJlYXNvbiB3aHkgb2Zmc2V0b2YoeCwgeVtleHByZXNz
+aW9uXSkgc2hvdWxkIGJlIGludmFsaWQNCkMgZm9yIGEgbm9uLWNvbnN0YW50IGV4cHJlc3Npb24u
+DQooQWx0aG91Z2ggSSd2ZSBoYWQgaXNzdWVzIGV2ZW4gd2l0aCBhIGNvbnN0YW50IGV4cHJlc3Np
+b24gd2l0aCBhDQpjZXJ0YWluIGNvbXBpbGVyIEknbSBmb3JjZWQgdG8gdXNlIHNvbWV0aW1lcy4p
+DQoNCglEYXZpZA0KDQotDQpSZWdpc3RlcmVkIEFkZHJlc3MgTGFrZXNpZGUsIEJyYW1sZXkgUm9h
+ZCwgTW91bnQgRmFybSwgTWlsdG9uIEtleW5lcywgTUsxIDFQVCwgVUsNClJlZ2lzdHJhdGlvbiBO
+bzogMTM5NzM4NiAoV2FsZXMpDQo=
 
