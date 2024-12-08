@@ -2,44 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD9659E978B
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Dec 2024 14:43:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A0779E977D
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Dec 2024 14:43:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9EF1A10E78A;
-	Mon,  9 Dec 2024 13:43:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 193DF10E78F;
+	Mon,  9 Dec 2024 13:43:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gwdg.de header.i=@gwdg.de header.b="byU3IfeK";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gwdg.de header.i=@gwdg.de header.b="CJKS3qLo";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mx-2023-1.gwdg.de (mx-2023-1.gwdg.de [134.76.10.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B270910E012;
- Sun,  8 Dec 2024 12:38:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 227C310E250;
+ Sun,  8 Dec 2024 18:10:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=gwdg.de;
  s=2023-rsa; h=MIME-Version:Content-Transfer-Encoding:Content-Type:References:
  In-Reply-To:Date:CC:To:From:Subject:Message-ID:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=CYPZ6zhZQZZegU5YKzAwbOa7JzOMQMMoi9xo6uKq+Yo=; b=byU3IfeK/Jszh3px4gBXWsVxW4
- /Uy3hONFmadHud3NLgWfq93VfyrCzySJiBjGY46NRtsG0PTQ8UVc4PR7AgDtSIJqLAJkLA3syPYL6
- nkFWCkAkLylaC6XsqCc0WsaNIOKeN2D8IOjdmo//of3IyUSS/sgrXcfheXQ4zpEoatupVAUiGoAVl
- EomUTq2W0/3CLTbnEmtixebgfjOVO7rkINYp3CSPnt6aPMdKEfxYw7RQy6DGK3/S30Erx3MkajS49
- pF7KWi6Qami3L7TVwTQ6MUSACAnhnv+/wG2V4IQHLwhiacw28v9qP97n6GWPhzQScMCOGUH5OX7MT
- bFFz2glA==;
-Received: from xmailer.gwdg.de ([134.76.10.29]:42336)
+ bh=9FB2GPk7COCoX9cEFVKvQVosxysJZseEWA2qS7zkWkM=; b=CJKS3qLo2nmU8RTYUGjkHdxbqz
+ ns3qD6CiJJHSo/fxpi0OkfvH8JDQQZdboDlvM/X5DcOKtxOEKZHO1DDbUS7ibZ6KyG6Zk/SU7+Rph
+ Te6kIRiApeS89pXKvOVY+/VJ3wXYA9Z9G+I2/zCcCa/XvLG7AmRxVqASLRJcXP5LXQrdAXnUEcvrs
+ O2/01MVDPrEC4QD/XJf1NbP4rjXcQJ8Qs8VhOvKcazkXGe4hH97QTcLqKzLARCv8+BY4s5fBYP0Go
+ K8CQW9PwNvu3ayOiSb1QPTX1xyvg4/5600xSFeHb+Ar6vPZsB/cK/rcDMH/V4blTmcT3RaT4DwSed
+ W3JC06dw==;
+Received: from xmailer.gwdg.de ([134.76.10.29]:57248)
  by mailer.gwdg.de with esmtp (GWDG Mailer)
- (envelope-from <muecker@gwdg.de>) id 1tKGY8-004Y8O-3C;
- Sun, 08 Dec 2024 13:38:13 +0100
+ (envelope-from <muecker@gwdg.de>) id 1tKLk3-004b6U-2I;
+ Sun, 08 Dec 2024 19:10:51 +0100
 Received: from mbx19-fmz-06.um.gwdg.de ([10.108.142.65] helo=email.gwdg.de)
  by mailer.gwdg.de with esmtps (TLS1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
- (GWDG Mailer) (envelope-from <muecker@gwdg.de>) id 1tKGY8-0006nC-2q;
- Sun, 08 Dec 2024 13:38:12 +0100
+ (GWDG Mailer) (envelope-from <muecker@gwdg.de>) id 1tKLk3-000BW3-1w;
+ Sun, 08 Dec 2024 19:10:51 +0100
 Received: from vra-173-64.tugraz.at (10.250.9.200) by MBX19-FMZ-06.um.gwdg.de
  (10.108.142.65) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.1544.14; Sun, 8 Dec
- 2024 13:38:11 +0100
-Message-ID: <6658618490381cf5ec35edbb66f1478024174e67.camel@gwdg.de>
+ 2024 19:10:49 +0100
+Message-ID: <87dd9b7b52e7cea874c1899f56efdd3d7c5b7243.camel@gwdg.de>
 Subject: Re: [PATCH 02/10] compiler.h: add is_const() as a replacement of
  __is_constexpr()
 From: Martin Uecker <muecker@gwdg.de>
@@ -66,8 +66,8 @@ CC: Vincent Mailhol <mailhol.vincent@wanadoo.fr>, Luc Van Oostenryck
  <dri-devel@lists.freedesktop.org>, "coresight@lists.linaro.org"
  <coresight@lists.linaro.org>, "linux-arm-kernel@lists.infradead.org"
  <linux-arm-kernel@lists.infradead.org>
-Date: Sun, 8 Dec 2024 13:38:10 +0100
-In-Reply-To: <b71056c1b9e04aa383f2e5608c27290f@AcuMS.aculab.com>
+Date: Sun, 8 Dec 2024 19:10:49 +0100
+In-Reply-To: <e71fffb7ff0e4bf29692d006c0fe77c2@AcuMS.aculab.com>
 References: <20241203-is_constexpr-refactor-v1-0-4e4cbaecc216@wanadoo.fr>
  <20241203-is_constexpr-refactor-v1-2-4e4cbaecc216@wanadoo.fr>
  <1d807c7471b9434aa8807e6e86c964ec@AcuMS.aculab.com>
@@ -83,15 +83,17 @@ References: <20241203-is_constexpr-refactor-v1-0-4e4cbaecc216@wanadoo.fr>
  <CAHk-=wjsfYYKBYuW8_6yKjdwHih0MMa2GwUJh_LHcuUNFR7-QA@mail.gmail.com>
  <9d9567dbdaf39688bbd0d240e29dec826a5931ee.camel@gwdg.de>
  <b71056c1b9e04aa383f2e5608c27290f@AcuMS.aculab.com>
+ <6658618490381cf5ec35edbb66f1478024174e67.camel@gwdg.de>
+ <e71fffb7ff0e4bf29692d006c0fe77c2@AcuMS.aculab.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.46.4-2 
 MIME-Version: 1.0
 X-Originating-IP: [10.250.9.200]
-X-ClientProxiedBy: MBX19-GWD-05.um.gwdg.de (10.108.142.58) To
+X-ClientProxiedBy: MBX19-GWD-03.um.gwdg.de (10.108.142.56) To
  MBX19-FMZ-06.um.gwdg.de (10.108.142.65)
-X-EndpointSecurity-0xde81-EV: v:7.9.17.458, d:out, a:y, w:t, t:6, sv:1733639668,
- ts:1733661492
+X-EndpointSecurity-0xde81-EV: v:7.9.17.458, d:out, a:y, w:t, t:5, sv:1733649613,
+ ts:1733681451
 X-Virus-Scanned: (clean) by clamav
 X-Spam-Level: -
 X-Mailman-Approved-At: Mon, 09 Dec 2024 13:43:28 +0000
@@ -110,114 +112,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Am Sonntag, dem 08.12.2024 um 11:26 +0000 schrieb David Laight:
+Am Sonntag, dem 08.12.2024 um 16:48 +0000 schrieb David Laight:
 > From: Martin Uecker
-> > Sent: 07 December 2024 23:52
+> > Sent: 08 December 2024 12:38
+
+...
 > ...
-> > While the compiler can not automatically prove every use
-> > of VLA bounded, it can reliably diagnose the cases where it
-> > can=C2=A0*not* see that it is bounded. Consider this example:
+> > So a lot of this macro business seems to be necessary
+> > to avoid creating warnings for ISO VLAs when instead you really
+> > care about the created code not having a dynamic allocation on
+> > the stack.
+>=20
+> A lot of the 'macro business' for min/max is avoiding unexpected
+> conversion of negative values to very large unsigned ones.
+> And no, -Wsign-compare is spectacularly useless.
+
+This is a different topic, but what would be needed here?
+>=20
+> ..
+> > The issue here is that we miss a language feature in C to
+> > introduce local variables that help avoid multiple expansion
+> > of macro arguments.  GCC's statement expressions and __auto_type
+> > are a solution
+>=20
+> or historically 'typeof(x) _x =3D x'
+>=20
+> > #define foo(x) ({ __auto_type __x =3D (x); ... })
 > >=20
-> > void oob(int n, char p[n]);
-> > void f(unsigned int n)
-> > {
-> >     char buf[MIN(n, 100)]; // bounded
-> >     oob(n + 10, buf); // warning
-> > }
-> ...
+> > but this runs into the current limitations that ({ }) can not be used
+> > at file-scope and can not return constant expressions.
+> >=20
+> >=20
+> > For other reasons I was thinking about adding names to _Generic,
+> > as in
+> >=20
+> > _Generic(x, int i: (i + 1));
+> >=20
+> > because one design issues with _Generic is that it typechecks
+> > also the untaken associations and there the 'x' then has the wrong
+> > type.  Having an 'i' with the right type which is set to the value
+> > of 'x' when the branch is taken would fix this issue.
 >=20
-> The kernel stack has to have enough space for the [100]
-> so the full amount might as well always be allocated.
-> The chance of 'trading off' stack usage with another function
-> in the same call stack that is guaranteed to use less than
-> its maximum is about zero.
+> That looks even more syntactically obscure than _Generic itself.
+> Why does it need to do more than very simple syntax analysis of
+> the unwanted branches=C2=A0
 
-In numerical computing this is a big motivation because
-you can reduce stack usage in recursive divide-and-conquer
-algorithms.  For the kernel, I agree this is not a
-compelling use case, and the better motivation would be
-precise bounds checking and clearer semantics for buffer
-management. =C2=A0
+This would be possible and GCC does turn of some warnings in
+the unwanted branches.  I added this to GCC 14 I think.
 
-But don't get me wrong, if the kernel is happier without VLA
-this is fine with me, I am just trying to understand the
-underlying issues better and the "VLAs are security problem"
-or "VLA use more stack"  arguments do not convince me, while
-the points Linus raises make much more sense to me.
+But so far, ISO C requires that all branches are valid and this
+was an intentional design decision to detect errors.
+
+> - or they could automatically be analysed
+> with the named variable have the specified type?
+
+Inside a macro there is no variable 'x' but
+the macro argument 'x' is replaced by some expression.
+
+Also there is the general problem of multiple expansion which
+can only be addressed by introducing an identifier.
 
 >=20
-> The VLA code also adds an extra stack frame, this pretty much
-> pessimises everything.
+> > But this feature might also allow writing macros that avoid
+> > double expansion without requiring statement expressions (which
+> > are more difficult to fix):
+> >=20
+> > #define foo(x) _Generic(x, int i: (i + i));
+>=20
+> How can that work for things like min() that have multiple arguments?
 
-Yes, but this is something which seems could be improved
-on the compiler side, e.g. by simply transforming
-small VLAs automatically to a fixed size array while
-preserving their semantics for bound checking.
+You would need to nest it:
 
+#define foo(x, y) _Generic(x, int i: _Generic(y, int j: i + j))
 
-> This happened for 'constant' sizes from min(16, sizeof (struct))
-> because min() needs to be a statement function to avoid re-evaluating
-> its arguments.
+Otherwise one could invent syntax for matching multiple arguments
+at the same time.
 
-Can you clarify this?  If the VLA size is constant, even when
-it is not an integer constant expression according to ISO C,
-the compiler should not produce worse code.  For example,
+There is still the problem of name collision, but this is already
+a problem with=C2=A0
 
-void g(void*);
+({ int i =3D (x); int j =3D (x); i + j; })=20
 
-void foo()
-{
-    int n =3D 10;
-    char buf[n];
-    g(buf);
-}
+> Not going to work if you need __auto_type either.
 
-void bar()
-{
-    char buf[10];
-    g(buf);
-}
-
-So a lot of this macro business seems to be necessary
-to avoid creating warnings for ISO VLAs when instead you really
-care about the created code not having a dynamic allocation on
-the stack.
-
-So one might wonder whether a compiler warning that warns more
-specifically about this would help.
-
-> (The version of min() that managed to return constant from constant
-> input just exploded in cpp, partially responsible for 18MB lines
-> being fed into the compiler part.)
-
-The issue here is that we miss a language feature in C to
-introduce local variables that help avoid multiple expansion
-of macro arguments.  GCC's statement expressions and __auto_type
-are a solution
-
-#define foo(x) ({ __auto_type __x =3D (x); ... })
-
-but this runs into the current limitations that ({ }) can not be used
-at file-scope and can not return constant expressions.
+If we allowed an identifier for the default branch too, this
+would work:  _Generic(x, default i: (2 * i))
 
 
-For other reasons I was thinking about adding names to _Generic,
-as in
+But hey, I am not saying  this is perfect, it is just
+a possible improvement I was thinking about and which could be
+implemented easily, would automatically return constant expressions,
+and could be used at file scope without further changes.
 
-_Generic(x, int i: (i + 1));
-
-because one design issues with _Generic is that it typechecks=C2=A0
-also the untaken associations and there the 'x' then has the wrong
-type.  Having an 'i' with the right type which is set to the value
-of 'x' when the branch is taken would fix this issue.
-
-But this feature might also allow writing macros that avoid
-doublel expansion without requiring statement expressions (which
-are more difficult to fix):
-
-#define foo(x) _Generic(x, int i: (i + i));
-
+There are certainly better long-term solutions.
 
 Martin
-
 
