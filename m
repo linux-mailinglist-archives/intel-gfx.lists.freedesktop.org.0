@@ -2,73 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D911F9E830E
-	for <lists+intel-gfx@lfdr.de>; Sun,  8 Dec 2024 02:59:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E3A79E84A8
+	for <lists+intel-gfx@lfdr.de>; Sun,  8 Dec 2024 12:27:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FAB410E251;
-	Sun,  8 Dec 2024 01:59:01 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="FI/xMRdb";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85B4410E1AE;
+	Sun,  8 Dec 2024 11:27:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com
- [209.85.208.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8191410E251
- for <intel-gfx@lists.freedesktop.org>; Sun,  8 Dec 2024 01:58:59 +0000 (UTC)
-Received: by mail-ed1-f47.google.com with SMTP id
- 4fb4d7f45d1cf-5d3ecae02beso437940a12.0
- for <intel-gfx@lists.freedesktop.org>; Sat, 07 Dec 2024 17:58:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux-foundation.org; s=google; t=1733623138; x=1734227938;
- darn=lists.freedesktop.org; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=EZjbRKhMOCLvsh/fbuGewVnDsfkV1Y6IoPuC3JohNPQ=;
- b=FI/xMRdbIReqoWIslfiZ6DU52okF1rcsht0UE2Cy4E+IyfvMzXNl83K+KPJmr5lPYH
- KeNdW+RCqPwwY+vuj9l4Uil+quzoG8IDGztx+4GOukbLLwOxrePlbzpHemx92n2MWMCQ
- F5QAFrcZqBW5D6AbcFIE0iUed/G9Ywz+yLe94=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1733623138; x=1734227938;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=EZjbRKhMOCLvsh/fbuGewVnDsfkV1Y6IoPuC3JohNPQ=;
- b=IGGmMK3Doh542LC0WokkEQk6S0YSwoRTBltDlIJ1i1nEjKnZBcWw0YmBfRN57dJRuQ
- LdjYHkM7TcTD6G2bD2UfurwrQdhaigpjNeS69kZm/b6xlwqTZHxOIFA0ELqNMr56fHkV
- /8BozO90OTrzn5xV3A2sb0ZOEB9wbIcTa62sHlOiBFhoKRGoVv63s++R/tQBp+v1zgwN
- pKvjmxdzcbPU9h17KJ9ZA9r6nde5hH1g9PHcZIqjMUhm1d40VszBPG5amGbAWlNyHJ8H
- 6kCySy2mKCnreP1TPJ3G8qxQTgl9axz5wpvSSq1WZdnnSU1bNM9iYG/x2XQdLZVbn4h6
- fAlw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCU6Sb+1tvxHADeZpyH1/bgYC4PWwdgWIICwjgIjGK8PU1i1PpYMC9ripRV8HzRVKNBPqpTEgR0T0W4=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzTFQ9yZsFexDJ3Nj+idKyGP8WrojG/2InLCy6bl30iCh7pzNJK
- LmW3Ze7TeeCRS4L3pRo1HaYO7AC0235I9e+ctyPP3pS48HLsKrHPNj59RJfKtlO+yOrEyHd/fJN
- 9f4SpCg==
-X-Gm-Gg: ASbGnctXKRN7DynqflJVi7JJmIX2aXatUMBVA7Q2fYZc1t2UtFSM+qgXdrjHfrFriy0
- ORlcih0zh77V03S0OftMUJwTFJ73fgg3TkSzeIjf18lN+Y/oy9aTA59xZZ+aBbx7DLAgkBX1f+W
- gjVFE4eEfnyUw23nwprlH/FxSzeanUCoDdYy9WOA93cAC4zvSRi/iYdfRPg1GiNM8b+agKnMDVs
- p164ei73hVy4B3gGx58qhgxwRU/Ob0ReDNCPM0kZEg8M0R3TV0JM34MDfHrCHnqzl/LFu3B4D2T
- kFGHrqiuar7vvcivAkd4FoAv
-X-Google-Smtp-Source: AGHT+IEYY5fo/CE3K1bwhMkiZhPcxzy0t4HyQLG3MKoNBi1pRVkpBj2SbH/4Y7W6b2jv8gzAHtEdDw==
-X-Received: by 2002:a05:6402:5215:b0:5d0:bde9:2992 with SMTP id
- 4fb4d7f45d1cf-5d3be7f04aamr5970048a12.26.1733623137727; 
- Sat, 07 Dec 2024 17:58:57 -0800 (PST)
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com.
- [209.85.218.53]) by smtp.gmail.com with ESMTPSA id
- 4fb4d7f45d1cf-5d14b608c8dsm4146533a12.48.2024.12.07.17.58.54
- for <intel-gfx@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sat, 07 Dec 2024 17:58:55 -0800 (PST)
-Received: by mail-ej1-f53.google.com with SMTP id
- a640c23a62f3a-a9a0ef5179dso434867166b.1
- for <intel-gfx@lists.freedesktop.org>; Sat, 07 Dec 2024 17:58:54 -0800 (PST)
-X-Forwarded-Encrypted: i=1;
- AJvYcCXj8um3dwAjZ3bEivodNqfiU9JPtU72w+v9zDXX20hXLVfTI2qD3F0kkYpmmscJhLh/sHGimGXg/LI=@lists.freedesktop.org
-X-Received: by 2002:a17:907:84c8:b0:aa6:2fc7:71aa with SMTP id
- a640c23a62f3a-aa63a24f1famr565813866b.55.1733623133832; Sat, 07 Dec 2024
- 17:58:53 -0800 (PST)
-MIME-Version: 1.0
+Received: from eu-smtp-delivery-151.mimecast.com
+ (eu-smtp-delivery-151.mimecast.com [185.58.86.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA13010E1CA
+ for <intel-gfx@lists.freedesktop.org>; Sun,  8 Dec 2024 11:27:41 +0000 (UTC)
+Received: from AcuMS.aculab.com (156.67.243.121 [156.67.243.121]) by
+ relay.mimecast.com with ESMTP with both STARTTLS and AUTH (version=TLSv1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ uk-mta-403-bJ36nNrvNzSLRwjrBnXqBQ-1; Sun, 08 Dec 2024 11:27:38 +0000
+X-MC-Unique: bJ36nNrvNzSLRwjrBnXqBQ-1
+X-Mimecast-MFC-AGG-ID: bJ36nNrvNzSLRwjrBnXqBQ
+Received: from AcuMS.Aculab.com (10.202.163.6) by AcuMS.aculab.com
+ (10.202.163.6) with Microsoft SMTP Server (TLS) id 15.0.1497.48; Sun, 8 Dec
+ 2024 11:26:44 +0000
+Received: from AcuMS.Aculab.com ([::1]) by AcuMS.aculab.com ([::1]) with mapi
+ id 15.00.1497.048; Sun, 8 Dec 2024 11:26:44 +0000
+From: David Laight <David.Laight@ACULAB.COM>
+To: 'Martin Uecker' <muecker@gwdg.de>, Linus Torvalds
+ <torvalds@linux-foundation.org>
+CC: Vincent Mailhol <mailhol.vincent@wanadoo.fr>, Luc Van Oostenryck
+ <luc.vanoostenryck@gmail.com>, Nathan Chancellor <nathan@kernel.org>, "Nick
+ Desaulniers" <ndesaulniers@google.com>, Bill Wendling <morbo@google.com>,
+ Justin Stitt <justinstitt@google.com>, Yury Norov <yury.norov@gmail.com>,
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>, Kees Cook <kees@kernel.org>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Suzuki K Poulose <suzuki.poulose@arm.com>,
+ Mike Leach <mike.leach@linaro.org>, James Clark <james.clark@linaro.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>, Rikard Falkeborn
+ <rikard.falkeborn@gmail.com>, "linux-sparse@vger.kernel.org"
+ <linux-sparse@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>, "llvm@lists.linux.dev"
+ <llvm@lists.linux.dev>, "linux-hardening@vger.kernel.org"
+ <linux-hardening@vger.kernel.org>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
+ <dri-devel@lists.freedesktop.org>, "coresight@lists.linaro.org"
+ <coresight@lists.linaro.org>, "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>
+Subject: RE: [PATCH 02/10] compiler.h: add is_const() as a replacement of
+ __is_constexpr()
+Thread-Topic: [PATCH 02/10] compiler.h: add is_const() as a replacement of
+ __is_constexpr()
+Thread-Index: AQHbSQMFJXcuwP9wN0+yRzIQ2cx/pbLcMkGA
+Date: Sun, 8 Dec 2024 11:26:44 +0000
+Message-ID: <b71056c1b9e04aa383f2e5608c27290f@AcuMS.aculab.com>
 References: <20241203-is_constexpr-refactor-v1-0-4e4cbaecc216@wanadoo.fr>
  <20241203-is_constexpr-refactor-v1-2-4e4cbaecc216@wanadoo.fr>
  <1d807c7471b9434aa8807e6e86c964ec@AcuMS.aculab.com>
@@ -84,38 +70,18 @@ References: <20241203-is_constexpr-refactor-v1-0-4e4cbaecc216@wanadoo.fr>
  <CAHk-=wjsfYYKBYuW8_6yKjdwHih0MMa2GwUJh_LHcuUNFR7-QA@mail.gmail.com>
  <9d9567dbdaf39688bbd0d240e29dec826a5931ee.camel@gwdg.de>
 In-Reply-To: <9d9567dbdaf39688bbd0d240e29dec826a5931ee.camel@gwdg.de>
-From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Sat, 7 Dec 2024 17:58:37 -0800
-X-Gmail-Original-Message-ID: <CAHk-=wgVGmj+nAju2XuWWD_FZHdeytRW2XX5D-L3MqDuRRciVg@mail.gmail.com>
-Message-ID: <CAHk-=wgVGmj+nAju2XuWWD_FZHdeytRW2XX5D-L3MqDuRRciVg@mail.gmail.com>
-Subject: Re: [PATCH 02/10] compiler.h: add is_const() as a replacement of
- __is_constexpr()
-To: Martin Uecker <muecker@gwdg.de>
-Cc: David Laight <David.Laight@aculab.com>,
- Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
- Luc Van Oostenryck <luc.vanoostenryck@gmail.com>,
- Nathan Chancellor <nathan@kernel.org>, 
- Nick Desaulniers <ndesaulniers@google.com>, Bill Wendling <morbo@google.com>, 
- Justin Stitt <justinstitt@google.com>, Yury Norov <yury.norov@gmail.com>, 
- Rasmus Villemoes <linux@rasmusvillemoes.dk>, Kees Cook <kees@kernel.org>, 
- "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Suzuki K Poulose <suzuki.poulose@arm.com>, 
- Mike Leach <mike.leach@linaro.org>, James Clark <james.clark@linaro.org>, 
- Alexander Shishkin <alexander.shishkin@linux.intel.com>, 
- Rikard Falkeborn <rikard.falkeborn@gmail.com>, 
- "linux-sparse@vger.kernel.org" <linux-sparse@vger.kernel.org>, 
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
- "llvm@lists.linux.dev" <llvm@lists.linux.dev>, 
- "linux-hardening@vger.kernel.org" <linux-hardening@vger.kernel.org>, 
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
- "coresight@lists.linaro.org" <coresight@lists.linaro.org>, 
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.202.205.107]
+MIME-Version: 1.0
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: 0EOCIkCgh76tM5sDb7uG9mQLC7kLfM5TrYMD_waj1DI_1733657257
+X-Mimecast-Originator: aculab.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: base64
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -131,40 +97,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, 7 Dec 2024 at 15:52, Martin Uecker <muecker@gwdg.de> wrote:
->
-> Can you point me to some horror stories?
+RnJvbTogTWFydGluIFVlY2tlcg0KPiBTZW50OiAwNyBEZWNlbWJlciAyMDI0IDIzOjUyDQouLi4N
+Cj4gV2hpbGUgdGhlIGNvbXBpbGVyIGNhbiBub3QgYXV0b21hdGljYWxseSBwcm92ZSBldmVyeSB1
+c2UNCj4gb2YgVkxBIGJvdW5kZWQsIGl0IGNhbiByZWxpYWJseSBkaWFnbm9zZSB0aGUgY2FzZXMg
+d2hlcmUgaXQNCj4gY2FuwqAqbm90KiBzZWUgdGhhdCBpdCBpcyBib3VuZGVkLiBDb25zaWRlciB0
+aGlzIGV4YW1wbGU6DQo+IA0KPiB2b2lkIG9vYihpbnQgbiwgY2hhciBwW25dKTsNCj4gdm9pZCBm
+KHVuc2lnbmVkIGludCBuKQ0KPiB7DQo+ICAgICBjaGFyIGJ1ZltNSU4obiwgMTAwKV07IC8vIGJv
+dW5kZWQNCj4gICAgIG9vYihuICsgMTAsIGJ1Zik7IC8vIHdhcm5pbmcNCj4gfQ0KLi4uDQoNClRo
+ZSBrZXJuZWwgc3RhY2sgaGFzIHRvIGhhdmUgZW5vdWdoIHNwYWNlIGZvciB0aGUgWzEwMF0NCnNv
+IHRoZSBmdWxsIGFtb3VudCBtaWdodCBhcyB3ZWxsIGFsd2F5cyBiZSBhbGxvY2F0ZWQuDQpUaGUg
+Y2hhbmNlIG9mICd0cmFkaW5nIG9mZicgc3RhY2sgdXNhZ2Ugd2l0aCBhbm90aGVyIGZ1bmN0aW9u
+DQppbiB0aGUgc2FtZSBjYWxsIHN0YWNrIHRoYXQgaXMgZ3VhcmFudGVlZCB0byB1c2UgbGVzcyB0
+aGFuDQppdHMgbWF4aW11bSBpcyBhYm91dCB6ZXJvLg0KDQpUaGUgVkxBIGNvZGUgYWxzbyBhZGRz
+IGFuIGV4dHJhIHN0YWNrIGZyYW1lLCB0aGlzIHByZXR0eSBtdWNoDQpwZXNzaW1pc2VzIGV2ZXJ5
+dGhpbmcuDQpUaGlzIGhhcHBlbmVkIGZvciAnY29uc3RhbnQnIHNpemVzIGZyb20gbWluKDE2LCBz
+aXplb2YgKHN0cnVjdCkpDQpiZWNhdXNlIG1pbigpIG5lZWRzIHRvIGJlIGEgc3RhdGVtZW50IGZ1
+bmN0aW9uIHRvIGF2b2lkIHJlLWV2YWx1YXRpbmcNCml0cyBhcmd1bWVudHMuDQooVGhlIHZlcnNp
+b24gb2YgbWluKCkgdGhhdCBtYW5hZ2VkIHRvIHJldHVybiBjb25zdGFudCBmcm9tIGNvbnN0YW50
+DQppbnB1dCBqdXN0IGV4cGxvZGVkIGluIGNwcCwgcGFydGlhbGx5IHJlc3BvbnNpYmxlIGZvciAx
+OE1CIGxpbmVzDQpiZWluZyBmZWQgaW50byB0aGUgY29tcGlsZXIgcGFydC4pDQoNCglEYXZpZA0K
+DQotDQpSZWdpc3RlcmVkIEFkZHJlc3MgTGFrZXNpZGUsIEJyYW1sZXkgUm9hZCwgTW91bnQgRmFy
+bSwgTWlsdG9uIEtleW5lcywgTUsxIDFQVCwgVUsNClJlZ2lzdHJhdGlvbiBObzogMTM5NzM4NiAo
+V2FsZXMpDQo=
 
-So the main issues tended to be about various static verification tools.
-
-Ranging from things like the stackleak plugin for gcc, where handling
-VLA's and alloca() (which are pretty much the same thing with
-different syntax) was just very much added complexity, to perhaps
-overly simplistic tools that literally just check the stack usage by
-parsing "objdump --disassemble" output and then building up
-approximate "this is the combined deepest stack" call chain
-approximations.
-
-And even in the *basic* infrastructure like gcc itself, VLA's simply
-made -Wframe-larger-than= just simply not work.
-
-I also have this memory of bad code generation (again, this is 5=
-years ago, so take this with a pinch of salt: dim memories), where gcc
-wouldn't end up re-using VLA stack slots, so VLA's made the frame
-bigger for that reason or something like that.
-
-We explicitly use "-fconserve-stack" to get gcc to reuse spill slots,
-because gcc has been known to sometimes makes insanely piggish stack
-frames when it just creates a spill slot for *everything*, even if the
-spills aren't live at the same time (think big functions with lots of
-case statements).
-
-We also had several cases of the VLA's just being silly, when a simple
-constant-sized allocation just worked fine and didn't generate
-pointless extra code.
-
-Pretty much none of the code core actually ever wanted VLA's, so the
-end result was that we had these bad patterns mainly in random drivers
-etc. Don't do that.
-
-                Linus
