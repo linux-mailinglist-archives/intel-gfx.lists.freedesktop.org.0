@@ -2,59 +2,74 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFFBC9E86B1
-	for <lists+intel-gfx@lfdr.de>; Sun,  8 Dec 2024 17:49:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D89089E8762
+	for <lists+intel-gfx@lfdr.de>; Sun,  8 Dec 2024 20:05:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F9FF10E004;
-	Sun,  8 Dec 2024 16:49:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A8E510E14A;
+	Sun,  8 Dec 2024 19:05:57 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="WSa95Kxe";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from eu-smtp-delivery-151.mimecast.com
- (eu-smtp-delivery-151.mimecast.com [185.58.86.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2FD3810E004
- for <intel-gfx@lists.freedesktop.org>; Sun,  8 Dec 2024 16:49:56 +0000 (UTC)
-Received: from AcuMS.aculab.com (156.67.243.121 [156.67.243.121]) by
- relay.mimecast.com with ESMTP with both STARTTLS and AUTH (version=TLSv1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- uk-mta-319--F_qy5D-N-uYQShe1NBsMw-1; Sun, 08 Dec 2024 16:49:52 +0000
-X-MC-Unique: -F_qy5D-N-uYQShe1NBsMw-1
-X-Mimecast-MFC-AGG-ID: -F_qy5D-N-uYQShe1NBsMw
-Received: from AcuMS.Aculab.com (10.202.163.4) by AcuMS.aculab.com
- (10.202.163.4) with Microsoft SMTP Server (TLS) id 15.0.1497.48; Sun, 8 Dec
- 2024 16:48:58 +0000
-Received: from AcuMS.Aculab.com ([::1]) by AcuMS.aculab.com ([::1]) with mapi
- id 15.00.1497.048; Sun, 8 Dec 2024 16:48:58 +0000
-From: David Laight <David.Laight@ACULAB.COM>
-To: 'Martin Uecker' <muecker@gwdg.de>, Linus Torvalds
- <torvalds@linux-foundation.org>
-CC: Vincent Mailhol <mailhol.vincent@wanadoo.fr>, Luc Van Oostenryck
- <luc.vanoostenryck@gmail.com>, Nathan Chancellor <nathan@kernel.org>, "Nick
- Desaulniers" <ndesaulniers@google.com>, Bill Wendling <morbo@google.com>,
- Justin Stitt <justinstitt@google.com>, Yury Norov <yury.norov@gmail.com>,
- Rasmus Villemoes <linux@rasmusvillemoes.dk>, Kees Cook <kees@kernel.org>,
- "Gustavo A. R. Silva" <gustavoars@kernel.org>, Jani Nikula
- <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Suzuki K Poulose <suzuki.poulose@arm.com>,
- Mike Leach <mike.leach@linaro.org>, James Clark <james.clark@linaro.org>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>, Rikard Falkeborn
- <rikard.falkeborn@gmail.com>, "linux-sparse@vger.kernel.org"
- <linux-sparse@vger.kernel.org>, "linux-kernel@vger.kernel.org"
- <linux-kernel@vger.kernel.org>, "llvm@lists.linux.dev"
- <llvm@lists.linux.dev>, "linux-hardening@vger.kernel.org"
- <linux-hardening@vger.kernel.org>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
- <dri-devel@lists.freedesktop.org>, "coresight@lists.linaro.org"
- <coresight@lists.linaro.org>, "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>
-Subject: RE: [PATCH 02/10] compiler.h: add is_const() as a replacement of
- __is_constexpr()
-Thread-Topic: [PATCH 02/10] compiler.h: add is_const() as a replacement of
- __is_constexpr()
-Thread-Index: AQHbSQMFJXcuwP9wN0+yRzIQ2cx/pbLcMkGAgAAXzACAADyVgA==
-Date: Sun, 8 Dec 2024 16:48:58 +0000
-Message-ID: <e71fffb7ff0e4bf29692d006c0fe77c2@AcuMS.aculab.com>
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com
+ [209.85.218.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4CE2410E0BE
+ for <intel-gfx@lists.freedesktop.org>; Sun,  8 Dec 2024 19:05:56 +0000 (UTC)
+Received: by mail-ej1-f49.google.com with SMTP id
+ a640c23a62f3a-aa66ead88b3so156536366b.0
+ for <intel-gfx@lists.freedesktop.org>; Sun, 08 Dec 2024 11:05:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linux-foundation.org; s=google; t=1733684754; x=1734289554;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=XjK1bZri5pPYXLEPg3pfsInYn2WFK+u61JXJym8gukc=;
+ b=WSa95KxeaUy3giKn0ZL0fyZGx6uAqs/WojdN8JfM7niUMoUHSFLKLtQMKlcQ5+UQO5
+ Biuts4B58Sue34fGsCK/wsamk2w/kyVdGQ4UaF37Um84UfM09ovAeNt0jde4gxcXkGD5
+ p0cL12YMuMP215j36WqpWmDSVeuika6bHyWQ4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1733684754; x=1734289554;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=XjK1bZri5pPYXLEPg3pfsInYn2WFK+u61JXJym8gukc=;
+ b=CSwWs6VITqDXRFd7nFz85YM5KmIVZ4omb/DqdQyUXwOxTZmT2oLWhniid4SCskixEF
+ rnkcs0d3Hrksc7QeWhbHdja4uWRitaEvKHXJ9qOfl/HSyyldigCC/C1vzwlElnz+M15n
+ ivor5jt8nP4Nz5LN/g5jJMBMQF+ibkB3sRhW53XW3lR2h8JhjXJGi2Mmg70WYaR3gN0r
+ GvgFP/AZiD1vXs6MXds6EtG5Qgmj7+zTrhrHye/nOQPT5QJOpLC6Pk8RKoZo7Y+ojS6t
+ I/15F1tyuLUqlkQI6Go1Nk7zEDd1tYfWONmU9FZ2VfL9vbw7UZ2ne7K+SbIKSehSZg1X
+ fweg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVFfMW730xT4loJR62DdH16bjDJxq7fXAPGROFesnzm26z2IlPwHJbgQX3jDdFW59Nfkax3gEYz9fk=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx0xd0ngO55OqWG7RHH2G5RX0EA22XKeT0bPaFMHHBtfmkh72rK
+ Tge8wb5uW6gxmCKedr7Z4/ABRV3I2oX2g5+tzRikvF3ft5C0Uhm39yowjMyITlhRgke1feNFtKv
+ Vgu3E2A==
+X-Gm-Gg: ASbGnct3YvvexAjbFYaa1rZx0l3+ZOzYKoRG91TbsSGKwT9LAKXkVu/o+LSijklYQOz
+ YdgpqKsin0jzqKOIBPjLWoo71WE8pK5jyfxWMT2xpDy2RRGf6Iwevv3uZlvIhiVQcPWMM6uIg3Y
+ U16uZySnoi67W/cKXpJdiccv1O+kgbGb1E6tXGgkQXEwHSROF9dzfu3Lj2VW6bRciROM2D4o7gl
+ lpRTj6dnrw+5yYEuzCvi+kA0/1tmcWnN5hvxCUmJ1WYZshs3QMMKVLItbtpD/9ol5CITFjZnbvs
+ a8rhKS9VeEjTPUSVGpGaNhH1
+X-Google-Smtp-Source: AGHT+IEYUoRHjrr7B4h8OOIHoLi6lBnXD74o7aOiyzV5pho5QeKfLturw5j/cSK9qRN8sxtumCnxZA==
+X-Received: by 2002:a17:907:7806:b0:aa6:82e8:e89b with SMTP id
+ a640c23a62f3a-aa682e90009mr156706966b.28.1733684754324; 
+ Sun, 08 Dec 2024 11:05:54 -0800 (PST)
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com.
+ [209.85.218.43]) by smtp.gmail.com with ESMTPSA id
+ a640c23a62f3a-aa66d479963sm197964366b.106.2024.12.08.11.05.51
+ for <intel-gfx@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sun, 08 Dec 2024 11:05:52 -0800 (PST)
+Received: by mail-ej1-f43.google.com with SMTP id
+ a640c23a62f3a-aa66ead88b3so156531866b.0
+ for <intel-gfx@lists.freedesktop.org>; Sun, 08 Dec 2024 11:05:51 -0800 (PST)
+X-Forwarded-Encrypted: i=1;
+ AJvYcCU6zPfbUUWo99rvfx1w5TDfw26RAWkLb9LSVlz5bXnWB8/aBpdmwe0LikIjuoenMBkP161uDT37Jyo=@lists.freedesktop.org
+X-Received: by 2002:a17:906:8a53:b0:aa5:4d96:ec7 with SMTP id
+ a640c23a62f3a-aa63a21bf90mr809950866b.44.1733684751478; Sun, 08 Dec 2024
+ 11:05:51 -0800 (PST)
+MIME-Version: 1.0
 References: <20241203-is_constexpr-refactor-v1-0-4e4cbaecc216@wanadoo.fr>
  <20241203-is_constexpr-refactor-v1-2-4e4cbaecc216@wanadoo.fr>
  <1d807c7471b9434aa8807e6e86c964ec@AcuMS.aculab.com>
@@ -71,19 +86,42 @@ References: <20241203-is_constexpr-refactor-v1-0-4e4cbaecc216@wanadoo.fr>
  <9d9567dbdaf39688bbd0d240e29dec826a5931ee.camel@gwdg.de>
  <b71056c1b9e04aa383f2e5608c27290f@AcuMS.aculab.com>
  <6658618490381cf5ec35edbb66f1478024174e67.camel@gwdg.de>
-In-Reply-To: <6658618490381cf5ec35edbb66f1478024174e67.camel@gwdg.de>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.202.205.107]
-MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: rMGLFQnqwe2GMbK8UziXuXvT-E-pHTrwkr_Op7KM514_1733676591
-X-Mimecast-Originator: aculab.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: base64
+ <e71fffb7ff0e4bf29692d006c0fe77c2@AcuMS.aculab.com>
+ <87dd9b7b52e7cea874c1899f56efdd3d7c5b7243.camel@gwdg.de>
+In-Reply-To: <87dd9b7b52e7cea874c1899f56efdd3d7c5b7243.camel@gwdg.de>
+From: Linus Torvalds <torvalds@linux-foundation.org>
+Date: Sun, 8 Dec 2024 11:05:34 -0800
+X-Gmail-Original-Message-ID: <CAHk-=wg+_6eQnLWm-kihFxJo1_EmyLSGruKVGzuRUwACE=osrA@mail.gmail.com>
+Message-ID: <CAHk-=wg+_6eQnLWm-kihFxJo1_EmyLSGruKVGzuRUwACE=osrA@mail.gmail.com>
+Subject: Re: [PATCH 02/10] compiler.h: add is_const() as a replacement of
+ __is_constexpr()
+To: Martin Uecker <muecker@gwdg.de>
+Cc: David Laight <David.Laight@aculab.com>,
+ Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
+ Luc Van Oostenryck <luc.vanoostenryck@gmail.com>,
+ Nathan Chancellor <nathan@kernel.org>, 
+ Nick Desaulniers <ndesaulniers@google.com>, Bill Wendling <morbo@google.com>, 
+ Justin Stitt <justinstitt@google.com>, Yury Norov <yury.norov@gmail.com>, 
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>, Kees Cook <kees@kernel.org>, 
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, Suzuki K Poulose <suzuki.poulose@arm.com>, 
+ Mike Leach <mike.leach@linaro.org>, James Clark <james.clark@linaro.org>, 
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>, 
+ Rikard Falkeborn <rikard.falkeborn@gmail.com>, 
+ "linux-sparse@vger.kernel.org" <linux-sparse@vger.kernel.org>, 
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+ "llvm@lists.linux.dev" <llvm@lists.linux.dev>, 
+ "linux-hardening@vger.kernel.org" <linux-hardening@vger.kernel.org>, 
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
+ "coresight@lists.linaro.org" <coresight@lists.linaro.org>, 
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,78 +137,111 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-RnJvbTogTWFydGluIFVlY2tlcg0KPiBTZW50OiAwOCBEZWNlbWJlciAyMDI0IDEyOjM4DQo+IA0K
-PiBBbSBTb25udGFnLCBkZW0gMDguMTIuMjAyNCB1bSAxMToyNiArMDAwMCBzY2hyaWViIERhdmlk
-IExhaWdodDoNCj4gPiBGcm9tOiBNYXJ0aW4gVWVja2VyDQo+ID4gPiBTZW50OiAwNyBEZWNlbWJl
-ciAyMDI0IDIzOjUyDQo+ID4gLi4uDQo+ID4gPiBXaGlsZSB0aGUgY29tcGlsZXIgY2FuIG5vdCBh
-dXRvbWF0aWNhbGx5IHByb3ZlIGV2ZXJ5IHVzZQ0KPiA+ID4gb2YgVkxBIGJvdW5kZWQsIGl0IGNh
-biByZWxpYWJseSBkaWFnbm9zZSB0aGUgY2FzZXMgd2hlcmUgaXQNCj4gPiA+IGNhbsKgKm5vdCog
-c2VlIHRoYXQgaXQgaXMgYm91bmRlZC4gQ29uc2lkZXIgdGhpcyBleGFtcGxlOg0KPiA+ID4NCj4g
-PiA+IHZvaWQgb29iKGludCBuLCBjaGFyIHBbbl0pOw0KPiA+ID4gdm9pZCBmKHVuc2lnbmVkIGlu
-dCBuKQ0KPiA+ID4gew0KPiA+ID4gICAgIGNoYXIgYnVmW01JTihuLCAxMDApXTsgLy8gYm91bmRl
-ZA0KPiA+ID4gICAgIG9vYihuICsgMTAsIGJ1Zik7IC8vIHdhcm5pbmcNCj4gPiA+IH0NCj4gPiAu
-Li4NCj4gPg0KPiA+IFRoZSBrZXJuZWwgc3RhY2sgaGFzIHRvIGhhdmUgZW5vdWdoIHNwYWNlIGZv
-ciB0aGUgWzEwMF0NCj4gPiBzbyB0aGUgZnVsbCBhbW91bnQgbWlnaHQgYXMgd2VsbCBhbHdheXMg
-YmUgYWxsb2NhdGVkLg0KPiA+IFRoZSBjaGFuY2Ugb2YgJ3RyYWRpbmcgb2ZmJyBzdGFjayB1c2Fn
-ZSB3aXRoIGFub3RoZXIgZnVuY3Rpb24NCj4gPiBpbiB0aGUgc2FtZSBjYWxsIHN0YWNrIHRoYXQg
-aXMgZ3VhcmFudGVlZCB0byB1c2UgbGVzcyB0aGFuDQo+ID4gaXRzIG1heGltdW0gaXMgYWJvdXQg
-emVyby4NCj4gDQo+IEluIG51bWVyaWNhbCBjb21wdXRpbmcgdGhpcyBpcyBhIGJpZyBtb3RpdmF0
-aW9uIGJlY2F1c2UNCj4geW91IGNhbiByZWR1Y2Ugc3RhY2sgdXNhZ2UgaW4gcmVjdXJzaXZlIGRp
-dmlkZS1hbmQtY29ucXVlcg0KPiBhbGdvcml0aG1zLiAgRm9yIHRoZSBrZXJuZWwsIEkgYWdyZWUg
-dGhpcyBpcyBub3QgYQ0KPiBjb21wZWxsaW5nIHVzZSBjYXNlLCBhbmQgdGhlIGJldHRlciBtb3Rp
-dmF0aW9uIHdvdWxkIGJlDQo+IHByZWNpc2UgYm91bmRzIGNoZWNraW5nIGFuZCBjbGVhcmVyIHNl
-bWFudGljcyBmb3IgYnVmZmVyDQo+IG1hbmFnZW1lbnQuDQoNCkV4Y2VwdCB0aGF0IGNoYW5naW5n
-IHRoZSBzaXplIG9mIHRoZSBvbi1zdGFjayBhcnJheSBtYWtlcw0KYWJzb2x1dGVseSBubyBkaWZm
-ZXJlbmNlLg0KSWRlYWxseSB0aGUga2VybmVsIHN0YWNrIHdvdWxkIGJlIGEgc2luZ2xlIDRrIHBh
-Z2UsIGJ1dCB0b28NCm11Y2ggY29kZSB1c2VzIG9uLXN0YWNrIGJ1ZmZlcnMgc28gaXQgaGFzIGJl
-ZW4gaW5jcmVhc2VkIGFuZA0KbWlnaHQgYmUgMTZrIChvciBtb3JlISkuDQpSZW1lbWJlciB0aGlz
-IGlzIHBoeXNpY2FsIG1lbW9yeSBhbGxvY2F0ZWQgdG8gZXZlcnkgdXNlciB0aHJlYWQuDQpPbiBM
-aW51eCBpdCBpcyBub3Qgc3dhcHBhYmxlLg0KDQouLi4NCj4gPiBUaGlzIGhhcHBlbmVkIGZvciAn
-Y29uc3RhbnQnIHNpemVzIGZyb20gbWluKDE2LCBzaXplb2YgKHN0cnVjdCkpDQo+ID4gYmVjYXVz
-ZSBtaW4oKSBuZWVkcyB0byBiZSBhIHN0YXRlbWVudCBmdW5jdGlvbiB0byBhdm9pZCByZS1ldmFs
-dWF0aW5nDQo+ID4gaXRzIGFyZ3VtZW50cy4NCj4gDQo+IENhbiB5b3UgY2xhcmlmeSB0aGlzPyAg
-SWYgdGhlIFZMQSBzaXplIGlzIGNvbnN0YW50LCBldmVuIHdoZW4NCj4gaXQgaXMgbm90IGFuIGlu
-dGVnZXIgY29uc3RhbnQgZXhwcmVzc2lvbiBhY2NvcmRpbmcgdG8gSVNPIEMsDQo+IHRoZSBjb21w
-aWxlciBzaG91bGQgbm90IHByb2R1Y2Ugd29yc2UgY29kZS4gIEZvciBleGFtcGxlLA0KDQpJIGp1
-c3QgdHJpZWQgdG8gcmVwcm9kdWNlIHRoZSBmYWlsaW5nIGNhc2UgLSBhbmQgZmFpbGVkLg0KSXQg
-d2FzIHNpbWlsYXIgdG8gX19idWlsdGluX2NvbnN0YW50X3AoKSBpbml0aWFsbHkgcmV0dXJuaW5n
-ICdkb24ndCBrbm93Jw0Kc28gdGhlICd2YXJpYWJsZSBzaXplZCcgYXJyYXkgY29kZSBnb3QgYWRk
-ZWQsIHRoZW4gbXVjaCBsYXRlcg0KYWZ0ZXIgZnVydGhlciBvcHRpbWlzYXRpb24gcGFzc2VzIHRo
-ZSBleHByZXNzaW9uIGJlY2FtZSBjb25zdGFudC4NClNvIHlvdSBlbmRlZCB1cCB3aXRoIGEgJ2Zp
-eGVkIHNpemUnIFZMQS4NCg0KQ29tcGlsZSB3aXRoIC1Xbm8tdmxhIChhbmQgLVdlcnJvcikgYW5k
-IHRoZSBjb21waWxlIGZhaWxlZC4NCg0KLi4uDQo+IFNvIGEgbG90IG9mIHRoaXMgbWFjcm8gYnVz
-aW5lc3Mgc2VlbXMgdG8gYmUgbmVjZXNzYXJ5DQo+IHRvIGF2b2lkIGNyZWF0aW5nIHdhcm5pbmdz
-IGZvciBJU08gVkxBcyB3aGVuIGluc3RlYWQgeW91IHJlYWxseQ0KPiBjYXJlIGFib3V0IHRoZSBj
-cmVhdGVkIGNvZGUgbm90IGhhdmluZyBhIGR5bmFtaWMgYWxsb2NhdGlvbiBvbg0KPiB0aGUgc3Rh
-Y2suDQoNCkEgbG90IG9mIHRoZSAnbWFjcm8gYnVzaW5lc3MnIGZvciBtaW4vbWF4IGlzIGF2b2lk
-aW5nIHVuZXhwZWN0ZWQNCmNvbnZlcnNpb24gb2YgbmVnYXRpdmUgdmFsdWVzIHRvIHZlcnkgbGFy
-Z2UgdW5zaWduZWQgb25lcy4NCkFuZCBubywgLVdzaWduLWNvbXBhcmUgaXMgc3BlY3RhY3VsYXJs
-eSB1c2VsZXNzLg0KDQouLg0KPiBUaGUgaXNzdWUgaGVyZSBpcyB0aGF0IHdlIG1pc3MgYSBsYW5n
-dWFnZSBmZWF0dXJlIGluIEMgdG8NCj4gaW50cm9kdWNlIGxvY2FsIHZhcmlhYmxlcyB0aGF0IGhl
-bHAgYXZvaWQgbXVsdGlwbGUgZXhwYW5zaW9uDQo+IG9mIG1hY3JvIGFyZ3VtZW50cy4gIEdDQydz
-IHN0YXRlbWVudCBleHByZXNzaW9ucyBhbmQgX19hdXRvX3R5cGUNCj4gYXJlIGEgc29sdXRpb24N
-Cg0Kb3IgaGlzdG9yaWNhbGx5ICd0eXBlb2YoeCkgX3ggPSB4Jw0KDQo+ICNkZWZpbmUgZm9vKHgp
-ICh7IF9fYXV0b190eXBlIF9feCA9ICh4KTsgLi4uIH0pDQo+IA0KPiBidXQgdGhpcyBydW5zIGlu
-dG8gdGhlIGN1cnJlbnQgbGltaXRhdGlvbnMgdGhhdCAoeyB9KSBjYW4gbm90IGJlIHVzZWQNCj4g
-YXQgZmlsZS1zY29wZSBhbmQgY2FuIG5vdCByZXR1cm4gY29uc3RhbnQgZXhwcmVzc2lvbnMuDQo+
-IA0KPiANCj4gRm9yIG90aGVyIHJlYXNvbnMgSSB3YXMgdGhpbmtpbmcgYWJvdXQgYWRkaW5nIG5h
-bWVzIHRvIF9HZW5lcmljLA0KPiBhcyBpbg0KPiANCj4gX0dlbmVyaWMoeCwgaW50IGk6IChpICsg
-MSkpOw0KPiANCj4gYmVjYXVzZSBvbmUgZGVzaWduIGlzc3VlcyB3aXRoIF9HZW5lcmljIGlzIHRo
-YXQgaXQgdHlwZWNoZWNrcw0KPiBhbHNvIHRoZSB1bnRha2VuIGFzc29jaWF0aW9ucyBhbmQgdGhl
-cmUgdGhlICd4JyB0aGVuIGhhcyB0aGUgd3JvbmcNCj4gdHlwZS4gIEhhdmluZyBhbiAnaScgd2l0
-aCB0aGUgcmlnaHQgdHlwZSB3aGljaCBpcyBzZXQgdG8gdGhlIHZhbHVlDQo+IG9mICd4JyB3aGVu
-IHRoZSBicmFuY2ggaXMgdGFrZW4gd291bGQgZml4IHRoaXMgaXNzdWUuDQoNClRoYXQgbG9va3Mg
-ZXZlbiBtb3JlIHN5bnRhY3RpY2FsbHkgb2JzY3VyZSB0aGFuIF9HZW5lcmljIGl0c2VsZi4NCldo
-eSBkb2VzIGl0IG5lZWQgdG8gZG8gbW9yZSB0aGFuIHZlcnkgc2ltcGxlIHN5bnRheCBhbmFseXNp
-cyBvZg0KdGhlIHVud2FudGVkIGJyYW5jaGVzIC0gb3IgdGhleSBjb3VsZCBhdXRvbWF0aWNhbGx5
-IGJlIGFuYWx5c2VkDQp3aXRoIHRoZSBuYW1lZCB2YXJpYWJsZSBoYXZlIHRoZSBzcGVjaWZpZWQg
-dHlwZT8NCg0KPiBCdXQgdGhpcyBmZWF0dXJlIG1pZ2h0IGFsc28gYWxsb3cgd3JpdGluZyBtYWNy
-b3MgdGhhdCBhdm9pZA0KPiBkb3VibGUgZXhwYW5zaW9uIHdpdGhvdXQgcmVxdWlyaW5nIHN0YXRl
-bWVudCBleHByZXNzaW9ucyAod2hpY2gNCj4gYXJlIG1vcmUgZGlmZmljdWx0IHRvIGZpeCk6DQo+
-IA0KPiAjZGVmaW5lIGZvbyh4KSBfR2VuZXJpYyh4LCBpbnQgaTogKGkgKyBpKSk7DQoNCkhvdyBj
-YW4gdGhhdCB3b3JrIGZvciB0aGluZ3MgbGlrZSBtaW4oKSB0aGF0IGhhdmUgbXVsdGlwbGUgYXJn
-dW1lbnRzPw0KTm90IGdvaW5nIHRvIHdvcmsgaWYgeW91IG5lZWQgX19hdXRvX3R5cGUgZWl0aGVy
-Lg0KDQoJRGF2aWQNCg0KLQ0KUmVnaXN0ZXJlZCBBZGRyZXNzIExha2VzaWRlLCBCcmFtbGV5IFJv
-YWQsIE1vdW50IEZhcm0sIE1pbHRvbiBLZXluZXMsIE1LMSAxUFQsIFVLDQpSZWdpc3RyYXRpb24g
-Tm86IDEzOTczODYgKFdhbGVzKQ0K
+On Sun, 8 Dec 2024 at 10:11, Martin Uecker <muecker@gwdg.de> wrote:
+> >
+> > A lot of the 'macro business' for min/max is avoiding unexpected
+> > conversion of negative values to very large unsigned ones.
+> > And no, -Wsign-compare is spectacularly useless.
+>
+> This is a different topic, but what would be needed here?
 
+Dan Carpenter actually wrote up some of the issues in:
+
+   https://staticthinking.wordpress.com/2023/07/25/wsign-compare-is-garbage=
+/
+
+but the basic issue is that -Wsign-compare has over the years been
+truly spectacularly bad.
+
+It has literally started out from the completely nonsensical and
+incorrect assumption that the types of a comparison have to match in
+signedness, and it shows in the name itself, but it also showed in
+early implementations.
+
+The very first versions of gcc that did -Wsign-compare literally
+complained about code like
+
+     sizeof(x) < 5
+
+because obviously one side is an unsigned 'size_t', and the other side
+is a signed 'int'. So comparing the two is clearly invalid, right?
+
+No.
+
+It's obviously *not* invalid, and any compiler that complains about
+different signedness of that compare is just complete useless garbage.
+It's literally checking two constants against each other, and the
+result doesn't depend on the signedness or the silent C implicit type
+conversion.
+
+And no, gcc doesn't complain about that particular code any more.
+*That* particular problem was I think only visible in a gcc
+pre-release that sadly did actually ship as part of a SUSE release, so
+we saw it in the wild even if it was never in an official gcc release.
+
+I'm pointing out the history because it's relevant due to explaining
+*why* the whole concept of looking at just the type is so broken, and
+how the whole background to the warning was broken from the very
+beginning. The very name of the warning is a sign of the problem.
+
+Because gcc still *does* complain about entirely valid code, where
+"fixing" the warning just means you have to write worse code.
+
+I think Dan's example from the link above is a good one: if
+
+        for (int i =3D 0; i < sizeof(x); i++)
+
+causes a warning, the compiler got things entirely wrong.
+
+And yes, modern gcc very much warns about that:
+
+  t.c:4:27: warning: comparison of integer expressions of different
+signedness: =E2=80=98int=E2=80=99 and =E2=80=98long unsigned int=E2=80=99 [=
+-Wsign-compare]
+      4 |         for (int i =3D 0; i < sizeof(b); i++)
+        |                           ^
+
+So if you want a general-purpose "Warn about dangerous comparisons",
+you need to get away from the mindset that it's about different signs.
+
+A compiler needs to do proper value range analysis before warning
+about comparing said values. Not just mindlessly say "different types
+bad" like some marsupial that has been dropped on its head a few too
+many times.
+
+End result: calling it "Warn about sign compare" is a disease. It
+shows a lack of understanding of how complex the warning logic needs
+to be.
+
+Now, I'm not claiming that our min/max type warnings are great either:
+they *do* end up basically being the same silly "just check signs, but
+at least don't complain about signed positive constants being used for
+unsigned comparisons".
+
+So our min/max macros most definitely are *not* doing that "value
+range analysis" that I claim is required for a *general* comparison
+thing.
+
+But our min//max macros aren't some general thing. They are very
+specific, and so it's a lot easier to accept the not-great-analysis
+for those specific cases where we then may have to change types
+explicitly or do some other massaging to avoid the warning.
+
+Put another way: a warning that triggers on really basic C absolutely
+*must*not* have silly easily triggerable false positives for good and
+idiomatic source code.
+
+Such a warning is worse than useless, and gets disabled.
+
+But a warning that is overly restrictive and gives silly false
+positives can still be entirely acceptable when the context of that
+warning is very limited.
+
+So this is why in the kernel we disable '-Wsign-compare' in the
+general case, but *do* basically manually then implement that very
+same logic in the very _specific_ case of the min/max() macros.
+
+What is unacceptable nonsense in one case may be acceptable "good
+enough" in another. Life is not fair, I'm afraid.
+
+                Linus
