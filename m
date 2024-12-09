@@ -2,60 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBA489E9E83
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Dec 2024 19:57:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A33449E9EAE
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Dec 2024 20:01:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E555510E514;
-	Mon,  9 Dec 2024 18:57:08 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kD1xMRaE";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A11C10E518;
+	Mon,  9 Dec 2024 19:01:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1973410E514;
- Mon,  9 Dec 2024 18:57:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733770628; x=1765306628;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=jhP5LHyPM3amf/oDRRy9iB55LFVP+NnbKJxKeKrEcnw=;
- b=kD1xMRaE1+XZ+Ku/AG+SaAAMO4QVjYhKzUVrBMr8Vxg1AIT9FZp+dCd9
- wNIrAhOtxk4x/iqoHJDFxiuOu0ZBdBhJR/vWAP2qEy1jQ/VjqaxVB9Ot8
- M5axDn5ZbCfoRaXDPpSOAmji4/HPfgfP/McgiEIot6bcodWkMxUKpOB2m
- 4NkOUyObAtuWYhmoPj3x84W0257Nia17oU21q05ARX0d/Apd7malqgtPO
- kyAShc/6WxT095hwWUJbCwsg5pHoothPbmi73l3IllAvp4S3MNaf1UEVM
- 7woizjDg47Y2fCVy/g2WLLfnZEMSh90IJWJqexcD2dbIRZP1DwAhzw7Pp A==;
-X-CSE-ConnectionGUID: uYRRIdTRQlyWjKQh1uRkWw==
-X-CSE-MsgGUID: osyJOYffQFSDu6pRBN5jLA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11281"; a="36924081"
-X-IronPort-AV: E=Sophos;i="6.12,220,1728975600"; d="scan'208";a="36924081"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2024 10:57:06 -0800
-X-CSE-ConnectionGUID: JrrIenv/QVGDe2YV0FfY0w==
-X-CSE-MsgGUID: 6Ln96E5tRNOEpYQ22D5MXQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,220,1728975600"; d="scan'208";a="95610006"
-Received: from black.fi.intel.com ([10.237.72.28])
- by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2024 10:57:04 -0800
-Date: Mon, 9 Dec 2024 20:57:01 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Cc: Arun R Murthy <arun.r.murthy@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCHv10 00/10] Display Global Histogram
-Message-ID: <Z1c9fSdGW04F3fRt@black.fi.intel.com>
-References: <20241209162504.2146697-1-arun.r.murthy@intel.com>
- <20241209165756.GQ3224633@mdroper-desk1.amr.corp.intel.com>
- <Z1csWzRHDzU0pds9@black.fi.intel.com>
- <20241209181842.GU5725@mdroper-desk1.amr.corp.intel.com>
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB2E510E518;
+ Mon,  9 Dec 2024 19:01:32 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241209181842.GU5725@mdroper-desk1.amr.corp.intel.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Display_Global_Histo?=
+ =?utf-8?q?gram_=28rev10=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arun R Murthy" <arun.r.murthy@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 09 Dec 2024 19:01:32 -0000
+Message-ID: <173377089276.562858.12268512018143368901@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241209162504.2146697-1-arun.r.murthy@intel.com>
+In-Reply-To: <20241209162504.2146697-1-arun.r.murthy@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,82 +37,175 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Dec 09, 2024 at 10:18:42AM -0800, Matt Roper wrote:
-> On Mon, Dec 09, 2024 at 07:43:55PM +0200, Raag Jadav wrote:
-> > On Mon, Dec 09, 2024 at 08:57:56AM -0800, Matt Roper wrote:
-> > > On Mon, Dec 09, 2024 at 09:54:54PM +0530, Arun R Murthy wrote:
-> > > > Display histogram is a hardware functionality where a statistics for 'x'
-> > > > number of frames is generated to form a histogram data. This is notified
-> > > > to the user via histogram event. Compositor will then upon sensing the
-> > > > histogram event will read the histogram data from KMD via crtc property.
-> > > > A library can be developed to take this generated histogram as an
-> > > > input and apply some algorithm to generate an Image EnhancemenT(IET).
-> > > > This is further fed back to the KMD via crtc property. KMD will use this
-> > > > IET as a multiplicand factor to multiply with the incoming pixels at the
-> > > > end of the pipe which is then pushed onto the display.
-> > > > 
-> > > > One such library Global Histogram Enhancement(GHE) will take the histogram
-> > > > as input and applied the algorithm to enhance the density and then
-> > > > return the enhanced factor. This library can be located @
-> > > > https://github.com/intel/ghe
-> > > > 
-> > > > The corresponding mutter changes to enable/disable histogram, read the
-> > > > histogram data, communicate with the library and write the enhanced data
-> > > > back to the KMD is also pushed for review at https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3873
-> > > > and https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3873/diffs?commit_id=270808ca7c8be48513553d95b4a47541f5d40206
-> > > > The IGT changes for validating the histogram event and reading the
-> > > > histogram is also pushed for review at https://patchwork.freedesktop.org/series/135789/
-> > > 
-> > > I think other people have already asked this on previous postings of
-> > > these patches, but please don't try to manually hack the version numbers
-> > > within a series.  What you just posted has "PATCHv10" on the cover
-> > > letter, "PATCHv2" on one patch, "PATCHv3" on three patches, and the rest
-> > > are unversioned "PATCH."  The general expectation these days is that
-> > > versioning in the subject applies to the series as a whole, not the
-> > > individual patches, so this causes a lot of confusion.  Posting like you
-> > > did here also wrecks havoc on a lot of the tools people use to manage
-> > > and compare series like the "b4" tool.
-> > > 
-> > > When generating and sending a new series, you should just do something
-> > > like "git format-patch -v10 ..." so that the proper "v10" numbering is
-> > > automatically applied to all the patches and we don't wind up with this
-> > > strange jumble.
-> > 
-> > Isn't that the starting point?
-> > 
-> > https://kernelnewbies.org/FirstKernelPatch -> "Versioning patchsets"
-> 
-> That section is explaining that the descriptive changelogs for updated
-> series can either be placed in the cover letter or in the individual
-> patches; I don't see anything about going back and editing the "[PATCH"
-> prefix of the subject line that was generated.  You generate the new
-> copy of all the patches (and the cover letter) with one execution of
-> "git format-patch," so whatever version number is generated should be
-> consistent and correct as a series-wide version without editing.  Also
-> note that even though that site suggests using "--subject-prefix" to
-> specify the version number, these days git's format-patch has a "-v"
-> option that's a bit more convenient for this purpose since it also
-> updates the filename of the patches generated and knows how to combine
-> the version number with other subject prefix rules for projects that use
-> them (e.g., IGT where patches use [PATCH i-g-t]).
-> 
-> Although sites like the one you linked can help with getting started,
-> it's worth noting that different kernel subsystems sometimes use
-> slightly different conventions so it's best to always check how things
-> are done in the area you're submitting patches to.  For example, unlike
-> many (most?) parts of the kernel, in the DRM subsystem we generally
-> prefer to place the per-patch changelogs directly into the commit
-> message rather than supplying them below the "---" line where they'd be
-> dropped when the patch is applied (i.e., our DRM convention runs counter
-> to what's stated earlier on the page you linked).  When in doubt it's
-> always best to read through other series on the mailing list to get a
-> sense of how other developers are crafting their series.
+== Series Details ==
 
-Which is why it's always useful to have some documentation up (especially
-for the counter ones which are subsystem specific) which can serve as a
-good starting point.
+Series: Display Global Histogram (rev10)
+URL   : https://patchwork.freedesktop.org/series/135793/
+State : warning
 
-Raag
+== Summary ==
+
+Error: dim checkpatch failed
+33f1a03f6bbe drm/crtc: Add histogram properties
+-:15: WARNING:TYPO_SPELLING: 'recieving' may be misspelled - perhaps 'receiving'?
+#15: 
+An event HISTOGRAM will be sent to the user. User upon recieving this
+                                                       ^^^^^^^^^
+
+total: 0 errors, 1 warnings, 0 checks, 93 lines checked
+c2526ba20b16 drm/crtc: Expose API to create drm crtc property for histogram
+-:96: WARNING:TYPO_SPELLING: 'recieving' may be misspelled - perhaps 'receiving'?
+#96: FILE: drivers/gpu/drm/drm_crtc.c:952:
++ * An event HISTOGRAM will be sent to the user. User upon recieving this
+                                                           ^^^^^^^^^
+
+total: 0 errors, 1 warnings, 0 checks, 146 lines checked
+d795412868e0 drm/i915/histogram: Define registers for histogram
+-:15: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#15: 
+new file mode 100644
+
+-:20: WARNING:SPDX_LICENSE_TAG: Improper SPDX comment style for 'drivers/gpu/drm/i915/display/intel_histogram_regs.h', please use '/*' instead
+#20: FILE: drivers/gpu/drm/i915/display/intel_histogram_regs.h:1:
++// SPDX-License-Identifier: MIT
+
+-:20: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#20: FILE: drivers/gpu/drm/i915/display/intel_histogram_regs.h:1:
++// SPDX-License-Identifier: MIT
+
+-:39: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#39: FILE: drivers/gpu/drm/i915/display/intel_histogram_regs.h:20:
++#define  DPST_CTL_EN_MULTIPLICATIVE			REG_FIELD_PREP(DPST_CTL_ENHANCEMENT_MODE_MASK, 2)
+
+-:46: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#46: FILE: drivers/gpu/drm/i915/display/intel_histogram_regs.h:27:
++#define  DPST_CTL_IE_TABLE_VALUE_FORMAT_2INT_8FRAC	REG_FIELD_PREP(DPST_CTL_IE_TABLE_VALUE_FORMAT, 1)
+
+-:47: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#47: FILE: drivers/gpu/drm/i915/display/intel_histogram_regs.h:28:
++#define  DPST_CTL_IE_TABLE_VALUE_FORMAT_1INT_9FRAC	REG_FIELD_PREP(DPST_CTL_IE_TABLE_VALUE_FORMAT, 0)
+
+-:53: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#53: FILE: drivers/gpu/drm/i915/display/intel_histogram_regs.h:34:
++#define DPST_GUARD(pipe)				_MMIO_PIPE(pipe, _DPST_GUARD_A, _DPST_GUARD_B)
+
+-:57: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
+#57: FILE: drivers/gpu/drm/i915/display/intel_histogram_regs.h:38:
++#define  DPST_GUARD_INTERRUPT_DELAY(val)			REG_FIELD_PREP(DPST_GUARD_INTERRUPT_DELAY_MASK, val)
+
+-:59: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#59: FILE: drivers/gpu/drm/i915/display/intel_histogram_regs.h:40:
++#define  DPST_GUARD_THRESHOLD_GB(val)			REG_FIELD_PREP(DPST_GUARD_THRESHOLD_GB_MASK, val)
+
+total: 0 errors, 9 warnings, 0 checks, 48 lines checked
+a7c4106d5c05 drm/i915/histogram: Add support for histogram
+-:49: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#49: 
+new file mode 100644
+
+-:214: WARNING:ALLOC_WITH_MULTIPLY: Prefer kcalloc over kzalloc with multiply
+#214: FILE: drivers/gpu/drm/i915/display/intel_histogram.c:161:
++	data = kzalloc(sizeof(data) * iet->nr_elements, GFP_KERNEL);
+
+-:246: WARNING:BRACES: braces {} are not necessary for single statement blocks
+#246: FILE: drivers/gpu/drm/i915/display/intel_histogram.c:193:
++	if (!histogram) {
++		return -ENOMEM;
++	}
+
+-:262: WARNING:SPDX_LICENSE_TAG: Improper SPDX comment style for 'drivers/gpu/drm/i915/display/intel_histogram.h', please use '/*' instead
+#262: FILE: drivers/gpu/drm/i915/display/intel_histogram.h:1:
++// SPDX-License-Identifier: MIT
+
+-:262: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#262: FILE: drivers/gpu/drm/i915/display/intel_histogram.h:1:
++// SPDX-License-Identifier: MIT
+
+total: 0 errors, 5 warnings, 0 checks, 254 lines checked
+600052121fbf drm/xe: Add histogram support to Xe builds
+abfb254252b8 drm/i915/histogram: histogram interrupt handling
+-:6: WARNING:TYPO_SPELLING: 'trigerred' may be misspelled - perhaps 'triggered'?
+#6: 
+Upon enabling histogram an interrupt is trigerred after the generation
+                                        ^^^^^^^^^
+
+-:77: WARNING:BRACES: braces {} are not necessary for any arm of this statement
+#77: FILE: drivers/gpu/drm/i915/display/intel_histogram.c:41:
++		if (!(dpstbin & DPST_BIN_BUSY)) {
+[...]
++		} else
+[...]
+
+-:79: CHECK:BRACES: Unbalanced braces around else statement
+#79: FILE: drivers/gpu/drm/i915/display/intel_histogram.c:43:
++		} else
+
+-:92: WARNING:STATIC_CONST_CHAR_ARRAY: char * array declaration might be better as static const
+#92: FILE: drivers/gpu/drm/i915/display/intel_histogram.c:56:
++	char *histogram_event[] = { event, pipe_id, NULL };
+
+-:114: CHECK:ALLOC_SIZEOF_STRUCT: Prefer kzalloc(sizeof(*hist)...) over kzalloc(sizeof(struct drm_histogram)...)
+#114: FILE: drivers/gpu/drm/i915/display/intel_histogram.c:78:
++			hist = kzalloc(sizeof(struct drm_histogram), GFP_KERNEL);
+
+-:121: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#121: FILE: drivers/gpu/drm/i915/display/intel_histogram.c:85:
++			drm_property_replace_global_blob(display->drm,
++				&intel_crtc->base.state->histogram_data,
+
+total: 0 errors, 3 warnings, 3 checks, 202 lines checked
+657e95b5738c drm/i915/display: Handle drm-crtc histogram property updates
+-:90: ERROR:ASSIGN_IN_IF: do not use assignment in if condition
+#90: FILE: drivers/gpu/drm/i915/display/intel_display.c:6843:
++		if (new_crtc_state->uapi.histogram_enable |=
+
+total: 1 errors, 0 warnings, 0 checks, 85 lines checked
+b0ace50be2e5 drm/i915/histogram: histogram delay counter doesnt reset
+-:4: WARNING:TYPO_SPELLING: 'doesnt' may be misspelled - perhaps 'doesn't'?
+#4: 
+Subject: [PATCH] drm/i915/histogram: histogram delay counter doesnt reset
+                                                             ^^^^^^
+
+-:43: WARNING:LONG_LINE_COMMENT: line length of 103 exceeds 100 columns
+#43: FILE: drivers/gpu/drm/i915/display/intel_histogram.c:109:
++		/* Write the value read from DPST_CTL to DPST_CTL.Interrupt Delay Counter(bit 23:16) */
+
+-:62: WARNING:LONG_LINE: line length of 115 exceeds 100 columns
+#62: FILE: drivers/gpu/drm/i915/display/intel_histogram_regs.h:20:
++#define  DPST_CTL_GUARDBAND_INTERRUPT_DELAY(val)	REG_FIELD_PREP(DPST_CTL_GUARDBAND_INTERRUPT_DELAY_CNT, val)
+
+total: 0 errors, 3 warnings, 0 checks, 34 lines checked
+535c23c25460 drm/i915/histogram: Histogram changes for Display 20+
+-:39: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#39: FILE: drivers/gpu/drm/i915/display/intel_histogram.c:44:
++static void write_iet(struct intel_display *display, enum pipe pipe,
++			      u32 *data)
+
+-:195: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
+#195: FILE: drivers/gpu/drm/i915/display/intel_histogram_regs.h:53:
++#define DPST_HIST_INDEX(pipe)				_MMIO_PIPE(pipe, _DPST_HIST_INDEX_A, _DPST_HIST_INDEX_B)
+
+-:197: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#197: FILE: drivers/gpu/drm/i915/display/intel_histogram_regs.h:55:
++#define  DPST_HIST_BIN_INDEX(val)			REG_FIELD_PREP(DPST_HIST_BIN_INDEX_MASK, val)
+
+-:201: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#201: FILE: drivers/gpu/drm/i915/display/intel_histogram_regs.h:59:
++#define DPST_HIST_BIN(pipe)				_MMIO_PIPE(pipe, _DPST_HIST_BIN_A, _DPST_HIST_BIN_B)
+
+-:207: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#207: FILE: drivers/gpu/drm/i915/display/intel_histogram_regs.h:65:
++#define DPST_IE_BIN(pipe)				_MMIO_PIPE(pipe, _DPST_IE_BIN_A, _DPST_IE_BIN_B)
+
+-:213: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#213: FILE: drivers/gpu/drm/i915/display/intel_histogram_regs.h:71:
++#define DPST_IE_INDEX(pipe)				_MMIO_PIPE(pipe, _DPST_IE_INDEX_A, _DPST_IE_INDEX_B)
+
+total: 0 errors, 5 warnings, 1 checks, 183 lines checked
+d701a7f63480 drm/i915/histogram: Enable pipe dithering
+
+
