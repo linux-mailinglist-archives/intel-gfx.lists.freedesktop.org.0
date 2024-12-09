@@ -2,29 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0B1C9E890E
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Dec 2024 02:50:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E28D9E8D0A
+	for <lists+intel-gfx@lfdr.de>; Mon,  9 Dec 2024 09:07:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B87E910E28B;
-	Mon,  9 Dec 2024 01:50:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1EF4010E4A1;
+	Mon,  9 Dec 2024 08:07:09 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g7yhAb9n";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25E9A10E27D;
- Mon,  9 Dec 2024 01:50:05 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2594810E4A0;
+ Mon,  9 Dec 2024 08:07:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1733731629; x=1765267629;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=AiBiLhyODGumEZjyg2/3ZB71dqK/8Geiawsm2o0fcZ8=;
+ b=g7yhAb9nRsbtR2piWL6DZ4EsOFNgkbCUfWy/ysREwFp4FVqoNCpHdNUH
+ N3Zniqsr/SXAWYPQfwTyOyROiBhOh/K+KGJFhYFJXamKnV+oF8+o2VNhd
+ 0EBoyhnHR2cFAbizFbY73GreS3hVbUknSAMCV5vYTPcei1b/dPy/VDT0L
+ fPFpjyhPPnxBzq0Wc38pZALa0B2uTon0e4gspH8Etla5e6TUnQh7kimNl
+ WV6XScYSmDyLez1GzRh7aQa5Iv+p64UPNS8pbIii/4RL7HQ/Kc4RKjfaB
+ uBlnZ3SINToCDvmlI/b1Lj0E9VPwiqCTqy6uvXIZPn8gDzmNgrQaQgizr Q==;
+X-CSE-ConnectionGUID: 3FP5p705RAaAR0cMUhFw0A==
+X-CSE-MsgGUID: tG0UpmVoRP6efVmb372Q5g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11280"; a="33939102"
+X-IronPort-AV: E=Sophos;i="6.12,218,1728975600"; d="scan'208";a="33939102"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2024 00:07:08 -0800
+X-CSE-ConnectionGUID: u2a3LgiuR2m9CaVpcN+bAw==
+X-CSE-MsgGUID: hGr/LPrJRH+17gAdwOqv1A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,218,1728975600"; d="scan'208";a="95446363"
+Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
+ by orviesa007.jf.intel.com with ESMTP; 09 Dec 2024 00:07:02 -0800
+From: Animesh Manna <animesh.manna@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Animesh Manna <animesh.manna@intel.com>,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH v2] drm/i915/display: Adjust Added Wake Time with PKG_C_LATENCY
+Date: Mon,  9 Dec 2024 13:17:02 +0530
+Message-Id: <20241209074702.3975702-1-animesh.manna@intel.com>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_linux-next=3A_build_failu?=
- =?utf-8?q?re_after_merge_of_the_drm-misc_tree?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Stephen Rothwell" <sfr@canb.auug.org.au>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 09 Dec 2024 01:50:05 -0000
-Message-ID: <173370900514.273805.9537684534481084549@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241209121717.2abe8026@canb.auug.org.au>
-In-Reply-To: <20241209121717.2abe8026@canb.auug.org.au>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,35 +63,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+The PKG_C_LATENCY Added Wake Time field is not working.
+When added wake time is needed, such as for flip queue
+DSB execution, increase the PKG_C_LATENCY Pkg C Latency
+field by the added wake time.
 
-Series: linux-next: build failure after merge of the drm-misc tree
-URL   : https://patchwork.freedesktop.org/series/142270/
-State : failure
+WA: 22020432604
 
-== Summary ==
+v1: Initial version.
+v2: Rebase and cosmetic changes.
 
-Error: make failed
-  CALL    scripts/checksyscalls.sh
-  DESCEND objtool
-  INSTALL libsubcmd_headers
-  CHK     kernel/kheaders_data.tar.xz
-  HDRTEST drivers/gpu/drm/xe/generated/xe_wa_oob.h
-  MODPOST Module.symvers
-ERROR: modpost: module virtio-gpu uses symbol dma_buf_unpin from namespace DMA_BUF, but does not import it.
-ERROR: modpost: module virtio-gpu uses symbol dma_buf_dynamic_attach from namespace DMA_BUF, but does not import it.
-ERROR: modpost: module virtio-gpu uses symbol dma_buf_map_attachment from namespace DMA_BUF, but does not import it.
-ERROR: modpost: module virtio-gpu uses symbol dma_buf_unmap_attachment from namespace DMA_BUF, but does not import it.
-ERROR: modpost: module virtio-gpu uses symbol dma_buf_put from namespace DMA_BUF, but does not import it.
-ERROR: modpost: module virtio-gpu uses symbol dma_buf_pin from namespace DMA_BUF, but does not import it.
-ERROR: modpost: module virtio-gpu uses symbol dma_buf_detach from namespace DMA_BUF, but does not import it.
-make[2]: *** [scripts/Makefile.modpost:145: Module.symvers] Error 1
-make[1]: *** [/home/kbuild/kernel/Makefile:1939: modpost] Error 2
-make: *** [Makefile:251: __sub-make] Error 2
-Build failed, no error log produced
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+---
+ drivers/gpu/drm/i915/display/skl_watermark.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index d93f6786db0e..f6f7205e06eb 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -2894,6 +2894,12 @@ intel_program_dpkgc_latency(struct intel_atomic_state *state)
+ 			display->sagv.block_time_us;
+ 	}
+ 
++	/* Wa_22020432604 */
++	if (DISPLAY_VER(i915) == 30) {
++		latency += added_wake_time;
++		added_wake_time = 0;
++	}
++
+ 	clear = LNL_ADDED_WAKE_TIME_MASK | LNL_PKG_C_LATENCY_MASK;
+ 	val = REG_FIELD_PREP(LNL_PKG_C_LATENCY_MASK, latency) |
+ 		REG_FIELD_PREP(LNL_ADDED_WAKE_TIME_MASK, added_wake_time);
+-- 
+2.29.0
 
