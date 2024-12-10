@@ -2,29 +2,73 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B00209EB430
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Dec 2024 16:01:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F4D29EB481
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Dec 2024 16:18:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB93E10E3C3;
-	Tue, 10 Dec 2024 15:01:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E23510E8FD;
+	Tue, 10 Dec 2024 15:18:41 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Uhr61iV0";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 540D710E3B3;
- Tue, 10 Dec 2024 15:01:16 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 17B5D10E229;
+ Tue, 10 Dec 2024 15:18:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1733843920; x=1765379920;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=MyYV/Dq/yh2N0al9eocpkchQGpyiruhLqw5oLkHPoWs=;
+ b=Uhr61iV0hv6b9voivjgbHSz7TeblXiL9z8vd60S9JE1xFICnvuyDw2gV
+ 4udkcGa2o9pY4w38U4yUQfmxigF7ipa7V0q5OFlTSg5WMsTEX3Gb5nT7i
+ z63xspzlFP1znUBGj8qosLSxiMXnCfQ0+1+Sh1YL2+GgM9uFiK8RmUSuP
+ WDc4EFSkROMts5wcBJqJUVg87Yms/2khxe5gRAKhp3oR7v/GDFEEWaxHO
+ 6hxm01euYuY+ZZzaReIYn0FwylTQXTumTLjgWO29xGXWsii8JOPlcSIoX
+ weFda0SbhTq5VqHpG/uROUfUN0WlzpJXRRGZo/f6U0KC0VD3CYLmwtg1E g==;
+X-CSE-ConnectionGUID: 2EHTLealQleWQjWKWyTj8A==
+X-CSE-MsgGUID: CyCdbUZJQW2TQOM6iDLq7w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="45206213"
+X-IronPort-AV: E=Sophos;i="6.12,222,1728975600"; d="scan'208";a="45206213"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2024 07:18:40 -0800
+X-CSE-ConnectionGUID: A9Ohsn/hQfKsY0TvuxCS3w==
+X-CSE-MsgGUID: WKZB0PDwSvqrhDvuB8FZxw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,222,1728975600"; d="scan'208";a="95255207"
+Received: from sgruszka-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.118.67])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Dec 2024 07:18:35 -0800
+Date: Tue, 10 Dec 2024 16:18:32 +0100
+From: Stanislaw Gruszka <stanislaw.gruszka@linux.intel.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Genes Lists <lists@sapience.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ linux-kernel@vger.kernel.org, akpm@linux-foundation.org,
+ torvalds@linux-foundation.org, stable@vger.kernel.org,
+ linux-media@vger.kernel.org, bingbu.cao@intel.com,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Subject: Re: Linux 6.12.4 - crash dma_alloc_attrs+0x12b via ipu6
+Message-ID: <Z1hbyNXUubokloda@linux.intel.com>
+References: <2024120917-vision-outcast-85f2@gregkh>
+ <c0e94be466b367f1a3cfdc3cb7b1a4f47e5953ae.camel@sapience.com>
+ <Z1fqitbWlmELb5pj@kekkonen.localdomain> <87seqvzzg6.fsf@intel.com>
+ <c1805642a6c5da6fef3927c70358c8cb851d2784.camel@sapience.com>
+ <87bjxjzpwn.fsf@intel.com> <2024121001-senator-raffle-a371@gregkh>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/dp=3A_convert_to?=
- =?utf-8?q?_struct_intel=5Fdisplay_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 10 Dec 2024 15:01:16 -0000
-Message-ID: <173384287633.877623.527430888351187875@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <cover.1733827537.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1733827537.git.jani.nikula@intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <2024121001-senator-raffle-a371@gregkh>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,92 +81,99 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, Dec 10, 2024 at 01:37:11PM +0100, Greg Kroah-Hartman wrote:
+> On Tue, Dec 10, 2024 at 02:24:56PM +0200, Jani Nikula wrote:
+> > On Tue, 10 Dec 2024, Genes Lists <lists@sapience.com> wrote:
+> > > On Tue, 2024-12-10 at 10:58 +0200, Jani Nikula wrote:
+> > >> On Tue, 10 Dec 2024, Sakari Ailus <sakari.ailus@linux.intel.com>
+> > >> wrote:
+> > >> > Hi,
+> > >> > 
+> > >> > > ...
+> > >> > > FYI 6.12.4 got a crash shortly after booting in dma_alloc_attrs -
+> > >> > > maybe
+> > >> > > triggered in ipu6_probe. Crash only happened on laptop with ipu6.
+> > >> > > All
+> > >> > > other machines are running fine.
+> > >> > 
+> > >> > Have you read the dmesg further than the IPU6 related warning? The
+> > >> > IPU6
+> > >> > driver won't work (maybe not even probe?) but if the system
+> > >> > crashes, it
+> > >> > appears unlikely the IPU6 drivers would have something to do with
+> > >> > that.
+> > >> > Look for warnings on linked list corruption later, they seem to be
+> > >> > coming
+> > >> > from the i915 driver.
+> > >> 
+> > >> And the list corruption is actually happening in
+> > >> cpu_latency_qos_update_request(). I don't see any i915 changes in
+> > >> 6.12.4
+> > >> that could cause it.
+> > >> 
+> > >> I guess the question is, when did it work? Did 6.12.3 work?
+> > >> 
+> > >> 
+> > >> BR,
+> > >> Jani.
+> > >
+> > >
+> > >  - 6.12.1 worked
+> > >
+> > >  - mainline - works (but only with i915 patch set [1] otherwise there
+> > > are no graphics at all)
+> > >
+> > >     [1] https://patchwork.freedesktop.org/series/141911/
+> > >
+> > > - 6.12.3 - crashed (i see i915 not ipu6) and again it has       
+> > >     cpu_latency_qos_update_request+0x61/0xc0
+> > 
+> > Thanks for testing.
+> > 
+> > There are no changes to either i915 or kernel/power between 6.12.1 and
+> > 6.12.4.
+> > 
+> > There are some changes to drm core, but none that could explain this.
+> > 
+> > Maybe try the same kernels a few more times to see if it's really
+> > deterministic? Not that I have obvious ideas where to go from there, but
+> > it's a clue nonetheless.
+> 
+> 'git bisect' would be nice to run if possible...
 
-Series: drm/i915/dp: convert to struct intel_display (rev2)
-URL   : https://patchwork.freedesktop.org/series/141929/
-State : success
+I've reproduced the issue. It's caused by 6.12.y commit:
 
-== Summary ==
+commit 6ac269abab9ca5ae910deb2d3ca54351c3467e99
+Author: Bingbu Cao <bingbu.cao@intel.com>
+Date:   Wed Oct 16 15:53:01 2024 +0800
 
-CI Bug Log - changes from CI_DRM_15814 -> Patchwork_141929v2
-====================================================
+    media: ipu6: not override the dma_ops of device in driver
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141929v2/index.html
-
-Participating hosts (45 -> 44)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_141929v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         [PASS][1] -> [SKIP][2] ([i915#9197]) +2 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15814/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141929v2/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_module_load@load:
-    - bat-adlp-6:         [DMESG-WARN][3] ([i915#12253]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15814/bat-adlp-6/igt@i915_module_load@load.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141929v2/bat-adlp-6/igt@i915_module_load@load.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - bat-dg1-7:          [FAIL][5] ([i915#12903]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15814/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141929v2/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live:
-    - bat-mtlp-8:         [ABORT][7] ([i915#12061]) -> [PASS][8] +1 other test pass
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15814/bat-mtlp-8/igt@i915_selftest@live.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141929v2/bat-mtlp-8/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@workarounds:
-    - {bat-mtlp-9}:       [ABORT][9] ([i915#12061]) -> [PASS][10] +1 other test pass
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15814/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141929v2/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12253]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12253
-  [i915#12903]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12903
-  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
+    [ Upstream commit daabc5c64703432c4a8798421a3588c2c142c51b ]
 
 
-Build changes
--------------
+It makes alloc_fw_msg_bufs() fail on isys_probe() 
 
-  * Linux: CI_DRM_15814 -> Patchwork_141929v2
+	cpu_latency_qos_add_request(&isys->pm_qos, PM_QOS_DEFAULT_VALUE);
 
-  CI-20190529: 20190529
-  CI_DRM_15814: 6966a52cb5531bf6cc785fadba160a71cd31e7aa @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8146: 4134194b806f286bf0bf47ce02416ca3701b7b34 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_141929v2: 6966a52cb5531bf6cc785fadba160a71cd31e7aa @ git://anongit.freedesktop.org/gfx-ci/linux
+	ret = alloc_fw_msg_bufs(isys, 20);
+	if (ret < 0)
+		goto out_remove_pkg_dir_shared_buffer;
 
-== Logs ==
+And on error path we do not call cpu_latency_qos_remove_request() 
+what cause pm_qos_request list corruption (it is memory use
+after free bug).
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141929v2/index.html
+The problem will disappear after applying:
+https://lore.kernel.org/stable/20241209175416.59433-1-stanislaw.gruszka@linux.intel.com/
+since the allocation will not longer fail.
+
+But we also need to handle fail case correctly by adding
+cpu_latency_qos_remove_request() on error path. This requires
+mainline fix, I'll post it. 
+
+Regards
+Stanislaw
