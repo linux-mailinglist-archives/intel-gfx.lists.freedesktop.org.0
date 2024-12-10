@@ -2,57 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CE769EABF1
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Dec 2024 10:28:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 145B49EAC49
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Dec 2024 10:36:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6040410E842;
-	Tue, 10 Dec 2024 09:28:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 881E810E85A;
+	Tue, 10 Dec 2024 09:36:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A+l8hfJv";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="Qz91GMhp";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 78A3B10E842
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Dec 2024 09:28:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733822882; x=1765358882;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=dGIZK9jghOkdWNQ4QMG/QQpwR0FFQVg73XHCd2R9jwg=;
- b=A+l8hfJv1+yqPzPPEaQtic/20SDnmLTeu3QYb7LtG+cmeBcC0t44RVm4
- uo9DPaJeryXchUWVMxwYc/rL5pdz0NMAfNQBRi7Vqi9DeOIdmg9J5hHIU
- D5lo3SyrD9BeNGTzKm21LaSmT1+BMSpxXoJPCMYFR4rIeklukxfQiL3wV
- hGTfj/j9PJoSMDp/HZkBddLoycCsex0uqIeoXPVDQ5fMybHPCqtbQRZbu
- LSKXWctU0faYbebFp0uj6eNOIzL6JdKH3uT6TSdqGKqzw6vTyc5aOZ62g
- Y8y/3RP1UXsNhZe/5iGspjjkuvRvK8GfJx1lYuB+raF4OmeyELNEpZMTX w==;
-X-CSE-ConnectionGUID: FkH4y8/fReuQGTh+C/5NgA==
-X-CSE-MsgGUID: ytnJXWRJSeyGAFOFujct0A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11281"; a="21742810"
-X-IronPort-AV: E=Sophos;i="6.12,222,1728975600"; d="scan'208";a="21742810"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2024 01:28:02 -0800
-X-CSE-ConnectionGUID: 2I9yGTCqRrmGevKTiNQWDg==
-X-CSE-MsgGUID: X8LrFFWTQw6N6xEhxOLu3A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,222,1728975600"; d="scan'208";a="118600193"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.242])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2024 01:28:01 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH] drm/i915/pps: include panel power cycle delay in debugfs
-In-Reply-To: <SJ1PR11MB6129E94FE67A8215E4B0FDE1B93C2@SJ1PR11MB6129.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241205123720.3278727-1-jani.nikula@intel.com>
- <SJ1PR11MB6129E94FE67A8215E4B0FDE1B93C2@SJ1PR11MB6129.namprd11.prod.outlook.com>
-Date: Tue, 10 Dec 2024 11:27:58 +0200
-Message-ID: <87jzc7zy3l.fsf@intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F291B10E85F
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Dec 2024 09:36:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1733823389;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=8GEvw5QpbRp0f45cMt+HrV/NNA4rCDC5F+CWhNaj1U4=;
+ b=Qz91GMhphIHGDw3tAVQmZFwWj7+DseJviEfoykAJTuY/NZEFaC0za7zKNexfymhILBsLWp
+ jReTF/6YEgsvtZgStnodo85DQWvesuNCaCer06CPwPfGpjqyPfqL5TU+4U/49yYU3B+sy6
+ WzWxSNEzyHYk7VVnVOelPszmhMzonHc=
+Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-553-TP-uYSDmMgmG4UJdPcH1ZQ-1; Tue,
+ 10 Dec 2024 04:36:26 -0500
+X-MC-Unique: TP-uYSDmMgmG4UJdPcH1ZQ-1
+X-Mimecast-MFC-AGG-ID: TP-uYSDmMgmG4UJdPcH1ZQ
+Received: from mx-prod-int-02.mail-002.prod.us-west-2.aws.redhat.com
+ (mx-prod-int-02.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.15])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id 38131195C258; Tue, 10 Dec 2024 09:36:24 +0000 (UTC)
+Received: from hydra.redhat.com (unknown [10.39.193.39])
+ by mx-prod-int-02.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
+ id AAF411956089; Tue, 10 Dec 2024 09:36:20 +0000 (UTC)
+From: Jocelyn Falempe <jfalempe@redhat.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Cc: Jocelyn Falempe <jfalempe@redhat.com>
+Subject: [RFC PATCH v3 0/6] drm/i915: Add drm_panic support
+Date: Tue, 10 Dec 2024 10:28:40 +0100
+Message-ID: <20241210093505.589893-1-jfalempe@redhat.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
+X-Scanned-By: MIMEDefang 3.0 on 10.30.177.15
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,53 +72,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 09 Dec 2024, "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com> wrote:
->> -----Original Message-----
->> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Jani
->> Nikula
->> Sent: Thursday, December 5, 2024 6:07 PM
->> To: intel-gfx@lists.freedesktop.org
->> Cc: Nikula, Jani <jani.nikula@intel.com>
->> Subject: [PATCH] drm/i915/pps: include panel power cycle delay in debugfs
->>
->> The debugfs contains all the other timings except panel power cycle delay.
->> Add it for completeness.
->>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> LGTM.
->
-> Reviewed-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+This is a draft of drm_panic support for i915.
 
-Thanks, pushed to din.
+I've tested it on the 3 intel laptops I have at my disposal.
+one Haswell with 128MB of eDRAM, one Cometlake and one Alderlake.
 
-BR,
-Jani.
+I tested panic in both fbdev console and gnome desktop.
 
->
->
->> ---
->>  drivers/gpu/drm/i915/display/intel_pps.c | 2 ++
->>  1 file changed, 2 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c
->> b/drivers/gpu/drm/i915/display/intel_pps.c
->> index 7784b3b760db..e55c84685521 100644
->> --- a/drivers/gpu/drm/i915/display/intel_pps.c
->> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
->> @@ -1819,6 +1819,8 @@ static int intel_pps_show(struct seq_file *m, void
->> *data)
->>                  intel_dp->pps.panel_power_up_delay);
->>       seq_printf(m, "Panel power down delay: %d\n",
->>                  intel_dp->pps.panel_power_down_delay);
->> +     seq_printf(m, "Panel power cycle delay: %d\n",
->> +                intel_dp->pps.panel_power_cycle_delay);
->>       seq_printf(m, "Backlight on delay: %d\n",
->>                  intel_dp->pps.backlight_on_delay);
->>       seq_printf(m, "Backlight off delay: %d\n",
->> --
->> 2.39.5
->
+Best regards,
 
+v2:
+ * Add the proper abstractions to build also for Xe.
+ * Fix dim checkpatch issues.
+
+v3:
+ * Add support for Y-tiled framebuffer when DPT is enabled.
+
+Jocelyn Falempe (6):
+  drm/i915/fbdev: Add intel_fbdev_get_vaddr()
+  drm/i915/display/i9xx: Add a disable_tiling() for i9xx planes
+  drm/i915/display: Add a disable_tiling() for skl planes
+  drm/i915/gem: Add i915_gem_object_panic_map()
+  drm/i915: Add drm_panic support
+  drm/i915: Add drm_panic support for Y-tiling with DPT
+
+ drivers/gpu/drm/i915/display/i9xx_plane.c     |  23 +++
+ .../gpu/drm/i915/display/intel_atomic_plane.c | 147 +++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_bo.c       |  10 ++
+ drivers/gpu/drm/i915/display/intel_bo.h       |   2 +
+ .../drm/i915/display/intel_display_types.h    |   2 +
+ drivers/gpu/drm/i915/display/intel_fb_pin.c   |   5 +
+ drivers/gpu/drm/i915/display/intel_fb_pin.h   |   1 +
+ drivers/gpu/drm/i915/display/intel_fbdev.c    |   5 +
+ drivers/gpu/drm/i915/display/intel_fbdev.h    |   6 +
+ .../drm/i915/display/skl_universal_plane.c    |  27 ++++
+ drivers/gpu/drm/i915/gem/i915_gem_object.h    |   2 +
+ drivers/gpu/drm/i915/gem/i915_gem_pages.c     |  25 +++
+ drivers/gpu/drm/i915/i915_vma.h               |   5 +
+ drivers/gpu/drm/xe/display/intel_bo.c         |  11 ++
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        |   5 +
+ 15 files changed, 275 insertions(+), 1 deletion(-)
+
+
+base-commit: 919b1458ccfd33ead891fa4ad1e1d06016f5a20c
 -- 
-Jani Nikula, Intel
+2.47.1
+
