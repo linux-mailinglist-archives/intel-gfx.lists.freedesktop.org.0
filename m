@@ -2,51 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 172859EBB9B
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Dec 2024 22:10:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56B809EBBA0
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Dec 2024 22:11:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 398CA10E97B;
-	Tue, 10 Dec 2024 21:10:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE63210E98E;
+	Tue, 10 Dec 2024 21:10:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c143+cVK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MfaMnvAw";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5588610E97E
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Dec 2024 21:10:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 10BD610E98A
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Dec 2024 21:10:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733865054; x=1765401054;
+ t=1733865057; x=1765401057;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=j6u/cKqBxVI9hGnHZlyzGbb4y2xCsSdyNzfyW+CnY7k=;
- b=c143+cVKB1bS5JtmtOu47tVJYyD3YvYShEXmSBgjJGFgP0KskSDm03MA
- MtP0v+dBlnKzeu0SJ84i65lf7L7Uc/0PcvGy3ewCXvwV6OtBTQ34icW3G
- 8tVV9n2TdGa5s9BILySlP6zjd0Fs4k+Xb5AuWI/zCHXqI48OBbBv5UvjR
- Xa2cJNzTxLbUfRp95prPY9mPQd/yI264K24VI5t1tZf7Vyk+yiB8VqNAM
- sR24OtyU2IswNyuk7tr23ErDdNhJ4OXGUwwWT+LY8HV4MV6r3frMiTgpa
- mDQSm40MOOqUwl4Aol+XiDI1q59xBMuLWbzKYZMffjdBikdOICPGnDku4 A==;
-X-CSE-ConnectionGUID: Wb/znePyTLmoBc6ePhRc0A==
-X-CSE-MsgGUID: LR2qCTylSuGvb/P/F3ZFtA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="59620216"
-X-IronPort-AV: E=Sophos;i="6.12,223,1728975600"; d="scan'208";a="59620216"
+ bh=Tt44BQJrqupArjxUAHTn8yRV06ot1m2sy2wq9vj39+c=;
+ b=MfaMnvAwFAxq8nRzzH1jkrouHaCzW7g2xRsTn6iZfGQf846IfvJDRkZm
+ GK2iu4f8R2kUoS7wG+QmiV//svZZZuLT9rPklu4YxZ6YBQsMMKKUxOqKq
+ 1yWDJs3y0K0j+azXQS2ObCiQKdX3wxWXZG6I3p5W4rVYSBFxsgux5buhr
+ LCYmOYS6K+vmgYeJttgerf2lyCRqLCZshoHVNQqkgEIhWQqfRle1EPv8F
+ MfOqaZO50Y4w9t8FHMxzwkCgVuaIy8sRoyud8pE26as6cEZLH6DZAFaOw
+ iZ0AFIf53rw38HnT4gAwPIXJUSBCvrwPQZD3TJVApVIZXWnCSVc08wuOL A==;
+X-CSE-ConnectionGUID: RrIT1kGfTjutPhX5qT+iXQ==
+X-CSE-MsgGUID: uhGCntxbTjSkaaMMGrnGUA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="59620222"
+X-IronPort-AV: E=Sophos;i="6.12,223,1728975600"; d="scan'208";a="59620222"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2024 13:10:54 -0800
-X-CSE-ConnectionGUID: okf3sCJOTCWAGSUNZCuP/A==
-X-CSE-MsgGUID: +iYME41IRIyLGc7g46o0Eg==
+ 10 Dec 2024 13:10:57 -0800
+X-CSE-ConnectionGUID: srD6HsigQym/5adIFtbAbg==
+X-CSE-MsgGUID: odyUsT6ZTIiHXVlAA1CK4w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,223,1728975600"; d="scan'208";a="95735157"
+X-IronPort-AV: E=Sophos;i="6.12,223,1728975600"; d="scan'208";a="95735161"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 10 Dec 2024 13:10:53 -0800
+ by fmviesa008.fm.intel.com with SMTP; 10 Dec 2024 13:10:56 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 10 Dec 2024 23:10:51 +0200
+ Tue, 10 Dec 2024 23:10:54 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 16/18] drm/i915/vrr: Plumb the DSB into intel_vrr_send_push()
-Date: Tue, 10 Dec 2024 23:10:05 +0200
-Message-ID: <20241210211007.5976-17-ville.syrjala@linux.intel.com>
+Subject: [PATCH 17/18] drm/i915/dsb: Add support for triggering VRR push with
+ DSB
+Date: Tue, 10 Dec 2024 23:10:06 +0200
+Message-ID: <20241210211007.5976-18-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241210211007.5976-1-ville.syrjala@linux.intel.com>
 References: <20241210211007.5976-1-ville.syrjala@linux.intel.com>
@@ -70,86 +71,70 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Plumb the DSB down into intel_vrr_send_push() so that we can
-perform the opration on the DSB.
+We have at least two options for how to do the
+TRANS_PUSH_SEND + commit completion signalling
+with the DSB:
 
-TRANS_PUSH, being a transcoder register, needs non-posted writes
-to make it through.
+Option A)
+ 1. trigger TRANS_PUSH_SEND
+ 2. wait for "safe window"
+ 3. signal the interrupt
+
+In this cases step 2 should not do anything if we were already
+between vmin and vmax decision boundaries. Otherwise we'll wait
+until the next start of the vblank period.
+
+Option B)
+ 1. wait for "safe window"
+ 2. trigger TRANS_PUSH_SEND
+ 3. signal the interrupt
+
+This option is perhaps a bit less racy, but if we do somehow
+screw up and the wait is a nop but the push gets deferred
+until the next frame then we'll end up completing the commit
+a frame too early.
+
+So for now I'm leaning towards option A since losing the race
+won't have any drastic consequences. To deal with the race we
+can give the DSB a bit more time to start step 2 before the
+hardware has started the vblank termination properly. Often
+times it seems to be fast enough to make it in time even without
+any extra vblank delay (the push is issued somewhere within a
+scanline and it latches on the next scanline).
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_crtc.c |  2 +-
- drivers/gpu/drm/i915/display/intel_vrr.c  | 14 +++++++++++---
- drivers/gpu/drm/i915/display/intel_vrr.h  |  4 +++-
- 3 files changed, 15 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index a2c528d707f4..3bb57a74b333 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -713,7 +713,7 @@ void intel_pipe_update_end(struct intel_atomic_state *state,
- 	 * which would cause the next frame to terminate already at vmin
- 	 * vblank start instead of vmax vblank start.
- 	 */
--	intel_vrr_send_push(new_crtc_state);
-+	intel_vrr_send_push(NULL, new_crtc_state);
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 22b5eacda0f0..4b3199dcbe7a 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -2630,6 +2630,14 @@ static int intel_crtc_vblank_delay(const struct intel_crtc_state *crtc_state)
+ 	if (intel_crtc_needs_wa_14015401596(crtc_state))
+ 		vblank_delay = max(vblank_delay, 1);
  
- 	local_irq_enable();
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index 98dd92316595..d589a62fcfed 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -391,7 +391,8 @@ void intel_vrr_set_transcoder_timings(const struct intel_crtc_state *crtc_state)
- 		       crtc_state->vrr.flipline - 1);
++	/*
++	 * Add a minimal vblank delay to make sure the push
++	 * doesn't doesn't race with the "wait for safe
++	 * window" we use for frame completion with DSB.
++	 */
++	if (HAS_VRR(display))
++		vblank_delay = max(vblank_delay, 1);
++
+ 	return vblank_delay;
  }
  
--void intel_vrr_send_push(const struct intel_crtc_state *crtc_state)
-+void intel_vrr_send_push(struct intel_dsb *dsb,
-+			 const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
- 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-@@ -399,8 +400,15 @@ void intel_vrr_send_push(const struct intel_crtc_state *crtc_state)
- 	if (!crtc_state->vrr.enable)
- 		return;
+@@ -7725,6 +7733,8 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
+ 		intel_crtc_planes_update_arm(new_crtc_state->dsb_commit,
+ 					     state, crtc);
  
--	intel_de_write(display, TRANS_PUSH(display, cpu_transcoder),
--		       TRANS_PUSH_EN | TRANS_PUSH_SEND);
-+	if (dsb)
-+		intel_dsb_nonpost_start(dsb);
++		intel_vrr_send_push(new_crtc_state->dsb_commit, new_crtc_state);
 +
-+	intel_de_write_dsb(display, dsb,
-+			   TRANS_PUSH(display, cpu_transcoder),
-+			   TRANS_PUSH_EN | TRANS_PUSH_SEND);
-+
-+	if (dsb)
-+		intel_dsb_nonpost_end(dsb);
- }
- 
- bool intel_vrr_is_push_sent(const struct intel_crtc_state *crtc_state)
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.h b/drivers/gpu/drm/i915/display/intel_vrr.h
-index 8e8961adce39..899cbf40f880 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.h
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.h
-@@ -12,6 +12,7 @@ struct drm_connector_state;
- struct intel_atomic_state;
- struct intel_connector;
- struct intel_crtc_state;
-+struct intel_dsb;
- 
- bool intel_vrr_is_capable(struct intel_connector *connector);
- bool intel_vrr_is_in_range(struct intel_connector *connector, int vrefresh);
-@@ -22,7 +23,8 @@ void intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
- void intel_vrr_compute_config_late(struct intel_crtc_state *crtc_state);
- void intel_vrr_set_transcoder_timings(const struct intel_crtc_state *crtc_state);
- void intel_vrr_enable(const struct intel_crtc_state *crtc_state);
--void intel_vrr_send_push(const struct intel_crtc_state *crtc_state);
-+void intel_vrr_send_push(struct intel_dsb *dsb,
-+			 const struct intel_crtc_state *crtc_state);
- bool intel_vrr_is_push_sent(const struct intel_crtc_state *crtc_state);
- void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state);
- void intel_vrr_get_config(struct intel_crtc_state *crtc_state);
+ 		if (!new_crtc_state->dsb_color_vblank) {
+ 			intel_dsb_wait_vblanks(new_crtc_state->dsb_commit, 1);
+ 			intel_dsb_wait_vblank_delay(state, new_crtc_state->dsb_commit);
 -- 
 2.45.2
 
