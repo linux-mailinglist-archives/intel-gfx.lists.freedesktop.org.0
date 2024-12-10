@@ -2,59 +2,96 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2792D9EE68F
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2024 13:23:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 74AA79EE781
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2024 14:11:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81F9210ED7F;
-	Thu, 12 Dec 2024 12:22:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80D9010EDB0;
+	Thu, 12 Dec 2024 13:11:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OOdQXahf";
+	dkim=permerror (0-bit key) header.d=sapience.com header.i=@sapience.com header.b="LFTYlwJk";
+	dkim=pass (2048-bit key; secure) header.d=sapience.com header.i=@sapience.com header.b="hbQlnC90";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BFEA110E412;
- Thu, 12 Dec 2024 12:22:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734006174; x=1765542174;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=piJfjmMfbadcx0baayuzdZWAS8uhhslrf/12YMQxSB4=;
- b=OOdQXahfjlzUk0QosE26O/IPf6s+fiAynMh1jKsL7HsVrRoixWdAmNqC
- xwWd5aG/3obZHKoqUmcKI2zjSdSPDgq9gAEyz92RCwd8wJgCS4xykZeup
- RuyJwpG/5xyNlI4zCvY7qEoXz7Kmivi8pZ1n0ZqzPs/MFVHmZJe/k9fup
- ivBfd2ghf5HjCMZJ2A25x2sNlGlxiTQEDX2PG/YDu025PmPvliWrD3WEl
- LTXc+Bfx0XRRxIh2/ki/LmlURd2oBih4X2m5cLotb+k3WMF0iCwMTbBYb
- fAQQb2sAk2NLvAdR18X/4t9D2jtO5IeeG/cBevfS2KdyjskwiDIZblMh8 w==;
-X-CSE-ConnectionGUID: 2IK1il9OQcabXdSt7xtPYA==
-X-CSE-MsgGUID: sMna2rgQTRK8+1Tyh/peTQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11284"; a="45092236"
-X-IronPort-AV: E=Sophos;i="6.12,228,1728975600"; d="scan'208";a="45092236"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2024 04:22:53 -0800
-X-CSE-ConnectionGUID: D/0LavaJRNC6gz5zuckVXA==
-X-CSE-MsgGUID: J1hnWxbQQ+GxkNHOj32f3g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,228,1728975600"; d="scan'208";a="96756357"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2024 04:22:52 -0800
-Date: Thu, 12 Dec 2024 14:23:30 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v3 11/11] drm/i915/dp_mst: Use intel_connector vs.
- drm_connector pointer in intel_dp_mst.c
-Message-ID: <Z1rVwvJjWDyiC2iI@ideak-desk.fi.intel.com>
-References: <20241211230328.4012496-1-imre.deak@intel.com>
- <20241211230328.4012496-12-imre.deak@intel.com>
- <87ttb9w63h.fsf@intel.com>
+Received: from s1.sapience.com (s1.sapience.com [72.84.236.66])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1837C10E2CF;
+ Tue, 10 Dec 2024 15:40:54 +0000 (UTC)
+Authentication-Results: dkim-srvy7; dkim=pass (Good ed25519-sha256 
+ signature) header.d=sapience.com header.i=@sapience.com 
+ header.a=ed25519-sha256; dkim=pass (Good 2048 bit rsa-sha256 signature) 
+ header.d=sapience.com header.i=@sapience.com header.a=rsa-sha256
+Received: from srv8.sapience.com (srv8.sapience.com [x.x.x.x])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (secp384r1) server-digest SHA384)
+ (No client certificate requested)
+ by s1.sapience.com (Postfix) with ESMTPS id 24D39480A33;
+ Tue, 10 Dec 2024 10:40:53 -0500 (EST)
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=sapience.com;
+ i=@sapience.com; q=dns/txt; s=dk-ed25519-220413; t=1733845252;
+ h=message-id : subject : from : to : cc : date : in-reply-to :
+ references : content-type : mime-version : from;
+ bh=viGzOwcqwCLVwVxfAG1ol+YDmxSbec8Tk3SBFWFyYpk=;
+ b=LFTYlwJk5MubDFS20GYYlvcmz2anq5djcHHL3+ZoQtKeXEG45UVD7wKR4ryFKqMDwd2FV
+ A9xp9QYXprDidp2DA==
+ARC-Seal: i=1; a=rsa-sha256; d=sapience.com; s=arc6-rsa-220412; t=1733845252; 
+ cv=none;
+ b=MKY8PRs2U9FDBok0/wh5enK2cwbcvNzLJMUUYKZFdtVVZMNmtPidOsrDCJGANMR1+y1yoyi/vYf6HoxBK4DObYU0Y5h264sW72K2rSms/iz26h875hRSTPENC0Dy8xu/fHvG4aCajcGqecaA2VXqyIgXImBM/KWjBaTZ4J/r+mVwHAXqtv2EGor3dYJxy+6NMfmOhGa/eW+3yW4OJLnyd/oPSpzM3f1YWpEUJzLPVEl3ZT6Iw5siyCvkFYlqU1VHDFSKbppQYaDjfz5UGnv+UPUFYnIJ24VjvTvqbeGVcdlATLBF1khu/GyVQAQcKRHlAF9DziYRoHBpocd2wUQAnw==
+ARC-Message-Signature: i=1; a=rsa-sha256; d=sapience.com; s=arc6-rsa-220412;
+ t=1733845252; c=relaxed/simple;
+ bh=xx9OGlyMWA+ZCfEDE/zVSR0WiOZyRnK7g97Awiaf61c=;
+ h=DKIM-Signature:DKIM-Signature:Message-ID:Subject:From:To:Cc:Date:
+ In-Reply-To:References:Autocrypt:Content-Type:User-Agent:
+ MIME-Version;
+ b=or5aALtWSbfta0tfHYn3uO+ntBjh2NOpr587v75Cigw7sb195BNDXTz90/20IIVx1vFX62sakhKQTx8Q9B9Wa9zuOeWSK4IdgukQ+/epu8k8ZqlHyZSUEhCHrR3GlSAJcTuGCiC3CUSwUXWVWFAKtHE8oV75yAL2lZzkDe5fbb7ZWYqW+4qUz3McL7KwlUtPWcd0734hoH3y/q8Yw4+ON1IHHu/WHexf5Q9mHg3FjbOEFmIZMCG9ZaXT78QNjrpmIdz8Un6ycoHNPpRufLM102zFnkGvjkU4BkvoMzU55yKmgE2inPyN56/A3vCKKE6iaeNEbzzctN3LDz8UtPjhDQ==
+ARC-Authentication-Results: i=1; arc-srv8.sapience.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sapience.com;
+ i=@sapience.com; q=dns/txt; s=dk-rsa-220413; t=1733845252;
+ h=message-id : subject : from : to : cc : date : in-reply-to :
+ references : content-type : mime-version : from;
+ bh=viGzOwcqwCLVwVxfAG1ol+YDmxSbec8Tk3SBFWFyYpk=;
+ b=hbQlnC90J5pqePwvPC1ZEcTBKYn3/EcftD7z65n+lsikCxvEGhHtlRQVw+1loKiAQagRU
+ 82B/n2q3s5sTiUTmhEWpV+iUv+Y28gMSX/wQ9nnYjntFIfAHk617JG2e0eQtUTqJoDsqbFI
+ TJ08/10/BpcwMCjMtsoPcs3P0V46hdEu7B6z75nIz8Liy4cZpQoHWu1bPLmtkbNdXzBDcC7
+ fRt+QNT6H5NqGwiGsmUSe7NLQkQIauWjBwQDdQ7aYqaQefFDDjVJ65j5T8g4jzvM+/a5Pbp
+ MUtOp2/TMjIoNKqMuh2JwiF0QVFEaFHXPzSs4Ewqce4E2DB/LK53kznGSlmg==
+Received: from lap7.sapience.com (lap7w.sapience.com [x.x.x.x])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (prime256v1) server-signature ECDSA (secp384r1)
+ server-digest SHA384) (No client certificate requested)
+ by srv8.sapience.com (Postfix) with ESMTPS id D57BA280015;
+ Tue, 10 Dec 2024 10:40:52 -0500 (EST)
+Message-ID: <c7c1d564ed3d6612c132f0e5e9f45a18306877e0.camel@sapience.com>
+Subject: Re: Linux 6.12.4 - crash dma_alloc_attrs+0x12b via ipu6
+From: Genes Lists <lists@sapience.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jani Nikula
+ <jani.nikula@linux.intel.com>
+Cc: Sakari Ailus <sakari.ailus@linux.intel.com>,
+ linux-kernel@vger.kernel.org, 	akpm@linux-foundation.org,
+ torvalds@linux-foundation.org, stable@vger.kernel.org, 
+ linux-media@vger.kernel.org, bingbu.cao@intel.com, Rodrigo Vivi	
+ <rodrigo.vivi@intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>,  Tvrtko Ursulin <tursulin@ursulin.net>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
+Date: Tue, 10 Dec 2024 10:40:52 -0500
+In-Reply-To: <2024121001-senator-raffle-a371@gregkh>
+References: <2024120917-vision-outcast-85f2@gregkh>
+ <c0e94be466b367f1a3cfdc3cb7b1a4f47e5953ae.camel@sapience.com>
+ <Z1fqitbWlmELb5pj@kekkonen.localdomain> <87seqvzzg6.fsf@intel.com>
+ <c1805642a6c5da6fef3927c70358c8cb851d2784.camel@sapience.com>
+ <87bjxjzpwn.fsf@intel.com> <2024121001-senator-raffle-a371@gregkh>
+Autocrypt: addr=lists@sapience.com; prefer-encrypt=mutual;
+ keydata=mDMEXSY9GRYJKwYBBAHaRw8BAQdAwzFfmp+m0ldl2vgmbtPC/XN7/k5vscpADq3BmRy5R
+ 7y0LU1haWwgTGlzdHMgKEwwIDIwMTkwNzEwKSA8bGlzdHNAc2FwaWVuY2UuY29tPoiWBBMWCAA+Ah
+ sBBQsJCAcCBhUKCQgLAgQWAgMBAh4BAheAFiEE5YMoUxcbEgQOvOMKc+dlCv6PxQAFAmPJfooFCRl
+ vRHEACgkQc+dlCv6PxQAc/wEA/Dbmg91DOGXll0OW1GKaZQGQDl7fHibMOKRGC6X/emoA+wQR5FIz
+ BnV/PrXbao8LS/h0tSkeXgPsYxrzvfZInIAC
+Content-Type: multipart/signed; micalg="pgp-sha384";
+ protocol="application/pgp-signature"; boundary="=-Xc8d1025CSmc9deeZWxz"
+User-Agent: Evolution 3.54.2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87ttb9w63h.fsf@intel.com>
+X-Mailman-Approved-At: Thu, 12 Dec 2024 13:11:29 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,432 +104,222 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 12, 2024 at 12:25:38PM +0200, Jani Nikula wrote:
-> On Thu, 12 Dec 2024, Imre Deak <imre.deak@intel.com> wrote:
-> > Follow the canonical way in intel_dp_mst.c, referencing a connector only
-> > via a struct intel_connector pointer and naming this pointer 'connector'
-> > instead of 'intel_connector', the only exception being the casting of
-> > a drm_connector function parameter pointer to intel_connector, calling
-> > the drm_connector pointer _connector.
-> >
-> > Suggested-by: Jani Nikula <jani.nikula@intel.com>
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> 
-> A few issues below that should be addressed, with those fixed,
-> 
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-> 
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_dp_mst.c | 180 ++++++++++----------
-> >  1 file changed, 88 insertions(+), 92 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > index 99f08e31fd6e0..44cc54a87067a 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> > @@ -969,33 +969,32 @@ mst_connector_atomic_topology_check(struct intel_connector *connector,
-> >  }
-> >  
-> >  static int
-> > -mst_connector_atomic_check(struct drm_connector *connector,
-> > +mst_connector_atomic_check(struct drm_connector *_connector,
-> >  			   struct drm_atomic_state *_state)
-> >  {
-> >  	struct intel_atomic_state *state = to_intel_atomic_state(_state);
-> > -	struct intel_connector *intel_connector =
-> > -		to_intel_connector(connector);
-> > +	struct intel_connector *connector = to_intel_connector(_connector);
-> >  	int ret;
-> >  
-> > -	ret = intel_digital_connector_atomic_check(connector, &state->base);
-> > +	ret = intel_digital_connector_atomic_check(&connector->base, &state->base);
-> 
-> Clearly a bunch more of our own interfaces should be switched to
-> intel_connector. But that's for another patch, another time.
-> 
-> >  	if (ret)
-> >  		return ret;
-> >  
-> > -	ret = mst_connector_atomic_topology_check(intel_connector, state);
-> > +	ret = mst_connector_atomic_topology_check(connector, state);
-> >  	if (ret)
-> >  		return ret;
-> >  
-> > -	if (intel_connector_needs_modeset(state, connector)) {
-> > +	if (intel_connector_needs_modeset(state, &connector->base)) {
-> >  		ret = intel_dp_tunnel_atomic_check_state(state,
-> > -							 intel_connector->mst_port,
-> > -							 intel_connector);
-> > +							 connector->mst_port,
-> > +							 connector);
-> >  		if (ret)
-> >  			return ret;
-> >  	}
-> >  
-> >  	return drm_dp_atomic_release_time_slots(&state->base,
-> > -						&intel_connector->mst_port->mst_mgr,
-> > -						intel_connector->port);
-> > +						&connector->mst_port->mst_mgr,
-> > +						connector->port);
-> >  }
-> >  
-> >  static void mst_stream_disable(struct intel_atomic_state *state,
-> > @@ -1375,23 +1374,23 @@ static bool mst_stream_initial_fastset_check(struct intel_encoder *encoder,
-> >  	return intel_dp_initial_fastset_check(primary_encoder, crtc_state);
-> >  }
-> >  
-> > -static int mst_connector_get_ddc_modes(struct drm_connector *connector)
-> > +static int mst_connector_get_ddc_modes(struct drm_connector *_connector)
-> >  {
-> > -	struct intel_display *display = to_intel_display(connector->dev);
-> > -	struct intel_connector *intel_connector = to_intel_connector(connector);
-> > -	struct intel_dp *intel_dp = intel_connector->mst_port;
-> > +	struct intel_connector *connector = to_intel_connector(_connector);
-> > +	struct intel_display *display = to_intel_display(connector->base.dev);
-> 
-> Just to_intel_display(connector) is sufficient.
-> 
-> to_intel_display() intentionally doesn't handle drm_connector, so thus
-> drm_connector->dev. But intel_connector alone is fine.
 
-Agreed with this and the rest later. They are however separate changes
-than what's the commit describes. For both author and reviewer it would
-be better to do these in separate patches (even though it's good that
-you noticed this now). Are you ok with that?
+--=-Xc8d1025CSmc9deeZWxz
+Content-Type: multipart/alternative; boundary="=-ATW+YCb9hWsFseu7CJ2a"
 
-> > +	struct intel_dp *intel_dp = connector->mst_port;
-> >  	const struct drm_edid *drm_edid;
-> >  	int ret;
-> >  
-> > -	if (drm_connector_is_unregistered(connector))
-> > -		return intel_connector_update_modes(connector, NULL);
-> > +	if (drm_connector_is_unregistered(&connector->base))
-> > +		return intel_connector_update_modes(&connector->base, NULL);
-> >  
-> >  	if (!intel_display_driver_check_access(display))
-> > -		return drm_edid_connector_add_modes(connector);
-> > +		return drm_edid_connector_add_modes(&connector->base);
-> >  
-> > -	drm_edid = drm_dp_mst_edid_read(connector, &intel_dp->mst_mgr, intel_connector->port);
-> > +	drm_edid = drm_dp_mst_edid_read(&connector->base, &intel_dp->mst_mgr, connector->port);
-> >  
-> > -	ret = intel_connector_update_modes(connector, drm_edid);
-> > +	ret = intel_connector_update_modes(&connector->base, drm_edid);
-> >  
-> >  	drm_edid_free(drm_edid);
-> >  
-> > @@ -1399,32 +1398,29 @@ static int mst_connector_get_ddc_modes(struct drm_connector *connector)
-> >  }
-> >  
-> >  static int
-> > -mst_connector_late_register(struct drm_connector *connector)
-> > +mst_connector_late_register(struct drm_connector *_connector)
-> >  {
-> > -	struct intel_connector *intel_connector = to_intel_connector(connector);
-> > +	struct intel_connector *connector = to_intel_connector(_connector);
-> >  	int ret;
-> >  
-> > -	ret = drm_dp_mst_connector_late_register(connector,
-> > -						 intel_connector->port);
-> > +	ret = drm_dp_mst_connector_late_register(&connector->base, connector->port);
-> >  	if (ret < 0)
-> >  		return ret;
-> >  
-> > -	ret = intel_connector_register(connector);
-> > +	ret = intel_connector_register(&connector->base);
-> >  	if (ret < 0)
-> > -		drm_dp_mst_connector_early_unregister(connector,
-> > -						      intel_connector->port);
-> > +		drm_dp_mst_connector_early_unregister(&connector->base, connector->port);
-> >  
-> >  	return ret;
-> >  }
-> >  
-> >  static void
-> > -mst_connector_early_unregister(struct drm_connector *connector)
-> > +mst_connector_early_unregister(struct drm_connector *_connector)
-> >  {
-> > -	struct intel_connector *intel_connector = to_intel_connector(connector);
-> > +	struct intel_connector *connector = to_intel_connector(_connector);
-> >  
-> > -	intel_connector_unregister(connector);
-> > -	drm_dp_mst_connector_early_unregister(connector,
-> > -					      intel_connector->port);
-> > +	intel_connector_unregister(&connector->base);
-> > +	drm_dp_mst_connector_early_unregister(&connector->base, connector->port);
-> >  }
-> >  
-> >  static const struct drm_connector_funcs mst_connector_funcs = {
-> > @@ -1438,23 +1434,25 @@ static const struct drm_connector_funcs mst_connector_funcs = {
-> >  	.atomic_duplicate_state = intel_digital_connector_duplicate_state,
-> >  };
-> >  
-> > -static int mst_connector_get_modes(struct drm_connector *connector)
-> > +static int mst_connector_get_modes(struct drm_connector *_connector)
-> >  {
-> > -	return mst_connector_get_ddc_modes(connector);
-> > +	struct intel_connector *connector = to_intel_connector(_connector);
-> > +
-> > +	return mst_connector_get_ddc_modes(&connector->base);
-> >  }
-> >  
-> >  static int
-> > -mst_connector_mode_valid_ctx(struct drm_connector *connector,
-> > +mst_connector_mode_valid_ctx(struct drm_connector *_connector,
-> >  			     struct drm_display_mode *mode,
-> >  			     struct drm_modeset_acquire_ctx *ctx,
-> >  			     enum drm_mode_status *status)
-> >  {
-> > -	struct intel_display *display = to_intel_display(connector->dev);
-> > -	struct drm_i915_private *dev_priv = to_i915(connector->dev);
-> > -	struct intel_connector *intel_connector = to_intel_connector(connector);
-> > -	struct intel_dp *intel_dp = intel_connector->mst_port;
-> > +	struct intel_connector *connector = to_intel_connector(_connector);
-> > +	struct intel_display *display = to_intel_display(connector->base.dev);
-> 
-> Ditto.
-> 
-> > +	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
-> 
-> Could use display->drm.
-> 
-> > +	struct intel_dp *intel_dp = connector->mst_port;
-> >  	struct drm_dp_mst_topology_mgr *mgr = &intel_dp->mst_mgr;
-> > -	struct drm_dp_mst_port *port = intel_connector->port;
-> > +	struct drm_dp_mst_port *port = connector->port;
-> >  	const int min_bpp = 18;
-> >  	int max_dotclk = display->cdclk.max_dotclk_freq;
-> >  	int max_rate, mode_rate, max_lanes, max_link_clock;
-> > @@ -1465,7 +1463,7 @@ mst_connector_mode_valid_ctx(struct drm_connector *connector,
-> >  	int target_clock = mode->clock;
-> >  	int num_joined_pipes;
-> >  
-> > -	if (drm_connector_is_unregistered(connector)) {
-> > +	if (drm_connector_is_unregistered(&connector->base)) {
-> >  		*status = MODE_ERROR;
-> >  		return 0;
-> >  	}
-> > @@ -1503,7 +1501,7 @@ mst_connector_mode_valid_ctx(struct drm_connector *connector,
-> >  	 *   corresponding link capabilities of the sink) in case the
-> >  	 *   stream is uncompressed for it by the last branch device.
-> >  	 */
-> > -	num_joined_pipes = intel_dp_num_joined_pipes(intel_dp, intel_connector,
-> > +	num_joined_pipes = intel_dp_num_joined_pipes(intel_dp, connector,
-> >  						     mode->hdisplay, target_clock);
-> >  	max_dotclk *= num_joined_pipes;
-> >  
-> > @@ -1517,14 +1515,14 @@ mst_connector_mode_valid_ctx(struct drm_connector *connector,
-> >  		return 0;
-> >  	}
-> >  
-> > -	if (intel_dp_has_dsc(intel_connector)) {
-> > +	if (intel_dp_has_dsc(connector)) {
-> >  		/*
-> >  		 * TBD pass the connector BPC,
-> >  		 * for now U8_MAX so that max BPC on that platform would be picked
-> >  		 */
-> > -		int pipe_bpp = intel_dp_dsc_compute_max_bpp(intel_connector, U8_MAX);
-> > +		int pipe_bpp = intel_dp_dsc_compute_max_bpp(connector, U8_MAX);
-> >  
-> > -		if (drm_dp_sink_supports_fec(intel_connector->dp.fec_capability)) {
-> > +		if (drm_dp_sink_supports_fec(connector->dp.fec_capability)) {
-> >  			dsc_max_compressed_bpp =
-> >  				intel_dp_dsc_get_max_compressed_bpp(dev_priv,
-> >  								    max_link_clock,
-> > @@ -1535,7 +1533,7 @@ mst_connector_mode_valid_ctx(struct drm_connector *connector,
-> >  								    INTEL_OUTPUT_FORMAT_RGB,
-> >  								    pipe_bpp, 64);
-> >  			dsc_slice_count =
-> > -				intel_dp_dsc_get_slice_count(intel_connector,
-> > +				intel_dp_dsc_get_slice_count(connector,
-> >  							     target_clock,
-> >  							     mode->hdisplay,
-> >  							     num_joined_pipes);
-> > @@ -1559,39 +1557,39 @@ mst_connector_mode_valid_ctx(struct drm_connector *connector,
-> >  }
-> >  
-> >  static struct drm_encoder *
-> > -mst_connector_atomic_best_encoder(struct drm_connector *connector,
-> > +mst_connector_atomic_best_encoder(struct drm_connector *_connector,
-> >  				  struct drm_atomic_state *state)
-> >  {
-> > -	struct drm_connector_state *connector_state = drm_atomic_get_new_connector_state(state,
-> > -											 connector);
-> > -	struct intel_connector *intel_connector = to_intel_connector(connector);
-> > -	struct intel_dp *intel_dp = intel_connector->mst_port;
-> > +	struct intel_connector *connector = to_intel_connector(_connector);
-> > +	struct drm_connector_state *connector_state =
-> > +		drm_atomic_get_new_connector_state(state, &connector->base);
-> > +	struct intel_dp *intel_dp = connector->mst_port;
-> >  	struct intel_crtc *crtc = to_intel_crtc(connector_state->crtc);
-> >  
-> >  	return &intel_dp->mst_encoders[crtc->pipe]->base.base;
-> >  }
-> >  
-> >  static int
-> > -mst_connector_detect_ctx(struct drm_connector *connector,
-> > +mst_connector_detect_ctx(struct drm_connector *_connector,
-> >  			 struct drm_modeset_acquire_ctx *ctx, bool force)
-> >  {
-> > -	struct intel_display *display = to_intel_display(connector->dev);
-> > -	struct intel_connector *intel_connector = to_intel_connector(connector);
-> > -	struct intel_dp *intel_dp = intel_connector->mst_port;
-> > +	struct intel_connector *connector = to_intel_connector(_connector);
-> > +	struct intel_display *display = to_intel_display(connector->base.dev);
-> 
-> Ditto.
-> 
-> > +	struct intel_dp *intel_dp = connector->mst_port;
-> >  
-> >  	if (!intel_display_device_enabled(display))
-> >  		return connector_status_disconnected;
-> >  
-> > -	if (drm_connector_is_unregistered(connector))
-> > +	if (drm_connector_is_unregistered(&connector->base))
-> >  		return connector_status_disconnected;
-> >  
-> >  	if (!intel_display_driver_check_access(display))
-> > -		return connector->status;
-> > +		return connector->base.status;
-> >  
-> > -	intel_dp_flush_connector_commits(intel_connector);
-> > +	intel_dp_flush_connector_commits(connector);
-> >  
-> > -	return drm_dp_mst_detect_port(connector, ctx, &intel_dp->mst_mgr,
-> > -				      intel_connector->port);
-> > +	return drm_dp_mst_detect_port(&connector->base, ctx, &intel_dp->mst_mgr,
-> > +				      connector->port);
-> >  }
-> >  
-> >  static const struct drm_connector_helper_funcs mst_connector_helper_funcs = {
-> > @@ -1627,29 +1625,30 @@ static bool mst_connector_get_hw_state(struct intel_connector *connector)
-> >  }
-> >  
-> >  static int mst_topology_add_connector_properties(struct intel_dp *intel_dp,
-> > -						 struct drm_connector *connector,
-> > +						 struct drm_connector *_connector,
-> >  						 const char *pathprop)
-> >  {
-> >  	struct intel_display *display = to_intel_display(intel_dp);
-> > +	struct intel_connector *connector = to_intel_connector(_connector);
-> >  
-> > -	drm_object_attach_property(&connector->base,
-> > +	drm_object_attach_property(&connector->base.base,
-> >  				   display->drm->mode_config.path_property, 0);
-> > -	drm_object_attach_property(&connector->base,
-> > +	drm_object_attach_property(&connector->base.base,
-> >  				   display->drm->mode_config.tile_property, 0);
-> >  
-> > -	intel_attach_force_audio_property(connector);
-> > -	intel_attach_broadcast_rgb_property(connector);
-> > +	intel_attach_force_audio_property(&connector->base);
-> > +	intel_attach_broadcast_rgb_property(&connector->base);
-> >  
-> >  	/*
-> >  	 * Reuse the prop from the SST connector because we're
-> >  	 * not allowed to create new props after device registration.
-> >  	 */
-> > -	connector->max_bpc_property =
-> > +	connector->base.max_bpc_property =
-> >  		intel_dp->attached_connector->base.max_bpc_property;
-> > -	if (connector->max_bpc_property)
-> > -		drm_connector_attach_max_bpc_property(connector, 6, 12);
-> > +	if (connector->base.max_bpc_property)
-> > +		drm_connector_attach_max_bpc_property(&connector->base, 6, 12);
-> >  
-> > -	return drm_connector_set_path_property(connector, pathprop);
-> > +	return drm_connector_set_path_property(&connector->base, pathprop);
-> >  }
-> >  
-> >  static void
-> > @@ -1722,62 +1721,59 @@ mst_topology_add_connector(struct drm_dp_mst_topology_mgr *mgr,
-> >  	struct intel_dp *intel_dp = container_of(mgr, struct intel_dp, mst_mgr);
-> >  	struct intel_display *display = to_intel_display(intel_dp);
-> >  	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
-> > -	struct intel_connector *intel_connector;
-> > -	struct drm_connector *connector;
-> > +	struct intel_connector *connector;
-> >  	enum pipe pipe;
-> >  	int ret;
-> >  
-> > -	intel_connector = intel_connector_alloc();
-> > -	if (!intel_connector)
-> > +	connector = intel_connector_alloc();
-> > +	if (!connector)
-> >  		return NULL;
-> >  
-> > -	connector = &intel_connector->base;
-> > -
-> > -	intel_connector->get_hw_state = mst_connector_get_hw_state;
-> > -	intel_connector->sync_state = intel_dp_connector_sync_state;
-> > -	intel_connector->mst_port = intel_dp;
-> > -	intel_connector->port = port;
-> > +	connector->get_hw_state = mst_connector_get_hw_state;
-> > +	connector->sync_state = intel_dp_connector_sync_state;
-> > +	connector->mst_port = intel_dp;
-> > +	connector->port = port;
-> >  	drm_dp_mst_get_port_malloc(port);
-> >  
-> > -	intel_dp_init_modeset_retry_work(intel_connector);
-> > +	intel_dp_init_modeset_retry_work(connector);
-> >  
-> > -	ret = drm_connector_dynamic_init(display->drm, connector, &mst_connector_funcs,
-> > +	ret = drm_connector_dynamic_init(display->drm, &connector->base, &mst_connector_funcs,
-> >  					 DRM_MODE_CONNECTOR_DisplayPort, NULL);
-> >  	if (ret)
-> >  		goto err_put_port;
-> >  
-> > -	intel_connector->dp.dsc_decompression_aux = drm_dp_mst_dsc_aux_for_port(port);
-> > -	intel_dp_mst_read_decompression_port_dsc_caps(intel_dp, intel_connector);
-> > -	intel_connector->dp.dsc_hblank_expansion_quirk =
-> > -		detect_dsc_hblank_expansion_quirk(intel_connector);
-> > +	connector->dp.dsc_decompression_aux = drm_dp_mst_dsc_aux_for_port(port);
-> > +	intel_dp_mst_read_decompression_port_dsc_caps(intel_dp, connector);
-> > +	connector->dp.dsc_hblank_expansion_quirk =
-> > +		detect_dsc_hblank_expansion_quirk(connector);
-> >  
-> > -	drm_connector_helper_add(connector, &mst_connector_helper_funcs);
-> > +	drm_connector_helper_add(&connector->base, &mst_connector_helper_funcs);
-> >  
-> >  	for_each_pipe(display, pipe) {
-> >  		struct drm_encoder *enc =
-> >  			&intel_dp->mst_encoders[pipe]->base.base;
-> >  
-> > -		ret = drm_connector_attach_encoder(&intel_connector->base, enc);
-> > +		ret = drm_connector_attach_encoder(&connector->base, enc);
-> >  		if (ret)
-> >  			goto err_cleanup_connector;
-> >  	}
-> >  
-> > -	ret = mst_topology_add_connector_properties(intel_dp, connector, pathprop);
-> > +	ret = mst_topology_add_connector_properties(intel_dp, &connector->base, pathprop);
-> >  	if (ret)
-> >  		goto err_cleanup_connector;
-> >  
-> > -	ret = intel_dp_hdcp_init(dig_port, intel_connector);
-> > +	ret = intel_dp_hdcp_init(dig_port, connector);
-> >  	if (ret)
-> >  		drm_dbg_kms(display->drm, "[%s:%d] HDCP MST init failed, skipping.\n",
-> > -			    connector->name, connector->base.id);
-> > +			    connector->base.name, connector->base.base.id);
-> >  
-> > -	return connector;
-> > +	return &connector->base;
-> >  
-> >  err_cleanup_connector:
-> > -	drm_connector_cleanup(connector);
-> > +	drm_connector_cleanup(&connector->base);
-> >  err_put_port:
-> >  	drm_dp_mst_put_port_malloc(port);
-> > -	intel_connector_free(intel_connector);
-> > +	intel_connector_free(connector);
-> >  
-> >  	return NULL;
-> >  }
-> 
-> -- 
-> Jani Nikula, Intel
+--=-ATW+YCb9hWsFseu7CJ2a
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, 2024-12-10 at 13:37 +0100, Greg Kroah-Hartman wrote:
+> > t's a clue nonetheless.
+>=20
+> 'git bisect' would be nice to run if possible...
+
+Done:
+
+a) One (hopefully) small caveat :
+the very first bisect hit the 6.12.2 bug of missing commit b23decf8ac91
+("sched: Initialize idle tasks only once").
+I applied the commit and continued.
+
+b) Result :
+
+6ac269abab9ca5ae910deb2d3ca54351c3467e99 is the first bad commit
+commit 6ac269abab9ca5ae910deb2d3ca54351c3467e99 (HEAD)
+Author: Bingbu Cao <bingbu.cao@intel.com>
+Date: Wed Oct 16 15:53:01 2024 +0800
+
+media: ipu6: not override the dma_ops of device in driver
+
+[ Upstream commit daabc5c64703432c4a8798421a3588c2c142c51b ]
+
+DMA ops are a helper for architectures and not for drivers to override
+the
+DMA implementation. Driver should not override the DMA implementation.
+
+This patch removes the dma_ops override from auxiliary device and adds
+driver-internal helpers that use the actual DMA mapping APIs.
+
+Fixes: 9163d83573e4 ("media: intel/ipu6: add IPU6 DMA mapping API and
+MMU table")
+Signed-off-by: Bingbu Cao <bingbu.cao@intel.com>
+Reviewed-by: Christoph Hellwig <hch@lst.de>
+[Sakari Ailus: Fix the commit message a little.]
+Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
+Signed-off-by: Hans Verkuil <hverkuil@xs4all.nl>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+
+drivers/media/pci/intel/ipu6/ipu6-bus.c | 6 --
+drivers/media/pci/intel/ipu6/ipu6-buttress.c | 21 +++++--
+drivers/media/pci/intel/ipu6/ipu6-cpd.c | 18 +++---
+drivers/media/pci/intel/ipu6/ipu6-dma.c | 195
++++++++++++++++++++++++++++++---------------------------------
+drivers/media/pci/intel/ipu6/ipu6-dma.h | 34 ++++++++++-
+drivers/media/pci/intel/ipu6/ipu6-fw-com.c | 14 ++---
+6 files changed, 156 insertions(+), 132 deletions(-)
+
+c) git bisect log
+
+git bisect start
+# status: waiting for both good and bad commits
+# good: [d390303b28dabbb91b2d32016a4f72da478733b9] Linux 6.12.1
+git bisect good d390303b28dabbb91b2d32016a4f72da478733b9
+# status: waiting for bad commit, 1 good commit known
+# bad: [61baee2dc5341c936e7fa7b1ca33c5607868de69] Linux 6.12.4
+git bisect bad 61baee2dc5341c936e7fa7b1ca33c5607868de69
+# bad: [2bc07714dc955a91d2923a440ea02c3cb3376b10] virtiofs: use pages
+instead of pointer for kernel direct IO
+git bisect bad 2bc07714dc955a91d2923a440ea02c3cb3376b10
+# bad: [6f2648838ce1a9f2c432e84e38dec5d38412a551] wifi: wilc1000: Set
+MAC after operation mode
+git bisect bad 6f2648838ce1a9f2c432e84e38dec5d38412a551
+# good: [e20117a105d4174c2daf4d6da17b92d757487e60] media: i2c:
+max96717: clean up on error in max96717_subdev_init()
+git bisect good e20117a105d4174c2daf4d6da17b92d757487e60
+# bad: [74f21be9990a42dc2357bcf87a13e16c6998b90e] drm/vc4: hdmi: Avoid
+hang with debug registers when suspended
+git bisect bad 74f21be9990a42dc2357bcf87a13e16c6998b90e
+# good: [dfdd0e8ff65dfc4183b622c3ffd8d8c5d572ca34] dt-bindings: cache:
+qcom,llcc: Fix X1E80100 reg entries
+git bisect good dfdd0e8ff65dfc4183b622c3ffd8d8c5d572ca34
+# good: [b0cd515202cb31c89d7de46b103a7ff2de9de02b] media: ipu6: Fix DMA
+and physical address debugging messages for 32-bit
+git bisect good b0cd515202cb31c89d7de46b103a7ff2de9de02b
+# bad: [3d48d0fbaaa74a04fb9092780a3f83dc4f3f8160] HID: hyperv:
+streamline driver probe to avoid devres issues
+git bisect bad 3d48d0fbaaa74a04fb9092780a3f83dc4f3f8160
+# bad: [e3692460675bfe07f677711ead09a7a43934aa2f] pwm: Assume a
+disabled PWM to emit a constant inactive output
+git bisect bad e3692460675bfe07f677711ead09a7a43934aa2f
+# bad: [11b0543efe54357b94dccb88dac2099c59358cd4] media: ipu6: remove
+architecture DMA ops dependency in Kconfig
+git bisect bad 11b0543efe54357b94dccb88dac2099c59358cd4
+# bad: [6ac269abab9ca5ae910deb2d3ca54351c3467e99] media: ipu6: not
+override the dma_ops of device in driver
+git bisect bad 6ac269abab9ca5ae910deb2d3ca54351c3467e99
+# first bad commit: [6ac269abab9ca5ae910deb2d3ca54351c3467e99] media:
+ipu6: not override the dma_ops of device in driver
+
+
+
+
+--=20
+Gene
+
+
+--=-ATW+YCb9hWsFseu7CJ2a
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><style>pre,code,address {
+  margin: 0px;
+}
+h1,h2,h3,h4,h5,h6 {
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+}
+ol,ul {
+  margin-top: 0em;
+  margin-bottom: 0em;
+}
+blockquote {
+  margin-top: 0em;
+  margin-bottom: 0em;
+}
+</style></head><body><div>On Tue, 2024-12-10 at 13:37 +0100, Greg Kroah-Har=
+tman wrote:</div><blockquote type=3D"cite" style=3D"margin:0 0 0 .8ex; bord=
+er-left:2px #729fcf solid;padding-left:1ex"><blockquote type=3D"cite" style=
+=3D"margin:0 0 0 .8ex; border-left:2px #729fcf solid;padding-left:1ex"><div=
+>t's a clue nonetheless.<br></div></blockquote><div><br></div><div>'git bis=
+ect' would be nice to run if possible...<br></div></blockquote><div><br></d=
+iv><div>Done:</div><div><br></div><div>a) One (hopefully) small caveat :</d=
+iv><div>  the very first bisect hit the 6.12.2 bug of missing commit b23dec=
+f8ac91</div><div>  ("sched: Initialize idle tasks only once").</div><div>  =
+I applied the commit and continued.</div><div><br></div><div>b) Result :</d=
+iv><div><br></div><div>6ac269abab9ca5ae910deb2d3ca54351c3467e99 is the firs=
+t bad commit</div><div>commit 6ac269abab9ca5ae910deb2d3ca54351c3467e99 (HEA=
+D)</div><div>Author: Bingbu Cao &lt;<a href=3D"mailto:bingbu.cao@intel.com"=
+>bingbu.cao@intel.com</a>&gt;</div><div>Date:   Wed Oct 16 15:53:01 2024 +0=
+800</div><div><br></div><div>    media: ipu6: not override the dma_ops of d=
+evice in driver</div><div><br></div><div>    [ Upstream commit daabc5c64703=
+432c4a8798421a3588c2c142c51b ]</div><div><br></div><div>    DMA ops are a h=
+elper for architectures and not for drivers to override the</div><div>    D=
+MA implementation. Driver should not override the DMA implementation.</div>=
+<div><br></div><div>    This patch removes the dma_ops override from auxili=
+ary device and adds</div><div>    driver-internal helpers that use the actu=
+al DMA mapping APIs.</div><div><br></div><div>    Fixes: 9163d83573e4 ("med=
+ia: intel/ipu6: add IPU6 DMA mapping API and MMU table")</div><div>    Sign=
+ed-off-by: Bingbu Cao &lt;<a href=3D"mailto:bingbu.cao@intel.com">bingbu.ca=
+o@intel.com</a>&gt;</div><div>    Reviewed-by: Christoph Hellwig &lt;<a hre=
+f=3D"mailto:hch@lst.de">hch@lst.de</a>&gt;</div><div>    [Sakari Ailus: Fix=
+ the commit message a little.]</div><div>    Signed-off-by: Sakari Ailus &l=
+t;<a href=3D"mailto:sakari.ailus@linux.intel.com">sakari.ailus@linux.intel.=
+com</a>&gt;</div><div>    Signed-off-by: Hans Verkuil &lt;<a href=3D"mailto=
+:hverkuil@xs4all.nl">hverkuil@xs4all.nl</a>&gt;</div><div>    Signed-off-by=
+: Sasha Levin &lt;<a href=3D"mailto:sashal@kernel.org">sashal@kernel.org</a=
+>&gt;</div><div><br></div><div> drivers/media/pci/intel/ipu6/ipu6-bus.c    =
+  |   6 --</div><div> drivers/media/pci/intel/ipu6/ipu6-buttress.c |  21 ++=
++++--</div><div> drivers/media/pci/intel/ipu6/ipu6-cpd.c      |  18 +++---<=
+/div><div> drivers/media/pci/intel/ipu6/ipu6-dma.c      | 195 +++++++++++++=
+++++++++++++++++---------------------------------</div><div> drivers/media/=
+pci/intel/ipu6/ipu6-dma.h      |  34 ++++++++++-</div><div> drivers/media/p=
+ci/intel/ipu6/ipu6-fw-com.c   |  14 ++---</div><div> 6 files changed, 156 i=
+nsertions(+), 132 deletions(-)</div><div><br></div><div>c) git bisect log</=
+div><div><br></div><div>git bisect start</div><div># status: waiting for bo=
+th good and bad commits</div><div># good: [d390303b28dabbb91b2d32016a4f72da=
+478733b9] Linux 6.12.1</div><div>git bisect good d390303b28dabbb91b2d32016a=
+4f72da478733b9</div><div># status: waiting for bad commit, 1 good commit kn=
+own</div><div># bad: [61baee2dc5341c936e7fa7b1ca33c5607868de69] Linux 6.12.=
+4</div><div>git bisect bad 61baee2dc5341c936e7fa7b1ca33c5607868de69</div><d=
+iv># bad: [2bc07714dc955a91d2923a440ea02c3cb3376b10] virtiofs: use pages in=
+stead of pointer for kernel direct IO</div><div>git bisect bad 2bc07714dc95=
+5a91d2923a440ea02c3cb3376b10</div><div># bad: [6f2648838ce1a9f2c432e84e38de=
+c5d38412a551] wifi: wilc1000: Set MAC after operation mode</div><div>git bi=
+sect bad 6f2648838ce1a9f2c432e84e38dec5d38412a551</div><div># good: [e20117=
+a105d4174c2daf4d6da17b92d757487e60] media: i2c: max96717: clean up on error=
+ in max96717_subdev_init()</div><div>git bisect good e20117a105d4174c2daf4d=
+6da17b92d757487e60</div><div># bad: [74f21be9990a42dc2357bcf87a13e16c6998b9=
+0e] drm/vc4: hdmi: Avoid hang with debug registers when suspended</div><div=
+>git bisect bad 74f21be9990a42dc2357bcf87a13e16c6998b90e</div><div># good: =
+[dfdd0e8ff65dfc4183b622c3ffd8d8c5d572ca34] dt-bindings: cache: qcom,llcc: F=
+ix X1E80100 reg entries</div><div>git bisect good dfdd0e8ff65dfc4183b622c3f=
+fd8d8c5d572ca34</div><div># good: [b0cd515202cb31c89d7de46b103a7ff2de9de02b=
+] media: ipu6: Fix DMA and physical address debugging messages for 32-bit</=
+div><div>git bisect good b0cd515202cb31c89d7de46b103a7ff2de9de02b</div><div=
+># bad: [3d48d0fbaaa74a04fb9092780a3f83dc4f3f8160] HID: hyperv: streamline =
+driver probe to avoid devres issues</div><div>git bisect bad 3d48d0fbaaa74a=
+04fb9092780a3f83dc4f3f8160</div><div># bad: [e3692460675bfe07f677711ead09a7=
+a43934aa2f] pwm: Assume a disabled PWM to emit a constant inactive output</=
+div><div>git bisect bad e3692460675bfe07f677711ead09a7a43934aa2f</div><div>=
+# bad: [11b0543efe54357b94dccb88dac2099c59358cd4] media: ipu6: remove archi=
+tecture DMA ops dependency in Kconfig</div><div>git bisect bad 11b0543efe54=
+357b94dccb88dac2099c59358cd4</div><div># bad: [6ac269abab9ca5ae910deb2d3ca5=
+4351c3467e99] media: ipu6: not override the dma_ops of device in driver</di=
+v><div>git bisect bad 6ac269abab9ca5ae910deb2d3ca54351c3467e99</div><div># =
+first bad commit: [6ac269abab9ca5ae910deb2d3ca54351c3467e99] media: ipu6: n=
+ot override the dma_ops of device in driver</div><div><br></div><div><br></=
+div><blockquote type=3D"cite" style=3D"margin:0 0 0 .8ex; border-left:2px #=
+729fcf solid;padding-left:1ex"></blockquote><div><br></div><div><span><pre>=
+-- <br></pre><div><span style=3D"background-color: inherit;">Gene</span></d=
+iv><div><br></div></span></div></body></html>
+
+--=-ATW+YCb9hWsFseu7CJ2a--
+
+--=-Xc8d1025CSmc9deeZWxz
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYJAB0WIQRByXNdQO2KDRJ2iXo5BdB0L6Ze2wUCZ1hhBAAKCRA5BdB0L6Ze
+20+rAP97KbKEdNUT4x2dEC2CJCla1VPNBrE7XB17L954YKeHFQEA+apfQps2aZhO
+ydg+2W3peknkjwV0D4x6Hjvl13T0Fw4=
+=AmRv
+-----END PGP SIGNATURE-----
+
+--=-Xc8d1025CSmc9deeZWxz--
