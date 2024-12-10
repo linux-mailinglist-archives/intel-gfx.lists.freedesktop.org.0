@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 265C09EBB91
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Dec 2024 22:10:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DBF359EBB92
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Dec 2024 22:10:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 07AFD10E5D5;
-	Tue, 10 Dec 2024 21:10:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E383010E5E1;
+	Tue, 10 Dec 2024 21:10:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KNUEpIb3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lmVq31sZ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B2F810E5E1
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Dec 2024 21:10:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A1C410E5E1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Dec 2024 21:10:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733865029; x=1765401029;
+ t=1733865032; x=1765401032;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=KlltM/VsvKRgcEiEf+tGNR7Yd0LfvqJCEHqRjFNWAUs=;
- b=KNUEpIb316zOOQUzmYwKmDyckgYLONRXq1R2fgao2dLAFWMvxqjxLHOm
- nKXS7/EW493gL0PCdAhnnLdGg0RBS1ImjygVmaWG+kTcZdqNQTXh9wwfr
- zle32SemwqyuQbTgWmndGPOjlfF7q4VBRl78dlUWTMiZrN7/hsEovCkl8
- GvjEZW2NiIefegA3DAW8XIYHonoYqTfyWl8ZBd7rip/rGcyRtsksHjTKg
- tzxEbq5pbrhUDhbGdKwak5cueWBK2LfBhCgPtrEhT+f31KgoBUaJB7wIr
- 05pADBWnIglUCnu+UY7NgG5Tq/6qz6EZykDwrMUlzCAyvxcdWLKM+SXpW Q==;
-X-CSE-ConnectionGUID: Z4wzf906RLufDr5Tf3GrAA==
-X-CSE-MsgGUID: QNNM9AHWTced44bZhTqphQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="59620186"
-X-IronPort-AV: E=Sophos;i="6.12,223,1728975600"; d="scan'208";a="59620186"
+ bh=AnSUA0YKPX2HzW9FVhCnEY4mMw3ndvBv+cJ9qUmSiZk=;
+ b=lmVq31sZfhamDX1CDAcUUC5bRrBS/e2h6xAPkYns+mJD9+2oaWHvRigS
+ owBbSpYz9XuK59/uiPRjVHQQFbOkvQVwyhY8WDGqaNZcOGLG6oGi5cyi+
+ rlOc660l+I7yoVw8LYYgLyHHyX8NDektLMV/n5LDtUFRkwIJhk48HcZsY
+ JWiyvZoJeWU0De90UM2Qm+sI4NUkNomKspAKL9N5y2INqbDCBguX9+3xd
+ 9W5R7KpO9ub8U40/yDU10/SSavV3TOJg49duqja+kRYws+t/3wMzCiB1W
+ DQsemWh9XdZIie9KEHhA/AWMX+2SL1cOS7lQY2Hr1yaRvD+fS0PloQSeN g==;
+X-CSE-ConnectionGUID: 0NmC/48ORMKlUx+M7b57tQ==
+X-CSE-MsgGUID: LigXdN7MRjmb9qWaTjFWTg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="59620191"
+X-IronPort-AV: E=Sophos;i="6.12,223,1728975600"; d="scan'208";a="59620191"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2024 13:10:29 -0800
-X-CSE-ConnectionGUID: v1YzQGJvRfKZjKhoUxd+6g==
-X-CSE-MsgGUID: sjayJ8ACSwSAkzspM/8jMw==
+ 10 Dec 2024 13:10:32 -0800
+X-CSE-ConnectionGUID: 50qYavR7Rv6b3TzYkhbaYw==
+X-CSE-MsgGUID: 4yfxdzDCQCCx/SXNyveYCQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,223,1728975600"; d="scan'208";a="95735090"
+X-IronPort-AV: E=Sophos;i="6.12,223,1728975600"; d="scan'208";a="95735102"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 10 Dec 2024 13:10:28 -0800
+ by fmviesa008.fm.intel.com with SMTP; 10 Dec 2024 13:10:31 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 10 Dec 2024 23:10:26 +0200
+ Tue, 10 Dec 2024 23:10:29 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 07/18] drm/i915/vrr: Improve VRR state dump
-Date: Tue, 10 Dec 2024 23:09:56 +0200
-Message-ID: <20241210211007.5976-8-ville.syrjala@linux.intel.com>
+Subject: [PATCH 08/18] drm/i915: Include the scanline offset in the state dump
+Date: Tue, 10 Dec 2024 23:09:57 +0200
+Message-ID: <20241210211007.5976-9-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241210211007.5976-1-ville.syrjala@linux.intel.com>
 References: <20241210211007.5976-1-ville.syrjala@linux.intel.com>
@@ -70,40 +70,37 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Dump the calculated vmin/vmax vtotal values in addition to the
-raw vmin/vmax/flipline values. Makes it much easier to see what
-kind of scanline values we should be expecting from the hardware.
+When looking at raw hardware scanline numbers it's helpful to
+remember what the offset between the hardware values and our
+more human readable numbers should be. Include that in the state dump.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- .../gpu/drm/i915/display/intel_crtc_state_dump.c    | 13 +++++++------
- 1 file changed, 7 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/display/intel_crtc_state_dump.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-index 27ce34df8482..97e3cdccda01 100644
+index 97e3cdccda01..1fbaa67e2fea 100644
 --- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
 +++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-@@ -288,13 +288,14 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
- 		   pipe_config->hw.adjusted_mode.crtc_vdisplay,
- 		   pipe_config->framestart_delay, pipe_config->msa_timing_delay);
+@@ -10,6 +10,7 @@
+ #include "intel_crtc_state_dump.h"
+ #include "intel_display_types.h"
+ #include "intel_hdmi.h"
++#include "intel_vblank.h"
+ #include "intel_vdsc.h"
+ #include "intel_vrr.h"
  
--	drm_printf(&p, "vrr: %s, vmin: %d, vmax: %d, pipeline full: %d, guardband: %d flipline: %d, vmin vblank: %d, vmax vblank: %d\n",
-+	drm_printf(&p, "vrr: %s, vmin: %d, vmax: %d, flipline: %d, pipeline full: %d, guardband: %d\n",
- 		   str_yes_no(pipe_config->vrr.enable),
--		   pipe_config->vrr.vmin, pipe_config->vrr.vmax,
--		   pipe_config->vrr.pipeline_full, pipe_config->vrr.guardband,
--		   pipe_config->vrr.flipline,
--		   intel_vrr_vmin_vblank_start(pipe_config),
--		   intel_vrr_vmax_vblank_start(pipe_config));
-+		   pipe_config->vrr.vmin, pipe_config->vrr.vmax, pipe_config->vrr.flipline,
-+		   pipe_config->vrr.pipeline_full, pipe_config->vrr.guardband);
+@@ -283,6 +284,9 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
+ 		drm_print_hex_dump(&p, "ELD: ", pipe_config->eld,
+ 				   drm_eld_size(pipe_config->eld));
+ 
++	drm_printf(&p, "scanline offset: %d\n",
++		   intel_crtc_scanline_offset(pipe_config));
 +
-+	drm_printf(&p, "vrr: vmin vblank: %d, vmax vblank: %d, vmin vtotal: %d, vmax vtotal: %d\n",
-+		   intel_vrr_vmin_vblank_start(pipe_config), intel_vrr_vmax_vblank_start(pipe_config),
-+		   intel_vrr_vmin_vtotal(pipe_config), intel_vrr_vmax_vtotal(pipe_config));
- 
- 	drm_printf(&p, "requested mode: " DRM_MODE_FMT "\n",
- 		   DRM_MODE_ARG(&pipe_config->hw.mode));
+ 	drm_printf(&p, "vblank delay: %d, framestart delay: %d, MSA timing delay: %d\n",
+ 		   pipe_config->hw.adjusted_mode.crtc_vblank_start -
+ 		   pipe_config->hw.adjusted_mode.crtc_vdisplay,
 -- 
 2.45.2
 
