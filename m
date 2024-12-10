@@ -2,61 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B47199EB13F
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Dec 2024 13:52:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD6729EB142
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Dec 2024 13:53:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA3C510E5C4;
-	Tue, 10 Dec 2024 12:52:30 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kZ40ABEV";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 789D010E8BE;
+	Tue, 10 Dec 2024 12:53:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7854410E5C4
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Dec 2024 12:52:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733835149; x=1765371149;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=ATp1obH5C95iwb08Ab1zrXWEBFOi9Uwy8LoWil+QVC0=;
- b=kZ40ABEVDV6hTo4gHmQUbhWLW7rlRmigHuFTatY4PEzOsBnbciffXxG8
- ioh0nEGTvYC3nxwwr3wr0KtEWL4VlnMq21eO4NGyn+regsi7MKNQVIwxA
- Tzufbn8mWiKv48I2i07EUvX0cs2kKWEZOSJTlYabugLppuCq9KgpXJJS5
- SxUvCbXNynU4Ns5InjikAt2e8MsWwDEIus/BV8U2aP61/ixT9t0S4xSVq
- A8Bd5odcgEzCc6Ss5USsuJtFSG2jBtUOslEj9mTED5EjGJjI+v1BoZeJR
- QVupgJPeqn1KNEYwSKusqOOhslx5XuZj4hHw+hXfhH5fANMLAY9uoUB8x A==;
-X-CSE-ConnectionGUID: 52D9zDYWT3atVFWkzZMxWA==
-X-CSE-MsgGUID: vYIYRIuXQySsRjgMKKfdtw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="21759647"
-X-IronPort-AV: E=Sophos;i="6.12,222,1728975600"; d="scan'208";a="21759647"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2024 04:52:29 -0800
-X-CSE-ConnectionGUID: zgVjsVaqRK6JXOcHogj+yA==
-X-CSE-MsgGUID: Wg51C5dLRnO0nc8CkauQNQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,222,1728975600"; d="scan'208";a="95606080"
-Received: from lfiedoro-mobl.ger.corp.intel.com (HELO intel.com)
- ([10.245.246.254])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Dec 2024 04:52:25 -0800
-Date: Tue, 10 Dec 2024 13:52:21 +0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Raag Jadav <raag.jadav@intel.com>
-Cc: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, matthew.d.roper@intel.com,
- andi.shyti@linux.intel.com, intel-gfx@lists.freedesktop.org,
- anshuman.gupta@intel.com, badal.nilawar@intel.com, riana.tauro@intel.com
-Subject: Re: [PATCH v3 4/4] drm/i915/dg2: Implement Wa_14022698537
-Message-ID: <Z1g5heTT1rwTcdt9@ashyti-mobl2.lan>
-References: <20241030143418.410406-1-raag.jadav@intel.com>
- <20241030143418.410406-5-raag.jadav@intel.com>
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 97D4910E5C3;
+ Tue, 10 Dec 2024 12:53:20 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241030143418.410406-5-raag.jadav@intel.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915=3A_Add_drm=5Fpan?=
+ =?utf-8?q?ic_support_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jocelyn Falempe" <jfalempe@redhat.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 10 Dec 2024 12:53:20 -0000
+Message-ID: <173383520061.831037.8320944748985438124@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241210093505.589893-1-jfalempe@redhat.com>
+In-Reply-To: <20241210093505.589893-1-jfalempe@redhat.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,57 +37,81 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Raag,
+== Series Details ==
 
-> +/* Wa_14022698537:dg2 */
-> +static void i915_enable_g8(struct drm_i915_private *i915)
-> +{
-> +	if (IS_DG2(i915)) {
-> +		if (IS_DG2_D(i915) && !intel_match_g8_cpu())
-> +			return;
-> +
-> +		snb_pcode_write_p(&i915->uncore, PCODE_POWER_SETUP,
-> +				  POWER_SETUP_SUBCOMMAND_G8_ENABLE, 0, 0);
-> +	}
+Series: drm/i915: Add drm_panic support (rev3)
+URL   : https://patchwork.freedesktop.org/series/141935/
+State : success
 
-In the workaround description there an "else if" which I am not
-understanding. I it suggesting to do nothing or is it suggesting
-to do the same thing?
+== Summary ==
 
-> +}
-> +
->  static int i915_pcode_init(struct drm_i915_private *i915)
->  {
->  	struct intel_gt *gt;
-> @@ -428,6 +442,7 @@ static int i915_pcode_init(struct drm_i915_private *i915)
->  		}
->  	}
->  
-> +	i915_enable_g8(i915);
->  	return 0;
->  }
->  
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index 89e4381f8baa..d400c77423a5 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -3617,6 +3617,7 @@
->  #define	    POWER_SETUP_I1_WATTS		REG_BIT(31)
->  #define	    POWER_SETUP_I1_SHIFT		6	/* 10.6 fixed point format */
->  #define	    POWER_SETUP_I1_DATA_MASK		REG_GENMASK(15, 0)
-> +#define     POWER_SETUP_SUBCOMMAND_G8_ENABLE	0x6
+CI Bug Log - changes from CI_DRM_15812 -> Patchwork_141935v3
+====================================================
 
-for aesthetics 0x06 would look better, but this should be
-changed everywhere in the file because single digit hex values
-are used. It's better to keep uniformity in the style.
+Summary
+-------
 
-Andi
+  **SUCCESS**
 
->  #define GEN12_PCODE_READ_SAGV_BLOCK_TIME_US	0x23
->  #define   XEHP_PCODE_FREQUENCY_CONFIG		0x6e	/* pvc */
->  /* XEHP_PCODE_FREQUENCY_CONFIG sub-commands (param1) */
-> -- 
-> 2.34.1
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141935v3/index.html
+
+Participating hosts (45 -> 44)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_141935v3 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live:
+    - bat-mtlp-8:         [PASS][1] -> [ABORT][2] ([i915#12061]) +1 other test abort
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15812/bat-mtlp-8/igt@i915_selftest@live.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141935v3/bat-mtlp-8/igt@i915_selftest@live.html
+
+  * igt@kms_pipe_crc_basic@read-crc-frame-sequence:
+    - bat-dg2-11:         [PASS][3] -> [SKIP][4] ([i915#9197])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15812/bat-dg2-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141935v3/bat-dg2-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - bat-rpls-4:         [FAIL][5] ([i915#12903]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15812/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141935v3/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#12903]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12903
+  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_15812 -> Patchwork_141935v3
+
+  CI-20190529: 20190529
+  CI_DRM_15812: 5f0f6218ae34ea7cb5bde3d29b7b4a79fdea4ab7 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8146: 4134194b806f286bf0bf47ce02416ca3701b7b34 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_141935v3: 5f0f6218ae34ea7cb5bde3d29b7b4a79fdea4ab7 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141935v3/index.html
