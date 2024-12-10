@@ -2,60 +2,78 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 704759EA20C
-	for <lists+intel-gfx@lfdr.de>; Mon,  9 Dec 2024 23:46:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A92C59EA39D
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Dec 2024 01:26:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A37F910E2C1;
-	Mon,  9 Dec 2024 22:46:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13E1E10E35B;
+	Tue, 10 Dec 2024 00:26:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ABPkJctr";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="oREeAIg9";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2603610E2C1
- for <intel-gfx@lists.freedesktop.org>; Mon,  9 Dec 2024 22:46:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733784379; x=1765320379;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=lwqEzAUTR7fdaBRvzKp3BZmCiTQykOdIeY7HD7pXb74=;
- b=ABPkJctrTat3tB8ANlf+3PgzAIa6l1pthm+v7Lm8yRjoUDBzZTTkc1qb
- VyDLxKLL+qngZSx8h5mVPHTQVWfZ5Hxc4LCj+pzD+LTiaRNsBLqefPy9j
- dhnSlnym1wuJoPw2yvFZdvn1o2qqHf3htH5nZS4fYvh4/PBsvKvQ6XK8c
- ly3152G4B2Y8zDIFGjG4rpESANVL5EHfxqCATFfhUnA8pFY1aJzSR7kwN
- cH3M35zmbxCF4Lm0t1eXgUWg/3tA6iD4ClHNLjaSjC+0b2UVEo710rwgZ
- ymniyxiNw8843oXM9UGRApC0OfX7iu1O2Ez2ujYupXkrEMoH8ho2GhDow g==;
-X-CSE-ConnectionGUID: TNd8OqqvSuybrQ6wtD+DPQ==
-X-CSE-MsgGUID: 8cAUggPDQg2Efgc6m3lQ1Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11281"; a="44709636"
-X-IronPort-AV: E=Sophos;i="6.12,220,1728975600"; d="scan'208";a="44709636"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2024 14:46:19 -0800
-X-CSE-ConnectionGUID: fSnUhL5aQCGploCU/Fi5CQ==
-X-CSE-MsgGUID: P5niC623SQiQrrUqw8LS1g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,220,1728975600"; d="scan'208";a="126104955"
-Received: from lkp-server01.sh.intel.com (HELO 82a3f569d0cb) ([10.239.97.150])
- by fmviesa001.fm.intel.com with ESMTP; 09 Dec 2024 14:46:17 -0800
-Received: from kbuild by 82a3f569d0cb with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1tKmW7-0004sL-0L;
- Mon, 09 Dec 2024 22:46:15 +0000
-Date: Tue, 10 Dec 2024 06:46:12 +0800
-From: kernel test robot <lkp@intel.com>
-To: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
- Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Subject: Re: [PATCH v2] drm/i915/cx0_phy: Update HDMI TMDS C20 algorithm value
-Message-ID: <202412100658.ach3jkpF-lkp@intel.com>
-References: <20241209153418.49580-1-dnyaneshwar.bhadane@intel.com>
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com
+ [209.85.167.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A6B0810E593
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Dec 2024 00:26:08 +0000 (UTC)
+Received: by mail-lf1-f42.google.com with SMTP id
+ 2adb3069b0e04-5401c52000fso1666032e87.2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 09 Dec 2024 16:26:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1733790367; x=1734395167; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=4BwVrUZpTdtHulhLKWv2OcJChXM6uEDlwsocnkbKdQ4=;
+ b=oREeAIg9F3F0g1xUaNQ9w4Tw3sCZJBs4RYtzUD4o2SoolaRpZMIqW0koP9DfAaJFnP
+ jJZwuIczwzopJ8YofkKhjMkYQK7x/n0feNL+rT2ee4XD1X2VekQd/abgXZgsmT81+jT+
+ CMH7Gyr4RmsfR5MM0otDHDAahKTAfnX7wTodleY5AXQOHQjWMO4YjamYNZMrkFZjlciy
+ S14cUL69U5ZtdfrNa4sitsZxoCFgciC7LWwMkFOJTbYDaTYJY2Rwu6OLWjEr9bRvbN4O
+ 0uoT7UbrOKLV5bbRNIR1uXZ/z+ncIbXiG/TIDsY25DihkrgfBq3wPrzKtgSwmb7rXCVu
+ beig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1733790367; x=1734395167;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=4BwVrUZpTdtHulhLKWv2OcJChXM6uEDlwsocnkbKdQ4=;
+ b=gLwlK5p8QRgfiA3hRBj0whsr15PRnER4yVw+EfWXZryJV3MznvKfeH9rw9JuhC7BM5
+ dTfh6VR6gaUkMcc812B/zSyepTZ5kkHWxh/ic8A+ATnfT22lEkfim5IkOihhAOPdU+n8
+ UOqUGwnY2TC3NACxNyafLDacUihpEZu2effOONGJ0/p0Xq3LGamQhbXC2Xl6FE2QX9D6
+ SfLp7dZoCd9KRrkeuwn5BZHluXHWO/gyNcUUBCEHPR+hF0Xy11FEsnNBG+v/7ugcwkZc
+ KGwJbgspIIbhVr7PQ7H0qpTsHGJiuWKDaTRap7bBlGJwT4abxMGBMo+hQk99/18BFSTz
+ dcjQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXGkdMix6/h0OFSia3MBomNrYpVK9JMfC09whruQpTFPuX7IT+8HlZi3tgz4MesIStm/QRZgq45GUw=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwXBspBIIzweuhMctN4IW8re2e73wwIxDK2q3sXhz/7ypbkY5Lt
+ rof/fOTAjYZQ0XdgveSnjCi9gF+0hpqztbHRxuL/KCJe0K0hIi1K4rebryydaZc=
+X-Gm-Gg: ASbGnctHL0tgdGoqOZHZ805qj0EkxW6a0EIxv93EO6Hzxsu9CbsY++Md3PBrUub+moe
+ eQwf4OVzoqQdzgJrE1JFuWu104GrJRlQrnR9gAkvF0HkkVa8Fs/Qo7wKG1Wl/1gUSHzMLDRLhNa
+ xTbqnHv0S4RIzpsih2R4hp2XCaSd5ZpygP/yYOhpua1dQ+eBNdqci8EU6SGkEdTr6h++2D4BGC8
+ 88Surwi3maq0sGMaMbWqOXirh4nlfWznl7ZWeZuEsjNyGbMBIcTdN4zB4zFSj2Rr+p/Igkn/t8o
+ P+TECWHTdVJ4aEoNtdQGxrwNgO96oOcsaw==
+X-Google-Smtp-Source: AGHT+IF2X1+jzpdAk4e9Hp3V3x/qmpFhWj2caHJ76xZxfhEu4S0Ho2FccWas++QMYQWHfk7RKLTQWw==
+X-Received: by 2002:a05:6512:138c:b0:540:1d6c:f1c7 with SMTP id
+ 2adb3069b0e04-540240aa960mr829759e87.10.1733790366671; 
+ Mon, 09 Dec 2024 16:26:06 -0800 (PST)
+Received: from eriador.lumag.spb.ru
+ (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+ by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-53e3ab8dd61sm912121e87.44.2024.12.09.16.26.04
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 09 Dec 2024 16:26:05 -0800 (PST)
+Date: Tue, 10 Dec 2024 02:26:02 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Arun R Murthy <arun.r.murthy@intel.com>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
+Subject: Re: [PATCHv3 01/10] drm/crtc: Add histogram properties
+Message-ID: <7tho6j262nzbu6nvjgzelsu3ljjipxdhazjlzdfa3xi2lbn3vs@bx55yrrbmshg>
+References: <20241209162504.2146697-1-arun.r.murthy@intel.com>
+ <20241209162504.2146697-2-arun.r.murthy@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241209153418.49580-1-dnyaneshwar.bhadane@intel.com>
+In-Reply-To: <20241209162504.2146697-2-arun.r.murthy@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,135 +89,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dnyaneshwar,
+On Mon, Dec 09, 2024 at 09:54:55PM +0530, Arun R Murthy wrote:
+> Add variables for histogram drm_property, its corrsponding crtc_state
+> variables and define the structure pointed by the blob property.
+> 
+> struct drm_histogram and drm_iet defined in include/uapi/drm/drm_mode.h
+> 
+> The property HISTOGRAM_ENABLE allows user to enable/disable the
+> histogram feature in the hardware. Upon KMD enabling by writing to the
+> hardware registers, a histogram is generated. Histogram is composed of
+> 'n' bins with each bin being an integer(pixel count).
 
-kernel test robot noticed the following build warnings:
+Is it really a count of pixels that fall into one of the bins?
 
-[auto build test WARNING on next-20241209]
-[also build test WARNING on linus/master v6.13-rc2]
-[cannot apply to drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-tip/drm-tip v6.13-rc2 v6.13-rc1 v6.12]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> An event HISTOGRAM will be sent to the user. User upon recieving this
+> event user can read the hardware generated histogram using crtc property
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Dnyaneshwar-Bhadane/drm-i915-cx0_phy-Update-HDMI-TMDS-C20-algorithm-value/20241209-233928
-base:   next-20241209
-patch link:    https://lore.kernel.org/r/20241209153418.49580-1-dnyaneshwar.bhadane%40intel.com
-patch subject: [PATCH v2] drm/i915/cx0_phy: Update HDMI TMDS C20 algorithm value
-config: i386-buildonly-randconfig-005-20241210 (https://download.01.org/0day-ci/archive/20241210/202412100658.ach3jkpF-lkp@intel.com/config)
-compiler: clang version 19.1.3 (https://github.com/llvm/llvm-project ab51eccf88f5321e7c60591c5546b254b6afab99)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241210/202412100658.ach3jkpF-lkp@intel.com/reproduce)
+Nit: here and further, it's CRTC, not crtc
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202412100658.ach3jkpF-lkp@intel.com/
+> HISTOGRAM_DATA. User can use this histogram data, apply various
+> equilization techniques to come up with a pixel factor. This pixel
+> factor is an array of integer with 'n+1' elements. This is fed back to
+> the KMD by crtc property HISTOGRAM_IET. KMD will write this IET data
+> back to the hardware to see the enhancement/equilization done to the
+> images on that pipe.
+> The crtc property HISTOGRAM_DATA and HISTOGRAM_IET is of type blob.
+> 
+> For crtc property HISTOGRAM_DATA,
+> the blob data pointer will be the address of the struct drm_histogram.
+> struct drm_histogram {
+> 	u64 data_ptr;
+> 	u32 nr_elements;
+> }
+> Histogram is composed of @nr_elements of bins with each bin being an
+> integer value, referred to as pixel_count.
+> The element @data_ptr holds the address of histogam.
+> Sample:
+> Historgram[0] = 2050717
+> Historgram[1] = 244619
+> Historgram[2] = 173368
+> ....
+> Historgram[31] = 21631
+> 
+> For crtc_property HISTOGRAM_IET,
+> the blob data pointer will be the address of the struct drm_iet.
+> struct drm_iet {
+> 	u64 data_ptr;
+> 	u32 nr_elements;
+> }
+> ImageEnhancemenT(IET) is composed of @nr_elements of bins with each bin
+> being an integer value, referred to as pixel factor.
 
-All warnings (new ones prefixed by >>):
+What are pixel factors? How are they supposed to be used? You have
+specified the format of the data, but one still can not implement
+proper HISTOGRAM support for the VKMS.
 
-   In file included from drivers/gpu/drm/i915/display/intel_cx0_phy.c:13:
-   In file included from drivers/gpu/drm/i915/display/intel_de.h:9:
-   In file included from drivers/gpu/drm/i915/i915_drv.h:40:
-   In file included from drivers/gpu/drm/i915/display/intel_display_core.h:16:
-   In file included from include/drm/drm_connector.h:32:
-   In file included from include/drm/drm_util.h:36:
-   In file included from include/linux/kgdb.h:19:
-   In file included from include/linux/kprobes.h:28:
-   In file included from include/linux/ftrace.h:13:
-   In file included from include/linux/kallsyms.h:13:
-   In file included from include/linux/mm.h:2287:
-   include/linux/vmstat.h:518:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
-     518 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
-         |                               ~~~~~~~~~~~ ^ ~~~
->> drivers/gpu/drm/i915/display/intel_cx0_phy.c:2193:13: warning: variable 'tx_misc' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
-    2193 |         } else if (IS_METEORLAKE(to_i915(display->drm))) {
-         |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/i915_drv.h:528:29: note: expanded from macro 'IS_METEORLAKE'
-     528 | #define IS_METEORLAKE(i915) IS_PLATFORM(i915, INTEL_METEORLAKE)
-         |                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/display/intel_cx0_phy.c:2211:26: note: uninitialized use occurs here
-    2211 |         return (C20_PHY_TX_MISC(tx_misc) |
-         |                                 ^~~~~~~
-   drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:291:73: note: expanded from macro 'C20_PHY_TX_MISC'
-     291 | #define   C20_PHY_TX_MISC(val)          REG_FIELD_PREP16(C20_PHY_TX_MISC_MASK, (val))
-         |                                                                                 ^~~
-   drivers/gpu/drm/i915/i915_reg_defs.h:188:28: note: expanded from macro 'REG_FIELD_PREP16'
-     188 |         ((u16)((((typeof(__mask))(__val) << __bf_shf(__mask)) & (__mask)) +      \
-         |                                   ^~~~~
-   drivers/gpu/drm/i915/display/intel_cx0_phy.c:2193:9: note: remove the 'if' if its condition is always true
-    2193 |         } else if (IS_METEORLAKE(to_i915(display->drm))) {
-         |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/display/intel_cx0_phy.c:2182:13: note: initialize the variable 'tx_misc' to silence this warning
-    2182 |         u16 tx_misc;
-         |                    ^
-         |                     = 0
->> drivers/gpu/drm/i915/display/intel_cx0_phy.c:2193:13: warning: variable 'tx_term_ctrl' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
-    2193 |         } else if (IS_METEORLAKE(to_i915(display->drm))) {
-         |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/i915_drv.h:528:29: note: expanded from macro 'IS_METEORLAKE'
-     528 | #define IS_METEORLAKE(i915) IS_PLATFORM(i915, INTEL_METEORLAKE)
-         |                             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/display/intel_cx0_phy.c:2213:47: note: uninitialized use occurs here
-    2213 |                 C20_PHY_TX_DCC_BYPASS | C20_PHY_TX_TERM_CTL(tx_term_ctrl));
-         |                                                             ^~~~~~~~~~~~
-   drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:297:80: note: expanded from macro 'C20_PHY_TX_TERM_CTL'
-     297 | #define   C20_PHY_TX_TERM_CTL(val)      REG_FIELD_PREP16(C20_PHY_TX_TERM_CTL_MASK, (val))
-         |                                                                                     ^~~
-   drivers/gpu/drm/i915/i915_reg_defs.h:188:28: note: expanded from macro 'REG_FIELD_PREP16'
-     188 |         ((u16)((((typeof(__mask))(__val) << __bf_shf(__mask)) & (__mask)) +      \
-         |                                   ^~~~~
-   drivers/gpu/drm/i915/display/intel_cx0_phy.c:2193:9: note: remove the 'if' if its condition is always true
-    2193 |         } else if (IS_METEORLAKE(to_i915(display->drm))) {
-         |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/display/intel_cx0_phy.c:2184:18: note: initialize the variable 'tx_term_ctrl' to silence this warning
-    2184 |         u16 tx_term_ctrl;
-         |                         ^
-         |                          = 0
-   3 warnings generated.
+> The element @data_ptr holds the addess of pixel factor.
+> Sample:
+> Pixel Factor[0] = 1023
+> Pixel Factor[1] = 695
+> Pixel Factor[2] = 1023
+> ....
+> Pixel Factor[32] = 512
+> 
+> Histogram is the statistics generated with 'n' number of frames on a
+> pipe.
+> Usually the size of pixel factor is one more than the size of histogram
+> data.
 
+What does that mean? What does it mean if this "Usually" isn't being
+followed? Previously you've written that it always has n+1 elements.
 
-vim +2193 drivers/gpu/drm/i915/display/intel_cx0_phy.c
-
-  2177	
-  2178	static u16 intel_c20_hdmi_tmds_tx_cgf_1(struct intel_crtc_state *crtc_state)
-  2179	{
-  2180		struct intel_display *display = to_intel_display(crtc_state);
-  2181		struct pci_dev *pdev = NULL;
-  2182		u16 tx_misc;
-  2183		u16 tx_dcc_cal_dac_ctrl_range = 8;
-  2184		u16 tx_term_ctrl;
-  2185		u16 host_bridge_pci_dev_id;
-  2186	
-  2187		if (IS_BATTLEMAGE(to_i915(display->drm))) {
-  2188			tx_misc = 0;
-  2189			tx_term_ctrl = 2;
-  2190		} else if (DISPLAY_VER(display) >= 20) {
-  2191			tx_misc = 5;
-  2192			tx_term_ctrl = 4;
-> 2193		} else if (IS_METEORLAKE(to_i915(display->drm))) {
-  2194			/*
-  2195			 * Some SoCs have the same drm PCI IDs, so differentiate based
-  2196			 * on the host bridge device ID to use the correct txx_mics value.
-  2197			 */
-  2198			while ((pdev = pci_get_class(PCI_CLASS_BRIDGE_HOST << 8, pdev)))
-  2199				host_bridge_pci_dev_id = pdev->device;
-  2200	
-  2201			if (IS_METEORLAKE_U(to_i915(display->drm)) ||
-  2202			    IS_ARROWLAKE_U(to_i915(display->drm)) ||
-  2203			    (pdev && IS_ARROWLAKE_S_BY_HOST_BRIDGE_ID(host_bridge_pci_dev_id))) {
-  2204				tx_misc = 3;
-  2205			} else {
-  2206				tx_misc = 7;
-  2207			}
-  2208	
-  2209			tx_term_ctrl = 2;
-  2210		}
-  2211		return (C20_PHY_TX_MISC(tx_misc) |
-  2212			C20_PHY_TX_DCC_CAL_RANGE(tx_dcc_cal_dac_ctrl_range) |
-  2213			C20_PHY_TX_DCC_BYPASS | C20_PHY_TX_TERM_CTL(tx_term_ctrl));
-  2214	}
-  2215	
+> 
+> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+> ---
+>  include/drm/drm_crtc.h      | 51 +++++++++++++++++++++++++++++++++++++
+>  include/uapi/drm/drm_mode.h | 24 +++++++++++++++++
+>  2 files changed, 75 insertions(+)
+> 
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+With best wishes
+Dmitry
