@@ -2,44 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D8E79ECBAD
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2024 13:03:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EFFCF9ECBAF
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2024 13:03:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 02FDF10E3E9;
-	Wed, 11 Dec 2024 12:03:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99FBE10E607;
+	Wed, 11 Dec 2024 12:03:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lDNaJfTY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mU5mmgke";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B31D810E3DE
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Dec 2024 12:03:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C82110E07B
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Dec 2024 12:03:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1733918586; x=1765454586;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ZCpBr7st79Dcx6d8MgpjnJhpWeXZxeyhMMZxAgYKfD8=;
- b=lDNaJfTY33cpp2GMgS1jitChgTNbWR5b1WL5h506inOelClxNvoTFDr3
- B2D7l0HUPbMKPqUbW3mC5W9o/Y6BiwAwra4Sm9+/VCGlj5qzVA40iw770
- oepBuv200xSXnFW1mxlkkekRTu2jNeHHnobyw2Ij9Pss/7lO4detXtWev
- DCItHVmrd2dg5IR/+uQZjxhXHpYMvY/czyCKbb+w/ZeWinLPU5BqsP7S3
- 9pMbdIMmiEuJ1/oKgKrbaOd0/2I73uYxOHgyid7Crbg7UmqI81CSRFLoq
- gTxtwVFK776ibhdcc88UBugWt5QkRfIXFU6Wm42CIMkZDvGvZdaTjeLh0 A==;
-X-CSE-ConnectionGUID: YWjVeUuwS0GhQ5Z3/e/eHw==
-X-CSE-MsgGUID: pFQPCaoPTF6gOLeTnAH0fA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="33614193"
-X-IronPort-AV: E=Sophos;i="6.12,225,1728975600"; d="scan'208";a="33614193"
+ bh=yYmfoeBqZrY16PpBVTFRSvbka4L4aZ/VYEePaTp1XAc=;
+ b=mU5mmgkeWrB6MbUpeooy/fCSGJIiqam0PNz+VmQ2u978XaJ3g/Ij/HzG
+ wtsqdN8qhIRaVR4yln1/1WpB0oqOAedtO9Ho3+PeKVWxzb+72FAs6zaDc
+ R/4uyH+mqKKgAnkHyWWwOgKqt88DOveFDu5cyxmosZDcF7W+FekNFSRRS
+ vhmPhKJsfRa6WsL7gveaK5noSQotqkjxXyVsKKrEdsTNvyTKaNqEVJ9px
+ h7gIONEwSMJrpU5pCe9yogSUN9oAs4yydkVROxadziEaoD98rhAnju2Nd
+ 7tXkfKsBPlIcrU3EkgBK3VT0ATc9vRzE1+KDHcdwEavQMaEtWBvpPI9Wa A==;
+X-CSE-ConnectionGUID: nl/amySPTmOfruJmANrlbw==
+X-CSE-MsgGUID: 3xCJpqy5T7OGSLa4DLv1/g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="33614199"
+X-IronPort-AV: E=Sophos;i="6.12,225,1728975600"; d="scan'208";a="33614199"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2024 04:01:46 -0800
-X-CSE-ConnectionGUID: dOgQ7flBQsKrE8K3xsrI5w==
-X-CSE-MsgGUID: szB+nAYzRZu8LOzBBd/12w==
+ 11 Dec 2024 04:01:50 -0800
+X-CSE-ConnectionGUID: a26rnnWIQBuTXZ9w7QDwoQ==
+X-CSE-MsgGUID: OMlON2DjS8quO6/c9pHa+w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="100836989"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="100837010"
 Received: from jraag-nuc8i7beh.iind.intel.com ([10.145.169.79])
- by orviesa003.jf.intel.com with ESMTP; 11 Dec 2024 04:01:43 -0800
+ by orviesa003.jf.intel.com with ESMTP; 11 Dec 2024 04:01:46 -0800
 From: Raag Jadav <raag.jadav@intel.com>
 To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
  rodrigo.vivi@intel.com, matthew.d.roper@intel.com,
@@ -47,14 +47,13 @@ To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
 Cc: intel-gfx@lists.freedesktop.org, anshuman.gupta@intel.com,
  badal.nilawar@intel.com, riana.tauro@intel.com,
  Raag Jadav <raag.jadav@intel.com>, Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v4 3/4] drm/i915: Introduce intel_cpu_info.c for CPU IDs
-Date: Wed, 11 Dec 2024 17:29:51 +0530
-Message-Id: <20241211115952.1659287-4-raag.jadav@intel.com>
+Subject: [PATCH v4 4/4] drm/i915/dg2: Implement Wa_14022698537
+Date: Wed, 11 Dec 2024 17:29:52 +0530
+Message-Id: <20241211115952.1659287-5-raag.jadav@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20241211115952.1659287-1-raag.jadav@intel.com>
 References: <20241211115952.1659287-1-raag.jadav@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,106 +70,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Having similar naming convention in intel-family.h and intel_device_info.h
-results in redefinition of a few platforms. Define CPU IDs in its own file
-to avoid this.
+G8 power state entry is disabled due to a limitation on DG2, so we
+enable it from driver with Wa_14022698537. For now we enable it for
+all DG2 devices with the exception of a few, for which, we enable
+only when paired with whitelisted CPU models. This works with native
+ASPM and reduces idle power consumption.
 
-v3: Move file out of gt directory, add kernel doc (Riana)
-    Rephrase file description (Jani)
+$ echo powersave > /sys/module/pcie_aspm/parameters/policy
+$ lspci -s 0000:03:00.0 -vvv
+LnkCtl: ASPM L1 Enabled; RCB 64 bytes, Disabled- CommClk-
+
+v2: Fix Wa_ID and include it in subject (Badal)
+    Rephrase commit message (Jani)
+v3: Move workaround to i915_pcode_init() (Badal, Anshuman)
+    Re-order macro (Riana)
+v4: Spell fix (Riana)
 
 Signed-off-by: Raag Jadav <raag.jadav@intel.com>
 Acked-by: Jani Nikula <jani.nikula@intel.com>
 Reviewed-by: Riana Tauro <riana.tauro@intel.com>
 Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 ---
- drivers/gpu/drm/i915/Makefile         |  1 +
- drivers/gpu/drm/i915/intel_cpu_info.c | 44 +++++++++++++++++++++++++++
- drivers/gpu/drm/i915/intel_cpu_info.h | 13 ++++++++
- 3 files changed, 58 insertions(+)
- create mode 100644 drivers/gpu/drm/i915/intel_cpu_info.c
- create mode 100644 drivers/gpu/drm/i915/intel_cpu_info.h
+ drivers/gpu/drm/i915/i915_driver.c | 15 +++++++++++++++
+ drivers/gpu/drm/i915/i915_reg.h    |  1 +
+ 2 files changed, 16 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index e465828d748f..97816c473770 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -34,6 +34,7 @@ i915-y += \
- 	i915_sysfs.o \
- 	i915_utils.o \
- 	intel_clock_gating.o \
-+	intel_cpu_info.o \
- 	intel_device_info.o \
- 	intel_memory_region.o \
- 	intel_pcode.o \
-diff --git a/drivers/gpu/drm/i915/intel_cpu_info.c b/drivers/gpu/drm/i915/intel_cpu_info.c
-new file mode 100644
-index 000000000000..e52d0ac713a9
---- /dev/null
-+++ b/drivers/gpu/drm/i915/intel_cpu_info.c
-@@ -0,0 +1,44 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ *
-+ * Avoid INTEL_<PLATFORM> name collisions between asm/intel-family.h and
-+ * intel_device_info.h by having a separate file.
-+ */
-+
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index eb3fcc9e77a5..2251bedf9e3c 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -95,11 +95,13 @@
+ #include "i915_memcpy.h"
+ #include "i915_perf.h"
+ #include "i915_query.h"
++#include "i915_reg.h"
+ #include "i915_switcheroo.h"
+ #include "i915_sysfs.h"
+ #include "i915_utils.h"
+ #include "i915_vgpu.h"
+ #include "intel_clock_gating.h"
 +#include "intel_cpu_info.h"
-+
-+#ifdef CONFIG_X86
-+#include <asm/cpu_device_id.h>
-+#include <asm/intel-family.h>
-+
-+static const struct x86_cpu_id g8_cpu_ids[] = {
-+	X86_MATCH_VFM(INTEL_ALDERLAKE,		NULL),
-+	X86_MATCH_VFM(INTEL_ALDERLAKE_L,	NULL),
-+	X86_MATCH_VFM(INTEL_COMETLAKE,		NULL),
-+	X86_MATCH_VFM(INTEL_KABYLAKE,		NULL),
-+	X86_MATCH_VFM(INTEL_KABYLAKE_L,		NULL),
-+	X86_MATCH_VFM(INTEL_RAPTORLAKE,		NULL),
-+	X86_MATCH_VFM(INTEL_RAPTORLAKE_P,	NULL),
-+	X86_MATCH_VFM(INTEL_RAPTORLAKE_S,	NULL),
-+	X86_MATCH_VFM(INTEL_ROCKETLAKE,		NULL),
-+	{}
-+};
-+
-+/**
-+ * intel_match_g8_cpu - match current CPU against g8_cpu_ids
-+ *
-+ * This matches current CPU against g8_cpu_ids, which are applicable
-+ * for G8 workaround.
-+ *
-+ * Returns: %true if matches, %false otherwise.
-+ */
-+bool intel_match_g8_cpu(void)
+ #include "intel_gvt.h"
+ #include "intel_memory_region.h"
+ #include "intel_pci_config.h"
+@@ -424,6 +426,18 @@ static int i915_set_dma_info(struct drm_i915_private *i915)
+ 	return ret;
+ }
+ 
++/* Wa_14022698537:dg2 */
++static void i915_enable_g8(struct drm_i915_private *i915)
 +{
-+	return x86_match_cpu(g8_cpu_ids);
++	if (IS_DG2(i915)) {
++		if (IS_DG2_D(i915) && !intel_match_g8_cpu())
++			return;
++
++		snb_pcode_write_p(&i915->uncore, PCODE_POWER_SETUP,
++				  POWER_SETUP_SUBCOMMAND_G8_ENABLE, 0, 0);
++	}
 +}
-+#else /* CONFIG_X86 */
 +
-+bool intel_match_g8_cpu(void) { return false; }
-+
-+#endif /* CONFIG_X86 */
-diff --git a/drivers/gpu/drm/i915/intel_cpu_info.h b/drivers/gpu/drm/i915/intel_cpu_info.h
-new file mode 100644
-index 000000000000..d898fb463d31
---- /dev/null
-+++ b/drivers/gpu/drm/i915/intel_cpu_info.h
-@@ -0,0 +1,13 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2024 Intel Corporation
-+ */
-+
-+#ifndef _INTEL_CPU_INFO_H_
-+#define _INTEL_CPU_INFO_H_
-+
-+#include <linux/types.h>
-+
-+bool intel_match_g8_cpu(void);
-+
-+#endif /* _INTEL_CPU_INFO_H_ */
+ static int i915_pcode_init(struct drm_i915_private *i915)
+ {
+ 	struct intel_gt *gt;
+@@ -437,6 +451,7 @@ static int i915_pcode_init(struct drm_i915_private *i915)
+ 		}
+ 	}
+ 
++	i915_enable_g8(i915);
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index f48b5c809cec..8dfa1f01500c 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -3578,6 +3578,7 @@
+ #define	    POWER_SETUP_I1_WATTS		REG_BIT(31)
+ #define	    POWER_SETUP_I1_SHIFT		6	/* 10.6 fixed point format */
+ #define	    POWER_SETUP_I1_DATA_MASK		REG_GENMASK(15, 0)
++#define     POWER_SETUP_SUBCOMMAND_G8_ENABLE	0x6
+ #define GEN12_PCODE_READ_SAGV_BLOCK_TIME_US	0x23
+ #define   XEHP_PCODE_FREQUENCY_CONFIG		0x6e	/* pvc */
+ /* XEHP_PCODE_FREQUENCY_CONFIG sub-commands (param1) */
 -- 
 2.34.1
 
