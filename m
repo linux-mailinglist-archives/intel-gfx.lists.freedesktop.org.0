@@ -2,30 +2,96 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C60E9ED4B8
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2024 19:32:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B8F139ED4BD
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2024 19:33:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F12010EBF4;
-	Wed, 11 Dec 2024 18:32:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D4FD10EBEE;
+	Wed, 11 Dec 2024 18:32:58 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="MRlBdk87";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB6A010EBE3;
- Wed, 11 Dec 2024 18:32:11 +0000 (UTC)
-Message-ID: <83cf254b-da30-4375-9720-583bd8382230@lankhorst.se>
-Date: Wed, 11 Dec 2024 19:32:08 +0100
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com
+ [209.85.167.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3065110EBE7
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Dec 2024 18:32:56 +0000 (UTC)
+Received: by mail-lf1-f43.google.com with SMTP id
+ 2adb3069b0e04-54024aa9febso2612393e87.1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Dec 2024 10:32:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1733941974; x=1734546774; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=qwjqsNH/3nF2Q3XbWudExYhlk4EBq4Q9BHCqHdvdEaI=;
+ b=MRlBdk87yd5XRun6HxduAb3YdKzkUfpEMA9bIt/QJ+Kq4nAMlDgErn1RoQ6Q35yOQn
+ TEWHGFQHtrGuu/dYCiAl+WSTATsibcyCpwOZnm163/j8tW9QUjvEPVhUu6tIzB59rqjm
+ AcxLRhyGdmFpUhguwsbDd96u2RfhH1VyyUkDkB8mKJIFsnVnAq1ADZsxzzcDf9eM6tIX
+ nb/W4apOT4tVBW3WbeVpvx77ky1vcCGddv9jewJSsfIXKjWweeJ9YDu644P8be6Rk1Lm
+ Gde/cQI8Dn64FVHT3ZK9Y7uX8C8h7YXSb+Cd1wignrUFXbBLPBF15Qoi+B+8ggKL1GO5
+ 455g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1733941974; x=1734546774;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=qwjqsNH/3nF2Q3XbWudExYhlk4EBq4Q9BHCqHdvdEaI=;
+ b=LqqD1hFeOZyJvy4zisJWD0/gV0PSdxNkoq0mWcBL5H6/tQKJmtCRnl7ELxzFxmsRgk
+ /2PT+/UmOVyxYq9vBWDT5NSbQoBWyabkcWnGNeK0lBI50YTQgMn35XmvsgQt4lV+40rL
+ Qz50FCjE+K3YThxCPFql5+/4PKT6tHREIZT2Kzq9SxfvoFIa+6/vPpnTt4v0PK6Ll58I
+ 9BpJQqZFUCcCREmyVp7KoHiyE/mNuQ30ElyODDzMLyOmwwl/LXLG24mJ0a4dDwGqhk2r
+ xNakrlcqbPAx0dvmjK42LHrQjG1vpYVJlWfpuXFEwo8SB24pn7+ZZA61dNWUoCbRz44Q
+ 64gw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVn2p6KrNSvlYh0DQySPzJvKsjfxpbOClKFHtGS17HlbiLfx2OpCiulnq3w1Mu/Nt4fJi0xymnQY3w=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyVL0hgZ69PzWivU5YffmF/E4XcslJKohvwYGG7RMxGzgOtuwgy
+ N2St8eJB5TuYph0aq7GRdOTADPPJ3UJ9wBB39E0e1/IAEOc3uedg1fHV/T5dRow=
+X-Gm-Gg: ASbGncuLT0vr5t5A02HBsKzMvpvhusqbKz/R2ZhQFR1BAxqZHJPC6Br18OD8o/nlV+i
+ z/hTlN7wan6mCI59Rx5xnMYBgcqcUyvZyVv6utgomYa6raZjYvbW2Nr6YNz3tF9EpWFB9mxRf7V
+ 6vSsKAH6Zb2JfYTGuvU9j3EpfITUFQXFJYIvGHV8qR/8Bt5YPcs5JaZHI/zgbgIAinH3p1kKBq3
+ 3gzapEoSnXiTuxL5dKPPKvuL4XTe4CfpMudR4H+Q/mRGIO60EccBwpxxBXx5WfUWGQA2ZZLeCA9
+ Uv2A1vTdIz4Z2a2MKEUJhOFJLpU94Evwqg==
+X-Google-Smtp-Source: AGHT+IFmZdkDf94Jsx8fCrALITW/9iPuUY5e7Ad8TDSKUOMmNblYCFB7l7IPRhIdF6tMpVRDpdpenQ==
+X-Received: by 2002:a05:6512:1329:b0:540:1dac:c03d with SMTP id
+ 2adb3069b0e04-5402f04d0ffmr331050e87.57.1733941974289; 
+ Wed, 11 Dec 2024 10:32:54 -0800 (PST)
+Received: from eriador.lumag.spb.ru
+ (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+ by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-5401d2aab5csm1134637e87.168.2024.12.11.10.32.52
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 11 Dec 2024 10:32:52 -0800 (PST)
+Date: Wed, 11 Dec 2024 20:32:51 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Johan Hovold <johan@kernel.org>
+Cc: Abel Vesa <abel.vesa@linaro.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, Karol Herbst <kherbst@redhat.com>,
+ Lyude Paul <lyude@redhat.com>, 
+ Danilo Krummrich <dakr@redhat.com>, Jani Nikula <jani.nikula@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, Rob Clark <robdclark@gmail.com>, 
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, 
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, 
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, 
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org
+Subject: Re: [PATCH v2 1/4] drm/dp: Add helper to set LTTPRs in transparent
+ mode
+Message-ID: <3omcjrgfkdmw466ok7gej2jge25vtwzaiycwz2xgejwppyvkza@rhssgk7xz4hj>
+References: <20241211-drm-dp-msm-add-lttpr-transparent-mode-set-v2-0-d5906ed38b28@linaro.org>
+ <20241211-drm-dp-msm-add-lttpr-transparent-mode-set-v2-1-d5906ed38b28@linaro.org>
+ <Z1mk08SHEd5_vc99@hovoldconsulting.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe/display: Use a single early init call for display
-To: Jani Nikula <jani.nikula@linux.intel.com>, intel-xe@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
-References: <20241206185956.3290-6-dev@lankhorst.se>
- <20241209155142.209657-1-dev@lankhorst.se> <87h67bzxqb.fsf@intel.com>
-Content-Language: en-US
-From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <87h67bzxqb.fsf@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Z1mk08SHEd5_vc99@hovoldconsulting.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,242 +107,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hey Jani,
-
-I believe at least for the platforms xe cares about (gen12+), display is 
-sufficiently separated that everything can be performed in a single init 
-call before we enable interrupts.
-
-Because of the strict separation between xe and display, it should be 
-fine to keep the ordering as-is from this patch.
-
-(some xe init here)
-xe_display_init_nommio()
-(some xe init here)
-xe_display_init_noirq()
-(some xe init here)
-xe_display_init_noaccel()
-(some xe init here)
-irq_enable()
-
-should functionally be the same as
-
-(some xe init here)
-xe_display_init_early()
-(some xe init here)
-irq_enable()
-
-When you look at it from the xe driver point of view.
-Nothing else in xe depends on display, and interrupts are not enabled 
-until after this init call.
-
-We must deviate from i915 with interrupts, because enabling interrupts 
-may require memirqs, which performs a GGTT allocation.
-
-The long explanation might be too long to stuff into the commit message, 
-but I hope it makes sense. :-)
-
-Cheers,
-~Maarten
-
-Den 2024-12-10 kl. 10:35, skrev Jani Nikula:
-> On Mon, 09 Dec 2024, Maarten Lankhorst <dev@lankhorst.se> wrote:
->> Instead of 3 different calls, it should be safe to unify to a single
->> call now. This makes the init sequence cleaner, and display less
->> tangled.
+On Wed, Dec 11, 2024 at 03:42:27PM +0100, Johan Hovold wrote:
+> On Wed, Dec 11, 2024 at 03:04:12PM +0200, Abel Vesa wrote:
+>  
+> > +/**
+> > + * drm_dp_lttpr_set_transparent_mode - set the LTTPR in transparent mode
+> > + * @aux: DisplayPort AUX channel
+> > + * @enable: Enable or disable transparent mode
+> > + *
+> > + * Returns 0 on success or a negative error code on failure.
+> > + */
+> > +int drm_dp_lttpr_set_transparent_mode(struct drm_dp_aux *aux, bool enable)
+> > +{
+> > +	u8 val = enable ? DP_PHY_REPEATER_MODE_TRANSPARENT :
+> > +			  DP_PHY_REPEATER_MODE_NON_TRANSPARENT;
+> > +	int ret = drm_dp_dpcd_writeb(aux, DP_PHY_REPEATER_MODE, val);
+> > +
+> > +	return ret == 1 ? 0 : ret;
 > 
-> Needs more explanation.
+> This looks correct, but I had to go look at drm_dp_dpcd_writeb() to make
+> sure it never returns 0 (for short transfers).
 > 
-> I thought the goal was to *unify* i915 and xe display init/cleanup. This
-> diverges them more, with actually functionally different things rather
-> than just slightly different ordering.
+> > +}
+> > +EXPORT_SYMBOL(drm_dp_lttpr_set_transparent_mode);
 > 
-> BR,
-> Jani.
-> 
-> 
->>
->> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
->> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
->> ---
->> Rebase
->>
->>   drivers/gpu/drm/xe/display/xe_display.c | 73 +++++++------------------
->>   drivers/gpu/drm/xe/display/xe_display.h |  8 +--
->>   drivers/gpu/drm/xe/xe_device.c          | 10 +---
->>   3 files changed, 22 insertions(+), 69 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
->> index 317fa66adf189..b013a4db11183 100644
->> --- a/drivers/gpu/drm/xe/display/xe_display.c
->> +++ b/drivers/gpu/drm/xe/display/xe_display.c
->> @@ -101,19 +101,25 @@ int xe_display_create(struct xe_device *xe)
->>   	return drmm_add_action_or_reset(&xe->drm, display_destroy, NULL);
->>   }
->>   
->> -static void xe_display_fini_nommio(struct drm_device *dev, void *dummy)
->> +static void xe_display_fini_early(void *arg)
->>   {
->> -	struct xe_device *xe = to_xe_device(dev);
->> +	struct xe_device *xe = arg;
->>   	struct intel_display *display = &xe->display;
->>   
->>   	if (!xe->info.probe_display)
->>   		return;
->>   
->> +	intel_display_driver_remove_nogem(display);
->> +	intel_display_driver_remove_noirq(display);
->> +	intel_opregion_cleanup(display);
->>   	intel_power_domains_cleanup(display);
->>   }
->>   
->> -int xe_display_init_nommio(struct xe_device *xe)
->> +int xe_display_init_early(struct xe_device *xe)
->>   {
->> +	struct intel_display *display = &xe->display;
->> +	int err;
->> +
->>   	if (!xe->info.probe_display)
->>   		return 0;
->>   
->> @@ -123,29 +129,6 @@ int xe_display_init_nommio(struct xe_device *xe)
->>   	/* This must be called before any calls to HAS_PCH_* */
->>   	intel_detect_pch(xe);
->>   
->> -	return drmm_add_action_or_reset(&xe->drm, xe_display_fini_nommio, xe);
->> -}
->> -
->> -static void xe_display_fini_noirq(void *arg)
->> -{
->> -	struct xe_device *xe = arg;
->> -	struct intel_display *display = &xe->display;
->> -
->> -	if (!xe->info.probe_display)
->> -		return;
->> -
->> -	intel_display_driver_remove_noirq(display);
->> -	intel_opregion_cleanup(display);
->> -}
->> -
->> -int xe_display_init_noirq(struct xe_device *xe)
->> -{
->> -	struct intel_display *display = &xe->display;
->> -	int err;
->> -
->> -	if (!xe->info.probe_display)
->> -		return 0;
->> -
->>   	intel_display_driver_early_probe(display);
->>   
->>   	/* Early display init.. */
->> @@ -162,38 +145,20 @@ int xe_display_init_noirq(struct xe_device *xe)
->>   	intel_display_device_info_runtime_init(display);
->>   
->>   	err = intel_display_driver_probe_noirq(display);
->> -	if (err) {
->> -		intel_opregion_cleanup(display);
->> -		return err;
->> -	}
->> -
->> -	return devm_add_action_or_reset(xe->drm.dev, xe_display_fini_noirq, xe);
->> -}
->> -
->> -static void xe_display_fini_noaccel(void *arg)
->> -{
->> -	struct xe_device *xe = arg;
->> -	struct intel_display *display = &xe->display;
->> -
->> -	if (!xe->info.probe_display)
->> -		return;
->> -
->> -	intel_display_driver_remove_nogem(display);
->> -}
->> -
->> -int xe_display_init_noaccel(struct xe_device *xe)
->> -{
->> -	struct intel_display *display = &xe->display;
->> -	int err;
->> -
->> -	if (!xe->info.probe_display)
->> -		return 0;
->> +	if (err)
->> +		goto err_opregion;
->>   
->>   	err = intel_display_driver_probe_nogem(display);
->>   	if (err)
->> -		return err;
->> +		goto err_noirq;
->>   
->> -	return devm_add_action_or_reset(xe->drm.dev, xe_display_fini_noaccel, xe);
->> +	return devm_add_action_or_reset(xe->drm.dev, xe_display_fini_early, xe);
->> +err_noirq:
->> +	intel_display_driver_remove_noirq(display);
->> +	intel_power_domains_cleanup(display);
->> +err_opregion:
->> +	intel_opregion_cleanup(display);
->> +	return err;
->>   }
->>   
->>   int xe_display_init(struct xe_device *xe)
->> diff --git a/drivers/gpu/drm/xe/display/xe_display.h b/drivers/gpu/drm/xe/display/xe_display.h
->> index 233f81a26c255..e2a99624f7064 100644
->> --- a/drivers/gpu/drm/xe/display/xe_display.h
->> +++ b/drivers/gpu/drm/xe/display/xe_display.h
->> @@ -20,9 +20,7 @@ int xe_display_create(struct xe_device *xe);
->>   
->>   int xe_display_probe(struct xe_device *xe);
->>   
->> -int xe_display_init_nommio(struct xe_device *xe);
->> -int xe_display_init_noirq(struct xe_device *xe);
->> -int xe_display_init_noaccel(struct xe_device *xe);
->> +int xe_display_init_early(struct xe_device *xe);
->>   int xe_display_init(struct xe_device *xe);
->>   void xe_display_fini(struct xe_device *xe);
->>   
->> @@ -54,9 +52,7 @@ static inline int xe_display_create(struct xe_device *xe) { return 0; }
->>   
->>   static inline int xe_display_probe(struct xe_device *xe) { return 0; }
->>   
->> -static inline int xe_display_init_nommio(struct xe_device *xe) { return 0; }
->> -static inline int xe_display_init_noirq(struct xe_device *xe) { return 0; }
->> -static inline int xe_display_init_noaccel(struct xe_device *xe) { return 0; }
->> +static inline int xe_display_init_early(struct xe_device *xe) { return 0; }
->>   static inline int xe_display_init(struct xe_device *xe) { return 0; }
->>   static inline void xe_display_fini(struct xe_device *xe) {}
->>   
->> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
->> index fbec176ee64ad..c9c0b74c74ddb 100644
->> --- a/drivers/gpu/drm/xe/xe_device.c
->> +++ b/drivers/gpu/drm/xe/xe_device.c
->> @@ -639,10 +639,6 @@ int xe_device_probe(struct xe_device *xe)
->>   		return err;
->>   
->>   	xe->info.mem_region_mask = 1;
->> -	err = xe_display_init_nommio(xe);
->> -	if (err)
->> -		return err;
->> -
->>   	err = xe_set_dma_info(xe);
->>   	if (err)
->>   		return err;
->> @@ -697,10 +693,6 @@ int xe_device_probe(struct xe_device *xe)
->>   	if (err)
->>   		return err;
->>   
->> -	err = xe_display_init_noirq(xe);
->> -	if (err)
->> -		return err;
->> -
->>   	err = probe_has_flat_ccs(xe);
->>   	if (err)
->>   		goto err;
->> @@ -724,7 +716,7 @@ int xe_device_probe(struct xe_device *xe)
->>   	 * This is the reason the first allocation needs to be done
->>   	 * inside display.
->>   	 */
->> -	err = xe_display_init_noaccel(xe);
->> +	err = xe_display_init_early(xe);
->>   	if (err)
->>   		goto err;
-> 
+> This appears to be what the driver currently uses, but why not
+> EXPORT_SYMBOL_GPL?
 
+$ git grep EXPORT_SYMBOL drivers/gpu/drm/*.c | wc -l
+962
+$ git grep EXPORT_SYMBOL_GPL drivers/gpu/drm/*.c | wc -l
+93
+
+
+-- 
+With best wishes
+Dmitry
