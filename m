@@ -2,55 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C8289ECBAE
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2024 13:03:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EBBF09ECBAC
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2024 13:03:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A0E8710E07B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5D9610E3DE;
 	Wed, 11 Dec 2024 12:03:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O1LfO09N";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VYvdG++7";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D2DEE10E07B
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Dec 2024 12:03:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BEF010E07B
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Dec 2024 12:03:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1733918585; x=1765454585;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ggELSbXx+4DfmrUmLTJP/MxK7ZaIQDfMGnPLJA+8rRc=;
- b=O1LfO09NFyuAxEccyPPLxg/VNRuwBkqDCyMe+gODxLjyy1S5xXsZiUbv
- 0JMoT91BIHkgNwB3LC92LsRlLS5yVuOY2hzpZZPkXyS30Ba+/oYFbgHuI
- ENuySAlyb+2A8VsVw4ZhOJyJ6FpifHqJoPkLJI4L5LkDODKJiNGGH4IIG
- 6y0O1ZI37GCAAx6UkEnoE653R31wQSGnQ4qje7g3s+3SDS59A8AVpOLLt
- 2zI/z3Oo4qSGQXIP/5WS9cH0GILjrBJ0g1IsvinuMRzORczKYbZJlMANK
- XaHyuUPpn0HrIBHP1Ii0/FizXYfeGl3dF03SZiCZc3t7HqsCaQRDeaezn A==;
-X-CSE-ConnectionGUID: UKDiDVXVTzq1RZHdyd2VrQ==
-X-CSE-MsgGUID: TIEtylYiTOOHrHhu04Wnjw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="33614183"
-X-IronPort-AV: E=Sophos;i="6.12,225,1728975600"; d="scan'208";a="33614183"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=F3HBBO65wq36DhA//vzyLqq1uGjQgiGGSWtnmkwcPzw=;
+ b=VYvdG++7hZRm+ZKK1GWiCPHp8sE9tHHuWQc1pG1UpdnSej2+nv2xkpka
+ rGC9k0qs9g+eKx60oaezH3c+eJXwnSDPr/8wR2npz3BJaufnVnIE/mdqC
+ PfBYQ6Ny3Rjd7emmp90Na+5lv275+l1kMvP22k4SSqbUKTWNVZUGxrpdB
+ fjaLotmFnaMER3b/1kmQN7+vimxX0LOjMfHVlWRS1RYxl9KeY0iL0D3eR
+ hjrtTODN8eKvs/oUQNDHPwaA4eVJVIFBbfpzpzvnlqCfHyk21CZ9cSzrT
+ 3wSUo14UPkpjGhvFC7mvY2/z8jbf+uEM/TA7emRWJnLxkrP3gTK2VeeHh g==;
+X-CSE-ConnectionGUID: 2W5o6LwZTjSLWCw3lUjRKA==
+X-CSE-MsgGUID: ReCUzP3KS2SGDWsqJpu+Tg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="33614186"
+X-IronPort-AV: E=Sophos;i="6.12,225,1728975600"; d="scan'208";a="33614186"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2024 04:01:34 -0800
-X-CSE-ConnectionGUID: 1SAeH8l4TtqMXkibqOTtww==
-X-CSE-MsgGUID: Xj3eh39PQzOG9iFQCf4bSQ==
+ 11 Dec 2024 04:01:39 -0800
+X-CSE-ConnectionGUID: zDOVCysVRcaYGlbUVuP06A==
+X-CSE-MsgGUID: 8VpB5h+mTLOT+0FB5if2/A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="100836939"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="100836955"
 Received: from jraag-nuc8i7beh.iind.intel.com ([10.145.169.79])
- by orviesa003.jf.intel.com with ESMTP; 11 Dec 2024 04:01:32 -0800
+ by orviesa003.jf.intel.com with ESMTP; 11 Dec 2024 04:01:35 -0800
 From: Raag Jadav <raag.jadav@intel.com>
 To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
  rodrigo.vivi@intel.com, matthew.d.roper@intel.com,
  andi.shyti@linux.intel.com
 Cc: intel-gfx@lists.freedesktop.org, anshuman.gupta@intel.com,
  badal.nilawar@intel.com, riana.tauro@intel.com,
- Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v4 0/4] Implement Wa_14022698537
-Date: Wed, 11 Dec 2024 17:29:48 +0530
-Message-Id: <20241211115952.1659287-1-raag.jadav@intel.com>
+ Raag Jadav <raag.jadav@intel.com>, Jani Nikula <jani.nikula@intel.com>
+Subject: [PATCH v4 1/4] drm/intel/pciids: Refactor DG2 PCI IDs into segment
+ ranges
+Date: Wed, 11 Dec 2024 17:29:49 +0530
+Message-Id: <20241211115952.1659287-2-raag.jadav@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20241211115952.1659287-1-raag.jadav@intel.com>
+References: <20241211115952.1659287-1-raag.jadav@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -68,44 +71,103 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This series implements Wa_14022698537 for DG2 along with its prerequisites
-in i915. Detailed description in commit message.
-
-v1: https://patchwork.freedesktop.org/series/139628/
-
-v2: Introduce DG2_WA subplatform for workaround (Jani)
-    Fix Wa_ID and include it in subject (Badal)
-    Rephrase commit message (Jani)
-    Move CPU whitelist to intel_wa_cpu.c
+Refactor DG2 PCI IDs into D, E and M ranges which will be useful for
+segment specific features.
 
 v3: Rework subplatform naming (Jani)
-    Move CPU file out of gt directory (Riana)
-    Rephrase CPU file description (Jani)
-    Add kernel doc, re-order macro (Riana)
-    Move workaround to i915_pcode_init() (Badal, Anshuman)
 
-v4: Spell fix and nits (Riana)
-    Update tags and rebase
+Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+Acked-by: Jani Nikula <jani.nikula@intel.com>
+Reviewed-by: Riana Tauro <riana.tauro@intel.com>
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+---
+ include/drm/intel/pciids.h | 55 +++++++++++++++++++++++++++++---------
+ 1 file changed, 42 insertions(+), 13 deletions(-)
 
-Raag Jadav (4):
-  drm/intel/pciids: Refactor DG2 PCI IDs into segment ranges
-  drm/i915/dg2: Introduce DG2_D subplatform
-  drm/i915: Introduce intel_cpu_info.c for CPU IDs
-  drm/i915/dg2: Implement Wa_14022698537
-
- drivers/gpu/drm/i915/Makefile            |  1 +
- drivers/gpu/drm/i915/i915_driver.c       | 15 +++++++
- drivers/gpu/drm/i915/i915_drv.h          |  2 +
- drivers/gpu/drm/i915/i915_reg.h          |  1 +
- drivers/gpu/drm/i915/intel_cpu_info.c    | 44 +++++++++++++++++++
- drivers/gpu/drm/i915/intel_cpu_info.h    | 13 ++++++
- drivers/gpu/drm/i915/intel_device_info.c |  9 ++++
- drivers/gpu/drm/i915/intel_device_info.h |  5 ++-
- include/drm/intel/pciids.h               | 55 ++++++++++++++++++------
- 9 files changed, 131 insertions(+), 14 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/intel_cpu_info.c
- create mode 100644 drivers/gpu/drm/i915/intel_cpu_info.h
-
+diff --git a/include/drm/intel/pciids.h b/include/drm/intel/pciids.h
+index 7883384acd5e..77c826589ec1 100644
+--- a/include/drm/intel/pciids.h
++++ b/include/drm/intel/pciids.h
+@@ -717,37 +717,66 @@
+ 	MACRO__(0xA7AB, ## __VA_ARGS__)
+ 
+ /* DG2 */
+-#define INTEL_DG2_G10_IDS(MACRO__, ...) \
+-	MACRO__(0x5690, ## __VA_ARGS__), \
+-	MACRO__(0x5691, ## __VA_ARGS__), \
+-	MACRO__(0x5692, ## __VA_ARGS__), \
++#define INTEL_DG2_G10_D_IDS(MACRO__, ...) \
+ 	MACRO__(0x56A0, ## __VA_ARGS__), \
+ 	MACRO__(0x56A1, ## __VA_ARGS__), \
+-	MACRO__(0x56A2, ## __VA_ARGS__), \
++	MACRO__(0x56A2, ## __VA_ARGS__)
++
++#define INTEL_DG2_G10_E_IDS(MACRO__, ...) \
+ 	MACRO__(0x56BE, ## __VA_ARGS__), \
+ 	MACRO__(0x56BF, ## __VA_ARGS__)
+ 
+-#define INTEL_DG2_G11_IDS(MACRO__, ...) \
+-	MACRO__(0x5693, ## __VA_ARGS__), \
+-	MACRO__(0x5694, ## __VA_ARGS__), \
+-	MACRO__(0x5695, ## __VA_ARGS__), \
++#define INTEL_DG2_G10_M_IDS(MACRO__, ...) \
++	MACRO__(0x5690, ## __VA_ARGS__), \
++	MACRO__(0x5691, ## __VA_ARGS__), \
++	MACRO__(0x5692, ## __VA_ARGS__)
++
++#define INTEL_DG2_G10_IDS(MACRO__, ...) \
++	INTEL_DG2_G10_D_IDS(MACRO__, ## __VA_ARGS__), \
++	INTEL_DG2_G10_E_IDS(MACRO__, ## __VA_ARGS__), \
++	INTEL_DG2_G10_M_IDS(MACRO__, ## __VA_ARGS__)
++
++#define INTEL_DG2_G11_D_IDS(MACRO__, ...) \
+ 	MACRO__(0x56A5, ## __VA_ARGS__), \
+ 	MACRO__(0x56A6, ## __VA_ARGS__), \
+ 	MACRO__(0x56B0, ## __VA_ARGS__), \
+-	MACRO__(0x56B1, ## __VA_ARGS__), \
++	MACRO__(0x56B1, ## __VA_ARGS__)
++
++#define INTEL_DG2_G11_E_IDS(MACRO__, ...) \
+ 	MACRO__(0x56BA, ## __VA_ARGS__), \
+ 	MACRO__(0x56BB, ## __VA_ARGS__), \
+ 	MACRO__(0x56BC, ## __VA_ARGS__), \
+ 	MACRO__(0x56BD, ## __VA_ARGS__)
+ 
+-#define INTEL_DG2_G12_IDS(MACRO__, ...) \
+-	MACRO__(0x5696, ## __VA_ARGS__), \
+-	MACRO__(0x5697, ## __VA_ARGS__), \
++#define INTEL_DG2_G11_M_IDS(MACRO__, ...) \
++	MACRO__(0x5693, ## __VA_ARGS__), \
++	MACRO__(0x5694, ## __VA_ARGS__), \
++	MACRO__(0x5695, ## __VA_ARGS__)
++
++#define INTEL_DG2_G11_IDS(MACRO__, ...) \
++	INTEL_DG2_G11_D_IDS(MACRO__, ## __VA_ARGS__), \
++	INTEL_DG2_G11_E_IDS(MACRO__, ## __VA_ARGS__), \
++	INTEL_DG2_G11_M_IDS(MACRO__, ## __VA_ARGS__)
++
++#define INTEL_DG2_G12_D_IDS(MACRO__, ...) \
+ 	MACRO__(0x56A3, ## __VA_ARGS__), \
+ 	MACRO__(0x56A4, ## __VA_ARGS__), \
+ 	MACRO__(0x56B2, ## __VA_ARGS__), \
+ 	MACRO__(0x56B3, ## __VA_ARGS__)
+ 
++#define INTEL_DG2_G12_M_IDS(MACRO__, ...) \
++	MACRO__(0x5696, ## __VA_ARGS__), \
++	MACRO__(0x5697, ## __VA_ARGS__)
++
++#define INTEL_DG2_G12_IDS(MACRO__, ...) \
++	INTEL_DG2_G12_D_IDS(MACRO__, ## __VA_ARGS__), \
++	INTEL_DG2_G12_M_IDS(MACRO__, ## __VA_ARGS__)
++
++#define INTEL_DG2_D_IDS(MACRO__, ...) \
++	INTEL_DG2_G10_D_IDS(MACRO__, ## __VA_ARGS__), \
++	INTEL_DG2_G11_D_IDS(MACRO__, ## __VA_ARGS__), \
++	INTEL_DG2_G12_D_IDS(MACRO__, ## __VA_ARGS__)
++
+ #define INTEL_DG2_IDS(MACRO__, ...) \
+ 	INTEL_DG2_G10_IDS(MACRO__, ## __VA_ARGS__), \
+ 	INTEL_DG2_G11_IDS(MACRO__, ## __VA_ARGS__), \
 -- 
 2.34.1
 
