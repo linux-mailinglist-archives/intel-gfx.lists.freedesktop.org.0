@@ -2,29 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E89779ECCAC
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2024 14:00:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 372939ECCAE
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2024 14:00:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BA3210EB3B;
-	Wed, 11 Dec 2024 12:59:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CDB7810EB37;
+	Wed, 11 Dec 2024 13:00:41 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H3GPJ5zg";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 459C210EB2D;
- Wed, 11 Dec 2024 12:59:54 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B16F610EB37
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Dec 2024 13:00:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1733922041; x=1765458041;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=+tIbi6bZXuMkj3s/x2KHq/1xvabDw6Sc17PHaGUQV5c=;
+ b=H3GPJ5zgbUuq03vrysheMdAUny1nd7mlHyofuK2zbVhy5UEofmRKf3Nv
+ QigSZH8ElYBf0EEP9IbQtYFDa9UycWi71gPbY8w4LAbVwmSSz4NcrNsp0
+ AFy+Ae+6UEm/mEWucgUoFnN5LHOvf7B8y9cz62KZWHgQgqpUAUQ/OprTC
+ Ck1pjhj2+SlwwPHB/oiN2u4gux4iEwW8mNHNqXdI9dFkR1I6SLJfVtDmY
+ VkdfLpABURLiPCXX0F7pjxhZCXJVsvaMLuBFD+zfyopsPjjD8XQsRLwaH
+ /s49HFn9kJTosqk9e67KsfyJH8gVsZy7F7cJwiClHfsH423nORBOZRSYy g==;
+X-CSE-ConnectionGUID: MeOP7tSIS/OYtio8T5aYQg==
+X-CSE-MsgGUID: mwja1zJZTN+vJQwZySqsSQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="44908468"
+X-IronPort-AV: E=Sophos;i="6.12,225,1728975600"; d="scan'208";a="44908468"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2024 05:00:40 -0800
+X-CSE-ConnectionGUID: u91dUF29TImxMoFC/N7Nkw==
+X-CSE-MsgGUID: DorIgxDHRMa/G5PP1h32gg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="126737704"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2024 05:00:38 -0800
+Date: Wed, 11 Dec 2024 15:01:17 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Krzysztof Karas <krzysztof.karas@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: Re: [PATCH] drm/i915/display: use IS_ERR_OR_NULL macro on DP tunnel
+ mgr creation failure
+Message-ID: <Z1mNHX2vnDurMOT0@ideak-desk.fi.intel.com>
+References: <fw4bnfdbbolmg5zdzrf7raw5d7vzcxxz3zno3pti6tmnakrnvt@tx3262k6bzfs>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_Implement_Wa=5F1402269853?=
- =?utf-8?q?7_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Raag Jadav" <raag.jadav@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 11 Dec 2024 12:59:54 -0000
-Message-ID: <173392199427.1211612.17501272445106944715@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241211115952.1659287-1-raag.jadav@intel.com>
-In-Reply-To: <20241211115952.1659287-1-raag.jadav@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <fw4bnfdbbolmg5zdzrf7raw5d7vzcxxz3zno3pti6tmnakrnvt@tx3262k6bzfs>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,112 +66,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
+Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, Dec 11, 2024 at 09:56:50AM +0000, Krzysztof Karas wrote:
+> drm_dp_tunnel_mgr_create() may return NULL on failure, which will not
+> be caught via IS_ERR(), so replace it with IS_ERR_OR_NULL() macro.
+> 
+> Signed-off-by: Krzysztof Karas <krzysztof.karas@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp_tunnel.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_tunnel.c b/drivers/gpu/drm/i915/display/intel_dp_tunnel.c
+> index 94198bc04939..6c960416f776 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_tunnel.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_tunnel.c
+> @@ -793,7 +793,7 @@ int intel_dp_tunnel_mgr_init(struct intel_display *display)
+>  	drm_connector_list_iter_end(&connector_list_iter);
+>  
+>  	tunnel_mgr = drm_dp_tunnel_mgr_create(display->drm, dp_connectors);
+> -	if (IS_ERR(tunnel_mgr))
+> +	if (IS_ERR_OR_NULL(tunnel_mgr))
+>  		return PTR_ERR(tunnel_mgr);
 
-Series: Implement Wa_14022698537 (rev3)
-URL   : https://patchwork.freedesktop.org/series/139883/
-State : success
+Thanks for spotting this. As Michal pointed out, instead of the above
+drm_dp_tunnel_mgr_create() should be fixed to return PTR_ERR(-ENOMEM) in
+case of an error.
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_15819 -> Patchwork_139883v3
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139883v3/index.html
-
-Participating hosts (46 -> 45)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_139883v3 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_module_load@load:
-    - fi-pnv-d510:        [PASS][1] -> [ABORT][2] ([i915#13203])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15819/fi-pnv-d510/igt@i915_module_load@load.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139883v3/fi-pnv-d510/igt@i915_module_load@load.html
-
-  * igt@i915_module_load@reload:
-    - fi-cfl-8109u:       [PASS][3] -> [DMESG-WARN][4] ([i915#11621] / [i915#1982])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15819/fi-cfl-8109u/igt@i915_module_load@reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139883v3/fi-cfl-8109u/igt@i915_module_load@reload.html
-
-  * igt@i915_selftest@live@gt_mocs:
-    - bat-twl-2:          NOTRUN -> [ABORT][5] ([i915#12919]) +1 other test abort
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139883v3/bat-twl-2/igt@i915_selftest@live@gt_mocs.html
-
-  * igt@kms_addfb_basic@too-high:
-    - fi-cfl-8109u:       [PASS][6] -> [DMESG-WARN][7] ([i915#11621]) +51 other tests dmesg-warn
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15819/fi-cfl-8109u/igt@kms_addfb_basic@too-high.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139883v3/fi-cfl-8109u/igt@kms_addfb_basic@too-high.html
-
-  * igt@kms_pipe_crc_basic@read-crc:
-    - bat-dg2-11:         [PASS][8] -> [SKIP][9] ([i915#9197])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15819/bat-dg2-11/igt@kms_pipe_crc_basic@read-crc.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139883v3/bat-dg2-11/igt@kms_pipe_crc_basic@read-crc.html
-
-  
-#### Possible fixes ####
-
-  * igt@core_auth@basic-auth:
-    - fi-cfl-8109u:       [DMESG-WARN][10] ([i915#11621]) -> [PASS][11] +1 other test pass
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15819/fi-cfl-8109u/igt@core_auth@basic-auth.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139883v3/fi-cfl-8109u/igt@core_auth@basic-auth.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - bat-dg2-11:         [FAIL][12] ([i915#12903]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15819/bat-dg2-11/igt@i915_pm_rpm@module-reload.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139883v3/bat-dg2-11/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-mtlp-6:         [ABORT][14] ([i915#12061]) -> [PASS][15] +1 other test pass
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15819/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139883v3/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:
-    - fi-kbl-7567u:       [DMESG-WARN][16] ([i915#12920]) -> [PASS][17]
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15819/fi-kbl-7567u/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139883v3/fi-kbl-7567u/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-
-  
-  [i915#11621]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11621
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12903]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12903
-  [i915#12919]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12919
-  [i915#12920]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12920
-  [i915#13203]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13203
-  [i915#1982]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982
-  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15819 -> Patchwork_139883v3
-
-  CI-20190529: 20190529
-  CI_DRM_15819: 03abf2f5f12e0f13a3a28bf70ccf2d88ec2a707b @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8147: df65b61f81a5cc919c10ff9c5ed516b45364135c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_139883v3: 03abf2f5f12e0f13a3a28bf70ccf2d88ec2a707b @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139883v3/index.html
+>  
+>  	display->dp_tunnel_mgr = tunnel_mgr;
+> -- 
+> 2.34.1
+> 
