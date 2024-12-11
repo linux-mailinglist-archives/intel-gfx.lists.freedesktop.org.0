@@ -2,29 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE7F49ED2C8
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2024 17:52:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D6F69ED309
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2024 18:04:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1726C10EBB0;
-	Wed, 11 Dec 2024 16:52:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF1DF10E3F2;
+	Wed, 11 Dec 2024 17:03:59 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZpXvP8NG";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A30AC10EBB0;
- Wed, 11 Dec 2024 16:52:48 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C420D10E3F2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Dec 2024 17:03:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1733936638; x=1765472638;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=U1V13+IXrC0OlQ0ksHl0HsoiHF2WnH13mCaBB5v7zFQ=;
+ b=ZpXvP8NGUuFDZ7eXBV60gq53tG0Apx1buMohCvfStL8eB/j6qXC8cWLg
+ 7pDjbNifgmLEKc0EbbFTJx/98PRlRLwBxNERNbflBO26H3DdCs1evifC2
+ 38KmQGRtRc/Q5wm6cc0wq/tFYzkk8zEoKSPFoMUnatTSnFXEohDo+o7GB
+ HQW7/Oh/QfT8CWecpGs30NVFpGiIo6TK5odWu/r3fvw8T/lPI73eF2oy4
+ KBAjXloLf3egjdMkEdV7HbDsdQTYLXLIlME3GVujWS0wlq4CsCDJ5YkCS
+ Am0yFC4kOZGayv37kaEWi7AidFNu9HLxvJcj07qmNNIZA78bL0xE3QXDW g==;
+X-CSE-ConnectionGUID: NwRQvn/BTI2tp39Vf7t/Eg==
+X-CSE-MsgGUID: cJWDmdrsSrqesL5z91kPxg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11283"; a="38108020"
+X-IronPort-AV: E=Sophos;i="6.12,226,1728975600"; d="scan'208";a="38108020"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2024 09:03:58 -0800
+X-CSE-ConnectionGUID: 6dBhUbMiQ6mrR7vnx4rHSA==
+X-CSE-MsgGUID: mtpSt4rFTMuamJ6wQ47/Zw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="133261167"
+Received: from ldmartin-desk2.corp.intel.com (HELO ldmartin-desk2)
+ ([10.125.110.33])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2024 09:03:57 -0800
+Date: Wed, 11 Dec 2024 11:03:53 -0600
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Luca Coelho <luciano.coelho@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, jani.saarinen@intel.com, 
+ rodrigo.vivi@intel.com
+Subject: Re: [core-for-CI] Revert "lockdep: Enable PROVE_RAW_LOCK_NESTING
+ with PROVE_LOCKING."
+Message-ID: <4eumdizaltptocfqvkvxir7gjwfht2euha5josb5epagd4suwr@emdlfetgowi2>
+References: <20241211121703.2890150-1-luciano.coelho@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/display=3A_use_ERR=5F?=
- =?utf-8?q?PTR_on_DP_tunnel_manager_creation_fail?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Krzysztof Karas" <krzysztof.karas@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 11 Dec 2024 16:52:48 -0000
-Message-ID: <173393596866.1270341.15972935683337288025@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <x46u4zhhpnxgohyguhqsc4d73sbjwipebxp5uiwkopejsy6dpz@v3eysonfbmk2>
-In-Reply-To: <x46u4zhhpnxgohyguhqsc4d73sbjwipebxp5uiwkopejsy6dpz@v3eysonfbmk2>
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20241211121703.2890150-1-luciano.coelho@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,123 +67,22 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Wed, Dec 11, 2024 at 02:16:35PM +0200, Luca Coelho wrote:
+>This reverts commit 560af5dc839eef08a273908f390cfefefb82aa04.
+>
+>Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
 
-Series: drm/display: use ERR_PTR on DP tunnel manager creation fail
-URL   : https://patchwork.freedesktop.org/series/142423/
-State : success
+I added some more context to the commit message and
+pushed to topic/core-for-CI with Rodrigo's ack:
 
-== Summary ==
+     81827bbe1d8b ("Revert "lockdep: Enable PROVE_RAW_LOCK_NESTING with PROVE_LOCKING."")
 
-CI Bug Log - changes from CI_DRM_15821 -> Patchwork_142423v1
-====================================================
+which should be available in drm-tip starting with
 
-Summary
--------
+     drm-tip: 2024y-12m-11d-16h-58m-54s UTC integration manifest
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142423v1/index.html
-
-Participating hosts (46 -> 45)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_142423v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@dmabuf@all-tests@dma_fence_chain:
-    - fi-bsw-nick:        [PASS][1] -> [INCOMPLETE][2] ([i915#12904]) +1 other test incomplete
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15821/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142423v1/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html
-
-  * igt@kms_pipe_crc_basic@hang-read-crc:
-    - fi-kbl-7567u:       [PASS][3] -> [DMESG-WARN][4] ([i915#12926])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15821/fi-kbl-7567u/igt@kms_pipe_crc_basic@hang-read-crc.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142423v1/fi-kbl-7567u/igt@kms_pipe_crc_basic@hang-read-crc.html
-
-  * igt@kms_pipe_crc_basic@hang-read-crc@pipe-b-dp-1:
-    - fi-kbl-7567u:       [PASS][5] -> [DMESG-WARN][6] ([i915#12920]) +2 other tests dmesg-warn
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15821/fi-kbl-7567u/igt@kms_pipe_crc_basic@hang-read-crc@pipe-b-dp-1.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142423v1/fi-kbl-7567u/igt@kms_pipe_crc_basic@hang-read-crc@pipe-b-dp-1.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - bat-dg2-11:         [FAIL][7] ([i915#12903]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15821/bat-dg2-11/igt@i915_pm_rpm@module-reload.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142423v1/bat-dg2-11/igt@i915_pm_rpm@module-reload.html
-    - bat-rpls-4:         [FAIL][9] ([i915#12903]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15821/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142423v1/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live@workarounds:
-    - {bat-mtlp-9}:       [ABORT][11] ([i915#12061]) -> [PASS][12] +1 other test pass
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15821/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142423v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         [SKIP][13] ([i915#9197]) -> [PASS][14] +3 other tests pass
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15821/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142423v1/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  * igt@kms_pipe_crc_basic@read-crc-frame-sequence:
-    - bat-apl-1:          [DMESG-WARN][15] ([i915#12921]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15821/bat-apl-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142423v1/bat-apl-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence.html
-
-  * igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-c-dp-1:
-    - bat-apl-1:          [DMESG-WARN][17] -> [PASS][18] +2 other tests pass
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15821/bat-apl-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-c-dp-1.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142423v1/bat-apl-1/igt@kms_pipe_crc_basic@read-crc-frame-sequence@pipe-c-dp-1.html
-
-  
-#### Warnings ####
-
-  * igt@i915_module_load@reload:
-    - fi-cfl-8109u:       [DMESG-WARN][19] ([i915#11621]) -> [DMESG-WARN][20] ([i915#11621] / [i915#1982])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15821/fi-cfl-8109u/igt@i915_module_load@reload.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142423v1/fi-cfl-8109u/igt@i915_module_load@reload.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#11621]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11621
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12903]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12903
-  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
-  [i915#12920]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12920
-  [i915#12921]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12921
-  [i915#12926]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12926
-  [i915#1982]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982
-  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15821 -> Patchwork_142423v1
-
-  CI-20190529: 20190529
-  CI_DRM_15821: 64679a558442b0191dff88abe841d13ee7e0b229 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8148: 5362e7ac965c3768c60848e266294a4c6172241c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_142423v1: 64679a558442b0191dff88abe841d13ee7e0b229 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142423v1/index.html
+thanks
+Lucas De Marchi
