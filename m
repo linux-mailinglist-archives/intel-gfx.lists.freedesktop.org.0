@@ -2,59 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 426659ECA51
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2024 11:31:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ADC0F9ECA78
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2024 11:38:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 858EF10EAF1;
-	Wed, 11 Dec 2024 10:31:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 631A010EAF2;
+	Wed, 11 Dec 2024 10:38:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TKowIm95";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TD+0X7XF";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 879A310EAF1
- for <intel-gfx@lists.freedesktop.org>; Wed, 11 Dec 2024 10:31:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6BFF910EAF2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 11 Dec 2024 10:38:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733913096; x=1765449096;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=KddgXGkbt+yAiq5w/eny/9wpMFr7DPWAl8Hf2uAWpmk=;
- b=TKowIm954R+vqIP9F+T7nvxPji39OgKvIMCWRAcVjoz9J4JCbSohvH4s
- 8SztTUtGNIQnHeLuhmjkBxWNdMa5DiPOUCesSV5Nn0PaCPOcHBrMI361s
- OsZVNhTpiWImMmqQXO2Sm99/Hb7FzkEhuvvJBvusON/db8a2CS8lbwrq/
- dbwFSY0mr/9tvVOG8U7dU//Hw1A51WPdCl9KxpUizrNaDXaOO3IdEw5Jf
- m0/KQenAm9hRECp7zWv6RXS5tjOwVqExsMZNW2EdBiuotQEdyh36yorhI
- jWKife0PVvkWaywxeV6t7uDuQYR9MEdWmPb5y340l9v145TJdEbXT6mtJ Q==;
-X-CSE-ConnectionGUID: cpIW3+B1Q9KwcumeLpD2Cw==
-X-CSE-MsgGUID: MgLkdMQpSh+ur325cSBZ3A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="37121755"
-X-IronPort-AV: E=Sophos;i="6.12,225,1728975600"; d="scan'208";a="37121755"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2024 02:31:36 -0800
-X-CSE-ConnectionGUID: dIRt5GVpSf2Rz6Ayry0Mbg==
-X-CSE-MsgGUID: uVx+P5YTTOmRtUngF9xvfA==
+ t=1733913514; x=1765449514;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=rTeqrGa5s86dB2VUogqaLAd1PD7zfF0JBkSgDqRwBLc=;
+ b=TD+0X7XFodf+78M1nN5lnZw+YesNOx2fDZd1/dN3GBTGvkvrXsOuQsHG
+ nxpzvF732JhovCD09pTslnCWhsQJ8MnvKwZKBQfIhd+ffSgH7KjdlGWLP
+ pS30h4CKisCz+wakJDwptFspnYMB+x1XkxkFmG9rBnB7BMSpsm+RLFZrQ
+ bqdaCuSXO4kc4dc1j7uLFKqgx3iONnspQvnLNrZg1cIa+SQMdRulh5Drw
+ b5rpM2Y69Ta9KE2yKFwEPbgcH2IWn/TI30ioYZTyW0io73fUbdEBFu44a
+ uXKwXoLb5lgwqCWGnQJi3tj3aFHIHTviaVq2Zj/PtOioBOP3lPhfFOq+c g==;
+X-CSE-ConnectionGUID: O2VPnWlXSbS31f8TZ3SJMw==
+X-CSE-MsgGUID: Fzb1AGFCRC60b5DE/jFvvQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="34427507"
+X-IronPort-AV: E=Sophos;i="6.12,225,1728975600"; d="scan'208";a="34427507"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Dec 2024 02:38:24 -0800
+X-CSE-ConnectionGUID: FqNen2m2RxOkeeezbsmZQw==
+X-CSE-MsgGUID: AwTg9iakRZm2uQYJ10TJ9A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="99839230"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO intel.com)
- ([10.245.246.26])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2024 02:31:34 -0800
-Date: Wed, 11 Dec 2024 11:31:31 +0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Krzysztof Karas <krzysztof.karas@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,225,1728975600"; d="scan'208";a="126590885"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by orviesa002.jf.intel.com with ESMTP; 11 Dec 2024 02:38:23 -0800
+Received: from [10.245.80.89] (mwajdecz-MOBL.ger.corp.intel.com [10.245.80.89])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 039C728795;
+ Wed, 11 Dec 2024 10:38:21 +0000 (GMT)
+Message-ID: <42d4e7d6-8134-4c34-81a7-cd3eaa8d638b@intel.com>
+Date: Wed, 11 Dec 2024 11:38:21 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH] drm/i915/display: use IS_ERR_OR_NULL macro on DP tunnel
  mgr creation failure
-Message-ID: <Z1lqA1n3sL_o4YRI@ashyti-mobl2.lan>
+To: Krzysztof Karas <krzysztof.karas@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 References: <fw4bnfdbbolmg5zdzrf7raw5d7vzcxxz3zno3pti6tmnakrnvt@tx3262k6bzfs>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 In-Reply-To: <fw4bnfdbbolmg5zdzrf7raw5d7vzcxxz3zno3pti6tmnakrnvt@tx3262k6bzfs>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,18 +74,13 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Krzysztof,
 
-On Wed, Dec 11, 2024 at 09:56:50AM +0000, Krzysztof Karas wrote:
+
+On 11.12.2024 10:56, Krzysztof Karas wrote:
 > drm_dp_tunnel_mgr_create() may return NULL on failure, which will not
 > be caught via IS_ERR(), so replace it with IS_ERR_OR_NULL() macro.
 > 
 > Signed-off-by: Krzysztof Karas <krzysztof.karas@intel.com>
-
-Fixes: 91888b5b1ad2 ("drm/i915/dp: Add support for DP tunnel BW allocation")
-Cc: Imre Deak <imre.deak@intel.com>
-Cc: <stable@vger.kernel.org> # v6.9+
-
 > ---
 >  drivers/gpu/drm/i915/display/intel_dp_tunnel.c | 2 +-
 >  1 file changed, 1 insertion(+), 1 deletion(-)
@@ -96,18 +95,33 @@ Cc: <stable@vger.kernel.org> # v6.9+
 >  	tunnel_mgr = drm_dp_tunnel_mgr_create(display->drm, dp_connectors);
 > -	if (IS_ERR(tunnel_mgr))
 > +	if (IS_ERR_OR_NULL(tunnel_mgr))
-
-nicely spotted, but the fix is wrong. drm_dp_tunnel_mgr_create()
-returns NULL, not an error, so that you can just check:
-
-	if (!tunnel_mgr)
-		...
-
-Thanks,
-Andi
-
 >  		return PTR_ERR(tunnel_mgr);
+
+this still will not work as expected, since in case of NULL it will
+return 0 (success) instead of "a negative error code" as described in
+the documentation of the intel_dp_tunnel_mgr_init()
+
+OTOH the documentation of drm_dp_tunnel_mgr_create() says: "Returns a
+pointer to the tunnel manager if created successfully or NULL in case of
+an error" so more appropriate fix seems to be:
+
+-	if (IS_ERR(tunnel_mgr))
+- 		return PTR_ERR(tunnel_mgr);
++	if (!tunnel_mgr)
++ 		return -ENOMEM;
+
+but then it will not work with the drm_dp_tunnel_mgr_create() stub which
+actually returns undocumented ERR_PTR(-EOPNOTSUPP)
+
+so unless you are ready to update implementation and documentation of
+the drm_dp_tunnel_mgr_create() to return ERR_PTR instead of NULL in case
+of error, the fix IMO should look more like:
+
++	if (!tunnel_mgr)
++ 		return -ENOMEM;
+
+and keep existing IS_ERR check
+
 >  
 >  	display->dp_tunnel_mgr = tunnel_mgr;
-> -- 
-> 2.34.1
+
