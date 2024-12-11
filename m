@@ -2,54 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 830B59ECCA1
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2024 13:55:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AC6A49ECCA2
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Dec 2024 13:55:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D352910EB2A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id DAB4710EB2C;
 	Wed, 11 Dec 2024 12:55:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hcq6/fOl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AL9V8+hu";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5505F10EB2A
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A60B10EB2C
  for <intel-gfx@lists.freedesktop.org>; Wed, 11 Dec 2024 12:55:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1733921740; x=1765457740;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=eXfR2IKbGdgPmhpzNE1sakE5bUuTNCDyGAV0XmHF4kk=;
- b=hcq6/fOlXvlJtmtqDJ410nZPhVd+xmZDesEiwzlB4aYThTFB71cnV/Az
- 02gP0Deng8SAiBehJIILbXpjfgYCem0U4p87ojsY3WrlGfTtRjDYuYoXR
- TOBbSAs/Wprqj3pnfQhdVEaexv9bS1qKFYEhb9ShyaxapqwZjM6LpDuL3
- sAaimz9QgKDnSgtQP9BE+gJLVlQZXzFpaJPOYffhQbdTKncsdZE5BKriB
- 9xqx97EI6CemIwp/uUDzh35BRjTyOoOliDE5ColyAI8LMn5rXWhCCVOho
- GrWwOiFuDpaLGKdKgHnZyEDGZWULfaAphf8H3WrllGO0C6EoAg0LfYOlY Q==;
-X-CSE-ConnectionGUID: Iuq8qDM0S72TOb9azvp3vA==
-X-CSE-MsgGUID: acakQ9ZuRCmAvqjeNIVkNA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="51714723"
-X-IronPort-AV: E=Sophos;i="6.12,225,1728975600"; d="scan'208";a="51714723"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=E6bDOHJsT6+XidkTl+LjJIMZ0rAQtX/ghRCRIzK0ZAE=;
+ b=AL9V8+hubklJ87Pa1hBQHlBE5Fb2m45EeKvGHjrd+dGO+xA7F2jlW0tI
+ xWVEeb8HWK0BBsBPW4YpryBnVpwGnbk6P9Y2mcGa4FLkOZjFrDG8ClEPp
+ u2xbhrSZKU0vXuiF0vtHlxBxEyxeLjZoX8TPOV23ILNVX5Ou8Uyh9kxG+
+ pHEErasdu9aeQN3F/bo1hCy4G3WU5F/xDI9NhZTuxBrUaj3VNQbk8zhGu
+ NDlQ7xO5ZslqiH1ZMPp45Nm1bJGp4ZEX89KGQoh0OAhjpUzB7O9SoVHPQ
+ 38nAU8MZlzDotPLCYiQNAga+xhaFijTPea2ddFsBGOCMGpsoGDHuNmNxv A==;
+X-CSE-ConnectionGUID: wfBHUjMuRIWRxt96hPrIyQ==
+X-CSE-MsgGUID: reo5ENFySrWHYK+CETsLnQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="51714728"
+X-IronPort-AV: E=Sophos;i="6.12,225,1728975600"; d="scan'208";a="51714728"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2024 04:54:38 -0800
-X-CSE-ConnectionGUID: oBJRry+PRPGIBKs2dD0mmQ==
-X-CSE-MsgGUID: DPgKknzCSeeB+yuA5dznCw==
+ 11 Dec 2024 04:54:43 -0800
+X-CSE-ConnectionGUID: dCO12a3hRPWlgXmWFSRi8Q==
+X-CSE-MsgGUID: DCegkGdNQgS1MrYJiZx0kw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="96239729"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="96239749"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.44])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Dec 2024 04:54:36 -0800
+ 11 Dec 2024 04:54:41 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	Ville Syrjala <ville.syrjala@linux.intel.com>
-Subject: [PATCH 1/2] drm/i915/dp: add g4x_dp_compute_config()
-Date: Wed, 11 Dec 2024 14:54:30 +0200
-Message-Id: <20241211125431.680227-1-jani.nikula@intel.com>
+Subject: [PATCH 2/2] drm/i915/dp: move g4x_dp_set_clock() call to
+ g4x_dp_compute_config()
+Date: Wed, 11 Dec 2024 14:54:31 +0200
+Message-Id: <20241211125431.680227-2-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
+In-Reply-To: <20241211125431.680227-1-jani.nikula@intel.com>
+References: <20241211125431.680227-1-jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
@@ -68,63 +71,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add g4x_dp_compute_config() instead of using intel_dp_compute_config()
-directly, in order to slightly reduce the clutter in the latter wrt
-->has_pch_encoder.
+It does not look like anything in intel_dp_compute_config() after the
+g4x_dp_set_clock() call depends on the changes it makes, namely setting
+dpll and clock_set in crtc_state. Move the call one level higher to
+g4x_dp_compute_config() to reduce the clutter in
+intel_dp_compute_config().
 
 Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/g4x_dp.c   | 14 +++++++++++++-
+ drivers/gpu/drm/i915/display/g4x_dp.c   | 13 ++++++++++---
+ drivers/gpu/drm/i915/display/g4x_dp.h   |  6 ------
  drivers/gpu/drm/i915/display/intel_dp.c |  3 ---
- 2 files changed, 13 insertions(+), 4 deletions(-)
+ 3 files changed, 10 insertions(+), 12 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915/display/g4x_dp.c
-index 4fbec065d53e..9ac894a7411f 100644
+index 9ac894a7411f..e06405a3b82d 100644
 --- a/drivers/gpu/drm/i915/display/g4x_dp.c
 +++ b/drivers/gpu/drm/i915/display/g4x_dp.c
-@@ -1223,6 +1223,18 @@ static bool ilk_digital_port_connected(struct intel_encoder *encoder)
- 	return intel_de_read(display, DEISR) & bit;
+@@ -55,8 +55,8 @@ const struct dpll *vlv_get_dpll(struct drm_i915_private *i915)
+ 	return IS_CHERRYVIEW(i915) ? &chv_dpll[0] : &vlv_dpll[0];
  }
  
-+static int g4x_dp_compute_config(struct intel_encoder *encoder,
-+				 struct intel_crtc_state *crtc_state,
-+				 struct drm_connector_state *conn_state)
-+{
-+	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-+
-+	if (HAS_PCH_SPLIT(i915) && encoder->port != PORT_A)
-+		crtc_state->has_pch_encoder = true;
-+
-+	return intel_dp_compute_config(encoder, crtc_state, conn_state);
-+}
-+
- static void g4x_dp_suspend_complete(struct intel_encoder *encoder)
+-void g4x_dp_set_clock(struct intel_encoder *encoder,
+-		      struct intel_crtc_state *pipe_config)
++static void g4x_dp_set_clock(struct intel_encoder *encoder,
++			     struct intel_crtc_state *pipe_config)
  {
- 	/*
-@@ -1307,7 +1319,7 @@ bool g4x_dp_init(struct drm_i915_private *dev_priv,
- 	intel_encoder_link_check_init(intel_encoder, intel_dp_link_check);
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+ 	const struct dpll *divisor = NULL;
+@@ -1228,11 +1228,18 @@ static int g4x_dp_compute_config(struct intel_encoder *encoder,
+ 				 struct drm_connector_state *conn_state)
+ {
+ 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
++	int ret;
  
- 	intel_encoder->hotplug = intel_dp_hotplug;
--	intel_encoder->compute_config = intel_dp_compute_config;
-+	intel_encoder->compute_config = g4x_dp_compute_config;
- 	intel_encoder->get_hw_state = intel_dp_get_hw_state;
- 	intel_encoder->get_config = intel_dp_get_config;
- 	intel_encoder->sync_state = intel_dp_sync_state;
+ 	if (HAS_PCH_SPLIT(i915) && encoder->port != PORT_A)
+ 		crtc_state->has_pch_encoder = true;
+ 
+-	return intel_dp_compute_config(encoder, crtc_state, conn_state);
++	ret = intel_dp_compute_config(encoder, crtc_state, conn_state);
++	if (ret)
++		return ret;
++
++	g4x_dp_set_clock(encoder, crtc_state);
++
++	return 0;
+ }
+ 
+ static void g4x_dp_suspend_complete(struct intel_encoder *encoder)
+diff --git a/drivers/gpu/drm/i915/display/g4x_dp.h b/drivers/gpu/drm/i915/display/g4x_dp.h
+index c75e64ae79b7..839a251dc069 100644
+--- a/drivers/gpu/drm/i915/display/g4x_dp.h
++++ b/drivers/gpu/drm/i915/display/g4x_dp.h
+@@ -19,8 +19,6 @@ struct intel_encoder;
+ 
+ #ifdef I915
+ const struct dpll *vlv_get_dpll(struct drm_i915_private *i915);
+-void g4x_dp_set_clock(struct intel_encoder *encoder,
+-		      struct intel_crtc_state *pipe_config);
+ bool g4x_dp_port_enabled(struct drm_i915_private *dev_priv,
+ 			 i915_reg_t dp_reg, enum port port,
+ 			 enum pipe *pipe);
+@@ -31,10 +29,6 @@ static inline const struct dpll *vlv_get_dpll(struct drm_i915_private *i915)
+ {
+ 	return NULL;
+ }
+-static inline void g4x_dp_set_clock(struct intel_encoder *encoder,
+-				    struct intel_crtc_state *pipe_config)
+-{
+-}
+ static inline bool g4x_dp_port_enabled(struct drm_i915_private *dev_priv,
+ 				       i915_reg_t dp_reg, int port,
+ 				       enum pipe *pipe)
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index fbe6b77d642e..adc51567ec17 100644
+index adc51567ec17..f8100c4f4d20 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -3090,9 +3090,6 @@ intel_dp_compute_config(struct intel_encoder *encoder,
- 	struct intel_connector *connector = intel_dp->attached_connector;
- 	int ret = 0, link_bpp_x16;
+@@ -3172,9 +3172,6 @@ intel_dp_compute_config(struct intel_encoder *encoder,
+ 	if (pipe_config->splitter.enable)
+ 		pipe_config->dp_m_n.data_m *= pipe_config->splitter.link_count;
  
--	if (HAS_PCH_SPLIT(dev_priv) && !HAS_DDI(dev_priv) && encoder->port != PORT_A)
--		pipe_config->has_pch_encoder = true;
+-	if (!HAS_DDI(dev_priv))
+-		g4x_dp_set_clock(encoder, pipe_config);
 -
- 	fixed_mode = intel_panel_fixed_mode(connector, adjusted_mode);
- 	if (intel_dp_is_edp(intel_dp) && fixed_mode) {
- 		ret = intel_panel_compute_config(connector, adjusted_mode);
+ 	intel_vrr_compute_config(pipe_config, conn_state);
+ 	intel_dp_compute_as_sdp(intel_dp, pipe_config);
+ 	intel_psr_compute_config(intel_dp, pipe_config, conn_state);
 -- 
 2.39.5
 
