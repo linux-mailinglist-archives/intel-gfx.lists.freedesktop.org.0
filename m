@@ -2,62 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 817D89EE95E
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2024 15:51:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A61019EEA3C
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2024 16:11:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8876310E04F;
-	Thu, 12 Dec 2024 14:51:21 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eVklkMo/";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A45D10E1B3;
+	Thu, 12 Dec 2024 15:11:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 923E510EE19
- for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2024 14:51:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734015080; x=1765551080;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=6kQ2LpipVV02+QTBrztKyJwXK1+UG5HWhkFMI/Yrfyw=;
- b=eVklkMo/1lTZq+DybF0Cq7snEAWRfT7aAH3j1fyiRCSoR06DheBj2u9t
- ZlYjzAp5ozLORkupXruOq/+GX/oVs8F6o5Lg5T1kWlF2DqPH9oqijXTF2
- ozthxm1UMq1PbqS8zCu2pMZxHBM2W5ap5Js92/4ScOCwtYbRXISfIe+33
- /uUdo0rELc9lTnCfxXr1Z2L8/3EJdZfvvuckt6NQZraP/cpFnjJ7hFy9A
- j28fn1621iPDwle9nTprLvi/vzZRhHl3AX+ZvfGi/LJhEr2jUs0vUgeBM
- DrxxJGgtTahyXA82xrZpm4+Y62gL2VUszlILsz0pIam7WgipcFSfLcKVB Q==;
-X-CSE-ConnectionGUID: k7kX6qyeQGSa7ziiBV12Ag==
-X-CSE-MsgGUID: QPxDgiOaRKyAYcWxJdCwJw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11284"; a="34673995"
-X-IronPort-AV: E=Sophos;i="6.12,228,1728975600"; d="scan'208";a="34673995"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2024 06:51:19 -0800
-X-CSE-ConnectionGUID: Tz3RqkN1RNebeRiAvJn9Vg==
-X-CSE-MsgGUID: UvQFkF8hS2qYX9tPaifu9w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,228,1728975600"; d="scan'208";a="96477717"
-Received: from lfiedoro-mobl.ger.corp.intel.com (HELO intel.com)
- ([10.245.246.79])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2024 06:51:16 -0800
-Date: Thu, 12 Dec 2024 15:51:12 +0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
- intel-gfx@lists.freedesktop.org, andi.shyti@linux.intel.com,
- vidya.srinivas@intel.com
-Subject: Re: [RFC PATCH] i915/gt: Reapply workarounds in case the previous
- attempt failed.
-Message-ID: <Z1r4YJ0TkjIsgoz8@ashyti-mobl2.lan>
-References: <aqoql4ri3vpe4larpkz4p6hxy76agq6pmn6gunt5xv56hxdbye@72ilwk7rpiu5>
- <Z1MacMC8XyyyHcqj@intel.com>
+Received: from mail-il1-f169.google.com (mail-il1-f169.google.com
+ [209.85.166.169])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B766B10E1B3;
+ Thu, 12 Dec 2024 15:11:06 +0000 (UTC)
+Received: by mail-il1-f169.google.com with SMTP id
+ e9e14a558f8ab-3a7e108b491so5825715ab.3; 
+ Thu, 12 Dec 2024 07:11:06 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1734016266; x=1734621066;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=ssJbXj9S86ZMFq4AAoEMts4enR0+grFq1TTr+kMvQ1Y=;
+ b=pb86oNWofJwzdDU12ECRIQRhhsAveP1lguRiGXfYd3MjWE7In4qHUWRXj1nmSAp7zH
+ zM16jSmlPAv5Iu8ZPHJagUmDrIEe/hZGKCIFb+1NDBib/8LcWWNmfF7s5L7el6to/3Ip
+ 3Nz6DA1LFSx/O5sCf9a/RiT8o2diJ0Ng2J3pKJ1GORiuPOEpLyLLL022R/ATgTJWsLbW
+ bIvq3tsfcYpDDzMnIRIaJGqt7dmbSEd+QeiMYbxyn0XEOIE5Iuv0zLZAC87t9s5Zo7e6
+ WYcJkSw6zGP+xy2PeXfwRh0gfK1dQY+rFxP4TMvEi9HaBKeOvYVVUZ5w/0z1j8LO3JXp
+ Dstw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUPISye97dNPsTnygNBt55vH+BDjPvmRUEf9pFvhshQf0imBTF+5mipMBCUp+Gdixn3W2S1kWgHBVc=@lists.freedesktop.org,
+ AJvYcCURm3bY1gNzrGFZZrvZHmDw1nXS5kk8MEhfq7yXtWpaqXUJ+nnZUwlwYauapAif5HUHpQtbRCUxdUnm@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwMkN52B48p2Y7DMIZ5JJoCMQHzOJQNS1xJd9V5ylPNziMkM14e
+ mDPZ3UkRrnP3XJTaQz1yIighL0/69MCQwwRDlaljzKnkUb4btWl0KGx1aSqhbWjRu+2I3xgVaUE
+ wlEQgONgnVJrCG+6IFgnjOtiA2Co=
+X-Gm-Gg: ASbGncs2Tdp4B5VZjOUoAdczMDjzw7i6fN41fXwcHNn01gVDbW7hdBl80gZzt6/KaM9
+ 0OcXCoLsJ2nMW8rHVT8ADedkVTREFsWl36WsJWXJx2PN3onpPGhEPpGw2dtGk06ePq+UHn/4K
+X-Google-Smtp-Source: AGHT+IFmzQy4TG7fpPNkrw85OnyDlnJSmPxtT1qVj450PXJsE2+YhTAr0UDioDTcdqE0Yc236kDUiKhSDPkPrcWl+Us=
+X-Received: by 2002:a05:6e02:1e0a:b0:3a7:d792:d6e9 with SMTP id
+ e9e14a558f8ab-3ae58d8295dmr4221125ab.22.1734016265672; Thu, 12 Dec 2024
+ 07:11:05 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-15
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Z1MacMC8XyyyHcqj@intel.com>
+References: <20241208151727.71695-1-emaste@FreeBSD.org>
+ <Z1jMZNgMssHyAzg2@intel.com>
+ <2024121153-shawl-spearman-8e5f@gregkh>
+In-Reply-To: <2024121153-shawl-spearman-8e5f@gregkh>
+From: Ed Maste <emaste@freebsd.org>
+Date: Thu, 12 Dec 2024 10:10:54 -0500
+Message-ID: <CAPyFy2Aj4kKB7=dG+V32GCvGF1d+ekcyx5zamxjbr6rwLs24jQ@mail.gmail.com>
+Subject: Re: [PATCH] drm/i915: Update license on selftest lists to MIT
+To: Greg KH <gregkh@linuxfoundation.org>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>, 
+ chris.p.wilson@intel.com, intel-gfx@lists.freedesktop.org, 
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ dri-devel@lists.freedesktop.org, 
+ Arunpravin <Arunpravin.PaneerSelvam@amd.com>,
+ Daniel Vetter <daniel.vetter@ffwll.ch>, 
+ Jason Ekstrand <jason@jlekstrand.net>, Kees Cook <keescook@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,89 +78,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Rodrigo,
+On Wed, 11 Dec 2024 at 02:25, Greg KH <gregkh@linuxfoundation.org> wrote:
+>
+> On Tue, Dec 10, 2024 at 06:19:00PM -0500, Rodrigo Vivi wrote:
+> > On Sun, Dec 08, 2024 at 03:17:27PM +0000, Ed Maste wrote:
+> > > These two files (i915_live_selftests.h, i915_mock_selftests.h) were
+> > > introduced in commit 953c7f82eb89 ("drm/i915: Provide a hook for
+> > > selftests") and are effectively just a list of selftests.
+> > >
+> > > The selftest implementation itself is largely in i915_selftest.c, and
+> > > uses a MIT license.  Graphics drivers are shared with other operating
+> > > systems and have long used a permissive license (or dual license) to
+> > > facilitate this.
+> > >
+> > > The two selftest list files carried no license when introduced in
+> > > 953c7f82eb89, presumably as they were considered trivial.  Notably th=
+e
+> > > general selftest header i915_selftest.h (which does have non-trivial
+> > > content) also has an MIT license.
+> > >
+> > > The GPL-2.0 SPDX tag in these two files came from b24413180f56, where
+> > > Greg Kroah-Hartman added the tag to all files that had no license.  T=
+his
+> > > makes sense in general, but it is clear from the context of the origi=
+nal
+> > > selftest commit here that these files are a trivial part of an otherw=
+ise
+> > > MIT-licensed patch to a MIT-licensed component, and should have an MI=
+T
+> > > license.
+>
+> No, that is not clear, by default, anything without a license gets the
+> GPL2 license as that is the license of the entire body of code.
 
-On Fri, Dec 06, 2024 at 10:38:24AM -0500, Rodrigo Vivi wrote:
-> On Thu, Dec 05, 2024 at 03:47:35PM +0000, Sebastian Brzezinka wrote:
-> > `wa_verify`sporadically detects lost workaround on application; this
-> > is unusual behavior since wa are applied at `intel_gt_init_hw` and
-> > verified right away by `intel_gt_verify_workarounds`, and  `wa_verify`
-> > doesn't fail on initialization as one might suspect would happen.
-> > 
-> > One approach that may be somewhat beneficial is to reapply workarounds
-> > in the event of failure, or even get rid of verify on application,
-> > since it's redundant to `intel_gt_verify_workarounds`.
-> > 
-> > This patch aims to resolve: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12668
-> 
-> It should be:
-> 
-> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12668
+I mean the intent is clear from looking at the original patch in 953c7f82eb=
+89:
+- drivers/gpu/drm/i915 is generally MIT licensed
+- 953c7f82eb89 added these two trivial files with no license text
+- that patch also added nontrivial new files with an MIT license
 
-aapart from the formatting issues this was suggested by me. We
-have observed some sporadic vailures in applying the specific
-workaround added by Ville (now cc'ed to the thread) in commit
-0ddae025ab6c ("drm/i915: Disable compression tricks on JSL").
+The same sort of issue affected drm/radeon, fixed in b7019ac550eb:
 
-Because it's sporadic, we could give it one more chance and try
-to re-apply it.
+    drm/radeon: fix incorrrect SPDX-License-Identifiers
 
-> > 
-> > Signed-off-by: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/gt/intel_workarounds.c | 11 +++++++++++
-> >  1 file changed, 11 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> > index 570c91878189..4ee623448223 100644
-> > --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> > +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> > @@ -1761,6 +1761,17 @@ static void wa_list_apply(const struct i915_wa_list *wal)
-> >  				intel_gt_mcr_read_any_fw(gt, wa->mcr_reg) :
-> >  				intel_uncore_read_fw(uncore, wa->reg);
-> >  
-> > +			if ((val ^ wa->set) & wa->read) { 
-> > +				if (wa->is_mcr)
-> > +					intel_gt_mcr_multicast_write_fw(gt, wa->mcr_reg, val);
-> > +				else
-> > +					intel_uncore_write_fw(uncore, wa->reg, val);
-> > +			}
-> 
-> instead of duplicating the code you should extract that to an aux function
-> to write it...
+    radeon is MIT.  This were incorrectly changed in
+    commit b24413180f56 ("License cleanup: add SPDX GPL-2.0 license
+identifier to files with no license")
+    and
+    commit d198b34f3855 (".gitignore: add SPDX License Identifier")
+    and:
+    commit ec8f24b7faaf ("treewide: Add SPDX license identifier -
+Makefile/Kconfig")
 
-a for loop can decrease the amount of duplicated code.
+    Fixes: d198b34f3855 (".gitignore: add SPDX License Identifier")
+    Fixes: ec8f24b7faaf ("treewide: Add SPDX license identifier -
+Makefile/Kconfig")
+    Fixes: b24413180f56 ("License cleanup: add SPDX GPL-2.0 license
+identifier to files with no license")
+    Bug: https://gitlab.freedesktop.org/drm/amd/-/issues/2053
+    Reviewed-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+    Signed-off-by: Alex Deucher <alexander.deucher@amd.com>
 
-> > +
-> > +			val = wa->is_mcr ?
-> > +				intel_gt_mcr_read_any_fw(gt, wa->mcr_reg) :
-> > +				intel_uncore_read_fw(uncore, wa->reg);
-> 
-> and another one to read it...
+and drm/noveau, fixed in b7019ac550eb:
 
-this, indeed it's just reading, but we are trying to re-write. If
-we wrote the unwanted value, we will keep reading the unwanted
-value.
+    drm/nouveau: fix bogus GPL-2 license header
 
-> > +
-> >  			wa_verify(gt, wa, val, wal->name, "application");
-> 
-> However my biggest concern with this patch is the brute force solution
-> and only on CONFIG_DRM_I915_DEBUG_GEM case...
+    The bulk SPDX addition made all these files into GPL-2.0 licensed files=
+.
+    However the remainder of the project is MIT-licensed, these files
+    (primarily header files) were simply missing the boiler plate and got
+    caught up in the global update.
 
-this is a good point, indeed, I don't understand why the
-confirmation should be within the DEBUG section.
+    Fixes: b24413180f5 (License cleanup: add SPDX GPL-2.0 license
+identifier to files with no license)
+    Signed-off-by: Ilia Mirkin <imirkin@alum.mit.edu>
+    Acked-by: Emil Velikov <emil.l.velikov@gmail.com>
+    Acked-by: Karol Herbst <kherbst@redhat.com>
+    Signed-off-by: Ben Skeggs <bskeggs@redhat.com>
 
-Andi
+> > Chris, do you confirm your intention of MIT and not GPL for these files=
+?
+> >
+> > Cc: Greg KH <gregkh@linuxfoundation.org>
+> >
+> > Greg, is this acceptable?
+>
+> You need to get a signed-off-by from everyone who has touched these
+> files, which is not what you have done here :(
 
-> and as duplication because I see that the second write attempt is
-> already happening above if (val != old || !wa->clr)
-> 
-> So, something is not quite right in here and this deserves another alternative..
-> 
-> 
-> >  		}
-> >  	}
-> > -- 
-> > 2.34.1
-> > 
+Most of the contributions to these files were done by 13 Intel
+employees. Presumably a signed-off-by from someone at Intel is
+sufficient for all of them? I've CC'd other contributors to these two
+files for a signed-off-by.
