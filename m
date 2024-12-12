@@ -1,30 +1,66 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 304EC9EE463
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2024 11:43:32 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DE6F9EE47B
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2024 11:48:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C184210E417;
-	Thu, 12 Dec 2024 10:43:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3070B10E224;
+	Thu, 12 Dec 2024 10:48:36 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d1EWWZ8B";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB0A610E417;
- Thu, 12 Dec 2024 10:43:28 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3DF2110E224
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2024 10:48:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1734000515; x=1765536515;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=7FYUihr6O0fRfb4tDfbPUE9OUsgtdByMac5kwwFeBjs=;
+ b=d1EWWZ8B7SMyzhM2i2glf+6U6/5Fh4+FAKh0lYHrcHGC2sN/ITDCQCp3
+ y199N96lmEXTTGgyyuUmHdUYhIC3KGbyWKHC85K+fDGkqMyers8ngSmxR
+ TJEaIVl5SeN+IDe+L+c/Wp5ZHX2IlcMdnY24GJM3QLzO+x+SiktFm1vWa
+ bFEg3MCEexoF7pIg0PL+S4tbuqqytRNPWceSdhXGgwdYVzW6spFwkfiYF
+ a/1MkVHkqfnwSBhyeIRp0sp4sKLNtlXmWLV+u00tiiT+eHLn7vF5jn0qC
+ Ahcr7E6WpuWIlvXt+3X6lhAJkbwpkKWnag/pBb8LhF2DhQYewLPklPtzt A==;
+X-CSE-ConnectionGUID: slHmrNnQQx6pZIWYp/wYZg==
+X-CSE-MsgGUID: HnfvWneZQwWWdL23fkKUog==
+X-IronPort-AV: E=McAfee;i="6700,10204,11283"; a="34653681"
+X-IronPort-AV: E=Sophos;i="6.12,228,1728975600"; d="scan'208";a="34653681"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2024 02:48:35 -0800
+X-CSE-ConnectionGUID: 5JptqckrTNyW86o5J5IJKw==
+X-CSE-MsgGUID: gfiDdJ4ASdyRssHI2YTDjg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="133576774"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.101])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2024 02:48:31 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Raag Jadav <raag.jadav@intel.com>, Andi Shyti
+ <andi.shyti@linux.intel.com>, Dave Airlie <airlied@redhat.com>, Simona
+ Vetter <simona.vetter@ffwll.ch>, Andy Shevchenko
+ <andriy.shevchenko@linux.intel.com>
+Cc: joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
+ matthew.d.roper@intel.com, intel-gfx@lists.freedesktop.org,
+ anshuman.gupta@intel.com, badal.nilawar@intel.com, riana.tauro@intel.com
+Subject: b4 Merge patch series (was: Re: [PATCH v4 0/4] Implement
+ Wa_14022698537)
+In-Reply-To: <Z1q0s7ncARjeN8ZM@black.fi.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20241211115952.1659287-1-raag.jadav@intel.com>
+ <Z1oi12-OwzLRGLoX@ashyti-mobl2.lan> <Z1pW-HyMsRdsWp2Y@black.fi.intel.com>
+ <Z1qgcHImmUFB9SVi@ashyti-mobl2.lan> <Z1q0s7ncARjeN8ZM@black.fi.intel.com>
+Date: Thu, 12 Dec 2024 12:48:27 +0200
+Message-ID: <87o71hw51g.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Add_W?=
- =?utf-8?q?A=5F14018221282_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nemesa Garg" <nemesa.garg@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 12 Dec 2024 10:43:28 -0000
-Message-ID: <173400020867.1547303.5841025214069417326@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241212094043.911853-1-nemesa.garg@intel.com>
-In-Reply-To: <20241212094043.911853-1-nemesa.garg@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,109 +73,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, 12 Dec 2024, Raag Jadav <raag.jadav@intel.com> wrote:
+> On Thu, Dec 12, 2024 at 09:36:00AM +0100, Andi Shyti wrote:
+>> Hi Raag,
+>> 
+>> On Thu, Dec 12, 2024 at 05:22:32AM +0200, Raag Jadav wrote:
+>> > On Thu, Dec 12, 2024 at 12:40:07AM +0100, Andi Shyti wrote:
+>> > > > Raag Jadav (4):
+>> > > >   drm/intel/pciids: Refactor DG2 PCI IDs into segment ranges
+>> > > >   drm/i915/dg2: Introduce DG2_D subplatform
+>> > > >   drm/i915: Introduce intel_cpu_info.c for CPU IDs
+>> > > >   drm/i915/dg2: Implement Wa_14022698537
+>> > > 
+>> > > merged to drm-intel-next.
+>> > 
+>> > Thanks, appreciate it.
+>> > 
+>> > Andy usually picks the cover letter as well, we don't do that here?
+>> 
+>> what do you mean with taking the cover letter?
+>> 
+>> For pushing the patch I use the dim tool and I feed it with the
+>> cover letter's mbox file.
+>
+> Ah okay. I think he uses b4 with cover letter as a merge patch. Kind of
+> like treating it as a PR. It's useful when we have a nice summary which
+> adds required context (which I understand is not the case here anyway).
+>
+> Examples,
+>
+> $ git show 563532b49aa0aa00
+> $ git show e4e17186723570e8
 
-Series: drm/i915/display: Add WA_14018221282 (rev3)
-URL   : https://patchwork.freedesktop.org/series/141087/
-State : success
+I assume this was done using 'b4 shazam --merge'.
 
-== Summary ==
+With 10+k commits merged each release, we'd get an insane amount of
+placeholder "Merge patch series" merge commits, without an actual merge
+of branches, if we chose this approach.
 
-CI Bug Log - changes from CI_DRM_15829 -> Patchwork_141087v3
-====================================================
+IMO each patch and thus commit should stand on its own merits, and
+contain all the information required, without depending on the cover
+letter having been merged for informational purposes.
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141087v3/index.html
-
-Participating hosts (47 -> 45)
-------------------------------
-
-  Missing    (2): fi-glk-j4005 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_141087v3 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live:
-    - fi-hsw-4770:        [PASS][1] -> [DMESG-WARN][2] ([i915#12806]) +1 other test dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15829/fi-hsw-4770/igt@i915_selftest@live.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141087v3/fi-hsw-4770/igt@i915_selftest@live.html
-    - bat-arls-5:         NOTRUN -> [ABORT][3] ([i915#12061])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141087v3/bat-arls-5/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@gt_timelines:
-    - bat-twl-2:          [PASS][4] -> [ABORT][5] ([i915#13051])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15829/bat-twl-2/igt@i915_selftest@live@gt_timelines.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141087v3/bat-twl-2/igt@i915_selftest@live@gt_timelines.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arlh-3:         [PASS][6] -> [ABORT][7] ([i915#12061]) +1 other test abort
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15829/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141087v3/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-    - bat-arls-5:         [PASS][8] -> [ABORT][9] ([i915#12061])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15829/bat-arls-5/igt@i915_selftest@live@workarounds.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141087v3/bat-arls-5/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_flip@basic-flip-vs-dpms@a-dp1:
-    - bat-apl-1:          [PASS][10] -> [DMESG-WARN][11] ([i915#12921]) +1 other test dmesg-warn
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15829/bat-apl-1/igt@kms_flip@basic-flip-vs-dpms@a-dp1.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141087v3/bat-apl-1/igt@kms_flip@basic-flip-vs-dpms@a-dp1.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - bat-dg1-7:          [FAIL][12] ([i915#12903]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15829/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141087v3/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live:
-    - bat-mtlp-8:         [ABORT][14] ([i915#12061]) -> [PASS][15] +1 other test pass
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15829/bat-mtlp-8/igt@i915_selftest@live.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141087v3/bat-mtlp-8/igt@i915_selftest@live.html
-
-  
-#### Warnings ####
-
-  * igt@i915_selftest@live:
-    - bat-twl-2:          [ABORT][16] ([i915#12919]) -> [ABORT][17] ([i915#13051])
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15829/bat-twl-2/igt@i915_selftest@live.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141087v3/bat-twl-2/igt@i915_selftest@live.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12806]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12806
-  [i915#12903]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12903
-  [i915#12919]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12919
-  [i915#12921]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12921
-  [i915#13051]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13051
+Also, there doesn't appear to be a single merge like that under drm.
 
 
-Build changes
--------------
+BR,
+Jani.
 
-  * Linux: CI_DRM_15829 -> Patchwork_141087v3
 
-  CI-20190529: 20190529
-  CI_DRM_15829: e2a7d57b916f6425afb6bbcc81c1b8bf8a0561a9 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8150: 7812065f4aebab1629b570bd78ef71e09480b359 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_141087v3: e2a7d57b916f6425afb6bbcc81c1b8bf8a0561a9 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141087v3/index.html
+-- 
+Jani Nikula, Intel
