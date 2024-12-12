@@ -2,41 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D0539EE419
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2024 11:28:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EB2D79EE422
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2024 11:31:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF8ED10ED54;
-	Thu, 12 Dec 2024 10:28:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF1CE10ED55;
+	Thu, 12 Dec 2024 10:31:00 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="boRaYlh/";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C90DE10ED50;
- Thu, 12 Dec 2024 10:28:55 +0000 (UTC)
-Received: from 91-155-254-135.elisa-laajakaista.fi ([91.155.254.135]
- helo=[192.168.100.137])
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.97) (envelope-from <luca@coelho.fi>)
- id 1tLgRA-00000002rai-1djL; Thu, 12 Dec 2024 12:28:53 +0200
-Message-ID: <75fa3ef51ac0e838dd6beccb1ff210c453522947.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org, 
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0CC9E10ED50;
+ Thu, 12 Dec 2024 10:31:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1733999460; x=1765535460;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=DtPigWg9sMv80pYKgnbjs/YI2ruZ++WTmGUPQV1p1do=;
+ b=boRaYlh/Ub993uSfjfh9YsuFjrNDme0Yi/hIvgFtkuinfL4Ij1KK1qub
+ hzGI3nl/J3LxB/s/0dIxwa2OODE3pETY07bCq3H2rORJAoSr4a0l/PieB
+ JhC0c0gInYlk4XNma6x+4txrH9yUfsEBCGRxSmpquwkKXdcm185R94IyL
+ yE669SJPZMZYhQVivSiWJAsq4lDN8sVpKtLQOEBDUOk1S9Z38CcvmAoYI
+ IkRK7UdNmqEmWxZpqrv9u4eJeIuIet5cQy+N7JZYI88c5vNFqd4aJk90L
+ BEF3FZXjQ9nFyyM1Rl1oBB6K7Vu5HFWGo6WbIYQxKlchaaSXhkBd9Aj+K Q==;
+X-CSE-ConnectionGUID: BHHA5MuGSHCr1F+q4LZvuQ==
+X-CSE-MsgGUID: ukFStvXeSVyeSVpq5emJiA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11283"; a="34333881"
+X-IronPort-AV: E=Sophos;i="6.12,228,1728975600"; d="scan'208";a="34333881"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2024 02:31:00 -0800
+X-CSE-ConnectionGUID: HiEWYaFSTlObmNR79NoROA==
+X-CSE-MsgGUID: z+iXmhvoTMWA1jT/yyvUyQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,228,1728975600"; d="scan'208";a="96083118"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.101])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2024 02:30:59 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Luca Coelho <luca@coelho.fi>, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org
-Date: Thu, 12 Dec 2024 12:28:51 +0200
-In-Reply-To: <87813733bb561a64cfd134b90826dfa7afbb33d7.1733827537.git.jani.nikula@intel.com>
+Subject: Re: [PATCH v2 3/5] drm/i915/dp: convert to struct intel_display
+In-Reply-To: <5ddef9ce5dd38db49379697fe532802ea34b6a76.camel@coelho.fi>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <cover.1733827537.git.jani.nikula@intel.com>
- <87813733bb561a64cfd134b90826dfa7afbb33d7.1733827537.git.jani.nikula@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.1-1 
+ <682fb4caec2ef524efc6a9f377e16513dd1241c5.1733827537.git.jani.nikula@intel.com>
+ <5ddef9ce5dd38db49379697fe532802ea34b6a76.camel@coelho.fi>
+Date: Thu, 12 Dec 2024 12:30:54 +0200
+Message-ID: <87r06dw5up.fsf@intel.com>
 MIME-Version: 1.0
-X-Spam-Checker-Version: SpamAssassin 4.0.1-pre1 (2023-11-21) on
- farmhouse.coelho.fi
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
- TVD_RCVD_IP,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
- version=4.0.1-pre1
-Subject: Re: [PATCH v2 5/5] drm/i915/dp: finish link training conversion to
- struct intel_display
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,81 +69,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 2024-12-10 at 12:46 +0200, Jani Nikula wrote:
-> Convert the final stragglers to struct intel_display now that we have
-> platform identification via it too.
->=20
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp_link_training.c | 9 +++------
->  1 file changed, 3 insertions(+), 6 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/driv=
-ers/gpu/drm/i915/display/intel_dp_link_training.c
-> index b84fee94c0a0..02ad0fbb1859 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> @@ -221,7 +221,6 @@ static int intel_dp_init_lttpr(struct intel_dp *intel=
-_dp, const u8 dpcd[DP_RECEI
->  int intel_dp_read_dprx_caps(struct intel_dp *intel_dp, u8 dpcd[DP_RECEIV=
-ER_CAP_SIZE])
->  {
->  	struct intel_display *display =3D to_intel_display(intel_dp);
-> -	struct drm_i915_private *i915 =3D to_i915(display->drm);
-> =20
->  	if (intel_dp_is_edp(intel_dp))
->  		return 0;
-> @@ -230,7 +229,7 @@ int intel_dp_read_dprx_caps(struct intel_dp *intel_dp=
-, u8 dpcd[DP_RECEIVER_CAP_S
->  	 * Detecting LTTPRs must be avoided on platforms with an AUX timeout
->  	 * period < 3.2ms. (see DP Standard v2.0, 2.11.2, 3.6.6.1).
->  	 */
-> -	if (DISPLAY_VER(display) >=3D 10 && !IS_GEMINILAKE(i915))
-> +	if (DISPLAY_VER(display) >=3D 10 && !display->platform.geminilake)
+On Thu, 12 Dec 2024, Luca Coelho <luca@coelho.fi> wrote:
+> On Tue, 2024-12-10 at 12:46 +0200, Jani Nikula wrote:
+>> Going forward, struct intel_display is the main device data structure
+>> for display. Switch to it internally in DP code.
+>> 
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>
+> These huge mechanical changes are impossible to review fully with my
+> attention span, but the patch looks sane.  Again, if you used any
+> semantic patch to do this, it would be easier to review it instead. ;)
 
-This is nice! I hadn't seen it yet.
+I started off with a *huge* semantic patch which isn't easy to review
+either... especially so because it falls short on a bunch of cases and
+needs manual tweaking anyway.
 
-Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
+I'm not sure what the return on investment is with tweaking the cocci,
+because making changes to it ends up being a lot of trial and error. :(
 
---
-Cheers,
-Luca.
+> Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 
+Thanks,
+Jani.
 
+>
+> --
+> Cheers,
+> Luca.
 
->  		if (drm_dp_dpcd_probe(&intel_dp->aux,
->  				      DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV))
->  			return -EIO;
-> @@ -262,7 +261,6 @@ int intel_dp_read_dprx_caps(struct intel_dp *intel_dp=
-, u8 dpcd[DP_RECEIVER_CAP_S
->  int intel_dp_init_lttpr_and_dprx_caps(struct intel_dp *intel_dp)
->  {
->  	struct intel_display *display =3D to_intel_display(intel_dp);
-> -	struct drm_i915_private *i915 =3D to_i915(display->drm);
->  	int lttpr_count =3D 0;
-> =20
->  	/*
-> @@ -270,7 +268,7 @@ int intel_dp_init_lttpr_and_dprx_caps(struct intel_dp=
- *intel_dp)
->  	 * period < 3.2ms. (see DP Standard v2.0, 2.11.2, 3.6.6.1).
->  	 */
->  	if (!intel_dp_is_edp(intel_dp) &&
-> -	    (DISPLAY_VER(display) >=3D 10 && !IS_GEMINILAKE(i915))) {
-> +	    (DISPLAY_VER(display) >=3D 10 && !display->platform.geminilake)) {
->  		u8 dpcd[DP_RECEIVER_CAP_SIZE];
->  		int err =3D intel_dp_read_dprx_caps(intel_dp, dpcd);
-> =20
-> @@ -391,10 +389,9 @@ static bool has_per_lane_signal_levels(struct intel_=
-dp *intel_dp,
->  				       enum drm_dp_phy dp_phy)
->  {
->  	struct intel_display *display =3D to_intel_display(intel_dp);
-> -	struct drm_i915_private *i915 =3D to_i915(display->drm);
-> =20
->  	return !intel_dp_phy_is_downstream_of_source(intel_dp, dp_phy) ||
-> -		DISPLAY_VER(display) >=3D 10 || IS_BROXTON(i915);
-> +		DISPLAY_VER(display) >=3D 10 || display->platform.broxton;
->  }
-> =20
->  /* 128b/132b */
-
+-- 
+Jani Nikula, Intel
