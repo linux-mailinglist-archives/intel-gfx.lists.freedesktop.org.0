@@ -2,56 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64A3F9EE8E0
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2024 15:32:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 817D89EE95E
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2024 15:51:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C931D10EE0F;
-	Thu, 12 Dec 2024 14:32:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8876310E04F;
+	Thu, 12 Dec 2024 14:51:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mRTz9oC8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eVklkMo/";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 628FF10EE05;
- Thu, 12 Dec 2024 14:32:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 923E510EE19
+ for <intel-gfx@lists.freedesktop.org>; Thu, 12 Dec 2024 14:51:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734013922; x=1765549922;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=lO4C07fxnfjzwoTLHsSzMNaJar0x+q9fDkqQbPbd5ZA=;
- b=mRTz9oC8P0efknU8T7/WSbPqtbNeupFFG/cn8/JP5RtHBxuFzG3auPio
- RsSNrYdSSADAx2aTeskqrh7+4DYbDi0G8s1QgPRB4MIL4kpLc+ELftIum
- SrRla2ljBZYOZ4BWdbojEbz2/gcHlGrv+jRU/SyKw5OWth46X7zZe5IfX
- XT4UTiv1C8cRLQR2QsGT+Lo8pLRe8U8oxnQl4W0j4D7LrtAHSr0Z5fEg3
- Hkm4ggLy+YdUgJ5wucoqqp/nhNndjMX2pnGATxk+eIzrQ9WVqpjkeRVt5
- ShIVPti/nkKoDa/JgYnOG4Siq6R/6J5q77ZQkgNYNY4E9kjZ4lIqLY6YY A==;
-X-CSE-ConnectionGUID: a3Bl+pLtTgWHofEpOkHmEw==
-X-CSE-MsgGUID: 4xopSBwFQ8SWGTqCl8oZpQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="38362122"
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="38362122"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2024 06:32:02 -0800
-X-CSE-ConnectionGUID: 8C+epSoBQNiB8mgdfGUA0w==
-X-CSE-MsgGUID: bSsHRKa7QIKTePaH00wMsg==
+ t=1734015080; x=1765551080;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=6kQ2LpipVV02+QTBrztKyJwXK1+UG5HWhkFMI/Yrfyw=;
+ b=eVklkMo/1lTZq+DybF0Cq7snEAWRfT7aAH3j1fyiRCSoR06DheBj2u9t
+ ZlYjzAp5ozLORkupXruOq/+GX/oVs8F6o5Lg5T1kWlF2DqPH9oqijXTF2
+ ozthxm1UMq1PbqS8zCu2pMZxHBM2W5ap5Js92/4ScOCwtYbRXISfIe+33
+ /uUdo0rELc9lTnCfxXr1Z2L8/3EJdZfvvuckt6NQZraP/cpFnjJ7hFy9A
+ j28fn1621iPDwle9nTprLvi/vzZRhHl3AX+ZvfGi/LJhEr2jUs0vUgeBM
+ DrxxJGgtTahyXA82xrZpm4+Y62gL2VUszlILsz0pIam7WgipcFSfLcKVB Q==;
+X-CSE-ConnectionGUID: k7kX6qyeQGSa7ziiBV12Ag==
+X-CSE-MsgGUID: QPxDgiOaRKyAYcWxJdCwJw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11284"; a="34673995"
+X-IronPort-AV: E=Sophos;i="6.12,228,1728975600"; d="scan'208";a="34673995"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2024 06:51:19 -0800
+X-CSE-ConnectionGUID: Tz3RqkN1RNebeRiAvJn9Vg==
+X-CSE-MsgGUID: UvQFkF8hS2qYX9tPaifu9w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,228,1728975600"; d="scan'208";a="101262099"
-Received: from nemesa.iind.intel.com ([10.190.239.22])
- by orviesa004.jf.intel.com with ESMTP; 12 Dec 2024 06:32:01 -0800
-From: Nemesa Garg <nemesa.garg@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Nemesa Garg <nemesa.garg@intel.com>
-Subject: [PATCH 2/2] drm/i915/display: Initialize pipe_src in compute stage
-Date: Thu, 12 Dec 2024 20:03:29 +0530
-Message-Id: <20241212143329.938202-3-nemesa.garg@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20241212143329.938202-1-nemesa.garg@intel.com>
-References: <20241212143329.938202-1-nemesa.garg@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,228,1728975600"; d="scan'208";a="96477717"
+Received: from lfiedoro-mobl.ger.corp.intel.com (HELO intel.com)
+ ([10.245.246.79])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2024 06:51:16 -0800
+Date: Thu, 12 Dec 2024 15:51:12 +0100
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
+ intel-gfx@lists.freedesktop.org, andi.shyti@linux.intel.com,
+ vidya.srinivas@intel.com
+Subject: Re: [RFC PATCH] i915/gt: Reapply workarounds in case the previous
+ attempt failed.
+Message-ID: <Z1r4YJ0TkjIsgoz8@ashyti-mobl2.lan>
+References: <aqoql4ri3vpe4larpkz4p6hxy76agq6pmn6gunt5xv56hxdbye@72ilwk7rpiu5>
+ <Z1MacMC8XyyyHcqj@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-15
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <Z1MacMC8XyyyHcqj@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,49 +73,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add early pipe src initialization for gmch and later
-initialize the pipe src during compute_pipe_src.
+Hi Rodrigo,
 
-Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 17 +++++++++++++----
- 1 file changed, 13 insertions(+), 4 deletions(-)
+On Fri, Dec 06, 2024 at 10:38:24AM -0500, Rodrigo Vivi wrote:
+> On Thu, Dec 05, 2024 at 03:47:35PM +0000, Sebastian Brzezinka wrote:
+> > `wa_verify`sporadically detects lost workaround on application; this
+> > is unusual behavior since wa are applied at `intel_gt_init_hw` and
+> > verified right away by `intel_gt_verify_workarounds`, and  `wa_verify`
+> > doesn't fail on initialization as one might suspect would happen.
+> > 
+> > One approach that may be somewhat beneficial is to reapply workarounds
+> > in the event of failure, or even get rid of verify on application,
+> > since it's redundant to `intel_gt_verify_workarounds`.
+> > 
+> > This patch aims to resolve: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12668
+> 
+> It should be:
+> 
+> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12668
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 7be2ea11b8b0..50693b6ca58c 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -2534,6 +2534,13 @@ static int intel_crtc_compute_pipe_src(struct intel_crtc_state *crtc_state)
- {
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
-+	int pipe_src_w, pipe_src_h;
-+
-+	drm_mode_get_hv_timing(&crtc_state->hw.mode,
-+			       &pipe_src_w, &pipe_src_h);
-+
-+	drm_rect_init(&crtc_state->pipe_src, 0, 0,
-+		      pipe_src_w, pipe_src_h);
- 
- 	intel_joiner_compute_pipe_src(crtc_state);
- 
-@@ -5016,10 +5023,12 @@ intel_modeset_pipe_config(struct intel_atomic_state *state,
- 	 * computation to clearly distinguish it from the adjusted mode, which
- 	 * can be changed by the connectors in the below retry loop.
- 	 */
--	drm_mode_get_hv_timing(&crtc_state->hw.mode,
--			       &pipe_src_w, &pipe_src_h);
--	drm_rect_init(&crtc_state->pipe_src, 0, 0,
--		      pipe_src_w, pipe_src_h);
-+	if (HAS_GMCH(i915)) {
-+		drm_mode_get_hv_timing(&crtc_state->hw.mode,
-+				       &pipe_src_w, &pipe_src_h);
-+		drm_rect_init(&crtc_state->pipe_src, 0, 0,
-+			      pipe_src_w, pipe_src_h);
-+	}
- 
- 	for_each_new_connector_in_state(&state->base, connector, connector_state, i) {
- 		struct intel_encoder *encoder =
--- 
-2.25.1
+aapart from the formatting issues this was suggested by me. We
+have observed some sporadic vailures in applying the specific
+workaround added by Ville (now cc'ed to the thread) in commit
+0ddae025ab6c ("drm/i915: Disable compression tricks on JSL").
 
+Because it's sporadic, we could give it one more chance and try
+to re-apply it.
+
+> > 
+> > Signed-off-by: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/gt/intel_workarounds.c | 11 +++++++++++
+> >  1 file changed, 11 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> > index 570c91878189..4ee623448223 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+> > @@ -1761,6 +1761,17 @@ static void wa_list_apply(const struct i915_wa_list *wal)
+> >  				intel_gt_mcr_read_any_fw(gt, wa->mcr_reg) :
+> >  				intel_uncore_read_fw(uncore, wa->reg);
+> >  
+> > +			if ((val ^ wa->set) & wa->read) { 
+> > +				if (wa->is_mcr)
+> > +					intel_gt_mcr_multicast_write_fw(gt, wa->mcr_reg, val);
+> > +				else
+> > +					intel_uncore_write_fw(uncore, wa->reg, val);
+> > +			}
+> 
+> instead of duplicating the code you should extract that to an aux function
+> to write it...
+
+a for loop can decrease the amount of duplicated code.
+
+> > +
+> > +			val = wa->is_mcr ?
+> > +				intel_gt_mcr_read_any_fw(gt, wa->mcr_reg) :
+> > +				intel_uncore_read_fw(uncore, wa->reg);
+> 
+> and another one to read it...
+
+this, indeed it's just reading, but we are trying to re-write. If
+we wrote the unwanted value, we will keep reading the unwanted
+value.
+
+> > +
+> >  			wa_verify(gt, wa, val, wal->name, "application");
+> 
+> However my biggest concern with this patch is the brute force solution
+> and only on CONFIG_DRM_I915_DEBUG_GEM case...
+
+this is a good point, indeed, I don't understand why the
+confirmation should be within the DEBUG section.
+
+Andi
+
+> and as duplication because I see that the second write attempt is
+> already happening above if (val != old || !wa->clr)
+> 
+> So, something is not quite right in here and this deserves another alternative..
+> 
+> 
+> >  		}
+> >  	}
+> > -- 
+> > 2.34.1
+> > 
