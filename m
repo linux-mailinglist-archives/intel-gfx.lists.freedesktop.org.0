@@ -1,61 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5C8F9EE3D2
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2024 11:12:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B7D59EE3D7
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Dec 2024 11:13:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 19D7710ED33;
-	Thu, 12 Dec 2024 10:12:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B3CE10E1AC;
+	Thu, 12 Dec 2024 10:13:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SuxlLRiu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OhHM7ZMp";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C5A0C10E082;
- Thu, 12 Dec 2024 10:12:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1A7710E1AC;
+ Thu, 12 Dec 2024 10:13:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1733998342; x=1765534342;
+ t=1733998422; x=1765534422;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=Bx2m/CkVeM/Ue/kb2GRFV8CoNe2XocKmLebDfW1bh7k=;
- b=SuxlLRiudtoAcp8y77+M/6xrP4ZaD5CI3/R24XKWNPkaHt7KwSQURdob
- +WuJy84TwJjAGuC8C5KfTA7apoWsK7WPNrjDj+cbVVcQ6AOZK9IcKLhLo
- QJK4K6cBrHTQJUVwwJCTNOEt2Eqayo2p14euZ0WY+rwKuKSf3uHQKZi3m
- 6s/5cuZdFFHtSeknOWGD1DLGEZg6vvMl7CVe4hvQoj1veFgkGqF8SLaVd
- Ik7WdzlWwjH0H/V5WR50Ef/WbfwzeDHAhpfj8HzVJUKMaV2i4AaT5iZXa
- Ib3OEOVyfeOk56B2Ki2sGApnHcO7FYPa5wEXvSlV/pSPhNNw02j+vwdsN w==;
-X-CSE-ConnectionGUID: SoD8kby8QxKTJ77cy+qmhw==
-X-CSE-MsgGUID: tVNCqrDMQ/6HbWeOguEMpg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11283"; a="51936264"
-X-IronPort-AV: E=Sophos;i="6.12,228,1728975600"; d="scan'208";a="51936264"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2024 02:12:21 -0800
-X-CSE-ConnectionGUID: VvZiCuVNR9+CtpZEtcCXsQ==
-X-CSE-MsgGUID: ZODWwVs/SMSnswIjmaE0Rg==
+ bh=Sf7OcXolOlpPRzw64FFl5dReMkLEPLQx5QJCwq7cfxo=;
+ b=OhHM7ZMpSNZ3+IXw4mJconnlzEQJVKdLgsO78E+LjGFKlqpvj1bhNG2i
+ GYqwhW8jskxAePYs9J2rHptG+iBW70xH7JmDmy4OQ7IuxAcdt+tWO3oJ5
+ mFM5XEu905wnhcMD69kvo6GK0UxGugdhoAdlgtDFLgI5mgIxTpwJI8AKV
+ k9Uq80O4AiaPXaMK53PP9YRM2O7WcJ3PtWQrYIvwhoLfrNwTkNizS2CU2
+ +xd4D83TkU+AjebrNV/XSbEBSXUWO/xrdoqKEhpFRpQqaeljngb00pPaI
+ QX9EG6JxNEvsL0NfvYFHJ8qL+jmMyvwMry5bHsc50QH9AcEBpH0ScZLJS Q==;
+X-CSE-ConnectionGUID: 1gIYeIhtT1uMldzlF3cKnQ==
+X-CSE-MsgGUID: ZHKPWzLfSlWPJ1ep4C5D8Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11283"; a="34537173"
+X-IronPort-AV: E=Sophos;i="6.12,228,1728975600"; d="scan'208";a="34537173"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2024 02:13:41 -0800
+X-CSE-ConnectionGUID: eP5zBDrFQ6yGqt+K1fUq8A==
+X-CSE-MsgGUID: ppbLywxfS8KdEMD0Ws3BjQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="133571846"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="96025604"
 Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.101])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Dec 2024 02:12:18 -0800
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Dec 2024 02:13:39 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, Lyude Paul <lyude@redhat.com>, Harry
- Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, Wayne Lin
- <wayne.lin@amd.com>, Alex Deucher <alexander.deucher@amd.com>, Karol
- Herbst <kherbst@redhat.com>, Danilo Krummrich <dakr@kernel.org>
-Subject: Re: [PATCH v3 04/11] drm/dp_mst: Register connectors via
- drm_connector_dynamic_register()
-In-Reply-To: <20241211230328.4012496-5-imre.deak@intel.com>
+Cc: dri-devel@lists.freedesktop.org, Lyude Paul <lyude@redhat.com>, Rodrigo
+ Vivi <rodrigo.vivi@intel.com>
+Subject: Re: [PATCH v3 05/11] drm/i915/dp_mst: Expose a connector to kernel
+ users after it's properly initialized
+In-Reply-To: <20241211230328.4012496-6-imre.deak@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20241211230328.4012496-1-imre.deak@intel.com>
- <20241211230328.4012496-5-imre.deak@intel.com>
-Date: Thu, 12 Dec 2024 12:12:15 +0200
-Message-ID: <87bjxhxla8.fsf@intel.com>
+ <20241211230328.4012496-6-imre.deak@intel.com>
+Date: Thu, 12 Dec 2024 12:13:35 +0200
+Message-ID: <878qslxl80.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -74,51 +72,80 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Thu, 12 Dec 2024, Imre Deak <imre.deak@intel.com> wrote:
-> MST connectors should be initialized/registered by calling
-> drm_connector_dynamic_init()/drm_connector_dynamic_register(). The
-> previous patch adding these functions explains the issue with the
-
-References to "previous patch" become meaningless after this has been
-committed.
+> After a connector is added to the drm_mode_config::connector_list, it's
+> visible to any in-kernel users looking up connectors via the above list.
+> Make sure that the connector is properly initialized before such
+> look-ups, by initializing the connector with
+> drm_connector_dynamic_register() - which doesn't add the connector to
+> the list - and registering it with drm_connector_dynamic_register() -
+> which adds the connector to the list - after the initialization is
+> complete.
+>
+> v2: Rebase on the change which moves adding the connector to the
+>     connector list only later when calling
+>     drm_connector_dynamic_register().
+>
+> Cc: Lyude Paul <lyude@redhat.com>
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com> (v1)
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-> current drm_connector_init*()/drm_connector_register() interface for
-> MST connectors.
->
-> Based on the above adjust here the registration part and change the
-> initialization part in follow-up patches for each driver.
->
-> For now, drivers are allowed to keep using the drm_connector_init*()
-> functions, by drm_connector_dynamic_register() checking for this (see
-> drm_connector_add()). A patch later will change this to WARN in such
-> cases.
->
-> Cc: Lyude Paul <lyude@redhat.com>
-> Cc: Harry Wentland <harry.wentland@amd.com>
-> Cc: Leo Li <sunpeng.li@amd.com>
-> Cc: Wayne Lin <wayne.lin@amd.com>
-> Cc: Alex Deucher <alexander.deucher@amd.com>
-> Cc: Karol Herbst <kherbst@redhat.com>
-> Cc: Danilo Krummrich <dakr@kernel.org>
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
 > ---
->  drivers/gpu/drm/display/drm_dp_mst_topology.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c | 27 +++++++--------------
+>  1 file changed, 9 insertions(+), 18 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c b/drivers/gpu/drm/display/drm_dp_mst_topology.c
-> index 687c70308d82b..f8cd094efa3c0 100644
-> --- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
-> +++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
-> @@ -2281,7 +2281,7 @@ drm_dp_mst_port_add_connector(struct drm_dp_mst_branch *mstb,
->  		port->cached_edid = drm_edid_read_ddc(port->connector,
->  						      &port->aux.ddc);
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> index 123c4ece62688..debe4d0eee11f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> @@ -1731,6 +1731,8 @@ mst_topology_add_connector(struct drm_dp_mst_topology_mgr *mgr,
+>  	if (!intel_connector)
+>  		return NULL;
 >  
-> -	drm_connector_register(port->connector);
-> +	drm_connector_dynamic_register(port->connector);
->  	return;
+> +	connector = &intel_connector->base;
+> +
+>  	intel_connector->get_hw_state = mst_connector_get_hw_state;
+>  	intel_connector->sync_state = intel_dp_connector_sync_state;
+>  	intel_connector->mst_port = intel_dp;
+> @@ -1739,30 +1741,19 @@ mst_topology_add_connector(struct drm_dp_mst_topology_mgr *mgr,
 >  
->  error:
+>  	intel_dp_init_modeset_retry_work(intel_connector);
+>  
+> -	/*
+> -	 * TODO: The following drm_connector specific initialization belongs
+> -	 * to DRM core, however it happens atm too late in
+> -	 * drm_connector_init(). That function will also expose the connector
+> -	 * to in-kernel users, so it can't be called until the connector is
+> -	 * sufficiently initialized; init the device pointer used by the
+> -	 * following DSC setup, until a fix moving this to DRM core.
+> -	 */
+> -	intel_connector->base.dev = mgr->dev;
+> -
+> -	intel_connector->dp.dsc_decompression_aux = drm_dp_mst_dsc_aux_for_port(port);
+> -	intel_dp_mst_read_decompression_port_dsc_caps(intel_dp, intel_connector);
+> -	intel_connector->dp.dsc_hblank_expansion_quirk =
+> -		detect_dsc_hblank_expansion_quirk(intel_connector);
+> -
+> -	connector = &intel_connector->base;
+> -	ret = drm_connector_init(display->drm, connector, &mst_connector_funcs,
+> -				 DRM_MODE_CONNECTOR_DisplayPort);
+> +	ret = drm_connector_dynamic_init(display->drm, connector, &mst_connector_funcs,
+> +					 DRM_MODE_CONNECTOR_DisplayPort, NULL);
+>  	if (ret) {
+>  		drm_dp_mst_put_port_malloc(port);
+>  		intel_connector_free(intel_connector);
+>  		return NULL;
+>  	}
+>  
+> +	intel_connector->dp.dsc_decompression_aux = drm_dp_mst_dsc_aux_for_port(port);
+> +	intel_dp_mst_read_decompression_port_dsc_caps(intel_dp, intel_connector);
+> +	intel_connector->dp.dsc_hblank_expansion_quirk =
+> +		detect_dsc_hblank_expansion_quirk(intel_connector);
+> +
+>  	drm_connector_helper_add(connector, &mst_connector_helper_funcs);
+>  
+>  	for_each_pipe(display, pipe) {
 
 -- 
 Jani Nikula, Intel
