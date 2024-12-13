@@ -2,60 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E7639F0BD5
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2024 13:04:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FED79F0BD3
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2024 13:04:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C57CC10E317;
-	Fri, 13 Dec 2024 12:04:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACF558912D;
+	Fri, 13 Dec 2024 12:04:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YT3w6kpa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RNjfKL5b";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6461E10E313;
- Fri, 13 Dec 2024 12:04:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 972588912D;
+ Fri, 13 Dec 2024 12:04:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734091488; x=1765627488;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=UygAvWkWKp2AZXk4OXEfW5yeVUUIZ9S4CJz491SUAtA=;
- b=YT3w6kpaqSfSBXXc+5O+ow2JTsSD2y+n6v3oaNJZr7/bAunQlRbTAUk/
- oIw6dyQuQCCttfO1lES/IjQI/5WQ60/oI58wJNnlE4IVUh6T4S8m6qpdz
- iiEuXIvRy0ipc1s/8R/yW7yBNPKFQRpQZ8Xyj2h0HxI/yNsoXy7IYbeyY
- +R29KMkDKk074tkcG/RhtzZ1xEcSwJ4cM6yhsVpwNlIdUtppuX9B7NC2R
- /n48qsJo+6txDv6EdlfrPDEEtRfNE0TslZhAnhj6yxsbjeTP7eA5NHPr3
- E44wnaCep2Pn57DU99bB9/EUU4TK9afIOBItCdX9ZaklU4z1TDsIYMGWO A==;
-X-CSE-ConnectionGUID: XC53Uf6cQCuBaxOZvJEtYw==
-X-CSE-MsgGUID: J/Iq6I+nSIqsy/tP5OqZ+w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11284"; a="34444145"
-X-IronPort-AV: E=Sophos;i="6.12,231,1728975600"; d="scan'208";a="34444145"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2024 04:02:39 -0800
-X-CSE-ConnectionGUID: g5rRMqD2Qry0e3c7XPH5/g==
-X-CSE-MsgGUID: Szd7ojhJQoCz8br6t5m86Q==
+ t=1734091453; x=1765627453;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=k16/ErdBcQ48upbbK53uG9MkczSbhBpc9cJVphwdma0=;
+ b=RNjfKL5bNhsjGTN3SgLT+UQNMeAMCVvtWqC/Bj9S5QEKw5TgHi8hNqMh
+ QgxSVis5eZkYOpgO71PygCRS431x5QjmyepLhkyBa0T1UfkZNk6KpVJAL
+ xUxKAJyOnAaV1E6WGh/0Rcl8gohUdWTTfXjb63onA4vLmzojMDXIQvq1N
+ krnIw1Qy+8eq5YlQh/STggt+JoN/m/Rs7V3GShevaeE6TtTOAIKewsgkb
+ MZP7aQ0LCNB563UMQgliVFR4C+Tx77BUuD2sAnsaydoqoe+qSOxiInLtX
+ hEPwzmV+459rSwN+XvqBHtz9k32h8zkXa9HPplF6nxthcALvY0nld+X55 w==;
+X-CSE-ConnectionGUID: I4YcPqkSTCq6UV3GkFYgSQ==
+X-CSE-MsgGUID: 4FZ5+bLOSRmUcG0zaO6iRA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11278"; a="45926208"
+X-IronPort-AV: E=Sophos;i="6.12,214,1728975600"; d="scan'208";a="45926208"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2024 04:04:13 -0800
+X-CSE-ConnectionGUID: RG9Q6L+QTumyfz82WGI9Fg==
+X-CSE-MsgGUID: qhnnVxhpR3+ZCb4WnjYVzw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="96377237"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2024 04:02:12 -0800
-Date: Fri, 13 Dec 2024 14:02:01 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Simona Vetter <simona.vetter@ffwll.ch>
-Subject: Re: [PATCH v3 02/11] drm/connector: Add FIXME for GETRESOURCES ioctl
- wrt. uninited connectors
-Message-ID: <Z1wiOWPz84hO4XTa@ideak-desk.fi.intel.com>
-References: <20241211230328.4012496-1-imre.deak@intel.com>
- <20241211230328.4012496-3-imre.deak@intel.com>
- <87h679xlkb.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="101092187"
+Received: from fpallare-mobl4.ger.corp.intel.com (HELO vgovind2-mobl3..)
+ ([10.245.245.212])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2024 04:04:11 -0800
+From: Vinod Govindapillai <vinod.govindapillai@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: vinod.govindapillai@intel.com, ville.syrjala@intel.com,
+ uma.shankar@intel.com, jani.saarinen@intel.com
+Subject: [PATCH] drm/i915/xe3: do not configure auto min dbuf for cursor WMs
+Date: Fri, 13 Dec 2024 14:03:57 +0200
+Message-Id: <20241213120357.300584-1-vinod.govindapillai@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87h679xlkb.fsf@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,74 +66,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 12, 2024 at 12:06:12PM +0200, Jani Nikula wrote:
-> On Thu, 12 Dec 2024, Imre Deak <imre.deak@intel.com> wrote:
-> > The connectors enumerated by the GETRESOURCES ioctl may not be fully
-> > initialized yet wrt. to the state set up during connector registration
-> > (for instance the connector's debugfs/sysfs interfaces may not exist
-> > yet). This can happen in two ways:
-> >
-> > 1. Connectors initialized and added to the
-> >    drm_mode_config::connector_list during driver loading will be visible
-> >    to the GETRESOURCES ioctl caller once the driver is registered via
-> >    drm_dev_register()->drm_minor_register(DRM_MINOR_PRIMARY) and before
-> >    the connectors are registered via drm_dev_register()->
-> >    drm_modeset_register_all().
-> >
-> > 2. Dynamic connectors (MST) - after being initialized - may be added to
-> >    the connector_list after the driver is loaded and registered and before
-> >    the connector's userspace interfaces (debugfs, sysfs etc.) are added
-> >    in drm_connector_dynamic_register().
-> >
-> > A solution for 1. would be to register the driver only after the
-> > connectors are registered, for 2. to add the connector to connector_list
-> > only after the userspace interfaces are registered.
-> >
-> > The fix would require a bigger change, not the topic of this patchset,
-> > so adding only a FIXME comment here.
-> 
-> References to "this patchset" become meaningless after this has been
-> committed.
+Cursor planes do not have the minimum dbuf confguation. The
+ddb allocation and registration routines handle this correctly.
+But the plane wm handling for cursor need to be differentiated
+for this case. Auto minimum buf enable flag should not be
+enabled for cursor wm registers in xe3.
 
-I wondered if the Link: added when the patch is committed provides the
-context, but I suppose the link can get stale. I can reword the above to:
+Fixes: a831920c370c ("drm/i915/xe3: Use hw support for min/interim ddb allocations for async flip")
+Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+---
+ drivers/gpu/drm/i915/display/skl_watermark.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
-"The fix requires a bigger change, for now adding a FIXME: comment for
-it."
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index d3506e8ccd9b..29e8ea91c858 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -1922,10 +1922,11 @@ static int skl_wm_max_lines(struct drm_i915_private *i915)
+ 		return 31;
+ }
+ 
+-static bool xe3_auto_min_alloc_capable(struct intel_display *display,
+-				       int level)
++static bool xe3_auto_min_alloc_capable(struct intel_plane *plane, int level)
+ {
+-	return DISPLAY_VER(display) >= 30 && level == 0;
++	struct intel_display *display = to_intel_display(plane);
++
++	return DISPLAY_VER(display) >= 30 && level == 0 && plane->id != PLANE_CURSOR;
+ }
+ 
+ static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
+@@ -1937,7 +1938,6 @@ static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
+ 				 struct skl_wm_level *result /* out */)
+ {
+ 	struct drm_i915_private *i915 = to_i915(crtc_state->uapi.crtc->dev);
+-	struct intel_display *display = to_intel_display(crtc_state);
+ 	uint_fixed_16_16_t method1, method2;
+ 	uint_fixed_16_16_t selected_result;
+ 	u32 blocks, lines, min_ddb_alloc = 0;
+@@ -2061,7 +2061,7 @@ static void skl_compute_plane_wm(const struct intel_crtc_state *crtc_state,
+ 	/* Bspec says: value >= plane ddb allocation -> invalid, hence the +1 here */
+ 	result->min_ddb_alloc = max(min_ddb_alloc, blocks) + 1;
+ 	result->enable = true;
+-	result->auto_min_alloc_wm_enable = xe3_auto_min_alloc_capable(display, level);
++	result->auto_min_alloc_wm_enable = xe3_auto_min_alloc_capable(plane, level);
+ 
+ 	if (DISPLAY_VER(i915) < 12 && i915->display.sagv.block_time_us)
+ 		result->can_sagv = latency >= i915->display.sagv.block_time_us;
+-- 
+2.34.1
 
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-> 
-> >
-> > Suggested-by: Simona Vetter <simona.vetter@ffwll.ch>
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > ---
-> >  drivers/gpu/drm/drm_mode_config.c | 9 +++++++++
-> >  1 file changed, 9 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/drm_mode_config.c b/drivers/gpu/drm/drm_mode_config.c
-> > index 37d2e0a4ef4be..8642a2fb25a90 100644
-> > --- a/drivers/gpu/drm/drm_mode_config.c
-> > +++ b/drivers/gpu/drm/drm_mode_config.c
-> > @@ -150,6 +150,15 @@ int drm_mode_getresources(struct drm_device *dev, void *data,
-> >  	drm_connector_list_iter_begin(dev, &conn_iter);
-> >  	count = 0;
-> >  	connector_id = u64_to_user_ptr(card_res->connector_id_ptr);
-> > +	/*
-> > +	 * FIXME: the connectors on the list may not be fully initialized yet,
-> > +	 * if the ioctl is called before the connectors are registered. (See
-> > +	 * drm_dev_register()->drm_modeset_register_all() for static and
-> > +	 * drm_connector_dynamic_register() for dynamic connectors.)
-> > +	 * The driver should only get registered after static connectors are
-> > +	 * fully initialized and dynamic connectors should be added to the
-> > +	 * connector list only after fully initializing them.
-> > +	 */
-> >  	drm_for_each_connector_iter(connector, &conn_iter) {
-> >  		/* only expose writeback connectors if userspace understands them */
-> >  		if (!file_priv->writeback_connectors &&
-> 
-> -- 
-> Jani Nikula, Intel
