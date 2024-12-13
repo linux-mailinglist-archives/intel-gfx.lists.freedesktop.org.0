@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 041649F09C2
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2024 11:40:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DE649F09C4
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2024 11:40:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A2A1810EFA8;
-	Fri, 13 Dec 2024 10:40:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0314F10EFA6;
+	Fri, 13 Dec 2024 10:40:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZUQQHVJQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZdyAogzB";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 97EE010EFA8;
- Fri, 13 Dec 2024 10:40:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F263010EFAC;
+ Fri, 13 Dec 2024 10:40:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734086414; x=1765622414;
+ t=1734086419; x=1765622419;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=rYEmAJXzRVyPoyJ80i+Il4CHnnlD7Xdz082IPWK++s4=;
- b=ZUQQHVJQF6oAt967OL1u5HdKm9aH/QqeMj9nJBR+1MPRwlEt1XuMgcWs
- Ww6/6VdKOrwM90L+H5GqcoShzKXq+veeGkVw0SaYpN4zivZqStObr6051
- HyhkfnmRprxXQM6FYRhzA2TOUZ7Y6ilKXY1J0zpDpkuoD4F1dE4fon8w2
- rCaqCo6lSc7HmjBM9OytMku+fNvbrkh01s7T3GEd91gqDWLRzbNJ7oM9r
- uLb46+4MEOW5Nsai1sCPQ405R20NeTebwM28Onndg5IG2sf6V+A69YLcc
- X172KUaZ8B6UsEzh+ZG4i9qsoS8pY04QV6b1GP2awi9A3/PqpGfGfvhJ2 w==;
-X-CSE-ConnectionGUID: 04OSyVbgR9SgaLSzU7b2Cw==
-X-CSE-MsgGUID: d9nvM9QwRTOMfyvx0Qy4pA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="45945142"
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="45945142"
+ bh=Cff6+lP9dRv1OikhLqMaQUUvCbeTyJENGr18BDT9pF0=;
+ b=ZdyAogzBHzo2PNq4MDE83AOLNegLqFOuo6OT7TtfdqhQiEMN6s15jmg9
+ 5DEfdl6l/jC80JifP82jYNEe7eE6bUgpxZijC2n5KkXDd6PyEawF0+BC+
+ TH6ae7AZCssTRxjCF5zs4rYDz5bJ82yyCmf+EbpghoU7/3l2PtIcA4Oaw
+ tSYqjPghh1PzsKIm6/9Hcgp9xC48PsRWNMhF3JohRrQHmvh1DcW2OB3h2
+ QJUzdPtITxDf1s65gUpcgRsgTlLhsEjpxaKNGP7eZGVFST+hRUsS7pMUn
+ ieuD0PMIH/u+cktaTzcBqRh+2UhuCx0u82Ee0FLaeBG257iGNXiOgEQGe A==;
+X-CSE-ConnectionGUID: YjEH4AfXRIKWKLlZUdutlA==
+X-CSE-MsgGUID: KROZk+kIRgKRhn067t++eg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="45945161"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="45945161"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2024 02:40:13 -0800
-X-CSE-ConnectionGUID: XH/9sQ/dSc+j4ZqpHR5mKA==
-X-CSE-MsgGUID: TbAsz1rKT9WDT4Q1N409OA==
+ 13 Dec 2024 02:40:19 -0800
+X-CSE-ConnectionGUID: FbFb2gVfRN2DpXTOGUgomg==
+X-CSE-MsgGUID: XgDa3BXHQruqZbjoDODL2g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,231,1728975600"; d="scan'208";a="127313610"
+X-IronPort-AV: E=Sophos;i="6.12,231,1728975600"; d="scan'208";a="127313646"
 Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.159])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2024 02:40:10 -0800
+ 13 Dec 2024 02:40:16 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, imre.deak@intel.com, ville.syrjala@linux.intel.com,
- nagavenkata.srikanth.v@intel.com, Lyude Paul <lyude@redhat.com>
-Subject: [RFC v0 01/13] drm/mst: remove mgr parameter and debug logging from
- drm_dp_get_vc_payload_bw()
-Date: Fri, 13 Dec 2024 12:39:45 +0200
-Message-Id: <303656864ecaca8e03503a4cddbc5035dacbae9f.1734085515.git.jani.nikula@intel.com>
+ nagavenkata.srikanth.v@intel.com
+Subject: [RFC v0 02/13] drm/i915/mst: use intel_dp_compute_config_limits() for
+ DP MST
+Date: Fri, 13 Dec 2024 12:39:46 +0200
+Message-Id: <14272a2538ff17d345cfb06cdfdad1fdf37abf29.1734085515.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1734085515.git.jani.nikula@intel.com>
 References: <cover.1734085515.git.jani.nikula@intel.com>
@@ -72,120 +72,164 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The struct drm_dp_mst_topology_mgr *mgr parameter is only used for debug
-logging in case the passed in link rate or lane count are zero. There's
-no further error checking as such, and the function returns 0.
+There's a lot of duplication between mst_stream_compute_config_limits()
+and intel_dp_compute_config_limits(). Adjust the latter to suit the
+needs of the former, and use the same function for both. This reduces
+duplication and highlights the differences for SST and MST and UHBR.
 
-There should be no case where the parameters are zero. The returned
-value is generally used as a divisor, and if we were hitting this, we'd
-be seeing division by zero.
-
-Just remove the debug logging altogether, along with the mgr parameter,
-so that the function can be used in non-MST contexts without the
-topology manager.
+Remove the kernel-doc for intel_dp_compute_config_link_bpp_limits()
+which now becomes static.
 
 Cc: Imre Deak <imre.deak@intel.com>
-Cc: Lyude Paul <lyude@redhat.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/display/drm_dp_mst_topology.c  | 10 ++--------
- drivers/gpu/drm/i915/display/intel_dp_mst.c    |  3 +--
- drivers/gpu/drm/nouveau/dispnv50/disp.c        |  3 +--
- drivers/gpu/drm/tests/drm_dp_mst_helper_test.c |  4 +---
- include/drm/display/drm_dp_mst_helper.h        |  3 +--
- 5 files changed, 6 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c     | 44 +++++++++++++--------
+ drivers/gpu/drm/i915/display/intel_dp.h     | 10 ++---
+ drivers/gpu/drm/i915/display/intel_dp_mst.c | 29 +-------------
+ 3 files changed, 34 insertions(+), 49 deletions(-)
 
-diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c b/drivers/gpu/drm/display/drm_dp_mst_topology.c
-index 687c70308d82..89623ff7f8ea 100644
---- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
-+++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
-@@ -3572,8 +3572,7 @@ static int drm_dp_send_up_ack_reply(struct drm_dp_mst_topology_mgr *mgr,
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index f8100c4f4d20..9b930622b8ce 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -2455,19 +2455,11 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+ 	return 0;
  }
  
- /**
-- * drm_dp_get_vc_payload_bw - get the VC payload BW for an MST link
-- * @mgr: The &drm_dp_mst_topology_mgr to use
-+ * drm_dp_get_vc_payload_bw - get the VC payload BW for an MTP link
-  * @link_rate: link rate in 10kbits/s units
-  * @link_lane_count: lane count
-  *
-@@ -3584,17 +3583,12 @@ static int drm_dp_send_up_ack_reply(struct drm_dp_mst_topology_mgr *mgr,
-  *
-  * Returns the BW / timeslot value in 20.12 fixed point format.
+-/**
+- * intel_dp_compute_config_link_bpp_limits - compute output link bpp limits
+- * @intel_dp: intel DP
+- * @crtc_state: crtc state
+- * @dsc: DSC compression mode
+- * @limits: link configuration limits
+- *
+- * Calculates the output link min, max bpp values in @limits based on the
+- * pipe bpp range, @crtc_state and @dsc mode.
+- *
+- * Returns %true in case of success.
++/*
++ * Calculate the output link min, max bpp values in limits based on the pipe bpp
++ * range, crtc_state and dsc mode. Return true on success.
   */
--fixed20_12 drm_dp_get_vc_payload_bw(const struct drm_dp_mst_topology_mgr *mgr,
--				    int link_rate, int link_lane_count)
-+fixed20_12 drm_dp_get_vc_payload_bw(int link_rate, int link_lane_count)
- {
- 	int ch_coding_efficiency =
- 		drm_dp_bw_channel_coding_efficiency(drm_dp_is_uhbr_rate(link_rate));
- 	fixed20_12 ret;
+-bool
++static bool
+ intel_dp_compute_config_link_bpp_limits(struct intel_dp *intel_dp,
+ 					const struct intel_crtc_state *crtc_state,
+ 					bool dsc,
+@@ -2515,29 +2507,47 @@ intel_dp_compute_config_link_bpp_limits(struct intel_dp *intel_dp,
+ 	return true;
+ }
  
--	if (link_rate == 0 || link_lane_count == 0)
--		drm_dbg_kms(mgr->dev, "invalid link rate/lane count: (%d / %d)\n",
--			    link_rate, link_lane_count);
--
- 	/* See DP v2.0 2.6.4.2, 2.7.6.3 VCPayload_Bandwidth_for_OneTimeSlotPer_MTP_Allocation */
- 	ret.full = DIV_ROUND_DOWN_ULL(mul_u32_u32(link_rate * link_lane_count,
- 						  ch_coding_efficiency),
+-static bool
++bool
+ intel_dp_compute_config_limits(struct intel_dp *intel_dp,
+ 			       struct intel_crtc_state *crtc_state,
+ 			       bool respect_downstream_limits,
+ 			       bool dsc,
+ 			       struct link_config_limits *limits)
+ {
++	bool is_mst = intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST);
++
+ 	limits->min_rate = intel_dp_min_link_rate(intel_dp);
+ 	limits->max_rate = intel_dp_max_link_rate(intel_dp);
+ 
+ 	/* FIXME 128b/132b SST support missing */
+-	limits->max_rate = min(limits->max_rate, 810000);
++	if (!is_mst)
++		limits->max_rate = min(limits->max_rate, 810000);
+ 	limits->min_rate = min(limits->min_rate, limits->max_rate);
+ 
+ 	limits->min_lane_count = intel_dp_min_lane_count(intel_dp);
+ 	limits->max_lane_count = intel_dp_max_lane_count(intel_dp);
+ 
+ 	limits->pipe.min_bpp = intel_dp_min_bpp(crtc_state->output_format);
+-	limits->pipe.max_bpp = intel_dp_max_bpp(intel_dp, crtc_state,
+-						     respect_downstream_limits);
++	if (is_mst) {
++		/*
++		 * FIXME: If all the streams can't fit into the link with their
++		 * current pipe_bpp we should reduce pipe_bpp across the board
++		 * until things start to fit. Until then we limit to <= 8bpc
++		 * since that's what was hardcoded for all MST streams
++		 * previously. This hack should be removed once we have the
++		 * proper retry logic in place.
++		 */
++		limits->pipe.max_bpp = min(crtc_state->pipe_bpp, 24);
++	} else {
++		limits->pipe.max_bpp = intel_dp_max_bpp(intel_dp, crtc_state,
++							respect_downstream_limits);
++	}
+ 
+-	if (intel_dp->use_max_params) {
++	if (is_mst || intel_dp->use_max_params) {
+ 		/*
++		 * For MST we always configure max link bw - the spec doesn't
++		 * seem to suggest we should do otherwise.
++		 *
+ 		 * Use the maximum clock and number of lanes the eDP panel
+ 		 * advertizes being capable of in case the initial fast
+ 		 * optimal params failed us. The panels are generally
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
+index 48f10876be65..8572d7df5335 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.h
++++ b/drivers/gpu/drm/i915/display/intel_dp.h
+@@ -193,11 +193,11 @@ void intel_dp_invalidate_source_oui(struct intel_dp *intel_dp);
+ void intel_dp_wait_source_oui(struct intel_dp *intel_dp);
+ int intel_dp_output_bpp(enum intel_output_format output_format, int bpp);
+ 
+-bool
+-intel_dp_compute_config_link_bpp_limits(struct intel_dp *intel_dp,
+-					const struct intel_crtc_state *crtc_state,
+-					bool dsc,
+-					struct link_config_limits *limits);
++bool intel_dp_compute_config_limits(struct intel_dp *intel_dp,
++				    struct intel_crtc_state *crtc_state,
++				    bool respect_downstream_limits,
++				    bool dsc,
++				    struct link_config_limits *limits);
+ 
+ void intel_dp_get_dsc_sink_cap(u8 dpcd_rev, struct intel_connector *connector);
+ bool intel_dp_has_gamut_metadata_dip(struct intel_encoder *encoder);
 diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 123c4ece6268..822500d4d2af 100644
+index 822500d4d2af..67b0e40a7888 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -244,8 +244,7 @@ static int mst_stream_find_vcpi_slots_for_bpp(struct intel_dp *intel_dp,
- 		crtc_state->fec_enable = !intel_dp_is_uhbr(crtc_state);
- 	}
- 
--	mst_state->pbn_div = drm_dp_get_vc_payload_bw(&intel_dp->mst_mgr,
--						      crtc_state->port_clock,
-+	mst_state->pbn_div = drm_dp_get_vc_payload_bw(crtc_state->port_clock,
- 						      crtc_state->lane_count);
- 
- 	max_dpt_bpp = intel_dp_mst_max_dpt_bpp(crtc_state, dsc);
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-index eed579a6c858..36c3c99852e5 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-@@ -992,8 +992,7 @@ nv50_msto_atomic_check(struct drm_encoder *encoder,
- 	if (!mst_state->pbn_div.full) {
- 		struct nouveau_encoder *outp = mstc->mstm->outp;
- 
--		mst_state->pbn_div = drm_dp_get_vc_payload_bw(&mstm->mgr,
--							      outp->dp.link_bw, outp->dp.link_nr);
-+		mst_state->pbn_div = drm_dp_get_vc_payload_bw(outp->dp.link_bw, outp->dp.link_nr);
- 	}
- 
- 	slots = drm_dp_atomic_find_time_slots(state, &mstm->mgr, mstc->port, asyh->dp.pbn);
-diff --git a/drivers/gpu/drm/tests/drm_dp_mst_helper_test.c b/drivers/gpu/drm/tests/drm_dp_mst_helper_test.c
-index 89cd9e4f4d32..ad29593d28cf 100644
---- a/drivers/gpu/drm/tests/drm_dp_mst_helper_test.c
-+++ b/drivers/gpu/drm/tests/drm_dp_mst_helper_test.c
-@@ -199,10 +199,8 @@ static const struct drm_dp_mst_calc_pbn_div_test drm_dp_mst_calc_pbn_div_dp1_4_c
- static void drm_test_dp_mst_calc_pbn_div(struct kunit *test)
+@@ -584,33 +584,8 @@ mst_stream_compute_config_limits(struct intel_dp *intel_dp,
+ 				 bool dsc,
+ 				 struct link_config_limits *limits)
  {
- 	const struct drm_dp_mst_calc_pbn_div_test *params = test->param_value;
--	/* mgr->dev is only needed by drm_dbg_kms(), but it's not called for the test cases. */
--	struct drm_dp_mst_topology_mgr *mgr = test->priv;
+-	/*
+-	 * for MST we always configure max link bw - the spec doesn't
+-	 * seem to suggest we should do otherwise.
+-	 */
+-	limits->min_rate = limits->max_rate =
+-		intel_dp_max_link_rate(intel_dp);
+-
+-	limits->min_lane_count = limits->max_lane_count =
+-		intel_dp_max_lane_count(intel_dp);
+-
+-	limits->pipe.min_bpp = intel_dp_min_bpp(crtc_state->output_format);
+-	/*
+-	 * FIXME: If all the streams can't fit into the link with
+-	 * their current pipe_bpp we should reduce pipe_bpp across
+-	 * the board until things start to fit. Until then we
+-	 * limit to <= 8bpc since that's what was hardcoded for all
+-	 * MST streams previously. This hack should be removed once
+-	 * we have the proper retry logic in place.
+-	 */
+-	limits->pipe.max_bpp = min(crtc_state->pipe_bpp, 24);
+-
+-	intel_dp_test_compute_config(intel_dp, crtc_state, limits);
+-
+-	if (!intel_dp_compute_config_link_bpp_limits(intel_dp,
+-						     crtc_state,
+-						     dsc,
+-						     limits))
++	if (!intel_dp_compute_config_limits(intel_dp, crtc_state, false, dsc,
++					    limits))
+ 		return false;
  
--	KUNIT_EXPECT_EQ(test, drm_dp_get_vc_payload_bw(mgr, params->link_rate, params->lane_count).full,
-+	KUNIT_EXPECT_EQ(test, drm_dp_get_vc_payload_bw(params->link_rate, params->lane_count).full,
- 			params->expected.full);
- }
- 
-diff --git a/include/drm/display/drm_dp_mst_helper.h b/include/drm/display/drm_dp_mst_helper.h
-index a80ba457a858..e39de161c938 100644
---- a/include/drm/display/drm_dp_mst_helper.h
-+++ b/include/drm/display/drm_dp_mst_helper.h
-@@ -867,8 +867,7 @@ struct edid *drm_dp_mst_get_edid(struct drm_connector *connector,
- 				 struct drm_dp_mst_topology_mgr *mgr,
- 				 struct drm_dp_mst_port *port);
- 
--fixed20_12 drm_dp_get_vc_payload_bw(const struct drm_dp_mst_topology_mgr *mgr,
--				    int link_rate, int link_lane_count);
-+fixed20_12 drm_dp_get_vc_payload_bw(int link_rate, int link_lane_count);
- 
- int drm_dp_calc_pbn_mode(int clock, int bpp);
- 
+ 	return adjust_limits_for_dsc_hblank_expansion_quirk(connector,
 -- 
 2.39.5
 
