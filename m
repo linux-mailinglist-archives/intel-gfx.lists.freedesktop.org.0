@@ -1,59 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DDE09F0ED2
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2024 15:15:53 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B94289F0ED6
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2024 15:16:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37FDC10E1B6;
-	Fri, 13 Dec 2024 14:15:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 63C4A10F046;
+	Fri, 13 Dec 2024 14:16:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="fizE5Mk9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QMzL2R98";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D0E310E1B6;
- Fri, 13 Dec 2024 14:15:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=587hDqcnKGq/bywvORxhW/qrnyvDDPlNgcMgllHItw4=; b=fizE5Mk9MPAJ77lbIvT/XXy3s4
- +6dEhX43NYQHMpkr4d4naK7v5ufVEg512QX0on5IqJwUmlIpyVRBNwO+6X27PqcMIsog2AShcsUlG
- XgWgDI9hG2wYicxbDv+Dfv0Vgw9i4O1PGKDhHwo9v0UC9W0pfWstUGyfmt3N/kpVcVBGPYGGKbxiF
- sk0AHheO/nHgk6dvnTQi854TSMqHu6kdhZsa0bhUV7A8D3NiaHssPccPWWy//h8QDggio1uvSdrln
- 0W1ktme8f8t9/L6xf7xu8v0PhBKaM2tjcmjVeHbA51e7hToaFJd+JJfs7fIpIvyTmy4sbc7++QU26
- o569INLw==;
-Received: from [179.193.1.214] (helo=[192.168.15.100])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1tM6SA-002g5A-2u; Fri, 13 Dec 2024 15:15:38 +0100
-Message-ID: <c7c498f0-2ee3-42f5-9b45-c87e52ffc3e4@igalia.com>
-Date: Fri, 13 Dec 2024 11:15:31 -0300
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D82A410F044;
+ Fri, 13 Dec 2024 14:16:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1734099367; x=1765635367;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=mEsb+xrMe/1FpvFft04LmnA1DS6zL+IryGZOKMa38lw=;
+ b=QMzL2R987vF0kSAv2Y6d+p5DmfNr8LazufgpsEn7ZEvN8x7Y12K7XKBt
+ MXG5FHi//VmxQLpTJYez2sYygTRo6EjDnnt0euI97fxiClqY8TbJFYuss
+ EBsI4s+LOmbvDErw763cr9qifD5a9A21V8KlHEIGlSF13AO+NugHk8gy1
+ ByJ3Pt7d6WNVfxSAzDvkY68n/ZantZvDu6do8AJULfdW+4IwQhj5z/wdi
+ Zr9RcnpJRGcQrxEjCG5M12lHeaXycPMqXNvUbdjN1msXI6SzRMRSXEsM6
+ eQKd0esd7XRoO40O7LsNEi9+S6fM+ZbvO5Fh/Z/jClGGchbzKtpTi8uYE Q==;
+X-CSE-ConnectionGUID: 0xJLR8MTRva5HCX7PfbM3w==
+X-CSE-MsgGUID: VHeDgGxwTFaEyGlI0rkagQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11285"; a="34689389"
+X-IronPort-AV: E=Sophos;i="6.12,231,1728975600"; d="scan'208";a="34689389"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2024 06:16:07 -0800
+X-CSE-ConnectionGUID: E+4JYOWSS1+tPmXEzsUGfA==
+X-CSE-MsgGUID: WhlxvYEGQ7y4erylg7hAkQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="133916233"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.159])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2024 06:16:05 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com, Sergey Senozhatsky <senozhatsky@chromium.org>,
+ Ville Syrjala <ville.syrjala@linux.intel.com>,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH v3 0/6] drm/i915/display: handle hdmi connector init failures,
+ and no HDMI/DP cases
+Date: Fri, 13 Dec 2024 16:15:52 +0200
+Message-Id: <cover.1734099220.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] drm/amdgpu: Use device wedged event
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Raag Jadav <raag.jadav@intel.com>, airlied@gmail.com, simona@ffwll.ch,
- lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
- jani.nikula@linux.intel.com, andriy.shevchenko@linux.intel.com,
- lina@asahilina.net, michal.wajdeczko@intel.com,
- "Sharma, Shashank" <Shashank.Sharma@amd.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- himal.prasad.ghimiray@intel.com, aravind.iddamsetty@linux.intel.com,
- anshuman.gupta@intel.com, alexander.deucher@amd.com,
- amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com
-References: <20241212190909.28559-1-andrealmeid@igalia.com>
- <20241212190909.28559-2-andrealmeid@igalia.com>
- <d9f2583d-da79-4532-90fc-85028e977ceb@amd.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>
-In-Reply-To: <d9f2583d-da79-4532-90fc-85028e977ceb@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,34 +71,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Christian,
+Another round of [1], adding patch 1 and slightly modifying patch 4.
 
-Em 13/12/2024 04:34, Christian König escreveu:
-> Am 12.12.24 um 20:09 schrieb André Almeida:
->> Use DRM's device wedged event to notify userspace that a reset had
->> happened. For now, only use `none` method meant for telemetry
->> capture.
->>
->> Signed-off-by: André Almeida <andrealmeid@igalia.com>
->> ---
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 3 +++
->>   1 file changed, 3 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/ 
->> drm/amd/amdgpu/amdgpu_device.c
->> index 96316111300a..19e1a5493778 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->> @@ -6057,6 +6057,9 @@ int amdgpu_device_gpu_recover(struct 
->> amdgpu_device *adev,
->>           dev_info(adev->dev, "GPU reset end with ret = %d\n", r);
->>       atomic_set(&adev->reset_domain->reset_res, r);
->> +
->> +    drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE);
-> 
-> That looks really good in general. I would just make the 
-> DRM_WEDGE_RECOVERY_NONE depend on the value of "r".
-> 
+There are cases where we want to gracefully handle but *not* propagate
+errors from HDMI connector init, because we don't want to fail the
+entire DDI init, as the DP could still be functional.
 
-Why depend or `r`? A reset was triggered anyway, regardless of the 
-success of it, shouldn't we tell userspace?
+BR,
+Jani.
+
+[1] https://lore.kernel.org/r/cover.1733324735.git.jani.nikula@intel.com
+
+Jani Nikula (6):
+  drm/i915/ddi: change intel_ddi_init_{dp,hdmi}_connector() return type
+  drm/i915/hdmi: propagate errors from intel_hdmi_init_connector()
+  drm/i915/hdmi: add error handling in g4x_hdmi_init()
+  drm/i915/ddi: gracefully handle errors from
+    intel_ddi_init_hdmi_connector()
+  drm/i915/display: add intel_encoder_is_hdmi()
+  drm/i915/ddi: only call shutdown hooks for valid encoders
+
+ drivers/gpu/drm/i915/display/g4x_hdmi.c       | 35 ++++++++++++------
+ drivers/gpu/drm/i915/display/g4x_hdmi.h       |  5 ++-
+ drivers/gpu/drm/i915/display/intel_ddi.c      | 37 ++++++++++++-------
+ .../drm/i915/display/intel_display_types.h    | 13 +++++++
+ drivers/gpu/drm/i915/display/intel_hdmi.c     | 10 +++--
+ drivers/gpu/drm/i915/display/intel_hdmi.h     |  2 +-
+ 6 files changed, 69 insertions(+), 33 deletions(-)
+
+-- 
+2.39.5
+
