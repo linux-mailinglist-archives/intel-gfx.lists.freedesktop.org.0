@@ -2,56 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41D009F0EDD
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2024 15:16:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 27ECA9F0EDF
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2024 15:16:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DFF0210F03C;
-	Fri, 13 Dec 2024 14:16:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C754010F03D;
+	Fri, 13 Dec 2024 14:16:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jJgNw9s6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lb4t0ju5";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25CF110F036;
- Fri, 13 Dec 2024 14:16:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E8C8010F03B;
+ Fri, 13 Dec 2024 14:16:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734099390; x=1765635390;
+ t=1734099395; x=1765635395;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ZB42c8ARdo0vQZjzWOIypJ6LS1HPbp9P/zLADFJ1G7w=;
- b=jJgNw9s6qpa22wI62z3ib9J2aqzd6SG0x6lRMpCwpELFtzCJRCWwQz14
- uTcSp91hvo0XhmaSDUoVeD8rAe5p+T0/zm4JtncPqB0Vmnf7TZmbNFOp4
- qJf8a7UbQd+eYA9HGY8l5NP5XIkh54YLyNPjitHWr3iCaijvB9feLL1qx
- osOlDoDJlWF0gN8CrOzY/28VeAZ1Tuy4zfA8dicsZUHJt4BgnbK5drBB5
- lrRg9jqz8yR04z3Hb9hb/c+KsaZOysFjxjbtpGueiie4dNQNMT12G9AAM
- DwhO+VDxaWQcVQztkXpXyhhih/TXfiN+WskAKngg79XFPtHH3P44gW98M Q==;
-X-CSE-ConnectionGUID: rGJj+eazSUOvcBbp1CPGPg==
-X-CSE-MsgGUID: ZHx7BGfYQQuq9beHCI4zgg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11285"; a="34689425"
-X-IronPort-AV: E=Sophos;i="6.12,231,1728975600"; d="scan'208";a="34689425"
+ bh=cWTg7di6sfu/w3uxX1pnJp/dvWXgqkxL8fikXGGsOtA=;
+ b=lb4t0ju5kOYo5v40ut5wpjDfYCpTOmz0PkRUitGBVUyh59F7wfJV96sU
+ //uFORF+2oIxhil0ux0Aj1/390jjR2kJGGroo2r8NOIVuQlFJHFGrItyU
+ vlTSOY0wmrYKrMo0wE6NLg6kIx/bN4SYkEN/UXuAdjPMTFHmirbWEyOPe
+ h2rxXGVNXPcgc5Jgs6D/l+02kdBmWxRvu4YS4BT95xR59FWiwNSzbG/lM
+ skcSiSmT7sWMJBinVxN0DN4TrNj7+kyCK/t7y9RBboNbXpVoXflfQlgfz
+ M77U/ZXFmzeOV6bHt5KDNcJ8+RbIWFSSR7QCcWmep9Jq3jw+74jn+WboT A==;
+X-CSE-ConnectionGUID: EJAwUqiBTyWhESW8VSAoCg==
+X-CSE-MsgGUID: 6KP2CWDLTDyzK2Vdtdm5pQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11285"; a="34689432"
+X-IronPort-AV: E=Sophos;i="6.12,231,1728975600"; d="scan'208";a="34689432"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2024 06:16:30 -0800
-X-CSE-ConnectionGUID: ji0pB0TtSMeWJ+R6faXK2A==
-X-CSE-MsgGUID: xTU8V2r+R9ibdekJOmk/tg==
+ 13 Dec 2024 06:16:35 -0800
+X-CSE-ConnectionGUID: kZJX/Ai8RxeXDdpOi+OXvA==
+X-CSE-MsgGUID: /xqc8RLdSUiY+u8wbPG79A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="133916265"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="133916276"
 Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.159])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2024 06:16:27 -0800
+ 13 Dec 2024 06:16:33 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, Sergey Senozhatsky <senozhatsky@chromium.org>,
  Ville Syrjala <ville.syrjala@linux.intel.com>,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH v3 4/6] drm/i915/ddi: gracefully handle errors from
- intel_ddi_init_hdmi_connector()
-Date: Fri, 13 Dec 2024 16:15:56 +0200
-Message-Id: <e6f582986722bf3187ddceb8e31dfd9fa5fd1d66.1734099220.git.jani.nikula@intel.com>
+Subject: [PATCH v3 5/6] drm/i915/display: add intel_encoder_is_hdmi()
+Date: Fri, 13 Dec 2024 16:15:57 +0200
+Message-Id: <228152082797a1eb252980c0928566953c2b4859.1734099220.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1734099220.git.jani.nikula@intel.com>
 References: <cover.1734099220.git.jani.nikula@intel.com>
@@ -73,45 +72,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Errors from intel_ddi_init_hdmi_connector() can just mean "there's no
-HDMI" while we'll still want to continue with DP only. Handle the errors
-gracefully, but don't propagate. Clear the hdmi_reg which is used as a
-proxy to indicate the HDMI is initialized.
-
-v2: Gracefully handle but do not propagate
+Similar to intel_encoder_is_dp() and friends.
 
 Cc: Sergey Senozhatsky <senozhatsky@chromium.org>
 Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
-Reported-and-tested-by: Sergey Senozhatsky <senozhatsky@chromium.org>
-Closes: https://lore.kernel.org/r/20241031105145.2140590-1-senozhatsky@chromium.org
-Reviewed-by: Sergey Senozhatsky <senozhatsky@chromium.org> # v1
+Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c | 11 ++++++++++-
- 1 file changed, 10 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_display_types.h | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 21277cf8afef..2c4308506435 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -4757,7 +4757,16 @@ static int intel_ddi_init_hdmi_connector(struct intel_digital_port *dig_port)
- 		return -ENOMEM;
- 
- 	dig_port->hdmi.hdmi_reg = DDI_BUF_CTL(port);
--	intel_hdmi_init_connector(dig_port, connector);
-+
-+	if (!intel_hdmi_init_connector(dig_port, connector)) {
-+		/*
-+		 * HDMI connector init failures may just mean conflicting DDC
-+		 * pins or not having enough lanes. Handle them gracefully, but
-+		 * don't fail the entire DDI init.
-+		 */
-+		dig_port->hdmi.hdmi_reg = INVALID_MMIO_REG;
-+		kfree(connector);
-+	}
- 
- 	return 0;
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index b71416ff5b7f..62449b27ee40 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1967,6 +1967,19 @@ static inline bool intel_encoder_is_dp(struct intel_encoder *encoder)
+ 	}
  }
+ 
++static inline bool intel_encoder_is_hdmi(struct intel_encoder *encoder)
++{
++	switch (encoder->type) {
++	case INTEL_OUTPUT_HDMI:
++		return true;
++	case INTEL_OUTPUT_DDI:
++		/* See if the HDMI encoder is valid. */
++		return i915_mmio_reg_valid(enc_to_intel_hdmi(encoder)->hdmi_reg);
++	default:
++		return false;
++	}
++}
++
+ static inline struct intel_lspcon *
+ enc_to_intel_lspcon(struct intel_encoder *encoder)
+ {
 -- 
 2.39.5
 
