@@ -2,103 +2,87 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 274339F05C1
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2024 08:48:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 337409F05F8
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2024 09:05:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 148D610EF23;
-	Fri, 13 Dec 2024 07:48:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C024010EF34;
+	Fri, 13 Dec 2024 08:05:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Lmef4FYa";
+	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="Qrny3f+i";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 99B3810EF1B;
- Fri, 13 Dec 2024 07:48:12 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 5FEC65C6B1B;
- Fri, 13 Dec 2024 07:47:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91C71C4CED0;
- Fri, 13 Dec 2024 07:48:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1734076090;
- bh=4ephsHzcqtUFjd28fgyOUVnfVqA7f3eQQkM+XWxQ+LQ=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=Lmef4FYa3aYU7MmyGYo7DBM/2C+IeNfEtm5+AzDMtzenVnxTVnar/4rDJm0GO7bGu
- w+9Ju3lYXzRx9LMKkp9+exAbjgFM7lji81aFSnSAWvNvGuPTCZdQLlkL8pa2woQsLV
- 8ZPmxxq8Or/dIS3wg9eTyMQUVRPTr9YP/xISr5bJwMuaRwU343Yh96qWkupwFVqCEc
- Ceb3W8U/P/o+ihOcPIZOMPlIp/hSF3333fl6ORPlQ3pxH9PY3V5LmZHpV21PSFa5qB
- E2aDD4MEu4Wi3wxA+v69xkEfOAoobRZxOzkIE7IfdmCrufWD+l/N9PWzpxj/7KfU1V
- bVLVo9PT2AQ/w==
-Message-ID: <afcdadd9-07c8-4dcf-be12-7cdad1984b33@kernel.org>
-Date: Fri, 13 Dec 2024 08:48:02 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/7] drivers: Repace get_task_comm() with %pTN
-To: Yafang Shao <laoar.shao@gmail.com>, torvalds@linux-foundation.org,
- akpm@linux-foundation.org
-Cc: linux-kernel@vger.kernel.org, linux-security-module@vger.kernel.org,
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com
+ [IPv6:2a00:1450:4864:20::62d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C5E1E10EF34
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2024 08:05:51 +0000 (UTC)
+Received: by mail-ej1-x62d.google.com with SMTP id
+ a640c23a62f3a-aa1e6ecd353so193820666b.1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2024 00:05:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=suse.com; s=google; t=1734077150; x=1734681950; darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=lgwYE8AkKohlShjZLrwteb4c+nimfkWQZUupQYO5W68=;
+ b=Qrny3f+iKFiqDyOb/8dDJ/AFdJ7F8OYMFNw2GC6HVEqTIJM3VTdLX9bGKMBKLoltdF
+ hBMonnBwplrMomw1zNZkEKAFP82A+y96HZqfeI4J2ma5ihdgGyAgemaFAWCzqEYfnMJl
+ 20pO4s+01y4c5jKLudAK1nMmdAf/sbk3fOJTz0cFDVhySSp+ivGX2NJNHMpXTBqUjHuK
+ R3GlnQtW/6YLAvvZ2uqq9ZM5U2K0JujaFDgKdF8PKzpiiOi6ma6kJhjgDwUGnSLSIY+S
+ XkrEk07Aiug2a76S9/uK/kj5JJFU1ZWFxw2Zjen+9PFLJkUvR4HgHCYs3kUZRzyX707K
+ Q7yw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1734077150; x=1734681950;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=lgwYE8AkKohlShjZLrwteb4c+nimfkWQZUupQYO5W68=;
+ b=cZvXi8JA34EKNRzOrR1kBCgXCNH7iP4W8rk3LSQVTHfm/EzLzYVcZ/GSPLONr6Epba
+ /h8vefY2pE0/seWGumRCgC5iYV+x1J0nFL34g14Ahv6XpPRvvPCM40534X9jH+Bq71iO
+ LzfJI0zfD52upiCv6aMBoNJyZu+0tGlACRln3ahD3OIhCy7yWyG/NtlW+stNOxIhl8np
+ 7z8nQe7bxua4udIG3X2sjBDhtcHeY2/OEz+njtdhCgTYawFPeTQyqBsu8yloJlCMAlqg
+ rHSQhjZVImq76WD1rBnYfjuLHpZR51TiDglXBJlTfxv0wrVz0ziT9YGKmbYJx12IRZMB
+ UXwg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCX2H1kXid2kp75kipTYkbU+/EvBdGjV7zorqeHr41TedwrZjaDBihV3My9PXAjg2QWHdxMRCrl8YXo=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxftxXMQFF4+C2sr+LASj00rEDkDdtIme+ty9FMENN8Kpsqzr2H
+ lWVwpXflRcUw69LCFWJVa8wvHUse7UfogcngvS7+MeaWkgBCn4gzWZPlXGZR86M=
+X-Gm-Gg: ASbGncuarHSs0wSQsHvjL302XeSmtwYtVzzrrfggT8mCL6Sx8I8P5pkJ+mdJUqwmCto
+ ffcDZEMF1E71U/dDBIsjuZ19T5PfAsyQgF/UtbFkwFLodPzBNACCFq6oYnPHUXMA6JEhmNAx5a8
+ TxHpum7MDGaIOSQJAY0Msaa2WCFNt8NkTy5x/fhZv/j9W0zz1wrv2j3iLmeV1Sefd/o+QPUt9A7
+ p7S+joy9722zy2yHmBMEzA08m3yugV+JTsv6UzqVd4XUSHSwB+6KTM+DA==
+X-Google-Smtp-Source: AGHT+IEBU3KaEVduDDJFmDiYKp43p4o//mXEFM4u7vCzKG7h47JoeDZ5E1DdrcH3VOsdWE+nfKrYuQ==
+X-Received: by 2002:a05:6402:4584:b0:5d0:ea4f:972f with SMTP id
+ 4fb4d7f45d1cf-5d63c318beemr3590523a12.8.1734077150211; 
+ Fri, 13 Dec 2024 00:05:50 -0800 (PST)
+Received: from pathway.suse.cz ([176.114.240.50])
+ by smtp.gmail.com with ESMTPSA id
+ 4fb4d7f45d1cf-5d3ef026a41sm7507030a12.15.2024.12.13.00.05.48
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 13 Dec 2024 00:05:49 -0800 (PST)
+Date: Fri, 13 Dec 2024 09:05:47 +0100
+From: Petr Mladek <pmladek@suse.com>
+To: Yafang Shao <laoar.shao@gmail.com>
+Cc: torvalds@linux-foundation.org, akpm@linux-foundation.org,
+ linux-kernel@vger.kernel.org, linux-security-module@vger.kernel.org,
  x86@kernel.org, linux-snps-arc@lists.infradead.org,
  linux-wireless@vger.kernel.org, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org, ocfs2-devel@lists.linux.dev,
- Ofir Bitton <obitton@habana.ai>, Oded Gabbay <ogabbay@kernel.org>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Karol Herbst <kherbst@redhat.com>,
- Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@redhat.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+ Steven Rostedt <rostedt@goodmis.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ Sergey Senozhatsky <senozhatsky@chromium.org>,
+ Andy Whitcroft <apw@canonical.com>, Joe Perches <joe@perches.com>,
+ Dwaipayan Ray <dwaipayanray1@gmail.com>,
+ Lukas Bulwahn <lukas.bulwahn@gmail.com>
+Subject: Re: [PATCH 1/7] vsprintf: Add %pTN to print task name
+Message-ID: <Z1vq2-V7vB5KhBR9@pathway.suse.cz>
 References: <20241213054610.55843-1-laoar.shao@gmail.com>
- <20241213054610.55843-7-laoar.shao@gmail.com>
-Content-Language: en-US
-From: Jiri Slaby <jirislaby@kernel.org>
-Autocrypt: addr=jirislaby@kernel.org; keydata=
- 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
-In-Reply-To: <20241213054610.55843-7-laoar.shao@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+ <20241213054610.55843-2-laoar.shao@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241213054610.55843-2-laoar.shao@gmail.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,37 +98,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 13. 12. 24, 6:46, Yafang Shao wrote:
-> Since task->comm is guaranteed to be NUL-terminated, we can print it
-> directly without the need to copy it into a separate buffer. This
-> simplifies the code and avoids unnecessary operations.
-> 
-> Signed-off-by: Yafang Shao <laoar.shao@gmail.com>
-> Cc: Ofir Bitton <obitton@habana.ai>
-> Cc: Oded Gabbay <ogabbay@kernel.org>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Tvrtko Ursulin <tursulin@ursulin.net>
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: Simona Vetter <simona@ffwll.ch>
-> Cc: Karol Herbst <kherbst@redhat.com>
-> Cc: Lyude Paul <lyude@redhat.com>
-> Cc: Danilo Krummrich <dakr@redhat.com>
-> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Cc: Jiri Slaby <jirislaby@kernel.org>
-> ---
->   drivers/accel/habanalabs/common/context.c         |  5 ++---
->   .../accel/habanalabs/common/habanalabs_ioctl.c    | 15 +++++----------
->   .../gpu/drm/i915/display/intel_display_driver.c   | 10 ++++------
->   drivers/gpu/drm/nouveau/nouveau_chan.c            |  4 +---
->   drivers/gpu/drm/nouveau/nouveau_drm.c             |  7 +++----
->   drivers/tty/tty_io.c                              |  5 ++---
+On Fri 2024-12-13 13:46:04, Yafang Shao wrote:
+> Since the task->comm is guaranteed to be NUL-ternimated, we can print it
+> directly. Add a new vsnprintf format specifier "%pTN" to print task comm,
+> where 'p' represents the task Pointer, 'T' stands for Task, and 'N' denots
+> Name. With this abstraction, the user no longer needs to care about
+> retrieving task name.
 
-FOr tty:
-Reviewed-by: Jiri Slaby <jirislaby@kernel.org>
+What is the advantage, please?
 
-thanks,
--- 
-js
-suse labs
+Honestly, I believe that the meaning of
+
+	printk("%s\n", task->comm);
+
+is much more clear than using a cryptic %pXYZ modifier:
+
+	printk("%pTN\n", task);
+
+
+The %pXYZ modifiers makes sense only when the formatting of the printed
+information needs some processing. But this is a plain string.
+IMHO, it is not worth it. In fact, I believe that it is a
+counter productive.
+
+Best Regards,
+Petr
