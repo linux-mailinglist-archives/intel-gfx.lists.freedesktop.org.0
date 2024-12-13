@@ -1,61 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54CE99F09D7
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2024 11:41:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7FA89F09D8
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2024 11:41:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E784510EFB3;
-	Fri, 13 Dec 2024 10:41:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6BC4F10EFAF;
+	Fri, 13 Dec 2024 10:41:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y/enavd8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hfDePfKw";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 03C3810EFB2;
- Fri, 13 Dec 2024 10:41:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C3E8E10EFAF;
+ Fri, 13 Dec 2024 10:41:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734086477; x=1765622477;
+ t=1734086485; x=1765622485;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=gIboTozBHdlHIwpTuQfQrpZglWmW/8qgkx/jFJIProQ=;
- b=Y/enavd8zHfbmvDKrR1E57UOmCKGQtmno2+d/UyqNrdcOQhg5TKtGz9q
- 22RAwkRZEueqcAJ+eoZLUORpgRQ7F5yZjfkcX+KVZKOFAO6ba4PwerdsN
- Noh4ubYabowskbN2/Q5ZQkBCjWclJgCz2+1ez9PrjJvWYqxlqYK+Yrer9
- sv4pDr3s1StAnErOKn6un84EhCEJKpSaCP6ikCxKxycSCDwba97YVJL6W
- chEfYqTrtRoScLbXeaPMjtAQX4WFsTwvSy7E/K5sC2Aj76IvjVW8FkPmP
- t3xnyj4GEefh0sShBK+fP/mE92ByLftnWQjLixqNWT59wFcOO6ubF0Pe4 Q==;
-X-CSE-ConnectionGUID: JyJnMkP/Sd+KdRG6oLxc+g==
-X-CSE-MsgGUID: fzc2xsAbRU6tAJZCFYuWLg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="38470612"
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="38470612"
+ bh=qpXulv7KoVOgGPGcdxRQu6kjqNm7bmgfSFCFVt/q+ZQ=;
+ b=hfDePfKwZX4WFKKWJ56OxReVwjrze68Rof/3TPGIpxwFLS+OvLenM0+P
+ zEEjxZenkJEIDHjnBwJD+mNqxxE6Spuf5GpXrSGVTRg46ztPlJiOWIN61
+ 0oNZ3R9f5guJw54vVazrAZllJUTMFM+QuMrKlz9o0L6Gg7OWzJpGIcuT8
+ ikvTjMkHBvS350T+b3XZEOG3zJTVBQgV2UC5mIzfvTRw03FG28b6nnAe0
+ tpSw+Cb7cg7eahD7GWFfYq9jnePzCOfTQ5+SDL/nFFeFHCOV72vrsPh+9
+ WFNUqkF/OBD1r1fp4SwdefMBa8rlKHBnaiFJ/jEukO5+NimQOh+EkrStb w==;
+X-CSE-ConnectionGUID: e4zE32YFRNydfVeBiWnuyg==
+X-CSE-MsgGUID: H368gogkSOWkjdvLWkaPvA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="38470617"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="38470617"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2024 02:41:17 -0800
-X-CSE-ConnectionGUID: grgnvMdrR3OGJbNPh/7j+A==
-X-CSE-MsgGUID: PNK2nrOhRki5Wbq+FDiYsw==
+ 13 Dec 2024 02:41:24 -0800
+X-CSE-ConnectionGUID: IRNVzHJIRQCY3b5N1TdKAg==
+X-CSE-MsgGUID: d9BkWLtTTu24GkI9gRXarQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="119763404"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="119763451"
 Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.159])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2024 02:41:14 -0800
+ 13 Dec 2024 02:41:22 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, imre.deak@intel.com, ville.syrjala@linux.intel.com,
  nagavenkata.srikanth.v@intel.com
-Subject: [RFC v0 12/13] drm/i915/ddi: start distinguishing 128b/132b SST and
- MST at state readout
-Date: Fri, 13 Dec 2024 12:39:56 +0200
-Message-Id: <11b115b4f4f29bdaecbd1010c6d74f17d73df47b.1734085515.git.jani.nikula@intel.com>
+Subject: [RFC v0 13/13] drm/i915/dp: compute config for 128b/132b SST w/o DSC
+Date: Fri, 13 Dec 2024 12:39:57 +0200
+Message-Id: <9264e77e71459569d83cd8dc9094500fd2ae0fa3.1734085515.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1734085515.git.jani.nikula@intel.com>
 References: <cover.1734085515.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -73,98 +71,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We'll want to distinguish 128b/132b SST and MST modes at state
-readout. There's a catch, though. From the hardware perspective,
-128b/132b SST and MST programming are pretty much the same. And we can't
-really ask the sink at this point.
+Enable basic 128b/132b SST functionality without compression. Reuse
+intel_dp_mtp_tu_compute_config() to figure out the TU after we've
+determined we need to use an UHBR rate.
 
-If we have more than one transcoder in 128b/132b mode associated with
-the port, we can safely assume it's MST. But for MST with only a single
-stream enabled, we are pretty much out of luck. Let's fall back to
-looking at the software state, i.e. intel_dp->is_mst. It should be fine
-for the state checker, but for hardware takeover at probe, we'll have to
-trust the GOP has only enabled SST.
+It's slightly complicated as the M/N computation is done in different
+places in MST and SST paths, so we need to avoid trashing the values
+later for UHBR.
 
-TODO: Not sure how this *or* our current code handles 128b/132b enabled
-by GOP.
+If uncompressed UHBR fails, we drop to compressed non-UHBR, which is
+quite likely to fail as well. We still lack 128b/132b SST+DSC.
 
-Cc: Imre Deak <imre.deak@intel.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c | 29 +++++++++++++++++++-----
- 1 file changed, 23 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 25 +++++++++++++++++--------
+ 1 file changed, 17 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 5f1528179038..21dba8735085 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -788,7 +788,7 @@ static void intel_ddi_get_encoder_pipes(struct intel_encoder *encoder,
- 	intel_wakeref_t wakeref;
- 	enum pipe p;
- 	u32 tmp;
--	u8 mst_pipe_mask;
-+	u8 mst_pipe_mask = 0, dp128b132b_pipe_mask = 0;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 9b930622b8ce..68ce9765eaf2 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -2519,8 +2519,8 @@ intel_dp_compute_config_limits(struct intel_dp *intel_dp,
+ 	limits->min_rate = intel_dp_min_link_rate(intel_dp);
+ 	limits->max_rate = intel_dp_max_link_rate(intel_dp);
  
- 	*pipe_mask = 0;
- 	*is_dp_mst = false;
-@@ -825,7 +825,6 @@ static void intel_ddi_get_encoder_pipes(struct intel_encoder *encoder,
- 		goto out;
+-	/* FIXME 128b/132b SST support missing */
+-	if (!is_mst)
++	/* FIXME 128b/132b SST+DSC support missing */
++	if (!is_mst && dsc)
+ 		limits->max_rate = min(limits->max_rate, 810000);
+ 	limits->min_rate = min(limits->min_rate, limits->max_rate);
+ 
+@@ -2634,6 +2634,13 @@ intel_dp_compute_link_config(struct intel_encoder *encoder,
+ 		 */
+ 		ret = intel_dp_compute_link_config_wide(intel_dp, pipe_config,
+ 							conn_state, &limits);
++		if (!ret && intel_dp_is_uhbr(pipe_config))
++			ret = intel_dp_mtp_tu_compute_config(intel_dp,
++							     pipe_config,
++							     pipe_config->pipe_bpp,
++							     pipe_config->pipe_bpp,
++							     conn_state,
++							     0, false);
+ 		if (ret)
+ 			dsc_needed = true;
  	}
+@@ -3171,12 +3178,14 @@ intel_dp_compute_config(struct intel_encoder *encoder,
  
--	mst_pipe_mask = 0;
- 	for_each_pipe(dev_priv, p) {
- 		enum transcoder cpu_transcoder = (enum transcoder)p;
- 		u32 port_mask, ddi_select, ddi_mode;
-@@ -854,9 +853,10 @@ static void intel_ddi_get_encoder_pipes(struct intel_encoder *encoder,
+ 	intel_dp_audio_compute_config(encoder, pipe_config, conn_state);
  
- 		ddi_mode = tmp & TRANS_DDI_MODE_SELECT_MASK;
- 
--		if (ddi_mode == TRANS_DDI_MODE_SELECT_DP_MST ||
--		    (ddi_mode == TRANS_DDI_MODE_SELECT_FDI_OR_128B132B && HAS_DP20(display)))
-+		if (ddi_mode == TRANS_DDI_MODE_SELECT_DP_MST)
- 			mst_pipe_mask |= BIT(p);
-+		else if (ddi_mode == TRANS_DDI_MODE_SELECT_FDI_OR_128B132B && HAS_DP20(display))
-+			dp128b132b_pipe_mask |= BIT(p);
- 
- 		*pipe_mask |= BIT(p);
- 	}
-@@ -866,6 +866,23 @@ static void intel_ddi_get_encoder_pipes(struct intel_encoder *encoder,
- 			    "No pipe for [ENCODER:%d:%s] found\n",
- 			    encoder->base.base.id, encoder->base.name);
- 
-+	if (!mst_pipe_mask && dp128b132b_pipe_mask) {
-+		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-+
-+		/*
-+		 * If we don't have 8b/10b MST, but have more than one
-+		 * transcoder in 128b/132b mode, we know it must be 128b/132b
-+		 * MST.
-+		 *
-+		 * Otherwise, we fall back to checking the current MST
-+		 * state. It's not accurate for hardware takeover at probe, but
-+		 * we don't expect MST to have been enabled at that point, and
-+		 * can assume it's SST.
-+		 */
-+		if (hweight8(dp128b132b_pipe_mask) > 1 || intel_dp->is_mst)
-+			mst_pipe_mask = dp128b132b_pipe_mask;
+-	intel_link_compute_m_n(link_bpp_x16,
+-			       pipe_config->lane_count,
+-			       adjusted_mode->crtc_clock,
+-			       pipe_config->port_clock,
+-			       intel_dp_bw_fec_overhead(pipe_config->fec_enable),
+-			       &pipe_config->dp_m_n);
++	if (!intel_dp_is_uhbr(pipe_config)) {
++		intel_link_compute_m_n(link_bpp_x16,
++				       pipe_config->lane_count,
++				       adjusted_mode->crtc_clock,
++				       pipe_config->port_clock,
++				       intel_dp_bw_fec_overhead(pipe_config->fec_enable),
++				       &pipe_config->dp_m_n);
 +	}
-+
- 	if (!mst_pipe_mask && hweight8(*pipe_mask) > 1) {
- 		drm_dbg_kms(&dev_priv->drm,
- 			    "Multiple pipes for [ENCODER:%d:%s] (pipe_mask %02x)\n",
-@@ -876,9 +893,9 @@ static void intel_ddi_get_encoder_pipes(struct intel_encoder *encoder,
  
- 	if (mst_pipe_mask && mst_pipe_mask != *pipe_mask)
- 		drm_dbg_kms(&dev_priv->drm,
--			    "Conflicting MST and non-MST state for [ENCODER:%d:%s] (pipe_mask %02x mst_pipe_mask %02x)\n",
-+			    "Conflicting MST and non-MST state for [ENCODER:%d:%s] (pipe masks: all %02x, MST %02x, 128b/132b %02x)\n",
- 			    encoder->base.base.id, encoder->base.name,
--			    *pipe_mask, mst_pipe_mask);
-+			    *pipe_mask, mst_pipe_mask, dp128b132b_pipe_mask);
- 	else
- 		*is_dp_mst = mst_pipe_mask;
- 
+ 	/* FIXME: abstract this better */
+ 	if (pipe_config->splitter.enable)
 -- 
 2.39.5
 
