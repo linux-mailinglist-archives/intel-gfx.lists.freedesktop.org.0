@@ -1,55 +1,82 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B113B9F0E38
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2024 15:02:48 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACF729F0E3B
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2024 15:02:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F29EE10F01E;
-	Fri, 13 Dec 2024 14:02:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F14710F01C;
+	Fri, 13 Dec 2024 14:02:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Zw9E7hsA";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="FM/iQDg7";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B48FE10E647;
- Thu, 12 Dec 2024 19:09:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=VpELTsB7bIQQvBcg9aNtXqozy4PQPmxVaPVIZ5jVbMI=; b=Zw9E7hsAcTVnooq7GHNVoK0DSN
- CxL/2FR6+MV/XAgkO6WXNqjTXFHbfaTDcUJ+X7EmZn0WO7wWZ7KKKCu3gKMJAB0Ghx6SUJxCmLjJ7
- X/MoNdQK0NM2B4kMfrbsxeEUGUemzwoDZEnMHl1eRNcR2KdREHrcu20SZVTGPXgdPjYP5IuBttxFf
- bAg+1UTxj2klK5Vw/YwfpJLlui5dxz0JX9PafQqeRArwKYk8aTPziwV1mP0VP4O4DZI+Xl2eIIS8S
- FXGweGXMM+V6WVaXnYRWb3X1ogpb+F3j6UMQqwdYMuc8xbPA/YRvw5kho92DFNrKCiemrUlihLjKo
- e9TGG7sw==;
-Received: from [179.193.1.214] (helo=localhost.localdomain)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1tLoYt-002MeQ-Bd; Thu, 12 Dec 2024 20:09:23 +0100
-From: =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
-To: Raag Jadav <raag.jadav@intel.com>, airlied@gmail.com, simona@ffwll.ch,
- lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
- jani.nikula@linux.intel.com, andriy.shevchenko@linux.intel.com,
- lina@asahilina.net, michal.wajdeczko@intel.com, christian.koenig@amd.com
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- himal.prasad.ghimiray@intel.com, aravind.iddamsetty@linux.intel.com,
- anshuman.gupta@intel.com, alexander.deucher@amd.com,
- andrealmeid@igalia.com, amd-gfx@lists.freedesktop.org,
- kernel-dev@igalia.com
-Subject: [PATCH 1/1] drm/amdgpu: Use device wedged event
-Date: Thu, 12 Dec 2024 16:09:09 -0300
-Message-ID: <20241212190909.28559-2-andrealmeid@igalia.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20241212190909.28559-1-andrealmeid@igalia.com>
-References: <20241212190909.28559-1-andrealmeid@igalia.com>
+Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com
+ [IPv6:2607:f8b0:4864:20::636])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 428E110E074;
+ Fri, 13 Dec 2024 05:46:44 +0000 (UTC)
+Received: by mail-pl1-x636.google.com with SMTP id
+ d9443c01a7336-2156e078563so10800195ad.2; 
+ Thu, 12 Dec 2024 21:46:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1734068804; x=1734673604; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=9nDBDHl8OkOEbonP7/O/xeWGAuqOftf+4IMvf+gS1cw=;
+ b=FM/iQDg7KC4a/755IIO7QtW7lGZizb9Ij12tusXglECWpyQ9nvOTMHAcDQwxPnjnYo
+ eTsmAPsuz79GW2gDJB31OVGRJSLIvIdoV//6LhZKavKhZUdkvG49eXuYeH7FM/LeRfjP
+ hpHU4RxyoJvFZIZ5WFJINR8gs5wgEdI874DfumKMva7Hez/g9dQjQvSD0GxM57ZqiRUn
+ Ze68Q8GAR8BO+Otz3EB8MyMegI37Yf180KgHlGvecTr7RT6Z/zQ5ifdva8QEAGqA9rxV
+ 5k8tF13tb13nM2JEThwqXq215k7y81rAhUluLZI9l+xXAdlzqxQuOL4CGYB6RCQ+9rtm
+ R0aw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1734068804; x=1734673604;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=9nDBDHl8OkOEbonP7/O/xeWGAuqOftf+4IMvf+gS1cw=;
+ b=mFWDB/eHGMLYTkaKvVKZ60/txoFkAnA43c4hJyKomRRG88tb4QvFogw4OsBvUIi5Vu
+ QOA8BiD/ML7hvLNsYYv1y76T6dbHHOGIsgr8EpdSQiUciT9fKaT7iu6CdSdosuYtPkw5
+ 7ZsJ9p1VmmQ9jEF20YLao+0dw8dSsHzdBGVWM+PFvLfVH4ZGFOSTwuBPh2FjbEE8/CZH
+ 2lsLwyvnIkJbBT/TAQhitGsdmuooeqm5zWKs2hTprneecYU12Y/AULYcgNn9J+wj7emC
+ uJ8yJfX211t7igSyOVZyJ0JEVpbKBTaILhPtggFQygO3LlvE+qtzr3K7CBAttlu25Dwi
+ bZHg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVuNV/C7KDZ61vdMumNzJGhNjpMAlyZS/AhlZd4MRE3HobeUI7E6xaybrgbdXf0oeOuAQfTE9O7Q8o=@lists.freedesktop.org,
+ AJvYcCWS6LZqKveP7bsekch4g5LppcXizEU5XoTm8x26xqOm74sc+ymQcqpR+ZsPSIK/l9G4O/r2a9TBwEw=@lists.freedesktop.org,
+ AJvYcCX1nmu/3KwyscWOAguGfYweWt8GgaEE63J/Mv4yirjKB47QZeYaOYR6633KAxKNpvUJ8FCfecaQFZbl@lists.freedesktop.org,
+ AJvYcCXHM+EdtG+QH1Y0pzz6C3N1W4Ht+sgm3K+k+QTFPLB6MDAhZbO6XMyZQIrMA7ohfrnIHiXdwRg/Vw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyuXR864N1lZGhEEgmYBdzJda9RMNp1aqTsCT+X4sCmUoEV9qJ5
+ mkcfAIkMKDbxUYZyAKXwTTN5LjhLbRkGq+1bDN8+prts/1ZJn/MaLsk0ziHZoGk=
+X-Gm-Gg: ASbGncsKUZK8Aboj2I69p6dCvLNo9vla2jLf07xDz2WOGJ/DMCfLjVFYERktOyE4Vt1
+ 1LBpFoIqYz9PoW40OY3QFSQXU63CBL4fUA0xOL4s9NUczjx8krGa34kIlIGEBi9BSVyBFaPVoih
+ 2BlZo8F85exj9cvo3MyGc4T9ZAqILbfUCdV85UypY+nX5lRCky69tY/cqE76hth3D9RaLKumHfv
+ m0Ct3JNbdWgQGRPvsKjZrRxqhOgspaV4r49ieGReupJvjLjjan/a52yy442Ls55tVTWhxXfL+6R
+ hsT2R6s=
+X-Google-Smtp-Source: AGHT+IHVKByQs8aQw9nFW65MyCdke95tovLrIe/teYLFc9u83Eik6guIs9oKZyvf6Ts5Rmy4R5h3SA==
+X-Received: by 2002:a17:902:ccd2:b0:216:26f1:530b with SMTP id
+ d9443c01a7336-21892a70579mr20915305ad.51.1734068803702; 
+ Thu, 12 Dec 2024 21:46:43 -0800 (PST)
+Received: from localhost.localdomain ([180.159.118.224])
+ by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-216483dd292sm82564985ad.226.2024.12.12.21.46.38
+ (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+ Thu, 12 Dec 2024 21:46:43 -0800 (PST)
+From: Yafang Shao <laoar.shao@gmail.com>
+To: torvalds@linux-foundation.org,
+	akpm@linux-foundation.org
+Cc: linux-kernel@vger.kernel.org, linux-security-module@vger.kernel.org,
+ x86@kernel.org, linux-snps-arc@lists.infradead.org,
+ linux-wireless@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, ocfs2-devel@lists.linux.dev,
+ Yafang Shao <laoar.shao@gmail.com>
+Subject: [PATCH 0/7] vsprintf: Add %pTN to print Task Name 
+Date: Fri, 13 Dec 2024 13:46:03 +0800
+Message-Id: <20241213054610.55843-1-laoar.shao@gmail.com>
+X-Mailer: git-send-email 2.37.1 (Apple Git-137.1)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 13 Dec 2024 14:02:42 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -67,29 +94,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use DRM's device wedged event to notify userspace that a reset had
-happened. For now, only use `none` method meant for telemetry
-capture.
+Since task->comm is guaranteed to be NUL-terminated, it can be printed
+directly. This patch introduces a new vsnprintf format specifier, %pTN, to
+print a task's name. In this specifier, p represents the task pointer, T
+stands for "Task," and N denotes "Name." With this abstraction, users no
+longer need to manually retrieve the task name for printing purposes.
 
-Signed-off-by: André Almeida <andrealmeid@igalia.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 3 +++
- 1 file changed, 3 insertions(+)
+In this patchset, all instances of get_task_comm() used for printing the
+task name have been replaced with the new %pTN specifier. The raw uses of
+'xyz->comm' for printouts will be addressed in a subsequent patch.
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 96316111300a..19e1a5493778 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -6057,6 +6057,9 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
- 		dev_info(adev->dev, "GPU reset end with ret = %d\n", r);
- 
- 	atomic_set(&adev->reset_domain->reset_res, r);
-+
-+	drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE);
-+
- 	return r;
- }
- 
+Suggested-by: Linus Torvalds <torvalds@linux-foundation.org>
+Link: https://lore.kernel.org/bpf/CAHk-=wgqrwFXK-CO8-V4fwUh5ymnUZ=wJnFyufV1dM9rC1t3Lg@mail.gmail.com 
+
+Yafang Shao (7):
+  vsprintf: Add %pTN to print task name
+  kernel: Replace get_task_comm() with %pTN
+  arch: Replace get_task_comm() with %pTN
+  net: Replace get_task_comm() with %pTN
+  security: Replace get_task_comm() with %pTN
+  drivers: Repace get_task_comm() with %pTN
+  fs: Use %pTN to print task name
+
+ arch/arc/kernel/unaligned.c                    |  9 ++++-----
+ arch/x86/kernel/vm86_32.c                      |  5 ++---
+ drivers/accel/habanalabs/common/context.c      |  5 ++---
+ .../accel/habanalabs/common/habanalabs_ioctl.c | 15 +++++----------
+ .../drm/i915/display/intel_display_driver.c    | 10 ++++------
+ drivers/gpu/drm/nouveau/nouveau_chan.c         |  4 +---
+ drivers/gpu/drm/nouveau/nouveau_drm.c          |  7 +++----
+ drivers/tty/tty_io.c                           |  5 ++---
+ fs/ocfs2/cluster/netdebug.c                    |  5 ++---
+ kernel/capability.c                            | 12 ++++--------
+ kernel/futex/waitwake.c                        |  5 ++---
+ lib/vsprintf.c                                 | 18 ++++++++++++++++++
+ net/wireless/wext-core.c                       |  6 ++----
+ scripts/checkpatch.pl                          |  6 ++++--
+ security/yama/yama_lsm.c                       |  6 ++----
+ 15 files changed, 57 insertions(+), 61 deletions(-)
+
 -- 
-2.47.1
+2.43.5
 
