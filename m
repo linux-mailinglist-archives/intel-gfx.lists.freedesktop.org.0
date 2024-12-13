@@ -1,57 +1,78 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0295D9F0D09
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2024 14:10:54 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C6199F0D60
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2024 14:36:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7ECF510E1A0;
-	Fri, 13 Dec 2024 13:10:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 997E210F002;
+	Fri, 13 Dec 2024 13:36:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lf9sHfmD";
+	dkim=pass (4096-bit key; unprotected) header.d=alien8.de header.i=@alien8.de header.b="TCdKp5dG";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 431F410E012
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2024 13:10:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734095452; x=1765631452;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=AWBJzGZoVxxW1keAJPOcAA8IPHHfenxCUaOI7uD19Eg=;
- b=lf9sHfmDRNYXMuCEJfl6we676c4+q5kbAfMRsH99DD1HRfWJL0mJffNH
- 2ajigeL8I80hoEn3NnSXjcmna4WCWwtPypgBD10A0p0W8wFBtBOPKOG74
- LdYzBOtYb4913RcCu3LvwRGjMZ197YTfuhpprphJzB1pcbX1SnDob42M0
- yYoK6b3XySTuO5DS/Vq44LJWGJ3a0Zm4kz5k5BiUE4S0+WRkCpvBbydyb
- G9FbQAGTZRJIJHcFguskdKpfpxzJRxuKVpFBFnxABCaEdpdzSuQTmwA62
- NiJJVPRWfGrGsaUAh2hGOhsvRjUv3gw8Gl3gCM8ph2ijm8p03uCsDzLPM g==;
-X-CSE-ConnectionGUID: jGB8sZ1tSuW9xPjjO0fAng==
-X-CSE-MsgGUID: hPgBPpcXQjW4QSzsUrkdlw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11285"; a="34681876"
-X-IronPort-AV: E=Sophos;i="6.12,231,1728975600"; d="scan'208";a="34681876"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2024 05:10:52 -0800
-X-CSE-ConnectionGUID: S5Kef6i8SB60mxpIauxzbQ==
-X-CSE-MsgGUID: 0MUZZx8TSzmBuVTt8NNMvg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="96959957"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.159])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2024 05:10:50 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH] drm/i915/bios: add VBT DSI DSC debug logging
-Date: Fri, 13 Dec 2024 15:10:43 +0200
-Message-Id: <20241213131043.345716-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
+X-Greylist: delayed 492 seconds by postgrey-1.36 at gabe;
+ Fri, 13 Dec 2024 13:36:02 UTC
+Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3DE4A10E323;
+ Fri, 13 Dec 2024 13:36:02 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+ by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id B0D4540E0169; 
+ Fri, 13 Dec 2024 13:27:47 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
+Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
+ header.d=alien8.de
+Received: from mail.alien8.de ([127.0.0.1])
+ by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
+ with ESMTP id sGcE60KnN3ec; Fri, 13 Dec 2024 13:27:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
+ t=1734096462; bh=fx6NJswxnApctvUDdLiVKEkcBeLJJ6f/OgTP8Pi/0ME=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=TCdKp5dGfLFekVy98Z5cRjbFBjMfVvYyRYfkhUYQV27uBBXCYYZh9p+mOk9Fgf+Os
+ pQnkema3VHjYt9PUh0meOBj5NrPk/zKO+QDenixpK9n+dz4n1W1+s+KDo+a/POiJM5
+ Jf6qn/XogPW/5jtU4WaIDhZKUdouklEFEDqlqUxQY/zqmsi+ilibsowZBZAyXy4Y1x
+ TpfygtsV0EIon2P3uQJgohoT4cvoEShfdG4TimQLth0mosUPdNeCeUnCPY7vJpG8jp
+ FMDw44tc9UZ8zLBh5SjSjW+tYFB4s0xcTFhxdZaxrRiBX6ofb+4X6HzSOYzqwyuH19
+ 3Gkh2PB0uUC+JXk2zhzsze0kIwSidQFUGAMJuPIsUXASeoSmC8/pKQYSSGpe+44W7X
+ wfaRwlYuRha6hXFbAGc3543MSmoNrbjsNXBdfC4dqq55iCvp1sGLVzoHBrZ6ElvUth
+ Xr+52lDoTAkJQ9VOWavMmRSsyh9669yeE7txdySAT/BnY2u4V0QitRMiF/v+BjKPP3
+ KRaaFCcHHir2sRjQSC0fOS2DqMpzcB0re3ld0RlRsARj0Xcy3Re1L5ZPKAiOs62UDt
+ Jv74MNH+taDciFgIldizxt2pc4BNlWyyNgb6b/mcvo5h8L2N4EtjOHDklrGej/mcSh
+ CG5OdhA4dM08z1FXqQoO86yE=
+Received: from zn.tnic (p200300ea971f9372329c23fffea6a903.dip0.t-ipconnect.de
+ [IPv6:2003:ea:971f:9372:329c:23ff:fea6:a903])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest
+ SHA256) (No client certificate requested)
+ by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 2E54840E015F;
+ Fri, 13 Dec 2024 13:27:19 +0000 (UTC)
+Date: Fri, 13 Dec 2024 14:27:09 +0100
+From: Borislav Petkov <bp@alien8.de>
+To: Kalle Valo <kvalo@kernel.org>
+Cc: Petr Mladek <pmladek@suse.com>, Yafang Shao <laoar.shao@gmail.com>,
+ torvalds@linux-foundation.org, akpm@linux-foundation.org,
+ linux-kernel@vger.kernel.org, linux-security-module@vger.kernel.org,
+ x86@kernel.org, linux-snps-arc@lists.infradead.org,
+ linux-wireless@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, ocfs2-devel@lists.linux.dev,
+ Steven Rostedt <rostedt@goodmis.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+ Sergey Senozhatsky <senozhatsky@chromium.org>,
+ Andy Whitcroft <apw@canonical.com>, Joe Perches <joe@perches.com>,
+ Dwaipayan Ray <dwaipayanray1@gmail.com>,
+ Lukas Bulwahn <lukas.bulwahn@gmail.com>
+Subject: Re: [PATCH 1/7] vsprintf: Add %pTN to print task name
+Message-ID: <20241213132709.GAZ1w2LW4LgHi-6XfZ@fat_crate.local>
+References: <20241213054610.55843-1-laoar.shao@gmail.com>
+ <20241213054610.55843-2-laoar.shao@gmail.com>
+ <Z1vq2-V7vB5KhBR9@pathway.suse.cz> <87r06crnew.fsf@kernel.org>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <87r06crnew.fsf@kernel.org>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,64 +88,14 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Improve the debug logging for DSC parameters for ports.
+On Fri, Dec 13, 2024 at 10:35:03AM +0200, Kalle Valo wrote:
+> I agree, it makes the code harder to read for someone who is not
+> familiar with all the %p magic we have (like me).
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_bios.c | 15 +++++++++++++--
- 1 file changed, 13 insertions(+), 2 deletions(-)
++1
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index e0e4e9b62d8d..51f9aca960f9 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -2157,19 +2157,22 @@ parse_compression_parameters(struct intel_display *display)
- 
- 	list_for_each_entry(devdata, &display->vbt.display_devices, node) {
- 		const struct child_device_config *child = &devdata->child;
-+		char port_name = port_name(intel_bios_encoder_port(devdata));
- 
- 		if (!child->compression_enable)
- 			continue;
- 
- 		if (!params) {
- 			drm_dbg_kms(display->drm,
--				    "VBT: compression params not available\n");
-+				    "Port %c VBT indicates compression but params not available\n",
-+				    port_name);
- 			continue;
- 		}
- 
- 		if (child->compression_method_cps) {
- 			drm_dbg_kms(display->drm,
--				    "VBT: CPS compression not supported\n");
-+				    "Port %c VBT indicates unsupported CPS compression\n",
-+				    port_name);
- 			continue;
- 		}
- 
-@@ -2177,6 +2180,9 @@ parse_compression_parameters(struct intel_display *display)
- 
- 		devdata->dsc = kmemdup(&params->data[index],
- 				       sizeof(*devdata->dsc), GFP_KERNEL);
-+
-+		drm_dbg_kms(display->drm, "Port %c VBT DSC index %d\n",
-+			    port_name, index);
- 	}
- }
- 
-@@ -3543,6 +3549,11 @@ bool intel_bios_get_dsc_params(struct intel_encoder *encoder,
- 			if (!devdata->dsc)
- 				return false;
- 
-+			drm_dbg_kms(display->drm,
-+				    "[ENCODER:%d:%s] Found port %c VBT DSC parameters\n",
-+				    encoder->base.base.id, encoder->base.name,
-+				    port_name(encoder->port));
-+
- 			fill_dsc(crtc_state, devdata->dsc, dsc_max_bpc);
- 
- 			return true;
 -- 
-2.39.5
+Regards/Gruss,
+    Boris.
 
+https://people.kernel.org/tglx/notes-about-netiquette
