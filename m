@@ -1,78 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C6199F0D60
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2024 14:36:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3599D9F0D70
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2024 14:41:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 997E210F002;
-	Fri, 13 Dec 2024 13:36:03 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (4096-bit key; unprotected) header.d=alien8.de header.i=@alien8.de header.b="TCdKp5dG";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0354210F005;
+	Fri, 13 Dec 2024 13:41:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 492 seconds by postgrey-1.36 at gabe;
- Fri, 13 Dec 2024 13:36:02 UTC
-Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DE4A10E323;
- Fri, 13 Dec 2024 13:36:02 +0000 (UTC)
-Received: from localhost (localhost.localdomain [127.0.0.1])
- by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id B0D4540E0169; 
- Fri, 13 Dec 2024 13:27:47 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
-Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
- header.d=alien8.de
-Received: from mail.alien8.de ([127.0.0.1])
- by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
- with ESMTP id sGcE60KnN3ec; Fri, 13 Dec 2024 13:27:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
- t=1734096462; bh=fx6NJswxnApctvUDdLiVKEkcBeLJJ6f/OgTP8Pi/0ME=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=TCdKp5dGfLFekVy98Z5cRjbFBjMfVvYyRYfkhUYQV27uBBXCYYZh9p+mOk9Fgf+Os
- pQnkema3VHjYt9PUh0meOBj5NrPk/zKO+QDenixpK9n+dz4n1W1+s+KDo+a/POiJM5
- Jf6qn/XogPW/5jtU4WaIDhZKUdouklEFEDqlqUxQY/zqmsi+ilibsowZBZAyXy4Y1x
- TpfygtsV0EIon2P3uQJgohoT4cvoEShfdG4TimQLth0mosUPdNeCeUnCPY7vJpG8jp
- FMDw44tc9UZ8zLBh5SjSjW+tYFB4s0xcTFhxdZaxrRiBX6ofb+4X6HzSOYzqwyuH19
- 3Gkh2PB0uUC+JXk2zhzsze0kIwSidQFUGAMJuPIsUXASeoSmC8/pKQYSSGpe+44W7X
- wfaRwlYuRha6hXFbAGc3543MSmoNrbjsNXBdfC4dqq55iCvp1sGLVzoHBrZ6ElvUth
- Xr+52lDoTAkJQ9VOWavMmRSsyh9669yeE7txdySAT/BnY2u4V0QitRMiF/v+BjKPP3
- KRaaFCcHHir2sRjQSC0fOS2DqMpzcB0re3ld0RlRsARj0Xcy3Re1L5ZPKAiOs62UDt
- Jv74MNH+taDciFgIldizxt2pc4BNlWyyNgb6b/mcvo5h8L2N4EtjOHDklrGej/mcSh
- CG5OdhA4dM08z1FXqQoO86yE=
-Received: from zn.tnic (p200300ea971f9372329c23fffea6a903.dip0.t-ipconnect.de
- [IPv6:2003:ea:971f:9372:329c:23ff:fea6:a903])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest
- SHA256) (No client certificate requested)
- by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 2E54840E015F;
- Fri, 13 Dec 2024 13:27:19 +0000 (UTC)
-Date: Fri, 13 Dec 2024 14:27:09 +0100
-From: Borislav Petkov <bp@alien8.de>
-To: Kalle Valo <kvalo@kernel.org>
-Cc: Petr Mladek <pmladek@suse.com>, Yafang Shao <laoar.shao@gmail.com>,
- torvalds@linux-foundation.org, akpm@linux-foundation.org,
- linux-kernel@vger.kernel.org, linux-security-module@vger.kernel.org,
- x86@kernel.org, linux-snps-arc@lists.infradead.org,
- linux-wireless@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, ocfs2-devel@lists.linux.dev,
- Steven Rostedt <rostedt@goodmis.org>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- Sergey Senozhatsky <senozhatsky@chromium.org>,
- Andy Whitcroft <apw@canonical.com>, Joe Perches <joe@perches.com>,
- Dwaipayan Ray <dwaipayanray1@gmail.com>,
- Lukas Bulwahn <lukas.bulwahn@gmail.com>
-Subject: Re: [PATCH 1/7] vsprintf: Add %pTN to print task name
-Message-ID: <20241213132709.GAZ1w2LW4LgHi-6XfZ@fat_crate.local>
-References: <20241213054610.55843-1-laoar.shao@gmail.com>
- <20241213054610.55843-2-laoar.shao@gmail.com>
- <Z1vq2-V7vB5KhBR9@pathway.suse.cz> <87r06crnew.fsf@kernel.org>
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E9E910F005;
+ Fri, 13 Dec 2024 13:41:31 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <87r06crnew.fsf@kernel.org>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/xe3=3A_do_not_co?=
+ =?utf-8?q?nfigure_auto_min_dbuf_for_cursor_WMs?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vinod Govindapillai" <vinod.govindapillai@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 13 Dec 2024 13:41:31 -0000
+Message-ID: <173409729144.2152825.2647456498537249269@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241213120357.300584-1-vinod.govindapillai@intel.com>
+In-Reply-To: <20241213120357.300584-1-vinod.govindapillai@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,17 +37,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Dec 13, 2024 at 10:35:03AM +0200, Kalle Valo wrote:
-> I agree, it makes the code harder to read for someone who is not
-> familiar with all the %p magic we have (like me).
+== Series Details ==
 
-+1
+Series: drm/i915/xe3: do not configure auto min dbuf for cursor WMs
+URL   : https://patchwork.freedesktop.org/series/142557/
+State : success
 
--- 
-Regards/Gruss,
-    Boris.
+== Summary ==
 
-https://people.kernel.org/tglx/notes-about-netiquette
+CI Bug Log - changes from CI_DRM_15837 -> Patchwork_142557v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142557v1/index.html
+
+Participating hosts (45 -> 44)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_142557v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - bat-adls-6:         [PASS][1] -> [FAIL][2] ([i915#12903])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15837/bat-adls-6/igt@i915_pm_rpm@module-reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142557v1/bat-adls-6/igt@i915_pm_rpm@module-reload.html
+    - bat-dg1-7:          [PASS][3] -> [FAIL][4] ([i915#12903])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15837/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142557v1/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-mtlp-6:         [PASS][5] -> [ABORT][6] ([i915#12061]) +1 other test abort
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15837/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142557v1/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+
+  * igt@kms_pipe_crc_basic@read-crc-frame-sequence:
+    - bat-dg2-11:         [PASS][7] -> [SKIP][8] ([i915#9197])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15837/bat-dg2-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142557v1/bat-dg2-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence.html
+
+  
+#### Possible fixes ####
+
+  * igt@dmabuf@all-tests:
+    - bat-apl-1:          [INCOMPLETE][9] ([i915#12904]) -> [PASS][10] +1 other test pass
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15837/bat-apl-1/igt@dmabuf@all-tests.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142557v1/bat-apl-1/igt@dmabuf@all-tests.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#12903]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12903
+  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
+  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_15837 -> Patchwork_142557v1
+
+  CI-20190529: 20190529
+  CI_DRM_15837: 8f7b64e137723da601f3c07d0cda22566cf994d5 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8154: 8603734a61b57f766ee60f24e63d18f88232a3c6 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_142557v1: 8f7b64e137723da601f3c07d0cda22566cf994d5 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142557v1/index.html
