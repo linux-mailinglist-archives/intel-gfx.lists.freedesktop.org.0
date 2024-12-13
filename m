@@ -2,61 +2,164 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF5C59F1537
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2024 19:47:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DAB139F1539
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2024 19:49:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 73EC910E45B;
-	Fri, 13 Dec 2024 18:47:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7532810F0BB;
+	Fri, 13 Dec 2024 18:49:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K5e48gyC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HMTNNYXS";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E026510E459;
- Fri, 13 Dec 2024 18:47:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C93610F0B7;
+ Fri, 13 Dec 2024 18:49:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734115664; x=1765651664;
+ t=1734115778; x=1765651778;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Nd/XohP+Q75552J1Iv+ikwoOsO8J/NQrGRAMFGqvKoM=;
- b=K5e48gyCqEQOjllkIhk4ZD3O3VXF+zfqwEQam7QuQNKHXM/leqY9c/j7
- BC0SATY30eUnGkBz0/DAKYkOGTFxF5CIDv5GuleDJh+TSYKxtlGJAdBLB
- bdxoRgWMqotftXk51ARWXx8ltvOoZPi5n0vKzLywvCBWvTFZXBHGNzMHI
- 633/WC7UaOOd6yxDNlvRY8N8dP5wLD2GxCl0wk548Od8L01ewnptce6KE
- KYjq5zGc9q62752ZmE0oIp1hMUWOQFuRsTEzlDsNN5be8gw3m4fwXhdww
- C0tTOybKL5pOzVO78zum7h8SvPtuQJOritTpccQtQY/thjVBXd2WHYEHi w==;
-X-CSE-ConnectionGUID: AVkA65yuRaWlrfb4u6pwXg==
-X-CSE-MsgGUID: 1Ypb1e4YR6+frDnOGwbWMA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11285"; a="45269573"
-X-IronPort-AV: E=Sophos;i="6.12,232,1728975600"; d="scan'208";a="45269573"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ in-reply-to:mime-version;
+ bh=yoK+LmbGt0vuXvbfhrn4yy5A4cUlIBZuyf5ak4xukIk=;
+ b=HMTNNYXSbE3Np1g2eT1253+LVsZZ1H40kIvcEOl/fdHDUyjCtMVg9xsK
+ ibYuc8gRw3zh7e/oOGs5dUOs8GPVx5MjUvIIpwzRUExYeHNU50tTLWIMI
+ JmXNoEkuiqcMgRgZK1T9zDej1/SkxTcTaYALvzEh5uSxgO2HfiAOhJVbJ
+ I/s41VouYEjR8D8E7sXfDc34G/4nzI3y+lHngKb7XiQoCc4PpWcQV9owF
+ aqF7yWqT2egaYYnO+eWHSCHDrDma+BQ58yWcymyIkEpIDlZe1bd9ZlGzy
+ 0m+FxeyFdCFH/a9jA8XueWkerbfISZdKsVlsaBmaEunouxWnj3BVs1TTO g==;
+X-CSE-ConnectionGUID: b7xvmFjJTmG07dHjBsx9Yw==
+X-CSE-MsgGUID: 7IFD3ufjR6S5A5zX/gzIcw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11285"; a="45269752"
+X-IronPort-AV: E=Sophos;i="6.12,232,1728975600"; d="scan'208";a="45269752"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2024 10:47:44 -0800
-X-CSE-ConnectionGUID: HYwHTV0oTp2aPUKRNKCIaQ==
-X-CSE-MsgGUID: 10Y6nft+THWVYmQGbUB7ng==
+ 13 Dec 2024 10:49:37 -0800
+X-CSE-ConnectionGUID: +XGdod37Tnib90V/0znDTQ==
+X-CSE-MsgGUID: ndb8XNWbRTCZIQP7Iy9oQg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="97046126"
-Received: from lkp-server01.sh.intel.com (HELO 82a3f569d0cb) ([10.239.97.150])
- by orviesa007.jf.intel.com with ESMTP; 13 Dec 2024 10:47:41 -0800
-Received: from kbuild by 82a3f569d0cb with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1tMAhO-000CK1-2g;
- Fri, 13 Dec 2024 18:47:38 +0000
-Date: Sat, 14 Dec 2024 02:47:28 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
- jani.nikula@intel.com, Luca Coelho <luciano.coelho@intel.com>
-Subject: Re: [PATCH v3 3/5] drm/i915/dp: convert to struct intel_display
-Message-ID: <202412140220.83KYEGQr-lkp@intel.com>
-References: <d712a2894addde5fd7a8b593fbea87314df37e1f.1734083244.git.jani.nikula@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+X-IronPort-AV: E=Sophos;i="6.12,232,1728975600"; d="scan'208";a="96514226"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by orviesa009.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 13 Dec 2024 10:49:37 -0800
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Fri, 13 Dec 2024 10:49:37 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44 via Frontend Transport; Fri, 13 Dec 2024 10:49:37 -0800
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.177)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.44; Fri, 13 Dec 2024 10:49:36 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=xX4bwGuBhM98Nuj7GZ0JhlV3BI5o8/KKxcY+3ICtg6p1vlNhkucD6oDqvSOjEPJQgGyJF5o1Sd+1fg81omUnZOB6GP5EMSzRh99PogD/RmMzdRDr7NdGxcWUQgsMsu3KhKAp22mGuXlfohL1vmapj7xYWHyLjGsvasPMVN9Z8Y83ELEt/iXH2aZqGCWqkGDLwa2OHBFrs2YXKKDO5nGg1HrdHD8ro2qDpi4lK1z+NnyGfbCMpM6e8ZU7xf7pGXQ+Ic/fhHKtasbTiMOHfJw6BxdND1nUKoMXoZzyfmhEgQFXMVsoUtcs3ui3U6e3g+K28P1ktX4Zn3NBq75/c3SyGQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=F7FRjX72vF6eR3mUyuAqv3/D4YlrVKOjUK0BtoLfgmk=;
+ b=W+Xks+Z7aYql5v5BKz8JFR2WRldC3Y5lITMRgwQ8FEcnY52/fZt4NuE/kKTqauoP5QXw1ot5G85qEM9hD5+ZCr3UdJVhEMlMKbFVm72j007gP7jFSNC6C7sOyDpa76s54FGVc3fCNLUbvqkcZvItgZ2h2pXtEgOgElFHs/IfWDTpHOhLfJsVU3zj4wD+IJRRefZNMpcpGRWEHnRiSF9THTPAcdDjbdW1mALRAeF4jH8LBZiPp8u2r96UL4CGp+7P9JrvJrTu5fy1VqOaA5rBEElD4ujEQba7q7UXwWsRErS8N3lvW+RVf/wgNEdvWd7+XwKQX47nlNff6+fwHSGB1A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
+ by DM4PR11MB7758.namprd11.prod.outlook.com (2603:10b6:8:101::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8251.16; Fri, 13 Dec
+ 2024 18:49:30 +0000
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::8dd1:f169:5266:e16e]) by DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::8dd1:f169:5266:e16e%5]) with mapi id 15.20.8251.015; Fri, 13 Dec 2024
+ 18:49:30 +0000
+Date: Fri, 13 Dec 2024 10:49:27 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Nemesa Garg <nemesa.garg@intel.com>
+CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ Vandita <vandita.kulkarni@intel.com>
+Subject: Re: [PATCH] drm/i915/display: Add WA_14018221282
+Message-ID: <20241213184927.GY5725@mdroper-desk1.amr.corp.intel.com>
+References: <20241212094043.911853-1-nemesa.garg@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <d712a2894addde5fd7a8b593fbea87314df37e1f.1734083244.git.jani.nikula@intel.com>
+In-Reply-To: <20241212094043.911853-1-nemesa.garg@intel.com>
+X-ClientProxiedBy: BYAPR21CA0022.namprd21.prod.outlook.com
+ (2603:10b6:a03:114::32) To DS0PR11MB8182.namprd11.prod.outlook.com
+ (2603:10b6:8:163::17)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|DM4PR11MB7758:EE_
+X-MS-Office365-Filtering-Correlation-Id: e1335665-6606-4f32-d115-08dd1ba6e06e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Q8j2MIUaMQFetpEDH0Eb5OkU8xLi7H7kTxrZgVcbDsQZg5mUOBQJyHKncKZy?=
+ =?us-ascii?Q?VK1nsc4OfDkXVoWsZqx74UTfcc+NIwMcoeAYKsU4LoRrIdRbpdnCsWwfKwdM?=
+ =?us-ascii?Q?dR2TUom0c2Z+fEanCi9Q4xjOGa5akqG54vWcvrieHHjefsb3tcS6SxarOAJx?=
+ =?us-ascii?Q?g4TRmQSZ93c7rgFXaJmIGXb2Pp4aW46zZtLU4J8LHHF/JDdXXYboYmmaS+r9?=
+ =?us-ascii?Q?DOgM5EMbaiLDSTVM5O/l7is6js0ZuG/YVcdRH3oTgyZb/VHnRSp0+kJnTvt1?=
+ =?us-ascii?Q?bKutE3bVL6vaRwSe7ixu4HM3QDAXcdBvcVfDj3q6PxSpMEpi2G7aea12Nxcd?=
+ =?us-ascii?Q?OPNvJOs6BPXWCTcriG5X7uba4tjkf2BLc9sOQ09Je86u8VXrBkqHT5/lGzi6?=
+ =?us-ascii?Q?x3Oq6qtghPMvAKWD5sWMjEXcIMtnwg6hkHVv1JOgSNYPeVaxkeZvdHaLWone?=
+ =?us-ascii?Q?isfGbOeORkgV+cY2akx3J5H68fDSXOQe1Zbns1LqxaLrbyuXfbZ8A76055L8?=
+ =?us-ascii?Q?nxRhQAQJd5Ab3471qV8JIdQFTuA9EoP0DqDDTWS22uEeMiyNHdN+vOGmWYY9?=
+ =?us-ascii?Q?aj4bA7dD7shNhy3HTVftf/M8uuIMruTxKE0qAycUb5nuexw27qWmUpWGT5CO?=
+ =?us-ascii?Q?YwXGfy4s//KOMNA1pPOu+lhoRFFuDZHHS4PBfS61S/wTLvvTeLSIQoQFCw3H?=
+ =?us-ascii?Q?3WGEnlBpaKKYrOUoEMBV88WfPZ2nQAQw96FcQlZPSuZ3fRoenaNDfbfvuhyL?=
+ =?us-ascii?Q?fQhTLTdTQztEyXyCBmJlGxaZfHiQELmJ0aSNkKIX8U8qQiyj+Meo8wEjzwai?=
+ =?us-ascii?Q?PECSm8iuLWullmeUaLkLcR0baXZ3FUh5Z8AbJP3hurXYTz0xxubwQQk6MUUV?=
+ =?us-ascii?Q?fbodav4w0E0xxWgd/DFvhDdK3XSVpXWifxeo/ebiMeO8SaWUkoiCLbUTZ8ho?=
+ =?us-ascii?Q?GZM6L/Xv4/DVLn6V6AatiP/8Bfaxk2YAhbJRoWeC4y4Fdd+ZLcQXloC6Vohy?=
+ =?us-ascii?Q?lm6FBiMeNoLMiWWh0icJHyLuRjyTYRODsXx56mZguWCa3gdZ9zStgTX5EcJd?=
+ =?us-ascii?Q?1Wac247vaxcLeWgHhk05qbEIy/ZmiypsxzbA+kg3oeLybyTa08rWu8jv+qsz?=
+ =?us-ascii?Q?rBzv51lEwQENugC5JzAZ51q9De1t1M/dth21rbL4F7MHxMIA0mFtbrwS6cOY?=
+ =?us-ascii?Q?hRq+L80WCb5IbUR31X6tgHwYsedTsl9SUZU3GKjPTA5PEHOtV6upZknCYrrj?=
+ =?us-ascii?Q?3NpAQ8bmwknyQEJvRQHc5WN9b9ELwlyfYu+b0au3GJBP+FuALXmfIG17bAGm?=
+ =?us-ascii?Q?AOahNtA+Z3RpkJ1Ps5D31ZSCEmrkz1c8DLbg5H2afLK53A=3D=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?/XAfTgryJ5++dv4aE8fkDfrTITIZ8DOiG86JsO5sW0EP5bVfe2BJ2smYyyXM?=
+ =?us-ascii?Q?xGnUc7QztXxjVCGuJ4E0VcM+na/P/x4bE1m0HnePfH9GkN1sIai4epUfe8Af?=
+ =?us-ascii?Q?9YDoH7qyJyF9kNOWsmJHIre4/odyq3QBpDeYJ9BOtwCfAIBe/loXm24wUFM8?=
+ =?us-ascii?Q?lRFkYnKbhE2qmmcNc4/eC8W0BvhtxyC3xEoxg/mWmo3qPV8tX2xbARQgsyQU?=
+ =?us-ascii?Q?NMsoC1X+93e/kF0PfqDZYYsKyZfbzRx8A+G1PUQf0Deg8ejh2XRAOc/jPkDA?=
+ =?us-ascii?Q?CC4SlfpAH4dLt2ufaWaexxEBAizdkq2iUvjRxZBCAcnPV6EYlTBrhplVbY2q?=
+ =?us-ascii?Q?PIvLNQTngGR1AjKopHPG0jFPVV0bWdAJETRe5OrYIXv9bRr7GFGicQZnEiEt?=
+ =?us-ascii?Q?XLT8C8RnbJx1iYz2Z2eoXcJwqQ8yOQPrNqJ4GnVC5iNyYgn2FWNph4FqFgeO?=
+ =?us-ascii?Q?++1uWlgwr/20sAo3SXWzwhme6+6tT49pFxN10ZM+8qReBis0y7ucu2bPftHM?=
+ =?us-ascii?Q?s1maszo2CHzY0P5ghpY2gtwHxcX7/QWlQdCRy2Lnh7VXQPNE7y3dlOQYXfdY?=
+ =?us-ascii?Q?UQlcPniIYFnYVq9NqVzl/vyUxjYo/ftmdlV1pv52YjJBG8WYKSIHmq9yBzIE?=
+ =?us-ascii?Q?fFgWzYmyaTylOQxxDMMWTRcN0JYcfDs70vQx2pP53aoN5YUc9xFwiFUaHJTE?=
+ =?us-ascii?Q?mi3Y4BVvl9nlAfDUXbz/QlZ38RB3Hf5gGUz+yS6CE6VoYwP/xAyB5pENuAHF?=
+ =?us-ascii?Q?kknAjF8rsBLK2d6SAAVz1rr5b+FJ1rkMiABfE8LMA5GlDpySP70UpskScJ3B?=
+ =?us-ascii?Q?HQeNwFwoGFtmfwGycLgdVmnTdvTJq2Tkix6bYRO40P0kmjOFeVbpxdNI9a7r?=
+ =?us-ascii?Q?Ykoryw31AQos35GP96xApuCFLd/TOEniliJehXnSo0JB3MZZ1VEVxkaw4vml?=
+ =?us-ascii?Q?lRTKwFIBdngSuHdgRQTpQ5tmfw/bzzjlA+harnoaJ2WMs0H/SOWY5P4M0/2F?=
+ =?us-ascii?Q?imzYjGoIb4JdmWjc6EOAJn54DE6SRkTDdzmj90NceKxLmhQ9RoT3vFOh0WkS?=
+ =?us-ascii?Q?l4ORqx3nisxHzboEaLTCnXoTrwypvjrsc1AZiRTWVXTHF43lHZmcn2qFf61F?=
+ =?us-ascii?Q?KwrjsoZsqaWWK5EQfdRHr3H5gZ8P+rrpNjX07/ibsFUhjolyBGz5ByL/i3p1?=
+ =?us-ascii?Q?F4Gh1TNfdTaWKJVNZypayfUOYxDRt6pXrwylbHAy3qNnlH2rbmqqMA30+jj0?=
+ =?us-ascii?Q?z1OUaLS+Q5DNuW67IQ+sKIA1r1z36savDINPZ1O00RqYXdV/D67vofW5YBz+?=
+ =?us-ascii?Q?KpEDp+pMSdiD4cHGe9KdRNPiVqzWlbjx46ts3f7iPSfkFUalDIAbbzxCBTno?=
+ =?us-ascii?Q?muibWeXlNX3p3/Fl5TrbYQOTpJcDGNMhiSFWbtjHpPyQ9VN5xafCtg9ZnuoU?=
+ =?us-ascii?Q?dA7Qilk5xlG3/rU3GWPf5nLKL/LaG6IXDmC2uLPU7avtys2ah17KjBuvq6S5?=
+ =?us-ascii?Q?wumZGcZitWtxkslI7ZcJhJeNo6qbXMNz1S44hCUu7rDY7VLliQAH5m9SvhHW?=
+ =?us-ascii?Q?u4bDUYcJeCM6XTNvkq9f7C+0fAHgQWT8ube2vxGpFPmY1JtQJ4MNU+rtcSjf?=
+ =?us-ascii?Q?tA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: e1335665-6606-4f32-d115-08dd1ba6e06e
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Dec 2024 18:49:30.2854 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: IZVg6GeVtWsKF5c8ADjth+64P2saYvyaXwoMieGI24pjKX3Lyya+oj2F1bjFHXtWYZAHFNnDx/166dxyxCiuJL5JGC5/n+znIJFKVO/ZbrI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB7758
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,552 +175,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Jani,
+On Thu, Dec 12, 2024 at 03:10:43PM +0530, Nemesa Garg wrote:
+> It was observed that the first write to DKL PHY DP Mode
+> register was not taking effect, hence rewrite this register.
+> 
+> v2: Rename function [Mitul]
+> v3: Rename function [Jani]
+> 
+> Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
+> Signed-off-by: Kulkarni, Vandita <vandita.kulkarni@intel.com>
 
-kernel test robot noticed the following build errors:
+"Last, first" name format with a comma like this causes problems for
+git-send-email (it thinks the comma is separating two separate email
+addresses and winds up sending a copy of the message to a bogus email
+address).
 
-[auto build test ERROR on next-20241211]
-[cannot apply to drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-tip/drm-tip v6.13-rc2 v6.13-rc1 v6.12 linus/master v6.13-rc2]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Although that also raises the question what Vandita's s-o-b represents.
+If she was involved in the original development of the patch, should
+there also be a "Co-developed-by:" line too (as described in
+Documentation/process/submitting-patches.rst)?
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jani-Nikula/drm-i915-dp-s-intel_encoder-encoder/20241213-175134
-base:   next-20241211
-patch link:    https://lore.kernel.org/r/d712a2894addde5fd7a8b593fbea87314df37e1f.1734083244.git.jani.nikula%40intel.com
-patch subject: [PATCH v3 3/5] drm/i915/dp: convert to struct intel_display
-config: x86_64-buildonly-randconfig-006-20241213 (https://download.01.org/0day-ci/archive/20241214/202412140220.83KYEGQr-lkp@intel.com/config)
-compiler: clang version 19.1.3 (https://github.com/llvm/llvm-project ab51eccf88f5321e7c60591c5546b254b6afab99)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241214/202412140220.83KYEGQr-lkp@intel.com/reproduce)
+> ---
+>  drivers/gpu/drm/i915/display/intel_ddi.c | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index 4f9c50996446..85b7c30aa9e5 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -2099,10 +2099,21 @@ void intel_ddi_sanitize_encoder_pll_mapping(struct intel_encoder *encoder)
+>  	encoder->disable_clock(encoder);
+>  }
+>  
+> +static void
+> +tgl_dkl_phy_check_and_rewrite(struct drm_i915_private *dev_priv,
+> +			      enum tc_port tc_port, u32 ln0, u32 ln1)
+> +{
+> +	if (ln0 != intel_dkl_phy_read(dev_priv, DKL_DP_MODE(tc_port, 0)))
+> +		intel_dkl_phy_write(dev_priv, DKL_DP_MODE(tc_port, 0), ln0);
+> +	if (ln1 != intel_dkl_phy_read(dev_priv, DKL_DP_MODE(tc_port, 1)))
+> +		intel_dkl_phy_write(dev_priv, DKL_DP_MODE(tc_port, 1), ln1);
+> +}
+> +
+>  static void
+>  icl_program_mg_dp_mode(struct intel_digital_port *dig_port,
+>  		       const struct intel_crtc_state *crtc_state)
+>  {
+> +	struct intel_display *display = to_intel_display(crtc_state);
+>  	struct drm_i915_private *dev_priv = to_i915(dig_port->base.base.dev);
+>  	enum tc_port tc_port = intel_encoder_to_tc(&dig_port->base);
+>  	u32 ln0, ln1, pin_assignment;
+> @@ -2180,6 +2191,10 @@ icl_program_mg_dp_mode(struct intel_digital_port *dig_port,
+>  	if (DISPLAY_VER(dev_priv) >= 12) {
+>  		intel_dkl_phy_write(dev_priv, DKL_DP_MODE(tc_port, 0), ln0);
+>  		intel_dkl_phy_write(dev_priv, DKL_DP_MODE(tc_port, 1), ln1);
+> +		 /* WA_14018221282 */
+> +		if (DISPLAY_VER(display) == 12)
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202412140220.83KYEGQr-lkp@intel.com/
+The workaround database lists this for both TGL (display version 12) and
+ADL-P (display version 13).
 
-All errors (new ones prefixed by >>):
+At first I was worried that we might be applying this too widely since
+it's not listed for other display version 12 platforms (RKL, ADL-S,
+DG1), but I see now that won't be a problem since none of those
+platforms have MG / DKL PHYs so they'll never descend down to this level
+of the code.
 
-   In file included from drivers/gpu/drm/i915/display/intel_dp.c:29:
-   In file included from include/linux/i2c.h:19:
-   In file included from include/linux/regulator/consumer.h:35:
-   In file included from include/linux/suspend.h:5:
-   In file included from include/linux/swap.h:9:
-   In file included from include/linux/memcontrol.h:21:
-   In file included from include/linux/mm.h:2287:
-   include/linux/vmstat.h:518:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
-     518 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
-         |                               ~~~~~~~~~~~ ^ ~~~
->> drivers/gpu/drm/i915/display/intel_dp.c:3110:20: error: use of undeclared identifier 'dev_priv'; did you mean '_dev_crit'?
-    3110 |         if (HAS_PCH_SPLIT(dev_priv) && !HAS_DDI(dev_priv) && encoder->port != PORT_A)
-         |                           ^~~~~~~~
-         |                           _dev_crit
-   drivers/gpu/drm/i915/soc/intel_pch.h:85:51: note: expanded from macro 'HAS_PCH_SPLIT'
-      85 | #define HAS_PCH_SPLIT(dev_priv)                 (INTEL_PCH_TYPE(dev_priv) != PCH_NONE)
-         |                                                                 ^
-   drivers/gpu/drm/i915/soc/intel_pch.h:66:37: note: expanded from macro 'INTEL_PCH_TYPE'
-      66 | #define INTEL_PCH_TYPE(dev_priv)                ((dev_priv)->pch_type)
-         |                                                   ^
-   include/linux/compiler.h:55:47: note: expanded from macro 'if'
-      55 | #define if(cond, ...) if ( __trace_if_var( !!(cond , ## __VA_ARGS__) ) )
-         |                                               ^
-   include/linux/compiler.h:57:52: note: expanded from macro '__trace_if_var'
-      57 | #define __trace_if_var(cond) (__builtin_constant_p(cond) ? (cond) : __trace_if_value(cond))
-         |                                                    ^
-   include/linux/dev_printk.h:48:6: note: '_dev_crit' declared here
-      48 | void _dev_crit(const struct device *dev, const char *fmt, ...);
-         |      ^
->> drivers/gpu/drm/i915/display/intel_dp.c:3110:6: error: member reference base type 'void (const struct device *, const char *, ...)' is not a structure or union
-    3110 |         if (HAS_PCH_SPLIT(dev_priv) && !HAS_DDI(dev_priv) && encoder->port != PORT_A)
-         |         ~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/soc/intel_pch.h:85:36: note: expanded from macro 'HAS_PCH_SPLIT'
-      85 | #define HAS_PCH_SPLIT(dev_priv)                 (INTEL_PCH_TYPE(dev_priv) != PCH_NONE)
-         |                                                  ^~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/soc/intel_pch.h:66:46: note: expanded from macro 'INTEL_PCH_TYPE'
-      66 | #define INTEL_PCH_TYPE(dev_priv)                ((dev_priv)->pch_type)
-         |                                                            ^ ~~~~~~~~
-   include/linux/compiler.h:55:47: note: expanded from macro 'if'
-      55 | #define if(cond, ...) if ( __trace_if_var( !!(cond , ## __VA_ARGS__) ) )
-         |                            ~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/compiler.h:57:52: note: expanded from macro '__trace_if_var'
-      57 | #define __trace_if_var(cond) (__builtin_constant_p(cond) ? (cond) : __trace_if_value(cond))
-         |                                                    ^~~~
-   drivers/gpu/drm/i915/display/intel_dp.c:3110:42: error: use of undeclared identifier 'dev_priv'; did you mean '_dev_crit'?
-    3110 |         if (HAS_PCH_SPLIT(dev_priv) && !HAS_DDI(dev_priv) && encoder->port != PORT_A)
-         |                                                 ^~~~~~~~
-         |                                                 _dev_crit
-   drivers/gpu/drm/i915/display/intel_display_device.h:151:43: note: expanded from macro 'HAS_DDI'
-     151 | #define HAS_DDI(__display)              (DISPLAY_INFO(__display)->has_ddi)
-         |                                                       ^
-   drivers/gpu/drm/i915/display/intel_display_device.h:221:54: note: expanded from macro 'DISPLAY_INFO'
-     221 | #define DISPLAY_INFO(__display)         (__to_intel_display(__display)->info.__device_info)
-         |                                                             ^
-   drivers/gpu/drm/i915/display/intel_display_conversion.h:16:11: note: expanded from macro '__to_intel_display'
-      16 |         _Generic(p,                                                     \
-         |                  ^
-   include/linux/compiler.h:55:47: note: expanded from macro 'if'
-      55 | #define if(cond, ...) if ( __trace_if_var( !!(cond , ## __VA_ARGS__) ) )
-         |                                               ^
-   include/linux/compiler.h:57:52: note: expanded from macro '__trace_if_var'
-      57 | #define __trace_if_var(cond) (__builtin_constant_p(cond) ? (cond) : __trace_if_value(cond))
-         |                                                    ^
-   include/linux/dev_printk.h:48:6: note: '_dev_crit' declared here
-      48 | void _dev_crit(const struct device *dev, const char *fmt, ...);
-         |      ^
-   drivers/gpu/drm/i915/display/intel_dp.c:3110:42: error: use of undeclared identifier 'dev_priv'; did you mean '_dev_crit'?
-    3110 |         if (HAS_PCH_SPLIT(dev_priv) && !HAS_DDI(dev_priv) && encoder->port != PORT_A)
-         |                                                 ^~~~~~~~
-         |                                                 _dev_crit
-   drivers/gpu/drm/i915/display/intel_display_device.h:151:43: note: expanded from macro 'HAS_DDI'
-     151 | #define HAS_DDI(__display)              (DISPLAY_INFO(__display)->has_ddi)
-         |                                                       ^
-   drivers/gpu/drm/i915/display/intel_display_device.h:221:54: note: expanded from macro 'DISPLAY_INFO'
-     221 | #define DISPLAY_INFO(__display)         (__to_intel_display(__display)->info.__device_info)
-         |                                                             ^
-   drivers/gpu/drm/i915/display/intel_display_conversion.h:17:74: note: expanded from macro '__to_intel_display'
-      17 |                  const struct drm_i915_private *: (&((const struct drm_i915_private *)(p))->display), \
-         |                                                                                        ^
-   include/linux/compiler.h:55:47: note: expanded from macro 'if'
-      55 | #define if(cond, ...) if ( __trace_if_var( !!(cond , ## __VA_ARGS__) ) )
-         |                                               ^
-   include/linux/compiler.h:57:52: note: expanded from macro '__trace_if_var'
-      57 | #define __trace_if_var(cond) (__builtin_constant_p(cond) ? (cond) : __trace_if_value(cond))
-         |                                                    ^
-   include/linux/dev_printk.h:48:6: note: '_dev_crit' declared here
-      48 | void _dev_crit(const struct device *dev, const char *fmt, ...);
-         |      ^
-   drivers/gpu/drm/i915/display/intel_dp.c:3110:42: error: use of undeclared identifier 'dev_priv'; did you mean '_dev_crit'?
-    3110 |         if (HAS_PCH_SPLIT(dev_priv) && !HAS_DDI(dev_priv) && encoder->port != PORT_A)
-         |                                                 ^~~~~~~~
-         |                                                 _dev_crit
-   drivers/gpu/drm/i915/display/intel_display_device.h:151:43: note: expanded from macro 'HAS_DDI'
-     151 | #define HAS_DDI(__display)              (DISPLAY_INFO(__display)->has_ddi)
-         |                                                       ^
-   drivers/gpu/drm/i915/display/intel_display_device.h:221:54: note: expanded from macro 'DISPLAY_INFO'
-     221 | #define DISPLAY_INFO(__display)         (__to_intel_display(__display)->info.__device_info)
-         |                                                             ^
-   drivers/gpu/drm/i915/display/intel_display_conversion.h:18:62: note: expanded from macro '__to_intel_display'
-      18 |                  struct drm_i915_private *: (&((struct drm_i915_private *)(p))->display), \
-         |                                                                            ^
-   include/linux/compiler.h:55:47: note: expanded from macro 'if'
-      55 | #define if(cond, ...) if ( __trace_if_var( !!(cond , ## __VA_ARGS__) ) )
-         |                                               ^
-   include/linux/compiler.h:57:52: note: expanded from macro '__trace_if_var'
-      57 | #define __trace_if_var(cond) (__builtin_constant_p(cond) ? (cond) : __trace_if_value(cond))
-         |                                                    ^
-   include/linux/dev_printk.h:48:6: note: '_dev_crit' declared here
-      48 | void _dev_crit(const struct device *dev, const char *fmt, ...);
-         |      ^
-   drivers/gpu/drm/i915/display/intel_dp.c:3110:42: error: use of undeclared identifier 'dev_priv'; did you mean '_dev_crit'?
-    3110 |         if (HAS_PCH_SPLIT(dev_priv) && !HAS_DDI(dev_priv) && encoder->port != PORT_A)
-         |                                                 ^~~~~~~~
-         |                                                 _dev_crit
-   drivers/gpu/drm/i915/display/intel_display_device.h:151:43: note: expanded from macro 'HAS_DDI'
-     151 | #define HAS_DDI(__display)              (DISPLAY_INFO(__display)->has_ddi)
-         |                                                       ^
-   drivers/gpu/drm/i915/display/intel_display_device.h:221:54: note: expanded from macro 'DISPLAY_INFO'
-     221 | #define DISPLAY_INFO(__display)         (__to_intel_display(__display)->info.__device_info)
-         |                                                             ^
-   drivers/gpu/drm/i915/display/intel_display_conversion.h:19:35: note: expanded from macro '__to_intel_display'
-      19 |                  const struct intel_display *: (p),                     \
-         |                                                 ^
-   include/linux/compiler.h:55:47: note: expanded from macro 'if'
-      55 | #define if(cond, ...) if ( __trace_if_var( !!(cond , ## __VA_ARGS__) ) )
-         |                                               ^
-   include/linux/compiler.h:57:52: note: expanded from macro '__trace_if_var'
-      57 | #define __trace_if_var(cond) (__builtin_constant_p(cond) ? (cond) : __trace_if_value(cond))
-         |                                                    ^
-   include/linux/dev_printk.h:48:6: note: '_dev_crit' declared here
-      48 | void _dev_crit(const struct device *dev, const char *fmt, ...);
-         |      ^
-   drivers/gpu/drm/i915/display/intel_dp.c:3110:42: error: use of undeclared identifier 'dev_priv'; did you mean '_dev_crit'?
-    3110 |         if (HAS_PCH_SPLIT(dev_priv) && !HAS_DDI(dev_priv) && encoder->port != PORT_A)
-         |                                                 ^~~~~~~~
-         |                                                 _dev_crit
-   drivers/gpu/drm/i915/display/intel_display_device.h:151:43: note: expanded from macro 'HAS_DDI'
-     151 | #define HAS_DDI(__display)              (DISPLAY_INFO(__display)->has_ddi)
-         |                                                       ^
-   drivers/gpu/drm/i915/display/intel_display_device.h:221:54: note: expanded from macro 'DISPLAY_INFO'
-     221 | #define DISPLAY_INFO(__display)         (__to_intel_display(__display)->info.__device_info)
-         |                                                             ^
-   drivers/gpu/drm/i915/display/intel_display_conversion.h:20:29: note: expanded from macro '__to_intel_display'
-      20 |                  struct intel_display *: (p))
-         |                                           ^
-   include/linux/compiler.h:55:47: note: expanded from macro 'if'
-      55 | #define if(cond, ...) if ( __trace_if_var( !!(cond , ## __VA_ARGS__) ) )
-         |                                               ^
-   include/linux/compiler.h:57:52: note: expanded from macro '__trace_if_var'
-      57 | #define __trace_if_var(cond) (__builtin_constant_p(cond) ? (cond) : __trace_if_value(cond))
-         |                                                    ^
-   include/linux/dev_printk.h:48:6: note: '_dev_crit' declared here
-      48 | void _dev_crit(const struct device *dev, const char *fmt, ...);
-         |      ^
->> drivers/gpu/drm/i915/display/intel_dp.c:3110:42: error: controlling expression type 'void (*)(const struct device *, const char *, ...)' not compatible with any generic association type
-    3110 |         if (HAS_PCH_SPLIT(dev_priv) && !HAS_DDI(dev_priv) && encoder->port != PORT_A)
-         |                                                 ^~~~~~~~
-   drivers/gpu/drm/i915/display/intel_display_device.h:151:43: note: expanded from macro 'HAS_DDI'
-     151 | #define HAS_DDI(__display)              (DISPLAY_INFO(__display)->has_ddi)
-         |                                                       ^~~~~~~~~
-   drivers/gpu/drm/i915/display/intel_display_device.h:221:54: note: expanded from macro 'DISPLAY_INFO'
-     221 | #define DISPLAY_INFO(__display)         (__to_intel_display(__display)->info.__device_info)
-         |                                                             ^~~~~~~~~
-   drivers/gpu/drm/i915/display/intel_display_conversion.h:16:11: note: expanded from macro '__to_intel_display'
-      16 |         _Generic(p,                                                     \
-         |                  ^
-   include/linux/compiler.h:55:47: note: expanded from macro 'if'
-      55 | #define if(cond, ...) if ( __trace_if_var( !!(cond , ## __VA_ARGS__) ) )
-         |                                               ^~~~
-   include/linux/compiler.h:57:52: note: expanded from macro '__trace_if_var'
-      57 | #define __trace_if_var(cond) (__builtin_constant_p(cond) ? (cond) : __trace_if_value(cond))
-         |                                                    ^~~~
->> drivers/gpu/drm/i915/display/intel_dp.c:3110:20: error: use of undeclared identifier 'dev_priv'; did you mean '_dev_crit'?
-    3110 |         if (HAS_PCH_SPLIT(dev_priv) && !HAS_DDI(dev_priv) && encoder->port != PORT_A)
-         |                           ^~~~~~~~
-         |                           _dev_crit
-   drivers/gpu/drm/i915/soc/intel_pch.h:85:51: note: expanded from macro 'HAS_PCH_SPLIT'
-      85 | #define HAS_PCH_SPLIT(dev_priv)                 (INTEL_PCH_TYPE(dev_priv) != PCH_NONE)
-         |                                                                 ^
-   drivers/gpu/drm/i915/soc/intel_pch.h:66:37: note: expanded from macro 'INTEL_PCH_TYPE'
-      66 | #define INTEL_PCH_TYPE(dev_priv)                ((dev_priv)->pch_type)
-         |                                                   ^
-   include/linux/compiler.h:55:47: note: expanded from macro 'if'
-      55 | #define if(cond, ...) if ( __trace_if_var( !!(cond , ## __VA_ARGS__) ) )
-         |                                               ^
-   include/linux/compiler.h:57:61: note: expanded from macro '__trace_if_var'
-      57 | #define __trace_if_var(cond) (__builtin_constant_p(cond) ? (cond) : __trace_if_value(cond))
-         |                                                             ^
-   include/linux/dev_printk.h:48:6: note: '_dev_crit' declared here
-      48 | void _dev_crit(const struct device *dev, const char *fmt, ...);
-         |      ^
->> drivers/gpu/drm/i915/display/intel_dp.c:3110:6: error: member reference base type 'void (const struct device *, const char *, ...)' is not a structure or union
-    3110 |         if (HAS_PCH_SPLIT(dev_priv) && !HAS_DDI(dev_priv) && encoder->port != PORT_A)
-         |         ~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/soc/intel_pch.h:85:36: note: expanded from macro 'HAS_PCH_SPLIT'
-      85 | #define HAS_PCH_SPLIT(dev_priv)                 (INTEL_PCH_TYPE(dev_priv) != PCH_NONE)
-         |                                                  ^~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/soc/intel_pch.h:66:46: note: expanded from macro 'INTEL_PCH_TYPE'
-      66 | #define INTEL_PCH_TYPE(dev_priv)                ((dev_priv)->pch_type)
-         |                                                            ^ ~~~~~~~~
-   include/linux/compiler.h:55:47: note: expanded from macro 'if'
-      55 | #define if(cond, ...) if ( __trace_if_var( !!(cond , ## __VA_ARGS__) ) )
-         |                            ~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/compiler.h:57:61: note: expanded from macro '__trace_if_var'
-      57 | #define __trace_if_var(cond) (__builtin_constant_p(cond) ? (cond) : __trace_if_value(cond))
-         |                                                             ^~~~
-   drivers/gpu/drm/i915/display/intel_dp.c:3110:42: error: use of undeclared identifier 'dev_priv'; did you mean '_dev_crit'?
-    3110 |         if (HAS_PCH_SPLIT(dev_priv) && !HAS_DDI(dev_priv) && encoder->port != PORT_A)
-         |                                                 ^~~~~~~~
-         |                                                 _dev_crit
-   drivers/gpu/drm/i915/display/intel_display_device.h:151:43: note: expanded from macro 'HAS_DDI'
-     151 | #define HAS_DDI(__display)              (DISPLAY_INFO(__display)->has_ddi)
-         |                                                       ^
-   drivers/gpu/drm/i915/display/intel_display_device.h:221:54: note: expanded from macro 'DISPLAY_INFO'
-     221 | #define DISPLAY_INFO(__display)         (__to_intel_display(__display)->info.__device_info)
-         |                                                             ^
-   drivers/gpu/drm/i915/display/intel_display_conversion.h:16:11: note: expanded from macro '__to_intel_display'
-      16 |         _Generic(p,                                                     \
-         |                  ^
-   include/linux/compiler.h:55:47: note: expanded from macro 'if'
-      55 | #define if(cond, ...) if ( __trace_if_var( !!(cond , ## __VA_ARGS__) ) )
-         |                                               ^
-   include/linux/compiler.h:57:61: note: expanded from macro '__trace_if_var'
-      57 | #define __trace_if_var(cond) (__builtin_constant_p(cond) ? (cond) : __trace_if_value(cond))
-         |                                                             ^
-   include/linux/dev_printk.h:48:6: note: '_dev_crit' declared here
-      48 | void _dev_crit(const struct device *dev, const char *fmt, ...);
-         |      ^
-   drivers/gpu/drm/i915/display/intel_dp.c:3110:42: error: use of undeclared identifier 'dev_priv'; did you mean '_dev_crit'?
-    3110 |         if (HAS_PCH_SPLIT(dev_priv) && !HAS_DDI(dev_priv) && encoder->port != PORT_A)
-         |                                                 ^~~~~~~~
-         |                                                 _dev_crit
-   drivers/gpu/drm/i915/display/intel_display_device.h:151:43: note: expanded from macro 'HAS_DDI'
-     151 | #define HAS_DDI(__display)              (DISPLAY_INFO(__display)->has_ddi)
-         |                                                       ^
-   drivers/gpu/drm/i915/display/intel_display_device.h:221:54: note: expanded from macro 'DISPLAY_INFO'
-     221 | #define DISPLAY_INFO(__display)         (__to_intel_display(__display)->info.__device_info)
-         |                                                             ^
-   drivers/gpu/drm/i915/display/intel_display_conversion.h:17:74: note: expanded from macro '__to_intel_display'
-      17 |                  const struct drm_i915_private *: (&((const struct drm_i915_private *)(p))->display), \
-         |                                                                                        ^
-   include/linux/compiler.h:55:47: note: expanded from macro 'if'
-      55 | #define if(cond, ...) if ( __trace_if_var( !!(cond , ## __VA_ARGS__) ) )
-         |                                               ^
-   include/linux/compiler.h:57:61: note: expanded from macro '__trace_if_var'
-      57 | #define __trace_if_var(cond) (__builtin_constant_p(cond) ? (cond) : __trace_if_value(cond))
-         |                                                             ^
-   include/linux/dev_printk.h:48:6: note: '_dev_crit' declared here
-      48 | void _dev_crit(const struct device *dev, const char *fmt, ...);
-         |      ^
-   drivers/gpu/drm/i915/display/intel_dp.c:3110:42: error: use of undeclared identifier 'dev_priv'; did you mean '_dev_crit'?
-    3110 |         if (HAS_PCH_SPLIT(dev_priv) && !HAS_DDI(dev_priv) && encoder->port != PORT_A)
-         |                                                 ^~~~~~~~
-         |                                                 _dev_crit
-   drivers/gpu/drm/i915/display/intel_display_device.h:151:43: note: expanded from macro 'HAS_DDI'
-     151 | #define HAS_DDI(__display)              (DISPLAY_INFO(__display)->has_ddi)
-         |                                                       ^
-   drivers/gpu/drm/i915/display/intel_display_device.h:221:54: note: expanded from macro 'DISPLAY_INFO'
-     221 | #define DISPLAY_INFO(__display)         (__to_intel_display(__display)->info.__device_info)
-         |                                                             ^
-   drivers/gpu/drm/i915/display/intel_display_conversion.h:18:62: note: expanded from macro '__to_intel_display'
-      18 |                  struct drm_i915_private *: (&((struct drm_i915_private *)(p))->display), \
-         |                                                                            ^
-   include/linux/compiler.h:55:47: note: expanded from macro 'if'
-      55 | #define if(cond, ...) if ( __trace_if_var( !!(cond , ## __VA_ARGS__) ) )
-         |                                               ^
-   include/linux/compiler.h:57:61: note: expanded from macro '__trace_if_var'
-      57 | #define __trace_if_var(cond) (__builtin_constant_p(cond) ? (cond) : __trace_if_value(cond))
-         |                                                             ^
-   include/linux/dev_printk.h:48:6: note: '_dev_crit' declared here
-      48 | void _dev_crit(const struct device *dev, const char *fmt, ...);
-         |      ^
-   drivers/gpu/drm/i915/display/intel_dp.c:3110:42: error: use of undeclared identifier 'dev_priv'; did you mean '_dev_crit'?
-    3110 |         if (HAS_PCH_SPLIT(dev_priv) && !HAS_DDI(dev_priv) && encoder->port != PORT_A)
-         |                                                 ^~~~~~~~
-         |                                                 _dev_crit
-   drivers/gpu/drm/i915/display/intel_display_device.h:151:43: note: expanded from macro 'HAS_DDI'
-     151 | #define HAS_DDI(__display)              (DISPLAY_INFO(__display)->has_ddi)
-         |                                                       ^
-   drivers/gpu/drm/i915/display/intel_display_device.h:221:54: note: expanded from macro 'DISPLAY_INFO'
-     221 | #define DISPLAY_INFO(__display)         (__to_intel_display(__display)->info.__device_info)
-         |                                                             ^
-   drivers/gpu/drm/i915/display/intel_display_conversion.h:19:35: note: expanded from macro '__to_intel_display'
-      19 |                  const struct intel_display *: (p),                     \
-         |                                                 ^
-   include/linux/compiler.h:55:47: note: expanded from macro 'if'
-      55 | #define if(cond, ...) if ( __trace_if_var( !!(cond , ## __VA_ARGS__) ) )
-         |                                               ^
-   include/linux/compiler.h:57:61: note: expanded from macro '__trace_if_var'
-      57 | #define __trace_if_var(cond) (__builtin_constant_p(cond) ? (cond) : __trace_if_value(cond))
-         |                                                             ^
-   include/linux/dev_printk.h:48:6: note: '_dev_crit' declared here
-      48 | void _dev_crit(const struct device *dev, const char *fmt, ...);
-         |      ^
-   drivers/gpu/drm/i915/display/intel_dp.c:3110:42: error: use of undeclared identifier 'dev_priv'; did you mean '_dev_crit'?
-    3110 |         if (HAS_PCH_SPLIT(dev_priv) && !HAS_DDI(dev_priv) && encoder->port != PORT_A)
-         |                                                 ^~~~~~~~
-         |                                                 _dev_crit
-   drivers/gpu/drm/i915/display/intel_display_device.h:151:43: note: expanded from macro 'HAS_DDI'
-     151 | #define HAS_DDI(__display)              (DISPLAY_INFO(__display)->has_ddi)
-         |                                                       ^
-   drivers/gpu/drm/i915/display/intel_display_device.h:221:54: note: expanded from macro 'DISPLAY_INFO'
-     221 | #define DISPLAY_INFO(__display)         (__to_intel_display(__display)->info.__device_info)
-         |                                                             ^
-   drivers/gpu/drm/i915/display/intel_display_conversion.h:20:29: note: expanded from macro '__to_intel_display'
-      20 |                  struct intel_display *: (p))
-         |                                           ^
-   include/linux/compiler.h:55:47: note: expanded from macro 'if'
-      55 | #define if(cond, ...) if ( __trace_if_var( !!(cond , ## __VA_ARGS__) ) )
-         |                                               ^
-   include/linux/compiler.h:57:61: note: expanded from macro '__trace_if_var'
-      57 | #define __trace_if_var(cond) (__builtin_constant_p(cond) ? (cond) : __trace_if_value(cond))
-         |                                                             ^
-   include/linux/dev_printk.h:48:6: note: '_dev_crit' declared here
-      48 | void _dev_crit(const struct device *dev, const char *fmt, ...);
-         |      ^
->> drivers/gpu/drm/i915/display/intel_dp.c:3110:42: error: controlling expression type 'void (*)(const struct device *, const char *, ...)' not compatible with any generic association type
-    3110 |         if (HAS_PCH_SPLIT(dev_priv) && !HAS_DDI(dev_priv) && encoder->port != PORT_A)
-         |                                                 ^~~~~~~~
-   drivers/gpu/drm/i915/display/intel_display_device.h:151:43: note: expanded from macro 'HAS_DDI'
-     151 | #define HAS_DDI(__display)              (DISPLAY_INFO(__display)->has_ddi)
-         |                                                       ^~~~~~~~~
-   drivers/gpu/drm/i915/display/intel_display_device.h:221:54: note: expanded from macro 'DISPLAY_INFO'
-     221 | #define DISPLAY_INFO(__display)         (__to_intel_display(__display)->info.__device_info)
-         |                                                             ^~~~~~~~~
-   drivers/gpu/drm/i915/display/intel_display_conversion.h:16:11: note: expanded from macro '__to_intel_display'
-      16 |         _Generic(p,                                                     \
-         |                  ^
-   include/linux/compiler.h:55:47: note: expanded from macro 'if'
-      55 | #define if(cond, ...) if ( __trace_if_var( !!(cond , ## __VA_ARGS__) ) )
-         |                                               ^~~~
-   include/linux/compiler.h:57:61: note: expanded from macro '__trace_if_var'
-      57 | #define __trace_if_var(cond) (__builtin_constant_p(cond) ? (cond) : __trace_if_value(cond))
-         |                                                             ^~~~
->> drivers/gpu/drm/i915/display/intel_dp.c:3110:20: error: use of undeclared identifier 'dev_priv'; did you mean '_dev_crit'?
-    3110 |         if (HAS_PCH_SPLIT(dev_priv) && !HAS_DDI(dev_priv) && encoder->port != PORT_A)
-         |                           ^~~~~~~~
-         |                           _dev_crit
-   drivers/gpu/drm/i915/soc/intel_pch.h:85:51: note: expanded from macro 'HAS_PCH_SPLIT'
-      85 | #define HAS_PCH_SPLIT(dev_priv)                 (INTEL_PCH_TYPE(dev_priv) != PCH_NONE)
-         |                                                                 ^
-   drivers/gpu/drm/i915/soc/intel_pch.h:66:37: note: expanded from macro 'INTEL_PCH_TYPE'
-      66 | #define INTEL_PCH_TYPE(dev_priv)                ((dev_priv)->pch_type)
-         |                                                   ^
-   include/linux/compiler.h:55:47: note: expanded from macro 'if'
-      55 | #define if(cond, ...) if ( __trace_if_var( !!(cond , ## __VA_ARGS__) ) )
-         |                                               ^
-   include/linux/compiler.h:57:86: note: expanded from macro '__trace_if_var'
-      57 | #define __trace_if_var(cond) (__builtin_constant_p(cond) ? (cond) : __trace_if_value(cond))
-         |                                                                                      ^
-   include/linux/compiler.h:68:3: note: expanded from macro '__trace_if_value'
-      68 |         (cond) ?                                        \
-         |          ^
-   include/linux/dev_printk.h:48:6: note: '_dev_crit' declared here
-      48 | void _dev_crit(const struct device *dev, const char *fmt, ...);
-         |      ^
->> drivers/gpu/drm/i915/display/intel_dp.c:3110:6: error: member reference base type 'void (const struct device *, const char *, ...)' is not a structure or union
-    3110 |         if (HAS_PCH_SPLIT(dev_priv) && !HAS_DDI(dev_priv) && encoder->port != PORT_A)
-         |         ~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/soc/intel_pch.h:85:36: note: expanded from macro 'HAS_PCH_SPLIT'
-      85 | #define HAS_PCH_SPLIT(dev_priv)                 (INTEL_PCH_TYPE(dev_priv) != PCH_NONE)
-         |                                                  ^~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/soc/intel_pch.h:66:46: note: expanded from macro 'INTEL_PCH_TYPE'
-      66 | #define INTEL_PCH_TYPE(dev_priv)                ((dev_priv)->pch_type)
-         |                                                            ^ ~~~~~~~~
-   include/linux/compiler.h:55:47: note: expanded from macro 'if'
-      55 | #define if(cond, ...) if ( __trace_if_var( !!(cond , ## __VA_ARGS__) ) )
-         |                            ~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/compiler.h:57:86: note: expanded from macro '__trace_if_var'
-      57 | #define __trace_if_var(cond) (__builtin_constant_p(cond) ? (cond) : __trace_if_value(cond))
-         |                                                                     ~~~~~~~~~~~~~~~~~^~~~~
-   include/linux/compiler.h:68:3: note: expanded from macro '__trace_if_value'
-      68 |         (cond) ?                                        \
-         |          ^~~~
-   drivers/gpu/drm/i915/display/intel_dp.c:3110:42: error: use of undeclared identifier 'dev_priv'; did you mean '_dev_crit'?
-    3110 |         if (HAS_PCH_SPLIT(dev_priv) && !HAS_DDI(dev_priv) && encoder->port != PORT_A)
-         |                                                 ^~~~~~~~
-         |                                                 _dev_crit
-   drivers/gpu/drm/i915/display/intel_display_device.h:151:43: note: expanded from macro 'HAS_DDI'
-     151 | #define HAS_DDI(__display)              (DISPLAY_INFO(__display)->has_ddi)
-         |                                                       ^
-   drivers/gpu/drm/i915/display/intel_display_device.h:221:54: note: expanded from macro 'DISPLAY_INFO'
-     221 | #define DISPLAY_INFO(__display)         (__to_intel_display(__display)->info.__device_info)
-         |                                                             ^
-   drivers/gpu/drm/i915/display/intel_display_conversion.h:16:11: note: expanded from macro '__to_intel_display'
-      16 |         _Generic(p,                                                     \
-         |                  ^
-   include/linux/compiler.h:55:47: note: expanded from macro 'if'
-      55 | #define if(cond, ...) if ( __trace_if_var( !!(cond , ## __VA_ARGS__) ) )
-         |                                               ^
-   include/linux/compiler.h:57:86: note: expanded from macro '__trace_if_var'
-      57 | #define __trace_if_var(cond) (__builtin_constant_p(cond) ? (cond) : __trace_if_value(cond))
-         |                                                                                      ^
-   include/linux/compiler.h:68:3: note: expanded from macro '__trace_if_value'
-      68 |         (cond) ?                                        \
-         |          ^
-   include/linux/dev_printk.h:48:6: note: '_dev_crit' declared here
-      48 | void _dev_crit(const struct device *dev, const char *fmt, ...);
-         |      ^
-   fatal error: too many errors emitted, stopping now [-ferror-limit=]
-   1 warning and 20 errors generated.
+So just changing this to "IS_DISPLAY_VER(display, 12, 13)" is probably
+sufficient to cover the appropriate platforms (DG2 is also display
+version 13, but as with RKL/ADL-S/DG1 it doesn't have MG/DKL PHYs so it
+won't see this code anyway).
 
 
-vim +3110 drivers/gpu/drm/i915/display/intel_dp.c
+Matt
 
-d1e217d44b406e0 drivers/gpu/drm/i915/display/intel_dp.c Imre Deak             2024-02-20  3096  
-204474a6b859ff2 drivers/gpu/drm/i915/intel_dp.c         Lyude Paul            2019-01-15  3097  int
-981a63eb2725eca drivers/gpu/drm/i915/intel_dp.c         Jani Nikula           2018-04-26  3098  intel_dp_compute_config(struct intel_encoder *encoder,
-981a63eb2725eca drivers/gpu/drm/i915/intel_dp.c         Jani Nikula           2018-04-26  3099  			struct intel_crtc_state *pipe_config,
-981a63eb2725eca drivers/gpu/drm/i915/intel_dp.c         Jani Nikula           2018-04-26  3100  			struct drm_connector_state *conn_state)
-981a63eb2725eca drivers/gpu/drm/i915/intel_dp.c         Jani Nikula           2018-04-26  3101  {
-9bfcb6bd4e40416 drivers/gpu/drm/i915/display/intel_dp.c Jani Nikula           2024-12-13  3102  	struct intel_display *display = to_intel_display(encoder);
-a4efae87ecb21bf drivers/gpu/drm/i915/display/intel_dp.c Imre Deak             2024-02-20  3103  	struct intel_atomic_state *state = to_intel_atomic_state(conn_state->state);
-1326a92c346641d drivers/gpu/drm/i915/display/intel_dp.c Maarten Lankhorst     2019-10-31  3104  	struct drm_display_mode *adjusted_mode = &pipe_config->hw.adjusted_mode;
-b7d02c3a124d9be drivers/gpu/drm/i915/display/intel_dp.c Ville Syrjälä         2019-12-04  3105  	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-092706786e1143f drivers/gpu/drm/i915/display/intel_dp.c Ville Syrjälä         2022-03-11  3106  	const struct drm_display_mode *fixed_mode;
-2cad4279f419c3e drivers/gpu/drm/i915/display/intel_dp.c Ville Syrjälä         2022-03-22  3107  	struct intel_connector *connector = intel_dp->attached_connector;
-87c8812f4b009b5 drivers/gpu/drm/i915/display/intel_dp.c Ankit Nautiyal        2023-11-10  3108  	int ret = 0, link_bpp_x16;
-981a63eb2725eca drivers/gpu/drm/i915/intel_dp.c         Jani Nikula           2018-04-26  3109  
-97e04764f50db2a drivers/gpu/drm/i915/display/intel_dp.c Ville Syrjälä         2022-03-22 @3110  	if (HAS_PCH_SPLIT(dev_priv) && !HAS_DDI(dev_priv) && encoder->port != PORT_A)
-981a63eb2725eca drivers/gpu/drm/i915/intel_dp.c         Jani Nikula           2018-04-26  3111  		pipe_config->has_pch_encoder = true;
-981a63eb2725eca drivers/gpu/drm/i915/intel_dp.c         Jani Nikula           2018-04-26  3112  
-2cad4279f419c3e drivers/gpu/drm/i915/display/intel_dp.c Ville Syrjälä         2022-03-22  3113  	fixed_mode = intel_panel_fixed_mode(connector, adjusted_mode);
-092706786e1143f drivers/gpu/drm/i915/display/intel_dp.c Ville Syrjälä         2022-03-11  3114  	if (intel_dp_is_edp(intel_dp) && fixed_mode) {
-2cad4279f419c3e drivers/gpu/drm/i915/display/intel_dp.c Ville Syrjälä         2022-03-22  3115  		ret = intel_panel_compute_config(connector, adjusted_mode);
-cff4c2c645cbb3e drivers/gpu/drm/i915/display/intel_dp.c Ville Syrjälä         2021-09-27  3116  		if (ret)
-cff4c2c645cbb3e drivers/gpu/drm/i915/display/intel_dp.c Ville Syrjälä         2021-09-27  3117  			return ret;
-981a63eb2725eca drivers/gpu/drm/i915/intel_dp.c         Jani Nikula           2018-04-26  3118  	}
-981a63eb2725eca drivers/gpu/drm/i915/intel_dp.c         Jani Nikula           2018-04-26  3119  
-e4dd27aadd20541 drivers/gpu/drm/i915/intel_dp.c         Ville Syrjälä         2018-05-24  3120  	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN)
-204474a6b859ff2 drivers/gpu/drm/i915/intel_dp.c         Lyude Paul            2019-01-15  3121  		return -EINVAL;
-e4dd27aadd20541 drivers/gpu/drm/i915/intel_dp.c         Ville Syrjälä         2018-05-24  3122  
-f71c9b7bc35ff7c drivers/gpu/drm/i915/display/intel_dp.c Ankit Nautiyal        2023-01-05  3123  	if (!connector->base.interlace_allowed &&
-981a63eb2725eca drivers/gpu/drm/i915/intel_dp.c         Jani Nikula           2018-04-26  3124  	    adjusted_mode->flags & DRM_MODE_FLAG_INTERLACE)
-204474a6b859ff2 drivers/gpu/drm/i915/intel_dp.c         Lyude Paul            2019-01-15  3125  		return -EINVAL;
-981a63eb2725eca drivers/gpu/drm/i915/intel_dp.c         Jani Nikula           2018-04-26  3126  
-981a63eb2725eca drivers/gpu/drm/i915/intel_dp.c         Jani Nikula           2018-04-26  3127  	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLCLK)
-204474a6b859ff2 drivers/gpu/drm/i915/intel_dp.c         Lyude Paul            2019-01-15  3128  		return -EINVAL;
-981a63eb2725eca drivers/gpu/drm/i915/intel_dp.c         Jani Nikula           2018-04-26  3129  
-9bfcb6bd4e40416 drivers/gpu/drm/i915/display/intel_dp.c Jani Nikula           2024-12-13  3130  	if (intel_dp_hdisplay_bad(display, adjusted_mode->crtc_hdisplay))
-98c93394ba907e6 drivers/gpu/drm/i915/display/intel_dp.c Ville Syrjälä         2019-07-18  3131  		return -EINVAL;
-98c93394ba907e6 drivers/gpu/drm/i915/display/intel_dp.c Ville Syrjälä         2019-07-18  3132  
-56185b90488a9a5 drivers/gpu/drm/i915/display/intel_dp.c Ville Syrjälä         2022-03-22  3133  	/*
-56185b90488a9a5 drivers/gpu/drm/i915/display/intel_dp.c Ville Syrjälä         2022-03-22  3134  	 * Try to respect downstream TMDS clock limits first, if
-56185b90488a9a5 drivers/gpu/drm/i915/display/intel_dp.c Ville Syrjälä         2022-03-22  3135  	 * that fails assume the user might know something we don't.
-56185b90488a9a5 drivers/gpu/drm/i915/display/intel_dp.c Ville Syrjälä         2022-03-22  3136  	 */
-56185b90488a9a5 drivers/gpu/drm/i915/display/intel_dp.c Ville Syrjälä         2022-03-22  3137  	ret = intel_dp_compute_output_format(encoder, pipe_config, conn_state, true);
-56185b90488a9a5 drivers/gpu/drm/i915/display/intel_dp.c Ville Syrjälä         2022-03-22  3138  	if (ret)
-56185b90488a9a5 drivers/gpu/drm/i915/display/intel_dp.c Ville Syrjälä         2022-03-22  3139  		ret = intel_dp_compute_output_format(encoder, pipe_config, conn_state, false);
-632f853525fa3c2 drivers/gpu/drm/i915/display/intel_dp.c Ville Syrjälä         2022-03-22  3140  	if (ret)
-204474a6b859ff2 drivers/gpu/drm/i915/intel_dp.c         Lyude Paul            2019-01-15  3141  		return ret;
-981a63eb2725eca drivers/gpu/drm/i915/intel_dp.c         Jani Nikula           2018-04-26  3142  
-dd934010759422f drivers/gpu/drm/i915/display/intel_dp.c Ville Syrjälä         2022-03-22  3143  	if ((intel_dp_is_edp(intel_dp) && fixed_mode) ||
-dd934010759422f drivers/gpu/drm/i915/display/intel_dp.c Ville Syrjälä         2022-03-22  3144  	    pipe_config->output_format == INTEL_OUTPUT_FORMAT_YCBCR420) {
-dd934010759422f drivers/gpu/drm/i915/display/intel_dp.c Ville Syrjälä         2022-03-22  3145  		ret = intel_panel_fitting(pipe_config, conn_state);
-dd934010759422f drivers/gpu/drm/i915/display/intel_dp.c Ville Syrjälä         2022-03-22  3146  		if (ret)
-dd934010759422f drivers/gpu/drm/i915/display/intel_dp.c Ville Syrjälä         2022-03-22  3147  			return ret;
-dd934010759422f drivers/gpu/drm/i915/display/intel_dp.c Ville Syrjälä         2022-03-22  3148  	}
-dd934010759422f drivers/gpu/drm/i915/display/intel_dp.c Ville Syrjälä         2022-03-22  3149  
-0f2a2a756e862e1 drivers/gpu/drm/i915/intel_dp.c         Ville Syrjälä         2015-07-06  3150  	pipe_config->limited_color_range =
-37aa52bff2bcd43 drivers/gpu/drm/i915/intel_dp.c         Ville Syrjälä         2019-03-26  3151  		intel_dp_limited_color_range(pipe_config, conn_state);
-55bc60db5988c83 drivers/gpu/drm/i915/intel_dp.c         Ville Syrjälä         2013-01-17  3152  
-3072a24c778a710 drivers/gpu/drm/i915/display/intel_dp.c Ville Syrjälä         2023-05-03  3153  	pipe_config->enhanced_framing =
-3072a24c778a710 drivers/gpu/drm/i915/display/intel_dp.c Ville Syrjälä         2023-05-03  3154  		drm_dp_enhanced_frame_cap(intel_dp->dpcd);
-3072a24c778a710 drivers/gpu/drm/i915/display/intel_dp.c Ville Syrjälä         2023-05-03  3155  
-010663a61c40377 drivers/gpu/drm/i915/display/intel_dp.c Jani Nikula           2019-10-22  3156  	if (pipe_config->dsc.compression_enable)
-87c8812f4b009b5 drivers/gpu/drm/i915/display/intel_dp.c Ankit Nautiyal        2023-11-10  3157  		link_bpp_x16 = pipe_config->dsc.compressed_bpp_x16;
-a4a157777c807d5 drivers/gpu/drm/i915/intel_dp.c         Manasi Navare         2018-11-28  3158  	else
-3196763851b5fb9 drivers/gpu/drm/i915/display/intel_dp.c Imre Deak             2024-08-05  3159  		link_bpp_x16 = fxp_q4_from_int(intel_dp_output_bpp(pipe_config->output_format,
-87c8812f4b009b5 drivers/gpu/drm/i915/display/intel_dp.c Ankit Nautiyal        2023-11-10  3160  								   pipe_config->pipe_bpp));
-aefa95bacfbe65c drivers/gpu/drm/i915/intel_dp.c         Ville Syrjälä         2019-03-26  3161  
-bc71194e889741e drivers/gpu/drm/i915/display/intel_dp.c Jani Nikula           2021-03-02  3162  	if (intel_dp->mso_link_count) {
-bc71194e889741e drivers/gpu/drm/i915/display/intel_dp.c Jani Nikula           2021-03-02  3163  		int n = intel_dp->mso_link_count;
-bc71194e889741e drivers/gpu/drm/i915/display/intel_dp.c Jani Nikula           2021-03-02  3164  		int overlap = intel_dp->mso_pixel_overlap;
-bc71194e889741e drivers/gpu/drm/i915/display/intel_dp.c Jani Nikula           2021-03-02  3165  
-bc71194e889741e drivers/gpu/drm/i915/display/intel_dp.c Jani Nikula           2021-03-02  3166  		pipe_config->splitter.enable = true;
-bc71194e889741e drivers/gpu/drm/i915/display/intel_dp.c Jani Nikula           2021-03-02  3167  		pipe_config->splitter.link_count = n;
-bc71194e889741e drivers/gpu/drm/i915/display/intel_dp.c Jani Nikula           2021-03-02  3168  		pipe_config->splitter.pixel_overlap = overlap;
-bc71194e889741e drivers/gpu/drm/i915/display/intel_dp.c Jani Nikula           2021-03-02  3169  
-9bfcb6bd4e40416 drivers/gpu/drm/i915/display/intel_dp.c Jani Nikula           2024-12-13  3170  		drm_dbg_kms(display->drm,
-9bfcb6bd4e40416 drivers/gpu/drm/i915/display/intel_dp.c Jani Nikula           2024-12-13  3171  			    "MSO link count %d, pixel overlap %d\n",
-bc71194e889741e drivers/gpu/drm/i915/display/intel_dp.c Jani Nikula           2021-03-02  3172  			    n, overlap);
-bc71194e889741e drivers/gpu/drm/i915/display/intel_dp.c Jani Nikula           2021-03-02  3173  
-bc71194e889741e drivers/gpu/drm/i915/display/intel_dp.c Jani Nikula           2021-03-02  3174  		adjusted_mode->crtc_hdisplay = adjusted_mode->crtc_hdisplay / n + overlap;
-bc71194e889741e drivers/gpu/drm/i915/display/intel_dp.c Jani Nikula           2021-03-02  3175  		adjusted_mode->crtc_hblank_start = adjusted_mode->crtc_hblank_start / n + overlap;
-bc71194e889741e drivers/gpu/drm/i915/display/intel_dp.c Jani Nikula           2021-03-02  3176  		adjusted_mode->crtc_hblank_end = adjusted_mode->crtc_hblank_end / n + overlap;
-bc71194e889741e drivers/gpu/drm/i915/display/intel_dp.c Jani Nikula           2021-03-02  3177  		adjusted_mode->crtc_hsync_start = adjusted_mode->crtc_hsync_start / n + overlap;
-bc71194e889741e drivers/gpu/drm/i915/display/intel_dp.c Jani Nikula           2021-03-02  3178  		adjusted_mode->crtc_hsync_end = adjusted_mode->crtc_hsync_end / n + overlap;
-bc71194e889741e drivers/gpu/drm/i915/display/intel_dp.c Jani Nikula           2021-03-02  3179  		adjusted_mode->crtc_htotal = adjusted_mode->crtc_htotal / n + overlap;
-bc71194e889741e drivers/gpu/drm/i915/display/intel_dp.c Jani Nikula           2021-03-02  3180  		adjusted_mode->crtc_clock /= n;
-bc71194e889741e drivers/gpu/drm/i915/display/intel_dp.c Jani Nikula           2021-03-02  3181  	}
-bc71194e889741e drivers/gpu/drm/i915/display/intel_dp.c Jani Nikula           2021-03-02  3182  
-8853750dbad8f5d drivers/gpu/drm/i915/display/intel_dp.c Vinod Govindapillai   2022-11-21  3183  	intel_dp_audio_compute_config(encoder, pipe_config, conn_state);
-8853750dbad8f5d drivers/gpu/drm/i915/display/intel_dp.c Vinod Govindapillai   2022-11-21  3184  
-87c8812f4b009b5 drivers/gpu/drm/i915/display/intel_dp.c Ankit Nautiyal        2023-11-10  3185  	intel_link_compute_m_n(link_bpp_x16,
-a4a157777c807d5 drivers/gpu/drm/i915/intel_dp.c         Manasi Navare         2018-11-28  3186  			       pipe_config->lane_count,
-241bfc389111ce4 drivers/gpu/drm/i915/intel_dp.c         Damien Lespiau        2013-09-25  3187  			       adjusted_mode->crtc_clock,
-241bfc389111ce4 drivers/gpu/drm/i915/intel_dp.c         Damien Lespiau        2013-09-25  3188  			       pipe_config->port_clock,
-7ff2090c7c98644 drivers/gpu/drm/i915/display/intel_dp.c Imre Deak             2023-10-24  3189  			       intel_dp_bw_fec_overhead(pipe_config->fec_enable),
-7ff2090c7c98644 drivers/gpu/drm/i915/display/intel_dp.c Imre Deak             2023-10-24  3190  			       &pipe_config->dp_m_n);
-a4fc5ed69817c73 drivers/gpu/drm/i915/intel_dp.c         Keith Packard         2009-04-07  3191  
-bc71194e889741e drivers/gpu/drm/i915/display/intel_dp.c Jani Nikula           2021-03-02  3192  	/* FIXME: abstract this better */
-bc71194e889741e drivers/gpu/drm/i915/display/intel_dp.c Jani Nikula           2021-03-02  3193  	if (pipe_config->splitter.enable)
-5f721a5d1bb2e3a drivers/gpu/drm/i915/display/intel_dp.c Ville Syrjälä         2022-01-27  3194  		pipe_config->dp_m_n.data_m *= pipe_config->splitter.link_count;
-bc71194e889741e drivers/gpu/drm/i915/display/intel_dp.c Jani Nikula           2021-03-02  3195  
-4f8036a28112ed6 drivers/gpu/drm/i915/intel_dp.c         Tvrtko Ursulin        2016-10-13  3196  	if (!HAS_DDI(dev_priv))
-053ffdd1641e0cb drivers/gpu/drm/i915/display/intel_dp.c Ville Syrjälä         2021-03-18  3197  		g4x_dp_set_clock(encoder, pipe_config);
-c6bb353815c30c3 drivers/gpu/drm/i915/intel_dp.c         Simona Vetter         2013-04-19  3198  
-117cd09ba52857a drivers/gpu/drm/i915/display/intel_dp.c Manasi Navare         2021-01-22  3199  	intel_vrr_compute_config(pipe_config, conn_state);
-a5bd5991cb8ab51 drivers/gpu/drm/i915/display/intel_dp.c Mitul Golani          2024-03-22  3200  	intel_dp_compute_as_sdp(intel_dp, pipe_config);
-9ce5884e5139037 drivers/gpu/drm/i915/display/intel_dp.c José Roberto de Souza 2021-09-22  3201  	intel_psr_compute_config(intel_dp, pipe_config, conn_state);
-15438b32598744c drivers/gpu/drm/i915/display/intel_dp.c Animesh Manna         2024-05-30  3202  	intel_alpm_lobf_compute_config(intel_dp, pipe_config, conn_state);
-87c8812f4b009b5 drivers/gpu/drm/i915/display/intel_dp.c Ankit Nautiyal        2023-11-10  3203  	intel_dp_drrs_compute_config(connector, pipe_config, link_bpp_x16);
-9799c4c3b76e540 drivers/gpu/drm/i915/display/intel_dp.c Gwan-gyeong Mun       2020-02-11  3204  	intel_dp_compute_vsc_sdp(intel_dp, pipe_config, conn_state);
-d1eed96dcb60b79 drivers/gpu/drm/i915/display/intel_dp.c Gwan-gyeong Mun       2020-02-11  3205  	intel_dp_compute_hdr_metadata_infoframe_sdp(intel_dp, pipe_config, conn_state);
-4d90f2d507ab463 drivers/gpu/drm/i915/intel_dp.c         Ville Syrjälä         2017-10-12  3206  
-a4efae87ecb21bf drivers/gpu/drm/i915/display/intel_dp.c Imre Deak             2024-02-20  3207  	return intel_dp_tunnel_atomic_compute_stream_bw(state, intel_dp, connector,
-a4efae87ecb21bf drivers/gpu/drm/i915/display/intel_dp.c Imre Deak             2024-02-20  3208  							pipe_config);
-5eb08b69f510fad drivers/gpu/drm/i915/intel_dp.c         Zhenyu Wang           2009-07-24  3209  }
-a4fc5ed69817c73 drivers/gpu/drm/i915/intel_dp.c         Keith Packard         2009-04-07  3210  
+> +			tgl_dkl_phy_check_and_rewrite(dev_priv, tc_port, ln0, ln1);
+> +
+>  	} else {
+>  		intel_de_write(dev_priv, MG_DP_MODE(0, tc_port), ln0);
+>  		intel_de_write(dev_priv, MG_DP_MODE(1, tc_port), ln1);
+> -- 
+> 2.25.1
+> 
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
