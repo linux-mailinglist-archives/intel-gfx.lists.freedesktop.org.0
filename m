@@ -1,54 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05B229F0BA3
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2024 12:51:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43E299F0BA4
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Dec 2024 12:51:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A04E710EFE4;
-	Fri, 13 Dec 2024 11:51:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA79D10EFE5;
+	Fri, 13 Dec 2024 11:51:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hp5eOq0d";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W6IWaFej";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B9D310E1CA
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2024 11:51:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 275AA10EFE5
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Dec 2024 11:51:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734090685; x=1765626685;
+ t=1734090690; x=1765626690;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=2678mU5czK1r77f6x2oNx06Vy526JEmBRAxHIqjlFUI=;
- b=hp5eOq0dKWMtjd+JgoPpWHDH/+GFs6mn1qh9i8AjER+gKsjfdcWx2Dlt
- We+sPUl/a15BmKxTY/2qwS9//PnYm4tq3nuS+GMkjaYVrKRXhz73MTNRG
- AtmSf5YWaSdiB3fic8v+zOlDh3pstewF4ZOdXmvQHH02ZAq58mWOT0qeL
- mgOiIG4ILdVcyLGat4nY6xWMzQ22QBCMvZd0uy4QgWixG3a2q2BSyvb+I
- DEOVLAopGltnwNU3tibSUbC02BCUZ9viG8M0jGDf31XTM165LyrURezTC
- NbLZGbxF/ZkeYsvzbKkk/RIBTXi+tmz/TpHp+un0QWqQF8gsokWZUJPDH A==;
-X-CSE-ConnectionGUID: s5zpnkr1SGW+JBNbVyOFnw==
-X-CSE-MsgGUID: tEHuDD7pQyGb1szVpctDPg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11284"; a="34773348"
-X-IronPort-AV: E=Sophos;i="6.12,231,1728975600"; d="scan'208";a="34773348"
+ bh=wZw5h52Js4IXkoCE8LNhy6dKzG9ttQtEPozEBLIc9CE=;
+ b=W6IWaFejjVECzWsxstHZcz2wSCI4JYHgR7X7JzPNV9S7u7ZR0foHQp+9
+ KWGum0GeIpiM3gorVCuMIYFPEAr0+BfsExWIVeAujjH20ijifHPQN0rJs
+ /P5cPeDP0IZKVCmGL8non1AQlQ1mO9ih64BZAyr3CIMVezMbFhyEHOy3k
+ 6osHIL9NCvsKWjOUt4U5uTFTQ4IP0ImK+EvaDHmXiY6/LqyugtQeZjcXT
+ YVHiSOMoKYpLdhUnyEm/9wJ7cL8GXYcfUQZEd+rkwrNZ4cUaQcqwXLXxa
+ uQMJY1Qu3ZM8sfBOaGwFTx/4aE5W2FfjEVayFasawUQK1gkjOuh7gngwX w==;
+X-CSE-ConnectionGUID: yhAQhk2CSVKtzSc2mLurMQ==
+X-CSE-MsgGUID: c/J7h60PSLazrHPbbkdTQg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11284"; a="34773363"
+X-IronPort-AV: E=Sophos;i="6.12,231,1728975600"; d="scan'208";a="34773363"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2024 03:51:25 -0800
-X-CSE-ConnectionGUID: J5XT/z8ITwOa47TmWPyJOw==
-X-CSE-MsgGUID: f3sInrHKTCSM13Klm9W+/A==
+ 13 Dec 2024 03:51:30 -0800
+X-CSE-ConnectionGUID: 74fHNPvCQzWFUpePagWeEg==
+X-CSE-MsgGUID: 7+XOxEZySSSubernBUxVtA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="96946615"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="96946619"
 Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.159])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Dec 2024 03:51:23 -0800
+ 13 Dec 2024 03:51:28 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	ville.syrjala@linux.intel.com
-Subject: [PATCH 2/3] drm/i915: relocate _VGA_MSR_WRITE register definition
-Date: Fri, 13 Dec 2024 13:51:10 +0200
-Message-Id: <20241213115111.335474-2-jani.nikula@intel.com>
+Subject: [PATCH 3/3] drm/i915: move DDI_CLK_VALFREQ next to other Cx0 PHY
+ registers
+Date: Fri, 13 Dec 2024 13:51:11 +0200
+Message-Id: <20241213115111.335474-3-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <20241213115111.335474-1-jani.nikula@intel.com>
 References: <20241213115111.335474-1-jani.nikula@intel.com>
@@ -70,39 +71,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Move _VGA_MSR_WRITE to intel_crt_regs.h. It's not necessarily the
-optimal place for it, but hands down better than i915_reg.h.
+Relocate DDI_CLK_VALFREQ register definition next to other Cx0 PHY
+register macros.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_crt_regs.h | 2 ++
- drivers/gpu/drm/i915/i915_reg.h               | 2 --
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h | 5 +++++
+ drivers/gpu/drm/i915/i915_reg.h                   | 5 -----
+ 2 files changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crt_regs.h b/drivers/gpu/drm/i915/display/intel_crt_regs.h
-index 9a93020b9a7e..571a67ae9afa 100644
---- a/drivers/gpu/drm/i915/display/intel_crt_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_crt_regs.h
-@@ -45,4 +45,6 @@
- #define   ADPA_VSYNC_ACTIVE_HIGH		REG_BIT(4)
- #define   ADPA_HSYNC_ACTIVE_HIGH		REG_BIT(3)
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+index c685479c9756..4dc6e179a774 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+@@ -9,6 +9,11 @@
+ #include "i915_reg_defs.h"
+ #include "intel_display_limits.h"
  
-+#define _VGA_MSR_WRITE _MMIO(0x3c2)
++/* DDI Buffer Control */
++#define _DDI_CLK_VALFREQ_A		0x64030
++#define _DDI_CLK_VALFREQ_B		0x64130
++#define DDI_CLK_VALFREQ(port)		_MMIO_PORT(port, _DDI_CLK_VALFREQ_A, _DDI_CLK_VALFREQ_B)
 +
- #endif /* __INTEL_CRT_REGS_H__ */
+ /*
+  * Wrapper macro to convert from port number to the index used in some of the
+  * registers. For Display version 20 and above it converts the port number to a
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index a204d0e7fdcf..33cfe07a9b2e 100644
+index 33cfe07a9b2e..765e6c0528fb 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -144,8 +144,6 @@
- #define GEN6_STOLEN_RESERVED_ENABLE	(1 << 0)
- #define GEN11_STOLEN_RESERVED_ADDR_MASK	(0xFFFFFFFFFFFULL << 20)
+@@ -1067,11 +1067,6 @@
+ #define CLKGATE_DIS_PSL_EXT(pipe) \
+ 	_MMIO_PIPE(pipe, _CLKGATE_DIS_PSL_EXT_A, _CLKGATE_DIS_PSL_EXT_B)
  
--#define _VGA_MSR_WRITE _MMIO(0x3c2)
+-/* DDI Buffer Control */
+-#define _DDI_CLK_VALFREQ_A		0x64030
+-#define _DDI_CLK_VALFREQ_B		0x64130
+-#define DDI_CLK_VALFREQ(port)		_MMIO_PORT(port, _DDI_CLK_VALFREQ_A, _DDI_CLK_VALFREQ_B)
 -
- #define _GEN7_PIPEA_DE_LOAD_SL	0x70068
- #define _GEN7_PIPEB_DE_LOAD_SL	0x71068
- #define GEN7_PIPE_DE_LOAD_SL(pipe) _MMIO_PIPE(pipe, _GEN7_PIPEA_DE_LOAD_SL, _GEN7_PIPEB_DE_LOAD_SL)
+ /*
+  * Display engine regs
+  */
 -- 
 2.39.5
 
