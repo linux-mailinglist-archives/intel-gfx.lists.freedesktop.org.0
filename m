@@ -1,55 +1,59 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C86B59F35BD
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2024 17:21:30 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1B9E9F3627
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2024 17:34:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CC3010E1C8;
-	Mon, 16 Dec 2024 16:21:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5406B10E5DF;
+	Mon, 16 Dec 2024 16:34:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="VBC7F9dy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GZrCzb9P";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E93D610E1C8;
- Mon, 16 Dec 2024 16:21:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=ZbebpDFFFNf13wUEwMhbDOAbWmM9tWxfWhhdGNIFxd0=; b=VBC7F9dy65FOnCwO3xcNxaIn2F
- Pg1+qTmL/XcPUQW1nrFUp16n9vNnQHHeKy7qTqiT4ihV/Q+1oefgruzXdEcgf63e7pL8U5zKb/fKy
- RSITB9aHakfYQ1jBksabcbY9LVmN3sIhwOj0y4+zyJ969zv07/cZPITI/A67A1BuwclVN5ThC/320
- 3xkLPUxjRMcrV+ypYldCRTYsCAu6Sq99dHS3Xpx7pTYvJEPyKGyzfxgvtwZLsW/Qrkc5sEIh5xrP6
- WX7YE7KyB6bMbQu8SIJ7gSBzqMukeHUdpatSHUjwd47An1XA12/Mi+4BfWTss3n/5op6/mg66ax2Z
- w2aHnuHQ==;
-Received: from [179.193.1.214] (helo=localhost.localdomain)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1tNDqQ-003qch-0z; Mon, 16 Dec 2024 17:21:18 +0100
-From: =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
-To: Raag Jadav <raag.jadav@intel.com>, airlied@gmail.com, simona@ffwll.ch,
- lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
- jani.nikula@linux.intel.com, andriy.shevchenko@linux.intel.com,
- lina@asahilina.net, michal.wajdeczko@intel.com, christian.koenig@amd.com
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- himal.prasad.ghimiray@intel.com, aravind.iddamsetty@linux.intel.com,
- anshuman.gupta@intel.com, alexander.deucher@amd.com,
- andrealmeid@igalia.com, amd-gfx@lists.freedesktop.org,
- kernel-dev@igalia.com, Shashank Sharma <shashank.sharma@amd.com>
-Subject: [PATCH v3 1/1] drm/amdgpu: Use device wedged event
-Date: Mon, 16 Dec 2024 13:21:04 -0300
-Message-ID: <20241216162104.58241-2-andrealmeid@igalia.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20241216162104.58241-1-andrealmeid@igalia.com>
-References: <20241216162104.58241-1-andrealmeid@igalia.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B19210E5DF
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2024 16:34:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1734366863; x=1765902863;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=yKXkinsavmo7/G8Y6f56gR1bn8UXEgXHa4HyAfgrcBM=;
+ b=GZrCzb9PK6Awf12Lgp/V/DF75LgKLf2hr2Jlo5fRc/hzBbRzTj+xCaG6
+ l/qYeMMmWg32qUvSKSQlb7+u5Qo0aB4UAs8EUJhqunSAAfGeodCOPCDbY
+ Zp1qcAGTyEAqa1zog1JD+VFv2LvtOMSuahLeSQ+d8P9flgv2zrg5BmN+L
+ VlaELCpEri4cRGDuxMf7nqjcvllk8wWqBQX0+EC4w3s4KYd4kl5Dj5gI8
+ rurYtm9Y2EloutgBz6Zg722jxb0nMjTqVS7snLDQ1Mrl+Ukf7pBNpzLSX
+ WKYyehX9i/8P4dIJALdxD9wpH+XKm8UJDREnQI9V+NquBqQl6me+phhh+ g==;
+X-CSE-ConnectionGUID: PzbyurWRSS2hjCXH+IUsAw==
+X-CSE-MsgGUID: L4EJUKtRQCiP7sHE7cYe8g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11288"; a="34053791"
+X-IronPort-AV: E=Sophos;i="6.12,239,1728975600"; d="scan'208";a="34053791"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2024 08:34:22 -0800
+X-CSE-ConnectionGUID: h43jtsEbTnaoCK6tOk2YGA==
+X-CSE-MsgGUID: fpov6q0FSaac4JRTHOI+BA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="97113075"
+Received: from rvodapal-desk.iind.intel.com ([10.145.162.163])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2024 08:34:20 -0800
+From: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: balasubramani.vivekanandan@intel.com, matthew.d.roper@intel.com,
+ lucas.demarchi@intel.com, gustavo.sousa@intel.com,
+ clinton.a.taylor@intel.com, matthew.s.atwood@intel.com,
+ dnyaneshwar.bhadane@intel.com, haridhar.kalvala@intel.com,
+ shekhar.chauhan@intel.com
+Subject: [PATCH] drm/i915/display: program DBUF_CTL tracker state service to
+ 0x8
+Date: Mon, 16 Dec 2024 22:02:17 +0530
+Message-Id: <20241216163217.2715069-1-ravi.kumar.vodapalli@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,37 +70,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Use DRM's device wedged event to notify userspace that a reset had
-happened. For now, only use `none` method meant for telemetry
-capture.
+While display initialization along with MBUS credits programming
+DBUF_CTL register is also programmed, as a part of it the tracker
+state service field is also set to 0x8 value when default value is
+other than 0x8. so, for TGLLP, SVL, RYF, DG1, ACM, ACMPLUS, RKLC,
+RKLGM and ADLS platforms default value is not 0x8, hence set to 0x8.
+For remaining platforms the default value is already 0x8 so no need
+to program them.
 
-In the future we might want to report a recovery method if the reset didn't
-succeed.
-
-Acked-by: Shashank Sharma <shashank.sharma@amd.com>
-Signed-off-by: André Almeida <andrealmeid@igalia.com>
+Bspec: 49213
+Signed-off-by: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
 ---
-v3: fix if condition
-v2: Only report reset if reset succedded
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display_power.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 96316111300a..c8012253ebed 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -6057,6 +6057,10 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
- 		dev_info(adev->dev, "GPU reset end with ret = %d\n", r);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index 34465d56def0..d9ba48b68979 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -1126,7 +1126,9 @@ static void gen12_dbuf_slices_config(struct intel_display *display)
+ {
+ 	enum dbuf_slice slice;
  
- 	atomic_set(&adev->reset_domain->reset_res, r);
-+
-+	if (!r)
-+		drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE);
-+
- 	return r;
- }
+-	if (display->platform.alderlake_p)
++	if (display->platform.alderlake_p || display->platform.dg2 ||
++	    display->platform.alderlake_p_raptorlake_p ||
++	    DISPLAY_VER(display) >= 14)
+ 		return;
  
+ 	for_each_dbuf_slice(display, slice)
 -- 
-2.47.1
+2.25.1
 
