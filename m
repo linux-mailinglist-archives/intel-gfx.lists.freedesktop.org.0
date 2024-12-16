@@ -1,76 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 317DA9F38E2
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2024 19:27:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80C149F38E7
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2024 19:27:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E01F410E1F2;
-	Mon, 16 Dec 2024 18:27:04 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="O5PPqABY";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id F37B510E74F;
+	Mon, 16 Dec 2024 18:27:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com
- [IPv6:2607:f8b0:4864:20::634])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7712B10E1F2;
- Mon, 16 Dec 2024 18:27:04 +0000 (UTC)
-Received: by mail-pl1-x634.google.com with SMTP id
- d9443c01a7336-2162b5d2e1fso6213495ad.3; 
- Mon, 16 Dec 2024 10:27:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1734373624; x=1734978424; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=RORr4BwXDZK3mrhMObHgV1fmSWfT3pszlCMMq/K/uwU=;
- b=O5PPqABYx1rsmtL4LR3exEN75pJvF7E0vV40n3Jues8CRRvKm98UkTWJQLmRlZpjtR
- fp00D+3G1AqnkZeOD73sAkM9E3PQiLbJDC20IuE6iYR6G7Db8KP+zSV4a1LPeM0Vns2t
- jbecAFBTlcdvndIso8QXEvVEg5m2f3tLf1B+VTFOn01yWHj4gPkG1wwOqxJVmfc3Ozsa
- z3aMgHc1C5kM2D+n8/vTvqwI174XKp0YJrLWt4hc2ZgIW9k2rAiE/sqasOJBwHl2NYrj
- 3wI0jK+2Fi3+g/rR4UrXWHbT7jb5QqQhFU8rV1unpTCFCtrLkKzWz5DkCt7XHpSZSKac
- VMIg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1734373624; x=1734978424;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=RORr4BwXDZK3mrhMObHgV1fmSWfT3pszlCMMq/K/uwU=;
- b=CtMxf0oQ+KozPzgwmpP+uZUg4Sgk+WzytrZ9+GixNVkbQ/S10yD7hiESTFXSsl9BAv
- thWtuj0OODJOoSdAh1wPSXRh7sDn/qww434NiEYnwbExs2Lupf0d8Oy8RLn/I6oosMnf
- 9pgAa1pyw5dH3I2P0o7XTfPZD57krQ+h6I6ntRiGhI0JhgFT2rL5xzlN/n3scOHgQfW1
- eNuQnnAEr4KWFTwNUlSrtZekxEQiGqHc0tXZDeg0RdG8ZVRR0T8hL8nXHmWfERVRr7LW
- IdWqW+Lirx96cU0VyKIQ1Jep3ItjSIEo4VNrS879M4Pop4lSelFGFRm057sjkX6GtNLO
- L0BA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUN4Hbx+K3LirZEMO0VUYKMkcxmpkGDY7YEBHGm9iB6C98/Fb0hmX/F1sIda5vbORBvpIypNEUUPQI=@lists.freedesktop.org,
- AJvYcCUhb1uWX5l/iPY1LBfAuG0s/MpnwdpsZSkcTdE0Z6meb3OOtYqJjQxLriOCGlxahI8LRdx145QNF9iS@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Ywiump5ubpgyodH/wkkSKubqmsoX2wWLAAsNg/WVz1btEXf48sr
- dPSeNE1MHE3mLg+B/r8oM/o0mpp0FQI8/L/C9a50KBOsk8CCejzyMOGyF7LHfSpfvNb6AHqvXPu
- 387u17o8CAfhqEUUsQtyKZUpa+GM=
-X-Gm-Gg: ASbGnctXu/x/o9roWMRWldIS79kMpjp64dY4yqzxtXWSPxkmywZsmexD4En4jtKTvHR
- FmQoI9yoSc8NiLN8gXbwA12DhOdOcJvXKZY49JQ==
-X-Google-Smtp-Source: AGHT+IE0VkxvsWhx4fWLXGL+jQqle1J+9zDKXSefQQsKjN90yKq+Rk4/gDc4MOzAnfWaVNL8Wrup5gfPXtGybKyZKLg=
-X-Received: by 2002:a17:902:d488:b0:216:42fd:79d8 with SMTP id
- d9443c01a7336-21892a34260mr74219445ad.12.1734373623947; Mon, 16 Dec 2024
- 10:27:03 -0800 (PST)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECF2F10E74F;
+ Mon, 16 Dec 2024 18:27:36 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20241211230328.4012496-1-imre.deak@intel.com>
- <20241211230328.4012496-7-imre.deak@intel.com>
- <Z2Ag68XqBOZTghHq@ideak-desk.fi.intel.com>
-In-Reply-To: <Z2Ag68XqBOZTghHq@ideak-desk.fi.intel.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Mon, 16 Dec 2024 13:26:52 -0500
-Message-ID: <CADnq5_O40d+7ZgX=VFu+LX6JrFMybPDjesk0xGzHq36XbbxGzQ@mail.gmail.com>
-Subject: Re: [PATCH v3 06/11] drm/amd/dp_mst: Expose a connector to kernel
- users after it's properly initialized
-To: imre.deak@intel.com
-Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Alex Deucher <alexander.deucher@amd.com>, intel-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, Lyude Paul <lyude@redhat.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_i915/gt=3A_Reapply_workar?=
+ =?utf-8?q?ounds_in_case_the_previous_attempt_failed=2E_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Sebastian Brzezinka" <sebastian.brzezinka@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 16 Dec 2024 18:27:36 -0000
+Message-ID: <173437365696.3373856.12303962531957092053@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <752zde6fl47boamqiccdhz2wmkxoee5rmzqucphvglhs53bclz@jlv5clqnxngh>
+In-Reply-To: <752zde6fl47boamqiccdhz2wmkxoee5rmzqucphvglhs53bclz@jlv5clqnxngh>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,76 +37,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Dec 16, 2024 at 8:13=E2=80=AFAM Imre Deak <imre.deak@intel.com> wro=
-te:
->
-> Hi Harry, Leo, Alex, Wayne,
->
-> could you please ack this change as well?
+== Series Details ==
 
-Patches 1-9 are:
-Acked-by: Alex Deucher <alexander.deucher@amd.com>
+Series: i915/gt: Reapply workarounds in case the previous attempt failed. (rev3)
+URL   : https://patchwork.freedesktop.org/series/142188/
+State : success
 
-Feel free to take this one through whichever tree you are planning to
-commit these to.
+== Summary ==
 
-Alex
+CI Bug Log - changes from CI_DRM_15854 -> Patchwork_142188v3
+====================================================
 
->
-> Thanks,
-> Imre
->
-> A typo below in the commit log, can fix it while merging the patch here a=
-nd in
-> the i915/nouveau patches.
->
-> On Thu, Dec 12, 2024 at 01:03:23AM +0200, Imre Deak wrote:
-> > After a connector is added to the drm_mode_config::connector_list, it's
-> > visible to any in-kernel users looking up connectors via the above list=
-.
-> > Make sure that the connector is properly initialized before such
-> > look-ups, by initializing the connector with
-> > drm_connector_dynamic_register() - which doesn't add the connector to
->   ^ should be drm_connector_dynamic_init()
->
-> > the list - and registering it with drm_connector_dynamic_register() -
-> > which adds the connector to the list - after the initialization is
-> > complete.
-> >
-> > Cc: Harry Wentland <harry.wentland@amd.com>
-> > Cc: Leo Li <sunpeng.li@amd.com>
-> > Cc: Wayne Lin <wayne.lin@amd.com>
-> > Cc: Alex Deucher <alexander.deucher@amd.com>
-> > Cc: Lyude Paul <lyude@redhat.com>
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > ---
-> >  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c | 5 +++--
-> >  1 file changed, 3 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.=
-c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> > index 6e43594906130..d398bc74e6677 100644
-> > --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> > +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> > @@ -590,11 +590,12 @@ dm_dp_add_mst_connector(struct drm_dp_mst_topolog=
-y_mgr *mgr,
-> >       amdgpu_dm_set_mst_status(&aconnector->mst_status,
-> >                       MST_PROBE, true);
-> >
-> > -     if (drm_connector_init(
-> > +     if (drm_connector_dynamic_init(
-> >               dev,
-> >               connector,
-> >               &dm_dp_mst_connector_funcs,
-> > -             DRM_MODE_CONNECTOR_DisplayPort)) {
-> > +             DRM_MODE_CONNECTOR_DisplayPort,
-> > +             NULL)) {
-> >               kfree(aconnector);
-> >               return NULL;
-> >       }
-> > --
-> > 2.44.2
-> >
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142188v3/index.html
+
+Participating hosts (45 -> 44)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_142188v3 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live:
+    - bat-arls-5:         NOTRUN -> [ABORT][1] ([i915#12061])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142188v3/bat-arls-5/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-5:         [PASS][2] -> [ABORT][3] ([i915#12061])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15854/bat-arls-5/igt@i915_selftest@live@workarounds.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142188v3/bat-arls-5/igt@i915_selftest@live@workarounds.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
+    - bat-dg2-11:         [PASS][4] -> [SKIP][5] ([i915#9197]) +3 other tests skip
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15854/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142188v3/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arlh-3:         [ABORT][6] ([i915#12061]) -> [PASS][7] +1 other test pass
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15854/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142188v3/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+
+  * igt@kms_chamelium_edid@hdmi-edid-read:
+    - bat-dg2-13:         [DMESG-WARN][8] ([i915#12253]) -> [PASS][9]
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15854/bat-dg2-13/igt@kms_chamelium_edid@hdmi-edid-read.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142188v3/bat-dg2-13/igt@kms_chamelium_edid@hdmi-edid-read.html
+
+  
+#### Warnings ####
+
+  * igt@gem_exec_gttfill@basic:
+    - fi-pnv-d510:        [SKIP][10] -> [ABORT][11] ([i915#13169])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15854/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142188v3/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#12253]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12253
+  [i915#13169]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13169
+  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_15854 -> Patchwork_142188v3
+
+  CI-20190529: 20190529
+  CI_DRM_15854: 49cc582754c205bbe43d4ef2b1fd3894bee1f3bd @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8157: 48a70f6795e6d68b9fae275261ae3b09d3401fe1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_142188v3: 49cc582754c205bbe43d4ef2b1fd3894bee1f3bd @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142188v3/index.html
