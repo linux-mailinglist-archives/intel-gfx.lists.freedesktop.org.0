@@ -1,30 +1,65 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0821B9F384B
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2024 19:04:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C9619F3855
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2024 19:06:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7044B10E742;
-	Mon, 16 Dec 2024 18:04:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E977110E3FC;
+	Mon, 16 Dec 2024 18:06:07 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L2o4xGzp";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7550410E742;
- Mon, 16 Dec 2024 18:04:25 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A43F10E3FC;
+ Mon, 16 Dec 2024 18:06:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1734372367; x=1765908367;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=bcPQuxuNZ1l2bHG55HIRmoJDKyqIHFVp8Mfm0s9tqqw=;
+ b=L2o4xGzpKkoROFtEYc2yBkNDu7JjUOu8PxbOklHLylCIiR9Ivjp7Lk7V
+ KdqX4YXb86KAWJiMSo47Nu4DsKJBwltdU3s1wJJOez5ApsKabMbTfeIgu
+ Y/C1efDp0smOC+Vi82rirV65QeeR4hIrDQTMDDSx9px1uPJwEt5/fe5ye
+ jo8nysR9yrgZaRqQRfIriNOr/3oyvKbhCAezvAk2E68S/2FexE0IkJF5Y
+ F3imIWtanSTWXY2Wmp+uSCYcQu8Vq2w1PBKJWApbs2ZYMaFKzDGZUhh1P
+ YIneZCXMC137onv7Un9WUNDZYYxPzc5LxMa2i239OUJNFX3UdM1NkPMK7 w==;
+X-CSE-ConnectionGUID: f89O6lhJSgehmPEhdVMibQ==
+X-CSE-MsgGUID: jz/CC+NPTcmdF+QYdMhs4w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11288"; a="57251952"
+X-IronPort-AV: E=Sophos;i="6.12,239,1728975600"; d="scan'208";a="57251952"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2024 10:06:06 -0800
+X-CSE-ConnectionGUID: 02eohsNFSDe0JkyrPCLT7A==
+X-CSE-MsgGUID: ckHdXwtoQCqWAnXJCJ8+Fg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="101422425"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.1])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2024 10:06:03 -0800
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Chris Wilson <chris.p.wilson@linux.intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>
+Subject: Re: [PATCH] drm/i915/selftests: Use preemption timeout on cleanup
+Date: Mon, 16 Dec 2024 19:06:01 +0100
+Message-ID: <1986305.PYKUYFuaPT@jkrzyszt-mobl2.ger.corp.intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <Z2AqomipvnhZ0r1y@ashyti-mobl2.lan>
+References: <20241213190122.513709-2-janusz.krzysztofik@linux.intel.com>
+ <Z2AqomipvnhZ0r1y@ashyti-mobl2.lan>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915=3A_Async_flip_+_?=
- =?utf-8?q?compression=2C_and_some_plane_cleanups_=28rev6=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 16 Dec 2024 18:04:25 -0000
-Message-ID: <173437226547.3368309.11777772939506910128@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241202141424.21446-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20241202141424.21446-1-ville.syrjala@linux.intel.com>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,105 +72,68 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Andi,
 
-Series: drm/i915: Async flip + compression, and some plane cleanups (rev6)
-URL   : https://patchwork.freedesktop.org/series/139807/
-State : success
+Thanks for review.
 
-== Summary ==
+On Monday, 16 December 2024 14:26:58 CET Andi Shyti wrote:
+> Hi Janusz,
+> 
+> ...
+> 
+> >  	for_each_gt(gt, i915, i) {
+> > +		struct intel_engine_cs *engine;
+> > +		unsigned long timeout_ms = 0;
+> > +		unsigned int id;
+> > +
+> >  		if (intel_gt_is_wedged(gt))
+> >  			ret = -EIO;
+> >  
+> > +		for_each_engine(engine, gt, id) {
+> > +			if (engine->props.preempt_timeout_ms > 
+timeout_ms)
+> > +				timeout_ms = engine-
+>props.preempt_timeout_ms;
+> > +		}
+> 
+> 
+> the brackets are not really required here.
 
-CI Bug Log - changes from CI_DRM_15854 -> Patchwork_139807v6
-====================================================
+OK, I was not sure if for_each_if used inside for_each_engine is supposed to 
+resolve potential issues with potentially confusing if nesting, but from your 
+comment I conclude it does.  I'll fix it.
 
-Summary
--------
+> 
+> > +
+> >  		cond_resched();
+> >  
+> > -		if (intel_gt_wait_for_idle(gt, HZ * 3) == -ETIME) {
+> > +		if (intel_gt_wait_for_idle(gt, HZ * timeout_ms / 500) == -
+ETIME) {
+> 
+> where is this 500 coming from?
 
-  **SUCCESS**
+/ 1000 would convert it to seconds as needed, and / 500 used instead was 
+supposed to to mean that we are willing to wait for preempt_timeout_ms * 2.  
+Sorry for that shortcut.  Would you like me to provide a clarifying comment, 
+or maybe better use explicit 2 * preempt_timeout / 1000 ?
 
-  No regressions found.
+Thanks,
+Janusz
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139807v6/index.html
-
-Participating hosts (45 -> 44)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_139807v6 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@dmabuf@all-tests:
-    - bat-apl-1:          [PASS][1] -> [INCOMPLETE][2] ([i915#12904]) +1 other test incomplete
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15854/bat-apl-1/igt@dmabuf@all-tests.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139807v6/bat-apl-1/igt@dmabuf@all-tests.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - bat-dg2-11:         [PASS][3] -> [FAIL][4] ([i915#12903])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15854/bat-dg2-11/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139807v6/bat-dg2-11/igt@i915_pm_rpm@module-reload.html
-    - bat-rpls-4:         [PASS][5] -> [FAIL][6] ([i915#12903])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15854/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139807v6/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         [PASS][7] -> [SKIP][8] ([i915#9197]) +3 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15854/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139807v6/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arlh-3:         [ABORT][9] ([i915#12061]) -> [PASS][10] +1 other test pass
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15854/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139807v6/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_chamelium_edid@hdmi-edid-read:
-    - bat-dg2-13:         [DMESG-WARN][11] ([i915#12253]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15854/bat-dg2-13/igt@kms_chamelium_edid@hdmi-edid-read.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139807v6/bat-dg2-13/igt@kms_chamelium_edid@hdmi-edid-read.html
-
-  
-#### Warnings ####
-
-  * igt@gem_exec_gttfill@basic:
-    - fi-pnv-d510:        [SKIP][13] -> [ABORT][14] ([i915#13169])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15854/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139807v6/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12253]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12253
-  [i915#12903]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12903
-  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
-  [i915#13169]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13169
-  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
+> 
+> Thanks,
+> Andi
+> 
+> >  			pr_err("%pS timed out, cancelling all further 
+testing.\n",
+> >  			       __builtin_return_address(0));
+> >  
+> 
 
 
-Build changes
--------------
 
-  * Linux: CI_DRM_15854 -> Patchwork_139807v6
 
-  CI-20190529: 20190529
-  CI_DRM_15854: 49cc582754c205bbe43d4ef2b1fd3894bee1f3bd @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8157: 48a70f6795e6d68b9fae275261ae3b09d3401fe1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_139807v6: 49cc582754c205bbe43d4ef2b1fd3894bee1f3bd @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_139807v6/index.html
