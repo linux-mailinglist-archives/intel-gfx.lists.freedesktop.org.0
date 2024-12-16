@@ -1,62 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7696D9F3074
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2024 13:23:15 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB2969F30B0
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2024 13:39:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 064EA10E5F3;
-	Mon, 16 Dec 2024 12:23:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F1CD610E216;
+	Mon, 16 Dec 2024 12:39:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JQ/65wiV";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="KtfuvfOL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A19510E5F3;
- Mon, 16 Dec 2024 12:23:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734351793; x=1765887793;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=ppI5iU3AtS1G5rRYVLkr8Lo5tQOvi3yH4QlfZBVljBw=;
- b=JQ/65wiV/+Hc02e86b7t2WuZAPn2/C3yMVXNmEriMkWno4fNboYe3XoN
- ccasH9fFSmU8nD4lbosiDVBhoM5QDv4wX4BokjE0pSpwMrXL9G3OgmFEa
- S7okGhncF8yooAFf7aRa+5cUF6Pgw28vfT0tc14rHHo4kE8X6gZ1/3d8o
- acl8Kq9T5ElVyknVyhsAW93tAJDugLNnYFg2mn28bBC2TJnglJqb0r7oZ
- F+xRaf+EwTe0wIiAKTRiWdT4GityChn/GPE85rvUhiZPHYoOr38hLgBos
- suGDcqR8wz7Hv1ffuAe2jgkFU6FwRohirbiVbisIRyTewnGST8NWe3Ouk Q==;
-X-CSE-ConnectionGUID: /sMpPaNNRBu32Z7ujVY6WA==
-X-CSE-MsgGUID: nkJDpfTFRuyvFK2mtAufeQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="46142168"
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="46142168"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2024 04:23:12 -0800
-X-CSE-ConnectionGUID: ajFll0UcSZC06C7qzc497Q==
-X-CSE-MsgGUID: U0og3NJWR4iOR8tTKbuWmA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="97618896"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2024 04:23:10 -0800
-Date: Mon, 16 Dec 2024 14:23:51 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Wayne Lin <wayne.lin@amd.com>, Alex Deucher <alexander.deucher@amd.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Lyude Paul <lyude@redhat.com>, Karol Herbst <kherbst@redhat.com>,
- Danilo Krummrich <dakr@kernel.org>, Jani Nikula <jani.nikula@intel.com>
-Subject: Re: [PATCH v3 04/11] drm/dp_mst: Register connectors via
- drm_connector_dynamic_register()
-Message-ID: <Z2Ab14yzMJNoRNE8@ideak-desk.fi.intel.com>
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 391A010E03B;
+ Mon, 16 Dec 2024 12:39:12 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id 9A5F6A40E22;
+ Mon, 16 Dec 2024 12:37:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9DEBDC4CED3;
+ Mon, 16 Dec 2024 12:39:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1734352750;
+ bh=Xyflv/QGtzfe7hlxQvQHqobKDpH4s565cZx2xJ81WKI=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=KtfuvfOLhyZqEc8Hrjmo54M+cdxq7XvEMqZc7f8sET2AdFw7mg37ltcu+clwsEEpG
+ IXcFgIrreR6URd/1gTgYbWLEk5YGoBBdavAxdvibmXrQqqQ6EkzP7Y/gRAWF0kiJKH
+ SWdix/ao604o6Fu9Elb5WpYvSQCA+zolm4Qf1N9ZDtypUr6v07HmiEKQU7YsELgkp/
+ 2sCXWDehg3fspmhewffxjzBlFLqsilQSuBOP1r1y90UPVlGx1yMij+WEhRrZaWlR/+
+ sS3PkUTAxB1AincgoVDu9gSYQzfbF1WTux+FXXmM2Vrth8qvKeg+YdAo9nMMUn19TY
+ jocoizIJfUgHw==
+Date: Mon, 16 Dec 2024 13:39:07 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Imre Deak <imre.deak@intel.com>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Jani Nikula <jani.nikula@intel.com>, 
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>,
+ Lyude Paul <lyude@redhat.com>, 
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Wayne Lin <wayne.lin@amd.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, Karol Herbst <kherbst@redhat.com>, 
+ Danilo Krummrich <dakr@kernel.org>
+Subject: Re: [PATCH v3 0/7] drm/connector: Expose only a properly inited
+ connector
+Message-ID: <20241216-ambitious-horse-of-force-b57ce8@houat>
 References: <20241211230328.4012496-1-imre.deak@intel.com>
- <20241211230328.4012496-5-imre.deak@intel.com>
+ <Z2AbmXNwQv8YRzfD@ideak-desk.fi.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="xusxrjvcycgj7wid"
 Content-Disposition: inline
-In-Reply-To: <20241211230328.4012496-5-imre.deak@intel.com>
+In-Reply-To: <Z2AbmXNwQv8YRzfD@ideak-desk.fi.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,57 +65,38 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Harry, Leo, Alex, Wayne,
 
-could you please ack this change?
+--xusxrjvcycgj7wid
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Subject: Re: [PATCH v3 0/7] drm/connector: Expose only a properly inited
+ connector
+MIME-Version: 1.0
 
-Thanks,
-Imre
+Hi,
 
-On Thu, Dec 12, 2024 at 01:03:21AM +0200, Imre Deak wrote:
-> MST connectors should be initialized/registered by calling
-> drm_connector_dynamic_init()/drm_connector_dynamic_register(). The
-> previous patch adding these functions explains the issue with the
-> current drm_connector_init*()/drm_connector_register() interface for
-> MST connectors.
-> 
-> Based on the above adjust here the registration part and change the
-> initialization part in follow-up patches for each driver.
-> 
-> For now, drivers are allowed to keep using the drm_connector_init*()
-> functions, by drm_connector_dynamic_register() checking for this (see
-> drm_connector_add()). A patch later will change this to WARN in such
-> cases.
-> 
-> Cc: Lyude Paul <lyude@redhat.com>
-> Cc: Harry Wentland <harry.wentland@amd.com>
-> Cc: Leo Li <sunpeng.li@amd.com>
-> Cc: Wayne Lin <wayne.lin@amd.com>
-> Cc: Alex Deucher <alexander.deucher@amd.com>
-> Cc: Karol Herbst <kherbst@redhat.com>
-> Cc: Danilo Krummrich <dakr@kernel.org>
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-> ---
->  drivers/gpu/drm/display/drm_dp_mst_topology.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c b/drivers/gpu/drm/display/drm_dp_mst_topology.c
-> index 687c70308d82b..f8cd094efa3c0 100644
-> --- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
-> +++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
-> @@ -2281,7 +2281,7 @@ drm_dp_mst_port_add_connector(struct drm_dp_mst_branch *mstb,
->  		port->cached_edid = drm_edid_read_ddc(port->connector,
->  						      &port->aux.ddc);
->  
-> -	drm_connector_register(port->connector);
-> +	drm_connector_dynamic_register(port->connector);
->  	return;
->  
->  error:
-> -- 
-> 2.44.2
-> 
+On Mon, Dec 16, 2024 at 02:22:49PM +0200, Imre Deak wrote:
+> are you ok to merge patches 1-9 to drm-misc-next? Patches 10,11 could be
+> merged then to drm-intel-next after back-merging drm-misc-next to
+> drm-intel-next.
+
+Sounds good to me
+
+Maxime
+
+--xusxrjvcycgj7wid
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZ2AfagAKCRAnX84Zoj2+
+dn8iAX958Tj3tXQEPdErkNTEKz4am4gomRdyIJw3mG9mXTGamK+Mqc6ptxgid2Wi
+K2aUWK4BfRfhHtzsw3DOy5ihw5FbxZ0b29pRvEAa1IybxV3/Tn6CteQYfBrvCLUy
+AiobQXqAwA==
+=8Lig
+-----END PGP SIGNATURE-----
+
+--xusxrjvcycgj7wid--
