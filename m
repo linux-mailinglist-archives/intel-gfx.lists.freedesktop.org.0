@@ -2,60 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFEEA9F30C5
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2024 13:44:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 812499F3115
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2024 14:02:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5DDF10E5FD;
-	Mon, 16 Dec 2024 12:44:57 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="czLdKP/w";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1ABA110E607;
+	Mon, 16 Dec 2024 13:02:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3839410E3E2;
- Mon, 16 Dec 2024 12:44:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734353097; x=1765889097;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=EvJsNZyMdTe/t/OA+34MGlqfu8RZxdIlQ/fLcVfLXCM=;
- b=czLdKP/wkzOA5dRlZNjy2z2euMi7J+PSFF5qtM5DUKypKjw9tk3zsheG
- X7Y6eXOMjurFFgtcptjBfAtk+cp5wGOLLH+QGHIJfVkSfy9W/8viXjXjF
- R6to6l+FYRLb6l66F8qaPay1VeQdZ5zYhucDRtb7YvcmveGDgPeCdN01e
- 2a8TRLu27Ys4ZKSeIf2H0RzMjBeeSG+UpXNnT0QLs7SMNlbzhNUkQHsLn
- svZhmVqmqL4CJwK/KqDcNFv9vQuVOzTqEORrJbKB6zlNX9UB7NGIYgkKm
- Wdn02zSYBRHXsvojGuAAUYMsM/Q0Vt6FNv0/Z+hbV4GImMMSd8Oz7AQ+t w==;
-X-CSE-ConnectionGUID: bjOtilgwTYS5okgpssfIVQ==
-X-CSE-MsgGUID: XvWTEzebQnO9R7acVJ7mFg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="45737465"
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="45737465"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2024 04:44:56 -0800
-X-CSE-ConnectionGUID: LSOUWf+jT/yWHF5SLYsSPA==
-X-CSE-MsgGUID: XHKk/6xOS561V9ovdfdEDw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,238,1728975600"; d="scan'208";a="97233492"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2024 04:44:54 -0800
-Date: Mon, 16 Dec 2024 14:45:31 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Wayne Lin <wayne.lin@amd>, Alex Deucher <alexander.deucher@amd.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Lyude Paul <lyude@redhat.com>
-Subject: Re: [PATCH v3 06/11] drm/amd/dp_mst: Expose a connector to kernel
- users after it's properly initialized
-Message-ID: <Z2Ag68XqBOZTghHq@ideak-desk.fi.intel.com>
-References: <20241211230328.4012496-1-imre.deak@intel.com>
- <20241211230328.4012496-7-imre.deak@intel.com>
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E4BC10E607;
+ Mon, 16 Dec 2024 13:02:17 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241211230328.4012496-7-imre.deak@intel.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/bios=3A_add_VBT_?=
+ =?utf-8?q?DSI_DSC_debug_logging_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 16 Dec 2024 13:02:17 -0000
+Message-ID: <173435413718.3285310.18143117048895743190@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241213131043.345716-1-jani.nikula@intel.com>
+In-Reply-To: <20241213131043.345716-1-jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,61 +37,119 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Harry, Leo, Alex, Wayne,
+== Series Details ==
 
-could you please ack this change as well?
+Series: drm/i915/bios: add VBT DSI DSC debug logging (rev2)
+URL   : https://patchwork.freedesktop.org/series/142562/
+State : success
 
-Thanks,
-Imre
+== Summary ==
 
-A typo below in the commit log, can fix it while merging the patch here and in
-the i915/nouveau patches.
+CI Bug Log - changes from CI_DRM_15849 -> Patchwork_142562v2
+====================================================
 
-On Thu, Dec 12, 2024 at 01:03:23AM +0200, Imre Deak wrote:
-> After a connector is added to the drm_mode_config::connector_list, it's
-> visible to any in-kernel users looking up connectors via the above list.
-> Make sure that the connector is properly initialized before such
-> look-ups, by initializing the connector with
-> drm_connector_dynamic_register() - which doesn't add the connector to
-  ^ should be drm_connector_dynamic_init()
+Summary
+-------
 
-> the list - and registering it with drm_connector_dynamic_register() -
-> which adds the connector to the list - after the initialization is
-> complete.
-> 
-> Cc: Harry Wentland <harry.wentland@amd.com>
-> Cc: Leo Li <sunpeng.li@amd.com>
-> Cc: Wayne Lin <wayne.lin@amd.com>
-> Cc: Alex Deucher <alexander.deucher@amd.com>
-> Cc: Lyude Paul <lyude@redhat.com>
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-> ---
->  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> index 6e43594906130..d398bc74e6677 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_mst_types.c
-> @@ -590,11 +590,12 @@ dm_dp_add_mst_connector(struct drm_dp_mst_topology_mgr *mgr,
->  	amdgpu_dm_set_mst_status(&aconnector->mst_status,
->  			MST_PROBE, true);
->  
-> -	if (drm_connector_init(
-> +	if (drm_connector_dynamic_init(
->  		dev,
->  		connector,
->  		&dm_dp_mst_connector_funcs,
-> -		DRM_MODE_CONNECTOR_DisplayPort)) {
-> +		DRM_MODE_CONNECTOR_DisplayPort,
-> +		NULL)) {
->  		kfree(aconnector);
->  		return NULL;
->  	}
-> -- 
-> 2.44.2
-> 
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142562v2/index.html
+
+Participating hosts (45 -> 44)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_142562v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@dmabuf@all-tests:
+    - bat-apl-1:          [PASS][1] -> [INCOMPLETE][2] ([i915#12904]) +1 other test incomplete
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15849/bat-apl-1/igt@dmabuf@all-tests.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142562v2/bat-apl-1/igt@dmabuf@all-tests.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - bat-rpls-4:         [PASS][3] -> [FAIL][4] ([i915#12903])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15849/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142562v2/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-mtlp-6:         [PASS][5] -> [ABORT][6] ([i915#12061]) +1 other test abort
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15849/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142562v2/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
+    - bat-dg2-11:         [PASS][7] -> [SKIP][8] ([i915#9197]) +3 other tests skip
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15849/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142562v2/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live:
+    - bat-mtlp-8:         [ABORT][9] ([i915#12061]) -> [PASS][10] +1 other test pass
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15849/bat-mtlp-8/igt@i915_selftest@live.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142562v2/bat-mtlp-8/igt@i915_selftest@live.html
+    - bat-twl-1:          [ABORT][11] ([i915#12435] / [i915#12919]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15849/bat-twl-1/igt@i915_selftest@live.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142562v2/bat-twl-1/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@requests:
+    - bat-twl-1:          [ABORT][13] ([i915#12919]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15849/bat-twl-1/igt@i915_selftest@live@requests.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142562v2/bat-twl-1/igt@i915_selftest@live@requests.html
+
+  * igt@i915_selftest@live@workarounds:
+    - {bat-arls-6}:       [ABORT][15] ([i915#12061]) -> [PASS][16] +1 other test pass
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15849/bat-arls-6/igt@i915_selftest@live@workarounds.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142562v2/bat-arls-6/igt@i915_selftest@live@workarounds.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
+    - {bat-mtlp-9}:       [FAIL][17] ([i915#13290]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15849/bat-mtlp-9/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142562v2/bat-mtlp-9/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+
+  * igt@kms_pipe_crc_basic@read-crc-frame-sequence:
+    - {bat-mtlp-9}:       [DMESG-WARN][19] ([i915#12695]) -> [PASS][20] +10 other tests pass
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15849/bat-mtlp-9/igt@kms_pipe_crc_basic@read-crc-frame-sequence.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142562v2/bat-mtlp-9/igt@kms_pipe_crc_basic@read-crc-frame-sequence.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#12435]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12435
+  [i915#12695]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12695
+  [i915#12903]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12903
+  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
+  [i915#12919]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12919
+  [i915#13290]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13290
+  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_15849 -> Patchwork_142562v2
+
+  CI-20190529: 20190529
+  CI_DRM_15849: 46e1a74cb7576e5318856a8c24bd127150687c97 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8157: 48a70f6795e6d68b9fae275261ae3b09d3401fe1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_142562v2: 46e1a74cb7576e5318856a8c24bd127150687c97 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142562v2/index.html
