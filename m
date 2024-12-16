@@ -1,63 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDF909F2EC5
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2024 12:03:51 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A2479F2EF7
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2024 12:18:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BB3F10E1A2;
-	Mon, 16 Dec 2024 11:03:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5114810E59B;
+	Mon, 16 Dec 2024 11:18:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W6Qqbt9z";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eMAyA8Qz";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A361110E1A2;
- Mon, 16 Dec 2024 11:03:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64FB310E59B
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2024 11:18:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734347030; x=1765883030;
+ t=1734347891; x=1765883891;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=qZxsuDdQSESsodeJ67vn3c7iLBM624CatINwtNsXBjw=;
- b=W6Qqbt9zu/WZ9ToggdKy5lTl82LIbxHENIqFc57Z+5tpUF2RnFz/Eppg
- JjWhGc3mDTZtVali+eTiC4oMEYzVCXFSipU9tHdI6IAMwa/ABIi+9OuWw
- AT6upJOgY003fzFeB1PN7VbgCB9EQfhKzVQYdiPYT3XmSV5I3IXTClKSU
- upANJGcVbrF1B7Hmp6rjsiV8AwcF4aDHWtKPyrcngX4hBHNuzeivYijYP
- 1f2Yo/fzBmOixPMCoO7TqcTlhNLNef5M2Ov6+tFal5gN3M2SYZL0WsB4j
- 7pPQDD3LBei3YwsABvS9THO+V/bfNVtAluazknNMe7EFO+WazPF9uY7Et w==;
-X-CSE-ConnectionGUID: /VEPg6XRT9mKjVkcpVnFhg==
-X-CSE-MsgGUID: 0CXOGVNMSnqjuvT2l18qcQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11287"; a="34956845"
-X-IronPort-AV: E=Sophos;i="6.12,238,1728975600"; d="scan'208";a="34956845"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2024 03:03:49 -0800
-X-CSE-ConnectionGUID: gubzgyueQdSnYDsX25y2rg==
-X-CSE-MsgGUID: nV81fbF8TuOOJ5iG7QTRJA==
+ bh=ZP3/5JXtqoJDoQP6RUAuJi6y9IdcDGH982voa7tr8lQ=;
+ b=eMAyA8Qz0JqvZvOyleIFpmefedBD8g0D23STl0zHIOjOh+XSyNieOdJ5
+ wj5LH9LIB9fCnbu4LHF6UsIQbjryVMWGbqDXPp5EKFE5l/tPVlJzkhp1v
+ siG1yJWADbTal7JEbUzwFoXmBdH5aM08hn+6qEY/rgWqGfuIQdEb6d/Ez
+ uxdFwVr6x3SUQXeloFl7vCxCJqoWc3mMqHzO20vrk4zCtQnEaq0YDOFox
+ K2SRTJZ9gOGqcWTp92EwHMEeeiTJEaM5FkuOtHgKGmEwy2KsCMDkz4sgI
+ CNs1ECNEV2NgoXBD0oCoxmufNYEL7u/PoJ0+0UEZ5gVXwEBpg4oGmTS/F Q==;
+X-CSE-ConnectionGUID: 7S7OULPJQJuPsoOQSF0FUA==
+X-CSE-MsgGUID: RP9yka6cQUK1v+qyNXhEbQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11287"; a="57209539"
+X-IronPort-AV: E=Sophos;i="6.12,238,1728975600"; d="scan'208";a="57209539"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2024 03:18:11 -0800
+X-CSE-ConnectionGUID: HZKWaADNTlGMTCGhW+lkoQ==
+X-CSE-MsgGUID: Mo/OKcq3QGauknbcr6K+yg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="97023747"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="128157609"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.245])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2024 03:03:45 -0800
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Dec 2024 03:18:08 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Lyude
- Paul <lyude@redhat.com>, Harry Wentland <harry.wentland@amd.com>, Leo Li
- <sunpeng.li@amd.com>, Wayne Lin <wayne.lin@amd.com>, Alex Deucher
- <alexander.deucher@amd.com>, Karol Herbst <kherbst@redhat.com>, Danilo
- Krummrich <dakr@kernel.org>
-Subject: Re: [PATCH v3 04/11] drm/dp_mst: Register connectors via
- drm_connector_dynamic_register()
-In-Reply-To: <Z1wjLr4EuJoeSCtD@ideak-desk.fi.intel.com>
+To: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+Subject: Re: [PATCH v3 1/2] drm/i915/display: Add MTL subplatforms definition
+In-Reply-To: <20241213143408.3051070-2-dnyaneshwar.bhadane@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241211230328.4012496-1-imre.deak@intel.com>
- <20241211230328.4012496-5-imre.deak@intel.com> <87bjxhxla8.fsf@intel.com>
- <Z1wjLr4EuJoeSCtD@ideak-desk.fi.intel.com>
-Date: Mon, 16 Dec 2024 13:03:42 +0200
-Message-ID: <875xnjubxt.fsf@intel.com>
+References: <20241213143408.3051070-1-dnyaneshwar.bhadane@intel.com>
+ <20241213143408.3051070-2-dnyaneshwar.bhadane@intel.com>
+Date: Mon, 16 Dec 2024 13:18:04 +0200
+Message-ID: <8734inub9v.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -75,66 +70,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 13 Dec 2024, Imre Deak <imre.deak@intel.com> wrote:
-> On Thu, Dec 12, 2024 at 12:12:15PM +0200, Jani Nikula wrote:
->> On Thu, 12 Dec 2024, Imre Deak <imre.deak@intel.com> wrote:
->> > MST connectors should be initialized/registered by calling
->> > drm_connector_dynamic_init()/drm_connector_dynamic_register(). The
->> > previous patch adding these functions explains the issue with the
->> 
->> References to "previous patch" become meaningless after this has been
->> committed.
+On Fri, 13 Dec 2024, Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com> wrote:
+> Separate MTL-U platform PCI ids in one define macro.
 >
-> Ok, will change it to: "The patch adding these functions ...".
-
-In 99% cases having the word "patch" in a commit message is just
-wrong...
-
-BR,
-Jani.
-
+> Add the MTL U/ARL U as subplatform member in MTL platform description
+> structure to use display.platform.<platform> from intel_display
+> structure instead of IS_<PLATFORM>() in display code path.
 >
->> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
->> 
->> > current drm_connector_init*()/drm_connector_register() interface for
->> > MST connectors.
->> >
->> > Based on the above adjust here the registration part and change the
->> > initialization part in follow-up patches for each driver.
->> >
->> > For now, drivers are allowed to keep using the drm_connector_init*()
->> > functions, by drm_connector_dynamic_register() checking for this (see
->> > drm_connector_add()). A patch later will change this to WARN in such
->> > cases.
->> >
->> > Cc: Lyude Paul <lyude@redhat.com>
->> > Cc: Harry Wentland <harry.wentland@amd.com>
->> > Cc: Leo Li <sunpeng.li@amd.com>
->> > Cc: Wayne Lin <wayne.lin@amd.com>
->> > Cc: Alex Deucher <alexander.deucher@amd.com>
->> > Cc: Karol Herbst <kherbst@redhat.com>
->> > Cc: Danilo Krummrich <dakr@kernel.org>
->> > Signed-off-by: Imre Deak <imre.deak@intel.com>
->> > ---
->> >  drivers/gpu/drm/display/drm_dp_mst_topology.c | 2 +-
->> >  1 file changed, 1 insertion(+), 1 deletion(-)
->> >
->> > diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c b/drivers/gpu/drm/display/drm_dp_mst_topology.c
->> > index 687c70308d82b..f8cd094efa3c0 100644
->> > --- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
->> > +++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
->> > @@ -2281,7 +2281,7 @@ drm_dp_mst_port_add_connector(struct drm_dp_mst_branch *mstb,
->> >  		port->cached_edid = drm_edid_read_ddc(port->connector,
->> >  						      &port->aux.ddc);
->> >  
->> > -	drm_connector_register(port->connector);
->> > +	drm_connector_dynamic_register(port->connector);
->> >  	return;
->> >  
->> >  error:
->> 
->> -- 
->> Jani Nikula, Intel
+> Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+> ---
+>  .../drm/i915/display/intel_display_device.c   | 21 +++++++++++++++++++
+>  .../drm/i915/display/intel_display_device.h   |  2 ++
+>  include/drm/intel/pciids.h                    |  5 ++++-
+>  3 files changed, 27 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
+> index 68cb7f9b9ef3..5dc689a8b1ae 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_device.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_device.c
+> @@ -1357,6 +1357,16 @@ static const struct intel_display_device_info xe2_hpd_display = {
+>  		BIT(PORT_TC1) | BIT(PORT_TC2) | BIT(PORT_TC3) | BIT(PORT_TC4),
+>  };
+>  
+> +static const u16 arl_u_ids[] = {
+> +	INTEL_ARL_U_IDS(ID),
+> +	0
+> +};
+> +
+> +static const u16 mtl_u_ids[] = {
+> +	INTEL_MTL_U_IDS(ID),
+> +	0
+> +};
+
+We don't have arrowlake platform definition. They're all just
+meteorlakes. Do you actually need the mtl-u/arl-u distinction, or do you
+just need mtl+arl vs. mtl-u+arl-u distinction?
+
+I.e. could we just have 
+
+static const u16 mtl_u_ids[] = {
+	INTEL_MTL_U_IDS(ID),
+	INTEL_ARL_U_IDS(ID),
+	0
+};
+
+And call them all mtl-u?
+
+> +
+>  /*
+>   * Do not initialize the .info member of the platform desc for GMD ID based
+>   * platforms. Their display will be probed automatically based on the IP version
+> @@ -1364,6 +1374,17 @@ static const struct intel_display_device_info xe2_hpd_display = {
+>   */
+>  static const struct platform_desc mtl_desc = {
+>  	PLATFORM(meteorlake),
+> +	.subplatforms = (const struct subplatform_desc[]) {
+> +		{
+> +			SUBPLATFORM(meteorlake, u),
+> +			.pciidlist = mtl_u_ids,
+> +		},
+> +		{
+> +			SUBPLATFORM(arrowlake, u),
+> +			.pciidlist = arl_u_ids,
+
+You're defining subplatfroms for meteorlake. All the platform parameters
+for SUBPLATFORM() *must* match the PLATFORM() above.
+
+> +		},
+> +		{},
+> +	}
+>  };
+>  
+>  static const struct platform_desc lnl_desc = {
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+> index 9a333d9e6601..87a614e2dfab 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_device.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+> @@ -96,6 +96,8 @@ struct pci_dev;
+>  	func(dg2_g12) \
+>  	/* Display ver 14 (based on GMD ID) */ \
+>  	func(meteorlake) \
+> +	func(meteorlake_u) \
+> +	func(arrowlake_u) \
+
+The naming needs to be <platform>_<subplatform>. We don't have arrowlake
+platform, so we can't have arrowlake_u.
+
+Either we can just put all mtl+arl u's together in meteorlake_u, or we
+define arl-u as meteorlake_arrowlake_u with meteorlake being the
+platform and arrowlake_u the subplatform.
+
+>  	/* Display ver 20 (based on GMD ID) */ \
+>  	func(lunarlake) \
+>  	/* Display ver 14.1 (based on GMD ID) */ \
+> diff --git a/include/drm/intel/pciids.h b/include/drm/intel/pciids.h
+> index c6518b0992cf..f29034ccb36c 100644
+> --- a/include/drm/intel/pciids.h
+> +++ b/include/drm/intel/pciids.h
+> @@ -811,9 +811,12 @@
+>  	INTEL_ARL_S_IDS(MACRO__, ## __VA_ARGS__)
+>  
+>  /* MTL */
+> +#define INTEL_MTL_U_IDS(MACRO__, ...) \
+> +	MACRO__(0x7D45, ## __VA_ARGS__)
+> +
+>  #define INTEL_MTL_IDS(MACRO__, ...) \
+>  	MACRO__(0x7D40, ## __VA_ARGS__), \
+> -	MACRO__(0x7D45, ## __VA_ARGS__), \
+> +	INTEL_MTL_U_IDS(MACRO__, ## __VA_ARGS__), \
+>  	MACRO__(0x7D55, ## __VA_ARGS__), \
+>  	MACRO__(0x7D60, ## __VA_ARGS__), \
+>  	MACRO__(0x7DD5, ## __VA_ARGS__)
 
 -- 
 Jani Nikula, Intel
