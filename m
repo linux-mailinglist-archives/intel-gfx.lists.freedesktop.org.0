@@ -2,58 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D54C29F2F26
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2024 12:28:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 997B49F2F7B
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2024 12:35:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B87A10E5B1;
-	Mon, 16 Dec 2024 11:28:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF9D710E5CB;
+	Mon, 16 Dec 2024 11:34:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hfmAnU0l";
+	dkim=pass (1024-bit key; unprotected) header.d=weissschuh.net header.i=@weissschuh.net header.b="Q8X3uZbR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BBA6810E5AD;
- Mon, 16 Dec 2024 11:28:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734348492; x=1765884492;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=fiOGslAQUM7uSdNSaYraB7+zf4PgmYdD0EsjP5dCpeM=;
- b=hfmAnU0lwNYwFexYKljbfsCJ+XinN5hkPWXZiVkdm2Z2aV4W+qMGguoX
- Tsgbu2pFkVvUAvRJpKyRYbnN9ypztEYPQ/617QsZB738fX3Zg1cTDpgaV
- zvmrnLph3KBTGi935OsI2/tERQQX1WQWvCtI7GE9Jt0QAHZr/KiuOxI06
- 62kBG92Obuwr8vBm+Tfs1fh32p7K0oCp4gm7U/4gfIWuURGG6lzVsc/Vi
- AiZY/imUu7SsPRTK7xV59aokOgAHkKkp8HQuE6iZ5hGYepayrg2bFQcRe
- W6JAcwuJQGVOvF7zenbEQI+Bj97isY++IETZhogFR5ng9qNb2gWMQ59PW A==;
-X-CSE-ConnectionGUID: ArWa6+8oReqcRj+/WCSA1w==
-X-CSE-MsgGUID: huQSP7jkRmS33AHHPYPOfA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="38654715"
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="38654715"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2024 03:28:12 -0800
-X-CSE-ConnectionGUID: bPngk1DOTSGrY0NDw1Gf6Q==
-X-CSE-MsgGUID: w8Fta0jyTCKxlKEGXQbT4Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="134505362"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.245])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2024 03:28:10 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Jonathan Cavitt <jonathan.cavitt@intel.com>, intel-xe@lists.freedesktop.org
-Cc: jonathan.cavitt@intel.com, saurabhg.gupta@intel.com, alex.zuo@intel.com,
- intel-gfx@lists.freedesktop.org, imre.deak@intel.com
-Subject: Re: [PATCH] drm/i915/display: Do not report timeout on suspend
-In-Reply-To: <20241213231234.81647-1-jonathan.cavitt@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241213231234.81647-1-jonathan.cavitt@intel.com>
-Date: Mon, 16 Dec 2024 13:28:06 +0200
-Message-ID: <87zfkvsw8p.fsf@intel.com>
+Received: from todd.t-8ch.de (todd.t-8ch.de [159.69.126.157])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 68E2010E5C8;
+ Mon, 16 Dec 2024 11:34:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=weissschuh.net;
+ s=mail; t=1734348890;
+ bh=JrDLH7p18msOukR2ZaEDeYMa++p2Hc53UfMP6H+bFkY=;
+ h=From:Subject:Date:To:Cc:From;
+ b=Q8X3uZbRg9FYXju4K4AV8wuHPp1Z5kkc+5QRYWmkiU6dDjuLFcyxH3J5phdv4cEQi
+ poL+yaMJ/CxlEBDJnXlmaHuGfS5xmL8dq31N/GpSrH8tOIkkQgnZQb5r8ULpK83MZP
+ Ovpz2ObDaOltbl6o0mLPn0CiRt4BxpFTbh1a1UP0=
+From: =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>
+Subject: [PATCH 0/5] drm: Constify 'struct bin_attribute'
+Date: Mon, 16 Dec 2024 12:34:46 +0100
+Message-Id: <20241216-sysfs-const-bin_attr-drm-v1-0-210f2b36b9bf@weissschuh.net>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAFYQYGcC/x3MQQqDMBBA0avIrB1Iglbbq4hINJN2Fo1lJogi3
+ t3Q5Vv8f4KSMCm8qhOENlZeU4GtK1g+Pr0JORSDM66xzraoh0bFZU2aceY0+ZwFg3zxOceuMyb
+ 4vn9AyX9Ckff/ehiv6wbk5oKRagAAAA==
+X-Change-ID: 20241215-sysfs-const-bin_attr-drm-9bf7700da886
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Qiang Yu <yuq825@gmail.com>, Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Alex Deucher <alexander.deucher@amd.com>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Xinhui Pan <Xinhui.Pan@amd.com>, Harry Wentland <harry.wentland@amd.com>, 
+ Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ lima@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ amd-gfx@lists.freedesktop.org, 
+ =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1734348889; l=1344;
+ i=linux@weissschuh.net; s=20221212; h=from:subject:message-id;
+ bh=JrDLH7p18msOukR2ZaEDeYMa++p2Hc53UfMP6H+bFkY=;
+ b=Xj9EbjZgGe/b+nVilZvAUNOPjobV5Pr3zvNLYMijU+Cqt7GNooFVhGe8zr7suSEuHgTAadNxv
+ EqLRPoJWl7iAGW/qiD88SXGLPYXJObEWP0Ve31yZ+iBZIN5+6wrMarN
+X-Developer-Key: i=linux@weissschuh.net; a=ed25519;
+ pk=KcycQgFPX2wGR5azS7RhpBqedglOZVgRPfdFSPB1LNw=
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,46 +71,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 13 Dec 2024, Jonathan Cavitt <jonathan.cavitt@intel.com> wrote:
-> In intel_dp_aux_wait_done, we call intel_de_wait_custom.  This call has
-> a 10ms timeout before reporting ETIMEDOUT.  However, if the display pm
-> runtime is suspended, then it would be expected for this call to time
-> out.  This may be the case, for example, during an engine reset.
->
-> Do not report ETIMEDOUT here when the pm runtime is suspended.
+The sysfs core now allows instances of 'struct bin_attribute' to be
+moved into read-only memory. Make use of that to protect them against
+accidental or malicious modifications.
 
-No.
+Signed-off-by: Thomas Weißschuh <linux@weissschuh.net>
+---
+Thomas Weißschuh (5):
+      drm/sysfs: Constify 'struct bin_attribute'
+      drm/lima: Constify 'struct bin_attribute'
+      drm/i915: Constify 'struct bin_attribute'
+      drm/amdgpu: Constify 'struct bin_attribute'
+      drm/amd/display: Constify 'struct bin_attribute'
 
-Please root cause how you hit this. This should not be possible.
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c             |  6 +++---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c                | 14 +++++++-------
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c                | 13 ++++++-------
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c |  8 ++++----
+ drivers/gpu/drm/drm_sysfs.c                            | 10 +++++-----
+ drivers/gpu/drm/i915/i915_gpu_error.c                  |  8 ++++----
+ drivers/gpu/drm/i915/i915_sysfs.c                      | 12 ++++++------
+ drivers/gpu/drm/lima/lima_drv.c                        |  8 ++++----
+ 8 files changed, 39 insertions(+), 40 deletions(-)
+---
+base-commit: 78d4f34e2115b517bcbfe7ec0d018bbbb6f9b0b8
+change-id: 20241215-sysfs-const-bin_attr-drm-9bf7700da886
 
-intel_dp_aux_xfer() -> intel_display_power_get() -> intel_runtime_pm_get()
-
-We hold this over the duration of aux communications. The patch at hand
-is brushing something more serious under the carpet.
-
-BR,
-Jani.
-
-
->
-> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp_aux.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> index 04a7acd7f73c..25c37398f930 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-> @@ -66,7 +66,7 @@ intel_dp_aux_wait_done(struct intel_dp *intel_dp)
->  				   0,
->  				   2, timeout_ms, &status);
->  
-> -	if (ret == -ETIMEDOUT)
-> +	if (ret == -ETIMEDOUT && !pm_runtime_suspended(display->drm->dev))
->  		drm_err(display->drm,
->  			"%s: did not complete or timeout within %ums (status 0x%08x)\n",
->  			intel_dp->aux.name, timeout_ms, status);
-
+Best regards,
 -- 
-Jani Nikula, Intel
+Thomas Weißschuh <linux@weissschuh.net>
+
