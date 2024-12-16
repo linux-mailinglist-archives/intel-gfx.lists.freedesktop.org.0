@@ -2,164 +2,90 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF3AF9F2E09
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2024 11:18:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CCD89F2E39
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2024 11:35:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F7DD10E57C;
-	Mon, 16 Dec 2024 10:18:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B7EC10E58C;
+	Mon, 16 Dec 2024 10:35:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="jJdkNVKU";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="SkzXHCrj";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2067.outbound.protection.outlook.com [40.107.244.67])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED44810E576;
- Mon, 16 Dec 2024 10:18:32 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=IX48520+MPeJ67QTQ/gXnY9o6IKUWAjOH8NsskwV3t2IH+0Zt34n3dnmZ5+JNNaaVD+fAKLeOnylWjPrnqgKJdlmSxbE8ZP69B44yqp6lPoRVr4knxhR1UVNNtY6xXjg40pSIKE/jz6pv8moSVNLYvY+H9f2tm8jFXSiVzHi6WaFntyxg6v2vYhixNZ3N7l7ZtL3lw5LvfzA4p+fBhsO7Yh7ZQFPQrtqHc7PeNChNp6K8z4R5rf4WqBAhFSztG4lbNbKKNkdGQFGdSAPX9yoC0yx5WNqhg/3csCOoGC5lT2Ec3gKwxUWbCwoUCLBx0z5KIXZOGeGQ2FPCVFUKd7PjA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IrhmQTi+7wmyj0jJ2UxC8vAjYP7xkMwt994lcTPKEvU=;
- b=qFvCc2BfJ3Z/QOuazS9YmptgkkruIdnqN13eTd5oSq9y/wC/CN5p1i1/SfE5woYaKC8criayvRSzlRJ/4X52Rd2FGGgM2r2j/XPRdehX55P2G0UijEfgRBbjY6HRNc/NHj14bHjXNY/3rpwLr+Hub7Q2hLj/8/rRi1AgfQPXjAZA50unj13eKpcZH5VVSp3pvDUf4h8EBRtmlb19CwbYN/CfEUc3S5Wu/DFk4hwb+r5Om49S+kW8cRBJYb4sDBLYMst677VNyeA7OF83eowLAmN5I+24gb5b6sO08ItobI/RWXbVAXPIaRf44Fm0Ov9oIwEWf3aTci7avv9WkkC0AQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IrhmQTi+7wmyj0jJ2UxC8vAjYP7xkMwt994lcTPKEvU=;
- b=jJdkNVKUUivJ9FuBPMXXroa03TwfSMkcebdr16krjQdPsTJom6AwICd6ceQPItDcdhpHA3mPTP/yv5yL9CvXKE0V8TNfcTPx9AvstHFzdJPjJi0msV+3BoYuAvvGqIQtLRd33uXDhcqL/lLtRyPYtjJgeEYzoFKdI2HEc2FdYb0=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by SJ0PR12MB8140.namprd12.prod.outlook.com (2603:10b6:a03:4e3::7)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8251.21; Mon, 16 Dec
- 2024 10:18:31 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5%5]) with mapi id 15.20.8251.015; Mon, 16 Dec 2024
- 10:18:30 +0000
-Message-ID: <28d7dcd8-ed3f-4e52-b7fa-c348a827085d@amd.com>
-Date: Mon, 16 Dec 2024 11:18:22 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] drm/amdgpu: Use device wedged event
-To: =?UTF-8?Q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>,
- Raag Jadav <raag.jadav@intel.com>
-Cc: airlied@gmail.com, simona@ffwll.ch, lucas.demarchi@intel.com,
- rodrigo.vivi@intel.com, jani.nikula@linux.intel.com,
- andriy.shevchenko@linux.intel.com, lina@asahilina.net,
- michal.wajdeczko@intel.com, "Sharma, Shashank" <Shashank.Sharma@amd.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- himal.prasad.ghimiray@intel.com, aravind.iddamsetty@linux.intel.com,
- anshuman.gupta@intel.com, alexander.deucher@amd.com,
- amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com
-References: <20241212190909.28559-1-andrealmeid@igalia.com>
- <20241212190909.28559-2-andrealmeid@igalia.com>
- <d9f2583d-da79-4532-90fc-85028e977ceb@amd.com>
- <c7c498f0-2ee3-42f5-9b45-c87e52ffc3e4@igalia.com>
- <Z1xGe1X_XzB00J1Q@black.fi.intel.com>
- <ed83b0a1-62d1-48e5-ac7b-478be3043733@igalia.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <ed83b0a1-62d1-48e5-ac7b-478be3043733@igalia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR3P281CA0196.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:a5::14) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E2F110E584
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2024 10:35:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1734345315;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+ bh=f41nAC3G1i8SIbBR6tov32VFNUP9POdzXL1V3iWaHAk=;
+ b=SkzXHCrjCFjw2pGIRWiz23IDdxbn1y020jWOepCbRBcbRFDq+js8R9xZn7PmVSGZjPlf2j
+ yLSRErXy2Q+k9S5kG+0xMsiSZ3zlvMxryzhMq/8i/Ic+hfWEInixq3ePXprQ0X76zekAfv
+ 1SdlRa9fWBW5abz6IG/n2PDhkexljQ0=
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
+ [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-66-Po35UU5BNqiU_k2R74p5jQ-1; Mon, 16 Dec 2024 05:35:13 -0500
+X-MC-Unique: Po35UU5BNqiU_k2R74p5jQ-1
+X-Mimecast-MFC-AGG-ID: Po35UU5BNqiU_k2R74p5jQ
+Received: by mail-wm1-f72.google.com with SMTP id
+ 5b1f17b1804b1-4361efc9d1fso33228465e9.2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2024 02:35:13 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1734345312; x=1734950112;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=f41nAC3G1i8SIbBR6tov32VFNUP9POdzXL1V3iWaHAk=;
+ b=dxTukoChAdY6Z04cOjybHxTS6FWZ/e1sER5PAPHkcpXavLIH++nS1ImzCY34M6w+QP
+ pYWyowy2snK7ZATrS4XHZRs6nhmQ5ZrT7DU+5W8aSTaesqu0umhrcfQdBkK4ct1nz7aY
+ cm/QI7PV42m0p7LcMa82Bq8AOseXsMggCVei02G4+pdYOa3PCuy+d1kTIKCV6VPXh4JA
+ G3z3FuSac+7mFgW4ha5cGvCMZIGFsCn98K5x5W2Z4udi7IB9vjuaKa0gOnYO7B42mYo8
+ PjQNsYwY5SSFLGfk6SItv3qu2iQ4tCvybGkggTw4Ndq/G8MwyMFmoczniM7fZH/gbA5B
+ SCqQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXMOrAYj3XLP9bwBvU0AwHBy6XDZJMBgO4GaytnVHBKtsehibGIPbMop/XV6HegDnQfEazeYUgfW3k=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yzys31SlJxHZ0VnshNs8DQ817W2Qeu+ukMy0l3bAKNvadZEa/L3
+ /gObkivhDphJVyvaylOTSUEm30rhSyP4LMi/HII2oB2EgzJE2eRf9Yayw9q9I+wAngQuBs873IQ
+ OAbFk3pYhyS9EVCgnnJwWuXBBgWDQxrG6/qMTxIJxQxhJcUfcPC9DNGdgcLXzLMV2rA==
+X-Gm-Gg: ASbGncuUTdyE1bkRtpgNfqVBAC/1ULVE6eUAVVFKf/QxT3m4DyENYaWyAOtKQU5FL5M
+ nCBq8Ikzp7beKqit3ZHRHahkFOgPIwzGi4DPq07Mc8Cxlpjp7vgcuo0uEZWJ9jhSzHFypH7jojS
+ hAaCOUn0ni16aX8w5A2e3naSI98nrCeeLXJRVqdCRe/3HbZufXydUc4zkd5Xz4ZZ7Idt1Ytv4Mz
+ yirmQ4DNnPQ4ekSeWYVn3x+rtYlzXGs
+X-Received: by 2002:a05:600c:5023:b0:434:e9ee:c2d with SMTP id
+ 5b1f17b1804b1-4362aa9789dmr86117175e9.26.1734345311703; 
+ Mon, 16 Dec 2024 02:35:11 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IF6Asu8MQhXV5lULprpnYHQvGlg0xFbK3IdPDPM1O0W3jZgsiS3/GBw0nggujYgh1SgRGojyw==
+X-Received: by 2002:a05:600c:5023:b0:434:e9ee:c2d with SMTP id
+ 5b1f17b1804b1-4362aa9789dmr86116785e9.26.1734345311183; 
+ Mon, 16 Dec 2024 02:35:11 -0800 (PST)
+Received: from localhost ([2a01:e0a:b25:f902::ff])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-388c8060144sm7878864f8f.89.2024.12.16.02.35.10
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 16 Dec 2024 02:35:10 -0800 (PST)
+Date: Mon, 16 Dec 2024 11:35:10 +0100
+From: Maxime Ripard <mripard@redhat.com>
+To: Dave Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-next
+Message-ID: <20241216-imperial-mandrill-of-joy-9fbeb2@houat>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SJ0PR12MB8140:EE_
-X-MS-Office365-Filtering-Correlation-Id: fb517355-41c8-40b8-0180-08dd1dbafd26
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|7416014|1800799024|366016|376014|7053199007; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?dDJrYmkzY1RoUXEvSGlwMnhubExNUDBJQmRUU1RaaHovSjJTTC9CUTk2MXVN?=
- =?utf-8?B?M1lVaXZydXRCM3NNd2NxbXJHOER3YklJUUg3WnRCekp4a3RoK21scFc2cjhi?=
- =?utf-8?B?VzAyTzRBK2dOaWh4WWJUa1JhRVhCZHZSYi9XcktadzJrU1lpcVM3Ujh1WHIv?=
- =?utf-8?B?NVZXTUlGSFhuYVhSOU5MSjNQUTRjdmw3UU4wK1VZVlh1cWZxc3hjYitzUFp1?=
- =?utf-8?B?bk53ZzlSdlNYamRQcHZWRzFKem5nV0xNbmVKeEpkb2NFcWcxYTFLeVREK1VF?=
- =?utf-8?B?ci96M000NExvVTFYdVB2RTJ4WFBNd2M3OFNmNGorMStENjh5UVo0T05NRVRU?=
- =?utf-8?B?TjgwM21IckdJTTVrWEZ2N1VBYkw2VHc4OFp5OWpsNGlNL09KcDgwSVUwR2xk?=
- =?utf-8?B?ZnRNV1ROQ1FqRitxQXVWcmpaZGNFaEpUd3ZuOC9abzRiV2gyd3dPZ2h5SmFQ?=
- =?utf-8?B?RFkzekNiOEhmRVVJb3c5dnd2VFJjSXZnSkx4Zi8wZ2JlRW94eHVoRnNnd0Iv?=
- =?utf-8?B?bTFZaE8rUHZWZHErQWhvcVBySWNOYUlKbnBkS2VIVTJnMXBMUHhHNWMyc1Ur?=
- =?utf-8?B?NDY5VGZFVVlCMnFQKzZ6SmlyNXN0MHFORmtyY1J5WFNobzhGNWR1ck8rd0ti?=
- =?utf-8?B?L0FpMDhyL1JrYnpzcmpmQXEzbmFaMXJpVFNSYlprY0JUTUIvRGJGb0d3YjJk?=
- =?utf-8?B?TWY2NTNDbmY0NExzU0w4d1lBeFc5QWJlTmhGaFg2SnhDMk0yNzhKMWpJajQw?=
- =?utf-8?B?TzcrYnA3dFYvZEp0TWFUenBZa012NysvbTRSK2dVWjZmbjdIcXFUNmFEb0dV?=
- =?utf-8?B?K29rNFBBc3VtMUExU1VzaDBYamdoWW1zd2cxbjBMalU5QVVvMzYrdjNvT3Zy?=
- =?utf-8?B?SVZCVTlhbTNNc1d5NEtyS0Iwcll5RjhrTU5QamZOU3NjOHBubVVmRlRPTXR6?=
- =?utf-8?B?aWdKZ1RNV2ZzS0xOU2ZVMFZtQjZ4ckI5cXh3c0hyT2hMZUlhZXNIYlF2ZGlZ?=
- =?utf-8?B?T1R1bDV3aWFqOW5BSTVGN201V0llRnozdlBOTDBDck5ZRUNjUkRXdUJWb1Fa?=
- =?utf-8?B?T3lRRWlqNU93VkdsQVQwUGpkSW1pQk95MFJuL1kyTklxMW1qRlZZTjl1TjNK?=
- =?utf-8?B?QWd0SnhtaDJ2RFZ5elUvL1RqYmJGdWxNKzNQZy9pMnp3TVRKeHA1MmRDemZl?=
- =?utf-8?B?eEFKeVNHYng3cWlaRk9IVS9SUHRES2NXSHlteTJqQ2c3L04yelZOTWtLMk05?=
- =?utf-8?B?eTl4STM0RFAzVCtqb25zbjl6N0ZkcFVLU295QzV0OStiZTFSRFBzT05zVm1W?=
- =?utf-8?B?bWQzcDJlSEk2by9LS2V2NDdtKzlDdXRmRFB1Uld2MXRjcWh4UmlBMHpyTjZI?=
- =?utf-8?B?UHdPeGkyNGw3QnRvclZnNHcreTBpTGJZay8wejB3ZVlMQmV1QUxIMTdoT0RN?=
- =?utf-8?B?cFluTTNUaEtHcng5OGM0cHp3WVdRZFFEUlRoMmZSdGs4MGluK3AzcGIyTDVL?=
- =?utf-8?B?MVR0MjZpTlNrQkFQbDhjSml6NHFNdzZxM3hiRVYrV01VR0E2Njd5MC9TYk5E?=
- =?utf-8?B?UU5rK0JLWDkwb2hDNC9RQk00NG5KWVpCUkFjLzZmZ0xEMkNpSjJOb20yWDVP?=
- =?utf-8?B?NTNNcmR4RFRNanRKT2xDUGZUQm1YV2ZSU1FxWUZQSUFZOVNEN0VRUnNSc3Fh?=
- =?utf-8?B?UGlORzhhT1dOTHA4NDIzTUdRWEVVOHBoWmdTMUJlYnFvN2NSRkFDc1duNm9R?=
- =?utf-8?B?OWVNZ3cwajFUaXUrZG9sM0pJMkpoLzFsME1aSDFXWm13dU13ZENYQTJ1YkQz?=
- =?utf-8?B?UVZWeHh6MU1waVdvYkFGRjJlTjlVQUlhOC9WY2V2cVM3NDJFaVdybXBReitK?=
- =?utf-8?Q?iX69VmBhUbCGp?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(7416014)(1800799024)(366016)(376014)(7053199007); DIR:OUT;
- SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YUNZeE9IcUpkbnUyb2JiaW1yaDdlTkR4M1plYmc1QlMwU25QWjFWdm1Kb3Ja?=
- =?utf-8?B?RHN6VndNeGNSSXFLUkYyaWUwQ2hRNmllSGd0blh6WmwxMGVNc01OWk81NVhp?=
- =?utf-8?B?TW5vbXR3WE5vWlJGdXB0b3VINGxyamR0aFhHVGxBLzRiQ2J1a1ptRXF4Q09T?=
- =?utf-8?B?YUJaMkY2OURROGo0NjFocTQzVUVaVU9vb1EvQTlqdTYzd2tBWTkrSjVud2RM?=
- =?utf-8?B?YjBXODRmYnlvRXVDZ3RNdUJiYkNEcGNZcTlWUnJjbFR6eUl3R1BQWWVsczhl?=
- =?utf-8?B?ZllnTVVkeThHb1JSdllaeThld1M1ZzFkNWpvb3k1YWUzUkpMenZpU00wY1Qr?=
- =?utf-8?B?Vk40THhSbW9TZm0wM245ZWRMVkZjR2hCWndvWjJuaCtEY1l6M3A3ZEZ3cm15?=
- =?utf-8?B?ZGlpUXd6Z1lHVG1QdXZkNGlKVkpiYVJ3VzRFVmxrZEJhRXNEQ25aWHp6Y0JH?=
- =?utf-8?B?UGJicENobG9jZVVEUTV4NXI3N21MTTdoYkhkdFRENG9ieTFxcXRLVVVDaWdq?=
- =?utf-8?B?VThMbUFyc2RoaVV5cWZrRUl5TnExZ2ZrVG1wWXpQZm4yOW52eEprVEVMVFhy?=
- =?utf-8?B?OVlYMlExV1VQNTNJQk04WmtGWW0vQlJNV1pFc2JsZ0JZZGpsaGxxMzV4aWl1?=
- =?utf-8?B?UjJqWDBhenZGbkJZRUxRbW1wQzgrMXdVeUJzbExrWTJxSlUvTldabUl3aW5W?=
- =?utf-8?B?T1dhcUZFZ0E1K1NDaEh4MHd5V0VLM0FnWk80cnJ2blhsMldIc3hRb1lMYkhz?=
- =?utf-8?B?S21pN3hoOU5sRUVyWDhkQ0huaFZTaHNoa0RxR2dxTHgvTnU1NUlHZW94dlpL?=
- =?utf-8?B?VkRreGlzQldkV2xaTnBrNDRZY2ErL0NUeW1ROFlHbVpsMzhJL25rbnI1M3or?=
- =?utf-8?B?ZHdDczZrTGVYSTNWSFkvUDZHQXdLRTBvRklNQURid1B4T1JzQ1JMNDNzaHdm?=
- =?utf-8?B?amVqbFl2bUpHZmNGTzZjQ1A5R0xiQUhNZDBoYWY2a2tVamJsVDZRdUZKcE50?=
- =?utf-8?B?OGNnU25UN2R0cXJvUXFWdkJkOWpTd2lUbEJMLzl0TTFQakJnTXlZSEZGNWZJ?=
- =?utf-8?B?b2JZNmM0ZDFHeFFmaXNwemR5ZTBoblRqZWpyRkZEVzB1UlRpd080TkREZ1hX?=
- =?utf-8?B?UUcvdSt2L1IyZm40eitxdDFZT0Q4OWFoYnVsamh3UWoyQWRCSmNVMU92Z25L?=
- =?utf-8?B?SG16ak1hU1BVWmtoNTZPWVFGYUxJWUFuNGYxNnFDRWl1L2ZhdlhoN0xLUXhk?=
- =?utf-8?B?MUp6RGI2K3RVcHNVYVdYN2Z5TFBBZkRXWlg0Yi9BeUVOQmtkckMrSXRNWHo1?=
- =?utf-8?B?aEVWdlUzbUFjT3U4Zi9iM0pxNkc1Y3FwSEhoWTkvTU9vRzZYSFBxRGVTZ0ZV?=
- =?utf-8?B?ZXRldWZqNGxPU1RnOHhiaGV5aTJvRVI4dXRGc3k1SW9nb3BaRm1VcmRHb2xr?=
- =?utf-8?B?U0pxQVI5eTdNd2xNdHZlRHFEZk9LbkdoRjFEQnI3RmZwTEhsOGFWM1d2RXJ2?=
- =?utf-8?B?dDEva3NuWTUvMWY1NXBDVG9DWVZkZ1ZSeVhMc0VaVHRzZERUV0ZsdlBhYkp0?=
- =?utf-8?B?V093bSt6c2hQREMvNzlBR1BYMW8rSzZieVEyMzk4cG9sZnY0QVBIcG1FSXdE?=
- =?utf-8?B?VEs2d2Zxb1c0R1QzVURuWmdJNnVGL2RVV1NvU3ZXM1R0aTRJdk5PT1VFOXM5?=
- =?utf-8?B?WEZ6ZU1iS0ZneTBZMi9GVkRvS0U4UGRibDNiMFFPNnpucEcxUkVvMUVrblNE?=
- =?utf-8?B?YlhaSjBpaW9MQ3laU1Mrc0hSRjFRS1NHV294ekN6QWhTbnhOalQ2Z0p1SUJr?=
- =?utf-8?B?L3F4Ylo2TkQ1Vlo1OFJZUjQ0MXRmNTM2QWtrMmZKalV1N3JVRnVJb3JQWEdJ?=
- =?utf-8?B?NXRoZlFkUXdNSk9OTVQyVzhENWljNHVGc0tsTktUUVE4dlAvWUswbHdFOHNp?=
- =?utf-8?B?TktTcUdBSTFzVnQ3djIrL0RlVEVDYlBSWXVnSW9pRkErZDB0NEc2VUd1S0ZI?=
- =?utf-8?B?UElDemlRbGVWSGZyc0pTeXhWRkx5WjNJWk9rSnRRL3JiaVJTUXRMVGZtYmxI?=
- =?utf-8?B?aEU2UXFYSnB6eWtnMTBQYm4zUUc4MU9MTWVOZm8vTW9BU3NUd2w3OUV1bElO?=
- =?utf-8?Q?Wxq4=3D?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fb517355-41c8-40b8-0180-08dd1dbafd26
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Dec 2024 10:18:30.8672 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: NPdRpDE2a5HXr6ZhpIpl50MHU1wD8WgO0XjQhWd3oLaiPFkeDyw9c+w4WjRIyRs+
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB8140
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="goam7ess2goaceah"
+Content-Disposition: inline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -175,53 +101,591 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Am 13.12.24 um 16:56 schrieb André Almeida:
-> Em 13/12/2024 11:36, Raag Jadav escreveu:
->> On Fri, Dec 13, 2024 at 11:15:31AM -0300, André Almeida wrote:
->>> Hi Christian,
->>>
->>> Em 13/12/2024 04:34, Christian König escreveu:
->>>> Am 12.12.24 um 20:09 schrieb André Almeida:
->>>>> Use DRM's device wedged event to notify userspace that a reset had
->>>>> happened. For now, only use `none` method meant for telemetry
->>>>> capture.
->>>>>
->>>>> Signed-off-by: André Almeida <andrealmeid@igalia.com>
->>>>> ---
->>>>>    drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 3 +++
->>>>>    1 file changed, 3 insertions(+)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->>>>> b/drivers/gpu/ drm/amd/amdgpu/amdgpu_device.c
->>>>> index 96316111300a..19e1a5493778 100644
->>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->>>>> @@ -6057,6 +6057,9 @@ int amdgpu_device_gpu_recover(struct
->>>>> amdgpu_device *adev,
->>>>>            dev_info(adev->dev, "GPU reset end with ret = %d\n", r);
->>>>> atomic_set(&adev->reset_domain->reset_res, r);
->>>>> +
->>>>> +    drm_dev_wedged_event(adev_to_drm(adev), 
->>>>> DRM_WEDGE_RECOVERY_NONE);
->>>>
->>>> That looks really good in general. I would just make the
->>>> DRM_WEDGE_RECOVERY_NONE depend on the value of "r".
->>>>
->>>
->>> Why depend or `r`? A reset was triggered anyway, regardless of the 
->>> success
->>> of it, shouldn't we tell userspace?
->>
->> A failed reset would perhaps result in wedging, atleast that's how i915
->> is handling it.
->>
->
-> Right, and I think this raises the question of what wedge recovery 
-> method should I add for amdgpu... Christian?
->
 
-In theory a rebind should be enough to get the device going again, our 
-BOCO does a bus reset on driver load anyway.
+--goam7ess2goaceah
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: [PULL] drm-misc-next
+MIME-Version: 1.0
 
-Regards,
-Christian.
+Hi Dave, Simona,
+
+Here's last week (late) PR for drm-misc-next
+
+Thanks!
+Maxime
+
+
+drm-misc-next-2024-12-16:
+drm-misc-next for 6.14:
+
+UAPI Changes:
+
+Cross-subsystem Changes:
+
+Core Changes:
+  - hdmi: Implement drm_connector.mode_valid helper
+  - panic: Implement boot logger
+
+Driver Changes:
+  - amdxdna: Various fixes
+  - panthor: Fix fast-reset logic
+  - rockchip: MIPI-DSI support for RK3588, HDMI0 support for RK3588
+  - bridges
+    - ite6263: Support VESA-24 input format
+    - new drivers: Synopsys MIPI-DSI2 host controller
+  - panels:
+    - new drivers: Multi-Inno Technology MI0700A2T-30, AUO G084SN05 V9
+The following changes since commit fac04efc5c793dccbd07e2d59af9f90b7fc0dca4:
+
+  Linux 6.13-rc2 (2024-12-08 14:03:39 -0800)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-202=
+4-12-16
+
+for you to fetch changes up to 67a615c5cb6dc33ed35492dc0d67e496cbe8de68:
+
+  drm: zynqmp_dp: Fix integer overflow in zynqmp_dp_rate_get() (2024-12-16 =
+12:03:30 +0200)
+
+----------------------------------------------------------------
+drm-misc-next for 6.14:
+
+UAPI Changes:
+
+Cross-subsystem Changes:
+
+Core Changes:
+  - hdmi: Implement drm_connector.mode_valid helper
+  - panic: Implement boot logger
+
+Driver Changes:
+  - amdxdna: Various fixes
+  - panthor: Fix fast-reset logic
+  - rockchip: MIPI-DSI support for RK3588, HDMI0 support for RK3588
+  - bridges
+    - ite6263: Support VESA-24 input format
+    - new drivers: Synopsys MIPI-DSI2 host controller
+  - panels:
+    - new drivers: Multi-Inno Technology MI0700A2T-30, AUO G084SN05 V9
+
+----------------------------------------------------------------
+Andy Yan (5):
+      drm/rockchip: vop2: Fix cluster windows alpha ctrl regsiters offset
+      drm/rockchip: vop2: Fix the mixer alpha setup for layer 0
+      drm/rockchip: Fix Copyright description
+      drm/rockchip: vop2: Add debugfs support
+      drm/rockchip: vop2: Fix the windows switch between different layers
+
+Arnd Bergmann (2):
+      drm/log: select CONFIG_FONT_SUPPORT
+      accel/amdxdna: use modern PM helpers
+
+Biju Das (2):
+      drm: renesas: rz-du: Drop DU_MCR0_DPI_OE macro
+      drm: renesas: rz-du: rzg2l_du_encoder: Fix max dot clock for DPI
+
+Boris Brezillon (5):
+      drm/panthor: Preserve the result returned by panthor_fw_resume()
+      drm/panthor: Be robust against runtime PM resume failures in the susp=
+end path
+      drm/panthor: Ignore devfreq_{suspend, resume}_device() failures
+      drm/panthor: Be robust against resume failures
+      drm/panthor: Fix the fast-reset logic
+
+Chen-Yu Tsai (1):
+      drm/panel: visionox-rm69299: Remove redundant assignments of panel fi=
+elds
+
+Cristian Ciocaltea (2):
+      drm/rockchip: dw_hdmi_qp: Add support for RK3588 HDMI1 output
+      drm/rockchip: dw_hdmi_qp: Simplify clock handling
+
+Dan Carpenter (1):
+      drm/vc4: unlock on error in vc4_hvs_get_fifo_frame_count()
+
+Dave Stevenson (1):
+      drm/vc4: plane: Remove WARN on state being set in plane_reset
+
+Dmitry Baryshkov (10):
+      drm/tests: hdmi: handle empty modes in find_preferred_mode()
+      drm/tests: hdmi: rename connector creation function
+      drm/tests: hdmi: return meaningful value from set_connector_edid()
+      drm/display: hdmi: add generic mode_valid helper
+      drm/sun4i: use drm_hdmi_connector_mode_valid()
+      drm/vc4: use drm_hdmi_connector_mode_valid()
+      drm/display: bridge_connector: use drm_bridge_connector_mode_valid()
+      drm/bridge: lontium-lt9611: drop TMDS char rate check in mode_valid
+      drm/bridge: dw-hdmi-qp: replace mode_valid with tmds_char_rate
+      drm/sun4i: use drm_atomic_helper_connector_hdmi_check()
+
+Fabio Estevam (1):
+      dt-bindings: display: panel-lvds: Add compatible for AUO G084SN05 V9
+
+Guoqing Jiang (1):
+      drm/rockchip: Remove unnecessary checking
+
+Heiko Stuebner (3):
+      drm/bridge/synopsys: Add MIPI DSI2 host controller bridge
+      dt-bindings: display: rockchip: Add schema for RK3588 DW DSI2 control=
+ler
+      drm/rockchip: Add MIPI DSI2 glue driver for RK3588
+
+Jeffrey Hugo (1):
+      accel/qaic: Fix typo for struct qaic_manage_trans_passthrough
+
+Jocelyn Falempe (7):
+      drm/panic: Move drawing functions to drm_draw
+      drm/log: Introduce a new boot logger to draw the kmsg on the screen
+      drm/log: Do not draw if drm_master is taken
+      drm/log: Color the timestamp, to improve readability
+      drm/log: Implement suspend/resume
+      drm/log: Add integer scaling support
+      drm/client: Fix drm client endless Kconfig loop
+
+Karol Przybylski (1):
+      drm: zynqmp_dp: Fix integer overflow in zynqmp_dp_rate_get()
+
+Lizhi Hou (3):
+      accel/amdxdna: Add device status for aie2 devices
+      accel/amdxdna: Replace mmput with mmput_async to avoid dead lock
+      accel/amdxdna: Add query firmware version
+
+Maarten Lankhorst (1):
+      Merge remote-tracking branch 'drm/drm-next' into drm-misc-next
+
+Marek Vasut (2):
+      dt-bindings: display: simple: Document Multi-Inno Technology MI0700A2=
+T-30 panel
+      drm/panel: simple: add Multi-Inno Technology MI0700A2T-30
+
+Ma=EDra Canal (1):
+      drm/v3d: Fix miscellaneous documentation errors
+
+Mike Lothian (1):
+      accel/amdxdna: Add include interrupt.h to amdxdna_mailbox.c
+
+Piotr Zalewski (1):
+      drm/rockchip: vop2: don't check color_mgmt_changed in atomic_enable
+
+Thomas Zimmermann (6):
+      drm/fsl-dcu: Include <linux/of.h>
+      drm/panel: Include <linux/of.h>
+      drm/panel: panel-orisetech-otm8009a: Include <linux/mod_devicetable.h>
+      drm/panel: panel-samsung-s6e3ha2: Include <linux/mod_devicetable.h>
+      drm/panel: panel-samsung-s6e63m0: Include <linux/property.h>
+      drm/tiny: panel-mipi-dbi: Include <linux/of.h>
+
+Tommaso Merciai (1):
+      drm/bridge: ite-it6263: Support VESA-24 input format
+
+Uwe Kleine-K=F6nig (1):
+      drm: Drop explicit initialization of struct i2c_device_id::driver_dat=
+a to 0
+
+Ville Syrj=E4l=E4 (1):
+      drm/modes: Fix drm_mode_vrefres() docs
+
+ Documentation/accel/amdxdna/amdnpu.rst             |  281 ++++++
+ Documentation/accel/amdxdna/index.rst              |   11 +
+ Documentation/accel/index.rst                      |    1 +
+ .../bindings/display/brcm,bcm2711-hdmi.yaml        |    2 +
+ .../bindings/display/brcm,bcm2835-hvs.yaml         |    5 +-
+ .../bindings/display/brcm,bcm2835-pixelvalve0.yaml |    3 +
+ .../bindings/display/brcm,bcm2835-txp.yaml         |    5 +-
+ .../bindings/display/brcm,bcm2835-vc4.yaml         |    1 +
+ .../bindings/display/panel/panel-lvds.yaml         |    2 +
+ .../bindings/display/panel/panel-simple.yaml       |    2 +
+ .../bindings/display/panel/samsung,atna33xc20.yaml |    2 +
+ .../rockchip/rockchip,rk3588-mipi-dsi2.yaml        |  120 +++
+ Documentation/gpu/drm-kms-helpers.rst              |    3 +
+ MAINTAINERS                                        |   14 +-
+ drivers/accel/Kconfig                              |    1 +
+ drivers/accel/Makefile                             |    1 +
+ drivers/accel/amdxdna/Kconfig                      |   18 +
+ drivers/accel/amdxdna/Makefile                     |   21 +
+ drivers/accel/amdxdna/TODO                         |    5 +
+ drivers/accel/amdxdna/aie2_ctx.c                   |  900 +++++++++++++++++
+ drivers/accel/amdxdna/aie2_error.c                 |  360 +++++++
+ drivers/accel/amdxdna/aie2_message.c               |  791 +++++++++++++++
+ drivers/accel/amdxdna/aie2_msg_priv.h              |  370 +++++++
+ drivers/accel/amdxdna/aie2_pci.c                   |  799 +++++++++++++++
+ drivers/accel/amdxdna/aie2_pci.h                   |  266 +++++
+ drivers/accel/amdxdna/aie2_psp.c                   |  146 +++
+ drivers/accel/amdxdna/aie2_smu.c                   |  119 +++
+ drivers/accel/amdxdna/aie2_solver.c                |  330 +++++++
+ drivers/accel/amdxdna/aie2_solver.h                |  154 +++
+ drivers/accel/amdxdna/amdxdna_ctx.c                |  553 +++++++++++
+ drivers/accel/amdxdna/amdxdna_ctx.h                |  162 +++
+ drivers/accel/amdxdna/amdxdna_gem.c                |  622 ++++++++++++
+ drivers/accel/amdxdna/amdxdna_gem.h                |   65 ++
+ drivers/accel/amdxdna/amdxdna_mailbox.c            |  571 +++++++++++
+ drivers/accel/amdxdna/amdxdna_mailbox.h            |  124 +++
+ drivers/accel/amdxdna/amdxdna_mailbox_helper.c     |   61 ++
+ drivers/accel/amdxdna/amdxdna_mailbox_helper.h     |   42 +
+ drivers/accel/amdxdna/amdxdna_pci_drv.c            |  409 ++++++++
+ drivers/accel/amdxdna/amdxdna_pci_drv.h            |  123 +++
+ drivers/accel/amdxdna/amdxdna_sysfs.c              |   67 ++
+ drivers/accel/amdxdna/npu1_regs.c                  |  101 ++
+ drivers/accel/amdxdna/npu2_regs.c                  |  118 +++
+ drivers/accel/amdxdna/npu4_regs.c                  |  118 +++
+ drivers/accel/amdxdna/npu5_regs.c                  |  118 +++
+ drivers/accel/habanalabs/common/habanalabs_drv.c   |    1 -
+ drivers/accel/ivpu/ivpu_drv.c                      |    8 -
+ drivers/accel/ivpu/ivpu_pm.c                       |    2 +-
+ drivers/accel/qaic/qaic_drv.c                      |    1 -
+ drivers/accel/qaic/sahara.c                        |    3 +-
+ drivers/gpu/drm/Kconfig                            |   81 +-
+ drivers/gpu/drm/Makefile                           |   11 +-
+ drivers/gpu/drm/amd/amdgpu/Kconfig                 |    1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c            |    4 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.h            |    1 -
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c  |    6 +
+ drivers/gpu/drm/arm/display/komeda/komeda_drv.c    |    2 +-
+ drivers/gpu/drm/arm/display/komeda/komeda_kms.c    |    1 -
+ drivers/gpu/drm/arm/hdlcd_drv.c                    |    3 +-
+ drivers/gpu/drm/arm/malidp_drv.c                   |    3 +-
+ drivers/gpu/drm/armada/armada_drv.c                |    3 +-
+ drivers/gpu/drm/aspeed/aspeed_gfx_drv.c            |    3 +-
+ drivers/gpu/drm/ast/ast_drv.c                      |    3 +-
+ drivers/gpu/drm/ast/ast_drv.h                      |    1 -
+ drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c       |    3 +-
+ drivers/gpu/drm/bridge/analogix/analogix-anx6345.c |    2 +-
+ drivers/gpu/drm/bridge/analogix/anx7625.c          |    2 +-
+ .../gpu/drm/bridge/cadence/cdns-mhdp8546-hdcp.c    |   28 -
+ .../gpu/drm/bridge/cadence/cdns-mhdp8546-hdcp.h    |    3 -
+ drivers/gpu/drm/bridge/chipone-icn6211.c           |    2 +-
+ drivers/gpu/drm/bridge/chrontel-ch7033.c           |    2 +-
+ drivers/gpu/drm/bridge/ite-it6263.c                |   27 +-
+ drivers/gpu/drm/bridge/ite-it6505.c                |    2 +-
+ drivers/gpu/drm/bridge/lontium-lt8912b.c           |    4 +-
+ drivers/gpu/drm/bridge/lontium-lt9211.c            |    2 +-
+ drivers/gpu/drm/bridge/lontium-lt9611.c            |    8 +-
+ drivers/gpu/drm/bridge/lontium-lt9611uxc.c         |    4 +-
+ .../drm/bridge/megachips-stdpxxxx-ge-b850v3-fw.c   |    8 +-
+ drivers/gpu/drm/bridge/nxp-ptn3460.c               |    4 +-
+ drivers/gpu/drm/bridge/sii902x.c                   |    4 +-
+ drivers/gpu/drm/bridge/sii9234.c                   |    4 +-
+ drivers/gpu/drm/bridge/sil-sii8620.c               |    4 +-
+ drivers/gpu/drm/bridge/synopsys/Kconfig            |    6 +
+ drivers/gpu/drm/bridge/synopsys/Makefile           |    1 +
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c       |   12 +-
+ drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi2.c     | 1030 ++++++++++++++++=
+++++
+ drivers/gpu/drm/bridge/tc358767.c                  |    2 +-
+ drivers/gpu/drm/bridge/tc358768.c                  |    4 +-
+ drivers/gpu/drm/bridge/ti-dlpc3433.c               |    2 +-
+ drivers/gpu/drm/bridge/ti-sn65dsi83.c              |    2 +-
+ drivers/gpu/drm/bridge/ti-sn65dsi86.c              |    6 +-
+ drivers/gpu/drm/bridge/ti-tfp410.c                 |    2 +-
+ drivers/gpu/drm/clients/Kconfig                    |  123 +++
+ drivers/gpu/drm/clients/Makefile                   |    8 +
+ .../gpu/drm/clients/drm_client_internal.h          |   10 +-
+ drivers/gpu/drm/{ =3D> clients}/drm_client_setup.c   |   34 +-
+ drivers/gpu/drm/{ =3D> clients}/drm_fbdev_client.c   |    4 +-
+ drivers/gpu/drm/clients/drm_log.c                  |  420 ++++++++
+ drivers/gpu/drm/display/drm_bridge_connector.c     |   16 +-
+ drivers/gpu/drm/display/drm_dp_helper.c            |  125 ++-
+ drivers/gpu/drm/display/drm_dp_mst_topology.c      |   88 +-
+ drivers/gpu/drm/display/drm_hdmi_state_helper.c    |   21 +
+ drivers/gpu/drm/drm_draw.c                         |  233 +++++
+ drivers/gpu/drm/drm_draw_internal.h                |   56 ++
+ drivers/gpu/drm/drm_modes.c                        |    3 +-
+ drivers/gpu/drm/drm_of.c                           |    4 +-
+ drivers/gpu/drm/drm_panel.c                        |    1 +
+ drivers/gpu/drm/drm_panel_backlight_quirks.c       |   94 ++
+ drivers/gpu/drm/drm_panic.c                        |  269 +----
+ drivers/gpu/drm/etnaviv/etnaviv_drv.c              |    1 -
+ drivers/gpu/drm/exynos/exynos_drm_drv.c            |    4 +-
+ drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_drv.c          |    3 +-
+ drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_rgb.c          |    1 +
+ drivers/gpu/drm/gma500/psb_drv.c                   |    3 +-
+ drivers/gpu/drm/gma500/psb_drv.h                   |    1 -
+ drivers/gpu/drm/gud/gud_drv.c                      |    3 +-
+ drivers/gpu/drm/hisilicon/hibmc/Kconfig            |    2 +-
+ drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c    |    3 +-
+ drivers/gpu/drm/hisilicon/kirin/kirin_drm_ade.c    |    1 -
+ drivers/gpu/drm/hisilicon/kirin/kirin_drm_drv.c    |    2 +-
+ drivers/gpu/drm/hyperv/hyperv_drm_drv.c            |    4 +-
+ drivers/gpu/drm/i2c/ch7006_drv.c                   |    2 +-
+ drivers/gpu/drm/i2c/sil164_drv.c                   |    2 +-
+ drivers/gpu/drm/i2c/tda9950.c                      |    4 +-
+ drivers/gpu/drm/i2c/tda998x_drv.c                  |    2 +-
+ drivers/gpu/drm/i915/i915_driver.c                 |    1 -
+ drivers/gpu/drm/i915/i915_driver.h                 |    1 -
+ drivers/gpu/drm/i915/i915_gpu_error.c              |    1 -
+ drivers/gpu/drm/imagination/pvr_drv.c              |    1 -
+ drivers/gpu/drm/imagination/pvr_drv.h              |    1 -
+ drivers/gpu/drm/imx/dcss/dcss-kms.c                |    3 +-
+ drivers/gpu/drm/imx/ipuv3/imx-drm-core.c           |    3 +-
+ drivers/gpu/drm/imx/lcdc/imx-lcdc.c                |    3 +-
+ drivers/gpu/drm/ingenic/ingenic-drm-drv.c          |    3 +-
+ drivers/gpu/drm/kmb/kmb_drv.c                      |    3 +-
+ drivers/gpu/drm/kmb/kmb_drv.h                      |    1 -
+ drivers/gpu/drm/lima/lima_drv.c                    |    1 -
+ drivers/gpu/drm/logicvc/logicvc_drm.c              |    3 +-
+ drivers/gpu/drm/loongson/lsdc_drv.c                |   10 +-
+ drivers/gpu/drm/mcde/mcde_drv.c                    |    3 +-
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c             |    4 +-
+ drivers/gpu/drm/meson/meson_drv.c                  |    3 +-
+ drivers/gpu/drm/mgag200/mgag200_drv.c              |    3 +-
+ drivers/gpu/drm/mgag200/mgag200_drv.h              |    1 -
+ drivers/gpu/drm/msm/msm_drv.c                      |    3 +-
+ drivers/gpu/drm/mxsfb/lcdif_drv.c                  |    3 +-
+ drivers/gpu/drm/mxsfb/mxsfb_drv.c                  |    3 +-
+ drivers/gpu/drm/nouveau/include/nvif/log.h         |   51 +
+ drivers/gpu/drm/nouveau/include/nvkm/subdev/gsp.h  |   21 +
+ drivers/gpu/drm/nouveau/nouveau_debugfs.c          |   16 +
+ drivers/gpu/drm/nouveau/nouveau_debugfs.h          |   16 +
+ drivers/gpu/drm/nouveau/nouveau_drm.c              |   45 +-
+ drivers/gpu/drm/nouveau/nouveau_drv.h              |    1 -
+ drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c     |  508 +++++++++-
+ drivers/gpu/drm/omapdrm/omap_drv.c                 |    2 -
+ drivers/gpu/drm/omapdrm/omap_fbdev.c               |    2 +-
+ drivers/gpu/drm/panel/panel-edp.c                  |    8 +
+ drivers/gpu/drm/panel/panel-orisetech-otm8009a.c   |    1 +
+ .../gpu/drm/panel/panel-raspberrypi-touchscreen.c  |    2 +-
+ drivers/gpu/drm/panel/panel-samsung-s6e63j0x03.c   |    1 +
+ drivers/gpu/drm/panel/panel-samsung-s6e63m0.c      |    1 +
+ drivers/gpu/drm/panel/panel-simple.c               |   30 +
+ drivers/gpu/drm/panel/panel-visionox-rm69299.c     |    9 +-
+ drivers/gpu/drm/panfrost/panfrost_drv.c            |    1 -
+ drivers/gpu/drm/panfrost/panfrost_gpu.c            |    4 +
+ drivers/gpu/drm/panthor/panthor_devfreq.c          |   12 +-
+ drivers/gpu/drm/panthor/panthor_devfreq.h          |    4 +-
+ drivers/gpu/drm/panthor/panthor_device.c           |   90 +-
+ drivers/gpu/drm/panthor/panthor_device.h           |   37 +
+ drivers/gpu/drm/panthor/panthor_drv.c              |    3 +-
+ drivers/gpu/drm/panthor/panthor_fw.c               |  140 ++-
+ drivers/gpu/drm/panthor/panthor_gpu.c              |   23 +-
+ drivers/gpu/drm/panthor/panthor_mmu.c              |   26 +-
+ drivers/gpu/drm/panthor/panthor_sched.c            |    4 +-
+ drivers/gpu/drm/pl111/pl111_drv.c                  |    3 +-
+ drivers/gpu/drm/qxl/Kconfig                        |    1 +
+ drivers/gpu/drm/qxl/qxl_drv.c                      |    3 +-
+ drivers/gpu/drm/qxl/qxl_drv.h                      |    8 +-
+ drivers/gpu/drm/qxl/qxl_release.c                  |   68 +-
+ drivers/gpu/drm/radeon/Kconfig                     |    1 +
+ drivers/gpu/drm/radeon/radeon.h                    |    7 +-
+ drivers/gpu/drm/radeon/radeon_cs.c                 |   45 +-
+ drivers/gpu/drm/radeon/radeon_drv.c                |    3 +-
+ drivers/gpu/drm/radeon/radeon_drv.h                |    1 -
+ drivers/gpu/drm/radeon/radeon_gem.c                |   39 +-
+ drivers/gpu/drm/radeon/radeon_object.c             |   25 +-
+ drivers/gpu/drm/radeon/radeon_object.h             |    2 +-
+ drivers/gpu/drm/radeon/radeon_vm.c                 |   10 +-
+ drivers/gpu/drm/renesas/rcar-du/rcar_du_drv.c      |    3 +-
+ drivers/gpu/drm/renesas/rz-du/rzg2l_du_crtc.c      |    8 +-
+ drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.c       |    3 +-
+ drivers/gpu/drm/renesas/rz-du/rzg2l_du_encoder.c   |   18 +
+ drivers/gpu/drm/renesas/rz-du/rzg2l_du_kms.c       |    6 +-
+ drivers/gpu/drm/renesas/shmobile/shmob_drm_drv.c   |    3 +-
+ drivers/gpu/drm/rockchip/Kconfig                   |   10 +
+ drivers/gpu/drm/rockchip/Makefile                  |    1 +
+ drivers/gpu/drm/rockchip/analogix_dp-rockchip.c    |    4 +-
+ drivers/gpu/drm/rockchip/cdn-dp-core.c             |   11 +-
+ drivers/gpu/drm/rockchip/cdn-dp-core.h             |    2 +-
+ drivers/gpu/drm/rockchip/cdn-dp-reg.c              |    2 +-
+ drivers/gpu/drm/rockchip/cdn-dp-reg.h              |    2 +-
+ drivers/gpu/drm/rockchip/dw-mipi-dsi-rockchip.c    |    2 +-
+ drivers/gpu/drm/rockchip/dw-mipi-dsi2-rockchip.c   |  487 +++++++++
+ drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c        |    2 +-
+ drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c     |  147 ++-
+ drivers/gpu/drm/rockchip/inno_hdmi.c               |    2 +-
+ drivers/gpu/drm/rockchip/inno_hdmi.h               |    2 +-
+ drivers/gpu/drm/rockchip/rk3066_hdmi.c             |    2 +-
+ drivers/gpu/drm/rockchip/rk3066_hdmi.h             |    2 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.c        |   11 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.h        |    3 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_fb.c         |    2 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_fb.h         |    2 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_gem.c        |    2 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_gem.h        |    2 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_vop.c        |    2 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_vop.h        |    2 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c       |  545 ++++++++++-
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.h       |   18 +-
+ drivers/gpu/drm/rockchip/rockchip_lvds.c           |    2 +-
+ drivers/gpu/drm/rockchip/rockchip_lvds.h           |    2 +-
+ drivers/gpu/drm/rockchip/rockchip_rgb.c            |    2 +-
+ drivers/gpu/drm/rockchip/rockchip_rgb.h            |    2 +-
+ drivers/gpu/drm/rockchip/rockchip_vop2_reg.c       |  193 +++-
+ drivers/gpu/drm/rockchip/rockchip_vop_reg.c        |    2 +-
+ drivers/gpu/drm/rockchip/rockchip_vop_reg.h        |    2 +-
+ drivers/gpu/drm/solomon/ssd130x.c                  |    4 +-
+ drivers/gpu/drm/sprd/sprd_drm.c                    |    2 -
+ drivers/gpu/drm/sti/sti_drv.c                      |    4 +-
+ drivers/gpu/drm/stm/drv.c                          |    3 +-
+ drivers/gpu/drm/sun4i/sun4i_drv.c                  |    3 +-
+ drivers/gpu/drm/sun4i/sun4i_hdmi_enc.c             |   32 +-
+ drivers/gpu/drm/tegra/drm.c                        |    4 +-
+ drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c |  409 +++++---
+ drivers/gpu/drm/tests/drm_kunit_edid.h             |  102 ++
+ drivers/gpu/drm/tidss/tidss_dispc.c                |   28 +-
+ drivers/gpu/drm/tidss/tidss_drv.c                  |    5 +-
+ drivers/gpu/drm/tidss/tidss_drv.h                  |    5 +-
+ drivers/gpu/drm/tidss/tidss_irq.c                  |   34 +-
+ drivers/gpu/drm/tidss/tidss_irq.h                  |    4 +-
+ drivers/gpu/drm/tidss/tidss_plane.c                |    8 +
+ drivers/gpu/drm/tidss/tidss_plane.h                |    2 +
+ drivers/gpu/drm/tilcdc/tilcdc_drv.c                |    3 +-
+ drivers/gpu/drm/tiny/Makefile                      |    2 +-
+ drivers/gpu/drm/tiny/arcpgu.c                      |    6 +-
+ drivers/gpu/drm/tiny/bochs.c                       |    3 +-
+ drivers/gpu/drm/tiny/{cirrus.c =3D> cirrus-qemu.c}   |   10 +-
+ drivers/gpu/drm/tiny/gm12u320.c                    |    4 +-
+ drivers/gpu/drm/tiny/hx8357d.c                     |    3 +-
+ drivers/gpu/drm/tiny/ili9163.c                     |    3 +-
+ drivers/gpu/drm/tiny/ili9225.c                     |    3 +-
+ drivers/gpu/drm/tiny/ili9341.c                     |    3 +-
+ drivers/gpu/drm/tiny/ili9486.c                     |    3 +-
+ drivers/gpu/drm/tiny/mi0283qt.c                    |    3 +-
+ drivers/gpu/drm/tiny/ofdrm.c                       |    4 +-
+ drivers/gpu/drm/tiny/panel-mipi-dbi.c              |    4 +-
+ drivers/gpu/drm/tiny/repaper.c                     |    3 +-
+ drivers/gpu/drm/tiny/sharp-memory.c                |    3 +-
+ drivers/gpu/drm/tiny/simpledrm.c                   |    4 +-
+ drivers/gpu/drm/tiny/st7586.c                      |    3 +-
+ drivers/gpu/drm/tiny/st7735r.c                     |    3 +-
+ drivers/gpu/drm/ttm/ttm_bo_vm.c                    |   14 +-
+ drivers/gpu/drm/tve200/tve200_drv.c                |    3 +-
+ drivers/gpu/drm/udl/udl_drv.c                      |    3 +-
+ drivers/gpu/drm/udl/udl_drv.h                      |    1 -
+ drivers/gpu/drm/v3d/v3d_bo.c                       |    4 -
+ drivers/gpu/drm/v3d/v3d_debugfs.c                  |    4 +-
+ drivers/gpu/drm/v3d/v3d_drv.c                      |    3 +-
+ drivers/gpu/drm/v3d/v3d_drv.h                      |    8 +
+ drivers/gpu/drm/v3d/v3d_mmu.c                      |    8 +-
+ drivers/gpu/drm/v3d/v3d_perfmon.c                  |   57 +-
+ drivers/gpu/drm/v3d/v3d_performance_counters.h     |   12 +-
+ drivers/gpu/drm/v3d/v3d_regs.h                     |   29 +-
+ drivers/gpu/drm/v3d/v3d_sched.c                    |   26 +-
+ drivers/gpu/drm/v3d/v3d_submit.c                   |   19 +-
+ drivers/gpu/drm/vboxvideo/vbox_drv.c               |    3 +-
+ drivers/gpu/drm/vboxvideo/vbox_drv.h               |    1 -
+ drivers/gpu/drm/vc4/tests/vc4_mock.c               |    8 +-
+ drivers/gpu/drm/vc4/tests/vc4_test_pv_muxing.c     |  106 +-
+ drivers/gpu/drm/vc4/vc4_crtc.c                     |   96 +-
+ drivers/gpu/drm/vc4/vc4_drv.c                      |   24 +-
+ drivers/gpu/drm/vc4/vc4_drv.h                      |   54 +-
+ drivers/gpu/drm/vc4/vc4_hdmi.c                     |  112 ++-
+ drivers/gpu/drm/vc4/vc4_hdmi.h                     |    4 +
+ drivers/gpu/drm/vc4/vc4_hdmi_phy.c                 |  640 ++++++++++++
+ drivers/gpu/drm/vc4/vc4_hdmi_regs.h                |  217 +++++
+ drivers/gpu/drm/vc4/vc4_hvs.c                      |  737 +++++++++++++-
+ drivers/gpu/drm/vc4/vc4_kms.c                      |  105 +-
+ drivers/gpu/drm/vc4/vc4_plane.c                    |  873 ++++++++++++++++-
+ drivers/gpu/drm/vc4/vc4_regs.h                     |  297 ++++++
+ drivers/gpu/drm/vc4/vc4_txp.c                      |   91 +-
+ drivers/gpu/drm/vgem/vgem_drv.c                    |    2 -
+ drivers/gpu/drm/virtio/virtgpu_drv.c               |    4 +-
+ drivers/gpu/drm/virtio/virtgpu_drv.h               |   21 +-
+ drivers/gpu/drm/virtio/virtgpu_gem.c               |   23 +-
+ drivers/gpu/drm/virtio/virtgpu_ioctl.c             |    6 +-
+ drivers/gpu/drm/virtio/virtgpu_object.c            |   24 +
+ drivers/gpu/drm/virtio/virtgpu_plane.c             |  125 ++-
+ drivers/gpu/drm/virtio/virtgpu_prime.c             |  178 +++-
+ drivers/gpu/drm/virtio/virtgpu_vq.c                |   35 +
+ drivers/gpu/drm/vkms/vkms_composer.c               |  310 ++++--
+ drivers/gpu/drm/vkms/vkms_crtc.c                   |    6 +-
+ drivers/gpu/drm/vkms/vkms_drv.c                    |    9 +-
+ drivers/gpu/drm/vkms/vkms_drv.h                    |   63 +-
+ drivers/gpu/drm/vkms/vkms_formats.c                |  413 +++++---
+ drivers/gpu/drm/vkms/vkms_formats.h                |    4 +-
+ drivers/gpu/drm/vkms/vkms_output.c                 |   49 +-
+ drivers/gpu/drm/vkms/vkms_plane.c                  |   19 +-
+ drivers/gpu/drm/vkms/vkms_writeback.c              |    5 -
+ drivers/gpu/drm/vmwgfx/vmwgfx_drv.c                |    3 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_drv.h                |    1 -
+ drivers/gpu/drm/vmwgfx/vmwgfx_ldu.c                |    1 -
+ drivers/gpu/drm/vmwgfx/vmwgfx_scrn.c               |    1 -
+ drivers/gpu/drm/vmwgfx/vmwgfx_stdu.c               |    1 -
+ drivers/gpu/drm/xe/xe_bo_types.h                   |    1 -
+ drivers/gpu/drm/xe/xe_device.c                     |    1 -
+ drivers/gpu/drm/xe/xe_drv.h                        |    1 -
+ drivers/gpu/drm/xe/xe_gt_pagefault.c               |    1 -
+ drivers/gpu/drm/xe/xe_vm.c                         |    1 -
+ drivers/gpu/drm/xe/xe_vm.h                         |    1 -
+ drivers/gpu/drm/xen/xen_drm_front.c                |    6 -
+ drivers/gpu/drm/xlnx/zynqmp_dp.c                   |    2 +-
+ drivers/gpu/drm/xlnx/zynqmp_kms.c                  |    3 +-
+ include/drm/bridge/dw_mipi_dsi2.h                  |   95 ++
+ include/drm/{ =3D> clients}/drm_client_setup.h       |    0
+ include/drm/display/drm_dp_helper.h                |    5 +
+ include/drm/display/drm_hdmi_state_helper.h        |    4 +
+ include/drm/drm_drv.h                              |    2 -
+ include/drm/drm_utils.h                            |    4 +
+ include/trace/events/amdxdna.h                     |  101 ++
+ include/uapi/drm/amdxdna_accel.h                   |  450 +++++++++
+ include/uapi/drm/qaic_accel.h                      |    2 +-
+ include/uapi/drm/v3d_drm.h                         |   18 +
+ lib/fonts/Kconfig                                  |    2 +-
+ 333 files changed, 18104 insertions(+), 1874 deletions(-)
+ create mode 100644 Documentation/accel/amdxdna/amdnpu.rst
+ create mode 100644 Documentation/accel/amdxdna/index.rst
+ create mode 100644 Documentation/devicetree/bindings/display/rockchip/rock=
+chip,rk3588-mipi-dsi2.yaml
+ create mode 100644 drivers/accel/amdxdna/Kconfig
+ create mode 100644 drivers/accel/amdxdna/Makefile
+ create mode 100644 drivers/accel/amdxdna/TODO
+ create mode 100644 drivers/accel/amdxdna/aie2_ctx.c
+ create mode 100644 drivers/accel/amdxdna/aie2_error.c
+ create mode 100644 drivers/accel/amdxdna/aie2_message.c
+ create mode 100644 drivers/accel/amdxdna/aie2_msg_priv.h
+ create mode 100644 drivers/accel/amdxdna/aie2_pci.c
+ create mode 100644 drivers/accel/amdxdna/aie2_pci.h
+ create mode 100644 drivers/accel/amdxdna/aie2_psp.c
+ create mode 100644 drivers/accel/amdxdna/aie2_smu.c
+ create mode 100644 drivers/accel/amdxdna/aie2_solver.c
+ create mode 100644 drivers/accel/amdxdna/aie2_solver.h
+ create mode 100644 drivers/accel/amdxdna/amdxdna_ctx.c
+ create mode 100644 drivers/accel/amdxdna/amdxdna_ctx.h
+ create mode 100644 drivers/accel/amdxdna/amdxdna_gem.c
+ create mode 100644 drivers/accel/amdxdna/amdxdna_gem.h
+ create mode 100644 drivers/accel/amdxdna/amdxdna_mailbox.c
+ create mode 100644 drivers/accel/amdxdna/amdxdna_mailbox.h
+ create mode 100644 drivers/accel/amdxdna/amdxdna_mailbox_helper.c
+ create mode 100644 drivers/accel/amdxdna/amdxdna_mailbox_helper.h
+ create mode 100644 drivers/accel/amdxdna/amdxdna_pci_drv.c
+ create mode 100644 drivers/accel/amdxdna/amdxdna_pci_drv.h
+ create mode 100644 drivers/accel/amdxdna/amdxdna_sysfs.c
+ create mode 100644 drivers/accel/amdxdna/npu1_regs.c
+ create mode 100644 drivers/accel/amdxdna/npu2_regs.c
+ create mode 100644 drivers/accel/amdxdna/npu4_regs.c
+ create mode 100644 drivers/accel/amdxdna/npu5_regs.c
+ create mode 100644 drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi2.c
+ create mode 100644 drivers/gpu/drm/clients/Kconfig
+ create mode 100644 drivers/gpu/drm/clients/Makefile
+ rename include/drm/drm_fbdev_client.h =3D> drivers/gpu/drm/clients/drm_cli=
+ent_internal.h (62%)
+ rename drivers/gpu/drm/{ =3D> clients}/drm_client_setup.c (72%)
+ rename drivers/gpu/drm/{ =3D> clients}/drm_fbdev_client.c (98%)
+ create mode 100644 drivers/gpu/drm/clients/drm_log.c
+ create mode 100644 drivers/gpu/drm/drm_draw.c
+ create mode 100644 drivers/gpu/drm/drm_draw_internal.h
+ create mode 100644 drivers/gpu/drm/drm_panel_backlight_quirks.c
+ create mode 100644 drivers/gpu/drm/nouveau/include/nvif/log.h
+ create mode 100644 drivers/gpu/drm/rockchip/dw-mipi-dsi2-rockchip.c
+ rename drivers/gpu/drm/tiny/{cirrus.c =3D> cirrus-qemu.c} (99%)
+ create mode 100644 include/drm/bridge/dw_mipi_dsi2.h
+ rename include/drm/{ =3D> clients}/drm_client_setup.h (100%)
+ create mode 100644 include/trace/events/amdxdna.h
+ create mode 100644 include/uapi/drm/amdxdna_accel.h
+
+--goam7ess2goaceah
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZ2ACXQAKCRAnX84Zoj2+
+dtXVAX40w0aTTF1IVrg0e4aQ1aZoCemnGtayvNa2EOkWD+Nbzs75cREHvCcRyO0b
+PdoHjrEBfiMp+C/lba83006c2omkz9b69sAujFHftUmbTmdUsaRSszjojgeH+201
+X7EvHdsmwA==
+=RhHE
+-----END PGP SIGNATURE-----
+
+--goam7ess2goaceah--
+
