@@ -1,57 +1,29 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C79DC9F2788
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2024 01:35:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7F479F296A
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2024 06:10:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5CF0110E032;
-	Mon, 16 Dec 2024 00:35:48 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JwiPm/pC";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id F259310E02D;
+	Mon, 16 Dec 2024 05:10:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA40A10E032;
- Mon, 16 Dec 2024 00:35:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734309346; x=1765845346;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=YgNlomtP7eUexZp+hH6aNKKSVU1AlZpA3rkGWhFWS9Y=;
- b=JwiPm/pCH0gB635HlL0Klc+Kcxh27k81ipK+AFk1UGykhlkALtyoo/vZ
- 6lZSKVcutRZOZ8fFADMGWaUrnhYYNg0ELs6RYuYLIp+7I5pu/DOu9/lo0
- 7CeC6Jw34J6fUk958+2U8ixHLjPPgAn4XiX46pHTQoSLCu4t2DSN9Q6cr
- F7gE4d9uMPp4bRxthhtBgd/SLXp9SevFXSKUeEu00Mp1IBfknbJ9UQYO6
- 4Qv66saF3H4+MsCNNEeXRTxYXPhCkzhZ8+ymEDuqTrsqaKotNge2/wkGi
- 8m4YcdUaI1xP7vgsbYoRwsvL5Hp/S7xV0U5q0Hkadt/nrldUnxQdMTnl0 g==;
-X-CSE-ConnectionGUID: 9kKgaxZlTie2bD9WyzieVg==
-X-CSE-MsgGUID: gZdLO/GBTG6U0NHduUinxg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11287"; a="34841916"
-X-IronPort-AV: E=Sophos;i="6.12,237,1728975600"; d="scan'208";a="34841916"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Dec 2024 16:35:45 -0800
-X-CSE-ConnectionGUID: DyIcLCWPR7mohyTcoAXsJQ==
-X-CSE-MsgGUID: vthkHUxaRCmsAWj8q1gjKg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="102129169"
-Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.39.141])
- by orviesa003.jf.intel.com with ESMTP; 15 Dec 2024 16:35:45 -0800
-From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	igt-dev@lists.freedesktop.org
-Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH i-g-t] tools/gputop: Add GT freq and c6 stats
-Date: Sun, 15 Dec 2024 16:32:38 -0800
-Message-Id: <20241216003238.2953498-1-vinay.belgaumkar@intel.com>
-X-Mailer: git-send-email 2.38.1
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9632910E02D;
+ Mon, 16 Dec 2024 05:10:47 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_PSR_DSB_support?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 16 Dec 2024 05:10:47 -0000
+Message-ID: <173432584760.3156191.5574134921467652573@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241213063528.2759659-1-jouni.hogander@intel.com>
+In-Reply-To: <20241213063528.2759659-1-jouni.hogander@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,463 +36,120 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add GT C6 and Frequency support. These will use the PMU interface
-and are displayed per GT/device in the header.
+== Series Details ==
 
-GT: 0, c6:  94.54% req_freq:  750.63 MHz act_freq:    0.00 MHz
-GT: 1, c6:   2.75% req_freq: 1200.71 MHz act_freq: 1112.66 MHz
+Series: PSR DSB support
+URL   : https://patchwork.freedesktop.org/series/142520/
+State : success
 
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
----
- lib/igt_drm_clients.c |  17 +++++
- lib/igt_drm_clients.h |  25 +++++++
- lib/igt_perf.c        |  57 +++++++++++++-
- lib/igt_perf.h        |   2 +
- tools/gputop.c        | 168 +++++++++++++++++++++++++++++++++++++++++-
- tools/intel_gpu_top.c |  18 +----
- tools/meson.build     |   2 +-
- 7 files changed, 271 insertions(+), 18 deletions(-)
+== Summary ==
 
-diff --git a/lib/igt_drm_clients.c b/lib/igt_drm_clients.c
-index 858cd3645..add2696fa 100644
---- a/lib/igt_drm_clients.c
-+++ b/lib/igt_drm_clients.c
-@@ -19,6 +19,7 @@
- 
- #include "igt_drm_clients.h"
- #include "igt_drm_fdinfo.h"
-+#include "igt_perf.h"
- 
- #ifndef ARRAY_SIZE
- #define ARRAY_SIZE(array) (sizeof(array) / sizeof(array[0]))
-@@ -164,6 +165,7 @@ igt_drm_client_add(struct igt_drm_clients *clients,
- {
- 	struct igt_drm_client *c;
- 	unsigned int i;
-+	char *path;
- 
- 	assert(!igt_drm_clients_find(clients, IGT_DRM_CLIENT_ALIVE,
- 				     drm_minor, info->id));
-@@ -190,6 +192,18 @@ igt_drm_client_add(struct igt_drm_clients *clients,
- 	c->drm_minor = drm_minor;
- 	c->clients = clients;
- 
-+	if (info->driver && info->pdev) {
-+		snprintf(c->device_events_path, sizeof(c->device_events_path) - 1,
-+			 "%s_%s", info->driver, info->pdev);
-+		path = c->device_events_path;
-+		for (; *path; ++path)
-+			if (*path == ':')
-+				*path = '_';
-+		c->pmu_fd = -1;
-+		c->num_gts = 0;
-+		c->num_pmu_counters = 0;
-+	}
-+
- 	/* Engines */
- 	c->engines = calloc(1, sizeof(*c->engines));
- 	assert(c->engines);
-@@ -262,6 +276,9 @@ void igt_drm_client_free(struct igt_drm_client *c, bool clear)
- 
- 	free(c->memory);
- 
-+	if (c->pmu_fd != -1)
-+		close(c->pmu_fd);
-+
- 	if (clear)
- 		memset(c, 0, sizeof(*c));
- }
-diff --git a/lib/igt_drm_clients.h b/lib/igt_drm_clients.h
-index 946d709de..9d5b966ee 100644
---- a/lib/igt_drm_clients.h
-+++ b/lib/igt_drm_clients.h
-@@ -56,6 +56,22 @@ struct igt_drm_client_regions {
- 
- struct igt_drm_clients;
- 
-+struct pmu_pair {
-+	uint64_t cur;
-+	uint64_t prev;
-+};
-+
-+struct pmu_counter {
-+	uint64_t type;
-+	uint64_t config;
-+	unsigned int idx;
-+	struct pmu_pair val;
-+	double scale;
-+	const char *units;
-+	bool present;
-+};
-+
-+#define MAX_GTS 4
- struct igt_drm_client {
- 	struct igt_drm_clients *clients; /* Owning list. */
- 
-@@ -86,6 +102,15 @@ struct igt_drm_client {
- 		uint64_t last_total_cycles; /* Engine total cycles data as parsed from fdinfo. */
- 	} *utilization; /* Array of engine utilization */
- 
-+	char device_events_path[300];
-+	int num_gts;
-+	int pmu_fd;
-+	int num_pmu_counters;
-+	struct pmu_counter freq_req_gt[MAX_GTS];
-+	struct pmu_counter freq_act_gt[MAX_GTS];
-+	struct pmu_counter c6_gt[MAX_GTS];
-+	uint64_t ts_cur, ts_prev;
-+
- 	struct drm_client_meminfo *memory; /* Array of region memory utilisation as parsed from fdinfo. */
- };
- 
-diff --git a/lib/igt_perf.c b/lib/igt_perf.c
-index 3866c6d77..14c362515 100644
---- a/lib/igt_perf.c
-+++ b/lib/igt_perf.c
-@@ -129,6 +129,61 @@ uint64_t igt_perf_type_id(const char *device)
- 	return strtoull(buf, NULL, 0);
- }
- 
-+int perf_xe_format_gt_id(const char *device)
-+{
-+	char buf[150];
-+	ssize_t ret;
-+	int fd, start, end;
-+
-+	snprintf(buf, sizeof(buf),
-+		 "/sys/bus/event_source/devices/%s/format/gt_id",
-+		 device);
-+
-+	fd = open(buf, O_RDONLY);
-+	if (fd < 0)
-+		return -EINVAL;
-+
-+	ret = read(fd, buf, sizeof(buf) - 1);
-+	close(fd);
-+	if (ret < 1)
-+		return ret;
-+
-+	buf[ret] = '\0';
-+	ret = sscanf(buf, "config:%d-%d", &start, &end);
-+	if (ret != 2)
-+		return -EINVAL;
-+
-+	return start;
-+}
-+
-+int perf_xe_event_config(const char *device, const char *event, uint64_t *config)
-+{
-+	char buf[150];
-+	ssize_t ret;
-+	int fd;
-+
-+	snprintf(buf, sizeof(buf),
-+		 "/sys/bus/event_source/devices/%s/events/%s",
-+		 device,
-+		 event);
-+
-+	fd = open(buf, O_RDONLY);
-+	if (fd < 0)
-+		return -EINVAL;
-+
-+	ret = read(fd, buf, sizeof(buf) - 1);
-+	close(fd);
-+	if (ret < 1)
-+		return ret;
-+
-+	buf[ret] = '\0';
-+	ret = sscanf(buf, "config=0x%lx", config);
-+	if (ret != 1)
-+		return -EINVAL;
-+
-+	return ret;
-+}
-+
- int igt_perf_events_dir(int i915)
- {
- 	char buf[80];
-@@ -180,7 +235,7 @@ int perf_igfx_open_group(uint64_t config, int group)
- int perf_xe_open(int xe, uint64_t config)
- {
- 	return _perf_open(xe_perf_type_id(xe), config, -1,
--			PERF_FORMAT_TOTAL_TIME_ENABLED);
-+			  PERF_FORMAT_TOTAL_TIME_ENABLED);
- }
- 
- int perf_i915_open(int i915, uint64_t config)
-diff --git a/lib/igt_perf.h b/lib/igt_perf.h
-index 3d9ba2917..f1c433657 100644
---- a/lib/igt_perf.h
-+++ b/lib/igt_perf.h
-@@ -71,5 +71,7 @@ int perf_i915_open(int i915, uint64_t config);
- int perf_i915_open_group(int i915, uint64_t config, int group);
- 
- int perf_xe_open(int xe, uint64_t config);
-+int perf_xe_event_config(const char *device, const char *event, uint64_t *config);
-+int perf_xe_format_gt_id(const char *device);
- 
- #endif /* I915_PERF_H */
-diff --git a/tools/gputop.c b/tools/gputop.c
-index 43b01f566..2c2f2f471 100644
---- a/tools/gputop.c
-+++ b/tools/gputop.c
-@@ -29,6 +29,7 @@
- #include "igt_core.h"
- #include "igt_drm_clients.h"
- #include "igt_drm_fdinfo.h"
-+#include "igt_perf.h"
- #include "igt_profiling.h"
- #include "drmtest.h"
- 
-@@ -76,6 +77,170 @@ static void print_percentage_bar(double percent, int max_len)
- 	putchar('|');
- }
- 
-+static int
-+get_num_gts(uint64_t type, uint64_t config, int gt_shift)
-+{
-+	int fd, gt_id;
-+
-+	errno = 0;
-+	for (gt_id = 0; gt_id < MAX_GTS; gt_id++) {
-+		config |= (uint64_t)gt_id << gt_shift;
-+		fd = igt_perf_open(type, config);
-+		if (fd < 0)
-+			break;
-+		close(fd);
-+	}
-+
-+	if (!gt_id || (errno && errno != ENOENT))
-+		gt_id = -errno;
-+
-+	return gt_id;
-+}
-+
-+#define _open_pmu(type, cnt, pmu, fd) \
-+({ \
-+	int fd__; \
-+\
-+	fd__ = igt_perf_open_group((type), (pmu)->config, (fd)); \
-+	if (fd__ >= 0) { \
-+		if ((fd) == -1) \
-+			(fd) = fd__; \
-+		(pmu)->present = true; \
-+		(pmu)->idx = (cnt)++; \
-+	} \
-+\
-+	fd__; \
-+})
-+
-+static int pmu_init(struct igt_drm_client *c)
-+{
-+	unsigned int i, num_cntr = 0;
-+	int fd = -1, ret;
-+	uint64_t type = igt_perf_type_id(c->device_events_path);
-+	uint64_t config;
-+	int gt_shift;
-+	char event_str[100];
-+
-+	/* Get a sample event config which can be used to find num_gts */
-+	ret = perf_xe_event_config(c->device_events_path, "actual-frequency", &config);
-+	assert(ret >= 0);
-+	gt_shift = perf_xe_format_gt_id(c->device_events_path);
-+	assert(ret > 0);
-+
-+	c->num_gts = get_num_gts(type, config, gt_shift);
-+
-+	for (i = 0; i < c->num_gts; i++) {
-+		snprintf(event_str, sizeof(event_str), "c6-residency");
-+		ret = perf_xe_event_config(c->device_events_path, event_str,
-+					   &c->c6_gt[i].config);
-+		assert(ret >= 0);
-+		c->c6_gt[i].config |= (uint64_t)i << gt_shift;
-+		_open_pmu(type, num_cntr, &c->c6_gt[i], fd);
-+
-+		snprintf(event_str, sizeof(event_str), "actual-frequency");
-+		ret = perf_xe_event_config(c->device_events_path, event_str,
-+					   &c->freq_act_gt[i].config);
-+		assert(ret >= 0);
-+		c->freq_act_gt[i].config |= (uint64_t)i << gt_shift;
-+		_open_pmu(type, num_cntr, &c->freq_act_gt[i], fd);
-+
-+		snprintf(event_str, sizeof(event_str), "requested-frequency");
-+		ret = perf_xe_event_config(c->device_events_path, event_str,
-+					   &c->freq_req_gt[i].config);
-+		assert(ret >= 0);
-+		c->freq_req_gt[i].config |= (uint64_t)i << gt_shift;
-+		_open_pmu(type, num_cntr, &c->freq_req_gt[i], fd);
-+	}
-+
-+	/* Saved the pmu fd */
-+	assert(fd > 0);
-+	c->pmu_fd = fd;
-+	c->num_pmu_counters = num_cntr;
-+
-+	return fd;
-+}
-+
-+static uint64_t pmu_read_multi(int fd, unsigned int num, uint64_t *val)
-+{
-+	uint64_t buf[2 + num];
-+	unsigned int i;
-+	ssize_t len;
-+
-+	memset(buf, 0, sizeof(buf));
-+
-+	len = read(fd, buf, sizeof(buf));
-+	assert(len == sizeof(buf));
-+
-+	for (i = 0; i < num; i++)
-+		val[i] = buf[2 + i];
-+
-+	return buf[1];
-+}
-+
-+static void __update_sample(struct pmu_counter *counter, uint64_t val)
-+{
-+	counter->val.prev = counter->val.cur;
-+	counter->val.cur = val;
-+}
-+
-+static void update_sample(struct pmu_counter *counter, uint64_t *val)
-+{
-+	if (counter->present)
-+		__update_sample(counter, val[counter->idx]);
-+}
-+
-+static void
-+calc_c6_pct(struct igt_drm_client *c, unsigned int gt, unsigned long t)
-+{
-+	unsigned long c6_diff = c->c6_gt[gt].val.cur - c->c6_gt[gt].val.prev;
-+
-+	printf("GT: %d, c6: %6.2lf%%", gt, 100 * (double)((1e6 * c6_diff) / (double)t));
-+}
-+
-+static void
-+calc_freq(struct igt_drm_client *c, uint8_t gt, uint64_t t)
-+{
-+	uint64_t req_freq_diff = 1e9 * (c->freq_req_gt[gt].val.cur - c->freq_req_gt[gt].val.prev);
-+	uint64_t act_freq_diff = 1e9 * (c->freq_act_gt[gt].val.cur - c->freq_act_gt[gt].val.prev);
-+
-+	printf(" req_freq: %7.2lf MHz", (double)req_freq_diff / (double)t);
-+	printf(" act_freq: %7.2lf MHz", (double)act_freq_diff / (double)t);
-+}
-+
-+static int
-+print_pmu_stats(struct igt_drm_client *c, int *lines)
-+{
-+	int ret = 0;
-+	int i;
-+	uint64_t *val;
-+	uint64_t ts_diff;
-+
-+	if (c->pmu_fd == -1)
-+		pmu_init(c);
-+
-+	assert(c->num_pmu_counters > 0);
-+
-+	val = (uint64_t *)malloc(c->num_pmu_counters * sizeof(uint64_t));
-+
-+	c->ts_prev = c->ts_cur;
-+	c->ts_cur = pmu_read_multi(c->pmu_fd, c->num_pmu_counters, val);
-+	ts_diff = c->ts_cur - c->ts_prev;
-+
-+	for (i = 0; i < c->num_gts; i++) {
-+		update_sample(&c->c6_gt[i], val);
-+		update_sample(&c->freq_req_gt[i], val);
-+		update_sample(&c->freq_act_gt[i], val);
-+		calc_c6_pct(c, i, ts_diff);
-+		calc_freq(c, i, ts_diff);
-+		putchar('\n');
-+	}
-+
-+	if (val)
-+		free(val);
-+
-+	return ret;
-+}
-+
- static int
- print_client_header(struct igt_drm_client *c, int lines, int con_w, int con_h,
- 		    int *engine_w)
-@@ -92,6 +257,8 @@ print_client_header(struct igt_drm_client *c, int lines, int con_w, int con_h,
- 	if (lines++ >= con_h)
- 		return lines;
- 
-+	ret += print_pmu_stats(c, &lines);
-+
- 	putchar('\n');
- 	if (c->regions->num_regions)
- 		len = printf("%*s      MEM      RSS ",
-@@ -219,7 +386,6 @@ print_client(struct igt_drm_client *c, struct igt_drm_client **prevc,
- 	}
- 
- 	*prevc = c;
--
- 	len = printf("%*s ", c->clients->max_pid_len, c->pid_str);
- 
- 	if (c->regions->num_regions) {
-diff --git a/tools/intel_gpu_top.c b/tools/intel_gpu_top.c
-index a608b894d..585e2acec 100644
---- a/tools/intel_gpu_top.c
-+++ b/tools/intel_gpu_top.c
-@@ -52,21 +52,6 @@
- 
- #define ARRAY_SIZE(arr) (sizeof(arr)/sizeof(arr[0]))
- 
--struct pmu_pair {
--	uint64_t cur;
--	uint64_t prev;
--};
--
--struct pmu_counter {
--	uint64_t type;
--	uint64_t config;
--	unsigned int idx;
--	struct pmu_pair val;
--	double scale;
--	const char *units;
--	bool present;
--};
--
- struct engine_class {
- 	unsigned int engine_class;
- 	const char *name;
-@@ -724,6 +709,8 @@ static void pmu_sample(struct engines *engines)
- 	uint64_t val[2 + num_val];
- 	unsigned int i;
- 
-+	printf("\n num counters: %d", num_val);
-+
- 	engines->ts.prev = engines->ts.cur;
- 	engines->ts.cur = pmu_read_multi(engines->fd, num_val, val);
- 
-@@ -735,6 +722,7 @@ static void pmu_sample(struct engines *engines)
- 		update_sample(&engines->freq_req_gt[i], val);
- 		engines->freq_req.val.cur += engines->freq_req_gt[i].val.cur;
- 		engines->freq_req.val.prev += engines->freq_req_gt[i].val.prev;
-+		printf("\n GT: %d, ctr idx: %d", i, engines->freq_req_gt[i].idx);
- 
- 		update_sample(&engines->freq_act_gt[i], val);
- 		engines->freq_act.val.cur += engines->freq_act_gt[i].val.cur;
-diff --git a/tools/meson.build b/tools/meson.build
-index 38b04851c..9e6c8546a 100644
---- a/tools/meson.build
-+++ b/tools/meson.build
-@@ -70,7 +70,7 @@ endif
- executable('gputop', 'gputop.c',
-            install : true,
-            install_rpath : bindir_rpathdir,
--           dependencies : [lib_igt_drm_clients,lib_igt_drm_fdinfo,lib_igt_profiling,math])
-+           dependencies : [lib_igt_perf,lib_igt_drm_clients,lib_igt_drm_fdinfo,lib_igt_profiling,math])
- 
- intel_l3_parity_src = [ 'intel_l3_parity.c', 'intel_l3_udev_listener.c' ]
- executable('intel_l3_parity', sources : intel_l3_parity_src,
--- 
-2.38.1
+CI Bug Log - changes from CI_DRM_15836 -> Patchwork_142520v1
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142520v1/index.html
+
+Participating hosts (45 -> 44)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_142520v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_module_load@load:
+    - fi-pnv-d510:        [PASS][1] -> [ABORT][2] ([i915#13203])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15836/fi-pnv-d510/igt@i915_module_load@load.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142520v1/fi-pnv-d510/igt@i915_module_load@load.html
+
+  * igt@i915_selftest@live:
+    - bat-twl-1:          NOTRUN -> [ABORT][3] ([i915#12919] / [i915#9413])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142520v1/bat-twl-1/igt@i915_selftest@live.html
+    - bat-arls-5:         NOTRUN -> [ABORT][4] ([i915#12061])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142520v1/bat-arls-5/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@gt_lrc:
+    - bat-twl-1:          [PASS][5] -> [ABORT][6] ([i915#12919] / [i915#9413])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15836/bat-twl-1/igt@i915_selftest@live@gt_lrc.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142520v1/bat-twl-1/igt@i915_selftest@live@gt_lrc.html
+
+  * igt@i915_selftest@live@hugepages:
+    - bat-jsl-3:          [PASS][7] -> [INCOMPLETE][8] ([i915#13241]) +1 other test incomplete
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15836/bat-jsl-3/igt@i915_selftest@live@hugepages.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142520v1/bat-jsl-3/igt@i915_selftest@live@hugepages.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-5:         [PASS][9] -> [ABORT][10] ([i915#12061])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15836/bat-arls-5/igt@i915_selftest@live@workarounds.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142520v1/bat-arls-5/igt@i915_selftest@live@workarounds.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
+    - bat-dg2-11:         [PASS][11] -> [SKIP][12] ([i915#9197]) +2 other tests skip
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15836/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142520v1/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - bat-rpls-4:         [FAIL][13] ([i915#12903]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15836/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142520v1/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
+    - fi-cfl-guc:         [FAIL][15] ([i915#12903]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15836/fi-cfl-guc/igt@i915_pm_rpm@module-reload.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142520v1/fi-cfl-guc/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@workarounds:
+    - {bat-mtlp-9}:       [ABORT][17] ([i915#12061]) -> [PASS][18] +1 other test pass
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15836/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142520v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc:
+    - bat-apl-1:          [DMESG-WARN][19] ([i915#12918]) -> [PASS][20] +1 other test pass
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15836/bat-apl-1/igt@kms_pipe_crc_basic@nonblocking-crc.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142520v1/bat-apl-1/igt@kms_pipe_crc_basic@nonblocking-crc.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#12903]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12903
+  [i915#12918]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12918
+  [i915#12919]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12919
+  [i915#13203]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13203
+  [i915#13241]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13241
+  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
+  [i915#9413]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_15836 -> Patchwork_142520v1
+
+  CI-20190529: 20190529
+  CI_DRM_15836: a4502e763bb931b68fa9be46262724a61ae951e3 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8154: 8603734a61b57f766ee60f24e63d18f88232a3c6 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_142520v1: a4502e763bb931b68fa9be46262724a61ae951e3 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142520v1/index.html
