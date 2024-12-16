@@ -2,63 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id E940A9F2FA0
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2024 12:38:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BFDD9F2F9F
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2024 12:38:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B55A10E5CE;
-	Mon, 16 Dec 2024 11:38:43 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KDzZ1T/f";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id C60B610E5B3;
+	Mon, 16 Dec 2024 11:38:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B4C010E5C7;
- Mon, 16 Dec 2024 11:38:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734349122; x=1765885122;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=sHyuZOv1oWfGup+bQH8GfQT4GOTfG34XvXmPZTdg+oI=;
- b=KDzZ1T/f7glLXjd4n1smocFiBQ53KSV+WolAZ6168KnDNwkCPfbem79U
- Zbex8nbR4shIVHGMbL/TnZVWuPy2u63xtJ4I+iQUtqITw70uAjzjIy8QV
- 9kO8IVPBG/+qF80RiZy5qnlDFvmn2mab6AguTFaKbqT1jKw+aAuzaXtc5
- gujdioa1eWIeRYVki+FTyQwkqq6MwfA0EJK5HKtkWudwL5AnC0W3DduLk
- ZeczWPaXjJstQY45vHgjsoKKlTvqr5uodZ3336TA+LEPQmiWD3TxxtRyq
- 88tSx5V8Q0LIRKNs3pHc4V5/4ziEkjAYRFHQZoOLCgysIwxX7MQGrQd4U A==;
-X-CSE-ConnectionGUID: nXsyO5v/TK2sMegwm010Bg==
-X-CSE-MsgGUID: 9l9aIA1sREWIpk46RSv66g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11287"; a="34025495"
-X-IronPort-AV: E=Sophos;i="6.12,238,1728975600"; d="scan'208";a="34025495"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2024 03:38:41 -0800
-X-CSE-ConnectionGUID: 1iv1UnjkT8GoOZaP95t2dg==
-X-CSE-MsgGUID: 8xr4cfBbSbGIUW9E75P3rg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="101326521"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.245])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2024 03:38:39 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Cc: Sergey Senozhatsky <senozhatsky@chromium.org>, Ville Syrjala
- <ville.syrjala@linux.intel.com>
-Subject: RE: [PATCH v3 1/6] drm/i915/ddi: change
- intel_ddi_init_{dp,hdmi}_connector() return type
-In-Reply-To: <SN7PR11MB6750DC00BB9AF4CD5A66EA6BE3382@SN7PR11MB6750.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1734099220.git.jani.nikula@intel.com>
- <ddd89d5e49a0cd40c18f12567da7fb9605999fcd.1734099220.git.jani.nikula@intel.com>
- <SN7PR11MB6750DC00BB9AF4CD5A66EA6BE3382@SN7PR11MB6750.namprd11.prod.outlook.com>
-Date: Mon, 16 Dec 2024 13:38:36 +0200
-Message-ID: <87ttb3svr7.fsf@intel.com>
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2418410E5B3;
+ Mon, 16 Dec 2024 11:38:39 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/dp=3A_convert_to?=
+ =?utf-8?q?_struct_intel=5Fdisplay_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 16 Dec 2024 11:38:39 -0000
+Message-ID: <173434911914.3265464.437171374141175878@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <cover.1734083244.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1734083244.git.jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,132 +37,134 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 13 Dec 2024, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
->> -----Original Message-----
->> From: Nikula, Jani <jani.nikula@intel.com>
->> Sent: Friday, December 13, 2024 7:46 PM
->> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
->> Cc: Nikula, Jani <jani.nikula@intel.com>; Sergey Senozhatsky
->> <senozhatsky@chromium.org>; Ville Syrjala <ville.syrjala@linux.intel.com>;
->> Kandpal, Suraj <suraj.kandpal@intel.com>
->> Subject: [PATCH v3 1/6] drm/i915/ddi: change
->> intel_ddi_init_{dp,hdmi}_connector() return type
->>
->> The caller doesn't actually need the returned struct intel_connector; it's
->> stored in the ->attached_connector of intel_dp ad intel_hdmi. Switch to
->
-> Typo : *and
-> Otherwise LGTM,
-> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+== Series Details ==
 
-Thanks, care to look at patch 4 as well, it's changed slightly?
+Series: drm/i915/dp: convert to struct intel_display (rev4)
+URL   : https://patchwork.freedesktop.org/series/141929/
+State : success
 
-BR,
-Jani.
+== Summary ==
 
->
->> returning an int with 0 for success and negative errors codes to be able to
->> indicate success even when we don't have a connector.
->>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_ddi.c | 20 +++++++++-----------
->>  1 file changed, 9 insertions(+), 11 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
->> b/drivers/gpu/drm/i915/display/intel_ddi.c
->> index 4f9c50996446..21277cf8afef 100644
->> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
->> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
->> @@ -4542,8 +4542,7 @@ static const struct drm_encoder_funcs
->> intel_ddi_funcs = {
->>       .late_register = intel_ddi_encoder_late_register,  };
->>
->> -static struct intel_connector *
->> -intel_ddi_init_dp_connector(struct intel_digital_port *dig_port)
->> +static int intel_ddi_init_dp_connector(struct intel_digital_port
->> +*dig_port)
->>  {
->>       struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
->>       struct intel_connector *connector;
->> @@ -4551,7 +4550,7 @@ intel_ddi_init_dp_connector(struct
->> intel_digital_port *dig_port)
->>
->>       connector = intel_connector_alloc();
->>       if (!connector)
->> -             return NULL;
->> +             return -ENOMEM;
->>
->>       dig_port->dp.output_reg = DDI_BUF_CTL(port);
->>       if (DISPLAY_VER(i915) >= 14)
->> @@ -4566,7 +4565,7 @@ intel_ddi_init_dp_connector(struct
->> intel_digital_port *dig_port)
->>
->>       if (!intel_dp_init_connector(dig_port, connector)) {
->>               kfree(connector);
->> -             return NULL;
->> +             return -EINVAL;
->>       }
->>
->>       if (dig_port->base.type == INTEL_OUTPUT_EDP) { @@ -4582,7
->> +4581,7 @@ intel_ddi_init_dp_connector(struct intel_digital_port *dig_port)
->>               }
->>       }
->>
->> -     return connector;
->> +     return 0;
->>  }
->>
->>  static int intel_hdmi_reset_link(struct intel_encoder *encoder, @@ -4748,20
->> +4747,19 @@ static bool bdw_digital_port_connected(struct intel_encoder
->> *encoder)
->>       return intel_de_read(dev_priv, GEN8_DE_PORT_ISR) & bit;  }
->>
->> -static struct intel_connector *
->> -intel_ddi_init_hdmi_connector(struct intel_digital_port *dig_port)
->> +static int intel_ddi_init_hdmi_connector(struct intel_digital_port
->> +*dig_port)
->>  {
->>       struct intel_connector *connector;
->>       enum port port = dig_port->base.port;
->>
->>       connector = intel_connector_alloc();
->>       if (!connector)
->> -             return NULL;
->> +             return -ENOMEM;
->>
->>       dig_port->hdmi.hdmi_reg = DDI_BUF_CTL(port);
->>       intel_hdmi_init_connector(dig_port, connector);
->>
->> -     return connector;
->> +     return 0;
->>  }
->>
->>  static bool intel_ddi_a_force_4_lanes(struct intel_digital_port *dig_port) @@
->> -5306,7 +5304,7 @@ void intel_ddi_init(struct intel_display *display,
->>       intel_infoframe_init(dig_port);
->>
->>       if (init_dp) {
->> -             if (!intel_ddi_init_dp_connector(dig_port))
->> +             if (intel_ddi_init_dp_connector(dig_port))
->>                       goto err;
->>
->>               dig_port->hpd_pulse = intel_dp_hpd_pulse; @@ -5320,7
->> +5318,7 @@ void intel_ddi_init(struct intel_display *display,
->>        * but leave it just in case we have some really bad VBTs...
->>        */
->>       if (encoder->type != INTEL_OUTPUT_EDP && init_hdmi) {
->> -             if (!intel_ddi_init_hdmi_connector(dig_port))
->> +             if (intel_ddi_init_hdmi_connector(dig_port))
->>                       goto err;
->>       }
->>
->> --
->> 2.39.5
->
+CI Bug Log - changes from CI_DRM_15849 -> Patchwork_141929v4
+====================================================
 
--- 
-Jani Nikula, Intel
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141929v4/index.html
+
+Participating hosts (45 -> 44)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_141929v4 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@dmabuf@all-tests:
+    - fi-pnv-d510:        NOTRUN -> [INCOMPLETE][1] ([i915#12904]) +1 other test incomplete
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141929v4/fi-pnv-d510/igt@dmabuf@all-tests.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - bat-adls-6:         [PASS][2] -> [FAIL][3] ([i915#12903])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15849/bat-adls-6/igt@i915_pm_rpm@module-reload.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141929v4/bat-adls-6/igt@i915_pm_rpm@module-reload.html
+    - bat-apl-1:          [PASS][4] -> [FAIL][5] ([i915#12903])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15849/bat-apl-1/igt@i915_pm_rpm@module-reload.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141929v4/bat-apl-1/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arlh-3:         [PASS][6] -> [ABORT][7] ([i915#12061]) +1 other test abort
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15849/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141929v4/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
+    - bat-dg2-11:         [PASS][8] -> [SKIP][9] ([i915#9197]) +3 other tests skip
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15849/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141929v4/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+
+  * igt@kms_psr@psr-primary-mmap-gtt:
+    - fi-pnv-d510:        NOTRUN -> [SKIP][10] +31 other tests skip
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141929v4/fi-pnv-d510/igt@kms_psr@psr-primary-mmap-gtt.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live:
+    - bat-mtlp-8:         [ABORT][11] ([i915#12061]) -> [PASS][12] +1 other test pass
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15849/bat-mtlp-8/igt@i915_selftest@live.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141929v4/bat-mtlp-8/igt@i915_selftest@live.html
+    - bat-twl-1:          [ABORT][13] ([i915#12435] / [i915#12919]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15849/bat-twl-1/igt@i915_selftest@live.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141929v4/bat-twl-1/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@requests:
+    - bat-twl-1:          [ABORT][15] ([i915#12919]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15849/bat-twl-1/igt@i915_selftest@live@requests.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141929v4/bat-twl-1/igt@i915_selftest@live@requests.html
+
+  * igt@i915_selftest@live@workarounds:
+    - {bat-arls-6}:       [ABORT][17] ([i915#12061]) -> [PASS][18] +1 other test pass
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15849/bat-arls-6/igt@i915_selftest@live@workarounds.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141929v4/bat-arls-6/igt@i915_selftest@live@workarounds.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
+    - {bat-mtlp-9}:       [FAIL][19] ([i915#13290]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15849/bat-mtlp-9/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141929v4/bat-mtlp-9/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+
+  * igt@kms_pipe_crc_basic@read-crc-frame-sequence:
+    - {bat-mtlp-9}:       [DMESG-WARN][21] ([i915#12695]) -> [PASS][22] +10 other tests pass
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15849/bat-mtlp-9/igt@kms_pipe_crc_basic@read-crc-frame-sequence.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141929v4/bat-mtlp-9/igt@kms_pipe_crc_basic@read-crc-frame-sequence.html
+
+  
+#### Warnings ####
+
+  * igt@gem_exec_gttfill@basic:
+    - fi-pnv-d510:        [ABORT][23] ([i915#13169]) -> [SKIP][24]
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15849/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141929v4/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#12435]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12435
+  [i915#12695]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12695
+  [i915#12903]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12903
+  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
+  [i915#12919]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12919
+  [i915#13169]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13169
+  [i915#13290]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13290
+  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_15849 -> Patchwork_141929v4
+
+  CI-20190529: 20190529
+  CI_DRM_15849: 46e1a74cb7576e5318856a8c24bd127150687c97 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8157: 48a70f6795e6d68b9fae275261ae3b09d3401fe1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_141929v4: 46e1a74cb7576e5318856a8c24bd127150687c97 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141929v4/index.html
