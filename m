@@ -1,30 +1,66 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 812499F3115
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2024 14:02:20 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E1FA9F3118
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2024 14:04:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1ABA110E607;
-	Mon, 16 Dec 2024 13:02:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E0B310E609;
+	Mon, 16 Dec 2024 13:04:57 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="aF+o01as";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E4BC10E607;
- Mon, 16 Dec 2024 13:02:17 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5D5A10E652;
+ Mon, 16 Dec 2024 13:04:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=XND6TO5sEm0SKTknLagdVQ8hB4BMhSt3Ch4J8+pH2A8=; b=aF+o01asKMRe9xwBYjCjrZmKdp
+ 8jZEJjOxTeLEzTKa/Hc2/cG6rQBu2TBjdx7m2iGVqRLGL2068b2fEIy2TAhC2OKz9AKLvyEIQxDL4
+ 4u/+qO+F4G4RjW5xvSq8LY4Lg9XKxMNfUgCO0aoYZI9h79bTKXC1L2BxGE4E6hDjiH+n7r2YrcKoc
+ XCFz+djPt6gVlCUOsgmotK7TRe6C3xTDFjtg8PlSQaRkgAkARVtZA9wsclMtbllBT4GvGzd6sulDH
+ Hy7eXsU3gMjo89b+kM1KOiY0epBw33riPyzW1oPcF86uUibedLQSaMX8/Bek2zs9oF0Co2zbCuj5J
+ cI1KAryw==;
+Received: from [179.193.1.214] (helo=[192.168.15.100])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1tNAm6-003msX-8s; Mon, 16 Dec 2024 14:04:38 +0100
+Message-ID: <5f7dd8ac-e8cc-4a40-b636-9917d82e27f5@igalia.com>
+Date: Mon, 16 Dec 2024 10:04:28 -0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/bios=3A_add_VBT_?=
- =?utf-8?q?DSI_DSC_debug_logging_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 16 Dec 2024 13:02:17 -0000
-Message-ID: <173435413718.3285310.18143117048895743190@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241213131043.345716-1-jani.nikula@intel.com>
-In-Reply-To: <20241213131043.345716-1-jani.nikula@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/1] drm/amdgpu: Use device wedged event
+To: "Lazar, Lijo" <lijo.lazar@amd.com>
+Cc: airlied@gmail.com, simona@ffwll.ch, Raag Jadav <raag.jadav@intel.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
+ jani.nikula@linux.intel.com, andriy.shevchenko@linux.intel.com,
+ lina@asahilina.net, michal.wajdeczko@intel.com,
+ "Sharma, Shashank" <Shashank.Sharma@amd.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ himal.prasad.ghimiray@intel.com, aravind.iddamsetty@linux.intel.com,
+ anshuman.gupta@intel.com, alexander.deucher@amd.com,
+ amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com
+References: <20241212190909.28559-1-andrealmeid@igalia.com>
+ <20241212190909.28559-2-andrealmeid@igalia.com>
+ <d9f2583d-da79-4532-90fc-85028e977ceb@amd.com>
+ <c7c498f0-2ee3-42f5-9b45-c87e52ffc3e4@igalia.com>
+ <Z1xGe1X_XzB00J1Q@black.fi.intel.com>
+ <ed83b0a1-62d1-48e5-ac7b-478be3043733@igalia.com>
+ <28d7dcd8-ed3f-4e52-b7fa-c348a827085d@amd.com>
+ <7c64746a-c1f6-46c6-a97f-cfd87e9ec3b7@amd.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>
+In-Reply-To: <7c64746a-c1f6-46c6-a97f-cfd87e9ec3b7@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,119 +73,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: drm/i915/bios: add VBT DSI DSC debug logging (rev2)
-URL   : https://patchwork.freedesktop.org/series/142562/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_15849 -> Patchwork_142562v2
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142562v2/index.html
-
-Participating hosts (45 -> 44)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_142562v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@dmabuf@all-tests:
-    - bat-apl-1:          [PASS][1] -> [INCOMPLETE][2] ([i915#12904]) +1 other test incomplete
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15849/bat-apl-1/igt@dmabuf@all-tests.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142562v2/bat-apl-1/igt@dmabuf@all-tests.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - bat-rpls-4:         [PASS][3] -> [FAIL][4] ([i915#12903])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15849/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142562v2/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-mtlp-6:         [PASS][5] -> [ABORT][6] ([i915#12061]) +1 other test abort
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15849/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142562v2/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         [PASS][7] -> [SKIP][8] ([i915#9197]) +3 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15849/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142562v2/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live:
-    - bat-mtlp-8:         [ABORT][9] ([i915#12061]) -> [PASS][10] +1 other test pass
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15849/bat-mtlp-8/igt@i915_selftest@live.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142562v2/bat-mtlp-8/igt@i915_selftest@live.html
-    - bat-twl-1:          [ABORT][11] ([i915#12435] / [i915#12919]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15849/bat-twl-1/igt@i915_selftest@live.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142562v2/bat-twl-1/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@requests:
-    - bat-twl-1:          [ABORT][13] ([i915#12919]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15849/bat-twl-1/igt@i915_selftest@live@requests.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142562v2/bat-twl-1/igt@i915_selftest@live@requests.html
-
-  * igt@i915_selftest@live@workarounds:
-    - {bat-arls-6}:       [ABORT][15] ([i915#12061]) -> [PASS][16] +1 other test pass
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15849/bat-arls-6/igt@i915_selftest@live@workarounds.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142562v2/bat-arls-6/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - {bat-mtlp-9}:       [FAIL][17] ([i915#13290]) -> [PASS][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15849/bat-mtlp-9/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142562v2/bat-mtlp-9/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  * igt@kms_pipe_crc_basic@read-crc-frame-sequence:
-    - {bat-mtlp-9}:       [DMESG-WARN][19] ([i915#12695]) -> [PASS][20] +10 other tests pass
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15849/bat-mtlp-9/igt@kms_pipe_crc_basic@read-crc-frame-sequence.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142562v2/bat-mtlp-9/igt@kms_pipe_crc_basic@read-crc-frame-sequence.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12435]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12435
-  [i915#12695]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12695
-  [i915#12903]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12903
-  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
-  [i915#12919]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12919
-  [i915#13290]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13290
-  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
 
 
-Build changes
--------------
+Em 16/12/2024 07:38, Lazar, Lijo escreveu:
+> 
+> 
+> On 12/16/2024 3:48 PM, Christian König wrote:
+>> Am 13.12.24 um 16:56 schrieb André Almeida:
+>>> Em 13/12/2024 11:36, Raag Jadav escreveu:
+>>>> On Fri, Dec 13, 2024 at 11:15:31AM -0300, André Almeida wrote:
+>>>>> Hi Christian,
+>>>>>
+>>>>> Em 13/12/2024 04:34, Christian König escreveu:
+>>>>>> Am 12.12.24 um 20:09 schrieb André Almeida:
+>>>>>>> Use DRM's device wedged event to notify userspace that a reset had
+>>>>>>> happened. For now, only use `none` method meant for telemetry
+>>>>>>> capture.
+>>>>>>>
+>>>>>>> Signed-off-by: André Almeida <andrealmeid@igalia.com>
+>>>>>>> ---
+>>>>>>>     drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 3 +++
+>>>>>>>     1 file changed, 3 insertions(+)
+>>>>>>>
+>>>>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+>>>>>>> b/drivers/gpu/ drm/amd/amdgpu/amdgpu_device.c
+>>>>>>> index 96316111300a..19e1a5493778 100644
+>>>>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+>>>>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+>>>>>>> @@ -6057,6 +6057,9 @@ int amdgpu_device_gpu_recover(struct
+>>>>>>> amdgpu_device *adev,
+>>>>>>>             dev_info(adev->dev, "GPU reset end with ret = %d\n", r);
+>>>>>>> atomic_set(&adev->reset_domain->reset_res, r);
+>>>>>>> +
+>>>>>>> +    drm_dev_wedged_event(adev_to_drm(adev),
+>>>>>>> DRM_WEDGE_RECOVERY_NONE);
+>>>>>>
+>>>>>> That looks really good in general. I would just make the
+>>>>>> DRM_WEDGE_RECOVERY_NONE depend on the value of "r".
+>>>>>>
+>>>>>
+>>>>> Why depend or `r`? A reset was triggered anyway, regardless of the
+>>>>> success
+>>>>> of it, shouldn't we tell userspace?
+>>>>
+>>>> A failed reset would perhaps result in wedging, atleast that's how i915
+>>>> is handling it.
+>>>>
+>>>
+>>> Right, and I think this raises the question of what wedge recovery
+>>> method should I add for amdgpu... Christian?
+>>>
+>>
+>> In theory a rebind should be enough to get the device going again, our
+>> BOCO does a bus reset on driver load anyway.
+>>
+> 
+> The behavior varies between SOCs. In certain ones, if driver reset
+> fails, that means it's really in a bad state and it would need system
+> reboot.
+> 
 
-  * Linux: CI_DRM_15849 -> Patchwork_142562v2
+Is this documented somewhere? Then I could even add a 
+DRM_WEDGE_RECOVERY_REBOOT so we can cover every scenario.
 
-  CI-20190529: 20190529
-  CI_DRM_15849: 46e1a74cb7576e5318856a8c24bd127150687c97 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8157: 48a70f6795e6d68b9fae275261ae3b09d3401fe1 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_142562v2: 46e1a74cb7576e5318856a8c24bd127150687c97 @ git://anongit.freedesktop.org/gfx-ci/linux
+> I had asked earlier about the utility of this one here. If this is just
+> to inform userspace that driver has done a reset and recovered, it would
+> need some additional context also. We have a mechanism in KFD which
+> sends the context in which a reset has to be done. Currently, that's
+> restricted to compute applications, but if this is in a similar line, we
+> would like to pass some additional info like job timeout, RAS error etc.
+> 
 
-== Logs ==
+DRM_WEDGE_RECOVERY_NONE is to inform userspace that driver has done a 
+reset and recovered, but additional data about like which job timeout, 
+RAS error and such belong to devcoredump I guess, where all data is 
+gathered and collected later.
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142562v2/index.html
+> Thanks,
+> Lijo
+> 
+>> Regards,
+>> Christian.
+> 
+
