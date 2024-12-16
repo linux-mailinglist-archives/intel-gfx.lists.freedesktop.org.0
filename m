@@ -1,99 +1,102 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 653789F3ADC
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2024 21:33:28 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEE4D9F3AE6
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Dec 2024 21:36:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FF4810E7AA;
-	Mon, 16 Dec 2024 20:33:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CFB510E411;
+	Mon, 16 Dec 2024 20:36:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="gPM+xHqE";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="IsLpnxPh";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B2E1410E7AD
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2024 20:33:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1071210E40E
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2024 20:36:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1734381202;
+ s=mimecast20190719; t=1734381414;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=14956mrEPxgzE3YZxdwFS9UciFlyZVjwoGzEMFRHc9o=;
- b=gPM+xHqETYw0G8ftnqDgTY2ggo8Xzo/vDhQgC19GHJMCmt92QKhikwgumCw59+My37Wz7B
- IWtyyGAXTFL7PluAvcinzkTgibKJ4Rc2GxQj/XgXzyOh8U+EtLtz8wrMPG7fpO/KAVP7lR
- oRrmd4xHoNqscpko0tK01nvhZ5WeBLM=
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com
- [209.85.160.200]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=AzD7e3c3y4Fr1xLto2cgA+sfDx9zoR4oMdIXS9dgtAw=;
+ b=IsLpnxPhyC/hxRGZ1zkg7wX3wvDuFrHXXmo8hd0AJMjjxKjTo3VOjo2DaAv14EZ8e6HZWi
+ ke1YmLOCEK+F7ucGA9KiVP+qxucAOU4v6MqYddns5Vy83Xx+8pKtT7rogtB1g9BYMXZWd/
+ iv8s/x5cIltf3AVJbNyHTnFN1cmmH6U=
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com
+ [209.85.222.200]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-481-hxo1hviFP1mQH-dn4m-h7Q-1; Mon, 16 Dec 2024 15:33:21 -0500
-X-MC-Unique: hxo1hviFP1mQH-dn4m-h7Q-1
-X-Mimecast-MFC-AGG-ID: hxo1hviFP1mQH-dn4m-h7Q
-Received: by mail-qt1-f200.google.com with SMTP id
- d75a77b69052e-467b5861766so52027451cf.2
- for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2024 12:33:21 -0800 (PST)
+ us-mta-3-eVUcYVmfMW61Vd4l-HC1aQ-1; Mon, 16 Dec 2024 15:36:53 -0500
+X-MC-Unique: eVUcYVmfMW61Vd4l-HC1aQ-1
+X-Mimecast-MFC-AGG-ID: eVUcYVmfMW61Vd4l-HC1aQ
+Received: by mail-qk1-f200.google.com with SMTP id
+ af79cd13be357-7b6e1b0373bso563463185a.2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2024 12:36:52 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1734381201; x=1734986001;
+ d=1e100.net; s=20230601; t=1734381412; x=1734986212;
  h=mime-version:user-agent:content-transfer-encoding:organization
  :references:in-reply-to:date:cc:to:from:subject:message-id
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=W4Peg3s1SshQEVminHHvsqJqI5LJvVKero41KD3cjXo=;
- b=eYO/Y4YwdTCnIF5XzJ/mUHY7hhY1U5WY9OdA+RcmvXUf0Sq5YAw5mrgW4sX7R12W6Q
- 6DRb8mpaJ8wek95/OesH8GNkLEudlr743j10KUGkTfd90sd8n7YqNWhQbgnU+M/dAU/2
- Zb5+k1tiRccTLgCJIJCH+9rYcmYZxXrtrF3hUMZwO4SrKFK+45eWf0on16K/0qpjhgnN
- EBSO7Th5tqwOR0zbul37HBKYnkal5tSp5eYaqbkk2Jz0YQCqWvq8RSHZmaUoFMGavGiF
- k0itaV3BEiujzkmGpqXE8+s5MRMin8/Dz9LRakT1OnU5m9GakxGJkSEvREzEQQXMNbOj
- ayqQ==
+ bh=syssDgFDU1IX+pGojazXFCRaYA1POKasDBT1j56F0Sw=;
+ b=obHawgo/A9D4YlU/mAnAKNmSgvY/w6TQpFA0MbhExaz/W3Y29Ru9t8Bl/tbgvDFh7q
+ e5jFNYRH+TTw9lgm5z/fGWrcZ/7SF22dshQEeZFm2SW7Wuhq1EKm0DVF0/+24urcPkOG
+ 6jUZ9qkN6oPcTqs5iUZ5myxiza6S3FlE4AbXJKE+gWQzVgXiVi0ip3moHw/UMY05tefF
+ dD5wlEdT9pMFTb8eE5f8X/l3sb0k98BTyfo5zmzATI2QnwpNfYH+cpRpPKrLagT5ccxt
+ r8w9skdJIFKK97NQzIjPuiV15bHWn1iWVhOmyjoFvy0M1/RpT3cgk8OG5RV8mnRfPXQS
+ RbKw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCU3inaoXkr0axlKymeZRNsgjJuVEq+5vYMp9gTCVa/I+feTiJx364yL1TbSQLIeD8TZYoJDeg4Y+Fo=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yz2Cn9VscMxr+UmRce6grR6fK6QPTySDFcJIKeKhv+AnF/qvpG8
- zLugo+rZzKrQO55vQoOF+gzpKoICr3KNS55Np6Dmv1uIsrj5gylVt4UOOnEPANia5hSEs2EPlHw
- e5x2NYXtMwtdULSXzJorQAiKD+TZVzzAPERbBGrSEqWUCgZRqt7UW5X0O37QD1vXyTQ==
-X-Gm-Gg: ASbGncv/orw/+EHXlhVKrNGLM3XYuS8m5Gl3eNhQmm3ThXtliVr32p2ywvOsbO/YS05
- 5jwOwXd9L3s0vjJa6dfdTEZC3IzFLUsnzOEeJlcTgJ02uuwv3w0aMdGfgvhTUTl2FfwBQFpHyqK
- +EDNWfglxu4b+3e2nneZMcb5njlFQWnnO6/BEf0kD4busk3t99ZlSNVs8ggIZ4Avd0aiK5p2Z/y
- 1NxSo+oLQpXC6mJOiWa73f7FjUpZww6rEnB7Qp+vwfyw+bik6xJvvma4f+QyRY=
-X-Received: by 2002:a05:622a:13d2:b0:467:7b65:383 with SMTP id
- d75a77b69052e-467a583bbbcmr260720301cf.35.1734381200941; 
- Mon, 16 Dec 2024 12:33:20 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGrMeFiCumOf5AuVUFocglnq1MwZkRdlK2DligvJGEKiOo/1Ipqs/KfQfxEdejcDZf8Yp1YZQ==
-X-Received: by 2002:a05:622a:13d2:b0:467:7b65:383 with SMTP id
- d75a77b69052e-467a583bbbcmr260719781cf.35.1734381200552; 
- Mon, 16 Dec 2024 12:33:20 -0800 (PST)
+ AJvYcCVJfudipYIudEfRY4gqlCFAQnqAlGALYL5BQPQaGBeRu7a6ZzpbGn0AEcViJMVHAWjDP3OulR1E3J8=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwSZUR6Av159yPWYzJAzw92Aj2nT1gOAFF8C4a5rLGsMraccOdg
+ REioC8h8X+g41Z6Sh4kQgcFvviBMfPzu5r25gBXTMGOwqlH6UHQa+TeC/lKaw7Tbf2SZo/fRREA
+ AtPtePSm9mp1Iy1TYHuf7VIzzOyEkhqR2Vr+/7qgzQZjtMQLEmQWH66x9BpYI3Oel5Q==
+X-Gm-Gg: ASbGncsMacllu9YbVpbxb/UlnG7SmdBdrClGjl+DPTc8N2V7SLTFKUJ8JuGMFEgVHrc
+ VK399A09nJ+smZo4YltLIkooJGp6zrsWd3QLm9/vOCHcgk/60AeTB6awMxArTDATZP8c7wfSoFg
+ 9V1MNfVir01ldbsnAzvTiN4PEVnXY5/baI/hlokpH8hLUTrAQfRnnEXMDuftHVMaYv06ZsCwlDm
+ lbmCWAZcPjl7V50ynr/TlAw6o0kPhtCMYqe5H8WoB5h3cb3QkCvSI3PqJ/uClE=
+X-Received: by 2002:a05:620a:1b86:b0:7b6:e9db:3b21 with SMTP id
+ af79cd13be357-7b6fbee80aemr2438234985a.14.1734381412499; 
+ Mon, 16 Dec 2024 12:36:52 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IF9DUVahzbeDzOWQjioA9CebwvJUkzzDq3FpqbS+xkfEPhSDcik5XP+ImZ0RpOR4l8eUorXBQ==
+X-Received: by 2002:a05:620a:1b86:b0:7b6:e9db:3b21 with SMTP id
+ af79cd13be357-7b6fbee80aemr2438232185a.14.1734381412229; 
+ Mon, 16 Dec 2024 12:36:52 -0800 (PST)
 Received: from ?IPv6:2600:4040:5c4c:a000::bb3? ([2600:4040:5c4c:a000::bb3])
  by smtp.gmail.com with ESMTPSA id
- af79cd13be357-7b7047ed05fsm256686085a.56.2024.12.16.12.33.18
+ af79cd13be357-7b7047ccfb6sm257337885a.30.2024.12.16.12.36.50
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 16 Dec 2024 12:33:19 -0800 (PST)
-Message-ID: <3486854e306acca0f6d87975a31d49da2b754317.camel@redhat.com>
-Subject: Re: [PATCH 6/7] drivers: Repace get_task_comm() with %pTN
+ Mon, 16 Dec 2024 12:36:51 -0800 (PST)
+Message-ID: <75cfd04ce5e176cda3fc9efcc2f0a8c650d12657.camel@redhat.com>
+Subject: Re: [PATCH v2 2/4] drm/nouveau/dp: Use the generic helper to
+ control LTTPR transparent mode
 From: Lyude Paul <lyude@redhat.com>
-To: Yafang Shao <laoar.shao@gmail.com>, torvalds@linux-foundation.org, 
- akpm@linux-foundation.org
-Cc: linux-kernel@vger.kernel.org, linux-security-module@vger.kernel.org, 
- x86@kernel.org, linux-snps-arc@lists.infradead.org, 
- linux-wireless@vger.kernel.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, ocfs2-devel@lists.linux.dev, Ofir Bitton
- <obitton@habana.ai>, Oded Gabbay <ogabbay@kernel.org>, Jani Nikula
- <jani.nikula@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, Simona Vetter
- <simona@ffwll.ch>, Karol Herbst <kherbst@redhat.com>, Danilo Krummrich
- <dakr@redhat.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri
- Slaby <jirislaby@kernel.org>
-Date: Mon, 16 Dec 2024 15:33:18 -0500
-In-Reply-To: <20241213054610.55843-7-laoar.shao@gmail.com>
-References: <20241213054610.55843-1-laoar.shao@gmail.com>
- <20241213054610.55843-7-laoar.shao@gmail.com>
+To: Abel Vesa <abel.vesa@linaro.org>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Karol Herbst <kherbst@redhat.com>, Danilo
+ Krummrich <dakr@redhat.com>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul
+ <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio
+ <konradybcio@kernel.org>, Johan Hovold <johan@kernel.org>, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, 
+ freedreno@lists.freedesktop.org
+Date: Mon, 16 Dec 2024 15:36:49 -0500
+In-Reply-To: <20241211-drm-dp-msm-add-lttpr-transparent-mode-set-v2-2-d5906ed38b28@linaro.org>
+References: <20241211-drm-dp-msm-add-lttpr-transparent-mode-set-v2-0-d5906ed38b28@linaro.org>
+ <20241211-drm-dp-msm-add-lttpr-transparent-mode-set-v2-2-d5906ed38b28@linaro.org>
 Organization: Red Hat Inc.
 User-Agent: Evolution 3.52.4 (3.52.4-2.fc40)
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: cQ4QH88v-R7kVVgxxdSiBoPDsK9k_UHm9KqTc91UJMc_1734381201
+X-Mimecast-MFC-PROC-ID: Q8uvri17G0zqz4YH-VT9u5ee9pN9ab8A_28xcpCwE6c_1734381412
 X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -112,226 +115,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-For the nouveau bits:
-
 Reviewed-by: Lyude Paul <lyude@redhat.com>
 
-On Fri, 2024-12-13 at 13:46 +0800, Yafang Shao wrote:
-> Since task->comm is guaranteed to be NUL-terminated, we can print it
-> directly without the need to copy it into a separate buffer. This
-> simplifies the code and avoids unnecessary operations.
+On Wed, 2024-12-11 at 15:04 +0200, Abel Vesa wrote:
+> LTTPRs operating modes are defined by the DisplayPort standard and the
+> generic framework now provides a helper to switch between them, which
+> is handling the explicit disabling of non-transparent mode and its
+> disable->enable sequence mentioned in the DP Standard v2.0 section
+> 3.6.6.1.
 >=20
-> Signed-off-by: Yafang Shao <laoar.shao@gmail.com>
-> Cc: Ofir Bitton <obitton@habana.ai>
-> Cc: Oded Gabbay <ogabbay@kernel.org>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Tvrtko Ursulin <tursulin@ursulin.net>
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: Simona Vetter <simona@ffwll.ch>
-> Cc: Karol Herbst <kherbst@redhat.com>
-> Cc: Lyude Paul <lyude@redhat.com>
-> Cc: Danilo Krummrich <dakr@redhat.com>
-> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Cc: Jiri Slaby <jirislaby@kernel.org>
+> So use the new drm generic helper instead as it makes the code a bit
+> cleaner.
+>=20
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 > ---
->  drivers/accel/habanalabs/common/context.c         |  5 ++---
->  .../accel/habanalabs/common/habanalabs_ioctl.c    | 15 +++++----------
->  .../gpu/drm/i915/display/intel_display_driver.c   | 10 ++++------
->  drivers/gpu/drm/nouveau/nouveau_chan.c            |  4 +---
->  drivers/gpu/drm/nouveau/nouveau_drm.c             |  7 +++----
->  drivers/tty/tty_io.c                              |  5 ++---
->  6 files changed, 17 insertions(+), 29 deletions(-)
+>  drivers/gpu/drm/nouveau/nouveau_dp.c | 17 ++---------------
+>  1 file changed, 2 insertions(+), 15 deletions(-)
 >=20
-> diff --git a/drivers/accel/habanalabs/common/context.c b/drivers/accel/ha=
-banalabs/common/context.c
-> index b83141f58319..e4026051b735 100644
-> --- a/drivers/accel/habanalabs/common/context.c
-> +++ b/drivers/accel/habanalabs/common/context.c
-> @@ -199,7 +199,6 @@ int hl_ctx_create(struct hl_device *hdev, struct hl_f=
-priv *hpriv)
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_dp.c b/drivers/gpu/drm/nouve=
+au/nouveau_dp.c
+> index bcda0105160f1450df855281e0d932606a5095dd..55691ec44abaa53c84e73358e=
+33df1949bb1e35c 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_dp.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_dp.c
+> @@ -79,21 +79,8 @@ nouveau_dp_probe_dpcd(struct nouveau_connector *nv_con=
+nector,
+>  =09    !drm_dp_read_lttpr_common_caps(aux, dpcd, outp->dp.lttpr.caps)) {
+>  =09=09int nr =3D drm_dp_lttpr_count(outp->dp.lttpr.caps);
 > =20
->  int hl_ctx_init(struct hl_device *hdev, struct hl_ctx *ctx, bool is_kern=
-el_ctx)
->  {
-> -=09char task_comm[TASK_COMM_LEN];
->  =09int rc =3D 0, i;
-> =20
->  =09ctx->hdev =3D hdev;
-> @@ -271,8 +270,8 @@ int hl_ctx_init(struct hl_device *hdev, struct hl_ctx=
- *ctx, bool is_kernel_ctx)
-> =20
->  =09=09mutex_init(&ctx->ts_reg_lock);
-> =20
-> -=09=09dev_dbg(hdev->dev, "create user context, comm=3D\"%s\", asid=3D%u\=
-n",
-> -=09=09=09get_task_comm(task_comm, current), ctx->asid);
-> +=09=09dev_dbg(hdev->dev, "create user context, comm=3D\"%pTN\", asid=3D%=
-u\n",
-> +=09=09=09current, ctx->asid);
->  =09}
-> =20
->  =09return 0;
-> diff --git a/drivers/accel/habanalabs/common/habanalabs_ioctl.c b/drivers=
-/accel/habanalabs/common/habanalabs_ioctl.c
-> index 1dd6e23172ca..32678cd0775a 100644
-> --- a/drivers/accel/habanalabs/common/habanalabs_ioctl.c
-> +++ b/drivers/accel/habanalabs/common/habanalabs_ioctl.c
-> @@ -1279,13 +1279,10 @@ static long _hl_ioctl(struct hl_fpriv *hpriv, uns=
-igned int cmd, unsigned long ar
->  =09=09retcode =3D -EFAULT;
-> =20
->  out_err:
-> -=09if (retcode) {
-> -=09=09char task_comm[TASK_COMM_LEN];
+> -=09=09if (nr) {
+> -=09=09=09drm_dp_dpcd_writeb(aux, DP_PHY_REPEATER_MODE,
+> -=09=09=09=09=09=09DP_PHY_REPEATER_MODE_TRANSPARENT);
 > -
-> +=09if (retcode)
->  =09=09dev_dbg_ratelimited(dev,
-> -=09=09=09=09"error in ioctl: pid=3D%d, comm=3D\"%s\", cmd=3D%#010x, nr=
-=3D%#04x\n",
-> -=09=09=09=09task_pid_nr(current), get_task_comm(task_comm, current), cmd=
-, nr);
-> -=09}
-> +=09=09=09=09"error in ioctl: pid=3D%d, comm=3D\"%pTN\", cmd=3D%#010x, nr=
-=3D%#04x\n",
-> +=09=09=09=09task_pid_nr(current), current, cmd, nr);
-> =20
->  =09if (kdata !=3D stack_kdata)
->  =09=09kfree(kdata);
-> @@ -1308,11 +1305,9 @@ long hl_ioctl_control(struct file *filep, unsigned=
- int cmd, unsigned long arg)
->  =09if (nr =3D=3D _IOC_NR(DRM_IOCTL_HL_INFO)) {
->  =09=09ioctl =3D &hl_ioctls_control[nr - HL_COMMAND_START];
->  =09} else {
-> -=09=09char task_comm[TASK_COMM_LEN];
-> -
->  =09=09dev_dbg_ratelimited(hdev->dev_ctrl,
-> -=09=09=09=09"invalid ioctl: pid=3D%d, comm=3D\"%s\", cmd=3D%#010x, nr=3D=
-%#04x\n",
-> -=09=09=09=09task_pid_nr(current), get_task_comm(task_comm, current), cmd=
-, nr);
-> +=09=09=09=09"invalid ioctl: pid=3D%d, comm=3D\"%pTN\", cmd=3D%#010x, nr=
-=3D%#04x\n",
-> +=09=09=09=09task_pid_nr(current), current, cmd, nr);
->  =09=09return -ENOTTY;
+> -=09=09=09if (nr > 0) {
+> -=09=09=09=09ret =3D drm_dp_dpcd_writeb(aux, DP_PHY_REPEATER_MODE,
+> -=09=09=09=09=09=09=09      DP_PHY_REPEATER_MODE_NON_TRANSPARENT);
+> -=09=09=09=09if (ret !=3D 1) {
+> -=09=09=09=09=09drm_dp_dpcd_writeb(aux, DP_PHY_REPEATER_MODE,
+> -=09=09=09=09=09=09=09=09DP_PHY_REPEATER_MODE_TRANSPARENT);
+> -=09=09=09=09} else {
+> -=09=09=09=09=09outp->dp.lttpr.nr =3D nr;
+> -=09=09=09=09}
+> -=09=09=09}
+> -=09=09}
+> +=09=09if (!drm_dp_lttpr_init(aux, nr))
+> +=09=09=09outp->dp.lttpr.nr =3D nr;
 >  =09}
 > =20
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/driver=
-s/gpu/drm/i915/display/intel_display_driver.c
-> index 56b78cf6b854..416aff49ceb8 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-> @@ -391,7 +391,6 @@ void intel_display_driver_resume_access(struct drm_i9=
-15_private *i915)
->   */
->  bool intel_display_driver_check_access(struct drm_i915_private *i915)
->  {
-> -=09char comm[TASK_COMM_LEN];
->  =09char current_task[TASK_COMM_LEN + 16];
->  =09char allowed_task[TASK_COMM_LEN + 16] =3D "none";
-> =20
-> @@ -399,13 +398,12 @@ bool intel_display_driver_check_access(struct drm_i=
-915_private *i915)
->  =09    i915->display.access.allowed_task =3D=3D current)
->  =09=09return true;
-> =20
-> -=09snprintf(current_task, sizeof(current_task), "%s[%d]",
-> -=09=09 get_task_comm(comm, current),
-> -=09=09 task_pid_vnr(current));
-> +=09snprintf(current_task, sizeof(current_task), "%pTN[%d]",
-> +=09=09 current, task_pid_vnr(current));
-> =20
->  =09if (i915->display.access.allowed_task)
-> -=09=09snprintf(allowed_task, sizeof(allowed_task), "%s[%d]",
-> -=09=09=09 get_task_comm(comm, i915->display.access.allowed_task),
-> +=09=09snprintf(allowed_task, sizeof(allowed_task), "%pTN[%d]",
-> +=09=09=09 i915->display.access.allowed_task,
->  =09=09=09 task_pid_vnr(i915->display.access.allowed_task));
-> =20
->  =09drm_dbg_kms(&i915->drm,
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_chan.c b/drivers/gpu/drm/nou=
-veau/nouveau_chan.c
-> index 2cb2e5675807..5bcfda6ecafe 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_chan.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_chan.c
-> @@ -279,7 +279,6 @@ nouveau_channel_ctor(struct nouveau_cli *cli, bool pr=
-iv, u64 runm,
->  =09const u64 plength =3D 0x10000;
->  =09const u64 ioffset =3D plength;
->  =09const u64 ilength =3D 0x02000;
-> -=09char name[TASK_COMM_LEN];
->  =09int cid, ret;
->  =09u64 size;
-> =20
-> @@ -338,8 +337,7 @@ nouveau_channel_ctor(struct nouveau_cli *cli, bool pr=
-iv, u64 runm,
->  =09=09chan->userd =3D &chan->user;
->  =09}
-> =20
-> -=09get_task_comm(name, current);
-> -=09snprintf(args.name, sizeof(args.name), "%s[%d]", name, task_pid_nr(cu=
-rrent));
-> +=09snprintf(args.name, sizeof(args.name), "%pTN[%d]", current, task_pid_=
-nr(current));
-> =20
->  =09ret =3D nvif_object_ctor(&device->object, "abi16ChanUser", 0, hosts[c=
-id].oclass,
->  =09=09=09       &args, sizeof(args), &chan->user);
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouv=
-eau/nouveau_drm.c
-> index 107f63f08bd9..3264465cded6 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-> @@ -1159,7 +1159,7 @@ nouveau_drm_open(struct drm_device *dev, struct drm=
-_file *fpriv)
->  {
->  =09struct nouveau_drm *drm =3D nouveau_drm(dev);
->  =09struct nouveau_cli *cli;
-> -=09char name[32], tmpname[TASK_COMM_LEN];
-> +=09char name[32];
->  =09int ret;
-> =20
->  =09/* need to bring up power immediately if opening device */
-> @@ -1169,10 +1169,9 @@ nouveau_drm_open(struct drm_device *dev, struct dr=
-m_file *fpriv)
->  =09=09return ret;
->  =09}
-> =20
-> -=09get_task_comm(tmpname, current);
->  =09rcu_read_lock();
-> -=09snprintf(name, sizeof(name), "%s[%d]",
-> -=09=09 tmpname, pid_nr(rcu_dereference(fpriv->pid)));
-> +=09snprintf(name, sizeof(name), "%pTN[%d]",
-> +=09=09 current, pid_nr(rcu_dereference(fpriv->pid)));
->  =09rcu_read_unlock();
-> =20
->  =09if (!(cli =3D kzalloc(sizeof(*cli), GFP_KERNEL))) {
-> diff --git a/drivers/tty/tty_io.c b/drivers/tty/tty_io.c
-> index 9771072da177..bd39167d4234 100644
-> --- a/drivers/tty/tty_io.c
-> +++ b/drivers/tty/tty_io.c
-> @@ -2622,14 +2622,13 @@ static int tty_tiocgicount(struct tty_struct *tty=
-, void __user *arg)
-> =20
->  static int tty_set_serial(struct tty_struct *tty, struct serial_struct *=
-ss)
->  {
-> -=09char comm[TASK_COMM_LEN];
->  =09int flags;
-> =20
->  =09flags =3D ss->flags & ASYNC_DEPRECATED;
-> =20
->  =09if (flags)
-> -=09=09pr_warn_ratelimited("%s: '%s' is using deprecated serial flags (wi=
-th no effect): %.8x\n",
-> -=09=09=09=09__func__, get_task_comm(comm, current), flags);
-> +=09=09pr_warn_ratelimited("%s: '%pTN' is using deprecated serial flags (=
-with no effect): %.8x\n",
-> +=09=09=09=09__func__, current, flags);
-> =20
->  =09if (!tty->ops->set_serial)
->  =09=09return -ENOTTY;
+>  =09ret =3D drm_dp_read_dpcd_caps(aux, dpcd);
+>=20
 
 --=20
 Cheers,
