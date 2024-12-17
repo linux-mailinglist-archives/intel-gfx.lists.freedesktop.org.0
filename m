@@ -1,65 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38DB39F5550
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Dec 2024 19:00:51 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AECE9F557B
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Dec 2024 19:04:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE1B510E643;
-	Tue, 17 Dec 2024 18:00:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8531E10E421;
+	Tue, 17 Dec 2024 18:04:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M6JLxOKD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IK2MH1v5";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACBD010E643;
- Tue, 17 Dec 2024 18:00:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7316410E421;
+ Tue, 17 Dec 2024 18:04:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734458449; x=1765994449;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Rw0lIlfploREEOJl+obv+/ylG29gzDvVZDl/myq9IZo=;
- b=M6JLxOKD+6YkPi/8mmDP5gZcTtrb5/3jl8wGRX5VvTV8IXFhg2d+xftC
- BfFIvbxHBlco8T6ITuEFKwXgfELu+8W3YrGTqJfCNU2O8uIQrX2ZapKFE
- pT4BkqBjW9xVi1FLk6Y/FShq3o1dVTPqu1XvxtLPQhSSTJSGFXlBIaLpZ
- uSVJJIlq96itezQ5pu7ot0H5UCfvqzI7vGcwzdg+72Sf4ifvxvzat/9jI
- y5O1Yv3XdhF49g0Xz4WgA6bU3c/NL1a1lagB+adu41nLfF8O3lPq8X9yX
- zQQDZsVdUpiVayL0q8UXcElqcQiF6Q5DYCQbmjKIA7hvDEE+f6HRb38P+ A==;
-X-CSE-ConnectionGUID: cCIFGcm4SBCVvjntFR3fpw==
-X-CSE-MsgGUID: joEC3U10TQ2KTXyMFp30ag==
-X-IronPort-AV: E=McAfee;i="6700,10204,11289"; a="60284469"
-X-IronPort-AV: E=Sophos;i="6.12,242,1728975600"; d="scan'208";a="60284469"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2024 10:00:47 -0800
-X-CSE-ConnectionGUID: x2WlMvxdRhiBUSABU5bnQQ==
-X-CSE-MsgGUID: O+fA/JxDRiW6KMOERuqiFw==
+ t=1734458688; x=1765994688;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=sX6vaxZwRAYerN7fLCFyBO59qL729JUjbpQJUYLZpaY=;
+ b=IK2MH1v5mUjA4LzOnuCLWUZan+Iidk3qBMdLSpLU8+A0pcIsTLC9SIUc
+ tBV3/z6C0J6w5OaNKRhZQxLDOYi7vh9S3UdoHEWFuSuS2A5aH7yGqUHL4
+ lyyQgpO7WT9A2zw+vcCtVTkj2YCHS+c/heR/mxrZdKkyusMZ1bpinqB1C
+ Oz6ZhxK1Iz+5979i+jZc2KmPlrMmHUK85yB4+d0O+fS2trp8pMG3XMfqI
+ 3iaff08Ib8jw5S8JGB5WSXgupna/YbIwRi+79rhrnrekudByGanR89alo
+ kabn+GudVkbt02UWlPOczO/p5P2syhBBTFoIgEoEG+PQU+Zyu+b6/Fegq w==;
+X-CSE-ConnectionGUID: +AHCXjZtQ1m1WwmNEwf3/Q==
+X-CSE-MsgGUID: LCutMejlS5+cJM4olc3TPA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="38837135"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="38837135"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Dec 2024 10:04:48 -0800
+X-CSE-ConnectionGUID: Hxyoc++FRSifgE7x3/+KVg==
+X-CSE-MsgGUID: z30M2cfURDuT0ux+mm93JQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,242,1728975600"; d="scan'208";a="97491848"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.62])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2024 10:00:43 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>
-Cc: Andi Shyti <andi.shyti@linux.intel.com>, intel-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>, 
- Chris Wilson <chris.p.wilson@linux.intel.com>
-Subject: Re: [PATCH] drm/i915/selftests: Use preemption timeout on cleanup
-Date: Tue, 17 Dec 2024 19:00:40 +0100
-Message-ID: <2414218.NG923GbCHz@jkrzyszt-mobl2.ger.corp.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <Z2Gw6J1qteGPB3o4@ashyti-mobl2.lan>
-References: <20241213190122.513709-2-janusz.krzysztofik@linux.intel.com>
- <1986305.PYKUYFuaPT@jkrzyszt-mobl2.ger.corp.intel.com>
- <Z2Gw6J1qteGPB3o4@ashyti-mobl2.lan>
+X-IronPort-AV: E=Sophos;i="6.12,242,1728975600"; d="scan'208";a="102442762"
+Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
+ by fmviesa004.fm.intel.com with ESMTP; 17 Dec 2024 10:04:47 -0800
+From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com
+Subject: [RFC v2 0/6] Check if is vblank too short
+Date: Tue, 17 Dec 2024 23:37:04 +0530
+Message-ID: <20241217180710.1048355-1-mitulkumar.ajitkumar.golani@intel.com>
+X-Mailer: git-send-email 2.46.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,53 +65,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Andi,
+Check if vblank is too short for scaler and dsc prefill latency.
 
-On Tuesday, 17 December 2024 18:12:08 CET Andi Shyti wrote:
-> Hi Janusz,
-> 
-> ...
-> 
-> > > > +
-> > > >  		cond_resched();
-> > > >  
-> > > > -		if (intel_gt_wait_for_idle(gt, HZ * 3) == -ETIME) {
-> > > > +		if (intel_gt_wait_for_idle(gt, HZ * timeout_ms / 500) == -
-> > ETIME) {
-> > > 
-> > > where is this 500 coming from?
-> > 
-> > / 1000 would convert it to seconds as needed, and / 500 used instead was 
-> > supposed to to mean that we are willing to wait for preempt_timeout_ms * 
-2.  
-> > Sorry for that shortcut.  Would you like me to provide a clarifying 
-comment, 
-> > or maybe better use explicit 2 * preempt_timeout / 1000 ?
-> 
-> It was clear that you were doubling it, but what's more
-> interesting to know (perhaps in a comment) is why you are
-> choosing to use the double of the timeout_ms instead of other
-> values.
-> 
-> Makes sense?
+Reference: https://patchwork.freedesktop.org/series/141203/
 
-Yes, good question.
+Mitul Golani (6):
+  drm/i915/scaler: Add and compute scaling factors
+  drm/i915/scaler: Add member to track scaler user
+  drm/i915/scaler: Use crtc_state to setup plane or pipe scaler
+  drm/i915/scaler: Compute scling factors for pipe scaler
+  drm/i915/scaler: Check if vblank is sufficient for scaler
+  drm/i915/dsc: Check if dsc prefill sufficient for vblank
 
-Is it possible for more than one bb to hang?  If yes then should we wait 
-longer than the longest preemption timeout?  Before I assumed that maybe we 
-should, just in case, but now, having that revisited and reconsidered, I tend 
-to agree that the longest preempt timeout, perhaps with a small margin (let's 
-say +100ms) should be enough to recover from a single failing test case.  Let 
-me verify if that works for the linked case.
+ .../drm/i915/display/intel_display_types.h    |  9 ++++
+ drivers/gpu/drm/i915/display/skl_scaler.c     | 43 +++++++++++++++++--
+ drivers/gpu/drm/i915/display/skl_watermark.c  | 42 ++++++++++++++++++
+ 3 files changed, 90 insertions(+), 4 deletions(-)
 
-Thanks,
-Janusz
-
-> 
-> Thanks,
-> Andi
-> 
-
-
-
+-- 
+2.46.0
 
