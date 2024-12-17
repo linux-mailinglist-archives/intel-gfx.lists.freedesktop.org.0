@@ -1,52 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A1D19F557F
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Dec 2024 19:04:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FDD29F5580
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Dec 2024 19:04:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D31A910EA5D;
-	Tue, 17 Dec 2024 18:04:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B1B7D10EA5B;
+	Tue, 17 Dec 2024 18:04:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hx9784ns";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b6JuJgVJ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C70310EA56;
- Tue, 17 Dec 2024 18:04:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC7B210EA5B;
+ Tue, 17 Dec 2024 18:04:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734458695; x=1765994695;
+ t=1734458697; x=1765994697;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=WUfF+Wp1jpkG4YDv32NHd21ZpcpDpCZoxsFFP5YfHnU=;
- b=hx9784nsE0EFBKf83WANwnSPM+cSmp/sgK5p/Q69cmaE7bVcMspxxQ+l
- TtOFcAQCKUlifwRREdj2HIEM+Vev8LOlaz/22Ruu+KRUmLydZQw/36ZVG
- WCvDXygNvSwBR6YPHx2UEyo2G/3svV+nCysLxTVZdJOycjz1taNkEkEtz
- uxnxpbEYsBWhZhk82b+3eNyM9WzuBYCdPRFUaGDM89X6pLQjYSJtIuCw9
- GRrHcJoKhZV/GJYU0O+TfUZIDgwLCi1+pfZhxTfIuq8u+1GaO1/Y/mUgM
- hXI+flEXRe7Vxg616egGwXbqPc1ghraxprQhQEQwNIlOPvmIgsrVBIpWk g==;
-X-CSE-ConnectionGUID: 41mj5ZgcRUevPjvlPnN+mQ==
-X-CSE-MsgGUID: ISzhABO3R5KQQXA6GDtwwQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="38837157"
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="38837157"
+ bh=Qy0DUOQ+tZsIpjAXYEO2tjz5wnGwa0SKRkOOvQfBn8c=;
+ b=b6JuJgVJpJpbeaUj9GPXOf0EL62PsC+XSNpilq4oUSMkxv1bgH6cxVLV
+ xAl2RlzSV8GPa0ycxHqnIvfP8uKVOkH+DDyLtRS+RFrYNHZjzklDUC4ls
+ uflfLAqhqqlS+PuX94bjI6/qrYbjExcy3oVe/VMR160hvToLETu1SJRKS
+ rvOdw2ljW2/bSAUtJfJ9YPOwu22TpBMcUX9IhsqQsSsiCFf3d9Zs/aJEU
+ Nag1Lkqi+VDR5iWuoZ8ucg2GC2A1glkOLs9y96Gs9Bt74v1ujClypmrJs
+ LqgvhlZjHVy5AEEExTh9B/Gql9kXUXAAVtT+2pwXJjYtQ7965AsI16QRo w==;
+X-CSE-ConnectionGUID: BOE7GjE5RU66aN6Cq2aPJw==
+X-CSE-MsgGUID: owErl2kITYuftP7VSwi/sg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="38837166"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="38837166"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2024 10:04:55 -0800
-X-CSE-ConnectionGUID: ba/pqFE/SM+8Stvj+nQYvw==
-X-CSE-MsgGUID: ElqSxc95Q6Gv2kq1Fbwp8w==
+ 17 Dec 2024 10:04:56 -0800
+X-CSE-ConnectionGUID: i+Qjk+4wQZi9ZB17d/NPXg==
+X-CSE-MsgGUID: p1QGr7NgRBGBB0in4n5OMg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,242,1728975600"; d="scan'208";a="102442855"
+X-IronPort-AV: E=Sophos;i="6.12,242,1728975600"; d="scan'208";a="102442871"
 Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by fmviesa004.fm.intel.com with ESMTP; 17 Dec 2024 10:04:54 -0800
+ by fmviesa004.fm.intel.com with ESMTP; 17 Dec 2024 10:04:55 -0800
 From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com
-Subject: [RFC v2 5/6] drm/i915/scaler: Check if vblank is sufficient for scaler
-Date: Tue, 17 Dec 2024 23:37:09 +0530
-Message-ID: <20241217180710.1048355-6-mitulkumar.ajitkumar.golani@intel.com>
+Subject: [RFC v2 6/6] drm/i915/dsc: Check if dsc prefill sufficient for vblank
+Date: Tue, 17 Dec 2024 23:37:10 +0530
+Message-ID: <20241217180710.1048355-7-mitulkumar.ajitkumar.golani@intel.com>
 X-Mailer: git-send-email 2.46.0
 In-Reply-To: <20241217180710.1048355-1-mitulkumar.ajitkumar.golani@intel.com>
 References: <20241217180710.1048355-1-mitulkumar.ajitkumar.golani@intel.com>
@@ -67,50 +67,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Check if vblank is too short for scaler prefill latency.
+Check if dsc prefill latency is sufficient for vblank.
 
 Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_watermark.c | 22 ++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+ drivers/gpu/drm/i915/display/skl_watermark.c | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index d3506e8ccd9b..a538e2b82c12 100644
+index a538e2b82c12..0f1ee755fd8a 100644
 --- a/drivers/gpu/drm/i915/display/skl_watermark.c
 +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -2292,6 +2292,27 @@ static int icl_build_plane_wm(struct intel_crtc_state *crtc_state,
+@@ -2292,6 +2292,25 @@ static int icl_build_plane_wm(struct intel_crtc_state *crtc_state,
  	return 0;
  }
  
 +static int
-+scaler_prefill_time(const struct intel_crtc_state *crtc_state)
++skl_dsc_prefill_time(const struct intel_crtc_state *crtc_state)
 +{
 +	const struct intel_crtc_scaler_state *scaler_state =
 +					&crtc_state->scaler_state;
-+	int scaler_users = scaler_state->scaler_users;
-+	int count = 0;
 +	int hscale = scaler_state->scalers[0].hscale;
 +	int vscale = scaler_state->scalers[0].vscale;
 +
-+	while (scaler_users) {
-+		count += scaler_users & 1;
-+		scaler_users >>= 1;
-+	}
++	if (!crtc_state->dsc.compression_enable)
++		return 0;
++	/*
++	 * FIXME: CDCLK Prefill adjustment to add
++	 */
++	if (scaler_state->scaler_users)
++		return DIV_ROUND_UP(15 * crtc_state->linetime * hscale * vscale, 10);
 +
-+	if (count > 1)
-+		return (4 * crtc_state->linetime * hscale * vscale);
-+	else
-+		return (4 * crtc_state->linetime);
++	return 0;
 +}
 +
- static bool
- skl_is_vblank_too_short(const struct intel_crtc_state *crtc_state,
- 			int wm0_lines, int latency)
-@@ -2302,6 +2323,7 @@ skl_is_vblank_too_short(const struct intel_crtc_state *crtc_state,
- 	/* FIXME missing scaler and DSC pre-fill time */
+ static int
+ scaler_prefill_time(const struct intel_crtc_state *crtc_state)
+ {
+@@ -2324,6 +2343,7 @@ skl_is_vblank_too_short(const struct intel_crtc_state *crtc_state,
  	return crtc_state->framestart_delay +
  		intel_usecs_to_scanlines(adjusted_mode, latency) +
-+		scaler_prefill_time(crtc_state) +
+ 		scaler_prefill_time(crtc_state) +
++		skl_dsc_prefill_time(crtc_state) +
  		wm0_lines >
  		adjusted_mode->crtc_vtotal - adjusted_mode->crtc_vblank_start;
  }
