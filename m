@@ -2,56 +2,91 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 217CE9F3FA2
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Dec 2024 02:00:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A39B29F3FB8
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Dec 2024 02:08:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 02FD910E807;
-	Tue, 17 Dec 2024 01:00:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B67CE10E81D;
+	Tue, 17 Dec 2024 01:08:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cb2Umqpu";
+	dkim=pass (1024-bit key; unprotected) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="MIPHCyFW";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48F5A10E1FC;
- Tue, 17 Dec 2024 01:00:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734397233; x=1765933233;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=FgdYF7KbtHGegK9Z4X4K0Pg7DCY93imnGRXyhX359Gc=;
- b=cb2UmqpuRtQqu6AnO/zdSrIsdXodz1OID2KxS5d4X+Vvafj5yUr6TP0U
- Tq7SWOiwLqZwakRW5ZVTnBh2hF7FCkgfVv8YdDIj4jH0JoCJQMXqnFus+
- MrBRcbIINAdSebuZNDdFUVxRsNRL/SDf0LWkJwv15gUrWkheuFPlNE2zj
- BxEMmZs8tNvOelWWt/r3H74suAV7BJZjObT6Sq/nTIzHzx7fAuVjlSOlo
- PBFUC3sOY0AzS/Ky2NtRGdEd4aIb3wsmIB0iyN6ozjW+XSL3yrI0mWM/0
- pjdnGCX2HtUbb9B8sAmA9Oc6hXU9NJt2mqTJWwGL+cU0Lazu54ITlJsgh w==;
-X-CSE-ConnectionGUID: Bi7/l1bMQSiH4BQKYAqf5g==
-X-CSE-MsgGUID: XuE0Rke1QVm8OuBOSgff/Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11288"; a="34939030"
-X-IronPort-AV: E=Sophos;i="6.12,240,1728975600"; d="scan'208";a="34939030"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Dec 2024 17:00:32 -0800
-X-CSE-ConnectionGUID: fdOnLTmlRWuHIdc98l6XlA==
-X-CSE-MsgGUID: 8bL3jGbJT1S7xZq+94AdvQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="134704766"
-Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.39.141])
- by orviesa001.jf.intel.com with ESMTP; 16 Dec 2024 17:00:32 -0800
-From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
- Sushma Venkatesh Reddy <sushma.venkatesh.reddy@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH] drm/i915/slpc: Add sysfs for SLPC power profiles
-Date: Mon, 16 Dec 2024 16:57:04 -0800
-Message-Id: <20241217005704.3101181-1-vinay.belgaumkar@intel.com>
-X-Mailer: git-send-email 2.38.1
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com
+ [IPv6:2a00:1450:4864:20::634])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18F9610E816
+ for <intel-gfx@lists.freedesktop.org>; Tue, 17 Dec 2024 01:08:34 +0000 (UTC)
+Received: by mail-ej1-x634.google.com with SMTP id
+ a640c23a62f3a-a9a977d6cc7so642415166b.3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2024 17:08:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linux-foundation.org; s=google; t=1734397712; x=1735002512;
+ darn=lists.freedesktop.org; 
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=x5HbsH3y11AUtX77RP9ShUJxU46vkQ8YNLD+VoIrduA=;
+ b=MIPHCyFWRoCB9MumGpQyjQGr7W8k00p9bJWVA1asbT2Zs++3EjhicvXr3RI0p3BoWU
+ xSNUZ6mie5A6RSNuLUdJoJVQM98u0rSDBgRB0+1hq8H9BN4PJjHenIre7X07ILefeUV3
+ OYE7Wr8b28cf4h5QV3jkuL0h55JBqgGeCsekI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1734397712; x=1735002512;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=x5HbsH3y11AUtX77RP9ShUJxU46vkQ8YNLD+VoIrduA=;
+ b=R+XBtbcVqRj88UaSfm/b95cl/ESj/VwMySqVi/AyNCnE14ySMOHHdZx28t8F1eipwi
+ qTNKWEqsWD8gXGcFeA7gwHKLIMuMkUoVOLdSFEo+UZOXv6oeLo5WWZnFHEa/k+yiLw7N
+ ydar8D43CyyLiy8Evw362oYnzORH85Kv/t8ISFj+jVicTUvg6giMSlN3Cq/oWmIQe5Yw
+ qsq+giu18bMJxgAehGMqDVKMVsVWoNe6tys50gedVE85Q3Rydh7JgMiNaKyts72y6z4i
+ rXWPe+D0KJfvSY8HHfIvXvT7qlQ1ycfL84jepyRZ2W1slML6HNNsqbMMT7KNBEwv2waN
+ 2dmg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCV8d9zjtbY7PGPxe19nkL78DjXPxCtfphQINJ4JN/fTnSWD061Vy+a5Xdq2/GhOIlwN1QWRlDz7GBU=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzlloWA4dUz2WuX3JIBTJEAUVLpwVYfSONhD8pw05ozzUsLRerB
+ AoUnSuTuWbb+4Vuw91GzDxQ6JqzQ8SRIAPbwuzkhOV+1tnugboqzWIcv+K6+d/w4N+/AUPb6bwx
+ +Og0=
+X-Gm-Gg: ASbGncvts35/fBMJBR/pvUndr+Pn0VUXW11AANSYeCRiqzO5YwCPh3Bc7C5cYlQTjf2
+ IE4bSKGd+4kx3Jz5+yh/c/IfSl1QzmQCmgCQygGHemkweorqeXZHJ+pz3RHc5jVcgx8rYbylFoT
+ +Q7PqIXOyYdsPX8RYNN06G07X4CsqI3NJwqo8AvJm2qOcSG1R3GA5Wt5QPTTv3lhIr58s2THuDb
+ jHd7kMAqwDXGIrrNT/wFZcM0YdCGB/HjKCEVv1Slx1hyM7fgPSP5uIv+8IByfW8Au8vpxtkgTgJ
+ QcOw2/mOiZqtsy9TOBcft/ImHavAl/o=
+X-Google-Smtp-Source: AGHT+IE/aJV+Adzk/h9OQ0hWOvZ22i4l6p1aye4NE12S9LfZGzCiDSwA+FetpIuZBN329rS4i9lQoQ==
+X-Received: by 2002:a05:6402:35c3:b0:5d2:7396:b0ed with SMTP id
+ 4fb4d7f45d1cf-5d63c31e814mr36974916a12.14.1734397712421; 
+ Mon, 16 Dec 2024 17:08:32 -0800 (PST)
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com.
+ [209.85.218.54]) by smtp.gmail.com with ESMTPSA id
+ 4fb4d7f45d1cf-5d652f270bfsm3852127a12.61.2024.12.16.17.08.30
+ for <intel-gfx@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 16 Dec 2024 17:08:31 -0800 (PST)
+Received: by mail-ej1-f54.google.com with SMTP id
+ a640c23a62f3a-aa1e6ecd353so635885666b.1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Dec 2024 17:08:30 -0800 (PST)
+X-Forwarded-Encrypted: i=1;
+ AJvYcCW9RIgqKfa/2z+mDPeLleeMoshGhOxVx6MmU+MspBAZhUQGR/7SvWaapDjG0L8Mod51984krzkcHsA=@lists.freedesktop.org
+X-Received: by 2002:a05:6402:27d4:b0:5d0:d91d:c197 with SMTP id
+ 4fb4d7f45d1cf-5d63c3db906mr36599487a12.27.1734397709817; Mon, 16 Dec 2024
+ 17:08:29 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20241213054610.55843-1-laoar.shao@gmail.com>
+ <20241213054610.55843-6-laoar.shao@gmail.com>
+In-Reply-To: <20241213054610.55843-6-laoar.shao@gmail.com>
+From: Linus Torvalds <torvalds@linux-foundation.org>
+Date: Mon, 16 Dec 2024 17:08:13 -0800
+X-Gmail-Original-Message-ID: <CAHk-=wj=W-4Eu=g83QPUDB+thtL=uY=_1OAVRvXJP=zay+K4Qg@mail.gmail.com>
+Message-ID: <CAHk-=wj=W-4Eu=g83QPUDB+thtL=uY=_1OAVRvXJP=zay+K4Qg@mail.gmail.com>
+Subject: Re: [PATCH 5/7] security: Replace get_task_comm() with %pTN
+To: Yafang Shao <laoar.shao@gmail.com>
+Cc: akpm@linux-foundation.org, linux-kernel@vger.kernel.org, 
+ linux-security-module@vger.kernel.org, x86@kernel.org, 
+ linux-snps-arc@lists.infradead.org, linux-wireless@vger.kernel.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ ocfs2-devel@lists.linux.dev, Kees Cook <kees@kernel.org>, 
+ Paul Moore <paul@paul-moore.com>, James Morris <jmorris@namei.org>, 
+ "Serge E. Hallyn" <serge@hallyn.com>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,179 +102,17 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Default SLPC power profile is Base(0). Power Saving mode(1)
-has conservative up/down thresholds and is suitable for use with
-apps that typically need to be power efficient.
+On Thu, 12 Dec 2024 at 21:47, Yafang Shao <laoar.shao@gmail.com> wrote:
+>
+> Since task->comm is guaranteed to be NUL-terminated, we can print it
+> directly without the need to copy it into a separate buffer.
 
-Cc: Sushma Venkatesh Reddy <sushma.venkatesh.reddy@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c   | 35 +++++++++++++++++++
- .../drm/i915/gt/uc/abi/guc_actions_slpc_abi.h |  5 +++
- drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c   | 33 +++++++++++++++++
- drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h   |  1 +
- .../gpu/drm/i915/gt/uc/intel_guc_slpc_types.h |  2 ++
- 5 files changed, 76 insertions(+)
+So i think we should do the "without copying into a separate buffer"
+part of this series, but I do think we should just accept "%s" and
+"task->comm".
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
-index d7784650e4d9..52a5ff94a0e3 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c
-@@ -464,6 +464,33 @@ static ssize_t slpc_ignore_eff_freq_store(struct kobject *kobj,
- 	return err ?: count;
- }
- 
-+static ssize_t slpc_power_profile_show(struct kobject *kobj,
-+				       struct kobj_attribute *attr,
-+				       char *buff)
-+{
-+	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(kobj, attr->attr.name);
-+	struct intel_guc_slpc *slpc = &gt->uc.guc.slpc;
-+
-+	return sysfs_emit(buff, "%u\n", slpc->power_profile);
-+}
-+
-+static ssize_t slpc_power_profile_store(struct kobject *kobj,
-+					struct kobj_attribute *attr,
-+					const char *buff, size_t count)
-+{
-+	struct intel_gt *gt = intel_gt_sysfs_get_drvdata(kobj, attr->attr.name);
-+	struct intel_guc_slpc *slpc = &gt->uc.guc.slpc;
-+	int err;
-+	u32 val;
-+
-+	err = kstrtou32(buff, 0, &val);
-+	if (err)
-+		return err;
-+
-+	err = intel_guc_slpc_set_power_profile(slpc, val);
-+	return err ?: count;
-+}
-+
- struct intel_gt_bool_throttle_attr {
- 	struct attribute attr;
- 	ssize_t (*show)(struct kobject *kobj, struct kobj_attribute *attr,
-@@ -668,6 +695,7 @@ INTEL_GT_ATTR_RO(media_RP0_freq_mhz);
- INTEL_GT_ATTR_RO(media_RPn_freq_mhz);
- 
- INTEL_GT_ATTR_RW(slpc_ignore_eff_freq);
-+INTEL_GT_ATTR_RW(slpc_power_profile);
- 
- static const struct attribute *media_perf_power_attrs[] = {
- 	&attr_media_freq_factor.attr,
-@@ -864,6 +892,13 @@ void intel_gt_sysfs_pm_init(struct intel_gt *gt, struct kobject *kobj)
- 			gt_warn(gt, "failed to create ignore_eff_freq sysfs (%pe)", ERR_PTR(ret));
- 	}
- 
-+	if (intel_uc_uses_guc_slpc(&gt->uc)) {
-+		ret = sysfs_create_file(kobj, &attr_slpc_power_profile.attr);
-+		if (ret)
-+			gt_warn(gt, "failed to create slpc_power_profile sysfs (%pe)",
-+				    ERR_PTR(ret));
-+	}
-+
- 	if (i915_mmio_reg_valid(intel_gt_perf_limit_reasons_reg(gt))) {
- 		ret = sysfs_create_files(kobj, throttle_reason_attrs);
- 		if (ret)
-diff --git a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_slpc_abi.h b/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_slpc_abi.h
-index c34674e797c6..6de87ae5669e 100644
---- a/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_slpc_abi.h
-+++ b/drivers/gpu/drm/i915/gt/uc/abi/guc_actions_slpc_abi.h
-@@ -228,6 +228,11 @@ struct slpc_optimized_strategies {
- 
- #define SLPC_OPTIMIZED_STRATEGY_COMPUTE		REG_BIT(0)
- 
-+enum slpc_power_profiles {
-+	SLPC_POWER_PROFILES_BASE = 0x0,
-+	SLPC_POWER_PROFILES_POWER_SAVING = 0x1
-+};
-+
- /**
-  * DOC: SLPC H2G MESSAGE FORMAT
-  *
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-index 706fffca698b..0ee88ee347ae 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.c
-@@ -265,6 +265,8 @@ int intel_guc_slpc_init(struct intel_guc_slpc *slpc)
- 	slpc->num_boosts = 0;
- 	slpc->media_ratio_mode = SLPC_MEDIA_RATIO_MODE_DYNAMIC_CONTROL;
- 
-+	slpc->power_profile = SLPC_POWER_PROFILES_BASE;
-+
- 	mutex_init(&slpc->lock);
- 	INIT_WORK(&slpc->boost_work, slpc_boost_work);
- 
-@@ -567,6 +569,34 @@ int intel_guc_slpc_set_media_ratio_mode(struct intel_guc_slpc *slpc, u32 val)
- 	return ret;
- }
- 
-+int intel_guc_slpc_set_power_profile(struct intel_guc_slpc *slpc, u32 val)
-+{
-+	struct drm_i915_private *i915 = slpc_to_i915(slpc);
-+	intel_wakeref_t wakeref;
-+	int ret = 0;
-+
-+	if (val > SLPC_POWER_PROFILES_POWER_SAVING)
-+		return -EINVAL;
-+
-+	mutex_lock(&slpc->lock);
-+	wakeref = intel_runtime_pm_get(&i915->runtime_pm);
-+
-+	ret = slpc_set_param(slpc,
-+			     SLPC_PARAM_POWER_PROFILE,
-+			     val);
-+	if (ret)
-+		guc_err(slpc_to_guc(slpc),
-+			"Failed to set power profile to %d: %pe\n",
-+			 val, ERR_PTR(ret));
-+	else
-+		slpc->power_profile = val;
-+
-+	intel_runtime_pm_put(&i915->runtime_pm, wakeref);
-+	mutex_unlock(&slpc->lock);
-+
-+	return ret;
-+}
-+
- void intel_guc_pm_intrmsk_enable(struct intel_gt *gt)
- {
- 	u32 pm_intrmsk_mbz = 0;
-@@ -728,6 +758,9 @@ int intel_guc_slpc_enable(struct intel_guc_slpc *slpc)
- 	/* Enable SLPC Optimized Strategy for compute */
- 	intel_guc_slpc_set_strategy(slpc, SLPC_OPTIMIZED_STRATEGY_COMPUTE);
- 
-+	/* Set cached value of power_profile */
-+	intel_guc_slpc_set_power_profile(slpc, slpc->power_profile);
-+
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h
-index 1cb5fd44f05c..fc9f761b4372 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc.h
-@@ -46,5 +46,6 @@ void intel_guc_slpc_boost(struct intel_guc_slpc *slpc);
- void intel_guc_slpc_dec_waiters(struct intel_guc_slpc *slpc);
- int intel_guc_slpc_set_ignore_eff_freq(struct intel_guc_slpc *slpc, bool val);
- int intel_guc_slpc_set_strategy(struct intel_guc_slpc *slpc, u32 val);
-+int intel_guc_slpc_set_power_profile(struct intel_guc_slpc *slpc, u32 val);
- 
- #endif
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc_types.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc_types.h
-index a88651331497..2351a1693aa1 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc_types.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_slpc_types.h
-@@ -33,6 +33,8 @@ struct intel_guc_slpc {
- 	u32 max_freq_softlimit;
- 	bool ignore_eff_freq;
- 
-+	u32 power_profile;
-+
- 	/* cached media ratio mode */
- 	u32 media_ratio_mode;
- 
--- 
-2.38.1
+IOW - getting rid of get_task_comm() is good.
 
+But the "%pTN" pointer format ends up being unnecessary.
+
+          Linus
