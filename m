@@ -1,62 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32C089F4645
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Dec 2024 09:43:26 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BA079F465B
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Dec 2024 09:46:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BFA6510E88E;
-	Tue, 17 Dec 2024 08:43:24 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G9nOd3D4";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 267C110E87A;
+	Tue, 17 Dec 2024 08:46:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6BAE10E88B;
- Tue, 17 Dec 2024 08:43:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734425003; x=1765961003;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=n+akX038xYTls5xc9IWMnItku7cJ95Kk7syP+iEnomY=;
- b=G9nOd3D4T240oY5ucNu23lgD1oS00GecoT/kz2fUQlqnU9IoJG0v9dls
- YIMpS55hw169nohHQQSL7MxRv1m3edV/L3D+9Ztwt5qqk/SqScw+wXocc
- Rjdg76Se1ZFLL+nSE/PxnQbinnepR2tPbelJ9JOp7GSWfcsSTLs/3v566
- nebkiObkNswo7WucwyRIDUHQdnwglT2ZJIDS3yFeSBzP5B93EwPNbg/DO
- WbzxRQPMWinLOUYe8vKRSnALSmuxBXNTA5kycTKnz8+AkUdP9NuAr5T9F
- UMCheGIfg8ibVwgXxSXy2RSlG87w/fRC8+JZy5YNPosVTsIE0988OAxfz Q==;
-X-CSE-ConnectionGUID: +8eizzeqSTGlOEnpFDp+Ew==
-X-CSE-MsgGUID: tTRkIYmbTBOK6TYpb2zDQg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11288"; a="38614960"
-X-IronPort-AV: E=Sophos;i="6.12,241,1728975600"; d="scan'208";a="38614960"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2024 00:43:23 -0800
-X-CSE-ConnectionGUID: 0BX4kIrpROCf9+kem7k8Aw==
-X-CSE-MsgGUID: YcWVuVdGRTevvXSn+mrd2w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,241,1728975600"; d="scan'208";a="97703952"
-Received: from ettammin-desk.ger.corp.intel.com (HELO vgovind2-mobl3..)
- ([10.245.245.122])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2024 00:43:21 -0800
-From: Vinod Govindapillai <vinod.govindapillai@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: vinod.govindapillai@intel.com, ville.syrjala@intel.com,
- santhosh.reddy.guddati@intel.com, jani.saarinen@intel.com
-Subject: [PATCH v2 3/3] drm/i915/xe3: disable FBC if PSR2 selective fetch is
- enabled
-Date: Tue, 17 Dec 2024 10:42:45 +0200
-Message-Id: <20241217084245.246218-4-vinod.govindapillai@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241217084245.246218-1-vinod.govindapillai@intel.com>
-References: <20241217084245.246218-1-vinod.govindapillai@intel.com>
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3150310E87A;
+ Tue, 17 Dec 2024 08:45:59 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/dsc=3A_Expose_ds?=
+ =?utf-8?q?c_sink_max_slice_count_via_debugfs?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Sharma, Swati2" <swati2.sharma@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 17 Dec 2024 08:45:59 -0000
+Message-ID: <173442515919.3706415.4623716235686435336@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241213093008.2149452-1-swati2.sharma@intel.com>
+In-Reply-To: <20241213093008.2149452-1-swati2.sharma@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,42 +37,108 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-It is not recommended to have both FBC and PSR2 selective fetch
-be enabled at the same time in a plane. If PSR2 selective fetch
-or panel replay is on, mark FBC as not possible in that plane.
+== Series Details ==
 
-v2: fix the condition to disable FBC if PSR2 enabled (Jani)
+Series: drm/i915/dsc: Expose dsc sink max slice count via debugfs
+URL   : https://patchwork.freedesktop.org/series/142537/
+State : success
 
-Bspec: 68881
-Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
----
- drivers/gpu/drm/i915/display/intel_fbc.c | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index 637b8d21ed1d..23e1f7c35d42 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -1432,9 +1432,14 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
- 	 * Display 12+ is not supporting FBC with PSR2.
- 	 * Recommendation is to keep this combination disabled
- 	 * Bspec: 50422 HSD: 14010260002
-+	 *
-+	 * In Xe3, PSR2 selective fetch and FBC dirty rect feature cannot
-+	 * coexist. So if PSR2 selective fetch is supported then mark that
-+	 * FBC is not supported.
-+	 * TODO: Need a logic to decide between PSR2 and FBC Dirty rect
- 	 */
--	if (IS_DISPLAY_VER(display, 12, 14) && crtc_state->has_sel_update &&
--	    !crtc_state->has_panel_replay) {
-+	if ((IS_DISPLAY_VER(display, 12, 14) || DISPLAY_VER(display) >= 30) &&
-+	    crtc_state->has_sel_update && !crtc_state->has_panel_replay) {
- 		plane_state->no_fbc_reason = "PSR2 enabled";
- 		return 0;
- 	}
--- 
-2.34.1
+CI Bug Log - changes from CI_DRM_15837 -> Patchwork_142537v1
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142537v1/index.html
+
+Participating hosts (45 -> 44)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_142537v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@dmabuf@all-tests:
+    - fi-pnv-d510:        NOTRUN -> [INCOMPLETE][1] ([i915#12904]) +1 other test incomplete
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142537v1/fi-pnv-d510/igt@dmabuf@all-tests.html
+
+  * igt@i915_selftest@live:
+    - bat-mtlp-8:         [PASS][2] -> [ABORT][3] ([i915#12061]) +1 other test abort
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15837/bat-mtlp-8/igt@i915_selftest@live.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142537v1/bat-mtlp-8/igt@i915_selftest@live.html
+    - fi-tgl-1115g4:      [PASS][4] -> [ABORT][5] ([i915#13352]) +1 other test abort
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15837/fi-tgl-1115g4/igt@i915_selftest@live.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142537v1/fi-tgl-1115g4/igt@i915_selftest@live.html
+
+  * igt@kms_flip@basic-flip-vs-dpms@c-dp2:
+    - fi-cfl-8109u:       [PASS][6] -> [DMESG-WARN][7] ([i915#12914]) +1 other test dmesg-warn
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15837/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-dpms@c-dp2.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142537v1/fi-cfl-8109u/igt@kms_flip@basic-flip-vs-dpms@c-dp2.html
+
+  * igt@kms_pipe_crc_basic@read-crc-frame-sequence:
+    - bat-dg2-11:         [PASS][8] -> [SKIP][9] ([i915#9197])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15837/bat-dg2-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142537v1/bat-dg2-11/igt@kms_pipe_crc_basic@read-crc-frame-sequence.html
+
+  * igt@kms_psr@psr-primary-mmap-gtt:
+    - fi-pnv-d510:        NOTRUN -> [SKIP][10] +36 other tests skip
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142537v1/fi-pnv-d510/igt@kms_psr@psr-primary-mmap-gtt.html
+
+  
+#### Possible fixes ####
+
+  * igt@dmabuf@all-tests:
+    - bat-apl-1:          [INCOMPLETE][11] ([i915#12904]) -> [PASS][12] +1 other test pass
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15837/bat-apl-1/igt@dmabuf@all-tests.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142537v1/bat-apl-1/igt@dmabuf@all-tests.html
+
+  * igt@i915_module_load@load:
+    - fi-pnv-d510:        [ABORT][13] ([i915#13203]) -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15837/fi-pnv-d510/igt@i915_module_load@load.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142537v1/fi-pnv-d510/igt@i915_module_load@load.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - bat-rpls-4:         [FAIL][15] ([i915#12903]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15837/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142537v1/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#12903]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12903
+  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
+  [i915#12914]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12914
+  [i915#13203]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13203
+  [i915#13352]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13352
+  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_15837 -> Patchwork_142537v1
+
+  CI-20190529: 20190529
+  CI_DRM_15837: 8f7b64e137723da601f3c07d0cda22566cf994d5 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8154: 8603734a61b57f766ee60f24e63d18f88232a3c6 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_142537v1: 8f7b64e137723da601f3c07d0cda22566cf994d5 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142537v1/index.html
