@@ -1,60 +1,60 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CB4B9F4964
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Dec 2024 11:58:07 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45C1C9F4981
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Dec 2024 12:03:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4D0B10E913;
-	Tue, 17 Dec 2024 10:58:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD2BA10E919;
+	Tue, 17 Dec 2024 11:03:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aZz4M4e8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mEd5nrp5";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1236A10E913;
- Tue, 17 Dec 2024 10:58:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 484BB10E918;
+ Tue, 17 Dec 2024 11:03:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734433085; x=1765969085;
+ t=1734433381; x=1765969381;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=4PkuinermVxMNjCb8vJ556Ke+IO1Ce1AfAcQuqUsjUw=;
- b=aZz4M4e8eonTziNeS0nHHUuYR00D1TqkQPJESYzGuEHWM5OXTmVMxj5J
- kqeRMtr9LJb8yz8oBRpPnSScmTT9H+OSfoDGRo8wu39i/veGYQAHtUMy3
- aZ3DpwwnPS3zE79vactPynv1bMOhaEYGQZRzhGr8bNkFoWL2BZLJC+Hnd
- /eVZkhq9/NPNdqkta8Z0lGI9ml1M8/O5LWNtDFtAYBbvNJOCY98QrW4u0
- jcN1PEmCmoF1GYlUGVw+dzSfh8FuLWc9tzHDy7d+fNFgE6Bf0uiVeNObx
- VwlGTBLWka4UYtS1HCiQK+Pzruc5OssysZ+Isw5mQUuxJb6LtRHe64gN8 g==;
-X-CSE-ConnectionGUID: yjPZZQt9TGipbPVM7FbRkA==
-X-CSE-MsgGUID: IfvR6RRgQYuZBfv6c6czaw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11288"; a="34143521"
-X-IronPort-AV: E=Sophos;i="6.12,241,1728975600"; d="scan'208";a="34143521"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2024 02:58:04 -0800
-X-CSE-ConnectionGUID: H8yfJE1bRUGUNZxToGipgA==
-X-CSE-MsgGUID: ij/69UpETiikJHYT9d/JGw==
+ bh=mZNvfstMonyWiXpOThd2mbXmqwFocTSSBLhJ6Kgn18w=;
+ b=mEd5nrp56IVu/e+9GyVqd+n1pzKVOeZ3p1aMELQ8wl17ifQzFjPAxGy5
+ VW/AtsCTqv3324upuZbbcCAno9RcKrRFdNGYWz3dnhwFER9uRlJ8wd++y
+ lbBHXNfw78GeIH9FdGFD+ZmVlwz41oYwC2OZydHzQsDhvx+a+CStBm1NP
+ kW/43zNHLXhIGhTOP5B7BfZvyvIpVCu4Nt30r7+FM9/xSADUZu6bLQEV1
+ jdGq5I5rCxljowZOmzWUoXM40k4Fmtbo51LRiSNe44+Fhi6ZB+CYeo/TV
+ hdSl2AOeyVA0Oy3hvx8hsjP4eKlBguYtl9LI5a2IVaXUfWn3Cgspw0+p7 Q==;
+X-CSE-ConnectionGUID: 5nQX/2v8RaezKysGbcgPOg==
+X-CSE-MsgGUID: zBKzokxES8i4RYgEmhjWfg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="38781552"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="38781552"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Dec 2024 03:03:01 -0800
+X-CSE-ConnectionGUID: 7Kkjrp3iTFyIr0auk2lJJQ==
+X-CSE-MsgGUID: rEN1y4IzR6CAAech0WHmiw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,241,1728975600"; d="scan'208";a="128310811"
+X-IronPort-AV: E=Sophos;i="6.12,241,1728975600"; d="scan'208";a="97733513"
 Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.55])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2024 02:58:03 -0800
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Dec 2024 03:02:58 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
  intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, suraj.kandpal@intel.com,
  imre.deak@intel.com
-Subject: Re: [PATCH 04/14] drm/i915/dp: Drop check for FEC in
- intel_dp_fec_compute_config
-In-Reply-To: <20241217093244.3938132-5-ankit.k.nautiyal@intel.com>
+Subject: Re: [PATCH 02/14] drm/i915/dp: Return early if DSC not supported
+In-Reply-To: <871py6sho2.fsf@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20241217093244.3938132-1-ankit.k.nautiyal@intel.com>
- <20241217093244.3938132-5-ankit.k.nautiyal@intel.com>
-Date: Tue, 17 Dec 2024 12:57:59 +0200
-Message-ID: <87v7vir2yw.fsf@intel.com>
+ <20241217093244.3938132-3-ankit.k.nautiyal@intel.com>
+ <871py6sho2.fsf@intel.com>
+Date: Tue, 17 Dec 2024 13:02:55 +0200
+Message-ID: <87seqmr2qo.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -72,56 +72,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 17 Dec 2024, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
-> Support for FEC is already checked by intel_dp_supports_dsc() in
-> intel_dp_dsc_compute_config() which gets called before
-> intel_dp_fec_compute_config().
+On Tue, 17 Dec 2024, Jani Nikula <jani.nikula@linux.intel.com> wrote:
+> On Tue, 17 Dec 2024, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
+>> Check for DSC support before computing link config with DSC.
+>> For DP MST we are already doing the same.
+>>
+>> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+>> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_dp.c | 6 +++---
+>>  1 file changed, 3 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+>> index 908b9887f89b..dd2da9facaad 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+>> @@ -2375,9 +2375,6 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
+>>  		 intel_dp_supports_fec(intel_dp, connector, pipe_config) &&
+>>  		 !intel_dp_is_uhbr(pipe_config));
+>>  
+>> -	if (!intel_dp_supports_dsc(intel_dp, connector, pipe_config))
+>> -		return -EINVAL;
+>> -
+>>  	if (!intel_dp_dsc_supports_format(connector, pipe_config->output_format))
+>>  		return -EINVAL;
+>>  
+>> @@ -2652,6 +2649,9 @@ intel_dp_compute_link_config(struct intel_encoder *encoder,
+>>  			    str_yes_no(ret), str_yes_no(joiner_needs_dsc),
+>>  			    str_yes_no(intel_dp->force_dsc_en));
+>>  
+>> +		if (!intel_dp_supports_dsc(intel_dp, connector, pipe_config))
+>> +			return -EINVAL;
+>> +
 >
-> Therefore the check can be dropped from the helper
-> intel_dp_fec_compute_config().
+> The (pre-existing) problem with this is that we debug log we fall back
+> to DSC, while we don't.
 >
-> v2: Changed commit message for clarity. (Suraj)
->
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> Maybe we should do something like this instead, both in SST and MST code:
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+On second thought, this can also come as a follow-up later. I don't want
+to block the series with this.
 
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 6 +-----
->  1 file changed, 1 insertion(+), 5 deletions(-)
+BR,
+Jani.
+
+
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 674297ac6315..9a039cbdfcc9 100644
 > --- a/drivers/gpu/drm/i915/display/intel_dp.c
 > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -2351,7 +2351,6 @@ static int intel_edp_dsc_compute_pipe_bpp(struct intel_dp *intel_dp,
->  }
+> @@ -2644,6 +2644,11 @@ intel_dp_compute_link_config(struct intel_encoder *encoder,
+>  			dsc_needed = true;
+>  	}
 >  
->  static void intel_dp_fec_compute_config(struct intel_dp *intel_dp,
-> -					const struct intel_connector *connector,
->  					struct intel_crtc_state *crtc_state)
->  {
->  	if (crtc_state->fec_enable)
-> @@ -2365,9 +2364,6 @@ static void intel_dp_fec_compute_config(struct intel_dp *intel_dp,
->  	if (intel_dp_is_edp(intel_dp))
->  		return;
->  
-> -	if (!intel_dp_supports_fec(intel_dp, connector, crtc_state))
-> -		return;
-> -
->  	if (intel_dp_is_uhbr(crtc_state))
->  		return;
->  
-> @@ -2389,7 +2385,7 @@ int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
->  	int num_joined_pipes = intel_crtc_num_joined_pipes(pipe_config);
->  	int ret;
->  
-> -	intel_dp_fec_compute_config(intel_dp, connector, pipe_config);
-> +	intel_dp_fec_compute_config(intel_dp, pipe_config);
->  
->  	if (!intel_dp_dsc_supports_format(connector, pipe_config->output_format))
->  		return -EINVAL;
+> +	if (dsc_needed && !intel_dp_supports_dsc(connector, pipe_config)) {
+> +		drm_dbg_kms(display->drm, "DSC required but not available.\n");
+> +		return -EINVAL;
+> +	}
+> +
+>  	if (dsc_needed) {
+>  		drm_dbg_kms(display->drm,
+>  			    "Try DSC (fallback=%s, joiner=%s, force=%s)\n",
+>
+> BR,
+> Jani.
+>
+>>  		if (!intel_dp_compute_config_limits(intel_dp, pipe_config,
+>>  						    respect_downstream_limits,
+>>  						    true,
 
 -- 
 Jani Nikula, Intel
