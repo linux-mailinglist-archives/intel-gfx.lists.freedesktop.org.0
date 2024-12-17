@@ -1,61 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 147229F4A63
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Dec 2024 12:57:51 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id D72479F4A92
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Dec 2024 13:04:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 760FB10E945;
-	Tue, 17 Dec 2024 11:57:46 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="k4Pc7NCH";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 45BD010E947;
+	Tue, 17 Dec 2024 12:04:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5465C10E20E;
- Tue, 17 Dec 2024 11:57:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=Q0C9ZfTUJSBEghSJHIUvn6yAyoiJhPjoU7oXeo5Ike4=; b=k4Pc7NCHPvTE0AreRMR4Q+aKi2
- PCjGKHK981TDSEby1+G5kVBV7jCjmVoa8SPlXypb0Zied2DAp7e2K6G/3ofbqGLCW1CpZEJql7Rp4
- L0VtJPS+wD/0+MQbCisyCvSV/Qzpy9xZzBvZTIvY8uUsbBcdRG6A0+pAj60FXsp7wNa/fJmbFnE+q
- lXkttLiHJzbX+j1s1sTWg+aQltXcZoZpE1JtG1d2p7aYI6rJzDqE7toIsr+Lod2Czx5ZwSO8WTg3F
- Iv6teQAc5SayNue/fcGUsWIS/KGomcWneSOiNMhbPTrEGtFw75oCC0g7DZ5zjNY7bcR22UrSnAb+B
- jh+8afQQ==;
-Received: from [179.193.1.214] (helo=[192.168.15.100])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1tNWCh-004LpZ-5X; Tue, 17 Dec 2024 12:57:31 +0100
-Message-ID: <314af6e1-82e5-405f-aa2c-21708207e7d8@igalia.com>
-Date: Tue, 17 Dec 2024 08:57:24 -0300
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C987D10E265;
+ Tue, 17 Dec 2024 12:04:18 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 2/4] drm/doc: Document device wedged event
-To: Raag Jadav <raag.jadav@intel.com>
-Cc: airlied@gmail.com, simona@ffwll.ch, lucas.demarchi@intel.com,
- rodrigo.vivi@intel.com, jani.nikula@linux.intel.com,
- andriy.shevchenko@linux.intel.com, lina@asahilina.net,
- michal.wajdeczko@intel.com, christian.koenig@amd.com,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
- aravind.iddamsetty@linux.intel.com, anshuman.gupta@intel.com,
- alexander.deucher@amd.com, amd-gfx@lists.freedesktop.org,
- kernel-dev@igalia.com
-References: <20241128153707.1294347-1-raag.jadav@intel.com>
- <20241128153707.1294347-3-raag.jadav@intel.com>
- <cfb07238-841c-45ca-9a8e-c5aca80ee47c@igalia.com>
- <Z2E5ZbRym80khid2@black.fi.intel.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>
-In-Reply-To: <Z2E5ZbRym80khid2@black.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/xe3=3A_FBC_?=
+ =?utf-8?q?Dirty_rect_feature_support_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vinod Govindapillai" <vinod.govindapillai@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 17 Dec 2024 12:04:18 -0000
+Message-ID: <173443705881.3797093.12409529895017251352@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241217084245.246218-1-vinod.govindapillai@intel.com>
+In-Reply-To: <20241217084245.246218-1-vinod.govindapillai@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,39 +37,32 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Em 17/12/2024 05:42, Raag Jadav escreveu:
-> On Thu, Dec 12, 2024 at 03:50:29PM -0300, André Almeida wrote:
->> Em 28/11/2024 12:37, Raag Jadav escreveu:
->>> Add documentation for device wedged event in a new 'Device wedging'
->>> chapter. The describes basic definitions, prerequisites and consumer
->>> expectations along with an example.
->>>
->>>    v8: Improve documentation (Christian, Rodrigo)
->>>    v9: Add prerequisites section (Christian)
->>> v10: Clarify mmap cleanup and consumer prerequisites (Christian, Aravind)
->>>
->>> Signed-off-by: Raag Jadav <raag.jadav@intel.com>
->>> Reviewed-by: Christian König <christian.koenig@amd.com>
->>> ---
->>>    Documentation/gpu/drm-uapi.rst | 112 ++++++++++++++++++++++++++++++++-
->>>    1 file changed, 109 insertions(+), 3 deletions(-)
->>>
->>> diff --git a/Documentation/gpu/drm-uapi.rst b/Documentation/gpu/drm-uapi.rst
->>> index b75cc9a70d1f..da2927cde53d 100644
->>> --- a/Documentation/gpu/drm-uapi.rst
->>> +++ b/Documentation/gpu/drm-uapi.rst
->>> @@ -371,9 +371,115 @@ Reporting causes of resets
->>
->> I think it's a good idea to add a note about "device wedged event" in the
->> section "Device reset > Kernel Mode Driver" since the idea is to explain
->> what should kernel developer add to their kernel drivers to be used when a
->> device resets.
-> 
-> Wouldn't that be just a repetition of below? Also, I'm not sure if it's a hard
-> requirement.
-> 
+== Series Details ==
 
-Right, it can get repetitive indeed, no need to apply this suggestion then.
+Series: drm/i915/xe3: FBC Dirty rect feature support (rev2)
+URL   : https://patchwork.freedesktop.org/series/141527/
+State : warning
+
+== Summary ==
+
+Error: dim checkpatch failed
+016053a17deb drm/i915/xe: add register definitions for fbc dirty rect support
+-:24: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#24: FILE: drivers/gpu/drm/i915/display/intel_fbc_regs.h:107:
++#define   FBC_DIRTY_RECT_START_LINE(val)	REG_FIELD_PREP(FBC_DIRTY_RECT_START_LINE_MASK, (val))
+
+total: 0 errors, 1 warnings, 0 checks, 15 lines checked
+5c86ceb8cdce drm/i915/xe3: add dirty rect support for FBC
+-:129: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#129: FILE: drivers/gpu/drm/i915/display/intel_fbc.c:1254:
++
++
+
+total: 0 errors, 0 warnings, 1 checks, 176 lines checked
+f876243754d2 drm/i915/xe3: disable FBC if PSR2 selective fetch is enabled
+
+
