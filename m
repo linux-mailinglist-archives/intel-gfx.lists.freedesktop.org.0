@@ -1,53 +1,55 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AECE9F557B
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Dec 2024 19:04:51 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id E30C89F557D
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Dec 2024 19:04:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8531E10E421;
-	Tue, 17 Dec 2024 18:04:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 00EE610EA4E;
+	Tue, 17 Dec 2024 18:04:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IK2MH1v5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DgStpE+l";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7316410E421;
- Tue, 17 Dec 2024 18:04:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B400710EA4A;
+ Tue, 17 Dec 2024 18:04:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734458688; x=1765994688;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=sX6vaxZwRAYerN7fLCFyBO59qL729JUjbpQJUYLZpaY=;
- b=IK2MH1v5mUjA4LzOnuCLWUZan+Iidk3qBMdLSpLU8+A0pcIsTLC9SIUc
- tBV3/z6C0J6w5OaNKRhZQxLDOYi7vh9S3UdoHEWFuSuS2A5aH7yGqUHL4
- lyyQgpO7WT9A2zw+vcCtVTkj2YCHS+c/heR/mxrZdKkyusMZ1bpinqB1C
- Oz6ZhxK1Iz+5979i+jZc2KmPlrMmHUK85yB4+d0O+fS2trp8pMG3XMfqI
- 3iaff08Ib8jw5S8JGB5WSXgupna/YbIwRi+79rhrnrekudByGanR89alo
- kabn+GudVkbt02UWlPOczO/p5P2syhBBTFoIgEoEG+PQU+Zyu+b6/Fegq w==;
-X-CSE-ConnectionGUID: +AHCXjZtQ1m1WwmNEwf3/Q==
-X-CSE-MsgGUID: LCutMejlS5+cJM4olc3TPA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="38837135"
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="38837135"
+ t=1734458689; x=1765994689;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=mz5F3fyHihxypOFEWu3f6Wgbd1MsxntRXAVGtlDz9K8=;
+ b=DgStpE+l8D0UWF3s1mewYFIIwflG5vdyAmqR/dr9/UWIps1sSPi0Yzzg
+ C7hL1CAV+Qva5yVLEmkUjrkgssZA01wXeUYMY0cRoFaSlxPrG3Z8xIyqI
+ OyYeQyoLm8oqnHY7mi9wIhKnWs1Kgc98C+d0yHyK9szF1jKWl8JvTDsLv
+ 6u3Sf50Ir4VqLwxZZbYCe/FU0ckaU+6b9aAIE8+t84qF+w/mmrf2ScTEM
+ R2cjvqond3KPrm1wRNulDfEwvu38Ug0W9qw0hTUGd8jgs3RnzFw+MfvHC
+ cadBJO2aQnf+Xmce0/0JlXHO02APIz4JrSP+PjITr5amw7bFe3tRiB90W w==;
+X-CSE-ConnectionGUID: WAgP6VHoS3mzJRAPv3GCHg==
+X-CSE-MsgGUID: RzShWxy4Rw2Kymnz8/bW4A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11282"; a="38837139"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="38837139"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Dec 2024 10:04:48 -0800
-X-CSE-ConnectionGUID: Hxyoc++FRSifgE7x3/+KVg==
-X-CSE-MsgGUID: z30M2cfURDuT0ux+mm93JQ==
+ 17 Dec 2024 10:04:49 -0800
+X-CSE-ConnectionGUID: MGtuB2LUTCCR05d8D3dukw==
+X-CSE-MsgGUID: /gUJNDdHRaqYGTXt2X2j7Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,242,1728975600"; d="scan'208";a="102442762"
+X-IronPort-AV: E=Sophos;i="6.12,242,1728975600"; d="scan'208";a="102442784"
 Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by fmviesa004.fm.intel.com with ESMTP; 17 Dec 2024 10:04:47 -0800
+ by fmviesa004.fm.intel.com with ESMTP; 17 Dec 2024 10:04:48 -0800
 From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com
-Subject: [RFC v2 0/6] Check if is vblank too short
-Date: Tue, 17 Dec 2024 23:37:04 +0530
-Message-ID: <20241217180710.1048355-1-mitulkumar.ajitkumar.golani@intel.com>
+Subject: [RFC v2 1/6] drm/i915/scaler: Add and compute scaling factors
+Date: Tue, 17 Dec 2024 23:37:05 +0530
+Message-ID: <20241217180710.1048355-2-mitulkumar.ajitkumar.golani@intel.com>
 X-Mailer: git-send-email 2.46.0
+In-Reply-To: <20241217180710.1048355-1-mitulkumar.ajitkumar.golani@intel.com>
+References: <20241217180710.1048355-1-mitulkumar.ajitkumar.golani@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -65,23 +67,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Check if vblank is too short for scaler and dsc prefill latency.
+Add scaling factors to scaler_state for a perticular scaler user,
+use it later to compute scaler prefill latency. Also to extend this
+when either pipe or plane scaler is in use.
 
-Reference: https://patchwork.freedesktop.org/series/141203/
+Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_types.h | 2 ++
+ drivers/gpu/drm/i915/display/skl_scaler.c          | 3 +++
+ 2 files changed, 5 insertions(+)
 
-Mitul Golani (6):
-  drm/i915/scaler: Add and compute scaling factors
-  drm/i915/scaler: Add member to track scaler user
-  drm/i915/scaler: Use crtc_state to setup plane or pipe scaler
-  drm/i915/scaler: Compute scling factors for pipe scaler
-  drm/i915/scaler: Check if vblank is sufficient for scaler
-  drm/i915/dsc: Check if dsc prefill sufficient for vblank
-
- .../drm/i915/display/intel_display_types.h    |  9 ++++
- drivers/gpu/drm/i915/display/skl_scaler.c     | 43 +++++++++++++++++--
- drivers/gpu/drm/i915/display/skl_watermark.c  | 42 ++++++++++++++++++
- 3 files changed, 90 insertions(+), 4 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index b71416ff5b7f..28b2861df42b 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -710,6 +710,8 @@ struct intel_initial_plane_config {
+ struct intel_scaler {
+ 	u32 mode;
+ 	bool in_use;
++	int hscale;
++	int vscale;
+ };
+ 
+ struct intel_crtc_scaler_state {
+diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
+index 11f73659c1b6..e00c6830ef65 100644
+--- a/drivers/gpu/drm/i915/display/skl_scaler.c
++++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+@@ -423,6 +423,9 @@ static int intel_atomic_setup_scaler(struct intel_crtc_scaler_state *scaler_stat
+ 
+ 			return -EINVAL;
+ 		}
++
++		scaler_state->scalers[*scaler_id].hscale = hscale;
++		scaler_state->scalers[*scaler_id].vscale = vscale;
+ 	}
+ 
+ 	drm_dbg_kms(display->drm, "Attached scaler id %u.%u to %s:%d\n",
 -- 
 2.46.0
 
