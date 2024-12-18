@@ -2,60 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF2479F694C
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2024 16:02:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E9F079F6928
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2024 15:56:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E60D10EBED;
-	Wed, 18 Dec 2024 15:02:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 86EC110EB4C;
+	Wed, 18 Dec 2024 14:56:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hxTnyLB9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B0wVZJsk";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6732510EBE3;
- Wed, 18 Dec 2024 15:02:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FFE910E0D4;
+ Wed, 18 Dec 2024 14:56:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734534145; x=1766070145;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:references:in-reply-to:to:cc;
- bh=YzcOrORemTWljx6yoyxJmSSzHCvGCQ8iB2rLyGvkJ4c=;
- b=hxTnyLB9A9KtbWj+bXgyZKMaxLGtxOP2WxfdqKtTfTXvVpy+m/uXJPvs
- bsKnOEam0376zwNrDr+nteFyaBd4rdEiwR/+Dhv8GYpN4Kokf/K6ag7ve
- rlBQQ8d4I13infUb+BkrUEIVPEL6wkFfIxuG4f/LIQA1kwetS0P7rAxrB
- wjJfEbHQL46+V//RKC+rAiFEFdL7WRTynNQw3zj/dLp6FOz/RfgM9QrZ7
- +D4/rVbleKR4mYQG8L582C5YZsWaXSeTfinyHp5xW8/V5Fd6M0aRN1OrE
- 6SNGWB2blLFWeLEw2hJiZkDFgzSWUufyi7jjiJxDq75iBauUNqeztdbmO g==;
-X-CSE-ConnectionGUID: yk2+K/aqQX2ZZVmYP0naDA==
-X-CSE-MsgGUID: vuuYZ/DgQgiSpg03SO2ZHQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11290"; a="45502534"
-X-IronPort-AV: E=Sophos;i="6.12,244,1728975600"; d="scan'208";a="45502534"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ t=1734533765; x=1766069765;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=b5o+/HzbLGd6LkLqm/v8fM3IyoWvxko15ufr6Jj5iwg=;
+ b=B0wVZJskls4Ca6u8/cqdTv/eW9+yzCf6PkgW/vFScuTLeOAcMgjTALzg
+ 8I4DEvynX8lSIcB4Oy0aWpgvoo9lzso5mUzcO0mds+RI0Px3DznnXRgu6
+ y7CKgwIXtGAZFzbdQqkkn3AFvrpe4+LARbmd5VKCfjdvo24RHrOQZOE8L
+ zhmwVh3sUy5ltTfjfQtHfn+EydFenrEcn6vUNNwBiXPVbv0ahqtlUj0kU
+ 6IRt94mfkux5zUYg1Jgj4tdH2iTR+N1OyODxTA1oP5siougD0+e2Ngs6p
+ M15FGBxlxJ15UJnNcDwPDoeQEfOumeCNwy7JvA2/13lvU/FpqpddYDOvd A==;
+X-CSE-ConnectionGUID: 8TwRj0N5QOmy3MKnmhdOmg==
+X-CSE-MsgGUID: Se6wVzPJQsm3hX5x4Sv+vQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11290"; a="45501064"
+X-IronPort-AV: E=Sophos;i="6.12,244,1728975600"; d="scan'208";a="45501064"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2024 07:02:24 -0800
-X-CSE-ConnectionGUID: 4lqRXPT4Qxex6Mqfza3MSw==
-X-CSE-MsgGUID: nkhNPfm/S0SeWmSHNDEzWw==
+ 18 Dec 2024 06:56:05 -0800
+X-CSE-ConnectionGUID: vj14ehTrRMCHdA17PFLLYA==
+X-CSE-MsgGUID: jtqFiCKyTuS9+0TrMjWtMw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="102025518"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by fmviesa003.fm.intel.com with ESMTP; 18 Dec 2024 07:02:21 -0800
-From: Arun R Murthy <arun.r.murthy@intel.com>
-Date: Wed, 18 Dec 2024 20:22:07 +0530
-Subject: [PATCH v7 4/4] drm/crtc: Expose API to create drm crtc property
- for IET LUT
+X-IronPort-AV: E=Sophos;i="6.12,244,1728975600"; d="scan'208";a="97729884"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2024 06:56:03 -0800
+Date: Wed, 18 Dec 2024 16:56:46 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Mika Kahola <mika.kahola@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v2] drm/i915/display: UHBR rates for Thunderbolt
+Message-ID: <Z2LirmqeUmqLw17A@ideak-desk.fi.intel.com>
+References: <20241217143440.572308-1-mika.kahola@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241218-dpst-v7-4-81bfe7d08c2d@intel.com>
-References: <20241218-dpst-v7-0-81bfe7d08c2d@intel.com>
-In-Reply-To: <20241218-dpst-v7-0-81bfe7d08c2d@intel.com>
-To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: 20240705091333.328322-1-mohammed.thasleem@intel.com, 
- Arun R Murthy <arun.r.murthy@intel.com>
-X-Mailer: b4 0.15-dev
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241217143440.572308-1-mika.kahola@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,184 +64,147 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add drm-crtc property for IET 1DLUT and for the properties added add
-corresponding get/set_property.
+On Tue, Dec 17, 2024 at 04:34:40PM +0200, Mika Kahola wrote:
+> tbt-alt mode is missing uhbr rates 10G and 20G. This requires
+> requires pll clock rates 312.5 MHz and 625 MHz to be added,
+> respectively. The uhbr rates are supported only form PTL+
+> platforms.
+> 
+> v2: Add drm_WARN_ON() to check if port clock is not supported by
+>     the platform (Imre)
+>     Combine forward ungate with mask parameter (Imre)
+>     Rename XE3LPDP_* to XE3D_* (Imre)
 
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
----
- drivers/gpu/drm/drm_atomic_state_helper.c |  9 ++++++++
- drivers/gpu/drm/drm_atomic_uapi.c         | 13 +++++++++++
- drivers/gpu/drm/drm_crtc.c                | 38 +++++++++++++++++++++++++++++++
- include/drm/drm_crtc.h                    | 34 +++++++++++++++++++++++++++
- 4 files changed, 94 insertions(+)
+I highly disagree with the usage of the XE[23]{D,LPD,LPDP} etc. ciphers
+in the driver in general, instead of the human readable MTL, LNL, PTL
+etc., the human readable versions actually serving the intended purpose
+of reminding a reader what exact platform the code they read is about.
 
-diff --git a/drivers/gpu/drm/drm_atomic_state_helper.c b/drivers/gpu/drm/drm_atomic_state_helper.c
-index dfe6293f7a42d034da3de593094019ca15014a02..ceab90cec57cc580afcf334e275982827e9b0e0d 100644
---- a/drivers/gpu/drm/drm_atomic_state_helper.c
-+++ b/drivers/gpu/drm/drm_atomic_state_helper.c
-@@ -149,6 +149,10 @@ void __drm_atomic_helper_crtc_duplicate_state(struct drm_crtc *crtc,
- 		drm_property_blob_get(state->histogram_enable);
- 	if (state->histogram_data)
- 		drm_property_blob_get(state->histogram_data);
-+	if (state->iet_lut_caps)
-+		drm_property_blob_get(state->iet_lut_caps);
-+	if (state->iet_lut)
-+		drm_property_blob_get(state->iet_lut);
- 	state->mode_changed = false;
- 	state->active_changed = false;
- 	state->planes_changed = false;
-@@ -164,6 +168,7 @@ void __drm_atomic_helper_crtc_duplicate_state(struct drm_crtc *crtc,
- 	state->self_refresh_active = false;
- 
- 	state->histogram_updated = false;
-+	state->iet_lut_updated = false;
- }
- EXPORT_SYMBOL(__drm_atomic_helper_crtc_duplicate_state);
- 
-@@ -229,6 +234,10 @@ void __drm_atomic_helper_crtc_destroy_state(struct drm_crtc_state *state)
- 		drm_property_blob_put(state->histogram_enable);
- 	if (state->histogram_data)
- 		drm_property_blob_put(state->histogram_data);
-+	if (state->iet_lut_caps)
-+		drm_property_blob_put(state->iet_lut_caps);
-+	if (state->iet_lut)
-+		drm_property_blob_put(state->iet_lut);
- }
- EXPORT_SYMBOL(__drm_atomic_helper_crtc_destroy_state);
- 
-diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
-index 459d30898196c94392a7f916b1fa9ca3a334eea8..f31d24d80cc082b38c611b12f36f281fa7404869 100644
---- a/drivers/gpu/drm/drm_atomic_uapi.c
-+++ b/drivers/gpu/drm/drm_atomic_uapi.c
-@@ -424,6 +424,15 @@ static int drm_atomic_crtc_set_property(struct drm_crtc *crtc,
- 							&replaced);
- 		state->histogram_updated |= replaced;
- 		return ret;
-+	} else if (property == crtc->iet_lut_property) {
-+		ret = drm_property_replace_blob_from_id(dev,
-+							&state->iet_lut,
-+							val,
-+							-1,
-+							sizeof(struct drm_iet_1dlut_sample),
-+							&replaced);
-+		state->iet_lut_updated |= replaced;
-+		return ret;
- 	} else if (property == crtc->scaling_filter_property) {
- 		state->scaling_filter = val;
- 	} else if (crtc->funcs->atomic_set_property) {
-@@ -467,6 +476,10 @@ drm_atomic_crtc_get_property(struct drm_crtc *crtc,
- 		*val = (state->histogram_enable) ? state->histogram_enable->base.id : 0;
- 	else if (property == crtc->histogram_data_property)
- 		*val = (state->histogram_data) ? state->histogram_data->base.id : 0;
-+	else if (property == crtc->iet_lut_caps_property)
-+		*val = (state->iet_lut_caps) ? state->iet_lut_caps->base.id : 0;
-+	else if (property == crtc->iet_lut_property)
-+		*val = (state->iet_lut) ? state->iet_lut->base.id : 0;
- 	else if (property == crtc->scaling_filter_property)
- 		*val = state->scaling_filter;
- 	else if (crtc->funcs->atomic_get_property)
-diff --git a/drivers/gpu/drm/drm_crtc.c b/drivers/gpu/drm/drm_crtc.c
-index 1c91cce3dcd31ede1e9d771af00c7c4414000a2b..d8487603a61df7338713b42e92e455c7946cf03b 100644
---- a/drivers/gpu/drm/drm_crtc.c
-+++ b/drivers/gpu/drm/drm_crtc.c
-@@ -998,3 +998,41 @@ int drm_crtc_create_histogram_property(struct drm_crtc *crtc)
- 	return 0;
- }
- EXPORT_SYMBOL(drm_crtc_create_histogram_property);
-+
-+/**
-+ * drm_crtc_create_iet_lut_property
-+ *
-+ * @crtc: pointer to the struct drm_crtc.
-+ *
-+ * This 1DLUT is used by the hardware to enahance the image. Hardware
-+ * interpolates this LUT value to generate the enhanced output image.
-+ *
-+ * The blob property IET_LUT_CAPS points to the struct drm_iet_lut_caps
-+ * The blob property IET_LUT points to the struct drm_iet_1dlut_sample
-+ * Description of the structure is in include/uapi/drm/drm_mode.h
-+ *
-+ * RETURNS:
-+ * Zero for success or -errno
-+ */
-+int drm_crtc_create_iet_lut_property(struct drm_crtc *crtc)
-+{
-+	struct drm_property *prop;
-+
-+	prop = drm_property_create(crtc->dev, DRM_MODE_PROP_ATOMIC |
-+				   DRM_MODE_PROP_IMMUTABLE | DRM_MODE_PROP_BLOB,
-+				   "IET_LUT_CAPS", 0);
-+	if (!prop)
-+		return -ENOMEM;
-+	drm_object_attach_property(&crtc->base, prop, 0);
-+	crtc->iet_lut_caps_property = prop;
-+
-+	prop = drm_property_create(crtc->dev, DRM_MODE_PROP_ATOMIC |
-+				   DRM_MODE_PROP_BLOB, "IET_LUT", 0);
-+	if (!prop)
-+		return -ENOMEM;
-+	drm_object_attach_property(&crtc->base, prop, 0);
-+	crtc->iet_lut_property = prop;
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL(drm_crtc_create_iet_lut_property);
-diff --git a/include/drm/drm_crtc.h b/include/drm/drm_crtc.h
-index 934cac2adb9889d2477e9601598796927bc016ea..73c867feee95d41c279f0831b3571827ad93d471 100644
---- a/include/drm/drm_crtc.h
-+++ b/include/drm/drm_crtc.h
-@@ -300,6 +300,29 @@ struct drm_crtc_state {
- 	struct drm_property_blob *histogram_data;
- 	bool histogram_updated;
- 
-+	/**
-+	 * @iet_lut_caps:
-+	 *
-+	 * The blob points to the structure drm_iet_lut_caps.
-+	 * For more info on the elements of the struct drm_iet_lut_caps
-+	 * see include/uapi/drm/drm_mode.h
-+	 */
-+	struct drm_property_blob *iet_lut_caps;
-+	/**
-+	 * @iet_lut:
-+	 *
-+	 * The blob points to the struct drm_lut_sample
-+	 * For more information on the elements of struct drm_lut_sample
-+	 * see include/uapi/drm/drm_mode.h
-+	 */
-+	struct drm_property_blob *iet_lut;
-+	/**
-+	 * @iet_lut_updates:
-+	 *
-+	 * Convey that the image enhanced data has been updated by the user
-+	 */
-+	bool iet_lut_updated;
-+
- 	/**
- 	 * @target_vblank:
- 	 *
-@@ -1130,6 +1153,17 @@ struct drm_crtc {
- 	 */
- 	struct drm_property *histogram_data_property;
- 
-+	/**
-+	 * @iet_lut_caps_property: Optional CRTC property for getting the
-+	 * iet LUT hardware capability.
-+	 */
-+	struct drm_property *iet_lut_caps_property;
-+	/**
-+	 * @iet_lut_proeprty: Optional CRTC property for writing the
-+	 * image enhanced LUT
-+	 */
-+	struct drm_property *iet_lut_property;
-+
- 	/**
- 	 * @state:
- 	 *
+I still don't know and haven't managed to figure out from the spec what
+either XE3LPDP or XE3D is about, looks like this same clock select field
+width is used by other XE3 platforms as well. So imo let's stick with
+the XE3 prefix used already elsewhere in the driver (no need to resend
+the patch just for that). With that:
 
--- 
-2.25.1
+Reviewed-by: Imre Deak <imre.deak@intel.com>
 
+> Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 39 +++++++++++++++++--
+>  .../gpu/drm/i915/display/intel_cx0_phy_regs.h |  4 ++
+>  2 files changed, 39 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> index cc734079c3b8..a8e0450c0378 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> @@ -3070,7 +3070,10 @@ int intel_mtl_tbt_calc_port_clock(struct intel_encoder *encoder)
+>  
+>  	val = intel_de_read(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port));
+>  
+> -	clock = REG_FIELD_GET(XELPDP_DDI_CLOCK_SELECT_MASK, val);
+> +	if (DISPLAY_VER(display) >= 30)
+> +		clock = REG_FIELD_GET(XE3D_DDI_CLOCK_SELECT_MASK, val);
+> +	else
+> +		clock = REG_FIELD_GET(XELPDP_DDI_CLOCK_SELECT_MASK, val);
+>  
+>  	drm_WARN_ON(display->drm, !(val & XELPDP_FORWARD_CLOCK_UNGATE));
+>  	drm_WARN_ON(display->drm, !(val & XELPDP_TBT_CLOCK_REQUEST));
+> @@ -3085,13 +3088,18 @@ int intel_mtl_tbt_calc_port_clock(struct intel_encoder *encoder)
+>  		return 540000;
+>  	case XELPDP_DDI_CLOCK_SELECT_TBT_810:
+>  		return 810000;
+> +	case XELPDP_DDI_CLOCK_SELECT_TBT_312_5:
+> +		return 1000000;
+> +	case XELPDP_DDI_CLOCK_SELECT_TBT_625:
+> +		return 2000000;
+>  	default:
+>  		MISSING_CASE(clock);
+>  		return 162000;
+>  	}
+>  }
+>  
+> -static int intel_mtl_tbt_clock_select(int clock)
+> +static int intel_mtl_tbt_clock_select(struct intel_display *display,
+> +				      int clock)
+>  {
+>  	switch (clock) {
+>  	case 162000:
+> @@ -3102,6 +3110,18 @@ static int intel_mtl_tbt_clock_select(int clock)
+>  		return XELPDP_DDI_CLOCK_SELECT_TBT_540;
+>  	case 810000:
+>  		return XELPDP_DDI_CLOCK_SELECT_TBT_810;
+> +	case 1000000:
+> +		if (DISPLAY_VER(display) < 30) {
+> +			drm_WARN_ON(display->drm, "UHBR10 not supported for the platform\n");
+> +			return XELPDP_DDI_CLOCK_SELECT_TBT_162;
+> +		}
+> +		return XELPDP_DDI_CLOCK_SELECT_TBT_312_5;
+> +	case 2000000:
+> +		if (DISPLAY_VER(display) < 30) {
+> +			drm_WARN_ON(display->drm, "UHBR20 not supported for the platform\n");
+> +			return XELPDP_DDI_CLOCK_SELECT_TBT_162;
+> +		}
+> +		return XELPDP_DDI_CLOCK_SELECT_TBT_625;
+>  	default:
+>  		MISSING_CASE(clock);
+>  		return XELPDP_DDI_CLOCK_SELECT_TBT_162;
+> @@ -3114,15 +3134,26 @@ static void intel_mtl_tbt_pll_enable(struct intel_encoder *encoder,
+>  	struct intel_display *display = to_intel_display(encoder);
+>  	enum phy phy = intel_encoder_to_phy(encoder);
+>  	u32 val = 0;
+> +	u32 mask;
+>  
+>  	/*
+>  	 * 1. Program PORT_CLOCK_CTL REGISTER to configure
+>  	 * clock muxes, gating and SSC
+>  	 */
+> -	val |= XELPDP_DDI_CLOCK_SELECT(intel_mtl_tbt_clock_select(crtc_state->port_clock));
+> +
+> +	if (DISPLAY_VER(display) >= 30) {
+> +		mask = XE3D_DDI_CLOCK_SELECT_MASK;
+> +		val |= XE3D_DDI_CLOCK_SELECT(intel_mtl_tbt_clock_select(display, crtc_state->port_clock));
+> +	} else {
+> +		mask = XELPDP_DDI_CLOCK_SELECT_MASK;
+> +		val |= XELPDP_DDI_CLOCK_SELECT(intel_mtl_tbt_clock_select(display, crtc_state->port_clock));
+> +	}
+> +
+> +	mask |= XELPDP_FORWARD_CLOCK_UNGATE;
+>  	val |= XELPDP_FORWARD_CLOCK_UNGATE;
+> +
+>  	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port),
+> -		     XELPDP_DDI_CLOCK_SELECT_MASK | XELPDP_FORWARD_CLOCK_UNGATE, val);
+> +		     mask, val);
+>  
+>  	/* 2. Read back PORT_CLOCK_CTL REGISTER */
+>  	val = intel_de_read(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port));
+> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+> index c685479c9756..bf95ac234b2b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+> @@ -187,7 +187,9 @@
+>  #define   XELPDP_TBT_CLOCK_REQUEST			REG_BIT(19)
+>  #define   XELPDP_TBT_CLOCK_ACK				REG_BIT(18)
+>  #define   XELPDP_DDI_CLOCK_SELECT_MASK			REG_GENMASK(15, 12)
+> +#define   XE3D_DDI_CLOCK_SELECT_MASK			REG_GENMASK(16, 12)
+>  #define   XELPDP_DDI_CLOCK_SELECT(val)			REG_FIELD_PREP(XELPDP_DDI_CLOCK_SELECT_MASK, val)
+> +#define   XE3D_DDI_CLOCK_SELECT(val)			REG_FIELD_PREP(XE3D_DDI_CLOCK_SELECT_MASK, val)
+>  #define   XELPDP_DDI_CLOCK_SELECT_NONE			0x0
+>  #define   XELPDP_DDI_CLOCK_SELECT_MAXPCLK		0x8
+>  #define   XELPDP_DDI_CLOCK_SELECT_DIV18CLK		0x9
+> @@ -195,6 +197,8 @@
+>  #define   XELPDP_DDI_CLOCK_SELECT_TBT_270		0xd
+>  #define   XELPDP_DDI_CLOCK_SELECT_TBT_540		0xe
+>  #define   XELPDP_DDI_CLOCK_SELECT_TBT_810		0xf
+> +#define   XELPDP_DDI_CLOCK_SELECT_TBT_312_5		0x18
+> +#define   XELPDP_DDI_CLOCK_SELECT_TBT_625		0x19
+>  #define   XELPDP_FORWARD_CLOCK_UNGATE			REG_BIT(10)
+>  #define   XELPDP_LANE1_PHY_CLOCK_SELECT			REG_BIT(8)
+>  #define   XELPDP_SSC_ENABLE_PLLA			REG_BIT(1)
+> -- 
+> 2.43.0
+> 
