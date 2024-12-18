@@ -1,52 +1,53 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A10E29F6945
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2024 16:02:19 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08DE99F6947
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2024 16:02:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E53CB10EBDA;
-	Wed, 18 Dec 2024 15:02:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D99510EBDF;
+	Wed, 18 Dec 2024 15:02:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W/CW2Po8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IdHlGDjo";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B74810EBDA;
- Wed, 18 Dec 2024 15:02:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 067D610EBDE;
+ Wed, 18 Dec 2024 15:02:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734534136; x=1766070136;
+ t=1734534139; x=1766070139;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=xlpWJPaaUMWaNR0lC667XgbjZCYBsdCy7l/KnObWHTg=;
- b=W/CW2Po8LAW4mvCv7jFWZsZTJ1Kc1fCm3Iq2W81z1IjBdYFviYXVCWWs
- HJYd7MfVohqlb77Gw3wEFdijtt0zVLZELd+MT2tUhapPf5/JOkQuWijgf
- qPKQtAE5cBswFv1bqv0CSVVPSr6I45TmtEu7mcSJWcO3p3DoAvlfZ9bMM
- QTdF1lrC90DmlBc1EC/0d9XjEXjxkG6oACZaafLs24eesJB9tR4220MIo
- P0qNLEcK6o9p7hPS2f3ZT3GxQLWBwVPBmnK8A+sfzP1r6QrDb3x6wTqvI
- 8QJpSLNxirubAYNUTFZFYW0GV2UkPw4eBwgXXnzVzoAVN/htDQteP8CF+ A==;
-X-CSE-ConnectionGUID: Vu2Y5nXdSSOO/YefBc7q3A==
-X-CSE-MsgGUID: LSgbco6oRQCEN75/NXzDdQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11290"; a="45502467"
-X-IronPort-AV: E=Sophos;i="6.12,244,1728975600"; d="scan'208";a="45502467"
+ bh=19WMoyPDKAK2GPM23QvKPROYX3ABxskxqKN2tyspnnA=;
+ b=IdHlGDjo7BLag9YmQqL01n5GMJxp6quhqyMubVxN+ZQ03t5Xr4Jrl490
+ ziZvgeHVKglpwuj58OB9IW+5d7+JR6//JbRJp3SlagmKUSjmdrEYsKJH9
+ tl8fXj26xirC34YSNtgyDNJFOtwcy+tT3J1+yVku8Fa7uuKG9yNfy+XwG
+ /FxDzIzaHyc1L4+SC40PV8LJawBOsW3p6X01gLuTCgOQJvM2mQ4QhBQUp
+ JQggxz6Rk5H+zfd1XgIMMGLfbVcFUi9riowctO0fNPGQL/xXNZTaLGiMt
+ 2sUrLuwN1h/rJu/7r0N6zQ+MDNRuKXtxW/EtZBh5T64J6fduff9yCK0WG w==;
+X-CSE-ConnectionGUID: 4o3nda7KTU6deEj8xVvZjA==
+X-CSE-MsgGUID: Wnc/TDCbQWmLGfYBL2jdqQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11290"; a="45502489"
+X-IronPort-AV: E=Sophos;i="6.12,244,1728975600"; d="scan'208";a="45502489"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2024 07:02:16 -0800
-X-CSE-ConnectionGUID: R6BlSBjIQL2PEzeorlXocQ==
-X-CSE-MsgGUID: LwKVeupUS/OU5fqJwV27FA==
+ 18 Dec 2024 07:02:19 -0800
+X-CSE-ConnectionGUID: lQ6v6g73Q6GoifuCcau7aA==
+X-CSE-MsgGUID: TPHfgt0ERfu1S0ysZLuZsw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="102025385"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="102025442"
 Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by fmviesa003.fm.intel.com with ESMTP; 18 Dec 2024 07:02:14 -0800
+ by fmviesa003.fm.intel.com with ESMTP; 18 Dec 2024 07:02:16 -0800
 From: Arun R Murthy <arun.r.murthy@intel.com>
-Date: Wed, 18 Dec 2024 20:22:04 +0530
-Subject: [PATCH v7 1/4] drm: Define histogram structures exposed to user
+Date: Wed, 18 Dec 2024 20:22:05 +0530
+Subject: [PATCH v7 2/4] drm: Define ImageEnhancemenT LUT structures exposed
+ to user
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241218-dpst-v7-1-81bfe7d08c2d@intel.com>
+Message-Id: <20241218-dpst-v7-2-81bfe7d08c2d@intel.com>
 References: <20241218-dpst-v7-0-81bfe7d08c2d@intel.com>
 In-Reply-To: <20241218-dpst-v7-0-81bfe7d08c2d@intel.com>
 To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
@@ -70,104 +71,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Display Histogram is an array of bins and can be generated in many ways
-referred to as modes.
-Ex: HSV max(RGB), Wighted RGB etc.
+ImageEnhancemenT(IET) hardware interpolates the LUT value to generate
+the enhanced output image. LUT takes an input value, outputs a new
+value based on the data within the LUT. 1D LUT can remap individual
+input values to new output values based on the LUT sample. LUT can be
+interpolated by the hardware by multiple modes Ex: Direct Lookup LUT,
+Multiplicative LUT etc
+The list of supported mode by hardware along with the format(exponent
+mantissa) is exposed to user by the iet_lut_caps property. Maximum
+format being 8.24 i.e 8 exponent and 24 mantissa.
+For illustration a hardware supporting 1.9 format denotes this as
+0x10001FF. In order to know the exponent do a bitwise AND with
+0xF000000. The LUT value to be provided by user would be a 10bit value
+with 1 bit integer and 9 bit fractional value.
 
-Understanding the histogram data format(Ex: HSV max(RGB))
-Histogram is just the pixel count.
-For a maximum resolution of 10k (10240 x 4320 = 44236800)
-25 bits should be sufficient to represent this along with a buffer of 7
-bits(future use) u32 is being considered.
-max(RGB) can be 255 i.e 0xFF 8 bit, considering the most significant 5
-bits, hence 32 bins.
-Below mentioned algorithm illustrates the histogram generation in
-hardware.
-
-hist[32] = {0};
-for (i = 0; i < resolution; i++) {
-	bin = max(RGB[i]);
-	bin = bin >> 3;	/* consider the most significant bits */
-	hist[bin]++;
-}
-If the entire image is Red color then max(255,0,0) is 255 so the pixel
-count of each pixels will be placed in the last bin. Hence except
-hist[31] all other bins will have a value zero.
-Generated histogram in this case would be hist[32] = {0,0,....44236800}
-
-Description of the structures, properties defined are documented in the
-header file include/uapi/drm/drm_mode.h
+Multiple formats can be supported, hence pointer is used over here.
+User can then provide the LUT with any one of the supported modes in
+any of the supported formats.
+The entries in the LUT can vary depending on the hardware capability
+with max being 255. This will also be exposed as iet_lut_caps so user
+can generate a LUT with the specified entries.
 
 Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
 ---
- include/uapi/drm/drm_mode.h | 59 +++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 59 insertions(+)
+ include/uapi/drm/drm_mode.h | 46 +++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 46 insertions(+)
 
 diff --git a/include/uapi/drm/drm_mode.h b/include/uapi/drm/drm_mode.h
-index c082810c08a8b234ef2672ecf54fc8c05ddc2bd3..7a7039381142bb5dba269bdaec42c18be34e2d05 100644
+index 7a7039381142bb5dba269bdaec42c18be34e2d05..34a6f48078fe7ff067002a459835c9af57d18848 100644
 --- a/include/uapi/drm/drm_mode.h
 +++ b/include/uapi/drm/drm_mode.h
-@@ -1355,6 +1355,65 @@ struct drm_mode_closefb {
- 	__u32 pad;
+@@ -1367,6 +1367,17 @@ struct drm_mode_closefb {
+  */
+ #define DRM_MODE_HISTOGRAM_HSV_MAX_RGB			(1 << 0)
+ 
++/* LUT values are points on exponential graph with x axis and y-axis y=f(x) */
++#define DRM_MODE_IET_LOOKUP_LUT				(1 << 0)
++/*
++ * LUT values, points on negative exponential graph with x-axis and y-axis
++ * y = y/x so upon multiplying x, y is obtained, hence multiplicative. The
++ * format of LUT can at max be 8.24(8integer 24 fractional) represented by
++ * u32. Depending on the hardware capability and exponent mantissa can be
++ * chosen.
++ */
++#define DRM_MODE_IET_MULTIPLICATIVE			(1 << 1)
++
+ /**
+  * struct drm_histogram_caps
+  *
+@@ -1414,6 +1425,41 @@ struct drm_histogram {
+ 	__u32 nr_elements;
  };
  
-+/*
-+ * Maximum resolution at present 10k, 10240x4320 = 44236800
-+ * can be denoted in 25bits. With an additional 7 bits in buffer each bin
-+ * can be a u32 value.
-+ * Maximum value of max(RGB) is 255, so max 255 bins.
-+ * If the most significant 5 bits are considered, then bins = 0xff >> 3
-+ * will be 32 bins.
-+ * For illustration consider a full RED image of 10k resolution considering all
-+ * 8 bits histogram would look like hist[255] = {0,0,....44236800}
-+ */
-+#define DRM_MODE_HISTOGRAM_HSV_MAX_RGB			(1 << 0)
-+
 +/**
-+ * struct drm_histogram_caps
++ * struct drm_iet_caps
 + *
-+ * @histogram_mode: histogram generation modes, defined in the above macros
-+ * @bins_count: number of bins for a chosen histogram mode. For illustration
-+ *		refer the above defined histogram mode.
++ * @iet_mode: pixel factor enhancement modes defined in the above macros
++ * @iet_sample_format: holds the address of an array of u32 LUT sample formats
++ *		       depending on the hardware capability. Max being 8.24
++ *		       Doing a bitwise AND will get the present sample.
++ *		       Ex: for 1 integer 9 fraction AND with 0x10001FF
 + */
-+struct drm_histogram_caps {
-+	u8 histogram_mode;
-+	u32 bins_count;
++struct drm_iet_caps {
++	u8 iet_mode;
++	u64 iet_sample_format;
++	__u32 nr_iet_sample_formats;
 +};
 +
 +/**
-+ * struct drm_histogram_config
-+ *
-+ * @enable: flag to enable/disable histogram
-+ * @hist_mode: histogram mode(HSV max(RGB), RGB, LUMA etc)
-+ * @reserved1: Reserved for future use
-+ * @reserved2: Reserved for future use
-+ * @reserved3: Reserved for future use
-+ * @reserved4: Reserved for future use
++ * struct drm_iet_1dlut_sample
++ * @iet_mode: image enhancement mode, this will also convey the channel.
++ * @iet_format: LUT exponent and mantissa format, max being 8.24
++ * @data_ptr: pointer to the array of values which is of type u32.
++ *	      1 channel: 10 bit corrected value and remaining bits are reserved.
++ *	      multi channel: pointer to struct drm_color_lut
++ * @nr_elements: number of entries pointed by the data @data_ptr
++ * @reserved: reserved for future use
++ * @reserved1: reserved for future use
 + */
-+struct drm_histogram_config {
-+	bool enable;
-+	u8 hist_mode;
-+	u32 reserved1;
-+	u32 reserved2;
-+	u32 reserved3;
-+	u32 reserved4;
-+};
-+
-+/**
-+ * struct drm_histogram
-+ *
-+ * @config: histogram configuration data pointed by struct drm_histogram_config
-+ * @data_ptr: pointer to the array of histogram.
-+ *	      Histogram is an array of bins. Data format for each bin depends
-+ *	      on the histogram mode. Refer to the above histogram modes for
-+ *	      more information.
-+ * @nr_elements: number of bins in the histogram.
-+ */
-+struct drm_histogram {
-+	struct drm_histogram_config config;
++struct drm_iet_1dlut_sample {
++	__u8 iet_mode;
++	__u32 iet_format;
 +	__u64 data_ptr;
 +	__u32 nr_elements;
++	__u32 reserved;
++	__u32 reserved1;
 +};
 +
  #if defined(__cplusplus)
