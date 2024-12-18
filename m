@@ -1,30 +1,66 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A2719F6217
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2024 10:45:40 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E0A59F6220
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2024 10:48:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB52410EB21;
-	Wed, 18 Dec 2024 09:45:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7AA5910EB3B;
+	Wed, 18 Dec 2024 09:48:44 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ut0uabf3";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 50C5310EB21;
- Wed, 18 Dec 2024 09:45:37 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EF6810EB4B;
+ Wed, 18 Dec 2024 09:48:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1734515324; x=1766051324;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=s4ocDH7UmrOpvtqpngizXg9vgWT/WeFW9fcb+JcuNrA=;
+ b=Ut0uabf3HvR/+IQDzTNs8ZCvAOpEwNBjbepPezXdi8B9VNEAIAwt7PVn
+ X4UmMDt8moZNCcj4fDR1O6rLtmrCfzm9EXLP+kyyLdUldfFlBQSL40ZBa
+ ehexKXX/mADH9p8S78+tm1VTmETuIngxMfvxPMZUl8wnt7CtH37o03jNB
+ IRfaeEgEJ8KdQMETO+MKOr765w+pmFEEzQNeMtd+ngHiUBClZzlSuAulq
+ pF9YzV420NgQio71SNM9GOTFJWXgiNnMFVyvFIRIwHUnuyliSwilHyWDa
+ sYzWRyCTxRcsauBowWF7k5Qsz1ApPxcAVK63bjSCL4PSHWvMvZi9hxFun Q==;
+X-CSE-ConnectionGUID: QdS0fit6TBC7oDhSSc+uMg==
+X-CSE-MsgGUID: O5DPLLgcStCbJOcHOQO0mw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11289"; a="34863611"
+X-IronPort-AV: E=Sophos;i="6.12,244,1728975600"; d="scan'208";a="34863611"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2024 01:48:43 -0800
+X-CSE-ConnectionGUID: geOzY59jQGaw66s7WtDnmw==
+X-CSE-MsgGUID: 4DuAxdA6TM+7wIJIyfqaEQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,244,1728975600"; d="scan'208";a="102646360"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.42])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2024 01:48:39 -0800
+Date: Wed, 18 Dec 2024 11:48:36 +0200
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-intel-gt-next
+Message-ID: <Z2KadNXgumx1aQMP@jlahtine-mobl.ger.corp.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_Enable_GuC_SLPC_default_b?=
- =?utf-8?q?alancing_strategies_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 18 Dec 2024 09:45:37 -0000
-Message-ID: <173451513732.4031.9106807721994481133@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241216204404.1621540-1-rodrigo.vivi@intel.com>
-In-Reply-To: <20241216204404.1621540-1-rodrigo.vivi@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,141 +73,92 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Dave & Sima,
 
-Series: Enable GuC SLPC default balancing strategies (rev2)
-URL   : https://patchwork.freedesktop.org/series/142676/
-State : failure
+Here goes the pre-holidays drm-intel-gt-next PR towards 6.14 as promised.
 
-== Summary ==
+As the main improvement there is engine busyness accuracy improvements
+for GuC submission platforms and fixup for BO mapping corner cases.
 
-CI Bug Log - changes from CI_DRM_15861 -> Patchwork_142676v2
-====================================================
+The rest is smaller refactoring and improvements.
 
-Summary
--------
+Happy Holidays!
 
-  **FAILURE**
+Regards, Joonas
 
-  Serious unknown changes coming with Patchwork_142676v2 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_142676v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+***
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142676v2/index.html
+drm-intel-gt-next-2024-12-18:
 
-Participating hosts (45 -> 44)
-------------------------------
+Driver Changes:
 
-  Missing    (1): fi-snb-2520m 
+- More accurate engine busyness metrics with GuC submission (Umesh)
+- Ensure BO segment offset never exceeds allowed max (Krzysztof)
+- Flush GuC CT receive tasklet during reset preparation (Zhanjun)
 
-Possible new issues
--------------------
+- Code cleanups and refactoring (David, Lucas)
+- Debugging improvements (Jesus)
+- Selftest improvements (Sk)
 
-  Here are the unknown changes that may have been introduced in Patchwork_142676v2:
+The following changes since commit 6ef0e3ef2662db71d363af77ce31fa940bb7d525:
 
-### IGT changes ###
+  drm/i915/gt: Retry RING_HEAD reset until it get sticks (2024-10-22 11:35:07 +0200)
 
-#### Possible regressions ####
+are available in the Git repository at:
 
-  * igt@i915_selftest@live@gt_engines:
-    - bat-twl-2:          [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15861/bat-twl-2/igt@i915_selftest@live@gt_engines.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142676v2/bat-twl-2/igt@i915_selftest@live@gt_engines.html
-    - bat-twl-1:          [PASS][3] -> [FAIL][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15861/bat-twl-1/igt@i915_selftest@live@gt_engines.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142676v2/bat-twl-1/igt@i915_selftest@live@gt_engines.html
+  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-gt-next-2024-12-18
 
-  
-Known issues
-------------
+for you to fetch changes up to f373ebec18a75d671908e81ed9925aebf279ec2f:
 
-  Here are the changes found in Patchwork_142676v2 that come from known issues:
+  drm/i915/guc: Update guc_err message to show outstanding g2h responses (2024-12-17 11:38:50 -0800)
 
-### IGT changes ###
+----------------------------------------------------------------
+Driver Changes:
 
-#### Issues hit ####
+- More accurate engine busyness metrics with GuC submission (Umesh)
+- Ensure partial BO segment offset never exceeds allowed max (Krzysztof)
+- Flush GuC CT receive tasklet during reset preparation (Zhanjun)
 
-  * igt@i915_module_load@load:
-    - fi-pnv-d510:        [PASS][5] -> [ABORT][6] ([i915#13203])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15861/fi-pnv-d510/igt@i915_module_load@load.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142676v2/fi-pnv-d510/igt@i915_module_load@load.html
+- Code cleanups and refactoring (David, Lucas)
+- Debugging improvements (Jesus)
+- Selftest improvements (Sk)
 
-  * igt@i915_pm_rpm@module-reload:
-    - bat-dg2-11:         [PASS][7] -> [FAIL][8] ([i915#12903])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15861/bat-dg2-11/igt@i915_pm_rpm@module-reload.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142676v2/bat-dg2-11/igt@i915_pm_rpm@module-reload.html
-    - bat-rpls-4:         [PASS][9] -> [FAIL][10] ([i915#12903])
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15861/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142676v2/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
+----------------------------------------------------------------
+Dr. David Alan Gilbert (1):
+      drm/i915/gt: Remove unused execlists_unwind_incomplete_requests
 
-  * igt@i915_selftest@live:
-    - bat-mtlp-8:         [PASS][11] -> [ABORT][12] ([i915#12061]) +1 other test abort
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15861/bat-mtlp-8/igt@i915_selftest@live.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142676v2/bat-mtlp-8/igt@i915_selftest@live.html
-    - bat-arlh-2:         [PASS][13] -> [ABORT][14] ([i915#13091]) +1 other test abort
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15861/bat-arlh-2/igt@i915_selftest@live.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142676v2/bat-arlh-2/igt@i915_selftest@live.html
+Jesus Narvaez (1):
+      drm/i915/guc: Update guc_err message to show outstanding g2h responses
 
-  * igt@i915_selftest@live@workarounds:
-    - bat-mtlp-6:         [PASS][15] -> [ABORT][16] ([i915#12061]) +1 other test abort
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15861/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142676v2/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+Krzysztof Karas (1):
+      drm/i915: ensure segment offset never exceeds allowed max
 
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         [PASS][17] -> [SKIP][18] ([i915#9197]) +2 other tests skip
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15861/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142676v2/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+Lucas De Marchi (4):
+      drm/i915/pmu: Rename cpuhp_slot to cpuhp_state
+      drm/i915/pmu: Stop setting event_init to NULL
+      drm/i915/pmu: Replace closed with registered
+      drm/i915/pmu: Remove pointless synchronize_rcu() call
 
-  
-#### Possible fixes ####
+Sk Anirban (1):
+      drm/i915/selftests: Add delay to stabilize frequency in live_rps_power
 
-  * igt@i915_selftest@live:
-    - fi-skl-6600u:       [INCOMPLETE][19] ([i915#13050]) -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15861/fi-skl-6600u/igt@i915_selftest@live.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142676v2/fi-skl-6600u/igt@i915_selftest@live.html
+Umesh Nerlige Ramappa (3):
+      i915/guc: Reset engine utilization buffer before registration
+      i915/guc: Ensure busyness counter increases motonically
+      i915/guc: Accumulate active runtime on gt reset
 
-  * igt@i915_selftest@live@gt_timelines:
-    - fi-skl-6600u:       [INCOMPLETE][21] -> [PASS][22]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15861/fi-skl-6600u/igt@i915_selftest@live@gt_timelines.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142676v2/fi-skl-6600u/igt@i915_selftest@live@gt_timelines.html
+Zhanjun Dong (1):
+      drm/i915/guc: Flush ct receive tasklet during reset preparation
 
-  * igt@i915_selftest@live@workarounds:
-    - {bat-mtlp-9}:       [ABORT][23] ([i915#12061]) -> [PASS][24] +1 other test pass
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15861/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142676v2/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-    - {bat-arls-6}:       [ABORT][25] ([i915#12061]) -> [PASS][26] +1 other test pass
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15861/bat-arls-6/igt@i915_selftest@live@workarounds.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142676v2/bat-arls-6/igt@i915_selftest@live@workarounds.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12903]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12903
-  [i915#13050]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13050
-  [i915#13091]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13091
-  [i915#13203]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13203
-  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15861 -> Patchwork_142676v2
-
-  CI-20190529: 20190529
-  CI_DRM_15861: 561947cbde53a2d22434977709610f42e4f0229b @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8160: 4f10d98c56498ab29445ae0b06aab6f5a8ec2eca @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_142676v2: 561947cbde53a2d22434977709610f42e4f0229b @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142676v2/index.html
+ drivers/gpu/drm/i915/gt/intel_engine.h             |  3 --
+ drivers/gpu/drm/i915/gt/intel_engine_types.h       |  5 ++
+ .../gpu/drm/i915/gt/intel_execlists_submission.c   |  9 ----
+ drivers/gpu/drm/i915/gt/selftest_rps.c             |  1 +
+ drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c  | 53 ++++++++++++++++++++--
+ drivers/gpu/drm/i915/i915_mm.c                     |  4 +-
+ drivers/gpu/drm/i915/i915_pmu.c                    | 50 ++++++++------------
+ drivers/gpu/drm/i915/i915_pmu.h                    |  4 +-
+ 8 files changed, 79 insertions(+), 50 deletions(-)
