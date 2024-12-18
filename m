@@ -1,53 +1,52 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30B869F6C71
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2024 18:39:23 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D79D9F6C72
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2024 18:39:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6E8810E343;
-	Wed, 18 Dec 2024 17:39:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D9FCB10EC1F;
+	Wed, 18 Dec 2024 17:39:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G1Q6Dis9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="THYK/sz+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C32D710EC1F
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Dec 2024 17:39:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4C6910EC1F
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Dec 2024 17:39:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734543561; x=1766079561;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Ez7N0N7o3+6nJ01R9Qy8bDgSgFFvG3YGEb0iqpDyb+E=;
- b=G1Q6Dis9vflbGMY3NWL2thCdPk+xokPKmcmnWMPwClCTE2a174KNZNUA
- rPOoPoxSdVIHBs1OH/feLWwmxVufo+azPVCgiB81OG1Qmz7dUQel+wd1M
- fhHqRVEy6yHOjBKmcrVoDQZkIgqM0Ed5YRkeWvm+0YoNzM8qOvx+/EPV3
- 6P235q+JXkslyljBc+Fp2wyQ/fPIkCNbWkBCZ6JFQMz5jhc53aPk4hRc2
- UfTZqJ3NA1MxMHlkZ39oCU9Immnden12LOeIvXkh9G5wX/ZykqspdxoYf
- h1vQOfUkmOSHwg/7/qBnHZJ92rRFXWHSyW7O+7nkknIAh317ic6pN8+Uq g==;
-X-CSE-ConnectionGUID: xIQNt6JAQeKWZ1cjmoEDtQ==
-X-CSE-MsgGUID: JtuuZ7A8Sl6kf7ZSr5vDLw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11290"; a="22619207"
-X-IronPort-AV: E=Sophos;i="6.12,245,1728975600"; d="scan'208";a="22619207"
+ t=1734543568; x=1766079568;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=Lif2WOy/WIH0XRJBwulXxnzNIp+Ps7e9jySEb7K+JJo=;
+ b=THYK/sz+iYO+qMrRBfdj0L4pooF5GrnyQGEYTBEaFJFUmB2N/mmJLVVW
+ tjbgQ6mCM4Y5vnBoGH/p3ZaRrqwufR1qskX3cwTqmJC8PVv7buLrrHmag
+ JV4j/sRUYD8iI7gLa7uxOcxnGhMEyC5YySv1H3ieovQKdWevdXq8rT417
+ o+NeLRBo8WrP9Mge/+vADI4a77Dok1i7Bi470H7BAxE9qMwKXctWhfh46
+ bXnMn2K5FIf0E4SugTn2XuSq11BgbJsMBr4KxTlmept9hcS3c7KiZl7Ce
+ mOQ4DAnRF2zJWs9LEi8lwpDFDlGGM8dLR0PzLcmb7mPijv29lZ2e6WSE4 Q==;
+X-CSE-ConnectionGUID: CZUGsTuxQz+na8QOpxPrng==
+X-CSE-MsgGUID: GRmcuCwLRIGbDCpb0B7feQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11290"; a="22619249"
+X-IronPort-AV: E=Sophos;i="6.12,245,1728975600"; d="scan'208";a="22619249"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2024 09:36:56 -0800
-X-CSE-ConnectionGUID: mBv1F+0RQKaKPDl6uUu7OA==
-X-CSE-MsgGUID: Q4aapQR6Qnm7fSF9U8fx0g==
+ 18 Dec 2024 09:36:59 -0800
+X-CSE-ConnectionGUID: Ois04raGTTGhv57qHeIRbQ==
+X-CSE-MsgGUID: n+UJomlOSNun45A/ZGYdFQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,245,1728975600"; d="scan'208";a="98165369"
+X-IronPort-AV: E=Sophos;i="6.12,245,1728975600"; d="scan'208";a="98165382"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 18 Dec 2024 09:36:54 -0800
+ by fmviesa008.fm.intel.com with SMTP; 18 Dec 2024 09:36:57 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 18 Dec 2024 19:36:53 +0200
+ Wed, 18 Dec 2024 19:36:56 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: stable@vger.kernel.org
-Subject: [PATCH 1/4] drm/i915: Drop 64bpp YUV formats from ICL+ SDR planes
-Date: Wed, 18 Dec 2024 19:36:47 +0200
-Message-ID: <20241218173650.19782-2-ville.syrjala@linux.intel.com>
+Subject: [PATCH 2/4] drm/i915: Drop the extra "plane" from tracpoints
+Date: Wed, 18 Dec 2024 19:36:48 +0200
+Message-ID: <20241218173650.19782-3-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20241218173650.19782-1-ville.syrjala@linux.intel.com>
 References: <20241218173650.19782-1-ville.syrjala@linux.intel.com>
@@ -71,50 +70,83 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-I'm seeing underruns with these 64bpp YUV formats on TGL.
+Out plane names already include the "plane" part (or
+"primary","sprite","cursor" in some cases). Don't duplicate
+that in the tracpoints as that leadst to weird stuff like
+"plane plane 1A".
 
-The weird details:
-- only happens on pipe B/C/D SDR planes, pipe A SDR planes
-  seem fine, as do all HDR planes
-- somehow CDCLK related, higher CDCLK allows for bigger plane
-  with these formats without underruns. With 300MHz CDCLK I
-  can only go up to 1200 pixels wide or so, with 650MHz even
-  a 3840 pixel wide plane was OK
-- ICL and ADL so far appear unaffected
-
-So not really sure what's the deal with this, but bspec does
-state "64-bit formats supported only on the HDR planes" so
-let's just drop these formats from the SDR planes. We already
-disallow 64bpp RGB formats.
-
-Cc: stable@vger.kernel.org
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_universal_plane.c | 4 ----
- 1 file changed, 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_trace.h | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index ff9764cac1e7..80e558042d97 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -106,8 +106,6 @@ static const u32 icl_sdr_y_plane_formats[] = {
- 	DRM_FORMAT_Y216,
- 	DRM_FORMAT_XYUV8888,
- 	DRM_FORMAT_XVYU2101010,
--	DRM_FORMAT_XVYU12_16161616,
--	DRM_FORMAT_XVYU16161616,
- };
+diff --git a/drivers/gpu/drm/i915/display/intel_display_trace.h b/drivers/gpu/drm/i915/display/intel_display_trace.h
+index 338b9f7b20b8..6a9963701423 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_trace.h
++++ b/drivers/gpu/drm/i915/display/intel_display_trace.h
+@@ -397,7 +397,7 @@ TRACE_EVENT(intel_plane_async_flip,
+ 			   __entry->async_flip = async_flip;
+ 			   ),
  
- static const u32 icl_sdr_uv_plane_formats[] = {
-@@ -134,8 +132,6 @@ static const u32 icl_sdr_uv_plane_formats[] = {
- 	DRM_FORMAT_Y216,
- 	DRM_FORMAT_XYUV8888,
- 	DRM_FORMAT_XVYU2101010,
--	DRM_FORMAT_XVYU12_16161616,
--	DRM_FORMAT_XVYU16161616,
- };
+-	    TP_printk("dev %s, pipe %c, plane %s, frame=%u, scanline=%u, async_flip=%s",
++	    TP_printk("dev %s, pipe %c, %s, frame=%u, scanline=%u, async_flip=%s",
+ 		      __get_str(dev), __entry->pipe_name, __get_str(name),
+ 		      __entry->frame, __entry->scanline, str_yes_no(__entry->async_flip))
+ );
+@@ -426,7 +426,7 @@ TRACE_EVENT(intel_plane_update_noarm,
+ 			   memcpy(__entry->dst, &plane->base.state->dst, sizeof(__entry->dst));
+ 			   ),
  
- static const u32 icl_hdr_plane_formats[] = {
+-	    TP_printk("dev %s, pipe %c, plane %s, frame=%u, scanline=%u, " DRM_RECT_FP_FMT " -> " DRM_RECT_FMT,
++	    TP_printk("dev %s, pipe %c, %s, frame=%u, scanline=%u, " DRM_RECT_FP_FMT " -> " DRM_RECT_FMT,
+ 		      __get_str(dev), __entry->pipe_name, __get_str(name),
+ 		      __entry->frame, __entry->scanline,
+ 		      DRM_RECT_FP_ARG((const struct drm_rect *)__entry->src),
+@@ -457,7 +457,7 @@ TRACE_EVENT(intel_plane_update_arm,
+ 			   memcpy(__entry->dst, &plane->base.state->dst, sizeof(__entry->dst));
+ 			   ),
+ 
+-	    TP_printk("dev %s, pipe %c, plane %s, frame=%u, scanline=%u, " DRM_RECT_FP_FMT " -> " DRM_RECT_FMT,
++	    TP_printk("dev %s, pipe %c, %s, frame=%u, scanline=%u, " DRM_RECT_FP_FMT " -> " DRM_RECT_FMT,
+ 		      __get_str(dev), __entry->pipe_name, __get_str(name),
+ 		      __entry->frame, __entry->scanline,
+ 		      DRM_RECT_FP_ARG((const struct drm_rect *)__entry->src),
+@@ -484,7 +484,7 @@ TRACE_EVENT(intel_plane_disable_arm,
+ 			   __entry->scanline = intel_get_crtc_scanline(crtc);
+ 			   ),
+ 
+-	    TP_printk("dev %s, pipe %c, plane %s, frame=%u, scanline=%u",
++	    TP_printk("dev %s, pipe %c, %s, frame=%u, scanline=%u",
+ 		      __get_str(dev), __entry->pipe_name, __get_str(name),
+ 		      __entry->frame, __entry->scanline)
+ );
+@@ -512,7 +512,7 @@ TRACE_EVENT(intel_fbc_activate,
+ 			   __entry->scanline = intel_get_crtc_scanline(crtc);
+ 			   ),
+ 
+-	    TP_printk("dev %s, pipe %c, plane %s, frame=%u, scanline=%u",
++	    TP_printk("dev %s, pipe %c, %s, frame=%u, scanline=%u",
+ 		      __get_str(dev), __entry->pipe_name, __get_str(name),
+ 		      __entry->frame, __entry->scanline)
+ );
+@@ -540,7 +540,7 @@ TRACE_EVENT(intel_fbc_deactivate,
+ 			   __entry->scanline = intel_get_crtc_scanline(crtc);
+ 			   ),
+ 
+-	    TP_printk("dev %s, pipe %c, plane %s, frame=%u, scanline=%u",
++	    TP_printk("dev %s, pipe %c, %s, frame=%u, scanline=%u",
+ 		      __get_str(dev), __entry->pipe_name, __get_str(name),
+ 		      __entry->frame, __entry->scanline)
+ );
+@@ -568,7 +568,7 @@ TRACE_EVENT(intel_fbc_nuke,
+ 			   __entry->scanline = intel_get_crtc_scanline(crtc);
+ 			   ),
+ 
+-	    TP_printk("dev %s, pipe %c, plane %s, frame=%u, scanline=%u",
++	    TP_printk("dev %s, pipe %c, %s, frame=%u, scanline=%u",
+ 		      __get_str(dev), __entry->pipe_name, __get_str(name),
+ 		      __entry->frame, __entry->scanline)
+ );
 -- 
 2.45.2
 
