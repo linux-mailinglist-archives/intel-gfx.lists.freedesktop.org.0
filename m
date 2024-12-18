@@ -2,65 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEAE29F68ED
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2024 15:48:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB1E19F6944
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2024 16:02:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D78D10EBC1;
-	Wed, 18 Dec 2024 14:48:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 671D210EBD9;
+	Wed, 18 Dec 2024 15:02:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H/XjcuKB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hkklhj1M";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 33F8110EBC1
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Dec 2024 14:48:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 69FCC10EBD3;
+ Wed, 18 Dec 2024 15:02:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734533293; x=1766069293;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=dhHVHF3VCXci1HSj+vSfsoaxc8+a/7neB7/OMMkp11s=;
- b=H/XjcuKBhtjqVZRIFsZaOaLT8mwmt2zQ9OcQjSSkpKIx0IKvvqxrGyfv
- uGIy5XNpxvyiFgFC0499FRn6+7pkfazE4T2oB8y/1sh99/GzspYOawfpJ
- JM1UWvXP69DQVQ62bCPIqGRBuLo5mvhnhVfSDJEBuEyfNh7EKO5mh44U0
- dziPyekv7fQ+sd1VXb2kXHxFhuUOJg8jWjqLti0+JajIEW3aDwg4wrTFq
- b8Lz6yebqeLCykQrq1hsXIaBvs6UhlytDkDwTGktVJdlZ7jZYX92Oqcvn
- BUA9iIf/1eXuo2hwfpzaok5AdoNC7VZgU7CtObYn1ABVNoGMHyGGARv41 w==;
-X-CSE-ConnectionGUID: K8y8+DwaQMmzHsYbQCSWaA==
-X-CSE-MsgGUID: ek8awNelTOi++icfLJ54LA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11290"; a="35170083"
-X-IronPort-AV: E=Sophos;i="6.12,244,1728975600"; d="scan'208";a="35170083"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2024 06:48:13 -0800
-X-CSE-ConnectionGUID: z/y/dl2KTRGD/vj5QF6Ksg==
-X-CSE-MsgGUID: T//VTT7STV+/q2E/8zlMXA==
+ t=1734534134; x=1766070134;
+ h=from:subject:date:message-id:mime-version:
+ content-transfer-encoding:to:cc;
+ bh=8xYuX1b/m81+MToorABWpqsMNP8G4KotFVp+IRr6e0U=;
+ b=hkklhj1MlyL/J5/aGCn7s9VFKnZpHvUq1OpOeoW2YDPSEw2Bb2dJWNgg
+ JBGT3MVQy+wBYnjpHrMaXJRPPaAOvk1IEDJIr2zLVDENpA75oKYOo33gg
+ NAH/TQqc6s8EMSg1RIt7ICZK/fjrvgQz45xBZKSaCMGRTUntdEH/W/IjT
+ AUMirJ11XAIdrgVLxf7hCP/lOpRIMkhzb8UdHibNl3KOwGzwb22oRxz8o
+ SPmpWbboUopK14ZL20rnpJRyBcc/g8vuI5PQK8o6aGMyoJ3NRFQOpQQW5
+ xycdVPLKutRkDXt+Lkv9nkg7ug3s0kFG4CLeTaaXxpiPcLA4Da2gZKcND w==;
+X-CSE-ConnectionGUID: nKqFAfNqQqeM8LksRW49oA==
+X-CSE-MsgGUID: WF5h7sShQZGpgHcjB21Dfg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11290"; a="45502449"
+X-IronPort-AV: E=Sophos;i="6.12,244,1728975600"; d="scan'208";a="45502449"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2024 07:02:14 -0800
+X-CSE-ConnectionGUID: y2GTsNBZQJC8dNT72gzrbw==
+X-CSE-MsgGUID: ynthAbogQR2loouRIrHxxQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="102886371"
-Received: from mklonows-mobl1.ger.corp.intel.com (HELO intel.com)
- ([10.245.246.114])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Dec 2024 06:48:10 -0800
-Date: Wed, 18 Dec 2024 15:48:06 +0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Cc: Andi Shyti <andi.shyti@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
- intel-gfx@lists.freedesktop.org, vidya.srinivas@intel.com,
- Ville Syrjala <ville.syrjala@intel.com>
-Subject: Re: [RFC PATCH] i915/gt: Reapply workarounds in case the previous
- attempt failed.
-Message-ID: <Z2LgpnKVp-0fhTlj@ashyti-mobl2.lan>
-References: <aqoql4ri3vpe4larpkz4p6hxy76agq6pmn6gunt5xv56hxdbye@72ilwk7rpiu5>
- <Z1MacMC8XyyyHcqj@intel.com> <Z1r4YJ0TkjIsgoz8@ashyti-mobl2.lan>
- <20241216212751.GZ5725@mdroper-desk1.amr.corp.intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="102025370"
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by fmviesa003.fm.intel.com with ESMTP; 18 Dec 2024 07:02:12 -0800
+From: Arun R Murthy <arun.r.murthy@intel.com>
+Subject: [PATCH v7 0/4] Display Global Histogram
+Date: Wed, 18 Dec 2024 20:22:03 +0530
+Message-Id: <20241218-dpst-v7-0-81bfe7d08c2d@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-15
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241216212751.GZ5725@mdroper-desk1.amr.corp.intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJPhYmcC/03MQQ7CIBCF4as0sxYCk0pbV97DuKB0akkEmoEaT
+ dO7S1y5/JL/vR0ysacMl2YHppfPPsWK7tSAW2x8kPBTNaDCVqPuxbTmIlxPbta9MjiOUNOVafb
+ v383tXj1zCqIsTPZvrAZt8Kxaibo1ZugECstblCzDxmX5XH0s9JQuBTiOL69IjfuZAAAA
+X-Change-ID: 20241218-dpst-c8ecf18062bb
+To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: 20240705091333.328322-1-mohammed.thasleem@intel.com, 
+ Arun R Murthy <arun.r.murthy@intel.com>
+X-Mailer: b4 0.15-dev
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,70 +72,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Matt,
+Display histogram is a hardware functionality where a statistics for 'n'
+number of frames is generated to form a histogram data. This is notified
+to the user via histogram event. Compositor will then upon sensing the
+histogram event will read the histogram data from KMD via crtc property.
+User can use this histogram and apply various equilization techniques to
+enhance the image or use this histogram for shaders.
 
-On Mon, Dec 16, 2024 at 01:27:51PM -0800, Matt Roper wrote:
-> On Thu, Dec 12, 2024 at 03:51:12PM +0100, Andi Shyti wrote:
-> > On Fri, Dec 06, 2024 at 10:38:24AM -0500, Rodrigo Vivi wrote:
-> > > On Thu, Dec 05, 2024 at 03:47:35PM +0000, Sebastian Brzezinka wrote:
-> > > > `wa_verify`sporadically detects lost workaround on application; this
-> > > > is unusual behavior since wa are applied at `intel_gt_init_hw` and
-> > > > verified right away by `intel_gt_verify_workarounds`, and  `wa_verify`
-> > > > doesn't fail on initialization as one might suspect would happen.
-> > > > 
-> > > > One approach that may be somewhat beneficial is to reapply workarounds
-> > > > in the event of failure, or even get rid of verify on application,
-> > > > since it's redundant to `intel_gt_verify_workarounds`.
-> > > > 
-> > > > This patch aims to resolve: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12668
-> > > 
-> > > It should be:
-> > > 
-> > > Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12668
-> > 
-> > aapart from the formatting issues this was suggested by me. We
-> > have observed some sporadic vailures in applying the specific
-> > workaround added by Ville (now cc'ed to the thread) in commit
-> > 0ddae025ab6c ("drm/i915: Disable compression tricks on JSL").
-> > 
-> > Because it's sporadic, we could give it one more chance and try
-> > to re-apply it.
-> 
-> That sounds like it's just papering over the issue without really
-> figuring out what's truly going on.
+Display ImageEnhancemenT is a hardware that interpolates the LUT value
+to generate the enhanced output image. 1DLUT value is to be provided by
+the user via crtc property.
 
-Independently from your next comments and the implementation, the
-sporadic errors we've seen have an extremely low rate and we
-weren't able to make sense to them or fully test them.
+One such library Global Histogram Enhancement(GHE) will take the histogram
+as input and apply the algorithm to enhance the density and then
+return the enhanced LUT factor. This library can be located @
+https://github.com/intel/ghe
 
-We had a short chat with Ville (who implemented the workaround)
-amd he suggested to leave it as it is, while I suggested to give
-it another chance.
+The corresponding mutter changes to enable/disable histogram, read the
+histogram data, communicate with the library and write the enhanced data
+back to the KMD is also pushed for review at https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3873
+and https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3873/diffs?commit_id=270808ca7c8be48513553d95b4a47541f5d40206
+The IGT changes for validating the histogram event and reading the
+histogram is also pushed for review at https://patchwork.freedesktop.org/series/135789/
 
-> Looking at the current implementation, it looks like at least one
-> possible problem is that it was implemented in rcs_engine_wa_init, but
-> the CACHE_MODE_0 register itself is part of the LRC (according to bspec
-> 18907).  So we want to move it to icl_ctx_workarounds_init() instead to
-> make sure it gets recorded in the golden context image.  Our
-> initialization and reset handling for workarounds touching registers in
-> the context are different from those that aren't.
-> BTW, I'm a bit surprised to see us needing to implement this workaround
-> in the kernel at all.  CACHE_MODE_0 is a register that's under userspace
-> control (according to bspec 14181), so we usually expect the userspace
-> drivers to own implementing any workarounds dealing with the registers
-> they control.  Indeed, it looks like Mesa's Iris driver already has an
-> implementation of this workaround in iris_state.c:
-> 
->    if (devinfo->disable_ccs_repack) {
->       iris_emit_reg(batch, GENX(CACHE_MODE_0), reg) {
->          reg.DisableRepackingforCompression = true;
->          reg.DisableRepackingforCompressionMask = true;
->       }
->    }
-> 
-> and that workaround was added back in mid-2019 so it should be in all
-> recent Mesa releases.
+NOTE: This series includes only the drm core changes and the i915
+related patches have been omitted intentionally. Upon getting this drm
+core changes reviewed the i915 driver changes utilizing this histogram
+and IET LUT properties will be floated.
 
-Ville? Any comment here?
+Test-with: 20240705091333.328322-1-mohammed.thasleem@intel.com
 
-Andi
+Arun R Murthy (10):
+  drm/crtc: Add histogram properties
+  drm/crtc: Expose API to create drm crtc property for histogram
+  drm/i915/histogram: Define registers for histogram
+  drm/i915/histogram: Add support for histogram
+  drm/xe: Add histogram support to Xe builds
+  drm/i915/histogram: histogram interrupt handling
+  drm/i915/display: handle drm-crtc histogram property updates
+  drm/i915/histogram: histogram delay counter doesnt reset
+  drm/i915/histogram: Histogram changes for Display 20+
+  drm/i915/histogram: Enable pipe dithering
+
+ drivers/gpu/drm/drm_atomic_state_helper.c     |   6 +
+ drivers/gpu/drm/drm_atomic_uapi.c             |  17 +
+ drivers/gpu/drm/drm_crtc.c                    |  30 ++
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ drivers/gpu/drm/i915/display/intel_atomic.c   |   1 +
+ drivers/gpu/drm/i915/display/intel_crtc.c     |   7 +
+ drivers/gpu/drm/i915/display/intel_display.c  |  17 +
+ .../gpu/drm/i915/display/intel_display_irq.c  |   6 +-
+ .../drm/i915/display/intel_display_types.h    |   4 +
+ .../gpu/drm/i915/display/intel_histogram.c    | 380 ++++++++++++++++++
+ .../gpu/drm/i915/display/intel_histogram.h    |  40 ++
+ .../drm/i915/display/intel_histogram_regs.h   |  75 ++++
+ drivers/gpu/drm/i915/i915_reg.h               |   5 +-
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ include/drm/drm_crtc.h                        |  49 +++
+ include/uapi/drm/drm_mode.h                   |  11 +
+ 16 files changed, 647 insertions(+), 3 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_histogram.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_histogram.h
+ create mode 100644 drivers/gpu/drm/i915/display/intel_histogram_regs.h
+
+--
+2.25.1
+
+---
+Arun R Murthy (4):
+      drm: Define histogram structures exposed to user
+      drm: Define ImageEnhancemenT LUT structures exposed to user
+      drm/crtc: Expose API to create drm crtc property for histogram
+      drm/crtc: Expose API to create drm crtc property for IET LUT
+
+ drivers/gpu/drm/drm_atomic_state_helper.c |  23 +++++++
+ drivers/gpu/drm/drm_atomic_uapi.c         |  28 ++++++++
+ drivers/gpu/drm/drm_crtc.c                |  97 +++++++++++++++++++++++++++
+ include/drm/drm_crtc.h                    |  77 ++++++++++++++++++++++
+ include/uapi/drm/drm_mode.h               | 105 ++++++++++++++++++++++++++++++
+ 5 files changed, 330 insertions(+)
+---
+base-commit: 78526dfb8799485890dae3877fea308e9501879c
+change-id: 20241218-dpst-c8ecf18062bb
+
+Best regards,
+-- 
+Arun R Murthy <arun.r.murthy@intel.com>
+
