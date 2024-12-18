@@ -1,72 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFC5C9F6EAB
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2024 21:03:50 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id C28559F7043
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2024 23:47:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA50D10E446;
-	Wed, 18 Dec 2024 20:03:47 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="QrIV24G5";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE91C10E043;
+	Wed, 18 Dec 2024 22:47:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com
- [IPv6:2607:f8b0:4864:20::32e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 834FD10E42E;
- Wed, 18 Dec 2024 20:03:46 +0000 (UTC)
-Received: by mail-ot1-x32e.google.com with SMTP id
- 46e09a7af769-71e1158fe3eso6689a34.1; 
- Wed, 18 Dec 2024 12:03:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1734552225; x=1735157025; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=PjDQi+CWRY9hqdyZ5tMYPH07w9hoqh6eMi/QEjbtsQU=;
- b=QrIV24G5vg/etyh+cX1XbKC0jXDVHSHBZN7HQr9aSz1esFZp3+lM5IMGdZsRi/IAVf
- 09RKwdxR1niihbKbhbAV1vFaaIOVfjf0VWWSxVfly6tjt1CChW5KVRyMepvuzMpA0aWM
- llV9NzhNYtDP5BbBscQbOMe5sCkngZY+FsDNu7sBFyde1sEXCE22QkYGvFbr5vod1bxG
- /6Zx3ICQA+i3Z/Pu3nEKfcQyDTPOAFEmhA9zK17zgAWBRC0r0t+Q05/EL+NhDUQi/KmP
- wQaxWpSQBAqRfCr5YUGZaXjwSpLeNb7YAebNvk+rir/P6vDPz/HR5OJPHjE+8skIlEaf
- 21lA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1734552225; x=1735157025;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=PjDQi+CWRY9hqdyZ5tMYPH07w9hoqh6eMi/QEjbtsQU=;
- b=ra29C9ze74jRDbBPvhoM7bNik2wgMiiAwy0RvjB8gmpTPfwcNf/iKdW+2wlGrXeAI2
- NGFS4supLaC8a8/mkhI/Btl8Hj9HZYumwt7sTLkqAmmwUWoJG9mI2VZ8Ugat4DpiD5nC
- qkKeyAP5fUh4Z4pcKR1IrSrJg1bo7WFNFqilpfWPjMc8FQRi0iMLDiLYnx69Rs7WsDVf
- VqkJZbcwjJOJIxUpmEbbk8ajnHjipkk6KdVZl6NocOAVZZk1RLylrhuU6Zx/Haz5ZRks
- WrVtnKJ22n7jNFWnzr4COfyw9/upHCpy0JQSqrK91VpVTTlLW1AzwbAnHRqQTwVplFn2
- ubzg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCU2nB1s7v9dYqb12Onr9y1KJFQts1cG8tvZGA+Av7C7nnrBDnaULIvCvzLHxI1gmBm/auwxNS61ozfvxfnC/A==@lists.freedesktop.org,
- AJvYcCU5aPfeoq9dfuAA2ir8AVQWnC8Nw9QY7krmIjRVActOsPyuktx4MNMms5xu/y9BL1ieJbW1zb9OWII=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzAEwAPhfvTnBb8kZsPd8p3BSbBcIOt0c/ldn6wzLovza2p6XIG
- t7qG7/MPRyvQoKJs8nnlmTFs9iY+UBjQoc/iNfbxbBscam5ykLJJqakOUuPjRQ+4g0l3jwMishr
- V07YzlrwROTuE5QD/XAJi7SYrYpQ=
-X-Gm-Gg: ASbGnct5YPN8GO7NzHwB28ZPqaVzUSruKze+f076wVtGDXdhjm03x0nioOtjfm+1/m2
- MDg4F6jAcFirSQYQboM77W6jWHQ9H9rCqK8whPlM=
-X-Google-Smtp-Source: AGHT+IErjtQUc5B1h9rjkNyUsQo+JNaiMjE4lAYui3/tYiFx6+c93krlH09SiFg+LAF5KeXa2Kyng8CMKOYjbka3PQ4=
-X-Received: by 2002:a05:6830:6e94:b0:717:f666:9559 with SMTP id
- 46e09a7af769-71fb757adf6mr2607387a34.9.1734552225559; Wed, 18 Dec 2024
- 12:03:45 -0800 (PST)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF2B410E040;
+ Wed, 18 Dec 2024 22:47:33 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20241218141945.2588604-1-jani.nikula@intel.com>
- <IA1PR11MB6467C5B58659EF7CBA993AA4E3052@IA1PR11MB6467.namprd11.prod.outlook.com>
-In-Reply-To: <IA1PR11MB6467C5B58659EF7CBA993AA4E3052@IA1PR11MB6467.namprd11.prod.outlook.com>
-From: Zhi Wang <zhi.wang.linux@gmail.com>
-Date: Wed, 18 Dec 2024 21:03:34 +0100
-Message-ID: <CAN=xO451z7D0vMBZd4NEH9oTvs5AwJ1g=GkZ-D4y9VNUFWdiSQ@mail.gmail.com>
-Subject: Re: [PATCH] drm/i915/gvt: store virtual_dp_monitor_edid in rodata
-To: "Garg, Nemesa" <nemesa.garg@intel.com>
-Cc: "Nikula, Jani" <jani.nikula@intel.com>, 
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
- "intel-gvt-dev@lists.freedesktop.org" <intel-gvt-dev@lists.freedesktop.org>
-Content-Type: multipart/alternative; boundary="0000000000003fba87062990e95a"
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_drm/i915/gt=3A_Use_ENGINE?=
+ =?utf-8?q?=5FTRACE_for_tracing=2E_=28rev6=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gote, Nitin R" <nitin.r.gote@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 18 Dec 2024 22:47:33 -0000
+Message-ID: <173456205371.164096.10177213013798122099@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241217100058.2819053-1-nitin.r.gote@intel.com>
+In-Reply-To: <20241217100058.2819053-1-nitin.r.gote@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,126 +37,115 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---0000000000003fba87062990e95a
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+== Series Details ==
 
-Reviewed-by: Zhi Wang <zhiwang@kernel.org>
+Series: drm/i915/gt: Use ENGINE_TRACE for tracing. (rev6)
+URL   : https://patchwork.freedesktop.org/series/140358/
+State : failure
 
-Garg, Nemesa <nemesa.garg@intel.com> =E4=BA=8E 2024=E5=B9=B412=E6=9C=8818=
-=E6=97=A5=E5=91=A8=E4=B8=89 =E4=B8=8B=E5=8D=883:37=E5=86=99=E9=81=93=EF=BC=
-=9A
+== Summary ==
 
->
->
-> > -----Original Message-----
-> > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of
-> Jani
-> > Nikula
-> > Sent: Wednesday, December 18, 2024 7:50 PM
-> > To: intel-gfx@lists.freedesktop.org
-> > Cc: intel-gvt-dev@lists.freedesktop.org; Nikula, Jani <
-> jani.nikula@intel.com>
-> > Subject: [PATCH] drm/i915/gvt: store virtual_dp_monitor_edid in rodata
-> >
-> > The virtual DP EDID isn't modified. Add const modifier to store it in
-> rodata.
-> >
-> > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> LGTM,
-> Reviewed-by: Nemesa Garg <nemesa.garg@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/gvt/display.c | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/gvt/display.c
-> > b/drivers/gpu/drm/i915/gvt/display.c
-> > index 95570cabdf27..c98dfcc3d0de 100644
-> > --- a/drivers/gpu/drm/i915/gvt/display.c
-> > +++ b/drivers/gpu/drm/i915/gvt/display.c
-> > @@ -97,7 +97,7 @@ int pipe_is_enabled(struct intel_vgpu *vgpu, int pipe=
-)
-> >       return 0;
-> >  }
-> >
-> > -static unsigned char virtual_dp_monitor_edid[GVT_EDID_NUM][EDID_SIZE]
-> > =3D {
-> > +static const unsigned char
-> > +virtual_dp_monitor_edid[GVT_EDID_NUM][EDID_SIZE] =3D {
-> >       {
-> >  /* EDID with 1024x768 as its resolution */
-> >               /*Header*/
-> > --
-> > 2.39.5
->
->
+CI Bug Log - changes from CI_DRM_15865 -> Patchwork_140358v6
+====================================================
 
---0000000000003fba87062990e95a
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Summary
+-------
 
-<p dir=3D"ltr">Reviewed-by: Zhi Wang &lt;<a href=3D"mailto:zhiwang@kernel.o=
-rg">zhiwang@kernel.org</a>&gt;</p>
-<br><div class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=
-=3D"gmail_attr">Garg, Nemesa &lt;<a href=3D"mailto:nemesa.garg@intel.com">n=
-emesa.garg@intel.com</a>&gt; =E4=BA=8E 2024=E5=B9=B412=E6=9C=8818=E6=97=A5=
-=E5=91=A8=E4=B8=89 =E4=B8=8B=E5=8D=883:37=E5=86=99=E9=81=93=EF=BC=9A<br></d=
-iv><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left=
-:1px #ccc solid;padding-left:1ex"><br>
-<br>
-&gt; -----Original Message-----<br>
-&gt; From: Intel-gfx &lt;<a href=3D"mailto:intel-gfx-bounces@lists.freedesk=
-top.org" target=3D"_blank" rel=3D"noreferrer">intel-gfx-bounces@lists.freed=
-esktop.org</a>&gt; On Behalf Of Jani<br>
-&gt; Nikula<br>
-&gt; Sent: Wednesday, December 18, 2024 7:50 PM<br>
-&gt; To: <a href=3D"mailto:intel-gfx@lists.freedesktop.org" target=3D"_blan=
-k" rel=3D"noreferrer">intel-gfx@lists.freedesktop.org</a><br>
-&gt; Cc: <a href=3D"mailto:intel-gvt-dev@lists.freedesktop.org" target=3D"_=
-blank" rel=3D"noreferrer">intel-gvt-dev@lists.freedesktop.org</a>; Nikula, =
-Jani &lt;<a href=3D"mailto:jani.nikula@intel.com" target=3D"_blank" rel=3D"=
-noreferrer">jani.nikula@intel.com</a>&gt;<br>
-&gt; Subject: [PATCH] drm/i915/gvt: store virtual_dp_monitor_edid in rodata=
-<br>
-&gt; <br>
-&gt; The virtual DP EDID isn&#39;t modified. Add const modifier to store it=
- in rodata.<br>
-&gt; <br>
-&gt; Signed-off-by: Jani Nikula &lt;<a href=3D"mailto:jani.nikula@intel.com=
-" target=3D"_blank" rel=3D"noreferrer">jani.nikula@intel.com</a>&gt;<br>
-<br>
-LGTM,<br>
-Reviewed-by: Nemesa Garg &lt;<a href=3D"mailto:nemesa.garg@intel.com" targe=
-t=3D"_blank" rel=3D"noreferrer">nemesa.garg@intel.com</a>&gt;<br>
-&gt; ---<br>
-&gt;=C2=A0 drivers/gpu/drm/i915/gvt/display.c | 2 +-<br>
-&gt;=C2=A0 1 file changed, 1 insertion(+), 1 deletion(-)<br>
-&gt; <br>
-&gt; diff --git a/drivers/gpu/drm/i915/gvt/display.c<br>
-&gt; b/drivers/gpu/drm/i915/gvt/display.c<br>
-&gt; index 95570cabdf27..c98dfcc3d0de 100644<br>
-&gt; --- a/drivers/gpu/drm/i915/gvt/display.c<br>
-&gt; +++ b/drivers/gpu/drm/i915/gvt/display.c<br>
-&gt; @@ -97,7 +97,7 @@ int pipe_is_enabled(struct intel_vgpu *vgpu, int pip=
-e)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0return 0;<br>
-&gt;=C2=A0 }<br>
-&gt; <br>
-&gt; -static unsigned char virtual_dp_monitor_edid[GVT_EDID_NUM][EDID_SIZE]=
-<br>
-&gt; =3D {<br>
-&gt; +static const unsigned char<br>
-&gt; +virtual_dp_monitor_edid[GVT_EDID_NUM][EDID_SIZE] =3D {<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0{<br>
-&gt;=C2=A0 /* EDID with 1024x768 as its resolution */<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0/*Header*/<br>
-&gt; --<br>
-&gt; 2.39.5<br>
-<br>
-</blockquote></div>
+  **FAILURE**
 
---0000000000003fba87062990e95a--
+  Serious unknown changes coming with Patchwork_140358v6 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_140358v6, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140358v6/index.html
+
+Participating hosts (45 -> 44)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_140358v6:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live:
+    - bat-mtlp-8:         [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15865/bat-mtlp-8/igt@i915_selftest@live.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140358v6/bat-mtlp-8/igt@i915_selftest@live.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_140358v6 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - bat-adls-6:         [PASS][3] -> [FAIL][4] ([i915#12903])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15865/bat-adls-6/igt@i915_pm_rpm@module-reload.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140358v6/bat-adls-6/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live@gt_mocs:
+    - bat-twl-2:          [PASS][5] -> [ABORT][6] ([i915#12919]) +1 other test abort
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15865/bat-twl-2/igt@i915_selftest@live@gt_mocs.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140358v6/bat-twl-2/igt@i915_selftest@live@gt_mocs.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-mtlp-8:         [PASS][7] -> [ABORT][8] ([i915#12061])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15865/bat-mtlp-8/igt@i915_selftest@live@workarounds.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140358v6/bat-mtlp-8/igt@i915_selftest@live@workarounds.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
+    - bat-dg2-11:         [PASS][9] -> [SKIP][10] ([i915#9197]) +3 other tests skip
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15865/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140358v6/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@late_gt_pm:
+    - fi-cfl-8109u:       [DMESG-WARN][11] ([i915#11621]) -> [PASS][12] +132 other tests pass
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15865/fi-cfl-8109u/igt@i915_selftest@live@late_gt_pm.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140358v6/fi-cfl-8109u/igt@i915_selftest@live@late_gt_pm.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-mtlp-6:         [ABORT][13] ([i915#12061]) -> [PASS][14] +1 other test pass
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15865/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140358v6/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+
+  
+  [i915#11621]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11621
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#12903]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12903
+  [i915#12919]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12919
+  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_15865 -> Patchwork_140358v6
+
+  CI-20190529: 20190529
+  CI_DRM_15865: d8f0c44e2ed948dcc45d04a0dfa83612995a702b @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8164: e9d9934c7c6dc6878792d82424fc928e7f6996cb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_140358v6: d8f0c44e2ed948dcc45d04a0dfa83612995a702b @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_140358v6/index.html
