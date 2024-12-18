@@ -2,29 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B670A9F5F84
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2024 08:43:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1AD59F5FA2
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2024 08:49:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E39610EAC7;
-	Wed, 18 Dec 2024 07:43:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EE3310EAD9;
+	Wed, 18 Dec 2024 07:49:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7016910EAC7;
- Wed, 18 Dec 2024 07:43:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD00310E31A;
+ Wed, 18 Dec 2024 07:49:27 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_drop_?=
- =?utf-8?q?unnecessary_i915=5Fdrv=2Eh_includes_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/display=3A_?=
+ =?utf-8?q?UHBR_rates_for_Thunderbolt?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
+To: "Mika Kahola" <mika.kahola@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 18 Dec 2024 07:43:37 -0000
-Message-ID: <173450781745.4154419.13074356308796302989@b555e5b46a47>
+Date: Wed, 18 Dec 2024 07:49:27 -0000
+Message-ID: <173450816789.4154419.4921564259147493237@b555e5b46a47>
 X-Patchwork-Hint: ignore
-References: <20241217132147.2008057-1-jani.nikula@intel.com>
-In-Reply-To: <20241217132147.2008057-1-jani.nikula@intel.com>
+References: <20241217143440.572308-1-mika.kahola@intel.com>
+In-Reply-To: <20241217143440.572308-1-mika.kahola@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,103 +43,26 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/i915/display: drop unnecessary i915_drv.h includes (rev2)
-URL   : https://patchwork.freedesktop.org/series/142669/
-State : success
+Series: drm/i915/display: UHBR rates for Thunderbolt
+URL   : https://patchwork.freedesktop.org/series/142727/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_15861 -> Patchwork_142669v2
-====================================================
+Error: dim checkpatch failed
+19bc4c36b471 drm/i915/display: UHBR rates for Thunderbolt
+-:87: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#87: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:3144:
++		val |= XE3D_DDI_CLOCK_SELECT(intel_mtl_tbt_clock_select(display, crtc_state->port_clock));
 
-Summary
--------
+-:90: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#90: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:3147:
++		val |= XELPDP_DDI_CLOCK_SELECT(intel_mtl_tbt_clock_select(display, crtc_state->port_clock));
 
-  **SUCCESS**
+-:112: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#112: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:197:
++#define   XE3D_DDI_CLOCK_SELECT(val)			REG_FIELD_PREP(XE3D_DDI_CLOCK_SELECT_MASK, val)
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142669v2/index.html
-
-Participating hosts (45 -> 44)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_142669v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - bat-dg2-11:         [PASS][1] -> [FAIL][2] ([i915#12903])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15861/bat-dg2-11/igt@i915_pm_rpm@module-reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142669v2/bat-dg2-11/igt@i915_pm_rpm@module-reload.html
-    - bat-dg1-7:          [PASS][3] -> [FAIL][4] ([i915#12903])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15861/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142669v2/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arlh-3:         [PASS][5] -> [ABORT][6] ([i915#12061]) +1 other test abort
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15861/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142669v2/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-    - bat-mtlp-6:         [PASS][7] -> [ABORT][8] ([i915#12061]) +1 other test abort
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15861/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142669v2/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_busy@basic@modeset:
-    - bat-apl-1:          [PASS][9] -> [DMESG-WARN][10] ([i915#12918]) +1 other test dmesg-warn
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15861/bat-apl-1/igt@kms_busy@basic@modeset.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142669v2/bat-apl-1/igt@kms_busy@basic@modeset.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         [PASS][11] -> [SKIP][12] ([i915#9197]) +3 other tests skip
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15861/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142669v2/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live:
-    - fi-skl-6600u:       [INCOMPLETE][13] ([i915#13050]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15861/fi-skl-6600u/igt@i915_selftest@live.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142669v2/fi-skl-6600u/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@gt_timelines:
-    - fi-skl-6600u:       [INCOMPLETE][15] -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15861/fi-skl-6600u/igt@i915_selftest@live@gt_timelines.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142669v2/fi-skl-6600u/igt@i915_selftest@live@gt_timelines.html
-
-  * igt@i915_selftest@live@workarounds:
-    - {bat-arls-6}:       [ABORT][17] ([i915#12061]) -> [PASS][18] +1 other test pass
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15861/bat-arls-6/igt@i915_selftest@live@workarounds.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142669v2/bat-arls-6/igt@i915_selftest@live@workarounds.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12903]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12903
-  [i915#12918]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12918
-  [i915#13050]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13050
-  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
+total: 0 errors, 3 warnings, 0 checks, 93 lines checked
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_15861 -> Patchwork_142669v2
-
-  CI-20190529: 20190529
-  CI_DRM_15861: 561947cbde53a2d22434977709610f42e4f0229b @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8160: 4f10d98c56498ab29445ae0b06aab6f5a8ec2eca @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_142669v2: 561947cbde53a2d22434977709610f42e4f0229b @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142669v2/index.html
