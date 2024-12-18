@@ -2,29 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED3869F6BBF
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2024 18:00:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 33CC29F6C6E
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Dec 2024 18:39:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E5D810EC29;
-	Wed, 18 Dec 2024 17:00:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBF9910E205;
+	Wed, 18 Dec 2024 17:39:16 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S1qprgWi";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A56B10EC2A;
- Wed, 18 Dec 2024 17:00:56 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F0AB10E343
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Dec 2024 17:39:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1734543555; x=1766079555;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=V38Q0RrCRVK4SAI6eRyWmESfEFKhreBB5DuEsSxJRec=;
+ b=S1qprgWiKHy88M5lV1Rr21ug730J9MIc0GTt/plqJYqyyxowElcOQXYR
+ pwD9rjyZ38yBIAZmFof/2Isgl0V1nWm/K1js4lJgFgOnHIQQ4dAV+Iryg
+ kYpz2cOTOJCzi62nNa/mp1fdrC7Gf01CFFiWzd7B267GXxKtZTpnKjgr3
+ 7pDesdyeeamErpnfz0g1Puphz8+O4r2MkCHnZu0f/jgIO+JRqbGu6DNaS
+ ZOdW7nUtXQ7JGuHnt0hW33Xxbxsos7mtE7t//DTeTHQEwiJSiBx4e/5pP
+ OJyBSPpG5qH8NsNgqV9wDKh922mT/oG46Cfs6KBD/K+UuQgfEHi4Sp75b Q==;
+X-CSE-ConnectionGUID: 1f5gAg1JQ1uNZDeNyv/PZw==
+X-CSE-MsgGUID: tbHn+dtURLyEnVuVLw0fHw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11290"; a="22619188"
+X-IronPort-AV: E=Sophos;i="6.12,245,1728975600"; d="scan'208";a="22619188"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Dec 2024 09:36:53 -0800
+X-CSE-ConnectionGUID: BcqX9e2UTim8/lGsopzPug==
+X-CSE-MsgGUID: dSPdusBFQCGTnB4hj7PI9A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,245,1728975600"; d="scan'208";a="98165356"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 18 Dec 2024 09:36:51 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 18 Dec 2024 19:36:50 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Subject: [PATCH 0/4] drm/i915: Drop 64bpp YUV formats for SDR planes and
+ improve tracepoints
+Date: Wed, 18 Dec 2024 19:36:46 +0200
+Message-ID: <20241218173650.19782-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_Display_Global_Histogram_?=
- =?utf-8?q?=28rev11=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arun R Murthy" <arun.r.murthy@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 18 Dec 2024 17:00:56 -0000
-Message-ID: <173454125610.96409.3945011705583228412@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241218-dpst-v7-0-81bfe7d08c2d@intel.com>
-In-Reply-To: <20241218-dpst-v7-0-81bfe7d08c2d@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,111 +64,29 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Series: Display Global Histogram (rev11)
-URL   : https://patchwork.freedesktop.org/series/135793/
-State : success
+Get rid of the 64bpp YUV formats on ICL+ SDR planes due to
+some weird underruns they're causing on TGL, and also bspec
+seems to be telling us to not use them either.
 
-== Summary ==
+Also included some improvements to the tracepoints
+that I used to hunt this down.
 
-CI Bug Log - changes from CI_DRM_15863 -> Patchwork_135793v11
-====================================================
+Ville Syrjälä (4):
+  drm/i915: Drop 64bpp YUV formats from ICL+ SDR planes
+  drm/i915: Drop the extra "plane" from tracpoints
+  drm/i915: Pass the plane state explicitly to tracpoints
+  drm/i915: Include pixel format in plane tracpoints
 
-Summary
--------
+ .../gpu/drm/i915/display/intel_atomic_plane.c |  4 +-
+ .../drm/i915/display/intel_display_trace.h    | 47 ++++++++++---------
+ .../drm/i915/display/skl_universal_plane.c    |  4 --
+ 3 files changed, 28 insertions(+), 27 deletions(-)
 
-  **SUCCESS**
+-- 
+2.45.2
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135793v11/index.html
-
-Participating hosts (45 -> 44)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_135793v11 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_module_load@load:
-    - fi-pnv-d510:        [PASS][1] -> [ABORT][2] ([i915#13203])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15863/fi-pnv-d510/igt@i915_module_load@load.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135793v11/fi-pnv-d510/igt@i915_module_load@load.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - bat-dg1-7:          [PASS][3] -> [FAIL][4] ([i915#12903])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15863/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135793v11/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
-    - bat-rpls-4:         [PASS][5] -> [FAIL][6] ([i915#12903])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15863/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135793v11/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live:
-    - bat-arls-5:         NOTRUN -> [ABORT][7] ([i915#12061])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135793v11/bat-arls-5/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arlh-3:         [PASS][8] -> [ABORT][9] ([i915#12061]) +1 other test abort
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15863/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135793v11/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-    - bat-arls-5:         [PASS][10] -> [ABORT][11] ([i915#12061])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15863/bat-arls-5/igt@i915_selftest@live@workarounds.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135793v11/bat-arls-5/igt@i915_selftest@live@workarounds.html
-    - bat-mtlp-6:         [PASS][12] -> [ABORT][13] ([i915#12061]) +1 other test abort
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15863/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135793v11/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         [PASS][14] -> [SKIP][15] ([i915#9197]) +3 other tests skip
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15863/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135793v11/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  
-#### Possible fixes ####
-
-  * igt@dmabuf@all-tests@dma_fence_chain:
-    - fi-bsw-nick:        [INCOMPLETE][16] ([i915#12904]) -> [PASS][17] +1 other test pass
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15863/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135793v11/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html
-
-  * igt@i915_selftest@live:
-    - bat-adlp-9:         [ABORT][18] ([i915#9413]) -> [PASS][19] +1 other test pass
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15863/bat-adlp-9/igt@i915_selftest@live.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135793v11/bat-adlp-9/igt@i915_selftest@live.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12903]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12903
-  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
-  [i915#13203]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13203
-  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
-  [i915#9413]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413
-
-
-Build changes
--------------
-
-  * IGT: IGT_8162 -> IGTPW_12300
-  * Linux: CI_DRM_15863 -> Patchwork_135793v11
-
-  CI-20190529: 20190529
-  CI_DRM_15863: 78526dfb8799485890dae3877fea308e9501879c @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGTPW_12300: 042d613cbaf4c77da980322b1164c448a0aa40cd @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8162: 8bce68b09c45753b5237edc2f65497969a05f881 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_135793v11: 78526dfb8799485890dae3877fea308e9501879c @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_135793v11/index.html
