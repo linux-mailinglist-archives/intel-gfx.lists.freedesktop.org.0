@@ -1,58 +1,66 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E29439F8211
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2024 18:38:46 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C94DF9F82F0
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2024 19:10:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8DC9510ED71;
-	Thu, 19 Dec 2024 17:38:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6881010ED8B;
+	Thu, 19 Dec 2024 18:10:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MsKxI+NR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SOSpyfZW";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0424F10ED71
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2024 17:38:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D32510ED8B;
+ Thu, 19 Dec 2024 18:10:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734629925; x=1766165925;
- h=from:to:cc:subject:date:message-id:mime-version:
+ t=1734631807; x=1766167807;
+ h=message-id:date:mime-version:from:to:cc:subject:
  content-transfer-encoding;
- bh=EWTO5trjaSXVe+uB753xkYoTq5905kaXtn0VWvcUjtI=;
- b=MsKxI+NRA8KP5qTP0tcBaUBWNqMym6ePlWzTtv4nuDrIxhey1eiL2O2e
- 7uR21/I8oM/kN98QZ46fPCkvfn6NLegm6qHoGTS0Pih3jHWgpRd8snlOj
- N1D/G8tvzEqxDDUDpZ553peknvfz/vjtF+lZxYin2+drRV9uTQ3xF5+XJ
- HZUVe94MnPNy/ot+f9t4rDuAD7VAYC/vvK+MJdsNqqdfEcgCVDFPetRHL
- 27zQAf42DAjv6sSTEqQ2faPkySEgtGwFCwQE2mcmxsnUBJoqwgJS3Ookr
- mxK0GgMJZLMxK+e9QMv/GXVQ8qnutX44z27RZoQjE2BeY5ocRPnO84aVt w==;
-X-CSE-ConnectionGUID: mz+n/IHMTG6zIrdA2Z1osQ==
-X-CSE-MsgGUID: EbAOLdeQRpWEstcXpdnffA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11291"; a="34877503"
-X-IronPort-AV: E=Sophos;i="6.12,248,1728975600"; d="scan'208";a="34877503"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2024 09:38:44 -0800
-X-CSE-ConnectionGUID: wtawq5wgRJKb11BW1Pz7uw==
-X-CSE-MsgGUID: iWfPR6ucRnaSoyDVxnSXsQ==
+ bh=ZPMk7Ft/Zc7XyDnuYJbj9B6KzeSSI77pqZT6TqTGymY=;
+ b=SOSpyfZWBU5RPDs6j52v7xkQt+w6kJpQIhSMKwI9JIQ9EtT40EkJ9GTs
+ qhT1y99/Atqtm5riRtW9vVjzDaZPgSG9La5puv9oUFLJR1Y6SeUCX3jMv
+ SMQdwNXeAgHhKUGHOu3CLO5sicEl2izzmbZt0OXTDqbBuKXCxgj4Q8mI3
+ zYGhGw308IkTvGT/HWkUn1lTVPhxm42sOeIChxPR2Cc07HGRuDQwQzYwO
+ ph4BfWJZGjRZnDuDcUlSUeLQr1zUfcIJfmPFqOmAM6pdhAC3H5dQunJ8i
+ 2e1Vvbndop3wZNzfbTnw6C9SqH9u94XHwE6stVrcY/hphRYhu5pEn2npc g==;
+X-CSE-ConnectionGUID: JjLpmH0KQ+S50HYRu7fz4g==
+X-CSE-MsgGUID: yb/kyIsFS8GGZgvgC+2rhg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11291"; a="35325585"
+X-IronPort-AV: E=Sophos;i="6.12,248,1728975600"; d="scan'208";a="35325585"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2024 10:10:06 -0800
+X-CSE-ConnectionGUID: jQliL760SrCQ2Xf+s2e6Kg==
+X-CSE-MsgGUID: nqP/jU6/R8qwam9dJXhZ8Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,248,1728975600"; d="scan'208";a="98464765"
-Received: from rvodapal-desk.iind.intel.com ([10.145.162.163])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2024 09:38:41 -0800
-From: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: balasubramani.vivekanandan@intel.com, matthew.d.roper@intel.com,
- lucas.demarchi@intel.com, gustavo.sousa@intel.com,
- clinton.a.taylor@intel.com, matthew.s.atwood@intel.com,
- dnyaneshwar.bhadane@intel.com, haridhar.kalvala@intel.com,
- shekhar.chauhan@intel.com
-Subject: [PATCH] drm/i915/display: Don't program DBUF_CTL tracker state service
-Date: Thu, 19 Dec 2024 23:06:36 +0530
-Message-Id: <20241219173636.3377955-1-ravi.kumar.vodapalli@intel.com>
-X-Mailer: git-send-email 2.25.1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="129238853"
+Received: from oandoniu-mobl3.ger.corp.intel.com (HELO [10.245.245.64])
+ ([10.245.245.64])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2024 10:10:02 -0800
+Message-ID: <d0763051-87b7-483e-89e0-a9f993383450@linux.intel.com>
+Date: Thu, 19 Dec 2024 19:10:00 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Simona Vetter <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
+Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Oded Gabbay
+ <ogabbay@kernel.org>, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+Subject: [PULL] drm-misc-fixes
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,42 +77,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-While display initialization along with MBUS credits programming
-DBUF_CTL register is also programmed, as a part of it the tracker
-state service field is also set to 0x8 value when default value is
-other than 0x8 which are for platforms past display version 13.
-For remaining platforms the default value is already 0x8 so don't
-program them.
+Hi Dave, Simona,
 
-Bspec: 49213
-Signed-off-by: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_power.c | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
+(Second?) last pull request for the year. Happy holidays!
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index 34465d56def0..98db721cba33 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -1126,9 +1126,6 @@ static void gen12_dbuf_slices_config(struct intel_display *display)
- {
- 	enum dbuf_slice slice;
- 
--	if (display->platform.alderlake_p)
--		return;
--
- 	for_each_dbuf_slice(display, slice)
- 		intel_de_rmw(display, DBUF_CTL_S(slice),
- 			     DBUF_TRACKER_STATE_SERVICE_MASK,
-@@ -1681,7 +1678,7 @@ static void icl_display_core_init(struct intel_display *display,
- 	/* 4. Enable CDCLK. */
- 	intel_cdclk_init_hw(display);
- 
--	if (DISPLAY_VER(display) >= 12)
-+	if (DISPLAY_VER(display) == 12)
- 		gen12_dbuf_slices_config(display);
- 
- 	/* 5. Enable DBUF. */
--- 
-2.25.1
+Cheers,
+~Maarten
 
+drm-misc-fixes-2024-12-19:
+drm-misc-fixes for v6.13-rc4:
+- udma-buf fixes related to sealing.
+- dma-buf build warning fix when debugfs is not enabled.
+- Assorted drm/panel fixes.
+- Correct error return in drm_dp_tunnel_mgr_create.
+- Fix even more divide by zero in drm_mode_vrefresh.
+- Fix FBDEV dependencies in Kconfig.
+- Documentation fix for drm_sched_fini.
+- IVPU NULL pointer, memory leak and WARN fix.
+The following changes since commit 471f3a21addd4e5f170ab1364f11c3e4823e687d:
+
+   Merge tag 'drm-misc-fixes-2024-12-05' of 
+https://gitlab.freedesktop.org/drm/misc/kernel into drm-fixes 
+(2024-12-06 08:40:47 +1000)
+
+are available in the Git repository at:
+
+   https://gitlab.freedesktop.org/drm/misc/kernel.git 
+tags/drm-misc-fixes-2024-12-19
+
+for you to fetch changes up to 1b684ca15f9d78f45de3cdba7e19611387e16aa7:
+
+   drm/sched: Fix drm_sched_fini() docu generation (2024-12-19 16:03:56 
++0100)
+
+----------------------------------------------------------------
+drm-misc-fixes for v6.13-rc4:
+- udma-buf fixes related to sealing.
+- dma-buf build warning fix when debugfs is not enabled.
+- Assorted drm/panel fixes.
+- Correct error return in drm_dp_tunnel_mgr_create.
+- Fix even more divide by zero in drm_mode_vrefresh.
+- Fix FBDEV dependencies in Kconfig.
+- Documentation fix for drm_sched_fini.
+- IVPU NULL pointer, memory leak and WARN fix.
+
+----------------------------------------------------------------
+Arnd Bergmann (2):
+       drm: rework FB_CORE dependency
+       drm: rework FB_CORE dependency
+
+Bagas Sanjaya (1):
+       drm/sched: Fix drm_sched_fini() docu generation
+
+Danilo Krummrich (1):
+       MAINTAINERS: align Danilo's maintainer entries
+
+Jacek Lawrynowicz (3):
+       accel/ivpu: Fix general protection fault in ivpu_bo_list()
+       accel/ivpu: Fix memory leak in ivpu_mmu_reserved_context_init()
+       accel/ivpu: Fix WARN in ivpu_ipc_send_receive_internal()
+
+Jann Horn (3):
+       udmabuf: fix racy memfd sealing check
+       udmabuf: also check for F_SEAL_FUTURE_WRITE
+       udmabuf: fix memory leak on last export_udmabuf() error path
+
+Krzysztof Karas (1):
+       drm/display: use ERR_PTR on DP tunnel manager creation fail
+
+Marek Vasut (1):
+       drm/panel: st7701: Add prepare_prev_first flag to drm_panel
+
+Michael Trimarchi (1):
+       drm/panel: synaptics-r63353: Fix regulator unbalance
+
+T.J. Mercier (1):
+       dma-buf: Fix __dma_buf_debugfs_list_del argument for !CONFIG_DEBUG_FS
+
+Thomas Zimmermann (2):
+       fbdev: Fix recursive dependencies wrt BACKLIGHT_CLASS_DEVICE
+       drm/fbdev: Select FB_CORE dependency for fbdev on DMA and TTM
+
+Ville Syrjälä (1):
+       drm/modes: Avoid divide by zero harder in drm_mode_vrefresh()
+
+Yang Yingliang (1):
+       drm/panel: novatek-nt35950: fix return value check in nt35950_probe()
+
+Zhang Zekun (1):
+       drm/panel: himax-hx83102: Add a check to prevent NULL pointer 
+dereference
+
+  MAINTAINERS                                    |  4 +--
+  arch/powerpc/configs/pmac32_defconfig          |  1 +
+  arch/powerpc/configs/ppc6xx_defconfig          |  1 +
+  drivers/accel/ivpu/ivpu_gem.c                  |  2 +-
+  drivers/accel/ivpu/ivpu_mmu_context.c          | 10 ++++--
+  drivers/accel/ivpu/ivpu_pm.c                   |  2 +-
+  drivers/auxdisplay/Kconfig                     |  2 +-
+  drivers/dma-buf/dma-buf.c                      |  2 +-
+  drivers/dma-buf/udmabuf.c                      | 43 
+++++++++++++++++----------
+  drivers/gpu/drm/Kconfig                        |  4 +++
+  drivers/gpu/drm/display/drm_dp_tunnel.c        | 10 +++---
+  drivers/gpu/drm/drm_modes.c                    | 11 ++++---
+  drivers/gpu/drm/panel/panel-himax-hx83102.c    |  2 ++
+  drivers/gpu/drm/panel/panel-novatek-nt35950.c  |  4 +--
+  drivers/gpu/drm/panel/panel-sitronix-st7701.c  |  1 +
+  drivers/gpu/drm/panel/panel-synaptics-r63353.c |  2 +-
+  drivers/gpu/drm/scheduler/sched_main.c         |  3 +-
+  drivers/macintosh/Kconfig                      |  1 +
+  drivers/staging/fbtft/Kconfig                  |  1 +
+  drivers/video/fbdev/Kconfig                    | 18 ++++++++---
+  drivers/video/fbdev/core/Kconfig               |  3 +-
+  21 files changed, 82 insertions(+), 45 deletions(-)
