@@ -1,59 +1,57 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id F15AC9F8722
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2024 22:35:45 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59E1B9F8750
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2024 22:49:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9AEAF10EDDC;
-	Thu, 19 Dec 2024 21:35:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD7A910EDE7;
+	Thu, 19 Dec 2024 21:49:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I+l1TII4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Vv/eziG8";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C24710EDE5;
- Thu, 19 Dec 2024 21:35:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 468AD10E2B6;
+ Thu, 19 Dec 2024 21:49:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734644143; x=1766180143;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=EO3CxJJ1KzVtlMRxzHQs9hNiHRjvg26vi9kd2w1oPjM=;
- b=I+l1TII4A0/tikRF3MNvYrTjunFQGihU0L7Ed1rYetnO+TpgiYPcr16h
- YqCbGb/AKHPuzUy2828SL/zEqSKImnGxliPe8orQ8a8w3qrieFTHS2X80
- pyOfNNkV+92VDfdU4q4Idp88Kjgjyo71+GYznf5BEaHWI+KlsAyBNtyCm
- 3VA3bWCeHVmvhPMmMTAKQWkNBLrMvp5a957dBsT5VXhiGrFd98c5toH4L
- cJFPXdtiAeqW5UAhs/u3uBNIzbq5n4x0W+z1q+NeY6RpKvvDVYCNkXmTF
- V0wv94zFytqSaCa7j46eZQZA5BoqA97zOllncVqxAlPA9Ue2G8++5Zim0 A==;
-X-CSE-ConnectionGUID: MpwOxJeMQo+WzwkBZLarWA==
-X-CSE-MsgGUID: T66SM9YnQYGkCkPL63XCcw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11291"; a="52590421"
-X-IronPort-AV: E=Sophos;i="6.12,248,1728975600"; d="scan'208";a="52590421"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2024 13:35:43 -0800
-X-CSE-ConnectionGUID: ll1z3+ZATAG/snUFevjfKg==
-X-CSE-MsgGUID: ZzeY7ti/RkKvIcieZnWP/Q==
+ t=1734644976; x=1766180976;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=AqZx55eoiICB9GO8Mz3XryDy/ryNrTSlvrMChuQIqbg=;
+ b=Vv/eziG8n8/b61PZNpNDdg/gddsze7aJa9lgPJeSwTHTuXRJg4O0exC+
+ JOtU0UweXUUtGpwhdlplBw/9AqedlnFfrtmoVau/zt4O1gqHqN7XUgJRX
+ NlY57GWRZPTLYA9DBAoYdYYkYEboiLLYk1B81loRlriSkXn6Wz5tsQcqj
+ rqCvLBzaPmWXha9WyGvazrBikJG/jNBNSzV093s+ZbjhAxZY+A8/0a8Ap
+ 6IrC8qbwPvA4Q25WOR+gi+z4qo5SZt8qooI88gN8d/rgsbnJFGSiIrWiH
+ W3XAyk1YR3fV+KPZQNIKL7miBvvY3A8ejKS/kTRbrYu2MYrQQSPlRPRhM w==;
+X-CSE-ConnectionGUID: 0fEDekGLQNKs2/1UyKl6tw==
+X-CSE-MsgGUID: b4BwF//8TxOXMSyzRuGrug==
+X-IronPort-AV: E=McAfee;i="6700,10204,11291"; a="52710908"
+X-IronPort-AV: E=Sophos;i="6.12,248,1728975600"; d="scan'208";a="52710908"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2024 13:49:35 -0800
+X-CSE-ConnectionGUID: w0aXwVA4RsmdF6gxgaeriQ==
+X-CSE-MsgGUID: qvaVXN7DTxGepOLTEBYhNg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,248,1728975600"; d="scan'208";a="129146356"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.207])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2024 13:35:41 -0800
-From: Jani Nikula <jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="98150116"
+Received: from ldmartin-desk2.corp.intel.com (HELO
+ gjsousa-mobl2.corp.amr.intel.com) ([10.125.108.53])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2024 13:49:34 -0800
+From: Gustavo Sousa <gustavo.sousa@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, jani.nikula@intel.com, imre.deak@intel.com
-Subject: [PATCH v2 16/16] drm/i915/dp: compute config for 128b/132b SST w/o DSC
-Date: Thu, 19 Dec 2024 23:34:05 +0200
-Message-Id: <b239079a989ce11d60e9467cb1125bc2033ae0bd.1734643485.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1734643485.git.jani.nikula@intel.com>
-References: <cover.1734643485.git.jani.nikula@intel.com>
+Cc: =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Jani Nikula <jani.nikula@intel.com>
+Subject: [PATCH 0/3] drm/i915/display: Reduce global state funcs boilerplate
+Date: Thu, 19 Dec 2024 18:48:35 -0300
+Message-ID: <20241219214909.104869-1-gustavo.sousa@intel.com>
+X-Mailer: git-send-email 2.47.1
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,93 +68,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Enable basic 128b/132b SST functionality without compression. Reuse
-intel_dp_mtp_tu_compute_config() to figure out the TU after we've
-determined we need to use an UHBR rate.
+If we look at how the members of struct intel_global_state_funcs, we see
+a common pattern repeating itself. We can reduce such boilerplate by
+moving the common implementation to the generic global state code. This
+series proposes that.
 
-It's slightly complicated as the M/N computation is done in different
-places in MST and SST paths, so we need to avoid trashing the values
-later for UHBR.
+Gustavo Sousa (3):
+  drm/i915/display: Do not assume zero offset when duplicating global
+    state
+  drm/i915/display: Add infra to reduce global state funcs boilerplate
+  drm/i915/display: Use INTEL_GLOBAL_STATE_DEFAULTS
 
-If uncompressed UHBR fails, we drop to compressed non-UHBR, which is
-quite likely to fail as well. We still lack 128b/132b SST+DSC.
+ drivers/gpu/drm/i915/display/intel_bw.c       | 21 +---------
+ drivers/gpu/drm/i915/display/intel_cdclk.c    | 16 +++-----
+ .../gpu/drm/i915/display/intel_global_state.c | 41 ++++++++++++++++++-
+ .../gpu/drm/i915/display/intel_global_state.h | 15 +++++++
+ drivers/gpu/drm/i915/display/intel_pmdemand.c | 21 +---------
+ drivers/gpu/drm/i915/display/skl_watermark.c  | 20 +--------
+ 6 files changed, 63 insertions(+), 71 deletions(-)
 
-We need mst_master_transcoder also for 128b/132b SST. Use cpu_transcoder
-directly. Enhanced framing is "don't care" for 128b/132b link.
-
-v2: mst_master_transcoder, enhanced framing (Imre)
-
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 34 +++++++++++++++++--------
- 1 file changed, 24 insertions(+), 10 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index fba3af338280..d14a42f02ba8 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2525,8 +2525,8 @@ intel_dp_compute_config_limits(struct intel_dp *intel_dp,
- 	limits->min_rate = intel_dp_min_link_rate(intel_dp);
- 	limits->max_rate = intel_dp_max_link_rate(intel_dp);
- 
--	/* FIXME 128b/132b SST support missing */
--	if (!is_mst)
-+	/* FIXME 128b/132b SST+DSC support missing */
-+	if (!is_mst && dsc)
- 		limits->max_rate = min(limits->max_rate, 810000);
- 	limits->min_rate = min(limits->min_rate, limits->max_rate);
- 
-@@ -2640,6 +2640,13 @@ intel_dp_compute_link_config(struct intel_encoder *encoder,
- 		 */
- 		ret = intel_dp_compute_link_config_wide(intel_dp, pipe_config,
- 							conn_state, &limits);
-+		if (!ret && intel_dp_is_uhbr(pipe_config))
-+			ret = intel_dp_mtp_tu_compute_config(intel_dp,
-+							     pipe_config,
-+							     pipe_config->pipe_bpp,
-+							     pipe_config->pipe_bpp,
-+							     conn_state,
-+							     0, false);
- 		if (ret)
- 			dsc_needed = true;
- 	}
-@@ -3148,8 +3155,13 @@ intel_dp_compute_config(struct intel_encoder *encoder,
- 	pipe_config->limited_color_range =
- 		intel_dp_limited_color_range(pipe_config, conn_state);
- 
--	pipe_config->enhanced_framing =
--		drm_dp_enhanced_frame_cap(intel_dp->dpcd);
-+	if (intel_dp_is_uhbr(pipe_config)) {
-+		/* 128b/132b SST also needs this */
-+		pipe_config->mst_master_transcoder = pipe_config->cpu_transcoder;
-+	} else {
-+		pipe_config->enhanced_framing =
-+			drm_dp_enhanced_frame_cap(intel_dp->dpcd);
-+	}
- 
- 	if (pipe_config->dsc.compression_enable)
- 		link_bpp_x16 = pipe_config->dsc.compressed_bpp_x16;
-@@ -3180,12 +3192,14 @@ intel_dp_compute_config(struct intel_encoder *encoder,
- 
- 	intel_dp_audio_compute_config(encoder, pipe_config, conn_state);
- 
--	intel_link_compute_m_n(link_bpp_x16,
--			       pipe_config->lane_count,
--			       adjusted_mode->crtc_clock,
--			       pipe_config->port_clock,
--			       intel_dp_bw_fec_overhead(pipe_config->fec_enable),
--			       &pipe_config->dp_m_n);
-+	if (!intel_dp_is_uhbr(pipe_config)) {
-+		intel_link_compute_m_n(link_bpp_x16,
-+				       pipe_config->lane_count,
-+				       adjusted_mode->crtc_clock,
-+				       pipe_config->port_clock,
-+				       intel_dp_bw_fec_overhead(pipe_config->fec_enable),
-+				       &pipe_config->dp_m_n);
-+	}
- 
- 	/* FIXME: abstract this better */
- 	if (pipe_config->splitter.enable)
 -- 
-2.39.5
+2.47.1
 
