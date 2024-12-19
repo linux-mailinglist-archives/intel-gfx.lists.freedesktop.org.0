@@ -1,67 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C94DF9F82F0
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2024 19:10:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B1429F836F
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2024 19:41:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6881010ED8B;
-	Thu, 19 Dec 2024 18:10:07 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SOSpyfZW";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id ECFDA10E0C2;
+	Thu, 19 Dec 2024 18:41:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D32510ED8B;
- Thu, 19 Dec 2024 18:10:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734631807; x=1766167807;
- h=message-id:date:mime-version:from:to:cc:subject:
- content-transfer-encoding;
- bh=ZPMk7Ft/Zc7XyDnuYJbj9B6KzeSSI77pqZT6TqTGymY=;
- b=SOSpyfZWBU5RPDs6j52v7xkQt+w6kJpQIhSMKwI9JIQ9EtT40EkJ9GTs
- qhT1y99/Atqtm5riRtW9vVjzDaZPgSG9La5puv9oUFLJR1Y6SeUCX3jMv
- SMQdwNXeAgHhKUGHOu3CLO5sicEl2izzmbZt0OXTDqbBuKXCxgj4Q8mI3
- zYGhGw308IkTvGT/HWkUn1lTVPhxm42sOeIChxPR2Cc07HGRuDQwQzYwO
- ph4BfWJZGjRZnDuDcUlSUeLQr1zUfcIJfmPFqOmAM6pdhAC3H5dQunJ8i
- 2e1Vvbndop3wZNzfbTnw6C9SqH9u94XHwE6stVrcY/hphRYhu5pEn2npc g==;
-X-CSE-ConnectionGUID: JjLpmH0KQ+S50HYRu7fz4g==
-X-CSE-MsgGUID: yb/kyIsFS8GGZgvgC+2rhg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11291"; a="35325585"
-X-IronPort-AV: E=Sophos;i="6.12,248,1728975600"; d="scan'208";a="35325585"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2024 10:10:06 -0800
-X-CSE-ConnectionGUID: jQliL760SrCQ2Xf+s2e6Kg==
-X-CSE-MsgGUID: nqP/jU6/R8qwam9dJXhZ8Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="129238853"
-Received: from oandoniu-mobl3.ger.corp.intel.com (HELO [10.245.245.64])
- ([10.245.245.64])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2024 10:10:02 -0800
-Message-ID: <d0763051-87b7-483e-89e0-a9f993383450@linux.intel.com>
-Date: Thu, 19 Dec 2024 19:10:00 +0100
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1CD2610E0C2;
+ Thu, 19 Dec 2024 18:41:04 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: Simona Vetter <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
-Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Lucas De Marchi <lucas.demarchi@intel.com>, Oded Gabbay
- <ogabbay@kernel.org>, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Subject: [PULL] drm-misc-fixes
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Don?=
+ =?utf-8?q?=27t_program_DBUF=5FCTL_tracker_state_service_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ravi Kumar Vodapalli" <ravi.kumar.vodapalli@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 19 Dec 2024 18:41:04 -0000
+Message-ID: <173463366411.503462.4341795674843299563@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241219173636.3377955-1-ravi.kumar.vodapalli@intel.com>
+In-Reply-To: <20241219173636.3377955-1-ravi.kumar.vodapalli@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,120 +37,105 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Simona,
+== Series Details ==
 
-(Second?) last pull request for the year. Happy holidays!
+Series: drm/i915/display: Don't program DBUF_CTL tracker state service (rev2)
+URL   : https://patchwork.freedesktop.org/series/142744/
+State : success
 
-Cheers,
-~Maarten
+== Summary ==
 
-drm-misc-fixes-2024-12-19:
-drm-misc-fixes for v6.13-rc4:
-- udma-buf fixes related to sealing.
-- dma-buf build warning fix when debugfs is not enabled.
-- Assorted drm/panel fixes.
-- Correct error return in drm_dp_tunnel_mgr_create.
-- Fix even more divide by zero in drm_mode_vrefresh.
-- Fix FBDEV dependencies in Kconfig.
-- Documentation fix for drm_sched_fini.
-- IVPU NULL pointer, memory leak and WARN fix.
-The following changes since commit 471f3a21addd4e5f170ab1364f11c3e4823e687d:
+CI Bug Log - changes from CI_DRM_15873 -> Patchwork_142744v2
+====================================================
 
-   Merge tag 'drm-misc-fixes-2024-12-05' of 
-https://gitlab.freedesktop.org/drm/misc/kernel into drm-fixes 
-(2024-12-06 08:40:47 +1000)
+Summary
+-------
 
-are available in the Git repository at:
+  **SUCCESS**
 
-   https://gitlab.freedesktop.org/drm/misc/kernel.git 
-tags/drm-misc-fixes-2024-12-19
+  No regressions found.
 
-for you to fetch changes up to 1b684ca15f9d78f45de3cdba7e19611387e16aa7:
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142744v2/index.html
 
-   drm/sched: Fix drm_sched_fini() docu generation (2024-12-19 16:03:56 
-+0100)
+Participating hosts (45 -> 44)
+------------------------------
 
-----------------------------------------------------------------
-drm-misc-fixes for v6.13-rc4:
-- udma-buf fixes related to sealing.
-- dma-buf build warning fix when debugfs is not enabled.
-- Assorted drm/panel fixes.
-- Correct error return in drm_dp_tunnel_mgr_create.
-- Fix even more divide by zero in drm_mode_vrefresh.
-- Fix FBDEV dependencies in Kconfig.
-- Documentation fix for drm_sched_fini.
-- IVPU NULL pointer, memory leak and WARN fix.
+  Missing    (1): fi-snb-2520m 
 
-----------------------------------------------------------------
-Arnd Bergmann (2):
-       drm: rework FB_CORE dependency
-       drm: rework FB_CORE dependency
+Known issues
+------------
 
-Bagas Sanjaya (1):
-       drm/sched: Fix drm_sched_fini() docu generation
+  Here are the changes found in Patchwork_142744v2 that come from known issues:
 
-Danilo Krummrich (1):
-       MAINTAINERS: align Danilo's maintainer entries
+### IGT changes ###
 
-Jacek Lawrynowicz (3):
-       accel/ivpu: Fix general protection fault in ivpu_bo_list()
-       accel/ivpu: Fix memory leak in ivpu_mmu_reserved_context_init()
-       accel/ivpu: Fix WARN in ivpu_ipc_send_receive_internal()
+#### Issues hit ####
 
-Jann Horn (3):
-       udmabuf: fix racy memfd sealing check
-       udmabuf: also check for F_SEAL_FUTURE_WRITE
-       udmabuf: fix memory leak on last export_udmabuf() error path
+  * igt@dmabuf@all-tests:
+    - bat-apl-1:          [PASS][1] -> [INCOMPLETE][2] ([i915#12904]) +1 other test incomplete
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15873/bat-apl-1/igt@dmabuf@all-tests.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142744v2/bat-apl-1/igt@dmabuf@all-tests.html
 
-Krzysztof Karas (1):
-       drm/display: use ERR_PTR on DP tunnel manager creation fail
+  * igt@i915_selftest@live@gt_mocs:
+    - bat-twl-2:          [PASS][3] -> [ABORT][4] ([i915#12919]) +1 other test abort
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15873/bat-twl-2/igt@i915_selftest@live@gt_mocs.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142744v2/bat-twl-2/igt@i915_selftest@live@gt_mocs.html
 
-Marek Vasut (1):
-       drm/panel: st7701: Add prepare_prev_first flag to drm_panel
+  * igt@i915_selftest@live@workarounds:
+    - bat-mtlp-6:         [PASS][5] -> [ABORT][6] ([i915#12061]) +1 other test abort
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15873/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142744v2/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
 
-Michael Trimarchi (1):
-       drm/panel: synaptics-r63353: Fix regulator unbalance
+  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
+    - bat-dg2-11:         [PASS][7] -> [SKIP][8] ([i915#9197]) +3 other tests skip
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15873/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142744v2/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
 
-T.J. Mercier (1):
-       dma-buf: Fix __dma_buf_debugfs_list_del argument for !CONFIG_DEBUG_FS
+  
+#### Possible fixes ####
 
-Thomas Zimmermann (2):
-       fbdev: Fix recursive dependencies wrt BACKLIGHT_CLASS_DEVICE
-       drm/fbdev: Select FB_CORE dependency for fbdev on DMA and TTM
+  * igt@i915_selftest@live@workarounds:
+    - bat-arlh-2:         [ABORT][9] ([i915#12061]) -> [PASS][10] +1 other test pass
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15873/bat-arlh-2/igt@i915_selftest@live@workarounds.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142744v2/bat-arlh-2/igt@i915_selftest@live@workarounds.html
+    - {bat-arls-6}:       [ABORT][11] ([i915#12061]) -> [PASS][12] +1 other test pass
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15873/bat-arls-6/igt@i915_selftest@live@workarounds.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142744v2/bat-arls-6/igt@i915_selftest@live@workarounds.html
 
-Ville Syrjälä (1):
-       drm/modes: Avoid divide by zero harder in drm_mode_vrefresh()
+  
+#### Warnings ####
 
-Yang Yingliang (1):
-       drm/panel: novatek-nt35950: fix return value check in nt35950_probe()
+  * igt@kms_busy@basic@flip:
+    - fi-cfl-8109u:       [DMESG-WARN][13] ([i915#11621]) -> [DMESG-WARN][14] ([i915#11621] / [i915#1982]) +1 other test dmesg-warn
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15873/fi-cfl-8109u/igt@kms_busy@basic@flip.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142744v2/fi-cfl-8109u/igt@kms_busy@basic@flip.html
 
-Zhang Zekun (1):
-       drm/panel: himax-hx83102: Add a check to prevent NULL pointer 
-dereference
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
 
-  MAINTAINERS                                    |  4 +--
-  arch/powerpc/configs/pmac32_defconfig          |  1 +
-  arch/powerpc/configs/ppc6xx_defconfig          |  1 +
-  drivers/accel/ivpu/ivpu_gem.c                  |  2 +-
-  drivers/accel/ivpu/ivpu_mmu_context.c          | 10 ++++--
-  drivers/accel/ivpu/ivpu_pm.c                   |  2 +-
-  drivers/auxdisplay/Kconfig                     |  2 +-
-  drivers/dma-buf/dma-buf.c                      |  2 +-
-  drivers/dma-buf/udmabuf.c                      | 43 
-++++++++++++++++----------
-  drivers/gpu/drm/Kconfig                        |  4 +++
-  drivers/gpu/drm/display/drm_dp_tunnel.c        | 10 +++---
-  drivers/gpu/drm/drm_modes.c                    | 11 ++++---
-  drivers/gpu/drm/panel/panel-himax-hx83102.c    |  2 ++
-  drivers/gpu/drm/panel/panel-novatek-nt35950.c  |  4 +--
-  drivers/gpu/drm/panel/panel-sitronix-st7701.c  |  1 +
-  drivers/gpu/drm/panel/panel-synaptics-r63353.c |  2 +-
-  drivers/gpu/drm/scheduler/sched_main.c         |  3 +-
-  drivers/macintosh/Kconfig                      |  1 +
-  drivers/staging/fbtft/Kconfig                  |  1 +
-  drivers/video/fbdev/Kconfig                    | 18 ++++++++---
-  drivers/video/fbdev/core/Kconfig               |  3 +-
-  21 files changed, 82 insertions(+), 45 deletions(-)
+  [i915#11621]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11621
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
+  [i915#12919]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12919
+  [i915#1982]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982
+  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_15873 -> Patchwork_142744v2
+
+  CI-20190529: 20190529
+  CI_DRM_15873: a5b4c40929f3263a92e34e3f6b3c3c0de57e0e58 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8166: 197cca38ae5c494511843112d43351aeab2314be @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_142744v2: a5b4c40929f3263a92e34e3f6b3c3c0de57e0e58 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142744v2/index.html
