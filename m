@@ -2,57 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA2409F78E5
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2024 10:50:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A805A9F78FE
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2024 10:52:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE28910E47A;
-	Thu, 19 Dec 2024 09:50:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 492C510E2A3;
+	Thu, 19 Dec 2024 09:52:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bRQFOKUg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mmjTS1wZ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8DF4E10E47A
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2024 09:50:07 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C1DF010E2A3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2024 09:52:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734601808; x=1766137808;
+ t=1734601976; x=1766137976;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=L4f2GvSrXhfB1p/pC9o9BKj0gk5dgfEtIBSOqfoIQ2U=;
- b=bRQFOKUg2Pn9E6lMXGQ5OPm11e8NRzu3LFsiAIB0fDcS1JJ5LCpOcsbP
- Q9zRCgoHHCT9LgAPklWpuuxb78eIk/gwT38O4rFJ9WcOjyJm/u8WjXpwj
- wALeMFmKzdymk2TAXSIeqH1tJUGpCxia2DFtrTbjy1F2m3aaKk7p6HsU2
- 2lYkVpSaGIrORReQB9Y2nda+YqAWsAwj4lOKUOhKIIiAauRkMZzFndGnM
- +NPYOC+Dpnrplt+5f4EsyBaBoDr52T2mU0sd5fO2DQ34ymwhF6hqrWFar
- DFDOTI7/f1lFfxsQ2RGb4Z0+yWEVzPXIwXuMzE0fkBcHiBmytmVdqD3SC A==;
-X-CSE-ConnectionGUID: go86YjFuQ7eT3xzGFKJQnw==
-X-CSE-MsgGUID: guCqVgKBTkq2QpcLS5WfrQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11290"; a="34986959"
-X-IronPort-AV: E=Sophos;i="6.12,247,1728975600"; d="scan'208";a="34986959"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2024 01:50:07 -0800
-X-CSE-ConnectionGUID: 4AqWtwLVS4y5OP5sqPWrTA==
-X-CSE-MsgGUID: ulyC8zJlS5SwJCEFx6RUGA==
+ bh=xswm1z7f3ns05ptcB+HMvVlAiKze4XRKl/fAYlMlBgI=;
+ b=mmjTS1wZ8k9Kz5GULNw9lOIgKDEITKVJx9sHtK+h5ptx1lGJsgMSMSHX
+ CaP/3QfEEKnD59Y0NL28SP1WrGi7DXrjFpZaXM72a9Nm4fEckJDA4zqHR
+ henCANz+F9HNJpM8xqtU1nNtBey4H+g3EVwclJE57ZD6jQJ/58pjTiToK
+ 9s4iHJPM/uv91s3e48cTo7B0wxQqAChG7gIsKZk1MYZryZd8IrDJMziX4
+ XZeHZdY0Dysuoh/xdC1BrhaBzDrvBuX/M42kDcrqyoxnSDwo8CZEytWrL
+ 6phom/SFcv+SaKmPm0CkCCKcByO7r0L/1VmlDbiKJUH68VYFhyZ0MKvu/ A==;
+X-CSE-ConnectionGUID: OYKjivc5Qk2L686q+34qPQ==
+X-CSE-MsgGUID: 5VRwLywiQ5CtzGDR1RdBcg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11290"; a="35133837"
+X-IronPort-AV: E=Sophos;i="6.12,247,1728975600"; d="scan'208";a="35133837"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2024 01:52:55 -0800
+X-CSE-ConnectionGUID: 9TmXdmSQQfqBG88IKTloWw==
+X-CSE-MsgGUID: G8KTpQVLRkuW0HXFZ7W/kg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,247,1728975600"; d="scan'208";a="103133055"
+X-IronPort-AV: E=Sophos;i="6.12,247,1728975600"; d="scan'208";a="97970874"
 Received: from carterle-desk.ger.corp.intel.com (HELO intel.com)
  ([10.245.246.178])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2024 01:50:05 -0800
-Date: Thu, 19 Dec 2024 10:50:01 +0100
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2024 01:52:53 -0800
+Date: Thu, 19 Dec 2024 10:52:50 +0100
 From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, andi.shyti@linux.intel.com
-Subject: Re: [PATCH] drm/i915/gt: Add logging before setting TAINT_WARN
-Message-ID: <Z2PsSe1AZbksmjld@ashyti-mobl2.lan>
-References: <20241218195530.2821188-1-sebastian.brzezinka@intel.com>
+To: Nitin Gote <nitin.r.gote@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, chris.p.wilson@intel.com
+Subject: Re: [PATCH v2 1/1] drm/i915/gt: Increase a time to retry RING_HEAD
+ reset
+Message-ID: <Z2Ps8shacJ8EDhNF@ashyti-mobl2.lan>
+References: <20241217063532.2729031-1-nitin.r.gote@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241218195530.2821188-1-sebastian.brzezinka@intel.com>
+In-Reply-To: <20241217063532.2729031-1-nitin.r.gote@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,70 +69,21 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Sebastian,
+Hi Nitin,
 
-On Wed, Dec 18, 2024 at 07:55:30PM +0000, Sebastian Brzezinka wrote:
-> Adding TAINT_WARN is expected when GPU cannot be restarted, informing
-> about it will make it easier to find the source of the failure.
+On Tue, Dec 17, 2024 at 12:05:32PM +0530, Nitin Gote wrote:
+> Issue seen again where engine resets fails because the engine resumes from
+> an incorrect RING_HEAD. HEAD is still not 0 even after writing into it.
+> This seems to be timing issue and we experimented different values from 5ms
+> to 50ms and found out that 50ms works best based on testing.
+> So, if write doesn't succeed at first then retry again.
 > 
-> Right now TAINT_WARN will cause CI machine to restart, leaving only err
-> code EINTR.
-
-you are describing here what you haven't done in your patch. If I
-just read this I assume that you are adding the TAINT_WARN, which
-is not the case.
-
-Please describe in your commit log:
-
- - The problem you are trying to solve.
- - What's the the solution.
- - How you implemented it.
-
-The title is not very descriptive either.
-
-> Signed-off-by: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/intel_reset.c | 7 +++++--
->  1 file changed, 5 insertions(+), 2 deletions(-)
+> v2: add a comment (Andi Shyti)
 > 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-> index c2fe3fc78e76..458c26706df4 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_reset.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-> @@ -1113,6 +1113,7 @@ static bool __intel_gt_unset_wedged(struct intel_gt *gt)
->  		 * Warn CI about the unrecoverable wedged condition.
->  		 * Time for a reboot.
->  		 */
-> +		gt_err(gt, "Unrecoverable wedged condition\n");
->  		add_taint_for_CI(gt->i915, TAINT_WARN);
->  		return false;
->  	}
-> @@ -1264,9 +1265,10 @@ void intel_gt_reset(struct intel_gt *gt,
->  	}
->  
->  	ret = resume(gt);
-> -	if (ret)
-> +	if (ret) {
-> +		gt_err(gt, "Failed to resume (%d)\n", ret);
->  		goto taint;
-> -
-> +	}
->  finish:
+> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12806
+> Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
 
-It looks much better if you leave one space before the error
-labels, same as before, but now you are adding the brackets.
+merged to drm-intel-gt-next.
 
+Thanks,
 Andi
-
->  	reset_finish(gt, awake);
->  unlock:
-> @@ -1608,6 +1610,7 @@ void intel_gt_set_wedged_on_init(struct intel_gt *gt)
->  	set_bit(I915_WEDGED_ON_INIT, &gt->reset.flags);
->  
->  	/* Wedged on init is non-recoverable */
-> +	gt_err(gt, "Non-recoverable wedged on init\n");
->  	add_taint_for_CI(gt->i915, TAINT_WARN);
->  }
->  
-> -- 
-> 2.34.1
