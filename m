@@ -1,30 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C17E9F804A
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2024 17:47:25 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F2C69F8131
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2024 18:10:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C0FCA10E0DB;
-	Thu, 19 Dec 2024 16:47:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AAF7C10ED61;
+	Thu, 19 Dec 2024 17:10:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C135710E0DB;
- Thu, 19 Dec 2024 16:47:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C9DF10ED60;
+ Thu, 19 Dec 2024 17:10:10 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_Remove_get=5Ftask=5Fcomm?=
- =?utf-8?q?=28=29_and_print_task_comm_directly?=
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_annotate_i915=5Fgem?=
+ =?utf-8?q?=5Fobject=5Ftrylock=28=29_as_=5F=5Fmust=5Fcheck?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Yafang Shao" <laoar.shao@gmail.com>
+To: "Rolf Eike Beer" <eb@emlix.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 19 Dec 2024 16:47:22 -0000
-Message-ID: <173462684278.467596.8438441364775991856@b555e5b46a47>
+Date: Thu, 19 Dec 2024 17:10:10 -0000
+Message-ID: <173462821050.467596.337740925474666683@b555e5b46a47>
 X-Patchwork-Hint: ignore
-References: <20241219023452.69907-1-laoar.shao@gmail.com>
-In-Reply-To: <20241219023452.69907-1-laoar.shao@gmail.com>
+References: <7746997.EvYhyI6sBW@devpool47.emlix.com>
+In-Reply-To: <7746997.EvYhyI6sBW@devpool47.emlix.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,33 +43,19 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: Remove get_task_comm() and print task comm directly
-URL   : https://patchwork.freedesktop.org/series/142837/
-State : failure
+Series: annotate i915_gem_object_trylock() as __must_check
+URL   : https://patchwork.freedesktop.org/series/142836/
+State : warning
 
 == Summary ==
 
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/142837/revisions/1/mbox/ not applied
-Applying: kernel: Remove get_task_comm() and print task comm directly
-Applying: arch: Remove get_task_comm() and print task comm directly
-Applying: net: Remove get_task_comm() and print task comm directly
-Applying: security: Remove get_task_comm() and print task comm directly
-Applying: drivers: Remove get_task_comm() and print task comm directly
-Using index info to reconstruct a base tree...
-M	drivers/gpu/drm/i915/display/intel_display_driver.c
-M	drivers/gpu/drm/nouveau/nouveau_drm.c
-M	drivers/tty/tty_io.c
-Falling back to patching base and 3-way merge...
-Auto-merging drivers/tty/tty_io.c
-Auto-merging drivers/gpu/drm/nouveau/nouveau_drm.c
-Auto-merging drivers/gpu/drm/i915/display/intel_display_driver.c
-CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/display/intel_display_driver.c
-error: Failed to merge in the changes.
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0005 drivers: Remove get_task_comm() and print task comm directly
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
-Build failed, no error log produced
+Error: dim checkpatch failed
+d9ac0678af4a drm/i915/selftests: check the return value of i915_gem_object_trylock()
+72b7193baf3f drm/i915: mark i915_gem_object_trylock() as __must_check
+-:6: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#6: 
+When you don't look at the return code you can't know if you actually got the
+
+total: 0 errors, 1 warnings, 0 checks, 10 lines checked
 
 
