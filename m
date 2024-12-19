@@ -1,31 +1,32 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 358319F7EE6
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2024 17:07:31 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F8A29F7EE9
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2024 17:07:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C68610E4A4;
-	Thu, 19 Dec 2024 16:07:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94CCF10E34D;
+	Thu, 19 Dec 2024 16:07:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
+X-Greylist: delayed 477 seconds by postgrey-1.36 at gabe;
+ Thu, 19 Dec 2024 10:26:35 UTC
 Received: from mx1.emlix.com (mx1.emlix.com [178.63.209.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 308BF10E2BB
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2024 10:26:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC5F710E2BB
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2024 10:26:35 +0000 (UTC)
 Received: from mailer.emlix.com (p5098be52.dip0.t-ipconnect.de [80.152.190.82])
  (using TLSv1.2 with cipher ADH-AES256-GCM-SHA384 (256/256 bits))
  (No client certificate requested)
- by mx1.emlix.com (Postfix) with ESMTPS id B17CC5F8DD;
+ by mx1.emlix.com (Postfix) with ESMTPS id 723E35F880;
  Thu, 19 Dec 2024 11:18:36 +0100 (CET)
 From: Rolf Eike Beer <eb@emlix.com>
 To: Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>
 Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 1/2] drm/i915/selftests: check the return value of
- i915_gem_object_trylock()
-Date: Thu, 19 Dec 2024 11:16:51 +0100
-Message-ID: <9379466.CDJkKcVGEf@devpool47.emlix.com>
+Subject: [PATCH 2/2] drm/i915: mark i915_gem_object_trylock() as __must_check
+Date: Thu, 19 Dec 2024 11:18:08 +0100
+Message-ID: <6005320.MhkbZ0Pkbq@devpool47.emlix.com>
 Organization: emlix GmbH
 In-Reply-To: <7746997.EvYhyI6sBW@devpool47.emlix.com>
 References: <7746997.EvYhyI6sBW@devpool47.emlix.com>
@@ -48,32 +49,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-A trylock can fail, in which case operating on the object is unsafe and
-unconditionally unlocking is wrong.
+When you don't look at the return code you can't know if you actually got t=
+he
+lock.
 
 Signed-off-by: Rolf Eike Beer <eb@emlix.com>
 =2D--
- drivers/gpu/drm/i915/gt/selftest_migrate.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/gem/i915_gem_object.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_migrate.c b/drivers/gpu/drm/i=
-915/gt/selftest_migrate.c
-index ca460cee4f8b..b2cb501febe8 100644
-=2D-- a/drivers/gpu/drm/i915/gt/selftest_migrate.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_migrate.c
-@@ -822,7 +822,10 @@ create_init_lmem_internal(struct intel_gt *gt, size_t =
-sz, bool try_lmem)
- 			return obj;
- 	}
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i=
+915/gem/i915_gem_object.h
+index 3dc61cbd2e11..b6da8b561ae0 100644
+=2D-- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+@@ -198,8 +198,8 @@ static inline int i915_gem_object_lock_interruptible(st=
+ruct drm_i915_gem_object
+ 	return __i915_gem_object_lock(obj, ww, true);
+ }
 =20
-=2D	i915_gem_object_trylock(obj, NULL);
-+	if (!i915_gem_object_trylock(obj, NULL)) {
-+		i915_gem_object_put(obj);
-+		return ERR_PTR(-EBUSY);
-+	}
- 	err =3D i915_gem_object_pin_pages(obj);
- 	if (err) {
- 		i915_gem_object_unlock(obj);
+=2Dstatic inline bool i915_gem_object_trylock(struct drm_i915_gem_object *o=
+bj,
+=2D					   struct i915_gem_ww_ctx *ww)
++static inline bool __must_check i915_gem_object_trylock(struct drm_i915_ge=
+m_object *obj,
++							struct i915_gem_ww_ctx *ww)
+ {
+ 	if (!ww)
+ 		return dma_resv_trylock(obj->base.resv);
 =2D-=20
 2.47.1
 
