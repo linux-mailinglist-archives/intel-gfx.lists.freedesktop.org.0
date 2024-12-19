@@ -1,30 +1,86 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id C83959F7D45
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2024 15:40:16 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id 622BB9F7EE2
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2024 17:07:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 72A8B10E00D;
-	Thu, 19 Dec 2024 14:40:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B62F410E776;
+	Thu, 19 Dec 2024 16:07:25 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="cRLBUEvR";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 554D210E00D;
- Thu, 19 Dec 2024 14:40:14 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com
+ [IPv6:2607:f8b0:4864:20::433])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6105B10E20D;
+ Thu, 19 Dec 2024 02:35:01 +0000 (UTC)
+Received: by mail-pf1-x433.google.com with SMTP id
+ d2e1a72fcca58-7265c18d79bso376314b3a.3; 
+ Wed, 18 Dec 2024 18:35:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1734575701; x=1735180501; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=ewYmRGbtjw/u5CZQB/fGCIYq/IkhzVppRPs0v4hq1mw=;
+ b=cRLBUEvRP8UbMnQvOxuMIMxeNxd4Tp6BGg4homTh/W5wzmvi513Z1lqfHQwTStOU8y
+ L1bDo4+nAc97jnYmrVKRM3xRtc4s6An2E/cf07L7TI5Pjum46hDpKThr6esDW87LNxoI
+ OpbN40tQH9G5H0graqLE7CazBJZMjNJDApKyJRHjphpStl+u3rYxxBfnR6IAnZWasMFL
+ bOE3aDSM5qayROuE0eIBa1oZunxlzcxSgKxItKL0MKq3M8sEGM2+TIMFFn+T6paq7y/I
+ 2FlSAxh1EpRtIPrZsbyUxo6i+VrlO4kbmjpqvjKQW823sxlZNRgFwSLGe3Eaa+NCwKPC
+ 3FSA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1734575701; x=1735180501;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=ewYmRGbtjw/u5CZQB/fGCIYq/IkhzVppRPs0v4hq1mw=;
+ b=PcH6W7N9eiiTr8aBzCeLlduf3YdDKaSHQ9GcUURlkxl78VCZmj3fKPCVFsnz7DlMlV
+ oFiWcmLLGsRxhmFUsib1iLRKQvLLzHjRaaRtFfn4CC0rCDrFCiNqgx44YdXm8O2nvze4
+ PLYhaKfwRYZX+CW72MaNRz17cnJKmsBLbNxJHrJSobmY3u2E+2Xby5NssGnFYi7BMVo+
+ 46jpOgN9EiH33E6If+q+L4O3PmvUV7aDgAfe7PK8+eOC8ib7/kP8n65OTq+SEIbkLloX
+ Id3CpBC6W6SxHQ1ne3rgg87COk0KgiJ9CcKIuoQRlBCQoYTL4cSUt4QJgltR5n+ZpkQs
+ xNkw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUVy7qfTqSb9Kfv25Kk3px9zpVVFtT0qpn5hNTtytgPjBqt2DFfGEPJZpqDlEugFHrehbeikYWQeg==@lists.freedesktop.org,
+ AJvYcCVw/egzdXDgFX/LlMNU9yep046vwKr3FjiIixkVJNMAYY+CVaIMSO+4Sp/YwPQPzgW8fZwZtEL+zLMa@lists.freedesktop.org,
+ AJvYcCWzwiJFp509Q72Y01taZjBK30WUDwxjLN11I4hEXWQc8zTnFDT+vj5lGswrmG3iDLGoscuqHDfRovU=@lists.freedesktop.org,
+ AJvYcCXNw3z4aqLRDNqGeXXKE8iyTXNbAgRd76B+tSj2rXY7u41csao0wgCIsH8MM7Y+eViJx94TfXmOiIw=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyDGiQlEmlGEorXy3M//atFDPhvl13C5JTdpUSfNtos/gAQurNO
+ xwF0IpDJhJxyGyMJwsGeO7xdu/u+KWNu+pG06GZBqQkYegcDoXv/
+X-Gm-Gg: ASbGncvMZoXWPik0RvbaYJhW9ggQBAYaJDbaFWLZqc4iF20is6/6E3rt2DgW1pPmfNw
+ cH0SZ6CnsgYtE1YqdFFsTMbh3Xm0Q+va0VQThtA4m/kYSsUhT20kgcjKuqRyoQS5uEicTmwbl4c
+ +rtUp9ITj25J304bxWQHYhREJ8fSkYPc62b/9RMxH154bp5wiJMlCPPM83XHAg+gMHGuTv0LSca
+ CVbk4waPmkodwozUSibqLPdO+UXTVuwUUbOykBRy9ZS0NucTrRhdOlum2BkLHP9ix5UzeLle1NR
+ XZb+qys=
+X-Google-Smtp-Source: AGHT+IGkt8eWE3wh1dURnDDolV6IzXf9MexDfJ0kaeAEgc6DDmy7cFDTyCLLAMMKibF6E7v5iDX6cg==
+X-Received: by 2002:aa7:9316:0:b0:724:ed8f:4d35 with SMTP id
+ d2e1a72fcca58-72a8d2e0557mr8641134b3a.26.1734575700792; 
+ Wed, 18 Dec 2024 18:35:00 -0800 (PST)
+Received: from localhost.localdomain ([180.159.118.224])
+ by smtp.gmail.com with ESMTPSA id
+ 41be03b00d2f7-842b821da83sm142163a12.40.2024.12.18.18.34.56
+ (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+ Wed, 18 Dec 2024 18:35:00 -0800 (PST)
+From: Yafang Shao <laoar.shao@gmail.com>
+To: akpm@linux-foundation.org
+Cc: torvalds@linux-foundation.org, pmladek@suse.com, kvalo@kernel.org,
+ bp@alien8.de, andriy.shevchenko@linux.intel.com, linux-mm@kvack.org,
+ linux-kernel@vger.kernel.org, linux-security-module@vger.kernel.org,
+ x86@kernel.org, linux-snps-arc@lists.infradead.org,
+ linux-wireless@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, ocfs2-devel@lists.linux.dev,
+ Yafang Shao <laoar.shao@gmail.com>
+Subject: [PATCH v2 0/5] Remove get_task_comm() and print task comm directly
+Date: Thu, 19 Dec 2024 10:34:47 +0800
+Message-Id: <20241219023452.69907-1-laoar.shao@gmail.com>
+X-Mailer: git-send-email 2.37.1 (Apple Git-137.1)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/scaler=3A_Scaler?=
- =?utf-8?q?_cleanups_and_tracepoints?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 19 Dec 2024 14:40:14 -0000
-Message-ID: <173461921434.446779.6305167570615289255@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241219130827.22830-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20241219130827.22830-1-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Thu, 19 Dec 2024 16:07:24 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,135 +93,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Since task->comm is guaranteed to be NUL-terminated, we can print it
+directly without the need to copy it into a separate buffer. This
+simplifies the code and avoids unnecessary operations.
 
-Series: drm/i915/scaler: Scaler cleanups and tracepoints
-URL   : https://patchwork.freedesktop.org/series/142828/
-State : success
+v1->v2:
+- Don't add "%pTN" (Petr, Kalle, Borislav, Andy, Linus)
 
-== Summary ==
+v1: https://lore.kernel.org/all/20241213054610.55843-1-laoar.shao@gmail.com/
 
-CI Bug Log - changes from CI_DRM_15871 -> Patchwork_142828v1
-====================================================
+Yafang Shao (5):
+  kernel: Remove get_task_comm() and print task comm directly
+  arch: Remove get_task_comm() and print task comm directly
+  net: Remove get_task_comm() and print task comm directly
+  security: Remove get_task_comm() and print task comm directly
+  drivers: Remove get_task_comm() and print task comm directly
 
-Summary
--------
+ arch/arc/kernel/unaligned.c                         |  5 ++---
+ arch/x86/kernel/vm86_32.c                           |  5 ++---
+ drivers/accel/habanalabs/common/context.c           |  3 +--
+ drivers/accel/habanalabs/common/habanalabs_ioctl.c  | 11 +++--------
+ drivers/gpu/drm/i915/display/intel_display_driver.c |  6 ++----
+ drivers/gpu/drm/nouveau/nouveau_chan.c              |  4 +---
+ drivers/gpu/drm/nouveau/nouveau_drm.c               |  5 ++---
+ drivers/tty/tty_io.c                                |  3 +--
+ kernel/capability.c                                 |  8 ++------
+ kernel/futex/waitwake.c                             |  3 +--
+ net/wireless/wext-core.c                            |  4 +---
+ security/yama/yama_lsm.c                            |  4 +---
+ 12 files changed, 19 insertions(+), 42 deletions(-)
 
-  **SUCCESS**
+-- 
+2.43.5
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142828v1/index.html
-
-Participating hosts (44 -> 43)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_142828v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@dmabuf@all-tests:
-    - fi-glk-j4005:       [PASS][1] -> [INCOMPLETE][2] ([i915#12904]) +1 other test incomplete
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15871/fi-glk-j4005/igt@dmabuf@all-tests.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142828v1/fi-glk-j4005/igt@dmabuf@all-tests.html
-
-  * igt@i915_selftest@live:
-    - bat-mtlp-8:         [PASS][3] -> [ABORT][4] ([i915#12061]) +1 other test abort
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15871/bat-mtlp-8/igt@i915_selftest@live.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142828v1/bat-mtlp-8/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-mtlp-6:         [PASS][5] -> [ABORT][6] ([i915#12061]) +1 other test abort
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15871/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142828v1/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_addfb_basic@too-high:
-    - fi-cfl-8109u:       [PASS][7] -> [DMESG-WARN][8] ([i915#11621]) +120 other tests dmesg-warn
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15871/fi-cfl-8109u/igt@kms_addfb_basic@too-high.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142828v1/fi-cfl-8109u/igt@kms_addfb_basic@too-high.html
-
-  * igt@kms_busy@basic@flip:
-    - fi-cfl-8109u:       [PASS][9] -> [DMESG-WARN][10] ([i915#11621] / [i915#1982]) +1 other test dmesg-warn
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15871/fi-cfl-8109u/igt@kms_busy@basic@flip.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142828v1/fi-cfl-8109u/igt@kms_busy@basic@flip.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         [PASS][11] -> [SKIP][12] ([i915#9197]) +3 other tests skip
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15871/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142828v1/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live:
-    - bat-adlm-1:         [ABORT][13] ([i915#9413]) -> [PASS][14] +1 other test pass
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15871/bat-adlm-1/igt@i915_selftest@live.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142828v1/bat-adlm-1/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@dmabuf:
-    - bat-arls-5:         [DMESG-WARN][15] -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15871/bat-arls-5/igt@i915_selftest@live@dmabuf.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142828v1/bat-arls-5/igt@i915_selftest@live@dmabuf.html
-
-  * igt@kms_flip@basic-flip-vs-modeset:
-    - {bat-mtlp-9}:       [WARN][17] -> [PASS][18] +1 other test pass
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15871/bat-mtlp-9/igt@kms_flip@basic-flip-vs-modeset.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142828v1/bat-mtlp-9/igt@kms_flip@basic-flip-vs-modeset.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24:
-    - {bat-mtlp-9}:       [FAIL][19] ([i915#13290]) -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15871/bat-mtlp-9/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142828v1/bat-mtlp-9/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html
-
-  * igt@kms_pipe_crc_basic@read-crc-frame-sequence:
-    - {bat-mtlp-9}:       [DMESG-WARN][21] ([i915#12695]) -> [PASS][22] +10 other tests pass
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15871/bat-mtlp-9/igt@kms_pipe_crc_basic@read-crc-frame-sequence.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142828v1/bat-mtlp-9/igt@kms_pipe_crc_basic@read-crc-frame-sequence.html
-
-  
-#### Warnings ####
-
-  * igt@gem_exec_gttfill@basic:
-    - fi-pnv-d510:        [SKIP][23] -> [ABORT][24] ([i915#13169])
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15871/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142828v1/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#11621]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11621
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12695]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12695
-  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
-  [i915#13169]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13169
-  [i915#13290]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13290
-  [i915#1982]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982
-  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
-  [i915#9413]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15871 -> Patchwork_142828v1
-
-  CI-20190529: 20190529
-  CI_DRM_15871: 995cd30a4e222b6a7b4b40c36219e4937fd7109e @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8165: 4d630db8b8cfbccd2b871e5084e5c039c374fb14 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_142828v1: 995cd30a4e222b6a7b4b40c36219e4937fd7109e @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142828v1/index.html
