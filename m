@@ -2,163 +2,183 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD9279F8679
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2024 22:00:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 276329F86D2
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2024 22:20:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2C1910E028;
-	Thu, 19 Dec 2024 21:00:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DFA110E1C4;
+	Thu, 19 Dec 2024 21:20:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gdnRMQXr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q3TXM4zd";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB03710E028
- for <intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2024 21:00:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB0EB10E2B3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2024 21:20:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734642057; x=1766178057;
- h=from:to:cc:subject:date:message-id:
- content-transfer-encoding:mime-version;
- bh=JSHUOKVbmjiy0qNtaOu+9zT3fCcX3dVoc272SkZ67z0=;
- b=gdnRMQXr0TdYlH7fMs+oo9XJOieZWnDvoHikU+JstfXU8wIMT5oKHXYA
- T6SrscdT+TTIo9ABxILiCVhOlRDySSeFknGrIFgvu9iXgTw9X7BLdX7F5
- 5nxC066GS5uRxfwWl4c7ui+hfGrYq+r07VZfYZnJ0SwezCY5G9m4Pcea2
- IYJOh+KJFqUMG6wjmhw8eAUDCs2l86dV1UeYTwleQIPxTnfFdafRSUt/O
- hhSeiCMLASfc9yOyXfOdRPxI1XkxrkCzdcbVhOWcCipIlMIKkeIDYIJGJ
- OXG5mDuKrfpk6/n8rhEuiYXObl4PYOXOcvE+PnhFpCOtypEU9BIws5BQX A==;
-X-CSE-ConnectionGUID: ICftYfd0S56H81APblo6qg==
-X-CSE-MsgGUID: tQG0GBlTQXC4wN3jNlnOEg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11291"; a="38020265"
-X-IronPort-AV: E=Sophos;i="6.12,248,1728975600"; d="scan'208";a="38020265"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2024 13:00:56 -0800
-X-CSE-ConnectionGUID: IrCtq1hxRj+AqaP6UaeECw==
-X-CSE-MsgGUID: soI6iIq6TF6dy6iBzWYxdw==
+ t=1734643234; x=1766179234;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=nDzte5nNRr/O4lfiGs68kczn+saHmte0kRjBwY1J9fI=;
+ b=Q3TXM4zdQCLIDq2jmLks3VWnPEq4tNovnoMvEjvk2ryuNJqbQtQr45vx
+ OgbYcu0lCltXsT0lhy/impFqh0H0ghOVnfR83PWQ4uozMVWKNm6D1lcog
+ 9qnI7Jkd2LytmJ7/2SDCM7Y4ELVPG3txucow606HhsaSeBcI5aTRz/HbI
+ 1ttmODn+zpLsHyzxmHA+q8CFwYUQNrZNVgdDNRSfL7ctYfAnNd0BNQQEb
+ DdG3cOZg56YcS2kXJdnZuB1vqJeyXJrB1Iqt9zq0p9ttpsxhtSUei6upO
+ 0QJtPZea7qjyuw/vsq3fehLX372JFK/Kc4m4zEwoIDJyivkndVH0q5YlN A==;
+X-CSE-ConnectionGUID: Fy4BAtgzSuCLFWwphx+DzQ==
+X-CSE-MsgGUID: 17dmhxrrTNeQmaJV1F9OIw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11291"; a="60563262"
+X-IronPort-AV: E=Sophos;i="6.12,248,1728975600"; d="scan'208";a="60563262"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2024 13:20:31 -0800
+X-CSE-ConnectionGUID: 3UkOJ2f1RDay+UiwOrM9uA==
+X-CSE-MsgGUID: dpfDyqavTmikevV2GPIkPw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="102439513"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="121589033"
 Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmviesa003.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 19 Dec 2024 13:00:55 -0800
+ by fmviesa002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 19 Dec 2024 13:20:30 -0800
 Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
  ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Thu, 19 Dec 2024 13:00:55 -0800
+ 15.1.2507.44; Thu, 19 Dec 2024 13:20:30 -0800
 Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
  orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Thu, 19 Dec 2024 13:00:55 -0800
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.41) by
+ 15.1.2507.44 via Frontend Transport; Thu, 19 Dec 2024 13:20:30 -0800
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.40) by
  edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Thu, 19 Dec 2024 13:00:52 -0800
+ 15.1.2507.44; Thu, 19 Dec 2024 13:20:28 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=c0ZBOkjobUDYqv8TUVLhKklVP0SVpvjq941AHZfJqOH29N/RXJOiD3Lpzldp2qf4sKzfJi65ZocOBQ5g7y7WGiQmzSkyw4W2a7FhGG9278vXjqp5B9gkXuTUXNMPn4BDD/B/8dGwO5/DUvmG3q91sWJfF/736dVW1CtvUcD8hMnWuNhxNICepZ9pMlWLS5E1jXNlrH6MyGP67AO4hPSB2zrLPbPHU6IHW1rFisBBYKoGCyl92h1u6JTcdbyNDzSWu1XA5pTWbFGMVAcqRybdgpQ6WBvdRPf1McSPllMy4D4G/6hTEORR/aHWROLgRedmKDl9v5wGnbBdJ5+19k6hHg==
+ b=MlRJ5ozWzPhOvw6Xo1z7exr10qLIKvZR+DrP6fND+RbCLmT4Bfilx3AsLRUQ6YhyZZrr8gT4An09ZDswAZEIXcTmTfHhZcLMZDRQioleGuAVyQPdo4a/nw1ljd3iEXqffDSMtHa1T6seqZjb0YKmoSrr2ngSnRjBn2X6A/GH5V6YfTil8ZCX77ph+O1rBw6QIJVLHcsWoKj6gg3QVY89cN9jU6JV604/xxSGpnK5JGcLx4WAMUnCaGiqqu7YfWVcuAW22cJyKyzUQ/D0b6Uuq7KIAoRVQX50GeTaxn1By42B+MLEP5SKWPxJGE4a2BmOM2bCVslz80rE/0f62u/Kdw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QSfqe/v/CxIkUYj1XuaQhera1I6A3oA88gwnY58mB+g=;
- b=LxJ42CqU2k340166dNnd6at5r1VYKBLUCEbxr7tJAHL0PuKuoCC46U6icqE3UKYvzzfvyRA8PQyIppZt3SdefzfBIo6x7EFSHOG3aOlYSub4Cg4YTX/6bpY3M7rrRVZeecBPDo/CJvBralCXW11faWRbpHi1vnuTGWdUXScALyhtJNb0zWFE6Le0RHRXEeUstJsl8hbTKkzay7ovqC/DrREP4a4/cXpL40mC1mK5Hy20c+kGdL3XLNHzt4COLdWalF4qiim93k0HKM4Ur2LN7z2fcQ8SSXp8u2NoLFJwBFu71wd/4rHC5xszUltzvQ6WrqnJsTyNFQjJZJDeHlN5iA==
+ bh=FfwKBq8JTm7Xy3MT0G8jwQtCn4dPCvYlriCd/QjQlK4=;
+ b=tP84NYEcah5DWJGx2o05bwYg1O/Dfe/Xz68+pplbK+7pZDQDH2ZYZ4zYidPIS8nwj16KaszphBmuRwUtk2061ZUYBplUL2y0hTn+AJf7YYHgO2U4Yy7BuWRS33kCxVWGp0119Copgx7Z+woTYQppTIzco53N8Cg+Kam10JZAmxGrNt3SvqiVB0HO/EjbP4dGwUeMx8anDBD4maLrcSh8NJyjElra50z0ry7Y6IE3hUW695zIgdNSbjaTnEBnQSZI2EmPfM4Q9dGDnkAImWVmNOhauiymlyTXbf/YW3HjVemOoCqLIY0pZGfrGDPz4CoEo3Op6zPS925K7oiYJ80dfA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from SN7PR11MB8282.namprd11.prod.outlook.com (2603:10b6:806:269::11)
- by SJ0PR11MB6695.namprd11.prod.outlook.com (2603:10b6:a03:44e::6)
+Received: from CH0PR11MB5444.namprd11.prod.outlook.com (2603:10b6:610:d3::13)
+ by MN2PR11MB4679.namprd11.prod.outlook.com (2603:10b6:208:26b::13)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8272.13; Thu, 19 Dec
- 2024 21:00:23 +0000
-Received: from SN7PR11MB8282.namprd11.prod.outlook.com
- ([fe80::f9d9:8daa:178b:3e72]) by SN7PR11MB8282.namprd11.prod.outlook.com
- ([fe80::f9d9:8daa:178b:3e72%5]) with mapi id 15.20.8272.013; Thu, 19 Dec 2024
- 21:00:23 +0000
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: <intel-gfx@lists.freedesktop.org>
-CC: Rodrigo Vivi <rodrigo.vivi@intel.com>, Vinay Belgaumkar
- <vinay.belgaumkar@intel.com>, Himal Prasad Ghimiray
- <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH] drm/i915/dg1: Fix power gate sequence.
-Date: Thu, 19 Dec 2024 16:00:19 -0500
-Message-ID: <20241219210019.70532-1-rodrigo.vivi@intel.com>
-X-Mailer: git-send-email 2.47.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: MW4PR04CA0106.namprd04.prod.outlook.com
- (2603:10b6:303:83::21) To SN7PR11MB8282.namprd11.prod.outlook.com
- (2603:10b6:806:269::11)
+ 2024 21:19:45 +0000
+Received: from CH0PR11MB5444.namprd11.prod.outlook.com
+ ([fe80::5f89:ba81:ff70:bace]) by CH0PR11MB5444.namprd11.prod.outlook.com
+ ([fe80::5f89:ba81:ff70:bace%6]) with mapi id 15.20.8272.013; Thu, 19 Dec 2024
+ 21:19:45 +0000
+From: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
+To: "Roper, Matthew D" <matthew.d.roper@intel.com>, "Sousa, Gustavo"
+ <gustavo.sousa@intel.com>
+CC: "Vodapalli, Ravi Kumar" <ravi.kumar.vodapalli@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Vivekanandan, Balasubramani" <balasubramani.vivekanandan@intel.com>, "De
+ Marchi, Lucas" <lucas.demarchi@intel.com>, "Taylor, Clinton A"
+ <clinton.a.taylor@intel.com>, "Atwood, Matthew S"
+ <matthew.s.atwood@intel.com>, "Bhadane, Dnyaneshwar"
+ <dnyaneshwar.bhadane@intel.com>, "Kalvala, Haridhar"
+ <haridhar.kalvala@intel.com>, "Chauhan, Shekhar" <shekhar.chauhan@intel.com>, 
+ "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
+Subject: RE: [PATCH] drm/i915/display: Don't program DBUF_CTL tracker state
+ service
+Thread-Topic: [PATCH] drm/i915/display: Don't program DBUF_CTL tracker state
+ service
+Thread-Index: AQHbUjzohNN8apO4nkSy4El3u9bbv7Lt1jMggAA0VICAAANYcA==
+Date: Thu, 19 Dec 2024 21:19:45 +0000
+Message-ID: <CH0PR11MB54449DD2692CDB9FFFF25D39E5062@CH0PR11MB5444.namprd11.prod.outlook.com>
+References: <20241219173636.3377955-1-ravi.kumar.vodapalli@intel.com>
+ <CH0PR11MB5444AB9D2F1E7EFEF18AA892E5062@CH0PR11MB5444.namprd11.prod.outlook.com>
+ <20241219204931.GX3224633@mdroper-desk1.amr.corp.intel.com>
+In-Reply-To: <20241219204931.GX3224633@mdroper-desk1.amr.corp.intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-Mentions: matthew.d.roper@intel.com,gustavo.sousa@intel.com
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CH0PR11MB5444:EE_|MN2PR11MB4679:EE_
+x-ms-office365-filtering-correlation-id: 2375f4f4-b4a4-4b38-d744-08dd2072dc7a
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|376014|1800799024|366016|7053199007|38070700018; 
+x-microsoft-antispam-message-info: =?us-ascii?Q?9/rdSYl+3d0dw1I1Movud14T7t3cmRcprwhQbA572A19ad5JqNrpD2THG9b8?=
+ =?us-ascii?Q?bF2ojPUuBrwf91HJa5Ykr16/NcqDCjarCABUS9G/bSCXlRpc34NbdIyMH+am?=
+ =?us-ascii?Q?Nru8/ZZKYsHGqq2kbuFGt4G+27pDjgkrgHiAK45EfzuCRVymhdR4kiHUFLb4?=
+ =?us-ascii?Q?wua+m00EhflNm668PA9UplICDbRHE8GwMVwUtRlrVO7z5v4nlIMMhHjlJ6DL?=
+ =?us-ascii?Q?m/iHL+NsQFMn9k8ZAZF3FwkG+Up/LkWNSqzYRY0PDcZwR227ta+LsId5H5pQ?=
+ =?us-ascii?Q?19Dyd0WzpxfYfM+0KArfF1IVHpOwBdcHhkN11+uV2X4plUJjhIrRNwB1fLAC?=
+ =?us-ascii?Q?pr+WaOuDrfwvu9Q5EbNKWfnLOCCTJ4Ow+92WA+G+4dXT9uHNCJWCBVw/1Tkk?=
+ =?us-ascii?Q?vl4s0wCwCTP9tpFrlnY6TvlXdshSo/ea+J5hz71iZD2ZhkwJakA1lTUyUX4m?=
+ =?us-ascii?Q?y7izJZkS2EuX33LNLFEKuX9OFXzlJdCI84wiUGPVTgrd4eW4NBwbU8aqdR4M?=
+ =?us-ascii?Q?2P1o6csnU5LHvPxXZ302v4wsNue9HPqNHlHZyaIfQAZmwLC5uF3qrxqs+BRf?=
+ =?us-ascii?Q?xzAsKWu/E/oNN6IGEWczu95cL4zld6JJ4U8xq6OdUVswa/LnZ2HHl6RRyd5R?=
+ =?us-ascii?Q?460nKIrFgWQhdunudv7Tt1YQUfNZocgTVJvo5BZhwxYM62b4PXndu3621b5+?=
+ =?us-ascii?Q?dDEyxTIhJyI8RZeeXUmbz357rB08e7t7RCFVc8tHBBismg0SbCz/NPMFgo89?=
+ =?us-ascii?Q?KdvBQCjQg13cxPJyic8ZkFMEdeCjEHD5j+i54F2hF3MbBtrL/rtZibXrVVPr?=
+ =?us-ascii?Q?njPKa+/OIVGEh16fr7//miaQ3WmHNXm/BvmOArpyIXwLMFd9z58FfN8gzjBa?=
+ =?us-ascii?Q?Xt2+/6WpC0RPzfkfPZvvojc8bRXHUNFzl3li45HOWTfQye2nbbGHn7V7Z13c?=
+ =?us-ascii?Q?3SxoVBD38LCAqqYWY+XrPDqz9bO6dK8nQs5rvTZqbYVcw/aNjGelX0ItG8bp?=
+ =?us-ascii?Q?66TCJxXJ4M3qFu5uYE31wORUzxVgR+f3DhStprJNRU6/tP0oBycoesXByCEk?=
+ =?us-ascii?Q?ooLiulmBDIJHZz1KnMYGccxKZ9ug4TZtlAqdeWZg2wVNuHcK6HVn/9CzJAYF?=
+ =?us-ascii?Q?Nx7oGSnlrltu8L9+ygXG4rGz1Ul8/UA9vEWS7HY8d/2m2hrKC/Qf5FBMJu9s?=
+ =?us-ascii?Q?LXvAZfnFOapr0H/6lThFgRg+phO66k0PQv6uNboBUgl5S2qdXQzmP+XllDaw?=
+ =?us-ascii?Q?W0AwW/01wZxjzjxCFyMlOwiSwd0ZRtbm3ZfCp1R+lItH3TQzKymfbbQyvSBP?=
+ =?us-ascii?Q?amJ/sop8p41AD9E41Cm7nh6pY+51pD0oKXEPI/Uzsnfhg9qRM0cs6lI/LiAT?=
+ =?us-ascii?Q?7ujhBQvrreB6WyWw9CtA08kBekdlLYBuhpBDyJqft7NFzGgKGOJuNj3OzzDk?=
+ =?us-ascii?Q?IEC808Bevb+r5fyP9MDsUrbyGDjMPPgn?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH0PR11MB5444.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016)(7053199007)(38070700018); DIR:OUT;
+ SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?HQheYhByva8NtOFQ/ZmvKCiHqNJusFSLzISr8slnR28+2GOLxHMLOKlhI5eY?=
+ =?us-ascii?Q?8zreXdcqBU0o98K8kggjbrTRVnCbuRQ7PuO9VmTythbMTxygx+bB6e/It5Dn?=
+ =?us-ascii?Q?qIK+XSxkLyfqQESQPW3hFzAttrPWD89xm1rQrzVtyb+JmSaFqH4iZwhqEvZs?=
+ =?us-ascii?Q?X6lNAy8spWjV30MkDaP5f54orLfjs04MCOGS9SL6rYB2LhI/bjrPiWzUn9M0?=
+ =?us-ascii?Q?lVr48jaKyFImoUTCFk2O7hhRBa9IBrk+F0f0kegzwOIuNCRQeDWv2xjfEjX+?=
+ =?us-ascii?Q?4v2Hvhxz7+M2YonhlDQQBfS/vZ9EyNW8JDhplUsvQGBF8dpA+YGPYew/L7V8?=
+ =?us-ascii?Q?WfuuujCkTwFHTdxBk4o2j8PguWFCnnmWXqHbFZv3KmxC5tlp8d4lJEOYxZ45?=
+ =?us-ascii?Q?ytXHimc3J40UuOqfa0dQkvftQjRYqq2EK4z4+/jYGg8rHLMwORS2uucVg44y?=
+ =?us-ascii?Q?qiBdwn2tMlrWVLn0nSDSkEbvQN37HzaswKnu2nY8jEXhxz6TnD7vrTyBL1RX?=
+ =?us-ascii?Q?VwWpvou8x9lGdAH3y7jtZvDLlzHKIObfaiVIHXPc19QbwujFyRQiGQIwnvei?=
+ =?us-ascii?Q?izW7ddzYE58MmT3kVVI9plB9coLCpjtz3fFPzJRtEEsYdCbEHgpQ0Wai09a8?=
+ =?us-ascii?Q?2FYr54gzz2OpuSI69Ap9OMpqVdeIS74sq9b8qd3yPk72o1Y+fKVa85HsWQld?=
+ =?us-ascii?Q?uNnZF99NgSPiwX+38TVLYyWabNRAdjKx3fbNr6LRIq6W2NyJAHz36BE4NPqw?=
+ =?us-ascii?Q?ebmHL04i1lrzFN4tsQLWvbnCeQGGg/iTYUX+FFfieywkbndaoH4HMW8Fb2Ka?=
+ =?us-ascii?Q?hu+JCwCYGhk4QMI8MQyBQTo0Id6SXES+ddeYemSnY+6wZVQBmk7SpcLwgkgs?=
+ =?us-ascii?Q?tgO5l3bSU/h4lYzW5EMUR5NcxIWn3nLHGTqQPKgrtXEOOYfNxqXco8YxNgAO?=
+ =?us-ascii?Q?dUeZPKt8PXGoKaDaQfEGXiFCY76W68Hok3+jDsdOWGyp8WeZ5Eep3WoG7M2v?=
+ =?us-ascii?Q?le+BB6CYMb8VBRP7Zsc6rahEg76YJO+lRTCV3CI+LkKzx5R3GujA176KtQmb?=
+ =?us-ascii?Q?dufbbItPzBVy5ImpfX5ui5VhsOy4tCSXLX0P6RbGgEYff7lWvvTQLmq2FZis?=
+ =?us-ascii?Q?Ay7KWJaqEHbt4W2TAsv8vURC9Vdpp7jG4s2/dKy2O5ILOd3AlyQDZmtfn8Lu?=
+ =?us-ascii?Q?Q0o/dBlD48SdEhXm7zvC8pbrsG/y3n6hGjdOCT8waD2VWfxImtdF4FEOd6yF?=
+ =?us-ascii?Q?aQTVcM+x4B8KSELnZTW3bGk/WsvmFJiZXje5stKa26qZX4U5MW3ek4DavKno?=
+ =?us-ascii?Q?1ieqRRvUgDtbnPW0lA5+WyLGyTjKAT8BgaPwdZVIyzgGQLrmsQJkPEmnB7UT?=
+ =?us-ascii?Q?rqM7QdnNjjQKLn5h+jFRhR09impkNOTH2H8xfcU7gb89Zbo8GeW5wHUuxt0A?=
+ =?us-ascii?Q?YV7sfQXSQX9H9rixd4uXko/MTHqVkqKvj7VY5xorFTEUEc3Wq5wBACaB8I6f?=
+ =?us-ascii?Q?ZAm1jTq0V9lCXQThRvi/eh4xt1EHFBhOyYfYamzoCzYgFBVkjRAbGdSow0oG?=
+ =?us-ascii?Q?X2vTYCnlNCdTf9jHGmRnqSNB2U939tNecnrzxLHY10HnZeoq2piv23rxvNv0?=
+ =?us-ascii?Q?Uw=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN7PR11MB8282:EE_|SJ0PR11MB6695:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8ab0b596-aadb-4c2b-92f4-08dd207027d8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Znxt950MDj9V8+IkNUeWv8cAxLebFON8taYl/wBgnnEozlTmBsYjteawOAm2?=
- =?us-ascii?Q?btxFrBpR8cQkCcFxehkvpUEQ6kKcSqP/Nz+XK9jSrYPYoWi86AJ7acEnmn7I?=
- =?us-ascii?Q?6lb+MCbF6VD8t9BMcB1rSBC73NpjgZO0deFutt8Q2dBrUlWiKhe6OhhBz6iJ?=
- =?us-ascii?Q?NlqmE8x6xS8vJXd9kdqiDdEXbmwIfihgHc5iQ49IaHjW/xPwzAZkbycdrsKh?=
- =?us-ascii?Q?suMENJztfcurCaaUSqZj6maPde0IvERb2Pp9EcRmfFEySguKfDpRISRNk77c?=
- =?us-ascii?Q?zPo2lWTSRJ4aY+YabwiOeO54Z+prx7r8e52G3a78Pl8jc76ckJovYkUexhlm?=
- =?us-ascii?Q?m3Tf1pVUhDeZLXyYQBUGAOIJaeirb6gauh/vNR82S9Bb3CtDCezyfPqZ1LXp?=
- =?us-ascii?Q?v2Oab6vCaWNthbAtbyar9XA3USJ1BEVXV2bjbFDY2Wcjlmv8qu2P1VUO8a28?=
- =?us-ascii?Q?9YzrwakZHzn68aKKaBN5x4rQCFK2PL8v4sQof8ICjc0b2ab/AWNDP14YMI/I?=
- =?us-ascii?Q?YYtFobpgL3wJvPmDyStU35eOd5EUqiKo/72afMnJw7A525rzg6EOXyr/FNW5?=
- =?us-ascii?Q?Hyui4q4kuXnInXOFznNLx4mrQ07iuJUs5kenNBjrSwwFcqGSwPAjXH5+UG3t?=
- =?us-ascii?Q?lz0HNhDZ3sDATeyC4hX23E266gMcUdNNrxQBL5qOZ1JMjSreNm+xfU29IvwS?=
- =?us-ascii?Q?CGUj+m70XqEVLEr9e5DIztvV/t/Z8YNsP3WQzp3glv43u1LZBVPxUC9gOdDN?=
- =?us-ascii?Q?6KDs9IZXJexemy7F+nUFdAAGO6ZypSx2StkWnugSq2W2gevr3XPWQSaYGw0A?=
- =?us-ascii?Q?S5h8L9BTP/unKuPEPEeIpUUAPMAC0PMGwz3fuG1hA9oaMET1cTU6+mS/puI7?=
- =?us-ascii?Q?16BhSpmwHMO7BrURZVsS7PcR7hebE9wgmtFS0VHirnNoQqZOTt8g6P87hQjg?=
- =?us-ascii?Q?zGXCShNkNVPmlukFhLgR90tNoXhPnQSzJ82kCoRTnRJplniguSP9TpHS+qOU?=
- =?us-ascii?Q?KrozOW15OeAOEr3iUIpxKDQ1N6WDStpFRel/BchAn46iebJL/BOwqtI4jKtT?=
- =?us-ascii?Q?LJ/t7RzQ4F9f87t1hwv+XM17J+Os5zKWKFvWMIYp16VFY0I8MA3fdUE0g97L?=
- =?us-ascii?Q?IBL+r+CmxPC/6MOlmaAbdu3ovDLg6h2G1a8FVbWP6uZs1U5Kb+fxb+KfLgTW?=
- =?us-ascii?Q?YhmHx2heWHsXBFNAefYpJsCr3W5VAdx9oGXdPtySbD722o82fvoGZUZJmH5t?=
- =?us-ascii?Q?qh89rfRNBWv30IpGjxxyKLALC8RNoyjM0f1vpnJRRg42tKKAgDXPuPpVqMrp?=
- =?us-ascii?Q?44XnBAe2iIT9f7pDgOxNqW8f3WS6HRTkRTAoUXFGnEWFiA=3D=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SN7PR11MB8282.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?maWEKtZgJAuRaLSBpBZlLD1LpR38xjPuKYzQO9rp2EH49U0VYLmRupjqedyL?=
- =?us-ascii?Q?3pqgo8Wyp/WHCfU9FwZWhVYDGq8NhdcDTvXyaF6VXL+ZzXnGKbAvD9Sqy065?=
- =?us-ascii?Q?TMRiwwnxMMFkzbC93RTl33/G/F3WaFwYcsDoxMKUy9KxeTZCL0V26tSmbZ1t?=
- =?us-ascii?Q?rdsJotzbIq3aFHwcF4hqLJzXOcGxFpK4/sQ0jkOtuIhqZTJMe+BS/SrALGih?=
- =?us-ascii?Q?jkogF2nB6ojYj62KDOhETIjYKusTMi+k9yiiXel8EYtHydGGwgBFWNoCzvnI?=
- =?us-ascii?Q?ZRJmHswF2BG4aJNbpvXI4CQf8PaLa1yajECE/WUijAZ/7APg0hEfm35m5JG9?=
- =?us-ascii?Q?P5ss9Mo4g+j1ndeS6xhoPSdDQuXShAopAuZHp03w+nYe7rz+oPiykIM8Zr6z?=
- =?us-ascii?Q?L456RAkjCnqC0lKS+fakzOJUXH/dhKGDFbMTN0RoERGUypJUAGGWYjQ5ZH3l?=
- =?us-ascii?Q?NnXxxN9fYH0jyVS9z2JVDbHujxtEbafUFrxij8wT9u+WW0Ddswx6KaymZKnv?=
- =?us-ascii?Q?YE8E3x2okk6j/NDLVpyXZX3NlhNHODMc1l4U5KczoqoQJrDL7XRSqZfDKFNx?=
- =?us-ascii?Q?60pgCMaqx8K6P0kjcYNpelDBa7nBbZ07Q5JdqIgvkF0sFpWwVpM3rMhQpMjp?=
- =?us-ascii?Q?nNJT+l6T5W4prTZcXSwBgE1NhVkkprxylkPnzVFu7jG3mMcz+t/r8nNclYKv?=
- =?us-ascii?Q?SGIAL5Jfu945xez2Jl60KBtb7pSmCxvRL4/P62UHqChlVRlchf+JtnI+Qi3W?=
- =?us-ascii?Q?9llLxPfk6WLiPjQcrXWyPkfbpgFv5Uy5zdROli/v/9yJzfPzeNSAXwmfxL10?=
- =?us-ascii?Q?9IfQVth0IVsblzgZSQGHLkv/8+BtGBdkh/yMUxEqJl40LE/VBKGAahBPYZU6?=
- =?us-ascii?Q?OhiEmKNtcc0VUsKwJYAovSicL8JyQ/7JIljPwavZlY32VcSNbfLVtIEe6m1M?=
- =?us-ascii?Q?8IeQLwPfiL41EjIJ6yG+iE3a/B2VV1F9FxnsLAui7iiRc1L4xPUtM4lkbDaR?=
- =?us-ascii?Q?kPvcDzi5YfcM3YyKPeMY9VxghVcJKYApIcn408jyZ0uddufkFWMvgvkfherk?=
- =?us-ascii?Q?11+lcSKfruM+e2IyWR88l7ZYEfzPLbGDBzINBF10zQ2STCq1I69cNfrO6wkd?=
- =?us-ascii?Q?gV1apLuVOIcMEI1GosBQZgpCdTAqmSz/1MYOUlDHwT+KmaubrPXE6ZA4HdS0?=
- =?us-ascii?Q?t4KY4553diPevcKmt98YJiL8hAx4JUKjKiIOatm5UwVsUfsg1iqlNsZpZJ02?=
- =?us-ascii?Q?8JbCa0JFQBcEU6zkgvELIXX+44WOphbUaRmiUHGZUlkCceXGqx4avz5VKj5c?=
- =?us-ascii?Q?6dEbOc5xoaS/Dz8s0X6muIwmQVZO2frwd2c6XGXdt0zASl2WBrrROmWY8D0E?=
- =?us-ascii?Q?//ktrqzkpqyEO81p/NcgK7PZBUfp5hJFdhhIhmyeLgKO/quUBYU0ArMLOSAk?=
- =?us-ascii?Q?5MHnJ876yV52ohU4F2cA86kXhIvnQQRv+dP0CX/vOvJnkf3MbyqDcaXlNAo/?=
- =?us-ascii?Q?tKJt4ez+Et8qLrHWjykHpEojMafoiSoAnVnB+J9US+lpHlDHugejiRbpzsZi?=
- =?us-ascii?Q?sIJ1ZtkDVkWPUNGFCnKgcaRrD/jrsMIUGNgjJI+YoBLGO+//JbDkN1O+kLmN?=
- =?us-ascii?Q?WA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8ab0b596-aadb-4c2b-92f4-08dd207027d8
-X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB8282.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Dec 2024 21:00:23.4447 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: EtiZQYMFzr+Kyzxi8CjXOgE1jiLhBuSFr1SZ0LlIca8IkOeVLQmmIoJRDBULsGR6ILcQRyVXI/eei2Etcjw2+w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB6695
+X-MS-Exchange-CrossTenant-AuthSource: CH0PR11MB5444.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2375f4f4-b4a4-4b38-d744-08dd2072dc7a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Dec 2024 21:19:45.3744 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ZF96PoVXwtMbUvunjR2O37OQuvkE+KNma4GhDOXvfRLNhilOD8JsjBiIlXX0aGS8iuXcJIOgI45F8bnIgKrwetbsG8rLLWbP3cTgJIKvexg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4679
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -175,33 +195,199 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-sub-pipe PG is not present on DG1. Setting these bits can disable
-other power gates and cause GPU hangs on video playbacks.
+-----Original Message-----
+> From: Roper, Matthew D <matthew.d.roper@intel.com>=20
+> Sent: Thursday, December 19, 2024 12:50 PM
+> To: Cavitt, Jonathan <jonathan.cavitt@intel.com>
+> Cc: Vodapalli, Ravi Kumar <ravi.kumar.vodapalli@intel.com>; intel-gfx@lis=
+ts.freedesktop.org; Vivekanandan, Balasubramani <balasubramani.vivekanandan=
+@intel.com>; De Marchi, Lucas <lucas.demarchi@intel.com>; Sousa, Gustavo <g=
+ustavo.sousa@intel.com>; Taylor, Clinton A <clinton.a.taylor@intel.com>; At=
+wood, Matthew S <matthew.s.atwood@intel.com>; Bhadane, Dnyaneshwar <dnyanes=
+hwar.bhadane@intel.com>; Kalvala, Haridhar <haridhar.kalvala@intel.com>; Ch=
+auhan, Shekhar <shekhar.chauhan@intel.com>
+> Subject: Re: [PATCH] drm/i915/display: Don't program DBUF_CTL tracker sta=
+te service
+>=20
+> On Thu, Dec 19, 2024 at 11:39:07AM -0800, Cavitt, Jonathan wrote:
+> > -----Original Message-----
+> > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of =
+Ravi Kumar Vodapalli
+> > Sent: Thursday, December 19, 2024 9:37 AM
+> > To: intel-gfx@lists.freedesktop.org
+> > Cc: Vivekanandan, Balasubramani <balasubramani.vivekanandan@intel.com>;=
+ Roper, Matthew D <matthew.d.roper@intel.com>; De Marchi, Lucas <lucas.dema=
+rchi@intel.com>; Sousa, Gustavo <gustavo.sousa@intel.com>; Taylor, Clinton =
+A <clinton.a.taylor@intel.com>; Atwood, Matthew S <matthew.s.atwood@intel.c=
+om>; Bhadane, Dnyaneshwar <dnyaneshwar.bhadane@intel.com>; Kalvala, Haridha=
+r <haridhar.kalvala@intel.com>; Chauhan, Shekhar <shekhar.chauhan@intel.com=
+>
+> > Subject: [PATCH] drm/i915/display: Don't program DBUF_CTL tracker state=
+ service
+> > >=20
+> > > While display initialization along with MBUS credits programming
+> > > DBUF_CTL register is also programmed, as a part of it the tracker
+> > > state service field is also set to 0x8 value when default value is
+> > > other than 0x8 which are for platforms past display version 13.
+> > > For remaining platforms the default value is already 0x8 so don't
+> > > program them.
+> >=20
+> > This could use some rewording.  Perhaps:
+> > """
+> > For platforms past display version 13, during display initialization al=
+ong
+> > with MBUS credits and DBUF_CTL register programming, the tracker state
+> > service field is set to a value of 0x8, which is not the default value =
+for
+> > these platforms.  All other platforms use 0x8 as the default value and =
+thus
+> > do not need to be overwritten.
+> > """
+> >=20
+> > Or maybe:
+> > """
+> > During display initialization and MBUS credits programming, the
+> > DBUF_CTL register is also programmed.  Specifically, when
+> > programming DBUF_CTL, the tracker state service field is set to the
+> > value 0x8.  However, this is already the default value for platforms
+> > using display versions 13 and prior, so we do not need to program
+> > the DBUF_CTL register on those platforms.
+> > """
+>=20
+> I think these are still missing the point a bit.  The key is that the
+> bspec asks us to program non-default values _only_ on certain platforms.
+> For all other platforms (both earlier and later), the expectation
+> is that the hardware's default settings (whatever they happen to be for
+> a given platform) are already correct and should not be adjusted.
+>=20
+> The code here was originally written back during gen12 development
+> following the standard "assume driver changes will apply to all future
+> platforms too until we know otherwise" design, so the original test was
+> written as ">=3D 12."  It looks like DG2 (one display version 13 platform=
+)
+> still needed the programming, but ADL-P (the other display version 13
+> platform) did not.  From version 14 onward, no platforms need it.  So
+> the correct condition to match the hardware/bspec's rules would be:
+>=20
+>     if (DISPLAY_VER(display) =3D=3D 12 || display->platform.dg2)
+>=20
+> (I think on an earlier review of this I said it should be just
+> "DISPLAY_VER(display) =3D=3D 12" but I overlooked that DG2 is indeed
+> included in the list of platforms on bspec page 49213).
+>=20
+> Once later platforms like ADL-P, MTL, etc. rolled around, it turned out
+> that explicit programming was actually not expected to carry forward,
+> and we should have adjusted the condition to just 12+DG2 at that time,
+> but it was overlooked.  That was technically a bug, but it turned out to
+> be harmless because the explicit value we were programming (8) happened
+> to match the new hardware defaults on display version 13.  However we
+> shouldn't count on it staying harmless forever --- if the hardware
+> default ever changes to something else in the future, then it can cause
+> problems if we're still explicitly programming it to "8" by accident;
+> this patch is addressing that earlier oversight.
+>=20
+> >=20
+> > >=20
+> > > Bspec: 49213
+> > > Signed-off-by: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_display_power.c | 5 +----
+> > >  1 file changed, 1 insertion(+), 4 deletions(-)
+> > >=20
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/dri=
+vers/gpu/drm/i915/display/intel_display_power.c
+> > > index 34465d56def0..98db721cba33 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> > > @@ -1126,9 +1126,6 @@ static void gen12_dbuf_slices_config(struct int=
+el_display *display)
+> > >  {
+> > >  	enum dbuf_slice slice;
+> > > =20
+> > > -	if (display->platform.alderlake_p)
+> > > -		return;
+> > > -
+> >=20
+> > I take it we're removing this condition because we no longer expect thi=
+s code to run
+> > on alderlake_p anyways?
+>=20
+> There's a platform/version check at the callsite and another here inside
+> the function.  We only need to do the check at one place or the other;
+> that's somewhat independent of fixing the check(s) themselves to match
+> the right platforms.
+>=20
+> >=20
+> > >  	for_each_dbuf_slice(display, slice)
+> > >  		intel_de_rmw(display, DBUF_CTL_S(slice),
+> > >  			     DBUF_TRACKER_STATE_SERVICE_MASK,
+> > > @@ -1681,7 +1678,7 @@ static void icl_display_core_init(struct intel_=
+display *display,
+> > >  	/* 4. Enable CDCLK. */
+> > >  	intel_cdclk_init_hw(display);
+> > > =20
+> > > -	if (DISPLAY_VER(display) >=3D 12)
+> > > +	if (DISPLAY_VER(display) =3D=3D 12)
+> >=20
+> > If I'm understanding the purpose of this patch correctly (which I'm pro=
+bably not),
+> > shouldn't this be "if (DISPLAY_VER(display) > 13)"?
+> > We only want to overwrite the tracker state service field on platforms =
+after display version 13,
+> > and it seems like gen12_dbuf_slices_config overwrites the tracker state=
+ service field.
+>=20
+> No, this change here is [mostly] correct; explicit driver programming at
+> display init time should only happen on 12 and DG2.  The DG2 condition
+> is missing (probably because I overlooked it and misspoke in an earlier
+> code review).  For all other platforms (both earlier and later versions)
+> we should leave the MBUF_CTL registers at their hardware defaults and
+> not touch them here.
+>=20
+> Also, don't confuse the code here (which adjusts the register at display
+> init time) with the other (re)programming of these values that happens
+> at runtime during modeset (adjusting based on how many pipes are
+> active).  There are separate rules later in the bspec page and separate
+> code that handles that (correctly I believe); the patch here is just
+> addressing the specific stanza of the bspec page that says "The MBus
+> credits should be setup once with the following default values during
+> the display initialization," and that block only applies to the various
+> platforms that user display version 12, and then also to DG2.
+>=20
 
-VLK: 16314, 4304
+Thank you to both @Roper, Matthew D and @Sousa, Gustavo for your input here=
+.
 
-Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13381
-Fixes: 85a12d7eb8fe ("drm/i915/tgl: Fix Media power gate sequence.")
-Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_rc6.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Perhaps this would be a better revision to the commit message in that case?
+"""
+Only the following platforms mandate updating
+DBUF_TRACKER_STATE_SERVICE during display initialization:
+1. All platforms that use display version 12
+2. DG2
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_rc6.c b/drivers/gpu/drm/i915/gt/intel_rc6.c
-index c864d101faf9..9378d5901c49 100644
---- a/drivers/gpu/drm/i915/gt/intel_rc6.c
-+++ b/drivers/gpu/drm/i915/gt/intel_rc6.c
-@@ -133,7 +133,7 @@ static void gen11_rc6_enable(struct intel_rc6 *rc6)
- 			GEN9_MEDIA_PG_ENABLE |
- 			GEN11_MEDIA_SAMPLER_PG_ENABLE;
- 
--	if (GRAPHICS_VER(gt->i915) >= 12) {
-+	if (GRAPHICS_VER(gt->i915) >= 12 && !IS_DG1(gt->i915)) {
- 		for (i = 0; i < I915_MAX_VCS; i++)
- 			if (HAS_ENGINE(gt, _VCS(i)))
- 				pg_enable |= (VDN_HCP_POWERGATE_ENABLE(i) |
--- 
-2.47.1
+All other platforms should use their default values unless stated
+otherwise, so update the display initialization code to reflect this
+requirement.
+"""
+-Jonathan Cavitt
 
+>=20
+> Matt
+>=20
+> >=20
+> > -Jonathan Cavitt
+> >=20
+> > >  		gen12_dbuf_slices_config(display);
+> > > =20
+> > >  	/* 5. Enable DBUF. */
+> > > --=20
+> > > 2.25.1
+> > >=20
+> > >=20
+>=20
+> --=20
+> Matt Roper
+> Graphics Software Engineer
+> Linux GPU Platform Enablement
+> Intel Corporation
+>=20
