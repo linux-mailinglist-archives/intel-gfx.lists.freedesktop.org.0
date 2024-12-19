@@ -2,29 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B1429F836F
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2024 19:41:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 190A99F845E
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2024 20:33:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECFDA10E0C2;
-	Thu, 19 Dec 2024 18:41:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A333510E1B2;
+	Thu, 19 Dec 2024 19:33:36 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UZMcimq1";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1CD2610E0C2;
- Thu, 19 Dec 2024 18:41:04 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0EF010E1B2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 19 Dec 2024 19:33:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1734636815; x=1766172815;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=qgLCB937H1AUkddjOMV7VBVG8Uqnq/G0C5NLD4GKjkE=;
+ b=UZMcimq1S78V2oovB4emrLxjBMZXwvMHR9kj3Y3wAYJyJRyGBXHJPk5l
+ ed/6bOK1BeaOP9k3VRqgg/Mz/FzSHGetk7HVSxZSl+axwhFdNGTIOyKog
+ 55qqfUyOOiRG3FJ/VAUGFFxbkpyfu3wnTh8HH77QjA8Qi3cl2iAfX6YPW
+ w1KfFEFgYWFYFIsQfhceLE0xPdmNvQ5IHEw7vcMCCSs+jys7YIr2Jgrum
+ XQDsNk19kHN3QBxgV0zF+Ta+QqLQFifEcGTzXvLDBtTdeIFeRmBo3Xtgd
+ 89MjxlcKc7EzrsZp0+B6QN+d72YjSt/Lo5NjQu23McJhYKldLrbWJzapP A==;
+X-CSE-ConnectionGUID: dm9DSdnXTImecJkJBmz12w==
+X-CSE-MsgGUID: B3AbgxIPSE6dzEUYlAElZw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11291"; a="46551411"
+X-IronPort-AV: E=Sophos;i="6.12,248,1728975600"; d="scan'208";a="46551411"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2024 11:33:35 -0800
+X-CSE-ConnectionGUID: DhCMA3H3QqqEtPxqqyMPAA==
+X-CSE-MsgGUID: aGKReCv9SXSNlPktWdQHOA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="102414645"
+Received: from carterle-desk.ger.corp.intel.com (HELO intel.com)
+ ([10.245.246.178])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2024 11:33:32 -0800
+Date: Thu, 19 Dec 2024 20:33:28 +0100
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, andi.shyti@linux.intel.com
+Subject: Re: [PATCH] drm/i915/gt: Log reason for setting TAINT_WARN at reset
+Message-ID: <Z2R1CP1ce5U-JGBC@ashyti-mobl2.lan>
+References: <20241219153152.2912955-1-sebastian.brzezinka@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Don?=
- =?utf-8?q?=27t_program_DBUF=5FCTL_tracker_state_service_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ravi Kumar Vodapalli" <ravi.kumar.vodapalli@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 19 Dec 2024 18:41:04 -0000
-Message-ID: <173463366411.503462.4341795674843299563@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241219173636.3377955-1-ravi.kumar.vodapalli@intel.com>
-In-Reply-To: <20241219173636.3377955-1-ravi.kumar.vodapalli@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241219153152.2912955-1-sebastian.brzezinka@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,105 +65,28 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Sebastian,
 
-Series: drm/i915/display: Don't program DBUF_CTL tracker state service (rev2)
-URL   : https://patchwork.freedesktop.org/series/142744/
-State : success
+On Thu, Dec 19, 2024 at 03:31:52PM +0000, Sebastian Brzezinka wrote:
+> TAINT_WARN is used to notify CI about non-recoverable failures, which
+> require device to be restarted. In some cases, there is no sufficient
+> information about the reason for the restart. The test runner is just
+> killed, and DUT is rebooted, logging only 'probe with driver i915 failed
+> with error -4' to dmesg.
+> 
+> Printing error to dmesg before TAINT_WARN, would explain why the device
+> has been restarted, and what caused the malfunction in the first place.
+> 
+> Signed-off-by: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
 
-== Summary ==
+thanks for fixing the commit log, but please, remember to add the
+versioning and (git format-patch -v 2 ...) and the changelog.
 
-CI Bug Log - changes from CI_DRM_15873 -> Patchwork_142744v2
-====================================================
+For this time I will take it as it is, but next time, please keep
+it in mind.
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142744v2/index.html
-
-Participating hosts (45 -> 44)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_142744v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@dmabuf@all-tests:
-    - bat-apl-1:          [PASS][1] -> [INCOMPLETE][2] ([i915#12904]) +1 other test incomplete
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15873/bat-apl-1/igt@dmabuf@all-tests.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142744v2/bat-apl-1/igt@dmabuf@all-tests.html
-
-  * igt@i915_selftest@live@gt_mocs:
-    - bat-twl-2:          [PASS][3] -> [ABORT][4] ([i915#12919]) +1 other test abort
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15873/bat-twl-2/igt@i915_selftest@live@gt_mocs.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142744v2/bat-twl-2/igt@i915_selftest@live@gt_mocs.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-mtlp-6:         [PASS][5] -> [ABORT][6] ([i915#12061]) +1 other test abort
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15873/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142744v2/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         [PASS][7] -> [SKIP][8] ([i915#9197]) +3 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15873/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142744v2/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arlh-2:         [ABORT][9] ([i915#12061]) -> [PASS][10] +1 other test pass
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15873/bat-arlh-2/igt@i915_selftest@live@workarounds.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142744v2/bat-arlh-2/igt@i915_selftest@live@workarounds.html
-    - {bat-arls-6}:       [ABORT][11] ([i915#12061]) -> [PASS][12] +1 other test pass
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15873/bat-arls-6/igt@i915_selftest@live@workarounds.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142744v2/bat-arls-6/igt@i915_selftest@live@workarounds.html
-
-  
-#### Warnings ####
-
-  * igt@kms_busy@basic@flip:
-    - fi-cfl-8109u:       [DMESG-WARN][13] ([i915#11621]) -> [DMESG-WARN][14] ([i915#11621] / [i915#1982]) +1 other test dmesg-warn
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15873/fi-cfl-8109u/igt@kms_busy@basic@flip.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142744v2/fi-cfl-8109u/igt@kms_busy@basic@flip.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#11621]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11621
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
-  [i915#12919]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12919
-  [i915#1982]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982
-  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15873 -> Patchwork_142744v2
-
-  CI-20190529: 20190529
-  CI_DRM_15873: a5b4c40929f3263a92e34e3f6b3c3c0de57e0e58 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8166: 197cca38ae5c494511843112d43351aeab2314be @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_142744v2: a5b4c40929f3263a92e34e3f6b3c3c0de57e0e58 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142744v2/index.html
+Thanks,
+Andi
