@@ -2,54 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3E3D9F879E
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2024 23:14:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD31E9F87A0
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Dec 2024 23:15:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B7F210EDF7;
-	Thu, 19 Dec 2024 22:14:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 608D610EDF3;
+	Thu, 19 Dec 2024 22:14:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VU/J0eya";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nFkLZIi2";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D3A6A10E2A7;
- Thu, 19 Dec 2024 22:14:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E28D510EDF4;
+ Thu, 19 Dec 2024 22:14:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734646494; x=1766182494;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=JGSF7wTGKdRuerUOAxZwo/Yt6tn/jrvTyJBJ3b83Hv0=;
- b=VU/J0eyaJVAaFsHn/5VKFkEn6fPXaUNkAdtqQvXrguCLhw71HxLiuDhU
- tsYNVkx5GYIOz8VAoCmoBkYvGEGr519Wla0RzS3DXLcsog6SU9r5m0Q1w
- G4SlMQZx5hdW3vr0lIF0X95xqAqqB7NAlZFQ8CKNubpakptj+Vc8gpDku
- /ujV2rEbs9DsB5gelevFmxVi16tKXF1jOu3wQ8IWfReApOFK9WaQU2MPC
- ll0+Njzd8682s7JLcVa1qZxC9A10XF79FZMV75bCYwzC6YkMi2nYTVx4l
- l82whOakxkqz5OIgwZ+IDi5wOUf9ilLIyhEXcC7bxN2Duo+0C8mLaN93a A==;
-X-CSE-ConnectionGUID: EzmcUklgSAy5Ou0CbeoVzQ==
-X-CSE-MsgGUID: FsWBeMNhTGu3kjOgWaTPSw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11291"; a="35217708"
-X-IronPort-AV: E=Sophos;i="6.12,248,1728975600"; d="scan'208";a="35217708"
+ t=1734646495; x=1766182495;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=XXjxeer2ISNvfjT//aQPbgIGFg4TfEAwRaGz6XuXRzo=;
+ b=nFkLZIi2XQS99xDVSoMZg9K42eh8WYz8yFjXvSkiuuguqW7WoVIeompX
+ LlOCrfZXZftOt25wn+0uMgkF/AZzdEP/057nfYrWZfZOvY3FdGZC6cfCb
+ C17lhJopfRuSEPYrvNDXFCOXLhm2VLXKDGQbWRQOnZXkuijc/1EbRAM7s
+ SghCNUOrVki0JwndubdopMdR6HZmTIzkxVXfacj22gGjMCSuySDMa9669
+ q4lojSEkcfEMPqEmxQqjwb4VJDrvJ6JMjUnc//k0QbHh0XR3nMhaej/2I
+ OJuYXfoWLgYOYRwjyziNkfiZYNWm2s5dyUqUs2F7blhq/Iviz5htigNJN A==;
+X-CSE-ConnectionGUID: 0ylW8HqdR2mIQkpqhWU3/A==
+X-CSE-MsgGUID: noQK3HL8QBeG6oAq0ziPfQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11291"; a="35217709"
+X-IronPort-AV: E=Sophos;i="6.12,248,1728975600"; d="scan'208";a="35217709"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2024 14:14:54 -0800
-X-CSE-ConnectionGUID: WtwK++JbQgy7BfZFD5cUPw==
-X-CSE-MsgGUID: +Z4pSXY8TYyWnrzw8vFw5A==
+ 19 Dec 2024 14:14:55 -0800
+X-CSE-ConnectionGUID: lFjnDZrMRGSg2+UZR0qNmw==
+X-CSE-MsgGUID: eHt+1WaBTniCF9OUjdtBOQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="102944119"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="102944123"
 Received: from bmurrell-mobl.amr.corp.intel.com (HELO
  gjsousa-mobl2.corp.amr.intel.com) ([10.125.108.91])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2024 14:14:53 -0800
+ 19 Dec 2024 14:14:55 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Subject: [PATCH 0/4] drm/i915/dmc_wl: Support extra values for dmc_wl_enable
- for debugging
-Date: Thu, 19 Dec 2024 19:14:12 -0300
-Message-ID: <20241219221429.109668-1-gustavo.sousa@intel.com>
+Subject: [PATCH 1/4] drm/i915/dmc_wl: Use enum values for enable_dmc_wl
+Date: Thu, 19 Dec 2024 19:14:13 -0300
+Message-ID: <20241219221429.109668-2-gustavo.sousa@intel.com>
 X-Mailer: git-send-email 2.47.1
+In-Reply-To: <20241219221429.109668-1-gustavo.sousa@intel.com>
+References: <20241219221429.109668-1-gustavo.sousa@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -67,25 +68,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This series adds support for two new values for dmc_wl_enable for
-debugging purposes:
+Currently, after sanitization, enable_dmc_wl will behave like a boolean
+parameter (enabled vs disabled). However, in upcoming changes, we will
+allow more values for debugging purposes. For that, let's make the
+sanitized value an enumeration.
 
-  * 2 to mean "match any register", which makes the wakelock to be taken
-    for every display MMIO transaction;
-  * 3 to mean "always locked", which causes the lock to be taken as soon
-    as the DMC wakelock mechanism is enabled and is kept locked until it
-    is disabled.
+Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dmc_wl.c | 29 ++++++++++++++++-----
+ 1 file changed, 23 insertions(+), 6 deletions(-)
 
-Gustavo Sousa (4):
-  drm/i915/dmc_wl: Use enum values for enable_dmc_wl
-  drm/i915/dmc_wl: Show description string for enable_dmc_wl
-  drm/i915/dmc_wl: Allow enable_dmc_wl=2 to mean "match any register"
-  drm/i915/dmc_wl: Allow enable_dmc_wl=3 to mean "always locked"
-
- .../drm/i915/display/intel_display_params.c   |  2 +-
- drivers/gpu/drm/i915/display/intel_dmc_wl.c   | 73 +++++++++++++++----
- 2 files changed, 61 insertions(+), 14 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+index 3ac44151aab5..cff841521ca0 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
++++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+@@ -50,6 +50,15 @@
+ #define DMC_WAKELOCK_CTL_TIMEOUT_US 5000
+ #define DMC_WAKELOCK_HOLD_TIME 50
+ 
++/*
++ * Possible non-negative values for the enable_dmc_wl param.
++ */
++enum {
++	ENABLE_DMC_WL_DISABLED,
++	ENABLE_DMC_WL_ENABLED,
++	ENABLE_DMC_WL_MAX,
++};
++
+ struct intel_dmc_wl_range {
+ 	u32 start;
+ 	u32 end;
+@@ -270,12 +279,20 @@ static bool __intel_dmc_wl_supported(struct intel_display *display)
+ 
+ static void intel_dmc_wl_sanitize_param(struct intel_display *display)
+ {
+-	if (!HAS_DMC_WAKELOCK(display))
+-		display->params.enable_dmc_wl = 0;
+-	else if (display->params.enable_dmc_wl >= 0)
+-		display->params.enable_dmc_wl = !!display->params.enable_dmc_wl;
+-	else
+-		display->params.enable_dmc_wl = DISPLAY_VER(display) >= 30;
++	if (!HAS_DMC_WAKELOCK(display)) {
++		display->params.enable_dmc_wl = ENABLE_DMC_WL_DISABLED;
++	} else if (display->params.enable_dmc_wl < 0) {
++		if (DISPLAY_VER(display) >= 30)
++			display->params.enable_dmc_wl = ENABLE_DMC_WL_ENABLED;
++		else
++			display->params.enable_dmc_wl = ENABLE_DMC_WL_DISABLED;
++	} else if (display->params.enable_dmc_wl >= ENABLE_DMC_WL_MAX) {
++		display->params.enable_dmc_wl = ENABLE_DMC_WL_ENABLED;
++	}
++
++	drm_WARN_ON(display->drm,
++		    display->params.enable_dmc_wl < 0 ||
++		    display->params.enable_dmc_wl >= ENABLE_DMC_WL_MAX);
+ 
+ 	drm_dbg_kms(display->drm, "Sanitized enable_dmc_wl value: %d\n",
+ 		    display->params.enable_dmc_wl);
 -- 
 2.47.1
 
