@@ -1,62 +1,61 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C8DE9F8EDE
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2024 10:23:32 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60F109F8F0E
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2024 10:34:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DD8610EF4C;
-	Fri, 20 Dec 2024 09:23:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7097610EF5A;
+	Fri, 20 Dec 2024 09:34:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SRYj/bFY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YzD8Hs78";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B0FF210EF5C;
- Fri, 20 Dec 2024 09:23:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 707BA10EF50;
+ Fri, 20 Dec 2024 09:34:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734686609; x=1766222609;
+ t=1734687290; x=1766223290;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=+/6AbG2WWxdjvmAyg3yVwSVogCy2B3rXmghNMlLB/uY=;
- b=SRYj/bFYVFlKiBscykAmq0EGIHQw+6X1qoigdtFVkZKmNdzJzx1e4fP9
- 9ZRSPKm0midOFRCyofeHwHxQX1Yyx+2CJzsWirgwGtMCn0oEUu3f/vt+F
- 4v5l/kj+2d1NT5GfM8BuNXJB6Lcun7sZo/NVWOtTyZFQTK1CZchQQwmBk
- N6+ctVx3GfgBzqnEx9cmSoEp55/YZ/bejzao1YRuM/15qGzmwRldH+uHl
- c9o4SDU1nTrVz1Xknj2mIdrNFXEfngRueq3Ky7Rt8/x2N9T6aCtD/hZpW
- 3xhDBbXR+Z2tIO29sTnB6BC5+1+dfDlB3p4nFrplrF5N2aEDeK6IkZu2p g==;
-X-CSE-ConnectionGUID: pj536StuR4S6rJi7CtV9qA==
-X-CSE-MsgGUID: +X1OESp1Ti6T0DAvhwZ39Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11291"; a="45836779"
-X-IronPort-AV: E=Sophos;i="6.12,250,1728975600"; d="scan'208";a="45836779"
+ bh=PGpOEXYdIgd6qIE4Cxq9hP0EVpGo2qCV1eY7OaPTJEw=;
+ b=YzD8Hs78uFNWi+AcU5xCyqLvc7SH8aXjPvTtANT7lQeCUW2z3seElMg7
+ dL6cz2DoXCiNkUx3CqkMgcoRBZAqI/QuYoIpl4hlpnxrC0d+saz4RGBbl
+ 8GnEuEGBFquSyheHMOuaJhTJJWiSM9g2M9lqyVMWi6KT6X4w9t5nvMBkp
+ x8byMqIDxOVWZfW8/ZI5ZQCM5cVyee/tqFpV8ltjrGbPKdoqOgYK9jLmB
+ sMu0gjTXol7+nM9eswxIKoyWDbEG698FPpzqe63U+IU1rJPeqMXf7FVDL
+ eM2NXKZ+ynphReYqao1d/8/vlwGVl9stiKChNuQ/RxkKgDPOGjF1ccSQl A==;
+X-CSE-ConnectionGUID: UuyVFNcRT3eCpttDF9ZF1A==
+X-CSE-MsgGUID: 9LJQ4XH2QvqCFrKk5NiMfg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11291"; a="45838534"
+X-IronPort-AV: E=Sophos;i="6.12,250,1728975600"; d="scan'208";a="45838534"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2024 01:23:28 -0800
-X-CSE-ConnectionGUID: /HGAyluvQxaxPsbwj/nvug==
-X-CSE-MsgGUID: HSum5m2gRCaiKX/FAdd78Q==
+ 20 Dec 2024 01:34:50 -0800
+X-CSE-ConnectionGUID: q+vnp7ceS9iN6zKWougkHQ==
+X-CSE-MsgGUID: AiWR+cuuTG65IFhUv/G2xg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,250,1728975600"; d="scan'208";a="98661497"
+X-IronPort-AV: E=Sophos;i="6.12,250,1728975600"; d="scan'208";a="98662967"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 20 Dec 2024 01:23:26 -0800
+ by fmviesa008.fm.intel.com with SMTP; 20 Dec 2024 01:34:48 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 20 Dec 2024 11:23:24 +0200
-Date: Fri, 20 Dec 2024 11:23:24 +0200
+ Fri, 20 Dec 2024 11:34:47 +0200
+Date: Fri, 20 Dec 2024 11:34:47 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Jani Nikula <jani.nikula@intel.com>
-Subject: Re: [PATCH 2/3] drm/i915/display: Add infra to reduce global state
- funcs boilerplate
-Message-ID: <Z2U3jCBKUo1FF21r@intel.com>
-References: <20241219214909.104869-1-gustavo.sousa@intel.com>
- <20241219214909.104869-3-gustavo.sousa@intel.com>
+To: Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 05/10] drm/i915/psr: Ensure SFF/CFF bits are not written
+ at their sample point
+Message-ID: <Z2U6N12oPGh8Anbj@intel.com>
+References: <20241213063528.2759659-1-jouni.hogander@intel.com>
+ <20241213063528.2759659-6-jouni.hogander@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241219214909.104869-3-gustavo.sousa@intel.com>
+In-Reply-To: <20241213063528.2759659-6-jouni.hogander@intel.com>
 X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -73,155 +72,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 19, 2024 at 06:48:37PM -0300, Gustavo Sousa wrote:
-> If we look at how the members of struct intel_global_state_funcs, we see
-> a common pattern repeating itself. Let's add the necessary
-> infra-structure to allow reducing the boilerplate. We do that by
-> adding common generic implementations for each member and adding a macro
-> INTEL_GLOBAL_STATE_DEFAULTS() to be used when initializing an instance
-> of struct intel_global_state_funcs.
+On Fri, Dec 13, 2024 at 08:35:23AM +0200, Jouni Högander wrote:
+> Bspec says this for SFF/CFF:
 > 
-> That way, a global state that does not need custom behavior can have
-> its funcs structure be initialized as in the following example,
+> "Hardware samples this bit on the start of every V. Blank Guardband
+> region. For deterministic behavior, Software should ensure it is not
+> changing this bit around the sample point."
 > 
->     static const struct intel_global_state_funcs <prefix>_funcs = {
->            INTEL_GLOBAL_STATE_DEFAULTS(struct <prefix>_state, <base_member_name>),
->     };
+> This can be achieved by using intel_vblank_evade.
 > 
-> , without the need to implementing the functions.
-> 
-> That doesn't come without cost - we will need to store two size_t
-> members -, but that cost is arguably justified by the simplification
-> gained.
-> 
-> In an upcoming change we will put that infra into action on existing
-> users.
-> 
-> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+> Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 > ---
->  .../gpu/drm/i915/display/intel_global_state.c | 41 ++++++++++++++++++-
->  .../gpu/drm/i915/display/intel_global_state.h | 15 +++++++
->  2 files changed, 54 insertions(+), 2 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_psr.c | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_global_state.c b/drivers/gpu/drm/i915/display/intel_global_state.c
-> index cbcd1e91b7be..4b4c33fa99fb 100644
-> --- a/drivers/gpu/drm/i915/display/intel_global_state.c
-> +++ b/drivers/gpu/drm/i915/display/intel_global_state.c
-> @@ -59,7 +59,10 @@ static void __intel_atomic_global_state_free(struct kref *kref)
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+> index c074de6b6c12..8aa2574ba5c9 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> @@ -26,6 +26,7 @@
+>  #include <drm/drm_atomic_helper.h>
+>  #include <drm/drm_damage_helper.h>
+>  #include <drm/drm_debugfs.h>
+> +#include <drm/drm_vblank.h>
 >  
->  	commit_put(obj_state->commit);
+>  #include "i915_drv.h"
+>  #include "i915_reg.h"
+> @@ -44,6 +45,7 @@
+>  #include "intel_psr.h"
+>  #include "intel_psr_regs.h"
+>  #include "intel_snps_phy.h"
+> +#include "intel_vblank.h"
+>  #include "skl_universal_plane.h"
 >  
-> -	obj->funcs->atomic_destroy_state(obj, obj_state);
-> +	if (obj->funcs->atomic_destroy_state)
-> +		obj->funcs->atomic_destroy_state(obj, obj_state);
-> +	else
-> +		intel_atomic_global_destroy_state_common(obj, obj_state);
+>  /**
+> @@ -3114,16 +3116,31 @@ static void intel_psr_configure_full_frame_update(struct intel_dp *intel_dp)
+>  {
+>  	struct intel_display *display = to_intel_display(intel_dp);
+>  	enum transcoder cpu_transcoder = intel_dp->psr.transcoder;
+> +	struct intel_crtc *crtc = intel_crtc_for_pipe(display, intel_dp->psr.pipe);
+> +	struct intel_crtc_state *crtc_state = to_intel_crtc_state(crtc->base.state);
+
+You can't use that without proper locking.
+
+> +	struct intel_vblank_evade_ctx evade;
+>  
+>  	if (!intel_dp->psr.psr2_sel_fetch_enabled)
+>  		return;
+>  
+> +	intel_vblank_evade_init(crtc_state, crtc_state, &evade);
+> +
+> +	drm_crtc_vblank_get(&crtc->base);
+> +
+> +	local_irq_disable();
+> +
+> +	intel_vblank_evade(&evade);
+> +
+> +	drm_crtc_vblank_put(&crtc->base);
+> +
+>  	intel_de_write(display,
+>  		       PSR2_MAN_TRK_CTL(display, cpu_transcoder),
+>  		       man_trk_ctl_enable_bit_get(display) |
+>  		       man_trk_ctl_partial_frame_bit_get(display) |
+>  		       man_trk_ctl_single_full_frame_bit_get(display) |
+>  		       man_trk_ctl_continuos_full_frame(display));
+> +
+> +	local_irq_enable();
 >  }
 >  
->  static void intel_atomic_global_state_put(struct intel_global_state *obj_state)
-> @@ -164,7 +167,11 @@ intel_atomic_get_global_obj_state(struct intel_atomic_state *state,
->  	index = state->num_global_objs;
->  	memset(&state->global_objs[index], 0, sizeof(*state->global_objs));
->  
-> -	obj_state = obj->funcs->atomic_duplicate_state(obj);
-> +	if (obj->funcs->atomic_duplicate_state)
-> +		obj_state = obj->funcs->atomic_duplicate_state(obj);
-> +	else
-> +		obj_state = intel_atomic_global_duplicate_state_common(obj);
-> +
->  	if (!obj_state)
->  		return ERR_PTR(-ENOMEM);
->  
-> @@ -382,3 +389,33 @@ intel_atomic_global_state_commit_done(struct intel_atomic_state *state)
->  		complete_all(&commit->done);
->  	}
->  }
-> +
-> +struct intel_global_state *
-> +intel_atomic_global_duplicate_state_common(struct intel_global_obj *obj)
-> +{
-> +	void *state_wrapper;
-> +
-> +	if (WARN_ON(obj->funcs->state_size == 0))
-> +		return NULL;
-> +
-> +	state_wrapper = (void *)obj->state - obj->funcs->base_offset;
-> +
-> +	state_wrapper = kmemdup(state_wrapper, obj->funcs->state_size, GFP_KERNEL);
-> +	if (!state_wrapper)
-> +		return NULL;
-> +
-> +	return state_wrapper + obj->funcs->base_offset;
-
-I'm not really a fan. What was obvious code before now looks 
-complicated.
-
-Also this no longer matches how any of the standard kms object
-types work, which I don't think is a good idea. IMO if we
-want to do something like this then it should probably try to
-cover all kms object types.
-
-> +}
-> +
-> +void intel_atomic_global_destroy_state_common(struct intel_global_obj *obj,
-> +					      struct intel_global_state *state)
-> +{
-> +	void *state_wrapper;
-> +
-> +	if (WARN_ON(obj->funcs->state_size == 0))
-> +		return;
-> +
-> +	state_wrapper = (void *)state - obj->funcs->base_offset;
-> +
-> +	kfree(state_wrapper);
-> +}
-> diff --git a/drivers/gpu/drm/i915/display/intel_global_state.h b/drivers/gpu/drm/i915/display/intel_global_state.h
-> index 6506a8e32972..e47e007225cc 100644
-> --- a/drivers/gpu/drm/i915/display/intel_global_state.h
-> +++ b/drivers/gpu/drm/i915/display/intel_global_state.h
-> @@ -8,6 +8,8 @@
->  
->  #include <linux/kref.h>
->  #include <linux/list.h>
-> +#include <linux/stddef.h>
-> +#include <linux/types.h>
->  
->  struct drm_i915_private;
->  struct intel_atomic_state;
-> @@ -15,6 +17,10 @@ struct intel_global_obj;
->  struct intel_global_state;
->  
->  struct intel_global_state_funcs {
-> +	/* state_size and base_offset are initialized by INTEL_GLOBAL_STATE_DEFAULTS() */
-> +	size_t state_size;
-> +	size_t base_offset;
-> +
->  	struct intel_global_state *(*atomic_duplicate_state)(struct intel_global_obj *obj);
->  	void (*atomic_destroy_state)(struct intel_global_obj *obj,
->  				     struct intel_global_state *state);
-> @@ -26,6 +32,10 @@ struct intel_global_obj {
->  	const struct intel_global_state_funcs *funcs;
->  };
->  
-> +#define INTEL_GLOBAL_STATE_DEFAULTS(type, base_member) \
-> +	.state_size = sizeof(type), \
-> +	.base_offset = offsetof(type, base_member)
-> +
->  #define intel_for_each_global_obj(obj, dev_priv) \
->  	list_for_each_entry(obj, &(dev_priv)->display.global.obj_list, head)
->  
-> @@ -96,4 +106,9 @@ int intel_atomic_global_state_wait_for_dependencies(struct intel_atomic_state *s
->  
->  bool intel_atomic_global_state_is_serialized(struct intel_atomic_state *state);
->  
-> +struct intel_global_state *
-> +intel_atomic_global_duplicate_state_common(struct intel_global_obj *obj);
-> +void intel_atomic_global_destroy_state_common(struct intel_global_obj *obj,
-> +					      struct intel_global_state *state);
-> +
->  #endif
+>  static void _psr_invalidate_handle(struct intel_dp *intel_dp)
 > -- 
-> 2.47.1
+> 2.34.1
 
 -- 
 Ville Syrjälä
