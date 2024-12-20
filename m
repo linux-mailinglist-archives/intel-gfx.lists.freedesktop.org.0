@@ -2,62 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FADC9F8EAB
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2024 10:12:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE4049F8EB0
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2024 10:13:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 17EAE10EF3B;
-	Fri, 20 Dec 2024 09:12:03 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WC4JmkZt";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F4C710E384;
+	Fri, 20 Dec 2024 09:12:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 115E110E384;
- Fri, 20 Dec 2024 09:12:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734685921; x=1766221921;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Y6fWIpNpn6+RfkCwXAYImqJKK8WJMBpzJdscsLxngmk=;
- b=WC4JmkZtrdWO+mQsgKUrJ9DGK+dlQvI7AJs2pSqPsY1Z72DmWDqt4nmF
- +FNOqNlF+f0ami9cuIXYYtKXzA9LX1nM8OSU023JkMkEPQiJ2WBmqGl3Q
- 77K+D3MeCd835x/jluNlMN2gxHjkg+tOC29DoGt7jhTne/tWtdS45f87h
- 9jGV2i04ZCSjyLlucfpkopEOTE82ZyVncPyDxXmAx4+nUH7FvuREF8b6I
- AVjXnhbHCHwxlWi+N0HVDe9Se4VehW5Z4zoMAKyu4SGLZ43gWCEiWULyv
- TapG6+eURl/c2x7Yhkzry6Eq7W5FropiyTdK261+SCnzgcX1pFQM/SvAH w==;
-X-CSE-ConnectionGUID: R1zxceReQ7CJQVr7U2oukA==
-X-CSE-MsgGUID: zcSvNclCRFStBcsinMk1fg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11291"; a="45834874"
-X-IronPort-AV: E=Sophos;i="6.12,250,1728975600"; d="scan'208";a="45834874"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2024 01:12:00 -0800
-X-CSE-ConnectionGUID: VokFSDUPT0ucR0XQoYSd1A==
-X-CSE-MsgGUID: y5XR78syS+KOFb/33K20qw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,250,1728975600"; d="scan'208";a="98659126"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 20 Dec 2024 01:11:58 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 20 Dec 2024 11:11:57 +0200
-Date: Fri, 20 Dec 2024 11:11:57 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Jani Nikula <jani.nikula@intel.com>
-Subject: Re: [PATCH 1/3] drm/i915/display: Do not assume zero offset when
- duplicating global state
-Message-ID: <Z2U03bMgwHMvapu-@intel.com>
-References: <20241219214909.104869-1-gustavo.sousa@intel.com>
- <20241219214909.104869-2-gustavo.sousa@intel.com>
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 850ED10E384
+ for <intel-gfx@lists.freedesktop.org>; Fri, 20 Dec 2024 09:12:47 +0000 (UTC)
+Received: from 91-155-254-69.elisa-laajakaista.fi ([91.155.254.69]
+ helo=[192.168.100.137])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.97) (envelope-from <luca@coelho.fi>)
+ id 1tOZ3s-000000038i2-3Xwx; Fri, 20 Dec 2024 11:12:44 +0200
+Message-ID: <418ab35450c6e8f027b56647842ad51e46863d31.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>, 
+ intel-gfx@lists.freedesktop.org
+Date: Fri, 20 Dec 2024 11:12:43 +0200
+In-Reply-To: <20241219130827.22830-9-ville.syrjala@linux.intel.com>
+References: <20241219130827.22830-1-ville.syrjala@linux.intel.com>
+ <20241219130827.22830-9-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.2-1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241219214909.104869-2-gustavo.sousa@intel.com>
-X-Patchwork-Hint: comment
+X-Spam-Checker-Version: SpamAssassin 4.0.1-pre1 (2023-11-21) on
+ farmhouse.coelho.fi
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
+ TVD_RCVD_IP,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+ version=4.0.1-pre1
+Subject: Re: [PATCH 8/8] drm/i915/scaler: Add scaler tracepoints
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,102 +51,179 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Dec 19, 2024 at 06:48:36PM -0300, Gustavo Sousa wrote:
-> The current intel_*_duplicate_state() functions assume the offset for
-> the base member of their state structures is zero when calling
-> kmemdup(). While that is true today, such assumption should not be made
-> and proper offset must be applied when calling kmemdup(), otherwise we
-> will be duplicating the wrong memory area if, for some reason, the
-> offset is changed in the future.
-
-All kms objects we use make that same assumption. I think the correct
-thing to do is to just throw in some BUILD_BUG_ON()/etc. to make the
-thing not build if that doesn't hold. I had a patch like that ages
-ago, but it's no doubt 110% stale by now.
-
-I suppose no real harm if avoiding that assumption in spots like
-this, but the &foo->base==NULL <-> foo==NULL assumptions we have
-all over the place are the far bigger issue.
-
-> 
-> As such, update each of those functions to use its respective
-> to_*_state() as the parameter to kmemdup().
-> 
-> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+On Thu, 2024-12-19 at 15:08 +0200, Ville Syrjala wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>=20
+> Add some tracpoints around skl+ scaler programming to help with
+> debugging.
+>=20
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_bw.c       | 4 ++--
->  drivers/gpu/drm/i915/display/intel_cdclk.c    | 4 ++--
->  drivers/gpu/drm/i915/display/intel_pmdemand.c | 4 ++--
->  drivers/gpu/drm/i915/display/skl_watermark.c  | 4 ++--
->  4 files changed, 8 insertions(+), 8 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-> index 08e8a67ca74c..30236010e0ed 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bw.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-> @@ -1425,9 +1425,9 @@ int intel_bw_atomic_check(struct intel_atomic_state *state)
->  static struct intel_global_state *
->  intel_bw_duplicate_state(struct intel_global_obj *obj)
+>  .../drm/i915/display/intel_display_trace.h    | 99 +++++++++++++++++++
+>  drivers/gpu/drm/i915/display/skl_scaler.c     |  8 ++
+>  2 files changed, 107 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_trace.h b/drivers=
+/gpu/drm/i915/display/intel_display_trace.h
+> index 338b9f7b20b8..54a6e2a46b82 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_trace.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_trace.h
+> @@ -489,6 +489,105 @@ TRACE_EVENT(intel_plane_disable_arm,
+>  		      __entry->frame, __entry->scanline)
+>  );
+> =20
+> +TRACE_EVENT(intel_plane_scaler_update_arm,
+> +	    TP_PROTO(struct intel_plane *plane,
+> +		     int scaler_id, int x, int y, int w, int h),
+> +	    TP_ARGS(plane, scaler_id, x, y, w, h),
+> +
+> +	    TP_STRUCT__entry(
+> +			     __string(dev, __dev_name_kms(plane))
+> +			     __field(char, pipe_name)
+> +			     __field(int, scaler_id)
+> +			     __field(u32, frame)
+> +			     __field(u32, scanline)
+> +			     __field(int, x)
+> +			     __field(int, y)
+> +			     __field(int, w)
+> +			     __field(int, h)
+> +			     __string(name, plane->base.name)
+> +			     ),
+> +
+> +	    TP_fast_assign(
+> +			   struct intel_display *display =3D to_intel_display(plane);
+> +			   struct intel_crtc *crtc =3D intel_crtc_for_pipe(display, plane->pi=
+pe);
+> +			   __assign_str(dev);
+> +			   __assign_str(name);
+> +			   __entry->pipe_name =3D pipe_name(crtc->pipe);
+> +			   __entry->scaler_id =3D scaler_id;
+> +			   __entry->frame =3D intel_crtc_get_vblank_counter(crtc);
+> +			   __entry->scanline =3D intel_get_crtc_scanline(crtc);
+> +			   __entry->x =3D x;
+> +			   __entry->y =3D y;
+> +			   __entry->w =3D w;
+> +			   __entry->h =3D h;
+> +			   ),
+> +
+> +	    TP_printk("dev %s, pipe %c, scaler %d, plane %s, frame=3D%u, scanli=
+ne=3D%u, " DRM_RECT_FMT,
+> +		      __get_str(dev), __entry->pipe_name, __entry->scaler_id,
+> +		      __get_str(name), __entry->frame, __entry->scanline,
+> +		      __entry->w, __entry->h, __entry->x, __entry->y)
+> +);
+> +
+> +TRACE_EVENT(intel_pipe_scaler_update_arm,
+> +	    TP_PROTO(struct intel_crtc *crtc, int scaler_id,
+> +		     int x, int y, int w, int h),
+> +	    TP_ARGS(crtc, scaler_id, x, y, w, h),
+> +
+> +	    TP_STRUCT__entry(
+> +			     __string(dev, __dev_name_kms(crtc))
+> +			     __field(char, pipe_name)
+> +			     __field(int, scaler_id)
+> +			     __field(u32, frame)
+> +			     __field(u32, scanline)
+> +			     __field(int, x)
+> +			     __field(int, y)
+> +			     __field(int, w)
+> +			     __field(int, h)
+> +			     ),
+> +
+> +	    TP_fast_assign(
+> +			   __assign_str(dev);
+> +			   __entry->pipe_name =3D pipe_name(crtc->pipe);
+> +			   __entry->scaler_id =3D scaler_id;
+> +			   __entry->frame =3D intel_crtc_get_vblank_counter(crtc);
+> +			   __entry->scanline =3D intel_get_crtc_scanline(crtc);
+> +			   __entry->x =3D x;
+> +			   __entry->y =3D y;
+> +			   __entry->w =3D w;
+> +			   __entry->h =3D h;
+> +			   ),
+> +
+> +	    TP_printk("dev %s, pipe %c, scaler %d frame=3D%u, scanline=3D%u, " =
+DRM_RECT_FMT,
+> +		      __get_str(dev), __entry->pipe_name, __entry->scaler_id,
+> +		      __entry->frame, __entry->scanline,
+> +		      __entry->w, __entry->h, __entry->x, __entry->y)
+> +);
+> +
+> +TRACE_EVENT(intel_scaler_disable_arm,
+> +	    TP_PROTO(struct intel_crtc *crtc, int scaler_id),
+> +	    TP_ARGS(crtc, scaler_id),
+> +
+> +	    TP_STRUCT__entry(
+> +			     __string(dev, __dev_name_kms(crtc))
+> +			     __field(char, pipe_name)
+> +			     __field(int, scaler_id)
+> +			     __field(u32, frame)
+> +			     __field(u32, scanline)
+> +			     ),
+> +
+> +	    TP_fast_assign(
+> +			   __assign_str(dev);
+> +			   __entry->pipe_name =3D pipe_name(crtc->pipe);
+> +			   __entry->scaler_id =3D scaler_id;
+> +			   __entry->frame =3D intel_crtc_get_vblank_counter(crtc);
+> +			   __entry->scanline =3D intel_get_crtc_scanline(crtc);
+> +			   ),
+> +
+> +	    TP_printk("dev %s, pipe %c, scaler %d, frame=3D%u, scanline=3D%u",
+> +		      __get_str(dev), __entry->pipe_name, __entry->scaler_id,
+> +		      __entry->frame, __entry->scanline)
+> +);
+> +
+>  TRACE_EVENT(intel_fbc_activate,
+>  	    TP_PROTO(struct intel_plane *plane),
+>  	    TP_ARGS(plane),
+> diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/=
+i915/display/skl_scaler.c
+> index 79739357162c..a11e09a15e23 100644
+> --- a/drivers/gpu/drm/i915/display/skl_scaler.c
+> +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+> @@ -6,6 +6,7 @@
+>  #include "i915_drv.h"
+>  #include "i915_reg.h"
+>  #include "intel_de.h"
+> +#include "intel_display_trace.h"
+>  #include "intel_display_types.h"
+>  #include "intel_fb.h"
+>  #include "skl_scaler.h"
+> @@ -706,6 +707,8 @@ void skl_pfit_enable(const struct intel_crtc_state *c=
+rtc_state)
+>  	ps_ctrl =3D PS_SCALER_EN | PS_BINDING_PIPE | scaler_state->scalers[id].=
+mode |
+>  		skl_scaler_get_filter_select(crtc_state->hw.scaling_filter, 0);
+> =20
+> +	trace_intel_pipe_scaler_update_arm(crtc, id, x, y, width, height);
+> +
+>  	skl_scaler_setup_filter(display, pipe, id, 0,
+>  				crtc_state->hw.scaling_filter);
+> =20
+> @@ -770,6 +773,9 @@ skl_program_plane_scaler(struct intel_plane *plane,
+>  	ps_ctrl =3D PS_SCALER_EN | PS_BINDING_PLANE(plane->id) | scaler->mode |
+>  		skl_scaler_get_filter_select(plane_state->hw.scaling_filter, 0);
+> =20
+> +	trace_intel_plane_scaler_update_arm(plane, scaler_id,
+> +					    crtc_x, crtc_y, crtc_w, crtc_h);
+> +
+>  	skl_scaler_setup_filter(display, pipe, scaler_id, 0,
+>  				plane_state->hw.scaling_filter);
+> =20
+> @@ -788,6 +794,8 @@ static void skl_detach_scaler(struct intel_crtc *crtc=
+, int id)
 >  {
-> -	struct intel_bw_state *state;
-> +	struct intel_bw_state *state = to_intel_bw_state(obj->state);
->  
-> -	state = kmemdup(obj->state, sizeof(*state), GFP_KERNEL);
-> +	state = kmemdup(state, sizeof(*state), GFP_KERNEL);
->  	if (!state)
->  		return NULL;
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> index 3506e576bf6b..fc084e2a4c6a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> @@ -3130,9 +3130,9 @@ static int fixed_modeset_calc_cdclk(struct intel_atomic_state *state)
->  
->  static struct intel_global_state *intel_cdclk_duplicate_state(struct intel_global_obj *obj)
->  {
-> -	struct intel_cdclk_state *cdclk_state;
-> +	struct intel_cdclk_state *cdclk_state = to_intel_cdclk_state(obj->state);
->  
-> -	cdclk_state = kmemdup(obj->state, sizeof(*cdclk_state), GFP_KERNEL);
-> +	cdclk_state = kmemdup(cdclk_state, sizeof(*cdclk_state), GFP_KERNEL);
->  	if (!cdclk_state)
->  		return NULL;
->  
-> diff --git a/drivers/gpu/drm/i915/display/intel_pmdemand.c b/drivers/gpu/drm/i915/display/intel_pmdemand.c
-> index cdd314956a31..1f71efb7d04d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_pmdemand.c
-> +++ b/drivers/gpu/drm/i915/display/intel_pmdemand.c
-> @@ -18,9 +18,9 @@
->  static struct intel_global_state *
->  intel_pmdemand_duplicate_state(struct intel_global_obj *obj)
->  {
-> -	struct intel_pmdemand_state *pmdemand_state;
-> +	struct intel_pmdemand_state *pmdemand_state = to_intel_pmdemand_state(obj->state);
->  
-> -	pmdemand_state = kmemdup(obj->state, sizeof(*pmdemand_state), GFP_KERNEL);
-> +	pmdemand_state = kmemdup(pmdemand_state, sizeof(*pmdemand_state), GFP_KERNEL);
->  	if (!pmdemand_state)
->  		return NULL;
->  
-> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-> index 29e8ea91c858..b3d38e09df5a 100644
-> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
-> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-> @@ -3291,9 +3291,9 @@ static void skl_setup_wm_latency(struct drm_i915_private *i915)
->  
->  static struct intel_global_state *intel_dbuf_duplicate_state(struct intel_global_obj *obj)
->  {
-> -	struct intel_dbuf_state *dbuf_state;
-> +	struct intel_dbuf_state *dbuf_state = to_intel_dbuf_state(obj->state);
->  
-> -	dbuf_state = kmemdup(obj->state, sizeof(*dbuf_state), GFP_KERNEL);
-> +	dbuf_state = kmemdup(dbuf_state, sizeof(*dbuf_state), GFP_KERNEL);
->  	if (!dbuf_state)
->  		return NULL;
->  
-> -- 
-> 2.47.1
+>  	struct intel_display *display =3D to_intel_display(crtc);
+> =20
+> +	trace_intel_scaler_disable_arm(crtc, id);
+> +
+>  	intel_de_write_fw(display, SKL_PS_CTRL(crtc->pipe, id), 0);
+>  	intel_de_write_fw(display, SKL_PS_WIN_POS(crtc->pipe, id), 0);
+>  	intel_de_write_fw(display, SKL_PS_WIN_SZ(crtc->pipe, id), 0);
 
--- 
-Ville Syrjälä
-Intel
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
+
+--
+Cheers,
+Luca.
