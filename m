@@ -1,41 +1,58 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4BF99F8E57
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2024 09:55:29 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id C273F9F8E68
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2024 09:58:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 402D310EF32;
-	Fri, 20 Dec 2024 08:55:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 963A710EF2C;
+	Fri, 20 Dec 2024 08:58:07 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EkGUAtSg";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6279810EF2D
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Dec 2024 08:55:27 +0000 (UTC)
-Received: from 91-155-254-69.elisa-laajakaista.fi ([91.155.254.69]
- helo=[192.168.100.137])
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.97) (envelope-from <luca@coelho.fi>)
- id 1tOYn6-000000038gH-3fC8; Fri, 20 Dec 2024 10:55:25 +0200
-Message-ID: <461edd8c5d918d7707fb8b568747d8a366d3c232.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>, 
- intel-gfx@lists.freedesktop.org
-Date: Fri, 20 Dec 2024 10:55:23 +0200
-In-Reply-To: <20241219130827.22830-8-ville.syrjala@linux.intel.com>
-References: <20241219130827.22830-1-ville.syrjala@linux.intel.com>
- <20241219130827.22830-8-ville.syrjala@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.2-1 
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FF8B10EF2C;
+ Fri, 20 Dec 2024 08:58:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1734685086; x=1766221086;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=9YAbTC/ZzjGxYdlM6p4Lo37vySeQep4beFnu/uC1omY=;
+ b=EkGUAtSga/rfnsOtAWNr7wkAVFJw557fdSLz0ElV2YgJuJxetZMrVAyT
+ zLN/GP+T7iuRpap2qDtKk8CvC7tdu8PcJiliVtYCJmmPCTq8MAPh6oKTZ
+ V4DE7oW+ZovxGZDj89uK0oLWGJJameknWwbIoTr2N/TDDQQV85LmEu617
+ kqPZ1QPi4UYjXBgCGwoYKjekSvV34/IgDWJPW4GsRqkMjO6OdvO7QSe1J
+ t/X/y1BKKn86j+Om7T6WIMPrcwpdfJyWehFgqsPSZtR/mQThOKAjIFlSv
+ 9etTVWKzXXJ/9Gye2z0G1lbe025AttaozkpQ7CxazJPAmZygxTaZbNWjh A==;
+X-CSE-ConnectionGUID: +zNRdJ2NTruw/2dk2Wzfhg==
+X-CSE-MsgGUID: x9waUcv4Su6q5xx/R21BKA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11291"; a="34945587"
+X-IronPort-AV: E=Sophos;i="6.12,250,1728975600"; d="scan'208";a="34945587"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2024 00:58:06 -0800
+X-CSE-ConnectionGUID: EQkq0mq7RNupa84ykXD7WQ==
+X-CSE-MsgGUID: ePEDoSsbT+qI0Thw18b4TA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,250,1728975600"; d="scan'208";a="98854349"
+Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.210])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2024 00:58:04 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH] drm/i915/dmc_wl: store register ranges in rodata
+In-Reply-To: <173453211835.3475.8229112069297893910@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20241218141734.2583601-1-jani.nikula@intel.com>
+ <173453211835.3475.8229112069297893910@intel.com>
+Date: Fri, 20 Dec 2024 10:57:59 +0200
+Message-ID: <87ikrepw88.fsf@intel.com>
 MIME-Version: 1.0
-X-Spam-Checker-Version: SpamAssassin 4.0.1-pre1 (2023-11-21) on
- farmhouse.coelho.fi
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
- TVD_RCVD_IP,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
- version=4.0.1-pre1
-Subject: Re: [PATCH 7/8] drm/i915/scaler: s/excdeed/exceed/
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,34 +68,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 2024-12-19 at 15:08 +0200, Ville Syrjala wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->=20
-> Fix typo s/excdeed/exceed/
->=20
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/skl_scaler.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/=
-i915/display/skl_scaler.c
-> index f6d76ef1a854..79739357162c 100644
-> --- a/drivers/gpu/drm/i915/display/skl_scaler.c
-> +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-> @@ -64,7 +64,7 @@ static u16 skl_scaler_calc_phase(int sub, int scale, bo=
-ol chroma_cosited)
->  	/*
->  	 * Hardware initial phase limited to [-0.5:1.5].
->  	 * Since the max hardware scale factor is 3.0, we
-> -	 * should never actually excdeed 1.0 here.
-> +	 * should never actually exceed 1.0 here.
->  	 */
->  	WARN_ON(phase < -0x8000 || phase > 0x18000);
-> =20
+On Wed, 18 Dec 2024, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
+> Quoting Jani Nikula (2024-12-18 11:17:34-03:00)
+>>Add const to register range arrays to store them in rodata. They don't
+>>need to be modified.
+>>
+>>Cc: Gustavo Sousa <gustavo.sousa@intel.com>
+>>Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> Good idea.
+>
+> Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
 
-Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
+Thanks for the review, pushed to drm-intel-next.
 
---
-Cheers,
-Luca.
+BR,
+Jani.
+
+
+>
+>>---
+>> drivers/gpu/drm/i915/display/intel_dmc_wl.c | 6 +++---
+>> 1 file changed, 3 insertions(+), 3 deletions(-)
+>>
+>>diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+>>index 3ac44151aab5..02de3ae15074 100644
+>>--- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+>>+++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+>>@@ -55,12 +55,12 @@ struct intel_dmc_wl_range {
+>>         u32 end;
+>> };
+>> 
+>>-static struct intel_dmc_wl_range powered_off_ranges[] = {
+>>+static const struct intel_dmc_wl_range powered_off_ranges[] = {
+>>         { .start = 0x60000, .end = 0x7ffff },
+>>         {},
+>> };
+>> 
+>>-static struct intel_dmc_wl_range xe3lpd_dc5_dc6_dmc_ranges[] = {
+>>+static const struct intel_dmc_wl_range xe3lpd_dc5_dc6_dmc_ranges[] = {
+>>         { .start = 0x45500 }, /* DC_STATE_SEL */
+>>         { .start = 0x457a0, .end = 0x457b0 }, /* DC*_RESIDENCY_COUNTER */
+>>         { .start = 0x45504 }, /* DC_STATE_EN */
+>>@@ -94,7 +94,7 @@ static struct intel_dmc_wl_range xe3lpd_dc5_dc6_dmc_ranges[] = {
+>>         {},
+>> };
+>> 
+>>-static struct intel_dmc_wl_range xe3lpd_dc3co_dmc_ranges[] = {
+>>+static const struct intel_dmc_wl_range xe3lpd_dc3co_dmc_ranges[] = {
+>>         { .start = 0x454a0 }, /* CHICKEN_DCPR_4 */
+>> 
+>>         { .start = 0x45504 }, /* DC_STATE_EN */
+>>-- 
+>>2.39.5
+>>
+
+-- 
+Jani Nikula, Intel
