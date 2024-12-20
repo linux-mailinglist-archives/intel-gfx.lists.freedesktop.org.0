@@ -1,57 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9276E9F8BA8
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2024 06:01:58 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E54909F8BDB
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2024 06:22:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04ADE10EE84;
-	Fri, 20 Dec 2024 05:01:57 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d6h7U9wr";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD1F910E09E;
+	Fri, 20 Dec 2024 05:22:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 548FE10EE84;
- Fri, 20 Dec 2024 05:01:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734670917; x=1766206917;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ggL052RCucGYFBrEo1WNXO/NpltLvnvXAWGNheaHNNI=;
- b=d6h7U9wrbHrkxl2VBja5oS8Cj5ie7QTjuLXwlt4+DuXK98r3cG5PYm64
- 0AizWoPyAC5sjCw7oUNaFAOdWwUiJ5SOwSyBXCkrOJZdj/O05nh411GJM
- /UVbL00rOglyJctrMqzUYf9s9mzK6V6rOhxbd7hbP3Eq0P+cAPTmndGf5
- kuHRyuh1k9r1PnAZFSWua49qpUDPz9zxBB78eevRqhACzcMx7VYxBCSrn
- 4y5OBVYtO1nfgxggZKcoeKLfEoRlzzltwR42UiRFS/YzatD3QuiwKdoyL
- 3PDLvdAXFXNbiwbQpAe1wA4DhqLvUwSSCFIzBK67gFTqWEAgdPg68Ol9O Q==;
-X-CSE-ConnectionGUID: Pmc7Lc5wQmOk6Q8Rt7b7aA==
-X-CSE-MsgGUID: Ke51m4iAR2qByfLCx+FvtQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11291"; a="34929106"
-X-IronPort-AV: E=Sophos;i="6.12,249,1728975600"; d="scan'208";a="34929106"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2024 21:01:56 -0800
-X-CSE-ConnectionGUID: s1bQ8QhVT2+nyANhslWJqw==
-X-CSE-MsgGUID: BWZBOxd8T6qcGbr7B00aWQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,249,1728975600"; d="scan'208";a="98471447"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by orviesa006.jf.intel.com with ESMTP; 19 Dec 2024 21:01:55 -0800
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com,
-	Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH] Revert "drm/i915/hdcp: Don't enable HDCP1.4 directly from
- check_link"
-Date: Fri, 20 Dec 2024 10:31:53 +0530
-Message-Id: <20241220050153.3053540-1-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.34.1
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8ADC110E09E;
+ Fri, 20 Dec 2024 05:22:23 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_Revert_=22drm/i915/hdcp?=
+ =?utf-8?q?=3A_Don=27t_enable_HDCP1=2E4_directly_from_check=5Flink=22?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Suraj Kandpal" <suraj.kandpal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 20 Dec 2024 05:22:23 -0000
+Message-ID: <173467214356.669528.7955072928099578035@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241220050153.3053540-1-suraj.kandpal@intel.com>
+In-Reply-To: <20241220050153.3053540-1-suraj.kandpal@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,42 +37,65 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This reverts commit 483f7d94a0453564ad9295288c0242136c5f36a0.
-This needs to be reverted since HDCP even after updating the connector
-state HDCP property we don't reenable HDCP until the next commit
-in which the CP Property is set causing compliance to fail.
+== Series Details ==
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_hdcp.c | 12 +++++++++---
- 1 file changed, 9 insertions(+), 3 deletions(-)
+Series: Revert "drm/i915/hdcp: Don't enable HDCP1.4 directly from check_link"
+URL   : https://patchwork.freedesktop.org/series/142871/
+State : failure
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index f6e68a0e3b6d..33c705b5ee28 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -1166,9 +1166,15 @@ static int intel_hdcp_check_link(struct intel_connector *connector)
- 		goto out;
- 	}
- 
--	intel_hdcp_update_value(connector,
--				DRM_MODE_CONTENT_PROTECTION_DESIRED,
--				true);
-+	ret = intel_hdcp1_enable(connector);
-+	if (ret) {
-+		drm_err(&i915->drm, "Failed to enable hdcp (%d)\n", ret);
-+		intel_hdcp_update_value(connector,
-+					DRM_MODE_CONTENT_PROTECTION_DESIRED,
-+					true);
-+		goto out;
-+	}
-+
- out:
- 	mutex_unlock(&dig_port->hdcp_mutex);
- 	mutex_unlock(&hdcp->mutex);
--- 
-2.34.1
+== Summary ==
+
+Error: make failed
+  CALL    scripts/checksyscalls.sh
+  DESCEND objtool
+  INSTALL libsubcmd_headers
+  CC [M]  drivers/gpu/drm/i915/display/intel_hdcp.o
+In file included from ./include/linux/device.h:15,
+                 from ./include/linux/acpi.h:14,
+                 from ./include/linux/i2c.h:13,
+                 from drivers/gpu/drm/i915/display/intel_hdcp.c:12:
+drivers/gpu/drm/i915/display/intel_hdcp.c: In function ‘intel_hdcp_check_link’:
+drivers/gpu/drm/i915/display/intel_hdcp.c:1171:26: error: ‘i915’ undeclared (first use in this function); did you mean ‘I915’?
+ 1171 |                 drm_err(&i915->drm, "Failed to enable hdcp (%d)\n", ret);
+      |                          ^~~~
+./include/linux/dev_printk.h:110:25: note: in definition of macro ‘dev_printk_index_wrap’
+  110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
+      |                         ^~~
+./include/drm/drm_print.h:588:9: note: in expansion of macro ‘dev_err’
+  588 |         dev_##level##type((drm) ? (drm)->dev : NULL, "[drm] " fmt, ##__VA_ARGS__)
+      |         ^~~~
+./include/drm/drm_print.h:601:9: note: in expansion of macro ‘__drm_printk’
+  601 |         __drm_printk((drm), err,, "*ERROR* " fmt, ##__VA_ARGS__)
+      |         ^~~~~~~~~~~~
+drivers/gpu/drm/i915/display/intel_hdcp.c:1171:17: note: in expansion of macro ‘drm_err’
+ 1171 |                 drm_err(&i915->drm, "Failed to enable hdcp (%d)\n", ret);
+      |                 ^~~~~~~
+drivers/gpu/drm/i915/display/intel_hdcp.c:1171:26: note: each undeclared identifier is reported only once for each function it appears in
+ 1171 |                 drm_err(&i915->drm, "Failed to enable hdcp (%d)\n", ret);
+      |                          ^~~~
+./include/linux/dev_printk.h:110:25: note: in definition of macro ‘dev_printk_index_wrap’
+  110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
+      |                         ^~~
+./include/drm/drm_print.h:588:9: note: in expansion of macro ‘dev_err’
+  588 |         dev_##level##type((drm) ? (drm)->dev : NULL, "[drm] " fmt, ##__VA_ARGS__)
+      |         ^~~~
+./include/drm/drm_print.h:601:9: note: in expansion of macro ‘__drm_printk’
+  601 |         __drm_printk((drm), err,, "*ERROR* " fmt, ##__VA_ARGS__)
+      |         ^~~~~~~~~~~~
+drivers/gpu/drm/i915/display/intel_hdcp.c:1171:17: note: in expansion of macro ‘drm_err’
+ 1171 |                 drm_err(&i915->drm, "Failed to enable hdcp (%d)\n", ret);
+      |                 ^~~~~~~
+make[6]: *** [scripts/Makefile.build:194: drivers/gpu/drm/i915/display/intel_hdcp.o] Error 1
+make[5]: *** [scripts/Makefile.build:440: drivers/gpu/drm/i915] Error 2
+make[4]: *** [scripts/Makefile.build:440: drivers/gpu/drm] Error 2
+make[3]: *** [scripts/Makefile.build:440: drivers/gpu] Error 2
+make[2]: *** [scripts/Makefile.build:440: drivers] Error 2
+make[1]: *** [/home/kbuild/kernel/Makefile:1989: .] Error 2
+make: *** [Makefile:251: __sub-make] Error 2
+Build failed, no error log produced
+
 
