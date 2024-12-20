@@ -2,47 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 773D79F8B7E
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2024 05:42:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9276E9F8BA8
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2024 06:01:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 48DA710EEB7;
-	Fri, 20 Dec 2024 04:42:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 04ADE10EE84;
+	Fri, 20 Dec 2024 05:01:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="RsdRu2aW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d6h7U9wr";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F8DC10EEB7;
- Fri, 20 Dec 2024 04:42:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1734669726;
- bh=X1sD28c5lvOZVoU2CZWWg264ZPUBOVNrYwpPBe1nkjE=;
- h=Date:From:To:Cc:Subject:From;
- b=RsdRu2aWiUAhNMBU2p/ASaTgyoCMLuZyD/op2g46lRjAWAp79BQBHZ8rBSUk3nHHO
- RcS6xDTcddqQIYkLLJit6CYG0q54cjKO5qgxZAsPpupPR6LiDccsOpMMzv8O8fFP05
- IaF/jbAYAz0OmruIAdT1SYCYhLvmBhyWYjmMM4GmdnvnUs+xHd2pbn65l8ltjNRfZm
- 3C8Ijhx6ZSXIQMDwh0ZzcGkCefPZTAYeITu5+nixFKJ1E1aUt+8W0c9OrKmfCqNNyS
- rW+nCqiO3sSwgld0iVo20nVFMCd2BMENrXLVr/TvBe/znyNm5ZQAy//zzZCZLGbqra
- ALoaQC6wK4gag==
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (Client did not present a certificate)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4YDvsB0nx3z4wc4;
- Fri, 20 Dec 2024 15:42:05 +1100 (AEDT)
-Date: Fri, 20 Dec 2024 15:42:08 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Simona Vetter <simona.vetter@ffwll.ch>, Intel Graphics
- <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>
-Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, Linux Kernel Mailing
- List <linux-kernel@vger.kernel.org>, Linux Next Mailing List
- <linux-next@vger.kernel.org>
-Subject: linux-next: build warnings after merge of the drm-misc tree
-Message-ID: <20241220154208.720d990b@canb.auug.org.au>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 548FE10EE84;
+ Fri, 20 Dec 2024 05:01:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1734670917; x=1766206917;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ggL052RCucGYFBrEo1WNXO/NpltLvnvXAWGNheaHNNI=;
+ b=d6h7U9wrbHrkxl2VBja5oS8Cj5ie7QTjuLXwlt4+DuXK98r3cG5PYm64
+ 0AizWoPyAC5sjCw7oUNaFAOdWwUiJ5SOwSyBXCkrOJZdj/O05nh411GJM
+ /UVbL00rOglyJctrMqzUYf9s9mzK6V6rOhxbd7hbP3Eq0P+cAPTmndGf5
+ kuHRyuh1k9r1PnAZFSWua49qpUDPz9zxBB78eevRqhACzcMx7VYxBCSrn
+ 4y5OBVYtO1nfgxggZKcoeKLfEoRlzzltwR42UiRFS/YzatD3QuiwKdoyL
+ 3PDLvdAXFXNbiwbQpAe1wA4DhqLvUwSSCFIzBK67gFTqWEAgdPg68Ol9O Q==;
+X-CSE-ConnectionGUID: Pmc7Lc5wQmOk6Q8Rt7b7aA==
+X-CSE-MsgGUID: Ke51m4iAR2qByfLCx+FvtQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11291"; a="34929106"
+X-IronPort-AV: E=Sophos;i="6.12,249,1728975600"; d="scan'208";a="34929106"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2024 21:01:56 -0800
+X-CSE-ConnectionGUID: s1bQ8QhVT2+nyANhslWJqw==
+X-CSE-MsgGUID: BWZBOxd8T6qcGbr7B00aWQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,249,1728975600"; d="scan'208";a="98471447"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
+ by orviesa006.jf.intel.com with ESMTP; 19 Dec 2024 21:01:55 -0800
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com,
+	Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH] Revert "drm/i915/hdcp: Don't enable HDCP1.4 directly from
+ check_link"
+Date: Fri, 20 Dec 2024 10:31:53 +0530
+Message-Id: <20241220050153.3053540-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/AEjIXrQB5G1FD5m3QdsPQc1";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,41 +67,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/AEjIXrQB5G1FD5m3QdsPQc1
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+This reverts commit 483f7d94a0453564ad9295288c0242136c5f36a0.
+This needs to be reverted since HDCP even after updating the connector
+state HDCP property we don't reenable HDCP until the next commit
+in which the CP Property is set causing compliance to fail.
 
-Hi all,
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_hdcp.c | 12 +++++++++---
+ 1 file changed, 9 insertions(+), 3 deletions(-)
 
-After merging the drm-misc tree, today's linux-next build (htmldocs)
-produced these warnings:
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+index f6e68a0e3b6d..33c705b5ee28 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+@@ -1166,9 +1166,15 @@ static int intel_hdcp_check_link(struct intel_connector *connector)
+ 		goto out;
+ 	}
+ 
+-	intel_hdcp_update_value(connector,
+-				DRM_MODE_CONTENT_PROTECTION_DESIRED,
+-				true);
++	ret = intel_hdcp1_enable(connector);
++	if (ret) {
++		drm_err(&i915->drm, "Failed to enable hdcp (%d)\n", ret);
++		intel_hdcp_update_value(connector,
++					DRM_MODE_CONTENT_PROTECTION_DESIRED,
++					true);
++		goto out;
++	}
++
+ out:
+ 	mutex_unlock(&dig_port->hdcp_mutex);
+ 	mutex_unlock(&hdcp->mutex);
+-- 
+2.34.1
 
-drivers/gpu/drm/xlnx/zynqmp_dpsub.h:86: warning: Function parameter or stru=
-ct member 'audio' not described in 'zynqmp_dpsub'
-drivers/gpu/drm/xlnx/zynqmp_dpsub.c:1: warning: no structured comments found
-
-Introduced by commit
-
-  3ec5c1579305 ("drm: xlnx: zynqmp_dpsub: Add DP audio support")
-
---=20
-Cheers,
-Stephen Rothwell
-
---Sig_/AEjIXrQB5G1FD5m3QdsPQc1
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmdk9aAACgkQAVBC80lX
-0Gz/rgf/WPa2cHf9/Fh49P40jSDpH770drpcWB8/zVLnufEEGip4+d9M1+ow+N+t
-voKbfrJFbUa5iNc2GLXhl1ynJidtrSB5OIVpsfpqvKOUhPQ9N1FjGWBMGFHaktoa
-a4szR+KdCyOw0nML28PX0fyGHHoskaaN/rT6sIx9F/a10aQSJSODHap5r1AR3yDC
-PFrwiC1s2uA+v8RJsw0Xo/R/lsu3VYpuagmvJzhCF6kUI4WbH5KIL+IBA1Qg38p8
-a5TEsZdF5e3OrZ4YQvgUOv2jVogs7tdfFyV9CH66ciLDylXmkfiKNedctKEfSDzc
-BKFSa0To81kw/6VNnNlS3coTcqNfJA==
-=OPvd
------END PGP SIGNATURE-----
-
---Sig_/AEjIXrQB5G1FD5m3QdsPQc1--
