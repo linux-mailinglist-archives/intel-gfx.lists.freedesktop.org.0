@@ -1,61 +1,41 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A35A39F8E44
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2024 09:52:08 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3D569F8E47
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2024 09:52:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E9A510EF21;
-	Fri, 20 Dec 2024 08:52:07 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NInP0rX4";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58B6510EF25;
+	Fri, 20 Dec 2024 08:52:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6FDF610EF21;
- Fri, 20 Dec 2024 08:52:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734684725; x=1766220725;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=ZzW3rBdAK+99wcnwmd939d3S2a2bW88p1aiaT0ZqSoY=;
- b=NInP0rX4xDLZZ8/XGgbbtM+3ermaZtwi+TXl+5Q60tEfryZj8sIZ6wfr
- Tj62RdU0kLk10o3iJRMpspq3SokdaKw+e/QC7a5ips+n1dDGhI1KGeWxz
- QIfbT1KL+74I1caYz/L7QZKjSfdtZMX6xkuCQBcpKy1JRkg5VR8t1uVLG
- SeOa1YL56JPypNdfkxX1ft8bluE+ukA+8B0vyWeT2VTo6uGpcjbrob3lT
- 2Pc9OK3r5evG5YxLVWCtHk+hu+cYjbUHHgrYxsONntWUaAvhqLZeOnmRK
- sPwtDoC30UEHuaydBmYDGZMvU4RwL2wOdmgHKU5jWu3zNkaShmXMBOclO w==;
-X-CSE-ConnectionGUID: E3jm+RF8SBKwKfxcokyckQ==
-X-CSE-MsgGUID: rFdyNeeMToy+tEMcUGVX5w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11291"; a="60610302"
-X-IronPort-AV: E=Sophos;i="6.12,250,1728975600"; d="scan'208";a="60610302"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2024 00:51:58 -0800
-X-CSE-ConnectionGUID: zlZcg0PfTVeicQXJw5jmBw==
-X-CSE-MsgGUID: XQaF/a6QRZeJlGe95A57/w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="98283774"
-Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.210])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2024 00:51:57 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Subject: Re: [PATCH 2/3] drm/i915/display: Add infra to reduce global state
- funcs boilerplate
-In-Reply-To: <20241219214909.104869-3-gustavo.sousa@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241219214909.104869-1-gustavo.sousa@intel.com>
- <20241219214909.104869-3-gustavo.sousa@intel.com>
-Date: Fri, 20 Dec 2024 10:51:51 +0200
-Message-ID: <87ldwapwig.fsf@intel.com>
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89AB410EF25
+ for <intel-gfx@lists.freedesktop.org>; Fri, 20 Dec 2024 08:52:17 +0000 (UTC)
+Received: from 91-155-254-69.elisa-laajakaista.fi ([91.155.254.69]
+ helo=[192.168.100.137])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.97) (envelope-from <luca@coelho.fi>)
+ id 1tOYk3-000000038fZ-08wz; Fri, 20 Dec 2024 10:52:15 +0200
+Message-ID: <cc5e8071f006f8ef3fa0ebd53191f0e24ecf9228.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>, 
+ intel-gfx@lists.freedesktop.org
+Date: Fri, 20 Dec 2024 10:52:13 +0200
+In-Reply-To: <20241219130827.22830-5-ville.syrjala@linux.intel.com>
+References: <20241219130827.22830-1-ville.syrjala@linux.intel.com>
+ <20241219130827.22830-5-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.2-1 
 MIME-Version: 1.0
-Content-Type: text/plain
+X-Spam-Checker-Version: SpamAssassin 4.0.1-pre1 (2023-11-21) on
+ farmhouse.coelho.fi
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
+ TVD_RCVD_IP,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+ version=4.0.1-pre1
+Subject: Re: [PATCH 4/8] drm/i915/scaler: Extract skl_scaler_max_dst_size()
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,55 +51,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 19 Dec 2024, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
-> diff --git a/drivers/gpu/drm/i915/display/intel_global_state.h b/drivers/gpu/drm/i915/display/intel_global_state.h
-> index 6506a8e32972..e47e007225cc 100644
-> --- a/drivers/gpu/drm/i915/display/intel_global_state.h
-> +++ b/drivers/gpu/drm/i915/display/intel_global_state.h
-> @@ -8,6 +8,8 @@
->  
->  #include <linux/kref.h>
->  #include <linux/list.h>
-> +#include <linux/stddef.h>
-
-What do you need this for?
-
-> +#include <linux/types.h>
->  
->  struct drm_i915_private;
->  struct intel_atomic_state;
-> @@ -15,6 +17,10 @@ struct intel_global_obj;
->  struct intel_global_state;
->  
->  struct intel_global_state_funcs {
-> +	/* state_size and base_offset are initialized by INTEL_GLOBAL_STATE_DEFAULTS() */
-> +	size_t state_size;
-> +	size_t base_offset;
+On Thu, 2024-12-19 at 15:08 +0200, Ville Syrjala wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>=20
+> The SKL_MAX_DST_* defines just make things hard to read.
+> Get rid of them and introduce an easy to read function
+> in their place.
+>=20
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/skl_scaler.c | 44 +++++++++++------------
+>  1 file changed, 21 insertions(+), 23 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/=
+i915/display/skl_scaler.c
+> index cabbf4860cb3..0bc82a047510 100644
+> --- a/drivers/gpu/drm/i915/display/skl_scaler.c
+> +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+> @@ -76,15 +76,6 @@ static u16 skl_scaler_calc_phase(int sub, int scale, b=
+ool chroma_cosited)
+>  	return ((phase >> 2) & PS_PHASE_MASK) | trip;
+>  }
+> =20
+> -#define SKL_MAX_DST_W 4096
+> -#define SKL_MAX_DST_H 4096
+> -#define ICL_MAX_DST_W 5120
+> -#define ICL_MAX_DST_H 4096
+> -#define TGL_MAX_DST_W 8192
+> -#define TGL_MAX_DST_H 8192
+> -#define MTL_MAX_DST_W 8192
+> -#define MTL_MAX_DST_H 8192
+> -
+>  static void skl_scaler_min_src_size(const struct drm_format_info *format=
+,
+>  				    u64 modifier, int *min_w, int *min_h)
+>  {
+> @@ -123,6 +114,26 @@ static void skl_scaler_min_dst_size(int *min_w, int =
+*min_h)
+>  	*min_h =3D 8;
+>  }
+> =20
+> +static void skl_scaler_max_dst_size(struct intel_crtc *crtc,
+> +				    int *max_w, int *max_h)
+> +{
+> +	struct intel_display *display =3D to_intel_display(crtc);
 > +
->  	struct intel_global_state *(*atomic_duplicate_state)(struct intel_global_obj *obj);
->  	void (*atomic_destroy_state)(struct intel_global_obj *obj,
->  				     struct intel_global_state *state);
-> @@ -26,6 +32,10 @@ struct intel_global_obj {
->  	const struct intel_global_state_funcs *funcs;
->  };
->  
-> +#define INTEL_GLOBAL_STATE_DEFAULTS(type, base_member) \
-> +	.state_size = sizeof(type), \
-> +	.base_offset = offsetof(type, base_member)
+> +	if (DISPLAY_VER(display) >=3D 14) {
+> +		*max_w =3D 8192;
+> +		*max_h =3D 8192;
+> +	} else if (DISPLAY_VER(display) >=3D 12) {
+> +		*max_w =3D 8192;
+> +		*max_h =3D 8192;
+> +	} else if (DISPLAY_VER(display) =3D=3D 11) {
+> +		*max_w =3D 5120;
+> +		*max_h =3D 4096;
+> +	} else {
+> +		*max_w =3D 4096;
+> +		*max_h =3D 4096;
+> +	}
+> +}
 > +
->  #define intel_for_each_global_obj(obj, dev_priv) \
->  	list_for_each_entry(obj, &(dev_priv)->display.global.obj_list, head)
->  
-> @@ -96,4 +106,9 @@ int intel_atomic_global_state_wait_for_dependencies(struct intel_atomic_state *s
->  
->  bool intel_atomic_global_state_is_serialized(struct intel_atomic_state *state);
->  
-> +struct intel_global_state *
-> +intel_atomic_global_duplicate_state_common(struct intel_global_obj *obj);
-> +void intel_atomic_global_destroy_state_common(struct intel_global_obj *obj,
-> +					      struct intel_global_state *state);
-> +
->  #endif
+>  static int
+>  skl_update_scaler(struct intel_crtc_state *crtc_state, bool force_detach=
+,
+>  		  unsigned int scaler_user, int *scaler_id,
+> @@ -191,20 +202,7 @@ skl_update_scaler(struct intel_crtc_state *crtc_stat=
+e, bool force_detach,
+>  	skl_scaler_max_src_size(crtc, &max_src_w, &max_src_h);
+> =20
+>  	skl_scaler_min_dst_size(&min_dst_w, &min_dst_h);
+> -
+> -	if (DISPLAY_VER(display) < 11) {
+> -		max_dst_w =3D SKL_MAX_DST_W;
+> -		max_dst_h =3D SKL_MAX_DST_H;
+> -	} else if (DISPLAY_VER(display) < 12) {
+> -		max_dst_w =3D ICL_MAX_DST_W;
+> -		max_dst_h =3D ICL_MAX_DST_H;
+> -	} else if (DISPLAY_VER(display) < 14) {
+> -		max_dst_w =3D TGL_MAX_DST_W;
+> -		max_dst_h =3D TGL_MAX_DST_H;
+> -	} else {
+> -		max_dst_w =3D MTL_MAX_DST_W;
+> -		max_dst_h =3D MTL_MAX_DST_H;
+> -	}
+> +	skl_scaler_max_dst_size(crtc, &max_dst_w, &max_dst_h);
+> =20
+>  	/* range checks */
+>  	if (src_w < min_src_w || src_h < min_src_h ||
 
--- 
-Jani Nikula, Intel
+Very nice to start getting rid of the silly and misleading TGL_*/MTL_*
+stuff. :)
+
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
+
+--
+Cheers,
+Luca.
