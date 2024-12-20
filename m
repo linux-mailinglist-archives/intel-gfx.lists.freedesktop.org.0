@@ -2,65 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 380139F91A6
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2024 12:49:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A29E19F92F5
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2024 14:17:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE85610E380;
-	Fri, 20 Dec 2024 11:49:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4077410E388;
+	Fri, 20 Dec 2024 13:17:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IK48ZNWy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bhZ2NUXf";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3E6610E380;
- Fri, 20 Dec 2024 11:49:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F00310E388
+ for <intel-gfx@lists.freedesktop.org>; Fri, 20 Dec 2024 13:17:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734695380; x=1766231380;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=yLBVb/78Kd5fM6GxhZBH65cCV8BKPSE/ZIhZG3UsqhU=;
- b=IK48ZNWyK72t8a8RHX5Fw4X/XSA18UiQmgv4uq3qGCdIomRp81U2dfL7
- ffo5QA4xmnkh5AQZi1D7kwK8/DIkKyveVDCQuNjVj2oryVdx+Aw0sxkCe
- 1QYp5C4X8wxB7Y2fClPBwbnSdtryW08L0QWaviAJP7uK/vabT+hBLdhED
- /p8pRv/LQfC97L0Kf9ckc8U/32mZbtndKuP2SsE7TcoNuhh22vO6kYia8
- uUuys24SzVCihIzIFgN7Sorg3zq3v73ZPvoyCPtVoLbO22PTfGJN7AE/L
- Bzd7MSCYNZmy8Z8MhlYSZiPCu3kAGqYiAHMA2X/UER2qihLkS5F9RFOuj A==;
-X-CSE-ConnectionGUID: p4uzwzR4TRW807Vn9VErJg==
-X-CSE-MsgGUID: W8M06qGSS+Kb9gdYSbVC+A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11291"; a="52766533"
-X-IronPort-AV: E=Sophos;i="6.12,250,1728975600"; d="scan'208";a="52766533"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2024 03:49:39 -0800
-X-CSE-ConnectionGUID: YXmYa3IiRO2dLuUnJ9y0OA==
-X-CSE-MsgGUID: rj0F+yRxTmmftQC1ecSlng==
+ t=1734700654; x=1766236654;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=R07zFWLlp22mNKqvW6Qut0tjO1EjjKajTw1/UwOao98=;
+ b=bhZ2NUXfblLtzBTplPyGk6dQpuK3oF57MVAk70IEk5o5E6oOcDx6pZ2q
+ DbJJarLmJh537gOPhAW3VoLs0+xX0jkiuuU9BxGnlfRK9ZywfI4qbfCb6
+ 3CpTsSW78kLt1AdQcTq2nYTPYZ9r5X7iI+P4IatdhyuswmHiks0w09xO/
+ Rmc5bOuOjFOo8vdZ6PuqkPrG5oUHn0XfGqhICsJrUrILsJro2MShBaScP
+ s/BFeAm/WgoyeoAMijW5wZSEK8bDXn1M0DaVklgvNGromowmlzwOsKC1E
+ 06YO4qCuLtzFTqmv3GmcHLR+/AJ7kzcHsLnfhNM7Jf4J8WKo78jmlG0QP Q==;
+X-CSE-ConnectionGUID: ppHqT8GySLCwWu2Smyd2Hw==
+X-CSE-MsgGUID: glGm5P3PTu+ehioinSdS1Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11292"; a="35137164"
+X-IronPort-AV: E=Sophos;i="6.12,250,1728975600"; d="scan'208";a="35137164"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2024 05:17:33 -0800
+X-CSE-ConnectionGUID: lTEu0D7mT4Ce3+mCqof6kA==
+X-CSE-MsgGUID: ITV6v6Q3SlSYMKRf7vflJQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,250,1728975600"; d="scan'208";a="99009602"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.251])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2024 03:49:37 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>, intel-gfx@lists.freedesktop.org
-Cc: Andi Shyti <andi.shyti@linux.intel.com>, intel-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>, 
- Chris Wilson <chris.p.wilson@linux.intel.com>,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Subject: Re: [PATCH] drm/i915/selftests: Use preemption timeout on cleanup
-Date: Fri, 20 Dec 2024 12:49:34 +0100
-Message-ID: <6751685.4vTCxPXJkl@jkrzyszt-mobl2.ger.corp.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <2414218.NG923GbCHz@jkrzyszt-mobl2.ger.corp.intel.com>
-References: <20241213190122.513709-2-janusz.krzysztofik@linux.intel.com>
- <Z2Gw6J1qteGPB3o4@ashyti-mobl2.lan>
- <2414218.NG923GbCHz@jkrzyszt-mobl2.ger.corp.intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="135850289"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.245.246.245])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2024 05:17:31 -0800
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: intel-gfx <intel-gfx@lists.freedesktop.org>
+Cc: Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>, Andi Shyti <andi.shyti@kernel.org>
+Subject: [PATCH RESEND v2] drm/i915/gt: Log reason for setting TAINT_WARN at
+ reset
+Date: Fri, 20 Dec 2024 14:17:14 +0100
+Message-ID: <20241220131714.1309483-1-andi.shyti@linux.intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,73 +68,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Andi,
+From: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
 
-On Tuesday, 17 December 2024 19:00:40 CET Janusz Krzysztofik wrote:
-> Hi Andi,
-> 
-> On Tuesday, 17 December 2024 18:12:08 CET Andi Shyti wrote:
-> > Hi Janusz,
-> > 
-> > ...
-> > 
-> > > > > +
-> > > > >  		cond_resched();
-> > > > >  
-> > > > > -		if (intel_gt_wait_for_idle(gt, HZ * 3) == -ETIME) {
-> > > > > +		if (intel_gt_wait_for_idle(gt, HZ * timeout_ms / 500) == -ETIME) {
-> > > > 
-> > > > where is this 500 coming from?
-> > > 
-> > > / 1000 would convert it to seconds as needed, and / 500 used instead was 
-> > > supposed to to mean that we are willing to wait for preempt_timeout_ms * 
-> 2.  
-> > > Sorry for that shortcut.  Would you like me to provide a clarifying comment, 
-> > > or maybe better use explicit 2 * preempt_timeout / 1000 ?
-> > 
-> > It was clear that you were doubling it, but what's more
-> > interesting to know (perhaps in a comment) is why you are
-> > choosing to use the double of the timeout_ms instead of other
-> > values.
-> > 
-> > Makes sense?
-> 
-> Yes, good question.
-> 
-> Is it possible for more than one bb to hang?  If yes then should we wait 
-> longer than the longest preemption timeout?  Before I assumed that maybe we 
-> should, just in case, but now, having that revisited and reconsidered, I tend 
-> to agree that the longest preempt timeout, perhaps with a small margin (let's 
-> say +100ms) should be enough to recover from a single failing test case.  Let 
-> me verify if that works for the linked case.
+TAINT_WARN is used to notify CI about non-recoverable failures, which
+require device to be restarted. In some cases, there is no sufficient
+information about the reason for the restart. The test runner is just
+killed, and DUT is rebooted, logging only 'probe with driver i915 failed
+with error -4' to dmesg.
 
-I've done some testing and got a confirmation that the issue I'm trying to 
-address in the first place requires a timeout almost twice as long as the 
-longest preemption timeout.
+Printing error to dmesg before TAINT_WARN, would explain why the device
+has been restarted, and what caused the malfunction in the first place.
 
-I propose the following correction:
+Signed-off-by: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+---
+Cc: Andi Shyti <andi.shyti@kernel.org>
 
--	if (intel_gt_wait_for_idle(gt, HZ * 3) == -ETIME) {
-+	/* 2 x longest preempt timeout, experimentally determined */
-+	if (intel_gt_wait_for_idle(gt, 2 * timeout_ms * HZ / 1000) == -ETIME) {
+Hi,
 
-Thanks,
-Janusz
+this patch for some reason did not reach the mailing list and it
+missed all the CI premerge tests. I am resending it, this time
+with the Changelog and the versioning.
 
-> 
-> Thanks,
-> Janusz
-> 
-> > 
-> > Thanks,
-> > Andi
-> > 
-> 
-> 
-> 
-> 
-> 
+I am leaving it for a few days in order to be reviewed by others,
+as well.
 
+Andi
 
+Changelog:
+==========
+v1 -> v2:
+ - Reword the commit log
 
+ drivers/gpu/drm/i915/gt/intel_reset.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
+index c2fe3fc78e76..aae5a081cb53 100644
+--- a/drivers/gpu/drm/i915/gt/intel_reset.c
++++ b/drivers/gpu/drm/i915/gt/intel_reset.c
+@@ -1113,6 +1113,7 @@ static bool __intel_gt_unset_wedged(struct intel_gt *gt)
+ 		 * Warn CI about the unrecoverable wedged condition.
+ 		 * Time for a reboot.
+ 		 */
++		gt_err(gt, "Unrecoverable wedged condition\n");
+ 		add_taint_for_CI(gt->i915, TAINT_WARN);
+ 		return false;
+ 	}
+@@ -1264,8 +1265,10 @@ void intel_gt_reset(struct intel_gt *gt,
+ 	}
+ 
+ 	ret = resume(gt);
+-	if (ret)
++	if (ret) {
++		gt_err(gt, "Failed to resume (%d)\n", ret);
+ 		goto taint;
++	}
+ 
+ finish:
+ 	reset_finish(gt, awake);
+@@ -1608,6 +1611,7 @@ void intel_gt_set_wedged_on_init(struct intel_gt *gt)
+ 	set_bit(I915_WEDGED_ON_INIT, &gt->reset.flags);
+ 
+ 	/* Wedged on init is non-recoverable */
++	gt_err(gt, "Non-recoverable wedged on init\n");
+ 	add_taint_for_CI(gt->i915, TAINT_WARN);
+ }
+ 
+-- 
+2.45.2
 
