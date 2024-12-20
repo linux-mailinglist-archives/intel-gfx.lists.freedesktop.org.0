@@ -2,68 +2,166 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 551069F934E
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2024 14:32:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1305F9F9359
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2024 14:35:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F399310E386;
-	Fri, 20 Dec 2024 13:32:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C22E10E0A2;
+	Fri, 20 Dec 2024 13:35:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MeJKyyge";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GKmovWF7";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C0A3310E139;
- Fri, 20 Dec 2024 13:32:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F57410E0A2
+ for <intel-gfx@lists.freedesktop.org>; Fri, 20 Dec 2024 13:35:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734701549; x=1766237549;
+ t=1734701723; x=1766237723;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=B17NPmKnJjDUdHtU7hxyN48I7d4XrJFbwTdI0khAxYs=;
- b=MeJKyygeXAyq4VmJJqAlgV6qagpt/c15b4bzGcr+Ddf/EblHLPxXt3ZA
- BBIznvBELxnKQ0lzYwCxqMifCJY279HxBJe3RdyBndEym7m8cg1rVExAE
- xcrWtJotOkUygaXdFSshxnLHMTsAYpZ/3eUZlQd1I9Kji94gZS8A4EoI9
- GQ325xa8+zTFN5pqD+ARHSajatLn4ntgCeoTmLL4m8nR0LOBN3JufR0jC
- z/6pUoN/dAecBWeiEullWfNwMyKiU4NlI87ycvu7kdZBCGGjR7iwHmcd3
- twa2hLuMgLhgVHicXjgLFn4YrlWiAitoVkBmTujaFjaznGE81cZe9iJKs A==;
-X-CSE-ConnectionGUID: xdR1Q8/wQpahum5nxSGxBg==
-X-CSE-MsgGUID: EFoLXxiUS96RAob6Tf9vyg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11292"; a="35140871"
-X-IronPort-AV: E=Sophos;i="6.12,250,1728975600"; d="scan'208";a="35140871"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2024 05:32:28 -0800
-X-CSE-ConnectionGUID: YrDvBIrHTru1buzcwTr2Lw==
-X-CSE-MsgGUID: 3C0/LQ10SIyZCXD+mQUPKw==
+ in-reply-to:mime-version;
+ bh=d7cHzliK4APm03vYSgwg4+0kYyfoCgd2vMJ72XmC10U=;
+ b=GKmovWF7BA+aHu1rJBgZ3nscN/Q5DOcvusCQFZ/04X4BuTLEc2epYoBI
+ 8Ax4/Pwb9xo6e0bECYmsbeyBHZRExEDFUGXctGBfVMF9KNmQpQAWOFCpj
+ vlVxp7rCFvNXSvA/hW+p08koHFyQ7/NH7nWmlSGk9Gb46VQAh5o480R5H
+ wJvE1j+9575vRIQEcqbUW2+9l4hav8A1NQqhAdUPiW9H5eHPJM4Q3xvHZ
+ NM/EkX4yKM/KZg4sGRqObVmN7UGohvHhYJRhbOmcAocgcrWu8Qs7B4LDq
+ vqjHAr9mJqGeAd7lZW0dZbmUqD4HSwBG/UsAV4SJK26WcElu9qz7B6+sc Q==;
+X-CSE-ConnectionGUID: n2IHNs/gRSOIj96DT1IkZQ==
+X-CSE-MsgGUID: 4O+p+OpfQbyUCkh93KmyAw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11292"; a="52654761"
+X-IronPort-AV: E=Sophos;i="6.12,250,1728975600"; d="scan'208";a="52654761"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2024 05:35:23 -0800
+X-CSE-ConnectionGUID: YGwnQuCWRVGyZcGWzzn2Xg==
+X-CSE-MsgGUID: eSj/XRmQRJ6qh56d/AEadw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="121789477"
-Received: from lkp-server01.sh.intel.com (HELO a46f226878e0) ([10.239.97.150])
- by fmviesa002.fm.intel.com with ESMTP; 20 Dec 2024 05:32:24 -0800
-Received: from kbuild by a46f226878e0 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1tOd78-0001BX-21;
- Fri, 20 Dec 2024 13:32:22 +0000
-Date: Fri, 20 Dec 2024 21:31:31 +0800
-From: kernel test robot <lkp@intel.com>
-To: =?iso-8859-1?Q?Andr=E9?= Almeida <andrealmeid@igalia.com>,
- Raag Jadav <raag.jadav@intel.com>, airlied@gmail.com,
- simona@ffwll.ch, lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
- jani.nikula@linux.intel.com, andriy.shevchenko@linux.intel.com,
- lina@asahilina.net, michal.wajdeczko@intel.com, christian.koenig@amd.com
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- himal.prasad.ghimiray@intel.com, aravind.iddamsetty@linux.intel.com,
- anshuman.gupta@intel.com, alexander.deucher@amd.com,
- andrealmeid@igalia.com, amd-gfx@lists.freedesktop.org,
- kernel-dev@igalia.com
-Subject: Re: [PATCH 1/1] drm/amdgpu: Use device wedged event
-Message-ID: <202412202104.IwpOz5t5-lkp@intel.com>
-References: <20241212190909.28559-2-andrealmeid@igalia.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+X-IronPort-AV: E=Sophos;i="6.12,250,1728975600"; d="scan'208";a="98714241"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by fmviesa008.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 20 Dec 2024 05:35:23 -0800
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Fri, 20 Dec 2024 05:35:22 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44 via Frontend Transport; Fri, 20 Dec 2024 05:35:22 -0800
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.176)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.44; Fri, 20 Dec 2024 05:35:22 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=xj0eEb7OrEK/Y5X0TCY+CIiJrzR4I4qr1lPBypXq3AaL1sASwCkZZDMkRga7flAgY4H5oWw97guzQlhx+1o3p1nupGjLVjyEcW7fLbJMjYqCiRW9YgbPtv39zQcUTT/TvIwe5njBsXoj7kg5PBwEkFb+IeAJMppvsp+kcJHVwsEo6pWkHYYRgDdSYi8UZXFmaX7Bn/iYYb5k/BYPcw8v3XZWQgvcwRJSPkPNG5gbIeGAOSsc+W15HuNxIyUnpZxBBwgFZDvbGJCUYtGnFLs1bkyn4pLxCu1Iay+GADLBK6+D2vFe4B+s52wOpYTqwh+Nor3ThpAEf0BXbIxpbubTwQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PZ0LHSH6Rw9xahZy6x3cclr+Up9khH+iVj7sbKN9/MQ=;
+ b=mCRKsfeoJRVMUEp0SbjiOnV92ddL0FYRpPk+y8gzrT0Ebt251X6eS6ke+RBYxYgHGauuf5iIZXe4xgDu8KjxJmm7juVHJ/BchaF1IWv6hJam3eUcQRaWc6MXenJFCjmD9h0zJriAZIGDDo3EGwS9cIggP9fkNntkfOeTyZ5HJjKHKH+I6iy7sQ7WS78EdJQiWZ0xfV5iLh+I83AoYQYlL1ofJvfjVTViF3JnZR1FvrYaao/xRIjxBCnK67a4fv/T46aAN8A7FVYnwTr3eW0WxQUm6VjMZfEUbS+nNSNdqfrAKuyQ5K1tEYhcxn1VTdSJRqbHuIIjTWMgekAFBnjxpg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from SN7PR11MB8282.namprd11.prod.outlook.com (2603:10b6:806:269::11)
+ by PH7PR11MB7124.namprd11.prod.outlook.com (2603:10b6:510:20f::6)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8272.13; Fri, 20 Dec
+ 2024 13:34:52 +0000
+Received: from SN7PR11MB8282.namprd11.prod.outlook.com
+ ([fe80::f9d9:8daa:178b:3e72]) by SN7PR11MB8282.namprd11.prod.outlook.com
+ ([fe80::f9d9:8daa:178b:3e72%5]) with mapi id 15.20.8272.013; Fri, 20 Dec 2024
+ 13:34:52 +0000
+Date: Fri, 20 Dec 2024 08:34:48 -0500
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Andi Shyti <andi.shyti@linux.intel.com>
+CC: intel-gfx <intel-gfx@lists.freedesktop.org>, Sebastian Brzezinka
+ <sebastian.brzezinka@intel.com>, Andi Shyti <andi.shyti@kernel.org>
+Subject: Re: [PATCH RESEND v2] drm/i915/gt: Log reason for setting TAINT_WARN
+ at reset
+Message-ID: <Z2VyeKXoimREtTjb@intel.com>
+References: <20241220131714.1309483-1-andi.shyti@linux.intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241212190909.28559-2-andrealmeid@igalia.com>
+In-Reply-To: <20241220131714.1309483-1-andi.shyti@linux.intel.com>
+X-ClientProxiedBy: MW4PR04CA0282.namprd04.prod.outlook.com
+ (2603:10b6:303:89::17) To SN7PR11MB8282.namprd11.prod.outlook.com
+ (2603:10b6:806:269::11)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN7PR11MB8282:EE_|PH7PR11MB7124:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4eca038e-1451-4d1a-314b-08dd20fb154d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016|7053199007;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?QnU78N20mr/9GK15oj7uEohZOPM1NuqoNiz7xHkAsGWzVFlRImxGwjl6apV7?=
+ =?us-ascii?Q?ogPIMWTRPOjxzBZQKENq6ih7d4M/1K9oqFaJlNMKHg1/EtmHUkWxZxUQMqa/?=
+ =?us-ascii?Q?zLS2hOvl+5/s1PtXiHtPacN6ZrAeu+jXzNI4iEuBimS1jinvaFPe2qhru9uy?=
+ =?us-ascii?Q?Oy473tC7e8awKkSLXNabKesAJXfkRmbefwdxGm2Bo60oIdJb7/BmjMKS2i89?=
+ =?us-ascii?Q?5EU8a/4SASSyb0El+sGTcyYXwNKlK3JUeySwQD6tcq8kfgqJGwx/A0f72UEM?=
+ =?us-ascii?Q?W1hkIcflg9DwUAo9Ol0J/68NbRtJXWniuAAYUXL7XksNzHNsspbSf3tHtFt1?=
+ =?us-ascii?Q?GjDnAN4URYn3fUdZ/nSX5zYUCz3qdjCax5U6twPu4VuBkxqD3c2Nu6ouKMGw?=
+ =?us-ascii?Q?L9gBcxnsBcIMGl5hljVEQGaq3Fye8Xbzqhzig7IiTHU9JbMrSygu6O9PFq/6?=
+ =?us-ascii?Q?Z5HkZKY3As/5ZEPI5wxbeovw+r6yNqqdIiTMa1TgsRD3oiO16a6zin6bDVmK?=
+ =?us-ascii?Q?ZMKEwaY4Gr/85rsncvKtNp4fqBmWggRA1jk0ztHiOjlT3ACq/C0q4DQFKPzO?=
+ =?us-ascii?Q?Frnc08EH2DSeX6VzjOJTDv3AfABChIYjbn9BLlRqUQl0GMba2vWXscr0eYHm?=
+ =?us-ascii?Q?KgclTPgoZgcDAELj5O+OwFAbjlyn5EKabRLDU7BzwChMOt4mrJD8ZKJN8PWE?=
+ =?us-ascii?Q?GfPmE2+wblPG5fbNn+UiDBb377GficXn6Tnp71kuXbNr83d6szkPZ9qKLVFP?=
+ =?us-ascii?Q?WHiVDP+sYwR+zkVGDELziGQls6Ek5jlS3RTE3UmH0pdluYIQnn7VjZzONbQw?=
+ =?us-ascii?Q?rX9vo79KEpO5NVMiPfq1SH1C8bNwndfPMIKgUfT/xrZlissnMxTAoQDQyd4K?=
+ =?us-ascii?Q?DXe3peYGYyY4N6nlNkq9/r5QeFwHne5Fzgl1DUktSvCyUnBkZ3OCCaHspRVg?=
+ =?us-ascii?Q?COb4QT8PwvSABoq5yCyPh6X1k4mjBvrfgwO7rUUVvXKWpQxLvucsIUSNH0d7?=
+ =?us-ascii?Q?AR6V/gb3vvCmoWbOSXRkSaFgnr/MUxMzXgCtUMXXs9vaqdejXsCAWbBl7Ulh?=
+ =?us-ascii?Q?xb0LI50C+jOiaT2pyIg9+9BYIhm2AXwOO/AAxIdt4YCD/2pevrlGO6NQX981?=
+ =?us-ascii?Q?wiu4WHDxsoovyiwO7JeIpCZUIXa5E0nDu7x/5b1+TPT7mqMkjSa4ZnDm3ZQl?=
+ =?us-ascii?Q?HXfcDstrjc0bJ5u8BzTb15DryDc72+2iy/N/6FwzUBG1VfOmZH4j6DuzWxhD?=
+ =?us-ascii?Q?UdXx05+6IBneARyh3LqiNYe/n2hRHTTC7UtCvUUZCwfRi+vENvbOGfIW5zZP?=
+ =?us-ascii?Q?reVcrAhr/SP8dZIwDAzGAuhMEz6168Hqt8/x12CXXCJcsy2dggb00PNeTLU4?=
+ =?us-ascii?Q?PsyM+MJGdjf2n/m9qY97Ab5tJtXc?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SN7PR11MB8282.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016)(7053199007); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?iluUmc2tjZSG5WzdG2nQWnVC9whGyKnoHTfOy6RY4unfyEI9I0QZ0solramk?=
+ =?us-ascii?Q?qcscEbFW90mipdy3t76DJwaK5ILNTm341HVwa3UyA0V3ikPB7eOH3fs6xZVQ?=
+ =?us-ascii?Q?jq/oxD/J5+IRmM1RvfFgzVK+gbFdgIK1MgBufr5RBekDeW18ztYbBYz0loj9?=
+ =?us-ascii?Q?bYoxPAqmitoqjJPKqNZvChGwHwneLxfhSihRRetvn2M8oOH0p2rAw14foRgY?=
+ =?us-ascii?Q?gcnIYkRBxgBRjpwAGPmKPaw7MS7UDdWbiASbpxb1xZ5QFBQvn6ML/V7xMLAw?=
+ =?us-ascii?Q?Ps1ENjqUY9W3WAtudEDLoaITrD4d05WPqPzSgBzPY46ft8gZ0Eks7b5YXjak?=
+ =?us-ascii?Q?GIWFEkAKFa9vKZKChDwk0/oaoTjbxo0o0JkmBX7MFEg4EFs20VE9GaipTejw?=
+ =?us-ascii?Q?Y+Ks0QZ7EFS8O++SwTsi9mOkHi5iIwME2x/biotRYI+hLdDAt1JEWn0R1mws?=
+ =?us-ascii?Q?cC7czAdAU4gGQDe6GlWcSpt55RHOGVgOEQW1HLxAajBw4SgnxeHEooirt74Q?=
+ =?us-ascii?Q?t9jV1leUaxJIcx2lVObqzEIeQkszzfeF68XNzFhD7GPGu5Ci1LJ41goCQZdo?=
+ =?us-ascii?Q?c1D/FYplQ+9dkHdOx1SNahTKek4cvA0BLy8y5aozeFW6oQXVUCN8pY7UVg/o?=
+ =?us-ascii?Q?73TLb+9MKDgKN2Zh33gcfvlAVEeK0uo+4CY6RFtNDtm4IYEMpxGwuacgJxPv?=
+ =?us-ascii?Q?zltmhU6jm96M9SVL3MivdjzAfTnwTje8mIFAITol46ZZzIDQ5ZW7XOAmCJWK?=
+ =?us-ascii?Q?yJps/p6FERpFXYuWZObDrlY3GUKHt4RD6j90AY41rTDRuP9k8CKCO+0ZKFk7?=
+ =?us-ascii?Q?JHtGsfUVi52YS6baOI7W4W2xO7MFET8uxp0492VhA9WjoifEeBVEaqHJI6lq?=
+ =?us-ascii?Q?1QiRYaudEKLW0n8H0yghmF4Ue7HZ1Q5YOLzDsm/GmNLe5lxSizCtmH2ytqNh?=
+ =?us-ascii?Q?1hbnHKoNTMXoqOk8Qg6/gFjEaGYEohzCfYPAQpL7gzRQ6NSDEMfA3bHod+Os?=
+ =?us-ascii?Q?BeNMWzG44ABSQ9XQRA3Yp7MrHssLrJF3KPV7NVSs2QiWl2JCFjrKX2kskiP9?=
+ =?us-ascii?Q?ibdwnXibfB4+YvcIeQO27HLsNHDLQEt/nwPqoRnBwAwfGZw6C8bvMMwGqlvq?=
+ =?us-ascii?Q?T9KmbsBkDnU0l//UhF2k1qAcNy2AyVtFt/GKwnAIhKWZ6/2vQ4vzqtkx0062?=
+ =?us-ascii?Q?N41tfqCFwj4SSVQbbz7iFiLcTL48dmnyhTfhaD+75nuUJUDd9D3Ld7w6gN37?=
+ =?us-ascii?Q?8URqnl/aFP4nG3M/8nvSTuflOaI9jtkt167GG+unRCQJndCr/F88SQqJmKBV?=
+ =?us-ascii?Q?dLGq6TD9TJhh7YAK3CE4WAQpZTeAC1Rt8PDIbjqyantm0oV+eUnicuWtjkw0?=
+ =?us-ascii?Q?+dtKVs9/cib7KJoRNPrE+LbGj6Xyt5YY9Ht+l4GO1sL+bN0EI0VyVpj8qM0V?=
+ =?us-ascii?Q?ki8WYfSVbIL3SwzK1sDgKrtCsxH4aavysYrOJWXzWT4wp2Oud5jH5YtkgoOh?=
+ =?us-ascii?Q?F9NBQvCQS5fd5d5oQJFCnqRJN4Mpmem6xiZqNgelsIcjRJSqk8lLDdJQ/N50?=
+ =?us-ascii?Q?YnWczOl6PHMg158NgVChD6WPnH2hFZe8DBQHt+RDK+DGuYzY5r6SE/D26LZK?=
+ =?us-ascii?Q?Yw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4eca038e-1451-4d1a-314b-08dd20fb154d
+X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB8282.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Dec 2024 13:34:52.5585 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: C+awAYE0uQq0f6o0ILx7Qjok/t7c7fF/YnO2IjZ5tx/rI6hZHNC0DYK5cJgW9ANdBpZ3LZ95e4QHq9240HFIiQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7124
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,322 +177,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi André,
-
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on linus/master]
-[also build test ERROR on v6.13-rc3 next-20241220]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Andr-Almeida/drm-amdgpu-Use-device-wedged-event/20241213-031134
-base:   linus/master
-patch link:    https://lore.kernel.org/r/20241212190909.28559-2-andrealmeid%40igalia.com
-patch subject: [PATCH 1/1] drm/amdgpu: Use device wedged event
-config: arm-randconfig-001-20241220 (https://download.01.org/0day-ci/archive/20241220/202412202104.IwpOz5t5-lkp@intel.com/config)
-compiler: clang version 19.1.3 (https://github.com/llvm/llvm-project ab51eccf88f5321e7c60591c5546b254b6afab99)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241220/202412202104.IwpOz5t5-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202412202104.IwpOz5t5-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   In file included from drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:35:
-   In file included from include/linux/iommu.h:10:
-   In file included from include/linux/scatterlist.h:8:
-   In file included from include/linux/mm.h:2223:
-   include/linux/vmstat.h:518:36: warning: arithmetic between different enumeration types ('enum node_stat_item' and 'enum lru_list') [-Wenum-enum-conversion]
-     518 |         return node_stat_name(NR_LRU_BASE + lru) + 3; // skip "nr_"
-         |                               ~~~~~~~~~~~ ^ ~~~
->> drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:6061:2: error: call to undeclared function 'drm_dev_wedged_event'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-    6061 |         drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE);
-         |         ^
->> drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:6061:42: error: use of undeclared identifier 'DRM_WEDGE_RECOVERY_NONE'
-    6061 |         drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE);
-         |                                                 ^
-   1 warning and 2 errors generated.
+On Fri, Dec 20, 2024 at 02:17:14PM +0100, Andi Shyti wrote:
+> From: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+> 
+> TAINT_WARN is used to notify CI about non-recoverable failures, which
+> require device to be restarted. In some cases, there is no sufficient
+> information about the reason for the restart. The test runner is just
+> killed, and DUT is rebooted, logging only 'probe with driver i915 failed
+> with error -4' to dmesg.
+> 
+> Printing error to dmesg before TAINT_WARN, would explain why the device
+> has been restarted, and what caused the malfunction in the first place.
+> 
+> Signed-off-by: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+> ---
+> Cc: Andi Shyti <andi.shyti@kernel.org>
+> 
+> Hi,
+> 
+> this patch for some reason did not reach the mailing list and it
+> missed all the CI premerge tests. I am resending it, this time
+> with the Changelog and the versioning.
 
 
-vim +/drm_dev_wedged_event +6061 drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-  5794	
-  5795	/**
-  5796	 * amdgpu_device_gpu_recover - reset the asic and recover scheduler
-  5797	 *
-  5798	 * @adev: amdgpu_device pointer
-  5799	 * @job: which job trigger hang
-  5800	 * @reset_context: amdgpu reset context pointer
-  5801	 *
-  5802	 * Attempt to reset the GPU if it has hung (all asics).
-  5803	 * Attempt to do soft-reset or full-reset and reinitialize Asic
-  5804	 * Returns 0 for success or an error on failure.
-  5805	 */
-  5806	
-  5807	int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
-  5808				      struct amdgpu_job *job,
-  5809				      struct amdgpu_reset_context *reset_context)
-  5810	{
-  5811		struct list_head device_list, *device_list_handle =  NULL;
-  5812		bool job_signaled = false;
-  5813		struct amdgpu_hive_info *hive = NULL;
-  5814		struct amdgpu_device *tmp_adev = NULL;
-  5815		int i, r = 0;
-  5816		bool need_emergency_restart = false;
-  5817		bool audio_suspended = false;
-  5818		int retry_limit = AMDGPU_MAX_RETRY_LIMIT;
-  5819	
-  5820		/*
-  5821		 * Special case: RAS triggered and full reset isn't supported
-  5822		 */
-  5823		need_emergency_restart = amdgpu_ras_need_emergency_restart(adev);
-  5824	
-  5825		/*
-  5826		 * Flush RAM to disk so that after reboot
-  5827		 * the user can read log and see why the system rebooted.
-  5828		 */
-  5829		if (need_emergency_restart && amdgpu_ras_get_context(adev) &&
-  5830			amdgpu_ras_get_context(adev)->reboot) {
-  5831			DRM_WARN("Emergency reboot.");
-  5832	
-  5833			ksys_sync_helper();
-  5834			emergency_restart();
-  5835		}
-  5836	
-  5837		dev_info(adev->dev, "GPU %s begin!\n",
-  5838			need_emergency_restart ? "jobs stop":"reset");
-  5839	
-  5840		if (!amdgpu_sriov_vf(adev))
-  5841			hive = amdgpu_get_xgmi_hive(adev);
-  5842		if (hive)
-  5843			mutex_lock(&hive->hive_lock);
-  5844	
-  5845		reset_context->job = job;
-  5846		reset_context->hive = hive;
-  5847		/*
-  5848		 * Build list of devices to reset.
-  5849		 * In case we are in XGMI hive mode, resort the device list
-  5850		 * to put adev in the 1st position.
-  5851		 */
-  5852		INIT_LIST_HEAD(&device_list);
-  5853		if (!amdgpu_sriov_vf(adev) && (adev->gmc.xgmi.num_physical_nodes > 1) && hive) {
-  5854			list_for_each_entry(tmp_adev, &hive->device_list, gmc.xgmi.head) {
-  5855				list_add_tail(&tmp_adev->reset_list, &device_list);
-  5856				if (adev->shutdown)
-  5857					tmp_adev->shutdown = true;
-  5858			}
-  5859			if (!list_is_first(&adev->reset_list, &device_list))
-  5860				list_rotate_to_front(&adev->reset_list, &device_list);
-  5861			device_list_handle = &device_list;
-  5862		} else {
-  5863			list_add_tail(&adev->reset_list, &device_list);
-  5864			device_list_handle = &device_list;
-  5865		}
-  5866	
-  5867		if (!amdgpu_sriov_vf(adev)) {
-  5868			r = amdgpu_device_health_check(device_list_handle);
-  5869			if (r)
-  5870				goto end_reset;
-  5871		}
-  5872	
-  5873		/* We need to lock reset domain only once both for XGMI and single device */
-  5874		tmp_adev = list_first_entry(device_list_handle, struct amdgpu_device,
-  5875					    reset_list);
-  5876		amdgpu_device_lock_reset_domain(tmp_adev->reset_domain);
-  5877	
-  5878		/* block all schedulers and reset given job's ring */
-  5879		list_for_each_entry(tmp_adev, device_list_handle, reset_list) {
-  5880	
-  5881			amdgpu_device_set_mp1_state(tmp_adev);
-  5882	
-  5883			/*
-  5884			 * Try to put the audio codec into suspend state
-  5885			 * before gpu reset started.
-  5886			 *
-  5887			 * Due to the power domain of the graphics device
-  5888			 * is shared with AZ power domain. Without this,
-  5889			 * we may change the audio hardware from behind
-  5890			 * the audio driver's back. That will trigger
-  5891			 * some audio codec errors.
-  5892			 */
-  5893			if (!amdgpu_device_suspend_display_audio(tmp_adev))
-  5894				audio_suspended = true;
-  5895	
-  5896			amdgpu_ras_set_error_query_ready(tmp_adev, false);
-  5897	
-  5898			cancel_delayed_work_sync(&tmp_adev->delayed_init_work);
-  5899	
-  5900			amdgpu_amdkfd_pre_reset(tmp_adev, reset_context);
-  5901	
-  5902			/*
-  5903			 * Mark these ASICs to be reseted as untracked first
-  5904			 * And add them back after reset completed
-  5905			 */
-  5906			amdgpu_unregister_gpu_instance(tmp_adev);
-  5907	
-  5908			drm_client_dev_suspend(adev_to_drm(tmp_adev), false);
-  5909	
-  5910			/* disable ras on ALL IPs */
-  5911			if (!need_emergency_restart &&
-  5912			      amdgpu_device_ip_need_full_reset(tmp_adev))
-  5913				amdgpu_ras_suspend(tmp_adev);
-  5914	
-  5915			for (i = 0; i < AMDGPU_MAX_RINGS; ++i) {
-  5916				struct amdgpu_ring *ring = tmp_adev->rings[i];
-  5917	
-  5918				if (!amdgpu_ring_sched_ready(ring))
-  5919					continue;
-  5920	
-  5921				drm_sched_stop(&ring->sched, job ? &job->base : NULL);
-  5922	
-  5923				if (need_emergency_restart)
-  5924					amdgpu_job_stop_all_jobs_on_sched(&ring->sched);
-  5925			}
-  5926			atomic_inc(&tmp_adev->gpu_reset_counter);
-  5927		}
-  5928	
-  5929		if (need_emergency_restart)
-  5930			goto skip_sched_resume;
-  5931	
-  5932		/*
-  5933		 * Must check guilty signal here since after this point all old
-  5934		 * HW fences are force signaled.
-  5935		 *
-  5936		 * job->base holds a reference to parent fence
-  5937		 */
-  5938		if (job && dma_fence_is_signaled(&job->hw_fence)) {
-  5939			job_signaled = true;
-  5940			dev_info(adev->dev, "Guilty job already signaled, skipping HW reset");
-  5941			goto skip_hw_reset;
-  5942		}
-  5943	
-  5944	retry:	/* Rest of adevs pre asic reset from XGMI hive. */
-  5945		list_for_each_entry(tmp_adev, device_list_handle, reset_list) {
-  5946			r = amdgpu_device_pre_asic_reset(tmp_adev, reset_context);
-  5947			/*TODO Should we stop ?*/
-  5948			if (r) {
-  5949				dev_err(tmp_adev->dev, "GPU pre asic reset failed with err, %d for drm dev, %s ",
-  5950					  r, adev_to_drm(tmp_adev)->unique);
-  5951				tmp_adev->asic_reset_res = r;
-  5952			}
-  5953		}
-  5954	
-  5955		/* Actual ASIC resets if needed.*/
-  5956		/* Host driver will handle XGMI hive reset for SRIOV */
-  5957		if (amdgpu_sriov_vf(adev)) {
-  5958			if (amdgpu_ras_get_fed_status(adev) || amdgpu_virt_rcvd_ras_interrupt(adev)) {
-  5959				dev_dbg(adev->dev, "Detected RAS error, wait for FLR completion\n");
-  5960				amdgpu_ras_set_fed(adev, true);
-  5961				set_bit(AMDGPU_HOST_FLR, &reset_context->flags);
-  5962			}
-  5963	
-  5964			r = amdgpu_device_reset_sriov(adev, reset_context);
-  5965			if (AMDGPU_RETRY_SRIOV_RESET(r) && (retry_limit--) > 0) {
-  5966				amdgpu_virt_release_full_gpu(adev, true);
-  5967				goto retry;
-  5968			}
-  5969			if (r)
-  5970				adev->asic_reset_res = r;
-  5971		} else {
-  5972			r = amdgpu_do_asic_reset(device_list_handle, reset_context);
-  5973			if (r && r == -EAGAIN)
-  5974				goto retry;
-  5975		}
-  5976	
-  5977		list_for_each_entry(tmp_adev, device_list_handle, reset_list) {
-  5978			/*
-  5979			 * Drop any pending non scheduler resets queued before reset is done.
-  5980			 * Any reset scheduled after this point would be valid. Scheduler resets
-  5981			 * were already dropped during drm_sched_stop and no new ones can come
-  5982			 * in before drm_sched_start.
-  5983			 */
-  5984			amdgpu_device_stop_pending_resets(tmp_adev);
-  5985		}
-  5986	
-  5987	skip_hw_reset:
-  5988	
-  5989		/* Post ASIC reset for all devs .*/
-  5990		list_for_each_entry(tmp_adev, device_list_handle, reset_list) {
-  5991	
-  5992			for (i = 0; i < AMDGPU_MAX_RINGS; ++i) {
-  5993				struct amdgpu_ring *ring = tmp_adev->rings[i];
-  5994	
-  5995				if (!amdgpu_ring_sched_ready(ring))
-  5996					continue;
-  5997	
-  5998				drm_sched_start(&ring->sched, 0);
-  5999			}
-  6000	
-  6001			if (!drm_drv_uses_atomic_modeset(adev_to_drm(tmp_adev)) && !job_signaled)
-  6002				drm_helper_resume_force_mode(adev_to_drm(tmp_adev));
-  6003	
-  6004			if (tmp_adev->asic_reset_res)
-  6005				r = tmp_adev->asic_reset_res;
-  6006	
-  6007			tmp_adev->asic_reset_res = 0;
-  6008	
-  6009			if (r) {
-  6010				/* bad news, how to tell it to userspace ?
-  6011				 * for ras error, we should report GPU bad status instead of
-  6012				 * reset failure
-  6013				 */
-  6014				if (reset_context->src != AMDGPU_RESET_SRC_RAS ||
-  6015				    !amdgpu_ras_eeprom_check_err_threshold(tmp_adev))
-  6016					dev_info(tmp_adev->dev, "GPU reset(%d) failed\n",
-  6017						atomic_read(&tmp_adev->gpu_reset_counter));
-  6018				amdgpu_vf_error_put(tmp_adev, AMDGIM_ERROR_VF_GPU_RESET_FAIL, 0, r);
-  6019			} else {
-  6020				dev_info(tmp_adev->dev, "GPU reset(%d) succeeded!\n", atomic_read(&tmp_adev->gpu_reset_counter));
-  6021				if (amdgpu_acpi_smart_shift_update(adev_to_drm(tmp_adev), AMDGPU_SS_DEV_D0))
-  6022					DRM_WARN("smart shift update failed\n");
-  6023			}
-  6024		}
-  6025	
-  6026	skip_sched_resume:
-  6027		list_for_each_entry(tmp_adev, device_list_handle, reset_list) {
-  6028			/* unlock kfd: SRIOV would do it separately */
-  6029			if (!need_emergency_restart && !amdgpu_sriov_vf(tmp_adev))
-  6030				amdgpu_amdkfd_post_reset(tmp_adev);
-  6031	
-  6032			/* kfd_post_reset will do nothing if kfd device is not initialized,
-  6033			 * need to bring up kfd here if it's not be initialized before
-  6034			 */
-  6035			if (!adev->kfd.init_complete)
-  6036				amdgpu_amdkfd_device_init(adev);
-  6037	
-  6038			if (audio_suspended)
-  6039				amdgpu_device_resume_display_audio(tmp_adev);
-  6040	
-  6041			amdgpu_device_unset_mp1_state(tmp_adev);
-  6042	
-  6043			amdgpu_ras_set_error_query_ready(tmp_adev, true);
-  6044		}
-  6045	
-  6046		tmp_adev = list_first_entry(device_list_handle, struct amdgpu_device,
-  6047						    reset_list);
-  6048		amdgpu_device_unlock_reset_domain(tmp_adev->reset_domain);
-  6049	
-  6050	end_reset:
-  6051		if (hive) {
-  6052			mutex_unlock(&hive->hive_lock);
-  6053			amdgpu_put_xgmi_hive(hive);
-  6054		}
-  6055	
-  6056		if (r)
-  6057			dev_info(adev->dev, "GPU reset end with ret = %d\n", r);
-  6058	
-  6059		atomic_set(&adev->reset_domain->reset_res, r);
-  6060	
-> 6061		drm_dev_wedged_event(adev_to_drm(adev), DRM_WEDGE_RECOVERY_NONE);
-  6062	
-  6063		return r;
-  6064	}
-  6065	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> 
+> I am leaving it for a few days in order to be reviewed by others,
+> as well.
+> 
+> Andi
+> 
+> Changelog:
+> ==========
+> v1 -> v2:
+>  - Reword the commit log
+> 
+>  drivers/gpu/drm/i915/gt/intel_reset.c | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
+> index c2fe3fc78e76..aae5a081cb53 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_reset.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
+> @@ -1113,6 +1113,7 @@ static bool __intel_gt_unset_wedged(struct intel_gt *gt)
+>  		 * Warn CI about the unrecoverable wedged condition.
+>  		 * Time for a reboot.
+>  		 */
+> +		gt_err(gt, "Unrecoverable wedged condition\n");
+>  		add_taint_for_CI(gt->i915, TAINT_WARN);
+>  		return false;
+>  	}
+> @@ -1264,8 +1265,10 @@ void intel_gt_reset(struct intel_gt *gt,
+>  	}
+>  
+>  	ret = resume(gt);
+> -	if (ret)
+> +	if (ret) {
+> +		gt_err(gt, "Failed to resume (%d)\n", ret);
+>  		goto taint;
+> +	}
+>  
+>  finish:
+>  	reset_finish(gt, awake);
+> @@ -1608,6 +1611,7 @@ void intel_gt_set_wedged_on_init(struct intel_gt *gt)
+>  	set_bit(I915_WEDGED_ON_INIT, &gt->reset.flags);
+>  
+>  	/* Wedged on init is non-recoverable */
+> +	gt_err(gt, "Non-recoverable wedged on init\n");
+>  	add_taint_for_CI(gt->i915, TAINT_WARN);
+>  }
+>  
+> -- 
+> 2.45.2
+> 
