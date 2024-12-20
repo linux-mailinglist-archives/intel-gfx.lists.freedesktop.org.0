@@ -1,60 +1,183 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D8E19F890E
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2024 01:41:05 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id E804F9F8AB0
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2024 04:48:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7D2510EE25;
-	Fri, 20 Dec 2024 00:41:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A55310EE49;
+	Fri, 20 Dec 2024 03:48:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nY6PtmZT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mVKOEEEU";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1577610EE10;
- Fri, 20 Dec 2024 00:41:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2243110EAC6
+ for <intel-gfx@lists.freedesktop.org>; Fri, 20 Dec 2024 03:48:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734655263; x=1766191263;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=gCciFelwR8Gjzdx9rZgYG3HqQFdNyY5/UbsTHDDJlMQ=;
- b=nY6PtmZTRALnzekxlebxhWhtNiB11iyWKm8C5du6jyQb57UrwUrgK5T5
- QSFsKZYIYkc2l2iup2n4/VdaamE/YaO06U9QA27s+mJ5SiULuA52IVCfx
- otQovjMj8MwlwzBUm2kA2eMQZpdHxp9O82fkI6C872eoD3IP1vN9qVpkg
- q5CZ7ys1aeM8PvSSeL7aLNePI8N/XQjWY6w0yRkbgYHEs1m/CSJ09T+od
- UCUcuSU6bFhSbRZWvUVCyn3gsES5ufa5EiKewPvMYpZ9NlE3v2hk//bta
- btCIi+LiGjw8MY5vtUNbs1RRXVITKRFDMGaKIyFjBgumntJvU/0wg2QMJ g==;
-X-CSE-ConnectionGUID: YAba8Q+aRH6TdKRUAkd1BA==
-X-CSE-MsgGUID: QipW24RpQjGpw2UiY3fLuw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11291"; a="46576446"
-X-IronPort-AV: E=Sophos;i="6.12,249,1728975600"; d="scan'208";a="46576446"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Dec 2024 16:41:02 -0800
-X-CSE-ConnectionGUID: OmPOnOeYSeWC5aRLYjNglA==
-X-CSE-MsgGUID: xkIkxytsR4GYw94j1QzodA==
+ t=1734666484; x=1766202484;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=NAMTjoJ7QXVJgdi7CjCvmCMcocRocm119z58397dIIQ=;
+ b=mVKOEEEUbq1816R6caxJ9wNIdiMYUPpAfIXpg+b4Gc2/J9y7idOgMuGl
+ BKsTaK3jf2c2xq301SBkM47Es2aLZicAH8wUFYPs2x1ByLmG/er59mRVF
+ jaCbkQw3lBxswBC1SFoubI0Y/dS/M130/trTY4xtr3ykf6IbSKvKy8oEx
+ ff/dmvj6elAZqoi3MKowM/pwMVSoNKM8E69Y2GQ28k5ktx+oxe+8yakcS
+ ycKIHcId4nff6EfTT1/w5lJ6gcAcw1sfeMxMGpRPLnwiQSp5LLsgPytyO
+ JKp4HCKEua6rdnxPFTle4PTdwnWO4YO0/PCO+EqXwgmUSyHAx0JLipJu0 g==;
+X-CSE-ConnectionGUID: YUIam36ETqystpF7Uy/8dw==
+X-CSE-MsgGUID: eDVrO1bfSsOrbaLitRtO0g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11291"; a="35092079"
+X-IronPort-AV: E=Sophos;i="6.12,249,1728975600"; d="scan'208";a="35092079"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Dec 2024 19:47:57 -0800
+X-CSE-ConnectionGUID: zkFnD2BlRu2YXTdfP5V07g==
+X-CSE-MsgGUID: 8WWYp10PSHGYiNqSgOaDuA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,249,1728975600"; d="scan'208";a="103233356"
-Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.39.141])
- by fmviesa004.fm.intel.com with ESMTP; 19 Dec 2024 16:41:01 -0800
-From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	igt-dev@lists.freedesktop.org
-Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH i-g-t v2 4/4] tools/gputop: Add GT freq and c6 stats
-Date: Thu, 19 Dec 2024 16:37:34 -0800
-Message-Id: <20241220003734.69174-5-vinay.belgaumkar@intel.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20241220003734.69174-1-vinay.belgaumkar@intel.com>
-References: <20241220003734.69174-1-vinay.belgaumkar@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,249,1728975600"; d="scan'208";a="98919336"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmviesa009.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 19 Dec 2024 19:47:57 -0800
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Thu, 19 Dec 2024 19:47:56 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44 via Frontend Transport; Thu, 19 Dec 2024 19:47:56 -0800
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.41) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.44; Thu, 19 Dec 2024 19:47:54 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=q0FUHh0eDV4KCUkkfE7fUxe0YBvAM9OSi8ajRFnX1dw2b+dj2TnlvMTaMqNj9cqxixGpiWZEMl/xB0VUIlcM8dTJV9+lCwAALUmz4Lk4JcWQgvb7Qb2MmVBav3lS1gwdT4jAa7KNxF/URhBNzhZl7/txeiYCeYYVAmgKmTtjk8iXW3IgKgHBVX4PUSkYmodTR3geOirPz+/+Wz44yzzC95X+0KhoMOKvR9IcRzoX0hrA1CIwdDU5hFWdjJXflQhM/NZuv060XB3F5zE2CBITMwQOVhC36I7DBg/7hFeikrVVEKHcX1TZvlUjMaatvKg5nK1dQ2ZS/1HmEOXkyaWydQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=TIJZ/24z3/+gpoeD38JJX8jyfX9uP0JllgWW8zvPm8U=;
+ b=Z1dYOnoQ6ido34FeCBUSrCM6JETdmfuzP1YhRh/slK936nRyzcBy21475ZNz1LofzmufbaICirrEC4UARbQ2WHCH8dXZuZAFnA1xCtmMgI7hCAlape+aZw6fEvqRbtWXQoGpCZb2iEXeDkOWTFGClt/JqOSnEfSwVGpLY9rlZSc1HEHHIhrr0xf18UZN1z8336LzCSenNMS3OtyjX8nkq6d6lV72kNLUYv09kyjd1qUm+cNYiZL9fcFNqNbw7qImxNOvQe2uYpxl/icJ8Z8x8UmQlah593TznKSkGwHw4bcqOnxhc+MA/XZ0tNx0C83rZZOGP6RgIqDhvFPfH3TkGg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MW4PR11MB7056.namprd11.prod.outlook.com (2603:10b6:303:21a::12)
+ by SJ0PR11MB6720.namprd11.prod.outlook.com (2603:10b6:a03:479::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8272.13; Fri, 20 Dec
+ 2024 03:47:38 +0000
+Received: from MW4PR11MB7056.namprd11.prod.outlook.com
+ ([fe80::c4d8:5a0b:cf67:99c5]) by MW4PR11MB7056.namprd11.prod.outlook.com
+ ([fe80::c4d8:5a0b:cf67:99c5%5]) with mapi id 15.20.8272.013; Fri, 20 Dec 2024
+ 03:47:38 +0000
+Message-ID: <063b04aa-710a-44dc-b018-7bd6573068f2@intel.com>
+Date: Fri, 20 Dec 2024 09:17:32 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/i915/dg1: Fix power gate sequence.
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, <intel-gfx@lists.freedesktop.org>
+CC: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+References: <20241219210019.70532-1-rodrigo.vivi@intel.com>
+Content-Language: en-US
+From: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20241219210019.70532-1-rodrigo.vivi@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: PN3PR01CA0054.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:98::20) To MW4PR11MB7056.namprd11.prod.outlook.com
+ (2603:10b6:303:21a::12)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MW4PR11MB7056:EE_|SJ0PR11MB6720:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2124e624-602b-4bb4-cdee-08dd20a90c34
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?N2tDK2E4eUJKU2R2TVQxdE50elNTbkxKL01jWEtuYWNvQUcyT28rb2NvZGlP?=
+ =?utf-8?B?N3J4MmFsTWphSVN2UEw5MXR3TkVzYzBVOFlnd3pTekJ0R0Y4VllLWm9Ydklz?=
+ =?utf-8?B?TXpOK0VCci90NG85M2d0M2xiNFVKc1Y3U1d4ZGQreHFMcCt3dGdiTThRUEFE?=
+ =?utf-8?B?VExwQTJscGcwMVV6VXhTcDk4aDBJS1BXZHo4MHNySUQyMStzTWxyWmx1UHVH?=
+ =?utf-8?B?Rlk0TGtyeEIrRGZUeXZyYVpsb01FRnphY0djMnpVMnArN240MU1UMVVRblpu?=
+ =?utf-8?B?SzJ6NXZ3dnBLdjl1bDJkRFZsZ0treFFncEhMcjhDTWoxNjVCakgvK3BYRHFq?=
+ =?utf-8?B?WjFMTTNlL254akE4QkFkU1JUblphM3krOTY4dHJXTkF4Wmg2NlhMMkZrMXdj?=
+ =?utf-8?B?aSt5cTNYbmgzcmhVUGZZaXd3M2FmSkx4OFd4aDRzRnJlUGx2NFhkakxlc0JM?=
+ =?utf-8?B?YTdQbEZKc0NoMVFybm9yUmNRNWw5VFo3dHlOeHNUQkowcDJaSHYxQnB0Sk96?=
+ =?utf-8?B?UlVHYXhBNFM4YTdvc016cGdybmJSa0wrZEsxdi9raWRyK0xSWlplRXNrd0g3?=
+ =?utf-8?B?RGZOZ2xka3M1WUhBb05uQm15TEl0OVRxc2lyRk1tRTYxOUh1Y0FhOFdiR0tO?=
+ =?utf-8?B?SjVNRHlENjgyYVdtbFJIQUtEWEY3OGRhaW0wb1hnVCt4aGczOVpGbDZ5Mkw5?=
+ =?utf-8?B?czQ2WU1GejN3VjArNHgxL0xFenhucFpKNzhVQ2FpdFZUdHMvemdRVWFPTHNh?=
+ =?utf-8?B?NkRoRXUraTRkVUttMUI0M1JIZFZyL0pMTlI1cTN2ak82WkIybE1tWTBKOUJK?=
+ =?utf-8?B?NDAxa3ZId0lFUEFmWVphczM2UG95YmpwY1V5RHNFZi90dHBTNVMzTDRKaGhk?=
+ =?utf-8?B?a25heWoyZi9hY2VCZXROQ01XR2VZQkpLVHUwOWJUVEtLYTN4VnpaM0krQTVq?=
+ =?utf-8?B?V3FTOWlhVXRCc1dUeWEvQ3ZuMVpHTENxN0JlTldOcHQycVJpTmlGQlZ5SmpE?=
+ =?utf-8?B?SWIrOTdyVm9GeDFKU1JCUE5JbTZIUGFhN1h0b0hJSzZCU01VSWdYSmpZd2Zq?=
+ =?utf-8?B?U09uTjR1ZkRyU2tyMzZsd3lpSmJoeldYVXl0c3FiN01ieWFUeWJ6MFNUTTVB?=
+ =?utf-8?B?MW1jdWtCem1qK2plSDVUKzhMMVA2cFRCTWFFd3grM2lLdHBKNUp3Tm9MTkJF?=
+ =?utf-8?B?RDVvd012bnJTQTRkVEZpQkcveGEyR3V5STNKV0tRTGtObU9RcWRHS2F6SGRq?=
+ =?utf-8?B?VzJiNHhBYnpvbFRhWVFyS0NNNDExMkFvWW9GODl5NlJRQXJ6SmFHbW1BY1Jv?=
+ =?utf-8?B?R0p5WWpLdVlDbkR5RFhFc0s3dU9KQ3dPbmpSV3JLRjAya0dZRWE2WTdiSFBz?=
+ =?utf-8?B?c1VGMXFQTVlPUmxYOE5DTEVPZDR3VHQ2NzUxckZYNWV1eitOZ3JobGp6cXp0?=
+ =?utf-8?B?ckRtLzMvUDAvY2tCa1VOZHVpL3lZTUkybE1haGxld3JONWJkeWV0a2UzSlVq?=
+ =?utf-8?B?M0g4bXBXekVGVTFjMDVzV0theVRMcmxES0FCdXVSTHpYTmo4K0xSczFYbWF3?=
+ =?utf-8?B?R3VkS1pkM00yZFMxa3JCMU1PanU5VWp5VmVOUXpIK244bUFNVVQvTTVqREtS?=
+ =?utf-8?B?WEJVdHg0QkY5MXpTU1V1Z0RtR3Z4OGxGdzhzTkdDU1Bkd3Yxc3BBeGNTVnZr?=
+ =?utf-8?B?WEZNNkZWaDNjNmdVNzVhdXlCNm9IbmlGUG9xZVZxR2FrQjc3akUvUkMvNUY5?=
+ =?utf-8?B?RnNGSmdkbGVNcENQQnR2Tzg2SEI1eFlCU0Znb3VOaW9EaG9scW9HNWNGTEM5?=
+ =?utf-8?B?RXU3WkZkQUtxZ0QwUFExZz09?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MW4PR11MB7056.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QTVMYjlTaE9jNXZUUmpqZjEzMTRhK0kxbGtpL3l4WERwOWE5M2NtV3lyYnNS?=
+ =?utf-8?B?amNCall1SXhEMCt6TUZOSHJidFhrMll1RTFlQVZKclpPcDc5OWtPdnpXbkJB?=
+ =?utf-8?B?ZU1YQVFleXpyNTgvczBnSWZ2OFRnVnA2N2dRR3EwemV2T25vSTlteUxnK00r?=
+ =?utf-8?B?QTcxYU9RVk1ZZjFpa2ZYYkw3K05WbnZQOE80QW4xWkd3RzJPWlhzWW9JTjBM?=
+ =?utf-8?B?WUN5UHZmVjM3SEU1Q0lFUThyMDBZdGg3R1pPTzVkNEgzTXMyc3hqMndoVWFS?=
+ =?utf-8?B?ZnVKNW9yblRjeVVnY0FxbU5GNjRyaW4vQ2p3NEtRZUVueFVyMGFhbURweW1x?=
+ =?utf-8?B?L2cvREIyeEhEdW9tZHBWaDg1dkVYWUdJVUc5S04wWTEzc0Vpa2ZVbThBNXJE?=
+ =?utf-8?B?TmNiNlFwLzZvTHVuaUg5VVgxUnFiYnM0VVM0MTFvZFgreEFxNHAydHNwVXJU?=
+ =?utf-8?B?bGFBWUN1TUU0eG5EOEsrTWxIa3NzSkFYeFhLa3hBam5Ubzd2aW1DSGdaRGJo?=
+ =?utf-8?B?a1F6Z0dLS1JVWVhQSDhhUE15VHEwRGlIdWx0dHlXNGZHMmV6a3IvYU1qZVJ4?=
+ =?utf-8?B?MGNNNlEyZlZLL1d2ZWF5Uk9mRVlkMEVDUmhmVVZRVUpTWmV2enI2alJMYmNt?=
+ =?utf-8?B?WnlsYVppeEd2ZWhWOHpFSHJxTFBFVHRhR3M0NFd3R3p1UEs2dUkybjkvZzN3?=
+ =?utf-8?B?WjUvd0NVWVM3VkEwbkZFaGJBMHVXQXNIVXlOZ0IzOGltcDB2clZYcDVTSThP?=
+ =?utf-8?B?QnRTM1VTRFVVeU5jbzFLZWtiY2F6MVBGMngvZ2pURExqR0JsTkR2ck12Smxi?=
+ =?utf-8?B?eTljcnVoVmt3QlRpY1kvaGVlQ1p2c2kvMitUNXdzV0V1clpldkNiVndtaEFa?=
+ =?utf-8?B?ZVk2S3YwemxxdytCK2d0OExMODVES0Q3Z0dhck9qSklMVVE5QTYwSFhjYmZG?=
+ =?utf-8?B?SzNnOWZqYWZXUkR0Q2NTVnRGSElJaDBQVFZBeTJlWU11N1lhazBLTzdhRkM4?=
+ =?utf-8?B?elFyVXNxaDk1MFhTbzhocE9BVzJGTitaRElvZlBLbWVHK0VuN29ZK203b1o2?=
+ =?utf-8?B?QjBqTGxLSjJqZW0rdVJLNFNOd01rb1Q0UGlxUW8rcW80ZzluamhjK3hiTk1S?=
+ =?utf-8?B?NWJ6YWdTSUM0eEZiUHVVMEpxUklRYWRtQjhhN25vQ2krOU1Kb1pkanFTMmM3?=
+ =?utf-8?B?ZDZEU1o5RDVBL1JQd0NRUVpaSEg1U0VtMjliZGpxc25hVVdvamNublRiUXFM?=
+ =?utf-8?B?TFVwSGhQcUdwMjhVUk5CYnBQSVpLaVd0L2R6eERSTDNISHdDZVF3NWJlZXRq?=
+ =?utf-8?B?VEdqejlRVXE0YXFTYitlRE9yYkNabVFJd2xncERoTnlEWmxOTkpXUkxTWlQ5?=
+ =?utf-8?B?bjV6QTdJdWN4cko3Y2UvL0R5YnVRQVBoVEU2OEZQR0pTaHdMN2JJYVliY3gr?=
+ =?utf-8?B?TXp0Y2pEVFJyZkswTXplY0dvbWtKVWRoWFlFYzRZZUtRWWlhQlQ3SklJWDRi?=
+ =?utf-8?B?eWN4MUhhODNtVGUzWkVRMWhLYnZWNWdHRzNtSjEvY2hUZW5Db2JGNkZwcTgy?=
+ =?utf-8?B?by9DbVZ6aGxZaGlQMEtuY0hqd05mOGlnbFFaOEZkaGM0TzVIREF3S2twMmIy?=
+ =?utf-8?B?a2MrNjk0bTBsM3F5bkxUUlJRNlljZUErb1VmWXQyOTdKQUg3K0RwMm1nQ204?=
+ =?utf-8?B?eDgrRitwc3k5ZkVFQnJSRW53TXdDUVZkZkdhMEVoS2EycVB6N2djTTZCLzJh?=
+ =?utf-8?B?T3orLzlDcS8zRXJuZ1pVSUhxUWlOeG5rRXR2SlZxcjVaQld6bFh5MFdrZmY4?=
+ =?utf-8?B?bGMwN3hDM0d2OHdpcTQ1S096YktwYk5oNFZuZWNNR2NmS2MyWGZ0SE1XcjFM?=
+ =?utf-8?B?eURISTNkdlFuR2RFMDlWNzdEUjVWUWNoenFZM2hBUG40enFCM2l0U0lJeW9m?=
+ =?utf-8?B?bzlRK2dXWjVCSVdDRTl5dlNFdGlvdzA1eWVxR0cySnh4SEVWRGJGSWgvMytE?=
+ =?utf-8?B?clo4L0g2T2RnS2ZZZ3dyRVpLMnJIQ0N3VHF1SHJwdkZhY3pCSEhld2p4OUhO?=
+ =?utf-8?B?S0laKzFOaDFWQkllNjhtZ3paZkFYQlpLbkVZUk45c2RRam5XdWZ1dmd2aUdr?=
+ =?utf-8?B?S2FkZWFwQXlnZXM1TlkwZG1mRUJPMk9LWHU1RDYvdlRvaStDZnhvZ1hMWGlI?=
+ =?utf-8?Q?3RBHVOxRSRJEWetxkw/PXD8=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2124e624-602b-4bb4-cdee-08dd20a90c34
+X-MS-Exchange-CrossTenant-AuthSource: MW4PR11MB7056.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Dec 2024 03:47:38.6036 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: t/Tbox382P8hbRJi1bdm8hAmFHBg5kV1Tdlr69v011durFTOsxHmjYS1j1wi7X/T3BE4IEH+umjt/1pIDwYePIrJYsKPACpgUo29sySNh5w=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB6720
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,259 +193,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add GT C6 and Frequency support. These will use the PMU interface
-and are displayed per GT/device in the header.
 
-GT: 0, c6:  94.54% req_freq:  750.63 MHz act_freq:    0.00 MHz
-GT: 1, c6:   2.75% req_freq: 1200.71 MHz act_freq: 1112.66 MHz
 
-v2: Split patch into logical units and other review
-comments (Rodrigo, Kamil)
+On 20-12-2024 02:30, Rodrigo Vivi wrote:
+> sub-pipe PG is not present on DG1. Setting these bits can disable
+> other power gates and cause GPU hangs on video playbacks.
+> 
+> VLK: 16314, 4304
+> 
+> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13381
+> Fixes: 85a12d7eb8fe ("drm/i915/tgl: Fix Media power gate sequence.")
+> Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> ---
+>   drivers/gpu/drm/i915/gt/intel_rc6.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_rc6.c b/drivers/gpu/drm/i915/gt/intel_rc6.c
+> index c864d101faf9..9378d5901c49 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_rc6.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_rc6.c
+> @@ -133,7 +133,7 @@ static void gen11_rc6_enable(struct intel_rc6 *rc6)
+>   			GEN9_MEDIA_PG_ENABLE |
+>   			GEN11_MEDIA_SAMPLER_PG_ENABLE;
+>   
+> -	if (GRAPHICS_VER(gt->i915) >= 12) {
+> +	if (GRAPHICS_VER(gt->i915) >= 12 && !IS_DG1(gt->i915)) {
 
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
----
- tools/gputop.c    | 197 ++++++++++++++++++++++++++++++++++++++++++++++
- tools/meson.build |   2 +-
- 2 files changed, 198 insertions(+), 1 deletion(-)
+Looks good to me.
+Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 
-diff --git a/tools/gputop.c b/tools/gputop.c
-index 4e3663417..df038bdbb 100644
---- a/tools/gputop.c
-+++ b/tools/gputop.c
-@@ -29,6 +29,7 @@
- #include "igt_core.h"
- #include "igt_drm_clients.h"
- #include "igt_drm_fdinfo.h"
-+#include "igt_perf.h"
- #include "igt_profiling.h"
- #include "drmtest.h"
- 
-@@ -104,6 +105,200 @@ static void print_percentage_bar(double percent, int max_len)
- 	putchar('|');
- }
- 
-+static int
-+get_num_gts(uint64_t type, uint64_t config, int gt_shift)
-+{
-+	int fd, gt_id;
-+
-+	errno = 0;
-+	for (gt_id = 0; gt_id < MAX_GTS; gt_id++) {
-+		config |= (uint64_t)gt_id << gt_shift;
-+		fd = igt_perf_open(type, config);
-+		if (fd < 0)
-+			break;
-+		close(fd);
-+	}
-+
-+	if (!gt_id || (errno && errno != ENOENT))
-+		gt_id = -errno;
-+
-+	return gt_id;
-+}
-+
-+
-+#define _open_pmu(type, cnt, pmu, fd) \
-+({ \
-+	int fd__; \
-+\
-+	fd__ = igt_perf_open_group((type), (pmu)->config, (fd)); \
-+	if (fd__ >= 0) { \
-+		if ((fd) == -1) \
-+			(fd) = fd__; \
-+		(pmu)->present = true; \
-+		(pmu)->idx = (cnt)++; \
-+	} \
-+\
-+	fd__; \
-+})
-+
-+static int pmu_init(struct igt_drm_client *c)
-+{
-+	struct pmu_info *info;
-+	unsigned int i, num_cntr = 0;
-+	int fd = -1, ret;
-+	/* TODO  get device events path*/
-+	char *path;
-+	uint64_t type;
-+	uint64_t config;
-+	int gt_shift;
-+	char event_str[100];
-+
-+	info = (struct pmu_info *)malloc(sizeof(struct pmu_info));
-+	if (!info)
-+		return -ENOMEM;
-+
-+	snprintf(info->device_events_path, sizeof(info->device_events_path) - 1,
-+		 "%s_%s", c->driver, c->pdev);
-+	path = info->device_events_path;
-+	for (; *path; ++path)
-+		if (*path == ':')
-+			*path = '_';
-+
-+	type = igt_perf_type_id(info->device_events_path);
-+
-+	/* Get a sample event config which can be used to find num_gts */
-+	ret = perf_xe_event_config(info->device_events_path, "actual-frequency", &config);
-+	if (ret < 0)
-+		return -EINVAL;
-+
-+	gt_shift = perf_xe_format_gt_shift(info->device_events_path);
-+	if (ret < 0)
-+		return -EINVAL;
-+
-+	info->num_gts = get_num_gts(type, config, gt_shift);
-+
-+	for (i = 0; i < info->num_gts; i++) {
-+		snprintf(event_str, sizeof(event_str), "c6-residency");
-+		ret = perf_xe_event_config(info->device_events_path, event_str,
-+					   &info->c6[i].config);
-+		assert(ret >= 0);
-+		info->c6[i].config |= (uint64_t)i << gt_shift;
-+		_open_pmu(type, num_cntr, &info->c6[i], fd);
-+
-+		snprintf(event_str, sizeof(event_str), "actual-frequency");
-+		ret = perf_xe_event_config(info->device_events_path, event_str,
-+					   &info->act_freq[i].config);
-+		assert(ret >= 0);
-+		info->act_freq[i].config |= (uint64_t)i << gt_shift;
-+		_open_pmu(type, num_cntr, &info->act_freq[i], fd);
-+
-+		snprintf(event_str, sizeof(event_str), "requested-frequency");
-+		ret = perf_xe_event_config(info->device_events_path, event_str,
-+					   &info->req_freq[i].config);
-+		assert(ret >= 0);
-+		info->req_freq[i].config |= (uint64_t)i << gt_shift;
-+		_open_pmu(type, num_cntr, &info->req_freq[i], fd);
-+	}
-+
-+	if (fd < 0)
-+		return -EINVAL;
-+	info->pmu_fd = fd;
-+	info->num_counters = num_cntr;
-+
-+	/* Save PMU info in the client */
-+	c->pmu_info = info;
-+
-+	return 0;
-+}
-+
-+static uint64_t pmu_read_multi(int fd, unsigned int num, uint64_t *val)
-+{
-+	uint64_t buf[2 + num];
-+	unsigned int i;
-+	ssize_t len;
-+
-+	memset(buf, 0, sizeof(buf));
-+
-+	len = read(fd, buf, sizeof(buf));
-+	if (len != sizeof(buf))
-+		return 0;
-+
-+	for (i = 0; i < num; i++)
-+		val[i] = buf[2 + i];
-+
-+	return buf[1];
-+}
-+
-+
-+static void __update_sample(struct pmu_counter *counter, uint64_t val)
-+{
-+	counter->val.prev = counter->val.cur;
-+	counter->val.cur = val;
-+}
-+
-+static void update_sample(struct pmu_counter *counter, uint64_t *val)
-+{
-+	if (counter->present)
-+		__update_sample(counter, val[counter->idx]);
-+}
-+
-+static void
-+calc_c6_pct(struct pmu_info *info, unsigned int gt, unsigned long t)
-+{
-+	unsigned long c6_diff = info->c6[gt].val.cur - info->c6[gt].val.prev;
-+
-+	printf("GT: %d, c6: %6.2lf%%", gt, 100 * (double)((1e6 * c6_diff) / (double)t));
-+}
-+
-+static void
-+calc_freq(struct pmu_info *info, uint8_t gt, uint64_t t)
-+{
-+	uint64_t req_freq_diff = 1e9 * (info->req_freq[gt].val.cur - info->req_freq[gt].val.prev);
-+	uint64_t act_freq_diff = 1e9 * (info->act_freq[gt].val.cur - info->act_freq[gt].val.prev);
-+
-+	printf(" req_freq: %7.2lf MHz", (double)req_freq_diff / (double)t);
-+	printf(" act_freq: %7.2lf MHz", (double)act_freq_diff / (double)t);
-+}
-+
-+static void
-+print_pmu_stats(struct igt_drm_client *c, int *lines)
-+{
-+	struct pmu_info *info;
-+	int i;
-+	uint64_t *val;
-+	uint64_t ts_diff;
-+
-+	if (!c->pmu_info)
-+		if (pmu_init(c))
-+			return;
-+
-+	info = (struct pmu_info *)c->pmu_info;
-+	if (info->num_counters <= 0)
-+		return;
-+
-+	val = (uint64_t *)malloc(info->num_counters * sizeof(uint64_t));
-+	if (!val)
-+		return;
-+
-+	/* Calculate timestamp diffs */
-+	info->ts_prev = info->ts_cur;
-+	info->ts_cur = pmu_read_multi(info->pmu_fd, info->num_counters, val);
-+	ts_diff = info->ts_cur - info->ts_prev;
-+
-+	for (i = 0; i < info->num_gts; i++) {
-+		update_sample(&info->c6[i], val);
-+		update_sample(&info->req_freq[i], val);
-+		update_sample(&info->act_freq[i], val);
-+		calc_c6_pct(info, i, ts_diff);
-+		calc_freq(info, i, ts_diff);
-+		putchar('\n');
-+		(*lines)++;
-+	}
-+
-+	if (val)
-+		free(val);
-+}
-+
- static int
- print_client_header(struct igt_drm_client *c, int lines, int con_w, int con_h,
- 		    int *engine_w)
-@@ -120,6 +315,8 @@ print_client_header(struct igt_drm_client *c, int lines, int con_w, int con_h,
- 	if (lines++ >= con_h)
- 		return lines;
- 
-+	print_pmu_stats(c, &lines);
-+
- 	putchar('\n');
- 	if (c->regions->num_regions)
- 		len = printf("%*s      MEM      RSS ",
-diff --git a/tools/meson.build b/tools/meson.build
-index 38b04851c..9e6c8546a 100644
---- a/tools/meson.build
-+++ b/tools/meson.build
-@@ -70,7 +70,7 @@ endif
- executable('gputop', 'gputop.c',
-            install : true,
-            install_rpath : bindir_rpathdir,
--           dependencies : [lib_igt_drm_clients,lib_igt_drm_fdinfo,lib_igt_profiling,math])
-+           dependencies : [lib_igt_perf,lib_igt_drm_clients,lib_igt_drm_fdinfo,lib_igt_profiling,math])
- 
- intel_l3_parity_src = [ 'intel_l3_parity.c', 'intel_l3_udev_listener.c' ]
- executable('intel_l3_parity', sources : intel_l3_parity_src,
--- 
-2.38.1
+
+>   		for (i = 0; i < I915_MAX_VCS; i++)
+>   			if (HAS_ENGINE(gt, _VCS(i)))
+>   				pg_enable |= (VDN_HCP_POWERGATE_ENABLE(i) |
 
