@@ -1,58 +1,30 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC2459F9DD0
-	for <lists+intel-gfx@lfdr.de>; Sat, 21 Dec 2024 02:43:37 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F0169F9DF2
+	for <lists+intel-gfx@lfdr.de>; Sat, 21 Dec 2024 03:29:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 115B310E3CF;
-	Sat, 21 Dec 2024 01:43:35 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iptv1g8e";
-	dkim-atps=neutral
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F26910E2EE;
- Sat, 21 Dec 2024 01:43:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734745413; x=1766281413;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Vu0HV4Z4erHfTjzNm7b2gKZEZNetghdVzp06IY/tx3A=;
- b=iptv1g8elmfJgiF7PClTbzAxpiyubAoEbNvKasl2JSZYldJiKrQAZDs+
- XQKXSMYKgUxzo3+RjSEh6ox50e9xy08x9ML5UWtzk1pAEKq7CO0CycilY
- IVNFj9nsSGjLJ6i9bNwyySvS/u3E58veyjfpXjZhtkFOtmgAy7uPchTkH
- xH6nMKBTHah6nS5AVTc5eggdVLf/yKx4nRypcfFIh7AN3ouiTqDKiZJME
- NmwIj3BAZi3m8bBzW68Kr5tLrodSSp0TyYQSuxzayUd1ko4Ucjgga0wY4
- TOdhsP2f3v4eqFYJBsjRHsHUH3H+h6HBKZFeZx0GHyAEUyaQu8PkPzKGc w==;
-X-CSE-ConnectionGUID: pIw4xdQuTCmVMGFk4iPgzw==
-X-CSE-MsgGUID: pEOfe44YTk+nt99U8g6tTg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11292"; a="46722396"
-X-IronPort-AV: E=Sophos;i="6.12,252,1728975600"; d="scan'208";a="46722396"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2024 17:43:32 -0800
-X-CSE-ConnectionGUID: /0UMH2QXSeiNrFwWvutspQ==
-X-CSE-MsgGUID: jmrgxnsJSBenGwjHvVflow==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="103731623"
-Received: from relo-linux-5.jf.intel.com ([10.165.21.152])
- by orviesa003.jf.intel.com with ESMTP; 20 Dec 2024 17:43:29 -0800
-From: John.C.Harrison@Intel.com
-To: Intel-GFX@Lists.FreeDesktop.Org
-Cc: DRI-Devel@Lists.FreeDesktop.Org, John Harrison <John.C.Harrison@Intel.com>,
- Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-Subject: [PATCH] drm/i915/uc: Include requested frequency in slow firmware
- load messages
-Date: Fri, 20 Dec 2024 17:43:29 -0800
-Message-ID: <20241221014329.4048408-1-John.C.Harrison@Intel.com>
-X-Mailer: git-send-email 2.47.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 869E210E501;
+	Sat, 21 Dec 2024 02:29:07 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B37110E501;
+ Sat, 21 Dec 2024 02:29:06 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_drm/i915=3A_Add_debug_pri?=
+ =?utf-8?q?nt_about_hw_config_table_size?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: john.c.harrison@intel.com
+Cc: intel-gfx@lists.freedesktop.org
+Date: Sat, 21 Dec 2024 02:29:06 -0000
+Message-ID: <173474814636.1001273.3529915509197667043@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241221011925.3944625-1-John.C.Harrison@Intel.com>
+In-Reply-To: <20241221011925.3944625-1-John.C.Harrison@Intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,71 +37,130 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: John Harrison <John.C.Harrison@Intel.com>
+== Series Details ==
 
-To aid debug of sporadic issues, include the requested frequency in
-the debug message as well as the actual frequency. That way we know
-for certain that the clamping is not because the driver forgot to ask.
+Series: drm/i915: Add debug print about hw config table size
+URL   : https://patchwork.freedesktop.org/series/142898/
+State : failure
 
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-Reviewed-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
----
- drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c | 11 ++++++-----
- drivers/gpu/drm/i915/gt/uc/intel_huc.c    | 12 +++++++-----
- 2 files changed, 13 insertions(+), 10 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c
-index fe53e8eccf4b1..e7ccfa520df3a 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_fw.c
-@@ -259,13 +259,14 @@ static int guc_wait_ucode(struct intel_guc *guc)
- 	} else if (delta_ms > 200) {
- 		guc_warn(guc, "excessive init time: %lldms! [status = 0x%08X, count = %d, ret = %d]\n",
- 			 delta_ms, status, count, ret);
--		guc_warn(guc, "excessive init time: [freq = %dMHz, before = %dMHz, perf_limit_reasons = 0x%08X]\n",
--			 intel_rps_read_actual_frequency(&gt->rps), before_freq,
-+		guc_warn(guc, "excessive init time: [freq = %dMHz -> %dMHz vs %dMHz, perf_limit_reasons = 0x%08X]\n",
-+			 before_freq, intel_rps_read_actual_frequency(&gt->rps),
-+			 intel_rps_get_requested_frequency(&gt->rps),
- 			 intel_uncore_read(uncore, intel_gt_perf_limit_reasons_reg(gt)));
- 	} else {
--		guc_dbg(guc, "init took %lldms, freq = %dMHz, before = %dMHz, status = 0x%08X, count = %d, ret = %d\n",
--			delta_ms, intel_rps_read_actual_frequency(&gt->rps),
--			before_freq, status, count, ret);
-+		guc_dbg(guc, "init took %lldms, freq = %dMHz -> %dMHz vs %dMHz, status = 0x%08X, count = %d, ret = %d\n",
-+			delta_ms, before_freq, intel_rps_read_actual_frequency(&gt->rps),
-+			intel_rps_get_requested_frequency(&gt->rps), status, count, ret);
- 	}
- 
- 	return ret;
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.c b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-index d7ac31c3254cf..6fdbe1108ce59 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-@@ -502,13 +502,15 @@ int intel_huc_wait_for_auth_complete(struct intel_huc *huc,
- 	if (delta_ms > 50) {
- 		huc_warn(huc, "excessive auth time: %lldms! [status = 0x%08X, count = %d, ret = %d]\n",
- 			 delta_ms, huc->status[type].reg.reg, count, ret);
--		huc_warn(huc, "excessive auth time: [freq = %dMHz, before = %dMHz, perf_limit_reasons = 0x%08X]\n",
--			 intel_rps_read_actual_frequency(&gt->rps), before_freq,
-+		huc_warn(huc, "excessive auth time: [freq = %dMHz -> %dMHz vs %dMHz, perf_limit_reasons = 0x%08X]\n",
-+			 before_freq, intel_rps_read_actual_frequency(&gt->rps),
-+			 intel_rps_get_requested_frequency(&gt->rps),
- 			 intel_uncore_read(uncore, intel_gt_perf_limit_reasons_reg(gt)));
- 	} else {
--		huc_dbg(huc, "auth took %lldms, freq = %dMHz, before = %dMHz, status = 0x%08X, count = %d, ret = %d\n",
--			delta_ms, intel_rps_read_actual_frequency(&gt->rps),
--			before_freq, huc->status[type].reg.reg, count, ret);
-+		huc_dbg(huc, "auth took %lldms, freq = %dMHz -> %dMHz vs %dMHz, status = 0x%08X, count = %d, ret = %d\n",
-+			delta_ms, before_freq, intel_rps_read_actual_frequency(&gt->rps),
-+			intel_rps_get_requested_frequency(&gt->rps),
-+			huc->status[type].reg.reg, count, ret);
- 	}
- 
- 	/* mark the load process as complete even if the wait failed */
--- 
-2.47.0
+CI Bug Log - changes from CI_DRM_15882 -> Patchwork_142898v1
+====================================================
 
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_142898v1 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_142898v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142898v1/index.html
+
+Participating hosts (42 -> 42)
+------------------------------
+
+  Additional (1): fi-glk-j4005 
+  Missing    (1): fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_142898v1:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live:
+    - bat-mtlp-8:         [PASS][1] -> [DMESG-FAIL][2] +1 other test dmesg-fail
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15882/bat-mtlp-8/igt@i915_selftest@live.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142898v1/bat-mtlp-8/igt@i915_selftest@live.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_142898v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@debugfs_test@basic-hwmon:
+    - fi-pnv-d510:        NOTRUN -> [SKIP][3] +3 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142898v1/fi-pnv-d510/igt@debugfs_test@basic-hwmon.html
+
+  * igt@dmabuf@all-tests@dma_fence_chain:
+    - fi-bsw-nick:        [PASS][4] -> [INCOMPLETE][5] ([i915#12904]) +1 other test incomplete
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15882/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142898v1/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html
+
+  * igt@gem_exec_gttfill@basic:
+    - fi-pnv-d510:        NOTRUN -> [ABORT][6] ([i915#13169])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142898v1/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
+
+  * igt@gem_huc_copy@huc-copy:
+    - fi-glk-j4005:       NOTRUN -> [SKIP][7] ([i915#2190])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142898v1/fi-glk-j4005/igt@gem_huc_copy@huc-copy.html
+
+  * igt@gem_lmem_swapping@parallel-random-engines:
+    - fi-glk-j4005:       NOTRUN -> [SKIP][8] ([i915#4613]) +3 other tests skip
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142898v1/fi-glk-j4005/igt@gem_lmem_swapping@parallel-random-engines.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - bat-dg1-7:          [PASS][9] -> [FAIL][10] ([i915#12903])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15882/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142898v1/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
+    - bat-rpls-4:         [PASS][11] -> [FAIL][12] ([i915#12903])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15882/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142898v1/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
+
+  * igt@kms_psr@psr-primary-page-flip:
+    - fi-glk-j4005:       NOTRUN -> [SKIP][13] +10 other tests skip
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142898v1/fi-glk-j4005/igt@kms_psr@psr-primary-page-flip.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_module_load@load:
+    - fi-pnv-d510:        [ABORT][14] ([i915#13203]) -> [PASS][15]
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15882/fi-pnv-d510/igt@i915_module_load@load.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142898v1/fi-pnv-d510/igt@i915_module_load@load.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-5:         [DMESG-FAIL][16] -> [PASS][17] +1 other test pass
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15882/bat-arls-5/igt@i915_selftest@live@workarounds.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142898v1/bat-arls-5/igt@i915_selftest@live@workarounds.html
+
+  
+  [i915#12903]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12903
+  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
+  [i915#13169]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13169
+  [i915#13203]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13203
+  [i915#2190]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190
+  [i915#4613]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_15882 -> Patchwork_142898v1
+
+  CI-20190529: 20190529
+  CI_DRM_15882: bebe4982a052ff8efee3c9ad2f0ea62d1ebc3482 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8172: 9112581619aa198fa03041d5c7e18e02f42ac00f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_142898v1: bebe4982a052ff8efee3c9ad2f0ea62d1ebc3482 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142898v1/index.html
