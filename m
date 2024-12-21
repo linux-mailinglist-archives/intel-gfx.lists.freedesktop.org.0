@@ -2,29 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 394CD9F9D61
-	for <lists+intel-gfx@lfdr.de>; Sat, 21 Dec 2024 01:18:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F34E29F9D6E
+	for <lists+intel-gfx@lfdr.de>; Sat, 21 Dec 2024 01:49:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0DF1510E18E;
-	Sat, 21 Dec 2024 00:18:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 661C810E2D8;
+	Sat, 21 Dec 2024 00:49:37 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oK0VtWpY";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E6A4B10E18E;
- Sat, 21 Dec 2024 00:18:11 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5329910E0AE;
+ Sat, 21 Dec 2024 00:49:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1734742176; x=1766278176;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=SzgwfS2cTODjJJ5XiWD7nvBWwFJN8ilIS7chkmT7L8E=;
+ b=oK0VtWpYUvSX54YEqVXApuTCX/ssQxrRMEpdc9On5No2DUnO8n3ynbPX
+ 1X2LK/6j6tH6EFcwHrSkLmVmg3kP7w4omQ5VUUfNiX1tm8y/oBw0Fensy
+ /iwM7MPpmfFBar+b9tkHrnvP23C95H0cgFPl3440obJVZ2r96PkLF6+yf
+ PJtHitBLnQHmI8u9ltTa9UQ4Jz8NzKgXy7C964ByxzpCdwRtRw5VVs4nq
+ PFs238DGgZQ0VtFdaztdIjr4DolUZeGWcBiZnEvE4FrUsL9SZWOzZ1EmS
+ oYqmnXM0U7i4a+LgrvglCV1SXd6v1NEBebh2Yi6dCVTQxPOVZeJQ7XfRx Q==;
+X-CSE-ConnectionGUID: flW4XrpoQtGmQtkTygmJmA==
+X-CSE-MsgGUID: knzJ15phRniKISoJOawcaw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11292"; a="35518952"
+X-IronPort-AV: E=Sophos;i="6.12,252,1728975600"; d="scan'208";a="35518952"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Dec 2024 16:49:36 -0800
+X-CSE-ConnectionGUID: 18HuGdZCQW6o5NlrJiA6sg==
+X-CSE-MsgGUID: bzCuv69gTI++//YcDZWJ7w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="129606671"
+Received: from lkp-server01.sh.intel.com (HELO a46f226878e0) ([10.239.97.150])
+ by fmviesa001.fm.intel.com with ESMTP; 20 Dec 2024 16:49:34 -0800
+Received: from kbuild by a46f226878e0 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1tOngR-0001nv-2y;
+ Sat, 21 Dec 2024 00:49:31 +0000
+Date: Sat, 21 Dec 2024 08:49:08 +0800
+From: kernel test robot <lkp@intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+ uma.shankar@intel.com, arun.r.murthy@intel.com,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: Re: [PATCH 2/2] drm/i915/lttpr: Enable Extended Wake Timeout
+Message-ID: <202412210826.fD0cAxev-lkp@intel.com>
+References: <20241213060317.2674290-3-suraj.kandpal@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/gt=3A_Log_reason?=
- =?utf-8?q?_for_setting_TAINT=5FWARN_at_reset_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Andi Shyti" <andi.shyti@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Sat, 21 Dec 2024 00:18:11 -0000
-Message-ID: <173474029193.959220.9129503876624100836@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241220131714.1309483-1-andi.shyti@linux.intel.com>
-In-Reply-To: <20241220131714.1309483-1-andi.shyti@linux.intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241213060317.2674290-3-suraj.kandpal@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,129 +69,93 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Suraj,
 
-Series: drm/i915/gt: Log reason for setting TAINT_WARN at reset (rev4)
-URL   : https://patchwork.freedesktop.org/series/142882/
-State : success
+kernel test robot noticed the following build errors:
 
-== Summary ==
+[auto build test ERROR on linus/master]
+[also build test ERROR on v6.13-rc3 next-20241220]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-CI Bug Log - changes from CI_DRM_15881 -> Patchwork_142882v4
-====================================================
+url:    https://github.com/intel-lab-lkp/linux/commits/Suraj-Kandpal/drm-dp-Add-the-DPCD-register-required-for-Extended-wake-timeout/20241213-140525
+base:   linus/master
+patch link:    https://lore.kernel.org/r/20241213060317.2674290-3-suraj.kandpal%40intel.com
+patch subject: [PATCH 2/2] drm/i915/lttpr: Enable Extended Wake Timeout
+config: powerpc-randconfig-001-20241220 (https://download.01.org/0day-ci/archive/20241221/202412210826.fD0cAxev-lkp@intel.com/config)
+compiler: clang version 15.0.7 (https://github.com/llvm/llvm-project 8dfdcc7b7bf66834a761bd8de445840ef68e4d1a)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241221/202412210826.fD0cAxev-lkp@intel.com/reproduce)
 
-Summary
--------
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202412210826.fD0cAxev-lkp@intel.com/
 
-  **SUCCESS**
+All errors (new ones prefixed by >>):
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142882v4/index.html
-
-Participating hosts (43 -> 42)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_142882v4 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@dmabuf@all-tests:
-    - fi-pnv-d510:        NOTRUN -> [INCOMPLETE][1] ([i915#12904]) +1 other test incomplete
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142882v4/fi-pnv-d510/igt@dmabuf@all-tests.html
-
-  * igt@i915_module_load@load:
-    - bat-twl-1:          [PASS][2] -> [DMESG-WARN][3] ([i915#1982])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15881/bat-twl-1/igt@i915_module_load@load.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142882v4/bat-twl-1/igt@i915_module_load@load.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - bat-dg2-11:         [PASS][4] -> [FAIL][5] ([i915#12903])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15881/bat-dg2-11/igt@i915_pm_rpm@module-reload.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142882v4/bat-dg2-11/igt@i915_pm_rpm@module-reload.html
-    - bat-adls-6:         [PASS][6] -> [FAIL][7] ([i915#12903])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15881/bat-adls-6/igt@i915_pm_rpm@module-reload.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142882v4/bat-adls-6/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live:
-    - fi-skl-6600u:       [PASS][8] -> [INCOMPLETE][9] ([i915#13050])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15881/fi-skl-6600u/igt@i915_selftest@live.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142882v4/fi-skl-6600u/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@gt_timelines:
-    - fi-skl-6600u:       [PASS][10] -> [INCOMPLETE][11] ([i915#12445])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15881/fi-skl-6600u/igt@i915_selftest@live@gt_timelines.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142882v4/fi-skl-6600u/igt@i915_selftest@live@gt_timelines.html
-
-  * igt@kms_chamelium_frames@dp-crc-fast:
-    - bat-dg2-13:         [PASS][12] -> [FAIL][13] ([i915#12440])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15881/bat-dg2-13/igt@kms_chamelium_frames@dp-crc-fast.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142882v4/bat-dg2-13/igt@kms_chamelium_frames@dp-crc-fast.html
-
-  * igt@kms_psr@psr-primary-mmap-gtt:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][14] +31 other tests skip
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142882v4/fi-pnv-d510/igt@kms_psr@psr-primary-mmap-gtt.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@gem_contexts:
-    - bat-jsl-3:          [INCOMPLETE][15] ([i915#13241]) -> [PASS][16] +1 other test pass
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15881/bat-jsl-3/igt@i915_selftest@live@gem_contexts.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142882v4/bat-jsl-3/igt@i915_selftest@live@gem_contexts.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-mtlp-6:         [ABORT][17] ([i915#12061]) -> [PASS][18] +1 other test pass
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15881/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142882v4/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-    - {bat-arls-6}:       [ABORT][19] ([i915#12061]) -> [PASS][20] +1 other test pass
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15881/bat-arls-6/igt@i915_selftest@live@workarounds.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142882v4/bat-arls-6/igt@i915_selftest@live@workarounds.html
-
-  
-#### Warnings ####
-
-  * igt@gem_exec_gttfill@basic:
-    - fi-pnv-d510:        [ABORT][21] ([i915#13169]) -> [SKIP][22]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15881/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142882v4/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12440]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12440
-  [i915#12445]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12445
-  [i915#12903]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12903
-  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
-  [i915#13050]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13050
-  [i915#13169]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13169
-  [i915#13241]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13241
-  [i915#1982]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982
+>> drivers/gpu/drm/i915/display/intel_dp_link_training.c:148:48: error: initializer overrides prior initialization of this subobject [-Werror,-Winitializer-overrides]
+                           [DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_20_MS] = 20,
+                                                                       ^~
+   drivers/gpu/drm/i915/display/intel_dp_link_training.c:146:48: note: previous initialization is here
+                           [DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_20_MS] = 20,
+                                                                       ^~
+   1 error generated.
 
 
-Build changes
--------------
+vim +148 drivers/gpu/drm/i915/display/intel_dp_link_training.c
 
-  * Linux: CI_DRM_15881 -> Patchwork_142882v4
+   136	
+   137	void intel_dp_lttpr_wake_timeout_setup(struct intel_dp *intel_dp)
+   138	{
+   139		struct intel_display *display = to_intel_display(intel_dp);
+   140		u8 val = 1;
+   141		int ret;
+   142	
+   143		if (intel_dp_lttpr_transparent_mode_enabled(intel_dp)) {
+   144			static const u8 timeout_mapping[] = {
+   145				[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_1_MS] = 1,
+   146				[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_20_MS] = 20,
+   147				[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_40_MS] = 40,
+ > 148				[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_20_MS] = 20,
+   149				[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_80_MS] = 80,
+   150				[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_100_MS] = 100,
+   151			};
+   152	
+   153			ret = drm_dp_dpcd_readb(&intel_dp->aux,
+   154						DP_EXTENDED_DPRX_SLEEP_WAKE_TIMEOUT_REQUEST, &val);
+   155			if (ret != 1) {
+   156				drm_dbg_kms(display->drm,
+   157					    "Failed to read Extended sleep wake timeout request\n");
+   158				return;
+   159			}
+   160	
+   161			val = (val < sizeof(timeout_mapping) && timeout_mapping[val]) ?
+   162				timeout_mapping[val] : 1;
+   163	
+   164			drm_dp_dpcd_writeb(&intel_dp->aux, DP_EXTENDED_DPRX_SLEEP_WAKE_TIMEOUT_GRANT,
+   165					   DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_GRANTED);
+   166		} else {
+   167			ret = drm_dp_dpcd_readb(&intel_dp->aux,
+   168						DP_PHY_REPEATER_EXTENDED_WAIT_TIMEOUT, &val);
+   169			if (ret != 1) {
+   170				drm_dbg_kms(display->drm,
+   171					    "Failed to read Extended sleep wake timeout request\n");
+   172				return;
+   173			}
+   174	
+   175			val = (val & DP_EXTENDED_WAKE_TIMEOUT_REQUEST_MASK) ?
+   176				(val & DP_EXTENDED_WAKE_TIMEOUT_REQUEST_MASK) * 10 : 1;
+   177	
+   178			drm_dp_dpcd_writeb(&intel_dp->aux, DP_PHY_REPEATER_EXTENDED_WAIT_TIMEOUT,
+   179					   DP_EXTENDED_WAKE_TIMEOUT_GRANT);
+   180		}
+   181	}
+   182	
 
-  CI-20190529: 20190529
-  CI_DRM_15881: 0eede13975362b755a208b2e2ba322940013f183 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8172: 9112581619aa198fa03041d5c7e18e02f42ac00f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_142882v4: 0eede13975362b755a208b2e2ba322940013f183 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142882v4/index.html
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
