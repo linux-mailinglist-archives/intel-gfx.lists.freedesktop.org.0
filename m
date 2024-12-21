@@ -2,66 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 953169F9CC9
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Dec 2024 23:39:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 394CD9F9D61
+	for <lists+intel-gfx@lfdr.de>; Sat, 21 Dec 2024 01:18:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D0CC10E13F;
-	Fri, 20 Dec 2024 22:39:04 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Dryp4+Cz";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0DF1510E18E;
+	Sat, 21 Dec 2024 00:18:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C748B10E13F;
- Fri, 20 Dec 2024 22:39:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734734343; x=1766270343;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=PJxQ1MFloA+O/vO25s1Uz2aF2q7mEgJGr2oUETHrMa0=;
- b=Dryp4+CzKNI37Yp4BcSoC4JeHMROee5OHPgbdx2lyp521Wexoy+9f59A
- BK5eT74Kh6UDi6JSaHhgh151VNnFeV+FbLzfm66eCxD+leNK59SzaZ5C5
- n9tpINAAHOwH7n7SJLb5fEso/hPV+0WsDarka2+HtT/wQUqjcJaXcyusz
- vnWnW8ZuO08s/vQ4sK0fFHOUZc6ej2ZDuJc+dTJLWQsuhaAP/1xtn+MCR
- XqAr9/dRjEB3gb0Adx1zb97ZoXOVgX3uowvCSHCTHckx2b/11RXpD17Bg
- kuUsi1MSG03MOtj4jUVl+D55qKzgtiQiUJYmhXRbXnfYJgAYfbUKCAQn9 A==;
-X-CSE-ConnectionGUID: JxxgHJjlRAqhKrh9GYVCOQ==
-X-CSE-MsgGUID: fUwv5LZpQRGd/QJ2yJznVg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11292"; a="39074368"
-X-IronPort-AV: E=Sophos;i="6.12,252,1728975600"; d="scan'208";a="39074368"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2024 14:39:03 -0800
-X-CSE-ConnectionGUID: 1cbWltSkTOee/mavFxHLqw==
-X-CSE-MsgGUID: 9W0KcPudSF61MilTLvsXYw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="103700044"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO intel.com)
- ([10.245.246.245])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Dec 2024 14:38:59 -0800
-Date: Fri, 20 Dec 2024 23:38:55 +0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Cc: Andi Shyti <andi.shyti@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Chris Wilson <chris.p.wilson@linux.intel.com>
-Subject: Re: [PATCH] drm/i915/selftests: Use preemption timeout on cleanup
-Message-ID: <Z2Xx_5JODMNQPIZL@ashyti-mobl2.lan>
-References: <20241213190122.513709-2-janusz.krzysztofik@linux.intel.com>
- <Z2Gw6J1qteGPB3o4@ashyti-mobl2.lan>
- <2414218.NG923GbCHz@jkrzyszt-mobl2.ger.corp.intel.com>
- <6751685.4vTCxPXJkl@jkrzyszt-mobl2.ger.corp.intel.com>
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6A4B10E18E;
+ Sat, 21 Dec 2024 00:18:11 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6751685.4vTCxPXJkl@jkrzyszt-mobl2.ger.corp.intel.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/gt=3A_Log_reason?=
+ =?utf-8?q?_for_setting_TAINT=5FWARN_at_reset_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Andi Shyti" <andi.shyti@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Sat, 21 Dec 2024 00:18:11 -0000
+Message-ID: <173474029193.959220.9129503876624100836@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241220131714.1309483-1-andi.shyti@linux.intel.com>
+In-Reply-To: <20241220131714.1309483-1-andi.shyti@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,52 +37,129 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Janusz,
+== Series Details ==
 
-> > > > > > +
-> > > > > >  		cond_resched();
-> > > > > >  
-> > > > > > -		if (intel_gt_wait_for_idle(gt, HZ * 3) == -ETIME) {
-> > > > > > +		if (intel_gt_wait_for_idle(gt, HZ * timeout_ms / 500) == -ETIME) {
-> > > > > 
-> > > > > where is this 500 coming from?
-> > > > 
-> > > > / 1000 would convert it to seconds as needed, and / 500 used instead was 
-> > > > supposed to to mean that we are willing to wait for preempt_timeout_ms * 
-> > 2.  
-> > > > Sorry for that shortcut.  Would you like me to provide a clarifying comment, 
-> > > > or maybe better use explicit 2 * preempt_timeout / 1000 ?
-> > > 
-> > > It was clear that you were doubling it, but what's more
-> > > interesting to know (perhaps in a comment) is why you are
-> > > choosing to use the double of the timeout_ms instead of other
-> > > values.
-> > > 
-> > > Makes sense?
-> > 
-> > Yes, good question.
-> > 
-> > Is it possible for more than one bb to hang?  If yes then should we wait 
-> > longer than the longest preemption timeout?  Before I assumed that maybe we 
-> > should, just in case, but now, having that revisited and reconsidered, I tend 
-> > to agree that the longest preempt timeout, perhaps with a small margin (let's 
-> > say +100ms) should be enough to recover from a single failing test case.  Let 
-> > me verify if that works for the linked case.
-> 
-> I've done some testing and got a confirmation that the issue I'm trying to 
-> address in the first place requires a timeout almost twice as long as the 
-> longest preemption timeout.
-> 
-> I propose the following correction:
-> 
-> -	if (intel_gt_wait_for_idle(gt, HZ * 3) == -ETIME) {
-> +	/* 2 x longest preempt timeout, experimentally determined */
-> +	if (intel_gt_wait_for_idle(gt, 2 * timeout_ms * HZ / 1000) == -ETIME) {
+Series: drm/i915/gt: Log reason for setting TAINT_WARN at reset (rev4)
+URL   : https://patchwork.freedesktop.org/series/142882/
+State : success
 
-with this change, I merge your patch to drm-intel-next.
+== Summary ==
 
-Thanks,
-Andi
+CI Bug Log - changes from CI_DRM_15881 -> Patchwork_142882v4
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142882v4/index.html
+
+Participating hosts (43 -> 42)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_142882v4 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@dmabuf@all-tests:
+    - fi-pnv-d510:        NOTRUN -> [INCOMPLETE][1] ([i915#12904]) +1 other test incomplete
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142882v4/fi-pnv-d510/igt@dmabuf@all-tests.html
+
+  * igt@i915_module_load@load:
+    - bat-twl-1:          [PASS][2] -> [DMESG-WARN][3] ([i915#1982])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15881/bat-twl-1/igt@i915_module_load@load.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142882v4/bat-twl-1/igt@i915_module_load@load.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - bat-dg2-11:         [PASS][4] -> [FAIL][5] ([i915#12903])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15881/bat-dg2-11/igt@i915_pm_rpm@module-reload.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142882v4/bat-dg2-11/igt@i915_pm_rpm@module-reload.html
+    - bat-adls-6:         [PASS][6] -> [FAIL][7] ([i915#12903])
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15881/bat-adls-6/igt@i915_pm_rpm@module-reload.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142882v4/bat-adls-6/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live:
+    - fi-skl-6600u:       [PASS][8] -> [INCOMPLETE][9] ([i915#13050])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15881/fi-skl-6600u/igt@i915_selftest@live.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142882v4/fi-skl-6600u/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@gt_timelines:
+    - fi-skl-6600u:       [PASS][10] -> [INCOMPLETE][11] ([i915#12445])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15881/fi-skl-6600u/igt@i915_selftest@live@gt_timelines.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142882v4/fi-skl-6600u/igt@i915_selftest@live@gt_timelines.html
+
+  * igt@kms_chamelium_frames@dp-crc-fast:
+    - bat-dg2-13:         [PASS][12] -> [FAIL][13] ([i915#12440])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15881/bat-dg2-13/igt@kms_chamelium_frames@dp-crc-fast.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142882v4/bat-dg2-13/igt@kms_chamelium_frames@dp-crc-fast.html
+
+  * igt@kms_psr@psr-primary-mmap-gtt:
+    - fi-pnv-d510:        NOTRUN -> [SKIP][14] +31 other tests skip
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142882v4/fi-pnv-d510/igt@kms_psr@psr-primary-mmap-gtt.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gem_contexts:
+    - bat-jsl-3:          [INCOMPLETE][15] ([i915#13241]) -> [PASS][16] +1 other test pass
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15881/bat-jsl-3/igt@i915_selftest@live@gem_contexts.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142882v4/bat-jsl-3/igt@i915_selftest@live@gem_contexts.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-mtlp-6:         [ABORT][17] ([i915#12061]) -> [PASS][18] +1 other test pass
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15881/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142882v4/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+    - {bat-arls-6}:       [ABORT][19] ([i915#12061]) -> [PASS][20] +1 other test pass
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15881/bat-arls-6/igt@i915_selftest@live@workarounds.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142882v4/bat-arls-6/igt@i915_selftest@live@workarounds.html
+
+  
+#### Warnings ####
+
+  * igt@gem_exec_gttfill@basic:
+    - fi-pnv-d510:        [ABORT][21] ([i915#13169]) -> [SKIP][22]
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15881/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142882v4/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#12440]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12440
+  [i915#12445]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12445
+  [i915#12903]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12903
+  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
+  [i915#13050]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13050
+  [i915#13169]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13169
+  [i915#13241]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13241
+  [i915#1982]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_15881 -> Patchwork_142882v4
+
+  CI-20190529: 20190529
+  CI_DRM_15881: 0eede13975362b755a208b2e2ba322940013f183 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8172: 9112581619aa198fa03041d5c7e18e02f42ac00f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_142882v4: 0eede13975362b755a208b2e2ba322940013f183 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142882v4/index.html
