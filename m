@@ -2,183 +2,184 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7FB39FACDE
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Dec 2024 10:52:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E71869FACE9
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Dec 2024 10:59:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B7A510E42D;
-	Mon, 23 Dec 2024 09:52:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C5F110E23C;
+	Mon, 23 Dec 2024 09:59:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FwrBsMNA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Nm96KD+T";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C318410E235;
- Mon, 23 Dec 2024 09:52:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5EDAD10E235;
+ Mon, 23 Dec 2024 09:59:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734947576; x=1766483576;
+ t=1734947992; x=1766483992;
  h=message-id:date:subject:to:references:from:in-reply-to:
  content-transfer-encoding:mime-version;
- bh=0Y2xRKXmIAJtP/R22jyePpTYIm5i/qiqtxYmgfQrnvo=;
- b=FwrBsMNAVADba3C/o3Ac9mHM7Mx91rsPHGZt959qUc1lNevu7zDOw+0z
- lCvkCVVNnJVLTKsK1JEfRmTQ6WHwHZPXOtsZYLurKIii80JGwbpMDT7xW
- xplNKzQm/IXAnBsIzlB0glgsBB/q5cQ36gL1RWT/ocqKPzXfZ5oRWdsLg
- ZPc9sW/KbMKRJGULHiDkgvV0WVk598mC4GRfjQ7EcwMgvz8JnpEFHFR4O
- d1BwwJcEF21Cp8EWFVKSVfXKiXns5M+f+Cp7WiFx5k4RxJvFi6ost8Ixo
- gX0kSr9qbkl8JKy7YRJfh7vfFRB2FdkDTnfRwRLbqlLnPCHEAb5h/liHD g==;
-X-CSE-ConnectionGUID: CtaW6ms9QEKp8DUAyo9QnQ==
-X-CSE-MsgGUID: EOyHkGAFTj67GcZMXwWewA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11294"; a="57871648"
-X-IronPort-AV: E=Sophos;i="6.12,256,1728975600"; d="scan'208";a="57871648"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Dec 2024 01:52:55 -0800
-X-CSE-ConnectionGUID: ITjMvI2/QlyEHWqpyVgFsg==
-X-CSE-MsgGUID: arsjOM/DR9W4GEQge5etNQ==
+ bh=W4Aar+iVxsY6k9IYJ0dJVK2Jh9XkPcgSXVEjxsY+QI8=;
+ b=Nm96KD+T4Is52D36qXpPn3KAIOM0Xv0LHCCmj5oKzZi9XOqrgAQizw4k
+ WWwidOI+vBTCDCnOdDTuY13riO99O9M1hbaFHc41ILIpmGrS/Kwa8D8Rw
+ W12NUGL3uDvUnogolOCAJN2TIum1arAW0qjFfpuVxdTrxMJEIhcgv9vhI
+ eZ5/AG2I7SSbaaalxyHHAd0sZi2ww9y4xi2brrNoZqTuVK1ztjSgNKpaW
+ 1qCsjoKMEyJcPorfQxa6QEVDzQDVqx3rmPnu5o0lpl2FNMRMHgmfDOWWm
+ 7GVDcjfDz85BlRvTq6wLh0JJ/2CnqP1dVBDF6qj/xCzh9aefIOBYejHq1 w==;
+X-CSE-ConnectionGUID: sWIN27MxSeC/5hlmjRM6hA==
+X-CSE-MsgGUID: CGoZAv68R7qI3gyMVLDPVw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11294"; a="22998985"
+X-IronPort-AV: E=Sophos;i="6.12,256,1728975600"; d="scan'208";a="22998985"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Dec 2024 01:59:52 -0800
+X-CSE-ConnectionGUID: lZfceSxJTKOKBHJYJTHfCQ==
+X-CSE-MsgGUID: GtGZEjzAQEKLjcO1IHXBTQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="122441196"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmviesa002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 23 Dec 2024 01:52:55 -0800
+X-IronPort-AV: E=Sophos;i="6.12,256,1728975600"; d="scan'208";a="99689497"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by fmviesa009.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 23 Dec 2024 01:59:52 -0800
 Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Mon, 23 Dec 2024 01:52:54 -0800
+ 15.1.2507.44; Mon, 23 Dec 2024 01:59:51 -0800
 Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
  orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Mon, 23 Dec 2024 01:52:54 -0800
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.49) by
+ 15.1.2507.44 via Frontend Transport; Mon, 23 Dec 2024 01:59:51 -0800
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.48) by
  edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Mon, 23 Dec 2024 01:52:53 -0800
+ 15.1.2507.44; Mon, 23 Dec 2024 01:59:51 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VzrWP1FSHzobAoDv53Yudub4LW3sKGTz+f034a/PgIcVUUrjT2vZCM5uZFdQ3LsveFcbw65x0wmmKGw+HfnWGhrN/t7ty4vTCvL9pBnm1nlgbIC3UPXEgj8ZjPKxknSG7CJeTcLcvHaPvklftZs1LUipWCamFBot9Z31RCovlKbCdvhsg46eMPF41zxId6Jt6MhtR1uqjzJPsPc3/WDDpe37gMV71lKbfM1QhNFB4Goq0ysVDw8C89KxK7JAlSrNKpnZxfDoc8vUyYKUGP6qrvGoyIHOFU5T2IceWoVwyRZdjTkXv1L4gEnDnMPTxK9a2wk2gaKlS5iBXzIOYWUQhw==
+ b=Wc/Giq/n3qhRJ5jYU1Bfmwu7ee1i1qpF+3Mv1HkAzPkwMa0emA+fBWAZ4mGOrgopRQEQ/mahMUnSzZcudahXg5EBS8qGwPUd39W3xsHS9fupae8oBU4MKzRPlz3BQScF0mjcPE334TQIAL4EpZ7R6EEZpk2bKlJ++iaRHpXszDeVqYflUolkN2AWMi72ppvVWNC3MBjDqwX6hx07y4Gh1jsKj9zOdMkMfdQrRja6Y3YmlRxwxu0uutwlf1UfDyVq/KbYKkR2v2ctDGwbg3c+uwFrCW29iyAYVaY5kniHpg9XGYbbbISG0sNnMqOk1pPhgvk7Tj+O+BHKMDrPvuWcpQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nVGCKpiKx1+9dm4hjwK9ZjORCfmptSOzlnLN1t8RG4E=;
- b=p1gZeTKCDMIcxmRXUBnkD0/p79/mWyF13xSsFksJ7U8oSYXoUxzDF4ql57cO4CSf0mb74QGtotprLWTc/ZX4hwiz53MHt9McpoqQs4PVgzGmymGPOT4hgKiOad83gRgz1GHJl+acdh2og3MjSpxH4xWfgRjIhVgbe5Q97nDg4U+/1mytAEyTZmqHdzKwnUdzEZbv7QMrSkLJ/hs2MaHjqoTcpaxSzh4FUfZqMlOPVmNbcZCGC6kyCM+dwCqYa8dV3I2BgxlxM3ROm+SMjbRSIKjbkeN3xUsg+5jooQd/v5gy/3RAF8mMGYwqPd+a2nCToSHR8EpZI77Dgtq2xK/o4w==
+ bh=RS7r7c+7lRtgW1oCPT8gUJaDYux1uFibzHPLkJKHobY=;
+ b=Q2vQvCOCoe+C+D1oKu03Ts5MCfOKYR5Z84SaScCkppIsE9SXhZpjCe2K/IPjIkWME0kA+w07n4MDEr85hfg5q8lvUvSa2gMyzJyrLnc2e8GP5Yv5rmpN48zsycWLNPBcBObSTAhrcyjbkdtqrrp6geBYsOxiBoNyVedcItBN6SdASQ3n+f830y8XJXiE7I0GLHXcSo08WhesF0cF5JahTHuvumRb55p0GiAumfK9G29sGl9ipkkv4onzsfCiyyqgpmasaB3tdqwsk019rMn/WLUFE3foGbx/Q6EjbNw6RKQQXi76IozXLGE6C5lqn3QCKZL4jpaF6hBAyQSLlcWvjA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by CO1PR11MB5203.namprd11.prod.outlook.com (2603:10b6:303:98::22) with
+ by SA0PR11MB4573.namprd11.prod.outlook.com (2603:10b6:806:98::20) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8272.20; Mon, 23 Dec
- 2024 09:52:15 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8272.16; Mon, 23 Dec
+ 2024 09:59:45 +0000
 Received: from DM4PR11MB5341.namprd11.prod.outlook.com
  ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
  ([fe80::397:7566:d626:e839%7]) with mapi id 15.20.8272.005; Mon, 23 Dec 2024
- 09:52:15 +0000
-Message-ID: <bd0d1c00-da22-44a5-b545-161546baffc3@intel.com>
-Date: Mon, 23 Dec 2024 15:22:09 +0530
+ 09:59:45 +0000
+Message-ID: <f2bc27e6-65d4-4007-9510-e6534bfb2e64@intel.com>
+Date: Mon, 23 Dec 2024 15:29:38 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC v2 4/6] drm/i915/scaler: Compute scling factors for pipe
+Subject: Re: [RFC v2 5/6] drm/i915/scaler: Check if vblank is sufficient for
  scaler
 To: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
  <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
 References: <20241217180710.1048355-1-mitulkumar.ajitkumar.golani@intel.com>
- <20241217180710.1048355-5-mitulkumar.ajitkumar.golani@intel.com>
+ <20241217180710.1048355-6-mitulkumar.ajitkumar.golani@intel.com>
 Content-Language: en-US
 From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <20241217180710.1048355-5-mitulkumar.ajitkumar.golani@intel.com>
+In-Reply-To: <20241217180710.1048355-6-mitulkumar.ajitkumar.golani@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: PN3PR01CA0181.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:be::14) To DM4PR11MB5341.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: PN3PR01CA0138.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:bf::10) To DM4PR11MB5341.namprd11.prod.outlook.com
  (2603:10b6:5:390::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|CO1PR11MB5203:EE_
-X-MS-Office365-Filtering-Correlation-Id: cd933960-4623-4697-dec9-08dd23377b42
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|SA0PR11MB4573:EE_
+X-MS-Office365-Filtering-Correlation-Id: cecdcb62-181d-4fed-07fa-08dd2338874a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?dHBjRklnRHdEQWxOajBqNmlTTmFpaUd1eHU2Q2V1TnRFQVNMTGdodnR5NE1z?=
- =?utf-8?B?WW4wclNSMU9TVDc3NFZ5cFdheC9XeUZSeUJVVDlMWEZVSGVwcGFTRU9qbXpp?=
- =?utf-8?B?di92SmtaaTVQb1JicnRpY3UzN2dJakRmeXlZR3daOHd0a2UrdzNUTExIMUJl?=
- =?utf-8?B?UFc5TFMvcHp1U0g5aVpHSTlDSDNxcXRoN1ErYzhtRzZjS1Y0S3JvYkduSDlW?=
- =?utf-8?B?T2VTZ0tuZnIrMFBYZlFJWTV6aTRrcVdjam5UNWdCVGxVUzFpeS93bE4vcGVR?=
- =?utf-8?B?a3RTVGJIMVFtOGFYUHplVUF3TXJmaFRGc3N0VE9KM083NDFqenlMVytKQ3lP?=
- =?utf-8?B?S0o3czVmOE9udFp6RG8vWGd5NEVQYjYwU0JtejBpYVhQR0xPYnV2Qm9pTXEy?=
- =?utf-8?B?RHZ3QkFaVXVKN1BUd3UzQ3drVnMzOUQzMXpNOEc0QVh5SWRqdUpwNmpzeUI4?=
- =?utf-8?B?S1Y3ZkpWYk81QkRvbDVjUlhpaTFNbXpiTjBQTHVSU2wrUm1ueGtIN2xXNzhx?=
- =?utf-8?B?QXZJL1Q5QW9rWmgrS296WGdDa0Qycng5MllJQXFhTjRDc1JSK2lWQlQ2VEdo?=
- =?utf-8?B?aUxBcjFNVXhlemNZWkpTeWIrMTBqRXZ5dWY1OFN0ZTg4U00wMXd5SWpRMzZY?=
- =?utf-8?B?eHJVZm1NVVZOdjRiMlhxTEorUUxwNHkxVlhlOXNXSU9VbFI4Q0FXMkhYaXdE?=
- =?utf-8?B?dlFCVFR1VFhSdWloalBxV1F1YUdmb2ZKcEFnUThKNW5WZUlKK2JhZVhjUzhJ?=
- =?utf-8?B?UDl0SGt5Z3ZncjhYU1lnVHMyUm51aDJqYXB4M015SEtDMklISTFwY29XTlJa?=
- =?utf-8?B?S29zSjdrSWhLSXFDSVB3bWcwZTZUUGV3N1RpU1g3bE5RVlJlREJicllZM3RF?=
- =?utf-8?B?QTRWRjE4eXdFRDNTL1Vid1BldkpjMUQyZ0pueGlnMEJjSXY5RndpVm9RTksz?=
- =?utf-8?B?Zk9idHZxYThpcHUwaTJqUFZGUUlhV24ydHQwMmdSd2dLV3NWSHJ6d2JERHVW?=
- =?utf-8?B?SnluWGIzYjlucDQyWktLalNGWEMvZ1JKMGZpWG80WE1LVzFCVGZ5ZjFDN3Zh?=
- =?utf-8?B?TjJiMzY0bCtWa0tzMGR5aC82MmZXVUhrT1NDSEN0MzdSc1YwdmMxMnRzTkh2?=
- =?utf-8?B?ckpwc2NVVGpwYlh4dm1xNjk0TjFqM1d5M3hRNDZYUEJoVnFFRmtHd2VLL09X?=
- =?utf-8?B?Qk9oYi9Ja3VqNFVRWUZCSmIwMGZKVUZNOXV4MWRVUXllUkdpdm1RQnlxL1pX?=
- =?utf-8?B?NHRkVjRILytpVmVNakVabnc1a2JXZ21KWGpBTlZZODFWQy9iOWVBUE12RVBh?=
- =?utf-8?B?eDdNOFVsMzZ1WXA5ZWR6Q01CMERucWVqejhPSlQ4d3VRZThpWForRTcvTUNk?=
- =?utf-8?B?K0pmOGJUMzZYUk1KVE5sUHR1NmIrWXZBVENaNDl4NkQ3eFVWRGxwYnk3amNS?=
- =?utf-8?B?Vm9SV05NbmdLQkdYVzM2ZzZxWi81ZGw5emVrdlJxbDRSd2t5TTFyMHdDL3Bu?=
- =?utf-8?B?T0pXZ0tCRXhiQ2EvdnBnV0NmbmJob3JUMlRrUi9LU3lZUVhqS3RoUlBmY1VB?=
- =?utf-8?B?c2k1bGg4Z3VDNk5ncklzSU5EdHV0UVN0ajQrWXE4ekpMTGNUQWZRZDgrNXBz?=
- =?utf-8?B?dGNScXdUU0JBQUM1YmZtSlBCWWFYc1NyR0QrbU85WEdvSmk2TDBnRFNjalp4?=
- =?utf-8?B?Z0F4T2JiZzJ2ZFpERmw0TmVXaURUR0F1VUNOY2NpTnRiMVhCQTBkUnoxMjNF?=
- =?utf-8?B?SHdvT2haSjNlSDYwZWwrZ3NWWmI0Mk9SQTRiaVpJOUFhWmF0OXZTUVBtcUs4?=
- =?utf-8?B?M0hGcXRMS0VycjRNdjlSdz09?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?ZjdiVXFma3VPNldmL0pQeFJRdi96RklEdm9zYWVGZm94cEZKMnZDL3N5WXlS?=
+ =?utf-8?B?RG1PL2IwMEx4eDNCM2Nib3RMWG9NODlWQ1JudlJSZkkzL1BzYUxsejlNWTEx?=
+ =?utf-8?B?OHFPMWd4QUJ4T0Rjd1NUU3JwaStlNm5TY2tqSVEyR3BYeWlUQytUT3cwVjNt?=
+ =?utf-8?B?TjZqVW80KzhVUTZvVjFiWm4vd294Y3ltbHNVYnRMcjYvOXVTSVB3VVhzbUth?=
+ =?utf-8?B?MzEzZVRnbm5JdTJPcWNjVjByWndNT2ovQm1jcnBjbUo5bC9ycDcvUmhCMWJK?=
+ =?utf-8?B?Q2NUZmc5RWJ0UlJsYmFoakFqRG9YVVNLdysrL0RsN3dQdlhFc2tmelA3TjU4?=
+ =?utf-8?B?Z0NiaC9GWjNDSy9FSXVDejNmSE51U3pHT2NOVnhNT2FaZjdNSHpuZFoxbVhH?=
+ =?utf-8?B?aXBZQ1I0U2N6djdYYXM4aWxIdFR4cXFFQXI1RWdDeGVIMlZhMWgxMVNPKzhU?=
+ =?utf-8?B?bGZpd1pKUlZZMG1OUmxLZHhOZjVPQ2lNVEw3V05xbGNRcjYvcytQTW10ZXJ5?=
+ =?utf-8?B?enFIWCt2SlMvOFpLdnhqandCZDQ2emYyRHJDc2VDQjdYRk5UNXpWdmg1WEF5?=
+ =?utf-8?B?MGttaENoN0dPbnFlTFh6czVkRE95UWMwV3FvbGdrQjJaa1ZlZzd0R1lnTXJY?=
+ =?utf-8?B?eXA2bHdKUC9zaXJGaGEzYzVLV2xmUDNYQkcwQm8wOVNkaHVtQTQzN1VnRGli?=
+ =?utf-8?B?ZUc3Nm1uTlQ5dzd0SDkvcVhQeFJPU0lOOHZ6M0pmS0d1MzZ0SHdCWDVHTEs1?=
+ =?utf-8?B?TC9WOTFpMjRUQXhEKzhWVFZCT3VoNGRwVW5xdGNuMUtWUDZGRmlYbDE4SmVP?=
+ =?utf-8?B?Z2l4V2VGd0JUS2dDK1V5WkVrcXNXejk2L1NkYTVXanZ5R2pRMFoyQ2NlMExy?=
+ =?utf-8?B?T2MrOCt1WVBWTWMzTjJtUi9XUjE1eGkxWkY3M1diMmNkZlo3aXE1V3FiN29Y?=
+ =?utf-8?B?aFJyYjhTbVVWeC9hZERJc0pWNDFyNjloUmxFUW1kdzJkQjdTNzM5UVZxVmhj?=
+ =?utf-8?B?Wk1seFRmRmN0bWxmaVZuR09RanJSK1BsMmVoT3c0eHA2OGFIamVDQjQzV2I2?=
+ =?utf-8?B?dUE1RHpaSFg1NXg5bGFvSE5pQ1NNbko1bmc5eUgzaXlyK1VHcC9JOGN0UDBD?=
+ =?utf-8?B?ZVpjQVhTYnJGbEliM05JOEtiMUFndHhvOFNFeE5JMXRzdytPaGRaVkEraUxr?=
+ =?utf-8?B?RkVpVFpTMnc4cnFDKzErWkZpTVhtU0tCRm9xZDJyUW93ZWFuOTdwU3U2U0pp?=
+ =?utf-8?B?blFPWllia3dPMWp4ZGNyRUFNeEthSXA2cDVFc1RoMTFtWVpDbVBMZUZySzdv?=
+ =?utf-8?B?ZWFhUU5hcWFZdHVGZGNaMU5aWnB2UVFKT0VhMndSVDZ2RlQ3ajJyQm9mTW1R?=
+ =?utf-8?B?bVB2YXE3ck4zWmpNdmgvUmQ0Zjh2ZjAyeFlhaE9oUmFHL1ViUEZQb2tGbmc3?=
+ =?utf-8?B?VUtvRnRBTGlRdHd5SWtQb2tMNGJoWmp0OHhYeCtDcGdmU3JxcGpYRmhGY3pP?=
+ =?utf-8?B?UXVTdEYxVVYvdWVPQWY0V1h5OCtjeWhnQksvT1QyYkRObHhubUJSd2hVdEhD?=
+ =?utf-8?B?V3ovRTBzZ1RTdS9ZUFZzQWdzdjF1UmdxODBhNkdUSkg2Y2hCVFphVnBhRkpW?=
+ =?utf-8?B?YUYySnYzRmwvVEg0R1ppUVM1bXUvak9UREVnN1dDZ0NRa1RyUTRqb2FxUmRz?=
+ =?utf-8?B?dXNLMndwLzVYaml4dmdpdGltS0JjdFBJVzEvSm1wVS92eDhRRFZtQmhqSXIw?=
+ =?utf-8?B?eXZ0RHVkeWFuRFB2bW0xUm5rMndsY3VDOW5SMVk0WW5nb2ljQ3AvSDdqRFVO?=
+ =?utf-8?B?bHQxSlRJZ0pMZUpROXM5YnJnNXpvRHN3R0s0TU42aHQwNlVmeEtNNFFDOXpn?=
+ =?utf-8?Q?MhFfRyc7RIK+u?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RUZDeDk2ZmZPelBMUnRieWtEemw1cEg5K3l3bldPOXVYNnBSWVQxS2ZuSmFa?=
- =?utf-8?B?dHRnN0UxaVdMbkxNdG1DR2dEbnl5Snh4SGZxTzBBU3FLYmlBdENReXlRazhy?=
- =?utf-8?B?ZzFzeVBldjRkbm9OYWdLRUlyWXJMTlFUS3dHZkJ0MmdENUYveEdScjBleU1J?=
- =?utf-8?B?OHd4R3V1bzk0bUI5SGg3d1gybDd5WVc1d0daY3U1clZXMDNUbG1OZnJUdWM4?=
- =?utf-8?B?L1NKMFZBTTc1NDBTM3g5eGlOY0pxblJ5ZXE2R1MxbmYveHE4WmFSdlNLd3h3?=
- =?utf-8?B?Q280VEFBdTVUUFdENGxaelVnVlFvRVRZUTN3eDRnVzZJaWYrMVVpTnM2NWV6?=
- =?utf-8?B?UW04YlVaUUpuelFVMlpUd3hTdGNYR1BPbFFiYzU0anRQVkxZc1cwTy9va0kw?=
- =?utf-8?B?YVp4S1JweWo0VEJ0enIyc0M3aE12WklGOXE0RFJGU1p6SnY3TUdLRHhWVGtQ?=
- =?utf-8?B?UkREVEF6am5BMGp1WE9DQjRObjFWNnNGQkNIV2FtZEJXMjFHUGVGMkxzMWdH?=
- =?utf-8?B?WWh1K0lqSVU4ZHI3VVVJUTlMcjBqR2ZJc2VIRmFXeTN1OHJIdnNwTk1EdTJz?=
- =?utf-8?B?ZUVSck41MWQ3bGtXZ2t3QU9mcm5wTEsvYVZoa3d3UlFJVjR5b3ZzR1h3c1Q2?=
- =?utf-8?B?YTJTNWtqbmxLZVJNOVpKcGc4azRHMWprUk5oSTVJdzF6YiswYzRvMDR4RlND?=
- =?utf-8?B?SEk4dUZ6R2U0WlE1dVF6dDZPTW41T3FmY2R6U1NhVkZzeEl5OW1aOU5hdGl2?=
- =?utf-8?B?dTdvS2IxMkpYb0o5ZThKaENwTHhuUDdwUFJVaXJGRVZ6ejRpa044M2NsTVBF?=
- =?utf-8?B?OFNoWERYSk9jdjRJblhKbkU2V0NTU3lrcXd2VXpLNUluWDlYd2NETlpqejlU?=
- =?utf-8?B?Vm0zbUFqR3J3K1g2U2g2OFl4dU5YcnV0c3VISWE5TVBMdUErand4czJUMytZ?=
- =?utf-8?B?VytrYXlFTU82bktOOWk1ZkNXbkFVWXFsbWhwd0llcVdNMXJWNllyMlFjVWJG?=
- =?utf-8?B?d2dKTU1jNjNLcXFYYXUwb0YrZG9GUWZNRGN6RkU4RWIvdWtUSUxnS0E4RFN1?=
- =?utf-8?B?Mk11dW50ZHdlZHN5Skl5UHJ5cFFBWmRDak5HRkFMNjhyS0xVREhyeTJlVUNO?=
- =?utf-8?B?NG04RU1Bc25PVUVEQ2IvdzNSUjdHaVFPL0RjbkoweUdsd3h5RmVzYUZyOW4x?=
- =?utf-8?B?TCtMc2NTU2h3VlNaS1B5RW5vdzBKYWpKTW0wSURPUWtYT3B0Q3BSbVhyWnVw?=
- =?utf-8?B?RUFWL2M4cEJ5dVRORHRxU0g4TDZqRjFDbllOOHFXazlBR29ZM1BHbllZNHNy?=
- =?utf-8?B?N2hRNDVQMU1WeVY1cFJPSXd4ZVhrQm9zUWdiVGlrRUl2N3RGdVA3TkNYL2RE?=
- =?utf-8?B?OUNJc1NmbHpZL1F4dHFjWFNMa0JQWjY5UVlGemlENmpuN1d1ZnpWZ3ZLNWYz?=
- =?utf-8?B?NStZb1hiVXVzaE12dlB0R0E2MDNGeUlyd1JGbk00dm9ESU9DYVpINEp6Tk1F?=
- =?utf-8?B?THlaaFdKOFE3cWh5dmJCUzRYZ3pPK0RGSDlhVzB3a3UwWWJ5bVFLSkY4ZHM4?=
- =?utf-8?B?TEVWUW0zdG5tL3VRekExQ0lxMlVneGNkbmJnekc5NC9GVlVHQjd3V2lPeDg4?=
- =?utf-8?B?WEZ6QU5yelFHRlhnclcyZVprMmFlOTdTNVUxRHFaT1l2YXNvSTNELzl4K2tZ?=
- =?utf-8?B?ckRvVFdFVkZqUUtnV3dEa1JIekF5TmhQNDdyRnJ6a291VnZwSTVjT05DZG5t?=
- =?utf-8?B?NHRXUXdQN1NJcXJQdWhyQVpJQ1hkNllVRnk2TmJKTjhFek1Md2VmUCsvWXla?=
- =?utf-8?B?OHZCLzFwWmVaNFlPN1VjbUNHZTE5emVzYy9qSDNiSlpIRVg0NlZuQitqT1BN?=
- =?utf-8?B?alRwSEptMURSUTRxRFJoL2QwU3JJU1cwSDBPK0RyNzRLdlkrZUdFN2RmZFF4?=
- =?utf-8?B?WXpWWmFRNXVhK1JQbTRvUDQ4eHRWelFXVG5tR0ZQUW1BSzhZR3NVR1hDeTNn?=
- =?utf-8?B?ZVRNWEJabjVoRjBHNmVHdjRiYlFMandWTElobFAyUk9BTVlUZWVhR2VORlN3?=
- =?utf-8?B?bFE5TFlvUEJJNVArSGpvOG5oU0pRbWkxN3IvcnU0VFRZQ2JvazF5VTdXMmZw?=
- =?utf-8?B?bXc0LzZuZDFyV08ybGsxcEc2RUZpelUyV2NTMnR5T2pTVjE2L2MvUzF6TE9r?=
- =?utf-8?B?YUE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: cd933960-4623-4697-dec9-08dd23377b42
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?c2d0RndMdTMrMUlCNmZDL2YrSk5HR3J6dXBGcWFxaWV3eTNBT1RPNWVObklN?=
+ =?utf-8?B?anZXK0kvcTk3Rm9laFRpV0lzczlDdlhENERCcTVOY3FDZDI4OFcwMy83SlFL?=
+ =?utf-8?B?WUxnY2h6cU5XVEdkWGRQUDRUNFBUUENpSTZRUnZOYkF2Z082WThHcmZVRnVl?=
+ =?utf-8?B?SU0zSlc1aG80Z016MnRLeVc3bXYxcHh4eXdRam1lRUdsaFIvczNVWC9jR3M2?=
+ =?utf-8?B?VzFMQUhDS1dpS0NYM3dzTkcvSGdFdXNtVU9UZTVoL1lIVVhLblJLSWR6WTdD?=
+ =?utf-8?B?OTBadzFrVmdXeC8wUXM5Ukx5ZHZWR0R5ZEFTRDNDdC95Zmc0WGluUU5KOEFp?=
+ =?utf-8?B?TDM2UFRKQzVWRm9STE8xeVQ3T200ZURBSTRVRGlXRVpTZllMQy9TbzlleXpL?=
+ =?utf-8?B?K1huUUtPS25pREVBZHJBcXJib2dLMWVTcSthZkt2OGp5bXFnNTJQSDJ2dFJK?=
+ =?utf-8?B?ZUZwR1JJWFBRQUtnV1ZpaXpmd05zUHgydXJxdVNXNDVISmhhM3ZWVGdkQ1hP?=
+ =?utf-8?B?a1VScURvKytxZkNJem5vTlBFSE0zTG9vaDB3VThQTWxiaWY2dk5YZkZJK25s?=
+ =?utf-8?B?K2U2L0VkYUlxSHNlWnFESElpYmpOZGVrT3Zzb2kyalNMQmxudVNhTFNpNkxl?=
+ =?utf-8?B?WmQrZEtjRjRFRkhvQnQzaUgwSzJmV0hMQXZXRHFuSDNSalJsci9FTlNuZzJM?=
+ =?utf-8?B?cjFhNjNOTTJUZFgyVWhBS0J2M1lXNElCTkxmT2xXaUNqYnowbGl6RmYxNFlU?=
+ =?utf-8?B?c2huK0pRdEFRLzZjOXRZOUJDcmx5MDFnZzlmb1dsOU5jSVpQakRxZ0FMSGtv?=
+ =?utf-8?B?RnlXbkpBVk1Sdm1FTW92bG84cDkvUU9QaXBFYmJURzR5NDF1L1NNWDFycVIr?=
+ =?utf-8?B?cDJSb0psKzBiSGVDaDFsMHg5RnFiREUwK2VLMUV6NFdnTWdNcDdCR28vSnBo?=
+ =?utf-8?B?WWhyR0tzd2NvRXRYb2lzY2hMMjloNmpmdERJR3AyWkswU2E5U3prRldMdnIx?=
+ =?utf-8?B?bU5aeDZBN3QxQitXRmVTTWVlVTM1WVlrbXdxTWdnNEtlczh2TW9la3pnd1M5?=
+ =?utf-8?B?N1RGWG9CdmM0UmdCTmpvTlpaMzBVYTg5blpjT2dYeGorNk9uMS95TysrR2ky?=
+ =?utf-8?B?T24xTWJrRXBza21PV1N5c2xRRitSZzNCSUFaeC8zVERjYU1nSCtMSXFrc2Ry?=
+ =?utf-8?B?d29uMFRCZUtiOWRwZDN4S3pidXE2NGJlYy9tU1hqNi96T1JLRnhkRFRjemJl?=
+ =?utf-8?B?bENCUE5Rd1B2M2wzZUVCNE53ZUNaWkdKU1Y0WTRSMWJETVl0eERRbWRqaHR1?=
+ =?utf-8?B?Nkl0Vi9kK0xESmhaNHJDek93SjVaNkw1QkdpQW9oSll5YTM0Y3UzZFkzRFVj?=
+ =?utf-8?B?TWRjczZ1MmVPU3ZJaU1iRGFEMURac0NneEZxL0J0eU1xbmR2c0ZmOURMaDMw?=
+ =?utf-8?B?TWRNSmlqL2tZZ2M3K0UvekxzVXlNVzQvbVFMa05hRFZmVnFvM1ZhWmF1Sktz?=
+ =?utf-8?B?OStmRm1reWlaUlZDQlFwenhFVERLNGtXWjV2YkZoSTFGcFZCaE1Icnc4Wi9N?=
+ =?utf-8?B?YnJ3V3JjOEFobktNQXVRUFV6bjQ2Q3ppSmFKN0hTMm9YRWV3NGNQZ2hRTXpW?=
+ =?utf-8?B?UFUxZjZJNTMwb1U3UWdITTE1K3AxV0QyTThJYnJqdmVUMVd3VDdXR0lzUHIz?=
+ =?utf-8?B?cFRrbGNldys5cm15LzEwRHRtYWZxSm1Lcm9GaWRTbzVsRGRUcVNiWGtrNWRj?=
+ =?utf-8?B?SlltbnFucnFFYlYwQXNBKy93K1IzM2l5TnJOQ2V4MlJPbTdGS1ROdUtEWUlD?=
+ =?utf-8?B?R2hoeWNxaDFEdjVNYnlSa1NGa0oyT0NlZmdlOE82b2JRL0JNV0hsSlpvODAw?=
+ =?utf-8?B?b1EwbnFjMmtvOHBvSkFYYjF5MC9VbGJmZUxESGNXTmRwckd6V2NGWHBRVFhE?=
+ =?utf-8?B?UjBmMmYrZHJiVjBOZmNwK2h5Q2FqSldZWGZ3KzJtZjhWU3FnZmNrZFEvOGJm?=
+ =?utf-8?B?SVdqeWx5aHVIV1ViTzRUME9wUHNudW9VNHp6NUFTVk5aQVBCTkc2RC8vQlhl?=
+ =?utf-8?B?dFlMOUFCUnZybE1ORkdWSjJVa2k2S1ZrMnl0VU1sZlZoaE1ZaHFEU3YxMDNx?=
+ =?utf-8?B?SFN3MVlXQlQ3S0RoVTUwVGlmcFpVak13eWRvd3FNeHp1NkVLRzZTVk93a205?=
+ =?utf-8?B?Y3c9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: cecdcb62-181d-4fed-07fa-08dd2338874a
 X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Dec 2024 09:52:15.8097 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Dec 2024 09:59:45.5155 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: QJrUUmhaADeZbrKgRKdMdVb9K0e1G7D3UYYn2aANM/R1Nd2WYP7TF8Xe4kNWjYX/uje1OcmV1DUagad4YNZvM9MrCXLYtq1gMUzrxeuYcQE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB5203
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1JrxTiyCb184HD3WLSUfEYA8BYNzhUPbn/wk/fcp5DqfJbqBM/n1z+gczS2aM21QRndEvNVg0GvE7iScL+0zIcY+l6/tFTdzsklAwlUaVg8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4573
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -195,95 +196,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-typo in subject : 'scaling'
 
 On 12/17/2024 11:37 PM, Mitul Golani wrote:
-> Compute scaling factors and scaler user for pipe scaler if
-> perticular scaler user is pipe scaler.
-typo: particular
+> Check if vblank is too short for scaler prefill latency.
 >
 > Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 > ---
->   drivers/gpu/drm/i915/display/skl_scaler.c | 37 ++++++++++++++++++++---
->   1 file changed, 33 insertions(+), 4 deletions(-)
+>   drivers/gpu/drm/i915/display/skl_watermark.c | 22 ++++++++++++++++++++
+>   1 file changed, 22 insertions(+)
 >
-> diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
-> index 1c65b53b45f0..1a4aba434d8c 100644
-> --- a/drivers/gpu/drm/i915/display/skl_scaler.c
-> +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-> @@ -319,6 +319,7 @@ static int intel_atomic_setup_scaler(struct intel_crtc_state *crtc_state,
->   					&crtc_state->scaler_state;
->   	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
->   	u32 mode;
-> +	int hscale, vscale, user;
+> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+> index d3506e8ccd9b..a538e2b82c12 100644
+> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
+> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+> @@ -2292,6 +2292,27 @@ static int icl_build_plane_wm(struct intel_crtc_state *crtc_state,
+>   	return 0;
+>   }
 >   
->   	if (*scaler_id < 0)
->   		*scaler_id = intel_allocate_scaler(scaler_state, crtc);
-> @@ -375,7 +376,7 @@ static int intel_atomic_setup_scaler(struct intel_crtc_state *crtc_state,
->   		const struct drm_framebuffer *fb = plane_state->hw.fb;
->   		const struct drm_rect *src = &plane_state->uapi.src;
->   		const struct drm_rect *dst = &plane_state->uapi.dst;
-> -		int hscale, vscale, max_vscale, max_hscale;
-> +		int max_vscale, max_hscale;
->   
->   		/*
->   		 * FIXME: When two scalers are needed, but only one of
-> @@ -426,11 +427,39 @@ static int intel_atomic_setup_scaler(struct intel_crtc_state *crtc_state,
->   			return -EINVAL;
->   		}
->   
-> -		scaler_state->scalers[*scaler_id].hscale = hscale;
-> -		scaler_state->scalers[*scaler_id].vscale = vscale;
-> -		scaler_state->scalers[*scaler_id].user = SKL_PLANE_SCALER;
-> +		user = SKL_PLANE_SCALER;
->   	}
->   
-> +	if (crtc_state->pch_pfit.enabled) {
-> +		struct drm_rect src;
-> +		int hscale, vscale;
+> +static int
+> +scaler_prefill_time(const struct intel_crtc_state *crtc_state)
+> +{
+> +	const struct intel_crtc_scaler_state *scaler_state =
+> +					&crtc_state->scaler_state;
+> +	int scaler_users = scaler_state->scaler_users;
+> +	int count = 0;
+> +	int hscale = scaler_state->scalers[0].hscale;
+> +	int vscale = scaler_state->scalers[0].vscale;
 > +
-> +		drm_rect_init(&src, 0, 0,
-> +			      drm_rect_width(&crtc_state->pipe_src) << 16,
-> +			      drm_rect_height(&crtc_state->pipe_src) << 16);
+> +	while (scaler_users) {
+> +		count += scaler_users & 1;
+> +		scaler_users >>= 1;
+> +	}
 > +
-> +		hscale = drm_rect_calc_hscale(&src, &crtc_state->pch_pfit.dst,
-> +					      0, INT_MAX);
-> +		vscale = drm_rect_calc_vscale(&src, &crtc_state->pch_pfit.dst,
-> +					      0, INT_MAX);
-> +
-> +		if (hscale < 0 || vscale < 0) {
-> +			drm_dbg_kms(display->drm,
-> +				    "Scaler %d doesn't support required plane scaling\n",
+> +	if (count > 1)
+> +		return (4 * crtc_state->linetime * hscale * vscale);
 
-typo: pipe scaling.
+This will not work. We need to take proper precision into account to do 
+this calculation.
 
-There is a #FIXME to check scalar factors for pfit, so with this we can 
-remove that.
-
-There are some considerations for joiner, there are patches for that in 
-review. [1]
-
-[1]  https://patchwork.freedesktop.org/series/136561/
-
+currently hscale,vscale are left shifted by 16.
 
 Regards,
 
 Ankit
 
-> +				    *scaler_id);
-> +			drm_rect_debug_print("src: ", &src, true);
-> +			drm_rect_debug_print("dst: ", &crtc_state->pch_pfit.dst, false);
+> +	else
+> +		return (4 * crtc_state->linetime);
+> +}
 > +
-> +			return -EINVAL;
-> +		}
-> +
-> +		user = SKL_PIPE_SCALER;
-> +	}
-> +
-> +	scaler_state->scalers[*scaler_id].hscale = hscale;
-> +	scaler_state->scalers[*scaler_id].vscale = vscale;
-> +	scaler_state->scalers[*scaler_id].user = user;
-> +
->   	drm_dbg_kms(display->drm, "Attached scaler id %u.%u to %s:%d\n",
->   		    crtc->pipe, *scaler_id, name, idx);
->   	scaler_state->scalers[*scaler_id].mode = mode;
+>   static bool
+>   skl_is_vblank_too_short(const struct intel_crtc_state *crtc_state,
+>   			int wm0_lines, int latency)
+> @@ -2302,6 +2323,7 @@ skl_is_vblank_too_short(const struct intel_crtc_state *crtc_state,
+>   	/* FIXME missing scaler and DSC pre-fill time */
+>   	return crtc_state->framestart_delay +
+>   		intel_usecs_to_scanlines(adjusted_mode, latency) +
+> +		scaler_prefill_time(crtc_state) +
+>   		wm0_lines >
+>   		adjusted_mode->crtc_vtotal - adjusted_mode->crtc_vblank_start;
+>   }
