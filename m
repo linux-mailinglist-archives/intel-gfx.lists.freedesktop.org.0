@@ -2,64 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30FC99FB3B8
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Dec 2024 18:55:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 481789FB4A2
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Dec 2024 20:19:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E040010E5C7;
-	Mon, 23 Dec 2024 17:54:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C7FF510E247;
+	Mon, 23 Dec 2024 19:18:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VxfN+jXD";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="rR+E2b4n";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B8E8610E598;
- Mon, 23 Dec 2024 17:54:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1734976464; x=1766512464;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=WYLIE+diRVGaLj2Jxor8J60nt/a9sZs6gWFZzhLo8pg=;
- b=VxfN+jXDY8korKKM0vmgElZZwwbITQCbLuwdKwfhoRYBlSiTkCyksbxB
- L8D82YK2i4tZEU/GLuF6ziEfhqyL7cWDWan0mFd3zJy8wJHCnd0D+5PxW
- uY5dcrGs+dpg2F0obpMAiakF5zk19rxfvCDoK5HYBBlNujPqEbwSdmv4e
- zvRf9IKonEOwFRnp4X0p6cz/KrvRu4DWThAeLfThh5o6AzCWZFwqZWc/4
- 7EVIlqTEx2IhZXzSroRlYyzYYD3LCA2QQBcjXFfUQH0mpLm8kQj/nwvNn
- 1mcy1+A49yHBBPZvDCGs0YVot2haBmBYgG+aEG1dLzlJbJYm/qRo8utMZ Q==;
-X-CSE-ConnectionGUID: 8WpcDgCtQ1GKfT+UsKaWLA==
-X-CSE-MsgGUID: oQr5bShUQqymkWQVErnneA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11295"; a="46452683"
-X-IronPort-AV: E=Sophos;i="6.12,257,1728975600"; d="scan'208";a="46452683"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Dec 2024 09:54:24 -0800
-X-CSE-ConnectionGUID: KQQf/0JNSm2B+9k7wvweKg==
-X-CSE-MsgGUID: bOAqHcwwTaeB0FmoD6HQDg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,257,1728975600"; d="scan'208";a="99491355"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO fedora)
- ([10.245.246.74])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Dec 2024 09:54:20 -0800
-Date: Mon, 23 Dec 2024 18:53:59 +0100
-From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-xe-fixes
-Message-ID: <Z2mjt7OTfH76cgua@fedora>
+Received: from nyc.source.kernel.org (nyc.source.kernel.org
+ [IPv6:2604:1380:45d1:ec00::3])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7FC510E247
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Dec 2024 19:18:51 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id 940B5A4119B;
+ Mon, 23 Dec 2024 19:17:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6866C4CED3;
+ Mon, 23 Dec 2024 19:18:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1734981530;
+ bh=SvlWKYABnZY0jvjAp3siDGS2K1BVypUQt368RBAYOKA=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=rR+E2b4n4gEOG8kayXyJcjT2E3MJeCzH4gvitdO/bhCHGUuhNvqFUCqKwkip1vzQy
+ /NaLYWb88Nr794tfXkKQWuSrjP8K2EAOgeEVB60NmeAmynkMTcBWE03dUsdF3yF5S5
+ bSvxFPDpFBgwNEpKTb77Z7gij5nQzMIQd9Gdyv0rxmrNruvsVqQ0VqfLLP727IPqSl
+ Apmoz29Qca8eg9jVdz7aprbsFiZsv+G6F1cun+XZ31xNbrPiv1o8qL8Gh8Xr6faLv/
+ G32j89VYofeEuGjgDmghNY20zmRd1I1h2hqFY6KBci95ILdNixnAo1ujbaxwBuy84Q
+ bCIUY01DFuHjA==
+Date: Mon, 23 Dec 2024 20:18:46 +0100
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: intel-gfx <intel-gfx@lists.freedesktop.org>, 
+ Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+Subject: Re: [PATCH RESEND v2] drm/i915/gt: Log reason for setting TAINT_WARN
+ at reset
+Message-ID: <c66ibuhmcte6fu5vkdrl73icqts4yzlwlui4qolrlw5yaxxu6q@vqhtozsh5d46>
+References: <20241220131714.1309483-1-andi.shyti@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <20241220131714.1309483-1-andi.shyti@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,60 +59,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Simona
+Hi Sebastian,
 
-The Xe fixes for -rc5.
+On Fri, Dec 20, 2024 at 02:17:14PM +0100, Andi Shyti wrote:
+> From: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+> 
+> TAINT_WARN is used to notify CI about non-recoverable failures, which
+> require device to be restarted. In some cases, there is no sufficient
+> information about the reason for the restart. The test runner is just
+> killed, and DUT is rebooted, logging only 'probe with driver i915 failed
+> with error -4' to dmesg.
+> 
+> Printing error to dmesg before TAINT_WARN, would explain why the device
+> has been restarted, and what caused the malfunction in the first place.
+> 
+> Signed-off-by: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
 
-Thanks,
-Thomas
+it's hard to receive green lights from CI. Anyway, I merged it to
+drm-intel-gt-next since all the failures look completely
+unrelated.
 
-drm-xe-fixes-2024-12-23:
-UAPI Changes:
-- Revert some devcoredump file format changes
-  breaking a mesa debug tool (John)
-
-Driver Changes:
-- Fixes around waits when moving to system (Nirmoy)
-- Fix a typo when checking for LMEM provisioning (Michal)
-- Fix a fault on fd close after unbind (Lucas)
-The following changes since commit 4bbf9020becbfd8fc2c3da790855b7042fad455b:
-
-  Linux 6.13-rc4 (2024-12-22 13:22:21 -0800)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-fixes-2024-12-23
-
-for you to fetch changes up to fe39b222a4139354d32ff9d46b88757f63f71d63:
-
-  drm/xe: Fix fault on fd close after unbind (2024-12-23 16:19:52 +0100)
-
-----------------------------------------------------------------
-UAPI Changes:
-- Revert some devcoredump file format changes
-  breaking a mesa debug tool (John)
-
-Driver Changes:
-- Fixes around waits when moving to system (Nirmoy)
-- Fix a typo when checking for LMEM provisioning (Michal)
-- Fix a fault on fd close after unbind (Lucas)
-
-----------------------------------------------------------------
-John Harrison (1):
-      drm/xe: Revert some changes that break a mesa debug tool
-
-Lucas De Marchi (1):
-      drm/xe: Fix fault on fd close after unbind
-
-Michal Wajdeczko (1):
-      drm/xe/pf: Use correct function to check LMEM provisioning
-
-Nirmoy Das (2):
-      drm/xe: Use non-interruptible wait when moving BO to system
-      drm/xe: Wait for migration job before unmapping pages
-
- drivers/gpu/drm/xe/xe_bo.c                 | 12 ++++++++++--
- drivers/gpu/drm/xe/xe_devcoredump.c        | 15 ++++++++++++++-
- drivers/gpu/drm/xe/xe_exec_queue.c         |  9 +++++++++
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c |  2 +-
- 4 files changed, 34 insertions(+), 4 deletions(-)
+Thanks for your patch,
+Andi
