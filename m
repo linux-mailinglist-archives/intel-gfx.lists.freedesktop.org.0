@@ -2,48 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 481789FB4A2
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Dec 2024 20:19:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E17779FB4A7
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Dec 2024 20:22:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7FF510E247;
-	Mon, 23 Dec 2024 19:18:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8017710E598;
+	Mon, 23 Dec 2024 19:21:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="rR+E2b4n";
+	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="XkL4HlxD";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from nyc.source.kernel.org (nyc.source.kernel.org
- [IPv6:2604:1380:45d1:ec00::3])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A7FC510E247
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Dec 2024 19:18:51 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id 940B5A4119B;
- Mon, 23 Dec 2024 19:17:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6866C4CED3;
- Mon, 23 Dec 2024 19:18:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1734981530;
- bh=SvlWKYABnZY0jvjAp3siDGS2K1BVypUQt368RBAYOKA=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=rR+E2b4n4gEOG8kayXyJcjT2E3MJeCzH4gvitdO/bhCHGUuhNvqFUCqKwkip1vzQy
- /NaLYWb88Nr794tfXkKQWuSrjP8K2EAOgeEVB60NmeAmynkMTcBWE03dUsdF3yF5S5
- bSvxFPDpFBgwNEpKTb77Z7gij5nQzMIQd9Gdyv0rxmrNruvsVqQ0VqfLLP727IPqSl
- Apmoz29Qca8eg9jVdz7aprbsFiZsv+G6F1cun+XZ31xNbrPiv1o8qL8Gh8Xr6faLv/
- G32j89VYofeEuGjgDmghNY20zmRd1I1h2hqFY6KBci95ILdNixnAo1ujbaxwBuy84Q
- bCIUY01DFuHjA==
-Date: Mon, 23 Dec 2024 20:18:46 +0100
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Andi Shyti <andi.shyti@linux.intel.com>
-Cc: intel-gfx <intel-gfx@lists.freedesktop.org>, 
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>
-Subject: Re: [PATCH RESEND v2] drm/i915/gt: Log reason for setting TAINT_WARN
- at reset
-Message-ID: <c66ibuhmcte6fu5vkdrl73icqts4yzlwlui4qolrlw5yaxxu6q@vqhtozsh5d46>
-References: <20241220131714.1309483-1-andi.shyti@linux.intel.com>
+Received: from mslow1.mail.gandi.net (mslow1.mail.gandi.net [217.70.178.240])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3AB0910E598
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Dec 2024 19:21:55 +0000 (UTC)
+Received: from relay9-d.mail.gandi.net (unknown [217.70.183.199])
+ by mslow1.mail.gandi.net (Postfix) with ESMTP id 6D139C1025
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Dec 2024 19:21:53 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 4343AFF803;
+ Mon, 23 Dec 2024 19:21:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+ t=1734981691;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=KWj1thEE3fEk4/JDoMlPzjIiOgvaovwBP/OLPmPxMTc=;
+ b=XkL4HlxDTSTVu8Z3tpaDo0aUqQjDmb1EDtc/kb/3vkFvtvfjq5NCactwOYkt2DXR9/jgDL
+ wrtpgjGDtx0hpkK9ZmSvEYv2EMZbYwv9arz0d3MZuxWiyvtWmfZHn7mwGrlqtaMv6I4+6Y
+ 90hO51r6ps3MOp4l27g2VGiqP80/ZIJ9OvQmo2O7Bop199rK/KyLNYvqfNj8LseasjZkdO
+ AnUXXqybWyvrrZqpZB6TGEVAFLXkpc7XQALLfRbrORYiVT31MnMNXB8uAD28QDMsCT1zp7
+ aZgUix8Gfs2nXqYN47SFUTEpGx6C7wxgo0RLtW2VnFI6M3Hae/LoYaQyEMzS9g==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: "Usyskin, Alexander" <alexander.usyskin@intel.com>
+Cc: "Poosa, Karthik" <karthik.poosa@intel.com>,  "Vivi, Rodrigo"
+ <rodrigo.vivi@intel.com>,  Richard Weinberger <richard@nod.at>,  Vignesh
+ Raghavendra <vigneshr@ti.com>,  "De Marchi, Lucas"
+ <lucas.demarchi@intel.com>,  Thomas =?utf-8?Q?Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>,  Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>,  Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,  David Airlie
+ <airlied@gmail.com>,  Simona Vetter <simona@ffwll.ch>,  Jani Nikula
+ <jani.nikula@linux.intel.com>,  Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>,  Tvrtko Ursulin <tursulin@ursulin.net>,
+ "Weil, Oren jer" <oren.jer.weil@intel.com>,
+ "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 06/10] mtd: intel-dg: wake card on operations
+In-Reply-To: <CY5PR11MB6366CBE2D1AA392AD3F745F7ED052@CY5PR11MB6366.namprd11.prod.outlook.com>
+ (Alexander Usyskin's message of "Wed, 18 Dec 2024 15:58:35 +0000")
+References: <20241119140112.790720-1-alexander.usyskin@intel.com>
+ <20241119140112.790720-7-alexander.usyskin@intel.com>
+ <Z2H_7Xry3R2fWpMZ@intel.com>
+ <24725a85-47c2-49c3-b2ae-443279b2bd13@intel.com>
+ <CY5PR11MB63663382E44A258B0BAEF1BAED052@CY5PR11MB6366.namprd11.prod.outlook.com>
+ <CY5PR11MB6366CBE2D1AA392AD3F745F7ED052@CY5PR11MB6366.namprd11.prod.outlook.com>
+User-Agent: mu4e 1.12.7; emacs 29.4
+Date: Mon, 23 Dec 2024 20:21:29 +0100
+Message-ID: <87cyhiqk7a.fsf@bootlin.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241220131714.1309483-1-andi.shyti@linux.intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: miquel.raynal@bootlin.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,27 +80,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Sebastian,
+Hello Alexander,
 
-On Fri, Dec 20, 2024 at 02:17:14PM +0100, Andi Shyti wrote:
-> From: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
-> 
-> TAINT_WARN is used to notify CI about non-recoverable failures, which
-> require device to be restarted. In some cases, there is no sufficient
-> information about the reason for the restart. The test runner is just
-> killed, and DUT is rebooted, logging only 'probe with driver i915 failed
-> with error -4' to dmesg.
-> 
-> Printing error to dmesg before TAINT_WARN, would explain why the device
-> has been restarted, and what caused the malfunction in the first place.
-> 
-> Signed-off-by: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
-> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
-> Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+>> If so, I have to add patch for mtd subsystem to always have device for m=
+aster
+>> initialized regardless of kernel flag.
+>> Only to initialize struct device, not to create full mtd node.
+>>=20
+>> Miquel - are you agree to this?
 
-it's hard to receive green lights from CI. Anyway, I merged it to
-drm-intel-gt-next since all the failures look completely
-unrelated.
+Conceptually yes, but please mind one thing: we do not break
+userspace. So if you want to keep the master mtd device, fine, but you
+need to do it in a consistent way so that people not enabling the kernel
+flag won't get a new device in their rootfs, shifting all indexes
+upwards.
 
-Thanks for your patch,
-Andi
+That being said, you are probably going in the right direction by doing
+that.
+
+Thanks,
+Miqu=C3=A8l
+
