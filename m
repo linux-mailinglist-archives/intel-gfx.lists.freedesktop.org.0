@@ -1,86 +1,184 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
-Received: from gabe.freedesktop.org (gabe.freedesktop.org [IPv6:2610:10:20:722:a800:ff:fe36:1795])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE51E9FA766
-	for <lists+intel-gfx@lfdr.de>; Sun, 22 Dec 2024 18:47:46 +0100 (CET)
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by mail.lfdr.de (Postfix) with ESMTPS id A90269FAB84
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Dec 2024 09:29:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 514F610E231;
-	Sun, 22 Dec 2024 17:47:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E17610E19A;
+	Mon, 23 Dec 2024 08:29:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="R1k9D2B6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eyE1H5e+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com
- [IPv6:2a00:1450:4864:20::436])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D406210E1F8
- for <intel-gfx@lists.freedesktop.org>; Sun, 22 Dec 2024 17:47:42 +0000 (UTC)
-Received: by mail-wr1-x436.google.com with SMTP id
- ffacd0b85a97d-38633b5dbcfso3397535f8f.2
- for <intel-gfx@lists.freedesktop.org>; Sun, 22 Dec 2024 09:47:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1734889661; x=1735494461;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=r/Wh7dlsTtSyOie9T2Y+OYC2xDaQ+RuOrcEN30bMdgw=;
- b=R1k9D2B65XwaUvugdPvwW0U2IaRWpSJBZzB5ygp6R9a8maN9kY6xFGllQeUW6qtcvt
- qsPgWkLzEcSdaCchODTiyaFk2k7Ra0UsVcivQrjGrXQ17w1pyCEyZRcVsUfgREpfXDnq
- 39kCvkReTmmBalim0YFyi//blIGhRfe45CFN9x66renokV1RLBIRZaVNCXASc6oAOo8n
- r0VQECHtD1qQ8+K8kytM9cPSp5ymlMkz6GmvYwcGsNYJdgPUkTFVdc+6dRXaiDvV1ENu
- Ft+IJ8u+Binc6shxFgipcn/btH1YzF4onPBM6HrBqF509VmX13H1V/Vpa7T5ETsXWgmh
- J1/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1734889661; x=1735494461;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=r/Wh7dlsTtSyOie9T2Y+OYC2xDaQ+RuOrcEN30bMdgw=;
- b=KTDsIVXUy2crqUW86arI2BXuCX4/2b7k2tWbF7XlQmfC22ubYzua7LR/mu9ouV1ID3
- 6nZy2QS54NGGqfBBOvO5pxHChKU5bFPVAFDkn8SeeVbsrH3TQgQWtflb0vg/BCvBlwg3
- 13JLZz342mLPKlkKzD7UU63GLUYPHeGsbhJ8wPVNKCs5bKuCcqDudrtEgMSQJG0c8KNK
- g2CM02HbNB5L5jUtqGqMWjFD6Xzs/hYGqB9BGWA3g1ByxEne0+w9PnYh+M4kHuOaFMKr
- Ze0dqL/+8vU0E/vocnN4FXl3cz0ZfH+lmFEQx9WubLbA3wKhhzvjzgvqQPFbldO7tEg6
- Y57Q==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVYFUUfMqQaOIniurzMGO6AayxGrWsrAX2TO1LdccfY/2aPC6rGt4gEbNDcs62LX85YBu1etirQrDo=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyyR9+Y8AaXt+E0qUOvXFwd7TQvrCeS5HpefjLwbWHgaAILrTmx
- VgBMNJI5aKYXXsSD7jR1zb9msd4Q/adDhLdvEnZN0xXfBGY9pA/L4/7hX+CDNKo=
-X-Gm-Gg: ASbGncvO++39HJ2rgUdo7CsOjrW4XnYA5b6OMnTACQVj9yYvKIRnJ0yz1hDabWwPyr0
- s4xkw2T0A4Fihcp7PJK3HuHnDOrlbg5NkPRLgJzNMfEfExugbvaCupKEVua90zmf9zMMwbr03nU
- YmLRQv54JP/NbzmdReoly3nWsFVfR0qmXw1bnNkvmmt8ZdagQ9xzKXGpVmRUVDMMnUyqjDI+BTd
- dasWCFhnEM+IYlz0gkOdvRfuasAVkQR1vtPe82VeD+7ssjMLqG6SPxS5F4lYmX6c58wC/SN
-X-Google-Smtp-Source: AGHT+IHJL+6yNjathF2Ee9lE1rkdeYP9xHaeXikSysNI6MlFHislk/kp0Zrr2gSlMiO63k3f6I9rRQ==
-X-Received: by 2002:a05:6000:1886:b0:38a:1ba4:d066 with SMTP id
- ffacd0b85a97d-38a221f3228mr9229094f8f.27.1734889661029; 
- Sun, 22 Dec 2024 09:47:41 -0800 (PST)
-Received: from [192.168.0.101] ([90.241.98.187])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-38a1c848a47sm9269719f8f.62.2024.12.22.09.47.39
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sun, 22 Dec 2024 09:47:39 -0800 (PST)
-Message-ID: <681ada21-204a-47b3-b071-418e02455012@ursulin.net>
-Date: Sun, 22 Dec 2024 17:47:39 +0000
-MIME-Version: 1.0
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8225D10E19A;
+ Mon, 23 Dec 2024 08:29:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1734942567; x=1766478567;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=VxDbPuYdfsel2QEeOqLRGolO8ADpwdRYeb3RBlhdk0E=;
+ b=eyE1H5e+OXWANYLBmS+cnNJu6ylqIUzvcRDIkX5jMfD1is9Iq4ZUk4Z/
+ XfgIq3qpteiw4NrHwNQaRnU1120++xSxawv7wlU7LK321vMftUoBYLyW4
+ obMsZ5x+g8oVdUfUErBe6pOq5LvKiCZx6CxIiqIVtmTYQIYI6Ov/vR4hm
+ EQsgNUTtQ2TQCEIhEM4qwjE8GSBTTw+v0GVKm39y9kYeyJBAoAVnx5t+2
+ bGRMBdHYRWzZH/RRP5ix9OSFXuWdwvrAB/ly8z/BjUtjr0U8gZmWStG7+
+ hd1lxh+1KmO3658XXe50uWLUGNEo5itlwM6CP98xQQMWeq8rvx7h5YEjx Q==;
+X-CSE-ConnectionGUID: djYzo5nFQ5KY4g6g6NeqMw==
+X-CSE-MsgGUID: UTpY28BhT+6BGwZSx3AXnA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11294"; a="39181412"
+X-IronPort-AV: E=Sophos;i="6.12,256,1728975600"; d="scan'208";a="39181412"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Dec 2024 00:29:26 -0800
+X-CSE-ConnectionGUID: 02awsLrKTXqboV6ryBkyPg==
+X-CSE-MsgGUID: YxyY6Q+/SyuC75EBV7e2cw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,256,1728975600"; d="scan'208";a="98917060"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 23 Dec 2024 00:29:26 -0800
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Mon, 23 Dec 2024 00:29:25 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44 via Frontend Transport; Mon, 23 Dec 2024 00:29:25 -0800
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.175)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.44; Mon, 23 Dec 2024 00:29:24 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=GLlwQXNSU/NERrkp4pU/6aZ4czLS8511k+hOWBcyrI2D1rNJ22487wHCgY6x9hpgP0VZDlrHE0Q/dxiecdAlLd8hExSqQptvX8nJ8l45loc9EcCng6vAi7FEnRzNf/0jH0s7ynXGoXmOJVBsc+rAVrM7s2CNxLM2tS6kxs4eu8eSayRueIGuq7ZMIdHk8LU/E1l1s7XBQ22yEeky515s0H1K6+3QzidPXxa/kIraf5qy4VFldBJrikTF9kCxBhDJSUhIsGI5ufvMnBUhrMeAoyaMS+Q0TfIJBu+0eZqIxA6cVcZZF3h9qrBVMCr4LwKFQdRTja87fyin79VYy104pA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=9yg7gZfN20ARzJBEzOuKVxc3vg4KHheZPUyU/N0HGro=;
+ b=ijrnm+q8iEhyLiHrOJB9iFPdLa5HOAd11sdRbAF2B0gmKPfn/AVZBNYJIDmYGLGBYULoBgyoPkQiCR/+PU8bx7JmXOBw6dVC1ankGm45RzX50UvlZ1tAu0XAkoLMVwA1xdbZv7CIuePpeuxWjhbwD7ahpNbZeT8qflDnvpa3w0ixFyy6s5LawO8J28cpwq1DRoTtyC9c8+9PXYwIzrspWECsFfCCuO/DaeD03RblEO1A9usU4MIVmXiWNXJxcnCVnwpi7Kre5zz+PODt80VE25lN8OIEB2t/m59fB8/97UI35fnv4xkM0qQcZ89yz9Fg4IslhPH8loxVmskYyj485Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
+ by DM4PR11MB6019.namprd11.prod.outlook.com (2603:10b6:8:60::5) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8272.20; Mon, 23 Dec 2024 08:29:05 +0000
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839%7]) with mapi id 15.20.8272.005; Mon, 23 Dec 2024
+ 08:29:05 +0000
+Message-ID: <3843d303-1ced-466f-96b8-eaae33d92ad7@intel.com>
+Date: Mon, 23 Dec 2024 13:58:59 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH i-g-t v2 0/4] tools/gputop: Add PMU stats
-To: Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
- intel-gfx@lists.freedesktop.org, igt-dev@lists.freedesktop.org,
- Kamil Konieczny <kamil.konieczny@linux.intel.com>
-References: <20241220003734.69174-1-vinay.belgaumkar@intel.com>
- <7d77e830-54c1-42c0-9402-16937697d2bb@ursulin.net>
- <Z2XB1jhvfreb3kME@intel.com>
- <vpa2hxt64wyt3og363grrorkdebintntwrtsv5uvgxput3m3oj@t7yldrdsv7ca>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tursulin@ursulin.net>
-In-Reply-To: <vpa2hxt64wyt3og363grrorkdebintntwrtsv5uvgxput3m3oj@t7yldrdsv7ca>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: Re: [RFC v2 1/6] drm/i915/scaler: Add and compute scaling factors
+To: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
+References: <20241217180710.1048355-1-mitulkumar.ajitkumar.golani@intel.com>
+ <20241217180710.1048355-2-mitulkumar.ajitkumar.golani@intel.com>
+Content-Language: en-US
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+In-Reply-To: <20241217180710.1048355-2-mitulkumar.ajitkumar.golani@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: PNYP287CA0036.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:c01:23e::11) To DM4PR11MB5341.namprd11.prod.outlook.com
+ (2603:10b6:5:390::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|DM4PR11MB6019:EE_
+X-MS-Office365-Filtering-Correlation-Id: cbeb0676-499d-4c70-0533-08dd232bdcac
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?NEZlOTYrTWRMcVo0MndQbEoxNUhBektId3NpdGV4d3M4dDVycnpUZlg0RnVF?=
+ =?utf-8?B?YnptYXYzU3VUWU4wNXAzSVNieGpMN2dDOXN6d3FLN0tlaDdmRzd3YUJ4b1Nv?=
+ =?utf-8?B?Q0NyS3lLNmMvQXFoNklWeGJBZEU1QVkzeDlBS05UOUVyOFJPRnRqbjVENGxt?=
+ =?utf-8?B?bUxFWUdYVHZPQTFhS2FmZHVpa21Gb09MZCtmYURMSHJTNjZ3Z3FFNDhHTk5U?=
+ =?utf-8?B?eWtGOHVtNDhIcVpZcVNvMmgvYWpnbFBrcmxxM0xtMHdRR1RidGhlYkk3clBt?=
+ =?utf-8?B?bDZJSXNNUmNQaGlMWGUwajdWcnAxM2JPM0RSSldTbXRyQisxblM3U05BaUVM?=
+ =?utf-8?B?NmI2QUpLUitvTGpVcDdnSGRzbC90Zzc3bHdiNHhPSFhXMEpOcDJrVVJYYkNs?=
+ =?utf-8?B?bVRYNDZZdWJkQ0k0L2FhQ1VSL3k0SWI5aXJMNFEvZFRMK0ZIYXY1QWRTdVB2?=
+ =?utf-8?B?azQwbTJTZUthYUtkNW5yN09SeW44SURYbDlrRWpRVHo3ZzNaTHEySU4wOGYx?=
+ =?utf-8?B?YURGMTA0MWcvU2NXTVBGc1VabFhYdHVsZTE0QTJ5VnF0YjVQcHE3SzBUdUp5?=
+ =?utf-8?B?V2pHTFZMS1FnYlFOdnpWZ2w2d2oxR2d3eGZtQjdyTHdXcUdScElPWm5mTi9t?=
+ =?utf-8?B?ZkRMWVltbWdLbHNaR085R0NTZURndVNHVlFDcWt3UWs2cFJGT2lLWXdneFRL?=
+ =?utf-8?B?WUV5VkhuSU95T1o1S3FBZzlxdnVrN0h3TzNSb2o0OWJGSTBBVnVlUmRRU05n?=
+ =?utf-8?B?QVRZNjhVTEwyay90SndzQzBlSExnd3IrbGtrTjFrVGZBbzRSNnVvc3ZMbWJK?=
+ =?utf-8?B?RTVzNjZXbG43V0IzK2JFeUZkWEs4Y0w3VEpTRnpobDF6Uk5sZjY1d1h0RFNX?=
+ =?utf-8?B?d1UzV1dta3NWV3Z4Q09SZWQyNGxTU2VqcUVTUjFzenAvZWpWWk5JeWY4cUsy?=
+ =?utf-8?B?elUrRUZCdnd1ZzRHNzBMb3l2ZnJaSm1tRDl5VU1td1o5Nm5iVExRQ3U4dUpZ?=
+ =?utf-8?B?clZmY2g4RkJNa0hnZnduZitFUWxzejd2MDRNRWRZWDVEc0N2WDV4R0hTUmJP?=
+ =?utf-8?B?OW8wWFFlZVBjbERlR1FpcUtzTjNIa2hmRCt3cUpLYWZNcVBpSEJIWUJWc3NL?=
+ =?utf-8?B?aU9pcURwUDV1Zm9DV3B6RjE4YWxhQURwcFJZYllRdHNnN05rQ0UrZndERFNW?=
+ =?utf-8?B?dnZ4RFNvN0VIK1RnVUllR3hlRDZ1QWlOOTVFc25ySVZEYUZwUFZhMGNxZjQ4?=
+ =?utf-8?B?YjN3TEJWcWZ2N3BVZ0NkVnhITmJWVzZnTGlpek5zVEZTZW9RcldqNTVXNTNo?=
+ =?utf-8?B?emlZZzlRYi8xNW1YRjVldGpmVyt0SDdkaUJneGxpd0tEalIzSkRyTEVhUWda?=
+ =?utf-8?B?UWtiZ2VhaGFVcjB5T0hpQ3h6N0M4c2E4bnlOZXpRTG8wWmpZYkZ1KzUxSHFL?=
+ =?utf-8?B?ZVlOci9oSHFKT0txZUhybmRFM1ZrZnY5bFQyMDlObERqY0R2dGdzRnhwT00w?=
+ =?utf-8?B?aXp0SHB2WG1oeWNBSk1hd0Jpd0ZvbWRQYUJJRWZhdmEycE4yMUMrLzlBa2dm?=
+ =?utf-8?B?N01wNGZkMk5TOWYySlVxVlk0TSs2aHltVkJpR1lCak5JNVVJRXowR0FVNXRo?=
+ =?utf-8?B?T0ZZRWV2SVBGaW93VURqQUxlNkJ6WnFMTE15aHdWdFN1bkZ6SU5jc2gxQlJs?=
+ =?utf-8?B?ZHFqb3FJM0F5RThnY0hhMHpSdWVKZlYrVXZNM0NpWThlNm9WNkpiOG1aS0Zr?=
+ =?utf-8?B?MGQrUXZtZkpNWkZIN0tuWU5iS1N2aDlldkRYKytMVSsrRjVlclc4a1BiSEpK?=
+ =?utf-8?B?eU5FeDV3Y1BxZ2krY3hkYTR5Q1kvL2JxcnBkVW93VlFMSWZ0S1dUckZiQzNu?=
+ =?utf-8?Q?vp9+rH3v3snWh?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NEJIUWRTMmQ3V0tncFJXOW54eWZXdDlPQ1dnaW1rMnB6VXY0aHRoa1pWM0xO?=
+ =?utf-8?B?SmpheFpUTXhSU09oZVZBY0t1bnhaZ2tIdDVrb2JlTU1acnA2ZlcxeDl5blpB?=
+ =?utf-8?B?VVNXdUR0ZHc4MDNhZi9yYW5mZFhaWFo1MjFTWlplaE5GblV6N2Y3eS9GZm1z?=
+ =?utf-8?B?T29WZGp4dHV2eWgyV2NMd1lDMlYzQXhrSXcxWVpNZEd0b1lGTWxubDV4Qm9s?=
+ =?utf-8?B?cjVzWG5FUno4OVYzSnRBTWlRdFkxWWMzKytTd0dtMFIxMTRiR3ZNNDdEckkz?=
+ =?utf-8?B?U0ZIR1AvaFk4anZNMUVuU3Q0RFpEcXdOZ3pOZnVEdnkzME5EanNuZzBsMm9k?=
+ =?utf-8?B?amRMRWdGNmxzR3hobUJESzk0bUF1R2czY3JPaVJ0c0ZmL2Y1eGxoTU5NWU9O?=
+ =?utf-8?B?M2VZRzNuczJLVEtYZEZLVFlhTC95RHBSQVhlMm1rbGRVektmVElPU3JYd093?=
+ =?utf-8?B?K0tDUnNPMmlnUUxkQ2pEWGF0Rm0rbUtBYWdIanNOT3dhNzVmQXR1WUpSam4v?=
+ =?utf-8?B?SExicm16VlBMdG9Gck85SnJsbXJ1S0hYY0t4UjRPU1A1M01OSEY0Z2swc1VY?=
+ =?utf-8?B?SkhhUFQweHowN2ExV3NkUnF2cnRQMEZROXFVdXhPUzVlejBVaEtaVEpQTnJN?=
+ =?utf-8?B?ZjJLSWh1OVdBY2g4VWtLbm1pQ1lKNnJOVkxFeTF5elBLck1VYi96ZEVLbkpy?=
+ =?utf-8?B?dHZ1M2dWTFR0V3hFVEgwbnhBUExvaU1aVlJSeFJPUmNzMUNjcTZyODRZbmxk?=
+ =?utf-8?B?bHpJUHdHbEZaZ04yY2xKSWQ2TDZhUisyM1cvN2JyRmlTTC9zQW5mWnF4ZVY0?=
+ =?utf-8?B?ZCsrRFJ0L0lxSHhJem1NdkRSZkR6S1c4eUJubDRHUTlvbmhWWUEzYkhQWDJO?=
+ =?utf-8?B?VEF5cy9ZNWg0Yy9ZN2RVckhnMDlLQUd5dEhHSHRrK2ZpclYvU1pBM3hmQmUx?=
+ =?utf-8?B?cFpZUGZYWmJVSE12RGNzSkRRVmhmYzNxL290K3hPQUJIcDRIQ2lWSy9LZ2Fv?=
+ =?utf-8?B?MkpzWnc0N0hXUURGc2UxR1pYZXo1ZnFYYVQrS29LOWNXQU9rQk1zMWZYQW9U?=
+ =?utf-8?B?aDRITXFzWHFTNFJLNmZMN0hlcGprZEJ4UW9Fc2VGZVgyMHFjNVlDclU0T2d5?=
+ =?utf-8?B?ZEdzSzhyLzhrOHFSTlBvSlVTNkpTMGRXOG9zYlo2dk5SQit5QVRGTjhyMTlx?=
+ =?utf-8?B?RGVmQStjVjc0SmlPM0tLaUl4Mk4xVk5Sb2FmUkhNLzl3OHBxR2NBSXFtQlEv?=
+ =?utf-8?B?RFhtL1ZvTmdUNTVrOUZLQWVnV0VNVDlPZXZkazBMZ0dNS0g5N3NkaS9hblha?=
+ =?utf-8?B?MDIxOGtlTUwrT3lzWGF4aTNZOFdxZmpTb2hpLzl0a0Y3MW4zQUt4MFRoNENF?=
+ =?utf-8?B?QnFJci9hYXJMZ3lJNWxkeEFsUTlaNml4Q1pmTEhxeDZESUxVd0MySGY2UmJ6?=
+ =?utf-8?B?MFB6N05qSjRnRktyR3dUNitoWFJnYkxwR2pzSS9xc0o1dC9CUHd4MFB5WU1n?=
+ =?utf-8?B?aDA0V1BqTXVhMXBrTXVLMDFiSlI5NVk3a1ZoQmdiL1crZjFRSFNHbzB0UEQ4?=
+ =?utf-8?B?Rm9BalVsODdiZE00Z3Z6a1BKdDlNSDU2cjFuYlJueTNiV0pMRksvd0oyRmN4?=
+ =?utf-8?B?ZThKczR0YWttQUpFSy9tditsTllvbFN5TUMrT1dOeUV6SURVeG1mN0NyMkps?=
+ =?utf-8?B?dUtBS2gwellQYkdOZzV1K0xuVGY3SWt3eks1eWdvaDdMZTVqWW9HQTgyRXZn?=
+ =?utf-8?B?WDNjeVF3U09ZU3MxMDFycG9IaStpSzd3cS9EZG1QeHpZWXlGcFJBZWE1OTYr?=
+ =?utf-8?B?OEJFci9adTZPTVJZZVNwcFl1ZTBmMGVvdVB1YnU3YlJuZGtzbXZvZXRqZDB4?=
+ =?utf-8?B?MHNkbnY0M0I0MExiUUoxcW1HMG1JU21hNkZxMXlrWDhRZnFKV2JFTnM2QjBG?=
+ =?utf-8?B?MWpNZkxRcklXbHMrSzZ2R0pRUWtubnlTSk5ubHNBZHphRGlhYmZYN0d3RjN4?=
+ =?utf-8?B?Z01aY3NaTThoc0c3ZGJveDgvOStnME9yL0F0alFrM3ZDNzZKelZQZDYxMnlN?=
+ =?utf-8?B?SXFRQnNUbGR6cEIvYmRKSys1TytuQ1RERjNnVXp6dFhCMmNGVTY1N2h2SU10?=
+ =?utf-8?B?OXo2NVY3Y0pnZ1lNSTFxT3hKaEZ4OTIvZ3VhYUZDTzZ6TUNvd2FWcVFvR2R5?=
+ =?utf-8?B?Umc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: cbeb0676-499d-4c70-0533-08dd232bdcac
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Dec 2024 08:29:05.2866 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 6f6nmoId6fhYXNzBwlJSoeKj7L+tXMHsN9l/5LZ2kkNrx11SOI6SJiHSpOtQSWxA7Ty6suGl3YQ++aKC2rJLxgYBAsEs/bqMqKTCgcCSSj0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6019
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,148 +195,51 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
-On 20/12/2024 19:32, Lucas De Marchi wrote:
-> On Fri, Dec 20, 2024 at 02:13:26PM -0500, Rodrigo Vivi wrote:
->> On Fri, Dec 20, 2024 at 10:15:04AM +0000, Tvrtko Ursulin wrote:
->>>
->>> On 20/12/2024 00:37, Vinay Belgaumkar wrote:
->>> > Use the PMU support being added in
->>> > https://patchwork.freedesktop.org/series/139121/ to add freq/c6 stats.
->>>
->>> Brace yourself for the customary "why". So yes, why?
->>>
->>> Gputop so far was a reference showcase for DRM fdinfo, nothing more. 
->>> Why add
->>> a _subset_ of PMU stats to it? Any other drivers could be wired up? 
->>> How far
->>> do people intend to grow it, considering alternatives with nicer UI 
->>> and more
->>> featureful exist?
->>
->> Well, currently intel_gpu_top doesn't support Xe and we really don't
->> have any intention to add xe support there.
->>
->> We don't believe it is a better UI and more features.
+On 12/17/2024 11:37 PM, Mitul Golani wrote:
+> Add scaling factors to scaler_state for a perticular scaler user,
+> use it later to compute scaler prefill latency. Also to extend this
+> when either pipe or plane scaler is in use.
+>
+> Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+> ---
+>   drivers/gpu/drm/i915/display/intel_display_types.h | 2 ++
+>   drivers/gpu/drm/i915/display/skl_scaler.c          | 3 +++
+>   2 files changed, 5 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index b71416ff5b7f..28b2861df42b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -710,6 +710,8 @@ struct intel_initial_plane_config {
+>   struct intel_scaler {
+>   	u32 mode;
+>   	bool in_use;
+> +	int hscale;
+> +	int vscale;
 
-Hm what? :) With "nicer UI and more featureful" I was referring to the 
-alternatives Lucas later listed. All are nicer than intel_gpu_top, not 
-to mention than gputop.
+Probably should fill these in skl_scaler_get_config() and add in 
+intel_pipe_config_compare() to compare.
 
->> Hopefully someday we can get qmassa [1] part of the distros and make 
->> that to
->> be our default to use the uapis that we add in Xe.
->>
->> But for now we were in the hope that we could use gputop for that 
->> which is
->> the current tool that supports Xe metrics. But well, I just noticed that
->> at least in Fedora it is not packaged :/
->>
->> $ rpm -ql igt-gpu-tools-1.27.1-0.4.20230215git45da871.fc40.x86_64 | 
->> grep top
->> /usr/bin/intel_gpu_top
->> /usr/share/man/man1/intel_gpu_top.1.gz
->>
->> [1] - https://github.com/ulissesf/qmassa
->>
->> So, our options are:
->>
->> 1. Add all the Xe support in intel_gpu_top
->> 2. Convince distros to build and package gputop along with 
->> intel_gpu_top in igt
->> 3. Convince distros to adopt qmaasa
-> 
-> 
-> I think we should handle gputop as a reference implementation for a
-> "top-like implementation for GPU".  I think end users have tools with
-> better UIs like qmassa, or nvtop, or htop or other graphical
-> applications and we shouldn't try to block that - doing something
-> beautiful in gputop would be a lot of effort for little benefit if end
-> users are already served by other tools.  Letting gputop as a reference
-> impl for these tools to borrow code or consult, would be ideal IMO.
-> 
-> 
-> As Tvrtko said, currently gputop is a reference showcase for DRM fdinfo.
-> I think it can grow some capabilities and be a reference
-> implementation for top-like application. If that means adding pmu, then
-> be it.  However the pmu support needs to be added in a proper way so
-> the tool always continue to be vendor-agnostic and that it's easy to
-> add support for events from other vendors. That probably means that
-> adding pmu-related things in the fdinfo or drm-client libs are probably
-> not the way to go as a) it's crossing unrelated abstraction and b)
-> breaking the vendor-agnostic nature of the tool.
-
-100%.
-
->>
->> Meanwhile our PMU are blocked...
-> 
-> I don't think they should be blocked. The kernel impl was blocked for a
-> long time in other things, not having PMU included somewhere like
-> gputop.  If you want to read pmu, the #1 application is perf
-
-Yes, perf was always enough and should still be.
-
-> I think we can add pmu in gputop as a reference. If someone can grow
-> gputop to have all the intel_gpu_top capabilities, but doing it in a
-> proper vendor-agnostic way, awesome. At that time we may then retire
-> intel_gpu_top and only use gputop as reference.
-
-My 2p is that adding PMU support to gputop only makes sense if it will 
-work with more than only xe and if people kind of see that would make 
-having two top-like tools in IGT not great at that point. And that the 
-road to completely subsume intel_gpu_top in gputop is not a long one 
-once the first part is done properly.
-
-I wasn't arguing for some nice UI if that was misunderstood somehow. 
-(Don't know how.)
-
-It may even come naturally because many of the nicer features of 
-intel_gpu_top came by user demand. So assuming some PMU support gets 
-added to xe users then might ask - "Hey can we have JSON/CSV output 
-modes so we can use it like we used intel_gpu_top?". Or any other 
-feature like sort modes or whatever.
 
 Regards,
 
-Tvrtko
+Ankit
 
-> 
-> Lucas De Marchi
-> 
->>
->> Lucas, Thomas, thoughts?
->>
->>>
->>> Or in case the conclusion ends up being "yes", then lets at least 
->>> share some
->>> more code between intel_gpu_top and this work. Ie. make it in a way 
->>> gputop
->>> completely subsumes and replaces intel_gpu_top might be an idea.
->>
->> with this I agree as well.
->>
->>>
->>> Regards,
->>>
->>> Tvrtko
->>>
->>> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->>> > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->>> > Cc: Kamil Konieczny <kamil.konieczny@linux.intel.com>
->>> > Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
->>> >
->>> > Vinay Belgaumkar (4):
->>> >    tools/gputop: Define data structs for PMU stats
->>> >    lib/igt_drm_clients: Add pdev and driver info
->>> >    lib/igt_perf: Add utils to extract PMU event info
->>> >    tools/gputop: Add GT freq and c6 stats
->>> >
->>> >   lib/igt_drm_clients.c |   6 ++
->>> >   lib/igt_drm_clients.h |   4 +
->>> >   lib/igt_perf.c        |  68 +++++++++++++
->>> >   lib/igt_perf.h        |   2 +
->>> >   tools/gputop.c        | 225 
->>> ++++++++++++++++++++++++++++++++++++++++++
->>> >   tools/meson.build     |   2 +-
->>> >   6 files changed, 306 insertions(+), 1 deletion(-)
->>> >
+
+>   };
+>   
+>   struct intel_crtc_scaler_state {
+> diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
+> index 11f73659c1b6..e00c6830ef65 100644
+> --- a/drivers/gpu/drm/i915/display/skl_scaler.c
+> +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+> @@ -423,6 +423,9 @@ static int intel_atomic_setup_scaler(struct intel_crtc_scaler_state *scaler_stat
+>   
+>   			return -EINVAL;
+>   		}
+> +
+> +		scaler_state->scalers[*scaler_id].hscale = hscale;
+> +		scaler_state->scalers[*scaler_id].vscale = vscale;
+>   	}
+>   
+>   	drm_dbg_kms(display->drm, "Attached scaler id %u.%u to %s:%d\n",
