@@ -2,47 +2,93 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 515B3A04350
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jan 2025 15:52:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 77739A04339
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jan 2025 15:52:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E2D7210E704;
-	Tue,  7 Jan 2025 14:52:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50D7F10EAE7;
+	Tue,  7 Jan 2025 14:52:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=treblig.org header.i=@treblig.org header.b="rbBQq3hs";
+	dkim=permerror (0-bit key) header.d=linaro.org header.i=@linaro.org header.b="iieaJYY2";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx.treblig.org (mx.treblig.org [46.235.229.95])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 32ABF10E051;
- Wed, 25 Dec 2024 17:52:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=treblig.org
- ; s=bytemarkmx;
- h=MIME-Version:Message-ID:Date:Subject:From:Content-Type:From
- :Subject; bh=dfvfLNjykdYWKlzXMF+mOHOTts53mx0nlkDrwH+6+HA=; b=rbBQq3hs2FBsKA+n
- Kq92jd4hcIyvSxzIuQER0jgz4/GyR+7yvDeFpruR+gVLNK52ybbgCznpZTAHYuO49UNCcVK8sAnXI
- c3+XR0dn1c3yv7oUUEf+AfVDoNSgWxtOj29idEt18TlhQBskPtTegq1zfqfZXiBJ1D4//L/bs43BV
- 3/jQd+OgJuj0sf6PjFr+4+0tKJpLXDwaNHqsurvKhAuUsi0y8GxoNWamF43At9zGkwOYh8//zXfM4
- 65V7lNITRGy/gxxy9HHTk9sstVvygsd7y1VCgypDQW/u05S5QZemwiDyvnrxY5Nbz4wjbQi/TRRL6
- qxyLr5Fw/EwyrXWQLA==;
-Received: from localhost ([127.0.0.1] helo=dalek.home.treblig.org)
- by mx.treblig.org with esmtp (Exim 4.96)
- (envelope-from <linux@treblig.org>) id 1tQVWN-0078Iy-1u;
- Wed, 25 Dec 2024 17:50:11 +0000
-From: linux@treblig.org
-To: tglx@linutronix.de, mingo@redhat.com, bp@alien8.de,
- dave.hansen@linux.intel.com, jani.nikula@linux.intel.com,
- joonas.lahtinen@linux.intel.com, rodrigo.vivi@intel.com,
- tursulin@ursulin.net
-Cc: x86@kernel.org, airlied@gmail.com, simona@ffwll.ch,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, "Dr. David Alan Gilbert" <linux@treblig.org>
-Subject: [PATCH] x86/platform/iosf_mbi: Remove unused
- iosf_mbi_unregister_pmic_bus_access_notifier
-Date: Wed, 25 Dec 2024 17:50:10 +0000
-Message-ID: <20241225175010.91783-1-linux@treblig.org>
-X-Mailer: git-send-email 2.47.1
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com
+ [IPv6:2a00:1450:4864:20::429])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CEF4110E042
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Dec 2024 12:09:51 +0000 (UTC)
+Received: by mail-wr1-x429.google.com with SMTP id
+ ffacd0b85a97d-385d7b4da2bso5511810f8f.1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Dec 2024 04:09:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1735214990; x=1735819790; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=4yE0d6/fT2fHAjzAIYMLLWaXzKg6hYqakVFryoy6JvQ=;
+ b=iieaJYY2CsLjdCc7/QLURDOjLPWQbiT9BsMn1GBf/YUGsxntQjc7WPMDtyBhUorG2E
+ TA1wLo7Ruz6fiOLYHiVfpCYyZiSqnaAiODAW1kAsuGcihmLCAT9GJIyqDlTzZerl/L6V
+ G0fHFZDMea7eDe2jT+xzWcBvZw7GfyDjEmZV0iCndjUKlCyJbkYdpjKhe1pQXbgb7Qg+
+ yfiRO2Jn2YdDoEWk3fEjnke0gxNjG50f+9VGPmpNGs64YLIqrkc8amL5j1bvjME1VmYT
+ nLzmSYnSkw2bhTV3gAf5t5j0d2M2O/qT7ISUqfLVeKQ9JvArJ7M/eLUjofzztN8AjrEd
+ b/Ww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1735214990; x=1735819790;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=4yE0d6/fT2fHAjzAIYMLLWaXzKg6hYqakVFryoy6JvQ=;
+ b=dYvcISeUdBVsupe09B5+iYcD/AGhMWuHKDDxUN8/71xCOganEsoyIa3wO6JheBp5HO
+ 2yE6U61NnTJEkxmPt9CvGtOpn4m/JTvUqTQOzh2Uuhg9TfmePCy6O9eacK3sxHC/GGs+
+ amyFV8depFsQXps/oplpcNF/eyq8YvGZREMIC2rkhu/g1xXcav4EYuZHmNqW247AJG7J
+ TRvBEyh5UZTH9gQL2wOBiyBmwLY/OYVBp8UR/dlpRdSbgGmTAsN1KxlgsWREsVOhltIb
+ bacflXhGvf7/+I5/VE8Cl52EEdTnBVKtzUlBkjXMT/iJJtfoTqLu3jtobE8dE5J3rvLG
+ cShw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVLeBwj3PEGj1JGzMq+xOlm8n6dgumIutscYqWi4N7Sa2nBJV2c439W9QN30mGV5DWe9bgU5T8IhFk=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyZmpGHNsYHJPUWRsRG1e0lu/tORRGuiGP/rhftSCHPXYJeUII5
+ a+ew56PzI0tGS16fUHedrFT2G7Lfb0QyRJUiMlKW8nHUR5V6x0a2MlhaA2ERNTY=
+X-Gm-Gg: ASbGncsCfil7A2wVnFNG9oHjWppZ4Ng0EPscGv6Nk0bbikpem5D/Kf8XDKxwrTl9oDh
+ AFlWgA53BhLcopYsNPwOCDjcB3WgDRNDLfYNYoZcc8ZvzwTY1M9gKlyv4Ak0wrcbfDiIs5hMc7o
+ x1Nv5wCAii2joEDz3LGZvaQ51zqaz0wprlJOKKczjXq7NdvLOX+ysV90IZN3nQRcP86KDmA3ABy
+ sWF86PUF2x7B8Em0zIt3QzZHMiIoM/77v1b8SChwpi+jpyJXBPxWZw=
+X-Google-Smtp-Source: AGHT+IE7Mzk62uTd4yycH28u5xCSB39eiD96qbQg0fIjJMfiTxkRYB+ECRA3AUQrSJ8HACLT9c1tFw==
+X-Received: by 2002:a05:6000:400b:b0:385:ee3f:5cbf with SMTP id
+ ffacd0b85a97d-38a221eab74mr22082237f8f.20.1735214990215; 
+ Thu, 26 Dec 2024 04:09:50 -0800 (PST)
+Received: from linaro.org ([82.76.168.176]) by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-38a1c89e1cesm19043982f8f.64.2024.12.26.04.09.47
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 26 Dec 2024 04:09:48 -0800 (PST)
+Date: Thu, 26 Dec 2024 14:09:46 +0200
+From: Abel Vesa <abel.vesa@linaro.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
+ Danilo Krummrich <dakr@redhat.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Rob Clark <robdclark@gmail.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Johan Hovold <johan@kernel.org>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org
+Subject: Re: [PATCH v2 1/4] drm/dp: Add helper to set LTTPRs in transparent
+ mode
+Message-ID: <Z21HimmBvwwA7/KD@linaro.org>
+References: <20241211-drm-dp-msm-add-lttpr-transparent-mode-set-v2-0-d5906ed38b28@linaro.org>
+ <20241211-drm-dp-msm-add-lttpr-transparent-mode-set-v2-1-d5906ed38b28@linaro.org>
+ <o6xcm7jdcay77b6kltj7zownk6je6umqlmxsuscbbubw4jlr5v@w4zuusufajwx>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <o6xcm7jdcay77b6kltj7zownk6je6umqlmxsuscbbubw4jlr5v@w4zuusufajwx>
 X-Mailman-Approved-At: Tue, 07 Jan 2025 14:52:08 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -59,83 +105,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: "Dr. David Alan Gilbert" <linux@treblig.org>
+On 24-12-11 21:22:00, Dmitry Baryshkov wrote:
+> On Wed, Dec 11, 2024 at 03:04:12PM +0200, Abel Vesa wrote:
+> > According to the DisplayPort standard, LTTPRs have two operating
+> > modes:
+> >  - non-transparent - it replies to DPCD LTTPR field specific AUX
+> >    requests, while passes through all other AUX requests
+> >  - transparent - it passes through all AUX requests.
+> > 
+> > Switching between this two modes is done by the DPTX by issuing
+> > an AUX write to the DPCD PHY_REPEATER_MODE register.
+> > 
+> > Add a generic helper that allows switching between these modes.
+> > 
+> > Also add a generic wrapper for the helper that handles the explicit
+> > disabling of non-transparent mode and its disable->enable sequence
+> > mentioned in the DP Standard v2.0 section 3.6.6.1. Do this in order
+> > to move this handling out of the vendor specific driver implementation
+> > into the generic framework.
+> > 
+> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> > ---
+> >  drivers/gpu/drm/display/drm_dp_helper.c | 50 +++++++++++++++++++++++++++++++++
+> >  include/drm/display/drm_dp_helper.h     |  2 ++
+> >  2 files changed, 52 insertions(+)
+> > 
+> 
+> 
+> > +/**
+> > + * drm_dp_lttpr_init - init LTTPR transparency mode according to DP standard
+> > + *
+> > + * @aux: DisplayPort AUX channel
+> > + * @lttpr_count: Number of LTTPRs
+> > + *
+> > + * Returns 0 on success or a negative error code on failure.
+> > + */
+> > +int drm_dp_lttpr_init(struct drm_dp_aux *aux, int lttpr_count)
+> > +{
+> > +	if (!lttpr_count)
+> > +		return 0;
+> > +
+> > +	/*
+> > +	 * See DP Standard v2.0 3.6.6.1 about the explicit disabling of
+> > +	 * non-transparent mode and the disable->enable non-transparent mode
+> > +	 * sequence.
+> > +	 */
+> > +	drm_dp_lttpr_set_transparent_mode(aux, true);
+> > +
+> > +	if (lttpr_count > 0 && !drm_dp_lttpr_set_transparent_mode(aux, false))
+> > +		return 0;
+> > +
+> > +	/*
+> > +	 * Roll-back to tranparent mode if setting non-tranparent mode failed or
+> > +	 * the number of LTTPRs is invalid
+> > +	 */
+> > +	drm_dp_lttpr_set_transparent_mode(aux, true);
+> 
+> This means that if lttpr_count < 0, then there will be two requests to
+> set LTTPRs to a transparent mode. Is that expected?
 
-The last use of iosf_mbi_unregister_pmic_bus_access_notifier() was
-removed in 2017 by
-commit a5266db4d314 ("drm/i915: Acquire PUNIT->PMIC bus for
-intel_uncore_forcewake_reset()")
+Yes, exactly. If counting the LTTPRs (see drm_dp_lttpr_count) results in an
+invalid number (e.g. more than 8), then according to the DP standard,
+we need to roll back to transparent mode.
 
-Remove it.
+Do you think I need to re-word the comment above more to make it more
+clearer?
 
-Note the '_unlocked' version is still used.
+> 
+> > +
+> > +	return -EINVAL;
+> > +}
+> > +EXPORT_SYMBOL(drm_dp_lttpr_init);
+> > +
+> 
+> -- 
+> With best wishes
+> Dmitry
 
-Signed-off-by: Dr. David Alan Gilbert <linux@treblig.org>
----
- arch/x86/include/asm/iosf_mbi.h      |  7 -------
- arch/x86/platform/intel/iosf_mbi.c   | 13 -------------
- drivers/gpu/drm/i915/i915_iosf_mbi.h |  6 ------
- 3 files changed, 26 deletions(-)
-
-diff --git a/arch/x86/include/asm/iosf_mbi.h b/arch/x86/include/asm/iosf_mbi.h
-index af7541c11821..8ace6559d399 100644
---- a/arch/x86/include/asm/iosf_mbi.h
-+++ b/arch/x86/include/asm/iosf_mbi.h
-@@ -167,13 +167,6 @@ void iosf_mbi_unblock_punit_i2c_access(void);
-  */
- int iosf_mbi_register_pmic_bus_access_notifier(struct notifier_block *nb);
- 
--/**
-- * iosf_mbi_register_pmic_bus_access_notifier - Unregister PMIC bus notifier
-- *
-- * @nb: notifier_block to unregister
-- */
--int iosf_mbi_unregister_pmic_bus_access_notifier(struct notifier_block *nb);
--
- /**
-  * iosf_mbi_unregister_pmic_bus_access_notifier_unlocked - Unregister PMIC bus
-  *                                                         notifier, unlocked
-diff --git a/arch/x86/platform/intel/iosf_mbi.c b/arch/x86/platform/intel/iosf_mbi.c
-index c81cea208c2c..40ae94db20d8 100644
---- a/arch/x86/platform/intel/iosf_mbi.c
-+++ b/arch/x86/platform/intel/iosf_mbi.c
-@@ -422,19 +422,6 @@ int iosf_mbi_unregister_pmic_bus_access_notifier_unlocked(
- }
- EXPORT_SYMBOL(iosf_mbi_unregister_pmic_bus_access_notifier_unlocked);
- 
--int iosf_mbi_unregister_pmic_bus_access_notifier(struct notifier_block *nb)
--{
--	int ret;
--
--	/* Wait for the bus to go inactive before unregistering */
--	iosf_mbi_punit_acquire();
--	ret = iosf_mbi_unregister_pmic_bus_access_notifier_unlocked(nb);
--	iosf_mbi_punit_release();
--
--	return ret;
--}
--EXPORT_SYMBOL(iosf_mbi_unregister_pmic_bus_access_notifier);
--
- void iosf_mbi_assert_punit_acquired(void)
- {
- 	WARN_ON(iosf_mbi_pmic_punit_access_count == 0);
-diff --git a/drivers/gpu/drm/i915/i915_iosf_mbi.h b/drivers/gpu/drm/i915/i915_iosf_mbi.h
-index 8f81b7603d37..317075d0da4e 100644
---- a/drivers/gpu/drm/i915/i915_iosf_mbi.h
-+++ b/drivers/gpu/drm/i915/i915_iosf_mbi.h
-@@ -31,12 +31,6 @@ iosf_mbi_unregister_pmic_bus_access_notifier_unlocked(struct notifier_block *nb)
- {
- 	return 0;
- }
--
--static inline
--int iosf_mbi_unregister_pmic_bus_access_notifier(struct notifier_block *nb)
--{
--	return 0;
--}
- #endif
- 
- #endif /* __I915_IOSF_MBI_H__ */
--- 
-2.47.1
-
+Thanks for reviewing,
+Abel
