@@ -2,29 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 458DD9FD3D1
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Dec 2024 12:20:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 078A29FD3C1
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Dec 2024 12:15:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD2CC10E3A8;
-	Fri, 27 Dec 2024 11:20:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7465210E39B;
+	Fri, 27 Dec 2024 11:15:46 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="edcnYWb8";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED7FE10E3A8;
- Fri, 27 Dec 2024 11:20:20 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9395D10E39B
+ for <intel-gfx@lists.freedesktop.org>; Fri, 27 Dec 2024 11:15:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1735298145; x=1766834145;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=LhJu/YU5TDaAfS0aJ9mpiCjRZCa/Z095NllMATeCkpE=;
+ b=edcnYWb856sIRQg8SD7eM3Tl5D+p9iNPL2XYALgZ6F6rWkw4F6dwjuew
+ jyzyiO93K1ioUVg8atWJsskBGXY9k6jiuJOlnDp/D5F2t1oi6PP4ajl/+
+ ppWsJL9XKKqAWOpdkxPelO6JmazcKTFQUbxosK3rdp6xrCnbUa8VI1duE
+ mbg9wcp8s6zSq6EmgmzsMVuDvYAm3tFozLU0XMjsHrclVhxzq1f3e7yop
+ FQfGjKBKEFWuL3JirjlY5JO4Y200V0RL5xupcnxs/QBcgjVp+WKVng74e
+ 2UVbUu9AmRTLrDEUjVh0Hvc/IIOs7kqEmu9akoN+6NmG2ewbQj3EwPYq+ g==;
+X-CSE-ConnectionGUID: 0F2XmMgiRFe57gmNq7qOsQ==
+X-CSE-MsgGUID: HirGeN/7TZWfG6HoLgdlDQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11298"; a="61079903"
+X-IronPort-AV: E=Sophos;i="6.12,269,1728975600"; d="scan'208";a="61079903"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Dec 2024 03:15:44 -0800
+X-CSE-ConnectionGUID: AA/QCuU9QoSXdaDVS4tRjA==
+X-CSE-MsgGUID: L48tv61DQ0WINHoLkI7CIw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,269,1728975600"; d="scan'208";a="100260248"
+Received: from singhapo-super-server.iind.intel.com ([10.145.169.90])
+ by orviesa006.jf.intel.com with ESMTP; 27 Dec 2024 03:15:43 -0800
+From: apoorva.singh@intel.com
+To: intel-gfx@lists.freedesktop.org
+Cc: Apoorva Singh <apoorva.singh@intel.com>
+Subject: [PATCH] drm/i915/gt: Prevent uninitialized pointer reads
+Date: Fri, 27 Dec 2024 16:59:20 +0530
+Message-Id: <20241227112920.1547592-1-apoorva.singh@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/gt=3A_Add_G?=
- =?utf-8?q?EM=5FBUG=5FON_to_ensure_at_least_one_engine_supports_migration?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: apoorva.singh@intel.com
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 27 Dec 2024 11:20:20 -0000
-Message-ID: <173529842097.3829129.981407257686717127@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241227111128.1546618-1-apoorva.singh@intel.com>
-In-Reply-To: <20241227111128.1546618-1-apoorva.singh@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,24 +61,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: Apoorva Singh <apoorva.singh@intel.com>
 
-Series: drm/i915/gt: Add GEM_BUG_ON to ensure at least one engine supports migration
-URL   : https://patchwork.freedesktop.org/series/142984/
-State : warning
+Initialize rq to NULL to prevent uninitialized pointer reads.
 
-== Summary ==
+Signed-off-by: Apoorva Singh <apoorva.singh@intel.com>
+---
+ drivers/gpu/drm/i915/gt/selftest_migrate.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Error: dim checkpatch failed
-d2a2617f19e9 drm/i915/gt: Add GEM_BUG_ON to ensure at least one engine supports migration
--:23: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
-#23: FILE: drivers/gpu/drm/i915/gt/intel_migrate.c:300:
-+	GEM_BUG_ON(!count);
-
-total: 0 errors, 1 warnings, 0 checks, 9 lines checked
-
+diff --git a/drivers/gpu/drm/i915/gt/selftest_migrate.c b/drivers/gpu/drm/i915/gt/selftest_migrate.c
+index ca460cee4f8b..1bf7b88d9a9d 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_migrate.c
++++ b/drivers/gpu/drm/i915/gt/selftest_migrate.c
+@@ -262,7 +262,7 @@ static int clear(struct intel_migrate *migrate,
+ {
+ 	struct drm_i915_private *i915 = migrate->context->engine->i915;
+ 	struct drm_i915_gem_object *obj;
+-	struct i915_request *rq;
++	struct i915_request *rq = NULL;
+ 	struct i915_gem_ww_ctx ww;
+ 	u32 *vaddr, val = 0;
+ 	bool ccs_cap = false;
+-- 
+2.34.1
 
