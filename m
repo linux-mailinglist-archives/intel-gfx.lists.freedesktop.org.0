@@ -2,19 +2,19 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 704A79FD3DD
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Dec 2024 12:37:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 367449FD3DF
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Dec 2024 12:38:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FEDB10E3C2;
-	Fri, 27 Dec 2024 11:37:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D37AF10E3B8;
+	Fri, 27 Dec 2024 11:38:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="X8tOeP4Z";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="M8ZkaiPt";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5164210E3B6
- for <intel-gfx@lists.freedesktop.org>; Fri, 27 Dec 2024 11:37:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0AC1310E3C1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 27 Dec 2024 11:37:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,22 +22,22 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=khruvrtBZOjm1Q396MscA11s7dVcIV/GWd7Wg6z81ic=; b=X8tOeP4Z0L+6spEirQmkD9Xg1R
- ajBaz+qH2EMX+laadfAqWoAdfDQ7yD46nxQMHSuqTo/MHx2WpykMXR3LqatZwqKntDmdjrm/8YHpv
- tjGZj8fwkJbqXSweB8bKllNlzmQqVpvJlZt5bgkfGEzDgckFdoxlL5D8QAeDHwrW3ZmsAaNtJEz3z
- L7UPuOrHu5ryePhMEgoQoH3olFXlDyqetNZK2qP/IlHQRN9oxEcBMGBW2ohiiDXKMCjaH2TTyEVYO
- 7lcEFoLb3nTFhcZ/7XUJ0uERZERuUgrsiMGjzvFpaW2pJnQ5ShZ968tcWgMi010Ktmu+G7yiFRXko
- zZWxxerA==;
+ bh=cGpiET8V2SEgGZKlBxnY7fyLDHhWkwvfc6UTNuy732w=; b=M8ZkaiPtUsMTyw5soxV3orsdVm
+ doIyFHzc2mJmZPv64rbDnIb2JabpqQY8MxE/SWaTeNXW4dBvSpYYktde7gvfD7T5HVU/jg8DqcSvg
+ KV82IQCKfrj00z5JLHrPvulb54sTv1s9/f+eH1xuKQXIif0bHRGfoMgYHGoKZVvF9gRryRBtMwI7v
+ AozYMJY+0vzGECCPT8OOGOBBKQRDfYGFm4ePyo9K5GnwObT9fPLTMAV1o9X+8RlZEKvguLkfQDwBv
+ iw+DsZVhvLd1/lN3iYo4dK1n/JjfghsvFcNA+DW25WOXK7tucsMj3KOmXUr7+hIJdtgVrrvcR4cXw
+ xF3jRjGg==;
 Received: from [90.241.98.187] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1tR8fD-008EU9-Jj
- for <intel-gfx@lists.freedesktop.org>; Fri, 27 Dec 2024 12:37:55 +0100
+ id 1tR8fE-008EUF-9h
+ for <intel-gfx@lists.freedesktop.org>; Fri, 27 Dec 2024 12:37:56 +0100
 From: Tvrtko Ursulin <tursulin@igalia.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 2/3] drm/i915: Remove unused intel_huc_suspend
-Date: Fri, 27 Dec 2024 11:37:53 +0000
-Message-ID: <20241227113754.25871-2-tursulin@igalia.com>
+Subject: [PATCH 3/3] drm/i915: Remove unused intel_ring_cacheline_align
+Date: Fri, 27 Dec 2024 11:37:54 +0000
+Message-ID: <20241227113754.25871-3-tursulin@igalia.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20241227113754.25871-1-tursulin@igalia.com>
 References: <20241227113754.25871-1-tursulin@igalia.com>
@@ -60,55 +60,64 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: "Dr. David Alan Gilbert" <linux@treblig.org>
 
-intel_huc_suspend() was added in 2022 by
-commit 27536e03271d ("drm/i915/huc: track delayed HuC load with a
-fence")
-but hasn't been used.
+The last use of intel_ring_cacheline_align() was removed in 2017 by
+commit afa8ce5b3080 ("drm/i915: Nuke legacy flip queueing code")
 
 Remove it.
 
 Signed-off-by: Dr. David Alan Gilbert <linux@treblig.org>
 ---
- drivers/gpu/drm/i915/gt/uc/intel_huc.c | 13 -------------
- drivers/gpu/drm/i915/gt/uc/intel_huc.h |  1 -
- 2 files changed, 14 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_ring.c | 24 ------------------------
+ drivers/gpu/drm/i915/gt/intel_ring.h |  1 -
+ 2 files changed, 25 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.c b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-index d7ac31c3254c..b3cbf85c00cb 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.c
-@@ -427,19 +427,6 @@ void intel_huc_fini(struct intel_huc *huc)
- 		intel_uc_fw_fini(&huc->fw);
+diff --git a/drivers/gpu/drm/i915/gt/intel_ring.c b/drivers/gpu/drm/i915/gt/intel_ring.c
+index 59da4b7bd262..b74d9205c0f5 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ring.c
++++ b/drivers/gpu/drm/i915/gt/intel_ring.c
+@@ -308,30 +308,6 @@ u32 *intel_ring_begin(struct i915_request *rq, unsigned int num_dwords)
+ 	return cs;
  }
  
--void intel_huc_suspend(struct intel_huc *huc)
+-/* Align the ring tail to a cacheline boundary */
+-int intel_ring_cacheline_align(struct i915_request *rq)
 -{
--	if (!intel_uc_fw_is_loadable(&huc->fw))
--		return;
+-	int num_dwords;
+-	void *cs;
 -
--	/*
--	 * in the unlikely case that we're suspending before the GSC has
--	 * completed its loading sequence, just stop waiting. We'll restart
--	 * on resume.
--	 */
--	delayed_huc_load_complete(huc);
+-	num_dwords = (rq->ring->emit & (CACHELINE_BYTES - 1)) / sizeof(u32);
+-	if (num_dwords == 0)
+-		return 0;
+-
+-	num_dwords = CACHELINE_DWORDS - num_dwords;
+-	GEM_BUG_ON(num_dwords & 1);
+-
+-	cs = intel_ring_begin(rq, num_dwords);
+-	if (IS_ERR(cs))
+-		return PTR_ERR(cs);
+-
+-	memset64(cs, (u64)MI_NOOP << 32 | MI_NOOP, num_dwords / 2);
+-	intel_ring_advance(rq, cs + num_dwords);
+-
+-	GEM_BUG_ON(rq->ring->emit & (CACHELINE_BYTES - 1));
+-	return 0;
 -}
 -
- static const char *auth_mode_string(struct intel_huc *huc,
- 				    enum intel_huc_authentication_type type)
- {
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_huc.h b/drivers/gpu/drm/i915/gt/uc/intel_huc.h
-index ba5cb08e9e7b..d5e441b9e08d 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_huc.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_huc.h
-@@ -57,7 +57,6 @@ int intel_huc_sanitize(struct intel_huc *huc);
- void intel_huc_init_early(struct intel_huc *huc);
- int intel_huc_init(struct intel_huc *huc);
- void intel_huc_fini(struct intel_huc *huc);
--void intel_huc_suspend(struct intel_huc *huc);
- int intel_huc_auth(struct intel_huc *huc, enum intel_huc_authentication_type type);
- int intel_huc_wait_for_auth_complete(struct intel_huc *huc,
- 				     enum intel_huc_authentication_type type);
+ #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
+ #include "selftest_ring.c"
+ #endif
+diff --git a/drivers/gpu/drm/i915/gt/intel_ring.h b/drivers/gpu/drm/i915/gt/intel_ring.h
+index 1b32dadfb8c3..64b322e25f36 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ring.h
++++ b/drivers/gpu/drm/i915/gt/intel_ring.h
+@@ -16,7 +16,6 @@ struct intel_ring *
+ intel_engine_create_ring(struct intel_engine_cs *engine, int size);
+ 
+ u32 *intel_ring_begin(struct i915_request *rq, unsigned int num_dwords);
+-int intel_ring_cacheline_align(struct i915_request *rq);
+ 
+ unsigned int intel_ring_update_space(struct intel_ring *ring);
+ 
 -- 
 2.47.1
 
