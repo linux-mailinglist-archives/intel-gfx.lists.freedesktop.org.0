@@ -2,47 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C76249FD817
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Dec 2024 23:52:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F2D709FD831
+	for <lists+intel-gfx@lfdr.de>; Sat, 28 Dec 2024 00:01:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7291A10E40E;
-	Fri, 27 Dec 2024 22:52:39 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="VBNrLNJu";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id D12C310E40F;
+	Fri, 27 Dec 2024 23:01:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B15010E40E
- for <intel-gfx@lists.freedesktop.org>; Fri, 27 Dec 2024 22:52:38 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id 5CADEA41A7B;
- Fri, 27 Dec 2024 22:50:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 367E8C4CED0;
- Fri, 27 Dec 2024 22:52:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1735339956;
- bh=RcuMVkDnwaa7G4tTX/z3KG1pwWiw8J0cQnwJMAwoQPo=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=VBNrLNJucqzGMx/CNLJpikch4WdCgfLfgPfGzE5WViuHEmrQ/puWY+phw8NMJ/JAg
- oYPmHK12prpI1DDCAKO3MYRvAG6tSdQqBMCmtNHh+yqbUsTH1VAGipq4M2wwNL1TMk
- PhVXwC6tn2+qVj21JFHOx8kaffMBYu/hrLbEzFF/6jqNSg7iI8yWT2VW/loDOqHA2y
- AEiMvk9FQQusQT/81W60ql62kYoU14nMCZUTVOEw8AdOKCYJzat9tnWHluEV9POakA
- 5/kIgZ97Gss4e4IhxjNTaHtQbwtyPIWgjmbx+UDD6mKfuCB3wJJ1h3jlr6YPoRyXim
- xRu6FrkbVWepA==
-Date: Fri, 27 Dec 2024 23:52:33 +0100
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Tvrtko Ursulin <tursulin@igalia.com>
-Cc: intel-gfx@lists.freedesktop.org, 
- "Dr. David Alan Gilbert" <linux@treblig.org>
-Subject: Re: [PATCH 3/3] drm/i915: Remove unused intel_ring_cacheline_align
-Message-ID: <aoypc2myv2urpermqnz2m2nm4hdjunekqo32r3en5mstuktdzy@nu7lfn6geiip>
-References: <20241227113754.25871-1-tursulin@igalia.com>
- <20241227113754.25871-3-tursulin@igalia.com>
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B6F810E3F2;
+ Fri, 27 Dec 2024 23:01:38 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241227113754.25871-3-tursulin@igalia.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_series_starting_with_=5B?=
+ =?utf-8?q?1/3=5D_drm/i915=3A_Remove_deadcode_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tursulin@igalia.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 27 Dec 2024 23:01:38 -0000
+Message-ID: <173534049837.4001221.3183843393319769298@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241227113754.25871-1-tursulin@igalia.com>
+In-Reply-To: <20241227113754.25871-1-tursulin@igalia.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,22 +37,20 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+== Series Details ==
 
-On Fri, Dec 27, 2024 at 11:37:54AM +0000, Tvrtko Ursulin wrote:
-> From: "Dr. David Alan Gilbert" <linux@treblig.org>
-> 
-> The last use of intel_ring_cacheline_align() was removed in 2017 by
-> commit afa8ce5b3080 ("drm/i915: Nuke legacy flip queueing code")
-> 
-> Remove it.
-> 
-> Signed-off-by: Dr. David Alan Gilbert <linux@treblig.org>
+Series: series starting with [1/3] drm/i915: Remove deadcode (rev2)
+URL   : https://patchwork.freedesktop.org/series/142988/
+State : warning
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+== Summary ==
 
-Thanks,
-Andi
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
+
+
