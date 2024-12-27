@@ -2,55 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C57659FD352
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Dec 2024 11:57:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 458DD9FD3D1
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Dec 2024 12:20:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B049710E061;
-	Fri, 27 Dec 2024 10:57:52 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g6usMb3q";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD2CC10E3A8;
+	Fri, 27 Dec 2024 11:20:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7BA6010E061
- for <intel-gfx@lists.freedesktop.org>; Fri, 27 Dec 2024 10:57:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1735297072; x=1766833072;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=L8JGnghTE8fFYdnBHgNTfT3fy/KcTvtTvBTqxMcOpZ4=;
- b=g6usMb3qLS7WWnwaS1PrVMP7I85LKUeiCIcVGk66GxlvISO1+AW/QZrn
- ThJ6nxtlpxCr1XR0IZRLGO4tNU0jDsKcV5i9FWjqk6ZmwJAlgrL30FWsm
- tXIy611uG1EFBurIy4f6WrnxeYLtQK3/U5CbjtiZUnIQVzX2b0i8mGTJP
- jXcpcb8Xlu/MRiiJ6xX8dGAifPCB4dAn5rFtup4bYWblVkBZQxVs/r6x6
- 6jdyjSvWVJGWgNjd49i7UvoFYinrCvXBNUPpTXVCQQJG/jyEe/QZYbq6D
- /vmmr0ooNc5jMy8oRu8apWcdhUWSZjTrWac+m5Rf79Lpaf96d2YLOGPeb Q==;
-X-CSE-ConnectionGUID: D60hxNchSxGaUsXrkhz0eQ==
-X-CSE-MsgGUID: xiGWCQARSxCZw29HZe9ZJg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11298"; a="39479065"
-X-IronPort-AV: E=Sophos;i="6.12,269,1728975600"; d="scan'208";a="39479065"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Dec 2024 02:57:52 -0800
-X-CSE-ConnectionGUID: bZw4UxbrQX2vHQ6xWsn4ew==
-X-CSE-MsgGUID: huOMQmZpSzeCUHymEtLbBg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="100972588"
-Received: from singhapo-super-server.iind.intel.com ([10.145.169.90])
- by orviesa008.jf.intel.com with ESMTP; 27 Dec 2024 02:57:49 -0800
-From: apoorva.singh@intel.com
-To: intel-gfx@lists.freedesktop.org
-Cc: chris.p.wilson@linux.intel.com,
-	Apoorva Singh <apoorva.singh@intel.com>
-Subject: [PATCH] drm/i915/gt: Add GEM_BUG_ON to ensure at least one engine
- supports migration
-Date: Fri, 27 Dec 2024 16:41:28 +0530
-Message-Id: <20241227111128.1546618-1-apoorva.singh@intel.com>
-X-Mailer: git-send-email 2.34.1
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED7FE10E3A8;
+ Fri, 27 Dec 2024 11:20:20 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/gt=3A_Add_G?=
+ =?utf-8?q?EM=5FBUG=5FON_to_ensure_at_least_one_engine_supports_migration?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: apoorva.singh@intel.com
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 27 Dec 2024 11:20:20 -0000
+Message-ID: <173529842097.3829129.981407257686717127@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241227111128.1546618-1-apoorva.singh@intel.com>
+In-Reply-To: <20241227111128.1546618-1-apoorva.singh@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,35 +37,24 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Apoorva Singh <apoorva.singh@intel.com>
+== Series Details ==
 
-Ensure GEM_BUG_ON verifies at least one engine supports migration.
-Additionally, it prevents passing an uninitialized variable to
-intel_context_create().
+Series: drm/i915/gt: Add GEM_BUG_ON to ensure at least one engine supports migration
+URL   : https://patchwork.freedesktop.org/series/142984/
+State : warning
 
-Cc: Chris Wilson <chris.p.wilson@linux.intel.com>
-Signed-off-by: Apoorva Singh <apoorva.singh@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_migrate.c | 3 +++
- 1 file changed, 3 insertions(+)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_migrate.c b/drivers/gpu/drm/i915/gt/intel_migrate.c
-index 6f7af4077135..528a7cba3623 100644
---- a/drivers/gpu/drm/i915/gt/intel_migrate.c
-+++ b/drivers/gpu/drm/i915/gt/intel_migrate.c
-@@ -296,6 +296,9 @@ static struct intel_context *__migrate_engines(struct intel_gt *gt)
- 			engines[count++] = engine;
- 	}
- 
-+	/* At least one engine must support migration! */
+Error: dim checkpatch failed
+d2a2617f19e9 drm/i915/gt: Add GEM_BUG_ON to ensure at least one engine supports migration
+-:23: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#23: FILE: drivers/gpu/drm/i915/gt/intel_migrate.c:300:
 +	GEM_BUG_ON(!count);
-+
- 	return intel_context_create(engines[random_index(count)]);
- }
- 
--- 
-2.34.1
+
+total: 0 errors, 1 warnings, 0 checks, 9 lines checked
+
 
