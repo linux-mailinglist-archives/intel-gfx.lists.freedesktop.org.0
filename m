@@ -2,45 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97CC59FE199
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Dec 2024 02:35:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DBF5F9FE3D1
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Dec 2024 09:40:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 13D2D10E0B6;
-	Mon, 30 Dec 2024 01:34:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E5EE10E0D7;
+	Mon, 30 Dec 2024 08:40:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="hAKtBQ2B";
+	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="k1Ts7Esn";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 37D0110E0B6
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Dec 2024 01:34:58 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id C5E57A403B8;
- Mon, 30 Dec 2024 01:33:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3109DC4CED1;
- Mon, 30 Dec 2024 01:34:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1735522496;
- bh=p2NennyRD7D2ntTYsR5p7gMQu0uDdZDyMplMZruzqTU=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=hAKtBQ2B1D71FF4YZvDAN5qCEgW6frj7485qDmVQw1bHWnaQBipBC5tw+XsL3z2kb
- WP6kDwiAzrSefNDh+XEEjCvf/TdaemxG5CbUm+Iol2HgkX/anO3WDFetfZVk655rZT
- hSBFNQ2mybQub8GWf8sXuRwo6Bfvrfs4KHtz4UyoCly68hb9eHu93gzkhdfs+kH4IK
- k1fTZAAP5ENA2J0uRPGeEc/Elra7oynL7iiwYzZX8ER6Ii7AusZgIoYdPIMFSLc3DC
- s7WXQmYjbY5tpCLZKhLkaOsL1qZAOd2J0EJOIACvNfcPFnBnRDCTqjwi/d0/NCAZjk
- YJZTI14DTRU0g==
-Date: Mon, 30 Dec 2024 02:34:50 +0100
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Tvrtko Ursulin <tursulin@igalia.com>
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 1/3] drm/i915: Remove deadcode
-Message-ID: <m4w5xt5tqkjbnnvhlq6rlhhclcgku5aytwnidn2h2yynp5hebk@pdborqadmeip>
-References: <20241227113754.25871-1-tursulin@igalia.com>
+Received: from mslow1.mail.gandi.net (mslow1.mail.gandi.net [217.70.178.240])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA94910E0D7
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Dec 2024 08:40:07 +0000 (UTC)
+Received: from relay5-d.mail.gandi.net (unknown [IPv6:2001:4b98:dc4:8::225])
+ by mslow1.mail.gandi.net (Postfix) with ESMTP id E9D0FC1865
+ for <intel-gfx@lists.freedesktop.org>; Mon, 30 Dec 2024 08:40:04 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id E1BE21C0004;
+ Mon, 30 Dec 2024 08:39:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+ t=1735547981;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=Ozww/CUAveKXzP/E7/4wcHm/md9vRCr7Us26rY2MA+A=;
+ b=k1Ts7EsnOUVhslaqug9Y1mJ+W7/+vN59JkNrTBxHV1CKy8mxMBkt1sI6wlvfp1AZAdLScz
+ aesBssTAog9UzzYSU7SFqbopra5dM390woQO/ea7S8BbrQ/POowbPm54eVUAOq+cvFDwXT
+ UZpDV5swHnlC9peA3sTziBtPVQ/xRwcV1qeJM+AFWwrXzPcDt+3D3N1NVGSM0i6pqPoUpe
+ fHoTbb5fEEFJ/eQlPNwgvRjns/SDJTIzU7O/ANCp5aIW8lQWOCLAVYjmOWXn55xauY6hQc
+ Kf2+dx8HWl2iACIFauqyPpeK4bZfGL5I4gAxIT14eriM2SPjljykuYuI524fKw==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: "Usyskin, Alexander" <alexander.usyskin@intel.com>
+Cc: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,  "Poosa, Karthik"
+ <karthik.poosa@intel.com>,  "De Marchi, Lucas" <lucas.demarchi@intel.com>,
+ Richard Weinberger <richard@nod.at>,  Vignesh Raghavendra
+ <vigneshr@ti.com>,  Thomas =?utf-8?Q?Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,  Maxime Ripard
+ <mripard@kernel.org>,  Thomas Zimmermann <tzimmermann@suse.de>,  David
+ Airlie <airlied@gmail.com>,  Simona Vetter <simona@ffwll.ch>,  Jani Nikula
+ <jani.nikula@linux.intel.com>,  Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>,  Tvrtko Ursulin <tursulin@ursulin.net>,
+ "Weil, Oren jer" <oren.jer.weil@intel.com>,
+ "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 06/10] mtd: intel-dg: wake card on operations
+In-Reply-To: <CY5PR11MB63663D73FA8ED331F8229AA1ED082@CY5PR11MB6366.namprd11.prod.outlook.com>
+ (Alexander Usyskin's message of "Sun, 29 Dec 2024 15:08:56 +0000")
+References: <20241119140112.790720-1-alexander.usyskin@intel.com>
+ <20241119140112.790720-7-alexander.usyskin@intel.com>
+ <Z2H_7Xry3R2fWpMZ@intel.com>
+ <24725a85-47c2-49c3-b2ae-443279b2bd13@intel.com>
+ <CY5PR11MB63663382E44A258B0BAEF1BAED052@CY5PR11MB6366.namprd11.prod.outlook.com>
+ <CY5PR11MB6366CBE2D1AA392AD3F745F7ED052@CY5PR11MB6366.namprd11.prod.outlook.com>
+ <87cyhiqk7a.fsf@bootlin.com>
+ <CY5PR11MB63663D73FA8ED331F8229AA1ED082@CY5PR11MB6366.namprd11.prod.outlook.com>
+User-Agent: mu4e 1.12.7; emacs 29.4
+Date: Mon, 30 Dec 2024 09:39:39 +0100
+Message-ID: <87o70ta7jo.fsf@bootlin.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241227113754.25871-1-tursulin@igalia.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: miquel.raynal@bootlin.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,122 +82,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Tvrtko,
+On 29/12/2024 at 15:08:56 GMT, "Usyskin, Alexander" <alexander.usyskin@inte=
+l.com> wrote:
 
-merged to drm-intel-gt-next. I have added also your SoB.
+>>=20
+>> Hello Alexander,
+>>=20
+>> >> If so, I have to add patch for mtd subsystem to always have device for
+>> master
+>> >> initialized regardless of kernel flag.
+>> >> Only to initialize struct device, not to create full mtd node.
+>> >>
+>> >> Miquel - are you agree to this?
+>>=20
+>> Conceptually yes, but please mind one thing: we do not break
+>> userspace. So if you want to keep the master mtd device, fine, but you
+>> need to do it in a consistent way so that people not enabling the kernel
+>> flag won't get a new device in their rootfs, shifting all indexes
+>> upwards.
+>>=20
+>> That being said, you are probably going in the right direction by doing
+>> that.
+>>=20
+>> Thanks,
+>> Miqu=C3=A8l
+>
+> I've looked into this endeavour and seemed that there a need for special
+> device class and careful attention in release flow to use right class.
+> It will take time to do right.
+> Miquel, Rodrigo, Karthik, Lucas - may the DG NVM code be merged in the cu=
+rrent
+> form and this device be added later?
+
+In general, yes. But maybe you want to select
+CONFIG_MTD_PARTITIONED_MASTER (IIUC your problem).
 
 Thanks,
-Andi
-
-On Fri, Dec 27, 2024 at 11:37:52AM +0000, Tvrtko Ursulin wrote:
-> From: "Dr. David Alan Gilbert" <linux@treblig.org>
-> 
-> i915_active_acquire_for_context() was added in 2020 by
-> commit 5d9341370f57 ("drm/i915: Export a preallocate variant of
-> i915_active_acquire()") but has never been used.
-> 
-> The last use of __i915_gem_object_is_lmem() was removed in 2021 by
-> commit ff20afc4cee7 ("drm/i915: Update error capture code to avoid using
-> the current vma state")
-> 
-> Remove them.
-> 
-> Signed-off-by: Dr. David Alan Gilbert <linux@treblig.org>
-> ---
->  drivers/gpu/drm/i915/gem/i915_gem_lmem.c | 23 -----------------------
->  drivers/gpu/drm/i915/gem/i915_gem_lmem.h |  2 --
->  drivers/gpu/drm/i915/i915_active.c       | 18 ------------------
->  drivers/gpu/drm/i915/i915_active.h       |  1 -
->  4 files changed, 44 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_lmem.c b/drivers/gpu/drm/i915/gem/i915_gem_lmem.c
-> index 3198b64ad7db..388f90784d8a 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_lmem.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_lmem.c
-> @@ -52,29 +52,6 @@ bool i915_gem_object_is_lmem(struct drm_i915_gem_object *obj)
->  		      mr->type == INTEL_MEMORY_STOLEN_LOCAL);
->  }
->  
-> -/**
-> - * __i915_gem_object_is_lmem - Whether the object is resident in
-> - * lmem while in the fence signaling critical path.
-> - * @obj: The object to check.
-> - *
-> - * This function is intended to be called from within the fence signaling
-> - * path where the fence, or a pin, keeps the object from being migrated. For
-> - * example during gpu reset or similar.
-> - *
-> - * Return: Whether the object is resident in lmem.
-> - */
-> -bool __i915_gem_object_is_lmem(struct drm_i915_gem_object *obj)
-> -{
-> -	struct intel_memory_region *mr = READ_ONCE(obj->mm.region);
-> -
-> -#ifdef CONFIG_LOCKDEP
-> -	GEM_WARN_ON(dma_resv_test_signaled(obj->base.resv, DMA_RESV_USAGE_BOOKKEEP) &&
-> -		    i915_gem_object_evictable(obj));
-> -#endif
-> -	return mr && (mr->type == INTEL_MEMORY_LOCAL ||
-> -		      mr->type == INTEL_MEMORY_STOLEN_LOCAL);
-> -}
-> -
->  /**
->   * __i915_gem_object_create_lmem_with_ps - Create lmem object and force the
->   * minimum page size for the backing pages.
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_lmem.h b/drivers/gpu/drm/i915/gem/i915_gem_lmem.h
-> index 5a7a14e85c3f..ecd8f1a633a1 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_lmem.h
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_lmem.h
-> @@ -19,8 +19,6 @@ i915_gem_object_lmem_io_map(struct drm_i915_gem_object *obj,
->  
->  bool i915_gem_object_is_lmem(struct drm_i915_gem_object *obj);
->  
-> -bool __i915_gem_object_is_lmem(struct drm_i915_gem_object *obj);
-> -
->  struct drm_i915_gem_object *
->  i915_gem_object_create_lmem_from_data(struct drm_i915_private *i915,
->  				      const void *data, size_t size);
-> diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
-> index 35319228bc51..0dbc4e289300 100644
-> --- a/drivers/gpu/drm/i915/i915_active.c
-> +++ b/drivers/gpu/drm/i915/i915_active.c
-> @@ -527,24 +527,6 @@ int i915_active_acquire(struct i915_active *ref)
->  	return err;
->  }
->  
-> -int i915_active_acquire_for_context(struct i915_active *ref, u64 idx)
-> -{
-> -	struct i915_active_fence *active;
-> -	int err;
-> -
-> -	err = i915_active_acquire(ref);
-> -	if (err)
-> -		return err;
-> -
-> -	active = active_instance(ref, idx);
-> -	if (!active) {
-> -		i915_active_release(ref);
-> -		return -ENOMEM;
-> -	}
-> -
-> -	return 0; /* return with active ref */
-> -}
-> -
->  void i915_active_release(struct i915_active *ref)
->  {
->  	debug_active_assert(ref);
-> diff --git a/drivers/gpu/drm/i915/i915_active.h b/drivers/gpu/drm/i915/i915_active.h
-> index 77c676ecc263..821f7c21ea9b 100644
-> --- a/drivers/gpu/drm/i915/i915_active.h
-> +++ b/drivers/gpu/drm/i915/i915_active.h
-> @@ -186,7 +186,6 @@ int i915_request_await_active(struct i915_request *rq,
->  #define I915_ACTIVE_AWAIT_BARRIER BIT(2)
->  
->  int i915_active_acquire(struct i915_active *ref);
-> -int i915_active_acquire_for_context(struct i915_active *ref, u64 idx);
->  bool i915_active_acquire_if_busy(struct i915_active *ref);
->  
->  void i915_active_release(struct i915_active *ref);
-> -- 
-> 2.47.1
-> 
+Miqu=C3=A8l
