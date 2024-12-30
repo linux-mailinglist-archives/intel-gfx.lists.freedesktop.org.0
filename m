@@ -2,55 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3170B9FE6E5
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Dec 2024 15:15:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C48E9FE6E6
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Dec 2024 15:15:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF8FC10E4E8;
-	Mon, 30 Dec 2024 14:15:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 16B1F10E380;
+	Mon, 30 Dec 2024 14:15:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OqCnyK1B";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fu/Q8ZnC";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E0F510E4E5;
- Mon, 30 Dec 2024 14:15:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F42110E2C7;
+ Mon, 30 Dec 2024 14:15:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1735568102; x=1767104102;
+ t=1735568107; x=1767104107;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=yikOEufNeMqGvbhr9PY8zRVM+4oOZ1MKcUkamLQ4CcQ=;
- b=OqCnyK1Bd6IHqXfIN5nDmmvB2jEtsRVF8JGcVifPTXTLo98UjDi31RLN
- SLwkwJ6HWyw05H7UfE59sxGBvnRdZII59GMyZDTN1AQcaq4o99VNL3wYm
- 6xU8zvP9Png+YoljA+9ThynvpvrKteiS/n70R/0qjkswXv76ZW3bM8FxX
- EkLSRVT1Qjj3q5ZULuwUbkkIXN1j43ZVJnxUZj5l8hpI5Pi1UYwihiqzy
- oAv3kshZ/RtUzHZfJX9Epr/+3lDzymZUbNm3SOksr7BnTQQNIZcVDkHeG
- hL4WgJUIIUsk10mGm2YJTppImQJ3PGP90ErubbEuP9NqL10b+e5CRyu8h Q==;
-X-CSE-ConnectionGUID: jBAxSzLJQgynda+OP4sSsA==
-X-CSE-MsgGUID: SAJk1790RcGU51D8t/c/hw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11301"; a="39538307"
-X-IronPort-AV: E=Sophos;i="6.12,276,1728975600"; d="scan'208";a="39538307"
+ bh=Zc1sOo3gywuLN6XWOoFdTAxOHL6Ue63lSset64SRi/M=;
+ b=fu/Q8ZnCCvSnViFbifq3Orh/P051JuKj7fUH7tkz7Wj5TRemv6QpZQe/
+ vEMNWVYLDskAy8aejVBLyLA34A/Vm4iPC4gKZf7OOz+BcofulERBndj0r
+ 9Wk07luxDnTdeKlwWldP30CYKn1HlhazckqnttMyZ9Xf/VvluE4oI0nKT
+ RWUxGf45OJrME1Uko8z2+xkklziCz5mRUzuD29U9rph+lvIqXbFYwRBkx
+ rDUudEr+qX6acqgEa/ngsRHAWSXIZsWcB+Zu8UQSVUTSU943r4PYxEQgJ
+ e6DoieXcvsoBrqmf4NBtwIeQWvY9JbZiOqzNO63e1rtuqInzOF6KhYZCG Q==;
+X-CSE-ConnectionGUID: Bsg4CdJmT9C3b7Lir5+CWg==
+X-CSE-MsgGUID: zB2B8fZfRTSR6gJKArnoTw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11301"; a="39538326"
+X-IronPort-AV: E=Sophos;i="6.12,276,1728975600"; d="scan'208";a="39538326"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Dec 2024 06:15:02 -0800
-X-CSE-ConnectionGUID: IvbVE74PT6uyxzPy+JVDsw==
-X-CSE-MsgGUID: Ir720CHZSHiLEAk41Kym+A==
+ 30 Dec 2024 06:15:07 -0800
+X-CSE-ConnectionGUID: M9V6rlP8TvySUpgx4ajlSQ==
+X-CSE-MsgGUID: vF1bUla+T9yXuO8CglLmcA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,276,1728975600"; d="scan'208";a="101215253"
+X-IronPort-AV: E=Sophos;i="6.12,276,1728975600"; d="scan'208";a="101215285"
 Received: from ncintean-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.167])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Dec 2024 06:15:01 -0800
+ 30 Dec 2024 06:15:06 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, Sergey Senozhatsky <senozhatsky@chromium.org>,
  Ville Syrjala <ville.syrjala@linux.intel.com>
-Subject: [CI v3 2/6] drm/i915/hdmi: propagate errors from
- intel_hdmi_init_connector()
-Date: Mon, 30 Dec 2024 16:14:41 +0200
-Message-Id: <cdaf9e32cc4880c46e120933438c37b4d87be12e.1735568047.git.jani.nikula@intel.com>
+Subject: [CI v3 3/6] drm/i915/hdmi: add error handling in g4x_hdmi_init()
+Date: Mon, 30 Dec 2024 16:14:42 +0200
+Message-Id: <cafae7bf1f9ffb8f6a1d7a508cd2ce7dcf06fef7.1735568047.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1735568047.git.jani.nikula@intel.com>
 References: <cover.1735568047.git.jani.nikula@intel.com>
@@ -72,8 +71,8 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Propagate errors from intel_hdmi_init_connector() to be able to handle
-them at callers. This is similar to intel_dp_init_connector().
+Handle encoder and connector init failures in g4x_hdmi_init(). This is
+similar to g4x_dp_init().
 
 Cc: Sergey Senozhatsky <senozhatsky@chromium.org>
 Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
@@ -82,66 +81,110 @@ Closes: https://lore.kernel.org/r/20241031105145.2140590-1-senozhatsky@chromium.
 Reviewed-by: Sergey Senozhatsky <senozhatsky@chromium.org>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_hdmi.c | 10 ++++++----
- drivers/gpu/drm/i915/display/intel_hdmi.h |  2 +-
- 2 files changed, 7 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/g4x_hdmi.c | 35 ++++++++++++++++---------
+ drivers/gpu/drm/i915/display/g4x_hdmi.h |  5 ++--
+ 2 files changed, 26 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index f7b1768b279c..ed29dd0ccef0 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -3039,7 +3039,7 @@ void intel_infoframe_init(struct intel_digital_port *dig_port)
- 	}
+diff --git a/drivers/gpu/drm/i915/display/g4x_hdmi.c b/drivers/gpu/drm/i915/display/g4x_hdmi.c
+index 503f4b903098..98e6a931042f 100644
+--- a/drivers/gpu/drm/i915/display/g4x_hdmi.c
++++ b/drivers/gpu/drm/i915/display/g4x_hdmi.c
+@@ -683,7 +683,7 @@ static bool assert_hdmi_port_valid(struct drm_i915_private *i915, enum port port
+ 			 "Platform does not support HDMI %c\n", port_name(port));
  }
  
--void intel_hdmi_init_connector(struct intel_digital_port *dig_port,
-+bool intel_hdmi_init_connector(struct intel_digital_port *dig_port,
- 			       struct intel_connector *intel_connector)
+-void g4x_hdmi_init(struct drm_i915_private *dev_priv,
++bool g4x_hdmi_init(struct drm_i915_private *dev_priv,
+ 		   i915_reg_t hdmi_reg, enum port port)
  {
- 	struct intel_display *display = to_intel_display(dig_port);
-@@ -3056,17 +3056,17 @@ void intel_hdmi_init_connector(struct intel_digital_port *dig_port,
- 		    intel_encoder->base.base.id, intel_encoder->base.name);
+ 	struct intel_display *display = &dev_priv->display;
+@@ -693,10 +693,10 @@ void g4x_hdmi_init(struct drm_i915_private *dev_priv,
+ 	struct intel_connector *intel_connector;
  
- 	if (DISPLAY_VER(display) < 12 && drm_WARN_ON(dev, port == PORT_A))
+ 	if (!assert_port_valid(dev_priv, port))
 -		return;
 +		return false;
  
- 	if (drm_WARN(dev, dig_port->max_lanes < 4,
- 		     "Not enough lanes (%d) for HDMI on [ENCODER:%d:%s]\n",
- 		     dig_port->max_lanes, intel_encoder->base.base.id,
- 		     intel_encoder->base.name))
+ 	if (!assert_hdmi_port_valid(dev_priv, port))
 -		return;
 +		return false;
  
- 	ddc_pin = intel_hdmi_ddc_pin(intel_encoder);
- 	if (!ddc_pin)
+ 	devdata = intel_bios_encoder_data_lookup(display, port);
+ 
+@@ -707,15 +707,13 @@ void g4x_hdmi_init(struct drm_i915_private *dev_priv,
+ 
+ 	dig_port = kzalloc(sizeof(*dig_port), GFP_KERNEL);
+ 	if (!dig_port)
 -		return;
 +		return false;
  
- 	drm_connector_init_with_ddc(dev, connector,
- 				    &intel_hdmi_connector_funcs,
-@@ -3111,6 +3111,8 @@ void intel_hdmi_init_connector(struct intel_digital_port *dig_port,
- 					   &conn_info);
- 	if (!intel_hdmi->cec_notifier)
- 		drm_dbg_kms(display->drm, "CEC notifier get failed\n");
+ 	dig_port->aux_ch = AUX_CH_NONE;
+ 
+ 	intel_connector = intel_connector_alloc();
+-	if (!intel_connector) {
+-		kfree(dig_port);
+-		return;
+-	}
++	if (!intel_connector)
++		goto err_connector_alloc;
+ 
+ 	intel_encoder = &dig_port->base;
+ 
+@@ -723,9 +721,10 @@ void g4x_hdmi_init(struct drm_i915_private *dev_priv,
+ 
+ 	mutex_init(&dig_port->hdcp_mutex);
+ 
+-	drm_encoder_init(&dev_priv->drm, &intel_encoder->base,
+-			 &intel_hdmi_enc_funcs, DRM_MODE_ENCODER_TMDS,
+-			 "HDMI %c", port_name(port));
++	if (drm_encoder_init(&dev_priv->drm, &intel_encoder->base,
++			     &intel_hdmi_enc_funcs, DRM_MODE_ENCODER_TMDS,
++			     "HDMI %c", port_name(port)))
++		goto err_encoder_init;
+ 
+ 	intel_encoder->hotplug = intel_hdmi_hotplug;
+ 	intel_encoder->compute_config = g4x_hdmi_compute_config;
+@@ -788,5 +787,17 @@ void g4x_hdmi_init(struct drm_i915_private *dev_priv,
+ 
+ 	intel_infoframe_init(dig_port);
+ 
+-	intel_hdmi_init_connector(dig_port, intel_connector);
++	if (!intel_hdmi_init_connector(dig_port, intel_connector))
++		goto err_init_connector;
 +
 +	return true;
++
++err_init_connector:
++	drm_encoder_cleanup(&intel_encoder->base);
++err_encoder_init:
++	kfree(intel_connector);
++err_connector_alloc:
++	kfree(dig_port);
++
++	return false;
  }
+diff --git a/drivers/gpu/drm/i915/display/g4x_hdmi.h b/drivers/gpu/drm/i915/display/g4x_hdmi.h
+index 817f55c7a3a1..a52e8986ec7a 100644
+--- a/drivers/gpu/drm/i915/display/g4x_hdmi.h
++++ b/drivers/gpu/drm/i915/display/g4x_hdmi.h
+@@ -16,14 +16,15 @@ struct drm_connector;
+ struct drm_i915_private;
  
- /*
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.h b/drivers/gpu/drm/i915/display/intel_hdmi.h
-index 466f48df8a74..38deaeb302a2 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.h
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.h
-@@ -22,7 +22,7 @@ struct intel_encoder;
- struct intel_hdmi;
- union hdmi_infoframe;
- 
--void intel_hdmi_init_connector(struct intel_digital_port *dig_port,
-+bool intel_hdmi_init_connector(struct intel_digital_port *dig_port,
- 			       struct intel_connector *intel_connector);
- bool intel_hdmi_compute_has_hdmi_sink(struct intel_encoder *encoder,
- 				      const struct intel_crtc_state *crtc_state,
+ #ifdef I915
+-void g4x_hdmi_init(struct drm_i915_private *dev_priv,
++bool g4x_hdmi_init(struct drm_i915_private *dev_priv,
+ 		   i915_reg_t hdmi_reg, enum port port);
+ int g4x_hdmi_connector_atomic_check(struct drm_connector *connector,
+ 				    struct drm_atomic_state *state);
+ #else
+-static inline void g4x_hdmi_init(struct drm_i915_private *dev_priv,
++static inline bool g4x_hdmi_init(struct drm_i915_private *dev_priv,
+ 				 i915_reg_t hdmi_reg, int port)
+ {
++	return false;
+ }
+ static inline int g4x_hdmi_connector_atomic_check(struct drm_connector *connector,
+ 						  struct drm_atomic_state *state)
 -- 
 2.39.5
 
