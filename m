@@ -2,60 +2,73 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD1AE9FE620
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Dec 2024 13:58:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB3BE9FE62E
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Dec 2024 14:18:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2963310E04C;
-	Mon, 30 Dec 2024 12:58:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 77B6B10E4D7;
+	Mon, 30 Dec 2024 13:18:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dsG77mmd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cE7zJ+u3";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DEE3110E04C
- for <intel-gfx@lists.freedesktop.org>; Mon, 30 Dec 2024 12:58:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E88C010E4C9;
+ Mon, 30 Dec 2024 13:18:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1735563517; x=1767099517;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=XugTrTH7V+c80MpWpRuOWQcZbC5bEydBnNoYh1KNNhs=;
- b=dsG77mmd7BMWNUZ6wMueo54slLcRYwtjiMN7vHZ4XxVSFb0yvzOl4y5X
- dtPX7vvBxPewEIMki+CYBQIVnVLz6dlY5jqbHzJG8FUdEYZ9ZEg6xneX6
- PrwVX8upcInIuxp8toqI/Hur174/VMpBRRJLbNopVGlJlJQzSNrStMC0Q
- qU2JO0TNL51ryDUsBlrXeh7jRvCHS5yuhcBP0u1ctTBxsdwK4nuGYzKmg
- Gz25diNkpz4qn8V8oItov618pRl9LBOzI+QJNZDHWQ23QTifzTCQYNIMh
- 9CLOmT3HYt77Msy/mPLM4lbeYL7iQCh72HbrB/QK5pgTl75oMaXrqHR13 w==;
-X-CSE-ConnectionGUID: m1UoSTT9Tt+zXl7GzzBVHw==
-X-CSE-MsgGUID: Yobn8wWxRNO+uwWL85xE6g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11301"; a="47269369"
-X-IronPort-AV: E=Sophos;i="6.12,276,1728975600"; d="scan'208";a="47269369"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Dec 2024 04:58:37 -0800
-X-CSE-ConnectionGUID: tszRLbeWSL2ZzsI+hHtPLA==
-X-CSE-MsgGUID: v9wSMCnWSMKKwL8gKuovlw==
+ t=1735564728; x=1767100728;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=F5ZAj3LKhwurq6s36HWd56Hq5EJ47jKU4wzqeBVlBYg=;
+ b=cE7zJ+u3j23mfDy/5Op/7Q+pQ2+BTeo8JE1u7uwPIHiKXpulUCnoMKZo
+ +yvu0mUQe37YV52nBAQ3M0ples1Ki9IsR+6HTeAMibEa44sjJNAlFI0nq
+ F5Mo6X6TuPdo+eQQuq7743tvjzEd0FUZ0DIRh6zHOBu6RVVxEWF8Cg892
+ oVU+pJDjrq3Ygm0zY8+Zwszk0BKOYVjHCna8fY46DA2Ejb7rRQO1Ga6Zp
+ VbN0Hi1IEVSyg4hBvmIKe59P4FTrsBSpl+ukki+JEv70jZSPiUv3uBocA
+ a/K/nrPAAXdbpQFOnPXBw2JbItOSNqvC+maRTDs1/hL+an/mVD3eM+B9Z A==;
+X-CSE-ConnectionGUID: IldzORvgRz234F25BY6VVg==
+X-CSE-MsgGUID: 8B2PZzacStuTHHWjJVuFWA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11301"; a="46534360"
+X-IronPort-AV: E=Sophos;i="6.12,276,1728975600"; d="scan'208";a="46534360"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Dec 2024 05:18:47 -0800
+X-CSE-ConnectionGUID: 1OB6ph2LSQ6avqBsaXEV/w==
+X-CSE-MsgGUID: UwVTQ3BoRMSuV3toABd3cw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="138132840"
+X-IronPort-AV: E=Sophos;i="6.12,276,1728975600"; d="scan'208";a="100975369"
 Received: from ncintean-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.167])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Dec 2024 04:58:35 -0800
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Dec 2024 05:18:38 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>, Ville Syrjala
- <ville.syrjala@linux.intel.com>, intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 6/8] drm/i915/scaler: Pimp scaler debugs
-In-Reply-To: <173507271978.1822.13474225879621112042@intel.com>
+To: Abel Vesa <abel.vesa@linaro.org>, Johan Hovold <johan@kernel.org>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David
+ Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Karol Herbst
+ <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>, Danilo Krummrich
+ <dakr@redhat.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rob Clark <robdclark@gmail.com>, Abhinav Kumar
+ <quic_abhinavk@quicinc.com>, Dmitry Baryshkov
+ <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>, Marijn Suijten
+ <marijn.suijten@somainline.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org
+Subject: Re: [PATCH v2 1/4] drm/dp: Add helper to set LTTPRs in transparent
+ mode
+In-Reply-To: <Z21VD82XCOVgVJUh@linaro.org>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241219130827.22830-1-ville.syrjala@linux.intel.com>
- <20241219130827.22830-7-ville.syrjala@linux.intel.com>
- <173507271978.1822.13474225879621112042@intel.com>
-Date: Mon, 30 Dec 2024 14:58:31 +0200
-Message-ID: <87a5cdpbt4.fsf@intel.com>
+References: <20241211-drm-dp-msm-add-lttpr-transparent-mode-set-v2-0-d5906ed38b28@linaro.org>
+ <20241211-drm-dp-msm-add-lttpr-transparent-mode-set-v2-1-d5906ed38b28@linaro.org>
+ <Z1mk08SHEd5_vc99@hovoldconsulting.com> <Z21VD82XCOVgVJUh@linaro.org>
+Date: Mon, 30 Dec 2024 15:18:35 +0200
+Message-ID: <877c7hpavo.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,186 +84,146 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 24 Dec 2024, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
-> Quoting Ville Syrjala (2024-12-19 10:08:25-03:00)
->>From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->>
->>Include the standard "[CRTC:...]" information in the scaler debugs
->>to make life easier.
+On Thu, 26 Dec 2024, Abel Vesa <abel.vesa@linaro.org> wrote:
+> On 24-12-11 15:42:27, Johan Hovold wrote:
+>> On Wed, Dec 11, 2024 at 03:04:12PM +0200, Abel Vesa wrote:
+>>  
+>> > +/**
+>> > + * drm_dp_lttpr_set_transparent_mode - set the LTTPR in transparent mode
+>> > + * @aux: DisplayPort AUX channel
+>> > + * @enable: Enable or disable transparent mode
+>> > + *
+>> > + * Returns 0 on success or a negative error code on failure.
+>> > + */
+>> > +int drm_dp_lttpr_set_transparent_mode(struct drm_dp_aux *aux, bool enable)
+>> > +{
+>> > +	u8 val = enable ? DP_PHY_REPEATER_MODE_TRANSPARENT :
+>> > +			  DP_PHY_REPEATER_MODE_NON_TRANSPARENT;
+>> > +	int ret = drm_dp_dpcd_writeb(aux, DP_PHY_REPEATER_MODE, val);
+>> > +
+>> > +	return ret == 1 ? 0 : ret;
+>> 
+>> This looks correct, but I had to go look at drm_dp_dpcd_writeb() to make
+>> sure it never returns 0 (for short transfers).
 >
-> Drive-by comment (and going a bit off-topic):
+> Will follow Dmitry's proposal here.
 >
->     $ git grep '\[[A-Z]\+:%d:%s]' -- drivers/gpu/drm | wc -l
->     600
+> 	if (ret < 0)
+>         	return ret;
 >
-> Has someone already considered creating DRM_*_FMT and DRM_*_ARG() for
-> those? E.g. DRM_CRTC_FMT and CRM_CRTC_ARG(crtc->base), which, IMO, would
-> be easier to use and arguably more concise.
+> 	return (ret == 1) ? 0 : -EIO;
 
-Personally, I'm not in favour. I dislike having to concatenate the
-string constants all over the place.
+Arguably this (well, with ret == len) is what we should've done with
+*all* of the drm_dp_dpcd_*() functions. I don't think there's a single
+case where we'd actually need to know that some but not all data was
+transferred. And if there are, they could be special cased. Now we have
+hundreds of cases where we check against length and it's just cumbersome
+all over the place.
 
-> I tried doing a quick search on lore.kernel.org/dri-devel, but I'm not
-> sure what would be good search terms to find previous attempts to see
-> possible arguments against it.
+The question is, how confusing is it going to be to have some of the new
+functions return 0 instead of len? Very? Extremely?
 
-We've gone through this a number of times, and some of the other options
-are:
-
-- Add allocated debug string to the objects, e.g. crtc->debug or
-  crtc->id and print it with %s. It also works when you want to print
-  the info of e.g. both the connector and the encoder.
-
-- Add function pointers for debug logging in the drm objects, and have
-  the drm_dbg* family of functions use them based on the type passed to
-  it with generics. You'd do drm_dbg_kms(connector, "foo\n"); and that
-  would add the [CONNECTOR:...] prefix. Falls short when you want to
-  print the info of multiple objects.
-
-- Object specific debug logging macros. connector_dbg() etc. I'm
-  strongly against the proliferation of logging macros. All the variants
-  (like once, ratelimited, etc.) get multiplied by the number of object
-  types. (Yes, I also dislike the gt/guc macros, but I digress.) And
-  this also doesn't solve the logging of multiple objects at once.
-
-- Add printk format specifiers. There's apparently no way to do this in
-  a human readable way, as anything nice throws off compiler printf
-  format checks. So you end up with stuff like %pXYZ where the XYZ are
-  meaningless magic letters. And they'd need to be implemented in kernel
-  core.
-
+As painful as it would be, I'd be in favor of changing them all to
+return 0 on ret == len. If we find a volunteer.
 
 BR,
 Jani.
 
 
 >
-> --
-> Gustavo Sousa
 >
->>
->>Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->>---
->> drivers/gpu/drm/i915/display/skl_scaler.c | 25 +++++++++++++++--------
->> 1 file changed, 16 insertions(+), 9 deletions(-)
->>
->>diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/=
-i915/display/skl_scaler.c
->>index cbc71e44fcbb..f6d76ef1a854 100644
->>--- a/drivers/gpu/drm/i915/display/skl_scaler.c
->>+++ b/drivers/gpu/drm/i915/display/skl_scaler.c
->>@@ -166,7 +166,8 @@ skl_update_scaler(struct intel_crtc_state *crtc_state=
-, bool force_detach,
->>         if (DISPLAY_VER(display) >=3D 9 && crtc_state->hw.enable &&
->>             need_scaler && adjusted_mode->flags & DRM_MODE_FLAG_INTERLAC=
-E) {
->>                 drm_dbg_kms(display->drm,
->>-                            "Pipe/Plane scaling not supported with IF-ID=
- mode\n");
->>+                            "[CRTC:%d:%s] scaling not supported with IF-=
-ID mode\n",
->>+                            crtc->base.base.id, crtc->base.name);
->>                 return -EINVAL;
->>         }
->>=20
->>@@ -186,8 +187,9 @@ skl_update_scaler(struct intel_crtc_state *crtc_state=
-, bool force_detach,
->>                         scaler_state->scalers[*scaler_id].in_use =3D fal=
-se;
->>=20
->>                         drm_dbg_kms(display->drm,
->>-                                    "scaler_user index %u.%u: "
->>+                                    "[CRTC:%d:%s] scaler_user index %u.%=
-u: "
->>                                     "Staged freeing scaler id %d scaler_=
-users =3D 0x%x\n",
->>+                                    crtc->base.base.id, crtc->base.name,
->>                                     crtc->pipe, scaler_user, *scaler_id,
->>                                     scaler_state->scaler_users);
->>                         *scaler_id =3D -1;
->>@@ -207,8 +209,9 @@ skl_update_scaler(struct intel_crtc_state *crtc_state=
-, bool force_detach,
->>             src_w > max_src_w || src_h > max_src_h ||
->>             dst_w > max_dst_w || dst_h > max_dst_h) {
->>                 drm_dbg_kms(display->drm,
->>-                            "scaler_user index %u.%u: src %ux%u dst %ux%=
-u "
->>+                            "[CRTC:%d:%s] scaler_user index %u.%u: src %=
-ux%u dst %ux%u "
->>                             "size is out of scaler range\n",
->>+                            crtc->base.base.id, crtc->base.name,
->>                             crtc->pipe, scaler_user, src_w, src_h,
->>                             dst_w, dst_h);
->>                 return -EINVAL;
->>@@ -224,16 +227,18 @@ skl_update_scaler(struct intel_crtc_state *crtc_sta=
-te, bool force_detach,
->>          */
->>         if (pipe_src_w > max_dst_w || pipe_src_h > max_dst_h) {
->>                 drm_dbg_kms(display->drm,
->>-                            "scaler_user index %u.%u: pipe src size %ux%=
-u "
->>+                            "[CRTC:%d:%s] scaler_user index %u.%u: pipe =
-src size %ux%u "
->>                             "is out of scaler range\n",
->>+                            crtc->base.base.id, crtc->base.name,
->>                             crtc->pipe, scaler_user, pipe_src_w, pipe_sr=
-c_h);
->>                 return -EINVAL;
->>         }
->>=20
->>         /* mark this plane as a scaler user in crtc_state */
->>         scaler_state->scaler_users |=3D (1 << scaler_user);
->>-        drm_dbg_kms(display->drm, "scaler_user index %u.%u: "
->>+        drm_dbg_kms(display->drm, "[CRTC:%d:%s] scaler_user index %u.%u:=
- "
->>                     "staged scaling request for %ux%u->%ux%u scaler_user=
-s =3D 0x%x\n",
->>+                    crtc->base.base.id, crtc->base.name,
->>                     crtc->pipe, scaler_user, src_w, src_h, dst_w, dst_h,
->>                     scaler_state->scaler_users);
->>=20
->>@@ -421,8 +426,8 @@ static int intel_atomic_setup_scaler(struct intel_crt=
-c_scaler_state *scaler_stat
->>=20
->>                 if (hscale < 0 || vscale < 0) {
->>                         drm_dbg_kms(display->drm,
->>-                                    "Scaler %d doesn't support required =
-plane scaling\n",
->>-                                    *scaler_id);
->>+                                    "[CRTC:%d:%s] scaler %d doesn't supp=
-ort required plane scaling\n",
->>+                                    crtc->base.base.id, crtc->base.name,=
- *scaler_id);
->>                         drm_rect_debug_print("src: ", src, true);
->>                         drm_rect_debug_print("dst: ", dst, false);
->>=20
->>@@ -430,7 +435,8 @@ static int intel_atomic_setup_scaler(struct intel_crt=
-c_scaler_state *scaler_stat
->>                 }
->>         }
->>=20
->>-        drm_dbg_kms(display->drm, "Attached scaler id %u.%u to %s:%d\n",
->>+        drm_dbg_kms(display->drm, "[CRTC:%d:%s] attached scaler id %u.%u=
- to %s:%d\n",
->>+                    crtc->base.base.id, crtc->base.name,
->>                     crtc->pipe, *scaler_id, name, idx);
->>         scaler_state->scalers[*scaler_id].mode =3D mode;
->>=20
->>@@ -530,7 +536,8 @@ int intel_atomic_setup_scalers(struct intel_atomic_st=
-ate *state,
->>         /* fail if required scalers > available scalers */
->>         if (num_scalers_need > crtc->num_scalers) {
->>                 drm_dbg_kms(display->drm,
->>-                            "Too many scaling requests %d > %d\n",
->>+                            "[CRTC:%d:%s] too many scaling requests %d >=
- %d\n",
->>+                            crtc->base.base.id, crtc->base.name,
->>                             num_scalers_need, crtc->num_scalers);
->>                 return -EINVAL;
->>         }
->>--=20
->>2.45.2
->>
+>> 
+>> > +}
+>> > +EXPORT_SYMBOL(drm_dp_lttpr_set_transparent_mode);
+>> 
+>> This appears to be what the driver currently uses, but why not
+>> EXPORT_SYMBOL_GPL?
+>> 
+>> > +
+>> > +/**
+>> > + * drm_dp_lttpr_init - init LTTPR transparency mode according to DP standard
+>> > + *
+>> > + * @aux: DisplayPort AUX channel
+>> > + * @lttpr_count: Number of LTTPRs
+>> > + *
+>> > + * Returns 0 on success or a negative error code on failure.
+>> > + */
+>> > +int drm_dp_lttpr_init(struct drm_dp_aux *aux, int lttpr_count)
+>> > +{
+>> > +	if (!lttpr_count)
+>> > +		return 0;
+>> > +
+>> > +	/*
+>> > +	 * See DP Standard v2.0 3.6.6.1 about the explicit disabling of
+>> > +	 * non-transparent mode and the disable->enable non-transparent mode
+>> > +	 * sequence.
+>> > +	 */
+>> > +	drm_dp_lttpr_set_transparent_mode(aux, true);
+>> 
+>> Error handling?
+>
+> Yes, this makes sense. But other than throwing an error I don't think
+> there is much to be done. I'll add an drm_err here just in case. 
+>
+>> 
+>> > +
+>> > +	if (lttpr_count > 0 && !drm_dp_lttpr_set_transparent_mode(aux, false))
+>> 
+>> No need to check lttpr_count again here.
+>
+> So the logic behind lttpr_count and this transparency mode changing, as
+> specified in the DP standard, is as follows:
+>
+> - If there are 0 LTTPRs counted, then nothing to be done, otherwise set to
+> transparent mode.
+>
+> - Then, if there are between 0 and 8 LTTPRs counted, set non-transparent
+> mode successfully.
+>
+> - Otherwise, rollback to transparent mode.
+>
+> This last rollback might result in two transparent mode settings without
+> a non-transparent one in between, but AFAIU, that is OK. Making sure this
+> doesn't happen would just make the implementation more ugly without any
+> benefit, IMO.
+>
+>> 
+>> > +		return 0;
+>> 
+>> I'd check for errors instead of success here and do the rollback before
+>> returning -EINVAL.
+>> 
+>
+> Yes, I think it would be more cleaner. Will do that.
+>
+>> > +
+>> > +	/*
+>> > +	 * Roll-back to tranparent mode if setting non-tranparent mode failed or
+>> > +	 * the number of LTTPRs is invalid
+>> > +	 */
+>> > +	drm_dp_lttpr_set_transparent_mode(aux, true);
+>> > +
+>> > +	return -EINVAL;
+>> 
+>> And return 0 explicitly here.
+>
+> Yes. Will do that.
+>
+>> 
+>> > +}
+>> > +EXPORT_SYMBOL(drm_dp_lttpr_init);
+>> 
+>> In any case this works well and is needed for external display on the
+>> Lenovo ThinkPad T14s, while not breaking the X13s which does not need
+>> it:
+>> 
+>> Tested-by: Johan Hovold <johan+linaro@kernel.org>
+>> 
+>> Johan
+>
+> Thanks for reviewing and testing!
+> Abel
+>
 
---=20
+-- 
 Jani Nikula, Intel
