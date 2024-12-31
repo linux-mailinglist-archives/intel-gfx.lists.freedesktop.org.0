@@ -2,59 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC6EA9FEFD8
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Dec 2024 14:47:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF20A9FEFDB
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Dec 2024 14:54:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD70D10E035;
-	Tue, 31 Dec 2024 13:47:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DC9510E06B;
+	Tue, 31 Dec 2024 13:54:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kcgaFBPm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BhDD9XRx";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 024E510E035
- for <intel-gfx@lists.freedesktop.org>; Tue, 31 Dec 2024 13:47:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F2F710E06B
+ for <intel-gfx@lists.freedesktop.org>; Tue, 31 Dec 2024 13:54:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1735652840; x=1767188840;
+ t=1735653296; x=1767189296;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=pwZ+PzNUr9RQdQlpSW9HmYufErIQlWAhviLSzL+R1V4=;
- b=kcgaFBPmu+Z0/ePXCeTVzuU6gMMrIJ6M1f5O9z/YapPuOlWxUYKGQ6Fn
- 8+PY+pBoQj0xBlrTD7En8FICpHc9mboKdBP/YoFkLFoia1qYESj/IYdE/
- MdqZNNBWsRMoOVrECm7MqJkgXH3f+r3YsVbCF8UuLGJ38qwp4FKJUXHWt
- an3M8kDKR/FgOPjXh0C5VQzhhiYWSTGGUOGSjiHIkdPVj4snw3SUQ7iln
- m8HVW3u3uhTSrt5xlAbSn40SfJCVT+q6oamuBEG1czwS+k3EwvcdR8J8g
- 07jiyi34eWuYPjJEmMJ8ynnDBZZqEaf5yHwF01VMR5whu0lgm96PN3ht2 Q==;
-X-CSE-ConnectionGUID: nmtkFsVATV2GLAU+woj1+g==
-X-CSE-MsgGUID: 2XnmNR4CQwC5GCp3ygMmVw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11302"; a="46927729"
-X-IronPort-AV: E=Sophos;i="6.12,279,1728975600"; d="scan'208";a="46927729"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Dec 2024 05:47:19 -0800
-X-CSE-ConnectionGUID: Gb5/B/PnRem5oNL4UWnkUg==
-X-CSE-MsgGUID: sdtRqIvxQ+KTTnKlmMNqWQ==
+ bh=xn6nzFe407lgSU+9URl0DY39GvFT7kcP1ae7WFLctiY=;
+ b=BhDD9XRxO+lGWVEsoM0iNbH0X93gwFxXF7wnoW7BkBOm+H6SA0mWrKkW
+ MHSLepre5zzEVsOp4Fh311bVLvastoyZNEWGRfhxHYvUM78UuFBxnpDUD
+ 5QCfbKuNymmLESZYH7i3OnO24FyScFjHXSDok9KhzYQNTOcDRhO8c/kCc
+ P4fOsYMyMp7i8FfXUJIr/SRQIABmLlBcjRumX1YdI6Io8XNIHQ2CiWMCB
+ XET/i6nadKeUPNm2XdTgAaeEIjsrMTPrRhe2xRskqIDjogPapzNHDKFhs
+ NwTUOUL2zM3FXA7AypHkPWAgqdm3pPOS8mSrZ3Cl2937HKUKFAEoJ7wwF A==;
+X-CSE-ConnectionGUID: Ng1YT8sbTxWwsOTEysCOhA==
+X-CSE-MsgGUID: JLJHJIZ+ScGwIXVS1CAZSQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11302"; a="47295307"
+X-IronPort-AV: E=Sophos;i="6.12,279,1728975600"; d="scan'208";a="47295307"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Dec 2024 05:54:56 -0800
+X-CSE-ConnectionGUID: jg0GdNd0QpSuKbW38O5ALg==
+X-CSE-MsgGUID: y2SuIAqOTYeU8pDvfwZhJg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="100876944"
+X-IronPort-AV: E=Sophos;i="6.12,279,1728975600"; d="scan'208";a="101561500"
 Received: from iklimasz-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.180])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Dec 2024 05:47:17 -0800
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Dec 2024 05:54:54 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>, Ville Syrjala
- <ville.syrjala@linux.intel.com>, intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 6/8] drm/i915/scaler: Pimp scaler debugs
-In-Reply-To: <173564977570.6883.11359864589892174180@intel.com>
+To: "Vodapalli, Ravi Kumar" <ravi.kumar.vodapalli@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 2/2] drm/i915/lttpr: Enable Extended Wake Timeout
+In-Reply-To: <caa1695e-211a-4643-b31a-fedd22b314e2@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20241219130827.22830-1-ville.syrjala@linux.intel.com>
- <20241219130827.22830-7-ville.syrjala@linux.intel.com>
- <173507271978.1822.13474225879621112042@intel.com>
- <87a5cdpbt4.fsf@intel.com>
- <173564977570.6883.11359864589892174180@intel.com>
-Date: Tue, 31 Dec 2024 15:47:13 +0200
-Message-ID: <87msgcnevy.fsf@intel.com>
+References: <20241213060317.2674290-1-suraj.kandpal@intel.com>
+ <20241213060317.2674290-3-suraj.kandpal@intel.com>
+ <caa1695e-211a-4643-b31a-fedd22b314e2@intel.com>
+Date: Tue, 31 Dec 2024 15:54:51 +0200
+Message-ID: <87ikr0nej8.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -73,215 +71,137 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 31 Dec 2024, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
-> Quoting Jani Nikula (2024-12-30 09:58:31-03:00)
->>On Tue, 24 Dec 2024, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
->>> Quoting Ville Syrjala (2024-12-19 10:08:25-03:00)
->>>>From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->>>>
->>>>Include the standard "[CRTC:...]" information in the scaler debugs
->>>>to make life easier.
->>>
->>> Drive-by comment (and going a bit off-topic):
->>>
->>>     $ git grep '\[[A-Z]\+:%d:%s]' -- drivers/gpu/drm | wc -l
->>>     600
->>>
->>> Has someone already considered creating DRM_*_FMT and DRM_*_ARG() for
->>> those? E.g. DRM_CRTC_FMT and CRM_CRTC_ARG(crtc->base), which, IMO, would
->>> be easier to use and arguably more concise.
+On Tue, 31 Dec 2024, "Vodapalli, Ravi Kumar" <ravi.kumar.vodapalli@intel.co=
+m> wrote:
+> On 12/13/2024 11:33 AM, Suraj Kandpal wrote:
+>> Usually retimers take around 30 to 40ms to exit all devices from
+>> sleep state. Extended wake timeout request helps to give additional
+>> time by reading the DPCD register through which sink requests the
+>> minimal amount of time required to wake the sink up and giving the
+>> same amount of wait requested by sink device.
+>> Spec: DP v2.1 Section 3.6.12.3
 >>
->>Personally, I'm not in favour. I dislike having to concatenate the
->>string constants all over the place.
+>> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/display/intel_ddi.c      |  2 +
+>>   .../drm/i915/display/intel_dp_link_training.c | 46 +++++++++++++++++++
+>>   .../drm/i915/display/intel_dp_link_training.h |  1 +
+>>   3 files changed, 49 insertions(+)
 >>
->>> I tried doing a quick search on lore.kernel.org/dri-devel, but I'm not
->>> sure what would be good search terms to find previous attempts to see
->>> possible arguments against it.
->>
->>We've gone through this a number of times, and some of the other options
->>are:
->
-> Thanks for the recap!
->
->>
->>- Add allocated debug string to the objects, e.g. crtc->debug or
->>  crtc->id and print it with %s. It also works when you want to print
->>  the info of e.g. both the connector and the encoder.
->
-> This one seems interesting, although there would be some increased
-> memory usage. Maybe that's not too bad?
->
-> Was the increase in memory usage what caused it not to be adopted?
+>> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/=
+i915/display/intel_ddi.c
+>> index 4f9c50996446..d092c3ba0ccf 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+>> @@ -2624,6 +2624,8 @@ static void mtl_ddi_pre_enable_dp(struct intel_ato=
+mic_state *state,
+>>   	if (!is_mst)
+>>   		intel_dp_set_power(intel_dp, DP_SET_POWER_D0);
+>>=20=20=20
+>> +	intel_dp_lttpr_wake_timeout_setup(intel_dp);
+>> +
+>>   	intel_dp_configure_protocol_converter(intel_dp, crtc_state);
+>>   	if (!is_mst)
+>>   		intel_dp_sink_enable_decompression(state,
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/dri=
+vers/gpu/drm/i915/display/intel_dp_link_training.c
+>> index ea9b4730a176..d0f0da78794e 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+>> @@ -134,6 +134,52 @@ static bool intel_dp_lttpr_transparent_mode_enabled=
+(struct intel_dp *intel_dp)
+>>   		DP_PHY_REPEATER_MODE_TRANSPARENT;
+>>   }
+>>=20=20=20
+>> +void intel_dp_lttpr_wake_timeout_setup(struct intel_dp *intel_dp)
+>> +{
+>> +	struct intel_display *display =3D to_intel_display(intel_dp);
+>> +	u8 val =3D 1;
+>> +	int ret;
+>> +
+>> +	if (intel_dp_lttpr_transparent_mode_enabled(intel_dp)) {
+>> +		static const u8 timeout_mapping[] =3D {
+>> +			[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_1_MS] =3D 1,
+>> +			[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_20_MS] =3D 20,
+>> +			[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_40_MS] =3D 40,
+>> +			[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_20_MS] =3D 20,
+>> +			[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_80_MS] =3D 80,
+>> +			[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_100_MS] =3D 100,
+>> +		};
 
-No, we just never made a decision, nor did anyone post patches for any
-of the alternatives as far as I remember.
+Btw this kind of stuff totally belongs in generic DP helpers instead of
+our driver.
+
+>> +
+>> +		ret =3D drm_dp_dpcd_readb(&intel_dp->aux,
+>> +					DP_EXTENDED_DPRX_SLEEP_WAKE_TIMEOUT_REQUEST, &val);
+>> +		if (ret !=3D 1) {
+>> +			drm_dbg_kms(display->drm,
+>> +				    "Failed to read Extended sleep wake timeout request\n");
+>> +			return;
+>
+> Returning from function without return type, better to declare int in=20
+> place of void and return the error=C2=A0 value.
+
+That depends on what you're going to do with that error value. We're not
+going to check it anyway, are we?
+
+>
+> int intel_dp_lttpr_wake_timeout_setup(struct intel_dp *intel_dp)
+>
+>
+> Regards,
+> Ravi Kumar V
+>> +		}
+>> +
+>> +		val =3D (val < sizeof(timeout_mapping) && timeout_mapping[val]) ?
+>> +			timeout_mapping[val] : 1;
+
+What's the point with this? We don't do anything with val?
 
 BR,
 Jani.
 
-
+>> +
+>> +		drm_dp_dpcd_writeb(&intel_dp->aux, DP_EXTENDED_DPRX_SLEEP_WAKE_TIMEOU=
+T_GRANT,
+>> +				   DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_GRANTED);
+>> +	} else {
+>> +		ret =3D drm_dp_dpcd_readb(&intel_dp->aux,
+>> +					DP_PHY_REPEATER_EXTENDED_WAIT_TIMEOUT, &val);
+>> +		if (ret !=3D 1) {
+>> +			drm_dbg_kms(display->drm,
+>> +				    "Failed to read Extended sleep wake timeout request\n");
+>> +			return;
+>> +		}
+>> +
+>> +		val =3D (val & DP_EXTENDED_WAKE_TIMEOUT_REQUEST_MASK) ?
+>> +			(val & DP_EXTENDED_WAKE_TIMEOUT_REQUEST_MASK) * 10 : 1;
+>> +
+>> +		drm_dp_dpcd_writeb(&intel_dp->aux, DP_PHY_REPEATER_EXTENDED_WAIT_TIME=
+OUT,
+>> +				   DP_EXTENDED_WAKE_TIMEOUT_GRANT);
+>> +	}
+>> +}
+>> +
+>>   /*
+>>    * Read the LTTPR common capabilities and switch the LTTPR PHYs to
+>>    * non-transparent mode if this is supported. Preserve the
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.h b/dri=
+vers/gpu/drm/i915/display/intel_dp_link_training.h
+>> index 2066b9146762..cd4e0d6db6ed 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.h
+>> @@ -15,6 +15,7 @@ struct intel_dp;
+>>=20=20=20
+>>   int intel_dp_read_dprx_caps(struct intel_dp *intel_dp, u8 dpcd[DP_RECE=
+IVER_CAP_SIZE]);
+>>   int intel_dp_init_lttpr_and_dprx_caps(struct intel_dp *intel_dp);
+>> +void intel_dp_lttpr_wake_timeout_setup(struct intel_dp *intel_dp);
+>>=20=20=20
+>>   void intel_dp_link_training_set_mode(struct intel_dp *intel_dp,
+>>   				     int link_rate, bool is_vrr);
 >
-> --
-> Gustavo Sousa
->
->>
->>- Add function pointers for debug logging in the drm objects, and have
->>  the drm_dbg* family of functions use them based on the type passed to
->>  it with generics. You'd do drm_dbg_kms(connector, "foo\n"); and that
->>  would add the [CONNECTOR:...] prefix. Falls short when you want to
->>  print the info of multiple objects.
->>
->>- Object specific debug logging macros. connector_dbg() etc. I'm
->>  strongly against the proliferation of logging macros. All the variants
->>  (like once, ratelimited, etc.) get multiplied by the number of object
->>  types. (Yes, I also dislike the gt/guc macros, but I digress.) And
->>  this also doesn't solve the logging of multiple objects at once.
->>
->>- Add printk format specifiers. There's apparently no way to do this in
->>  a human readable way, as anything nice throws off compiler printf
->>  format checks. So you end up with stuff like %pXYZ where the XYZ are
->>  meaningless magic letters. And they'd need to be implemented in kernel
->>  core.
->>
->>
->>BR,
->>Jani.
->>
->>
->>>
->>> --
->>> Gustavo Sousa
->>>
->>>>
->>>>Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->>>>---
->>>> drivers/gpu/drm/i915/display/skl_scaler.c | 25 +++++++++++++++--------
->>>> 1 file changed, 16 insertions(+), 9 deletions(-)
->>>>
->>>>diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/dr=
-m/i915/display/skl_scaler.c
->>>>index cbc71e44fcbb..f6d76ef1a854 100644
->>>>--- a/drivers/gpu/drm/i915/display/skl_scaler.c
->>>>+++ b/drivers/gpu/drm/i915/display/skl_scaler.c
->>>>@@ -166,7 +166,8 @@ skl_update_scaler(struct intel_crtc_state *crtc_sta=
-te, bool force_detach,
->>>>         if (DISPLAY_VER(display) >=3D 9 && crtc_state->hw.enable &&
->>>>             need_scaler && adjusted_mode->flags & DRM_MODE_FLAG_INTERL=
-ACE) {
->>>>                 drm_dbg_kms(display->drm,
->>>>-                            "Pipe/Plane scaling not supported with IF-=
-ID mode\n");
->>>>+                            "[CRTC:%d:%s] scaling not supported with I=
-F-ID mode\n",
->>>>+                            crtc->base.base.id, crtc->base.name);
->>>>                 return -EINVAL;
->>>>         }
->>>>=20
->>>>@@ -186,8 +187,9 @@ skl_update_scaler(struct intel_crtc_state *crtc_sta=
-te, bool force_detach,
->>>>                         scaler_state->scalers[*scaler_id].in_use =3D f=
-alse;
->>>>=20
->>>>                         drm_dbg_kms(display->drm,
->>>>-                                    "scaler_user index %u.%u: "
->>>>+                                    "[CRTC:%d:%s] scaler_user index %u=
-.%u: "
->>>>                                     "Staged freeing scaler id %d scale=
-r_users =3D 0x%x\n",
->>>>+                                    crtc->base.base.id, crtc->base.nam=
-e,
->>>>                                     crtc->pipe, scaler_user, *scaler_i=
-d,
->>>>                                     scaler_state->scaler_users);
->>>>                         *scaler_id =3D -1;
->>>>@@ -207,8 +209,9 @@ skl_update_scaler(struct intel_crtc_state *crtc_sta=
-te, bool force_detach,
->>>>             src_w > max_src_w || src_h > max_src_h ||
->>>>             dst_w > max_dst_w || dst_h > max_dst_h) {
->>>>                 drm_dbg_kms(display->drm,
->>>>-                            "scaler_user index %u.%u: src %ux%u dst %u=
-x%u "
->>>>+                            "[CRTC:%d:%s] scaler_user index %u.%u: src=
- %ux%u dst %ux%u "
->>>>                             "size is out of scaler range\n",
->>>>+                            crtc->base.base.id, crtc->base.name,
->>>>                             crtc->pipe, scaler_user, src_w, src_h,
->>>>                             dst_w, dst_h);
->>>>                 return -EINVAL;
->>>>@@ -224,16 +227,18 @@ skl_update_scaler(struct intel_crtc_state *crtc_s=
-tate, bool force_detach,
->>>>          */
->>>>         if (pipe_src_w > max_dst_w || pipe_src_h > max_dst_h) {
->>>>                 drm_dbg_kms(display->drm,
->>>>-                            "scaler_user index %u.%u: pipe src size %u=
-x%u "
->>>>+                            "[CRTC:%d:%s] scaler_user index %u.%u: pip=
-e src size %ux%u "
->>>>                             "is out of scaler range\n",
->>>>+                            crtc->base.base.id, crtc->base.name,
->>>>                             crtc->pipe, scaler_user, pipe_src_w, pipe_=
-src_h);
->>>>                 return -EINVAL;
->>>>         }
->>>>=20
->>>>         /* mark this plane as a scaler user in crtc_state */
->>>>         scaler_state->scaler_users |=3D (1 << scaler_user);
->>>>-        drm_dbg_kms(display->drm, "scaler_user index %u.%u: "
->>>>+        drm_dbg_kms(display->drm, "[CRTC:%d:%s] scaler_user index %u.%=
-u: "
->>>>                     "staged scaling request for %ux%u->%ux%u scaler_us=
-ers =3D 0x%x\n",
->>>>+                    crtc->base.base.id, crtc->base.name,
->>>>                     crtc->pipe, scaler_user, src_w, src_h, dst_w, dst_=
-h,
->>>>                     scaler_state->scaler_users);
->>>>=20
->>>>@@ -421,8 +426,8 @@ static int intel_atomic_setup_scaler(struct intel_c=
-rtc_scaler_state *scaler_stat
->>>>=20
->>>>                 if (hscale < 0 || vscale < 0) {
->>>>                         drm_dbg_kms(display->drm,
->>>>-                                    "Scaler %d doesn't support require=
-d plane scaling\n",
->>>>-                                    *scaler_id);
->>>>+                                    "[CRTC:%d:%s] scaler %d doesn't su=
-pport required plane scaling\n",
->>>>+                                    crtc->base.base.id, crtc->base.nam=
-e, *scaler_id);
->>>>                         drm_rect_debug_print("src: ", src, true);
->>>>                         drm_rect_debug_print("dst: ", dst, false);
->>>>=20
->>>>@@ -430,7 +435,8 @@ static int intel_atomic_setup_scaler(struct intel_c=
-rtc_scaler_state *scaler_stat
->>>>                 }
->>>>         }
->>>>=20
->>>>-        drm_dbg_kms(display->drm, "Attached scaler id %u.%u to %s:%d\n=
-",
->>>>+        drm_dbg_kms(display->drm, "[CRTC:%d:%s] attached scaler id %u.=
-%u to %s:%d\n",
->>>>+                    crtc->base.base.id, crtc->base.name,
->>>>                     crtc->pipe, *scaler_id, name, idx);
->>>>         scaler_state->scalers[*scaler_id].mode =3D mode;
->>>>=20
->>>>@@ -530,7 +536,8 @@ int intel_atomic_setup_scalers(struct intel_atomic_=
-state *state,
->>>>         /* fail if required scalers > available scalers */
->>>>         if (num_scalers_need > crtc->num_scalers) {
->>>>                 drm_dbg_kms(display->drm,
->>>>-                            "Too many scaling requests %d > %d\n",
->>>>+                            "[CRTC:%d:%s] too many scaling requests %d=
- > %d\n",
->>>>+                            crtc->base.base.id, crtc->base.name,
->>>>                             num_scalers_need, crtc->num_scalers);
->>>>                 return -EINVAL;
->>>>         }
->>>>--=20
->>>>2.45.2
->>>>
->>
->>--=20
->>Jani Nikula, Intel
 
 --=20
 Jani Nikula, Intel
