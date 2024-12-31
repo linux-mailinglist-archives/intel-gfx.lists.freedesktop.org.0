@@ -2,55 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1814E9FF0AC
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Dec 2024 17:27:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF2C49FF0AD
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Dec 2024 17:28:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ADD2610E68B;
-	Tue, 31 Dec 2024 16:27:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A6C010E68E;
+	Tue, 31 Dec 2024 16:27:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SjyrbznO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hLhvOtD7";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E98110E68A;
- Tue, 31 Dec 2024 16:27:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00E9210E689;
+ Tue, 31 Dec 2024 16:27:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1735662473; x=1767198473;
+ t=1735662478; x=1767198478;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=3CtRBsuw4OPMBod/ch3HnxoHjxjy99P2bcKwPKcOt8A=;
- b=SjyrbznOjnWf1NNAJ/e/Hpd2KUpPSurQyBgJMlaIsXbvvS7LBblE5Pip
- 4/gzRX/oqUidkvvAaez+UnKImwk6S3mcR/GDqIj+Lg0zwggkyls6yusn1
- 175QDIMGt5O2m4HN1VCWqeW68ux7le1zkd83HPmMA4EC6H/vjXYjVv1+u
- oI6qFwXNSyN1aAifB3lVitRodj7BKXr/6PhKqKqStfYcnThwXFffFfCW2
- T+f4P2PS8YfcwTvOrpzuiRkjyPNlVL2Af5yix3c0ft6GejVw+tfpVR7Nc
- 9RyZuCijBv+Qlf/Tt2lnXFUHhqJjlZpuLWRsEMGfGsBiZbiao7TUubi9j g==;
-X-CSE-ConnectionGUID: 4sjx+GB5QnW5hdU89uUEIA==
-X-CSE-MsgGUID: JtaJSGBtSsOWx9VmFpFjnQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11302"; a="35251978"
-X-IronPort-AV: E=Sophos;i="6.12,279,1728975600"; d="scan'208";a="35251978"
+ bh=uGhSHGh43HX58HqiFPHiL2rCMqHgAPv4xHBMzvDCX84=;
+ b=hLhvOtD7zgt1957JqtmoVAfqA2jIBLS0pg/mee3NimRUs8BrsYWseLol
+ FWU+jqhxrJaNmy0d29Jvmqbgqy0YbL+4XDF+GYlSfR/Zzwf2vIwtY8SKt
+ 4pRGSjZVymt/dOyLe1I+DS5eu7h3pE4FU2WGkaptj726tQQv/P5IJnLLl
+ EAGS5PhbfEAmI81fkAsn8tfsvCKuvAtEP1Wqh8/tFBFFkp5HUjFaQlhb5
+ gw/QbGd4FRveeWso/D9gYBOKqDRM7TUAtf+bP/W+Asbg9ZnSmrLV7CqrF
+ CdYzzx8xfTUg4zvues9ntYMECRiN2Rvo8xCRRUIpStx0vCerWpekfXO/s A==;
+X-CSE-ConnectionGUID: Rw3Ozjz3S0eb+DLmhlBpsw==
+X-CSE-MsgGUID: P9HqMRsWRpWM/+l08wRZZQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11302"; a="35251982"
+X-IronPort-AV: E=Sophos;i="6.12,279,1728975600"; d="scan'208";a="35251982"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Dec 2024 08:27:53 -0800
-X-CSE-ConnectionGUID: RSIGLX3bQ0euRBsosczbVQ==
-X-CSE-MsgGUID: GG6ONFUJQVO7NycTn9fYpA==
+ 31 Dec 2024 08:27:58 -0800
+X-CSE-ConnectionGUID: Zq3ZLM86R0WrYjFai5AZJg==
+X-CSE-MsgGUID: ky4NtR6hSmyd+g5eGoRyqQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,279,1728975600"; d="scan'208";a="100924923"
+X-IronPort-AV: E=Sophos;i="6.12,279,1728975600"; d="scan'208";a="100924949"
 Received: from iklimasz-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.180])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Dec 2024 08:27:50 -0800
+ 31 Dec 2024 08:27:56 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, Gustavo Sousa <gustavo.sousa@intel.com>,
  ville.syrjala@linux.intel.com
-Subject: [PATCH 1/4] drm/i915/pmdemand: convert to_intel_pmdemand_state() to a
- function
-Date: Tue, 31 Dec 2024 18:27:37 +0200
-Message-Id: <10324781f9f7eae5a92506aaa7a40403efd345dd.1735662324.git.jani.nikula@intel.com>
+Subject: [PATCH 2/4] drm/i915/pmdemand: make struct intel_pmdemand_state opaque
+Date: Tue, 31 Dec 2024 18:27:38 +0200
+Message-Id: <bc5f418785ecd51454761e9a55f21340470a92e3.1735662324.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1735662324.git.jani.nikula@intel.com>
 References: <cover.1735662324.git.jani.nikula@intel.com>
@@ -72,56 +71,108 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-In preparation for making struct intel_pmdemand_state an opaque type,
-convert to_intel_pmdemand_state() to a function.
+Only intel_pmdemand.c should look inside the struct
+intel_pmdemand_state. Indeed, this is already the case. Finish the job
+and make struct intel_pmdemand_state opaque, preventing any direct pokes
+at the guts of it in the future.
 
 Cc: Gustavo Sousa <gustavo.sousa@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-
 ---
-
-This is the simplest change. There could be other alternatives.
-
-Outside of intel_pmdemand.c, this is only used to convert
-display.pmdemand.obj.state to struct intel_pmdemand_state *. Maybe we
-could just pass the global object or state pointer instead? Or we could
-have a function to get the current state from, say, struct
-intel_display? What we currently have is a bit cumbersome.
----
- drivers/gpu/drm/i915/display/intel_pmdemand.c | 5 +++++
- drivers/gpu/drm/i915/display/intel_pmdemand.h | 3 +--
- 2 files changed, 6 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_pmdemand.c | 28 +++++++++++++++
+ drivers/gpu/drm/i915/display/intel_pmdemand.h | 34 +++----------------
+ 2 files changed, 32 insertions(+), 30 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_pmdemand.c b/drivers/gpu/drm/i915/display/intel_pmdemand.c
-index cdd314956a31..69b40b3735b3 100644
+index 69b40b3735b3..500faf639290 100644
 --- a/drivers/gpu/drm/i915/display/intel_pmdemand.c
 +++ b/drivers/gpu/drm/i915/display/intel_pmdemand.c
-@@ -15,6 +15,11 @@
+@@ -15,6 +15,34 @@
  #include "intel_pmdemand.h"
  #include "skl_watermark.h"
  
-+struct intel_pmdemand_state *to_intel_pmdemand_state(struct intel_global_state *obj_state)
-+{
-+	return container_of(obj_state, struct intel_pmdemand_state, base);
-+}
++struct pmdemand_params {
++	u16 qclk_gv_bw;
++	u8 voltage_index;
++	u8 qclk_gv_index;
++	u8 active_pipes;
++	u8 active_dbufs;	/* pre-Xe3 only */
++	/* Total number of non type C active phys from active_phys_mask */
++	u8 active_phys;
++	u8 plls;
++	u16 cdclk_freq_mhz;
++	/* max from ddi_clocks[] */
++	u16 ddiclk_max;
++	u8 scalers;		/* pre-Xe3 only */
++};
 +
- static struct intel_global_state *
- intel_pmdemand_duplicate_state(struct intel_global_obj *obj)
++struct intel_pmdemand_state {
++	struct intel_global_state base;
++
++	/* Maintain a persistent list of port clocks across all crtcs */
++	int ddi_clocks[I915_MAX_PIPES];
++
++	/* Maintain a persistent list of non type C phys mask */
++	u16 active_combo_phys_mask;
++
++	/* Parameters to be configured in the pmdemand registers */
++	struct pmdemand_params params;
++};
++
+ struct intel_pmdemand_state *to_intel_pmdemand_state(struct intel_global_state *obj_state)
  {
+ 	return container_of(obj_state, struct intel_pmdemand_state, base);
 diff --git a/drivers/gpu/drm/i915/display/intel_pmdemand.h b/drivers/gpu/drm/i915/display/intel_pmdemand.h
-index a1c49efdc493..89296364ec3b 100644
+index 89296364ec3b..34f68912fe04 100644
 --- a/drivers/gpu/drm/i915/display/intel_pmdemand.h
 +++ b/drivers/gpu/drm/i915/display/intel_pmdemand.h
-@@ -43,8 +43,7 @@ struct intel_pmdemand_state {
- 	struct pmdemand_params params;
- };
+@@ -6,42 +6,16 @@
+ #ifndef __INTEL_PMDEMAND_H__
+ #define __INTEL_PMDEMAND_H__
  
--#define to_intel_pmdemand_state(global_state) \
--	container_of_const((global_state), struct intel_pmdemand_state, base)
-+struct intel_pmdemand_state *to_intel_pmdemand_state(struct intel_global_state *obj_state);
+-#include "intel_display_limits.h"
+-#include "intel_global_state.h"
++#include <linux/types.h>
  
- void intel_pmdemand_init_early(struct drm_i915_private *i915);
- int intel_pmdemand_init(struct drm_i915_private *i915);
++enum pipe;
+ struct drm_i915_private;
+ struct intel_atomic_state;
+ struct intel_crtc_state;
+ struct intel_encoder;
++struct intel_global_state;
+ struct intel_plane_state;
+-
+-struct pmdemand_params {
+-	u16 qclk_gv_bw;
+-	u8 voltage_index;
+-	u8 qclk_gv_index;
+-	u8 active_pipes;
+-	u8 active_dbufs;	/* pre-Xe3 only */
+-	/* Total number of non type C active phys from active_phys_mask */
+-	u8 active_phys;
+-	u8 plls;
+-	u16 cdclk_freq_mhz;
+-	/* max from ddi_clocks[] */
+-	u16 ddiclk_max;
+-	u8 scalers;		/* pre-Xe3 only */
+-};
+-
+-struct intel_pmdemand_state {
+-	struct intel_global_state base;
+-
+-	/* Maintain a persistent list of port clocks across all crtcs */
+-	int ddi_clocks[I915_MAX_PIPES];
+-
+-	/* Maintain a persistent list of non type C phys mask */
+-	u16 active_combo_phys_mask;
+-
+-	/* Parameters to be configured in the pmdemand registers */
+-	struct pmdemand_params params;
+-};
++struct intel_pmdemand_state;
+ 
+ struct intel_pmdemand_state *to_intel_pmdemand_state(struct intel_global_state *obj_state);
+ 
 -- 
 2.39.5
 
