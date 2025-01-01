@@ -2,50 +2,91 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BAFEA04349
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jan 2025 15:52:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 05BB8A0433F
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jan 2025 15:52:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0176310EAF3;
-	Tue,  7 Jan 2025 14:52:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6EC3010E6F6;
+	Tue,  7 Jan 2025 14:52:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=treblig.org header.i=@treblig.org header.b="TtTEDDmD";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="T6A5Hj2A";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx.treblig.org (mx.treblig.org [46.235.229.95])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 96D0910E3BD;
- Fri, 27 Dec 2024 12:13:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=treblig.org
- ; s=bytemarkmx;
- h=Content-Type:MIME-Version:Message-ID:Subject:From:Date:From
- :Subject; bh=ZeXiOOa/Ig8uiJ1Pf1p0S0D8bGnjqjpwo29tIbFkBcI=; b=TtTEDDmDRxwf/pda
- wV2nsweAf9/qjsHOjST+Irf8fFeC87XJ9XhuuKpyJZtGmCtX2FOtl2mKkL/LNCsiB63wpb9nbmwCL
- NrcuZ3WnhWo6e9qIP9g0tvFY372gonJBb03O7SxG/cxQvhtLoAzlFTKzIbn5h978SqKhzF2BouW+L
- rpRRFjwM3OzKGucKsN315h3Zcf0MRh4SBtD6KyfBIhdnTtWLt92cipLEXqhlsHQQrRjqqgj+0egLz
- eJYoNr6d4j/mL1fAkAyp4iYYzwjRZMa51OtXkZ0ilYO/HlWTHDqN7zrQhmiKVz2hutvOkSFmmQoOf
- chdtsFAUqvgjTk0PeQ==;
-Received: from dg by mx.treblig.org with local (Exim 4.96)
- (envelope-from <dg@treblig.org>) id 1tR9BG-007OU3-1z;
- Fri, 27 Dec 2024 12:11:02 +0000
-Date: Fri, 27 Dec 2024 12:11:02 +0000
-From: "Dr. David Alan Gilbert" <linux@treblig.org>
-To: Tvrtko Ursulin <tursulin@ursulin.net>
-Cc: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, intel-gfx@lists.freedesktop.org,
- airlied@gmail.com, simona@ffwll.ch, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] drm/i915: Remove deadcode
-Message-ID: <Z26ZVsh1ftEgdfbA@gallifrey>
-References: <20241222174751.222975-1-linux@treblig.org>
- <add92c9e-a5d1-4dc7-91fb-0eacd93b5a49@ursulin.net>
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com
+ [209.85.128.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 337A210E221;
+ Wed,  1 Jan 2025 16:42:22 +0000 (UTC)
+Received: by mail-wm1-f45.google.com with SMTP id
+ 5b1f17b1804b1-43635796b48so65185405e9.0; 
+ Wed, 01 Jan 2025 08:42:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1735749681; x=1736354481; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=673uKSPzcYnBh2TsZV1+vzSMvKs5q5gmZERqpENWy+4=;
+ b=T6A5Hj2AE+mqcmclz1jmKhJK2GSR0i0Wqsjnf2yDZAF9hi26C9Rk9qhxTWJX28iwp4
+ XF7XcyU8lauIqnMGMdjoQOVr8sPMKXRDIdppg5AwNutWmsKyhtPQvCQTtRYPV87rOLfz
+ W/psKVaV0kCsqZtbV8cuoDsrIyGVnYtxrHUELIFENZUprRyQ2irq+Q1m8s898/1+amME
+ tJ5y5ZTEYBzguDM1oT77vvxJnElex/e6Wtk3PqOUphdpFiXEkpSEypyOTD10QSkYomj5
+ jpfBw1DZXs0OLGsB8ZNaRu9ETXybDGMRHRS8HKqnVF9ui2t2A8lbL8o7Dwm46i5zW+sF
+ Salw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1735749681; x=1736354481;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=673uKSPzcYnBh2TsZV1+vzSMvKs5q5gmZERqpENWy+4=;
+ b=PL0jgvY0amKjut0A42GR09Z+H4DGUUqs9odlfmfrjBG2ijB4k/KGnSCN5v2e7MDiAB
+ EZhWKFHcVxt9BrinKEC5Ac5l24aBJTFFQES2VPNqkFVy3fozec1zE2AW8WMHYGVARg14
+ nTPEzQ+/FIXcoAPikUmItaYqtn5S2Ke9+XNLauLlYzz4EF7e+Evk088ieCY1kL1ubURL
+ ofCzdiCtHoubKrprwf2W0MTVSC+r9RyNk2Qhi9yl7qCCwIptboSJQiz0WdtBOpFmMqxf
+ zFHFbTmVnnlaIFKh1KFkBybcTlEGm4nlt6IT5VFlDDOmxpB+IPDp0+QmM1VOmSEZi9lW
+ jpvw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUQ1wRM+cTdqNg9D2Jb8P0FYg67EDkaihlwli8d3TwXIRMUZwZwZLsclEADpDUM4GddGd7zV3/Rq9Te@lists.freedesktop.org,
+ AJvYcCW751/1Ov1VzQf5VkRN3btZzkz62cMgVLxAINN/ywhmKXnsyG1E/t74nuSpNeUdUwhtKlVJtet5/uQ=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwK3BY/ZU3nX1a8U4KDFyVZeaLF9q4Pykk/Uaj6qzP4XqWH+XuG
+ xAJBEbGZTO4FYkhl4o8598nWPZcOcubvQhe6IAW5ViOWXaqmeCCk
+X-Gm-Gg: ASbGncukDlIbDMq9pJdQ9GIA5/7s1hnG8U1nzFwyiDEvm4GR3zO75fnTET8WzB3/PT0
+ xbtK/L6YOIMKnLbO+Zp1xLiAN5DcGsMAdebxtrR1/XzANmDl5xQClsDjrkC2WESlLftjKz1YOD8
+ 77bNMB1FTnRPMBn0KtTDQn5ccCgnNbgnLIkd0YHB49gnBxW6e7O7JMad88SXM5xalSTNI9SCvjY
+ yBIvC5EtrRBlCBsqKo/yD8FGFfgNS2bJBuVTKGs/hix4yTfjhfkLJygVYTB5Q1zJ5sgbcrdY1rE
+ BReZKE0VZNbINNvPWfvYglw=
+X-Google-Smtp-Source: AGHT+IHQHSCpLv1Uk9ROvVaAadFohvt3o6x+X80bv++kGLPADaDQj6k0S7ZMrKyj9Dk+KcAYYjcUig==
+X-Received: by 2002:a05:600c:a0a:b0:434:9e17:190c with SMTP id
+ 5b1f17b1804b1-436693f7cc4mr339030115e9.0.1735749680436; 
+ Wed, 01 Jan 2025 08:41:20 -0800 (PST)
+Received: from dsl-u17-10 (82-69-66-36.dsl.in-addr.zen.co.uk. [82.69.66.36])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-4364b0532a6sm449633705e9.1.2025.01.01.08.41.19
+ (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+ Wed, 01 Jan 2025 08:41:19 -0800 (PST)
+Date: Wed, 1 Jan 2025 16:41:19 +0000
+From: David Laight <david.laight.linux@gmail.com>
+To: Alexander Usyskin <alexander.usyskin@intel.com>
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>, Richard Weinberger
+ <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, Lucas De Marchi
+ <lucas.demarchi@intel.com>, Thomas =?UTF-8?B?SGVsbHN0csO2bQ==?=
+ <thomas.hellstrom@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ Karthik Poosa <karthik.poosa@intel.com>, Reuven Abliyev
+ <reuven.abliyev@intel.com>, Oren Weil <oren.jer.weil@intel.com>,
+ linux-mtd@lists.infradead.org, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 06/11] mtd: intel-dg: align 64bit read and write
+Message-ID: <20250101164119.000d2bd4@dsl-u17-10>
+In-Reply-To: <20250101153925.865703-7-alexander.usyskin@intel.com>
+References: <20250101153925.865703-1-alexander.usyskin@intel.com>
+ <20250101153925.865703-7-alexander.usyskin@intel.com>
+X-Mailer: Claws Mail 3.16.0 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-In-Reply-To: <add92c9e-a5d1-4dc7-91fb-0eacd93b5a49@ursulin.net>
-X-Chocolate: 70 percent or better cocoa solids preferably
-X-Operating-System: Linux/6.1.0-21-amd64 (x86_64)
-X-Uptime: 12:10:29 up 232 days, 23:24,  1 user,  load average: 0.00, 0.01, 0.00
-User-Agent: Mutt/2.2.12 (2023-09-09)
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Tue, 07 Jan 2025 14:52:08 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -62,136 +103,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-* Tvrtko Ursulin (tursulin@ursulin.net) wrote:
+On Wed,  1 Jan 2025 17:39:20 +0200
+Alexander Usyskin <alexander.usyskin@intel.com> wrote:
+
+> GSC NVM controller HW errors on quad access overlapping 1K border.
+> Align 64bit read and write to avoid readq/writeq over 1K border.
 > 
-> Hi,
+> Acked-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
+> ---
+>  drivers/mtd/devices/mtd-intel-dg.c | 35 ++++++++++++++++++++++++++++++
+>  1 file changed, 35 insertions(+)
 > 
-> On 22/12/2024 17:47, linux@treblig.org wrote:
-> > From: "Dr. David Alan Gilbert" <linux@treblig.org>
-> > 
-> > i915_active_acquire_for_context() was added in 2020 by
-> > commit 5d9341370f57 ("drm/i915: Export a preallocate variant of
-> > i915_active_acquire()") but has never been used.
-> > 
-> > The last use of __i915_gem_object_is_lmem() was removed in 2021 by
-> > commit ff20afc4cee7 ("drm/i915: Update error capture code to avoid using
-> > the current vma state")
-> > 
-> > Remove them.
-> 
-> I plan to apply this and your other two dead code removal patches.
+> diff --git a/drivers/mtd/devices/mtd-intel-dg.c b/drivers/mtd/devices/mtd-intel-dg.c
+> index 76ef7198fff8..230bf444b7fe 100644
+> --- a/drivers/mtd/devices/mtd-intel-dg.c
+> +++ b/drivers/mtd/devices/mtd-intel-dg.c
+> @@ -238,6 +238,24 @@ static ssize_t idg_write(struct intel_dg_nvm *nvm, u8 region,
+>  		len_s -= to_shift;
+>  	}
+>  
+> +	if (!IS_ALIGNED(to, sizeof(u64)) &&
+> +	    ((to ^ (to + len_s)) & GENMASK(31, 10))) {
 
-Thanks!
+I'm sure that should be (to + len_s - 1).
+Using GENMASK(31, 10) completely fails to indicate what is being tested.
 
-> I needed
-> to re-send to the mailing list first so they get picked up by the CI before
-> I can do that (I guess you are not subscribed to intel-gfx).
+> +		/*
+> +		 * Workaround reads/writes across 1k-aligned addresses
+> +		 * (start u32 before 1k, end u32 after)
+> +		 * as this fails on hardware.
+> +		 */
+> +		u32 data;
+> +
+> +		memcpy(&data, &buf[0], sizeof(u32));
 
-Right, I'm not subscribed.
+	get_unaligned_u32()
 
-> It should
-> happen in a day or two. Thanks for the cleanup!
+> +		idg_nvm_write32(nvm, to, data);
+> +		if (idg_nvm_error(nvm))
+> +			return -EIO;
+> +		buf += sizeof(u32);
+> +		to += sizeof(u32);
+> +		len_s -= sizeof(u32);
+> +	}
 
-Thanks again,
+It isn't at all obvious why copying 4 bytes helps.
+Indeed, if 'to' is 1023 and 'len_s' is 2 it goes terribly wrong.
 
-Dave
+	David
 
-> 
-> Regards,
-> 
-> Tvrtko
-> > Signed-off-by: Dr. David Alan Gilbert <linux@treblig.org>
-> > ---
-> >   drivers/gpu/drm/i915/gem/i915_gem_lmem.c | 23 -----------------------
-> >   drivers/gpu/drm/i915/gem/i915_gem_lmem.h |  2 --
-> >   drivers/gpu/drm/i915/i915_active.c       | 18 ------------------
-> >   drivers/gpu/drm/i915/i915_active.h       |  1 -
-> >   4 files changed, 44 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_lmem.c b/drivers/gpu/drm/i915/gem/i915_gem_lmem.c
-> > index 3198b64ad7db..388f90784d8a 100644
-> > --- a/drivers/gpu/drm/i915/gem/i915_gem_lmem.c
-> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_lmem.c
-> > @@ -52,29 +52,6 @@ bool i915_gem_object_is_lmem(struct drm_i915_gem_object *obj)
-> >   		      mr->type == INTEL_MEMORY_STOLEN_LOCAL);
-> >   }
-> > -/**
-> > - * __i915_gem_object_is_lmem - Whether the object is resident in
-> > - * lmem while in the fence signaling critical path.
-> > - * @obj: The object to check.
-> > - *
-> > - * This function is intended to be called from within the fence signaling
-> > - * path where the fence, or a pin, keeps the object from being migrated. For
-> > - * example during gpu reset or similar.
-> > - *
-> > - * Return: Whether the object is resident in lmem.
-> > - */
-> > -bool __i915_gem_object_is_lmem(struct drm_i915_gem_object *obj)
-> > -{
-> > -	struct intel_memory_region *mr = READ_ONCE(obj->mm.region);
-> > -
-> > -#ifdef CONFIG_LOCKDEP
-> > -	GEM_WARN_ON(dma_resv_test_signaled(obj->base.resv, DMA_RESV_USAGE_BOOKKEEP) &&
-> > -		    i915_gem_object_evictable(obj));
-> > -#endif
-> > -	return mr && (mr->type == INTEL_MEMORY_LOCAL ||
-> > -		      mr->type == INTEL_MEMORY_STOLEN_LOCAL);
-> > -}
-> > -
-> >   /**
-> >    * __i915_gem_object_create_lmem_with_ps - Create lmem object and force the
-> >    * minimum page size for the backing pages.
-> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_lmem.h b/drivers/gpu/drm/i915/gem/i915_gem_lmem.h
-> > index 5a7a14e85c3f..ecd8f1a633a1 100644
-> > --- a/drivers/gpu/drm/i915/gem/i915_gem_lmem.h
-> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_lmem.h
-> > @@ -19,8 +19,6 @@ i915_gem_object_lmem_io_map(struct drm_i915_gem_object *obj,
-> >   bool i915_gem_object_is_lmem(struct drm_i915_gem_object *obj);
-> > -bool __i915_gem_object_is_lmem(struct drm_i915_gem_object *obj);
-> > -
-> >   struct drm_i915_gem_object *
-> >   i915_gem_object_create_lmem_from_data(struct drm_i915_private *i915,
-> >   				      const void *data, size_t size);
-> > diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i915_active.c
-> > index 35319228bc51..0dbc4e289300 100644
-> > --- a/drivers/gpu/drm/i915/i915_active.c
-> > +++ b/drivers/gpu/drm/i915/i915_active.c
-> > @@ -527,24 +527,6 @@ int i915_active_acquire(struct i915_active *ref)
-> >   	return err;
-> >   }
-> > -int i915_active_acquire_for_context(struct i915_active *ref, u64 idx)
-> > -{
-> > -	struct i915_active_fence *active;
-> > -	int err;
-> > -
-> > -	err = i915_active_acquire(ref);
-> > -	if (err)
-> > -		return err;
-> > -
-> > -	active = active_instance(ref, idx);
-> > -	if (!active) {
-> > -		i915_active_release(ref);
-> > -		return -ENOMEM;
-> > -	}
-> > -
-> > -	return 0; /* return with active ref */
-> > -}
-> > -
-> >   void i915_active_release(struct i915_active *ref)
-> >   {
-> >   	debug_active_assert(ref);
-> > diff --git a/drivers/gpu/drm/i915/i915_active.h b/drivers/gpu/drm/i915/i915_active.h
-> > index 77c676ecc263..821f7c21ea9b 100644
-> > --- a/drivers/gpu/drm/i915/i915_active.h
-> > +++ b/drivers/gpu/drm/i915/i915_active.h
-> > @@ -186,7 +186,6 @@ int i915_request_await_active(struct i915_request *rq,
-> >   #define I915_ACTIVE_AWAIT_BARRIER BIT(2)
-> >   int i915_active_acquire(struct i915_active *ref);
-> > -int i915_active_acquire_for_context(struct i915_active *ref, u64 idx);
-> >   bool i915_active_acquire_if_busy(struct i915_active *ref);
-> >   void i915_active_release(struct i915_active *ref);
--- 
- -----Open up your eyes, open up your mind, open up your code -------   
-/ Dr. David Alan Gilbert    |       Running GNU/Linux       | Happy  \ 
-\        dave @ treblig.org |                               | In Hex /
- \ _________________________|_____ http://www.treblig.org   |_______/
+> +
+>  	len8 = ALIGN_DOWN(len_s, sizeof(u64));
+>  	for (i = 0; i < len8; i += sizeof(u64)) {
+>  		u64 data;
+> @@ -295,6 +313,23 @@ static ssize_t idg_read(struct intel_dg_nvm *nvm, u8 region,
+>  		from += from_shift;
+>  	}
+>  
+> +	if (!IS_ALIGNED(from, sizeof(u64)) &&
+> +	    ((from ^ (from + len_s)) & GENMASK(31, 10))) {
+> +		/*
+> +		 * Workaround reads/writes across 1k-aligned addresses
+> +		 * (start u32 before 1k, end u32 after)
+> +		 * as this fails on hardware.
+> +		 */
+> +		u32 data = idg_nvm_read32(nvm, from);
+> +
+> +		if (idg_nvm_error(nvm))
+> +			return -EIO;
+> +		memcpy(&buf[0], &data, sizeof(data));
+> +		len_s -= sizeof(u32);
+> +		buf += sizeof(u32);
+> +		from += sizeof(u32);
+> +	}
+> +
+>  	len8 = ALIGN_DOWN(len_s, sizeof(u64));
+>  	for (i = 0; i < len8; i += sizeof(u64)) {
+>  		u64 data = idg_nvm_read64(nvm, from + i);
+
