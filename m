@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3AC19FF6FB
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jan 2025 09:36:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E8A4B9FF6FC
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jan 2025 09:37:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D40010E3D2;
-	Thu,  2 Jan 2025 08:36:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EA0110E3D4;
+	Thu,  2 Jan 2025 08:36:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P1vZr18s";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QPjEdQPC";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB0F010E3CF;
- Thu,  2 Jan 2025 08:36:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4102010E3D4;
+ Thu,  2 Jan 2025 08:36:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1735807017; x=1767343017;
+ t=1735807018; x=1767343018;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=M5l9UMthYSCFysJ9yB3yyzuZk6PSEmzJPYLdeSLG+94=;
- b=P1vZr18seJO4ZfWXrgSBVrV/Nf3hAWYy4hbrj77oCuiGJNsuM8EBzTZm
- rfq3TOrPomr63veFp3EsdEWTUZcGVT+uR1KzrPr+ADV6r8DsTX1UU75v7
- HtZF3laJXcPfclk8BsFYaMbdUgnU/pb3QRHavDMembHCd7OA3UiTMtD5j
- i2LgUCRLVQDl1drQ6sbufDP9zGb8ahnRZbG3FvahE5a1rAT+miq1Rw8CJ
- aqKrBrzN10gfYgOYWS4NjVztYH7CwsoOkveznPjXCUStMcdBQkXT8s74p
- cSZ4PvCRqmFPY/z7fvG+mnHWc+zgW5IrbK4bd01XJZfBbtNjt+Hjd0W1j A==;
-X-CSE-ConnectionGUID: gBR9npbAQ7iAEnRp5LXz9A==
-X-CSE-MsgGUID: ufxLZ7woSiWF/B4QpzSWxw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11302"; a="23626902"
-X-IronPort-AV: E=Sophos;i="6.12,284,1728975600"; d="scan'208";a="23626902"
+ bh=ImiA70a/tCccpu9ZH6R93IWt4TV7VK59ICQr61ksgcg=;
+ b=QPjEdQPC9x5tOx/Az57zyf6oQs5KTklyJOaWj/nOh0OEaHKyKEqwsFHt
+ aewLvRApNsfHYF8Fq68FSS+un8hZnhfPD5W2tor2izmTB3j8NtPkWp53Q
+ 0hb398GU00PHik3jPreZdZPpFf00dc6YDvITz/UKT4xtv4QLzSCRUTfCu
+ oETOrbEq7i1SrqaoaGCNYoAid6yIC1uME9Frx6shboGAMypNTLawbTIHM
+ 8aUX/RO4M+sXvU2vBPs9BMRXyUAnK3AjJa32RNruMx/YTSBDzy/pXK8n9
+ ENw1CNo46yErZSzOS4xeF32HOGXVdscoDNIf3/BbxmxPYVh1x613yXvbJ w==;
+X-CSE-ConnectionGUID: maS9JY5uQwSVWoS1dXdr9Q==
+X-CSE-MsgGUID: E0yVXmnLTmu3DS9PBZL33g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11302"; a="23626906"
+X-IronPort-AV: E=Sophos;i="6.12,284,1728975600"; d="scan'208";a="23626906"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jan 2025 00:36:56 -0800
-X-CSE-ConnectionGUID: dRNqsthmT7C5YBlXstNubg==
-X-CSE-MsgGUID: IeWNi8f+SeKmW/B4TjMgDA==
+ 02 Jan 2025 00:36:58 -0800
+X-CSE-ConnectionGUID: uz4Hw51HR+Sb+VHf1rZUXg==
+X-CSE-MsgGUID: 1B1EuzxhRi+j1h3RfNLIvQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,284,1728975600"; d="scan'208";a="106314143"
+X-IronPort-AV: E=Sophos;i="6.12,284,1728975600"; d="scan'208";a="106314148"
 Received: from fdefranc-mobl3.ger.corp.intel.com (HELO jhogande-mobl1..)
  ([10.245.245.76])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jan 2025 00:36:55 -0800
+ 02 Jan 2025 00:36:57 -0800
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v2 4/9] drm/i915/psr: Add register definitions for SFF_CTL and
- CFF_CTL registers
-Date: Thu,  2 Jan 2025 10:36:33 +0200
-Message-ID: <20250102083638.2552066-5-jouni.hogander@intel.com>
+Subject: [PATCH v2 5/9] drm/i915/psr: Use SFF_CTL on invalidate/flush for
+ LunarLake onwards
+Date: Thu,  2 Jan 2025 10:36:34 +0200
+Message-ID: <20250102083638.2552066-6-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250102083638.2552066-1-jouni.hogander@intel.com>
 References: <20250102083638.2552066-1-jouni.hogander@intel.com>
@@ -72,37 +72,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add register definitions for SFF_CTL and CFF_CTL registers. Name them as
-LNL_SFF_CTL and LNL_CFF_CTL.
+In LunarLake we have SFF_CTL register which contains SFF bit ored with
+respective SFF bit in PSR2_MAN_TRK_CTL register. Use this register instead
+of the bit in PSR2_MAN_TRK_CTL on frontbuffer tracking callbacks. This
+helps us avoiding taking psr mutex when performing atomic commit.
 
-v2: use _MMIO_TRANS instead of _MMIO_TRANS2
+We don't need to set the CFF bit as selective update configuration in
+PSR2_MAN_TRL_CTL is not overwritten anymore. I.e. we have valid
+configuration in PSR2_MAN_TRK_CTL and in plane SEL_FETCH_* registers when
+SFF bit gets cleared by the HW in case something triggers "frame change"
+event after SFF bit is cleared.
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr_regs.h | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ drivers/gpu/drm/i915/display/intel_psr.c | 22 +++++++++++++++-------
+ 1 file changed, 15 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr_regs.h b/drivers/gpu/drm/i915/display/intel_psr_regs.h
-index 9ad7611506e8..795e6b9cc575 100644
---- a/drivers/gpu/drm/i915/display/intel_psr_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_psr_regs.h
-@@ -251,6 +251,16 @@
- #define  ADLP_PSR2_MAN_TRK_CTL_SF_SINGLE_FULL_FRAME		REG_BIT(14)
- #define  ADLP_PSR2_MAN_TRK_CTL_SF_CONTINUOS_FULL_FRAME		REG_BIT(13)
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index e6f96a8b4fb0..85ecedd3162d 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -2345,7 +2345,7 @@ void intel_psr2_program_trans_man_trk_ctl(const struct intel_crtc_state *crtc_st
+ 		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
  
-+#define _LNL_SFF_CTL_A				0x60918
-+#define _LNL_SFF_CTL_B				0x61918
-+#define LNL_SFF_CTL(tran)			_MMIO_TRANS(tran, _LNL_SFF_CTL_A, _LNL_SFF_CTL_B)
-+#define  LNL_SFF_CTL_SF_SINGLE_FULL_FRAME	REG_BIT(1)
-+
-+#define _LNL_CFF_CTL_A				0x6091c
-+#define _LNL_CFF_CTL_B				0x6191c
-+#define LNL_CFF_CTL(tran)			_MMIO_TRANS(tran, _LNL_CFF_CTL_A, _LNL_CFF_CTL_B)
-+#define  LNL_CFF_CTL_SF_CONTINUOUS_FULL_FRAME	REG_BIT(1)
-+
- /* PSR2 Early transport */
- #define _PIPE_SRCSZ_ERLY_TPT_A	0x70074
- #define _PIPE_SRCSZ_ERLY_TPT_B	0x71074
+ 		lockdep_assert_held(&intel_dp->psr.lock);
+-		if (intel_dp->psr.psr2_sel_fetch_cff_enabled)
++		if (DISPLAY_VER(display) < 20 && intel_dp->psr.psr2_sel_fetch_cff_enabled)
+ 			return;
+ 		break;
+ 	}
+@@ -3118,12 +3118,16 @@ static void intel_psr_configure_full_frame_update(struct intel_dp *intel_dp)
+ 	if (!intel_dp->psr.psr2_sel_fetch_enabled)
+ 		return;
+ 
+-	intel_de_write(display,
+-		       PSR2_MAN_TRK_CTL(display, cpu_transcoder),
+-		       man_trk_ctl_enable_bit_get(display) |
+-		       man_trk_ctl_partial_frame_bit_get(display) |
+-		       man_trk_ctl_single_full_frame_bit_get(display) |
+-		       man_trk_ctl_continuos_full_frame(display));
++	if (DISPLAY_VER(display) >= 20)
++		intel_de_write(display, LNL_SFF_CTL(cpu_transcoder),
++			       LNL_SFF_CTL_SF_SINGLE_FULL_FRAME);
++	else
++		intel_de_write(display,
++			       PSR2_MAN_TRK_CTL(display, cpu_transcoder),
++			       man_trk_ctl_enable_bit_get(display) |
++			       man_trk_ctl_partial_frame_bit_get(display) |
++			       man_trk_ctl_single_full_frame_bit_get(display) |
++			       man_trk_ctl_continuos_full_frame(display));
+ }
+ 
+ static void _psr_invalidate_handle(struct intel_dp *intel_dp)
+@@ -3227,6 +3231,10 @@ static void _psr_flush_handle(struct intel_dp *intel_dp)
+ 		 * Still keep cff bit enabled as we don't have proper SU
+ 		 * configuration in case update is sent for any reason after
+ 		 * sff bit gets cleared by the HW on next vblank.
++		 *
++		 * NOTE: Setting cff bit is not needed for LunarLake onwards as
++		 * we have own register for SFF bit and we are not overwriting
++		 * existing SU configuration
+ 		 */
+ 		intel_psr_configure_full_frame_update(intel_dp);
+ 	}
 -- 
 2.43.0
 
