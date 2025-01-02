@@ -2,53 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22A459FF6FE
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jan 2025 09:37:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D68929FF6FF
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jan 2025 09:37:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B76AD10E3D3;
-	Thu,  2 Jan 2025 08:37:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 726D310E3D5;
+	Thu,  2 Jan 2025 08:37:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LZLqkMNZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YoMSpMSj";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A253210E3D5;
- Thu,  2 Jan 2025 08:36:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1056010E3DD;
+ Thu,  2 Jan 2025 08:37:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1735807019; x=1767343019;
+ t=1735807021; x=1767343021;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=xdm9gPmQtS8H5ujYzJccqaq8hK6irbrpo6YMacpNjlg=;
- b=LZLqkMNZZVBaDWAk6mh6+HcbxUZpniUzMhHeXMIe5l55zxIj49BuUD1t
- kWAAHIT+xtTKfBWPtZqG+edJQDH1rP/G+R2ONRnawvY2JkFgQgJq/yEwy
- bv0O9z3M85DyA+YPHxp4oYiUGtUfEG9NmSvRXL+afWXuZMZogFh2CxZM5
- VrQcTsQJUn9Fx9dpj99Hf8L3V4s9psnKCJBYBFj5eSVeoTzKVfuSXLaj3
- uXxS35TAJRkcMgKZvWlLCyMAVlNM21pOyz2dpSD19zNZUNxmwz5mplbC9
- rC3W2LSIXEC65hlvfjndDTgpgY8TOQBWcoWBrU53jWmZt4rDY6ptk2y70 g==;
-X-CSE-ConnectionGUID: Egz1mb75Sl+q/JqGcTw+wg==
-X-CSE-MsgGUID: /cq691DiQ5SRXlrtSc/c6w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11302"; a="23626910"
-X-IronPort-AV: E=Sophos;i="6.12,284,1728975600"; d="scan'208";a="23626910"
+ bh=ZWsTtOY9Pag1Ke0bucMxDyacNWkLmlXRYg/GikBno0U=;
+ b=YoMSpMSjOHJry3c5F9YmM6XtiC2SXdjZO+QRpsw5YF1cRP/clREQRFKu
+ HyFk8oT8XpgPwbHkBIyJrVSkbqPGZRBSdY7YRk5uwYweSG5oqATLjaBH2
+ 6184qlN5RxlrPkilqs8oRY2fOV2+7La3/HDKfmicGMLqkLjxaDnKSLP+o
+ aplYhKTW0hmYXVBnTSw4uZv7OlsFezJz7IOrFZuYrla6ZjUaNgtsjxun9
+ BiZHP4Hw7FMQ1DV7AnPCKdsdRQeAp3UPB8dLBLkAiDFVF/yBw/gkI4PC/
+ cv39Kzeucm1+3GD1qsjyKSDroIN3/xrgXxsWI/VbXBBSJO/80MuAeKrAn g==;
+X-CSE-ConnectionGUID: LWyePxF4Q6qHOGgXw9DRJQ==
+X-CSE-MsgGUID: 90DrmM1pQimD6omUnWO2Eg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11302"; a="23626913"
+X-IronPort-AV: E=Sophos;i="6.12,284,1728975600"; d="scan'208";a="23626913"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jan 2025 00:36:59 -0800
-X-CSE-ConnectionGUID: ta4sLD6rTAq4HueRo9//4w==
-X-CSE-MsgGUID: W9aQxtzZTqebMlGrgtUulw==
+ 02 Jan 2025 00:37:01 -0800
+X-CSE-ConnectionGUID: urnEg48CTQizlN2gHEvNGw==
+X-CSE-MsgGUID: ichKJ+1KSnqRF1424xZHlg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,284,1728975600"; d="scan'208";a="106314154"
+X-IronPort-AV: E=Sophos;i="6.12,284,1728975600"; d="scan'208";a="106314160"
 Received: from fdefranc-mobl3.ger.corp.intel.com (HELO jhogande-mobl1..)
  ([10.245.245.76])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jan 2025 00:36:58 -0800
+ 02 Jan 2025 00:36:59 -0800
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v2 6/9] drm/i915/psr: Allow writing PSR2_MAN_TRK_CTL using DSB
-Date: Thu,  2 Jan 2025 10:36:35 +0200
-Message-ID: <20250102083638.2552066-7-jouni.hogander@intel.com>
+Subject: [PATCH v2 7/9] drm/i915/psr: Changes for PSR2_MAN_TRK_CTL handling
+ when DSB is in use
+Date: Thu,  2 Jan 2025 10:36:36 +0200
+Message-ID: <20250102083638.2552066-8-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250102083638.2552066-1-jouni.hogander@intel.com>
 References: <20250102083638.2552066-1-jouni.hogander@intel.com>
@@ -71,96 +72,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Allow writing PSR2_MAN_TRK_CTL using DSB by using intel_de_write_dsb. Do
-not check intel_dp->psr.lock being held when using DSB. This assertion
-doesn't make sense as in case of using DSB the actual write happens later
-and we are not taking intel_dp->psr.lock mutex over dsb commit.
+Do needed changes to handle PSR2_MAN_TRK_CTL correctly when DSB is in use:
+
+1. Write PSR2_MAN_TRK_CTL in commit_pipe_pre_planes only when not using
+   DSB.
+2. Add PSR2_MAN_TRK_CTL writing into DSB commit in
+   intel_atomic_dsb_finish.
+
+Taking PSR lock over DSB commit is not needed because PSR2_MAN_TRK_CTL is now
+written only by DSB.
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c |  2 +-
- drivers/gpu/drm/i915/display/intel_psr.c     | 16 ++++++++++------
- drivers/gpu/drm/i915/display/intel_psr.h     |  4 +++-
- 3 files changed, 14 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 4271da219b41..5a5100f147a6 100644
+index 5a5100f147a6..d76454a69399 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7089,7 +7089,7 @@ static void commit_pipe_pre_planes(struct intel_atomic_state *state,
+@@ -7089,7 +7089,8 @@ static void commit_pipe_pre_planes(struct intel_atomic_state *state,
  			intel_pipe_fastset(old_crtc_state, new_crtc_state);
  	}
  
--	intel_psr2_program_trans_man_trk_ctl(new_crtc_state);
-+	intel_psr2_program_trans_man_trk_ctl(NULL, new_crtc_state);
+-	intel_psr2_program_trans_man_trk_ctl(NULL, new_crtc_state);
++	if (!new_crtc_state->use_dsb)
++		intel_psr2_program_trans_man_trk_ctl(NULL, new_crtc_state);
  
  	intel_atomic_update_watermarks(state, crtc);
  }
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 85ecedd3162d..1e99329b70a1 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -2330,7 +2330,8 @@ static void intel_psr_force_update(struct intel_dp *intel_dp)
- 	intel_de_write(display, CURSURFLIVE(display, intel_dp->psr.pipe), 0);
- }
+@@ -7678,6 +7679,8 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
+ 					       new_crtc_state);
+ 		bdw_set_pipe_misc(new_crtc_state->dsb_commit,
+ 				  new_crtc_state);
++		intel_psr2_program_trans_man_trk_ctl(new_crtc_state->dsb_commit,
++						     new_crtc_state);
+ 		intel_crtc_planes_update_arm(new_crtc_state->dsb_commit,
+ 					     state, crtc);
  
--void intel_psr2_program_trans_man_trk_ctl(const struct intel_crtc_state *crtc_state)
-+void intel_psr2_program_trans_man_trk_ctl(struct intel_dsb *dsb,
-+					  const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-@@ -2344,20 +2345,23 @@ void intel_psr2_program_trans_man_trk_ctl(const struct intel_crtc_state *crtc_st
- 					     crtc_state->uapi.encoder_mask) {
- 		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
- 
--		lockdep_assert_held(&intel_dp->psr.lock);
-+		if (!dsb)
-+			lockdep_assert_held(&intel_dp->psr.lock);
-+
- 		if (DISPLAY_VER(display) < 20 && intel_dp->psr.psr2_sel_fetch_cff_enabled)
- 			return;
- 		break;
- 	}
- 
--	intel_de_write(display, PSR2_MAN_TRK_CTL(display, cpu_transcoder),
--		       crtc_state->psr2_man_track_ctl);
-+	intel_de_write_dsb(display, dsb,
-+			   PSR2_MAN_TRK_CTL(display, cpu_transcoder),
-+			   crtc_state->psr2_man_track_ctl);
- 
- 	if (!crtc_state->enable_psr2_su_region_et)
- 		return;
- 
--	intel_de_write(display, PIPE_SRCSZ_ERLY_TPT(crtc->pipe),
--		       crtc_state->pipe_srcsz_early_tpt);
-+	intel_de_write_dsb(display, dsb, PIPE_SRCSZ_ERLY_TPT(crtc->pipe),
-+			   crtc_state->pipe_srcsz_early_tpt);
- }
- 
- static void psr2_man_trk_ctl_calc(struct intel_crtc_state *crtc_state,
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.h b/drivers/gpu/drm/i915/display/intel_psr.h
-index 956be263c09e..fc807817863e 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.h
-+++ b/drivers/gpu/drm/i915/display/intel_psr.h
-@@ -17,6 +17,7 @@ struct intel_crtc;
- struct intel_crtc_state;
- struct intel_display;
- struct intel_dp;
-+struct intel_dsb;
- struct intel_encoder;
- struct intel_plane;
- struct intel_plane_state;
-@@ -55,7 +56,8 @@ void intel_psr_wait_for_idle_locked(const struct intel_crtc_state *new_crtc_stat
- bool intel_psr_enabled(struct intel_dp *intel_dp);
- int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
- 				struct intel_crtc *crtc);
--void intel_psr2_program_trans_man_trk_ctl(const struct intel_crtc_state *crtc_state);
-+void intel_psr2_program_trans_man_trk_ctl(struct intel_dsb *dsb,
-+					  const struct intel_crtc_state *crtc_state);
- void intel_psr_pause(struct intel_dp *intel_dp);
- void intel_psr_resume(struct intel_dp *intel_dp);
- bool intel_psr_needs_block_dc_vblank(const struct intel_crtc_state *crtc_state);
 -- 
 2.43.0
 
