@@ -2,29 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC9129FF92E
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jan 2025 13:10:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EAD749FF94C
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jan 2025 13:20:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4316610E6EC;
-	Thu,  2 Jan 2025 12:10:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 848F710E30B;
+	Thu,  2 Jan 2025 12:20:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C068110E6E9;
- Thu,  2 Jan 2025 12:10:09 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8969010E30B;
+ Thu,  2 Jan 2025 12:20:00 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2838937483115696561=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_handl?=
- =?utf-8?q?e_hdmi_connector_init_failures=2C_and_no_HDMI/DP_cases_=28rev7=29?=
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EFull=3A_success_for_drm/i915/dp=3A_128b/132b?=
+ =?utf-8?q?_uncompressed_SST_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 02 Jan 2025 12:10:09 -0000
-Message-ID: <173581980978.2021141.9393075691738182810@b555e5b46a47>
+Date: Thu, 02 Jan 2025 12:20:00 -0000
+Message-ID: <173582040055.2025689.2278822895825132890@b555e5b46a47>
 X-Patchwork-Hint: ignore
-References: <cover.1735568047.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1735568047.git.jani.nikula@intel.com>
+References: <cover.1734643485.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1734643485.git.jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,15 +41,20 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============2838937483115696561==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
-Series: drm/i915/display: handle hdmi connector init failures, and no HDMI/DP cases (rev7)
-URL   : https://patchwork.freedesktop.org/series/142119/
+Series: drm/i915/dp: 128b/132b uncompressed SST (rev3)
+URL   : https://patchwork.freedesktop.org/series/142547/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_15892 -> Patchwork_142119v7
+CI Bug Log - changes from CI_DRM_15892_full -> Patchwork_142547v3_full
 ====================================================
 
 Summary
@@ -59,100 +64,85 @@ Summary
 
   No regressions found.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142119v7/index.html
+  
 
-Participating hosts (41 -> 39)
+Participating hosts (11 -> 9)
 ------------------------------
 
-  Missing    (2): bat-twl-1 fi-snb-2520m 
+  Missing    (2): shard-snb-0 shard-glk-0 
 
-Known issues
-------------
 
-  Here are the changes found in Patchwork_142119v7 that come from known issues:
+Changes
+-------
 
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@fbdev@info:
-    - fi-bsw-nick:        NOTRUN -> [SKIP][1] ([i915#1849])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142119v7/fi-bsw-nick/igt@fbdev@info.html
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - fi-bsw-nick:        NOTRUN -> [SKIP][2] +42 other tests skip
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142119v7/fi-bsw-nick/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - bat-adls-6:         [PASS][3] -> [FAIL][4] ([i915#13401])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15892/bat-adls-6/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142119v7/bat-adls-6/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24:
-    - fi-kbl-7567u:       [PASS][5] -> [DMESG-WARN][6] ([i915#13436]) +1 other test dmesg-warn
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15892/fi-kbl-7567u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142119v7/fi-kbl-7567u/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html
-
-  * igt@kms_pipe_crc_basic@hang-read-crc@pipe-c-dp-1:
-    - fi-kbl-7567u:       [PASS][7] -> [DMESG-WARN][8] ([i915#12914]) +1 other test dmesg-warn
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15892/fi-kbl-7567u/igt@kms_pipe_crc_basic@hang-read-crc@pipe-c-dp-1.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142119v7/fi-kbl-7567u/igt@kms_pipe_crc_basic@hang-read-crc@pipe-c-dp-1.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         [PASS][9] -> [SKIP][10] ([i915#9197]) +2 other tests skip
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15892/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142119v7/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  * igt@runner@aborted:
-    - fi-pnv-d510:        NOTRUN -> [FAIL][11] ([i915#13350])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142119v7/fi-pnv-d510/igt@runner@aborted.html
-
-  
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-rpls-4:         [DMESG-WARN][12] ([i915#13400]) -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15892/bat-rpls-4/igt@core_hotunplug@unbind-rebind.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142119v7/bat-rpls-4/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@i915_selftest@live:
-    - bat-adlp-9:         [ABORT][14] ([i915#13399]) -> [PASS][15] +1 other test pass
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15892/bat-adlp-9/igt@i915_selftest@live.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142119v7/bat-adlp-9/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-mtlp-6:         [DMESG-FAIL][16] ([i915#13393]) -> [PASS][17] +1 other test pass
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15892/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142119v7/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
-    - {bat-arls-6}:       [DMESG-FAIL][18] ([i915#13393]) -> [PASS][19] +1 other test pass
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15892/bat-arls-6/igt@i915_selftest@live@workarounds.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142119v7/bat-arls-6/igt@i915_selftest@live@workarounds.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#12914]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12914
-  [i915#13350]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13350
-  [i915#13393]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13393
-  [i915#13399]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13399
-  [i915#13400]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13400
-  [i915#13401]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13401
-  [i915#13436]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13436
-  [i915#1849]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1849
-  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
+  No changes found
 
 
 Build changes
 -------------
 
-  * Linux: CI_DRM_15892 -> Patchwork_142119v7
+  * IGT: IGT_8172 -> None
+  * Linux: CI_DRM_15892 -> Patchwork_142547v3
 
   CI-20190529: 20190529
   CI_DRM_15892: 08bd590935a5258ffd79355c59adffd72fb2c642 @ git://anongit.freedesktop.org/gfx-ci/linux
   IGT_8172: 9112581619aa198fa03041d5c7e18e02f42ac00f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_142119v7: 08bd590935a5258ffd79355c59adffd72fb2c642 @ git://anongit.freedesktop.org/gfx-ci/linux
+  Patchwork_142547v3: 08bd590935a5258ffd79355c59adffd72fb2c642 @ git://anongit.freedesktop.org/gfx-ci/linux
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142119v7/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142547v3/index.html
+
+--===============2838937483115696561==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/dp: 128b/132b uncompressed SST (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/142547/">https://patchwork.freedesktop.org/series/142547/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142547v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142547v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_15892_full -&gt; Patchwork_142547v3_full</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 9)</h2>
+<p>Missing    (2): shard-snb-0 shard-glk-0 </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8172 -&gt; None</li>
+<li>Linux: CI_DRM_15892 -&gt; Patchwork_142547v3</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_15892: 08bd590935a5258ffd79355c59adffd72fb2c642 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8172: 9112581619aa198fa03041d5c7e18e02f42ac00f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_142547v3: 08bd590935a5258ffd79355c59adffd72fb2c642 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit</p>
+
+</body>
+</html>
+
+--===============2838937483115696561==--
