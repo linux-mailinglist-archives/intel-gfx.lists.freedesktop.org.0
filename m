@@ -2,66 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF5189FF856
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jan 2025 11:41:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA5CC9FF848
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jan 2025 11:35:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 041A010E409;
-	Thu,  2 Jan 2025 10:41:27 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="swtrZoMG";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC80810E405;
+	Thu,  2 Jan 2025 10:35:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp.smtpout.orange.fr (smtp-72.smtpout.orange.fr
- [80.12.242.72])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A0AF10E409
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jan 2025 10:41:26 +0000 (UTC)
-Received: from [192.168.1.37] ([90.11.132.44]) by smtp.orange.fr with ESMTPA
- id TIVDtPSJjTjIXTIVGtoUGd; Thu, 02 Jan 2025 11:32:39 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
- s=t20230301; t=1735813960;
- bh=oIy4h6myCE9v5NQp61GRyssTTdt9xYDdFfwRLBqJIDw=;
- h=Message-ID:Date:MIME-Version:Subject:To:From;
- b=swtrZoMGepjZWNNAMzAdUpPhr9dMP/Fwu1C5cyI05rm65XfLag7OwPCz6yqWeOyk0
- QlYz9AXoLVNtzhi8M0OqKs4zm5g4eZlJFjPOejgVL4e3CQeSrAmKZue3XQlX3XbgmK
- nRJjEwKYd7n83WhcV7RsIFMQyHp9S2SDoHSKh+tDJ+PZ2j6vM9rgtiIYuG2QGy6AdK
- OrvAL0trVusI+uMq4s6/QuB4Qqh6VTXiLNUHebq9CEDZEHOFfsoBoGn6aMnGdPnjPO
- aHaOUmsTTZGHo0XnGLg382uTD+q8bJuOOziFZeXWlYkWj/c1JuM6clHG32zTSsTw0t
- Dn8lJ4UVRWiYA==
-X-ME-Helo: [192.168.1.37]
-X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
-X-ME-Date: Thu, 02 Jan 2025 11:32:40 +0100
-X-ME-IP: 90.11.132.44
-Message-ID: <2c89e56d-26e9-4ef6-9da3-4b0121163b30@wanadoo.fr>
-Date: Thu, 2 Jan 2025 11:32:25 +0100
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D156610E405;
+ Thu,  2 Jan 2025 10:35:55 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4950065812749108270=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 02/11] mtd: add driver for intel graphics non-volatile
- memory device
-To: Alexander Usyskin <alexander.usyskin@intel.com>,
- Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Karthik Poosa <karthik.poosa@intel.com>
-Cc: Reuven Abliyev <reuven.abliyev@intel.com>,
- Oren Weil <oren.jer.weil@intel.com>, linux-mtd@lists.infradead.org,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Tomas Winkler <tomasw@gmail.com>
-References: <20250101153925.865703-1-alexander.usyskin@intel.com>
- <20250101153925.865703-3-alexander.usyskin@intel.com>
-Content-Language: en-US, fr-FR
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <20250101153925.865703-3-alexander.usyskin@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EFull=3A_success_for_PSR_DSB_support_=28rev2?=
+ =?utf-8?q?=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 02 Jan 2025 10:35:55 -0000
+Message-ID: <173581415585.1990809.5122932913722246258@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250102083638.2552066-1-jouni.hogander@intel.com>
+In-Reply-To: <20250102083638.2552066-1-jouni.hogander@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,120 +37,112 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Le 01/01/2025 à 16:39, Alexander Usyskin a écrit :
-> Add auxiliary driver for intel discrete graphics
-> non-volatile memory device.
-> 
-> CC: Lucas De Marchi <lucas.demarchi@intel.com>
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Acked-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> Co-developed-by: Tomas Winkler <tomasw@gmail.com>
-> Signed-off-by: Tomas Winkler <tomasw@gmail.com>
-> Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
+--===============4950065812749108270==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-...
+== Series Details ==
 
-> +struct intel_dg_nvm {
-> +	struct kref refcnt;
-> +	void __iomem *base;
-> +	size_t size;
-> +	unsigned int nregions;
-> +	struct {
-> +		const char *name;
-> +		u8 id;
-> +		u64 offset;
-> +		u64 size;
-> +	} regions[];
+Series: PSR DSB support (rev2)
+URL   : https://patchwork.freedesktop.org/series/142520/
+State : success
 
-__counted_by(nregions)?
+== Summary ==
 
-> +};
-> +
-> +static void intel_dg_nvm_release(struct kref *kref)
-> +{
-> +	struct intel_dg_nvm *nvm = container_of(kref, struct intel_dg_nvm, refcnt);
-> +	int i;
-> +
-> +	pr_debug("freeing intel_dg nvm\n");
-> +	for (i = 0; i < nvm->nregions; i++)
-> +		kfree(nvm->regions[i].name);
-> +	kfree(nvm);
-> +}
-> +
-> +static int intel_dg_mtd_probe(struct auxiliary_device *aux_dev,
-> +			      const struct auxiliary_device_id *aux_dev_id)
-> +{
-> +	struct intel_dg_nvm_dev *invm = auxiliary_dev_to_intel_dg_nvm_dev(aux_dev);
-> +	struct device *device;
-> +	struct intel_dg_nvm *nvm;
-> +	unsigned int nregions;
-> +	unsigned int i, n;
-> +	size_t size;
-> +	char *name;
-> +	int ret;
-> +
-> +	device = &aux_dev->dev;
-> +
-> +	/* count available regions */
-> +	for (nregions = 0, i = 0; i < INTEL_DG_NVM_REGIONS; i++) {
-> +		if (invm->regions[i].name)
-> +			nregions++;
-> +	}
-> +
-> +	if (!nregions) {
-> +		dev_err(device, "no regions defined\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	size = sizeof(*nvm) + sizeof(nvm->regions[0]) * nregions;
+CI Bug Log - changes from CI_DRM_15892_full -> Patchwork_142520v2_full
+====================================================
 
-struct_size()? (and maybe no need for size)
+Summary
+-------
 
-> +	nvm = kzalloc(size, GFP_KERNEL);
-> +	if (!nvm)
-> +		return -ENOMEM;
-> +
-> +	kref_init(&nvm->refcnt);
-> +
-> +	nvm->nregions = nregions;
-> +	for (n = 0, i = 0; i < INTEL_DG_NVM_REGIONS; i++) {
-> +		if (!invm->regions[i].name)
-> +			continue;
-> +
-> +		name = kasprintf(GFP_KERNEL, "%s.%s",
-> +				 dev_name(&aux_dev->dev), invm->regions[i].name);
-> +		if (!name)
-> +			continue;
-> +		nvm->regions[n].name = name;
-> +		nvm->regions[n].id = i;
-> +		n++;
-> +	}
+  **SUCCESS**
 
-Should we set the exact number of regions, should a kasprintf() fail?
-	nvm->nregions = n;
-This would make __counted_by be more accurate in its check.
+  No regressions found.
 
-> +
-> +	nvm->base = devm_ioremap_resource(device, &invm->bar);
-> +	if (IS_ERR(nvm->base)) {
-> +		dev_err(device, "mmio not mapped\n");
-> +		ret = PTR_ERR(nvm->base);
-> +		goto err;
-> +	}
-> +
-> +	dev_set_drvdata(&aux_dev->dev, nvm);
-> +
-> +	return 0;
-> +
-> +err:
-> +	kref_put(&nvm->refcnt, intel_dg_nvm_release);
-> +	return ret;
-> +}
+  
 
-...
+Participating hosts (11 -> 9)
+------------------------------
 
-CJ
+  Missing    (2): shard-snb-0 shard-glk-0 
 
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8172 -> None
+  * Linux: CI_DRM_15892 -> Patchwork_142520v2
+
+  CI-20190529: 20190529
+  CI_DRM_15892: 08bd590935a5258ffd79355c59adffd72fb2c642 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8172: 9112581619aa198fa03041d5c7e18e02f42ac00f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_142520v2: 08bd590935a5258ffd79355c59adffd72fb2c642 @ git://anongit.freedesktop.org/gfx-ci/linux
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142520v2/index.html
+
+--===============4950065812749108270==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>PSR DSB support (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/142520/">https://patchwork.freedesktop.org/series/142520/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142520v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142520v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_15892_full -&gt; Patchwork_142520v2_full</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 9)</h2>
+<p>Missing    (2): shard-snb-0 shard-glk-0 </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8172 -&gt; None</li>
+<li>Linux: CI_DRM_15892 -&gt; Patchwork_142520v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_15892: 08bd590935a5258ffd79355c59adffd72fb2c642 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8172: 9112581619aa198fa03041d5c7e18e02f42ac00f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_142520v2: 08bd590935a5258ffd79355c59adffd72fb2c642 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit</p>
+
+</body>
+</html>
+
+--===============4950065812749108270==--
