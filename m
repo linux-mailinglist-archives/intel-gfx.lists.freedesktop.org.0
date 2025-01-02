@@ -2,60 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D2CD9FF701
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jan 2025 09:37:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A6DD9FF717
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jan 2025 09:47:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4A2110E3B6;
-	Thu,  2 Jan 2025 08:37:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B6C410E232;
+	Thu,  2 Jan 2025 08:47:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S26KKA97";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dy3t/aRD";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E66D510E3DD;
- Thu,  2 Jan 2025 08:37:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2400F10E232;
+ Thu,  2 Jan 2025 08:47:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1735807024; x=1767343024;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=v1QFL6o5Li7q5MODzqdjMS4Em47Rwg31qz4uxz00Bjs=;
- b=S26KKA97oKfweE63fre8Vpz/DU7d9xASKr7IZyVaxiJUtDRD1Vi1sETw
- qJL9jRkcufcZqRjcBly56p6r9Hp5bIbTzDQRsf4v6BUys/hG9h0N2I1n+
- UQPpNerdPjjsbZNtk0bvAPG/t1bkutg2rnGFyYaTVv73MnbTe61piw48c
- Mz0Gjuqr+0cF76B4O8TgKied89T3VI4R+K1fj2CcKG/EpGmcNs+jDkmJf
- pFYoCxwkecMdEeC/12XgkCgblFYrgkT8atODaFXMTg1q/AbAPhTh7besR
- j5Ni6CWk8jlV5e9Jsj+Ua4EXI1Z0D9ec1nVeWTkV8h7hiJUJlVJAu+Udb A==;
-X-CSE-ConnectionGUID: xwnK6cRJQ/2rKAPNbNqZOg==
-X-CSE-MsgGUID: 6PmIrRHDTEyZKjAOoScKGA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11302"; a="23626921"
-X-IronPort-AV: E=Sophos;i="6.12,284,1728975600"; d="scan'208";a="23626921"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jan 2025 00:37:03 -0800
-X-CSE-ConnectionGUID: 9ZgeEs4yQcSulCqcYeadbw==
-X-CSE-MsgGUID: +gQFzsFKQGqHMTmPHkKdeg==
+ t=1735807634; x=1767343634;
+ h=message-id:date:mime-version:from:to:cc:subject:
+ content-transfer-encoding;
+ bh=CLg8RVFqaid4LC8lEO+Qv4CMbonRv8NfjwmbBt9lCuo=;
+ b=dy3t/aRDpxat1avz5hZM3LNc8qOlbMEC+kHohAxKMmXcrblkFVTySSo3
+ RkBjM3TogjCYsRZoXtM5ErbqVObqcMRvAvHmDrwE7yQx/73eb64+t92VZ
+ 6kv1icx5j+m2Cmm+8+Ez0FUsEvHF0bzo/0Kt4qp456xqNyrkV7MwfNyzk
+ CW4BCqF8uT49DrE62x2kxxJUZf7yTFU86WgjeP+cWOMKPjkQPABNb3aWi
+ JoYRFtM6SOdy8XZlX5zJ251kdsItUdbX9wux77NS7RCf4yxX7PchJRjlQ
+ XDaRhSSvXoXcX/RozaZN+8FwD0H51Q2N9Ul2iXDFJfC9UYZfzoKy/xxnL A==;
+X-CSE-ConnectionGUID: bkzj43e6SM271+m+YO3gAA==
+X-CSE-MsgGUID: rYGyH6ZMRyORKKCx99ABJQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11302"; a="47451918"
+X-IronPort-AV: E=Sophos;i="6.12,284,1728975600"; d="scan'208";a="47451918"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jan 2025 00:47:14 -0800
+X-CSE-ConnectionGUID: qxxW+LqlRguwIXZKOn1mWA==
+X-CSE-MsgGUID: QAwe1q6UTVerLiZMcH1O6A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,284,1728975600"; d="scan'208";a="106314169"
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO jhogande-mobl1..)
- ([10.245.245.76])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jan 2025 00:37:02 -0800
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v2 9/9] drm/i915/psr: Allow DSB usage when PSR is enabled
-Date: Thu,  2 Jan 2025 10:36:38 +0200
-Message-ID: <20250102083638.2552066-10-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250102083638.2552066-1-jouni.hogander@intel.com>
-References: <20250102083638.2552066-1-jouni.hogander@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="101293375"
+Received: from opintica-mobl1 (HELO [10.245.245.107]) ([10.245.245.107])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jan 2025 00:47:09 -0800
+Message-ID: <f58429b7-5f11-4b78-b577-de32b41299ea@linux.intel.com>
+Date: Thu, 2 Jan 2025 09:47:55 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Simona Vetter <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
+Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Oded Gabbay
+ <ogabbay@kernel.org>, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+Subject: [PULL] drm-misc-fixes
+Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,35 +76,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Now as we have correct PSR2_MAN_TRK_CTL handling in place we can allow DSB
-usage also when PSR is enabled for LunarLake onwards.
+Hi Dave, Simona,
 
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Happy newyear!
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index d76454a69399..8ea56bba9deb 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7631,6 +7631,7 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
- 		intel_atomic_get_old_crtc_state(state, crtc);
- 	struct intel_crtc_state *new_crtc_state =
- 		intel_atomic_get_new_crtc_state(state, crtc);
-+	struct intel_display *display = to_intel_display(crtc);
- 
- 	if (!new_crtc_state->hw.active)
- 		return;
-@@ -7643,7 +7644,7 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
- 		new_crtc_state->update_planes &&
- 		!new_crtc_state->vrr.enable &&
- 		!new_crtc_state->do_async_flip &&
--		!new_crtc_state->has_psr &&
-+		(DISPLAY_VER(display) >= 20 || !new_crtc_state->has_psr) &&
- 		!new_crtc_state->scaler_state.scaler_users &&
- 		!old_crtc_state->scaler_state.scaler_users &&
- 		!intel_crtc_needs_modeset(new_crtc_state) &&
--- 
-2.43.0
+Cheers,
+~Maarten
 
+drm-misc-fixes-2025-01-02:
+drm-misc-fixes for v6.13-rc6:
+- Only fixes for adv7511 driver, including a use-after-free.
+The following changes since commit 1b684ca15f9d78f45de3cdba7e19611387e16aa7:
+
+  drm/sched: Fix drm_sched_fini() docu generation (2024-12-19 16:03:56 +0100)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2025-01-02
+
+for you to fetch changes up to 79d67c499c3f886202a40c5cb27e747e4fa4d738:
+
+  drm: adv7511: Drop dsi single lane support (2024-12-20 03:53:25 +0200)
+
+----------------------------------------------------------------
+drm-misc-fixes for v6.13-rc6:
+- Only fixes for adv7511 driver, including a use-after-free.
+
+----------------------------------------------------------------
+Biju Das (3):
+      drm: adv7511: Fix use-after-free in adv7533_attach_dsi()
+      dt-bindings: display: adi,adv7533: Drop single lane support
+      drm: adv7511: Drop dsi single lane support
+
+Stefan Ekenberg (1):
+      drm/bridge: adv7511_audio: Update Audio InfoFrame properly
+
+ .../devicetree/bindings/display/bridge/adi,adv7533.yaml    |  2 +-
+ drivers/gpu/drm/bridge/adv7511/adv7511_audio.c             | 14 ++++++++++++--
+ drivers/gpu/drm/bridge/adv7511/adv7511_drv.c               | 10 ++++++++--
+ drivers/gpu/drm/bridge/adv7511/adv7533.c                   |  4 +---
+ 4 files changed, 22 insertions(+), 8 deletions(-)
