@@ -2,29 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA5CC9FF848
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jan 2025 11:35:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 579249FF849
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jan 2025 11:37:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC80810E405;
-	Thu,  2 Jan 2025 10:35:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E481110E408;
+	Thu,  2 Jan 2025 10:37:54 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="dIXJVMNq";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D156610E405;
- Thu,  2 Jan 2025 10:35:55 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4950065812749108270=="
+X-Greylist: delayed 312 seconds by postgrey-1.36 at gabe;
+ Thu, 02 Jan 2025 10:37:53 UTC
+Received: from smtp.smtpout.orange.fr (smtp-72.smtpout.orange.fr
+ [80.12.242.72])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 263EC10E406;
+ Thu,  2 Jan 2025 10:37:53 +0000 (UTC)
+Received: from [192.168.1.37] ([90.11.132.44]) by smtp.orange.fr with ESMTPA
+ id TIaFtIJGgv8EoTIaIt1ist; Thu, 02 Jan 2025 11:37:51 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+ s=t20230301; t=1735814271;
+ bh=m/vUJhwL3JxwUo9JiXO0sjdvNVj8XBjdzWqYRllhLR0=;
+ h=Message-ID:Date:MIME-Version:Subject:To:From;
+ b=dIXJVMNqq2vQdKxSShJ3XE73jU+NJYue5WSoFot2vxnAIvl/OAvSWYFIyuylv7Xn6
+ 9I+1v0l+Q8QXa9FUOIYVPv1lVx+nsVt5dei4EbqvImJI/XGYiXu9ynhGwRlMb+rmrI
+ Q4YngEkt1472DxfR3U/twcs41hySJ7aDW6SRd95TlKI7lu11u3Y5G6fSn8+Q5rPjKw
+ sloXDRXlfRIWJRqiVdYsQkfeWPt7J9MXXqsLbcifBYC1IVh++C8u62Bv2W1uBoywYC
+ b3D9W/Dv7y3TCVVYlpf3GwG3759hHvsHnsKoy6R3KGfRvv9hnIQvPyjVy0Gs/S7X34
+ aoSUOLWg53DkQ==
+X-ME-Helo: [192.168.1.37]
+X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
+X-ME-Date: Thu, 02 Jan 2025 11:37:51 +0100
+X-ME-IP: 90.11.132.44
+Message-ID: <022418c7-f2b2-47b7-9b61-da3f4b7dffab@wanadoo.fr>
+Date: Thu, 2 Jan 2025 11:37:43 +0100
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EFull=3A_success_for_PSR_DSB_support_=28rev2?=
- =?utf-8?q?=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 02 Jan 2025 10:35:55 -0000
-Message-ID: <173581415585.1990809.5122932913722246258@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250102083638.2552066-1-jouni.hogander@intel.com>
-In-Reply-To: <20250102083638.2552066-1-jouni.hogander@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 03/11] mtd: intel-dg: implement region enumeration
+To: Alexander Usyskin <alexander.usyskin@intel.com>,
+ Miquel Raynal <miquel.raynal@bootlin.com>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Karthik Poosa <karthik.poosa@intel.com>
+Cc: Reuven Abliyev <reuven.abliyev@intel.com>,
+ Oren Weil <oren.jer.weil@intel.com>, linux-mtd@lists.infradead.org,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Tomas Winkler <tomasw@gmail.com>
+References: <20250101153925.865703-1-alexander.usyskin@intel.com>
+ <20250101153925.865703-4-alexander.usyskin@intel.com>
+Content-Language: en-US, fr-FR
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <20250101153925.865703-4-alexander.usyskin@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,112 +75,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4950065812749108270==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Le 01/01/2025 à 16:39, Alexander Usyskin a écrit :
+> In intel-dg, there is no access to the spi controller,
+> the information is extracted from the descriptor region.
+> 
+> CC: Lucas De Marchi <lucas.demarchi@intel.com>
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Acked-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> Co-developed-by: Tomas Winkler <tomasw@gmail.com>
+> Signed-off-by: Tomas Winkler <tomasw@gmail.com>
+> Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
 
-== Series Details ==
+...
 
-Series: PSR DSB support (rev2)
-URL   : https://patchwork.freedesktop.org/series/142520/
-State : success
+> @@ -89,6 +281,13 @@ static int intel_dg_mtd_probe(struct auxiliary_device *aux_dev,
+>   		goto err;
+>   	}
+>   
+> +	ret = intel_dg_nvm_init(nvm, device);
+> +	if (ret < 0) {
+> +		dev_err(device, "cannot initialize nvm\n");
+> +		ret = -ENODEV;
 
-== Summary ==
+Why setting to -ENODEV?
 
-CI Bug Log - changes from CI_DRM_15892_full -> Patchwork_142520v2_full
-====================================================
+> +		goto err;
+> +	}
+> +
+>   	dev_set_drvdata(&aux_dev->dev, nvm);
+>   
+>   	return 0;
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 9)
-------------------------------
-
-  Missing    (2): shard-snb-0 shard-glk-0 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8172 -> None
-  * Linux: CI_DRM_15892 -> Patchwork_142520v2
-
-  CI-20190529: 20190529
-  CI_DRM_15892: 08bd590935a5258ffd79355c59adffd72fb2c642 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8172: 9112581619aa198fa03041d5c7e18e02f42ac00f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_142520v2: 08bd590935a5258ffd79355c59adffd72fb2c642 @ git://anongit.freedesktop.org/gfx-ci/linux
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142520v2/index.html
-
---===============4950065812749108270==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>PSR DSB support (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/142520/">https://patchwork.freedesktop.org/series/142520/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142520v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142520v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_15892_full -&gt; Patchwork_142520v2_full</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 9)</h2>
-<p>Missing    (2): shard-snb-0 shard-glk-0 </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8172 -&gt; None</li>
-<li>Linux: CI_DRM_15892 -&gt; Patchwork_142520v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_15892: 08bd590935a5258ffd79355c59adffd72fb2c642 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8172: 9112581619aa198fa03041d5c7e18e02f42ac00f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_142520v2: 08bd590935a5258ffd79355c59adffd72fb2c642 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit</p>
-
-</body>
-</html>
-
---===============4950065812749108270==--
