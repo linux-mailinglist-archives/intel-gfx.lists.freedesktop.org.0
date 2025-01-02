@@ -2,67 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 579249FF849
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jan 2025 11:37:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2E1B9FF857
+	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jan 2025 11:43:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E481110E408;
-	Thu,  2 Jan 2025 10:37:54 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="dIXJVMNq";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 88F3110E411;
+	Thu,  2 Jan 2025 10:43:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 312 seconds by postgrey-1.36 at gabe;
- Thu, 02 Jan 2025 10:37:53 UTC
-Received: from smtp.smtpout.orange.fr (smtp-72.smtpout.orange.fr
- [80.12.242.72])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 263EC10E406;
- Thu,  2 Jan 2025 10:37:53 +0000 (UTC)
-Received: from [192.168.1.37] ([90.11.132.44]) by smtp.orange.fr with ESMTPA
- id TIaFtIJGgv8EoTIaIt1ist; Thu, 02 Jan 2025 11:37:51 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
- s=t20230301; t=1735814271;
- bh=m/vUJhwL3JxwUo9JiXO0sjdvNVj8XBjdzWqYRllhLR0=;
- h=Message-ID:Date:MIME-Version:Subject:To:From;
- b=dIXJVMNqq2vQdKxSShJ3XE73jU+NJYue5WSoFot2vxnAIvl/OAvSWYFIyuylv7Xn6
- 9I+1v0l+Q8QXa9FUOIYVPv1lVx+nsVt5dei4EbqvImJI/XGYiXu9ynhGwRlMb+rmrI
- Q4YngEkt1472DxfR3U/twcs41hySJ7aDW6SRd95TlKI7lu11u3Y5G6fSn8+Q5rPjKw
- sloXDRXlfRIWJRqiVdYsQkfeWPt7J9MXXqsLbcifBYC1IVh++C8u62Bv2W1uBoywYC
- b3D9W/Dv7y3TCVVYlpf3GwG3759hHvsHnsKoy6R3KGfRvv9hnIQvPyjVy0Gs/S7X34
- aoSUOLWg53DkQ==
-X-ME-Helo: [192.168.1.37]
-X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
-X-ME-Date: Thu, 02 Jan 2025 11:37:51 +0100
-X-ME-IP: 90.11.132.44
-Message-ID: <022418c7-f2b2-47b7-9b61-da3f4b7dffab@wanadoo.fr>
-Date: Thu, 2 Jan 2025 11:37:43 +0100
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 82D7610E411;
+ Thu,  2 Jan 2025 10:43:00 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 03/11] mtd: intel-dg: implement region enumeration
-To: Alexander Usyskin <alexander.usyskin@intel.com>,
- Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Karthik Poosa <karthik.poosa@intel.com>
-Cc: Reuven Abliyev <reuven.abliyev@intel.com>,
- Oren Weil <oren.jer.weil@intel.com>, linux-mtd@lists.infradead.org,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Tomas Winkler <tomasw@gmail.com>
-References: <20250101153925.865703-1-alexander.usyskin@intel.com>
- <20250101153925.865703-4-alexander.usyskin@intel.com>
-Content-Language: en-US, fr-FR
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <20250101153925.865703-4-alexander.usyskin@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/dp=3A_128b/?=
+ =?utf-8?q?132b_uncompressed_SST_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 02 Jan 2025 10:43:00 -0000
+Message-ID: <173581458053.1990809.8914683719369086314@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <cover.1734643485.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1734643485.git.jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,37 +37,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Le 01/01/2025 à 16:39, Alexander Usyskin a écrit :
-> In intel-dg, there is no access to the spi controller,
-> the information is extracted from the descriptor region.
-> 
-> CC: Lucas De Marchi <lucas.demarchi@intel.com>
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Acked-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> Co-developed-by: Tomas Winkler <tomasw@gmail.com>
-> Signed-off-by: Tomas Winkler <tomasw@gmail.com>
-> Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
+== Series Details ==
 
-...
+Series: drm/i915/dp: 128b/132b uncompressed SST (rev3)
+URL   : https://patchwork.freedesktop.org/series/142547/
+State : warning
 
-> @@ -89,6 +281,13 @@ static int intel_dg_mtd_probe(struct auxiliary_device *aux_dev,
->   		goto err;
->   	}
->   
-> +	ret = intel_dg_nvm_init(nvm, device);
-> +	if (ret < 0) {
-> +		dev_err(device, "cannot initialize nvm\n");
-> +		ret = -ENODEV;
+== Summary ==
 
-Why setting to -ENODEV?
+Error: dim checkpatch failed
+8c415b084cef drm/mst: remove mgr parameter and debug logging from drm_dp_get_vc_payload_bw()
+65dac07c523a drm/i915/mst: drop connector parameter from intel_dp_mst_bw_overhead()
+5c061d877fd8 drm/i915/mst: drop connector parameter from intel_dp_mst_compute_m_n()
+bb57b6d91bc1 drm/i915/mst: change return value of mst_stream_find_vcpi_slots_for_bpp()
+22e78a566711 drm/i915/mst: remove crtc_state->pbn
+4161e0731bd4 drm/i915/mst: split out a helper for figuring out the TU
+637a9bcb889c drm/i915/mst: adapt intel_dp_mtp_tu_compute_config() for 128b/132b SST
+-:87: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#87: FILE: drivers/gpu/drm/i915/display/intel_dp_mst.c:280:
++								      true, dsc_slice_count, link_bpp_x16);
 
-> +		goto err;
-> +	}
-> +
->   	dev_set_drvdata(&aux_dev->dev, nvm);
->   
->   	return 0;
+total: 0 errors, 1 warnings, 0 checks, 128 lines checked
+8b52ae436c05 drm/i915/ddi: enable 128b/132b TRANS_DDI_FUNC_CTL mode for UHBR SST
+59bb6a8fd137 drm/i915/ddi: 128b/132b SST also needs DP_TP_CTL_MODE_MST
+1a61d7ad72b2 drm/i915/ddi: write payload for 128b/132b SST
+1cf0d2a4e210 drm/i915/ddi: initialize 128b/132b SST DP2 VFREQ registers
+335866dee88f drm/i915/ddi: enable ACT handling for 128b/132b SST
+7dfcad31b374 drm/i915/ddi: start distinguishing 128b/132b SST and MST at state readout
+10cf30f8ec6c drm/i915/ddi: handle 128b/132b SST in intel_ddi_read_func_ctl()
+4334d0e093b0 drm/i915/ddi: disable trancoder port select for 128b/132b SST
+e1d14691b9ef drm/i915/dp: compute config for 128b/132b SST w/o DSC
+
 
