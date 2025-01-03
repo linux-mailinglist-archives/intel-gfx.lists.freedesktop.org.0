@@ -2,56 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A028EA0062F
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jan 2025 09:45:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB03CA0065D
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jan 2025 10:00:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 18FB310E293;
-	Fri,  3 Jan 2025 08:45:37 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IvMZapQZ";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB35310E6FA;
+	Fri,  3 Jan 2025 09:00:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A98FC10E0E5;
- Fri,  3 Jan 2025 08:45:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1735893935; x=1767429935;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=iULYKYeqWMhmzysf9Hdi+9/vgEw1/lxgJDXZX7md4l0=;
- b=IvMZapQZl0/rwpjiPsZZkRFtDIzEKKdhvUd7CMQOazZ/ns+w2401XY9e
- j23364OnaAXecRQOJaHBegS+jQ/27BdQGWHf8/u+s/YH4ivLpoYRnCn7p
- 4guJhvfXTbUQ7cqTuID/vkJ5c/3nyGalNmDaZGGScxQpaYkc6fsYWkRDO
- fe8a2mrmMbwfhvsvc/WaYy/ALUrICVEiWx/O0kDYFp/k+zTi7OZCL77nv
- bXkczOpJ3IMK4x51fqFWlzkTTLI8llTKyGbYPrRWH3oLUisnIlpP7g4MB
- hUv95e5CMTYMIoHm+lZaoSBfcs8N+E3hCwt6DpksBMFYFpL+HKbYI2s1C Q==;
-X-CSE-ConnectionGUID: VYG+5Id6RZOqhiJx9oixTQ==
-X-CSE-MsgGUID: z+sVk/Y/SlWK9ZJKbISYng==
-X-IronPort-AV: E=McAfee;i="6700,10204,11303"; a="35442936"
-X-IronPort-AV: E=Sophos;i="6.12,286,1728975600"; d="scan'208";a="35442936"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jan 2025 00:45:35 -0800
-X-CSE-ConnectionGUID: x1NVkpbxTWmwG9R3AJixTw==
-X-CSE-MsgGUID: FVvO349jTcqd+cEc6cVkhQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,286,1728975600"; d="scan'208";a="101601322"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa007.fm.intel.com with ESMTP; 03 Jan 2025 00:45:34 -0800
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: dnyaneshwar.bhadane@intel.com,
-	Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH] Revert "drm/i915/hdcp: Don't enable HDCP1.4 directly from
- check_link"
-Date: Fri,  3 Jan 2025 14:15:17 +0530
-Message-Id: <20250103084517.239998-1-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.34.1
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD80210E0E5;
+ Fri,  3 Jan 2025 09:00:49 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/gt=3A_Prefer_IS?=
+ =?utf-8?q?=5FENABLED=28=29_instead_of_defined=28=29_on_config_option_=28rev?=
+ =?utf-8?q?2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nitin Gote" <nitin.r.gote@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 03 Jan 2025 09:00:49 -0000
+Message-ID: <173589484971.2502919.14626517436521159946@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250103062651.798249-1-nitin.r.gote@intel.com>
+In-Reply-To: <20250103062651.798249-1-nitin.r.gote@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,45 +38,102 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This reverts commit 483f7d94a0453564ad9295288c0242136c5f36a0.
-This needs to be reverted since HDCP even after updating the connector
-state HDCP property we don't reenable HDCP until the next commit
-in which the CP Property is set causing compliance to fail.
+== Series Details ==
 
---v2
--Fix build issue [Dnyaneshwar]
+Series: drm/i915/gt: Prefer IS_ENABLED() instead of defined() on config option (rev2)
+URL   : https://patchwork.freedesktop.org/series/143083/
+State : success
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_hdcp.c | 12 +++++++++---
- 1 file changed, 9 insertions(+), 3 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index f6e68a0e3b6d..7464b44c8bb3 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -1166,9 +1166,15 @@ static int intel_hdcp_check_link(struct intel_connector *connector)
- 		goto out;
- 	}
- 
--	intel_hdcp_update_value(connector,
--				DRM_MODE_CONTENT_PROTECTION_DESIRED,
--				true);
-+	ret = intel_hdcp1_enable(connector);
-+	if (ret) {
-+		drm_err(display->drm, "Failed to enable hdcp (%d)\n", ret);
-+		intel_hdcp_update_value(connector,
-+					DRM_MODE_CONTENT_PROTECTION_DESIRED,
-+					true);
-+		goto out;
-+	}
-+
- out:
- 	mutex_unlock(&dig_port->hdcp_mutex);
- 	mutex_unlock(&hdcp->mutex);
--- 
-2.34.1
+CI Bug Log - changes from CI_DRM_15896 -> Patchwork_143083v2
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143083v2/index.html
+
+Participating hosts (40 -> 38)
+------------------------------
+
+  Missing    (2): fi-snb-2520m fi-elk-e7500 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_143083v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - bat-rpls-4:         [PASS][1] -> [FAIL][2] ([i915#13401])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15896/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143083v2/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
+    - bat-dg2-11:         [PASS][3] -> [SKIP][4] ([i915#9197]) +2 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15896/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143083v2/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live:
+    - bat-mtlp-8:         [DMESG-FAIL][5] ([i915#13393]) -> [PASS][6] +1 other test pass
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15896/bat-mtlp-8/igt@i915_selftest@live.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143083v2/bat-mtlp-8/igt@i915_selftest@live.html
+    - bat-twl-2:          [ABORT][7] ([i915#12919] / [i915#13397]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15896/bat-twl-2/igt@i915_selftest@live.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143083v2/bat-twl-2/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@gt_mocs:
+    - bat-twl-2:          [ABORT][9] ([i915#12919]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15896/bat-twl-2/igt@i915_selftest@live@gt_mocs.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143083v2/bat-twl-2/igt@i915_selftest@live@gt_mocs.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-5:         [DMESG-FAIL][11] ([i915#13393]) -> [PASS][12] +1 other test pass
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15896/bat-arls-5/igt@i915_selftest@live@workarounds.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143083v2/bat-arls-5/igt@i915_selftest@live@workarounds.html
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - {bat-mtlp-9}:       [FAIL][13] ([i915#11989]) -> [PASS][14] +1 other test pass
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15896/bat-mtlp-9/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143083v2/bat-mtlp-9/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#11989]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11989
+  [i915#12919]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12919
+  [i915#13393]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13393
+  [i915#13397]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13397
+  [i915#13401]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13401
+  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_15896 -> Patchwork_143083v2
+
+  CI-20190529: 20190529
+  CI_DRM_15896: 048d83e7f9dae81c058d31c371634c1c317b3013 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8174: d2004b0623dbccd08502525849b4eef881aa199e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_143083v2: 048d83e7f9dae81c058d31c371634c1c317b3013 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143083v2/index.html
