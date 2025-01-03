@@ -2,55 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1765CA00A0F
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jan 2025 14:53:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3038AA00A11
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jan 2025 14:53:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B58F110E8C6;
-	Fri,  3 Jan 2025 13:53:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C1A9010E8C4;
+	Fri,  3 Jan 2025 13:53:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AcZBtvDW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y84218CX";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D867310E8C2;
- Fri,  3 Jan 2025 13:53:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9728410E8C2;
+ Fri,  3 Jan 2025 13:53:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1735912385; x=1767448385;
+ t=1735912390; x=1767448390;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=D9ydSsKS1/UNT9aU5cDIMojG+Uf3Gh8RXn8eUwnowTk=;
- b=AcZBtvDWQjaAGtTYQ+a2DR+9MJEXCcr8FZHBwdzOXNYOBU6iCyzxMznq
- xhh7QHz431ouTAOvAwvR56kfuuCRde3FEKFJZpj7PPoK0YAmuxBePaolO
- r+7q50CXmnpRlAs9zvTIuGgMzRmrhzSFy+7ydF8EZlSq83Q6835V2+Laz
- hrisVRNYQ44bSN3NWsLXJpoJGajEhci7wazA3FJB4HaRZ/kvrseQ8k5p/
- uOlrECV2xCQl29vt0AfnqGGNcxbeyJsGNisaT+191bgNmQf7HPk24kEUk
- ctAiCkREbnN35AGRQQkcsD3cpWBuaFBcf60UkJMSmzSnr94Af7WtFEqMq A==;
-X-CSE-ConnectionGUID: ZChzLJ6jQVySVJS0G0Jm6Q==
-X-CSE-MsgGUID: YqIEWTGYRGuGxdq+n2hGYw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11304"; a="47573809"
-X-IronPort-AV: E=Sophos;i="6.12,286,1728975600"; d="scan'208";a="47573809"
+ bh=gYPWNFVoPuCxkRK3tdawvFbHfCeIscOcWEMtXyoluDM=;
+ b=Y84218CXq231ITi1USqQRvgra0HQJRpnROZXUnMQ9sse6nZ95qeHedJg
+ wQC3A0i9T9Ntwh6focZ7ccmOGI6IhTPCWt4NAqu9aGUBPpfNZu1LL6jDB
+ lydXCc5TWNk3c//2PNp3vPWBUViu7py/18ppiel311HLByU+MBru71se7
+ ID2GqDXteh33Lm/cT63+KroDN7sDLu+6Cq1x7pOAHdvuYH3TSR2bbFZ7Q
+ Db1le26kC/q04EygLS0DRu6fUyC3BxVk3/BGLwUiQXLFuTB/gOmD8630w
+ OLIvFVNQQjihdFg9fhvjU41pnVSd+Z/4CksYvCE6XjWwiKW92CYeWANgz g==;
+X-CSE-ConnectionGUID: H+53xMBjSeORubmySer8zQ==
+X-CSE-MsgGUID: lT2lyLUVQQuy1mzWkFn1dA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11304"; a="47573813"
+X-IronPort-AV: E=Sophos;i="6.12,286,1728975600"; d="scan'208";a="47573813"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jan 2025 05:53:05 -0800
-X-CSE-ConnectionGUID: c9CjcxonTfO1jByV3GQPbA==
-X-CSE-MsgGUID: zNZzEwfUTLS8/z/lkEB1Vg==
+ 03 Jan 2025 05:53:10 -0800
+X-CSE-ConnectionGUID: Yb9T4gBYS/GyZuyr+RWvmA==
+X-CSE-MsgGUID: /FV3FgQTSzWxR8ews5OaYQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="132716700"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="132716709"
 Received: from dprybysh-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.246.242])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jan 2025 05:53:02 -0800
+ 03 Jan 2025 05:53:07 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: imre.deak@intel.com,
 	jani.nikula@intel.com
-Subject: [PATCH v3 04/16] drm/i915/mst: change return value of
- mst_stream_find_vcpi_slots_for_bpp()
-Date: Fri,  3 Jan 2025 15:52:27 +0200
-Message-Id: <7b3671a548c893b1bb62151d41f90bb8ce842ccc.1735912293.git.jani.nikula@intel.com>
+Subject: [PATCH v3 05/16] drm/i915/mst: remove crtc_state->pbn
+Date: Fri,  3 Jan 2025 15:52:28 +0200
+Message-Id: <726aaadbd425057dfd854e42417bcf8d69b769d3.1735912293.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1735912293.git.jani.nikula@intel.com>
 References: <cover.1735912293.git.jani.nikula@intel.com>
@@ -72,120 +71,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The callers of mst_stream_find_vcpi_slots_for_bpp() don't need the
-returned slots for anything. On the contrary, they need to jump through
-hoops to just distinguish between success and failure. Just return 0
-instead of slots from mst_stream_find_vcpi_slots_for_bpp() for success,
-and simplify the callers.
+The crtc_state->pbn member is only used as a temporary variable within
+mst_stream_find_vcpi_slots_for_bpp(). Remove it as unnecessary.
 
-There's a pointless ret local variable that we can drop in the process.
-
+Suggested-by: Imre Deak <imre.deak@intel.com>
 Reviewed-by: Imre Deak <imre.deak@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 52 +++++++--------------
- 1 file changed, 18 insertions(+), 34 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_types.h | 2 --
+ drivers/gpu/drm/i915/display/intel_dp_mst.c        | 3 +--
+ 2 files changed, 1 insertion(+), 4 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index f230163226d1..8271e50e3644 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1160,8 +1160,6 @@ struct intel_crtc_state {
+ 
+ 	bool double_wide;
+ 
+-	int pbn;
+-
+ 	struct intel_crtc_scaler_state scaler_state;
+ 
+ 	/* w/a for waiting 2 vblanks during crtc enable */
 diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index ffca0d338bb2..a9df57364424 100644
+index a9df57364424..5f1582ad9d41 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -226,7 +226,6 @@ static int mst_stream_find_vcpi_slots_for_bpp(struct intel_dp *intel_dp,
- 	int bpp, slots = -EINVAL;
- 	int dsc_slice_count = 0;
- 	int max_dpt_bpp;
--	int ret = 0;
+@@ -321,14 +321,13 @@ static int mst_stream_find_vcpi_slots_for_bpp(struct intel_dp *intel_dp,
+ 		 * first branch device's link also applies here.
+ 		 */
+ 		pbn.full = remote_tu * mst_state->pbn_div.full;
+-		crtc_state->pbn = dfixed_trunc(pbn);
  
- 	mst_state = drm_atomic_get_mst_topology_state(state, &intel_dp->mst_mgr);
- 	if (IS_ERR(mst_state))
-@@ -340,23 +339,21 @@ static int mst_stream_find_vcpi_slots_for_bpp(struct intel_dp *intel_dp,
- 		}
- 	}
+ 		drm_WARN_ON(display->drm, remote_tu < crtc_state->dp_m_n.tu);
+ 		crtc_state->dp_m_n.tu = remote_tu;
  
--	/* We failed to find a proper bpp/timeslots, return error */
--	if (ret)
--		slots = ret;
--
- 	if (slots < 0) {
- 		drm_dbg_kms(display->drm, "failed finding vcpi slots:%d\n",
- 			    slots);
--	} else {
--		if (!dsc)
--			crtc_state->pipe_bpp = bpp;
--		else
--			crtc_state->dsc.compressed_bpp_x16 = fxp_q4_from_int(bpp);
--		drm_dbg_kms(display->drm, "Got %d slots for pipe bpp %d dsc %d\n",
--			    slots, bpp, dsc);
-+		return slots;
- 	}
+ 		slots = drm_dp_atomic_find_time_slots(state, &intel_dp->mst_mgr,
+ 						      connector->port,
+-						      crtc_state->pbn);
++						      dfixed_trunc(pbn));
+ 		if (slots == -EDEADLK)
+ 			return slots;
  
--	return slots;
-+	if (!dsc)
-+		crtc_state->pipe_bpp = bpp;
-+	else
-+		crtc_state->dsc.compressed_bpp_x16 = fxp_q4_from_int(bpp);
-+
-+	drm_dbg_kms(display->drm, "Got %d slots for pipe bpp %d dsc %d\n",
-+		    slots, bpp, dsc);
-+
-+	return 0;
- }
- 
- static int mst_stream_compute_link_config(struct intel_dp *intel_dp,
-@@ -364,22 +361,15 @@ static int mst_stream_compute_link_config(struct intel_dp *intel_dp,
- 					  struct drm_connector_state *conn_state,
- 					  struct link_config_limits *limits)
- {
--	int slots = -EINVAL;
--
- 	/*
- 	 * FIXME: allocate the BW according to link_bpp, which in the case of
- 	 * YUV420 is only half of the pipe bpp value.
- 	 */
--	slots = mst_stream_find_vcpi_slots_for_bpp(intel_dp, crtc_state,
--						   fxp_q4_to_int(limits->link.max_bpp_x16),
--						   fxp_q4_to_int(limits->link.min_bpp_x16),
--						   limits,
--						   conn_state, 2 * 3, false);
--
--	if (slots < 0)
--		return slots;
--
--	return 0;
-+	return mst_stream_find_vcpi_slots_for_bpp(intel_dp, crtc_state,
-+						  fxp_q4_to_int(limits->link.max_bpp_x16),
-+						  fxp_q4_to_int(limits->link.min_bpp_x16),
-+						  limits,
-+						  conn_state, 2 * 3, false);
- }
- 
- static int mst_stream_dsc_compute_link_config(struct intel_dp *intel_dp,
-@@ -389,7 +379,6 @@ static int mst_stream_dsc_compute_link_config(struct intel_dp *intel_dp,
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
- 	struct intel_connector *connector = to_intel_connector(conn_state->connector);
--	int slots = -EINVAL;
- 	int i, num_bpc;
- 	u8 dsc_bpc[3] = {};
- 	int min_bpp, max_bpp, sink_min_bpp, sink_max_bpp;
-@@ -437,14 +426,9 @@ static int mst_stream_dsc_compute_link_config(struct intel_dp *intel_dp,
- 	min_compressed_bpp = intel_dp_dsc_nearest_valid_bpp(display, min_compressed_bpp,
- 							    crtc_state->pipe_bpp);
- 
--	slots = mst_stream_find_vcpi_slots_for_bpp(intel_dp, crtc_state, max_compressed_bpp,
--						   min_compressed_bpp, limits,
--						   conn_state, 1, true);
--
--	if (slots < 0)
--		return slots;
--
--	return 0;
-+	return mst_stream_find_vcpi_slots_for_bpp(intel_dp, crtc_state, max_compressed_bpp,
-+						  min_compressed_bpp, limits,
-+						  conn_state, 1, true);
- }
- 
- static int mst_stream_update_slots(struct intel_dp *intel_dp,
 -- 
 2.39.5
 
