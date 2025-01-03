@@ -2,59 +2,85 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E074A0041D
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jan 2025 07:11:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B0A2A00419
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jan 2025 07:08:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 93A6810E7FB;
-	Fri,  3 Jan 2025 06:11:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D24F510E7F8;
+	Fri,  3 Jan 2025 06:08:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O5iiGEIT";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="bR4439Qe";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 20C9A10E288;
- Fri,  3 Jan 2025 06:11:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1735884694; x=1767420694;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:to:cc;
- bh=MtfEGt6dj+l5V1FE0XIc+jSnXyW4lho3d8vohBPD/S0=;
- b=O5iiGEITR1vAUjpgZ/KNOIcjyqQMdXdOZ2Syp6qSxfpf/FxR9NLWukhr
- iHJDEYq7XVuC1kzzkSc43bPxuktCjyS3V87F3h1LzY8MXUPWexoxMJsuf
- x8z/HiAUpbMIEHANx7NZDLYvLwqBJVHBmaao4tt3GoWm0J0VmQEUYAlYf
- dKDSZQxbYhecJk1Yiml/bOQ4MhPO1BL4FlRDxUfygcaDKdL6SYzctR8Gi
- Rbt6xL6KT+Rf1AXT3tsQR0x3r/vFs+dO7dPQ88iQVvVR7VnfwtwYavVWH
- J5BqSHEQrm9LldbZxzrBYW+NnNfZqs/NOzVfH/9EXTlssd/7IvN160G+l g==;
-X-CSE-ConnectionGUID: 8M10Re0fQ/SedpUscEMXlw==
-X-CSE-MsgGUID: A7wfyIuNSJyQeux2p/rzRQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11303"; a="38958347"
-X-IronPort-AV: E=Sophos;i="6.12,286,1728975600"; d="scan'208";a="38958347"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jan 2025 22:11:34 -0800
-X-CSE-ConnectionGUID: hYTUqLr5Q3GXidkgvUK8ww==
-X-CSE-MsgGUID: OHZdi0+UTfSVi0oXn6pIvg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="106762689"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by orviesa005.jf.intel.com with ESMTP; 02 Jan 2025 22:11:32 -0800
-From: Arun R Murthy <arun.r.murthy@intel.com>
-Date: Fri, 03 Jan 2025 11:26:37 +0530
-Subject: [PATCH v6] drm/i915/dp: Guarantee a minimum HBlank time
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com
+ [209.85.208.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE13610E7F8
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Jan 2025 06:08:08 +0000 (UTC)
+Received: by mail-ed1-f53.google.com with SMTP id
+ 4fb4d7f45d1cf-5d3bdccba49so21705679a12.1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 02 Jan 2025 22:08:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1735884427; x=1736489227; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=sFlWSYAVuSson+OhthOc5MObp0JO2PaKlR/7cwxtKLk=;
+ b=bR4439QeKalwZcx48MnD/3jiNO9BhnkzintQWhMCwLuHavDTVIIXw4TrmyC243nkzu
+ 9ZcggTl/UHtJOTOUMZcZVwxzotgQZcymKOL1hx2QKpfdPVbgItWozPq0d9Zbtv0LhzCk
+ PLcYhMs6RHlO9LGCGpQz1fT1zms10IOKe6+h10sWyym1bg44GbCOwgQDT7PxUMcrU5M6
+ 3dlO/0sG8LIJzHShwVNL29R9ybviDRP6bJQcvrVgjEoV+bB+ZdJuOctDlI9ILsdr8Ie1
+ x22STMCS7ly4H+rHS59ZR17pdXC4/xy1SVrYTDz5iY5mVhvGAKyhE2F8NHRQzRovUmuo
+ esww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1735884427; x=1736489227;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=sFlWSYAVuSson+OhthOc5MObp0JO2PaKlR/7cwxtKLk=;
+ b=mY2cukS9uabH2WpetViH66gnzabLd68rlZQKK+UGDZUmaTOb+K8LhDIF5hwIurO37X
+ bh66FU1pBjgAcz8RAMJM0iZvJZXBKewgNpEywEqQdAhaJxlw/046WWdlR1nbFGd5pvRf
+ LxOsbiNzk0zJVf1fxNMUPtdGgGFE260TrVA2/UBtDuCtgnaWfhinpM43Q1PqPia2YHGD
+ jrleC11X3na0uExMhx3mraf2CoC8IqQ7pik+90DFhazrVKUsFrvU9y/WHj1p/WmBDtz7
+ cp0AcgA83A43hwL3Gqc9gIyhLN/Q/is2qtzpVkLMH1W37jJsAhaFR9J9kazchUAqYpxx
+ LPTw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVp4FGAbn6Wa39cxFtu/PQmz08IKsRbPD4stF3gvjAJGQpnFavoWCQhowbY5g8YEX3juvPpkjlPW9A=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxVHaVAFt12EztV1QvgXpimNJYGNPOOYfU3teUOZt6ETNxdfrgZ
+ bixXYktO3W1fvT6CGT4BtuD1hpB+FMZQvmEcxkyG67Uu0NzViYAoGvNrpNfr1x8VtegpxZvyOz/
+ H
+X-Gm-Gg: ASbGnctefThCL3eV49rVt6Hejj21jA5H+gdVYMH4uXUVBXChH16SCQuqeDXjGqvCfkB
+ YZ/ZnJdJrZ1HEsPmHUyGKhRLeiSkcRrqSMZPIqcqzF5HmoihcrQjbgA/KaZGVb063kucumUX+V8
+ NjLAn9cMhlqIpbyjJicbfWWhfBDckDrMaeOMmNkfQfLpuCDP72hEET4J04+DGWQJiSy1o2olAWS
+ 5onJwIV5HI/1q4nP1FwNh2PyNOuD+4GkpCocO+BWqGg/mlz0VtObhWQlMG68F+wILyqEMYfWHD1
+ 6nifZRqMGTfHPXlq0kk5m+Lg6dEIneUTd9nW
+X-Google-Smtp-Source: AGHT+IE6y4JdTtlzcbrnGGg7v7FjSgwU7e/vWxQ7TgNE5uhhWt7BpBzFop0XHrbVtbgwiv0CXbLJOQ==
+X-Received: by 2002:a2e:bc1a:0:b0:302:3a46:10a7 with SMTP id
+ 38308e7fff4ca-3046851f9cemr129431821fa.5.1735883938405; 
+ Thu, 02 Jan 2025 21:58:58 -0800 (PST)
+Received: from eriador.lumag.spb.ru
+ (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+ by smtp.gmail.com with ESMTPSA id
+ 38308e7fff4ca-3049ec4ca6bsm26165151fa.56.2025.01.02.21.58.56
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 02 Jan 2025 21:58:57 -0800 (PST)
+Date: Fri, 3 Jan 2025 07:58:54 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Vignesh Raman <vignesh.raman@collabora.com>
+Cc: dri-devel@lists.freedesktop.org, daniels@collabora.com, 
+ helen.koike@collabora.com, airlied@gmail.com, daniel@ffwll.ch,
+ robdclark@gmail.com, 
+ guilherme.gallo@collabora.com, sergi.blanch.torne@collabora.com, 
+ linux-mediatek@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, amd-gfx@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, 
+ intel-gfx@lists.freedesktop.org, virtualization@lists.linux.dev,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] drm/ci: uprev IGT
+Message-ID: <dj2r22upxnj2aicjnsvoqnhd4n73tyfgm36jtvixxp4vphocev@gggcjakm3xge>
+References: <20241217160655.2371138-1-vignesh.raman@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250103-hblank-v6-1-c2f749181fc6@intel.com>
-X-B4-Tracking: v=1; b=H4sIABR8d2cC/2WOQQqDMBREr1KybiRJjcaueo/iIsZvE6pJ+VGpi
- HdvFAqFzu7BzGNWEgEdRHI9rQRhdtEFn6A4n4ix2j+AujYxEUxIxtmF2qbX/klNW0KpTAO8VCS
- VXwidex+ie524wzDQ0SLo7zznKawSBVMZF1XOGeVU4+QzzIYJR7vcnB+hz0wYdqN1cQy4HM9mu
- Xv/TswyKURRaVXmynSy+THU27Z9AOucjdDeAAAA
-X-Change-ID: 20250103-hblank-cd7e78cbe178
-To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: suraj.kandpal@intel.com, Arun R Murthy <arun.r.murthy@intel.com>
-X-Mailer: b4 0.15-dev
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241217160655.2371138-1-vignesh.raman@collabora.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,139 +96,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Mandate a minimum Hblank symbol cycle count between BS and BE in 8b/10b
-MST and 128b/132b mode.
+On Tue, Dec 17, 2024 at 09:36:52PM +0530, Vignesh Raman wrote:
+> Uprev IGT to the latest version and update expectation files.
+> 
+> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
+> ---
+> 
+> v1:
+>   - Pipeline link - https://gitlab.freedesktop.org/vigneshraman/linux/-/pipelines/1327810
+>     Will update the flake bug report link after v1 is reviewed.
+> 
+> v2:
+>   - Pipeline link - https://gitlab.freedesktop.org/vigneshraman/linux/-/pipelines/1331363
+>     Updated flake test bug report links.
+> 
 
-v2: Affine calculation/updation of min HBlank to dp_mst (Jani)
-v3: moved min_hblank from struct intel_dp to intel_crtc_state (Jani)
-v4: use max/min functions, change intel_xx *intel_xx to intel_xx *xx
-    (Jani)
-    Limit hblank to 511 and accommodate BS/BE in calculated value
-    (Srikanth)
-v5: Some spelling corrections (Suraj)
-v6: Removed DP2.1 in comment as this is applicable for both DP2.1 and
-    DP1.4 (Suraj)
+What is the current state of this patch? It would have been really nice
+to get it in, we have patches depending on updated IGT.
 
-Spec: DP2.1a
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
-Changes in v6:
-- EDITME: describe what is new in this series revision.
-- EDITME: use bulletpoints and terse descriptions.
-- Link to v5: https://lore.kernel.org/r/20250103-hblank-v5-1-269a8748cf5b@intel.com
----
- .../gpu/drm/i915/display/intel_crtc_state_dump.c   |  1 +
- drivers/gpu/drm/i915/display/intel_display_types.h |  1 +
- drivers/gpu/drm/i915/display/intel_dp_mst.c        | 35 ++++++++++++++++++++++
- drivers/gpu/drm/i915/i915_reg.h                    |  4 +++
- 4 files changed, 41 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-index 1faef60be4728cd80a0a6b0151797ceda5c443ce..0e7e0b7803d9865177d6f68e8afdef94a91d9697 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-@@ -248,6 +248,7 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
- 			   str_enabled_disabled(pipe_config->has_sel_update),
- 			   str_enabled_disabled(pipe_config->has_panel_replay),
- 			   str_enabled_disabled(pipe_config->enable_psr2_sel_fetch));
-+		drm_printf(&p, "minimum HBlank: %d\n", pipe_config->min_hblank);
- 	}
- 
- 	drm_printf(&p, "framestart delay: %d, MSA timing delay: %d\n",
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index eb9dd1125a4a09511936b81219e7f38fae106dfd..96467be97ae64aa40e985d0272016860b666c119 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1095,6 +1095,7 @@ struct intel_crtc_state {
- 
- 	int max_link_bpp_x16;	/* in 1/16 bpp units */
- 	int pipe_bpp;		/* in 1 bpp units */
-+	int min_hblank;
- 	struct intel_link_m_n dp_m_n;
- 
- 	/* m2_n2 for eDP downclock */
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index fffd199999e02eb66ea478ff872f72b277bd3970..bd561c08d945fcafa65af9254a71cd66f17923d2 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -211,6 +211,35 @@ static int intel_dp_mst_dsc_get_slice_count(const struct intel_connector *connec
- 					    num_joined_pipes);
- }
- 
-+static void intel_dp_mst_compute_min_hblank(struct intel_crtc_state *crtc_state,
-+					    struct intel_connector *connector,
-+					    int bpp_x16)
-+{
-+	struct intel_encoder *encoder = connector->encoder;
-+	struct intel_display *display = to_intel_display(encoder);
-+	const struct drm_display_mode *adjusted_mode =
-+					&crtc_state->hw.adjusted_mode;
-+	int symbol_size = intel_dp_is_uhbr(crtc_state) ? 32 : 8;
-+	int hblank;
-+
-+	if (DISPLAY_VER(display) < 20)
-+		return;
-+
-+	/* Calculate min Hblank Link Layer Symbol Cycle Count for 8b/10b MST & 128b/132b */
-+	hblank = DIV_ROUND_UP((DIV_ROUND_UP(adjusted_mode->htotal - adjusted_mode->hdisplay, 4) * bpp_x16), symbol_size);
-+
-+	/* bit 8:0 minimum hblank symbol cylce count, i.e maximum value would be 511 */
-+	hblank = min(511, hblank);
-+
-+	/* Software needs to adjust the BS/BE framing control from the calculated value */
-+	hblank = hblank - 2;
-+
-+	if (intel_dp_is_uhbr(crtc_state))
-+		crtc_state->min_hblank = max(hblank, 5);
-+	else
-+		crtc_state->min_hblank = max(hblank, 3);
-+}
-+
- static int mst_stream_find_vcpi_slots_for_bpp(struct intel_dp *intel_dp,
- 					      struct intel_crtc_state *crtc_state,
- 					      int max_bpp, int min_bpp,
-@@ -284,6 +313,8 @@ static int mst_stream_find_vcpi_slots_for_bpp(struct intel_dp *intel_dp,
- 		remote_bw_overhead = intel_dp_mst_bw_overhead(crtc_state, connector,
- 							      true, dsc_slice_count, link_bpp_x16);
- 
-+		intel_dp_mst_compute_min_hblank(crtc_state, connector, link_bpp_x16);
-+
- 		intel_dp_mst_compute_m_n(crtc_state, connector,
- 					 local_bw_overhead,
- 					 link_bpp_x16,
-@@ -1267,6 +1298,10 @@ static void mst_stream_enable(struct intel_atomic_state *state,
- 			       TRANS_DP2_VFREQ_PIXEL_CLOCK(crtc_clock_hz & 0xffffff));
- 	}
- 
-+	if (DISPLAY_VER(display) >= 20)
-+		intel_de_write(display, DP_MIN_HBLANK_CTL(trans),
-+			       pipe_config->min_hblank);
-+
- 	enable_bs_jitter_was(pipe_config);
- 
- 	intel_ddi_enable_transcoder_func(encoder, pipe_config);
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 765e6c0528fb0b5a894395b77a5edbf0b0c80009..7bd783931199e2e5c7e15358bb4d2c904f28176a 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -3197,6 +3197,10 @@
- #define _TRANS_DP2_VFREQLOW_D			0x630a8
- #define TRANS_DP2_VFREQLOW(trans)		_MMIO_TRANS(trans, _TRANS_DP2_VFREQLOW_A, _TRANS_DP2_VFREQLOW_B)
- 
-+#define _DP_MIN_HBLANK_CTL_A			0x600ac
-+#define _DP_MIN_HBLANK_CTL_B			0x610ac
-+#define DP_MIN_HBLANK_CTL(trans)		_MMIO_TRANS(trans, _DP_MIN_HBLANK_CTL_A, _DP_MIN_HBLANK_CTL_B)
-+
- /* SNB eDP training params */
- /* SNB A-stepping */
- #define  EDP_LINK_TRAIN_400MV_0DB_SNB_A		(0x38 << 22)
-
----
-base-commit: 048d83e7f9dae81c058d31c371634c1c317b3013
-change-id: 20250103-hblank-cd7e78cbe178
-
-Best regards,
 -- 
-Arun R Murthy <arun.r.murthy@intel.com>
-
+With best wishes
+Dmitry
