@@ -2,29 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EB0EA004B0
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jan 2025 08:01:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 39D83A004D0
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jan 2025 08:12:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1898E10E80B;
-	Fri,  3 Jan 2025 07:01:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 564EE10E278;
+	Fri,  3 Jan 2025 07:11:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2BAC410E80B;
- Fri,  3 Jan 2025 07:01:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C50010E278;
+ Fri,  3 Jan 2025 07:11:50 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_Clean_and_Optimise_mtl=5F?=
- =?utf-8?q?ddi=5Fprepare=5Flink=5Fretrain?=
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/dp=3A_Guara?=
+ =?utf-8?q?ntee_a_minimum_HBlank_time_=28rev5=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+To: "Arun R Murthy" <arun.r.murthy@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 03 Jan 2025 07:01:52 -0000
-Message-ID: <173588771217.2465075.8377251572982598796@b555e5b46a47>
+Date: Fri, 03 Jan 2025 07:11:50 -0000
+Message-ID: <173588831037.2470101.6736406954260186391@b555e5b46a47>
 X-Patchwork-Hint: ignore
-References: <20250103051705.145161-1-suraj.kandpal@intel.com>
-In-Reply-To: <20250103051705.145161-1-suraj.kandpal@intel.com>
+References: <20250103-hblank-v5-1-269a8748cf5b@intel.com>
+In-Reply-To: <20250103-hblank-v5-1-269a8748cf5b@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,101 +43,22 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: Clean and Optimise mtl_ddi_prepare_link_retrain
-URL   : https://patchwork.freedesktop.org/series/143080/
-State : failure
+Series: drm/i915/dp: Guarantee a minimum HBlank time (rev5)
+URL   : https://patchwork.freedesktop.org/series/139267/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_15896 -> Patchwork_143080v1
-====================================================
+Error: dim checkpatch failed
+6a6116420c7b drm/i915/dp: Guarantee a minimum HBlank time
+-:67: WARNING:LONG_LINE: line length of 121 exceeds 100 columns
+#67: FILE: drivers/gpu/drm/i915/display/intel_dp_mst.c:229:
++	hblank = DIV_ROUND_UP((DIV_ROUND_UP(adjusted_mode->htotal - adjusted_mode->hdisplay, 4) * bpp_x16), symbol_size);
 
-Summary
--------
+-:114: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
+#114: FILE: drivers/gpu/drm/i915/i915_reg.h:3202:
++#define DP_MIN_HBLANK_CTL(trans)		_MMIO_TRANS(trans, _DP_MIN_HBLANK_CTL_A, _DP_MIN_HBLANK_CTL_B)
 
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_143080v1 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_143080v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143080v1/index.html
-
-Participating hosts (40 -> 39)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_143080v1:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - bat-dg2-11:         [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15896/bat-dg2-11/igt@i915_pm_rpm@module-reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143080v1/bat-dg2-11/igt@i915_pm_rpm@module-reload.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_143080v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - bat-adls-6:         [PASS][3] -> [FAIL][4] ([i915#13401])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15896/bat-adls-6/igt@i915_pm_rpm@module-reload.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143080v1/bat-adls-6/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         [PASS][5] -> [SKIP][6] ([i915#9197]) +3 other tests skip
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15896/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143080v1/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live:
-    - bat-mtlp-8:         [DMESG-FAIL][7] ([i915#13393]) -> [PASS][8] +1 other test pass
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15896/bat-mtlp-8/igt@i915_selftest@live.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143080v1/bat-mtlp-8/igt@i915_selftest@live.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank:
-    - {bat-mtlp-9}:       [FAIL][9] ([i915#11989]) -> [PASS][10] +1 other test pass
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15896/bat-mtlp-9/igt@kms_flip@basic-flip-vs-wf_vblank.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143080v1/bat-mtlp-9/igt@kms_flip@basic-flip-vs-wf_vblank.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#11989]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11989
-  [i915#13393]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13393
-  [i915#13401]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13401
-  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
+total: 0 errors, 2 warnings, 0 checks, 77 lines checked
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_15896 -> Patchwork_143080v1
-
-  CI-20190529: 20190529
-  CI_DRM_15896: 048d83e7f9dae81c058d31c371634c1c317b3013 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8174: d2004b0623dbccd08502525849b4eef881aa199e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_143080v1: 048d83e7f9dae81c058d31c371634c1c317b3013 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143080v1/index.html
