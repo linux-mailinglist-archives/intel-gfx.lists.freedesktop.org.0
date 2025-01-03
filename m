@@ -2,66 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D26379FFFB9
-	for <lists+intel-gfx@lfdr.de>; Thu,  2 Jan 2025 20:56:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F2D0A00320
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jan 2025 04:26:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E577A10E7AB;
-	Thu,  2 Jan 2025 19:56:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C9C610E277;
+	Fri,  3 Jan 2025 03:26:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ReoKutI4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oHQjWQ5b";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 228AE10E7AA;
- Thu,  2 Jan 2025 19:55:59 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39F9010E1DC;
+ Fri,  3 Jan 2025 03:25:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1735847760; x=1767383760;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=mS/FRJ/OgR+ejm1EJ/sWap11rFOmm+rRUVvCq3AVQrc=;
- b=ReoKutI4yvKGolwHsDqgXqgoplcDfHh/usy52Z9xh4VSOjJQi7f6j6I4
- rbGLLGaeI86M2yzh+nTiDhevnUDh9R3f/oWB7dCpdxb/ktonDGe5oCzxZ
- bG0mNfS5FPCFiTNTmhsdTJvr5WHS60DTwgqdr/Z2HDbOXmjFDo2j9JRWO
- iIgR31+cxyMOhxxtpImsUDGeNZsmGdkYuw9eLuRMq7EXF+vwWoWMBoKc2
- Yx8nyo5JNRmvWFRgQaSjt8JhLNgEu5s7TmjZetht6GmnqnuWBNnwWfu2f
- JspXfIj1e4t9WIyy2VrswNcKjYayRgJLzoc71ry/E1UbSq/DdP4d63KZc A==;
-X-CSE-ConnectionGUID: qkSsuEEBRoG6x3axG+EdUw==
-X-CSE-MsgGUID: 7PMv4gCpSa6tI3D6Bfqt7Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11303"; a="36116400"
-X-IronPort-AV: E=Sophos;i="6.12,286,1728975600"; d="scan'208";a="36116400"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jan 2025 11:55:59 -0800
-X-CSE-ConnectionGUID: Do2v3JIkTtOouKyGHdBfFg==
-X-CSE-MsgGUID: lvQ3TCfiT1yeSNlYEyWIhQ==
+ t=1735874758; x=1767410758;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ewohmKMUDIMJnxqD2qRp9rRyviNmhi77EIYLGh5bAJc=;
+ b=oHQjWQ5blwBsRvUh9A5GgvKw8YFbMXUdtt+AqGLUVgPu0Y/OtELy8N5h
+ LEPLnGxLpo1x15SEBwrVfDcfpcLvRQfUdlxuHCU/h3RC/nbXG/JejUKbE
+ 3MMcGcmjULdE+kwGoP/Yb0C6Zzge/7mmgGby3BqmBmza4mTN0IMqzRBdG
+ yp7PrCIRYsKwvHVjVsj64ePWu7rQyiPFSO9qWWzVRaIfj3OeTlhlzjRH6
+ Bp8HAqBjEPNnQcnJEP1Sr2VeBuT42sj3vj4qxwTJFwiXEi7qoDNqYY6Cd
+ N14iPpNzFYfSTwHK0oNYvAIIU5n1GFGFmRequsurZNIpe1VotEb83x+z2 Q==;
+X-CSE-ConnectionGUID: +3jWUnOLTT6Qi1+yUhlYSQ==
+X-CSE-MsgGUID: ZU9QAvXURYCspRmWOeTjDA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11303"; a="39891679"
+X-IronPort-AV: E=Sophos;i="6.12,286,1728975600"; d="scan'208";a="39891679"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jan 2025 19:25:58 -0800
+X-CSE-ConnectionGUID: dy48zZOVRRq8/v0evKPMxQ==
+X-CSE-MsgGUID: spGei8uTT/CYHTjgFbatiQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,286,1728975600"; d="scan'208";a="101448689"
-Received: from slindbla-desk.ger.corp.intel.com (HELO [10.245.246.226])
- ([10.245.246.226])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jan 2025 11:55:54 -0800
-Message-ID: <37009b5cea1e54ad9d6b129bf5d7f600dbc437c9.camel@linux.intel.com>
-Subject: Re: [PULL] drm-xe-fixes
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen	
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, Maarten Lankhorst	
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Date: Thu, 02 Jan 2025 20:55:52 +0100
-In-Reply-To: <Z2mjt7OTfH76cgua@fedora>
-References: <Z2mjt7OTfH76cgua@fedora>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.2 (3.54.2-1.fc41) 
+X-IronPort-AV: E=Sophos;i="6.12,286,1728975600"; d="scan'208";a="102199729"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jan 2025 19:25:52 -0800
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
+ imre.deak@intel.com
+Subject: [PATCH] drm/i915/dp: Return early if dsc is required but not supported
+Date: Fri,  3 Jan 2025 08:44:24 +0530
+Message-ID: <20250103031424.1732774-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,84 +66,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 2024-12-23 at 18:53 +0100, Thomas Hellstrom wrote:
-> Hi Dave, Simona
->=20
-> The Xe fixes for -rc5.
+Currently, when bandwidth is insufficient for a given mode, we attempt
+to use DSC. This is indicated by a debug print, followed by a check for
+DSC support.
 
-This PR just got superseded by a new one (drm-xe-fixes-2025-01-02),
-that includes also the commits mentioned here.
+The debug message states that we are trying DSC, but DSC might not be
+supported, which can give an incorrect picture in the logs if we bail
+out later.
 
-Thanks,
-Thomas
+Correct the order for both DP and DP MST to:
+- Check if DSC is required and supported, and return early if DSC is
+not supported.
+- Print a debug message to indicate that DSC will be tried next.
 
+Suggested-by: Jani Nikula <jani.nikula@linux.intel.com>
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c     | 8 +++++---
+ drivers/gpu/drm/i915/display/intel_dp_mst.c | 7 +++++--
+ 2 files changed, 10 insertions(+), 5 deletions(-)
 
-
-
->=20
-> Thanks,
-> Thomas
->=20
-> drm-xe-fixes-2024-12-23:
-> UAPI Changes:
-> - Revert some devcoredump file format changes
-> =C2=A0 breaking a mesa debug tool (John)
->=20
-> Driver Changes:
-> - Fixes around waits when moving to system (Nirmoy)
-> - Fix a typo when checking for LMEM provisioning (Michal)
-> - Fix a fault on fd close after unbind (Lucas)
-> The following changes since commit
-> 4bbf9020becbfd8fc2c3da790855b7042fad455b:
->=20
-> =C2=A0 Linux 6.13-rc4 (2024-12-22 13:22:21 -0800)
->=20
-> are available in the Git repository at:
->=20
-> =C2=A0 https://gitlab.freedesktop.org/drm/xe/kernel.git=C2=A0tags/drm-xe-=
-fixes-
-> 2024-12-23
->=20
-> for you to fetch changes up to
-> fe39b222a4139354d32ff9d46b88757f63f71d63:
->=20
-> =C2=A0 drm/xe: Fix fault on fd close after unbind (2024-12-23 16:19:52
-> +0100)
->=20
-> ----------------------------------------------------------------
-> UAPI Changes:
-> - Revert some devcoredump file format changes
-> =C2=A0 breaking a mesa debug tool (John)
->=20
-> Driver Changes:
-> - Fixes around waits when moving to system (Nirmoy)
-> - Fix a typo when checking for LMEM provisioning (Michal)
-> - Fix a fault on fd close after unbind (Lucas)
->=20
-> ----------------------------------------------------------------
-> John Harrison (1):
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe: Revert some changes that break a m=
-esa debug tool
->=20
-> Lucas De Marchi (1):
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe: Fix fault on fd close after unbind
->=20
-> Michal Wajdeczko (1):
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe/pf: Use correct function to check L=
-MEM provisioning
->=20
-> Nirmoy Das (2):
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe: Use non-interruptible wait when mo=
-ving BO to system
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm/xe: Wait for migration job before unma=
-pping pages
->=20
-> =C2=A0drivers/gpu/drm/xe/xe_bo.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 12 ++++++++++--
-> =C2=A0drivers/gpu/drm/xe/xe_devcoredump.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 | 15 ++++++++++++++-
-> =C2=A0drivers/gpu/drm/xe/xe_exec_queue.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 |=C2=A0 9 +++++++++
-> =C2=A0drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c |=C2=A0 2 +-
-> =C2=A04 files changed, 34 insertions(+), 4 deletions(-)
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 0d74adae2ec9..4fa0e0b675b0 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -2642,15 +2642,17 @@ intel_dp_compute_link_config(struct intel_encoder *encoder,
+ 			dsc_needed = true;
+ 	}
+ 
++	if (dsc_needed && !intel_dp_supports_dsc(intel_dp, connector, pipe_config)) {
++		drm_dbg_kms(display->drm, "DSC required but not available\n");
++		return -EINVAL;
++	}
++
+ 	if (dsc_needed) {
+ 		drm_dbg_kms(display->drm,
+ 			    "Try DSC (fallback=%s, joiner=%s, force=%s)\n",
+ 			    str_yes_no(ret), str_yes_no(joiner_needs_dsc),
+ 			    str_yes_no(intel_dp->force_dsc_en));
+ 
+-		if (!intel_dp_supports_dsc(intel_dp, connector, pipe_config))
+-			return -EINVAL;
+-
+ 		if (!intel_dp_compute_config_limits(intel_dp, pipe_config,
+ 						    respect_downstream_limits,
+ 						    true,
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+index fffd199999e0..0433f2ff77e1 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+@@ -633,14 +633,17 @@ static int mst_stream_compute_config(struct intel_encoder *encoder,
+ 			dsc_needed = true;
+ 	}
+ 
++	if (dsc_needed && !intel_dp_supports_dsc(intel_dp, connector, pipe_config)) {
++		drm_dbg_kms(display->drm, "DSC required but not available\n");
++		return -EINVAL;
++	}
++
+ 	/* enable compression if the mode doesn't fit available BW */
+ 	if (dsc_needed) {
+ 		drm_dbg_kms(display->drm, "Try DSC (fallback=%s, joiner=%s, force=%s)\n",
+ 			    str_yes_no(ret), str_yes_no(joiner_needs_dsc),
+ 			    str_yes_no(intel_dp->force_dsc_en));
+ 
+-		if (!intel_dp_supports_dsc(intel_dp, connector, pipe_config))
+-			return -EINVAL;
+ 
+ 		if (!mst_stream_compute_config_limits(intel_dp, connector,
+ 						      pipe_config, true,
+-- 
+2.45.2
 
