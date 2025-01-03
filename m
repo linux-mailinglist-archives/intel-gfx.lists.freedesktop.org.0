@@ -2,57 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FDACA00761
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jan 2025 11:03:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 14646A0076A
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jan 2025 11:08:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF61710E853;
-	Fri,  3 Jan 2025 10:03:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4475110E85B;
+	Fri,  3 Jan 2025 10:08:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TTI1HjtA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ClBSTJ94";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D6A710E43A;
- Fri,  3 Jan 2025 10:03:32 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 86E1610E859;
+ Fri,  3 Jan 2025 10:08:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1735898612; x=1767434612;
+ t=1735898904; x=1767434904;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=8gCeCzh/sKb89YSsDMad6fgzdc7IZbz147n81IyI4Js=;
- b=TTI1HjtA23IKHrksis6NFLYz6uIGm+zJ6EmEVsg2/hxEdLeztPzlKp3M
- g7MgJnSnsa2xzBdfgvEnOVwb6RertZuljvES8GWCGUZyBJ2fAc/u275Vo
- MXMmyM9Bu/fzLJrJtOAx0O1dVXdkHd0nuxGvUV5sLXGjVprNsL2H5+W7q
- WumQg8cmpMuN+xc0wiEEUPo/ebT102oUWow6bzAqQF9rPKAsIikbnXsyy
- LCIA56j51fACTtx6DRekSpJmyw5ZnA6kjsXwPG3Kov/Ym+W5XBYGEW2q9
- RrJsSwKMVuwTkkRtXFa/dBHskIDBTi9MdUtShAbC4XuvOtVFkm7/RfNI/ g==;
-X-CSE-ConnectionGUID: Gf85ZiI0RPy7lF4sUZV9vw==
-X-CSE-MsgGUID: iMenHsJOQg+If5IhQ3nRVw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11303"; a="46820269"
-X-IronPort-AV: E=Sophos;i="6.12,286,1728975600"; d="scan'208";a="46820269"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jan 2025 02:03:32 -0800
-X-CSE-ConnectionGUID: PuaUl3gLQ/2gjs5w7PnSIQ==
-X-CSE-MsgGUID: lR27Uc+SSMC5q91YTRTetA==
+ bh=iSqg1JEMfBU+dm2ACBLHLI90Tmk9nEXWe/tgEU4/XVA=;
+ b=ClBSTJ94Vrm2+fTzVrSZrdiWxlnkiRUI0Ii98BMqSx67tpL5HsPTMzgg
+ aelExqGfmm8+fz2Wowq5VI6hLswu3j4JG5hxiL8RezHp5oG353nyY1KUk
+ qpixxehXB7nJIIBicptMG09agOoPe5Oeu/oCygWVGn/w5muu1Vtr742nU
+ 1xDJLn7Ginb0I2St7h3Zf090XRlVtyCBkJhr6kl8Fl9tVRZlpvanj9XDO
+ k4X25nE75Gpk1al6omzasyeaON9OGpaqW/8KZG9smqIru+Y7g7kGu1Rw8
+ nRvjqR1qugaVIDOQB9oadsD+bIRZ49Yeg+tlN2rh+dXZXiyALLC/9T/5L Q==;
+X-CSE-ConnectionGUID: nGfDaYgMT1atHce8ax6ooA==
+X-CSE-MsgGUID: nf9E0rCWQeazvGjCSaNQOQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11303"; a="35448196"
+X-IronPort-AV: E=Sophos;i="6.12,286,1728975600"; d="scan'208";a="35448196"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jan 2025 02:08:23 -0800
+X-CSE-ConnectionGUID: cGMpdA7WQsWQPKAxfTH80Q==
+X-CSE-MsgGUID: ViPcrcurTEqkdhNm+2jD5A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="105808051"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="106794516"
 Received: from dprybysh-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.246.242])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jan 2025 02:03:30 -0800
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jan 2025 02:08:21 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, imre.deak@intel.com
-Subject: Re: [PATCH] drm/i915/dp: Return early if dsc is required but not
- supported
-In-Reply-To: <20250103031424.1732774-1-ankit.k.nautiyal@intel.com>
+Cc: ankit.k.nautiyal@intel.com, chaitanya.kumar.borah@intel.com,
+ dnyaneshwar.bhadane@intel.com, Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: Re: [PATCH 1/2] drm/i915/dp: Use intel_display instead of
+ drm_i915_private
+In-Reply-To: <20250103051705.145161-2-suraj.kandpal@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250103031424.1732774-1-ankit.k.nautiyal@intel.com>
-Date: Fri, 03 Jan 2025 12:03:26 +0200
-Message-ID: <87seq0mcy9.fsf@intel.com>
+References: <20250103051705.145161-1-suraj.kandpal@intel.com>
+ <20250103051705.145161-2-suraj.kandpal@intel.com>
+Date: Fri, 03 Jan 2025 12:08:17 +0200
+Message-ID: <87pll4mcq6.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -70,79 +72,96 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 03 Jan 2025, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
-> Currently, when bandwidth is insufficient for a given mode, we attempt
-> to use DSC. This is indicated by a debug print, followed by a check for
-> DSC support.
+On Fri, 03 Jan 2025, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
+> Use intel display instead of drm_i915_private in
+> mtl_ddi_prepare_link_retrain & mtl_port_buf_ctl_program
+> functions.
 >
-> The debug message states that we are trying DSC, but DSC might not be
-> supported, which can give an incorrect picture in the logs if we bail
-> out later.
->
-> Correct the order for both DP and DP MST to:
-> - Check if DSC is required and supported, and return early if DSC is
-> not supported.
-> - Print a debug message to indicate that DSC will be tried next.
->
-> Suggested-by: Jani Nikula <jani.nikula@linux.intel.com>
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+
+This is a good direction, but I'd aim higher than just a few
+functions...
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/display/intel_dp.c     | 8 +++++---
->  drivers/gpu/drm/i915/display/intel_dp_mst.c | 7 +++++--
->  2 files changed, 10 insertions(+), 5 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_ddi.c | 20 ++++++++++----------
+>  1 file changed, 10 insertions(+), 10 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 0d74adae2ec9..4fa0e0b675b0 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -2642,15 +2642,17 @@ intel_dp_compute_link_config(struct intel_encoder *encoder,
->  			dsc_needed = true;
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index 4f9c50996446..5e944cae116a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -2534,12 +2534,12 @@ mtl_ddi_enable_d2d(struct intel_encoder *encoder)
+>  static void mtl_port_buf_ctl_program(struct intel_encoder *encoder,
+>  				     const struct intel_crtc_state *crtc_state)
+>  {
+> -	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+> +	struct intel_display *display = to_intel_display(encoder);
+>  	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+>  	enum port port = encoder->port;
+>  	u32 val;
+>  
+> -	val = intel_de_read(i915, XELPDP_PORT_BUF_CTL1(i915, port));
+> +	val = intel_de_read(display, XELPDP_PORT_BUF_CTL1(i915, port));
+>  	val &= ~XELPDP_PORT_WIDTH_MASK;
+>  	val |= XELPDP_PORT_WIDTH(mtl_get_port_width(crtc_state->lane_count));
+>  
+> @@ -2552,7 +2552,7 @@ static void mtl_port_buf_ctl_program(struct intel_encoder *encoder,
+>  	if (dig_port->lane_reversal)
+>  		val |= XELPDP_PORT_REVERSAL;
+>  
+> -	intel_de_write(i915, XELPDP_PORT_BUF_CTL1(i915, port), val);
+> +	intel_de_write(display, XELPDP_PORT_BUF_CTL1(display, port), val);
+>  }
+>  
+>  static void mtl_port_buf_ctl_io_selection(struct intel_encoder *encoder)
+> @@ -3639,9 +3639,9 @@ static void adlp_tbt_to_dp_alt_switch_wa(struct intel_encoder *encoder)
+>  static void mtl_ddi_prepare_link_retrain(struct intel_dp *intel_dp,
+>  					 const struct intel_crtc_state *crtc_state)
+>  {
+> +	struct intel_display *display = to_intel_display(crtc_state);
+>  	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+>  	struct intel_encoder *encoder = &dig_port->base;
+> -	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+>  	enum port port = encoder->port;
+>  	u32 dp_tp_ctl;
+>  
+> @@ -3649,7 +3649,7 @@ static void mtl_ddi_prepare_link_retrain(struct intel_dp *intel_dp,
+>  	 * TODO: To train with only a different voltage swing entry is not
+>  	 * necessary disable and enable port
+>  	 */
+> -	dp_tp_ctl = intel_de_read(dev_priv, dp_tp_ctl_reg(encoder, crtc_state));
+> +	dp_tp_ctl = intel_de_read(display, dp_tp_ctl_reg(encoder, crtc_state));
+>  	if (dp_tp_ctl & DP_TP_CTL_ENABLE)
+>  		mtl_disable_ddi_buf(encoder, crtc_state);
+>  
+> @@ -3662,8 +3662,8 @@ static void mtl_ddi_prepare_link_retrain(struct intel_dp *intel_dp,
+>  		if (crtc_state->enhanced_framing)
+>  			dp_tp_ctl |= DP_TP_CTL_ENHANCED_FRAME_ENABLE;
 >  	}
+> -	intel_de_write(dev_priv, dp_tp_ctl_reg(encoder, crtc_state), dp_tp_ctl);
+> -	intel_de_posting_read(dev_priv, dp_tp_ctl_reg(encoder, crtc_state));
+> +	intel_de_write(display, dp_tp_ctl_reg(encoder, crtc_state), dp_tp_ctl);
+> +	intel_de_posting_read(display, dp_tp_ctl_reg(encoder, crtc_state));
 >  
-> +	if (dsc_needed && !intel_dp_supports_dsc(intel_dp, connector, pipe_config)) {
-> +		drm_dbg_kms(display->drm, "DSC required but not available\n");
-> +		return -EINVAL;
-> +	}
-> +
->  	if (dsc_needed) {
->  		drm_dbg_kms(display->drm,
->  			    "Try DSC (fallback=%s, joiner=%s, force=%s)\n",
->  			    str_yes_no(ret), str_yes_no(joiner_needs_dsc),
->  			    str_yes_no(intel_dp->force_dsc_en));
+>  	/* 6.f Enable D2D Link */
+>  	mtl_ddi_enable_d2d(encoder);
+> @@ -3676,11 +3676,11 @@ static void mtl_ddi_prepare_link_retrain(struct intel_dp *intel_dp,
 >  
-> -		if (!intel_dp_supports_dsc(intel_dp, connector, pipe_config))
-> -			return -EINVAL;
-> -
->  		if (!intel_dp_compute_config_limits(intel_dp, pipe_config,
->  						    respect_downstream_limits,
->  						    true,
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> index fffd199999e0..0433f2ff77e1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> @@ -633,14 +633,17 @@ static int mst_stream_compute_config(struct intel_encoder *encoder,
->  			dsc_needed = true;
->  	}
+>  	/* 6.i Configure and enable DDI_CTL_DE to start sending valid data to port slice */
+>  	intel_dp->DP |= DDI_BUF_CTL_ENABLE;
+> -	if (DISPLAY_VER(dev_priv) >= 20)
+> +	if (DISPLAY_VER(display) >= 20)
+>  		intel_dp->DP |= XE2LPD_DDI_BUF_D2D_LINK_ENABLE;
 >  
-> +	if (dsc_needed && !intel_dp_supports_dsc(intel_dp, connector, pipe_config)) {
-> +		drm_dbg_kms(display->drm, "DSC required but not available\n");
-> +		return -EINVAL;
-> +	}
-> +
->  	/* enable compression if the mode doesn't fit available BW */
->  	if (dsc_needed) {
->  		drm_dbg_kms(display->drm, "Try DSC (fallback=%s, joiner=%s, force=%s)\n",
->  			    str_yes_no(ret), str_yes_no(joiner_needs_dsc),
->  			    str_yes_no(intel_dp->force_dsc_en));
+> -	intel_de_write(dev_priv, DDI_BUF_CTL(port), intel_dp->DP);
+> -	intel_de_posting_read(dev_priv, DDI_BUF_CTL(port));
+> +	intel_de_write(display, DDI_BUF_CTL(port), intel_dp->DP);
+> +	intel_de_posting_read(display, DDI_BUF_CTL(port));
 >  
-> -		if (!intel_dp_supports_dsc(intel_dp, connector, pipe_config))
-> -			return -EINVAL;
->  
->  		if (!mst_stream_compute_config_limits(intel_dp, connector,
->  						      pipe_config, true,
+>  	/* 6.j Poll for PORT_BUF_CTL Idle Status == 0, timeout after 100 us */
+>  	intel_wait_ddi_buf_active(encoder);
 
 -- 
 Jani Nikula, Intel
