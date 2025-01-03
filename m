@@ -2,57 +2,95 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 453BAA00D03
-	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jan 2025 18:42:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 21C66A00D9F
+	for <lists+intel-gfx@lfdr.de>; Fri,  3 Jan 2025 19:31:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B19BC10E910;
-	Fri,  3 Jan 2025 17:42:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 89A6710E91E;
+	Fri,  3 Jan 2025 18:31:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ayzMU5OE";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="PmZMzjNi";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F32CB10E90F;
- Fri,  3 Jan 2025 17:42:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1735926161; x=1767462161;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=rc3aGVf6TmPzLbAaL8CYavMq8x3Ye3LC26YYFx0w0ss=;
- b=ayzMU5OEB/EcjbsUlgia3ktyUM5N+yiipklHYERoMkwhTEBrw+sQWaZs
- UxwczSsDuNH5JLeISmFpX5/cdlA/jU2ktY+BgYPeQUJYDElj46rW+tBdO
- H9f55BFzXKv34HGvqXar6zyKLr0uf7S5hdsL8/prDpVnYcndMZfq28OMY
- R4ztOgNkcKUZDzr79bcopQEgMZ3KrqdHTZIGb7szSPa5Tybe0Rb4iKaGf
- EJZgqcghHu8JKlk09eo2+YPCaMa7AzJmIpAkDa+F1wuThMPm9SVK8BUDJ
- 5SaOFubFrWZdAAfsZX7jp/FikoxCe1urb4xKVQh37EoqK9HUeJYNM3Hyk w==;
-X-CSE-ConnectionGUID: DwpIFzLGTkeOntvuhxtgsQ==
-X-CSE-MsgGUID: LzKbBepzQl+hZwFQ2EsFQA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11304"; a="36326351"
-X-IronPort-AV: E=Sophos;i="6.12,286,1728975600"; d="scan'208";a="36326351"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jan 2025 09:42:41 -0800
-X-CSE-ConnectionGUID: QIe5bvDKS3uUtKTEIZLlOw==
-X-CSE-MsgGUID: Bo0IJBhsT3Wt4kfcp+CSpg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="102709617"
-Received: from inaky-mobl1.amr.corp.intel.com (HELO
- gjsousa-mobl2.corp.amr.intel.com) ([10.125.110.11])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jan 2025 09:42:39 -0800
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Subject: [PATCH 3/3] drm/i915/dmc_wl: Track pipe interrupt registers
-Date: Fri,  3 Jan 2025 14:41:37 -0300
-Message-ID: <20250103174223.58140-4-gustavo.sousa@intel.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20250103174223.58140-1-gustavo.sousa@intel.com>
-References: <20250103174223.58140-1-gustavo.sousa@intel.com>
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com
+ [209.85.218.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C688510E91E
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Jan 2025 18:31:01 +0000 (UTC)
+Received: by mail-ej1-f41.google.com with SMTP id
+ a640c23a62f3a-aaedd529ba1so1271277766b.1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 03 Jan 2025 10:31:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1735929000; x=1736533800; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=155ezFoO+4fVmuNy4GZMEsWBNEAzYP4vCAeZ5fjCchw=;
+ b=PmZMzjNivhkwMIEZfrOuwVbp/3u3yECX3/ijHBGX+y8tRoLff8NeM/VavHosW2lWvq
+ BR6MesrAGV+kBblCap3cXX+nbdA6BKqKQKyjP8X5BjGnlGCvTMUiImZ8P0I/uli2JqaD
+ 8thFbhiCfJNE7JbsCDbyCr76lJ3cgamGZDO/b9Cx6HEqz/g7D4WyB00cMC3i7Deh9HnQ
+ WhaE+z3uSh0OezCsiFwe0KKiabtED9nn9ntiFBW/WAUstFn5gMnp7z/5T8RjYE1ITifD
+ PP3YqxoRCJoBpL90jmlqm5k+VkGcrYX0xD+Lt7vCCnpm8obeqf+WRyd55XM5xE3DhHsU
+ ZBOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1735929000; x=1736533800;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=155ezFoO+4fVmuNy4GZMEsWBNEAzYP4vCAeZ5fjCchw=;
+ b=mmdLA5eREEs7nO/+xlwCjZFRYgHS+v5W3wdGyMgyFoRcynXpYsAjtJhM1a7Jv9YTlx
+ iwpAk8jn+Xsd08plFIwLeurD3uTvjxRNC4+5Lilop0eLzUlX58Ltj8iN8OxI5+onL9Zt
+ yyfUwXxP1mbbjHIkKOQ4hGq6oirIv6KoDBJr731FIfFfnD7fqAy5XATtZKues8pUsPDI
+ EElb4VcCrY3hkdxs7d4a2BkisMycCgSKCbCmVOZGVBpQIzh/Z5tNC1SBIr8zbAJ8ursd
+ /BpfNoinPhbfOqUkcOuJPc3KxV2ve7z5B5tyPuTYGxV/Xb26KHWSDu/TmLzKZzIEL1U9
+ EIBw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUk8KczGZbv2/WGjEZhN3hp9P+NAGX+3U2mv6BPfbGTKKerKxyH6TcQ8mxGarG5/PULvIzLzxG/moQ=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxS16c83OSp7CBAYZGRAmWymcq/wHScI6k/cl9+BJvrVp3wgktL
+ zomdo2Jjr8T2G7ey8ajZGwWRl7dGWQPm93Avc+6P1gwPONClVmn9s60V5DxSJh1XYOxSNCmY1aH
+ y9I0=
+X-Gm-Gg: ASbGncuQyuk58haj1hCnsLCX4vNSnP9sW9Ph7c9Mclqbk9vow+lfVrcnVAYiE4Suf+o
+ bs+wqpwxtUk+gihhv2p1+ZtPrq59xfEzR3eD0/41V1le9paLu45hJwjViYTNjfzXllfFpOPnwAn
+ t4WRyOyLHj9Q9pTF0i5LKPIP59AER8+VJOPhJgBAEQuSwIqshr+IbUxxDbHhTheZBmLc8GI38ag
+ oL/+nIP1Dd6Ep25AL0tUh18egoYzrldHWm4mYcQo6nzaGzxc0SPuiLVomGFnTNV5vnuXChFlYNf
+ zxo2bYblooziElHYhykVvwgd2vOxKljdUn1M
+X-Google-Smtp-Source: AGHT+IGRom+Gus/1G1SgQhKlOCafo/OEVm4N6cFluXFzAfrnKOJhSwVzA8r9uuoBvSe2BPxSSW2YMg==
+X-Received: by 2002:a05:6512:438b:b0:542:2999:2e43 with SMTP id
+ 2adb3069b0e04-54229992e47mr16954688e87.24.1735927591118; 
+ Fri, 03 Jan 2025 10:06:31 -0800 (PST)
+Received: from eriador.lumag.spb.ru
+ (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+ by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-54223832a5bsm4176014e87.270.2025.01.03.10.06.29
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 03 Jan 2025 10:06:29 -0800 (PST)
+Date: Fri, 3 Jan 2025 20:06:28 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Abel Vesa <abel.vesa@linaro.org>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>, 
+ Danilo Krummrich <dakr@redhat.com>, Jani Nikula <jani.nikula@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, Rob Clark <robdclark@gmail.com>, 
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, 
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Johan Hovold <johan@kernel.org>,
+ dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, Johan Hovold <johan+linaro@kernel.org>
+Subject: Re: [PATCH v3 1/4] drm/dp: Add helper to set LTTPRs in transparent
+ mode
+Message-ID: <yx2io7cuu5hescyocvkvzsaoiqhgbifknbxytqtusbno6y4xe2@e4bar6lemtdl>
+References: <20250103-drm-dp-msm-add-lttpr-transparent-mode-set-v3-0-5c367f4b0763@linaro.org>
+ <20250103-drm-dp-msm-add-lttpr-transparent-mode-set-v3-1-5c367f4b0763@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250103-drm-dp-msm-add-lttpr-transparent-mode-set-v3-1-5c367f4b0763@linaro.org>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,39 +106,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Pipe interrupt registers live in their respective pipes' power wells,
-which are below PG0. That means that they must also be tracked as
-registers that are powered-off during dynamic DC states.
+On Fri, Jan 03, 2025 at 02:58:15PM +0200, Abel Vesa wrote:
+> According to the DisplayPort standard, LTTPRs have two operating
+> modes:
+>  - non-transparent - it replies to DPCD LTTPR field specific AUX
+>    requests, while passes through all other AUX requests
+>  - transparent - it passes through all AUX requests.
+> 
+> Switching between this two modes is done by the DPTX by issuing
+> an AUX write to the DPCD PHY_REPEATER_MODE register.
+> 
+> Add a generic helper that allows switching between these modes.
+> 
+> Also add a generic wrapper for the helper that handles the explicit
+> disabling of non-transparent mode and its disable->enable sequence
+> mentioned in the DP Standard v2.0 section 3.6.6.1. Do this in order
+> to move this handling out of the vendor specific driver implementation
+> into the generic framework.
+> 
+> Tested-by: Johan Hovold <johan+linaro@kernel.org>
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> ---
+>  drivers/gpu/drm/display/drm_dp_helper.c | 61 +++++++++++++++++++++++++++++++++
+>  include/drm/display/drm_dp_helper.h     |  2 ++
+>  2 files changed, 63 insertions(+)
+> 
 
-There are probably more ranges that we need to track down and add to the
-powered_off_ranges. However, let's make this change only about pipe
-interrupt registers to fix some vblank timeouts observed due to the DMC
-wakelock not being taken for those registers.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-In the future, we might want to replace powered_off_ranges with a new
-table to represent registers in PG0, which should be probably easier to
-maintain. Any register not belonging to that table should be considered
-powered off during dynamic DC states and, as such, requiring the DMC
-wakelock for access.
-
-Bspec: 72519, 71583
-Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dmc_wl.c | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-index 02de3ae15074..985aa968692e 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-@@ -56,6 +56,7 @@ struct intel_dmc_wl_range {
- };
- 
- static const struct intel_dmc_wl_range powered_off_ranges[] = {
-+	{ .start = 0x44400, .end = 0x4447f }, /* PIPE interrupt registers */
- 	{ .start = 0x60000, .end = 0x7ffff },
- 	{},
- };
 -- 
-2.47.1
-
+With best wishes
+Dmitry
