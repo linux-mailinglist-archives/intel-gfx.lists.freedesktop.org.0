@@ -2,51 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2C99A01D2C
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jan 2025 03:04:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC94DA01E6E
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jan 2025 05:08:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6710B10E557;
-	Mon,  6 Jan 2025 02:04:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D96410E1CE;
+	Mon,  6 Jan 2025 04:08:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="Z4YD75Rm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nKLrBtBl";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5931B10E070;
- Mon,  6 Jan 2025 02:03:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1736129024;
- bh=o7q4YMCbm6QDOOrZ12zWJdvJpl2MSPRbhzNZADhYwP0=;
- h=Date:From:To:Cc:Subject:From;
- b=Z4YD75RmhflWtIkI4EhVSPo3670B8nIFoomrQtpA/KUcBN2UM5y3ePwvJoNLk5Xd/
- VJFLo6W4gYw0FincqDG1bphIMfh9J9w/cr4ud9D7A3iIqgDtxgSSB/IiZmr96ImlDH
- yirb3YapY+1ty9xsZ0AiOd3GARpOecs1pRqyGu22txBdaqD59z5uAYVrjUzb6bG2yK
- ybple8Ob7/1QfYZlgcRI1UVcdZtT3eMN72iO/U0qKXgnyGYAZsjOl0fazBTR2XYqFE
- gNs81HXHeKta/f2LZDXFHyowz1XpYES4lAMVMjA1SC938Fs0rwmaR7uoAQzZ+8KcrQ
- em5MEFjOjN17g==
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (Client did not present a certificate)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4YRHXZ5ck1z4wxx;
- Mon,  6 Jan 2025 13:03:42 +1100 (AEDT)
-Date: Mon, 6 Jan 2025 13:03:48 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Simona Vetter <simona.vetter@ffwll.ch>, Jani Nikula
- <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Andrew Morton <akpm@linux-foundation.org>
-Cc: Intel Graphics <intel-gfx@lists.freedesktop.org>, DRI
- <dri-devel@lists.freedesktop.org>, Jani Nikula <jani.nikula@intel.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Linux Next
- Mailing List <linux-next@vger.kernel.org>, Yafang Shao
- <laoar.shao@gmail.com>
-Subject: linux-next: manual merge of the drm-intel tree with the mm tree
-Message-ID: <20250106130348.73a5fae6@canb.auug.org.au>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E12610E1CE;
+ Mon,  6 Jan 2025 04:08:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1736136525; x=1767672525;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=8hJZ+ET2yGUf/42OxtdO6fhh4/BDWkBE/IG9dEFLJ/A=;
+ b=nKLrBtBlLJ+YbdTfoA4liPS1IT/ehbiCn9OJQQ3uB2CTGwSL/m2XEo9y
+ xpDJCNRb/Z0iAMETRXHD1+WAmOWjTiOIbxuvodUl7UT6Qy5axeDMiR+eK
+ 58pAD1zoHb+PvznZRknRsNAXIxthyBj3qZGPl6r11xHqPokw6OXNTHTHW
+ 3VUzI8sqOv6TH9wGlL+gQ1uHTdxj+0k4Gokey14Vo34rZPDlwzxGea+Xn
+ 4ZcpDeZ1bKUjXNwEfktpoWXW25G+WozY7IxRHjdgctlYw9/05hzGw3a6A
+ Gj/hy2tLaUzo7ig2gyIBfX+BCBhZVIah19yexOLsS+Tlru4kh9vdPhi8t A==;
+X-CSE-ConnectionGUID: H9dm9hB4REy0OIbvFMrKPg==
+X-CSE-MsgGUID: tETVqL0IRfWnb1BP0xprfQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11306"; a="40214650"
+X-IronPort-AV: E=Sophos;i="6.12,292,1728975600"; d="scan'208";a="40214650"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jan 2025 20:08:44 -0800
+X-CSE-ConnectionGUID: PryBAxMSSxavuXZG6+/Wrg==
+X-CSE-MsgGUID: Bqer1vmYQJyaz9neh+dRgw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,292,1728975600"; d="scan'208";a="102816078"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
+ by fmviesa010.fm.intel.com with ESMTP; 05 Jan 2025 20:08:43 -0800
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com, uma.shankar@intel.com,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH 0/2] SSC enablement in port clock programming
+Date: Mon,  6 Jan 2025 09:38:19 +0530
+Message-Id: <20250106040821.251114-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/jBLpBhe/Y1HjnQTCrWM99kN";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,91 +66,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/jBLpBhe/Y1HjnQTCrWM99kN
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+According to specs SSC is enabled during port clock programming based on
+below conditions:
+-if uhbr 10 or uhbr 20 enable ssc regardless of what display controller
+asks of us
+-if ubhr 13.5 or legacy rates enable ssc if required.
+Currently these conditions are not exactly followed this patch series
+fixes that.
+One more thing this patch addresses is how SSC was not enabled for c20
+PHY at all because ssc_enabled variable is never set for c20 PHY.
 
-Hi all,
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
-Today's linux-next merge of the drm-intel tree got a conflict in:
+Suraj Kandpal (2):
+  drm/i915/cx0: Fix SSC enablement in PORT_CLOCK_CTL
+  drm/i915/cx0: Set ssc_enabled for c20 too
 
-  drivers/gpu/drm/i915/display/intel_display_driver.c
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 18 ++++++++++++++----
+ 1 file changed, 14 insertions(+), 4 deletions(-)
 
-between commit:
+-- 
+2.34.1
 
-  4fc0cee83590 ("drivers: remove get_task_comm() and print task comm direct=
-ly")
-
-from the mm-nonmm-unstable branch of the mm tree and commit:
-
-  f5d38d4fa884 ("drm/i915/display: convert intel_display_driver.[ch] to str=
-uct intel_display")
-
-from the drm-intel tree.
-
-I fixed it up (see below) and can carry the fix as necessary. This
-is now fixed as far as linux-next is concerned, but any non trivial
-conflicts should be mentioned to your upstream maintainer when your tree
-is submitted for merging.  You may also want to consider cooperating
-with the maintainer of the conflicting tree to minimise any particularly
-complex conflicts.
-
---=20
-Cheers,
-Stephen Rothwell
-
-diff --cc drivers/gpu/drm/i915/display/intel_display_driver.c
-index 62596424a9aa,497b4a1f045f..000000000000
---- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@@ -389,8 -397,9 +397,8 @@@ void intel_display_driver_resume_access
-   * Returns %true if the current thread has display HW access, %false
-   * otherwise.
-   */
-- bool intel_display_driver_check_access(struct drm_i915_private *i915)
-+ bool intel_display_driver_check_access(struct intel_display *display)
-  {
- -	char comm[TASK_COMM_LEN];
-  	char current_task[TASK_COMM_LEN + 16];
-  	char allowed_task[TASK_COMM_LEN + 16] =3D "none";
- =20
-@@@ -399,14 -408,15 +407,14 @@@
-  		return true;
- =20
-  	snprintf(current_task, sizeof(current_task), "%s[%d]",
- -		 get_task_comm(comm, current),
- -		 task_pid_vnr(current));
- +		 current->comm, task_pid_vnr(current));
- =20
-- 	if (i915->display.access.allowed_task)
-+ 	if (display->access.allowed_task)
-  		snprintf(allowed_task, sizeof(allowed_task), "%s[%d]",
-- 			 i915->display.access.allowed_task->comm,
-- 			 task_pid_vnr(i915->display.access.allowed_task));
- -			 get_task_comm(comm, display->access.allowed_task),
-++			 display->access.allowed_task->comm,
-+ 			 task_pid_vnr(display->access.allowed_task));
- =20
-- 	drm_dbg_kms(&i915->drm,
-+ 	drm_dbg_kms(display->drm,
-  		    "Reject display access from task %s (allowed to %s)\n",
-  		    current_task, allowed_task);
- =20
-
---Sig_/jBLpBhe/Y1HjnQTCrWM99kN
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmd7OgQACgkQAVBC80lX
-0GyVngf+OrzkOD7TLv4JmROI3BaLqfZVO0h5D/abja84Bp37NG54xPo8OwExh5v7
-+IiwBCbrAxUFiXHuBgvM3gZA+gyJOjp68/YlZdngVThsGN0N3AsOuUnunEsnrUG7
-FB2R89nPV5GYEoLab5mI5VxTtaymBt+U77hL+TngjpHeovHmQh4bLSl9DC6F2NwZ
-MiB+3Grz/MHJchwodizgtG0fYiNaj0/7Q3bGBPsHsW8d3Me5MtoQ+HSeJ6A+/9VO
-A+69paKg9+QKwQ1wrsSr+TcNLUxwi7j4dYhkxJnYf1sr/aTx2CHCqN9nQhICvew9
-TxuL/6vO/PsAt7Pq8EVNdMwGie37PQ==
-=Q0n0
------END PGP SIGNATURE-----
-
---Sig_/jBLpBhe/Y1HjnQTCrWM99kN--
