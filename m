@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAB77A01E6F
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jan 2025 05:08:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 051F0A01E70
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jan 2025 05:08:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F85210E56E;
-	Mon,  6 Jan 2025 04:08:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9AFD310E573;
+	Mon,  6 Jan 2025 04:08:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TbnXIM6G";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="epwtbRPe";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D30010E56D;
- Mon,  6 Jan 2025 04:08:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EEC1B10E571;
+ Mon,  6 Jan 2025 04:08:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736136526; x=1767672526;
+ t=1736136528; x=1767672528;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=J6okatLfv6j7p93lA1d+MWvj95mxNqde5fuUIun8xFI=;
- b=TbnXIM6Gvy6LxVhn1NtE61rTC3j/0zJ0ADQlxC13dLIdz3QcBaO/kIk8
- SgzQUpsBKFpsmoe+kBWN/qgHNtsr5BQ79Bckvzra6FbmWImSrtIMPrSi0
- j+28onLWAdXUMVDoguJocj57qvyeoifS6Mc4RGYu4AX+BkgGbUBi1JWKj
- B4wO4xFTVt5v//w+WTx2akaGob8yCRt/NOFVBabynJJCuaYxD6R/uYz6u
- yUfvadKvZ93DE6uGYudFC683vuAp081PMnOXL0UmfTdZMkfA3hEnFSM5f
- hYv8AzTIFghCfnjAg0iO0+2i5lYt98P8ubfGNm4HpXKhrMw+pJj5rhbBs Q==;
-X-CSE-ConnectionGUID: llFJUiK/SwaqJSwaZ0SHPg==
-X-CSE-MsgGUID: 0c3WF/OYT8mJTp40wRL2Gw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11306"; a="40214655"
-X-IronPort-AV: E=Sophos;i="6.12,292,1728975600"; d="scan'208";a="40214655"
+ bh=Hmlbbij8gkVOFlKwvNzSCb+421qWWPubrWBnzlMaS4Y=;
+ b=epwtbRPeDvuIcZW0cR6k6ZPc7sHSG4sor7d7/ul4MRWWgZw5zbfP+1mL
+ ylm82JwHJ+VBBY/yKYycYgqjtR7863wi2Vy7yNcIBk64K1MsxQ8R6+tS3
+ /HM1TrIUNkHFeZmSLq9NlwjG2eBXtOlppd3+NkiwnDi9Q5xYfV+TQ3Arr
+ SQeAuDxmK4NnCW+Cjwk7fatjiW/8ZlyP2c+RFqcwyKgZkinZI8BqjXMRz
+ 0Uv01qcyzYJphV725RB2EASK1oHX0tshkWW2rC27qOQkop8ohHQaxOo4X
+ 8QjJ3kkDcqUJm37ccBxxLOB7Mn9PRQ96cPsN/VVMT0DA3eGof/8t3DDio w==;
+X-CSE-ConnectionGUID: fBRRP71iTtiLc2SmOj66Lw==
+X-CSE-MsgGUID: 2ZdPyqsRQDCQuvaB6UhJZA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11306"; a="40214659"
+X-IronPort-AV: E=Sophos;i="6.12,292,1728975600"; d="scan'208";a="40214659"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jan 2025 20:08:46 -0800
-X-CSE-ConnectionGUID: 6ArjwjimSrSxaEmIps7dnw==
-X-CSE-MsgGUID: zniDBtRyRj6XfYShSEONrA==
+ 05 Jan 2025 20:08:48 -0800
+X-CSE-ConnectionGUID: ZV9o/MQWSyai5vDsFIeEPw==
+X-CSE-MsgGUID: c9hNZa1ITW2tXZF6AyXoKw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,292,1728975600"; d="scan'208";a="102816087"
+X-IronPort-AV: E=Sophos;i="6.12,292,1728975600"; d="scan'208";a="102816098"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa010.fm.intel.com with ESMTP; 05 Jan 2025 20:08:44 -0800
+ by fmviesa010.fm.intel.com with ESMTP; 05 Jan 2025 20:08:46 -0800
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com, uma.shankar@intel.com,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 1/2] drm/i915/cx0: Fix SSC enablement in PORT_CLOCK_CTL
-Date: Mon,  6 Jan 2025 09:38:20 +0530
-Message-Id: <20250106040821.251114-2-suraj.kandpal@intel.com>
+Subject: [PATCH 2/2] drm/i915/cx0: Set ssc_enabled for c20 too
+Date: Mon,  6 Jan 2025 09:38:21 +0530
+Message-Id: <20250106040821.251114-3-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250106040821.251114-1-suraj.kandpal@intel.com>
 References: <20250106040821.251114-1-suraj.kandpal@intel.com>
@@ -68,30 +68,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-SSC for PLL_A is enabled for UHBR10 or UHBR20 regardless of the
-need for SSC. This means the ssc_enabled variable had no say
-to determine enablement of SSC on PLL A.
+ssc_enabled does not get set for c20 phy legacy native rates.
+This means SSC for MPLLB for legacy rates and UHBR 13.5 is never
+set. This patch makes sure we set ssc_enabled for both c10 and c20.
 
-Bspec: 64568, 74165, 74489, 74491
-Fixes: 237e7be0bf57 ("drm/i915/mtl: For DP2.0 10G and 20G rates use MPLLA")
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 16 +++++++++++++---
+ 1 file changed, 13 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index e768dc6a15b3..3fd959a2773c 100644
+index 3fd959a2773c..a0ae0be77c55 100644
 --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
 +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -2747,7 +2747,7 @@ static void intel_program_port_clock_ctl(struct intel_encoder *encoder,
- 	/* TODO: HDMI FRL */
- 	/* DP2.0 10G and 20G rates enable MPLLA*/
- 	if (crtc_state->port_clock == 1000000 || crtc_state->port_clock == 2000000)
--		val |= crtc_state->dpll_hw_state.cx0pll.ssc_enabled ? XELPDP_SSC_ENABLE_PLLA : 0;
-+		val |= XELPDP_SSC_ENABLE_PLLA;
- 	else
- 		val |= crtc_state->dpll_hw_state.cx0pll.ssc_enabled ? XELPDP_SSC_ENABLE_PLLB : 0;
+@@ -2033,21 +2033,27 @@ intel_c10pll_tables_get(struct intel_crtc_state *crtc_state,
+ 	return NULL;
+ }
  
+-static void intel_c10pll_update_pll(struct intel_crtc_state *crtc_state,
++static void intel_cx0pll_update_ssc(struct intel_crtc_state *crtc_state,
+ 				    struct intel_encoder *encoder)
+ {
+ 	struct intel_display *display = to_intel_display(encoder);
+ 	struct intel_cx0pll_state *pll_state = &crtc_state->dpll_hw_state.cx0pll;
+-	int i;
+ 
+ 	if (intel_crtc_has_dp_encoder(crtc_state)) {
+ 		if (intel_panel_use_ssc(display)) {
+ 			struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+-
+ 			pll_state->ssc_enabled =
+ 				(intel_dp->dpcd[DP_MAX_DOWNSPREAD] & DP_MAX_DOWNSPREAD_0_5);
+ 		}
+ 	}
++}
++
++static void intel_c10pll_update_pll(struct intel_crtc_state *crtc_state,
++				    struct intel_encoder *encoder)
++{
++	struct intel_display *display = to_intel_display(encoder);
++	struct intel_cx0pll_state *pll_state = &crtc_state->dpll_hw_state.cx0pll;
++	int i;
+ 
+ 	if (pll_state->ssc_enabled)
+ 		return;
+@@ -2067,6 +2073,8 @@ static int intel_c10pll_calc_state(struct intel_crtc_state *crtc_state,
+ 	if (!tables)
+ 		return -EINVAL;
+ 
++	intel_cx0pll_update_ssc(crtc_state, encoder);
++
+ 	for (i = 0; tables[i]; i++) {
+ 		if (crtc_state->port_clock == tables[i]->clock) {
+ 			crtc_state->dpll_hw_state.cx0pll.c10 = *tables[i];
+@@ -2319,6 +2327,8 @@ static int intel_c20pll_calc_state(struct intel_crtc_state *crtc_state,
+ 	if (!tables)
+ 		return -EINVAL;
+ 
++	intel_cx0pll_update_ssc(crtc_state, encoder);
++
+ 	for (i = 0; tables[i]; i++) {
+ 		if (crtc_state->port_clock == tables[i]->clock) {
+ 			crtc_state->dpll_hw_state.cx0pll.c20 = *tables[i];
 -- 
 2.34.1
 
