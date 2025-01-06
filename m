@@ -2,208 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 205EBA0290E
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jan 2025 16:19:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E0ACA02BFD
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jan 2025 16:49:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9173610E6AD;
-	Mon,  6 Jan 2025 15:19:20 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="HF2kOk5B";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC54B10E6C4;
+	Mon,  6 Jan 2025 15:49:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2051.outbound.protection.outlook.com [40.107.92.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02C6010E6A7;
- Mon,  6 Jan 2025 15:19:19 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=wviNI9RcZ2Z50azpsj51ZyPmae1VMpfCqDJcUeKs5EDyANmferZw6YKEDzrKHo8TFoAyIpRC28azPprNlshNKCYpso0ihv88zitbptq7u7JHCPmdpaq9E/D0ihWZRtUPcSgyooHjeABimhhv/XoGgnYtyd2a9XFWUjkwcr+RyBkCQSokMPmLHYIwNKYVX4Z+Z2vSaW7/+BJv2/cY4IlBH5eOEhsknS6R93o0mD2iXCWURK5AxiGLWmVoudGh04lwxCleyNvtm2l5tYxShu7JWDaePPOVJqKeiE0YY8ig7ynMd6cFnsE5JNLhUlNpYrC4NCUCH7b1x1dJNVViOwr3uQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dIvmGPWbUjxHmmlp7ZDSBm5xT+a7uyuOZBONKLoLMG0=;
- b=n6jZw65ubZnzSx5Ff5imvjd+8Ckun6DrUcrNPtuV7IhlC153lRc6TQ/wDmOPT67ZDvWgU06WRrL3qMqpatI8Nrf68C74kLSU7G5WbD/P4pi25IkitcL0a1Tp7j3oV+wJlwKLz8dbF+SdiVYLa+13hTTiDcfL30EfKj8tYIpF6vUEMSgcT4dtH+m4yRXgKKP0M0mp5OScAHzz4Z0zar98/9+VrDQiXMgPEJVeZbaDQH37XomCHWAk+czeYxmAwTkP4iQBIgZin2peTAuRpSLXFNphydsuvKe/mP5wxtaJvnutOnEcX+eh17DAz16rSS/Q3W4PCVxQwH/4UYpQaZ+i/A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dIvmGPWbUjxHmmlp7ZDSBm5xT+a7uyuOZBONKLoLMG0=;
- b=HF2kOk5BDenf2QTAVoX/ua4un23E3B4vbpH6xf2vYK+YtwUPbBHQqqyFqfKRMspjJSgbQ313i1nrvq3DAklnFrsRmysTykpsK1UNFy/eMZI9sT5IfSKz/fZScvTgfDyzGdNCzxIqSNiRQKlnO3Anrz5l7CyTWhqf/VCGwh1aOF4=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from CO6PR12MB5427.namprd12.prod.outlook.com (2603:10b6:5:358::13)
- by DS0PR12MB7769.namprd12.prod.outlook.com (2603:10b6:8:138::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8314.17; Mon, 6 Jan
- 2025 15:19:11 +0000
-Received: from CO6PR12MB5427.namprd12.prod.outlook.com
- ([fe80::1c2f:5c82:2d9c:6062]) by CO6PR12MB5427.namprd12.prod.outlook.com
- ([fe80::1c2f:5c82:2d9c:6062%4]) with mapi id 15.20.8314.015; Mon, 6 Jan 2025
- 15:19:11 +0000
-Message-ID: <ed1af8ef-e2a8-4457-9f27-d5e2315ade74@amd.com>
-Date: Mon, 6 Jan 2025 10:18:55 -0500
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/5] drm/connector: make mode_valid() callback accept
- const mode pointer
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Maxime Ripard <mripard@kernel.org>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, Karol Herbst <kherbst@redhat.com>,
- Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@redhat.com>,
- Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Xinhui Pan <Xinhui.Pan@amd.com>, Alain Volmat <alain.volmat@foss.st.com>,
- Raphael Gallais-Pou <rgallaispou@gmail.com>,
- Liviu Dudau <liviu.dudau@arm.com>, Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Peter Senna Tschudin <peter.senna@gmail.com>, Ian Ray <ian.ray@ge.com>,
- Martyn Welch <martyn.welch@collabora.co.uk>, Inki Dae
- <inki.dae@samsung.com>, Seung-Woo Kim <sw0312.kim@samsung.com>,
- Kyungmin Park <kyungmin.park@samsung.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, Alim Akhtar
- <alim.akhtar@samsung.com>, Stefan Agner <stefan@agner.ch>,
- Alison Wang <alison.wang@nxp.com>,
- Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Rob Clark <robdclark@gmail.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Dave Airlie <airlied@redhat.com>, Gerd Hoffmann <kraxel@redhat.com>,
- Sandy Huang <hjc@rock-chips.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
- <heiko@sntech.de>, Andy Yan <andy.yan@rock-chips.com>,
- Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
- Thierry Reding <thierry.reding@gmail.com>,
- Mikko Perttunen <mperttunen@nvidia.com>,
- Jonathan Hunter <jonathanh@nvidia.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>, Chia-I Wu
- <olvaffe@gmail.com>, Zack Rusin <zack.rusin@broadcom.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- virtualization@lists.linux.dev, spice-devel@lists.freedesktop.org,
- linux-rockchip@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-tegra@vger.kernel.org,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
- Jani Nikula <jani.nikula@intel.com>
-References: <20241214-drm-connector-mode-valid-const-v2-0-4f9498a4c822@linaro.org>
- <76ho36jqcraehnsgpjralpye52w7ryshhgizekn4qqfsikiojd@3yyorbvjkc7b>
- <20250106-passionate-lorikeet-of-apotheosis-c62ff1@houat>
- <CAA8EJprwNFVV-1pr64_es6XbmOSYtTUYUUK3eOf7LFKBotbrQA@mail.gmail.com>
-Content-Language: en-US
-From: Harry Wentland <harry.wentland@amd.com>
-In-Reply-To: <CAA8EJprwNFVV-1pr64_es6XbmOSYtTUYUUK3eOf7LFKBotbrQA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: YQBPR0101CA0207.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:c01:67::30) To CO6PR12MB5427.namprd12.prod.outlook.com
- (2603:10b6:5:358::13)
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE4D810E6C3;
+ Mon,  6 Jan 2025 15:49:15 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4556595619997102470=="
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO6PR12MB5427:EE_|DS0PR12MB7769:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9e9ae2d8-93c7-4ac7-145e-08dd2e657895
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024|7416014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?ai9KU08rckRGeXJHWlJiRjVHVXZIOFZxSHRXVGd2dHhIM1hvV3pXaHoxM3BP?=
- =?utf-8?B?bTdTajcwQWVpOFlETkg1UXFLa1JEU2xXWm5aTjQ2UlNLcXg0OHRjUm0rQkhX?=
- =?utf-8?B?VE1wOVhLbXRhOFh6TVovb0dHMElxVHZ5c0Q2cFh2UG15a2FiR0xEREtYay80?=
- =?utf-8?B?R0F4eFpZWWNqSGtmUFhhZTE2MG52dUVVU3JCRXRZaEVaM3dxRjN5M3NKYklH?=
- =?utf-8?B?cVpJQllXOFIwanF4NW8vV1hhYkxXR0RoWFUycVBWWEh0Q2ZlZ0x5TDlIMTNV?=
- =?utf-8?B?M2cweWFnMkwzR3BVN0xiYyszNTRWd2R5NHY1K2YzY0JTbVJKcDRYNkdiNVNt?=
- =?utf-8?B?OFpWcmJUbm9sMTlEQ0N4N2ZVN3I5Rm5yN2RvRTFjdzZUR3N6VEdaWmUwV0tK?=
- =?utf-8?B?S0RKbEswVU1GM2gzRk5VWXhSQ3pacHlERC9Qb21JUzhBV1lRQTd5QkRia2JT?=
- =?utf-8?B?Z0lraHNpNnMvL1NXWVpzVEVpc0FySlJvN0RYSlRRa1hKU01LeXZOLzhRZlBZ?=
- =?utf-8?B?ZzM1MXNpTFRjaTFsY3pqdy9ZUEtFbjV2K2VjYWRhbVVsVnVCZVJqVGgvM2Fz?=
- =?utf-8?B?OGZ5emlndmdqTzE5azQraFlxK29aTzRMR2VFazkwRE1rWjJpaUdLUEpuSVNE?=
- =?utf-8?B?TlJjR1FSbVNyMkxsYU83YWwyaFdVT0QrVVp3UUpuQW1seW9WeUwyNStuZGtM?=
- =?utf-8?B?cVo2UFJMdUNweGYzdnE3blRlWlJJaXJxZ3JPOStJeE9kejVBQlpFUnBGdTRV?=
- =?utf-8?B?SUhwV3hHcEFCUVJGZVFicGtGYnFudzZ2WWZ6WmJ6ZHkyM0ZmUzZBKzV6eits?=
- =?utf-8?B?WXZaR0ZLZE82U0dJQVNGZE00Qm1DNUN0UVRJQnlyZ1FSS3oraGN2MHNGdVdH?=
- =?utf-8?B?cU95OFZqU2g4WWVORytkSWxaQVVMZDhOakIrKy8zU0VZTUM1NlhRdUpWdmQ4?=
- =?utf-8?B?MDdlL1hadEVhWkV4UHBCdDA2UFlCa0t0WXFNSkpGZCttTU9mVitPR3ZZcEZj?=
- =?utf-8?B?Z3ZScjJNNXdQTmpzM0Q2TnEzeFF6SkJEWXlTVFdDUWVDNDFOZTlDZWd4UmJ1?=
- =?utf-8?B?d09XelZwb3pTNUVXOVAyTWY1N0xucDJGNTNxNE5kRW5HNkxKYkdaSWpJOVoz?=
- =?utf-8?B?US9SRm93WVRtc3kxaVY1MkZ4RXRIbDhabEp0T05IQWY4OElxSldMWm56V0Yx?=
- =?utf-8?B?S0RMT2ZFTnBRTUMrcE85eW9tcW1WOUFQSHlIcFMvOUxDaVg1V0NSSzlzSnEz?=
- =?utf-8?B?Y1UycFFnYVV5L242UnMwVXdjOFEyeWlLRlFmL21qZTJRSUVmUHpxM3VjNHVZ?=
- =?utf-8?B?eTNteWJMNldEZG92aHJBRUswVmdDTXJISXVWWkRHYTFOb21tM2dVMHkxZ09q?=
- =?utf-8?B?U0Y5M1RmZmdsNXRSV0tTTHhUdjc2L05VOHhIL1N1ZTgxNHVGdURWT2NRZ2VU?=
- =?utf-8?B?Z0M1VmovcXZoZXUzaG1VZDNJeDgvbitxQXd2QVMrMTVaMXhqcktFUG5wSjdY?=
- =?utf-8?B?bGcyRmxlZzIxdldPUkN3VjJQSTVrbUpiajBsK3RuOUVRbXZkTnJUUWVKMVdj?=
- =?utf-8?B?Uk0xdWpCa0I4ai8xaWFIT2lXcEFXWXJrbnE2RDJiZU12aFkzcHZwNVlKeFFN?=
- =?utf-8?B?TEZWVE13SWZkK2RqTjNkMGdBaHd6VlNvK21DazhROEZWLzd5WEk5bWpBNmZ2?=
- =?utf-8?B?SllXZEdadE1rV0d0cXBvSHdqQXdzcjZXdzVGeENyRUhoc2dVT3FRZmVVcmN0?=
- =?utf-8?B?Z3A5ZHVtNFdhdkg0Nmk1VWFFRXFmSFIrTUxCeEZCN3BRWFdFY2YvRWtZcW9z?=
- =?utf-8?B?MHJCZW1BZnNlaVdJb1ZBMXdmOVRWTXdHZmhBS1RFUjYvQXVwZFBZdlc2YWxC?=
- =?utf-8?Q?6EHG0R6TIxyno?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CO6PR12MB5427.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(7416014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SHErNTBueEs4SnVVRUdPbENoQW5jbkpScEJhUWpPZ0hGczhmRjhzd1NqZUd1?=
- =?utf-8?B?dENyNkVKVytSdWV3QjFKMVdnNFIvTEtCellERGFNN2xDV0xXdk5Fa3pBeTU3?=
- =?utf-8?B?Ymh2WUhadWd3REUxZTlaRklFR3ZkNitjWmMycFRXRzV1ZGg2ZzFOMktRVTBP?=
- =?utf-8?B?bk1nOHdpMGpnQmtKajR3bjVvY2ZzeStPVWhjQ1hFS2NKanBoSy9OT3EzMFRw?=
- =?utf-8?B?OVVhNU9hbFEvclZNNEc2dWdBd0UzVUlSQysrcEFPL1lQekxUOTFpYlFBb09t?=
- =?utf-8?B?Z3ZBTG9KTlYxSEFwSll1VnZOZEJISitwRy9VQ09WS1JaaXNqck5MUjIwTjhz?=
- =?utf-8?B?VkhGSFg2ZStaNDJlYnpFTWtzL1lCQzF1TUJUb3Jkdi9DVDRHSCsyNSt3bkE1?=
- =?utf-8?B?V1RqM2FOZFpqK2ZPeHlLNGxtR3FFWmxUek1DM3orWHEvbHo3dHhMQlpJWWhI?=
- =?utf-8?B?Yld5SGJzNmxQVStzZStZV1paa3NRMmF1dzRueDJOR2UzTHhvVG5sZ1JpLzVx?=
- =?utf-8?B?S25sZ08zenY1R0ZKWGxpMmZRcXM2ZHBzWDNTcjV6ZGc4ZFY4dzNwMi8vSGRj?=
- =?utf-8?B?bk1uaTJseWc2N3FHeFNNbnRjdE5LNHMycG1YRER5OVh2V0V3N2ZyOHZUZ2xi?=
- =?utf-8?B?QUFMdmh5elFyMExwWlVvVjZPK2t0SlhITHJtUVNIUXorZkdKTWpkcFBRWEJo?=
- =?utf-8?B?RUNBNDM4VXlWUWlFRnFoRFp3V0E1YUpNaFM4clIzMXE5L2xUTTN6OTlQTlRs?=
- =?utf-8?B?WHlCZUw3U0dqSVF6Q0x6bitkRFh0U1hUdEZLampkcWtQR25SSFRjam94a0pW?=
- =?utf-8?B?UHJFQUdVc05KbXcrYVFwL0dDK08xV3lxQVBobVpPRDBtZDNwUW1oRnRrUmp6?=
- =?utf-8?B?WFpxYTNNRnlyMi9yQStSU0FsZXlhL2pVVmxyK0tJODFpejltQXhkdXBzUVNX?=
- =?utf-8?B?WHU2SjB3VFpHQkVnWCtTenVaVzNlYXhFeEc3YVpXekptYjByL2VRdzZwQWMw?=
- =?utf-8?B?YkVoa01QdkhFN0RVZFY1UEFqRVA4NTB5WnYwNndhZEZjaUhwZEFzUm5IYi9r?=
- =?utf-8?B?S1pMc0xUSld5eFRReXRVYWFIRk9xQmdGejFiVGJLSHNWT1hLcWJaRHhJd3RZ?=
- =?utf-8?B?QTQ1dEhQWDlVOENYMEN6WFJpZ2kzVVhiQitYUlpQRWFtbUNqZ0JHN1QySC9s?=
- =?utf-8?B?VkxldlNKZVBheTlNTVd0a2dRZkp2QU1oU3B0Z0NZUUIwNEFrY05TRGp4cHBx?=
- =?utf-8?B?T09WUDlmMExncWJjcitxNWZhY3VUd09XbFdQNmo0ZExUcTRnVHBxMGxGZDFi?=
- =?utf-8?B?Lzgyd3ducTFnN080aG4wRTI2cjVoQzhRNnhwVEdBSi9iVHZOQWl5dzZxbjJt?=
- =?utf-8?B?dTAxa0pILzdCVTRxZ0JqVWUwZWVxK200elVGMDVoU0FDMWFuZVMrN3RrQng2?=
- =?utf-8?B?TnZIZ2hnWGF2Y21KRHJPWDc4MDhhZUJ0U1lBZmRDYTNtaWYwNkZQU0RwQjFM?=
- =?utf-8?B?WDM5OTM1SE5zSGpzNFl5Q2hHZ1VxdWduVUhiMkZrL0kyRkhjcFd6V0d5bWM0?=
- =?utf-8?B?S2ZvQzlxMnJ1djN0Y0VnciswK0F3SFA0YkUyQVJKU2ZuekhpRGgwb1VNQVN6?=
- =?utf-8?B?U2lxdlVyYUVxS05qdE5xbHBPdi96Wk5zVklvNE41cS9LUmUyRGdZOWtKRmVG?=
- =?utf-8?B?QzZwL2Z6V1BQWEZDRlk0VVhleGhEK0Ywa3N4ZmVNZWR4UFpMQTlaRUVaZVda?=
- =?utf-8?B?M3N2alZFQzk3OG02dWNOZkF3RUhiWWJYRzhOczZIcWthWHU5cE5YWXZzbE04?=
- =?utf-8?B?YWdJeHhEZFY0cUIwQXJwRmVhUENsQlVaVmFzdDVQVmVYakVFcCtId00vaXNx?=
- =?utf-8?B?NHg0Vnh6TEQ0S1JHYnM1bi9PQTR1Q1p3a3ByZlI0U2g2aEtvSlhsU3pXSm9s?=
- =?utf-8?B?K1hCaDYrQk41Y1lNdEtJM1gwWGFPN2VvTElHRG55aHpHSjV2TVJpOU5xcHYx?=
- =?utf-8?B?dmVHYTIyN0txWElzL0xiWlpaK0ZFTTdrRzhGb1JIS3FIdmlNcHF4dWRUclBV?=
- =?utf-8?B?b3JpWXFsSG8yQlFBOFppL1FJYkpwVlJXOGRaUmZjYnJQbklSeEcvN2pJVG9C?=
- =?utf-8?Q?vebKROmL3FJQRQLW9rQINdw93?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9e9ae2d8-93c7-4ac7-145e-08dd2e657895
-X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5427.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jan 2025 15:19:10.8835 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: jbrz3faUnMgiKmJOsq5A2KmGoQJXUUMIBC1AjQtVWsZcfvQPH50F3HtEEeHETYE8rkRD60F3TTsgeNqMv+fGpw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7769
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EFull=3A_success_for_drm/i915/display=3A_Adju?=
+ =?utf-8?q?st_Added_Wake_Time_with_PKG=5FC=5FLATENCY_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Animesh Manna" <animesh.manna@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 06 Jan 2025 15:49:15 -0000
+Message-ID: <173617855583.278991.5102043439907264434@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250106094408.1011063-1-animesh.manna@intel.com>
+In-Reply-To: <20250106094408.1011063-1-animesh.manna@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -216,48 +37,269 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+--===============4556595619997102470==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/i915/display: Adjust Added Wake Time with PKG_C_LATENCY (rev3)
+URL   : https://patchwork.freedesktop.org/series/141469/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_15908_full -> Patchwork_141469v3_full
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 11)
+------------------------------
+
+  Missing    (1): shard-glk-0 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_141469v3_full that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@i915_module_load@load:
+    - shard-glk:          ([PASS][1], [PASS][2], [DMESG-WARN][3], [PASS][4], [PASS][5], [PASS][6], [PASS][7], [PASS][8], [PASS][9], [PASS][10], [PASS][11], [PASS][12], [PASS][13], [PASS][14], [PASS][15], [PASS][16], [PASS][17], [PASS][18], [PASS][19], [PASS][20], [PASS][21], [PASS][22], [PASS][23], [PASS][24], [PASS][25]) ([i915#118]) -> ([PASS][26], [PASS][27], [PASS][28], [PASS][29], [PASS][30], [PASS][31], [PASS][32], [PASS][33], [PASS][34], [PASS][35], [PASS][36], [PASS][37], [PASS][38], [PASS][39], [PASS][40], [PASS][41], [PASS][42], [PASS][43], [PASS][44], [PASS][45], [PASS][46], [PASS][47], [PASS][48], [PASS][49], [PASS][50])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15908/shard-glk5/igt@i915_module_load@load.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15908/shard-glk6/igt@i915_module_load@load.html
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15908/shard-glk5/igt@i915_module_load@load.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15908/shard-glk2/igt@i915_module_load@load.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15908/shard-glk1/igt@i915_module_load@load.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15908/shard-glk3/igt@i915_module_load@load.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15908/shard-glk4/igt@i915_module_load@load.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15908/shard-glk1/igt@i915_module_load@load.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15908/shard-glk3/igt@i915_module_load@load.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15908/shard-glk5/igt@i915_module_load@load.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15908/shard-glk3/igt@i915_module_load@load.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15908/shard-glk2/igt@i915_module_load@load.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15908/shard-glk1/igt@i915_module_load@load.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15908/shard-glk2/igt@i915_module_load@load.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15908/shard-glk1/igt@i915_module_load@load.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15908/shard-glk7/igt@i915_module_load@load.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15908/shard-glk8/igt@i915_module_load@load.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15908/shard-glk7/igt@i915_module_load@load.html
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15908/shard-glk6/igt@i915_module_load@load.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15908/shard-glk9/igt@i915_module_load@load.html
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15908/shard-glk7/igt@i915_module_load@load.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15908/shard-glk9/igt@i915_module_load@load.html
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15908/shard-glk6/igt@i915_module_load@load.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15908/shard-glk7/igt@i915_module_load@load.html
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15908/shard-glk9/igt@i915_module_load@load.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk7/igt@i915_module_load@load.html
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk4/igt@i915_module_load@load.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk5/igt@i915_module_load@load.html
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk7/igt@i915_module_load@load.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk7/igt@i915_module_load@load.html
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk1/igt@i915_module_load@load.html
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk6/igt@i915_module_load@load.html
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk4/igt@i915_module_load@load.html
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk2/igt@i915_module_load@load.html
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk4/igt@i915_module_load@load.html
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk1/igt@i915_module_load@load.html
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk3/igt@i915_module_load@load.html
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk1/igt@i915_module_load@load.html
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk8/igt@i915_module_load@load.html
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk5/igt@i915_module_load@load.html
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk9/igt@i915_module_load@load.html
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk8/igt@i915_module_load@load.html
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk9/igt@i915_module_load@load.html
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk8/igt@i915_module_load@load.html
+   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk6/igt@i915_module_load@load.html
+   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk6/igt@i915_module_load@load.html
+   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk3/igt@i915_module_load@load.html
+   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk2/igt@i915_module_load@load.html
+   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk9/igt@i915_module_load@load.html
+   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk5/igt@i915_module_load@load.html
+
+  
+  [i915#118]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/118
 
 
-On 2025-01-06 04:45, Dmitry Baryshkov wrote:
-> On Mon, 6 Jan 2025 at 10:55, Maxime Ripard <mripard@kernel.org> wrote:
->>
->> On Mon, Jan 06, 2025 at 12:47:07AM +0200, Dmitry Baryshkov wrote:
->>> On Sat, Dec 14, 2024 at 03:37:04PM +0200, Dmitry Baryshkov wrote:
->>>> While working on the generic mode_valid() implementation for the HDMI
->>>> Connector framework I noticed that unlike other DRM objects
->>>> drm_connector accepts non-const pointer to struct drm_display_mode,
->>>> while obviously mode_valid() isn't expected to modify the argument.
->>>>
->>>> Mass-change the DRM framework code to pass const argument to that
->>>> callback.
->>>>
->>>> The series has been compile-tested with defconfig for x86-64, arm and
->>>> arm64.
->>>>
->>>> Note: yes, I understand that this change might be hard to review and
->>>> merge. The only viable option that I foresee is to add new callback,
->>>> having the const argument and migrate drivers into using it one by one.
->>>
->>> Colleagues, I'd like to graciously ping regarding this series. Should it
->>> be merged as is (possibly requiring more R-B's)? Or should I rework it
->>> adding something like .mode_valid_new() callback which takes const
->>> argument?
->>
->> I think your patch is fine, and you can add my
->>
->> Reviewed-by: Maxime Ripard <mripard@kernel.org>
->>
->> We seem to lack an Acked-by for amdgpu though?
-> 
-> Yes. I think the AMD is the only one missing
-> 
-> 
+Build changes
+-------------
 
-For the amdgpu patch:
-Reviewed-by: Harry Wentland <harry.wentland@amd.com>
+  * Linux: CI_DRM_15908 -> Patchwork_141469v3
 
-Harry
+  CI-20190529: 20190529
+  CI_DRM_15908: f06efdfad9d0e9f5cb74404ac98e1a5b3b246567 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8174: d2004b0623dbccd08502525849b4eef881aa199e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_141469v3: f06efdfad9d0e9f5cb74404ac98e1a5b3b246567 @ git://anongit.freedesktop.org/gfx-ci/linux
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
 
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/index.html
+
+--===============4556595619997102470==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+
+
+<!DOCTYPE html>
+<html xmlns=3D"http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id=3D"css-table-select" type=3D"text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Adjust Added Wake Time wit=
+h PKG_C_LATENCY (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href=3D"https://patchwork.freedesktop.org/se=
+ries/141469/">https://patchwork.freedesktop.org/series/141469/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href=3D"https://intel-gfx-ci.01.org/=
+tree/drm-tip/Patchwork_141469v3/index.html">https://intel-gfx-ci.01.org/tre=
+e/drm-tip/Patchwork_141469v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_15908_full -&gt; Patchwork_141469v=
+3_full</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 11)</h2>
+<p>Missing    (1): shard-glk-0 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_141469v3_full that come from kno=
+wn issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_module_load@load:<ul>
+<li>shard-glk:          (<a href=3D"https://intel-gfx-ci.01.org/tree/drm-ti=
+p/CI_DRM_15908/shard-glk5/igt@i915_module_load@load.html">PASS</a>, <a href=
+=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15908/shard-glk6/igt@i9=
+15_module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/=
+tree/drm-tip/CI_DRM_15908/shard-glk5/igt@i915_module_load@load.html">DMESG-=
+WARN</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15908/=
+shard-glk2/igt@i915_module_load@load.html">PASS</a>, <a href=3D"https://int=
+el-gfx-ci.01.org/tree/drm-tip/CI_DRM_15908/shard-glk1/igt@i915_module_load@=
+load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI=
+_DRM_15908/shard-glk3/igt@i915_module_load@load.html">PASS</a>, <a href=3D"=
+https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15908/shard-glk4/igt@i915_m=
+odule_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree=
+/drm-tip/CI_DRM_15908/shard-glk1/igt@i915_module_load@load.html">PASS</a>, =
+<a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15908/shard-glk3=
+/igt@i915_module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.=
+01.org/tree/drm-tip/CI_DRM_15908/shard-glk5/igt@i915_module_load@load.html"=
+>PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15908=
+/shard-glk3/igt@i915_module_load@load.html">PASS</a>, <a href=3D"https://in=
+tel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15908/shard-glk2/igt@i915_module_load=
+@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/C=
+I_DRM_15908/shard-glk1/igt@i915_module_load@load.html">PASS</a>, <a href=3D=
+"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15908/shard-glk2/igt@i915_=
+module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tre=
+e/drm-tip/CI_DRM_15908/shard-glk1/igt@i915_module_load@load.html">PASS</a>,=
+ <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15908/shard-glk=
+7/igt@i915_module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci=
+.01.org/tree/drm-tip/CI_DRM_15908/shard-glk8/igt@i915_module_load@load.html=
+">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_1590=
+8/shard-glk7/igt@i915_module_load@load.html">PASS</a>, <a href=3D"https://i=
+ntel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15908/shard-glk6/igt@i915_module_loa=
+d@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/=
+CI_DRM_15908/shard-glk9/igt@i915_module_load@load.html">PASS</a>, <a href=
+=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15908/shard-glk7/igt@i9=
+15_module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/=
+tree/drm-tip/CI_DRM_15908/shard-glk9/igt@i915_module_load@load.html">PASS</=
+a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15908/shard-=
+glk6/igt@i915_module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx=
+-ci.01.org/tree/drm-tip/CI_DRM_15908/shard-glk7/igt@i915_module_load@load.h=
+tml">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_1=
+5908/shard-glk9/igt@i915_module_load@load.html">PASS</a>) (<a href=3D"https=
+://gitlab.freedesktop.org/drm/i915/kernel/-/issues/118">i915#118</a>) -&gt;=
+ (<a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/sh=
+ard-glk7/igt@i915_module_load@load.html">PASS</a>, <a href=3D"https://intel=
+-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk4/igt@i915_module_l=
+oad@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-ti=
+p/Patchwork_141469v3/shard-glk5/igt@i915_module_load@load.html">PASS</a>, <=
+a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard=
+-glk7/igt@i915_module_load@load.html">PASS</a>, <a href=3D"https://intel-gf=
+x-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk7/igt@i915_module_load=
+@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/P=
+atchwork_141469v3/shard-glk1/igt@i915_module_load@load.html">PASS</a>, <a h=
+ref=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-gl=
+k6/igt@i915_module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-c=
+i.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk4/igt@i915_module_load@lo=
+ad.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patc=
+hwork_141469v3/shard-glk2/igt@i915_module_load@load.html">PASS</a>, <a href=
+=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk4/=
+igt@i915_module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.0=
+1.org/tree/drm-tip/Patchwork_141469v3/shard-glk1/igt@i915_module_load@load.=
+html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwo=
+rk_141469v3/shard-glk3/igt@i915_module_load@load.html">PASS</a>, <a href=3D=
+"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk1/igt=
+@i915_module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.o=
+rg/tree/drm-tip/Patchwork_141469v3/shard-glk8/igt@i915_module_load@load.htm=
+l">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_=
+141469v3/shard-glk5/igt@i915_module_load@load.html">PASS</a>, <a href=3D"ht=
+tps://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk9/igt@i9=
+15_module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/=
+tree/drm-tip/Patchwork_141469v3/shard-glk8/igt@i915_module_load@load.html">=
+PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141=
+469v3/shard-glk9/igt@i915_module_load@load.html">PASS</a>, <a href=3D"https=
+://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk8/igt@i915_=
+module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tre=
+e/drm-tip/Patchwork_141469v3/shard-glk6/igt@i915_module_load@load.html">PAS=
+S</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469=
+v3/shard-glk6/igt@i915_module_load@load.html">PASS</a>, <a href=3D"https://=
+intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk3/igt@i915_mod=
+ule_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/d=
+rm-tip/Patchwork_141469v3/shard-glk2/igt@i915_module_load@load.html">PASS</=
+a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/=
+shard-glk9/igt@i915_module_load@load.html">PASS</a>, <a href=3D"https://int=
+el-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk5/igt@i915_module=
+_load@load.html">PASS</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_15908 -&gt; Patchwork_141469v3</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_15908: f06efdfad9d0e9f5cb74404ac98e1a5b3b246567 @ git://anongit.fr=
+eedesktop.org/gfx-ci/linux<br />
+  IGT_8174: d2004b0623dbccd08502525849b4eef881aa199e @ https://gitlab.freed=
+esktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_141469v3: f06efdfad9d0e9f5cb74404ac98e1a5b3b246567 @ git://anon=
+git.freedesktop.org/gfx-ci/linux<br />
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.fre=
+edesktop.org/piglit</p>
+
+</body>
+</html>
+
+--===============4556595619997102470==--
