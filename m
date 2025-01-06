@@ -2,29 +2,28 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E0ACA02BFD
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jan 2025 16:49:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AFCFDA02D72
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jan 2025 17:10:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC54B10E6C4;
-	Mon,  6 Jan 2025 15:49:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5735C10E215;
+	Mon,  6 Jan 2025 16:10:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE4D810E6C3;
- Mon,  6 Jan 2025 15:49:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D8EC410E208;
+ Mon,  6 Jan 2025 16:10:48 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============4556595619997102470=="
+ boundary="===============0241724249060785031=="
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EFull=3A_success_for_drm/i915/display=3A_Adju?=
- =?utf-8?q?st_Added_Wake_Time_with_PKG=5FC=5FLATENCY_=28rev3=29?=
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EFull=3A_success_for_Fix_all_typos_in_i915?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Animesh Manna" <animesh.manna@intel.com>
+To: "Nitin Gote" <nitin.r.gote@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 06 Jan 2025 15:49:15 -0000
-Message-ID: <173617855583.278991.5102043439907264434@b555e5b46a47>
+Date: Mon, 06 Jan 2025 16:10:48 -0000
+Message-ID: <173617984888.263390.12790403999917377794@b555e5b46a47>
 X-Patchwork-Hint: ignore
-References: <20250106094408.1011063-1-animesh.manna@intel.com>
-In-Reply-To: <20250106094408.1011063-1-animesh.manna@intel.com>
+References: <20250106103037.1401847-1-nitin.r.gote@intel.com>
+In-Reply-To: <20250106103037.1401847-1-nitin.r.gote@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,20 +40,20 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============4556595619997102470==
+--===============0241724249060785031==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: drm/i915/display: Adjust Added Wake Time with PKG_C_LATENCY (rev3)
-URL   : https://patchwork.freedesktop.org/series/141469/
+Series: Fix all typos in i915
+URL   : https://patchwork.freedesktop.org/series/143146/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_15908_full -> Patchwork_141469v3_full
+CI Bug Log - changes from CI_DRM_15908_full -> Patchwork_143146v1_full
 ====================================================
 
 Summary
@@ -74,7 +73,7 @@ Participating hosts (12 -> 11)
 Known issues
 ------------
 
-  Here are the changes found in Patchwork_141469v3_full that come from known issues:
+  Here are the changes found in Patchwork_143146v1_full that come from known issues:
 
 ### IGT changes ###
 
@@ -107,31 +106,31 @@ Known issues
    [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15908/shard-glk6/igt@i915_module_load@load.html
    [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15908/shard-glk7/igt@i915_module_load@load.html
    [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15908/shard-glk9/igt@i915_module_load@load.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk7/igt@i915_module_load@load.html
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk4/igt@i915_module_load@load.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk5/igt@i915_module_load@load.html
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk7/igt@i915_module_load@load.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk7/igt@i915_module_load@load.html
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk1/igt@i915_module_load@load.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk6/igt@i915_module_load@load.html
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk4/igt@i915_module_load@load.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk2/igt@i915_module_load@load.html
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk4/igt@i915_module_load@load.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk1/igt@i915_module_load@load.html
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk3/igt@i915_module_load@load.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk1/igt@i915_module_load@load.html
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk8/igt@i915_module_load@load.html
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk5/igt@i915_module_load@load.html
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk9/igt@i915_module_load@load.html
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk8/igt@i915_module_load@load.html
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk9/igt@i915_module_load@load.html
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk8/igt@i915_module_load@load.html
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk6/igt@i915_module_load@load.html
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk6/igt@i915_module_load@load.html
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk3/igt@i915_module_load@load.html
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk2/igt@i915_module_load@load.html
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk9/igt@i915_module_load@load.html
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk5/igt@i915_module_load@load.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143146v1/shard-glk7/igt@i915_module_load@load.html
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143146v1/shard-glk2/igt@i915_module_load@load.html
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143146v1/shard-glk7/igt@i915_module_load@load.html
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143146v1/shard-glk2/igt@i915_module_load@load.html
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143146v1/shard-glk7/igt@i915_module_load@load.html
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143146v1/shard-glk8/igt@i915_module_load@load.html
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143146v1/shard-glk1/igt@i915_module_load@load.html
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143146v1/shard-glk6/igt@i915_module_load@load.html
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143146v1/shard-glk8/igt@i915_module_load@load.html
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143146v1/shard-glk2/igt@i915_module_load@load.html
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143146v1/shard-glk6/igt@i915_module_load@load.html
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143146v1/shard-glk8/igt@i915_module_load@load.html
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143146v1/shard-glk1/igt@i915_module_load@load.html
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143146v1/shard-glk3/igt@i915_module_load@load.html
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143146v1/shard-glk6/igt@i915_module_load@load.html
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143146v1/shard-glk9/igt@i915_module_load@load.html
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143146v1/shard-glk9/igt@i915_module_load@load.html
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143146v1/shard-glk5/igt@i915_module_load@load.html
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143146v1/shard-glk1/igt@i915_module_load@load.html
+   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143146v1/shard-glk3/igt@i915_module_load@load.html
+   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143146v1/shard-glk9/igt@i915_module_load@load.html
+   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143146v1/shard-glk5/igt@i915_module_load@load.html
+   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143146v1/shard-glk3/igt@i915_module_load@load.html
+   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143146v1/shard-glk4/igt@i915_module_load@load.html
+   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143146v1/shard-glk4/igt@i915_module_load@load.html
 
   
   [i915#118]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/118
@@ -140,19 +139,19 @@ Known issues
 Build changes
 -------------
 
-  * Linux: CI_DRM_15908 -> Patchwork_141469v3
+  * Linux: CI_DRM_15908 -> Patchwork_143146v1
 
   CI-20190529: 20190529
   CI_DRM_15908: f06efdfad9d0e9f5cb74404ac98e1a5b3b246567 @ git://anongit.freedesktop.org/gfx-ci/linux
   IGT_8174: d2004b0623dbccd08502525849b4eef881aa199e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_141469v3: f06efdfad9d0e9f5cb74404ac98e1a5b3b246567 @ git://anongit.freedesktop.org/gfx-ci/linux
+  Patchwork_143146v1: f06efdfad9d0e9f5cb74404ac98e1a5b3b246567 @ git://anongit.freedesktop.org/gfx-ci/linux
   piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143146v1/index.html
 
---===============4556595619997102470==
+--===============0241724249060785031==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
@@ -172,28 +171,27 @@ Content-Transfer-Encoding: quoted-printable
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Adjust Added Wake Time wit=
-h PKG_C_LATENCY (rev3)</td></tr>
+<tr><td><b>Series:</b></td><td>Fix all typos in i915</td></tr>
 <tr><td><b>URL:</b></td><td><a href=3D"https://patchwork.freedesktop.org/se=
-ries/141469/">https://patchwork.freedesktop.org/series/141469/</a></td></tr>
+ries/143146/">https://patchwork.freedesktop.org/series/143146/</a></td></tr>
 <tr><td><b>State:</b></td><td>success</td></tr>
 
     <tr><td><b>Details:</b></td><td><a href=3D"https://intel-gfx-ci.01.org/=
-tree/drm-tip/Patchwork_141469v3/index.html">https://intel-gfx-ci.01.org/tre=
-e/drm-tip/Patchwork_141469v3/index.html</a></td></tr>
+tree/drm-tip/Patchwork_143146v1/index.html">https://intel-gfx-ci.01.org/tre=
+e/drm-tip/Patchwork_143146v1/index.html</a></td></tr>
 
 </table>
 
 
-    <h1>CI Bug Log - changes from CI_DRM_15908_full -&gt; Patchwork_141469v=
-3_full</h1>
+    <h1>CI Bug Log - changes from CI_DRM_15908_full -&gt; Patchwork_143146v=
+1_full</h1>
 <h2>Summary</h2>
 <p><strong>SUCCESS</strong></p>
 <p>No regressions found.</p>
 <h2>Participating hosts (12 -&gt; 11)</h2>
 <p>Missing    (1): shard-glk-0 </p>
 <h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_141469v3_full that come from kno=
+<p>Here are the changes found in Patchwork_143146v1_full that come from kno=
 wn issues:</p>
 <h3>IGT changes</h3>
 <h4>Possible fixes</h4>
@@ -240,61 +238,61 @@ glk6/igt@i915_module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx=
 tml">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_1=
 5908/shard-glk9/igt@i915_module_load@load.html">PASS</a>) (<a href=3D"https=
 ://gitlab.freedesktop.org/drm/i915/kernel/-/issues/118">i915#118</a>) -&gt;=
- (<a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/sh=
+ (<a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143146v1/sh=
 ard-glk7/igt@i915_module_load@load.html">PASS</a>, <a href=3D"https://intel=
--gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk4/igt@i915_module_l=
+-gfx-ci.01.org/tree/drm-tip/Patchwork_143146v1/shard-glk2/igt@i915_module_l=
 oad@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-ti=
-p/Patchwork_141469v3/shard-glk5/igt@i915_module_load@load.html">PASS</a>, <=
-a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard=
--glk7/igt@i915_module_load@load.html">PASS</a>, <a href=3D"https://intel-gf=
-x-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk7/igt@i915_module_load=
+p/Patchwork_143146v1/shard-glk7/igt@i915_module_load@load.html">PASS</a>, <=
+a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143146v1/shard=
+-glk2/igt@i915_module_load@load.html">PASS</a>, <a href=3D"https://intel-gf=
+x-ci.01.org/tree/drm-tip/Patchwork_143146v1/shard-glk7/igt@i915_module_load=
 @load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/P=
-atchwork_141469v3/shard-glk1/igt@i915_module_load@load.html">PASS</a>, <a h=
-ref=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-gl=
-k6/igt@i915_module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-c=
-i.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk4/igt@i915_module_load@lo=
+atchwork_143146v1/shard-glk8/igt@i915_module_load@load.html">PASS</a>, <a h=
+ref=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143146v1/shard-gl=
+k1/igt@i915_module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-c=
+i.01.org/tree/drm-tip/Patchwork_143146v1/shard-glk6/igt@i915_module_load@lo=
 ad.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patc=
-hwork_141469v3/shard-glk2/igt@i915_module_load@load.html">PASS</a>, <a href=
-=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk4/=
+hwork_143146v1/shard-glk8/igt@i915_module_load@load.html">PASS</a>, <a href=
+=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143146v1/shard-glk2/=
 igt@i915_module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.0=
-1.org/tree/drm-tip/Patchwork_141469v3/shard-glk1/igt@i915_module_load@load.=
+1.org/tree/drm-tip/Patchwork_143146v1/shard-glk6/igt@i915_module_load@load.=
 html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwo=
-rk_141469v3/shard-glk3/igt@i915_module_load@load.html">PASS</a>, <a href=3D=
-"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk1/igt=
+rk_143146v1/shard-glk8/igt@i915_module_load@load.html">PASS</a>, <a href=3D=
+"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143146v1/shard-glk1/igt=
 @i915_module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.o=
-rg/tree/drm-tip/Patchwork_141469v3/shard-glk8/igt@i915_module_load@load.htm=
+rg/tree/drm-tip/Patchwork_143146v1/shard-glk3/igt@i915_module_load@load.htm=
 l">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_=
-141469v3/shard-glk5/igt@i915_module_load@load.html">PASS</a>, <a href=3D"ht=
-tps://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk9/igt@i9=
+143146v1/shard-glk6/igt@i915_module_load@load.html">PASS</a>, <a href=3D"ht=
+tps://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143146v1/shard-glk9/igt@i9=
 15_module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/=
-tree/drm-tip/Patchwork_141469v3/shard-glk8/igt@i915_module_load@load.html">=
-PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141=
-469v3/shard-glk9/igt@i915_module_load@load.html">PASS</a>, <a href=3D"https=
-://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk8/igt@i915_=
+tree/drm-tip/Patchwork_143146v1/shard-glk9/igt@i915_module_load@load.html">=
+PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143=
+146v1/shard-glk5/igt@i915_module_load@load.html">PASS</a>, <a href=3D"https=
+://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143146v1/shard-glk1/igt@i915_=
 module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tre=
-e/drm-tip/Patchwork_141469v3/shard-glk6/igt@i915_module_load@load.html">PAS=
-S</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469=
-v3/shard-glk6/igt@i915_module_load@load.html">PASS</a>, <a href=3D"https://=
-intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk3/igt@i915_mod=
+e/drm-tip/Patchwork_143146v1/shard-glk3/igt@i915_module_load@load.html">PAS=
+S</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143146=
+v1/shard-glk9/igt@i915_module_load@load.html">PASS</a>, <a href=3D"https://=
+intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143146v1/shard-glk5/igt@i915_mod=
 ule_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/d=
-rm-tip/Patchwork_141469v3/shard-glk2/igt@i915_module_load@load.html">PASS</=
-a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/=
-shard-glk9/igt@i915_module_load@load.html">PASS</a>, <a href=3D"https://int=
-el-gfx-ci.01.org/tree/drm-tip/Patchwork_141469v3/shard-glk5/igt@i915_module=
+rm-tip/Patchwork_143146v1/shard-glk3/igt@i915_module_load@load.html">PASS</=
+a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143146v1/=
+shard-glk4/igt@i915_module_load@load.html">PASS</a>, <a href=3D"https://int=
+el-gfx-ci.01.org/tree/drm-tip/Patchwork_143146v1/shard-glk4/igt@i915_module=
 _load@load.html">PASS</a>)</li>
 </ul>
 </li>
 </ul>
 <h2>Build changes</h2>
 <ul>
-<li>Linux: CI_DRM_15908 -&gt; Patchwork_141469v3</li>
+<li>Linux: CI_DRM_15908 -&gt; Patchwork_143146v1</li>
 </ul>
 <p>CI-20190529: 20190529<br />
   CI_DRM_15908: f06efdfad9d0e9f5cb74404ac98e1a5b3b246567 @ git://anongit.fr=
 eedesktop.org/gfx-ci/linux<br />
   IGT_8174: d2004b0623dbccd08502525849b4eef881aa199e @ https://gitlab.freed=
 esktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_141469v3: f06efdfad9d0e9f5cb74404ac98e1a5b3b246567 @ git://anon=
+  Patchwork_143146v1: f06efdfad9d0e9f5cb74404ac98e1a5b3b246567 @ git://anon=
 git.freedesktop.org/gfx-ci/linux<br />
   piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.fre=
 edesktop.org/piglit</p>
@@ -302,4 +300,4 @@ edesktop.org/piglit</p>
 </body>
 </html>
 
---===============4556595619997102470==--
+--===============0241724249060785031==--
