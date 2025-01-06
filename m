@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32435A022AC
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jan 2025 11:09:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BC5DA022AD
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jan 2025 11:09:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEC4810E5FF;
-	Mon,  6 Jan 2025 10:09:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A10E410E600;
+	Mon,  6 Jan 2025 10:09:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KgTVNU0q";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S38Rehzj";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B64A210E5FF
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 Jan 2025 10:09:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B064510E600
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Jan 2025 10:09:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736158165; x=1767694165;
+ t=1736158167; x=1767694167;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Ax/g+PjP+zLEEHoAhAKGhk4Gt3gv8IWh8mJDAZ/mq+A=;
- b=KgTVNU0qnC2iPyqqVoGImxppF5YGDFkSRSvvMtx8krt5jV4sIc6qi4md
- lj9i4IL0x//jouSMjBL2bMnyD5DATmjJ4kdG8nI23xtJTTC5rU+iO4eWX
- xHI2DOODkUlw1lPzVOFV5ibaF0jkLNHAGTBvex7niZzxPN9bS++Nots2s
- RsrzHpkCoIz2A9V/kd7zeunOy2bjGIx9m41T3NOck6XY+HxUr5qjmpviT
- 3Giz6EylMptC/fcnOjtn0o7S515lwlZvkixtNNSq4J0mPU0h7wEbHB8AS
- 73SbFVRXln9z5RQ8l/lZox8nAKbflKr5hRbXJQPTS2lK2ta7ESrjBpRuw A==;
-X-CSE-ConnectionGUID: uKBtsJFvSyy/Ptwg5I897w==
-X-CSE-MsgGUID: uZw/eD39Q7qZH0SsAsZ8hA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11306"; a="36459651"
-X-IronPort-AV: E=Sophos;i="6.12,292,1728975600"; d="scan'208";a="36459651"
+ bh=LYpqm32K+VaQ++5vTL86tBrRGv+9BSfsuMBNtcPjUZU=;
+ b=S38RehzjkUy+XA+lZ2bZNnUdTl8bAHcIayMclOJQ2dxiGPydvIMUQayz
+ 82/Sv9InqFeDz5daRlYcrxVQIhWViMzE2tK/6wBnSefHbBJjCwF8Q1zhR
+ L2Q0ucmM5lLIIXmzHXVTFjXpowuK3XPji8WOLXCeFVmK/oHZzDeZj36Jb
+ VicW5z59VMDodzf6Lyq0iKyg53QIa/hBWf73aZJLoAIBoinEGCCveMIKb
+ LokhYsbmgDnFfu4jdwn6GDcLBJQny1YBbYjAbMvl0NSyvaUr6MPu3r1OZ
+ YumLV2EX1OiXojf2u+HMiNVlqrwLxL57IGa3nGnY2DwCCjmfc56k+1+6+ w==;
+X-CSE-ConnectionGUID: CKqjmK5VRsez+VLJhzuW9Q==
+X-CSE-MsgGUID: 7bLYb9T8RUCHloGrswsjgw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11306"; a="36459652"
+X-IronPort-AV: E=Sophos;i="6.12,292,1728975600"; d="scan'208";a="36459652"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jan 2025 02:09:25 -0800
-X-CSE-ConnectionGUID: tK0lxClWTmmdhkeWH1E4hw==
-X-CSE-MsgGUID: DM2pYmqpRQSiDRlZg4tYrA==
+ 06 Jan 2025 02:09:27 -0800
+X-CSE-ConnectionGUID: rMdCSFWZSFeNQ7w/TxohIw==
+X-CSE-MsgGUID: Xx92kgOfQpKhCAUG+3yo4g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,292,1728975600"; d="scan'208";a="107370473"
+X-IronPort-AV: E=Sophos;i="6.12,292,1728975600"; d="scan'208";a="107370481"
 Received: from nitin-super-server.iind.intel.com ([10.145.169.70])
- by orviesa004.jf.intel.com with ESMTP; 06 Jan 2025 02:09:23 -0800
+ by orviesa004.jf.intel.com with ESMTP; 06 Jan 2025 02:09:25 -0800
 From: Nitin Gote <nitin.r.gote@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: andi.shyti@intel.com,
 	Nitin Gote <nitin.r.gote@intel.com>
-Subject: [PATCH v1 2/8] drm/i915/gvt: fix typos in i915/gvt files
-Date: Mon,  6 Jan 2025 16:00:31 +0530
-Message-Id: <20250106103037.1401847-3-nitin.r.gote@intel.com>
+Subject: [PATCH v1 3/8] drm/i915/gem: fix typos in i915/gem files
+Date: Mon,  6 Jan 2025 16:00:32 +0530
+Message-Id: <20250106103037.1401847-4-nitin.r.gote@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20250106103037.1401847-1-nitin.r.gote@intel.com>
 References: <20250106103037.1401847-1-nitin.r.gote@intel.com>
@@ -67,235 +67,211 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Fix all typos in files under drm/i915/gvt reported by codespell tool.
+Fix all typos in files under drm/i915/gem reported by codespell tool.
 
 Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
 ---
- drivers/gpu/drm/i915/gvt/cmd_parser.c   | 4 ++--
- drivers/gpu/drm/i915/gvt/dmabuf.c       | 2 +-
- drivers/gpu/drm/i915/gvt/edid.c         | 2 +-
- drivers/gpu/drm/i915/gvt/gtt.c          | 2 +-
- drivers/gpu/drm/i915/gvt/gvt.h          | 8 +++++---
- drivers/gpu/drm/i915/gvt/handlers.c     | 6 +++---
- drivers/gpu/drm/i915/gvt/kvmgt.c        | 2 +-
- drivers/gpu/drm/i915/gvt/mmio_context.c | 6 +++---
- drivers/gpu/drm/i915/gvt/scheduler.c    | 6 +++---
- drivers/gpu/drm/i915/gvt/vgpu.c         | 6 +++---
- 10 files changed, 23 insertions(+), 21 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_context.c        | 6 +++---
+ drivers/gpu/drm/i915/gem/i915_gem_context_types.h  | 4 ++--
+ drivers/gpu/drm/i915/gem/i915_gem_domain.c         | 2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c     | 4 ++--
+ drivers/gpu/drm/i915/gem/i915_gem_region.c         | 2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_shrinker.c       | 4 ++--
+ drivers/gpu/drm/i915/gem/i915_gem_tiling.c         | 2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c            | 2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c       | 2 +-
+ drivers/gpu/drm/i915/gem/selftests/huge_pages.c    | 2 +-
+ drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c | 2 +-
+ 11 files changed, 16 insertions(+), 16 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gvt/cmd_parser.c b/drivers/gpu/drm/i915/gvt/cmd_parser.c
-index 6439c8e91a8d..f8af9659653d 100644
---- a/drivers/gpu/drm/i915/gvt/cmd_parser.c
-+++ b/drivers/gpu/drm/i915/gvt/cmd_parser.c
-@@ -1924,7 +1924,7 @@ static int perform_bb_shadow(struct parser_exec_state *s)
- 	/* the start_offset stores the batch buffer's start gma's
- 	 * offset relative to page boundary. so for non-privileged batch
- 	 * buffer, the shadowed gem object holds exactly the same page
--	 * layout as original gem object. This is for the convience of
-+	 * layout as original gem object. This is for the convenience of
- 	 * replacing the whole non-privilged batch buffer page to this
- 	 * shadowed one in PPGTT at the same gma address. (this replacing
- 	 * action is not implemented yet now, but may be necessary in
-@@ -1976,7 +1976,7 @@ static int perform_bb_shadow(struct parser_exec_state *s)
- 	/*
- 	 * ip_va saves the virtual address of the shadow batch buffer, while
- 	 * ip_gma saves the graphics address of the original batch buffer.
--	 * As the shadow batch buffer is just a copy from the originial one,
-+	 * As the shadow batch buffer is just a copy from the original one,
- 	 * it should be right to use shadow batch buffer'va and original batch
- 	 * buffer's gma in pair. After all, we don't want to pin the shadow
- 	 * buffer here (too early).
-diff --git a/drivers/gpu/drm/i915/gvt/dmabuf.c b/drivers/gpu/drm/i915/gvt/dmabuf.c
-index 9efc3ca0ce82..4f599af766b0 100644
---- a/drivers/gpu/drm/i915/gvt/dmabuf.c
-+++ b/drivers/gpu/drm/i915/gvt/dmabuf.c
-@@ -436,7 +436,7 @@ int intel_vgpu_query_plane(struct intel_vgpu *vgpu, void *args)
- 			dmabuf_obj_get(dmabuf_obj);
- 		}
- 		ret = 0;
--		gvt_dbg_dpy("vgpu%d: re-use dmabuf_obj ref %d, id %d\n",
-+		gvt_dbg_dpy("vgpu%d: reuse dmabuf_obj ref %d, id %d\n",
- 			    vgpu->id, kref_read(&dmabuf_obj->kref),
- 			    gfx_plane_info->dmabuf_id);
- 		mutex_unlock(&vgpu->dmabuf_lock);
-diff --git a/drivers/gpu/drm/i915/gvt/edid.c b/drivers/gpu/drm/i915/gvt/edid.c
-index 0a357ca42db1..89147d33168c 100644
---- a/drivers/gpu/drm/i915/gvt/edid.c
-+++ b/drivers/gpu/drm/i915/gvt/edid.c
-@@ -298,7 +298,7 @@ static int gmbus3_mmio_read(struct intel_vgpu *vgpu, unsigned int offset,
- 	int byte_count = byte_left;
- 	u32 reg_data = 0;
- 
--	/* Data can only be recevied if previous settings correct */
-+	/* Data can only be received if previous settings correct */
- 	if (vgpu_vreg_t(vgpu, PCH_GMBUS1) & GMBUS_SLAVE_READ) {
- 		if (byte_left <= 0) {
- 			memcpy(p_data, &vgpu_vreg(vgpu, offset), bytes);
-diff --git a/drivers/gpu/drm/i915/gvt/gtt.c b/drivers/gpu/drm/i915/gvt/gtt.c
-index 1bce1493b86f..03056ae15858 100644
---- a/drivers/gpu/drm/i915/gvt/gtt.c
-+++ b/drivers/gpu/drm/i915/gvt/gtt.c
-@@ -1259,7 +1259,7 @@ static int ppgtt_populate_shadow_entry(struct intel_vgpu *vgpu,
- 		gvt_vdbg_mm("shadow 64K gtt entry\n");
- 		/*
- 		 * The layout of 64K page is special, the page size is
--		 * controlled by uper PDE. To be simple, we always split
-+		 * controlled by upper PDE. To be simple, we always split
- 		 * 64K page to smaller 4K pages in shadow PT.
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+index c0543c35cd6a..ab1af978911b 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+@@ -238,7 +238,7 @@ static int proto_context_set_persistence(struct drm_i915_private *i915,
+ 		 *
+ 		 * However, if we cannot reset an engine by itself, we cannot
+ 		 * cleanup a hanging persistent context without causing
+-		 * colateral damage, and we should not pretend we can by
++		 * collateral damage, and we should not pretend we can by
+ 		 * exposing the interface.
  		 */
- 		return split_64KB_gtt_entry(vgpu, spt, index, &se);
-diff --git a/drivers/gpu/drm/i915/gvt/gvt.h b/drivers/gpu/drm/i915/gvt/gvt.h
-index 2c95aeef4e41..b967700f416f 100644
---- a/drivers/gpu/drm/i915/gvt/gvt.h
-+++ b/drivers/gpu/drm/i915/gvt/gvt.h
-@@ -452,8 +452,10 @@ void intel_vgpu_free_resource(struct intel_vgpu *vgpu);
- void intel_vgpu_write_fence(struct intel_vgpu *vgpu,
- 	u32 fence, u64 value);
- 
--/* Macros for easily accessing vGPU virtual/shadow register.
--   Explicitly seperate use for typed MMIO reg or real offset.*/
-+/*
-+ * Macros for easily accessing vGPU virtual/shadow register.
-+ * Explicitly separate use for typed MMIO reg or real offset.
-+ */
- #define vgpu_vreg_t(vgpu, reg) \
- 	(*(u32 *)(vgpu->mmio.vreg + i915_mmio_reg_offset(reg)))
- #define vgpu_vreg(vgpu, offset) \
-@@ -702,7 +704,7 @@ static inline void intel_gvt_mmio_set_cmd_write_patch(
-  * @offset: register offset
-  *
-  * Returns:
-- * True if GPU commmand write to an MMIO should be patched
-+ * True if GPU command write to an MMIO should be patched
-  */
- static inline bool intel_gvt_mmio_is_cmd_write_patch(
- 			struct intel_gvt *gvt, unsigned int offset)
-diff --git a/drivers/gpu/drm/i915/gvt/handlers.c b/drivers/gpu/drm/i915/gvt/handlers.c
-index 241cff0fc683..c1e24453b849 100644
---- a/drivers/gpu/drm/i915/gvt/handlers.c
-+++ b/drivers/gpu/drm/i915/gvt/handlers.c
-@@ -689,11 +689,11 @@ static void vgpu_update_refresh_rate(struct intel_vgpu *vgpu)
- 		u32 new_rate = 0;
- 		u32 *old_rate = &(intel_vgpu_port(vgpu, vgpu->display.port_num)->vrefresh_k);
- 
--		/* Calcuate pixel clock by (ls_clk * M / N) */
-+		/* Calculate pixel clock by (ls_clk * M / N) */
- 		pixel_clk = div_u64(mul_u32_u32(link_m, dp_br), link_n);
- 		pixel_clk *= MSEC_PER_SEC;
- 
--		/* Calcuate refresh rate by (pixel_clk / (h_total * v_total)) */
-+		/* Calculate refresh rate by (pixel_clk / (h_total * v_total)) */
- 		new_rate = DIV64_U64_ROUND_CLOSEST(mul_u64_u32_shr(pixel_clk, MSEC_PER_SEC, 0), mul_u32_u32(htotal + 1, vtotal + 1));
- 
- 		if (*old_rate != new_rate)
-@@ -2001,7 +2001,7 @@ static int elsp_mmio_write(struct intel_vgpu *vgpu, unsigned int offset,
- 	 * vGPU reset, it's set on D0->D3 on PCI config write, and cleared after
- 	 * vGPU reset if in resuming.
- 	 * In S0ix exit, the device power state also transite from D3 to D0 as
--	 * S3 resume, but no vGPU reset (triggered by QEMU devic model). After
-+	 * S3 resume, but no vGPU reset (triggered by QEMU device model). After
- 	 * S0ix exit, all engines continue to work. However the d3_entered
- 	 * remains set which will break next vGPU reset logic (miss the expected
- 	 * PPGTT invalidation).
-diff --git a/drivers/gpu/drm/i915/gvt/kvmgt.c b/drivers/gpu/drm/i915/gvt/kvmgt.c
-index b27ff77bfb50..69830a5c49d3 100644
---- a/drivers/gpu/drm/i915/gvt/kvmgt.c
-+++ b/drivers/gpu/drm/i915/gvt/kvmgt.c
-@@ -142,7 +142,7 @@ static int gvt_pin_guest_page(struct intel_vgpu *vgpu, unsigned long gfn,
- 	int ret;
+ 		if (!intel_has_reset_engine(to_gt(i915)))
+@@ -1589,7 +1589,7 @@ static int __context_set_persistence(struct i915_gem_context *ctx, bool state)
+ 		 *
+ 		 * However, if we cannot reset an engine by itself, we cannot
+ 		 * cleanup a hanging persistent context without causing
+-		 * colateral damage, and we should not pretend we can by
++		 * collateral damage, and we should not pretend we can by
+ 		 * exposing the interface.
+ 		 */
+ 		if (!intel_has_reset_engine(to_gt(ctx->i915)))
+@@ -2328,7 +2328,7 @@ finalize_create_context_locked(struct drm_i915_file_private *file_priv,
  
  	/*
--	 * We pin the pages one-by-one to avoid allocating a big arrary
-+	 * We pin the pages one-by-one to avoid allocating a big array
- 	 * on stack to hold pfns.
+ 	 * One for the xarray and one for the caller.  We need to grab
+-	 * the reference *prior* to making the ctx visble to userspace
++	 * the reference *prior* to making the ctx visible to userspace
+ 	 * in gem_context_register(), as at any point after that
+ 	 * userspace can try to race us with another thread destroying
+ 	 * the context under our feet.
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+index b6d97da63d1f..621140a7fda3 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+@@ -245,7 +245,7 @@ struct i915_gem_context {
+ 	 * Execbuf uses the I915_EXEC_RING_MASK as an index into this
+ 	 * array to select which HW context + engine to execute on. For
+ 	 * the default array, the user_ring_map[] is used to translate
+-	 * the legacy uABI onto the approprate index (e.g. both
++	 * the legacy uABI onto the appropriate index (e.g. both
+ 	 * I915_EXEC_DEFAULT and I915_EXEC_RENDER select the same
+ 	 * context, and I915_EXEC_BSD is weird). For a use defined
+ 	 * array, execbuf uses I915_EXEC_RING_MASK as a plain index.
+@@ -276,7 +276,7 @@ struct i915_gem_context {
+ 	 * @vm: unique address space (GTT)
+ 	 *
+ 	 * In full-ppgtt mode, each context has its own address space ensuring
+-	 * complete seperation of one client from all others.
++	 * complete separation of one client from all others.
+ 	 *
+ 	 * In other modes, this is a NULL pointer with the expectation that
+ 	 * the caller uses the shared global GTT.
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_domain.c b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
+index 3770828f2eaf..ee55caca67a1 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_domain.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
+@@ -276,7 +276,7 @@ int i915_gem_object_set_cache_level(struct drm_i915_gem_object *obj,
+ 	 * For objects created by userspace through GEM_CREATE with pat_index
+ 	 * set by set_pat extension, simply return 0 here without touching
+ 	 * the cache setting, because such objects should have an immutable
+-	 * cache setting by desgin and always managed by userspace.
++	 * cache setting by design and always managed by userspace.
  	 */
- 	for (npage = 0; npage < total_pages; npage++) {
-diff --git a/drivers/gpu/drm/i915/gvt/mmio_context.c b/drivers/gpu/drm/i915/gvt/mmio_context.c
-index 273db14fd5fc..2f7208843367 100644
---- a/drivers/gpu/drm/i915/gvt/mmio_context.c
-+++ b/drivers/gpu/drm/i915/gvt/mmio_context.c
-@@ -53,7 +53,7 @@ struct engine_mmio {
- 	u32 value;
- };
- 
--/* Raw offset is appened to each line for convenience. */
-+/* Raw offset is append to each line for convenience. */
- static struct engine_mmio gen8_engine_mmio_list[] __cacheline_aligned = {
- 	{RCS0, RING_MODE_GEN7(RENDER_RING_BASE), 0xffff, false}, /* 0x229c */
- 	{RCS0, GEN9_CTX_PREEMPT_REG, 0x0, false}, /* 0x2248 */
-@@ -576,8 +576,8 @@ void intel_gvt_switch_mmio(struct intel_vgpu *pre,
+ 	if (i915_gem_object_has_cache_level(obj, cache_level))
+ 		return 0;
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+index f151640c1d13..c8107502190d 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+@@ -303,7 +303,7 @@ struct i915_execbuffer {
+ 	struct intel_gt_buffer_pool_node *batch_pool; /** pool node for batch buffer */
  
  	/**
- 	 * We are using raw mmio access wrapper to improve the
--	 * performace for batch mmio read/write, so we need
--	 * handle forcewake mannually.
-+	 * performance for batch mmio read/write, so we need
-+	 * handle forcewake manually.
+-	 * Indicate either the size of the hastable used to resolve
++	 * Indicate either the size of the hashtable used to resolve
+ 	 * relocation handles, or if negative that we are using a direct
+ 	 * index into the execobj[].
  	 */
- 	intel_uncore_forcewake_get(engine->uncore, FORCEWAKE_ALL);
- 	switch_mmio(pre, next, engine);
-diff --git a/drivers/gpu/drm/i915/gvt/scheduler.c b/drivers/gpu/drm/i915/gvt/scheduler.c
-index 23f2cc397ec9..dad217df0366 100644
---- a/drivers/gpu/drm/i915/gvt/scheduler.c
-+++ b/drivers/gpu/drm/i915/gvt/scheduler.c
-@@ -77,7 +77,7 @@ static void update_shadow_pdps(struct intel_vgpu_workload *workload)
- }
+@@ -2543,7 +2543,7 @@ static int eb_pin_timeline(struct i915_execbuffer *eb, struct intel_context *ce,
  
- /*
-- * when populating shadow ctx from guest, we should not overrride oa related
-+ * when populating shadow ctx from guest, we should not override oa related
-  * registers, so that they will not be overlapped by guest oa configs. Thus
-  * made it possible to capture oa data from host for both host and guests.
+ 			/*
+ 			 * Error path, cannot use intel_context_timeline_lock as
+-			 * that is user interruptable and this clean up step
++			 * that is user interruptible and this clean up step
+ 			 * must be done.
+ 			 */
+ 			mutex_lock(&ce->timeline->mutex);
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_region.c b/drivers/gpu/drm/i915/gem/i915_gem_region.c
+index b09b74a2448b..636768d0f57e 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_region.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_region.c
+@@ -82,7 +82,7 @@ __i915_gem_object_create_region(struct intel_memory_region *mem,
+ 
+ 	/*
+ 	 * Anything smaller than the min_page_size can't be freely inserted into
+-	 * the GTT, due to alignemnt restrictions. For such special objects,
++	 * the GTT, due to alignment restrictions. For such special objects,
+ 	 * make sure we force memcpy based suspend-resume. In the future we can
+ 	 * revisit this, either by allowing special mis-aligned objects in the
+ 	 * migration path, or by mapping all of LMEM upfront using cheap 1G
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c b/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
+index 9117e9422844..aec41f0f098f 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_shrinker.c
+@@ -25,7 +25,7 @@ static bool swap_available(void)
+ 
+ static bool can_release_pages(struct drm_i915_gem_object *obj)
+ {
+-	/* Consider only shrinkable ojects. */
++	/* Consider only shrinkable objects. */
+ 	if (!i915_gem_object_is_shrinkable(obj))
+ 		return false;
+ 
+@@ -261,7 +261,7 @@ i915_gem_shrink(struct i915_gem_ww_ctx *ww,
+  * i915_gem_shrink_all - Shrink buffer object caches completely
+  * @i915: i915 device
+  *
+- * This is a simple wraper around i915_gem_shrink() to aggressively shrink all
++ * This is a simple wrapper around i915_gem_shrink() to aggressively shrink all
+  * caches completely. It also first waits for and retires all outstanding
+  * requests to also be able to release backing storage for active objects.
+  *
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_tiling.c b/drivers/gpu/drm/i915/gem/i915_gem_tiling.c
+index d9eb84c1d2f1..5ac23ff3feff 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_tiling.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_tiling.c
+@@ -39,7 +39,7 @@
+  * Since neither of this applies for new tiling layouts on modern platforms like
+  * W, Ys and Yf tiling GEM only allows object tiling to be set to X or Y tiled.
+  * Anything else can be handled in userspace entirely without the kernel's
+- * invovlement.
++ * involvement.
   */
-@@ -528,7 +528,7 @@ static int prepare_shadow_batch_buffer(struct intel_vgpu_workload *workload)
- 	int ret;
- 
- 	list_for_each_entry(bb, &workload->shadow_bb, list) {
--		/* For privilge batch buffer and not wa_ctx, the bb_start_cmd_va
-+		/* For privilege batch buffer and not wa_ctx, the bb_start_cmd_va
- 		 * is only updated into ring_scan_buffer, not real ring address
- 		 * allocated in later copy_workload_to_ring_buffer. pls be noted
- 		 * shadow_ring_buffer_va is now pointed to real ring buffer va
-@@ -1774,7 +1774,7 @@ intel_vgpu_create_workload(struct intel_vgpu *vgpu,
- }
  
  /**
-- * intel_vgpu_queue_workload - Qeue a vGPU workload
-+ * intel_vgpu_queue_workload - Queue a vGPU workload
-  * @workload: the workload to queue in
-  */
- void intel_vgpu_queue_workload(struct intel_vgpu_workload *workload)
-diff --git a/drivers/gpu/drm/i915/gvt/vgpu.c b/drivers/gpu/drm/i915/gvt/vgpu.c
-index 63c751ca4119..11260392234a 100644
---- a/drivers/gpu/drm/i915/gvt/vgpu.c
-+++ b/drivers/gpu/drm/i915/gvt/vgpu.c
-@@ -78,7 +78,7 @@ void populate_pvinfo_page(struct intel_vgpu *vgpu)
-  * vGPU type name is defined as GVTg_Vx_y which contains the physical GPU
-  * generation type (e.g V4 as BDW server, V5 as SKL server).
-  *
-- * Depening on the physical SKU resource, we might see vGPU types like
-+ * Depending on the physical SKU resource, we might see vGPU types like
-  * GVTg_V4_8, GVTg_V4_4, GVTg_V4_2, etc. We can create different types of
-  * vGPU on same physical GPU depending on available resource. Each vGPU
-  * type will have a different number of avail_instance to indicate how
-@@ -417,7 +417,7 @@ int intel_gvt_create_vgpu(struct intel_vgpu *vgpu,
-  * the whole vGPU to default state as when it is created. This vGPU function
-  * is required both for functionary and security concerns.The ultimate goal
-  * of vGPU FLR is that reuse a vGPU instance by virtual machines. When we
-- * assign a vGPU to a virtual machine we must isse such reset first.
-+ * assign a vGPU to a virtual machine we must issue such reset first.
-  *
-  * Full GT Reset and Per-Engine GT Reset are soft reset flow for GPU engines
-  * (Render, Blitter, Video, Video Enhancement). It is defined by GPU Spec.
-@@ -428,7 +428,7 @@ int intel_gvt_create_vgpu(struct intel_vgpu *vgpu,
-  *
-  * The parameter dev_level is to identify if we will do DMLR or GT reset.
-  * The parameter engine_mask is to specific the engines that need to be
-- * resetted. If value ALL_ENGINES is given for engine_mask, it means
-+ * reset. If value ALL_ENGINES is given for engine_mask, it means
-  * the caller requests a full GT reset that we will reset all virtual
-  * GPU engines. For FLR, engine_mask is ignored.
-  */
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+index 10d8673641f7..1f4814968868 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+@@ -994,7 +994,7 @@ void i915_ttm_adjust_lru(struct drm_i915_gem_object *obj)
+ 		 * If we need to place an LMEM resource which doesn't need CPU
+ 		 * access then we should try not to victimize mappable objects
+ 		 * first, since we likely end up stealing more of the mappable
+-		 * portion. And likewise when we try to find space for a mappble
++		 * portion. And likewise when we try to find space for a mappable
+ 		 * object, we know not to ever victimize objects that don't
+ 		 * occupy any mappable pages.
+ 		 */
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
+index 041dab543b78..2f6b33edb9c9 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c
+@@ -603,7 +603,7 @@ int i915_ttm_move(struct ttm_buffer_object *bo, bool evict,
+ 		 * sequence, where at the end we can do the move for real.
+ 		 *
+ 		 * The special case here is when the dst_mem is TTM_PL_SYSTEM,
+-		 * which doens't require any kind of move, so it should be safe
++		 * which doesn't require any kind of move, so it should be safe
+ 		 * to skip all the below and call ttm_bo_move_null() here, where
+ 		 * the caller in __i915_ttm_get_pages() will take care of the
+ 		 * rest, since we should have a valid ttm_tt.
+diff --git a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+index 84d41e6ccf05..bd08605a1611 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
++++ b/drivers/gpu/drm/i915/gem/selftests/huge_pages.c
+@@ -1781,7 +1781,7 @@ static int igt_tmpfs_fallback(void *arg)
+ 
+ 	/*
+ 	 * Make sure that we don't burst into a ball of flames upon falling back
+-	 * to tmpfs, which we rely on if on the off-chance we encouter a failure
++	 * to tmpfs, which we rely on if on the off-chance we encounter a failure
+ 	 * when setting up gemfs.
+ 	 */
+ 
+diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
+index 99a9ade73956..804f74084bd4 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
++++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
+@@ -1342,7 +1342,7 @@ static int igt_mmap_migrate(void *arg)
+ 		}
+ 
+ 		/*
+-		 * Allocate in the mappable portion, should be no suprises here.
++		 * Allocate in the mappable portion, should be no surprises here.
+ 		 */
+ 		err = __igt_mmap_migrate(mixed, ARRAY_SIZE(mixed), mr, 0);
+ 		if (err)
 -- 
 2.25.1
 
