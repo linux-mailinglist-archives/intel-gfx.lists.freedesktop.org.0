@@ -2,25 +2,25 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0FB4A02450
-	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jan 2025 12:33:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5568EA02458
+	for <lists+intel-gfx@lfdr.de>; Mon,  6 Jan 2025 12:35:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C16389701;
-	Mon,  6 Jan 2025 11:33:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ECEF010E099;
+	Mon,  6 Jan 2025 11:35:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 855CC10E634;
- Mon,  6 Jan 2025 11:33:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DDAD410E099;
+ Mon,  6 Jan 2025 11:35:21 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_Fix_all_typos_in_i915?=
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_Fix_all_typos_in_i915?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Nitin Gote" <nitin.r.gote@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 06 Jan 2025 11:33:14 -0000
-Message-ID: <173616319453.120825.15770460613197851497@b555e5b46a47>
+Date: Mon, 06 Jan 2025 11:35:21 -0000
+Message-ID: <173616332190.120825.5143383195202426006@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20250106103037.1401847-1-nitin.r.gote@intel.com>
 In-Reply-To: <20250106103037.1401847-1-nitin.r.gote@intel.com>
@@ -44,12 +44,44 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Series: Fix all typos in i915
 URL   : https://patchwork.freedesktop.org/series/143146/
-State : warning
+State : success
 
 == Summary ==
 
-Error: dim sparse failed
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
+CI Bug Log - changes from CI_DRM_15908 -> Patchwork_143146v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143146v1/index.html
+
+Participating hosts (38 -> 37)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
 
 
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_15908 -> Patchwork_143146v1
+
+  CI-20190529: 20190529
+  CI_DRM_15908: f06efdfad9d0e9f5cb74404ac98e1a5b3b246567 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8174: d2004b0623dbccd08502525849b4eef881aa199e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_143146v1: f06efdfad9d0e9f5cb74404ac98e1a5b3b246567 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143146v1/index.html
