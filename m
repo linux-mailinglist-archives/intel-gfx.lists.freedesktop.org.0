@@ -2,61 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AD97A03B97
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jan 2025 10:55:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D92D0A03CD9
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jan 2025 11:48:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB0E010E3F5;
-	Tue,  7 Jan 2025 09:55:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F95510E3EA;
+	Tue,  7 Jan 2025 10:48:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DgvQdqu/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GpnY1DfJ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2744110E3DC;
- Tue,  7 Jan 2025 09:55:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE76110E3F0
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Jan 2025 10:48:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736243748; x=1767779748;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=ugiTMtbs+cIO+tTegTnCLDEWH+PCKruBmZ6gP73KzyA=;
- b=DgvQdqu/0Nya4aONmVdh1kFEeFV58EHIh/ZbR+KXiBEH7uJcCXujTPwv
- bmPWKD/grYvW6LVvledZ9WahwbW3AvvTpV27Eo3PnMHq9LhundGLyywAJ
- wA1GFBoGKM2z8jVhfJZXKU1yk+J4/dzEpOBgGzlsJF/CZB8v2Okgts5vy
- a4S51YQIDFd/xhAQ3hQbTe7Avle3jmWvhkjzMZ70YM0/ER9UOutYYeIsQ
- xQX3X5qX1au2LDzmQarnGIgJs/TwI/dvFh4qXSfdQU3OTivAZ+PUthi/A
- 29utujj0hTRjh8NPCfXeSvYFFhj13xWCFu+ZL/9N8on263BKxVrpqp4MO g==;
-X-CSE-ConnectionGUID: S4MiTtEXTUe+WPPn2Y+OUA==
-X-CSE-MsgGUID: habNkELBRiGrPeRxgeDbWw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11307"; a="53956055"
-X-IronPort-AV: E=Sophos;i="6.12,295,1728975600"; d="scan'208";a="53956055"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jan 2025 01:55:47 -0800
-X-CSE-ConnectionGUID: CEthD8qHROmnTZJoei+0OA==
-X-CSE-MsgGUID: jppoV3qiQ+2SVDB4uUL49w==
+ t=1736246890; x=1767782890;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=ZuU0ZRdgqEGyOAJ65v7DfD29jTPATM26Qf0p5qoW+rk=;
+ b=GpnY1DfJrdfdM4WGHE1Lxp2VVJYEgUPJkWocYio2J4tHG8uun1RpDrJs
+ cd7Vi8kiJ+sFfwHnUUnowmhU/dUoOr/LVcUGdB40Al3YmG0eg3rpsP4aO
+ JZxVYS0zCMt2Aj8cHWAcfhDfSWPLUYjyZk8+ep5aYWyDdcew9iKfBRFlP
+ RkGCB5z/LzQbF/kAzQy6a6GJT9rf3MiBwAUC98mnaT5TTAlJYYbaMKXtK
+ Oep+nD5wfp9/Od4gDarxoj4X81pp02qZT54YbGGgZV/J3R2yQUX5NAp0z
+ PsTlRGl0eh6S3WzpLglAp3psseymumWCGzSd+wdVuC3K+pjWpxHs7O6Mz w==;
+X-CSE-ConnectionGUID: G7+4uqkVQ76IuChdw63r9g==
+X-CSE-MsgGUID: tII8RslkQbeC0ZnthZr4Mw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11307"; a="24030288"
+X-IronPort-AV: E=Sophos;i="6.12,295,1728975600"; d="scan'208";a="24030288"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jan 2025 02:48:09 -0800
+X-CSE-ConnectionGUID: wOibqPQPQXuU7evZWljFlQ==
+X-CSE-MsgGUID: Co5oDm2tT5CaxB/WMqdTHQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="102589384"
-Received: from cpetruta-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.85])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jan 2025 01:55:46 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Maarten
- Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>
-Cc: imre.deak@intel.com, Lyude Paul <lyude@redhat.com>
-Subject: Re: [PATCH v3 01/16] drm/mst: remove mgr parameter and debug
- logging from drm_dp_get_vc_payload_bw()
-In-Reply-To: <72d77e7a7fe69c784e9df048b7e6f250fd7599e4.1735912293.git.jani.nikula@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1735912293.git.jani.nikula@intel.com>
- <72d77e7a7fe69c784e9df048b7e6f250fd7599e4.1735912293.git.jani.nikula@intel.com>
-Date: Tue, 07 Jan 2025 11:55:42 +0200
-Message-ID: <875xmrlzhd.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="107350899"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO intel.com)
+ ([10.245.246.98])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jan 2025 02:48:08 -0800
+Date: Tue, 7 Jan 2025 11:48:04 +0100
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Nitin Gote <nitin.r.gote@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH v1 1/8] drm/i915/gt: fix typos in i915/gt files.
+Message-ID: <Z30GZMKnbNJ0q63S@ashyti-mobl2.lan>
+References: <20250106103037.1401847-1-nitin.r.gote@intel.com>
+ <20250106103037.1401847-2-nitin.r.gote@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250106103037.1401847-2-nitin.r.gote@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,154 +69,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 03 Jan 2025, Jani Nikula <jani.nikula@intel.com> wrote:
-> The struct drm_dp_mst_topology_mgr *mgr parameter is only used for debug
-> logging in case the passed in link rate or lane count are zero. There's
-> no further error checking as such, and the function returns 0.
->
-> There should be no case where the parameters are zero. The returned
-> value is generally used as a divisor, and if we were hitting this, we'd
-> be seeing division by zero.
->
-> Just remove the debug logging altogether, along with the mgr parameter,
-> so that the function can be used in non-MST contexts without the
-> topology manager.
->
-> v2: Also remove drm_dp_mst_helper_tests_init as unnecessary (Imre)
->
-> Cc: Imre Deak <imre.deak@intel.com>
-> Cc: Lyude Paul <lyude@redhat.com>
-> Reviewed-by: Imre Deak <imre.deak@intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Hi Nitin,
 
-Maarten, Maxime, Thomas, ack for merging this via drm-intel along with
-the rest of the series?
+great job!
 
-BR,
-Jani.
+Just one correction:
 
+...
 
-
-> ---
->  drivers/gpu/drm/display/drm_dp_mst_topology.c  | 10 ++--------
->  drivers/gpu/drm/i915/display/intel_dp_mst.c    |  3 +--
->  drivers/gpu/drm/nouveau/dispnv50/disp.c        |  3 +--
->  drivers/gpu/drm/tests/drm_dp_mst_helper_test.c | 17 +----------------
->  include/drm/display/drm_dp_mst_helper.h        |  3 +--
->  5 files changed, 6 insertions(+), 30 deletions(-)
->
-> diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c b/drivers/gpu/drm/display/drm_dp_mst_topology.c
-> index f8cd094efa3c..06c91c5b7f7c 100644
-> --- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
-> +++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
-> @@ -3572,8 +3572,7 @@ static int drm_dp_send_up_ack_reply(struct drm_dp_mst_topology_mgr *mgr,
->  }
->  
->  /**
-> - * drm_dp_get_vc_payload_bw - get the VC payload BW for an MST link
-> - * @mgr: The &drm_dp_mst_topology_mgr to use
-> + * drm_dp_get_vc_payload_bw - get the VC payload BW for an MTP link
->   * @link_rate: link rate in 10kbits/s units
->   * @link_lane_count: lane count
->   *
-> @@ -3584,17 +3583,12 @@ static int drm_dp_send_up_ack_reply(struct drm_dp_mst_topology_mgr *mgr,
->   *
->   * Returns the BW / timeslot value in 20.12 fixed point format.
->   */
-> -fixed20_12 drm_dp_get_vc_payload_bw(const struct drm_dp_mst_topology_mgr *mgr,
-> -				    int link_rate, int link_lane_count)
-> +fixed20_12 drm_dp_get_vc_payload_bw(int link_rate, int link_lane_count)
->  {
->  	int ch_coding_efficiency =
->  		drm_dp_bw_channel_coding_efficiency(drm_dp_is_uhbr_rate(link_rate));
->  	fixed20_12 ret;
->  
-> -	if (link_rate == 0 || link_lane_count == 0)
-> -		drm_dbg_kms(mgr->dev, "invalid link rate/lane count: (%d / %d)\n",
-> -			    link_rate, link_lane_count);
-> -
->  	/* See DP v2.0 2.6.4.2, 2.7.6.3 VCPayload_Bandwidth_for_OneTimeSlotPer_MTP_Allocation */
->  	ret.full = DIV_ROUND_DOWN_ULL(mul_u32_u32(link_rate * link_lane_count,
->  						  ch_coding_efficiency),
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> index fffd199999e0..ca091ed291d5 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> @@ -244,8 +244,7 @@ static int mst_stream_find_vcpi_slots_for_bpp(struct intel_dp *intel_dp,
->  		crtc_state->fec_enable = !intel_dp_is_uhbr(crtc_state);
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> index 5b8080ec5315..f6767fbdada5 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
+> @@ -512,7 +512,7 @@ static int __uc_init_hw(struct intel_uc *uc)
+>  		       ERR_PTR(ret), attempts);
 >  	}
 >  
-> -	mst_state->pbn_div = drm_dp_get_vc_payload_bw(&intel_dp->mst_mgr,
-> -						      crtc_state->port_clock,
-> +	mst_state->pbn_div = drm_dp_get_vc_payload_bw(crtc_state->port_clock,
->  						      crtc_state->lane_count);
->  
->  	max_dpt_bpp = intel_dp_mst_max_dpt_bpp(crtc_state, dsc);
-> diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> index 8097249612bc..62d72b7a8d04 100644
-> --- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> +++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-> @@ -992,8 +992,7 @@ nv50_msto_atomic_check(struct drm_encoder *encoder,
->  	if (!mst_state->pbn_div.full) {
->  		struct nouveau_encoder *outp = mstc->mstm->outp;
->  
-> -		mst_state->pbn_div = drm_dp_get_vc_payload_bw(&mstm->mgr,
-> -							      outp->dp.link_bw, outp->dp.link_nr);
-> +		mst_state->pbn_div = drm_dp_get_vc_payload_bw(outp->dp.link_bw, outp->dp.link_nr);
->  	}
->  
->  	slots = drm_dp_atomic_find_time_slots(state, &mstm->mgr, mstc->port, asyh->dp.pbn);
-> diff --git a/drivers/gpu/drm/tests/drm_dp_mst_helper_test.c b/drivers/gpu/drm/tests/drm_dp_mst_helper_test.c
-> index 89cd9e4f4d32..9e0e2fb65944 100644
-> --- a/drivers/gpu/drm/tests/drm_dp_mst_helper_test.c
-> +++ b/drivers/gpu/drm/tests/drm_dp_mst_helper_test.c
-> @@ -199,10 +199,8 @@ static const struct drm_dp_mst_calc_pbn_div_test drm_dp_mst_calc_pbn_div_dp1_4_c
->  static void drm_test_dp_mst_calc_pbn_div(struct kunit *test)
->  {
->  	const struct drm_dp_mst_calc_pbn_div_test *params = test->param_value;
-> -	/* mgr->dev is only needed by drm_dbg_kms(), but it's not called for the test cases. */
-> -	struct drm_dp_mst_topology_mgr *mgr = test->priv;
->  
-> -	KUNIT_EXPECT_EQ(test, drm_dp_get_vc_payload_bw(mgr, params->link_rate, params->lane_count).full,
-> +	KUNIT_EXPECT_EQ(test, drm_dp_get_vc_payload_bw(params->link_rate, params->lane_count).full,
->  			params->expected.full);
->  }
->  
-> @@ -568,21 +566,8 @@ static struct kunit_case drm_dp_mst_helper_tests[] = {
->  	{ }
->  };
->  
-> -static int drm_dp_mst_helper_tests_init(struct kunit *test)
-> -{
-> -	struct drm_dp_mst_topology_mgr *mgr;
-> -
-> -	mgr = kunit_kzalloc(test, sizeof(*mgr), GFP_KERNEL);
-> -	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, mgr);
-> -
-> -	test->priv = mgr;
-> -
-> -	return 0;
-> -}
-> -
->  static struct kunit_suite drm_dp_mst_helper_test_suite = {
->  	.name = "drm_dp_mst_helper",
-> -	.init = drm_dp_mst_helper_tests_init,
->  	.test_cases = drm_dp_mst_helper_tests,
->  };
->  
-> diff --git a/include/drm/display/drm_dp_mst_helper.h b/include/drm/display/drm_dp_mst_helper.h
-> index a80ba457a858..e39de161c938 100644
-> --- a/include/drm/display/drm_dp_mst_helper.h
-> +++ b/include/drm/display/drm_dp_mst_helper.h
-> @@ -867,8 +867,7 @@ struct edid *drm_dp_mst_get_edid(struct drm_connector *connector,
->  				 struct drm_dp_mst_topology_mgr *mgr,
->  				 struct drm_dp_mst_port *port);
->  
-> -fixed20_12 drm_dp_get_vc_payload_bw(const struct drm_dp_mst_topology_mgr *mgr,
-> -				    int link_rate, int link_lane_count);
-> +fixed20_12 drm_dp_get_vc_payload_bw(int link_rate, int link_lane_count);
->  
->  int drm_dp_calc_pbn_mode(int clock, int bpp);
+> -	/* Did we succeded or run out of retries? */
+> +	/* Did we succeeded or run out of retries? */
 
--- 
-Jani Nikula, Intel
+"Did we succeed..." or "Have we seucceeded...".
+
+Andi
+
+>  	if (ret)
+>  		goto err_log_capture;
+>  
