@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CD95A03F63
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jan 2025 13:37:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D9E50A03F75
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jan 2025 13:38:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D6AC610E30B;
-	Tue,  7 Jan 2025 12:37:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7186510E6E5;
+	Tue,  7 Jan 2025 12:38:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W6EGfqTC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ntipMero";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0EE2110E30B
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Jan 2025 12:37:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61A7B10E6E5
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Jan 2025 12:38:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736253455; x=1767789455;
+ t=1736253510; x=1767789510;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=9p/Eepfj3pNapG2VgCEFlX7IhSzb16UpqMzB3iRPdW8=;
- b=W6EGfqTCmAmnDm8/ZbJmlWTQRJZYJSmEa2xZJZu2lqZlxCknD3Ub2m+H
- 5tx2OuBOnaDKKyVpk3F58yU1awop/waYq5PXcTFzVHFs2E5ncuO794DV3
- vQTtLLcUDg7Cw3hdBiwnbDS01kY9ud2u0cuEaMMiq3g/xDdrIIbHJKSAZ
- G7/jgctX/L5Rhl5osTXjaKwnZKKcY5EvzDUVAbRmkQdhzmZNlP4yqWbGW
- U+cAd0rMUcz/9nnu2QesEPn+U73w/e9C1xTwEro0/n3ImWm3HrKS3Mk+b
- dYpQ+9x9PiqufJS+SoqKbHM8mGyOX+txI17VsI87ZwMVbNQkBrxhqeKm6 A==;
-X-CSE-ConnectionGUID: GYeZU1zmTG2hjnDz9YBtHw==
-X-CSE-MsgGUID: idqpjGlsQkqixd+N8cHb/Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11308"; a="36593641"
-X-IronPort-AV: E=Sophos;i="6.12,295,1728975600"; d="scan'208";a="36593641"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jan 2025 04:37:35 -0800
-X-CSE-ConnectionGUID: EQjqhFBlS4+ZPZ8lrRxdkQ==
-X-CSE-MsgGUID: Hj43joI1SiuHPGOQVT+6FQ==
+ bh=YjwmWi7laFal1DEkdPu6AONaOrj6/XzvBFHC5KakTVE=;
+ b=ntipMero2nD5im+Xgh/KVUa1pH32zdXuZ84A2sxJIyTSa1WSpTf5uC5K
+ c1m9u+OMfJDEZB3kZKOmSeGK2EqFECHcE4E513jfvkPU/xLxVG2Ni55A6
+ kG4KZekTCYP3tkAh8tUmNMwiNSD7slPtEnBEiDhEWhJPGM07RuK5VvC6s
+ UwgSFBeqocbOSIK+o2pl0uZVmvZbJn79yjIhlmuW62Z3CjHs/7OfdL5aY
+ 3crWvze3BZPfKu3hxo/z9iNi7+suf3GSrbRr5ZUj5b9JkQf3SyDzlJ2hs
+ D97RhFFSqvZF2TM3k5odRjQx2lM52noNCRxvgsxiRAAqnI5B/Wm5C9PlL w==;
+X-CSE-ConnectionGUID: adZkAuUlRhCl6ezZ52vrRw==
+X-CSE-MsgGUID: t1xUQDnYT265accsK5MGXw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11308"; a="58898007"
+X-IronPort-AV: E=Sophos;i="6.12,295,1728975600"; d="scan'208";a="58898007"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jan 2025 04:38:30 -0800
+X-CSE-ConnectionGUID: fE2gH3lZQI6rzmPE6r5M4A==
+X-CSE-MsgGUID: FPOTjIrqTmKyig0Mxq8Mcg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="106780575"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="103253448"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO intel.com)
  ([10.245.246.98])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jan 2025 04:37:33 -0800
-Date: Tue, 7 Jan 2025 13:37:29 +0100
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jan 2025 04:38:29 -0800
+Date: Tue, 7 Jan 2025 13:38:24 +0100
 From: Andi Shyti <andi.shyti@linux.intel.com>
 To: Nitin Gote <nitin.r.gote@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH v1 3/8] drm/i915/gem: fix typos in i915/gem files
-Message-ID: <Z30gCbM5yonLki_u@ashyti-mobl2.lan>
+Subject: Re: [PATCH v1 4/8] drm/i915/pxp: fix typos in i915/pxp files
+Message-ID: <Z30gQJ5-63D8oOrf@ashyti-mobl2.lan>
 References: <20250106103037.1401847-1-nitin.r.gote@intel.com>
- <20250106103037.1401847-4-nitin.r.gote@intel.com>
+ <20250106103037.1401847-5-nitin.r.gote@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250106103037.1401847-4-nitin.r.gote@intel.com>
+In-Reply-To: <20250106103037.1401847-5-nitin.r.gote@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,8 +71,8 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 Hi Nitin,
 
-On Mon, Jan 06, 2025 at 04:00:32PM +0530, Nitin Gote wrote:
-> Fix all typos in files under drm/i915/gem reported by codespell tool.
+On Mon, Jan 06, 2025 at 04:00:33PM +0530, Nitin Gote wrote:
+> Fix all typos in files under drm/i915/pxp reported by codespell tool.
 > 
 > Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
 
