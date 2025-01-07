@@ -2,186 +2,185 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E862A0346C
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jan 2025 02:15:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 802E8A039AA
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jan 2025 09:21:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 93CCD10EA50;
-	Tue,  7 Jan 2025 01:15:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3432710E306;
+	Tue,  7 Jan 2025 08:21:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QAUa8kc6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Lu3XihIi";
 	dkim-atps=neutral
-X-Original-To: Intel-GFX@lists.freedesktop.org
-Delivered-To: Intel-GFX@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 476B910EA50;
- Tue,  7 Jan 2025 01:15:38 +0000 (UTC)
+X-Original-To: intel-gfx@lists.freedesktop.org
+Delivered-To: intel-gfx@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1477A10E306;
+ Tue,  7 Jan 2025 08:21:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736212538; x=1767748538;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:mime-version;
- bh=fxQ9w2uqlqr2TpH07Ou25kCqBsWu9dmdZ5K72pmSR1E=;
- b=QAUa8kc6FKnivh01nzW4mdgfrz/BbUp22KnP7jgVg4iwlzIfWVDX5Gn7
- vs3si+mDcAkC9pr0neBjAbVDRgbd5Ab1tSF3O/+PhjDhMUccA9BPsGNzX
- BaJeYT29xVQLVaaP+8RD3dHoHQESesBg+fm3lBls4E+EEgNelMGwgolNb
- WHBmaNT2WpKImKDirWsl40WoO9yWBwsX5HVxBrZGXkHgtrrfcQMdXRquf
- U4CKBQdaSJ2EkIAQ7OYM3pPhgaHwx9H6nUn2UNd27LW1zUJYkJ6qOynPc
- tEgaiSpxjC0k+aT6ovGXTot19gqgqrNWzgjoaL4cw7o9q6h7awzHlFgK3 w==;
-X-CSE-ConnectionGUID: uv9gNwe6Sm+llqqyIAXZwQ==
-X-CSE-MsgGUID: l4IblHOiSbilnW1Mz5iOBw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11307"; a="23986543"
-X-IronPort-AV: E=Sophos;i="6.12,294,1728975600"; d="scan'208,217";a="23986543"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jan 2025 17:15:38 -0800
-X-CSE-ConnectionGUID: BZb4MeYXQfGgiCaLDOkBiQ==
-X-CSE-MsgGUID: H0vNAgsmQNKqsWJ4R0qP8Q==
+ t=1736238098; x=1767774098;
+ h=message-id:date:subject:from:to:cc:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=FtTpg1Ttwr5z6zc12EL/F4a4r5fqD5fNI0o82XDHOP0=;
+ b=Lu3XihIiSLEg+RIwZLzdps1YIN0pMZp8OdRLSQtEohwC+ckJR9HoDm8t
+ pwsWRkcuWyznJdgnRpCRH4zDjjUt4mnINo3XRaEhdoeApn6vO9zj2S5LK
+ TqP0JXWLmTVW3hEf/gxPv10Lr6P/C1VHeIQQIUKSEER1j4qOVPK1rtYU5
+ /K7KrsscJjcUAsHVBO1mgHMZLqZujAAntl5ZngvSZ/t+Nkh5pUDSPbQWP
+ /IBjvIiJUJ9duLg31/fwIVtolujaognVoIqnLp6W7s7wJB78cPQZwN3aO
+ 3wszV9A73aJqxtJobHmhfaJYcmyJxefvdcuVsK71M2iZtbqtepJtbDIbw Q==;
+X-CSE-ConnectionGUID: VkFkOqpzTqSOYjq5aczRIw==
+X-CSE-MsgGUID: n7J2X7S2T2KlX2uefP39uA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11307"; a="36303720"
+X-IronPort-AV: E=Sophos;i="6.12,295,1728975600"; d="scan'208";a="36303720"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jan 2025 00:21:37 -0800
+X-CSE-ConnectionGUID: kKnp6t6+QH218UJPY3kJ8g==
+X-CSE-MsgGUID: TeTSRBUdRRKluQRSjokCKA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,294,1728975600"; 
- d="scan'208,217";a="133459488"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orviesa002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 06 Jan 2025 17:15:37 -0800
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="107321796"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmviesa005.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 07 Jan 2025 00:21:36 -0800
 Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Mon, 6 Jan 2025 17:15:37 -0800
+ 15.1.2507.44; Tue, 7 Jan 2025 00:21:36 -0800
 Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
  orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Mon, 6 Jan 2025 17:15:37 -0800
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.175)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.44 via Frontend Transport; Tue, 7 Jan 2025 00:21:36 -0800
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.43) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Mon, 6 Jan 2025 17:15:36 -0800
+ 15.1.2507.44; Tue, 7 Jan 2025 00:21:33 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=S9pQDEU5ZfoZ6AukbZldBbkD+qFQJNgwLPp8FqblkW6LUtbad+98mxIVYI6kcjqqmaoMUc2UHQbTqEh9/D1fkHv04DPc6mg4CTtvtIGVClglFuAwI+1uOSHQvFOYdr5CfZnymtvbzFyu+6tSiojwXVGmIW7aR09YNj4jknu7M4E8dcQMrdu/O4QyoDYya7WMEgvLeY3lvMfpi/fWX0HPdw3fDrETuJt2h3T6r8P9Of/U+dwlAkq4v8vPgeeD6WNs/ePNWIoniYoz806moDao4De5IgUlGhsJ8PuBfbChnXxqdu7eB5MynaJ8uGDGDUT95VgLZckKWO6qE3O6iDJm7w==
+ b=m0Aq/PQ8IuTiTYlYY/nK8AFbJ0wtGb4kfisshls5ZCl5U7v4nRQTczIzGWQtoEj015n4iu3RAgpSdgzH45fAUgk1PJbuVa3FXvZwUi8ahyRGLodKNmjVzcBlc0r8yr+7ffZV6O0cOaMoXrWhjhUfiQJQNNP5GU/e+7hG1daSorpj9yquZQTfYeNqI9YtsvkbPCkk9Wz7YBBtBwLcXfYN1eBjXLoTNi9HQrR0kCFaD6fshfridPSGfzKgfvT2aZbDKgQi0SR7Tt23Rn+/De61d54vXdRIOsm+r3yCOGQtTGEB0rWNluCA3cPCqqhbMj/IqSFLPnLuODixJrhCe4R1FQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rK5fdZ/6kUxivjWhVDO7bZrQBR8pwboTYzNoQQmBZxY=;
- b=oqJdycVnWoC7D8EtIJLArsWo86dvy0nNwgUGkxo6LYEGyRKC+ZlH/m0FWsddR8Ler/Ys0iFVuZ79+NOWWSZeFW3HlVtlEpAadf80tw5igKqnPSqi4LUTLfj1yvCVlrCX1LbujUT09+Rz/AWzG5gcWeAWUGk+ZoN3YsZfwXuV1lOKgnXKohFwqQR0Z4rdLi5DNlQ6CF/Riw2xMBxoMi9EW+QzAoWCun980Aq3io5Ew8lVaYVW/V8CdmzrdmBGSCEGGl7OknWxeg7oAu3Xyd4UbpmXE7PXXW3zRtLI50hv22yptiEIf4sd9Xqaj1x195Fm19wjO38TQmu7RzMcQODLdA==
+ bh=yZCmZFXOGbqCCg1uvqHq3S2NVu1342+JmpJA55uCnBU=;
+ b=VitgxrHHSbPjWhulGKyY4Qzu1yZvOjjtE7l1h4t35odMPrckTwKLO1m+vMExUhKAIB9Li8tlc+TGtTWp1upEzRF1A4lhl4SonVl1ibWEOTAfUPjyKFwF33U0xFQqKbylr5zg3j2mtsJdZ+pI6TmjRBBMHqIYWPvdM6sZUWQXzB5ghIEIkWZTZMy/3xZEarMHnpnOSVwXL5xVqTl7pgHXlkdH52e4ttu8T0f+I60kQDJY2TBzIXRzu30nepo2uRnWrBSraT6MkxAcT1yxmNI6V1SoH/zMWR4oove+OZQCfY5OJGRn+pf+pbKxMJGUUirSXYWG7RY1OLBILQ77aXSsCw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CH3PR11MB8441.namprd11.prod.outlook.com (2603:10b6:610:1bc::12)
- by PH0PR11MB7613.namprd11.prod.outlook.com (2603:10b6:510:285::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8314.15; Tue, 7 Jan
- 2025 01:15:16 +0000
-Received: from CH3PR11MB8441.namprd11.prod.outlook.com
- ([fe80::bc66:f083:da56:8550]) by CH3PR11MB8441.namprd11.prod.outlook.com
- ([fe80::bc66:f083:da56:8550%4]) with mapi id 15.20.8314.015; Tue, 7 Jan 2025
- 01:15:16 +0000
-Content-Type: multipart/alternative;
- boundary="------------wcOJgXfr9woj40qb2zZZrxge"
-Message-ID: <8eb8aa5c-2220-4426-b487-576ab813eb2c@intel.com>
-Date: Mon, 6 Jan 2025 17:15:14 -0800
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
+ by CY8PR11MB6913.namprd11.prod.outlook.com (2603:10b6:930:5b::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8314.17; Tue, 7 Jan
+ 2025 08:21:28 +0000
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839%4]) with mapi id 15.20.8314.015; Tue, 7 Jan 2025
+ 08:21:28 +0000
+Message-ID: <eec5f895-bb21-4447-8167-65d6d46ee1dc@intel.com>
+Date: Tue, 7 Jan 2025 13:51:20 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/i915: Add debug print about hw config table size
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- <Intel-GFX@Lists.FreeDesktop.Org>
-CC: <DRI-Devel@Lists.FreeDesktop.Org>
-References: <20241221011925.3944625-1-John.C.Harrison@Intel.com>
- <27c27339-cde3-4028-99e5-deb574c091ec@intel.com>
- <16414d38-e5ae-4bc5-9b22-a2a7a928264b@intel.com>
- <5c2c8e5c-c16d-41c1-90e7-07b1ddf0f923@intel.com>
-Content-Language: en-GB
-From: John Harrison <john.c.harrison@intel.com>
-In-Reply-To: <5c2c8e5c-c16d-41c1-90e7-07b1ddf0f923@intel.com>
-X-ClientProxiedBy: MW4PR03CA0117.namprd03.prod.outlook.com
- (2603:10b6:303:b7::32) To CH3PR11MB8441.namprd11.prod.outlook.com
- (2603:10b6:610:1bc::12)
+Subject: Re: [PATCH] drm/i915/dp: Return early if dsc is required but not
+ supported
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+To: <intel-gfx@lists.freedesktop.org>
+CC: <intel-xe@lists.freedesktop.org>, <jani.nikula@linux.intel.com>,
+ <imre.deak@intel.com>, "Kandpal, Suraj" <suraj.kandpal@intel.com>
+References: <20250103031424.1732774-1-ankit.k.nautiyal@intel.com>
+Content-Language: en-US
+In-Reply-To: <20250103031424.1732774-1-ankit.k.nautiyal@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: PN2PR01CA0016.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:25::21) To DM4PR11MB5341.namprd11.prod.outlook.com
+ (2603:10b6:5:390::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PR11MB8441:EE_|PH0PR11MB7613:EE_
-X-MS-Office365-Filtering-Correlation-Id: fe3b8998-6536-420d-7430-08dd2eb8beb2
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|CY8PR11MB6913:EE_
+X-MS-Office365-Filtering-Correlation-Id: e10197ba-8aab-4c75-3249-08dd2ef44851
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014|8096899003;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?bm8xYW16S3ZEWjRKZnUrS2w4M2loZmdDa1RWL21BUFhWeFhTbm5zVXpzWmY1?=
- =?utf-8?B?SXUrK1VjdTAzMXVOb3Q2bFovL3FHejdJd0pBMVhnbWVLU2hTTzcwVnZ6azZZ?=
- =?utf-8?B?cnRvR0puOVE2NnJ6MVJsYzE4Z291VllHQ2NPTldjaG9LSHBCZXFQaE03a2k2?=
- =?utf-8?B?dFFHSEd3blIwUVJGU3FlZTg3WEJJbWcrVlg4Z1BoN1pzYjduM3RITHl0azcw?=
- =?utf-8?B?RGFvdHlDSTJYekpiOFl6dHlOQmNnTng3VWNxYzdBd0RkMjVkeHhVdFdFalUz?=
- =?utf-8?B?WXVIZHhjbFgyUDZJRDIveTg2c1RyZEw0SEpOV1ZKb05lQzhtREpXeW9weWV1?=
- =?utf-8?B?VEV5TG9EQStWempPSzRxL3ptQWJrL1FoQWlWUWtJaXZwMjd2dG12c1Y1S0FZ?=
- =?utf-8?B?UHRqdmlNV1ZSbGc5QW44eVJPZkZacWF2bDJXaTFkVlNPa1R2ZldCZVlPQ2lZ?=
- =?utf-8?B?TS9HelV0SVFZc05ORFhmM2YvWTRWNFN1Rm1zNXdIVkcvVUZjNGRHU1hYY004?=
- =?utf-8?B?Qmh5dnpYMXVCVnkxWGh1MHFmdEFvelZhcjVLeTVkeTh5Q3g2RFpOWmhZN21w?=
- =?utf-8?B?Y2xES0NMRkp0WmljZXYwa3J2VnB3TDFHcWFBMjh1ZEhGbndWZFh6OTBWcmhi?=
- =?utf-8?B?V1ZraXBQeXpVWTZsRlJ5ZlBWWk5GVFFIcS9sdVM0WVRTdU92dXE0Nm1YdVRC?=
- =?utf-8?B?TDlQYytqekdhby9CdDR3THNXWWluMVl5TlRRakJJSkx1QWFzRGh0Q2pMeFRB?=
- =?utf-8?B?RjlBUEdGWTQ5RTFJQzM5cjZtdTQrUWQ4VEhKM00zSEZVZWdUNzBTN3AzeFcx?=
- =?utf-8?B?NXE0YklPT25MSEtKMzhmQnNoQjYzMU0vZ09XUndKb1JjaFFPbzZjdlFkTytV?=
- =?utf-8?B?ZVNEYXRHcGxsWW1RdkNRY1BRQUIxM2tvOEhDcnQ5anc5TWhKVzFmbVR3OThI?=
- =?utf-8?B?WENINzhUVU52TTZTUG9reVl4UDh0dGNMYk5kZDdJbmUwNTVvdHNIZ0ZjRGZp?=
- =?utf-8?B?RnVyenhWbUFFNzRaZGdWU3pxUVJZMGw3UzNuSjBnRHlueWZEYlVCNzE0Tnp4?=
- =?utf-8?B?U2Z4NmtmemxGb1NRMFpvbHB5aDhmWjdnNWY5ajZlVGRpcHl0NlVtcmo4Y0ZM?=
- =?utf-8?B?RWs4ZDAzTkxkUmxNcjFrQmtGQy9UVFlaMW1FQnk3NStkWENSZUgyZDJ2VHd2?=
- =?utf-8?B?OFphWXZHVDZKYjVZYURkSW5YUDh5SEZnOCtWQmlTYWV2WjgrdkJKSXA2NjVT?=
- =?utf-8?B?eXZQYUJ0azZRTzlveUFvc3lTZ25ZVEFubFZqQlJRRXlMT205N2JxS1E0eHNC?=
- =?utf-8?B?K2NJZ3JKV3ErcHN0NmNrdG9DNFpHcTU2TThWSGxYaGVUaENncXVoNVkzeC92?=
- =?utf-8?B?aTJuMDhNUVRxU1NVaEdmK3lXbVU1N0FubFRLK1ZlRFBKV09uRzJaaW10OGpX?=
- =?utf-8?B?RDRrelJGL0hyUDc3UE04T3RQNkJMNkdDMUNMZjg5U3Q1MitsT1l6V1lTVk1P?=
- =?utf-8?B?bFB3azBsTU9OeGNYRHVNQy9BdHRkYXJVM1djSlJZTTE0WHdHR0oyQWR5eW9D?=
- =?utf-8?B?RmljL0tGaU5DaVJjeG5nUzJLTDYvM3BraHNIUTVnNndObXZJQUNGZXlXdDZl?=
- =?utf-8?B?dnVVK2MzQ3RmTXRPZjFTaW9ZSnhFT0FvMGJpVnVVc2NjcFY2YmswQUJwNHEz?=
- =?utf-8?B?ZFZIaTBNdzJBOVZBaXp4Z3YrekxnUFJ1NFBabTM4YVc2azQxcUhWdmpIRVli?=
- =?utf-8?B?MlFPbDRBYS9hSVFjVDMvZkZ4T1hpVklXVms4SHhtOVQ4WVdaMzdzT0JwVWRz?=
- =?utf-8?B?Rzg0b1dBb09jdU1lR2xwQT09?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?RjJOaTVSSis1UWVRbGptNGFRRG5UbHRWWDVMK3NwSnZXcndaSzRLeVJWZzkv?=
+ =?utf-8?B?WGpuRXJYcWlRTkFjMVhpNzh0dSt1dklkRTlvZERDV01lWC8rZlM4dWxOb1Fr?=
+ =?utf-8?B?NXh0Nnc4RGJzWmtwaE9Ec05lbHl6T0crOW10QVdtUWVVaFBqeUMvdlZQdm9W?=
+ =?utf-8?B?ZjNYOWx5VE11SjlzMkFKWUppTkRiVkFsZGZobDRiZWVxZVpBa0gwT1A0YnpN?=
+ =?utf-8?B?TUtBU21aa1V3ZUN1dlQ5SElzMGpKVDBHQWNBR0JON2dhMDhUQUNYK3UrSU1z?=
+ =?utf-8?B?YTVlZ0ZleFYxcUV6S041eStZVE9aSE5PTXA5SkJQQ0R0d3c0elZqeFRRZ2NY?=
+ =?utf-8?B?Unh3djgvSmptOGlUQ2plajBwVXp6WTJVS2hEYzFLZStoME9XVE5vcDY1Z3FC?=
+ =?utf-8?B?bGpWb2VEQ1dSSFlxKzBYejNiZ2VZNm5tZXd3bGxiaU1VSm5oSWJ2b3FmeEhG?=
+ =?utf-8?B?MWU5UXBBM002QVpacTE0K3IyNU03M1ZtMUt5NjBoeUdIREdGc3FxZ2VFVzNN?=
+ =?utf-8?B?WllLVVp0bklXdDVIWnZGQXczMW9GQUhpQVprZk5Pb1UzZXcyU2VZdFdZQ2JL?=
+ =?utf-8?B?NVpzRTZ6V2l2VjIrdmZNNlI1NVY5ZW5RTFFHNzV4M0N0T3VwTGcza0hVN2R1?=
+ =?utf-8?B?M0tWN3JLUk12dXo4OWxSbStJVzFLSFJTOHVxVGx5NGZZbzN4Y0N0S1F0Ynpo?=
+ =?utf-8?B?RDAvcGRKakVjQWhIaG94c0o1aERXVTQvZTNwT2tsQ0R0L2h4Y01kbDZqMC8v?=
+ =?utf-8?B?Vi85WWpDRzFES3Q0cHpqc29kYXl2YlhtU1p3TGEvakNTTi9oTzUwNXQvWkFX?=
+ =?utf-8?B?U0RmeWRtMEFiWmVNWDJFa1RmcUxjWW5xUzQ0S25FaHhBcHV3WHliZzllWVcz?=
+ =?utf-8?B?OUJuYm1TWFZCdDd6RHRIZlhvaEsvTjdqTGM1dDBYVGxQRzU0eDRKSVhMbGNN?=
+ =?utf-8?B?UWtoUTYzV3RSamtPeDRJY2hqd0VEanczOUMvTXV5Z3V6Skw5dXV5ZjZYVVAw?=
+ =?utf-8?B?eGJhK0JrNm9vb1lJSllaVWZZMjdiS3h4R2p0ZzJjUTF6V3lMWkc5OFUxOWtZ?=
+ =?utf-8?B?VFppNHROalhZcjlWY0QrVG5BV2txZzFGNHJBc2RlZi9pS3B5U1duOUZ1aWNT?=
+ =?utf-8?B?QkZrNlhhZ0NDTDNPK0prWHMrME8yYjNleGRYWC8vbVE4ZjRINktrVFVXN2hG?=
+ =?utf-8?B?R1l6Wnl3N3gweHk0WjhVYnBXZ1JHU2JzWHBvQ2l2dzVDMVB1ZjA2d0lzeS82?=
+ =?utf-8?B?RW1Lem5TYi9WOTIyeTgvaUlVRm0zZmUzMVllM01yaEg2RFYwUmY2SzZtb2gz?=
+ =?utf-8?B?eWJ6N0NZaW8vUVZRcVBnWGlIYUpXTzlqZGtrZFFZN1JhdS9zV3NhZmJsc09l?=
+ =?utf-8?B?SmhzcGJMRk4wTVdyS2lJbUpvVDgrK21IeWdqNWMyVkdUUWJNRWFpcVRySGRR?=
+ =?utf-8?B?MCt4NkNRdFhvMlpSZGs4RDhwdmtITnA0RjRKN1lBckpQdlhDRDVMYkpFZ3c0?=
+ =?utf-8?B?RWtPb3V1RzgyQ04rL0hTb2Z0YUhhMEtmU3JXby9UQkh5U1d3bkpicEdvN1Zk?=
+ =?utf-8?B?SENrdXUyN1V2dG5ZYzM4aFUzQlRFQm9ReGlUd0Q3VE93clFNVnh0NFZ4blAx?=
+ =?utf-8?B?RXFVeGNBRWM2UnlndTBUdXM1S3AvdzN5cEg3M3lGMGREWm5FOW93N3k0V0VZ?=
+ =?utf-8?B?Rm90UTFpMVgrdWpJNjdtdE1uWjhhZGhTNDdVVFRySGY3Q1R0WmtEVDAwNzlu?=
+ =?utf-8?B?R0puRjA5aDhvS2dINHAvR2NWQjcvcEwvQm40SzBsSm1BQk1JcTlRdkExaSt5?=
+ =?utf-8?B?VlZCbjRrSDc4YlBXMFlHTWxxaWFZeThwS1d0OEVkV3gzRytFQldJRzErekp5?=
+ =?utf-8?Q?KVt5C+HMJjTpl?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH3PR11MB8441.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(8096899003); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Rm55Rmx2N2dzaWI2QzF1Ym54S0RqUWI4ak1tVzhSeW55aDdKQ2NlK2pqcEpo?=
- =?utf-8?B?RHpZUXM3SzN6NDJ0U0hZenZ5OTFlYUNTWVpISFZCQ1dlVUJGcEhYdEJnTGlE?=
- =?utf-8?B?eGlSV0sySmV0UkF5b3VBNXlqL21rT2VVVS83Z2o0K211OGhKM3lseU52VFpq?=
- =?utf-8?B?MURucFNKK1JvVURHK3BOamJvVDhtcG0xNjljMjZpTm81VWpYZWhvcmxiczRn?=
- =?utf-8?B?YnUxWEtRSWMyUVJYdmdIZFpCMEpBZUhFYloxUC9WYTh1eXBqbGJPUE5WN2tM?=
- =?utf-8?B?V01nNmdJMVRQcHliSUYvQ3MwdUlIMDJJc051M005eWFNakV3bExob0kwS3Js?=
- =?utf-8?B?MEREQnI0YVlrazJabFdIZUlkZk5nWjVQUGY1SEdjT3NJOHJhanFmWW1QcS9T?=
- =?utf-8?B?bHdqUzlDajY4UjI2a3hQWFJIWU1ueStqSzcwMXQ3REd3TGNNd3V2Z0dDeStr?=
- =?utf-8?B?cDVyMlErY1pyd3JxTmgvMHdFMTZhOW82V0paUlJWNXNQZWJZdFFMRUhJSFhn?=
- =?utf-8?B?dTE5ZUpNQ1A1Zi9majVMdWpYSEo0dE1LL25PcE1Wc1BTUEIrVTJVQ1U4Mmdl?=
- =?utf-8?B?TlN0MjlLSkVGbkxUMW5VdElSajZvMlpiTFgzMkk1NXREVXhMdENmd3lzRjds?=
- =?utf-8?B?Qk1oaUZoTVJMUGwwa0cyK2x6K2VNcFU3WXVZaWdGZ2l1ejhBTXlvdE5UblNZ?=
- =?utf-8?B?cnA3V2cvYkpqdkRiSUZlZDJKQVhVNldMUXpHOC9PbVMzVzZKbWRrMlhPR2dj?=
- =?utf-8?B?UWhST2NaMUlEcXlKUm9hSXpaM3I0RDlHbTFpUVFBTkhJcll4ZXFXd1Njalps?=
- =?utf-8?B?UVRWdTJCRjJYR21uYkpmNzBGMWVpSTZQSmllSlhyV2RWejUxb0EyUlpORDNr?=
- =?utf-8?B?allIdGh2NkFjNXVUMk9uMEg5cGtnQlhtMStPL1N1ZEtHRzVRaXZKOTduYldo?=
- =?utf-8?B?WVhGaXdldVF0TEFkL0hKTEJpNHYrd3BJU29xOWhFL1ZDZ3h0MVdZUnNON2Q0?=
- =?utf-8?B?WjE5UnFhdEdlTkNjazJZQXFDbUhGclpsbVVhY3d1UmpySnRYLzVmanZpUCtI?=
- =?utf-8?B?WlB6VmJ3NWhyNjhUUXVFUmU1ekY0OS9LR3NSRjNIalpQNVN5WmFDM2RxQzhB?=
- =?utf-8?B?YlFhaW1rM1dnUTA3WUFBRmVReWV0NnlnQkZ1bVV3ZnVsQ3I4QkZVcEZlZ2hm?=
- =?utf-8?B?NTdrZnJIRDN0cWZxUElVZ0M2Y0wzSi8vdSsxL2QxNHJucll5Y0RFVjBncGtL?=
- =?utf-8?B?Smp5NmFTYlJaQjUrY1hydlAzUFE5eVZ3TjV2aFl2c3FvNkMvOGZTWEpqM241?=
- =?utf-8?B?RGF6VkxMa1BERHVDdEU2Y0VGZy9ibVk5MkpqdnRVdThTaEZ5aXR1elRkV205?=
- =?utf-8?B?UEJyeWYwUjlVZjFUYnkwUU5pVkE3dXhEb2Z2M0ZCM05tUHJLR205VUxoSWtJ?=
- =?utf-8?B?b0NZMG10N3JOa0xJRFdLRFFMUUoyMTlLeTB5Vmk2anBablBUcThLbWVxNGUx?=
- =?utf-8?B?M21XWlB5YUJrZVFUVUR2aHpCSUFWUEw2VGllZ1RrM1NPNkU0dDVHQlB3TzhL?=
- =?utf-8?B?dlFPYnR4SkxyV1R6TzRrVW1jaG9hWlRjekpqUnZtYTFkakpDOGw5and1NVp1?=
- =?utf-8?B?MXFuODdUTWcrbHFsckQ0MWJWMG9zbUVzTDZJcWV2RXBjN3hVZC9UVTRFV3Jr?=
- =?utf-8?B?Y3RCREsvYXgwWnBuRndRWkU4WmdCa1pYZFlVRHhBTDZjTHpnNTdlK08zaVNq?=
- =?utf-8?B?TzdRbzlQcGQxdlhPcUkxYm55VW1GTkRNOUU3WXMvOURrVmhnL1FBcUU0L0g3?=
- =?utf-8?B?NU9vdTBmQkE3bTFNNTRVRm1rNmw0cVhqUFdwWE1kdVVZOFRHLzdNR21VYUNj?=
- =?utf-8?B?YmlZOXREUEJ2MTZON1I0U0dyZ0l3MTJ5S0tZaGpkdFFoK1ZsM3Y4cDNoc2pa?=
- =?utf-8?B?eEZkc3FFN2dwTzE1WTkveVhWbGk5MWdzamtPcDZ1Q1hucmRnd0U0TThZWkcw?=
- =?utf-8?B?c3NrUWNVNmRjb3J6WElPcnRBajJ0bTlWWjN6VGpxbm80UWc3SHJXUVRuTmlT?=
- =?utf-8?B?VkoyU016cTV1VjF3L2Q1TlBpMm1WUlVaWjlSQytMZSswbjBEVjdnTSs5YzVi?=
- =?utf-8?B?eFRMRUdIbTdnMlIxSW9SNmJZdFN3WWlIQy91RjZLdlFXQXpvRk83bFZmdWkr?=
- =?utf-8?B?anc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: fe3b8998-6536-420d-7430-08dd2eb8beb2
-X-MS-Exchange-CrossTenant-AuthSource: CH3PR11MB8441.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dUcxMVVpOFV2M2cwcU5TWGNoUWI1T2RCWGlIL1FlMjRNcWc5WW15L0xXWXN1?=
+ =?utf-8?B?TDc4YWtORUlhVWIrNVRYZ01pM0sya1VTcExpZXNSSTNVVmtzdDM2YTlIQitD?=
+ =?utf-8?B?Y0g1ZmFLcmNwMGFTTFVLbk5SNlh0ZWhGS3E3UXEwanZrUjNlNzFGelVXVnli?=
+ =?utf-8?B?U3lWM0JCZjltbk12bVk2cWt5UU9HbkZMYVA5OWh3VzZqQzUwSmVSREExSTlZ?=
+ =?utf-8?B?VFR3OHRvVUZFV1RSdE9ReGQzaFI4MzAxaU96VFVEQ1VDdTZJNXdxci9ucExy?=
+ =?utf-8?B?VnJnM2V4MlNhem4zRHRvaDVkdGJYblVZejdzREQ4U0s2MjBJbkpMSUo5MVAr?=
+ =?utf-8?B?VEVFdmY3T2VHUFhtSFNKM3JOblpRU0pORFVINTFQV1RhZ2tDdE9nS2JGbUdD?=
+ =?utf-8?B?cGkvT2JTT2pOb1YzWEtXcnFVT3hZVTR5UmJHWlYxS0k4Wm5zazV5c0xZMTlO?=
+ =?utf-8?B?cFFZK2pTaUd0dmN5TzRBVVg5aTFkQ3ZxNTYyWDhGU2o2d2JpaFBhSEdtYkIy?=
+ =?utf-8?B?Mlh2cHR0MitBTm9EVnhoeWhpZ0tYMjZQdFJjOFFRUUFIZHRXeHhhbzJSdGhI?=
+ =?utf-8?B?ZVAwVlFqMGMzd3Yxa3JBTUU2L1h6RndqSC9BYXN2d3A4N09DZ1I5RHVrMTJF?=
+ =?utf-8?B?WEhNWXMvaEF3a0NzQnRQdEllT3l0Y25ON3duSk1XODRLTTM0VTQrdVJYczFr?=
+ =?utf-8?B?T2JXdzFOc1VEVDJCWmhoK2FkZXhtV3o1cUNoVXEzYTRyRjlFOG9OREJsTlBu?=
+ =?utf-8?B?R3ZYOTRNRy9ZeFdLenNwRTNoMWVYM25NWWt0dkJ4b0tYRGlvWHpESzhnU2Jr?=
+ =?utf-8?B?MTdLNW50N0tzL0pDOE4yTzk0NitWeXYzOSsyRUR6aDhLUTBQMHc2dUxtR3pK?=
+ =?utf-8?B?RDJaZmRUZkY4akJRd0hUenppOE1PVVpJWlJHaDY1RjFpcGQwaFpWTVJnRk4x?=
+ =?utf-8?B?MWxKQTdHTDdyUVo5RWhPVFB6djhWTHBORlI2YzZBQ1JQNHA0UmtBNUpXWUFK?=
+ =?utf-8?B?VjAzMS9rQXF0UURTcHEyUU8vamc2dVdCZGxRTWVGaDNsdmg2UlFsaXU5TThS?=
+ =?utf-8?B?ZEdkaDlPUXBBQlF1RkxtUnRTRmtUa0lLbWtWZHlHKzFwVGhzQTB4L2pCYStB?=
+ =?utf-8?B?TFlpZVEwaHJReXQ3RWlPbE54V2t2NFJTNHR6V0s1ZjBBQUhtVVo4Z2poSU5X?=
+ =?utf-8?B?bVQyYmFwdGJtVVk0NTVlOUR2TGxDMmZOWmtxZGk4bWd5OGRtcE5PK0xOUkd6?=
+ =?utf-8?B?Y2J0c0NEMUdFQnFrZkRmNEYxb0RRWmZvVVgrU2ZsUFVZbjNiTUEwd0d6MW11?=
+ =?utf-8?B?NHQ1cWtlcmhyKzMxaUpTcDhTUTlyeWxGN1Byek1BemlnS29rOS9OTTJqYldI?=
+ =?utf-8?B?VGFPQ2QyWVYxWm1YNEx1MGVKRlJrQUlqelhpUlZlRUhHK2MzVVJ5Z2F1Nk9z?=
+ =?utf-8?B?VTdad1NUV1c3dVh1TzFGSXJjeGRWWjBTMU9nTGJZczhIcmFWWGFGS3liM2Jz?=
+ =?utf-8?B?c0R5NWNUZzlZOC94K3JIdUdPbW9rTGlVa3JiUjhPU3htdTUrUDBpRGlhbXFY?=
+ =?utf-8?B?NjZMUFBjUld5Z3pJdmZpdVZ3RE53anN5alFoQ0hqbk1tUGFqMCswMXpRVkw1?=
+ =?utf-8?B?TGh0TW84ck8vUWJsZHFncTJRK055aVR0SmhxWXRaZDRxTncvMVgrSVdQMUoz?=
+ =?utf-8?B?RlVwc29MUGE1U0JZSDl5MTVlZUdheFdOR1UzUmc4UjUybHlEMnp0cVg0VUhV?=
+ =?utf-8?B?aVBOUXNrMEk4emZneE55ekVEZFJpSjBUb05YS0dydnpmWjdGUzFWeGZpNUFZ?=
+ =?utf-8?B?ZFYyR2txb1IrOXJlOW03cmJJRThGNm5nSG5KamFWSk1qb2RuZ0E5azlHQzZw?=
+ =?utf-8?B?a2Y3ekgxSS9QRzA4OXJJVWZkRm0wNE9RYzl4b1IrYkZ0cm44Ris4aFJLMDlv?=
+ =?utf-8?B?bEVOcGo3SElQTWgzWXhDbUU5NHpFWS9FdmVxU1RZVUJ1aEtScVNZTWNEWFVH?=
+ =?utf-8?B?d3VMOUc0cCtSRnExRTF0Z2hpdmFpTFdMN0k5alUzNllXWWRCSlp5UDFSelFu?=
+ =?utf-8?B?ZTZZZWh4L2cwT2xVU2J5TFJWR21EeXdIcWlQVFBMWFNIV2tpWm9JRGtGMG5u?=
+ =?utf-8?B?WWUrOTJSQVBPZzEwVW9PZVhsWnduUER6NlcyWHgyRHIraWtsbzhyTnBNQnZz?=
+ =?utf-8?B?TXc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: e10197ba-8aab-4c75-3249-08dd2ef44851
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jan 2025 01:15:16.6393 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jan 2025 08:21:27.9070 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: FSZwS1icCGnEfWloi5zvxlHMekl83BcVSDDFBV7nDv0rKJ2jKmAmw9+gyMonywTw+hgEtpGG06DUy6WdBModwlyJMvPT0ltKSOrb0f+RsvM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB7613
+X-MS-Exchange-CrossTenant-UserPrincipalName: lqs4drFfjltTQzLwPr51nLJw6saC0Ju94SWXBTVN9ynYd890aWurmyx2Ycb6KkZ+B30B35JAw8ZYRD44W86Pddn1EGNVM7Kedo2j3WS5WFc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB6913
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -198,206 +197,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---------------wcOJgXfr9woj40qb2zZZrxge
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
 
-On 12/24/2024 11:10, Daniele Ceraolo Spurio wrote:
-> On 12/24/2024 10:13 AM, John Harrison wrote:
->> On 12/23/2024 15:20, Daniele Ceraolo Spurio wrote:
->>> On 12/20/2024 5:19 PM, John.C.Harrison@Intel.com wrote:
->>>> From: John Harrison<John.C.Harrison@Intel.com>
->>>>
->>>> Add debug info to help investigate a very rare bug:
->>>>    https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13385
->>>>
->>>> Signed-off-by: John Harrison<John.C.Harrison@Intel.com>
->>>> ---
->>>>   drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c | 3 +++
->>>>   1 file changed, 3 insertions(+)
->>>>
->>>> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c
->>>> index b67a15f742762..868195c33f5b3 100644
->>>> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c
->>>> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c
->>>> @@ -7,6 +7,7 @@
->>>>   #include "gt/intel_hwconfig.h"
->>>>   #include "i915_drv.h"
->>>>   #include "i915_memcpy.h"
->>>> +#include "intel_guc_print.h"
->>>>   
->>>>   /*
->>>>    * GuC has a blob containing hardware configuration information (HWConfig).
->>>> @@ -42,6 +43,8 @@ static int __guc_action_get_hwconfig(struct intel_guc *guc,
->>>>   	};
->>>>   	int ret;
->>>>   
->>>> +	guc_dbg(guc, "Querying HW config table: size = %d, offset = 0x%08X\n",
->>>> +		ggtt_size, ggtt_offset);
->>>
->>> This seems to result in a double-log where the first print has no 
->>> useful information, e.g.:
->>>
->>> [drm:__guc_action_get_hwconfig [i915]] GT0: GUC: Querying HW config 
->>> table: size = 0, offset = 0x00000000
->>> [drm:__guc_action_get_hwconfig [i915]] GT0: GUC: Querying HW config 
->>> table: size = 752, offset = 0x00D05000
->>>
->>> Given that only the second log is useful, IMO better to move the 
->>> guc_dbg to guc_hwconfig_fill_buffer(), because the info needed for 
->>> the second print is available there and it is only called once.
->> I disagree that the first print has no useful information. It tells 
->> us that a call is being made and these are the parameters. We do not 
->> know what the failure is. It seems highly unlikely that the size 
->> changes from query to the next given that the table is a fixed 
->> entity. It is much more likely to be a caching type issue with GuC 
->> reading data the KMD did not write. If so, GuC could potentially read 
->> non-zero data for the initial size query and complain that data is 
->> invalid.
->>
->> The intention is to report all calls with their parameters to try to 
->> narrow down exactly what calls are not working.
+On 1/3/2025 8:44 AM, Ankit Nautiyal wrote:
+> Currently, when bandwidth is insufficient for a given mode, we attempt
+> to use DSC. This is indicated by a debug print, followed by a check for
+> DSC support.
 >
-> But we don't need both prints to know which of the 2 calls has failed, 
-> if the error comes before we get the second print then we know the 
-> failure was in the first call, otherwise it was in the second.
-Is it really such a problem to have two lines of debug print instead of 
-one? Given that this is a 'this cannot possibly happen' type bug, I 
-would much rather have totally explicit debug at the point of operation 
-rather than something further back that requires making assumptions 
-about what is or is not happening.
-
-John.
-
+> The debug message states that we are trying DSC, but DSC might not be
+> supported, which can give an incorrect picture in the logs if we bail
+> out later.
 >
-> Daniele
+> Correct the order for both DP and DP MST to:
+> - Check if DSC is required and supported, and return early if DSC is
+> not supported.
+> - Print a debug message to indicate that DSC will be tried next.
 >
->>
->> John.
->>
->>
->>>
->>> Daniele
->>>
->>>>   	ret = intel_guc_send_mmio(guc, action, ARRAY_SIZE(action), NULL, 0);
->>>>   	if (ret == -ENXIO)
->>>>   		return -ENOENT;
->>>
->>
+> Suggested-by: Jani Nikula <jani.nikula@linux.intel.com>
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+
+
+Thanks for the reviews. Pushed to drm-intel-next.
+
+
+Regards,
+
+Ankit
+
+
+> ---
+>   drivers/gpu/drm/i915/display/intel_dp.c     | 8 +++++---
+>   drivers/gpu/drm/i915/display/intel_dp_mst.c | 7 +++++--
+>   2 files changed, 10 insertions(+), 5 deletions(-)
 >
-
---------------wcOJgXfr9woj40qb2zZZrxge
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-
-<!DOCTYPE html><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body>
-    <div class="moz-cite-prefix">On 12/24/2024 11:10, Daniele Ceraolo
-      Spurio wrote:<br>
-    </div>
-    <blockquote type="cite" cite="mid:5c2c8e5c-c16d-41c1-90e7-07b1ddf0f923@intel.com">
-      
-      On 12/24/2024 10:13 AM, John Harrison wrote:<br>
-      <blockquote type="cite" cite="mid:16414d38-e5ae-4bc5-9b22-a2a7a928264b@intel.com">
-        <div class="moz-cite-prefix">On 12/23/2024 15:20, Daniele
-          Ceraolo Spurio wrote:<br>
-        </div>
-        <blockquote type="cite" cite="mid:27c27339-cde3-4028-99e5-deb574c091ec@intel.com"> On
-          12/20/2024 5:19 PM, <a class="moz-txt-link-abbreviated moz-txt-link-freetext" href="mailto:John.C.Harrison@Intel.com" moz-do-not-send="true">John.C.Harrison@Intel.com</a> wrote:<br>
-          <blockquote type="cite" cite="mid:20241221011925.3944625-1-John.C.Harrison@Intel.com">
-            <pre wrap="" class="moz-quote-pre">From: John Harrison <a class="moz-txt-link-rfc2396E" href="mailto:John.C.Harrison@Intel.com" moz-do-not-send="true">&lt;John.C.Harrison@Intel.com&gt;</a>
-
-Add debug info to help investigate a very rare bug:
-  <a class="moz-txt-link-freetext" href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13385" moz-do-not-send="true">https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13385</a>
-
-Signed-off-by: John Harrison <a class="moz-txt-link-rfc2396E" href="mailto:John.C.Harrison@Intel.com" moz-do-not-send="true">&lt;John.C.Harrison@Intel.com&gt;</a>
----
- drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c
-index b67a15f742762..868195c33f5b3 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_hwconfig.c
-@@ -7,6 +7,7 @@
- #include &quot;gt/intel_hwconfig.h&quot;
- #include &quot;i915_drv.h&quot;
- #include &quot;i915_memcpy.h&quot;
-+#include &quot;intel_guc_print.h&quot;
- 
- /*
-  * GuC has a blob containing hardware configuration information (HWConfig).
-@@ -42,6 +43,8 @@ static int __guc_action_get_hwconfig(struct intel_guc *guc,
- 	};
- 	int ret;
- 
-+	guc_dbg(guc, &quot;Querying HW config table: size = %d, offset = 0x%08X\n&quot;,
-+		ggtt_size, ggtt_offset);</pre>
-          </blockquote>
-          <br>
-          This seems to result in a double-log where the first print has
-          no useful information, e.g.:<br>
-          <br>
-          <div style="font-family: Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif; color: rgb(0, 0, 0); font-size: medium; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: nowrap; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><span id="dmesg-normal420" class="dmesg dmesg-normal" style="font-family: monospace; white-space: pre; overflow-wrap: normal;">[drm:__guc_action_get_hwconfig [i915]] GT0: GUC: Querying HW config table: size = 0, offset = 0x00000000</span></div>
-          <div style="font-family: Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif; color: rgb(0, 0, 0); font-size: medium; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: nowrap; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;"><span id="dmesg-normal421" class="dmesg dmesg-normal" style="font-family: monospace; white-space: pre; overflow-wrap: normal;">[drm:__guc_action_get_hwconfig [i915]] GT0: GUC: Querying HW config table: size = 752, offset = 0x00D05000</span></div>
-          <br>
-          Given that only the second log is useful, IMO better to move
-          the guc_dbg to guc_hwconfig_fill_buffer(), because the info
-          needed for the second print is available there and it is only
-          called once.<br>
-        </blockquote>
-        I disagree that the first print has no useful information. It
-        tells us that a call is being made and these are the parameters.
-        We do not know what the failure is. It seems highly unlikely
-        that the size changes from query to the next given that the
-        table is a fixed entity. It is much more likely to be a caching
-        type issue with GuC reading data the KMD did not write. If so,
-        GuC could potentially read non-zero data for the initial size
-        query and complain that data is invalid.<br>
-        <br>
-        The intention is to report all calls with their parameters to
-        try to narrow down exactly what calls are not working.<br>
-      </blockquote>
-      <br>
-      But we don't need both prints to know which of the 2 calls has
-      failed, if the error comes before we get the second print then we
-      know the failure was in the first call, otherwise it was in the
-      second.<br>
-    </blockquote>
-    Is it really such a problem to have two lines of debug print instead
-    of one? Given that this is a 'this cannot possibly happen' type bug,
-    I would much rather have totally explicit debug at the point of
-    operation rather than something further back that requires making
-    assumptions about what is or is not happening.<br>
-    <br>
-    John.<br>
-    <br>
-    <blockquote type="cite" cite="mid:5c2c8e5c-c16d-41c1-90e7-07b1ddf0f923@intel.com"> <br>
-      Daniele<br>
-      <br>
-      <blockquote type="cite" cite="mid:16414d38-e5ae-4bc5-9b22-a2a7a928264b@intel.com"> <br>
-        John.<br>
-        <br>
-        <br>
-        <blockquote type="cite" cite="mid:27c27339-cde3-4028-99e5-deb574c091ec@intel.com"> <br>
-          Daniele<br>
-          <br>
-          <blockquote type="cite" cite="mid:20241221011925.3944625-1-John.C.Harrison@Intel.com">
-            <pre wrap="" class="moz-quote-pre"> 	ret = intel_guc_send_mmio(guc, action, ARRAY_SIZE(action), NULL, 0);
- 	if (ret == -ENXIO)
- 		return -ENOENT;
-</pre>
-          </blockquote>
-          <br>
-        </blockquote>
-        <br>
-      </blockquote>
-      <br>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------wcOJgXfr9woj40qb2zZZrxge--
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 0d74adae2ec9..4fa0e0b675b0 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -2642,15 +2642,17 @@ intel_dp_compute_link_config(struct intel_encoder *encoder,
+>   			dsc_needed = true;
+>   	}
+>   
+> +	if (dsc_needed && !intel_dp_supports_dsc(intel_dp, connector, pipe_config)) {
+> +		drm_dbg_kms(display->drm, "DSC required but not available\n");
+> +		return -EINVAL;
+> +	}
+> +
+>   	if (dsc_needed) {
+>   		drm_dbg_kms(display->drm,
+>   			    "Try DSC (fallback=%s, joiner=%s, force=%s)\n",
+>   			    str_yes_no(ret), str_yes_no(joiner_needs_dsc),
+>   			    str_yes_no(intel_dp->force_dsc_en));
+>   
+> -		if (!intel_dp_supports_dsc(intel_dp, connector, pipe_config))
+> -			return -EINVAL;
+> -
+>   		if (!intel_dp_compute_config_limits(intel_dp, pipe_config,
+>   						    respect_downstream_limits,
+>   						    true,
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> index fffd199999e0..0433f2ff77e1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> @@ -633,14 +633,17 @@ static int mst_stream_compute_config(struct intel_encoder *encoder,
+>   			dsc_needed = true;
+>   	}
+>   
+> +	if (dsc_needed && !intel_dp_supports_dsc(intel_dp, connector, pipe_config)) {
+> +		drm_dbg_kms(display->drm, "DSC required but not available\n");
+> +		return -EINVAL;
+> +	}
+> +
+>   	/* enable compression if the mode doesn't fit available BW */
+>   	if (dsc_needed) {
+>   		drm_dbg_kms(display->drm, "Try DSC (fallback=%s, joiner=%s, force=%s)\n",
+>   			    str_yes_no(ret), str_yes_no(joiner_needs_dsc),
+>   			    str_yes_no(intel_dp->force_dsc_en));
+>   
+> -		if (!intel_dp_supports_dsc(intel_dp, connector, pipe_config))
+> -			return -EINVAL;
+>   
+>   		if (!mst_stream_compute_config_limits(intel_dp, connector,
+>   						      pipe_config, true,
