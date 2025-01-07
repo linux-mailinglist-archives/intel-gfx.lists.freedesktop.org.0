@@ -2,136 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A896A042E2
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jan 2025 15:42:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F175DA04396
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jan 2025 16:02:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1024E10EADF;
-	Tue,  7 Jan 2025 14:42:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9820A10E71D;
+	Tue,  7 Jan 2025 15:02:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="SootvQZI";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="dC0Xqxcp";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="SootvQZI";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="dC0Xqxcp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m3vVFpOe";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8272610E330;
- Tue,  7 Jan 2025 14:42:52 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 02AD221114;
- Tue,  7 Jan 2025 14:42:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1736260941; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=Qn7ZGLUV3nEZyqcAjFn3F8qkJAMVeaxqnfYbEkq805w=;
- b=SootvQZIc5C0QqhnkUpT6PqJ9nW16C3TU8HWB7pFZQZ3dUFFXK1q6tDmlBqqXahJitvOdz
- R30j1B94ZkYKaFZNUCetZfsTYbw+xYf3G+8zJ6J6iEkeBb/VP/YjocYcEaCaICRqgjzE1s
- PaJEqz5Fq5GiV6azB/mznzvCgr3dXRU=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1736260941;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=Qn7ZGLUV3nEZyqcAjFn3F8qkJAMVeaxqnfYbEkq805w=;
- b=dC0Xqxcpl8AR7kRb9G2c+cngwxLpA+HsMCjariOzTjNrk30Zcs4Sn6wKm9yIGzPWdZSSFg
- XDMSQkzU1eVJJ2Aw==
-Authentication-Results: smtp-out1.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1736260941; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=Qn7ZGLUV3nEZyqcAjFn3F8qkJAMVeaxqnfYbEkq805w=;
- b=SootvQZIc5C0QqhnkUpT6PqJ9nW16C3TU8HWB7pFZQZ3dUFFXK1q6tDmlBqqXahJitvOdz
- R30j1B94ZkYKaFZNUCetZfsTYbw+xYf3G+8zJ6J6iEkeBb/VP/YjocYcEaCaICRqgjzE1s
- PaJEqz5Fq5GiV6azB/mznzvCgr3dXRU=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1736260941;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=Qn7ZGLUV3nEZyqcAjFn3F8qkJAMVeaxqnfYbEkq805w=;
- b=dC0Xqxcpl8AR7kRb9G2c+cngwxLpA+HsMCjariOzTjNrk30Zcs4Sn6wKm9yIGzPWdZSSFg
- XDMSQkzU1eVJJ2Aw==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 97A6E13763;
- Tue,  7 Jan 2025 14:42:20 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id 3LKiI0w9fWfWOwAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Tue, 07 Jan 2025 14:42:20 +0000
-Message-ID: <332ba13f-8dd8-4195-9af2-26b1f18cf1c8@suse.de>
-Date: Tue, 7 Jan 2025 15:42:20 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D05510E71C;
+ Tue,  7 Jan 2025 15:02:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1736262145; x=1767798145;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=o5mwZVd0jQGZmNi+mRM/KK8FNyYO7N41z3X3B6zDUHo=;
+ b=m3vVFpOe1ySoOVzk7BzqfRMBzhdY9iyUVj1IAwMngimS6gWYKQlWzesI
+ k6dxN3tEWrW5etuxXiMv0T1ZGOjYN2HktoHPMj2SSaLZK2HNCfjrKmO2w
+ stpGkP+aZ8zFCOnFbq8f+lruMWLAs3FuH1jtFI/gIu2yYt56p7swB6/Jx
+ Rgkr6Nw4ZjaQp+8Nyut7M8WP/lQnE2xwZkS2szk6tlaKu41ylE5wG0gXq
+ cMEdTIjHuxSlC+VuP8oW/1pC84TWeIJPGZdhLgJJitwgEYWmRKmhFJ1ev
+ /Ah3KPumom1iF7q5DrxHipbmdB0/vPSoiSyCywNEueRdcEa64juaqPZwo A==;
+X-CSE-ConnectionGUID: 9N6L9k5LTWSoku9Rzt8p8A==
+X-CSE-MsgGUID: 6ALa0LAKRO6dJexu7qh6+Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11308"; a="47116656"
+X-IronPort-AV: E=Sophos;i="6.12,295,1728975600"; d="scan'208";a="47116656"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jan 2025 07:02:02 -0800
+X-CSE-ConnectionGUID: 5TPxyme3QnmHGFztYt7+Xg==
+X-CSE-MsgGUID: PtTFsUGUTfiIgvP4sjvYnw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,295,1728975600"; d="scan'208";a="107670477"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jan 2025 07:01:55 -0800
+Date: Tue, 7 Jan 2025 17:02:47 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ ankit.k.nautiyal@intel.com, uma.shankar@intel.com
+Subject: Re: [PATCH 1/2] drm/i915/cx0: Fix SSC enablement in PORT_CLOCK_CTL
+Message-ID: <Z31CF9QeIe7erRqE@ideak-desk.fi.intel.com>
+References: <20250106040821.251114-1-suraj.kandpal@intel.com>
+ <20250106040821.251114-2-suraj.kandpal@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 10/12] drm/{i915,xe}: Run DRM default client setup
-To: Jocelyn Falempe <jfalempe@redhat.com>, jani.nikula@linux.intel.com,
- rodrigo.vivi@intel.com, joonas.lahtinen@linux.intel.com,
- tursulin@ursulin.net, lucas.demarchi@intel.com,
- thomas.hellstrom@linux.intel.com, simona@ffwll.ch, airlied@gmail.com,
- mripard@kernel.org, maarten.lankhorst@linux.intel.com, javierm@redhat.com
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-References: <20241212170913.185939-1-tzimmermann@suse.de>
- <20241212170913.185939-11-tzimmermann@suse.de>
- <8e175713-2762-4767-86c6-fe0c0b7e8cf2@redhat.com>
-Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <8e175713-2762-4767-86c6-fe0c0b7e8cf2@redhat.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Score: -4.30
-X-Spamd-Result: default: False [-4.30 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- RCVD_VIA_SMTP_AUTH(0.00)[]; ARC_NA(0.00)[];
- MIME_TRACE(0.00)[0:+];
- FREEMAIL_TO(0.00)[redhat.com,linux.intel.com,intel.com,ursulin.net,ffwll.ch,gmail.com,kernel.org];
- RCPT_COUNT_TWELVE(0.00)[15]; MID_RHS_MATCH_FROM(0.00)[];
- FREEMAIL_ENVRCPT(0.00)[gmail.com];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- TO_DN_SOME(0.00)[]; RCVD_TLS_ALL(0.00)[];
- TO_MATCH_ENVRCPT_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- FUZZY_BLOCKED(0.00)[rspamd.com];
- DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo]
-X-Spam-Flag: NO
-X-Spam-Level: 
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250106040821.251114-2-suraj.kandpal@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -144,53 +66,39 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Jocelyn
+On Mon, Jan 06, 2025 at 09:38:20AM +0530, Suraj Kandpal wrote:
+> SSC for PLL_A is enabled for UHBR10 or UHBR20 regardless of the
+> need for SSC. This means the ssc_enabled variable had no say
+> to determine enablement of SSC on PLL A.
 
+I don't see the above in the spec. It suggests that SSC should be
+enabled on PLL A for MFD, but in any case SSC can only be enabled
+if the sink supports SSC, as indicated by dpll_hw_state.cx0pll.ssc_enabled.
 
-Am 07.01.25 um 13:10 schrieb Jocelyn Falempe:
-> On 12/12/2024 18:08, Thomas Zimmermann wrote:
->> Rework fbdev probing to support fbdev_probe in struct drm_driver
->> and remove the old fb_probe callback. Provide an initializer macro
->> that sets the callback in struct drm_driver according to the kernel
->> configuration. Call drm_client_setup_with_color_mode() to run the
->> kernel's default client setup for DRM.
->>
->> This commit also prepares support for the kernel's drm_log client
->> (or any future client) in i915. Using drm_log will also require vmap
->> support in GEM objects.
->
-> I've tested this series on an Alderlake laptop, and it effectively 
-> breaks the boot with drm_log on i915. (I can still see the drm_log on 
-> simpledrm, but when it switches to i915, I get a blackscreen, and the 
-> laptop hard freezes).
-> Can we wait to have the proper vmap support in GEM objects, before 
-> merging this series?
-> Or at least prevent drm_log to load on i915, until it is fixed?
-
-Did you add vmap support as advised here? i915 will not support drm_log 
-without and this series does not add it.
-
-A patch for vmap functions is at [1], I think.
-
-Best regards
-Thomas
-
-[1] https://patchwork.freedesktop.org/series/135554/
-
-
->
-> Best regards,
->
-
--- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
-
+> Bspec: 64568, 74165, 74489, 74491
+> Fixes: 237e7be0bf57 ("drm/i915/mtl: For DP2.0 10G and 20G rates use MPLLA")
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_cx0_phy.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> index e768dc6a15b3..3fd959a2773c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> @@ -2747,7 +2747,7 @@ static void intel_program_port_clock_ctl(struct intel_encoder *encoder,
+>  	/* TODO: HDMI FRL */
+>  	/* DP2.0 10G and 20G rates enable MPLLA*/
+>  	if (crtc_state->port_clock == 1000000 || crtc_state->port_clock == 2000000)
+> -		val |= crtc_state->dpll_hw_state.cx0pll.ssc_enabled ? XELPDP_SSC_ENABLE_PLLA : 0;
+> +		val |= XELPDP_SSC_ENABLE_PLLA;
+>  	else
+>  		val |= crtc_state->dpll_hw_state.cx0pll.ssc_enabled ? XELPDP_SSC_ENABLE_PLLB : 0;
+>  
+> -- 
+> 2.34.1
+> 
