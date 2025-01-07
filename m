@@ -2,57 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DA31A03AE5
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jan 2025 10:16:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 13254A03B1F
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jan 2025 10:30:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E01BD10E3B9;
-	Tue,  7 Jan 2025 09:16:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70E4310E2FC;
+	Tue,  7 Jan 2025 09:30:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NT0EC8Lq";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="sQIB3sMw";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E227110E39E;
- Tue,  7 Jan 2025 09:16:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736241376; x=1767777376;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=GvT/10eAwKyap5NV+xkH22/EX6VosAFJ3F21rXca8Xs=;
- b=NT0EC8LqWgem7WEE5chuXYv66hcI8l+vq83YZ1j2YlVGu5qhIhPf8Mma
- 9IqkqgUNw276qC8S25b4l/qJNds8EAFw65lo+rJOOT0PNfqWrwaKA4w4j
- YuLu5i39q5mO44bKomb98ld5aDsZoImazDW2n33gmTUGqVwnPfYbvqZhe
- 6G/VMOePJmsHRrHz4COcOy3Sh2kyqpRnOf7HhXr/Py6zJ1+mXp+MfdMha
- j8DjRHzq4QbvGmf0yMulvt4Up3L46/eBDestZFYi4YlaKlTf005WZ5x1+
- Qqcc3Wg73FPAd2ZPpsR3ACUGHhiFgGZzKlJbtf0krdXWWiaGzaRTlQbFD A==;
-X-CSE-ConnectionGUID: 8n419R6TS5qT5Aco1wqVIA==
-X-CSE-MsgGUID: UiGSJmBeSAWGs/DSSzZfGQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11307"; a="40183861"
-X-IronPort-AV: E=Sophos;i="6.12,295,1728975600"; d="scan'208";a="40183861"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jan 2025 01:16:16 -0800
-X-CSE-ConnectionGUID: iTVncLDlTQqnQ78+11cE/A==
-X-CSE-MsgGUID: 3vi05Sb7Qd+m0chJg2fltA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,295,1728975600"; d="scan'208";a="133566511"
-Received: from cpetruta-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.85])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jan 2025 01:16:11 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 2/3] drm/i915/display: Wrap IRQ-specific uncore functions
-In-Reply-To: <20250103174223.58140-3-gustavo.sousa@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250103174223.58140-1-gustavo.sousa@intel.com>
- <20250103174223.58140-3-gustavo.sousa@intel.com>
-Date: Tue, 07 Jan 2025 11:16:08 +0200
-Message-ID: <878qrnm1bb.fsf@intel.com>
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85A9A10E18B;
+ Tue,  7 Jan 2025 09:30:33 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id ADE99A40DB0;
+ Tue,  7 Jan 2025 09:28:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B85FC4CED6;
+ Tue,  7 Jan 2025 09:30:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1736242232;
+ bh=faHcSgdF3E9ljSXlRVOQi+PPa9Gd2RrArQ5HFzl15S4=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=sQIB3sMw4gmVXtgD+5YdawMKFcDfJQVad1wMKc39QsPkKJ0w8LVl6+ToWwqpZ3D8i
+ wSNFNWwzNBrkx4vfNK/xL/y8JgZBvym4lF1OVs3GwkOU7eDnipCzJR4/M9RdIHKYH5
+ 8s2OfJOE01m/31DOaaWHdvgKkN1PkrZWsMd/i6I8jdD6H5XdzqWu40lJV20vVrCuxA
+ PIeOwWft41rEhREQEvmOKfp50+xrvnjvYcqHJpYhiYn/XVNVCvtNSpHtS6SKgH0mzD
+ VJkbuxzF1cQuZu5mG3+tSVPYkM0XupewkMn/wybdO8AhxjR9HqFoakeN0kcHysOBFQ
+ QPiF1ADxK2kJA==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+ (envelope-from <johan@kernel.org>) id 1tV5uv-000000006q9-3HKE;
+ Tue, 07 Jan 2025 10:30:29 +0100
+Date: Tue, 7 Jan 2025 10:30:29 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Abel Vesa <abel.vesa@linaro.org>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
+ Danilo Krummrich <dakr@redhat.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Rob Clark <robdclark@gmail.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, Johan Hovold <johan+linaro@kernel.org>
+Subject: Re: [PATCH v3 1/4] drm/dp: Add helper to set LTTPRs in transparent
+ mode
+Message-ID: <Z3z0NcDhmwOoQhlG@hovoldconsulting.com>
+References: <20250103-drm-dp-msm-add-lttpr-transparent-mode-set-v3-0-5c367f4b0763@linaro.org>
+ <20250103-drm-dp-msm-add-lttpr-transparent-mode-set-v3-1-5c367f4b0763@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250103-drm-dp-msm-add-lttpr-transparent-mode-set-v3-1-5c367f4b0763@linaro.org>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,348 +80,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 03 Jan 2025, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
-> The current display IRQ code calls some IRQ-specific helpers that use
-> intel_uncore_*() MMIO functions instead of the display-specific ones.
-> Wrap those helpers in intel_de.h and use them to ensure that the proper
-> display-specific hooks (currently only DMC wakelock handling) are
-> called.
->
-> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_de.h       | 43 ++++++++++
->  .../gpu/drm/i915/display/intel_display_irq.c  | 85 +++++++++----------
->  2 files changed, 83 insertions(+), 45 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_de.h b/drivers/gpu/drm/i915/display/intel_de.h
-> index b7399e9d11cc..151126ab6dad 100644
-> --- a/drivers/gpu/drm/i915/display/intel_de.h
-> +++ b/drivers/gpu/drm/i915/display/intel_de.h
-> @@ -6,6 +6,7 @@
->  #ifndef __INTEL_DE_H__
->  #define __INTEL_DE_H__
->  
-> +#include "i915_irq.h"
->  #include "intel_display_conversion.h"
->  #include "intel_display_core.h"
->  #include "intel_dmc_wl.h"
-> @@ -246,4 +247,46 @@ intel_de_write_dsb(struct intel_display *display, struct intel_dsb *dsb,
->  		intel_de_write_fw(display, reg, val);
->  }
->  
-> +/*
-> + * Functions to handle IRQ registers (intel_de_irq_*).
+On Fri, Jan 03, 2025 at 02:58:15PM +0200, Abel Vesa wrote:
+> According to the DisplayPort standard, LTTPRs have two operating
+> modes:
+>  - non-transparent - it replies to DPCD LTTPR field specific AUX
+>    requests, while passes through all other AUX requests
+>  - transparent - it passes through all AUX requests.
+> 
+> Switching between this two modes is done by the DPTX by issuing
+> an AUX write to the DPCD PHY_REPEATER_MODE register.
+> 
+> Add a generic helper that allows switching between these modes.
+> 
+> Also add a generic wrapper for the helper that handles the explicit
+> disabling of non-transparent mode and its disable->enable sequence
+> mentioned in the DP Standard v2.0 section 3.6.6.1. Do this in order
+> to move this handling out of the vendor specific driver implementation
+> into the generic framework.
+> 
+> Tested-by: Johan Hovold <johan+linaro@kernel.org>
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+
+> +/**
+> + * drm_dp_lttpr_init - init LTTPR transparency mode according to DP standard
+> + *
+> + * @aux: DisplayPort AUX channel
+> + * @lttpr_count: Number of LTTPRs. Between 0 and 8, according to DP standard.
+> + *               Negative error code for any non-valid number.
+> + *               See drm_dp_lttpr_count().
+> + *
+> + * Returns 0 on success or a negative error code on failure.
 > + */
-> +static inline void
-> +intel_de_irq_init(struct intel_display *display, struct i915_irq_regs regs,
-> +		  u32 imr_val, u32 ier_val)
+> +int drm_dp_lttpr_init(struct drm_dp_aux *aux, int lttpr_count)
 > +{
-> +	intel_dmc_wl_get(display, regs.imr);
-> +	intel_dmc_wl_get(display, regs.ier);
-> +	intel_dmc_wl_get(display, regs.iir);
+> +	int ret;
 > +
-> +	gen2_irq_init(__to_uncore(display), regs, imr_val, ier_val);
+> +	if (!lttpr_count)
+> +		return 0;
 > +
-> +	intel_dmc_wl_put(display, regs.iir);
-> +	intel_dmc_wl_put(display, regs.ier);
-> +	intel_dmc_wl_put(display, regs.imr);
+> +	/*
+> +	 * See DP Standard v2.0 3.6.6.1 about the explicit disabling of
+> +	 * non-transparent mode and the disable->enable non-transparent mode
+> +	 * sequence.
+> +	 */
+> +	ret = drm_dp_lttpr_set_transparent_mode(aux, true);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (lttpr_count < 0)
+> +		return -ENODEV;
+> +
+> +	/*
+> +	 * Roll-back to tranparent mode if setting non-tranparent mode failed
+
+typo: transparent (2x)
+
+> +	 */
+
+I think this comment now needs to go inside the conditional, if you want
+to keep it at all.
+
+> +	if (drm_dp_lttpr_set_transparent_mode(aux, false)) {
+> +		drm_dp_lttpr_set_transparent_mode(aux, true);
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
 > +}
-> +
-> +static inline void
-> +intel_de_irq_reset(struct intel_display *display, struct i915_irq_regs regs)
-> +{
-> +	intel_dmc_wl_get(display, regs.imr);
-> +	intel_dmc_wl_get(display, regs.ier);
-> +	intel_dmc_wl_get(display, regs.iir);
-> +
-> +	gen2_irq_reset(__to_uncore(display), regs);
-> +
-> +	intel_dmc_wl_put(display, regs.iir);
-> +	intel_dmc_wl_put(display, regs.ier);
-> +	intel_dmc_wl_put(display, regs.imr);
-> +}
-> +
-> +static inline void
-> +intel_de_irq_assert_irr_is_zero(struct intel_display *display, i915_reg_t reg)
-> +{
-> +	intel_dmc_wl_get(display, reg);
-> +
-> +	gen2_assert_iir_is_zero(__to_uncore(display), reg);
-> +
-> +	intel_dmc_wl_put(display, reg);
-> +}
-> +
+> +EXPORT_SYMBOL(drm_dp_lttpr_init);
 
-I don't think intel_de_irq_* belong in this file. They're more about
-*irq* than DE register access. I think intel_display_irq.c is the better
-location, and I guess they can be static there.
+This looks much better to me now, so with the above addressed: 
 
-Moreover, I don't like everyone including intel_de.h also including
-i915_irq.h by proxy.
-
-
-BR,
-Jani.
-
-
->  #endif /* __INTEL_DE_H__ */
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-> index 9662368a651d..ec7af00739ea 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-> @@ -1498,7 +1498,6 @@ void bdw_disable_vblank(struct drm_crtc *_crtc)
->  static void _vlv_display_irq_reset(struct drm_i915_private *dev_priv)
->  {
->  	struct intel_display *display = &dev_priv->display;
-> -	struct intel_uncore *uncore = &dev_priv->uncore;
->  
->  	if (IS_CHERRYVIEW(dev_priv))
->  		intel_de_write(display, DPINVGTT, DPINVGTT_STATUS_MASK_CHV);
-> @@ -1510,7 +1509,7 @@ static void _vlv_display_irq_reset(struct drm_i915_private *dev_priv)
->  
->  	i9xx_pipestat_irq_reset(dev_priv);
->  
-> -	gen2_irq_reset(uncore, VLV_IRQ_REGS);
-> +	intel_de_irq_reset(display, VLV_IRQ_REGS);
->  	dev_priv->irq_mask = ~0u;
->  }
->  
-> @@ -1534,8 +1533,7 @@ void i9xx_display_irq_reset(struct drm_i915_private *i915)
->  
->  void vlv_display_irq_postinstall(struct drm_i915_private *dev_priv)
->  {
-> -	struct intel_uncore *uncore = &dev_priv->uncore;
-> -
-> +	struct intel_display *display = &dev_priv->display;
->  	u32 pipestat_mask;
->  	u32 enable_mask;
->  	enum pipe pipe;
-> @@ -1563,13 +1561,12 @@ void vlv_display_irq_postinstall(struct drm_i915_private *dev_priv)
->  
->  	dev_priv->irq_mask = ~enable_mask;
->  
-> -	gen2_irq_init(uncore, VLV_IRQ_REGS, dev_priv->irq_mask, enable_mask);
-> +	intel_de_irq_init(display, VLV_IRQ_REGS, dev_priv->irq_mask, enable_mask);
->  }
->  
->  void gen8_display_irq_reset(struct drm_i915_private *dev_priv)
->  {
->  	struct intel_display *display = &dev_priv->display;
-> -	struct intel_uncore *uncore = &dev_priv->uncore;
->  	enum pipe pipe;
->  
->  	if (!HAS_DISPLAY(dev_priv))
-> @@ -1581,16 +1578,15 @@ void gen8_display_irq_reset(struct drm_i915_private *dev_priv)
->  	for_each_pipe(dev_priv, pipe)
->  		if (intel_display_power_is_enabled(dev_priv,
->  						   POWER_DOMAIN_PIPE(pipe)))
-> -			gen2_irq_reset(uncore, GEN8_DE_PIPE_IRQ_REGS(pipe));
-> +			intel_de_irq_reset(display, GEN8_DE_PIPE_IRQ_REGS(pipe));
->  
-> -	gen2_irq_reset(uncore, GEN8_DE_PORT_IRQ_REGS);
-> -	gen2_irq_reset(uncore, GEN8_DE_MISC_IRQ_REGS);
-> +	intel_de_irq_reset(display, GEN8_DE_PORT_IRQ_REGS);
-> +	intel_de_irq_reset(display, GEN8_DE_MISC_IRQ_REGS);
->  }
->  
->  void gen11_display_irq_reset(struct drm_i915_private *dev_priv)
->  {
->  	struct intel_display *display = &dev_priv->display;
-> -	struct intel_uncore *uncore = &dev_priv->uncore;
->  	enum pipe pipe;
->  	u32 trans_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
->  		BIT(TRANSCODER_C) | BIT(TRANSCODER_D);
-> @@ -1625,24 +1621,24 @@ void gen11_display_irq_reset(struct drm_i915_private *dev_priv)
->  	for_each_pipe(dev_priv, pipe)
->  		if (intel_display_power_is_enabled(dev_priv,
->  						   POWER_DOMAIN_PIPE(pipe)))
-> -			gen2_irq_reset(uncore, GEN8_DE_PIPE_IRQ_REGS(pipe));
-> +			intel_de_irq_reset(display, GEN8_DE_PIPE_IRQ_REGS(pipe));
->  
-> -	gen2_irq_reset(uncore, GEN8_DE_PORT_IRQ_REGS);
-> -	gen2_irq_reset(uncore, GEN8_DE_MISC_IRQ_REGS);
-> +	intel_de_irq_reset(display, GEN8_DE_PORT_IRQ_REGS);
-> +	intel_de_irq_reset(display, GEN8_DE_MISC_IRQ_REGS);
->  
->  	if (DISPLAY_VER(dev_priv) >= 14)
-> -		gen2_irq_reset(uncore, PICAINTERRUPT_IRQ_REGS);
-> +		intel_de_irq_reset(display, PICAINTERRUPT_IRQ_REGS);
->  	else
-> -		gen2_irq_reset(uncore, GEN11_DE_HPD_IRQ_REGS);
-> +		intel_de_irq_reset(display, GEN11_DE_HPD_IRQ_REGS);
->  
->  	if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
-> -		gen2_irq_reset(uncore, SDE_IRQ_REGS);
-> +		intel_de_irq_reset(display, SDE_IRQ_REGS);
->  }
->  
->  void gen8_irq_power_well_post_enable(struct drm_i915_private *dev_priv,
->  				     u8 pipe_mask)
->  {
-> -	struct intel_uncore *uncore = &dev_priv->uncore;
-> +	struct intel_display *display = &dev_priv->display;
->  	u32 extra_ier = GEN8_PIPE_VBLANK | GEN8_PIPE_FIFO_UNDERRUN |
->  		gen8_de_pipe_flip_done_mask(dev_priv);
->  	enum pipe pipe;
-> @@ -1655,9 +1651,9 @@ void gen8_irq_power_well_post_enable(struct drm_i915_private *dev_priv,
->  	}
->  
->  	for_each_pipe_masked(dev_priv, pipe, pipe_mask)
-> -		gen2_irq_init(uncore, GEN8_DE_PIPE_IRQ_REGS(pipe),
-> -			      dev_priv->display.irq.de_irq_mask[pipe],
-> -			      ~dev_priv->display.irq.de_irq_mask[pipe] | extra_ier);
-> +		intel_de_irq_init(display, GEN8_DE_PIPE_IRQ_REGS(pipe),
-> +				  dev_priv->display.irq.de_irq_mask[pipe],
-> +				  ~dev_priv->display.irq.de_irq_mask[pipe] | extra_ier);
->  
->  	spin_unlock_irq(&dev_priv->irq_lock);
->  }
-> @@ -1665,7 +1661,7 @@ void gen8_irq_power_well_post_enable(struct drm_i915_private *dev_priv,
->  void gen8_irq_power_well_pre_disable(struct drm_i915_private *dev_priv,
->  				     u8 pipe_mask)
->  {
-> -	struct intel_uncore *uncore = &dev_priv->uncore;
-> +	struct intel_display *display = &dev_priv->display;
->  	enum pipe pipe;
->  
->  	spin_lock_irq(&dev_priv->irq_lock);
-> @@ -1676,7 +1672,7 @@ void gen8_irq_power_well_pre_disable(struct drm_i915_private *dev_priv,
->  	}
->  
->  	for_each_pipe_masked(dev_priv, pipe, pipe_mask)
-> -		gen2_irq_reset(uncore, GEN8_DE_PIPE_IRQ_REGS(pipe));
-> +		intel_de_irq_reset(display, GEN8_DE_PIPE_IRQ_REGS(pipe));
->  
->  	spin_unlock_irq(&dev_priv->irq_lock);
->  
-> @@ -1697,7 +1693,7 @@ void gen8_irq_power_well_pre_disable(struct drm_i915_private *dev_priv,
->   */
->  static void ibx_irq_postinstall(struct drm_i915_private *dev_priv)
->  {
-> -	struct intel_uncore *uncore = &dev_priv->uncore;
-> +	struct intel_display *display = &dev_priv->display;
->  	u32 mask;
->  
->  	if (HAS_PCH_NOP(dev_priv))
-> @@ -1710,7 +1706,7 @@ static void ibx_irq_postinstall(struct drm_i915_private *dev_priv)
->  	else
->  		mask = SDE_GMBUS_CPT;
->  
-> -	gen2_irq_init(uncore, SDE_IRQ_REGS, ~mask, 0xffffffff);
-> +	intel_de_irq_init(display, SDE_IRQ_REGS, ~mask, 0xffffffff);
->  }
->  
->  void valleyview_enable_display_irqs(struct drm_i915_private *dev_priv)
-> @@ -1743,7 +1739,7 @@ void valleyview_disable_display_irqs(struct drm_i915_private *dev_priv)
->  
->  void ilk_de_irq_postinstall(struct drm_i915_private *i915)
->  {
-> -	struct intel_uncore *uncore = &i915->uncore;
-> +	struct intel_display *display = &i915->display;
->  	u32 display_mask, extra_mask;
->  
->  	if (DISPLAY_VER(i915) >= 7) {
-> @@ -1767,7 +1763,7 @@ void ilk_de_irq_postinstall(struct drm_i915_private *i915)
->  	}
->  
->  	if (IS_HASWELL(i915)) {
-> -		gen2_assert_iir_is_zero(uncore, EDP_PSR_IIR);
-> +		intel_de_irq_assert_irr_is_zero(display, EDP_PSR_IIR);
->  		display_mask |= DE_EDP_PSR_INT_HSW;
->  	}
->  
-> @@ -1778,8 +1774,8 @@ void ilk_de_irq_postinstall(struct drm_i915_private *i915)
->  
->  	ibx_irq_postinstall(i915);
->  
-> -	gen2_irq_init(uncore, DE_IRQ_REGS, i915->irq_mask,
-> -		      display_mask | extra_mask);
-> +	intel_de_irq_init(display, DE_IRQ_REGS, i915->irq_mask,
-> +			  display_mask | extra_mask);
->  }
->  
->  static void mtp_irq_postinstall(struct drm_i915_private *i915);
-> @@ -1788,7 +1784,6 @@ static void icp_irq_postinstall(struct drm_i915_private *i915);
->  void gen8_de_irq_postinstall(struct drm_i915_private *dev_priv)
->  {
->  	struct intel_display *display = &dev_priv->display;
-> -	struct intel_uncore *uncore = &dev_priv->uncore;
->  
->  	u32 de_pipe_masked = gen8_de_pipe_fault_mask(dev_priv) |
->  		GEN8_PIPE_CDCLK_CRC_DONE;
-> @@ -1854,11 +1849,11 @@ void gen8_de_irq_postinstall(struct drm_i915_private *dev_priv)
->  			if (!intel_display_power_is_enabled(dev_priv, domain))
->  				continue;
->  
-> -			gen2_assert_iir_is_zero(uncore,
-> -						TRANS_PSR_IIR(dev_priv, trans));
-> +			intel_de_irq_assert_irr_is_zero(display,
-> +							TRANS_PSR_IIR(dev_priv, trans));
->  		}
->  	} else {
-> -		gen2_assert_iir_is_zero(uncore, EDP_PSR_IIR);
-> +		intel_de_irq_assert_irr_is_zero(display, EDP_PSR_IIR);
->  	}
->  
->  	for_each_pipe(dev_priv, pipe) {
-> @@ -1866,44 +1861,44 @@ void gen8_de_irq_postinstall(struct drm_i915_private *dev_priv)
->  
->  		if (intel_display_power_is_enabled(dev_priv,
->  						   POWER_DOMAIN_PIPE(pipe)))
-> -			gen2_irq_init(uncore, GEN8_DE_PIPE_IRQ_REGS(pipe),
-> -				      dev_priv->display.irq.de_irq_mask[pipe],
-> -				      de_pipe_enables);
-> +			intel_de_irq_init(display, GEN8_DE_PIPE_IRQ_REGS(pipe),
-> +					  dev_priv->display.irq.de_irq_mask[pipe],
-> +					  de_pipe_enables);
->  	}
->  
-> -	gen2_irq_init(uncore, GEN8_DE_PORT_IRQ_REGS, ~de_port_masked, de_port_enables);
-> -	gen2_irq_init(uncore, GEN8_DE_MISC_IRQ_REGS, ~de_misc_masked, de_misc_masked);
-> +	intel_de_irq_init(display, GEN8_DE_PORT_IRQ_REGS, ~de_port_masked, de_port_enables);
-> +	intel_de_irq_init(display, GEN8_DE_MISC_IRQ_REGS, ~de_misc_masked, de_misc_masked);
->  
->  	if (IS_DISPLAY_VER(dev_priv, 11, 13)) {
->  		u32 de_hpd_masked = 0;
->  		u32 de_hpd_enables = GEN11_DE_TC_HOTPLUG_MASK |
->  				     GEN11_DE_TBT_HOTPLUG_MASK;
->  
-> -		gen2_irq_init(uncore, GEN11_DE_HPD_IRQ_REGS, ~de_hpd_masked,
-> -			      de_hpd_enables);
-> +		intel_de_irq_init(display, GEN11_DE_HPD_IRQ_REGS, ~de_hpd_masked,
-> +				  de_hpd_enables);
->  	}
->  }
->  
->  static void mtp_irq_postinstall(struct drm_i915_private *i915)
->  {
-> -	struct intel_uncore *uncore = &i915->uncore;
-> +	struct intel_display *display = &i915->display;
->  	u32 sde_mask = SDE_GMBUS_ICP | SDE_PICAINTERRUPT;
->  	u32 de_hpd_mask = XELPDP_AUX_TC_MASK;
->  	u32 de_hpd_enables = de_hpd_mask | XELPDP_DP_ALT_HOTPLUG_MASK |
->  			     XELPDP_TBT_HOTPLUG_MASK;
->  
-> -	gen2_irq_init(uncore, PICAINTERRUPT_IRQ_REGS, ~de_hpd_mask,
-> -		      de_hpd_enables);
-> +	intel_de_irq_init(display, PICAINTERRUPT_IRQ_REGS, ~de_hpd_mask,
-> +			  de_hpd_enables);
->  
-> -	gen2_irq_init(uncore, SDE_IRQ_REGS, ~sde_mask, 0xffffffff);
-> +	intel_de_irq_init(display, SDE_IRQ_REGS, ~sde_mask, 0xffffffff);
->  }
->  
->  static void icp_irq_postinstall(struct drm_i915_private *dev_priv)
->  {
-> -	struct intel_uncore *uncore = &dev_priv->uncore;
-> +	struct intel_display *display = &dev_priv->display;
->  	u32 mask = SDE_GMBUS_ICP;
->  
-> -	gen2_irq_init(uncore, SDE_IRQ_REGS, ~mask, 0xffffffff);
-> +	intel_de_irq_init(display, SDE_IRQ_REGS, ~mask, 0xffffffff);
->  }
->  
->  void gen11_de_irq_postinstall(struct drm_i915_private *dev_priv)
-
--- 
-Jani Nikula, Intel
+Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
