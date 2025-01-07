@@ -2,29 +2,94 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6132BA03E0C
-	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jan 2025 12:42:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D3A82A03EC9
+	for <lists+intel-gfx@lfdr.de>; Tue,  7 Jan 2025 13:10:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FCCE10E4E0;
-	Tue,  7 Jan 2025 11:42:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 53EB710E6BF;
+	Tue,  7 Jan 2025 12:10:24 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="ehJfZtWR";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A05810E4E0;
- Tue,  7 Jan 2025 11:42:14 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1140463367439943169=="
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 349FA10E4C1
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Jan 2025 12:10:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1736251822;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=bKRRC7xdkSdehsjFtG2z/R2lidMg7DrEvSxbP7iFi2I=;
+ b=ehJfZtWROXtfvKQvcljQ95L1/mmfy/cIVbWmUK90h2xnc5ixZLQK8U4Ik98gHDk4pk92IX
+ a/8aM38PpRhSf31kadt5PlluB9p2bXPOFVHrXSvpFpK7sFxdYXvQ8hcjL98TdRnslrGyhl
+ MbSeJvkrdZOfno3NTGjJ5+3XV/SBOs4=
+Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
+ [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-631-HDMJTw_6NOGogphUso6HrA-1; Tue, 07 Jan 2025 07:10:19 -0500
+X-MC-Unique: HDMJTw_6NOGogphUso6HrA-1
+X-Mimecast-MFC-AGG-ID: HDMJTw_6NOGogphUso6HrA
+Received: by mail-wm1-f69.google.com with SMTP id
+ 5b1f17b1804b1-4359206e1e4so118600085e9.2
+ for <intel-gfx@lists.freedesktop.org>; Tue, 07 Jan 2025 04:10:19 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1736251818; x=1736856618;
+ h=content-transfer-encoding:in-reply-to:content-language:references
+ :cc:to:subject:from:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=bKRRC7xdkSdehsjFtG2z/R2lidMg7DrEvSxbP7iFi2I=;
+ b=mTSy0wLYke0mW7Ydr8yCI5wbUZtV6oxdqgKJWp4yOdC4NeSckKjreNw6E7CgYbJ7co
+ b0VHUEUUEbmC03oGHTHK3Xbu4CDF4Sn80ReqMi3P75A8j9zD2tLBiZVKY5J+qHqlpeTf
+ PiGzVdKy2U4gW0jTRr/uYn/w6ilbLLBja1HSPCqbvLjz+UkWooJBnMfrkncn139PD1fb
+ A3b3NaFm9kmBfRYgSYLFAGlRO6WV16rH396xB4dEaNFKsyHTKXc32ucLR4rKHgKJhSPa
+ 5o7Nuiqfzty2MP2SUI5tq1WAvOt2yU97gT63BLlLToiDfT5ohvk6D2gEkr/MQfUND/Xh
+ U61A==
+X-Gm-Message-State: AOJu0YxxzTSHpM0jbr8sFd5XcA9l5Ncgm+Apda/PHaxupizme8Uxqzs5
+ q9+0QNIRn8vcViVilCk5oqyaVlYsG2QulapQ4/Oi1wWVaLIppRLVPsWhDMu2n3w/yDVmJGVDSo6
+ BrBL9Voy36+B5cgrk5ZMR9hXunqMntlIR8wnNhqmkqcmBwHzkoHAhhuae5umUKdxKPA==
+X-Gm-Gg: ASbGnctkETOgq+SejoE30dWIOur8NUaOJY7u/PI8nWpkrbURZoob/7L/BrWonbm8kSP
+ Uwc4PSE/c2REhhAWcn6GwN+ic1lV2MtOH5hTQeetGWAsDXeN63+wJjeWrhbqaCM8l5zcs/11GGU
+ tXSmsrRlcyRjuNSktOod3Y1IQeLwIr4IXJR2Rk7yCerGlefvWUaKikHlJsyVbU9pS5wWJy3RYkE
+ ZTdnGxD4tehoj9/ogtYoBhdieTDzgZU15jfoLz9RnsJV92Ry8KVJEYdn8KmG8v8GuKY7yIZmlzm
+ JpNP/wVjH6EmL4RMBzVE
+X-Received: by 2002:a05:600c:1383:b0:434:fddf:5c0c with SMTP id
+ 5b1f17b1804b1-4366835c41emr532162325e9.4.1736251818182; 
+ Tue, 07 Jan 2025 04:10:18 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFaEVKykGayKxjCcnFhLfiFnBT0aIWPfOLkE/TLP3kDUAksggrPgs4KuE0CtMmzWnKAhXVicQ==
+X-Received: by 2002:a05:600c:1383:b0:434:fddf:5c0c with SMTP id
+ 5b1f17b1804b1-4366835c41emr532161965e9.4.1736251817744; 
+ Tue, 07 Jan 2025 04:10:17 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:c:37e0:ced3:55bd:f454:e722?
+ ([2a01:e0a:c:37e0:ced3:55bd:f454:e722])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-436611ea3e0sm602528715e9.7.2025.01.07.04.10.16
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 07 Jan 2025 04:10:17 -0800 (PST)
+Message-ID: <8e175713-2762-4767-86c6-fe0c0b7e8cf2@redhat.com>
+Date: Tue, 7 Jan 2025 13:10:15 +0100
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_drm/i915/dp=3A_128b/132b_?=
- =?utf-8?q?uncompressed_SST_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 07 Jan 2025 11:42:14 -0000
-Message-ID: <173625013402.828293.17694243698313398195@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <cover.1735912293.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1735912293.git.jani.nikula@intel.com>
+User-Agent: Mozilla Thunderbird
+From: Jocelyn Falempe <jfalempe@redhat.com>
+Subject: Re: [PATCH 10/12] drm/{i915,xe}: Run DRM default client setup
+To: Thomas Zimmermann <tzimmermann@suse.de>, jani.nikula@linux.intel.com,
+ rodrigo.vivi@intel.com, joonas.lahtinen@linux.intel.com,
+ tursulin@ursulin.net, lucas.demarchi@intel.com,
+ thomas.hellstrom@linux.intel.com, simona@ffwll.ch, airlied@gmail.com,
+ mripard@kernel.org, maarten.lankhorst@linux.intel.com, javierm@redhat.com
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+References: <20241212170913.185939-1-tzimmermann@suse.de>
+ <20241212170913.185939-11-tzimmermann@suse.de>
+In-Reply-To: <20241212170913.185939-11-tzimmermann@suse.de>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: 5jmYBI443vdegv2XlkX7AhWM7eGTT5tN7ycx6-YegfQ_1736251818
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US, fr
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,222 +102,392 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1140463367439943169==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 12/12/2024 18:08, Thomas Zimmermann wrote:
+> Rework fbdev probing to support fbdev_probe in struct drm_driver
+> and remove the old fb_probe callback. Provide an initializer macro
+> that sets the callback in struct drm_driver according to the kernel
+> configuration. Call drm_client_setup_with_color_mode() to run the
+> kernel's default client setup for DRM.
+> 
+> This commit also prepares support for the kernel's drm_log client
+> (or any future client) in i915. Using drm_log will also require vmap
+> support in GEM objects.
 
-== Series Details ==
+I've tested this series on an Alderlake laptop, and it effectively 
+breaks the boot with drm_log on i915. (I can still see the drm_log on 
+simpledrm, but when it switches to i915, I get a blackscreen, and the 
+laptop hard freezes).
+Can we wait to have the proper vmap support in GEM objects, before 
+merging this series?
+Or at least prevent drm_log to load on i915, until it is fixed?
 
-Series: drm/i915/dp: 128b/132b uncompressed SST (rev5)
-URL   : https://patchwork.freedesktop.org/series/142547/
-State : failure
+Best regards,
 
-== Summary ==
+-- 
 
-CI Bug Log - changes from CI_DRM_15914 -> Patchwork_142547v5
-====================================================
+Jocelyn
 
-Summary
--------
+> 
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> ---
+>   .../gpu/drm/i915/display/intel_display_core.h |   1 -
+>   drivers/gpu/drm/i915/display/intel_fbdev.c    | 194 +-----------------
+>   drivers/gpu/drm/i915/display/intel_fbdev.h    |  17 +-
+>   drivers/gpu/drm/i915/i915_driver.c            |   3 +
+>   drivers/gpu/drm/xe/display/xe_display.c       |   5 +
+>   5 files changed, 21 insertions(+), 199 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
+> index 554870d2494b..674913d6c11d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_core.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+> @@ -386,7 +386,6 @@ struct intel_display {
+>   	struct {
+>   		/* list of fbdev register on this device */
+>   		struct intel_fbdev *fbdev;
+> -		struct work_struct suspend_work;
+>   	} fbdev;
+>   
+>   	struct {
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
+> index f5dc96a9f86d..de726a9c33c5 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+> @@ -37,6 +37,7 @@
+>   #include <linux/tty.h>
+>   #include <linux/vga_switcheroo.h>
+>   
+> +#include <drm/clients/drm_client_setup.h>
+>   #include <drm/drm_crtc.h>
+>   #include <drm/drm_crtc_helper.h>
+>   #include <drm/drm_fb_helper.h>
+> @@ -54,9 +55,6 @@
+>   #include "intel_fbdev_fb.h"
+>   #include "intel_frontbuffer.h"
+>   
+> -static int intelfb_create(struct drm_fb_helper *helper,
+> -			  struct drm_fb_helper_surface_size *sizes);
+> -
+>   struct intel_fbdev {
+>   	struct intel_framebuffer *fb;
+>   	struct i915_vma *vma;
+> @@ -201,14 +199,13 @@ static void intelfb_set_suspend(struct drm_fb_helper *fb_helper, bool suspend)
+>   }
+>   
+>   static const struct drm_fb_helper_funcs intel_fb_helper_funcs = {
+> -	.fb_probe = intelfb_create,
+>   	.fb_dirty = intelfb_dirty,
+>   	.fb_restore = intelfb_restore,
+>   	.fb_set_suspend = intelfb_set_suspend,
+>   };
+>   
+> -static int intelfb_create(struct drm_fb_helper *helper,
+> -			  struct drm_fb_helper_surface_size *sizes)
+> +int intel_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
+> +				   struct drm_fb_helper_surface_size *sizes)
+>   {
+>   	struct intel_fbdev *ifbdev = to_intel_fbdev(helper);
+>   	struct intel_framebuffer *fb = ifbdev->fb;
+> @@ -272,6 +269,7 @@ static int intelfb_create(struct drm_fb_helper *helper,
+>   		goto out_unpin;
+>   	}
+>   
+> +	helper->funcs = &intel_fb_helper_funcs;
+>   	helper->fb = &fb->base;
+>   
+>   	info->fbops = &intelfb_ops;
+> @@ -480,174 +478,11 @@ static unsigned int intel_fbdev_color_mode(const struct drm_format_info *info)
+>   	}
+>   }
+>   
+> -static void intel_fbdev_suspend_worker(struct work_struct *work)
+> -{
+> -	intel_fbdev_set_suspend(&container_of(work,
+> -					      struct drm_i915_private,
+> -					      display.fbdev.suspend_work)->drm,
+> -				FBINFO_STATE_RUNNING,
+> -				true);
+> -}
+> -
+> -void intel_fbdev_set_suspend(struct drm_device *dev, int state, bool synchronous)
+> -{
+> -	struct drm_i915_private *dev_priv = to_i915(dev);
+> -	struct intel_fbdev *ifbdev = dev_priv->display.fbdev.fbdev;
+> -
+> -	if (!ifbdev)
+> -		return;
+> -
+> -	if (drm_WARN_ON(&dev_priv->drm, !HAS_DISPLAY(dev_priv)))
+> -		return;
+> -
+> -	if (!ifbdev->vma)
+> -		return;
+> -
+> -	if (synchronous) {
+> -		/* Flush any pending work to turn the console on, and then
+> -		 * wait to turn it off. It must be synchronous as we are
+> -		 * about to suspend or unload the driver.
+> -		 *
+> -		 * Note that from within the work-handler, we cannot flush
+> -		 * ourselves, so only flush outstanding work upon suspend!
+> -		 */
+> -		if (state != FBINFO_STATE_RUNNING)
+> -			flush_work(&dev_priv->display.fbdev.suspend_work);
+> -
+> -		console_lock();
+> -	} else {
+> -		/*
+> -		 * The console lock can be pretty contented on resume due
+> -		 * to all the printk activity.  Try to keep it out of the hot
+> -		 * path of resume if possible.
+> -		 */
+> -		drm_WARN_ON(dev, state != FBINFO_STATE_RUNNING);
+> -		if (!console_trylock()) {
+> -			/* Don't block our own workqueue as this can
+> -			 * be run in parallel with other i915.ko tasks.
+> -			 */
+> -			queue_work(dev_priv->unordered_wq,
+> -				   &dev_priv->display.fbdev.suspend_work);
+> -			return;
+> -		}
+> -	}
+> -
+> -	drm_fb_helper_set_suspend(dev->fb_helper, state);
+> -	console_unlock();
+> -}
+> -
+> -static int intel_fbdev_restore_mode(struct drm_i915_private *dev_priv)
+> -{
+> -	struct intel_fbdev *ifbdev = dev_priv->display.fbdev.fbdev;
+> -	struct drm_device *dev = &dev_priv->drm;
+> -	int ret;
+> -
+> -	if (!ifbdev)
+> -		return -EINVAL;
+> -
+> -	if (!ifbdev->vma)
+> -		return -ENOMEM;
+> -
+> -	ret = drm_fb_helper_restore_fbdev_mode_unlocked(dev->fb_helper);
+> -	if (ret)
+> -		return ret;
+> -
+> -	return 0;
+> -}
+> -
+> -/*
+> - * Fbdev client and struct drm_client_funcs
+> - */
+> -
+> -static void intel_fbdev_client_unregister(struct drm_client_dev *client)
+> -{
+> -	struct drm_fb_helper *fb_helper = drm_fb_helper_from_client(client);
+> -	struct drm_device *dev = fb_helper->dev;
+> -	struct pci_dev *pdev = to_pci_dev(dev->dev);
+> -
+> -	if (fb_helper->info) {
+> -		vga_switcheroo_client_fb_set(pdev, NULL);
+> -		drm_fb_helper_unregister_info(fb_helper);
+> -	} else {
+> -		drm_fb_helper_unprepare(fb_helper);
+> -		drm_client_release(&fb_helper->client);
+> -		kfree(fb_helper);
+> -	}
+> -}
+> -
+> -static int intel_fbdev_client_restore(struct drm_client_dev *client)
+> -{
+> -	struct drm_i915_private *dev_priv = to_i915(client->dev);
+> -	int ret;
+> -
+> -	ret = intel_fbdev_restore_mode(dev_priv);
+> -	if (ret)
+> -		return ret;
+> -
+> -	vga_switcheroo_process_delayed_switch();
+> -
+> -	return 0;
+> -}
+> -
+> -static int intel_fbdev_client_hotplug(struct drm_client_dev *client)
+> -{
+> -	struct drm_fb_helper *fb_helper = drm_fb_helper_from_client(client);
+> -	struct drm_device *dev = client->dev;
+> -	struct pci_dev *pdev = to_pci_dev(dev->dev);
+> -	int ret;
+> -
+> -	if (dev->fb_helper)
+> -		return drm_fb_helper_hotplug_event(dev->fb_helper);
+> -
+> -	ret = drm_fb_helper_init(dev, fb_helper);
+> -	if (ret)
+> -		goto err_drm_err;
+> -
+> -	ret = drm_fb_helper_initial_config(fb_helper);
+> -	if (ret)
+> -		goto err_drm_fb_helper_fini;
+> -
+> -	vga_switcheroo_client_fb_set(pdev, fb_helper->info);
+> -
+> -	return 0;
+> -
+> -err_drm_fb_helper_fini:
+> -	drm_fb_helper_fini(fb_helper);
+> -err_drm_err:
+> -	drm_err(dev, "Failed to setup i915 fbdev emulation (ret=%d)\n", ret);
+> -	return ret;
+> -}
+> -
+> -static int intel_fbdev_client_suspend(struct drm_client_dev *client, bool holds_console_lock)
+> -{
+> -	intel_fbdev_set_suspend(client->dev, FBINFO_STATE_SUSPENDED, true);
+> -
+> -	return 0;
+> -}
+> -
+> -static int intel_fbdev_client_resume(struct drm_client_dev *client, bool holds_console_lock)
+> -{
+> -	intel_fbdev_set_suspend(client->dev, FBINFO_STATE_RUNNING, false);
+> -
+> -	return 0;
+> -}
+> -
+> -static const struct drm_client_funcs intel_fbdev_client_funcs = {
+> -	.owner		= THIS_MODULE,
+> -	.unregister	= intel_fbdev_client_unregister,
+> -	.restore	= intel_fbdev_client_restore,
+> -	.hotplug	= intel_fbdev_client_hotplug,
+> -	.suspend	= intel_fbdev_client_suspend,
+> -	.resume		= intel_fbdev_client_resume,
+> -};
+> -
+>   void intel_fbdev_setup(struct drm_i915_private *i915)
+>   {
+>   	struct drm_device *dev = &i915->drm;
+>   	struct intel_fbdev *ifbdev;
+> -	struct drm_fb_helper *fb_helper;
+>   	unsigned int preferred_bpp = 0;
+> -	int ret;
+>   
+>   	if (!HAS_DISPLAY(i915))
+>   		return;
+> @@ -657,31 +492,12 @@ void intel_fbdev_setup(struct drm_i915_private *i915)
+>   		return;
+>   
+>   	i915->display.fbdev.fbdev = ifbdev;
+> -	INIT_WORK(&i915->display.fbdev.suspend_work, intel_fbdev_suspend_worker);
+>   	if (intel_fbdev_init_bios(dev, ifbdev))
+>   		preferred_bpp = intel_fbdev_color_mode(ifbdev->fb->base.format);
+>   	if (!preferred_bpp)
+>   		preferred_bpp = 32;
+>   
+> -	fb_helper = kzalloc(sizeof(*fb_helper), GFP_KERNEL);
+> -	if (!fb_helper)
+> -		return;
+> -	drm_fb_helper_prepare(dev, fb_helper, preferred_bpp, &intel_fb_helper_funcs);
+> -
+> -	ret = drm_client_init(dev, &fb_helper->client, "intel-fbdev",
+> -			      &intel_fbdev_client_funcs);
+> -	if (ret) {
+> -		drm_err(dev, "Failed to register client: %d\n", ret);
+> -		goto err_drm_fb_helper_unprepare;
+> -	}
+> -
+> -	drm_client_register(&fb_helper->client);
+> -
+> -	return;
+> -
+> -err_drm_fb_helper_unprepare:
+> -	drm_fb_helper_unprepare(dev->fb_helper);
+> -	kfree(fb_helper);
+> +	drm_client_setup_with_color_mode(dev, preferred_bpp);
+>   }
+>   
+>   struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev)
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.h b/drivers/gpu/drm/i915/display/intel_fbdev.h
+> index 08de2d5b3433..b2ca1fe3c9ae 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbdev.h
+> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.h
+> @@ -6,26 +6,25 @@
+>   #ifndef __INTEL_FBDEV_H__
+>   #define __INTEL_FBDEV_H__
+>   
+> -#include <linux/types.h>
+> -
+> -struct drm_device;
+> +struct drm_fb_helper;
+> +struct drm_fb_helper_surface_size;
+>   struct drm_i915_private;
+>   struct intel_fbdev;
+>   struct intel_framebuffer;
+>   
+>   #ifdef CONFIG_DRM_FBDEV_EMULATION
+> +int intel_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
+> +				   struct drm_fb_helper_surface_size *sizes);
+> +#define INTEL_FBDEV_DRIVER_OPS \
+> +	.fbdev_probe = intel_fbdev_driver_fbdev_probe
+>   void intel_fbdev_setup(struct drm_i915_private *dev_priv);
+> -void intel_fbdev_set_suspend(struct drm_device *dev, int state, bool synchronous);
+>   struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev);
+>   #else
+> +#define INTEL_FBDEV_DRIVER_OPS \
+> +	.fbdev_probe = NULL
+>   static inline void intel_fbdev_setup(struct drm_i915_private *dev_priv)
+>   {
+>   }
+> -
+> -static inline void intel_fbdev_set_suspend(struct drm_device *dev, int state, bool synchronous)
+> -{
+> -}
+> -
+>   static inline struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev)
+>   {
+>   	return NULL;
+> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+> index e385e4947a91..1029bf8509b7 100644
+> --- a/drivers/gpu/drm/i915/i915_driver.c
+> +++ b/drivers/gpu/drm/i915/i915_driver.c
+> @@ -57,6 +57,7 @@
+>   #include "display/intel_dp.h"
+>   #include "display/intel_dpt.h"
+>   #include "display/intel_encoder.h"
+> +#include "display/intel_fbdev.h"
+>   #include "display/intel_hotplug.h"
+>   #include "display/intel_overlay.h"
+>   #include "display/intel_pch_refclk.h"
+> @@ -1798,6 +1799,8 @@ static const struct drm_driver i915_drm_driver = {
+>   	.dumb_create = i915_gem_dumb_create,
+>   	.dumb_map_offset = i915_gem_dumb_mmap_offset,
+>   
+> +	INTEL_FBDEV_DRIVER_OPS,
+> +
+>   	.ioctls = i915_ioctls,
+>   	.num_ioctls = ARRAY_SIZE(i915_ioctls),
+>   	.fops = &i915_driver_fops,
+> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+> index bc73c9999c57..03554cf4894a 100644
+> --- a/drivers/gpu/drm/xe/display/xe_display.c
+> +++ b/drivers/gpu/drm/xe/display/xe_display.c
+> @@ -27,6 +27,7 @@
+>   #include "intel_dmc_wl.h"
+>   #include "intel_dp.h"
+>   #include "intel_encoder.h"
+> +#include "intel_fbdev.h"
+>   #include "intel_hdcp.h"
+>   #include "intel_hotplug.h"
+>   #include "intel_opregion.h"
+> @@ -67,6 +68,10 @@ void xe_display_driver_set_hooks(struct drm_driver *driver)
+>   	if (!xe_modparam.probe_display)
+>   		return;
+>   
+> +#ifdef CONFIG_DRM_FBDEV_EMULATION
+> +	driver->fbdev_probe = intel_fbdev_driver_fbdev_probe;
+> +#endif
+> +
+>   	driver->driver_features |= DRIVER_MODESET | DRIVER_ATOMIC;
+>   }
+>   
 
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_142547v5 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_142547v5, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142547v5/index.html
-
-Participating hosts (38 -> 37)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_142547v5:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live:
-    - fi-hsw-4770:        [PASS][1] -> [DMESG-WARN][2] +1 other test dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15914/fi-hsw-4770/igt@i915_selftest@live.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142547v5/fi-hsw-4770/igt@i915_selftest@live.html
-
-  * igt@kms_busy@basic@modeset:
-    - fi-kbl-7567u:       [PASS][3] -> [DMESG-WARN][4] +1 other test dmesg-warn
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15914/fi-kbl-7567u/igt@kms_busy@basic@modeset.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142547v5/fi-kbl-7567u/igt@kms_busy@basic@modeset.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_142547v5 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_module_load@load:
-    - fi-pnv-d510:        [PASS][5] -> [ABORT][6] ([i915#13203])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15914/fi-pnv-d510/igt@i915_module_load@load.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142547v5/fi-pnv-d510/igt@i915_module_load@load.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - bat-adls-6:         [PASS][7] -> [FAIL][8] ([i915#13401])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15914/bat-adls-6/igt@i915_pm_rpm@module-reload.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142547v5/bat-adls-6/igt@i915_pm_rpm@module-reload.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         [PASS][9] -> [SKIP][10] ([i915#9197]) +3 other tests skip
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15914/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142547v5/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live:
-    - bat-mtlp-8:         [DMESG-FAIL][11] ([i915#13393]) -> [PASS][12] +1 other test pass
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15914/bat-mtlp-8/igt@i915_selftest@live.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142547v5/bat-mtlp-8/igt@i915_selftest@live.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#13203]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13203
-  [i915#13393]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13393
-  [i915#13401]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13401
-  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15914 -> Patchwork_142547v5
-
-  CI-20190529: 20190529
-  CI_DRM_15914: a39a4fbf8a995eaff7494102f992bec5284fae84 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8177: d57f001981211f6241d05eda5f1cc7713ea6b797 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_142547v5: a39a4fbf8a995eaff7494102f992bec5284fae84 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142547v5/index.html
-
---===============1140463367439943169==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dp: 128b/132b uncompressed SST (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/142547/">https://patchwork.freedesktop.org/series/142547/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142547v5/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142547v5/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_15914 -&gt; Patchwork_142547v5</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_142547v5 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_142547v5, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142547v5/index.html</p>
-<h2>Participating hosts (38 -&gt; 37)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_142547v5:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15914/fi-hsw-4770/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142547v5/fi-hsw-4770/igt@i915_selftest@live.html">DMESG-WARN</a> +1 other test dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_busy@basic@modeset:</p>
-<ul>
-<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15914/fi-kbl-7567u/igt@kms_busy@basic@modeset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142547v5/fi-kbl-7567u/igt@kms_busy@basic@modeset.html">DMESG-WARN</a> +1 other test dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_142547v5 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_module_load@load:</p>
-<ul>
-<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15914/fi-pnv-d510/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142547v5/fi-pnv-d510/igt@i915_module_load@load.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13203">i915#13203</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>bat-adls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15914/bat-adls-6/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142547v5/bat-adls-6/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13401">i915#13401</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15914/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142547v5/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197">i915#9197</a>) +3 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live:<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15914/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13393">i915#13393</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142547v5/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_15914 -&gt; Patchwork_142547v5</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_15914: a39a4fbf8a995eaff7494102f992bec5284fae84 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8177: d57f001981211f6241d05eda5f1cc7713ea6b797 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_142547v5: a39a4fbf8a995eaff7494102f992bec5284fae84 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============1140463367439943169==--
