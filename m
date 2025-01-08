@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0CACA05869
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jan 2025 11:42:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2056A05892
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jan 2025 11:47:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9539510E853;
-	Wed,  8 Jan 2025 10:42:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BD3F10E85D;
+	Wed,  8 Jan 2025 10:47:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CuyAMtWC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a7WNUuog";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 05F9810E853
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Jan 2025 10:42:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C0A910E833;
+ Wed,  8 Jan 2025 10:47:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736332924; x=1767868924;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=uAjvfirimqK8zQt9t0gV/Tis5KcID7wn0PlzA9ksA6Q=;
- b=CuyAMtWCIZLOIuQqXkNdjbmmZfP9BtueUDF/rKmd0ehztBwoZIWJWPgu
- TXiwXW/5MHe/koey9NoHqQoE1la5aT8Q8VeTVYwkH5YJ34pJAHp+AkBOn
- yQPZRo4sPBWlJr8YNXcvpgWAgGN0j/81KCN5xsfKSaSuacw2o+xiYiq6m
- og+W8D6BU2k4hd1T89BoXjaMw5qGkvlrcD/P6a6fChPnMWyPyrWWT/Eym
- jXo9uG+dYp3l1UzDDSvZRkC1k78coch9zPkvJva/36NLWFYiJbO3ipurw
- F5aS/yPIPhOd95dJwUhyd1Ypocb7Hsk2t8FjNoEpF7hN3zvejQ4QoOGSB Q==;
-X-CSE-ConnectionGUID: kbRbAw4xS7edxAcghG4QGg==
-X-CSE-MsgGUID: qifmInSfRxaxPizWdVGf4Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11308"; a="47218656"
-X-IronPort-AV: E=Sophos;i="6.12,298,1728975600"; d="scan'208";a="47218656"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jan 2025 02:41:54 -0800
-X-CSE-ConnectionGUID: R+RmgpBeQXWgI+ASHJSdzA==
-X-CSE-MsgGUID: 3Gv5EeVXSTa1iU+/cA1EIw==
+ t=1736333248; x=1767869248;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=UYkT1enFpO7mOMVQy+m7NlV2Znva4vW2+Ls1J4MKFK4=;
+ b=a7WNUuogf14OyBbq1i3Wt9UxfqKTW23X1TblOXj3STxWUmt0pbdpPMpO
+ ThGo/A1MH+QFs5O5MvnwZCofm8zWdtfe+T9vXd0XPuzBa8LAh2FqzuP7P
+ GOgD6VaHmvvXBuT9Q9gETpZsDOcitDWYL0kUNj62qUO4mAIet+UQQFrbl
+ 9JzwqqDemwqFCKlXGBfWuRw6kL5k30hBKcs62/WoF1j56FkwOK7pmwiin
+ Wd7aNNs08935TDf9ZdU6G4uy9O0Ka55rP+40tHINQmJZkCFWBuqGOx5R3
+ i7R0ORbx3aiB39IQQa68wLv0riguLJRLE6PSykczOT45L67tj7x41xGw/ w==;
+X-CSE-ConnectionGUID: m+R55dEpSe2rtot5c42wqA==
+X-CSE-MsgGUID: G2u8LsYySqi2C9qhxNx6dg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11308"; a="24157242"
+X-IronPort-AV: E=Sophos;i="6.12,298,1728975600"; d="scan'208";a="24157242"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jan 2025 02:47:27 -0800
+X-CSE-ConnectionGUID: IhAAaU0dTqm0dDUhxu5K7g==
+X-CSE-MsgGUID: b1HAhn/aR1SAu9tRp6/VKw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,298,1728975600"; d="scan'208";a="102979100"
+X-IronPort-AV: E=Sophos;i="6.12,298,1728975600"; d="scan'208";a="102861966"
 Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.152])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jan 2025 02:41:53 -0800
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jan 2025 02:47:25 -0800
 From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH 6/6] drm/i915/display: convert intel_ddi_buf_trans.c to struct
- intel_display
-Date: Wed,  8 Jan 2025 12:41:21 +0200
-Message-Id: <89471eb566ac2d73520124b9bcb36550234d5a03.1736332802.git.jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com,
+ =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH] drm/i915/psr: clarify intel_psr_pre_plane_update() conditions
+Date: Wed,  8 Jan 2025 12:47:21 +0200
+Message-Id: <20250108104721.2278220-1-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1736332802.git.jani.nikula@intel.com>
-References: <cover.1736332802.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,139 +71,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Going forward, struct intel_display is the main device data structure
-for display. Switch to it.
+Make the conditions easier to follow. We don't do anything for
+!psr->enabled, so hoist psr->enabled check higher, avoiding all the
+checks when !psr->enabled. Stop the bitwise OR abuse on booleans by
+removing the temporary variable altogether.
 
-For MISSING_CASE(), log the PCI ID instead of the platform. This removes
-the final INTEL_INFO() usage from display.
-
+Cc: Jouni Högander <jouni.hogander@intel.com>
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+Reviewed-by: Jouni Högander <jouni.hogander@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- .../drm/i915/display/intel_ddi_buf_trans.c    | 58 +++++++++++--------
- 1 file changed, 33 insertions(+), 25 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-index 9389b295036e..a238be5bc455 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-@@ -3,13 +3,13 @@
-  * Copyright © 2020 Intel Corporation
-  */
+---
+
+I never ended up merging this, because I thought there were conflicting
+changes coming up, but I guess not.
+---
+ drivers/gpu/drm/i915/display/intel_psr.c | 45 ++++++++++++------------
+ 1 file changed, 22 insertions(+), 23 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 0b021acb330f..8e886865fbbe 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -2790,32 +2790,31 @@ void intel_psr_pre_plane_update(struct intel_atomic_state *state,
+ 					     old_crtc_state->uapi.encoder_mask) {
+ 		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+ 		struct intel_psr *psr = &intel_dp->psr;
+-		bool needs_to_disable = false;
  
--#include "i915_drv.h"
-+#include "i915_utils.h"
-+#include "intel_cx0_phy.h"
- #include "intel_ddi.h"
- #include "intel_ddi_buf_trans.h"
- #include "intel_de.h"
- #include "intel_display_types.h"
- #include "intel_dp.h"
--#include "intel_cx0_phy.h"
+ 		mutex_lock(&psr->lock);
  
- /* HDMI/DVI modes ignore everything but the last 2 items. So we share
-  * them for both DP and FDI transports, allowing those ports to
-@@ -1407,10 +1407,10 @@ tgl_get_combo_buf_trans_dp(struct intel_encoder *encoder,
- 			   const struct intel_crtc_state *crtc_state,
- 			   int *n_entries)
- {
--	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-+	struct intel_display *display = to_intel_display(encoder);
+-		/*
+-		 * Reasons to disable:
+-		 * - PSR disabled in new state
+-		 * - All planes will go inactive
+-		 * - Changing between PSR versions
+-		 * - Region Early Transport changing
+-		 * - Display WA #1136: skl, bxt
+-		 */
+-		needs_to_disable |= intel_crtc_needs_modeset(new_crtc_state);
+-		needs_to_disable |= !new_crtc_state->has_psr;
+-		needs_to_disable |= !new_crtc_state->active_planes;
+-		needs_to_disable |= new_crtc_state->has_sel_update != psr->sel_update_enabled;
+-		needs_to_disable |= new_crtc_state->enable_psr2_su_region_et !=
+-			psr->su_region_et_enabled;
+-		needs_to_disable |= DISPLAY_VER(i915) < 11 &&
+-			new_crtc_state->wm_level_disabled;
+-
+-		if (psr->enabled && needs_to_disable)
+-			intel_psr_disable_locked(intel_dp);
+-		else if (psr->enabled && new_crtc_state->wm_level_disabled)
+-			/* Wa_14015648006 */
+-			wm_optimization_wa(intel_dp, new_crtc_state);
++		if (psr->enabled) {
++			/*
++			 * Reasons to disable:
++			 * - PSR disabled in new state
++			 * - All planes will go inactive
++			 * - Changing between PSR versions
++			 * - Region Early Transport changing
++			 * - Display WA #1136: skl, bxt
++			 */
++			if (intel_crtc_needs_modeset(new_crtc_state) ||
++			    !new_crtc_state->has_psr ||
++			    !new_crtc_state->active_planes ||
++			    new_crtc_state->has_sel_update != psr->sel_update_enabled ||
++			    new_crtc_state->enable_psr2_su_region_et !=
++			    psr->su_region_et_enabled ||
++			    (DISPLAY_VER(i915) < 11 && new_crtc_state->wm_level_disabled)) {
++				intel_psr_disable_locked(intel_dp);
++			} else if (new_crtc_state->wm_level_disabled) {
++				/* Wa_14015648006 */
++				wm_optimization_wa(intel_dp, new_crtc_state);
++			}
++		}
  
- 	if (crtc_state->port_clock > 270000) {
--		if (IS_TIGERLAKE_UY(dev_priv)) {
-+		if (display->platform.tigerlake_uy) {
- 			return intel_get_buf_trans(&tgl_uy_combo_phy_trans_dp_hbr2,
- 						   n_entries);
- 		} else {
-@@ -1709,59 +1709,67 @@ mtl_get_c20_buf_trans(struct intel_encoder *encoder,
- 
- void intel_ddi_buf_trans_init(struct intel_encoder *encoder)
- {
--	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-+	struct intel_display *display = to_intel_display(encoder);
- 
--	if (DISPLAY_VER(i915) >= 14) {
-+	if (DISPLAY_VER(display) >= 14) {
- 		if (intel_encoder_is_c10phy(encoder))
- 			encoder->get_buf_trans = mtl_get_c10_buf_trans;
- 		else
- 			encoder->get_buf_trans = mtl_get_c20_buf_trans;
--	} else if (IS_DG2(i915)) {
-+	} else if (display->platform.dg2) {
- 		encoder->get_buf_trans = dg2_get_snps_buf_trans;
--	} else if (IS_ALDERLAKE_P(i915)) {
-+	} else if (display->platform.alderlake_p) {
- 		if (intel_encoder_is_combo(encoder))
- 			encoder->get_buf_trans = adlp_get_combo_buf_trans;
- 		else
- 			encoder->get_buf_trans = adlp_get_dkl_buf_trans;
--	} else if (IS_ALDERLAKE_S(i915)) {
-+	} else if (display->platform.alderlake_s) {
- 		encoder->get_buf_trans = adls_get_combo_buf_trans;
--	} else if (IS_ROCKETLAKE(i915)) {
-+	} else if (display->platform.rocketlake) {
- 		encoder->get_buf_trans = rkl_get_combo_buf_trans;
--	} else if (IS_DG1(i915)) {
-+	} else if (display->platform.dg1) {
- 		encoder->get_buf_trans = dg1_get_combo_buf_trans;
--	} else if (DISPLAY_VER(i915) >= 12) {
-+	} else if (DISPLAY_VER(display) >= 12) {
- 		if (intel_encoder_is_combo(encoder))
- 			encoder->get_buf_trans = tgl_get_combo_buf_trans;
- 		else
- 			encoder->get_buf_trans = tgl_get_dkl_buf_trans;
--	} else if (DISPLAY_VER(i915) == 11) {
--		if (IS_JASPERLAKE(i915))
-+	} else if (DISPLAY_VER(display) == 11) {
-+		if (display->platform.jasperlake)
- 			encoder->get_buf_trans = jsl_get_combo_buf_trans;
--		else if (IS_ELKHARTLAKE(i915))
-+		else if (display->platform.elkhartlake)
- 			encoder->get_buf_trans = ehl_get_combo_buf_trans;
- 		else if (intel_encoder_is_combo(encoder))
- 			encoder->get_buf_trans = icl_get_combo_buf_trans;
- 		else
- 			encoder->get_buf_trans = icl_get_mg_buf_trans;
--	} else if (IS_GEMINILAKE(i915) || IS_BROXTON(i915)) {
-+	} else if (display->platform.geminilake || display->platform.broxton) {
- 		encoder->get_buf_trans = bxt_get_buf_trans;
--	} else if (IS_COMETLAKE_ULX(i915) || IS_COFFEELAKE_ULX(i915) || IS_KABYLAKE_ULX(i915)) {
-+	} else if (display->platform.cometlake_ulx ||
-+		   display->platform.coffeelake_ulx ||
-+		   display->platform.kabylake_ulx) {
- 		encoder->get_buf_trans = kbl_y_get_buf_trans;
--	} else if (IS_COMETLAKE_ULT(i915) || IS_COFFEELAKE_ULT(i915) || IS_KABYLAKE_ULT(i915)) {
-+	} else if (display->platform.cometlake_ult ||
-+		   display->platform.coffeelake_ult ||
-+		   display->platform.kabylake_ult) {
- 		encoder->get_buf_trans = kbl_u_get_buf_trans;
--	} else if (IS_COMETLAKE(i915) || IS_COFFEELAKE(i915) || IS_KABYLAKE(i915)) {
-+	} else if (display->platform.cometlake ||
-+		   display->platform.coffeelake ||
-+		   display->platform.kabylake) {
- 		encoder->get_buf_trans = kbl_get_buf_trans;
--	} else if (IS_SKYLAKE_ULX(i915)) {
-+	} else if (display->platform.skylake_ulx) {
- 		encoder->get_buf_trans = skl_y_get_buf_trans;
--	} else if (IS_SKYLAKE_ULT(i915)) {
-+	} else if (display->platform.skylake_ult) {
- 		encoder->get_buf_trans = skl_u_get_buf_trans;
--	} else if (IS_SKYLAKE(i915)) {
-+	} else if (display->platform.skylake) {
- 		encoder->get_buf_trans = skl_get_buf_trans;
--	} else if (IS_BROADWELL(i915)) {
-+	} else if (display->platform.broadwell) {
- 		encoder->get_buf_trans = bdw_get_buf_trans;
--	} else if (IS_HASWELL(i915)) {
-+	} else if (display->platform.haswell) {
- 		encoder->get_buf_trans = hsw_get_buf_trans;
- 	} else {
--		MISSING_CASE(INTEL_INFO(i915)->platform);
-+		struct pci_dev *pdev = to_pci_dev(display->drm->dev);
-+
-+		MISSING_CASE(pdev->device);
+ 		mutex_unlock(&psr->lock);
  	}
- }
 -- 
 2.39.5
 
