@@ -2,53 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 457F5A05ED0
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jan 2025 15:36:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97B1AA05FB8
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jan 2025 16:13:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E561910E125;
-	Wed,  8 Jan 2025 14:36:39 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DaFWrPvK";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4131110EBE0;
+	Wed,  8 Jan 2025 15:13:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0731A10E125
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Jan 2025 14:36:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736346998; x=1767882998;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=wMz70q1QaMTelBIAaPGNgWNE8Jjb8VuFq2WkR8doOSE=;
- b=DaFWrPvKRlTbNm5Jf6hmIh7qvHywvBfA9FkY+7WsSm1jOx2EQxVBGLRb
- MRlQo6GMZs52ePIt82uvG86eFH81382RaDSnfMrEAv2pDJ/FAQJZ3FKae
- ao17xoaR8wURdGyyThd30TP5xlBJFioUKziNQtZgwfQ8cfuoXhmvxlnDL
- ALL7JyrXniRe3hXQRTEJGBz0l02IkA31JU8nxL5Bz9WOjlxJXggjRzTLv
- rea1wibCn8hmiEv1lqNyKyeAnnhjd8icR4NxFyCQmGOfg/x0XQR5O0Rl7
- hNTIViSVhqCDNEDSI7scT7RpBD4m0LRDmZzb5JzOH3D8oBpWEe3qkO6WG w==;
-X-CSE-ConnectionGUID: M/U5IkChRqelJlIsXhvK6w==
-X-CSE-MsgGUID: G7I4HZzWSqaobDysgrLM8A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11309"; a="47932266"
-X-IronPort-AV: E=Sophos;i="6.12,298,1728975600"; d="scan'208";a="47932266"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jan 2025 06:36:38 -0800
-X-CSE-ConnectionGUID: y+A97VllRYG8r1Ou8tmp9g==
-X-CSE-MsgGUID: qR/EonNfSlaQOWLRAoymGw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="103618371"
-Received: from pltuser2-ms-7d25.iind.intel.com ([10.190.239.58])
- by orviesa007.jf.intel.com with ESMTP; 08 Jan 2025 06:36:37 -0800
-From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Subject: [PATCH] drm/i915/bios: Define eDP pipe joiner feature for VBT
-Date: Wed,  8 Jan 2025 20:06:38 +0530
-Message-Id: <20250108143638.1125237-1-dnyaneshwar.bhadane@intel.com>
-X-Mailer: git-send-email 2.34.1
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FF8610EBE0;
+ Wed,  8 Jan 2025 15:13:53 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/audio=3A_co?=
+ =?utf-8?q?nvert_to_struct_intel=5Fdisplay?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 08 Jan 2025 15:13:53 -0000
+Message-ID: <173634923306.1326979.8630508053403695522@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <cover.1736345025.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1736345025.git.jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,35 +37,37 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-There is new field "edp pipe joiner feature" size of 2 bytes in the
-eDP VBT block. Each bit represent panel number to be enable/disable
-for this feature.
+== Series Details ==
 
-Default value:
-For ARL platform, 0x0000 to keep the feature disabled by default.
-Xe3lpd onwards, 0xFFFF to keep the feature enable by default by VBT.
+Series: drm/i915/audio: convert to struct intel_display
+URL   : https://patchwork.freedesktop.org/series/143248/
+State : warning
 
-Bspec: 20142
-Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
----
- drivers/gpu/drm/i915/display/intel_vbt_defs.h | 1 +
- 1 file changed, 1 insertion(+)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-index e9b809568cd4..2fdad5170896 100644
---- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-+++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-@@ -1090,6 +1090,7 @@ struct bdb_edp {
- 	u16 edp_dsc_disable;					/* 251+ */
- 	u16 t6_delay_support;					/* 260+ */
- 	u16 link_idle_time[16];					/* 260+ */
-+	u16 edp_pipe_joiner_feature;				/* 261+ */
- } __packed;
- 
- /*
--- 
-2.34.1
+Error: dim checkpatch failed
+8e88d7bd097b drm/i915/audio: convert to struct intel_display
+48a81ac0fa0d drm/i915/audio: convert LPE audio to struct intel_display
+-:425: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#425: FILE: drivers/gpu/drm/i915/display/intel_lpe_audio.h:27:
+ }
++static inline void intel_lpe_audio_teardown(struct intel_display *display)
+
+-:429: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#429: FILE: drivers/gpu/drm/i915/display/intel_lpe_audio.h:30:
+ }
++static inline void intel_lpe_audio_irq_handler(struct intel_display *display)
+
+-:433: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#433: FILE: drivers/gpu/drm/i915/display/intel_lpe_audio.h:33:
+ }
++static inline void intel_lpe_audio_notify(struct intel_display *display,
+
+total: 0 errors, 0 warnings, 3 checks, 417 lines checked
+71ce490396cc drm/i915/audio: rename function prefixes from i915 to intel
+
 
