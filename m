@@ -2,29 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBC50A04E6C
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jan 2025 01:57:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD81EA04E99
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jan 2025 02:17:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7671D10E104;
-	Wed,  8 Jan 2025 00:57:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A20CD10E5F6;
+	Wed,  8 Jan 2025 01:17:00 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="ge785g9W";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EEDD510E104;
- Wed,  8 Jan 2025 00:57:08 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1027703077590594177=="
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C50210E431;
+ Wed,  8 Jan 2025 01:16:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
+ s=201702; t=1736299006;
+ bh=jlOkedypRHGL5Jk53l881gZHsBf4esLyhBlHH6Qm2Rc=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=ge785g9Wb2AvCLIGf5uUtsqYLEkao2Y3mfNXrNvTeRzXKH3EwqJmDP9xyOUG6+LIc
+ 7DSLxj34Tv9WyZdBgNr1a+UNvE7n3pEQ7VF7P2XwQZNg5oiadIVYw9lr+NpF06Xk+Q
+ z8aSvn+FC5OImpftl387EYlBh1suqFNwq/Q2zmEw2aqzlgG5mKBu/IzxZRqAq+EdK5
+ KvZK7lvVPh+de2PNsWzMbmBCNfTL0hrvfsru+q6p9LAjd2Fi1kU/3KWbmKFGf1oX4x
+ zE78KZU3SKfxo4ukyaC+g63Z5NlMa62vZmxrlNUB7kbYo0wftkVcBNjVPtT85rl5Os
+ I9dwcWzZWK72A==
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (Client did not present a certificate)
+ by mail.ozlabs.org (Postfix) with ESMTPSA id 4YSVPT5Fsdz4wcw;
+ Wed,  8 Jan 2025 12:16:45 +1100 (AEDT)
+Date: Wed, 8 Jan 2025 12:16:50 +1100
+From: Stephen Rothwell <sfr@canb.auug.org.au>
+To: Andrew Morton <akpm@linux-foundation.org>, Dave Airlie <airlied@redhat.com>
+Cc: Simona Vetter <simona.vetter@ffwll.ch>, Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>, DRI
+ <dri-devel@lists.freedesktop.org>, Jani Nikula <jani.nikula@intel.com>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Linux Next
+ Mailing List <linux-next@vger.kernel.org>, Yafang Shao
+ <laoar.shao@gmail.com>
+Subject: Re: linux-next: manual merge of the drm-intel tree with the mm tree
+Message-ID: <20250108121650.09a8e828@canb.auug.org.au>
+In-Reply-To: <20250106130348.73a5fae6@canb.auug.org.au>
+References: <20250106130348.73a5fae6@canb.auug.org.au>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/gt=3A_Prevent_un?=
- =?utf-8?q?initialized_pointer_reads_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: apoorva.singh@intel.com
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 08 Jan 2025 00:57:08 -0000
-Message-ID: <173629782897.1135618.11658431392436633080@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20241227112920.1547592-1-apoorva.singh@intel.com>
-In-Reply-To: <20241227112920.1547592-1-apoorva.singh@intel.com>
+Content-Type: multipart/signed; boundary="Sig_/JcddVZ1A/bWQoD+z+uYIICX";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,204 +61,104 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1027703077590594177==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+--Sig_/JcddVZ1A/bWQoD+z+uYIICX
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-== Series Details ==
+Hi All,
 
-Series: drm/i915/gt: Prevent uninitialized pointer reads (rev2)
-URL   : https://patchwork.freedesktop.org/series/142986/
-State : success
+On Mon, 6 Jan 2025 13:03:48 +1100 Stephen Rothwell <sfr@canb.auug.org.au> w=
+rote:
+>
+> Today's linux-next merge of the drm-intel tree got a conflict in:
+>=20
+>   drivers/gpu/drm/i915/display/intel_display_driver.c
+>=20
+> between commit:
+>=20
+>   4fc0cee83590 ("drivers: remove get_task_comm() and print task comm dire=
+ctly")
+>=20
+> from the mm-nonmm-unstable branch of the mm tree and commit:
+>=20
+>   f5d38d4fa884 ("drm/i915/display: convert intel_display_driver.[ch] to s=
+truct intel_display")
+>=20
+> from the drm-intel tree.
+>=20
+> I fixed it up (see below) and can carry the fix as necessary. This
+> is now fixed as far as linux-next is concerned, but any non trivial
+> conflicts should be mentioned to your upstream maintainer when your tree
+> is submitted for merging.  You may also want to consider cooperating
+> with the maintainer of the conflicting tree to minimise any particularly
+> complex conflicts.
+>=20
+> --=20
+> Cheers,
+> Stephen Rothwell
+>=20
+> diff --cc drivers/gpu/drm/i915/display/intel_display_driver.c
+> index 62596424a9aa,497b4a1f045f..000000000000
+> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+> @@@ -389,8 -397,9 +397,8 @@@ void intel_display_driver_resume_access
+>    * Returns %true if the current thread has display HW access, %false
+>    * otherwise.
+>    */
+> - bool intel_display_driver_check_access(struct drm_i915_private *i915)
+> + bool intel_display_driver_check_access(struct intel_display *display)
+>   {
+>  -	char comm[TASK_COMM_LEN];
+>   	char current_task[TASK_COMM_LEN + 16];
+>   	char allowed_task[TASK_COMM_LEN + 16] =3D "none";
+>  =20
+> @@@ -399,14 -408,15 +407,14 @@@
+>   		return true;
+>  =20
+>   	snprintf(current_task, sizeof(current_task), "%s[%d]",
+>  -		 get_task_comm(comm, current),
+>  -		 task_pid_vnr(current));
+>  +		 current->comm, task_pid_vnr(current));
+>  =20
+> - 	if (i915->display.access.allowed_task)
+> + 	if (display->access.allowed_task)
+>   		snprintf(allowed_task, sizeof(allowed_task), "%s[%d]",
+> - 			 i915->display.access.allowed_task->comm,
+> - 			 task_pid_vnr(i915->display.access.allowed_task));
+>  -			 get_task_comm(comm, display->access.allowed_task),
+> ++			 display->access.allowed_task->comm,
+> + 			 task_pid_vnr(display->access.allowed_task));
+>  =20
+> - 	drm_dbg_kms(&i915->drm,
+> + 	drm_dbg_kms(display->drm,
+>   		    "Reject display access from task %s (allowed to %s)\n",
+>   		    current_task, allowed_task);
+>  =20
 
-== Summary ==
+This is now a conflict between the drm tree and the mm-nonmm-unstable
+branch of the mm tree.
 
-CI Bug Log - changes from CI_DRM_15920 -> Patchwork_142986v2
-====================================================
+--=20
+Cheers,
+Stephen Rothwell
 
-Summary
--------
+--Sig_/JcddVZ1A/bWQoD+z+uYIICX
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
 
-  **SUCCESS**
+-----BEGIN PGP SIGNATURE-----
 
-  No regressions found.
+iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmd90gMACgkQAVBC80lX
+0GxO9gf+IhJy3/u0Fo6qFS/cy158ioGh3HI18q9dV8qeSa776WgQVEppSKm++uAb
+3x2mDq1zIjXw1nlUcAHvhWDQQYNamZEQI4P0PY2iutG2WmjC6PmrJp6lctcq3CMw
+Nkgf75eZ5Tapl0Vu8ae5r+5QC31VIFheWHKxOQiPFxv/LP+9Mpip8QO4Aca9kq/N
+KPbtSVv4JHb3sOhgzRAlBEOLMoIIccelPvDZB8axpBCD/G3RJmbnB6IGCfcgSZnc
+CZgtM/bARYxaMXnojRaL/siDtlGL2BwFLh/2fWL0QBH+T9CYJUQP+rYmVVmc/2ip
+WrZiTvs9o2ZX3QAR+iT3CW8TWWjtaA==
+=lLfW
+-----END PGP SIGNATURE-----
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142986v2/index.html
-
-Participating hosts (38 -> 37)
-------------------------------
-
-  Missing    (1): fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_142986v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - bat-rpls-4:         [PASS][1] -> [FAIL][2] ([i915#13401])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15920/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142986v2/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live:
-    - bat-mtlp-6:         [PASS][3] -> [DMESG-FAIL][4] ([i915#13393]) +1 other test dmesg-fail
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15920/bat-mtlp-6/igt@i915_selftest@live.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142986v2/bat-mtlp-6/igt@i915_selftest@live.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         [PASS][5] -> [SKIP][6] ([i915#9197]) +3 other tests skip
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15920/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142986v2/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live:
-    - bat-mtlp-8:         [DMESG-FAIL][7] ([i915#13393]) -> [PASS][8] +1 other test pass
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15920/bat-mtlp-8/igt@i915_selftest@live.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142986v2/bat-mtlp-8/igt@i915_selftest@live.html
-    - bat-twl-2:          [ABORT][9] ([i915#12919] / [i915#13397]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15920/bat-twl-2/igt@i915_selftest@live.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142986v2/bat-twl-2/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@gt_mocs:
-    - bat-twl-2:          [ABORT][11] ([i915#12919]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15920/bat-twl-2/igt@i915_selftest@live@gt_mocs.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142986v2/bat-twl-2/igt@i915_selftest@live@gt_mocs.html
-
-  * igt@i915_selftest@live@workarounds:
-    - {bat-mtlp-9}:       [DMESG-FAIL][13] ([i915#13393]) -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15920/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142986v2/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#12919]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12919
-  [i915#13393]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13393
-  [i915#13397]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13397
-  [i915#13401]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13401
-  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15920 -> Patchwork_142986v2
-
-  CI-20190529: 20190529
-  CI_DRM_15920: 8f14ac27d7b0ff9ff973fa44a67cc9a0ff3acad5 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8179: 183b33f81365dd4a57fe3100a13d3fb13788d158 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_142986v2: 8f14ac27d7b0ff9ff973fa44a67cc9a0ff3acad5 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142986v2/index.html
-
---===============1027703077590594177==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/gt: Prevent uninitialized pointer reads (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/142986/">https://patchwork.freedesktop.org/series/142986/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142986v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142986v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_15920 -&gt; Patchwork_142986v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142986v2/index.html</p>
-<h2>Participating hosts (38 -&gt; 37)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_142986v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>bat-rpls-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15920/bat-rpls-4/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142986v2/bat-rpls-4/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13401">i915#13401</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15920/bat-mtlp-6/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142986v2/bat-mtlp-6/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13393">i915#13393</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15920/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142986v2/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197">i915#9197</a>) +3 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15920/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13393">i915#13393</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142986v2/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
-<li>bat-twl-2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15920/bat-twl-2/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12919">i915#12919</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13397">i915#13397</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142986v2/bat-twl-2/igt@i915_selftest@live.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_mocs:</p>
-<ul>
-<li>bat-twl-2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15920/bat-twl-2/igt@i915_selftest@live@gt_mocs.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12919">i915#12919</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142986v2/bat-twl-2/igt@i915_selftest@live@gt_mocs.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>{bat-mtlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15920/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13393">i915#13393</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142986v2/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_15920 -&gt; Patchwork_142986v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_15920: 8f14ac27d7b0ff9ff973fa44a67cc9a0ff3acad5 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8179: 183b33f81365dd4a57fe3100a13d3fb13788d158 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_142986v2: 8f14ac27d7b0ff9ff973fa44a67cc9a0ff3acad5 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============1027703077590594177==--
+--Sig_/JcddVZ1A/bWQoD+z+uYIICX--
