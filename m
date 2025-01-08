@@ -2,95 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 486E4A0689C
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jan 2025 23:43:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 89DD0A068A5
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jan 2025 23:44:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 58EF610ECA1;
-	Wed,  8 Jan 2025 22:43:40 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=quicinc.com header.i=@quicinc.com header.b="cTQFf1Fr";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23DE610ECA2;
+	Wed,  8 Jan 2025 22:44:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 56CE110E05C;
- Wed,  8 Jan 2025 22:43:38 +0000 (UTC)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 508HMlxa014796;
- Wed, 8 Jan 2025 22:43:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
- cc:content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
- pe4G+UyYb8cZtDj+ltdkPSaWk2YVBHhcyJrZWNEnXxg=; b=cTQFf1FrybgrKyii
- TEz9QmPqOAKYMBdZHoM8l8zluabyB8DGidjRZ1rDRNGn1RRpjUkhF+D9meZIAF3V
- pz+aXaSAyzCLIjDj1WvENwnU1FDxRhj7iO4J7hkXA5An9pgYZFtghKaHgZ3jPIlL
- kGJsn3VwiuqbD5q+4Rapt4w1pQVKG3GblTRh2cxROpSY8jI/ccwoB3/8CbwtadeJ
- wLWnckYSpuyQnco9qra/wG/HawBRjEDfTki1iyJbIlTozUfqYhY4JP/ITrxnJbbP
- mGmJeBdSzrJZJH5uN1PMoHBDOKDp1hHbQMVCC1Lwcxh8MZVlOhO9tZ7GcZH27zZu
- f82rpw==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com
- [129.46.96.20])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 441wq50pke-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 08 Jan 2025 22:43:31 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com
- [10.47.209.196])
- by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 508MhUd5021460
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 8 Jan 2025 22:43:30 GMT
-Received: from [10.71.108.79] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 8 Jan 2025
- 14:43:29 -0800
-Message-ID: <48c109bc-58c2-416a-ba6a-a15ca754f16d@quicinc.com>
-Date: Wed, 8 Jan 2025 14:43:28 -0800
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 856A310ECA2;
+ Wed,  8 Jan 2025 22:44:08 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/4] drm/dp: Add helper to set LTTPRs in transparent
- mode
-To: Abel Vesa <abel.vesa@linaro.org>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
- Danilo Krummrich <dakr@redhat.com>, Jani Nikula
- <jani.nikula@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Rob Clark <robdclark@gmail.com>, Dmitry Baryshkov
- <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>, Marijn Suijten
- <marijn.suijten@somainline.org>
-CC: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio
- <konradybcio@kernel.org>,
- Johan Hovold <johan@kernel.org>, <dri-devel@lists.freedesktop.org>,
- <linux-kernel@vger.kernel.org>, <nouveau@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <linux-arm-msm@vger.kernel.org>, <freedreno@lists.freedesktop.org>,
- Johan Hovold <johan+linaro@kernel.org>
-References: <20250108-drm-dp-msm-add-lttpr-transparent-mode-set-v4-0-918949bc2e3a@linaro.org>
- <20250108-drm-dp-msm-add-lttpr-transparent-mode-set-v4-1-918949bc2e3a@linaro.org>
-Content-Language: en-US
-From: Abhinav Kumar <quic_abhinavk@quicinc.com>
-In-Reply-To: <20250108-drm-dp-msm-add-lttpr-transparent-mode-set-v4-1-918949bc2e3a@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
- signatures=585085
-X-Proofpoint-GUID: R1XT-ytBRZAZ1E1Tb4N3fk9CX-hEtAs7
-X-Proofpoint-ORIG-GUID: R1XT-ytBRZAZ1E1Tb4N3fk9CX-hEtAs7
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 priorityscore=1501
- suspectscore=0 lowpriorityscore=0 impostorscore=0 bulkscore=0 spamscore=0
- clxscore=1011 malwarescore=0 mlxlogscore=970 adultscore=0 phishscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
- definitions=main-2501080186
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/cx0=5Fphy?=
+ =?utf-8?q?=3A_Update_HDMI_TMDS_C20_algorithm_value_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Dnyaneshwar Bhadane" <dnyaneshwar.bhadane@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 08 Jan 2025 22:44:08 -0000
+Message-ID: <173637624853.1425449.857310389535741275@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20241217201301.3593054-1-dnyaneshwar.bhadane@intel.com>
+In-Reply-To: <20241217201301.3593054-1-dnyaneshwar.bhadane@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,37 +37,62 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
+
+Series: drm/i915/cx0_phy: Update HDMI TMDS C20 algorithm value (rev5)
+URL   : https://patchwork.freedesktop.org/series/141280/
+State : warning
+
+== Summary ==
+
+Error: dim checkpatch failed
+dbfd52a793e2 drm/i915/display: Add MTL subplatforms definition
+-:70: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#70: FILE: include/drm/intel/pciids.h:814:
++#define INTEL_MTL_U_IDS(MACRO__, ...) \
+ 	MACRO__(0x7D40, ## __VA_ARGS__), \
++	MACRO__(0x7D45, ## __VA_ARGS__)
+
+-:70: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'MACRO__' - possible side-effects?
+#70: FILE: include/drm/intel/pciids.h:814:
++#define INTEL_MTL_U_IDS(MACRO__, ...) \
+ 	MACRO__(0x7D40, ## __VA_ARGS__), \
++	MACRO__(0x7D45, ## __VA_ARGS__)
+
+-:75: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#75: FILE: include/drm/intel/pciids.h:818:
++#define INTEL_MTL_IDS(MACRO__, ...) \
++	INTEL_MTL_U_IDS(MACRO__, ## __VA_ARGS__), \
+ 	MACRO__(0x7D55, ## __VA_ARGS__), \
+ 	MACRO__(0x7D60, ## __VA_ARGS__), \
+ 	MACRO__(0x7DD5, ## __VA_ARGS__)
+
+-:75: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'MACRO__' - possible side-effects?
+#75: FILE: include/drm/intel/pciids.h:818:
++#define INTEL_MTL_IDS(MACRO__, ...) \
++	INTEL_MTL_U_IDS(MACRO__, ## __VA_ARGS__), \
+ 	MACRO__(0x7D55, ## __VA_ARGS__), \
+ 	MACRO__(0x7D60, ## __VA_ARGS__), \
+ 	MACRO__(0x7DD5, ## __VA_ARGS__)
+
+total: 2 errors, 0 warnings, 2 checks, 46 lines checked
+2b9ddd4f3e1b drm/i915/cx0_phy: Update HDMI TMDS C20 algorithm value
+-:119: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#119: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:301:
++#define   C20_PHY_TX_DCC_CAL_RANGE_MASK ^IREG_GENMASK16(11, 8)$
+
+-:141: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
+#141: FILE: drivers/gpu/drm/i915/display/intel_display_device.h:242:
++#define IS_ARROWLAKE_S_BY_HOST_BRIDGE_ID(id)  \
++	(((id) == ARLS_HOST_BRIDGE_PCI_ID1) || \
++	 ((id) == ARLS_HOST_BRIDGE_PCI_ID2) || \
++	 ((id) == ARLS_HOST_BRIDGE_PCI_ID3) || \
++	 ((id) == ARLS_HOST_BRIDGE_PCI_ID4))
+
+total: 0 errors, 1 warnings, 1 checks, 103 lines checked
 
 
-On 1/8/2025 6:31 AM, Abel Vesa wrote:
-> According to the DisplayPort standard, LTTPRs have two operating
-> modes:
->   - non-transparent - it replies to DPCD LTTPR field specific AUX
->     requests, while passes through all other AUX requests
->   - transparent - it passes through all AUX requests.
-> 
-> Switching between this two modes is done by the DPTX by issuing
-> an AUX write to the DPCD PHY_REPEATER_MODE register.
-> 
-> Add a generic helper that allows switching between these modes.
-> 
-> Also add a generic wrapper for the helper that handles the explicit
-> disabling of non-transparent mode and its disable->enable sequence
-> mentioned in the DP Standard v2.0 section 3.6.6.1. Do this in order
-> to move this handling out of the vendor specific driver implementation
-> into the generic framework.
-> 
-> Tested-by: Johan Hovold <johan+linaro@kernel.org>
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> ---
->   drivers/gpu/drm/display/drm_dp_helper.c | 62 +++++++++++++++++++++++++++++++++
->   include/drm/display/drm_dp_helper.h     |  2 ++
->   2 files changed, 64 insertions(+)
-> 
-
-Reviewed-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
