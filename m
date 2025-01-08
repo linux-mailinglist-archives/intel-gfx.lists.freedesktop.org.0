@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1438DA062DC
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jan 2025 18:02:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DFD76A062E0
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jan 2025 18:02:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B20F310E249;
-	Wed,  8 Jan 2025 17:02:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 86FB410E904;
+	Wed,  8 Jan 2025 17:02:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g9L5jDs1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A3FCc3Kt";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D9B310E249
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Jan 2025 17:02:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A707C10E90A
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Jan 2025 17:02:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736355758; x=1767891758;
+ t=1736355768; x=1767891768;
  h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=iNwu0MCUDPiMIdjppVp0xuJ4IPqylrPLFipZUWICyqw=;
- b=g9L5jDs1atZ0CckKdKWKm4ov+8Vkh4zpY5rVifnX12wwAebp+Sq4CxYp
- NlM7zY+MWL9l7KYsUzqmJMwRHglYZ40QXsdZWscC7/uiivV71riqVP2xl
- KajOAT4Z+9LhCGEvX4x0C+yrls50Vep/04CxeCgfphprCBZg/xQ4buqwp
- oGAZVRE/TkV223gSrUtH8BtCsMeCIBk2t/Kn+5FVaDm2mSTqOXOwTCR/4
- ycSFvR8T2zrXYvt3CdVlw0hqJ+fQAZ599FMofyfGciaYLoPu1n9W9RfWS
- ckvDnn/oCVcNf3t78il34/FjJojLwP7ge1YO5SxuFMgYMkc2rIZ+Fdgv3 A==;
-X-CSE-ConnectionGUID: nx2dS9FwSJmPhhWab+Xtnw==
-X-CSE-MsgGUID: XU5phGWvRqCE2ZY5tNo5dA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11309"; a="40269646"
-X-IronPort-AV: E=Sophos;i="6.12,298,1728975600"; d="scan'208";a="40269646"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jan 2025 09:01:54 -0800
-X-CSE-ConnectionGUID: UsoABEnBQNu8PAxEJ4E8DQ==
-X-CSE-MsgGUID: kcPvcOtcSjyXZy6sgZlxlg==
+ mime-version; bh=P8qRUaFF/8XJYl0ICjbcUv4GCSXyMSj+iqGX/WCjK8k=;
+ b=A3FCc3Kt17j4r3rzDZJ3TPtQQwV/ppu3RCix+osilgAMzqRu2X/3o5u+
+ rc4cxbm2SLtpYC8AZyT231qr/yAIfoA/2xCN73gMzbsq0Dp0UK7j1N0nJ
+ peF9slCm6LFyDHpUdhu/V+/asyio9Y2AZVMwhOG6R3rwRO3+eO7dDlmP7
+ QbHIOPRddNqfSDHLCKRdSnzzjKONzQ+ufCmv1Dh9rgUICYw3hZiDOExTw
+ /xldAW/uezt42Bzm2gbwekx7FAp0vGC1clOaFaI72AcSetY/Xh7/7HaTv
+ DYAYwBZRIeKX/RldY5d5aAnSQM9o43N3q7lebvGFP1vFfWrxIjHN4hjLO Q==;
+X-CSE-ConnectionGUID: ICOjwad0TZ+oAX04zlX2mQ==
+X-CSE-MsgGUID: WSpQU46UQiGXBoR3PlgLhw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11309"; a="40359554"
+X-IronPort-AV: E=Sophos;i="6.12,298,1728975600"; d="scan'208";a="40359554"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jan 2025 09:02:48 -0800
+X-CSE-ConnectionGUID: zI7YjqhAT5q42O/hfg8Wig==
+X-CSE-MsgGUID: JDK6tW6+Q5u2AsccdZ5cgg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,298,1728975600"; d="scan'208";a="103366337"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="107757544"
 Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.152])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jan 2025 09:01:53 -0800
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jan 2025 09:02:47 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 3/5] drm/i915/dp_mst: Simplify using to_intel_display()
- passing it an intel_connector pointer
-In-Reply-To: <20250108151916.491113-4-imre.deak@intel.com>
+Subject: Re: [PATCH 4/5] drm/i915/dp_mst: Simplify getting a drm_device
+ pointer needed by to_i915()
+In-Reply-To: <20250108151916.491113-5-imre.deak@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20250108151916.491113-1-imre.deak@intel.com>
- <20250108151916.491113-4-imre.deak@intel.com>
-Date: Wed, 08 Jan 2025 19:01:49 +0200
-Message-ID: <878qrlkznm.fsf@intel.com>
+ <20250108151916.491113-5-imre.deak@intel.com>
+Date: Wed, 08 Jan 2025 19:02:44 +0200
+Message-ID: <875xmpkzm3.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -69,54 +69,55 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Wed, 08 Jan 2025, Imre Deak <imre.deak@intel.com> wrote:
-> Simplify the use of to_intel_display() in intel_dp_mst.c passing it the
-> already available intel_connector pointer, instead of looking up a
-> drm_device pointer for the same purpose.
+> Simplify getting a drm_device pointer when using to_i915() in
+> intel_dp_mst.c from the already available intel_display object, instead
+> of getting it from a DRM KMS object.
+>
+> While at it rename dev_priv to i915, following the driver's standard
+> terminology.
 >
 > Suggested-by: Jani Nikula <jani.nikula@intel.com>
 > Signed-off-by: Imre Deak <imre.deak@intel.com>
 
-I guess I would've just squashed this to the previous patch, but
-*shrug*.
+I don't much care about dev_priv -> i915 renames anymore, since the goal
+is to remove both. Anyway,
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
 
 > ---
 >  drivers/gpu/drm/i915/display/intel_dp_mst.c | 6 +++---
 >  1 file changed, 3 insertions(+), 3 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> index a7bfedc5945ea..85f451c986ae8 100644
+> index 85f451c986ae8..fbc504037a969 100644
 > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
 > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> @@ -1351,7 +1351,7 @@ static bool mst_stream_initial_fastset_check(struct intel_encoder *encoder,
->  static int mst_connector_get_ddc_modes(struct drm_connector *_connector)
+> @@ -1423,7 +1423,7 @@ mst_connector_mode_valid_ctx(struct drm_connector *_connector,
 >  {
 >  	struct intel_connector *connector = to_intel_connector(_connector);
-> -	struct intel_display *display = to_intel_display(connector->base.dev);
-> +	struct intel_display *display = to_intel_display(connector);
->  	struct intel_dp *intel_dp = connector->mst_port;
->  	const struct drm_edid *drm_edid;
->  	int ret;
-> @@ -1422,7 +1422,7 @@ mst_connector_mode_valid_ctx(struct drm_connector *_connector,
->  			     enum drm_mode_status *status)
->  {
->  	struct intel_connector *connector = to_intel_connector(_connector);
-> -	struct intel_display *display = to_intel_display(connector->base.dev);
-> +	struct intel_display *display = to_intel_display(connector);
->  	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+>  	struct intel_display *display = to_intel_display(connector);
+> -	struct drm_i915_private *dev_priv = to_i915(connector->base.dev);
+> +	struct drm_i915_private *i915 = to_i915(display->drm);
 >  	struct intel_dp *intel_dp = connector->mst_port;
 >  	struct drm_dp_mst_topology_mgr *mgr = &intel_dp->mst_mgr;
-> @@ -1548,7 +1548,7 @@ mst_connector_detect_ctx(struct drm_connector *_connector,
->  			 struct drm_modeset_acquire_ctx *ctx, bool force)
->  {
->  	struct intel_connector *connector = to_intel_connector(_connector);
-> -	struct intel_display *display = to_intel_display(connector->base.dev);
-> +	struct intel_display *display = to_intel_display(connector);
->  	struct intel_dp *intel_dp = connector->mst_port;
+>  	struct drm_dp_mst_port *port = connector->port;
+> @@ -1442,7 +1442,7 @@ mst_connector_mode_valid_ctx(struct drm_connector *_connector,
+>  		return 0;
+>  	}
 >  
->  	if (!intel_display_device_enabled(display))
+> -	*status = intel_cpu_transcoder_mode_valid(dev_priv, mode);
+> +	*status = intel_cpu_transcoder_mode_valid(i915, mode);
+>  	if (*status != MODE_OK)
+>  		return 0;
+>  
+> @@ -1526,7 +1526,7 @@ mst_connector_mode_valid_ctx(struct drm_connector *_connector,
+>  		return 0;
+>  	}
+>  
+> -	*status = intel_mode_valid_max_plane_size(dev_priv, mode, num_joined_pipes);
+> +	*status = intel_mode_valid_max_plane_size(i915, mode, num_joined_pipes);
+>  	return 0;
+>  }
 
 -- 
 Jani Nikula, Intel
