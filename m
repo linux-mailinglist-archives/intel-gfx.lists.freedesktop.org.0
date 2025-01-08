@@ -2,167 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93761A05DD6
-	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jan 2025 15:01:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C8C9A05DDD
+	for <lists+intel-gfx@lfdr.de>; Wed,  8 Jan 2025 15:03:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37AE510E8A6;
-	Wed,  8 Jan 2025 14:01:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C69F110E8A0;
+	Wed,  8 Jan 2025 14:03:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XxzFqamR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IL+h7Iyk";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3352710E8A6
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Jan 2025 14:01:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5369010E8A0;
+ Wed,  8 Jan 2025 14:03:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736344871; x=1767880871;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=Rs+RhUQn/nnQF7/ZD01pGg1q6DkFdmxcpkx21HVUy2A=;
- b=XxzFqamRyNnWdLsep4WTlb+/n7PDeBuDHrl9nI1XxqeUNUNoaEBA3U5x
- cOt+mXF/Hdz8Li1NH7yX61wR8LA/1zSHnUOSrqivDSimdtzevP9G2j8Cc
- wZqsXYmDkGOkp2NwbFlpz4LqklXuvFvA3aWtiGZEyg0MEEIqLBUXkjk1I
- 8SFVsJRKe/QzZ4iI6w35sIHbFUeO2cEnnIV7uJwXZ43zAH/cfqv2rC42p
- zDyGSisnsIUVLwuJmrw0r/qqg2qP+jStbK6cweFgIki8LRh13OOOv1EbP
- nMUeWAcZzkTkelDkVD6vOtPpnrbDBfipqvSJr5cfk9DdrhYLQw+Too5Wn A==;
-X-CSE-ConnectionGUID: tLEGQbH8SnKK0MatX2jDEQ==
-X-CSE-MsgGUID: 87Vlmx25Q2Csdy3jbMgtrg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11309"; a="40249320"
-X-IronPort-AV: E=Sophos;i="6.12,298,1728975600"; d="scan'208";a="40249320"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jan 2025 06:01:10 -0800
-X-CSE-ConnectionGUID: EmF8c6IQQHWJTi5UrqoTkQ==
-X-CSE-MsgGUID: PhETQ0mkQhOpCw0owJ7LNw==
+ t=1736344983; x=1767880983;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=1nNlY30ugUeHk8TKvg2DGJBwqKrNaJfK5znfTug4h1E=;
+ b=IL+h7IykJqMnvZizdcYNrM04CaWCEu/NtbOAp2nHOLi5S3HdLnmt5GcU
+ c6kPE05F6kdqIExYhuZOcHt5Cl8huBja+Ni7bUhI1OyK1RlMCl2Gy4GlP
+ TNjiHmF0C8J1sZM2/4YWum+yPJMAJr8NLdG8GI2EmNrDMz3TDRoOeU8hA
+ YzJwojFaQzPSU4Wbu1f5Kr1KOLi4tqkT/idNMU9O1HtbO0MN4cZRA+f3s
+ qZ/eJeboXyuJ0h0Ces4zTcvIU5wpjpv8KAw/HIWoJA+7h3wFyhR7QceNp
+ Rx+b5Gwfe5Zc4gkWA1YdAVcKPHj16WUQCyEs7B0mU3q42zKj2xuhCSae2 A==;
+X-CSE-ConnectionGUID: M2C5XMmsT5qxwitx5cko+Q==
+X-CSE-MsgGUID: tP+MCv8tRzu5ZhoQJuGkeA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11309"; a="24175508"
+X-IronPort-AV: E=Sophos;i="6.12,298,1728975600"; d="scan'208";a="24175508"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jan 2025 06:03:02 -0800
+X-CSE-ConnectionGUID: IA2A5eWXTOOz2PG1Z0j8LA==
+X-CSE-MsgGUID: F7po2wkXQ/WfQCmXILPChQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="107721614"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmviesa005.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 08 Jan 2025 06:01:10 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Wed, 8 Jan 2025 06:01:05 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Wed, 8 Jan 2025 06:01:05 -0800
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.48) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Wed, 8 Jan 2025 06:01:05 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lEYI40d4/V35Q4InltJskRIZbSSL8uvvWkSubG5srdkkARS0Cp0he+tn4BwFZPDrXmBRqAEEwLNrkRUMNoL4Pv2Mxb609oW55YnbdeCbPXB2T+KkutGYzEVHkemA4iFqXX74sxd8hetwP8LGlMrfGAJ3YJzq8sn6mrH2uzG/ljSU3JnSMRkZaYlhlG0D+s1qOzDaCy83ls6wFU5amhm07EQORq8UL5BquRNoOyH9LIB6zBrsv9FEQuImyDg0GP+g4PPHflPX6M7PbWSBJaCBGVPyiZHfjcqa3F2gOL3FcLewg3AFq7POllExub9LlKqpuJyG94njJ5cxwRQK6sxMPg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rb7xiJkjoQSDcLQGyAwaNhSAurHMwOr/s4r5+YpJeNw=;
- b=nYshV7Jo8grREHMncEQgjVTZKld9ByktPXadp6FX5PzCikB9ob9Utr9Yr7A+UxyvYuo8lKnWpzLuSvZQyp4Pk7XGwCsi3EH0lx86PclQHsijbBII03A40kx+NjvbQ354gcUYGEl/2yd1u33erqPXoO9nZLvj2vLXYu7jX4bAjDpqdrYiRv9tkGMpu6DrNiyCQtVTgRvCZpGZI9+7NLhKRrNl5dUwJdX6UqX47IJXnhMHTyjS/cXb5lgcvODWMHTHHBj/u2w7UWKw+9GWXM3oPrLYbF8hDtjttYhzqBUXnVEE5VLWscT1REqN47p4JOkNrDSuofx80pB/LZtFA+bVDA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7SPRMB0046.namprd11.prod.outlook.com (2603:10b6:510:1f6::20)
- by MN6PR11MB8171.namprd11.prod.outlook.com (2603:10b6:208:471::9)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8335.11; Wed, 8 Jan
- 2025 14:01:02 +0000
-Received: from PH7SPRMB0046.namprd11.prod.outlook.com
- ([fe80::5088:3f5b:9a15:61dc]) by PH7SPRMB0046.namprd11.prod.outlook.com
- ([fe80::5088:3f5b:9a15:61dc%4]) with mapi id 15.20.8314.015; Wed, 8 Jan 2025
- 14:01:02 +0000
-Date: Wed, 8 Jan 2025 09:00:59 -0500
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Krzysztof Karas <krzysztof.karas@intel.com>
-CC: <apoorva.singh@intel.com>, Andi Shyti <andi.shyti@kernel.org>,
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="134004368"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.152])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jan 2025 06:02:59 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Hogander, Jouni" <jouni.hogander@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Manna,
+ Animesh" <animesh.manna@intel.com>, "intel-gfx@lists.freedesktop.org"
  <intel-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/i915/gt: Prevent uninitialized pointer reads
-Message-ID: <Z36FG040IDskc3_1@intel.com>
-References: <20241227112920.1547592-1-apoorva.singh@intel.com>
- <44nimknwum42txkpwoj6yavnfby2faz2nyapbr4k2i2up6y2jv@l76t4rtzknog>
- <65l3gngdry65oy2itvpvydorrmy54efoc3uxbhgvejcwapxz4g@ltqxje6r2snc>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <65l3gngdry65oy2itvpvydorrmy54efoc3uxbhgvejcwapxz4g@ltqxje6r2snc>
-X-ClientProxiedBy: MW4PR04CA0057.namprd04.prod.outlook.com
- (2603:10b6:303:6a::32) To PH7SPRMB0046.namprd11.prod.outlook.com
- (2603:10b6:510:1f6::20)
+Cc: "B, Jeevan" <jeevan.b@intel.com>
+Subject: Re: [PATCH v3 4/6] drm/i915/lobf: Add debug interface for lobf
+In-Reply-To: <bf625a3b03eb355c37f5b2816c1046e1566aaa85.camel@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250106041516.924101-1-animesh.manna@intel.com>
+ <20250106041516.924101-5-animesh.manna@intel.com>
+ <bf625a3b03eb355c37f5b2816c1046e1566aaa85.camel@intel.com>
+Date: Wed, 08 Jan 2025 16:02:56 +0200
+Message-ID: <87o70hl7xr.fsf@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7SPRMB0046:EE_|MN6PR11MB8171:EE_
-X-MS-Office365-Filtering-Correlation-Id: c385a9f6-968b-4cba-ad19-08dd2fece303
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?OzTVJSsHujvOibKTP9hYWBqBKA1rlWPqMcTLgEki2W6UG4oe5L0u7ggQeQDG?=
- =?us-ascii?Q?1TOtdG6AY3oEYpEs3g5tvc4T5ruzO2wxBs+qn3s5RMTEIa9wOObW9sL/PU0f?=
- =?us-ascii?Q?gu2JT80jyvfv4z+LlWcRk19nmRa2DuBcX3o0VZrLo3NOlo50YKD19mSYfcgW?=
- =?us-ascii?Q?GW9zu9yf8+ROuDHycikq75AB30DV0yIXjXD1SPjTb6pNDt/C8m8wiMfYw9hr?=
- =?us-ascii?Q?guPEl6lk6l07mEH0NBOHj4l2Izzc3Ahy/iQrRsyWF26uROTMRZ0wdHPpOlp3?=
- =?us-ascii?Q?JdYA4NfDLQmWyKocEJz0/2qjoE06kmt6ShdyEk9C4C0ADqNzehg46cMOz281?=
- =?us-ascii?Q?qjR5F6ZZZIdncHfu+MAzpF75085u9nSuUxLF1Ugl70Ip+Aa8gZgDhBPkK+KE?=
- =?us-ascii?Q?Oov7NrT/9tS0Kk/Gx3tX2IqtfPpjIqhMlSEB8sYMjHgKx9qJEenXZvQkxtbE?=
- =?us-ascii?Q?61JAgYNy/gPIwsWw9G7KGsfnNTxUA5wSzc8OaSSDSo1BTY6CXSqFOUhnHGSK?=
- =?us-ascii?Q?J5tDqUHXzK39DPCVYJ5CslabsqmIY2ry3znqL3cshvEq2FMjJNSHnEnlQ6dw?=
- =?us-ascii?Q?Ep+/saH6oOvaehR+RXLfbf8xW7nemEYhyUsbkQrN10k8cgw6vaSnhR5TwnF8?=
- =?us-ascii?Q?EYq5Ywv0btKU8itP6p/ozO6UY+0OVAwc6+HhhH2/7f56xP6arX926tCvVHj7?=
- =?us-ascii?Q?5+jjo0/6xJ3u/OQoqWAgCzvmS45QN2lRzmrZP89F1TuMBlJ/1cYVCK4+I07P?=
- =?us-ascii?Q?NNugBt4E4ixI5mLjr9uC18ca6f3GjrDlDeBWpz9tZcaTzo6UlLjB7sudJPPN?=
- =?us-ascii?Q?EYZk22yuFaOaQJVR01/R0Ec3gH8t4YItSOeDsgr/A/Sp/ST1A/hmuHssFz3i?=
- =?us-ascii?Q?au9PKGp1r8CXPgDUcCQ/S7XG0kIxLeX/6lgRiVRycSsFfLB+p3etPkhb56up?=
- =?us-ascii?Q?/nbGbBqABY5gqV467r9tZj68UhqFKAa9mW89SlcD+9CGmydtoaeWp4AuiM00?=
- =?us-ascii?Q?iyeWkobzps1YNYs/+J+KGjkJWmNmBJ+DSzFHlNC8JVyVMeyD7MncGtNdVn7q?=
- =?us-ascii?Q?cKKUeMtuPAO7D3rZyTf1F7Ipy5UBF6VnnZ7u3WDgrWW7p4u4XhZCg85ke3zD?=
- =?us-ascii?Q?UjdERLNDu0zLqjWYPBTv89GVJQFKSeMCsgJDD/3Iavv+zc7H8LE/l6fwUf3M?=
- =?us-ascii?Q?Gltxvz1TO87sFyfGv/P1X+cJKzGBJAn2t/j1HeMoONe5V341Vc9Kfw7IcyhE?=
- =?us-ascii?Q?v5lTyH4n8R2jN2JI89yxJfCnspgcdeEKPHnR6NQ8dwxu9k0p68CtDL0WC3KY?=
- =?us-ascii?Q?TLEzWsWxKeH4qQSMi4oppzuuL037xCYTGAHR+H8Ttct2NKVcybz1SK9quqzX?=
- =?us-ascii?Q?En6P9/7al46GsUXwQYB/Vyj2j1kk?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7SPRMB0046.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?zpAaQ+ASdMC21kZsK3p9RnPab7fC37V21JY86TKzQQzrrX8MKJNt9DjEzEoO?=
- =?us-ascii?Q?2qZhxKqiwcTs8UsUGFseDj7uI/SJwgLaNkv56Z0nM9s6KBhHMy/+amPGQtmC?=
- =?us-ascii?Q?ezMixzI4p8M0tTFG5LU8SlZ6sIInoUo2i/4UlSvzU3l5OBx3a6jVEbjshn1O?=
- =?us-ascii?Q?vdCvsQZ2y9iFWOXPSm6qFwg6JxJesH4h4upiSQxWYCIB0FCGdNYzdYpKhrFY?=
- =?us-ascii?Q?/ZZWsIKKuECxOfissJsbNgZi7LX3SXCK9j7OzCJoEAuadzW9+p7KxsuKAbpz?=
- =?us-ascii?Q?MTaicvVsmhhhS5KtCRjFv20vcIy8KA/ZydrGhSH3ZCSV17KN3kmKihDUq5D/?=
- =?us-ascii?Q?XYpUbJ5CTO9BzPJvO0WF5n4Jn6milrhO+qcbKsLOCspDMYrEaxR8dZwyUDJI?=
- =?us-ascii?Q?sDycLDENlwLHwIx08y6viKS2IXX+Sd6DIzwa0KpWlMpG8Kh0jK6Yxa/MHqck?=
- =?us-ascii?Q?p5MDsM8UTRqSm67HyHGxra+JrEP1XR/DTgm42G4h9gsWywkfM6Q5MnwILMqv?=
- =?us-ascii?Q?3y4nRkPbkrrVje63O/rTp3Y4a13SBtHYkgNAWVyk7pQk77+I+bZDGCGcETdS?=
- =?us-ascii?Q?V1uGyLvhRy0ehyZSzMgWYMpMJ3BPueVx4u+zy4s23/pC+2vfWWpjEn7JLQAK?=
- =?us-ascii?Q?0tI78ethnQN58qbj3c1qGrOqKL4lk03b8GY28P/NY0Z1ynT4w4VXGI+hRpX6?=
- =?us-ascii?Q?3EclmAcBDPLzZmp60UNlLAEAQHZsY7ZbLPikYkeh1YyDfZTUcSWvlrBlcwKV?=
- =?us-ascii?Q?5xgk5MNwcZxEzo6ACfexVknCllOBHEa1hcMma6mEqE1VRvAubMjYDq5gl4oA?=
- =?us-ascii?Q?QQMjSXTEdn182/G48au97hTD16tBHTFRwnMuk4EE1aX/FDnVyIBgz/Xd6XoV?=
- =?us-ascii?Q?rcJ0bZmeBHd//FoCBgLvhliDuv5xLRMmN+22T4jWhyRhb0r92L1TZnEcEI3O?=
- =?us-ascii?Q?h3xXS1BQ8uwIvLFluA4M5Tf0Q6bgwOuVsHuwKcyomuw7ELUXfrx5d0Ud+9KU?=
- =?us-ascii?Q?dEYA7bue2YeVubxv2Mh/1UOQv8lsJYMhm9SW/39l7M+vC7gvCuS1D6AzGnON?=
- =?us-ascii?Q?F9/Fveng14xjBaGoXjkIAui35KF322yJtg6GiClqf1G8/igaEv991M0CiEnk?=
- =?us-ascii?Q?Mkz+9Q/my+8r4bG+QA8lV0QdJZwthelZP+IOkFJdlANAXv3gWnd5dOLkgPQk?=
- =?us-ascii?Q?Nbgb8XJdSdTDmuVXy5RF8Oqkj+vFa6DpZ4arLoz2M48/oSgTSysqvNk2jfuI?=
- =?us-ascii?Q?sKWOdgtBeXSh26YGjFz1ce/ntIHmf4lPLnyLWi5xkw072HKJp8GTdfzR26lc?=
- =?us-ascii?Q?d51fziKGlvN1hwRTjtYg56GwSwU3DDPfG0pwNRJlyXZVvCMMJD30oEz4lruy?=
- =?us-ascii?Q?66sx4ui1OstXts2Iq4Pol0Yc/F4gxS/gWcq5P17uyR26vo5m5+gxYbIBKhZE?=
- =?us-ascii?Q?l1YJ+vFO0vWINzKmxj5LdPU1FHi+Tyj1BkulQ3qOS1qDZhVWCoVqbfN1j86b?=
- =?us-ascii?Q?iVk/rLb/F52/OT+L3Qayaac9HOJlL6MrDhGCsQS9swsVzmotcx8uL0xC4Jle?=
- =?us-ascii?Q?f/kjSGJV3TI1PDcxLEvdp9xOiiCxhvbaQWDH+S8t3Wbtqh+vQSKUu/TnFqBK?=
- =?us-ascii?Q?eQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: c385a9f6-968b-4cba-ad19-08dd2fece303
-X-MS-Exchange-CrossTenant-AuthSource: PH7SPRMB0046.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jan 2025 14:01:02.5991 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: NxzFJzmJ0rI7U8b/xcdaYuRcfk6r3XeH7bPAykFtLc7TtgqLb0yZfV3fyyySZ0IA25iEjaEjlCPhrvDnRgeaQA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN6PR11MB8171
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -178,46 +74,148 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Dec 30, 2024 at 02:24:45PM +0000, Krzysztof Karas wrote:
-> Hi Apoorva and Andi,
-> 
-> > > Initialize rq to NULL to prevent uninitialized pointer reads.
-> > 
-> > where is it happening?
-> > 
-> > Andi
-> 
-> There are two instances that I see:
-> 1) err = fn(..., &rq); <- this probably will set the rq (at least
-> looking at the functions that are used to set "fn", when calling
-> "clear()"), but from the clear()'s execution perspective there are
-> no guarantees that this value will be initialized.
-> 
-> 2) If an "err" is set and detected before "rq" is initialized, then
-> there is a path that the execution might take that leads to reading
-> uninitialized "rq":
-> if all calls to i915_gem_object_pin_map() would result in -ENXIO,
-> then the loop would exit with a "continue" and err = -ENXIO. This then
-> triggers "if (err)" after the loop and takes the second "if", which
-> starts by checking the value of "rq", which at this point would still
-> be uninitialized.
-> 
-> I think this initialization removes these corner cases, so it is worth
-> introducing.
+On Wed, 08 Jan 2025, "Hogander, Jouni" <jouni.hogander@intel.com> wrote:
+> On Mon, 2025-01-06 at 09:45 +0530, Animesh Manna wrote:
+>> Add an interface in debugfs which will help in debugging LOBF
+>> feature.
+>>
+>> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_alpm.c     | 51
+>> +++++++++++++++++++
+>>  .../drm/i915/display/intel_display_types.h    |  6 +++
+>>  2 files changed, 57 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c
+>> b/drivers/gpu/drm/i915/display/intel_alpm.c
+>> index 197c67363f0e..1cc0e5ed3f74 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_alpm.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_alpm.c
+>> @@ -276,6 +276,9 @@ void intel_alpm_lobf_compute_config(struct
+>> intel_dp *intel_dp,
+>>       int waketime_in_lines, first_sdp_position;
+>>       int context_latency, guardband;
+>>
+>> +     if (intel_dp->alpm_parameters.lobf_debug &
+>> I915_LOBF_DEBUG_DISABLE)
+>> +             return;
+>> +
+>>       if (!intel_dp_is_edp(intel_dp))
+>>               return;
+>>
+>> @@ -448,6 +451,51 @@ static int i915_edp_lobf_info_show(struct
+>> seq_file *m, void *data)
+>>
+>>  DEFINE_SHOW_ATTRIBUTE(i915_edp_lobf_info);
+>>
+>> +static int
+>> +i915_edp_lobf_debug_get(void *data, u64 *val)
+>> +{
+>> +     struct intel_display *display =3D data;
+>> +     struct intel_encoder *encoder;
+>> +     int ret =3D -ENODEV;
+>> +
+>> +     for_each_intel_dp(display->drm, encoder) {
+>> +             struct intel_dp *intel_dp =3D
+>> enc_to_intel_dp(encoder);
+>> +
+>> +             if (!intel_dp_is_edp(intel_dp))
+>> +                     return ret;
+>> +
+>> +             // TODO: split to each edp transcoder.
+>> +             *val =3D READ_ONCE(intel_dp-
+>> >alpm_parameters.lobf_debug);
+>> +             ret =3D 0;
+>> +     }
+>> +
+>> +     return ret;
+>> +}
+>> +
+>> +static int
+>> +i915_edp_lobf_debug_set(void *data, u64 val)
+>> +{
+>> +     struct intel_display *display =3D data;
+>> +     struct intel_encoder *encoder;
+>> +     int ret =3D -ENODEV;
+>> +
+>> +     for_each_intel_dp(display->drm, encoder) {
+>> +             struct intel_dp *intel_dp =3D
+>> enc_to_intel_dp(encoder);
+>> +
+>> +             if (!intel_dp_is_edp(intel_dp))
+>> +                     return ret;
+>> +
+>> +             // TODO: split to each edp transcoder.
+>> +             intel_dp->alpm_parameters.lobf_debug =3D val;
+>> +     }
+>> +
+>> +     return ret;
+>> +}
+>> +
+>> +DEFINE_SIMPLE_ATTRIBUTE(i915_edp_lobf_debug_fops,
+>> +                     i915_edp_lobf_debug_get,
+>> i915_edp_lobf_debug_set,
+>> +                     "%llu\n");
+>> +
+>>  void intel_alpm_lobf_debugfs_add(struct intel_connector *connector)
+>>  {
+>>       struct intel_display *display =3D to_intel_display(connector);
+>> @@ -457,6 +505,9 @@ void intel_alpm_lobf_debugfs_add(struct
+>> intel_connector *connector)
+>>           connector->base.connector_type !=3D
+>> DRM_MODE_CONNECTOR_eDP)
+>>               return;
+>>
+>> +     debugfs_create_file("i915_edp_lobf_debug", 0644, root,
+>> +                         connector, &i915_edp_lobf_debug_fops);
+>> +
+>>       debugfs_create_file("i915_edp_lobf_info", 0444, root,
+>>                           connector, &i915_edp_lobf_info_fops);
+>>  }
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
+>> b/drivers/gpu/drm/i915/display/intel_display_types.h
+>> index f230163226d1..37f061acb204 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+>> @@ -1800,6 +1800,12 @@ struct intel_dp {
+>>               u8 aux_less_wake_lines;
+>>               u8 silence_period_sym_clocks;
+>>               u8 lfps_half_cycle_num_of_syms;
+>> +
+>> +#define I915_LOBF_DEBUG_MODE_MASK            0x0f
+>> +#define I915_LOBF_DEBUG_DEFAULT                      0x00
+>> +#define I915_LOBF_DEBUG_DISABLE                      0x01
+>> +#define I915_LOBF_DEBUG_FORCE_EN             0x02
+>
+> FORCE_EN is not needed. You can achieve LOBF (if it's possible) by
+> disabling PSR/PR.
 
-To be really honest, I'm not entirely convinced of the corner cases,
-but just because this function is huge and this pointer is used in
-the very end, far from any of the path setting it, I believe it is
-already a good reason for introducing this protection.
+To be honest, I don't like adding these debug mode masks at all. Don't
+make it so complicated. Moreover, the only user of any of these is
 
-Also, the function can change in the future and this could be
-forgotten.
+	intel_dp->alpm_parameters.lobf_debug & I915_LOBF_DEBUG_DISABLE
 
-So, I just pushed the patch to drm-intel-gt-next.
+but lobf_debug is *boolean*!
 
-Thanks for the patch and review,
-Rodrigo.
+Keep it simple.
 
-> 
-> Krzysztof
-> 
+And "i915" naming in display code is discouraged, unless it's in
+reference to i915 as the platform.
+
+BR,
+Jani.
+
+
+>
+> BR,
+>
+> Jouni H=C3=B6gander
+>
+>> +             bool lobf_debug;
+>>       } alpm_parameters;
+>>
+>>       u8 alpm_dpcd;
+>
+
+--=20
+Jani Nikula, Intel
