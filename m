@@ -2,166 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20810A08069
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jan 2025 20:04:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 65F11A080FA
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jan 2025 21:00:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1587010EF0B;
-	Thu,  9 Jan 2025 19:04:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A3DF10E49C;
+	Thu,  9 Jan 2025 20:00:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="khvjXtYo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m0VuuKeT";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 809E710EF12
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Jan 2025 19:04:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39ABF10E49C;
+ Thu,  9 Jan 2025 20:00:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736449497; x=1767985497;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=rcW1T0BBkQC7q4x/SiURSLMro2Sh+Om1DwreqeF+Smg=;
- b=khvjXtYocDwRj++YrMf/gWopCR8XKUANqX4V4ZPypp63CPsMd2z9U6cz
- Dg4OZxvGbEiZhgnFpg3rf2O6+qxLj0N2mDNHn4R8eeWeJMcqND7yJEY+T
- a6N5XUcOlvLDpK/kvniW5xsRGFvlDp9KfsKwudIqoXcdX8JeWQ8pdPpPX
- tnQAZS13O3oXlb8Tz7SOVSyUR0TVvEsUgHaTjNPW42geEpapc3v9WmE+D
- QiIG1SzZihbHrN8rOroODpSiOMSlCA0TWOedHMsYmUmB+qlCqC1z7E3Bq
- c+gpKEusHnztX1HXmaudXk6t2YrZNWRAt/alyj6bY/CDH8iA3qS/eVxdA Q==;
-X-CSE-ConnectionGUID: JQ3XIRtmQeWv7zhhIEKkgg==
-X-CSE-MsgGUID: csPhEjmJTX27wde+wh+Fig==
-X-IronPort-AV: E=McAfee;i="6700,10204,11310"; a="36839676"
-X-IronPort-AV: E=Sophos;i="6.12,302,1728975600"; d="scan'208";a="36839676"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2025 11:04:57 -0800
-X-CSE-ConnectionGUID: EUrdT6LmRr2d2MfeVcpTHA==
-X-CSE-MsgGUID: vhJflqqNR7Ozlv2PLQaubg==
+ t=1736452849; x=1767988849;
+ h=from:subject:date:message-id:mime-version:
+ content-transfer-encoding:to:cc;
+ bh=vynMtNauuUMbL3VtAvgCwi9somgL/5jlFXs0t1NCMUE=;
+ b=m0VuuKeTHfTbRFb8xHbt2HTVsUXIR3lq0CRYyMe0JsBkfdThPGrvR1ud
+ L9hzGHrpHL7UfbZqF+CbxSbkgiNK1WMmYcAv0vAHBMfSAaOdpK+yFf7bc
+ txJbTKoKnHV6R9SRWAewFjHF9ZahA28QSsAXAaaf9AdJzDCu7nA3muHwx
+ sdL+GRKxTlm9MiUDUXKxbmORP7PEw4WH5RZL4Hu9Kdfh8l7LTPg8Lx9PZ
+ kXmxb8K3bbLgmqoccWQK1meYPtbkaN+5EdadpkYQRZRRjGPVAOX46KcIg
+ zqARsq1DCNZ7NX4dgcPvEmZhH7FVnKE8Lx1aIO6LK54cBJWOrUEjKSLbL g==;
+X-CSE-ConnectionGUID: DKmDK1UXQUypaXkvPr34vA==
+X-CSE-MsgGUID: C6eksGWiS4SI7j9hY2hK+w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11310"; a="36619165"
+X-IronPort-AV: E=Sophos;i="6.12,302,1728975600"; d="scan'208";a="36619165"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2025 12:00:48 -0800
+X-CSE-ConnectionGUID: hCQ3ma4sTuyhSIiTS4s9qw==
+X-CSE-MsgGUID: 9OXUmn45Rc+26oIhpLvGSw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="104017314"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orviesa007.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 09 Jan 2025 11:04:56 -0800
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Thu, 9 Jan 2025 11:04:56 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Thu, 9 Jan 2025 11:04:56 -0800
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.175)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Thu, 9 Jan 2025 11:04:55 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=iMfRNnriTOn9hA9RfXcTeluMs8MydkE6a367AZEHsP+lTllLUaiAHWzgdg8qmITcj8lilIXZR+KFT3WY6rsiAQT5F2ycuXFZrScKDJhy55oYMjakz4KXaxP7YICpgMDRJDnx6DmmktFetPpwnJWVYXvzf7e7/esTgMqbWLv1iprp0y2LD0he0fpv7YkksxKkFJVvCfi+5avPPT74MSCNzN0GjQ3m8DkdSf/8qpZ/urVZhmMCqTyXThhYHHoaTyOiAFx1xtzVE4rrkfuzealKHp1yRJJxvORnLWghAioQxjbYAxscSP32BXQmCtNlL1BQeHquN3CeKsABe25l5jqmMQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wwwE6kFcjRWpKB/C9G2eDHrrlGRAG2++kC5GD86/kYI=;
- b=J1THHVWjDwcNzN64llztxw2Zp68Jnu+jikLByO8Ih6CuW+UtWEzzBhWw+oT/Zcs9o4dTMPSd1HKSBtulEPntPZrfYhDAeiRF1Rkv33ahafZH95UMv1yJVNlTagohlHoB4lfAhmWyvDVCFdp9I4+kT2UB3tk4LcVBIeQ+KeQok5OpkvakTnz+qmxCouGZCccoa7q5BcK99gdfc6MuEj1MPl3iNiY0ehCiu8Bxg/FeJrIXurFbqbXJxq3Yt5rHkFGB2pquPV7FuypenUeHoJq7mPsWW6fDXBoxi6cC2SAnDS+Y9QRb+UFe/kB7qNZRAcqjcSk9DQi+V+YCHd+1JYX9RQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MW4PR11MB8290.namprd11.prod.outlook.com (2603:10b6:303:20f::21)
- by SA2PR11MB4892.namprd11.prod.outlook.com (2603:10b6:806:f9::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8335.11; Thu, 9 Jan
- 2025 19:04:26 +0000
-Received: from MW4PR11MB8290.namprd11.prod.outlook.com
- ([fe80::4a98:509:3b05:29b4]) by MW4PR11MB8290.namprd11.prod.outlook.com
- ([fe80::4a98:509:3b05:29b4%5]) with mapi id 15.20.8335.011; Thu, 9 Jan 2025
- 19:04:26 +0000
-Date: Thu, 9 Jan 2025 14:04:23 -0500
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Raag Jadav <raag.jadav@intel.com>
-CC: <intel-gfx@lists.freedesktop.org>, <andi.shyti@linux.intel.com>,
- <anshuman.gupta@intel.com>
-Subject: Re: [PATCH v1] drm/i915/selftest: Change throttle criteria for rps
-Message-ID: <Z4Adt6x8eWJUphdb@intel.com>
-References: <20250102110618.174415-1-raag.jadav@intel.com>
- <Z35FT4hkqGibrYaB@black.fi.intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <Z35FT4hkqGibrYaB@black.fi.intel.com>
-X-ClientProxiedBy: MW4PR04CA0337.namprd04.prod.outlook.com
- (2603:10b6:303:8a::12) To MW4PR11MB8290.namprd11.prod.outlook.com
- (2603:10b6:303:20f::21)
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="126798553"
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by fmviesa002.fm.intel.com with ESMTP; 09 Jan 2025 12:00:45 -0800
+From: Arun R Murthy <arun.r.murthy@intel.com>
+Subject: [PATCH v7 00/14] Display Global Histogram
+Date: Fri, 10 Jan 2025 01:15:28 +0530
+Message-Id: <20250110-dpst-v7-0-605cb0271162@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MW4PR11MB8290:EE_|SA2PR11MB4892:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7200caed-16bc-40f3-c1d7-08dd30e06fe6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?+6OrQ4Ta/hm9OcIbHia8EvBNAsI28I6CuaTQnExZlR0Oy66hYuiSTG5zqPnY?=
- =?us-ascii?Q?fY2rqsFXp2djmFPVZAX0HkxKikiUQ7qpHOXslsDBObQYCmhYLXX+waitbBra?=
- =?us-ascii?Q?lWUN9G45+Eonh8bAK+kHx8ops7E8zr4fNPodb8lu1Ovdp5rpYJ4FqBzsRPPY?=
- =?us-ascii?Q?X9apMOMcZZyvVGBpPcGuVZeRm21JywgY9O2l5yBwFm7DnlZ7ufUJ0jH8fnm1?=
- =?us-ascii?Q?Kv9JSQ2+UnLgY5Mq7y6ZSYmry4Vv6tVsmCdqNgGh0ay3VP5RhdytUtLpcHum?=
- =?us-ascii?Q?DiG5NyvO357Nn0E25Q/2tX/4pQzmmOc81dvgKmCrTUAx++KRBE9iRsjrJuT0?=
- =?us-ascii?Q?IUNqv6VUeLgldgH4hz/HjlZAcawxeAZ/uv+ZTvumrkiizQzfuo5/6BUDwtKc?=
- =?us-ascii?Q?TCA1R63xk3KANOpxInkaO3ghKJlCrRQ6mOAgxLXBolB5/2mRSpfIGXmP0Rg1?=
- =?us-ascii?Q?WqubE9VdjPwOxpKM3ucUzAbAbOUXQEwpzZGCOcfXu0NuGR7NdO1oslNFPTyc?=
- =?us-ascii?Q?O2qg/yMNtzqfvDoelKLSMR4nU1Dem6QXklBGHcerjV/WtCnqewLz+CZgxUQF?=
- =?us-ascii?Q?CNJkAzwQT+mg0fwM9ZWLYSvUBwQjh0I4bx+YfmcV48XafddnH306mTetG71k?=
- =?us-ascii?Q?t4r1FF8t0Ap1dp4QcOMZ9CGCBupEJZ0oFvpGGjMvBO5oMQVHDS7cZQEuWeru?=
- =?us-ascii?Q?7+uiFC0+uGhM9fFewuz6C+5iGiMoqItIb2BncYzDnZSIyviYtw/8Pn6eZvxl?=
- =?us-ascii?Q?ki9QfxE+lCurQVSksRBhXnpAXA9nRs3+V087Qe/fzSFa0csLiEdsHsujW1sn?=
- =?us-ascii?Q?92GIm+JcFJjA7QMll2WNm2VVZpF7Hb359qfmRT7yXBoSrSjEN4hbYP+4rKuE?=
- =?us-ascii?Q?dNhe7S7owo4PqSAQFc7DdwP43kJdqrJiM9x/BXA6NxnRmcPx6go0ZT+dnHQu?=
- =?us-ascii?Q?QT+w/a1uJkykWEf4TceHIgpiz9IphZ5G5bxOFZL6agLWeEV8csC6dpgpA6/c?=
- =?us-ascii?Q?s0Ac51Z5xsLykdk6DS+QnBjDDHmnVYmXbBdwz/+FqTufO0CBssSBhSbU+v9D?=
- =?us-ascii?Q?hfUgfPcUuShME7HdoFJK+JRRVdKFjw890pg2/83kCH8NyBW88cfQjsFMQVpt?=
- =?us-ascii?Q?LtLgAf2GiN9mhW7Bp7GOn6rBTOi7qk7PkxnNIu360tyY5vXSpzkpZwchO4Ae?=
- =?us-ascii?Q?RTIz7r40CswzDB4Z+X0Jr2vnVZj5Kx9AA45D6wAULOvidBw4kDZ6bxZE/UfA?=
- =?us-ascii?Q?hnFbJflABL+c71FlDsiozrxbWWwweCnYUPtEpiBSr68RKEZ9jHELwu5S8Lv0?=
- =?us-ascii?Q?GbtZ8gx8yYJBOtlVWVzyj02X1Mz/7O5JQmxZfAcvuuStTL4pUTJz/0IWuC1J?=
- =?us-ascii?Q?yvpMf5CwYzEbeYlk4qlmtaOptOfu?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MW4PR11MB8290.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?0udGdpnLxp29y1fZKIqGCyCUsNby2Dro8yjbZ3nFDm+Qf3DSG80whyiGeC9y?=
- =?us-ascii?Q?M+J6FchMP07ncKayYy44AEAzbX/eZ2et4HC/rx9H3qqLogL//ZMtPnLvTz7e?=
- =?us-ascii?Q?jW7X08ZDNnw4C/SOap718ygGatDyXijnYB1GOMBgI6r4ABG0hEVSVNBD4F/P?=
- =?us-ascii?Q?/fvgmUpk6JNXIRhJgEJfFBfDcUaCzOSYPVEdDDanNRGceYRXmABClnR3gopj?=
- =?us-ascii?Q?4kcm4sZhiR+fKAiBOSvOBuBJRBO8gD36PVxyOf5JkcoJrcctNhb0C1w3q00L?=
- =?us-ascii?Q?RD3/lJ1kNYtt8fPlI4ZDdtHLJGxQDbUwYPlNev81JFgaHwtvdqK821+I5J6j?=
- =?us-ascii?Q?QU5SMtPPsTCn43Yves1Mblia7VnYClzF58FIePxGYtyTjGgZM6XBHnvonjBn?=
- =?us-ascii?Q?eg0duWDvyjs/kCuv60qgpueeOUo3fYI7BUHNVV0xO4mixnEU7L0o482vyGYV?=
- =?us-ascii?Q?QPxymkAFOG21jI5RjNsD55dIBodNYtzsA2fzoDuKv/pLgmSMyyW7l+3nk0H9?=
- =?us-ascii?Q?YxkPJIemdCwb0/gbGfEf9+C7swFbRjTpXbRkzmpiU+g92GliSBTTgTFNztRp?=
- =?us-ascii?Q?RusyBgIJXpQle+dXYatRXBkTeAMCMHsfCcab9IWot05+DrugOHqiZkUsUt6o?=
- =?us-ascii?Q?5R+5UUVUHR4bNsG8JLBXD+ZTsLYZ8jGV74mehM8xMxfz9MwePGKO9DO9FW9Q?=
- =?us-ascii?Q?sUDJzMiXea50CO7/X6oLQWw7UpC6pTV43A8LvdS0jgQqPh/Mr/+im9FflH9T?=
- =?us-ascii?Q?G9u3mQNdzUM+d9t3xhsui1zLouZ8/QyknXQ8Hb7dKbLKkml+W5nGl0/iARVQ?=
- =?us-ascii?Q?TG7E9OHknORO7emaFAsAJX7dOXlbNiH0Xq+jcZlIyCiZdLx61bi5CiUiyxIp?=
- =?us-ascii?Q?PVoYFsLe8Fk56WQb0CVmjkbRdDpPGFaU6VKHDdm/TIHzC8f4EqoZhfoV7dgg?=
- =?us-ascii?Q?+1iTvlaecdcb5XDBVgjs+N9561xB8TwJp/m6KDw+pgEh3+qQ2cl5JZSTcpxn?=
- =?us-ascii?Q?7GcA0LWRmQlxR6nAIbGMbt479dCUjwftvOj29ecWJqbILShAC8FFlqS9CF/K?=
- =?us-ascii?Q?9bttXO6NL47CANLSDk4HdZjN9pZYTfRwmIemxEZeYCDJD8aKXpYU5eZOxtwe?=
- =?us-ascii?Q?0WIdAw0W71Zfwmz841OeleeGuQfrCfc9zcuPCz6yX5M/WozY4d+kVzTDOcnk?=
- =?us-ascii?Q?MOqrEi1kMLF7NcKYObUSh80H/RCLqFEuEE/L+v5v3uUzjuLfpjXSPmWlzTT7?=
- =?us-ascii?Q?m+rqd76hE6DA8Eq7++dNZJoiRSzw9i05AHeoh2iLin8epkik1OXzX016aZ8w?=
- =?us-ascii?Q?0SIjIoZI/j9kTwzqWE2kCwhLzuSKmuYeTMTQ0rI6ylONpB8Sv2iIoJWfQpVv?=
- =?us-ascii?Q?zFLkvQMLKpaBXWbFojkAHb0NMRN/gSGcId1wFDrjiqXwg2JEkcMsxrknNbgD?=
- =?us-ascii?Q?srTHc9OeOkiPpguXcm849mxPeCYCep37Di99Dc0VYDqPSeTbkxYC1LaQYcpR?=
- =?us-ascii?Q?q4gxOPh148bUc+oTfbz1UIeJv5NZ31DYOGnEQebrkxoo7qE38+SEVOP/KIIw?=
- =?us-ascii?Q?ZeMtULfAwoohA+65Xi1Xe/FlQKvDq49oS+cvJ0zo2jrEbR4KVxNaMU2fYLEQ?=
- =?us-ascii?Q?VA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7200caed-16bc-40f3-c1d7-08dd30e06fe6
-X-MS-Exchange-CrossTenant-AuthSource: MW4PR11MB8290.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Jan 2025 19:04:26.6864 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: pX5rQGnWIM1j4D6wtupSDt+/nT1Z/Gzpdw7YWYnWjsLQgZc56J59TKMnju/VXAbTFyjeInSz+Up3oStfrJ5mFA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4892
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFkngGcC/03MQQ7CIBCF4as0sxYCk0pbV97DuKB0akkEmoEaT
+ dO7S1y5/JL/vR0ysacMl2YHppfPPsWK7tSAW2x8kPBTNaDCVqPuxbTmIlxPbta9MjiOUNOVafb
+ v383tXj1zCqIsTPZvrAZt8Kxaibo1ZugECstblCzDxmX5XH0s9JQuBTiOL69IjfuZAAAA
+X-Change-ID: 20241218-dpst-c8ecf18062bb
+To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org
+Cc: dmitry.baryshkov@linaro.org, suraj.kandpal@intel.com, 
+ uma.shankar@intel.com, 
+ "Imported from f20241218-dpst-v7-0-81bfe7d08c2d"@intel.com, 
+ 20240705091333.328322-1-mohammed.thasleem@intel.com, 
+ Arun R Murthy <arun.r.murthy@intel.com>
+X-Mailer: b4 0.15-dev
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -177,52 +74,133 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 08, 2025 at 11:28:47AM +0200, Raag Jadav wrote:
-> On Thu, Jan 02, 2025 at 04:36:18PM +0530, Raag Jadav wrote:
-> > Current live_rps_control() implementation errors out on throttling.
-> > This was done with the assumption that throttling to minimum frequency
-> > is a catastrophic failure, which is incorrect. Throttling can happen
-> > due to variety of reasons and often times out of our control. Also,
-> > the resulting frequency can be at any given point below the maximum
-> > allowed. Change throttle criteria to reflect this logic and drop the
-> > error, as it doesn't necessarily mean selftest failure.
-> > 
-> > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-> > ---
-> 
-> Rodrigo, does this look okay?
+EDITME: Imported from f20241218-dpst-v7-0-81bfe7d08c2d@intel.com
+        Please review before sending.
 
-Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Display histogram is a hardware functionality where a statistics for 'n'
+number of frames is generated to form a histogram data. This is notified
+to the user via histogram event. Compositor will then upon sensing the
+histogram event will read the histogram data from KMD via crtc property.
+User can use this histogram and apply various equilization techniques to
+enhance the image or use this histogram for shaders.
 
-> 
-> Raag
-> 
-> >  drivers/gpu/drm/i915/gt/selftest_rps.c | 11 ++++++-----
-> >  1 file changed, 6 insertions(+), 5 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
-> > index dcef8d498919..7aac90c1679e 100644
-> > --- a/drivers/gpu/drm/i915/gt/selftest_rps.c
-> > +++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
-> > @@ -477,12 +477,13 @@ int live_rps_control(void *arg)
-> >  			limit, intel_gpu_freq(rps, limit),
-> >  			min, max, ktime_to_ns(min_dt), ktime_to_ns(max_dt));
-> >  
-> > -		if (limit == rps->min_freq) {
-> > -			pr_err("%s: GPU throttled to minimum!\n",
-> > -			       engine->name);
-> > +		if (limit != rps->max_freq) {
-> > +			u32 throttle = intel_uncore_read(gt->uncore,
-> > +							 intel_gt_perf_limit_reasons_reg(gt));
-> > +
-> > +			pr_warn("%s: GPU throttled with reasons 0x%08x\n",
-> > +				engine->name, throttle & GT0_PERF_LIMIT_REASONS_MASK);
-> >  			show_pstate_limits(rps);
-> > -			err = -ENODEV;
-> > -			break;
-> >  		}
-> >  
-> >  		if (igt_flush_test(gt->i915)) {
-> > -- 
-> > 2.34.1
-> > 
+Display ImageEnhancemenT is a hardware that interpolates the LUT value
+to generate the enhanced output image. 1DLUT value is to be provided by
+the user via crtc property.
+
+One such library Global Histogram Enhancement(GHE) will take the histogram
+as input and apply the algorithm to enhance the density and then
+return the enhanced LUT factor. This library can be located @
+https://github.com/intel/ghe
+
+The corresponding mutter changes to enable/disable histogram, read the
+histogram data, communicate with the library and write the enhanced data
+back to the KMD is also pushed for review at https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3873
+and https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/3873/diffs?commit_id=270808ca7c8be48513553d95b4a47541f5d40206
+The IGT changes for validating the histogram event and reading the
+histogram is also pushed for review at https://patchwork.freedesktop.org/series/135789/
+
+NOTE: i915 driver changes for histogram and IET LUT is not fully tested
+and the series is pushed to get the inital feel of the histogram/IET LUT
+usage as well as to get started with the review.
+
+Test-with: 20240705091333.328322-1-mohammed.thasleem@intel.com
+
+Arun R Murthy (10):
+  drm/crtc: Add histogram properties
+  drm/crtc: Expose API to create drm crtc property for histogram
+  drm/i915/histogram: Define registers for histogram
+  drm/i915/histogram: Add support for histogram
+  drm/xe: Add histogram support to Xe builds
+  drm/i915/histogram: histogram interrupt handling
+  drm/i915/display: handle drm-crtc histogram property updates
+  drm/i915/histogram: histogram delay counter doesnt reset
+  drm/i915/histogram: Histogram changes for Display 20+
+  drm/i915/histogram: Enable pipe dithering
+
+ drivers/gpu/drm/drm_atomic_state_helper.c     |   6 +
+ drivers/gpu/drm/drm_atomic_uapi.c             |  17 +
+ drivers/gpu/drm/drm_crtc.c                    |  30 ++
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ drivers/gpu/drm/i915/display/intel_atomic.c   |   1 +
+ drivers/gpu/drm/i915/display/intel_crtc.c     |   7 +
+ drivers/gpu/drm/i915/display/intel_display.c  |  17 +
+ .../gpu/drm/i915/display/intel_display_irq.c  |   6 +-
+ .../drm/i915/display/intel_display_types.h    |   4 +
+ .../gpu/drm/i915/display/intel_histogram.c    | 380 ++++++++++++++++++
+ .../gpu/drm/i915/display/intel_histogram.h    |  40 ++
+ .../drm/i915/display/intel_histogram_regs.h   |  75 ++++
+ drivers/gpu/drm/i915/i915_reg.h               |   5 +-
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ include/drm/drm_crtc.h                        |  49 +++
+ include/uapi/drm/drm_mode.h                   |  11 +
+ 16 files changed, 647 insertions(+), 3 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_histogram.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_histogram.h
+ create mode 100644 drivers/gpu/drm/i915/display/intel_histogram_regs.h
+
+--
+2.25.1
+
+---
+Arun R Murthy (4):
+      drm: Define histogram structures exposed to user
+      drm: Define ImageEnhancemenT LUT structures exposed to user
+      drm/crtc: Expose API to create drm crtc property for histogram
+      drm/crtc: Expose API to create drm crtc property for IET LUT
+
+ drivers/gpu/drm/drm_atomic_state_helper.c |  23 +++++++
+ drivers/gpu/drm/drm_atomic_uapi.c         |  28 ++++++++
+ drivers/gpu/drm/drm_crtc.c                |  97 +++++++++++++++++++++++++++
+ include/drm/drm_crtc.h                    |  77 ++++++++++++++++++++++
+ include/uapi/drm/drm_mode.h               | 105 ++++++++++++++++++++++++++++++
+ 5 files changed, 330 insertions(+)
+---
+base-commit: 78526dfb8799485890dae3877fea308e9501879c
+change-id: 20241218-dpst-c8ecf18062bb
+
+Best regards,
+--
+Arun R Murthy <arun.r.murthy@intel.com>
+
+---
+Arun R Murthy (14):
+      drm: Define histogram structures exposed to user
+      drm: Define ImageEnhancemenT LUT structures exposed to user
+      drm/crtc: Expose API to create drm crtc property for histogram
+      drm/crtc: Expose API to create drm crtc property for IET LUT
+      drm/i915/histogram: Define registers for histogram
+      drm/i915/histogram: Add support for histogram
+      drm/xe: Add histogram support to Xe builds
+      drm/i915/histogram: histogram interrupt handling
+      drm/i915/histogram: Hook i915 histogram with drm histogram
+      drm/i915/iet: Add support to writing the IET LUT data
+      drm/i915/crtc: Hook i915 IET LUT with the drm IET properties
+      drm/i915/histogram: histogram delay counter doesnt reset
+      drm/i915/histogram: Histogram changes for Display 20+
+      drm/i915/histogram: Enable pipe dithering
+
+ drivers/gpu/drm/drm_atomic_state_helper.c          |  23 ++
+ drivers/gpu/drm/drm_atomic_uapi.c                  |  28 ++
+ drivers/gpu/drm/drm_crtc.c                         | 127 +++++++
+ drivers/gpu/drm/i915/Makefile                      |   1 +
+ drivers/gpu/drm/i915/display/intel_crtc.c          |  10 +
+ drivers/gpu/drm/i915/display/intel_display.c       |  14 +
+ drivers/gpu/drm/i915/display/intel_display_irq.c   |   6 +-
+ drivers/gpu/drm/i915/display/intel_display_types.h |   2 +
+ drivers/gpu/drm/i915/display/intel_histogram.c     | 396 +++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_histogram.h     |  55 +++
+ .../gpu/drm/i915/display/intel_histogram_regs.h    |  75 ++++
+ drivers/gpu/drm/i915/i915_reg.h                    |   5 +-
+ drivers/gpu/drm/xe/Makefile                        |   1 +
+ include/drm/drm_crtc.h                             |  80 +++++
+ include/uapi/drm/drm_mode.h                        | 109 ++++++
+ 15 files changed, 929 insertions(+), 3 deletions(-)
+---
+base-commit: 78526dfb8799485890dae3877fea308e9501879c
+change-id: 20241218-dpst-c8ecf18062bb
+
+Best regards,
+-- 
+Arun R Murthy <arun.r.murthy@intel.com>
+
