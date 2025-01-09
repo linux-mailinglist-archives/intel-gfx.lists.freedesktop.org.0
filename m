@@ -2,61 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2F05A07852
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jan 2025 14:58:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B8517A07892
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jan 2025 15:06:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9D2A10EDF0;
-	Thu,  9 Jan 2025 13:58:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56AD510E377;
+	Thu,  9 Jan 2025 14:06:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H8uhqBvQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BQCocLwi";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EFB3010EDE9;
- Thu,  9 Jan 2025 13:58:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 87C5310E377
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Jan 2025 14:06:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736431090; x=1767967090;
+ t=1736431598; x=1767967598;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=EJUHZnn6XLX4XoEdM53C4y2sJS+Yx4hHqVXxeyKgVS8=;
- b=H8uhqBvQfa4MhImMEXuPMoaTX7qMt+sQKwDuyBQf0IVXtFYfcV8SxnjI
- AvaFhqbK9UopzfaM4POc+rhob6GPh4AK1MCjT2PbBTTjWALSbR3SSqQGA
- J259TcshM33LW6lySYjjOe1KX2EbkYyG4GVQk8PVVZOTWTcsOe9ZIKiBF
- JNhfLXrqemLhSOGGAi5L+Bb5xYXJ/0Te/uGaTyWSr5klQwfJK348LS5Mp
- bPG+J25gjtFpUHYviajCn2yW7piRUgVUCZPWW+hGFRP5zGfHAXGBWnNrd
- Nad/mZO/xrebxuKAJoy2NXwBh+wpCuZbIXioTc+gL5ZfPNsb8IvcuAWIF A==;
-X-CSE-ConnectionGUID: nLBOxE4gTeml/EuczdALjQ==
-X-CSE-MsgGUID: ExfNsTG3SD+ap8jJTGOBPQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11310"; a="59160313"
-X-IronPort-AV: E=Sophos;i="6.12,301,1728975600"; d="scan'208";a="59160313"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2025 05:58:10 -0800
-X-CSE-ConnectionGUID: NL48F9s4RUuta1KkjADmkQ==
-X-CSE-MsgGUID: cuE50ck4SWOvFodIzuAx/A==
+ bh=GkqE38SUOpnFnYVNZHoRYYSgutyBcU1wDaudlyz+yw8=;
+ b=BQCocLwiokqtA8xmDhMOI/NXar790XR4NDXxQJiM6L4XYEyUUyo9miIN
+ 0R1IluXu0tfH7K3pydhBnsdZ+PfdBj9oBuSUAmuS349c7bS9DGEoA9oK2
+ 07SsNWd1bJVQ5W5SIFA3JBMaQHS7YZdYf8+IupskYzKG3bBzyG9mcWs49
+ KZwmF6Hbr8hvh9fNEVYLysYDuXC0M5Aou6pS5sLDfnmb9mngRn/2hQqFI
+ YFwwR8Uqft3A09bBmCY0483mrTuLWB0I4wDGQ+h8RaVyPFwi5f4MGOZcO
+ 3VQO58vq7Hsqkk2DbPWyl+JELaizq0j1v7JFMJcQpZB7vaeAgyPQ+FO1N w==;
+X-CSE-ConnectionGUID: Q/PATwG4Spyum2EczF1EIw==
+X-CSE-MsgGUID: iMvjVBVZS1i1uo4bKAXyMw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11310"; a="36386179"
+X-IronPort-AV: E=Sophos;i="6.12,301,1728975600"; d="scan'208";a="36386179"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2025 06:06:37 -0800
+X-CSE-ConnectionGUID: t8qMNlGvR3ylh7IqV12xsg==
+X-CSE-MsgGUID: RvlEu/AQTEucC+5ajUUcGA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,301,1728975600"; d="scan'208";a="108404541"
-Received: from black.fi.intel.com ([10.237.72.28])
- by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2025 05:58:07 -0800
-Date: Thu, 9 Jan 2025 15:58:04 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Matt Atwood <matthew.s.atwood@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Stephen Rothwell <sfr@canb.auug.org.au>
-Subject: Re: [PATCH] drm/xe: remove unused xe_pciids.h harder, add missing
- PCI ID
-Message-ID: <Z3_V7MHFINUqR6qs@black.fi.intel.com>
-References: <20250109105032.2585416-1-jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,301,1728975600"; d="scan'208";a="103214270"
+Received: from slindbla-desk.ger.corp.intel.com (HELO intel.com)
+ ([10.245.246.224])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jan 2025 06:06:36 -0800
+Date: Thu, 9 Jan 2025 15:06:32 +0100
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Nitin Gote <nitin.r.gote@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH v1 1/1] drm/i915/gt: Prefer IS_ENABLED() instead of
+ defined() on config option
+Message-ID: <Z3_X6LueBVWr3VZb@ashyti-mobl2.lan>
+References: <20250103062651.798249-1-nitin.r.gote@intel.com>
+ <20250103062651.798249-2-nitin.r.gote@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250109105032.2585416-1-jani.nikula@intel.com>
+In-Reply-To: <20250103062651.798249-2-nitin.r.gote@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,20 +70,15 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 09, 2025 at 12:50:32PM +0200, Jani Nikula wrote:
-> Commit 493454445c95 ("drm/xe: switch to common PCI ID macros") removed
-> xe_pciids.h via drm-intel-next. In the mean time, commit ae78ec0a52c4
-> ("drm/xe/ptl: Add another PTL PCI ID") added to xe_pciids.h via
-> drm-xe-next.
+Hi Nitin,
+
+On Fri, Jan 03, 2025 at 11:56:51AM +0530, Nitin Gote wrote:
+> Use IS_ENABLED() instead of defined() for checking whether a kconfig
+> option is enabled.
 > 
-> The two commits were merged in commit 8f109f287fdc ("Merge drm/drm-next
-> into drm-xe-next"), but xe_pciids.h wasn't removed, and the PCI ID
-> wasn't added to pciids.h.
-> 
-> Remove xe_pciids.h, and add the PCI ID to pciids.h.
+> Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
 
-Unless there's a nuance intended in the subject
+reviewed and merged.
 
-s/harder/header
-
-Raag
+Thanks,
+Andi
