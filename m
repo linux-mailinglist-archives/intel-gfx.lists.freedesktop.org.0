@@ -2,188 +2,95 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63B3CA0B5D8
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2025 12:38:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A919FA0B891
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2025 14:46:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6786E10E0CE;
-	Mon, 13 Jan 2025 11:38:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C80F10E2B0;
+	Mon, 13 Jan 2025 13:46:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dAbjDk2w";
+	dkim=pass (2048-bit key; unprotected) header.d=minyard-net.20230601.gappssmtp.com header.i=@minyard-net.20230601.gappssmtp.com header.b="3YK8ds2H";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3489D10E43A;
- Mon, 13 Jan 2025 11:37:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736768279; x=1768304279;
- h=message-id:date:subject:from:to:cc:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=y9skKoH4GiOfRk/tn8q85OzsRgMNYb4GYeE1pZew2eE=;
- b=dAbjDk2wHmjNXrC+chaA+2BE6gxkjBiznuhXB8kK4kbsiOYWQvL9bzEL
- JkPt3WJeh8ZhhV/UaFquDp/UprWFWKfDn2jfyhjRSEKtF78DPkPiMnUHI
- DUagebVr9rGc6k0qL29yCF4NIZHOxiAdT6f/3DYv8feGB8tIGQ4dFoI9z
- If10TQWurbBgFvz6HEDMXdN2GrnkqiTAe1JfqprJiKV6Ows5k1EwqKhuJ
- 4kubTh6SWOjlFPI0aMl+HhnHx2YY5OD4wKVLPX/p4sULwiAKEHsXgXM8o
- FHZ0fPNfIuMwMr8TMj3P8OJWsEdArDq3yOpHqTR5d2uP61BCJVWWrgRVO w==;
-X-CSE-ConnectionGUID: tNLGVMViQ2KU/lxQARl+fg==
-X-CSE-MsgGUID: 8YWueSgySY6JRw/fBLtxnA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11313"; a="37186676"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="37186676"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2025 03:37:59 -0800
-X-CSE-ConnectionGUID: ebM/UPewSdmRuuagf9Dn2g==
-X-CSE-MsgGUID: qeAtMzuxS7CykBhKge8njQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="109484778"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orviesa003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 13 Jan 2025 03:37:59 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Mon, 13 Jan 2025 03:37:58 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Mon, 13 Jan 2025 03:37:58 -0800
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.177)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Mon, 13 Jan 2025 03:37:57 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=zEhHjJ9m0I5NlQbuDPr9YbpC0Sw4CItAY9Eap6/NyQD/8XBGjbZshykVVmE6dYy47mG5e1fW3vUoxt0XKeXX8uwfJYYoKjpuwI3hjuQRyQtwxG0l8peohdOLst27l24e5xgYbDuykp0tGQlTK3zxaDWrf8cQQpHvB43yXxOXzI+IeMmpk5xHbMr0pCOU5/Xg0KfT1jLNxI5mzsGhNDy96ZlJByol+wLSPQhdN+msiWnRfSQk1lfs9t+keJ22pQbYvaFKiq3tb/CgRGA586o6BraZe4ene2k0M5vUFNGaqLeReLHJfGspJXIns8oSgg55IfIFJFj37rrNxboCRILP6A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=yj0g8zU/pTakwFKj3mxvnzZyAjxOgA3/GRaCjkVEs2M=;
- b=uUX5/tUJ7WyrB8+TpWi+jxnPEpNjebn7ZbnIpnrkZC0WPsvvONuMd46N6c4FarmDfikuNZeFflkKgDxuHHWBF/R1mZg3R6KIk/AcOsDk0SNYSqrVRHQSkk33Lntu0atVOwroyiYpRn8ftBd3Gaiy+RysHf5U3sE/XlPQC45VbmKPhPcFljaearXE/C3wOWoat75OFXOGO7eQFKk0zBoCQ55PbSjgmIaBY7x1unExf9aiZHDZEpfeMTQXG3GF2ADrcWKr3h9wI/+EYD6A02SPHV4Vc84Wgue4pYD460lD5cLezavg1BKNOnqCSn3psOaS0NK293om2GxUP3z0t3kkCA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by PH0PR11MB5062.namprd11.prod.outlook.com (2603:10b6:510:3e::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8335.18; Mon, 13 Jan
- 2025 11:37:14 +0000
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::397:7566:d626:e839%4]) with mapi id 15.20.8335.017; Mon, 13 Jan 2025
- 11:37:14 +0000
-Message-ID: <b86ae2ce-8edb-46ac-91bb-4395ffb2b265@intel.com>
-Date: Mon, 13 Jan 2025 17:07:08 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 7/7] drm/i915/dsc: Check if vblank is sufficient for
- dsc prefill
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-To: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-CC: <jani.nikula@intel.com>, <ville.syrjala@intel.com>
-References: <20250108123541.2101643-1-mitulkumar.ajitkumar.golani@intel.com>
- <20250108123541.2101643-8-mitulkumar.ajitkumar.golani@intel.com>
- <10a4a32d-1a5e-483d-9f73-3887fb5a1864@intel.com>
-Content-Language: en-US
-In-Reply-To: <10a4a32d-1a5e-483d-9f73-3887fb5a1864@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: PN2PR01CA0028.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:25::33) To DM4PR11MB5341.namprd11.prod.outlook.com
- (2603:10b6:5:390::22)
+Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com
+ [209.85.210.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B9D3B10EEBA
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Jan 2025 15:46:36 +0000 (UTC)
+Received: by mail-ot1-f47.google.com with SMTP id
+ 46e09a7af769-71e157a79c8so289675a34.2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 09 Jan 2025 07:46:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=minyard-net.20230601.gappssmtp.com; s=20230601; t=1736437536; x=1737042336;
+ darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:reply-to
+ :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=cgTp2x21PamB5G5tjbV3jPSQRWSgTUkiJmrzV93coW4=;
+ b=3YK8ds2H9Nd+Y+98VlUVvTplicy5vrI0vhUEfHZZkjlL8BCUO5rWp57akp5jAohdmr
+ M56uC9FuI7IxMdez94uzVaTyDMy2BthmHXRNiQ36JN/PBZ9oJYV6bz8qXTdDQBMUF70y
+ zvkYQ4i1JrN+C1Gc4dRqEk2Wvt+ezshU1qN0Lw7Lv6XYhhymkHquPVZRcTXaMFewK9Wh
+ NwLt/pnksnYFEXuRcMoP6q+qAGzMM516UfGVzGvmUFff6FOjnteBtU9e0YZpiPGUCjXS
+ jajwG1swVZWBjZdn9knxY+kScl5haz5S0v73tx5oiXDXPKToovzB0+bjTwEhBt21J47Q
+ k7SA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1736437536; x=1737042336;
+ h=in-reply-to:content-disposition:mime-version:references:reply-to
+ :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=cgTp2x21PamB5G5tjbV3jPSQRWSgTUkiJmrzV93coW4=;
+ b=cAeb+6TgVaMdRs3/iP8M75+vLd5lYOpXqeQOGGjpf4JtwMym8eCrMcqoP7yg6VHtNN
+ QVUKvmHyFXdgYoAdKo2bbSaxhky+XoTpOX8pX8V9bLHpt++DSqzPMbXWKqYzgGyV81oM
+ x4YlriXLepT7J4RqR3pGIBCjX4BC3CEedf8vhQLg2fmXDHmCwSTpHe0Hq+rw4oquJKgK
+ 2uIllQyfFxc4/GR+0VfEVij7i3BpNoK/xwXGRiH+1TsEF9lws15Ls3f2PepNiI5nW4LY
+ Nhfjy1uU4jh1T35wrQNGwh3FtVSWVONsZym+LrZVQIWO4VwAJkKyJQH9K+QHtBrAO1V9
+ kpUw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVsesKyjUfzjGaoUKMYMUW4LJxqoNU8Qo8PW5umpLAgbobSoEOqlXyfoNTLiWwZpm/SRdy0ucvYijA=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy444hyYZjDxuWNtokv0NnMySkMAtWFnizdqWq3DoEta4TuNYe1
+ D4M1+i99yqMz8RBOkA31wsVDtbxbrqAfLWYSy9NzP89viX1SLCO3qoqkrNlgzPQ=
+X-Gm-Gg: ASbGncuBz1WkOjWS4hzSDUiyZfah1mfowLsWsl7KM5vhCWjotyZjKxcIALmQqKaqLkI
+ abuGf/K10m7bsR73bfSioTQ23zIIgOBH+sp7T4iiKuNJgjZgK4rAAk2iXAosQCWbzYvriaHFMDu
+ +gSommrouBT5xdIlK+XjU46b726keeyF37VA2kXRH4zegw5oGIhLO3XXyFP5cdHHkrvNMRf9sGG
+ 0wiLeNX0D+pgAVfsQ3qwMJcIi11xKLJWvOx8tHCnTqv45KLIXCk0OwREi13
+X-Google-Smtp-Source: AGHT+IHELUnxP9ZvL+e2Ztemz39I9ORoPYZLTVwEa+XG73J5uz7w7yM0cuXu9KZqTaUsGk+1/+jmGA==
+X-Received: by 2002:a05:6830:6610:b0:716:a95d:9ef with SMTP id
+ 46e09a7af769-721e2e000d6mr4949630a34.2.1736437534534; 
+ Thu, 09 Jan 2025 07:45:34 -0800 (PST)
+Received: from mail.minyard.net ([2001:470:b8f6:1b:9076:47eb:1e0a:16fb])
+ by smtp.gmail.com with ESMTPSA id
+ 006d021491bc7-5f882625f0esm386258eaf.9.2025.01.09.07.45.32
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 09 Jan 2025 07:45:34 -0800 (PST)
+Date: Thu, 9 Jan 2025 09:45:27 -0600
+From: Corey Minyard <corey@minyard.net>
+To: Joel Granados <joel.granados@kernel.org>
+Cc: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <linux@weissschuh.net>,
+ Kees Cook <kees@kernel.org>, Luis Chamberlain <mcgrof@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org,
+ linux-s390@vger.kernel.org, linux-crypto@vger.kernel.org,
+ openipmi-developer@lists.sourceforge.net,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-hyperv@vger.kernel.org,
+ linux-rdma@vger.kernel.org, linux-raid@vger.kernel.org,
+ linux-scsi@vger.kernel.org, linux-serial@vger.kernel.org,
+ xen-devel@lists.xenproject.org, linux-aio@kvack.org,
+ linux-fsdevel@vger.kernel.org, netfs@lists.linux.dev,
+ codalist@coda.cs.cmu.edu, linux-mm@kvack.org,
+ linux-nfs@vger.kernel.org, ocfs2-devel@lists.linux.dev,
+ fsverity@lists.linux.dev, linux-xfs@vger.kernel.org,
+ io-uring@vger.kernel.org, bpf@vger.kernel.org,
+ kexec@lists.infradead.org, linux-trace-kernel@vger.kernel.org,
+ linux-hardening@vger.kernel.org, apparmor@lists.ubuntu.com,
+ linux-security-module@vger.kernel.org, keyrings@vger.kernel.org
+Subject: Re: [PATCH] treewide: const qualify ctl_tables where applicable
+Message-ID: <Z3_vF3I453flXoZv@mail.minyard.net>
+References: <20250109-jag-ctl_table_const-v1-1-622aea7230cf@kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|PH0PR11MB5062:EE_
-X-MS-Office365-Filtering-Correlation-Id: 058d2ad0-46b8-4190-c2c0-08dd33c6a057
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?OTZzT1dtb2EvbVc1d2dZbXpLRkVlR25QTGxYcTQrdzZraWF4dHZxQ0RHYUdu?=
- =?utf-8?B?T2V6MzAzVWZWQldiWnhXME5sVVlBWlRpbGE2KzdJMVh0SElKcU55dkF6ZEpI?=
- =?utf-8?B?Ly8zT0RYRGVCbU9oYjBuVHVZWFpOQkVVTGh3Yk9oQ3FaQk92TGRTM0c5RzBh?=
- =?utf-8?B?M2YvNzV0b0wvNHBFZWs5a2s5eDUzTG1xRDlVWWltZjdPVkpCVEEraUxCYzhU?=
- =?utf-8?B?d3dydDRRdG9YdFIxZnMvWVErMkw2TmJORlZkRFlMUVNNVXA3V0twQzFDUG9Q?=
- =?utf-8?B?WWpFS0sxOEEzcXFtVktZNUN3VENDMlB6VVo1cTBES2hOeDVmNm1uNWFTQi9u?=
- =?utf-8?B?VDVNTUFlL2VueXFHK3VNd2N2dWNxK0Nyem9lY1ptRGM4dGpxU3ZFK1VjVEVj?=
- =?utf-8?B?b01tdE1OV3QwcU9sN2pDUVUwSEN0ejEwTVU4VVk3VWs4YlUrcCtHZ2dzMUo0?=
- =?utf-8?B?bHFJU0VFclBabkVNOVQxaXR6M2I4QnFBSFVhS0svVERXK0xKU1ozOE5BV3dC?=
- =?utf-8?B?SUdvc3VVaDVWUkU1a2JENEl1eXB4QnE4V05mWFI4MDNtNEVLUXhYR0NaYjBE?=
- =?utf-8?B?SjZsRGJzN3FqNXp4aWhMdndpSzUxM1ljUkhEMWc2NHVnU1haeEdYNzZaS3pD?=
- =?utf-8?B?WmRKUGVwR0t2TE85QitqTjJyLzcxaklJbDdsT1h4TE15S0JVamdEbklZek1n?=
- =?utf-8?B?RHhxeS9obXE1ZzBaTUR0SDVQVjVHRENPWGozd0t5c3h0MnFDVkJTMVM2NjFQ?=
- =?utf-8?B?Z1JaK0s2ZXloZXREMmlMUjhhdXZ5SDk2TnQ4aTBIOXYvd1BKRnVnN3BxVTNv?=
- =?utf-8?B?L2pjbG1TRHdhMU9iVWxCZUt0WVdJVEdOcHBSWDJvRm54cXV2VDIvSWVZN0RU?=
- =?utf-8?B?UHpaVmFwdzU1YXNSK1hhRVpmOXRCcnVqcHVYYmN5b1orUkF3Y3NVd0pMUFV6?=
- =?utf-8?B?TGx6aklnSE1tNVlzRFkwTGZxUjlGTTZya0oySUVDZURESTYzTGpoMUJVdUpt?=
- =?utf-8?B?US9JT1E2Z3VITGYwclBQUlNMakI2RVZYcVZNZmdoNW1QTUljVGt0TmdVTG1V?=
- =?utf-8?B?TWdRclVmVmpxT2h6eksvcHRjWnVIRkNIbjc4MlVCcEw3bGN4d05iSnhGNHZH?=
- =?utf-8?B?aU5HVjlGa2NSZ1RaZlpLUnEvL0ZXOVJOQkNKNnhuZC94ZkVWM3pzMTNlY28z?=
- =?utf-8?B?WlZmTU1hYnJhWWJRY2dkRis5WEN1cUxQR09ySEtPbXlYZmJzQTZvYStkcXZP?=
- =?utf-8?B?VHZnUzRsZVQxdnhuWHpJZkRvb21ya0pseU5MQjZZNHU0cUZ2MFpEa1ZEa2tM?=
- =?utf-8?B?Z3Z3Y3k2dUt0UzNiYzBRQ0dMbHAvbTdxYUtwTnVnaHhnMjBPWHYwaFV6ZFJl?=
- =?utf-8?B?V3BHRHByb3pyMnFQSTBDNHJGa3phOXBuMlZ6bVovNCtUaUJDRWJ0cFlqNFp0?=
- =?utf-8?B?QVdQYTkzcm1vcGVpcExXaCttaUEwdVlGTVArWnFUWGV6S3RER1k1MEJRSlIr?=
- =?utf-8?B?ZzE4RDVzYWZKN3RReTJDVzc1eFhqYUp6TWNOSU9XNnVBOUVDZGp0WSs1K3BU?=
- =?utf-8?B?VVNEcUVOQUozazFNKzFkSXNEZDhnejB6Rm1BQ1pDVGc1WnRyYlFjVS8rbm1j?=
- =?utf-8?B?eHZNeFpqdzdLSXVjTkxxV0tZNVNPZzlTK1diaDNpVTBOWEVBNjYrWnFzRW1w?=
- =?utf-8?B?Z2I1RnhoQzB2ejhrSkZNVzB1dHJrQkQwb2ZYUUdzTlZVYm9COWhuU1kwai94?=
- =?utf-8?B?U1hBK0VxWkRueGQyMXlXVXJtN1U0cTQrMkF3M20wWHcreGFrN1NqSk9yN25X?=
- =?utf-8?B?QnI3bDZYM2VRM3E1Ly9SbVBvbHdvYmswNy9xNzBNNDV4ZCtsVkVxaE92NW93?=
- =?utf-8?Q?Fl2PNWvKucf61?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Y0c0ZHFyaUkyNHlNcHlYemxkWVRkTG1sdTF6cStTQUF4YmpGQkhhMFd5dmFr?=
- =?utf-8?B?R0I0ejRjU0pzU3Z1WnkyTm5uZVZKYkZxUi9yNFVzMC9nTkU5Tmg4QTBoZ29Q?=
- =?utf-8?B?QzdoYUxOOWZzYnZvTEhKMFBUN2MrbklJN1JnSFg5SGk4SStrNWlQWlRoTWwy?=
- =?utf-8?B?TklGY3F6SVJybEU3M09kWlJQZ0Y3Qk1oNlN6cmdHSUpZUWVHVy94d1dCQ3cw?=
- =?utf-8?B?aVh1bTBLMnNhWWJEM2doUlI3Vm1Jc0xWbzRUZStvUEpOMyt3emR5amdxT1p3?=
- =?utf-8?B?OUhEMnJtTkFHL2YzZ0lBeEoxWmZKSG9EQmhXR3AzMFN4bGFzSjJZa1MzamJD?=
- =?utf-8?B?MFd1enBta1BUdGpWS1dGTUhjNE01aHFndm5iNnpCWkxiMU9qSGtTVEh0RDBz?=
- =?utf-8?B?d0xmZkh5Y3N4ZUhBVnVhMjd1TzNiL1RaMlJUUVc1Q1djYjhHbGgvUnZnS29K?=
- =?utf-8?B?dDNDRzByLy9iQWE1Ry91YWYxUUdOZWNJSVVVNHVkcXFmc2s2QzZiYytCRWdO?=
- =?utf-8?B?RE1rUWlPOHQvMWdFdGFOc0JuaHl0QUVoMUVMWWduR3hWSFJYZXg2RUM4d05n?=
- =?utf-8?B?d0JYUnpvRFByQ0x6TE05SGJhZ0gxT1NmZm02N3BMTHFpUUMvS0Z2ckVYN2pT?=
- =?utf-8?B?Rm5YZFhDUDV1QVVReFdDczVmRjlCTTZUWHJvWlhMZVhPeXZnQWZvQ3F2Umdu?=
- =?utf-8?B?TWpsYmJ0VFYyRkk2S0JOZ3BuQkZXd2NHL040bUNxTWFhTDQ1YjArcFEwbHJ2?=
- =?utf-8?B?TUNxV3hnRjJua0svemtHL1NuanI0WTZGRU9GM1NQMjNmdjJ0VWhqcGZMbzZQ?=
- =?utf-8?B?dndCV2p4K0RuSzRVK1NZQjZhRWQ5dWN2ZlVuUVZObElTcVVweWJnWnNPUjNV?=
- =?utf-8?B?R1dCb20vTlJmTmE5YlJIRi9nMndXak9PWG9NbU1LcVU1L1hVZG9SSHFBVVJI?=
- =?utf-8?B?a0pXRExZZVZka1FRMmNKRnhQM1RtdHN3Nm1LZWlIVzZTYlljQ0dpSVlQQ0Nv?=
- =?utf-8?B?dEJXU3A2VHpZWnNZb2VHUE1lMkRYSzJzeWZiWHh3RjJkQUU0MkJwY1QvN1FO?=
- =?utf-8?B?QTI2VXl6L1J4bTJuZVJIbnJCNzlDaU90KyszZTlFdzhjdjF0QU5PbXY3bGJ2?=
- =?utf-8?B?UnZKalVGdE1xOTMyWXYwc3FNdzEvUFAvYnk1Skx2bDEwUU1qSjlmMGJSc3o1?=
- =?utf-8?B?N0NCSlNhb1FZSWZEdDMzSzNVblJ4NC9jUjkyTXBCSmxFN0FJdytRTG95ekdy?=
- =?utf-8?B?S3lZaUdxcEx2KzZ4U0RVbTJFVnJ2dkx4ZEdaNzRCblZMV0ZiOEd1QWVWU0Zk?=
- =?utf-8?B?c251MWdvZThza1pzeWpvenNFaHdEdGxmdVliVllTaFgwL2dkZkdhR0JzQjd0?=
- =?utf-8?B?MVArSVg0VTNTM1JkNUMzSjE2ZGM0RzlCVTc4aEFCVjI2TEU1ZGRyMU14NjVj?=
- =?utf-8?B?VjVjdlg3L21xcFZEaVZEN1RlenZuT0E3ZVM5ZjJhUHM3SDRHSm1UU1VnNHFK?=
- =?utf-8?B?ME83ZjN4NnZ0NEFLL2l0UFU0LzBxOUVFZFZTMHNoZ1d1RFcrYUlCa1VGRS9m?=
- =?utf-8?B?YlRGcUtsNU9LU2VkZDlBRi9FZlRRUGpjTi9Cbm5lMUQ5UU9hdzRKekdRc0Iw?=
- =?utf-8?B?SDF2S1cyVC9wVUVxdis0djJwWGl6RFFkcU85bUVHWTZRQ01ja0xxYkYxSjB2?=
- =?utf-8?B?cTE4MjRwNGpydnZwQXZqeS93MEIwdFRFc1o2KzIzRUROeElCVStKRVVrYkZx?=
- =?utf-8?B?TjM5ZXFiZ2J3cEFveDcycmJaRFZYYnMyczZYV0pnTmVraGhkMHNYNksvWWQy?=
- =?utf-8?B?dWo2Uzc4M3hibWFhd3hSbHVBL2RWcTk4dmlwZmNycnhRaVBHaDBBSFdwQ3lx?=
- =?utf-8?B?MEE4dHVJd0RxdXlodWJDK0dDZ05MWGVtUnZRdjJEYXVidk9xODBoTGxlNlF0?=
- =?utf-8?B?dGt0dDBjdEt6SldvRzUxclV5RzM1WlRSSE5ZUWg2THJHd0JjNHltQ2hyUTN2?=
- =?utf-8?B?SmZ6V3VxOE5vdEpwTzhDY2J4UEpMTDNuWFFNTGJseEZlSlpjK2hVeCtDWUVa?=
- =?utf-8?B?aUwrUHovMVE1M1dJM2ZIRlI4dFpKT3pWbStab1NjOTRxOGpZV1ZqdDdybm9V?=
- =?utf-8?B?ejF0bG1FQTk5aE1hdHlZdWRobE1PakVRdTRPb25UMFBxdFV0dlFtY2hqeTBS?=
- =?utf-8?B?ZGc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 058d2ad0-46b8-4190-c2c0-08dd33c6a057
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jan 2025 11:37:14.6407 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ZkXHO2mUBGzicjyUwCFtq7fd9+y8QN+brL9iXNZT0/En6YJxGCk67wMGPDjt6F8lA9gvomU7hCjX04saCzGvFEEscowP4i7dlTZ3daVjYlM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5062
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250109-jag-ctl_table_const-v1-1-622aea7230cf@kernel.org>
+X-Mailman-Approved-At: Mon, 13 Jan 2025 13:46:23 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -196,126 +103,31 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: corey@minyard.net
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Thu, Jan 09, 2025 at 02:16:39PM +0100, Joel Granados wrote:
+> Add the const qualifier to all the ctl_tables in the tree except the
+> ones in ./net dir. The "net" sysctl code is special as it modifies the
+> arrays before passing it on to the registration function.
+> 
+...
+> diff --git a/drivers/char/ipmi/ipmi_poweroff.c b/drivers/char/ipmi/ipmi_poweroff.c
+> index 941d2dcc8c9d..de84f59468a9 100644
+> --- a/drivers/char/ipmi/ipmi_poweroff.c
+> +++ b/drivers/char/ipmi/ipmi_poweroff.c
+> @@ -650,7 +650,7 @@ static struct ipmi_smi_watcher smi_watcher = {
+>  #ifdef CONFIG_PROC_FS
+>  #include <linux/sysctl.h>
+>  
+> -static struct ctl_table ipmi_table[] = {
+> +static const struct ctl_table ipmi_table[] = {
+>  	{ .procname	= "poweroff_powercycle",
+>  	  .data		= &poweroff_powercycle,
+>  	  .maxlen	= sizeof(poweroff_powercycle),
 
-On 1/13/2025 4:43 PM, Nautiyal, Ankit K wrote:
->
-> On 1/8/2025 6:05 PM, Mitul Golani wrote:
->> Check if vblank is sufficient for dsc prefill latency.
->>
->> --v2:
->> - Consider chroma downscaling factor in latency calculation. [Ankit]
->> - Replace with appropriate function name.
->>
->> --v3:
->> - Remove FIXME tag.[Ankit]
->> - Replace Ycbcr444 to Ycbcr420.[Anit]
->> - Correct precision. [Ankit]
->> - Use some local valiables like linetime_factor and latency to
->> adjust precision.
->> - Declare latency to 0 initially to avoid returning any garbage values.
->> - Account for second scaler downscaling factor as well. [Ankit]
->>
->> Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
->> ---
->>   drivers/gpu/drm/i915/display/skl_watermark.c | 37 ++++++++++++++++++++
->>   1 file changed, 37 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c 
->> b/drivers/gpu/drm/i915/display/skl_watermark.c
->> index fe91854e456c..d275ec687748 100644
->> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
->> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
->> @@ -2292,6 +2292,42 @@ static int icl_build_plane_wm(struct 
->> intel_crtc_state *crtc_state,
->>       return 0;
->>   }
->>   +static int
->> +dsc_prefill_latency(const struct intel_crtc_state *crtc_state)
->> +{
->> +    const struct intel_crtc_scaler_state *scaler_state =
->> +                        &crtc_state->scaler_state;
->> +    int latency = 0;
->> +    int count = hweight32(scaler_state->scaler_users);
->> +    long long hscale_k[2] = {1, 1};
->> +    long long vscale_k[2] = {1, 1};
->> +
->> +    if (!crtc_state->dsc.compression_enable)
->> +        return latency;
->> +
->> +    for (int i = 0; i < count; i++) {
->> +        hscale_k[i] = mul_u32_u32(scaler_state->scalers[i].hscale, 
->> 1000) >> 16;
->> +        vscale_k[i] = mul_u32_u32(scaler_state->scalers[i].vscale, 
->> 1000) >> 16;
->> +    }
->> +
->> +    if (count) {
->> +        int chroma_downscaling_factor =
->> +            crtc_state->output_format == 
->> INTEL_OUTPUT_FORMAT_YCBCR420 ? 2 : 1;
->> +        long long total_scaling_factor;
->> +        int linetime_factor = DIV_ROUND_UP(15 * 
->> crtc_state->linetime, 10);
->> +
->> +        total_scaling_factor  = DIV_ROUND_UP_ULL(hscale_k[0] * 
->> vscale_k[0], 1000000);
->
-> I think this might end up being 0.
->
-> Consider hscale and vscale to be 0.5 each. hscale_k and vscale_k will 
-> be 500 each.
->
-> total_scaling_factor will become 500*500/ 10,00,000 or 2,50,000 
-> /10,00,000 = 0.
->
-> I think you should compute latency for scaler 0 and then if there is 
-> another scaler, multiply it with the total scaling factor for scaler 1.
+For the IPMI portion:
 
-Scratch that.
+Acked-by: Corey Minyard <cminyard@mvista.com>
 
-Just checked the Bspec. We need to have downscale amount <for each 
-direction and scaler> = MAX(1, scaler input / scaler output)
-
-So at min the scaling factor will be one. This check is missing and we 
-need to consider this while computing the scaling factor.
-
-
-Regards,
-
-Ankit
-
-
->
-> Regards,
->
-> Ankit
->
->
->> +
->> +        if (count > 1)
->> +            total_scaling_factor *= DIV_ROUND_UP_ULL(hscale_k[1] * 
->> vscale_k[1],
->> +                                 1000000);
->> +
->> +        latency = total_scaling_factor * linetime_factor * 
->> chroma_downscaling_factor;
->> +    }
->> +
->> +    return latency;
->> +}
->> +
->>   static int
->>   scaler_prefill_latency(const struct intel_crtc_state *crtc_state)
->>   {
->> @@ -2333,6 +2369,7 @@ skl_is_vblank_too_short(const struct 
->> intel_crtc_state *crtc_state,
->>       return crtc_state->framestart_delay +
->>           intel_usecs_to_scanlines(adjusted_mode, latency) +
->>           scaler_prefill_latency(crtc_state) +
->> +        dsc_prefill_latency(crtc_state) +
->>           wm0_lines >
->>           adjusted_mode->crtc_vtotal - adjusted_mode->crtc_vblank_start;
->>   }
