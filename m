@@ -2,61 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0160A07C2D
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jan 2025 16:43:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2CE4A07C74
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jan 2025 16:52:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B6C510EEBF;
-	Thu,  9 Jan 2025 15:43:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF03610EEBA;
+	Thu,  9 Jan 2025 15:51:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WTRJtyqC";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="F9BSlQcx";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7030610EEBE
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Jan 2025 15:43:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736437427; x=1767973427;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=SXDUxkyaa2504xKVZEbHvNtL2OKkDXNQHhsXuDaP+DI=;
- b=WTRJtyqC8/KSNf7VGQCUNkmQvH/g3zUNyMDC9MHCS+9jdSAouHKwkSZi
- pNmY3fHAVOUnLFbqkap/kUpB3kS2e3EVXJphlgd0cQ6ZMYgdTip4ZYCgW
- pCJspqwpw+9KryIpQknp+JStObhZNUQ9V9ukSUjyyCC8ocNHAcu7cQHbm
- emEOHrBRTw3HWB+/cA89PLUogZmNR4BA1+WnST1WqIFmAUBkBHOhjdKon
- VNnQoGXBEtNi0vCaSgnD1wkZIkquwGCa6My6hA9NQx8A9rGMS6EYu68NG
- jGKhaXs13sR9voQQ4UQtv6Lomys/EfBrNcdJK0VE00Ul1RyfmB4Cqbf1r Q==;
-X-CSE-ConnectionGUID: Mt5vCjDFSwKoPPWQJFTBKg==
-X-CSE-MsgGUID: SzeePo7jRZyGQwGE0iYPlA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11310"; a="36602443"
-X-IronPort-AV: E=Sophos;i="6.12,301,1728975600"; d="scan'208";a="36602443"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2025 07:43:47 -0800
-X-CSE-ConnectionGUID: 3yrrew4KRea7PPtJGM6yDw==
-X-CSE-MsgGUID: v/aRaiPDS2+b7tzkkOM6Sg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,301,1728975600"; d="scan'208";a="103638147"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 09 Jan 2025 07:43:45 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 09 Jan 2025 17:43:44 +0200
-Date: Thu, 9 Jan 2025 17:43:44 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 01/18] drm/i915: Extract intel_crtc_vblank_delay()
-Message-ID: <Z3_usEDf9GYMPgFo@intel.com>
-References: <20241210211007.5976-1-ville.syrjala@linux.intel.com>
- <20241210211007.5976-2-ville.syrjala@linux.intel.com>
- <b09efa6e-3ff6-4ce5-9e34-c717dd749bce@intel.com>
+Received: from nyc.source.kernel.org (nyc.source.kernel.org
+ [IPv6:2604:1380:45d1:ec00::3])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6728910EEBA;
+ Thu,  9 Jan 2025 15:51:56 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id D378CA420AB;
+ Thu,  9 Jan 2025 15:50:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07E5AC4CED2;
+ Thu,  9 Jan 2025 15:51:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1736437915;
+ bh=4PNW5U1RCpwSI6ed5qCmkDfjxSB39XjXAAnaje7o+L4=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=F9BSlQcxUU/kvrDz8ezVoOO+s/YBhBI99DBGbLdRbteRKBcsdBNKhfA6NIrkjDYkC
+ 9GtrmQ7VK0dv7qDBCLFFprwhk5flkxmRl+V2FYyKWlDlaQk5dy/y43RuJc1rAObSVE
+ sl7FszvwCJ3ZWmJ3LwoRXHehBmq48TqQ4/nOFcPMPAGWGxlPfP39p5Evt4580Qxykh
+ T6IreW5JxdI40u2aiQRRvDdYRS5jpPoTlnD0T3RTnaN10Mg41YwaqUaSESqRhF+j/w
+ 8yWPU7z9RguVCtFoKzz3OeFzncyxzknkL/0P6P7tlQkSO/uCgw6CAfTy6ch0j+etXR
+ 6KWhdTwfzx9bw==
+Date: Thu, 9 Jan 2025 07:51:54 -0800
+From: "Darrick J. Wong" <djwong@kernel.org>
+To: Joel Granados <joel.granados@kernel.org>
+Cc: Thomas =?iso-8859-1?Q?Wei=DFschuh?= <linux@weissschuh.net>,
+ Kees Cook <kees@kernel.org>, Luis Chamberlain <mcgrof@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org,
+ linux-s390@vger.kernel.org, linux-crypto@vger.kernel.org,
+ openipmi-developer@lists.sourceforge.net,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-hyperv@vger.kernel.org,
+ linux-rdma@vger.kernel.org, linux-raid@vger.kernel.org,
+ linux-scsi@vger.kernel.org, linux-serial@vger.kernel.org,
+ xen-devel@lists.xenproject.org, linux-aio@kvack.org,
+ linux-fsdevel@vger.kernel.org, netfs@lists.linux.dev,
+ codalist@coda.cs.cmu.edu, linux-mm@kvack.org,
+ linux-nfs@vger.kernel.org, ocfs2-devel@lists.linux.dev,
+ fsverity@lists.linux.dev, linux-xfs@vger.kernel.org,
+ io-uring@vger.kernel.org, bpf@vger.kernel.org,
+ kexec@lists.infradead.org, linux-trace-kernel@vger.kernel.org,
+ linux-hardening@vger.kernel.org, apparmor@lists.ubuntu.com,
+ linux-security-module@vger.kernel.org, keyrings@vger.kernel.org
+Subject: Re: [PATCH] treewide: const qualify ctl_tables where applicable
+Message-ID: <20250109155154.GP1306365@frogsfrogsfrogs>
+References: <20250109-jag-ctl_table_const-v1-1-622aea7230cf@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <b09efa6e-3ff6-4ce5-9e34-c717dd749bce@intel.com>
-X-Patchwork-Hint: comment
+In-Reply-To: <20250109-jag-ctl_table_const-v1-1-622aea7230cf@kernel.org>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,56 +75,18 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jan 03, 2025 at 04:54:53PM +0530, Nautiyal, Ankit K wrote:
+On Thu, Jan 09, 2025 at 02:16:39PM +0100, Joel Granados wrote:
+> Add the const qualifier to all the ctl_tables in the tree except the
+> ones in ./net dir. The "net" sysctl code is special as it modifies the
+> arrays before passing it on to the registration function.
 > 
-> On 12/11/2024 2:39 AM, Ville Syrjala wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >
-> > Pull the vblank delay computation into a separate function.
-> > We'll need more logic here soon and we don't want to pollute
-> > intel_crtc_compute_config() with low level details.
-> >
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > ---
-> >   drivers/gpu/drm/i915/display/intel_display.c | 24 +++++++++++++++-----
-> >   1 file changed, 18 insertions(+), 6 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> > index 8e90e99a25d6..ff907afa6451 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -2610,16 +2610,29 @@ static int intel_crtc_compute_pipe_mode(struct intel_crtc_state *crtc_state)
-> >   	return 0;
-> >   }
-> >   
-> > -static bool intel_crtc_needs_wa_14015401596(struct intel_crtc_state *crtc_state)
-> > +static bool intel_crtc_needs_wa_14015401596(const struct intel_crtc_state *crtc_state)
-> >   {
-> >   	struct intel_display *display = to_intel_display(crtc_state);
-> > -	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
-> >   
-> >   	return intel_vrr_possible(crtc_state) && crtc_state->has_psr &&
-> > -		adjusted_mode->crtc_vblank_start == adjusted_mode->crtc_vdisplay &&
-> >   		IS_DISPLAY_VER(display, 13, 14);
-> >   }
-> >   
-> > +static int intel_crtc_vblank_delay(const struct intel_crtc_state *crtc_state)
-> > +{
-> > +	struct intel_display *display = to_intel_display(crtc_state);
-> > +	int vblank_delay = 0;
-> > +
-> > +	if (!HAS_DSB(display))
-> > +		return 0;
-> 
-> Is this because W2 window is configured to be non zero only when 
-> platforms support DSB and DSB is in use?
+> Constifying ctl_table structs will prevent the modification of
+> proc_handler function pointers as the arrays would reside in .rodata.
+> This is made possible after commit 78eb4ea25cd5 ("sysctl: treewide:
+> constify the ctl_table argument of proc_handlers") constified all the
+> proc_handlers.
 
-It's only a thing for platforms with DSB, and there should be no
-need for the extra delay when not using the DSB. I was mildly tempted
-to even check i915_params.enable_dsb here, but that can changed
-dynamically via debufs which would require us to reconfigure the
-vblank delay on the fly (and that we can't currently do).
+Sounds like a good idea,
+Reviewed-by: "Darrick J. Wong" <djwong@kernel.org> # xfs
 
--- 
-Ville Syrjälä
-Intel
+--D
