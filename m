@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCED9A0735D
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jan 2025 11:35:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D9CAA0735E
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jan 2025 11:35:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D47910ED54;
-	Thu,  9 Jan 2025 10:35:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 35D6A10ED5A;
+	Thu,  9 Jan 2025 10:35:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GwTB9LhX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gdabgmtp";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E6F510ED52;
- Thu,  9 Jan 2025 10:35:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C43110ED56;
+ Thu,  9 Jan 2025 10:35:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736418949; x=1767954949;
+ t=1736418950; x=1767954950;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=72P25/YYp+jxX9CJiC6wnnDT8iOXmAfcqBNpZkgbPkQ=;
- b=GwTB9LhX0lCrt6h0CLT3RfSSiA7FYOUMEG/jOQjKUh3AKadSiWnsYaLo
- f1MnrvcN3pJl4w85PaeE0T4JDS2JTGpmJ9/a1taSffBl9afXaUNCMr3MJ
- FkESDEpoLujF454Dbt8QiMIqCTGXfcly48CVSB508sdJNyZ6KeIScH7zT
- 8xeriH237pD2bK/jHh8pXhu6BM3Bap//DJft5Hb2LlzGwrds6S4OccIGB
- EGnS+47phRWPLm2FBtZTzvMHkcpM264MCi0iuZTZcasLDOheTJWd+snP4
- 9FUyAC0Gm4v9pOG8NwKzSbzMywVwnZgXU6QcaYqxeYwI33iwXF06FzOFT g==;
-X-CSE-ConnectionGUID: 7LaC7VGERsSzQ3201OT8+Q==
-X-CSE-MsgGUID: v3uOGYLHR529U9CZB70uYQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11309"; a="48034984"
-X-IronPort-AV: E=Sophos;i="6.12,301,1728975600"; d="scan'208";a="48034984"
+ bh=dxBzcNn2jqYUBiyfcNoE897ge8Y4viF1POsFRq5Y86E=;
+ b=gdabgmtpMXltBzVyeVukT56fP+0QMDjUGRZIOjdhNRQn25ac4SCjVtDH
+ e4pKH5panLknyiEXpf2wcd/OLQwhEmjLV559Sa8tJoXSem0AzaGMZ74G9
+ DjG9xN4kDOPRbk7UMGUX5eJUzW1RdfLypnXcbBYi3+OaQpWrsBWRgUq2x
+ 0WRcFx/EUh516kF1iL3qFkt2ibs7/mRwAKqQfTWDpNGmJf43R4mL1SuFY
+ TTXrrcytxAaFYxlgZH+/nUMXDuUh6TShmFyckS67YAJjQAWLBfbkfITot
+ rXtb+aQQFagP3zZEQR5GxfEF4aENeYx4B34fvY8Ipq77awNKKqO5RFITp Q==;
+X-CSE-ConnectionGUID: 748sJf4GRWyL5KuNiAN2nQ==
+X-CSE-MsgGUID: PRXEWFO4SOuh5g8kbiAcfQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11309"; a="48034987"
+X-IronPort-AV: E=Sophos;i="6.12,301,1728975600"; d="scan'208";a="48034987"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2025 02:35:48 -0800
-X-CSE-ConnectionGUID: zV+5mkrzRqOfYTdFFcyZtw==
-X-CSE-MsgGUID: oO7LYEBeS8CNJ6lDNh/sTA==
+ 09 Jan 2025 02:35:50 -0800
+X-CSE-ConnectionGUID: 1hy64ExnSmC4wvPdaA61rw==
+X-CSE-MsgGUID: 5FSISMjTSg6oKchUF9a2zQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,301,1728975600"; d="scan'208";a="103333008"
+X-IronPort-AV: E=Sophos;i="6.12,301,1728975600"; d="scan'208";a="103333021"
 Received: from fpallare-mobl4.ger.corp.intel.com (HELO jhogande-mobl1..)
  ([10.245.245.185])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2025 02:35:47 -0800
+ 09 Jan 2025 02:35:48 -0800
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH 1/4] drm/i915/psr: Add new function for writing sink panel
- replay enable bit
-Date: Thu,  9 Jan 2025 12:35:29 +0200
-Message-ID: <20250109103532.2093356-2-jouni.hogander@intel.com>
+Subject: [PATCH 2/4] drm/i915/psr: Enable Panel Replay on sink always when
+ it's supported
+Date: Thu,  9 Jan 2025 12:35:30 +0200
+Message-ID: <20250109103532.2093356-3-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250109103532.2093356-1-jouni.hogander@intel.com>
 References: <20250109103532.2093356-1-jouni.hogander@intel.com>
@@ -72,46 +72,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-According to DP/eDP specification only DP_PANEL_REPLAY_ENABLE has to be set
-prior link training. For this purpose add a new function which sets this
-bit on sink side if Panel Replay is supported by the sink and the source.
+Currently we are configuring Panel Replay on sink when it get's
+enabled. This means we need to do full modeset when enabling Panel
+Replay. This is required as DP specification is saying sink Panel Replay
+needs to be configured before link training. Avoid full modeset by enabling
+Panel Replay on sink always when it's supported by the sink and the
+source.
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 7 +++++++
- drivers/gpu/drm/i915/display/intel_psr.h | 1 +
- 2 files changed, 8 insertions(+)
+ drivers/gpu/drm/i915/display/intel_ddi.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 64c00a8a6850..e592bc01c7fb 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -827,6 +827,13 @@ void intel_psr_enable_sink(struct intel_dp *intel_dp,
- 		drm_dp_dpcd_writeb(&intel_dp->aux, DP_SET_POWER, DP_SET_POWER_D0);
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index 4f9c50996446..b0ea56e166c5 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -2890,8 +2890,7 @@ static void intel_ddi_pre_enable_dp(struct intel_atomic_state *state,
+ 					    crtc_state);
  
-+void intel_psr_panel_replay_enable_sink(struct intel_dp *intel_dp)
-+{
-+	if (CAN_PANEL_REPLAY(intel_dp))
-+		drm_dp_dpcd_writeb(&intel_dp->aux, PANEL_REPLAY_CONFIG,
-+				   DP_PANEL_REPLAY_ENABLE);
-+}
-+
- static u32 intel_psr1_get_tp_time(struct intel_dp *intel_dp)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.h b/drivers/gpu/drm/i915/display/intel_psr.h
-index 956be263c09e..3b2643b83e06 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.h
-+++ b/drivers/gpu/drm/i915/display/intel_psr.h
-@@ -30,6 +30,7 @@ bool intel_psr_needs_aux_io_power(struct intel_encoder *encoder,
- void intel_psr_init_dpcd(struct intel_dp *intel_dp);
- void intel_psr_enable_sink(struct intel_dp *intel_dp,
- 			   const struct intel_crtc_state *crtc_state);
-+void intel_psr_panel_replay_enable_sink(struct intel_dp *intel_dp);
- void intel_psr_pre_plane_update(struct intel_atomic_state *state,
- 				struct intel_crtc *crtc);
- void intel_psr_post_plane_update(struct intel_atomic_state *state,
+ 	/* Panel replay has to be enabled in sink dpcd before link training. */
+-	if (crtc_state->has_panel_replay)
+-		intel_psr_enable_sink(enc_to_intel_dp(encoder), crtc_state);
++	intel_psr_panel_replay_enable_sink(enc_to_intel_dp(encoder));
+ 
+ 	if (DISPLAY_VER(display) >= 14)
+ 		mtl_ddi_pre_enable_dp(state, encoder, crtc_state, conn_state);
 -- 
 2.34.1
 
