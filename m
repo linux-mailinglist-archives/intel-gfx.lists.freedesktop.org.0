@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47151A06F18
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jan 2025 08:32:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 973B9A06F19
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jan 2025 08:32:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A833010ED0B;
-	Thu,  9 Jan 2025 07:32:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23A2610ED17;
+	Thu,  9 Jan 2025 07:32:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QvqQD3cn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k3M2uLYX";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1CAFB10ED13;
- Thu,  9 Jan 2025 07:32:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FD3D10ECFD;
+ Thu,  9 Jan 2025 07:32:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736407930; x=1767943930;
+ t=1736407932; x=1767943932;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=4TThNvqJhUHjgMP3aAWuYX/9LLrON/3R1NLuBUenNFo=;
- b=QvqQD3cno5KZPWtm7K0xIiYVQuoPnlkn34hSiD3mjFeQE80IG4eHZfRs
- 1xmy60e/QpxFC+G1QkaB5nZxO26TIRdjVYZXA7SwylkQf+ohiX78hcmHg
- J+CDocdmPDLMaBGmuvawBNPNCJ1IihpzSz/6wmsqhpmEBmNFnXTQpRHog
- xlZDfh6YiQfGynzypR6zKOwBppSVTMnH84xk8s7wtfQLDKhiM6JDJdp/Z
- Dk0c/IQp3t1iZlBxvcSR7riNp+lgZdMNJ1JOVO5R/1qoHUKunb5IoAdZE
- tP6qnjfIOYeU0YrOX/I4UsS36UyMLnDUgu68uZm53r3QbgY2DUnTqGUgJ Q==;
-X-CSE-ConnectionGUID: 5NicQbTjRGyIpMb7ByRDuw==
-X-CSE-MsgGUID: 2x+/UkDoQHq6c88/An65bw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11309"; a="54200572"
-X-IronPort-AV: E=Sophos;i="6.12,300,1728975600"; d="scan'208";a="54200572"
+ bh=rmmypgC+tfq9aRs9O9U8Swm6/bu572VHH9qei/eLsi4=;
+ b=k3M2uLYXKQ/aObbgEkzOMNm3s1l+TUpE3KHdU4YluiS0Jj1K7buZxyZp
+ VLVfKlNycDpLDLYC38hLNg2GcLHNf2zbLg7QmS3OIysw9v0lryyQc82dd
+ R85rLBFjE3Aslt7ZwmkHeXGo7d2tJ+LHPTreEvAtXRwSupvXFatALquuF
+ 29yN4ysV2puz44ir3t+ekzjHT0uWbuCAdQELbt/4h5dblG0SFkrluk9Dk
+ q+JBm5sQwFQmqn94dUqlzeLx3XERFkGPoxL0P4MHkTszfdi4KB3MFV+pZ
+ cEw4q9BASUtjtKBsgNAsNZA9an8ssD0DeSxcfQAiLXtNyZBSgZ3PeT+ke w==;
+X-CSE-ConnectionGUID: tjdUjR1iTmu66BkbTDppBg==
+X-CSE-MsgGUID: Y6nLWSl9Q3GDJJkLlmGNyw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11309"; a="54200574"
+X-IronPort-AV: E=Sophos;i="6.12,300,1728975600"; d="scan'208";a="54200574"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jan 2025 23:32:10 -0800
-X-CSE-ConnectionGUID: +ZBaDs95SYaq24MXRSFX3g==
-X-CSE-MsgGUID: 2cJNQzChSdSlDTnLPn2vgA==
+ 08 Jan 2025 23:32:12 -0800
+X-CSE-ConnectionGUID: JvCPgw7uRcic1IyiIxHAvg==
+X-CSE-MsgGUID: lVLyO9zST1uOof1lM/Ux2g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,300,1728975600"; d="scan'208";a="103297875"
+X-IronPort-AV: E=Sophos;i="6.12,300,1728975600"; d="scan'208";a="103297878"
 Received: from fpallare-mobl4.ger.corp.intel.com (HELO jhogande-mobl1..)
  ([10.245.245.185])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jan 2025 23:32:08 -0800
+ 08 Jan 2025 23:32:10 -0800
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v3 08/10] drm/i915/psr: Add intel_psr_is_psr_mode_changing
-Date: Thu,  9 Jan 2025 09:31:35 +0200
-Message-ID: <20250109073137.1977494-9-jouni.hogander@intel.com>
+Subject: [PATCH v3 09/10] drm/i915/display: Don't use DSB if psr mode changing
+Date: Thu,  9 Jan 2025 09:31:36 +0200
+Message-ID: <20250109073137.1977494-10-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250109073137.1977494-1-jouni.hogander@intel.com>
 References: <20250109073137.1977494-1-jouni.hogander@intel.com>
@@ -71,59 +71,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add new interface for checking possible PSR/PR mode change. We need this
-information to decide if DSB can be used.
+Changing PSR mode using DSB is not implemented. Do not use DSB when PSR
+mode is changing.
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 20 ++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_psr.h |  2 ++
- 2 files changed, 22 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 1e99329b70a1..90e36e34e0c7 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -225,6 +225,26 @@ bool intel_psr_needs_aux_io_power(struct intel_encoder *encoder,
- 	       intel_encoder_can_psr(encoder);
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index d76454a69399..e448ff64660a 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -7647,7 +7647,8 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
+ 		!new_crtc_state->scaler_state.scaler_users &&
+ 		!old_crtc_state->scaler_state.scaler_users &&
+ 		!intel_crtc_needs_modeset(new_crtc_state) &&
+-		!intel_crtc_needs_fastset(new_crtc_state);
++		!intel_crtc_needs_fastset(new_crtc_state) &&
++		!intel_psr_is_psr_mode_changing(old_crtc_state, new_crtc_state);
  
-+/**
-+ * intel_psr_is_psr_mode_changing - Check if PSR/PR mode is changing
-+ * @old_crtc_state: pointer to old intel_crtc_state
-+ * @new_crtc_state: pointer to new intel_crtc_state
-+ *
-+ * This can be used to figure out if PSR/PR mode is changing between old and new
-+ * crtc state.
-+ *
-+ * Returns true if mode is changing, false if mode is not changing.
-+ */
-+bool intel_psr_is_psr_mode_changing(const struct intel_crtc_state *old_crtc_state,
-+				    const struct intel_crtc_state *new_crtc_state)
-+{
-+	return old_crtc_state->has_psr != new_crtc_state->has_psr ||
-+		old_crtc_state->has_sel_update != new_crtc_state->has_sel_update ||
-+		old_crtc_state->has_panel_replay != new_crtc_state->has_panel_replay ||
-+		old_crtc_state->enable_psr2_su_region_et !=
-+		new_crtc_state->enable_psr2_su_region_et;
-+}
-+
- static bool psr_global_enabled(struct intel_dp *intel_dp)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.h b/drivers/gpu/drm/i915/display/intel_psr.h
-index fc807817863e..cc6267e87933 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.h
-+++ b/drivers/gpu/drm/i915/display/intel_psr.h
-@@ -26,6 +26,8 @@ struct intel_plane_state;
- 				    (intel_dp)->psr.source_panel_replay_support)
- 
- bool intel_encoder_can_psr(struct intel_encoder *encoder);
-+bool intel_psr_is_psr_mode_changing(const struct intel_crtc_state *old_crtc_state,
-+				    const struct intel_crtc_state *new_crtc_state);
- bool intel_psr_needs_aux_io_power(struct intel_encoder *encoder,
- 				  const struct intel_crtc_state *crtc_state);
- void intel_psr_init_dpcd(struct intel_dp *intel_dp);
+ 	if (!new_crtc_state->use_dsb && !new_crtc_state->dsb_color_vblank)
+ 		return;
 -- 
 2.43.0
 
