@@ -2,169 +2,94 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47091A07540
-	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jan 2025 13:05:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 06DC3A07551
+	for <lists+intel-gfx@lfdr.de>; Thu,  9 Jan 2025 13:10:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 45BD410ED7D;
-	Thu,  9 Jan 2025 12:05:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57C0F10ED7E;
+	Thu,  9 Jan 2025 12:10:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YpnlxFf1";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="VfkpfpvK";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF9FA10ED7D
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Jan 2025 12:05:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736424319; x=1767960319;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=g/ot6NVIsOrhWGbqDVUwdWuf1gHYbO5xh+f/hsS+KMs=;
- b=YpnlxFf1JhhVrOf5P0rTU38QVML19e5pIZ6RlYZhO2WPEZUkW3zirN9I
- g3XWKi0O3SaJEC/JvG6dtxNxZFfbKZa1pVr4m989OgOT7Q0nz5p+t2AD+
- u4/7Z8bELjL/YaTOVaB0T2JWxLp/NosI/6Tj4dSg8a6CC91V18cWIL65q
- PTA2igjseAMMzgjdrUmrQGElHRJwSjQg72y705ZuSufJAoQgYFwSHuG/H
- uw6HcoFoK23sjMK0UEK5/4nVfD6SHfwzMNdrEoPC6q3uEx7vsfghEO67k
- xOBouMIZ2CKQ9TPv41VhWCUcQl9Fwm7hrA6A07sLD8d0h1lFgOC70u7lH Q==;
-X-CSE-ConnectionGUID: E2vKPczzRg2pqz9nQpxorg==
-X-CSE-MsgGUID: BvN/3kJRSMG8ej0vIJLKcg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11309"; a="36700646"
-X-IronPort-AV: E=Sophos;i="6.12,301,1728975600"; d="scan'208";a="36700646"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jan 2025 04:05:19 -0800
-X-CSE-ConnectionGUID: rHvGYYjmTdavMesq2AQ/KQ==
-X-CSE-MsgGUID: 3MwoUZkGTXWf22kO7MOVmg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,301,1728975600"; d="scan'208";a="103456604"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orviesa006.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 09 Jan 2025 04:05:19 -0800
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Thu, 9 Jan 2025 04:05:18 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Thu, 9 Jan 2025 04:05:18 -0800
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.173)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Thu, 9 Jan 2025 04:05:18 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Gb5ZL6OeYLlZux1oITJBnUGHdCVfk0UjN89eJ4Uo4CUbgMf+ZICI/0/fD6DIy1e2BwKQT87kbYN5nXqGp9dxp6bVAFA1W3sCE92ePVQnpMTaiLe6t7f0G/NPlqGsl4F40/PSjWkadAkrW+kEsLYohujuF+LZ1bUSYlmnEBho7+Eu5uRWkGMNtF30k1e7c7XlVF7lvkaTo8ctcDmNAMZrIZjzfT1XYzvs1HYuAEjOC6imAx2g9T+2c08r6UAdrdMWp2PhhphBKGsveliduyaP7h8z6n4mrCLnyBtsOV3GvE4ncPGhrYL5OteISCC7gwZs2IsmOSJnSAcSdcd/Tbaq8g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Jgo7wdkFRz0Gg3ywtMKtAEVKlgi2R3N/OIPWgTT0qss=;
- b=NsRevKjbMfqRaxh2WI3KJ5Hq7fkWLQaGePmCYDxFeU1U4jGCfKNZuRXTaNVMsSHRZBhDQlois4zi3MQIKB/P9pE6eQY/tv7Zq3G54728pEnkU7ShB0679xTD7dKSxiJ7sbWukmPLsThGjmb27XAkSgFadwvl1pbc6MbZ40OkhNMcCrmqpHax9CN87RM1ZG5aGBDGKJCVqt8qhJWIMBKLKN2GMu4J+hydIZ6CoUKU6L1bgM3GBqxNPSSZHhxp+nhswo4LkichUn9F/tr8L8jvocRovV/6JtOMwnbo+rAuPNFfv1ZPQuyl0OYhzDAXtPPHwMp60Mg3bBtem37wlOV2TA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from IA1PR11MB6266.namprd11.prod.outlook.com (2603:10b6:208:3e6::12)
- by DS0PR11MB8051.namprd11.prod.outlook.com (2603:10b6:8:121::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8335.12; Thu, 9 Jan
- 2025 12:04:35 +0000
-Received: from IA1PR11MB6266.namprd11.prod.outlook.com
- ([fe80::7f3a:914e:c90e:34fb]) by IA1PR11MB6266.namprd11.prod.outlook.com
- ([fe80::7f3a:914e:c90e:34fb%6]) with mapi id 15.20.8335.010; Thu, 9 Jan 2025
- 12:04:35 +0000
-From: "Bhadane, Dnyaneshwar" <dnyaneshwar.bhadane@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Subject: RE: [PATCH] drm/i915/bios: Define eDP pipe joiner feature for VBT
-Thread-Topic: [PATCH] drm/i915/bios: Define eDP pipe joiner feature for VBT
-Thread-Index: AQHbYdq77pP7e7EtyEKx2GSjNWQKBLMNGfQAgAE/fkA=
-Date: Thu, 9 Jan 2025 12:04:35 +0000
-Message-ID: <IA1PR11MB62662673485BCD1BF8A62C75E2132@IA1PR11MB6266.namprd11.prod.outlook.com>
-References: <20250108143638.1125237-1-dnyaneshwar.bhadane@intel.com>
- <87bjwhkzpp.fsf@intel.com>
-In-Reply-To: <87bjwhkzpp.fsf@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: IA1PR11MB6266:EE_|DS0PR11MB8051:EE_
-x-ms-office365-filtering-correlation-id: 81273998-4253-4761-c350-08dd30a5c8e8
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|376014|1800799024|366016|38070700018;
-x-microsoft-antispam-message-info: =?us-ascii?Q?AbE8tRB6P/CiCDur8r13q6EQF03AV+EnoaYAT2ULL+OL6TVcTZvodbh3VJqN?=
- =?us-ascii?Q?DBsOWdT1hMVWCegE0ivddhirBhpSYLqLvvHuOXn6OoGYD9xevAJ4x8XMTKNS?=
- =?us-ascii?Q?rfSavxpNByorkcFSMyEQN52y4NcWcormeWuzzPbtAKP2cqPtS5rIMbvbCgmZ?=
- =?us-ascii?Q?z6S2CBTL4f55XNOC/y/HMmdOweAHjvxmUdd9fDVEegDadeB2gS8qBRmQWsV5?=
- =?us-ascii?Q?o0pvJCS4XvLrXVfX2KccHRWa+PS0rJl80xFUB403wcgCW7pcUoB1XTN3tQ77?=
- =?us-ascii?Q?MlJHBnzoEkF3TkMiXKPWpnVZEo1a3pAb+zHQyXKDXK+rqVdIoVE90Ttbu5K8?=
- =?us-ascii?Q?oPig5Os2NTJGUPsPi/Y1/ThMKZVEV/qNAjo82uCSPWRC788C/Ai/cO8OHnAN?=
- =?us-ascii?Q?NcjSP9m6/qd0X6RTNoXgJLLrEfuNPXERo8djIl96BAbcZ4PFWGOwYnVlEsJk?=
- =?us-ascii?Q?bDzwFcA+j9eeakDqp0lLmrDfimebla45sNOxzSIRJchBRSb6Po50kf0a2VsO?=
- =?us-ascii?Q?9W+sciSeo0pGLNhr6SsuTlQGg47C8NST1VhnvJGcRGEeTRJroLnQAIEzoau6?=
- =?us-ascii?Q?DBaBh/j5u2kTUVo1VvCq7Z0e6UXmGsbHvzTGmCq2MQsW2G9DotUGcD+xnFEp?=
- =?us-ascii?Q?TyyoqyQXI9icb39ksv5x7+fpA+6081mE8IfwHz68iQzqRauAJkJkc4P6SOrZ?=
- =?us-ascii?Q?xMSVB9xx4LITlbtqYwHvuC8faz8vPRUvNSFdEnD7g9ZVbz1UmJuiBGHNZ2Y+?=
- =?us-ascii?Q?uqzR8gJsy5KW0/ZmJIh67wqEqxRXEcOF9H7+U0vtuxqXHrHseqkjrhbdeL0l?=
- =?us-ascii?Q?fH3zaVJl7+as9BvNMikA3F3Dqrcap8jPbgKLEIBKx4PleSP8JaHl/yQu6jNt?=
- =?us-ascii?Q?pqpFOnMBagMnpsDENXVecvJ6jFXc4WghHT1q8xWHoJr8KSduVPm+EK88NhPh?=
- =?us-ascii?Q?brG3gN7FB2EBGXI0Z6Wb15c3F0ZXOkMD0OVjaYC0hblMKaIj033pZDPt4SWT?=
- =?us-ascii?Q?87Jnk3SPzrueXL/xt2SeGin4cSCTWPOCCmZv5/hOVr/0PMl9FfFvOIpVxGqk?=
- =?us-ascii?Q?wMSzL59nPEDdw9lrwS9C96qHNqSga3esnAbMaV4qGTSLdHRfDWS2OmC2/l/T?=
- =?us-ascii?Q?Xh8wrR5q/CI/f08AotwCRt/pbCtRUHRQd4GDhTkiMdBTVYJ6l715SYQVWo6Q?=
- =?us-ascii?Q?trIkosyKBreqQzu1Y2CS8Ywrg1x828loxh3V0EHcL27xsP+x3wg4mnpV3JHD?=
- =?us-ascii?Q?qFVDDHEdvk1bE2btLD0u4BzY1rLLMiWot68jW+ZPtswE4cmNlarnMKwseY8g?=
- =?us-ascii?Q?0PazxfXKk6QXch1ckP48lwAfKPsry8MCRH6x97VeWtCKIoRERVu/bZsVcLue?=
- =?us-ascii?Q?7hLSs/QFS15FvQn7J6evdZFulElbQ0+ViHxZ01MD4c8s38eHMBXSeIOPe1RI?=
- =?us-ascii?Q?Rh52OKLDFaguoKv024mFrk9sgKSRMtSk?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA1PR11MB6266.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(38070700018); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?0C/td4tGYsROjdNRRRLQ6gnyY9JJAtPi21eGs2wIQ6LyHp5X0kHpVyjwyeB3?=
- =?us-ascii?Q?9hEdX0cLvOAwjgTjJKFJ0Jm6gGlC1mIXzlngRTOfRsV47y3iHU9tIgJ2Z2sl?=
- =?us-ascii?Q?Ln93HREoHmIZ7GOUHO4SGoQ9m0cqu2RLbQ14I7oEtMx/fClqLJApElh7629b?=
- =?us-ascii?Q?nKIB3EAAtOsY53l71ypIqRGcyyZOYSbf0jfZpN3T7sL0jO+F71dLPhFm6WUO?=
- =?us-ascii?Q?aEKlOUdTl/m1fAS+61s+liok+T2t+H0MkfFmq8Ov5Gg0mw0JmQ/GSFJy/AIt?=
- =?us-ascii?Q?398oAN+E2Z7gopKp0JS0xpk+dIgdcwWh5burN3QSd99H5T5iQeRFXMOBbf9k?=
- =?us-ascii?Q?MnitVSAKLb16NEFADSTMAl56a5lJY5rYSUPb9Q90QF49Qmn84xEcjo6xPuZd?=
- =?us-ascii?Q?ycl/FKJ+Ohqavgysh/NRIwzI+f0DPGbCFlCr4D/7qA1J/yt284we7sLxMVZZ?=
- =?us-ascii?Q?2ssKWEG/MGi1NqssTvec05q58s8zMZsqzR7hjwSE0xhGt565r4XclLqg+rBF?=
- =?us-ascii?Q?BquRFq6ePWrnAobITOxBryfTg9VK9Af5InM7ZM1wGEThbc1PBGLGyVGnYldy?=
- =?us-ascii?Q?7E6BQq8hCru2xkHS7swJ98k9pZrnfYddHszhJIdPJ853q91nqQ3FzPwPtAey?=
- =?us-ascii?Q?vKWkwZ9b5+nI5RAAdNhc1nWZa2/ciod9U1cCsYK3Xx9AL3etGqajcc78e/Aq?=
- =?us-ascii?Q?MJS9kZgeDKfSnB5giuB2DE95/UWoDgPfyQT7I1kaZbeY3NE37Fk8tkbWrNJV?=
- =?us-ascii?Q?yywKDbz9ezqV1laTj0cP/oKxmAJsuiXZKQy+h+H2onZQeNuTnbGjeNH1cfIy?=
- =?us-ascii?Q?1hKYoyzlhCnFLMOJxwDYqBEqop2z6NrSKLyy/NaKdxuwbRv1DEKpDRvvGs5p?=
- =?us-ascii?Q?p5o/Vv9sWWnDEf2FqCJ8gVI9B7Xa6en41Qg+0QGdX0IEWlaUMXXicLCyoGnh?=
- =?us-ascii?Q?7e/eiLMQJi7neHP7Tpjf3NZnZzU40gqeWFH3MNaTdIJVI3bV+nX1TYDyXRVS?=
- =?us-ascii?Q?lnnuxZDpDy9UeGGqk4LKi2hT+DXRdD89L4T3AVcks3QeMBbY+yLAYyOv1tjV?=
- =?us-ascii?Q?5BfAcmASd07cYlWwjhdN+PNV/AjtCVGv3dBOUkHfj/p3Vv1ME0qKu3EbZoEr?=
- =?us-ascii?Q?zhAUDHL5owkWvCzMh3d86+dbUeURgolpkWnpsXMYX3LrS6rbMpz1k+VuyMpF?=
- =?us-ascii?Q?kWTJziIOO+SCeaavNxRf5zw8++ED473I/OIjEZFc6FcdEMPzk2HOQb/FJDr8?=
- =?us-ascii?Q?y/og51H/fJtS04Nn/+hOWWc+4c2ttFSQlQwQ5AAskp2nAvGqwXO5dkTbOXLp?=
- =?us-ascii?Q?cLqh3VNcAN+xbGznD3BF9nGBpM98FQCLvoXZP3/nGcGKWqZ24yxF4QPl/q0R?=
- =?us-ascii?Q?PC1h3tX1fQ8IAv5OOv+qFO5ws0ZTEdKqWaakrxuNhiqmzNek5woQhPGfpTlp?=
- =?us-ascii?Q?M5vc88Vq5Fqk0XYvz2PXvSKq7/T2KXYUM2euJfte91GbJcDR+ifuNgMYXKM4?=
- =?us-ascii?Q?rp7KPy6N6+PvEAnrD6t4nPTDEGO6DrpyHUR+y88Oy2ujgaAmAZfJIp4ZZF8L?=
- =?us-ascii?Q?LBRtID1SWX4KPpuyDIDQB40icNLNadAiv+6eGWTY3ZsUpynCRuKd2CJLE1br?=
- =?us-ascii?Q?Pw=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com
+ [IPv6:2a00:1450:4864:20::32b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D47910ED81
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Jan 2025 12:10:20 +0000 (UTC)
+Received: by mail-wm1-x32b.google.com with SMTP id
+ 5b1f17b1804b1-4361f664af5so10473145e9.1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 09 Jan 2025 04:10:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1736424619; x=1737029419; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=ScDEvNBMi9Yu3n8HTIx1zSceI6fYU9kCdn5rYgIhGU8=;
+ b=VfkpfpvK5wDzWi2Kh1DxFsQYa/rLiILXejpqQiiWkfy1Q7hdC8ePQKa4A2l9QSj54m
+ SXJAaD6y8Hf7mnGNUFSR/1B+i1ssOfv5X3x2ilqd6vMozgjTOZnnyfQdfhRZniU40VP+
+ B4LUdHQT8uAj1mT9mHsBhP2v/zrTRp8fSiArMH5VZpc8s8vuhQqZwcImXiD+7gwl5v9I
+ 8w7gv4UVIU9DmFBSAHUeCy5GlaPFsslc9SG7L3YiyaTEsDm2Xm1//e/Z70a68f4/jYMV
+ 5J5m7nUCLFno0pdGwn1ybrhxZCQjNC5SMimqPFODiMc8xFMGuePFhyTap/ItC9VEtuq3
+ BByQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1736424619; x=1737029419;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=ScDEvNBMi9Yu3n8HTIx1zSceI6fYU9kCdn5rYgIhGU8=;
+ b=CJ9t3Oc3C4vijAP3VvYzhoZO/9sQmgak+nZqP6BoZPSD3RsDgNttfF5jRSoIoJN4lA
+ t/J40MAsIM/bHaeXbXMUvl0llfNtp7CV8ZU9MK3f2VipUtclQLecHi2it922ZC5ZpCnj
+ L7D2jkjEW6P+54WzZm4DhyAd8Jp32IJZrlDrcGcuUwQWPwhtR8L5otfR4T3F874zKUma
+ 7oM0NwO6vTvoH3gFuAMuW7Pt3gX5TwWPtxNbo9pl6n8U6aAdtGZOwOV68u8B71eyppan
+ ivAuIor5re8kA5PZj5oaRs+tvCtfQrDfZE+07krqaxNpqIfLcdCMfq0SCRvnACp+tjH6
+ GO3w==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVfUaazJ8B3It8P56REeATtVB/BLl8KZRrgHBuMJvGmXJilLFUufIzNj1V644CE6Pm4+JtlKDrzw1w=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwYIGKUB1c/m6WXJWQ2io4IjWMy6gZrfahisXfN6ZyzR2QvZJaI
+ LPCsRb0XNco7j0jJRy85M/pQwUng7NvIMWXpf0V/j+yJHFybcDmQwuRfowLEpzw=
+X-Gm-Gg: ASbGncsoe+KTTQXxazxrHuJTmg3mN/N0tMLlV7zQFZrF6x57vfrhC5iqEF6/K5whenJ
+ j+EsALlKK8xTRJk1tNZ8uMGz8SKD43b5tnj7hxTi0lrLv0xLARweaDd1GjwXDWfwGvQprRH/72v
+ GQSlJb1Dm1/H+2jJDLsistrOw/b4mYW+5lUk5rdawUUQ+/OdYEUILwodvPj5+lMO54+l7HXn0PD
+ UjWMD6nvid5489G0tGXRpncF+zoHJh+gR/PIi1yoFVCH8j2Bd1oCi0=
+X-Google-Smtp-Source: AGHT+IG8rp+QX8v4S4fqKATVXk+QD/aEvAPXmO9Bulu0mN6QuKMDbLW3pqUmFSzB7pw+E5Uf11Sy2A==
+X-Received: by 2002:a05:600c:46ce:b0:436:6ddf:7a27 with SMTP id
+ 5b1f17b1804b1-436e27072a7mr53497435e9.23.1736424618831; 
+ Thu, 09 Jan 2025 04:10:18 -0800 (PST)
+Received: from linaro.org ([86.121.162.10]) by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-436e2da63eesm53042595e9.3.2025.01.09.04.10.16
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 09 Jan 2025 04:10:18 -0800 (PST)
+Date: Thu, 9 Jan 2025 14:10:16 +0200
+From: Abel Vesa <abel.vesa@linaro.org>
+To: Abhinav Kumar <quic_abhinavk@quicinc.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
+ Danilo Krummrich <dakr@redhat.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Rob Clark <robdclark@gmail.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Johan Hovold <johan@kernel.org>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ Johan Hovold <johan+linaro@kernel.org>
+Subject: Re: [PATCH v4 4/4] drm/msm/dp: Add support for LTTPR handling
+Message-ID: <Z3+8qDc19zicI6vQ@linaro.org>
+References: <20250108-drm-dp-msm-add-lttpr-transparent-mode-set-v4-0-918949bc2e3a@linaro.org>
+ <20250108-drm-dp-msm-add-lttpr-transparent-mode-set-v4-4-918949bc2e3a@linaro.org>
+ <feb4f780-8fe6-426b-9ba4-ab1fb102ac27@quicinc.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB6266.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 81273998-4253-4761-c350-08dd30a5c8e8
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Jan 2025 12:04:35.4738 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: YKz6+LnYcyI8tnWhJNnBWZTWu7LNHiDhPICbkMtEz4c3JvkHXQSHARUhu8d4VS6rCzlhoeRdflPa6AS5q9cB1QS32/jSS046IOnWB7b/SXA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB8051
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <feb4f780-8fe6-426b-9ba4-ab1fb102ac27@quicinc.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -180,62 +105,115 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-> -----Original Message-----
-> From: Jani Nikula <jani.nikula@linux.intel.com>
-> Sent: Wednesday, January 8, 2025 10:31 PM
-> To: Bhadane, Dnyaneshwar <dnyaneshwar.bhadane@intel.com>; intel-
-> gfx@lists.freedesktop.org
-> Cc: Bhadane, Dnyaneshwar <dnyaneshwar.bhadane@intel.com>
-> Subject: Re: [PATCH] drm/i915/bios: Define eDP pipe joiner feature for VB=
-T
->=20
-> On Wed, 08 Jan 2025, Dnyaneshwar Bhadane
-> <dnyaneshwar.bhadane@intel.com> wrote:
-> > There is new field "edp pipe joiner feature" size of 2 bytes in the
-> > eDP VBT block. Each bit represent panel number to be enable/disable
-> > for this feature.
-> >
-> > Default value:
-> > For ARL platform, 0x0000 to keep the feature disabled by default.
-> > Xe3lpd onwards, 0xFFFF to keep the feature enable by default by VBT.
-> >
-> > Bspec: 20142
-> > Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
->=20
-> The patch does it ways, so...
->=20
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
->=20
-> ...but are you going to use the info for something?
-
-It was just to note for the future use. Thanks.
-
-Regards,=20
-Dnyaneshwar
->=20
-> BR,
-> Jani.
->=20
->=20
+On 25-01-08 14:57:41, Abhinav Kumar wrote:
+> 
+> 
+> On 1/8/2025 6:31 AM, Abel Vesa wrote:
+> > Link Training Tunable PHY Repeaters (LTTPRs) are defined in DisplayPort
+> > 1.4a specification. As the name suggests, these PHY repeaters are
+> > capable of adjusting their output for link training purposes.
+> > 
+> > According to the DisplayPort standard, LTTPRs have two operating
+> > modes:
+> >   - non-transparent - it replies to DPCD LTTPR field specific AUX
+> >     requests, while passes through all other AUX requests
+> >   - transparent - it passes through all AUX requests.
+> > 
+> > Switching between this two modes is done by the DPTX by issuing
+> > an AUX write to the DPCD PHY_REPEATER_MODE register.
+> > 
+> > The msm DP driver is currently lacking any handling of LTTPRs.
+> > This means that if at least one LTTPR is found between DPTX and DPRX,
+> > the link training would fail if that LTTPR was not already configured
+> > in transparent mode.
+> > 
+> > The section 3.6.6.1 from the DisplayPort v2.0 specification mandates
+> > that before link training with the LTTPR is started, the DPTX may place
+> > the LTTPR in non-transparent mode by first switching to transparent mode
+> > and then to non-transparent mode. This operation seems to be needed only
+> > on first link training and doesn't need to be done again until device is
+> > unplugged.
+> > 
+> > It has been observed on a few X Elite-based platforms which have
+> > such LTTPRs in their board design that the DPTX needs to follow the
+> > procedure described above in order for the link training to be successful.
+> > 
+> > So add support for reading the LTTPR DPCD caps to figure out the number
+> > of such LTTPRs first. Then, for platforms (or Type-C dongles) that have
+> > at least one such an LTTPR, set its operation mode to transparent mode
+> > first and then to non-transparent, just like the mentioned section of
+> > the specification mandates.
+> > 
+> > Tested-by: Johan Hovold <johan+linaro@kernel.org>
+> > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
+> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 > > ---
-> >  drivers/gpu/drm/i915/display/intel_vbt_defs.h | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-> > b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-> > index e9b809568cd4..2fdad5170896 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-> > @@ -1090,6 +1090,7 @@ struct bdb_edp {
-> >  	u16 edp_dsc_disable;					/* 251+ */
-> >  	u16 t6_delay_support;					/* 260+ */
-> >  	u16 link_idle_time[16];					/* 260+ */
-> > +	u16 edp_pipe_joiner_feature;				/* 261+ */
-> >  } __packed;
-> >
-> >  /*
->=20
-> --
-> Jani Nikula, Intel
+> >   drivers/gpu/drm/msm/dp/dp_display.c | 17 +++++++++++++++++
+> >   1 file changed, 17 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp/dp_display.c
+> > index 24dd37f1682bf5016bb0efbeb44489061deff060..ad09daa4c8ab5c0eb67890509b94e72820bab870 100644
+> > --- a/drivers/gpu/drm/msm/dp/dp_display.c
+> > +++ b/drivers/gpu/drm/msm/dp/dp_display.c
+> > @@ -107,6 +107,8 @@ struct msm_dp_display_private {
+> >   	struct msm_dp_event event_list[DP_EVENT_Q_MAX];
+> >   	spinlock_t event_lock;
+> > +	u8 lttpr_caps[DP_LTTPR_COMMON_CAP_SIZE];
+> > +
+> 
+> The reason downstream stored it panel is to read it first in dp_panel's
+> read_sink_caps and call lttpr_init if drm_dp_lttpr_count() is non-zero.
+> 
+> But here it looks like  msm_dp_display_lttpr_init() internally handles this
+> for us. So no need to store this?
+
+Replied to Bjorn already about this and why I thought it was a good idea
+to add it.
+
+But will drop in the next version.
+
+> 
+> >   	bool wide_bus_supported;
+> >   	struct msm_dp_audio *audio;
+> > @@ -367,12 +369,27 @@ static int msm_dp_display_send_hpd_notification(struct msm_dp_display_private *d
+> >   	return 0;
+> >   }
+> > +static void msm_dp_display_lttpr_init(struct msm_dp_display_private *dp)
+> > +{
+> > +	int rc;
+> > +
+> > +	if (drm_dp_read_lttpr_common_caps(dp->aux, dp->panel->dpcd,
+> > +					  dp->lttpr_caps))
+> > +		return;
+> > +
+> > +	rc = drm_dp_lttpr_init(dp->aux, drm_dp_lttpr_count(dp->lttpr_caps));
+> > +	if (rc)
+> > +		DRM_ERROR("failed to set LTTPRs transparency mode, rc=%d\n", rc);
+> > +}
+> > +
+> >   static int msm_dp_display_process_hpd_high(struct msm_dp_display_private *dp)
+> >   {
+> >   	struct drm_connector *connector = dp->msm_dp_display.connector;
+> >   	const struct drm_display_info *info = &connector->display_info;
+> >   	int rc = 0;
+> > +	msm_dp_display_lttpr_init(dp);
+> > +
+> 
+> Can you pls move this call after msm_dp_panel_read_sink_caps()?
+> 
+> If msm_dp_panel_read_sink_caps() fails there is no need to call
+> msm_dp_display_lttpr_init().
+
+Sure.
+
+> 
+> 
+> >   	rc = msm_dp_panel_read_sink_caps(dp->panel, connector);
+> >   	if (rc)
+> >   		goto end;
+> > 
+
+Thanks for reviewing!
+
+Abel
