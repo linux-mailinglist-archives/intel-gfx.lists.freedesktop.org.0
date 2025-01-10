@@ -2,167 +2,187 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9F94A0945E
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2025 15:55:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 030DBA094C1
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2025 16:13:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E713410F0F6;
-	Fri, 10 Jan 2025 14:55:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 111F310F0FC;
+	Fri, 10 Jan 2025 15:13:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XyIpSKQi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OBijCKlx";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D60010F0F2;
- Fri, 10 Jan 2025 14:55:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C16910F0FC
+ for <intel-gfx@lists.freedesktop.org>; Fri, 10 Jan 2025 15:13:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736520910; x=1768056910;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=sdKTLwAn0W3j+54ocRki9Q9VF5+FK5IP5GcEuVwO9W0=;
- b=XyIpSKQiZxKz+ejwX0+EaJFixByk7SLh3bBbwUE0Qp0CI64A4lDu7M6q
- iK5Iwas5ibFh9ZKLkx9gni4imgZrsKzq0fPeHSbyEZJR1R4QsrzWR93JB
- VC/5jg+AWx59T4htNg3lla2fjjkM0+c5Eh11VYDNkcYq5Ehop6bre3hWK
- jS4bkUMNniRvcH3MkJlLS/2jtBsIHYCyj8BvlaId7OTavw40C7Oo5Zt2Y
- kwU9W79DtSK22sbDJdzk/X+nvK9CHlFDdDNCq7PmjsE6iSlMfSSOhQ9Q8
- ppRtaoLRQs7wgcgEjhWhR8Z3VmffDBKFSSsvnt/4cUnOsF5MsBZiwoQsU A==;
-X-CSE-ConnectionGUID: F/ZJ4yFUSPeBJwTlOvh+ig==
-X-CSE-MsgGUID: sKHBFEJMRYmmNNN/DOaGtQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11311"; a="54356638"
-X-IronPort-AV: E=Sophos;i="6.12,303,1728975600"; d="scan'208";a="54356638"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jan 2025 06:55:10 -0800
-X-CSE-ConnectionGUID: MbbDMkUWTCKY6x0BV/4ozA==
-X-CSE-MsgGUID: zWpI9MSkTTeEqBSMh7I3rA==
+ t=1736522008; x=1768058008;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:mime-version;
+ bh=eb/VkEuRGfKHUN1uARol3hTdiHYV7s9y2uWP7P6Q80I=;
+ b=OBijCKlxrYUpP/OIzLtM+e79my39CX/oKjAlKOqIl1i/cH9eljBkKt9o
+ IZ9qE9DM9yyWrFT9WTj7qVFmVHCxLAzGQYbx0W6EEXzQw5kGa+MYWzKRe
+ X3pTLnOFtBo7U1REyoEKD2INnhgjnlc3cBpcAT1j5YtJR5bK+qdMv7f96
+ lZafGvAUVeI4eWbGf1ERwlHpK4ynWbuhPtBvvaBQOBWN8883A45VnxFmo
+ E8BmP/J75QkSuvU2SAEjQBzGOpjTHPKfmjPWwbiVCGtk4f1JWKL6OT+55
+ 3s0Nv3oZUtZnM/mdKnEPgc/hgMeaQ+w2hZvs/Rk7/K+OSbzJr/vUT8gJ8 A==;
+X-CSE-ConnectionGUID: DZNRWUtpTkWR4UjRK4UskQ==
+X-CSE-MsgGUID: nwx5gR0OR3m1WEmWLDYdWA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11311"; a="40583815"
+X-IronPort-AV: E=Sophos;i="6.12,303,1728975600"; d="scan'208,217";a="40583815"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jan 2025 07:13:28 -0800
+X-CSE-ConnectionGUID: QnzVMcgETvK1aqgrT8edGA==
+X-CSE-MsgGUID: IKN+Jp9rSt2h19oAal6vkw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,303,1728975600"; d="scan'208";a="108670486"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmviesa004.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 10 Jan 2025 06:55:09 -0800
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+ d="scan'208,217";a="127040699"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmviesa002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 10 Jan 2025 07:13:28 -0800
 Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Fri, 10 Jan 2025 06:55:08 -0800
+ 15.1.2507.44; Fri, 10 Jan 2025 07:13:27 -0800
 Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
  orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Fri, 10 Jan 2025 06:55:08 -0800
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.44) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.44 via Frontend Transport; Fri, 10 Jan 2025 07:13:27 -0800
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.172)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Fri, 10 Jan 2025 06:55:07 -0800
+ 15.1.2507.44; Fri, 10 Jan 2025 07:13:25 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ufWV8sH1xgmo0DDOcq0niPHpLm2HoeYxUgLRXwLzpPx+OWEbd6DT3Nv0xhtkJtxkQA5YPnDf8vVxQ2Xhuukq1Dq4dCiLSkr8n345hL31XtHj4h2doELequEyZtrDsW04ifhQFuqf4BawYnzQaruJ8lpFaovxGyZLPtlrXOP3BYylRdspDccJ4mjd/SVRyTOzXFaCOIKuIhcwPaYUUpGBPYhth8cVNFE4rwp3aJ1QxyW6z4EGa0JXxs2hAshukpCdeswqzuDe1Ux5Y7ShrZmFS4Jx3mc5rI0+tj/t7oNOw6YiqxSCigBvgAt5BLu3wo4iaiCe9Vho02XDZIJHia+6eA==
+ b=MWJd1T99N20kM7eLeC4oJC8M7lHN/nO2dcZMX5xj/hxDZ+cRXbhGGSByRTxB3rDwfOBwDK29V2C7FavlwyRBl/doGx1KWR3f2AWsAXXw8Ix5BASRNT+tSHHaHnawHVOFr78bHILnW1nmiRLHvSuCGwZgd1TScmgk7oSuE1csLe+qDo/i3mXLc9JJjTQISLK9HHGVfKynJzG2sS9+YJ0hUUh9U7r1c7o4BF20x7liB8d7RN4T5d6tyPqmukjcTPYJ07k5+hVHzQOXjQR/rJvu5pRX/2vLo10nXK3DOJie+6mO6qRGXruThX0qSv6Fksu/UEXRKkvOpJxhmXuhEIK7SQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8jDe7xTtg8Er7PMDSSkZ1kojKhzs0CaaOQkbbpQD8oI=;
- b=MxSuF6JhZVTSQeBS24p8fVR145YJ2g3/nz6SfgxoxRxy9y1eebKQTQEDNhZQqLgk6sZIVHA96hXCxENl/zdsrXSuf0rAtbd/iOd0xDjRvz+ot12I1sK2QyJBBQPD2t2bEetKhUnaoQdkLKtW2wtXdpOENfar67iiDEsxoWIUmQ2ZXNkxOCfw03Jj6rOHAa/L39KG5AywOOHxr7AAsoyaSECh9DcfN+i999+AfhfAqxJyf7I+36voOgFtLNkdl4cmDzZc/pLKFC1+m/6THqTAcEs2Gs1nkfaJT3M/J0/P4heahWKTBU8YCmOTPxQE4iInTx/BqhSZqmbiJTwu29Oeeg==
+ bh=isw3kZJKm+58H/5iKLQhGJb2oitMu2xykZsrGA7/+ek=;
+ b=vKuGNQP2kzJ0cgN72umn5DrdprBg4e1Yj31Wj0jvENN7J/n+xD7Or1A1R4iVayd1PwDpfRQwFvV8WZHTLiD/Ayy5G/xJ5E6WgE77TIGEbDJsT2kE4EB403mciVzsHc3BayMJ+jt6kvCfYE5ffbPFjZZ96/MfDA/qogY4Rdvl6xHSvDsiRuOrXr+L/akSL5H+Foov5/0biYG9HaUWMGdC844t1D+sx8XZhhgQIN9KWmU0dd7GQ6VrpS+AKMpCzDwYIu73cQA7HGMoZg6XdPwuSRkGj9HugljUgi0CW/GQeFKoMjraCrHRQ2eY75YQx053S/bsV1+ixUxNhFTT3je7Bw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from SN7PR11MB8282.namprd11.prod.outlook.com (2603:10b6:806:269::11)
- by LV2PR11MB6024.namprd11.prod.outlook.com (2603:10b6:408:17a::16)
+Received: from PH7PR11MB8252.namprd11.prod.outlook.com (2603:10b6:510:1aa::14)
+ by PH7PR11MB5984.namprd11.prod.outlook.com (2603:10b6:510:1e3::15)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8335.11; Fri, 10 Jan
- 2025 14:54:51 +0000
-Received: from SN7PR11MB8282.namprd11.prod.outlook.com
- ([fe80::f9d9:8daa:178b:3e72]) by SN7PR11MB8282.namprd11.prod.outlook.com
- ([fe80::f9d9:8daa:178b:3e72%5]) with mapi id 15.20.8335.011; Fri, 10 Jan 2025
- 14:54:51 +0000
-Date: Fri, 10 Jan 2025 09:54:46 -0500
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-CC: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas =?iso-8859-1?Q?Hellstr=F6m?=
- <thomas.hellstrom@linux.intel.com>, Oded Gabbay <ogabbay@kernel.org>, "Lucas
- De Marchi" <lucas.demarchi@intel.com>, <dri-devel@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <dim-tools@lists.freedesktop.org>
-Subject: [PULL] drm-xe-next
-Message-ID: <Z4E0tlTAA6MZ7PF2@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-X-ClientProxiedBy: MW4PR04CA0042.namprd04.prod.outlook.com
- (2603:10b6:303:6a::17) To SN7PR11MB8282.namprd11.prod.outlook.com
- (2603:10b6:806:269::11)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8335.12; Fri, 10 Jan
+ 2025 15:13:08 +0000
+Received: from PH7PR11MB8252.namprd11.prod.outlook.com
+ ([fe80::625b:17f6:495f:7ad]) by PH7PR11MB8252.namprd11.prod.outlook.com
+ ([fe80::625b:17f6:495f:7ad%6]) with mapi id 15.20.8314.018; Fri, 10 Jan 2025
+ 15:13:08 +0000
+Content-Type: multipart/alternative;
+ boundary="------------2O0m4hEu1VlSCOIYo9ahgrOs"
+Message-ID: <0155609b-b3ef-456b-a838-37e5fcf8bf88@intel.com>
+Date: Fri, 10 Jan 2025 20:42:59 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] drm/i915/selftests: Correct frequency handling in RPS
+ power measurement
+To: "Nilawar, Badal" <badal.nilawar@intel.com>,
+ <intel-gfx@lists.freedesktop.org>
+CC: <riana.tauro@intel.com>, <anshuman.gupta@intel.com>,
+ <karthik.poosa@intel.com>
+References: <20250109093010.3879245-1-sk.anirban@intel.com>
+ <f3c92a31-37d1-423e-a578-b8d91f17a48d@intel.com>
+ <66cfa40b-cc9b-432f-9a86-4eaa42f72fc8@intel.com>
+Content-Language: en-US
+From: "Anirban, Sk" <sk.anirban@intel.com>
+In-Reply-To: <66cfa40b-cc9b-432f-9a86-4eaa42f72fc8@intel.com>
+X-ClientProxiedBy: PN0PR01CA0017.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:4f::22) To PH7PR11MB8252.namprd11.prod.outlook.com
+ (2603:10b6:510:1aa::14)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN7PR11MB8282:EE_|LV2PR11MB6024:EE_
-X-MS-Office365-Filtering-Correlation-Id: e8b82e47-c1b4-4a5f-a8c6-08dd3186bc2f
+X-MS-TrafficTypeDiagnostic: PH7PR11MB8252:EE_|PH7PR11MB5984:EE_
+X-MS-Office365-Filtering-Correlation-Id: 05e00ab8-4dc3-4f70-6641-08dd31894a41
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7416014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?pDhlnTPXYJQBEvrmcYy6TnRyjJeVAMq9Vubjy2l21e4VClKSuD4d63RtR+5i?=
- =?us-ascii?Q?+ZS0CmkyB4Pj2n3ZVC+/N/caAOjNhp4qbbwYT2jjrZrlmTyKo1YISiAWmbyL?=
- =?us-ascii?Q?aITa4NIiSoIN/us6AuDE9afhyVZb5IBWySWFIqlra2uRqoIWltf5uHZx25vr?=
- =?us-ascii?Q?DFWybfaqUkjFbEQtU07qXA+bkDGzIcHfNAYUrXzwLGcbEyvXsh+JQG2qvuqY?=
- =?us-ascii?Q?CvNII7RoVDLcTDR64VbynqO/H3SsBLzgPsfhsPtzHm1nDoNE0IoT5pR6Cw0l?=
- =?us-ascii?Q?vqLrrjYE+r4pSL58HL5OwRwZGkr0TfCg1kvbgAW7fYqDVGeJ1uJ4jkAmZ47F?=
- =?us-ascii?Q?MBCWcgvYj1VncLdPb+50McRDTAC9cE212UCOhJUujwCKXCqAWT9eo2sKz9Pi?=
- =?us-ascii?Q?a2NmabJpgGpK6lBSkM/zlsfMbLYANJMuqYEIGAPwsGqNuvB2n27Rx/4a2Xss?=
- =?us-ascii?Q?z2oEUiLM58zUo2rSz/lzQshbhViIbQb1ljfL+fZYDP7f3+2/QG/oiowZMosV?=
- =?us-ascii?Q?ZbqiCxqz4TQWCwukkv0b/ZT32DFLoRF7K4g7BgqJE93W1ghZd0i9BdmBWnV6?=
- =?us-ascii?Q?i0jpaD67gsLR+7n5HwB2oCtF7DqV4blAPdi4dW+i2ic3S7NSKmO50YSkvami?=
- =?us-ascii?Q?uGaf58WgBqNDpto5DCld0wZKUh3svJzH++HHpbMsNmFTk6c1uHp4VAvwWkHB?=
- =?us-ascii?Q?DunVf87O7co1PdJXyLDEhHC0iUunCc/ADHNAGz5t7wIlH9oIUMsIdLUfKEfP?=
- =?us-ascii?Q?tcuX6gf58+ScY3HmG7uzVRLRS87dJKFoiVlhKPEQVGhT4aE3cSwSRE9zTgxL?=
- =?us-ascii?Q?EASJtCumFLJ8zYPyVtGHbTqHhcGJKtnwdPhKptA1MB22FpMF00ebJ+wnX4v6?=
- =?us-ascii?Q?igfjo3PLxpOJpJMZFqBwbsNAZVQXVy7zYi45TAy/z7uhi/rJnGeyai0tDZp1?=
- =?us-ascii?Q?iZ5ydgdyW47QqS2YGQnKkJ8lOdGyAJdU88BqkPy4lSHvaS/l54xIOFJ7KDAK?=
- =?us-ascii?Q?JwAKdPGofJ5ILqPGBXCWsl630wZYvQQ4y8eLQWkxcsvoiEkKiPan278ZxnAQ?=
- =?us-ascii?Q?Cg1vDfYueakEfA7c3KgHc1VN3ZAjb1IPStMWOBm7I5X+kRAD29Fvr0VPWzbw?=
- =?us-ascii?Q?hOkN8Yvgf3LKp/7YS+hs1SyvWduUuG+YiQJx6ZNiS9G4vi4lH8Hi71SJfiEw?=
- =?us-ascii?Q?tWchc4stLZd1Dv+6Ikw1MUDus5jEihjLIKGQlB0pngL1bBIU7ykc5fjTphYb?=
- =?us-ascii?Q?nkMco23mBRoZS2jM6cR6bxmXYiBt8PMyMLXU0efLPvmr/iIxlfOwDoUvsXx3?=
- =?us-ascii?Q?ZOlkpz9yjEEt8gB6SImLDn7g/YFiOrFM0v+QGW011IC9gA=3D=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|8096899003;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?VGFrcTRCUks1aGUwRGViQ3poaE9iRG5VUkJwNmtvVUxXR3FXUXNsTGd5VWV4?=
+ =?utf-8?B?dE12VnAvdHdocmloZ2VjUzNjQjNZRkx2bnhxN0NmUDRaSHVKTVVNOFNsSnRv?=
+ =?utf-8?B?OG1nUWtzelhBeVRjZ3NpYVdRalZKckRqT0dMcFdXdFFxYWgwbzVwQ1dGeDFk?=
+ =?utf-8?B?NUNLc0I3d29DVmJ6Ny9sWENWQXNvQ0NNeU05TWdzOUl5dHByaDk0TjJKU0xT?=
+ =?utf-8?B?OHNJUjJsS3IrSUh5eVNZanhqVnh3dUhiWHZIWExTVERuTnlUNThuUG8xVXBk?=
+ =?utf-8?B?cmtVWEpmTk1ZTVMwc01PcEZscWhxYjUvTEJjd2tNbExQWHZiakVjdVVzWjYz?=
+ =?utf-8?B?TFpVK05FNHZzaWt6cVpvVFJaQVNhS0poYkpLeFhBNUtXT0l2RlgxbU1mbjJt?=
+ =?utf-8?B?VnVveHZ6NFhxcjdYK1E1dHlwVXMwekRDWWUyZzNBT3pzMXkyTXNqS0d1ZzZv?=
+ =?utf-8?B?NzlPMm9jdE1mTHU3eXlzVHpSaEZidVBhR3JpUy9sN0RxdURoK1NmbUVpWXF6?=
+ =?utf-8?B?RXJqdnJPQ0g5eGs4YVlPNTdRNU93clNjREpPRFVTdDIvVTdLY3JvTko1UG00?=
+ =?utf-8?B?LzlLYmVkZnN2R1U0eFp4UUtrSklQeWUvODRDOEVNbHpXKzdoRmxsZ2E5WXB0?=
+ =?utf-8?B?Ty9WbzRINno0VkgvU3hxeXBLSzh0anhsS1N4UFpFSnE4UlZHelRoU1dHaVdj?=
+ =?utf-8?B?elRrTFcyVG1xVVhPMCs3TzhWRXVDeDc2eXFhK3IzRGhoTENPejQ2K3dVWFNa?=
+ =?utf-8?B?b1NGZFFmUFlmTFdiRW8yeFBRR0EvdFh6R3N4a1JhcUJ2RUdXUm5pakJ3SW9p?=
+ =?utf-8?B?MWx1UGZhem1DZHYxSlJHU25ybnUxZTdxdDlUNk5iYi85UkwxejN1UlovcTNM?=
+ =?utf-8?B?QXUzcExWazE1WmNtT2tNamFjN0Y5RHU2MnVsWGNVTlVCTFhFU0NJOE9Zc3BI?=
+ =?utf-8?B?Z3RaM0NEYkdkZ3dPVGtZM0tUZjJzUHdDTDVkWkl2SXcycHozZ2lKbVhBdE1C?=
+ =?utf-8?B?WUhTWGw5Uzh5Q3E1anVkbHpkaW9odEFpRGRQWFpwTWdIckthZlI3SmI4anJt?=
+ =?utf-8?B?QkxjbVg0K2p6VUZYOVBDM0NHYjhOY3RXc2QyZUZPOUhza294UTlGWmw4eXdL?=
+ =?utf-8?B?Z0Jyb3pWUXdUR1VzdVgwdUpaQURVTlFhemNKWmhvcEFMdzMvaFF5RE9CV2sw?=
+ =?utf-8?B?RmV5bFpKTTZhQzBYZEtQSU5OZ2Uwb2dqRXB6SkdXS3c2MkRWdjZmQ1Z2aFA1?=
+ =?utf-8?B?aUJCRUJCQlI1US9xTmRrUzI2N1VVVVdULzQxaC9Tak5nNytCYnM0U1NSNGcy?=
+ =?utf-8?B?bTBGSE5vSDlranUyQmREWEcrVTM3M0RRSkFFRVFiaWtuRElWeWN3Q2dtMFhh?=
+ =?utf-8?B?WDdhRVJ1QVYvRXRXakVGSk4xeVBwTGU4azJuNlF5WHFPdlpnS0VIL3hVVUk5?=
+ =?utf-8?B?TlBGUWhaT3ZwNi83amNRaGhGL25INnFtbTQ0ZmNmendqZUU0UTRsZlptaU1y?=
+ =?utf-8?B?am5haW9rNUY5bEtVanN3R29PKzZPeEF3WXl0aW9OeExWaXk3RnI1V05MdFdV?=
+ =?utf-8?B?M1JnZk1UUXluRUdqMTAxMEhPTFNSc05ZRlpLMFNxS1l1OURUeUlmUnpvRGtW?=
+ =?utf-8?B?MlZpY2t6UTdzaTBpRGI2QmN6WXlxMU81WlpmNm9KekR5SFYyeDZOSXZTOEkr?=
+ =?utf-8?B?Zm1KcnFYd3NWYkNEYlNsRjhxczMxSjNBVUhVRFpCQzNoVDJrNXNwS0ZJbTdT?=
+ =?utf-8?B?ODVTcWVpTTVEa21ic0tEWVllZ0o1ZGNxeWZid2NWLzVhQ3F3NGRHR3RuLzZx?=
+ =?utf-8?B?bXZKYkw3d21jZVMrNWtTalJXb0I2MCtDVGJxOEh6VFY4RFZSWGZqMXhTUGhB?=
+ =?utf-8?Q?URTUnE077+GTV?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SN7PR11MB8282.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(7416014); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB8252.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(8096899003); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?aefd02qsIA+SEycv0vy3nf0fPY8f55/8UPAhIOtCufQeKZBWaageNgRBg8B0?=
- =?us-ascii?Q?aMia7oxX8fo3C1bw6NQhTS4JuqcW9lnAfz+sROcb4joIqj7hv0sw28Gn3o2d?=
- =?us-ascii?Q?3UihOI0cYPLRraa3M/HoDzunyeW8KX+2qRGFS3M488OitqnucPCPw3b2QRCV?=
- =?us-ascii?Q?aQHWTnjN+YpsKrLU0oeYGe6r6eBfpg+mUbhYBtV/vIGP01PxqUxw0gJ/7ifb?=
- =?us-ascii?Q?hjKuNX8yrz4tHzVXQtUtiw0G8+EAGcnhbqNvL2xR8jh7FAlbOUERHgdm/wRN?=
- =?us-ascii?Q?txtO9H3NnTWeGTFsL75obLxzVBvcf8d3wf5TTlljTU2HPD1UakFj80MGxHsN?=
- =?us-ascii?Q?rf24ceWwH8qOx7e2VTRuBQoIsIx9i/CnTz1HZ73AG4PKgfkhSZnjvyRMb8nL?=
- =?us-ascii?Q?Hkk+iKEjhDijhTG5nCeB15cwUagiNLSf5qivaAjrQUEt6CXe+Xzo7KIMCF8N?=
- =?us-ascii?Q?x+3O8MVzfhaplj6GCmd5IjcA2LFnKdQwQlpaACoWvX1vDGiVfR58fWTSOB78?=
- =?us-ascii?Q?UQYeCVRjeGbVWXUEN7WaBWdfF2QRre9JmpuMpVsAvLHs8csUWOeRS18EI5z6?=
- =?us-ascii?Q?lWL3OZ4vrmsIZNmOa+bIw0q4bSSErmcvRhrTUwr+6vs+782MY8gBj5DjgSaW?=
- =?us-ascii?Q?5gJL4tAZjIHadpXWFPyfXy2Vw4DOO8i5XNUANamXWXFFls5+gtJbwFihulJ3?=
- =?us-ascii?Q?QDxcBvmdjhQBuaI2GT9pmOGjKmSmn3YGzTnIlbtQyYd3bAEcebwVjcOl1uBb?=
- =?us-ascii?Q?+OXKHo/xT94BaN3yRSEvYuwsxElkAPyYPEMfsECC5DrZMXWRa88GhsCTEzzI?=
- =?us-ascii?Q?3bs4qrbHMV1ZfDNxrwQXz1bk4QX6VQ9vXAhARWGIu9vvNgkgI/c9PVw3ZJxf?=
- =?us-ascii?Q?or8e2MyG6I0teAPF1ORUO0akMN1SpzrEklbwuksDXb0kfG9Z26B+BWUQSSj0?=
- =?us-ascii?Q?8rqadvR3qG6UJ5eb4YrBNAFskuzyxkeSadsGlB/GPi28LHhNhLTtBh+PS3tZ?=
- =?us-ascii?Q?s+Sm48mFuDvdY57IfPm49vGnbfwKjtFF5kXvSKV2Sht4u8yOajuKAxl7eODT?=
- =?us-ascii?Q?8snP1jpCu/Ybdub2sDbH7N+0m9GOagCF1wGs2dVlWINaAwZjvtzn8gvUD9J+?=
- =?us-ascii?Q?xM8S4rEuC+cvYNw28fluwUrzEwOzTbM5BGPYZXJ11/A4K7yPMVYS3B//IiFw?=
- =?us-ascii?Q?VL5xkvH9UTMU/S85A1lxLNXl3bnCdyrfRL+5lt/QYmgszV80KchQQf6zDE/a?=
- =?us-ascii?Q?h4QuhWgGz0GOqRls30lVKjn8Ao6/6F7bUGFugWHsqnAvLzwNIzW8AJdGp88j?=
- =?us-ascii?Q?FSN8CHPpR3iDQ62xhqwzgKxaVhtZzNdO7GdSsW9BvSJsnTygRnI37Emx/Jjh?=
- =?us-ascii?Q?F9vZONwk9hDzTOsG5HsVhUwrHde0REoY3T43HiwX87ktV8KIXANo5UhTk0vS?=
- =?us-ascii?Q?EChmAuo4Nt6IpGgio9taLyYABgT9TNMrKgtp7qW7FT6rMy5aTwC3jFUknH5T?=
- =?us-ascii?Q?qIk3yv67X2DHfBjAJoQo4nKThU+JI247IdMdh3xMxOyaPAXXS4yQUjxW1DTx?=
- =?us-ascii?Q?0KkhuKAfQm0ZKbalSBTteawuhPe/0BuOdRV6vAozBeR25O9sYBnamgXQGfoX?=
- =?us-ascii?Q?pg=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: e8b82e47-c1b4-4a5f-a8c6-08dd3186bc2f
-X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB8282.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aDFaSFByZUphemxrY0haaVIyeFBOdGxvbjV1QlZjUEdYN0VwMkgvNng5R1po?=
+ =?utf-8?B?aW1wcVBwVmJJa052UDAyWWF5cGQ3aU5Lc092RmJSZCttWTNKUjJtNmF2VXRx?=
+ =?utf-8?B?MGp5OWpqZ3VSNlJZVjVSVVU1Q2JQZHV0Zm9NRE5pM0tPbGRBTHlXek9NeHVy?=
+ =?utf-8?B?YWczbmhyM2IrM0pidVluRlVQd0RkM0w0WVIrcFB1TjBiYkVaWmF3WUxTZkZr?=
+ =?utf-8?B?Mi9EUEFKbmVpVWtPeXg0MzJpd1QveDIvc2hFc0xEQWRZQmE1VjdQUU96NUEy?=
+ =?utf-8?B?Z0RLNzViemxNZ3BNTldOMVpsRURxa0ExektnaUkyMlFROG52bWFFOFpWdHl4?=
+ =?utf-8?B?ZFdxZ1RQamRXRnp3TmVPWUR5d0x2dGhOVlAwbFZqOVlRVUdyWkpuMkdlSnNV?=
+ =?utf-8?B?MDZ0NGFQU0VMVGF1NGJFbWE4UEliRytLTXdHVE5TWm5mQWF3dHdVdysvQm5M?=
+ =?utf-8?B?ZU5GTitWR2pYTWdCOU1XT2NiQnE2S2U3dk1JdnNDcmNyUTNmUmliL0cwM2FO?=
+ =?utf-8?B?TGFxUHVaQkJsVUlmaWFoelpqMkx4VW9xVkJNV0tFSmZneW5JclZtUjJBRHpr?=
+ =?utf-8?B?cDk1YUpXOHhDKzRMUGh6OWM3L0pjYlZOMjJ5cE9BaE9zRWlLb1FWM2Q4cnJ1?=
+ =?utf-8?B?YStWdzE4NitRRnc0VU9VbHdzVGlYelpxYkdJZk44SVc0amVycXMzdDFXRjhk?=
+ =?utf-8?B?Zm1rbncrSFRER3l1SHRUOVFVT2p4cmVDclhuaHByTHJ3Uzgrdjl3Kzg4eXo2?=
+ =?utf-8?B?SFpJSGJwWVEvOG0vckVJZVJXVW54TlQ3aVd3ZGl0WlJTUkVtYkRCYUF2T0k3?=
+ =?utf-8?B?bGJhSzVLNGw1cnh3Y3BZanhJNC9qT0hFVWdpK25lejE5WC9wVDBNbGtaVUU2?=
+ =?utf-8?B?QW1BYWJLemIvbEUxUlBRUUR1RC9oT1hGSzFCeEN2eGtyNjRWd3RBZUJibDcy?=
+ =?utf-8?B?Y2pBeEdFMGlJUUpxTUs0NVNva1JxbTl5WnFxWVNGRlRFZFBleEw2R1RubU8y?=
+ =?utf-8?B?czN2TmlWRXNMWW52dUx5ZnRINVEyQ011a3RlZVZRVENJdExpeXlFODZFa3dp?=
+ =?utf-8?B?MVFnczVIdnVBRHlVNlB6NGF1YVlGNXQ0amo4MUUwcFJENjk5YS83SUVkVTNT?=
+ =?utf-8?B?TXNQQmd0eEt5VGQxL0xEanAzRzl1eWR1UXRaOXZBcVdUSmc1T3BHVkZmamhW?=
+ =?utf-8?B?WlNaaTVBZ1BqWmxIVGI1ZmNPWU51cjBXVDYvU2FITWF1V0tuM0hDTXF1eG1K?=
+ =?utf-8?B?OE1FYkFiQ1VPb2g2V3YvTWcxNWhTR0tabHFNeXhOQWxQM3l4cklFaWxIUFNE?=
+ =?utf-8?B?UmFsbUpKYVk0WWxweVdqRm9tWUZZMFZQblRZa3VtdGNTcUdQSnBIdHVIMWZF?=
+ =?utf-8?B?cnRxams5UnFhU2NhVHVhU2w3NGtpbXpOaGNNTDg5aE9DSmRIK2lyVHZUUVlZ?=
+ =?utf-8?B?YURWTGdScCtTV3M2Z3NTM2Z6cDZzWWUzUjcrMytjRm5EYTBaZndtM2l6N3ZZ?=
+ =?utf-8?B?OGF5UVBnajJ2TXZMTkdjYzc2dDc3NHVoZmhRTW53OUtkdktUSjc1UUlKa2Mv?=
+ =?utf-8?B?cE53aHhxOUpHcHRpMU9SYkUzeWxZKzlRQ2FwMXQxRjhjcTdsOWtJdlR5WHp3?=
+ =?utf-8?B?a3haTmY3V2hMYTd3N0huY2NPRE80TG5XTXRUdXh2dmp2TWtyNlN2dHVtZ0VX?=
+ =?utf-8?B?TE5vejZqV0N0WWMzcHNHRFF3SmdZbWlFRFRZM2NxY3RpejFRZnd5czJrQUcw?=
+ =?utf-8?B?aUFHU2xQeW1WYUpGWW5hUjErLy9sL2tMTnJmL1Y2Wk1FbG4zRFBkVWJFcDZu?=
+ =?utf-8?B?VlY4UmlrRGxzcTBZekdabVJnRHR5YndlUit5TGkydkNtRVROc3dVRC9QZlVh?=
+ =?utf-8?B?UVhrMXRDR2lPVjFFUjlWWkZpKzk5K1dLc3hBOWIvMHI0RXZ0TmVTWloxSklF?=
+ =?utf-8?B?UmppN28wV2R5NmxnbzZiamd2R3hvQ1JpR0dFM2ptbjZnRHVlOHNtSzRnV25O?=
+ =?utf-8?B?N2cva0NFSHZab28veWdBUVBRemtoS1dFQmdTZUxVenRwWC8rcjhPT1hORVhq?=
+ =?utf-8?B?WTlHZFU4dnJnUlZnTzFaZ1pMNGhSUWtoODZLYXBQOVZaV0s0SE9hdTNDMDdC?=
+ =?utf-8?Q?vDrmkTHyQeJAZfixG9rWcVbgT?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 05e00ab8-4dc3-4f70-6641-08dd31894a41
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB8252.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jan 2025 14:54:51.1113 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jan 2025 15:13:08.6132 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 2qte7AVypgDfPdBWCOvm83VhQV+C31Qlx35+1yncpKB5AJcHllB+23ezIgwBH96amSC77o6fTsJqjXYCgHT/sg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR11MB6024
+X-MS-Exchange-CrossTenant-UserPrincipalName: ubOQh7hpN7b+wHYsxhpd/Sm5CITG7kjd/Gi32nAcEH332kU7thnRAp/nZCOamWaDR1CC3HhoU2f0vjFeLHLCzw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB5984
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -179,111 +199,204 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Sima and Dave,
+--------------2O0m4hEu1VlSCOIYo9ahgrOs
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Here goes one extra drm-xe-next.
-The reason for this last minute and extra one towards 6.14 is
-because we have 2 patches that we would like to propagate
-as soon as possible to avoid later conflicts:
-1. A big patch fixing typos everywhere.
-2. A patch killing xe_pciids.h and adding missing PCI IDs.
 
-Please consider taking this extra one.
 
-Thanks in advance,
-Rodrigo.
 
-drm-xe-next-2025-01-10:
-Driver Changes:
-- SRIOV VF: Avoid reading inaccessible registers (Jakub, Marcin)
- - Introduce RPa frequency information (Rodrigo)
- - Remove unnecessary force wakes on SLPC code (Vinay)
- - Fix all typos in xe (Nitin)
- - Adding steering info support for GuC register lists (Jesus)
- - Remove unused xe_pciids.h harder, add missing PCI ID (Jani)
-The following changes since commit 6acea03f98f5d0028cae1d9d4c60914bfdfb6d27:
+On 09-01-2025 16:45, Nilawar, Badal wrote:
+>
+>
+> On 09-01-2025 15:50, Nilawar, Badal wrote:
+>>
+>>
+>> On 09-01-2025 15:00, sk.anirban@intel.com wrote:
+>>> From: Sk Anirban<sk.anirban@intel.com>
+>>>
+>>> Fix the frequency calculation by ensuring it is adjusted
+>>> only once during power measurement. Update live_rps_power test
+>>> to use the correct frequency values for logging and comparison.
+>>>
+>>> v2:
+>>>    - Improved frequency logging (Riana)
+>>>
+>>> Signed-off-by: Sk Anirban<sk.anirban@intel.com>
+>>> Reviewed-by: Riana Tauro<riana.tauro@intel.com>
+>>> ---
+>>>   drivers/gpu/drm/i915/gt/selftest_rps.c | 11 ++++++-----
+>>>   1 file changed, 6 insertions(+), 5 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
+>>> index c207a4fb03bf..e515d7eb628a 100644
+>>> --- a/drivers/gpu/drm/i915/gt/selftest_rps.c
+>>> +++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
+>>> @@ -1126,6 +1126,7 @@ static u64 measure_power_at(struct intel_rps *rps, int *freq)
+>>>   {
+>>>   	*freq = rps_set_check(rps, *freq);
+>>>   	msleep(100);
+>>> +	*freq = intel_gpu_freq(rps, *freq);
+>> I am seeingrps_set_check will wait till act freq become desired freq, in case of 
+>> timeout act freq could be different. I think it would be good to 
+>> check freq returned by rps_set_check is expected freq if not then 
+>> read freq again after msleep.
+>
+> Please ignore above comments, I got your code. You are applying freq 
+> multiplier before passing to measure_power. While this approach works 
+> fine, I recommend fixing measure_power() by using read_cagf() instead 
+> of intel_rps_read_actual_frequency().
+> Add Fixes: ac4e8560248f ("drm/i915/selftests: Add helper function 
+> measure_power") in commit message.
+>
+> Regards,
+> Badal
+>
+The measure_power() function is being used by slpc also, as slpc is not 
+passing the raw frequency it may cause issue. So the plan is to create 
+independent function to measure power for slpc, and for rps I will be 
+using read_cagf() to calculate the avg.
 
-  drm/xe: Remove "graphics tile" from kernel doc (2025-01-03 12:43:02 -0800)
+Regards,
+Anirban
+>
+>> Regards, Badal
+>>
+>>>   	return measure_power(rps, freq);
+>>>   }
+>>>   
+>>> @@ -1202,13 +1203,13 @@ int live_rps_power(void *arg)
+>>>   
+>>>   		pr_info("%s: min:%llumW @ %uMHz, max:%llumW @ %uMHz\n",
+>>>   			engine->name,
+>>> -			min.power, intel_gpu_freq(rps, min.freq),
+>>> -			max.power, intel_gpu_freq(rps, max.freq));
+>>> +			min.power, min.freq,
+>>> +			max.power, max.freq);
+>>>   
+>>>   		if (10 * min.freq >= 9 * max.freq) {
+>>> -			pr_notice("Could not control frequency, ran at [%d:%uMHz, %d:%uMhz]\n",
+>>> -				  min.freq, intel_gpu_freq(rps, min.freq),
+>>> -				  max.freq, intel_gpu_freq(rps, max.freq));
+>>> +			pr_notice("Could not control frequency, ran at [%uMHz, %uMhz]\n",
+>>> +				  min.freq,
+>>> +				  max.freq);
+>>>   			continue;
+>>>   		}
+>>>   
 
-are available in the Git repository at:
+--------------2O0m4hEu1VlSCOIYo9ahgrOs
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-next-2025-01-10
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <br>
+    <br>
+    <br>
+    <div class="moz-cite-prefix">On 09-01-2025 16:45, Nilawar, Badal
+      wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:66cfa40b-cc9b-432f-9a86-4eaa42f72fc8@intel.com">
+      
+      <p><br>
+      </p>
+      <div class="moz-cite-prefix">On 09-01-2025 15:50, Nilawar, Badal
+        wrote:<br>
+      </div>
+      <blockquote type="cite" cite="mid:f3c92a31-37d1-423e-a578-b8d91f17a48d@intel.com">
+        <p><br>
+        </p>
+        <div class="moz-cite-prefix">On 09-01-2025 15:00, <a class="moz-txt-link-abbreviated moz-txt-link-freetext" href="mailto:sk.anirban@intel.com" moz-do-not-send="true">sk.anirban@intel.com</a>
+          wrote:<br>
+        </div>
+        <blockquote type="cite" cite="mid:20250109093010.3879245-1-sk.anirban@intel.com">
+          <pre wrap="" class="moz-quote-pre">From: Sk Anirban <a class="moz-txt-link-rfc2396E" href="mailto:sk.anirban@intel.com" moz-do-not-send="true">&lt;sk.anirban@intel.com&gt;</a>
 
-for you to fetch changes up to 6a04bb5a2046067681257d5dd69a724856c8fbcb:
+Fix the frequency calculation by ensuring it is adjusted
+only once during power measurement. Update live_rps_power test
+to use the correct frequency values for logging and comparison.
 
-  drm/xe: remove unused xe_pciids.h harder, add missing PCI ID (2025-01-10 11:02:15 +0200)
+v2:
+  - Improved frequency logging (Riana)
 
-----------------------------------------------------------------
-Driver Changes:
-- SRIOV VF: Avoid reading inaccessible registers (Jakub, Marcin)
- - Introduce RPa frequency information (Rodrigo)
- - Remove unnecessary force wakes on SLPC code (Vinay)
- - Fix all typos in xe (Nitin)
- - Adding steering info support for GuC register lists (Jesus)
- - Remove unused xe_pciids.h harder, add missing PCI ID (Jani)
+Signed-off-by: Sk Anirban <a class="moz-txt-link-rfc2396E" href="mailto:sk.anirban@intel.com" moz-do-not-send="true">&lt;sk.anirban@intel.com&gt;</a>
+Reviewed-by: Riana Tauro <a class="moz-txt-link-rfc2396E" href="mailto:riana.tauro@intel.com" moz-do-not-send="true">&lt;riana.tauro@intel.com&gt;</a>
+---
+ drivers/gpu/drm/i915/gt/selftest_rps.c | 11 ++++++-----
+ 1 file changed, 6 insertions(+), 5 deletions(-)
 
-----------------------------------------------------------------
-Jakub Kolakowski (1):
-      drm/xe/vf: Don't check has flat ccs in bios on VF
+diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
+index c207a4fb03bf..e515d7eb628a 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_rps.c
++++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
+@@ -1126,6 +1126,7 @@ static u64 measure_power_at(struct intel_rps *rps, int *freq)
+ {
+ 	*freq = rps_set_check(rps, *freq);
+ 	msleep(100);
++	*freq = intel_gpu_freq(rps, *freq);</pre>
+        </blockquote>
+        <pre>I am seeing <span style="white-space: pre-wrap">rps_set_check will wait till act freq become desired freq, in case of timeout act freq could be different.
+</span><span style="white-space: pre-wrap">I think it would be good to check freq returned by r</span><span style="white-space: pre-wrap">ps_set_check is expected freq if not then read freq again after msleep.</span></pre>
+      </blockquote>
+      <p>Please ignore above comments, I got your code. You are applying
+        freq multiplier before passing to measure_power. While this
+        approach works fine, I recommend fixing measure_power() by using
+        read_cagf() instead of intel_rps_read_actual_frequency().<br>
+        Add Fixes: ac4e8560248f (&quot;drm/i915/selftests: Add helper
+        function measure_power&quot;) in commit message.<br>
+      </p>
+      <p>Regards,<br>
+        Badal<br>
+      </p>
+    </blockquote>
+    The measure_power() function is being used by slpc also, as slpc is
+    not passing the raw frequency it may cause issue. So the plan is to
+    create independent function to measure power for slpc, and for rps I
+    will be using read_cagf() to calculate the avg.<br>
+    <br>
+    Regards,<br>
+    Anirban<br>
+    <blockquote type="cite" cite="mid:66cfa40b-cc9b-432f-9a86-4eaa42f72fc8@intel.com">
+      <p> </p>
+      <blockquote type="cite" cite="mid:f3c92a31-37d1-423e-a578-b8d91f17a48d@intel.com">
+        <pre><span style="white-space: pre-wrap">
 
-Jani Nikula (1):
-      drm/xe: remove unused xe_pciids.h harder, add missing PCI ID
+Regards,
+Badal</span>
 
-Jesus Narvaez (1):
-      drm/xe/guc: Adding steering info support for GuC register lists
+</pre>
+        <blockquote type="cite" cite="mid:20250109093010.3879245-1-sk.anirban@intel.com">
+          <pre wrap="" class="moz-quote-pre"> 	return measure_power(rps, freq);
+ }
+ 
+@@ -1202,13 +1203,13 @@ int live_rps_power(void *arg)
+ 
+ 		pr_info(&quot;%s: min:%llumW @ %uMHz, max:%llumW @ %uMHz\n&quot;,
+ 			engine-&gt;name,
+-			min.power, intel_gpu_freq(rps, min.freq),
+-			max.power, intel_gpu_freq(rps, max.freq));
++			min.power, min.freq,
++			max.power, max.freq);
+ 
+ 		if (10 * min.freq &gt;= 9 * max.freq) {
+-			pr_notice(&quot;Could not control frequency, ran at [%d:%uMHz, %d:%uMhz]\n&quot;,
+-				  min.freq, intel_gpu_freq(rps, min.freq),
+-				  max.freq, intel_gpu_freq(rps, max.freq));
++			pr_notice(&quot;Could not control frequency, ran at [%uMHz, %uMhz]\n&quot;,
++				  min.freq,
++				  max.freq);
+ 			continue;
+ 		}
+ 
+</pre>
+        </blockquote>
+      </blockquote>
+    </blockquote>
+    <br>
+  </body>
+</html>
 
-Marcin Bernatowicz (2):
-      drm/xe/rtp: Add match helper to omit SR-IOV VF device
-      drm/xe/vf: Don't apply Wa_22019338487 for VF
-
-Nitin Gote (1):
-      drm/xe: Fix all typos in xe
-
-Rodrigo Vivi (1):
-      drm/xe: Introduce the RPa information
-
-Vinay Belgaumkar (1):
-      drm/xe/slpc: Remove unnecessary force wakes
-
- drivers/gpu/drm/xe/Kconfig.debug           |   4 +-
- drivers/gpu/drm/xe/abi/guc_capture_abi.h   |   2 +-
- drivers/gpu/drm/xe/abi/guc_klvs_abi.h      |   6 +-
- drivers/gpu/drm/xe/regs/xe_reg_defs.h      |   2 +-
- drivers/gpu/drm/xe/regs/xe_regs.h          |   4 +
- drivers/gpu/drm/xe/tests/xe_mocs.c         |   2 +-
- drivers/gpu/drm/xe/xe_bb.c                 |   2 +-
- drivers/gpu/drm/xe/xe_bo.c                 |   8 +-
- drivers/gpu/drm/xe/xe_bo_doc.h             |   2 +-
- drivers/gpu/drm/xe/xe_devcoredump.c        |   2 +-
- drivers/gpu/drm/xe/xe_device.c             |   4 +-
- drivers/gpu/drm/xe/xe_drm_client.c         |   2 +-
- drivers/gpu/drm/xe/xe_exec.c               |   2 +-
- drivers/gpu/drm/xe/xe_ggtt.c               |   2 +-
- drivers/gpu/drm/xe/xe_gt.h                 |   2 +-
- drivers/gpu/drm/xe/xe_gt_freq.c            |  15 ++
- drivers/gpu/drm/xe/xe_gt_mcr.c             |   8 +-
- drivers/gpu/drm/xe/xe_gt_mcr.h             |   4 +
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c |   2 +-
- drivers/gpu/drm/xe/xe_guc_ads.c            |  15 ++
- drivers/gpu/drm/xe/xe_guc_capture.c        |   2 +-
- drivers/gpu/drm/xe/xe_guc_capture_types.h  |   4 +-
- drivers/gpu/drm/xe/xe_guc_ct.c             |   4 +-
- drivers/gpu/drm/xe/xe_guc_pc.c             |  79 +++++++---
- drivers/gpu/drm/xe/xe_guc_pc.h             |   1 +
- drivers/gpu/drm/xe/xe_guc_pc_types.h       |   2 +
- drivers/gpu/drm/xe/xe_guc_submit.c         |   2 +-
- drivers/gpu/drm/xe/xe_hmm.c                |   2 +-
- drivers/gpu/drm/xe/xe_migrate.c            |   2 +-
- drivers/gpu/drm/xe/xe_pci.c                |   4 +-
- drivers/gpu/drm/xe/xe_pcode.c              |   2 +-
- drivers/gpu/drm/xe/xe_pm.c                 |   2 +-
- drivers/gpu/drm/xe/xe_pt.c                 |   2 +-
- drivers/gpu/drm/xe/xe_rtp.c                |   5 +
- drivers/gpu/drm/xe/xe_rtp.h                |  15 +-
- drivers/gpu/drm/xe/xe_uc_fw_types.h        |   2 +-
- drivers/gpu/drm/xe/xe_vm.c                 |   4 +-
- drivers/gpu/drm/xe/xe_wa_oob.rules         |   2 +-
- include/drm/intel/pciids.h                 |   3 +-
- include/drm/intel/xe_pciids.h              | 235 -----------------------------
- 40 files changed, 162 insertions(+), 302 deletions(-)
- delete mode 100644 include/drm/intel/xe_pciids.h
+--------------2O0m4hEu1VlSCOIYo9ahgrOs--
