@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 143BBA09348
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2025 15:19:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A2CFA09349
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Jan 2025 15:19:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A2A4910F0DC;
-	Fri, 10 Jan 2025 14:19:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3FC910F0E3;
+	Fri, 10 Jan 2025 14:19:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 74DF710F0DB;
- Fri, 10 Jan 2025 14:19:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB25710F0E0;
+ Fri, 10 Jan 2025 14:19:18 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Disable_RPG_during_l?=
- =?utf-8?q?ive_selftest?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_Disable_RPG_during_live_?=
+ =?utf-8?q?selftest?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Badal Nilawar" <badal.nilawar@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 10 Jan 2025 14:19:16 -0000
-Message-ID: <173651875646.1978988.12183842815846891062@b555e5b46a47>
+Date: Fri, 10 Jan 2025 14:19:18 -0000
+Message-ID: <173651875882.1978988.18368720463744203164@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20250110140947.3471824-1-badal.nilawar@intel.com>
 In-Reply-To: <20250110140947.3471824-1-badal.nilawar@intel.com>
@@ -49,18 +49,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-05195c72724d drm/i915/mtl: Disable render power-gating during selftest only
--:10: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#10: 
-The temporary wa ‘drm/i915/mtl: do not enable render power-gating on MTL’ disables RPG
-
-total: 0 errors, 1 warnings, 0 checks, 8 lines checked
-9b980d5a4c06 drm/i915: Disable rpg for Gen 12 and above
--:6: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#6: 
-As the Forcewake timeout issue observed on gen 12.0 as well, therefore disable RPG
-
-total: 0 errors, 1 warnings, 0 checks, 8 lines checked
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
