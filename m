@@ -2,62 +2,81 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81F04A0A327
-	for <lists+intel-gfx@lfdr.de>; Sat, 11 Jan 2025 11:56:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D8742A0A449
+	for <lists+intel-gfx@lfdr.de>; Sat, 11 Jan 2025 15:47:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D19110E576;
-	Sat, 11 Jan 2025 10:56:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5DCB410E5A1;
+	Sat, 11 Jan 2025 14:47:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="glCPMrFe";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="FLwjobUA";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 582CB10E576
- for <intel-gfx@lists.freedesktop.org>; Sat, 11 Jan 2025 10:56:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736592996; x=1768128996;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=0Z+ddtiqDHNlGgWEjjrzLld3Ky+lgoFXWRejQisWuYM=;
- b=glCPMrFeevYeli/mUsNece0dAo7H+layNv6gBn9sx5YbfoB9SzXUhZs6
- 37Mbtqu8WrMiG0aniBoNCAO11qJ6LqO1Sn6QDnMBOwdA927GNW3d+qP4i
- gk8VMOTo8UcGNWArC+43hn/Dd7FqKFnCTdwakmrqwEbYjWHttIsIogENR
- nBBRn1Lh4DGfOl3AK8QDdH9vdUmNii2fJvo+Cr7YUV0vaKvLOhYAmQpH8
- 5ZZztN4IwLIQ330e1zCs/r1TShuC1bFe/1X0Yq/wI+JXI1QJRHpjkw0Lu
- VfwUNRjNSVqgjNbNkWUOLq938zzaJkqAUIzUD5NgUHt1ITLhgKT5PnkaF Q==;
-X-CSE-ConnectionGUID: BRGXzSZpSA+SEqWyKjDMXw==
-X-CSE-MsgGUID: QbKDCEVFQ22jRXVUqQrGmg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11311"; a="47457735"
-X-IronPort-AV: E=Sophos;i="6.12,307,1728975600"; d="scan'208";a="47457735"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Jan 2025 02:56:36 -0800
-X-CSE-ConnectionGUID: WHhWcZfQQzusnBMqPEiJZQ==
-X-CSE-MsgGUID: 3AQNwkH/SxGZlxIrnCl7uA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="127249660"
-Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
- by fmviesa002.fm.intel.com with ESMTP; 11 Jan 2025 02:56:34 -0800
-Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1tWZAN-000KVv-2x;
- Sat, 11 Jan 2025 10:56:31 +0000
-Date: Sat, 11 Jan 2025 18:55:35 +0800
-From: kernel test robot <lkp@intel.com>
-To: Badal Nilawar <badal.nilawar@intel.com>,
-	intel-gfx@lists.freedesktop.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
- anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
- andrzej.hajda@intel.com, andi.shyti@intel.com
-Subject: Re: [PATCH 1/2] drm/i915/mtl: Disable render power-gating during
- selftest only
-Message-ID: <202501111817.Kz3T41my-lkp@intel.com>
-References: <20250110140947.3471824-2-badal.nilawar@intel.com>
+Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com
+ [209.85.210.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5FF0010E206;
+ Sat, 11 Jan 2025 14:47:39 +0000 (UTC)
+Received: by mail-ot1-f50.google.com with SMTP id
+ 46e09a7af769-71e3005916aso588157a34.2; 
+ Sat, 11 Jan 2025 06:47:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1736606798; x=1737211598; darn=lists.freedesktop.org;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=jp5U5y+e8zwr6ox9F7HQoNaTrbe9Mw1FMXpkxXDixdg=;
+ b=FLwjobUAGOlBpF8zUB/01gV6ibMd2mk2owl+BIjc1ILVqnnYiGroewsVA0rgmDKmiY
+ zURRttHoCnBf6WW3CrLuYjsgCpnaHSiY6n33pFpscGkbUyzm6R6vGuDrcY4RjF7Ly2Lz
+ QV8/vHiRt4Eaxhi0pYiUTWmNdRZEDxmYG2gMWfrsFyTYz0huAFe2cNA+OGQvoKEWWbSk
+ dov58f3U8ZO4YItEp2+vjwUjv57VngsfaGPmLrNorHTaVu/QritQkne3fOUlZqql9raO
+ WhDwNMS38xxHUTO9whPQHzTxbZXtGIufQiHXBiMh8gBIwUVDAEhkc+LbLh5x3YxnQsq4
+ AIOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1736606798; x=1737211598;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=jp5U5y+e8zwr6ox9F7HQoNaTrbe9Mw1FMXpkxXDixdg=;
+ b=Yiw0T3iEyWJBOoGxJQB5iXYoZNEkftrLRB+EMb8knfumzD98PCtRxcqaslO11z80ij
+ mphPRZ/R1gtYO6GaDe8vFO3XpMRXpz4z9JYokU7ND9+g3bl4lBXvAwxmxEDTj/TpNJwl
+ ztZMBOagCrh76+MIXT/1fbYgN/7MyRGiKUdcxknFd6MdyUyXXhwbiBCJiBexvZzls4WU
+ sw0eRhQHY+EZ3jifmBJ0GUztUhsDvUPREHZvIyb3BJs+FVS0QyuBcsBBs5Usf1dguslW
+ t332rRMld6pXmNngszYAbRhAPCSosELZWipeVGVlY0zKKBwwtb/QI4Kk6oAPK6WkBrO2
+ 7xwg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUljfhE4B6ivn6Koei+AWECGUqOjo1Il9lvWlGLnQDd2HzPw8omy11nvMcOgMjIfr7uuKjMAymiTh8=@lists.freedesktop.org,
+ AJvYcCUtI/iXnKz4xC5V2gvLJ65w1ezzJuQKgCvLTfAZwRP+6zO/pKOg5PG3GLkU3K94l5F4MnlDbKIm8Z+vL41UEg==@lists.freedesktop.org,
+ AJvYcCVLT+C1Ln/cUmWM9YZqcqKreAMzJoej0FNVlJvbGxYBtpPSdPEOgeuocXo/qaaEiLQE36A+zLVjFZZg@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yz79pELeMFt7WalfRP2isHAIJQhtkHnAUMATNhwP1F/l8HmRIcr
+ Da785yp8fmjmP3jp4YuRF67e1GdnvDXcqaPh2DgDKq2/fitWP7Pq5Of+r189SS86N7TTZLE81H2
+ TN0WtQX7Gx6TJqzISdUynjySz49Q=
+X-Gm-Gg: ASbGnctwLWbKwEbrXG797PVgVZXAuznbwW757bUcuLqQmjmwTphpWM7/tyOokcLLOzQ
+ 34vXEkNmx/fZvokC/+TdmOfBKXSPajEVl/ylY
+X-Google-Smtp-Source: AGHT+IGzeuLLaubbwhpUioR0zRZXONKE5UMQyXeBY955LXeXLQqVkmoMX572/QfoLvEnA7t10ibLg8CyFn78Yk7e7cI=
+X-Received: by 2002:a05:6871:2084:b0:29e:4578:5f74 with SMTP id
+ 586e51a60fabf-2aa0665bd45mr8307720fac.4.1736606798434; Sat, 11 Jan 2025
+ 06:46:38 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250110140947.3471824-2-badal.nilawar@intel.com>
+References: <20241222002043.173080-1-linux@treblig.org>
+ <Z2dcZfW8eNMnxT0v@gallifrey>
+ <Z3uGjO36tfhQsnfp@dell-wzy> <Z4A7QDtTrU6w2Yhv@intel.com>
+ <877c73j64o.fsf@intel.com> <Z4IA6XtXX-e0Du-6@dell-wzy>
+In-Reply-To: <Z4IA6XtXX-e0Du-6@dell-wzy>
+From: Zhi Wang <zhi.wang.linux@gmail.com>
+Date: Sat, 11 Jan 2025 16:46:26 +0200
+X-Gm-Features: AbW1kvYzh9lWYSrsuWnwL3vob-gj7oObd820ZhS3KLmgvqkKvtDuNZJ8vfdV6AI
+Message-ID: <CAN=xO47iZmQv=6AtrK4ouY7vyU8YV0RRR2VD3HLP2cCTxLTJGA@mail.gmail.com>
+Subject: Re: GVT-g status (was: Re: [PATCH 0/3] drm/i915/gvt: Deadcoding)
+To: Zhenyu Wang <zhenyuw.linux@gmail.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, zhiyuan.lv@intel.com,
+ james.y.wu@intel.com, 
+ kevin.tian@intel.com, Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ "Dr. David Alan Gilbert" <linux@treblig.org>, joonas.lahtinen@linux.intel.com,
+ tursulin@ursulin.net, 
+ intel-gvt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ airlied@gmail.com, simona@ffwll.ch, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, Lucas De Marchi <lucas.demarchi@intel.com>, 
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Content-Type: multipart/alternative; boundary="00000000000055d934062b6f47d7"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,131 +92,200 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Badal,
+--00000000000055d934062b6f47d7
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-kernel test robot noticed the following build errors:
+I am fine with that as well.
 
-[auto build test ERROR on linus/master]
-[also build test ERROR on drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-tip/drm-tip v6.13-rc6 next-20250110]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Zhenyu Wang <zhenyuw.linux@gmail.com> =E4=BA=8E 2025=E5=B9=B41=E6=9C=8811=
+=E6=97=A5=E5=91=A8=E5=85=AD =E4=B8=8A=E5=8D=887:26=E5=86=99=E9=81=93=EF=BC=
+=9A
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Badal-Nilawar/drm-i915-mtl-Disable-render-power-gating-during-selftest-only/20250110-214933
-base:   linus/master
-patch link:    https://lore.kernel.org/r/20250110140947.3471824-2-badal.nilawar%40intel.com
-patch subject: [PATCH 1/2] drm/i915/mtl: Disable render power-gating during selftest only
-config: i386-randconfig-014-20250111 (https://download.01.org/0day-ci/archive/20250111/202501111817.Kz3T41my-lkp@intel.com/config)
-compiler: clang version 19.1.3 (https://github.com/llvm/llvm-project ab51eccf88f5321e7c60591c5546b254b6afab99)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250111/202501111817.Kz3T41my-lkp@intel.com/reproduce)
+> On Fri, Jan 10, 2025 at 12:49:27PM +0200, Jani Nikula wrote:
+> > On Thu, 09 Jan 2025, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> > > On Mon, Jan 06, 2025 at 04:30:20PM +0900, Zhenyu Wang wrote:
+> > >> On Sun, Dec 22, 2024 at 12:25:09AM +0000, Dr. David Alan Gilbert
+> wrote:
+> > >> > Note: zhenyuw@linux.intel.com's address bounces:
+> > >> >
+> > >>
+> > >> yeah, I've left Intel so can't use that box any more, looks Rodrigo
+> hasn't
+> > >> queue up my address change patch yet. Rodrigo?
+> > >
+> > > pushed to drm-intel-next now, although I was assuming this to come
+> > > on a gvt pull request...
+> > >
+> > > what about this patch here? coming in a PR or should I take this
+> > > directly at drm-intel-next as well?
+> >
+> > AFAICT the last gvt-next pull request was more than two years ago and
+> > gvt-fixes slightly less than one year ago.
+> >
+> > There's a single cleanup commit in gvt-next applied two years ago for
+> > which there hasn't been a pull request.
+> >
+> > The GVT github page [1] says, "This repository has been archived by the
+> > owner on Oct 3, 2024. It is now read-only." The intel-gvt-dev mailing
+> > list [2] appears to be mostly spam.
+> >
+> > Seems to me something like this would be appropriate:
+> >
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index 1c3eab5d2b1a..161206fdaf05 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -11557,11 +11557,10 @@ F:  drivers/gpio/gpio-tangier.h
+> >  INTEL GVT-g DRIVERS (Intel GPU Virtualization)
+> >  M:   Zhenyu Wang <zhenyuw.linux@gmail.com>
+> >  M:   Zhi Wang <zhi.wang.linux@gmail.com>
+> > -L:   intel-gvt-dev@lists.freedesktop.org
+> >  L:   intel-gfx@lists.freedesktop.org
+> > -S:   Supported
+> > +S:   Maintained
+> >  W:   https://github.com/intel/gvt-linux/wiki
+> > -T:   git https://github.com/intel/gvt-linux.git
+> > +T:   git https://gitlab.freedesktop.org/drm/i915/kernel.git
+> >  F:   drivers/gpu/drm/i915/gvt/
+> >
+>
+> Looks fine with me.
+>
+> Acked-by: Zhenyu Wang <zhenyuw.linux@gmail.com>
+>
+> >  INTEL HID EVENT DRIVER
+> >
+> > But I don't think it would be far from the truth to have "S: Odd Fixes"
+> > either. And the extreme would be to just remove the whole maintainers
+> > entry and have it fall back to the i915 entry.
+> >
+> > Thoughts?
+> >
+>
+> When I left Intel, I have raised similar question to manager or related
+> people to see their ideas on how to keep GVT-g maintenance work for
+> upstream,
+> but I didn't get real answers before my last day at Intel...So still cc
+> some
+> intel gvt related people to double confirm.
+>
+> For me, it's fine to remove the maintainer entry maybe only keep as
+> reviewer?
+>
+> Thanks to raise up this issue, Jani!
+>
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202501111817.Kz3T41my-lkp@intel.com/
+--00000000000055d934062b6f47d7
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-All errors (new ones prefixed by >>):
+<p dir=3D"ltr">I am fine with that as well. </p>
+<br><div class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=
+=3D"gmail_attr">Zhenyu Wang &lt;<a href=3D"mailto:zhenyuw.linux@gmail.com">=
+zhenyuw.linux@gmail.com</a>&gt; =E4=BA=8E 2025=E5=B9=B41=E6=9C=8811=E6=97=
+=A5=E5=91=A8=E5=85=AD =E4=B8=8A=E5=8D=887:26=E5=86=99=E9=81=93=EF=BC=9A<br>=
+</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-l=
+eft:1px #ccc solid;padding-left:1ex">On Fri, Jan 10, 2025 at 12:49:27PM +02=
+00, Jani Nikula wrote:<br>
+&gt; On Thu, 09 Jan 2025, Rodrigo Vivi &lt;<a href=3D"mailto:rodrigo.vivi@i=
+ntel.com" target=3D"_blank" rel=3D"noreferrer">rodrigo.vivi@intel.com</a>&g=
+t; wrote:<br>
+&gt; &gt; On Mon, Jan 06, 2025 at 04:30:20PM +0900, Zhenyu Wang wrote:<br>
+&gt; &gt;&gt; On Sun, Dec 22, 2024 at 12:25:09AM +0000, Dr. David Alan Gilb=
+ert wrote:<br>
+&gt; &gt;&gt; &gt; Note: <a href=3D"mailto:zhenyuw@linux.intel.com" target=
+=3D"_blank" rel=3D"noreferrer">zhenyuw@linux.intel.com</a>&#39;s address bo=
+unces:<br>
+&gt; &gt;&gt; &gt; <br>
+&gt; &gt;&gt; <br>
+&gt; &gt;&gt; yeah, I&#39;ve left Intel so can&#39;t use that box any more,=
+ looks Rodrigo hasn&#39;t<br>
+&gt; &gt;&gt; queue up my address change patch yet. Rodrigo?<br>
+&gt; &gt;<br>
+&gt; &gt; pushed to drm-intel-next now, although I was assuming this to com=
+e<br>
+&gt; &gt; on a gvt pull request...<br>
+&gt; &gt;<br>
+&gt; &gt; what about this patch here? coming in a PR or should I take this<=
+br>
+&gt; &gt; directly at drm-intel-next as well?<br>
+&gt; <br>
+&gt; AFAICT the last gvt-next pull request was more than two years ago and<=
+br>
+&gt; gvt-fixes slightly less than one year ago.<br>
+&gt; <br>
+&gt; There&#39;s a single cleanup commit in gvt-next applied two years ago =
+for<br>
+&gt; which there hasn&#39;t been a pull request.<br>
+&gt; <br>
+&gt; The GVT github page [1] says, &quot;This repository has been archived =
+by the<br>
+&gt; owner on Oct 3, 2024. It is now read-only.&quot; The intel-gvt-dev mai=
+ling<br>
+&gt; list [2] appears to be mostly spam.<br>
+&gt; <br>
+&gt; Seems to me something like this would be appropriate:<br>
+&gt; <br>
+&gt; diff --git a/MAINTAINERS b/MAINTAINERS<br>
+&gt; index 1c3eab5d2b1a..161206fdaf05 100644<br>
+&gt; --- a/MAINTAINERS<br>
+&gt; +++ b/MAINTAINERS<br>
+&gt; @@ -11557,11 +11557,10 @@ F:=C2=A0 drivers/gpio/gpio-tangier.h<br>
+&gt;=C2=A0 INTEL GVT-g DRIVERS (Intel GPU Virtualization)<br>
+&gt;=C2=A0 M:=C2=A0 =C2=A0Zhenyu Wang &lt;<a href=3D"mailto:zhenyuw.linux@g=
+mail.com" target=3D"_blank" rel=3D"noreferrer">zhenyuw.linux@gmail.com</a>&=
+gt;<br>
+&gt;=C2=A0 M:=C2=A0 =C2=A0Zhi Wang &lt;<a href=3D"mailto:zhi.wang.linux@gma=
+il.com" target=3D"_blank" rel=3D"noreferrer">zhi.wang.linux@gmail.com</a>&g=
+t;<br>
+&gt; -L:=C2=A0 =C2=A0<a href=3D"mailto:intel-gvt-dev@lists.freedesktop.org"=
+ target=3D"_blank" rel=3D"noreferrer">intel-gvt-dev@lists.freedesktop.org</=
+a><br>
+&gt;=C2=A0 L:=C2=A0 =C2=A0<a href=3D"mailto:intel-gfx@lists.freedesktop.org=
+" target=3D"_blank" rel=3D"noreferrer">intel-gfx@lists.freedesktop.org</a><=
+br>
+&gt; -S:=C2=A0 =C2=A0Supported<br>
+&gt; +S:=C2=A0 =C2=A0Maintained<br>
+&gt;=C2=A0 W:=C2=A0 =C2=A0<a href=3D"https://github.com/intel/gvt-linux/wik=
+i" rel=3D"noreferrer noreferrer" target=3D"_blank">https://github.com/intel=
+/gvt-linux/wiki</a><br>
+&gt; -T:=C2=A0 =C2=A0git <a href=3D"https://github.com/intel/gvt-linux.git"=
+ rel=3D"noreferrer noreferrer" target=3D"_blank">https://github.com/intel/g=
+vt-linux.git</a><br>
+&gt; +T:=C2=A0 =C2=A0git <a href=3D"https://gitlab.freedesktop.org/drm/i915=
+/kernel.git" rel=3D"noreferrer noreferrer" target=3D"_blank">https://gitlab=
+.freedesktop.org/drm/i915/kernel.git</a><br>
+&gt;=C2=A0 F:=C2=A0 =C2=A0drivers/gpu/drm/i915/gvt/<br>
+&gt;<br>
+<br>
+Looks fine with me.<br>
+<br>
+Acked-by: Zhenyu Wang &lt;<a href=3D"mailto:zhenyuw.linux@gmail.com" target=
+=3D"_blank" rel=3D"noreferrer">zhenyuw.linux@gmail.com</a>&gt;<br>
+<br>
+&gt;=C2=A0 INTEL HID EVENT DRIVER<br>
+&gt; <br>
+&gt; But I don&#39;t think it would be far from the truth to have &quot;S: =
+Odd Fixes&quot;<br>
+&gt; either. And the extreme would be to just remove the whole maintainers<=
+br>
+&gt; entry and have it fall back to the i915 entry.<br>
+&gt; <br>
+&gt; Thoughts?<br>
+&gt;<br>
+<br>
+When I left Intel, I have raised similar question to manager or related<br>
+people to see their ideas on how to keep GVT-g maintenance work for upstrea=
+m,<br>
+but I didn&#39;t get real answers before my last day at Intel...So still cc=
+ some<br>
+intel gvt related people to double confirm.<br>
+<br>
+For me, it&#39;s fine to remove the maintainer entry maybe only keep as rev=
+iewer?<br>
+<br>
+Thanks to raise up this issue, Jani! <br>
+</blockquote></div>
 
->> drivers/gpu/drm/i915/gt/intel_rc6.c:126:6: error: use of undeclared identifier 'i915_selftest'
-     126 |         if (i915_selftest.live && IS_GFX_GT_IP_RANGE(gt, IP_VER(12, 70), IP_VER(12, 74)))
-         |             ^
-   1 error generated.
-
-
-vim +/i915_selftest +126 drivers/gpu/drm/i915/gt/intel_rc6.c
-
-    55	
-    56	static void gen11_rc6_enable(struct intel_rc6 *rc6)
-    57	{
-    58		struct intel_gt *gt = rc6_to_gt(rc6);
-    59		struct intel_uncore *uncore = gt->uncore;
-    60		struct intel_engine_cs *engine;
-    61		enum intel_engine_id id;
-    62		u32 pg_enable;
-    63		int i;
-    64	
-    65		/*
-    66		 * With GuCRC, these parameters are set by GuC
-    67		 */
-    68		if (!intel_uc_uses_guc_rc(&gt->uc)) {
-    69			/* 2b: Program RC6 thresholds.*/
-    70			intel_uncore_write_fw(uncore, GEN6_RC6_WAKE_RATE_LIMIT, 54 << 16 | 85);
-    71			intel_uncore_write_fw(uncore, GEN10_MEDIA_WAKE_RATE_LIMIT, 150);
-    72	
-    73			intel_uncore_write_fw(uncore, GEN6_RC_EVALUATION_INTERVAL, 125000); /* 12500 * 1280ns */
-    74			intel_uncore_write_fw(uncore, GEN6_RC_IDLE_HYSTERSIS, 25); /* 25 * 1280ns */
-    75			for_each_engine(engine, rc6_to_gt(rc6), id)
-    76				intel_uncore_write_fw(uncore, RING_MAX_IDLE(engine->mmio_base), 10);
-    77	
-    78			intel_uncore_write_fw(uncore, GUC_MAX_IDLE_COUNT, 0xA);
-    79	
-    80			intel_uncore_write_fw(uncore, GEN6_RC_SLEEP, 0);
-    81	
-    82			intel_uncore_write_fw(uncore, GEN6_RC6_THRESHOLD, 50000); /* 50/125ms per EI */
-    83		}
-    84	
-    85		/*
-    86		 * 2c: Program Coarse Power Gating Policies.
-    87		 *
-    88		 * Bspec's guidance is to use 25us (really 25 * 1280ns) here. What we
-    89		 * use instead is a more conservative estimate for the maximum time
-    90		 * it takes us to service a CS interrupt and submit a new ELSP - that
-    91		 * is the time which the GPU is idle waiting for the CPU to select the
-    92		 * next request to execute. If the idle hysteresis is less than that
-    93		 * interrupt service latency, the hardware will automatically gate
-    94		 * the power well and we will then incur the wake up cost on top of
-    95		 * the service latency. A similar guide from plane_state is that we
-    96		 * do not want the enable hysteresis to less than the wakeup latency.
-    97		 *
-    98		 * igt/gem_exec_nop/sequential provides a rough estimate for the
-    99		 * service latency, and puts it under 10us for Icelake, similar to
-   100		 * Broadwell+, To be conservative, we want to factor in a context
-   101		 * switch on top (due to ksoftirqd).
-   102		 */
-   103		intel_uncore_write_fw(uncore, GEN9_MEDIA_PG_IDLE_HYSTERESIS, 60);
-   104		intel_uncore_write_fw(uncore, GEN9_RENDER_PG_IDLE_HYSTERESIS, 60);
-   105	
-   106		/* 3a: Enable RC6
-   107		 *
-   108		 * With GuCRC, we do not enable bit 31 of RC_CTL,
-   109		 * thus allowing GuC to control RC6 entry/exit fully instead.
-   110		 * We will not set the HW ENABLE and EI bits
-   111		 */
-   112		if (!intel_guc_rc_enable(gt_to_guc(gt)))
-   113			rc6->ctl_enable = GEN6_RC_CTL_RC6_ENABLE;
-   114		else
-   115			rc6->ctl_enable =
-   116				GEN6_RC_CTL_HW_ENABLE |
-   117				GEN6_RC_CTL_RC6_ENABLE |
-   118				GEN6_RC_CTL_EI_MODE(1);
-   119	
-   120		/*
-   121		 * BSpec 52698 - Render powergating must be off.
-   122		 * FIXME BSpec is outdated, disabling powergating for MTL is just
-   123		 * temporary wa and should be removed after fixing real cause
-   124		 * of forcewake timeouts.
-   125		 */
- > 126		if (i915_selftest.live && IS_GFX_GT_IP_RANGE(gt, IP_VER(12, 70), IP_VER(12, 74)))
-   127			pg_enable =
-   128				GEN9_MEDIA_PG_ENABLE |
-   129				GEN11_MEDIA_SAMPLER_PG_ENABLE;
-   130		else
-   131			pg_enable =
-   132				GEN9_RENDER_PG_ENABLE |
-   133				GEN9_MEDIA_PG_ENABLE |
-   134				GEN11_MEDIA_SAMPLER_PG_ENABLE;
-   135	
-   136		if (GRAPHICS_VER(gt->i915) >= 12 && !IS_DG1(gt->i915)) {
-   137			for (i = 0; i < I915_MAX_VCS; i++)
-   138				if (HAS_ENGINE(gt, _VCS(i)))
-   139					pg_enable |= (VDN_HCP_POWERGATE_ENABLE(i) |
-   140						      VDN_MFX_POWERGATE_ENABLE(i));
-   141		}
-   142	
-   143		intel_uncore_write_fw(uncore, GEN9_PG_ENABLE, pg_enable);
-   144	}
-   145	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+--00000000000055d934062b6f47d7--
