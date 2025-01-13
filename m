@@ -2,59 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1618A0B811
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2025 14:25:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C7D77A0B88D
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2025 14:46:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67E8810E680;
-	Mon, 13 Jan 2025 13:25:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D48110E0A5;
+	Mon, 13 Jan 2025 13:46:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XJOmgH3t";
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="dd2QTv/Q";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D55710E680
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jan 2025 13:25:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736774725; x=1768310725;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=F3PsRwTvwX5JGuTHgr29ptZGb26GLzi1spfGDwxdR1A=;
- b=XJOmgH3tIwoMLFf4MlTDvmUlHeye5aFE+letSHtZRq5+KdnJLjhFpm4y
- 2g8fTjh9Bz63mIaN7xLR+XihoFo69rAxplb/ihXkP6yd2X+jd08/GlmCx
- 7DvlvvYrjRPzCuQ2PCHqTZ7LJpdk8SQ8NTUljyKkelXEsnfzj7qe6ifvg
- i5vaQ3temSnTSui95nz6wtK/BEBohtnvBO+sqqNjnEnI0DSyEJ8nOkOeF
- /C539X6IEYVZOElx1ibuvMtW0bgJ6R8HabA5yaj9mIn60ck4ZPFulm9hh
- V8IvowPT8tHAx+QLPBEhvS2eOCsFf7O2Hin+wRXmqWrRmzI+b1DwpKR6y A==;
-X-CSE-ConnectionGUID: ZPjld47kTC250LW0MmIJUw==
-X-CSE-MsgGUID: oZSuQ0j5ROmRMN9fQcYtBQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="47701552"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="47701552"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2025 05:25:24 -0800
-X-CSE-ConnectionGUID: ilgy7Ar8R0CWJzjStpS+PQ==
-X-CSE-MsgGUID: aVF/IEqNTGKWo8Q+Ui9gOw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="104360803"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2025 05:25:23 -0800
-Date: Mon, 13 Jan 2025 15:26:15 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: =?utf-8?B?4pyTIGk5MTUuQ0kuQkFUOiBzdWNj?=
- =?utf-8?Q?ess_for_drm=2Fi915=2Fdp=5Fmst?= =?utf-8?Q?=3A?= Fix error
- handling/clean up pointer use (rev2)
-Message-ID: <Z4UUdwvF1pQc2t2f@ideak-desk.fi.intel.com>
-References: <20250108151916.491113-1-imre.deak@intel.com>
- <173652381179.1995016.17525789682922485183@b555e5b46a47>
+Received: from casper.infradead.org (casper.infradead.org [90.155.50.34])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2DFB910E0A5;
+ Mon, 13 Jan 2025 13:46:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=VvP0e9YArN6B3UfWfkc7Tkwe7mdJjfmpdHvD597Eg9M=; b=dd2QTv/QBH8zyJY4djkIoU8ngd
+ QA5Lf6nzLAj6IGaLDS+3XzNscJEbV5nEZ/UtsRA17h9LSz86jMcYTGn2fiROD070sMCKWruYPwO29
+ gIDMpw1a30HRKPj9v199AdaA3QARwBGDnFP8X0CwSlRZxDL7NBh9HWGJNiklxNlC0bSMTtgT9Npem
+ l4/x/J71kiXowdNHmojnhcVhkjYVYywueaBVJdd6lY4cHPEDrfeyXTB+wW7F/AXPYSAL7Gd7pBhPq
+ VWnshn4vQVQMkOKO/g/1/QwObg2KsVbU/nDzFMiosjhdegkXpKDN8EBggxyD+na0nQxhIO+irL9OW
+ p6M8EWTA==;
+Received: from willy by casper.infradead.org with local (Exim 4.98 #2 (Red Hat
+ Linux)) id 1tXKlJ-00000000mFp-0dRA; Mon, 13 Jan 2025 13:45:49 +0000
+Date: Mon, 13 Jan 2025 13:45:48 +0000
+From: Matthew Wilcox <willy@infradead.org>
+To: "Kirill A. Shutemov" <kirill.shutemov@linux.intel.com>
+Cc: Andrew Morton <akpm@linux-foundation.org>, Jens Axboe <axboe@kernel.dk>,
+ "Jason A. Donenfeld" <Jason@zx2c4.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ Chengming Zhou <chengming.zhou@linux.dev>,
+ Christian Brauner <brauner@kernel.org>,
+ Christophe Leroy <christophe.leroy@csgroup.eu>,
+ Dan Carpenter <dan.carpenter@linaro.org>, David Airlie <airlied@gmail.com>,
+ David Hildenbrand <david@redhat.com>, Hao Ge <gehao@kylinos.cn>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Johannes Weiner <hannes@cmpxchg.org>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Josef Bacik <josef@toxicpanda.com>, Masami Hiramatsu <mhiramat@kernel.org>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ Miklos Szeredi <miklos@szeredi.hu>, Nhat Pham <nphamcs@gmail.com>,
+ Oscar Salvador <osalvador@suse.de>, Ran Xiaokai <ran.xiaokai@zte.com.cn>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>,
+ Steven Rostedt <rostedt@goodmis.org>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Vlastimil Babka <vbabka@suse.cz>,
+ Yosry Ahmed <yosryahmed@google.com>, Yu Zhao <yuzhao@google.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+ linux-mm@kvack.org, linux-trace-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/8] mm: Remove PG_reclaim
+Message-ID: <Z4UZDAWj_8Ez-vN-@casper.infradead.org>
+References: <20250113093453.1932083-1-kirill.shutemov@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <173652381179.1995016.17525789682922485183@b555e5b46a47>
+In-Reply-To: <20250113093453.1932083-1-kirill.shutemov@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,99 +71,12 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jan 10, 2025 at 03:43:31PM +0000, Patchwork wrote:
-> == Series Details ==
-> 
-> Series: drm/i915/dp_mst: Fix error handling/clean up pointer use (rev2)
-> URL   : https://patchwork.freedesktop.org/series/143259/
-> State : success
+On Mon, Jan 13, 2025 at 11:34:45AM +0200, Kirill A. Shutemov wrote:
+> Use PG_dropbehind instead of PG_reclaim and remove PG_reclaim.
 
-Thanks for the review, patchset is pushed to drm-intel-next.
+I was hoping we'd end up with the name PG_reclaim instead of the name
+PG_dropbehind.  PG_reclaim is a better name for this functionality.
 
-> == Summary ==
-> 
-> CI Bug Log - changes from CI_DRM_15942 -> Patchwork_143259v2
-> ====================================================
-> 
-> Summary
-> -------
-> 
->   **SUCCESS**
-> 
->   No regressions found.
-> 
->   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143259v2/index.html
-> 
-> Participating hosts (38 -> 36)
-> ------------------------------
-> 
->   Missing    (2): bat-rplp-1 fi-snb-2520m 
-> 
-> Known issues
-> ------------
-> 
->   Here are the changes found in Patchwork_143259v2 that come from known issues:
-> 
-> ### IGT changes ###
-> 
-> #### Issues hit ####
-> 
->   * igt@i915_pm_rpm@module-reload:
->     - bat-dg1-7:          [PASS][1] -> [FAIL][2] ([i915#13401])
->    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15942/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
->    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143259v2/bat-dg1-7/igt@i915_pm_rpm@module-reload.html
->     - bat-dg2-11:         [PASS][3] -> [FAIL][4] ([i915#13401])
->    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15942/bat-dg2-11/igt@i915_pm_rpm@module-reload.html
->    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143259v2/bat-dg2-11/igt@i915_pm_rpm@module-reload.html
-> 
->   * igt@i915_selftest@live@gt_mocs:
->     - bat-twl-2:          [PASS][5] -> [ABORT][6] ([i915#12919]) +1 other test abort
->    [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15942/bat-twl-2/igt@i915_selftest@live@gt_mocs.html
->    [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143259v2/bat-twl-2/igt@i915_selftest@live@gt_mocs.html
-> 
->   * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
->     - bat-dg2-11:         [PASS][7] -> [SKIP][8] ([i915#9197]) +3 other tests skip
->    [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15942/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
->    [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143259v2/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-> 
->   
-> #### Possible fixes ####
-> 
->   * igt@i915_selftest@live@execlists:
->     - bat-arlh-2:         [INCOMPLETE][9] ([i915#13050]) -> [PASS][10] +1 other test pass
->    [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15942/bat-arlh-2/igt@i915_selftest@live@execlists.html
->    [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143259v2/bat-arlh-2/igt@i915_selftest@live@execlists.html
-> 
->   
-> #### Warnings ####
-> 
->   * igt@gem_exec_gttfill@basic:
->     - fi-pnv-d510:        [SKIP][11] -> [ABORT][12] ([i915#13169])
->    [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15942/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
->    [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143259v2/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
-> 
->   
->   [i915#12919]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12919
->   [i915#13050]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13050
->   [i915#13169]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13169
->   [i915#13401]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13401
->   [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
-> 
-> 
-> Build changes
-> -------------
-> 
->   * Linux: CI_DRM_15942 -> Patchwork_143259v2
-> 
->   CI-20190529: 20190529
->   CI_DRM_15942: 00f4619246294b1de4bac42742cfef95c1f37fde @ git://anongit.freedesktop.org/gfx-ci/linux
->   IGT_8186: 2c6b2f0ed4075aa1ac3d341d612e41343cff4e4d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
->   Patchwork_143259v2: 00f4619246294b1de4bac42742cfef95c1f37fde @ git://anongit.freedesktop.org/gfx-ci/linux
-> 
-> == Logs ==
-> 
-> For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143259v2/index.html
