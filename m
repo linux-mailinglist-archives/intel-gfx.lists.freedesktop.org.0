@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6483DA0B3ED
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2025 11:03:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 47635A0B3EE
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2025 11:03:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9580710E616;
-	Mon, 13 Jan 2025 10:03:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E6DBF10E613;
+	Mon, 13 Jan 2025 10:03:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mbBmt3Nr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="awBm0zsR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C76210E616
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jan 2025 10:03:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C322810E618
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jan 2025 10:03:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736762601; x=1768298601;
+ t=1736762604; x=1768298604;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=yHS7l6ThmR2Xxtpt83TF8eu+2H9jryGPLxwD1WvTZng=;
- b=mbBmt3NrHjvS5YiK7Cqbns/rlZrziQVPvTbbh7SL2imQdBhz+VtoybE1
- tfm8ql1siZz1D7LFILrWUqNaep+GLQbQiamyc1FyVC5d/rqfiBLk7Oulx
- uR/o5eIDAmvmHUInB7sqXMhYia3xJD4x7SbhSUpyDVM3mIcOe2uQnqpxz
- gHEaerO7tl/MvmR5vEzGcp218y/ecR9wY6Xzb5AJ9/xtj8ActRdEkW+DJ
- 256VoXf+2ZV3fXCJXoHbXJi106By9waMmhjiPYFux20nMb5SXXGN64VT2
- rsPwPPefny8ts40Lljd4IpdtnGBgrlZW7L7AU7+r67Uyk9ka/Gj4v2e9x g==;
-X-CSE-ConnectionGUID: VVID9BFfT3ew4mjwqmp/Ng==
-X-CSE-MsgGUID: 6Lq542AcTSaZSZtyZParUg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11313"; a="36227060"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="36227060"
+ bh=Ax/g+PjP+zLEEHoAhAKGhk4Gt3gv8IWh8mJDAZ/mq+A=;
+ b=awBm0zsREDOUxXvRjztxB4TIYzem27lLiBZBoe5S+Ol71BEinJfBoxXz
+ MxL4dCfgH9isD8UOV/PFnwKNfwQ1OX6uhq+jew2GAHeGRwXDh0gsKWlMX
+ qPhtKJrZKHsy0g1NWBjAUajlXWneVJcGytm8U1yhT8yV5lN5qWCYq4z3k
+ /MFEWJ9csALnOJ2V/wDTbLWtD9xhEYO4Fe2Zo5GWPYpGJBjC+ec5zQ+0b
+ tMfyeJFB9ZdZcy13lyaTwAxQGLx+Q21mbMhEVCXRAl2wB8YVmovchAsr3
+ n9HzEPlJyB7FsQrvKz2aCGxGyPDl4wFMYXNmYRHnBhQYstOFSMWppHFmt w==;
+X-CSE-ConnectionGUID: GrUdZHkrSR2baUCi4BoRLA==
+X-CSE-MsgGUID: wAlHHdstQUuYyzeL9E8qlw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11313"; a="36227065"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="36227065"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2025 02:03:21 -0800
-X-CSE-ConnectionGUID: xzLE7BR9Sq+eVFj6hM4sAg==
-X-CSE-MsgGUID: kww4BFNDQ6uN0hZGWEiVag==
+ 13 Jan 2025 02:03:24 -0800
+X-CSE-ConnectionGUID: sheNs1ipTfKnKzFE5J5x1g==
+X-CSE-MsgGUID: BtZPXCqMRZez+kOFA1Js2g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="104242928"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="104242935"
 Received: from nitin-super-server.iind.intel.com ([10.145.169.70])
- by fmviesa006.fm.intel.com with ESMTP; 13 Jan 2025 02:03:19 -0800
+ by fmviesa006.fm.intel.com with ESMTP; 13 Jan 2025 02:03:21 -0800
 From: Nitin Gote <nitin.r.gote@intel.com>
 To: andi.shyti@intel.com, jani.nikula@linux.intel.com,
  intel-gfx@lists.freedesktop.org
 Cc: nitin.r.gote@intel.com
-Subject: [PATCH v2 1/8] drm/i915/gt: fix typos in i915/gt files.
-Date: Mon, 13 Jan 2025 15:54:14 +0530
-Message-Id: <20250113102421.2431727-2-nitin.r.gote@intel.com>
+Subject: [PATCH v2 2/8] drm/i915/gvt: fix typos in i915/gvt files
+Date: Mon, 13 Jan 2025 15:54:15 +0530
+Message-Id: <20250113102421.2431727-3-nitin.r.gote@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20250113102421.2431727-1-nitin.r.gote@intel.com>
 References: <20250113102421.2431727-1-nitin.r.gote@intel.com>
@@ -67,494 +67,235 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Fix all typos in files under drm/i915/gt reported by codespell tool.
-
-v2: Fix grammer mistake in comment <Andi>
+Fix all typos in files under drm/i915/gvt reported by codespell tool.
 
 Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
 ---
- drivers/gpu/drm/i915/gt/gen2_engine_cs.c             | 2 +-
- drivers/gpu/drm/i915/gt/intel_engine_cs.c            | 8 ++++----
- drivers/gpu/drm/i915/gt/intel_engine_types.h         | 4 ++--
- drivers/gpu/drm/i915/gt/intel_gt_irq.c               | 2 +-
- drivers/gpu/drm/i915/gt/intel_gt_mcr.c               | 2 +-
- drivers/gpu/drm/i915/gt/intel_migrate.c              | 4 ++--
- drivers/gpu/drm/i915/gt/intel_mocs.c                 | 2 +-
- drivers/gpu/drm/i915/gt/intel_reset.c                | 2 +-
- drivers/gpu/drm/i915/gt/intel_ring_submission.c      | 2 +-
- drivers/gpu/drm/i915/gt/intel_rps_types.h            | 4 ++--
- drivers/gpu/drm/i915/gt/intel_sa_media.c             | 2 +-
- drivers/gpu/drm/i915/gt/intel_sseu.c                 | 2 +-
- drivers/gpu/drm/i915/gt/intel_workarounds.c          | 2 +-
- drivers/gpu/drm/i915/gt/selftest_execlists.c         | 2 +-
- drivers/gpu/drm/i915/gt/selftest_hangcheck.c         | 2 +-
- drivers/gpu/drm/i915/gt/selftest_lrc.c               | 2 +-
- drivers/gpu/drm/i915/gt/selftest_rc6.c               | 2 +-
- drivers/gpu/drm/i915/gt/selftest_rps.c               | 2 +-
- drivers/gpu/drm/i915/gt/shaders/README               | 6 +++---
- drivers/gpu/drm/i915/gt/shaders/clear_kernel/hsw.asm | 2 +-
- drivers/gpu/drm/i915/gt/shaders/clear_kernel/ivb.asm | 2 +-
- drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h        | 4 ++--
- drivers/gpu/drm/i915/gt/uc/intel_guc.c               | 2 +-
- drivers/gpu/drm/i915/gt/uc/intel_guc.h               | 2 +-
- drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h          | 2 +-
- drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c    | 4 ++--
- drivers/gpu/drm/i915/gt/uc/intel_uc.c                | 2 +-
- drivers/gpu/drm/i915/gt/uc/selftest_guc_hangcheck.c  | 2 +-
- 28 files changed, 38 insertions(+), 38 deletions(-)
+ drivers/gpu/drm/i915/gvt/cmd_parser.c   | 4 ++--
+ drivers/gpu/drm/i915/gvt/dmabuf.c       | 2 +-
+ drivers/gpu/drm/i915/gvt/edid.c         | 2 +-
+ drivers/gpu/drm/i915/gvt/gtt.c          | 2 +-
+ drivers/gpu/drm/i915/gvt/gvt.h          | 8 +++++---
+ drivers/gpu/drm/i915/gvt/handlers.c     | 6 +++---
+ drivers/gpu/drm/i915/gvt/kvmgt.c        | 2 +-
+ drivers/gpu/drm/i915/gvt/mmio_context.c | 6 +++---
+ drivers/gpu/drm/i915/gvt/scheduler.c    | 6 +++---
+ drivers/gpu/drm/i915/gvt/vgpu.c         | 6 +++---
+ 10 files changed, 23 insertions(+), 21 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/gen2_engine_cs.c b/drivers/gpu/drm/i915/gt/gen2_engine_cs.c
-index 4904d0f4162c..8116fd5987e2 100644
---- a/drivers/gpu/drm/i915/gt/gen2_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/gen2_engine_cs.c
-@@ -179,7 +179,7 @@ u32 *gen5_emit_breadcrumb(struct i915_request *rq, u32 *cs)
- 	return __gen2_emit_breadcrumb(rq, cs, 8, 8);
- }
- 
--/* Just userspace ABI convention to limit the wa batch bo to a resonable size */
-+/* Just userspace ABI convention to limit the wa batch bo to a reasonable size */
- #define I830_BATCH_LIMIT SZ_256K
- #define I830_TLB_ENTRIES (2)
- #define I830_WA_SIZE max(I830_TLB_ENTRIES * SZ_4K, I830_BATCH_LIMIT)
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index 4d30a86016f2..ec136eb12d48 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -308,7 +308,7 @@ u32 intel_engine_context_size(struct intel_gt *gt, u8 class)
- 			/*
- 			 * There is a discrepancy here between the size reported
- 			 * by the register and the size of the context layout
--			 * in the docs. Both are described as authorative!
-+			 * in the docs. Both are described as authoritative!
- 			 *
- 			 * The discrepancy is on the order of a few cachelines,
- 			 * but the total is under one page (4k), which is our
-@@ -845,7 +845,7 @@ static void engine_mask_apply_compute_fuses(struct intel_gt *gt)
-  * Note that we have a catch-22 situation where we need to be able to access
-  * the blitter forcewake domain to read the engine fuses, but at the same time
-  * we need to know which engines are available on the system to know which
-- * forcewake domains are present. We solve this by intializing the forcewake
-+ * forcewake domains are present. We solve this by initializing the forcewake
-  * domains based on the full engine mask in the platform capabilities before
-  * calling this function and pruning the domains for fused-off engines
-  * afterwards.
-@@ -1411,7 +1411,7 @@ create_ggtt_bind_context(struct intel_engine_cs *engine)
- 
+diff --git a/drivers/gpu/drm/i915/gvt/cmd_parser.c b/drivers/gpu/drm/i915/gvt/cmd_parser.c
+index 6439c8e91a8d..f8af9659653d 100644
+--- a/drivers/gpu/drm/i915/gvt/cmd_parser.c
++++ b/drivers/gpu/drm/i915/gvt/cmd_parser.c
+@@ -1924,7 +1924,7 @@ static int perform_bb_shadow(struct parser_exec_state *s)
+ 	/* the start_offset stores the batch buffer's start gma's
+ 	 * offset relative to page boundary. so for non-privileged batch
+ 	 * buffer, the shadowed gem object holds exactly the same page
+-	 * layout as original gem object. This is for the convience of
++	 * layout as original gem object. This is for the convenience of
+ 	 * replacing the whole non-privilged batch buffer page to this
+ 	 * shadowed one in PPGTT at the same gma address. (this replacing
+ 	 * action is not implemented yet now, but may be necessary in
+@@ -1976,7 +1976,7 @@ static int perform_bb_shadow(struct parser_exec_state *s)
  	/*
- 	 * MI_UPDATE_GTT can insert up to 511 PTE entries and there could be multiple
--	 * bind requets at a time so get a bigger ring.
-+	 * bind requests at a time so get a bigger ring.
- 	 */
- 	return intel_engine_create_pinned_context(engine, engine->gt->vm, SZ_512K,
- 						  I915_GEM_HWS_GGTT_BIND_ADDR,
-@@ -1533,7 +1533,7 @@ int intel_engines_init(struct intel_gt *gt)
+ 	 * ip_va saves the virtual address of the shadow batch buffer, while
+ 	 * ip_gma saves the graphics address of the original batch buffer.
+-	 * As the shadow batch buffer is just a copy from the originial one,
++	 * As the shadow batch buffer is just a copy from the original one,
+ 	 * it should be right to use shadow batch buffer'va and original batch
+ 	 * buffer's gma in pair. After all, we don't want to pin the shadow
+ 	 * buffer here (too early).
+diff --git a/drivers/gpu/drm/i915/gvt/dmabuf.c b/drivers/gpu/drm/i915/gvt/dmabuf.c
+index 9efc3ca0ce82..4f599af766b0 100644
+--- a/drivers/gpu/drm/i915/gvt/dmabuf.c
++++ b/drivers/gpu/drm/i915/gvt/dmabuf.c
+@@ -436,7 +436,7 @@ int intel_vgpu_query_plane(struct intel_vgpu *vgpu, void *args)
+ 			dmabuf_obj_get(dmabuf_obj);
+ 		}
+ 		ret = 0;
+-		gvt_dbg_dpy("vgpu%d: re-use dmabuf_obj ref %d, id %d\n",
++		gvt_dbg_dpy("vgpu%d: reuse dmabuf_obj ref %d, id %d\n",
+ 			    vgpu->id, kref_read(&dmabuf_obj->kref),
+ 			    gfx_plane_info->dmabuf_id);
+ 		mutex_unlock(&vgpu->dmabuf_lock);
+diff --git a/drivers/gpu/drm/i915/gvt/edid.c b/drivers/gpu/drm/i915/gvt/edid.c
+index 0a357ca42db1..89147d33168c 100644
+--- a/drivers/gpu/drm/i915/gvt/edid.c
++++ b/drivers/gpu/drm/i915/gvt/edid.c
+@@ -298,7 +298,7 @@ static int gmbus3_mmio_read(struct intel_vgpu *vgpu, unsigned int offset,
+ 	int byte_count = byte_left;
+ 	u32 reg_data = 0;
  
- /**
-  * intel_engine_cleanup_common - cleans up the engine state created by
-- *                                the common initiailizers.
-+ *                                the common initializers.
-  * @engine: Engine to cleanup.
-  *
-  * This cleans up everything created by the common helpers.
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_types.h b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-index fe1f85e5dda3..155b6255a63e 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_types.h
-@@ -237,7 +237,7 @@ struct intel_engine_execlists {
- 	 */
- 	struct i915_request * const *active;
- 	/**
--	 * @inflight: the set of contexts submitted and acknowleged by HW
-+	 * @inflight: the set of contexts submitted and acknowledged by HW
- 	 *
- 	 * The set of inflight contexts is managed by reading CS events
- 	 * from the HW. On a context-switch event (not preemption), we
-@@ -260,7 +260,7 @@ struct intel_engine_execlists {
- 	unsigned int port_mask;
- 
- 	/**
--	 * @virtual: Queue of requets on a virtual engine, sorted by priority.
-+	 * @virtual: Queue of requests on a virtual engine, sorted by priority.
- 	 * Each RB entry is a struct i915_priolist containing a list of requests
- 	 * of the same priority.
- 	 */
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_irq.c b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-index 1240d44eeb85..75e802e10be2 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-@@ -480,7 +480,7 @@ void gen8_gt_irq_postinstall(struct intel_gt *gt)
- 	gen2_irq_init(uncore, GEN8_GT_IRQ_REGS(1), ~gt_interrupts[1], gt_interrupts[1]);
- 	/*
- 	 * RPS interrupts will get enabled/disabled on demand when RPS itself
--	 * is enabled/disabled. Same wil be the case for GuC interrupts.
-+	 * is enabled/disabled. Same will be the case for GuC interrupts.
- 	 */
- 	gen2_irq_init(uncore, GEN8_GT_IRQ_REGS(2), gt->pm_imr, gt->pm_ier);
- 	gen2_irq_init(uncore, GEN8_GT_IRQ_REGS(3), ~gt_interrupts[3], gt_interrupts[3]);
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_mcr.c b/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
-index b8912bd6c08e..aab20d6466f5 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_mcr.c
-@@ -239,7 +239,7 @@ static u32 rw_with_mcr_steering_fw(struct intel_gt *gt,
- 		 * to remain in multicast mode for reads.  There's no real
- 		 * downside to this, so we'll just go ahead and do so on all
- 		 * platforms; we'll only clear the multicast bit from the mask
--		 * when exlicitly doing a write operation.
-+		 * when explicitly doing a write operation.
- 		 */
- 		if (rw_flag == FW_REG_WRITE)
- 			mcr_mask |= GEN11_MCR_MULTICAST;
-diff --git a/drivers/gpu/drm/i915/gt/intel_migrate.c b/drivers/gpu/drm/i915/gt/intel_migrate.c
-index 6f7af4077135..aff5aca591e6 100644
---- a/drivers/gpu/drm/i915/gt/intel_migrate.c
-+++ b/drivers/gpu/drm/i915/gt/intel_migrate.c
-@@ -304,7 +304,7 @@ struct intel_context *intel_migrate_create_context(struct intel_migrate *m)
- 	struct intel_context *ce;
- 
- 	/*
--	 * We randomly distribute contexts across the engines upon constrction,
-+	 * We randomly distribute contexts across the engines upon construction,
- 	 * as they all share the same pinned vm, and so in order to allow
- 	 * multiple blits to run in parallel, we must construct each blit
- 	 * to use a different range of the vm for its GTT. This has to be
-@@ -646,7 +646,7 @@ calculate_chunk_sz(struct drm_i915_private *i915, bool src_is_lmem,
- 		 * When CHUNK_SZ is passed all the pages upto CHUNK_SZ
- 		 * will be taken for the blt. in Flat-ccs supported
- 		 * platform Smem obj will have more pages than required
--		 * for main meory hence limit it to the required size
-+		 * for main memory hence limit it to the required size
- 		 * for main memory
- 		 */
- 		return min_t(u64, bytes_to_cpy, CHUNK_SZ);
-diff --git a/drivers/gpu/drm/i915/gt/intel_mocs.c b/drivers/gpu/drm/i915/gt/intel_mocs.c
-index d791d63d49b4..cf41d325712e 100644
---- a/drivers/gpu/drm/i915/gt/intel_mocs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_mocs.c
-@@ -675,7 +675,7 @@ void intel_mocs_init(struct intel_gt *gt)
- 		__init_mocs_table(gt->uncore, &table, global_mocs_offset());
- 
- 	/*
--	 * Initialize the L3CC table as part of mocs initalization to make
-+	 * Initialize the L3CC table as part of mocs initialization to make
- 	 * sure the LNCFCMOCSx registers are programmed for the subsequent
- 	 * memory transactions including guc transactions
- 	 */
-diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-index aae5a081cb53..5a625518d1a9 100644
---- a/drivers/gpu/drm/i915/gt/intel_reset.c
-+++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-@@ -1098,7 +1098,7 @@ static bool __intel_gt_unset_wedged(struct intel_gt *gt)
- 		dma_fence_default_wait(fence, false, MAX_SCHEDULE_TIMEOUT);
- 		dma_fence_put(fence);
- 
--		/* Restart iteration after droping lock */
-+		/* Restart iteration after dropping lock */
- 		spin_lock(&timelines->lock);
- 		tl = list_entry(&timelines->active_list, typeof(*tl), link);
- 	}
-diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-index 458e29d89978..6e9977b2d180 100644
---- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-@@ -242,7 +242,7 @@ static int xcs_resume(struct intel_engine_cs *engine)
+-	/* Data can only be recevied if previous settings correct */
++	/* Data can only be received if previous settings correct */
+ 	if (vgpu_vreg_t(vgpu, PCH_GMBUS1) & GMBUS_SLAVE_READ) {
+ 		if (byte_left <= 0) {
+ 			memcpy(p_data, &vgpu_vreg(vgpu, offset), bytes);
+diff --git a/drivers/gpu/drm/i915/gvt/gtt.c b/drivers/gpu/drm/i915/gvt/gtt.c
+index 1bce1493b86f..03056ae15858 100644
+--- a/drivers/gpu/drm/i915/gvt/gtt.c
++++ b/drivers/gpu/drm/i915/gvt/gtt.c
+@@ -1259,7 +1259,7 @@ static int ppgtt_populate_shadow_entry(struct intel_vgpu *vgpu,
+ 		gvt_vdbg_mm("shadow 64K gtt entry\n");
  		/*
- 		 * In case of resets fails because engine resumes from
- 		 * incorrect RING_HEAD and then GPU may be then fed
--		 * to invalid instrcutions, which may lead to unrecoverable
-+		 * to invalid instructions, which may lead to unrecoverable
- 		 * hang. So at first write doesn't succeed then try again.
+ 		 * The layout of 64K page is special, the page size is
+-		 * controlled by uper PDE. To be simple, we always split
++		 * controlled by upper PDE. To be simple, we always split
+ 		 * 64K page to smaller 4K pages in shadow PT.
  		 */
- 		ENGINE_WRITE_FW(engine, RING_HEAD, ring->head);
-diff --git a/drivers/gpu/drm/i915/gt/intel_rps_types.h b/drivers/gpu/drm/i915/gt/intel_rps_types.h
-index 6507fa3f6d1e..5135b90a2a40 100644
---- a/drivers/gpu/drm/i915/gt/intel_rps_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_rps_types.h
-@@ -40,7 +40,7 @@ enum {
- /**
-  * struct intel_rps_freq_caps - rps freq capabilities
-  * @rp0_freq: non-overclocked max frequency
-- * @rp1_freq: "less than" RP0 power/freqency
-+ * @rp1_freq: "less than" RP0 power/frequency
-  * @min_freq: aka RPn, minimum frequency
-  *
-  * Freq caps exposed by HW, values are in "hw units" and intel_gpu_freq()
-@@ -90,7 +90,7 @@ struct intel_rps {
- 	u8 boost_freq;		/* Frequency to request when wait boosting */
- 	u8 idle_freq;		/* Frequency to request when we are idle */
- 	u8 efficient_freq;	/* AKA RPe. Pre-determined balanced frequency */
--	u8 rp1_freq;		/* "less than" RP0 power/freqency */
-+	u8 rp1_freq;		/* "less than" RP0 power/frequency */
- 	u8 rp0_freq;		/* Non-overclocked max frequency. */
- 	u16 gpll_ref_freq;	/* vlv/chv GPLL reference frequency */
+ 		return split_64KB_gtt_entry(vgpu, spt, index, &se);
+diff --git a/drivers/gpu/drm/i915/gvt/gvt.h b/drivers/gpu/drm/i915/gvt/gvt.h
+index 2c95aeef4e41..b967700f416f 100644
+--- a/drivers/gpu/drm/i915/gvt/gvt.h
++++ b/drivers/gpu/drm/i915/gvt/gvt.h
+@@ -452,8 +452,10 @@ void intel_vgpu_free_resource(struct intel_vgpu *vgpu);
+ void intel_vgpu_write_fence(struct intel_vgpu *vgpu,
+ 	u32 fence, u64 value);
  
-diff --git a/drivers/gpu/drm/i915/gt/intel_sa_media.c b/drivers/gpu/drm/i915/gt/intel_sa_media.c
-index 8c1dbcbcbc4f..2945526d52d1 100644
---- a/drivers/gpu/drm/i915/gt/intel_sa_media.c
-+++ b/drivers/gpu/drm/i915/gt/intel_sa_media.c
-@@ -27,7 +27,7 @@ int intel_sa_mediagt_setup(struct intel_gt *gt, phys_addr_t phys_addr,
+-/* Macros for easily accessing vGPU virtual/shadow register.
+-   Explicitly seperate use for typed MMIO reg or real offset.*/
++/*
++ * Macros for easily accessing vGPU virtual/shadow register.
++ * Explicitly separate use for typed MMIO reg or real offset.
++ */
+ #define vgpu_vreg_t(vgpu, reg) \
+ 	(*(u32 *)(vgpu->mmio.vreg + i915_mmio_reg_offset(reg)))
+ #define vgpu_vreg(vgpu, offset) \
+@@ -702,7 +704,7 @@ static inline void intel_gvt_mmio_set_cmd_write_patch(
+  * @offset: register offset
+  *
+  * Returns:
+- * True if GPU commmand write to an MMIO should be patched
++ * True if GPU command write to an MMIO should be patched
+  */
+ static inline bool intel_gvt_mmio_is_cmd_write_patch(
+ 			struct intel_gvt *gvt, unsigned int offset)
+diff --git a/drivers/gpu/drm/i915/gvt/handlers.c b/drivers/gpu/drm/i915/gvt/handlers.c
+index 241cff0fc683..c1e24453b849 100644
+--- a/drivers/gpu/drm/i915/gvt/handlers.c
++++ b/drivers/gpu/drm/i915/gvt/handlers.c
+@@ -689,11 +689,11 @@ static void vgpu_update_refresh_rate(struct intel_vgpu *vgpu)
+ 		u32 new_rate = 0;
+ 		u32 *old_rate = &(intel_vgpu_port(vgpu, vgpu->display.port_num)->vrefresh_k);
+ 
+-		/* Calcuate pixel clock by (ls_clk * M / N) */
++		/* Calculate pixel clock by (ls_clk * M / N) */
+ 		pixel_clk = div_u64(mul_u32_u32(link_m, dp_br), link_n);
+ 		pixel_clk *= MSEC_PER_SEC;
+ 
+-		/* Calcuate refresh rate by (pixel_clk / (h_total * v_total)) */
++		/* Calculate refresh rate by (pixel_clk / (h_total * v_total)) */
+ 		new_rate = DIV64_U64_ROUND_CLOSEST(mul_u64_u32_shr(pixel_clk, MSEC_PER_SEC, 0), mul_u32_u32(htotal + 1, vtotal + 1));
+ 
+ 		if (*old_rate != new_rate)
+@@ -2001,7 +2001,7 @@ static int elsp_mmio_write(struct intel_vgpu *vgpu, unsigned int offset,
+ 	 * vGPU reset, it's set on D0->D3 on PCI config write, and cleared after
+ 	 * vGPU reset if in resuming.
+ 	 * In S0ix exit, the device power state also transite from D3 to D0 as
+-	 * S3 resume, but no vGPU reset (triggered by QEMU devic model). After
++	 * S3 resume, but no vGPU reset (triggered by QEMU device model). After
+ 	 * S0ix exit, all engines continue to work. However the d3_entered
+ 	 * remains set which will break next vGPU reset logic (miss the expected
+ 	 * PPGTT invalidation).
+diff --git a/drivers/gpu/drm/i915/gvt/kvmgt.c b/drivers/gpu/drm/i915/gvt/kvmgt.c
+index b27ff77bfb50..69830a5c49d3 100644
+--- a/drivers/gpu/drm/i915/gvt/kvmgt.c
++++ b/drivers/gpu/drm/i915/gvt/kvmgt.c
+@@ -142,7 +142,7 @@ static int gvt_pin_guest_page(struct intel_vgpu *vgpu, unsigned long gfn,
+ 	int ret;
  
  	/*
- 	 * Standalone media shares the general MMIO space with the primary
--	 * GT.  We'll re-use the primary GT's mapping.
-+	 * GT.  We'll reuse the primary GT's mapping.
+-	 * We pin the pages one-by-one to avoid allocating a big arrary
++	 * We pin the pages one-by-one to avoid allocating a big array
+ 	 * on stack to hold pfns.
  	 */
- 	uncore->regs = intel_uncore_regs(&i915->uncore);
- 	if (drm_WARN_ON(&i915->drm, uncore->regs == NULL))
-diff --git a/drivers/gpu/drm/i915/gt/intel_sseu.c b/drivers/gpu/drm/i915/gt/intel_sseu.c
-index c8fadf58d836..e4538dd726c8 100644
---- a/drivers/gpu/drm/i915/gt/intel_sseu.c
-+++ b/drivers/gpu/drm/i915/gt/intel_sseu.c
-@@ -687,7 +687,7 @@ u32 intel_sseu_make_rpcs(struct intel_gt *gt,
- 	 * According to documentation software must consider the configuration
- 	 * as 2x4x8 and hardware will translate this to 1x8x8.
- 	 *
--	 * Furthemore, even though SScount is three bits, maximum documented
-+	 * Furthermore, even though SScount is three bits, maximum documented
- 	 * value for it is four. From this some rules/restrictions follow:
- 	 *
- 	 * 1.
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 570c91878189..3ea9b06de1be 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -1318,7 +1318,7 @@ xehp_init_mcr(struct intel_gt *gt, struct i915_wa_list *wal)
- 	 * We'll do our default/implicit steering based on GSLICE (in the
- 	 * sliceid field) and DSS (in the subsliceid field).  If we can
- 	 * find overlap between the valid MSLICE and/or LNCF values with
--	 * a suitable GSLICE, then we can just re-use the default value and
-+	 * a suitable GSLICE, then we can just reuse the default value and
- 	 * skip and explicit steering at runtime.
- 	 *
- 	 * We only need to look for overlap between GSLICE/MSLICE/LNCF to find
-diff --git a/drivers/gpu/drm/i915/gt/selftest_execlists.c b/drivers/gpu/drm/i915/gt/selftest_execlists.c
-index 222ca7c44951..07bc0bbee20f 100644
---- a/drivers/gpu/drm/i915/gt/selftest_execlists.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_execlists.c
-@@ -53,7 +53,7 @@ static int wait_for_submit(struct intel_engine_cs *engine,
- 		if (i915_request_completed(rq)) /* that was quick! */
- 			return 0;
- 
--		/* Wait until the HW has acknowleged the submission (or err) */
-+		/* Wait until the HW has acknowledged the submission (or err) */
- 		intel_engine_flush_submission(engine);
- 		if (!READ_ONCE(engine->execlists.pending[0]) && is_active(rq))
- 			return 0;
-diff --git a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-index 9ce8ff1c04fe..d99061735c58 100644
---- a/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_hangcheck.c
-@@ -548,7 +548,7 @@ static int igt_reset_fail_engine(void *arg)
- 	struct intel_engine_cs *engine;
- 	enum intel_engine_id id;
- 
--	/* Check that we can recover from engine-reset failues */
-+	/* Check that we can recover from engine-reset failures */
- 
- 	if (!intel_has_reset_engine(gt))
- 		return 0;
-diff --git a/drivers/gpu/drm/i915/gt/selftest_lrc.c b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-index e17b8777d21d..22e750108c5f 100644
---- a/drivers/gpu/drm/i915/gt/selftest_lrc.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_lrc.c
-@@ -63,7 +63,7 @@ static int wait_for_submit(struct intel_engine_cs *engine,
- 		if (i915_request_completed(rq)) /* that was quick! */
- 			return 0;
- 
--		/* Wait until the HW has acknowleged the submission (or err) */
-+		/* Wait until the HW has acknowledged the submission (or err) */
- 		intel_engine_flush_submission(engine);
- 		if (!READ_ONCE(engine->execlists.pending[0]) && is_active(rq))
- 			return 0;
-diff --git a/drivers/gpu/drm/i915/gt/selftest_rc6.c b/drivers/gpu/drm/i915/gt/selftest_rc6.c
-index 27b6d51ef145..908483ab0bc8 100644
---- a/drivers/gpu/drm/i915/gt/selftest_rc6.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_rc6.c
-@@ -222,7 +222,7 @@ int live_rc6_ctx_wa(void *arg)
- 				i915_reset_engine_count(error, engine);
- 			const u32 *res;
- 
--			/* Use a sacrifical context */
-+			/* Use a sacrificial context */
- 			ce = intel_context_create(engine);
- 			if (IS_ERR(ce)) {
- 				err = PTR_ERR(ce);
-diff --git a/drivers/gpu/drm/i915/gt/selftest_rps.c b/drivers/gpu/drm/i915/gt/selftest_rps.c
-index c207a4fb03bf..78c03e6c0861 100644
---- a/drivers/gpu/drm/i915/gt/selftest_rps.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_rps.c
-@@ -22,7 +22,7 @@
- #include "selftests/igt_spinner.h"
- #include "selftests/librapl.h"
- 
--/* Try to isolate the impact of cstates from determing frequency response */
-+/* Try to isolate the impact of cstates from determining frequency response */
- #define CPU_LATENCY 0 /* -1 to disable pm_qos, 0 to disable cstates */
- 
- static void dummy_rps_work(struct work_struct *wrk)
-diff --git a/drivers/gpu/drm/i915/gt/shaders/README b/drivers/gpu/drm/i915/gt/shaders/README
-index e7e96d7073c7..22f8dabed434 100644
---- a/drivers/gpu/drm/i915/gt/shaders/README
-+++ b/drivers/gpu/drm/i915/gt/shaders/README
-@@ -10,7 +10,7 @@ i915/gt/shaders/clear_kernel directory.
- 
- The generated .c files should never be modified directly. Instead, any modification
- needs to be done on the on their respective ASM files and build instructions below
--needes to be followed.
-+needs to be followed.
- 
- Building
- ========
-@@ -24,7 +24,7 @@ on building.
- Please make sure your Mesa tool is compiled with "-Dtools=intel" and
- "-Ddri-drivers=i965", and run this script from IGT source root directory"
- 
--The instructions bellow assume:
-+The instructions below assume:
-     *  IGT gpu tools source code is located on your home directory (~) as ~/igt
-     *  Mesa source code is located on your home directory (~) as ~/mesa
-        and built under the ~/mesa/build directory
-@@ -43,4 +43,4 @@ igt $ ./scripts/generate_clear_kernel.sh -g ivb \
-     ~/igt/lib/i915/shaders/clear_kernel/hsw.asm
- ~ $ cd ~/igt
- igt $ ./scripts/generate_clear_kernel.sh -g hsw \
--      -m ~/mesa/build/src/intel/tools/i965_asm
-\ No newline at end of file
-+      -m ~/mesa/build/src/intel/tools/i965_asm
-diff --git a/drivers/gpu/drm/i915/gt/shaders/clear_kernel/hsw.asm b/drivers/gpu/drm/i915/gt/shaders/clear_kernel/hsw.asm
-index 5fdf384bb621..6c0c89daf96c 100644
---- a/drivers/gpu/drm/i915/gt/shaders/clear_kernel/hsw.asm
-+++ b/drivers/gpu/drm/i915/gt/shaders/clear_kernel/hsw.asm
-@@ -24,7 +24,7 @@ mov(1)          f0.1<1>UW       g1.2<0,1,0>UW                   { align1 1N };
-  * DW 1.4 - Rsvd (intended for context ID)
-  * DW 1.5 - [31:16]:SliceCount, [15:0]:SubSlicePerSliceCount
-  * DW 1.6 - Rsvd MBZ (intended for Enable Wait on Total Thread Count)
-- * DW 1.7 - Rsvd MBZ (inteded for Total Thread Count)
-+ * DW 1.7 - Rsvd MBZ (intended for Total Thread Count)
-  *
-  * Binding Table
-  *
-diff --git a/drivers/gpu/drm/i915/gt/shaders/clear_kernel/ivb.asm b/drivers/gpu/drm/i915/gt/shaders/clear_kernel/ivb.asm
-index 97c7ac9e3854..27c28e63d6cc 100644
---- a/drivers/gpu/drm/i915/gt/shaders/clear_kernel/ivb.asm
-+++ b/drivers/gpu/drm/i915/gt/shaders/clear_kernel/ivb.asm
-@@ -24,7 +24,7 @@ mov(1)          f0.1<1>UW       g1.2<0,1,0>UW                   { align1 1N };
-  * DW 1.4 - Rsvd (intended for context ID)
-  * DW 1.5 - [31:16]:SliceCount, [15:0]:SubSlicePerSliceCount
-  * DW 1.6 - Rsvd MBZ (intended for Enable Wait on Total Thread Count)
-- * DW 1.7 - Rsvd MBZ (inteded for Total Thread Count)
-+ * DW 1.7 - Rsvd MBZ (intended for Total Thread Count)
-  *
-  * Binding Table
-  *
-diff --git a/drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h b/drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h
-index 1fc0c17b1230..803c0379d97d 100644
---- a/drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h
-+++ b/drivers/gpu/drm/i915/gt/uc/guc_capture_fwif.h
-@@ -81,7 +81,7 @@ struct guc_debug_capture_list {
-  *
-  * intel_guc_capture module uses these structures to maintain static
-  * tables (per unique platform) that consists of lists of registers
-- * (offsets, names, flags,...) that are used at the ADS regisration
-+ * (offsets, names, flags,...) that are used at the ADS registration
-  * time as well as during runtime processing and reporting of error-
-  * capture states generated by GuC just prior to engine reset events.
-  */
-@@ -200,7 +200,7 @@ struct intel_guc_state_capture {
- 	 * dynamically allocate new nodes when receiving the G2H notification
- 	 * because the event handlers for all G2H event-processing is called
- 	 * by the ct processing worker queue and when that queue is being
--	 * processed, there is no absoluate guarantee that we are not in the
-+	 * processed, there is no absolute guarantee that we are not in the
- 	 * midst of a GT reset operation (which doesn't allow allocations).
- 	 */
- 	struct list_head cachelist;
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.c b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-index 5949ff0b0161..9df80c325fc1 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.c
-@@ -690,7 +690,7 @@ int intel_guc_suspend(struct intel_guc *guc)
- 		 * H2G MMIO command completes.
- 		 *
- 		 * Don't abort on a failure code from the GuC. Keep going and do the
--		 * clean up in santize() and re-initialisation on resume and hopefully
-+		 * clean up in sanitize() and re-initialisation on resume and hopefully
- 		 * the error here won't be problematic.
- 		 */
- 		ret = intel_guc_send_mmio(guc, action, ARRAY_SIZE(action), NULL, 0);
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-index 57b903132776..053780f562c1 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-@@ -295,7 +295,7 @@ struct intel_guc {
- 	 */
- 	struct work_struct dead_guc_worker;
- 	/**
--	 * @last_dead_guc_jiffies: timestamp of previous 'dead guc' occurrance
-+	 * @last_dead_guc_jiffies: timestamp of previous 'dead guc' occurrence
- 	 * used to prevent a fundamentally broken system from continuously
- 	 * reloading the GuC.
- 	 */
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
-index 4ce6e2332a63..eded00f0c7e1 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_fwif.h
-@@ -408,7 +408,7 @@ enum guc_capture_type {
- 	GUC_CAPTURE_LIST_TYPE_MAX,
+ 	for (npage = 0; npage < total_pages; npage++) {
+diff --git a/drivers/gpu/drm/i915/gvt/mmio_context.c b/drivers/gpu/drm/i915/gvt/mmio_context.c
+index 273db14fd5fc..2f7208843367 100644
+--- a/drivers/gpu/drm/i915/gvt/mmio_context.c
++++ b/drivers/gpu/drm/i915/gvt/mmio_context.c
+@@ -53,7 +53,7 @@ struct engine_mmio {
+ 	u32 value;
  };
  
--/* Class indecies for capture_class and capture_instance arrays */
-+/* Class indices for capture_class and capture_instance arrays */
- enum {
- 	GUC_CAPTURE_LIST_CLASS_RENDER_COMPUTE = 0,
- 	GUC_CAPTURE_LIST_CLASS_VIDEO = 1,
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-index 12f1ba7ca9c1..3b1333a24a89 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
-@@ -1223,7 +1223,7 @@ __extend_last_switch(struct intel_guc *guc, u64 *prev_start, u32 new_start)
-  * determine validity of these values. Instead we read the values multiple times
-  * until they are consistent. In test runs, 3 attempts results in consistent
-  * values. The upper bound is set to 6 attempts and may need to be tuned as per
-- * any new occurences.
-+ * any new occurrences.
-  */
- static void __get_engine_usage_record(struct intel_engine_cs *engine,
- 				      u32 *last_in, u32 *id, u32 *total)
-@@ -2995,7 +2995,7 @@ static int __guc_context_pin(struct intel_context *ce,
+-/* Raw offset is appened to each line for convenience. */
++/* Raw offset is append to each line for convenience. */
+ static struct engine_mmio gen8_engine_mmio_list[] __cacheline_aligned = {
+ 	{RCS0, RING_MODE_GEN7(RENDER_RING_BASE), 0xffff, false}, /* 0x229c */
+ 	{RCS0, GEN9_CTX_PREEMPT_REG, 0x0, false}, /* 0x2248 */
+@@ -576,8 +576,8 @@ void intel_gvt_switch_mmio(struct intel_vgpu *pre,
  
- 	/*
- 	 * GuC context gets pinned in guc_request_alloc. See that function for
--	 * explaination of why.
-+	 * explanation of why.
+ 	/**
+ 	 * We are using raw mmio access wrapper to improve the
+-	 * performace for batch mmio read/write, so we need
+-	 * handle forcewake mannually.
++	 * performance for batch mmio read/write, so we need
++	 * handle forcewake manually.
  	 */
+ 	intel_uncore_forcewake_get(engine->uncore, FORCEWAKE_ALL);
+ 	switch_mmio(pre, next, engine);
+diff --git a/drivers/gpu/drm/i915/gvt/scheduler.c b/drivers/gpu/drm/i915/gvt/scheduler.c
+index 23f2cc397ec9..dad217df0366 100644
+--- a/drivers/gpu/drm/i915/gvt/scheduler.c
++++ b/drivers/gpu/drm/i915/gvt/scheduler.c
+@@ -77,7 +77,7 @@ static void update_shadow_pdps(struct intel_vgpu_workload *workload)
+ }
  
- 	return lrc_pin(ce, engine, vaddr);
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_uc.c b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-index 5b8080ec5315..90ba1b0b4c9d 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_uc.c
-@@ -512,7 +512,7 @@ static int __uc_init_hw(struct intel_uc *uc)
- 		       ERR_PTR(ret), attempts);
- 	}
+ /*
+- * when populating shadow ctx from guest, we should not overrride oa related
++ * when populating shadow ctx from guest, we should not override oa related
+  * registers, so that they will not be overlapped by guest oa configs. Thus
+  * made it possible to capture oa data from host for both host and guests.
+  */
+@@ -528,7 +528,7 @@ static int prepare_shadow_batch_buffer(struct intel_vgpu_workload *workload)
+ 	int ret;
  
--	/* Did we succeded or run out of retries? */
-+	/* Did we succeed or run out of retries? */
- 	if (ret)
- 		goto err_log_capture;
+ 	list_for_each_entry(bb, &workload->shadow_bb, list) {
+-		/* For privilge batch buffer and not wa_ctx, the bb_start_cmd_va
++		/* For privilege batch buffer and not wa_ctx, the bb_start_cmd_va
+ 		 * is only updated into ring_scan_buffer, not real ring address
+ 		 * allocated in later copy_workload_to_ring_buffer. pls be noted
+ 		 * shadow_ring_buffer_va is now pointed to real ring buffer va
+@@ -1774,7 +1774,7 @@ intel_vgpu_create_workload(struct intel_vgpu *vgpu,
+ }
  
-diff --git a/drivers/gpu/drm/i915/gt/uc/selftest_guc_hangcheck.c b/drivers/gpu/drm/i915/gt/uc/selftest_guc_hangcheck.c
-index 26fdc392fce6..83801c992488 100644
---- a/drivers/gpu/drm/i915/gt/uc/selftest_guc_hangcheck.c
-+++ b/drivers/gpu/drm/i915/gt/uc/selftest_guc_hangcheck.c
-@@ -64,7 +64,7 @@ static int intel_hang_guc(void *arg)
- 	old_beat = engine->props.heartbeat_interval_ms;
- 	ret = intel_engine_set_heartbeat(engine, BEAT_INTERVAL);
- 	if (ret) {
--		gt_err(gt, "Failed to boost heatbeat interval: %pe\n", ERR_PTR(ret));
-+		gt_err(gt, "Failed to boost heartbeat interval: %pe\n", ERR_PTR(ret));
- 		goto err;
- 	}
- 
+ /**
+- * intel_vgpu_queue_workload - Qeue a vGPU workload
++ * intel_vgpu_queue_workload - Queue a vGPU workload
+  * @workload: the workload to queue in
+  */
+ void intel_vgpu_queue_workload(struct intel_vgpu_workload *workload)
+diff --git a/drivers/gpu/drm/i915/gvt/vgpu.c b/drivers/gpu/drm/i915/gvt/vgpu.c
+index 63c751ca4119..11260392234a 100644
+--- a/drivers/gpu/drm/i915/gvt/vgpu.c
++++ b/drivers/gpu/drm/i915/gvt/vgpu.c
+@@ -78,7 +78,7 @@ void populate_pvinfo_page(struct intel_vgpu *vgpu)
+  * vGPU type name is defined as GVTg_Vx_y which contains the physical GPU
+  * generation type (e.g V4 as BDW server, V5 as SKL server).
+  *
+- * Depening on the physical SKU resource, we might see vGPU types like
++ * Depending on the physical SKU resource, we might see vGPU types like
+  * GVTg_V4_8, GVTg_V4_4, GVTg_V4_2, etc. We can create different types of
+  * vGPU on same physical GPU depending on available resource. Each vGPU
+  * type will have a different number of avail_instance to indicate how
+@@ -417,7 +417,7 @@ int intel_gvt_create_vgpu(struct intel_vgpu *vgpu,
+  * the whole vGPU to default state as when it is created. This vGPU function
+  * is required both for functionary and security concerns.The ultimate goal
+  * of vGPU FLR is that reuse a vGPU instance by virtual machines. When we
+- * assign a vGPU to a virtual machine we must isse such reset first.
++ * assign a vGPU to a virtual machine we must issue such reset first.
+  *
+  * Full GT Reset and Per-Engine GT Reset are soft reset flow for GPU engines
+  * (Render, Blitter, Video, Video Enhancement). It is defined by GPU Spec.
+@@ -428,7 +428,7 @@ int intel_gvt_create_vgpu(struct intel_vgpu *vgpu,
+  *
+  * The parameter dev_level is to identify if we will do DMLR or GT reset.
+  * The parameter engine_mask is to specific the engines that need to be
+- * resetted. If value ALL_ENGINES is given for engine_mask, it means
++ * reset. If value ALL_ENGINES is given for engine_mask, it means
+  * the caller requests a full GT reset that we will reset all virtual
+  * GPU engines. For FLR, engine_mask is ignored.
+  */
 -- 
 2.25.1
 
