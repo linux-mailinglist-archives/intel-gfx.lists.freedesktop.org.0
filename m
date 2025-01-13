@@ -2,54 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BB23A0BFDB
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2025 19:33:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 011D6A0C04D
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2025 19:42:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECF9E10E0A7;
-	Mon, 13 Jan 2025 18:33:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9248010E2A5;
+	Mon, 13 Jan 2025 18:42:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dHiKopNK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LO7qvq9b";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CAC1710E0A7
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jan 2025 18:33:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BAC1710E2A5
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jan 2025 18:42:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736793231; x=1768329231;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=oiiV1YY+JWsEvJd5E3IwTUPWE/a9vV/nYGJZ/oL7qBE=;
- b=dHiKopNKLf9IzxjQBDBepcyKm4mxNDqpfAFcd5u7uJ2kojLrmbqgnGVg
- xV8kiRoZGBGU+1HatGz/RzE3TzDk6TUBHwgu1ZH1QeJRSv7J1QK3wP6Oa
- cpWMmu1Uz4xhGcfdkHKsY2SIjQg7qkfqu+hnTazfhDu3wcUa8L6Iml2gH
- GIa7zYKAQ+GZXHcm1VmEyeZwO4IguvoUStf+5BoG2EUbdQeu41FWs3R/E
- HyUuGRoTsP/ik2wpOx0rPXFPnI2yGTun3RlFF7MHNEGYOm9LO+fbhLqiI
- yUqJz0mgdsK3wmZF9rMdmMXkHHG6Ajxsx9HxxOeHEJvIOkmwiE0+xQ3aB g==;
-X-CSE-ConnectionGUID: ojJto4W9TeajGBpqGoMLxA==
-X-CSE-MsgGUID: LJiODKvoTnewvYicnk9T3w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="59556035"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="59556035"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2025 10:33:51 -0800
-X-CSE-ConnectionGUID: UZ6H9EFZRuq6YdL/K8R9wQ==
-X-CSE-MsgGUID: bVxsScmIQAWXpU5VAA3YaA==
+ t=1736793774; x=1768329774;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=tRhTGAhCpB7l4DVgE847UeaMlPpaquSBwAQn8/v0du0=;
+ b=LO7qvq9bzxKwEF8PIX3/5PR2BMfqkGQYSmAo98ylBFIHrBDkhzuBwhZG
+ /PAPMb3qto2iUzBli2HoevmqlCjZfgTSK4w/auTg073hG6U0rBGYm9P9Q
+ GrWyKpZ9D/pKARKCEzkVSZ/6jUFpPbA5h+KaY4fwY7OMf7vkO3hBgVuWM
+ UKGf42MLhV0sz1lNMN6E+0eUgVNr+Lsq+mX1N2ERo5ANO0bc8gyk31ngf
+ qf24WBw9eeo1XxTSpsBWb7szgIoiIVG/mHOsDKZ7Tfp5aFqOVak5EMM9X
+ 1W1TQXZ0O6WHPQYPipGIoX5tUXrE+z2gUpoMT5rHOuoxYUOJUZKjMfms1 g==;
+X-CSE-ConnectionGUID: eRMdMayiRlu3n9v6jRAJOw==
+X-CSE-MsgGUID: wvBVRcxwQ3uhEB3xjFrOyw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="47647022"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="47647022"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2025 10:42:53 -0800
+X-CSE-ConnectionGUID: ICJ84yTTQEiQjfmQjVYX2w==
+X-CSE-MsgGUID: juFp9tQmRXSLuaa0SMve5A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="104523649"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2025 10:33:51 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH] drm/i915/pmu: Remove i915_pmu_event_event_idx()
-Date: Mon, 13 Jan 2025 10:33:29 -0800
-Message-ID: <20250113183329.3138138-1-lucas.demarchi@intel.com>
-X-Mailer: git-send-email 2.48.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="105084360"
+Received: from orsosgc001.jf.intel.com (HELO orsosgc001.intel.com)
+ ([10.165.21.142])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Jan 2025 10:42:53 -0800
+Date: Mon, 13 Jan 2025 10:42:52 -0800
+Message-ID: <85zfjuees3.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH] drm/i915/pmu: Remove i915_pmu_event_event_idx()
+In-Reply-To: <20250113183329.3138138-1-lucas.demarchi@intel.com>
+References: <20250113183329.3138138-1-lucas.demarchi@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/28.2 (x86_64-redhat-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,38 +70,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-perf event already has a default function that returns 0, no need to
-override with the same thing.
+On Mon, 13 Jan 2025 10:33:29 -0800, Lucas De Marchi wrote:
+>
+> perf event already has a default function that returns 0, no need to
+> override with the same thing.
 
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/i915/i915_pmu.c | 6 ------
- 1 file changed, 6 deletions(-)
+Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 
-diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
-index e55db036be1bb..2eecd42f61ba1 100644
---- a/drivers/gpu/drm/i915/i915_pmu.c
-+++ b/drivers/gpu/drm/i915/i915_pmu.c
-@@ -891,11 +891,6 @@ static void i915_pmu_event_del(struct perf_event *event, int flags)
- 	i915_pmu_event_stop(event, PERF_EF_UPDATE);
- }
- 
--static int i915_pmu_event_event_idx(struct perf_event *event)
--{
--	return 0;
--}
--
- struct i915_str_attribute {
- 	struct device_attribute attr;
- 	const char *str;
-@@ -1301,7 +1296,6 @@ void i915_pmu_register(struct drm_i915_private *i915)
- 	pmu->base.start		= i915_pmu_event_start;
- 	pmu->base.stop		= i915_pmu_event_stop;
- 	pmu->base.read		= i915_pmu_event_read;
--	pmu->base.event_idx	= i915_pmu_event_event_idx;
- 
- 	ret = perf_pmu_register(&pmu->base, pmu->name, -1);
- 	if (ret)
--- 
-2.48.0
-
+>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> ---
+>  drivers/gpu/drm/i915/i915_pmu.c | 6 ------
+>  1 file changed, 6 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
+> index e55db036be1bb..2eecd42f61ba1 100644
+> --- a/drivers/gpu/drm/i915/i915_pmu.c
+> +++ b/drivers/gpu/drm/i915/i915_pmu.c
+> @@ -891,11 +891,6 @@ static void i915_pmu_event_del(struct perf_event *event, int flags)
+>	i915_pmu_event_stop(event, PERF_EF_UPDATE);
+>  }
+>
+> -static int i915_pmu_event_event_idx(struct perf_event *event)
+> -{
+> -	return 0;
+> -}
+> -
+>  struct i915_str_attribute {
+>	struct device_attribute attr;
+>	const char *str;
+> @@ -1301,7 +1296,6 @@ void i915_pmu_register(struct drm_i915_private *i915)
+>	pmu->base.start		= i915_pmu_event_start;
+>	pmu->base.stop		= i915_pmu_event_stop;
+>	pmu->base.read		= i915_pmu_event_read;
+> -	pmu->base.event_idx	= i915_pmu_event_event_idx;
+>
+>	ret = perf_pmu_register(&pmu->base, pmu->name, -1);
+>	if (ret)
+> --
+> 2.48.0
+>
