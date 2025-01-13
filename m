@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BFDEA0C1A0
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2025 20:36:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AEA5A0C1A3
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2025 20:37:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C83610E272;
-	Mon, 13 Jan 2025 19:36:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2880B10E280;
+	Mon, 13 Jan 2025 19:37:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 04BA310E1ED;
- Mon, 13 Jan 2025 19:36:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0067210E280;
+ Mon, 13 Jan 2025 19:36:59 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============1584675360218079888=="
+ boundary="===============0524734876402296205=="
 MIME-Version: 1.0
 Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_drm/xe/dp=3A_Enable_DP_tu?=
  =?utf-8?q?nneling?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Imre Deak" <imre.deak@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 13 Jan 2025 19:36:55 -0000
-Message-ID: <173679701501.3341437.7310727829676333215@b555e5b46a47>
+Date: Mon, 13 Jan 2025 19:36:59 -0000
+Message-ID: <173679701997.3341429.10834481650922649521@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20250113154832.1004369-1-imre.deak@intel.com>
 In-Reply-To: <20250113154832.1004369-1-imre.deak@intel.com>
@@ -41,7 +41,7 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============1584675360218079888==
+--===============0524734876402296205==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -141,7 +141,7 @@ Build changes
 
 For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143466v1/index.html
 
---===============1584675360218079888==
+--===============0524734876402296205==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -233,4 +233,4 @@ Content-Transfer-Encoding: 7bit
 </body>
 </html>
 
---===============1584675360218079888==--
+--===============0524734876402296205==--
