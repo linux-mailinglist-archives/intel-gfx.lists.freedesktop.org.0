@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88786A0BFB0
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2025 19:21:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96EA7A0BFB1
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2025 19:21:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A74B10E794;
-	Mon, 13 Jan 2025 18:21:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32E2710E793;
+	Mon, 13 Jan 2025 18:21:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ROJSH0mI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dWnKvxqn";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 20EAD10E794
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jan 2025 18:21:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4637510E795
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jan 2025 18:21:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736792513; x=1768328513;
+ t=1736792515; x=1768328515;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=k/dKBpnxaC1Vx+/SH9xHfHdda3hOGG45MkI8N3xrJbA=;
- b=ROJSH0mIhxK6VNV+eA8CVLLSuyF/iqiEY5EnklsTOvVJoZfl0wKJt3rp
- 5/cKm7/VOhllFzBaVVp8Qkwq7EjeWzOHs/EVeynYs7gF3Ig2ILgOJ1G1w
- WwGY2ESGpYwAIxA9akVklYCgx0IPcxAJQSEDA77FgzvauQV+GE99GdKtp
- Tbj+h1D3KEwdqt6NTPnI1GQ2e644T+eRp1pIc9sj8gXXhewekXdxAjbNP
- Scg+tyVvxUK/P0y4HHBdpNLKXTJl9PfQpuJvesMbsVA3J/MLm1mHOIK9r
- 4EVxvXQiZORh0WdnI0GNTaoPsTH/+utlYhV+1hXb0uLP0g4sXJ0apKM+y Q==;
-X-CSE-ConnectionGUID: fjZuweKaQhepI98W2qrWpA==
-X-CSE-MsgGUID: Sl6RtCgHQEqH0B5eSdVzbg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="37299033"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="37299033"
+ bh=gsHQfDg8K78HpdZz9z9y34murE20PzbkuWYrME9QROA=;
+ b=dWnKvxqnmXkH91xdF5C1B/1gOfsDhqRrsyuIQPqb9wC4TCpmuqjPpXx3
+ QxA32LtwyXyY5ukly6MyHsutwDTxN/adcil/Jo6Osmz0p0LYkyZLkmNdA
+ PcRJoEui/wW60fS9PKNy9pSvABQqJcrI2VTWvLHcQ+U+80owxd504IkZS
+ eFwDNE1KkYrsugmH4mDcgbBgD4J+SMwiCWheDRlhoiCo+Y/+M0y24CMon
+ Dqy8RtTc/Pd4ge4kHtzs58EumnYdu5CzPBZvYS1FN7/I6qH7zlSPl7NUw
+ Ol5HwfWD7tva7gfPOaSkbZwcn42Ac2bYgAeDyPbz01mxwoRhNd98q/5OP Q==;
+X-CSE-ConnectionGUID: jgV+UBi8SeiyiSFMASZs9A==
+X-CSE-MsgGUID: KL6tAvqWQM+Lnu80IXoHSA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="37299039"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="37299039"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jan 2025 10:21:53 -0800
-X-CSE-ConnectionGUID: Wyr63ouBT7CTNVe0ekAB7w==
-X-CSE-MsgGUID: /aUVtObCSJOTYEtEDzbyIA==
+ 13 Jan 2025 10:21:55 -0800
+X-CSE-ConnectionGUID: 6ReOCMLNT22r5ddS0WT0gQ==
+X-CSE-MsgGUID: gfG6ODdgS8Cw5a8amk4LzQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="105078528"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="105078541"
 Received: from nitin-super-server.iind.intel.com ([10.145.169.70])
- by fmviesa010.fm.intel.com with ESMTP; 13 Jan 2025 10:21:51 -0800
+ by fmviesa010.fm.intel.com with ESMTP; 13 Jan 2025 10:21:53 -0800
 From: Nitin Gote <nitin.r.gote@intel.com>
 To: andi.shyti@intel.com, jani.nikula@linux.intel.com,
  intel-gfx@lists.freedesktop.org
 Cc: nitin.r.gote@intel.com
-Subject: [PATCH v3 4/8] drm/i915/pxp: fix typos in i915/pxp files
-Date: Tue, 14 Jan 2025 00:13:14 +0530
-Message-Id: <20250113184318.2549653-5-nitin.r.gote@intel.com>
+Subject: [PATCH v3 5/8] drm/i915/selftests: fix typos in i915/selftests files
+Date: Tue, 14 Jan 2025 00:13:15 +0530
+Message-Id: <20250113184318.2549653-6-nitin.r.gote@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20250113184318.2549653-1-nitin.r.gote@intel.com>
 References: <20250113184318.2549653-1-nitin.r.gote@intel.com>
@@ -67,40 +67,159 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Fix all typos in files under drm/i915/pxp reported by codespell tool.
+Fix all typos in files under drm/i915/selftests reported by codespell tool.
+
+v2: Fix commenting style <Andi>
 
 Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
 ---
- drivers/gpu/drm/i915/pxp/intel_pxp_cmd_interface_43.h | 2 +-
- drivers/gpu/drm/i915/pxp/intel_pxp_types.h            | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/selftests/i915_gem.c     |  2 +-
+ drivers/gpu/drm/i915/selftests/i915_gem_gtt.c | 21 ++++++++++++-------
+ drivers/gpu/drm/i915/selftests/i915_vma.c     | 15 ++++++++-----
+ 3 files changed, 24 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_cmd_interface_43.h b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd_interface_43.h
-index 329b4fcdc040..929c20e98300 100644
---- a/drivers/gpu/drm/i915/pxp/intel_pxp_cmd_interface_43.h
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp_cmd_interface_43.h
-@@ -41,7 +41,7 @@ struct pxp43_huc_auth_out {
- /* PXP-Input-Packet: Init PXP session */
- struct pxp43_create_arb_in {
- 	struct pxp_cmd_header header;
--		/* header.stream_id fields for vesion 4.3 of Init PXP session: */
-+		/* header.stream_id fields for version 4.3 of Init PXP session: */
- 		#define PXP43_INIT_SESSION_VALID BIT(0)
- 		#define PXP43_INIT_SESSION_APPTYPE BIT(1)
- 		#define PXP43_INIT_SESSION_APPID GENMASK(17, 2)
-diff --git a/drivers/gpu/drm/i915/pxp/intel_pxp_types.h b/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
-index 07864b584cf4..febdbcd8d61e 100644
---- a/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
-+++ b/drivers/gpu/drm/i915/pxp/intel_pxp_types.h
-@@ -21,7 +21,7 @@ struct drm_i915_private;
-  */
- struct intel_pxp {
- 	/**
--	 * @ctrl_gt: poiner to the tile that owns the controls for PXP subsystem assets that
-+	 * @ctrl_gt: pointer to the tile that owns the controls for PXP subsystem assets that
- 	 * the VDBOX, the KCR engine (and GSC CS depending on the platform)
+diff --git a/drivers/gpu/drm/i915/selftests/i915_gem.c b/drivers/gpu/drm/i915/selftests/i915_gem.c
+index 0727492576be..e817d233df61 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_gem.c
++++ b/drivers/gpu/drm/i915/selftests/i915_gem.c
+@@ -80,7 +80,7 @@ static void simulate_hibernate(struct drm_i915_private *i915)
+ 	wakeref = intel_runtime_pm_get(&i915->runtime_pm);
+ 
+ 	/*
+-	 * As a final sting in the tail, invalidate stolen. Under a real S4,
++	 * As a final string in the tail, invalidate stolen. Under a real S4,
+ 	 * stolen is lost and needs to be refilled on resume. However, under
+ 	 * CI we merely do S4-device testing (as full S4 is too unreliable
+ 	 * for automated testing across a cluster), so to simulate the effect
+diff --git a/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c b/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
+index 5c397a2df70e..5816d515203a 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
++++ b/drivers/gpu/drm/i915/selftests/i915_gem_gtt.c
+@@ -287,7 +287,8 @@ static int lowlevel_hole(struct i915_address_space *vm,
+ 		GEM_BUG_ON(count * BIT_ULL(aligned_size) > vm->total);
+ 		GEM_BUG_ON(hole_start + count * BIT_ULL(aligned_size) > hole_end);
+ 
+-		/* Ignore allocation failures (i.e. don't report them as
++		/*
++		 * Ignore allocation failures (i.e. don't report them as
+ 		 * a test failure) as we are purposefully allocating very
+ 		 * large objects without checking that we have sufficient
+ 		 * memory. We expect to hit -ENOMEM.
+@@ -446,7 +447,8 @@ static int fill_hole(struct i915_address_space *vm,
+ 
+ 			list_add(&obj->st_link, &objects);
+ 
+-			/* Align differing sized objects against the edges, and
++			/*
++			 * Align differing sized objects against the edges, and
+ 			 * check we don't walk off into the void when binding
+ 			 * them into the GTT.
+ 			 */
+@@ -831,7 +833,8 @@ static int drunk_hole(struct i915_address_space *vm,
+ 			return -ENOMEM;
+ 		GEM_BUG_ON(!order);
+ 
+-		/* Ignore allocation failures (i.e. don't report them as
++		/*
++		 * Ignore allocation failures (i.e. don't report them as
+ 		 * a test failure) as we are purposefully allocating very
+ 		 * large objects without checking that we have sufficient
+ 		 * memory. We expect to hit -ENOMEM.
+@@ -964,7 +967,7 @@ static int __shrink_hole(struct i915_address_space *vm,
+ 			break;
+ 
+ 		if (igt_timeout(end_time,
+-				"%s timed out at ofset %llx [%llx - %llx]\n",
++				"%s timed out at offset %llx [%llx - %llx]\n",
+ 				__func__, addr, hole_start, hole_end)) {
+ 			err = -EINTR;
+ 			break;
+@@ -1011,7 +1014,7 @@ static int shrink_boom(struct i915_address_space *vm,
+ 	/*
+ 	 * Catch the case which shrink_hole seems to miss. The setup here
+ 	 * requires invoking the shrinker as we do the alloc_pt/alloc_pd, while
+-	 * ensuring that all vma assiocated with the respective pd/pdp are
++	 * ensuring that all vma associated with the respective pd/pdp are
+ 	 * unpinned at the time.
  	 */
- 	struct intel_gt *ctrl_gt;
+ 
+@@ -1537,9 +1540,10 @@ static int igt_gtt_reserve(void *arg)
+ 	u64 total;
+ 	int err = -ENODEV;
+ 
+-	/* i915_gem_gtt_reserve() tries to reserve the precise range
++	/*
++	 * i915_gem_gtt_reserve() tries to reserve the precise range
+ 	 * for the node, and evicts if it has to. So our test checks that
+-	 * it can give us the requsted space and prevent overlaps.
++	 * it can give us the requested space and prevent overlaps.
+ 	 */
+ 
+ 	/* Start by filling the GGTT */
+@@ -1743,7 +1747,8 @@ static int igt_gtt_insert(void *arg)
+ 	u64 total;
+ 	int err = -ENODEV;
+ 
+-	/* i915_gem_gtt_insert() tries to allocate some free space in the GTT
++	/*
++	 * i915_gem_gtt_insert() tries to allocate some free space in the GTT
+ 	 * to the node, evicting if required.
+ 	 */
+ 
+diff --git a/drivers/gpu/drm/i915/selftests/i915_vma.c b/drivers/gpu/drm/i915/selftests/i915_vma.c
+index 71b52d5efef4..7c4111e60f2e 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_vma.c
++++ b/drivers/gpu/drm/i915/selftests/i915_vma.c
+@@ -159,7 +159,8 @@ static int igt_vma_create(void *arg)
+ 	LIST_HEAD(objects);
+ 	int err = -ENOMEM;
+ 
+-	/* Exercise creating many vma amonst many objections, checking the
++	/*
++	 * Exercise creating many vma amongst many objections, checking the
+ 	 * vma creation and lookup routines.
+ 	 */
+ 
+@@ -292,7 +293,8 @@ static int igt_vma_pin1(void *arg)
+ 		VALID(8192, PIN_GLOBAL | PIN_OFFSET_BIAS | (ggtt->mappable_end - 4096)),
+ 
+ #if !IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM)
+-		/* Misusing BIAS is a programming error (it is not controllable
++		/*
++		 * Misusing BIAS is a programming error (it is not controllable
+ 		 * from userspace) so when debugging is enabled, it explodes.
+ 		 * However, the tests are still quite interesting for checking
+ 		 * variable start, end and size.
+@@ -312,7 +314,8 @@ static int igt_vma_pin1(void *arg)
+ 	struct i915_vma *vma;
+ 	int err = -EINVAL;
+ 
+-	/* Exercise all the weird and wonderful i915_vma_pin requests,
++	/*
++	 * Exercise all the weird and wonderful i915_vma_pin requests,
+ 	 * focusing on error handling of boundary conditions.
+ 	 */
+ 
+@@ -577,7 +580,8 @@ static int igt_vma_rotate_remap(void *arg)
+ 	const unsigned int max_pages = 64;
+ 	int err = -ENOMEM;
+ 
+-	/* Create VMA for many different combinations of planes and check
++	/*
++	 * Create VMA for many different combinations of planes and check
+ 	 * that the page layout within the rotated VMA match our expectations.
+ 	 */
+ 
+@@ -804,7 +808,8 @@ static int igt_vma_partial(void *arg)
+ 	struct i915_vma *vma;
+ 	int err = -ENOMEM;
+ 
+-	/* Create lots of different VMA for the object and check that
++	/*
++	 * Create lots of different VMA for the object and check that
+ 	 * we are returned the same VMA when we later request the same range.
+ 	 */
+ 
 -- 
 2.25.1
 
