@@ -2,80 +2,80 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1462A0B40D
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2025 11:07:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F0F1A0B411
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2025 11:07:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6239810E614;
-	Mon, 13 Jan 2025 10:07:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14EA910E61A;
+	Mon, 13 Jan 2025 10:07:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="O2qE7Bk1";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="gceqeccg";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 277D410E60F
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jan 2025 10:06:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 14F7A10E618
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jan 2025 10:07:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1736762818;
+ s=mimecast20190719; t=1736762835;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=JHCb4bB8mImBjabkrJwimOaj2JB88jxmW+kXdkww2/A=;
- b=O2qE7Bk1WKf6xHDrZCTZFl8bIlnczUIcWeHeVJMA0z27Uh7HczbOjwBETXVzjNtwFH4HDW
- DkTmm62sWghogBQiewNWoa4bYIzKQ8kNo5ON/wef+uDwM5rPIn1BpkOF6x0gzXX7Vibkf/
- /uGGLZtlY+Edp/YwTtxerdy6e5iyOKY=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=6RoMHKqn+OEQUYxBDfwfMpacXoRqdmw+E8HI3RxVKFo=;
+ b=gceqeccgtp0cbD8J9VA8UDvkMzPSJv73xrraSBNExXzWDMe0oi83JfBeBsXzBsyW50ZbxK
+ ssmhan2WQRHUIgApJSCqMbTsHAjb+EVEtIHt6DiHqx64WeMgitOTd5uP7X3LjsuFseauhH
+ HRMaeo1pTLfaISBk4LpJ3PPjAvNQv7M=
+Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
+ [209.85.221.72]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-39-UZVc0lSPO3yYtrRqqn_3Ig-1; Mon, 13 Jan 2025 05:06:56 -0500
-X-MC-Unique: UZVc0lSPO3yYtrRqqn_3Ig-1
-X-Mimecast-MFC-AGG-ID: UZVc0lSPO3yYtrRqqn_3Ig
-Received: by mail-wm1-f72.google.com with SMTP id
- 5b1f17b1804b1-43628594d34so23332875e9.2
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jan 2025 02:06:56 -0800 (PST)
+ us-mta-673-MgJsBXwnNiOCmCvtsp90eg-1; Mon, 13 Jan 2025 05:07:11 -0500
+X-MC-Unique: MgJsBXwnNiOCmCvtsp90eg-1
+X-Mimecast-MFC-AGG-ID: MgJsBXwnNiOCmCvtsp90eg
+Received: by mail-wr1-f72.google.com with SMTP id
+ ffacd0b85a97d-3860bc1d4f1so2642014f8f.2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jan 2025 02:07:11 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1736762815; x=1737367615;
+ d=1e100.net; s=20230601; t=1736762830; x=1737367630;
  h=content-transfer-encoding:in-reply-to:organization:autocrypt
  :content-language:from:references:cc:to:subject:user-agent
  :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
  :date:message-id:reply-to;
- bh=JHCb4bB8mImBjabkrJwimOaj2JB88jxmW+kXdkww2/A=;
- b=PQB759qlucrVJJG6AXZ/LYKcw/I+q2ylr8y3UfNyrK26kq+rON51R5A4zzJ9/Bt8WB
- aoptte0Ln+xHCkh4/BMMWWuq36DRlBjVaBm4F0Ts0xmurZ+dTS98tHjpgPg4lTGMrMt9
- d89DEkpnkficMft6dtVfGMoqpucHkz9xStNwniXAcxGLkWT8m8cebsVnr4ISHPcMUS35
- qjaI4wgfG8GyVH9ttSgvuyI2kRQWdNa6FyPmI75JXDniFl1c/l39HBw3Cgyvozos/lf2
- UOaOG5haZR9tgmYzpRv0UIieANZQyP6mIJE6dQC5UWtC23T9MlmWg+CRq/+EcuCfU3dx
- oA+A==
+ bh=6RoMHKqn+OEQUYxBDfwfMpacXoRqdmw+E8HI3RxVKFo=;
+ b=Sp94OGkWoSFo/2/vPEIrySOmYWhnqDwQwgz6wYfKitIu+iuRGaVWcZvxiMAyDyp2qU
+ s4/AE4mY3FtzZKhfzI5+YeM7KFiXHruZ980ZyMAgwYT3QTYuZ89HuePqyjTgICH58hZF
+ CPB6cNt732CLdNQQA/zxWWc2wfmMXmd+JdPZSs4VaL3iVcZX7LbSwpWjIZK6BOXjIsSA
+ CPaTRB+aUksrlJ0X6oirQqe0E2N6/q1eFGozMNJOP7LaDVoBONDfKlmbpE6d59KWSOit
+ j6g0ceRGaRFQcdzfSLsKks/Ccxb18wVC2gizb+30EwM7eHUcIwsdwOmlwuZwmui09NHa
+ NfyQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWaAl8xAoF5GjJJ9WC3hqppDtoUldy5gk2mbK3AHy036r7xIXoFCJ3k2d4u8F06xAZHeCKpjhjyeic=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyETO9v2xmpM5BMrgPLK46WOtfnqWQJtu1BtCBTwQel74spwM7K
- DPHtVhT3mZ3ivLSYgadM2RI4TjjQJK6y6t8nHKso51dlCSG0vZkEKLgvZlyBRTLWTrmUEm0QZ8G
- nm0AQqV63GcL7FkFWCXk3OfbPXjaYmfM/i3iEdjWGydVRV+tVB0nvxo/nrtWeX0MpxQ==
-X-Gm-Gg: ASbGnctyBzyN3QGpo6TFyBM9ukwCDI0XkllJG4YxZsrzsnGNcSgIX9oPgZsJuEOhMqW
- NHsHiYScPoTkjrMylGK6ixQ61rX4J4z67SXFgyBagqJH4aREVVv4egbANSonFdhTFfdmI7SE5yf
- pBwmxPB+2vOAPj5RtXHhkcx1FaEJPzr1dsOz/s8NYXgtgKXIp/OWCzOvHbkoIfU0ZzAL4vcQF7v
- Z21LCtKuYiiE4AfOp+A6B19X4BMbevtdWOMRi9YBxt8nCueejtDxhDCP7puibRHtBYXAh6lDQrB
- 5pgzQ8o886YOh6w=
-X-Received: by 2002:a05:600c:4f4e:b0:434:a902:97cd with SMTP id
- 5b1f17b1804b1-436e26935cbmr165347075e9.12.1736762815548; 
- Mon, 13 Jan 2025 02:06:55 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFI9kqKBJcLu+c3urAkuVsV+36WinEuiIzeJjEJMU6N7+OFY6sH2E4P/sySxRLfmyj02wuFag==
-X-Received: by 2002:a05:600c:4f4e:b0:434:a902:97cd with SMTP id
- 5b1f17b1804b1-436e26935cbmr165346705e9.12.1736762815223; 
- Mon, 13 Jan 2025 02:06:55 -0800 (PST)
+ AJvYcCV1wNL39xk3BuYASgVbVqrZgkHC2mkP37T8HhnlKKBpw9IdBMl1ziBLpquUuO2mWkjCnDeeFA1w8vw=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyJXPg8jz6bWU/8L7Ozh5t2t3gnaD99LroKj8m0K4iSK/KoCpp5
+ x7DtBG4Q7jHzjkO1agfq6uvvVEx8KbkWH36SfxHZQI/Lx0ZeqUxPJieiFY0HGP8YLEbAZ3gW5vd
+ LMvsybtpdkvNHDGpnJaIs3XeLZnru4ClzIqscUDq5JzAQVCTG/Y9nKs3r/KpjLKhrDg==
+X-Gm-Gg: ASbGncv8jdlyloxG0Cy7JgcnYScm3BnhN6liaam+zm9hBbjmbVaMyRAvsadQCG0B8QS
+ M5Ohm0ekx5RLI+qxAbAZZWsYPYrSyAdn7EqhUjEwLjdQlYFhBzwAmWAaM7Q1QxRZAXYYvGRlNHe
+ 4/t5GXhQwJ4835QI5ltJ8/+ecA7IucnoZBeoWLQEEpgRHgUf4J5YlKdP0PXPB8ZEK+1rJVEIlHL
+ x+DTHgdcS2MTxvMhDtJDx2yaFxstOHHpK6khtleJG+uD20kDbxDrvnVOuC09m5AU605yhzFiNv1
+ BhK+86oJSte5rWQ=
+X-Received: by 2002:a05:6000:1a8a:b0:386:1cd3:8a07 with SMTP id
+ ffacd0b85a97d-38a872fc363mr16122970f8f.7.1736762830490; 
+ Mon, 13 Jan 2025 02:07:10 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHEE1u3AbP8k0hrWiLnmAaC1HOmF7dCy3Vq3DJZiBdWZ8I2mC3mR+CAZnCUncnjCDV69fFYbQ==
+X-Received: by 2002:a05:6000:1a8a:b0:386:1cd3:8a07 with SMTP id
+ ffacd0b85a97d-38a872fc363mr16122940f8f.7.1736762830154; 
+ Mon, 13 Jan 2025 02:07:10 -0800 (PST)
 Received: from ?IPV6:2a09:80c0:192:0:5dac:bf3d:c41:c3e7?
  ([2a09:80c0:192:0:5dac:bf3d:c41:c3e7])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-436e9dd1de9sm137917315e9.15.2025.01.13.02.06.53
+ 5b1f17b1804b1-436e9d8fb99sm140017115e9.3.2025.01.13.02.07.07
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 13 Jan 2025 02:06:53 -0800 (PST)
-Message-ID: <d104f8f1-6930-419f-93ea-e9a8d35c3d48@redhat.com>
-Date: Mon, 13 Jan 2025 11:06:52 +0100
+ Mon, 13 Jan 2025 02:07:09 -0800 (PST)
+Message-ID: <cb057735-c4e6-439a-aada-9432aae3fed6@redhat.com>
+Date: Mon, 13 Jan 2025 11:07:07 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/8] mm/zswap: Use PG_dropbehind instead of PG_reclaim
+Subject: Re: [PATCH 4/8] mm/swap: Use PG_dropbehind instead of PG_reclaim
 To: "Kirill A. Shutemov" <kirill.shutemov@linux.intel.com>,
  Andrew Morton <akpm@linux-foundation.org>,
  "Matthew Wilcox (Oracle)" <willy@infradead.org>, Jens Axboe <axboe@kernel.dk>
@@ -100,7 +100,7 @@ Cc: "Jason A. Donenfeld" <Jason@zx2c4.com>,
  linux-fsdevel@vger.kernel.org, linux-mm@kvack.org,
  linux-trace-kernel@vger.kernel.org
 References: <20250113093453.1932083-1-kirill.shutemov@linux.intel.com>
- <20250113093453.1932083-4-kirill.shutemov@linux.intel.com>
+ <20250113093453.1932083-5-kirill.shutemov@linux.intel.com>
 From: David Hildenbrand <david@redhat.com>
 Autocrypt: addr=david@redhat.com; keydata=
  xsFNBFXLn5EBEAC+zYvAFJxCBY9Tr1xZgcESmxVNI/0ffzE/ZQOiHJl6mGkmA1R7/uUpiCjJ
@@ -147,9 +147,9 @@ Autocrypt: addr=david@redhat.com; keydata=
  jPrnvUsUUsjRoRNJjKKA/REq+sAnhkNPPZ/NNMjaZ5b8Tovi8C0tmxiCHaQYqj7G2rgnT0kt
  WNyWQQ==
 Organization: Red Hat
-In-Reply-To: <20250113093453.1932083-4-kirill.shutemov@linux.intel.com>
+In-Reply-To: <20250113093453.1932083-5-kirill.shutemov@linux.intel.com>
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: YUzvVwzXmYCwiPBnWgxCJt2h5Zxp55ZmaiY_euo1bu8_1736762815
+X-Mimecast-MFC-PROC-ID: QBIFU_aqiTVyb7ZR95z15GYQWxibvXcUGNoHfVu0X_U_1736762830
 X-Mimecast-Originator: redhat.com
 Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8; format=flowed
@@ -175,25 +175,33 @@ On 13.01.25 10:34, Kirill A. Shutemov wrote:
 > to be involved to get the folio freed.
 > 
 > Instead of using folio_set_reclaim(), use folio_set_dropbehind() in
-> zswap_writeback_entry().
+> lru_deactivate_file().
 > 
 > Signed-off-by: Kirill A. Shutemov <kirill.shutemov@linux.intel.com>
 > ---
->   mm/zswap.c | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
+>   mm/swap.c | 8 +-------
+>   1 file changed, 1 insertion(+), 7 deletions(-)
 > 
-> diff --git a/mm/zswap.c b/mm/zswap.c
-> index 167ae641379f..c20bad0b0978 100644
-> --- a/mm/zswap.c
-> +++ b/mm/zswap.c
-> @@ -1096,8 +1096,8 @@ static int zswap_writeback_entry(struct zswap_entry *entry,
->   	/* folio is up to date */
->   	folio_mark_uptodate(folio);
+> diff --git a/mm/swap.c b/mm/swap.c
+> index fc8281ef4241..4eb33b4804a8 100644
+> --- a/mm/swap.c
+> +++ b/mm/swap.c
+> @@ -562,14 +562,8 @@ static void lru_deactivate_file(struct lruvec *lruvec, struct folio *folio)
+>   	folio_clear_referenced(folio);
 >   
-> -	/* move it to the tail of the inactive list after end_writeback */
-> -	folio_set_reclaim(folio);
-> +	/* free the folio after writeback */
-> +	folio_set_dropbehind(folio);
+>   	if (folio_test_writeback(folio) || folio_test_dirty(folio)) {
+> -		/*
+> -		 * Setting the reclaim flag could race with
+> -		 * folio_end_writeback() and confuse readahead.  But the
+> -		 * race window is _really_ small and  it's not a critical
+> -		 * problem.
+> -		 */
+>   		lruvec_add_folio(lruvec, folio);
+> -		folio_set_reclaim(folio);
+> +		folio_set_dropbehind(folio);
+>   	} else {
+>   		/*
+>   		 * The folio's writeback ended while it was in the batch.
 
 Acked-by: David Hildenbrand <david@redhat.com>
 
