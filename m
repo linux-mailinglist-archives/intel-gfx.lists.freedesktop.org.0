@@ -2,80 +2,80 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE3EDA0B3FF
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2025 11:05:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C656A0B408
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Jan 2025 11:06:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0813210E60C;
-	Mon, 13 Jan 2025 10:05:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4B8810E60D;
+	Mon, 13 Jan 2025 10:06:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="WhCyaomM";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="B2ZCWrcB";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6FF0B10E5FB
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jan 2025 10:05:09 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED3EB10E60D
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jan 2025 10:06:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1736762706;
+ s=mimecast20190719; t=1736762791;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=tqlGH0WJSlurme1zn1N6v9nfa84gI5V9R3GMq4xXSkQ=;
- b=WhCyaomMIb7Ox6FXEgmFwmo7AhEcmwaQhsR4ENBXgV5Mw3EW5QX0Bg3JU7KC50j7QEEyLB
- qOVNEj2EwdVqf7HCv/WMQT10tnFSaTM3Ey5l02fPCOA8COj2u4muuUvkBxEqesRYkRj6rz
- lZeCw3Eyzt2l3T5p8EuAwIPxqk/S6os=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=QMLyxLxpwIbseMdl1XyknNit15mtfYNolUiL1qEghYg=;
+ b=B2ZCWrcBM4W3HIhcRKlsceZ3rkAIiW88BYA91SYVVMN6m9rTAnlOW/HFQgfp4kWDSeydQJ
+ RB7rVIzrCyi0LH6TaOSZSLyosZP0ltDzdRMQ96DTJvXeBAjBpYW9qK7jH/drjPYXp+FZlE
+ n5pgbiKqGA5c5FhW1LDSepE6AzsmtgE=
+Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
+ [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-418-zjobY40yNEG3ZBWwmw9Ewg-1; Mon, 13 Jan 2025 05:05:04 -0500
-X-MC-Unique: zjobY40yNEG3ZBWwmw9Ewg-1
-X-Mimecast-MFC-AGG-ID: zjobY40yNEG3ZBWwmw9Ewg
-Received: by mail-wm1-f69.google.com with SMTP id
- 5b1f17b1804b1-4361b090d23so21782345e9.0
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jan 2025 02:05:04 -0800 (PST)
+ us-mta-133-8eOMlSELOeKwl1ss5EqSqA-1; Mon, 13 Jan 2025 05:06:29 -0500
+X-MC-Unique: 8eOMlSELOeKwl1ss5EqSqA-1
+X-Mimecast-MFC-AGG-ID: 8eOMlSELOeKwl1ss5EqSqA
+Received: by mail-wr1-f70.google.com with SMTP id
+ ffacd0b85a97d-3862a49fbdaso1570596f8f.1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Jan 2025 02:06:29 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1736762703; x=1737367503;
+ d=1e100.net; s=20230601; t=1736762788; x=1737367588;
  h=content-transfer-encoding:in-reply-to:organization:autocrypt
  :content-language:from:references:cc:to:subject:user-agent
  :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
  :date:message-id:reply-to;
- bh=tqlGH0WJSlurme1zn1N6v9nfa84gI5V9R3GMq4xXSkQ=;
- b=W4FCJmQqjpn/4wVNsu8rq2tAn8CBF7Nqh1K3Qo1bEbZkqjcZoFHKLcYTRopDMp+4vX
- 31LAtsLEUMDW+Ne0wOmEiWNoOjiAYwCXPPC0I4DNU4RecjBOl9LnuSaBHWDPdeKM4EgU
- 66UvwNpjtvt2jCweqfj+5gXTLQN7ZowAKkj93aOYZ1rfScFf/lcswxXbnrC1F6HW8vgA
- 7LJ/lrWgNWSGD5TTbX7bu6E7En5DU5dWW0DePZexHJ7XJuH1sXYWnPRy8owfvnnFHcWe
- iS7fOTumisiPG8Bo6wE9q4drGA6F+e3EN9mGmdd5fKFGikG2qWWgL9Moe6aB6Hh26yuu
- vZTg==
+ bh=QMLyxLxpwIbseMdl1XyknNit15mtfYNolUiL1qEghYg=;
+ b=RxY6R60AVT7TwTDi1rmYdRO4BbASLIv6IlUIVl+nOCFCmPLt+OFt/Z/gQsg8BxWQqy
+ SNX8Ig187VPsajmCgS+BdicbsdGnmKRK9MoR1hvi5WdxezWPUfbsgXnXM1dvhGhzr4kW
+ mu0KWLtZCzhEdp1MBrj4/o58e1H0ijOU52TkEYKHpkKkJ/IN/DsX1LsVmfRgTNlg+mG0
+ zwPhpDXtpBV0jRLmKFoHqICOwDl8RYLbPZFMwMW5lTxiKZ16uJNpUqzNRrsYlGdQsVoP
+ 2CIcnRhPVi6w43o3jB9QByLaOGUlV2675KfMbtYcDljDg6AY24kMnJf+Sx0ibuIBOaZI
+ Fddw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVwjmB95N67RKdB7lWLEvZzqyAvf32yVwqzwVsiwVFv4nGCLrdPzOLXMhlrHpVZnw9NoT7GAMuNkY0=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzMzxrgeqJb7UMUlF2YK1xBObsH1i46b5zCbygY7NqEspsKYE1U
- uhRu+4hBc9LBPld2sV8KvU7sIiOCztNnlQ6RT+xfZhlt4CXKWHDjm8GEda7K7WbkoLC/wc14SmZ
- oZ2IxAzUtlj1Bjgqx+E3MDLlBG+YaOjaR0y1lsvYKhF+t7BgH+ZyHSNduk9mODVjilg==
-X-Gm-Gg: ASbGncsO8kq92oDYVspAAE+PglmRa43DoYwO+azjMi0pWFxXZwbi8FHPi/OacIeQSwP
- 1OZQmtmra8xMB44WcZwxMMfa56Wy7ZA/PuL/tnFRlNtEbZyPZpy0YfPDGHw+wIxepcep2n5Nc8M
- fmqiJbeSemL/pHDksa3GiRYgAuDqW/h/uECBwHb8ZJwiOnRdSOM/qqxMQeM2AfIR/RBDFqQBOEA
- LP00dbdtbq37fNkY95WhPo0kfcs9gziCOwjkik3w9843V+tvG6gu/lDYCag6KBiavMsbPTGXk++
- CQg0vUo8YDQp/0Q=
-X-Received: by 2002:a05:600c:22d2:b0:436:faeb:2a1b with SMTP id
- 5b1f17b1804b1-436faeb2d09mr30386995e9.13.1736762703470; 
- Mon, 13 Jan 2025 02:05:03 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IE0aNAex+BzxZzwM8YZW3HltVlLq497uDU4rUq0a34Ju0KztI/By/B9P/v7VZYnLDaAsf0gmQ==
-X-Received: by 2002:a05:600c:22d2:b0:436:faeb:2a1b with SMTP id
- 5b1f17b1804b1-436faeb2d09mr30386665e9.13.1736762703138; 
- Mon, 13 Jan 2025 02:05:03 -0800 (PST)
+ AJvYcCXeFPD6ByKVMR0rew+cqmHiAtWK5c5un/hFoJ6nWkmyHUeNkv6eCgizthQKn1B66IBVznAWempzMc4=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwntNKc0SBISx8rrWHqQE0uwliw8iWWyFfZO3sk7vx7c5+Uu0iv
+ v9l931NRCFJ1r/ppn/45g+iVGihktpffPJLlpCusKTaQjT1xb1gOvU90gUdGLOzI9N6hjP191W3
+ 8LjdGvofhKZkezjJUojYY8r6eb0cyGMbTb8jT+qRn80WPKCoquqleqOvroEOtgG6Xgg==
+X-Gm-Gg: ASbGncuaMEGQeqZzHfl4uZtc69lKtK2f5lAKBudSDoTBjIZwrXRCHBe42Gy8gz2lxWb
+ YH9TCGAz7Ui/Wi8dlOjcL7Xn1ipfHIrbu8twk6hQt84lMwc2zU68y6LEOaSwVqS6igGV+a2+Y/E
+ 8B1xyunAZKx3es2DGMBY9mr6e44xHsBKNhmNwabAZRdty5wj7yOkSbB/EZiFX6WPNkv2gZqUNrA
+ 2cNDnNEYBC6RhQzXiIVM81+L8E3vLMAWcvmdamdSRLg+iyWf3YCT86byMb5ouilY9KNRvqnXcoa
+ iEqs/Ot72gncobk=
+X-Received: by 2002:a05:6000:1569:b0:38b:d8e0:a864 with SMTP id
+ ffacd0b85a97d-38bd8e0a959mr3433846f8f.55.1736762788436; 
+ Mon, 13 Jan 2025 02:06:28 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IG80aCPWv5Tkap1khe9cIhWYNYkL4nZeIGVqq21uLPoBZh6ApAk/cioVDleOsi9z3XujM7seg==
+X-Received: by 2002:a05:6000:1569:b0:38b:d8e0:a864 with SMTP id
+ ffacd0b85a97d-38bd8e0a959mr3433808f8f.55.1736762788038; 
+ Mon, 13 Jan 2025 02:06:28 -0800 (PST)
 Received: from ?IPV6:2a09:80c0:192:0:5dac:bf3d:c41:c3e7?
  ([2a09:80c0:192:0:5dac:bf3d:c41:c3e7])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-436e2da7768sm175358515e9.5.2025.01.13.02.05.00
+ ffacd0b85a97d-38a8e4c3428sm11480131f8f.87.2025.01.13.02.06.26
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 13 Jan 2025 02:05:02 -0800 (PST)
-Message-ID: <3bacc488-5db9-4aa8-9322-ffd9c26bbbb6@redhat.com>
-Date: Mon, 13 Jan 2025 11:05:00 +0100
+ Mon, 13 Jan 2025 02:06:27 -0800 (PST)
+Message-ID: <136d0ec9-38a0-4de0-b5e1-d68686d5692d@redhat.com>
+Date: Mon, 13 Jan 2025 11:06:26 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/8] drm/i915/gem: Convert __shmem_writeback() to folios
+Subject: Re: [PATCH 2/8] drm/i915/gem: Use PG_dropbehind instead of PG_reclaim
 To: "Kirill A. Shutemov" <kirill.shutemov@linux.intel.com>,
  Andrew Morton <akpm@linux-foundation.org>,
  "Matthew Wilcox (Oracle)" <willy@infradead.org>, Jens Axboe <axboe@kernel.dk>
@@ -100,7 +100,7 @@ Cc: "Jason A. Donenfeld" <Jason@zx2c4.com>,
  linux-fsdevel@vger.kernel.org, linux-mm@kvack.org,
  linux-trace-kernel@vger.kernel.org
 References: <20250113093453.1932083-1-kirill.shutemov@linux.intel.com>
- <20250113093453.1932083-2-kirill.shutemov@linux.intel.com>
+ <20250113093453.1932083-3-kirill.shutemov@linux.intel.com>
 From: David Hildenbrand <david@redhat.com>
 Autocrypt: addr=david@redhat.com; keydata=
  xsFNBFXLn5EBEAC+zYvAFJxCBY9Tr1xZgcESmxVNI/0ffzE/ZQOiHJl6mGkmA1R7/uUpiCjJ
@@ -147,9 +147,9 @@ Autocrypt: addr=david@redhat.com; keydata=
  jPrnvUsUUsjRoRNJjKKA/REq+sAnhkNPPZ/NNMjaZ5b8Tovi8C0tmxiCHaQYqj7G2rgnT0kt
  WNyWQQ==
 Organization: Red Hat
-In-Reply-To: <20250113093453.1932083-2-kirill.shutemov@linux.intel.com>
+In-Reply-To: <20250113093453.1932083-3-kirill.shutemov@linux.intel.com>
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: 2hT8xi6k_acFaS0mIucVDyDhupSRxxygy-eb45IIVFM_1736762703
+X-Mimecast-MFC-PROC-ID: GEgu5GNHjIKJQ13YMgfWCSRmJRodB8YFYIxppA-qByw_1736762788
 X-Mimecast-Originator: redhat.com
 Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8; format=flowed
@@ -170,12 +170,19 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On 13.01.25 10:34, Kirill A. Shutemov wrote:
-> Use folios instead of pages.
+> The recently introduced PG_dropbehind allows for freeing folios
+> immediately after writeback. Unlike PG_reclaim, it does not need vmscan
+> to be involved to get the folio freed.
 > 
-> This is preparation for removing PG_reclaim.
+> Instead of using folio_set_reclaim(), use folio_set_dropbehind() in
+> __shmem_writeback()
 > 
-> Signed-off-by: Kirill A. Shutemov <kirill.shutemov@linux.intel.com>
-> ---
+> It is safe to leave PG_dropbehind on the folio if, for some reason
+> (bug?), the folio is not in a writeback state after ->writepage().
+> In these cases, the kernel had to clear PG_reclaim as it shared a page
+> flag bit with PG_readahead.
+
+I think this is correct
 
 Acked-by: David Hildenbrand <david@redhat.com>
 
