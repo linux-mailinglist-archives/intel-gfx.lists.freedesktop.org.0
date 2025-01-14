@@ -2,81 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 735FAA10209
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jan 2025 09:30:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 54CA0A10227
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jan 2025 09:35:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 18EAE10E367;
-	Tue, 14 Jan 2025 08:30:57 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CFgyCgX1";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA0EB10E883;
+	Tue, 14 Jan 2025 08:35:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 51ED310E360;
- Tue, 14 Jan 2025 08:30:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736843455; x=1768379455;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=d76ZuYXYGd5MhYXwKrUOaL/NFOW9yG6blep811EcGeg=;
- b=CFgyCgX16mwWlhGyfMpK3ByL7XgQN+9XpmFGjyVWnQf/9jFy/+ei+mHg
- +6vsYfHnXxT66Vmy7pNHxmhafPkXy2QYT/5ldBvhpTXfvszZSSjIt3xHq
- EIdIFHW0i8oneTIIcjiN16qALeguS79OwTdcl64aAo5TXauZSym8p8fBR
- QMQ5uLusJGsooY/QilHzw67ES2Bdh69Jl2lLYTAdwLlQAdyHsaTPnOs3P
- SvYZUZSp1xTi4rIjcVTr5ExAKnh1hFWESb9VT8nk43DwWuwRntzJE1uUq
- 5tuQefcKTygKEd96Sft9ggemIuYfFHfPEVov4Ebit9DEteNhF9h+8tJ5w A==;
-X-CSE-ConnectionGUID: sl3R1yiPTra0UE+rf0MqMg==
-X-CSE-MsgGUID: LE8DykJgSySIMR6cpNDrvA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="37241816"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="37241816"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jan 2025 00:30:54 -0800
-X-CSE-ConnectionGUID: OGS8UdzDSvmjat/Rleu/Tg==
-X-CSE-MsgGUID: Yr9g/hOpTTeh7GM4krWnuQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="109880457"
-Received: from black.fi.intel.com ([10.237.72.28])
- by orviesa005.jf.intel.com with ESMTP; 14 Jan 2025 00:30:47 -0800
-Received: by black.fi.intel.com (Postfix, from userid 1000)
- id B879339C; Tue, 14 Jan 2025 10:30:45 +0200 (EET)
-Date: Tue, 14 Jan 2025 10:30:45 +0200
-From: "Kirill A. Shutemov" <kirill.shutemov@linux.intel.com>
-To: Matthew Wilcox <willy@infradead.org>
-Cc: Andrew Morton <akpm@linux-foundation.org>, 
- Jens Axboe <axboe@kernel.dk>, "Jason A. Donenfeld" <Jason@zx2c4.com>, 
- Andi Shyti <andi.shyti@linux.intel.com>,
- Chengming Zhou <chengming.zhou@linux.dev>, 
- Christian Brauner <brauner@kernel.org>,
- Christophe Leroy <christophe.leroy@csgroup.eu>, 
- Dan Carpenter <dan.carpenter@linaro.org>, David Airlie <airlied@gmail.com>, 
- David Hildenbrand <david@redhat.com>, Hao Ge <gehao@kylinos.cn>, 
- Jani Nikula <jani.nikula@linux.intel.com>, Johannes Weiner <hannes@cmpxchg.org>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Josef Bacik <josef@toxicpanda.com>, 
- Masami Hiramatsu <mhiramat@kernel.org>,
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>, 
- Miklos Szeredi <miklos@szeredi.hu>, Nhat Pham <nphamcs@gmail.com>, 
- Oscar Salvador <osalvador@suse.de>, Ran Xiaokai <ran.xiaokai@zte.com.cn>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>, 
- Steven Rostedt <rostedt@goodmis.org>, Tvrtko Ursulin <tursulin@ursulin.net>, 
- Vlastimil Babka <vbabka@suse.cz>, Yosry Ahmed <yosryahmed@google.com>,
- Yu Zhao <yuzhao@google.com>, 
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, 
- linux-fsdevel@vger.kernel.org, linux-mm@kvack.org,
- linux-trace-kernel@vger.kernel.org
-Subject: Re: [PATCH 8/8] mm: Remove PG_reclaim
-Message-ID: <vpy2hikqvw3qrncjdlxp6uonpmbueoulhqipdkac7tav4t7m2s@3ebncdtepyv6>
-References: <20250113093453.1932083-1-kirill.shutemov@linux.intel.com>
- <20250113093453.1932083-9-kirill.shutemov@linux.intel.com>
- <Z4UxK_bsFD7TtL1l@casper.infradead.org>
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D80C10E880;
+ Tue, 14 Jan 2025 08:35:23 +0000 (UTC)
+Received: from 91-155-255-183.elisa-laajakaista.fi ([91.155.255.183]
+ helo=[192.168.100.137])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.97) (envelope-from <luca@coelho.fi>)
+ id 1tXcON-00000003oL0-3lhl; Tue, 14 Jan 2025 10:35:21 +0200
+Message-ID: <21eeb0c1131a13d1bde4132def108d9dcf964146.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Gustavo Sousa <gustavo.sousa@intel.com>,
+ intel-gfx@lists.freedesktop.org, 	intel-xe@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>, Jouni =?ISO-8859-1?Q?H=F6gander?=
+ <jouni.hogander@intel.com>
+Date: Tue, 14 Jan 2025 10:35:18 +0200
+In-Reply-To: <20250113204306.112266-3-gustavo.sousa@intel.com>
+References: <20250113204306.112266-1-gustavo.sousa@intel.com>
+ <20250113204306.112266-3-gustavo.sousa@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.2-1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z4UxK_bsFD7TtL1l@casper.infradead.org>
+X-Spam-Checker-Version: SpamAssassin 4.0.1-pre1 (2023-11-21) on
+ farmhouse.coelho.fi
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
+ TVD_RCVD_IP,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+ version=4.0.1-pre1
+Subject: Re: [PATCH v2 2/3] drm/i915/display: Wrap IRQ-specific uncore
+ functions
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,63 +54,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jan 13, 2025 at 03:28:43PM +0000, Matthew Wilcox wrote:
-> On Mon, Jan 13, 2025 at 11:34:53AM +0200, Kirill A. Shutemov wrote:
-> > diff --git a/mm/migrate.c b/mm/migrate.c
-> > index caadbe393aa2..beba72da5e33 100644
-> > --- a/mm/migrate.c
-> > +++ b/mm/migrate.c
-> > @@ -686,6 +686,8 @@ void folio_migrate_flags(struct folio *newfolio, struct folio *folio)
-> >  		folio_set_young(newfolio);
-> >  	if (folio_test_idle(folio))
-> >  		folio_set_idle(newfolio);
-> > +	if (folio_test_readahead(folio))
-> > +		folio_set_readahead(newfolio);
-> >  
-> >  	folio_migrate_refs(newfolio, folio);
-> >  	/*
-> 
-> Not a problem with this patch ... but aren't we missing a
-> test_dropbehind / set_dropbehind pair in this function?  Or are we
-> prohibited from migrating a folio with the dropbehind flag set
-> somewhere?
+On Mon, 2025-01-13 at 17:38 -0300, Gustavo Sousa wrote:
+> The current display IRQ code calls some IRQ-specific helpers that use
+> intel_uncore_*() MMIO functions instead of the display-specific ones.
+> Wrap those helpers to ensure that the proper display-specific hooks
+> (currently only DMC wakelock handling) are called.
+>=20
+> v2:
+>  - Move functions to intel_display_irq.c instead of having them in
+>    intel_de.h. (Jani)
+>=20
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+> ---
 
-Hm. Good catch.
+LGTM.
 
-We might want to drop clean dropbehind pages instead migrating them.
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 
-But I am not sure about dirty ones. With slow backing storage it might be
-better for the system to migrate them instead of keeping them in the old
-place for potentially long time.
-
-Any opinions?
-
-> > +++ b/mm/swap.c
-> > @@ -221,22 +221,6 @@ static void lru_move_tail(struct lruvec *lruvec, struct folio *folio)
-> >  	__count_vm_events(PGROTATED, folio_nr_pages(folio));
-> >  }
-> >  
-> > -/*
-> > - * Writeback is about to end against a folio which has been marked for
-> > - * immediate reclaim.  If it still appears to be reclaimable, move it
-> > - * to the tail of the inactive list.
-> > - *
-> > - * folio_rotate_reclaimable() must disable IRQs, to prevent nasty races.
-> > - */
-> > -void folio_rotate_reclaimable(struct folio *folio)
-> > -{
-> > -	if (folio_test_locked(folio) || folio_test_dirty(folio) ||
-> > -	    folio_test_unevictable(folio))
-> > -		return;
-> > -
-> > -	folio_batch_add_and_move(folio, lru_move_tail, true);
-> > -}
-> 
-> I think this is the last caller of lru_move_tail(), which means we can
-> get rid of fbatches->lru_move_tail and the local_lock that protects it.
-> Or did I miss something?
-
-I see lru_move_tail() being used by lru_add_drain_cpu().
-
--- 
-  Kiryl Shutsemau / Kirill A. Shutemov
+--
+Cheers,
+Luca.
