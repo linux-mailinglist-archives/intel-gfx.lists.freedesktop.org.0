@@ -2,49 +2,82 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 372F7A1007D
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jan 2025 06:43:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 77F09A101CA
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jan 2025 09:12:17 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A4C8C10E85E;
-	Tue, 14 Jan 2025 05:43:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6566B10E35A;
+	Tue, 14 Jan 2025 08:12:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=canb.auug.org.au header.i=@canb.auug.org.au header.b="OkrDxKe9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dSffik+J";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 71B5810E85E
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Jan 2025 05:43:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canb.auug.org.au;
- s=201702; t=1736833397;
- bh=DwziEcEwv1vToKct69Vw9CAHmaInbStwYSnb6ldXUDw=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=OkrDxKe9D0sxOcDiZ225/gt59VwDT3P4q/noGInZAueES9bPXAbL0Yjx2+8G2eUWT
- V49mTPxUyQyvGz1eyCOhLMQruS1LtA6LBawUd1KiFOJUexhKijXF6QBO2Y0YgZbanw
- NN+uHkYJ6SMnRhoElRCHKvTUZXnECPC1fy6FeQfBn52X6UE6bCH4NV0yD3+KkJuypu
- +Zb1rYsCTRHxg7wTxmGghOg3a2fvrAS/8j9S3VYP7hiFBImnFStkDZhehSY/BmuNKI
- AvpOzM53QfPBOMkLWCy/R/ulRVBwCIb0fM4jMSCbXKF+zSFheD7yQ4DKH7Q+HcD8O+
- KZjPKFEz6gWmQ==
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (Client did not present a certificate)
- by mail.ozlabs.org (Postfix) with ESMTPSA id 4YXJ2F3yJ3z4wc4;
- Tue, 14 Jan 2025 16:43:17 +1100 (AEDT)
-Date: Tue, 14 Jan 2025 16:43:24 +1100
-From: Stephen Rothwell <sfr@canb.auug.org.au>
-To: Simona Vetter <simona.vetter@ffwll.ch>, Dave Airlie <airlied@redhat.com>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Intel Graphics
- <intel-gfx@lists.freedesktop.org>, DRI <dri-devel@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, Linux Next
- Mailing List <linux-next@vger.kernel.org>
-Subject: Re: linux-next: build warnings after merge of the drm-misc tree
-Message-ID: <20250114164324.3a42700e@canb.auug.org.au>
-In-Reply-To: <20250106174645.463927e0@canb.auug.org.au>
-References: <20250106174645.463927e0@canb.auug.org.au>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA0F010E35A;
+ Tue, 14 Jan 2025 08:12:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1736842334; x=1768378334;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=pxe5Cr3IUU4vuhI2W5Tsk9Ljrj/+VC3k0IJ02hJCG94=;
+ b=dSffik+J7Wc3WNvzaWvTYc3sul4P+7H/6hERZwI9SV/AMQV4j6WEvtUd
+ R2ezrxnx9Z4KOovDLDmqNvK0mMu6EpZMKpAeigHxR6OXzXhtJW9m+gGGy
+ lDvGqRzBCiMOB+Zf2KsJMOY3mvwyseHyYkEQ4vb3IGNIC9a5xqBp99eri
+ 0TabWialFJxrwYZlNLe7dQbuRuQT0Aoct7TMuif9C2hzt5TfKxOH/Mk3k
+ vWp06LMDrPqAEvxCC4hUFsrdg9DGX9Zrqfs+sjXEKDGhduOm36crd9Blz
+ VY83B9yJhtolq/wjOYlBuSvacPpFLMO3ORrUBkL217rAOJ5ZCG493e9ff g==;
+X-CSE-ConnectionGUID: pk4MxvNWSlCUYw8s+uNAEw==
+X-CSE-MsgGUID: cXOtO2zxRf+uZCYWkFWTIw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="40893199"
+X-IronPort-AV: E=Sophos;i="6.12,313,1728975600"; d="scan'208";a="40893199"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Jan 2025 00:12:13 -0800
+X-CSE-ConnectionGUID: q+uksDtPR+etdITJ2foqng==
+X-CSE-MsgGUID: +ZAIAAAPT/WLm4t+jo2BVw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="105220331"
+Received: from black.fi.intel.com ([10.237.72.28])
+ by orviesa007.jf.intel.com with ESMTP; 14 Jan 2025 00:12:05 -0800
+Received: by black.fi.intel.com (Postfix, from userid 1000)
+ id 6A55439C; Tue, 14 Jan 2025 10:12:03 +0200 (EET)
+Date: Tue, 14 Jan 2025 10:12:03 +0200
+From: "Kirill A. Shutemov" <kirill.shutemov@linux.intel.com>
+To: Yosry Ahmed <yosryahmed@google.com>
+Cc: Andrew Morton <akpm@linux-foundation.org>, 
+ "Matthew Wilcox (Oracle)" <willy@infradead.org>, Jens Axboe <axboe@kernel.dk>, 
+ "Jason A. Donenfeld" <Jason@zx2c4.com>, Andi Shyti <andi.shyti@linux.intel.com>,
+ Chengming Zhou <chengming.zhou@linux.dev>,
+ Christian Brauner <brauner@kernel.org>, 
+ Christophe Leroy <christophe.leroy@csgroup.eu>,
+ Dan Carpenter <dan.carpenter@linaro.org>, 
+ David Airlie <airlied@gmail.com>, David Hildenbrand <david@redhat.com>,
+ Hao Ge <gehao@kylinos.cn>, 
+ Jani Nikula <jani.nikula@linux.intel.com>, Johannes Weiner <hannes@cmpxchg.org>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Josef Bacik <josef@toxicpanda.com>, 
+ Masami Hiramatsu <mhiramat@kernel.org>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>, 
+ Miklos Szeredi <miklos@szeredi.hu>, Nhat Pham <nphamcs@gmail.com>, 
+ Oscar Salvador <osalvador@suse.de>, Ran Xiaokai <ran.xiaokai@zte.com.cn>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>, 
+ Steven Rostedt <rostedt@goodmis.org>, Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Vlastimil Babka <vbabka@suse.cz>, Yu Zhao <yuzhao@google.com>,
+ intel-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-fsdevel@vger.kernel.org, 
+ linux-mm@kvack.org, linux-trace-kernel@vger.kernel.org
+Subject: Re: [PATCH 4/8] mm/swap: Use PG_dropbehind instead of PG_reclaim
+Message-ID: <sct6vvupd4cp6xt66nn6sfs7w3srpx6zcxxsn6rz5qo4tz3la6@btdqsbicmrto>
+References: <20250113093453.1932083-1-kirill.shutemov@linux.intel.com>
+ <20250113093453.1932083-5-kirill.shutemov@linux.intel.com>
+ <CAJD7tkYH8KO8NLJY564PRAmW-mtMfDCMTECGKyYyVAf+JtTcRA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/O.uwERtL87GhFS5mROHCxje";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAJD7tkYH8KO8NLJY564PRAmW-mtMfDCMTECGKyYyVAf+JtTcRA@mail.gmail.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,48 +93,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---Sig_/O.uwERtL87GhFS5mROHCxje
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+On Mon, Jan 13, 2025 at 08:17:20AM -0800, Yosry Ahmed wrote:
+> On Mon, Jan 13, 2025 at 1:35 AM Kirill A. Shutemov
+> <kirill.shutemov@linux.intel.com> wrote:
+> >
+> > The recently introduced PG_dropbehind allows for freeing folios
+> > immediately after writeback. Unlike PG_reclaim, it does not need vmscan
+> > to be involved to get the folio freed.
+> >
+> > Instead of using folio_set_reclaim(), use folio_set_dropbehind() in
+> > lru_deactivate_file().
+> >
+> > Signed-off-by: Kirill A. Shutemov <kirill.shutemov@linux.intel.com>
+> > ---
+> >  mm/swap.c | 8 +-------
+> >  1 file changed, 1 insertion(+), 7 deletions(-)
+> >
+> > diff --git a/mm/swap.c b/mm/swap.c
+> > index fc8281ef4241..4eb33b4804a8 100644
+> > --- a/mm/swap.c
+> > +++ b/mm/swap.c
+> > @@ -562,14 +562,8 @@ static void lru_deactivate_file(struct lruvec *lruvec, struct folio *folio)
+> >         folio_clear_referenced(folio);
+> >
+> >         if (folio_test_writeback(folio) || folio_test_dirty(folio)) {
+> > -               /*
+> > -                * Setting the reclaim flag could race with
+> > -                * folio_end_writeback() and confuse readahead.  But the
+> > -                * race window is _really_ small and  it's not a critical
+> > -                * problem.
+> > -                */
+> >                 lruvec_add_folio(lruvec, folio);
+> > -               folio_set_reclaim(folio);
+> > +               folio_set_dropbehind(folio);
+> >         } else {
+> >                 /*
+> >                  * The folio's writeback ended while it was in the batch.
+> 
+> Now there's a difference in behavior here depending on whether or not
+> the folio is under writeback (or will be written back soon). If it is,
+> we set PG_dropbehind to get it freed right after, but if writeback has
+> already ended we put it on the tail of the LRU to be freed later.
+> 
+> It's a bit counterintuitive to me that folios with pending writeback
+> get freed faster than folios that completed their writeback already.
+> Am I missing something?
 
-Hi all,
+Yeah, it is strange.
 
-On Mon, 6 Jan 2025 17:46:45 +1100 Stephen Rothwell <sfr@canb.auug.org.au> w=
-rote:
->
-> After merging the drm-misc tree, today's linux-next build (htmldocs)
-> produced these warnings:
->=20
-> include/drm/drm_bridge.h:738: warning: Function parameter or struct membe=
-r 'hdmi_audio_prepare' not described in 'drm_bridge_funcs'
-> include/drm/drm_bridge.h:738: warning: Excess struct member 'prepare' des=
-cription in 'drm_bridge_funcs'
->=20
-> Introduced by commit
->=20
->   0beba3f9d366 ("drm/bridge: connector: add support for HDMI codec framew=
-ork")
+I think we can drop the writeback/dirty check. Set PG_dropbehind and put
+the page on the tail of LRU unconditionally. The check was required to
+avoid confusion with PG_readahead.
 
-I am still seeing those warnings.  This commit is now in the drm tree.
+Comment above the function is not valid anymore.
 
---=20
-Cheers,
-Stephen Rothwell
+But the folio that is still dirty under writeback will be freed faster as
+we get rid of the folio just after writeback is done while clean page can
+dangle on LRU for a while.
 
---Sig_/O.uwERtL87GhFS5mROHCxje
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
+I don't think we have any convenient place to free clean dropbehind page
+other than shrink_folio_list(). Or do we?
 
------BEGIN PGP SIGNATURE-----
+Looking at shrink_folio_list(), I think we need to bypass page demotion
+for PG_dropbehind pages.
 
-iQEzBAEBCAAdFiEENIC96giZ81tWdLgKAVBC80lX0GwFAmeF+XwACgkQAVBC80lX
-0Gzp4gf5AXex+pDdNVcPjbuuwj/G+S6EuuUJRb9J9EWg6submCBzhlh4xFXf01uS
-d9mZey+rNrKzc9TdPDpIzUQSu5SDh6bnB8G69Y0JJ0nwhabLJ9PUtdS388evTXYg
-9v4f4xITaavelvthxhQ4s42Nx7+UdNeSCDzQ7YULzUuTSIssQXrJFElEAW37pO71
-TnhY0j8Iiq0m+NrPCejXbPbHNrKg78JWJH3hrHiE7/CLOY3+rWP+HV4R5nLWjiDl
-p9np+nID9S2Uv2n3995hwWGlC19sQWa19iKgGiMdcF6/ib6MpBbJYUje+j/AXYNd
-LExTpmCZn/zmSobsL5am5MoKVFxYrw==
-=g+20
------END PGP SIGNATURE-----
-
---Sig_/O.uwERtL87GhFS5mROHCxje--
+-- 
+  Kiryl Shutsemau / Kirill A. Shutemov
