@@ -2,69 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D98DA129EA
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jan 2025 18:33:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A81C5A129F4
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jan 2025 18:33:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 357C010E09F;
-	Wed, 15 Jan 2025 17:33:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 439C210E79F;
+	Wed, 15 Jan 2025 17:33:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="VGdbMy7J";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="ORstufDz";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-io1-xd49.google.com (mail-io1-xd49.google.com
- [IPv6:2607:f8b0:4864:20::d49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EEC4D10E472
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Jan 2025 19:06:02 +0000 (UTC)
-Received: by mail-io1-xd49.google.com with SMTP id
- ca18e2360f4ac-844d54c3e62so909790039f.2
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Jan 2025 11:06:02 -0800 (PST)
+Received: from mail-il1-x14a.google.com (mail-il1-x14a.google.com
+ [IPv6:2607:f8b0:4864:20::14a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6FF6410E475
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Jan 2025 19:07:23 +0000 (UTC)
+Received: by mail-il1-x14a.google.com with SMTP id
+ e9e14a558f8ab-3a814c7d58eso47392295ab.1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Jan 2025 11:07:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1736881562; x=1737486362;
+ d=google.com; s=20230601; t=1736881642; x=1737486442;
  darn=lists.freedesktop.org; 
  h=cc:to:from:subject:message-id:mime-version:date:from:to:cc:subject
  :date:message-id:reply-to;
  bh=HkXEGKaHS4Wap2DZ8mnEQl68mT1GrP1ybYkz9IG2DCI=;
- b=VGdbMy7J36fvRHr+fqEtXXDxjkvkwmMprA7OGhmWfREoROrBUmQNvLnnFhSq0d6/Wt
- 54VcD945Emmnlngczn+TTd3D4Pb5z64OD3ywfsA+1omi68la/hLEJV62mHZ9LK634Nqr
- Nn5ibqYoqGISxUPDlpGIEBWbu7Ph6RqoHDeka9d4EluOaRAZoGBtUIl9HTuJHNLIYZkZ
- vt01CZsS0gULpSr8Tu4a20GOwqOOlkH2AhTgB/s3S5qeqhZW9jV8WQI0z+spkpujU2hq
- M1qT2a9ctStLNtv6TKwMEjH3s7NDpq8hbQGVHrhvvKvpDoh6F1RFv130GyHsN4FYNTdC
- CXWg==
+ b=ORstufDzvtSZ6e1EbbWDwS5HnQgNMKJQ/6quo9H+2Y8cePeuyU58GE6voEhfWqTWcH
+ /opr7IMkp/6wucrhdqPBDSYJTkRdI7ReCTMoykI4yb8tcOB2S+/pSsX6H8dYqU+obHit
+ GGn/f5tAVvAiuV0MV6x8CDVC6zjm8X10vKBhaoKsPZMvgb8INwPuGX/vaWxKy+ghFzNK
+ xTJr5Y27kHHsaGH9Kb6gD4qbjtY0EIEMPUrOwvKd1VUSr38lZ3CSZMXtDmN0G0+MPLIa
+ GfQ9ngwmcSBIjG8q/umdLZc0VnUedaesbKy41QrGC39xAW9LXDhAdgfIZxauocJm7duI
+ PXeg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1736881562; x=1737486362;
+ d=1e100.net; s=20230601; t=1736881643; x=1737486443;
  h=cc:to:from:subject:message-id:mime-version:date:x-gm-message-state
  :from:to:cc:subject:date:message-id:reply-to;
  bh=HkXEGKaHS4Wap2DZ8mnEQl68mT1GrP1ybYkz9IG2DCI=;
- b=UYeXoAhQS4i5zfNCvk0H8hycwNgtIeALZ9+jCZ9p7ZZr+NtF+VNIkg1Us09F5i+E0p
- +/S0xofXiCIwp11i+OOJBR/uOyZsLsz36gHeCirXjCXo2j0mPIgIfyU1uXKW8SwXl1QA
- qCwUbcxmuM6vPwieswITcjOXhIBVknOOIDvoYcej1OEVC8IXg5zieSh3/rPvrWu7vavM
- xx76gSlVIdWtq9BBFgzfh4wdK331cvnBRUiRQlGBcWl4a8RvfsKzkEGId5bbRc1181Pd
- NYg24V04IBX+0tGF3mhq+vzj7dblqQ3E1XEkjKcC8imw4dCH380MOkFETGVuEaXIzUz6
- uZEg==
-X-Gm-Message-State: AOJu0Yy1uXU3JVFdv/wayde4kCJckQFEar5CPKyZgsEfcn9qZnEO2MTi
- /7pdP+Y7dLbWsTWNnjWB4yklvJ/ioPh5qYcI0+yYBM5WCpTA1gwt05oNUt5QRABYdKW14j6LLD8
- kJISH8Q==
-X-Google-Smtp-Source: AGHT+IGsJrvqYTmQtcrvuuvJ/hwbkz3SgyMuWS0FYMxwQMuh4GEdylWBFKZU6jZSnevp4MEMxg8IfOTNclDW
-X-Received: from ior15.prod.google.com ([2002:a05:6602:a00f:b0:83b:744f:7224])
+ b=sFQwsEvF0Oy5faHphLxW9M5ZdthK1tk78PE8UjytptrhsPMyHaxD+oeUqkoVlMuImP
+ za13GrQVi2q+snSX97seJh1V4KKe3lROYtWsPvUaJApKVt0qZ7V7hN/W4nuTlOulnBgR
+ O59gU+0IP2OpdSDAx54cqCu4WZ+ewszJRsD4Rhw6i2QHUd5FU8qQ1Xp90lYEc5vu1DN9
+ CqFGW3y8w76513UH6bwydFmIqWLYoLVA+qGKQX8q1uP8CRnC1YsbDTMgIgLSCvrz+Nou
+ SqDj+hsdS7fPVwyob0jEkZ/MU9+YfnSD+mmghjt5wrkdOigBqkXOH733Sj3083JQrobF
+ PycA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWuj9fssW9qQEzI9DCofNYLtOtN5MuqTkvYQP+uWAQVza3hslGXXXS2dnSM25zIDOjnN59anjlIejY=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxFprgtH8ZRVIbTG9h6omlUciu/Rc6jhQ4ZRXLcEaveH4Sl3+aH
+ pKTvrGvnrl4ivvsW8qlY7aqP48M3QH0a5zB8670EGfyAjTPe47ElSQzTWxXn6CNYTbiwZN+ol/u
+ KEVlQqw==
+X-Google-Smtp-Source: AGHT+IF2yRCyQfsIAsDtYjVAP2Lbj8881E3+iRCvgYZMjLJcfAwxx4hzxEoI7N0P45DSRRSxwN8MjS/wzzlZ
+X-Received: from ilbds6.prod.google.com ([2002:a05:6e02:3f86:b0:3a7:8a40:2719])
  (user=jdenose job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:6602:3a09:b0:83a:b500:3513
- with SMTP id ca18e2360f4ac-84ce00a3e64mr2584711439f.8.1736881562194; Tue, 14
- Jan 2025 11:06:02 -0800 (PST)
-Date: Tue, 14 Jan 2025 19:05:55 +0000
+ 2002:a05:6e02:1d88:b0:3a7:8720:9e9e
+ with SMTP id e9e14a558f8ab-3ce3a90ef12mr193274515ab.2.1736881642681; Tue, 14
+ Jan 2025 11:07:22 -0800 (PST)
+Date: Tue, 14 Jan 2025 19:07:11 +0000
 Mime-Version: 1.0
 X-Mailer: git-send-email 2.48.0.rc2.279.g1de40edade-goog
-Message-ID: <20250114190554.1.Ia17111747d0450169dbe902e5d7ef25912a9338e@changeid>
+Message-ID: <20250114190709.1.Ia17111747d0450169dbe902e5d7ef25912a9338e@changeid>
 Subject: [PATCH] drm/i915/display: Add skip link check quirk
 From: Jonathan Denose <jdenose@google.com>
-To: LKML <linux-kernel@vger.kernel.ogr>
-Cc: intel-gfx@lists.freedesktop.org, jani.nikula@linux.intel.com, 
- rodrigo.vivi@intel.com, Jonathan Denose <jdenose@google.com>, 
+To: LKML <linux-kernel@vger.kernel.org>
+Cc: rodrigo.vivi@intel.com, jani.nikula@linux.intel.com, 
+ intel-gfx@lists.freedesktop.org, Jonathan Denose <jdenose@google.com>, 
  David Airlie <airlied@gmail.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
  Simona Vetter <simona@ffwll.ch>, Tvrtko Ursulin <tursulin@ursulin.net>,
- dri-devel@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, linux-kernel@vger.kernel.org
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Wed, 15 Jan 2025 17:33:45 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
