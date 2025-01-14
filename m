@@ -2,60 +2,81 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A2A4A1035F
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jan 2025 10:55:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D109A10398
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Jan 2025 11:06:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2319510E04E;
-	Tue, 14 Jan 2025 09:55:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0F4D10E0D1;
+	Tue, 14 Jan 2025 10:06:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZmMszabk";
+	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="GMTGqzR3";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B7EB10E00A;
- Tue, 14 Jan 2025 09:55:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1736848526; x=1768384526;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=0lJWkkKl0Mid3dmRf2iYHGFubP+A+87eK2i7r4iIFX4=;
- b=ZmMszabkuVll1jG+QCCs57olsHkCM1vNX0T5OJn0hyfZOW8h4wVPU8ki
- YTxXxFT69yzLJaBju4ioI/murSPA1WhXvOjyS859ylI1rV4fFaR12vEhg
- ur43DT8qL7nPeLlQiWh4HM/K+dtLYVQ0omqlyUndo3s4xqPcQGBEtLn05
- wnNjXkTpUCFyUtAtD8dhXIM6KM1gjLtOiP/QeRADk6Py3wJZSE/cPocvG
- 7qELFBmd4X8h2rPf7wNt0IH5MMDDeIdMOzU7tyA9nG+g0FilBHfPqptCu
- FmAWdYVCsoz3vf+YNtQmCEH8Qmgv0GftmOyp7pGmlTsdbfQbiVPCTKAuU g==;
-X-CSE-ConnectionGUID: fuOmWxAyQOC0+IpkS+NOLg==
-X-CSE-MsgGUID: 4DpGsmIOT6Om4K4pvunGtw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="48544051"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="48544051"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jan 2025 01:55:25 -0800
-X-CSE-ConnectionGUID: oxPC38jUTMWzst5HwHIlpw==
-X-CSE-MsgGUID: V0LjUgLCT+mkGXNKdXosFQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,313,1728975600"; d="scan'208";a="104928157"
-Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.230])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jan 2025 01:55:23 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: Re: [PATCH v2 2/3] drm/i915/display: Wrap IRQ-specific uncore
- functions
-In-Reply-To: <20250113204306.112266-3-gustavo.sousa@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250113204306.112266-1-gustavo.sousa@intel.com>
- <20250113204306.112266-3-gustavo.sousa@intel.com>
-Date: Tue, 14 Jan 2025 11:55:20 +0200
-Message-ID: <87v7uhhg8n.fsf@intel.com>
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com
+ [IPv6:2a00:1450:4864:20::32a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 52B2510E0D1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Jan 2025 10:06:32 +0000 (UTC)
+Received: by mail-wm1-x32a.google.com with SMTP id
+ 5b1f17b1804b1-4368a293339so60078655e9.3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Jan 2025 02:06:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1736849191; x=1737453991;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=pGF7TMHXHaR607oHfuwMOmGdwtsbN6KBQI05aHXIIr0=;
+ b=GMTGqzR3jT9Pd/UHquju4y7eQ1iR1Ze0ZhIkxEyEq1zwaXndDljUQhx0BtsUBvcJhP
+ 2xkjq53GxtvNiA66mns+UF7+92Sgn5AKmRyT3ye9JB+EYsqOrqgqEcVXD1s3pxWtEX1g
+ s1dkHgaApFtRVEqMCiKCw8Dkgzh3dfjBqMeEl1kjhkH57Bnj1qh/zniPvnweTlnq74jS
+ zwENcspCx2xaMMwI54OIuFrBsJeyF/DxTKb0a/e0Lo3P3EcVQhLX+EmDBQb9+Zbbe1th
+ QxAO6KXH+vUbFbovkuaIRROFEsfNUDeJf02lXEONyUwoHyGrN0AZ1rVv4tOhJaC1sIhe
+ DvZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1736849191; x=1737453991;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=pGF7TMHXHaR607oHfuwMOmGdwtsbN6KBQI05aHXIIr0=;
+ b=E1CfXTlwW8VuiESxrxiQEzLbDd14nH80285ASo0qkdIshMwgSm7u09X7l3CQkW+Zwf
+ /TzNS6Alz8ft0+TDPLI+NMCsUPRGvw3K4HrL4KrGtjnjVoBUWP3BNWsVYkic/MBd/AWu
+ TPVLQZaqJO05zOglmY6NNvHpBI16pE73lavm5mltp7ANnF8LxKBfQ0rsYnD3VzADGK8a
+ b/PnAe4T2t6EtGPW/10n7ThU9Ik0WmpDvxwdrKK+F0WQerGkdmaFmHich4Cu+3rrArnG
+ 1OmiPV0qo8TFM7qZHi5lEb65REctKGXnVEwXtgvUWw0D5wlQN8/qrLbtpkMipdJxtVVB
+ vKTA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWwGKwNiGrSSvCnI5WtVKgBuWrm39yEB2+2ErWLBnRqOOxOyGFscGYRdHOBMX3Za5o0M0/38uft3oc=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyScY4XI+13NQ30+8KrIsivUDi7ERduGJRc+p9OnAlXGWKdrDx3
+ uew5Z0ZX62u+ZMQIrIm1TkP0iuSNWzdDPvLne7OqdtuF7yua57Cgwf8OqLYN6QQ=
+X-Gm-Gg: ASbGncuVi097XcKMaKcMEqd/BMC1xnMAaTCQb7+ZUJoQigR4hYCaxEzmgkV/lpLt7RK
+ RYk0jCHnLYE+VTazoX5C+eWiqbOFQ6dIUVxqixv7B4Oa5P8yAfunZnaHtli3r9e0WAPDCsrOY5/
+ DSQkNfeWa08n51eMcnq/9BLgX4u2IHifxXLkDNrIr1PoJljLjF4JfxF7M6UohzxYFUtNBuAr7CW
+ jRcgFVgSCxSJVZmQIiF3bTmoa0ejh4QnPI5guSfdbQYlRV5ojleU5xHaZyPPIoz6sjLnneu
+X-Google-Smtp-Source: AGHT+IGWES4w4Tb6wu+63wyf9qnWp7Jx1/xOJuUE2Gvti85ptNgyJwSxc+QUJW1T7B/ecjeu+k5JkQ==
+X-Received: by 2002:a05:600c:3b88:b0:435:192:63fb with SMTP id
+ 5b1f17b1804b1-436e2686662mr209391945e9.3.1736849190773; 
+ Tue, 14 Jan 2025 02:06:30 -0800 (PST)
+Received: from [192.168.0.101] ([90.241.98.187])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-38a8e38c6dbsm14687467f8f.55.2025.01.14.02.06.30
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 14 Jan 2025 02:06:30 -0800 (PST)
+Message-ID: <d65088a7-1ffd-4433-afbe-f4447b90e5b4@ursulin.net>
+Date: Tue, 14 Jan 2025 10:06:29 +0000
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] drm/i915/gt: Ensure irqs' status does not change with
+ spin_unlock
+To: Krzysztof Karas <krzysztof.karas@intel.com>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>,
+ dri-devel <dri-devel@lists.freedesktop.org>
+Cc: Maciej Patelczyk <maciej.patelczyk@intel.com>
+References: <5fnb3l7s5hr3yfehkpvf4jgcunm6qclxagvssdobvfxbwtjiyc@jzko7kb7svud>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tursulin@ursulin.net>
+In-Reply-To: <5fnb3l7s5hr3yfehkpvf4jgcunm6qclxagvssdobvfxbwtjiyc@jzko7kb7svud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,345 +92,138 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 13 Jan 2025, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
-> The current display IRQ code calls some IRQ-specific helpers that use
-> intel_uncore_*() MMIO functions instead of the display-specific ones.
-> Wrap those helpers to ensure that the proper display-specific hooks
-> (currently only DMC wakelock handling) are called.
->
-> v2:
->  - Move functions to intel_display_irq.c instead of having them in
->    intel_de.h. (Jani)
->
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+
+Hi,
+
+On 14/01/2025 09:00, Krzysztof Karas wrote:
+> spin_unlock() function enables irqs regardless of their state
+
+It doesn't, you confuse spin_unlock with spin_unlock_irq.
+
+> before spin_lock() was called. This might result in an interrupt
+> while holding a lock further down in the execution, as seen in
+> GitLab issue #13399.
+> 
+> Try to remedy the problem by saving irq state before spin lock
+> acquisition.
+
+Please check guc_lrc_desc_unpin(). It gets called from the 
+destroyed_worker_func as  hinted by lockdep in 13399. There is a plain 
+spin_lock() in there (in contradiction with itself). Fixing that one may 
+be all that is needed to fix this correctly.
+
+If that turns out right then also:
+
+Fixes: 2f2cc53b5fe7 ("drm/i915/guc: Close deregister-context race 
+against CT-loss")
+Cc: <stable@vger.kernel.org> # v6.9+
+
+Regards,
+
+Tvrtko
+
+> 
+> v2: add irqs' state save/restore calls to all locks/unlocks in
+>   signal_irq_work() execution (Maciej)
+> 
+> Signed-off-by: Krzysztof Karas <krzysztof.karas@intel.com>
 > ---
->  .../gpu/drm/i915/display/intel_display_irq.c  | 128 ++++++++++++------
->  1 file changed, 83 insertions(+), 45 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-> index 9662368a651d..d9734fcd0d45 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-> @@ -15,6 +15,7 @@
->  #include "intel_display_irq.h"
->  #include "intel_display_trace.h"
->  #include "intel_display_types.h"
-> +#include "intel_dmc_wl.h"
->  #include "intel_dp_aux.h"
->  #include "intel_dsb.h"
->  #include "intel_fdi_regs.h"
-> @@ -25,6 +26,46 @@
->  #include "intel_pmdemand.h"
->  #include "intel_psr.h"
->  #include "intel_psr_regs.h"
-> +#include "intel_uncore.h"
+> This issue is hit rarely on CI and I was not able to reproduce
+> it locally. There might be more places where we should save and
+> restore irq state, so I am not adding "Closes" label for the
+> issue yet.
+> 
+>   drivers/gpu/drm/i915/gt/intel_breadcrumbs.c   | 21 ++++++++++++-------
+>   .../gpu/drm/i915/gt/uc/intel_guc_submission.c |  5 +++--
+>   2 files changed, 16 insertions(+), 10 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> index cc866773ba6f..dd5542726b41 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> @@ -53,13 +53,15 @@ static void __intel_breadcrumbs_arm_irq(struct intel_breadcrumbs *b)
+>   
+>   static void intel_breadcrumbs_arm_irq(struct intel_breadcrumbs *b)
+>   {
+> +	unsigned long flags;
 > +
-> +static void
-> +intel_display_irq_regs_init(struct intel_display *display, struct i915_irq_regs regs,
-> +			    u32 imr_val, u32 ier_val)
-> +{
-> +	intel_dmc_wl_get(display, regs.imr);
-> +	intel_dmc_wl_get(display, regs.ier);
-> +	intel_dmc_wl_get(display, regs.iir);
+>   	if (!b->irq_engine)
+>   		return;
+>   
+> -	spin_lock(&b->irq_lock);
+> +	spin_lock_irqsave(&b->irq_lock, flags);
+>   	if (!b->irq_armed)
+>   		__intel_breadcrumbs_arm_irq(b);
+> -	spin_unlock(&b->irq_lock);
+> +	spin_unlock_irqrestore(&b->irq_lock, flags);
+>   }
+>   
+>   static void __intel_breadcrumbs_disarm_irq(struct intel_breadcrumbs *b)
+> @@ -76,10 +78,12 @@ static void __intel_breadcrumbs_disarm_irq(struct intel_breadcrumbs *b)
+>   
+>   static void intel_breadcrumbs_disarm_irq(struct intel_breadcrumbs *b)
+>   {
+> -	spin_lock(&b->irq_lock);
+> +	unsigned long flags;
 > +
-> +	gen2_irq_init(to_intel_uncore(display->drm), regs, imr_val, ier_val);
-> +
-> +	intel_dmc_wl_put(display, regs.iir);
-> +	intel_dmc_wl_put(display, regs.ier);
-> +	intel_dmc_wl_put(display, regs.imr);
-> +}
-> +
-> +static void
-> +intel_display_irq_regs_reset(struct intel_display *display, struct i915_irq_regs regs)
-> +{
-> +	intel_dmc_wl_get(display, regs.imr);
-> +	intel_dmc_wl_get(display, regs.ier);
-> +	intel_dmc_wl_get(display, regs.iir);
-> +
-> +	gen2_irq_reset(to_intel_uncore(display->drm), regs);
-> +
-> +	intel_dmc_wl_put(display, regs.iir);
-> +	intel_dmc_wl_put(display, regs.ier);
-> +	intel_dmc_wl_put(display, regs.imr);
-> +}
-> +
-> +static void
-> +intel_display_irq_regs_assert_irr_is_zero(struct intel_display *display, i915_reg_t reg)
-> +{
-> +	intel_dmc_wl_get(display, reg);
-> +
-> +	gen2_assert_iir_is_zero(to_intel_uncore(display->drm), reg);
-> +
-> +	intel_dmc_wl_put(display, reg);
-> +}
-
-I think the _regs_ in the function names are all superfluous.
-
-Other than that, seems fine.
-
-BR,
-Jani.
-
-
->  
->  static void
->  intel_handle_vblank(struct drm_i915_private *dev_priv, enum pipe pipe)
-> @@ -1498,7 +1539,6 @@ void bdw_disable_vblank(struct drm_crtc *_crtc)
->  static void _vlv_display_irq_reset(struct drm_i915_private *dev_priv)
->  {
->  	struct intel_display *display = &dev_priv->display;
-> -	struct intel_uncore *uncore = &dev_priv->uncore;
->  
->  	if (IS_CHERRYVIEW(dev_priv))
->  		intel_de_write(display, DPINVGTT, DPINVGTT_STATUS_MASK_CHV);
-> @@ -1510,7 +1550,7 @@ static void _vlv_display_irq_reset(struct drm_i915_private *dev_priv)
->  
->  	i9xx_pipestat_irq_reset(dev_priv);
->  
-> -	gen2_irq_reset(uncore, VLV_IRQ_REGS);
-> +	intel_display_irq_regs_reset(display, VLV_IRQ_REGS);
->  	dev_priv->irq_mask = ~0u;
->  }
->  
-> @@ -1534,8 +1574,7 @@ void i9xx_display_irq_reset(struct drm_i915_private *i915)
->  
->  void vlv_display_irq_postinstall(struct drm_i915_private *dev_priv)
->  {
-> -	struct intel_uncore *uncore = &dev_priv->uncore;
-> -
-> +	struct intel_display *display = &dev_priv->display;
->  	u32 pipestat_mask;
->  	u32 enable_mask;
->  	enum pipe pipe;
-> @@ -1563,13 +1602,12 @@ void vlv_display_irq_postinstall(struct drm_i915_private *dev_priv)
->  
->  	dev_priv->irq_mask = ~enable_mask;
->  
-> -	gen2_irq_init(uncore, VLV_IRQ_REGS, dev_priv->irq_mask, enable_mask);
-> +	intel_display_irq_regs_init(display, VLV_IRQ_REGS, dev_priv->irq_mask, enable_mask);
->  }
->  
->  void gen8_display_irq_reset(struct drm_i915_private *dev_priv)
->  {
->  	struct intel_display *display = &dev_priv->display;
-> -	struct intel_uncore *uncore = &dev_priv->uncore;
->  	enum pipe pipe;
->  
->  	if (!HAS_DISPLAY(dev_priv))
-> @@ -1581,16 +1619,15 @@ void gen8_display_irq_reset(struct drm_i915_private *dev_priv)
->  	for_each_pipe(dev_priv, pipe)
->  		if (intel_display_power_is_enabled(dev_priv,
->  						   POWER_DOMAIN_PIPE(pipe)))
-> -			gen2_irq_reset(uncore, GEN8_DE_PIPE_IRQ_REGS(pipe));
-> +			intel_display_irq_regs_reset(display, GEN8_DE_PIPE_IRQ_REGS(pipe));
->  
-> -	gen2_irq_reset(uncore, GEN8_DE_PORT_IRQ_REGS);
-> -	gen2_irq_reset(uncore, GEN8_DE_MISC_IRQ_REGS);
-> +	intel_display_irq_regs_reset(display, GEN8_DE_PORT_IRQ_REGS);
-> +	intel_display_irq_regs_reset(display, GEN8_DE_MISC_IRQ_REGS);
->  }
->  
->  void gen11_display_irq_reset(struct drm_i915_private *dev_priv)
->  {
->  	struct intel_display *display = &dev_priv->display;
-> -	struct intel_uncore *uncore = &dev_priv->uncore;
->  	enum pipe pipe;
->  	u32 trans_mask = BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
->  		BIT(TRANSCODER_C) | BIT(TRANSCODER_D);
-> @@ -1625,24 +1662,24 @@ void gen11_display_irq_reset(struct drm_i915_private *dev_priv)
->  	for_each_pipe(dev_priv, pipe)
->  		if (intel_display_power_is_enabled(dev_priv,
->  						   POWER_DOMAIN_PIPE(pipe)))
-> -			gen2_irq_reset(uncore, GEN8_DE_PIPE_IRQ_REGS(pipe));
-> +			intel_display_irq_regs_reset(display, GEN8_DE_PIPE_IRQ_REGS(pipe));
->  
-> -	gen2_irq_reset(uncore, GEN8_DE_PORT_IRQ_REGS);
-> -	gen2_irq_reset(uncore, GEN8_DE_MISC_IRQ_REGS);
-> +	intel_display_irq_regs_reset(display, GEN8_DE_PORT_IRQ_REGS);
-> +	intel_display_irq_regs_reset(display, GEN8_DE_MISC_IRQ_REGS);
->  
->  	if (DISPLAY_VER(dev_priv) >= 14)
-> -		gen2_irq_reset(uncore, PICAINTERRUPT_IRQ_REGS);
-> +		intel_display_irq_regs_reset(display, PICAINTERRUPT_IRQ_REGS);
->  	else
-> -		gen2_irq_reset(uncore, GEN11_DE_HPD_IRQ_REGS);
-> +		intel_display_irq_regs_reset(display, GEN11_DE_HPD_IRQ_REGS);
->  
->  	if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
-> -		gen2_irq_reset(uncore, SDE_IRQ_REGS);
-> +		intel_display_irq_regs_reset(display, SDE_IRQ_REGS);
->  }
->  
->  void gen8_irq_power_well_post_enable(struct drm_i915_private *dev_priv,
->  				     u8 pipe_mask)
->  {
-> -	struct intel_uncore *uncore = &dev_priv->uncore;
-> +	struct intel_display *display = &dev_priv->display;
->  	u32 extra_ier = GEN8_PIPE_VBLANK | GEN8_PIPE_FIFO_UNDERRUN |
->  		gen8_de_pipe_flip_done_mask(dev_priv);
->  	enum pipe pipe;
-> @@ -1655,9 +1692,9 @@ void gen8_irq_power_well_post_enable(struct drm_i915_private *dev_priv,
->  	}
->  
->  	for_each_pipe_masked(dev_priv, pipe, pipe_mask)
-> -		gen2_irq_init(uncore, GEN8_DE_PIPE_IRQ_REGS(pipe),
-> -			      dev_priv->display.irq.de_irq_mask[pipe],
-> -			      ~dev_priv->display.irq.de_irq_mask[pipe] | extra_ier);
-> +		intel_display_irq_regs_init(display, GEN8_DE_PIPE_IRQ_REGS(pipe),
-> +					    dev_priv->display.irq.de_irq_mask[pipe],
-> +					    ~dev_priv->display.irq.de_irq_mask[pipe] | extra_ier);
->  
->  	spin_unlock_irq(&dev_priv->irq_lock);
->  }
-> @@ -1665,7 +1702,7 @@ void gen8_irq_power_well_post_enable(struct drm_i915_private *dev_priv,
->  void gen8_irq_power_well_pre_disable(struct drm_i915_private *dev_priv,
->  				     u8 pipe_mask)
->  {
-> -	struct intel_uncore *uncore = &dev_priv->uncore;
-> +	struct intel_display *display = &dev_priv->display;
->  	enum pipe pipe;
->  
->  	spin_lock_irq(&dev_priv->irq_lock);
-> @@ -1676,7 +1713,7 @@ void gen8_irq_power_well_pre_disable(struct drm_i915_private *dev_priv,
->  	}
->  
->  	for_each_pipe_masked(dev_priv, pipe, pipe_mask)
-> -		gen2_irq_reset(uncore, GEN8_DE_PIPE_IRQ_REGS(pipe));
-> +		intel_display_irq_regs_reset(display, GEN8_DE_PIPE_IRQ_REGS(pipe));
->  
->  	spin_unlock_irq(&dev_priv->irq_lock);
->  
-> @@ -1697,7 +1734,7 @@ void gen8_irq_power_well_pre_disable(struct drm_i915_private *dev_priv,
->   */
->  static void ibx_irq_postinstall(struct drm_i915_private *dev_priv)
->  {
-> -	struct intel_uncore *uncore = &dev_priv->uncore;
-> +	struct intel_display *display = &dev_priv->display;
->  	u32 mask;
->  
->  	if (HAS_PCH_NOP(dev_priv))
-> @@ -1710,7 +1747,7 @@ static void ibx_irq_postinstall(struct drm_i915_private *dev_priv)
->  	else
->  		mask = SDE_GMBUS_CPT;
->  
-> -	gen2_irq_init(uncore, SDE_IRQ_REGS, ~mask, 0xffffffff);
-> +	intel_display_irq_regs_init(display, SDE_IRQ_REGS, ~mask, 0xffffffff);
->  }
->  
->  void valleyview_enable_display_irqs(struct drm_i915_private *dev_priv)
-> @@ -1743,7 +1780,7 @@ void valleyview_disable_display_irqs(struct drm_i915_private *dev_priv)
->  
->  void ilk_de_irq_postinstall(struct drm_i915_private *i915)
->  {
-> -	struct intel_uncore *uncore = &i915->uncore;
-> +	struct intel_display *display = &i915->display;
->  	u32 display_mask, extra_mask;
->  
->  	if (DISPLAY_VER(i915) >= 7) {
-> @@ -1767,7 +1804,7 @@ void ilk_de_irq_postinstall(struct drm_i915_private *i915)
->  	}
->  
->  	if (IS_HASWELL(i915)) {
-> -		gen2_assert_iir_is_zero(uncore, EDP_PSR_IIR);
-> +		intel_display_irq_regs_assert_irr_is_zero(display, EDP_PSR_IIR);
->  		display_mask |= DE_EDP_PSR_INT_HSW;
->  	}
->  
-> @@ -1778,8 +1815,8 @@ void ilk_de_irq_postinstall(struct drm_i915_private *i915)
->  
->  	ibx_irq_postinstall(i915);
->  
-> -	gen2_irq_init(uncore, DE_IRQ_REGS, i915->irq_mask,
-> -		      display_mask | extra_mask);
-> +	intel_display_irq_regs_init(display, DE_IRQ_REGS, i915->irq_mask,
-> +				    display_mask | extra_mask);
->  }
->  
->  static void mtp_irq_postinstall(struct drm_i915_private *i915);
-> @@ -1788,7 +1825,6 @@ static void icp_irq_postinstall(struct drm_i915_private *i915);
->  void gen8_de_irq_postinstall(struct drm_i915_private *dev_priv)
->  {
->  	struct intel_display *display = &dev_priv->display;
-> -	struct intel_uncore *uncore = &dev_priv->uncore;
->  
->  	u32 de_pipe_masked = gen8_de_pipe_fault_mask(dev_priv) |
->  		GEN8_PIPE_CDCLK_CRC_DONE;
-> @@ -1854,11 +1890,11 @@ void gen8_de_irq_postinstall(struct drm_i915_private *dev_priv)
->  			if (!intel_display_power_is_enabled(dev_priv, domain))
->  				continue;
->  
-> -			gen2_assert_iir_is_zero(uncore,
-> -						TRANS_PSR_IIR(dev_priv, trans));
-> +			intel_display_irq_regs_assert_irr_is_zero(display,
-> +								  TRANS_PSR_IIR(dev_priv, trans));
->  		}
->  	} else {
-> -		gen2_assert_iir_is_zero(uncore, EDP_PSR_IIR);
-> +		intel_display_irq_regs_assert_irr_is_zero(display, EDP_PSR_IIR);
->  	}
->  
->  	for_each_pipe(dev_priv, pipe) {
-> @@ -1866,44 +1902,46 @@ void gen8_de_irq_postinstall(struct drm_i915_private *dev_priv)
->  
->  		if (intel_display_power_is_enabled(dev_priv,
->  						   POWER_DOMAIN_PIPE(pipe)))
-> -			gen2_irq_init(uncore, GEN8_DE_PIPE_IRQ_REGS(pipe),
-> -				      dev_priv->display.irq.de_irq_mask[pipe],
-> -				      de_pipe_enables);
-> +			intel_display_irq_regs_init(display, GEN8_DE_PIPE_IRQ_REGS(pipe),
-> +						    dev_priv->display.irq.de_irq_mask[pipe],
-> +						    de_pipe_enables);
->  	}
->  
-> -	gen2_irq_init(uncore, GEN8_DE_PORT_IRQ_REGS, ~de_port_masked, de_port_enables);
-> -	gen2_irq_init(uncore, GEN8_DE_MISC_IRQ_REGS, ~de_misc_masked, de_misc_masked);
-> +	intel_display_irq_regs_init(display, GEN8_DE_PORT_IRQ_REGS, ~de_port_masked,
-> +				    de_port_enables);
-> +	intel_display_irq_regs_init(display, GEN8_DE_MISC_IRQ_REGS, ~de_misc_masked,
-> +				    de_misc_masked);
->  
->  	if (IS_DISPLAY_VER(dev_priv, 11, 13)) {
->  		u32 de_hpd_masked = 0;
->  		u32 de_hpd_enables = GEN11_DE_TC_HOTPLUG_MASK |
->  				     GEN11_DE_TBT_HOTPLUG_MASK;
->  
-> -		gen2_irq_init(uncore, GEN11_DE_HPD_IRQ_REGS, ~de_hpd_masked,
-> -			      de_hpd_enables);
-> +		intel_display_irq_regs_init(display, GEN11_DE_HPD_IRQ_REGS, ~de_hpd_masked,
-> +					    de_hpd_enables);
->  	}
->  }
->  
->  static void mtp_irq_postinstall(struct drm_i915_private *i915)
->  {
-> -	struct intel_uncore *uncore = &i915->uncore;
-> +	struct intel_display *display = &i915->display;
->  	u32 sde_mask = SDE_GMBUS_ICP | SDE_PICAINTERRUPT;
->  	u32 de_hpd_mask = XELPDP_AUX_TC_MASK;
->  	u32 de_hpd_enables = de_hpd_mask | XELPDP_DP_ALT_HOTPLUG_MASK |
->  			     XELPDP_TBT_HOTPLUG_MASK;
->  
-> -	gen2_irq_init(uncore, PICAINTERRUPT_IRQ_REGS, ~de_hpd_mask,
-> -		      de_hpd_enables);
-> +	intel_display_irq_regs_init(display, PICAINTERRUPT_IRQ_REGS, ~de_hpd_mask,
-> +				    de_hpd_enables);
->  
-> -	gen2_irq_init(uncore, SDE_IRQ_REGS, ~sde_mask, 0xffffffff);
-> +	intel_display_irq_regs_init(display, SDE_IRQ_REGS, ~sde_mask, 0xffffffff);
->  }
->  
->  static void icp_irq_postinstall(struct drm_i915_private *dev_priv)
->  {
-> -	struct intel_uncore *uncore = &dev_priv->uncore;
-> +	struct intel_display *display = &dev_priv->display;
->  	u32 mask = SDE_GMBUS_ICP;
->  
-> -	gen2_irq_init(uncore, SDE_IRQ_REGS, ~mask, 0xffffffff);
-> +	intel_display_irq_regs_init(display, SDE_IRQ_REGS, ~mask, 0xffffffff);
->  }
->  
->  void gen11_de_irq_postinstall(struct drm_i915_private *dev_priv)
-
--- 
-Jani Nikula, Intel
+> +	spin_lock_irqsave(&b->irq_lock, flags);
+>   	if (b->irq_armed)
+>   		__intel_breadcrumbs_disarm_irq(b);
+> -	spin_unlock(&b->irq_lock);
+> +	spin_unlock_irqrestore(&b->irq_lock, flags);
+>   }
+>   
+>   static void add_signaling_context(struct intel_breadcrumbs *b,
+> @@ -173,6 +177,7 @@ static void signal_irq_work(struct irq_work *work)
+>   	const ktime_t timestamp = ktime_get();
+>   	struct llist_node *signal, *sn;
+>   	struct intel_context *ce;
+> +	unsigned long flags;
+>   
+>   	signal = NULL;
+>   	if (unlikely(!llist_empty(&b->signaled_requests)))
+> @@ -226,10 +231,10 @@ static void signal_irq_work(struct irq_work *work)
+>   			 * spinlock as the callback chain may end up adding
+>   			 * more signalers to the same context or engine.
+>   			 */
+> -			spin_lock(&ce->signal_lock);
+> +			spin_lock_irqsave(&ce->signal_lock, flags);
+>   			list_del_rcu(&rq->signal_link);
+>   			release = remove_signaling_context(b, ce);
+> -			spin_unlock(&ce->signal_lock);
+> +			spin_unlock_irqrestore(&ce->signal_lock, flags);
+>   			if (release) {
+>   				if (intel_timeline_is_last(ce->timeline, rq))
+>   					add_retire(b, ce->timeline);
+> @@ -254,11 +259,11 @@ static void signal_irq_work(struct irq_work *work)
+>   		if (rq->engine->sched_engine->retire_inflight_request_prio)
+>   			rq->engine->sched_engine->retire_inflight_request_prio(rq);
+>   
+> -		spin_lock(&rq->lock);
+> +		spin_lock_irqsave(&rq->lock, flags);
+>   		list_replace(&rq->fence.cb_list, &cb_list);
+>   		__dma_fence_signal__timestamp(&rq->fence, timestamp);
+>   		__dma_fence_signal__notify(&rq->fence, &cb_list);
+> -		spin_unlock(&rq->lock);
+> +		spin_unlock_irqrestore(&rq->lock, flags);
+>   
+>   		i915_request_put(rq);
+>   	}
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> index 12f1ba7ca9c1..e9102f7246f5 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> @@ -4338,10 +4338,11 @@ static void guc_bump_inflight_request_prio(struct i915_request *rq,
+>   static void guc_retire_inflight_request_prio(struct i915_request *rq)
+>   {
+>   	struct intel_context *ce = request_to_scheduling_context(rq);
+> +	unsigned long flags;
+>   
+> -	spin_lock(&ce->guc_state.lock);
+> +	spin_lock_irqsave(&ce->guc_state.lock, flags);
+>   	guc_prio_fini(rq, ce);
+> -	spin_unlock(&ce->guc_state.lock);
+> +	spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+>   }
+>   
+>   static void sanitize_hwsp(struct intel_engine_cs *engine)
