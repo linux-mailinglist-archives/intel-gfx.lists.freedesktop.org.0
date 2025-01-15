@@ -2,71 +2,97 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A81C5A129F4
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jan 2025 18:33:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 14FD1A129EC
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jan 2025 18:33:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 439C210E79F;
-	Wed, 15 Jan 2025 17:33:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 69F5410E119;
+	Wed, 15 Jan 2025 17:33:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="ORstufDz";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="aIWyknF1";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-il1-x14a.google.com (mail-il1-x14a.google.com
- [IPv6:2607:f8b0:4864:20::14a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6FF6410E475
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Jan 2025 19:07:23 +0000 (UTC)
-Received: by mail-il1-x14a.google.com with SMTP id
- e9e14a558f8ab-3a814c7d58eso47392295ab.1
- for <intel-gfx@lists.freedesktop.org>; Tue, 14 Jan 2025 11:07:23 -0800 (PST)
+Received: from mail-vs1-xe34.google.com (mail-vs1-xe34.google.com
+ [IPv6:2607:f8b0:4864:20::e34])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B3EB10E4B7
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jan 2025 04:28:43 +0000 (UTC)
+Received: by mail-vs1-xe34.google.com with SMTP id
+ ada2fe7eead31-4afe4f1ce18so1988295137.3
+ for <intel-gfx@lists.freedesktop.org>; Tue, 14 Jan 2025 20:28:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1736881642; x=1737486442;
+ d=google.com; s=20230601; t=1736915322; x=1737520122;
  darn=lists.freedesktop.org; 
- h=cc:to:from:subject:message-id:mime-version:date:from:to:cc:subject
- :date:message-id:reply-to;
- bh=HkXEGKaHS4Wap2DZ8mnEQl68mT1GrP1ybYkz9IG2DCI=;
- b=ORstufDzvtSZ6e1EbbWDwS5HnQgNMKJQ/6quo9H+2Y8cePeuyU58GE6voEhfWqTWcH
- /opr7IMkp/6wucrhdqPBDSYJTkRdI7ReCTMoykI4yb8tcOB2S+/pSsX6H8dYqU+obHit
- GGn/f5tAVvAiuV0MV6x8CDVC6zjm8X10vKBhaoKsPZMvgb8INwPuGX/vaWxKy+ghFzNK
- xTJr5Y27kHHsaGH9Kb6gD4qbjtY0EIEMPUrOwvKd1VUSr38lZ3CSZMXtDmN0G0+MPLIa
- GfQ9ngwmcSBIjG8q/umdLZc0VnUedaesbKy41QrGC39xAW9LXDhAdgfIZxauocJm7duI
- PXeg==
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=SiaIVXIhhM1sp+r10z/vJyY+tzDQMN+pj3uAuSz6ZII=;
+ b=aIWyknF1MpbwJm8vMsCSpHf82cZMGD/SDkoW1QdrnArBa8AVIKVjQTpSTYeU+v7gYr
+ j+/LaCBHSKAFApUkoRvJx/E+p/ylwztrbNbutoP4x5oqaE+KU/llO6LpgyyD3h8ldS89
+ PG/xQG3zI3TKFlvXTOsfx7szxermAvD1fDwZtyznSRBKi57IUuxa0WxAbE+HJk3ficUJ
+ 1RJo+6ntundNcq65FerBDwyRmrjn2tF4zYioQLoWJwFDYDC5u36jHoLRzrcUrm8xRCAE
+ 6p7rVrtBASqr7FjcNY71iePKzmSUJnm2n2eCRUaZxNQnPR3uZcoxtddi/q/mbfFPJECB
+ XAVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1736881643; x=1737486443;
- h=cc:to:from:subject:message-id:mime-version:date:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=HkXEGKaHS4Wap2DZ8mnEQl68mT1GrP1ybYkz9IG2DCI=;
- b=sFQwsEvF0Oy5faHphLxW9M5ZdthK1tk78PE8UjytptrhsPMyHaxD+oeUqkoVlMuImP
- za13GrQVi2q+snSX97seJh1V4KKe3lROYtWsPvUaJApKVt0qZ7V7hN/W4nuTlOulnBgR
- O59gU+0IP2OpdSDAx54cqCu4WZ+ewszJRsD4Rhw6i2QHUd5FU8qQ1Xp90lYEc5vu1DN9
- CqFGW3y8w76513UH6bwydFmIqWLYoLVA+qGKQX8q1uP8CRnC1YsbDTMgIgLSCvrz+Nou
- SqDj+hsdS7fPVwyob0jEkZ/MU9+YfnSD+mmghjt5wrkdOigBqkXOH733Sj3083JQrobF
- PycA==
+ d=1e100.net; s=20230601; t=1736915322; x=1737520122;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=SiaIVXIhhM1sp+r10z/vJyY+tzDQMN+pj3uAuSz6ZII=;
+ b=MBNkyqmUvCA0epYmEj3be3JZkzcTtu/5Zzus48/PlQYKsAWnUS1nZeIxZkRQSyqAw3
+ kaU1OlleJlKxqgQlExczcAvCqdG02ijk425ANJUM7r4CCP3J07JJJ7SJwBpYk3nCjmHA
+ cn9URs+7JmZPDHLrwKq11B4280l2kLz62vfjAJFqBJMhoMpG01bRgq8XsRxcIncKqfcJ
+ MmgR44gQ3Q4HvxKY78on2PlPSNGCV2uJ/uhqjlQ5aycGBySDnL1rI+xpXm3JVCiXgNs1
+ m4v32fga6nHwoTtn8IE+WK/Xz3ErYPVC4bQhNz1Svm0NQGyuHbQaBTTFLbJnojIHuiTK
+ JNtg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWuj9fssW9qQEzI9DCofNYLtOtN5MuqTkvYQP+uWAQVza3hslGXXXS2dnSM25zIDOjnN59anjlIejY=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxFprgtH8ZRVIbTG9h6omlUciu/Rc6jhQ4ZRXLcEaveH4Sl3+aH
- pKTvrGvnrl4ivvsW8qlY7aqP48M3QH0a5zB8670EGfyAjTPe47ElSQzTWxXn6CNYTbiwZN+ol/u
- KEVlQqw==
-X-Google-Smtp-Source: AGHT+IF2yRCyQfsIAsDtYjVAP2Lbj8881E3+iRCvgYZMjLJcfAwxx4hzxEoI7N0P45DSRRSxwN8MjS/wzzlZ
-X-Received: from ilbds6.prod.google.com ([2002:a05:6e02:3f86:b0:3a7:8a40:2719])
- (user=jdenose job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:6e02:1d88:b0:3a7:8720:9e9e
- with SMTP id e9e14a558f8ab-3ce3a90ef12mr193274515ab.2.1736881642681; Tue, 14
- Jan 2025 11:07:22 -0800 (PST)
-Date: Tue, 14 Jan 2025 19:07:11 +0000
-Mime-Version: 1.0
-X-Mailer: git-send-email 2.48.0.rc2.279.g1de40edade-goog
-Message-ID: <20250114190709.1.Ia17111747d0450169dbe902e5d7ef25912a9338e@changeid>
-Subject: [PATCH] drm/i915/display: Add skip link check quirk
-From: Jonathan Denose <jdenose@google.com>
-To: LKML <linux-kernel@vger.kernel.org>
-Cc: rodrigo.vivi@intel.com, jani.nikula@linux.intel.com, 
- intel-gfx@lists.freedesktop.org, Jonathan Denose <jdenose@google.com>, 
- David Airlie <airlied@gmail.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Simona Vetter <simona@ffwll.ch>, Tvrtko Ursulin <tursulin@ursulin.net>,
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+ AJvYcCXz3SPjcq89yObiwZ3aS3Usx2gT88gjzcQE15dDwtWge8D6eXsVDrOiqwuTZ9W0p/Q3Z0Zkt3YWa8E=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx5z1R+PQd93D3KLaeNQlVXNvFqa2ujnGAcEsK9UgLLKm12Saeo
+ ApOOGzMjNyXBketvb4gk9DEZy/reVKDiard0rD0WKQVm3wWRXp+19dqzyM/pBG1++H12hU9gOQj
+ DlUHpU1WoYbbl2PKNRbx9F7TWrJq8pVSTFs6l
+X-Gm-Gg: ASbGncvf4Y4qmvHQHtk3Cieze9mDi1vYGjtMyVxZES9aubiJP9mpPy6GXIhLlJR9rLB
+ E5q9WyWyxrP0DLuzvp3aO9nL+UHcsFy7WA5Zt+Qx9O4iK1a8XsaATwE29a/kVR3KNWxgr6aA=
+X-Google-Smtp-Source: AGHT+IH/FRwv1gjMQVdrZyTpxRo/2P7ZfMOmxND6HntPtKv8PRHbhPpC3eKReWiv2QbmErnwLgBIFI50EeMrfGttcP0=
+X-Received: by 2002:a05:6102:370f:b0:4b3:c658:2a36 with SMTP id
+ ada2fe7eead31-4b3d0f8f840mr23231900137.8.1736915321756; Tue, 14 Jan 2025
+ 20:28:41 -0800 (PST)
+MIME-Version: 1.0
+References: <20250113093453.1932083-1-kirill.shutemov@linux.intel.com>
+ <20250113093453.1932083-5-kirill.shutemov@linux.intel.com>
+ <CAJD7tkYH8KO8NLJY564PRAmW-mtMfDCMTECGKyYyVAf+JtTcRA@mail.gmail.com>
+ <sct6vvupd4cp6xt66nn6sfs7w3srpx6zcxxsn6rz5qo4tz3la6@btdqsbicmrto>
+ <CAJD7tkZwgKRc2kbY9WutC8meOV+CpQSpxKSpkUorEneJJuX9og@mail.gmail.com>
+In-Reply-To: <CAJD7tkZwgKRc2kbY9WutC8meOV+CpQSpxKSpkUorEneJJuX9og@mail.gmail.com>
+From: Yu Zhao <yuzhao@google.com>
+Date: Tue, 14 Jan 2025 21:28:05 -0700
+X-Gm-Features: AbW1kvaBboGLsqdjopVloMA7j9dnfG52vbiddOAszVwHNFJf23o0CFxEnOZVFVU
+Message-ID: <CAOUHufYFKZ=agWpS3mFHyDjXs_Tq7VhM=qBayL0FtJis=W0+Tg@mail.gmail.com>
+Subject: Re: [PATCH 4/8] mm/swap: Use PG_dropbehind instead of PG_reclaim
+To: Yosry Ahmed <yosryahmed@google.com>
+Cc: "Kirill A. Shutemov" <kirill.shutemov@linux.intel.com>, 
+ Andrew Morton <akpm@linux-foundation.org>,
+ "Matthew Wilcox (Oracle)" <willy@infradead.org>, 
+ Jens Axboe <axboe@kernel.dk>, "Jason A. Donenfeld" <Jason@zx2c4.com>, 
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ Chengming Zhou <chengming.zhou@linux.dev>, 
+ Christian Brauner <brauner@kernel.org>,
+ Christophe Leroy <christophe.leroy@csgroup.eu>, 
+ Dan Carpenter <dan.carpenter@linaro.org>, David Airlie <airlied@gmail.com>, 
+ David Hildenbrand <david@redhat.com>, Hao Ge <gehao@kylinos.cn>, 
+ Jani Nikula <jani.nikula@linux.intel.com>, Johannes Weiner <hannes@cmpxchg.org>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Josef Bacik <josef@toxicpanda.com>, 
+ Masami Hiramatsu <mhiramat@kernel.org>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>, 
+ Miklos Szeredi <miklos@szeredi.hu>, Nhat Pham <nphamcs@gmail.com>, 
+ Oscar Salvador <osalvador@suse.de>, Ran Xiaokai <ran.xiaokai@zte.com.cn>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>, 
+ Steven Rostedt <rostedt@goodmis.org>, Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Vlastimil Babka <vbabka@suse.cz>, intel-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ linux-fsdevel@vger.kernel.org, linux-mm@kvack.org, 
+ linux-trace-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Wed, 15 Jan 2025 17:33:45 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -83,82 +109,126 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The display on the Advantech UTC124G3PWWW0E-ES worked fine until commit
-"drm/i915/dp: Recheck link state after modeset" was introduced. After
-this commit the display flickers intermittently as the driver code
-initiates the delayed link recheck in an infinite loop.
+On Tue, Jan 14, 2025 at 11:03=E2=80=AFAM Yosry Ahmed <yosryahmed@google.com=
+> wrote:
+>
+> On Tue, Jan 14, 2025 at 12:12=E2=80=AFAM Kirill A. Shutemov
+> <kirill.shutemov@linux.intel.com> wrote:
+> >
+> > On Mon, Jan 13, 2025 at 08:17:20AM -0800, Yosry Ahmed wrote:
+> > > On Mon, Jan 13, 2025 at 1:35=E2=80=AFAM Kirill A. Shutemov
+> > > <kirill.shutemov@linux.intel.com> wrote:
+> > > >
+> > > > The recently introduced PG_dropbehind allows for freeing folios
+> > > > immediately after writeback. Unlike PG_reclaim, it does not need vm=
+scan
+> > > > to be involved to get the folio freed.
+> > > >
+> > > > Instead of using folio_set_reclaim(), use folio_set_dropbehind() in
+> > > > lru_deactivate_file().
+> > > >
+> > > > Signed-off-by: Kirill A. Shutemov <kirill.shutemov@linux.intel.com>
+> > > > ---
+> > > >  mm/swap.c | 8 +-------
+> > > >  1 file changed, 1 insertion(+), 7 deletions(-)
+> > > >
+> > > > diff --git a/mm/swap.c b/mm/swap.c
+> > > > index fc8281ef4241..4eb33b4804a8 100644
+> > > > --- a/mm/swap.c
+> > > > +++ b/mm/swap.c
+> > > > @@ -562,14 +562,8 @@ static void lru_deactivate_file(struct lruvec =
+*lruvec, struct folio *folio)
+> > > >         folio_clear_referenced(folio);
+> > > >
+> > > >         if (folio_test_writeback(folio) || folio_test_dirty(folio))=
+ {
+> > > > -               /*
+> > > > -                * Setting the reclaim flag could race with
+> > > > -                * folio_end_writeback() and confuse readahead.  Bu=
+t the
+> > > > -                * race window is _really_ small and  it's not a cr=
+itical
+> > > > -                * problem.
+> > > > -                */
+> > > >                 lruvec_add_folio(lruvec, folio);
+> > > > -               folio_set_reclaim(folio);
+> > > > +               folio_set_dropbehind(folio);
+> > > >         } else {
+> > > >                 /*
+> > > >                  * The folio's writeback ended while it was in the =
+batch.
+> > >
+> > > Now there's a difference in behavior here depending on whether or not
+> > > the folio is under writeback (or will be written back soon). If it is=
+,
+> > > we set PG_dropbehind to get it freed right after, but if writeback ha=
+s
+> > > already ended we put it on the tail of the LRU to be freed later.
+> > >
+> > > It's a bit counterintuitive to me that folios with pending writeback
+> > > get freed faster than folios that completed their writeback already.
+> > > Am I missing something?
+> >
+> > Yeah, it is strange.
+> >
+> > I think we can drop the writeback/dirty check. Set PG_dropbehind and pu=
+t
+> > the page on the tail of LRU unconditionally. The check was required to
+> > avoid confusion with PG_readahead.
+> >
+> > Comment above the function is not valid anymore.
+>
+> My read is that we don't put dirty/writeback folios at the tail of the
+> LRU because they cannot be freed immediately and we want to give them
+> time to be written back before reclaim reaches them. So I don't think
+> we want to change that and always put the pages at the tail.
+>
+> >
+> > But the folio that is still dirty under writeback will be freed faster =
+as
+> > we get rid of the folio just after writeback is done while clean page c=
+an
+> > dangle on LRU for a while.
+>
+> Yeah if we reuse PG_dropbehind then we cannot avoid
+> folio_end_writeback() freeing the folio faster than clean ones.
+>
+> >
+> > I don't think we have any convenient place to free clean dropbehind pag=
+e
+> > other than shrink_folio_list(). Or do we?
+>
+> Not sure tbh. FWIW I am not saying it's necessarily a bad thing to
+> free dirty/writeback folios before clean ones when deactivated, it's
+> just strange and a behavioral change from today that I wanted to point
+> out. Perhaps that's the best we can do for now.
+>
+> >
+> > Looking at shrink_folio_list(), I think we need to bypass page demotion
+> > for PG_dropbehind pages.
 
-To resolve this issue for the Advantech device, add a quirk to skip over
-the delayed link recheck.
+I agree with Yosry. I don't think lru_deactivate_file() is still
+needed -- it was needed only because when truncation fails to free a
+dirty/writeback folio, page reclaim can do that quickly. For other
+conditions that mapping_evict_folio() returns 0, there isn't much page
+reclaim can do, and those conditions are not deactivate_file_folio()
+and lru_deactivate_file()'s intentions. So the following should be
+enough, and it's a lot cleaner :
 
-Signed-off-by: Jonathan Denose <jdenose@google.com>
----
+diff --git a/mm/truncate.c b/mm/truncate.c
+index e2e115adfbc5..12d2aa608517 100644
+--- a/mm/truncate.c
++++ b/mm/truncate.c
+@@ -486,7 +486,7 @@ unsigned long mapping_try_invalidate(struct
+address_space *mapping,
+                         * of interest and try to speed up its reclaim.
+                         */
+                        if (!ret) {
+-                               deactivate_file_folio(folio);
++                               folio_set_dropbehind(folio)
+                                /* Likely in the lru cache of a remote CPU =
+*/
+                                if (nr_failed)
+                                        (*nr_failed)++;
 
- drivers/gpu/drm/i915/display/intel_dp_link_training.c | 4 +++-
- drivers/gpu/drm/i915/display/intel_quirks.c           | 8 ++++++++
- drivers/gpu/drm/i915/display/intel_quirks.h           | 1 +
- 3 files changed, 12 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-index 397cc4ebae526..7804ad38b00cd 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-@@ -32,6 +32,7 @@
- #include "intel_encoder.h"
- #include "intel_hotplug.h"
- #include "intel_panel.h"
-+#include "intel_quirks.h"
- 
- #define LT_MSG_PREFIX			"[CONNECTOR:%d:%s][ENCODER:%d:%s][%s] "
- #define LT_MSG_ARGS(_intel_dp, _dp_phy)	(_intel_dp)->attached_connector->base.base.id, \
-@@ -1622,7 +1623,8 @@ void intel_dp_start_link_train(struct intel_atomic_state *state,
- 		lt_dbg(intel_dp, DP_PHY_DPRX, "Forcing link training failure\n");
- 	} else if (passed) {
- 		intel_dp->link.seq_train_failures = 0;
--		intel_encoder_link_check_queue_work(encoder, 2000);
-+		if (!intel_has_quirk(display, QUIRK_SKIP_LINK_CHECK))
-+			intel_encoder_link_check_queue_work(encoder, 2000);
- 		return;
- 	}
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
-index 28f497ae785bb..d472a5f21f8b9 100644
---- a/drivers/gpu/drm/i915/display/intel_quirks.c
-+++ b/drivers/gpu/drm/i915/display/intel_quirks.c
-@@ -78,6 +78,12 @@ static void quirk_fw_sync_len(struct intel_dp *intel_dp)
- 	drm_info(display->drm, "Applying Fast Wake sync pulse count quirk\n");
- }
- 
-+static void quirk_skip_link_check(struct intel_display *display)
-+{
-+	intel_set_quirk(display, QUIRK_SKIP_LINK_CHECK);
-+	drm_info(display->drm, "Applying skip link check quirk\n");
-+}
-+
- struct intel_quirk {
- 	int device;
- 	int subsystem_vendor;
-@@ -229,6 +235,8 @@ static struct intel_quirk intel_quirks[] = {
- 	{ 0x3184, 0x1019, 0xa94d, quirk_increase_ddi_disabled_time },
- 	/* HP Notebook - 14-r206nv */
- 	{ 0x0f31, 0x103c, 0x220f, quirk_invert_brightness },
-+	/* Advantech UTC124G3PWWW0E-ES */
-+	{0x5a85, 0x8086, 0x2212, quirk_skip_link_check},
- };
- 
- static const struct intel_dpcd_quirk intel_dpcd_quirks[] = {
-diff --git a/drivers/gpu/drm/i915/display/intel_quirks.h b/drivers/gpu/drm/i915/display/intel_quirks.h
-index cafdebda75354..9e8f2816a4fba 100644
---- a/drivers/gpu/drm/i915/display/intel_quirks.h
-+++ b/drivers/gpu/drm/i915/display/intel_quirks.h
-@@ -20,6 +20,7 @@ enum intel_quirk_id {
- 	QUIRK_LVDS_SSC_DISABLE,
- 	QUIRK_NO_PPS_BACKLIGHT_POWER_HOOK,
- 	QUIRK_FW_SYNC_LEN,
-+	QUIRK_SKIP_LINK_CHECK,
- };
- 
- void intel_init_quirks(struct intel_display *display);
--- 
-2.48.0.rc2.279.g1de40edade-goog
-
+Then we can drop deactivate_file_folio() and lru_deactivate_file().
