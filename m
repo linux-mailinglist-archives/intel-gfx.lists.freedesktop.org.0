@@ -2,82 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF482A12C0A
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jan 2025 20:55:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C492EA12C37
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Jan 2025 21:09:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8DC3810E7D7;
-	Wed, 15 Jan 2025 19:55:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA40810E0DE;
+	Wed, 15 Jan 2025 20:09:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="HIACCKFx";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="mMh7oPcJ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com
- [IPv6:2a00:1450:4864:20::233])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F02E10E101
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jan 2025 19:55:14 +0000 (UTC)
-Received: by mail-lj1-x233.google.com with SMTP id
- 38308e7fff4ca-304d9a1f198so1630341fa.0
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Jan 2025 11:55:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1736970913; x=1737575713; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=XJN5ebK7OW6iLbSLx/FF2q1Eia/Ds1oU8HSyiubQ6Ok=;
- b=HIACCKFx0/WqtoVQ2ypRp+jjJ3/ZRw8akvso2aKL1VBeeInbSeAyFqQnbAFeKV2J6/
- aGveGwnIxXWCpwLkF1Szse1kYO0BUmDbyE+Gos2W0/nPNIgcqg6Dpb+q63fjzoMZw29j
- 8YlnZDMcX+1xv8gDr5dC4GfVGNhQvFqAg87rJUA06wrBy9jkJbQWVAVa9B/w8PYOGdNG
- lsfCDgHNlEMXl5BJXXtrQEKENhk85+oLj9hxShwLRJb18/1nuw6AyWonmyPBUMnRdVGT
- BtaLOHtAPqappikecYAksEZW1AY/gNTV7B8oltU0EAn2m6BhxEk0FHt+bkCq4872oTRo
- kV7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1736970913; x=1737575713;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=XJN5ebK7OW6iLbSLx/FF2q1Eia/Ds1oU8HSyiubQ6Ok=;
- b=A0lAYaZajPvf9TPprmKpWCfXrqPgIqzv92xhZ2OfGRfuDgBhrxwqealiZyGGRbXTFI
- TzDZmJn3TJl8LyH2mK4Xp0jVkY2WdDiFCftax1EyQFJigKi9HTT0GAw+S9O48GFscoul
- 0alhwJb8UJV6B1WVN0NR4v6ckRui6Ahq5zWiatzz87BLVLKpCkmQm10evJsCdvU4VBXS
- aClIysF3VrXZCuuwfm9oae9c8laW+XAYFOKXXjr07kUNRgt6CBuREUyH61kzaxfQsuel
- mEJkJ5uZMT+04AvoZitxeR3lIjBzfdhZz4wd3DriPOooQ5n7i4aSPc2P72KRDqI7Kq2z
- UWnA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXCpRAZqX3EJ1omceriTbyHiBp7zg55TxSkqFJ1d3htleD0gpfjZI+kmX5cK0vHfou21rbQlhHRl7E=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy7R8d0+jPCMm2lp58eL6DeAP9uiTojMUbpcbqsMVGvG75JreWZ
- ZCVn/ULohEt7FTaaJo5xntLJPOLafaeDdIfsSq6rhqEpkkGEafF+Wb1uo4+EgBO2lCLmsfjWGAQ
- z
-X-Gm-Gg: ASbGncvnAHgI3yaWBWBkccAga+7Ag276jQbfypKOxjMoUgUffcvwAfCsLk6v1o8QOSy
- w8rTkSXu24Vw6Hf1J4ihbQoeSIdMR2GF2nSPO3uLNFENNw84+zzxjhTCuEiX2W9zP41jnyJOKfa
- uYvpkG16IQR4q1AQn8azrq4E3QFqPQIxWordkdWdDh52Tn1nQiscWzBj/HRPKwUYODYHzIGx0F7
- arecWU3mtE/XR7ObS4D1b+wkui+WwV8OUTAys99OI8hiev78yNBhjhBal/j0fYKouJqD29yj9FU
- WaBcuQW6NG824yX1/uTTOpexILKl2CQj+9OZ
-X-Google-Smtp-Source: AGHT+IE0ugKkahzj0cfMJc+PsKKs96j5zkj6kkBcy/JRIV0NpqT2n3Lkf/N25YLPDxacK3DZ04wl7w==
-X-Received: by 2002:a05:651c:2223:b0:2ff:a7c1:8c2e with SMTP id
- 38308e7fff4ca-305f45f56a7mr107029291fa.28.1736970912660; 
- Wed, 15 Jan 2025 11:55:12 -0800 (PST)
-Received: from eriador.lumag.spb.ru
- (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
- by smtp.gmail.com with ESMTPSA id
- 38308e7fff4ca-305ff1c7a9esm22963101fa.73.2025.01.15.11.55.11
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 15 Jan 2025 11:55:11 -0800 (PST)
-Date: Wed, 15 Jan 2025 21:55:10 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Arun R Murthy <arun.r.murthy@intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, suraj.kandpal@intel.com, uma.shankar@intel.com,
- Importedfromf20241218-dpst-v7-0-81bfe7d08c2d@intel.com,
- 20240705091333.328322-1-mohammed.thasleem@intel.com
-Subject: Re: [PATCH v7 02/14] drm: Define ImageEnhancemenT LUT structures
- exposed to user
-Message-ID: <i6j3zi5tlnyk2eonmpa5h5qitwgzs2nuzrvsasde3dci6a4ngl@qhbtsjbhq6xr>
-References: <20250110-dpst-v7-0-605cb0271162@intel.com>
- <20250110-dpst-v7-2-605cb0271162@intel.com>
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A0A1E10E0F9;
+ Wed, 15 Jan 2025 20:09:25 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id 41F7BA42164;
+ Wed, 15 Jan 2025 20:07:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9A6BC4CED1;
+ Wed, 15 Jan 2025 20:09:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1736971763;
+ bh=HKd2BYN0EJzvcqr3Xx3Vueop4tDJh+K1d/v1F43ixq4=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=mMh7oPcJEGeeR1CbLFNvT6sYm/PkFQwDWfBsQ90yztglpZ3/YZEBVnarQ1AC7szWo
+ 7TIaoC/5Ds9yuqwsCSv511HrZQrz9DYKTCs5teywBQChtbtwCLdUU15B57wDXyESFf
+ A/x13wKP5lj3nSG+MtRjOv+yVwR6g+BlMg1RaQLmyhmo5lqJ4XKmsH9giN7zUcgT0G
+ JjdlmRxxbsFDdoqRPMfd7BNNsEMs0mR8Cyqj/oCkFnsbRsTmQflWeOU3bRrVWJH9mq
+ wFz46x9sk38sYnuYTKWOXCW+bAgDPbIH7khSU1whNzE/e3Hn5P+2qU6Lun6bUVc/Ly
+ lJaxe0RpKwpyA==
+Date: Wed, 15 Jan 2025 20:09:21 +0000
+From: Wei Liu <wei.liu@kernel.org>
+To: Joel Granados <joel.granados@kernel.org>
+Cc: Thomas =?iso-8859-1?Q?Wei=DFschuh?= <linux@weissschuh.net>,
+ Kees Cook <kees@kernel.org>, Luis Chamberlain <mcgrof@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org,
+ linux-s390@vger.kernel.org, linux-crypto@vger.kernel.org,
+ openipmi-developer@lists.sourceforge.net,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-hyperv@vger.kernel.org,
+ linux-rdma@vger.kernel.org, linux-raid@vger.kernel.org,
+ linux-scsi@vger.kernel.org, linux-serial@vger.kernel.org,
+ xen-devel@lists.xenproject.org, linux-aio@kvack.org,
+ linux-fsdevel@vger.kernel.org, netfs@lists.linux.dev,
+ codalist@coda.cs.cmu.edu, linux-mm@kvack.org,
+ linux-nfs@vger.kernel.org, ocfs2-devel@lists.linux.dev,
+ fsverity@lists.linux.dev, linux-xfs@vger.kernel.org,
+ io-uring@vger.kernel.org, bpf@vger.kernel.org,
+ kexec@lists.infradead.org, linux-trace-kernel@vger.kernel.org,
+ linux-hardening@vger.kernel.org, apparmor@lists.ubuntu.com,
+ linux-security-module@vger.kernel.org, keyrings@vger.kernel.org,
+ Song Liu <song@kernel.org>,
+ "Steven Rostedt (Google)" <rostedt@goodmis.org>,
+ "Martin K. Petersen" <martin.petersen@oracle.com>,
+ "Darrick J. Wong" <djwong@kernel.org>, Jani Nikula <jani.nikula@intel.com>,
+ Corey Minyard <cminyard@mvista.com>, Wei Liu <wei.liu@kernel.org>
+Subject: Re: [PATCH v2] treewide: const qualify ctl_tables where applicable
+Message-ID: <Z4gV8QNnafm-iCC4@liuwe-devbox-debian-v2>
+References: <20250110-jag-ctl_table_const-v2-1-0000e1663144@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250110-dpst-v7-2-605cb0271162@intel.com>
+In-Reply-To: <20250110-jag-ctl_table_const-v2-1-0000e1663144@kernel.org>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,126 +79,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jan 10, 2025 at 01:15:30AM +0530, Arun R Murthy wrote:
-> ImageEnhancemenT(IET) hardware interpolates the LUT value to generate
-> the enhanced output image. LUT takes an input value, outputs a new
-> value based on the data within the LUT. 1D LUT can remap individual
-> input values to new output values based on the LUT sample. LUT can be
-> interpolated by the hardware by multiple modes Ex: Direct Lookup LUT,
-> Multiplicative LUT etc
-> The list of supported mode by hardware along with the format(exponent
-> mantissa) is exposed to user by the iet_lut_caps property. Maximum
-> format being 8.24 i.e 8 exponent and 24 mantissa.
-> For illustration a hardware supporting 1.9 format denotes this as
-> 0x10001FF. In order to know the exponent do a bitwise AND with
-> 0xF000000. The LUT value to be provided by user would be a 10bit value
-> with 1 bit integer and 9 bit fractional value.
-> 
-> Multiple formats can be supported, hence pointer is used over here.
-> User can then provide the LUT with any one of the supported modes in
-> any of the supported formats.
-> The entries in the LUT can vary depending on the hardware capability
-> with max being 255. This will also be exposed as iet_lut_caps so user
-> can generate a LUT with the specified entries.
-> 
-> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> ---
->  include/uapi/drm/drm_mode.h | 50 +++++++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 50 insertions(+)
-> 
-> diff --git a/include/uapi/drm/drm_mode.h b/include/uapi/drm/drm_mode.h
-> index 7a7039381142bb5dba269bdaec42c18be34e2d05..056c2efef1589848034afc0089f1838c2547bcf8 100644
-> --- a/include/uapi/drm/drm_mode.h
-> +++ b/include/uapi/drm/drm_mode.h
-> @@ -1367,6 +1367,17 @@ struct drm_mode_closefb {
+On Fri, Jan 10, 2025 at 03:16:08PM +0100, Joel Granados wrote:
+[...]
+> diff --git a/drivers/hv/hv_common.c b/drivers/hv/hv_common.c
+> index 7a35c82976e0..9453f0c26f2a 100644
+> --- a/drivers/hv/hv_common.c
+> +++ b/drivers/hv/hv_common.c
+> @@ -141,7 +141,7 @@ static int sysctl_record_panic_msg = 1;
+>   * sysctl option to allow the user to control whether kmsg data should be
+>   * reported to Hyper-V on panic.
 >   */
->  #define DRM_MODE_HISTOGRAM_HSV_MAX_RGB			(1 << 0)
->  
-> +/* LUT values are points on exponential graph with x axis and y-axis y=f(x) */
+> -static struct ctl_table hv_ctl_table[] = {
+> +static const struct ctl_table hv_ctl_table[] = {
+>  	{
+>  		.procname	= "hyperv_record_panic_msg",
+>  		.data		= &sysctl_record_panic_msg,
 
-Huh?
-
-> +#define DRM_MODE_IET_LOOKUP_LUT				(1 << 0)
-
-Again, what is the reason for a shift? Can these values be OR'd?
-
-> +/*
-> + * LUT values, points on negative exponential graph with x-axis and y-axis
-> + * y = y/x so upon multiplying x, y is obtained, hence multiplicative. The
-
-Can't parse this sentence.
-
-> + * format of LUT can at max be 8.24(8integer 24 fractional) represented by
-> + * u32. Depending on the hardware capability and exponent mantissa can be
-> + * chosen.
-
-What does that mean? How is it choosen?
-
-> + */
-> +#define DRM_MODE_IET_MULTIPLICATIVE			(1 << 1)
-> +
->  /**
->   * struct drm_histogram_caps
->   *
-> @@ -1414,6 +1425,45 @@ struct drm_histogram {
->  	__u32 nr_elements;
->  };
->  
-> +/**
-> + * struct drm_iet_caps
-> + *
-> + * @iet_mode: pixel factor enhancement modes defined in the above macros
-> + * @iet_sample_format: holds the address of an array of u32 LUT sample formats
-> + *		       depending on the hardware capability. Max being 8.24
-> + *		       Doing a bitwise AND will get the present sample.
-> + *		       Ex: for 1 integer 9 fraction AND with 0x10001FF
-
-?? Can hardware support 16.16? 32.0?
-
-> + * @nr_iet_sample_formats: number of iet_sample_formsts supported by the
-> + *			   hardware
-> + * @nr_iet_lut_entries: number of LUT entries
-> + */
-> +struct drm_iet_caps {
-> +	__u8 iet_mode;
-> +	u64 iet_sample_format;
-> +	__u32 nr_iet_sample_formats;
-> +	__u32 nr_iet_lut_entries;
-> +};
-> +
-> +/**
-> + * struct drm_iet_1dlut_sample
-
-Is it supposed to be used with DRM_MODE_IET_MULTIPLICATIVE only? Or is
-it supposed to be used with DRM_MODE_IET_LOOKUP_LUT? In the latter case
-what should be the iet_format value?
-
-> + * @iet_mode: image enhancement mode, this will also convey the channel.
-> + * @iet_format: LUT exponent and mantissa format, max being 8.24
-> + * @data_ptr: pointer to the array of values which is of type u32.
-> + *	      1 channel: 10 bit corrected value and remaining bits are reserved.
-> + *	      multi channel: pointer to struct drm_color_lut
-> + * @nr_elements: number of entries pointed by the data @data_ptr
-> + * @reserved: reserved for future use
-> + * @reserved1: reserved for future use
-> + */
-> +struct drm_iet_1dlut_sample {
-> +	__u8 iet_mode;
-> +	__u32 iet_format;
-> +	__u64 data_ptr;
-> +	__u32 nr_elements;
-> +	__u32 reserved;
-> +	__u32 reserved1;
-> +};
-> +
->  #if defined(__cplusplus)
->  }
->  #endif
-> 
-> -- 
-> 2.25.1
-> 
-
--- 
-With best wishes
-Dmitry
+Acked-by: Wei Liu <wei.liu@kernel.org>
