@@ -2,86 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FE0BA13A9F
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2025 14:13:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E7F04A13ABA
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2025 14:18:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 364F710E965;
-	Thu, 16 Jan 2025 13:13:57 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="lyClBcz8";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8CC1310E95F;
+	Thu, 16 Jan 2025 13:18:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com
- [209.85.167.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E44E10E965
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jan 2025 13:13:56 +0000 (UTC)
-Received: by mail-lf1-f52.google.com with SMTP id
- 2adb3069b0e04-5401bd6ccadso989092e87.2
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jan 2025 05:13:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1737033175; x=1737637975; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=IN5iErEK204hTsFbOEcPU9O7KFDei+gXebS5ZQrhPCE=;
- b=lyClBcz8iZ3Uf6ol3oG1TYaXPgNY6Q30Hog8ODdFX2iYHrH8iATSwePs3nBRBA80vz
- XLTaCCGyXHRI/+uIUakZ0ylPGrFeQMgCCa+ZiEiXNRsloESIuAyXyKU8lcC0bZe5Od8B
- 9pbHhznVC3LR6p60bKGZ+TPZGLJdVb/WXODRdhtwvwRcrSkIH1h2fenwp17+MLjjYDaG
- RsJc6SXvJzkJYvCW5BYxwzgqM6k6EnYdfgOQRQGftMtFKrms69ENZtHGNFQEvgfSqSCD
- DNS2QiNAnpQJnHfrxKeT0qL7vUVocyt/HLhVzUdtsm2EfXnqqeNCPeh5+WK7+Jx3uzjM
- GtcQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1737033175; x=1737637975;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=IN5iErEK204hTsFbOEcPU9O7KFDei+gXebS5ZQrhPCE=;
- b=QXi5RayNargLOeYJ3yN3x7ICB36zL3DtFCl/6349f+WznULR/ropaCvfA9uCWWfnlU
- fNv2UPoUIfch51s8F6/yLMZEqd8zcm+J5kjezO3AwfizebIiJHNkr3InlJ8mhhOc2IuV
- AKZ/q3yvgpr0pAmauj4OKL5bvUSbfzvpBT3YhKsWIXTxLPKQSIGVDn3H2VVDPomV6tp8
- pc/Xy+WWeRJa1CMqBAsgn9YZAXDZT4t1dd7NgH4HY1/qdmMEFv+sGXbZVyCaNPjuaTah
- wcYgJZhkR3XacfG8MtzOcVEbgrBY+h0UGAFbPCd7bBEbyADHRM6aAalWCk1lBWLOywuF
- aZgA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCV2LwAJ812g7Jvx23lusBACkpzwkD5LwFe5xO/IauWPT7RyqOcG7/Zg6Hs3/DlqjX37XHu2hUXtFgo=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxecCMTeZpkYYxAHrVzyFnMGcxmOCdlk5J2EBbB/lPkYZc5egZo
- mMSv76fsDojbl4XkUWCxJBYCck3N2T+KWOY945yM6GQJklHWMUDLaIbYtvsPqfE=
-X-Gm-Gg: ASbGncsHPZQDgZzCjcqQQi/7ywyLWdfQm2TI7ub0barC+g8ux9tNnTQ+S8iyhjYdRNW
- dH4xzudolwzsL54XULSbJ9hKPHTLxWXuEL0yeKcX/r2aVfMmeX8iHHwb+A+3RTor4H6jGzjNDJe
- tuSwiXo8q9OPzty/lnBxi/popwHIpvk8JYdUHB0RlCiiJRQug79u5W2qpvUZksqPVwQioBs4N2R
- 5WQK5A7+WwFp8f8bEEwCI6QwwK+8DESbY2DkPcDU2k2EEMOXojVB32HmibXXwLnbd7Hmzzci0/6
- 8GoZwg4FTiSsYEBIXz4G9HbJAcjFMcs68Em6
-X-Google-Smtp-Source: AGHT+IHsMwVVXHTANfdMqD7v8ryQa3xtKKNCW75Lyt2j8h7YnEXxIQ/19jtCGN+l81P00mW/j/xJOw==
-X-Received: by 2002:a05:6512:3b90:b0:542:214c:533 with SMTP id
- 2adb3069b0e04-54284559eefmr11207075e87.30.1737033174553; 
- Thu, 16 Jan 2025 05:12:54 -0800 (PST)
-Received: from eriador.lumag.spb.ru
- (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
- by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-5428be496desm2319317e87.44.2025.01.16.05.12.52
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 16 Jan 2025 05:12:53 -0800 (PST)
-Date: Thu, 16 Jan 2025 15:12:50 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>
-Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Kandpal,
- Suraj" <suraj.kandpal@intel.com>, 
- "Shankar, Uma" <uma.shankar@intel.com>, "Bhattacharjee,
- Susanta" <susanta.bhattacharjee@intel.com>
-Subject: Re: [PATCH v7 01/14] drm: Define histogram structures exposed to user
-Message-ID: <yyn35zkvqfajyyata2kuwfswfzjf3oqv4hzq5pc5rw7o2sporu@vsybecmh54ow>
-References: <20250110-dpst-v7-0-605cb0271162@intel.com>
- <20250110-dpst-v7-1-605cb0271162@intel.com>
- <kwklrd2zjovabsa537jwg3bpqilvhfmxxyr4exmqbi2b35uxej@mhequ6ttibsd>
- <IA0PR11MB73079537444DAA9596F0A837BA1A2@IA0PR11MB7307.namprd11.prod.outlook.com>
- <CAA8EJpojDKtcG=amuwT7B+iaU_A9EwcvpkyyQ8nupKtsF_79gg@mail.gmail.com>
- <IA0PR11MB73070AE8FD9EAF5E47A56A96BA1A2@IA0PR11MB7307.namprd11.prod.outlook.com>
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2590C10E95F;
+ Thu, 16 Jan 2025 13:18:25 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7892406905083303061=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <IA0PR11MB73070AE8FD9EAF5E47A56A96BA1A2@IA0PR11MB7307.namprd11.prod.outlook.com>
+Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_drm/i915/gt=3A_Use_spin?=
+ =?utf-8?q?=5Flock=5Firqsave=28=29_in_interruptible_context?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Krzysztof Karas" <krzysztof.karas@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 16 Jan 2025 13:18:25 -0000
+Message-ID: <173703350514.268104.10075462320208944554@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <pusppq5ybyszau2oocboj3mtj5x574gwij323jlclm5zxvimmu@mnfg6odxbpsv>
+In-Reply-To: <pusppq5ybyszau2oocboj3mtj5x574gwij323jlclm5zxvimmu@mnfg6odxbpsv>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,86 +37,249 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 16, 2025 at 12:33:20PM +0000, Murthy, Arun R wrote:
-> > > > On Fri, Jan 10, 2025 at 01:15:29AM +0530, Arun R Murthy wrote:
-> > > > > Display Histogram is an array of bins and can be generated in many
-> > > > > ways referred to as modes.
-> > > > > Ex: HSV max(RGB), Wighted RGB etc.
-> > > > >
-> > > > > Understanding the histogram data format(Ex: HSV max(RGB))
-> > > > > Histogram is just the pixel count.
-> > > > > For a maximum resolution of 10k (10240 x 4320 = 44236800)
-> > > > > 25 bits should be sufficient to represent this along with a buffer
-> > > > > of
-> > > > > 7 bits(future use) u32 is being considered.
-> > > > > max(RGB) can be 255 i.e 0xFF 8 bit, considering the most
-> > > > > significant 5 bits, hence 32 bins.
-> > > > > Below mentioned algorithm illustrates the histogram generation in
-> > > > > hardware.
-> > > > >
-> > > > > hist[32] = {0};
-> > > > > for (i = 0; i < resolution; i++) {
-> > > > >     bin = max(RGB[i]);
-> > > > >     bin = bin >> 3; /* consider the most significant bits */
-> > > > >     hist[bin]++;
-> > > > > }
-> > > > > If the entire image is Red color then max(255,0,0) is 255 so the
-> > > > > pixel count of each pixels will be placed in the last bin. Hence
-> > > > > except hist[31] all other bins will have a value zero.
-> > > > > Generated histogram in this case would be hist[32] =
-> > > > > {0,0,....44236800}
-> > > > >
-> > > > > Description of the structures, properties defined are documented
-> > > > > in the header file include/uapi/drm/drm_mode.h
-> > > > >
-> > > > > Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> > > > > ---
-> > > > >  include/uapi/drm/drm_mode.h | 59
-> > > > > +++++++++++++++++++++++++++++++++++++++++++++
-> > > > >  1 file changed, 59 insertions(+)
-> > > > >
-> > > > > diff --git a/include/uapi/drm/drm_mode.h
-> > > > > b/include/uapi/drm/drm_mode.h index
-> > > > >
-> > > >
-> > c082810c08a8b234ef2672ecf54fc8c05ddc2bd3..7a7039381142bb5dba269bda
-> > > > ec42
-> > > > > c18be34e2d05 100644
-> > > > > --- a/include/uapi/drm/drm_mode.h
-> > > > > +++ b/include/uapi/drm/drm_mode.h
-> > > > > @@ -1355,6 +1355,65 @@ struct drm_mode_closefb {
-> > > > >     __u32 pad;
-> > > > >  };
-> > > > >
-> > > > > +/*
-> > > > > + * Maximum resolution at present 10k, 10240x4320 = 44236800
-> > > > > + * can be denoted in 25bits. With an additional 7 bits in buffer
-> > > > > +each bin
-> > > > > + * can be a u32 value.
-> > > > > + * Maximum value of max(RGB) is 255, so max 255 bins.
-> > > >
-> > > > HDR planes have higher max value for a component.
-> > > > Likewise even in an RGB24 case there are 256 possible values. It's
-> > > > not clear why
-> > > > 0 gets excluded.
-> > > >
-> > > This applies to only SDR and excludes HDR.
-> > 
-> > Why?
-> > 
-> We are limiting to only SDR. HDR includes a broad range of color and finer details,
-> which essentially means its an enhanced image.
-> We are trying to enhance the image quality of SDR with the support of histogram.
+--===============7892406905083303061==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-You are defining generic API. It might be broader than your existing
-usecase. Please consider supporting HDR too.
+== Series Details ==
 
-> > > RGB in hex can have a maximum value of 0xFF { RGB (255, 255, 255) }
-> > >
+Series: drm/i915/gt: Use spin_lock_irqsave() in interruptible context
+URL   : https://patchwork.freedesktop.org/series/143600/
+State : failure
 
--- 
-With best wishes
-Dmitry
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_15966 -> Patchwork_143600v1
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_143600v1 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_143600v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143600v1/index.html
+
+Participating hosts (42 -> 40)
+------------------------------
+
+  Missing    (2): fi-blb-e6850 fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_143600v1:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@kms_busy@basic@modeset:
+    - bat-apl-1:          [PASS][1] -> [DMESG-WARN][2] +1 other test dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15966/bat-apl-1/igt@kms_busy@basic@modeset.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143600v1/bat-apl-1/igt@kms_busy@basic@modeset.html
+
+  * igt@kms_cursor_legacy@basic-flip-before-cursor-legacy:
+    - fi-kbl-7567u:       [PASS][3] -> [DMESG-WARN][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15966/fi-kbl-7567u/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143600v1/fi-kbl-7567u/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_143600v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - bat-rpls-4:         [PASS][5] -> [FAIL][6] ([i915#13401])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15966/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143600v1/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live:
+    - bat-arlh-3:         [PASS][7] -> [DMESG-FAIL][8] ([i915#12061] / [i915#12435])
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15966/bat-arlh-3/igt@i915_selftest@live.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143600v1/bat-arlh-3/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arlh-3:         [PASS][9] -> [DMESG-FAIL][10] ([i915#12061])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15966/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143600v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+    - bat-mtlp-6:         [PASS][11] -> [DMESG-FAIL][12] ([i915#12061]) +1 other test dmesg-fail
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15966/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143600v1/bat-mtlp-6/igt@i915_selftest@live@workarounds.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
+    - bat-dg2-11:         [PASS][13] -> [SKIP][14] ([i915#9197]) +2 other tests skip
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15966/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143600v1/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@gt_lrc:
+    - bat-twl-1:          [INCOMPLETE][15] ([i915#9413]) -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15966/bat-twl-1/igt@i915_selftest@live@gt_lrc.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143600v1/bat-twl-1/igt@i915_selftest@live@gt_lrc.html
+
+  
+#### Warnings ####
+
+  * igt@gem_exec_gttfill@basic:
+    - fi-pnv-d510:        [SKIP][17] -> [ABORT][18] ([i915#13169])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15966/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143600v1/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#12435]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12435
+  [i915#13169]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13169
+  [i915#13401]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13401
+  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
+  [i915#9413]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_15966 -> Patchwork_143600v1
+
+  CI-20190529: 20190529
+  CI_DRM_15966: 2334d1179d652eb4032fcb0d8e6f53cbc6a1011c @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8194: c505b5e9853c3270751f264b0d4055d4d7ae13ce @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_143600v1: 2334d1179d652eb4032fcb0d8e6f53cbc6a1011c @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143600v1/index.html
+
+--===============7892406905083303061==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/gt: Use spin_lock_irqsave() in interruptible context</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/143600/">https://patchwork.freedesktop.org/series/143600/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143600v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143600v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_15966 -&gt; Patchwork_143600v1</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_143600v1 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_143600v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143600v1/index.html</p>
+<h2>Participating hosts (42 -&gt; 40)</h2>
+<p>Missing    (2): fi-blb-e6850 fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_143600v1:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@kms_busy@basic@modeset:</p>
+<ul>
+<li>bat-apl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15966/bat-apl-1/igt@kms_busy@basic@modeset.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143600v1/bat-apl-1/igt@kms_busy@basic@modeset.html">DMESG-WARN</a> +1 other test dmesg-warn</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-before-cursor-legacy:</p>
+<ul>
+<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15966/fi-kbl-7567u/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143600v1/fi-kbl-7567u/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html">DMESG-WARN</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_143600v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>bat-rpls-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15966/bat-rpls-4/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143600v1/bat-rpls-4/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13401">i915#13401</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15966/bat-arlh-3/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143600v1/bat-arlh-3/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12435">i915#12435</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15966/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143600v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>)</li>
+<li>bat-mtlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15966/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143600v1/bat-mtlp-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
+<ul>
+<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15966/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143600v1/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197">i915#9197</a>) +2 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@gt_lrc:<ul>
+<li>bat-twl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15966/bat-twl-1/igt@i915_selftest@live@gt_lrc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9413">i915#9413</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143600v1/bat-twl-1/igt@i915_selftest@live@gt_lrc.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@gem_exec_gttfill@basic:<ul>
+<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15966/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">SKIP</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143600v1/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13169">i915#13169</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_15966 -&gt; Patchwork_143600v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_15966: 2334d1179d652eb4032fcb0d8e6f53cbc6a1011c @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8194: c505b5e9853c3270751f264b0d4055d4d7ae13ce @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_143600v1: 2334d1179d652eb4032fcb0d8e6f53cbc6a1011c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============7892406905083303061==--
