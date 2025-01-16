@@ -2,52 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8E9BA142EA
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2025 21:17:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A2E43A142EB
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2025 21:17:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C91210E2DE;
-	Thu, 16 Jan 2025 20:17:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 525AE10E9F2;
+	Thu, 16 Jan 2025 20:17:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F6ySMrHy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cA7LdSrP";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B530710E2DE
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jan 2025 20:16:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1237F10E9F3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jan 2025 20:17:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737058618; x=1768594618;
+ t=1737058622; x=1768594622;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=eMlICTkfiFkopTS0rZu81jT/ZVbXq5xTKxJrD1PgTrk=;
- b=F6ySMrHy2fwQMJ5H+AnQKRthyiK9iqM3yK82NHcp4Td1pxZXqvJ3N6Rz
- YYx3cIvESUHgEY0aM4I4vYWBCAHMQDEzgVC34Ed7ZsA+c8TWH/CIp0dXv
- wjz//z2NJJnTRVwQak7bNtgteHu59HrY4I+rQZ2jysRSr0X1gOM4HrvXp
- UoOD59jdhMgCeUM3KNpTGxmMDPlQbjaNCGSAbz81Du/O9+K8H/uLhQzNf
- FPvXoeOknZCeIPnHOCRBgRMYiQm5Z7bDgLHUwkriaqOg7VVaHPXqh9+Fn
- mG23TP6HjBWfcJ+fBeaLPd//M+snKfMb4ptmiUXVgP6bhayRCnlxPNmPR Q==;
-X-CSE-ConnectionGUID: w7tnq6xaRgKssNeqFAQ1Sg==
-X-CSE-MsgGUID: Cjnq523ZRdCNCgFXq8XVsQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11317"; a="40279244"
-X-IronPort-AV: E=Sophos;i="6.13,210,1732608000"; d="scan'208";a="40279244"
+ bh=QoOYo/3YTciOJ76p6nBHVywzwD84RkgX4TzF4uhr9vw=;
+ b=cA7LdSrPyP18aUXqtwMmIlbh1f+dqpZvf+qDcJEYr1RpsCeWjswWZoB3
+ n3qXgG9v66Q+B77lbu7l6FXEj5kV23MdATDccMsgYjKbZLzN0Liwg7yLQ
+ 0Et6bsQ8Fp9hj4RpvoMQNKWwFjqW114LbVSlMpA3gAtk1LCcrHPt7W1Mq
+ nMYFTetKDtc782nJ5MR0qv1GDobFxF7XGGa+1J84rkXXP/YQV7Pr44tIe
+ r4mdy4d7TAaNeI8RUWOK/u2Uk9Tz72Sv5DWmd8YwIZl2Ad4ktIdfPNS8K
+ 3ReiswoLQ3ZdfU0TTQKbLaluvyTmpZbfqRvLh1d7bud/AheC1DTOuhUsM w==;
+X-CSE-ConnectionGUID: O5WfZVrBSZGz4LjT58THXg==
+X-CSE-MsgGUID: ZM+vk+hFRFS/09rRXhwWwA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11317"; a="40279248"
+X-IronPort-AV: E=Sophos;i="6.13,210,1732608000"; d="scan'208";a="40279248"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2025 12:16:58 -0800
-X-CSE-ConnectionGUID: giNMHuzzRgWcy1eThg1l9Q==
-X-CSE-MsgGUID: E0ogpcDmS2SPFwxDMlfXoQ==
+ 16 Jan 2025 12:17:01 -0800
+X-CSE-ConnectionGUID: Doe6sU5/TCKaiPLR5iDEGA==
+X-CSE-MsgGUID: EEZ1Uct/TaKkYBuO433LVA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,210,1732608000"; d="scan'208";a="105743494"
+X-IronPort-AV: E=Sophos;i="6.13,210,1732608000"; d="scan'208";a="105743497"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 16 Jan 2025 12:16:56 -0800
+ by fmviesa008.fm.intel.com with SMTP; 16 Jan 2025 12:16:59 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 16 Jan 2025 22:16:55 +0200
+ Thu, 16 Jan 2025 22:16:58 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: Paz Zcharya <pazz@chromium.org>
-Subject: [PATCH 6/8] drm/i915: Allow fastboot to fix up the vblank delay
-Date: Thu, 16 Jan 2025 22:16:35 +0200
-Message-ID: <20250116201637.22486-7-ville.syrjala@linux.intel.com>
+Cc: Paz Zcharya <pazz@chromium.org>,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH 7/8] drm/i915/dsb: Add support for triggering VRR push with DSB
+Date: Thu, 16 Jan 2025 22:16:36 +0200
+Message-ID: <20250116201637.22486-8-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250116201637.22486-1-ville.syrjala@linux.intel.com>
 References: <20250116201637.22486-1-ville.syrjala@linux.intel.com>
@@ -71,81 +72,76 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-GOP might not agree with our idea of what the vblank delay should be.
-Reuse the LRR codepaths to fix that up via a fastset.
+We have at least two options for how to do the
+TRANS_PUSH_SEND + commit completion signalling
+with the DSB:
 
-The relevant registers aren't actually double buffered so this is a
-little bit dodgy. While I've not seen any real issues from frobbing
-these live, let's limit this to just the fastboot case (by only
-allowing it when old_crtc_state->inherited==true).
+Option A)
+ 1. trigger TRANS_PUSH_SEND
+ 2. wait for "safe window"
+ 3. signal the interrupt
+
+In this cases step 2 should not do anything if we were already
+between vmin and vmax decision boundaries. Otherwise we'll wait
+until the next start of the vblank period.
+
+Option B)
+ 1. wait for "safe window"
+ 2. trigger TRANS_PUSH_SEND
+ 3. signal the interrupt
+
+This option is perhaps a bit less racy, but if we do somehow
+screw up and the wait is a nop but the push gets deferred
+until the next frame then we'll end up completing the commit
+a frame too early.
+
+So for now I'm leaning towards option A since losing the race
+won't have any drastic consequences. To deal with the race we
+can give the DSB a bit more time to start step 2 before the
+hardware has started the vblank termination properly. Often
+times it seems to be fast enough to make it in time even without
+any extra vblank delay (the push is issued somewhere within a
+scanline and it latches on the next scanline).
+
+v2: Use intel_vrr_possible() to determine if we need some
+    vblank delay (also avoids adding it for DSI which doens't
+    actually program the transcoder registers correctly for it)
 
 Cc: Paz Zcharya <pazz@chromium.org>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 26 +++++++++++++++++---
- 1 file changed, 22 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 9b42d980ed7e..471fe7d80f30 100644
+index 471fe7d80f30..82c27da45d33 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -5358,6 +5358,19 @@ pipe_config_cx0pll_mismatch(struct drm_printer *p, bool fastset,
- 	intel_cx0pll_dump_hw_state(display, b);
- }
+@@ -2630,6 +2630,14 @@ static int intel_crtc_vblank_delay(const struct intel_crtc_state *crtc_state)
+ 	if (intel_crtc_needs_wa_14015401596(crtc_state))
+ 		vblank_delay = max(vblank_delay, 1);
  
-+static bool allow_vblank_delay_fastset(const struct intel_crtc_state *old_crtc_state)
-+{
-+	struct intel_display *display = to_intel_display(old_crtc_state);
-+
 +	/*
-+	 * Allow fastboot to fix up vblank delay (handled via LRR
-+	 * codepaths), a bit dodgy as the registers aren't
-+	 * double buffered but seems to be working more or less...
++	 * Add a minimal vblank delay to make sure the push
++	 * doesn't doesn't race with the "wait for safe
++	 * window" we use for frame completion with DSB.
 +	 */
-+	return HAS_LRR(display) && old_crtc_state->inherited &&
-+		!intel_crtc_has_type(old_crtc_state, INTEL_OUTPUT_DSI);
-+}
++	if (intel_vrr_possible(crtc_state))
++		vblank_delay = max(vblank_delay, 1);
 +
- bool
- intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 			  const struct intel_crtc_state *pipe_config,
-@@ -5490,7 +5503,8 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 	PIPE_CONF_CHECK_I(name.crtc_hsync_start); \
- 	PIPE_CONF_CHECK_I(name.crtc_hsync_end); \
- 	PIPE_CONF_CHECK_I(name.crtc_vdisplay); \
--	PIPE_CONF_CHECK_I(name.crtc_vblank_start); \
-+	if (!fastset || !allow_vblank_delay_fastset(current_config)) \
-+		PIPE_CONF_CHECK_I(name.crtc_vblank_start); \
- 	PIPE_CONF_CHECK_I(name.crtc_vsync_start); \
- 	PIPE_CONF_CHECK_I(name.crtc_vsync_end); \
- 	if (!fastset || !pipe_config->update_lrr) { \
-@@ -6084,7 +6098,8 @@ static int intel_modeset_checks(struct intel_atomic_state *state)
- static bool lrr_params_changed(const struct drm_display_mode *old_adjusted_mode,
- 			       const struct drm_display_mode *new_adjusted_mode)
- {
--	return old_adjusted_mode->crtc_vblank_end != new_adjusted_mode->crtc_vblank_end ||
-+	return old_adjusted_mode->crtc_vblank_start != new_adjusted_mode->crtc_vblank_start ||
-+		old_adjusted_mode->crtc_vblank_end != new_adjusted_mode->crtc_vblank_end ||
- 		old_adjusted_mode->crtc_vtotal != new_adjusted_mode->crtc_vtotal;
+ 	return vblank_delay;
  }
  
-@@ -6098,11 +6113,14 @@ static void intel_crtc_check_fastset(const struct intel_crtc_state *old_crtc_sta
- 	if (old_crtc_state->vrr.in_range != new_crtc_state->vrr.in_range)
- 		new_crtc_state->update_lrr = false;
+@@ -7761,6 +7769,8 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
+ 		intel_crtc_planes_update_arm(new_crtc_state->dsb_commit,
+ 					     state, crtc);
  
--	if (!intel_pipe_config_compare(old_crtc_state, new_crtc_state, true))
-+	if (!intel_pipe_config_compare(old_crtc_state, new_crtc_state, true)) {
- 		drm_dbg_kms(&i915->drm, "[CRTC:%d:%s] fastset requirement not met, forcing full modeset\n",
- 			    crtc->base.base.id, crtc->base.name);
--	else
-+	} else {
-+		if (allow_vblank_delay_fastset(old_crtc_state))
-+			new_crtc_state->update_lrr = true;
- 		new_crtc_state->uapi.mode_changed = false;
-+	}
- 
- 	if (intel_compare_link_m_n(&old_crtc_state->dp_m_n,
- 				   &new_crtc_state->dp_m_n))
++		intel_vrr_send_push(new_crtc_state->dsb_commit, new_crtc_state);
++
+ 		if (!new_crtc_state->dsb_color_vblank) {
+ 			intel_dsb_wait_vblanks(new_crtc_state->dsb_commit, 1);
+ 			intel_dsb_wait_vblank_delay(state, new_crtc_state->dsb_commit);
 -- 
 2.45.2
 
