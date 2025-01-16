@@ -2,57 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 430FBA1343D
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2025 08:47:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D34FFA134A9
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2025 09:06:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D498410E1C8;
-	Thu, 16 Jan 2025 07:47:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A98E10E8D2;
+	Thu, 16 Jan 2025 08:06:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mRqwatOB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QXyCQZB8";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1285510E1C8
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jan 2025 07:47:32 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA7E810E1C7;
+ Thu, 16 Jan 2025 08:06:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737013652; x=1768549652;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=rw/6FhluBQ7yJb40x/BxP0gp2YtyHPNsmEvyBUjcRZw=;
- b=mRqwatOB6R8HAYgDddfOeMtKp3ljbNvXOmNdTAnBq/cAcS3dIsmMTkLV
- 4G2W4tIefLsVa8JYtBh/odft4Q3HSEPs/ovpXVHgRsYllAahBbBtdlozG
- 2T6ENq67p4bDoDVhtwyQCnqihLqJF/R9T4oPQJqEDFXiu0M+Vp0T9FUWq
- NkjMUa85IYUh/39JHFewb47NmFbRrS5TEBzCzEgW7uBAymqwyC5V83/m4
- 1qymRG7/os0J9xha644qAcv+SQ7NbF3WS2HjGydigPS2W2GoLR0ipvjIl
- N5Iq9ZxwJ+WdQMt0SvjQ5KRmECMbTTxaWvnBjr4YE8Tm60t2gomHgFior Q==;
-X-CSE-ConnectionGUID: j4zu+afUT3WniBY0gG4F9A==
-X-CSE-MsgGUID: +/NmEX4eQ9SP3R/i7OXx2A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11316"; a="37267052"
-X-IronPort-AV: E=Sophos;i="6.13,208,1732608000"; d="scan'208";a="37267052"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2025 23:47:32 -0800
-X-CSE-ConnectionGUID: nv+RB3+9ScCKHMTPZTGR/w==
-X-CSE-MsgGUID: vRxlZZARTGi4jN2h1u7CqQ==
+ t=1737014816; x=1768550816;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=ZXq/ZZlODhdWReQiVrnAFz431HJVOlfG4DqLiqyb0dE=;
+ b=QXyCQZB8U9hoeevU46HGU9lgreoQR9IpHR1BOjoq6ONNwhmoAoy4lbA/
+ P8XiFmDwUum38cnQh8yXms8U+TxXQ8+OINwt8pZaCJpOGwdAawQLDXX2K
+ pFYagyxJVintJWHrfpll8TQ4QXUm9sleQtMBn2KtLJnMmS7NUUnIFq6iI
+ Zo7MpaVLr5SC50tKdVyTYwJGQUwt8S2iK9spVcCg5B1Pv97KMBbb+WYcy
+ ImM9V82F4sM9paEwO1kKSlSWtl7Inw1vQdQ9WQIHBuBEPUK2CdqB1ApQ+
+ Gv//EAua/BxzC1tRLaGAlHCETodvz7Mmixu5sJ2cYXxTzw0xpsiiJGscw g==;
+X-CSE-ConnectionGUID: cWLiV8TxSDaE7rqN+XjWMQ==
+X-CSE-MsgGUID: BxRwhoD7S+G8OrTSrk7xKQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11316"; a="47975346"
+X-IronPort-AV: E=Sophos;i="6.13,208,1732608000"; d="scan'208";a="47975346"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2025 00:06:56 -0800
+X-CSE-ConnectionGUID: jspM9nBBSNOWjuFhA16cgg==
+X-CSE-MsgGUID: ENcdQZQpRha6JIh+KCTEZA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,208,1732608000"; d="scan'208";a="105331998"
-Received: from black.fi.intel.com ([10.237.72.28])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jan 2025 23:47:30 -0800
-Date: Thu, 16 Jan 2025 09:47:27 +0200
-From: Raag Jadav <raag.jadav@intel.com>
-To: Ranu Maurya <ranu.maurya@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, sai.teja.pottumuttu@intel.com,
- balasubramani.vivekanandan@intel.com
-Subject: Re: [PATCH v2] drm/i915: Add Wa_22010465259 in its respective WA list
-Message-ID: <Z4i5j-pJi7GgvmlU@black.fi.intel.com>
-References: <20250116073828.2431313-1-ranu.maurya@intel.com>
+X-IronPort-AV: E=Sophos;i="6.13,208,1732608000"; d="scan'208";a="105457277"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.132])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2025 00:06:54 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com, dnyaneshwar.bhadane@intel.com, Suraj Kandpal
+ <suraj.kandpal@intel.com>
+Subject: Re: [PATCH] drm/i915/hdcp: Use correct function to check if encoder
+ is HDMI
+In-Reply-To: <20250116052023.981666-1-suraj.kandpal@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250116052023.981666-1-suraj.kandpal@intel.com>
+Date: Thu, 16 Jan 2025 10:06:50 +0200
+Message-ID: <8734hjgp2d.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250116073828.2431313-1-ranu.maurya@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,43 +71,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 16, 2025 at 01:08:28PM +0530, Ranu Maurya wrote:
-> Add Wa_22010465259 which points to an existing WA, but
-> was missing from the comment list. While at it, update
-> the other WAs and their applicable platforms as well.
-> 
-> Signed-off-by: Ranu Maurya <ranu.maurya@intel.com>
+On Thu, 16 Jan 2025, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
+> Use intel_encoder_is_hdmi function which was recently introduced to
+> see if encoder is HDMI or not.
+
+Does this mean we always returned early from
+intel_hdcp_adjust_hdcp_line_rekeying()?
+
+Fixes: ?
+
+BR,
+Jani.
+
+
+
+
+
+
+>
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 > ---
->  drivers/gpu/drm/i915/gt/intel_workarounds.c | 13 +++++++------
->  1 file changed, 7 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> index 570c91878189..4cf4fa1f1a92 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> @@ -691,16 +691,17 @@ static void gen12_ctx_workarounds_init(struct intel_engine_cs *engine,
->  	struct drm_i915_private *i915 = engine->i915;
+>  drivers/gpu/drm/i915/display/intel_hdcp.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> index 7464b44c8bb3..91d5629cd9f9 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+> @@ -41,7 +41,7 @@ intel_hdcp_adjust_hdcp_line_rekeying(struct intel_encoder *encoder,
+>  	u32 rekey_bit = 0;
 >  
->  	/*
-> -	 * Wa_1409142259:tgl,dg1,adl-p
-> +	 * Wa_1409142259:tgl,dg1,adl-p,adl-n
->  	 * Wa_1409347922:tgl,dg1,adl-p
->  	 * Wa_1409252684:tgl,dg1,adl-p
->  	 * Wa_1409217633:tgl,dg1,adl-p
->  	 * Wa_1409207793:tgl,dg1,adl-p
-> -	 * Wa_1409178076:tgl,dg1,adl-p
-> -	 * Wa_1408979724:tgl,dg1,adl-p
-> -	 * Wa_14010443199:tgl,rkl,dg1,adl-p
-> -	 * Wa_14010698770:tgl,rkl,dg1,adl-s,adl-p
-> -	 * Wa_1409342910:tgl,rkl,dg1,adl-s,adl-p
-> +	 * Wa_1409178076:tgl,dg1,adl-p,adl-n
-> +	 * Wa_1408979724:tgl,dg1,adl-p,adl-n
-> +	 * Wa_14010443199:tgl,rkl,dg1,dg2,adl-p,adl-n
-> +	 * Wa_14010698770:tgl,rkl,dg1,dg2,adl-s,adl-p,adl-n
-> +	 * Wa_1409342910:tgl,rkl,dg1,adl-s,adl-p,adl-n
-> +	 * Wa_22010465259:tgl,rkl,dg1,adl-s,adl-p,adl-n
+>  	/* Here we assume HDMI is in TMDS mode of operation */
+> -	if (encoder->type != INTEL_OUTPUT_HDMI)
+> +	if (!intel_encoder_is_hdmi(encoder))
+>  		return;
+>  
+>  	if (DISPLAY_VER(display) >= 30) {
 
-Just to be clear on the conventions, are we using platform_names[] from
-intel_device_info.c? Because if we are, I don't see adl-n there.
-
-Raag
+-- 
+Jani Nikula, Intel
