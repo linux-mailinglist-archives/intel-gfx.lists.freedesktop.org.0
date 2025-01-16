@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77F09A14126
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2025 18:48:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3ABCDA14127
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2025 18:48:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FF4F10E9E4;
-	Thu, 16 Jan 2025 17:48:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D05ED10E9E5;
+	Thu, 16 Jan 2025 17:48:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NKA0vhQg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Mgb36I7Z";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B39010E9E3;
- Thu, 16 Jan 2025 17:48:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0CD1E10E9E7;
+ Thu, 16 Jan 2025 17:48:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737049688; x=1768585688;
+ t=1737049691; x=1768585691;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=N3MZkvpjGtZNLit+bRlD9LjdfgwzUTpPJLCnb3P3XjE=;
- b=NKA0vhQgNb6bXeNISN1aI7IFtOAnGqPPw+v2RfSuHr0ipLTU9ynGxeb/
- y7DXf+gLaxMCqKu7gC4lgs87cN732QiSG6w/IKhQodGs3Fh9Uf6NO2ZBG
- 0Rk1M9Hd6U6UuqZE06MnWctqmrDb5Yrz55eY9wZcL7PcVVMrRXh11DOJo
- g17eXqy0aBWtbm1S0egBRS8PAu3SBVLzCui7kJSE0nHDwPYhUUcrHagCA
- ztHqtKYidl8tk/ipiJAwtJV45IPG6hlTql4acgDcvzmrC+qI6z/D6PBY2
- zazKkKBBFduZ2ft9oGZgF5UX3Vj9yZ/GmWZ/JkspfsQti7NHEBAqRvMsk g==;
-X-CSE-ConnectionGUID: +EyUe2oTQOORPYxbeQRR8w==
-X-CSE-MsgGUID: hA3vvE+5Ssq16b9Q4km4Aw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11317"; a="48847561"
-X-IronPort-AV: E=Sophos;i="6.13,210,1732608000"; d="scan'208";a="48847561"
+ bh=yj1Fkzoep7CAo2XUZ8qCG/hKJkA0n8fVXBPWu/Ko9Mc=;
+ b=Mgb36I7ZaKF8DnXtHKgMVs6GMRhr1pbmfhboyAqsuT4m71DE2xy+thQV
+ D4Tp/zngYT107LERA8br6sz3Fnwe3Yz6gLi7f5MllP5RX7dGd10ZMZGdm
+ rArEXTqG8Oupero4VxlSjImvQ1k7R+4jtFIu+776VbQtiA75ycUgHZI1E
+ DuL1T2fbvJhPYAV5WXCGPzok66CV4hNjmhyR2pIX0yKhPheV7aL24dMr5
+ PyaIryDeQlnotcdqaNl4Iy0F0DOHUdyL/2ec16pVEczw5nB30ZkQmlDTf
+ zttouonomjobB+LtMi9KYzoxqqY7gi7aORD3PBmjPM2ynadHzXjOH8e7n w==;
+X-CSE-ConnectionGUID: fhjoWg5tR868u1CzHaAlqQ==
+X-CSE-MsgGUID: XQCxioWgTc+nb5OotlqoUg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11317"; a="48847568"
+X-IronPort-AV: E=Sophos;i="6.13,210,1732608000"; d="scan'208";a="48847568"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2025 09:48:08 -0800
-X-CSE-ConnectionGUID: 9oXH9a59SFWWT/hNFn2JLw==
-X-CSE-MsgGUID: BTxuFyLZTGW4kZtafFjqvg==
+ 16 Jan 2025 09:48:10 -0800
+X-CSE-ConnectionGUID: xWxqmhEyTIKpTO99eaxIEA==
+X-CSE-MsgGUID: 3SlR+gS+R8Wobgqlnaie1A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,210,1732608000"; d="scan'208";a="105712604"
+X-IronPort-AV: E=Sophos;i="6.13,210,1732608000"; d="scan'208";a="105712612"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 16 Jan 2025 09:48:05 -0800
+ by fmviesa008.fm.intel.com with SMTP; 16 Jan 2025 09:48:08 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 16 Jan 2025 19:48:04 +0200
+ Thu, 16 Jan 2025 19:48:07 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 2/8] drm/i915: Introduce a minimal plane error state
-Date: Thu, 16 Jan 2025 19:47:52 +0200
-Message-ID: <20250116174758.18298-3-ville.syrjala@linux.intel.com>
+Subject: [PATCH 3/8] drm/i915: Pimp display fault reporting
+Date: Thu, 16 Jan 2025 19:47:53 +0200
+Message-ID: <20250116174758.18298-4-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250116174758.18298-1-ville.syrjala@linux.intel.com>
 References: <20250116174758.18298-1-ville.syrjala@linux.intel.com>
@@ -71,262 +71,232 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-I want to capture a little bit more information about the state
-of the plane upon faults. To that end introduce a small plane error
-state struct and provide per-plane vfuncs to read it out.
-
-For now we just stick the CTL, SURF, and SURFLIVE (if available)
-registers contents in theret.
+Decode the display faults a bit more extensively so that one
+doesn't have translate the bitmask to planes/etc. manually.
+Also for plane faults we can read out a bit of state from the
+relevant plane(s) and dump that out.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/i9xx_plane.c     | 41 +++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_cursor.c   | 26 ++++++++++++
- .../drm/i915/display/intel_display_types.h    |  7 ++++
- drivers/gpu/drm/i915/display/intel_sprite.c   | 36 ++++++++++++++++
- .../drm/i915/display/skl_universal_plane.c    | 12 ++++++
- 5 files changed, 122 insertions(+)
+ .../gpu/drm/i915/display/intel_atomic_plane.c |   2 +-
+ .../gpu/drm/i915/display/intel_atomic_plane.h |   2 +
+ .../gpu/drm/i915/display/intel_display_irq.c  | 156 +++++++++++++++++-
+ 3 files changed, 155 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/i915/display/i9xx_plane.c
-index 48e657a80a16..ebfc205a480f 100644
---- a/drivers/gpu/drm/i915/display/i9xx_plane.c
-+++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
-@@ -553,6 +553,40 @@ static void i9xx_plane_disable_arm(struct intel_dsb *dsb,
- 		intel_de_write_fw(dev_priv, DSPADDR(dev_priv, i9xx_plane), 0);
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+index 612e9b0ec14a..0aeb5f00d9c4 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
++++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+@@ -663,7 +663,7 @@ int intel_plane_atomic_check_with_state(const struct intel_crtc_state *old_crtc_
+ 					       old_plane_state, new_plane_state);
  }
  
-+static void g4x_primary_capture_error(struct intel_crtc *crtc,
-+				      struct intel_plane *plane,
-+				      struct intel_plane_error *error)
-+{
-+	struct intel_display *display = to_intel_display(plane);
-+	enum i9xx_plane_id i9xx_plane = plane->i9xx_plane;
-+
-+	error->ctl = intel_de_read(display, DSPCNTR(display, i9xx_plane));
-+	error->surf = intel_de_read(display, DSPSURF(display, i9xx_plane));
-+	error->surflive = intel_de_read(display, DSPSURFLIVE(display, i9xx_plane));
-+}
-+
-+static void i965_plane_capture_error(struct intel_crtc *crtc,
-+				     struct intel_plane *plane,
-+				     struct intel_plane_error *error)
-+{
-+	struct intel_display *display = to_intel_display(plane);
-+	enum i9xx_plane_id i9xx_plane = plane->i9xx_plane;
-+
-+	error->ctl = intel_de_read(display, DSPCNTR(display, i9xx_plane));
-+	error->surf = intel_de_read(display, DSPSURF(display, i9xx_plane));
-+}
-+
-+static void i8xx_plane_capture_error(struct intel_crtc *crtc,
-+				     struct intel_plane *plane,
-+				     struct intel_plane_error *error)
-+{
-+	struct intel_display *display = to_intel_display(plane);
-+	enum i9xx_plane_id i9xx_plane = plane->i9xx_plane;
-+
-+	error->ctl = intel_de_read(display, DSPCNTR(display, i9xx_plane));
-+	error->surf = intel_de_read(display, DSPADDR(display, i9xx_plane));
-+}
-+
- static void
- g4x_primary_async_flip(struct intel_dsb *dsb,
- 		       struct intel_plane *plane,
-@@ -955,6 +989,13 @@ intel_primary_plane_create(struct drm_i915_private *dev_priv, enum pipe pipe)
- 	plane->get_hw_state = i9xx_plane_get_hw_state;
- 	plane->check_plane = i9xx_plane_check;
- 
-+	if (DISPLAY_VER(dev_priv) >= 5 || IS_G4X(dev_priv))
-+		plane->capture_error = g4x_primary_capture_error;
-+	else if (DISPLAY_VER(dev_priv) >= 4)
-+		plane->capture_error = i965_plane_capture_error;
-+	else
-+		plane->capture_error = i8xx_plane_capture_error;
-+
- 	if (IS_VALLEYVIEW(dev_priv) || IS_CHERRYVIEW(dev_priv)) {
- 		plane->async_flip = vlv_primary_async_flip;
- 		plane->enable_flip_done = vlv_primary_enable_flip_done;
-diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index 57cf8f46a458..0bc71b5bacb6 100644
---- a/drivers/gpu/drm/i915/display/intel_cursor.c
-+++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -758,6 +758,27 @@ static bool i9xx_cursor_get_hw_state(struct intel_plane *plane,
- 	return ret;
- }
- 
-+static void g4x_cursor_capture_error(struct intel_crtc *crtc,
-+				     struct intel_plane *plane,
-+				     struct intel_plane_error *error)
-+{
-+	struct intel_display *display = to_intel_display(plane);
-+
-+	error->ctl = intel_de_read(display, CURCNTR(display, crtc->pipe));
-+	error->surf = intel_de_read(display, CURBASE(display, crtc->pipe));
-+	error->surflive = intel_de_read(display, CURSURFLIVE(display, crtc->pipe));
-+}
-+
-+static void i9xx_cursor_capture_error(struct intel_crtc *crtc,
-+				      struct intel_plane *plane,
-+				      struct intel_plane_error *error)
-+{
-+	struct intel_display *display = to_intel_display(plane);
-+
-+	error->ctl = intel_de_read(display, CURCNTR(display, crtc->pipe));
-+	error->surf = intel_de_read(display, CURBASE(display, crtc->pipe));
-+}
-+
- static bool intel_cursor_format_mod_supported(struct drm_plane *_plane,
- 					      u32 format, u64 modifier)
+-static struct intel_plane *
++struct intel_plane *
+ intel_crtc_get_plane(struct intel_crtc *crtc, enum plane_id plane_id)
  {
-@@ -1020,6 +1041,11 @@ intel_cursor_plane_create(struct drm_i915_private *dev_priv,
- 		cursor->check_plane = i9xx_check_cursor;
- 	}
+ 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.h b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
+index 0f982f452ff3..298bb97b37a4 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic_plane.h
++++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
+@@ -19,6 +19,8 @@ struct intel_plane;
+ struct intel_plane_state;
+ enum plane_id;
  
-+	if (DISPLAY_VER(dev_priv) >= 5 || IS_G4X(dev_priv))
-+		cursor->capture_error = g4x_cursor_capture_error;
-+	else
-+		cursor->capture_error = i9xx_cursor_capture_error;
-+
- 	cursor->cursor.base = ~0;
- 	cursor->cursor.cntl = ~0;
++struct intel_plane *
++intel_crtc_get_plane(struct intel_crtc *crtc, enum plane_id plane_id);
+ unsigned int intel_adjusted_rate(const struct drm_rect *src,
+ 				 const struct drm_rect *dst,
+ 				 unsigned int rate);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
+index f06273d9bc8c..1b3b6b8bc794 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_irq.c
++++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
+@@ -10,6 +10,7 @@
+ #include "i915_irq.h"
+ #include "i915_reg.h"
+ #include "icl_dsi_regs.h"
++#include "intel_atomic_plane.h"
+ #include "intel_crtc.h"
+ #include "intel_de.h"
+ #include "intel_display_irq.h"
+@@ -26,6 +27,52 @@
+ #include "intel_psr.h"
+ #include "intel_psr_regs.h"
  
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 8271e50e3644..a8adae68c512 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1439,6 +1439,10 @@ struct intel_crtc {
- 	bool block_dc_for_vblank;
- };
- 
-+struct intel_plane_error {
-+	u32 ctl, surf, surflive;
++struct pipe_fault_handler {
++	bool (*handle)(struct intel_crtc *crtc, enum plane_id plane_id);
++	u32 fault;
++	enum plane_id plane_id;
 +};
 +
- struct intel_plane {
- 	struct drm_plane base;
- 	enum i9xx_plane_id i9xx_plane;
-@@ -1488,6 +1492,9 @@ struct intel_plane {
- 	void (*disable_arm)(struct intel_dsb *dsb,
- 			    struct intel_plane *plane,
- 			    const struct intel_crtc_state *crtc_state);
-+	void (*capture_error)(struct intel_crtc *crtc,
-+			      struct intel_plane *plane,
-+			      struct intel_plane_error *error);
- 	bool (*get_hw_state)(struct intel_plane *plane, enum pipe *pipe);
- 	int (*check_plane)(struct intel_crtc_state *crtc_state,
- 			   struct intel_plane_state *plane_state);
-diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
-index e6fadcef58e0..7197fedc4a17 100644
---- a/drivers/gpu/drm/i915/display/intel_sprite.c
-+++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-@@ -463,6 +463,17 @@ vlv_sprite_disable_arm(struct intel_dsb *dsb,
- 	intel_de_write_fw(display, SPSURF(pipe, plane_id), 0);
- }
- 
-+static void vlv_sprite_capture_error(struct intel_crtc *crtc,
-+				     struct intel_plane *plane,
-+				     struct intel_plane_error *error)
++static bool handle_plane_fault(struct intel_crtc *crtc, enum plane_id plane_id)
 +{
-+	struct intel_display *display = to_intel_display(plane);
++	struct intel_display *display = to_intel_display(crtc);
++	struct intel_plane_error error = {};
++	struct intel_plane *plane;
 +
-+	error->ctl = intel_de_read(display, SPCNTR(crtc->pipe, plane->id));
-+	error->surf = intel_de_read(display, SPSURF(crtc->pipe, plane->id));
-+	error->surflive = intel_de_read(display, SPSURFLIVE(crtc->pipe, plane->id));
++	plane = intel_crtc_get_plane(crtc, plane_id);
++	if (!plane || !plane->capture_error)
++		return false;
++
++	plane->capture_error(crtc, plane, &error);
++
++	drm_err_ratelimited(display->drm,
++			    "[CRTC:%d:%s][PLANE:%d:%s] fault (CTL=0x%x, SURF=0x%x, SURFLIVE=0x%x)\n",
++			    crtc->base.base.id, crtc->base.name,
++			    plane->base.base.id, plane->base.name,
++			    error.ctl, error.surf, error.surflive);
++
++	return true;
 +}
 +
- static bool
- vlv_sprite_get_hw_state(struct intel_plane *plane,
- 			enum pipe *pipe)
-@@ -894,6 +905,17 @@ ivb_sprite_disable_arm(struct intel_dsb *dsb,
- 	intel_de_write_fw(display, SPRSURF(pipe), 0);
- }
- 
-+static void ivb_sprite_capture_error(struct intel_crtc *crtc,
-+				     struct intel_plane *plane,
-+				     struct intel_plane_error *error)
++static void intel_pipe_fault_irq_handler(struct intel_display *display,
++					 const struct pipe_fault_handler *handlers,
++					 enum pipe pipe, u32 fault_errors)
 +{
-+	struct intel_display *display = to_intel_display(plane);
++	struct intel_crtc *crtc = intel_crtc_for_pipe(display, pipe);
++	const struct pipe_fault_handler *handler;
 +
-+	error->ctl = intel_de_read(display, SPRCTL(crtc->pipe));
-+	error->surf = intel_de_read(display, SPRSURF(crtc->pipe));
-+	error->surflive = intel_de_read(display, SPRSURFLIVE(crtc->pipe));
-+}
++	for (handler = handlers; handler && handler->fault; handler++) {
++		if ((fault_errors & handler->fault) == 0)
++			continue;
 +
- static bool
- ivb_sprite_get_hw_state(struct intel_plane *plane,
- 			enum pipe *pipe)
-@@ -1227,6 +1249,17 @@ g4x_sprite_disable_arm(struct intel_dsb *dsb,
- 	intel_de_write_fw(display, DVSSURF(pipe), 0);
- }
- 
-+static void g4x_sprite_capture_error(struct intel_crtc *crtc,
-+				     struct intel_plane *plane,
-+				     struct intel_plane_error *error)
-+{
-+	struct intel_display *display = to_intel_display(plane);
++		if (handler->handle(crtc, handler->plane_id))
++			fault_errors &= ~handler->fault;
++	}
 +
-+	error->ctl = intel_de_read(display, DVSCNTR(crtc->pipe));
-+	error->surf = intel_de_read(display, DVSSURF(crtc->pipe));
-+	error->surflive = intel_de_read(display, DVSSURFLIVE(crtc->pipe));
-+}
-+
- static bool
- g4x_sprite_get_hw_state(struct intel_plane *plane,
- 			enum pipe *pipe)
-@@ -1613,6 +1646,7 @@ intel_sprite_plane_create(struct drm_i915_private *dev_priv,
- 		plane->update_noarm = vlv_sprite_update_noarm;
- 		plane->update_arm = vlv_sprite_update_arm;
- 		plane->disable_arm = vlv_sprite_disable_arm;
-+		plane->capture_error = vlv_sprite_capture_error;
- 		plane->get_hw_state = vlv_sprite_get_hw_state;
- 		plane->check_plane = vlv_sprite_check;
- 		plane->max_stride = i965_plane_max_stride;
-@@ -1632,6 +1666,7 @@ intel_sprite_plane_create(struct drm_i915_private *dev_priv,
- 		plane->update_noarm = ivb_sprite_update_noarm;
- 		plane->update_arm = ivb_sprite_update_arm;
- 		plane->disable_arm = ivb_sprite_disable_arm;
-+		plane->capture_error = ivb_sprite_capture_error;
- 		plane->get_hw_state = ivb_sprite_get_hw_state;
- 		plane->check_plane = g4x_sprite_check;
- 
-@@ -1653,6 +1688,7 @@ intel_sprite_plane_create(struct drm_i915_private *dev_priv,
- 		plane->update_noarm = g4x_sprite_update_noarm;
- 		plane->update_arm = g4x_sprite_update_arm;
- 		plane->disable_arm = g4x_sprite_disable_arm;
-+		plane->capture_error = g4x_sprite_capture_error;
- 		plane->get_hw_state = g4x_sprite_get_hw_state;
- 		plane->check_plane = g4x_sprite_check;
- 		plane->max_stride = g4x_sprite_max_stride;
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index ff9764cac1e7..73f9b12da3a4 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -1594,6 +1594,17 @@ icl_plane_update_arm(struct intel_dsb *dsb,
- 			   skl_plane_surf(plane_state, color_plane));
- }
- 
-+static void skl_plane_capture_error(struct intel_crtc *crtc,
-+				    struct intel_plane *plane,
-+				    struct intel_plane_error *error)
-+{
-+	struct intel_display *display = to_intel_display(plane);
-+
-+	error->ctl = intel_de_read(display, PLANE_CTL(crtc->pipe, plane->id));
-+	error->surf = intel_de_read(display, PLANE_SURF(crtc->pipe, plane->id));
-+	error->surflive = intel_de_read(display, PLANE_SURFLIVE(crtc->pipe, plane->id));
++	WARN_ONCE(fault_errors, "[CRTC:%d:%s] unreported faults 0x%x\n",
++		  crtc->base.base.id, crtc->base.name, fault_errors);
 +}
 +
  static void
- skl_plane_async_flip(struct intel_dsb *dsb,
- 		     struct intel_plane *plane,
-@@ -2668,6 +2679,7 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
- 		plane->update_arm = skl_plane_update_arm;
- 		plane->disable_arm = skl_plane_disable_arm;
- 	}
-+	plane->capture_error = skl_plane_capture_error;
- 	plane->get_hw_state = skl_plane_get_hw_state;
- 	plane->check_plane = skl_plane_check;
+ intel_handle_vblank(struct drm_i915_private *dev_priv, enum pipe pipe)
+ {
+@@ -895,6 +942,108 @@ static u32 gen8_de_pipe_fault_mask(struct drm_i915_private *dev_priv)
+ 			GEN8_PIPE_PRIMARY_FAULT;
+ }
  
++static bool handle_plane_ats_fault(struct intel_crtc *crtc, enum plane_id plane_id)
++{
++	struct intel_display *display = to_intel_display(crtc);
++
++	drm_err_ratelimited(display->drm,
++			    "[CRTC:%d:%s] PLANE ATS fault\n",
++			    crtc->base.base.id, crtc->base.name);
++
++	return false;
++}
++
++static bool handle_pipedmc_ats_fault(struct intel_crtc *crtc, enum plane_id plane_id)
++{
++	struct intel_display *display = to_intel_display(crtc);
++
++	drm_err_ratelimited(display->drm,
++			    "[CRTC:%d:%s] PIPEDMC ATS fault\n",
++			    crtc->base.base.id, crtc->base.name);
++
++	return false;
++}
++
++static bool handle_pipedmc_fault(struct intel_crtc *crtc, enum plane_id plane_id)
++{
++	struct intel_display *display = to_intel_display(crtc);
++
++	drm_err_ratelimited(display->drm,
++			    "[CRTC:%d:%s] PIPEDMC fault\n",
++			    crtc->base.base.id, crtc->base.name);
++
++	return false;
++}
++
++static const struct pipe_fault_handler mtl_pipe_fault_handlers[] = {
++	{ .fault = MTL_PLANE_ATS_FAULT,     .handle = handle_plane_ats_fault, },
++	{ .fault = MTL_PIPEDMC_ATS_FAULT,   .handle = handle_pipedmc_ats_fault, },
++	{ .fault = GEN12_PIPEDMC_FAULT,     .handle = handle_pipedmc_fault, },
++	{ .fault = GEN11_PIPE_PLANE5_FAULT, .handle = handle_plane_fault, .plane_id = PLANE_5, },
++	{ .fault = GEN9_PIPE_PLANE4_FAULT,  .handle = handle_plane_fault, .plane_id = PLANE_4, },
++	{ .fault = GEN9_PIPE_PLANE3_FAULT,  .handle = handle_plane_fault, .plane_id = PLANE_3, },
++	{ .fault = GEN9_PIPE_PLANE2_FAULT,  .handle = handle_plane_fault, .plane_id = PLANE_2, },
++	{ .fault = GEN9_PIPE_PLANE1_FAULT,  .handle = handle_plane_fault, .plane_id = PLANE_1, },
++	{ .fault = GEN9_PIPE_CURSOR_FAULT,  .handle = handle_plane_fault, .plane_id = PLANE_CURSOR, },
++	{}
++};
++
++static const struct pipe_fault_handler tgl_pipe_fault_handlers[] = {
++	{ .fault = GEN12_PIPEDMC_FAULT,     .handle = handle_pipedmc_fault, },
++	{ .fault = GEN11_PIPE_PLANE7_FAULT, .handle = handle_plane_fault, .plane_id = PLANE_7, },
++	{ .fault = GEN11_PIPE_PLANE6_FAULT, .handle = handle_plane_fault, .plane_id = PLANE_6, },
++	{ .fault = GEN11_PIPE_PLANE5_FAULT, .handle = handle_plane_fault, .plane_id = PLANE_5, },
++	{ .fault = GEN9_PIPE_PLANE4_FAULT,  .handle = handle_plane_fault, .plane_id = PLANE_4, },
++	{ .fault = GEN9_PIPE_PLANE3_FAULT,  .handle = handle_plane_fault, .plane_id = PLANE_3, },
++	{ .fault = GEN9_PIPE_PLANE2_FAULT,  .handle = handle_plane_fault, .plane_id = PLANE_2, },
++	{ .fault = GEN9_PIPE_PLANE1_FAULT,  .handle = handle_plane_fault, .plane_id = PLANE_1, },
++	{ .fault = GEN9_PIPE_CURSOR_FAULT,  .handle = handle_plane_fault, .plane_id = PLANE_CURSOR, },
++	{}
++};
++
++static const struct pipe_fault_handler icl_pipe_fault_handlers[] = {
++	{ .fault = GEN11_PIPE_PLANE7_FAULT, .handle = handle_plane_fault, .plane_id = PLANE_7, },
++	{ .fault = GEN11_PIPE_PLANE6_FAULT, .handle = handle_plane_fault, .plane_id = PLANE_6, },
++	{ .fault = GEN11_PIPE_PLANE5_FAULT, .handle = handle_plane_fault, .plane_id = PLANE_5, },
++	{ .fault = GEN9_PIPE_PLANE4_FAULT,  .handle = handle_plane_fault, .plane_id = PLANE_4, },
++	{ .fault = GEN9_PIPE_PLANE3_FAULT,  .handle = handle_plane_fault, .plane_id = PLANE_3, },
++	{ .fault = GEN9_PIPE_PLANE2_FAULT,  .handle = handle_plane_fault, .plane_id = PLANE_2, },
++	{ .fault = GEN9_PIPE_PLANE1_FAULT,  .handle = handle_plane_fault, .plane_id = PLANE_1, },
++	{ .fault = GEN9_PIPE_CURSOR_FAULT,  .handle = handle_plane_fault, .plane_id = PLANE_CURSOR, },
++	{}
++};
++
++static const struct pipe_fault_handler skl_pipe_fault_handlers[] = {
++	{ .fault = GEN9_PIPE_PLANE4_FAULT, .handle = handle_plane_fault, .plane_id = PLANE_4, },
++	{ .fault = GEN9_PIPE_PLANE3_FAULT, .handle = handle_plane_fault, .plane_id = PLANE_3, },
++	{ .fault = GEN9_PIPE_PLANE2_FAULT, .handle = handle_plane_fault, .plane_id = PLANE_2, },
++	{ .fault = GEN9_PIPE_PLANE1_FAULT, .handle = handle_plane_fault, .plane_id = PLANE_1, },
++	{ .fault = GEN9_PIPE_CURSOR_FAULT, .handle = handle_plane_fault, .plane_id = PLANE_CURSOR, },
++	{}
++};
++
++static const struct pipe_fault_handler bdw_pipe_fault_handlers[] = {
++	{ .fault = GEN8_PIPE_SPRITE_FAULT,  .handle = handle_plane_fault, .plane_id = PLANE_SPRITE0, },
++	{ .fault = GEN8_PIPE_PRIMARY_FAULT, .handle = handle_plane_fault, .plane_id = PLANE_PRIMARY, },
++	{ .fault = GEN8_PIPE_CURSOR_FAULT,  .handle = handle_plane_fault, .plane_id = PLANE_CURSOR, },
++	{}
++};
++
++static const struct pipe_fault_handler *
++gen8_pipe_fault_handlers(struct intel_display *display)
++{
++	if (DISPLAY_VER(display) >= 14)
++		return mtl_pipe_fault_handlers;
++	else if (DISPLAY_VER(display) >= 12)
++		return tgl_pipe_fault_handlers;
++	else if (DISPLAY_VER(display) >= 11)
++		return icl_pipe_fault_handlers;
++	else if (DISPLAY_VER(display) >= 9)
++		return skl_pipe_fault_handlers;
++	else
++		return bdw_pipe_fault_handlers;
++}
++
+ static void intel_pmdemand_irq_handler(struct drm_i915_private *dev_priv)
+ {
+ 	wake_up_all(&dev_priv->display.pmdemand.waitqueue);
+@@ -1182,10 +1331,9 @@ void gen8_de_irq_handler(struct drm_i915_private *dev_priv, u32 master_ctl)
+ 
+ 		fault_errors = iir & gen8_de_pipe_fault_mask(dev_priv);
+ 		if (fault_errors)
+-			drm_err_ratelimited(&dev_priv->drm,
+-					    "Fault errors on pipe %c: 0x%08x\n",
+-					    pipe_name(pipe),
+-					    fault_errors);
++			intel_pipe_fault_irq_handler(display,
++						     gen8_pipe_fault_handlers(display),
++						     pipe, fault_errors);
+ 	}
+ 
+ 	if (HAS_PCH_SPLIT(dev_priv) && !HAS_PCH_NOP(dev_priv) &&
 -- 
 2.45.2
 
