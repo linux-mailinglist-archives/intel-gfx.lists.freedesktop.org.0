@@ -2,88 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C483EA13AFF
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2025 14:39:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DCDE7A13B6D
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2025 14:57:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F0E810E971;
-	Thu, 16 Jan 2025 13:39:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A43E10E07E;
+	Thu, 16 Jan 2025 13:57:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="jnpf4Ba+";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="SiiEz26W";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com
- [IPv6:2a00:1450:4864:20::132])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6801610E971
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jan 2025 13:39:07 +0000 (UTC)
-Received: by mail-lf1-x132.google.com with SMTP id
- 2adb3069b0e04-53ffaaeeb76so987844e87.0
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jan 2025 05:39:07 -0800 (PST)
+Received: from mail-qk1-f201.google.com (mail-qk1-f201.google.com
+ [209.85.222.201])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 54D3610E07E
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jan 2025 13:57:48 +0000 (UTC)
+Received: by mail-qk1-f201.google.com with SMTP id
+ af79cd13be357-7bcf01691b7so178340485a.1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jan 2025 05:57:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1737034746; x=1737639546; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=VteJJx4VGuw0ltu0wQifkv086gnyuIyWiED0Wc5BNNg=;
- b=jnpf4Ba+5eX5A5RuRNZiaqS1x8HilTvDpMWOQtY1Ad1dl7NMowhe8PeXZY39D+fyXY
- c31+et1edFMXQJyk8WpDo25FFlzAw15WPfi4mK2xRq57Jw1ah58dcWy0JONM7+UVLQEK
- J6ANHleHVRzuP9rROebmUoaGLU69wwSP+qgQqbyoNF/y50Pf4q1GuXNQ3+Qr/1QnxGH/
- jA3noHo1BMaDcVUqqtqCbSojqaEuhuaEb+tASvFfNebV6BMiaIdMnuR21RJPaiXOJRML
- cHDQPi6LTOaPjf39sqThS3QgkBewv3fQZVKYxc/Ng+Mpfp+XjDt71KxANpeKdO08Voig
- IxUg==
+ d=google.com; s=20230601; t=1737035807; x=1737640607;
+ darn=lists.freedesktop.org; 
+ h=cc:to:from:subject:message-id:mime-version:date:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=Afmzcj7YvLn6GXyrbKyUaoeIfkKGSsahsDNZPlhAdRk=;
+ b=SiiEz26Wo12prJk1eZRDTMMpJkQgrHRm9YcxuyThUsIXBkHmMeU2JZHyKwyFW9kT82
+ 5QPtYEsqi6QwUYdtd7vOLPw2+yGVG39XwpP9WKWCbMumb6vnd0Eho7SzpFuFEpulfwnS
+ qbKV+yiVP3xO3z/4oeENs/6zh8BaqfOumdhugSoJgPStzTDhi3q/1YWIqM+SBBJJoZ/t
+ 2SpdHda29dTynXvpBuEm6xXVIQCzzMYWapa6ZnOrjAy0moOVKOmzQXc0DAy2ZYbg9mpS
+ yEPMa0yrLsQSMoSksYYaZDA2RgAzuMPpXXaqZ873NNoVq8T/sZkppzA9yFzKjvx4wAqg
+ 8x6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1737034746; x=1737639546;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=VteJJx4VGuw0ltu0wQifkv086gnyuIyWiED0Wc5BNNg=;
- b=tHcs8EKPdvIQh3A7VR6YLERRvILpXFp8SW3ASfwUAMXurwxLJLBhpqpXsmg6iP560c
- ZQ3gX8wz2iUHiG24MmxVefeytt5Zx2THA1JujRfkS5JR1Iwkbb3eh5w41R9Q7wQSdk/y
- kSp7qZbnM7V9+ma8sKlU+1C5xEXIoShJqyC7El+j1Jro/Di32ZDjVVVtC2LPDhomK3Cq
- rSR4+hr5uVMiwsGLY0w4PXR/ImUr0YkX0mRFpB3lfdsq8b2fcGpHzwIsBIyxrtr3//v4
- tjic+ZGA5ed6uXiNdjcVuk/QbCwvu6apEz6avb1xrbTH0O+RSsAxrAbMdr6sM7j43kT6
- 4agA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCV2SrExmFBMdhj5t2y7zIA5CxWebY8rBY67vg0mV+4Ep8xAKe7o5s1r6kf6rjr8SLK6BKGMYTgC2LE=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwEdnE35iqO3ENjeKasHDHXCXg7E8KZ7zPOZbvHMqA+6qv1u1Ny
- XfF58n8mFPcFL0FOaoTzBJ+YlCrXnfRReX2Gu6Z6irX8qlnRPnVGeiTu/Vg+5/I=
-X-Gm-Gg: ASbGnctCl+ac21F03w94eKEtIEylU/BU3YgXeX1XQBNhDDHvztjEANMvRZQrOVDYLcV
- /h+AzhuTTITXrNYgFBg6zUFDYdsaV+ZDSb1CLDJAUC4BcX6JouJyoKXI37tnerD4xMSE7lQhk3H
- l7uwSRuxtIdIV3kzy60aUEedU+4YJAowDjOebTVf/O/0Yb5MvhFi0KaIUD0NrGLvKFwwVgwLU1J
- 3kg6s3ayjk2kIorrTW6aKIVNRM5FDUg2YfUWsEuXvxbihfHd+Qj9/yRMyOd+rL6WkjFPY54giYY
- 8G27idvXOaW1UvsgZFsJakNxXfE8tvuqBY5X
-X-Google-Smtp-Source: AGHT+IE659wAmLhaDjEjv7Xvwm2qobkOfxpsGV1Lxrtg5uzKjfkE1pEHqIzIwLc5DjjVw/NbHrzKVA==
-X-Received: by 2002:a05:6512:3daa:b0:542:297f:4f69 with SMTP id
- 2adb3069b0e04-5428480191emr11187577e87.41.1737034745616; 
- Thu, 16 Jan 2025 05:39:05 -0800 (PST)
-Received: from eriador.lumag.spb.ru
- (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
- by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-5428bea6862sm2374798e87.147.2025.01.16.05.39.03
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 16 Jan 2025 05:39:04 -0800 (PST)
-Date: Thu, 16 Jan 2025 15:39:01 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>
-Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Kandpal,
- Suraj" <suraj.kandpal@intel.com>, 
- "Shankar, Uma" <uma.shankar@intel.com>, "Bhattacharjee,
- Susanta" <susanta.bhattacharjee@intel.com>
-Subject: Re: [PATCH v7 01/14] drm: Define histogram structures exposed to user
-Message-ID: <sc52glzpdohjxjexpwayyud4mlbtygx5l4wuziw5oibqv674sf@6x2iohnm32e6>
-References: <20250110-dpst-v7-0-605cb0271162@intel.com>
- <20250110-dpst-v7-1-605cb0271162@intel.com>
- <kwklrd2zjovabsa537jwg3bpqilvhfmxxyr4exmqbi2b35uxej@mhequ6ttibsd>
- <IA0PR11MB73079537444DAA9596F0A837BA1A2@IA0PR11MB7307.namprd11.prod.outlook.com>
- <CAA8EJpojDKtcG=amuwT7B+iaU_A9EwcvpkyyQ8nupKtsF_79gg@mail.gmail.com>
- <IA0PR11MB73070AE8FD9EAF5E47A56A96BA1A2@IA0PR11MB7307.namprd11.prod.outlook.com>
- <yyn35zkvqfajyyata2kuwfswfzjf3oqv4hzq5pc5rw7o2sporu@vsybecmh54ow>
- <IA0PR11MB73076D2B950535216961E209BA1A2@IA0PR11MB7307.namprd11.prod.outlook.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <IA0PR11MB73076D2B950535216961E209BA1A2@IA0PR11MB7307.namprd11.prod.outlook.com>
+ d=1e100.net; s=20230601; t=1737035807; x=1737640607;
+ h=cc:to:from:subject:message-id:mime-version:date:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=Afmzcj7YvLn6GXyrbKyUaoeIfkKGSsahsDNZPlhAdRk=;
+ b=ah4vRu03S52A6Mmd47PvosAk+l967ZzG73SzTwgSpS+E5EW4aOqjsG9L9sjERNPOGM
+ her3BukJ7eQTu5NcbiP6eDx3YxACepSHdki9houuR7CDYmcVvKqhRsRGhUgxUGh0YS3I
+ QcB6q/aGW43l7sMvpdcRioFp4dnk83PMkm/dA5a4djIao29NPhcTjT2iPK01GxIIlBik
+ WWuByOXGOTzM4HGPgLB3PCOSh+Fc5Ux5prgSe9Qlt8yuz5DFkqRADHVAcTF26cGoJ7eh
+ h0x+T4um55sP2bc0At6zKmvWZcYqGPU7huYgZZ4XcFEDFkoe253NV+5dre3q4HTDRZBl
+ YTVg==
+X-Gm-Message-State: AOJu0Yz5YSXFOFwMlsNUpdISNR45YUv+OpadZ9NeNtVj2rw+wmBaOIuA
+ sYAoiQ0V4qQSw/6IF+8USTolnjhKQhXBdxcRLERgfFxwn4Z6WDgYofm1W2iGV7cNFSRp7jaGA68
+ LJqryqW179N7AfkI+I88kVqvGQcRJ6iI3SqLM03czHRUenjktK038vOojmfz0otdNmoZcIqLnBU
+ 2CntzpQ91FcEN72/h5OAq/eM7lqZ+ztSTIxRynB9X+UPo/pBhhvA==
+X-Google-Smtp-Source: AGHT+IF3gKnK89tbVwHbUDUwD1lEN0/kaHGYmsaSOGreDcBut40sY3iWcjgUhYRrT2wdvYDMwQDTtKijor7j
+X-Received: from qkbbn9.prod.google.com ([2002:a05:620a:2ac9:b0:7b6:e6cf:180e])
+ (user=bgeffon job=prod-delivery.src-stubby-dispatcher) by
+ 2002:a05:620a:40c1:b0:7b6:db05:143c
+ with SMTP id af79cd13be357-7bcd9759e7fmr5322280485a.45.1737035807417; Thu, 16
+ Jan 2025 05:56:47 -0800 (PST)
+Date: Thu, 16 Jan 2025 08:56:36 -0500
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.48.0.rc2.279.g1de40edade-goog
+Message-ID: <20250116135636.410164-1-bgeffon@google.com>
+Subject: [PATCH] drm/i915: Fix page cleanup on DMA remap failure
+From: Brian Geffon <bgeffon@google.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: chris.p.wilson@intel.com, jani.saarinen@intel.com, tomasz.mistat@intel.com,
+ vidya.srinivas@intel.com, ville.syrjala@linux.intel.com, 
+ jani.nikula@linux.intel.com, linux-kernel@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Brian Geffon <bgeffon@google.com>, Tomasz Figa <tfiga@google.com>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,95 +81,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 16, 2025 at 01:33:43PM +0000, Murthy, Arun R wrote:
-> > On Thu, Jan 16, 2025 at 12:33:20PM +0000, Murthy, Arun R wrote:
-> > > > > > On Fri, Jan 10, 2025 at 01:15:29AM +0530, Arun R Murthy wrote:
-> > > > > > > Display Histogram is an array of bins and can be generated in
-> > > > > > > many ways referred to as modes.
-> > > > > > > Ex: HSV max(RGB), Wighted RGB etc.
-> > > > > > >
-> > > > > > > Understanding the histogram data format(Ex: HSV max(RGB))
-> > > > > > > Histogram is just the pixel count.
-> > > > > > > For a maximum resolution of 10k (10240 x 4320 = 44236800)
-> > > > > > > 25 bits should be sufficient to represent this along with a
-> > > > > > > buffer of
-> > > > > > > 7 bits(future use) u32 is being considered.
-> > > > > > > max(RGB) can be 255 i.e 0xFF 8 bit, considering the most
-> > > > > > > significant 5 bits, hence 32 bins.
-> > > > > > > Below mentioned algorithm illustrates the histogram generation
-> > > > > > > in hardware.
-> > > > > > >
-> > > > > > > hist[32] = {0};
-> > > > > > > for (i = 0; i < resolution; i++) {
-> > > > > > >     bin = max(RGB[i]);
-> > > > > > >     bin = bin >> 3; /* consider the most significant bits */
-> > > > > > >     hist[bin]++;
-> > > > > > > }
-> > > > > > > If the entire image is Red color then max(255,0,0) is 255 so
-> > > > > > > the pixel count of each pixels will be placed in the last bin.
-> > > > > > > Hence except hist[31] all other bins will have a value zero.
-> > > > > > > Generated histogram in this case would be hist[32] =
-> > > > > > > {0,0,....44236800}
-> > > > > > >
-> > > > > > > Description of the structures, properties defined are
-> > > > > > > documented in the header file include/uapi/drm/drm_mode.h
-> > > > > > >
-> > > > > > > Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> > > > > > > ---
-> > > > > > >  include/uapi/drm/drm_mode.h | 59
-> > > > > > > +++++++++++++++++++++++++++++++++++++++++++++
-> > > > > > >  1 file changed, 59 insertions(+)
-> > > > > > >
-> > > > > > > diff --git a/include/uapi/drm/drm_mode.h
-> > > > > > > b/include/uapi/drm/drm_mode.h index
-> > > > > > >
-> > > > > >
-> > > >
-> > c082810c08a8b234ef2672ecf54fc8c05ddc2bd3..7a7039381142bb5dba269bda
-> > > > > > ec42
-> > > > > > > c18be34e2d05 100644
-> > > > > > > --- a/include/uapi/drm/drm_mode.h
-> > > > > > > +++ b/include/uapi/drm/drm_mode.h
-> > > > > > > @@ -1355,6 +1355,65 @@ struct drm_mode_closefb {
-> > > > > > >     __u32 pad;
-> > > > > > >  };
-> > > > > > >
-> > > > > > > +/*
-> > > > > > > + * Maximum resolution at present 10k, 10240x4320 = 44236800
-> > > > > > > + * can be denoted in 25bits. With an additional 7 bits in
-> > > > > > > +buffer each bin
-> > > > > > > + * can be a u32 value.
-> > > > > > > + * Maximum value of max(RGB) is 255, so max 255 bins.
-> > > > > >
-> > > > > > HDR planes have higher max value for a component.
-> > > > > > Likewise even in an RGB24 case there are 256 possible values.
-> > > > > > It's not clear why
-> > > > > > 0 gets excluded.
-> > > > > >
-> > > > > This applies to only SDR and excludes HDR.
-> > > >
-> > > > Why?
-> > > >
-> > > We are limiting to only SDR. HDR includes a broad range of color and
-> > > finer details, which essentially means its an enhanced image.
-> > > We are trying to enhance the image quality of SDR with the support of
-> > histogram.
-> > 
-> > You are defining generic API. It might be broader than your existing usecase.
-> > Please consider supporting HDR too.
-> > 
-> HDR image enhancement is very much complex including multiple stages such as image tone mapping and image denoising.
-> Here for SDR planes, image enhancement is done by playing around the contrast and color.
-> Maybe at this stage we can focus on SDR and can take this HDR at the next stage.
+When converting to folios the cleanup path of shmem_get_pages() was
+missed. When a DMA remap fails and the max segment size is greater than
+PAGE_SIZE it will attempt to retry the remap with a PAGE_SIZEd segment
+size. The cleanup code isn't properly using the folio apis and as a
+result isn't handling compound pages correctly.
 
-If you define max(colour) to be 255, then you can not expand it later.
-The API will have 8 bits for colour information everywhere.
+Link: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13487
+Fixes: 0b62af28f249 ("i915: convert shmem_sg_free_table() to use a folio_batch")
+Signed-off-by: Brian Geffon <bgeffon@google.com>
+Suggested-by: Tomasz Figa <tfiga@google.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_shmem.c | 13 +++++--------
+ 1 file changed, 5 insertions(+), 8 deletions(-)
 
-> 
-> Thanks and Regards,
-> Arun R Murthy
-> -------------------- 
-
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+index fe69f2c8527d..02ddab5bf5c0 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+@@ -37,8 +37,6 @@ void shmem_sg_free_table(struct sg_table *st, struct address_space *mapping,
+ 	struct folio *last = NULL;
+ 	struct page *page;
+ 
+-	mapping_clear_unevictable(mapping);
+-
+ 	folio_batch_init(&fbatch);
+ 	for_each_sgt_page(page, sgt_iter, st) {
+ 		struct folio *folio = page_folio(page);
+@@ -180,10 +178,10 @@ int shmem_sg_alloc_table(struct drm_i915_private *i915, struct sg_table *st,
+ 	return 0;
+ err_sg:
+ 	sg_mark_end(sg);
++	mapping_clear_unevictable(mapping);
+ 	if (sg != st->sgl) {
+ 		shmem_sg_free_table(st, mapping, false, false);
+ 	} else {
+-		mapping_clear_unevictable(mapping);
+ 		sg_free_table(st);
+ 	}
+ 
+@@ -209,8 +207,6 @@ static int shmem_get_pages(struct drm_i915_gem_object *obj)
+ 	struct address_space *mapping = obj->base.filp->f_mapping;
+ 	unsigned int max_segment = i915_sg_segment_size(i915->drm.dev);
+ 	struct sg_table *st;
+-	struct sgt_iter sgt_iter;
+-	struct page *page;
+ 	int ret;
+ 
+ 	/*
+@@ -239,9 +235,8 @@ static int shmem_get_pages(struct drm_i915_gem_object *obj)
+ 		 * for PAGE_SIZE chunks instead may be helpful.
+ 		 */
+ 		if (max_segment > PAGE_SIZE) {
+-			for_each_sgt_page(page, sgt_iter, st)
+-				put_page(page);
+-			sg_free_table(st);
++			/* Leave the mapping unevictable while we retry */
++			shmem_sg_free_table(st, mapping, false, false);
+ 			kfree(st);
+ 
+ 			max_segment = PAGE_SIZE;
+@@ -265,6 +260,7 @@ static int shmem_get_pages(struct drm_i915_gem_object *obj)
+ 	return 0;
+ 
+ err_pages:
++	mapping_clear_unevictable(mapping);
+ 	shmem_sg_free_table(st, mapping, false, false);
+ 	/*
+ 	 * shmemfs first checks if there is enough memory to allocate the page
+@@ -402,6 +398,7 @@ void i915_gem_object_put_pages_shmem(struct drm_i915_gem_object *obj, struct sg_
+ 	if (i915_gem_object_needs_bit17_swizzle(obj))
+ 		i915_gem_object_save_bit_17_swizzle(obj, pages);
+ 
++	mapping_clear_unevictable(file_inode(obj->base.filp)->i_mapping);
+ 	shmem_sg_free_table(pages, file_inode(obj->base.filp)->i_mapping,
+ 			    obj->mm.dirty, obj->mm.madv == I915_MADV_WILLNEED);
+ 	kfree(pages);
 -- 
-With best wishes
-Dmitry
+2.48.0.rc2.279.g1de40edade-goog
+
