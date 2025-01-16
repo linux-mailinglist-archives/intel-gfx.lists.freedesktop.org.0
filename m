@@ -2,59 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD055A13C23
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2025 15:26:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA92FA13C3B
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2025 15:29:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A44F10E984;
-	Thu, 16 Jan 2025 14:26:40 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h+4eDW5W";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 487C010E59C;
+	Thu, 16 Jan 2025 14:29:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 784A910E986;
- Thu, 16 Jan 2025 14:26:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737037598; x=1768573598;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=1qkZKYmO6vP1SsNvTBs61jAbmVfmY36zLSsS4OTIjsc=;
- b=h+4eDW5Wtc8AtJ2IxIyv2MbNXikC9pS2mdrEZDOiIp6h1c/ATNR7NRaJ
- akFPjqK7auUJZeXbivsGPOLPHvHjtnssY/npv8EGJsBMzoPiWUrfonQe6
- 7bXP7NOhMyUeeoT2YQsqYjs+Np6JR/4gLU0fG1mE7eRt1lhtvEf1buKBg
- OYm6Tr6NSUQApvB5hg0X8qDTcYRYErnPIkM3PyRm0+OUSHweWemJklmTi
- r9IBdtFzkQdHAmonVOERtYgvmqLHeyxIfoMWWB6QGQJp1G6J41RsVaqp1
- mnYD/E5k53WHNPDGwKhO1UUXAJlAHAe7YR3J054QJoStsvxF5zxpXHzYJ Q==;
-X-CSE-ConnectionGUID: ZvMyJt1hTfuQHf3d0SmF9A==
-X-CSE-MsgGUID: AfQ0P0ayQ9uNmeg+1CMkkw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="37541898"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="37541898"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2025 06:26:38 -0800
-X-CSE-ConnectionGUID: LUJoLFQiR+6hOajXdZVGRg==
-X-CSE-MsgGUID: OlZso482TOyEiAlTqk2SnA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="142776958"
-Received: from puneetse-mobl.amr.corp.intel.com (HELO ldmartin-desk2)
- ([10.125.109.57])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2025 06:26:38 -0800
-Date: Thu, 16 Jan 2025 08:26:36 -0600
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Francois Dugast <francois.dugast@intel.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- jani.nikula@intel.com
-Subject: Re: [PATCH] drm/xe: Add missing SPDX license identifiers
-Message-ID: <u7wm5gyzznr7obtgmnrnafh4lliyqgxvx5umg6o2iqxmxscc5j@wnctmzdwxk7t>
-References: <20250116124532.1480351-1-francois.dugast@intel.com>
+Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D964510E59C;
+ Thu, 16 Jan 2025 14:29:03 +0000 (UTC)
+From: Maarten Lankhorst <dev@lankhorst.se>
+To: dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Maarten Lankhorst <dev@lankhorst.se>
+Subject: [PATCH 1/2] drm/modeset: Handle tiled displays in pan_display_atomic.
+Date: Thu, 16 Jan 2025 15:28:24 +0100
+Message-ID: <20250116142825.3933-1-dev@lankhorst.se>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250116124532.1480351-1-francois.dugast@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,45 +37,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 16, 2025 at 01:45:32PM +0100, Francois Dugast wrote:
->Ensure all Xe driver files have a proper SPDX license identifier, add it
->in files where it was missing.
->
->Signed-off-by: Francois Dugast <francois.dugast@intel.com>
->---
-> drivers/gpu/drm/xe/Kconfig.profile                           | 1 +
-> drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h | 5 +++++
-> 2 files changed, 6 insertions(+)
->
->diff --git a/drivers/gpu/drm/xe/Kconfig.profile b/drivers/gpu/drm/xe/Kconfig.profile
->index ba17a25e8db3..7530df998148 100644
->--- a/drivers/gpu/drm/xe/Kconfig.profile
->+++ b/drivers/gpu/drm/xe/Kconfig.profile
->@@ -1,3 +1,4 @@
->+# SPDX-License-Identifier: GPL-2.0-only
-> config DRM_XE_JOB_TIMEOUT_MAX
-> 	int "Default max job timeout (ms)"
-> 	default 10000 # milliseconds
->diff --git a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h
->index cb6c7598824b..a1ff59288a3d 100644
->--- a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h
->+++ b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_stolen.h
->@@ -1,3 +1,8 @@
->+/* SPDX-License-Identifier: MIT */
->+/*
->+ * Copyright © 2024 Intel Corporation
+Tiled displays have a different x/y offset to begin with. Instead of
+attempting to remember this, just apply a delta instead.
 
-		^2025
+Hope this works..
 
-otherwise,  Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+---
+ drivers/gpu/drm/drm_fb_helper.c | 14 ++++++++------
+ 1 file changed, 8 insertions(+), 6 deletions(-)
 
-Lucas De Marchi
+diff --git a/drivers/gpu/drm/drm_fb_helper.c b/drivers/gpu/drm/drm_fb_helper.c
+index c9008113111ba..fb3614a7ba44b 100644
+--- a/drivers/gpu/drm/drm_fb_helper.c
++++ b/drivers/gpu/drm/drm_fb_helper.c
+@@ -1354,14 +1354,14 @@ int drm_fb_helper_set_par(struct fb_info *info)
+ }
+ EXPORT_SYMBOL(drm_fb_helper_set_par);
+ 
+-static void pan_set(struct drm_fb_helper *fb_helper, int x, int y)
++static void pan_set(struct drm_fb_helper *fb_helper, int dx, int dy)
+ {
+ 	struct drm_mode_set *mode_set;
+ 
+ 	mutex_lock(&fb_helper->client.modeset_mutex);
+ 	drm_client_for_each_modeset(mode_set, &fb_helper->client) {
+-		mode_set->x = x;
+-		mode_set->y = y;
++		mode_set->x += dx;
++		mode_set->y += dy;
+ 	}
+ 	mutex_unlock(&fb_helper->client.modeset_mutex);
+ }
+@@ -1370,16 +1370,18 @@ static int pan_display_atomic(struct fb_var_screeninfo *var,
+ 			      struct fb_info *info)
+ {
+ 	struct drm_fb_helper *fb_helper = info->par;
+-	int ret;
++	int ret, dx, dy;
+ 
+-	pan_set(fb_helper, var->xoffset, var->yoffset);
++	dx = var->xoffset - info->var.xoffset;
++	dy = var->yoffset - info->var.yoffset;
++	pan_set(fb_helper, dx, dy);
+ 
+ 	ret = drm_client_modeset_commit_locked(&fb_helper->client);
+ 	if (!ret) {
+ 		info->var.xoffset = var->xoffset;
+ 		info->var.yoffset = var->yoffset;
+ 	} else
+-		pan_set(fb_helper, info->var.xoffset, info->var.yoffset);
++		pan_set(fb_helper, -dx, -dy);
+ 
+ 	return ret;
+ }
+-- 
+2.43.0
 
->+ */
->+
-> #ifndef _I915_GEM_STOLEN_H_
-> #define _I915_GEM_STOLEN_H_
->
->-- 
->2.43.0
->
