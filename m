@@ -2,59 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71ADAA13F42
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2025 17:24:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 338C2A13F8D
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2025 17:34:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1293810E9CA;
-	Thu, 16 Jan 2025 16:24:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C016410E9D0;
+	Thu, 16 Jan 2025 16:34:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eR64+7/f";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KiA+OL3w";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2140B10E9C3;
- Thu, 16 Jan 2025 16:24:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 72EAE10E9CC;
+ Thu, 16 Jan 2025 16:34:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737044687; x=1768580687;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=gqGVgyQZtKPg/0CB/y8abIP7dmkXtI4kSi3moljgjzQ=;
- b=eR64+7/fYdMtZ2eHXUGXuaNhO1U6HPvfHQ0GXWG80skCv7mkgPKHFmqr
- AO+vv7LwT1kOOua4KEe8dDb9Pqaum7sh2deTSE/6y23RVk52O+4mSygTn
- KTQl3odnUsoR0Y8ZKblnEPZygogqOQIunsn45u9STlshATEqHrMaBABUi
- 9EWBwEPYJRThYVfmI3vN5DMGlGD4+N51yx6MPOO2bE67t2uyguzR4B3PM
- sUGdEvURJQ6ua1CRteQQQUMevuEz0ZflKb+3kghAD5VE8VNkFc35Nf5Vu
- rtvNQRDkoi2mKpx+VwykniHc9rFbnCu22bIUgLl8gT63uvDU1hZ+g3vTE g==;
-X-CSE-ConnectionGUID: /mcc6drwRQOW/KAO7LZ2jA==
-X-CSE-MsgGUID: XMlhF5JxSgid30cqxIx0qg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11317"; a="41207674"
-X-IronPort-AV: E=Sophos;i="6.13,209,1732608000"; d="scan'208";a="41207674"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2025 08:24:42 -0800
-X-CSE-ConnectionGUID: 6BU5cSx6RHC2iKsKxgY9UQ==
-X-CSE-MsgGUID: M/4dzFTKTxKZy4MS96Wknw==
+ t=1737045284; x=1768581284;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=f9J4Q1jYVCxmPvmSWp8DUHOG0qgs55Q5LUbEDKt1utg=;
+ b=KiA+OL3wREeWtW+6TnZwEAqtPwkY0ZDAFzv7fV3dBcqtt1hV9SNloGuD
+ 4GyhL3auDK57cAhRVG1gloORYprpzOSspwzrmaQBRGZO35PSsOv1Jwqjq
+ TdS3tGf5JagMEUbKJ/dL0mziXop/ZiYWF0XPivQUuXUJ/zHcPH3HGrCWx
+ Jko1yeu/GV2EaBQmCQK9nxynKx1TuyBqOrxtCGQwLv8oVIkS1S0QjEscK
+ sYh0x8E9icG4JMXL4qUt3Py7+sueu8KkIOpkDtCFkLsjydSCMJwpvUaf8
+ 2khyjMK8Vm2vY7iCO/BZA5gNqrLowwgOVWVVSVOAwGASuLW8+CIzV7ttg A==;
+X-CSE-ConnectionGUID: /Z7WllhATn2XsqTUTkeI1A==
+X-CSE-MsgGUID: iJuueBVrQIiGzcRSSBzYsg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11317"; a="37602023"
+X-IronPort-AV: E=Sophos;i="6.13,209,1732608000"; d="scan'208";a="37602023"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2025 08:34:44 -0800
+X-CSE-ConnectionGUID: CyT1EGH+SB2YfQWBl1NM9w==
+X-CSE-MsgGUID: dG56ffh/QBSF8YvTxGFXJQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,209,1732608000"; d="scan'208";a="105314066"
-Received: from unknown (HELO localhost) ([10.237.66.160])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2025 08:24:40 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>, Ankit Nautiyal
- <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915/dp: Correct max compressed bpp bounds by using
- link bpp
-In-Reply-To: <Z4kmGN0RrY7VVBzQ@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250116095416.68325-1-ankit.k.nautiyal@intel.com>
- <Z4kmGN0RrY7VVBzQ@intel.com>
-Date: Thu, 16 Jan 2025 18:24:36 +0200
-Message-ID: <87h65yg20r.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="109600772"
+Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
+ by fmviesa003.fm.intel.com with ESMTP; 16 Jan 2025 08:34:41 -0800
+From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com, jani.nikula@intel.com, ville.syrjala@intel.com
+Subject: [PATCH v6 0/7] Check Scaler and DSC Prefill Latency Against Vblank
+Date: Thu, 16 Jan 2025 22:01:23 +0530
+Message-ID: <20250116163130.3816719-1-mitulkumar.ajitkumar.golani@intel.com>
+X-Mailer: git-send-email 2.48.0
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,71 +65,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 16 Jan 2025, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> On Thu, Jan 16, 2025 at 03:24:16PM +0530, Ankit Nautiyal wrote:
->> While setting the bounds for compressed bpp we ensure that the
->> compressed bpp is less than the pipe bpp.
->> 
->> This gives an issue with 420 output format where effective link bpp is
->> half that of the pipe bpp. Therefore instead of pipe bpp use link bpp to
->> set the bounds for the compressed bpp.
->> 
->> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_dp.c | 10 ++++++++--
->
-> patches to i915, even when they target only platforms supported by
-> xe should also be sent to intel-gfx mainlinlist...
+Compute and check if dsc and scaler prefill latency is sufficient with
+respect to vblank.
 
-Agreed... but this one was? :)
+Previous Revision Reference:
+https://patchwork.freedesktop.org/series/141203/
+https://patchwork.freedesktop.org/series/142745/
 
-BR,
-Jani.
+Mitul Golani (7):
+  drm/i915/scaler: Add and compute scaling factors
+  drm/i915/scaler: Use crtc_state to setup plane or pipe scaler
+  drm/i915/scaler: Refactor max_scale computation
+  drm/i915/scaler: Compute scaling factors for pipe scaler
+  drm/i915/scaler: Limit pipe scaler downscaling factors for YUV420
+  drm/i915/scaler: Check if vblank is sufficient for scaler
+  drm/i915/dsc: Check if vblank is sufficient for dsc prefill
 
->
->>  1 file changed, 8 insertions(+), 2 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
->> index 1ad25c37f3c2..47fcfbcb893b 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dp.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->> @@ -2068,9 +2068,12 @@ icl_dsc_compute_link_config(struct intel_dp *intel_dp,
->>  			    int timeslots)
->>  {
->>  	int i, ret;
->> +	int link_bpp;
->> +
->> +	link_bpp = intel_dp_output_bpp(pipe_config->output_format, pipe_bpp);
->>  
->>  	/* Compressed BPP should be less than the Input DSC bpp */
->> -	dsc_max_bpp = min(dsc_max_bpp, pipe_bpp - 1);
->> +	dsc_max_bpp = min(dsc_max_bpp, link_bpp - 1);
->>  
->>  	for (i = 0; i < ARRAY_SIZE(valid_dsc_bpp); i++) {
->>  		if (valid_dsc_bpp[i] < dsc_min_bpp)
->> @@ -2113,6 +2116,7 @@ xelpd_dsc_compute_link_config(struct intel_dp *intel_dp,
->>  	u8 bppx16_incr = drm_dp_dsc_sink_bpp_incr(connector->dp.dsc_dpcd);
->>  	u16 compressed_bppx16;
->>  	u8 bppx16_step;
->> +	int link_bpp;
->>  	int ret;
->>  
->>  	if (DISPLAY_VER(display) < 14 || bppx16_incr <= 1)
->> @@ -2120,8 +2124,10 @@ xelpd_dsc_compute_link_config(struct intel_dp *intel_dp,
->>  	else
->>  		bppx16_step = 16 / bppx16_incr;
->>  
->> +	link_bpp = intel_dp_output_bpp(pipe_config->output_format, pipe_bpp);
->> +
->>  	/* Compressed BPP should be less than the Input DSC bpp */
->> -	dsc_max_bpp = min(dsc_max_bpp << 4, (pipe_bpp << 4) - bppx16_step);
->> +	dsc_max_bpp = min(dsc_max_bpp << 4, (link_bpp << 4) - bppx16_step);
->>  	dsc_min_bpp = dsc_min_bpp << 4;
->>  
->>  	for (compressed_bppx16 = dsc_max_bpp;
->> -- 
->> 2.45.2
->> 
+ .../drm/i915/display/intel_display_types.h    |   2 +
+ drivers/gpu/drm/i915/display/skl_scaler.c     | 123 ++++++++++++------
+ drivers/gpu/drm/i915/display/skl_watermark.c  |  67 +++++++++-
+ 3 files changed, 154 insertions(+), 38 deletions(-)
 
 -- 
-Jani Nikula, Intel
+2.48.0
+
