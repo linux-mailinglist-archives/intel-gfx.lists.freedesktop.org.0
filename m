@@ -2,65 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CD63A13CD4
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2025 15:51:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D1325A13D0A
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2025 15:59:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53DBB10E9A1;
-	Thu, 16 Jan 2025 14:51:44 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WeK71Wck";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5907E10E9A2;
+	Thu, 16 Jan 2025 14:59:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E80410E9A0;
- Thu, 16 Jan 2025 14:51:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737039103; x=1768575103;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=JhrgbMnh+1+mznJVWO81Q8hpZu3DSUMTDGFTr83DkU8=;
- b=WeK71WckSYKkZ0+6m+IM+i0YW5dxcNJIaeicZX0Gisd62OKjszo4Vbxp
- egjfxIphnXgEyTJCsqUk3hmDwI3H0I4OWzy3QIshkzqscj4Cqh17vNNgZ
- 0Uy4bQNuAci/xRX61OoS7uGuG2x4Yz2LFIVIxLNvS2Mb7j6qPZqxWQZ2q
- wJUZkA+VQx/kbGbokXQpM2BMoc74Oph98M4YlQEVhJT37iPgSNAofxtij
- rJOaWILm999l+UDIRhxSqM6xn8S5nYOI4RVGsvB4LA1zltiUWAHWVMv89
- G2JOwFEl1kVMLl9mRxkQnDXsqZpvo2UYQ3+Ue80svZxK1ACDjSg2q7XgX w==;
-X-CSE-ConnectionGUID: jMGf3dgwRTqXGCaAF8b6OQ==
-X-CSE-MsgGUID: hGBmmFogRaOMsfLyxntaag==
-X-IronPort-AV: E=McAfee;i="6700,10204,11317"; a="59904147"
-X-IronPort-AV: E=Sophos;i="6.13,209,1732608000"; d="scan'208";a="59904147"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2025 06:51:43 -0800
-X-CSE-ConnectionGUID: aTB02F7pQmep5oFJ1XbCNg==
-X-CSE-MsgGUID: lTLDz3FgTUWkK0PxnJqzJA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,209,1732608000"; d="scan'208";a="105666774"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 16 Jan 2025 06:51:39 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 16 Jan 2025 16:51:38 +0200
-Date: Thu, 16 Jan 2025 16:51:38 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Brian Geffon <bgeffon@google.com>
-Cc: intel-gfx@lists.freedesktop.org, chris.p.wilson@intel.com,
- jani.saarinen@intel.com, tomasz.mistat@intel.com,
- vidya.srinivas@intel.com, jani.nikula@linux.intel.com,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tomasz Figa <tfiga@google.com>
-Subject: Re: [PATCH] drm/i915: Fix page cleanup on DMA remap failure
-Message-ID: <Z4kc-sBdFz0sd4dJ@intel.com>
-References: <20250116135636.410164-1-bgeffon@google.com>
- <Z4kWms-eFWxddspp@intel.com>
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0EEB10E9A2;
+ Thu, 16 Jan 2025 14:59:10 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1738004860785186171=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Z4kWms-eFWxddspp@intel.com>
-X-Patchwork-Hint: comment
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/xe=3A_Add_missing_SPD?=
+ =?utf-8?q?X_license_identifiers?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Francois Dugast" <francois.dugast@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 16 Jan 2025 14:59:10 -0000
+Message-ID: <173703955098.268103.6508812217471137266@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250116124532.1480351-1-francois.dugast@intel.com>
+In-Reply-To: <20250116124532.1480351-1-francois.dugast@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,113 +37,196 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 16, 2025 at 04:24:26PM +0200, Ville Syrjälä wrote:
-> On Thu, Jan 16, 2025 at 08:56:36AM -0500, Brian Geffon wrote:
-> > When converting to folios the cleanup path of shmem_get_pages() was
-> > missed. When a DMA remap fails and the max segment size is greater than
-> > PAGE_SIZE it will attempt to retry the remap with a PAGE_SIZEd segment
-> > size. The cleanup code isn't properly using the folio apis and as a
-> > result isn't handling compound pages correctly.
-> > 
-> > Link: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13487
-> > Fixes: 0b62af28f249 ("i915: convert shmem_sg_free_table() to use a folio_batch")
-> > Signed-off-by: Brian Geffon <bgeffon@google.com>
-> > Suggested-by: Tomasz Figa <tfiga@google.com>
-> > ---
-> >  drivers/gpu/drm/i915/gem/i915_gem_shmem.c | 13 +++++--------
-> >  1 file changed, 5 insertions(+), 8 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-> > index fe69f2c8527d..02ddab5bf5c0 100644
-> > --- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-> > +++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-> > @@ -37,8 +37,6 @@ void shmem_sg_free_table(struct sg_table *st, struct address_space *mapping,
-> >  	struct folio *last = NULL;
-> >  	struct page *page;
-> >  
-> > -	mapping_clear_unevictable(mapping);
-> > -
-> 
-> The assymmetry here between the alloc vs. free is a bit annoying.
-> Maybe we can just keep this here? 
+--===============1738004860785186171==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Hmm, I guess with the current code that avoids the ping-pong
-we (at least theoretically) could leak the mapping_set_unevictable()
-if both i915_gem_gtt_prepare_pages() fails, and then the the
-subsequent shmem_sg_alloc_table() retry fails early enough.
+== Series Details ==
 
-So looks to me like the ping-pong would be the only 100% correct
-approach.
+Series: drm/xe: Add missing SPDX license identifiers
+URL   : https://patchwork.freedesktop.org/series/143604/
+State : success
 
-> 
-> Or if avoiding the ping-pong actually mattes in the gtt prepare
-> error case, then maybe we should rename this guy into
-> __shmem_sg_free_table() without the mapping_clear_unevictable()
-> and wrap it in a higher level shmem_sg_free_table() that does
-> everything?
-> 
-> >  	folio_batch_init(&fbatch);
-> >  	for_each_sgt_page(page, sgt_iter, st) {
-> >  		struct folio *folio = page_folio(page);
-> > @@ -180,10 +178,10 @@ int shmem_sg_alloc_table(struct drm_i915_private *i915, struct sg_table *st,
-> >  	return 0;
-> >  err_sg:
-> >  	sg_mark_end(sg);
-> > +	mapping_clear_unevictable(mapping);
-> >  	if (sg != st->sgl) {
-> >  		shmem_sg_free_table(st, mapping, false, false);
-> >  	} else {
-> > -		mapping_clear_unevictable(mapping);
-> >  		sg_free_table(st);
-> >  	}
-> >  
-> > @@ -209,8 +207,6 @@ static int shmem_get_pages(struct drm_i915_gem_object *obj)
-> >  	struct address_space *mapping = obj->base.filp->f_mapping;
-> >  	unsigned int max_segment = i915_sg_segment_size(i915->drm.dev);
-> >  	struct sg_table *st;
-> > -	struct sgt_iter sgt_iter;
-> > -	struct page *page;
-> >  	int ret;
-> >  
-> >  	/*
-> > @@ -239,9 +235,8 @@ static int shmem_get_pages(struct drm_i915_gem_object *obj)
-> >  		 * for PAGE_SIZE chunks instead may be helpful.
-> >  		 */
-> >  		if (max_segment > PAGE_SIZE) {
-> > -			for_each_sgt_page(page, sgt_iter, st)
-> > -				put_page(page);
-> > -			sg_free_table(st);
-> > +			/* Leave the mapping unevictable while we retry */
-> > +			shmem_sg_free_table(st, mapping, false, false);
-> >  			kfree(st);
-> >  
-> >  			max_segment = PAGE_SIZE;
-> > @@ -265,6 +260,7 @@ static int shmem_get_pages(struct drm_i915_gem_object *obj)
-> >  	return 0;
-> >  
-> >  err_pages:
-> > +	mapping_clear_unevictable(mapping);
-> >  	shmem_sg_free_table(st, mapping, false, false);
-> >  	/*
-> >  	 * shmemfs first checks if there is enough memory to allocate the page
-> > @@ -402,6 +398,7 @@ void i915_gem_object_put_pages_shmem(struct drm_i915_gem_object *obj, struct sg_
-> >  	if (i915_gem_object_needs_bit17_swizzle(obj))
-> >  		i915_gem_object_save_bit_17_swizzle(obj, pages);
-> >  
-> > +	mapping_clear_unevictable(file_inode(obj->base.filp)->i_mapping);
-> >  	shmem_sg_free_table(pages, file_inode(obj->base.filp)->i_mapping,
-> >  			    obj->mm.dirty, obj->mm.madv == I915_MADV_WILLNEED);
-> >  	kfree(pages);
-> > -- 
-> > 2.48.0.rc2.279.g1de40edade-goog
-> 
-> -- 
-> Ville Syrjälä
-> Intel
+== Summary ==
 
--- 
-Ville Syrjälä
-Intel
+CI Bug Log - changes from CI_DRM_15967 -> Patchwork_143604v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143604v1/index.html
+
+Participating hosts (41 -> 40)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_143604v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@debugfs_test@basic-hwmon:
+    - fi-pnv-d510:        NOTRUN -> [SKIP][1] +3 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143604v1/fi-pnv-d510/igt@debugfs_test@basic-hwmon.html
+
+  * igt@gem_exec_gttfill@basic:
+    - fi-pnv-d510:        NOTRUN -> [ABORT][2] ([i915#13169])
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143604v1/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
+
+  * igt@i915_selftest@live:
+    - bat-jsl-1:          [PASS][3] -> [DMESG-FAIL][4] ([i915#13132]) +1 other test dmesg-fail
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15967/bat-jsl-1/igt@i915_selftest@live.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143604v1/bat-jsl-1/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-5:         [PASS][5] -> [DMESG-FAIL][6] ([i915#12061]) +1 other test dmesg-fail
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15967/bat-arls-5/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143604v1/bat-arls-5/igt@i915_selftest@live@workarounds.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
+    - bat-dg2-11:         [PASS][7] -> [SKIP][8] ([i915#9197]) +3 other tests skip
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15967/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143604v1/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_module_load@load:
+    - {bat-mtlp-9}:       [DMESG-WARN][9] ([i915#13494]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15967/bat-mtlp-9/igt@i915_module_load@load.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143604v1/bat-mtlp-9/igt@i915_module_load@load.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#13132]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13132
+  [i915#13169]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13169
+  [i915#13494]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13494
+  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_15967 -> Patchwork_143604v1
+
+  CI-20190529: 20190529
+  CI_DRM_15967: 50d15a728295807727a2642284d639fc71ecaa15 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8195: 8195
+  Patchwork_143604v1: 50d15a728295807727a2642284d639fc71ecaa15 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143604v1/index.html
+
+--===============1738004860785186171==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Add missing SPDX license identifiers</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/143604/">https://patchwork.freedesktop.org/series/143604/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143604v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143604v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_15967 -&gt; Patchwork_143604v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143604v1/index.html</p>
+<h2>Participating hosts (41 -&gt; 40)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_143604v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@debugfs_test@basic-hwmon:</p>
+<ul>
+<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143604v1/fi-pnv-d510/igt@debugfs_test@basic-hwmon.html">SKIP</a> +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_exec_gttfill@basic:</p>
+<ul>
+<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143604v1/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13169">i915#13169</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-jsl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15967/bat-jsl-1/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143604v1/bat-jsl-1/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13132">i915#13132</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15967/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143604v1/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
+<ul>
+<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15967/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143604v1/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197">i915#9197</a>) +3 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_module_load@load:<ul>
+<li>{bat-mtlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15967/bat-mtlp-9/igt@i915_module_load@load.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13494">i915#13494</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143604v1/bat-mtlp-9/igt@i915_module_load@load.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_15967 -&gt; Patchwork_143604v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_15967: 50d15a728295807727a2642284d639fc71ecaa15 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8195: 8195<br />
+  Patchwork_143604v1: 50d15a728295807727a2642284d639fc71ecaa15 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============1738004860785186171==--
