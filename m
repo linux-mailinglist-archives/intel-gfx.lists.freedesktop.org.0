@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69C14A136A6
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2025 10:32:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 124B7A1375F
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2025 11:05:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6AA0010E910;
-	Thu, 16 Jan 2025 09:32:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BDCE10E924;
+	Thu, 16 Jan 2025 10:05:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NUaMq6bA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VWzz7H2b";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2CBC410E90C
- for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jan 2025 09:32:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22C5110E929;
+ Thu, 16 Jan 2025 10:05:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737019942; x=1768555942;
+ t=1737021936; x=1768557936;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=7/zokV/b5Vn8UOKp2IrPOJBvLZnxBv2MRoUcW8e/+vQ=;
- b=NUaMq6bADzU9A0kdlMMMRtfYWzlv7dGtMJjZXK9wUoxw3dJDzcTZ9ctA
- lPIsXqiq13mRVY8MYNTqfABVR2+7rMPi9A2aRJagJPvK8uwcDDOuCiDhp
- vEE/ka6cvgsM3LFbpwH2izBVANgTHl9OuCi7I7xqVzGE7Hse/8YroCvsg
- +PXJVnyEbqrjYklN2qGzPyOH/t7ZVrsC48Lf0f7hfM77c6DuR0e7rTXCB
- RtqO7meeE6mjwNdOuPb/mvl6PcRfKyEzIVFE2t8/Zrhy8KOEH8V0L3qNi
- feyAiLsXZC4ZTFz6wfAlOwCaDLM2d4NvCLpjqhZUv00q4s7iZrZZqZj5l A==;
-X-CSE-ConnectionGUID: Fr0lewnMS+mT13XOHnQAsQ==
-X-CSE-MsgGUID: uPtH/xtlRiylKj2DEoVrrQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11316"; a="37550144"
-X-IronPort-AV: E=Sophos;i="6.13,208,1732608000"; d="scan'208";a="37550144"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2025 01:32:22 -0800
-X-CSE-ConnectionGUID: 8sRj0cRFTl6aW8qj/sZc+g==
-X-CSE-MsgGUID: TzgFvoT6RLCN0370GzsVvQ==
+ bh=GSZs3f1TK0H7I2GHxtCVH4mC6qc1waZwcj++Ih4tnvc=;
+ b=VWzz7H2bivkDRo/upHuTpJVCwrNzOKqLoIj3YRbeZ9K5blcQJG6b0GZu
+ u6idrzq9RZzjgaAmsW4dfTkw10Y+6yUPuQ2uBK3SI5CA1TQVjl4nNByxs
+ LL/fI/kaRBzTvGQ8UJtzAwTUY+IlsaEI/xm4b6Chorea59+MGdN28r/oB
+ uSfGKyBv7DRmUcz2ZVFcQOWxIQ5eLdPSqRxq+01SW7CceNEGtif8B4gtf
+ zW5ldEjCinoQARSUpsVh2uOTWKHO9cN7eyXRq96GWHuAfe6gAhH968Ejq
+ E9jWwXnjvS258LwiCB96YBwVzB+Jdh208kUYPQ9W5vceMBsZirVgGEB4Z A==;
+X-CSE-ConnectionGUID: TtKiKipWSFq37Bn5kWZ2aQ==
+X-CSE-MsgGUID: 8vE5ZUajR8GOWEx3ylnF5Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11316"; a="41334878"
+X-IronPort-AV: E=Sophos;i="6.13,209,1732608000"; d="scan'208";a="41334878"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2025 02:05:36 -0800
+X-CSE-ConnectionGUID: 6mAMG/OpRIeI1seuLLWJDA==
+X-CSE-MsgGUID: +3y4PeTqRsKveP3WBFYw3w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,208,1732608000"; d="scan'208";a="105971785"
-Received: from haridhar-ms-7d25.iind.intel.com ([10.190.238.61])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2025 01:32:20 -0800
-From: Ranu Maurya <ranu.maurya@intel.com>
+X-IronPort-AV: E=Sophos;i="6.13,209,1732608000"; d="scan'208";a="110412880"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2025 02:05:34 -0800
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: sai.teja.pottumuttu@intel.com, balasubramani.vivekanandan@intel.com,
- ranu.maurya@intel.com
-Subject: [PATCH v3] drm/i915: Add Wa_22010465259 in its respective WA list
-Date: Thu, 16 Jan 2025 15:01:15 +0530
-Message-Id: <20250116093115.2437154-1-ranu.maurya@intel.com>
-X-Mailer: git-send-email 2.25.1
+Cc: intel-xe@lists.freedesktop.org
+Subject: [PATCH] drm/i915/dp: Correct max compressed bpp bounds by using link
+ bpp
+Date: Thu, 16 Jan 2025 15:24:16 +0530
+Message-ID: <20250116095416.68325-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -66,48 +66,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add Wa_22010465259 which points to an existing WA, but
-was missing from the comment list. While at it, update
-the other WAs and their applicable platforms as well.
+While setting the bounds for compressed bpp we ensure that the
+compressed bpp is less than the pipe bpp.
 
-v1: Initial commit.
-v2: Add DG2 platform to Wa_22010465259.
-v3: Removed DG2 platform to Wa_22010465259 since it
-    was for preproduction.
+This gives an issue with 420 output format where effective link bpp is
+half that of the pipe bpp. Therefore instead of pipe bpp use link bpp to
+set the bounds for the compressed bpp.
 
-Signed-off-by: Ranu Maurya <ranu.maurya@intel.com>
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_workarounds.c | 13 +++++++------
- 1 file changed, 7 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-index 570c91878189..277a4df31071 100644
---- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-+++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-@@ -691,16 +691,17 @@ static void gen12_ctx_workarounds_init(struct intel_engine_cs *engine,
- 	struct drm_i915_private *i915 = engine->i915;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 1ad25c37f3c2..47fcfbcb893b 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -2068,9 +2068,12 @@ icl_dsc_compute_link_config(struct intel_dp *intel_dp,
+ 			    int timeslots)
+ {
+ 	int i, ret;
++	int link_bpp;
++
++	link_bpp = intel_dp_output_bpp(pipe_config->output_format, pipe_bpp);
  
- 	/*
--	 * Wa_1409142259:tgl,dg1,adl-p
-+	 * Wa_1409142259:tgl,dg1,adl-p,adl-n
- 	 * Wa_1409347922:tgl,dg1,adl-p
- 	 * Wa_1409252684:tgl,dg1,adl-p
- 	 * Wa_1409217633:tgl,dg1,adl-p
- 	 * Wa_1409207793:tgl,dg1,adl-p
--	 * Wa_1409178076:tgl,dg1,adl-p
--	 * Wa_1408979724:tgl,dg1,adl-p
--	 * Wa_14010443199:tgl,rkl,dg1,adl-p
--	 * Wa_14010698770:tgl,rkl,dg1,adl-s,adl-p
--	 * Wa_1409342910:tgl,rkl,dg1,adl-s,adl-p
-+	 * Wa_1409178076:tgl,dg1,adl-p,adl-n
-+	 * Wa_1408979724:tgl,dg1,adl-p,adl-n
-+	 * Wa_14010443199:tgl,rkl,dg1,adl-p,adl-n
-+	 * Wa_14010698770:tgl,rkl,dg1,adl-s,adl-p,adl-n
-+	 * Wa_1409342910:tgl,rkl,dg1,adl-s,adl-p,adl-n
-+	 * Wa_22010465259:tgl,rkl,dg1,adl-s,adl-p,adl-n
- 	 */
- 	wa_masked_en(wal, GEN11_COMMON_SLICE_CHICKEN3,
- 		     GEN12_DISABLE_CPS_AWARE_COLOR_PIPE);
+ 	/* Compressed BPP should be less than the Input DSC bpp */
+-	dsc_max_bpp = min(dsc_max_bpp, pipe_bpp - 1);
++	dsc_max_bpp = min(dsc_max_bpp, link_bpp - 1);
+ 
+ 	for (i = 0; i < ARRAY_SIZE(valid_dsc_bpp); i++) {
+ 		if (valid_dsc_bpp[i] < dsc_min_bpp)
+@@ -2113,6 +2116,7 @@ xelpd_dsc_compute_link_config(struct intel_dp *intel_dp,
+ 	u8 bppx16_incr = drm_dp_dsc_sink_bpp_incr(connector->dp.dsc_dpcd);
+ 	u16 compressed_bppx16;
+ 	u8 bppx16_step;
++	int link_bpp;
+ 	int ret;
+ 
+ 	if (DISPLAY_VER(display) < 14 || bppx16_incr <= 1)
+@@ -2120,8 +2124,10 @@ xelpd_dsc_compute_link_config(struct intel_dp *intel_dp,
+ 	else
+ 		bppx16_step = 16 / bppx16_incr;
+ 
++	link_bpp = intel_dp_output_bpp(pipe_config->output_format, pipe_bpp);
++
+ 	/* Compressed BPP should be less than the Input DSC bpp */
+-	dsc_max_bpp = min(dsc_max_bpp << 4, (pipe_bpp << 4) - bppx16_step);
++	dsc_max_bpp = min(dsc_max_bpp << 4, (link_bpp << 4) - bppx16_step);
+ 	dsc_min_bpp = dsc_min_bpp << 4;
+ 
+ 	for (compressed_bppx16 = dsc_max_bpp;
 -- 
-2.25.1
+2.45.2
 
