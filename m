@@ -2,61 +2,90 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0FE6A134B4
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2025 09:08:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 621FFA135B9
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2025 09:45:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F69710E8EA;
-	Thu, 16 Jan 2025 08:08:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C2BDE10E8FF;
+	Thu, 16 Jan 2025 08:45:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kQvwncvD";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="jMdPXHkB";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 04EB810E8EB;
- Thu, 16 Jan 2025 08:08:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737014906; x=1768550906;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=vzjpXeBmkojziF0fPU0pNk7M/G4iK1GTWpYkp53r2FA=;
- b=kQvwncvDwrm3NfTSwkw1J8V8zptaA450gsKVy3AUbxIZHCEZf+URY+78
- Q2IN7h+QUE6aKIzLxdpEP9rj3ypW+SyLzdtNBQdeLHbZKXMI6Vr0q8FC7
- T42JwbZHyNdwttJJ5o2jr/XPwe6jOVrUVN6mCTtYiIXKoKQzUNY1DwmRD
- 7jOxoa7pOrJIGMIkKIR7r7LrEv21zj34QH9n4KW1aNkfGSYHiKDCWGFE5
- lV1iyeSTjk/18r7YfYcYaamdGDT72rH6mWXpntq/xSNq6yX1WvN4h9NMN
- JCCxSoF9TebtcJCwqMNnss5Fzi5bETD466Ap06hocHzmQXuKmu3x4ZBcl g==;
-X-CSE-ConnectionGUID: rBhcnanaQ/y+tfoSp3yp4A==
-X-CSE-MsgGUID: sJBAwQw1RmiKDWgWSIgLwQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11316"; a="37548175"
-X-IronPort-AV: E=Sophos;i="6.13,208,1732608000"; d="scan'208";a="37548175"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2025 00:08:25 -0800
-X-CSE-ConnectionGUID: yL995aoNTDmmrZhdKid3Wg==
-X-CSE-MsgGUID: 0AFOPfsoSvWjKcTEagHLIA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,208,1732608000"; d="scan'208";a="110380290"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.132])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2025 00:08:22 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com, dnyaneshwar.bhadane@intel.com, Suraj Kandpal
- <suraj.kandpal@intel.com>
-Subject: Re: [PATCH] drm/i915/hdcp: Use correct function to check if encoder
- is HDMI
-In-Reply-To: <8734hjgp2d.fsf@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250116052023.981666-1-suraj.kandpal@intel.com>
- <8734hjgp2d.fsf@intel.com>
-Date: Thu, 16 Jan 2025 10:08:19 +0200
-Message-ID: <87zfjrfafg.fsf@intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D878B10E901
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jan 2025 08:45:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1737017132;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+ bh=mdrHmU1w955LF9SCvybW0+D/xuTZON1n9XZafOB9MoM=;
+ b=jMdPXHkB1LR8HmWyIVtrQ/zFxRs5A1zmyD9PgVzpteCYBsbgA5WAh3WmgrkzBWuXZ4Da93
+ eQtJBC2ZWq9t2Mp+fAB/V6b1HUGW+e3FC4wJEMa3NZTL18ULwYfQVtAW0doBJVPaWsLF28
+ +tf9xt4sW+XJdsD2ikk1eiCvSu/4lE8=
+Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
+ [209.85.221.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-65-5o0Aa7h5NiaEGzDWG0-BSQ-1; Thu, 16 Jan 2025 03:45:29 -0500
+X-MC-Unique: 5o0Aa7h5NiaEGzDWG0-BSQ-1
+X-Mimecast-MFC-AGG-ID: 5o0Aa7h5NiaEGzDWG0-BSQ
+Received: by mail-wr1-f69.google.com with SMTP id
+ ffacd0b85a97d-3860bc1d4f1so445840f8f.2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jan 2025 00:45:29 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1737017126; x=1737621926;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=mdrHmU1w955LF9SCvybW0+D/xuTZON1n9XZafOB9MoM=;
+ b=YyjLHBubBEYCa3tjjd/v4Dy1YiCf1aCN5/CyOAPGzI2ySFp1JXCLTxs+C5X3jHKuVk
+ RDZBWLUrkJWJ86U2vI7UxQ9skiY3m689d1880Tlm0OGOQLedyfX4qFXOA8jVjzm5qLjo
+ Tvw7jwZLyLrr7mivrnK+r5HEjadpufOF6XFp25m6TSQDu40F7KHLbFcoiJxhmWtSMZ2v
+ 0ioFfKbLv2KyJSVOutMd55KDBrGEMSo9vG3oOu+Acrb53kcu/M99aRDIZyYJvmSLQ3hb
+ yMzjazDz+lFFV759g1f7h61HGu1g9kKMatDV3BIRVTBBZHB0QX0R0uw+nkgfEEYn0vo8
+ jveA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCURrkBy03L457nqAah6YZXErPdxQFnE4Z4rxaawkLq8jJltSiSl03mLpdGqZ816QgzNJ4P3fAJlIgk=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzDDtn2enc0ilE5gutoDsWi2xImr7Wqajf/3PpXGV09EFEwPm27
+ OIfeN4euL1jPJHmcrt1eh/ewZxHr3f/o5/C1NgwMBE05JdY1KQoVa3F/YCSXitSky3N3enFN0jr
+ 0CEkiaib3A7+vxAzjGHilEDv+114jNJBnTNCxu6y1ZITsjqDjGz7I6scw8rmfVN5LWw==
+X-Gm-Gg: ASbGncsKsVT8x9w5mLN5WwLvj3QZGiMlCHW5q15F+MJBniWnPFPSMqKHpt9Wq1FQjwy
+ 2+/asqBK3wUCbe2Rf+5TvfjnczDdOO9EpmExwVfJfswsGAZidhZIF4BjCfdOqDtV9TtYRgldfEZ
+ 7FNnIygPuBerURFLNgNVpJ6zX7SSLuhSaD0B2d+GffDCNEgCx8p5pha+7UZKeCNznzGbGIj2bhQ
+ rUghfWKzjYOxwmOJEUXuYJv6Qp87fEM
+X-Received: by 2002:a05:6000:1845:b0:38b:ed7b:f77d with SMTP id
+ ffacd0b85a97d-38bed7bfb4amr946953f8f.52.1737017126014; 
+ Thu, 16 Jan 2025 00:45:26 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEHK+IJ1lIO7QX6ub/oEgAZRvZDd3XIWgd5Z+pcYXpKxXmnwgFHsiWHY11XBrNHSWnsCDkEgA==
+X-Received: by 2002:a05:6000:1845:b0:38b:ed7b:f77d with SMTP id
+ ffacd0b85a97d-38bed7bfb4amr946919f8f.52.1737017125595; 
+ Thu, 16 Jan 2025 00:45:25 -0800 (PST)
+Received: from localhost ([2a01:e0a:b25:f902::ff])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-38a8e38ef6asm20270415f8f.60.2025.01.16.00.45.24
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 16 Jan 2025 00:45:25 -0800 (PST)
+Date: Thu, 16 Jan 2025 09:45:24 +0100
+From: Maxime Ripard <mripard@redhat.com>
+To: Dave Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-next-fixes
+Message-ID: <20250116-bold-furry-perch-b1ca0e@houat>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="xzp6s7t2j6i3nskj"
+Content-Disposition: inline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,48 +101,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, 16 Jan 2025, Jani Nikula <jani.nikula@linux.intel.com> wrote:
-> On Thu, 16 Jan 2025, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
->> Use intel_encoder_is_hdmi function which was recently introduced to
->> see if encoder is HDMI or not.
->
-> Does this mean we always returned early from
-> intel_hdcp_adjust_hdcp_line_rekeying()?
->
-> Fixes: ?
 
-And why is there no patch changelog, just two patches on the list, one
-with the condition flipped and the other not?
+--xzp6s7t2j6i3nskj
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Subject: [PULL] drm-misc-next-fixes
+MIME-Version: 1.0
 
+Hi,
 
->
-> BR,
-> Jani.
->
->
->
->
->
->
->>
->> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_hdcp.c | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
->> index 7464b44c8bb3..91d5629cd9f9 100644
->> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
->> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
->> @@ -41,7 +41,7 @@ intel_hdcp_adjust_hdcp_line_rekeying(struct intel_encoder *encoder,
->>  	u32 rekey_bit = 0;
->>  
->>  	/* Here we assume HDMI is in TMDS mode of operation */
->> -	if (encoder->type != INTEL_OUTPUT_HDMI)
->> +	if (!intel_encoder_is_hdmi(encoder))
->>  		return;
->>  
->>  	if (DISPLAY_VER(display) >= 30) {
+Here's this week drm-misc-next-fixes PR.
 
--- 
-Jani Nikula, Intel
+Thanks!
+Maxime
+
+drm-misc-next-fixes-2025-01-16:
+Several fixes for the new dmem cgroup controller and the HDMI framework
+audio support
+The following changes since commit 24c61d553302ee49e9c21dd251275ba8c36dcfe4:
+
+  Merge tag 'drm-msm-next-2025-01-07' of gitlab.freedesktop.org:drm/msm into drm-next (2025-01-13 11:14:07 +1000)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-fixes-2025-01-16
+
+for you to fetch changes up to f1359f46f1f1305340970b5073240126fe87254f:
+
+  drm/bridge: fix documentation for the hdmi_audio_prepare() callback (2025-01-15 12:32:47 +0200)
+
+----------------------------------------------------------------
+Several fixes for the new dmem cgroup controller and the HDMI framework
+audio support
+
+----------------------------------------------------------------
+Cristian Ciocaltea (1):
+      drm/display: hdmi: Do not read EDID on disconnected connectors
+
+Dmitry Baryshkov (2):
+      drm/display: hdmi-state-helper: add drm_display_mode declaration
+      drm/bridge: fix documentation for the hdmi_audio_prepare() callback
+
+Jiapeng Chong (1):
+      kernel/cgroup: Remove the unused variable climit
+
+Liu Ying (2):
+      drm/connector: hdmi: Do atomic check when necessary
+      drm/tests: hdmi: Add connector disablement test
+
+Maxime Ripard (5):
+      Merge drm/drm-next into drm-misc-next-fixes
+      cgroup/dmem: Select PAGE_COUNTER
+      cgroup/dmem: Fix parameters documentation
+      drm/doc: Include new drm-compute documentation
+      doc/cgroup: Fix title underline length
+
+ Documentation/core-api/cgroup.rst                  |  2 +-
+ Documentation/gpu/index.rst                        |  1 +
+ drivers/gpu/drm/display/drm_hdmi_state_helper.c    |  5 +++
+ drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c | 52 ++++++++++++++++++++++
+ include/drm/display/drm_hdmi_state_helper.h        |  1 +
+ include/drm/drm_bridge.h                           |  2 +-
+ init/Kconfig                                       |  1 +
+ kernel/cgroup/dmem.c                               | 10 ++---
+ 8 files changed, 65 insertions(+), 9 deletions(-)
+
+--xzp6s7t2j6i3nskj
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZ4jHJAAKCRAnX84Zoj2+
+dnTKAX9nbV6LIPLAOM3MDf5Svk0UVB6Tin5M33ea3nD7QRu46APQLTGjy52EeAF1
+0PMmN1cBf1to1qZL4aZBOhQrAgjmnzDuZPXa7BL4HPQ7y8dqvrDC2SBkJO1mCJWb
+aolxzqzytQ==
+=eptm
+-----END PGP SIGNATURE-----
+
+--xzp6s7t2j6i3nskj--
+
