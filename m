@@ -2,165 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 089F7A13DA5
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2025 16:30:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A54F6A13E41
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2025 16:53:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E2A410E9AE;
-	Thu, 16 Jan 2025 15:30:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 230C910E1F4;
+	Thu, 16 Jan 2025 15:53:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HXlRJfsp";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="grGTtLNF";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB4AB10E9AD;
- Thu, 16 Jan 2025 15:30:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737041440; x=1768577440;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=X7Gwbyb1IehZxFmHM+t96wduCPfnZwazxluQSpZfOSQ=;
- b=HXlRJfspzwEQqy9qkNYbVCaIyUsqJveVpswcFmX02rRwAxybFPDDVaah
- SGhLtwyr4rtGasr60E4YPynw2nuN8IYuI76G/k1rRmvVcqXlmMiV7WFZ0
- tq7ahI2u+/NctjoCsdwokvxLFw2i/kqehLJ+9KP9hR65PP5YaA2yT3VD3
- mjmb0e610ozlhK5KT+B7Q81clYhCuu3fHX7nxuBeOk2qWJ/zpDeo/cvFa
- KvBykc23ryQzvwqbBrnVz25Zuhqzmwxg3TY0+xpC1Eyc35J/PSTVPP8JR
- M0Pb2XpVaXDBIbzqe/jP42pRk9xymyWskIQgpbd7cpoCVps3D99n3Ls7L g==;
-X-CSE-ConnectionGUID: afb6QtAmRp2sN0crVLvB/A==
-X-CSE-MsgGUID: x4hKTFCIQX+FmBMm1YWxOQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11317"; a="41368895"
-X-IronPort-AV: E=Sophos;i="6.13,209,1732608000"; d="scan'208";a="41368895"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2025 07:30:39 -0800
-X-CSE-ConnectionGUID: coe4y8AjTXiJZaNb1S+jDg==
-X-CSE-MsgGUID: oQrxTx/IQ/mhr1pGEp1QEA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="136394083"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmviesa001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 16 Jan 2025 07:30:39 -0800
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Thu, 16 Jan 2025 07:30:38 -0800
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Thu, 16 Jan 2025 07:30:38 -0800
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.172)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Thu, 16 Jan 2025 07:30:38 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=uEXy45CJs0iHnjZiapRcMRtPAR+JGsXoyFdfWumR+mHNELGL6o1WWl0B7QVIT4qZV2qvnJ0Fc6zJt1rubZ2CZLfaIJNZWHOdsZvF+rWhFGPnC4j1qFsK/aqfo3Zw3M4kOQaJfsd452nVXTkPCT7hb2PoYNjcpfo8nAmUCe0nvWWFlvsi2OuERZDcAoZJnA8J+ordGHxbA6708WTyw3h8Ukz2qW0zSqNTJ8Zjj5u2Ar36pecFGvh5RjU4AuU8uf00jKrW4amnwBsBYCxKyLMmIBc6R2/3eceECxnOjbp+vj4NRgjW4CXaLOEmhlMQ0NHBQ6mEkaYDU0/7GJirWXHn8g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7GSKg5uYMonNvGa1kTu5T4kFspAe2XZvcNmZPztbQ50=;
- b=vERFdfPEqUxojQBwofmSCvJF0/e7YXYzy7NZbchpStdcDpr8z7R94uOLfl7ZWZBbo0f6/9FpwqkdiL78JsFpjp1rFDo3QW/hgbZidFHqw8gwiMWCHR4rWVRVPgHYpWqL4wi0DaExzrTSshyaWho+z8z1OdCVMvX/uJ4okn9wsXv0aKR2bq3thU7KCsIKMhqmFrBsBz19jY25YpJGFUika+zmIPBi4Mxkjeh5GcB3NTBvSFmYYxOFX6cgDGK9hLNkNdWX0IrSDxAllxi8qXt1KNVsPzeH30d+vKe40h7aLGTpkRO46TcXitVFjsmzONsDg9AKwMzW+pCZPgLNS5BtwQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from SN7PR11MB8282.namprd11.prod.outlook.com (2603:10b6:806:269::11)
- by DS0PR11MB7261.namprd11.prod.outlook.com (2603:10b6:8:13d::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8356.13; Thu, 16 Jan
- 2025 15:30:36 +0000
-Received: from SN7PR11MB8282.namprd11.prod.outlook.com
- ([fe80::f9d9:8daa:178b:3e72]) by SN7PR11MB8282.namprd11.prod.outlook.com
- ([fe80::f9d9:8daa:178b:3e72%5]) with mapi id 15.20.8356.010; Thu, 16 Jan 2025
- 15:30:36 +0000
-Date: Thu, 16 Jan 2025 10:30:32 -0500
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/i915/dp: Correct max compressed bpp bounds by using
- link bpp
-Message-ID: <Z4kmGN0RrY7VVBzQ@intel.com>
-References: <20250116095416.68325-1-ankit.k.nautiyal@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20250116095416.68325-1-ankit.k.nautiyal@intel.com>
-X-ClientProxiedBy: MW4PR04CA0223.namprd04.prod.outlook.com
- (2603:10b6:303:87::18) To SN7PR11MB8282.namprd11.prod.outlook.com
- (2603:10b6:806:269::11)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN7PR11MB8282:EE_|DS0PR11MB7261:EE_
-X-MS-Office365-Filtering-Correlation-Id: e08e348f-938a-4c12-53c3-08dd3642b944
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?tSNXz+M2qF045vIOOOyS/t/LJeseBsG+JPM5gFIsSgT6Dmh7qmNajKz9HtJ7?=
- =?us-ascii?Q?GBCQRbO5DUf5wAfCnbMmqsv56I/E8ykyud/mI3CrN2d3F1oxytwbgTMhhOrW?=
- =?us-ascii?Q?hFIisqEQFLtgbKmqqzK6KJDfVrFq/28E8/RqEvcw2OAfrLhGKPMJgozFt1UZ?=
- =?us-ascii?Q?253rYhxA0EtpRFXfYOrc0D9IrXvoS9Xme61F7JfFZmuh74YeOvKdLqNStFDi?=
- =?us-ascii?Q?Qyj6ObzP5T4tO3pI0AsZSPE6s+L8fDyZ2ZipJRF5OV1dGT3wcK+oU0pmm6x5?=
- =?us-ascii?Q?NORfs7v9MMH3Py39dvkRyP5ROnxKbNemd6V+qlhQJzATJ8V7ivICGe4y2JZV?=
- =?us-ascii?Q?3lxw92ZAx3hW3Ze5lwi5Wa2Cqx5wtByRxT0894JjSEaDEzESH5R4EKZQcDfm?=
- =?us-ascii?Q?bAew9cJ8U8oyVckjU866pHek3Y9+1E/oRHswJ/t32HrUfweCMWAKIefydiLF?=
- =?us-ascii?Q?zKiuZRCXEOH+peP2eMNpjD1xzHNgxLdxpfUqQQy2/OUn6ME/NdlqR9wO+NeL?=
- =?us-ascii?Q?o/zbzuPa9luEsUz2lqwpm8g92tzaZLTDZZOdAENsxjGtMGMyINT3FrXUVvNy?=
- =?us-ascii?Q?KewKEkvFW7B5xjTMjlgGO0wWxF0+bOSSqN4BB4WIgDnINmXql0nQEN/rbgSq?=
- =?us-ascii?Q?nUKz60a/StZGA5bEai/13NJvbGIDctKBSZxXmPN0Gz8DVQZXPkY80l8Ksu/b?=
- =?us-ascii?Q?c+xvrFi7w0EfqfHYaz/lAHbx1UGn3kGSXVCDLFd9bmeodKJX0DL7cqnwP1Er?=
- =?us-ascii?Q?rXNFaM1KCptUdQJDwRdMbBDNj84lDFs1kepK755UncNgafk0bPqqR7pGl22C?=
- =?us-ascii?Q?X0x1NDCjvMm3K1mH4cGppKXOIIF6sZedxIIzSNPGKRooE4VyfWD5lvVjYWTN?=
- =?us-ascii?Q?fOnmb4AWuFGyWVvhC8w9FYPFbFtpx9nBiMZpCd8YI6PK79wX4duG5RitpK0s?=
- =?us-ascii?Q?hM43jAHsXvKWQKRkfqJzlHpR7sJBalqHsjsNXyrPRSZ/hPzP+Ne6CiZwOaT5?=
- =?us-ascii?Q?wMA5KOFHDi4UoX2N/eYAY6h0T9cwNiICcRqzpyIC+qfrcGQ/jGhlBRwufUv5?=
- =?us-ascii?Q?eGXr/wnoLBKJZn4U1iSO+uV+kp4KYGGUCtg5aJ0n2L4bmnPkphG7xQS1pi5s?=
- =?us-ascii?Q?vqyADH1tMF07IzWgVQL8aDmWUcQ1lxwsFxge2CcFMUms6BJRbKZGh/rwfkl2?=
- =?us-ascii?Q?8k8OSHivLqBreIxBnajaCMaiM7XdQNVRX8tLOqr5jvVN8qcp5WQcKPm/vGX1?=
- =?us-ascii?Q?xvNnv6vhdWjUQacxQX3gQFvtqZX3pQp1fPJgZHdx9QRZ2BdFtG4MYRRl/+HI?=
- =?us-ascii?Q?C2juqGj+BCZYr4JADGweYWTG5ebYQTyppqYKO+efB5js3CEx2caOjPkyC4PY?=
- =?us-ascii?Q?XbSgrZTIEDMdf0C/eqZW1P3gvXP4?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SN7PR11MB8282.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?2sJ14iiizH8fN7kBv6UW7b//LyGcZ2pFs2TLF6FekNkBtFqSTBrYVsI6Z/TC?=
- =?us-ascii?Q?sqnmLI9ibE0ATtLn+TUw69TasYDOf4qQuDe6MaCjd1OECMlonIQ048gJVw/j?=
- =?us-ascii?Q?yc1qos2gPMuEK9aV6fgzs2NvwB6OfjtERlZK/QILAILOFGdxDbRlySVLqlft?=
- =?us-ascii?Q?slaf8G1k06SqxL+FT7hCYjvCOcf0UR1EAbi6LoOqnN+9O1u/O6/OvBhQSI4V?=
- =?us-ascii?Q?Nf+ka7QL0f4M2OF4fOgE6Vz74gCPz16Vr4PV8DHrhiooN5moBQHjGjuL8+6E?=
- =?us-ascii?Q?G5Ae9bQyKpLkWBlu/XQqcoarCtqXpRo5nYutcHaSOzFtUfghcUzG7MrP577l?=
- =?us-ascii?Q?oH5yXBTZLKjJsSHaacJYCp3iiUOpxfSMb2rD6yK5uSiKLRrn3TK3iBjaYSBy?=
- =?us-ascii?Q?MUrGFGHqf+ylGqSe2CcTcT9C0kVi0OymvLuDiENfCYpaps9BI9YYaCxuWS1X?=
- =?us-ascii?Q?aJD1hJAieBlA8dP3T46AeNK2uCUbaeZqYguJt94SlxtYYdQe3W54WxGhBZo7?=
- =?us-ascii?Q?tNiI2t2Xh0nhsSNWnArdCKys1Vp4jxxDFwbE/Sv5lgSpAeKZvMQLjYajbpZW?=
- =?us-ascii?Q?sk76zsMrrvo/8t4D26gzZ1gUiK0ad7ICgV+PlwtO5qlhYA3miNBk6OaDe8Dh?=
- =?us-ascii?Q?iz6RwuqhxK7fRDrPutZKnmvqn+hWQ54QNV2CVb/hx08caWul+VvLWrBpSHVA?=
- =?us-ascii?Q?X8oqYtyw3lvPJPDyhkIe+hCGkjVw583r0oPPq/1SXLg759HJ1N4oapocvQ6o?=
- =?us-ascii?Q?4EpDDutH+/wLM11CndIGXA7IMYpW/UIIs7K8JV9qrAEZzBksa7nzDaQNNxrd?=
- =?us-ascii?Q?SwnXog3cW4DR61ZoWt4dDzp0T2qQUWXegWDjeRz03xXntAV+h1drK8tqPsxn?=
- =?us-ascii?Q?+2V30ecsZEvkiqfUjhgvwOsXPdFKFM1jCIJb+hGkVMXqtC8XHGUWexHYN8he?=
- =?us-ascii?Q?Ejmv9T983foDvXUFbgi3iEuOeNSCvBQlOvCFTCPEdSEtDx+PGlf91oPAH35I?=
- =?us-ascii?Q?/G/jv1gfBnehrUhqXRbX8Ti4Z03qEPb1c07F59yy+Rws9Tuvr/leTE0/7A7f?=
- =?us-ascii?Q?MhoBtcrGjx63ZmxYlPDzDBMk/KyUk8f9JaRnL1AnGqfJL1cU5S0mexhgezOM?=
- =?us-ascii?Q?/i2AZINDDBcSgu8/rjsPiAPTtsnBXv2ngIjVRxsCBNyvMnY11OeenY+rADFI?=
- =?us-ascii?Q?N11dLLxIixaiNAI3Zcb24FfmuTWU8xqACTCFQzF6FqiPTosnNz6WkQl0AtAc?=
- =?us-ascii?Q?DHWCo/tSQQcp8ggb9pu4kz4Tj+PDkqMrcLj/15D45p7OaGIDGdpQgxMu5vfi?=
- =?us-ascii?Q?jik4Xdqe55RlsnTMUpyMwZL1Hj89cEvtbX2tDOM8W4/Q2qKpialOnxpLlSHV?=
- =?us-ascii?Q?dLj7L6o8OWBy749ajltbWZ1lsic3xhSUxD6ga2AAso2ODUMh+Spwv1GpqN3s?=
- =?us-ascii?Q?XMcFgDfSeg/f/U4/KV4Ajn0Sb8vLRP0q3W6v6z20O9FX65cRWbo7R0xAYCOA?=
- =?us-ascii?Q?kdUB+ahUZFMfrNkrfvWgOa7vVt3D9bD4evhvLmDGAWVb3OLXexA2MmkQPlEB?=
- =?us-ascii?Q?XF27bKv7lheJ7S8RKOYLx2FZBYOog05kzNTg2/cPWHcX/ZJP6dREZLPO3mwQ?=
- =?us-ascii?Q?DQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: e08e348f-938a-4c12-53c3-08dd3642b944
-X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB8282.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2025 15:30:36.3105 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: U/dtaRlLNOFg4KSQvb/CHVZW3MQY1rPnlG9qnZikERhf6MC59NAUfz1fHlws7GjXbOcKZQ5PiOH9cODybHi+Tg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7261
-X-OriginatorOrg: intel.com
+Received: from mail-qk1-x74a.google.com (mail-qk1-x74a.google.com
+ [IPv6:2607:f8b0:4864:20::74a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8329810E1F4
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jan 2025 15:53:43 +0000 (UTC)
+Received: by mail-qk1-x74a.google.com with SMTP id
+ af79cd13be357-7b6e9fb0436so296702785a.0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jan 2025 07:53:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20230601; t=1737042822; x=1737647622;
+ darn=lists.freedesktop.org; 
+ h=cc:to:from:subject:message-id:mime-version:date:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=+NgxzohitdM1qWFyHYVoLcjjA8gFpN7ubVQANdColG0=;
+ b=grGTtLNFa1QgZBzEITJghcbxJTy3F1/L6whzpqf0HjOgqkBf4pYt+VLCU5Zb1xcmWf
+ 3JVFhE5hyg2C6SvoRccWWLLTxkx5mmcPHX7zEYsUQao6Rz4PkoQ2scpDcCAqOqd8eIJ4
+ 3/5jSOygr0pUiYSLCpkNl/5GKCWTHKsKzevmAftZCPjUaXgyo/SHT5J2ijX7N/XIJmlV
+ zaWnOVr/krHXgAzaTY8NTxT15yj8I7nCkXWws9P9v/8nok9sxCiu+MMRVyKJlzTne9qg
+ NpH4sN5n7b6Es5cXqBUAnDaGRxqR7iXsQH3DrBabw/al3f8p8sOo3yp87ZDXsXnl9gYm
+ dDAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1737042822; x=1737647622;
+ h=cc:to:from:subject:message-id:mime-version:date:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=+NgxzohitdM1qWFyHYVoLcjjA8gFpN7ubVQANdColG0=;
+ b=osna0RUpIwXfl4Y1rkhXRJeecu/7LiBMv1f4zTziVBWkv7U2ce90Bzei6CIujVMUVE
+ TPUHzyTGfZgQo9/tey+55a3gW1okf3RXrYn9XN8a7VMjHi+PBj/BatXy2eU5mD06ZzyD
+ 8fWfb2p31vN0qDwGiFbDiShKZnQ1wDlhekCcH47EmaBCGBpEvL9G09dlw3cj9Tm9PgYi
+ svDTa9kY7aoFcjLygR4jU7l7PaFQKz2CWI2mmy6kQJc+/UbCN+FdMy0+FKRXBeC2bIcr
+ wSy540bGarI094sS9LRrIqmfyb3yig4mtheVSYIGDULkhV5W7cY+cQQMgv245X0lR3vN
+ rctw==
+X-Gm-Message-State: AOJu0Yw6od+cVSvvtkdVDEZ1FljIFs9Zjffi5GvfIHbZqV2ANGr2TyHA
+ pqlXlXUrk/BAbRDVjNjAJ3JOObfuSiIk0x2/WBQUeFUFJMVD/rGiO7SySIaSAe2UHT01MWN2TxZ
+ goFqDbG3+b6VPKB6hfxjz4jT13JH7g5CT3ohbrslm2j7xVWGYxa+VxNmybsowpipjB9yn42v938
+ jE9cg7G/jyu2YlhtdsTR7tz/0hQMVdlL5HS6XhD7IKeid3+Z3Mzg==
+X-Google-Smtp-Source: AGHT+IGJOnZhDdWOuqF4V2FKZrAxZRVdn4bKnAiEpdg+yjoPSSoWSLu+uDS4cdr2EjL67ZS7jo3Ffc+mWC1W
+X-Received: from qkhn21.prod.google.com ([2002:a05:620a:2235:b0:7b6:cc15:8bb0])
+ (user=bgeffon job=prod-delivery.src-stubby-dispatcher) by
+ 2002:a05:620a:5e15:b0:7be:3cd7:dd95
+ with SMTP id af79cd13be357-7be3cd7de65mr1979422985a.12.1737042822520; Thu, 16
+ Jan 2025 07:53:42 -0800 (PST)
+Date: Thu, 16 Jan 2025 10:53:40 -0500
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.48.0.rc2.279.g1de40edade-goog
+Message-ID: <20250116155340.533180-1-bgeffon@google.com>
+Subject: [PATCH v2] drm/i915: Fix page cleanup on DMA remap failure
+From: Brian Geffon <bgeffon@google.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: chris.p.wilson@intel.com, jani.saarinen@intel.com, tomasz.mistat@intel.com,
+ vidya.srinivas@intel.com, ville.syrjala@linux.intel.com, 
+ jani.nikula@linux.intel.com, linux-kernel@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Brian Geffon <bgeffon@google.com>, 
+ stable@vger.kernel.org, Tomasz Figa <tfiga@google.com>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -176,61 +82,145 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 16, 2025 at 03:24:16PM +0530, Ankit Nautiyal wrote:
-> While setting the bounds for compressed bpp we ensure that the
-> compressed bpp is less than the pipe bpp.
-> 
-> This gives an issue with 420 output format where effective link bpp is
-> half that of the pipe bpp. Therefore instead of pipe bpp use link bpp to
-> set the bounds for the compressed bpp.
-> 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 10 ++++++++--
+When converting to folios the cleanup path of shmem_get_pages() was
+missed. When a DMA remap fails and the max segment size is greater than
+PAGE_SIZE it will attempt to retry the remap with a PAGE_SIZEd segment
+size. The cleanup code isn't properly using the folio apis and as a
+result isn't handling compound pages correctly.
 
-patches to i915, even when they target only platforms supported by
-xe should also be sent to intel-gfx mainlinlist...
+v1 -> v2:
+  (Ville) Fixed locations where we were not clearing mapping unevictable.
 
->  1 file changed, 8 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 1ad25c37f3c2..47fcfbcb893b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -2068,9 +2068,12 @@ icl_dsc_compute_link_config(struct intel_dp *intel_dp,
->  			    int timeslots)
->  {
->  	int i, ret;
-> +	int link_bpp;
-> +
-> +	link_bpp = intel_dp_output_bpp(pipe_config->output_format, pipe_bpp);
->  
->  	/* Compressed BPP should be less than the Input DSC bpp */
-> -	dsc_max_bpp = min(dsc_max_bpp, pipe_bpp - 1);
-> +	dsc_max_bpp = min(dsc_max_bpp, link_bpp - 1);
->  
->  	for (i = 0; i < ARRAY_SIZE(valid_dsc_bpp); i++) {
->  		if (valid_dsc_bpp[i] < dsc_min_bpp)
-> @@ -2113,6 +2116,7 @@ xelpd_dsc_compute_link_config(struct intel_dp *intel_dp,
->  	u8 bppx16_incr = drm_dp_dsc_sink_bpp_incr(connector->dp.dsc_dpcd);
->  	u16 compressed_bppx16;
->  	u8 bppx16_step;
-> +	int link_bpp;
->  	int ret;
->  
->  	if (DISPLAY_VER(display) < 14 || bppx16_incr <= 1)
-> @@ -2120,8 +2124,10 @@ xelpd_dsc_compute_link_config(struct intel_dp *intel_dp,
->  	else
->  		bppx16_step = 16 / bppx16_incr;
->  
-> +	link_bpp = intel_dp_output_bpp(pipe_config->output_format, pipe_bpp);
-> +
->  	/* Compressed BPP should be less than the Input DSC bpp */
-> -	dsc_max_bpp = min(dsc_max_bpp << 4, (pipe_bpp << 4) - bppx16_step);
-> +	dsc_max_bpp = min(dsc_max_bpp << 4, (link_bpp << 4) - bppx16_step);
->  	dsc_min_bpp = dsc_min_bpp << 4;
->  
->  	for (compressed_bppx16 = dsc_max_bpp;
-> -- 
-> 2.45.2
-> 
+Cc: stable@vger.kernel.org
+Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+Cc: Vidya Srinivas <vidya.srinivas@intel.com>
+Link: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13487
+Link: https://lore.kernel.org/lkml/20250116135636.410164-1-bgeffon@google.com/
+Fixes: 0b62af28f249 ("i915: convert shmem_sg_free_table() to use a folio_batch")
+Signed-off-by: Brian Geffon <bgeffon@google.com>
+Suggested-by: Tomasz Figa <tfiga@google.com>
+---
+ drivers/gpu/drm/i915/gem/i915_gem_object.h |  3 +--
+ drivers/gpu/drm/i915/gem/i915_gem_shmem.c  | 23 +++++++++-------------
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c    |  7 ++++---
+ 3 files changed, 14 insertions(+), 19 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+index 3dc61cbd2e11..0f122a12d4a5 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+@@ -843,8 +843,7 @@ int shmem_sg_alloc_table(struct drm_i915_private *i915, struct sg_table *st,
+ 			 size_t size, struct intel_memory_region *mr,
+ 			 struct address_space *mapping,
+ 			 unsigned int max_segment);
+-void shmem_sg_free_table(struct sg_table *st, struct address_space *mapping,
+-			 bool dirty, bool backup);
++void shmem_sg_free_table(struct sg_table *st, bool dirty, bool backup);
+ void __shmem_writeback(size_t size, struct address_space *mapping);
+ 
+ #ifdef CONFIG_MMU_NOTIFIER
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+index fe69f2c8527d..b320d9dfd6d3 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+@@ -29,16 +29,13 @@ static void check_release_folio_batch(struct folio_batch *fbatch)
+ 	cond_resched();
+ }
+ 
+-void shmem_sg_free_table(struct sg_table *st, struct address_space *mapping,
+-			 bool dirty, bool backup)
++void shmem_sg_free_table(struct sg_table *st, bool dirty, bool backup)
+ {
+ 	struct sgt_iter sgt_iter;
+ 	struct folio_batch fbatch;
+ 	struct folio *last = NULL;
+ 	struct page *page;
+ 
+-	mapping_clear_unevictable(mapping);
+-
+ 	folio_batch_init(&fbatch);
+ 	for_each_sgt_page(page, sgt_iter, st) {
+ 		struct folio *folio = page_folio(page);
+@@ -180,10 +177,10 @@ int shmem_sg_alloc_table(struct drm_i915_private *i915, struct sg_table *st,
+ 	return 0;
+ err_sg:
+ 	sg_mark_end(sg);
++	mapping_clear_unevictable(mapping);
+ 	if (sg != st->sgl) {
+-		shmem_sg_free_table(st, mapping, false, false);
++		shmem_sg_free_table(st, false, false);
+ 	} else {
+-		mapping_clear_unevictable(mapping);
+ 		sg_free_table(st);
+ 	}
+ 
+@@ -209,8 +206,6 @@ static int shmem_get_pages(struct drm_i915_gem_object *obj)
+ 	struct address_space *mapping = obj->base.filp->f_mapping;
+ 	unsigned int max_segment = i915_sg_segment_size(i915->drm.dev);
+ 	struct sg_table *st;
+-	struct sgt_iter sgt_iter;
+-	struct page *page;
+ 	int ret;
+ 
+ 	/*
+@@ -239,9 +234,8 @@ static int shmem_get_pages(struct drm_i915_gem_object *obj)
+ 		 * for PAGE_SIZE chunks instead may be helpful.
+ 		 */
+ 		if (max_segment > PAGE_SIZE) {
+-			for_each_sgt_page(page, sgt_iter, st)
+-				put_page(page);
+-			sg_free_table(st);
++			/* Leave the mapping unevictable while we retry */
++			shmem_sg_free_table(st, false, false);
+ 			kfree(st);
+ 
+ 			max_segment = PAGE_SIZE;
+@@ -265,7 +259,8 @@ static int shmem_get_pages(struct drm_i915_gem_object *obj)
+ 	return 0;
+ 
+ err_pages:
+-	shmem_sg_free_table(st, mapping, false, false);
++	mapping_clear_unevictable(mapping);
++	shmem_sg_free_table(st, false, false);
+ 	/*
+ 	 * shmemfs first checks if there is enough memory to allocate the page
+ 	 * and reports ENOSPC should there be insufficient, along with the usual
+@@ -402,8 +397,8 @@ void i915_gem_object_put_pages_shmem(struct drm_i915_gem_object *obj, struct sg_
+ 	if (i915_gem_object_needs_bit17_swizzle(obj))
+ 		i915_gem_object_save_bit_17_swizzle(obj, pages);
+ 
+-	shmem_sg_free_table(pages, file_inode(obj->base.filp)->i_mapping,
+-			    obj->mm.dirty, obj->mm.madv == I915_MADV_WILLNEED);
++	mapping_clear_unevictable(file_inode(obj->base.filp)->i_mapping);
++	shmem_sg_free_table(pages, obj->mm.dirty, obj->mm.madv == I915_MADV_WILLNEED);
+ 	kfree(pages);
+ 	obj->mm.dirty = false;
+ }
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+index 10d8673641f7..37f51a04b838 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_ttm.c
+@@ -232,7 +232,8 @@ static int i915_ttm_tt_shmem_populate(struct ttm_device *bdev,
+ 	return 0;
+ 
+ err_free_st:
+-	shmem_sg_free_table(st, filp->f_mapping, false, false);
++	mapping_clear_unevictable(filp->f_mapping);
++	shmem_sg_free_table(st, false, false);
+ 
+ 	return err;
+ }
+@@ -243,8 +244,8 @@ static void i915_ttm_tt_shmem_unpopulate(struct ttm_tt *ttm)
+ 	bool backup = ttm->page_flags & TTM_TT_FLAG_SWAPPED;
+ 	struct sg_table *st = &i915_tt->cached_rsgt.table;
+ 
+-	shmem_sg_free_table(st, file_inode(i915_tt->filp)->i_mapping,
+-			    backup, backup);
++	mapping_clear_unevictable(file_inode(i915_tt->filp)->i_mapping);
++	shmem_sg_free_table(st, backup, backup);
+ }
+ 
+ static void i915_ttm_tt_release(struct kref *ref)
+-- 
+2.48.0.rc2.279.g1de40edade-goog
+
