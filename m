@@ -2,64 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7085A142B8
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2025 21:03:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 58F44A142E1
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2025 21:16:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0037B10E22D;
-	Thu, 16 Jan 2025 20:03:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B15310E218;
+	Thu, 16 Jan 2025 20:16:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qn8S4bRJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bCcQ0PSV";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF12C10E22D;
- Thu, 16 Jan 2025 20:03:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0BEED10E218
+ for <intel-gfx@lists.freedesktop.org>; Thu, 16 Jan 2025 20:16:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737057784; x=1768593784;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=D0pi96GtS0YTXJVodQd3dKmPd1Nx2xamjqLflmmjzR8=;
- b=Qn8S4bRJV9DyPkStBrQ3PnWXA09ZjRsZwK3oLBEDLELTRZyYqaq8+bN/
- 0LfmqMRrZf02GT6ECsx19ERoRgnuCDa+4VcnMCyv3PnrCgVAgS3cWJtyS
- 1UuJgtBmKQuKTV6JiSXw1C3nDufZgQxk/m0nhxdLuWb/OmdQTxpZNorpj
- FSj2XM9BrAUVV5eYcj0ea20DdWXXW206q1jdI3tG2HCNGi1zoGy97rL6h
- qmTeVnkvvwMXDKnH+OD8dpPJ0KhzsBsNQIquMqUX7N2vn0xFKWPTM5mOt
- lcC6rNWcLtEKTX1ZMfDA+iijDb8SNcrIVpLjIogB3jEMa5SEMEZeGlMnn w==;
-X-CSE-ConnectionGUID: XdIhpU0TQYC/HByQQmOIfw==
-X-CSE-MsgGUID: X6yQw7QLSkKnNqUzSTa+sw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11317"; a="37348741"
-X-IronPort-AV: E=Sophos;i="6.13,210,1732608000"; d="scan'208";a="37348741"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2025 12:03:04 -0800
-X-CSE-ConnectionGUID: 2OIN4ePAQOCvYgiSxbV0Eg==
-X-CSE-MsgGUID: BEYQQSGhSxyF2PmD04awLA==
+ t=1737058601; x=1768594601;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=SpMCC1zs/U1ZzmT7LIjAcSNg0A0cBwSXM5j96ocW8qA=;
+ b=bCcQ0PSVmzbaBRP3dGTyB/BQtsINLQNocMnPIZYczmFiB7pTaDsU54yS
+ ieCbMdGW5DedmDMh0RCeFlA38CFktHeZ+capBUJcct0oxJMVgdRJIaKuO
+ pjxCIOWqPQRqaW7+/3Bg9liMiPQLa2q7qDF2kMkrGYQC1PLdxg+wLHXJV
+ 5tev/+/s5eCpi7wuldT7LZi3O99QicKR8gUxhjEXguZpgjicMWy3Z4m3W
+ 5j5shJjk+wEDTFaOBpDYn2zOZjvxpedvL/doTH8e4MjbUsLSu585n2hS+
+ UQWxTyytRh6hLBgONWxYSG/ihKI3qy6uxnWZ3TnWHtKK4VxCVOOQC72WP g==;
+X-CSE-ConnectionGUID: 2wF1YOAuTt6mT5D5pn6VRw==
+X-CSE-MsgGUID: whsvs9qaTfmXjxTnItn1qw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11317"; a="40279228"
+X-IronPort-AV: E=Sophos;i="6.13,210,1732608000"; d="scan'208";a="40279228"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2025 12:16:40 -0800
+X-CSE-ConnectionGUID: zdu2LjL2R6iiQRYcQlXpVw==
+X-CSE-MsgGUID: yL6VomVJQtKYQT75m+K2rw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="110226623"
-Received: from mwiniars-desk2.ger.corp.intel.com (HELO fedora)
- ([10.245.246.184])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2025 12:02:59 -0800
-Date: Thu, 16 Jan 2025 21:02:36 +0100
-From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-xe-fixes
-Message-ID: <Z4ll3F1anLEwCvrf@fedora>
+X-IronPort-AV: E=Sophos;i="6.13,210,1732608000"; d="scan'208";a="105743479"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 16 Jan 2025 12:16:38 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 16 Jan 2025 22:16:37 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Paz Zcharya <pazz@chromium.org>
+Subject: [PATCH 0/8] drm/i915: Handle vblank delay vs. fastboot and finish DSB
+ plane update enabling
+Date: Thu, 16 Jan 2025 22:16:29 +0200
+Message-ID: <20250116201637.22486-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,63 +68,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Simona!
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-The hopefully last drm-xe-fixes for 6.13 It's a little bigger than
-I was hoping for but nothing that really stands out.
+Try to deal with the fact that the GOP may configure the vblank delay
+differently than what we do, without resorting to a full modeset
+to fix it up. It's a bit questinable as the relevant register are
+single buffered, but so far I've not seen any real issue from frobbing
+them live.
 
-Thanks,
-Thomas
+And I sucked in the last two patches from my earlier DSB plane update
+series, though I tweaked one of them to only add the vblank delay when
+VRR is actually possible. That also avoids accidentally adding it for
+DSI which wouldn't work because the DSI code doesn't use the normal
+transcoder programming stuff.
 
-drm-xe-fixes-2025-01-16:
-Driver Changes:
-- Add steering info support for GuC register lists (Jesus Narvaez)
-- Add means to wait for reset and synchronous reset (Maciej)
-- Make changing ccs_mode a synchronous action (Maciej)
-- Add missing mux registers (Ashutosh)
-- Mark ComputeCS read mode as UC on iGPU, unblocking ULLS on iGPU (Matt Brost)
-The following changes since commit 5bc55a333a2f7316b58edc7573e8e893f7acb532:
+Cc: Paz Zcharya <pazz@chromium.org>
 
-  Linux 6.13-rc7 (2025-01-12 14:37:56 -0800)
+Ville Syrjälä (8):
+  drm/i915: Keep TRANS_VBLANK.vblank_start==0 on ADL+ even when doing
+    LRR updates
+  drm/i915: Handle interlaced modes in
+    intel_set_transcoder_timings_lrr()
+  drm/i915: Update TRANS_SET_CONTEXT_LATENCY during LRR updates
+  drm/i915: Warn if someone tries to use intel_set_transcoder_timings*()
+    on DSI outputs
+  drm/i915: Extract lrr_params_changed()
+  drm/i915: Allow fastboot to fix up the vblank delay
+  drm/i915/dsb: Add support for triggering VRR push with DSB
+  drm/i915/dsb: Allow DSB to perform commits when VRR is enabled
 
-are available in the Git repository at:
+ drivers/gpu/drm/i915/display/intel_display.c | 68 ++++++++++++++++++--
+ 1 file changed, 61 insertions(+), 7 deletions(-)
 
-  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-fixes-2025-01-16
+-- 
+2.45.2
 
-for you to fetch changes up to b1231ff7ea0689d04040a44864c265bc11612fa8:
-
-  drm/xe: Mark ComputeCS read mode as UC on iGPU (2025-01-16 20:03:11 +0100)
-
-----------------------------------------------------------------
-Driver Changes:
-- Add steering info support for GuC register lists (Jesus Narvaez)
-- Add means to wait for reset and synchronous reset (Maciej)
-- Make changing ccs_mode a synchronous action (Maciej)
-- Add missing mux registers (Ashutosh)
-- Mark ComputeCS read mode as UC on iGPU, unblocking ULLS on iGPU (Matt Brost)
-
-----------------------------------------------------------------
-Ashutosh Dixit (1):
-      drm/xe/oa: Add missing VISACTL mux registers
-
-Jesus Narvaez (1):
-      drm/xe/guc: Adding steering info support for GuC register lists
-
-Maciej Patelczyk (2):
-      drm/xe: introduce xe_gt_reset and xe_gt_wait_for_reset
-      drm/xe: make change ccs_mode a synchronous action
-
-Matthew Brost (1):
-      drm/xe: Mark ComputeCS read mode as UC on iGPU
-
- drivers/gpu/drm/xe/tests/xe_bo.c    |  7 +++----
- drivers/gpu/drm/xe/tests/xe_mocs.c  |  3 +--
- drivers/gpu/drm/xe/xe_gt.h          | 25 +++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_ccs_mode.c |  2 +-
- drivers/gpu/drm/xe/xe_gt_debugfs.c  |  4 +---
- drivers/gpu/drm/xe/xe_gt_mcr.c      |  6 +++---
- drivers/gpu/drm/xe/xe_gt_mcr.h      |  4 ++++
- drivers/gpu/drm/xe/xe_guc_ads.c     | 15 +++++++++++++++
- drivers/gpu/drm/xe/xe_hw_engine.c   |  2 +-
- drivers/gpu/drm/xe/xe_oa.c          |  1 +
- 10 files changed, 55 insertions(+), 14 deletions(-)
