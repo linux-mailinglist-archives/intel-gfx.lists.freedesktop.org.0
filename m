@@ -2,59 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86FB2A14348
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2025 21:32:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FB41A1437C
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Jan 2025 21:38:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C2B0D10EA0B;
-	Thu, 16 Jan 2025 20:32:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8E7410E2DC;
+	Thu, 16 Jan 2025 20:38:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h89rVVhk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZDgVB2eF";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0050710E9F3;
- Thu, 16 Jan 2025 20:32:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 48E5710E2DC;
+ Thu, 16 Jan 2025 20:38:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737059542; x=1768595542;
+ t=1737059914; x=1768595914;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=91V4YYnVNMm0vFZA66HrM0mVFuK4rb8dX1H32SZmUe8=;
- b=h89rVVhkZoa4l9QU5B9ctT8J4kCpbUlCDbRdQiM6oVB6L29j9I1Q2vi1
- QB3fJGb8dPbY5F4P3k0ISap4DPVApkkyp3yaHdAvaUbgoguiwDOy6UJg5
- MUcQQ4LlNdEiH4hkPGMhObPJILi9nWBOAqCBgIEPCaIAxjh19/7rqIGee
- jNdr0gl2Sv8yEISaoANsGSMpLcVOOfRjsU7bA25RNRnYQJ7Av56MpdSXN
- F5NJnSRyrXP1BjHp4mpBYsLnhFUQyXSr7peGk7Kr1ksMyWlTsAhM9/t8l
- hWADmwNuEdIFgiF/wjeSa9lQFeRkgikN280kbTxXfZ+ku+M9BGeG9vN5V w==;
-X-CSE-ConnectionGUID: NoePyWotT1eFi8mMNbo5DQ==
-X-CSE-MsgGUID: XWQpSB1ESmaiYaTT2C03rQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="48883678"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="48883678"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2025 12:32:21 -0800
-X-CSE-ConnectionGUID: lOn8t6dwSSiHEDuZt8YZEw==
-X-CSE-MsgGUID: OPZ5xs+ESkep1bmAPTVbDQ==
+ bh=dNPxOF5uNuX3dt99Mo4OMiFFwaYrjMkwt+01LNximiI=;
+ b=ZDgVB2eFb2KngOrL/lyXb6CRboyXXqetkM9y6wOuNO3rTyqLTP1YEwxg
+ rNyh7o3rC0085u/YsnQf4V4olLJ1ayv05nEiEK+wTN4FWC0qaAbjc83Us
+ KxSp6H5HkmeDCrI/Q3GUkmfJQlJrl5Xg76qKWWWjSISXvxiUXXRfAzCkW
+ mXGL8VD2z1hrWnJSSsX/PbDd+gcvffSUngXxGkaszwBW0DAc8OBWvWAjN
+ xF1TEjvRuroqYt9pFX340cXndX5aFxQ9AJVp3pCs3H+WB0HZnqyA+7EWm
+ 4zxanDUmjaxClqZJmYModf1buOomQSWhzOAAP/d7op3lJ14gtDAhj7kxI g==;
+X-CSE-ConnectionGUID: VwkP5f22ReWIxtuJveoOpw==
+X-CSE-MsgGUID: QsOk5WahQ6mKrb41j2Y2bQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11317"; a="62841495"
+X-IronPort-AV: E=Sophos;i="6.13,210,1732608000"; d="scan'208";a="62841495"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2025 12:38:34 -0800
+X-CSE-ConnectionGUID: fCd+KvyPSyOPmN0+HmTbjQ==
+X-CSE-MsgGUID: VztcfQwQT3Sx9/moEiJJRA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="110235540"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="136474353"
 Received: from ldmartin-desk2.corp.intel.com (HELO ldmartin-desk2)
  ([10.125.109.57])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2025 12:32:21 -0800
-Date: Thu, 16 Jan 2025 14:32:21 -0600
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2025 12:38:33 -0800
+Date: Thu, 16 Jan 2025 14:38:34 -0600
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: Imre Deak <imre.deak@intel.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
 Subject: Re: [PATCH] drm/xe/dp: Enable DP tunneling
-Message-ID: <7yf2cupxywnzqcrfrvqeoqfa4tphosvofdcoiqfyngp4svyh6t@3opldfjkgohj>
+Message-ID: <7br5fcyxwpapyyd646rqyja47wjxmgpnhvyramt64kumqevyua@codb2qklp2hu>
 References: <20250113154832.1004369-1-imre.deak@intel.com>
+ <87cygqis8l.fsf@intel.com>
+ <Z4VQK2mRtmeT_t6I@ideak-desk.fi.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii; format=flowed
 Content-Disposition: inline
-In-Reply-To: <20250113154832.1004369-1-imre.deak@intel.com>
+In-Reply-To: <Z4VQK2mRtmeT_t6I@ideak-desk.fi.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,97 +71,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jan 13, 2025 at 05:48:32PM +0200, Imre Deak wrote:
->Enable the DP tunneling functionality in the xe driver.
+On Mon, Jan 13, 2025 at 07:40:59PM +0200, Imre Deak wrote:
+>On Mon, Jan 13, 2025 at 06:38:34PM +0200, Jani Nikula wrote:
+>> On Mon, 13 Jan 2025, Imre Deak <imre.deak@intel.com> wrote:
+>> > Enable the DP tunneling functionality in the xe driver.
+>> >
+>> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+>> > ---
+>> >  drivers/gpu/drm/i915/display/intel_dp_tunnel.h |  5 +++--
+>> >  drivers/gpu/drm/xe/Kconfig                     | 14 ++++++++++++++
+>> >  drivers/gpu/drm/xe/Makefile                    |  3 +++
+>> >  3 files changed, 20 insertions(+), 2 deletions(-)
+>> >
+>> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_tunnel.h b/drivers/gpu/drm/i915/display/intel_dp_tunnel.h
+>> > index e9314cf25a193..7a91b4945eb8d 100644
+>> > --- a/drivers/gpu/drm/i915/display/intel_dp_tunnel.h
+>> > +++ b/drivers/gpu/drm/i915/display/intel_dp_tunnel.h
+>> > @@ -20,7 +20,8 @@ struct intel_dp;
+>> >  struct intel_encoder;
+>> >  struct intel_link_bw_limits;
+>> >
+>> > -#if IS_ENABLED(CONFIG_DRM_I915_DP_TUNNEL) && defined(I915)
+>> > +#if (defined(CONFIG_DRM_I915_DP_TUNNEL) && defined(I915)) || \
+>> > +	(defined(CONFIG_DRM_XE_DP_TUNNEL) && !defined(I915))
+>>
+>> Please retain IS_ENABLED for checking kconfig symbols.
 >
->Signed-off-by: Imre Deak <imre.deak@intel.com>
->---
-> drivers/gpu/drm/i915/display/intel_dp_tunnel.h |  5 +++--
-> drivers/gpu/drm/xe/Kconfig                     | 14 ++++++++++++++
-> drivers/gpu/drm/xe/Makefile                    |  3 +++
-> 3 files changed, 20 insertions(+), 2 deletions(-)
+>Ok, missed that, will change it.
 >
->diff --git a/drivers/gpu/drm/i915/display/intel_dp_tunnel.h b/drivers/gpu/drm/i915/display/intel_dp_tunnel.h
->index e9314cf25a193..7a91b4945eb8d 100644
->--- a/drivers/gpu/drm/i915/display/intel_dp_tunnel.h
->+++ b/drivers/gpu/drm/i915/display/intel_dp_tunnel.h
->@@ -20,7 +20,8 @@ struct intel_dp;
-> struct intel_encoder;
-> struct intel_link_bw_limits;
+>> >  int intel_dp_tunnel_detect(struct intel_dp *intel_dp, struct drm_modeset_acquire_ctx *ctx);
+>> >  void intel_dp_tunnel_disconnect(struct intel_dp *intel_dp);
+>> > @@ -127,6 +128,6 @@ intel_dp_tunnel_mgr_init(struct intel_display *display)
+>> >
+>> >  static inline void intel_dp_tunnel_mgr_cleanup(struct intel_display *display) {}
+>> >
+>> > -#endif /* CONFIG_DRM_I915_DP_TUNNEL */
+>> > +#endif /* CONFIG_DRM_I915_DP_TUNNEL || CONFIG_DRM_XE_DP_TUNNEL */
+>> >
+>> >  #endif /* __INTEL_DP_TUNNEL_H__ */
+>> > diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
+>> > index b51a2bde73e29..50cf80df51900 100644
+>> > --- a/drivers/gpu/drm/xe/Kconfig
+>> > +++ b/drivers/gpu/drm/xe/Kconfig
+>> > @@ -59,6 +59,20 @@ config DRM_XE_DISPLAY
+>> >  	help
+>> >  	  Disable this option only if you want to compile out display support.
+>> >
+>> > +config DRM_XE_DP_TUNNEL
+>> > +	bool "Enable DP tunnel support"
+>> > +	depends on DRM_XE
+>> > +	depends on USB4
+>> > +	select DRM_DISPLAY_DP_TUNNEL
+>> > +	default y
+>> > +	help
+>> > +	  Choose this option to detect DP tunnels and enable the Bandwidth
+>> > +	  Allocation mode for such tunnels. This allows using the maximum
+>> > +	  resolution allowed by the link BW on all displays sharing the
+>> > +	  link BW, for instance on a Thunderbolt link.
+>> > +
+>> > +	  If in doubt say "Y".
+>> > +
+>>
+>> I'm sort of wondering why we have this (and the i915 one) as
+>> user-selectable config options at all. Is it ever reasonable for the
+>> user to disable this if USB4 is enabled?
 >
->-#if IS_ENABLED(CONFIG_DRM_I915_DP_TUNNEL) && defined(I915)
->+#if (defined(CONFIG_DRM_I915_DP_TUNNEL) && defined(I915)) || \
->+	(defined(CONFIG_DRM_XE_DP_TUNNEL) && !defined(I915))
->
-> int intel_dp_tunnel_detect(struct intel_dp *intel_dp, struct drm_modeset_acquire_ctx *ctx);
-> void intel_dp_tunnel_disconnect(struct intel_dp *intel_dp);
->@@ -127,6 +128,6 @@ intel_dp_tunnel_mgr_init(struct intel_display *display)
->
-> static inline void intel_dp_tunnel_mgr_cleanup(struct intel_display *display) {}
->
->-#endif /* CONFIG_DRM_I915_DP_TUNNEL */
->+#endif /* CONFIG_DRM_I915_DP_TUNNEL || CONFIG_DRM_XE_DP_TUNNEL */
->
-> #endif /* __INTEL_DP_TUNNEL_H__ */
->diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
->index b51a2bde73e29..50cf80df51900 100644
->--- a/drivers/gpu/drm/xe/Kconfig
->+++ b/drivers/gpu/drm/xe/Kconfig
->@@ -59,6 +59,20 @@ config DRM_XE_DISPLAY
-> 	help
-> 	  Disable this option only if you want to compile out display support.
->
->+config DRM_XE_DP_TUNNEL
->+	bool "Enable DP tunnel support"
->+	depends on DRM_XE
->+	depends on USB4
->+	select DRM_DISPLAY_DP_TUNNEL
->+	default y
->+	help
->+	  Choose this option to detect DP tunnels and enable the Bandwidth
->+	  Allocation mode for such tunnels. This allows using the maximum
->+	  resolution allowed by the link BW on all displays sharing the
->+	  link BW, for instance on a Thunderbolt link.
->+
->+	  If in doubt say "Y".
->+
-> config DRM_XE_FORCE_PROBE
-> 	string "Force probe xe for selected Intel hardware IDs"
-> 	depends on DRM_XE
->diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
->index 5c97ad6ed7385..81f63258a7e19 100644
->--- a/drivers/gpu/drm/xe/Makefile
->+++ b/drivers/gpu/drm/xe/Makefile
->@@ -301,6 +301,9 @@ ifeq ($(CONFIG_DEBUG_FS),y)
-> 		i915-display/intel_pipe_crc.o
-> endif
->
->+xe-$(CONFIG_DRM_XE_DP_TUNNEL) += \
->+	i915-display/intel_dp_tunnel.o
+>On platforms that don't support DP tunneling, while supporting other
+>USB4 functionality (or for systems w/o any TypeC/DP connectors) it would
+>make sense to disable this option.
 
-something looks wrong here. We shouldn't build anything in i915-display/ if
-we don't have DRM_XE_DISPLAY. Are you missing a
-
-	depends on XE_DISPLAY
-?
-
-and in fact, with the .config I get:
-
-In file included from ../drivers/gpu/drm/i915/display/intel_display_core.h:23,                                          
-                  from ../drivers/gpu/drm/i915/display/intel_dp_tunnel.c:9:                                              
-../drivers/gpu/drm/i915/display/intel_display_power.h:12:10: fatal error: intel_wakeref.h: No such file or directory    
-    12 | #include "intel_wakeref.h"                                                                                      
-
-because we don't setup the right include directories.
-We used to test in CI a display-disabled build, not sure what happened
-with that.
+isn't this too fine grained? if we expose every single functionality of
+the driver like this we will bury distros on configs and exponentially
+explode the testing combination. And yes, this broke the build for me.
 
 Lucas De Marchi
-
->+
-> obj-$(CONFIG_DRM_XE) += xe.o
-> obj-$(CONFIG_DRM_XE_KUNIT_TEST) += tests/
->
->-- 
->2.44.2
->
