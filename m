@@ -2,57 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C62B5A14A4B
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2025 08:44:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C858A14A60
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2025 08:47:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67BE810EA79;
-	Fri, 17 Jan 2025 07:44:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0650410EA76;
+	Fri, 17 Jan 2025 07:47:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EWw+kb7z";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bkNh/K7l";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E7BD10EA79;
- Fri, 17 Jan 2025 07:44:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0471D10EA76;
+ Fri, 17 Jan 2025 07:47:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737099894; x=1768635894;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=yv6DxmYLw9n3xOSrm/j9NPP0CbXFRPly+J/nYEt3yNc=;
- b=EWw+kb7zqkdeQ3aDWTe+YdXBjS0muWYPgBBLwynhRNL2X3lcFD1O7i1T
- KXzrvYF0iPCnArqr5T1zIGqwRW1MM9ccES4l9J0Ql2ZbD18mH2Tlg531J
- PNtjs8HkBM5apVmMApwj3fhlG6m+B4nLkV4gHR8tXdlmdnfxYEMrptI1S
- egv79h/gP69hmb0srD1PbMRafJDpLLmkQDAU+ZZXp2tu3vYQd9iIo8fhl
- NNhkLAGJP1j232KaV9hElv7R6UyZRdXp0+xb38S9HWGTak956lw2Eog5m
- yF7qxfCEwvLAI9rI2cD/URfK0EBhH08HvTA94xvo3YMsWm7v/SSGNMYfB w==;
-X-CSE-ConnectionGUID: YGbehijnQLWkBNYilChL0A==
-X-CSE-MsgGUID: SETuMZL4TOuF9nJVaMOCrA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11317"; a="41454745"
-X-IronPort-AV: E=Sophos;i="6.13,211,1732608000"; d="scan'208";a="41454745"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jan 2025 23:44:54 -0800
-X-CSE-ConnectionGUID: IBvfxgV5R2qagxxJ0vBABQ==
-X-CSE-MsgGUID: 85M6zHp1QmSJNEYmNcBUJQ==
+ t=1737100021; x=1768636021;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=DcCXZiNEOOx4OX58TA4PvstFtJZzuF5EjE4UegB7kkk=;
+ b=bkNh/K7lpsiI2mt4dlm1WnOqU48ETQajWpfAKSHXr9sBtRvn2uKKqDb5
+ k7Mf0Oe2F8v8VeNnkWVrn5p9+ACrLvR5lrSCFRYRwIIUEBL1mKqz50F/d
+ f4GFg8UVQ2YStu7RwgwgmDjz2ezIqcLJplrVeGKvlkn1J5Mge9pOvqnMB
+ R5vrPAVFmQ4Cjr2GF7AERIJs0EDB52ySCQZKtOZeayCqugvSF5hFI1JQc
+ zwhaDJNFg6F66dNZ6dVNaYFUeI9L5AjRAiEqNoKWFJoZ/Ry0bPAwosQkN
+ gDvNc0kmOcTMvhsKkfrp6ATZqwGfmlR80QI0m88UYWeclR9OHxLy3L+S8 w==;
+X-CSE-ConnectionGUID: Ws/PS8qXRB+LsP1E2YRa6A==
+X-CSE-MsgGUID: hwWgBQ1KQpGQk8FIf0eQjg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="37639840"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="37639840"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2025 23:47:01 -0800
+X-CSE-ConnectionGUID: 4DHApm+0SfyOa7sErlRfpA==
+X-CSE-MsgGUID: ZBDbQbpGQuiPayUollKbVA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="106618543"
-Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by orviesa008.jf.intel.com with ESMTP; 16 Jan 2025 23:44:51 -0800
-From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	v7-000intel-xe@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com, jani.nikula@intel.com, ville.syrjala@intel.com
-Subject: [PATCH v7 7/7] drm/i915/dsc: Check if vblank is sufficient for dsc
- prefill
-Date: Fri, 17 Jan 2025 13:11:24 +0530
-Message-ID: <20250117074124.3965392-8-mitulkumar.ajitkumar.golani@intel.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250117074124.3965392-1-mitulkumar.ajitkumar.golani@intel.com>
-References: <20250117074124.3965392-1-mitulkumar.ajitkumar.golani@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="105575949"
+Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.202])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Jan 2025 23:46:57 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ingyu Jang <ingyujang25@gmail.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>
+Cc: Ingyu Jang <ingyujang25@gmail.com>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] drm/i915/gt: Handle INTEL_WAKEREF_DEF return value in
+ gen8_ggtt_bind_get_ce
+In-Reply-To: <20250116193528.2297487-1-ingyujang25@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250116193528.2297487-1-ingyujang25@gmail.com>
+Date: Fri, 17 Jan 2025 09:46:53 +0200
+Message-ID: <87cyglg9w2.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,99 +73,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-High refresh rate panels which may have small line times
-and vblank sizes, Check if vblank size is sufficient for
-dsc prefill latency.
+On Fri, 17 Jan 2025, Ingyu Jang <ingyujang25@gmail.com> wrote:
+> The function 'gen8_ggtt_bind_get_ce' previously did not handle the case
+> where 'intel_gt_pm_get_if_awake()' returns 'INTEL_WAKEREF_DEF'.
+> This value is returned when the 'intel_ref_tracker_alloc()' call within
+> 'intel_gt_pm_get_if_awake()' fails to allocate due
+> to memory pressure or other constraints.
+>
+> 'intel_ref_tracker_alloc()' uses 'ref_tracker_alloc()' with the
+> 'GFP_NOWAIT' flag, which can return 'NULL' if allocation fails.
+> In this case, the function explicitly returns 'INTEL_WAKEREF_DEF'.
+>
+> This patch adds a check for 'INTEL_WAKEREF_DEF' in
+> 'gen8_ggtt_bind_get_ce' to ensure that such errors are properly handled.
+> If 'INTEL_WAKEREF_DEF' is returned, the function returns 'NULL' .
 
---v2:
-- Consider chroma downscaling factor in latency calculation. [Ankit]
-- Replace with appropriate function name.
+No.
 
---v3:
-- Remove FIXME tag.[Ankit]
-- Replace Ycbcr444 to Ycbcr420.[Anit]
-- Correct precision. [Ankit]
-- Use some local valiables like linetime_factor and latency to
-adjust precision.
-- Declare latency to 0 initially to avoid returning any garbage values.
-- Account for second scaler downscaling factor as well. [Ankit]
+The callers should only handle NULL vs. non-NULL, and never make any
+other assumptions about the value.
 
---v4:
-- Improvise hscale and vscale calculation. [Ankit]
-- Use appropriate name for number of scaler users. [Ankit]
-- Update commit message and rebase.
-- Add linetime and cdclk prefill adjustment calculation. [Ankit]
+If intel_ref_tracker_alloc() fails, we'll only lose the wakeref tracking
+debug aid, but everything else goes fine. The patch at hand conflates
+the returned "asleep" (NULL) with "ref tracker fail", and that's wrong.
 
---v5:
-- Update bspec link in trailer. [Ankit]
-- Correct hscale, vscale datatype. [Ankit]
-- Use intel_crtc_compute_min_cdclk. [Ankit]
+See how intel_ref_tracker_free() handles INTEL_WAKEREF_DEF.
 
---v6:
-- Use cdclk_state->logical.cdclk instead of
-intel_crtc_compute_min_cdclk. [Ankit]
+BR,
+Jani.
 
-Bspec: 70151
-Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
----
- drivers/gpu/drm/i915/display/skl_watermark.c | 34 +++++++++++++++++++-
- 1 file changed, 33 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index c8e540dd66cc..aacda7f7174c 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -2307,6 +2307,38 @@ cdclk_prefill_adjustment(const struct intel_crtc_state *crtc_state)
- 				   2 * cdclk_state->logical.cdclk));
- }
- 
-+static int
-+dsc_prefill_latency(const struct intel_crtc_state *crtc_state)
-+{
-+	const struct intel_crtc_scaler_state *scaler_state =
-+						&crtc_state->scaler_state;
-+	int latency = 0;
-+	int num_scaler_users = hweight32(scaler_state->scaler_users);
-+	int chroma_downscaling_factor =
-+		crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420 ? 2 : 1;
-+	u64 hscale_k[2] = {0, 0};
-+	u64 vscale_k[2] = {0, 0};
-+
-+	if (!crtc_state->dsc.compression_enable || !num_scaler_users)
-+		return latency;
-+
-+	for (int i = 0; i < num_scaler_users; i++) {
-+		hscale_k[i] =
-+			max(1000, mul_u32_u32(scaler_state->scalers[i].hscale, 1000) >> 16);
-+		vscale_k[i] =
-+			max(1000, mul_u32_u32(scaler_state->scalers[i].vscale, 1000) >> 16);
-+	}
-+
-+	latency  = DIV_ROUND_UP_ULL(hscale_k[0] * vscale_k[0], 1000000);
-+
-+	if (num_scaler_users > 1)
-+		latency *= DIV_ROUND_UP_ULL(hscale_k[1] * vscale_k[1], 1000000);
-+
-+	latency *= DIV_ROUND_UP(15 * crtc_state->linetime, 10) * chroma_downscaling_factor;
-+
-+	return latency * cdclk_prefill_adjustment(crtc_state);
-+}
-+
- static int
- scaler_prefill_latency(const struct intel_crtc_state *crtc_state)
- {
-@@ -2346,10 +2378,10 @@ skl_is_vblank_too_short(const struct intel_crtc_state *crtc_state,
- 	const struct drm_display_mode *adjusted_mode =
- 		&crtc_state->hw.adjusted_mode;
- 
--	/* FIXME missing DSC pre-fill time */
- 	return crtc_state->framestart_delay +
- 		intel_usecs_to_scanlines(adjusted_mode, latency) +
- 		scaler_prefill_latency(crtc_state) +
-+		dsc_prefill_latency(crtc_state) +
- 		wm0_lines >
- 		adjusted_mode->crtc_vtotal - adjusted_mode->crtc_vblank_start;
- }
+>
+> Signed-off-by: Ingyu Jang <ingyujang25@gmail.com>
+> ---
+>  drivers/gpu/drm/i915/gt/intel_ggtt.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> index d60a6ca0cae5..8d22d8f2243d 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
+> @@ -311,7 +311,7 @@ static struct intel_context *gen8_ggtt_bind_get_ce(struct i915_ggtt *ggtt, intel
+>  	 * doing rpm_resume().
+>  	 */
+>  	*wakeref = intel_gt_pm_get_if_awake(gt);
+> -	if (!*wakeref)
+> +	if (!*wakeref || *wakeref == INTEL_WAKEREF_DEF)
+>  		return NULL;
+>  
+>  	intel_engine_pm_get(ce->engine);
+
 -- 
-2.48.1
-
+Jani Nikula, Intel
