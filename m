@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 713AFA1595E
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2025 23:08:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9145A1595D
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2025 23:08:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99D4210EB80;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50C7D10E345;
 	Fri, 17 Jan 2025 22:08:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TwnrOoZx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WhYmYvx/";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C397D10E345;
- Fri, 17 Jan 2025 22:08:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18A6010E345;
+ Fri, 17 Jan 2025 22:08:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737151690; x=1768687690;
+ t=1737151692; x=1768687692;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=wTNFuz1/VOk3L+aI9JJfg7jJuLxOf8eiQj4il5TQtRM=;
- b=TwnrOoZxRrrsnK6WRAPjWHbvIlLmHT/4U8CQEn+/4QgAeK8/TDdBS0mT
- zXfQIGRtoB5cUGt0YHhYEg6f/S8f+zI5GbIeoitDT+SLddjVlVwC2eSG7
- v3aTxhiuvUAmMZ9LUWMY/EPsErCcXqr8sf0J6O2BzvUtyIs87mCdeuty+
- Z/DYMWnP1nPAgtqM+wRug4mVsmVlj8xD/chYHbvyEbXj2xQZSsgnumHIQ
- T3GfzFdi3Fv27Iwzrv0iFa9kz4GhBjC943r+AQlNTdXkr2qGl35+Sb5Ux
- sn+B24HDdPk6QTmSAuC/uPqHMPaUc6DDFdY1G1KFzFMR+rUSOxDHmu8rs w==;
-X-CSE-ConnectionGUID: JJiOimHHQK2Uq+vlM6BlmA==
-X-CSE-MsgGUID: BBVsccgnRBSJvOP18lv7+A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11318"; a="48188789"
-X-IronPort-AV: E=Sophos;i="6.13,213,1732608000"; d="scan'208";a="48188789"
+ bh=ocG/ufTAuhKODS2avxqcULXuC65MfzY2O2gYpXa1kMc=;
+ b=WhYmYvx//PPJNSSxZba2ujmYQtYdtDnmbnd5uVL66BT6vnmGF2N/PnAv
+ PwPwDcqhSQflkH3xf3L8x5653S6KN78g4U7+ZL2mYbFhztfkrl5391myc
+ WcAFyM833jCO/Lq26qZl9FOwyN8Pf4dpeDRmLnus+79z2x0awRKyRRao+
+ NJoHdKhsr8NhkElqShDTtsWtNZ5ZweaYeaJoo3A5WMLOssnczyN8nWLG4
+ eb56CLN7U5A8FhKfQ2bJtNjSlS/oIKevWvSObEOqfOMOKD4gKYg6VVAgf
+ 3PAQ8oNSFiE/oo4RJW4qf5dPtVhqrcffN69kG29V5n+7ghoGgfTypzRP+ A==;
+X-CSE-ConnectionGUID: /2z75omvSquEym9z6Ur+eg==
+X-CSE-MsgGUID: wxasIXUuTcSrLI/ao6BMGA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11318"; a="48188794"
+X-IronPort-AV: E=Sophos;i="6.13,213,1732608000"; d="scan'208";a="48188794"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2025 14:08:10 -0800
-X-CSE-ConnectionGUID: 3SXmVJXCRdGMCQBhzskyMw==
-X-CSE-MsgGUID: g6ZeH0qXR4CpUrfaW30L/Q==
+ 17 Jan 2025 14:08:11 -0800
+X-CSE-ConnectionGUID: DpZXdk+fThKEbdTTyyg19Q==
+X-CSE-MsgGUID: 4GYf8FFeT1asTKwF73KwoQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="110915383"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="110915387"
 Received: from inaky-mobl1.amr.corp.intel.com (HELO
  gjsousa-mobl2.corp.amr.intel.com) ([10.125.109.126])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jan 2025 14:08:10 -0800
+ 17 Jan 2025 14:08:11 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Subject: [PATCH 2/4] drm/i915/dmc_wl: Add debugfs for untracked offsets
-Date: Fri, 17 Jan 2025 19:06:53 -0300
-Message-ID: <20250117220747.87927-3-gustavo.sousa@intel.com>
+Subject: [PATCH 3/4] drm/i915/dmc_wl: Add extra_ranges debugfs
+Date: Fri, 17 Jan 2025 19:06:54 -0300
+Message-ID: <20250117220747.87927-4-gustavo.sousa@intel.com>
 X-Mailer: git-send-email 2.48.0
 In-Reply-To: <20250117220747.87927-1-gustavo.sousa@intel.com>
 References: <20250117220747.87927-1-gustavo.sousa@intel.com>
@@ -68,420 +68,382 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The DMC wakelock code needs to keep track of register offsets that need
-the wakelock for proper access. If one of the necessary offsets are
-missed, then the failure in asserting the wakelock is very likely to
-cause problems down the road.
+We already have a way of finding the set of untracked offsets for which
+there has been one or more MMIO operations via the
+"intel_dmc_wl/untracked" debugfs interface.
 
-A miss could happen for at least two different reasons:
+However, in order to try adding one or more of those registers to the
+set of tracked offsets, one would need to manually change the source
+code and re-compile the driver.
 
-- We might have forgotten to add the offset (or range) to the relevant
-  tables tracked by the driver in the first place.
+To make debugging easier, also add a "intel_dmc_wl/extra_ranges" debugfs
+interface so that extra offsets to be tracked can be defined during
+runtime, removing the need of re-compilation or even module reloading.
 
-- Or updates to either the DMC firmware or the display IP that require
-  new offsets to be tracked and we fail to realize that.
-
-To help capture these cases, let's introduce a debugfs interface for the
-DMC wakelock.
-
-In this part, we export a buffer containing offsets of registers that
-were considered not needing the wakelock by our driver. In an upcoming
-change we will also allow defining an extra set of offset ranges to be
-tracked by our driver.
+With "intel_dmc_wl/untracked" and "intel_dmc_wl/extra_ranges", one could
+even come up with a search algorithm to find missing offsets when
+debugging a failing test case in a similar fashion to git-bisect. Such
+an algorithm is subject for a future tool, probably implemented in
+another repository (e.g. IGT).
 
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/i915/Makefile                 |   1 +
- .../drm/i915/display/intel_display_debugfs.c  |   2 +
- drivers/gpu/drm/i915/display/intel_dmc_wl.c   |   5 +-
- drivers/gpu/drm/i915/display/intel_dmc_wl.h   |   2 +
- .../drm/i915/display/intel_dmc_wl_debugfs.c   | 251 ++++++++++++++++++
- .../drm/i915/display/intel_dmc_wl_debugfs.h   |  29 ++
- drivers/gpu/drm/xe/Makefile                   |   1 +
- 7 files changed, 290 insertions(+), 1 deletion(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_dmc_wl_debugfs.c
- create mode 100644 drivers/gpu/drm/i915/display/intel_dmc_wl_debugfs.h
+ drivers/gpu/drm/i915/display/intel_dmc_wl.c   |   7 +
+ .../drm/i915/display/intel_dmc_wl_debugfs.c   | 254 +++++++++++++++++-
+ .../drm/i915/display/intel_dmc_wl_debugfs.h   |   7 +
+ 3 files changed, 267 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index 3dda9f0eda82..ac1ab79de9c8 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -251,6 +251,7 @@ i915-y += \
- 	display/intel_display_wa.o \
- 	display/intel_dmc.o \
- 	display/intel_dmc_wl.o \
-+	display/intel_dmc_wl_debugfs.o \
- 	display/intel_dpio_phy.o \
- 	display/intel_dpll.o \
- 	display/intel_dpll_mgr.o \
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index f1d76484025a..b032535f4830 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -26,6 +26,7 @@
- #include "intel_display_power_well.h"
- #include "intel_display_types.h"
- #include "intel_dmc.h"
-+#include "intel_dmc_wl_debugfs.h"
- #include "intel_dp.h"
- #include "intel_dp_link_training.h"
- #include "intel_dp_mst.h"
-@@ -883,6 +884,7 @@ void intel_display_debugfs_register(struct drm_i915_private *i915)
- 
- 	intel_bios_debugfs_register(display);
- 	intel_cdclk_debugfs_register(display);
-+	intel_dmc_wl_debugfs_register(display);
- 	intel_dmc_debugfs_register(display);
- 	intel_dp_test_debugfs_register(display);
- 	intel_fbc_debugfs_register(display);
 diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-index 330b43a72e08..3686d4e90167 100644
+index 3686d4e90167..c9740250be73 100644
 --- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
 +++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-@@ -338,6 +338,7 @@ void intel_dmc_wl_init(struct intel_display *display)
- 	spin_lock_init(&wl->lock);
- 	refcount_set(&wl->refcount,
- 		     display->params.enable_dmc_wl == ENABLE_DMC_WL_ALWAYS_LOCKED ? 1 : 0);
-+	intel_dmc_wl_debugfs_init(display);
+@@ -276,6 +276,13 @@ static bool intel_dmc_wl_check_range(struct intel_display *display,
+ 	if (ranges && intel_dmc_wl_offset_in_ranges(offset, ranges))
+ 		return true;
+ 
++	/*
++	 * Call to check extra ranges from debugfs only as last resort to avoid
++	 * taking intel_dmc_wl_dbg's spinlock.
++	 */
++	if (intel_dmc_wl_debugfs_offset_in_extra_ranges(display, offset))
++		return true;
++
+ 	return false;
  }
  
- /* Must only be called as part of enabling dynamic DC states. */
-@@ -444,8 +445,10 @@ void intel_dmc_wl_get(struct intel_display *display, i915_reg_t reg)
- 	spin_lock_irqsave(&wl->lock, flags);
- 
- 	if (i915_mmio_reg_valid(reg) &&
--	    !intel_dmc_wl_check_range(display, reg, wl->dc_state))
-+	    !intel_dmc_wl_check_range(display, reg, wl->dc_state)) {
-+		intel_dmc_wl_debugfs_log_untracked(display, i915_mmio_reg_offset(reg));
- 		goto out_unlock;
-+	}
- 
- 	if (!wl->enabled) {
- 		if (!refcount_inc_not_zero(&wl->refcount))
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.h b/drivers/gpu/drm/i915/display/intel_dmc_wl.h
-index 5488fbdf29b8..d11b0ab50b3c 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc_wl.h
-+++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.h
-@@ -11,6 +11,7 @@
- #include <linux/refcount.h>
- 
- #include "i915_reg_defs.h"
-+#include "intel_dmc_wl_debugfs.h"
- 
- struct intel_display;
- 
-@@ -27,6 +28,7 @@ struct intel_dmc_wl {
- 	 */
- 	u32 dc_state;
- 	struct delayed_work work;
-+	struct intel_dmc_wl_dbg dbg;
- };
- 
- void intel_dmc_wl_init(struct intel_display *display);
 diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl_debugfs.c b/drivers/gpu/drm/i915/display/intel_dmc_wl_debugfs.c
-new file mode 100644
-index 000000000000..41e59d775fe5
---- /dev/null
+index 41e59d775fe5..1493d296ac98 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc_wl_debugfs.c
 +++ b/drivers/gpu/drm/i915/display/intel_dmc_wl_debugfs.c
-@@ -0,0 +1,251 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright (C) 2025 Intel Corporation
-+ */
-+
-+#include <linux/debugfs.h>
-+
-+#include <drm/drm_device.h>
-+#include <drm/drm_managed.h>
-+#include <drm/drm_print.h>
-+
-+#include "intel_display_core.h"
-+#include "intel_dmc_wl_debugfs.h"
-+
-+#define DEBUGFS_UNTRACKED_BUFFER_SIZE_MAX 65536
-+
-+/*
-+ * DOC: DMC wakelock debugfs
+@@ -3,6 +3,8 @@
+  * Copyright (C) 2025 Intel Corporation
+  */
+ 
++#include <linux/kstrtox.h>
++#include <linux/ctype.h>
+ #include <linux/debugfs.h>
+ 
+ #include <drm/drm_device.h>
+@@ -13,6 +15,7 @@
+ #include "intel_dmc_wl_debugfs.h"
+ 
+ #define DEBUGFS_UNTRACKED_BUFFER_SIZE_MAX 65536
++#define DEBUGFS_EXTRA_RANGES_MAX 255
+ 
+ /*
+  * DOC: DMC wakelock debugfs
+@@ -31,7 +34,8 @@
+  *   offsets to be tracked and we fail to realize that.
+  *
+  * To help capture these cases, we provide the intel_dmc_wl/ debugfs directory,
+- * which exports a buffer of untracked register offsets.
++ * which exports a buffer of untracked register offsets and also allows extra
++ * register offsets to be tracked by the driver.
+  *
+  * Untracked offsets
+  * -----------------
+@@ -78,6 +82,43 @@
+  * Once done with it, the logging can be disabled with::
+  *
+  *   # echo 0 > /sys/kernel/debug/dri/(...)/intel_dmc_wl/untracked_size
 + *
-+ * The DMC wakelock code needs to keep track of register offsets that need the
-+ * wakelock for proper access. If one of the necessary offsets are missed, then
-+ * the failure in asserting the wakelock is very likely to cause problems down
-+ * the road.
++ * Tracking extra ranges
++ * ---------------------
 + *
-+ * A miss could happen for at least two different reasons:
++ * After looking at a list of untracked offsets via intel_dmc_wl/untracked, it
++ * is likely that one would want to check whether tracking a suspicious
++ * set of register offsets (i.e. asserting the DMC wakelock for them) would
++ * solve a bug.
 + *
-+ * - We might have forgotten to add the offset (or range) to the relevant
-+ *   tables tracked by the driver in the first place.
++ * Instead of adding the offsets manually in the source code (which would
++ * require re-compiling and reloading the module) the intel_dmc_wl/extra_ranges
++ * debugfs interface allow defining extra ranges during runtime, which can
++ * significantly speed up debugging time.
 + *
-+ * - Or updates to either the DMC firmware or the display IP that require new
-+ *   offsets to be tracked and we fail to realize that.
++ * Every write to intel_dmc_wl/untracked defines a new set of ranges to be
++ * tracked. The input format is a whitespace-separated list of ranges and each
++ * range is in the format <start_offset>..<end_offset>, with ..<end_offset>
++ * being optional. Note that <end_offset> is inclusive.
 + *
-+ * To help capture these cases, we provide the intel_dmc_wl/ debugfs directory,
-+ * which exports a buffer of untracked register offsets.
++ * Examples::
 + *
-+ * Untracked offsets
-+ * -----------------
++ *   # echo 0x44400..0x4440c \ # Track a single range of 4 registers
++ *      > /sys/kernel/debug/dri/(...)/intel_dmc_wl/untracked_size
 + *
-+ * This is a buffer that records every register offset that went through the
-+ * DMC wakelock check and was deemed not needing the wakelock for MMIO access.
++ *   # echo 0x44400..0x4440c 0x44410..0x4441c \ # Track 2 ranges
++ *      > /sys/kernel/debug/dri/(...)/intel_dmc_wl/untracked_size
 + *
-+ * To activate the logging of offsets into such a buffer, one can do::
++ *   # echo 0x44400 0x44410..0x4441c \ # Track a single register and 1 range
++ *      > /sys/kernel/debug/dri/(...)/intel_dmc_wl/untracked_size
 + *
-+ *   # echo -1 > /sys/kernel/debug/dri/(...)/intel_dmc_wl/untracked_size
++ *   # echo \ # Do not track extra ranges anymore
++ *      > /sys/kernel/debug/dri/(...)/intel_dmc_wl/untracked_size
 + *
-+ * This will create a buffer with the maximum number of entries allowed
-+ * (DEBUGFS_UNTRACKED_BUFFER_SIZE_MAX). A positive value can be used instead to
-+ * define a different size:
-+ *
-+ *   # echo 1024 > /sys/kernel/debug/dri/(...)/intel_dmc_wl/untracked_size
-+ *
-+ * Every write to untracked_size will cause the buffer to be reset.
-+ *
-+ * It is also possible to read untracked_size in order to get the current
-+ * value.
-+ *
-+ * After enabled, the buffer starts getting filled with offsets as MMIOs are
-+ * performed by the driver.
-+ *
-+ * In order to view the content of the buffer, one can do::
-+ *
-+ *   # cat /sys/kernel/debug/dri/(...)/intel_dmc_wl/untracked
-+ *   0x000c4000
-+ *   0x0016fe50
-+ *   0x000c7200
-+ *   0x000c7204
-+ *   0x00045230
-+ *   0x00046440
-+ *   0x00045234
-+ *   0x0016fa48
-+ *   0x0016fa40
-+ *   0x0016fa5c
-+ *   (...)
-+ *
-+ * The order of those offsets does not reflect the order the checks were done
-+ * (some recently seen offsets are skipped to save space).
-+ *
-+ * Once done with it, the logging can be disabled with::
-+ *
-+ *   # echo 0 > /sys/kernel/debug/dri/(...)/intel_dmc_wl/untracked_size
-+ */
-+
-+static int untracked_size_get(void *data, u64 *val)
-+{
-+	struct intel_display *display = data;
-+	struct intel_dmc_wl_dbg *dbg = &display->wl.dbg;
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&dbg->lock, flags);
-+	*val = dbg->untracked.size;
-+	spin_unlock_irqrestore(&dbg->lock, flags);
-+
-+	return 0;
-+}
-+
-+static int untracked_size_set(void *data, u64 val)
-+{
-+	struct intel_display *display = data;
-+	struct intel_dmc_wl_dbg *dbg = &display->wl.dbg;
-+	s64 new_size;
-+	u32 *old_offsets;
-+	u32 *new_offsets;
-+	unsigned long flags;
-+
-+	new_size = (s64)val;
-+
-+	if (new_size == -1) {
-+		new_size = DEBUGFS_UNTRACKED_BUFFER_SIZE_MAX;
-+	} else if (new_size < 0) {
-+		drm_err(display->drm,
-+			"%lld is invalid for untracked_size, the only negative value allowed is -1\n",
-+			new_size);
-+		return -EINVAL;
-+	} else if (new_size > DEBUGFS_UNTRACKED_BUFFER_SIZE_MAX) {
-+		drm_err(display->drm,
-+			"%lld too big for untracked_size, maximum allowed value is %d\n",
-+			new_size,
-+			DEBUGFS_UNTRACKED_BUFFER_SIZE_MAX);
-+		return -EINVAL;
-+	}
-+
-+	if (new_size == 0) {
-+		new_offsets = NULL;
-+	} else {
-+		new_offsets = drmm_kmalloc_array(display->drm, new_size, sizeof(*new_offsets),
-+						 GFP_KERNEL);
-+
-+		if (!new_offsets)
-+			return -ENOMEM;
-+	}
-+
-+	spin_lock_irqsave(&dbg->lock, flags);
-+	old_offsets = dbg->untracked.offsets;
-+	dbg->untracked.offsets = new_offsets;
-+	dbg->untracked.size = new_size;
-+	dbg->untracked.head = 0;
-+	dbg->untracked.len = 0;
-+	dbg->untracked.overflow = false;
-+	spin_unlock_irqrestore(&dbg->lock, flags);
-+
-+	if (old_offsets)
-+		drmm_kfree(display->drm, old_offsets);
-+
-+	return 0;
-+}
-+
-+DEFINE_SIMPLE_ATTRIBUTE_SIGNED(untracked_size_fops,
-+			       untracked_size_get,
-+			       untracked_size_set,
-+			       "%lld\n");
-+
-+static int untracked_show(struct seq_file *m, void *data)
++ * The new set of extra ranges take effect after the write operation, meaning
++ * that the next MMIOs made by the driver for registers that match those
++ * offsets will assert the wakelock (besides the offsets already hardcoded in
++ * the driver).
+  */
+ 
+ static int untracked_size_get(void *data, u64 *val)
+@@ -176,6 +217,189 @@ static int untracked_show(struct seq_file *m, void *data)
+ 
+ DEFINE_SHOW_ATTRIBUTE(untracked);
+ 
++static int extra_ranges_show(struct seq_file *m, void *data)
 +{
 +	struct intel_display *display = m->private;
 +	struct intel_dmc_wl_dbg *dbg = &display->wl.dbg;
 +	unsigned long flags;
-+	size_t remaining;
-+	size_t i;
 +
 +	spin_lock_irqsave(&dbg->lock, flags);
 +
-+	remaining = dbg->untracked.len;
-+	i = dbg->untracked.head;
++	if (!dbg->extra_ranges)
++		goto out_unlock;
 +
-+	while (remaining--) {
-+		if (i == 0)
-+			i = dbg->untracked.size;
-+
-+		seq_printf(m, "0x%08x\n", dbg->untracked.offsets[--i]);
++	for (int i = 0; dbg->extra_ranges[i].start; i++) {
++		if (dbg->extra_ranges[i].end)
++			seq_printf(m, "0x%08x..0x%08x\n",
++				   dbg->extra_ranges[i].start,
++				   dbg->extra_ranges[i].end);
++		else
++			seq_printf(m, "0x%08x\n", dbg->extra_ranges[i].start);
 +	}
 +
++out_unlock:
 +	spin_unlock_irqrestore(&dbg->lock, flags);
 +
 +	return 0;
 +}
 +
-+DEFINE_SHOW_ATTRIBUTE(untracked);
-+
-+void intel_dmc_wl_debugfs_init(struct intel_display *display)
++/*
++ * Parse *p to match the pattern <start_offset>..<end_offset> and store the
++ * offsets into *dest, if dest is not NULL.
++ *
++ * Leading whitespaces are ignored and ..<end_offset> is optional. Both offsets
++ * are expected to be expressed in hexadecimal.
++ *
++ * The pointer *p is updated to point at the next character in the string for
++ * parsing a new range.
++ *
++ * On success, 1 is returned if a valid range was found and 0 is returned if
++ * there is no range left to parse. On error, a negative error number is
++ * returned.
++ */
++static int parse_single_extra_range(struct intel_display *display,
++				    char **p,
++				    struct intel_dmc_wl_dbg_extra_range *dest)
 +{
-+	struct intel_dmc_wl_dbg *dbg = &display->wl.dbg;
++	char c;
++	char *s;
++	char *range_substr;
++	int err;
++	u32 val;
 +
-+	spin_lock_init(&dbg->lock);
-+}
++	while (isspace(**p))
++		++*p;
 +
-+void intel_dmc_wl_debugfs_register(struct intel_display *display)
-+{
-+	struct dentry *dir;
++	if (**p == '\0')
++		return 0;
 +
-+	if (!HAS_DMC_WAKELOCK(display))
-+		return;
++	range_substr = *p;
 +
-+	dir = debugfs_create_dir("intel_dmc_wl", display->drm->debugfs_root);
-+	if (IS_ERR(dir))
-+		return;
++	/* s is the <start_offset> substr */
++	s = *p;
++	while (!isspace(**p) && **p != '.' && **p != '\0')
++		++*p;
++	c = **p;
++	**p = '\0';
++	err = kstrtou32(s, 16, &val);
++	**p = c;
++	if (err)
++		goto out_err;
 +
-+	debugfs_create_file("untracked_size", 0644, dir, display,
-+			    &untracked_size_fops);
-+	debugfs_create_file("untracked", 0644, dir, display,
-+			    &untracked_fops);
-+}
++	if (dest)
++		dest->start = val;
 +
-+static bool untracked_has_recent_offset(struct intel_display *display, u32 offset)
-+{
-+	struct intel_dmc_wl_dbg *dbg = &display->wl.dbg;
-+	int look_back = 32;
-+	size_t i;
-+
-+	if (look_back > dbg->untracked.len)
-+		look_back = dbg->untracked.len;
-+
-+	i = dbg->untracked.head;
-+
-+	while (look_back--) {
-+		if (i == 0)
-+			i = dbg->untracked.size;
-+
-+		if (dbg->untracked.offsets[--i] == offset)
-+			return true;
++	if (**p != '.') {
++		/* only the "start offset" was passed */
++		if (dest)
++			dest->end = 0;
++		return 1;
 +	}
 +
-+	return false;
++	if (*(++*p) != '.') {
++		err = -EINVAL;
++		goto out_err;
++	}
++
++	/* s is the <end_offset> substr */
++	s = ++*p;
++	while (!isspace(**p) && **p != '\0')
++		++*p;
++	c = **p;
++	**p = '\0';
++	err = kstrtou32(s, 16, &val);
++	**p = c;
++	if (err)
++		goto out_err;
++
++	if (dest)
++		dest->end = val;
++
++	return 1;
++
++out_err:
++	while (!isspace(**p) && **p != '\0')
++		++*p;
++	c = **p;
++	**p = '\0';
++	drm_err(display->drm, "invalid DMC Wakelock extra range: %s\n", range_substr);
++	**p = c;
++
++	return err;
 +}
 +
-+void intel_dmc_wl_debugfs_log_untracked(struct intel_display *display, u32 offset)
++static struct intel_dmc_wl_dbg_extra_range *
++parse_extra_ranges(struct intel_display *display, char *s)
++{
++	struct intel_dmc_wl_dbg_extra_range *ranges;
++	char *p;
++	int num_ranges;
++	int err;
++
++	/* Do a first pass and validate everything. */
++	p = s;
++	num_ranges = 0;
++	while ((err = parse_single_extra_range(display, &p, NULL)) > 0) {
++		num_ranges++;
++		if (num_ranges > DEBUGFS_EXTRA_RANGES_MAX) {
++			drm_err(display->drm, "Too many DMC wakelock extra ranges, maximum is %d\n",
++				DEBUGFS_EXTRA_RANGES_MAX);
++			return ERR_PTR(-EINVAL);
++		}
++	}
++
++	if (err < 0)
++		return ERR_PTR(err);
++
++	/* Now allocate and do a second pass storing the parsed ranges. */
++	ranges = drmm_kmalloc_array(display->drm, num_ranges + 1, sizeof(*ranges), GFP_KERNEL);
++	if (!ranges)
++		return ERR_PTR(-ENOMEM);
++
++	p = s;
++	num_ranges = 0;
++	while (parse_single_extra_range(display, &p, &ranges[num_ranges]) > 0)
++		num_ranges++;
++
++	ranges[num_ranges].start = 0; /* Sentinel value. */
++
++	return ranges;
++}
++
++static ssize_t extra_ranges_write(struct file *file,
++				  const char __user *ubuf,
++				  size_t len, loff_t *offp)
++{
++	struct seq_file *m = file->private_data;
++	struct intel_display *display = m->private;
++	struct intel_dmc_wl_dbg *dbg = &display->wl.dbg;
++	struct intel_dmc_wl_dbg_extra_range *old_extra_ranges;
++	struct intel_dmc_wl_dbg_extra_range *new_extra_ranges;
++	unsigned long flags;
++	char *kbuf;
++
++	kbuf = memdup_user_nul(ubuf, len);
++	if (IS_ERR(kbuf))
++		return PTR_ERR(kbuf);
++
++	new_extra_ranges = parse_extra_ranges(display, kbuf);
++	kfree(kbuf);
++	if (IS_ERR(new_extra_ranges))
++		return PTR_ERR(new_extra_ranges);
++
++	spin_lock_irqsave(&dbg->lock, flags);
++	old_extra_ranges = dbg->extra_ranges;
++	dbg->extra_ranges = new_extra_ranges;
++	spin_unlock_irqrestore(&dbg->lock, flags);
++
++	if (old_extra_ranges)
++		drmm_kfree(display->drm, old_extra_ranges);
++
++	return len;
++}
++
++DEFINE_SHOW_STORE_ATTRIBUTE(extra_ranges);
++
+ void intel_dmc_wl_debugfs_init(struct intel_display *display)
+ {
+ 	struct intel_dmc_wl_dbg *dbg = &display->wl.dbg;
+@@ -198,6 +422,8 @@ void intel_dmc_wl_debugfs_register(struct intel_display *display)
+ 			    &untracked_size_fops);
+ 	debugfs_create_file("untracked", 0644, dir, display,
+ 			    &untracked_fops);
++	debugfs_create_file("extra_ranges", 0644, dir, display,
++			    &extra_ranges_fops);
+ }
+ 
+ static bool untracked_has_recent_offset(struct intel_display *display, u32 offset)
+@@ -249,3 +475,29 @@ void intel_dmc_wl_debugfs_log_untracked(struct intel_display *display, u32 offse
+ out_unlock:
+ 	spin_unlock_irqrestore(&dbg->lock, flags);
+ }
++
++bool intel_dmc_wl_debugfs_offset_in_extra_ranges(struct intel_display *display, u32 offset)
 +{
 +	struct intel_dmc_wl_dbg *dbg = &display->wl.dbg;
++	bool ret = false;
 +	unsigned long flags;
 +
 +	spin_lock_irqsave(&dbg->lock, flags);
 +
-+	if (!dbg->untracked.size)
++	if (!dbg->extra_ranges)
 +		goto out_unlock;
 +
-+	/* Save some space by not repeating recent offsets. */
-+	if (untracked_has_recent_offset(display, offset))
-+		goto out_unlock;
++	for (int i = 0; dbg->extra_ranges[i].start; i++) {
++		u32 end = dbg->extra_ranges[i].end ?: dbg->extra_ranges[i].start;
 +
-+	dbg->untracked.offsets[dbg->untracked.head] = offset;
-+	dbg->untracked.head = (dbg->untracked.head + 1) % dbg->untracked.size;
-+	if (dbg->untracked.len < dbg->untracked.size)
-+		dbg->untracked.len++;
-+
-+	if (dbg->untracked.len == dbg->untracked.size && !dbg->untracked.overflow) {
-+		dbg->untracked.overflow = true;
-+		drm_warn(display->drm, "Overflow detected in DMC wakelock debugfs untracked offsets\n");
++		if (dbg->extra_ranges[i].start <= offset && offset <= end) {
++			ret = true;
++			goto out_unlock;
++		}
 +	}
 +
 +out_unlock:
 +	spin_unlock_irqrestore(&dbg->lock, flags);
++
++	return ret;
 +}
 diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl_debugfs.h b/drivers/gpu/drm/i915/display/intel_dmc_wl_debugfs.h
-new file mode 100644
-index 000000000000..9437c324966f
---- /dev/null
+index 9437c324966f..ae61217a2789 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc_wl_debugfs.h
 +++ b/drivers/gpu/drm/i915/display/intel_dmc_wl_debugfs.h
-@@ -0,0 +1,29 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright (C) 2025 Intel Corporation
-+ */
-+
-+#ifndef __INTEL_DMC_WL_DEBUGFS_H__
-+#define __INTEL_DMC_WL_DEBUGFS_H__
-+
-+#include <linux/types.h>
-+#include <linux/spinlock.h>
-+
-+struct intel_display;
-+
-+struct intel_dmc_wl_dbg {
-+	spinlock_t lock; /* protects everything below */
-+	struct {
-+		u32 *offsets;
-+		size_t head;
-+		size_t len;
-+		size_t size;
-+		bool overflow;
-+	} untracked;
+@@ -11,6 +11,11 @@
+ 
+ struct intel_display;
+ 
++struct intel_dmc_wl_dbg_extra_range {
++	u32 start;
++	u32 end;
 +};
 +
-+void intel_dmc_wl_debugfs_init(struct intel_display *display);
-+void intel_dmc_wl_debugfs_register(struct intel_display *display);
-+void intel_dmc_wl_debugfs_log_untracked(struct intel_display *display, u32 offset);
-+
-+#endif /* __INTEL_DMC_WL_DEBUGFS_H__ */
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 81f63258a7e1..f03fbdbcb1a4 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -221,6 +221,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
- 	i915-display/intel_display_wa.o \
- 	i915-display/intel_dkl_phy.o \
- 	i915-display/intel_dmc.o \
-+	i915-display/intel_dmc_wl_debugfs.o \
- 	i915-display/intel_dp.o \
- 	i915-display/intel_dp_aux.o \
- 	i915-display/intel_dp_aux_backlight.o \
+ struct intel_dmc_wl_dbg {
+ 	spinlock_t lock; /* protects everything below */
+ 	struct {
+@@ -20,10 +25,12 @@ struct intel_dmc_wl_dbg {
+ 		size_t size;
+ 		bool overflow;
+ 	} untracked;
++	struct intel_dmc_wl_dbg_extra_range *extra_ranges;
+ };
+ 
+ void intel_dmc_wl_debugfs_init(struct intel_display *display);
+ void intel_dmc_wl_debugfs_register(struct intel_display *display);
+ void intel_dmc_wl_debugfs_log_untracked(struct intel_display *display, u32 offset);
++bool intel_dmc_wl_debugfs_offset_in_extra_ranges(struct intel_display *display, u32 offset);
+ 
+ #endif /* __INTEL_DMC_WL_DEBUGFS_H__ */
 -- 
 2.48.0
 
