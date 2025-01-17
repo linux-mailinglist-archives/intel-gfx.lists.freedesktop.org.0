@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B285CA15928
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2025 22:46:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 464F5A1592A
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Jan 2025 22:46:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16CB610E205;
-	Fri, 17 Jan 2025 21:45:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27B8510E318;
+	Fri, 17 Jan 2025 21:45:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81A1E10E205;
- Fri, 17 Jan 2025 21:45:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E91FC10E318;
+ Fri, 17 Jan 2025 21:45:48 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/slpc=3A_Add?=
- =?utf-8?q?_sysfs_for_SLPC_power_profiles_=28rev4=29?=
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_drm/i915/slpc=3A_Add_sys?=
+ =?utf-8?q?fs_for_SLPC_power_profiles_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 17 Jan 2025 21:45:46 -0000
-Message-ID: <173715034652.874817.4783672305416630386@b555e5b46a47>
+Date: Fri, 17 Jan 2025 21:45:48 -0000
+Message-ID: <173715034895.874817.3376365676432593319@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20250117202414.714469-1-vinay.belgaumkar@intel.com>
 In-Reply-To: <20250117202414.714469-1-vinay.belgaumkar@intel.com>
@@ -49,13 +49,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-649d91b5a09b drm/i915/slpc: Add sysfs for SLPC power profiles
--:97: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#97: FILE: drivers/gpu/drm/i915/gt/intel_gt_sysfs_pm.c:911:
-+			gt_warn(gt, "failed to create slpc_power_profile sysfs (%pe)",
-+				    ERR_PTR(ret));
-
-total: 0 errors, 0 warnings, 1 checks, 191 lines checked
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
