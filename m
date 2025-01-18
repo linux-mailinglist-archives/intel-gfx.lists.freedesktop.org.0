@@ -2,63 +2,97 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 440D1A15E64
-	for <lists+intel-gfx@lfdr.de>; Sat, 18 Jan 2025 18:47:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD72BA15E66
+	for <lists+intel-gfx@lfdr.de>; Sat, 18 Jan 2025 18:49:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EEA610E02F;
-	Sat, 18 Jan 2025 17:47:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B20010E2DA;
+	Sat, 18 Jan 2025 17:49:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aTZJl8df";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="hSF5E1/x";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D3D210E02F;
- Sat, 18 Jan 2025 17:47:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737222452; x=1768758452;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=kx1ct7agPd2HSLiHpGRUg/AgqfvoYz0KI7po2cTKXpM=;
- b=aTZJl8dfhGXnudjBf3l3b/3+xteo5kQXpfBeRzQ5kZ9FWEzatOtm1ZLP
- QLG0FdubqBpYUdkFvUkLU84e9VoVWV+Z8VJmfC0QjmKH7+5T1JGjzxDBf
- OuQN6kPCQlVRA1xnOGTcdgcabzu3cwjR4wnh2QWQQ1T/npjXhSnc0uPxb
- TxjoqMSADxgmLC+BI4L7Pd6BCbAbHj9OoQIYo9Lw3S8tLB9cvsHH3UWn3
- HkNrw5VoWlLUvcZXphLn8io2p0F67HF0Ox1VYbB+JItqkoDsYAgdLPTM2
- v8x7tgEyQQrb/L5WYuCmz3DIM4u5dn5NDBiGfwYwt1SqKoliQPFsT4dvI Q==;
-X-CSE-ConnectionGUID: eD+wbbqzS+e7QbRFuSfT+g==
-X-CSE-MsgGUID: Ezp4evIKQ3KloTXx01cyIw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11319"; a="41398586"
-X-IronPort-AV: E=Sophos;i="6.13,215,1732608000"; d="scan'208";a="41398586"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Jan 2025 09:47:31 -0800
-X-CSE-ConnectionGUID: /Ivs53+pRee1f4QJxAJGVA==
-X-CSE-MsgGUID: Gq+Ui8EaS5ezu0exKTJCZg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="111069145"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by orviesa003.jf.intel.com with ESMTP; 18 Jan 2025 09:47:29 -0800
-Received: from [10.245.96.215] (kshkilev-mobl4.ger.corp.intel.com
- [10.245.96.215])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 4A7C832C91;
- Sat, 18 Jan 2025 17:47:28 +0000 (GMT)
-Message-ID: <4f62fe21-2641-40ba-ace4-1429389068f5@intel.com>
-Date: Sat, 18 Jan 2025 18:47:27 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4] drm/i915/slpc: Add sysfs for SLPC power profiles
-To: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: Sushma Venkatesh Reddy <sushma.venkatesh.reddy@intel.com>,
+Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com
+ [IPv6:2607:f8b0:4864:20::1034])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0DEC10E2D1;
+ Sat, 18 Jan 2025 17:49:23 +0000 (UTC)
+Received: by mail-pj1-x1034.google.com with SMTP id
+ 98e67ed59e1d1-2f441791e40so4300502a91.3; 
+ Sat, 18 Jan 2025 09:49:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1737222563; x=1737827363; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+ :reply-to; bh=GU7FE91Y7VKzW3O3qn7y+qTA2pSkAbO4RD6j4nKnL+c=;
+ b=hSF5E1/x4kln7rEmWWXVOw12KwyILJryhugnb5FwLECOXwaItrfIfix6Py3yrtUyg5
+ NAIod8C5MUgf9PqlLHKow2LxkotrJOq/b8hGaAWx+agdTJqIjwe+k8mSIQfUnsViHWic
+ 9K5I7Y2t5qcQ+oC8eDtng/i5gesjLz61S55AepIYMMEU8SwcdSX6FiEBnjb31AxQZU+7
+ vmTpihdJBlaDn1l9qNaWc8U6mEb3S25gRsrBF3bJXlumqFT2JyM/IJgPeny37ivRBNJE
+ 4eEpKssW97lN2U/JJXUB1t4b/chjks9I5HNtCB19kZzcgd/weV3ZOSxTUe/NjwRXl7J1
+ fWcQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1737222563; x=1737827363;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=GU7FE91Y7VKzW3O3qn7y+qTA2pSkAbO4RD6j4nKnL+c=;
+ b=kkxkB1ucPjkzwXevGQMx573W8OVcVQ6R/84upNc4oQGdvLetFIYamhWLXcIuTWqze5
+ wi9xYAiF+5z53jfbSb/8anhMhy8G8R/rVl9onzUHKIbwvbFa/aWeUBCgSR0Cndiwg2rN
+ 2RQh008AopzGc7EKc6/mLSx4qCfUiFslgvowQ8FSGNz26VwxTIs4Bs3wp9K1/CadIPi5
+ 34AeIfyUmZrpxaZpO+MLtHFBqv0l7oejIfTvNIy0uMXCeAlTswCUXqtXvfaggO/B5w6S
+ 2lWvqSIWUi9FbveO1/evf6dXAHk/d8hiPAjBDbV271bvWM1cB2eqrlL2tMH9qlWac44P
+ hyGQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWNQVovfcExjY1zMAYc5HbbGycBtkvofglF8wRnD5NVJA17L2DWj6G7NiaE3RkyK0I5wWans60i9wo=@lists.freedesktop.org,
+ AJvYcCXTyue3CjHxFAJHVgnQzfPK91+MQV4xbS/QsW9o820zFbNmHw3n5l2nzRHF7A0tT5IQg9HxC+bch18=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwSITgv1cmc5pAXDBkDcQXvpPATNlvnIdFFC0z3qKfaNKTyTVZH
+ RsXM+0FEpGwa+MV0rGkmdRRYPnoreSC+F1pAfiIs0f40JsG3pG4k
+X-Gm-Gg: ASbGncv4WZM4zf0jnQusw6547FhIMC0KJQgCt0qqPH3f7ltuImvQRh55pEm8gmmqbVx
+ 1u8m7mB1RNdnevPU1nRtZb2Wwcbh2LafUp9UbO4O1TyEmB4C2cukG7oyRe9sTcVcqtaOFjuno+S
+ yfP4JOEnZRZoIfq1IndrqTOuRzCbQfIzWZIfIk4X4G+H+P3TXGnhNiiteDewSgzbJjvSWwd0GuY
+ NQJKP67wNGg+qg/eYTPkHcBbthhpuUE+T+iDr0zREqDyhytyAshG0kUE2lv9j3gTsGSyOuaSlkv
+ nlI0J70=
+X-Google-Smtp-Source: AGHT+IHLAeXlO3hV4T4enIEVaprWMG6iSEGmCJjenAgTvawMCOMVSwu8lq2Sie7M0ZZb8hK7wtsTZA==
+X-Received: by 2002:a17:90a:c2ce:b0:2ee:a76a:820 with SMTP id
+ 98e67ed59e1d1-2f782cbfa62mr11473228a91.18.1737222563329; 
+ Sat, 18 Jan 2025 09:49:23 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+ by smtp.gmail.com with ESMTPSA id
+ 98e67ed59e1d1-2f7762b37b1sm4358427a91.42.2025.01.18.09.49.22
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 18 Jan 2025 09:49:22 -0800 (PST)
+Date: Sat, 18 Jan 2025 09:49:21 -0800
+From: Guenter Roeck <linux@roeck-us.net>
+To: David Laight <david.laight.linux@gmail.com>
+Cc: David Laight <David.Laight@aculab.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ 'Arnd Bergmann' <arnd@kernel.org>,
+ "'linux-kernel@vger.kernel.org'" <linux-kernel@vger.kernel.org>,
+ 'Jens Axboe' <axboe@kernel.dk>, 'Matthew Wilcox' <willy@infradead.org>,
+ 'Christoph Hellwig' <hch@infradead.org>,
+ 'Andrew Morton' <akpm@linux-foundation.org>,
+ 'Andy Shevchenko' <andriy.shevchenko@linux.intel.com>,
+ 'Dan Carpenter' <dan.carpenter@linaro.org>,
+ "'Jason A . Donenfeld'" <Jason@zx2c4.com>,
+ "'pedro.falcato@gmail.com'" <pedro.falcato@gmail.com>,
+ 'Mateusz Guzik' <mjguzik@gmail.com>,
+ "'linux-mm@kvack.org'" <linux-mm@kvack.org>,
+ 'Lorenzo Stoakes' <lorenzo.stoakes@oracle.com>,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
-References: <20250117215753.749906-1-vinay.belgaumkar@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20250117215753.749906-1-vinay.belgaumkar@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: Re: Buiild error in i915/xe (was: [PATCH next 4/7] minmax.h: Use
+ BUILD_BUG_ON_MSG() for the lo < hi test in clamp())
+Message-ID: <29ef57a1-e4dd-4d5d-8726-f1f79c698b66@roeck-us.net>
+References: <c50365d214e04f9ba256d417c8bebbc0@AcuMS.aculab.com>
+ <34d53778977747f19cce2abb287bb3e6@AcuMS.aculab.com>
+ <ce600782-1012-47e3-ba3d-41c5a4b7a7b7@roeck-us.net>
+ <20250118170959.3aa56f4d@pumpkin>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250118170959.3aa56f4d@pumpkin>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,36 +108,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-
-
-On 17.01.2025 22:57, Vinay Belgaumkar wrote:
-> Default SLPC power profile is Base(0). Power Saving mode(1)
-> has conservative up/down thresholds and is suitable for use with
-> apps that typically need to be power efficient.
+On Sat, Jan 18, 2025 at 05:09:59PM +0000, David Laight wrote:
+> On Sat, 18 Jan 2025 08:13:06 -0800
+> Guenter Roeck <linux@roeck-us.net> wrote:
 > 
-> Selected power profile will be displayed in this format-
+> > Hi,
+> > 
+> > On Mon, Nov 18, 2024 at 07:13:31PM +0000, David Laight wrote:
+> > > Use BUILD_BUG_ON_MSG(statically_true(ulo > uhi), ...) for the sanity
+> > > check of the bounds in clamp().
+> > > Gives better error coverage and one less expansion of the arguments.
+> > > 
+> > > Signed-off-by: David Laight <david.laight@aculab.com>  
+> > 
+> > This patch triggers a build error when trying to build parisc:allmodconfig.
+> > See error message and bisect log below.
+> > 
+> > I don't think there is anything wrong with the patch. The underlying
+> > problem seems to be that parisc:allmodconfig enables CONFIG_DRM_XE which
+> > tries to build the affected file even though CONFIG_DRM_I915 is not
+> > enabled/supported on parisc.
 > 
-> $ cat slpc_power_profile
+> This has appeared before.
+> Any idea which inlined copy of scale() is causing the problem.
+> On the face of it they all look ok.
 > 
->   [base]    power_saving
-> 
-> $ echo power_saving > slpc_power_profile
-> $ cat slpc_power_profile
-> 
->   base    [power_saving]
+> If you can reproduce it maybe try commenting out some of the calls.
 > 
 
-is that output aligned with the sysfs rules? from [1]
+See diff below. All three changes are needed.
+No idea why the compiler would know that the values are invalid.
 
-"Attributes should be ASCII text files, preferably with only one value
-per file. It is noted that it may not be efficient to contain only one
-value per file, so it is socially acceptable to express an array of
-values of the same type.
+Guenter
 
-Mixing types, expressing multiple lines of data, and doing fancy
-formatting of data is heavily frowned upon. Doing these things may get
-you publicly humiliated and your code rewritten without not"
-
-
-[1] https://www.kernel.org/doc/html/latest/filesystems/sysfs.html#attributes
-
+---
+diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
+index fc1e517e074a..3b2c8bdfcf8d 100644
+--- a/drivers/gpu/drm/i915/display/intel_backlight.c
++++ b/drivers/gpu/drm/i915/display/intel_backlight.c
+@@ -76,10 +76,14 @@ static u32 clamp_user_to_hw(struct intel_connector *connector,
+ static u32 scale_hw_to_user(struct intel_connector *connector,
+ 			    u32 hw_level, u32 user_max)
+ {
++#if 0
+ 	struct intel_panel *panel = &connector->panel;
+ 
+ 	return scale(hw_level, panel->backlight.min, panel->backlight.max,
+ 		     0, user_max);
++#else
++	return 0;
++#endif
+ }
+ 
+ u32 intel_backlight_invert_pwm_level(struct intel_connector *connector, u32 val)
+@@ -119,8 +123,10 @@ u32 intel_backlight_level_to_pwm(struct intel_connector *connector, u32 val)
+ 	drm_WARN_ON_ONCE(&i915->drm,
+ 			 panel->backlight.max == 0 || panel->backlight.pwm_level_max == 0);
+ 
++#if 0
+ 	val = scale(val, panel->backlight.min, panel->backlight.max,
+ 		    panel->backlight.pwm_level_min, panel->backlight.pwm_level_max);
++#endif
+ 
+ 	return intel_backlight_invert_pwm_level(connector, val);
+ }
+@@ -138,8 +144,12 @@ u32 intel_backlight_level_from_pwm(struct intel_connector *connector, u32 val)
+ 	     intel_has_quirk(display, QUIRK_INVERT_BRIGHTNESS)))
+ 		val = panel->backlight.pwm_level_max - (val - panel->backlight.pwm_level_min);
+ 
++#if 0
+ 	return scale(val, panel->backlight.pwm_level_min, panel->backlight.pwm_level_max,
+ 		     panel->backlight.min, panel->backlight.max);
++#else
++	return 0;
++#endif
+ }
+ 
+ static u32 lpt_get_backlight(struct intel_connector *connector, enum pipe unused)
