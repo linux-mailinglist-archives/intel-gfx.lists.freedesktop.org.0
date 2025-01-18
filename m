@@ -2,67 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29F42A17EDE
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2025 14:31:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 61420A17ED8
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2025 14:31:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B86B710E5BA;
-	Tue, 21 Jan 2025 13:31:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E58CC10E599;
+	Tue, 21 Jan 2025 13:31:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="g1aGaTWp";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="a7Bgf7OT";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com
- [IPv6:2a00:1450:4864:20::32b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7627610E02A;
- Sat, 18 Jan 2025 18:09:20 +0000 (UTC)
-Received: by mail-wm1-x32b.google.com with SMTP id
- 5b1f17b1804b1-435f8f29f8aso21383235e9.2; 
- Sat, 18 Jan 2025 10:09:20 -0800 (PST)
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com
+ [209.85.221.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED6C510E00D;
+ Sat, 18 Jan 2025 21:19:25 +0000 (UTC)
+Received: by mail-wr1-f46.google.com with SMTP id
+ ffacd0b85a97d-385de59c1a0so1802132f8f.2; 
+ Sat, 18 Jan 2025 13:19:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1737223759; x=1737828559; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1737235104; x=1737839904; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:subject:cc:to:from:date:from:to:cc:subject:date
  :message-id:reply-to;
- bh=4BA/IJCpYsGVXt7I5m+H4A9gd0VSnYvzZ/4qWQWWRxQ=;
- b=g1aGaTWpm6PNonyDxNUttf/yv7ef4iQ4KG/VZ02Ac9SUIlgRNQL4u/VbCTChYjz/bH
- 1SXL9t1ztw46wrWpltVXaGWB3mZ6/M4J6GBK7lE9Eu65IK8xLGXMdTuEMTMTT/2MjkQ1
- 5cNStHap+5/PkFu5UhWbpGwvG0n223VSkVc/UAXDMDucNRfH9/F1DymbymUPaO9Uh0iW
- uct7pn5wxQWzfkDWW6trj8tFqMpqN+Sy4KxFfwEM798YoMqtTgzQV/81Bh8R+oJEEubb
- Qj9DM7OWdW4c52N5Y+o+r3AUJu4h0fKbZr99dzwlb7jgD0JI/HyUBMg+j33uK3omhqUs
- 0l7w==
+ bh=mpf4SfqnD25J/YTWoixYifvlss+fNguqHz/eTGg6pfY=;
+ b=a7Bgf7OTFMHXcj2o8ionczUU6HIGFjeIv6efvsde50UCwdTjXqs4tiPAyhW58FnRhO
+ IH3oXT71UlYaMnUBJ1ACIq0+ckncp2kakhnHJIM6C3F1tMD1OZFuFrIb9WZi1613H8Cx
+ 1VJloQ+a9V6MNIMkVmk1VTgYNDlCWT58o7VInz3Ee+xvpLlzhR+RqY1W2WwBJtQHY3CI
+ 80LA7pLny+ueLMmnkHJMg38YHHRjtzhvJWhWOpyuyChb1tT2XTGl8vKqaDWlq7PLq0zR
+ EvZOGaDK8S7PBAqVZR/v/2FEIoqNLpXWltYOAXrvx02Z6bhCnzIY1JbJ9y+tnipw/Boc
+ 03IQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1737223759; x=1737828559;
+ d=1e100.net; s=20230601; t=1737235104; x=1737839904;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=4BA/IJCpYsGVXt7I5m+H4A9gd0VSnYvzZ/4qWQWWRxQ=;
- b=fo+nIdjoDkoE0lhyvSYokLfmppsHw1Ejb9UN1IaEpvUNG6sA+WVRk5cNIB/YXP4hI0
- dygr5UVPHDNpPzo9NCoWeFaPDHx9z64eGzcQ2MV6nOlmfYuQJh2ZL2Icr9hL4bUJr1Om
- RhWsgioAlg91+1ZrmEZA9GJKOD97mL8W64RhJRgxLtOTA/7aJT8LcLK356GCdhXvCrDM
- wgukT8IaQewTpDkL47/LsiOKVU+hVwzL6fVn8++VFMEY4Plk+7ohuuyP8haX1o110cTE
- RRIvS5rW8NBimNM7fw6SzGJsBdeo6dxEzYanMx87megAKIt+2/WVu5XAE/1zuRUXHlGl
- J60w==
+ bh=mpf4SfqnD25J/YTWoixYifvlss+fNguqHz/eTGg6pfY=;
+ b=phAkowmdNV6g2BUGo4Y1xL9gZZE8J1wZkjc1p7/Qhceg/qAoGEYGIYOZH3Csrh2Zq2
+ pOkPcwb76EoSYbVUxwqtZN15WyPq1VUf29xgFtFl/6d+By+LoBR4spkRnCKPcFA0dsrW
+ vH6/+0572ZEMwLcV6kFLY8XFX8p99LWe5MBPGRjv8NOIRd3p8ovZC1UvUSZSDio4dNb7
+ 8dfeM0EFfn7dcg8GiqDfA7m0f9/ydFJZJjetoUVQRa0i0qanX9oZQRjoKrkCWliXaM51
+ KUp3pbCaORDeKQEukAWXFzITWrEfpHkBXmuQOKbLeEA+bj8XPyKw+Ab5hTSGkw8jha0h
+ w0/Q==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUFG8QyjKGiDEUk2KIGAdBAk7a5p/2BtGz1eQmT93b3d1rvrzTNnPfCyRBXk4Ge0PZ3pCoS5VGfp10=@lists.freedesktop.org,
- AJvYcCUg87xtkhHItksSdTNQN+hfDjB1u+AaBgvGF7NLDamHj4rBXrT0w3+CBeeEehqDhKc7O4i3GE5/f80=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyK73XPdt4sDQaaSFxCiaFS8lKC/aqV0UXWvM9Wy9W39q/avqyh
- 2FkPxNuiNiseMO0fW5Z+u0JB1UcNxZJ7Olv45MflFsRUaMeGDghw
-X-Gm-Gg: ASbGnctU/nr4n/So9ZoKj5FnND6CCUIEy2SpgIgF+jBFCiAM3/CCcGpPFXw9+r5GU4e
- xTWVnC2U4QgbciJsmamHQP4aAy7SNujIQ0W9yNhh2cbWDeoXvj1tI19A73i+NQXxyTAMYhdGR/o
- slvnrUfzEnByOYXwKhir9rIMhwbAVUyC88gE6eF3baZBvuYgrE9/f61h0H3glxCYY+A4h+tI6zm
- KEoUGgfZIwGffoVmiextmQlw4KUwmIfWQlLPSheiMR5DzRiYQIAqGQCPzXce3N+i9pn7kSnJyg9
- RsmKH5G5rjM/Cby+/Ko+reyAPoGfNUkV
-X-Google-Smtp-Source: AGHT+IHVwNkjw3fCrBEKyLXBvBiUL2k60KcVoV9cy6dZqzV7+/qO4ENIlaaFUStajLUdjSOHJHd/GA==
-X-Received: by 2002:a05:600c:4e4f:b0:434:f767:68ea with SMTP id
- 5b1f17b1804b1-438913bf92cmr81103605e9.5.1737223758584; 
- Sat, 18 Jan 2025 10:09:18 -0800 (PST)
+ AJvYcCVXqNa00Kt+8aEdSMACq6v2jkRz0dBViccoERscKjyfUQQ/U/5zEy/QrR1bsar+EaTYvSHCLiXbiuo=@lists.freedesktop.org,
+ AJvYcCXvY3rjxACyYmwtDfwDQnVJH8RZppBvqcI6M3UN0M/9B4z2FyXjfKz494Oy/+k18PLk5lfCTJtBz/Y=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx+MT2fgekTDHCV+odRqYP6fyRwxizZzny/a8NS8vj0t9dKHJNd
+ 1zjTAKyY6O9RuFGa7byVaWfIbR3b6WJE3tNSFvaYevtzxHuRHsdq
+X-Gm-Gg: ASbGnctAKOMcD0jbK6q5JHEf1GtxkNxF2oGXu9EdbMzs2T5dbJjKLjmpfDcdY+LRva8
+ neYATowGHJ+lZUpA5xCsLnanzNyygrVQjgncz6++QNaG91SqBDx9kwo8uZ7ww0a2oisEPj4DuhR
+ QDs0Sib3BJQsZsH2oBNwpXT1rceeNVPXvcf/UixT0cy2jN3YUFR4kQPE08OXQ/LRZkxYEcH/vqv
+ usVjsfu4Q3D4ZqqODKWzRL7STO60aA4uW4fsWGCUpDGysIK37Bthyo3u34Ts1lsKzYoSiRVf5lL
+ Z41udKQz4j2uVgsuKx9YPv1dgUTPh+Dz
+X-Google-Smtp-Source: AGHT+IHzC49qJigI15jYyMO47UhxKy6QnmDwTiLc/s5hoO6z29BxgyRIOihRyPzxw9V9nFo/UtDyAg==
+X-Received: by 2002:adf:e84a:0:b0:385:f0c9:4b66 with SMTP id
+ ffacd0b85a97d-38bf5686090mr5730089f8f.33.1737235104085; 
+ Sat, 18 Jan 2025 13:18:24 -0800 (PST)
 Received: from pumpkin (82-69-66-36.dsl.in-addr.zen.co.uk. [82.69.66.36])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4389040854bsm77741645e9.7.2025.01.18.10.09.17
+ ffacd0b85a97d-38bf32754dcsm6106637f8f.77.2025.01.18.13.18.23
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 18 Jan 2025 10:09:17 -0800 (PST)
-Date: Sat, 18 Jan 2025 18:09:16 +0000
+ Sat, 18 Jan 2025 13:18:23 -0800 (PST)
+Date: Sat, 18 Jan 2025 21:18:21 +0000
 From: David Laight <david.laight.linux@gmail.com>
 To: Guenter Roeck <linux@roeck-us.net>
 Cc: David Laight <David.Laight@aculab.com>, Linus Torvalds
@@ -79,15 +79,16 @@ Cc: David Laight <David.Laight@aculab.com>, Linus Torvalds
  intel-gfx@lists.freedesktop.org, David Airlie <airlied@gmail.com>, Simona
  Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: Buiild error in i915/xe (was: [PATCH next 4/7] minmax.h: Use
- BUILD_BUG_ON_MSG() for the lo < hi test in clamp())
-Message-ID: <20250118180916.433bb73c@pumpkin>
-In-Reply-To: <29ef57a1-e4dd-4d5d-8726-f1f79c698b66@roeck-us.net>
+Subject: Re: Buiild error in i915/xe
+Message-ID: <20250118211821.7cb5140f@pumpkin>
+In-Reply-To: <f36700c5-eb86-46c3-afd7-5d3ad67e0130@roeck-us.net>
 References: <c50365d214e04f9ba256d417c8bebbc0@AcuMS.aculab.com>
  <34d53778977747f19cce2abb287bb3e6@AcuMS.aculab.com>
  <ce600782-1012-47e3-ba3d-41c5a4b7a7b7@roeck-us.net>
  <20250118170959.3aa56f4d@pumpkin>
  <29ef57a1-e4dd-4d5d-8726-f1f79c698b66@roeck-us.net>
+ <20250118180916.433bb73c@pumpkin>
+ <f36700c5-eb86-46c3-afd7-5d3ad67e0130@roeck-us.net>
 X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; arm-unknown-linux-gnueabihf)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -108,91 +109,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, 18 Jan 2025 09:49:21 -0800
+On Sat, 18 Jan 2025 10:36:11 -0800
 Guenter Roeck <linux@roeck-us.net> wrote:
 
-> On Sat, Jan 18, 2025 at 05:09:59PM +0000, David Laight wrote:
-> > On Sat, 18 Jan 2025 08:13:06 -0800
+> On 1/18/25 10:09, David Laight wrote:
+> > On Sat, 18 Jan 2025 09:49:21 -0800
 > > Guenter Roeck <linux@roeck-us.net> wrote:
 > >   
-> > > Hi,
-> > > 
-> > > On Mon, Nov 18, 2024 at 07:13:31PM +0000, David Laight wrote:  
-> > > > Use BUILD_BUG_ON_MSG(statically_true(ulo > uhi), ...) for the sanity
-> > > > check of the bounds in clamp().
-> > > > Gives better error coverage and one less expansion of the arguments.
-> > > > 
-> > > > Signed-off-by: David Laight <david.laight@aculab.com>    
-> > > 
-> > > This patch triggers a build error when trying to build parisc:allmodconfig.
-> > > See error message and bisect log below.
-> > > 
-> > > I don't think there is anything wrong with the patch. The underlying
-> > > problem seems to be that parisc:allmodconfig enables CONFIG_DRM_XE which
-> > > tries to build the affected file even though CONFIG_DRM_I915 is not
-> > > enabled/supported on parisc.  
+> >> On Sat, Jan 18, 2025 at 05:09:59PM +0000, David Laight wrote:  
+> >>> On Sat, 18 Jan 2025 08:13:06 -0800
+> >>> Guenter Roeck <linux@roeck-us.net> wrote:
+> >>>      
+> >>>> Hi,
+> >>>>
+> >>>> On Mon, Nov 18, 2024 at 07:13:31PM +0000, David Laight wrote:  
+> >>>>> Use BUILD_BUG_ON_MSG(statically_true(ulo > uhi), ...) for the sanity
+> >>>>> check of the bounds in clamp().
+> >>>>> Gives better error coverage and one less expansion of the arguments.
+> >>>>>
+> >>>>> Signed-off-by: David Laight <david.laight@aculab.com>  
+> >>>>
+> >>>> This patch triggers a build error when trying to build parisc:allmodconfig.
+> >>>> See error message and bisect log below.
+> >>>>
+> >>>> I don't think there is anything wrong with the patch. The underlying
+> >>>> problem seems to be that parisc:allmodconfig enables CONFIG_DRM_XE which
+> >>>> tries to build the affected file even though CONFIG_DRM_I915 is not
+> >>>> enabled/supported on parisc.  
+> >>>
+> >>> This has appeared before.
+> >>> Any idea which inlined copy of scale() is causing the problem.
+> >>> On the face of it they all look ok.
+> >>>
+> >>> If you can reproduce it maybe try commenting out some of the calls.
+> >>>      
+> >>
+> >> See diff below. All three changes are needed.
+> >> No idea why the compiler would know that the values are invalid.  
 > > 
-> > This has appeared before.
-> > Any idea which inlined copy of scale() is causing the problem.
-> > On the face of it they all look ok.
-> > 
-> > If you can reproduce it maybe try commenting out some of the calls.
+> > Maybe it isn't even an inlining issue.
+> > Perhaps that compiler just doesn't like the function ?
+> > What happens without the 'static' (and an extra prototype)?
 > >   
 > 
-> See diff below. All three changes are needed.
-> No idea why the compiler would know that the values are invalid.
+> 
+> You mean like that ?
+> 
+> -static u32 scale(u32 source_val,
+> +
+> +u32 scale(u32 source_val,
+> +                u32 source_min, u32 source_max,
+> +                u32 target_min, u32 target_max);
+> +
+> +u32 scale(u32 source_val,
+>                   u32 source_min, u32 source_max,
+>                   u32 target_min, u32 target_max)
+> 
+> It doesn't help. Worse, after that change the error is still reported
+> even with the #if 0 elsewhere.
 
-Maybe it isn't even an inlining issue.
-Perhaps that compiler just doesn't like the function ?
-What happens without the 'static' (and an extra prototype)?
+Yes - that means the compiler is 'objecting' to the scale() function itself.
+(Without any regard for its callers.)
+Which should make it easy to reproduce outside the kernel build.
 
-	David
+I think Mat had a successful build with a different (older?) version of gcc for
+parisc.
+
+There must be something odd causing the problem - there will be other clamp()
+calls in the build that don't generate the error.
+
+Remember that lack of the error messages requires the compiler optimise away
+some code - so if the optimisation is skipped the call could be generated
+and the warning output (even if the call is optimised away later).
+
+Perhaps there is some obscure interaction with the WARN() statements?
+
+I don't have the required compiler (neither does godbolt).
+
+	David 
 
 > 
 > Guenter
 > 
-> ---
-> diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
-> index fc1e517e074a..3b2c8bdfcf8d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_backlight.c
-> +++ b/drivers/gpu/drm/i915/display/intel_backlight.c
-> @@ -76,10 +76,14 @@ static u32 clamp_user_to_hw(struct intel_connector *connector,
->  static u32 scale_hw_to_user(struct intel_connector *connector,
->  			    u32 hw_level, u32 user_max)
->  {
-> +#if 0
->  	struct intel_panel *panel = &connector->panel;
->  
->  	return scale(hw_level, panel->backlight.min, panel->backlight.max,
->  		     0, user_max);
-> +#else
-> +	return 0;
-> +#endif
->  }
->  
->  u32 intel_backlight_invert_pwm_level(struct intel_connector *connector, u32 val)
-> @@ -119,8 +123,10 @@ u32 intel_backlight_level_to_pwm(struct intel_connector *connector, u32 val)
->  	drm_WARN_ON_ONCE(&i915->drm,
->  			 panel->backlight.max == 0 || panel->backlight.pwm_level_max == 0);
->  
-> +#if 0
->  	val = scale(val, panel->backlight.min, panel->backlight.max,
->  		    panel->backlight.pwm_level_min, panel->backlight.pwm_level_max);
-> +#endif
->  
->  	return intel_backlight_invert_pwm_level(connector, val);
->  }
-> @@ -138,8 +144,12 @@ u32 intel_backlight_level_from_pwm(struct intel_connector *connector, u32 val)
->  	     intel_has_quirk(display, QUIRK_INVERT_BRIGHTNESS)))
->  		val = panel->backlight.pwm_level_max - (val - panel->backlight.pwm_level_min);
->  
-> +#if 0
->  	return scale(val, panel->backlight.pwm_level_min, panel->backlight.pwm_level_max,
->  		     panel->backlight.min, panel->backlight.max);
-> +#else
-> +	return 0;
-> +#endif
->  }
->  
->  static u32 lpt_get_backlight(struct intel_connector *connector, enum pipe unused)
 
