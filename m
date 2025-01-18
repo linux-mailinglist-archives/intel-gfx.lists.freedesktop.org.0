@@ -2,67 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D64CA17EDA
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2025 14:31:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29F42A17EDE
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2025 14:31:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FB8810E5AF;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B86B710E5BA;
 	Tue, 21 Jan 2025 13:31:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="bsNeLBt6";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="g1aGaTWp";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com
- [IPv6:2a00:1450:4864:20::330])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C75610E02F;
- Sat, 18 Jan 2025 17:10:02 +0000 (UTC)
-Received: by mail-wm1-x330.google.com with SMTP id
- 5b1f17b1804b1-4361c705434so21102725e9.3; 
- Sat, 18 Jan 2025 09:10:02 -0800 (PST)
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com
+ [IPv6:2a00:1450:4864:20::32b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7627610E02A;
+ Sat, 18 Jan 2025 18:09:20 +0000 (UTC)
+Received: by mail-wm1-x32b.google.com with SMTP id
+ 5b1f17b1804b1-435f8f29f8aso21383235e9.2; 
+ Sat, 18 Jan 2025 10:09:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1737220201; x=1737825001; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1737223759; x=1737828559; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:subject:cc:to:from:date:from:to:cc:subject:date
  :message-id:reply-to;
- bh=3KlgTW8qoEnUZT7EjjZ/u9PK9WlkNroef5My8RmY27k=;
- b=bsNeLBt6BZnfTGU9pnfexUwHNYYnrGaNyXxjGDET2uMhcSmOsn4o8udQOE6v4QgwEO
- 89j4n5zxIgbySvz/c0lk+kzA2b081wbndkUrHrIpPIM5/mLWw4r5pWcyXOx+chU/p8/K
- cnGwDmroWgyKbHwA3wU/jb20Au6n5KX/WLFbNrh3dXfDm8fggYx/3bpGL2vFcIub6ZYd
- Ft6Mx8Pg5srs3Boez74zZxKuShZzM5znrWgl+I7o+aYRy8tU8ABbyyOTItBy8ls32ZbV
- 6q5yGqWpl860iKZm/lIGe/uF4sxhgulo6Jn6qqwh3+wOKgK85fhAbHkNI3F/XtPBfwf6
- V4Eg==
+ bh=4BA/IJCpYsGVXt7I5m+H4A9gd0VSnYvzZ/4qWQWWRxQ=;
+ b=g1aGaTWpm6PNonyDxNUttf/yv7ef4iQ4KG/VZ02Ac9SUIlgRNQL4u/VbCTChYjz/bH
+ 1SXL9t1ztw46wrWpltVXaGWB3mZ6/M4J6GBK7lE9Eu65IK8xLGXMdTuEMTMTT/2MjkQ1
+ 5cNStHap+5/PkFu5UhWbpGwvG0n223VSkVc/UAXDMDucNRfH9/F1DymbymUPaO9Uh0iW
+ uct7pn5wxQWzfkDWW6trj8tFqMpqN+Sy4KxFfwEM798YoMqtTgzQV/81Bh8R+oJEEubb
+ Qj9DM7OWdW4c52N5Y+o+r3AUJu4h0fKbZr99dzwlb7jgD0JI/HyUBMg+j33uK3omhqUs
+ 0l7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1737220201; x=1737825001;
+ d=1e100.net; s=20230601; t=1737223759; x=1737828559;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=3KlgTW8qoEnUZT7EjjZ/u9PK9WlkNroef5My8RmY27k=;
- b=qPsvsEHyjgoT25yo5wQILK3hu0aeU7hYbMAGMWtqhDXSosp2/5fo4relp4otqpBeju
- /8jMXzUOLPgIdXiVApEem5wSQSOCyWhg4y1JGzIDswYYSfP30hbDmMz9OlfhlLmnDkRv
- ZmP09wCgQEEvvqQKBrugNUrOPWJLJJaUpI7M31KXZ+8BtcPLTau8od8Vb6aWAxDuGwd7
- V56DHA9XeSMw/T9kTM4N6nGCVlmbr78ZnSUPcP3fQb+HVu4SqfgsQMTqCnQIWtoP6pSO
- h38/rCt+PCDt0Yrk9bfZetmWAqO56XZJFa4hkegvxNSj1h2KhiON3rkEjIq6yjrIqz2h
- CvOQ==
+ bh=4BA/IJCpYsGVXt7I5m+H4A9gd0VSnYvzZ/4qWQWWRxQ=;
+ b=fo+nIdjoDkoE0lhyvSYokLfmppsHw1Ejb9UN1IaEpvUNG6sA+WVRk5cNIB/YXP4hI0
+ dygr5UVPHDNpPzo9NCoWeFaPDHx9z64eGzcQ2MV6nOlmfYuQJh2ZL2Icr9hL4bUJr1Om
+ RhWsgioAlg91+1ZrmEZA9GJKOD97mL8W64RhJRgxLtOTA/7aJT8LcLK356GCdhXvCrDM
+ wgukT8IaQewTpDkL47/LsiOKVU+hVwzL6fVn8++VFMEY4Plk+7ohuuyP8haX1o110cTE
+ RRIvS5rW8NBimNM7fw6SzGJsBdeo6dxEzYanMx87megAKIt+2/WVu5XAE/1zuRUXHlGl
+ J60w==
 X-Forwarded-Encrypted: i=1;
- AJvYcCU4Y4TejthmKXW0eByh1/gkr1r8mAIeEP7qbRJqrhi2+u7xuEEi4p+RZ4u2wOzbJ4nXGl5U/wHM2I4=@lists.freedesktop.org,
- AJvYcCXF/MPuNoiNEXY1q2bL/N39024NL1SX0UOvGDqjzTyw/cgaRvn+bZKB1vuE6tkJ0jRsJ/wmKnRbIS8=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxWsU0UJcFiduivLiPq1QJJWcFw2kDExve8yxF1K1J5XLbiviAi
- duXPFP7gVXjeKZrPgDIbzCaArauUkAJsIa4dPK7XQ0d0/9ox7fvB
-X-Gm-Gg: ASbGncuCYPhwU0cjip9zbJ99fC70T1jHFiUWLkkXCjIGT7e6SwwR0F49OFBADMwi+bu
- AzPzA5k8Tr5ElZTGrVWMa9CZbsirgr7Bc94xe/I3fPpB9bb71o6moO0xOjhS5A6V0VKsy2bNLFt
- T9sSywGwP0aRouX/V3rAoUSsk56L/gNgHxfsibQBrJfbOU1wUzgEAUonLlgZJG2AWwFIgf3+U7D
- q69wOUjAp8LzRZBG8mjZ+6JP7p/gx0Cen3DwnzGQWIm+O0Zk5pZaWPT1WUHxZKmCLC0p3B1Vn6G
- mZdBARfpc1EIRxYow/FSc6B+R3R6TsA1
-X-Google-Smtp-Source: AGHT+IHMW6aZx7u19ZQpXVb/KS9UCuBHquSRSELoo8MnVynv6LS9GzSLQvXkC5ETEtQhY9v53d8rGw==
-X-Received: by 2002:a5d:6d86:0:b0:385:df6b:7ef6 with SMTP id
- ffacd0b85a97d-38bf57c94a2mr8056076f8f.51.1737220200795; 
- Sat, 18 Jan 2025 09:10:00 -0800 (PST)
+ AJvYcCUFG8QyjKGiDEUk2KIGAdBAk7a5p/2BtGz1eQmT93b3d1rvrzTNnPfCyRBXk4Ge0PZ3pCoS5VGfp10=@lists.freedesktop.org,
+ AJvYcCUg87xtkhHItksSdTNQN+hfDjB1u+AaBgvGF7NLDamHj4rBXrT0w3+CBeeEehqDhKc7O4i3GE5/f80=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyK73XPdt4sDQaaSFxCiaFS8lKC/aqV0UXWvM9Wy9W39q/avqyh
+ 2FkPxNuiNiseMO0fW5Z+u0JB1UcNxZJ7Olv45MflFsRUaMeGDghw
+X-Gm-Gg: ASbGnctU/nr4n/So9ZoKj5FnND6CCUIEy2SpgIgF+jBFCiAM3/CCcGpPFXw9+r5GU4e
+ xTWVnC2U4QgbciJsmamHQP4aAy7SNujIQ0W9yNhh2cbWDeoXvj1tI19A73i+NQXxyTAMYhdGR/o
+ slvnrUfzEnByOYXwKhir9rIMhwbAVUyC88gE6eF3baZBvuYgrE9/f61h0H3glxCYY+A4h+tI6zm
+ KEoUGgfZIwGffoVmiextmQlw4KUwmIfWQlLPSheiMR5DzRiYQIAqGQCPzXce3N+i9pn7kSnJyg9
+ RsmKH5G5rjM/Cby+/Ko+reyAPoGfNUkV
+X-Google-Smtp-Source: AGHT+IHVwNkjw3fCrBEKyLXBvBiUL2k60KcVoV9cy6dZqzV7+/qO4ENIlaaFUStajLUdjSOHJHd/GA==
+X-Received: by 2002:a05:600c:4e4f:b0:434:f767:68ea with SMTP id
+ 5b1f17b1804b1-438913bf92cmr81103605e9.5.1737223758584; 
+ Sat, 18 Jan 2025 10:09:18 -0800 (PST)
 Received: from pumpkin (82-69-66-36.dsl.in-addr.zen.co.uk. [82.69.66.36])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-438904087cbsm75613495e9.3.2025.01.18.09.09.59
+ 5b1f17b1804b1-4389040854bsm77741645e9.7.2025.01.18.10.09.17
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 18 Jan 2025 09:10:00 -0800 (PST)
-Date: Sat, 18 Jan 2025 17:09:59 +0000
+ Sat, 18 Jan 2025 10:09:17 -0800 (PST)
+Date: Sat, 18 Jan 2025 18:09:16 +0000
 From: David Laight <david.laight.linux@gmail.com>
 To: Guenter Roeck <linux@roeck-us.net>
 Cc: David Laight <David.Laight@aculab.com>, Linus Torvalds
@@ -81,11 +81,13 @@ Cc: David Laight <David.Laight@aculab.com>, Linus Torvalds
  Rodrigo Vivi <rodrigo.vivi@intel.com>
 Subject: Re: Buiild error in i915/xe (was: [PATCH next 4/7] minmax.h: Use
  BUILD_BUG_ON_MSG() for the lo < hi test in clamp())
-Message-ID: <20250118170959.3aa56f4d@pumpkin>
-In-Reply-To: <ce600782-1012-47e3-ba3d-41c5a4b7a7b7@roeck-us.net>
+Message-ID: <20250118180916.433bb73c@pumpkin>
+In-Reply-To: <29ef57a1-e4dd-4d5d-8726-f1f79c698b66@roeck-us.net>
 References: <c50365d214e04f9ba256d417c8bebbc0@AcuMS.aculab.com>
  <34d53778977747f19cce2abb287bb3e6@AcuMS.aculab.com>
  <ce600782-1012-47e3-ba3d-41c5a4b7a7b7@roeck-us.net>
+ <20250118170959.3aa56f4d@pumpkin>
+ <29ef57a1-e4dd-4d5d-8726-f1f79c698b66@roeck-us.net>
 X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; arm-unknown-linux-gnueabihf)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -106,102 +108,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Sat, 18 Jan 2025 08:13:06 -0800
+On Sat, 18 Jan 2025 09:49:21 -0800
 Guenter Roeck <linux@roeck-us.net> wrote:
 
-> Hi,
-> 
-> On Mon, Nov 18, 2024 at 07:13:31PM +0000, David Laight wrote:
-> > Use BUILD_BUG_ON_MSG(statically_true(ulo > uhi), ...) for the sanity
-> > check of the bounds in clamp().
-> > Gives better error coverage and one less expansion of the arguments.
+> On Sat, Jan 18, 2025 at 05:09:59PM +0000, David Laight wrote:
+> > On Sat, 18 Jan 2025 08:13:06 -0800
+> > Guenter Roeck <linux@roeck-us.net> wrote:
+> >   
+> > > Hi,
+> > > 
+> > > On Mon, Nov 18, 2024 at 07:13:31PM +0000, David Laight wrote:  
+> > > > Use BUILD_BUG_ON_MSG(statically_true(ulo > uhi), ...) for the sanity
+> > > > check of the bounds in clamp().
+> > > > Gives better error coverage and one less expansion of the arguments.
+> > > > 
+> > > > Signed-off-by: David Laight <david.laight@aculab.com>    
+> > > 
+> > > This patch triggers a build error when trying to build parisc:allmodconfig.
+> > > See error message and bisect log below.
+> > > 
+> > > I don't think there is anything wrong with the patch. The underlying
+> > > problem seems to be that parisc:allmodconfig enables CONFIG_DRM_XE which
+> > > tries to build the affected file even though CONFIG_DRM_I915 is not
+> > > enabled/supported on parisc.  
 > > 
-> > Signed-off-by: David Laight <david.laight@aculab.com>  
+> > This has appeared before.
+> > Any idea which inlined copy of scale() is causing the problem.
+> > On the face of it they all look ok.
+> > 
+> > If you can reproduce it maybe try commenting out some of the calls.
+> >   
 > 
-> This patch triggers a build error when trying to build parisc:allmodconfig.
-> See error message and bisect log below.
-> 
-> I don't think there is anything wrong with the patch. The underlying
-> problem seems to be that parisc:allmodconfig enables CONFIG_DRM_XE which
-> tries to build the affected file even though CONFIG_DRM_I915 is not
-> enabled/supported on parisc.
+> See diff below. All three changes are needed.
+> No idea why the compiler would know that the values are invalid.
 
-This has appeared before.
-Any idea which inlined copy of scale() is causing the problem.
-On the face of it they all look ok.
-
-If you can reproduce it maybe try commenting out some of the calls.
+Maybe it isn't even an inlining issue.
+Perhaps that compiler just doesn't like the function ?
+What happens without the 'static' (and an extra prototype)?
 
 	David
 
 > 
-> Copying XE maintainers for feedback/advice.
-> 
-> Thanks,
 > Guenter
 > 
 > ---
-> Building parisc:allmodconfig ... failed
-> --------------
-> Error log:
-> In file included from <command-line>:
-> drivers/gpu/drm/i915/display/intel_backlight.c: In function 'scale':
-> include/linux/compiler_types.h:542:45: error: call to '__compiletime_assert_415' declared with attribute error: clamp() low limit source_min greater than high limit source_max
->   542 |         _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
->       |                                             ^
-> include/linux/compiler_types.h:523:25: note: in definition of macro '__compiletime_assert'
->   523 |                         prefix ## suffix();                             \
->       |                         ^~~~~~
-> include/linux/compiler_types.h:542:9: note: in expansion of macro '_compiletime_assert'
->   542 |         _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
->       |         ^~~~~~~~~~~~~~~~~~~
-> include/linux/build_bug.h:39:37: note: in expansion of macro 'compiletime_assert'
->    39 | #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)
->       |                                     ^~~~~~~~~~~~~~~~~~
-> include/linux/minmax.h:188:9: note: in expansion of macro 'BUILD_BUG_ON_MSG'
->   188 |         BUILD_BUG_ON_MSG(statically_true(ulo > uhi),                            \
->       |         ^~~~~~~~~~~~~~~~
-> include/linux/minmax.h:195:9: note: in expansion of macro '__clamp_once'
->   195 |         __clamp_once(type, val, lo, hi, __UNIQUE_ID(v_), __UNIQUE_ID(l_), __UNIQUE_ID(h_))
->       |         ^~~~~~~~~~~~
-> include/linux/minmax.h:206:28: note: in expansion of macro '__careful_clamp'
->   206 | #define clamp(val, lo, hi) __careful_clamp(__auto_type, val, lo, hi)
->       |                            ^~~~~~~~~~~~~~~
-> drivers/gpu/drm/i915/display/intel_backlight.c:48:22: note: in expansion of macro 'clamp'
->    48 |         source_val = clamp(source_val, source_min, source_max);
->       |                      ^~~~~
-> 
-> ---
-> # bad: [0907e7fb35756464aa34c35d6abb02998418164b] Add linux-next specific files for 20250117
-> # good: [5bc55a333a2f7316b58edc7573e8e893f7acb532] Linux 6.13-rc7
-> git bisect start 'HEAD' 'v6.13-rc7'
-> # bad: [195cedf4deacf84167c32b866ceac1cf4a16df15] Merge branch 'main' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next.git
-> git bisect bad 195cedf4deacf84167c32b866ceac1cf4a16df15
-> # bad: [e8c0711b153b0db806410d8b31ed23b590f4eab4] Merge branch 'xtensa-for-next' of git://github.com/jcmvbkbc/linux-xtensa.git
-> git bisect bad e8c0711b153b0db806410d8b31ed23b590f4eab4
-> # bad: [81d45722d699e594c66c150c8f7a0ec2e2bc9be6] Merge branch 'for-next/perf' of git://git.kernel.org/pub/scm/linux/kernel/git/will/linux.git
-> git bisect bad 81d45722d699e594c66c150c8f7a0ec2e2bc9be6
-> # bad: [7acb844a672defb15cf202a501815ec22c68c800] foo
-> git bisect bad 7acb844a672defb15cf202a501815ec22c68c800
-> # good: [fb2368075b135f174264071b851330649d55f9d0] mm/damon/core: add damos_filter->allow field
-> git bisect good fb2368075b135f174264071b851330649d55f9d0
-> # bad: [fc83c501e385753c90db7316faf9fd4158caaa96] minmax.h: remove some #defines that are only expanded once
-> git bisect bad fc83c501e385753c90db7316faf9fd4158caaa96
-> # good: [b04d305df1171448df5e87802c4d1f1022cc5784] ocfs2: use a folio in ocfs2_map_and_dirty_page()
-> git bisect good b04d305df1171448df5e87802c4d1f1022cc5784
-> # good: [7e01619507058f90ab603acec482951f3c452aaa] kthread: correct comments before kthread_queue_work()
-> git bisect good 7e01619507058f90ab603acec482951f3c452aaa
-> # good: [21b510a64c223707caa6db6176128779f0806a73] nilfs2: correct return value kernel-doc descriptions for ioctl functions
-> git bisect good 21b510a64c223707caa6db6176128779f0806a73
-> # good: [6afb87f23458f2d4e4334ee5a4efb8b0d07af68b] nilfs2: handle errors that nilfs_prepare_chunk() may return
-> git bisect good 6afb87f23458f2d4e4334ee5a4efb8b0d07af68b
-> # good: [8f6d46fed0bad163e5146fea1fdff150039235b2] minmax.h: reduce the #define expansion of min(), max() and clamp()
-> git bisect good 8f6d46fed0bad163e5146fea1fdff150039235b2
-> # bad: [7a70c678548d71e609b95dbddf2d411a02d13b54] minmax.h: move all the clamp() definitions after the min/max() ones
-> git bisect bad 7a70c678548d71e609b95dbddf2d411a02d13b54
-> # bad: [37f375aab0c585388b90d1af6968454fc2769cb9] minmax.h: use BUILD_BUG_ON_MSG() for the lo < hi test in clamp()
-> git bisect bad 37f375aab0c585388b90d1af6968454fc2769cb9
-> # first bad commit: [37f375aab0c585388b90d1af6968454fc2769cb9] minmax.h: use BUILD_BUG_ON_MSG() for the lo < hi test in clamp()
-> 
-> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
+> index fc1e517e074a..3b2c8bdfcf8d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_backlight.c
+> +++ b/drivers/gpu/drm/i915/display/intel_backlight.c
+> @@ -76,10 +76,14 @@ static u32 clamp_user_to_hw(struct intel_connector *connector,
+>  static u32 scale_hw_to_user(struct intel_connector *connector,
+>  			    u32 hw_level, u32 user_max)
+>  {
+> +#if 0
+>  	struct intel_panel *panel = &connector->panel;
+>  
+>  	return scale(hw_level, panel->backlight.min, panel->backlight.max,
+>  		     0, user_max);
+> +#else
+> +	return 0;
+> +#endif
+>  }
+>  
+>  u32 intel_backlight_invert_pwm_level(struct intel_connector *connector, u32 val)
+> @@ -119,8 +123,10 @@ u32 intel_backlight_level_to_pwm(struct intel_connector *connector, u32 val)
+>  	drm_WARN_ON_ONCE(&i915->drm,
+>  			 panel->backlight.max == 0 || panel->backlight.pwm_level_max == 0);
+>  
+> +#if 0
+>  	val = scale(val, panel->backlight.min, panel->backlight.max,
+>  		    panel->backlight.pwm_level_min, panel->backlight.pwm_level_max);
+> +#endif
+>  
+>  	return intel_backlight_invert_pwm_level(connector, val);
+>  }
+> @@ -138,8 +144,12 @@ u32 intel_backlight_level_from_pwm(struct intel_connector *connector, u32 val)
+>  	     intel_has_quirk(display, QUIRK_INVERT_BRIGHTNESS)))
+>  		val = panel->backlight.pwm_level_max - (val - panel->backlight.pwm_level_min);
+>  
+> +#if 0
+>  	return scale(val, panel->backlight.pwm_level_min, panel->backlight.pwm_level_max,
+>  		     panel->backlight.min, panel->backlight.max);
+> +#else
+> +	return 0;
+> +#endif
+>  }
+>  
+>  static u32 lpt_get_backlight(struct intel_connector *connector, enum pipe unused)
 
