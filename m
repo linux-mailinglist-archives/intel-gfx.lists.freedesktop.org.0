@@ -2,106 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6824AA17311
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jan 2025 20:15:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C891FA17314
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jan 2025 20:21:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B854C10E119;
-	Mon, 20 Jan 2025 19:15:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0969110E473;
+	Mon, 20 Jan 2025 19:21:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="NrmT0FxY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TVzaAJry";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com
- [IPv6:2a00:1450:4864:20::634])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 69F3F10E119
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Jan 2025 19:15:00 +0000 (UTC)
-Received: by mail-ej1-x634.google.com with SMTP id
- a640c23a62f3a-aaec61d0f65so1030182766b.1
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Jan 2025 11:15:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux-foundation.org; s=google; t=1737400499; x=1738005299;
- darn=lists.freedesktop.org; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=2A1SxqaKC9E04yxtcM0gBjhhzV82aFBvHScpwEZ6wwo=;
- b=NrmT0FxY2zjqyaNq/w8c0LjbMU1nVQRysaYyPrdR+oHjk39m8tH/v7fYmu1559Mej6
- BFB+0cQsQa7QwurO9oeJ2VpTTIq138+fKpXl+KZjJ2/lwYc43yGRjpChYzUHSKnO6Ys+
- D8UrnscjW9hF5dgF5j40NNYPttKeADu/8rGPI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1737400499; x=1738005299;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=2A1SxqaKC9E04yxtcM0gBjhhzV82aFBvHScpwEZ6wwo=;
- b=qGM80MMIODn5Twl4deXEhwCnXsqhRQfCv5RmW6dfQS5xF11gEu9Ec/kA9jrT5ju9qX
- 8KN4XAwugTBc2wiqzNIbO1DrVNkKHuVBMfq9N6yxULT+F4tsaC8AC/Y9Pcb2IjpQ0ZtI
- OhNb2vG4dOzVxo3rBg86MIl3cGBE7CTFHA7+uEoNJUZs7I37d8Sf6VNbS/CwcAByw4YN
- wBrDkI8soF2LfMsPA8Og9+HcQJLGPfnWqWDXHq5o5BONp1ieus1uqTnwxgZOEdhF5IeU
- HzcDAj9gJHyIuQV+CD45Kvr0iCPKTmbv5Jl5icmWkNtGh95sWmAMhhBkODSSSdtZllm9
- NtXA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUp/xWE6uCaSMqt2Ud81e4ovRq6F87Q6urVrIvNLVnmim/6xJGfDMiAO4cJDB7rDJ73FA1V6piasR0=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxHAW5sYLs9xGsP5RncTvXO67tttcLnHDz+8XA//0r+K2Wfp6x7
- y9Wb368+7zBylP7w0wustduAE3o2YF5jzE8EuWK86KTus4/AhkSSCEyHvG6qBVrgrIE0dM53pLa
- Ir7I=
-X-Gm-Gg: ASbGncuqxel53QuV5E6DCuMq7kND5yFCCkVpFmmGuM6Yw8eZ4eAvjxFAk40WTVkwF0v
- 4b9Bi0kT9iWO5nGSJ1qEHDKdsRoQMlP1u1tGuw3OGzcY7Z5iC5iMtyj7dAzioaYNgisD/pvoJAd
- Gj8g+QL7Dd2g5A8dmoyBWqGYQmrmuraQbJuSYdTYSDfJOGgun3RuoCizDgDcjn5zalh+7Xz2PQX
- IsECnyppWuc0GynV9mOKkf184Ajg9xY6iD/nrpH6yX05K8fBZ3TlTCCwbM0mfC7Y3UHv2TGi8lf
- PQtN3ayOHb5KsxNyRCyvlWe+bqA6erAe/dLszZRUZmBI
-X-Google-Smtp-Source: AGHT+IFFBILwZfdrdtU3JIz4JpjBPpB87xFDO7tPfIIZaCqlJmSW9Ph6SyZSnpLqCQfZJw/z6fAHWg==
-X-Received: by 2002:a17:906:dc90:b0:aae:d199:6eae with SMTP id
- a640c23a62f3a-ab38b0f36f4mr1355079466b.14.1737400498816; 
- Mon, 20 Jan 2025 11:14:58 -0800 (PST)
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com.
- [209.85.208.48]) by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-ab384d2df47sm646435566b.85.2025.01.20.11.14.58
- for <intel-gfx@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 20 Jan 2025 11:14:58 -0800 (PST)
-Received: by mail-ed1-f48.google.com with SMTP id
- 4fb4d7f45d1cf-5d3e9a88793so8241186a12.1
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Jan 2025 11:14:58 -0800 (PST)
-X-Forwarded-Encrypted: i=1;
- AJvYcCUM/riKTre1QLNIJ6InjTq7WHPpsqkFR3HETZYfGC7PZ3OdKhx+PeQ4CMVSulpcOTELCxCagbVZBIw=@lists.freedesktop.org
-X-Received: by 2002:a17:907:d1b:b0:ab2:dc73:34bd with SMTP id
- a640c23a62f3a-ab38b3cce0dmr1178261766b.48.1737400498031; Mon, 20 Jan 2025
- 11:14:58 -0800 (PST)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C54410E473
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Jan 2025 19:21:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1737400911; x=1768936911;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=InUVnEgzRh4+RVVm4Kx7eRXfUcA7WNRWAtVJ+8qLRFM=;
+ b=TVzaAJryNP2RVT+0erPA30Z6U7sY9KGzYPTDTMBMjp/biBvNWyJu3c5M
+ 6mrj5HeYWA+kyyA6uWzWfIos9X/ZcckjPNdiTLcCgMWzAIaO3nrcZH8Os
+ aiUMDShP8wqd8Mozv++/tE7fiH4utZPpqRAe/bJ58IURgqh4eAVMQFnpC
+ PeVRSD8GuQG7MI21Ey9P1hDo2sOvSHaF2+8JW0PE1znUfBCvTiZBnojni
+ XqSAT5KqofDl71qNOtPKbsdhLkGxew8kCbzi9mcYrD9Pg+OzX7IL4Flzi
+ XCq9mTEf/SnxAnnftLDeU3Nwjwf96P8SXqnYtZiaEQYqJexGNDPwLMcCd g==;
+X-CSE-ConnectionGUID: 0jycnxMDQZKaAYhp02CRmw==
+X-CSE-MsgGUID: mrcievfeTd6BZneo6pRKtQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11321"; a="37959345"
+X-IronPort-AV: E=Sophos;i="6.13,219,1732608000"; d="scan'208";a="37959345"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2025 11:21:51 -0800
+X-CSE-ConnectionGUID: 0pX17Rm9SomNsqzBMt3GuA==
+X-CSE-MsgGUID: irkAEaW1Qz60tQYnjMmsYA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,219,1732608000"; d="scan'208";a="106723523"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 20 Jan 2025 11:21:48 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 20 Jan 2025 21:21:47 +0200
+Date: Mon, 20 Jan 2025 21:21:47 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Paz Zcharya <pazz@chromium.org>
+Subject: Re: [PATCH 6/8] drm/i915: Allow fastboot to fix up the vblank delay
+Message-ID: <Z46iSx1Wz-5BpDTZ@intel.com>
+References: <20250116201637.22486-1-ville.syrjala@linux.intel.com>
+ <20250116201637.22486-7-ville.syrjala@linux.intel.com>
+ <87r04xpgu3.fsf@intel.com>
 MIME-Version: 1.0
-References: <29ef57a1-e4dd-4d5d-8726-f1f79c698b66@roeck-us.net>
- <CAHk-=whAxUvW-APU42yWfCKHF5NhPLoTida9Jo=A9ZGGgjb18Q@mail.gmail.com>
- <20250118221123.5bb65e64@pumpkin>
- <f3939490-0f55-410f-81fe-0e9f03874546@roeck-us.net>
- <20250119090935.7c690f85@pumpkin> <87ed0xrcb8.fsf@intel.com>
- <20250120111551.435176c4@pumpkin> <878qr5ras2.fsf@intel.com>
- <0a65de6c-74d5-4d3e-be75-0aa9ecc82da1@roeck-us.net>
- <20250120184143.47615b21@pumpkin>
- <Z46cJiyntl9eyXTI@smile.fi.intel.com>
-In-Reply-To: <Z46cJiyntl9eyXTI@smile.fi.intel.com>
-From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Mon, 20 Jan 2025 11:14:41 -0800
-X-Gmail-Original-Message-ID: <CAHk-=wgYPBhMvCJHFVo=dr=2RhVxKwEf+SLQEBVhANoY_bUk2A@mail.gmail.com>
-X-Gm-Features: AbW1kvanWbjjXlxUu-fz3APSBsTAMsHDuCb6rdyKw8tJpJDrImEOFs20uKWXbAw
-Message-ID: <CAHk-=wgYPBhMvCJHFVo=dr=2RhVxKwEf+SLQEBVhANoY_bUk2A@mail.gmail.com>
-Subject: Re: Buiild error in i915/xe
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: David Laight <david.laight.linux@gmail.com>,
- Guenter Roeck <linux@roeck-us.net>, 
- Jani Nikula <jani.nikula@linux.intel.com>,
- David Laight <David.Laight@aculab.com>, Arnd Bergmann <arnd@kernel.org>, 
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- Jens Axboe <axboe@kernel.dk>, 
- Matthew Wilcox <willy@infradead.org>, Christoph Hellwig <hch@infradead.org>, 
- Andrew Morton <akpm@linux-foundation.org>,
- Dan Carpenter <dan.carpenter@linaro.org>, 
- "Jason A . Donenfeld" <Jason@zx2c4.com>,
- "pedro.falcato@gmail.com" <pedro.falcato@gmail.com>, 
- Mateusz Guzik <mjguzik@gmail.com>, "linux-mm@kvack.org" <linux-mm@kvack.org>, 
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, intel-xe@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <87r04xpgu3.fsf@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -117,33 +72,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 20 Jan 2025 at 10:55, Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
->
-> Excuse me if I am missing something, but clamp() has a warning inside it, correct?
-> Why do we need an additional warning on top of that?
+On Mon, Jan 20, 2025 at 06:53:24PM +0200, Jani Nikula wrote:
+> On Thu, 16 Jan 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >
+> > GOP might not agree with our idea of what the vblank delay should be.
+> > Reuse the LRR codepaths to fix that up via a fastset.
+> >
+> > The relevant registers aren't actually double buffered so this is a
+> > little bit dodgy. While I've not seen any real issues from frobbing
+> > these live, let's limit this to just the fastboot case (by only
+> > allowing it when old_crtc_state->inherited==true).
+> >
+> > Cc: Paz Zcharya <pazz@chromium.org>
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_display.c | 26 +++++++++++++++++---
+> >  1 file changed, 22 insertions(+), 4 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> > index 9b42d980ed7e..471fe7d80f30 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -5358,6 +5358,19 @@ pipe_config_cx0pll_mismatch(struct drm_printer *p, bool fastset,
+> >  	intel_cx0pll_dump_hw_state(display, b);
+> >  }
+> >  
+> > +static bool allow_vblank_delay_fastset(const struct intel_crtc_state *old_crtc_state)
+> > +{
+> > +	struct intel_display *display = to_intel_display(old_crtc_state);
+> > +
+> > +	/*
+> > +	 * Allow fastboot to fix up vblank delay (handled via LRR
+> > +	 * codepaths), a bit dodgy as the registers aren't
+> > +	 * double buffered but seems to be working more or less...
+> > +	 */
+> > +	return HAS_LRR(display) && old_crtc_state->inherited &&
+> > +		!intel_crtc_has_type(old_crtc_state, INTEL_OUTPUT_DSI);
+> > +}
+> > +
+> >  bool
+> >  intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+> >  			  const struct intel_crtc_state *pipe_config,
+> > @@ -5490,7 +5503,8 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+> >  	PIPE_CONF_CHECK_I(name.crtc_hsync_start); \
+> >  	PIPE_CONF_CHECK_I(name.crtc_hsync_end); \
+> >  	PIPE_CONF_CHECK_I(name.crtc_vdisplay); \
+> > -	PIPE_CONF_CHECK_I(name.crtc_vblank_start); \
+> > +	if (!fastset || !allow_vblank_delay_fastset(current_config)) \
+> > +		PIPE_CONF_CHECK_I(name.crtc_vblank_start); \
+> 
+> Side note, part of me wants to change fastset to some variation of "full
+> modeset" because *all* the compare checks are for !fastset.
 
-Note: the warning in clamp() only finds compile-time obvious wrong uses.
+fastset==true here indicates that we're checking whether fastset
+is possible, fastset==false indicates we're running the actual
+state checker. Not quite sure what the best naming for the
+opposite situation would be.
 
-It's really meant to notice the trivial case where you clam with
-constants and just got the order wrong, so you do something silly like
+> 
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-    res = clamp(in, 15, 1);
+Ta.
 
-but it does also end up catching slightly more complex things where
-the compiler can figure out the range of the clamping.
+> 
+> >  	PIPE_CONF_CHECK_I(name.crtc_vsync_start); \
+> >  	PIPE_CONF_CHECK_I(name.crtc_vsync_end); \
+> >  	if (!fastset || !pipe_config->update_lrr) { \
+> > @@ -6084,7 +6098,8 @@ static int intel_modeset_checks(struct intel_atomic_state *state)
+> >  static bool lrr_params_changed(const struct drm_display_mode *old_adjusted_mode,
+> >  			       const struct drm_display_mode *new_adjusted_mode)
+> >  {
+> > -	return old_adjusted_mode->crtc_vblank_end != new_adjusted_mode->crtc_vblank_end ||
+> > +	return old_adjusted_mode->crtc_vblank_start != new_adjusted_mode->crtc_vblank_start ||
+> > +		old_adjusted_mode->crtc_vblank_end != new_adjusted_mode->crtc_vblank_end ||
+> >  		old_adjusted_mode->crtc_vtotal != new_adjusted_mode->crtc_vtotal;
+> >  }
+> >  
+> > @@ -6098,11 +6113,14 @@ static void intel_crtc_check_fastset(const struct intel_crtc_state *old_crtc_sta
+> >  	if (old_crtc_state->vrr.in_range != new_crtc_state->vrr.in_range)
+> >  		new_crtc_state->update_lrr = false;
+> >  
+> > -	if (!intel_pipe_config_compare(old_crtc_state, new_crtc_state, true))
+> > +	if (!intel_pipe_config_compare(old_crtc_state, new_crtc_state, true)) {
+> >  		drm_dbg_kms(&i915->drm, "[CRTC:%d:%s] fastset requirement not met, forcing full modeset\n",
+> >  			    crtc->base.base.id, crtc->base.name);
+> > -	else
+> > +	} else {
+> > +		if (allow_vblank_delay_fastset(old_crtc_state))
+> > +			new_crtc_state->update_lrr = true;
+> >  		new_crtc_state->uapi.mode_changed = false;
+> > +	}
+> >  
+> >  	if (intel_compare_link_m_n(&old_crtc_state->dp_m_n,
+> >  				   &new_crtc_state->dp_m_n))
+> 
+> -- 
+> Jani Nikula, Intel
 
-The build problem then comes from the compiler doing various *other*
-code movem,ent and optimization too, and - like in this case - finds
-an error path where the clamping is done "wrong".
-
-I think the real issue in the i915 driver is that it does that
-WARN_ON(), but then it just happily continues anyway.
-
-So if the i915 driver instead did
-
-        if (WARN_ON(..)) return invalid value;
-
-none of this would ever have happened.
-
-                Linus
+-- 
+Ville Syrjälä
+Intel
