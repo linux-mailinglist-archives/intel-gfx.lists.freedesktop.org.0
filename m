@@ -2,51 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0205BA16CA0
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jan 2025 13:57:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 515E1A16CA1
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jan 2025 13:57:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3970610E3E5;
-	Mon, 20 Jan 2025 12:57:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA35F10E3F0;
+	Mon, 20 Jan 2025 12:57:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ltV/TxOz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XuehmTZJ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BE5B10E3E3;
- Mon, 20 Jan 2025 12:57:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00B4B10E3E8;
+ Mon, 20 Jan 2025 12:57:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737377872; x=1768913872;
+ t=1737377875; x=1768913875;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=86FyoeUVJ+rX7D1jkFrr0L2QaZyCRTA7SvD+B8xVvNQ=;
- b=ltV/TxOz4L/xyraQMPgGeDgzBcQXFhc01lilVIx0yhXEJbWE4VLew/d0
- 5K1VJok8J7li8umV+iErzNQLdVtazQjipmVzvljwDP8cCfneWmbQ1KwrB
- 1x8i4kUqKzDuzUs8cozAkv2G9OcLEvknpOzf+sdeD9ljoYoLKB7lq0jKZ
- 1qT1lgJKkloFm5lJtz6frvDBcuHhxEOs1sDirr3wngST522L2NKjk2GUv
- kNepaO2ASocdJwrrq16oDt4mGwCF26Ds/GK6ZwOhwpo5EDvvskXCiJe1Z
- sZ2n4Abjnck378kndjfT0qJ4OPIiNZ0IvaQWXCx22UgweufxMpJCE0REM A==;
-X-CSE-ConnectionGUID: 3WHQVH7sQoqfZUaaAWMihg==
-X-CSE-MsgGUID: mMQdxFgiTBeGWdojnnL1oA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11321"; a="37930627"
-X-IronPort-AV: E=Sophos;i="6.13,219,1732608000"; d="scan'208";a="37930627"
+ bh=DF+d62a3GkGtbHdP9CS66btAZ5HAvAInCKnRENLEFS4=;
+ b=XuehmTZJyZgKNEoEGtzIkHJzIp9TDiGVUJ1N0c4AUYg9Ivzk70+xeLXo
+ 6hrvLsUd+rub/rLq2dNkiSpvC78yfrXqM51LetQxdynrmRGfbMQWZHeN1
+ e09QNPEgw+PujkZ8xmRJjMn2FDZCx9K1OGStEHcjbsx/5C1ZrnTA8EJME
+ t+pOGb3zbFiTsOsOCKMQ2i43FUH2TuOfYqqfbTEO41bOCSWNnuGQcOIzr
+ R5U8qupWgOvNWQDDw3HOq3lBOpeot4gbrzVXhPkRjw3Jdu5J+IjNhjhZz
+ 7Qhi1TNQrJY0qFYr5HUgMlDcioVv513K5+g5sAOvn2oiqDraZFHVxYbFe Q==;
+X-CSE-ConnectionGUID: ZZihigjmQGm3L+LG3gA/BQ==
+X-CSE-MsgGUID: KREjZIglTOuzSLbfaMvqmA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11321"; a="37930628"
+X-IronPort-AV: E=Sophos;i="6.13,219,1732608000"; d="scan'208";a="37930628"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2025 04:57:52 -0800
-X-CSE-ConnectionGUID: QPUk5ivqR2S87Ph3EKgocg==
-X-CSE-MsgGUID: kueptJshTxKbRPSkGJMslA==
+ 20 Jan 2025 04:57:54 -0800
+X-CSE-ConnectionGUID: YBHyfpHZQKWwYwCOvYwGNg==
+X-CSE-MsgGUID: OpO+hb7PSnenXHIwd4Z7iQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,219,1732608000"; d="scan'208";a="106326409"
+X-IronPort-AV: E=Sophos;i="6.13,219,1732608000"; d="scan'208";a="106326415"
 Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by fmviesa006.fm.intel.com with ESMTP; 20 Jan 2025 04:57:50 -0800
+ by fmviesa006.fm.intel.com with ESMTP; 20 Jan 2025 04:57:52 -0800
 From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com, jani.nikula@intel.com, ville.syrjala@intel.com
-Subject: [PATCH v8 1/7] drm/i915/scaler: Add and compute scaling factors
-Date: Mon, 20 Jan 2025 18:24:33 +0530
-Message-ID: <20250120125439.4188626-2-mitulkumar.ajitkumar.golani@intel.com>
+Subject: [PATCH v8 2/7] drm/i915/scaler: Use crtc_state to setup plane or pipe
+ scaler
+Date: Mon, 20 Jan 2025 18:24:34 +0530
+Message-ID: <20250120125439.4188626-3-mitulkumar.ajitkumar.golani@intel.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20250120125439.4188626-1-mitulkumar.ajitkumar.golani@intel.com>
 References: <20250120125439.4188626-1-mitulkumar.ajitkumar.golani@intel.com>
@@ -67,49 +68,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Add scaling factors to scaler_state for a particular scaler user.
-These factors will be used later to compute scaler prefill latency.
-Currently, only plane scaling factors are stored, but the same members
-can later be extended to store pipe scaling factors as well.
+Pass crtc_state to intel_atomic_setup_scaler, this will help to
+check if pch_pfit enabled or not and also will be useful to pass
+scaler_state with the same which will be used later to store
+hscale and vscale values.
 
---v2:
-- Rephrase commit message. [Ankit]
-- Corrects typos. [Ankit]
+-- v2:
+- Fix typos. (Ankit)
 
 Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_types.h | 2 ++
- drivers/gpu/drm/i915/display/skl_scaler.c          | 3 +++
- 2 files changed, 5 insertions(+)
+ drivers/gpu/drm/i915/display/skl_scaler.c | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 8271e50e3644..603f292996aa 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -711,6 +711,8 @@ struct intel_initial_plane_config {
- struct intel_scaler {
- 	u32 mode;
- 	bool in_use;
-+	int hscale;
-+	int vscale;
- };
- 
- struct intel_crtc_scaler_state {
 diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
-index a11e09a15e23..67b86f6f62fc 100644
+index 67b86f6f62fc..12efa4008027 100644
 --- a/drivers/gpu/drm/i915/display/skl_scaler.c
 +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-@@ -434,6 +434,9 @@ static int intel_atomic_setup_scaler(struct intel_crtc_scaler_state *scaler_stat
+@@ -319,13 +319,15 @@ static int intel_allocate_scaler(struct intel_crtc_scaler_state *scaler_state,
+ 	return -1;
+ }
  
- 			return -EINVAL;
- 		}
-+
-+		scaler_state->scalers[*scaler_id].hscale = hscale;
-+		scaler_state->scalers[*scaler_id].vscale = vscale;
- 	}
+-static int intel_atomic_setup_scaler(struct intel_crtc_scaler_state *scaler_state,
++static int intel_atomic_setup_scaler(struct intel_crtc_state *crtc_state,
+ 				     int num_scalers_need, struct intel_crtc *crtc,
+ 				     const char *name, int idx,
+ 				     struct intel_plane_state *plane_state,
+ 				     int *scaler_id)
+ {
+ 	struct intel_display *display = to_intel_display(crtc);
++	struct intel_crtc_scaler_state *scaler_state =
++					&crtc_state->scaler_state;
+ 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+ 	u32 mode;
  
- 	drm_dbg_kms(display->drm, "[CRTC:%d:%s] attached scaler id %u.%u to %s:%d\n",
+@@ -455,7 +457,7 @@ static int setup_crtc_scaler(struct intel_atomic_state *state,
+ 	struct intel_crtc_scaler_state *scaler_state =
+ 		&crtc_state->scaler_state;
+ 
+-	return intel_atomic_setup_scaler(scaler_state,
++	return intel_atomic_setup_scaler(crtc_state,
+ 					 hweight32(scaler_state->scaler_users),
+ 					 crtc, "CRTC", crtc->base.base.id,
+ 					 NULL, &scaler_state->scaler_id);
+@@ -490,7 +492,7 @@ static int setup_plane_scaler(struct intel_atomic_state *state,
+ 	if (IS_ERR(plane_state))
+ 		return PTR_ERR(plane_state);
+ 
+-	return intel_atomic_setup_scaler(scaler_state,
++	return intel_atomic_setup_scaler(crtc_state,
+ 					 hweight32(scaler_state->scaler_users),
+ 					 crtc, "PLANE", plane->base.base.id,
+ 					 plane_state, &plane_state->scaler_id);
 -- 
 2.48.1
 
