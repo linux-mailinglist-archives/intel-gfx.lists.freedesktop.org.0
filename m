@@ -2,29 +2,83 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F333A17202
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jan 2025 18:35:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AFD1FA172DA
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jan 2025 19:55:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA2F610E462;
-	Mon, 20 Jan 2025 17:35:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A67210E0EF;
+	Mon, 20 Jan 2025 18:55:45 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kFvAl9J+";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C22810E038;
- Mon, 20 Jan 2025 17:35:20 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0690781792015299699=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE6C910E0EF;
+ Mon, 20 Jan 2025 18:55:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1737399344; x=1768935344;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=op5oAGTrMnHrTtMQubTxdXMZzxdcxLlUbJi6A9RKoMo=;
+ b=kFvAl9J++kqXxw+iTf4gegBU1CW0bMQ/fXZrG65Glv5VazIRkIBXHHPU
+ vmSxFQ2kFYsZJX9rCgdhmBp3qudaJkU9AG6RfLCLW4ndVQQkH005GmcLe
+ S5IYEbnMwW2E7e4RhRInPfrATr4lqBIN7n29N3lWtgibkQWHousE7Ntnf
+ EscLADCa4lflxV63j6a5hA+Sh3ANYNWvRQbJsQVDIgCb78KgwFRaDuD0Q
+ rp7yjRgeg/87QYtACkzRzLXiPzzC+bWAHbRyv7lRyx6tbjIaEUB0a0riQ
+ I1vU1vLzm/JjjtRgCcYn/CvrYBLcTfTxXaXoUOVsN3vhjmjKh0ZyssMbs w==;
+X-CSE-ConnectionGUID: By8NL2GKSbGqw+Mo4gLBQQ==
+X-CSE-MsgGUID: Oxntx4tYSC6sb5+yWJdWBg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11321"; a="37718314"
+X-IronPort-AV: E=Sophos;i="6.13,219,1732608000"; d="scan'208";a="37718314"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2025 10:55:43 -0800
+X-CSE-ConnectionGUID: p5dQ9kclQL6q2hlmyNaNeg==
+X-CSE-MsgGUID: yU17x0vTTAasbq8m/yd+eg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,219,1732608000"; d="scan'208";a="107205604"
+Received: from smile.fi.intel.com ([10.237.72.58])
+ by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2025 10:55:39 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+ (envelope-from <andriy.shevchenko@linux.intel.com>)
+ id 1tZwvv-00000003XJZ-0XDD; Mon, 20 Jan 2025 20:55:35 +0200
+Date: Mon, 20 Jan 2025 20:55:34 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: David Laight <david.laight.linux@gmail.com>
+Cc: Guenter Roeck <linux@roeck-us.net>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ David Laight <David.Laight@aculab.com>, Arnd Bergmann <arnd@kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ Jens Axboe <axboe@kernel.dk>, Matthew Wilcox <willy@infradead.org>,
+ Christoph Hellwig <hch@infradead.org>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Dan Carpenter <dan.carpenter@linaro.org>,
+ "Jason A . Donenfeld" <Jason@zx2c4.com>,
+ "pedro.falcato@gmail.com" <pedro.falcato@gmail.com>,
+ Mateusz Guzik <mjguzik@gmail.com>,
+ "linux-mm@kvack.org" <linux-mm@kvack.org>,
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: Re: Buiild error in i915/xe
+Message-ID: <Z46cJiyntl9eyXTI@smile.fi.intel.com>
+References: <29ef57a1-e4dd-4d5d-8726-f1f79c698b66@roeck-us.net>
+ <CAHk-=whAxUvW-APU42yWfCKHF5NhPLoTida9Jo=A9ZGGgjb18Q@mail.gmail.com>
+ <20250118221123.5bb65e64@pumpkin>
+ <f3939490-0f55-410f-81fe-0e9f03874546@roeck-us.net>
+ <20250119090935.7c690f85@pumpkin> <87ed0xrcb8.fsf@intel.com>
+ <20250120111551.435176c4@pumpkin> <878qr5ras2.fsf@intel.com>
+ <0a65de6c-74d5-4d3e-be75-0aa9ecc82da1@roeck-us.net>
+ <20250120184143.47615b21@pumpkin>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_drm/i915/selftests=3A_Cor?=
- =?utf-8?q?rect_frequency_handling_in_RPS_power_measurement_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Sk Anirban" <sk.anirban@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 20 Jan 2025 17:35:20 -0000
-Message-ID: <173739452023.2237262.1694032884117317712@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250113095912.356147-1-sk.anirban@intel.com>
-In-Reply-To: <20250113095912.356147-1-sk.anirban@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250120184143.47615b21@pumpkin>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,242 +91,124 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============0690781792015299699==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, Jan 20, 2025 at 06:41:43PM +0000, David Laight wrote:
+> On Mon, 20 Jan 2025 06:15:30 -0800
+> Guenter Roeck <linux@roeck-us.net> wrote:
+> > On 1/20/25 03:21, Jani Nikula wrote:
+> > > On Mon, 20 Jan 2025, David Laight <david.laight.linux@gmail.com> wrote:  
+> > >> On Mon, 20 Jan 2025 12:48:11 +0200
+> > >> Jani Nikula <jani.nikula@linux.intel.com> wrote:
+> > >>> On Sun, 19 Jan 2025, David Laight <david.laight.linux@gmail.com> wrote:  
+> > >>>> On Sat, 18 Jan 2025 14:58:48 -0800
+> > >>>> Guenter Roeck <linux@roeck-us.net> wrote:
+> > >>>>> On 1/18/25 14:11, David Laight wrote:  
+> > >>>>>> On Sat, 18 Jan 2025 13:21:39 -0800
+> > >>>>>> Linus Torvalds <torvalds@linux-foundation.org> wrote:
+> > >>>>>>> On Sat, 18 Jan 2025 at 09:49, Guenter Roeck <linux@roeck-us.net> wrote:  
+> > >>>>>>>>
+> > >>>>>>>> No idea why the compiler would know that the values are invalid.  
+> > >>>>>>>
+> > >>>>>>> It's not that the compiler knows tat they are invalid, but I bet what
+> > >>>>>>> happens is in scale() (and possibly other places that do similar
+> > >>>>>>> checks), which does this:
+> > >>>>>>>
+> > >>>>>>>           WARN_ON(source_min > source_max);
+> > >>>>>>>           ...
+> > >>>>>>>           source_val = clamp(source_val, source_min, source_max);
+> > >>>>>>>
+> > >>>>>>> and the compiler notices that the ordering comparison in the first
+> > >>>>>>> WARN_ON() is the same as the one in clamp(), so it basically converts
+> > >>>>>>> the logic to
+> > >>>>>>>
+> > >>>>>>>           if (source_min > source_max) {
+> > >>>>>>>                   WARN(..);
+> > >>>>>>>                   /* Do the clamp() knowing that source_min > source_max */
+> > >>>>>>>                   source_val = clamp(source_val, source_min, source_max);
+> > >>>>>>>           } else {
+> > >>>>>>>                   /* Do the clamp knowing that source_min <= source_max */
+> > >>>>>>>                   source_val = clamp(source_val, source_min, source_max);
+> > >>>>>>>           }
+> > >>>>>>>
+> > >>>>>>> (obviously I dropped the other WARN_ON in the conversion, it wasn't
+> > >>>>>>> relevant for this case).
+> > >>>>>>>
+> > >>>>>>> And now that first clamp() case is done with source_min > source_max,
+> > >>>>>>> and it triggers that build error because that's invalid.
+> > >>>>>>>
+> > >>>>>>> So the condition is not statically true in the *source* code, but in
+> > >>>>>>> the "I have moved code around to combine tests" case it now *is*
+> > >>>>>>> statically true as far as the compiler is concerned.  
+> > >>>>>>
+> > >>>>>> Well spotted :-)
+> > >>>>>>
+> > >>>>>> One option would be to move the WARN_ON() below the clamp() and
+> > >>>>>> add an OPTIMISER_HIDE_VAR(source_max) between them.
+> > >>>>>>
+> > >>>>>> Or do something more sensible than the WARN().
+> > >>>>>> Perhaps return target_min on any such errors?
+> > >>>>>>        
+> > >>>>>
+> > >>>>> This helps:
+> > >>>>>
+> > >>>>> -       WARN_ON(source_min > source_max);
+> > >>>>> -       WARN_ON(target_min > target_max);
+> > >>>>> -
+> > >>>>>           /* defensive */
+> > >>>>>           source_val = clamp(source_val, source_min, source_max);
+> > >>>>>
+> > >>>>> +       WARN_ON(source_min > source_max);
+> > >>>>> +       WARN_ON(target_min > target_max);  
+> > >>>>
+> > >>>> That is a 'quick fix' ...
+> > >>>>
+> > >>>> Much better would be to replace the WARN() with (say):
+> > >>>> 	if (target_min >= target_max)
+> > >>>> 		return target_min;
+> > >>>> 	if (source_min >= source_max)
+> > >>>> 		return target_min + (target_max - target_min)/2;
+> > >>>> So that the return values are actually in range (in as much as one is defined).
+> > >>>> Note that the >= cpmparisons also remove a divide by zero.  
+> > >>>
+> > >>> I want the loud and early warnings for clear bugs instead of
+> > >>> "gracefully" silencing the errors only to be found through debugging
+> > >>> user reports.  
+> > >>
+> > >> A user isn't going to notice a WARN() - not until you tell them to look for it.
+> > >> In any case even if you output a message you really want to return a 'sane'
+> > >> value, who knows what effect a very out of range value is going to have.  
+> > > 
+> > > The point is, we'll catch the WARN in CI before it goes out to users.
+> > 
+> > It isn't going to catch the divide by 0 error, and it obviously doesn't
+> > catch the build problem on parisc with gcc 13.x because the CI isn't
+> > testing it.
+> > 
+> > How about disabling DRM_XE on architectures where it isn't supported,
+> > matching DRM_I915 ?
+> 
+> That'll just bite back later.
+> As Linus spotted the compiler is just 'optimising' some code paths.
+> It could happen for any architecture including x64.
+> The repeated tests are basically slightly odd, although you might only
+> expect them to be present in debug builds.
+> 
+> An alternative would be to replace the clamp() with:
+> 	if (source_val <= source_min)
+> 		return target_min;
+> 	if (source_val >= source_max)
+> 		return target_max;
 
-== Series Details ==
+Excuse me if I am missing something, but clamp() has a warning inside it, correct?
+Why do wee need an additional warning on top of that?
 
-Series: drm/i915/selftests: Correct frequency handling in RPS power measurement (rev4)
-URL   : https://patchwork.freedesktop.org/series/143213/
-State : failure
+P.S. However, I agree that ideally clamp() should work independently on the
+caller to use WARN*() or other similar stuff.
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_15984 -> Patchwork_143213v4
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_143213v4 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_143213v4, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143213v4/index.html
-
-Participating hosts (41 -> 41)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_143213v4:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@reset:
-    - bat-twl-2:          NOTRUN -> [ABORT][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143213v4/bat-twl-2/igt@i915_selftest@live@reset.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_143213v4 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@debugfs_test@basic-hwmon:
-    - fi-pnv-d510:        NOTRUN -> [SKIP][2] +3 other tests skip
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143213v4/fi-pnv-d510/igt@debugfs_test@basic-hwmon.html
-
-  * igt@gem_exec_gttfill@basic:
-    - fi-pnv-d510:        NOTRUN -> [ABORT][3] ([i915#13169])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143213v4/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
-
-  * igt@i915_pm_rpm@module-reload:
-    - bat-adls-6:         [PASS][4] -> [FAIL][5] ([i915#13401])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15984/bat-adls-6/igt@i915_pm_rpm@module-reload.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143213v4/bat-adls-6/igt@i915_pm_rpm@module-reload.html
-    - bat-rpls-4:         [PASS][6] -> [FAIL][7] ([i915#13401])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15984/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143213v4/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
-
-  * igt@i915_selftest@live:
-    - bat-twl-2:          NOTRUN -> [ABORT][8] ([i915#12435] / [i915#12919])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143213v4/bat-twl-2/igt@i915_selftest@live.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         [PASS][9] -> [SKIP][10] ([i915#9197]) +3 other tests skip
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15984/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143213v4/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_module_load@load:
-    - fi-pnv-d510:        [ABORT][11] ([i915#13203]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15984/fi-pnv-d510/igt@i915_module_load@load.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143213v4/fi-pnv-d510/igt@i915_module_load@load.html
-
-  * igt@i915_selftest@live:
-    - bat-mtlp-8:         [DMESG-FAIL][13] ([i915#12061]) -> [PASS][14] +1 other test pass
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15984/bat-mtlp-8/igt@i915_selftest@live.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143213v4/bat-mtlp-8/igt@i915_selftest@live.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12435]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12435
-  [i915#12919]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12919
-  [i915#13169]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13169
-  [i915#13203]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13203
-  [i915#13401]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13401
-  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_15984 -> Patchwork_143213v4
-
-  CI-20190529: 20190529
-  CI_DRM_15984: 112cf3f777a01cf551c69d74d43f6c2732981706 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8199: 8df1895672949617992cddbc33c5d683865879e8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_143213v4: 112cf3f777a01cf551c69d74d43f6c2732981706 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143213v4/index.html
-
---===============0690781792015299699==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/selftests: Correct frequency handling in RPS power measurement (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/143213/">https://patchwork.freedesktop.org/series/143213/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143213v4/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143213v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_15984 -&gt; Patchwork_143213v4</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_143213v4 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_143213v4, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143213v4/index.html</p>
-<h2>Participating hosts (41 -&gt; 41)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_143213v4:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@i915_selftest@live@reset:<ul>
-<li>bat-twl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143213v4/bat-twl-2/igt@i915_selftest@live@reset.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_143213v4 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@debugfs_test@basic-hwmon:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143213v4/fi-pnv-d510/igt@debugfs_test@basic-hwmon.html">SKIP</a> +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_gttfill@basic:</p>
-<ul>
-<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143213v4/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13169">i915#13169</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>bat-adls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15984/bat-adls-6/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143213v4/bat-adls-6/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13401">i915#13401</a>)</li>
-<li>bat-rpls-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15984/bat-rpls-4/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143213v4/bat-rpls-4/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13401">i915#13401</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-twl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143213v4/bat-twl-2/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12435">i915#12435</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12919">i915#12919</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15984/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143213v4/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197">i915#9197</a>) +3 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_module_load@load:</p>
-<ul>
-<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15984/fi-pnv-d510/igt@i915_module_load@load.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13203">i915#13203</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143213v4/fi-pnv-d510/igt@i915_module_load@load.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_15984/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143213v4/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_15984 -&gt; Patchwork_143213v4</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_15984: 112cf3f777a01cf551c69d74d43f6c2732981706 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8199: 8df1895672949617992cddbc33c5d683865879e8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_143213v4: 112cf3f777a01cf551c69d74d43f6c2732981706 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============0690781792015299699==--
