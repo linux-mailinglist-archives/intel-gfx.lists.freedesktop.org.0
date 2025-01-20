@@ -2,62 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21D8BA173C4
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jan 2025 21:47:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E510A174D1
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jan 2025 23:57:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A402210E488;
-	Mon, 20 Jan 2025 20:47:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F2D1B10E189;
+	Mon, 20 Jan 2025 22:57:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bgrCSBnD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lqkaYSaj";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 37E5010E486;
- Mon, 20 Jan 2025 20:47:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A6B510E189
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Jan 2025 22:57:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737406033; x=1768942033;
+ t=1737413840; x=1768949840;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=F7vbQdM55xTpKQySkpmOL5mDIjLNzf9dAh9NEDNXHjQ=;
- b=bgrCSBnDL+U/zRaQLM5Ie7nEz42exO0vzOYJ+ADGGuED5rHPWsGhX3lb
- a9mi/Wrbvs3l9plkB0oyK/JNgZVcW2a6N0R+dIFunvmUgEaxYmGY3I1RT
- mkBAT3SGVibwoUqEMAqQ/wOTRwhXAz1K1HDDGADOPYP2e96ozuz/jdv61
- OlHByVMY7RYTaiT5vgVXtvA/MIE3c38utx7Rc2xx4ObuNCD//MxO+eD2H
- MUGJUPKlF/0IGBFNA5IKTF8TgKnIXM79YS0RHRsQB7+JnqynqMxOjk0kP
- CwizF3tXpSZE06DVVMEYsvRycq4lg9iJp6PQntPXumD2viLfn9hiHy+UM w==;
-X-CSE-ConnectionGUID: I2z0KoqgR/usthjTBgJJLw==
-X-CSE-MsgGUID: rXDhNNhoR/+aTW1wxBvmCQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11321"; a="37833733"
-X-IronPort-AV: E=Sophos;i="6.13,220,1732608000"; d="scan'208";a="37833733"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2025 12:47:13 -0800
-X-CSE-ConnectionGUID: GRe51EnkSbGLdOWU7zrI+w==
-X-CSE-MsgGUID: uYZlXWjHSniuzUln7JmkFg==
+ mime-version:in-reply-to;
+ bh=YwyOyfyYEIH9q9jwnk0wTooebvWTHoOGDiXq/Q7Q4+A=;
+ b=lqkaYSajAn09OsTtgDAXkgSdt8nF1wWZ3bGx2RpSVgnNagXah7+kR0dX
+ LZGO/9aeXKvh4wBteBW6huhd6+tGiaDT3usPS3DUp6ljFp0PuYVBlbyCi
+ 0DU8pItsoqwHLTbVxs5qcbZUJFu00yGc0FxuVGpchg4moTybjwrnr8Du+
+ wYhX0lmfhX0WplUY8mgAKSfXkLhCrkyiP6O2dZP5ggxRMOGHvKJwL/eeJ
+ oDNEnGkvJj9AyfTqSX6kM7sH3rKzsgU80ULZ8Tq6FhTijh2accg+rCIa6
+ ZkSZp9akJV/A40DoiKRT8Yir6mRrke2YINWuzbw4r+oiEValyLL0uJGJo A==;
+X-CSE-ConnectionGUID: 5wDtFihNQQ6KHl8f3k+BNA==
+X-CSE-MsgGUID: JJ4d952VQcKItTfLQiRkMQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11321"; a="48405383"
+X-IronPort-AV: E=Sophos;i="6.13,220,1732608000"; d="scan'208";a="48405383"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2025 14:57:20 -0800
+X-CSE-ConnectionGUID: +YAi5xSZTp+u3y+MgS/ouw==
+X-CSE-MsgGUID: T6DbaoRVQbSxWtopof250g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,220,1732608000"; d="scan'208";a="106737484"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 20 Jan 2025 12:47:10 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 20 Jan 2025 22:47:09 +0200
-Date: Mon, 20 Jan 2025 22:47:09 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Arun R Murthy <arun.r.murthy@intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v3 4/5] drm/i915/display: Populate list of async
- supported formats/modifiers
-Message-ID: <Z462TS-6qRPz7eOb@intel.com>
-References: <20250108-asyn-v3-0-f4399635eec9@intel.com>
- <20250108-asyn-v3-4-f4399635eec9@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="111261961"
+Received: from ldmartin-desk2.corp.intel.com (HELO ldmartin-desk2)
+ ([10.125.110.14])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2025 14:57:16 -0800
+Date: Mon, 20 Jan 2025 16:57:07 -0600
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: "Liang, Kan" <kan.liang@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, 
+ "Peter Zijlstra (Intel)" <peterz@infradead.org>,
+ Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+Subject: Re: [PATCH] drm/i915/pmu: Drop custom hotplug code
+Message-ID: <pz7y2i25y5o2ox46s3ua3prsa5ap2mkqqb5chtebw3f2egwk6n@5m4xibw2h5yd>
+References: <20250116222426.77757-1-lucas.demarchi@intel.com>
+ <aded1225-0022-4e86-845c-283641cf32a0@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii; format=flowed
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250108-asyn-v3-4-f4399635eec9@intel.com>
-X-Patchwork-Hint: comment
+In-Reply-To: <aded1225-0022-4e86-845c-283641cf32a0@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,108 +71,272 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 08, 2025 at 11:09:02AM +0530, Arun R Murthy wrote:
-> Populate the list of formats/modifiers supported by async flip. Register
-> a async property and expose the same to user through blob.
-> 
-> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/skl_universal_plane.c | 51 ++++++++++++++++++++++
->  1 file changed, 51 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> index ff9764cac1e71959e56283f61b5192ea261cec7a..e5e47f2219dae62e76cbde2efb40266b047ab2b2 100644
-> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> @@ -170,6 +170,44 @@ static const u32 icl_hdr_plane_formats[] = {
->  	DRM_FORMAT_XVYU16161616,
->  };
->  
-> +static u64 tgl_asyn_modifiers[] = {
-> +	DRM_FORMAT_MOD_LINEAR,
-> +	I915_FORMAT_MOD_X_TILED,
-> +	I915_FORMAT_MOD_Y_TILED,
-> +	I915_FORMAT_MOD_4_TILED,
-> +	I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS,
-> +	I915_FORMAT_MOD_4_TILED_MTL_RC_CCS,
-> +	I915_FORMAT_MOD_4_TILED_DG2_RC_CCS,
-> +	I915_FORMAT_MOD_4_TILED_BMG_CCS,
-> +	I915_FORMAT_MOD_4_TILED_LNL_CCS,
-> +};
-> +
-> +static u64 icl_async_modifiers[] = {
-> +	I915_FORMAT_MOD_X_TILED,
-> +	I915_FORMAT_MOD_Y_TILED,
-> +	I915_FORMAT_MOD_Yf_TILED,
-> +	I915_FORMAT_MOD_Y_TILED_CCS,
-> +	I915_FORMAT_MOD_Yf_TILED_CCS,
-> +};
-> +
-> +static u64 skl_async_modifiers[] = {
-> +	I915_FORMAT_MOD_X_TILED,
-> +	I915_FORMAT_MOD_Y_TILED,
-> +	I915_FORMAT_MOD_Yf_TILED,
-> +};
-> +
-> +static u32 intel_async_formats[] = {
-> +	DRM_FORMAT_RGB565,
-> +	DRM_FORMAT_XRGB8888,
-> +	DRM_FORMAT_XBGR8888,
-> +	DRM_FORMAT_ARGB8888,
-> +	DRM_FORMAT_ABGR8888,
-> +	DRM_FORMAT_XRGB2101010,
-> +	DRM_FORMAT_XBGR2101010,
-> +	DRM_FORMAT_XRGB16161616F,
-> +	DRM_FORMAT_XBGR16161616F,
-> +};
+On Mon, Jan 20, 2025 at 10:08:39AM -0500, Liang, Kan wrote:
+>
+>
+>On 2025-01-16 5:24 p.m., Lucas De Marchi wrote:
+>> Since commit 4ba4f1afb6a9 ("perf: Generic hotplug support for a PMU with
+>> a scope"), there's generic support for system-wide counters and
+>> integration with cpu hotplug. Set our scope to PERF_PMU_SCOPE_SYS_WIDE
+>> instead of all the boilerplate code for handling hotplug.
+>>
+>> Cc: Kan Liang <kan.liang@linux.intel.com>
+>> Cc: Peter Zijlstra (Intel) <peterz@infradead.org>
+>> Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+>> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/i915_module.c |   2 -
+>>  drivers/gpu/drm/i915/i915_pmu.c    | 114 +----------------------------
+>>  drivers/gpu/drm/i915/i915_pmu.h    |  11 ---
+>>  3 files changed, 1 insertion(+), 126 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/i915_module.c b/drivers/gpu/drm/i915/i915_module.c
+>> index 7ed6d70389af9..7affe07f84f45 100644
+>> --- a/drivers/gpu/drm/i915/i915_module.c
+>> +++ b/drivers/gpu/drm/i915/i915_module.c
+>> @@ -71,8 +71,6 @@ static const struct {
+>>  	{ .init = i915_vma_resource_module_init,
+>>  	  .exit = i915_vma_resource_module_exit },
+>>  	{ .init = i915_mock_selftests },
+>> -	{ .init = i915_pmu_init,
+>> -	  .exit = i915_pmu_exit },
+>>  	{ .init = i915_pci_register_driver,
+>>  	  .exit = i915_pci_unregister_driver },
+>>  	{ .init = i915_perf_sysctl_register,
+>> diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
+>> index e55db036be1bb..652964ef0643c 100644
+>> --- a/drivers/gpu/drm/i915/i915_pmu.c
+>> +++ b/drivers/gpu/drm/i915/i915_pmu.c
+>> @@ -28,9 +28,6 @@
+>>  	 BIT(I915_SAMPLE_WAIT) | \
+>>  	 BIT(I915_SAMPLE_SEMA))
+>>
+>> -static cpumask_t i915_pmu_cpumask;
+>> -static unsigned int i915_pmu_target_cpu = -1;
+>> -
+>>  static struct i915_pmu *event_to_pmu(struct perf_event *event)
+>>  {
+>>  	return container_of(event->pmu, struct i915_pmu, base);
+>> @@ -642,10 +639,6 @@ static int i915_pmu_event_init(struct perf_event *event)
+>>  	if (event->cpu < 0)
+>>  		return -EINVAL;
+>>
+>> -	/* only allow running on one cpu at a time */
+>> -	if (!cpumask_test_cpu(event->cpu, &i915_pmu_cpumask))
+>> -		return -EINVAL;
+>> -
+>>  	if (is_engine_event(event))
+>>  		ret = engine_event_init(event);
+>>  	else
+>> @@ -940,23 +933,6 @@ static ssize_t i915_pmu_event_show(struct device *dev,
+>>  	return sprintf(buf, "config=0x%lx\n", eattr->val);
+>>  }
+>>
+>> -static ssize_t cpumask_show(struct device *dev,
+>> -			    struct device_attribute *attr, char *buf)
+>> -{
+>> -	return cpumap_print_to_pagebuf(true, buf, &i915_pmu_cpumask);
+>> -}
+>> -
+>> -static DEVICE_ATTR_RO(cpumask);
+>> -
+>> -static struct attribute *i915_cpumask_attrs[] = {
+>> -	&dev_attr_cpumask.attr,
+>> -	NULL,
+>> -};
+>> -
+>> -static const struct attribute_group i915_pmu_cpumask_attr_group = {
+>> -	.attrs = i915_cpumask_attrs,
+>> -};
+>> -
+>>  #define __event(__counter, __name, __unit) \
+>>  { \
+>>  	.counter = (__counter), \
+>> @@ -1173,92 +1149,12 @@ static void free_event_attributes(struct i915_pmu *pmu)
+>>  	pmu->pmu_attr = NULL;
+>>  }
+>>
+>> -static int i915_pmu_cpu_online(unsigned int cpu, struct hlist_node *node)
+>> -{
+>> -	struct i915_pmu *pmu = hlist_entry_safe(node, typeof(*pmu), cpuhp.node);
+>> -
+>> -	/* Select the first online CPU as a designated reader. */
+>> -	if (cpumask_empty(&i915_pmu_cpumask))
+>> -		cpumask_set_cpu(cpu, &i915_pmu_cpumask);
+>> -
+>> -	return 0;
+>> -}
+>> -
+>> -static int i915_pmu_cpu_offline(unsigned int cpu, struct hlist_node *node)
+>> -{
+>> -	struct i915_pmu *pmu = hlist_entry_safe(node, typeof(*pmu), cpuhp.node);
+>> -	unsigned int target = i915_pmu_target_cpu;
+>> -
+>> -	/*
+>> -	 * Unregistering an instance generates a CPU offline event which we must
+>> -	 * ignore to avoid incorrectly modifying the shared i915_pmu_cpumask.
+>> -	 */
+>> -	if (!pmu->registered)
+>> -		return 0;
+>> -
+>> -	if (cpumask_test_and_clear_cpu(cpu, &i915_pmu_cpumask)) {
+>> -		target = cpumask_any_but(topology_sibling_cpumask(cpu), cpu);
+>> -
+>
+>I'm not familar with the i915 PMU, but it seems suggest a core scope
+>PMU, not a system-wide scope.
 
-I've just pushed my .can_async_flip() thing. I'm thinking with
-that all this can just disappear and we can have a completely
-generic implementation. Eg something like:
+counter is in a complete separate device - it doesn't depend on core or
+die or pkg - not sure why it cared about topology_sibling_cpumask here.
 
-intel_plane_format_mod_supported_async()
-{
-	// some generic checks here (eg. reject planar formats)
+Also, in my tests it always chose cpu0 that is the boot cpu and can't be
+offlined. Looking at our CI it seems this entire code is not tested at
+all: the only test that in theory would exercise this just skips since
+cpu0 can't go offline - https://intel-gfx-ci.01.org/tree/drm-tip/shards-all.html?testfilter=hotplug
 
-	return plane->format_mod_supported() &&
-		plane->can_async_flip();
-}
+Lucas De Marchi
 
-> +
->  int skl_format_to_fourcc(int format, bool rgb_order, bool alpha)
->  {
->  	switch (format) {
-> @@ -2613,6 +2651,7 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
->  	unsigned int supported_rotations;
->  	unsigned int supported_csc;
->  	const u64 *modifiers;
-> +	u64 *async_modifiers;
->  	const u32 *formats;
->  	int num_formats;
->  	int ret;
-> @@ -2715,6 +2754,18 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
->  	if (ret)
->  		goto fail;
->  
-> +	if (DISPLAY_VER(dev_priv) >= 12)
-> +		async_modifiers = tgl_asyn_modifiers;
-> +	else if (DISPLAY_VER(dev_priv) == 11)
-> +		async_modifiers = icl_async_modifiers;
-> +	else
-> +		async_modifiers = skl_async_modifiers;
-> +
-> +	drm_plane_create_format_blob(&dev_priv->drm, &plane->base,
-> +				     async_modifiers, sizeof(async_modifiers),
-> +				     intel_async_formats,
-> +				     sizeof(intel_async_formats), true);
-> +
->  	if (DISPLAY_VER(dev_priv) >= 13)
->  		supported_rotations = DRM_MODE_ROTATE_0 | DRM_MODE_ROTATE_180;
->  	else
-> 
-> -- 
-> 2.25.1
-
--- 
-Ville Syrjälä
-Intel
+>
+>Thanks,
+>Kan
+>
+>> -		/* Migrate events if there is a valid target */
+>> -		if (target < nr_cpu_ids) {
+>> -			cpumask_set_cpu(target, &i915_pmu_cpumask);
+>> -			i915_pmu_target_cpu = target;
+>> -		}
+>> -	}
+>> -
+>> -	if (target < nr_cpu_ids && target != pmu->cpuhp.cpu) {
+>> -		perf_pmu_migrate_context(&pmu->base, cpu, target);
+>> -		pmu->cpuhp.cpu = target;
+>> -	}
+>> -
+>> -	return 0;
+>> -}
+>> -
+>> -static enum cpuhp_state cpuhp_state = CPUHP_INVALID;
+>> -
+>> -int i915_pmu_init(void)
+>> -{
+>> -	int ret;
+>> -
+>> -	ret = cpuhp_setup_state_multi(CPUHP_AP_ONLINE_DYN,
+>> -				      "perf/x86/intel/i915:online",
+>> -				      i915_pmu_cpu_online,
+>> -				      i915_pmu_cpu_offline);
+>> -	if (ret < 0)
+>> -		pr_notice("Failed to setup cpuhp state for i915 PMU! (%d)\n",
+>> -			  ret);
+>> -	else
+>> -		cpuhp_state = ret;
+>> -
+>> -	return 0;
+>> -}
+>> -
+>> -void i915_pmu_exit(void)
+>> -{
+>> -	if (cpuhp_state != CPUHP_INVALID)
+>> -		cpuhp_remove_multi_state(cpuhp_state);
+>> -}
+>> -
+>> -static int i915_pmu_register_cpuhp_state(struct i915_pmu *pmu)
+>> -{
+>> -	if (cpuhp_state == CPUHP_INVALID)
+>> -		return -EINVAL;
+>> -
+>> -	return cpuhp_state_add_instance(cpuhp_state, &pmu->cpuhp.node);
+>> -}
+>> -
+>> -static void i915_pmu_unregister_cpuhp_state(struct i915_pmu *pmu)
+>> -{
+>> -	cpuhp_state_remove_instance(cpuhp_state, &pmu->cpuhp.node);
+>> -}
+>> -
+>>  void i915_pmu_register(struct drm_i915_private *i915)
+>>  {
+>>  	struct i915_pmu *pmu = &i915->pmu;
+>>  	const struct attribute_group *attr_groups[] = {
+>>  		&i915_pmu_format_attr_group,
+>>  		&pmu->events_attr_group,
+>> -		&i915_pmu_cpumask_attr_group,
+>>  		NULL
+>>  	};
+>>  	int ret = -ENOMEM;
+>> @@ -1266,7 +1162,6 @@ void i915_pmu_register(struct drm_i915_private *i915)
+>>  	spin_lock_init(&pmu->lock);
+>>  	hrtimer_init(&pmu->timer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
+>>  	pmu->timer.function = i915_sample;
+>> -	pmu->cpuhp.cpu = -1;
+>>  	init_rc6(pmu);
+>>
+>>  	if (IS_DGFX(i915)) {
+>> @@ -1295,6 +1190,7 @@ void i915_pmu_register(struct drm_i915_private *i915)
+>>
+>>  	pmu->base.module	= THIS_MODULE;
+>>  	pmu->base.task_ctx_nr	= perf_invalid_context;
+>> +	pmu->base.scope		= PERF_PMU_SCOPE_SYS_WIDE;
+>>  	pmu->base.event_init	= i915_pmu_event_init;
+>>  	pmu->base.add		= i915_pmu_event_add;
+>>  	pmu->base.del		= i915_pmu_event_del;
+>> @@ -1307,16 +1203,10 @@ void i915_pmu_register(struct drm_i915_private *i915)
+>>  	if (ret)
+>>  		goto err_groups;
+>>
+>> -	ret = i915_pmu_register_cpuhp_state(pmu);
+>> -	if (ret)
+>> -		goto err_unreg;
+>> -
+>>  	pmu->registered = true;
+>>
+>>  	return;
+>>
+>> -err_unreg:
+>> -	perf_pmu_unregister(&pmu->base);
+>>  err_groups:
+>>  	kfree(pmu->base.attr_groups);
+>>  err_attr:
+>> @@ -1340,8 +1230,6 @@ void i915_pmu_unregister(struct drm_i915_private *i915)
+>>
+>>  	hrtimer_cancel(&pmu->timer);
+>>
+>> -	i915_pmu_unregister_cpuhp_state(pmu);
+>> -
+>>  	perf_pmu_unregister(&pmu->base);
+>>  	kfree(pmu->base.attr_groups);
+>>  	if (IS_DGFX(i915))
+>> diff --git a/drivers/gpu/drm/i915/i915_pmu.h b/drivers/gpu/drm/i915/i915_pmu.h
+>> index 8e66d63d0c9f9..53bce3d8bfbaf 100644
+>> --- a/drivers/gpu/drm/i915/i915_pmu.h
+>> +++ b/drivers/gpu/drm/i915/i915_pmu.h
+>> @@ -56,13 +56,6 @@ struct i915_pmu_sample {
+>>  };
+>>
+>>  struct i915_pmu {
+>> -	/**
+>> -	 * @cpuhp: Struct used for CPU hotplug handling.
+>> -	 */
+>> -	struct {
+>> -		struct hlist_node node;
+>> -		unsigned int cpu;
+>> -	} cpuhp;
+>>  	/**
+>>  	 * @base: PMU base.
+>>  	 */
+>> @@ -155,15 +148,11 @@ struct i915_pmu {
+>>  };
+>>
+>>  #ifdef CONFIG_PERF_EVENTS
+>> -int i915_pmu_init(void);
+>> -void i915_pmu_exit(void);
+>>  void i915_pmu_register(struct drm_i915_private *i915);
+>>  void i915_pmu_unregister(struct drm_i915_private *i915);
+>>  void i915_pmu_gt_parked(struct intel_gt *gt);
+>>  void i915_pmu_gt_unparked(struct intel_gt *gt);
+>>  #else
+>> -static inline int i915_pmu_init(void) { return 0; }
+>> -static inline void i915_pmu_exit(void) {}
+>>  static inline void i915_pmu_register(struct drm_i915_private *i915) {}
+>>  static inline void i915_pmu_unregister(struct drm_i915_private *i915) {}
+>>  static inline void i915_pmu_gt_parked(struct intel_gt *gt) {}
+>
