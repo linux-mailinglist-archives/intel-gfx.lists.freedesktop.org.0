@@ -2,61 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DF8CA16D8C
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jan 2025 14:42:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 025BBA16DC7
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jan 2025 14:50:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94D0510E415;
-	Mon, 20 Jan 2025 13:42:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 006BB10E419;
+	Mon, 20 Jan 2025 13:50:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E0DBFASJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CyIaESZj";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B1C8D10E415;
- Mon, 20 Jan 2025 13:42:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4750810E416;
+ Mon, 20 Jan 2025 13:50:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737380543; x=1768916543;
+ t=1737381054; x=1768917054;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=2hw/STGV6kir8opY7E4awGOA/5IVy+M04KuZfQ7G1GQ=;
- b=E0DBFASJnFGZsM512YX8mUsg85k8Pw3vnkMY/skK4vBzOjAWm63U0J2k
- yQ3LotVlaSQWnoSO4aK6u5VP4aPyc2kBGCB7REIAvbosjCaVQUZHBHea2
- Z5MrJb2kqW5i6qtH4/3qi2s2vIomdQMpYUxnKHC67CP9zIabKJB2FXpiq
- zseY8NmL1otWG0XPDdX+A3p+CUKi4kVUp0lAaCrxDll3SqzCIy87Fmhyy
- jVcIuwI7UHxC7CPI5B25ndrPJ9FotWs2woQ/wkGremwCZVGT0DiNI6fXE
- HfMwopkHcvgr8ma4X/q1nlnsBexLVPj9emrZq9Kq7/0I+wWp26p0hqr3e Q==;
-X-CSE-ConnectionGUID: GMFNGZWYT9GF2O0Bl5spmw==
-X-CSE-MsgGUID: PNhdlRCuT6Kg6hWj7F0ttw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11321"; a="55179790"
-X-IronPort-AV: E=Sophos;i="6.13,219,1732608000"; d="scan'208";a="55179790"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2025 05:42:18 -0800
-X-CSE-ConnectionGUID: Ll3Jw95IReatFrk2GyvsXA==
-X-CSE-MsgGUID: J4otNc3iQFGGGutBF04V1Q==
+ bh=wQpcX06Ui/Vxu6cazWeAdqmoeS0HGi1BEWl7mgUrS3c=;
+ b=CyIaESZjlxeUNZCksf0+t6VYNGJkK8vb94X0rAmVkft/YPwrvOf6912P
+ F7JjPQpeYZPxpQuVOAcqyD2E6Xh6vfhkQyF/fclHgkI2oAJ9U8V7XLvsG
+ RhWlhpgeT1sJHPTTSd5CjN1q3e43hKTLDZugf2Tgc6Jbe6KreK+uXBPfy
+ 0UJmrdqECFbC67kpThXxrgD3E8b4f8stNEd4874RMykw4ukN9bbnjxiUF
+ uMIMpsc3hIS/pyOA6yTudP32dkAVRD7nxpagXKmByB5FRY8pKCEu6D3kq
+ e9O01x91tyzLFc2SBax1541hUQqTv3q1yP6S1UU90j4I3XKX3k+ZtkiDl g==;
+X-CSE-ConnectionGUID: Coztq646QMe4gUf71faYbQ==
+X-CSE-MsgGUID: rR6/jKrwSRm4Hk2hI0xGpA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11321"; a="49169623"
+X-IronPort-AV: E=Sophos;i="6.13,219,1732608000"; d="scan'208";a="49169623"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2025 05:50:54 -0800
+X-CSE-ConnectionGUID: ZdG+bMQSQb6t6odE30akQw==
+X-CSE-MsgGUID: kBddW7ovQsaW5NMhw3BuyA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,219,1732608000"; d="scan'208";a="107060164"
+X-IronPort-AV: E=Sophos;i="6.13,219,1732608000"; d="scan'208";a="106464314"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.244.253])
  ([10.245.244.253])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2025 05:42:16 -0800
-Message-ID: <90840106-de7b-4cf7-a74c-455146ddb2d9@linux.intel.com>
-Date: Mon, 20 Jan 2025 14:42:14 +0100
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2025 05:50:52 -0800
+Message-ID: <87ef6c2e-a5c9-431a-9ea5-3b709e913384@linux.intel.com>
+Date: Mon, 20 Jan 2025 14:50:50 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] drm/xe: Use i915-display shutdown sequence directly
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
-References: <20250117220943.506991-1-rodrigo.vivi@intel.com>
- <20250117220943.506991-3-rodrigo.vivi@intel.com>
+Subject: Re: [PATCH 3/8] drm/i915: Pimp display fault reporting
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+References: <20250116174758.18298-1-ville.syrjala@linux.intel.com>
+ <20250116174758.18298-4-ville.syrjala@linux.intel.com>
 Content-Language: en-US
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20250117220943.506991-3-rodrigo.vivi@intel.com>
+In-Reply-To: <20250116174758.18298-4-ville.syrjala@linux.intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,160 +72,96 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hey,
 
-Den 2025-01-17 kl. 23:09, skrev Rodrigo Vivi:
-> Start the xe-i915-display reconciliation by using the same
-> shutdown sequences.
+
+Den 2025-01-16 kl. 18:47, skrev Ville Syrjala:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > 
-> v2: include the stubs for !CONFIG_DRM_XE_DISPLAY (Kunit)
+> Decode the display faults a bit more extensively so that one
+> doesn't have translate the bitmask to planes/etc. manually.
+> Also for plane faults we can read out a bit of state from the
+> relevant plane(s) and dump that out.
 > 
-> Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > ---
->   drivers/gpu/drm/xe/display/xe_display.c | 48 +++++++------------------
->   drivers/gpu/drm/xe/display/xe_display.h | 10 +++---
->   drivers/gpu/drm/xe/xe_device.c          |  4 ++-
->   3 files changed, 22 insertions(+), 40 deletions(-)
+>   .../gpu/drm/i915/display/intel_atomic_plane.c |   2 +-
+>   .../gpu/drm/i915/display/intel_atomic_plane.h |   2 +
+>   .../gpu/drm/i915/display/intel_display_irq.c  | 156 +++++++++++++++++-
+>   3 files changed, 155 insertions(+), 5 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-> index 4f60d7bd7742..e1ce9eb3332d 100644
-> --- a/drivers/gpu/drm/xe/display/xe_display.c
-> +++ b/drivers/gpu/drm/xe/display/xe_display.c
-> @@ -10,7 +10,6 @@
->   
->   #include <drm/drm_drv.h>
->   #include <drm/drm_managed.h>
-> -#include <drm/drm_atomic_helper.h>
->   #include <drm/drm_probe_helper.h>
->   #include <uapi/drm/xe_drm.h>
->   
-> @@ -369,32 +368,26 @@ void xe_display_pm_suspend(struct xe_device *xe)
->   
->   void xe_display_pm_shutdown(struct xe_device *xe)
->   {
-> -	struct intel_display *display = &xe->display;
-> -
->   	if (!xe->info.probe_display)
->   		return;
->   
-> -	intel_power_domains_disable(display);
-> -	intel_fbdev_set_suspend(&xe->drm, FBINFO_STATE_SUSPENDED, true);
-> -	if (has_display(xe)) {
-> -		drm_kms_helper_poll_disable(&xe->drm);
-> -		intel_display_driver_disable_user_access(display);
-> -
-> -		drm_atomic_helper_shutdown(display->drm);
-> -	}
-> -
-> -	intel_dp_mst_suspend(display);
-> -	intel_hpd_cancel_work(xe);
-> +	intel_display_driver_shutdown(&xe->display);
-> +}
->   
-> -	if (has_display(xe))
-> -		intel_display_driver_suspend_access(display);
-> +void xe_display_pm_shutdown_noirq(struct xe_device *xe)
-> +{
-> +	if (!xe->info.probe_display)
-> +		return;
->   
-> -	intel_encoder_suspend_all(display);
-> -	intel_encoder_shutdown_all(display);
-> +	intel_display_driver_shutdown_noirq(&xe->display);
-> +}
->   
-> -	intel_opregion_suspend(display, PCI_D3cold);
-> +void xe_display_pm_shutdown_noaccel(struct xe_device *xe)
-> +{
-> +	if (!xe->info.probe_display)
-> +		return;
->   
-> -	intel_dmc_suspend(display);
-> +	intel_display_driver_shutdown_nogem(&xe->display);
+> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> index 612e9b0ec14a..0aeb5f00d9c4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> @@ -663,7 +663,7 @@ int intel_plane_atomic_check_with_state(const struct intel_crtc_state *old_crtc_
+>   					       old_plane_state, new_plane_state);
 >   }
 >   
->   void xe_display_pm_runtime_suspend(struct xe_device *xe)
-> @@ -439,21 +432,6 @@ void xe_display_pm_runtime_suspend_late(struct xe_device *xe)
->   	intel_dmc_wl_flush_release_work(display);
->   }
->   
-> -void xe_display_pm_shutdown_late(struct xe_device *xe)
-> -{
-> -	struct intel_display *display = &xe->display;
-> -
-> -	if (!xe->info.probe_display)
-> -		return;
-> -
-> -	/*
-> -	 * The only requirement is to reboot with display DC states disabled,
-> -	 * for now leaving all display power wells in the INIT power domain
-> -	 * enabled.
-> -	 */
-> -	intel_power_domains_driver_remove(display);
-> -}
-> -
->   void xe_display_pm_resume_early(struct xe_device *xe)
+> -static struct intel_plane *
+> +struct intel_plane *
+>   intel_crtc_get_plane(struct intel_crtc *crtc, enum plane_id plane_id)
 >   {
->   	struct intel_display *display = &xe->display;
-> diff --git a/drivers/gpu/drm/xe/display/xe_display.h b/drivers/gpu/drm/xe/display/xe_display.h
-> index 233f81a26c25..a15ec29b862b 100644
-> --- a/drivers/gpu/drm/xe/display/xe_display.h
-> +++ b/drivers/gpu/drm/xe/display/xe_display.h
-> @@ -35,9 +35,10 @@ void xe_display_irq_reset(struct xe_device *xe);
->   void xe_display_irq_postinstall(struct xe_device *xe, struct xe_gt *gt);
+>   	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.h b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
+> index 0f982f452ff3..298bb97b37a4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.h
+> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.h
+> @@ -19,6 +19,8 @@ struct intel_plane;
+>   struct intel_plane_state;
+>   enum plane_id;
 >   
->   void xe_display_pm_suspend(struct xe_device *xe);
-> -void xe_display_pm_shutdown(struct xe_device *xe);
->   void xe_display_pm_suspend_late(struct xe_device *xe);
-> -void xe_display_pm_shutdown_late(struct xe_device *xe);
-> +void xe_display_pm_shutdown(struct xe_device *xe);
-> +void xe_display_pm_shutdown_noirq(struct xe_device *xe);
-> +void xe_display_pm_shutdown_noaccel(struct xe_device *xe);
->   void xe_display_pm_resume_early(struct xe_device *xe);
->   void xe_display_pm_resume(struct xe_device *xe);
->   void xe_display_pm_runtime_suspend(struct xe_device *xe);
-> @@ -69,9 +70,10 @@ static inline void xe_display_irq_reset(struct xe_device *xe) {}
->   static inline void xe_display_irq_postinstall(struct xe_device *xe, struct xe_gt *gt) {}
+> +struct intel_plane *
+> +intel_crtc_get_plane(struct intel_crtc *crtc, enum plane_id plane_id);
+>   unsigned int intel_adjusted_rate(const struct drm_rect *src,
+>   				 const struct drm_rect *dst,
+>   				 unsigned int rate);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
+> index f06273d9bc8c..1b3b6b8bc794 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
+> @@ -10,6 +10,7 @@
+>   #include "i915_irq.h"
+>   #include "i915_reg.h"
+>   #include "icl_dsi_regs.h"
+> +#include "intel_atomic_plane.h"
+>   #include "intel_crtc.h"
+>   #include "intel_de.h"
+>   #include "intel_display_irq.h"
+> @@ -26,6 +27,52 @@
+>   #include "intel_psr.h"
+>   #include "intel_psr_regs.h"
 >   
->   static inline void xe_display_pm_suspend(struct xe_device *xe) {}
-> -static inline void xe_display_pm_shutdown(struct xe_device *xe) {}
->   static inline void xe_display_pm_suspend_late(struct xe_device *xe) {}
-> -static inline void xe_display_pm_shutdown_late(struct xe_device *xe) {}
-> +static inline void xe_display_pm_shutdown(struct xe_device *xe) {}
-> +static inline void xe_display_pm_shutdown_noirq(struct xe_device *xe) {}
-> +static inline void xe_display_pm_shutdown_noaccel(struct xe_device *xe) {}
->   static inline void xe_display_pm_resume_early(struct xe_device *xe) {}
->   static inline void xe_display_pm_resume(struct xe_device *xe) {}
->   static inline void xe_display_pm_runtime_suspend(struct xe_device *xe) {}
-> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> index 0966d9697caf..53cac055a2a9 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -934,10 +934,12 @@ void xe_device_shutdown(struct xe_device *xe)
->   
->   		xe_irq_suspend(xe);
->   
-> +		xe_display_pm_shutdown_noirq(xe);
+> +struct pipe_fault_handler {
+> +	bool (*handle)(struct intel_crtc *crtc, enum plane_id plane_id);
+> +	u32 fault;
+> +	enum plane_id plane_id;
+> +};
 > +
->   		for_each_gt(gt, xe, id)
->   			xe_gt_shutdown(gt);
->   
-> -		xe_display_pm_shutdown_late(xe);
-> +		xe_display_pm_shutdown_noaccel(xe);
- From the xe point of view, it shouldn't matter whether we call the 
-noirq part before or after gt shutdown. I like the integration into 
-xe_device to be as simple as possible, so could we keep the single 
-xe_display_pm_shutdown_late() call?
+> +static bool handle_plane_fault(struct intel_crtc *crtc, enum plane_id plane_id)
+> +{
+> +	struct intel_display *display = to_intel_display(crtc);
+> +	struct intel_plane_error error = {};
+> +	struct intel_plane *plane;
+> +
+> +	plane = intel_crtc_get_plane(crtc, plane_id);
+> +	if (!plane || !plane->capture_error)
+> +		return false;
+> +
+> +	plane->capture_error(crtc, plane, &error);
+> +
+> +	drm_err_ratelimited(display->drm,
+> +			    "[CRTC:%d:%s][PLANE:%d:%s] fault (CTL=0x%x, SURF=0x%x, SURFLIVE=0x%x)\n",
+> +			    crtc->base.base.id, crtc->base.name,
+> +			    plane->base.base.id, plane->base.name,
+> +			    error.ctl, error.surf, error.surflive);
 
-Which reminds me to send out xe_display simplification once more to do 
-the same for init..
->   	} else {
->   		/* BOOM! */
->   		__xe_driver_flr(xe);
-Completely unrelated, do you happen to know if we need to call 
-encoder_suspend/shutdown in the FLR path, whether it affects logic not 
-on the chip itself?
+Could we drop the CRTC here?
+<3> [264.586596] xe 0000:00:02.0: [drm] *ERROR* [CRTC:82:pipe 
+A][PLANE:32:plane 1A] fault (CTL=0x94001002, SURF=0x1800000, 
+SURFLIVE=0x1800000)
+
+Looks to be a bit redundant to print CRTC and plane here. Most likely 
+PLANE is good enough. :-)
 
 Cheers,
 ~Maarten
