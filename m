@@ -2,181 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10214A16ED7
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jan 2025 15:52:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B2F1A16F00
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Jan 2025 16:08:46 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7D8910E427;
-	Mon, 20 Jan 2025 14:52:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB4A710E42F;
+	Mon, 20 Jan 2025 15:08:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f4R//0CK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WKFj4jWU";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D84D10E427
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Jan 2025 14:52:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B851B10E42F
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Jan 2025 15:08:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737384769; x=1768920769;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=iaGBOULE9ZfftfK9vf9ZIY1a8TeZWhRwO0ZwPKxRqIQ=;
- b=f4R//0CKJ/BRmKxqWMvNSGk7hLMQztwPQ7y6xIyloVSucnb5Lr871TQR
- qWhdmGzxIKTdAW7AYZBgnlWz/10x4mS46XEzEU/djhbRYV5MLtkeauXFk
- pRfdQe04vFkLPVTXJOyiaMZvCMZziRtYdzFQ/lbGd3D7hKeIN/PA+YT9G
- QUdgnSF3DZMfI4WpRLkQX0GXtRXaOF9tWfgKCaRwHEOx1PTp/EU22Vgy8
- 7hBkLctefJTN56NqkKm3wrtngzwEZqt6JmZ++GY3aksHmEhnzl0jVVrIX
- jaHPfIFz+bmnYQ4FMFjyWQ3LT6lb44LocSISXQdvAAuoKqhj52yZcydJO w==;
-X-CSE-ConnectionGUID: m+r9Q0jTRbWDHntUgDhCQg==
-X-CSE-MsgGUID: x61MKZifTr6adWBP5KBYmQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11321"; a="25382690"
-X-IronPort-AV: E=Sophos;i="6.13,219,1732608000"; d="scan'208";a="25382690"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Jan 2025 06:52:48 -0800
-X-CSE-ConnectionGUID: lNkWfIj7TEy8WbdIwRa7bQ==
-X-CSE-MsgGUID: qC2Z9+6cTFSFssXKfGNL8w==
+ t=1737385723; x=1768921723;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=9U2pxmtHGNkV9IWbEW6UttKcVa4918L8wp73/UkenPw=;
+ b=WKFj4jWUjyX0viLUgrsqK2Oq0sIH+N4BohczsZTHDN2u3+LBl0R9qrDF
+ gIKihCTjwAbpOtP11XZYyOirSjrP2E1Vc/CrFfJyv/r0mXJwPM0GyXdyr
+ x93Xc/hNYSM6JzNhhlAAFt/vHh0Hi01tda4NWjUMx4PH/VmJ4Ow7ecB1a
+ JMKH14d8ify6nC8NyD/+p6oZUCveQdXdo7ziGVqslnIwQtbDGHlL6MmQq
+ cIpfu3NrhSqaOWA0Fx8NI73v5PCjEkXkLnEBgC+gE7c1o4k9IEBe7zYaO
+ JqY8o4s1cPbZP5q2U8n2cA8+dUZhMFfk33f4JTSJRG7z6/7BiddxUqxPt g==;
+X-CSE-ConnectionGUID: 4pZcNNRiTwCio0OU3bU/3Q==
+X-CSE-MsgGUID: LunkfieLSf6eKJWnRtu3JQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11321"; a="37946218"
+X-IronPort-AV: E=Sophos;i="6.13,219,1732608000"; d="scan'208";a="37946218"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2025 07:08:42 -0800
+X-CSE-ConnectionGUID: JV0u4b53QyKwQdMQaHfubA==
+X-CSE-MsgGUID: 8tAgX22vTr2ywbywcjKUjw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,219,1732608000"; d="scan'208";a="106662708"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmviesa008.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 20 Jan 2025 06:52:48 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Mon, 20 Jan 2025 06:52:47 -0800
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Mon, 20 Jan 2025 06:52:47 -0800
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.44) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Mon, 20 Jan 2025 06:52:47 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mOVLV8EEmAKfuWufy+crUiX+DBQNaXn4w5v1USadRUopew8haPNwH8ie/beggSJUr1qGRIh1rT8Cd3d6VvUDrQrTroVkhP410+0pUJE85BZf355rO1mYI8VRIWl98LYMQQw19uNNSGUtiggoY6LUEXiCuTIT/ZtfG/0oqtfqihRMj60XLcHuMDF46afdBXu95Vq8dA5sEEPYslAR1D1ur88SELdCYM0ZjGXufLtO1xde9pgTin1VmZZIX8lyU20+ezD7fbXhtItXew1XmPVRO8BRjP/+h7PTW+7PdwWz9OIyjkxAWmSkKfqm0WW0xQ7+x/VLtL8oAj/2Zf+4w8GBGg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=GtjDSEFXiHbTEuao7Ljc1bQB5anRyR5WBFt4WsWfAZE=;
- b=EBNT15CRKk62Cw0sLmdVlGHV2YZuQIhOZE3wr7e3hNV9Gri7nEIXEmToEzM6iPaSWkRpVGPR0PMbLL5hVHJyGK/aLvugPtP9UrgF8O0lzsnRhAP0H6xDq4t4i1MKLbGkbmwhPtZly8Njijw3XoawyRXFmzsqUVWRe3mZEUnE/hTAfo3qa70hUQ9wqndX2OSwZ8W0wl2gnhykkzDSutrJTO0pYQz8VVkpp2vpgkuwZVFXsVLkp22kZJOE5jYtqYx5+Vc9FnDu7wbVyfvhatBO+PRKZ7zvUeFnzZdZcR65rpwxVyRvQRfAYHESR1Grt6efKvw8WUvTI4tTDFLUhOyAkg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH8PR11MB6974.namprd11.prod.outlook.com (2603:10b6:510:225::16)
- by DS0PR11MB6328.namprd11.prod.outlook.com (2603:10b6:8:cc::8) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8356.20; Mon, 20 Jan 2025 14:52:45 +0000
-Received: from PH8PR11MB6974.namprd11.prod.outlook.com
- ([fe80::c0b4:f63a:9c33:ec4a]) by PH8PR11MB6974.namprd11.prod.outlook.com
- ([fe80::c0b4:f63a:9c33:ec4a%7]) with mapi id 15.20.8356.020; Mon, 20 Jan 2025
- 14:52:45 +0000
-Date: Mon, 20 Jan 2025 20:22:38 +0530
-From: "Vivekanandan, Balasubramani" <balasubramani.vivekanandan@intel.com>
-To: Ranu Maurya <ranu.maurya@intel.com>, <intel-gfx@lists.freedesktop.org>
-CC: <sai.teja.pottumuttu@intel.com>
-Subject: Re: [PATCH v3] drm/i915: Add Wa_22010465259 in its respective WA list
-Message-ID: <Z45jNtZ9S7JiUHgf@bvivekan-mobl1>
-References: <20250116093115.2437154-1-ranu.maurya@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <20250116093115.2437154-1-ranu.maurya@intel.com>
-X-ClientProxiedBy: PN2PR01CA0074.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:23::19) To PH8PR11MB6974.namprd11.prod.outlook.com
- (2603:10b6:510:225::16)
+X-IronPort-AV: E=Sophos;i="6.13,219,1732608000"; d="scan'208";a="106357122"
+Received: from linux.intel.com ([10.54.29.200])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Jan 2025 07:08:41 -0800
+Received: from [10.246.136.10] (kliang2-mobl1.ccr.corp.intel.com
+ [10.246.136.10])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by linux.intel.com (Postfix) with ESMTPS id 158E320B5713;
+ Mon, 20 Jan 2025 07:08:40 -0800 (PST)
+Message-ID: <aded1225-0022-4e86-845c-283641cf32a0@linux.intel.com>
+Date: Mon, 20 Jan 2025 10:08:39 -0500
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR11MB6974:EE_|DS0PR11MB6328:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7d770085-be79-46a6-c385-08dd39621952
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?dDg5QkN4NTc0Z3d1N1lHT1I2WWFRdWVuNHUwMDkxOFVreVV1MGtleFJtc3dK?=
- =?utf-8?B?Mks2Qkc0V0JBVFZUUUxwZU1DdmZkWkRaeVZIdTJCZ2l4TkRnQVlMWkMzRE4z?=
- =?utf-8?B?bUJjblBFMHdyb0F3RmZWQUdtSUJadVNYeTV4YTRpUEd1cFRVL3hwcmliL2tK?=
- =?utf-8?B?eC9VRk5MWmhvSDRVMzk3S3ppbVdNQkNadnVSREJyamZxWWRIR3Y4Z1c1MlVH?=
- =?utf-8?B?RlFqcjFTbW5ZYURTaFJmczRrclYzTjRqcVB5UjhjNktDWmxmcmt1SGJ5OU04?=
- =?utf-8?B?MFRyTytjK2pHYloyd0pFdUNFaU14NFlzNnh6ZW1iRzZ6eEUwOWZGOFhTOVlL?=
- =?utf-8?B?K0J0NnJuQ251SnlWWTNSdzdybjhjaTVsbHBOUkhxZlMyQlZQQjlnY0d4WG0z?=
- =?utf-8?B?akVqbExqU1d2UG5UbW0wOU90UWtidlJvSDgveTdnYlFIa1FTYWJDRExKb1F6?=
- =?utf-8?B?ZGJaV29ublg2YkduYVk5MFR6MWVkY1NLY0thTjh5QWJFaVM1emY3T0hTZngx?=
- =?utf-8?B?T2JlWDlhOE0wSWcrV1pMYnM5YXhaZGsyUy9uMGYrOC9ISXdTRDdzalVQU0xu?=
- =?utf-8?B?VmZHNU1jVGl3ZENtUFhKbjZpNFJBYlltQjBwWkpPVUovTGYwQ0h1T2NwZGlY?=
- =?utf-8?B?QkwwNkxRRU51K2Vza0dsZ3BvL3dtVTlKUWFPNHBURktpYmtINU9neE5JeWlO?=
- =?utf-8?B?YklQR3o2VFl4NnRWS1pTSGFqdmd0ZkgxSjhsQUpHeFlPcTBsY2d6OTQvYlkv?=
- =?utf-8?B?MVFKanVMRi9qd0FJalQwRlc5NXNWUk1ESmFqQ1lSNC9JVVpaYzBZeXVtUmEr?=
- =?utf-8?B?bFlrQnpzOUhPS241OVg5dlpEZCt5aGRTK042MVB0ck84SmpyaGp2cGFaa3Ry?=
- =?utf-8?B?WWlHcG1ySkdBd1Rtd293WFF5Y1F0eTBDMi83OFhMMVFEb1hiazVzd2QrU2Y4?=
- =?utf-8?B?a1BIZlZJbEpKL0tRaHlCaVprWkV0VmVKbmxYZjQvY0VuUldjU3Z0a09EME9w?=
- =?utf-8?B?Ry9PUnY3SkJwelYwYUQ2UTMwS0UvaUVoZnJhUTBta3pZcWJQZndKNFA4bjZU?=
- =?utf-8?B?ZkVHaEhSRUU5WldvMm9xME82dHl5NDhqNXBwYW11VFkwQytDQXBYSmZLaGVO?=
- =?utf-8?B?STA2QmFjazZ2UlhSSU4yaUZNSmJNU1JJaUZQQWRXN2JWQ1RRZngranI3YnI5?=
- =?utf-8?B?TnZkZ0pBMHFneUIyT3RhWDEzS0hGTzgrbFAyZXhYbFVFZkR6QjRNS3lXeUU0?=
- =?utf-8?B?UThxekxFdS9WM0FCSmMwRkFVZFFKRTVFVGRKTGQwVkl3emxudzV1WHBtbkdw?=
- =?utf-8?B?bUhjNG9wc0o4UWJVeE1Za1NNK3htMVlFcVNoM1BpZ1pwZHpvWE1MbDBpcWZG?=
- =?utf-8?B?VUxSb2Q4TGRaZXBGeGsvVlhRNDIxWlY3OVBOamo4RU9hZHA1MVk5ck0vd0wr?=
- =?utf-8?B?OW05TXpITWEwbDlJSTRJc09HYko4cDd3Y1RuOTl0VVczRTVkREdzc1g4VmZj?=
- =?utf-8?B?ejNhRWxRVWNzdUlObzRZc0ZsMXFKVllZd1FWWkZhTFVOMnJHRzhrRUVhSFRZ?=
- =?utf-8?B?NWtkRXVRWUVHbUQzcmdGMmlqQ2J1WWpFUWg2cWJWd3J2eER5OW9GS3gyMVZ5?=
- =?utf-8?B?d0dEYVBpT2E5dnk5Q1NlQVBBY1pzZDRObitzTm1uZTVwWTBnNG9HcC9ONzdh?=
- =?utf-8?B?VVBWK21kak1jZ0UzNHVad2trTGRSM0pCd1VqblUzTVNWS1ArZ0pzY3NWQmpR?=
- =?utf-8?B?MXJzeCtQYlRObFg0dHk3ZW1rWWhQeFNXQ08rYUhLVkVsZTk3SDRHajErT09p?=
- =?utf-8?B?NzJVQWZHQk1GcUE5a3UyVFNDQ2VvckhnVWthNnBuVjBtMWZZOUhmaFJtcUll?=
- =?utf-8?Q?RwxGRHRHDLoXu?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH8PR11MB6974.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?c0FMZzVGajBsREhrK09rWjB0aTUvK21IZXBwZlVxaGErMlpUWGg5NkpBcElT?=
- =?utf-8?B?WVM1TWtGN3dyQndSTmNEWi9meUYrWEFjUFkyUEgySVJQblZXOVZBcmtIcGpx?=
- =?utf-8?B?QzFXbEVrRXI5ZnN2YmdvZmRiVXhoTnFrdEVvMnpqY25RV0E0TjFHRmtiMzNW?=
- =?utf-8?B?UXJUSjJWZWVCakxQM2pIM05Xajlrc0RwREtFUlkvQUkyZFRBM2hLTGIzVURx?=
- =?utf-8?B?WkdoT0VkZURXVXFDTStGRXAwcW1kYlEvSWxDUWhSdVlXTkdUTXU5V1I3YVZh?=
- =?utf-8?B?K2pBNkUzZWhZNTFBOXc5UzVYdkZUb3pjVWU5bi9LSEF0bWV5cElDNXR2eXl6?=
- =?utf-8?B?OXdUa1oyVGJKdHBRUVdrVGJnS3hlQmxIZXJYaGdzQ1pyblIrZXVvY1I5VHQ2?=
- =?utf-8?B?bmcxSU5McUxacEpkV2w0dU8ydjNoR1ZjZkNQbGpSZmJ0UzVXaFZ2eVFYbk1I?=
- =?utf-8?B?N3IzMXJ4aUxDaEVXVEMzRXJ4NWs4SzVVNVRKOGxaR3pFcnI3ZW5rZ0FWS3dv?=
- =?utf-8?B?SmJwUk9hNzN4bk9XR0l0NjFxd1FVckdmS3Q4bkRydVJ0MjdraDJjS1NGeFFi?=
- =?utf-8?B?Q3ZLOE9TWEx2S2gxdk5DQ2FoQnFiRlVrbWVDWHY3aUxTaFFadDdIZno1L0Jz?=
- =?utf-8?B?ZTdmcDdlMlZXZDZvdDdkckI4SUhQMjdheDcwakVVNDkzUzdCbHh2UWNCalRz?=
- =?utf-8?B?aDhid3NDUWUydk94TzNjSHJxLy9GUWNEVU95cWxiaTUzcFkyeENuRzhmbHBw?=
- =?utf-8?B?L25yeVR6N3pReXpFTVZ3aGZKMFVPSjh2MUIyZTZ2RG5udUdoL3RTZHY0QXox?=
- =?utf-8?B?UzJOZW5VT3o5NUZXWTAvZjNHOFRHODZNaFo0Zy8wTFhPbEpiUWxEZk5ZbG15?=
- =?utf-8?B?TGtHZTZKR0NSMWxZWW93M3poM1k1Z1daeUhYWHBtWHNkWlFqbGR6TmMvR3dM?=
- =?utf-8?B?dkRhTlZzaTNTRm8welZFS3BmRzZBSXoybUNwWUtLcnE3czVlUkVYQWNuSWpD?=
- =?utf-8?B?QUp4cUlCd3FUd3ZuUWtWVXhJR3dzS0NXaVRRcmd4TlowT3BaRFNjOUF2Wkp0?=
- =?utf-8?B?RjBMZGh0OVNlMUpZZE9DWVZLNWZWRFJVZEptTGR6UWp6NUM0YTZ0M1hBUjFL?=
- =?utf-8?B?VE4xZWg2V2svRHkwQTI1Q1R2MGp4bVMvSGk4V3VYM010NGczQ3VxdUJMWk4w?=
- =?utf-8?B?Y3pNaUUwVE1lSWgxV09qL0s4K0V5ZmRXV3pnUjlkSG9LU1V1RURlOHpYeEFl?=
- =?utf-8?B?aCsycDAxUVRvTVNNUGVvZXdHUHNHankwdGxyeXU2UGFKdTNHcUZoVE5nQUll?=
- =?utf-8?B?a1Jza0M1TkgyMGJkZXI5VGVEakgram83b01WRS9Wa0kyNXBUT0JldlpXS2ZK?=
- =?utf-8?B?NTUvc25rZFp3UElRcUlBcjBTRmRQdnJ4TWRGOGNKNnJva0FzNFI0Mjc5RU83?=
- =?utf-8?B?NWRxU1MySHYrQWJpcisxQUFjV3h5MVNVbHA5L0QyZzcxN2IydHhSdUFiTmY4?=
- =?utf-8?B?dXlvS1dsVUwrYnNOT0d2Zm84ZHVTTVdVNk5UVXpXSGFOajU3NnAxQzBsV3Nk?=
- =?utf-8?B?TWFPbHNHU3BhYlEvZGtuZk9zR20xNDBBMDNYZGpmb0hmaC9rZmVtdkRpWFZQ?=
- =?utf-8?B?enU1ZTJDOXlEZ0xDa3lwek9VZnZZMWkwVWM0TTl1bDRxNG5aZ0hNeWRPY3lX?=
- =?utf-8?B?N2ZYWE9jeXMyY3NkOHlkd3NGTGVlUmoyeEpWcUthc3NoeFVoQlgwckFIaEsr?=
- =?utf-8?B?YVp0Vlh4dDRYYTJrc1ZUTWpCYTdtMnRzTlRJSFJHOGpNWlYxd1NuUEw1S2Qx?=
- =?utf-8?B?eHlQd3FnVk1sZ3d0b2pSME0xWUVCdDFKWjNEQzRxNXA5WlFUWnc5OTJ2V1c0?=
- =?utf-8?B?OTBBaFQxZnZ6RUJISUZZVE9OdDBDeDRiRzVjaEZ3MTRhWlcxM3RzdGxNaDJ1?=
- =?utf-8?B?OGNXdWxyU1o1VjBESkFQSzFoRGh5NDRJZXduWDFJbldUVklnN3daUVhkRVNk?=
- =?utf-8?B?MnZ5S1VVeVdhOW1jSTVrNjJGc0ZCR2hicmtYb01mdm9MdWp4NTVUQ3pzWVgx?=
- =?utf-8?B?OUxSc2hpVTFqWkdxdDFGYWZnVzBtc0ZkRjhQUERPdXlrTEh6L1lQYmJudGlC?=
- =?utf-8?B?S0VjQ2dCU1A5SE85NkpLckRud1Z3Q1d2eXhpemROTDUzbnVFMWJkRG1kL3JV?=
- =?utf-8?Q?vHOSd8RrcwlGy6z1qyBQEyU=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7d770085-be79-46a6-c385-08dd39621952
-X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB6974.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jan 2025 14:52:45.5237 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: cgoHR1y5dkfSi6XGMhYM1OoY84LUxLVJHvc19Dn7bxou5wY3lp6aqercnU+o9uUZ2t0UMQneCS3BmBj3scFJSDtCDVQ22YuEtKGfFIlInuQz9G6TosrS/IXFRb1F8aVs
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB6328
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/i915/pmu: Drop custom hotplug code
+To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: "Peter Zijlstra (Intel)" <peterz@infradead.org>,
+ Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+References: <20250116222426.77757-1-lucas.demarchi@intel.com>
+Content-Language: en-US
+From: "Liang, Kan" <kan.liang@linux.intel.com>
+In-Reply-To: <20250116222426.77757-1-lucas.demarchi@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -192,57 +77,260 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On 16.01.2025 15:01, Ranu Maurya wrote:
-> Add Wa_22010465259 which points to an existing WA, but
-> was missing from the comment list. While at it, update
-> the other WAs and their applicable platforms as well.
+
+
+On 2025-01-16 5:24 p.m., Lucas De Marchi wrote:
+> Since commit 4ba4f1afb6a9 ("perf: Generic hotplug support for a PMU with
+> a scope"), there's generic support for system-wide counters and
+> integration with cpu hotplug. Set our scope to PERF_PMU_SCOPE_SYS_WIDE
+> instead of all the boilerplate code for handling hotplug.
 > 
-> v1: Initial commit.
-> v2: Add DG2 platform to Wa_22010465259.
-> v3: Removed DG2 platform to Wa_22010465259 since it
->     was for preproduction.
-> 
-> Signed-off-by: Ranu Maurya <ranu.maurya@intel.com>
-
-Looks good.
-
-Reviewed-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-
-Regards,
-Bala
-
+> Cc: Kan Liang <kan.liang@linux.intel.com>
+> Cc: Peter Zijlstra (Intel) <peterz@infradead.org>
+> Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 > ---
->  drivers/gpu/drm/i915/gt/intel_workarounds.c | 13 +++++++------
->  1 file changed, 7 insertions(+), 6 deletions(-)
+>  drivers/gpu/drm/i915/i915_module.c |   2 -
+>  drivers/gpu/drm/i915/i915_pmu.c    | 114 +----------------------------
+>  drivers/gpu/drm/i915/i915_pmu.h    |  11 ---
+>  3 files changed, 1 insertion(+), 126 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> index 570c91878189..277a4df31071 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
-> @@ -691,16 +691,17 @@ static void gen12_ctx_workarounds_init(struct intel_engine_cs *engine,
->  	struct drm_i915_private *i915 = engine->i915;
+> diff --git a/drivers/gpu/drm/i915/i915_module.c b/drivers/gpu/drm/i915/i915_module.c
+> index 7ed6d70389af9..7affe07f84f45 100644
+> --- a/drivers/gpu/drm/i915/i915_module.c
+> +++ b/drivers/gpu/drm/i915/i915_module.c
+> @@ -71,8 +71,6 @@ static const struct {
+>  	{ .init = i915_vma_resource_module_init,
+>  	  .exit = i915_vma_resource_module_exit },
+>  	{ .init = i915_mock_selftests },
+> -	{ .init = i915_pmu_init,
+> -	  .exit = i915_pmu_exit },
+>  	{ .init = i915_pci_register_driver,
+>  	  .exit = i915_pci_unregister_driver },
+>  	{ .init = i915_perf_sysctl_register,
+> diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
+> index e55db036be1bb..652964ef0643c 100644
+> --- a/drivers/gpu/drm/i915/i915_pmu.c
+> +++ b/drivers/gpu/drm/i915/i915_pmu.c
+> @@ -28,9 +28,6 @@
+>  	 BIT(I915_SAMPLE_WAIT) | \
+>  	 BIT(I915_SAMPLE_SEMA))
 >  
->  	/*
-> -	 * Wa_1409142259:tgl,dg1,adl-p
-> +	 * Wa_1409142259:tgl,dg1,adl-p,adl-n
->  	 * Wa_1409347922:tgl,dg1,adl-p
->  	 * Wa_1409252684:tgl,dg1,adl-p
->  	 * Wa_1409217633:tgl,dg1,adl-p
->  	 * Wa_1409207793:tgl,dg1,adl-p
-> -	 * Wa_1409178076:tgl,dg1,adl-p
-> -	 * Wa_1408979724:tgl,dg1,adl-p
-> -	 * Wa_14010443199:tgl,rkl,dg1,adl-p
-> -	 * Wa_14010698770:tgl,rkl,dg1,adl-s,adl-p
-> -	 * Wa_1409342910:tgl,rkl,dg1,adl-s,adl-p
-> +	 * Wa_1409178076:tgl,dg1,adl-p,adl-n
-> +	 * Wa_1408979724:tgl,dg1,adl-p,adl-n
-> +	 * Wa_14010443199:tgl,rkl,dg1,adl-p,adl-n
-> +	 * Wa_14010698770:tgl,rkl,dg1,adl-s,adl-p,adl-n
-> +	 * Wa_1409342910:tgl,rkl,dg1,adl-s,adl-p,adl-n
-> +	 * Wa_22010465259:tgl,rkl,dg1,adl-s,adl-p,adl-n
+> -static cpumask_t i915_pmu_cpumask;
+> -static unsigned int i915_pmu_target_cpu = -1;
+> -
+>  static struct i915_pmu *event_to_pmu(struct perf_event *event)
+>  {
+>  	return container_of(event->pmu, struct i915_pmu, base);
+> @@ -642,10 +639,6 @@ static int i915_pmu_event_init(struct perf_event *event)
+>  	if (event->cpu < 0)
+>  		return -EINVAL;
+>  
+> -	/* only allow running on one cpu at a time */
+> -	if (!cpumask_test_cpu(event->cpu, &i915_pmu_cpumask))
+> -		return -EINVAL;
+> -
+>  	if (is_engine_event(event))
+>  		ret = engine_event_init(event);
+>  	else
+> @@ -940,23 +933,6 @@ static ssize_t i915_pmu_event_show(struct device *dev,
+>  	return sprintf(buf, "config=0x%lx\n", eattr->val);
+>  }
+>  
+> -static ssize_t cpumask_show(struct device *dev,
+> -			    struct device_attribute *attr, char *buf)
+> -{
+> -	return cpumap_print_to_pagebuf(true, buf, &i915_pmu_cpumask);
+> -}
+> -
+> -static DEVICE_ATTR_RO(cpumask);
+> -
+> -static struct attribute *i915_cpumask_attrs[] = {
+> -	&dev_attr_cpumask.attr,
+> -	NULL,
+> -};
+> -
+> -static const struct attribute_group i915_pmu_cpumask_attr_group = {
+> -	.attrs = i915_cpumask_attrs,
+> -};
+> -
+>  #define __event(__counter, __name, __unit) \
+>  { \
+>  	.counter = (__counter), \
+> @@ -1173,92 +1149,12 @@ static void free_event_attributes(struct i915_pmu *pmu)
+>  	pmu->pmu_attr = NULL;
+>  }
+>  
+> -static int i915_pmu_cpu_online(unsigned int cpu, struct hlist_node *node)
+> -{
+> -	struct i915_pmu *pmu = hlist_entry_safe(node, typeof(*pmu), cpuhp.node);
+> -
+> -	/* Select the first online CPU as a designated reader. */
+> -	if (cpumask_empty(&i915_pmu_cpumask))
+> -		cpumask_set_cpu(cpu, &i915_pmu_cpumask);
+> -
+> -	return 0;
+> -}
+> -
+> -static int i915_pmu_cpu_offline(unsigned int cpu, struct hlist_node *node)
+> -{
+> -	struct i915_pmu *pmu = hlist_entry_safe(node, typeof(*pmu), cpuhp.node);
+> -	unsigned int target = i915_pmu_target_cpu;
+> -
+> -	/*
+> -	 * Unregistering an instance generates a CPU offline event which we must
+> -	 * ignore to avoid incorrectly modifying the shared i915_pmu_cpumask.
+> -	 */
+> -	if (!pmu->registered)
+> -		return 0;
+> -
+> -	if (cpumask_test_and_clear_cpu(cpu, &i915_pmu_cpumask)) {
+> -		target = cpumask_any_but(topology_sibling_cpumask(cpu), cpu);
+> -
+
+I'm not familar with the i915 PMU, but it seems suggest a core scope
+PMU, not a system-wide scope.
+
+Thanks,
+Kan
+
+> -		/* Migrate events if there is a valid target */
+> -		if (target < nr_cpu_ids) {
+> -			cpumask_set_cpu(target, &i915_pmu_cpumask);
+> -			i915_pmu_target_cpu = target;
+> -		}
+> -	}
+> -
+> -	if (target < nr_cpu_ids && target != pmu->cpuhp.cpu) {
+> -		perf_pmu_migrate_context(&pmu->base, cpu, target);
+> -		pmu->cpuhp.cpu = target;
+> -	}
+> -
+> -	return 0;
+> -}
+> -
+> -static enum cpuhp_state cpuhp_state = CPUHP_INVALID;
+> -
+> -int i915_pmu_init(void)
+> -{
+> -	int ret;
+> -
+> -	ret = cpuhp_setup_state_multi(CPUHP_AP_ONLINE_DYN,
+> -				      "perf/x86/intel/i915:online",
+> -				      i915_pmu_cpu_online,
+> -				      i915_pmu_cpu_offline);
+> -	if (ret < 0)
+> -		pr_notice("Failed to setup cpuhp state for i915 PMU! (%d)\n",
+> -			  ret);
+> -	else
+> -		cpuhp_state = ret;
+> -
+> -	return 0;
+> -}
+> -
+> -void i915_pmu_exit(void)
+> -{
+> -	if (cpuhp_state != CPUHP_INVALID)
+> -		cpuhp_remove_multi_state(cpuhp_state);
+> -}
+> -
+> -static int i915_pmu_register_cpuhp_state(struct i915_pmu *pmu)
+> -{
+> -	if (cpuhp_state == CPUHP_INVALID)
+> -		return -EINVAL;
+> -
+> -	return cpuhp_state_add_instance(cpuhp_state, &pmu->cpuhp.node);
+> -}
+> -
+> -static void i915_pmu_unregister_cpuhp_state(struct i915_pmu *pmu)
+> -{
+> -	cpuhp_state_remove_instance(cpuhp_state, &pmu->cpuhp.node);
+> -}
+> -
+>  void i915_pmu_register(struct drm_i915_private *i915)
+>  {
+>  	struct i915_pmu *pmu = &i915->pmu;
+>  	const struct attribute_group *attr_groups[] = {
+>  		&i915_pmu_format_attr_group,
+>  		&pmu->events_attr_group,
+> -		&i915_pmu_cpumask_attr_group,
+>  		NULL
+>  	};
+>  	int ret = -ENOMEM;
+> @@ -1266,7 +1162,6 @@ void i915_pmu_register(struct drm_i915_private *i915)
+>  	spin_lock_init(&pmu->lock);
+>  	hrtimer_init(&pmu->timer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
+>  	pmu->timer.function = i915_sample;
+> -	pmu->cpuhp.cpu = -1;
+>  	init_rc6(pmu);
+>  
+>  	if (IS_DGFX(i915)) {
+> @@ -1295,6 +1190,7 @@ void i915_pmu_register(struct drm_i915_private *i915)
+>  
+>  	pmu->base.module	= THIS_MODULE;
+>  	pmu->base.task_ctx_nr	= perf_invalid_context;
+> +	pmu->base.scope		= PERF_PMU_SCOPE_SYS_WIDE;
+>  	pmu->base.event_init	= i915_pmu_event_init;
+>  	pmu->base.add		= i915_pmu_event_add;
+>  	pmu->base.del		= i915_pmu_event_del;
+> @@ -1307,16 +1203,10 @@ void i915_pmu_register(struct drm_i915_private *i915)
+>  	if (ret)
+>  		goto err_groups;
+>  
+> -	ret = i915_pmu_register_cpuhp_state(pmu);
+> -	if (ret)
+> -		goto err_unreg;
+> -
+>  	pmu->registered = true;
+>  
+>  	return;
+>  
+> -err_unreg:
+> -	perf_pmu_unregister(&pmu->base);
+>  err_groups:
+>  	kfree(pmu->base.attr_groups);
+>  err_attr:
+> @@ -1340,8 +1230,6 @@ void i915_pmu_unregister(struct drm_i915_private *i915)
+>  
+>  	hrtimer_cancel(&pmu->timer);
+>  
+> -	i915_pmu_unregister_cpuhp_state(pmu);
+> -
+>  	perf_pmu_unregister(&pmu->base);
+>  	kfree(pmu->base.attr_groups);
+>  	if (IS_DGFX(i915))
+> diff --git a/drivers/gpu/drm/i915/i915_pmu.h b/drivers/gpu/drm/i915/i915_pmu.h
+> index 8e66d63d0c9f9..53bce3d8bfbaf 100644
+> --- a/drivers/gpu/drm/i915/i915_pmu.h
+> +++ b/drivers/gpu/drm/i915/i915_pmu.h
+> @@ -56,13 +56,6 @@ struct i915_pmu_sample {
+>  };
+>  
+>  struct i915_pmu {
+> -	/**
+> -	 * @cpuhp: Struct used for CPU hotplug handling.
+> -	 */
+> -	struct {
+> -		struct hlist_node node;
+> -		unsigned int cpu;
+> -	} cpuhp;
+>  	/**
+>  	 * @base: PMU base.
 >  	 */
->  	wa_masked_en(wal, GEN11_COMMON_SLICE_CHICKEN3,
->  		     GEN12_DISABLE_CPS_AWARE_COLOR_PIPE);
-> -- 
-> 2.25.1
-> 
+> @@ -155,15 +148,11 @@ struct i915_pmu {
+>  };
+>  
+>  #ifdef CONFIG_PERF_EVENTS
+> -int i915_pmu_init(void);
+> -void i915_pmu_exit(void);
+>  void i915_pmu_register(struct drm_i915_private *i915);
+>  void i915_pmu_unregister(struct drm_i915_private *i915);
+>  void i915_pmu_gt_parked(struct intel_gt *gt);
+>  void i915_pmu_gt_unparked(struct intel_gt *gt);
+>  #else
+> -static inline int i915_pmu_init(void) { return 0; }
+> -static inline void i915_pmu_exit(void) {}
+>  static inline void i915_pmu_register(struct drm_i915_private *i915) {}
+>  static inline void i915_pmu_unregister(struct drm_i915_private *i915) {}
+>  static inline void i915_pmu_gt_parked(struct intel_gt *gt) {}
+
