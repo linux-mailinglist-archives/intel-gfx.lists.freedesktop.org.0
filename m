@@ -2,69 +2,83 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86E96A17EDF
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2025 14:31:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D4C1A17EDB
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2025 14:31:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D028D10E5BF;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3EE5610E5B1;
 	Tue, 21 Jan 2025 13:31:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=kde.org header.i=@kde.org header.b="V4vpkKHa";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Yvmxvy5A";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from letterbox.kde.org (letterbox.kde.org [46.43.1.242])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE67410E031;
- Tue, 21 Jan 2025 01:15:08 +0000 (UTC)
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com
- [209.85.218.54]) (Authenticated sender: zamundaaa)
- by letterbox.kde.org (Postfix) with ESMTPSA id C6B4932415B;
- Tue, 21 Jan 2025 01:15:07 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kde.org; s=users;
- t=1737422107; bh=hM2fgf0olfRkEwK6dyP6s2sEQFyODgPiSs8QRRD7534=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=V4vpkKHaKnd/oT3woE4w9DgLXF4+huS+pPTtoaJN8WKYhvFvJNO/hOKpFb5qf+Mcq
- B9mZ/JBkX0lvoa14cb6y8pu7cAKpKgb6/xIBVGwR7eg9TYVBY0tyxWO3mdw8Xehi6n
- oBbqZD9x+KsJhBHhf2XNfU2U52vLsKind42IraqoJ1axkivBuxXkMvvSXETZIXB6R9
- Xmpe6yP2hUO+GzfFxUmVhjW1DS96UXqEC7whcQP+60tekUELi7bl6KjGGYjtzBXe7F
- kwXQPnR7w1DTscc7pfYOxG0/gYE9XbTl3NhRp2j0biPhIzoiUE4lhclCZZCxrDgVLm
- A7jr0ZpSnPB3w==
-Received: by mail-ej1-f54.google.com with SMTP id
- a640c23a62f3a-aaf57c2e0beso1020153366b.3; 
- Mon, 20 Jan 2025 17:15:07 -0800 (PST)
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com
+ [209.85.214.175])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A3E810E172;
+ Tue, 21 Jan 2025 10:43:19 +0000 (UTC)
+Received: by mail-pl1-f175.google.com with SMTP id
+ d9443c01a7336-21670dce0a7so113022605ad.1; 
+ Tue, 21 Jan 2025 02:43:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1737456138; x=1738060938; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=4Tl/gGsRPHRlKfMk3m6GA72SRpbhaa2/0Y9Q3kM0kF0=;
+ b=Yvmxvy5AtKtog8lwCmzEKkBTnT4f3V8NEFljKi8/CKaVCMocBFod3LkbmQ8VzyOdgs
+ 3HSv/EgCqkHg5TvM2HMdouU+gvO9VfUQAdpCtq5LgdsT5PNP6sq+BbJV/wSdZDjoktvk
+ 9o+I0oF3wRJaQaVvY7cBjK8jXbP+aTxUC1aPRXBO91Yg2Zl0rrmPzQSDJonp90OQ70IS
+ mLox0HjWvraSB1Kf8F6m/7PMhohs648QHQ0ncg1+3aX3QMI91QPad6AZnhUuZE7Eq418
+ o65UVCNwM4zgiNCwYzi9cHDkxP3RiZVzIliwiKvXfR++7AjHJsovZmeD+6kmsbLHBAhN
+ yrzA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1737456138; x=1738060938;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=4Tl/gGsRPHRlKfMk3m6GA72SRpbhaa2/0Y9Q3kM0kF0=;
+ b=da5fKLmeSVZbY8jIR36Sa9kZumgrWBaEfFcIofr+CZ4L/oujlmdlLe/wLneF2eUTKO
+ I+0O6wryHevzeC/PUwsV+aYoX0OghQU48S3Cjs/MezwqecCwhiqXGNQbCiD9tJPtWRuW
+ dC81HuT/YzcpxtGIRutUfw/KFwz5FIwnNnKddV2uFlYRgckylXOMNL3MCoiPgY9ABoSb
+ 6SaNgD1A/fOssO657H6cUkjoJZvyBm476dXCX9kyPzjvr4bWQeuuQrjY3UZ3pDcoPSj7
+ 5lRe7k+ncQiDhxc47urX5b9SfOk62JIJsjSAmC+/X445gSFNwhXj5EJcnNntAhnBwvwD
+ nJxQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUtv1kVJLbF95mJXkJCGAbY9YNVr69h3r0EPXCAe5SND+CJSKtn2twd6cSrJ+iaqQOfmABsI5/RV4q+@lists.freedesktop.org,
- AJvYcCWCGMDnLHQJyXzpjV4JpnDih2/KsOEYkhaqB9fwAjVCnnpvqy4tGw1OcuRavJKyPOBXlwzYLSnD@lists.freedesktop.org,
- AJvYcCWchc8o6dPqD42Pf7h006gaS9e3iF/9m/ztpqsi3CWuLn5JDCH7zp7yW7MqNG7MOLXNehbYxqJPuw7E@lists.freedesktop.org,
- AJvYcCXaZa7ERIWFgyIkvVYRve0725RvdK37Mga6DAlEgw9gaHB/QD1o5SuT33xHaI0nIgGMEFJF0cPJJ1Y=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzKt67vdd14gmvfRjGzhgKQUJhdEJIyS3GIPfDyJr4O9QW6Ncw3
- /nQ9D2KohDL2S64RtViPicfIw6JS6fmvoEcR5FJ3LalWOLjntbuBpHwAMaKr3mqkDOo+AwAf2Eb
- dT3C2BWIZYaMsb2UMf1pGw5B9NQo=
-X-Google-Smtp-Source: AGHT+IHMrdZmZYN6AneS0M7yk0oJgsGbOhYYMwHUnQJVRQueCtdy9Lh5FdsaXzAZ1DBLPn5H6+vQ6quf6I5I7PDV7ek=
-X-Received: by 2002:a17:907:1c19:b0:aa6:acd6:b30d with SMTP id
- a640c23a62f3a-ab38b4c63f2mr1366856566b.48.1737422107129; Mon, 20 Jan 2025
- 17:15:07 -0800 (PST)
+ AJvYcCUqMjjfrgR9qkUk4v+TWc/0ODhZ9nj395aMf+LbHjgJsPK/0h85rTs4StChx5MNJwi36PfOspuYDO0=@lists.freedesktop.org,
+ AJvYcCUr/unrKVhL2E4GFkuuN8m++aABk8kaPPWjaIBgbUOxVPbEXwkyBeIz0Qi3V/WeqCRo8E2B0l6Ajqk5@lists.freedesktop.org,
+ AJvYcCX9chaVztTqQYevJxGO8STD+/9Ci+q7yUilKq39nRU0AVUBHgHnocR39rgEYaoaYyqVyNktC0T6U/M=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwaaKnnCxumVJ3adDclIQXQ3xXhuMQqBW7Gsdm0HTMpFnsXdMis
+ /CIMoNJowGeDSmhsj6YYRiGpSTwQf4hiplOFiUuqTgWaIaQhp/9L
+X-Gm-Gg: ASbGncttpwaBokdmMy6I+n2t3imuHFI7ZXxoG6MqBqpTzqPaSLdZ1rXaCmOJtNQsLIQ
+ I6zNTrSXG53hiOqWq5DbAUTqjQBLMdmS3xeFxeOQ3kcoFrl50EryXcctTAV7vNWBWyOfp0aO0zf
+ 3EFz1ON7OxB8bItZ33GAIn+8uDIC22UTvGVj2Iy6JbESEO08AIWVsEf9/gF0Bb+F2cIIfIkCvM4
+ BkfKEIRJ4fEkYPCejNK42AnBG/Ym0Tmx9Emoyb3sbnYPN2rg5fkMlZecSoj/2gZLKeLd4oC/N9U
+ VRgLZyxmkQo2Aw==
+X-Google-Smtp-Source: AGHT+IEmzmf6qo4FU3cYsSFHCkv37zpXSq5rQ/sBf1cVkK9FRuF5itxEGPjy+jpxoBb9gzGq+/K0BQ==
+X-Received: by 2002:a17:902:f545:b0:215:6e01:ad19 with SMTP id
+ d9443c01a7336-21c35587f37mr272882875ad.29.1737456138578; 
+ Tue, 21 Jan 2025 02:42:18 -0800 (PST)
+Received: from localhost.localdomain
+ ([2401:4900:8899:7ee7:e6fd:4c4f:524d:ebac])
+ by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-21c2cea0966sm76063255ad.37.2025.01.21.02.42.14
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 21 Jan 2025 02:42:18 -0800 (PST)
+From: Atharva Tiwari <evepolonium@gmail.com>
+To: 
+Cc: evepolonium@gmail.com, Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH] drm/i915/fbdev: Discard large BIOS framebuffers
+Date: Tue, 21 Jan 2025 16:12:10 +0530
+Message-Id: <20250121104210.3159-1-evepolonium@gmail.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-References: <20241128153707.1294347-1-raag.jadav@intel.com>
- <20241128153707.1294347-3-raag.jadav@intel.com>
-In-Reply-To: <20241128153707.1294347-3-raag.jadav@intel.com>
-From: Xaver Hugl <xaver.hugl@kde.org>
-Date: Tue, 21 Jan 2025 02:14:56 +0100
-X-Gmail-Original-Message-ID: <CAFZQkGy3R0TMY5CARPQZF70fdKGLX8GQjV_YQAHzEXsiuNHj+w@mail.gmail.com>
-X-Gm-Features: AbW1kvYyDEzcmVwbdo9c6XA4vihWY2IEO2N6qS2J1gV67gtMuD21gh51qrRQ3Dk
-Message-ID: <CAFZQkGy3R0TMY5CARPQZF70fdKGLX8GQjV_YQAHzEXsiuNHj+w@mail.gmail.com>
-Subject: Re: [PATCH v10 2/4] drm/doc: Document device wedged event
-To: Raag Jadav <raag.jadav@intel.com>
-Cc: airlied@gmail.com, simona@ffwll.ch, lucas.demarchi@intel.com, 
- rodrigo.vivi@intel.com, jani.nikula@linux.intel.com, 
- andriy.shevchenko@linux.intel.com, lina@asahilina.net, 
- michal.wajdeczko@intel.com, christian.koenig@amd.com, 
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com, 
- aravind.iddamsetty@linux.intel.com, anshuman.gupta@intel.com, 
- alexander.deucher@amd.com, andrealmeid@igalia.com, 
- amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com
-Content-Type: text/plain; charset="UTF-8"
-X-Mailman-Approved-At: Tue, 21 Jan 2025 13:31:29 +0000
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Tue, 21 Jan 2025 13:31:28 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,17 +94,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-> +It is the responsibility of the consumer to make sure that the device or
-> +its resources are not in use by any process before attempting recovery.
-I'm not convinced this is actually doable in practice, outside of
-killing all apps that aren't the one trying to recover the GPU.
-Is this just about not crashing those processes if they don't handle
-GPU hotunplugs well, about leaks, or something else?
+On certain 4K panels, the BIOS framebuffer
+exceeds the panel's required dimensions,
+leading to display corruption.
+This patch introduces a validation check to address the issue.
 
-> +With IOCTLs blocked and device already 'wedged', all device memory should
-> +be unmapped and file descriptors should be closed to prevent leaks.
-Afaiu from a userspace POV, a rebind is just like a GPU hotunplug +
-hotplug with matching "remove" and "add" udev events. As long as the
-application cleans up resources related to the device when it receives
-the event, there should be no leaks with a normal hotunplug... Is this
-different enough that we can't have the same expectations?
+Signed-off-by: Atharva Tiwari <evepolonium@gmail.com>
+---
+ drivers/gpu/drm/i915/display/intel_fbdev.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
+index 00852ff5b247..e8cf06772c31 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbdev.c
++++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+@@ -197,10 +197,10 @@ static int intelfb_create(struct drm_fb_helper *helper,
+ 	ifbdev->fb = NULL;
+ 
+ 	if (fb &&
+-	    (sizes->fb_width > fb->base.width ||
+-	     sizes->fb_height > fb->base.height)) {
++	    (sizes->fb_width != fb->base.width ||
++	     sizes->fb_height != fb->base.height)) {
+ 		drm_dbg_kms(&dev_priv->drm,
+-			    "BIOS fb too small (%dx%d), we require (%dx%d),"
++			    "BIOS fb dimensions mismatch (%dx%d), we require (%dx%d),"
+ 			    " releasing it\n",
+ 			    fb->base.width, fb->base.height,
+ 			    sizes->fb_width, sizes->fb_height);
+-- 
+2.39.5
+
