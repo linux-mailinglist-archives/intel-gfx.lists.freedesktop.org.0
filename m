@@ -2,84 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3655CA18076
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2025 15:52:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 72BFAA18097
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2025 15:56:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D43D910E201;
-	Tue, 21 Jan 2025 14:52:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72CFD10E061;
+	Tue, 21 Jan 2025 14:56:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Oa+xTOG2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VUhBbu73";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com
- [IPv6:2607:f8b0:4864:20::1033])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF36810E07E;
- Tue, 21 Jan 2025 14:52:07 +0000 (UTC)
-Received: by mail-pj1-x1033.google.com with SMTP id
- 98e67ed59e1d1-2ee46851b5eso7722128a91.1; 
- Tue, 21 Jan 2025 06:52:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1737471127; x=1738075927; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:sender:from:to:cc:subject:date:message-id:reply-to;
- bh=porkxhj/+zcH8ElSFH8+hwoffhoJj1DhPV3pdsVdFTc=;
- b=Oa+xTOG2ydgG5pGwVrMIAwZtNwX2NGSPQoGmlcfeqBgLgvizgvMaMZwMStGNSIjjkA
- tI5V/GEitFDg7Y0rBY5A2J3F7afc37kRVvlY6o6lLyEPtftcO0ebHZzGsc8ODyA1r04s
- l+wKfMEZ7odn9uLKs9MKtTpiYT9AttjIe5/94zHRdb+XV4Vq2R16lUmgp6c4hHLE9Lai
- xVss/pk/aDm/SGRBsZn2WtTi+o+lzA5fG8RytX6wMDRxOGihhiQYsW8RnnQhQo8MMc+L
- wMsonSCANRiR4RJeq+oKk2A8Guh45egqzsqVs8B6N6q5YZpE8+Fo3BqTgQI5uUVFTzNT
- /UIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1737471127; x=1738075927;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:sender:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=porkxhj/+zcH8ElSFH8+hwoffhoJj1DhPV3pdsVdFTc=;
- b=XDuAkAr/m9vrM7jV7nrP0hnbXrzGOLXgjJBU2URveRiy19nR5hfmaqk9ZHztDUFe6x
- vsmVEDV6ZUctvjWx7Fe6Lq4Z5QPy0XawD6TeUUd+E5cIuhGA6THeSRxfPZNbTVhQy+Hn
- 8mVrmP1ulvYKrl93BBiolnO0aQ7Lt6/LaATy4u27gZgcAHcIWU/pe39BZ8EYjYOr3IEe
- MRg0XuEJFJpDOIKGc5tla553m2GQ2TS2I21HtwnKtP2k1m1E4ILUi+VFI2NHtw3qvsnY
- 5qvUHBkV79zHt5ftOMqfxP2+dFb+wiuwX9U49Q7+u8H7knOjdfpByCLJQJKvYP5lgPOf
- 3sjA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVHsDVbaVfxoStTNJfhp7eO/rIeX5rCTJIBVcJ263KiPbJMrX+RlU0jYrRBQkYQNzeGvcmGJJOkass=@lists.freedesktop.org,
- AJvYcCWM8OF3xAviaBEfqIeyIlyToHdHlIx92LrddL4dSue5ehLqxVYZGCmE1ZdpAJYRA7FsETYXIo6oIu8=@lists.freedesktop.org,
- AJvYcCX1uiEG7/T3IZQyXpcPfEu4ENaGPf6NVJTH5zxsy14bght2BVKRSoxLgLGnp5LiGHxEXLEZ0dK+TCV8@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxwFkHSQqh9c1GzxDL5OT0Pyy8ukjvAIY0NIGuDDTioAMHpXZX2
- ng9Ln5c2+FhL9PFMUlpsns5TAdRaiEP1KwCiLh7aPqsUFBBOkp6z
-X-Gm-Gg: ASbGncv609kc9kgvKbIZSdrABkzf0KdjuSL/6DAtLMOOvvfUBzjQeTGFPArrjfLYVTi
- LWR5DliVNwZwy2YlxKJCyEUXLJf/4ReqRS4pS0RkANIi/fH6Hh1NyjPWzYj7GkvlTVZW4EQ2qG6
- vL+EWn251IO+avr7lIqxKCWvrbKqj2hMEOIxv7czQT6OotMZSOcwvVjUI4d3HNmQs2LgYOZwoih
- T+hFLbApVEdiKMaqAWWdOHb/blTVLAZqf743/ImTYisSK75ixvbxPnoXBhOI3ZUbFDzpsNBaX8K
- k4k6+ps=
-X-Google-Smtp-Source: AGHT+IHG6AulQAMp9lo7QPMhMqUcQBMJUVIU2FAi1WsQ3R8uLGEj/dWdq1k/P/GXTHjvvZU/GSkHbg==
-X-Received: by 2002:a05:6a00:1743:b0:725:f1b1:cbc5 with SMTP id
- d2e1a72fcca58-72daf931e97mr28621439b3a.3.1737471127314; 
- Tue, 21 Jan 2025 06:52:07 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
- by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-72dabac5a46sm9354747b3a.177.2025.01.21.06.52.06
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 21 Jan 2025 06:52:06 -0800 (PST)
-From: Guenter Roeck <linux@roeck-us.net>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- David Laight <david.laight.linux@gmail.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Subject: [PATCH v2] drm/i915/backlight: Return immediately when scale() finds
- invalid parameters
-Date: Tue, 21 Jan 2025 06:52:03 -0800
-Message-ID: <20250121145203.2851237-1-linux@roeck-us.net>
-X-Mailer: git-send-email 2.45.2
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA0A410E061;
+ Tue, 21 Jan 2025 14:56:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1737471414; x=1769007414;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=wDQSvxNofjDsI+G9J/jhSLaF184q/KePwAFFX1l/Pd4=;
+ b=VUhBbu73xjn3slO0a423yrfq4UDB5im0wfrCSuN/RgrMkVuDqKSnoZzi
+ DuZ4J+F6FTc0GgRWMzRZrM8mrTZBQub2S+T6wJKTY9JYorFVBKKdHeOiu
+ EdK5JzbUSSvZUByDsQMNqjXzhaCR8QTeqohaxnKYMYDmy9gFNudX/sY7h
+ 16Hgq50c6gKpHBPR96QmI02/14/EDBEl4YoKoUTfjoSivizzhuBdok2xb
+ TnNaW/kOQ8Fs+EL8t+KZ3p6AGzGMQLmm9ohu/Qdyp+NVzGVArjcoYOoxe
+ V4sxMah7Z/TORYkcGYOhlF/nyVhDY+avm6a/0c8EYXBE3De8CJP711JPB g==;
+X-CSE-ConnectionGUID: SHFhzYxMRwS3FW3b1Y/cAw==
+X-CSE-MsgGUID: xLMvA77+QK2G3yxFS40hOg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11322"; a="55436616"
+X-IronPort-AV: E=Sophos;i="6.13,222,1732608000"; d="scan'208";a="55436616"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jan 2025 06:56:54 -0800
+X-CSE-ConnectionGUID: N/La51MKR5yalK1MJ3liww==
+X-CSE-MsgGUID: lIxe3/85THuqXFzBvCSz1w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="106655390"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jan 2025 06:56:52 -0800
+Date: Tue, 21 Jan 2025 16:57:44 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "De Marchi, Lucas" <lucas.demarchi@intel.com>
+Subject: Re: [PATCH] drm/xe/dp: Fix non-display builds with DP tunnelling
+ incorrectly enabled
+Message-ID: <Z4-16NeQg7m4YSd2@ideak-desk.fi.intel.com>
+References: <20250117153843.1312303-1-imre.deak@intel.com>
+ <SN7PR11MB6750D685E73BDAFC75FE733EE3E62@SN7PR11MB6750.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <SN7PR11MB6750D685E73BDAFC75FE733EE3E62@SN7PR11MB6750.namprd11.prod.outlook.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,67 +68,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The scale() functions detects invalid parameters, but continues
-its calculations anyway. This causes bad results if negative values
-are used for unsigned operations. Worst case, a division by 0 error
-will be seen if source_min == source_max.
+On Tue, Jan 21, 2025 at 06:37:54AM +0200, Kandpal, Suraj wrote:
+> 
+> 
+> > -----Original Message-----
+> > From: Deak, Imre <imre.deak@intel.com>
+> > Sent: Friday, January 17, 2025 9:09 PM
+> > To: intel-xe@lists.freedesktop.org; intel-gfx@lists.freedesktop.org
+> > Cc: Kandpal, Suraj <suraj.kandpal@intel.com>; De Marchi, Lucas
+> > <lucas.demarchi@intel.com>
+> > Subject: [PATCH] drm/xe/dp: Fix non-display builds with DP tunnelling
+> > incorrectly enabled
+> >
+> > Code for the DP tunnelling functionality in the xe driver can be built only if
+> > the display code is also built, adjust the kconfig dependency accordingly.
+> >
+> > Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+> > Fixes: 73900dce57e4 ("drm/xe/dp: Enable DP tunneling")
+> > Reported-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> 
+> LGTM,
+> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
-On top of that, after v6.13, the sequence of WARN_ON() followed by clamp()
-may result in a build error with gcc 13.x.
+Thanks, patch is pushed to drm-intel-next.
 
-drivers/gpu/drm/i915/display/intel_backlight.c: In function 'scale':
-include/linux/compiler_types.h:542:45: error:
-	call to '__compiletime_assert_415' declared with attribute error:
-	clamp() low limit source_min greater than high limit source_max
-
-This happens if the compiler decides to rearrange the code as follows.
-
-        if (source_min > source_max) {
-                WARN(..);
-                /* Do the clamp() knowing that source_min > source_max */
-                source_val = clamp(source_val, source_min, source_max);
-        } else {
-                /* Do the clamp knowing that source_min <= source_max */
-                source_val = clamp(source_val, source_min, source_max);
-        }
-
-Fix the problem by evaluating the return values from WARN_ON and returning
-immediately after a warning. While at it, fix divide by zero error seen
-if source_min == source_max.
-
-Analyzed-by: Linus Torvalds <torvalds@linux-foundation.org>
-Suggested-by: Linus Torvalds <torvalds@linux-foundation.org>
-Suggested-by: David Laight <david.laight.linux@gmail.com>
-Cc: David Laight <david.laight.linux@gmail.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Signed-off-by: Guenter Roeck <linux@roeck-us.net>
----
-v2: Simplify code to always return target_min after a warning,
-    and also warn if source_min == source_max.
-
- drivers/gpu/drm/i915/display/intel_backlight.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
-index 3f81a726cc7d..ca588bed82b9 100644
---- a/drivers/gpu/drm/i915/display/intel_backlight.c
-+++ b/drivers/gpu/drm/i915/display/intel_backlight.c
-@@ -40,8 +40,9 @@ static u32 scale(u32 source_val,
- {
- 	u64 target_val;
- 
--	WARN_ON(source_min > source_max);
--	WARN_ON(target_min > target_max);
-+	if (WARN_ON(source_min >= source_max) ||
-+	    WARN_ON(target_min > target_max))
-+		return target_min;
- 
- 	/* defensive */
- 	source_val = clamp(source_val, source_min, source_max);
--- 
-2.45.2
-
+> > ---
+> >  drivers/gpu/drm/xe/Kconfig | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig index
+> > 50cf80df51900..99219c16e8aac 100644
+> > --- a/drivers/gpu/drm/xe/Kconfig
+> > +++ b/drivers/gpu/drm/xe/Kconfig
+> > @@ -61,7 +61,7 @@ config DRM_XE_DISPLAY
+> >
+> >  config DRM_XE_DP_TUNNEL
+> >       bool "Enable DP tunnel support"
+> > -     depends on DRM_XE
+> > +     depends on DRM_XE_DISPLAY
+> >       depends on USB4
+> >       select DRM_DISPLAY_DP_TUNNEL
+> >       default y
+> > --
+> > 2.44.2
+> 
