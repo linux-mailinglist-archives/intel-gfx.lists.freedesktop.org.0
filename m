@@ -2,83 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D4C1A17EDB
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2025 14:31:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D1816A17EF7
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2025 14:40:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3EE5610E5B1;
-	Tue, 21 Jan 2025 13:31:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD81F10E5AA;
+	Tue, 21 Jan 2025 13:40:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Yvmxvy5A";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mc6AGytz";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com
- [209.85.214.175])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A3E810E172;
- Tue, 21 Jan 2025 10:43:19 +0000 (UTC)
-Received: by mail-pl1-f175.google.com with SMTP id
- d9443c01a7336-21670dce0a7so113022605ad.1; 
- Tue, 21 Jan 2025 02:43:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1737456138; x=1738060938; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=4Tl/gGsRPHRlKfMk3m6GA72SRpbhaa2/0Y9Q3kM0kF0=;
- b=Yvmxvy5AtKtog8lwCmzEKkBTnT4f3V8NEFljKi8/CKaVCMocBFod3LkbmQ8VzyOdgs
- 3HSv/EgCqkHg5TvM2HMdouU+gvO9VfUQAdpCtq5LgdsT5PNP6sq+BbJV/wSdZDjoktvk
- 9o+I0oF3wRJaQaVvY7cBjK8jXbP+aTxUC1aPRXBO91Yg2Zl0rrmPzQSDJonp90OQ70IS
- mLox0HjWvraSB1Kf8F6m/7PMhohs648QHQ0ncg1+3aX3QMI91QPad6AZnhUuZE7Eq418
- o65UVCNwM4zgiNCwYzi9cHDkxP3RiZVzIliwiKvXfR++7AjHJsovZmeD+6kmsbLHBAhN
- yrzA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1737456138; x=1738060938;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=4Tl/gGsRPHRlKfMk3m6GA72SRpbhaa2/0Y9Q3kM0kF0=;
- b=da5fKLmeSVZbY8jIR36Sa9kZumgrWBaEfFcIofr+CZ4L/oujlmdlLe/wLneF2eUTKO
- I+0O6wryHevzeC/PUwsV+aYoX0OghQU48S3Cjs/MezwqecCwhiqXGNQbCiD9tJPtWRuW
- dC81HuT/YzcpxtGIRutUfw/KFwz5FIwnNnKddV2uFlYRgckylXOMNL3MCoiPgY9ABoSb
- 6SaNgD1A/fOssO657H6cUkjoJZvyBm476dXCX9kyPzjvr4bWQeuuQrjY3UZ3pDcoPSj7
- 5lRe7k+ncQiDhxc47urX5b9SfOk62JIJsjSAmC+/X445gSFNwhXj5EJcnNntAhnBwvwD
- nJxQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUqMjjfrgR9qkUk4v+TWc/0ODhZ9nj395aMf+LbHjgJsPK/0h85rTs4StChx5MNJwi36PfOspuYDO0=@lists.freedesktop.org,
- AJvYcCUr/unrKVhL2E4GFkuuN8m++aABk8kaPPWjaIBgbUOxVPbEXwkyBeIz0Qi3V/WeqCRo8E2B0l6Ajqk5@lists.freedesktop.org,
- AJvYcCX9chaVztTqQYevJxGO8STD+/9Ci+q7yUilKq39nRU0AVUBHgHnocR39rgEYaoaYyqVyNktC0T6U/M=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwaaKnnCxumVJ3adDclIQXQ3xXhuMQqBW7Gsdm0HTMpFnsXdMis
- /CIMoNJowGeDSmhsj6YYRiGpSTwQf4hiplOFiUuqTgWaIaQhp/9L
-X-Gm-Gg: ASbGncttpwaBokdmMy6I+n2t3imuHFI7ZXxoG6MqBqpTzqPaSLdZ1rXaCmOJtNQsLIQ
- I6zNTrSXG53hiOqWq5DbAUTqjQBLMdmS3xeFxeOQ3kcoFrl50EryXcctTAV7vNWBWyOfp0aO0zf
- 3EFz1ON7OxB8bItZ33GAIn+8uDIC22UTvGVj2Iy6JbESEO08AIWVsEf9/gF0Bb+F2cIIfIkCvM4
- BkfKEIRJ4fEkYPCejNK42AnBG/Ym0Tmx9Emoyb3sbnYPN2rg5fkMlZecSoj/2gZLKeLd4oC/N9U
- VRgLZyxmkQo2Aw==
-X-Google-Smtp-Source: AGHT+IEmzmf6qo4FU3cYsSFHCkv37zpXSq5rQ/sBf1cVkK9FRuF5itxEGPjy+jpxoBb9gzGq+/K0BQ==
-X-Received: by 2002:a17:902:f545:b0:215:6e01:ad19 with SMTP id
- d9443c01a7336-21c35587f37mr272882875ad.29.1737456138578; 
- Tue, 21 Jan 2025 02:42:18 -0800 (PST)
-Received: from localhost.localdomain
- ([2401:4900:8899:7ee7:e6fd:4c4f:524d:ebac])
- by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-21c2cea0966sm76063255ad.37.2025.01.21.02.42.14
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 21 Jan 2025 02:42:18 -0800 (PST)
-From: Atharva Tiwari <evepolonium@gmail.com>
-To: 
-Cc: evepolonium@gmail.com, Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH] drm/i915/fbdev: Discard large BIOS framebuffers
-Date: Tue, 21 Jan 2025 16:12:10 +0530
-Message-Id: <20250121104210.3159-1-evepolonium@gmail.com>
-X-Mailer: git-send-email 2.39.5
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA07310E592;
+ Tue, 21 Jan 2025 13:40:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1737466827; x=1769002827;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=WBmnldHfdBRkGsbeSgtmkh5O2QPNuQLqpHOfumaajEw=;
+ b=mc6AGytzenNjkHYU3XxImrgekwoLrcKxHSsa/a+4809tydnZcEjlaNFW
+ 9P5fzuFbEExeI8/qQFA1+bjqaugQPM0XBQ7zCj8rA/1hhyH+f3Gd+ebka
+ TazCQkbx0NbbBuiCmw/xX3YnAf3V9RWK7IKRBULcvzK20KL+w9aB6Sacx
+ 4wf2UsTrn7cqtJkZ0oFphWw6uHPT8w2NwZSpYn26daQPwiXJXT4ySrM6g
+ 8ijyMIpFinNJ3e7G5lqfgAYNMyeeXpkToXXLdkq40xxWADWbu+RkRqYuv
+ P9Tar5KOu79OPg60c/mlSCVd5OPH3u8K8716rKiC3uSj0XnI3GVHa5VxN A==;
+X-CSE-ConnectionGUID: 5631eRlASj+oc10YF54FGw==
+X-CSE-MsgGUID: xtmSZuFyQSCJkbb+DoUS9A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11322"; a="37793473"
+X-IronPort-AV: E=Sophos;i="6.13,222,1732608000"; d="scan'208";a="37793473"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jan 2025 05:40:26 -0800
+X-CSE-ConnectionGUID: 8HPENCmKSWmnhwq0GaJgzw==
+X-CSE-MsgGUID: 7bHHzFaMS1OL4alY/u8QuQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,222,1732608000"; d="scan'208";a="106922408"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 21 Jan 2025 05:40:24 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 21 Jan 2025 15:40:23 +0200
+Date: Tue, 21 Jan 2025 15:40:23 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v3 4/5] drm/i915/display: Populate list of async
+ supported formats/modifiers
+Message-ID: <Z4-jxyzDQfE3hzxY@intel.com>
+References: <20250108-asyn-v3-0-f4399635eec9@intel.com>
+ <20250108-asyn-v3-4-f4399635eec9@intel.com>
+ <Z462TS-6qRPz7eOb@intel.com>
+ <IA0PR11MB7307C0119A52004DC634EC00BAE62@IA0PR11MB7307.namprd11.prod.outlook.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 21 Jan 2025 13:31:28 +0000
+In-Reply-To: <IA0PR11MB7307C0119A52004DC634EC00BAE62@IA0PR11MB7307.namprd11.prod.outlook.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,34 +76,134 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On certain 4K panels, the BIOS framebuffer
-exceeds the panel's required dimensions,
-leading to display corruption.
-This patch introduces a validation check to address the issue.
+On Tue, Jan 21, 2025 at 03:34:20AM +0000, Murthy, Arun R wrote:
+> > On Wed, Jan 08, 2025 at 11:09:02AM +0530, Arun R Murthy wrote:
+> > > Populate the list of formats/modifiers supported by async flip.
+> > > Register a async property and expose the same to user through blob.
+> > >
+> > > Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/skl_universal_plane.c | 51
+> > > ++++++++++++++++++++++
+> > >  1 file changed, 51 insertions(+)
+> > >
+> > > diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> > > b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> > > index
+> > >
+> > ff9764cac1e71959e56283f61b5192ea261cec7a..e5e47f2219dae62e76cbde2e
+> > fb40
+> > > 266b047ab2b2 100644
+> > > --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> > > +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> > > @@ -170,6 +170,44 @@ static const u32 icl_hdr_plane_formats[] = {
+> > >  	DRM_FORMAT_XVYU16161616,
+> > >  };
+> > >
+> > > +static u64 tgl_asyn_modifiers[] = {
+> > > +	DRM_FORMAT_MOD_LINEAR,
+> > > +	I915_FORMAT_MOD_X_TILED,
+> > > +	I915_FORMAT_MOD_Y_TILED,
+> > > +	I915_FORMAT_MOD_4_TILED,
+> > > +	I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS,
+> > > +	I915_FORMAT_MOD_4_TILED_MTL_RC_CCS,
+> > > +	I915_FORMAT_MOD_4_TILED_DG2_RC_CCS,
+> > > +	I915_FORMAT_MOD_4_TILED_BMG_CCS,
+> > > +	I915_FORMAT_MOD_4_TILED_LNL_CCS,
+> > > +};
+> > > +
+> > > +static u64 icl_async_modifiers[] = {
+> > > +	I915_FORMAT_MOD_X_TILED,
+> > > +	I915_FORMAT_MOD_Y_TILED,
+> > > +	I915_FORMAT_MOD_Yf_TILED,
+> > > +	I915_FORMAT_MOD_Y_TILED_CCS,
+> > > +	I915_FORMAT_MOD_Yf_TILED_CCS,
+> > > +};
+> > > +
+> > > +static u64 skl_async_modifiers[] = {
+> > > +	I915_FORMAT_MOD_X_TILED,
+> > > +	I915_FORMAT_MOD_Y_TILED,
+> > > +	I915_FORMAT_MOD_Yf_TILED,
+> > > +};
+> > > +
+> > > +static u32 intel_async_formats[] = {
+> > > +	DRM_FORMAT_RGB565,
+> > > +	DRM_FORMAT_XRGB8888,
+> > > +	DRM_FORMAT_XBGR8888,
+> > > +	DRM_FORMAT_ARGB8888,
+> > > +	DRM_FORMAT_ABGR8888,
+> > > +	DRM_FORMAT_XRGB2101010,
+> > > +	DRM_FORMAT_XBGR2101010,
+> > > +	DRM_FORMAT_XRGB16161616F,
+> > > +	DRM_FORMAT_XBGR16161616F,
+> > > +};
+> > 
+> > I've just pushed my .can_async_flip() thing. I'm thinking with that all this can
+> > just disappear and we can have a completely generic implementation. Eg
+> > something like:
+> > 
+> Thanks, will rebase and push!
+> 
+> Thanks and Regards,
+> Arun R Murthy
+> --------------------
+> > intel_plane_format_mod_supported_async()
+> > {
+> > 	// some generic checks here (eg. reject planar formats)
+> > 
+> > 	return plane->format_mod_supported() &&
+> > 		plane->can_async_flip();
+> > }
 
-Signed-off-by: Atharva Tiwari <evepolonium@gmail.com>
----
- drivers/gpu/drm/i915/display/intel_fbdev.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+Actually for this one I think it'd probably make sense to call the 
+normal format_mod_supported() before doing any other checks, just 
+in case we ever get situations where the parameters come directly
+from userspace. It's better to filter out completely bogus values
+as early as possible, and the normal format_mod_supported() already
+has to be prepared for garbage values.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
-index 00852ff5b247..e8cf06772c31 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-@@ -197,10 +197,10 @@ static int intelfb_create(struct drm_fb_helper *helper,
- 	ifbdev->fb = NULL;
- 
- 	if (fb &&
--	    (sizes->fb_width > fb->base.width ||
--	     sizes->fb_height > fb->base.height)) {
-+	    (sizes->fb_width != fb->base.width ||
-+	     sizes->fb_height != fb->base.height)) {
- 		drm_dbg_kms(&dev_priv->drm,
--			    "BIOS fb too small (%dx%d), we require (%dx%d),"
-+			    "BIOS fb dimensions mismatch (%dx%d), we require (%dx%d),"
- 			    " releasing it\n",
- 			    fb->base.width, fb->base.height,
- 			    sizes->fb_width, sizes->fb_height);
+> > 
+> > > +
+> > >  int skl_format_to_fourcc(int format, bool rgb_order, bool alpha)  {
+> > >  	switch (format) {
+> > > @@ -2613,6 +2651,7 @@ skl_universal_plane_create(struct
+> > drm_i915_private *dev_priv,
+> > >  	unsigned int supported_rotations;
+> > >  	unsigned int supported_csc;
+> > >  	const u64 *modifiers;
+> > > +	u64 *async_modifiers;
+> > >  	const u32 *formats;
+> > >  	int num_formats;
+> > >  	int ret;
+> > > @@ -2715,6 +2754,18 @@ skl_universal_plane_create(struct
+> > drm_i915_private *dev_priv,
+> > >  	if (ret)
+> > >  		goto fail;
+> > >
+> > > +	if (DISPLAY_VER(dev_priv) >= 12)
+> > > +		async_modifiers = tgl_asyn_modifiers;
+> > > +	else if (DISPLAY_VER(dev_priv) == 11)
+> > > +		async_modifiers = icl_async_modifiers;
+> > > +	else
+> > > +		async_modifiers = skl_async_modifiers;
+> > > +
+> > > +	drm_plane_create_format_blob(&dev_priv->drm, &plane->base,
+> > > +				     async_modifiers, sizeof(async_modifiers),
+> > > +				     intel_async_formats,
+> > > +				     sizeof(intel_async_formats), true);
+> > > +
+> > >  	if (DISPLAY_VER(dev_priv) >= 13)
+> > >  		supported_rotations = DRM_MODE_ROTATE_0 |
+> > DRM_MODE_ROTATE_180;
+> > >  	else
+> > >
+> > > --
+> > > 2.25.1
+> > 
+> > --
+> > Ville Syrjälä
+> > Intel
+
 -- 
-2.39.5
-
+Ville Syrjälä
+Intel
