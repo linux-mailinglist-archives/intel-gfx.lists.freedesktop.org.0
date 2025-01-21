@@ -2,63 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1D79A1811C
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2025 16:27:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 12363A18162
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2025 16:53:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1210E10E1E7;
-	Tue, 21 Jan 2025 15:27:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 88EF810E5E2;
+	Tue, 21 Jan 2025 15:53:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PxTcUnyB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P3AZI3JX";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 918DC10E1FB;
- Tue, 21 Jan 2025 15:27:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 63D2E10E5E2
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Jan 2025 15:53:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737473264; x=1769009264;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=2ScYngx43+Vo+7fL7HuTQMTb9DxCGy5CtTn6l/84BYY=;
- b=PxTcUnyBBz8VB6cFfIcL+wXDO+sWZ/ntVXrZWhuDjLxTw+AN8dAZCi/m
- CBhRZFfsP/IcqU2Zt2ZyKXZdmsJOhbn8HvXqOeIKkvM8IJaNwzhqGpCw1
- rJTTIpMOTUagnYq6hVA/TIZjuOSvaGWtX6W4VyFTbBtMpP+4SqlyuyZmg
- 3h15ka8y7d95n0r4ZqUWLtBOblwfi8R4t5NnRBRjFPyvB0ZUsLdzLgn9S
- XQXBhwvFtip1GtsHOF/wsmidl8B4oWm5GAtFbmBOM154SZiamqqpTpFqI
- LLh4h4g/649y/+a8bTDESlKCebvAUTC/LP6ix9S3PIrqBopYvadNdrvKR w==;
-X-CSE-ConnectionGUID: ajvOTdNST7ePhx20QYscGQ==
-X-CSE-MsgGUID: E1/0SUIMSrudjrpy4D9C4Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="49307096"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="49307096"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2025 07:27:44 -0800
-X-CSE-ConnectionGUID: 18t3f6oDQVSI7jUJ+yxv8A==
-X-CSE-MsgGUID: WyvojPSJQJmAQWgEsTMNQA==
+ t=1737474820; x=1769010820;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=nFgqBYQ640kb0hYy5qDZ7gW76EuiK8sFf0DDeP2jLuQ=;
+ b=P3AZI3JXiF42a6sq1UAQClaPKH/b68oO7GouJiyhdPOWBg9UFJkyQsgO
+ CoUkW0miUpkwMpkSEsMSew/vKs+VRvsQ41M+1GyItciQnVLjvzDeTwxwp
+ 3+ZwdGzmUYn0nn6us+dJYfRvwyl8G9r1x4Ldc0WTxRfKpROPFdkfiw0hD
+ w+sUft6F9g5QFEWjUmYzb1IHFk3xOmB+h2d7R19WSTbkYme/34exXtRvX
+ DbPI7ohUE5XNQnKMmQgUhpeJSIisMVslguQlW9tQPOMLjqyd4HIWuz+ZH
+ f2xXuURlJzJgPa87aKL+Gu0Dl74SAXD1TnS61cURYy+Wuz1dph1D6OSVG g==;
+X-CSE-ConnectionGUID: UntKTZIASxCWfHDpL4ZQKg==
+X-CSE-MsgGUID: dg7rDQdhS9im3wf/bE7mWg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11322"; a="40710246"
+X-IronPort-AV: E=Sophos;i="6.13,222,1732608000"; d="scan'208";a="40710246"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jan 2025 07:53:35 -0800
+X-CSE-ConnectionGUID: qsPLGMZHTU2NYtcaVHyMrg==
+X-CSE-MsgGUID: ExNcgzmyReSQr4enjqGjaw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,222,1732608000"; d="scan'208";a="106628092"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2025 07:27:42 -0800
-Date: Tue, 21 Jan 2025 17:28:36 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH] drm/xe/dp: Enable DP tunneling
-Message-ID: <Z4-9JIZQjC1cGJsK@ideak-desk.fi.intel.com>
-References: <20250113154832.1004369-1-imre.deak@intel.com>
- <87cygqis8l.fsf@intel.com>
- <Z4VQK2mRtmeT_t6I@ideak-desk.fi.intel.com>
- <7br5fcyxwpapyyd646rqyja47wjxmgpnhvyramt64kumqevyua@codb2qklp2hu>
- <Z4p9jbQqkgRDb-HA@ideak-desk.fi.intel.com>
- <v5e2tnq6b7fr6rmi2mg24bf2x7jbljguce47s63ucugpvbiupa@z6r5kfxz6wth>
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="111835526"
+Received: from linux.intel.com ([10.54.29.200])
+ by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jan 2025 07:53:33 -0800
+Received: from [10.246.136.10] (kliang2-mobl1.ccr.corp.intel.com
+ [10.246.136.10])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by linux.intel.com (Postfix) with ESMTPS id BCE0720B5713;
+ Tue, 21 Jan 2025 07:53:32 -0800 (PST)
+Message-ID: <e15c89bb-88d6-4caf-a199-2febd067634d@linux.intel.com>
+Date: Tue, 21 Jan 2025 10:53:31 -0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <v5e2tnq6b7fr6rmi2mg24bf2x7jbljguce47s63ucugpvbiupa@z6r5kfxz6wth>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/i915/pmu: Drop custom hotplug code
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: intel-gfx@lists.freedesktop.org,
+ "Peter Zijlstra (Intel)" <peterz@infradead.org>,
+ Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+References: <20250116222426.77757-1-lucas.demarchi@intel.com>
+ <aded1225-0022-4e86-845c-283641cf32a0@linux.intel.com>
+ <pz7y2i25y5o2ox46s3ua3prsa5ap2mkqqb5chtebw3f2egwk6n@5m4xibw2h5yd>
+ <6d4d7f82-7619-40bd-bbc8-58681de54a6a@linux.intel.com>
+ <rtmoiu2z4vg42efvz6mwo45eaileyghqowibdzikob7mlnklbm@bz5cc5zkalcd>
+Content-Language: en-US
+From: "Liang, Kan" <kan.liang@linux.intel.com>
+In-Reply-To: <rtmoiu2z4vg42efvz6mwo45eaileyghqowibdzikob7mlnklbm@bz5cc5zkalcd>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,59 +79,64 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jan 17, 2025 at 10:45:56AM -0600, Lucas De Marchi wrote:
-> [...]
-> > > > > > diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
-> > > > > > index b51a2bde73e29..50cf80df51900 100644
-> > > > > > --- a/drivers/gpu/drm/xe/Kconfig
-> > > > > > +++ b/drivers/gpu/drm/xe/Kconfig
-> > > > > > @@ -59,6 +59,20 @@ config DRM_XE_DISPLAY
-> > > > > >  	help
-> > > > > >  	  Disable this option only if you want to compile out display support.
-> > > > > >
-> > > > > > +config DRM_XE_DP_TUNNEL
-> > > > > > +	bool "Enable DP tunnel support"
-> > > > > > +	depends on DRM_XE
-> > > > > > +	depends on USB4
-> > > > > > +	select DRM_DISPLAY_DP_TUNNEL
-> > > > > > +	default y
-> > > > > > +	help
-> > > > > > +	  Choose this option to detect DP tunnels and enable the Bandwidth
-> > > > > > +	  Allocation mode for such tunnels. This allows using the maximum
-> > > > > > +	  resolution allowed by the link BW on all displays sharing the
-> > > > > > +	  link BW, for instance on a Thunderbolt link.
-> > > > > > +
-> > > > > > +	  If in doubt say "Y".
-> > > > > > +
-> > > > >
-> > > > > I'm sort of wondering why we have this (and the i915 one) as
-> > > > > user-selectable config options at all. Is it ever reasonable for the
-> > > > > user to disable this if USB4 is enabled?
-> > > >
-> > > > On platforms that don't support DP tunneling, while supporting other
-> > > > USB4 functionality (or for systems w/o any TypeC/DP connectors) it would
-> > > > make sense to disable this option.
-> > > 
-> > > isn't this too fine grained? if we expose every single functionality of
-> > > the driver like this we will bury distros on configs and exponentially
-> > > explode the testing combination. And yes, this broke the build for me.
-> > 
-> > The tunneling functionality depends on USB4, BW allocation could fail
-> > without that. The option being user selectable also makes sense to me,
-> > as it has a size (~30kB) and runtime overhead (detecting tunnels and
-> > allocating/freeing BW), only required if the user has a dock/multiple
-> > displays.
+
+
+On 2025-01-21 9:29 a.m., Lucas De Marchi wrote:
+> On Mon, Jan 20, 2025 at 08:42:41PM -0500, Liang, Kan wrote:
+>>>>> -static int i915_pmu_cpu_offline(unsigned int cpu, struct hlist_node
+>>>>> *node)
+>>>>> -{
+>>>>> -    struct i915_pmu *pmu = hlist_entry_safe(node, typeof(*pmu),
+>>>>> cpuhp.node);
+>>>>> -    unsigned int target = i915_pmu_target_cpu;
+>>>>> -
+>>>>> -    /*
+>>>>> -     * Unregistering an instance generates a CPU offline event which
+>>>>> we must
+>>>>> -     * ignore to avoid incorrectly modifying the shared
+>>>>> i915_pmu_cpumask.
+>>>>> -     */
+>>>>> -    if (!pmu->registered)
+>>>>> -        return 0;
+>>>>> -
+>>>>> -    if (cpumask_test_and_clear_cpu(cpu, &i915_pmu_cpumask)) {
+>>>>> -        target = cpumask_any_but(topology_sibling_cpumask(cpu), cpu);
+>>>>> -
+>>>>
+>>>> I'm not familar with the i915 PMU, but it seems suggest a core scope
+>>>> PMU, not a system-wide scope.
+>>>
+>>> counter is in a complete separate device - it doesn't depend on core or
+>>> die or pkg - not sure why it cared about topology_sibling_cpumask here.
+>>
+>> OK. But it's still a behavior change. Please make it clear in the
+>> description that the patch also changes/fixes the scope from core scope
+>> to system-wide.
 > 
-> I will leave this up to the display maintainers - I still think it's too
-> fine grained to have this option as user selectable and worse, in 2
-> drivers.... does the user have to know which driver officially support
-> that hardware to enable one and disable the other?
+> sure... do you have a suggestion how to test the hotplug? For testing
+> purposes, can I force the perf cpu assigned to be something other than
+> the cpu0?
 
-All the display options should be configured at one place, but that's
-only feasible with a separate display module (which is the goal afaik).
+Yes, it's a bit tricky to verify the hotplug if the assigned CPU is
+CPU0. I don't know a way to force another CPU without changing the code.
+You may have to instrument the code for the test.
 
-> Lucas De Marchi
+Another test you may want to do is the perf system-wide test, e.g., perf
+stat -a -e i915/actual-frequency/ sleep 1.
+
+The existing code assumes the counter is core scope. So the result
+should be huge, since perf will read the counter on each core and add
+them up.
+But this patch claims that the counter is system-wide. With the patch,
+the same perf command should only read the counter on the assigned CPU.
+
+Please also post the test results in the changelog. That's the reason
+why the scope has to be changed.
+
+Thanks,
+Kan
+
+
