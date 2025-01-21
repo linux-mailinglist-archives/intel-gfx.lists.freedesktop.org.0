@@ -2,63 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FE21A17FC8
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2025 15:29:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD9ACA18008
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Jan 2025 15:38:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D5D6210E5C5;
-	Tue, 21 Jan 2025 14:29:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F05910E5D7;
+	Tue, 21 Jan 2025 14:38:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VtzV2zvB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OaAwLm39";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CFA310E5C5
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Jan 2025 14:29:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B6EE010E5D7
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Jan 2025 14:38:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737469782; x=1769005782;
+ t=1737470308; x=1769006308;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=w7U0hGL+yZiMoK5yYdVrObNLXegUV0+cVpLrM097O3I=;
- b=VtzV2zvBiW5k6EfSL0pRtwE8dUSGVT0J6pTuCIehr+g6jVp2o9oys7m/
- LKUItSPCAz9lm4UlspLUjQQ+fgNxVSqsfzKxReJf69O3/rKa76oSLrwiM
- kknMx85sE69ed7YK6S+vPTWb5GtcR7v1QaU+O5+LT0MIxL0vhVg7prClS
- cxEZ6ME94/7VR8dtHLiNthsPYB58rmcws4WTDsNQh6bFLg5M18hlc8inA
- bf1Hq7a6TaUbkjy0/VkD4QQU73wmq8eGJIE4Tiw7slBIQakNhJOQuqceD
- hKNqZneSAce3xZhZVCR6NB+6zXngeC7OJY1rvc9U4KV3DmnwxGm6FhsGv g==;
-X-CSE-ConnectionGUID: FzU2uinhQaKDNTvWZxYlmA==
-X-CSE-MsgGUID: 4vQc79XIR92zRrOY8ogSlA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11322"; a="48877295"
-X-IronPort-AV: E=Sophos;i="6.13,222,1732608000"; d="scan'208";a="48877295"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2025 06:29:41 -0800
-X-CSE-ConnectionGUID: azrqchH9Q7u4PLjRtQJyiQ==
-X-CSE-MsgGUID: YHTL1JlSSfSXvAZzEHBdzA==
+ bh=HzVo9yPpsqhp1crzChWM0Pprz+MbUDRA16WBkOYQ1q4=;
+ b=OaAwLm397+JMzZ9zwtCWNVKJNX8iaZQ9PtqXoMLkts/jtX4lCBTZvihg
+ C1hGsvK2dqV/2P+zJqu1Jds1+/rrae1CRK64WIQLaHUEu0/dIedFlwA1Z
+ cZ361+du0nSJ3ubrOXjkgjEodKMbo+bU1+zO0jpIcxkfNSQ2oOojYClxj
+ 25ts4jOGmUK+BTVEHKv5EWXdWPaUs649LHu/2VM3ndVWueJnQBL+3YT2U
+ vYPGDcXrGXSwV4CKrT7fURmcITQZQCuPTxa1SxdAb18f/FYwOkVURTcdz
+ Ls8auQfh7a1wwi6OoneE0zfqDrAjRL4QhcjL16le25HUmXH+w0iEMc+yN Q==;
+X-CSE-ConnectionGUID: 7v26Vj1pQu2dD/0y+0kdyA==
+X-CSE-MsgGUID: JAnpL+ntT824UQEsKv2DUQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11322"; a="38037122"
+X-IronPort-AV: E=Sophos;i="6.13,222,1732608000"; d="scan'208";a="38037122"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jan 2025 06:38:27 -0800
+X-CSE-ConnectionGUID: TNeEfjboRt6R6jQQJanMLg==
+X-CSE-MsgGUID: MddVg7TOTiuVZkY111AqFA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="111442811"
-Received: from ldmartin-desk2.corp.intel.com (HELO ldmartin-desk2)
- ([10.125.110.38])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2025 06:29:40 -0800
-Date: Tue, 21 Jan 2025 08:29:35 -0600
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: "Liang, Kan" <kan.liang@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, 
- "Peter Zijlstra (Intel)" <peterz@infradead.org>,
- Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-Subject: Re: [PATCH] drm/i915/pmu: Drop custom hotplug code
-Message-ID: <rtmoiu2z4vg42efvz6mwo45eaileyghqowibdzikob7mlnklbm@bz5cc5zkalcd>
-References: <20250116222426.77757-1-lucas.demarchi@intel.com>
- <aded1225-0022-4e86-845c-283641cf32a0@linux.intel.com>
- <pz7y2i25y5o2ox46s3ua3prsa5ap2mkqqb5chtebw3f2egwk6n@5m4xibw2h5yd>
- <6d4d7f82-7619-40bd-bbc8-58681de54a6a@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.13,222,1732608000"; d="scan'208";a="106939151"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 21 Jan 2025 06:38:25 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 21 Jan 2025 16:38:23 +0200
+Date: Tue, 21 Jan 2025 16:38:23 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, Paz Zcharya <pazz@chromium.org>
+Subject: Re: [PATCH 1/8] drm/i915: Keep TRANS_VBLANK.vblank_start==0 on ADL+
+ even when doing LRR updates
+Message-ID: <Z4-xX7BBIBNHbBLI@intel.com>
+References: <20250116201637.22486-1-ville.syrjala@linux.intel.com>
+ <20250116201637.22486-2-ville.syrjala@linux.intel.com>
+ <875xm9qvmo.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <6d4d7f82-7619-40bd-bbc8-58681de54a6a@linux.intel.com>
+In-Reply-To: <875xm9qvmo.fsf@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,40 +73,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jan 20, 2025 at 08:42:41PM -0500, Liang, Kan wrote:
->>>> -static int i915_pmu_cpu_offline(unsigned int cpu, struct hlist_node
->>>> *node)
->>>> -{
->>>> -    struct i915_pmu *pmu = hlist_entry_safe(node, typeof(*pmu),
->>>> cpuhp.node);
->>>> -    unsigned int target = i915_pmu_target_cpu;
->>>> -
->>>> -    /*
->>>> -     * Unregistering an instance generates a CPU offline event which
->>>> we must
->>>> -     * ignore to avoid incorrectly modifying the shared
->>>> i915_pmu_cpumask.
->>>> -     */
->>>> -    if (!pmu->registered)
->>>> -        return 0;
->>>> -
->>>> -    if (cpumask_test_and_clear_cpu(cpu, &i915_pmu_cpumask)) {
->>>> -        target = cpumask_any_but(topology_sibling_cpumask(cpu), cpu);
->>>> -
->>>
->>> I'm not familar with the i915 PMU, but it seems suggest a core scope
->>> PMU, not a system-wide scope.
->>
->> counter is in a complete separate device - it doesn't depend on core or
->> die or pkg - not sure why it cared about topology_sibling_cpumask here.
->
->OK. But it's still a behavior change. Please make it clear in the
->description that the patch also changes/fixes the scope from core scope
->to system-wide.
+On Mon, Jan 20, 2025 at 06:48:31PM +0200, Jani Nikula wrote:
+> On Thu, 16 Jan 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >
+> > intel_set_transcoder_timings() will set TRANS_VBLANK.vblank_start to 0
+> > for clarity on ADL+ (non-DSI) because the hardware no longer uses that
+> > value. So the same in intel_set_transcoder_timings_lrr() to make sure
+> > the registers stay constitent even when doing LRR timing updates.
+> >
+> > Cc: Paz Zcharya <pazz@chromium.org>
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> Hmm, so how come this doesn't warrant a change in readout?
+> 
+> Apparently because intel_get_transcoder_timings() overwrites the read
+> value for display 13+ and non-dsi. Hrmh.
 
-sure... do you have a suggestion how to test the hotplug? For testing
-purposes, can I force the perf cpu assigned to be something other than
-the cpu0?
+Yeah, it's a bit dodgy. I did originally ponder about adding some
+kind of sanity check to readout too, but the GOP might still put
+something into TRANS_VBLANK.vblank_start which would cause a false
+positive.
 
-thanks
-Lucas De Marchi
+> 
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> 
+> 
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_display.c | 8 ++++++++
+> >  1 file changed, 8 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> > index f5d2eacce119..5ba3b2d658e5 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -2923,6 +2923,14 @@ static void intel_set_transcoder_timings_lrr(const struct intel_crtc_state *crtc
+> >  	crtc_vblank_start = adjusted_mode->crtc_vblank_start;
+> >  	crtc_vblank_end = adjusted_mode->crtc_vblank_end;
+> >  
+> > +	if (DISPLAY_VER(dev_priv) >= 13) {
+> > +		/*
+> > +		 * VBLANK_START not used by hw, just clear it
+> > +		 * to make it stand out in register dumps.
+> > +		 */
+> > +		crtc_vblank_start = 1;
+> > +	}
+> > +
+> >  	drm_WARN_ON(&dev_priv->drm, adjusted_mode->flags & DRM_MODE_FLAG_INTERLACE);
+> >  
+> >  	/*
+> 
+> -- 
+> Jani Nikula, Intel
+
+-- 
+Ville Syrjälä
+Intel
