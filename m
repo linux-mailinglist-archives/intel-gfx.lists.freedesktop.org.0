@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1951DA18F23
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jan 2025 11:04:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D548A18F24
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jan 2025 11:04:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D01910E3A6;
-	Wed, 22 Jan 2025 10:04:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4848310E6A2;
+	Wed, 22 Jan 2025 10:04:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3618410E3A6;
- Wed, 22 Jan 2025 10:04:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 75D7E10E6A2;
+ Wed, 22 Jan 2025 10:04:30 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/xe3=3A_FBC_?=
- =?utf-8?q?Dirty_rect_feature_support_=28rev5=29?=
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_drm/i915/xe3=3A_FBC_Dirt?=
+ =?utf-8?q?y_rect_feature_support_=28rev5=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Vinod Govindapillai" <vinod.govindapillai@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 22 Jan 2025 10:04:28 -0000
-Message-ID: <173754026821.3008751.1002977004157654068@b555e5b46a47>
+Date: Wed, 22 Jan 2025 10:04:30 -0000
+Message-ID: <173754027047.3008751.2134558965866616349@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20250122093006.405711-1-vinod.govindapillai@intel.com>
 In-Reply-To: <20250122093006.405711-1-vinod.govindapillai@intel.com>
@@ -49,29 +49,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-35c76b1e5939 drm/i915/xe3: avoid calling fbc activate if fbc is active
-ed4125786d32 drm/i915/xe3: add register definitions for fbc dirty rect support
--:24: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#24: FILE: drivers/gpu/drm/i915/display/intel_fbc_regs.h:107:
-+#define   FBC_DIRTY_RECT_START_LINE(val)	REG_FIELD_PREP(FBC_DIRTY_RECT_START_LINE_MASK, (val))
-
-total: 0 errors, 1 warnings, 0 checks, 15 lines checked
-c2d415f94289 drm/i915/xe3: disable FBC if PSR2 selective fetch is enabled
-fe0945ab4458 drm/i915/xe3: add dirty rect support for FBC
--:129: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#129: FILE: drivers/gpu/drm/i915/display/intel_fbc.c:1254:
-+
-+
-
-total: 0 errors, 0 warnings, 1 checks, 176 lines checked
-644ae897519b drm/i915/xe3: handle dirty rect update within the scope of DSB
--:138: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#138: FILE: drivers/gpu/drm/i915/display/intel_fbc.h:58:
- 
-+
-
-total: 0 errors, 0 warnings, 1 checks, 103 lines checked
-eed74adbbf9f drm/i915/xe3: introduce a dirty rectangle state variable
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
