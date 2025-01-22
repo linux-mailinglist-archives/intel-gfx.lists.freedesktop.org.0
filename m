@@ -2,64 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B5A8A19431
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jan 2025 15:41:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 00B2FA194DE
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Jan 2025 16:18:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C0E110E702;
-	Wed, 22 Jan 2025 14:41:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D8AD10E3C0;
+	Wed, 22 Jan 2025 15:18:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KSAU5Z5u";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KsmuAAXt";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FF7A10E6FD;
- Wed, 22 Jan 2025 14:41:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 76C9E10E3B5;
+ Wed, 22 Jan 2025 15:17:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737556913; x=1769092913;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=0iar7pUFEZgeKylxKvolv6U3bmWrB9z8DhfqoUMpX14=;
- b=KSAU5Z5u73J+hXleQsdYRig0hbmulWQ89xdYp0p0D7fIT/G4hVYRWeqh
- g4uDqmFUBnZVuHvyTzpKArTWcNDEsBr+uXqmKEByss/JcLNYpspT+kJz3
- q2OOheoW/yJ2uU3+IP09oCrYWnHj4dz8FFLlZc0L7/MxDDeIC2zhvqBEE
- z9dQOT0eZvTh5fYej6uryI9H5I1dg8nFpirkBbfucBvbfqyTlpRxgoZWt
- DCZxt2Sj5W3J9SYJcjDo+Xg3o65oVYZJkMoqEebn96WauXP581oW/FPgX
- GFcyQcG7NB05P9JJS5XmDrjcUHOTf1hEGDNNfEd68Xy1KOEnswMuPCdnE g==;
-X-CSE-ConnectionGUID: rdqsj3krQIm7RpM/LSsqmg==
-X-CSE-MsgGUID: j0jjeKx9TKq/eWTrGDXYwA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11323"; a="60484665"
-X-IronPort-AV: E=Sophos;i="6.13,225,1732608000"; d="scan'208";a="60484665"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2025 06:41:53 -0800
-X-CSE-ConnectionGUID: LmQM6WqZRPKHw6eI//MxMg==
-X-CSE-MsgGUID: k6m4AZAOSAajoMR956q0sA==
+ t=1737559078; x=1769095078;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=pNVK13/ylrv51tzWg9LjKBMYpFsvBtFY3hIZiNPSa2c=;
+ b=KsmuAAXtNDt8fIRGjy+ihjNPCw6yWQqZ711wVLTshahfCeDgfQhlke0B
+ 0NBw5omFpAnHI/7BcNPOPaZaaN8CMCpjUKKMCkZeT3igqHI26MhWLDOua
+ Ej5nQn+gagINmtAs1KqxxitKm5QwJ41MuBw5jGCzd/mSdV1ZbfJehSVbI
+ aJD75Tg4MMbMsvnRHTiIIU1ys1C2zrFEoiHEsnlGy6dQQzcVGSthSUwOR
+ LCdprkFZIWqj7MBYp+GdNzxdRy5K13WkRpTOCPJp/EIbxsHMPstd+8utO
+ V6QUknWl3VnnJCn/esouFqsaa/JOrwhaDrRXTaZRe2Tv/vD971Gutfj6Z A==;
+X-CSE-ConnectionGUID: QOGIYpHvSsGO1nAD/NVoew==
+X-CSE-MsgGUID: 5pvY5khyRAqAKgssLzxYWA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11323"; a="40841166"
+X-IronPort-AV: E=Sophos;i="6.13,225,1732608000"; d="scan'208";a="40841166"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2025 07:17:58 -0800
+X-CSE-ConnectionGUID: c7Jn28HWRz+vytuFX0BQVw==
+X-CSE-MsgGUID: ZKcdLvhlS6iXXodvPQvWSg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,225,1732608000"; d="scan'208";a="107087753"
-Received: from lfiedoro-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.30])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2025 06:41:49 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: dri-devel@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- simona.vetter@ffwll.ch, jani.nikula@intel.com,
- Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Masahiro Yamada <masahiroy@kernel.org>
-Subject: [PATCH 2/2] drm: ensure drm headers are self-contained and pass
- kernel-doc
-Date: Wed, 22 Jan 2025 16:41:34 +0200
-Message-Id: <d8ad1c6d707f38a55987f616cb9650aef30b84e1.1737556766.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1737556766.git.jani.nikula@intel.com>
-References: <cover.1737556766.git.jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="6.13,225,1732608000"; d="scan'208";a="107274681"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 22 Jan 2025 07:17:56 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 22 Jan 2025 17:17:55 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: [PATCH 0/5] drm/i915: Improve the display VT-d workarounds
+Date: Wed, 22 Jan 2025 17:17:50 +0200
+Message-ID: <20250122151755.6928-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -76,127 +67,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Ensure drm headers build, are self-contained, have header guards, and
-have no kernel-doc warnings, when CONFIG_DRM_HEADER_TEST=y.
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-The mechanism follows similar patters used in i915, xe, and usr/include.
+Try to make the display VT-d workarounds more robust.
 
-To cover include/drm, we need to recurse there using the top level
-Kbuild and the new include/Kbuild files.
+Ville Syrjälä (5):
+  drm/i915: Move VT-d alignment into plane->min_alignment()
+  drm/i915: Use more optimal VTd alignment for planes
+  drm/i915: Calculate the VT-d guard size in the display code
+  drm/i915: Use per-plane VT-d guard numbers
+  drm/i915/fbdev: Use fb->normal_view.gtt
 
-v4: check for CONFIG_WERROR in addition to CONFIG_DRM_WERROR
+ drivers/gpu/drm/i915/display/i9xx_plane.c     | 15 ++++++
+ drivers/gpu/drm/i915/display/intel_cursor.c   |  8 ++++
+ .../drm/i915/display/intel_display_types.h    |  2 +
+ drivers/gpu/drm/i915/display/intel_fb.c       | 48 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_fb.h       |  3 ++
+ drivers/gpu/drm/i915/display/intel_fb_pin.c   | 20 ++++----
+ drivers/gpu/drm/i915/display/intel_fb_pin.h   |  1 +
+ drivers/gpu/drm/i915/display/intel_fbdev.c    |  7 ++-
+ drivers/gpu/drm/i915/display/intel_overlay.c  |  2 +-
+ drivers/gpu/drm/i915/display/intel_sprite.c   | 15 ++++++
+ .../drm/i915/display/skl_universal_plane.c    |  7 +++
+ drivers/gpu/drm/i915/gem/i915_gem_domain.c    | 15 ++----
+ drivers/gpu/drm/i915/gem/i915_gem_object.h    |  2 +-
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        |  1 +
+ drivers/gpu/drm/xe/display/xe_plane_initial.c |  2 +-
+ 15 files changed, 120 insertions(+), 28 deletions(-)
 
-v3: adapt to upstream build changes
-
-v2: make DRM_HEADER_TEST depend on DRM
-
-Suggested-by: Daniel Vetter <daniel@ffwll.ch>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Masahiro Yamada <masahiroy@kernel.org>
-Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- Kbuild                   |  1 +
- drivers/gpu/drm/Kconfig  | 11 +++++++++++
- drivers/gpu/drm/Makefile | 18 ++++++++++++++++++
- include/Kbuild           |  1 +
- include/drm/Makefile     | 18 ++++++++++++++++++
- 5 files changed, 49 insertions(+)
- create mode 100644 include/Kbuild
- create mode 100644 include/drm/Makefile
-
-diff --git a/Kbuild b/Kbuild
-index 464b34a08f51..f327ca86990c 100644
---- a/Kbuild
-+++ b/Kbuild
-@@ -97,3 +97,4 @@ obj-$(CONFIG_SAMPLES)	+= samples/
- obj-$(CONFIG_NET)	+= net/
- obj-y			+= virt/
- obj-y			+= $(ARCH_DRIVERS)
-+obj-$(CONFIG_DRM_HEADER_TEST)	+= include/
-diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-index fbef3f471bd0..f9b3ebf63fa9 100644
---- a/drivers/gpu/drm/Kconfig
-+++ b/drivers/gpu/drm/Kconfig
-@@ -494,6 +494,17 @@ config DRM_WERROR
- 
- 	  If in doubt, say N.
- 
-+config DRM_HEADER_TEST
-+	bool "Ensure DRM headers are self-contained and pass kernel-doc"
-+	depends on DRM && EXPERT
-+	default n
-+	help
-+	  Ensure the DRM subsystem headers both under drivers/gpu/drm and
-+	  include/drm compile, are self-contained, have header guards, and have
-+	  no kernel-doc warnings.
-+
-+	  If in doubt, say N.
-+
- endif
- 
- # Separate option because drm_panel_orientation_quirks.c is shared with fbdev
-diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-index 85af94bb907d..42901f877bf2 100644
---- a/drivers/gpu/drm/Makefile
-+++ b/drivers/gpu/drm/Makefile
-@@ -222,3 +222,21 @@ obj-y			+= solomon/
- obj-$(CONFIG_DRM_SPRD) += sprd/
- obj-$(CONFIG_DRM_LOONGSON) += loongson/
- obj-$(CONFIG_DRM_POWERVR) += imagination/
-+
-+# Ensure drm headers are self-contained and pass kernel-doc
-+hdrtest-files := \
-+	$(shell cd $(src) && find . -maxdepth 1 -name 'drm_*.h') \
-+	$(shell cd $(src) && find display lib -name '*.h')
-+
-+always-$(CONFIG_DRM_HEADER_TEST) += \
-+	$(patsubst %.h,%.hdrtest, $(hdrtest-files))
-+
-+# Include the header twice to detect missing include guard.
-+quiet_cmd_hdrtest = HDRTEST $(patsubst %.hdrtest,%.h,$@)
-+      cmd_hdrtest = \
-+		$(CC) $(c_flags) -fsyntax-only -x c /dev/null -include $< -include $<; \
-+		$(srctree)/scripts/kernel-doc -none $(if $(CONFIG_WERROR)$(CONFIG_DRM_WERROR),-Werror) $<; \
-+		touch $@
-+
-+$(obj)/%.hdrtest: $(src)/%.h FORCE
-+	$(call if_changed_dep,hdrtest)
-diff --git a/include/Kbuild b/include/Kbuild
-new file mode 100644
-index 000000000000..5e76a599e2dd
---- /dev/null
-+++ b/include/Kbuild
-@@ -0,0 +1 @@
-+obj-$(CONFIG_DRM_HEADER_TEST)	+= drm/
-diff --git a/include/drm/Makefile b/include/drm/Makefile
-new file mode 100644
-index 000000000000..a7bd15d2803e
---- /dev/null
-+++ b/include/drm/Makefile
-@@ -0,0 +1,18 @@
-+# SPDX-License-Identifier: GPL-2.0
-+
-+# Ensure drm headers are self-contained and pass kernel-doc
-+hdrtest-files := \
-+	$(shell cd $(src) && find * -name '*.h' 2>/dev/null)
-+
-+always-$(CONFIG_DRM_HEADER_TEST) += \
-+	$(patsubst %.h,%.hdrtest, $(hdrtest-files))
-+
-+# Include the header twice to detect missing include guard.
-+quiet_cmd_hdrtest = HDRTEST $(patsubst %.hdrtest,%.h,$@)
-+      cmd_hdrtest = \
-+		$(CC) $(c_flags) -fsyntax-only -x c /dev/null -include $< -include $<; \
-+		$(srctree)/scripts/kernel-doc -none $(if $(CONFIG_WERROR)$(CONFIG_DRM_WERROR),-Werror) $<; \
-+		touch $@
-+
-+$(obj)/%.hdrtest: $(src)/%.h FORCE
-+	$(call if_changed_dep,hdrtest)
 -- 
-2.39.5
+2.45.2
 
