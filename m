@@ -2,84 +2,83 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54BFBA1A1EA
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2025 11:33:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6166DA1A1E9
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2025 11:33:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A1BF10E7C6;
-	Thu, 23 Jan 2025 10:33:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBA8B10E7C5;
+	Thu, 23 Jan 2025 10:33:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="FVoi6x76";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="VoyrM/KR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com
- [IPv6:2a00:1450:4864:20::533])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E573810E6BD;
- Wed, 22 Jan 2025 11:15:44 +0000 (UTC)
-Received: by mail-ed1-x533.google.com with SMTP id
- 4fb4d7f45d1cf-5d9f0a6ad83so4640978a12.2; 
- Wed, 22 Jan 2025 03:15:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1737544543; x=1738149343; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=3N7KQWc5ZSYL4c3U+Bo/Fk2vvjtKAhcZmZ6nzcJVsV8=;
- b=FVoi6x760lbTBCRxfO7tbmEa35eJVCJa7YTxcBsUbKtRaXjaovpqjYVPNwpLFsHLDe
- Cc4tGNnQX7qAjdUZd/vOqrDzOX5Csf2Q6VNbbXh8WIBsDGlh+vZSBq6hNDSUZCMB8MDU
- yEGA85aRqL59csRO+AQHEU1XWoAXbYdE86fXKXMvaAJ+FOwUps9N9kV3L7T8G5Zbt0Te
- enfxRa2kmQUknEQ1UlwdS2GFHfDt1OTdzAx3/zuTUKNM1VPHET6sKdmQjn40iLgIna/r
- H9tLi6qa5dxYjh3BDW8el6yEl8VTrBih2musj94vmTWrgxuRbi4/zdw7uGm6Bfv5bhWj
- aIxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1737544543; x=1738149343;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=3N7KQWc5ZSYL4c3U+Bo/Fk2vvjtKAhcZmZ6nzcJVsV8=;
- b=u09GwEf9zc/9mWWwEo2/spGtitFFGuxCyXJoe1V0iocurOZwNmGcBVxR7FtUMbKsW5
- NMTyTo24K+i1r5CV/Gm0yOU0jTTD2hTbwCjJmxHyeu9PHtloj1JoDXAAbd33G0GGBqK+
- eFBw8t/d7aGzlFYXWooLm5cNJT5AEUlP47EIsjvd0mVlFPMcl8U4o7oE+qA1YRIhjnSH
- iGSBifqjzG6+X77DLrL1kB8bukWzJsFLPF7fcbfOZohgSzqSuGkl27ZjCEF9gdVWcm9o
- gG0oVUqgnvAazkFIed2FyZUvj345ZMgijBG7trWtzTVpxmTbTfYRT+cegsnBX+bZ/5ED
- rwsA==
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5892210E1E3;
+ Wed, 22 Jan 2025 12:41:49 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 69DFF5C5EA8;
+ Wed, 22 Jan 2025 12:41:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 588F4C4CEE6;
+ Wed, 22 Jan 2025 12:41:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1737549708;
+ bh=/nRt7/FOVju0HHPP7y/y/GmcikIqd0uun9LCjQjrq7E=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=VoyrM/KR3y6SyzXqcrUXIeXUzSXAukF1jTugO3Tp/XeZbDQsZz0btjWFVZexImUyA
+ GNv9Ye0JlCb6LXyPS9Jx9MVxR+Wdtkk0Ms+qZSrA1Lr8Xe+0i9vU/ISeGtF/6vb7Vs
+ 1Uj3RovlFmNzqVfmuzQ82cCacT+Fx0ki2YqsVx1IY92F3iqqKCafCCMLWLqphwdRxg
+ srLeLPCzyALTJw1qCRW7tcb44xO01Rx4zDtdApARN9p2pthq2z1LppbizS751cMHo9
+ cZn++ylUYdHjeWMHwboi8qRzV/CerfY2kd1XCsOqWLze560AIlYM8svAXpyzid0N54
+ v69z43CGgr7bQ==
+Received: by mail-lj1-f178.google.com with SMTP id
+ 38308e7fff4ca-30227c56b11so69529961fa.3; 
+ Wed, 22 Jan 2025 04:41:48 -0800 (PST)
 X-Forwarded-Encrypted: i=1;
- AJvYcCUCKmLGR3P0fT0CKr6QHvdiNrAezU5z8RUOoFdI4bGqvHBQH1l7juVQ5urNBE0YX8A8TmpSploHWNc=@lists.freedesktop.org,
- AJvYcCW0pbcG5ViJTx6ZezaFolleEb/ES5huupi0rhxlWDY4B8njFAgQ52LCwE3vXBGR7bPNXaBhH30KMcE=@lists.freedesktop.org,
- AJvYcCWqpb6sTRVS0U+eidTVIhokedZwZIXaYaKiPVDHnnsM9PFfh94qB5RBbs3YWVklKT4sLP3XhHNOGKvq@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YybIfLveOdEEVqTcEWzzNogNO+U+ttu/XQ5Yq6a7sGa3xHGS2Oq
- Ko3gYBCcM8yE+DwkXmlFSt3D+tNNB5ci0wMkmQHwdwMVlbHuELxtromUWakhKkRX7KfC2EAU8nQ
- Fhu89Mb/S04cNcx1UfG5lanNm1nc=
-X-Gm-Gg: ASbGncuz9EatPsaGV31PXdFhr8F18yqDVgeELj4RnnmIko62Hl/tvehjaiSE4vaP+iv
- gQCD/YhohbtwN4aWruVFG5q+2gNvXXWRUxKk+9jOn3prGaUO8X94wfkND+a2iyv8x1y+2y99+tS
- lCWj5VmQ8=
-X-Google-Smtp-Source: AGHT+IFgz5YD2/eL7o6fQ5cyTA4ydywFqk8/+MSm88wqp8wQKkf5L8zUNwvIOar+Rg1bS9e/JOQf+nS36W9EB2VHACI=
-X-Received: by 2002:a17:907:969f:b0:ab2:b863:b7fa with SMTP id
- a640c23a62f3a-ab38b43b915mr2064916966b.44.1737544543181; Wed, 22 Jan 2025
- 03:15:43 -0800 (PST)
+ AJvYcCU8MskKqXrGEDuK1Q7nhx6w8VfrSYK+Ccz/qDZisEeac5UBx7HmVKyc31G7POI1o07KZZ+nPxUy7Xo=@lists.freedesktop.org,
+ AJvYcCWhYvqwL1IEwhpUR++iFyawlGCKPcwq9I2RM7RbVPhDwVh/xgMwXnfggBWa6gYvE3V7VWEsyOJHkExf@lists.freedesktop.org,
+ AJvYcCXbcNqDyeN4ioCod2rLXcCG2sY7/9Wy9SVBwFCx4RAUCmsNZcYdTh2NDAHyqsrSRJvkOSc8cFTAtUM=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzsxlR64IMxBh4qjlc1j57Vqk/VIPSWdx63hRgRFO+4CAwrwkQ2
+ L8H+0a5ffhejCtXvi3TGApDOKVeOPdrasrss2ykB6p8kkCseTEMnt7IAF1+Vhs6jflTR9Ss/NxY
+ RAFrCpk4aN61eKUKF+P3Wr88G9yg=
+X-Google-Smtp-Source: AGHT+IFcRSReB7hah7mapcirnp1PWu31SswN3BbR4HjBYPEG79Tzl030J0TjqkE7fYQS4xaDIi2/KgOUqh2J3fswv1A=
+X-Received: by 2002:a05:651c:2228:b0:302:4130:e19c with SMTP id
+ 38308e7fff4ca-3072caa15c1mr71017091fa.19.1737549706586; Wed, 22 Jan 2025
+ 04:41:46 -0800 (PST)
 MIME-Version: 1.0
-References: <20241017075725.207384-1-giedriuswork@gmail.com>
- <CALt+6nqxMZjuZuOKaj8Cx4dcNZx0n-0F9aa97d-vZoMWeN=bOw@mail.gmail.com>
- <Zyk8dFthM0EA2A_K@intel.com>
-In-Reply-To: <Zyk8dFthM0EA2A_K@intel.com>
-From: =?UTF-8?Q?Giedrius_Statkevi=C4=8Dius?= <giedriuswork@gmail.com>
-Date: Wed, 22 Jan 2025 13:15:31 +0200
-X-Gm-Features: AbW1kvbJVUteULK-nbFo57ZObMeweZV6uJOdBdm9RnyIRoQ5uhfPq6KQacKM6ig
-Message-ID: <CALt+6noH3qSJNFYeVmhhGahcFiUsti5Rbt8+ef8QKOi37neaEQ@mail.gmail.com>
-Subject: Re: [PATCH v2] drm/i915/lspcon: do not hardcode settle timeout
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org
+References: <20250110-jag-ctl_table_const-v2-1-0000e1663144@kernel.org>
+ <Z4+jwDBrZNRgu85S@li-008a6a4c-3549-11b2-a85c-c5cc2836eea2.ibm.com>
+ <nslqrapp4v3rknjgtfk4cg64ha7rewrrg24aslo2e5jmxfwce5@t4chrpuk632k>
+In-Reply-To: <nslqrapp4v3rknjgtfk4cg64ha7rewrrg24aslo2e5jmxfwce5@t4chrpuk632k>
+From: Ard Biesheuvel <ardb@kernel.org>
+Date: Wed, 22 Jan 2025 13:41:35 +0100
+X-Gmail-Original-Message-ID: <CAMj1kXEZPe8zk7s67SADK9wVH3cfBup-sAZSC6_pJyng9QT7aw@mail.gmail.com>
+X-Gm-Features: AbW1kvaDj3u8bGVj1m4rnYAkpiRSTpmPAB3bThAH-GyuG2Tmgw9okzkp1e58uCc
+Message-ID: <CAMj1kXEZPe8zk7s67SADK9wVH3cfBup-sAZSC6_pJyng9QT7aw@mail.gmail.com>
+Subject: Re: Re: [PATCH v2] treewide: const qualify ctl_tables where applicable
+To: Joel Granados <joel.granados@kernel.org>
+Cc: Alexander Gordeev <agordeev@linux.ibm.com>,
+ =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>, 
+ Kees Cook <kees@kernel.org>, Luis Chamberlain <mcgrof@kernel.org>, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org, 
+ linux-s390@vger.kernel.org, linux-crypto@vger.kernel.org, 
+ openipmi-developer@lists.sourceforge.net, intel-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ linux-hyperv@vger.kernel.org, linux-rdma@vger.kernel.org, 
+ linux-raid@vger.kernel.org, linux-scsi@vger.kernel.org, 
+ linux-serial@vger.kernel.org, xen-devel@lists.xenproject.org, 
+ linux-aio@kvack.org, linux-fsdevel@vger.kernel.org, netfs@lists.linux.dev, 
+ codalist@coda.cs.cmu.edu, linux-mm@kvack.org, linux-nfs@vger.kernel.org, 
+ ocfs2-devel@lists.linux.dev, fsverity@lists.linux.dev, 
+ linux-xfs@vger.kernel.org, io-uring@vger.kernel.org, bpf@vger.kernel.org, 
+ kexec@lists.infradead.org, linux-trace-kernel@vger.kernel.org, 
+ linux-hardening@vger.kernel.org, apparmor@lists.ubuntu.com, 
+ linux-security-module@vger.kernel.org, keyrings@vger.kernel.org, 
+ Song Liu <song@kernel.org>, "Steven Rostedt (Google)" <rostedt@goodmis.org>, 
+ "Martin K. Petersen" <martin.petersen@oracle.com>,
+ "Darrick J. Wong" <djwong@kernel.org>, 
+ Jani Nikula <jani.nikula@intel.com>, Corey Minyard <cminyard@mvista.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Thu, 23 Jan 2025 10:33:35 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -96,26 +95,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hello,
-
-On Mon, 4 Nov 2024 at 23:28, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+On Wed, 22 Jan 2025 at 13:25, Joel Granados <joel.granados@kernel.org> wrote:
 >
-> On Mon, Nov 04, 2024 at 02:09:46PM +0200, Giedrius Statkevi=C4=8Dius wrot=
-e:
-> > Hello,
+> On Tue, Jan 21, 2025 at 02:40:16PM +0100, Alexander Gordeev wrote:
+> > On Fri, Jan 10, 2025 at 03:16:08PM +0100, Joel Granados wrote:
 > >
-> > Kind ping.
+> > Hi Joel,
+> >
+> > > Add the const qualifier to all the ctl_tables in the tree except for
+> > > watchdog_hardlockup_sysctl, memory_allocation_profiling_sysctls,
+> > > loadpin_sysctl_table and the ones calling register_net_sysctl (./net,
+> > > drivers/inifiniband dirs). These are special cases as they use a
+> > > registration function with a non-const qualified ctl_table argument or
+> > > modify the arrays before passing them on to the registration function.
+> > >
+> > > Constifying ctl_table structs will prevent the modification of
+> > > proc_handler function pointers as the arrays would reside in .rodata.
+> > > This is made possible after commit 78eb4ea25cd5 ("sysctl: treewide:
+> > > constify the ctl_table argument of proc_handlers") constified all the
+> > > proc_handlers.
+> >
+> > I could identify at least these occurences in s390 code as well:
+> Hey Alexander
 >
-> There was a pipe underun in CI... I honestly don't believe this patch is
-> causing it, but anyway I decided to trigger a retest there before I push =
-this.
+> Thx for bringing these to my attention. I had completely missed them as
+> the spatch only deals with ctl_tables outside functions.
 >
-> Thanks for the patch and review.
+> Short answer:
+> These should not be included in the current patch because they are a
+> different pattern from how sysctl tables are usually used. So I will not
+> include them.
+>
+> With that said, I think it might be interesting to look closer at them
+> as they seem to be complicating the proc_handler (I have to look at them
+> closer).
+>
+> I see that they are defining a ctl_table struct within the functions and
+> just using the data (from the incoming ctl_table) to forward things down
+> to proc_do{u,}intvec_* functions. This is very odd and I have only seen
+> it done in order to change the incoming ctl_table (which is not what is
+> being done here).
+>
+> I will take a closer look after the merge window and circle back with
+> more info. Might take me a while as I'm not very familiar with s390
+> code; any additional information on why those are being used inside the
+> functions would be helpfull.
+>
 
+Using const data on the stack is not as useful, because the stack is
+always mapped writable.
 
-Ping. Could we merge this patch? This plus another patch (that I have yet t=
-o
-send) fixes replugging the HDMI cable on my laptop.
-
-Best regards,
-Giedrius
+Global data structures marked 'const' will be moved into an ELF
+section that is typically mapped read-only in its entirely, and so the
+data cannot be modified by writing to it directly. No such protection
+is possible for the stack, and so the constness there is only enforced
+at compile time.
