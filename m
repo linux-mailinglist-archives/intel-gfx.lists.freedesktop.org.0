@@ -2,84 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6166DA1A1E9
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2025 11:33:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C6ABEA1A0FB
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2025 10:41:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BBA8B10E7C5;
-	Thu, 23 Jan 2025 10:33:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0716410E7A6;
+	Thu, 23 Jan 2025 09:41:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="VoyrM/KR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GSTntjkS";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5892210E1E3;
- Wed, 22 Jan 2025 12:41:49 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 69DFF5C5EA8;
- Wed, 22 Jan 2025 12:41:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 588F4C4CEE6;
- Wed, 22 Jan 2025 12:41:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1737549708;
- bh=/nRt7/FOVju0HHPP7y/y/GmcikIqd0uun9LCjQjrq7E=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=VoyrM/KR3y6SyzXqcrUXIeXUzSXAukF1jTugO3Tp/XeZbDQsZz0btjWFVZexImUyA
- GNv9Ye0JlCb6LXyPS9Jx9MVxR+Wdtkk0Ms+qZSrA1Lr8Xe+0i9vU/ISeGtF/6vb7Vs
- 1Uj3RovlFmNzqVfmuzQ82cCacT+Fx0ki2YqsVx1IY92F3iqqKCafCCMLWLqphwdRxg
- srLeLPCzyALTJw1qCRW7tcb44xO01Rx4zDtdApARN9p2pthq2z1LppbizS751cMHo9
- cZn++ylUYdHjeWMHwboi8qRzV/CerfY2kd1XCsOqWLze560AIlYM8svAXpyzid0N54
- v69z43CGgr7bQ==
-Received: by mail-lj1-f178.google.com with SMTP id
- 38308e7fff4ca-30227c56b11so69529961fa.3; 
- Wed, 22 Jan 2025 04:41:48 -0800 (PST)
-X-Forwarded-Encrypted: i=1;
- AJvYcCU8MskKqXrGEDuK1Q7nhx6w8VfrSYK+Ccz/qDZisEeac5UBx7HmVKyc31G7POI1o07KZZ+nPxUy7Xo=@lists.freedesktop.org,
- AJvYcCWhYvqwL1IEwhpUR++iFyawlGCKPcwq9I2RM7RbVPhDwVh/xgMwXnfggBWa6gYvE3V7VWEsyOJHkExf@lists.freedesktop.org,
- AJvYcCXbcNqDyeN4ioCod2rLXcCG2sY7/9Wy9SVBwFCx4RAUCmsNZcYdTh2NDAHyqsrSRJvkOSc8cFTAtUM=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzsxlR64IMxBh4qjlc1j57Vqk/VIPSWdx63hRgRFO+4CAwrwkQ2
- L8H+0a5ffhejCtXvi3TGApDOKVeOPdrasrss2ykB6p8kkCseTEMnt7IAF1+Vhs6jflTR9Ss/NxY
- RAFrCpk4aN61eKUKF+P3Wr88G9yg=
-X-Google-Smtp-Source: AGHT+IFcRSReB7hah7mapcirnp1PWu31SswN3BbR4HjBYPEG79Tzl030J0TjqkE7fYQS4xaDIi2/KgOUqh2J3fswv1A=
-X-Received: by 2002:a05:651c:2228:b0:302:4130:e19c with SMTP id
- 38308e7fff4ca-3072caa15c1mr71017091fa.19.1737549706586; Wed, 22 Jan 2025
- 04:41:46 -0800 (PST)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 40D0B10E164;
+ Thu, 23 Jan 2025 09:41:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1737625310; x=1769161310;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=8o3XwouJaVxr8i1Fn1WmhSqn8CsB/ycHHa+M4kLJaC0=;
+ b=GSTntjkS8a1MUG3ut4ZDi2FtI9q8Lr0ig8G4FVExdYkg1LTdNhHY5L2G
+ X+LAZQnndx8CaYiIkPD1/JL9VINILRVEMLCiAQqug3zxVn/Q05dA6vlfU
+ Tcsrg3CYmHXpQwGL6x1gYi1ABSnypRyq3FOGlm1I7bFGe0d9o563YUYa6
+ GR7M2cUhCbOd3QYxopLUizf9utrQa4maj+OmdX/UNoB96v5npxBAo/m4c
+ svW6yhZ7umTBKwxe4XbqteVJO3WCw0BJUbD7pTgZeVegyFNji/m18w1kg
+ IH8x5fa3KtUpL7+1VDxOFiEcZiTM2yLUROT0pckwBBqqWiqlm/th3SpdS g==;
+X-CSE-ConnectionGUID: efDfMyvBQnGrNztqvbDVYw==
+X-CSE-MsgGUID: ZGNeF5ERRMiM6vJisNiYIA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11323"; a="37374230"
+X-IronPort-AV: E=Sophos;i="6.13,228,1732608000"; d="scan'208";a="37374230"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2025 01:41:49 -0800
+X-CSE-ConnectionGUID: so+0SxacQJuJ6Be0i+uivQ==
+X-CSE-MsgGUID: SJ1w2X40T8OM9J4kYWJ3Eg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="112057575"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.98])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2025 01:41:47 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: dmitry.baryshkov@linaro.org, arun.r.murthy@intel.com, Suraj Kandpal
+ <suraj.kandpal@intel.com>
+Subject: Re: [PATCH 3/3] drm/i915/lttpr: Enable Extended Wake Timeout
+In-Reply-To: <20250122053358.1545039-4-suraj.kandpal@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250122053358.1545039-1-suraj.kandpal@intel.com>
+ <20250122053358.1545039-4-suraj.kandpal@intel.com>
+Date: Thu, 23 Jan 2025 11:41:44 +0200
+Message-ID: <871pwtooiv.fsf@intel.com>
 MIME-Version: 1.0
-References: <20250110-jag-ctl_table_const-v2-1-0000e1663144@kernel.org>
- <Z4+jwDBrZNRgu85S@li-008a6a4c-3549-11b2-a85c-c5cc2836eea2.ibm.com>
- <nslqrapp4v3rknjgtfk4cg64ha7rewrrg24aslo2e5jmxfwce5@t4chrpuk632k>
-In-Reply-To: <nslqrapp4v3rknjgtfk4cg64ha7rewrrg24aslo2e5jmxfwce5@t4chrpuk632k>
-From: Ard Biesheuvel <ardb@kernel.org>
-Date: Wed, 22 Jan 2025 13:41:35 +0100
-X-Gmail-Original-Message-ID: <CAMj1kXEZPe8zk7s67SADK9wVH3cfBup-sAZSC6_pJyng9QT7aw@mail.gmail.com>
-X-Gm-Features: AbW1kvaDj3u8bGVj1m4rnYAkpiRSTpmPAB3bThAH-GyuG2Tmgw9okzkp1e58uCc
-Message-ID: <CAMj1kXEZPe8zk7s67SADK9wVH3cfBup-sAZSC6_pJyng9QT7aw@mail.gmail.com>
-Subject: Re: Re: [PATCH v2] treewide: const qualify ctl_tables where applicable
-To: Joel Granados <joel.granados@kernel.org>
-Cc: Alexander Gordeev <agordeev@linux.ibm.com>,
- =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>, 
- Kees Cook <kees@kernel.org>, Luis Chamberlain <mcgrof@kernel.org>, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org, 
- linux-s390@vger.kernel.org, linux-crypto@vger.kernel.org, 
- openipmi-developer@lists.sourceforge.net, intel-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- linux-hyperv@vger.kernel.org, linux-rdma@vger.kernel.org, 
- linux-raid@vger.kernel.org, linux-scsi@vger.kernel.org, 
- linux-serial@vger.kernel.org, xen-devel@lists.xenproject.org, 
- linux-aio@kvack.org, linux-fsdevel@vger.kernel.org, netfs@lists.linux.dev, 
- codalist@coda.cs.cmu.edu, linux-mm@kvack.org, linux-nfs@vger.kernel.org, 
- ocfs2-devel@lists.linux.dev, fsverity@lists.linux.dev, 
- linux-xfs@vger.kernel.org, io-uring@vger.kernel.org, bpf@vger.kernel.org, 
- kexec@lists.infradead.org, linux-trace-kernel@vger.kernel.org, 
- linux-hardening@vger.kernel.org, apparmor@lists.ubuntu.com, 
- linux-security-module@vger.kernel.org, keyrings@vger.kernel.org, 
- Song Liu <song@kernel.org>, "Steven Rostedt (Google)" <rostedt@goodmis.org>, 
- "Martin K. Petersen" <martin.petersen@oracle.com>,
- "Darrick J. Wong" <djwong@kernel.org>, 
- Jani Nikula <jani.nikula@intel.com>, Corey Minyard <cminyard@mvista.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailman-Approved-At: Thu, 23 Jan 2025 10:33:35 +0000
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,58 +71,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 22 Jan 2025 at 13:25, Joel Granados <joel.granados@kernel.org> wrote:
+On Wed, 22 Jan 2025, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
+> Usually retimers take around 30 to 40ms to exit all devices from
+> sleep state. Extended wake timeout mechanism helps to give
+> that additional time.
 >
-> On Tue, Jan 21, 2025 at 02:40:16PM +0100, Alexander Gordeev wrote:
-> > On Fri, Jan 10, 2025 at 03:16:08PM +0100, Joel Granados wrote:
-> >
-> > Hi Joel,
-> >
-> > > Add the const qualifier to all the ctl_tables in the tree except for
-> > > watchdog_hardlockup_sysctl, memory_allocation_profiling_sysctls,
-> > > loadpin_sysctl_table and the ones calling register_net_sysctl (./net,
-> > > drivers/inifiniband dirs). These are special cases as they use a
-> > > registration function with a non-const qualified ctl_table argument or
-> > > modify the arrays before passing them on to the registration function.
-> > >
-> > > Constifying ctl_table structs will prevent the modification of
-> > > proc_handler function pointers as the arrays would reside in .rodata.
-> > > This is made possible after commit 78eb4ea25cd5 ("sysctl: treewide:
-> > > constify the ctl_table argument of proc_handlers") constified all the
-> > > proc_handlers.
-> >
-> > I could identify at least these occurences in s390 code as well:
-> Hey Alexander
+> --v2
+> -Grant the requested time only if greater than 1ms [Arun/Jani]
+> -Reframe commit message [Arun]
 >
-> Thx for bringing these to my attention. I had completely missed them as
-> the spatch only deals with ctl_tables outside functions.
+> --v3
+> -Move the function to drm_core [Dmitry/Jani]
 >
-> Short answer:
-> These should not be included in the current patch because they are a
-> different pattern from how sysctl tables are usually used. So I will not
-> include them.
->
-> With that said, I think it might be interesting to look closer at them
-> as they seem to be complicating the proc_handler (I have to look at them
-> closer).
->
-> I see that they are defining a ctl_table struct within the functions and
-> just using the data (from the incoming ctl_table) to forward things down
-> to proc_do{u,}intvec_* functions. This is very odd and I have only seen
-> it done in order to change the incoming ctl_table (which is not what is
-> being done here).
->
-> I will take a closer look after the merge window and circle back with
-> more info. Might take me a while as I'm not very familiar with s390
-> code; any additional information on why those are being used inside the
-> functions would be helpfull.
->
+> Spec: DP v2.1 Section 3.6.12.3
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
 
-Using const data on the stack is not as useful, because the stack is
-always mapped writable.
+Acked-by: Jani Nikula <jani.nikula@intel.com>
 
-Global data structures marked 'const' will be moved into an ELF
-section that is typically mapped read-only in its entirely, and so the
-data cannot be modified by writing to it directly. No such protection
-is possible for the stack, and so the constness there is only enforced
-at compile time.
+for merging this via drm-misc-next along with the rest of the series.
+
+
+> ---
+>  drivers/gpu/drm/i915/display/intel_ddi.c              | 4 ++++
+>  drivers/gpu/drm/i915/display/intel_dp_link_training.c | 2 +-
+>  drivers/gpu/drm/i915/display/intel_dp_link_training.h | 1 +
+>  3 files changed, 6 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index 3693b36b9336..3b29a1b90fa6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -2594,6 +2594,7 @@ static void mtl_ddi_pre_enable_dp(struct intel_atomic_state *state,
+>  {
+>  	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+>  	bool is_mst = intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST);
+> +	bool transparent_mode;
+>  	int ret;
+>  
+>  	intel_dp_set_link_params(intel_dp,
+> @@ -2645,6 +2646,9 @@ static void mtl_ddi_pre_enable_dp(struct intel_atomic_state *state,
+>  	if (!is_mst)
+>  		intel_dp_set_power(intel_dp, DP_SET_POWER_D0);
+>  
+> +	transparent_mode = intel_dp_lttpr_transparent_mode_enabled(intel_dp);
+> +	drm_dp_lttpr_wake_timeout_setup(&intel_dp->aux, transparent_mode);
+> +
+>  	intel_dp_configure_protocol_converter(intel_dp, crtc_state);
+>  	if (!is_mst)
+>  		intel_dp_sink_enable_decompression(state,
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> index 8b1977cfec50..c0f8473e7223 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> @@ -128,7 +128,7 @@ intel_dp_set_lttpr_transparent_mode(struct intel_dp *intel_dp, bool enable)
+>  	return true;
+>  }
+>  
+> -static bool intel_dp_lttpr_transparent_mode_enabled(struct intel_dp *intel_dp)
+> +bool intel_dp_lttpr_transparent_mode_enabled(struct intel_dp *intel_dp)
+>  {
+>  	return intel_dp->lttpr_common_caps[DP_PHY_REPEATER_MODE -
+>  					   DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV] ==
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.h b/drivers/gpu/drm/i915/display/intel_dp_link_training.h
+> index 2066b9146762..46614124569f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.h
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.h
+> @@ -15,6 +15,7 @@ struct intel_dp;
+>  
+>  int intel_dp_read_dprx_caps(struct intel_dp *intel_dp, u8 dpcd[DP_RECEIVER_CAP_SIZE]);
+>  int intel_dp_init_lttpr_and_dprx_caps(struct intel_dp *intel_dp);
+> +bool intel_dp_lttpr_transparent_mode_enabled(struct intel_dp *intel_dp);
+>  
+>  void intel_dp_link_training_set_mode(struct intel_dp *intel_dp,
+>  				     int link_rate, bool is_vrr);
+
+-- 
+Jani Nikula, Intel
