@@ -2,82 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38741A1A103
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2025 10:43:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EF5AA1A10A
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2025 10:46:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE0FB10E0B9;
-	Thu, 23 Jan 2025 09:43:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 183EF10E7A7;
+	Thu, 23 Jan 2025 09:46:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="j+hLaEWM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nV1vbamy";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com
- [209.85.221.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D8B9910E0B9
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Jan 2025 09:43:38 +0000 (UTC)
-Received: by mail-wr1-f46.google.com with SMTP id
- ffacd0b85a97d-385dece873cso308756f8f.0
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Jan 2025 01:43:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1737625417; x=1738230217;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=UVN+/EnVGk/tAlqkVV1yRL+czk19SPq3uCoDEBKALSY=;
- b=j+hLaEWMWY8oGxu8AdPA8eugymerJwjMxTomnY/3ydy017LiHXTx1qkWEMPe92mDgp
- lgVfeRouNYXgdJK33pRMZjc4FgVam0qPVlJaRF9woJbPd0bIfpj+coDB823PLmEv0t92
- YZTcwY/rxV3WNVHZxzH/qfj7waR3YyPOq13JDm+iqOK07uX/qnp2VMxjGWhKmDUauYc9
- 9Lamkvhh6RkygR3wKL1fXBuvttW+nktMWJD7in1c9MdNgIZoy0L07yhyafq54LPF+csS
- g15LXho6GW15xwN9EcIpOjcKCCQ312PV5SlgNb+vzS0AB8/8wxp3GlBdBkMzpg4gkbXO
- K9Sw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1737625417; x=1738230217;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=UVN+/EnVGk/tAlqkVV1yRL+czk19SPq3uCoDEBKALSY=;
- b=Bqcm9uT39yC5OdNDvFFZpHw6XdyVWttEyBMByYqeNaZbwJYgu/o/0/7l/krV736EJq
- ZCFjTSsyE8v+zflmim2LbQJM90XSJZBWcL+gmrSD25t5Eph17LvmKX4HHjsFvR80UwZg
- 6FgJEcUGxNVLBVGcu+SAp8t+20HJTSbDM+tUMQEPsy2WATvFbtjUGTj/TbqtkKN3KArK
- EkgP2fkBI4k3FtD1kdfq/3UZfFlUhEHh+sxnqeM6Wy6hJ9XY7HpT1mtOsxm/t341ZCyi
- Fx+EuPCN/e5QAhI7S5iGrIzcrC3YUCpCbI7Ge8xy8g6EV7wGjsMCxlA4V1MimlW9Bx3m
- gxKw==
-X-Gm-Message-State: AOJu0YymtBNzNMVj0eILHFJ+Mj/jXQE5GW+7h6np+Xfso7I8Vs/43SF2
- UACp8nKFqu3nbOYODEFI6CVzORTer6VkiBq7EVDAliIapdab5qwqM3vOALvUDCQ=
-X-Gm-Gg: ASbGncve7fopA2Gu0qC8u9q08BbWN8NnnbvNqbTQTQL6lKEFGQ6Cb+xscrMJ4LzuD2P
- 6Er3Za9rlfoYhOGt4W47AfNP0hYo70bgFHzNtaDkdJse3mFtAMdB8/DePh1Gs4FNBd8V/EppdaI
- qHfsJ4l4C+4oGyGXCWScB0YXgdaE+MGc/FwYKXrRqjzp7yLoOkWcRD5UAmQp9jtcLy7zHf6ucv/
- LQziNRycGJ/wCEk4BOsbBhY9A1o2EBkYVeh2b989MSXslfQxLaD9MSMaWcR0RxSeKE8xNwUVuV+
- dAEqUGRW3NzeEpDputYd
-X-Google-Smtp-Source: AGHT+IFkLIi2RuWcenGITeLuJN14/Cip50v29ySPGtZTIISF6obbjuBWWVSsQRTlpPSJ9eAWdKq1dg==
-X-Received: by 2002:a05:6000:2a9:b0:38a:2798:c3e0 with SMTP id
- ffacd0b85a97d-38bf57c9b83mr24966769f8f.54.1737625417131; 
- Thu, 23 Jan 2025 01:43:37 -0800 (PST)
-Received: from [192.168.0.101] ([90.241.98.187])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-38bf322acdcsm19066101f8f.55.2025.01.23.01.43.36
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 23 Jan 2025 01:43:36 -0800 (PST)
-Message-ID: <c7e1fc84-5cbf-4196-8558-bc410ef378a8@ursulin.net>
-Date: Thu, 23 Jan 2025 09:43:35 +0000
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F43210E7A5;
+ Thu, 23 Jan 2025 09:46:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1737625609; x=1769161609;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=OVPslsmWUw3uT6MqdqnKuLHTt12e95P1lhsghu5xtn4=;
+ b=nV1vbamyrJhP8oMcbzbN0DjrT771/+eLd1KYehN1VEzg2MiOAttRZ6fQ
+ tNIrRwAEwpHSMGPwYKat99rk9yVuo1nOqGkFJPL7Xczju8aVkcHfQeH8y
+ ypTdwBWdVXwiSfktHBLpgZ1c0MkjfkiI4TzCZ9OJYSMbVoPVAUgb2MV4L
+ /yjnGPnaZKGChMjihNmXpCoGgJ+gWpUxyVpdz9zznB1oUHExc3t1+h1R6
+ xjfw4vj+6xQLniWuk3xWvcrnJNHWuw76RrzFTN0+IdVDHavPh6XB0vO7u
+ qilVBJezFavDgsjDhD3eVXHah/mbdQakKeJF4yz9mFtTIqUQsj4+C89Ey A==;
+X-CSE-ConnectionGUID: ua9Cbcl2Qp+SOltTXpJz6Q==
+X-CSE-MsgGUID: tbh1lNWiQv6tH8vlxTmFoQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11323"; a="37814202"
+X-IronPort-AV: E=Sophos;i="6.13,228,1732608000"; d="scan'208";a="37814202"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2025 01:46:49 -0800
+X-CSE-ConnectionGUID: uJJmXa8PTeCuqKXmkF4YBQ==
+X-CSE-MsgGUID: QH1PeogHQX6C8JoXc18lKg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,228,1732608000"; d="scan'208";a="107406538"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.98])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2025 01:46:46 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: "Saarinen, Jani" <jani.saarinen@intel.com>, "Reddy Guddati, Santhosh"
+ <santhosh.reddy.guddati@intel.com>, "Syrjala, Ville"
+ <ville.syrjala@intel.com>
+Subject: Re: [PATCH v4 5/6] drm/i915/xe3: handle dirty rect update within
+ the scope of DSB
+In-Reply-To: <f13004f739a71883e033bf1fd89af6999202cf67.camel@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250122093006.405711-1-vinod.govindapillai@intel.com>
+ <20250122093006.405711-6-vinod.govindapillai@intel.com>
+ <871pwvp1kc.fsf@intel.com>
+ <f13004f739a71883e033bf1fd89af6999202cf67.camel@intel.com>
+Date: Thu, 23 Jan 2025 11:46:43 +0200
+Message-ID: <87wmeln9q4.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/i915/pmu: Drop custom hotplug code
-To: Lucas De Marchi <lucas.demarchi@intel.com>,
- "Liang, Kan" <kan.liang@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org,
- "Peter Zijlstra (Intel)" <peterz@infradead.org>,
- Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-References: <20250116222426.77757-1-lucas.demarchi@intel.com>
- <aded1225-0022-4e86-845c-283641cf32a0@linux.intel.com>
- <pz7y2i25y5o2ox46s3ua3prsa5ap2mkqqb5chtebw3f2egwk6n@5m4xibw2h5yd>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tursulin@ursulin.net>
-In-Reply-To: <pz7y2i25y5o2ox46s3ua3prsa5ap2mkqqb5chtebw3f2egwk6n@5m4xibw2h5yd>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,301 +77,211 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Wed, 22 Jan 2025, "Govindapillai, Vinod" <vinod.govindapillai@intel.com>=
+ wrote:
+> On Wed, 2025-01-22 at 12:47 +0200, Jani Nikula wrote:
+>> On Wed, 22 Jan 2025, Vinod Govindapillai <vinod.govindapillai@intel.com>=
+ wrote:
+>> > Programming of the dirty rectangle coordinates should happen
+>> > within the scope of DSB prepare and finish calls. So call the
+>> > compute and programming of dirty rectangle related routines
+>> > early within the DSB programming window. Some of the FBC state
+>> > handling is done later as part of pre-plane or post-plane
+>> > updates. So enabling / disabling / hw activate will happen
+>> > later but it should handle the sequence without any issue.
+>> >=20
+>> > Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+>> > ---
+>> > =C2=A0drivers/gpu/drm/i915/display/intel_display.c |=C2=A0 3 ++
+>> > =C2=A0drivers/gpu/drm/i915/display/intel_fbc.c=C2=A0=C2=A0=C2=A0=C2=A0=
+ | 47 ++++++++++++++++----
+>> > =C2=A0drivers/gpu/drm/i915/display/intel_fbc.h=C2=A0=C2=A0=C2=A0=C2=A0=
+ |=C2=A0 3 ++
+>> > =C2=A03 files changed, 44 insertions(+), 9 deletions(-)
+>> >=20
+>> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+>> > b/drivers/gpu/drm/i915/display/intel_display.c
+>> > index d154fcd0e77a..e6e017e65da6 100644
+>> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+>> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+>> > @@ -7773,6 +7773,9 @@ static void intel_atomic_commit_tail(struct inte=
+l_atomic_state *state)
+>> > =C2=A0
+>> > =C2=A0	intel_atomic_prepare_plane_clear_colors(state);
+>> > =C2=A0
+>> > +	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i)
+>> > +		intel_fbc_compute_dirty_rect(state, crtc);
+>>=20
+>> "compute" is a fairly loaded word in our driver. The immediate
+>> association is "it's compute config, but missing the config part". And
+>> doing anything "compute" seems completely out of place in
+>> intel_atomic_commit_tail(), where we've long since passed the compute
+>> config stage.
+>
+> Well.. actually I dont need this call at all. I don't need to split this =
+between compute_dirt_rect
+> and program_dirty_rect. Instead I can directly call program_dirty rect wh=
+ich internally gets the
+> dirty rects. I will update that
+>
+>>=20
+>> > +
+>> > =C2=A0	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i)
+>> > =C2=A0		intel_atomic_dsb_finish(state, crtc);
+>> > =C2=A0
+>> > diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/dr=
+m/i915/display/intel_fbc.c
+>> > index 963fbe2c7361..033eb4a3eab0 100644
+>> > --- a/drivers/gpu/drm/i915/display/intel_fbc.c
+>> > +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+>> > @@ -1213,6 +1213,10 @@ static bool tiling_is_valid(const struct intel_=
+plane_state *plane_state)
+>> > =C2=A0		return i8xx_fbc_tiling_valid(plane_state);
+>> > =C2=A0}
+>> > =C2=A0
+>> > +static bool intel_fbc_can_flip_nuke(struct intel_atomic_state *state,
+>> > +				=C2=A0=C2=A0=C2=A0 struct intel_crtc *crtc,
+>> > +				=C2=A0=C2=A0=C2=A0 struct intel_plane *plane);
+>> > +
+>> > =C2=A0static void
+>> > =C2=A0__intel_fbc_program_dirty_rect(struct intel_dsb *dsb, struct int=
+el_plane *plane)
+>> > =C2=A0{
+>> > @@ -1251,7 +1255,6 @@ intel_fbc_program_dirty_rect(struct intel_dsb *d=
+sb,
+>> > =C2=A0	}
+>> > =C2=A0}
+>> > =C2=A0
+>> > -
+>>=20
+>> The previous patch added a superfluous newline here, and this one
+>> removes it. Please just don't add it in the first place.
+>
+> Yeah.. not really intentional. I will update!
+> My local checkpatch didn't catch that though! But the CI checkpatch did.
 
-On 20/01/2025 22:57, Lucas De Marchi wrote:
-> On Mon, Jan 20, 2025 at 10:08:39AM -0500, Liang, Kan wrote:
->>
->>
->> On 2025-01-16 5:24 p.m., Lucas De Marchi wrote:
->>> Since commit 4ba4f1afb6a9 ("perf: Generic hotplug support for a PMU with
->>> a scope"), there's generic support for system-wide counters and
->>> integration with cpu hotplug. Set our scope to PERF_PMU_SCOPE_SYS_WIDE
->>> instead of all the boilerplate code for handling hotplug.
->>>
->>> Cc: Kan Liang <kan.liang@linux.intel.com>
->>> Cc: Peter Zijlstra (Intel) <peterz@infradead.org>
->>> Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
->>> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->>> ---
->>>  drivers/gpu/drm/i915/i915_module.c |   2 -
->>>  drivers/gpu/drm/i915/i915_pmu.c    | 114 +----------------------------
->>>  drivers/gpu/drm/i915/i915_pmu.h    |  11 ---
->>>  3 files changed, 1 insertion(+), 126 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/i915_module.c 
->>> b/drivers/gpu/drm/i915/i915_module.c
->>> index 7ed6d70389af9..7affe07f84f45 100644
->>> --- a/drivers/gpu/drm/i915/i915_module.c
->>> +++ b/drivers/gpu/drm/i915/i915_module.c
->>> @@ -71,8 +71,6 @@ static const struct {
->>>      { .init = i915_vma_resource_module_init,
->>>        .exit = i915_vma_resource_module_exit },
->>>      { .init = i915_mock_selftests },
->>> -    { .init = i915_pmu_init,
->>> -      .exit = i915_pmu_exit },
->>>      { .init = i915_pci_register_driver,
->>>        .exit = i915_pci_unregister_driver },
->>>      { .init = i915_perf_sysctl_register,
->>> diff --git a/drivers/gpu/drm/i915/i915_pmu.c 
->>> b/drivers/gpu/drm/i915/i915_pmu.c
->>> index e55db036be1bb..652964ef0643c 100644
->>> --- a/drivers/gpu/drm/i915/i915_pmu.c
->>> +++ b/drivers/gpu/drm/i915/i915_pmu.c
->>> @@ -28,9 +28,6 @@
->>>       BIT(I915_SAMPLE_WAIT) | \
->>>       BIT(I915_SAMPLE_SEMA))
->>>
->>> -static cpumask_t i915_pmu_cpumask;
->>> -static unsigned int i915_pmu_target_cpu = -1;
->>> -
->>>  static struct i915_pmu *event_to_pmu(struct perf_event *event)
->>>  {
->>>      return container_of(event->pmu, struct i915_pmu, base);
->>> @@ -642,10 +639,6 @@ static int i915_pmu_event_init(struct perf_event 
->>> *event)
->>>      if (event->cpu < 0)
->>>          return -EINVAL;
->>>
->>> -    /* only allow running on one cpu at a time */
->>> -    if (!cpumask_test_cpu(event->cpu, &i915_pmu_cpumask))
->>> -        return -EINVAL;
->>> -
->>>      if (is_engine_event(event))
->>>          ret = engine_event_init(event);
->>>      else
->>> @@ -940,23 +933,6 @@ static ssize_t i915_pmu_event_show(struct device 
->>> *dev,
->>>      return sprintf(buf, "config=0x%lx\n", eattr->val);
->>>  }
->>>
->>> -static ssize_t cpumask_show(struct device *dev,
->>> -                struct device_attribute *attr, char *buf)
->>> -{
->>> -    return cpumap_print_to_pagebuf(true, buf, &i915_pmu_cpumask);
->>> -}
->>> -
->>> -static DEVICE_ATTR_RO(cpumask);
->>> -
->>> -static struct attribute *i915_cpumask_attrs[] = {
->>> -    &dev_attr_cpumask.attr,
->>> -    NULL,
->>> -};
->>> -
->>> -static const struct attribute_group i915_pmu_cpumask_attr_group = {
->>> -    .attrs = i915_cpumask_attrs,
->>> -};
->>> -
->>>  #define __event(__counter, __name, __unit) \
->>>  { \
->>>      .counter = (__counter), \
->>> @@ -1173,92 +1149,12 @@ static void free_event_attributes(struct 
->>> i915_pmu *pmu)
->>>      pmu->pmu_attr = NULL;
->>>  }
->>>
->>> -static int i915_pmu_cpu_online(unsigned int cpu, struct hlist_node 
->>> *node)
->>> -{
->>> -    struct i915_pmu *pmu = hlist_entry_safe(node, typeof(*pmu), 
->>> cpuhp.node);
->>> -
->>> -    /* Select the first online CPU as a designated reader. */
->>> -    if (cpumask_empty(&i915_pmu_cpumask))
->>> -        cpumask_set_cpu(cpu, &i915_pmu_cpumask);
->>> -
->>> -    return 0;
->>> -}
->>> -
->>> -static int i915_pmu_cpu_offline(unsigned int cpu, struct hlist_node 
->>> *node)
->>> -{
->>> -    struct i915_pmu *pmu = hlist_entry_safe(node, typeof(*pmu), 
->>> cpuhp.node);
->>> -    unsigned int target = i915_pmu_target_cpu;
->>> -
->>> -    /*
->>> -     * Unregistering an instance generates a CPU offline event which 
->>> we must
->>> -     * ignore to avoid incorrectly modifying the shared 
->>> i915_pmu_cpumask.
->>> -     */
->>> -    if (!pmu->registered)
->>> -        return 0;
->>> -
->>> -    if (cpumask_test_and_clear_cpu(cpu, &i915_pmu_cpumask)) {
->>> -        target = cpumask_any_but(topology_sibling_cpumask(cpu), cpu);
->>> -
->>
->> I'm not familar with the i915 PMU, but it seems suggest a core scope
->> PMU, not a system-wide scope.
-> 
-> counter is in a complete separate device - it doesn't depend on core or
-> die or pkg - not sure why it cared about topology_sibling_cpumask here.
-> 
-> Also, in my tests it always chose cpu0 that is the boot cpu and can't be
-> offlined. Looking at our CI it seems this entire code is not tested at
-> all: the only test that in theory would exercise this just skips since
-> cpu0 can't go offline - 
-> https://intel-gfx-ci.01.org/tree/drm-tip/shards-all.html?testfilter=hotplug
+Try with:
 
-s/not tested at all/not currently tested/
+scripts/checkpatch.pl -q --emacs --strict --show-types --max-line-length=3D=
+100 --ignore=3DBIT_MACRO,SPLIT_STRING,LONG_LINE_STRING,BOOL_MEMBER
 
-commit e59e74dc48a309cb848ffc3d76a0d61aa6803c05
-Author: Thomas Gleixner <tglx@linutronix.de>
-Date:   Fri May 12 23:07:04 2023 +0200
 
-     x86/topology: Remove CPU0 hotplug option
+>
+> BR
+> Vinod
+>
+>>=20
+>> > =C2=A0static void
+>> > =C2=A0update_dirty_rect_to_full_region(struct intel_plane_state *plane=
+_state,
+>> > =C2=A0				 struct drm_rect *dirty_rect)
+>> > @@ -1276,9 +1279,9 @@ validate_and_clip_dirty_rect(struct intel_plane_=
+state *plane_state,
+>> > =C2=A0}
+>> > =C2=A0
+>> > =C2=A0static void
+>> > -intel_fbc_compute_dirty_rect(struct intel_plane *plane,
+>> > -			=C2=A0=C2=A0=C2=A0=C2=A0 struct intel_plane_state *old_plane_state,
+>> > -			=C2=A0=C2=A0=C2=A0=C2=A0 struct intel_plane_state *new_plane_state)
+>> > +__intel_fbc_compute_dirty_rect(struct intel_plane *plane,
+>> > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct intel_plane_state *old=
+_plane_state,
+>> > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct intel_plane_state *new=
+_plane_state)
+>> > =C2=A0{
+>> > =C2=A0	struct intel_fbc *fbc =3D plane->fbc;
+>> > =C2=A0	struct intel_fbc_state *fbc_state =3D &fbc->state;
+>> > @@ -1292,6 +1295,37 @@ intel_fbc_compute_dirty_rect(struct intel_plane=
+ *plane,
+>> > =C2=A0		update_dirty_rect_to_full_region(new_plane_state, fbc_dirty_re=
+ct);
+>> > =C2=A0}
+>> > =C2=A0
+>> > +void
+>> > +intel_fbc_compute_dirty_rect(struct intel_atomic_state *state,
+>> > +			=C2=A0=C2=A0=C2=A0=C2=A0 struct intel_crtc *crtc)
+>> > +{
+>> > +	struct intel_display *display =3D to_intel_display(state);
+>> > +	struct intel_plane_state *new_plane_state;
+>> > +	struct intel_plane_state *old_plane_state;
+>> > +	struct intel_plane *plane;
+>> > +	int i;
+>> > +
+>> > +	if (DISPLAY_VER(display) < 30)
+>> > +		return;
+>> > +
+>> > +	for_each_oldnew_intel_plane_in_state(state, plane, old_plane_state, =
+new_plane_state, i)
+>> > {
+>> > +		struct intel_fbc *fbc =3D plane->fbc;
+>> > +
+>> > +		if (!fbc || plane->pipe !=3D crtc->pipe)
+>> > +			continue;
+>> > +
+>> > +		/* If plane not visible, dirty rect might have invalid coordinates =
+*/
+>> > +		if (!new_plane_state->uapi.visible)
+>> > +			continue;
+>> > +
+>> > +		/* If FBC to be disabled, then no need to update dirty rect */
+>> > +		if (!intel_fbc_can_flip_nuke(state, crtc, plane))
+>> > +			continue;
+>> > +
+>> > +		__intel_fbc_compute_dirty_rect(plane, old_plane_state, new_plane_st=
+ate);
+>> > +	}
+>> > +}
+>> > +
+>> > =C2=A0static void intel_fbc_update_state(struct intel_atomic_state *st=
+ate,
+>> > =C2=A0				=C2=A0=C2=A0 struct intel_crtc *crtc,
+>> > =C2=A0				=C2=A0=C2=A0 struct intel_plane *plane)
+>> > @@ -1301,8 +1335,6 @@ static void intel_fbc_update_state(struct intel_=
+atomic_state *state,
+>> > =C2=A0		intel_atomic_get_new_crtc_state(state, crtc);
+>> > =C2=A0	struct intel_plane_state *plane_state =3D
+>> > =C2=A0		intel_atomic_get_new_plane_state(state, plane);
+>> > -	struct intel_plane_state *old_plane_state =3D
+>> > -		intel_atomic_get_old_plane_state(state, plane);
+>> > =C2=A0	struct intel_fbc *fbc =3D plane->fbc;
+>> > =C2=A0	struct intel_fbc_state *fbc_state =3D &fbc->state;
+>> > =C2=A0
+>> > @@ -1327,9 +1359,6 @@ static void intel_fbc_update_state(struct intel_=
+atomic_state *state,
+>> > =C2=A0	fbc_state->cfb_stride =3D intel_fbc_cfb_stride(plane_state);
+>> > =C2=A0	fbc_state->cfb_size =3D intel_fbc_cfb_size(plane_state);
+>> > =C2=A0	fbc_state->override_cfb_stride =3D intel_fbc_override_cfb_strid=
+e(plane_state);
+>> > -
+>> > -	if (DISPLAY_VER(display) >=3D 30)
+>> > -		intel_fbc_compute_dirty_rect(plane, old_plane_state, plane_state);
+>> > =C2=A0}
+>> > =C2=A0
+>> > =C2=A0static bool intel_fbc_is_fence_ok(const struct intel_plane_state=
+ *plane_state)
+>> > diff --git a/drivers/gpu/drm/i915/display/intel_fbc.h b/drivers/gpu/dr=
+m/i915/display/intel_fbc.h
+>> > index acaebe15f312..87be5653db0f 100644
+>> > --- a/drivers/gpu/drm/i915/display/intel_fbc.h
+>> > +++ b/drivers/gpu/drm/i915/display/intel_fbc.h
+>> > @@ -49,8 +49,11 @@ void intel_fbc_handle_fifo_underrun_irq(struct inte=
+l_display *display);
+>> > =C2=A0void intel_fbc_reset_underrun(struct intel_display *display);
+>> > =C2=A0void intel_fbc_crtc_debugfs_add(struct intel_crtc *crtc);
+>> > =C2=A0void intel_fbc_debugfs_register(struct intel_display *display);
+>> > +void intel_fbc_compute_dirty_rect(struct intel_atomic_state *state,
+>> > +				=C2=A0 struct intel_crtc *crtc);
+>> > =C2=A0void intel_fbc_program_dirty_rect(struct intel_dsb *dsb,
+>> > =C2=A0				=C2=A0 struct intel_atomic_state *state,
+>> > =C2=A0				=C2=A0 struct intel_crtc *crtc);
+>> > =C2=A0
+>> > +
+>>=20
+>> Superfluous newline.
+>>=20
+>> > =C2=A0#endif /* __INTEL_FBC_H__ */
+>>=20
+>
 
-So test worked for ~6 years and then transitioned to skip. :shrug:
-
-Regards,
-
-Tvrtko
-
->>
->>> -        /* Migrate events if there is a valid target */
->>> -        if (target < nr_cpu_ids) {
->>> -            cpumask_set_cpu(target, &i915_pmu_cpumask);
->>> -            i915_pmu_target_cpu = target;
->>> -        }
->>> -    }
->>> -
->>> -    if (target < nr_cpu_ids && target != pmu->cpuhp.cpu) {
->>> -        perf_pmu_migrate_context(&pmu->base, cpu, target);
->>> -        pmu->cpuhp.cpu = target;
->>> -    }
->>> -
->>> -    return 0;
->>> -}
->>> -
->>> -static enum cpuhp_state cpuhp_state = CPUHP_INVALID;
->>> -
->>> -int i915_pmu_init(void)
->>> -{
->>> -    int ret;
->>> -
->>> -    ret = cpuhp_setup_state_multi(CPUHP_AP_ONLINE_DYN,
->>> -                      "perf/x86/intel/i915:online",
->>> -                      i915_pmu_cpu_online,
->>> -                      i915_pmu_cpu_offline);
->>> -    if (ret < 0)
->>> -        pr_notice("Failed to setup cpuhp state for i915 PMU! (%d)\n",
->>> -              ret);
->>> -    else
->>> -        cpuhp_state = ret;
->>> -
->>> -    return 0;
->>> -}
->>> -
->>> -void i915_pmu_exit(void)
->>> -{
->>> -    if (cpuhp_state != CPUHP_INVALID)
->>> -        cpuhp_remove_multi_state(cpuhp_state);
->>> -}
->>> -
->>> -static int i915_pmu_register_cpuhp_state(struct i915_pmu *pmu)
->>> -{
->>> -    if (cpuhp_state == CPUHP_INVALID)
->>> -        return -EINVAL;
->>> -
->>> -    return cpuhp_state_add_instance(cpuhp_state, &pmu->cpuhp.node);
->>> -}
->>> -
->>> -static void i915_pmu_unregister_cpuhp_state(struct i915_pmu *pmu)
->>> -{
->>> -    cpuhp_state_remove_instance(cpuhp_state, &pmu->cpuhp.node);
->>> -}
->>> -
->>>  void i915_pmu_register(struct drm_i915_private *i915)
->>>  {
->>>      struct i915_pmu *pmu = &i915->pmu;
->>>      const struct attribute_group *attr_groups[] = {
->>>          &i915_pmu_format_attr_group,
->>>          &pmu->events_attr_group,
->>> -        &i915_pmu_cpumask_attr_group,
->>>          NULL
->>>      };
->>>      int ret = -ENOMEM;
->>> @@ -1266,7 +1162,6 @@ void i915_pmu_register(struct drm_i915_private 
->>> *i915)
->>>      spin_lock_init(&pmu->lock);
->>>      hrtimer_init(&pmu->timer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
->>>      pmu->timer.function = i915_sample;
->>> -    pmu->cpuhp.cpu = -1;
->>>      init_rc6(pmu);
->>>
->>>      if (IS_DGFX(i915)) {
->>> @@ -1295,6 +1190,7 @@ void i915_pmu_register(struct drm_i915_private 
->>> *i915)
->>>
->>>      pmu->base.module    = THIS_MODULE;
->>>      pmu->base.task_ctx_nr    = perf_invalid_context;
->>> +    pmu->base.scope        = PERF_PMU_SCOPE_SYS_WIDE;
->>>      pmu->base.event_init    = i915_pmu_event_init;
->>>      pmu->base.add        = i915_pmu_event_add;
->>>      pmu->base.del        = i915_pmu_event_del;
->>> @@ -1307,16 +1203,10 @@ void i915_pmu_register(struct 
->>> drm_i915_private *i915)
->>>      if (ret)
->>>          goto err_groups;
->>>
->>> -    ret = i915_pmu_register_cpuhp_state(pmu);
->>> -    if (ret)
->>> -        goto err_unreg;
->>> -
->>>      pmu->registered = true;
->>>
->>>      return;
->>>
->>> -err_unreg:
->>> -    perf_pmu_unregister(&pmu->base);
->>>  err_groups:
->>>      kfree(pmu->base.attr_groups);
->>>  err_attr:
->>> @@ -1340,8 +1230,6 @@ void i915_pmu_unregister(struct 
->>> drm_i915_private *i915)
->>>
->>>      hrtimer_cancel(&pmu->timer);
->>>
->>> -    i915_pmu_unregister_cpuhp_state(pmu);
->>> -
->>>      perf_pmu_unregister(&pmu->base);
->>>      kfree(pmu->base.attr_groups);
->>>      if (IS_DGFX(i915))
->>> diff --git a/drivers/gpu/drm/i915/i915_pmu.h 
->>> b/drivers/gpu/drm/i915/i915_pmu.h
->>> index 8e66d63d0c9f9..53bce3d8bfbaf 100644
->>> --- a/drivers/gpu/drm/i915/i915_pmu.h
->>> +++ b/drivers/gpu/drm/i915/i915_pmu.h
->>> @@ -56,13 +56,6 @@ struct i915_pmu_sample {
->>>  };
->>>
->>>  struct i915_pmu {
->>> -    /**
->>> -     * @cpuhp: Struct used for CPU hotplug handling.
->>> -     */
->>> -    struct {
->>> -        struct hlist_node node;
->>> -        unsigned int cpu;
->>> -    } cpuhp;
->>>      /**
->>>       * @base: PMU base.
->>>       */
->>> @@ -155,15 +148,11 @@ struct i915_pmu {
->>>  };
->>>
->>>  #ifdef CONFIG_PERF_EVENTS
->>> -int i915_pmu_init(void);
->>> -void i915_pmu_exit(void);
->>>  void i915_pmu_register(struct drm_i915_private *i915);
->>>  void i915_pmu_unregister(struct drm_i915_private *i915);
->>>  void i915_pmu_gt_parked(struct intel_gt *gt);
->>>  void i915_pmu_gt_unparked(struct intel_gt *gt);
->>>  #else
->>> -static inline int i915_pmu_init(void) { return 0; }
->>> -static inline void i915_pmu_exit(void) {}
->>>  static inline void i915_pmu_register(struct drm_i915_private *i915) {}
->>>  static inline void i915_pmu_unregister(struct drm_i915_private 
->>> *i915) {}
->>>  static inline void i915_pmu_gt_parked(struct intel_gt *gt) {}
->>
+--=20
+Jani Nikula, Intel
