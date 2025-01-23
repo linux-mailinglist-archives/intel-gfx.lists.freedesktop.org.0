@@ -2,185 +2,180 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D669A1A799
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2025 17:10:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4815BA1A79A
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2025 17:11:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBB0810E87D;
-	Thu, 23 Jan 2025 16:10:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D06B710E870;
+	Thu, 23 Jan 2025 16:11:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aQlFtbIE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X5Z2NhhW";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 519B710E86B;
- Thu, 23 Jan 2025 16:10:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A037510E86C;
+ Thu, 23 Jan 2025 16:11:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737648629; x=1769184629;
- h=content-transfer-encoding:in-reply-to:references:subject:
- from:to:date:message-id:mime-version;
- bh=OGAQxrp2UidBX+iDzYWlNj9n6WdXudi37FM7d/C/Uvk=;
- b=aQlFtbIEB8mS4+a2kg4PX1lT9qUjwCQHIU8RA6Nvsh0NNKwHbnfFEK+T
- rUxQEY+/9v97N81YtrfiBBK/VCAx85EtXdDsbb6Zb7WlXLbLSmqjcy6iL
- Wiq7t1cJiqmeZp7rx7PMSz/q9YA2uwkER+Fraj1Yp3evjTqzdjQiGuquK
- NkkdZNiMsYAqURhDwPaIsENC3FqU/U9rMJJLhjY4WgIu8BfJAX21QHLUu
- R4CWpoWoOrGm45eBDmgJKMgJREcwrSnYRZc6OxRPAaWVL7njIzgLWhiTU
- VXGgsZpnXfitU9O9fnnehbq6WbtzIZBSnhV+bbdvI+x8mXSWyPp8qdRCn Q==;
-X-CSE-ConnectionGUID: /4Md/7oRS5W1EJjZjPu3bA==
-X-CSE-MsgGUID: LMHPztyMSwSIXCqgFM/GAg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11324"; a="37361598"
-X-IronPort-AV: E=Sophos;i="6.13,228,1732608000"; d="scan'208";a="37361598"
+ t=1737648674; x=1769184674;
+ h=date:from:to:subject:message-id:references:in-reply-to:
+ mime-version; bh=tI6ap1/Jgb956fcJhtp9De3SPvkbbFs5fMWXlHAJfFE=;
+ b=X5Z2NhhWgHsxaDSXLuHhSiRi1bX2PJoSbSGqGWq6fX1CUy6v/x8TPQo5
+ 4bdecxB+VlOTi8NT1nGrNQcxmvjs4MBAwKH21nBYOK+AkYzKAdvNtSc4V
+ DEfl/uPmxuqxfH1FNsAWmKYpsuMH2liHQdueTa1JEMwvpVox1fhRt/5Up
+ zFkDvgbvlYkurr+5uX6Hg5nT1CCS7lalnxMTn2JYhDetHsOnrHtWgrXvU
+ kh4H0uBBC0F9DS0mLb0YtsmOTtqOV8IrByCVlPTN8bAKhfl/fDL4LypCv
+ 13YgUeE+4o3kHjvRlVsE4rUqWbzFfijyOVAVMW5wDBFh5Rkhvqvk5Se5z A==;
+X-CSE-ConnectionGUID: a8TLjoqwTN2zyi8WqwoqJA==
+X-CSE-MsgGUID: Vtq/0qbrQt2y28BgajiuFA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11324"; a="37361899"
+X-IronPort-AV: E=Sophos;i="6.13,228,1732608000"; d="scan'208";a="37361899"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2025 08:10:29 -0800
-X-CSE-ConnectionGUID: o0Mn2S0vTMqfR2QUSr/oVw==
-X-CSE-MsgGUID: mCmnvIolTlanaLKiY+eoBQ==
+ 23 Jan 2025 08:11:13 -0800
+X-CSE-ConnectionGUID: 6qZZf4BrQJ2wQtFOy58yLQ==
+X-CSE-MsgGUID: kld6UfqAQQ6DRAdbJSLQBg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="108368475"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="108368872"
 Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
  by orviesa008.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 23 Jan 2025 08:10:29 -0800
+ 23 Jan 2025 08:11:13 -0800
 Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
  ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Thu, 23 Jan 2025 08:10:28 -0800
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ 15.1.2507.44; Thu, 23 Jan 2025 08:11:12 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
  orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Thu, 23 Jan 2025 08:10:28 -0800
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.170)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2507.44 via Frontend Transport; Thu, 23 Jan 2025 08:11:12 -0800
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.48) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Thu, 23 Jan 2025 08:10:27 -0800
+ 15.1.2507.44; Thu, 23 Jan 2025 08:11:11 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Zy4oJ4GtLguPX+eUJLSMSlIbSXQwtY2OiMoms+dihtz7ZkwqlazEDDIruKBRi4QPR8zi7hrR26cuj8VEJecuS3GBtEpKGC/4fL+pULDAOC0wqobFiy1hVncP3IWoornGtDxshA21a0Zqr6ZSOnlo2+Wj2qSIdmgR54J1SpXEPMLt1Z90Q9IBBEq2Rz7IUBq4jiu+kDITk2Y5RCkwxsdNZTOPwFLrSt7MFwGXI7rGBIRZE+Rjr80nq4hQZTz2+qNs20++5h6NB/bGJfpORwrCx0q5ImSKIDId7cRlfx+DXcnqf20O75RormYTtC1n/bIgOnV8tSixCnkHMmNOP8am5g==
+ b=PpejRl+zK4ViV7ugFzXNqpUzIggaX99P2nfD3DBCQ88lYTuEuPcp61e3v+W80z4zMQ0Sr0C1iGi4H9E2vPg0Rr9hm837L4wmfrLqi1O9Tb2duXJBSYId3ZFFhUrOWZ0nXEwVlWwhBCo82vJozINfHBSJMpeEeKhlCeLVwBM5Zdx4eqdYWLBXQn5nnXAcpzH+nTo5E2BYiIOcnabDFNyXyanGARaMPyYA5UQwb/BKWryCQueZEW/mhkKVDwHzccoY4sZOPYfX/ZHw0Yp/hboc1ttpU3sWcd2L7iynDluIcPuDtjT4emIwCL0gtapsRclpabHh0KIUWtPkaWxrR9ATGQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bHZk+paGTaMGEBkrYv+K7qZ9ytFf04DfrucM7gPbozs=;
- b=eJ4LZfBJ/0Rjg67fkfMTzdUlrMN3lX3w5a9cwG0KDQ7KBNHn8OBr976EbOnKVKJsibEb4+iSW3EZ3zC8r9UiUKBp7Lbgp8zie0ULMZZu4yQ4Bcsz5clgeQ9bi9bVmQbHALL85jAX+N70tw/wdHsACfegcJ7JsMsBQRpTiW+fZ/4mwCvb3YP2k9MgPj0nZu3JkM8K1mFlR8LQYOSXQxwELyAip8ukcjM0dOu1Ym8Xqyk8QTtHuBtuBXl4OatvyIOqZRb+15YNRb8UeY5oNzPiK+RjvicfLjL1qHlb6KoILVCZywIONfXcvT8s9V9w18z6ytjnte37bzKn8uYtPTtLVQ==
+ bh=s+xatjx4zI+1AndN7rGVDJKU2W9e2MKv7utyF9hDXhY=;
+ b=pfijivFPp+2gOfM+U44WLcqF/SXQpZcxFkK3Gwwnhhum4LfA5PKX8Q+X2BgPJeGxZKowDeiI5F2ZEDeZOUzUgT46Y/Rcx6kyHawHSIqJ1scCMe1R4LhCByIm+EpSaN0Da/j5G50dlVscknfoG6YLqQyWTGYfO5ECYd7Or1RpzvsEC4wtWWctU8JfU/k6OAUJhBhPVMYhuCCqRNRv5mJ5D53UW9ptzZKiBlQZBBmcdHVr29eGtsOETKKOvD7BRqdOttu2bTShvJ/dhVcUUHQW1CeyNed7ZcVXKveN+MelfL9ym8IZw8P61TZdAcNV9tXkCLp8QlHDm62rnlxtK14JPA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
- by PH8PR11MB6730.namprd11.prod.outlook.com (2603:10b6:510:1c6::17)
+Received: from PH8PR11MB6974.namprd11.prod.outlook.com (2603:10b6:510:225::16)
+ by SN7PR11MB7512.namprd11.prod.outlook.com (2603:10b6:806:345::9)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8356.17; Thu, 23 Jan
- 2025 16:10:25 +0000
-Received: from PH8PR11MB8287.namprd11.prod.outlook.com
- ([fe80::7e8b:2e5:8ce4:2350]) by PH8PR11MB8287.namprd11.prod.outlook.com
- ([fe80::7e8b:2e5:8ce4:2350%5]) with mapi id 15.20.8356.020; Thu, 23 Jan 2025
- 16:10:25 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <08e1dba99b68f2bfc575585ba9f22ee0d1daf852.camel@coelho.fi>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8377.18; Thu, 23 Jan
+ 2025 16:11:09 +0000
+Received: from PH8PR11MB6974.namprd11.prod.outlook.com
+ ([fe80::c0b4:f63a:9c33:ec4a]) by PH8PR11MB6974.namprd11.prod.outlook.com
+ ([fe80::c0b4:f63a:9c33:ec4a%7]) with mapi id 15.20.8356.020; Thu, 23 Jan 2025
+ 16:11:09 +0000
+Date: Thu, 23 Jan 2025 21:41:03 +0530
+From: "Vivekanandan, Balasubramani" <balasubramani.vivekanandan@intel.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH 2/4] drm/i915/dmc_wl: Add debugfs for untracked offsets
+Message-ID: <Z5JqFwchTpIXdDbJ@bvivekan-mobl1>
 References: <20250117220747.87927-1-gustavo.sousa@intel.com>
- <20250117220747.87927-5-gustavo.sousa@intel.com>
- <08e1dba99b68f2bfc575585ba9f22ee0d1daf852.camel@coelho.fi>
-Subject: Re: [PATCH 4/4] drm/i915/dmc_wl: Enable the debugfs only with
- enable_dmc_wl_debugfs=1
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-To: Luca Coelho <luca@coelho.fi>, <intel-gfx@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>
-Date: Thu, 23 Jan 2025 13:10:20 -0300
-Message-ID: <173764862050.34727.8876808159559449431@intel.com>
-User-Agent: alot/0.12.dev27+gd21c920b07eb
-X-ClientProxiedBy: MW4PR03CA0355.namprd03.prod.outlook.com
- (2603:10b6:303:dc::30) To PH8PR11MB8287.namprd11.prod.outlook.com
- (2603:10b6:510:1c7::14)
+ <20250117220747.87927-3-gustavo.sousa@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <20250117220747.87927-3-gustavo.sousa@intel.com>
+X-ClientProxiedBy: PN3PR01CA0101.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:9b::7) To PH8PR11MB6974.namprd11.prod.outlook.com
+ (2603:10b6:510:225::16)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|PH8PR11MB6730:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6f34173f-9a97-425d-1598-08dd3bc8721b
+X-MS-TrafficTypeDiagnostic: PH8PR11MB6974:EE_|SN7PR11MB7512:EE_
+X-MS-Office365-Filtering-Correlation-Id: 05f8950d-ffe4-472d-74e8-08dd3bc88c9f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0; ARA:13230040|366016|376014|1800799024|16122699012;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?c2M1QXZjQmhFQUYzbEpNUUFKQlE4MWxEamo1OExiajZud1pUQUNzUXNVZVNU?=
- =?utf-8?B?QmZBZ3lWcWZMSEdCY05kR3Q1R1ZRNlAvbnJnRGhqVXRkUmpVL1gySzZtOCtj?=
- =?utf-8?B?ZzhtKzJkZUtJaVVyNlo4OVZkODhJYnRqV2RUL0FscFdHbWFxR1NnaDVpbmda?=
- =?utf-8?B?a3pmMG9WVlJ0NkZuK0tPOUdvcC9aZ091R0s0T1drNmV6THFHTW5OV1FoVEcr?=
- =?utf-8?B?bXhBNnp1L05tMkFBaWtGWWliM2YxeWZuYjVvT0NydWtLYXRoQWJlRlR0Q1lx?=
- =?utf-8?B?S3R1TEVIRnBIQVBaZk9sNHlyN05VK1EwRGdPMFkxZWJ5czM5TFdDWmhoRndM?=
- =?utf-8?B?T25JSEk0aFFZVUJISGpMSnlFTjF1M0F3WXdNRGNLaVp2eVBvb2QzL29sMVpW?=
- =?utf-8?B?TG1ER1FzRU8zbkRJeU9oNGxSajVuUjZtRmI5SkxBb0xIYzd1dHIzSmFvN01Q?=
- =?utf-8?B?ZGxTd0tJRVVFOXFkSzNjN0VkTFFWNkxGK0JYMXkzVHU4UGd4OW5oYnowdGtu?=
- =?utf-8?B?NXlGRjdMSnpjRG5lcC9CVGxQcUtKamxTK2E5a1RjRHI2ejJBcFIrUmNHZnZO?=
- =?utf-8?B?bjUvRWsxV0JHT3RhU3FxdSt0NHNMQzBYbVNhZURFc1N5QWwyaEN5MUllUWdj?=
- =?utf-8?B?ZGJ0NHFQU3YzeUl6ZS9pWlRvOTE3U3VNZkJXbmF6SkNvYlA3ZlB6VG5KL3Fv?=
- =?utf-8?B?N3doZktFL2hsVkx1bDJ4azdlVVhEcVNsZktsU1MwK0Z2bVVlWHZRTnBVVDZi?=
- =?utf-8?B?aVFQVHAwaXdCdjUydWhncXdkeS9jd3N5dzRPVXdSOTY3UnRGNmp5TEhzbVRF?=
- =?utf-8?B?MnZudzZDRGZRekZSZzk0RVhhZG5KNE5hQzZaemxpMEJta1RpL0E0d0dIR0Jy?=
- =?utf-8?B?dWp2STU3ay81WDIyYkN5cHFrQ1BFdEZRYVdwbHRsaFhMbS9LVzdqQkxQSXRC?=
- =?utf-8?B?ZDNxQXpXSzA3UzI5ZE14bnMrKzFpZ2NDempFbTZZNWpyREhwSVRNd3dTeVY4?=
- =?utf-8?B?YjUycFRuR2d0Y3k1alNZNWdTcmd2NE9wQm1WbXgrbHBFT2pkbklEcSs5bUww?=
- =?utf-8?B?UkZxRDB4cnVoWWlRQ29DZ01UWDVqcGV2b2NUUnBVTVVYVmUvNnVFOVNlcmZX?=
- =?utf-8?B?ZjdVaVZJVXNkcWRpMFRTMGRSZ0xObnNDeldFTUZib2tYbHpWNUMvb1RyMmwy?=
- =?utf-8?B?Yk4raEpmdGFzWHRJQU5WSU1oem1RWElxS2grNnVCemhqVDJabk92YU85U1BH?=
- =?utf-8?B?dXlidXJ3dXZhK25KVFZUUHE5bk81VThnUmJjVG9pMHpGWEYwc1BHWjcvaEll?=
- =?utf-8?B?MWoyamVpT2s2emcvUFhnRGJqU055b2JmV1FMbm5icXBJeTF3MjZqanpXMUpa?=
- =?utf-8?B?cGNxb085SGdHcDNVTUREQWJjR2JSZEJaVXNRelRTMkRvNTFxZlBiZWgranZR?=
- =?utf-8?B?WHM1VjhIUWhaRlREeWw0ek9FVlhneCt6Y01yWVNkRGZCWmd0bXhpbVlxbWVN?=
- =?utf-8?B?L1ppUFBzUnhnekVadGVvblRKa1Z2YlRpbG5GTHdZd2Vpc3dlQzFpUzFVbk5T?=
- =?utf-8?B?eXlWbGdXRlVLM3h4eGZ6T2M0bWtqeEI5dWQ0SXpGUHNEeTB4bTcxUEFJWmdO?=
- =?utf-8?B?eTU3d0duMU9WN1pkcGNkRUpMcWkrbmhIaHJ1VmtNQi9GNVYyUFc5MHU1YlBi?=
- =?utf-8?B?ZG1ZN2t1TndEQi9zcm5pa0szNk9Pd1c0eURwMHFGMjlvMXZoOUViYzk2c2F0?=
- =?utf-8?B?Wit1ZlpYOGp6YmE0aWoxM2RaUll6aUZLSXNNWmlpWjZ5M3VFMU1yMWJuRmh0?=
- =?utf-8?B?Z2tCeTFTbVc0dmVoRVNUT0dRVDBHZWQxMktTTUVQb1d6d0F2Si9UTkdzWHRo?=
- =?utf-8?B?aFZqa1k5SXBDUDhIZUZhNzJ3QmV2N284cE1wOC9BelV2K3QvZlpSWFNQTEZT?=
- =?utf-8?Q?DmqcE+8n752jeFdD9gNAbjQJ4ZsSf7m5?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?a0JFalBXOE84RktBWi9Pc1FDU01DQ3gzL3JPdGg2RzBYdkhKR2tHNU5QSTJ0?=
+ =?utf-8?B?bUU2czNrV0k1Zm0wRktldWd6cUd6MUUzSmJXaDd2Rmo3VXBpRnZyMXVzZ0pj?=
+ =?utf-8?B?cVA2T1BKbVBDMU00VjB4Q25wVjg2SDRnREltYmdON2ZvaEEyNk80RmdrVmJ4?=
+ =?utf-8?B?NFVUZk9aek1PQkxVMkJ1djBWSit3ZXVPcnUzdEF6Qk1nVTVkS3NNZE1YS3FO?=
+ =?utf-8?B?QWhNYXZ5V2psTVl1b3ZwSHZJWGRFYmdMRjcycDNnL1FLeWFPK3pjazJ4YmhG?=
+ =?utf-8?B?aGNaejRTYjhwWFVydG8zS2dhMFZCZ3RLU0RJZC81VG9kRzZEcWEyS1dYNlRG?=
+ =?utf-8?B?cHU1UnhpMW1ONE9iUDBVL3dEc1JuVnh0QUFUOXIvZERMb1Nsa0tvRmxFMUc4?=
+ =?utf-8?B?Zzd0a3RGY3RyTmhES0dCZ3NYSVlWTVNzS3oxc1FFS0Y1MCtSUFhZRGVpZmg4?=
+ =?utf-8?B?ZDBuQ2JaOG5tcGlLd0pGanNvdjhMTkxXdXhmZXN2aFlndjFJVHVOR0lpNG1W?=
+ =?utf-8?B?VzJrcHBwVDlDYS93MGxua2VvcUptL3l6U1dXRHp2UldmbmdWd0dpdlFRL3BT?=
+ =?utf-8?B?RVlkd0xVQmh3YUV1bjRWWGtJSWpjRzg1TStNeXlpSVVhc095cndLNEMzaVRP?=
+ =?utf-8?B?T3hCVHV3MlRrakVveEFKU3MxZ0dPUTBOL01BZmpublRWRzdtMi9CVlBNSmVM?=
+ =?utf-8?B?M2JKWmViTGdyQy9mZEtxcnNKZUFZVFMvMHVsN29zbm9LM094UEdzRXNOUFBa?=
+ =?utf-8?B?OTYyb0ZRRndHRkZoSzRSd3JPQUVTOVB0RUJCWFJ6ejQ0dktSNHhtTnhseFF4?=
+ =?utf-8?B?U0FQYkhzaE1xWFA2YVBTZUY0V1h6SEs3NElKVy95WmJ1cUpqSXY5NDFoNS9r?=
+ =?utf-8?B?TnhwbFRobFZhMWNobDVxL1NTRGZPd1B2bGRzYTczeGF0NEZtQVVKQ2J3MFhT?=
+ =?utf-8?B?TUFUaU44Q0d1djhsUk54VnJuTDhlWEYxVUtHSk5wZ3ROWnMzVUVhRGhNNFhk?=
+ =?utf-8?B?NHk3T1ZBTXhiUnczY1hieUsxODlSNzg1YXhpYXdUZ2ZveEhwdTJqSzNvbWFN?=
+ =?utf-8?B?alowbjBJbStEWXNPekFKcUdPT2Zlb0w4UkkwYW5Yc0RuQTN4clBUMStPNlJC?=
+ =?utf-8?B?NzFQeVd5VnRwYjdMTk81Q0tGUmRGckw0M1p6ald1WTIramN4M3lmeWt2Z1ND?=
+ =?utf-8?B?ZDVzMXhzaGtqK0lINytKOU5WKzdPMEpYQ013Uzc1RlY5RmNidzZHS3hmaFZI?=
+ =?utf-8?B?cWhvc3VaY1Z0a3NVYW03Z0pra1g5a29LWGpxYXF3QXo1WGtwbEM4K2lURUY5?=
+ =?utf-8?B?bGF1YkpmUEZ5Y2xabVNaYys3bGpQNVdRNTdOSUlqeVpjOGhsaVRQRUNZR040?=
+ =?utf-8?B?UnFESU1BamNuR0RVNGxwZjl5NUdCZUlmTm1OQzhlY2FIUjEvN2piQnhNcDVs?=
+ =?utf-8?B?OGZ1Z2o4L0VpdkowNml4NWhiNnVPN2U3MlhzYmxVTFFXUTFRVHFDZmx1T29Y?=
+ =?utf-8?B?eTk3WU5KNmdNM3hoNkUrb09zZSs2Vnl2UzBEdERDaURDVldjSmtGUkdMSUxa?=
+ =?utf-8?B?SEh5bVBuaHBqYlVoMWNURmQwOVFoMXYwbnZnRHoxTnlodzRqcGNpMlZraXN4?=
+ =?utf-8?B?d0FOd1ZPVDBGTzZ0cVJaRnFveGNpcnZSYlZoMXYvVEUzckpiTHlFRzlDQ1hD?=
+ =?utf-8?B?aFVrWDlxeVJFcGh6QVdOU2pQNHM0eHpYeklUcUVIblZUeWpTQVZtMEJrY2s5?=
+ =?utf-8?B?QzJ1Tk14ckh3THJkNzR6RitDZDdvVVBtenI4cnh4dDhocFBSdStCZjhaeUFR?=
+ =?utf-8?B?QUlzRlBaUzdwblBwclIyd2NmUEp3RzhVWGRHM3VPc0xYcm9HUThOWkE2Uk44?=
+ =?utf-8?Q?wsOf4MZySagyN?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(16122699012); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:PH8PR11MB6974.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YjF2WjlvRjViTGFJdjJDNmYyOXM2SFRKbTByUzVGdzBqL2VacjJHNGx1Tjl0?=
- =?utf-8?B?NVVWWTkrNStHaG0wS3RaaThyR1RBWHZ5c0FJSDBDLzlKcHFGeFBFYXFDdk10?=
- =?utf-8?B?YmZPa0MzWEpNZytQRVFKRmorWTUzRzBMbGVmOE5sOVdxeENaMEVJN1I2YkYr?=
- =?utf-8?B?eUZqVFoydVR6ZDM1L294WUI0bncrMnZLZWhwa0FzVG1kNTcwd05GMHpUa3Mv?=
- =?utf-8?B?d0FVM3pWam1SUE9rUEJsc1ZYaE5aR1VyangrZDRBc0RKbGM3WlVHb3c5OUdG?=
- =?utf-8?B?aDB3UngvaElaQ0VBeGVCczBFdHVxbE1aQ2pLVnpJRFZJdkVWOTBJVVNRb0dk?=
- =?utf-8?B?TWNsdTE1VGtSZTQzelM2Y1ZkclBWMGVUS1BrMWUzellhanFxdTlneEJlWHBI?=
- =?utf-8?B?K21mOVNwU1NjVDRhTjVOQUNmNWR1NFRnSlF1TFFDV2xTQytkWUxwYnFEYXNx?=
- =?utf-8?B?aGdmbjVvK1NpekpmVTA5Y0c0Vjh6enNiaEZkNlhXYzRkelp2cUNEMXJnNDRR?=
- =?utf-8?B?RVBicC9BQ0phejNRSlVvQk9FSjlJTndKSnFZS29WWktNczg5ZjhzQ2dObGdl?=
- =?utf-8?B?RHJZR1JPRXhDRFZ1dkFKa1ZjMnh2S0NNMFhCbUhhTUY2OG1sU3JmTWtCclNN?=
- =?utf-8?B?cWo2L1YzbFRYSnlTZy9xVnJscGhnRFNVcXdLT3RxRHEzTlZpUmhjYnk4OEJN?=
- =?utf-8?B?RVlNcEgrSDQzWVhPaGF5Q3k1U1Z3NTRQdUt1ekdTK1RuSU1iVXNYR2VyMU5y?=
- =?utf-8?B?NzRqL2Z6WitUWmZHRVlXT2ROc29FZ0VSNkE2NmFickp0a292eVJ4UEE3QmVD?=
- =?utf-8?B?YkhLQ1hscWhIZTVTNmV1ZjJMSWIvQUFseWF6YnNwblBsdldNTURxbzlsK1BP?=
- =?utf-8?B?UUVGcFdNdDVvVlY5a2lPbWFhMlpKUWRkdzM4M3NtWkEvRnZGbEdFNlMyTWJp?=
- =?utf-8?B?Z0lSakRqZzFjenhpV1l3UEFiM2ViWmxYVUIvVHUxNURsa01SYjI1V3hqcUdI?=
- =?utf-8?B?TkNsQTk2ak10WXdIdGFFa3h2c20zb0hnUG9wN2RwdVdmNWtNMWNzbERLVFZL?=
- =?utf-8?B?NlZENGNvd3FiMXhoTjRqVUs4NWE4eElaYzRMU1ZJbUZVckZsa1FpaW9ETXNl?=
- =?utf-8?B?ZmtBSXVQSGN6aHBFY3ZGalM2M04xQXJSYitYbHFIdkx5aHBTUmpsT2IyQU1J?=
- =?utf-8?B?T25PRklWMm1rV3F0WHhlT0JTelNrWGszN1drL29MZkpMOEd3bVgyY0pKUEdD?=
- =?utf-8?B?ZHVTeUcyKy9RUkgzMjQrTnNESjJXL1ZWTlQ1eGpYTzRoa3BsR2RSWDVzUGph?=
- =?utf-8?B?ODlaWFhDeFBrOVNqZm9TVXFzQXNnOVZtQU5FNjBNdmNpVmxhbFdRMTJabDUw?=
- =?utf-8?B?RTVTejc3dU5qVG0vSWxxM0labTFTbmtZNXR6Q2xnMUVsdjRCUmcrZmYrRXE2?=
- =?utf-8?B?ZWRzRCthMkdKbmZtZEhYTDgzanUxVWdST0kzWkk2bjF0UkMrRmM1S1E1ZWty?=
- =?utf-8?B?Ull2RDRPeGU1dDdPK1F4ZlNkMGw1QzJURFphYU1QNGRSOXVpWm9rQjExK29Y?=
- =?utf-8?B?SDdFUGFDUU5Yd0p5a3hoK3RMYVVoV1p6Z1ZZNFRQc1R5endUSVdiN2toK2t6?=
- =?utf-8?B?QmJoL01tVHF5QzJUa2pITVdvWkdabVVzWTFocUhRVXZvNEVYUkR1VjhtYTBZ?=
- =?utf-8?B?WENNOFFGNDFsa2JDRnREazNBNnZxcjdrbXhMa3MxMDF5dWh3UlhZcld5TTlr?=
- =?utf-8?B?Mk9pZGdWeDUyc21ZWmx3OTJzTXlpVWRIZzFnR0ZmejlqK2FNbzdVdFBVUnZR?=
- =?utf-8?B?UmhEcmJoaEkwRnZxanB3MzZtazUxWXN0SmM1QVNkcUtnTDZJamFjQ2NSUU1W?=
- =?utf-8?B?dlZnUkNjbkVsT0hJQmFqUWhPay9Bd3AxWDRtRjFvNTdBN1FmQzd0YkErWEtw?=
- =?utf-8?B?L05ObnZUYms4bVFhc1U3enArNG5BejIzL3FmTzNFc1BZR0xDVGovWWM5RGxx?=
- =?utf-8?B?a0F6azQ2NUdTaFVXSVRHZ2ZHY3QwdEVVTFBhQi9ZK1FFZDRVSFpzRmNnbVk2?=
- =?utf-8?B?dVI3NWtsdXFWOHI1Ym9RYkM4dWxKYnArbkxRMTVndzI4ZTVIRCswMkwzcnlG?=
- =?utf-8?B?SUpWOVgxK2pndmt4Wjh0YlY0UW1JSWdhME5QTlh6bVJLTjNYNjBFTVltWHgw?=
- =?utf-8?B?bnc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6f34173f-9a97-425d-1598-08dd3bc8721b
-X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RnhPNENDa2FDWmZoeVZES2t2TitIK3R2bWd6eG1hK01BVEJERTJ4Y0IyYXpD?=
+ =?utf-8?B?TmxLNnBYVUd5VHMwM0dUVlZQalBqQW9tQ2FabFV5eEF1cm1wRlpqdnFmMGZ1?=
+ =?utf-8?B?ZVAzWVRiV2hWbVV3ajNkMlB1bW9CUnZITWJzWHFiV1BGbmszOHhmeDUwWkxK?=
+ =?utf-8?B?aGN4b1F6ZSttL1drd1poMUg4ZEszS09yT05GU1lWMmpHak13Z1NDZW03ZEtY?=
+ =?utf-8?B?a3h0L0JNV3hlVmFUMXVaY2lUMFdseUwyZTd2L0xKU2FGREthdUpoWXg3UE5w?=
+ =?utf-8?B?cmlSa3R3K1RqZXJzTUxMeVd3TlppVjFBa2J2aGJkTzBCYnc4ZjY0T1cvd25x?=
+ =?utf-8?B?K0toLyt3MGZ3TW1XVUVmckp4YVVzZ2hwTUVmTVR3TGNqb3NDemc1TnlDRmtH?=
+ =?utf-8?B?SEVlNzlRUVRQYVNIZHRRUzlMbHpYREhwbld5WTdmekJYcmRFbTY2M2liSEpl?=
+ =?utf-8?B?Z2hyM280UWdISXA2ZFI5eGhSVmhXTEQzYksvRi9kbDRSM2NHSjdaVVRUVzB0?=
+ =?utf-8?B?SW93eS90a0tKOGJ1SDFqQzNSSmxQN3d4L3NmQW16cUNGRU0xM3NFTm9kSWxP?=
+ =?utf-8?B?eld5UmZDcEttWGI2b1BIMUVTRmlXQmhVeXhsZG1BV2lvV25Md1loWGp3clZD?=
+ =?utf-8?B?c0pQYWgycnRURmpha3FvUTNMWUhtLzJETFpxQ3l3WFF3YTQ5Y21nVWpicmVJ?=
+ =?utf-8?B?LzJhZk13NGVwdGN3bTZSR2FHTU44bm1LRFQ5R2RvcVp5R0w1bUJWcHJjTmY1?=
+ =?utf-8?B?S2dlOU8yUG02d2tFRXNLYjYzRFdXV3lsZU5GbHNtMXBMd3diUGZRbExnazFz?=
+ =?utf-8?B?cmgwVUE5RlM1UHhQZWhFSzVXUysxa1FReTZoUUlwNStSaVE2VlZXSkhISkd6?=
+ =?utf-8?B?SVBCT1RWTXlnMllQYUVPcW11QTJuOWt6MmJ6cG11L1JQYUhKeE5qcHR5cWVL?=
+ =?utf-8?B?bzRvblhQc1ZGOHpYaDNqSHdOTFRuOUZwUWd1YnJVbWU4WDQ5RW1wS056ZE92?=
+ =?utf-8?B?MTFLWnhHSTRGNXRUcXovVkorR3RQS2pEdjNBY0o0QXdsZmI5bFhIeDZxc3lJ?=
+ =?utf-8?B?SHRIRHN1UzJ2WHozRjFpaTFWUEJZU1BZWHZielcrdW44ZUdPQjdyTDVSZzJ2?=
+ =?utf-8?B?QUQzVlNVakx4emJqb0JkN1l1VXRoZS9wL1hyempucUZwSFVxeFZrWXVZL092?=
+ =?utf-8?B?QkR2NUU5cWVmTjN1SzlaNWM0eVZLWDF1QnpsMEFrRVh3VVhONUlGRDZvZlhs?=
+ =?utf-8?B?ZTllVEhscEYwNk1CK25WZGlQaEw4bFFxanlrclgvbXdMWk15UUlHcmJRM1cr?=
+ =?utf-8?B?UFA3dzdYK1M3bUJKVThiamtvYzZUeTVHK1g5cU91aE1VSG92S1cycGNnUzAr?=
+ =?utf-8?B?TXQ3S0U5WUFyZ3VWcmZXOGxIajVkN2dhamMzYldNSkp5QmVnR1RabmNiRExh?=
+ =?utf-8?B?dkpiSW9BUnhvUkRBaGc0NUI5ZGovcC96RG80NCtNREplMUo5elJsbEVqSUM3?=
+ =?utf-8?B?VzZ2Nlp1TTFYN1FzRHhyL0lSU0x4UVE3dTNJRmk2SVlIVzRuR1FVdDVpbDFJ?=
+ =?utf-8?B?SGF2Z1V6S1pEK0pHMmdRVFJLSzRzNk1Qb20rVldIby9Icm53d24zSW1yV3VQ?=
+ =?utf-8?B?UGpJblR6ZzRYdk04allURmRyOVpSQ0JzVGkrdUNTZGNkWE03cXk1b3ZkWHBa?=
+ =?utf-8?B?a0ZwNnhCTllkYmJmVjVHTWF3VlRUV2owQWhsMUVxRUpQTVlHMXZtWDZuSE8z?=
+ =?utf-8?B?d29Takh4NmlxRnRqSnA1MkV5ZldLUkZoOGlBU0FNN3BTRTQvVWhCVFBnWjdV?=
+ =?utf-8?B?cmtnY0Y1Qk9zd2RSOGxWMXJQLzZVK3dHb0Z3SVlrUTJidmM3U3NRV0NLbERP?=
+ =?utf-8?B?b3p1UEhNbUhmK3lERmIrd29uZVlFVFY1SFE0TnQvdHB1MzhPREd1QmcvTEF2?=
+ =?utf-8?B?ZndtbDZCbTE2Q0M5Tit0dWROYmlvZjBBVUc4ZGJSOW9STGo2MGdiZUIrNEkr?=
+ =?utf-8?B?ci9VbURCM3ZzVDVWN1Q1djRoSnhPaDh2ZXFhRU9HK2JLUUNTUTM4bFgxMExv?=
+ =?utf-8?B?R0dtVGVlOTduY1BiUVZjTFRpbnZPU0VkWVVwT3F2YVZYTkY2MGpGSTFtTW9W?=
+ =?utf-8?B?RjlQdVVoRDVHbWZkaHVMZkVSTFYxTEdPNmNvUmo2NURMWEsxSkc0bVlrdy9j?=
+ =?utf-8?Q?SOdS3/ptu6iy2KJCGkwc/Ys=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 05f8950d-ffe4-472d-74e8-08dd3bc88c9f
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB6974.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2025 16:10:25.1739 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2025 16:11:09.6754 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: xmtb1L/MHOjvKM9Wn1P6CbsS82WMrJCBKvcnZ5tw6ofl+sRHFeKyaBSg3HvewP2JKlihXmKoeJoARKUR+/XC3A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6730
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9WY/1DTcJZ0onoqT+rKuWz3laFN2y3PHa2WAL7XMkRq5vk0fmkzxX6OY00/UIaKseqzOhVkf8HH7TpSGMbi6N1eqtmJFIcsVegdtByCBzmrQhTY99+mvbLb/8hNMIi80
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7512
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -197,63 +192,449 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Luca Coelho (2025-01-22 07:24:43-03:00)
->On Fri, 2025-01-17 at 19:06 -0300, Gustavo Sousa wrote:
->> We use a spinlock to protect DMC wakelock debugfs data, since it is also
->> accessed by the core DMC wakelock logic. Taking the spinlock when the
->> debugfs is not in use introduces a small but unnecessary penalty.
->>=20
->> Since the debugfs functionality is only expected to be used for, uh,
->> debugging sessions, let's protect it behind a module parameter
->> enable_dmc_wl_debugfs. That way, we only take the lock if the feature
->> was enabled in the first place.
->>=20
->> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
->> ---
->
->Looks good.  With a small optional nitpick below.
->
->Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
->
->[...]
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_params.c b/drive=
-rs/gpu/drm/i915/display/intel_display_params.c
->> index c4f1ab43fc0c..bc36d1b0ef87 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_params.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display_params.c
->> @@ -479,9 +488,14 @@ void intel_dmc_wl_debugfs_log_untracked(struct inte=
-l_display *display, u32 offse
->>  bool intel_dmc_wl_debugfs_offset_in_extra_ranges(struct intel_display *=
-display, u32 offset)
->>  {
->>          struct intel_dmc_wl_dbg *dbg =3D &display->wl.dbg;
->> -        bool ret =3D false;
->> +        bool ret;
->
->Why not keep this as it was...
+On 17.01.2025 19:06, Gustavo Sousa wrote:
+> The DMC wakelock code needs to keep track of register offsets that need
+> the wakelock for proper access. If one of the necessary offsets are
+> missed, then the failure in asserting the wakelock is very likely to
+> cause problems down the road.
+> 
+> A miss could happen for at least two different reasons:
+> 
+> - We might have forgotten to add the offset (or range) to the relevant
+>   tables tracked by the driver in the first place.
+> 
+> - Or updates to either the DMC firmware or the display IP that require
+>   new offsets to be tracked and we fail to realize that.
+> 
+> To help capture these cases, let's introduce a debugfs interface for the
+> DMC wakelock.
+> 
+> In this part, we export a buffer containing offsets of registers that
+> were considered not needing the wakelock by our driver. In an upcoming
+> change we will also allow defining an extra set of offset ranges to be
+> tracked by our driver.
+> 
+> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+> ---
+>  drivers/gpu/drm/i915/Makefile                 |   1 +
+>  .../drm/i915/display/intel_display_debugfs.c  |   2 +
+>  drivers/gpu/drm/i915/display/intel_dmc_wl.c   |   5 +-
+>  drivers/gpu/drm/i915/display/intel_dmc_wl.h   |   2 +
+>  .../drm/i915/display/intel_dmc_wl_debugfs.c   | 251 ++++++++++++++++++
+>  .../drm/i915/display/intel_dmc_wl_debugfs.h   |  29 ++
+>  drivers/gpu/drm/xe/Makefile                   |   1 +
+>  7 files changed, 290 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_dmc_wl_debugfs.c
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_dmc_wl_debugfs.h
+> 
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> index 3dda9f0eda82..ac1ab79de9c8 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -251,6 +251,7 @@ i915-y += \
+>  	display/intel_display_wa.o \
+>  	display/intel_dmc.o \
+>  	display/intel_dmc_wl.o \
+> +	display/intel_dmc_wl_debugfs.o \
+>  	display/intel_dpio_phy.o \
+>  	display/intel_dpll.o \
+>  	display/intel_dpll_mgr.o \
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> index f1d76484025a..b032535f4830 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> @@ -26,6 +26,7 @@
+>  #include "intel_display_power_well.h"
+>  #include "intel_display_types.h"
+>  #include "intel_dmc.h"
+> +#include "intel_dmc_wl_debugfs.h"
+>  #include "intel_dp.h"
+>  #include "intel_dp_link_training.h"
+>  #include "intel_dp_mst.h"
+> @@ -883,6 +884,7 @@ void intel_display_debugfs_register(struct drm_i915_private *i915)
+>  
+>  	intel_bios_debugfs_register(display);
+>  	intel_cdclk_debugfs_register(display);
+> +	intel_dmc_wl_debugfs_register(display);
+>  	intel_dmc_debugfs_register(display);
+>  	intel_dp_test_debugfs_register(display);
+>  	intel_fbc_debugfs_register(display);
+> diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+> index 330b43a72e08..3686d4e90167 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+> @@ -338,6 +338,7 @@ void intel_dmc_wl_init(struct intel_display *display)
+>  	spin_lock_init(&wl->lock);
+>  	refcount_set(&wl->refcount,
+>  		     display->params.enable_dmc_wl == ENABLE_DMC_WL_ALWAYS_LOCKED ? 1 : 0);
+> +	intel_dmc_wl_debugfs_init(display);
+>  }
+>  
+>  /* Must only be called as part of enabling dynamic DC states. */
+> @@ -444,8 +445,10 @@ void intel_dmc_wl_get(struct intel_display *display, i915_reg_t reg)
+>  	spin_lock_irqsave(&wl->lock, flags);
+>  
+>  	if (i915_mmio_reg_valid(reg) &&
+> -	    !intel_dmc_wl_check_range(display, reg, wl->dc_state))
+> +	    !intel_dmc_wl_check_range(display, reg, wl->dc_state)) {
+> +		intel_dmc_wl_debugfs_log_untracked(display, i915_mmio_reg_offset(reg));
+>  		goto out_unlock;
+> +	}
+>  
+>  	if (!wl->enabled) {
+>  		if (!refcount_inc_not_zero(&wl->refcount))
+> diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.h b/drivers/gpu/drm/i915/display/intel_dmc_wl.h
+> index 5488fbdf29b8..d11b0ab50b3c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dmc_wl.h
+> +++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.h
+> @@ -11,6 +11,7 @@
+>  #include <linux/refcount.h>
+>  
+>  #include "i915_reg_defs.h"
+> +#include "intel_dmc_wl_debugfs.h"
+>  
+>  struct intel_display;
+>  
+> @@ -27,6 +28,7 @@ struct intel_dmc_wl {
+>  	 */
+>  	u32 dc_state;
+>  	struct delayed_work work;
+> +	struct intel_dmc_wl_dbg dbg;
+>  };
+>  
+>  void intel_dmc_wl_init(struct intel_display *display);
+> diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl_debugfs.c b/drivers/gpu/drm/i915/display/intel_dmc_wl_debugfs.c
+> new file mode 100644
+> index 000000000000..41e59d775fe5
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/display/intel_dmc_wl_debugfs.c
+> @@ -0,0 +1,251 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright (C) 2025 Intel Corporation
+> + */
+> +
+> +#include <linux/debugfs.h>
+> +
+> +#include <drm/drm_device.h>
+> +#include <drm/drm_managed.h>
+> +#include <drm/drm_print.h>
+> +
+> +#include "intel_display_core.h"
+> +#include "intel_dmc_wl_debugfs.h"
+> +
+> +#define DEBUGFS_UNTRACKED_BUFFER_SIZE_MAX 65536
+This macro is not actually the size but the count of offsets stored in
+the buffer. This is used as the array size for drmm_kmalloc_array call.
+It makes sense to rename this macro as count
 
-Yeah, I suppose that's fine... I think the compiler is going to optimize
-it. I can send a v2 with this change.
+> +
+> +/*
+> + * DOC: DMC wakelock debugfs
+> + *
+> + * The DMC wakelock code needs to keep track of register offsets that need the
+> + * wakelock for proper access. If one of the necessary offsets are missed, then
+> + * the failure in asserting the wakelock is very likely to cause problems down
+> + * the road.
+> + *
+> + * A miss could happen for at least two different reasons:
+> + *
+> + * - We might have forgotten to add the offset (or range) to the relevant
+> + *   tables tracked by the driver in the first place.
+> + *
+> + * - Or updates to either the DMC firmware or the display IP that require new
+> + *   offsets to be tracked and we fail to realize that.
+> + *
+> + * To help capture these cases, we provide the intel_dmc_wl/ debugfs directory,
+> + * which exports a buffer of untracked register offsets.
+> + *
+> + * Untracked offsets
+> + * -----------------
+> + *
+> + * This is a buffer that records every register offset that went through the
+> + * DMC wakelock check and was deemed not needing the wakelock for MMIO access.
+> + *
+> + * To activate the logging of offsets into such a buffer, one can do::
+> + *
+> + *   # echo -1 > /sys/kernel/debug/dri/(...)/intel_dmc_wl/untracked_size
 
->
->>          unsigned long flags;
->> =20
->> +        if (!display->params.enable_dmc_wl_debugfs)
->> +                return false;
->> +
->> +        ret =3D false;
->> +
->
->...then you don't need to set it here, and can return ret in the if
->above for consistency.
+This knob is setting the count of offsets to be stored and not the size.
+I think this should be renamed to indicate it as count.
 
-In the if above, I guess I prefer the "return false" because it is
-explicit.
+> + *
+> + * This will create a buffer with the maximum number of entries allowed
+> + * (DEBUGFS_UNTRACKED_BUFFER_SIZE_MAX). A positive value can be used instead to
+> + * define a different size:
+> + *
+> + *   # echo 1024 > /sys/kernel/debug/dri/(...)/intel_dmc_wl/untracked_size
 
---
-Gustavo Sousa
+For me passing negative number doesn't look intuitive. Thinking do we
+really need the case of passing default buffer size. We can allow just 0
+to disable and any positive number to enable with the buffer size set as
+value passed.
 
->
->--
->Cheers,
->Luca.
+> + *
+> + * Every write to untracked_size will cause the buffer to be reset.
+> + *
+> + * It is also possible to read untracked_size in order to get the current
+> + * value.
+> + *
+> + * After enabled, the buffer starts getting filled with offsets as MMIOs are
+> + * performed by the driver.
+> + *
+> + * In order to view the content of the buffer, one can do::
+> + *
+> + *   # cat /sys/kernel/debug/dri/(...)/intel_dmc_wl/untracked
+> + *   0x000c4000
+> + *   0x0016fe50
+> + *   0x000c7200
+> + *   0x000c7204
+> + *   0x00045230
+> + *   0x00046440
+> + *   0x00045234
+> + *   0x0016fa48
+> + *   0x0016fa40
+> + *   0x0016fa5c
+> + *   (...)
+> + *
+> + * The order of those offsets does not reflect the order the checks were done
+> + * (some recently seen offsets are skipped to save space).
+> + *
+> + * Once done with it, the logging can be disabled with::
+> + *
+> + *   # echo 0 > /sys/kernel/debug/dri/(...)/intel_dmc_wl/untracked_size
+> + */
+> +
+> +static int untracked_size_get(void *data, u64 *val)
+> +{
+> +	struct intel_display *display = data;
+> +	struct intel_dmc_wl_dbg *dbg = &display->wl.dbg;
+> +	unsigned long flags;
+> +
+> +	spin_lock_irqsave(&dbg->lock, flags);
+> +	*val = dbg->untracked.size;
+> +	spin_unlock_irqrestore(&dbg->lock, flags);
+> +
+> +	return 0;
+> +}
+> +
+> +static int untracked_size_set(void *data, u64 val)
+> +{
+> +	struct intel_display *display = data;
+> +	struct intel_dmc_wl_dbg *dbg = &display->wl.dbg;
+> +	s64 new_size;
+> +	u32 *old_offsets;
+> +	u32 *new_offsets;
+> +	unsigned long flags;
+> +
+> +	new_size = (s64)val;
+> +
+> +	if (new_size == -1) {
+> +		new_size = DEBUGFS_UNTRACKED_BUFFER_SIZE_MAX;
+> +	} else if (new_size < 0) {
+> +		drm_err(display->drm,
+> +			"%lld is invalid for untracked_size, the only negative value allowed is -1\n",
+> +			new_size);
+> +		return -EINVAL;
+> +	} else if (new_size > DEBUGFS_UNTRACKED_BUFFER_SIZE_MAX) {
+> +		drm_err(display->drm,
+> +			"%lld too big for untracked_size, maximum allowed value is %d\n",
+> +			new_size,
+> +			DEBUGFS_UNTRACKED_BUFFER_SIZE_MAX);
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (new_size == 0) {
+> +		new_offsets = NULL;
+> +	} else {
+> +		new_offsets = drmm_kmalloc_array(display->drm, new_size, sizeof(*new_offsets),
+> +						 GFP_KERNEL);
+> +
+> +		if (!new_offsets)
+> +			return -ENOMEM;
+> +	}
+> +
+> +	spin_lock_irqsave(&dbg->lock, flags);
+> +	old_offsets = dbg->untracked.offsets;
+> +	dbg->untracked.offsets = new_offsets;
+> +	dbg->untracked.size = new_size;
+> +	dbg->untracked.head = 0;
+> +	dbg->untracked.len = 0;
+> +	dbg->untracked.overflow = false;
+> +	spin_unlock_irqrestore(&dbg->lock, flags);
+> +
+> +	if (old_offsets)
+> +		drmm_kfree(display->drm, old_offsets);
+> +
+> +	return 0;
+> +}
+> +
+> +DEFINE_SIMPLE_ATTRIBUTE_SIGNED(untracked_size_fops,
+> +			       untracked_size_get,
+> +			       untracked_size_set,
+> +			       "%lld\n");
+> +
+> +static int untracked_show(struct seq_file *m, void *data)
+> +{
+> +	struct intel_display *display = m->private;
+> +	struct intel_dmc_wl_dbg *dbg = &display->wl.dbg;
+> +	unsigned long flags;
+> +	size_t remaining;
+> +	size_t i;
+> +
+> +	spin_lock_irqsave(&dbg->lock, flags);
+> +
+> +	remaining = dbg->untracked.len;
+> +	i = dbg->untracked.head;
+> +
+> +	while (remaining--) {
+> +		if (i == 0)
+> +			i = dbg->untracked.size;
+> +
+> +		seq_printf(m, "0x%08x\n", dbg->untracked.offsets[--i]);
+> +	}
+> +
+> +	spin_unlock_irqrestore(&dbg->lock, flags);
+> +
+> +	return 0;
+> +}
+> +
+> +DEFINE_SHOW_ATTRIBUTE(untracked);
+> +
+> +void intel_dmc_wl_debugfs_init(struct intel_display *display)
+> +{
+> +	struct intel_dmc_wl_dbg *dbg = &display->wl.dbg;
+> +
+> +	spin_lock_init(&dbg->lock);
+> +}
+> +
+> +void intel_dmc_wl_debugfs_register(struct intel_display *display)
+> +{
+> +	struct dentry *dir;
+> +
+> +	if (!HAS_DMC_WAKELOCK(display))
+> +		return;
+> +
+> +	dir = debugfs_create_dir("intel_dmc_wl", display->drm->debugfs_root);
+> +	if (IS_ERR(dir))
+> +		return;
+> +
+> +	debugfs_create_file("untracked_size", 0644, dir, display,
+> +			    &untracked_size_fops);
+> +	debugfs_create_file("untracked", 0644, dir, display,
+> +			    &untracked_fops);
+> +}
+> +
+> +static bool untracked_has_recent_offset(struct intel_display *display, u32 offset)
+> +{
+> +	struct intel_dmc_wl_dbg *dbg = &display->wl.dbg;
+> +	int look_back = 32;
+Define a macro for this magic number
+
+> +	size_t i;
+> +
+> +	if (look_back > dbg->untracked.len)
+> +		look_back = dbg->untracked.len;
+> +
+> +	i = dbg->untracked.head;
+> +
+> +	while (look_back--) {
+> +		if (i == 0)
+> +			i = dbg->untracked.size;
+> +
+> +		if (dbg->untracked.offsets[--i] == offset)
+> +			return true;
+> +	}
+> +
+> +	return false;
+> +}
+> +
+> +void intel_dmc_wl_debugfs_log_untracked(struct intel_display *display, u32 offset)
+> +{
+> +	struct intel_dmc_wl_dbg *dbg = &display->wl.dbg;
+> +	unsigned long flags;
+> +
+> +	spin_lock_irqsave(&dbg->lock, flags);
+As this code never gets called by an interrupt, we can use just the
+spin_lock instead of spin_lock_irqsave. Same applies for all the places
+where spin_lock/unlock_irqsave/irqrestore is used.
+
+> +
+> +	if (!dbg->untracked.size)
+> +		goto out_unlock;
+> +
+> +	/* Save some space by not repeating recent offsets. */
+> +	if (untracked_has_recent_offset(display, offset))
+> +		goto out_unlock;
+> +
+> +	dbg->untracked.offsets[dbg->untracked.head] = offset;
+> +	dbg->untracked.head = (dbg->untracked.head + 1) % dbg->untracked.size;
+> +	if (dbg->untracked.len < dbg->untracked.size)
+> +		dbg->untracked.len++;
+> +
+> +	if (dbg->untracked.len == dbg->untracked.size && !dbg->untracked.overflow) {
+> +		dbg->untracked.overflow = true;
+> +		drm_warn(display->drm, "Overflow detected in DMC wakelock debugfs untracked offsets\n");
+> +	}
+> +
+> +out_unlock:
+> +	spin_unlock_irqrestore(&dbg->lock, flags);
+> +}
+> diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl_debugfs.h b/drivers/gpu/drm/i915/display/intel_dmc_wl_debugfs.h
+> new file mode 100644
+> index 000000000000..9437c324966f
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/display/intel_dmc_wl_debugfs.h
+> @@ -0,0 +1,29 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright (C) 2025 Intel Corporation
+> + */
+> +
+> +#ifndef __INTEL_DMC_WL_DEBUGFS_H__
+> +#define __INTEL_DMC_WL_DEBUGFS_H__
+> +
+> +#include <linux/types.h>
+> +#include <linux/spinlock.h>
+> +
+> +struct intel_display;
+> +
+> +struct intel_dmc_wl_dbg {
+> +	spinlock_t lock; /* protects everything below */
+> +	struct {
+> +		u32 *offsets;
+> +		size_t head;
+> +		size_t len;
+> +		size_t size;
+There is no need of both len and size. head will always give the count
+of entries in the buffer. During overflow, we are keeping a flag to
+indicate a overflow, which indicates the we also have date in the buffer
+above head till the end of buffer.
+
+Regards,
+Bala
+
+> +		bool overflow;
+> +	} untracked;
+> +};
+> +
+> +void intel_dmc_wl_debugfs_init(struct intel_display *display);
+> +void intel_dmc_wl_debugfs_register(struct intel_display *display);
+> +void intel_dmc_wl_debugfs_log_untracked(struct intel_display *display, u32 offset);
+> +
+> +#endif /* __INTEL_DMC_WL_DEBUGFS_H__ */
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index 81f63258a7e1..f03fbdbcb1a4 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -221,6 +221,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+>  	i915-display/intel_display_wa.o \
+>  	i915-display/intel_dkl_phy.o \
+>  	i915-display/intel_dmc.o \
+> +	i915-display/intel_dmc_wl_debugfs.o \
+>  	i915-display/intel_dp.o \
+>  	i915-display/intel_dp_aux.o \
+>  	i915-display/intel_dp_aux_backlight.o \
+> -- 
+> 2.48.0
+> 
