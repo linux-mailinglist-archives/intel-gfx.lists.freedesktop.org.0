@@ -2,183 +2,183 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAE41A1A5E5
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2025 15:41:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46A1EA1A613
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2025 15:48:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B9DE10E827;
-	Thu, 23 Jan 2025 14:41:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D98C410E823;
+	Thu, 23 Jan 2025 14:48:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MbKq7E+k";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y9qo0cZ+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 615B910E826;
- Thu, 23 Jan 2025 14:41:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E18B10E823;
+ Thu, 23 Jan 2025 14:48:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737643301; x=1769179301;
- h=content-transfer-encoding:in-reply-to:references:subject:
- from:to:date:message-id:mime-version;
- bh=P/5RJMkBJAEsBOEMEeGFFxIDH+MSaV7xEZNr/U7OsqE=;
- b=MbKq7E+kBSeklM3ZpB42aWCwyNdHfla8+wmRtqe44rMLTxcMiL6SkqEg
- YaqlmzogNr1Npw++OpgdTPiKXNNu6uvf+drYZJXKC2vuSyeasLK+3B1e0
- GrQGeZguZNnzpn97lKNP1Dq+MsTJdYNRX33RRjtBqY1L5tsCcrzcw6o5a
- qyv4qDsVSzuoFdsf7bFb1Gj/Eq86+pJgAwgQBFByqCcHNXFzz+Fkz6xbw
- ByeV6kvxmKR2fvwV8wjmQgNQkgOx3uXw6h+wEmDtxazjqRZ99omsVhE6Y
- bNBkfk8x589bEIe3haSFPI1rijXiBGaL54FDkl0CaR+BVOROrZdOWwIAC A==;
-X-CSE-ConnectionGUID: 4N6Y9buxRxCDrQpQkFCmIw==
-X-CSE-MsgGUID: xQp69oo+TEmenHHCtVQKlA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11324"; a="41808557"
-X-IronPort-AV: E=Sophos;i="6.13,228,1732608000"; d="scan'208";a="41808557"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2025 06:41:40 -0800
-X-CSE-ConnectionGUID: B2k1ZCu9SbGgMu25Er+d0w==
-X-CSE-MsgGUID: KCy3yMKyRpuTKxwvPKMeOw==
+ t=1737643724; x=1769179724;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=DGcQjTzUtYYg8NIAe7KjbDjgvDPAfm9CS3pecfLOHgo=;
+ b=Y9qo0cZ+aS9wgbyrQKijn10kGajc2cKbgLaEn5BsqSCxRHZIB7ka5NHa
+ 4Qn7oMBsPUHMx3cgS3xp8djMGjYZSjxvHZSQOJtAEqGhkRkYJYVgFbsZ+
+ y+53S4QwAKEW/dMwQ4Oh1kdYCoX32fWU7b1Uof7xGhWL4guiNoQlEXU1s
+ +QLIcklI4RE6ya4x5ytiIkSMjrEgG6mwvN87BhfvVXcsyJyyvFLtm1Ng2
+ SjHfRfbfdBom94YhB+Gfn8XJcSaD8qp9LcNad18d7wIDFcKqx//fAV4Qv
+ OxakzkF1XAF6ZsWOVcK+CJGRhQZm07RMnEnjTerF/VB12Dj6RXzjA96pR g==;
+X-CSE-ConnectionGUID: 3B6o3b+3SGu3tLvQ1K4MGg==
+X-CSE-MsgGUID: mCT4Yo2KQ7m9sYhcFi+FaA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11324"; a="37402092"
+X-IronPort-AV: E=Sophos;i="6.13,228,1732608000"; d="scan'208";a="37402092"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2025 06:48:28 -0800
+X-CSE-ConnectionGUID: lxcWD1GqQECCk8xudOmp8w==
+X-CSE-MsgGUID: QW2JSNuMSpC2L4HhlHABqg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,228,1732608000"; d="scan'208";a="107588425"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmviesa008.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 23 Jan 2025 06:41:40 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="144713497"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orviesa001.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 23 Jan 2025 06:48:25 -0800
+Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Thu, 23 Jan 2025 06:41:39 -0800
+ 15.1.2507.44; Thu, 23 Jan 2025 06:48:24 -0800
 Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Thu, 23 Jan 2025 06:41:39 -0800
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.44) by
+ 15.1.2507.44 via Frontend Transport; Thu, 23 Jan 2025 06:48:24 -0800
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.41) by
  edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Thu, 23 Jan 2025 06:41:39 -0800
+ 15.1.2507.44; Thu, 23 Jan 2025 06:48:23 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=PtdRxxYir+KGAuY+hNWre3/H1yOjCEqwcs+4MsuNf1PRgWDFEakYKizvuYHEClZol4azCB9HGbtwyrIMjMDlL0jnIlsRaMUz4pz8hbs+IdOdq26VZbhxPACMnkrZNn2UjDP3MYhjaPRBnFIftwZCrtfwk5uDIu1P1C9OfakwMtwbYsiuIW1IJYaPEtcJZfyLhporQwLZ39Kto25Oholuyz0irNOYnoU0DCFVEJZoqJSJNf3waHLHqerTiu/t/9dipuo6GsBmMLNTbhp4eAMzh8VZ1dhHO9WTgwdpl3OYp3jYzt7Ay4Rpwh9vCIt3/67xqL4BM33SV3mHKxMfMz4atg==
+ b=iGwVRwoT3tBbNjpq/qYlrc2Zw+9U6gjjoUv+PpBiI0WgG5CR/irpMKg4FuvA1LyfMTkJzhoCJ6gpHTxfOyE8W9xm6r6yY9mjvG1CDdzFYWPsXKER3X0iPgTFcomLS5wNTZBmtydcRtnorTij+YJniTROgqxLnNmXBE+HZqei16xnlx/F/AEfNlfkZXRXHGXotrpx7CLAFEXvdo1YcgStwTO5/aooE5sqGf3BulMSdjWG533WHXN6uX3O03mlFF7bafkJ322Jn2rFRVQFFZjLPoCaagO9suWv9uSBgyoFCou5u7lxp1iuGiJaN4x01848qUjDOrHcvRj6LStH41rkUA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gh3HtCOiaDI2IJNz9ckcN8DgbTOkrFnsMMtWfzPElaA=;
- b=O1zURFXNQbgLJISobCxQFbKF5J/aWnU5uEQ0H0Habp/LEud/Ms/gHuuzymvT7wq68hxyGKH979PNSSZvtSKo2jLo94Xho3QyDGa7gUL8jjC2oBP9tmmQjxKSpVNnXwaJCWxOo2f8hduQcCiq0gsWejqkg9vcACW7G7s8vrb7Q6cN5rJdKfGEn7Jk2KFdS2jhzt56xpaaxQBvVP2Rhg3l52PXd92ywOeqQ+zu97S6qlaA7g8WmH/G3ttmqGigZWLfTw1WwBfdwwrhgXMy+9QnzI3mpnnj34DnRU19baGK5DEV2aw9aF97pHdPHA3u75Ge00R3PzZbTk7M+19UUBVPww==
+ bh=i6ysp0gbbNgdo5VVLQrPE0cnMQsvIfRaVPfxCpY0yqc=;
+ b=ZntVbr4FK8YCFi7J5+DAZK147iOuDan/0pqcP+FgSeQ6bbjYSPRf5fT6EuZOb/upiFUVWs4jDa4UJewoWpRnp7DFVnI1uZisbiBi8bvoEat170oDRUBuIs8/NR9JigKggXQ4NNaNX91QvwZcYaVtzIWj3P1yN4TtCHXt+1TW5RhgJ9JrVCW/Hfjv68HKIAk7XnKItT61qQRzMMYz8hUzx1cuEnlCZQFUBgvaOKv6kLtELapgiecpgUrXMAdw9aCv2M/NAtxaiaY8SzwrmaAPdPVnPNhKf77rmUBCDvBJWp1vwloxUUXHKJChowx10FpC8trEzHpFfdc4JEYhm67a0w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
- by DS7PR11MB8808.namprd11.prod.outlook.com (2603:10b6:8:257::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8377.17; Thu, 23 Jan
- 2025 14:41:23 +0000
-Received: from PH8PR11MB8287.namprd11.prod.outlook.com
- ([fe80::7e8b:2e5:8ce4:2350]) by PH8PR11MB8287.namprd11.prod.outlook.com
- ([fe80::7e8b:2e5:8ce4:2350%5]) with mapi id 15.20.8356.020; Thu, 23 Jan 2025
- 14:41:22 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <56e59e5c283bf749c8c047efc5f36d91459fae17.camel@coelho.fi>
-References: <20250117220747.87927-1-gustavo.sousa@intel.com>
- <20250117220747.87927-3-gustavo.sousa@intel.com>
- <56e59e5c283bf749c8c047efc5f36d91459fae17.camel@coelho.fi>
-Subject: Re: [PATCH 2/4] drm/i915/dmc_wl: Add debugfs for untracked offsets
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-To: Luca Coelho <luca@coelho.fi>, <intel-gfx@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>
-Date: Thu, 23 Jan 2025 11:41:16 -0300
-Message-ID: <173764327664.34727.14226347289032890419@intel.com>
-User-Agent: alot/0.12.dev27+gd21c920b07eb
-X-ClientProxiedBy: MW4PR03CA0006.namprd03.prod.outlook.com
- (2603:10b6:303:8f::11) To PH8PR11MB8287.namprd11.prod.outlook.com
- (2603:10b6:510:1c7::14)
+Received: from MW4PR11MB6864.namprd11.prod.outlook.com (2603:10b6:303:21b::16)
+ by CY8PR11MB6914.namprd11.prod.outlook.com (2603:10b6:930:5a::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8377.16; Thu, 23 Jan
+ 2025 14:47:53 +0000
+Received: from MW4PR11MB6864.namprd11.prod.outlook.com
+ ([fe80::6f1c:5fd9:a37f:82d6]) by MW4PR11MB6864.namprd11.prod.outlook.com
+ ([fe80::6f1c:5fd9:a37f:82d6%4]) with mapi id 15.20.8356.020; Thu, 23 Jan 2025
+ 14:47:53 +0000
+Message-ID: <60bb1ef7-3f07-4f48-980d-d168bed76ec7@intel.com>
+Date: Thu, 23 Jan 2025 15:47:49 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/i915: replace in_atomic() with manually set flag
+To: Krzysztof Karas <krzysztof.karas@intel.com>, intel-gfx
+ <intel-gfx@lists.freedesktop.org>, dri-devel
+ <dri-devel@lists.freedesktop.org>
+References: <eshvssuzswcswzcyuwe3dghg2kxhnw4mbggylp6ssgfx3c4eqq@ufnjnmfxmpra>
+Content-Language: en-US
+From: Maciej Patelczyk <maciej.patelczyk@intel.com>
+In-Reply-To: <eshvssuzswcswzcyuwe3dghg2kxhnw4mbggylp6ssgfx3c4eqq@ufnjnmfxmpra>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: DUZPR01CA0008.eurprd01.prod.exchangelabs.com
+ (2603:10a6:10:3c3::17) To MW4PR11MB6864.namprd11.prod.outlook.com
+ (2603:10b6:303:21b::16)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|DS7PR11MB8808:EE_
-X-MS-Office365-Filtering-Correlation-Id: d444703d-b525-4bb7-d71d-08dd3bbc0195
+X-MS-TrafficTypeDiagnostic: MW4PR11MB6864:EE_|CY8PR11MB6914:EE_
+X-MS-Office365-Filtering-Correlation-Id: 760e4992-c166-4973-d639-08dd3bbcea78
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?ZVk3V0N4akhheHRRc2JYMUV5ZXlxdmM2dC9QN2dMRnpVWjJlTHU1M0pDWW1s?=
- =?utf-8?B?Z2NJYWNYbVNHaTZMbWZQNm84VWw5S1JaUHUzVmJBclJNNElrclJXKzlkMnhO?=
- =?utf-8?B?TmNYeXlQQzkzK2ZxS0RQZi82dXU1YmJkdVhZckdRTVAxVUJNaFNtNTVSRUox?=
- =?utf-8?B?ZEZRY3lpSnZxR2FNVFJEdGNFM1hlMjBjSGYxMWlYa3RueXlRVm8wOFNLLzFx?=
- =?utf-8?B?L3NsVmN3V0UxR0Qwc3gvajhmK1lLbmFnSGxzU1A5aGlnVGlvWFNhTk90Z2Va?=
- =?utf-8?B?Qm5QV1dOSnl4MTRITEQ0VHVqTVRKZTVxOW43cktGR3V0UDROc3BYZEgxUFFI?=
- =?utf-8?B?Tk9jY3RUZ1VVbUdROHhaYXUvUnYrS0V6ZnpjcXhlQ1M1T0pQTkhKbUIrNmdE?=
- =?utf-8?B?aCtBeVFvMmR1aWFwaGpQY3BITi8vdC9tV0RNVXY0ZU9ONHdiRjZYUmcyalJT?=
- =?utf-8?B?Y0VNcURzV0Z2N2xCWURmSndKb2FKMFVLZEtTNzdxUWtEOENZVkdXRkpxU01H?=
- =?utf-8?B?Q3pmYVJzWGV5cXViT0o4RjgzcXFoYUhrazJaNk94azFkSWZUdHZqbDR5ejFH?=
- =?utf-8?B?ekNBUFB5TnhobENLNHZ3Tk1mSTNWYzBuL1VxRTBKT0xXSmdFdHdrSk9ScHhH?=
- =?utf-8?B?VXByL2tUV2YrWCtTWVFRYnMxZ0xxOWw3dktna1dFbGJMaERFUlVmUHBrMW1L?=
- =?utf-8?B?NVhabGY3cUY5SEV2K2NZdm0xNW5XVVRmRUxmMGZqZllnMEN2MDEyRmdQa1gy?=
- =?utf-8?B?SGpWOXErbk5HTUdhSmNRSEpFbVplYkVHeW9EdVhhb2x3T0ZwR0xrdmdCYSsw?=
- =?utf-8?B?YVFTMlJWdHI2QlEyT3daa3R5Z3VJS3NXWE1odEtzVE1lQ0grT2paenlyOVJq?=
- =?utf-8?B?a1hwSmZJZUlIbllxdGFOUDZmUEk4SFJmTzZLUE1pbzdJUHFwN2pvV3hEVWRj?=
- =?utf-8?B?VW5JQ0x1Qm5ZeWJNUGQrc2JsVklpalkrMThXRjhOYXd1bnZNQUhhblNsMGNv?=
- =?utf-8?B?T09pUm5QSFk4bWlBUTFBeWNFWDNPQ01EVG0ySmwvK3pLTmx5em1vVWtRVkdD?=
- =?utf-8?B?UFJLejJ1RnJ6SW8weUVMRG12dXo2MEJTNnMvQTZHRWNFQXJvZTlPRTE0MWU2?=
- =?utf-8?B?bjk5RkljdkhxRUtTTjRiUFo3RmlIWXNZMmQ0Q3hZSHdjb3dKOEVHZ0ltRlpI?=
- =?utf-8?B?Y0ZuRDhnVVZBRHdzeURWNWhwaTAwRWNqOW03Z2tpaEVUaG1OVXdSM2dxQUZM?=
- =?utf-8?B?VzRESllFdUtQdEl1ZnE0ZUdQSFZ3Vi81cUFQbUFBVnk2M0syeDk3ZGpsQTNw?=
- =?utf-8?B?aGpjWkxrd2I3aHNuSVc1OFQ3Q2I2T3ppU21pbEkrbEtzWkxJNHR4RGlMSVNw?=
- =?utf-8?B?NUlhUjQwTzQ5bmpyRlpkRjVFTEZMNnhOWmVOWDZwemFHTDQ0cEd1dy90YTRM?=
- =?utf-8?B?bHdPem9NQ0hKYmQ3WG5CZUkrZExnUDZ5UDMwMkJJeUdobElJK2xqTjIxSmFM?=
- =?utf-8?B?L0V2Y0VDdVVDZ0dtUy9taGZwMjhyc0lpVWdRa05VVk5reWdUbkNVVXBYVXgr?=
- =?utf-8?B?anY5N0tzekRvam9scUNTa2doT2hYQU9GVGZzTjE2QWhOdC9DQXFvVTV3TWZG?=
- =?utf-8?B?d09YbksyWFNRWGY3WDRGcEVBRkJmR1JLZEVBeS80b1l1WU9mNUd5eVRNMTlK?=
- =?utf-8?B?Qk96dURlU3M1c1BNMDNOUDVHZUJqZTV4bUFONkdOU1pWNlhYcWVJN1RIS1V0?=
- =?utf-8?B?azVmWXFOWWp6VERrRHZpYVBXZjRndEIzcHNMMWtFVlR2OW5XWHIvN3I3Z0hx?=
- =?utf-8?B?UnZ4SGJPUjhaYWNHKzRpajhrZG8yYjQ1RUkxdnQvYm5XelVQNllsTng5ZmRF?=
- =?utf-8?Q?q3vRS520dAsM1?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?aXdILzh3VG1ZT1BlbGJidDkrUEFaRk95MjhZYU5TQ2Y5dlRGc3lOeEJDQWhr?=
+ =?utf-8?B?MmlLNmlHU2UxNXBScGI3OGMrVTRxeEZvNVl5cFR6UkNTVjBzaG9KYWJHa21Y?=
+ =?utf-8?B?MUg3RlAvRkc0NjRwTjZjYU1tZ2ZYL0ZNVGNJMzFWR01TMzJNMzJnZXg4RjVM?=
+ =?utf-8?B?QVZ5UGt3L2JRbXVsM01HYlFaOFllM0NMaldWRDF5ODUrcFpIZmYvOFVVdWov?=
+ =?utf-8?B?OEM4OFNrNFRFMlQxditpUGJuVFV2YjRXRkxPTno0WHpuaC9LUnRCV1FTSGw1?=
+ =?utf-8?B?VVRtV1VOWi9ZQlIybHlnQzh3S1RMbmpScXdYc05ta2c0ZWxQZFlWSWFCVkhr?=
+ =?utf-8?B?WHA5RnI5eVBOMXdMeHJwbHZkT0NibHhOU3dkS05pM2RpekxGTldNQ0VkTlVx?=
+ =?utf-8?B?UEhpUDJoZGtMaWZSSXZOZm0yVmFseHpWcUtWYjUvdWd6MUorYTREMkNrSmtJ?=
+ =?utf-8?B?VnJCdDAzTVRndFYrTmwxVmRyNVg1K1FnRmxUUlhBL1JkaW5VK0E4a25UWmNN?=
+ =?utf-8?B?WDF4dXRHL1g1UExTbGs1NmEvQThBdEFGVDY0ZmtQQTBtZEloVnUyeHV2bk43?=
+ =?utf-8?B?RzhJZ0hsRG56VkgzVDN1VVZJdU1hZkQ3MXMzTmQwTzhTR1RyK05zbmdjNmRy?=
+ =?utf-8?B?RTdvSklzQlhHNlRPNDUwQkFWMUhnVzVOL1d1NitPbXhqNitiakY4TzhETlEw?=
+ =?utf-8?B?eVdMOXU3blFqTXNKMVJkWG5peFZ4U08xMjlaZVVnUmxLUmVzVThLZEJrRUs0?=
+ =?utf-8?B?R3lIQ1FrcTNmbEY4N2lKRGtHQm9oMTBVU1BkVE9VU1dMQ1NUbkUzUnh3TjJD?=
+ =?utf-8?B?ZlZSRE5TTFlua3Y1TXEyZW9VcEVIQU9YUjE4RFB5SU9HTEhpMGprTkc5VEQr?=
+ =?utf-8?B?blJ0MEx6TVh1ZjJTWGs4Z2tzRnBIUm4rclJoNUlvU3MvaVJNNnJjbi9rdGNl?=
+ =?utf-8?B?aWw3cFEvVDgyNTVlOTNrM2tMQm5YcXZ4YW0vOUNaZzY1U3dRRmg3cjU1OTRm?=
+ =?utf-8?B?OUVmQmRMRWw3YjhsdytOUXZKRUdaT2FsOVF3SzB2bjFib1l6am5jK2wyNG9t?=
+ =?utf-8?B?QmNmRThoLzJ5SXVQSGtlR3diRlhoNTl5Z1RJUHJDZUpHd3FHa2ZhakxIVFRp?=
+ =?utf-8?B?T0UrL2FJNGZIZmRTNWErNFR3TFF3bUtHWVFBaUcwYTNUSlo1SVhrcUg2UUhM?=
+ =?utf-8?B?cGRPTzhxRW1peTZadk1HeEFYbGtMZjRZUHFGTlljSE9nMGdhUm14K1c5YXNq?=
+ =?utf-8?B?Vm1ZWG1GTG5aT0lJdGpSNVMzSFNZcElJY3BJZGY2SW1HSGRzT2MxV0xtcTJB?=
+ =?utf-8?B?eFdtSnl1SWtmQmJnZ0lnYlBHM2sraEFDMUFuT1NVUHM1Z2pqNHJaM2NEbi9I?=
+ =?utf-8?B?NXBYWWU3Y2dIcHlBY1RBNk40Sis2R3pkRGtLb0pqczBKUG14NERrTGZaYWIz?=
+ =?utf-8?B?dlVQWjBQL2IydGdwN3h2K0JLamFXQWUyUzczMUxXZWN4ZXNxT0JsWTRMTFcz?=
+ =?utf-8?B?K2ZYTjhVS2FoeVoxaEFnN1p1M0sxMzU0U3dtRHRZVGJCL014cFZBL1Qzb21h?=
+ =?utf-8?B?ZFVHSEhHK2F5Y0J2d1QyZGxIa2FMU0RGb0I0bjVNWG82ODZ0UTBBTlBUYWt2?=
+ =?utf-8?B?aXRjQkI4RGVCZE5zQytmWXdWN2U2Z0pUTlF6UWFiaElKTVBxbDhVdlo2M3dn?=
+ =?utf-8?B?ckJVSFN1TjUvUTJEcnFJSCthYmlTemhvTXFyMDEwTkt3VkttUGF1MXBERStH?=
+ =?utf-8?B?S0xvNW5XKy94WThUZDRhelJmck8vZDhJdURvMTZrS1VOYU9wVHpJOHpWVWhv?=
+ =?utf-8?B?Q0lFVCtIM1daSmdRaTNPMVkwMGNFRFZFNmQrZG9XVkFUNEhtOHRLR05qR3Q2?=
+ =?utf-8?Q?T1cmjYoMF3jEu?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:MW4PR11MB6864.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VnVLZFlzeGtzaWpuOHlqSkxRNE4xYVVZa0lLaWVFbkU0MVVadDJFRGlQZjFa?=
- =?utf-8?B?bmEzUDUyQjRpdzR5MWFmRXdKZ3hnc3lrQWJ2UWFqeDhkc0JsbDIxUERUdjcx?=
- =?utf-8?B?VDkzMEoyekFSTlhyZ2VZRUNkajFrU09jcUZ2MWc3SUZFblpKdFVGajlzQmM2?=
- =?utf-8?B?UWVvV3UwNkhLT3FwOUszcHp0Z3VjQ1BFMGVLWjh1UmFadjFxVEkxcnF6N1Zj?=
- =?utf-8?B?aTEyVUZKc25EVlBsekR0eHRwWVVUd2dpWUxyWXUvQXpuUnBUZWFiK2Q2UnlJ?=
- =?utf-8?B?S3BWNXFGQ3dhREppYloyR2Z2aVNIMjlBS292d3RFM2NERngrL1lkdEw2NUhR?=
- =?utf-8?B?Q3R0OGdkZkJUUS8renZZTUI2d0QzbmZ3MkJzODk4V3RyVkZza0Z1Qnk5dS96?=
- =?utf-8?B?NlFLRVBGcHJOcndUVUdBaUpPdUtnWWNTdnYzb3dvdVcvZmp3VVR1Y0NPUFdZ?=
- =?utf-8?B?RHA0V2c3Q1hXNXJRbVRLSGdnbGsvdC9FeEtNYzFoeFVpTjVjZHBGNGd1SEU2?=
- =?utf-8?B?VXQzaklBWHFBZlBBK0NLUmg4V0lHT1hhYzJIbnkvdVkwcGZGOGpiZUVVSVA2?=
- =?utf-8?B?YmpVUWRKY2dXN1BDMFZmakkzU0tFUFRJaFpNSjZYS1NLR0Faa2R5eFZ5a0Np?=
- =?utf-8?B?R1JRb2hqUUJlY3hsSTMwemZaNENVMUIyS1VBaDFCRFZQWFFMVXFRYmVTYllY?=
- =?utf-8?B?MzRjbjVnVDdBT2dSR2VaMk9tdGZ1ZXkzS2JEUnFKNXVXeXRncUs4L3B6TDE2?=
- =?utf-8?B?STZCdW95KzJUTTBOMDFDK3huVVNtSVoxZnpGcXF4YlQwK2xDbjJ3OXZwR2tG?=
- =?utf-8?B?Qi9mbHR4YjRXQkgzY2EwMEpsQ1pHVVBIUStObmR2eTQybmpyT21DSk9kdXYz?=
- =?utf-8?B?T1duZ09TSWdLdTZWYlFWMXI4U1BDU1Y1WU1vaWk3Tkh4SE1kRWhENmpwMXlD?=
- =?utf-8?B?YzR1em1DcEVhaVdsMTIrZ3pYUEcvbWhURnA1ZFJVT3lENHFuREliNEYrN2t5?=
- =?utf-8?B?WTZPNkVtVWRIUktPMDRVNHlsMVRVV09iRGg4Rnh0a1dVdW1objVCRDlsZUhT?=
- =?utf-8?B?NkpLVkYydjdpV0NiMHUxdElQMU9ad3ZWOEgyS0lkcnozQzUxQkZrbHlYTGR4?=
- =?utf-8?B?dE1MUlhyUG1NU2V6ckREZGt4QW5DS2h3eHcxSXhJNmwrVi9PeGZOd2R0K25M?=
- =?utf-8?B?MUhUd3RMc0wzcGVHSXdzRXJ1djdNRGc2ZkZMSXQ5TmlFT2I1Zjd5bXVwMkdN?=
- =?utf-8?B?TEhua3ZQZWZsMGFJR0FKNWhEd3RZeUdtZDVGMVQ5MzFPNWJnMHdOL1R1eHdq?=
- =?utf-8?B?Y0Z6SmVEZEwzSTlnWEZTY1BHNHZwb3NTb0NXZjU4a1Q5Y1ZBU3hoMEppcTlK?=
- =?utf-8?B?ZzVmL3V5VmRBVUNPYlgrckMySFFBSkdCYzFpZVlhY0xQeUVkVjlxYUw3bWVi?=
- =?utf-8?B?N0F0T1F4R2NiWjY0SDdVb3F2NGc4L0VWUzY5bnhxWXh5WVYxdGRiVjlwRXBR?=
- =?utf-8?B?NDRKYVFNeVRqZjdlcVZjSG9uT25YZlFRN1AveWVieS9jQnU1MW9DQ05UbTRk?=
- =?utf-8?B?eFEycWtRbklIemJuSzJhZmdFUmNJREVGSzVaRUF5NzBwRDhNM0NsSXdsSWY4?=
- =?utf-8?B?ZUtXeUR0SVZvWGtFZmQzblEwS2QrMU5DMkRFVno1bTcxd2d5ck5UR3g3L1Fz?=
- =?utf-8?B?N3d1Y0tUcURqaTdZV0JKcFAyQWhoYUZvU3dZekNSc1ZBSCtUc1liRDRVN21r?=
- =?utf-8?B?clpmMFkzUTRwck5GN0tZRCsyaEVtQytHUjNrL0V4U2JyNXZoY0V0SUtueXll?=
- =?utf-8?B?MVZVWHpaYmF2aGFTVHFYR1VZZk03bjI1VFpMd0QzaUwrR0Q5clNHbFlteEhy?=
- =?utf-8?B?Rm5NSkwzNm5YNGgwTkJ2V0dNRmQ3Ull5MW5kYzQ1Z0dZVmNaMVpkU29Da20v?=
- =?utf-8?B?dTh4R21DMXJwcnBhZXovVW1aMnQ3L1gvbzdMVjRRWHo5OFJHSmdaRUY1eVYv?=
- =?utf-8?B?MTQ5Z2NpWXAvZ1NvSldBL25oaUppUmhjcXhNbFd6VFN5Vjd0dldFZVFmOUEy?=
- =?utf-8?B?eUlucE5YcktJdExkb3BFSFc5Q2VuUm1UVW51cVV0azRPVlZEYUxreHZyWFBw?=
- =?utf-8?B?SDR5dGRQa1RSakJGQ3R4aWV1ZjkwNDNzZzZLSDBCc3g3aWlISWxjQ1pMVmI0?=
- =?utf-8?B?Umc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: d444703d-b525-4bb7-d71d-08dd3bbc0195
-X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UzhLb3AzYXA2K1JKS3F4RHRhbi9OemNBTzR1aS8wVm5LcjVGMXN5T3Vicmt0?=
+ =?utf-8?B?cFI1Tit5Q2l3RVRBditHN0Y0RTFUR0tYMExxMGhOamNTVVdOQkVIbDB4NEtX?=
+ =?utf-8?B?OFVYWmFQQkYyQmYwZGk0b2FVNnE1RW5wUzNZVUFxaEhvMHdJcXZjL011azgw?=
+ =?utf-8?B?N0hKLzlmRDM3WjBKL0RRdEk1akRFS0ZyTTNmV2tISVZPcDhFdEhhMDFaMXIw?=
+ =?utf-8?B?d3Vpb1lKSDQ2STFHYlRPTUNYSTBTaHFqN3V4K1YzUGR5WFFPRWJwcDlYUzll?=
+ =?utf-8?B?Q2ZTb3JUWjJXMFpUSTNraCtwdjQ2dnNMSXVuMGV5Q0t1MzJiZ010ZTFjb0lr?=
+ =?utf-8?B?bFg4dUJ3RndQVTJxMjF5K3loTkF1ckU2MEdSZVYrc1VJTXBXN21ldm91Wko3?=
+ =?utf-8?B?MmFvdTVWV0RRZmNTdi9EZURERkpWUjAvVGZERktqUFB5WWtUL0gxOW5yZjg5?=
+ =?utf-8?B?YkpRb1FsYVRaUGJlZ2U0MUM2R3pocXcyMGp4T2d4WDFJdElMTlFRTDhwY2Rm?=
+ =?utf-8?B?REE4Y201VnBRRFltWkcvTTcrMHNuSktwV1pYSnMrWFI5QUExNnVQN3pUZ3Nj?=
+ =?utf-8?B?SE13dmlnaGcvRGF1L2ZqVjNXUG0vSlcwcVlWa1lvQ001dWZraEhRWjdlcmFw?=
+ =?utf-8?B?QjcyVjJlZGJJNTNmYk9qVVE1eEhSZWpVNHlpNEU0bS9ET21UZnQzR1FHYStP?=
+ =?utf-8?B?aFBLVHphVW1SbUVKTjVvRWl5N3NuQVExVTBwMExPVk5zVzhaamJMZGE2SXJu?=
+ =?utf-8?B?TEpjSnVCMkQ5YjdENWdYY09tQUZvdVBINHVybUxyblVCcW1BdEZhT1ZYYzRF?=
+ =?utf-8?B?aWJRQTlOSlNBQVkwSUw2b3dVcG9YRm5NQTBhZ0JuQlJDLzJjVEl2SVF5WGU1?=
+ =?utf-8?B?L1ZYZHBKRnFBdFB5clpMK1lyVEx3czZTYmpNL1FYdHMyREdMVG9iWnUrWjRn?=
+ =?utf-8?B?eUVCaFBBcHFGSUh3NmhOZXBWU1JXcFZOckVDeitiUlUvb3IwMmx4bXJHNUFS?=
+ =?utf-8?B?c2ZJYjZCaUhJUE9yeUVZaE0wSHRYWGJvck5SZmNPVGpnZGlUdEszS1pLK2pN?=
+ =?utf-8?B?Mzdka0ZuT0hPOGZibWlnTW9vV3AwQXozT2pGNk1vREV1YUlQMDBlbS9aYjlM?=
+ =?utf-8?B?aXp3djYzSWVIdWc4MlVrVGpRNmNKakFsL1ZlcHJhQ2kxWHBMSEhuaHdaNFY1?=
+ =?utf-8?B?WEYyR2t5Y3czczBXUXlxSWk5bC9EZW1vaGNKZG1uaVdUb1ZCRTJaN1BjdkRn?=
+ =?utf-8?B?c3VXT1loWjdncFhyZ2dBcjRjQXJpQ3l5WWFQYVo2K3h6NUk0NUZocURLTWNS?=
+ =?utf-8?B?bENnVXhwZGRuV0JMSW42ZXN3S1VzeVd3dCtENFcrcy9WNUNrZ3FqL0FJMWE1?=
+ =?utf-8?B?RlRvQ3hPU2NWc3NaRjI1OEhHbUpwZStLZU02TEMvYllmeWNqRi9EV01nUGJZ?=
+ =?utf-8?B?MlJ4RTdZamhVck1FR0VkRFUydGtaa2ozNG9RTE50dTlMcjI3MEdpLzVRTmZY?=
+ =?utf-8?B?OXBISkgyc2JxTC9nVzlndCtOdk43MUY4WEgzNUpncExqWWhWb1FaWVBNeTNB?=
+ =?utf-8?B?SHl6OEV2SU55LzQ0YmdrSUk0K3hGc3VkMEQrVDhqVUcvZWgraDBlVzR3STMw?=
+ =?utf-8?B?c0drNlVaUXhtb0NtTW1SczdzUi9zZ0Y2MDREUm1LM213cE5NaVYwOHRwd2Qx?=
+ =?utf-8?B?VGZDMHl1UXFDVDUrNDd4ME1XUDBzWWdrMlpLSUtnbEhtejBoN0ZWMGlZL0Jz?=
+ =?utf-8?B?ZEIxNlN0WTA4ZHdKaHk1VXJGV1R1dzBOeER1UFh5YVA1Si9kVXRaK2htN2Vz?=
+ =?utf-8?B?alNSWXNXNnF0N3BnZG50UWhsVmRIM1l0R01KMEVKbUxqUE1hSXNveDJRT0to?=
+ =?utf-8?B?a0NDb0t0czh3dlVEM2JSMFpMUTJNQ0xkMS9YVUxsTDFLaEN6OUhpNW0xNXE1?=
+ =?utf-8?B?b3ZZdUwzQUhmRHpoV0FsZlFpWVkwWmJtaWRPWjU2QnhPSENOVHhDM2MrRFJV?=
+ =?utf-8?B?RGprKzc0TXJWdTJaOUpTcnZ3SXlOMmx3amc0L1AvblZkVXFiUC9OM2ZNRFZ1?=
+ =?utf-8?B?NlBHdjFjd2VOWTZCbG1tTExJNklWWTFPZEtTdEt1UXJBSlV2WXV0YjQzMWlo?=
+ =?utf-8?B?QU9lTlloMjE4Q29nTW1HYnh1QTliNE1MLzZNZjJnN2VadHV2dW9NOGFraVlL?=
+ =?utf-8?B?Mnc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 760e4992-c166-4973-d639-08dd3bbcea78
+X-MS-Exchange-CrossTenant-AuthSource: MW4PR11MB6864.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2025 14:41:22.6433 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2025 14:47:53.2049 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Lh4SWecs2FZ1Y85oPk/z64kU3c9dUatmIkYDZg9YVAUgfTOvz5SRQXs5wk8EIUYEG1JilQQKETfqVRfsaduu1w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB8808
+X-MS-Exchange-CrossTenant-UserPrincipalName: BWMnB935OCo4yZkxf9DOfpOsKWgwww/7OTnzaNecu8cV2tjZVAd4rJXOfhEDnKYYhGccNOe5Au5ccWcnm5/l9EvH77sS5dQW7u9aNhQkJ3U=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB6914
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -195,114 +195,533 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Quoting Luca Coelho (2025-01-22 06:06:00-03:00)
->On Fri, 2025-01-17 at 19:06 -0300, Gustavo Sousa wrote:
->> The DMC wakelock code needs to keep track of register offsets that need
->> the wakelock for proper access. If one of the necessary offsets are
->> missed, then the failure in asserting the wakelock is very likely to
->> cause problems down the road.
->>=20
->> A miss could happen for at least two different reasons:
->>=20
->> - We might have forgotten to add the offset (or range) to the relevant
->>   tables tracked by the driver in the first place.
->>=20
->> - Or updates to either the DMC firmware or the display IP that require
->>   new offsets to be tracked and we fail to realize that.
->>=20
->> To help capture these cases, let's introduce a debugfs interface for the
->> DMC wakelock.
->>=20
->> In this part, we export a buffer containing offsets of registers that
->> were considered not needing the wakelock by our driver. In an upcoming
->> change we will also allow defining an extra set of offset ranges to be
->> tracked by our driver.
->>=20
->> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
->> ---
->
->This looks great overall!
->
->A couple of comments below.
->
->
->[...]
->> +static bool untracked_has_recent_offset(struct intel_display *display, =
-u32 offset)
->> +{
->> +        struct intel_dmc_wl_dbg *dbg =3D &display->wl.dbg;
->> +        int look_back =3D 32;
->> +        size_t i;
->> +
->> +        if (look_back > dbg->untracked.len)
->> +                look_back =3D dbg->untracked.len;
->> +
->> +        i =3D dbg->untracked.head;
->> +
->> +        while (look_back--) {
->> +                if (i =3D=3D 0)
->> +                        i =3D dbg->untracked.size;
->
->If size < 32, you would check some values twice, right? Probably not a
->real case scenario, and it wouldn't matter much, but it took me a bit
->to wrap my head around this.
+On 10.01.2025 16:46, Krzysztof Karas wrote:
 
-Nope. If look_back is greater than the current number of offsets, it
-will be just reset to that count (see the "if (look_back >
-dbg->untracked.len)" above).
-
-Note that the number of valid elements in the circular buffer is tracked
-with untracked.len, while untracked.size is actually the capacity. Maybe
-I should have used that name for the member instead?
-
+> GuC code uses in_atomic() function to determine if the current
+> context is atomic. As noted by the function's description it
+> should not be used in driver code, as it is not guaranteed to
+> determine atomicity correctly in every instance. This is also
+> pointed out by the FIXME note suggesting that the caller of
+> intel_guc_send_busy_loop() should be responsible for providing
+> information about whether the context is atomic or not to avoid
+> in_atomic() usage there.
 >
->[...]
->> +void intel_dmc_wl_debugfs_log_untracked(struct intel_display *display, =
-u32 offset)
->> +{
->> +        struct intel_dmc_wl_dbg *dbg =3D &display->wl.dbg;
->> +        unsigned long flags;
->> +
->> +        spin_lock_irqsave(&dbg->lock, flags);
->> +
->> +        if (!dbg->untracked.size)
->> +                goto out_unlock;
->> +
->> +        /* Save some space by not repeating recent offsets. */
->> +        if (untracked_has_recent_offset(display, offset))
->> +                goto out_unlock;
->> +
->> +        dbg->untracked.offsets[dbg->untracked.head] =3D offset;
->> +        dbg->untracked.head =3D (dbg->untracked.head + 1) % dbg->untrac=
-ked.size;
->> +        if (dbg->untracked.len < dbg->untracked.size)
->> +                dbg->untracked.len++;
->> +
->> +        if (dbg->untracked.len =3D=3D dbg->untracked.size && !dbg->untr=
-acked.overflow) {
->> +                dbg->untracked.overflow =3D true;
->> +                drm_warn(display->drm, "Overflow detected in DMC wakelo=
-ck debugfs untracked offsets\n");
->> +        }
+> Add a new flag to indicate active spin locks and pass it down to
+> intel_guc_send_busy_loop(), similarly to how "loop" flag is
+> handled.
 >
->Couldn't it be useful to print overflows every time they occur? Maybe
->convert overflow to a uint to track how many times it happened? (though
->maybe this is a bit overkill).
-
-The warning is just to let the user know that the buffer doesn't have
-every untracked offset that has been seen since enabling the logging.
-The best thing to do in this case is to try a bigger size or try to
-reduce the execution to be tracked (maybe a smaller test case).
-
-I'm not sure how providing a count would be useful here.
-
---
-Gustavo Sousa
-
+> Signed-off-by: Krzysztof Karas <krzysztof.karas@intel.com>
+> ---
+>   drivers/gpu/drm/i915/gt/uc/intel_guc.h        |  12 +-
+>   drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c    |   2 +-
+>   .../gpu/drm/i915/gt/uc/intel_guc_submission.c | 127 ++++++++++--------
+>   3 files changed, 74 insertions(+), 67 deletions(-)
 >
->[...]
->
->--
->Cheers,
->Luca.
->
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> index 57b903132776..0ccd97dc32f7 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+> @@ -358,18 +358,12 @@ static inline int intel_guc_send_busy_loop(struct intel_guc *guc,
+>   					   const u32 *action,
+>   					   u32 len,
+>   					   u32 g2h_len_dw,
+> -					   bool loop)
+> +					   bool loop,
+> +					   bool locked)
+>   {
+>   	int err;
+>   	unsigned int sleep_period_ms = 1;
+> -	bool not_atomic = !in_atomic() && !irqs_disabled();
+> -
+> -	/*
+> -	 * FIXME: Have caller pass in if we are in an atomic context to avoid
+> -	 * using in_atomic(). It is likely safe here as we check for irqs
+> -	 * disabled which basically all the spin locks in the i915 do but
+> -	 * regardless this should be cleaned up.
+> -	 */
+> +	bool not_atomic = !locked && !irqs_disabled();
+>   
+>   	/* No sleeping with spin locks, just busy loop */
+>   	might_sleep_if(loop && not_atomic);
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
+> index 46fabbfc775e..6d7ec67e8f58 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ads.c
+> @@ -198,7 +198,7 @@ static int guc_action_policies_update(struct intel_guc *guc, u32 policy_offset)
+>   		policy_offset
+>   	};
+>   
+> -	return intel_guc_send_busy_loop(guc, action, ARRAY_SIZE(action), 0, true);
+> +	return intel_guc_send_busy_loop(guc, action, ARRAY_SIZE(action), 0, true, false);
+>   }
+>   
+>   int intel_guc_global_policies_update(struct intel_guc *guc)
+> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> index 12f1ba7ca9c1..2154718d278c 100644
+> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_submission.c
+> @@ -618,7 +618,8 @@ static int guc_submission_send_busy_loop(struct intel_guc *guc,
+>   					 const u32 *action,
+>   					 u32 len,
+>   					 u32 g2h_len_dw,
+> -					 bool loop)
+> +					 bool loop,
+> +					 bool locked)
+>   {
+>   	int ret;
+>   
+> @@ -632,7 +633,7 @@ static int guc_submission_send_busy_loop(struct intel_guc *guc,
+>   	if (g2h_len_dw)
+>   		atomic_inc(&guc->outstanding_submission_g2h);
+>   
+> -	ret = intel_guc_send_busy_loop(guc, action, len, g2h_len_dw, loop);
+> +	ret = intel_guc_send_busy_loop(guc, action, len, g2h_len_dw, loop, locked);
+>   	if (ret)
+>   		atomic_dec(&guc->outstanding_submission_g2h);
+>   
+> @@ -690,8 +691,8 @@ int intel_guc_wait_for_idle(struct intel_guc *guc, long timeout)
+>   					      true, timeout);
+>   }
+>   
+> -static int guc_context_policy_init_v70(struct intel_context *ce, bool loop);
+> -static int try_context_registration(struct intel_context *ce, bool loop);
+> +static int guc_context_policy_init_v70(struct intel_context *ce, bool loop, bool locked);
+> +static int try_context_registration(struct intel_context *ce, bool loop, bool locked);
+>   
+>   static int __guc_add_request(struct intel_guc *guc, struct i915_request *rq)
+>   {
+> @@ -718,7 +719,7 @@ static int __guc_add_request(struct intel_guc *guc, struct i915_request *rq)
+>   	GEM_BUG_ON(context_guc_id_invalid(ce));
+>   
+>   	if (context_policy_required(ce)) {
+> -		err = guc_context_policy_init_v70(ce, false);
+> +		err = guc_context_policy_init_v70(ce, false, true);
+>   		if (err)
+>   			return err;
+>   	}
+> @@ -991,7 +992,7 @@ static int guc_dequeue_one_context(struct intel_guc *guc)
+>   
+>   		if (unlikely(!ctx_id_mapped(guc, ce->guc_id.id) &&
+>   			     intel_context_is_schedulable(ce))) {
+> -			ret = try_context_registration(ce, false);
+> +			ret = try_context_registration(ce, false, true);
+>   			if (unlikely(ret == -EPIPE)) {
+>   				goto deadlk;
+>   			} else if (ret == -EBUSY) {
+> @@ -2445,7 +2446,8 @@ static int __guc_action_register_multi_lrc_v69(struct intel_guc *guc,
+>   					       struct intel_context *ce,
+>   					       u32 guc_id,
+>   					       u32 offset,
+> -					       bool loop)
+> +					       bool loop,
+> +					       bool locked)
+>   {
+>   	struct intel_context *child;
+>   	u32 action[4 + MAX_ENGINE_INSTANCE];
+> @@ -2462,13 +2464,14 @@ static int __guc_action_register_multi_lrc_v69(struct intel_guc *guc,
+>   		action[len++] = offset;
+>   	}
+>   
+> -	return guc_submission_send_busy_loop(guc, action, len, 0, loop);
+> +	return guc_submission_send_busy_loop(guc, action, len, 0, loop, locked);
+>   }
+>   
+>   static int __guc_action_register_multi_lrc_v70(struct intel_guc *guc,
+>   					       struct intel_context *ce,
+>   					       struct guc_ctxt_registration_info *info,
+> -					       bool loop)
+> +					       bool loop,
+> +					       bool locked)
+>   {
+>   	struct intel_context *child;
+>   	u32 action[13 + (MAX_ENGINE_INSTANCE * 2)];
+> @@ -2505,13 +2508,14 @@ static int __guc_action_register_multi_lrc_v70(struct intel_guc *guc,
+>   
+>   	GEM_BUG_ON(len > ARRAY_SIZE(action));
+>   
+> -	return guc_submission_send_busy_loop(guc, action, len, 0, loop);
+> +	return guc_submission_send_busy_loop(guc, action, len, 0, loop, locked);
+>   }
+>   
+>   static int __guc_action_register_context_v69(struct intel_guc *guc,
+>   					     u32 guc_id,
+>   					     u32 offset,
+> -					     bool loop)
+> +					     bool loop,
+> +					     bool locked)
+>   {
+>   	u32 action[] = {
+>   		INTEL_GUC_ACTION_REGISTER_CONTEXT,
+> @@ -2520,12 +2524,13 @@ static int __guc_action_register_context_v69(struct intel_guc *guc,
+>   	};
+>   
+>   	return guc_submission_send_busy_loop(guc, action, ARRAY_SIZE(action),
+> -					     0, loop);
+> +					     0, loop, locked);
+>   }
+>   
+>   static int __guc_action_register_context_v70(struct intel_guc *guc,
+>   					     struct guc_ctxt_registration_info *info,
+> -					     bool loop)
+> +					     bool loop,
+> +					     bool locked)
+>   {
+>   	u32 action[] = {
+>   		INTEL_GUC_ACTION_REGISTER_CONTEXT,
+> @@ -2543,7 +2548,7 @@ static int __guc_action_register_context_v70(struct intel_guc *guc,
+>   	};
+>   
+>   	return guc_submission_send_busy_loop(guc, action, ARRAY_SIZE(action),
+> -					     0, loop);
+> +					     0, loop, locked);
+>   }
+>   
+>   static void prepare_context_registration_info_v69(struct intel_context *ce);
+> @@ -2551,7 +2556,7 @@ static void prepare_context_registration_info_v70(struct intel_context *ce,
+>   						  struct guc_ctxt_registration_info *info);
+>   
+>   static int
+> -register_context_v69(struct intel_guc *guc, struct intel_context *ce, bool loop)
+> +register_context_v69(struct intel_guc *guc, struct intel_context *ce, bool loop, bool locked)
+>   {
+>   	u32 offset = intel_guc_ggtt_offset(guc, guc->lrc_desc_pool_v69) +
+>   		ce->guc_id.id * sizeof(struct guc_lrc_desc_v69);
+> @@ -2560,26 +2565,26 @@ register_context_v69(struct intel_guc *guc, struct intel_context *ce, bool loop)
+>   
+>   	if (intel_context_is_parent(ce))
+>   		return __guc_action_register_multi_lrc_v69(guc, ce, ce->guc_id.id,
+> -							   offset, loop);
+> +							   offset, loop, locked);
+>   	else
+>   		return __guc_action_register_context_v69(guc, ce->guc_id.id,
+> -							 offset, loop);
+> +							 offset, loop, locked);
+>   }
+>   
+>   static int
+> -register_context_v70(struct intel_guc *guc, struct intel_context *ce, bool loop)
+> +register_context_v70(struct intel_guc *guc, struct intel_context *ce, bool loop, bool locked)
+>   {
+>   	struct guc_ctxt_registration_info info;
+>   
+>   	prepare_context_registration_info_v70(ce, &info);
+>   
+>   	if (intel_context_is_parent(ce))
+> -		return __guc_action_register_multi_lrc_v70(guc, ce, &info, loop);
+> +		return __guc_action_register_multi_lrc_v70(guc, ce, &info, loop, locked);
+>   	else
+> -		return __guc_action_register_context_v70(guc, &info, loop);
+> +		return __guc_action_register_context_v70(guc, &info, loop, locked);
+>   }
+>   
+> -static int register_context(struct intel_context *ce, bool loop)
+> +static int register_context(struct intel_context *ce, bool loop, bool locked)
+>   {
+>   	struct intel_guc *guc = ce_to_guc(ce);
+>   	int ret;
+> @@ -2588,9 +2593,9 @@ static int register_context(struct intel_context *ce, bool loop)
+>   	trace_intel_context_register(ce);
+>   
+>   	if (GUC_SUBMIT_VER(guc) >= MAKE_GUC_VER(1, 0, 0))
+> -		ret = register_context_v70(guc, ce, loop);
+> +		ret = register_context_v70(guc, ce, loop, locked);
+>   	else
+> -		ret = register_context_v69(guc, ce, loop);
+> +		ret = register_context_v69(guc, ce, loop, locked);
+>   
+>   	if (likely(!ret)) {
+>   		unsigned long flags;
+> @@ -2600,14 +2605,15 @@ static int register_context(struct intel_context *ce, bool loop)
+>   		spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+>   
+>   		if (GUC_SUBMIT_VER(guc) >= MAKE_GUC_VER(1, 0, 0))
+> -			guc_context_policy_init_v70(ce, loop);
+> +			guc_context_policy_init_v70(ce, loop, locked);
+>   	}
+>   
+>   	return ret;
+>   }
+>   
+>   static int __guc_action_deregister_context(struct intel_guc *guc,
+> -					   u32 guc_id)
+> +					   u32 guc_id,
+> +					   bool locked)
+>   {
+>   	u32 action[] = {
+>   		INTEL_GUC_ACTION_DEREGISTER_CONTEXT,
+> @@ -2616,17 +2622,17 @@ static int __guc_action_deregister_context(struct intel_guc *guc,
+>   
+>   	return guc_submission_send_busy_loop(guc, action, ARRAY_SIZE(action),
+>   					     G2H_LEN_DW_DEREGISTER_CONTEXT,
+> -					     true);
+> +					     true, locked);
+>   }
+>   
+> -static int deregister_context(struct intel_context *ce, u32 guc_id)
+> +static int deregister_context(struct intel_context *ce, u32 guc_id, bool locked)
+>   {
+>   	struct intel_guc *guc = ce_to_guc(ce);
+>   
+>   	GEM_BUG_ON(intel_context_is_child(ce));
+>   	trace_intel_context_deregister(ce);
+>   
+> -	return __guc_action_deregister_context(guc, guc_id);
+> +	return __guc_action_deregister_context(guc, guc_id, locked);
+>   }
+>   
+>   static inline void clear_children_join_go_memory(struct intel_context *ce)
+> @@ -2691,14 +2697,15 @@ MAKE_CONTEXT_POLICY_ADD(slpc_ctx_freq_req, SLPM_GT_FREQUENCY)
+>   
+>   static int __guc_context_set_context_policies(struct intel_guc *guc,
+>   					      struct context_policy *policy,
+> -					      bool loop)
+> +					      bool loop,
+> +					      bool locked)
+>   {
+>   	return guc_submission_send_busy_loop(guc, (u32 *)&policy->h2g,
+>   					__guc_context_policy_action_size(policy),
+> -					0, loop);
+> +					0, loop, locked);
+>   }
+>   
+> -static int guc_context_policy_init_v70(struct intel_context *ce, bool loop)
+> +static int guc_context_policy_init_v70(struct intel_context *ce, bool loop, bool locked)
+>   {
+>   	struct intel_engine_cs *engine = ce->engine;
+>   	struct intel_guc *guc = gt_to_guc(engine->gt);
+> @@ -2730,7 +2737,7 @@ static int guc_context_policy_init_v70(struct intel_context *ce, bool loop)
+>   	if (engine->flags & I915_ENGINE_WANT_FORCED_PREEMPTION)
+>   		__guc_context_policy_add_preempt_to_idle(&policy, 1);
+>   
+> -	ret = __guc_context_set_context_policies(guc, &policy, loop);
+> +	ret = __guc_context_set_context_policies(guc, &policy, loop, locked);
+>   
+>   	spin_lock_irqsave(&ce->guc_state.lock, flags);
+>   	if (ret != 0)
+> @@ -2910,7 +2917,7 @@ static void prepare_context_registration_info_v70(struct intel_context *ce,
+>   	}
+>   }
+>   
+> -static int try_context_registration(struct intel_context *ce, bool loop)
+> +static int try_context_registration(struct intel_context *ce, bool loop, bool locked)
+>   {
+>   	struct intel_engine_cs *engine = ce->engine;
+>   	struct intel_runtime_pm *runtime_pm = engine->uncore->rpm;
+> @@ -2960,12 +2967,12 @@ static int try_context_registration(struct intel_context *ce, bool loop)
+>   		 * context whose guc_id was stolen.
+>   		 */
+>   		with_intel_runtime_pm(runtime_pm, wakeref)
+> -			ret = deregister_context(ce, ce->guc_id.id);
+> +			ret = deregister_context(ce, ce->guc_id.id, locked);
+>   		if (unlikely(ret == -ENODEV))
+>   			ret = 0;	/* Will get registered later */
+>   	} else {
+>   		with_intel_runtime_pm(runtime_pm, wakeref)
+> -			ret = register_context(ce, loop);
+> +			ret = register_context(ce, loop, locked);
+>   		if (unlikely(ret == -EBUSY)) {
+>   			clr_ctx_id_mapping(guc, ctx_id);
+>   		} else if (unlikely(ret == -ENODEV)) {
+> @@ -3036,7 +3043,8 @@ static void guc_context_post_unpin(struct intel_context *ce)
+>   }
+>   
+>   static void __guc_context_sched_enable(struct intel_guc *guc,
+> -				       struct intel_context *ce)
+> +				       struct intel_context *ce,
+> +				       bool locked)
+>   {
+>   	u32 action[] = {
+>   		INTEL_GUC_ACTION_SCHED_CONTEXT_MODE_SET,
+> @@ -3047,12 +3055,13 @@ static void __guc_context_sched_enable(struct intel_guc *guc,
+>   	trace_intel_context_sched_enable(ce);
+>   
+>   	guc_submission_send_busy_loop(guc, action, ARRAY_SIZE(action),
+> -				      G2H_LEN_DW_SCHED_CONTEXT_MODE_SET, true);
+> +				      G2H_LEN_DW_SCHED_CONTEXT_MODE_SET, true, locked);
+>   }
+>   
+>   static void __guc_context_sched_disable(struct intel_guc *guc,
+>   					struct intel_context *ce,
+> -					u16 guc_id)
+> +					u16 guc_id,
+> +					bool locked)
+>   {
+>   	u32 action[] = {
+>   		INTEL_GUC_ACTION_SCHED_CONTEXT_MODE_SET,
+> @@ -3066,7 +3075,7 @@ static void __guc_context_sched_disable(struct intel_guc *guc,
+>   	trace_intel_context_sched_disable(ce);
+>   
+>   	guc_submission_send_busy_loop(guc, action, ARRAY_SIZE(action),
+> -				      G2H_LEN_DW_SCHED_CONTEXT_MODE_SET, true);
+> +				      G2H_LEN_DW_SCHED_CONTEXT_MODE_SET, true, locked);
+>   }
+>   
+>   static void guc_blocked_fence_complete(struct intel_context *ce)
+> @@ -3139,7 +3148,7 @@ static struct i915_sw_fence *guc_context_block(struct intel_context *ce)
+>   	spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+>   
+>   	with_intel_runtime_pm(runtime_pm, wakeref)
+> -		__guc_context_sched_disable(guc, ce, guc_id);
+> +		__guc_context_sched_disable(guc, ce, guc_id, false);
+>   
+>   	return &ce->guc_state.blocked;
+>   }
+> @@ -3190,7 +3199,7 @@ static void guc_context_unblock(struct intel_context *ce)
+>   
+>   	if (enable) {
+>   		with_intel_runtime_pm(runtime_pm, wakeref)
+> -			__guc_context_sched_enable(guc, ce);
+> +			__guc_context_sched_enable(guc, ce, false);
+>   	}
+>   }
+>   
+> @@ -3219,14 +3228,15 @@ static void guc_context_cancel_request(struct intel_context *ce,
+>   
+>   static void __guc_context_set_preemption_timeout(struct intel_guc *guc,
+>   						 u16 guc_id,
+> -						 u32 preemption_timeout)
+> +						 u32 preemption_timeout,
+> +						 bool locked)
+>   {
+>   	if (GUC_SUBMIT_VER(guc) >= MAKE_GUC_VER(1, 0, 0)) {
+>   		struct context_policy policy;
+>   
+>   		__guc_context_policy_start_klv(&policy, guc_id);
+>   		__guc_context_policy_add_preemption_timeout(&policy, preemption_timeout);
+> -		__guc_context_set_context_policies(guc, &policy, true);
+> +		__guc_context_set_context_policies(guc, &policy, true, locked);
+>   	} else {
+>   		u32 action[] = {
+>   			INTEL_GUC_ACTION_V69_SET_CONTEXT_PREEMPTION_TIMEOUT,
+> @@ -3234,7 +3244,7 @@ static void __guc_context_set_preemption_timeout(struct intel_guc *guc,
+>   			preemption_timeout
+>   		};
+>   
+> -		intel_guc_send_busy_loop(guc, action, ARRAY_SIZE(action), 0, true);
+> +		intel_guc_send_busy_loop(guc, action, ARRAY_SIZE(action), 0, true, locked);
+>   	}
+>   }
+>   
+> @@ -3280,15 +3290,17 @@ guc_context_revoke(struct intel_context *ce, struct i915_request *rq,
+>   		 */
+>   		with_intel_runtime_pm(runtime_pm, wakeref) {
+>   			__guc_context_set_preemption_timeout(guc, guc_id,
+> -							     preempt_timeout_ms);
+> -			__guc_context_sched_disable(guc, ce, guc_id);
+> +							     preempt_timeout_ms,
+> +							     false);
+> +			__guc_context_sched_disable(guc, ce, guc_id, false);
+>   		}
+>   	} else {
+>   		if (!context_guc_id_invalid(ce))
+>   			with_intel_runtime_pm(runtime_pm, wakeref)
+>   				__guc_context_set_preemption_timeout(guc,
+>   								     ce->guc_id.id,
+> -								     preempt_timeout_ms);
+> +								     preempt_timeout_ms,
+> +								     true);
+>   		spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+>   	}
+>   }
+> @@ -3307,7 +3319,7 @@ static void do_sched_disable(struct intel_guc *guc, struct intel_context *ce,
+>   	spin_unlock_irqrestore(&ce->guc_state.lock, flags);
+>   
+>   	with_intel_runtime_pm(runtime_pm, wakeref)
+> -		__guc_context_sched_disable(guc, ce, guc_id);
+> +		__guc_context_sched_disable(guc, ce, guc_id, false);
+>   }
+>   
+>   static bool bypass_sched_disable(struct intel_guc *guc,
+> @@ -3431,7 +3443,7 @@ static inline int guc_lrc_desc_unpin(struct intel_context *ce)
+>   	 * with suspend, so we undo everything if the H2G fails in deregister_context so
+>   	 * that GuC reset will find this context during clean up.
+>   	 */
+> -	ret = deregister_context(ce, ce->guc_id.id);
+> +	ret = deregister_context(ce, ce->guc_id.id, false);
+>   	if (ret) {
+>   		spin_lock(&ce->guc_state.lock);
+>   		set_context_registered(ce);
+> @@ -3596,14 +3608,15 @@ static int guc_context_alloc(struct intel_context *ce)
+>   }
+>   
+>   static void __guc_context_set_prio(struct intel_guc *guc,
+> -				   struct intel_context *ce)
+> +				   struct intel_context *ce,
+> +				   bool locked)
+>   {
+>   	if (GUC_SUBMIT_VER(guc) >= MAKE_GUC_VER(1, 0, 0)) {
+>   		struct context_policy policy;
+>   
+>   		__guc_context_policy_start_klv(&policy, ce->guc_id.id);
+>   		__guc_context_policy_add_priority(&policy, ce->guc_state.prio);
+> -		__guc_context_set_context_policies(guc, &policy, true);
+> +		__guc_context_set_context_policies(guc, &policy, true, locked);
+>   	} else {
+>   		u32 action[] = {
+>   			INTEL_GUC_ACTION_V69_SET_CONTEXT_PRIORITY,
+> @@ -3611,7 +3624,7 @@ static void __guc_context_set_prio(struct intel_guc *guc,
+>   			ce->guc_state.prio,
+>   		};
+>   
+> -		guc_submission_send_busy_loop(guc, action, ARRAY_SIZE(action), 0, true);
+> +		guc_submission_send_busy_loop(guc, action, ARRAY_SIZE(action), 0, true, locked);
+>   	}
+>   }
+>   
+> @@ -3630,7 +3643,7 @@ static void guc_context_set_prio(struct intel_guc *guc,
+>   	}
+>   
+>   	ce->guc_state.prio = prio;
+> -	__guc_context_set_prio(guc, ce);
+> +	__guc_context_set_prio(guc, ce, true);
+>   
+>   	trace_intel_context_set_prio(ce);
+>   }
+> @@ -3927,7 +3940,7 @@ static int guc_request_alloc(struct i915_request *rq)
+>   	if (unlikely(ret < 0))
+>   		return ret;
+>   	if (context_needs_register(ce, !!ret)) {
+> -		ret = try_context_registration(ce, true);
+> +		ret = try_context_registration(ce, true, false);
+>   		if (unlikely(ret)) {	/* unwind */
+>   			if (ret == -EPIPE) {
+>   				disable_submission(guc);
+> @@ -4447,7 +4460,7 @@ static inline int guc_kernel_context_pin(struct intel_guc *guc,
+>   	if (!test_bit(CONTEXT_GUC_INIT, &ce->flags))
+>   		guc_context_init(ce);
+>   
+> -	ret = try_context_registration(ce, true);
+> +	ret = try_context_registration(ce, true, false);
+>   	if (ret)
+>   		unpin_guc_id(guc, ce);
+>   
+> @@ -4990,7 +5003,7 @@ static int guc_send_invalidate_tlb(struct intel_guc *guc,
+>   	add_wait_queue(&wq->wq, &wait);
+>   
+>   	/* This is a critical reclaim path and thus we must loop here. */
+> -	err = intel_guc_send_busy_loop(guc, action, size, G2H_LEN_DW_INVALIDATE_TLB, true);
+> +	err = intel_guc_send_busy_loop(guc, action, size, G2H_LEN_DW_INVALIDATE_TLB, true, false);
+>   	if (err)
+>   		goto out;
+>   
+> @@ -5062,7 +5075,7 @@ int intel_guc_deregister_done_process_msg(struct intel_guc *guc,
+>   		 * register this context.
+>   		 */
+>   		with_intel_runtime_pm(runtime_pm, wakeref)
+> -			register_context(ce, true);
+> +			register_context(ce, true, false);
+>   		guc_signal_context_fence(ce);
+>   		intel_context_put(ce);
+>   	} else if (context_destroyed(ce)) {
+
+The locked==true looks OK.
+
+However, I fear that there is some corner case with locked==false. 1 or 
+2 calls back in chain looks good.
+
+CI failures needs to be analyzed.
+
+Anyway, looks good.
+
+Maciej
+
