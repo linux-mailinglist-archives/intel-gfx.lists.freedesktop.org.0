@@ -2,86 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79E02A1BA05
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2025 17:11:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2989AA1BA5B
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2025 17:30:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA6DA10E9D9;
-	Fri, 24 Jan 2025 16:10:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB89910E9DB;
+	Fri, 24 Jan 2025 16:30:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="MyVmTwK7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m6lD7iaY";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com
- [209.85.128.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D933810E9D9
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2025 16:09:49 +0000 (UTC)
-Received: by mail-wm1-f41.google.com with SMTP id
- 5b1f17b1804b1-43621d27adeso15581855e9.2
- for <intel-gfx@lists.freedesktop.org>; Fri, 24 Jan 2025 08:09:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1737734988; x=1738339788; darn=lists.freedesktop.org; 
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:from:to
- :cc:subject:date:message-id:reply-to;
- bh=xsbYJojFnJHyb7Z1vIeeeMLtGZUUYponZdFzStqck0c=;
- b=MyVmTwK7YmqKU9vhj35pTbhkll8sTdxFyte6eFuvw7fgQbHFqlUMJ9SSMC0nTMxMVE
- OB8ECBkUcyhB7uh+lRK26Gz7hb3sBL870zLZGcBvSGpHjcrQkmL0NqiXwHCF9CH5q4nO
- cLneam7SqsDaybb4Ma0guppQMHiZ7mQO2ZaZ0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1737734988; x=1738339788;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=xsbYJojFnJHyb7Z1vIeeeMLtGZUUYponZdFzStqck0c=;
- b=HjKmXPpLUT2wTrwFuOHYIHNTPA5UwDRqxBQFZFxrLqFDB4WgH5agY6LnIaA29gqN8Q
- P3be3mQ83Fu3Wc0a9Z5uMx/kVJ3oqOiyYfVsD3OYZCU2ivKfTyOvO9CS2eYA2Ye61c6P
- 1PhWaFo+JTOS7lBQi7q8Taps/aEhrwykw8w+syt5cL8XbOkfeEM6goOcrDDwOy2DRaaY
- uWIresxl3KdgsJiE/+NSqixSFJsYzcZwMdG+T2UnjaPMQ8YZJ1XOazOGvTyikROpbyZ0
- TZQrW5boZLsHdKdOoeFQszsuQZjOPZBX+cy6Fyis81o5D0d1Ru6WNe62D2GqvDNuTr/4
- vAkA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUEJxkVbhOkqc7GU7wkt4IfbVtmFZ4jkdna09gzzCnmZIDwD6Wy03PWMitDxzZ0gzXf4bVNHK3xI6Q=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzOLmScENH95Y6yW5g635KK4diPaGPkYnom+KQz1VgTnPOmAMWK
- kNHay/AyfCk76psvwEd+uy9DjAMFLvTXBf2QGTb6pUiBZr8IO/PRRjtZZ4tH/Os=
-X-Gm-Gg: ASbGnct1lHziifbrxYAol0IjAB6TdFQpjlgO2d6Y1My/GoBU+jkq+bChSTQfKHp8IbZ
- xAxDs6zjW11wGDZrOBTIdi4o2z1qUg4xQuUIbc8S6jHxntzM1ZiCk7I37siAQ3A73pOC0L9n2/o
- WNSMwWKuWtwOF72SaUDHNHQ2/rdVTt0pnQMsB60ZXDuVG/T2fXpPbw4ATUu74Gpst4Cfk8dEDz8
- RAW8BHsjflnalL+94Wa3ovJOzHkHXale5wStv2yIbPP/iAU0yso9jvzhp+EW+F4+MtGtfaOxowt
- wWl1+L4PBkU1ps98
-X-Google-Smtp-Source: AGHT+IGgcwlojMe2eUG5XvTv971ynSVi+nq4QiUkAIk0hlzmzlheXCJ9b8dBpY6DONEmnVl8dN1sZw==
-X-Received: by 2002:a05:600c:4ed4:b0:434:feb1:adae with SMTP id
- 5b1f17b1804b1-438913c8604mr285707565e9.3.1737734988285; 
- Fri, 24 Jan 2025 08:09:48 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-438bd43cdbbsm31778555e9.0.2025.01.24.08.09.47
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 24 Jan 2025 08:09:47 -0800 (PST)
-Date: Fri, 24 Jan 2025 17:09:45 +0100
-From: Simona Vetter <simona.vetter@ffwll.ch>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Simona Vetter <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>,
- dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Subject: Re: [PULL] drm-misc-next-fixes
-Message-ID: <Z5O7STQ4ZJrE6kva@phenom.ffwll.local>
-References: <0d4a18f4-222c-4767-9169-e6350ce8fea5@linux.intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2157A10E9D8;
+ Fri, 24 Jan 2025 16:30:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1737736244; x=1769272244;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=MfYNUH/iENBFXfwSeqtC5331cB0CJlnmkodnZgLm0oA=;
+ b=m6lD7iaYXsQ/+SNLNPN+3NVPj3fn/ro+ES42JoHqyfHl1T6RsGQvtbVY
+ mDU+U9BjsS0NzrbQOpyIARwiSBniRTonxt2hgzhmXcTYWEIgOgfCehz/3
+ X6oPNoGIwwyb88rIwZ/b61k2AbVLORcGHLl3BNDn5vB0RzJKgkQZ9Be9o
+ /wHqwvKRAcfS3hDQr5WbZCYAAQk8OLdEMGYPaa7W9l8vCAausLkuQ1pfD
+ uQfYeNeopOFtgwnGLXzAzdJalr1V9CXrArEio2GOp2UldwWLVYZvi3EsU
+ cvGE4RTfidG2q9suVSYTpTT0QXNtILUXWdpW1RgIz96R9k23O7WckW88g A==;
+X-CSE-ConnectionGUID: gdBiSjjWS06Rt56gtr2Xvw==
+X-CSE-MsgGUID: Zf/PebdyQYao1RVPbEza8Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11325"; a="42200425"
+X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="42200425"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2025 08:30:43 -0800
+X-CSE-ConnectionGUID: FIDu3K33RoShFhG8OKVr1w==
+X-CSE-MsgGUID: +ApSZQwsQY+siTypHCVhJw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="107925902"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 24 Jan 2025 08:30:42 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 24 Jan 2025 18:30:40 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: [PATCH 00/11] drm/i915: intel_display conversions and some debug
+ improvements
+Date: Fri, 24 Jan 2025 18:30:29 +0200
+Message-ID: <20250124163040.8886-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.45.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <0d4a18f4-222c-4767-9169-e6350ce8fea5@linux.intel.com>
-X-Operating-System: Linux phenom 6.12.3-amd64 
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,76 +68,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jan 24, 2025 at 04:25:32PM +0100, Maarten Lankhorst wrote:
-> Hi Dave, Simona,
-> 
-> Oops, I messsed up the pull request, didn't see the other commits in the
-> branch.
-> 
-> Additionally:
-> - Fix bogus Kconfig change in cgroup/rdma
-> - Kernel doc fixup for xlnx.
-> - virtio UAF in virtgpu
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Ah here it was, I only looked at the annotated tag and was wondering why
-you didn't include these. Already typed up my own version.
+Convert a bunch of stuff over to struct intel_display, and
+finish off with a few debug print improvements.
 
-btw dim allows you to redo a pr, it just adds a suffix to the tag name.
+Ville Syrjälä (11):
+  drm/i915: Decouple i915_gem_dumb_create() from the display a bit
+  drm/i915: Decouple intel_fb_bo.h interfaces from driver specific types
+  drm/i915: Convert intel_crtc.c to struct intel_display
+  drm/i915: Convert intel_fb.c to struct intel_display
+  drm/i915: Convert intel_display_power_{get,put}*() to intel_display
+  drm/i915: Convert i9xx_plane.c to struct intel_display
+  drm/i915: Finish intel_sprite.c struct intel_display conversion
+  drm/i915: Convert intel_cursor.c to struct intel_display
+  drm/i915: Convert skl_univeral_plane.c to struct intel_display
+  drm/i915: Use DRM_RECT_FMT & co. for plane debugs
+  drm/i915: Pimp plane debugs
 
-> Cheers,
-> ~Maarten
-> 
-> drm-misc-next-fixes-2025-01-24:
-> drm-misc-next-fixes for v6.14-rc1:
-> - Fix a serious regression from commit e4b5ccd392b9 ("drm/v3d: Ensure
->   job pointer is set to NULL after job completion")
-> The following changes since commit 07c5b277208cf9a9e9cf31bf0143977d7f030aa1:
-> 
->   Merge v6.13 into drm-next (2025-01-23 14:42:21 +0100)
-> 
-> are available in the Git repository at:
-> 
->   https://gitlab.freedesktop.org/drm/misc/kernel.git
-> tags/drm-misc-next-fixes-2025-01-24
-> 
-> for you to fetch changes up to 6e64d6b3a3c39655de56682ec83e894978d23412:
-
-Pulled, thanks a lot.
--Sima
-
-> 
->   drm/v3d: Assign job pointer to NULL before signaling the fence (2025-01-23
-> 16:15:01 -0300)
-> 
-> ----------------------------------------------------------------
-> drm-misc-next-fixes for v6.14-rc1:
-> - Fix a serious regression from commit e4b5ccd392b9 ("drm/v3d: Ensure
->   job pointer is set to NULL after job completion")
-> 
-> ----------------------------------------------------------------
-> Geert Uytterhoeven (1):
->       cgroup/rdma: Drop bogus PAGE_COUNTER select
-> 
-> Maarten Lankhorst (1):
->       Merge remote-tracking branch 'drm/drm-next' into drm-misc-next-fixes
-> 
-> Ma�ra Canal (1):
->       drm/v3d: Assign job pointer to NULL before signaling the fence
-> 
-> Tomi Valkeinen (1):
->       drm: xlnx: zynqmp_dpsub: Fix kernel doc
-> 
-> Vivek Kasireddy (1):
->       drm/virtio: Fix UAF in virtgpu_dma_buf_free_obj()
-> 
->  Documentation/gpu/zynqmp.rst           |  2 --
->  drivers/gpu/drm/v3d/v3d_irq.c          | 16 ++++++++++++----
->  drivers/gpu/drm/virtio/virtgpu_prime.c | 11 ++++++-----
->  drivers/gpu/drm/xlnx/zynqmp_dpsub.h    |  1 +
->  init/Kconfig                           |  1 -
->  5 files changed, 19 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/i915/display/g4x_dp.c         |   9 +-
+ drivers/gpu/drm/i915/display/g4x_hdmi.c       |   8 +-
+ drivers/gpu/drm/i915/display/i9xx_plane.c     | 262 +++++------
+ drivers/gpu/drm/i915/display/i9xx_plane.h     |   6 +-
+ drivers/gpu/drm/i915/display/icl_dsi.c        |  11 +-
+ .../gpu/drm/i915/display/intel_atomic_plane.c |  24 +-
+ drivers/gpu/drm/i915/display/intel_audio.c    |   9 +-
+ drivers/gpu/drm/i915/display/intel_cdclk.c    |   8 +-
+ drivers/gpu/drm/i915/display/intel_crt.c      |  16 +-
+ drivers/gpu/drm/i915/display/intel_crtc.c     |  65 +--
+ drivers/gpu/drm/i915/display/intel_crtc.h     |   7 +-
+ drivers/gpu/drm/i915/display/intel_cursor.c   | 174 ++++----
+ drivers/gpu/drm/i915/display/intel_cursor.h   |   4 +-
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  |  13 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c      |  63 +--
+ drivers/gpu/drm/i915/display/intel_display.c  |  74 +--
+ drivers/gpu/drm/i915/display/intel_display.h  |   2 +-
+ .../drm/i915/display/intel_display_debugfs.c  |   5 +-
+ .../drm/i915/display/intel_display_driver.c   |   2 +-
+ .../gpu/drm/i915/display/intel_display_irq.c  |  10 +-
+ .../drm/i915/display/intel_display_power.c    |  85 ++--
+ .../drm/i915/display/intel_display_power.h    |  54 +--
+ drivers/gpu/drm/i915/display/intel_dmc.c      |   7 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       |   7 +-
+ drivers/gpu/drm/i915/display/intel_dp_aux.c   |   5 +-
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  55 ++-
+ drivers/gpu/drm/i915/display/intel_fb.c       | 249 ++++++-----
+ drivers/gpu/drm/i915/display/intel_fb.h       |  11 +-
+ drivers/gpu/drm/i915/display/intel_fb_bo.c    |  18 +-
+ drivers/gpu/drm/i915/display/intel_fb_bo.h    |   8 +-
+ drivers/gpu/drm/i915/display/intel_gmbus.c    |  10 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |  10 +-
+ drivers/gpu/drm/i915/display/intel_hotplug.c  |   5 +-
+ drivers/gpu/drm/i915/display/intel_lvds.c     |   5 +-
+ .../drm/i915/display/intel_modeset_setup.c    |   6 +-
+ drivers/gpu/drm/i915/display/intel_pipe_crc.c |   5 +-
+ drivers/gpu/drm/i915/display/intel_pps.c      |  18 +-
+ drivers/gpu/drm/i915/display/intel_sdvo.c     |   3 +-
+ drivers/gpu/drm/i915/display/intel_sprite.c   | 110 ++---
+ drivers/gpu/drm/i915/display/intel_sprite.h   |   6 +-
+ drivers/gpu/drm/i915/display/intel_tc.c       |  78 ++--
+  drivers/gpu/drm/i915/display/intel_vdsc.c     |   5 +-
+ drivers/gpu/drm/i915/display/intel_vga.c      |   5 +-
+ drivers/gpu/drm/i915/display/skl_scaler.c     |  13 +-
+ .../drm/i915/display/skl_universal_plane.c    | 422 +++++++++---------
+ .../drm/i915/display/skl_universal_plane.h    |   8 +-
+ drivers/gpu/drm/i915/display/skl_watermark.c  |   5 +-
+ drivers/gpu/drm/i915/display/vlv_dsi.c        |   4 +-
+ drivers/gpu/drm/i915/gem/i915_gem_create.c    |   2 +-
+ drivers/gpu/drm/i915/gt/intel_gt_pm.c         |   6 +-
+ drivers/gpu/drm/xe/display/intel_fb_bo.c      |   7 +-
+ 51 files changed, 1019 insertions(+), 985 deletions(-)
 
 -- 
-Simona Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+2.45.3
+
