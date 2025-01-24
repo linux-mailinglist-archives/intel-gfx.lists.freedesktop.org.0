@@ -2,52 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CD3BA1B896
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2025 16:12:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 80624A1B898
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2025 16:12:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC2AF10E9B3;
-	Fri, 24 Jan 2025 15:12:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F24A510E9BA;
+	Fri, 24 Jan 2025 15:12:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hvboYCmM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XjhEgM3H";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7DB3D10E9B0;
- Fri, 24 Jan 2025 15:12:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB28D10E9B4;
+ Fri, 24 Jan 2025 15:12:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737731559; x=1769267559;
+ t=1737731561; x=1769267561;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=wguPT8YZnV+hNebZBpfB95Y+ayYusXb1YueeMusyTRY=;
- b=hvboYCmMlBdfDfsT+YUCzbJUy6uIHqUMujVoyOSpBlTp70VWj5HxJ40j
- GESbfVBXydZZDHyFuZINvIp9kHJTQk7auyo6X/HZAHq2wUgnUAIl7nG6Y
- 5v3f0E2tgXkU5spFVAbdWMEBB3+Jxtb9lrrzH/II1GPzKL6+7XgO14KAN
- h6GVuyOZY0CIEHqHwF3glNgiEaa3RSIEfEjfcPqn9wVOtVf/fZktLliXK
- QaTcZf+vIjvexpnyp48o8a3R1EBvY8w6TTvlOCpH0PnuodC78z8malcjm
- PN/9MSFAeYGPKoULOsU5q6Gjrv3rgN24fEPMBZqK+BhEAtLOfkQ/X17hJ Q==;
-X-CSE-ConnectionGUID: 58D32ZtYSXSiik3iAtsH8Q==
-X-CSE-MsgGUID: Wp0xx3n2T56N7QXbWmr/Hg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11325"; a="38177467"
-X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="38177467"
+ bh=ykAZy3KuQU6cVOzZ02SVaVbR4d+WPPVMnrE05yV/rPo=;
+ b=XjhEgM3HRPgsxlaaXCUVSLqfLenUGgO7mmltNoEmOQXeQe8JanYzhEl2
+ 5LY6EY0V99HKfU8HlO3q4p5s4VNpy6fbCeFlKZEz6pORqFYWYZw4YAzRH
+ vNnllFA/ji70LmOzrlJS5JAyRLyaULD0ZdcbZu/gqC5+KgQeJbgm4zWlm
+ e9jLzC104pgWZBuBuBLLDbxBfzTDWecP9KZhKZZh05I5LCFPbtSumQFZw
+ CzZpknekAHiSWJxJJPKZIZdRzznwfR4vyOx8bxaUuTd1PhOwafS9OqrqE
+ 8PQvECtbm3h3KcIkoXV3UONRuJj6bs9ytqVif4tdf6Jw8gyWIBow9Tme8 A==;
+X-CSE-ConnectionGUID: Tal04F3/QvCiDrGDtg3mBQ==
+X-CSE-MsgGUID: pXaBtEy8TIuPlIkxjuUDow==
+X-IronPort-AV: E=McAfee;i="6700,10204,11325"; a="38177476"
+X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="38177476"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2025 07:12:38 -0800
-X-CSE-ConnectionGUID: cq36CCJaTUGwz7UWSKsRBw==
-X-CSE-MsgGUID: pbM0+d/xQz2Ut7YIo6t9Ow==
+ 24 Jan 2025 07:12:41 -0800
+X-CSE-ConnectionGUID: cG+L+6plQzSdMIxkJOlGeg==
+X-CSE-MsgGUID: BqaxpyxtSEuGpQ82PZOSJQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="108221591"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="108221599"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2025 07:12:36 -0800
+ 24 Jan 2025 07:12:39 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
  ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 27/35] drm/i915/display: Disable PSR before disabling VRR
-Date: Fri, 24 Jan 2025 20:30:12 +0530
-Message-ID: <20250124150020.2271747-28-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 28/35] drm/i915/psr: Allow PSR for fixed refrsh rate with VRR
+ TG
+Date: Fri, 24 Jan 2025 20:30:13 +0530
+Message-ID: <20250124150020.2271747-29-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250124150020.2271747-1-ankit.k.nautiyal@intel.com>
 References: <20250124150020.2271747-1-ankit.k.nautiyal@intel.com>
@@ -68,35 +69,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-As per bspec 49268: Disable PSR before disabling VRR.
+At the moment PSR/PSR2 are not supported with variable refresh rate.
+However it can be supported with fixed refresh rate while running with
+VRR timing generator.
+Enable PSR for fixed refresh rate when using the VRR timing generator.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 4 ++--
+ drivers/gpu/drm/i915/display/intel_psr.c | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 6ae634ea23c5..1d8383e1d783 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -1307,6 +1307,8 @@ static void intel_pre_plane_update(struct intel_atomic_state *state,
- 		intel_atomic_get_new_crtc_state(state, crtc);
- 	enum pipe pipe = crtc->pipe;
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index dcbdcdea8a0e..d7abf730134f 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -1688,9 +1688,9 @@ void intel_psr_compute_config(struct intel_dp *intel_dp,
+ 	}
  
-+	intel_psr_pre_plane_update(state, crtc);
-+
- 	if (intel_crtc_vrr_disabling(state, crtc)) {
- 		intel_vrr_disable(old_crtc_state);
- 		intel_crtc_update_active_timings(old_crtc_state, false);
-@@ -1317,8 +1319,6 @@ static void intel_pre_plane_update(struct intel_atomic_state *state,
+ 	/*
+-	 * Currently PSR/PR doesn't work reliably with VRR enabled.
++	 * Avoid PSR/PR when not in fixed refresh rate mode.
+ 	 */
+-	if (intel_vrrtg_is_enabled(crtc_state))
++	if (intel_vrrtg_is_enabled(crtc_state) && crtc_state->vrr.mode != INTEL_VRRTG_MODE_FIXED_RR)
+ 		return;
  
- 	intel_drrs_deactivate(old_crtc_state);
- 
--	intel_psr_pre_plane_update(state, crtc);
--
- 	if (hsw_ips_pre_update(state, crtc))
- 		intel_crtc_wait_for_next_vblank(crtc);
- 
+ 	crtc_state->has_panel_replay = _panel_replay_compute_config(intel_dp,
 -- 
 2.45.2
 
