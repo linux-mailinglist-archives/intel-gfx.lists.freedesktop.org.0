@@ -2,66 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1B01A1B4EC
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2025 12:43:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E27BA1B4EE
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2025 12:43:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 128C610E883;
-	Fri, 24 Jan 2025 11:43:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B621E10E921;
+	Fri, 24 Jan 2025 11:43:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ap0Gr1Db";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nlNi0f06";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4764C10E883;
- Fri, 24 Jan 2025 11:43:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 11B0910E91C;
+ Fri, 24 Jan 2025 11:43:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737718993; x=1769254993;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=3GxZghT8/UmmYstqY+mXofNgLJhuY4yUJDtRaLYNwVw=;
- b=ap0Gr1DbJRAg8x2rJ0ndTjBwc4FuoSx2pKQnOhhIhIxo6cUYOrZCXNle
- 0Q7iN8oQdwOXFE186+XcEhFyYK+3ICkKB5QviIlFe1SwJeYcrujoo5Rg/
- Y+AMfwYmO0lcpVMe4WCgF7Q30LAxMRnldkUTQ2qnMAx+4/WRBQCHgsyAs
- 8tpY5NOI8U2gKTxn4kPS6UGu/GXs9mdbA55UiVuL78Y3WX1Y9gPMdghZA
- KoHuIJx4a9WsUpnPh2GJFbcLlTeTnWc3BCcgv0lrtjbdwPilOTi8VxuhA
- iK6xB5/wki5r+Xsy9eaZpWN7H14/QFpQnU5vFRBQFC/GHFVXFp/z9wwl8 w==;
-X-CSE-ConnectionGUID: b0jy9av8Sqad4fpnZZb6Yg==
-X-CSE-MsgGUID: 6K3BbhPZQVC8tRM28sXKNQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11325"; a="38280687"
-X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="38280687"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2025 03:43:13 -0800
-X-CSE-ConnectionGUID: J44Cq+BmTJ60kjaqAULNbw==
-X-CSE-MsgGUID: V1mdlc5FTKyYK7EimpLcHA==
+ t=1737719009; x=1769255009;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=VEKsLt12dnqg4HgPQuqFysSwgwC7V2bKAtkyJQeD2hE=;
+ b=nlNi0f066koMox2DsRhvdWDgc1PxhVuVr9chDi1RaLEi3vcjdFCICf2m
+ XHQDp7JSWJvJmXD7paP2tUtDiFcaTeJ9H2k3Za7A7bbMvPmNTh5LEZKDL
+ 3MnbgBQbTjR88AOV8qG9OjFQa11mms+Qs8UKIlu60/A+/bR3NESZqbfK3
+ o+gAlpSYcFXlpCSd4LnKUPKeHY5uRe9h0qoWfvGpqn6I41C6EobiRiHAW
+ 2hAOtdo7Z/JY8tRyZqrFZIpJ/iLSwLqhtGeuVSgivv/Uajd5ohD+Pf2k+
+ Fpkzd/93I8USAFklOv0m0fy+nYSLFCQbf1rdI1VWlCHPgH9Go9xO17bJp w==;
+X-CSE-ConnectionGUID: 7Pt01LXbRziddrFIDjuutA==
+X-CSE-MsgGUID: GreUSrAKQD2laLz917bteQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11325"; a="55795874"
+X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="55795874"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2025 03:43:29 -0800
+X-CSE-ConnectionGUID: Q2U0P5t6TFK2iUuw6uI0GQ==
+X-CSE-MsgGUID: qztmHK4RQ6m7aiDPuVgyTA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="108346498"
-Received: from dprybysh-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.170])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2025 03:43:10 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Andy Yan <andyshrk@163.com>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, Sandy
- Huang <hjc@rock-chips.com>, Heiko =?utf-8?Q?St=C3=BCbner?=
- <heiko@sntech.de>, Andy Yan
- <andy.yan@rock-chips.com>, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, Cristian Ciocaltea
- <cristian.ciocaltea@collabora.com>
-Subject: Re:[PATCH 2/5] drm/rockchip: stop passing non struct drm_device to
- drm_err() and friends
-In-Reply-To: <2c0a76c3.618c.19497bb4329.Coremail.andyshrk@163.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1737644530.git.jani.nikula@intel.com>
- <f42da4c9943a2f2a9de4272b7849e72236d4c3f9.1737644530.git.jani.nikula@intel.com>
- <2c0a76c3.618c.19497bb4329.Coremail.andyshrk@163.com>
-Date: Fri, 24 Jan 2025 13:43:07 +0200
-Message-ID: <87plkcbfp0.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="107873981"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 24 Jan 2025 03:43:26 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 24 Jan 2025 13:43:25 +0200
+Date: Fri, 24 Jan 2025 13:43:25 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ animesh.manna@intel.com, ville.syrjala@intel.com
+Subject: Re: [PATCH v4 12/13] drm/i915/display: Ensure we have "Frame Change"
+ event in DSB commit
+Message-ID: <Z5N83bbvxBKm4yEQ@intel.com>
+References: <20250124105625.822459-1-jouni.hogander@intel.com>
+ <20250124105625.822459-13-jouni.hogander@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250124105625.822459-13-jouni.hogander@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,221 +73,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 24 Jan 2025, "Andy Yan" <andyshrk@163.com> wrote:
-> Hi=EF=BC=8C
->
-> At 2025-01-23 23:09:09, "Jani Nikula" <jani.nikula@intel.com> wrote:
->>The expectation is that the struct drm_device based logging helpers get
->>passed an actual struct drm_device pointer rather than some random
->>struct pointer where you can dereference the ->dev member.
->>
->>Convert drm_err(hdmi, ...) to dev_err(hdmi->dev, ...). This matches
->>current usage, but drops "[drm] *ERROR*" prefix from logging.
->
-> Frankly, I prefer the original version of the log.
-> It is a platform driver, so it should use its own device.
-> It is a driver that works in drm subsystem, so it's better to use "[drm] =
-*ERROR*" prefix when logging
+On Fri, Jan 24, 2025 at 12:56:23PM +0200, Jouni Högander wrote:
+> We may have commit which doesn't have any non-arming plane register
+> writes. In that case there aren't "Frame Change" event before DSB vblank
+> evasion which hangs as PIPEDSL register is reading as 0 when PSR state is
+> SRDENT(PSR1) or DEEP_SLEEP(PSR2). Handle this by adding dummy write
+> triggering the "Frame Change" event.
+> 
+> Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index a189aa437d972..cd7e960bd29f1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -7666,6 +7666,7 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
+>  		intel_atomic_get_old_crtc_state(state, crtc);
+>  	struct intel_crtc_state *new_crtc_state =
+>  		intel_atomic_get_new_crtc_state(state, crtc);
+> +	struct intel_display *display = to_intel_display(crtc);
+>  
+>  	if (!new_crtc_state->hw.active)
+>  		return;
+> @@ -7708,6 +7709,15 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
+>  		intel_crtc_planes_update_noarm(new_crtc_state->dsb_commit,
+>  					       state, crtc);
+>  
+> +		/*
+> +		 * Ensure we have "Frame Change" event when PSR state is
+> +		 * SRDENT(PSR1) or DEEP_SLEEP(PSR2). Otherwise DSB vblank
+> +		 * evasion hangs as PIPEDSL is reading as 0.
+> +		 */
+> +		if (new_crtc_state->has_psr && !new_crtc_state->has_panel_replay)
+> +			intel_de_write_dsb(display, new_crtc_state->dsb_commit,
+> +					   CURSURFLIVE(display, crtc->pipe), 0);
 
-If you need to do struct device based logging that is not the same
-device as the struct drm_device dev member, you need to use dev_err()
-and friends. You can't and must not use drm_err() and friends.
+I don't really want to see the low level detais right here.
+So we should probably should stuff this into some kind of 
+intel_dsb_ensure_psr_frame_change() function or something
+along those lines.
 
-It's as simple as that.
+> +
+>  		intel_dsb_vblank_evade(state, new_crtc_state->dsb_commit);
+>  
+>  		if (intel_crtc_needs_color_update(new_crtc_state))
+> -- 
+> 2.43.0
 
-The current drm_err(hdmi, ...) usage is simply abuse of the macros, and
-must stop.
-
-
-BR,
-Jani.
-
-
->
->>
->>Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->>
->>---
->>
->>Looks like it's possible to hunt down the struct drm_device in most of
->>these cases, if that's desired. This was the simplest change.
->>
->>Cc: Sandy Huang <hjc@rock-chips.com>
->>Cc: "Heiko St=C3=BCbner" <heiko@sntech.de>
->>Cc: Andy Yan <andy.yan@rock-chips.com>
->>Cc: dri-devel@lists.freedesktop.org
->>Cc: linux-arm-kernel@lists.infradead.org
->>Cc: linux-rockchip@lists.infradead.org
->>---
->> drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c    | 16 ++++++++--------
->> drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c | 16 ++++++++--------
->> 2 files changed, 16 insertions(+), 16 deletions(-)
->>
->>diff --git a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c b/drivers/gpu/dr=
-m/rockchip/dw_hdmi-rockchip.c
->>index e7a6669c46b0..f737e7d46e66 100644
->>--- a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
->>+++ b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
->>@@ -203,7 +203,7 @@ static int rockchip_hdmi_parse_dt(struct rockchip_hdm=
-i *hdmi)
->>=20
->> 	hdmi->regmap =3D syscon_regmap_lookup_by_phandle(np, "rockchip,grf");
->> 	if (IS_ERR(hdmi->regmap)) {
->>-		drm_err(hdmi, "Unable to get rockchip,grf\n");
->>+		dev_err(hdmi->dev, "Unable to get rockchip,grf\n");
->> 		return PTR_ERR(hdmi->regmap);
->> 	}
->>=20
->>@@ -214,7 +214,7 @@ static int rockchip_hdmi_parse_dt(struct rockchip_hdm=
-i *hdmi)
->> 	if (IS_ERR(hdmi->ref_clk)) {
->> 		ret =3D PTR_ERR(hdmi->ref_clk);
->> 		if (ret !=3D -EPROBE_DEFER)
->>-			drm_err(hdmi, "failed to get reference clock\n");
->>+			dev_err(hdmi->dev, "failed to get reference clock\n");
->> 		return ret;
->> 	}
->>=20
->>@@ -222,7 +222,7 @@ static int rockchip_hdmi_parse_dt(struct rockchip_hdm=
-i *hdmi)
->> 	if (IS_ERR(hdmi->grf_clk)) {
->> 		ret =3D PTR_ERR(hdmi->grf_clk);
->> 		if (ret !=3D -EPROBE_DEFER)
->>-			drm_err(hdmi, "failed to get grf clock\n");
->>+			dev_err(hdmi->dev, "failed to get grf clock\n");
->> 		return ret;
->> 	}
->>=20
->>@@ -302,16 +302,16 @@ static void dw_hdmi_rockchip_encoder_enable(struct =
-drm_encoder *encoder)
->>=20
->> 	ret =3D clk_prepare_enable(hdmi->grf_clk);
->> 	if (ret < 0) {
->>-		drm_err(hdmi, "failed to enable grfclk %d\n", ret);
->>+		dev_err(hdmi->dev, "failed to enable grfclk %d\n", ret);
->> 		return;
->> 	}
->>=20
->> 	ret =3D regmap_write(hdmi->regmap, hdmi->chip_data->lcdsel_grf_reg, val=
-);
->> 	if (ret !=3D 0)
->>-		drm_err(hdmi, "Could not write to GRF: %d\n", ret);
->>+		dev_err(hdmi->dev, "Could not write to GRF: %d\n", ret);
->>=20
->> 	clk_disable_unprepare(hdmi->grf_clk);
->>-	drm_dbg(hdmi, "vop %s output to hdmi\n", ret ? "LIT" : "BIG");
->>+	dev_dbg(hdmi->dev, "vop %s output to hdmi\n", ret ? "LIT" : "BIG");
->> }
->>=20
->> static int
->>@@ -574,7 +574,7 @@ static int dw_hdmi_rockchip_bind(struct device *dev, =
-struct device *master,
->> 	ret =3D rockchip_hdmi_parse_dt(hdmi);
->> 	if (ret) {
->> 		if (ret !=3D -EPROBE_DEFER)
->>-			drm_err(hdmi, "Unable to parse OF data\n");
->>+			dev_err(hdmi->dev, "Unable to parse OF data\n");
->> 		return ret;
->> 	}
->>=20
->>@@ -582,7 +582,7 @@ static int dw_hdmi_rockchip_bind(struct device *dev, =
-struct device *master,
->> 	if (IS_ERR(hdmi->phy)) {
->> 		ret =3D PTR_ERR(hdmi->phy);
->> 		if (ret !=3D -EPROBE_DEFER)
->>-			drm_err(hdmi, "failed to get phy\n");
->>+			dev_err(hdmi->dev, "failed to get phy\n");
->> 		return ret;
->> 	}
->>=20
->>diff --git a/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c b/drivers/gpu=
-/drm/rockchip/dw_hdmi_qp-rockchip.c
->>index f41151d49fca..3d1dddb34603 100644
->>--- a/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
->>+++ b/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
->>@@ -242,7 +242,7 @@ static void dw_hdmi_qp_rk3588_hpd_work(struct work_st=
-ruct *work)
->> 	if (drm) {
->> 		changed =3D drm_helper_hpd_irq_event(drm);
->> 		if (changed)
->>-			drm_dbg(hdmi, "connector status changed\n");
->>+			dev_dbg(hdmi->dev, "connector status changed\n");
->> 	}
->> }
->>=20
->>@@ -472,7 +472,7 @@ static int dw_hdmi_qp_rockchip_bind(struct device *de=
-v, struct device *master,
->> 		}
->> 	}
->> 	if (hdmi->port_id < 0) {
->>-		drm_err(hdmi, "Failed to match HDMI port ID\n");
->>+		dev_err(hdmi->dev, "Failed to match HDMI port ID\n");
->> 		return hdmi->port_id;
->> 	}
->>=20
->>@@ -496,20 +496,20 @@ static int dw_hdmi_qp_rockchip_bind(struct device *=
-dev, struct device *master,
->> 	hdmi->regmap =3D syscon_regmap_lookup_by_phandle(dev->of_node,
->> 						       "rockchip,grf");
->> 	if (IS_ERR(hdmi->regmap)) {
->>-		drm_err(hdmi, "Unable to get rockchip,grf\n");
->>+		dev_err(hdmi->dev, "Unable to get rockchip,grf\n");
->> 		return PTR_ERR(hdmi->regmap);
->> 	}
->>=20
->> 	hdmi->vo_regmap =3D syscon_regmap_lookup_by_phandle(dev->of_node,
->> 							  "rockchip,vo-grf");
->> 	if (IS_ERR(hdmi->vo_regmap)) {
->>-		drm_err(hdmi, "Unable to get rockchip,vo-grf\n");
->>+		dev_err(hdmi->dev, "Unable to get rockchip,vo-grf\n");
->> 		return PTR_ERR(hdmi->vo_regmap);
->> 	}
->>=20
->> 	ret =3D devm_clk_bulk_get_all_enabled(hdmi->dev, &clks);
->> 	if (ret < 0) {
->>-		drm_err(hdmi, "Failed to get clocks: %d\n", ret);
->>+		dev_err(hdmi->dev, "Failed to get clocks: %d\n", ret);
->> 		return ret;
->> 	}
->>=20
->>@@ -517,7 +517,7 @@ static int dw_hdmi_qp_rockchip_bind(struct device *de=
-v, struct device *master,
->> 						    GPIOD_OUT_HIGH);
->> 	if (IS_ERR(hdmi->enable_gpio)) {
->> 		ret =3D PTR_ERR(hdmi->enable_gpio);
->>-		drm_err(hdmi, "Failed to request enable GPIO: %d\n", ret);
->>+		dev_err(hdmi->dev, "Failed to request enable GPIO: %d\n", ret);
->> 		return ret;
->> 	}
->>=20
->>@@ -525,7 +525,7 @@ static int dw_hdmi_qp_rockchip_bind(struct device *de=
-v, struct device *master,
->> 	if (IS_ERR(hdmi->phy)) {
->> 		ret =3D PTR_ERR(hdmi->phy);
->> 		if (ret !=3D -EPROBE_DEFER)
->>-			drm_err(hdmi, "failed to get phy: %d\n", ret);
->>+			dev_err(hdmi->dev, "failed to get phy: %d\n", ret);
->> 		return ret;
->> 	}
->>=20
->>@@ -564,7 +564,7 @@ static int dw_hdmi_qp_rockchip_bind(struct device *de=
-v, struct device *master,
->> 	connector =3D drm_bridge_connector_init(drm, encoder);
->> 	if (IS_ERR(connector)) {
->> 		ret =3D PTR_ERR(connector);
->>-		drm_err(hdmi, "failed to init bridge connector: %d\n", ret);
->>+		dev_err(hdmi->dev, "failed to init bridge connector: %d\n", ret);
->> 		return ret;
->> 	}
->>=20
->>--=20
->>2.39.5
->>
->>
->>_______________________________________________
->>Linux-rockchip mailing list
->>Linux-rockchip@lists.infradead.org
->>http://lists.infradead.org/mailman/listinfo/linux-rockchip
-
---=20
-Jani Nikula, Intel
+-- 
+Ville Syrjälä
+Intel
