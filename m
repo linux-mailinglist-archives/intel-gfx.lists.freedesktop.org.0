@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97633A1B88F
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2025 16:12:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 69507A1B892
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2025 16:12:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C22910E9B5;
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF43610E9BB;
 	Fri, 24 Jan 2025 15:12:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lJ3WK5ml";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W08Pbz+L";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF8C810E9A3;
- Fri, 24 Jan 2025 15:12:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3397710E9B3;
+ Fri, 24 Jan 2025 15:12:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737731535; x=1769267535;
+ t=1737731537; x=1769267537;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=db7uUJPXJVoamB7x/rV2bkX0HFiU59kzs1BvP33kWhg=;
- b=lJ3WK5ml66vSEM1bWRv55MXfqpAqZUatiejO74mPubivTMqNrB4CDy4j
- 1zQP6lpQ0IzhEihQUySP7fF1F/4unCjK9pdVplJXonmjKaJgA5Ac/IW5P
- rJREjbcad3TczvZcPKDo4g4GwMbO14KAXSILMcBsFYk/LjsDUJB3LPEr7
- 1N1k6z2VAAy17+jMt+i2ZtnGguVPueThN1EzunPhVI5nFwl4s+nuscjUK
- sO/O2gfYK1QJbzuA2s+lJbRln1KLQQp59z4rN/FVmUHRGUOoeKw84WS18
- TjhJrWwGfx+vTcMgYBRhe42MLHOiPS51NV4pt7K6DxEVkYe0r1BrKvBjI g==;
-X-CSE-ConnectionGUID: glofmMd2TXm2qiXKVmGyZA==
-X-CSE-MsgGUID: cpirWiJYQ/CvO3yxwVacgw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11325"; a="38177416"
-X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="38177416"
+ bh=FIarnSyR5u2LuHjE6gCrwJ3NDemyblHJobQQwh+igCA=;
+ b=W08Pbz+LT9NnRxcGV+LNzB4GGF1oNX6z+g5ecAPypliZ6nfBEsfRmqnr
+ Jb8pZokoOtatqIw/kVV9ZrTzHRCqo6V2x+2eEu7GmyzKxKPryzGX85WK1
+ 09Ci8iBcM1mytD28OfTHqS1lR7nnwz7kiTLblPJOCKKwpoFHoIW726pHF
+ axB+DbJAeZuTQcB/Deu/pMWOBkVhoAgdG6j4QApq6SFrMFLiZ/rvGqmeF
+ QN5Zacj5GT1WV2iGeUAsi+/CQRSad202j7zORa3S1K6s49rtU8QF1e9kY
+ ZJBuWULHHsojoiQGIqRFnmSSeU7ZAZGj/tQk/3SQ4RiBXDpjKCV+xkPvh g==;
+X-CSE-ConnectionGUID: 6sGDIYLXQwqq7RJTJNKRnQ==
+X-CSE-MsgGUID: sGTAQE3dTMOodoGEYJ7jEQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11325"; a="38177419"
+X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="38177419"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2025 07:12:15 -0800
-X-CSE-ConnectionGUID: y5ctJpitRf6bW++8WkjziA==
-X-CSE-MsgGUID: Fm539E83TcK0su5Wg6gNqQ==
+ 24 Jan 2025 07:12:17 -0800
+X-CSE-ConnectionGUID: 2ati9raHSKSMf0WWaT4P+Q==
+X-CSE-MsgGUID: fPu2bLvgQ6iikMa1o4oCYg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="108221330"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="108221346"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2025 07:12:13 -0800
+ 24 Jan 2025 07:12:15 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
  ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 17/35] drm/i915/display: Add vrr mode to crtc_state dump
-Date: Fri, 24 Jan 2025 20:30:02 +0530
-Message-ID: <20250124150020.2271747-18-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 18/35] drm/i915/dp: Avoid vrr compute config for HDMI sink
+Date: Fri, 24 Jan 2025 20:30:03 +0530
+Message-ID: <20250124150020.2271747-19-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250124150020.2271747-1-ankit.k.nautiyal@intel.com>
 References: <20250124150020.2271747-1-ankit.k.nautiyal@intel.com>
@@ -68,49 +68,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Print Vrr mode along with other vrr members in crtc_state dump.
+Currently we do not support VRR with HDMI so skip vrr compute
+config step for DP with HDMI sink.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- .../drm/i915/display/intel_crtc_state_dump.c    | 17 ++++++++++++++++-
- 1 file changed, 16 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-index 34d200a17ba6..7b8247af4897 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-@@ -172,6 +172,20 @@ vlv_dump_csc(struct drm_printer *p, const char *name,
- 			   csc->coeff[3 * i + 2]);
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index c25e363ac5b2..853f68eec291 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -3208,7 +3208,13 @@ intel_dp_compute_config(struct intel_encoder *encoder,
+ 	if (pipe_config->splitter.enable)
+ 		pipe_config->dp_m_n.data_m *= pipe_config->splitter.link_count;
  
-+static const char * const vrrtg_mode_str[] = {
-+	[INTEL_VRRTG_MODE_NONE] = "none",
-+	[INTEL_VRRTG_MODE_VRR] = "vrr",
-+	[INTEL_VRRTG_MODE_CMRR] = "cmrr",
-+};
+-	intel_vrr_compute_config(pipe_config, conn_state);
++	/*
++	 * VRR via PCON is currently unsupported.
++	 * TODO: Add support for VRR for DP HDMI2.1 PCON.
++	 */
++	if (!intel_dp_has_hdmi_sink(intel_dp))
++		intel_vrr_compute_config(pipe_config, conn_state);
 +
-+static const char *intel_vrrtg_mode_name(enum intel_vrrtg_mode mode)
-+{
-+	if (mode >= ARRAY_SIZE(vrrtg_mode_str))
-+		return "invalid";
-+
-+	return vrrtg_mode_str[mode];
-+}
-+
- void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
- 			   struct intel_atomic_state *state,
- 			   const char *context)
-@@ -292,8 +306,9 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
- 		   pipe_config->hw.adjusted_mode.crtc_vdisplay,
- 		   pipe_config->framestart_delay, pipe_config->msa_timing_delay);
- 
--	drm_printf(&p, "vrr: %s, vmin: %d, vmax: %d, flipline: %d, pipeline full: %d, guardband: %d\n",
-+	drm_printf(&p, "vrr: %s mode: %s, vmin: %d, vmax: %d, flipline: %d, pipeline full: %d, guardband: %d\n",
- 		   str_yes_no(intel_vrrtg_is_enabled(pipe_config)),
-+		   intel_vrrtg_mode_name(pipe_config->vrr.mode),
- 		   pipe_config->vrr.vmin, pipe_config->vrr.vmax, pipe_config->vrr.flipline,
- 		   pipe_config->vrr.pipeline_full, pipe_config->vrr.guardband);
- 
+ 	intel_dp_compute_as_sdp(intel_dp, pipe_config);
+ 	intel_psr_compute_config(intel_dp, pipe_config, conn_state);
+ 	intel_alpm_lobf_compute_config(intel_dp, pipe_config, conn_state);
 -- 
 2.45.2
 
