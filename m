@@ -2,52 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D524A1B87E
+	by mail.lfdr.de (Postfix) with ESMTPS id B2802A1B880
 	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2025 16:11:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A6A810E999;
-	Fri, 24 Jan 2025 15:11:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6525110E9A1;
+	Fri, 24 Jan 2025 15:11:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GEHVaY7Y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k639nZ9Z";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C3D310E9C1;
- Fri, 24 Jan 2025 15:11:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F370C10E999;
+ Fri, 24 Jan 2025 15:11:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737731497; x=1769267497;
+ t=1737731499; x=1769267499;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=IfPRb9xAuh/8MEZYrUP4uN3ZQj30pOYLG4Vrt2vE1FI=;
- b=GEHVaY7Y2Fe6r+92gVVDC17ezcLwKpSgXXRkbFyD1xfqBsiMLBKwS8Bp
- MYnUbx5JSiC2KDEpS8AL/NVbmac05HjdvPG1AGmMzZdvjIZmUVIp99SmX
- YH704Ojl6P+On5I88CRKayEM4zqKuUNBqLSluShbNyWAuZlCkatfgY08u
- +fuTjUVl6Ma/FxXQdcwTXlkmJFYJqi9eLKMNlJ7rwTyvjbPzw+dPQKf42
- m7+C4A54zE9O28OsWRsZZi0MYwvJ7bhs6iYVBWWuImK7O6LzOUO2EVxw+
- mg5oMkFAAKlSzCX8M4Z4lOpUQQDLORGGwUZ0ioDYeunmXuIQxxqq7GLqa g==;
-X-CSE-ConnectionGUID: 52a7p2daQzK3vFiYLk+xKA==
-X-CSE-MsgGUID: Ig4omf1DRNewXMHrIEx1pg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11325"; a="38177369"
-X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="38177369"
+ bh=Qq95Fq1vepEm5NtN4hjWbjEGOt4KB0JUnATOegPal6M=;
+ b=k639nZ9ZvHTvxKmcruXFnBM0rXiB0ddqpXNmk9ZDaKyvzmWrOGpCFtAu
+ j/NdHpnM4j2o+ixEyHEvTzcxMC9d13IfJ2B2ZlaPvgeodvLo2fB3Y1lsf
+ 0ZwK5JT2I6IpKZcDC8EggVPfyrTH8QgO8zVZtBcU2q51rdnHplRg+9wZd
+ LETgt7gmjkPX/NN/vEXy1Px90GWkkwIV6UDCVWiG1cxz+KPqiAcpXymni
+ s363r/UnQFHSd1B20U35WQAWae0oLCwj1QMBmjQRikKgRBf4l30y38Xbf
+ FziUt87DBn6Ln6rFVKPFNc/8V43fYGlfvh9yruaE5O8Mw8VlumsOkbmEX w==;
+X-CSE-ConnectionGUID: /iW0YHgARpul1Pc6bwBsZg==
+X-CSE-MsgGUID: lFROKuphQ4entLlUJ1kvZw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11325"; a="38177373"
+X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="38177373"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2025 07:11:36 -0800
-X-CSE-ConnectionGUID: rgmeB05ZQeq7o67lmhDoFg==
-X-CSE-MsgGUID: pgYsyOECQD+pdX0S1VSOyQ==
+ 24 Jan 2025 07:11:39 -0800
+X-CSE-ConnectionGUID: 8pCFNbk5RzCSebimu2uCsQ==
+X-CSE-MsgGUID: 1eiP9EgzT0e4vKmI1NocLA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="108221139"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="108221144"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2025 07:11:34 -0800
+ 24 Jan 2025 07:11:37 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
  ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 01/35] drm/i915/vrr: Add crtc_state dump for vrr.vsync params
-Date: Fri, 24 Jan 2025 20:29:46 +0530
-Message-ID: <20250124150020.2271747-2-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 02/35] drm/i915/vrr: Compute vrr.vsync_{start,
+ end} during full modeset
+Date: Fri, 24 Jan 2025 20:29:47 +0530
+Message-ID: <20250124150020.2271747-3-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250124150020.2271747-1-ankit.k.nautiyal@intel.com>
 References: <20250124150020.2271747-1-ankit.k.nautiyal@intel.com>
@@ -70,36 +71,98 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 
-Add crtc_state dump for vrr.vsync_{start/end} params to track the
-state correctly.
+vrr.vsync_{start,end} computation should not depend on
+crtc_state->vrr.enable.
 
+--v1:
+ - Explain commit message more clearly [Jani]
+ - Instead of tweaking to fastset use vrr.flipline while computing AS_SDP.
 --v2:
-- remove vrr_ pretext and use space instead of underscore (Jani).
+ - Correct computation of vrr.vsync_start/end should not depend on
+   vrr.enable.[ville]
+ - vrr enable disable requirement should not obstruct by SDP enable
+   disable requirements. [Ville]
+--v3:
+ - Create separate patch for crtc_state_dump [Ankit].
+
+--v4:
+ - Update commit message and header [Ankit].
 
 Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_crtc_state_dump.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_vrr.c | 25 ++++++++++--------------
+ 1 file changed, 10 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-index 1fbaa67e2fea..73579d942ffc 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-@@ -297,9 +297,11 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
- 		   pipe_config->vrr.vmin, pipe_config->vrr.vmax, pipe_config->vrr.flipline,
- 		   pipe_config->vrr.pipeline_full, pipe_config->vrr.guardband);
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+index b268a0a01cd1..adb51609d0a3 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr.c
++++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+@@ -299,7 +299,7 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
+ 		crtc_state->mode_flags |= I915_MODE_FLAG_VRR;
+ 	}
  
--	drm_printf(&p, "vrr: vmin vblank: %d, vmax vblank: %d, vmin vtotal: %d, vmax vtotal: %d\n",
-+	drm_printf(&p, "vrr: vmin vblank: %d, vmax vblank: %d, vmin vtotal: %d, vmax vtotal: %d vsync start: %d vsync end %d \n",
- 		   intel_vrr_vmin_vblank_start(pipe_config), intel_vrr_vmax_vblank_start(pipe_config),
--		   intel_vrr_vmin_vtotal(pipe_config), intel_vrr_vmax_vtotal(pipe_config));
-+		   intel_vrr_vmin_vtotal(pipe_config), intel_vrr_vmax_vtotal(pipe_config),
-+		   pipe_config->vrr.vsync_start,
-+		   pipe_config->vrr.vsync_end);
+-	if (intel_dp->as_sdp_supported && crtc_state->vrr.enable) {
++	if (HAS_AS_SDP(display)) {
+ 		crtc_state->vrr.vsync_start =
+ 			(crtc_state->hw.adjusted_mode.crtc_vtotal -
+ 			 crtc_state->hw.adjusted_mode.vsync_start);
+@@ -388,6 +388,12 @@ void intel_vrr_set_transcoder_timings(const struct intel_crtc_state *crtc_state)
+ 		       trans_vrr_ctl(crtc_state));
+ 	intel_de_write(display, TRANS_VRR_FLIPLINE(display, cpu_transcoder),
+ 		       crtc_state->vrr.flipline - 1);
++
++	if (HAS_AS_SDP(display))
++		intel_de_write(display,
++			       TRANS_VRR_VSYNC(display, cpu_transcoder),
++			       VRR_VSYNC_END(crtc_state->vrr.vsync_end) |
++			       VRR_VSYNC_START(crtc_state->vrr.vsync_start));
+ }
  
- 	drm_printf(&p, "requested mode: " DRM_MODE_FMT "\n",
- 		   DRM_MODE_ARG(&pipe_config->hw.mode));
+ void intel_vrr_send_push(struct intel_dsb *dsb,
+@@ -432,12 +438,6 @@ void intel_vrr_enable(const struct intel_crtc_state *crtc_state)
+ 	intel_de_write(display, TRANS_PUSH(display, cpu_transcoder),
+ 		       TRANS_PUSH_EN);
+ 
+-	if (HAS_AS_SDP(display))
+-		intel_de_write(display,
+-			       TRANS_VRR_VSYNC(display, cpu_transcoder),
+-			       VRR_VSYNC_END(crtc_state->vrr.vsync_end) |
+-			       VRR_VSYNC_START(crtc_state->vrr.vsync_start));
+-
+ 	if (crtc_state->cmrr.enable) {
+ 		intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder),
+ 			       VRR_CTL_VRR_ENABLE | VRR_CTL_CMRR_ENABLE |
+@@ -462,10 +462,6 @@ void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state)
+ 				TRANS_VRR_STATUS(display, cpu_transcoder),
+ 				VRR_STATUS_VRR_EN_LIVE, 1000);
+ 	intel_de_write(display, TRANS_PUSH(display, cpu_transcoder), 0);
+-
+-	if (HAS_AS_SDP(display))
+-		intel_de_write(display,
+-			       TRANS_VRR_VSYNC(display, cpu_transcoder), 0);
+ }
+ 
+ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
+@@ -505,10 +501,6 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
+ 						     TRANS_VRR_VMAX(display, cpu_transcoder)) + 1;
+ 		crtc_state->vrr.vmin = intel_de_read(display,
+ 						     TRANS_VRR_VMIN(display, cpu_transcoder)) + 1;
+-	}
+-
+-	if (crtc_state->vrr.enable) {
+-		crtc_state->mode_flags |= I915_MODE_FLAG_VRR;
+ 
+ 		if (HAS_AS_SDP(display)) {
+ 			trans_vrr_vsync =
+@@ -520,4 +512,7 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
+ 				REG_FIELD_GET(VRR_VSYNC_END_MASK, trans_vrr_vsync);
+ 		}
+ 	}
++
++	if (crtc_state->vrr.enable)
++		crtc_state->mode_flags |= I915_MODE_FLAG_VRR;
+ }
 -- 
 2.45.2
 
