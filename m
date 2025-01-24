@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D8A8A1B65C
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2025 13:54:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CC908A1B65D
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2025 13:54:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB5B010E0C1;
-	Fri, 24 Jan 2025 12:54:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D19810E967;
+	Fri, 24 Jan 2025 12:54:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4447910E967;
- Fri, 24 Jan 2025 12:54:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C5F4D10E967;
+ Fri, 24 Jan 2025 12:54:09 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Enable_Aux_based_Nit?=
- =?utf-8?q?s_brightness_control_for_eDP?=
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_Enable_Aux_based_Nits_br?=
+ =?utf-8?q?ightness_control_for_eDP?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 24 Jan 2025 12:54:07 -0000
-Message-ID: <173772324727.4032718.15748476987230697000@b555e5b46a47>
+Date: Fri, 24 Jan 2025 12:54:09 -0000
+Message-ID: <173772324980.4032718.10748310055883113014@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20250124054631.1796456-1-suraj.kandpal@intel.com>
 In-Reply-To: <20250124054631.1796456-1-suraj.kandpal@intel.com>
@@ -49,6 +49,8 @@ State : warning
 
 == Summary ==
 
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/143909/revisions/1/mbox/ not found
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
