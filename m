@@ -2,55 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9A36A1B443
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2025 11:57:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F1E1A1B440
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2025 11:57:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B2DD10E7B0;
-	Fri, 24 Jan 2025 10:57:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4411510E428;
+	Fri, 24 Jan 2025 10:57:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b1EA9bbp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PkjY/WF4";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C3F410E7F8;
- Fri, 24 Jan 2025 10:57:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 081B510E947;
+ Fri, 24 Jan 2025 10:57:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737716230; x=1769252230;
+ t=1737716232; x=1769252232;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=rU58T4/IloM8kcndcHSYWtg0lCRpEimsj/REvpcYlUk=;
- b=b1EA9bbpK8OCSHV+PTpVpziTU9td7cHmNWLGDih3NDCRCF6Hu473lsI7
- Sj6mzL2/Y6d+8BjnLMkiHdwV6qFv1Hn+/0QiNcpWJ910wLAx1kAe0+08t
- z2Fv3oFlbNjTI/EwuIUASwW0HhHPLwV7Cd6lLRiVW9/ThQ2pCec8SHID8
- 9AcDLKga5YzB+FNCXWbVlOKHHqFq4qAtquoGsO3QPt50FqLpRTzwiHEou
- 8yjlQMxDLnONMPWrYhQqL+83Js8cl4Z049ggXMpwsWoXt/ZnAX563gM07
- qvPqlzm/4WHZwqo4xy0EI4wiMLmsFUE3vG5BHp3OrH6au3kB4TSRLCEfB Q==;
-X-CSE-ConnectionGUID: 6lvRjiF7TA6IhqGX5nRRqQ==
-X-CSE-MsgGUID: bskKNZu0S0yDBqabY1olMQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11325"; a="55660107"
-X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="55660107"
+ bh=DoS0BCU4yr/28UvnssS7qrM8Vdsh3Q2GufwpeLsqQf0=;
+ b=PkjY/WF42betmsR1vvXGsCyNg0xs97HpudcI1D+znkCtQhTZAH9fXnwI
+ CgedrP6uRYJaKDhlNSiHurixoGy3dr1Iln+uC8ApY/rYO8ny9gq6vjlJv
+ EbGONJsHD6vIX8uq+KuFEcw2z+KYRI5xDhq/w+P/127cVMhKCNWF0yxHi
+ HG3VcRA66YIv4k3RFUnATjMXoim9Nr8Lqh6D7wIBLSQcWVMN2TEs3BdJB
+ k6Vr8o6ZPQogC4cGbFqR7jwktZnyJit3a9GHpW0rowNoHAksxVixteuxZ
+ nvrLkk6k9Rrzuy13QsYzL2cxF9ovtYsaCS3vmidLx+DnF+OZHn/CY5cHr A==;
+X-CSE-ConnectionGUID: cSgBxg3RRf+yH5azqEHpXA==
+X-CSE-MsgGUID: u/9EPvFNS8ODRniPIs2f4Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11325"; a="55660109"
+X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="55660109"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2025 02:57:10 -0800
-X-CSE-ConnectionGUID: 080ccsJVT/KP+U9x7XxkBA==
-X-CSE-MsgGUID: 1jR9rNJYR/SldMgIz1KYkQ==
+ 24 Jan 2025 02:57:12 -0800
+X-CSE-ConnectionGUID: c/eql0+aQ52r8ZyyMs0Tsw==
+X-CSE-MsgGUID: NAxGme7yRCq7AK2Aqomz4A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="107864298"
+X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="107864310"
 Received: from smoticic-mobl1.ger.corp.intel.com (HELO jhogande-mobl1..)
  ([10.245.245.138])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2025 02:57:08 -0800
+ 24 Jan 2025 02:57:10 -0800
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: animesh.manna@intel.com, ville.syrjala@intel.com,
  =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v4 12/13] drm/i915/display: Ensure we have "Frame Change"
- event in DSB commit
-Date: Fri, 24 Jan 2025 12:56:23 +0200
-Message-ID: <20250124105625.822459-13-jouni.hogander@intel.com>
+Subject: [PATCH v4 13/13] drm/i915/psr: Allow DSB usage when PSR is enabled
+Date: Fri, 24 Jan 2025 12:56:24 +0200
+Message-ID: <20250124105625.822459-14-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250124105625.822459-1-jouni.hogander@intel.com>
 References: <20250124105625.822459-1-jouni.hogander@intel.com>
@@ -73,45 +72,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We may have commit which doesn't have any non-arming plane register
-writes. In that case there aren't "Frame Change" event before DSB vblank
-evasion which hangs as PIPEDSL register is reading as 0 when PSR state is
-SRDENT(PSR1) or DEEP_SLEEP(PSR2). Handle this by adding dummy write
-triggering the "Frame Change" event.
+Now as we have correct PSR2_MAN_TRK_CTL handling in place we can allow DSB
+usage also when PSR is enabled for LunarLake onwards.
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+Reviewed-by: Animesh Manna <animesh.manna@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index a189aa437d972..cd7e960bd29f1 100644
+index cd7e960bd29f1..08743e85382ee 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7666,6 +7666,7 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
- 		intel_atomic_get_old_crtc_state(state, crtc);
- 	struct intel_crtc_state *new_crtc_state =
- 		intel_atomic_get_new_crtc_state(state, crtc);
-+	struct intel_display *display = to_intel_display(crtc);
- 
- 	if (!new_crtc_state->hw.active)
- 		return;
-@@ -7708,6 +7709,15 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
- 		intel_crtc_planes_update_noarm(new_crtc_state->dsb_commit,
- 					       state, crtc);
- 
-+		/*
-+		 * Ensure we have "Frame Change" event when PSR state is
-+		 * SRDENT(PSR1) or DEEP_SLEEP(PSR2). Otherwise DSB vblank
-+		 * evasion hangs as PIPEDSL is reading as 0.
-+		 */
-+		if (new_crtc_state->has_psr && !new_crtc_state->has_panel_replay)
-+			intel_de_write_dsb(display, new_crtc_state->dsb_commit,
-+					   CURSURFLIVE(display, crtc->pipe), 0);
-+
- 		intel_dsb_vblank_evade(state, new_crtc_state->dsb_commit);
- 
- 		if (intel_crtc_needs_color_update(new_crtc_state))
+@@ -7679,7 +7679,7 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
+ 		new_crtc_state->update_planes &&
+ 		!new_crtc_state->vrr.enable &&
+ 		!new_crtc_state->do_async_flip &&
+-		!new_crtc_state->has_psr &&
++		(DISPLAY_VER(display) >= 20 || !new_crtc_state->has_psr) &&
+ 		!new_crtc_state->scaler_state.scaler_users &&
+ 		!old_crtc_state->scaler_state.scaler_users &&
+ 		!intel_crtc_needs_modeset(new_crtc_state) &&
 -- 
 2.43.0
 
