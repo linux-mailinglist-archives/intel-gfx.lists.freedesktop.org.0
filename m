@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 291EBA1B885
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2025 16:11:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F0C8A1B886
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2025 16:11:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B88EB10E9A6;
-	Fri, 24 Jan 2025 15:11:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD23F10E994;
+	Fri, 24 Jan 2025 15:11:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HUVi3rZ4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fvfTEGib";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DC7810E99E;
- Fri, 24 Jan 2025 15:11:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8748610E994;
+ Fri, 24 Jan 2025 15:11:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737731513; x=1769267513;
+ t=1737731516; x=1769267516;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=eMKiTQivylcW3/7vYVBNu3bQIO0sntxUIiLUTH4GTy4=;
- b=HUVi3rZ42nxYApzjD6CoWR83aUdU//AEb89Fmq+8z+HIMlrmIzGvcwaN
- uQn1gkchBsLu71hdb2s0FYA2TB6oze7HsSV9odaxUk42Uzj6IV/2y9TER
- XaCifyRMu+EnH7HnyINFM7O1LW+Zz05iLFAq7HKoqXIFKTLK4UePkI4jT
- j/sYYSSiAu113BL7lIxbETrGgFp9/BtUABUVYq300UVmFyy+8Fv8+H3xH
- LEn8weWL0iyc3runASiIqseko3JbbTMGbHI3SO5NCaJNOibtz5R0dn//y
- h9fkaYy+Bi12ozUD9siDwxZuUMwij97V7nI3eu2qBKUjNxLS/upGAg0Nh A==;
-X-CSE-ConnectionGUID: wZ7ZhuMISKCATjWznQKgjw==
-X-CSE-MsgGUID: wq9z7mORSk60j92hrgRukQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11325"; a="38177389"
-X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="38177389"
+ bh=jBCJbk5UgWjqtP1Uxo9n+hP2CcrRl5kXG0ns/2mVy2c=;
+ b=fvfTEGibduD5nakViGhTXtMCue8B2tP0ysKiMkLdcXOt7SuoShwXCtn3
+ InNxWN+e339EB1i8kV7Va3hnUU82Nwe88DiAoBDlmCkYY+rF6qQPbP5NW
+ 5nFOdyMFI3EtNUSldd6g3OBvk26oH59IEHr3nq0AdfkhEDs7MIw4HdIat
+ ZCsP7QRsH1THLagx7CDBVYC1Wv63z/OGsKsowrU7X5K/AQn0Ed7vfWqA7
+ feDvXfOvkbGHRH+j1sypOkXYtlRdzFF0mkNqaOqXq+G978i0xDDf85U2L
+ dL3Ozh4DjNh2tf7H4mq8jN6px7bbIArLGSCJBFjnBI0RnJ7cbyL84wmU/ Q==;
+X-CSE-ConnectionGUID: R2q6Ad2IT8eqmsK3YEb+oQ==
+X-CSE-MsgGUID: y/mKnRX0S4WQU6VNFWmsMQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11325"; a="38177394"
+X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="38177394"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2025 07:11:53 -0800
-X-CSE-ConnectionGUID: NWfStXQSRfqeH/n3Hv1fMg==
-X-CSE-MsgGUID: OPUTNTmZQIqP4Q8FizkGsg==
+ 24 Jan 2025 07:11:55 -0800
+X-CSE-ConnectionGUID: 86YZ79FiSAqS0qG4XnnLOQ==
+X-CSE-MsgGUID: lxEq6pBPRne1JYZ6mWraEQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="108221204"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="108221221"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2025 07:11:51 -0800
+ 24 Jan 2025 07:11:53 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
  ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 08/35] drm/i915:vrr: Refactor VRR timing setup into a separate
- function
-Date: Fri, 24 Jan 2025 20:29:53 +0530
-Message-ID: <20250124150020.2271747-9-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 09/35] drm/i915:vrr: Separate out functions to compute vmin
+ and vmax
+Date: Fri, 24 Jan 2025 20:29:54 +0530
+Message-ID: <20250124150020.2271747-10-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250124150020.2271747-1-ankit.k.nautiyal@intel.com>
 References: <20250124150020.2271747-1-ankit.k.nautiyal@intel.com>
@@ -69,61 +69,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Move the VRR timing setup code from intel_vrr_compute_config() to a new
-function intel_vrr_prepare_vrr_timings().
+Make helpers to compute vmin and vmax.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vrr.c | 29 +++++++++++++++---------
- 1 file changed, 18 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/i915/display/intel_vrr.c | 39 +++++++++++++++++++-----
+ 1 file changed, 31 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index 532abdb334b2..c6c38f089a05 100644
+index c6c38f089a05..a6d8751b6719 100644
 --- a/drivers/gpu/drm/i915/display/intel_vrr.c
 +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -222,6 +222,23 @@ cmrr_get_vtotal(struct intel_crtc_state *crtc_state, bool video_mode_required)
- 	return vtotal;
+@@ -239,6 +239,35 @@ void intel_vrr_prepare_vrr_timings(struct intel_crtc_state *crtc_state, int vmin
+ 	crtc_state->vrr.vmin -= intel_vrr_flipline_offset(display);
  }
  
 +static
-+void intel_vrr_prepare_vrr_timings(struct intel_crtc_state *crtc_state, int vmin, int vmax)
++int intel_vrr_compute_vmin(struct intel_connector *connector,
++			   struct drm_display_mode *adjusted_mode)
 +{
-+	struct intel_display *display = to_intel_display(crtc_state);
++	int vmin;
++	const struct drm_display_info *info = &connector->base.display_info;
 +
-+	crtc_state->vrr.vmin = vmin;
-+	crtc_state->vrr.vmax = vmax;
-+	crtc_state->vrr.flipline = crtc_state->vrr.vmin;
++	vmin = DIV_ROUND_UP(adjusted_mode->crtc_clock * 1000,
++			    adjusted_mode->crtc_htotal * info->monitor_range.max_vfreq);
++	vmin = max_t(int, vmin, adjusted_mode->crtc_vtotal);
 +
-+	/*
-+	 * flipline determines the min vblank length the hardware will
-+	 * generate, and on ICL/TGL flipline>=vmin+1, hence we reduce
-+	 * vmin by one to make sure we can get the actual min vblank length.
-+	 */
-+	crtc_state->vrr.vmin -= intel_vrr_flipline_offset(display);
++	return vmin;
++}
++
++static
++int intel_vrr_compute_vmax(struct intel_connector *connector,
++			   struct drm_display_mode *adjusted_mode)
++{
++	int vmax;
++	const struct drm_display_info *info = &connector->base.display_info;
++
++	vmax = adjusted_mode->crtc_clock * 1000 /
++		(adjusted_mode->crtc_htotal * info->monitor_range.min_vfreq);
++
++	vmax = max_t(int, vmax, adjusted_mode->crtc_vtotal);
++
++	return vmax;
 +}
 +
  void
  intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
  			 struct drm_connector_state *conn_state)
-@@ -264,17 +281,7 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
+@@ -249,7 +278,6 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
+ 	struct intel_dp *intel_dp = intel_attached_dp(connector);
+ 	bool is_edp = intel_dp_is_edp(intel_dp);
+ 	struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
+-	const struct drm_display_info *info = &connector->base.display_info;
+ 	int vmin, vmax;
+ 
+ 	/*
+@@ -270,13 +298,8 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
+ 	if (HAS_LRR(display))
+ 		crtc_state->update_lrr = true;
+ 
+-	vmin = DIV_ROUND_UP(adjusted_mode->crtc_clock * 1000,
+-			    adjusted_mode->crtc_htotal * info->monitor_range.max_vfreq);
+-	vmax = adjusted_mode->crtc_clock * 1000 /
+-		(adjusted_mode->crtc_htotal * info->monitor_range.min_vfreq);
+-
+-	vmin = max_t(int, vmin, adjusted_mode->crtc_vtotal);
+-	vmax = max_t(int, vmax, adjusted_mode->crtc_vtotal);
++	vmin = intel_vrr_compute_vmin(connector, adjusted_mode);
++	vmax = intel_vrr_compute_vmax(connector, adjusted_mode);
+ 
  	if (vmin >= vmax)
  		return;
- 
--	crtc_state->vrr.vmin = vmin;
--	crtc_state->vrr.vmax = vmax;
--
--	crtc_state->vrr.flipline = crtc_state->vrr.vmin;
--
--	/*
--	 * flipline determines the min vblank length the hardware will
--	 * generate, and on ICL/TGL flipline>=vmin+1, hence we reduce
--	 * vmin by one to make sure we can get the actual min vblank length.
--	 */
--	crtc_state->vrr.vmin -= intel_vrr_flipline_offset(display);
-+	intel_vrr_prepare_vrr_timings(crtc_state, vmin, vmax);
- 
- 	if (crtc_state->uapi.vrr_enabled) {
- 		crtc_state->vrr.enable = true;
 -- 
 2.45.2
 
