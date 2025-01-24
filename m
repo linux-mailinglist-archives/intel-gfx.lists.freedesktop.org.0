@@ -2,29 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E8A2A1ABC4
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Jan 2025 22:17:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E3E87A1ADEB
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2025 01:27:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F6F610E8BA;
-	Thu, 23 Jan 2025 21:17:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18A8410E272;
+	Fri, 24 Jan 2025 00:27:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A190110E8C0;
- Thu, 23 Jan 2025 21:17:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0087E10E272;
+ Fri, 24 Jan 2025 00:27:46 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============6369330727690081684=="
+ boundary="===============7956571146049625141=="
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EFull=3A_success_for_drm/i915/cmtg=3A_Disable?=
- =?utf-8?q?_the_CMTG_=28rev8=29?=
+Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EFull=3A_failure_for_drm/i915/pmu=3A_Drop_cus?=
+ =?utf-8?q?tom_hotplug_code_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gustavo Sousa" <gustavo.sousa@intel.com>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 23 Jan 2025 21:17:13 -0000
-Message-ID: <173766703363.3694609.15346272555000461527@b555e5b46a47>
+Date: Fri, 24 Jan 2025 00:27:45 -0000
+Message-ID: <173767846598.3780469.4237095500267929519@b555e5b46a47>
 X-Patchwork-Hint: ignore
-References: <20250122200355.89389-1-gustavo.sousa@intel.com>
-In-Reply-To: <20250122200355.89389-1-gustavo.sousa@intel.com>
+References: <20250116222426.77757-1-lucas.demarchi@intel.com>
+In-Reply-To: <20250116222426.77757-1-lucas.demarchi@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,1303 +41,994 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============6369330727690081684==
+--===============7956571146049625141==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: drm/i915/cmtg: Disable the CMTG (rev8)
-URL   : https://patchwork.freedesktop.org/series/142947/
-State : success
+Series: drm/i915/pmu: Drop custom hotplug code (rev2)
+URL   : https://patchwork.freedesktop.org/series/143636/
+State : failure
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_16002_full -> Patchwork_142947v8_full
+CI Bug Log - changes from CI_DRM_16004_full -> Patchwork_143636v2_full
 ====================================================
 
 Summary
 -------
 
-  **SUCCESS**
+  **FAILURE**
 
-  No regressions found.
+  Serious unknown changes coming with Patchwork_143636v2_full absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_143636v2_full, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
   
 
-Participating hosts (11 -> 10)
+Participating hosts (11 -> 11)
 ------------------------------
 
-  Missing    (1): shard-glk-0 
+  No changes in participating hosts
 
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_143636v2_full:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@perf_pmu@invalid-init:
+    - shard-dg2:          [PASS][1] -> [FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-dg2-3/igt@perf_pmu@invalid-init.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-8/igt@perf_pmu@invalid-init.html
+    - shard-tglu-1:       NOTRUN -> [FAIL][3]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@perf_pmu@invalid-init.html
+    - shard-dg1:          [PASS][4] -> [FAIL][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-dg1-14/igt@perf_pmu@invalid-init.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg1-17/igt@perf_pmu@invalid-init.html
+    - shard-mtlp:         [PASS][6] -> [FAIL][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-mtlp-3/igt@perf_pmu@invalid-init.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-mtlp-8/igt@perf_pmu@invalid-init.html
+
+  
 Known issues
 ------------
 
-  Here are the changes found in Patchwork_142947v8_full that come from known issues:
+  Here are the changes found in Patchwork_143636v2_full that come from known issues:
 
 ### IGT changes ###
 
 #### Issues hit ####
 
-  * igt@api_intel_bb@blit-reloc-purge-cache:
-    - shard-dg2:          NOTRUN -> [SKIP][1] ([i915#8411])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-7/igt@api_intel_bb@blit-reloc-purge-cache.html
-
-  * igt@api_intel_bb@object-reloc-keep-cache:
-    - shard-dg1:          NOTRUN -> [SKIP][2] ([i915#8411])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@api_intel_bb@object-reloc-keep-cache.html
-
   * igt@device_reset@cold-reset-bound:
-    - shard-tglu:         NOTRUN -> [SKIP][3] ([i915#11078])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-7/igt@device_reset@cold-reset-bound.html
+    - shard-tglu:         NOTRUN -> [SKIP][8] ([i915#11078])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-8/igt@device_reset@cold-reset-bound.html
 
   * igt@device_reset@unbind-reset-rebind:
-    - shard-tglu:         [PASS][4] -> [ABORT][5] ([i915#12817] / [i915#5507])
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-tglu-3/igt@device_reset@unbind-reset-rebind.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-3/igt@device_reset@unbind-reset-rebind.html
+    - shard-tglu:         [PASS][9] -> [ABORT][10] ([i915#12817] / [i915#5507])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-tglu-5/igt@device_reset@unbind-reset-rebind.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-2/igt@device_reset@unbind-reset-rebind.html
 
-  * igt@drm_fdinfo@all-busy-check-all:
-    - shard-dg2:          NOTRUN -> [SKIP][6] ([i915#8414]) +1 other test skip
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-7/igt@drm_fdinfo@all-busy-check-all.html
+  * igt@drm_fdinfo@busy-idle@bcs0:
+    - shard-dg2:          NOTRUN -> [SKIP][11] ([i915#8414]) +7 other tests skip
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@drm_fdinfo@busy-idle@bcs0.html
 
-  * igt@drm_fdinfo@busy-idle-check-all@vcs1:
-    - shard-dg1:          NOTRUN -> [SKIP][7] ([i915#8414]) +5 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@drm_fdinfo@busy-idle-check-all@vcs1.html
-
-  * igt@drm_fdinfo@busy-idle@vecs0:
-    - shard-mtlp:         NOTRUN -> [SKIP][8] ([i915#8414]) +6 other tests skip
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-3/igt@drm_fdinfo@busy-idle@vecs0.html
+  * igt@drm_fdinfo@busy-idle@vcs1:
+    - shard-dg1:          NOTRUN -> [SKIP][12] ([i915#8414]) +5 other tests skip
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@drm_fdinfo@busy-idle@vcs1.html
 
   * igt@gem_bad_reloc@negative-reloc-lut:
-    - shard-dg1:          NOTRUN -> [SKIP][9] ([i915#3281]) +2 other tests skip
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@gem_bad_reloc@negative-reloc-lut.html
+    - shard-dg1:          NOTRUN -> [SKIP][13] ([i915#3281]) +3 other tests skip
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@gem_bad_reloc@negative-reloc-lut.html
 
-  * igt@gem_ccs@large-ctrl-surf-copy:
-    - shard-tglu-1:       NOTRUN -> [SKIP][10] ([i915#13008])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-1/igt@gem_ccs@large-ctrl-surf-copy.html
+  * igt@gem_basic@multigpu-create-close:
+    - shard-rkl:          NOTRUN -> [SKIP][14] ([i915#7697])
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@gem_basic@multigpu-create-close.html
 
   * igt@gem_ccs@suspend-resume:
-    - shard-dg2:          [PASS][11] -> [INCOMPLETE][12] ([i915#7297])
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-dg2-8/igt@gem_ccs@suspend-resume.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-4/igt@gem_ccs@suspend-resume.html
-    - shard-tglu:         NOTRUN -> [SKIP][13] ([i915#9323])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-8/igt@gem_ccs@suspend-resume.html
+    - shard-dg2:          [PASS][15] -> [INCOMPLETE][16] ([i915#7297])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-dg2-5/igt@gem_ccs@suspend-resume.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-1/igt@gem_ccs@suspend-resume.html
+    - shard-tglu:         NOTRUN -> [SKIP][17] ([i915#9323])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-8/igt@gem_ccs@suspend-resume.html
 
-  * igt@gem_ccs@suspend-resume@xmajor-compressed-compfmt0-smem-lmem0:
-    - shard-dg2:          [PASS][14] -> [INCOMPLETE][15] ([i915#12392] / [i915#7297])
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-dg2-8/igt@gem_ccs@suspend-resume@xmajor-compressed-compfmt0-smem-lmem0.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-4/igt@gem_ccs@suspend-resume@xmajor-compressed-compfmt0-smem-lmem0.html
+  * igt@gem_ccs@suspend-resume@tile4-compressed-compfmt0-smem-lmem0:
+    - shard-dg2:          [PASS][18] -> [INCOMPLETE][19] ([i915#12392] / [i915#7297])
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-dg2-5/igt@gem_ccs@suspend-resume@tile4-compressed-compfmt0-smem-lmem0.html
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-1/igt@gem_ccs@suspend-resume@tile4-compressed-compfmt0-smem-lmem0.html
 
-  * igt@gem_create@create-ext-cpu-access-big:
-    - shard-mtlp:         NOTRUN -> [SKIP][16] ([i915#6335])
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@gem_create@create-ext-cpu-access-big.html
+  * igt@gem_ctx_exec@basic-norecovery:
+    - shard-mtlp:         NOTRUN -> [ABORT][20] ([i915#13193])
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-mtlp-7/igt@gem_ctx_exec@basic-norecovery.html
 
-  * igt@gem_create@create-ext-cpu-access-sanity-check:
-    - shard-tglu:         NOTRUN -> [SKIP][17] ([i915#6335])
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-7/igt@gem_create@create-ext-cpu-access-sanity-check.html
-
-  * igt@gem_create@create-ext-set-pat:
-    - shard-rkl:          NOTRUN -> [SKIP][18] ([i915#8562])
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-3/igt@gem_create@create-ext-set-pat.html
-
-  * igt@gem_ctx_freq@sysfs:
-    - shard-mtlp:         [PASS][19] -> [FAIL][20] ([i915#9561]) +1 other test fail
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-mtlp-4/igt@gem_ctx_freq@sysfs.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@gem_ctx_freq@sysfs.html
-
-  * igt@gem_ctx_persistence@engines-hostile-preempt:
-    - shard-snb:          NOTRUN -> [SKIP][21] ([i915#1099]) +3 other tests skip
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-snb2/igt@gem_ctx_persistence@engines-hostile-preempt.html
-
-  * igt@gem_ctx_persistence@heartbeat-stop:
-    - shard-dg1:          NOTRUN -> [SKIP][22] ([i915#8555]) +1 other test skip
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@gem_ctx_persistence@heartbeat-stop.html
-
-  * igt@gem_ctx_persistence@saturated-hostile-nopreempt:
-    - shard-dg2:          NOTRUN -> [SKIP][23] ([i915#5882]) +7 other tests skip
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@gem_ctx_persistence@saturated-hostile-nopreempt.html
-
-  * igt@gem_ctx_sseu@engines:
-    - shard-dg2:          NOTRUN -> [SKIP][24] ([i915#280])
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-7/igt@gem_ctx_sseu@engines.html
-
-  * igt@gem_ctx_sseu@invalid-args:
-    - shard-dg1:          NOTRUN -> [SKIP][25] ([i915#280])
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@gem_ctx_sseu@invalid-args.html
-
-  * igt@gem_ctx_sseu@invalid-sseu:
-    - shard-rkl:          NOTRUN -> [SKIP][26] ([i915#280])
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-3/igt@gem_ctx_sseu@invalid-sseu.html
+  * igt@gem_ctx_persistence@engines-mixed-process:
+    - shard-snb:          NOTRUN -> [SKIP][21] ([i915#1099]) +4 other tests skip
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-snb2/igt@gem_ctx_persistence@engines-mixed-process.html
 
   * igt@gem_ctx_sseu@mmap-args:
-    - shard-tglu:         NOTRUN -> [SKIP][27] ([i915#280])
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-7/igt@gem_ctx_sseu@mmap-args.html
+    - shard-tglu-1:       NOTRUN -> [SKIP][22] ([i915#280])
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@gem_ctx_sseu@mmap-args.html
 
-  * igt@gem_eio@hibernate:
-    - shard-dg2:          NOTRUN -> [ABORT][28] ([i915#10030] / [i915#7975] / [i915#8213])
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-7/igt@gem_eio@hibernate.html
+  * igt@gem_eio@kms:
+    - shard-dg1:          [PASS][23] -> [FAIL][24] ([i915#5784])
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-dg1-12/igt@gem_eio@kms.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg1-12/igt@gem_eio@kms.html
 
-  * igt@gem_eio@unwedge-stress:
-    - shard-mtlp:         [PASS][29] -> [ABORT][30] ([i915#13193])
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-mtlp-2/igt@gem_eio@unwedge-stress.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-7/igt@gem_eio@unwedge-stress.html
-    - shard-snb:          NOTRUN -> [FAIL][31] ([i915#8898])
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-snb7/igt@gem_eio@unwedge-stress.html
-
-  * igt@gem_exec_balancer@bonded-false-hang:
-    - shard-mtlp:         NOTRUN -> [SKIP][32] ([i915#4812])
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@gem_exec_balancer@bonded-false-hang.html
-
-  * igt@gem_exec_balancer@noheartbeat:
-    - shard-dg2:          NOTRUN -> [SKIP][33] ([i915#8555]) +1 other test skip
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@gem_exec_balancer@noheartbeat.html
-
-  * igt@gem_exec_capture@capture-recoverable:
-    - shard-rkl:          NOTRUN -> [SKIP][34] ([i915#6344])
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-3/igt@gem_exec_capture@capture-recoverable.html
-
-  * igt@gem_exec_fence@submit67:
-    - shard-dg2:          NOTRUN -> [SKIP][35] ([i915#4812])
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-1/igt@gem_exec_fence@submit67.html
-
-  * igt@gem_exec_flush@basic-uc-prw-default:
-    - shard-dg2:          NOTRUN -> [SKIP][36] ([i915#3539])
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-7/igt@gem_exec_flush@basic-uc-prw-default.html
+  * igt@gem_exec_balancer@parallel-bb-first:
+    - shard-tglu:         NOTRUN -> [SKIP][25] ([i915#4525]) +1 other test skip
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-7/igt@gem_exec_balancer@parallel-bb-first.html
 
   * igt@gem_exec_flush@basic-uc-ro-default:
-    - shard-dg1:          NOTRUN -> [SKIP][37] ([i915#3539] / [i915#4852])
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@gem_exec_flush@basic-uc-ro-default.html
+    - shard-dg2:          NOTRUN -> [SKIP][26] ([i915#3539] / [i915#4852]) +1 other test skip
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@gem_exec_flush@basic-uc-ro-default.html
 
-  * igt@gem_exec_flush@basic-uc-set-default:
-    - shard-dg1:          NOTRUN -> [SKIP][38] ([i915#3539])
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-12/igt@gem_exec_flush@basic-uc-set-default.html
+  * igt@gem_exec_flush@basic-wb-rw-before-default:
+    - shard-dg1:          NOTRUN -> [SKIP][27] ([i915#3539] / [i915#4852]) +1 other test skip
+   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@gem_exec_flush@basic-wb-rw-before-default.html
 
-  * igt@gem_exec_flush@basic-wb-prw-default:
-    - shard-dg2:          NOTRUN -> [SKIP][39] ([i915#3539] / [i915#4852])
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-1/igt@gem_exec_flush@basic-wb-prw-default.html
+  * igt@gem_exec_reloc@basic-cpu-gtt-noreloc:
+    - shard-dg2:          NOTRUN -> [SKIP][28] ([i915#3281]) +6 other tests skip
+   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@gem_exec_reloc@basic-cpu-gtt-noreloc.html
+    - shard-mtlp:         NOTRUN -> [SKIP][29] ([i915#3281]) +1 other test skip
+   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-mtlp-7/igt@gem_exec_reloc@basic-cpu-gtt-noreloc.html
 
-  * igt@gem_exec_reloc@basic-cpu-read-noreloc:
-    - shard-mtlp:         NOTRUN -> [SKIP][40] ([i915#3281]) +4 other tests skip
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-4/igt@gem_exec_reloc@basic-cpu-read-noreloc.html
-
-  * igt@gem_exec_reloc@basic-gtt-noreloc:
-    - shard-rkl:          NOTRUN -> [SKIP][41] ([i915#3281]) +3 other tests skip
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-3/igt@gem_exec_reloc@basic-gtt-noreloc.html
-
-  * igt@gem_exec_reloc@basic-write-gtt-noreloc:
-    - shard-dg2:          NOTRUN -> [SKIP][42] ([i915#3281]) +6 other tests skip
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-7/igt@gem_exec_reloc@basic-write-gtt-noreloc.html
-
-  * igt@gem_exec_schedule@preempt-queue-contexts:
-    - shard-dg2:          NOTRUN -> [SKIP][43] ([i915#4537] / [i915#4812])
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-1/igt@gem_exec_schedule@preempt-queue-contexts.html
+  * igt@gem_exec_reloc@basic-write-cpu:
+    - shard-rkl:          NOTRUN -> [SKIP][30] ([i915#3281])
+   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@gem_exec_reloc@basic-write-cpu.html
 
   * igt@gem_exec_suspend@basic-s4-devices:
-    - shard-mtlp:         [PASS][44] -> [ABORT][45] ([i915#7975]) +1 other test abort
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-mtlp-4/igt@gem_exec_suspend@basic-s4-devices.html
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-7/igt@gem_exec_suspend@basic-s4-devices.html
+    - shard-rkl:          NOTRUN -> [ABORT][31] ([i915#7975] / [i915#8213]) +1 other test abort
+   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-rkl-3/igt@gem_exec_suspend@basic-s4-devices.html
 
-  * igt@gem_fence_thrash@bo-write-verify-x:
-    - shard-dg2:          NOTRUN -> [SKIP][46] ([i915#4860]) +2 other tests skip
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-7/igt@gem_fence_thrash@bo-write-verify-x.html
-
-  * igt@gem_fenced_exec_thrash@2-spare-fences:
-    - shard-dg1:          NOTRUN -> [SKIP][47] ([i915#4860])
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-12/igt@gem_fenced_exec_thrash@2-spare-fences.html
-
-  * igt@gem_fenced_exec_thrash@too-many-fences:
-    - shard-mtlp:         NOTRUN -> [SKIP][48] ([i915#4860])
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-3/igt@gem_fenced_exec_thrash@too-many-fences.html
+  * igt@gem_exec_suspend@basic-s4-devices@lmem0:
+    - shard-dg1:          NOTRUN -> [ABORT][32] ([i915#7975] / [i915#8213]) +1 other test abort
+   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@gem_exec_suspend@basic-s4-devices@lmem0.html
 
   * igt@gem_huc_copy@huc-copy:
-    - shard-rkl:          NOTRUN -> [SKIP][49] ([i915#2190])
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-4/igt@gem_huc_copy@huc-copy.html
+    - shard-rkl:          NOTRUN -> [SKIP][33] ([i915#2190])
+   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@gem_huc_copy@huc-copy.html
 
-  * igt@gem_lmem_swapping@heavy-verify-random-ccs:
-    - shard-rkl:          NOTRUN -> [SKIP][50] ([i915#4613]) +1 other test skip
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-3/igt@gem_lmem_swapping@heavy-verify-random-ccs.html
+  * igt@gem_lmem_swapping@basic:
+    - shard-tglu-1:       NOTRUN -> [SKIP][34] ([i915#4613]) +1 other test skip
+   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@gem_lmem_swapping@basic.html
 
-  * igt@gem_lmem_swapping@random:
-    - shard-mtlp:         NOTRUN -> [SKIP][51] ([i915#4613]) +1 other test skip
-   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@gem_lmem_swapping@random.html
-
-  * igt@gem_lmem_swapping@smem-oom:
-    - shard-tglu:         NOTRUN -> [SKIP][52] ([i915#4613]) +1 other test skip
-   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-8/igt@gem_lmem_swapping@smem-oom.html
+  * igt@gem_lmem_swapping@parallel-multi:
+    - shard-tglu:         NOTRUN -> [SKIP][35] ([i915#4613]) +1 other test skip
+   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-8/igt@gem_lmem_swapping@parallel-multi.html
 
   * igt@gem_lmem_swapping@smem-oom@lmem0:
-    - shard-dg1:          [PASS][53] -> [TIMEOUT][54] ([i915#5493]) +1 other test timeout
-   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-dg1-13/igt@gem_lmem_swapping@smem-oom@lmem0.html
-   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-12/igt@gem_lmem_swapping@smem-oom@lmem0.html
+    - shard-dg2:          [PASS][36] -> [TIMEOUT][37] ([i915#5493]) +1 other test timeout
+   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-dg2-10/igt@gem_lmem_swapping@smem-oom@lmem0.html
+   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-10/igt@gem_lmem_swapping@smem-oom@lmem0.html
 
-  * igt@gem_lmem_swapping@verify-ccs:
-    - shard-glk:          NOTRUN -> [SKIP][55] ([i915#4613]) +1 other test skip
-   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-glk4/igt@gem_lmem_swapping@verify-ccs.html
+  * igt@gem_mmap_gtt@flink-race:
+    - shard-dg1:          NOTRUN -> [SKIP][38] ([i915#4077]) +2 other tests skip
+   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@gem_mmap_gtt@flink-race.html
+    - shard-mtlp:         NOTRUN -> [SKIP][39] ([i915#4077]) +1 other test skip
+   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-mtlp-7/igt@gem_mmap_gtt@flink-race.html
 
-  * igt@gem_media_vme:
-    - shard-dg1:          NOTRUN -> [SKIP][56] ([i915#284])
-   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-12/igt@gem_media_vme.html
+  * igt@gem_mmap_gtt@hang:
+    - shard-dg2:          NOTRUN -> [SKIP][40] ([i915#4077]) +5 other tests skip
+   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-8/igt@gem_mmap_gtt@hang.html
 
-  * igt@gem_mmap@bad-size:
-    - shard-dg2:          NOTRUN -> [SKIP][57] ([i915#4083]) +4 other tests skip
-   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@gem_mmap@bad-size.html
+  * igt@gem_mmap_wc@read:
+    - shard-dg1:          NOTRUN -> [SKIP][41] ([i915#4083])
+   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@gem_mmap_wc@read.html
+    - shard-mtlp:         NOTRUN -> [SKIP][42] ([i915#4083])
+   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-mtlp-7/igt@gem_mmap_wc@read.html
+    - shard-dg2:          NOTRUN -> [SKIP][43] ([i915#4083])
+   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@gem_mmap_wc@read.html
 
-  * igt@gem_mmap@short-mmap:
-    - shard-mtlp:         NOTRUN -> [SKIP][58] ([i915#4083]) +3 other tests skip
-   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@gem_mmap@short-mmap.html
-
-  * igt@gem_mmap_gtt@basic-small-bo:
-    - shard-dg1:          NOTRUN -> [SKIP][59] ([i915#4077]) +4 other tests skip
-   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-12/igt@gem_mmap_gtt@basic-small-bo.html
-
-  * igt@gem_mmap_gtt@big-copy-xy:
-    - shard-dg2:          NOTRUN -> [SKIP][60] ([i915#4077]) +9 other tests skip
-   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@gem_mmap_gtt@big-copy-xy.html
-
-  * igt@gem_mmap_wc@bad-offset:
-    - shard-dg1:          NOTRUN -> [SKIP][61] ([i915#4083])
-   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-12/igt@gem_mmap_wc@bad-offset.html
+  * igt@gem_partial_pwrite_pread@write:
+    - shard-rkl:          NOTRUN -> [SKIP][44] ([i915#3282])
+   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@gem_partial_pwrite_pread@write.html
 
   * igt@gem_pwrite@basic-exhaustion:
-    - shard-snb:          NOTRUN -> [WARN][62] ([i915#2658])
-   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-snb2/igt@gem_pwrite@basic-exhaustion.html
-    - shard-glk:          NOTRUN -> [WARN][63] ([i915#2658])
-   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-glk1/igt@gem_pwrite@basic-exhaustion.html
+    - shard-tglu:         NOTRUN -> [WARN][45] ([i915#2658])
+   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-7/igt@gem_pwrite@basic-exhaustion.html
 
-  * igt@gem_pwrite@basic-random:
-    - shard-dg2:          NOTRUN -> [SKIP][64] ([i915#3282]) +4 other tests skip
-   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@gem_pwrite@basic-random.html
+  * igt@gem_pxp@verify-pxp-execution-after-suspend-resume:
+    - shard-dg2:          NOTRUN -> [SKIP][46] ([i915#4270])
+   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-8/igt@gem_pxp@verify-pxp-execution-after-suspend-resume.html
 
-  * igt@gem_pwrite_snooped:
-    - shard-mtlp:         NOTRUN -> [SKIP][65] ([i915#3282])
-   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@gem_pwrite_snooped.html
+  * igt@gem_render_copy@y-tiled-mc-ccs-to-vebox-yf-tiled:
+    - shard-dg2:          NOTRUN -> [SKIP][47] ([i915#5190] / [i915#8428]) +1 other test skip
+   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@gem_render_copy@y-tiled-mc-ccs-to-vebox-yf-tiled.html
 
-  * igt@gem_pxp@create-valid-protected-context:
-    - shard-dg2:          NOTRUN -> [SKIP][66] ([i915#4270]) +1 other test skip
-   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-7/igt@gem_pxp@create-valid-protected-context.html
+  * igt@gem_tiled_swapping@non-threaded:
+    - shard-tglu:         [PASS][48] -> [FAIL][49] ([i915#13557])
+   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-tglu-3/igt@gem_tiled_swapping@non-threaded.html
+   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-6/igt@gem_tiled_swapping@non-threaded.html
 
-  * igt@gem_pxp@hw-rejects-pxp-context:
-    - shard-tglu:         NOTRUN -> [SKIP][67] ([i915#13398])
-   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-7/igt@gem_pxp@hw-rejects-pxp-context.html
+  * igt@gem_userptr_blits@sd-probe:
+    - shard-dg2:          NOTRUN -> [SKIP][50] ([i915#3297] / [i915#4958])
+   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-8/igt@gem_userptr_blits@sd-probe.html
 
-  * igt@gem_pxp@regular-baseline-src-copy-readible:
-    - shard-dg1:          NOTRUN -> [SKIP][68] ([i915#4270]) +1 other test skip
-   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@gem_pxp@regular-baseline-src-copy-readible.html
-
-  * igt@gem_pxp@reject-modify-context-protection-on:
-    - shard-rkl:          NOTRUN -> [TIMEOUT][69] ([i915#12917] / [i915#12964]) +2 other tests timeout
-   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-3/igt@gem_pxp@reject-modify-context-protection-on.html
-
-  * igt@gem_render_copy@y-tiled-ccs-to-linear:
-    - shard-dg2:          NOTRUN -> [SKIP][70] ([i915#5190] / [i915#8428]) +9 other tests skip
-   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-1/igt@gem_render_copy@y-tiled-ccs-to-linear.html
-
-  * igt@gem_render_copy@y-tiled-ccs-to-y-tiled-ccs:
-    - shard-mtlp:         NOTRUN -> [SKIP][71] ([i915#8428])
-   [71]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@gem_render_copy@y-tiled-ccs-to-y-tiled-ccs.html
-
-  * igt@gem_set_tiling_vs_blt@tiled-to-untiled:
-    - shard-mtlp:         NOTRUN -> [SKIP][72] ([i915#4079])
-   [72]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-3/igt@gem_set_tiling_vs_blt@tiled-to-untiled.html
-
-  * igt@gem_set_tiling_vs_blt@untiled-to-tiled:
-    - shard-dg1:          NOTRUN -> [SKIP][73] ([i915#4079])
-   [73]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-12/igt@gem_set_tiling_vs_blt@untiled-to-tiled.html
-
-  * igt@gem_set_tiling_vs_pwrite:
-    - shard-dg2:          NOTRUN -> [SKIP][74] ([i915#4079])
-   [74]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-7/igt@gem_set_tiling_vs_pwrite.html
-
-  * igt@gem_softpin@evict-snoop:
-    - shard-dg2:          NOTRUN -> [SKIP][75] ([i915#4885])
-   [75]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-1/igt@gem_softpin@evict-snoop.html
-
-  * igt@gem_tiled_partial_pwrite_pread@writes:
-    - shard-rkl:          NOTRUN -> [SKIP][76] ([i915#3282]) +2 other tests skip
-   [76]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-3/igt@gem_tiled_partial_pwrite_pread@writes.html
-
-  * igt@gem_userptr_blits@dmabuf-sync:
-    - shard-tglu:         NOTRUN -> [SKIP][77] ([i915#3297] / [i915#3323])
-   [77]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-7/igt@gem_userptr_blits@dmabuf-sync.html
-
-  * igt@gem_userptr_blits@map-fixed-invalidate-overlap-busy:
-    - shard-dg2:          NOTRUN -> [SKIP][78] ([i915#3297] / [i915#4880]) +1 other test skip
-   [78]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@gem_userptr_blits@map-fixed-invalidate-overlap-busy.html
-
-  * igt@gem_userptr_blits@unsync-unmap-after-close:
-    - shard-dg2:          NOTRUN -> [SKIP][79] ([i915#3297])
-   [79]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-10/igt@gem_userptr_blits@unsync-unmap-after-close.html
+  * igt@gem_userptr_blits@unsync-overlap:
+    - shard-dg2:          NOTRUN -> [SKIP][51] ([i915#3297])
+   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@gem_userptr_blits@unsync-overlap.html
+    - shard-dg1:          NOTRUN -> [SKIP][52] ([i915#3297])
+   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@gem_userptr_blits@unsync-overlap.html
 
   * igt@gem_userptr_blits@unsync-unmap-cycles:
-    - shard-rkl:          NOTRUN -> [SKIP][80] ([i915#3297]) +2 other tests skip
-   [80]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-4/igt@gem_userptr_blits@unsync-unmap-cycles.html
+    - shard-tglu:         NOTRUN -> [SKIP][53] ([i915#3297]) +2 other tests skip
+   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-8/igt@gem_userptr_blits@unsync-unmap-cycles.html
 
-  * igt@gen9_exec_parse@allowed-all:
-    - shard-dg1:          NOTRUN -> [SKIP][81] ([i915#2527])
-   [81]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@gen9_exec_parse@allowed-all.html
+  * igt@gen9_exec_parse@basic-rejected-ctx-param:
+    - shard-snb:          NOTRUN -> [SKIP][54] +293 other tests skip
+   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-snb7/igt@gen9_exec_parse@basic-rejected-ctx-param.html
 
-  * igt@gen9_exec_parse@batch-without-end:
-    - shard-rkl:          NOTRUN -> [SKIP][82] ([i915#2527])
-   [82]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-3/igt@gen9_exec_parse@batch-without-end.html
+  * igt@gen9_exec_parse@bb-chained:
+    - shard-dg1:          NOTRUN -> [SKIP][55] ([i915#2527])
+   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@gen9_exec_parse@bb-chained.html
+    - shard-dg2:          NOTRUN -> [SKIP][56] ([i915#2856])
+   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@gen9_exec_parse@bb-chained.html
 
-  * igt@gen9_exec_parse@bb-start-param:
-    - shard-dg2:          NOTRUN -> [SKIP][83] ([i915#2856]) +2 other tests skip
-   [83]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-2/igt@gen9_exec_parse@bb-start-param.html
+  * igt@gen9_exec_parse@bb-secure:
+    - shard-tglu:         NOTRUN -> [SKIP][57] ([i915#2527] / [i915#2856]) +1 other test skip
+   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-7/igt@gen9_exec_parse@bb-secure.html
 
-  * igt@gen9_exec_parse@shadow-peek:
-    - shard-mtlp:         NOTRUN -> [SKIP][84] ([i915#2856])
-   [84]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-4/igt@gen9_exec_parse@shadow-peek.html
+  * igt@gen9_exec_parse@bb-start-out:
+    - shard-rkl:          NOTRUN -> [SKIP][58] ([i915#2527])
+   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@gen9_exec_parse@bb-start-out.html
 
-  * igt@gen9_exec_parse@unaligned-jump:
-    - shard-tglu:         NOTRUN -> [SKIP][85] ([i915#2527] / [i915#2856])
-   [85]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-7/igt@gen9_exec_parse@unaligned-jump.html
+  * igt@gen9_exec_parse@valid-registers:
+    - shard-tglu-1:       NOTRUN -> [SKIP][59] ([i915#2527] / [i915#2856]) +1 other test skip
+   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@gen9_exec_parse@valid-registers.html
 
-  * igt@i915_fb_tiling:
-    - shard-dg2:          NOTRUN -> [SKIP][86] ([i915#4881])
-   [86]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@i915_fb_tiling.html
+  * igt@i915_module_load@load:
+    - shard-glk:          ([PASS][60], [PASS][61], [PASS][62], [PASS][63], [PASS][64], [PASS][65], [PASS][66], [PASS][67], [PASS][68], [PASS][69], [PASS][70], [PASS][71], [PASS][72], [PASS][73], [PASS][74], [PASS][75], [PASS][76], [PASS][77], [PASS][78], [PASS][79], [PASS][80], [PASS][81], [PASS][82]) -> ([PASS][83], [PASS][84], [PASS][85], [PASS][86], [PASS][87], [PASS][88], [PASS][89], [PASS][90], [PASS][91], [PASS][92], [PASS][93], [PASS][94], [PASS][95], [PASS][96], [PASS][97], [PASS][98], [PASS][99], [PASS][100], [PASS][101], [DMESG-WARN][102], [PASS][103], [PASS][104], [PASS][105]) ([i915#118])
+   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-glk5/igt@i915_module_load@load.html
+   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-glk7/igt@i915_module_load@load.html
+   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-glk9/igt@i915_module_load@load.html
+   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-glk1/igt@i915_module_load@load.html
+   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-glk3/igt@i915_module_load@load.html
+   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-glk2/igt@i915_module_load@load.html
+   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-glk3/igt@i915_module_load@load.html
+   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-glk8/igt@i915_module_load@load.html
+   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-glk1/igt@i915_module_load@load.html
+   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-glk6/igt@i915_module_load@load.html
+   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-glk5/igt@i915_module_load@load.html
+   [71]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-glk1/igt@i915_module_load@load.html
+   [72]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-glk4/igt@i915_module_load@load.html
+   [73]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-glk6/igt@i915_module_load@load.html
+   [74]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-glk2/igt@i915_module_load@load.html
+   [75]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-glk4/igt@i915_module_load@load.html
+   [76]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-glk8/igt@i915_module_load@load.html
+   [77]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-glk6/igt@i915_module_load@load.html
+   [78]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-glk3/igt@i915_module_load@load.html
+   [79]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-glk2/igt@i915_module_load@load.html
+   [80]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-glk8/igt@i915_module_load@load.html
+   [81]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-glk3/igt@i915_module_load@load.html
+   [82]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-glk7/igt@i915_module_load@load.html
+   [83]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-glk2/igt@i915_module_load@load.html
+   [84]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-glk3/igt@i915_module_load@load.html
+   [85]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-glk4/igt@i915_module_load@load.html
+   [86]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-glk9/igt@i915_module_load@load.html
+   [87]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-glk7/igt@i915_module_load@load.html
+   [88]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-glk8/igt@i915_module_load@load.html
+   [89]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-glk4/igt@i915_module_load@load.html
+   [90]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-glk5/igt@i915_module_load@load.html
+   [91]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-glk3/igt@i915_module_load@load.html
+   [92]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-glk1/igt@i915_module_load@load.html
+   [93]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-glk8/igt@i915_module_load@load.html
+   [94]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-glk6/igt@i915_module_load@load.html
+   [95]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-glk4/igt@i915_module_load@load.html
+   [96]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-glk9/igt@i915_module_load@load.html
+   [97]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-glk6/igt@i915_module_load@load.html
+   [98]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-glk7/igt@i915_module_load@load.html
+   [99]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-glk1/igt@i915_module_load@load.html
+   [100]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-glk6/igt@i915_module_load@load.html
+   [101]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-glk4/igt@i915_module_load@load.html
+   [102]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-glk5/igt@i915_module_load@load.html
+   [103]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-glk5/igt@i915_module_load@load.html
+   [104]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-glk2/igt@i915_module_load@load.html
+   [105]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-glk8/igt@i915_module_load@load.html
 
-  * igt@i915_pm_freq_mult@media-freq@gt0:
-    - shard-rkl:          NOTRUN -> [SKIP][87] ([i915#6590]) +1 other test skip
-   [87]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-7/igt@i915_pm_freq_mult@media-freq@gt0.html
+  * igt@i915_module_load@reload-no-display:
+    - shard-tglu-1:       NOTRUN -> [DMESG-WARN][106] ([i915#13029])
+   [106]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@i915_module_load@reload-no-display.html
 
-  * igt@i915_pm_rps@min-max-config-loaded:
-    - shard-dg2:          NOTRUN -> [SKIP][88] ([i915#11681] / [i915#6621])
-   [88]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-1/igt@i915_pm_rps@min-max-config-loaded.html
+  * igt@i915_module_load@reload-with-fault-injection:
+    - shard-dg2:          NOTRUN -> [ABORT][107] ([i915#10887] / [i915#9820])
+   [107]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-8/igt@i915_module_load@reload-with-fault-injection.html
 
-  * igt@i915_pm_rps@thresholds-idle-park:
-    - shard-dg1:          NOTRUN -> [SKIP][89] ([i915#11681]) +1 other test skip
-   [89]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@i915_pm_rps@thresholds-idle-park.html
+  * igt@i915_pipe_stress@stress-xrgb8888-ytiled:
+    - shard-dg2:          NOTRUN -> [SKIP][108] ([i915#7091])
+   [108]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@i915_pipe_stress@stress-xrgb8888-ytiled.html
 
-  * igt@i915_pm_rps@thresholds-park:
-    - shard-dg2:          NOTRUN -> [SKIP][90] ([i915#11681])
-   [90]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@i915_pm_rps@thresholds-park.html
+  * igt@i915_pm_freq_api@freq-suspend@gt0:
+    - shard-dg2:          [PASS][109] -> [INCOMPLETE][110] ([i915#12455]) +1 other test incomplete
+   [109]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-dg2-10/igt@i915_pm_freq_api@freq-suspend@gt0.html
+   [110]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-10/igt@i915_pm_freq_api@freq-suspend@gt0.html
 
   * igt@i915_pm_sseu@full-enable:
-    - shard-tglu:         NOTRUN -> [SKIP][91] ([i915#4387])
-   [91]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-8/igt@i915_pm_sseu@full-enable.html
+    - shard-mtlp:         NOTRUN -> [SKIP][111] ([i915#8437])
+   [111]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-mtlp-4/igt@i915_pm_sseu@full-enable.html
 
-  * igt@i915_query@query-topology-coherent-slice-mask:
-    - shard-mtlp:         NOTRUN -> [SKIP][92] ([i915#6188])
-   [92]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-3/igt@i915_query@query-topology-coherent-slice-mask.html
-
-  * igt@i915_selftest@mock:
-    - shard-snb:          NOTRUN -> [DMESG-WARN][93] ([i915#9311]) +1 other test dmesg-warn
-   [93]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-snb2/igt@i915_selftest@mock.html
+  * igt@i915_query@query-topology-unsupported:
+    - shard-rkl:          NOTRUN -> [SKIP][112] +3 other tests skip
+   [112]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@i915_query@query-topology-unsupported.html
 
   * igt@i915_suspend@basic-s3-without-i915:
-    - shard-tglu-1:       NOTRUN -> [INCOMPLETE][94] ([i915#7443])
-   [94]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-1/igt@i915_suspend@basic-s3-without-i915.html
+    - shard-tglu-1:       NOTRUN -> [INCOMPLETE][113] ([i915#7443])
+   [113]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@i915_suspend@basic-s3-without-i915.html
 
-  * igt@i915_suspend@forcewake:
-    - shard-glk:          NOTRUN -> [INCOMPLETE][95] ([i915#4817])
-   [95]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-glk4/igt@i915_suspend@forcewake.html
+  * igt@kms_async_flips@async-flip-with-page-flip-events@pipe-a-hdmi-a-3-y-rc-ccs-cc:
+    - shard-dg1:          NOTRUN -> [SKIP][114] ([i915#8709]) +3 other tests skip
+   [114]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg1-13/igt@kms_async_flips@async-flip-with-page-flip-events@pipe-a-hdmi-a-3-y-rc-ccs-cc.html
 
-  * igt@intel_hwmon@hwmon-write:
-    - shard-rkl:          NOTRUN -> [SKIP][96] ([i915#7707])
-   [96]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-3/igt@intel_hwmon@hwmon-write.html
+  * igt@kms_atomic_transition@modeset-transition:
+    - shard-glk:          [PASS][115] -> [FAIL][116] ([i915#12238])
+   [115]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-glk9/igt@kms_atomic_transition@modeset-transition.html
+   [116]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-glk8/igt@kms_atomic_transition@modeset-transition.html
 
-  * igt@kms_addfb_basic@addfb25-framebuffer-vs-set-tiling:
-    - shard-dg1:          NOTRUN -> [SKIP][97] ([i915#4212])
-   [97]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@kms_addfb_basic@addfb25-framebuffer-vs-set-tiling.html
+  * igt@kms_atomic_transition@modeset-transition@2x-outputs:
+    - shard-glk:          [PASS][117] -> [FAIL][118] ([i915#11859])
+   [117]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-glk9/igt@kms_atomic_transition@modeset-transition@2x-outputs.html
+   [118]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-glk8/igt@kms_atomic_transition@modeset-transition@2x-outputs.html
 
-  * igt@kms_addfb_basic@addfb25-x-tiled-legacy:
-    - shard-dg2:          NOTRUN -> [SKIP][98] ([i915#4212])
-   [98]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-2/igt@kms_addfb_basic@addfb25-x-tiled-legacy.html
+  * igt@kms_big_fb@4-tiled-addfb-size-offset-overflow:
+    - shard-tglu:         NOTRUN -> [SKIP][119] ([i915#5286]) +3 other tests skip
+   [119]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-7/igt@kms_big_fb@4-tiled-addfb-size-offset-overflow.html
 
-  * igt@kms_async_flips@async-flip-with-page-flip-events-atomic:
-    - shard-rkl:          [PASS][99] -> [DMESG-WARN][100] ([i915#12964]) +9 other tests dmesg-warn
-   [99]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-rkl-4/igt@kms_async_flips@async-flip-with-page-flip-events-atomic.html
-   [100]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-1/igt@kms_async_flips@async-flip-with-page-flip-events-atomic.html
+  * igt@kms_big_fb@4-tiled-max-hw-stride-32bpp-rotate-180-async-flip:
+    - shard-dg1:          NOTRUN -> [SKIP][120] ([i915#4538] / [i915#5286]) +2 other tests skip
+   [120]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@kms_big_fb@4-tiled-max-hw-stride-32bpp-rotate-180-async-flip.html
 
-  * igt@kms_async_flips@async-flip-with-page-flip-events-atomic@pipe-a-hdmi-a-4-y-rc-ccs-cc:
-    - shard-dg1:          NOTRUN -> [SKIP][101] ([i915#8709]) +7 other tests skip
-   [101]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-14/igt@kms_async_flips@async-flip-with-page-flip-events-atomic@pipe-a-hdmi-a-4-y-rc-ccs-cc.html
+  * igt@kms_big_fb@4-tiled-max-hw-stride-32bpp-rotate-180-hflip:
+    - shard-rkl:          NOTRUN -> [SKIP][121] ([i915#5286]) +1 other test skip
+   [121]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-rkl-3/igt@kms_big_fb@4-tiled-max-hw-stride-32bpp-rotate-180-hflip.html
 
-  * igt@kms_async_flips@async-flip-with-page-flip-events-atomic@pipe-b-hdmi-a-2-y-rc-ccs-cc:
-    - shard-rkl:          NOTRUN -> [SKIP][102] ([i915#8709]) +1 other test skip
-   [102]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-1/igt@kms_async_flips@async-flip-with-page-flip-events-atomic@pipe-b-hdmi-a-2-y-rc-ccs-cc.html
+  * igt@kms_big_fb@4-tiled-max-hw-stride-64bpp-rotate-180-async-flip:
+    - shard-tglu-1:       NOTRUN -> [SKIP][122] ([i915#5286]) +1 other test skip
+   [122]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@kms_big_fb@4-tiled-max-hw-stride-64bpp-rotate-180-async-flip.html
 
-  * igt@kms_async_flips@async-flip-with-page-flip-events-atomic@pipe-b-hdmi-a-3-4-rc-ccs-cc:
-    - shard-dg2:          NOTRUN -> [SKIP][103] ([i915#8709]) +7 other tests skip
-   [103]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-6/igt@kms_async_flips@async-flip-with-page-flip-events-atomic@pipe-b-hdmi-a-3-4-rc-ccs-cc.html
+  * igt@kms_big_fb@x-tiled-16bpp-rotate-90:
+    - shard-rkl:          NOTRUN -> [SKIP][123] ([i915#3638])
+   [123]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@kms_big_fb@x-tiled-16bpp-rotate-90.html
 
-  * igt@kms_atomic@plane-primary-overlay-mutable-zpos:
-    - shard-mtlp:         NOTRUN -> [SKIP][104] ([i915#3555])
-   [104]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-3/igt@kms_atomic@plane-primary-overlay-mutable-zpos.html
+  * igt@kms_big_fb@x-tiled-32bpp-rotate-270:
+    - shard-dg2:          NOTRUN -> [SKIP][124] +6 other tests skip
+   [124]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@kms_big_fb@x-tiled-32bpp-rotate-270.html
+    - shard-dg1:          NOTRUN -> [SKIP][125] ([i915#3638]) +1 other test skip
+   [125]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@kms_big_fb@x-tiled-32bpp-rotate-270.html
 
-  * igt@kms_atomic_transition@plane-all-modeset-transition:
-    - shard-mtlp:         NOTRUN -> [SKIP][105] ([i915#1769] / [i915#3555])
-   [105]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-3/igt@kms_atomic_transition@plane-all-modeset-transition.html
+  * igt@kms_big_fb@y-tiled-addfb-size-overflow:
+    - shard-dg2:          NOTRUN -> [SKIP][126] ([i915#5190])
+   [126]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@kms_big_fb@y-tiled-addfb-size-overflow.html
 
-  * igt@kms_atomic_transition@plane-all-modeset-transition-internal-panels@pipe-a-edp-1:
-    - shard-mtlp:         [PASS][106] -> [FAIL][107] ([i915#11808] / [i915#5956]) +1 other test fail
-   [106]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-mtlp-1/igt@kms_atomic_transition@plane-all-modeset-transition-internal-panels@pipe-a-edp-1.html
-   [107]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-8/igt@kms_atomic_transition@plane-all-modeset-transition-internal-panels@pipe-a-edp-1.html
+  * igt@kms_big_fb@yf-tiled-16bpp-rotate-0:
+    - shard-dg2:          NOTRUN -> [SKIP][127] ([i915#4538] / [i915#5190]) +1 other test skip
+   [127]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@kms_big_fb@yf-tiled-16bpp-rotate-0.html
+    - shard-dg1:          NOTRUN -> [SKIP][128] ([i915#4538]) +1 other test skip
+   [128]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@kms_big_fb@yf-tiled-16bpp-rotate-0.html
 
-  * igt@kms_atomic_transition@plane-toggle-modeset-transition:
-    - shard-dg2:          [PASS][108] -> [FAIL][109] ([i915#5956]) +1 other test fail
-   [108]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-dg2-4/igt@kms_atomic_transition@plane-toggle-modeset-transition.html
-   [109]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-8/igt@kms_atomic_transition@plane-toggle-modeset-transition.html
+  * igt@kms_big_fb@yf-tiled-max-hw-stride-32bpp-rotate-180-hflip-async-flip:
+    - shard-mtlp:         NOTRUN -> [SKIP][129] +1 other test skip
+   [129]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-mtlp-7/igt@kms_big_fb@yf-tiled-max-hw-stride-32bpp-rotate-180-hflip-async-flip.html
 
-  * igt@kms_big_fb@4-tiled-16bpp-rotate-0:
-    - shard-tglu:         NOTRUN -> [SKIP][110] ([i915#5286]) +1 other test skip
-   [110]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-8/igt@kms_big_fb@4-tiled-16bpp-rotate-0.html
+  * igt@kms_ccs@bad-rotation-90-4-tiled-mtl-rc-ccs-cc@pipe-b-hdmi-a-4:
+    - shard-dg1:          NOTRUN -> [SKIP][130] ([i915#6095]) +88 other tests skip
+   [130]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@kms_ccs@bad-rotation-90-4-tiled-mtl-rc-ccs-cc@pipe-b-hdmi-a-4.html
 
-  * igt@kms_big_fb@4-tiled-64bpp-rotate-180:
-    - shard-rkl:          NOTRUN -> [SKIP][111] ([i915#5286]) +1 other test skip
-   [111]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-3/igt@kms_big_fb@4-tiled-64bpp-rotate-180.html
+  * igt@kms_ccs@crc-primary-basic-yf-tiled-ccs@pipe-c-hdmi-a-1:
+    - shard-tglu:         NOTRUN -> [SKIP][131] ([i915#6095]) +44 other tests skip
+   [131]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-7/igt@kms_ccs@crc-primary-basic-yf-tiled-ccs@pipe-c-hdmi-a-1.html
 
-  * igt@kms_big_fb@4-tiled-max-hw-stride-32bpp-rotate-180-hflip-async-flip:
-    - shard-dg1:          NOTRUN -> [SKIP][112] ([i915#4538] / [i915#5286]) +3 other tests skip
-   [112]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-12/igt@kms_big_fb@4-tiled-max-hw-stride-32bpp-rotate-180-hflip-async-flip.html
+  * igt@kms_ccs@crc-primary-rotation-180-4-tiled-lnl-ccs:
+    - shard-tglu-1:       NOTRUN -> [SKIP][132] ([i915#12313]) +1 other test skip
+   [132]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@kms_ccs@crc-primary-rotation-180-4-tiled-lnl-ccs.html
 
-  * igt@kms_big_fb@4-tiled-max-hw-stride-64bpp-rotate-0-async-flip:
-    - shard-tglu-1:       NOTRUN -> [SKIP][113] ([i915#5286]) +1 other test skip
-   [113]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-1/igt@kms_big_fb@4-tiled-max-hw-stride-64bpp-rotate-0-async-flip.html
+  * igt@kms_ccs@crc-primary-suspend-4-tiled-dg2-mc-ccs@pipe-b-hdmi-a-2:
+    - shard-rkl:          NOTRUN -> [SKIP][133] ([i915#6095]) +71 other tests skip
+   [133]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-rkl-5/igt@kms_ccs@crc-primary-suspend-4-tiled-dg2-mc-ccs@pipe-b-hdmi-a-2.html
 
-  * igt@kms_big_fb@linear-16bpp-rotate-270:
-    - shard-tglu:         NOTRUN -> [SKIP][114] +44 other tests skip
-   [114]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-8/igt@kms_big_fb@linear-16bpp-rotate-270.html
-
-  * igt@kms_big_fb@linear-16bpp-rotate-90:
-    - shard-dg1:          NOTRUN -> [SKIP][115] ([i915#3638])
-   [115]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@kms_big_fb@linear-16bpp-rotate-90.html
-
-  * igt@kms_big_fb@linear-64bpp-rotate-90:
-    - shard-rkl:          NOTRUN -> [SKIP][116] ([i915#3638]) +2 other tests skip
-   [116]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-7/igt@kms_big_fb@linear-64bpp-rotate-90.html
-
-  * igt@kms_big_fb@y-tiled-16bpp-rotate-90:
-    - shard-mtlp:         NOTRUN -> [SKIP][117] +6 other tests skip
-   [117]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@kms_big_fb@y-tiled-16bpp-rotate-90.html
-
-  * igt@kms_big_fb@y-tiled-addfb-size-offset-overflow:
-    - shard-mtlp:         NOTRUN -> [SKIP][118] ([i915#6187])
-   [118]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@kms_big_fb@y-tiled-addfb-size-offset-overflow.html
-
-  * igt@kms_big_fb@y-tiled-max-hw-stride-64bpp-rotate-0-hflip-async-flip:
-    - shard-dg2:          NOTRUN -> [SKIP][119] ([i915#4538] / [i915#5190]) +8 other tests skip
-   [119]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-7/igt@kms_big_fb@y-tiled-max-hw-stride-64bpp-rotate-0-hflip-async-flip.html
-
-  * igt@kms_big_fb@yf-tiled-64bpp-rotate-180:
-    - shard-dg1:          NOTRUN -> [SKIP][120] ([i915#4538]) +1 other test skip
-   [120]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-12/igt@kms_big_fb@yf-tiled-64bpp-rotate-180.html
-
-  * igt@kms_ccs@bad-aux-stride-4-tiled-mtl-mc-ccs@pipe-a-hdmi-a-4:
-    - shard-dg1:          NOTRUN -> [SKIP][121] ([i915#6095]) +90 other tests skip
-   [121]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@kms_ccs@bad-aux-stride-4-tiled-mtl-mc-ccs@pipe-a-hdmi-a-4.html
-
-  * igt@kms_ccs@bad-pixel-format-4-tiled-mtl-mc-ccs:
-    - shard-dg2:          NOTRUN -> [SKIP][122] ([i915#10307] / [i915#6095]) +115 other tests skip
-   [122]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-1/igt@kms_ccs@bad-pixel-format-4-tiled-mtl-mc-ccs.html
-
-  * igt@kms_ccs@bad-rotation-90-4-tiled-dg2-mc-ccs@pipe-c-hdmi-a-1:
-    - shard-tglu:         NOTRUN -> [SKIP][123] ([i915#6095]) +34 other tests skip
-   [123]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-8/igt@kms_ccs@bad-rotation-90-4-tiled-dg2-mc-ccs@pipe-c-hdmi-a-1.html
-
-  * igt@kms_ccs@bad-rotation-90-4-tiled-lnl-ccs:
-    - shard-dg2:          NOTRUN -> [SKIP][124] ([i915#12313]) +1 other test skip
-   [124]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-2/igt@kms_ccs@bad-rotation-90-4-tiled-lnl-ccs.html
-
-  * igt@kms_ccs@crc-primary-basic-y-tiled-gen12-rc-ccs@pipe-d-hdmi-a-1:
-    - shard-dg2:          NOTRUN -> [SKIP][125] ([i915#10307] / [i915#10434] / [i915#6095])
-   [125]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-4/igt@kms_ccs@crc-primary-basic-y-tiled-gen12-rc-ccs@pipe-d-hdmi-a-1.html
-
-  * igt@kms_ccs@crc-primary-rotation-180-4-tiled-bmg-ccs:
-    - shard-dg1:          NOTRUN -> [SKIP][126] ([i915#12313])
-   [126]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-12/igt@kms_ccs@crc-primary-rotation-180-4-tiled-bmg-ccs.html
-
-  * igt@kms_ccs@crc-primary-rotation-180-4-tiled-dg2-mc-ccs@pipe-b-hdmi-a-1:
-    - shard-rkl:          NOTRUN -> [SKIP][127] ([i915#6095]) +59 other tests skip
-   [127]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-4/igt@kms_ccs@crc-primary-rotation-180-4-tiled-dg2-mc-ccs@pipe-b-hdmi-a-1.html
-
-  * igt@kms_ccs@crc-primary-rotation-180-4-tiled-dg2-rc-ccs@pipe-c-edp-1:
-    - shard-mtlp:         NOTRUN -> [SKIP][128] ([i915#6095]) +14 other tests skip
-   [128]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-3/igt@kms_ccs@crc-primary-rotation-180-4-tiled-dg2-rc-ccs@pipe-c-edp-1.html
+  * igt@kms_ccs@crc-primary-suspend-4-tiled-mtl-rc-ccs-cc@pipe-c-hdmi-a-1:
+    - shard-tglu-1:       NOTRUN -> [SKIP][134] ([i915#6095]) +34 other tests skip
+   [134]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@kms_ccs@crc-primary-suspend-4-tiled-mtl-rc-ccs-cc@pipe-c-hdmi-a-1.html
 
   * igt@kms_ccs@crc-primary-suspend-y-tiled-gen12-rc-ccs-cc@pipe-b-hdmi-a-3:
-    - shard-dg2:          NOTRUN -> [SKIP][129] ([i915#6095]) +16 other tests skip
-   [129]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-7/igt@kms_ccs@crc-primary-suspend-y-tiled-gen12-rc-ccs-cc@pipe-b-hdmi-a-3.html
+    - shard-dg2:          NOTRUN -> [SKIP][135] ([i915#6095]) +7 other tests skip
+   [135]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@kms_ccs@crc-primary-suspend-y-tiled-gen12-rc-ccs-cc@pipe-b-hdmi-a-3.html
 
-  * igt@kms_ccs@crc-sprite-planes-basic-4-tiled-lnl-ccs:
-    - shard-rkl:          NOTRUN -> [SKIP][130] ([i915#12313]) +2 other tests skip
-   [130]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-3/igt@kms_ccs@crc-sprite-planes-basic-4-tiled-lnl-ccs.html
+  * igt@kms_ccs@crc-sprite-planes-basic-4-tiled-mtl-mc-ccs@pipe-a-hdmi-a-3:
+    - shard-dg2:          NOTRUN -> [SKIP][136] ([i915#10307] / [i915#6095]) +112 other tests skip
+   [136]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@kms_ccs@crc-sprite-planes-basic-4-tiled-mtl-mc-ccs@pipe-a-hdmi-a-3.html
 
-  * igt@kms_ccs@missing-ccs-buffer-y-tiled-gen12-rc-ccs@pipe-a-hdmi-a-1:
-    - shard-glk:          NOTRUN -> [SKIP][131] +60 other tests skip
-   [131]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-glk4/igt@kms_ccs@missing-ccs-buffer-y-tiled-gen12-rc-ccs@pipe-a-hdmi-a-1.html
+  * igt@kms_ccs@missing-ccs-buffer-y-tiled-ccs@pipe-d-hdmi-a-1:
+    - shard-dg2:          NOTRUN -> [SKIP][137] ([i915#10307] / [i915#10434] / [i915#6095]) +2 other tests skip
+   [137]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-8/igt@kms_ccs@missing-ccs-buffer-y-tiled-ccs@pipe-d-hdmi-a-1.html
 
   * igt@kms_ccs@random-ccs-data-4-tiled-bmg-ccs:
-    - shard-tglu:         NOTRUN -> [SKIP][132] ([i915#12313]) +1 other test skip
-   [132]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-7/igt@kms_ccs@random-ccs-data-4-tiled-bmg-ccs.html
+    - shard-tglu:         NOTRUN -> [SKIP][138] ([i915#12313])
+   [138]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-7/igt@kms_ccs@random-ccs-data-4-tiled-bmg-ccs.html
+
+  * igt@kms_ccs@random-ccs-data-yf-tiled-ccs@pipe-c-edp-1:
+    - shard-mtlp:         NOTRUN -> [SKIP][139] ([i915#6095]) +4 other tests skip
+   [139]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-mtlp-7/igt@kms_ccs@random-ccs-data-yf-tiled-ccs@pipe-c-edp-1.html
 
   * igt@kms_cdclk@mode-transition:
-    - shard-dg2:          NOTRUN -> [SKIP][133] ([i915#11616] / [i915#7213])
-   [133]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@kms_cdclk@mode-transition.html
+    - shard-rkl:          NOTRUN -> [SKIP][140] ([i915#3742])
+   [140]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@kms_cdclk@mode-transition.html
 
-  * igt@kms_cdclk@mode-transition@pipe-d-hdmi-a-3:
-    - shard-dg2:          NOTRUN -> [SKIP][134] ([i915#7213]) +3 other tests skip
-   [134]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@kms_cdclk@mode-transition@pipe-d-hdmi-a-3.html
+  * igt@kms_cdclk@plane-scaling:
+    - shard-tglu:         NOTRUN -> [SKIP][141] ([i915#3742])
+   [141]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-8/igt@kms_cdclk@plane-scaling.html
 
-  * igt@kms_chamelium_color@degamma:
-    - shard-dg2:          NOTRUN -> [SKIP][135] +12 other tests skip
-   [135]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-2/igt@kms_chamelium_color@degamma.html
-
-  * igt@kms_chamelium_edid@dp-edid-change-during-suspend:
-    - shard-mtlp:         NOTRUN -> [SKIP][136] ([i915#11151] / [i915#7828]) +5 other tests skip
-   [136]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@kms_chamelium_edid@dp-edid-change-during-suspend.html
+  * igt@kms_chamelium_audio@hdmi-audio:
+    - shard-tglu-1:       NOTRUN -> [SKIP][142] ([i915#11151] / [i915#7828]) +4 other tests skip
+   [142]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@kms_chamelium_audio@hdmi-audio.html
 
   * igt@kms_chamelium_edid@hdmi-edid-change-during-suspend:
-    - shard-tglu-1:       NOTRUN -> [SKIP][137] ([i915#11151] / [i915#7828]) +1 other test skip
-   [137]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-1/igt@kms_chamelium_edid@hdmi-edid-change-during-suspend.html
+    - shard-dg1:          NOTRUN -> [SKIP][143] ([i915#11151] / [i915#7828]) +1 other test skip
+   [143]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@kms_chamelium_edid@hdmi-edid-change-during-suspend.html
 
-  * igt@kms_chamelium_frames@dp-crc-fast:
-    - shard-dg2:          NOTRUN -> [SKIP][138] ([i915#11151] / [i915#7828]) +7 other tests skip
-   [138]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-10/igt@kms_chamelium_frames@dp-crc-fast.html
+  * igt@kms_chamelium_edid@vga-edid-read:
+    - shard-tglu:         NOTRUN -> [SKIP][144] ([i915#11151] / [i915#7828]) +3 other tests skip
+   [144]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-7/igt@kms_chamelium_edid@vga-edid-read.html
 
-  * igt@kms_chamelium_hpd@dp-hpd-enable-disable-mode:
-    - shard-dg1:          NOTRUN -> [SKIP][139] ([i915#11151] / [i915#7828]) +4 other tests skip
-   [139]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@kms_chamelium_hpd@dp-hpd-enable-disable-mode.html
+  * igt@kms_chamelium_hpd@dp-hpd-fast:
+    - shard-dg2:          NOTRUN -> [SKIP][145] ([i915#11151] / [i915#7828]) +2 other tests skip
+   [145]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-8/igt@kms_chamelium_hpd@dp-hpd-fast.html
 
-  * igt@kms_chamelium_hpd@dp-hpd-with-enabled-mode:
-    - shard-rkl:          NOTRUN -> [SKIP][140] ([i915#11151] / [i915#7828]) +2 other tests skip
-   [140]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-3/igt@kms_chamelium_hpd@dp-hpd-with-enabled-mode.html
+  * igt@kms_chamelium_hpd@hdmi-hpd-enable-disable-mode:
+    - shard-rkl:          NOTRUN -> [SKIP][146] ([i915#11151] / [i915#7828]) +2 other tests skip
+   [146]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@kms_chamelium_hpd@hdmi-hpd-enable-disable-mode.html
 
-  * igt@kms_chamelium_hpd@vga-hpd-with-enabled-mode:
-    - shard-tglu:         NOTRUN -> [SKIP][141] ([i915#11151] / [i915#7828]) +3 other tests skip
-   [141]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-7/igt@kms_chamelium_hpd@vga-hpd-with-enabled-mode.html
+  * igt@kms_color@deep-color:
+    - shard-dg2:          NOTRUN -> [SKIP][147] ([i915#3555]) +1 other test skip
+   [147]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@kms_color@deep-color.html
+    - shard-dg1:          NOTRUN -> [SKIP][148] ([i915#3555]) +2 other tests skip
+   [148]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@kms_color@deep-color.html
 
-  * igt@kms_content_protection@atomic-dpms:
-    - shard-dg2:          NOTRUN -> [SKIP][142] ([i915#7118] / [i915#9424]) +1 other test skip
-   [142]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-1/igt@kms_content_protection@atomic-dpms.html
+  * igt@kms_content_protection@atomic:
+    - shard-tglu:         NOTRUN -> [SKIP][149] ([i915#6944] / [i915#7116] / [i915#7118] / [i915#9424]) +1 other test skip
+   [149]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-8/igt@kms_content_protection@atomic.html
 
   * igt@kms_content_protection@content-type-change:
-    - shard-rkl:          NOTRUN -> [SKIP][143] ([i915#9424])
-   [143]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-4/igt@kms_content_protection@content-type-change.html
+    - shard-tglu:         NOTRUN -> [SKIP][150] ([i915#6944] / [i915#9424])
+   [150]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-7/igt@kms_content_protection@content-type-change.html
 
-  * igt@kms_content_protection@mei-interface:
-    - shard-dg1:          NOTRUN -> [SKIP][144] ([i915#9433])
-   [144]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-12/igt@kms_content_protection@mei-interface.html
+  * igt@kms_content_protection@dp-mst-type-1:
+    - shard-tglu-1:       NOTRUN -> [SKIP][151] ([i915#3116] / [i915#3299])
+   [151]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@kms_content_protection@dp-mst-type-1.html
 
-  * igt@kms_cursor_crc@cursor-offscreen-32x10:
-    - shard-dg2:          NOTRUN -> [SKIP][145] ([i915#3555]) +3 other tests skip
-   [145]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@kms_cursor_crc@cursor-offscreen-32x10.html
+  * igt@kms_cursor_crc@cursor-offscreen-512x170:
+    - shard-tglu:         NOTRUN -> [SKIP][152] ([i915#13049])
+   [152]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-8/igt@kms_cursor_crc@cursor-offscreen-512x170.html
 
-  * igt@kms_cursor_crc@cursor-offscreen-512x512:
-    - shard-mtlp:         NOTRUN -> [SKIP][146] ([i915#13049])
-   [146]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@kms_cursor_crc@cursor-offscreen-512x512.html
-
-  * igt@kms_cursor_crc@cursor-onscreen-32x10:
-    - shard-mtlp:         NOTRUN -> [SKIP][147] ([i915#3555] / [i915#8814]) +1 other test skip
-   [147]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-4/igt@kms_cursor_crc@cursor-onscreen-32x10.html
+  * igt@kms_cursor_crc@cursor-random-32x32:
+    - shard-tglu-1:       NOTRUN -> [SKIP][153] ([i915#3555]) +2 other tests skip
+   [153]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@kms_cursor_crc@cursor-random-32x32.html
 
   * igt@kms_cursor_crc@cursor-random-512x512:
-    - shard-dg1:          NOTRUN -> [SKIP][148] ([i915#13049])
-   [148]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@kms_cursor_crc@cursor-random-512x512.html
-
-  * igt@kms_cursor_crc@cursor-rapid-movement-256x85:
-    - shard-mtlp:         NOTRUN -> [SKIP][149] ([i915#8814])
-   [149]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@kms_cursor_crc@cursor-rapid-movement-256x85.html
-
-  * igt@kms_cursor_crc@cursor-rapid-movement-32x32:
-    - shard-rkl:          NOTRUN -> [SKIP][150] ([i915#3555]) +3 other tests skip
-   [150]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-3/igt@kms_cursor_crc@cursor-rapid-movement-32x32.html
+    - shard-tglu-1:       NOTRUN -> [SKIP][154] ([i915#13049])
+   [154]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@kms_cursor_crc@cursor-random-512x512.html
 
   * igt@kms_cursor_crc@cursor-rapid-movement-512x170:
-    - shard-dg2:          NOTRUN -> [SKIP][151] ([i915#13049]) +1 other test skip
-   [151]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-1/igt@kms_cursor_crc@cursor-rapid-movement-512x170.html
+    - shard-dg2:          NOTRUN -> [SKIP][155] ([i915#13049])
+   [155]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-8/igt@kms_cursor_crc@cursor-rapid-movement-512x170.html
 
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-varying-size:
-    - shard-dg1:          NOTRUN -> [SKIP][152] ([i915#4103] / [i915#4213])
-   [152]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-12/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-varying-size.html
+  * igt@kms_cursor_crc@cursor-rapid-movement-512x512:
+    - shard-rkl:          NOTRUN -> [SKIP][156] ([i915#13049])
+   [156]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@kms_cursor_crc@cursor-rapid-movement-512x512.html
 
-  * igt@kms_cursor_legacy@cursorb-vs-flipa-toggle:
-    - shard-mtlp:         NOTRUN -> [SKIP][153] ([i915#9809])
-   [153]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@kms_cursor_legacy@cursorb-vs-flipa-toggle.html
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:
+    - shard-dg2:          NOTRUN -> [SKIP][157] ([i915#4103] / [i915#4213]) +1 other test skip
+   [157]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic.html
 
-  * igt@kms_cursor_legacy@cursorb-vs-flipb-atomic:
-    - shard-dg2:          NOTRUN -> [SKIP][154] ([i915#13046] / [i915#5354])
-   [154]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-2/igt@kms_cursor_legacy@cursorb-vs-flipb-atomic.html
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
+    - shard-dg1:          NOTRUN -> [SKIP][158] ([i915#4103] / [i915#4213]) +1 other test skip
+   [158]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+
+  * igt@kms_cursor_legacy@cursora-vs-flipb-atomic-transitions:
+    - shard-dg2:          NOTRUN -> [SKIP][159] ([i915#13046] / [i915#5354]) +2 other tests skip
+   [159]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@kms_cursor_legacy@cursora-vs-flipb-atomic-transitions.html
 
   * igt@kms_cursor_legacy@modeset-atomic-cursor-hotspot:
-    - shard-tglu:         NOTRUN -> [SKIP][155] ([i915#9067])
-   [155]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-8/igt@kms_cursor_legacy@modeset-atomic-cursor-hotspot.html
+    - shard-rkl:          NOTRUN -> [SKIP][160] ([i915#9067])
+   [160]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@kms_cursor_legacy@modeset-atomic-cursor-hotspot.html
 
-  * igt@kms_cursor_legacy@short-flip-before-cursor-toggle:
-    - shard-glk:          [PASS][156] -> [FAIL][157] ([i915#2346])
-   [156]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-glk3/igt@kms_cursor_legacy@short-flip-before-cursor-toggle.html
-   [157]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-glk8/igt@kms_cursor_legacy@short-flip-before-cursor-toggle.html
-
-  * igt@kms_dirtyfb@psr-dirtyfb-ioctl:
-    - shard-tglu:         NOTRUN -> [SKIP][158] ([i915#9723])
-   [158]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-7/igt@kms_dirtyfb@psr-dirtyfb-ioctl.html
+  * igt@kms_cursor_legacy@short-busy-flip-before-cursor-atomic-transitions:
+    - shard-tglu:         NOTRUN -> [SKIP][161] ([i915#4103])
+   [161]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-7/igt@kms_cursor_legacy@short-busy-flip-before-cursor-atomic-transitions.html
 
   * igt@kms_display_modes@mst-extended-mode-negative:
-    - shard-mtlp:         NOTRUN -> [SKIP][159] ([i915#8588])
-   [159]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@kms_display_modes@mst-extended-mode-negative.html
-
-  * igt@kms_dither@fb-8bpc-vs-panel-6bpc@pipe-a-hdmi-a-2:
-    - shard-rkl:          NOTRUN -> [SKIP][160] ([i915#3804])
-   [160]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-6/igt@kms_dither@fb-8bpc-vs-panel-6bpc@pipe-a-hdmi-a-2.html
+    - shard-tglu:         NOTRUN -> [SKIP][162] ([i915#8588])
+   [162]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-7/igt@kms_display_modes@mst-extended-mode-negative.html
 
   * igt@kms_dp_aux_dev:
-    - shard-dg2:          NOTRUN -> [SKIP][161] ([i915#1257])
-   [161]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@kms_dp_aux_dev.html
+    - shard-dg2:          NOTRUN -> [SKIP][163] ([i915#1257])
+   [163]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@kms_dp_aux_dev.html
+    - shard-dg1:          NOTRUN -> [SKIP][164] ([i915#1257])
+   [164]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@kms_dp_aux_dev.html
 
-  * igt@kms_dp_linktrain_fallback@dp-fallback:
-    - shard-rkl:          NOTRUN -> [SKIP][162] ([i915#12402])
-   [162]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-3/igt@kms_dp_linktrain_fallback@dp-fallback.html
+  * igt@kms_dsc@dsc-with-output-formats-with-bpc:
+    - shard-rkl:          NOTRUN -> [SKIP][165] ([i915#3840] / [i915#9053])
+   [165]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@kms_dsc@dsc-with-output-formats-with-bpc.html
 
-  * igt@kms_draw_crc@draw-method-mmap-wc:
-    - shard-dg2:          NOTRUN -> [SKIP][163] ([i915#8812])
-   [163]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-1/igt@kms_draw_crc@draw-method-mmap-wc.html
-
-  * igt@kms_dsc@dsc-fractional-bpp:
-    - shard-rkl:          NOTRUN -> [SKIP][164] ([i915#3840])
-   [164]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-4/igt@kms_dsc@dsc-fractional-bpp.html
-
-  * igt@kms_dsc@dsc-with-formats:
-    - shard-dg1:          NOTRUN -> [SKIP][165] ([i915#3555] / [i915#3840])
-   [165]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-12/igt@kms_dsc@dsc-with-formats.html
+  * igt@kms_fbcon_fbt@psr:
+    - shard-tglu:         NOTRUN -> [SKIP][166] ([i915#3469])
+   [166]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-8/igt@kms_fbcon_fbt@psr.html
 
   * igt@kms_feature_discovery@chamelium:
-    - shard-rkl:          NOTRUN -> [SKIP][166] ([i915#4854])
-   [166]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-3/igt@kms_feature_discovery@chamelium.html
+    - shard-tglu-1:       NOTRUN -> [SKIP][167] ([i915#2065] / [i915#4854])
+   [167]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@kms_feature_discovery@chamelium.html
 
-  * igt@kms_feature_discovery@display-2x:
-    - shard-mtlp:         NOTRUN -> [SKIP][167] ([i915#1839])
-   [167]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-4/igt@kms_feature_discovery@display-2x.html
+  * igt@kms_feature_discovery@dp-mst:
+    - shard-tglu:         NOTRUN -> [SKIP][168] ([i915#9337])
+   [168]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-7/igt@kms_feature_discovery@dp-mst.html
 
-  * igt@kms_flip@2x-dpms-vs-vblank-race-interruptible:
-    - shard-dg2:          NOTRUN -> [SKIP][168] ([i915#9934]) +2 other tests skip
-   [168]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@kms_flip@2x-dpms-vs-vblank-race-interruptible.html
+  * igt@kms_flip@2x-flip-vs-absolute-wf_vblank:
+    - shard-tglu:         NOTRUN -> [SKIP][169] ([i915#3637]) +1 other test skip
+   [169]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-8/igt@kms_flip@2x-flip-vs-absolute-wf_vblank.html
 
-  * igt@kms_flip@2x-flip-vs-dpms-off-vs-modeset-interruptible:
-    - shard-dg1:          NOTRUN -> [SKIP][169] ([i915#9934]) +4 other tests skip
-   [169]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-12/igt@kms_flip@2x-flip-vs-dpms-off-vs-modeset-interruptible.html
+  * igt@kms_flip@2x-flip-vs-blocking-wf-vblank:
+    - shard-dg1:          NOTRUN -> [SKIP][170] ([i915#9934]) +2 other tests skip
+   [170]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@kms_flip@2x-flip-vs-blocking-wf-vblank.html
+
+  * igt@kms_flip@2x-flip-vs-expired-vblank-interruptible:
+    - shard-mtlp:         NOTRUN -> [SKIP][171] ([i915#3637]) +1 other test skip
+   [171]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-mtlp-7/igt@kms_flip@2x-flip-vs-expired-vblank-interruptible.html
 
   * igt@kms_flip@2x-flip-vs-fences:
-    - shard-dg1:          NOTRUN -> [SKIP][170] ([i915#8381])
-   [170]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@kms_flip@2x-flip-vs-fences.html
+    - shard-tglu-1:       NOTRUN -> [SKIP][172] ([i915#3637]) +4 other tests skip
+   [172]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@kms_flip@2x-flip-vs-fences.html
 
-  * igt@kms_flip@2x-flip-vs-suspend-interruptible:
-    - shard-mtlp:         NOTRUN -> [SKIP][171] ([i915#3637]) +5 other tests skip
-   [171]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@kms_flip@2x-flip-vs-suspend-interruptible.html
+  * igt@kms_flip@2x-flip-vs-modeset-vs-hang:
+    - shard-dg2:          NOTRUN -> [SKIP][173] ([i915#9934]) +5 other tests skip
+   [173]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-8/igt@kms_flip@2x-flip-vs-modeset-vs-hang.html
 
-  * igt@kms_flip@2x-modeset-vs-vblank-race:
-    - shard-rkl:          NOTRUN -> [SKIP][172] ([i915#9934]) +4 other tests skip
-   [172]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-4/igt@kms_flip@2x-modeset-vs-vblank-race.html
+  * igt@kms_flip@flip-vs-blocking-wf-vblank@a-edp1:
+    - shard-mtlp:         [PASS][174] -> [FAIL][175] ([i915#11989]) +1 other test fail
+   [174]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-mtlp-5/igt@kms_flip@flip-vs-blocking-wf-vblank@a-edp1.html
+   [175]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-mtlp-3/igt@kms_flip@flip-vs-blocking-wf-vblank@a-edp1.html
 
-  * igt@kms_flip@2x-plain-flip-fb-recreate-interruptible:
-    - shard-tglu:         NOTRUN -> [SKIP][173] ([i915#3637]) +2 other tests skip
-   [173]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-8/igt@kms_flip@2x-plain-flip-fb-recreate-interruptible.html
+  * igt@kms_flip@flip-vs-blocking-wf-vblank@a-hdmi-a1:
+    - shard-tglu:         NOTRUN -> [FAIL][176] ([i915#11989]) +1 other test fail
+   [176]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-7/igt@kms_flip@flip-vs-blocking-wf-vblank@a-hdmi-a1.html
 
-  * igt@kms_flip@wf_vblank-ts-check:
-    - shard-snb:          [PASS][174] -> [FAIL][175] ([i915#11989]) +3 other tests fail
-   [174]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-snb2/igt@kms_flip@wf_vblank-ts-check.html
-   [175]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-snb1/igt@kms_flip@wf_vblank-ts-check.html
+  * igt@kms_flip@plain-flip-ts-check-interruptible:
+    - shard-tglu:         [PASS][177] -> [FAIL][178] ([i915#11989]) +1 other test fail
+   [177]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-tglu-3/igt@kms_flip@plain-flip-ts-check-interruptible.html
+   [178]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-7/igt@kms_flip@plain-flip-ts-check-interruptible.html
+    - shard-rkl:          [PASS][179] -> [FAIL][180] ([i915#11989]) +1 other test fail
+   [179]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-rkl-5/igt@kms_flip@plain-flip-ts-check-interruptible.html
+   [180]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-rkl-1/igt@kms_flip@plain-flip-ts-check-interruptible.html
 
-  * igt@kms_flip_scaled_crc@flip-32bpp-yftile-to-32bpp-yftileccs-downscaling@pipe-a-valid-mode:
-    - shard-tglu:         NOTRUN -> [SKIP][176] ([i915#2587] / [i915#2672]) +1 other test skip
-   [176]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-8/igt@kms_flip_scaled_crc@flip-32bpp-yftile-to-32bpp-yftileccs-downscaling@pipe-a-valid-mode.html
+  * igt@kms_flip_scaled_crc@flip-32bpp-4tile-to-64bpp-4tile-downscaling@pipe-a-valid-mode:
+    - shard-tglu:         NOTRUN -> [SKIP][181] ([i915#2587] / [i915#2672]) +2 other tests skip
+   [181]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-7/igt@kms_flip_scaled_crc@flip-32bpp-4tile-to-64bpp-4tile-downscaling@pipe-a-valid-mode.html
 
-  * igt@kms_flip_scaled_crc@flip-32bpp-yftileccs-to-64bpp-yftile-downscaling:
-    - shard-dg2:          NOTRUN -> [SKIP][177] ([i915#2672] / [i915#3555]) +1 other test skip
-   [177]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@kms_flip_scaled_crc@flip-32bpp-yftileccs-to-64bpp-yftile-downscaling.html
+  * igt@kms_flip_scaled_crc@flip-32bpp-yftile-to-32bpp-yftileccs-upscaling:
+    - shard-dg2:          NOTRUN -> [SKIP][182] ([i915#2672] / [i915#3555])
+   [182]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@kms_flip_scaled_crc@flip-32bpp-yftile-to-32bpp-yftileccs-upscaling.html
+    - shard-dg1:          NOTRUN -> [SKIP][183] ([i915#2672] / [i915#3555])
+   [183]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@kms_flip_scaled_crc@flip-32bpp-yftile-to-32bpp-yftileccs-upscaling.html
 
-  * igt@kms_flip_scaled_crc@flip-32bpp-yftileccs-to-64bpp-yftile-upscaling:
-    - shard-tglu:         NOTRUN -> [SKIP][178] ([i915#2672] / [i915#3555]) +1 other test skip
-   [178]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-8/igt@kms_flip_scaled_crc@flip-32bpp-yftileccs-to-64bpp-yftile-upscaling.html
+  * igt@kms_flip_scaled_crc@flip-32bpp-yftile-to-32bpp-yftileccs-upscaling@pipe-a-valid-mode:
+    - shard-dg1:          NOTRUN -> [SKIP][184] ([i915#2587] / [i915#2672])
+   [184]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@kms_flip_scaled_crc@flip-32bpp-yftile-to-32bpp-yftileccs-upscaling@pipe-a-valid-mode.html
+    - shard-dg2:          NOTRUN -> [SKIP][185] ([i915#2672])
+   [185]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@kms_flip_scaled_crc@flip-32bpp-yftile-to-32bpp-yftileccs-upscaling@pipe-a-valid-mode.html
 
-  * igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-32bpp-ytilegen12rcccs-downscaling@pipe-a-default-mode:
-    - shard-mtlp:         NOTRUN -> [SKIP][179] ([i915#2672] / [i915#3555] / [i915#8813]) +4 other tests skip
-   [179]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-32bpp-ytilegen12rcccs-downscaling@pipe-a-default-mode.html
+  * igt@kms_flip_scaled_crc@flip-32bpp-yftile-to-64bpp-yftile-upscaling:
+    - shard-tglu-1:       NOTRUN -> [SKIP][186] ([i915#2672] / [i915#3555])
+   [186]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@kms_flip_scaled_crc@flip-32bpp-yftile-to-64bpp-yftile-upscaling.html
 
-  * igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-32bpp-ytilegen12rcccs-upscaling@pipe-a-default-mode:
-    - shard-mtlp:         NOTRUN -> [SKIP][180] ([i915#2672] / [i915#8813])
-   [180]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-4/igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-32bpp-ytilegen12rcccs-upscaling@pipe-a-default-mode.html
+  * igt@kms_flip_scaled_crc@flip-32bpp-yftile-to-64bpp-yftile-upscaling@pipe-a-valid-mode:
+    - shard-tglu-1:       NOTRUN -> [SKIP][187] ([i915#2587] / [i915#2672])
+   [187]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@kms_flip_scaled_crc@flip-32bpp-yftile-to-64bpp-yftile-upscaling@pipe-a-valid-mode.html
 
-  * igt@kms_flip_scaled_crc@flip-32bpp-ytileccs-to-64bpp-ytile-upscaling:
-    - shard-tglu-1:       NOTRUN -> [SKIP][181] ([i915#2587] / [i915#2672] / [i915#3555])
-   [181]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-1/igt@kms_flip_scaled_crc@flip-32bpp-ytileccs-to-64bpp-ytile-upscaling.html
+  * igt@kms_flip_scaled_crc@flip-64bpp-4tile-to-32bpp-4tile-downscaling:
+    - shard-rkl:          NOTRUN -> [SKIP][188] ([i915#2672] / [i915#3555])
+   [188]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@kms_flip_scaled_crc@flip-64bpp-4tile-to-32bpp-4tile-downscaling.html
 
-  * igt@kms_flip_scaled_crc@flip-32bpp-ytileccs-to-64bpp-ytile-upscaling@pipe-a-valid-mode:
-    - shard-tglu-1:       NOTRUN -> [SKIP][182] ([i915#2587] / [i915#2672])
-   [182]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-1/igt@kms_flip_scaled_crc@flip-32bpp-ytileccs-to-64bpp-ytile-upscaling@pipe-a-valid-mode.html
+  * igt@kms_flip_scaled_crc@flip-64bpp-4tile-to-32bpp-4tile-downscaling@pipe-a-valid-mode:
+    - shard-rkl:          NOTRUN -> [SKIP][189] ([i915#2672])
+   [189]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@kms_flip_scaled_crc@flip-64bpp-4tile-to-32bpp-4tile-downscaling@pipe-a-valid-mode.html
 
-  * igt@kms_flip_scaled_crc@flip-64bpp-4tile-to-32bpp-4tiledg2rcccs-downscaling:
-    - shard-rkl:          NOTRUN -> [SKIP][183] ([i915#2672] / [i915#3555])
-   [183]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-7/igt@kms_flip_scaled_crc@flip-64bpp-4tile-to-32bpp-4tiledg2rcccs-downscaling.html
+  * igt@kms_flip_scaled_crc@flip-64bpp-yftile-to-16bpp-yftile-upscaling:
+    - shard-tglu:         NOTRUN -> [SKIP][190] ([i915#2672] / [i915#3555]) +2 other tests skip
+   [190]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-8/igt@kms_flip_scaled_crc@flip-64bpp-yftile-to-16bpp-yftile-upscaling.html
 
-  * igt@kms_flip_scaled_crc@flip-64bpp-4tile-to-32bpp-4tiledg2rcccs-downscaling@pipe-a-valid-mode:
-    - shard-rkl:          NOTRUN -> [SKIP][184] ([i915#2672])
-   [184]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-7/igt@kms_flip_scaled_crc@flip-64bpp-4tile-to-32bpp-4tiledg2rcccs-downscaling@pipe-a-valid-mode.html
+  * igt@kms_frontbuffer_tracking@fbc-1p-offscren-pri-shrfb-draw-mmap-cpu:
+    - shard-dg2:          [PASS][191] -> [FAIL][192] ([i915#6880])
+   [191]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-dg2-1/igt@kms_frontbuffer_tracking@fbc-1p-offscren-pri-shrfb-draw-mmap-cpu.html
+   [192]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-10/igt@kms_frontbuffer_tracking@fbc-1p-offscren-pri-shrfb-draw-mmap-cpu.html
 
-  * igt@kms_flip_scaled_crc@flip-64bpp-yftile-to-32bpp-yftile-upscaling:
-    - shard-dg1:          NOTRUN -> [SKIP][185] ([i915#2672] / [i915#3555]) +1 other test skip
-   [185]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@kms_flip_scaled_crc@flip-64bpp-yftile-to-32bpp-yftile-upscaling.html
+  * igt@kms_frontbuffer_tracking@fbc-2p-primscrn-pri-shrfb-draw-mmap-gtt:
+    - shard-rkl:          NOTRUN -> [SKIP][193] ([i915#1825]) +9 other tests skip
+   [193]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@kms_frontbuffer_tracking@fbc-2p-primscrn-pri-shrfb-draw-mmap-gtt.html
 
-  * igt@kms_flip_scaled_crc@flip-64bpp-yftile-to-32bpp-yftile-upscaling@pipe-a-valid-mode:
-    - shard-dg1:          NOTRUN -> [SKIP][186] ([i915#2587] / [i915#2672]) +1 other test skip
-   [186]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@kms_flip_scaled_crc@flip-64bpp-yftile-to-32bpp-yftile-upscaling@pipe-a-valid-mode.html
-
-  * igt@kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytile-upscaling:
-    - shard-dg2:          NOTRUN -> [SKIP][187] ([i915#2672] / [i915#3555] / [i915#5190]) +2 other tests skip
-   [187]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytile-upscaling.html
-
-  * igt@kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytile-upscaling@pipe-a-valid-mode:
-    - shard-dg2:          NOTRUN -> [SKIP][188] ([i915#2672]) +4 other tests skip
-   [188]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytile-upscaling@pipe-a-valid-mode.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - shard-rkl:          NOTRUN -> [SKIP][189] +5 other tests skip
-   [189]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-3/igt@kms_force_connector_basic@force-load-detect.html
+  * igt@kms_frontbuffer_tracking@fbc-2p-primscrn-spr-indfb-draw-mmap-cpu:
+    - shard-dg2:          NOTRUN -> [SKIP][194] ([i915#5354]) +7 other tests skip
+   [194]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@kms_frontbuffer_tracking@fbc-2p-primscrn-spr-indfb-draw-mmap-cpu.html
 
   * igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-indfb-pgflip-blt:
-    - shard-mtlp:         NOTRUN -> [SKIP][190] ([i915#1825]) +17 other tests skip
-   [190]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-indfb-pgflip-blt.html
+    - shard-mtlp:         NOTRUN -> [SKIP][195] ([i915#1825]) +1 other test skip
+   [195]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-mtlp-7/igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-indfb-pgflip-blt.html
 
-  * igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-shrfb-pgflip-blt:
-    - shard-dg1:          NOTRUN -> [SKIP][191] +22 other tests skip
-   [191]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-shrfb-pgflip-blt.html
+  * igt@kms_frontbuffer_tracking@fbcpsr-2p-primscrn-pri-shrfb-draw-mmap-wc:
+    - shard-dg2:          NOTRUN -> [SKIP][196] ([i915#8708]) +7 other tests skip
+   [196]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@kms_frontbuffer_tracking@fbcpsr-2p-primscrn-pri-shrfb-draw-mmap-wc.html
 
-  * igt@kms_frontbuffer_tracking@fbc-rgb565-draw-pwrite:
-    - shard-dg2:          [PASS][192] -> [FAIL][193] ([i915#6880]) +1 other test fail
-   [192]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-dg2-2/igt@kms_frontbuffer_tracking@fbc-rgb565-draw-pwrite.html
-   [193]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-5/igt@kms_frontbuffer_tracking@fbc-rgb565-draw-pwrite.html
+  * igt@kms_frontbuffer_tracking@psr-1p-primscrn-indfb-plflip-blt:
+    - shard-rkl:          NOTRUN -> [SKIP][197] ([i915#3023]) +6 other tests skip
+   [197]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@kms_frontbuffer_tracking@psr-1p-primscrn-indfb-plflip-blt.html
 
-  * igt@kms_frontbuffer_tracking@fbcpsr-1p-indfb-fliptrack-mmap-gtt:
-    - shard-rkl:          NOTRUN -> [SKIP][194] ([i915#3023]) +10 other tests skip
-   [194]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-4/igt@kms_frontbuffer_tracking@fbcpsr-1p-indfb-fliptrack-mmap-gtt.html
+  * igt@kms_frontbuffer_tracking@psr-1p-primscrn-pri-indfb-draw-blt:
+    - shard-dg2:          NOTRUN -> [SKIP][198] ([i915#3458]) +4 other tests skip
+   [198]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@kms_frontbuffer_tracking@psr-1p-primscrn-pri-indfb-draw-blt.html
 
-  * igt@kms_frontbuffer_tracking@fbcpsr-1p-primscrn-spr-indfb-draw-mmap-wc:
-    - shard-dg2:          NOTRUN -> [SKIP][195] ([i915#8708]) +13 other tests skip
-   [195]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-1/igt@kms_frontbuffer_tracking@fbcpsr-1p-primscrn-spr-indfb-draw-mmap-wc.html
+  * igt@kms_frontbuffer_tracking@psr-1p-primscrn-spr-indfb-move:
+    - shard-tglu:         NOTRUN -> [SKIP][199] +48 other tests skip
+   [199]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-7/igt@kms_frontbuffer_tracking@psr-1p-primscrn-spr-indfb-move.html
 
-  * igt@kms_frontbuffer_tracking@fbcpsr-2p-primscrn-pri-indfb-draw-render:
-    - shard-tglu-1:       NOTRUN -> [SKIP][196] +5 other tests skip
-   [196]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-1/igt@kms_frontbuffer_tracking@fbcpsr-2p-primscrn-pri-indfb-draw-render.html
+  * igt@kms_frontbuffer_tracking@psr-2p-primscrn-indfb-msflip-blt:
+    - shard-dg1:          NOTRUN -> [SKIP][200] +12 other tests skip
+   [200]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@kms_frontbuffer_tracking@psr-2p-primscrn-indfb-msflip-blt.html
 
-  * igt@kms_frontbuffer_tracking@fbcpsr-2p-scndscrn-cur-indfb-draw-mmap-cpu:
-    - shard-rkl:          NOTRUN -> [SKIP][197] ([i915#1825]) +15 other tests skip
-   [197]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-4/igt@kms_frontbuffer_tracking@fbcpsr-2p-scndscrn-cur-indfb-draw-mmap-cpu.html
+  * igt@kms_frontbuffer_tracking@psr-2p-scndscrn-indfb-msflip-blt:
+    - shard-tglu-1:       NOTRUN -> [SKIP][201] +35 other tests skip
+   [201]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@kms_frontbuffer_tracking@psr-2p-scndscrn-indfb-msflip-blt.html
 
-  * igt@kms_frontbuffer_tracking@fbcpsr-rgb101010-draw-mmap-gtt:
-    - shard-mtlp:         NOTRUN -> [SKIP][198] ([i915#8708]) +2 other tests skip
-   [198]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@kms_frontbuffer_tracking@fbcpsr-rgb101010-draw-mmap-gtt.html
-
-  * igt@kms_frontbuffer_tracking@fbcpsr-tiling-y:
-    - shard-dg2:          NOTRUN -> [SKIP][199] ([i915#10055])
-   [199]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-1/igt@kms_frontbuffer_tracking@fbcpsr-tiling-y.html
-
-  * igt@kms_frontbuffer_tracking@psr-1p-primscrn-spr-indfb-draw-mmap-wc:
-    - shard-dg1:          NOTRUN -> [SKIP][200] ([i915#8708]) +2 other tests skip
-   [200]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-12/igt@kms_frontbuffer_tracking@psr-1p-primscrn-spr-indfb-draw-mmap-wc.html
-
-  * igt@kms_frontbuffer_tracking@psr-1p-primscrn-spr-indfb-onoff:
-    - shard-dg2:          NOTRUN -> [SKIP][201] ([i915#3458]) +15 other tests skip
-   [201]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@kms_frontbuffer_tracking@psr-1p-primscrn-spr-indfb-onoff.html
-
-  * igt@kms_frontbuffer_tracking@psr-2p-scndscrn-pri-shrfb-draw-pwrite:
-    - shard-dg2:          NOTRUN -> [SKIP][202] ([i915#5354]) +19 other tests skip
-   [202]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@kms_frontbuffer_tracking@psr-2p-scndscrn-pri-shrfb-draw-pwrite.html
+  * igt@kms_frontbuffer_tracking@psr-2p-scndscrn-pri-indfb-draw-mmap-wc:
+    - shard-dg1:          NOTRUN -> [SKIP][202] ([i915#8708]) +5 other tests skip
+   [202]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@kms_frontbuffer_tracking@psr-2p-scndscrn-pri-indfb-draw-mmap-wc.html
 
   * igt@kms_frontbuffer_tracking@psr-rgb101010-draw-mmap-cpu:
-    - shard-dg1:          NOTRUN -> [SKIP][203] ([i915#3458]) +9 other tests skip
-   [203]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@kms_frontbuffer_tracking@psr-rgb101010-draw-mmap-cpu.html
+    - shard-dg1:          NOTRUN -> [SKIP][203] ([i915#3458]) +3 other tests skip
+   [203]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@kms_frontbuffer_tracking@psr-rgb101010-draw-mmap-cpu.html
 
   * igt@kms_hdr@bpc-switch-dpms:
-    - shard-dg1:          NOTRUN -> [SKIP][204] ([i915#3555] / [i915#8228])
-   [204]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@kms_hdr@bpc-switch-dpms.html
+    - shard-tglu:         NOTRUN -> [SKIP][204] ([i915#3555] / [i915#8228]) +2 other tests skip
+   [204]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-8/igt@kms_hdr@bpc-switch-dpms.html
+
+  * igt@kms_hdr@bpc-switch-suspend:
+    - shard-dg2:          NOTRUN -> [SKIP][205] ([i915#3555] / [i915#8228])
+   [205]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@kms_hdr@bpc-switch-suspend.html
+    - shard-dg1:          NOTRUN -> [SKIP][206] ([i915#3555] / [i915#8228])
+   [206]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@kms_hdr@bpc-switch-suspend.html
 
   * igt@kms_hdr@brightness-with-hdr:
-    - shard-dg2:          NOTRUN -> [SKIP][205] ([i915#12713])
-   [205]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-7/igt@kms_hdr@brightness-with-hdr.html
+    - shard-rkl:          NOTRUN -> [SKIP][207] ([i915#1187] / [i915#12713])
+   [207]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-rkl-3/igt@kms_hdr@brightness-with-hdr.html
+    - shard-dg1:          NOTRUN -> [SKIP][208] ([i915#12713])
+   [208]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@kms_hdr@brightness-with-hdr.html
 
-  * igt@kms_hdr@invalid-metadata-sizes:
-    - shard-mtlp:         NOTRUN -> [SKIP][206] ([i915#3555] / [i915#8228]) +1 other test skip
-   [206]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-3/igt@kms_hdr@invalid-metadata-sizes.html
+  * igt@kms_hdr@static-swap:
+    - shard-rkl:          NOTRUN -> [SKIP][209] ([i915#3555] / [i915#8228])
+   [209]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@kms_hdr@static-swap.html
 
   * igt@kms_hdr@static-toggle-suspend:
-    - shard-rkl:          NOTRUN -> [SKIP][207] ([i915#3555] / [i915#8228])
-   [207]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-3/igt@kms_hdr@static-toggle-suspend.html
+    - shard-dg2:          [PASS][210] -> [SKIP][211] ([i915#3555] / [i915#8228])
+   [210]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-dg2-10/igt@kms_hdr@static-toggle-suspend.html
+   [211]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@kms_hdr@static-toggle-suspend.html
 
   * igt@kms_joiner@basic-big-joiner:
-    - shard-dg2:          NOTRUN -> [SKIP][208] ([i915#10656])
-   [208]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-1/igt@kms_joiner@basic-big-joiner.html
+    - shard-tglu:         NOTRUN -> [SKIP][212] ([i915#10656])
+   [212]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-8/igt@kms_joiner@basic-big-joiner.html
 
-  * igt@kms_joiner@basic-ultra-joiner:
-    - shard-dg2:          NOTRUN -> [SKIP][209] ([i915#12339])
-   [209]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-7/igt@kms_joiner@basic-ultra-joiner.html
+  * igt@kms_joiner@basic-force-ultra-joiner:
+    - shard-tglu-1:       NOTRUN -> [SKIP][213] ([i915#12394] / [i915#13522])
+   [213]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@kms_joiner@basic-force-ultra-joiner.html
 
-  * igt@kms_joiner@invalid-modeset-force-ultra-joiner:
-    - shard-dg2:          NOTRUN -> [SKIP][210] ([i915#10656] / [i915#13522])
-   [210]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-10/igt@kms_joiner@invalid-modeset-force-ultra-joiner.html
+  * igt@kms_pipe_crc_basic@bad-source:
+    - shard-rkl:          [PASS][214] -> [DMESG-WARN][215] ([i915#12964]) +4 other tests dmesg-warn
+   [214]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-rkl-3/igt@kms_pipe_crc_basic@bad-source.html
+   [215]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-rkl-4/igt@kms_pipe_crc_basic@bad-source.html
 
-  * igt@kms_joiner@invalid-modeset-ultra-joiner:
-    - shard-rkl:          NOTRUN -> [SKIP][211] ([i915#12339])
-   [211]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-4/igt@kms_joiner@invalid-modeset-ultra-joiner.html
+  * igt@kms_plane_lowres@tiling-4:
+    - shard-mtlp:         NOTRUN -> [SKIP][216] ([i915#10226] / [i915#11614] / [i915#3555] / [i915#8821])
+   [216]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-mtlp-7/igt@kms_plane_lowres@tiling-4.html
 
-  * igt@kms_joiner@switch-modeset-ultra-joiner-big-joiner:
-    - shard-tglu:         NOTRUN -> [SKIP][212] ([i915#13522])
-   [212]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-8/igt@kms_joiner@switch-modeset-ultra-joiner-big-joiner.html
-
-  * igt@kms_multipipe_modeset@basic-max-pipe-crc-check:
-    - shard-dg2:          NOTRUN -> [SKIP][213] ([i915#4816])
-   [213]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@kms_multipipe_modeset@basic-max-pipe-crc-check.html
-
-  * igt@kms_panel_fitting@atomic-fastset:
-    - shard-dg1:          NOTRUN -> [SKIP][214] ([i915#6301])
-   [214]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@kms_panel_fitting@atomic-fastset.html
-
-  * igt@kms_plane@plane-panning-bottom-right-suspend:
-    - shard-glk:          NOTRUN -> [INCOMPLETE][215] ([i915#13026]) +1 other test incomplete
-   [215]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-glk1/igt@kms_plane@plane-panning-bottom-right-suspend.html
-
-  * igt@kms_plane_lowres@tiling-none:
-    - shard-mtlp:         NOTRUN -> [SKIP][216] ([i915#11614] / [i915#3582]) +1 other test skip
-   [216]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@kms_plane_lowres@tiling-none.html
-
-  * igt@kms_plane_lowres@tiling-none@pipe-b-edp-1:
-    - shard-mtlp:         NOTRUN -> [SKIP][217] ([i915#10226] / [i915#11614] / [i915#3582]) +2 other tests skip
-   [217]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@kms_plane_lowres@tiling-none@pipe-b-edp-1.html
+  * igt@kms_plane_lowres@tiling-4@pipe-b-edp-1:
+    - shard-mtlp:         NOTRUN -> [SKIP][217] ([i915#11614] / [i915#3582]) +3 other tests skip
+   [217]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-mtlp-7/igt@kms_plane_lowres@tiling-4@pipe-b-edp-1.html
 
   * igt@kms_plane_scaling@intel-max-src-size:
-    - shard-rkl:          NOTRUN -> [SKIP][218] ([i915#6953])
-   [218]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-3/igt@kms_plane_scaling@intel-max-src-size.html
+    - shard-tglu-1:       NOTRUN -> [SKIP][218] ([i915#6953])
+   [218]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@kms_plane_scaling@intel-max-src-size.html
 
-  * igt@kms_plane_scaling@plane-downscale-factor-0-25-with-modifiers@pipe-a:
-    - shard-dg1:          NOTRUN -> [SKIP][219] ([i915#12247]) +4 other tests skip
-   [219]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@kms_plane_scaling@plane-downscale-factor-0-25-with-modifiers@pipe-a.html
+  * igt@kms_plane_scaling@plane-downscale-factor-0-25-with-pixel-format:
+    - shard-tglu-1:       NOTRUN -> [SKIP][219] ([i915#12247]) +8 other tests skip
+   [219]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@kms_plane_scaling@plane-downscale-factor-0-25-with-pixel-format.html
+
+  * igt@kms_plane_scaling@plane-downscale-factor-0-75-with-rotation@pipe-a:
+    - shard-rkl:          NOTRUN -> [SKIP][220] ([i915#12247]) +2 other tests skip
+   [220]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@kms_plane_scaling@plane-downscale-factor-0-75-with-rotation@pipe-a.html
+
+  * igt@kms_plane_scaling@plane-scaler-unity-scaling-with-rotation@pipe-b:
+    - shard-tglu:         NOTRUN -> [SKIP][221] ([i915#12247]) +4 other tests skip
+   [221]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-8/igt@kms_plane_scaling@plane-scaler-unity-scaling-with-rotation@pipe-b.html
 
   * igt@kms_plane_scaling@planes-downscale-factor-0-25-upscale-factor-0-25:
-    - shard-dg2:          NOTRUN -> [SKIP][220] ([i915#12247] / [i915#6953] / [i915#9423])
-   [220]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-7/igt@kms_plane_scaling@planes-downscale-factor-0-25-upscale-factor-0-25.html
-
-  * igt@kms_plane_scaling@planes-downscale-factor-0-25-upscale-factor-0-25@pipe-a:
-    - shard-dg2:          NOTRUN -> [SKIP][221] ([i915#12247]) +3 other tests skip
-   [221]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-7/igt@kms_plane_scaling@planes-downscale-factor-0-25-upscale-factor-0-25@pipe-a.html
-
-  * igt@kms_plane_scaling@planes-unity-scaling-downscale-factor-0-25:
-    - shard-tglu:         NOTRUN -> [SKIP][222] ([i915#12247] / [i915#6953])
-   [222]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-8/igt@kms_plane_scaling@planes-unity-scaling-downscale-factor-0-25.html
-
-  * igt@kms_plane_scaling@planes-unity-scaling-downscale-factor-0-25@pipe-d:
-    - shard-tglu:         NOTRUN -> [SKIP][223] ([i915#12247]) +3 other tests skip
-   [223]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-8/igt@kms_plane_scaling@planes-unity-scaling-downscale-factor-0-25@pipe-d.html
+    - shard-tglu-1:       NOTRUN -> [SKIP][222] ([i915#12247] / [i915#6953])
+   [222]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@kms_plane_scaling@planes-downscale-factor-0-25-upscale-factor-0-25.html
 
   * igt@kms_pm_backlight@brightness-with-dpms:
-    - shard-dg2:          NOTRUN -> [SKIP][224] ([i915#12343])
-   [224]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-7/igt@kms_pm_backlight@brightness-with-dpms.html
+    - shard-tglu:         NOTRUN -> [SKIP][223] ([i915#12343])
+   [223]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-7/igt@kms_pm_backlight@brightness-with-dpms.html
 
-  * igt@kms_pm_dc@dc3co-vpb-simulation:
-    - shard-rkl:          NOTRUN -> [SKIP][225] ([i915#9685])
-   [225]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-4/igt@kms_pm_dc@dc3co-vpb-simulation.html
+  * igt@kms_pm_dc@dc5-retention-flops:
+    - shard-rkl:          NOTRUN -> [SKIP][224] ([i915#3828])
+   [224]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-rkl-3/igt@kms_pm_dc@dc5-retention-flops.html
+    - shard-dg1:          NOTRUN -> [SKIP][225] ([i915#3828])
+   [225]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@kms_pm_dc@dc5-retention-flops.html
 
-  * igt@kms_pm_lpsp@kms-lpsp:
-    - shard-tglu:         NOTRUN -> [SKIP][226] ([i915#3828])
-   [226]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-8/igt@kms_pm_lpsp@kms-lpsp.html
-
-  * igt@kms_pm_lpsp@screens-disabled:
-    - shard-dg2:          NOTRUN -> [SKIP][227] ([i915#8430])
-   [227]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@kms_pm_lpsp@screens-disabled.html
-
-  * igt@kms_pm_rpm@dpms-lpsp:
-    - shard-rkl:          NOTRUN -> [SKIP][228] ([i915#12916])
-   [228]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-4/igt@kms_pm_rpm@dpms-lpsp.html
+  * igt@kms_pm_dc@dc6-psr:
+    - shard-rkl:          NOTRUN -> [SKIP][226] ([i915#9685])
+   [226]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@kms_pm_dc@dc6-psr.html
 
   * igt@kms_pm_rpm@dpms-mode-unset-lpsp:
-    - shard-dg1:          NOTRUN -> [SKIP][229] ([i915#9519])
-   [229]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@kms_pm_rpm@dpms-mode-unset-lpsp.html
+    - shard-rkl:          [PASS][227] -> [SKIP][228] ([i915#9519])
+   [227]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-rkl-4/igt@kms_pm_rpm@dpms-mode-unset-lpsp.html
+   [228]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-rkl-5/igt@kms_pm_rpm@dpms-mode-unset-lpsp.html
 
-  * igt@kms_pm_rpm@modeset-lpsp-stress-no-wait:
-    - shard-dg2:          NOTRUN -> [SKIP][230] ([i915#9519])
-   [230]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@kms_pm_rpm@modeset-lpsp-stress-no-wait.html
+  * igt@kms_pm_rpm@dpms-non-lpsp:
+    - shard-mtlp:         NOTRUN -> [SKIP][229] ([i915#9519])
+   [229]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-mtlp-4/igt@kms_pm_rpm@dpms-non-lpsp.html
 
   * igt@kms_pm_rpm@modeset-non-lpsp-stress-no-wait:
-    - shard-rkl:          [PASS][231] -> [SKIP][232] ([i915#9519])
-   [231]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-rkl-1/igt@kms_pm_rpm@modeset-non-lpsp-stress-no-wait.html
-   [232]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-7/igt@kms_pm_rpm@modeset-non-lpsp-stress-no-wait.html
-    - shard-tglu:         NOTRUN -> [SKIP][233] ([i915#9519])
-   [233]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-8/igt@kms_pm_rpm@modeset-non-lpsp-stress-no-wait.html
+    - shard-tglu:         NOTRUN -> [SKIP][230] ([i915#9519]) +1 other test skip
+   [230]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-7/igt@kms_pm_rpm@modeset-non-lpsp-stress-no-wait.html
 
-  * igt@kms_pm_rpm@pm-caching:
-    - shard-mtlp:         NOTRUN -> [SKIP][234] ([i915#4077]) +4 other tests skip
-   [234]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@kms_pm_rpm@pm-caching.html
+  * igt@kms_psr2_sf@fbc-pr-overlay-plane-move-continuous-exceed-fully-sf:
+    - shard-tglu:         NOTRUN -> [SKIP][231] ([i915#11520]) +5 other tests skip
+   [231]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-7/igt@kms_psr2_sf@fbc-pr-overlay-plane-move-continuous-exceed-fully-sf.html
 
-  * igt@kms_prime@basic-crc-vgem:
-    - shard-dg2:          NOTRUN -> [SKIP][235] ([i915#6524] / [i915#6805]) +1 other test skip
-   [235]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-1/igt@kms_prime@basic-crc-vgem.html
+  * igt@kms_psr2_sf@fbc-pr-plane-move-sf-dmg-area:
+    - shard-mtlp:         NOTRUN -> [SKIP][232] ([i915#12316]) +2 other tests skip
+   [232]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-mtlp-7/igt@kms_psr2_sf@fbc-pr-plane-move-sf-dmg-area.html
 
-  * igt@kms_prime@basic-modeset-hybrid:
-    - shard-tglu:         NOTRUN -> [SKIP][236] ([i915#6524])
-   [236]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-8/igt@kms_prime@basic-modeset-hybrid.html
+  * igt@kms_psr2_sf@fbc-psr2-cursor-plane-move-continuous-exceed-fully-sf:
+    - shard-rkl:          NOTRUN -> [SKIP][233] ([i915#11520]) +1 other test skip
+   [233]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@kms_psr2_sf@fbc-psr2-cursor-plane-move-continuous-exceed-fully-sf.html
 
-  * igt@kms_psr2_sf@fbc-psr2-cursor-plane-update-sf:
-    - shard-dg2:          NOTRUN -> [SKIP][237] ([i915#11520]) +5 other tests skip
-   [237]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@kms_psr2_sf@fbc-psr2-cursor-plane-update-sf.html
+  * igt@kms_psr2_sf@fbc-psr2-cursor-plane-move-continuous-exceed-sf:
+    - shard-snb:          NOTRUN -> [SKIP][234] ([i915#11520]) +6 other tests skip
+   [234]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-snb7/igt@kms_psr2_sf@fbc-psr2-cursor-plane-move-continuous-exceed-sf.html
 
-  * igt@kms_psr2_sf@fbc-psr2-primary-plane-update-sf-dmg-area@pipe-a-edp-1:
-    - shard-mtlp:         NOTRUN -> [SKIP][238] ([i915#9808])
-   [238]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@kms_psr2_sf@fbc-psr2-primary-plane-update-sf-dmg-area@pipe-a-edp-1.html
+  * igt@kms_psr2_sf@fbc-psr2-overlay-plane-update-sf-dmg-area:
+    - shard-dg1:          NOTRUN -> [SKIP][235] ([i915#11520]) +3 other tests skip
+   [235]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@kms_psr2_sf@fbc-psr2-overlay-plane-update-sf-dmg-area.html
 
-  * igt@kms_psr2_sf@fbc-psr2-primary-plane-update-sf-dmg-area@pipe-b-edp-1:
-    - shard-mtlp:         NOTRUN -> [SKIP][239] ([i915#12316]) +2 other tests skip
-   [239]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@kms_psr2_sf@fbc-psr2-primary-plane-update-sf-dmg-area@pipe-b-edp-1.html
+  * igt@kms_psr2_sf@fbc-psr2-overlay-plane-update-sf-dmg-area@pipe-a-edp-1:
+    - shard-mtlp:         NOTRUN -> [SKIP][236] ([i915#9808])
+   [236]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-mtlp-7/igt@kms_psr2_sf@fbc-psr2-overlay-plane-update-sf-dmg-area@pipe-a-edp-1.html
 
-  * igt@kms_psr2_sf@psr2-cursor-plane-move-continuous-sf:
-    - shard-tglu:         NOTRUN -> [SKIP][240] ([i915#11520]) +4 other tests skip
-   [240]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-7/igt@kms_psr2_sf@psr2-cursor-plane-move-continuous-sf.html
-
-  * igt@kms_psr2_sf@psr2-overlay-plane-move-continuous-exceed-sf:
-    - shard-glk:          NOTRUN -> [SKIP][241] ([i915#11520]) +1 other test skip
-   [241]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-glk4/igt@kms_psr2_sf@psr2-overlay-plane-move-continuous-exceed-sf.html
-
-  * igt@kms_psr2_sf@psr2-overlay-plane-move-continuous-sf:
-    - shard-dg1:          NOTRUN -> [SKIP][242] ([i915#11520]) +4 other tests skip
-   [242]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-12/igt@kms_psr2_sf@psr2-overlay-plane-move-continuous-sf.html
+  * igt@kms_psr2_sf@psr2-overlay-plane-update-sf-dmg-area:
+    - shard-tglu-1:       NOTRUN -> [SKIP][237] ([i915#11520]) +1 other test skip
+   [237]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@kms_psr2_sf@psr2-overlay-plane-update-sf-dmg-area.html
 
   * igt@kms_psr2_sf@psr2-primary-plane-update-sf-dmg-area:
-    - shard-rkl:          NOTRUN -> [SKIP][243] ([i915#11520]) +3 other tests skip
-   [243]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-3/igt@kms_psr2_sf@psr2-primary-plane-update-sf-dmg-area.html
+    - shard-dg2:          NOTRUN -> [SKIP][238] ([i915#11520]) +2 other tests skip
+   [238]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@kms_psr2_sf@psr2-primary-plane-update-sf-dmg-area.html
 
-  * igt@kms_psr2_sf@psr2-primary-plane-update-sf-dmg-area-big-fb:
-    - shard-snb:          NOTRUN -> [SKIP][244] ([i915#11520]) +10 other tests skip
-   [244]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-snb7/igt@kms_psr2_sf@psr2-primary-plane-update-sf-dmg-area-big-fb.html
-
-  * igt@kms_psr2_su@page_flip-p010:
-    - shard-dg2:          NOTRUN -> [SKIP][245] ([i915#9683])
-   [245]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@kms_psr2_su@page_flip-p010.html
-
-  * igt@kms_psr@fbc-pr-cursor-plane-onoff:
-    - shard-rkl:          NOTRUN -> [SKIP][246] ([i915#1072] / [i915#9732]) +8 other tests skip
-   [246]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-4/igt@kms_psr@fbc-pr-cursor-plane-onoff.html
+  * igt@kms_psr2_su@frontbuffer-xrgb8888:
+    - shard-dg2:          NOTRUN -> [SKIP][239] ([i915#9683])
+   [239]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-8/igt@kms_psr2_su@frontbuffer-xrgb8888.html
 
   * igt@kms_psr@fbc-psr-cursor-mmap-cpu:
-    - shard-dg2:          NOTRUN -> [SKIP][247] ([i915#1072] / [i915#9732]) +20 other tests skip
-   [247]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-1/igt@kms_psr@fbc-psr-cursor-mmap-cpu.html
+    - shard-rkl:          NOTRUN -> [SKIP][240] ([i915#1072] / [i915#9732]) +6 other tests skip
+   [240]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@kms_psr@fbc-psr-cursor-mmap-cpu.html
 
-  * igt@kms_psr@fbc-psr-cursor-mmap-gtt@edp-1:
-    - shard-mtlp:         NOTRUN -> [SKIP][248] ([i915#9688]) +6 other tests skip
-   [248]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-4/igt@kms_psr@fbc-psr-cursor-mmap-gtt@edp-1.html
+  * igt@kms_psr@fbc-psr-cursor-plane-move:
+    - shard-dg2:          NOTRUN -> [SKIP][241] ([i915#1072] / [i915#9732]) +6 other tests skip
+   [241]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@kms_psr@fbc-psr-cursor-plane-move.html
+    - shard-dg1:          NOTRUN -> [SKIP][242] ([i915#1072] / [i915#9732]) +4 other tests skip
+   [242]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@kms_psr@fbc-psr-cursor-plane-move.html
 
-  * igt@kms_psr@fbc-psr-cursor-plane-onoff:
-    - shard-tglu:         NOTRUN -> [SKIP][249] ([i915#9732]) +9 other tests skip
-   [249]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-7/igt@kms_psr@fbc-psr-cursor-plane-onoff.html
+  * igt@kms_psr@fbc-psr-cursor-plane-move@edp-1:
+    - shard-mtlp:         NOTRUN -> [SKIP][243] ([i915#9688]) +1 other test skip
+   [243]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-mtlp-7/igt@kms_psr@fbc-psr-cursor-plane-move@edp-1.html
 
-  * igt@kms_psr@psr-cursor-plane-onoff:
-    - shard-tglu-1:       NOTRUN -> [SKIP][250] ([i915#9732]) +1 other test skip
-   [250]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-1/igt@kms_psr@psr-cursor-plane-onoff.html
+  * igt@kms_psr@fbc-psr2-cursor-mmap-cpu:
+    - shard-tglu:         NOTRUN -> [SKIP][244] ([i915#9732]) +10 other tests skip
+   [244]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-8/igt@kms_psr@fbc-psr2-cursor-mmap-cpu.html
 
-  * igt@kms_psr@psr-sprite-blt:
-    - shard-snb:          NOTRUN -> [SKIP][251] +363 other tests skip
-   [251]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-snb2/igt@kms_psr@psr-sprite-blt.html
+  * igt@kms_psr@pr-suspend:
+    - shard-tglu-1:       NOTRUN -> [SKIP][245] ([i915#9732]) +9 other tests skip
+   [245]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@kms_psr@pr-suspend.html
 
-  * igt@kms_psr@psr2-sprite-blt:
-    - shard-dg1:          NOTRUN -> [SKIP][252] ([i915#1072] / [i915#9732]) +7 other tests skip
-   [252]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@kms_psr@psr2-sprite-blt.html
+  * igt@kms_rotation_crc@primary-4-tiled-reflect-x-0:
+    - shard-dg1:          NOTRUN -> [SKIP][246] ([i915#5289])
+   [246]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@kms_rotation_crc@primary-4-tiled-reflect-x-0.html
 
-  * igt@kms_rotation_crc@primary-yf-tiled-reflect-x-0:
-    - shard-rkl:          NOTRUN -> [SKIP][253] ([i915#5289])
-   [253]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-3/igt@kms_rotation_crc@primary-yf-tiled-reflect-x-0.html
+  * igt@kms_rotation_crc@primary-yf-tiled-reflect-x-270:
+    - shard-tglu:         NOTRUN -> [SKIP][247] ([i915#5289])
+   [247]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-8/igt@kms_rotation_crc@primary-yf-tiled-reflect-x-270.html
 
-  * igt@kms_rotation_crc@primary-yf-tiled-reflect-x-180:
-    - shard-tglu:         NOTRUN -> [SKIP][254] ([i915#5289])
-   [254]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-7/igt@kms_rotation_crc@primary-yf-tiled-reflect-x-180.html
+  * igt@kms_scaling_modes@scaling-mode-full-aspect:
+    - shard-rkl:          NOTRUN -> [SKIP][248] ([i915#3555])
+   [248]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@kms_scaling_modes@scaling-mode-full-aspect.html
 
-  * igt@kms_rotation_crc@primary-yf-tiled-reflect-x-90:
-    - shard-dg2:          NOTRUN -> [SKIP][255] ([i915#12755] / [i915#5190])
-   [255]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@kms_rotation_crc@primary-yf-tiled-reflect-x-90.html
+  * igt@kms_tiled_display@basic-test-pattern-with-chamelium:
+    - shard-dg2:          NOTRUN -> [SKIP][249] ([i915#8623])
+   [249]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-8/igt@kms_tiled_display@basic-test-pattern-with-chamelium.html
 
-  * igt@kms_rotation_crc@sprite-rotation-90-pos-100-0:
-    - shard-dg2:          NOTRUN -> [SKIP][256] ([i915#12755]) +1 other test skip
-   [256]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-7/igt@kms_rotation_crc@sprite-rotation-90-pos-100-0.html
+  * igt@kms_universal_plane@cursor-fb-leak:
+    - shard-mtlp:         [PASS][250] -> [FAIL][251] ([i915#9196]) +1 other test fail
+   [250]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-mtlp-3/igt@kms_universal_plane@cursor-fb-leak.html
+   [251]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-mtlp-8/igt@kms_universal_plane@cursor-fb-leak.html
 
-  * igt@kms_scaling_modes@scaling-mode-center:
-    - shard-dg1:          NOTRUN -> [SKIP][257] ([i915#3555]) +3 other tests skip
-   [257]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@kms_scaling_modes@scaling-mode-center.html
+  * igt@kms_universal_plane@universal-plane-functional@pipe-b-hdmi-a-1:
+    - shard-rkl:          NOTRUN -> [DMESG-WARN][252] ([i915#12964]) +2 other tests dmesg-warn
+   [252]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@kms_universal_plane@universal-plane-functional@pipe-b-hdmi-a-1.html
 
-  * igt@kms_selftest@drm_framebuffer:
-    - shard-rkl:          NOTRUN -> [ABORT][258] ([i915#13179]) +1 other test abort
-   [258]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-7/igt@kms_selftest@drm_framebuffer.html
-
-  * igt@kms_setmode@clone-exclusive-crtc:
-    - shard-mtlp:         NOTRUN -> [SKIP][259] ([i915#3555] / [i915#8809])
-   [259]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-3/igt@kms_setmode@clone-exclusive-crtc.html
-
-  * igt@kms_tiled_display@basic-test-pattern:
-    - shard-rkl:          NOTRUN -> [SKIP][260] ([i915#8623])
-   [260]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-4/igt@kms_tiled_display@basic-test-pattern.html
-
-  * igt@kms_vblank@query-forked@pipe-a-hdmi-a-1:
-    - shard-rkl:          NOTRUN -> [DMESG-WARN][261] ([i915#12964]) +22 other tests dmesg-warn
-   [261]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-7/igt@kms_vblank@query-forked@pipe-a-hdmi-a-1.html
-
-  * igt@kms_vrr@flipline:
-    - shard-mtlp:         NOTRUN -> [SKIP][262] ([i915#3555] / [i915#8808])
-   [262]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-3/igt@kms_vrr@flipline.html
-
-  * igt@kms_vrr@max-min:
-    - shard-dg2:          NOTRUN -> [SKIP][263] ([i915#9906])
-   [263]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-7/igt@kms_vrr@max-min.html
+  * igt@kms_vrr@flip-basic-fastset:
+    - shard-tglu:         NOTRUN -> [SKIP][253] ([i915#9906])
+   [253]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-8/igt@kms_vrr@flip-basic-fastset.html
 
   * igt@kms_vrr@negative-basic:
-    - shard-mtlp:         [PASS][264] -> [FAIL][265] ([i915#10393]) +1 other test fail
-   [264]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-mtlp-2/igt@kms_vrr@negative-basic.html
-   [265]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-2/igt@kms_vrr@negative-basic.html
+    - shard-dg2:          NOTRUN -> [SKIP][254] ([i915#3555] / [i915#9906])
+   [254]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-8/igt@kms_vrr@negative-basic.html
 
-  * igt@kms_vrr@seamless-rr-switch-drrs:
-    - shard-tglu:         NOTRUN -> [SKIP][266] ([i915#9906])
-   [266]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-7/igt@kms_vrr@seamless-rr-switch-drrs.html
+  * igt@kms_vrr@seamless-rr-switch-vrr:
+    - shard-dg2:          NOTRUN -> [SKIP][255] ([i915#9906])
+   [255]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@kms_vrr@seamless-rr-switch-vrr.html
+    - shard-dg1:          NOTRUN -> [SKIP][256] ([i915#9906])
+   [256]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@kms_vrr@seamless-rr-switch-vrr.html
+    - shard-mtlp:         NOTRUN -> [SKIP][257] ([i915#8808] / [i915#9906])
+   [257]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-mtlp-7/igt@kms_vrr@seamless-rr-switch-vrr.html
 
   * igt@kms_writeback@writeback-check-output:
-    - shard-dg2:          NOTRUN -> [SKIP][267] ([i915#2437])
-   [267]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-1/igt@kms_writeback@writeback-check-output.html
+    - shard-rkl:          NOTRUN -> [SKIP][258] ([i915#2437])
+   [258]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@kms_writeback@writeback-check-output.html
 
-  * igt@kms_writeback@writeback-check-output-xrgb2101010:
-    - shard-dg1:          NOTRUN -> [SKIP][268] ([i915#2437] / [i915#9412])
-   [268]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@kms_writeback@writeback-check-output-xrgb2101010.html
+  * igt@perf@mi-rpc:
+    - shard-rkl:          NOTRUN -> [SKIP][259] ([i915#2434])
+   [259]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@perf@mi-rpc.html
 
-  * igt@kms_writeback@writeback-fb-id:
-    - shard-rkl:          NOTRUN -> [SKIP][269] ([i915#2437]) +1 other test skip
-   [269]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-4/igt@kms_writeback@writeback-fb-id.html
-
-  * igt@perf@non-zero-reason:
-    - shard-dg2:          NOTRUN -> [FAIL][270] ([i915#9100]) +1 other test fail
-   [270]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@perf@non-zero-reason.html
+  * igt@perf_pmu@module-unload:
+    - shard-dg2:          NOTRUN -> [FAIL][260] ([i915#11823])
+   [260]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@perf_pmu@module-unload.html
 
   * igt@perf_pmu@rc6@other-idle-gt0:
-    - shard-dg1:          NOTRUN -> [SKIP][271] ([i915#8516])
-   [271]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-12/igt@perf_pmu@rc6@other-idle-gt0.html
-    - shard-tglu:         NOTRUN -> [SKIP][272] ([i915#8516])
-   [272]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-10/igt@perf_pmu@rc6@other-idle-gt0.html
-
-  * igt@prime_mmap@test_aperture_limit:
-    - shard-dg2:          NOTRUN -> [WARN][273] ([i915#9351])
-   [273]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-1/igt@prime_mmap@test_aperture_limit.html
-
-  * igt@prime_mmap@test_aperture_limit@test_aperture_limit-smem:
-    - shard-dg2:          NOTRUN -> [CRASH][274] ([i915#9351])
-   [274]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-1/igt@prime_mmap@test_aperture_limit@test_aperture_limit-smem.html
-
-  * igt@prime_vgem@basic-fence-read:
-    - shard-dg1:          NOTRUN -> [SKIP][275] ([i915#3708])
-   [275]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@prime_vgem@basic-fence-read.html
-
-  * igt@prime_vgem@coherency-gtt:
-    - shard-dg2:          NOTRUN -> [SKIP][276] ([i915#3708] / [i915#4077])
-   [276]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-7/igt@prime_vgem@coherency-gtt.html
-
-  * igt@prime_vgem@fence-write-hang:
-    - shard-dg2:          NOTRUN -> [SKIP][277] ([i915#3708]) +1 other test skip
-   [277]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-1/igt@prime_vgem@fence-write-hang.html
+    - shard-tglu-1:       NOTRUN -> [SKIP][261] ([i915#8516])
+   [261]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@perf_pmu@rc6@other-idle-gt0.html
 
   * igt@sriov_basic@bind-unbind-vf:
-    - shard-rkl:          NOTRUN -> [SKIP][278] ([i915#9917])
-   [278]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-3/igt@sriov_basic@bind-unbind-vf.html
+    - shard-rkl:          NOTRUN -> [SKIP][262] ([i915#9917])
+   [262]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@sriov_basic@bind-unbind-vf.html
 
-  * igt@sriov_basic@enable-vfs-autoprobe-off:
-    - shard-dg2:          NOTRUN -> [SKIP][279] ([i915#9917])
-   [279]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-1/igt@sriov_basic@enable-vfs-autoprobe-off.html
+  * igt@sriov_basic@enable-vfs-autoprobe-off@numvfs-6:
+    - shard-tglu:         NOTRUN -> [FAIL][263] ([i915#12910]) +9 other tests fail
+   [263]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-7/igt@sriov_basic@enable-vfs-autoprobe-off@numvfs-6.html
 
   
 #### Possible fixes ####
 
-  * igt@gem_eio@throttle:
-    - shard-mtlp:         [ABORT][280] ([i915#13193]) -> [PASS][281]
-   [280]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-mtlp-4/igt@gem_eio@throttle.html
-   [281]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-4/igt@gem_eio@throttle.html
-
-  * igt@gem_exec_endless@dispatch@vcs0:
-    - shard-dg2:          [TIMEOUT][282] ([i915#3778] / [i915#7016]) -> [PASS][283] +1 other test pass
-   [282]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-dg2-2/igt@gem_exec_endless@dispatch@vcs0.html
-   [283]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-6/igt@gem_exec_endless@dispatch@vcs0.html
-
-  * igt@gem_exec_suspend@basic-s0:
-    - shard-dg2:          [INCOMPLETE][284] ([i915#11441] / [i915#13304]) -> [PASS][285]
-   [284]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-dg2-3/igt@gem_exec_suspend@basic-s0.html
-   [285]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-10/igt@gem_exec_suspend@basic-s0.html
-
-  * igt@gem_exec_suspend@basic-s0@lmem0:
-    - shard-dg2:          [INCOMPLETE][286] ([i915#11441]) -> [PASS][287]
-   [286]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-dg2-3/igt@gem_exec_suspend@basic-s0@lmem0.html
-   [287]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-10/igt@gem_exec_suspend@basic-s0@lmem0.html
+  * igt@gem_eio@reset-stress:
+    - shard-mtlp:         [ABORT][264] -> [PASS][265]
+   [264]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-mtlp-7/igt@gem_eio@reset-stress.html
+   [265]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-mtlp-4/igt@gem_eio@reset-stress.html
 
   * igt@gem_mmap_offset@clear-via-pagefault:
-    - shard-mtlp:         [ABORT][288] ([i915#10729]) -> [PASS][289] +1 other test pass
-   [288]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-mtlp-2/igt@gem_mmap_offset@clear-via-pagefault.html
-   [289]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@gem_mmap_offset@clear-via-pagefault.html
+    - shard-mtlp:         [ABORT][266] ([i915#10729]) -> [PASS][267] +1 other test pass
+   [266]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-mtlp-1/igt@gem_mmap_offset@clear-via-pagefault.html
+   [267]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-mtlp-7/igt@gem_mmap_offset@clear-via-pagefault.html
 
-  * igt@gem_tiled_swapping@non-threaded:
-    - shard-rkl:          [FAIL][290] ([i915#13557]) -> [PASS][291]
-   [290]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-rkl-1/igt@gem_tiled_swapping@non-threaded.html
-   [291]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-1/igt@gem_tiled_swapping@non-threaded.html
+  * igt@kms_async_flips@alternate-sync-async-flip-atomic:
+    - shard-tglu:         [FAIL][268] ([i915#10991] / [i915#13320]) -> [PASS][269]
+   [268]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-tglu-2/igt@kms_async_flips@alternate-sync-async-flip-atomic.html
+   [269]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-4/igt@kms_async_flips@alternate-sync-async-flip-atomic.html
 
-  * igt@gem_workarounds@suspend-resume-fd:
-    - shard-dg1:          [ABORT][292] ([i915#8213]) -> [PASS][293]
-   [292]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-dg1-17/igt@gem_workarounds@suspend-resume-fd.html
-   [293]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-12/igt@gem_workarounds@suspend-resume-fd.html
+  * igt@kms_async_flips@alternate-sync-async-flip-atomic@pipe-d-hdmi-a-1:
+    - shard-tglu:         [FAIL][270] ([i915#13320]) -> [PASS][271]
+   [270]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-tglu-2/igt@kms_async_flips@alternate-sync-async-flip-atomic@pipe-d-hdmi-a-1.html
+   [271]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-4/igt@kms_async_flips@alternate-sync-async-flip-atomic@pipe-d-hdmi-a-1.html
 
-  * igt@gen9_exec_parse@allowed-single:
-    - shard-glk:          [ABORT][294] ([i915#5566]) -> [PASS][295]
-   [294]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-glk8/igt@gen9_exec_parse@allowed-single.html
-   [295]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-glk1/igt@gen9_exec_parse@allowed-single.html
+  * igt@kms_async_flips@test-cursor-atomic:
+    - shard-rkl:          [DMESG-WARN][272] ([i915#12964]) -> [PASS][273] +6 other tests pass
+   [272]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-rkl-4/igt@kms_async_flips@test-cursor-atomic.html
+   [273]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-rkl-5/igt@kms_async_flips@test-cursor-atomic.html
 
-  * igt@i915_pm_rc6_residency@rc6-idle:
-    - shard-dg1:          [FAIL][296] ([i915#3591]) -> [PASS][297]
-   [296]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-dg1-14/igt@i915_pm_rc6_residency@rc6-idle.html
-   [297]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-17/igt@i915_pm_rc6_residency@rc6-idle.html
+  * igt@kms_big_fb@4-tiled-max-hw-stride-64bpp-rotate-0-hflip:
+    - shard-mtlp:         [FAIL][274] ([i915#5138]) -> [PASS][275]
+   [274]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-mtlp-1/igt@kms_big_fb@4-tiled-max-hw-stride-64bpp-rotate-0-hflip.html
+   [275]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-mtlp-5/igt@kms_big_fb@4-tiled-max-hw-stride-64bpp-rotate-0-hflip.html
 
-  * igt@i915_pm_rc6_residency@rc6-idle@gt0-rcs0:
-    - shard-dg1:          [FAIL][298] ([i915#12739] / [i915#3591]) -> [PASS][299]
-   [298]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-dg1-14/igt@i915_pm_rc6_residency@rc6-idle@gt0-rcs0.html
-   [299]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-17/igt@i915_pm_rc6_residency@rc6-idle@gt0-rcs0.html
+  * igt@kms_cursor_crc@cursor-random-64x21:
+    - shard-rkl:          [FAIL][276] ([i915#13566]) -> [PASS][277] +1 other test pass
+   [276]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-rkl-3/igt@kms_cursor_crc@cursor-random-64x21.html
+   [277]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-rkl-4/igt@kms_cursor_crc@cursor-random-64x21.html
 
-  * igt@i915_pm_rpm@system-suspend-execbuf:
-    - shard-dg2:          [ABORT][300] -> [PASS][301]
-   [300]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-dg2-5/igt@i915_pm_rpm@system-suspend-execbuf.html
-   [301]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-7/igt@i915_pm_rpm@system-suspend-execbuf.html
+  * igt@kms_cursor_crc@cursor-sliding-128x42:
+    - shard-tglu:         [FAIL][278] -> [PASS][279] +11 other tests pass
+   [278]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-tglu-5/igt@kms_cursor_crc@cursor-sliding-128x42.html
+   [279]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-2/igt@kms_cursor_crc@cursor-sliding-128x42.html
 
-  * igt@i915_suspend@basic-s3-without-i915:
-    - shard-rkl:          [INCOMPLETE][302] ([i915#4817]) -> [PASS][303]
-   [302]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-rkl-3/igt@i915_suspend@basic-s3-without-i915.html
-   [303]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-4/igt@i915_suspend@basic-s3-without-i915.html
+  * igt@kms_flip@flip-vs-suspend-interruptible:
+    - shard-dg1:          [DMESG-WARN][280] ([i915#4423]) -> [PASS][281] +2 other tests pass
+   [280]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-dg1-18/igt@kms_flip@flip-vs-suspend-interruptible.html
+   [281]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg1-17/igt@kms_flip@flip-vs-suspend-interruptible.html
 
-  * igt@kms_cursor_crc@cursor-onscreen-256x85:
-    - shard-tglu-1:       [FAIL][304] -> [PASS][305] +1 other test pass
-   [304]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-tglu-1/igt@kms_cursor_crc@cursor-onscreen-256x85.html
-   [305]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-1/igt@kms_cursor_crc@cursor-onscreen-256x85.html
+  * igt@kms_frontbuffer_tracking@fbc-1p-offscren-pri-shrfb-draw-pwrite:
+    - shard-dg2:          [FAIL][282] ([i915#6880]) -> [PASS][283]
+   [282]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-dg2-3/igt@kms_frontbuffer_tracking@fbc-1p-offscren-pri-shrfb-draw-pwrite.html
+   [283]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-8/igt@kms_frontbuffer_tracking@fbc-1p-offscren-pri-shrfb-draw-pwrite.html
 
-  * igt@kms_cursor_crc@cursor-random-128x42:
-    - shard-tglu:         [FAIL][306] -> [PASS][307] +3 other tests pass
-   [306]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-tglu-6/igt@kms_cursor_crc@cursor-random-128x42.html
-   [307]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-4/igt@kms_cursor_crc@cursor-random-128x42.html
-
-  * igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions:
-    - shard-glk:          [FAIL][308] ([i915#2346]) -> [PASS][309]
-   [308]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-glk8/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html
-   [309]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-glk1/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html
-
-  * igt@kms_flip@2x-flip-vs-suspend-interruptible@ab-vga1-hdmi-a1:
-    - shard-snb:          [DMESG-WARN][310] ([i915#12314]) -> [PASS][311] +1 other test pass
-   [310]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-snb5/igt@kms_flip@2x-flip-vs-suspend-interruptible@ab-vga1-hdmi-a1.html
-   [311]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-snb5/igt@kms_flip@2x-flip-vs-suspend-interruptible@ab-vga1-hdmi-a1.html
-
-  * igt@kms_flip@flip-vs-suspend@b-edp1:
-    - shard-mtlp:         [INCOMPLETE][312] ([i915#6113]) -> [PASS][313] +1 other test pass
-   [312]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-mtlp-1/igt@kms_flip@flip-vs-suspend@b-edp1.html
-   [313]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-3/igt@kms_flip@flip-vs-suspend@b-edp1.html
-
-  * igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-spr-indfb-draw-pwrite:
-    - shard-snb:          [SKIP][314] -> [PASS][315]
-   [314]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-snb1/igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-spr-indfb-draw-pwrite.html
-   [315]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-snb5/igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-spr-indfb-draw-pwrite.html
-
-  * igt@kms_hdr@invalid-metadata-sizes:
-    - shard-dg2:          [SKIP][316] ([i915#3555] / [i915#8228]) -> [PASS][317]
-   [316]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-dg2-8/igt@kms_hdr@invalid-metadata-sizes.html
-   [317]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-10/igt@kms_hdr@invalid-metadata-sizes.html
-
-  * igt@kms_pm_rpm@modeset-lpsp:
-    - shard-dg2:          [SKIP][318] ([i915#9519]) -> [PASS][319]
-   [318]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-dg2-7/igt@kms_pm_rpm@modeset-lpsp.html
-   [319]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-4/igt@kms_pm_rpm@modeset-lpsp.html
-
-  * igt@kms_pm_rpm@modeset-non-lpsp-stress:
-    - shard-rkl:          [SKIP][320] ([i915#9519]) -> [PASS][321] +2 other tests pass
-   [320]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-rkl-4/igt@kms_pm_rpm@modeset-non-lpsp-stress.html
-   [321]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-6/igt@kms_pm_rpm@modeset-non-lpsp-stress.html
-
-  * igt@kms_selftest@drm_format_helper@drm_format_helper_test-drm_test_fb_build_fourcc_list:
-    - shard-rkl:          [DMESG-WARN][322] ([i915#12964]) -> [PASS][323] +1 other test pass
-   [322]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-rkl-5/igt@kms_selftest@drm_format_helper@drm_format_helper_test-drm_test_fb_build_fourcc_list.html
-   [323]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-7/igt@kms_selftest@drm_format_helper@drm_format_helper_test-drm_test_fb_build_fourcc_list.html
-
-  * igt@perf_pmu@busy-idle-check-all@vecs0:
-    - shard-mtlp:         [FAIL][324] ([i915#4349]) -> [PASS][325] +2 other tests pass
-   [324]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-mtlp-2/igt@perf_pmu@busy-idle-check-all@vecs0.html
-   [325]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-8/igt@perf_pmu@busy-idle-check-all@vecs0.html
-
-  * igt@perf_pmu@module-unload:
-    - shard-tglu:         [INCOMPLETE][326] -> [PASS][327]
-   [326]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-tglu-10/igt@perf_pmu@module-unload.html
-   [327]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-10/igt@perf_pmu@module-unload.html
+  * igt@kms_pm_rpm@modeset-lpsp-stress-no-wait:
+    - shard-dg2:          [SKIP][284] ([i915#9519]) -> [PASS][285] +1 other test pass
+   [284]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-dg2-6/igt@kms_pm_rpm@modeset-lpsp-stress-no-wait.html
+   [285]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-4/igt@kms_pm_rpm@modeset-lpsp-stress-no-wait.html
+    - shard-rkl:          [SKIP][286] ([i915#9519]) -> [PASS][287]
+   [286]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-rkl-1/igt@kms_pm_rpm@modeset-lpsp-stress-no-wait.html
+   [287]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@kms_pm_rpm@modeset-lpsp-stress-no-wait.html
 
   * igt@perf_pmu@most-busy-check-all@vcs1:
-    - shard-mtlp:         [FAIL][328] ([i915#11943]) -> [PASS][329]
-   [328]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-mtlp-2/igt@perf_pmu@most-busy-check-all@vcs1.html
-   [329]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-2/igt@perf_pmu@most-busy-check-all@vcs1.html
-
-  * igt@syncobj_wait@wait-any-interrupted:
-    - shard-dg1:          [DMESG-WARN][330] ([i915#4423]) -> [PASS][331]
-   [330]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-dg1-17/igt@syncobj_wait@wait-any-interrupted.html
-   [331]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-13/igt@syncobj_wait@wait-any-interrupted.html
+    - shard-mtlp:         [FAIL][288] ([i915#11943]) -> [PASS][289]
+   [288]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-mtlp-4/igt@perf_pmu@most-busy-check-all@vcs1.html
+   [289]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-mtlp-6/igt@perf_pmu@most-busy-check-all@vcs1.html
 
   
 #### Warnings ####
 
   * igt@gem_eio@in-flight-suspend:
-    - shard-glk:          [INCOMPLETE][332] ([i915#13197] / [i915#13390]) -> [INCOMPLETE][333] ([i915#13390])
-   [332]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-glk7/igt@gem_eio@in-flight-suspend.html
-   [333]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-glk3/igt@gem_eio@in-flight-suspend.html
+    - shard-glk:          [INCOMPLETE][290] ([i915#13197] / [i915#13390]) -> [INCOMPLETE][291] ([i915#13390])
+   [290]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-glk6/igt@gem_eio@in-flight-suspend.html
+   [291]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-glk9/igt@gem_eio@in-flight-suspend.html
 
   * igt@i915_module_load@reload-with-fault-injection:
-    - shard-tglu:         [DMESG-WARN][334] ([i915#13475]) -> [ABORT][335] ([i915#12817] / [i915#9820])
-   [334]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-tglu-3/igt@i915_module_load@reload-with-fault-injection.html
-   [335]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-7/igt@i915_module_load@reload-with-fault-injection.html
-    - shard-mtlp:         [DMESG-WARN][336] ([i915#10887] / [i915#13475]) -> [ABORT][337] ([i915#10131] / [i915#10887] / [i915#13493] / [i915#9820])
-   [336]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-mtlp-1/igt@i915_module_load@reload-with-fault-injection.html
-   [337]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-7/igt@i915_module_load@reload-with-fault-injection.html
-    - shard-dg2:          [ABORT][338] ([i915#9820]) -> [DMESG-WARN][339] ([i915#10887] / [i915#13475])
-   [338]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-dg2-7/igt@i915_module_load@reload-with-fault-injection.html
-   [339]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-2/igt@i915_module_load@reload-with-fault-injection.html
+    - shard-rkl:          [DMESG-WARN][292] ([i915#12964]) -> [ABORT][293] ([i915#9820])
+   [292]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-rkl-5/igt@i915_module_load@reload-with-fault-injection.html
+   [293]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-rkl-1/igt@i915_module_load@reload-with-fault-injection.html
+    - shard-tglu:         [ABORT][294] ([i915#12817] / [i915#9820]) -> [DMESG-WARN][295] ([i915#13475])
+   [294]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-tglu-3/igt@i915_module_load@reload-with-fault-injection.html
+   [295]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-7/igt@i915_module_load@reload-with-fault-injection.html
 
-  * igt@kms_content_protection@lic-type-0:
-    - shard-dg2:          [TIMEOUT][340] ([i915#7173]) -> [SKIP][341] ([i915#9424])
-   [340]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-dg2-10/igt@kms_content_protection@lic-type-0.html
-   [341]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-6/igt@kms_content_protection@lic-type-0.html
+  * igt@kms_cursor_crc@cursor-onscreen-64x21:
+    - shard-rkl:          [DMESG-FAIL][296] ([i915#12964]) -> [DMESG-WARN][297] ([i915#12917] / [i915#12964])
+   [296]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-rkl-7/igt@kms_cursor_crc@cursor-onscreen-64x21.html
+   [297]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-rkl-4/igt@kms_cursor_crc@cursor-onscreen-64x21.html
 
-  * igt@kms_frontbuffer_tracking@fbcpsr-1p-primscrn-spr-indfb-draw-blt:
-    - shard-dg2:          [SKIP][342] ([i915#3458]) -> [SKIP][343] ([i915#10433] / [i915#3458])
-   [342]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-dg2-7/igt@kms_frontbuffer_tracking@fbcpsr-1p-primscrn-spr-indfb-draw-blt.html
-   [343]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-4/igt@kms_frontbuffer_tracking@fbcpsr-1p-primscrn-spr-indfb-draw-blt.html
+  * igt@kms_cursor_crc@cursor-onscreen-64x21@pipe-a-hdmi-a-1:
+    - shard-rkl:          [FAIL][298] ([i915#13566]) -> [DMESG-WARN][299] ([i915#12917] / [i915#12964])
+   [298]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-rkl-7/igt@kms_cursor_crc@cursor-onscreen-64x21@pipe-a-hdmi-a-1.html
+   [299]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-rkl-4/igt@kms_cursor_crc@cursor-onscreen-64x21@pipe-a-hdmi-a-1.html
 
-  * igt@kms_frontbuffer_tracking@fbcpsr-2p-primscrn-pri-shrfb-draw-mmap-wc:
-    - shard-dg1:          [SKIP][344] ([i915#4423] / [i915#8708]) -> [SKIP][345] ([i915#8708])
-   [344]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-dg1-17/igt@kms_frontbuffer_tracking@fbcpsr-2p-primscrn-pri-shrfb-draw-mmap-wc.html
-   [345]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-13/igt@kms_frontbuffer_tracking@fbcpsr-2p-primscrn-pri-shrfb-draw-mmap-wc.html
+  * igt@kms_flip@flip-vs-suspend:
+    - shard-glk:          [INCOMPLETE][300] ([i915#12745] / [i915#1982] / [i915#4839]) -> [INCOMPLETE][301] ([i915#12745] / [i915#4839])
+   [300]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-glk1/igt@kms_flip@flip-vs-suspend.html
+   [301]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-glk9/igt@kms_flip@flip-vs-suspend.html
 
-  * igt@kms_frontbuffer_tracking@psr-indfb-scaledprimary:
-    - shard-dg2:          [SKIP][346] ([i915#10433] / [i915#3458]) -> [SKIP][347] ([i915#3458]) +4 other tests skip
-   [346]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-dg2-4/igt@kms_frontbuffer_tracking@psr-indfb-scaledprimary.html
-   [347]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-8/igt@kms_frontbuffer_tracking@psr-indfb-scaledprimary.html
+  * igt@kms_flip@flip-vs-suspend@a-hdmi-a1:
+    - shard-glk:          [INCOMPLETE][302] ([i915#12745] / [i915#1982]) -> [INCOMPLETE][303] ([i915#12745])
+   [302]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-glk1/igt@kms_flip@flip-vs-suspend@a-hdmi-a1.html
+   [303]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-glk9/igt@kms_flip@flip-vs-suspend@a-hdmi-a1.html
 
-  * igt@kms_pm_dc@dc6-dpms:
-    - shard-rkl:          [SKIP][348] ([i915#3361]) -> [FAIL][349] ([i915#9295])
-   [348]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-rkl-1/igt@kms_pm_dc@dc6-dpms.html
-   [349]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-5/igt@kms_pm_dc@dc6-dpms.html
+  * igt@kms_frontbuffer_tracking@fbcpsr-1p-offscren-pri-indfb-draw-mmap-cpu:
+    - shard-dg2:          [SKIP][304] ([i915#10433] / [i915#3458]) -> [SKIP][305] ([i915#3458])
+   [304]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-dg2-4/igt@kms_frontbuffer_tracking@fbcpsr-1p-offscren-pri-indfb-draw-mmap-cpu.html
+   [305]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-1/igt@kms_frontbuffer_tracking@fbcpsr-1p-offscren-pri-indfb-draw-mmap-cpu.html
 
-  * igt@kms_pm_lpsp@kms-lpsp:
-    - shard-rkl:          [SKIP][350] ([i915#9340]) -> [SKIP][351] ([i915#3828])
-   [350]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-rkl-1/igt@kms_pm_lpsp@kms-lpsp.html
-   [351]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-7/igt@kms_pm_lpsp@kms-lpsp.html
+  * igt@kms_frontbuffer_tracking@fbcpsr-1p-offscren-pri-indfb-draw-pwrite:
+    - shard-dg2:          [SKIP][306] ([i915#3458]) -> [SKIP][307] ([i915#10433] / [i915#3458]) +4 other tests skip
+   [306]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-dg2-6/igt@kms_frontbuffer_tracking@fbcpsr-1p-offscren-pri-indfb-draw-pwrite.html
+   [307]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-4/igt@kms_frontbuffer_tracking@fbcpsr-1p-offscren-pri-indfb-draw-pwrite.html
 
-  * igt@prime_vgem@basic-fence-flip:
-    - shard-dg1:          [SKIP][352] ([i915#3708] / [i915#4423]) -> [SKIP][353] ([i915#3708])
-   [352]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-dg1-12/igt@prime_vgem@basic-fence-flip.html
-   [353]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-12/igt@prime_vgem@basic-fence-flip.html
+  * igt@kms_joiner@basic-ultra-joiner:
+    - shard-dg1:          [SKIP][308] ([i915#12339]) -> [SKIP][309] ([i915#12339] / [i915#4423])
+   [308]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-dg1-17/igt@kms_joiner@basic-ultra-joiner.html
+   [309]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg1-13/igt@kms_joiner@basic-ultra-joiner.html
 
   
   {name}: This element is suppressed. This means it is ignored when computing
           the status of the difference (SUCCESS, WARNING, or FAILURE).
 
-  [i915#10030]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10030
-  [i915#10055]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10055
-  [i915#10131]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10131
   [i915#10226]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10226
   [i915#10307]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10307
-  [i915#10393]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10393
   [i915#10433]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10433
   [i915#10434]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10434
   [i915#10656]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10656
@@ -1345,177 +1036,129 @@ Known issues
   [i915#10729]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10729
   [i915#10887]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10887
   [i915#1099]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1099
+  [i915#10991]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10991
   [i915#11078]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11078
   [i915#11151]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11151
-  [i915#11441]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11441
   [i915#11520]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11520
-  [i915#11527]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11527
   [i915#11614]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11614
-  [i915#11616]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11616
-  [i915#11681]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11681
-  [i915#11808]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11808
+  [i915#118]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/118
+  [i915#11823]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11823
+  [i915#11859]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11859
+  [i915#1187]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1187
   [i915#11943]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11943
   [i915#11989]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11989
+  [i915#12238]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12238
   [i915#12247]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12247
   [i915#12313]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12313
-  [i915#12314]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12314
   [i915#12316]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12316
   [i915#12339]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12339
   [i915#12343]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12343
   [i915#12392]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12392
-  [i915#12402]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12402
+  [i915#12394]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12394
+  [i915#12455]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12455
   [i915#1257]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1257
   [i915#12713]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12713
-  [i915#12739]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12739
-  [i915#12755]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12755
-  [i915#12805]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12805
+  [i915#12745]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12745
   [i915#12817]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12817
-  [i915#12916]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12916
+  [i915#12910]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12910
   [i915#12917]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12917
   [i915#12964]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12964
-  [i915#12967]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12967
-  [i915#13008]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13008
-  [i915#13026]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13026
+  [i915#13029]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13029
   [i915#13046]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13046
   [i915#13049]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13049
-  [i915#13179]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13179
   [i915#13193]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13193
   [i915#13197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13197
-  [i915#13304]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13304
+  [i915#13320]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13320
   [i915#13390]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13390
-  [i915#13398]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13398
   [i915#13475]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13475
-  [i915#13493]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13493
   [i915#13522]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13522
   [i915#13557]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13557
-  [i915#1769]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1769
+  [i915#13566]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13566
   [i915#1825]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1825
-  [i915#1839]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1839
+  [i915#1982]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982
+  [i915#2065]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2065
   [i915#2190]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190
-  [i915#2346]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2346
+  [i915#2434]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2434
   [i915#2437]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2437
   [i915#2527]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2527
   [i915#2587]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2587
   [i915#2658]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2658
   [i915#2672]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2672
   [i915#280]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/280
-  [i915#284]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/284
   [i915#2856]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2856
   [i915#3023]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3023
+  [i915#3116]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3116
   [i915#3281]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3281
   [i915#3282]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3282
   [i915#3297]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3297
-  [i915#3323]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3323
-  [i915#3361]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3361
+  [i915#3299]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3299
   [i915#3458]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3458
+  [i915#3469]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3469
   [i915#3539]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3539
   [i915#3555]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555
   [i915#3582]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3582
-  [i915#3591]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3591
   [i915#3637]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3637
   [i915#3638]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3638
-  [i915#3708]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3708
-  [i915#3778]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3778
-  [i915#3804]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3804
+  [i915#3742]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3742
   [i915#3828]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3828
   [i915#3840]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3840
   [i915#4077]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4077
-  [i915#4079]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4079
   [i915#4083]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4083
   [i915#4103]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4103
-  [i915#4212]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4212
   [i915#4213]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4213
   [i915#4270]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4270
-  [i915#4349]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4349
-  [i915#4387]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4387
   [i915#4423]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4423
-  [i915#4537]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4537
+  [i915#4525]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4525
   [i915#4538]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4538
   [i915#4613]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613
-  [i915#4812]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4812
-  [i915#4816]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4816
-  [i915#4817]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4817
+  [i915#4839]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4839
   [i915#4852]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4852
   [i915#4854]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4854
-  [i915#4860]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4860
-  [i915#4879]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4879
-  [i915#4880]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4880
-  [i915#4881]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4881
-  [i915#4885]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4885
+  [i915#4958]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4958
+  [i915#5138]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5138
   [i915#5190]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5190
-  [i915#5274]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5274
   [i915#5286]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5286
   [i915#5289]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5289
   [i915#5354]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5354
   [i915#5493]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5493
   [i915#5507]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5507
-  [i915#5566]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5566
-  [i915#5882]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5882
-  [i915#5956]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5956
+  [i915#5784]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5784
   [i915#6095]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6095
-  [i915#6113]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6113
-  [i915#6187]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6187
-  [i915#6188]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6188
-  [i915#6301]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6301
-  [i915#6334]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6334
-  [i915#6335]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6335
-  [i915#6344]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6344
-  [i915#6524]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6524
-  [i915#6590]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6590
-  [i915#6621]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6621
-  [i915#6805]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6805
   [i915#6880]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6880
+  [i915#6944]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6944
   [i915#6953]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6953
-  [i915#7016]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7016
+  [i915#7091]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7091
+  [i915#7116]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7116
   [i915#7118]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7118
-  [i915#7173]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7173
-  [i915#7213]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7213
   [i915#7297]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7297
   [i915#7443]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7443
-  [i915#7707]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7707
+  [i915#7697]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7697
   [i915#7828]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7828
   [i915#7975]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7975
   [i915#8213]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8213
   [i915#8228]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8228
-  [i915#8381]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8381
-  [i915#8411]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8411
   [i915#8414]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8414
   [i915#8428]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8428
-  [i915#8430]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8430
+  [i915#8437]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8437
   [i915#8516]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8516
-  [i915#8555]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8555
-  [i915#8562]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8562
   [i915#8588]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8588
   [i915#8623]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8623
   [i915#8708]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8708
   [i915#8709]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8709
   [i915#8808]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8808
-  [i915#8809]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8809
-  [i915#8812]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8812
-  [i915#8813]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8813
-  [i915#8814]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8814
-  [i915#8898]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8898
+  [i915#8821]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8821
+  [i915#9053]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9053
   [i915#9067]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9067
-  [i915#9100]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9100
-  [i915#9295]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9295
-  [i915#9311]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9311
+  [i915#9196]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9196
   [i915#9323]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9323
-  [i915#9340]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9340
-  [i915#9351]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9351
-  [i915#9412]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9412
-  [i915#9423]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9423
+  [i915#9337]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9337
   [i915#9424]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9424
-  [i915#9433]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9433
   [i915#9519]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9519
-  [i915#9561]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9561
   [i915#9683]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9683
   [i915#9685]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9685
   [i915#9688]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9688
-  [i915#9723]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9723
   [i915#9732]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9732
-  [i915#9766]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9766
   [i915#9808]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9808
-  [i915#9809]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9809
   [i915#9820]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9820
   [i915#9906]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9906
   [i915#9917]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9917
@@ -1525,30 +1168,30 @@ Known issues
 Build changes
 -------------
 
-  * Linux: CI_DRM_16002 -> Patchwork_142947v8
+  * Linux: CI_DRM_16004 -> Patchwork_143636v2
 
   CI-20190529: 20190529
-  CI_DRM_16002: d577d9e67e5ac149fcd4442327210b831cddb308 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8206: 48d7780a026179e5de232142df3ac59fec6487ee @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_142947v8: d577d9e67e5ac149fcd4442327210b831cddb308 @ git://anongit.freedesktop.org/gfx-ci/linux
+  CI_DRM_16004: cb1c4020e51585b89363590a56869836e1466b75 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8207: 9f36f9f9e8825a67b762630c2b31628ddcda5c10 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_143636v2: cb1c4020e51585b89363590a56869836e1466b75 @ git://anongit.freedesktop.org/gfx-ci/linux
   piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/index.html
 
---===============6369330727690081684==
+--===============7956571146049625141==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 
 
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns=3D"http://www.w3.org/1999/xhtml">
  <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8"/>
   <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
+  <style id=3D"css-table-select" type=3D"text/css">
    td { padding: 2pt; }
   </style>
 </head>
@@ -1557,1742 +1200,2076 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>drm/i915/cmtg: Disable the CMTG (rev8)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/142947/">https://patchwork.freedesktop.org/series/142947/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
+<tr><td><b>Series:</b></td><td>drm/i915/pmu: Drop custom hotplug code (rev2=
+)</td></tr>
+<tr><td><b>URL:</b></td><td><a href=3D"https://patchwork.freedesktop.org/se=
+ries/143636/">https://patchwork.freedesktop.org/series/143636/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/index.html</a></td></tr>
+    <tr><td><b>Details:</b></td><td><a href=3D"https://intel-gfx-ci.01.org/=
+tree/drm-tip/Patchwork_143636v2/index.html">https://intel-gfx-ci.01.org/tre=
+e/drm-tip/Patchwork_143636v2/index.html</a></td></tr>
 
 </table>
 
 
-    <h1>CI Bug Log - changes from CI_DRM_16002_full -&gt; Patchwork_142947v8_full</h1>
+    <h1>CI Bug Log - changes from CI_DRM_16004_full -&gt; Patchwork_143636v=
+2_full</h1>
 <h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 10)</h2>
-<p>Missing    (1): shard-glk-0 </p>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_143636v2_full absolutely n=
+eed to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br=
+ />
+  introduced in Patchwork_143636v2_full, please notify your bug team (I915-=
+ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in C=
+I.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_=
+143636v2_full:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@perf_pmu@invalid-init:<ul>
+<li>shard-dg2:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_16004/shard-dg2-3/igt@perf_pmu@invalid-init.html">PASS</a> -&gt; <a=
+ href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-=
+dg2-8/igt@perf_pmu@invalid-init.html">FAIL</a></li>
+<li>shard-tglu-1:       NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@perf_pmu@invalid-init.htm=
+l">FAIL</a></li>
+<li>shard-dg1:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_16004/shard-dg1-14/igt@perf_pmu@invalid-init.html">PASS</a> -&gt; <=
+a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard=
+-dg1-17/igt@perf_pmu@invalid-init.html">FAIL</a></li>
+<li>shard-mtlp:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_16004/shard-mtlp-3/igt@perf_pmu@invalid-init.html">PASS</a> -&gt; <=
+a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard=
+-mtlp-8/igt@perf_pmu@invalid-init.html">FAIL</a></li>
+</ul>
+</li>
+</ul>
 <h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_142947v8_full that come from known issues:</p>
+<p>Here are the changes found in Patchwork_143636v2_full that come from kno=
+wn issues:</p>
 <h3>IGT changes</h3>
 <h4>Issues hit</h4>
 <ul>
 <li>
-<p>igt@api_intel_bb@blit-reloc-purge-cache:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-7/igt@api_intel_bb@blit-reloc-purge-cache.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8411">i915#8411</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@api_intel_bb@object-reloc-keep-cache:</p>
-<ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@api_intel_bb@object-reloc-keep-cache.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8411">i915#8411</a>)</li>
-</ul>
-</li>
-<li>
 <p>igt@device_reset@cold-reset-bound:</p>
 <ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-7/igt@device_reset@cold-reset-bound.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11078">i915#11078</a>)</li>
+<li>shard-tglu:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-8/igt@device_reset@cold-reset-b=
+ound.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/ker=
+nel/-/issues/11078">i915#11078</a>)</li>
 </ul>
 </li>
 <li>
 <p>igt@device_reset@unbind-reset-rebind:</p>
 <ul>
-<li>shard-tglu:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-tglu-3/igt@device_reset@unbind-reset-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-3/igt@device_reset@unbind-reset-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12817">i915#12817</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5507">i915#5507</a>)</li>
+<li>shard-tglu:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_16004/shard-tglu-5/igt@device_reset@unbind-reset-rebind.html">PASS<=
+/a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143=
+636v2/shard-tglu-2/igt@device_reset@unbind-reset-rebind.html">ABORT</a> (<a=
+ href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12817">i91=
+5#12817</a> / <a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/i=
+ssues/5507">i915#5507</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@drm_fdinfo@all-busy-check-all:</p>
+<p>igt@drm_fdinfo@busy-idle@bcs0:</p>
 <ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-7/igt@drm_fdinfo@all-busy-check-all.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8414">i915#8414</a>) +1 other test skip</li>
+<li>shard-dg2:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@drm_fdinfo@busy-idle@bcs0.=
+html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-=
+/issues/8414">i915#8414</a>) +7 other tests skip</li>
 </ul>
 </li>
 <li>
-<p>igt@drm_fdinfo@busy-idle-check-all@vcs1:</p>
+<p>igt@drm_fdinfo@busy-idle@vcs1:</p>
 <ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@drm_fdinfo@busy-idle-check-all@vcs1.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8414">i915#8414</a>) +5 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@drm_fdinfo@busy-idle@vecs0:</p>
-<ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-3/igt@drm_fdinfo@busy-idle@vecs0.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8414">i915#8414</a>) +6 other tests skip</li>
+<li>shard-dg1:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@drm_fdinfo@busy-idle@vcs1=
+.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/=
+-/issues/8414">i915#8414</a>) +5 other tests skip</li>
 </ul>
 </li>
 <li>
 <p>igt@gem_bad_reloc@negative-reloc-lut:</p>
 <ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@gem_bad_reloc@negative-reloc-lut.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3281">i915#3281</a>) +2 other tests skip</li>
+<li>shard-dg1:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@gem_bad_reloc@negative-re=
+loc-lut.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/=
+kernel/-/issues/3281">i915#3281</a>) +3 other tests skip</li>
 </ul>
 </li>
 <li>
-<p>igt@gem_ccs@large-ctrl-surf-copy:</p>
+<p>igt@gem_basic@multigpu-create-close:</p>
 <ul>
-<li>shard-tglu-1:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-1/igt@gem_ccs@large-ctrl-surf-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13008">i915#13008</a>)</li>
+<li>shard-rkl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@gem_basic@multigpu-create-=
+close.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/ke=
+rnel/-/issues/7697">i915#7697</a>)</li>
 </ul>
 </li>
 <li>
 <p>igt@gem_ccs@suspend-resume:</p>
 <ul>
-<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-dg2-8/igt@gem_ccs@suspend-resume.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-4/igt@gem_ccs@suspend-resume.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7297">i915#7297</a>)</li>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-8/igt@gem_ccs@suspend-resume.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9323">i915#9323</a>)</li>
+<li>shard-dg2:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_16004/shard-dg2-5/igt@gem_ccs@suspend-resume.html">PASS</a> -&gt; <=
+a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard=
+-dg2-1/igt@gem_ccs@suspend-resume.html">INCOMPLETE</a> (<a href=3D"https://=
+gitlab.freedesktop.org/drm/i915/kernel/-/issues/7297">i915#7297</a>)</li>
+<li>shard-tglu:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-8/igt@gem_ccs@suspend-resume.ht=
+ml">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/i=
+ssues/9323">i915#9323</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@gem_ccs@suspend-resume@xmajor-compressed-compfmt0-smem-lmem0:</p>
+<p>igt@gem_ccs@suspend-resume@tile4-compressed-compfmt0-smem-lmem0:</p>
 <ul>
-<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-dg2-8/igt@gem_ccs@suspend-resume@xmajor-compressed-compfmt0-smem-lmem0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-4/igt@gem_ccs@suspend-resume@xmajor-compressed-compfmt0-smem-lmem0.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12392">i915#12392</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7297">i915#7297</a>)</li>
+<li>shard-dg2:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_16004/shard-dg2-5/igt@gem_ccs@suspend-resume@tile4-compressed-compf=
+mt0-smem-lmem0.html">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/=
+tree/drm-tip/Patchwork_143636v2/shard-dg2-1/igt@gem_ccs@suspend-resume@tile=
+4-compressed-compfmt0-smem-lmem0.html">INCOMPLETE</a> (<a href=3D"https://g=
+itlab.freedesktop.org/drm/i915/kernel/-/issues/12392">i915#12392</a> / <a h=
+ref=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7297">i915#7=
+297</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@gem_create@create-ext-cpu-access-big:</p>
+<p>igt@gem_ctx_exec@basic-norecovery:</p>
 <ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@gem_create@create-ext-cpu-access-big.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6335">i915#6335</a>)</li>
+<li>shard-mtlp:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-mtlp-7/igt@gem_ctx_exec@basic-noreco=
+very.html">ABORT</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/ke=
+rnel/-/issues/13193">i915#13193</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@gem_create@create-ext-cpu-access-sanity-check:</p>
+<p>igt@gem_ctx_persistence@engines-mixed-process:</p>
 <ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-7/igt@gem_create@create-ext-cpu-access-sanity-check.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6335">i915#6335</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_create@create-ext-set-pat:</p>
-<ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-3/igt@gem_create@create-ext-set-pat.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8562">i915#8562</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_ctx_freq@sysfs:</p>
-<ul>
-<li>shard-mtlp:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-mtlp-4/igt@gem_ctx_freq@sysfs.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@gem_ctx_freq@sysfs.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9561">i915#9561</a>) +1 other test fail</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_ctx_persistence@engines-hostile-preempt:</p>
-<ul>
-<li>shard-snb:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-snb2/igt@gem_ctx_persistence@engines-hostile-preempt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1099">i915#1099</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_ctx_persistence@heartbeat-stop:</p>
-<ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@gem_ctx_persistence@heartbeat-stop.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8555">i915#8555</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_ctx_persistence@saturated-hostile-nopreempt:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@gem_ctx_persistence@saturated-hostile-nopreempt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5882">i915#5882</a>) +7 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_ctx_sseu@engines:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-7/igt@gem_ctx_sseu@engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/280">i915#280</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_ctx_sseu@invalid-args:</p>
-<ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@gem_ctx_sseu@invalid-args.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/280">i915#280</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_ctx_sseu@invalid-sseu:</p>
-<ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-3/igt@gem_ctx_sseu@invalid-sseu.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/280">i915#280</a>)</li>
+<li>shard-snb:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-snb2/igt@gem_ctx_persistence@engines=
+-mixed-process.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/dr=
+m/i915/kernel/-/issues/1099">i915#1099</a>) +4 other tests skip</li>
 </ul>
 </li>
 <li>
 <p>igt@gem_ctx_sseu@mmap-args:</p>
 <ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-7/igt@gem_ctx_sseu@mmap-args.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/280">i915#280</a>)</li>
+<li>shard-tglu-1:       NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@gem_ctx_sseu@mmap-args.ht=
+ml">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/i=
+ssues/280">i915#280</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@gem_eio@hibernate:</p>
+<p>igt@gem_eio@kms:</p>
 <ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-7/igt@gem_eio@hibernate.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10030">i915#10030</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7975">i915#7975</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8213">i915#8213</a>)</li>
+<li>shard-dg1:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_16004/shard-dg1-12/igt@gem_eio@kms.html">PASS</a> -&gt; <a href=3D"=
+https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg1-12/ig=
+t@gem_eio@kms.html">FAIL</a> (<a href=3D"https://gitlab.freedesktop.org/drm=
+/i915/kernel/-/issues/5784">i915#5784</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@gem_eio@unwedge-stress:</p>
+<p>igt@gem_exec_balancer@parallel-bb-first:</p>
 <ul>
-<li>shard-mtlp:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-mtlp-2/igt@gem_eio@unwedge-stress.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-7/igt@gem_eio@unwedge-stress.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13193">i915#13193</a>)</li>
-<li>shard-snb:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-snb7/igt@gem_eio@unwedge-stress.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8898">i915#8898</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_balancer@bonded-false-hang:</p>
-<ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@gem_exec_balancer@bonded-false-hang.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4812">i915#4812</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_balancer@noheartbeat:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@gem_exec_balancer@noheartbeat.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8555">i915#8555</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_capture@capture-recoverable:</p>
-<ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-3/igt@gem_exec_capture@capture-recoverable.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6344">i915#6344</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fence@submit67:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-1/igt@gem_exec_fence@submit67.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4812">i915#4812</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_flush@basic-uc-prw-default:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-7/igt@gem_exec_flush@basic-uc-prw-default.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3539">i915#3539</a>)</li>
+<li>shard-tglu:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-7/igt@gem_exec_balancer@paralle=
+l-bb-first.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i9=
+15/kernel/-/issues/4525">i915#4525</a>) +1 other test skip</li>
 </ul>
 </li>
 <li>
 <p>igt@gem_exec_flush@basic-uc-ro-default:</p>
 <ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@gem_exec_flush@basic-uc-ro-default.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3539">i915#3539</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4852">i915#4852</a>)</li>
+<li>shard-dg2:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@gem_exec_flush@basic-uc-ro=
+-default.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915=
+/kernel/-/issues/3539">i915#3539</a> / <a href=3D"https://gitlab.freedeskto=
+p.org/drm/i915/kernel/-/issues/4852">i915#4852</a>) +1 other test skip</li>
 </ul>
 </li>
 <li>
-<p>igt@gem_exec_flush@basic-uc-set-default:</p>
+<p>igt@gem_exec_flush@basic-wb-rw-before-default:</p>
 <ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-12/igt@gem_exec_flush@basic-uc-set-default.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3539">i915#3539</a>)</li>
+<li>shard-dg1:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@gem_exec_flush@basic-wb-r=
+w-before-default.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/=
+drm/i915/kernel/-/issues/3539">i915#3539</a> / <a href=3D"https://gitlab.fr=
+eedesktop.org/drm/i915/kernel/-/issues/4852">i915#4852</a>) +1 other test s=
+kip</li>
 </ul>
 </li>
 <li>
-<p>igt@gem_exec_flush@basic-wb-prw-default:</p>
+<p>igt@gem_exec_reloc@basic-cpu-gtt-noreloc:</p>
 <ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-1/igt@gem_exec_flush@basic-wb-prw-default.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3539">i915#3539</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4852">i915#4852</a>)</li>
+<li>shard-dg2:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@gem_exec_reloc@basic-cpu-g=
+tt-noreloc.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i9=
+15/kernel/-/issues/3281">i915#3281</a>) +6 other tests skip</li>
+<li>shard-mtlp:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-mtlp-7/igt@gem_exec_reloc@basic-cpu-=
+gtt-noreloc.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i=
+915/kernel/-/issues/3281">i915#3281</a>) +1 other test skip</li>
 </ul>
 </li>
 <li>
-<p>igt@gem_exec_reloc@basic-cpu-read-noreloc:</p>
+<p>igt@gem_exec_reloc@basic-write-cpu:</p>
 <ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-4/igt@gem_exec_reloc@basic-cpu-read-noreloc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3281">i915#3281</a>) +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_reloc@basic-gtt-noreloc:</p>
-<ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-3/igt@gem_exec_reloc@basic-gtt-noreloc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3281">i915#3281</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_reloc@basic-write-gtt-noreloc:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-7/igt@gem_exec_reloc@basic-write-gtt-noreloc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3281">i915#3281</a>) +6 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_schedule@preempt-queue-contexts:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-1/igt@gem_exec_schedule@preempt-queue-contexts.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4537">i915#4537</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4812">i915#4812</a>)</li>
+<li>shard-rkl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@gem_exec_reloc@basic-write=
+-cpu.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/ker=
+nel/-/issues/3281">i915#3281</a>)</li>
 </ul>
 </li>
 <li>
 <p>igt@gem_exec_suspend@basic-s4-devices:</p>
 <ul>
-<li>shard-mtlp:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-mtlp-4/igt@gem_exec_suspend@basic-s4-devices.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-7/igt@gem_exec_suspend@basic-s4-devices.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7975">i915#7975</a>) +1 other test abort</li>
+<li>shard-rkl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-rkl-3/igt@gem_exec_suspend@basic-s4-=
+devices.html">ABORT</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915=
+/kernel/-/issues/7975">i915#7975</a> / <a href=3D"https://gitlab.freedeskto=
+p.org/drm/i915/kernel/-/issues/8213">i915#8213</a>) +1 other test abort</li>
 </ul>
 </li>
 <li>
-<p>igt@gem_fence_thrash@bo-write-verify-x:</p>
+<p>igt@gem_exec_suspend@basic-s4-devices@lmem0:</p>
 <ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-7/igt@gem_fence_thrash@bo-write-verify-x.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4860">i915#4860</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_fenced_exec_thrash@2-spare-fences:</p>
-<ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-12/igt@gem_fenced_exec_thrash@2-spare-fences.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4860">i915#4860</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_fenced_exec_thrash@too-many-fences:</p>
-<ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-3/igt@gem_fenced_exec_thrash@too-many-fences.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4860">i915#4860</a>)</li>
+<li>shard-dg1:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@gem_exec_suspend@basic-s4=
+-devices@lmem0.html">ABORT</a> (<a href=3D"https://gitlab.freedesktop.org/d=
+rm/i915/kernel/-/issues/7975">i915#7975</a> / <a href=3D"https://gitlab.fre=
+edesktop.org/drm/i915/kernel/-/issues/8213">i915#8213</a>) +1 other test ab=
+ort</li>
 </ul>
 </li>
 <li>
 <p>igt@gem_huc_copy@huc-copy:</p>
 <ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-4/igt@gem_huc_copy@huc-copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2190">i915#2190</a>)</li>
+<li>shard-rkl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@gem_huc_copy@huc-copy.html=
+">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/iss=
+ues/2190">i915#2190</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@gem_lmem_swapping@heavy-verify-random-ccs:</p>
+<p>igt@gem_lmem_swapping@basic:</p>
 <ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-3/igt@gem_lmem_swapping@heavy-verify-random-ccs.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +1 other test skip</li>
+<li>shard-tglu-1:       NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@gem_lmem_swapping@basic.h=
+tml">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/=
+issues/4613">i915#4613</a>) +1 other test skip</li>
 </ul>
 </li>
 <li>
-<p>igt@gem_lmem_swapping@random:</p>
+<p>igt@gem_lmem_swapping@parallel-multi:</p>
 <ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@gem_lmem_swapping@random.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@smem-oom:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-8/igt@gem_lmem_swapping@smem-oom.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +1 other test skip</li>
+<li>shard-tglu:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-8/igt@gem_lmem_swapping@paralle=
+l-multi.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/=
+kernel/-/issues/4613">i915#4613</a>) +1 other test skip</li>
 </ul>
 </li>
 <li>
 <p>igt@gem_lmem_swapping@smem-oom@lmem0:</p>
 <ul>
-<li>shard-dg1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-dg1-13/igt@gem_lmem_swapping@smem-oom@lmem0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-12/igt@gem_lmem_swapping@smem-oom@lmem0.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5493">i915#5493</a>) +1 other test timeout</li>
+<li>shard-dg2:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_16004/shard-dg2-10/igt@gem_lmem_swapping@smem-oom@lmem0.html">PASS<=
+/a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143=
+636v2/shard-dg2-10/igt@gem_lmem_swapping@smem-oom@lmem0.html">TIMEOUT</a> (=
+<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5493">i9=
+15#5493</a>) +1 other test timeout</li>
 </ul>
 </li>
 <li>
-<p>igt@gem_lmem_swapping@verify-ccs:</p>
+<p>igt@gem_mmap_gtt@flink-race:</p>
 <ul>
-<li>shard-glk:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-glk4/igt@gem_lmem_swapping@verify-ccs.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +1 other test skip</li>
+<li>shard-dg1:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@gem_mmap_gtt@flink-race.h=
+tml">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/=
+issues/4077">i915#4077</a>) +2 other tests skip</li>
+<li>shard-mtlp:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-mtlp-7/igt@gem_mmap_gtt@flink-race.h=
+tml">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/=
+issues/4077">i915#4077</a>) +1 other test skip</li>
 </ul>
 </li>
 <li>
-<p>igt@gem_media_vme:</p>
+<p>igt@gem_mmap_gtt@hang:</p>
 <ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-12/igt@gem_media_vme.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/284">i915#284</a>)</li>
+<li>shard-dg2:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg2-8/igt@gem_mmap_gtt@hang.html">SK=
+IP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/=
+4077">i915#4077</a>) +5 other tests skip</li>
 </ul>
 </li>
 <li>
-<p>igt@gem_mmap@bad-size:</p>
+<p>igt@gem_mmap_wc@read:</p>
 <ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@gem_mmap@bad-size.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4083">i915#4083</a>) +4 other tests skip</li>
+<li>shard-dg1:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@gem_mmap_wc@read.html">SK=
+IP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/=
+4083">i915#4083</a>)</li>
+<li>shard-mtlp:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-mtlp-7/igt@gem_mmap_wc@read.html">SK=
+IP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/=
+4083">i915#4083</a>)</li>
+<li>shard-dg2:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@gem_mmap_wc@read.html">SKI=
+P</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4=
+083">i915#4083</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@gem_mmap@short-mmap:</p>
+<p>igt@gem_partial_pwrite_pread@write:</p>
 <ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@gem_mmap@short-mmap.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4083">i915#4083</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_mmap_gtt@basic-small-bo:</p>
-<ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-12/igt@gem_mmap_gtt@basic-small-bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4077">i915#4077</a>) +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_mmap_gtt@big-copy-xy:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@gem_mmap_gtt@big-copy-xy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4077">i915#4077</a>) +9 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_mmap_wc@bad-offset:</p>
-<ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-12/igt@gem_mmap_wc@bad-offset.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4083">i915#4083</a>)</li>
+<li>shard-rkl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@gem_partial_pwrite_pread@w=
+rite.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/ker=
+nel/-/issues/3282">i915#3282</a>)</li>
 </ul>
 </li>
 <li>
 <p>igt@gem_pwrite@basic-exhaustion:</p>
 <ul>
-<li>shard-snb:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-snb2/igt@gem_pwrite@basic-exhaustion.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2658">i915#2658</a>)</li>
-<li>shard-glk:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-glk1/igt@gem_pwrite@basic-exhaustion.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2658">i915#2658</a>)</li>
+<li>shard-tglu:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-7/igt@gem_pwrite@basic-exhausti=
+on.html">WARN</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kerne=
+l/-/issues/2658">i915#2658</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@gem_pwrite@basic-random:</p>
+<p>igt@gem_pxp@verify-pxp-execution-after-suspend-resume:</p>
 <ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@gem_pwrite@basic-random.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3282">i915#3282</a>) +4 other tests skip</li>
+<li>shard-dg2:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg2-8/igt@gem_pxp@verify-pxp-executi=
+on-after-suspend-resume.html">SKIP</a> (<a href=3D"https://gitlab.freedeskt=
+op.org/drm/i915/kernel/-/issues/4270">i915#4270</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@gem_pwrite_snooped:</p>
+<p>igt@gem_render_copy@y-tiled-mc-ccs-to-vebox-yf-tiled:</p>
 <ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@gem_pwrite_snooped.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3282">i915#3282</a>)</li>
+<li>shard-dg2:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@gem_render_copy@y-tiled-mc=
+-ccs-to-vebox-yf-tiled.html">SKIP</a> (<a href=3D"https://gitlab.freedeskto=
+p.org/drm/i915/kernel/-/issues/5190">i915#5190</a> / <a href=3D"https://git=
+lab.freedesktop.org/drm/i915/kernel/-/issues/8428">i915#8428</a>) +1 other =
+test skip</li>
 </ul>
 </li>
 <li>
-<p>igt@gem_pxp@create-valid-protected-context:</p>
+<p>igt@gem_tiled_swapping@non-threaded:</p>
 <ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-7/igt@gem_pxp@create-valid-protected-context.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4270">i915#4270</a>) +1 other test skip</li>
+<li>shard-tglu:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_16004/shard-tglu-3/igt@gem_tiled_swapping@non-threaded.html">PASS</=
+a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_1436=
+36v2/shard-tglu-6/igt@gem_tiled_swapping@non-threaded.html">FAIL</a> (<a hr=
+ef=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13557">i915#1=
+3557</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@gem_pxp@hw-rejects-pxp-context:</p>
+<p>igt@gem_userptr_blits@sd-probe:</p>
 <ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-7/igt@gem_pxp@hw-rejects-pxp-context.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13398">i915#13398</a>)</li>
+<li>shard-dg2:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg2-8/igt@gem_userptr_blits@sd-probe=
+.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/=
+-/issues/3297">i915#3297</a> / <a href=3D"https://gitlab.freedesktop.org/dr=
+m/i915/kernel/-/issues/4958">i915#4958</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@gem_pxp@regular-baseline-src-copy-readible:</p>
+<p>igt@gem_userptr_blits@unsync-overlap:</p>
 <ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@gem_pxp@regular-baseline-src-copy-readible.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4270">i915#4270</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_pxp@reject-modify-context-protection-on:</p>
-<ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-3/igt@gem_pxp@reject-modify-context-protection-on.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12917">i915#12917</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12964">i915#12964</a>) +2 other tests timeout</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_render_copy@y-tiled-ccs-to-linear:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-1/igt@gem_render_copy@y-tiled-ccs-to-linear.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5190">i915#5190</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8428">i915#8428</a>) +9 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_render_copy@y-tiled-ccs-to-y-tiled-ccs:</p>
-<ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@gem_render_copy@y-tiled-ccs-to-y-tiled-ccs.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8428">i915#8428</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_set_tiling_vs_blt@tiled-to-untiled:</p>
-<ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-3/igt@gem_set_tiling_vs_blt@tiled-to-untiled.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4079">i915#4079</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_set_tiling_vs_blt@untiled-to-tiled:</p>
-<ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-12/igt@gem_set_tiling_vs_blt@untiled-to-tiled.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4079">i915#4079</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_set_tiling_vs_pwrite:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-7/igt@gem_set_tiling_vs_pwrite.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4079">i915#4079</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_softpin@evict-snoop:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-1/igt@gem_softpin@evict-snoop.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4885">i915#4885</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_tiled_partial_pwrite_pread@writes:</p>
-<ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-3/igt@gem_tiled_partial_pwrite_pread@writes.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3282">i915#3282</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_userptr_blits@dmabuf-sync:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-7/igt@gem_userptr_blits@dmabuf-sync.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3297">i915#3297</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3323">i915#3323</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_userptr_blits@map-fixed-invalidate-overlap-busy:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@gem_userptr_blits@map-fixed-invalidate-overlap-busy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3297">i915#3297</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4880">i915#4880</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_userptr_blits@unsync-unmap-after-close:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-10/igt@gem_userptr_blits@unsync-unmap-after-close.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3297">i915#3297</a>)</li>
+<li>shard-dg2:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@gem_userptr_blits@unsync-o=
+verlap.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/k=
+ernel/-/issues/3297">i915#3297</a>)</li>
+<li>shard-dg1:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@gem_userptr_blits@unsync-=
+overlap.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/=
+kernel/-/issues/3297">i915#3297</a>)</li>
 </ul>
 </li>
 <li>
 <p>igt@gem_userptr_blits@unsync-unmap-cycles:</p>
 <ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-4/igt@gem_userptr_blits@unsync-unmap-cycles.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3297">i915#3297</a>) +2 other tests skip</li>
+<li>shard-tglu:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-8/igt@gem_userptr_blits@unsync-=
+unmap-cycles.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/=
+i915/kernel/-/issues/3297">i915#3297</a>) +2 other tests skip</li>
 </ul>
 </li>
 <li>
-<p>igt@gen9_exec_parse@allowed-all:</p>
+<p>igt@gen9_exec_parse@basic-rejected-ctx-param:</p>
 <ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@gen9_exec_parse@allowed-all.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2527">i915#2527</a>)</li>
+<li>shard-snb:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-snb7/igt@gen9_exec_parse@basic-rejec=
+ted-ctx-param.html">SKIP</a> +293 other tests skip</li>
 </ul>
 </li>
 <li>
-<p>igt@gen9_exec_parse@batch-without-end:</p>
+<p>igt@gen9_exec_parse@bb-chained:</p>
 <ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-3/igt@gen9_exec_parse@batch-without-end.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2527">i915#2527</a>)</li>
+<li>shard-dg1:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@gen9_exec_parse@bb-chaine=
+d.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel=
+/-/issues/2527">i915#2527</a>)</li>
+<li>shard-dg2:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@gen9_exec_parse@bb-chained=
+.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/=
+-/issues/2856">i915#2856</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@gen9_exec_parse@bb-start-param:</p>
+<p>igt@gen9_exec_parse@bb-secure:</p>
 <ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-2/igt@gen9_exec_parse@bb-start-param.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2856">i915#2856</a>) +2 other tests skip</li>
+<li>shard-tglu:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-7/igt@gen9_exec_parse@bb-secure=
+.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/=
+-/issues/2527">i915#2527</a> / <a href=3D"https://gitlab.freedesktop.org/dr=
+m/i915/kernel/-/issues/2856">i915#2856</a>) +1 other test skip</li>
 </ul>
 </li>
 <li>
-<p>igt@gen9_exec_parse@shadow-peek:</p>
+<p>igt@gen9_exec_parse@bb-start-out:</p>
 <ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-4/igt@gen9_exec_parse@shadow-peek.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2856">i915#2856</a>)</li>
+<li>shard-rkl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@gen9_exec_parse@bb-start-o=
+ut.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kerne=
+l/-/issues/2527">i915#2527</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@gen9_exec_parse@unaligned-jump:</p>
+<p>igt@gen9_exec_parse@valid-registers:</p>
 <ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-7/igt@gen9_exec_parse@unaligned-jump.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2527">i915#2527</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2856">i915#2856</a>)</li>
+<li>shard-tglu-1:       NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@gen9_exec_parse@valid-reg=
+isters.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/k=
+ernel/-/issues/2527">i915#2527</a> / <a href=3D"https://gitlab.freedesktop.=
+org/drm/i915/kernel/-/issues/2856">i915#2856</a>) +1 other test skip</li>
 </ul>
 </li>
 <li>
-<p>igt@i915_fb_tiling:</p>
+<p>igt@i915_module_load@load:</p>
 <ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@i915_fb_tiling.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4881">i915#4881</a>)</li>
+<li>shard-glk:          (<a href=3D"https://intel-gfx-ci.01.org/tree/drm-ti=
+p/CI_DRM_16004/shard-glk5/igt@i915_module_load@load.html">PASS</a>, <a href=
+=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-glk7/igt@i9=
+15_module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/=
+tree/drm-tip/CI_DRM_16004/shard-glk9/igt@i915_module_load@load.html">PASS</=
+a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-=
+glk1/igt@i915_module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx=
+-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-glk3/igt@i915_module_load@load.h=
+tml">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_1=
+6004/shard-glk2/igt@i915_module_load@load.html">PASS</a>, <a href=3D"https:=
+//intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-glk3/igt@i915_module_=
+load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-t=
+ip/CI_DRM_16004/shard-glk8/igt@i915_module_load@load.html">PASS</a>, <a hre=
+f=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-glk1/igt@i=
+915_module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/CI_DRM_16004/shard-glk6/igt@i915_module_load@load.html">PASS<=
+/a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard=
+-glk5/igt@i915_module_load@load.html">PASS</a>, <a href=3D"https://intel-gf=
+x-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-glk1/igt@i915_module_load@load.=
+html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_=
+16004/shard-glk4/igt@i915_module_load@load.html">PASS</a>, <a href=3D"https=
+://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-glk6/igt@i915_module=
+_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-=
+tip/CI_DRM_16004/shard-glk2/igt@i915_module_load@load.html">PASS</a>, <a hr=
+ef=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-glk4/igt@=
+i915_module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.or=
+g/tree/drm-tip/CI_DRM_16004/shard-glk8/igt@i915_module_load@load.html">PASS=
+</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shar=
+d-glk6/igt@i915_module_load@load.html">PASS</a>, <a href=3D"https://intel-g=
+fx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-glk3/igt@i915_module_load@load=
+.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM=
+_16004/shard-glk2/igt@i915_module_load@load.html">PASS</a>, <a href=3D"http=
+s://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-glk8/igt@i915_modul=
+e_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm=
+-tip/CI_DRM_16004/shard-glk3/igt@i915_module_load@load.html">PASS</a>, <a h=
+ref=3D"https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16004/shard-glk7/igt=
+@i915_module_load@load.html">PASS</a>) -&gt; (<a href=3D"https://intel-gfx-=
+ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-glk2/igt@i915_module_load@l=
+oad.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Pat=
+chwork_143636v2/shard-glk3/igt@i915_module_load@load.html">PASS</a>, <a hre=
+f=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-glk4=
+/igt@i915_module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.=
+01.org/tree/drm-tip/Patchwork_143636v2/shard-glk9/igt@i915_module_load@load=
+.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchw=
+ork_143636v2/shard-glk7/igt@i915_module_load@load.html">PASS</a>, <a href=
+=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-glk8/=
+igt@i915_module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.0=
+1.org/tree/drm-tip/Patchwork_143636v2/shard-glk4/igt@i915_module_load@load.=
+html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwo=
+rk_143636v2/shard-glk5/igt@i915_module_load@load.html">PASS</a>, <a href=3D=
+"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-glk3/igt=
+@i915_module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.o=
+rg/tree/drm-tip/Patchwork_143636v2/shard-glk1/igt@i915_module_load@load.htm=
+l">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_=
+143636v2/shard-glk8/igt@i915_module_load@load.html">PASS</a>, <a href=3D"ht=
+tps://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-glk6/igt@i9=
+15_module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/=
+tree/drm-tip/Patchwork_143636v2/shard-glk4/igt@i915_module_load@load.html">=
+PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143=
+636v2/shard-glk9/igt@i915_module_load@load.html">PASS</a>, <a href=3D"https=
+://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-glk6/igt@i915_=
+module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tre=
+e/drm-tip/Patchwork_143636v2/shard-glk7/igt@i915_module_load@load.html">PAS=
+S</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636=
+v2/shard-glk1/igt@i915_module_load@load.html">PASS</a>, <a href=3D"https://=
+intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-glk6/igt@i915_mod=
+ule_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/d=
+rm-tip/Patchwork_143636v2/shard-glk4/igt@i915_module_load@load.html">PASS</=
+a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/=
+shard-glk5/igt@i915_module_load@load.html">DMESG-WARN</a>, <a href=3D"https=
+://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-glk5/igt@i915_=
+module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tre=
+e/drm-tip/Patchwork_143636v2/shard-glk2/igt@i915_module_load@load.html">PAS=
+S</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636=
+v2/shard-glk8/igt@i915_module_load@load.html">PASS</a>) (<a href=3D"https:/=
+/gitlab.freedesktop.org/drm/i915/kernel/-/issues/118">i915#118</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@i915_pm_freq_mult@media-freq@gt0:</p>
+<p>igt@i915_module_load@reload-no-display:</p>
 <ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-7/igt@i915_pm_freq_mult@media-freq@gt0.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6590">i915#6590</a>) +1 other test skip</li>
+<li>shard-tglu-1:       NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@i915_module_load@reload-n=
+o-display.html">DMESG-WARN</a> (<a href=3D"https://gitlab.freedesktop.org/d=
+rm/i915/kernel/-/issues/13029">i915#13029</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@i915_pm_rps@min-max-config-loaded:</p>
+<p>igt@i915_module_load@reload-with-fault-injection:</p>
 <ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-1/igt@i915_pm_rps@min-max-config-loaded.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11681">i915#11681</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6621">i915#6621</a>)</li>
+<li>shard-dg2:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg2-8/igt@i915_module_load@reload-wi=
+th-fault-injection.html">ABORT</a> (<a href=3D"https://gitlab.freedesktop.o=
+rg/drm/i915/kernel/-/issues/10887">i915#10887</a> / <a href=3D"https://gitl=
+ab.freedesktop.org/drm/i915/kernel/-/issues/9820">i915#9820</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@i915_pm_rps@thresholds-idle-park:</p>
+<p>igt@i915_pipe_stress@stress-xrgb8888-ytiled:</p>
 <ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@i915_pm_rps@thresholds-idle-park.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11681">i915#11681</a>) +1 other test skip</li>
+<li>shard-dg2:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@i915_pipe_stress@stress-xr=
+gb8888-ytiled.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm=
+/i915/kernel/-/issues/7091">i915#7091</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@i915_pm_rps@thresholds-park:</p>
+<p>igt@i915_pm_freq_api@freq-suspend@gt0:</p>
 <ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@i915_pm_rps@thresholds-park.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11681">i915#11681</a>)</li>
+<li>shard-dg2:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_16004/shard-dg2-10/igt@i915_pm_freq_api@freq-suspend@gt0.html">PASS=
+</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_14=
+3636v2/shard-dg2-10/igt@i915_pm_freq_api@freq-suspend@gt0.html">INCOMPLETE<=
+/a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/124=
+55">i915#12455</a>) +1 other test incomplete</li>
 </ul>
 </li>
 <li>
 <p>igt@i915_pm_sseu@full-enable:</p>
 <ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-8/igt@i915_pm_sseu@full-enable.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4387">i915#4387</a>)</li>
+<li>shard-mtlp:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-mtlp-4/igt@i915_pm_sseu@full-enable.=
+html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-=
+/issues/8437">i915#8437</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@i915_query@query-topology-coherent-slice-mask:</p>
+<p>igt@i915_query@query-topology-unsupported:</p>
 <ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-3/igt@i915_query@query-topology-coherent-slice-mask.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6188">i915#6188</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@mock:</p>
-<ul>
-<li>shard-snb:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-snb2/igt@i915_selftest@mock.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9311">i915#9311</a>) +1 other test dmesg-warn</li>
+<li>shard-rkl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@i915_query@query-topology-=
+unsupported.html">SKIP</a> +3 other tests skip</li>
 </ul>
 </li>
 <li>
 <p>igt@i915_suspend@basic-s3-without-i915:</p>
 <ul>
-<li>shard-tglu-1:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-1/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7443">i915#7443</a>)</li>
+<li>shard-tglu-1:       NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@i915_suspend@basic-s3-wit=
+hout-i915.html">INCOMPLETE</a> (<a href=3D"https://gitlab.freedesktop.org/d=
+rm/i915/kernel/-/issues/7443">i915#7443</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@i915_suspend@forcewake:</p>
+<p>igt@kms_async_flips@async-flip-with-page-flip-events@pipe-a-hdmi-a-3-y-r=
+c-ccs-cc:</p>
 <ul>
-<li>shard-glk:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-glk4/igt@i915_suspend@forcewake.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4817">i915#4817</a>)</li>
+<li>shard-dg1:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg1-13/igt@kms_async_flips@async-fli=
+p-with-page-flip-events@pipe-a-hdmi-a-3-y-rc-ccs-cc.html">SKIP</a> (<a href=
+=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8709">i915#8709=
+</a>) +3 other tests skip</li>
 </ul>
 </li>
 <li>
-<p>igt@intel_hwmon@hwmon-write:</p>
+<p>igt@kms_atomic_transition@modeset-transition:</p>
 <ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-3/igt@intel_hwmon@hwmon-write.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7707">i915#7707</a>)</li>
+<li>shard-glk:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_16004/shard-glk9/igt@kms_atomic_transition@modeset-transition.html"=
+>PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwo=
+rk_143636v2/shard-glk8/igt@kms_atomic_transition@modeset-transition.html">F=
+AIL</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues=
+/12238">i915#12238</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_addfb_basic@addfb25-framebuffer-vs-set-tiling:</p>
+<p>igt@kms_atomic_transition@modeset-transition@2x-outputs:</p>
 <ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@kms_addfb_basic@addfb25-framebuffer-vs-set-tiling.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4212">i915#4212</a>)</li>
+<li>shard-glk:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_16004/shard-glk9/igt@kms_atomic_transition@modeset-transition@2x-ou=
+tputs.html">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-=
+tip/Patchwork_143636v2/shard-glk8/igt@kms_atomic_transition@modeset-transit=
+ion@2x-outputs.html">FAIL</a> (<a href=3D"https://gitlab.freedesktop.org/dr=
+m/i915/kernel/-/issues/11859">i915#11859</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_addfb_basic@addfb25-x-tiled-legacy:</p>
+<p>igt@kms_big_fb@4-tiled-addfb-size-offset-overflow:</p>
 <ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-2/igt@kms_addfb_basic@addfb25-x-tiled-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4212">i915#4212</a>)</li>
+<li>shard-tglu:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-7/igt@kms_big_fb@4-tiled-addfb-=
+size-offset-overflow.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.=
+org/drm/i915/kernel/-/issues/5286">i915#5286</a>) +3 other tests skip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_async_flips@async-flip-with-page-flip-events-atomic:</p>
+<p>igt@kms_big_fb@4-tiled-max-hw-stride-32bpp-rotate-180-async-flip:</p>
 <ul>
-<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-rkl-4/igt@kms_async_flips@async-flip-with-page-flip-events-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-1/igt@kms_async_flips@async-flip-with-page-flip-events-atomic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12964">i915#12964</a>) +9 other tests dmesg-warn</li>
+<li>shard-dg1:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@kms_big_fb@4-tiled-max-hw=
+-stride-32bpp-rotate-180-async-flip.html">SKIP</a> (<a href=3D"https://gitl=
+ab.freedesktop.org/drm/i915/kernel/-/issues/4538">i915#4538</a> / <a href=
+=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5286">i915#5286=
+</a>) +2 other tests skip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_async_flips@async-flip-with-page-flip-events-atomic@pipe-a-hdmi-a-4-y-rc-ccs-cc:</p>
+<p>igt@kms_big_fb@4-tiled-max-hw-stride-32bpp-rotate-180-hflip:</p>
 <ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-14/igt@kms_async_flips@async-flip-with-page-flip-events-atomic@pipe-a-hdmi-a-4-y-rc-ccs-cc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8709">i915#8709</a>) +7 other tests skip</li>
+<li>shard-rkl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-rkl-3/igt@kms_big_fb@4-tiled-max-hw-=
+stride-32bpp-rotate-180-hflip.html">SKIP</a> (<a href=3D"https://gitlab.fre=
+edesktop.org/drm/i915/kernel/-/issues/5286">i915#5286</a>) +1 other test sk=
+ip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_async_flips@async-flip-with-page-flip-events-atomic@pipe-b-hdmi-a-2-y-rc-ccs-cc:</p>
+<p>igt@kms_big_fb@4-tiled-max-hw-stride-64bpp-rotate-180-async-flip:</p>
 <ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-1/igt@kms_async_flips@async-flip-with-page-flip-events-atomic@pipe-b-hdmi-a-2-y-rc-ccs-cc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8709">i915#8709</a>) +1 other test skip</li>
+<li>shard-tglu-1:       NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@kms_big_fb@4-tiled-max-hw=
+-stride-64bpp-rotate-180-async-flip.html">SKIP</a> (<a href=3D"https://gitl=
+ab.freedesktop.org/drm/i915/kernel/-/issues/5286">i915#5286</a>) +1 other t=
+est skip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_async_flips@async-flip-with-page-flip-events-atomic@pipe-b-hdmi-a-3-4-rc-ccs-cc:</p>
+<p>igt@kms_big_fb@x-tiled-16bpp-rotate-90:</p>
 <ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-6/igt@kms_async_flips@async-flip-with-page-flip-events-atomic@pipe-b-hdmi-a-3-4-rc-ccs-cc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8709">i915#8709</a>) +7 other tests skip</li>
+<li>shard-rkl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@kms_big_fb@x-tiled-16bpp-r=
+otate-90.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915=
+/kernel/-/issues/3638">i915#3638</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_atomic@plane-primary-overlay-mutable-zpos:</p>
+<p>igt@kms_big_fb@x-tiled-32bpp-rotate-270:</p>
 <ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-3/igt@kms_atomic@plane-primary-overlay-mutable-zpos.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a>)</li>
+<li>shard-dg2:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@kms_big_fb@x-tiled-32bpp-r=
+otate-270.html">SKIP</a> +6 other tests skip</li>
+<li>shard-dg1:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@kms_big_fb@x-tiled-32bpp-=
+rotate-270.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i9=
+15/kernel/-/issues/3638">i915#3638</a>) +1 other test skip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_atomic_transition@plane-all-modeset-transition:</p>
+<p>igt@kms_big_fb@y-tiled-addfb-size-overflow:</p>
 <ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-3/igt@kms_atomic_transition@plane-all-modeset-transition.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1769">i915#1769</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a>)</li>
+<li>shard-dg2:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@kms_big_fb@y-tiled-addfb-s=
+ize-overflow.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/=
+i915/kernel/-/issues/5190">i915#5190</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_atomic_transition@plane-all-modeset-transition-internal-panels@pipe-a-edp-1:</p>
+<p>igt@kms_big_fb@yf-tiled-16bpp-rotate-0:</p>
 <ul>
-<li>shard-mtlp:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-mtlp-1/igt@kms_atomic_transition@plane-all-modeset-transition-internal-panels@pipe-a-edp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-8/igt@kms_atomic_transition@plane-all-modeset-transition-internal-panels@pipe-a-edp-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11808">i915#11808</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5956">i915#5956</a>) +1 other test fail</li>
+<li>shard-dg2:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@kms_big_fb@yf-tiled-16bpp-=
+rotate-0.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915=
+/kernel/-/issues/4538">i915#4538</a> / <a href=3D"https://gitlab.freedeskto=
+p.org/drm/i915/kernel/-/issues/5190">i915#5190</a>) +1 other test skip</li>
+<li>shard-dg1:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@kms_big_fb@yf-tiled-16bpp=
+-rotate-0.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i91=
+5/kernel/-/issues/4538">i915#4538</a>) +1 other test skip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_atomic_transition@plane-toggle-modeset-transition:</p>
+<p>igt@kms_big_fb@yf-tiled-max-hw-stride-32bpp-rotate-180-hflip-async-flip:=
+</p>
 <ul>
-<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-dg2-4/igt@kms_atomic_transition@plane-toggle-modeset-transition.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-8/igt@kms_atomic_transition@plane-toggle-modeset-transition.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5956">i915#5956</a>) +1 other test fail</li>
+<li>shard-mtlp:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-mtlp-7/igt@kms_big_fb@yf-tiled-max-h=
+w-stride-32bpp-rotate-180-hflip-async-flip.html">SKIP</a> +1 other test ski=
+p</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_big_fb@4-tiled-16bpp-rotate-0:</p>
+<p>igt@kms_ccs@bad-rotation-90-4-tiled-mtl-rc-ccs-cc@pipe-b-hdmi-a-4:</p>
 <ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-8/igt@kms_big_fb@4-tiled-16bpp-rotate-0.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5286">i915#5286</a>) +1 other test skip</li>
+<li>shard-dg1:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@kms_ccs@bad-rotation-90-4=
+-tiled-mtl-rc-ccs-cc@pipe-b-hdmi-a-4.html">SKIP</a> (<a href=3D"https://git=
+lab.freedesktop.org/drm/i915/kernel/-/issues/6095">i915#6095</a>) +88 other=
+ tests skip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_big_fb@4-tiled-64bpp-rotate-180:</p>
+<p>igt@kms_ccs@crc-primary-basic-yf-tiled-ccs@pipe-c-hdmi-a-1:</p>
 <ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-3/igt@kms_big_fb@4-tiled-64bpp-rotate-180.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5286">i915#5286</a>) +1 other test skip</li>
+<li>shard-tglu:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-7/igt@kms_ccs@crc-primary-basic=
+-yf-tiled-ccs@pipe-c-hdmi-a-1.html">SKIP</a> (<a href=3D"https://gitlab.fre=
+edesktop.org/drm/i915/kernel/-/issues/6095">i915#6095</a>) +44 other tests =
+skip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_big_fb@4-tiled-max-hw-stride-32bpp-rotate-180-hflip-async-flip:</p>
+<p>igt@kms_ccs@crc-primary-rotation-180-4-tiled-lnl-ccs:</p>
 <ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-12/igt@kms_big_fb@4-tiled-max-hw-stride-32bpp-rotate-180-hflip-async-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4538">i915#4538</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5286">i915#5286</a>) +3 other tests skip</li>
+<li>shard-tglu-1:       NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@kms_ccs@crc-primary-rotat=
+ion-180-4-tiled-lnl-ccs.html">SKIP</a> (<a href=3D"https://gitlab.freedeskt=
+op.org/drm/i915/kernel/-/issues/12313">i915#12313</a>) +1 other test skip</=
+li>
 </ul>
 </li>
 <li>
-<p>igt@kms_big_fb@4-tiled-max-hw-stride-64bpp-rotate-0-async-flip:</p>
+<p>igt@kms_ccs@crc-primary-suspend-4-tiled-dg2-mc-ccs@pipe-b-hdmi-a-2:</p>
 <ul>
-<li>shard-tglu-1:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-1/igt@kms_big_fb@4-tiled-max-hw-stride-64bpp-rotate-0-async-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5286">i915#5286</a>) +1 other test skip</li>
+<li>shard-rkl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-rkl-5/igt@kms_ccs@crc-primary-suspen=
+d-4-tiled-dg2-mc-ccs@pipe-b-hdmi-a-2.html">SKIP</a> (<a href=3D"https://git=
+lab.freedesktop.org/drm/i915/kernel/-/issues/6095">i915#6095</a>) +71 other=
+ tests skip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_big_fb@linear-16bpp-rotate-270:</p>
+<p>igt@kms_ccs@crc-primary-suspend-4-tiled-mtl-rc-ccs-cc@pipe-c-hdmi-a-1:</=
+p>
 <ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-8/igt@kms_big_fb@linear-16bpp-rotate-270.html">SKIP</a> +44 other tests skip</li>
+<li>shard-tglu-1:       NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@kms_ccs@crc-primary-suspe=
+nd-4-tiled-mtl-rc-ccs-cc@pipe-c-hdmi-a-1.html">SKIP</a> (<a href=3D"https:/=
+/gitlab.freedesktop.org/drm/i915/kernel/-/issues/6095">i915#6095</a>) +34 o=
+ther tests skip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_big_fb@linear-16bpp-rotate-90:</p>
+<p>igt@kms_ccs@crc-primary-suspend-y-tiled-gen12-rc-ccs-cc@pipe-b-hdmi-a-3:=
+</p>
 <ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@kms_big_fb@linear-16bpp-rotate-90.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3638">i915#3638</a>)</li>
+<li>shard-dg2:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@kms_ccs@crc-primary-suspen=
+d-y-tiled-gen12-rc-ccs-cc@pipe-b-hdmi-a-3.html">SKIP</a> (<a href=3D"https:=
+//gitlab.freedesktop.org/drm/i915/kernel/-/issues/6095">i915#6095</a>) +7 o=
+ther tests skip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_big_fb@linear-64bpp-rotate-90:</p>
+<p>igt@kms_ccs@crc-sprite-planes-basic-4-tiled-mtl-mc-ccs@pipe-a-hdmi-a-3:<=
+/p>
 <ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-7/igt@kms_big_fb@linear-64bpp-rotate-90.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3638">i915#3638</a>) +2 other tests skip</li>
+<li>shard-dg2:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@kms_ccs@crc-sprite-planes-=
+basic-4-tiled-mtl-mc-ccs@pipe-a-hdmi-a-3.html">SKIP</a> (<a href=3D"https:/=
+/gitlab.freedesktop.org/drm/i915/kernel/-/issues/10307">i915#10307</a> / <a=
+ href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6095">i915=
+#6095</a>) +112 other tests skip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_big_fb@y-tiled-16bpp-rotate-90:</p>
+<p>igt@kms_ccs@missing-ccs-buffer-y-tiled-ccs@pipe-d-hdmi-a-1:</p>
 <ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@kms_big_fb@y-tiled-16bpp-rotate-90.html">SKIP</a> +6 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_fb@y-tiled-addfb-size-offset-overflow:</p>
-<ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@kms_big_fb@y-tiled-addfb-size-offset-overflow.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6187">i915#6187</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_fb@y-tiled-max-hw-stride-64bpp-rotate-0-hflip-async-flip:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-7/igt@kms_big_fb@y-tiled-max-hw-stride-64bpp-rotate-0-hflip-async-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4538">i915#4538</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5190">i915#5190</a>) +8 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_big_fb@yf-tiled-64bpp-rotate-180:</p>
-<ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-12/igt@kms_big_fb@yf-tiled-64bpp-rotate-180.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4538">i915#4538</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_ccs@bad-aux-stride-4-tiled-mtl-mc-ccs@pipe-a-hdmi-a-4:</p>
-<ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@kms_ccs@bad-aux-stride-4-tiled-mtl-mc-ccs@pipe-a-hdmi-a-4.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6095">i915#6095</a>) +90 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_ccs@bad-pixel-format-4-tiled-mtl-mc-ccs:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-1/igt@kms_ccs@bad-pixel-format-4-tiled-mtl-mc-ccs.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10307">i915#10307</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6095">i915#6095</a>) +115 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_ccs@bad-rotation-90-4-tiled-dg2-mc-ccs@pipe-c-hdmi-a-1:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-8/igt@kms_ccs@bad-rotation-90-4-tiled-dg2-mc-ccs@pipe-c-hdmi-a-1.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6095">i915#6095</a>) +34 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_ccs@bad-rotation-90-4-tiled-lnl-ccs:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-2/igt@kms_ccs@bad-rotation-90-4-tiled-lnl-ccs.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12313">i915#12313</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_ccs@crc-primary-basic-y-tiled-gen12-rc-ccs@pipe-d-hdmi-a-1:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-4/igt@kms_ccs@crc-primary-basic-y-tiled-gen12-rc-ccs@pipe-d-hdmi-a-1.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10307">i915#10307</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10434">i915#10434</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6095">i915#6095</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_ccs@crc-primary-rotation-180-4-tiled-bmg-ccs:</p>
-<ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-12/igt@kms_ccs@crc-primary-rotation-180-4-tiled-bmg-ccs.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12313">i915#12313</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_ccs@crc-primary-rotation-180-4-tiled-dg2-mc-ccs@pipe-b-hdmi-a-1:</p>
-<ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-4/igt@kms_ccs@crc-primary-rotation-180-4-tiled-dg2-mc-ccs@pipe-b-hdmi-a-1.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6095">i915#6095</a>) +59 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_ccs@crc-primary-rotation-180-4-tiled-dg2-rc-ccs@pipe-c-edp-1:</p>
-<ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-3/igt@kms_ccs@crc-primary-rotation-180-4-tiled-dg2-rc-ccs@pipe-c-edp-1.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6095">i915#6095</a>) +14 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_ccs@crc-primary-suspend-y-tiled-gen12-rc-ccs-cc@pipe-b-hdmi-a-3:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-7/igt@kms_ccs@crc-primary-suspend-y-tiled-gen12-rc-ccs-cc@pipe-b-hdmi-a-3.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6095">i915#6095</a>) +16 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_ccs@crc-sprite-planes-basic-4-tiled-lnl-ccs:</p>
-<ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-3/igt@kms_ccs@crc-sprite-planes-basic-4-tiled-lnl-ccs.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12313">i915#12313</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_ccs@missing-ccs-buffer-y-tiled-gen12-rc-ccs@pipe-a-hdmi-a-1:</p>
-<ul>
-<li>shard-glk:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-glk4/igt@kms_ccs@missing-ccs-buffer-y-tiled-gen12-rc-ccs@pipe-a-hdmi-a-1.html">SKIP</a> +60 other tests skip</li>
+<li>shard-dg2:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg2-8/igt@kms_ccs@missing-ccs-buffer=
+-y-tiled-ccs@pipe-d-hdmi-a-1.html">SKIP</a> (<a href=3D"https://gitlab.free=
+desktop.org/drm/i915/kernel/-/issues/10307">i915#10307</a> / <a href=3D"htt=
+ps://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10434">i915#10434</a> =
+/ <a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6095">=
+i915#6095</a>) +2 other tests skip</li>
 </ul>
 </li>
 <li>
 <p>igt@kms_ccs@random-ccs-data-4-tiled-bmg-ccs:</p>
 <ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-7/igt@kms_ccs@random-ccs-data-4-tiled-bmg-ccs.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12313">i915#12313</a>) +1 other test skip</li>
+<li>shard-tglu:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-7/igt@kms_ccs@random-ccs-data-4=
+-tiled-bmg-ccs.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/dr=
+m/i915/kernel/-/issues/12313">i915#12313</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_ccs@random-ccs-data-yf-tiled-ccs@pipe-c-edp-1:</p>
+<ul>
+<li>shard-mtlp:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-mtlp-7/igt@kms_ccs@random-ccs-data-y=
+f-tiled-ccs@pipe-c-edp-1.html">SKIP</a> (<a href=3D"https://gitlab.freedesk=
+top.org/drm/i915/kernel/-/issues/6095">i915#6095</a>) +4 other tests skip</=
+li>
 </ul>
 </li>
 <li>
 <p>igt@kms_cdclk@mode-transition:</p>
 <ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@kms_cdclk@mode-transition.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11616">i915#11616</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7213">i915#7213</a>)</li>
+<li>shard-rkl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@kms_cdclk@mode-transition.=
+html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-=
+/issues/3742">i915#3742</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_cdclk@mode-transition@pipe-d-hdmi-a-3:</p>
+<p>igt@kms_cdclk@plane-scaling:</p>
 <ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@kms_cdclk@mode-transition@pipe-d-hdmi-a-3.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7213">i915#7213</a>) +3 other tests skip</li>
+<li>shard-tglu:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-8/igt@kms_cdclk@plane-scaling.h=
+tml">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/=
+issues/3742">i915#3742</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_chamelium_color@degamma:</p>
+<p>igt@kms_chamelium_audio@hdmi-audio:</p>
 <ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-2/igt@kms_chamelium_color@degamma.html">SKIP</a> +12 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_edid@dp-edid-change-during-suspend:</p>
-<ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@kms_chamelium_edid@dp-edid-change-during-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11151">i915#11151</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7828">i915#7828</a>) +5 other tests skip</li>
+<li>shard-tglu-1:       NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@kms_chamelium_audio@hdmi-=
+audio.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/ke=
+rnel/-/issues/11151">i915#11151</a> / <a href=3D"https://gitlab.freedesktop=
+.org/drm/i915/kernel/-/issues/7828">i915#7828</a>) +4 other tests skip</li>
 </ul>
 </li>
 <li>
 <p>igt@kms_chamelium_edid@hdmi-edid-change-during-suspend:</p>
 <ul>
-<li>shard-tglu-1:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-1/igt@kms_chamelium_edid@hdmi-edid-change-during-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11151">i915#11151</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7828">i915#7828</a>) +1 other test skip</li>
+<li>shard-dg1:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@kms_chamelium_edid@hdmi-e=
+did-change-during-suspend.html">SKIP</a> (<a href=3D"https://gitlab.freedes=
+ktop.org/drm/i915/kernel/-/issues/11151">i915#11151</a> / <a href=3D"https:=
+//gitlab.freedesktop.org/drm/i915/kernel/-/issues/7828">i915#7828</a>) +1 o=
+ther test skip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_chamelium_frames@dp-crc-fast:</p>
+<p>igt@kms_chamelium_edid@vga-edid-read:</p>
 <ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-10/igt@kms_chamelium_frames@dp-crc-fast.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11151">i915#11151</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7828">i915#7828</a>) +7 other tests skip</li>
+<li>shard-tglu:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-7/igt@kms_chamelium_edid@vga-ed=
+id-read.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/=
+kernel/-/issues/11151">i915#11151</a> / <a href=3D"https://gitlab.freedeskt=
+op.org/drm/i915/kernel/-/issues/7828">i915#7828</a>) +3 other tests skip</l=
+i>
 </ul>
 </li>
 <li>
-<p>igt@kms_chamelium_hpd@dp-hpd-enable-disable-mode:</p>
+<p>igt@kms_chamelium_hpd@dp-hpd-fast:</p>
 <ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@kms_chamelium_hpd@dp-hpd-enable-disable-mode.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11151">i915#11151</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7828">i915#7828</a>) +4 other tests skip</li>
+<li>shard-dg2:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg2-8/igt@kms_chamelium_hpd@dp-hpd-f=
+ast.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kern=
+el/-/issues/11151">i915#11151</a> / <a href=3D"https://gitlab.freedesktop.o=
+rg/drm/i915/kernel/-/issues/7828">i915#7828</a>) +2 other tests skip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_chamelium_hpd@dp-hpd-with-enabled-mode:</p>
+<p>igt@kms_chamelium_hpd@hdmi-hpd-enable-disable-mode:</p>
 <ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-3/igt@kms_chamelium_hpd@dp-hpd-with-enabled-mode.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11151">i915#11151</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7828">i915#7828</a>) +2 other tests skip</li>
+<li>shard-rkl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@kms_chamelium_hpd@hdmi-hpd=
+-enable-disable-mode.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.=
+org/drm/i915/kernel/-/issues/11151">i915#11151</a> / <a href=3D"https://git=
+lab.freedesktop.org/drm/i915/kernel/-/issues/7828">i915#7828</a>) +2 other =
+tests skip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_chamelium_hpd@vga-hpd-with-enabled-mode:</p>
+<p>igt@kms_color@deep-color:</p>
 <ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-7/igt@kms_chamelium_hpd@vga-hpd-with-enabled-mode.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11151">i915#11151</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7828">i915#7828</a>) +3 other tests skip</li>
+<li>shard-dg2:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@kms_color@deep-color.html"=
+>SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issu=
+es/3555">i915#3555</a>) +1 other test skip</li>
+<li>shard-dg1:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@kms_color@deep-color.html=
+">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/iss=
+ues/3555">i915#3555</a>) +2 other tests skip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_content_protection@atomic-dpms:</p>
+<p>igt@kms_content_protection@atomic:</p>
 <ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-1/igt@kms_content_protection@atomic-dpms.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7118">i915#7118</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9424">i915#9424</a>) +1 other test skip</li>
+<li>shard-tglu:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-8/igt@kms_content_protection@at=
+omic.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/ker=
+nel/-/issues/6944">i915#6944</a> / <a href=3D"https://gitlab.freedesktop.or=
+g/drm/i915/kernel/-/issues/7116">i915#7116</a> / <a href=3D"https://gitlab.=
+freedesktop.org/drm/i915/kernel/-/issues/7118">i915#7118</a> / <a href=3D"h=
+ttps://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9424">i915#9424</a>)=
+ +1 other test skip</li>
 </ul>
 </li>
 <li>
 <p>igt@kms_content_protection@content-type-change:</p>
 <ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-4/igt@kms_content_protection@content-type-change.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9424">i915#9424</a>)</li>
+<li>shard-tglu:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-7/igt@kms_content_protection@co=
+ntent-type-change.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org=
+/drm/i915/kernel/-/issues/6944">i915#6944</a> / <a href=3D"https://gitlab.f=
+reedesktop.org/drm/i915/kernel/-/issues/9424">i915#9424</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_content_protection@mei-interface:</p>
+<p>igt@kms_content_protection@dp-mst-type-1:</p>
 <ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-12/igt@kms_content_protection@mei-interface.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9433">i915#9433</a>)</li>
+<li>shard-tglu-1:       NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@kms_content_protection@dp=
+-mst-type-1.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i=
+915/kernel/-/issues/3116">i915#3116</a> / <a href=3D"https://gitlab.freedes=
+ktop.org/drm/i915/kernel/-/issues/3299">i915#3299</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_cursor_crc@cursor-offscreen-32x10:</p>
+<p>igt@kms_cursor_crc@cursor-offscreen-512x170:</p>
 <ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@kms_cursor_crc@cursor-offscreen-32x10.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a>) +3 other tests skip</li>
+<li>shard-tglu:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-8/igt@kms_cursor_crc@cursor-off=
+screen-512x170.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/dr=
+m/i915/kernel/-/issues/13049">i915#13049</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_cursor_crc@cursor-offscreen-512x512:</p>
+<p>igt@kms_cursor_crc@cursor-random-32x32:</p>
 <ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@kms_cursor_crc@cursor-offscreen-512x512.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13049">i915#13049</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_crc@cursor-onscreen-32x10:</p>
-<ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-4/igt@kms_cursor_crc@cursor-onscreen-32x10.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8814">i915#8814</a>) +1 other test skip</li>
+<li>shard-tglu-1:       NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@kms_cursor_crc@cursor-ran=
+dom-32x32.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i91=
+5/kernel/-/issues/3555">i915#3555</a>) +2 other tests skip</li>
 </ul>
 </li>
 <li>
 <p>igt@kms_cursor_crc@cursor-random-512x512:</p>
 <ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@kms_cursor_crc@cursor-random-512x512.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13049">i915#13049</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_crc@cursor-rapid-movement-256x85:</p>
-<ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@kms_cursor_crc@cursor-rapid-movement-256x85.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8814">i915#8814</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_crc@cursor-rapid-movement-32x32:</p>
-<ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-3/igt@kms_cursor_crc@cursor-rapid-movement-32x32.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a>) +3 other tests skip</li>
+<li>shard-tglu-1:       NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@kms_cursor_crc@cursor-ran=
+dom-512x512.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i=
+915/kernel/-/issues/13049">i915#13049</a>)</li>
 </ul>
 </li>
 <li>
 <p>igt@kms_cursor_crc@cursor-rapid-movement-512x170:</p>
 <ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-1/igt@kms_cursor_crc@cursor-rapid-movement-512x170.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13049">i915#13049</a>) +1 other test skip</li>
+<li>shard-dg2:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg2-8/igt@kms_cursor_crc@cursor-rapi=
+d-movement-512x170.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.or=
+g/drm/i915/kernel/-/issues/13049">i915#13049</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-varying-size:</p>
+<p>igt@kms_cursor_crc@cursor-rapid-movement-512x512:</p>
 <ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-12/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-varying-size.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4103">i915#4103</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4213">i915#4213</a>)</li>
+<li>shard-rkl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@kms_cursor_crc@cursor-rapi=
+d-movement-512x512.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.or=
+g/drm/i915/kernel/-/issues/13049">i915#13049</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_cursor_legacy@cursorb-vs-flipa-toggle:</p>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-atomic:</p>
 <ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@kms_cursor_legacy@cursorb-vs-flipa-toggle.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9809">i915#9809</a>)</li>
+<li>shard-dg2:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@kms_cursor_legacy@basic-bu=
+sy-flip-before-cursor-atomic.html">SKIP</a> (<a href=3D"https://gitlab.free=
+desktop.org/drm/i915/kernel/-/issues/4103">i915#4103</a> / <a href=3D"https=
+://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4213">i915#4213</a>) +1 =
+other test skip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_cursor_legacy@cursorb-vs-flipb-atomic:</p>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
 <ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-2/igt@kms_cursor_legacy@cursorb-vs-flipb-atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13046">i915#13046</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5354">i915#5354</a>)</li>
+<li>shard-dg1:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@kms_cursor_legacy@basic-b=
+usy-flip-before-cursor-legacy.html">SKIP</a> (<a href=3D"https://gitlab.fre=
+edesktop.org/drm/i915/kernel/-/issues/4103">i915#4103</a> / <a href=3D"http=
+s://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4213">i915#4213</a>) +1=
+ other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@cursora-vs-flipb-atomic-transitions:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@kms_cursor_legacy@cursora-=
+vs-flipb-atomic-transitions.html">SKIP</a> (<a href=3D"https://gitlab.freed=
+esktop.org/drm/i915/kernel/-/issues/13046">i915#13046</a> / <a href=3D"http=
+s://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5354">i915#5354</a>) +2=
+ other tests skip</li>
 </ul>
 </li>
 <li>
 <p>igt@kms_cursor_legacy@modeset-atomic-cursor-hotspot:</p>
 <ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-8/igt@kms_cursor_legacy@modeset-atomic-cursor-hotspot.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9067">i915#9067</a>)</li>
+<li>shard-rkl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@kms_cursor_legacy@modeset-=
+atomic-cursor-hotspot.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop=
+.org/drm/i915/kernel/-/issues/9067">i915#9067</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_cursor_legacy@short-flip-before-cursor-toggle:</p>
+<p>igt@kms_cursor_legacy@short-busy-flip-before-cursor-atomic-transitions:<=
+/p>
 <ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-glk3/igt@kms_cursor_legacy@short-flip-before-cursor-toggle.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-glk8/igt@kms_cursor_legacy@short-flip-before-cursor-toggle.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2346">i915#2346</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dirtyfb@psr-dirtyfb-ioctl:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-7/igt@kms_dirtyfb@psr-dirtyfb-ioctl.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9723">i915#9723</a>)</li>
+<li>shard-tglu:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-7/igt@kms_cursor_legacy@short-b=
+usy-flip-before-cursor-atomic-transitions.html">SKIP</a> (<a href=3D"https:=
+//gitlab.freedesktop.org/drm/i915/kernel/-/issues/4103">i915#4103</a>)</li>
 </ul>
 </li>
 <li>
 <p>igt@kms_display_modes@mst-extended-mode-negative:</p>
 <ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@kms_display_modes@mst-extended-mode-negative.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8588">i915#8588</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dither@fb-8bpc-vs-panel-6bpc@pipe-a-hdmi-a-2:</p>
-<ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-6/igt@kms_dither@fb-8bpc-vs-panel-6bpc@pipe-a-hdmi-a-2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3804">i915#3804</a>)</li>
+<li>shard-tglu:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-7/igt@kms_display_modes@mst-ext=
+ended-mode-negative.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.o=
+rg/drm/i915/kernel/-/issues/8588">i915#8588</a>)</li>
 </ul>
 </li>
 <li>
 <p>igt@kms_dp_aux_dev:</p>
 <ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@kms_dp_aux_dev.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1257">i915#1257</a>)</li>
+<li>shard-dg2:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@kms_dp_aux_dev.html">SKIP<=
+/a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/125=
+7">i915#1257</a>)</li>
+<li>shard-dg1:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@kms_dp_aux_dev.html">SKIP=
+</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12=
+57">i915#1257</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_dp_linktrain_fallback@dp-fallback:</p>
+<p>igt@kms_dsc@dsc-with-output-formats-with-bpc:</p>
 <ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-3/igt@kms_dp_linktrain_fallback@dp-fallback.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12402">i915#12402</a>)</li>
+<li>shard-rkl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@kms_dsc@dsc-with-output-fo=
+rmats-with-bpc.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/dr=
+m/i915/kernel/-/issues/3840">i915#3840</a> / <a href=3D"https://gitlab.free=
+desktop.org/drm/i915/kernel/-/issues/9053">i915#9053</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_draw_crc@draw-method-mmap-wc:</p>
+<p>igt@kms_fbcon_fbt@psr:</p>
 <ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-1/igt@kms_draw_crc@draw-method-mmap-wc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8812">i915#8812</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-fractional-bpp:</p>
-<ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-4/igt@kms_dsc@dsc-fractional-bpp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3840">i915#3840</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-with-formats:</p>
-<ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-12/igt@kms_dsc@dsc-with-formats.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3840">i915#3840</a>)</li>
+<li>shard-tglu:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-8/igt@kms_fbcon_fbt@psr.html">S=
+KIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues=
+/3469">i915#3469</a>)</li>
 </ul>
 </li>
 <li>
 <p>igt@kms_feature_discovery@chamelium:</p>
 <ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-3/igt@kms_feature_discovery@chamelium.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4854">i915#4854</a>)</li>
+<li>shard-tglu-1:       NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@kms_feature_discovery@cha=
+melium.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/k=
+ernel/-/issues/2065">i915#2065</a> / <a href=3D"https://gitlab.freedesktop.=
+org/drm/i915/kernel/-/issues/4854">i915#4854</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_feature_discovery@display-2x:</p>
+<p>igt@kms_feature_discovery@dp-mst:</p>
 <ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-4/igt@kms_feature_discovery@display-2x.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1839">i915#1839</a>)</li>
+<li>shard-tglu:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-7/igt@kms_feature_discovery@dp-=
+mst.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kern=
+el/-/issues/9337">i915#9337</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_flip@2x-dpms-vs-vblank-race-interruptible:</p>
+<p>igt@kms_flip@2x-flip-vs-absolute-wf_vblank:</p>
 <ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@kms_flip@2x-dpms-vs-vblank-race-interruptible.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9934">i915#9934</a>) +2 other tests skip</li>
+<li>shard-tglu:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-8/igt@kms_flip@2x-flip-vs-absol=
+ute-wf_vblank.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm=
+/i915/kernel/-/issues/3637">i915#3637</a>) +1 other test skip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_flip@2x-flip-vs-dpms-off-vs-modeset-interruptible:</p>
+<p>igt@kms_flip@2x-flip-vs-blocking-wf-vblank:</p>
 <ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-12/igt@kms_flip@2x-flip-vs-dpms-off-vs-modeset-interruptible.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9934">i915#9934</a>) +4 other tests skip</li>
+<li>shard-dg1:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@kms_flip@2x-flip-vs-block=
+ing-wf-vblank.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm=
+/i915/kernel/-/issues/9934">i915#9934</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@2x-flip-vs-expired-vblank-interruptible:</p>
+<ul>
+<li>shard-mtlp:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-mtlp-7/igt@kms_flip@2x-flip-vs-expir=
+ed-vblank-interruptible.html">SKIP</a> (<a href=3D"https://gitlab.freedeskt=
+op.org/drm/i915/kernel/-/issues/3637">i915#3637</a>) +1 other test skip</li>
 </ul>
 </li>
 <li>
 <p>igt@kms_flip@2x-flip-vs-fences:</p>
 <ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@kms_flip@2x-flip-vs-fences.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8381">i915#8381</a>)</li>
+<li>shard-tglu-1:       NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@kms_flip@2x-flip-vs-fence=
+s.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel=
+/-/issues/3637">i915#3637</a>) +4 other tests skip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_flip@2x-flip-vs-suspend-interruptible:</p>
+<p>igt@kms_flip@2x-flip-vs-modeset-vs-hang:</p>
 <ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@kms_flip@2x-flip-vs-suspend-interruptible.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3637">i915#3637</a>) +5 other tests skip</li>
+<li>shard-dg2:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg2-8/igt@kms_flip@2x-flip-vs-modese=
+t-vs-hang.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i91=
+5/kernel/-/issues/9934">i915#9934</a>) +5 other tests skip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_flip@2x-modeset-vs-vblank-race:</p>
+<p>igt@kms_flip@flip-vs-blocking-wf-vblank@a-edp1:</p>
 <ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-4/igt@kms_flip@2x-modeset-vs-vblank-race.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9934">i915#9934</a>) +4 other tests skip</li>
+<li>shard-mtlp:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_16004/shard-mtlp-5/igt@kms_flip@flip-vs-blocking-wf-vblank@a-edp1.h=
+tml">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Pat=
+chwork_143636v2/shard-mtlp-3/igt@kms_flip@flip-vs-blocking-wf-vblank@a-edp1=
+.html">FAIL</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/=
+-/issues/11989">i915#11989</a>) +1 other test fail</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_flip@2x-plain-flip-fb-recreate-interruptible:</p>
+<p>igt@kms_flip@flip-vs-blocking-wf-vblank@a-hdmi-a1:</p>
 <ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-8/igt@kms_flip@2x-plain-flip-fb-recreate-interruptible.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3637">i915#3637</a>) +2 other tests skip</li>
+<li>shard-tglu:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-7/igt@kms_flip@flip-vs-blocking=
+-wf-vblank@a-hdmi-a1.html">FAIL</a> (<a href=3D"https://gitlab.freedesktop.=
+org/drm/i915/kernel/-/issues/11989">i915#11989</a>) +1 other test fail</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_flip@wf_vblank-ts-check:</p>
+<p>igt@kms_flip@plain-flip-ts-check-interruptible:</p>
 <ul>
-<li>shard-snb:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-snb2/igt@kms_flip@wf_vblank-ts-check.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-snb1/igt@kms_flip@wf_vblank-ts-check.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11989">i915#11989</a>) +3 other tests fail</li>
+<li>shard-tglu:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_16004/shard-tglu-3/igt@kms_flip@plain-flip-ts-check-interruptible.h=
+tml">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Pat=
+chwork_143636v2/shard-tglu-7/igt@kms_flip@plain-flip-ts-check-interruptible=
+.html">FAIL</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/=
+-/issues/11989">i915#11989</a>) +1 other test fail</li>
+<li>shard-rkl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_16004/shard-rkl-5/igt@kms_flip@plain-flip-ts-check-interruptible.ht=
+ml">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patc=
+hwork_143636v2/shard-rkl-1/igt@kms_flip@plain-flip-ts-check-interruptible.h=
+tml">FAIL</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/=
+issues/11989">i915#11989</a>) +1 other test fail</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_flip_scaled_crc@flip-32bpp-yftile-to-32bpp-yftileccs-downscaling@pipe-a-valid-mode:</p>
+<p>igt@kms_flip_scaled_crc@flip-32bpp-4tile-to-64bpp-4tile-downscaling@pipe=
+-a-valid-mode:</p>
 <ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-8/igt@kms_flip_scaled_crc@flip-32bpp-yftile-to-32bpp-yftileccs-downscaling@pipe-a-valid-mode.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2587">i915#2587</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2672">i915#2672</a>) +1 other test skip</li>
+<li>shard-tglu:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-7/igt@kms_flip_scaled_crc@flip-=
+32bpp-4tile-to-64bpp-4tile-downscaling@pipe-a-valid-mode.html">SKIP</a> (<a=
+ href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2587">i915=
+#2587</a> / <a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/iss=
+ues/2672">i915#2672</a>) +2 other tests skip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_flip_scaled_crc@flip-32bpp-yftileccs-to-64bpp-yftile-downscaling:</p>
+<p>igt@kms_flip_scaled_crc@flip-32bpp-yftile-to-32bpp-yftileccs-upscaling:<=
+/p>
 <ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@kms_flip_scaled_crc@flip-32bpp-yftileccs-to-64bpp-yftile-downscaling.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2672">i915#2672</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a>) +1 other test skip</li>
+<li>shard-dg2:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@kms_flip_scaled_crc@flip-3=
+2bpp-yftile-to-32bpp-yftileccs-upscaling.html">SKIP</a> (<a href=3D"https:/=
+/gitlab.freedesktop.org/drm/i915/kernel/-/issues/2672">i915#2672</a> / <a h=
+ref=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3=
+555</a>)</li>
+<li>shard-dg1:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@kms_flip_scaled_crc@flip-=
+32bpp-yftile-to-32bpp-yftileccs-upscaling.html">SKIP</a> (<a href=3D"https:=
+//gitlab.freedesktop.org/drm/i915/kernel/-/issues/2672">i915#2672</a> / <a =
+href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#=
+3555</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_flip_scaled_crc@flip-32bpp-yftileccs-to-64bpp-yftile-upscaling:</p>
+<p>igt@kms_flip_scaled_crc@flip-32bpp-yftile-to-32bpp-yftileccs-upscaling@p=
+ipe-a-valid-mode:</p>
 <ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-8/igt@kms_flip_scaled_crc@flip-32bpp-yftileccs-to-64bpp-yftile-upscaling.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2672">i915#2672</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a>) +1 other test skip</li>
+<li>shard-dg1:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@kms_flip_scaled_crc@flip-=
+32bpp-yftile-to-32bpp-yftileccs-upscaling@pipe-a-valid-mode.html">SKIP</a> =
+(<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2587">i=
+915#2587</a> / <a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/=
+issues/2672">i915#2672</a>)</li>
+<li>shard-dg2:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@kms_flip_scaled_crc@flip-3=
+2bpp-yftile-to-32bpp-yftileccs-upscaling@pipe-a-valid-mode.html">SKIP</a> (=
+<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2672">i9=
+15#2672</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-32bpp-ytilegen12rcccs-downscaling@pipe-a-default-mode:</p>
+<p>igt@kms_flip_scaled_crc@flip-32bpp-yftile-to-64bpp-yftile-upscaling:</p>
 <ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-32bpp-ytilegen12rcccs-downscaling@pipe-a-default-mode.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2672">i915#2672</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8813">i915#8813</a>) +4 other tests skip</li>
+<li>shard-tglu-1:       NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@kms_flip_scaled_crc@flip-=
+32bpp-yftile-to-64bpp-yftile-upscaling.html">SKIP</a> (<a href=3D"https://g=
+itlab.freedesktop.org/drm/i915/kernel/-/issues/2672">i915#2672</a> / <a hre=
+f=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#355=
+5</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-32bpp-ytilegen12rcccs-upscaling@pipe-a-default-mode:</p>
+<p>igt@kms_flip_scaled_crc@flip-32bpp-yftile-to-64bpp-yftile-upscaling@pipe=
+-a-valid-mode:</p>
 <ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-4/igt@kms_flip_scaled_crc@flip-32bpp-ytile-to-32bpp-ytilegen12rcccs-upscaling@pipe-a-default-mode.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2672">i915#2672</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8813">i915#8813</a>)</li>
+<li>shard-tglu-1:       NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@kms_flip_scaled_crc@flip-=
+32bpp-yftile-to-64bpp-yftile-upscaling@pipe-a-valid-mode.html">SKIP</a> (<a=
+ href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2587">i915=
+#2587</a> / <a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/iss=
+ues/2672">i915#2672</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_flip_scaled_crc@flip-32bpp-ytileccs-to-64bpp-ytile-upscaling:</p>
+<p>igt@kms_flip_scaled_crc@flip-64bpp-4tile-to-32bpp-4tile-downscaling:</p>
 <ul>
-<li>shard-tglu-1:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-1/igt@kms_flip_scaled_crc@flip-32bpp-ytileccs-to-64bpp-ytile-upscaling.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2587">i915#2587</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2672">i915#2672</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a>)</li>
+<li>shard-rkl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@kms_flip_scaled_crc@flip-6=
+4bpp-4tile-to-32bpp-4tile-downscaling.html">SKIP</a> (<a href=3D"https://gi=
+tlab.freedesktop.org/drm/i915/kernel/-/issues/2672">i915#2672</a> / <a href=
+=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555=
+</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_flip_scaled_crc@flip-32bpp-ytileccs-to-64bpp-ytile-upscaling@pipe-a-valid-mode:</p>
+<p>igt@kms_flip_scaled_crc@flip-64bpp-4tile-to-32bpp-4tile-downscaling@pipe=
+-a-valid-mode:</p>
 <ul>
-<li>shard-tglu-1:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-1/igt@kms_flip_scaled_crc@flip-32bpp-ytileccs-to-64bpp-ytile-upscaling@pipe-a-valid-mode.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2587">i915#2587</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2672">i915#2672</a>)</li>
+<li>shard-rkl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@kms_flip_scaled_crc@flip-6=
+4bpp-4tile-to-32bpp-4tile-downscaling@pipe-a-valid-mode.html">SKIP</a> (<a =
+href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2672">i915#=
+2672</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_flip_scaled_crc@flip-64bpp-4tile-to-32bpp-4tiledg2rcccs-downscaling:</p>
+<p>igt@kms_flip_scaled_crc@flip-64bpp-yftile-to-16bpp-yftile-upscaling:</p>
 <ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-7/igt@kms_flip_scaled_crc@flip-64bpp-4tile-to-32bpp-4tiledg2rcccs-downscaling.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2672">i915#2672</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a>)</li>
+<li>shard-tglu:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-8/igt@kms_flip_scaled_crc@flip-=
+64bpp-yftile-to-16bpp-yftile-upscaling.html">SKIP</a> (<a href=3D"https://g=
+itlab.freedesktop.org/drm/i915/kernel/-/issues/2672">i915#2672</a> / <a hre=
+f=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#355=
+5</a>) +2 other tests skip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_flip_scaled_crc@flip-64bpp-4tile-to-32bpp-4tiledg2rcccs-downscaling@pipe-a-valid-mode:</p>
+<p>igt@kms_frontbuffer_tracking@fbc-1p-offscren-pri-shrfb-draw-mmap-cpu:</p>
 <ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-7/igt@kms_flip_scaled_crc@flip-64bpp-4tile-to-32bpp-4tiledg2rcccs-downscaling@pipe-a-valid-mode.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2672">i915#2672</a>)</li>
+<li>shard-dg2:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_16004/shard-dg2-1/igt@kms_frontbuffer_tracking@fbc-1p-offscren-pri-=
+shrfb-draw-mmap-cpu.html">PASS</a> -&gt; <a href=3D"https://intel-gfx-ci.01=
+.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-10/igt@kms_frontbuffer_track=
+ing@fbc-1p-offscren-pri-shrfb-draw-mmap-cpu.html">FAIL</a> (<a href=3D"http=
+s://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6880">i915#6880</a>)</l=
+i>
 </ul>
 </li>
 <li>
-<p>igt@kms_flip_scaled_crc@flip-64bpp-yftile-to-32bpp-yftile-upscaling:</p>
+<p>igt@kms_frontbuffer_tracking@fbc-2p-primscrn-pri-shrfb-draw-mmap-gtt:</p>
 <ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@kms_flip_scaled_crc@flip-64bpp-yftile-to-32bpp-yftile-upscaling.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2672">i915#2672</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a>) +1 other test skip</li>
+<li>shard-rkl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@kms_frontbuffer_tracking@f=
+bc-2p-primscrn-pri-shrfb-draw-mmap-gtt.html">SKIP</a> (<a href=3D"https://g=
+itlab.freedesktop.org/drm/i915/kernel/-/issues/1825">i915#1825</a>) +9 othe=
+r tests skip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_flip_scaled_crc@flip-64bpp-yftile-to-32bpp-yftile-upscaling@pipe-a-valid-mode:</p>
+<p>igt@kms_frontbuffer_tracking@fbc-2p-primscrn-spr-indfb-draw-mmap-cpu:</p>
 <ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@kms_flip_scaled_crc@flip-64bpp-yftile-to-32bpp-yftile-upscaling@pipe-a-valid-mode.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2587">i915#2587</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2672">i915#2672</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytile-upscaling:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytile-upscaling.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2672">i915#2672</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5190">i915#5190</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytile-upscaling@pipe-a-valid-mode:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@kms_flip_scaled_crc@flip-64bpp-ytile-to-32bpp-ytile-upscaling@pipe-a-valid-mode.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2672">i915#2672</a>) +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-3/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a> +5 other tests skip</li>
+<li>shard-dg2:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@kms_frontbuffer_tracking@f=
+bc-2p-primscrn-spr-indfb-draw-mmap-cpu.html">SKIP</a> (<a href=3D"https://g=
+itlab.freedesktop.org/drm/i915/kernel/-/issues/5354">i915#5354</a>) +7 othe=
+r tests skip</li>
 </ul>
 </li>
 <li>
 <p>igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-indfb-pgflip-blt:</p>
 <ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-indfb-pgflip-blt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1825">i915#1825</a>) +17 other tests skip</li>
+<li>shard-mtlp:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-mtlp-7/igt@kms_frontbuffer_tracking@=
+fbc-2p-scndscrn-indfb-pgflip-blt.html">SKIP</a> (<a href=3D"https://gitlab.=
+freedesktop.org/drm/i915/kernel/-/issues/1825">i915#1825</a>) +1 other test=
+ skip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-shrfb-pgflip-blt:</p>
+<p>igt@kms_frontbuffer_tracking@fbcpsr-2p-primscrn-pri-shrfb-draw-mmap-wc:<=
+/p>
 <ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-shrfb-pgflip-blt.html">SKIP</a> +22 other tests skip</li>
+<li>shard-dg2:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@kms_frontbuffer_tracking@f=
+bcpsr-2p-primscrn-pri-shrfb-draw-mmap-wc.html">SKIP</a> (<a href=3D"https:/=
+/gitlab.freedesktop.org/drm/i915/kernel/-/issues/8708">i915#8708</a>) +7 ot=
+her tests skip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_frontbuffer_tracking@fbc-rgb565-draw-pwrite:</p>
+<p>igt@kms_frontbuffer_tracking@psr-1p-primscrn-indfb-plflip-blt:</p>
 <ul>
-<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-dg2-2/igt@kms_frontbuffer_tracking@fbc-rgb565-draw-pwrite.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-5/igt@kms_frontbuffer_tracking@fbc-rgb565-draw-pwrite.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6880">i915#6880</a>) +1 other test fail</li>
+<li>shard-rkl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@kms_frontbuffer_tracking@p=
+sr-1p-primscrn-indfb-plflip-blt.html">SKIP</a> (<a href=3D"https://gitlab.f=
+reedesktop.org/drm/i915/kernel/-/issues/3023">i915#3023</a>) +6 other tests=
+ skip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_frontbuffer_tracking@fbcpsr-1p-indfb-fliptrack-mmap-gtt:</p>
+<p>igt@kms_frontbuffer_tracking@psr-1p-primscrn-pri-indfb-draw-blt:</p>
 <ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-4/igt@kms_frontbuffer_tracking@fbcpsr-1p-indfb-fliptrack-mmap-gtt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3023">i915#3023</a>) +10 other tests skip</li>
+<li>shard-dg2:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@kms_frontbuffer_tracking@p=
+sr-1p-primscrn-pri-indfb-draw-blt.html">SKIP</a> (<a href=3D"https://gitlab=
+.freedesktop.org/drm/i915/kernel/-/issues/3458">i915#3458</a>) +4 other tes=
+ts skip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_frontbuffer_tracking@fbcpsr-1p-primscrn-spr-indfb-draw-mmap-wc:</p>
+<p>igt@kms_frontbuffer_tracking@psr-1p-primscrn-spr-indfb-move:</p>
 <ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-1/igt@kms_frontbuffer_tracking@fbcpsr-1p-primscrn-spr-indfb-draw-mmap-wc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8708">i915#8708</a>) +13 other tests skip</li>
+<li>shard-tglu:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-7/igt@kms_frontbuffer_tracking@=
+psr-1p-primscrn-spr-indfb-move.html">SKIP</a> +48 other tests skip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_frontbuffer_tracking@fbcpsr-2p-primscrn-pri-indfb-draw-render:</p>
+<p>igt@kms_frontbuffer_tracking@psr-2p-primscrn-indfb-msflip-blt:</p>
 <ul>
-<li>shard-tglu-1:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-1/igt@kms_frontbuffer_tracking@fbcpsr-2p-primscrn-pri-indfb-draw-render.html">SKIP</a> +5 other tests skip</li>
+<li>shard-dg1:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@kms_frontbuffer_tracking@=
+psr-2p-primscrn-indfb-msflip-blt.html">SKIP</a> +12 other tests skip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_frontbuffer_tracking@fbcpsr-2p-scndscrn-cur-indfb-draw-mmap-cpu:</p>
+<p>igt@kms_frontbuffer_tracking@psr-2p-scndscrn-indfb-msflip-blt:</p>
 <ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-4/igt@kms_frontbuffer_tracking@fbcpsr-2p-scndscrn-cur-indfb-draw-mmap-cpu.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1825">i915#1825</a>) +15 other tests skip</li>
+<li>shard-tglu-1:       NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@kms_frontbuffer_tracking@=
+psr-2p-scndscrn-indfb-msflip-blt.html">SKIP</a> +35 other tests skip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_frontbuffer_tracking@fbcpsr-rgb101010-draw-mmap-gtt:</p>
+<p>igt@kms_frontbuffer_tracking@psr-2p-scndscrn-pri-indfb-draw-mmap-wc:</p>
 <ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@kms_frontbuffer_tracking@fbcpsr-rgb101010-draw-mmap-gtt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8708">i915#8708</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbcpsr-tiling-y:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-1/igt@kms_frontbuffer_tracking@fbcpsr-tiling-y.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10055">i915#10055</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@psr-1p-primscrn-spr-indfb-draw-mmap-wc:</p>
-<ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-12/igt@kms_frontbuffer_tracking@psr-1p-primscrn-spr-indfb-draw-mmap-wc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8708">i915#8708</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@psr-1p-primscrn-spr-indfb-onoff:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@kms_frontbuffer_tracking@psr-1p-primscrn-spr-indfb-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3458">i915#3458</a>) +15 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@psr-2p-scndscrn-pri-shrfb-draw-pwrite:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@kms_frontbuffer_tracking@psr-2p-scndscrn-pri-shrfb-draw-pwrite.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5354">i915#5354</a>) +19 other tests skip</li>
+<li>shard-dg1:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@kms_frontbuffer_tracking@=
+psr-2p-scndscrn-pri-indfb-draw-mmap-wc.html">SKIP</a> (<a href=3D"https://g=
+itlab.freedesktop.org/drm/i915/kernel/-/issues/8708">i915#8708</a>) +5 othe=
+r tests skip</li>
 </ul>
 </li>
 <li>
 <p>igt@kms_frontbuffer_tracking@psr-rgb101010-draw-mmap-cpu:</p>
 <ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@kms_frontbuffer_tracking@psr-rgb101010-draw-mmap-cpu.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3458">i915#3458</a>) +9 other tests skip</li>
+<li>shard-dg1:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@kms_frontbuffer_tracking@=
+psr-rgb101010-draw-mmap-cpu.html">SKIP</a> (<a href=3D"https://gitlab.freed=
+esktop.org/drm/i915/kernel/-/issues/3458">i915#3458</a>) +3 other tests ski=
+p</li>
 </ul>
 </li>
 <li>
 <p>igt@kms_hdr@bpc-switch-dpms:</p>
 <ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@kms_hdr@bpc-switch-dpms.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8228">i915#8228</a>)</li>
+<li>shard-tglu:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-8/igt@kms_hdr@bpc-switch-dpms.h=
+tml">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/=
+issues/3555">i915#3555</a> / <a href=3D"https://gitlab.freedesktop.org/drm/=
+i915/kernel/-/issues/8228">i915#8228</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_hdr@bpc-switch-suspend:</p>
+<ul>
+<li>shard-dg2:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@kms_hdr@bpc-switch-suspend=
+.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/=
+-/issues/3555">i915#3555</a> / <a href=3D"https://gitlab.freedesktop.org/dr=
+m/i915/kernel/-/issues/8228">i915#8228</a>)</li>
+<li>shard-dg1:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@kms_hdr@bpc-switch-suspen=
+d.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel=
+/-/issues/3555">i915#3555</a> / <a href=3D"https://gitlab.freedesktop.org/d=
+rm/i915/kernel/-/issues/8228">i915#8228</a>)</li>
 </ul>
 </li>
 <li>
 <p>igt@kms_hdr@brightness-with-hdr:</p>
 <ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-7/igt@kms_hdr@brightness-with-hdr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12713">i915#12713</a>)</li>
+<li>shard-rkl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-rkl-3/igt@kms_hdr@brightness-with-hd=
+r.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel=
+/-/issues/1187">i915#1187</a> / <a href=3D"https://gitlab.freedesktop.org/d=
+rm/i915/kernel/-/issues/12713">i915#12713</a>)</li>
+<li>shard-dg1:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@kms_hdr@brightness-with-h=
+dr.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kerne=
+l/-/issues/12713">i915#12713</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_hdr@invalid-metadata-sizes:</p>
+<p>igt@kms_hdr@static-swap:</p>
 <ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-3/igt@kms_hdr@invalid-metadata-sizes.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8228">i915#8228</a>) +1 other test skip</li>
+<li>shard-rkl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@kms_hdr@static-swap.html">=
+SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issue=
+s/3555">i915#3555</a> / <a href=3D"https://gitlab.freedesktop.org/drm/i915/=
+kernel/-/issues/8228">i915#8228</a>)</li>
 </ul>
 </li>
 <li>
 <p>igt@kms_hdr@static-toggle-suspend:</p>
 <ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-3/igt@kms_hdr@static-toggle-suspend.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8228">i915#8228</a>)</li>
+<li>shard-dg2:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_16004/shard-dg2-10/igt@kms_hdr@static-toggle-suspend.html">PASS</a>=
+ -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636=
+v2/shard-dg2-7/igt@kms_hdr@static-toggle-suspend.html">SKIP</a> (<a href=3D=
+"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a=
+> / <a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8228=
+">i915#8228</a>)</li>
 </ul>
 </li>
 <li>
 <p>igt@kms_joiner@basic-big-joiner:</p>
 <ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-1/igt@kms_joiner@basic-big-joiner.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10656">i915#10656</a>)</li>
+<li>shard-tglu:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-8/igt@kms_joiner@basic-big-join=
+er.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kerne=
+l/-/issues/10656">i915#10656</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_joiner@basic-ultra-joiner:</p>
+<p>igt@kms_joiner@basic-force-ultra-joiner:</p>
 <ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-7/igt@kms_joiner@basic-ultra-joiner.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12339">i915#12339</a>)</li>
+<li>shard-tglu-1:       NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@kms_joiner@basic-force-ul=
+tra-joiner.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i9=
+15/kernel/-/issues/12394">i915#12394</a> / <a href=3D"https://gitlab.freede=
+sktop.org/drm/i915/kernel/-/issues/13522">i915#13522</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_joiner@invalid-modeset-force-ultra-joiner:</p>
+<p>igt@kms_pipe_crc_basic@bad-source:</p>
 <ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-10/igt@kms_joiner@invalid-modeset-force-ultra-joiner.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10656">i915#10656</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13522">i915#13522</a>)</li>
+<li>shard-rkl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_16004/shard-rkl-3/igt@kms_pipe_crc_basic@bad-source.html">PASS</a> =
+-&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v=
+2/shard-rkl-4/igt@kms_pipe_crc_basic@bad-source.html">DMESG-WARN</a> (<a hr=
+ef=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12964">i915#1=
+2964</a>) +4 other tests dmesg-warn</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_joiner@invalid-modeset-ultra-joiner:</p>
+<p>igt@kms_plane_lowres@tiling-4:</p>
 <ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-4/igt@kms_joiner@invalid-modeset-ultra-joiner.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12339">i915#12339</a>)</li>
+<li>shard-mtlp:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-mtlp-7/igt@kms_plane_lowres@tiling-4=
+.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/=
+-/issues/10226">i915#10226</a> / <a href=3D"https://gitlab.freedesktop.org/=
+drm/i915/kernel/-/issues/11614">i915#11614</a> / <a href=3D"https://gitlab.=
+freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a> / <a href=3D"h=
+ttps://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8821">i915#8821</a>)=
+</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_joiner@switch-modeset-ultra-joiner-big-joiner:</p>
+<p>igt@kms_plane_lowres@tiling-4@pipe-b-edp-1:</p>
 <ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-8/igt@kms_joiner@switch-modeset-ultra-joiner-big-joiner.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13522">i915#13522</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_multipipe_modeset@basic-max-pipe-crc-check:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@kms_multipipe_modeset@basic-max-pipe-crc-check.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4816">i915#4816</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_panel_fitting@atomic-fastset:</p>
-<ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@kms_panel_fitting@atomic-fastset.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6301">i915#6301</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane@plane-panning-bottom-right-suspend:</p>
-<ul>
-<li>shard-glk:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-glk1/igt@kms_plane@plane-panning-bottom-right-suspend.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13026">i915#13026</a>) +1 other test incomplete</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_lowres@tiling-none:</p>
-<ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@kms_plane_lowres@tiling-none.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11614">i915#11614</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3582">i915#3582</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_lowres@tiling-none@pipe-b-edp-1:</p>
-<ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@kms_plane_lowres@tiling-none@pipe-b-edp-1.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10226">i915#10226</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11614">i915#11614</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3582">i915#3582</a>) +2 other tests skip</li>
+<li>shard-mtlp:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-mtlp-7/igt@kms_plane_lowres@tiling-4=
+@pipe-b-edp-1.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm=
+/i915/kernel/-/issues/11614">i915#11614</a> / <a href=3D"https://gitlab.fre=
+edesktop.org/drm/i915/kernel/-/issues/3582">i915#3582</a>) +3 other tests s=
+kip</li>
 </ul>
 </li>
 <li>
 <p>igt@kms_plane_scaling@intel-max-src-size:</p>
 <ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-3/igt@kms_plane_scaling@intel-max-src-size.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6953">i915#6953</a>)</li>
+<li>shard-tglu-1:       NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@kms_plane_scaling@intel-m=
+ax-src-size.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i=
+915/kernel/-/issues/6953">i915#6953</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_plane_scaling@plane-downscale-factor-0-25-with-modifiers@pipe-a:</p>
+<p>igt@kms_plane_scaling@plane-downscale-factor-0-25-with-pixel-format:</p>
 <ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@kms_plane_scaling@plane-downscale-factor-0-25-with-modifiers@pipe-a.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12247">i915#12247</a>) +4 other tests skip</li>
+<li>shard-tglu-1:       NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@kms_plane_scaling@plane-d=
+ownscale-factor-0-25-with-pixel-format.html">SKIP</a> (<a href=3D"https://g=
+itlab.freedesktop.org/drm/i915/kernel/-/issues/12247">i915#12247</a>) +8 ot=
+her tests skip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_plane_scaling@planes-downscale-factor-0-25-upscale-factor-0-25:</p>
+<p>igt@kms_plane_scaling@plane-downscale-factor-0-75-with-rotation@pipe-a:<=
+/p>
 <ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-7/igt@kms_plane_scaling@planes-downscale-factor-0-25-upscale-factor-0-25.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12247">i915#12247</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6953">i915#6953</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9423">i915#9423</a>)</li>
+<li>shard-rkl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@kms_plane_scaling@plane-do=
+wnscale-factor-0-75-with-rotation@pipe-a.html">SKIP</a> (<a href=3D"https:/=
+/gitlab.freedesktop.org/drm/i915/kernel/-/issues/12247">i915#12247</a>) +2 =
+other tests skip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_plane_scaling@planes-downscale-factor-0-25-upscale-factor-0-25@pipe-a:</p>
+<p>igt@kms_plane_scaling@plane-scaler-unity-scaling-with-rotation@pipe-b:</=
+p>
 <ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-7/igt@kms_plane_scaling@planes-downscale-factor-0-25-upscale-factor-0-25@pipe-a.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12247">i915#12247</a>) +3 other tests skip</li>
+<li>shard-tglu:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-8/igt@kms_plane_scaling@plane-s=
+caler-unity-scaling-with-rotation@pipe-b.html">SKIP</a> (<a href=3D"https:/=
+/gitlab.freedesktop.org/drm/i915/kernel/-/issues/12247">i915#12247</a>) +4 =
+other tests skip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_plane_scaling@planes-unity-scaling-downscale-factor-0-25:</p>
+<p>igt@kms_plane_scaling@planes-downscale-factor-0-25-upscale-factor-0-25:<=
+/p>
 <ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-8/igt@kms_plane_scaling@planes-unity-scaling-downscale-factor-0-25.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12247">i915#12247</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6953">i915#6953</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_scaling@planes-unity-scaling-downscale-factor-0-25@pipe-d:</p>
-<ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-8/igt@kms_plane_scaling@planes-unity-scaling-downscale-factor-0-25@pipe-d.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12247">i915#12247</a>) +3 other tests skip</li>
+<li>shard-tglu-1:       NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@kms_plane_scaling@planes-=
+downscale-factor-0-25-upscale-factor-0-25.html">SKIP</a> (<a href=3D"https:=
+//gitlab.freedesktop.org/drm/i915/kernel/-/issues/12247">i915#12247</a> / <=
+a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6953">i91=
+5#6953</a>)</li>
 </ul>
 </li>
 <li>
 <p>igt@kms_pm_backlight@brightness-with-dpms:</p>
 <ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-7/igt@kms_pm_backlight@brightness-with-dpms.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12343">i915#12343</a>)</li>
+<li>shard-tglu:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-7/igt@kms_pm_backlight@brightne=
+ss-with-dpms.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/=
+i915/kernel/-/issues/12343">i915#12343</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_pm_dc@dc3co-vpb-simulation:</p>
+<p>igt@kms_pm_dc@dc5-retention-flops:</p>
 <ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-4/igt@kms_pm_dc@dc3co-vpb-simulation.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9685">i915#9685</a>)</li>
+<li>shard-rkl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-rkl-3/igt@kms_pm_dc@dc5-retention-fl=
+ops.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kern=
+el/-/issues/3828">i915#3828</a>)</li>
+<li>shard-dg1:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@kms_pm_dc@dc5-retention-f=
+lops.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/ker=
+nel/-/issues/3828">i915#3828</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_pm_lpsp@kms-lpsp:</p>
+<p>igt@kms_pm_dc@dc6-psr:</p>
 <ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-8/igt@kms_pm_lpsp@kms-lpsp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3828">i915#3828</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_lpsp@screens-disabled:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@kms_pm_lpsp@screens-disabled.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8430">i915#8430</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_rpm@dpms-lpsp:</p>
-<ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-4/igt@kms_pm_rpm@dpms-lpsp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12916">i915#12916</a>)</li>
+<li>shard-rkl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@kms_pm_dc@dc6-psr.html">SK=
+IP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/=
+9685">i915#9685</a>)</li>
 </ul>
 </li>
 <li>
 <p>igt@kms_pm_rpm@dpms-mode-unset-lpsp:</p>
 <ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@kms_pm_rpm@dpms-mode-unset-lpsp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9519">i915#9519</a>)</li>
+<li>shard-rkl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_16004/shard-rkl-4/igt@kms_pm_rpm@dpms-mode-unset-lpsp.html">PASS</a=
+> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_14363=
+6v2/shard-rkl-5/igt@kms_pm_rpm@dpms-mode-unset-lpsp.html">SKIP</a> (<a href=
+=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9519">i915#9519=
+</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_pm_rpm@modeset-lpsp-stress-no-wait:</p>
+<p>igt@kms_pm_rpm@dpms-non-lpsp:</p>
 <ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@kms_pm_rpm@modeset-lpsp-stress-no-wait.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9519">i915#9519</a>)</li>
+<li>shard-mtlp:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-mtlp-4/igt@kms_pm_rpm@dpms-non-lpsp.=
+html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-=
+/issues/9519">i915#9519</a>)</li>
 </ul>
 </li>
 <li>
 <p>igt@kms_pm_rpm@modeset-non-lpsp-stress-no-wait:</p>
 <ul>
-<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-rkl-1/igt@kms_pm_rpm@modeset-non-lpsp-stress-no-wait.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-7/igt@kms_pm_rpm@modeset-non-lpsp-stress-no-wait.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9519">i915#9519</a>)</li>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-8/igt@kms_pm_rpm@modeset-non-lpsp-stress-no-wait.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9519">i915#9519</a>)</li>
+<li>shard-tglu:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-7/igt@kms_pm_rpm@modeset-non-lp=
+sp-stress-no-wait.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org=
+/drm/i915/kernel/-/issues/9519">i915#9519</a>) +1 other test skip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_pm_rpm@pm-caching:</p>
+<p>igt@kms_psr2_sf@fbc-pr-overlay-plane-move-continuous-exceed-fully-sf:</p>
 <ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@kms_pm_rpm@pm-caching.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4077">i915#4077</a>) +4 other tests skip</li>
+<li>shard-tglu:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-7/igt@kms_psr2_sf@fbc-pr-overla=
+y-plane-move-continuous-exceed-fully-sf.html">SKIP</a> (<a href=3D"https://=
+gitlab.freedesktop.org/drm/i915/kernel/-/issues/11520">i915#11520</a>) +5 o=
+ther tests skip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_prime@basic-crc-vgem:</p>
+<p>igt@kms_psr2_sf@fbc-pr-plane-move-sf-dmg-area:</p>
 <ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-1/igt@kms_prime@basic-crc-vgem.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6524">i915#6524</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6805">i915#6805</a>) +1 other test skip</li>
+<li>shard-mtlp:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-mtlp-7/igt@kms_psr2_sf@fbc-pr-plane-=
+move-sf-dmg-area.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/=
+drm/i915/kernel/-/issues/12316">i915#12316</a>) +2 other tests skip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_prime@basic-modeset-hybrid:</p>
+<p>igt@kms_psr2_sf@fbc-psr2-cursor-plane-move-continuous-exceed-fully-sf:</=
+p>
 <ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-8/igt@kms_prime@basic-modeset-hybrid.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6524">i915#6524</a>)</li>
+<li>shard-rkl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@kms_psr2_sf@fbc-psr2-curso=
+r-plane-move-continuous-exceed-fully-sf.html">SKIP</a> (<a href=3D"https://=
+gitlab.freedesktop.org/drm/i915/kernel/-/issues/11520">i915#11520</a>) +1 o=
+ther test skip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_psr2_sf@fbc-psr2-cursor-plane-update-sf:</p>
+<p>igt@kms_psr2_sf@fbc-psr2-cursor-plane-move-continuous-exceed-sf:</p>
 <ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@kms_psr2_sf@fbc-psr2-cursor-plane-update-sf.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11520">i915#11520</a>) +5 other tests skip</li>
+<li>shard-snb:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-snb7/igt@kms_psr2_sf@fbc-psr2-cursor=
+-plane-move-continuous-exceed-sf.html">SKIP</a> (<a href=3D"https://gitlab.=
+freedesktop.org/drm/i915/kernel/-/issues/11520">i915#11520</a>) +6 other te=
+sts skip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_psr2_sf@fbc-psr2-primary-plane-update-sf-dmg-area@pipe-a-edp-1:</p>
+<p>igt@kms_psr2_sf@fbc-psr2-overlay-plane-update-sf-dmg-area:</p>
 <ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@kms_psr2_sf@fbc-psr2-primary-plane-update-sf-dmg-area@pipe-a-edp-1.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9808">i915#9808</a>)</li>
+<li>shard-dg1:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@kms_psr2_sf@fbc-psr2-over=
+lay-plane-update-sf-dmg-area.html">SKIP</a> (<a href=3D"https://gitlab.free=
+desktop.org/drm/i915/kernel/-/issues/11520">i915#11520</a>) +3 other tests =
+skip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_psr2_sf@fbc-psr2-primary-plane-update-sf-dmg-area@pipe-b-edp-1:</p>
+<p>igt@kms_psr2_sf@fbc-psr2-overlay-plane-update-sf-dmg-area@pipe-a-edp-1:<=
+/p>
 <ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@kms_psr2_sf@fbc-psr2-primary-plane-update-sf-dmg-area@pipe-b-edp-1.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12316">i915#12316</a>) +2 other tests skip</li>
+<li>shard-mtlp:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-mtlp-7/igt@kms_psr2_sf@fbc-psr2-over=
+lay-plane-update-sf-dmg-area@pipe-a-edp-1.html">SKIP</a> (<a href=3D"https:=
+//gitlab.freedesktop.org/drm/i915/kernel/-/issues/9808">i915#9808</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_psr2_sf@psr2-cursor-plane-move-continuous-sf:</p>
+<p>igt@kms_psr2_sf@psr2-overlay-plane-update-sf-dmg-area:</p>
 <ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-7/igt@kms_psr2_sf@psr2-cursor-plane-move-continuous-sf.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11520">i915#11520</a>) +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr2_sf@psr2-overlay-plane-move-continuous-exceed-sf:</p>
-<ul>
-<li>shard-glk:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-glk4/igt@kms_psr2_sf@psr2-overlay-plane-move-continuous-exceed-sf.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11520">i915#11520</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr2_sf@psr2-overlay-plane-move-continuous-sf:</p>
-<ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-12/igt@kms_psr2_sf@psr2-overlay-plane-move-continuous-sf.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11520">i915#11520</a>) +4 other tests skip</li>
+<li>shard-tglu-1:       NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@kms_psr2_sf@psr2-overlay-=
+plane-update-sf-dmg-area.html">SKIP</a> (<a href=3D"https://gitlab.freedesk=
+top.org/drm/i915/kernel/-/issues/11520">i915#11520</a>) +1 other test skip<=
+/li>
 </ul>
 </li>
 <li>
 <p>igt@kms_psr2_sf@psr2-primary-plane-update-sf-dmg-area:</p>
 <ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-3/igt@kms_psr2_sf@psr2-primary-plane-update-sf-dmg-area.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11520">i915#11520</a>) +3 other tests skip</li>
+<li>shard-dg2:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@kms_psr2_sf@psr2-primary-p=
+lane-update-sf-dmg-area.html">SKIP</a> (<a href=3D"https://gitlab.freedeskt=
+op.org/drm/i915/kernel/-/issues/11520">i915#11520</a>) +2 other tests skip<=
+/li>
 </ul>
 </li>
 <li>
-<p>igt@kms_psr2_sf@psr2-primary-plane-update-sf-dmg-area-big-fb:</p>
+<p>igt@kms_psr2_su@frontbuffer-xrgb8888:</p>
 <ul>
-<li>shard-snb:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-snb7/igt@kms_psr2_sf@psr2-primary-plane-update-sf-dmg-area-big-fb.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11520">i915#11520</a>) +10 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr2_su@page_flip-p010:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@kms_psr2_su@page_flip-p010.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9683">i915#9683</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@fbc-pr-cursor-plane-onoff:</p>
-<ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-4/igt@kms_psr@fbc-pr-cursor-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1072">i915#1072</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9732">i915#9732</a>) +8 other tests skip</li>
+<li>shard-dg2:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg2-8/igt@kms_psr2_su@frontbuffer-xr=
+gb8888.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/k=
+ernel/-/issues/9683">i915#9683</a>)</li>
 </ul>
 </li>
 <li>
 <p>igt@kms_psr@fbc-psr-cursor-mmap-cpu:</p>
 <ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-1/igt@kms_psr@fbc-psr-cursor-mmap-cpu.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1072">i915#1072</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9732">i915#9732</a>) +20 other tests skip</li>
+<li>shard-rkl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@kms_psr@fbc-psr-cursor-mma=
+p-cpu.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/ke=
+rnel/-/issues/1072">i915#1072</a> / <a href=3D"https://gitlab.freedesktop.o=
+rg/drm/i915/kernel/-/issues/9732">i915#9732</a>) +6 other tests skip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_psr@fbc-psr-cursor-mmap-gtt@edp-1:</p>
+<p>igt@kms_psr@fbc-psr-cursor-plane-move:</p>
 <ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-4/igt@kms_psr@fbc-psr-cursor-mmap-gtt@edp-1.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9688">i915#9688</a>) +6 other tests skip</li>
+<li>shard-dg2:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@kms_psr@fbc-psr-cursor-pla=
+ne-move.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/=
+kernel/-/issues/1072">i915#1072</a> / <a href=3D"https://gitlab.freedesktop=
+.org/drm/i915/kernel/-/issues/9732">i915#9732</a>) +6 other tests skip</li>
+<li>shard-dg1:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@kms_psr@fbc-psr-cursor-pl=
+ane-move.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915=
+/kernel/-/issues/1072">i915#1072</a> / <a href=3D"https://gitlab.freedeskto=
+p.org/drm/i915/kernel/-/issues/9732">i915#9732</a>) +4 other tests skip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_psr@fbc-psr-cursor-plane-onoff:</p>
+<p>igt@kms_psr@fbc-psr-cursor-plane-move@edp-1:</p>
 <ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-7/igt@kms_psr@fbc-psr-cursor-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9732">i915#9732</a>) +9 other tests skip</li>
+<li>shard-mtlp:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-mtlp-7/igt@kms_psr@fbc-psr-cursor-pl=
+ane-move@edp-1.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/dr=
+m/i915/kernel/-/issues/9688">i915#9688</a>) +1 other test skip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_psr@psr-cursor-plane-onoff:</p>
+<p>igt@kms_psr@fbc-psr2-cursor-mmap-cpu:</p>
 <ul>
-<li>shard-tglu-1:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-1/igt@kms_psr@psr-cursor-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9732">i915#9732</a>) +1 other test skip</li>
+<li>shard-tglu:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-8/igt@kms_psr@fbc-psr2-cursor-m=
+map-cpu.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/=
+kernel/-/issues/9732">i915#9732</a>) +10 other tests skip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_psr@psr-sprite-blt:</p>
+<p>igt@kms_psr@pr-suspend:</p>
 <ul>
-<li>shard-snb:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-snb2/igt@kms_psr@psr-sprite-blt.html">SKIP</a> +363 other tests skip</li>
+<li>shard-tglu-1:       NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@kms_psr@pr-suspend.html">=
+SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issue=
+s/9732">i915#9732</a>) +9 other tests skip</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_psr@psr2-sprite-blt:</p>
+<p>igt@kms_rotation_crc@primary-4-tiled-reflect-x-0:</p>
 <ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@kms_psr@psr2-sprite-blt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1072">i915#1072</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9732">i915#9732</a>) +7 other tests skip</li>
+<li>shard-dg1:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@kms_rotation_crc@primary-=
+4-tiled-reflect-x-0.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.o=
+rg/drm/i915/kernel/-/issues/5289">i915#5289</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_rotation_crc@primary-yf-tiled-reflect-x-0:</p>
+<p>igt@kms_rotation_crc@primary-yf-tiled-reflect-x-270:</p>
 <ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-3/igt@kms_rotation_crc@primary-yf-tiled-reflect-x-0.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5289">i915#5289</a>)</li>
+<li>shard-tglu:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-8/igt@kms_rotation_crc@primary-=
+yf-tiled-reflect-x-270.html">SKIP</a> (<a href=3D"https://gitlab.freedeskto=
+p.org/drm/i915/kernel/-/issues/5289">i915#5289</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_rotation_crc@primary-yf-tiled-reflect-x-180:</p>
+<p>igt@kms_scaling_modes@scaling-mode-full-aspect:</p>
 <ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-7/igt@kms_rotation_crc@primary-yf-tiled-reflect-x-180.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5289">i915#5289</a>)</li>
+<li>shard-rkl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@kms_scaling_modes@scaling-=
+mode-full-aspect.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/=
+drm/i915/kernel/-/issues/3555">i915#3555</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_rotation_crc@primary-yf-tiled-reflect-x-90:</p>
+<p>igt@kms_tiled_display@basic-test-pattern-with-chamelium:</p>
 <ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@kms_rotation_crc@primary-yf-tiled-reflect-x-90.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12755">i915#12755</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5190">i915#5190</a>)</li>
+<li>shard-dg2:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg2-8/igt@kms_tiled_display@basic-te=
+st-pattern-with-chamelium.html">SKIP</a> (<a href=3D"https://gitlab.freedes=
+ktop.org/drm/i915/kernel/-/issues/8623">i915#8623</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_rotation_crc@sprite-rotation-90-pos-100-0:</p>
+<p>igt@kms_universal_plane@cursor-fb-leak:</p>
 <ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-7/igt@kms_rotation_crc@sprite-rotation-90-pos-100-0.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12755">i915#12755</a>) +1 other test skip</li>
+<li>shard-mtlp:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_16004/shard-mtlp-3/igt@kms_universal_plane@cursor-fb-leak.html">PAS=
+S</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_1=
+43636v2/shard-mtlp-8/igt@kms_universal_plane@cursor-fb-leak.html">FAIL</a> =
+(<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9196">i=
+915#9196</a>) +1 other test fail</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_scaling_modes@scaling-mode-center:</p>
+<p>igt@kms_universal_plane@universal-plane-functional@pipe-b-hdmi-a-1:</p>
 <ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@kms_scaling_modes@scaling-mode-center.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a>) +3 other tests skip</li>
+<li>shard-rkl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@kms_universal_plane@univer=
+sal-plane-functional@pipe-b-hdmi-a-1.html">DMESG-WARN</a> (<a href=3D"https=
+://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12964">i915#12964</a>) +=
+2 other tests dmesg-warn</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_selftest@drm_framebuffer:</p>
+<p>igt@kms_vrr@flip-basic-fastset:</p>
 <ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-7/igt@kms_selftest@drm_framebuffer.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13179">i915#13179</a>) +1 other test abort</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@clone-exclusive-crtc:</p>
-<ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-3/igt@kms_setmode@clone-exclusive-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8809">i915#8809</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_tiled_display@basic-test-pattern:</p>
-<ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-4/igt@kms_tiled_display@basic-test-pattern.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8623">i915#8623</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_vblank@query-forked@pipe-a-hdmi-a-1:</p>
-<ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-7/igt@kms_vblank@query-forked@pipe-a-hdmi-a-1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12964">i915#12964</a>) +22 other tests dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_vrr@flipline:</p>
-<ul>
-<li>shard-mtlp:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-3/igt@kms_vrr@flipline.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8808">i915#8808</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_vrr@max-min:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-7/igt@kms_vrr@max-min.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9906">i915#9906</a>)</li>
+<li>shard-tglu:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-8/igt@kms_vrr@flip-basic-fastse=
+t.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel=
+/-/issues/9906">i915#9906</a>)</li>
 </ul>
 </li>
 <li>
 <p>igt@kms_vrr@negative-basic:</p>
 <ul>
-<li>shard-mtlp:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-mtlp-2/igt@kms_vrr@negative-basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-2/igt@kms_vrr@negative-basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10393">i915#10393</a>) +1 other test fail</li>
+<li>shard-dg2:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg2-8/igt@kms_vrr@negative-basic.htm=
+l">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/is=
+sues/3555">i915#3555</a> / <a href=3D"https://gitlab.freedesktop.org/drm/i9=
+15/kernel/-/issues/9906">i915#9906</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_vrr@seamless-rr-switch-drrs:</p>
+<p>igt@kms_vrr@seamless-rr-switch-vrr:</p>
 <ul>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-7/igt@kms_vrr@seamless-rr-switch-drrs.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9906">i915#9906</a>)</li>
+<li>shard-dg2:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@kms_vrr@seamless-rr-switch=
+-vrr.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/ker=
+nel/-/issues/9906">i915#9906</a>)</li>
+<li>shard-dg1:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg1-14/igt@kms_vrr@seamless-rr-switc=
+h-vrr.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/ke=
+rnel/-/issues/9906">i915#9906</a>)</li>
+<li>shard-mtlp:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-mtlp-7/igt@kms_vrr@seamless-rr-switc=
+h-vrr.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/ke=
+rnel/-/issues/8808">i915#8808</a> / <a href=3D"https://gitlab.freedesktop.o=
+rg/drm/i915/kernel/-/issues/9906">i915#9906</a>)</li>
 </ul>
 </li>
 <li>
 <p>igt@kms_writeback@writeback-check-output:</p>
 <ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-1/igt@kms_writeback@writeback-check-output.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2437">i915#2437</a>)</li>
+<li>shard-rkl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@kms_writeback@writeback-ch=
+eck-output.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i9=
+15/kernel/-/issues/2437">i915#2437</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_writeback@writeback-check-output-xrgb2101010:</p>
+<p>igt@perf@mi-rpc:</p>
 <ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@kms_writeback@writeback-check-output-xrgb2101010.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2437">i915#2437</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9412">i915#9412</a>)</li>
+<li>shard-rkl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@perf@mi-rpc.html">SKIP</a>=
+ (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2434">=
+i915#2434</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_writeback@writeback-fb-id:</p>
+<p>igt@perf_pmu@module-unload:</p>
 <ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-4/igt@kms_writeback@writeback-fb-id.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2437">i915#2437</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@perf@non-zero-reason:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-3/igt@perf@non-zero-reason.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9100">i915#9100</a>) +1 other test fail</li>
+<li>shard-dg2:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-dg2-7/igt@perf_pmu@module-unload.htm=
+l">FAIL</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/is=
+sues/11823">i915#11823</a>)</li>
 </ul>
 </li>
 <li>
 <p>igt@perf_pmu@rc6@other-idle-gt0:</p>
 <ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-12/igt@perf_pmu@rc6@other-idle-gt0.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8516">i915#8516</a>)</li>
-<li>shard-tglu:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-10/igt@perf_pmu@rc6@other-idle-gt0.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8516">i915#8516</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_mmap@test_aperture_limit:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-1/igt@prime_mmap@test_aperture_limit.html">WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9351">i915#9351</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_mmap@test_aperture_limit@test_aperture_limit-smem:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-1/igt@prime_mmap@test_aperture_limit@test_aperture_limit-smem.html">CRASH</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9351">i915#9351</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-read:</p>
-<ul>
-<li>shard-dg1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-18/igt@prime_vgem@basic-fence-read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3708">i915#3708</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@coherency-gtt:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-7/igt@prime_vgem@coherency-gtt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3708">i915#3708</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4077">i915#4077</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@fence-write-hang:</p>
-<ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-1/igt@prime_vgem@fence-write-hang.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3708">i915#3708</a>) +1 other test skip</li>
+<li>shard-tglu-1:       NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-1/igt@perf_pmu@rc6@other-idle-g=
+t0.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kerne=
+l/-/issues/8516">i915#8516</a>)</li>
 </ul>
 </li>
 <li>
 <p>igt@sriov_basic@bind-unbind-vf:</p>
 <ul>
-<li>shard-rkl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-3/igt@sriov_basic@bind-unbind-vf.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9917">i915#9917</a>)</li>
+<li>shard-rkl:          NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-rkl-7/igt@sriov_basic@bind-unbind-vf=
+.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/=
+-/issues/9917">i915#9917</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@sriov_basic@enable-vfs-autoprobe-off:</p>
+<p>igt@sriov_basic@enable-vfs-autoprobe-off@numvfs-6:</p>
 <ul>
-<li>shard-dg2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-1/igt@sriov_basic@enable-vfs-autoprobe-off.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9917">i915#9917</a>)</li>
+<li>shard-tglu:         NOTRUN -&gt; <a href=3D"https://intel-gfx-ci.01.org=
+/tree/drm-tip/Patchwork_143636v2/shard-tglu-7/igt@sriov_basic@enable-vfs-au=
+toprobe-off@numvfs-6.html">FAIL</a> (<a href=3D"https://gitlab.freedesktop.=
+org/drm/i915/kernel/-/issues/12910">i915#12910</a>) +9 other tests fail</li>
 </ul>
 </li>
 </ul>
 <h4>Possible fixes</h4>
 <ul>
 <li>
-<p>igt@gem_eio@throttle:</p>
+<p>igt@gem_eio@reset-stress:</p>
 <ul>
-<li>shard-mtlp:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-mtlp-4/igt@gem_eio@throttle.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13193">i915#13193</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-4/igt@gem_eio@throttle.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_endless@dispatch@vcs0:</p>
-<ul>
-<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-dg2-2/igt@gem_exec_endless@dispatch@vcs0.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3778">i915#3778</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7016">i915#7016</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-6/igt@gem_exec_endless@dispatch@vcs0.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s0:</p>
-<ul>
-<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-dg2-3/igt@gem_exec_suspend@basic-s0.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11441">i915#11441</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13304">i915#13304</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-10/igt@gem_exec_suspend@basic-s0.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_suspend@basic-s0@lmem0:</p>
-<ul>
-<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-dg2-3/igt@gem_exec_suspend@basic-s0@lmem0.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11441">i915#11441</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-10/igt@gem_exec_suspend@basic-s0@lmem0.html">PASS</a></li>
+<li>shard-mtlp:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_16004/shard-mtlp-7/igt@gem_eio@reset-stress.html">ABORT</a> -&gt; <=
+a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard=
+-mtlp-4/igt@gem_eio@reset-stress.html">PASS</a></li>
 </ul>
 </li>
 <li>
 <p>igt@gem_mmap_offset@clear-via-pagefault:</p>
 <ul>
-<li>shard-mtlp:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-mtlp-2/igt@gem_mmap_offset@clear-via-pagefault.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10729">i915#10729</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-5/igt@gem_mmap_offset@clear-via-pagefault.html">PASS</a> +1 other test pass</li>
+<li>shard-mtlp:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_16004/shard-mtlp-1/igt@gem_mmap_offset@clear-via-pagefault.html">AB=
+ORT</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues=
+/10729">i915#10729</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/d=
+rm-tip/Patchwork_143636v2/shard-mtlp-7/igt@gem_mmap_offset@clear-via-pagefa=
+ult.html">PASS</a> +1 other test pass</li>
 </ul>
 </li>
 <li>
-<p>igt@gem_tiled_swapping@non-threaded:</p>
+<p>igt@kms_async_flips@alternate-sync-async-flip-atomic:</p>
 <ul>
-<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-rkl-1/igt@gem_tiled_swapping@non-threaded.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13557">i915#13557</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-1/igt@gem_tiled_swapping@non-threaded.html">PASS</a></li>
+<li>shard-tglu:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_16004/shard-tglu-2/igt@kms_async_flips@alternate-sync-async-flip-at=
+omic.html">FAIL</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/ker=
+nel/-/issues/10991">i915#10991</a> / <a href=3D"https://gitlab.freedesktop.=
+org/drm/i915/kernel/-/issues/13320">i915#13320</a>) -&gt; <a href=3D"https:=
+//intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-4/igt@kms_=
+async_flips@alternate-sync-async-flip-atomic.html">PASS</a></li>
 </ul>
 </li>
 <li>
-<p>igt@gem_workarounds@suspend-resume-fd:</p>
+<p>igt@kms_async_flips@alternate-sync-async-flip-atomic@pipe-d-hdmi-a-1:</p>
 <ul>
-<li>shard-dg1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-dg1-17/igt@gem_workarounds@suspend-resume-fd.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8213">i915#8213</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-12/igt@gem_workarounds@suspend-resume-fd.html">PASS</a></li>
+<li>shard-tglu:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_16004/shard-tglu-2/igt@kms_async_flips@alternate-sync-async-flip-at=
+omic@pipe-d-hdmi-a-1.html">FAIL</a> (<a href=3D"https://gitlab.freedesktop.=
+org/drm/i915/kernel/-/issues/13320">i915#13320</a>) -&gt; <a href=3D"https:=
+//intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-4/igt@kms_=
+async_flips@alternate-sync-async-flip-atomic@pipe-d-hdmi-a-1.html">PASS</a>=
+</li>
 </ul>
 </li>
 <li>
-<p>igt@gen9_exec_parse@allowed-single:</p>
+<p>igt@kms_async_flips@test-cursor-atomic:</p>
 <ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-glk8/igt@gen9_exec_parse@allowed-single.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5566">i915#5566</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-glk1/igt@gen9_exec_parse@allowed-single.html">PASS</a></li>
+<li>shard-rkl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_16004/shard-rkl-4/igt@kms_async_flips@test-cursor-atomic.html">DMES=
+G-WARN</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/iss=
+ues/12964">i915#12964</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tre=
+e/drm-tip/Patchwork_143636v2/shard-rkl-5/igt@kms_async_flips@test-cursor-at=
+omic.html">PASS</a> +6 other tests pass</li>
 </ul>
 </li>
 <li>
-<p>igt@i915_pm_rc6_residency@rc6-idle:</p>
+<p>igt@kms_big_fb@4-tiled-max-hw-stride-64bpp-rotate-0-hflip:</p>
 <ul>
-<li>shard-dg1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-dg1-14/igt@i915_pm_rc6_residency@rc6-idle.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3591">i915#3591</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-17/igt@i915_pm_rc6_residency@rc6-idle.html">PASS</a></li>
+<li>shard-mtlp:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_16004/shard-mtlp-1/igt@kms_big_fb@4-tiled-max-hw-stride-64bpp-rotat=
+e-0-hflip.html">FAIL</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i91=
+5/kernel/-/issues/5138">i915#5138</a>) -&gt; <a href=3D"https://intel-gfx-c=
+i.01.org/tree/drm-tip/Patchwork_143636v2/shard-mtlp-5/igt@kms_big_fb@4-tile=
+d-max-hw-stride-64bpp-rotate-0-hflip.html">PASS</a></li>
 </ul>
 </li>
 <li>
-<p>igt@i915_pm_rc6_residency@rc6-idle@gt0-rcs0:</p>
+<p>igt@kms_cursor_crc@cursor-random-64x21:</p>
 <ul>
-<li>shard-dg1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-dg1-14/igt@i915_pm_rc6_residency@rc6-idle@gt0-rcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12739">i915#12739</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3591">i915#3591</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-17/igt@i915_pm_rc6_residency@rc6-idle@gt0-rcs0.html">PASS</a></li>
+<li>shard-rkl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_16004/shard-rkl-3/igt@kms_cursor_crc@cursor-random-64x21.html">FAIL=
+</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13=
+566">i915#13566</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-=
+tip/Patchwork_143636v2/shard-rkl-4/igt@kms_cursor_crc@cursor-random-64x21.h=
+tml">PASS</a> +1 other test pass</li>
 </ul>
 </li>
 <li>
-<p>igt@i915_pm_rpm@system-suspend-execbuf:</p>
+<p>igt@kms_cursor_crc@cursor-sliding-128x42:</p>
 <ul>
-<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-dg2-5/igt@i915_pm_rpm@system-suspend-execbuf.html">ABORT</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-7/igt@i915_pm_rpm@system-suspend-execbuf.html">PASS</a></li>
+<li>shard-tglu:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_16004/shard-tglu-5/igt@kms_cursor_crc@cursor-sliding-128x42.html">F=
+AIL</a> -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork=
+_143636v2/shard-tglu-2/igt@kms_cursor_crc@cursor-sliding-128x42.html">PASS<=
+/a> +11 other tests pass</li>
 </ul>
 </li>
 <li>
-<p>igt@i915_suspend@basic-s3-without-i915:</p>
+<p>igt@kms_flip@flip-vs-suspend-interruptible:</p>
 <ul>
-<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-rkl-3/igt@i915_suspend@basic-s3-without-i915.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4817">i915#4817</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-4/igt@i915_suspend@basic-s3-without-i915.html">PASS</a></li>
+<li>shard-dg1:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_16004/shard-dg1-18/igt@kms_flip@flip-vs-suspend-interruptible.html"=
+>DMESG-WARN</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/=
+-/issues/4423">i915#4423</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/=
+tree/drm-tip/Patchwork_143636v2/shard-dg1-17/igt@kms_flip@flip-vs-suspend-i=
+nterruptible.html">PASS</a> +2 other tests pass</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_cursor_crc@cursor-onscreen-256x85:</p>
+<p>igt@kms_frontbuffer_tracking@fbc-1p-offscren-pri-shrfb-draw-pwrite:</p>
 <ul>
-<li>shard-tglu-1:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-tglu-1/igt@kms_cursor_crc@cursor-onscreen-256x85.html">FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-1/igt@kms_cursor_crc@cursor-onscreen-256x85.html">PASS</a> +1 other test pass</li>
+<li>shard-dg2:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_16004/shard-dg2-3/igt@kms_frontbuffer_tracking@fbc-1p-offscren-pri-=
+shrfb-draw-pwrite.html">FAIL</a> (<a href=3D"https://gitlab.freedesktop.org=
+/drm/i915/kernel/-/issues/6880">i915#6880</a>) -&gt; <a href=3D"https://int=
+el-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-8/igt@kms_frontb=
+uffer_tracking@fbc-1p-offscren-pri-shrfb-draw-pwrite.html">PASS</a></li>
 </ul>
 </li>
 <li>
-<p>igt@kms_cursor_crc@cursor-random-128x42:</p>
+<p>igt@kms_pm_rpm@modeset-lpsp-stress-no-wait:</p>
 <ul>
-<li>shard-tglu:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-tglu-6/igt@kms_cursor_crc@cursor-random-128x42.html">FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-4/igt@kms_cursor_crc@cursor-random-128x42.html">PASS</a> +3 other tests pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions:</p>
-<ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-glk8/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/2346">i915#2346</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-glk1/igt@kms_cursor_legacy@flip-vs-cursor-atomic-transitions.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@2x-flip-vs-suspend-interruptible@ab-vga1-hdmi-a1:</p>
-<ul>
-<li>shard-snb:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-snb5/igt@kms_flip@2x-flip-vs-suspend-interruptible@ab-vga1-hdmi-a1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12314">i915#12314</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-snb5/igt@kms_flip@2x-flip-vs-suspend-interruptible@ab-vga1-hdmi-a1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@flip-vs-suspend@b-edp1:</p>
-<ul>
-<li>shard-mtlp:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-mtlp-1/igt@kms_flip@flip-vs-suspend@b-edp1.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6113">i915#6113</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-3/igt@kms_flip@flip-vs-suspend@b-edp1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-spr-indfb-draw-pwrite:</p>
-<ul>
-<li>shard-snb:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-snb1/igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-spr-indfb-draw-pwrite.html">SKIP</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-snb5/igt@kms_frontbuffer_tracking@fbc-2p-scndscrn-spr-indfb-draw-pwrite.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdr@invalid-metadata-sizes:</p>
-<ul>
-<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-dg2-8/igt@kms_hdr@invalid-metadata-sizes.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8228">i915#8228</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-10/igt@kms_hdr@invalid-metadata-sizes.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_rpm@modeset-lpsp:</p>
-<ul>
-<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-dg2-7/igt@kms_pm_rpm@modeset-lpsp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9519">i915#9519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-4/igt@kms_pm_rpm@modeset-lpsp.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_rpm@modeset-non-lpsp-stress:</p>
-<ul>
-<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-rkl-4/igt@kms_pm_rpm@modeset-non-lpsp-stress.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9519">i915#9519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-6/igt@kms_pm_rpm@modeset-non-lpsp-stress.html">PASS</a> +2 other tests pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_selftest@drm_format_helper@drm_format_helper_test-drm_test_fb_build_fourcc_list:</p>
-<ul>
-<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-rkl-5/igt@kms_selftest@drm_format_helper@drm_format_helper_test-drm_test_fb_build_fourcc_list.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12964">i915#12964</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-7/igt@kms_selftest@drm_format_helper@drm_format_helper_test-drm_test_fb_build_fourcc_list.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@perf_pmu@busy-idle-check-all@vecs0:</p>
-<ul>
-<li>shard-mtlp:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-mtlp-2/igt@perf_pmu@busy-idle-check-all@vecs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4349">i915#4349</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-8/igt@perf_pmu@busy-idle-check-all@vecs0.html">PASS</a> +2 other tests pass</li>
-</ul>
-</li>
-<li>
-<p>igt@perf_pmu@module-unload:</p>
-<ul>
-<li>shard-tglu:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-tglu-10/igt@perf_pmu@module-unload.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-10/igt@perf_pmu@module-unload.html">PASS</a></li>
+<li>shard-dg2:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_16004/shard-dg2-6/igt@kms_pm_rpm@modeset-lpsp-stress-no-wait.html">=
+SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issue=
+s/9519">i915#9519</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/dr=
+m-tip/Patchwork_143636v2/shard-dg2-4/igt@kms_pm_rpm@modeset-lpsp-stress-no-=
+wait.html">PASS</a> +1 other test pass</li>
+<li>shard-rkl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_16004/shard-rkl-1/igt@kms_pm_rpm@modeset-lpsp-stress-no-wait.html">=
+SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issue=
+s/9519">i915#9519</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/dr=
+m-tip/Patchwork_143636v2/shard-rkl-7/igt@kms_pm_rpm@modeset-lpsp-stress-no-=
+wait.html">PASS</a></li>
 </ul>
 </li>
 <li>
 <p>igt@perf_pmu@most-busy-check-all@vcs1:</p>
 <ul>
-<li>shard-mtlp:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-mtlp-2/igt@perf_pmu@most-busy-check-all@vcs1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11943">i915#11943</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-2/igt@perf_pmu@most-busy-check-all@vcs1.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@syncobj_wait@wait-any-interrupted:</p>
-<ul>
-<li>shard-dg1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-dg1-17/igt@syncobj_wait@wait-any-interrupted.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4423">i915#4423</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-13/igt@syncobj_wait@wait-any-interrupted.html">PASS</a></li>
+<li>shard-mtlp:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_16004/shard-mtlp-4/igt@perf_pmu@most-busy-check-all@vcs1.html">FAIL=
+</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11=
+943">i915#11943</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-=
+tip/Patchwork_143636v2/shard-mtlp-6/igt@perf_pmu@most-busy-check-all@vcs1.h=
+tml">PASS</a></li>
 </ul>
 </li>
 </ul>
@@ -3301,73 +3278,154 @@ Content-Transfer-Encoding: 7bit
 <li>
 <p>igt@gem_eio@in-flight-suspend:</p>
 <ul>
-<li>shard-glk:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-glk7/igt@gem_eio@in-flight-suspend.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13197">i915#13197</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13390">i915#13390</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-glk3/igt@gem_eio@in-flight-suspend.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13390">i915#13390</a>)</li>
+<li>shard-glk:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_16004/shard-glk6/igt@gem_eio@in-flight-suspend.html">INCOMPLETE</a>=
+ (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13197"=
+>i915#13197</a> / <a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel=
+/-/issues/13390">i915#13390</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.o=
+rg/tree/drm-tip/Patchwork_143636v2/shard-glk9/igt@gem_eio@in-flight-suspend=
+.html">INCOMPLETE</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/k=
+ernel/-/issues/13390">i915#13390</a>)</li>
 </ul>
 </li>
 <li>
 <p>igt@i915_module_load@reload-with-fault-injection:</p>
 <ul>
-<li>shard-tglu:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-tglu-3/igt@i915_module_load@reload-with-fault-injection.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13475">i915#13475</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-tglu-7/igt@i915_module_load@reload-with-fault-injection.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12817">i915#12817</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9820">i915#9820</a>)</li>
-<li>shard-mtlp:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-mtlp-1/igt@i915_module_load@reload-with-fault-injection.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10887">i915#10887</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13475">i915#13475</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-mtlp-7/igt@i915_module_load@reload-with-fault-injection.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10131">i915#10131</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10887">i915#10887</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13493">i915#13493</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9820">i915#9820</a>)</li>
-<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-dg2-7/igt@i915_module_load@reload-with-fault-injection.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9820">i915#9820</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-2/igt@i915_module_load@reload-with-fault-injection.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10887">i915#10887</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13475">i915#13475</a>)</li>
+<li>shard-rkl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_16004/shard-rkl-5/igt@i915_module_load@reload-with-fault-injection.=
+html">DMESG-WARN</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/ke=
+rnel/-/issues/12964">i915#12964</a>) -&gt; <a href=3D"https://intel-gfx-ci.=
+01.org/tree/drm-tip/Patchwork_143636v2/shard-rkl-1/igt@i915_module_load@rel=
+oad-with-fault-injection.html">ABORT</a> (<a href=3D"https://gitlab.freedes=
+ktop.org/drm/i915/kernel/-/issues/9820">i915#9820</a>)</li>
+<li>shard-tglu:         <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_16004/shard-tglu-3/igt@i915_module_load@reload-with-fault-injection=
+.html">ABORT</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel=
+/-/issues/12817">i915#12817</a> / <a href=3D"https://gitlab.freedesktop.org=
+/drm/i915/kernel/-/issues/9820">i915#9820</a>) -&gt; <a href=3D"https://int=
+el-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-tglu-7/igt@i915_modu=
+le_load@reload-with-fault-injection.html">DMESG-WARN</a> (<a href=3D"https:=
+//gitlab.freedesktop.org/drm/i915/kernel/-/issues/13475">i915#13475</a>)</l=
+i>
 </ul>
 </li>
 <li>
-<p>igt@kms_content_protection@lic-type-0:</p>
+<p>igt@kms_cursor_crc@cursor-onscreen-64x21:</p>
 <ul>
-<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-dg2-10/igt@kms_content_protection@lic-type-0.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7173">i915#7173</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-6/igt@kms_content_protection@lic-type-0.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9424">i915#9424</a>)</li>
+<li>shard-rkl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_16004/shard-rkl-7/igt@kms_cursor_crc@cursor-onscreen-64x21.html">DM=
+ESG-FAIL</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/i=
+ssues/12964">i915#12964</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/t=
+ree/drm-tip/Patchwork_143636v2/shard-rkl-4/igt@kms_cursor_crc@cursor-onscre=
+en-64x21.html">DMESG-WARN</a> (<a href=3D"https://gitlab.freedesktop.org/dr=
+m/i915/kernel/-/issues/12917">i915#12917</a> / <a href=3D"https://gitlab.fr=
+eedesktop.org/drm/i915/kernel/-/issues/12964">i915#12964</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_frontbuffer_tracking@fbcpsr-1p-primscrn-spr-indfb-draw-blt:</p>
+<p>igt@kms_cursor_crc@cursor-onscreen-64x21@pipe-a-hdmi-a-1:</p>
 <ul>
-<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-dg2-7/igt@kms_frontbuffer_tracking@fbcpsr-1p-primscrn-spr-indfb-draw-blt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3458">i915#3458</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-4/igt@kms_frontbuffer_tracking@fbcpsr-1p-primscrn-spr-indfb-draw-blt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10433">i915#10433</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3458">i915#3458</a>)</li>
+<li>shard-rkl:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_16004/shard-rkl-7/igt@kms_cursor_crc@cursor-onscreen-64x21@pipe-a-h=
+dmi-a-1.html">FAIL</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/=
+kernel/-/issues/13566">i915#13566</a>) -&gt; <a href=3D"https://intel-gfx-c=
+i.01.org/tree/drm-tip/Patchwork_143636v2/shard-rkl-4/igt@kms_cursor_crc@cur=
+sor-onscreen-64x21@pipe-a-hdmi-a-1.html">DMESG-WARN</a> (<a href=3D"https:/=
+/gitlab.freedesktop.org/drm/i915/kernel/-/issues/12917">i915#12917</a> / <a=
+ href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12964">i91=
+5#12964</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_frontbuffer_tracking@fbcpsr-2p-primscrn-pri-shrfb-draw-mmap-wc:</p>
+<p>igt@kms_flip@flip-vs-suspend:</p>
 <ul>
-<li>shard-dg1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-dg1-17/igt@kms_frontbuffer_tracking@fbcpsr-2p-primscrn-pri-shrfb-draw-mmap-wc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4423">i915#4423</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8708">i915#8708</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-13/igt@kms_frontbuffer_tracking@fbcpsr-2p-primscrn-pri-shrfb-draw-mmap-wc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/8708">i915#8708</a>)</li>
+<li>shard-glk:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_16004/shard-glk1/igt@kms_flip@flip-vs-suspend.html">INCOMPLETE</a> =
+(<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12745">=
+i915#12745</a> / <a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/=
+-/issues/1982">i915#1982</a> / <a href=3D"https://gitlab.freedesktop.org/dr=
+m/i915/kernel/-/issues/4839">i915#4839</a>) -&gt; <a href=3D"https://intel-=
+gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-glk9/igt@kms_flip@flip-=
+vs-suspend.html">INCOMPLETE</a> (<a href=3D"https://gitlab.freedesktop.org/=
+drm/i915/kernel/-/issues/12745">i915#12745</a> / <a href=3D"https://gitlab.=
+freedesktop.org/drm/i915/kernel/-/issues/4839">i915#4839</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_frontbuffer_tracking@psr-indfb-scaledprimary:</p>
+<p>igt@kms_flip@flip-vs-suspend@a-hdmi-a1:</p>
 <ul>
-<li>shard-dg2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-dg2-4/igt@kms_frontbuffer_tracking@psr-indfb-scaledprimary.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10433">i915#10433</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3458">i915#3458</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg2-8/igt@kms_frontbuffer_tracking@psr-indfb-scaledprimary.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3458">i915#3458</a>) +4 other tests skip</li>
+<li>shard-glk:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_16004/shard-glk1/igt@kms_flip@flip-vs-suspend@a-hdmi-a1.html">INCOM=
+PLETE</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issu=
+es/12745">i915#12745</a> / <a href=3D"https://gitlab.freedesktop.org/drm/i9=
+15/kernel/-/issues/1982">i915#1982</a>) -&gt; <a href=3D"https://intel-gfx-=
+ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-glk9/igt@kms_flip@flip-vs-s=
+uspend@a-hdmi-a1.html">INCOMPLETE</a> (<a href=3D"https://gitlab.freedeskto=
+p.org/drm/i915/kernel/-/issues/12745">i915#12745</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_pm_dc@dc6-dpms:</p>
+<p>igt@kms_frontbuffer_tracking@fbcpsr-1p-offscren-pri-indfb-draw-mmap-cpu:=
+</p>
 <ul>
-<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-rkl-1/igt@kms_pm_dc@dc6-dpms.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3361">i915#3361</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-5/igt@kms_pm_dc@dc6-dpms.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9295">i915#9295</a>)</li>
+<li>shard-dg2:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_16004/shard-dg2-4/igt@kms_frontbuffer_tracking@fbcpsr-1p-offscren-p=
+ri-indfb-draw-mmap-cpu.html">SKIP</a> (<a href=3D"https://gitlab.freedeskto=
+p.org/drm/i915/kernel/-/issues/10433">i915#10433</a> / <a href=3D"https://g=
+itlab.freedesktop.org/drm/i915/kernel/-/issues/3458">i915#3458</a>) -&gt; <=
+a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard=
+-dg2-1/igt@kms_frontbuffer_tracking@fbcpsr-1p-offscren-pri-indfb-draw-mmap-=
+cpu.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kern=
+el/-/issues/3458">i915#3458</a>)</li>
 </ul>
 </li>
 <li>
-<p>igt@kms_pm_lpsp@kms-lpsp:</p>
+<p>igt@kms_frontbuffer_tracking@fbcpsr-1p-offscren-pri-indfb-draw-pwrite:</=
+p>
 <ul>
-<li>shard-rkl:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-rkl-1/igt@kms_pm_lpsp@kms-lpsp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9340">i915#9340</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-rkl-7/igt@kms_pm_lpsp@kms-lpsp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3828">i915#3828</a>)</li>
+<li>shard-dg2:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_16004/shard-dg2-6/igt@kms_frontbuffer_tracking@fbcpsr-1p-offscren-p=
+ri-indfb-draw-pwrite.html">SKIP</a> (<a href=3D"https://gitlab.freedesktop.=
+org/drm/i915/kernel/-/issues/3458">i915#3458</a>) -&gt; <a href=3D"https://=
+intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143636v2/shard-dg2-4/igt@kms_fro=
+ntbuffer_tracking@fbcpsr-1p-offscren-pri-indfb-draw-pwrite.html">SKIP</a> (=
+<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10433">i=
+915#10433</a> / <a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-=
+/issues/3458">i915#3458</a>) +4 other tests skip</li>
 </ul>
 </li>
 <li>
-<p>igt@prime_vgem@basic-fence-flip:</p>
+<p>igt@kms_joiner@basic-ultra-joiner:</p>
 <ul>
-<li>shard-dg1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16002/shard-dg1-12/igt@prime_vgem@basic-fence-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3708">i915#3708</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4423">i915#4423</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_142947v8/shard-dg1-12/igt@prime_vgem@basic-fence-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3708">i915#3708</a>)</li>
+<li>shard-dg1:          <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip=
+/CI_DRM_16004/shard-dg1-17/igt@kms_joiner@basic-ultra-joiner.html">SKIP</a>=
+ (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12339"=
+>i915#12339</a>) -&gt; <a href=3D"https://intel-gfx-ci.01.org/tree/drm-tip/=
+Patchwork_143636v2/shard-dg1-13/igt@kms_joiner@basic-ultra-joiner.html">SKI=
+P</a> (<a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1=
+2339">i915#12339</a> / <a href=3D"https://gitlab.freedesktop.org/drm/i915/k=
+ernel/-/issues/4423">i915#4423</a>)</li>
 </ul>
 </li>
 </ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+<p>{name}: This element is suppressed. This means it is ignored when comput=
+ing<br />
           the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
 <h2>Build changes</h2>
 <ul>
-<li>Linux: CI_DRM_16002 -&gt; Patchwork_142947v8</li>
+<li>Linux: CI_DRM_16004 -&gt; Patchwork_143636v2</li>
 </ul>
 <p>CI-20190529: 20190529<br />
-  CI_DRM_16002: d577d9e67e5ac149fcd4442327210b831cddb308 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8206: 48d7780a026179e5de232142df3ac59fec6487ee @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_142947v8: d577d9e67e5ac149fcd4442327210b831cddb308 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit</p>
+  CI_DRM_16004: cb1c4020e51585b89363590a56869836e1466b75 @ git://anongit.fr=
+eedesktop.org/gfx-ci/linux<br />
+  IGT_8207: 9f36f9f9e8825a67b762630c2b31628ddcda5c10 @ https://gitlab.freed=
+esktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_143636v2: cb1c4020e51585b89363590a56869836e1466b75 @ git://anon=
+git.freedesktop.org/gfx-ci/linux<br />
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.fre=
+edesktop.org/piglit</p>
 
 </body>
 </html>
 
---===============6369330727690081684==--
+--===============7956571146049625141==--
