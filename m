@@ -2,66 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0A8DA1B90B
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2025 16:25:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E4AF2A1B996
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2025 16:45:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E1D710E9BD;
-	Fri, 24 Jan 2025 15:25:50 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U7Zc+9GS";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 842AE10E094;
+	Fri, 24 Jan 2025 15:45:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A52F10E0FD;
- Fri, 24 Jan 2025 15:25:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737732349; x=1769268349;
- h=message-id:date:mime-version:from:to:cc:subject:
- content-transfer-encoding;
- bh=CAfWjep+J16UMghG37ZOA9R6zyiuVu7tuxsjAaLBIjQ=;
- b=U7Zc+9GSj6qfClYqeSvZYalbE+fFTV6LQNicf7TJm5OTt7Ucp7usStxR
- M8BUzA6LmsUBpRbWVVvLw+IeG+fMIw+hxBbXU3g0WujRYjOn2LkWf4K9E
- vpOpUzf1dzxsWoppiouqu+q2jxl55njtuQ+jmo38x77wzyqwZp1DyvWqJ
- MNjdh18Qe0Ifp2VFvNtbpbQInbigoqrDeBno5unn8+Vs4NQik/eqZ6rg/
- RzNDkhwlJcyMwHsz63fs2smfQWjqXV7nH9XcQ1waKaj9oYbBf3mWtsk3E
- 7F2el+3b+zpXEo8rZ+tTL5+JPkZd4d740M5pOKeTyA0rM1uys/4WCO//v Q==;
-X-CSE-ConnectionGUID: MINiiEeNSVibMqGwhNJltQ==
-X-CSE-MsgGUID: KzraSI07Sr2bznznTc6AIA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11325"; a="38147795"
-X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="38147795"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2025 07:25:49 -0800
-X-CSE-ConnectionGUID: viOqjY6ZQd+C3OtDRCJSqQ==
-X-CSE-MsgGUID: UwP7Ne4wTiGMkM+ut92fUg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="112425879"
-Received: from dhhellew-desk2.ger.corp.intel.com.ger.corp.intel.com (HELO
- [10.245.245.174]) ([10.245.245.174])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2025 07:25:45 -0800
-Message-ID: <0d4a18f4-222c-4767-9169-e6350ce8fea5@linux.intel.com>
-Date: Fri, 24 Jan 2025 16:25:32 +0100
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C1EE410E094;
+ Fri, 24 Jan 2025 15:45:40 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: Simona Vetter <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
-Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Lucas De Marchi <lucas.demarchi@intel.com>, Oded Gabbay
- <ogabbay@kernel.org>, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Subject: [PULL] drm-misc-next-fixes
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Use_VRR_timing_gener?=
+ =?utf-8?q?ator_for_fixed_refresh_rate_modes_=28rev7=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 24 Jan 2025 15:45:40 -0000
+Message-ID: <173773354078.4032717.16935548903261143540@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250124150020.2271747-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20250124150020.2271747-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,64 +37,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Dave, Simona,
+== Series Details ==
 
-Oops, I messsed up the pull request, didn't see the other commits in the 
-branch.
+Series: Use VRR timing generator for fixed refresh rate modes (rev7)
+URL   : https://patchwork.freedesktop.org/series/134383/
+State : warning
 
-Additionally:
-- Fix bogus Kconfig change in cgroup/rdma
-- Kernel doc fixup for xlnx.
-- virtio UAF in virtgpu
+== Summary ==
 
-Cheers,
-~Maarten
+Error: dim checkpatch failed
+90e352a2d66b drm/i915/vrr: Add crtc_state dump for vrr.vsync params
+-:24: WARNING:QUOTED_WHITESPACE_BEFORE_NEWLINE: unnecessary whitespace before a quoted newline
+#24: FILE: drivers/gpu/drm/i915/display/intel_crtc_state_dump.c:300:
++	drm_printf(&p, "vrr: vmin vblank: %d, vmax vblank: %d, vmin vtotal: %d, vmax vtotal: %d vsync start: %d vsync end %d \n",
 
-drm-misc-next-fixes-2025-01-24:
-drm-misc-next-fixes for v6.14-rc1:
-- Fix a serious regression from commit e4b5ccd392b9 ("drm/v3d: Ensure
-   job pointer is set to NULL after job completion")
-The following changes since commit 07c5b277208cf9a9e9cf31bf0143977d7f030aa1:
+total: 0 errors, 1 warnings, 0 checks, 13 lines checked
+d57fb24ad790 drm/i915/vrr: Compute vrr.vsync_{start, end} during full modeset
+c351e71f9632 drm/i915/dp: fix the Adaptive sync Operation mode for SDP
+a426c82dca95 drm/i915/dp: Compute as_sdp.vtotal based on vrr timings
+89253ef875fd drm/i915/dp: Compute as_sdp based on if vrr possible
+293c51542a68 drm/i915/display: Move as sdp params change to fastset
+824e1f1aefd2 drm/i915/vrr: Remove unwanted comment
+171af98226fa drm/i915:vrr: Refactor VRR timing setup into a separate function
+0d8bade51e8f drm/i915:vrr: Separate out functions to compute vmin and vmax
+a9b0912df511 drm/i915/vrr: Make helpers for cmrr and vrr timings
+2e86b837e7b9 drm/i915/vrr: Avoid prepare vrr timings for cmrr
+bc32e433920c drm/i915/vrr: Simplify CMRR Enable Check in intel_vrr_get_config
+21bda1ce1fbf drm/i915/vrr: Introduce new field for VRR mode
+2bc112b20f47 drm/i915/vrr: Fill VRR timing generator mode for CMRR and VRR
+02fa9302eb52 drm/i915/display: Remove vrr.enable and instead check vrr.mode != NONE
+8512b409c283 drm/i915/display: Absorb cmrr attributes into vrr struct
+ac0a545ec14c drm/i915/display: Add vrr mode to crtc_state dump
+2441c50ba56c drm/i915/dp: Avoid vrr compute config for HDMI sink
+9441dc6aa047 drm/i915/vrr: Introduce VRR mode Fixed RR
+c24ff7880021 drm/i915/vrr: Avoid sending PUSH when VRR TG is used with Fixed refresh rate
+08c7ba72be7a drm/i915/display: Enable MSA Ignore Timing PAR only when in not fixed_rr mode
+e54b6aed5dcd drm/i915/vrr: Disable CMRR
+1a932db0c656 drm/i915/vrr: Use crtc_vtotal for vmin
+-:7: WARNING:TYPO_SPELLING: 'cant' may be misspelled - perhaps 'can't'?
+#7: 
+guardband/pipeline full cant be programmed on the fly. So we need to
+                        ^^^^
 
-   Merge v6.13 into drm-next (2025-01-23 14:42:21 +0100)
+total: 0 errors, 1 warnings, 0 checks, 34 lines checked
+7abd5e67c9b1 drm/i915/vrr: Adjust Vtotal for MSA for fixed timings
+f6dd480c6f35 drm/i915/vrr: Prepare for fixed refresh rate timings
+ff32b47db1c4 drm/i915/hdmi: Use VRR Timing generator for HDMI
+25f7ca429ce8 drm/i915/display: Disable PSR before disabling VRR
+f92a1b34c8eb drm/i915/psr: Allow PSR for fixed refrsh rate with VRR TG
+d092b31cd9ce drm/i915/display: Extend WA 14015406119 for PSR2
+b36c5acb8484 drm/i915/vrr: Handle joiner with vrr
+a8d515dcf0e0 drm/i915/vrr: Always set vrr vmax/vmin/flipline in vrr_{enable/disable}
+377f55032d43 drm/i915/vrr: Prepare for Fixed refresh rate mode from MTL+
+-:19: ERROR:POINTER_LOCATION: "foo * bar" should be "foo *bar"
+#19: FILE: drivers/gpu/drm/i915/display/intel_display.c:1304:
++	struct intel_display * display = to_intel_display(state);
 
-are available in the Git repository at:
+total: 1 errors, 0 warnings, 0 checks, 74 lines checked
+44da537c4239 drm/i915/vrr: Refactor condition for computing vmax and LRR
+a7488b765682 drm/i915/vrr: Always use VRR timing generator for MTL+
+cb60d484575c drm/i915/display: Use VRR timings for MTL+ in modeset sequence
 
-   https://gitlab.freedesktop.org/drm/misc/kernel.git 
-tags/drm-misc-next-fixes-2025-01-24
 
-for you to fetch changes up to 6e64d6b3a3c39655de56682ec83e894978d23412:
-
-   drm/v3d: Assign job pointer to NULL before signaling the fence 
-(2025-01-23 16:15:01 -0300)
-
-----------------------------------------------------------------
-drm-misc-next-fixes for v6.14-rc1:
-- Fix a serious regression from commit e4b5ccd392b9 ("drm/v3d: Ensure
-   job pointer is set to NULL after job completion")
-
-----------------------------------------------------------------
-Geert Uytterhoeven (1):
-       cgroup/rdma: Drop bogus PAGE_COUNTER select
-
-Maarten Lankhorst (1):
-       Merge remote-tracking branch 'drm/drm-next' into drm-misc-next-fixes
-
-Maíra Canal (1):
-       drm/v3d: Assign job pointer to NULL before signaling the fence
-
-Tomi Valkeinen (1):
-       drm: xlnx: zynqmp_dpsub: Fix kernel doc
-
-Vivek Kasireddy (1):
-       drm/virtio: Fix UAF in virtgpu_dma_buf_free_obj()
-
-  Documentation/gpu/zynqmp.rst           |  2 --
-  drivers/gpu/drm/v3d/v3d_irq.c          | 16 ++++++++++++----
-  drivers/gpu/drm/virtio/virtgpu_prime.c | 11 ++++++-----
-  drivers/gpu/drm/xlnx/zynqmp_dpsub.h    |  1 +
-  init/Kconfig                           |  1 -
-  5 files changed, 19 insertions(+), 12 deletions(-)
