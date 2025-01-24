@@ -2,62 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E27BA1B4EE
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2025 12:43:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 89B83A1B4FA
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2025 12:46:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B621E10E921;
-	Fri, 24 Jan 2025 11:43:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD1BB10E955;
+	Fri, 24 Jan 2025 11:46:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nlNi0f06";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Zm0GXWib";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 11B0910E91C;
- Fri, 24 Jan 2025 11:43:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7914110E953;
+ Fri, 24 Jan 2025 11:46:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737719009; x=1769255009;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=VEKsLt12dnqg4HgPQuqFysSwgwC7V2bKAtkyJQeD2hE=;
- b=nlNi0f066koMox2DsRhvdWDgc1PxhVuVr9chDi1RaLEi3vcjdFCICf2m
- XHQDp7JSWJvJmXD7paP2tUtDiFcaTeJ9H2k3Za7A7bbMvPmNTh5LEZKDL
- 3MnbgBQbTjR88AOV8qG9OjFQa11mms+Qs8UKIlu60/A+/bR3NESZqbfK3
- o+gAlpSYcFXlpCSd4LnKUPKeHY5uRe9h0qoWfvGpqn6I41C6EobiRiHAW
- 2hAOtdo7Z/JY8tRyZqrFZIpJ/iLSwLqhtGeuVSgivv/Uajd5ohD+Pf2k+
- Fpkzd/93I8USAFklOv0m0fy+nYSLFCQbf1rdI1VWlCHPgH9Go9xO17bJp w==;
-X-CSE-ConnectionGUID: 7Pt01LXbRziddrFIDjuutA==
-X-CSE-MsgGUID: GreUSrAKQD2laLz917bteQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11325"; a="55795874"
-X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="55795874"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2025 03:43:29 -0800
-X-CSE-ConnectionGUID: Q2U0P5t6TFK2iUuw6uI0GQ==
-X-CSE-MsgGUID: qztmHK4RQ6m7aiDPuVgyTA==
+ t=1737719175; x=1769255175;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=iV9HctNf/07u8VBRg7NP4rNexDlTY8VnUhsNByLQRfo=;
+ b=Zm0GXWibGXK1TsBrtQXB12JsSrP3lofGfpGCGDsTpnfyVHNE8hTVM7ZA
+ PRO4TcLqo9f8iWeFLaULPUwTzHUuXl0Zew3E8LTVfsRLLd4lld0CJwe+C
+ w9+fA8xy6zLNKPR33i9HlwVmiJVIw3pEmwLl7muKkcP0LDxEw7oj5ZnSA
+ rZpSLxC9ah7gC5lKI5xsupulWhq8XT3B2xv1/DKpWrWzgELgb8JvFw+PU
+ mTwa7TolLBTpYb9M8qXTo2tzGlRtbcTcl7AMmFkuOyibhuylF667TKK8V
+ FRY1N09R4ot90G6ppDwOCewaOPcuyNE97bTRU82/j7paw0dBZ8WGzFmwN Q==;
+X-CSE-ConnectionGUID: fcftv1L0Sr6KOPkb7CZUTA==
+X-CSE-MsgGUID: Uhl5Fu+NTRK1NjwM5GniCA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11325"; a="41915271"
+X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="41915271"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2025 03:46:14 -0800
+X-CSE-ConnectionGUID: 0Eo7W7IsSsyXjINls6jYRA==
+X-CSE-MsgGUID: 26T8HXecR4+GyX66Y87mIA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="107873981"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 24 Jan 2025 03:43:26 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 24 Jan 2025 13:43:25 +0200
-Date: Fri, 24 Jan 2025 13:43:25 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- animesh.manna@intel.com, ville.syrjala@intel.com
-Subject: Re: [PATCH v4 12/13] drm/i915/display: Ensure we have "Frame Change"
- event in DSB commit
-Message-ID: <Z5N83bbvxBKm4yEQ@intel.com>
-References: <20250124105625.822459-1-jouni.hogander@intel.com>
- <20250124105625.822459-13-jouni.hogander@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="138625347"
+Received: from dprybysh-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.170])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jan 2025 03:46:11 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Simona Vetter <simona.vetter@ffwll.ch>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Matthew Brost <matthew.brost@intel.com>, Danilo Krummrich
+ <dakr@kernel.org>, Philipp Stanner <phasta@kernel.org>, Christian
+ =?utf-8?Q?K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
+Subject: Re: [PATCH 3/5] drm/sched: stop passing non struct drm_device to
+ drm_err() and friends
+In-Reply-To: <Z5KeZnJ4HOxs1wuk@phenom.ffwll.local>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <cover.1737644530.git.jani.nikula@intel.com>
+ <fe441dd1469d2b03e6b2ff247078bdde2011c6e3.1737644530.git.jani.nikula@intel.com>
+ <Z5KeZnJ4HOxs1wuk@phenom.ffwll.local>
+Date: Fri, 24 Jan 2025 13:46:08 +0200
+Message-ID: <87msfgbfjz.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250124105625.822459-13-jouni.hogander@intel.com>
-X-Patchwork-Hint: comment
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,55 +75,148 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jan 24, 2025 at 12:56:23PM +0200, Jouni Högander wrote:
-> We may have commit which doesn't have any non-arming plane register
-> writes. In that case there aren't "Frame Change" event before DSB vblank
-> evasion which hangs as PIPEDSL register is reading as 0 when PSR state is
-> SRDENT(PSR1) or DEEP_SLEEP(PSR2). Handle this by adding dummy write
-> triggering the "Frame Change" event.
-> 
-> Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index a189aa437d972..cd7e960bd29f1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -7666,6 +7666,7 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
->  		intel_atomic_get_old_crtc_state(state, crtc);
->  	struct intel_crtc_state *new_crtc_state =
->  		intel_atomic_get_new_crtc_state(state, crtc);
-> +	struct intel_display *display = to_intel_display(crtc);
->  
->  	if (!new_crtc_state->hw.active)
->  		return;
-> @@ -7708,6 +7709,15 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
->  		intel_crtc_planes_update_noarm(new_crtc_state->dsb_commit,
->  					       state, crtc);
->  
-> +		/*
-> +		 * Ensure we have "Frame Change" event when PSR state is
-> +		 * SRDENT(PSR1) or DEEP_SLEEP(PSR2). Otherwise DSB vblank
-> +		 * evasion hangs as PIPEDSL is reading as 0.
-> +		 */
-> +		if (new_crtc_state->has_psr && !new_crtc_state->has_panel_replay)
-> +			intel_de_write_dsb(display, new_crtc_state->dsb_commit,
-> +					   CURSURFLIVE(display, crtc->pipe), 0);
+On Thu, 23 Jan 2025, Simona Vetter <simona.vetter@ffwll.ch> wrote:
+> On Thu, Jan 23, 2025 at 05:09:10PM +0200, Jani Nikula wrote:
+>> The expectation is that the struct drm_device based logging helpers get
+>> passed an actual struct drm_device pointer rather than some random
+>> struct pointer where you can dereference the ->dev member.
+>>=20
+>> Convert drm_err(sched, ...) to dev_err(sched->dev, ...) and
+>> similar. This matches current usage, as struct drm_device is not
+>> available, but drops "[drm]" or "[drm] *ERROR*" prefix from logging.
+>>=20
+>> Unfortunately, there's no dev_WARN_ON(), so the conversion is not
+>> exactly the same.
+>>=20
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> For the two previous patches just dev_ makes sense since they're just
+> platform drivers, but for drm/sched I wonder whether it wouldn't be better
+> to switch from struct device * to struct drm_device * instead. I guess
+> might be best to leave that decision to scheduler folks.
 
-I don't really want to see the low level detais right here.
-So we should probably should stuff this into some kind of 
-intel_dsb_ensure_psr_frame_change() function or something
-along those lines.
+I had a very brief look, and it seemed like struct drm_device isn't
+passed around in sched. If use of struct drm_device is preferred, I'm
+not the best person to figure out how to do that. But the abuse of the
+drm_err() and friends macros needs to stop.
 
-> +
->  		intel_dsb_vblank_evade(state, new_crtc_state->dsb_commit);
->  
->  		if (intel_crtc_needs_color_update(new_crtc_state))
-> -- 
-> 2.43.0
+> Anyway on the series and with that caveat:
+>
+> Reviewed-by: Simona Vetter <simona.vetter@ffwll.ch>
 
--- 
-Ville Syrjälä
-Intel
+Thanks,
+Jani.
+
+>
+>
+>>=20
+>> ---
+>>=20
+>> Cc: Matthew Brost <matthew.brost@intel.com>
+>> Cc: Danilo Krummrich <dakr@kernel.org>
+>> Cc: Philipp Stanner <phasta@kernel.org>
+>> Cc: "Christian K=C3=B6nig" <ckoenig.leichtzumerken@gmail.com>
+>> Cc: dri-devel@lists.freedesktop.org
+>> ---
+>>  drivers/gpu/drm/scheduler/sched_entity.c |  2 +-
+>>  drivers/gpu/drm/scheduler/sched_main.c   | 20 +++++++++++---------
+>>  2 files changed, 12 insertions(+), 10 deletions(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/scheduler/sched_entity.c b/drivers/gpu/drm/=
+scheduler/sched_entity.c
+>> index 69bcf0e99d57..e29af71d4b5c 100644
+>> --- a/drivers/gpu/drm/scheduler/sched_entity.c
+>> +++ b/drivers/gpu/drm/scheduler/sched_entity.c
+>> @@ -92,7 +92,7 @@ int drm_sched_entity_init(struct drm_sched_entity *ent=
+ity,
+>>  		 * the lowest priority available.
+>>  		 */
+>>  		if (entity->priority >=3D sched_list[0]->num_rqs) {
+>> -			drm_err(sched_list[0], "entity with out-of-bounds priority:%u num_rq=
+s:%u\n",
+>> +			dev_err(sched_list[0]->dev, "entity with out-of-bounds priority:%u n=
+um_rqs:%u\n",
+>>  				entity->priority, sched_list[0]->num_rqs);
+>>  			entity->priority =3D max_t(s32, (s32) sched_list[0]->num_rqs - 1,
+>>  						 (s32) DRM_SCHED_PRIORITY_KERNEL);
+>> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/sc=
+heduler/sched_main.c
+>> index a48be16ab84f..d1c1f22fd1db 100644
+>> --- a/drivers/gpu/drm/scheduler/sched_main.c
+>> +++ b/drivers/gpu/drm/scheduler/sched_main.c
+>> @@ -103,9 +103,9 @@ static u32 drm_sched_available_credits(struct drm_gp=
+u_scheduler *sched)
+>>  {
+>>  	u32 credits;
+>>=20=20
+>> -	drm_WARN_ON(sched, check_sub_overflow(sched->credit_limit,
+>> -					      atomic_read(&sched->credit_count),
+>> -					      &credits));
+>> +	WARN_ON(check_sub_overflow(sched->credit_limit,
+>> +				   atomic_read(&sched->credit_count),
+>> +				   &credits));
+>>=20=20
+>>  	return credits;
+>>  }
+>> @@ -130,9 +130,11 @@ static bool drm_sched_can_queue(struct drm_gpu_sche=
+duler *sched,
+>>  	/* If a job exceeds the credit limit, truncate it to the credit limit
+>>  	 * itself to guarantee forward progress.
+>>  	 */
+>> -	if (drm_WARN(sched, s_job->credits > sched->credit_limit,
+>> -		     "Jobs may not exceed the credit limit, truncate.\n"))
+>> +	if (s_job->credits > sched->credit_limit) {
+>> +		dev_WARN(sched->dev,
+>> +			 "Jobs may not exceed the credit limit, truncate.\n");
+>>  		s_job->credits =3D sched->credit_limit;
+>> +	}
+>>=20=20
+>>  	return drm_sched_available_credits(sched) >=3D s_job->credits;
+>>  }
+>> @@ -790,7 +792,7 @@ int drm_sched_job_init(struct drm_sched_job *job,
+>>  		 * or worse--a blank screen--leave a trail in the
+>>  		 * logs, so this can be debugged easier.
+>>  		 */
+>> -		drm_err(job->sched, "%s: entity has no rq!\n", __func__);
+>> +		dev_err(job->sched->dev, "%s: entity has no rq!\n", __func__);
+>>  		return -ENOENT;
+>>  	}
+>>=20=20
+>> @@ -1280,7 +1282,7 @@ int drm_sched_init(struct drm_gpu_scheduler *sched,
+>>  	if (num_rqs > DRM_SCHED_PRIORITY_COUNT) {
+>>  		/* This is a gross violation--tell drivers what the  problem is.
+>>  		 */
+>> -		drm_err(sched, "%s: num_rqs cannot be greater than DRM_SCHED_PRIORITY=
+_COUNT\n",
+>> +		dev_err(sched->dev, "%s: num_rqs cannot be greater than DRM_SCHED_PRI=
+ORITY_COUNT\n",
+>>  			__func__);
+>>  		return -EINVAL;
+>>  	} else if (sched->sched_rq) {
+>> @@ -1288,7 +1290,7 @@ int drm_sched_init(struct drm_gpu_scheduler *sched,
+>>  		 * fine-tune their DRM calling order, and return all
+>>  		 * is good.
+>>  		 */
+>> -		drm_warn(sched, "%s: scheduler already initialized!\n", __func__);
+>> +		dev_warn(sched->dev, "%s: scheduler already initialized!\n", __func__=
+);
+>>  		return 0;
+>>  	}
+>>=20=20
+>> @@ -1343,7 +1345,7 @@ int drm_sched_init(struct drm_gpu_scheduler *sched,
+>>  Out_check_own:
+>>  	if (sched->own_submit_wq)
+>>  		destroy_workqueue(sched->submit_wq);
+>> -	drm_err(sched, "%s: Failed to setup GPU scheduler--out of memory\n", _=
+_func__);
+>> +	dev_err(sched->dev, "%s: Failed to setup GPU scheduler--out of memory\=
+n", __func__);
+>>  	return -ENOMEM;
+>>  }
+>>  EXPORT_SYMBOL(drm_sched_init);
+>> --=20
+>> 2.39.5
+>>=20
+
+--=20
+Jani Nikula, Intel
