@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61B4FA1B436
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2025 11:56:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CCA7A1B437
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2025 11:56:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F2FEA10E7D5;
-	Fri, 24 Jan 2025 10:56:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0376B10E7DF;
+	Fri, 24 Jan 2025 10:56:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i0GQlEZT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eoiEYCvf";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A8E6E10E058;
- Fri, 24 Jan 2025 10:56:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 90AE710E7D5;
+ Fri, 24 Jan 2025 10:56:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737716209; x=1769252209;
+ t=1737716211; x=1769252211;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ZnpNxyCt/SESQRMOgdSoc4EfACvPbbG7VfnXhZoUnLU=;
- b=i0GQlEZT99B5JXY7VOH+zyGLXIYEeYofFmAkiq8VMbbYmFkonnv8e2sE
- 4KhFg2/OarGpBWcVziU5rvawxTsMWFR06tpZKiZWhPEZX7zKrb+uw1g0H
- vRUpDlBvtmwF4rf1fd6Ukw6Hnx4hiN6iDUXe3bM7JAF2nvIL2aQVvfEx9
- EKrwpJOdg8Ix+ozjOh+MzJAjQ/Sd46hrdn9HgBwf4YA2w0/YZTNDiWx6N
- n8vom+ALcU+KgfBTg/de8eWoa2pGi3FlUkE4wmfL0riRYpTtBHaFcOC+f
- z88HW0vilHiOuk/1Af54PZvi/DV/imEHbVT7D/E/3CkywaEAmQDi0npdw g==;
-X-CSE-ConnectionGUID: gRZ5J/j8RGSAwfy9SoYUow==
-X-CSE-MsgGUID: T+xaDcBZTaiUg82FPpvIZA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11325"; a="55660058"
-X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="55660058"
+ bh=Hmrvp5Zh5NK9KJfsjGxXOEVzgrIxGdCs8wwFE/GwUlo=;
+ b=eoiEYCvf+TgWCIfKiW4Gf34/FE7zf52UGKt7cs3buOu798lwFLtzyJXo
+ fGnHxZprPQNcUFPNzy2GBpOJ5I1cUCPyAPldEQYqB+a5CKFejMDewKJ6B
+ R0dmol7yCeGJ+cQiiEJ7N/A8CkyWdBoIRBBGcVTfc3gTfwuwX62l9kj8a
+ jQzFK03TDqZjpJIRFqiuDxlTM5/KyGYbtZPY7jQA6utH5Eub+32kJ6tSr
+ YTG5t4VfE9EtSRrWTfmP0FGpDShwWVSvOaVx98yrb0dhQBxLNKfqCA3TD
+ MwHQt/ltQxZzZHcf++EnWfw0zHRTZ8t3JNQZW52wtgKzSWqBaZVNmzyLv A==;
+X-CSE-ConnectionGUID: LT0dO1COR4Gpfd/d2i2NCA==
+X-CSE-MsgGUID: 6iNHGtecTRCF31kA/C4+xw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11325"; a="55660064"
+X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="55660064"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2025 02:56:48 -0800
-X-CSE-ConnectionGUID: lCjBObLVRZOFJInH4YEZHA==
-X-CSE-MsgGUID: WxtUih9WSD+v0UReioGPug==
+ 24 Jan 2025 02:56:50 -0800
+X-CSE-ConnectionGUID: mbeL07HMRASpxwnb0eBTaQ==
+X-CSE-MsgGUID: +xcTpfEDT/egOT3h8z7ndw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="107864230"
+X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="107864235"
 Received: from smoticic-mobl1.ger.corp.intel.com (HELO jhogande-mobl1..)
  ([10.245.245.138])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2025 02:56:46 -0800
+ 24 Jan 2025 02:56:48 -0800
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: animesh.manna@intel.com, ville.syrjala@intel.com,
  =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v4 01/13] drm/i915/psr: Use PSR2_MAN_TRK_CTL CFF bit only to
- send full update
-Date: Fri, 24 Jan 2025 12:56:12 +0200
-Message-ID: <20250124105625.822459-2-jouni.hogander@intel.com>
+Subject: [PATCH v4 02/13] drm/i915/psr: Rename psr_force_hw_tracking_exit as
+ intel_psr_force_update
+Date: Fri, 24 Jan 2025 12:56:13 +0200
+Message-ID: <20250124105625.822459-3-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250124105625.822459-1-jouni.hogander@intel.com>
 References: <20250124105625.822459-1-jouni.hogander@intel.com>
@@ -73,33 +73,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-We are preparing for a change where only frontbuffer flush will use
-single full frame bit of a new register (SFF_CTL) available on LunarLake
-onwards.
-
-It shouldn't be necessary to have SFF bit set if CFF bit is set in
-PSR2_MAN_TRK_CTL -> removing setting it on all platforms as there is not
-reason to have it different on older platforms.
-
-v2: commit message improved
+psr_force_hw_tracking_exit is misleading name as it is used for PSR1, PSR2
+HW tracking and PSR2 selective fetch. Due to this rename it as
+intel_psr_force_update.
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+Reviewed-by: Animesh Manna <animesh.manna@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 1 -
- 1 file changed, 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_psr.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 0b021acb330f4..476305010e113 100644
+index 476305010e113..5411d0d6f362a 100644
 --- a/drivers/gpu/drm/i915/display/intel_psr.c
 +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -2381,7 +2381,6 @@ static void psr2_man_trk_ctl_calc(struct intel_crtc_state *crtc_state,
- 	val |= man_trk_ctl_partial_frame_bit_get(display);
+@@ -2310,7 +2310,7 @@ static u32 man_trk_ctl_continuos_full_frame(struct intel_display *display)
+ 	       PSR2_MAN_TRK_CTL_SF_CONTINUOS_FULL_FRAME;
+ }
  
- 	if (full_update) {
--		val |= man_trk_ctl_single_full_frame_bit_get(display);
- 		val |= man_trk_ctl_continuos_full_frame(display);
- 		goto exit;
- 	}
+-static void psr_force_hw_tracking_exit(struct intel_dp *intel_dp)
++static void intel_psr_force_update(struct intel_dp *intel_dp)
+ {
+ 	struct intel_display *display = to_intel_display(intel_dp);
+ 	enum transcoder cpu_transcoder = intel_dp->psr.transcoder;
+@@ -2857,7 +2857,7 @@ void intel_psr_post_plane_update(struct intel_atomic_state *state,
+ 
+ 		/* Force a PSR exit when enabling CRC to avoid CRC timeouts */
+ 		if (crtc_state->crc_enabled && psr->enabled)
+-			psr_force_hw_tracking_exit(intel_dp);
++			intel_psr_force_update(intel_dp);
+ 
+ 		/*
+ 		 * Clear possible busy bits in case we have
+@@ -3254,10 +3254,10 @@ static void _psr_flush_handle(struct intel_dp *intel_dp)
+ 			 * continuous full frame is disabled, only a single full
+ 			 * frame is required
+ 			 */
+-			psr_force_hw_tracking_exit(intel_dp);
++			intel_psr_force_update(intel_dp);
+ 		}
+ 	} else {
+-		psr_force_hw_tracking_exit(intel_dp);
++		intel_psr_force_update(intel_dp);
+ 
+ 		if (!intel_dp->psr.active && !intel_dp->psr.busy_frontbuffer_bits)
+ 			queue_work(dev_priv->unordered_wq, &intel_dp->psr.work);
 -- 
 2.43.0
 
