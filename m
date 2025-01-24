@@ -2,52 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AC9EA1B899
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2025 16:12:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A6A91A1B897
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Jan 2025 16:12:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E2A910E9B4;
-	Fri, 24 Jan 2025 15:12:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3ADE110E9B2;
+	Fri, 24 Jan 2025 15:12:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Jok1GRaR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O3HQeifx";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7247B10E9BD;
- Fri, 24 Jan 2025 15:12:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C696A10E9C0;
+ Fri, 24 Jan 2025 15:12:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737731552; x=1769267552;
+ t=1737731554; x=1769267554;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=2uvLK8+O/MCAd66EN0QnOp4sFjnTcqvtFkPNT32Og7s=;
- b=Jok1GRaRw5jsi+patBhJWGb/KrwNRlc8vS8anuzXbKSrQhvJXP0x1c/J
- nZTy900H4ctg7443oyDIw/Sz6JrOuYRBAWxhoJL0LdVAVEjBByEcJVgbC
- ly8a+vsniOCY4Mvgegv+53t7hFJ8++G2qAJdQDd/1RUckvTZGGCYnqCJz
- W33mh0uoWgmfPcLwE6iG53MliNrw8Ksd4xi8EQwZt8WOTJfHEfZm6X7vb
- dRu7N0n7aTSAjnU9SI6ugqPEhn9S7zJCPLRyUUFeCuk1OSYguAbmBHXtq
- uj6+QSqGc7RI3jmaMip2QhR4r3a2PC3P+TMF8Qty09BRCtUUd3FQnaKlw A==;
-X-CSE-ConnectionGUID: RhHnmmY5SgirgARucashYQ==
-X-CSE-MsgGUID: a6GvRQ1ARQK3tClLj6hseA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11325"; a="38177449"
-X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="38177449"
+ bh=RfJPEgE1gZdnnrX3alaUFSXPA/UJZo97l3i7G6a2HN0=;
+ b=O3HQeifxwzhaNZ9ONfHa2k2ooQvfUxkqW3Wx4at9z2heFfXLm6lBx5yB
+ orzFPR6WNgduzzWEeZP+ciqDPU272qqW1PpAmxZ2U1JA53pxVfSQZb7IH
+ UbvnvAsSOj8RxNZFq+aUrp/7MK2UgtHppLDoNnS8ibIeKjdjM7yQJOEsg
+ A0dHS2zfLRx8krpRPyoc5k5MGSL/ARAZYSNfTe6GBuGbpNxyH4H0QZLoP
+ KI/R/zWone08lKd7KhyNw1oCy1EqGQKq4fa7kjRsGBPKRe0cEisyTcSZQ
+ WrLsOAowQXKItkaQb448VKmHx9KY9aCevWMJVd6e0IwthV5GaL9ft6izK Q==;
+X-CSE-ConnectionGUID: pmu6MQxdQ/m5bO684wNi/Q==
+X-CSE-MsgGUID: tKoK0gYzS6ehh+R0fEhcKA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11325"; a="38177454"
+X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; d="scan'208";a="38177454"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2025 07:12:31 -0800
-X-CSE-ConnectionGUID: Xwv7xwehRpqAGjVMyTiYSg==
-X-CSE-MsgGUID: 4UpXtTFDSzm5QY1XwJMPxQ==
+ 24 Jan 2025 07:12:34 -0800
+X-CSE-ConnectionGUID: wmZOmdI8RhS4rxr/zIUYYQ==
+X-CSE-MsgGUID: iHIQrxslRrW1uP8cc+vzpA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="108221513"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="108221560"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jan 2025 07:12:29 -0800
+ 24 Jan 2025 07:12:32 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
  ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 24/35] drm/i915/vrr: Adjust Vtotal for MSA for fixed timings
-Date: Fri, 24 Jan 2025 20:30:09 +0530
-Message-ID: <20250124150020.2271747-25-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 25/35] drm/i915/vrr: Prepare for fixed refresh rate timings
+Date: Fri, 24 Jan 2025 20:30:10 +0530
+Message-ID: <20250124150020.2271747-26-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250124150020.2271747-1-ankit.k.nautiyal@intel.com>
 References: <20250124150020.2271747-1-ankit.k.nautiyal@intel.com>
@@ -68,11 +68,13 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-DP sink uses MSA timings for the fixed refresh rate mode.
-For using VRR timing generator for fixed refresh rate mode, the HW prepares
-the Vtotal for the MSA from the VMAX register. Since the MSA Vtotal is
-one-based while Vmax is zero-based we need to take care of this while
-setting Vtotal value for the fixed refresh rate mode.
+Currently we always compute the timings as if vrr is enabled.
+With this approach the state checker becomes complicated when we
+introduce fixed refresh rate mode with vrr timing generator.
+
+To avoid the complications, instead of always computing vrr timings, we
+compute vrr timings based on uapi.vrr_enable knob.
+So when the knob is disabled we always compute vmin=flipline=vmax.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
@@ -80,37 +82,37 @@ Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
  1 file changed, 13 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index f485c3e35d68..5a1b0d61c483 100644
+index 5a1b0d61c483..7e9b60ce3fc4 100644
 --- a/drivers/gpu/drm/i915/display/intel_vrr.c
 +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -264,6 +264,18 @@ void intel_vrr_compute_vrr_timings(struct intel_crtc_state *crtc_state, int vmin
- 	crtc_state->mode_flags |= I915_MODE_FLAG_VRR;
+@@ -223,6 +223,18 @@ cmrr_get_vtotal(struct intel_crtc_state *crtc_state, bool video_mode_required)
+ 	return vtotal;
  }
  
 +static
-+int adjust_vtotal_for_msa(int vtotal)
++void intel_vrr_prepare_fixed_timings(struct intel_crtc_state *crtc_state, int vmin)
 +{
 +	/*
-+	 * DP sink uses MSA timings for the fixed refresh rate mode.
-+	 * The HW prepares the Vtotal for the MSA from the VMAX register.
-+	 * Since the MSA Vtotal is one-based while Vmax is zero-based we need to
-+	 * take care of this while setting Vtotal value.
++	 * For fixed refresh rate mode Vmin, Vmax and Flipline all are set to
++	 * Vtotal value, which is already computed in vmin.
 +	 */
-+	return vtotal - 1;
++	crtc_state->vrr.vmin = vmin;
++	crtc_state->vrr.vmax = crtc_state->vrr.vmin;
++	crtc_state->vrr.flipline = crtc_state->vrr.vmax;
 +}
 +
  static
- int intel_vrr_compute_vmin(struct intel_crtc_state *crtc_state)
+ void intel_vrr_prepare_vrr_timings(struct intel_crtc_state *crtc_state, int vmin, int vmax)
  {
-@@ -274,7 +286,7 @@ int intel_vrr_compute_vmin(struct intel_crtc_state *crtc_state)
- 	 * For this set the vmin as crtc_vtotal. With this we never need to
- 	 * change anything to do with the guardband.
- 	 */
--	return crtc_state->hw.adjusted_mode.crtc_vtotal;
-+	return adjust_vtotal_for_msa(crtc_state->hw.adjusted_mode.crtc_vtotal);
- }
+@@ -350,7 +362,7 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
+ 	else if (is_cmrr_frac_required(crtc_state) && is_edp)
+ 		intel_vrr_compute_cmrr_timings(crtc_state);
+ 	else
+-		intel_vrr_prepare_vrr_timings(crtc_state, vmin, vmax);
++		intel_vrr_prepare_fixed_timings(crtc_state, vmin);
  
- static
+ 	if (HAS_AS_SDP(display)) {
+ 		crtc_state->vrr.vsync_start =
 -- 
 2.45.2
 
