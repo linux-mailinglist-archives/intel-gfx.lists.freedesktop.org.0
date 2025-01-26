@@ -2,86 +2,88 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2A00A1CCBF
-	for <lists+intel-gfx@lfdr.de>; Sun, 26 Jan 2025 17:39:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D472A1CBCC
+	for <lists+intel-gfx@lfdr.de>; Sun, 26 Jan 2025 16:55:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0521110E43C;
-	Sun, 26 Jan 2025 16:39:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 321CE10E05D;
+	Sun, 26 Jan 2025 15:55:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="b9hIvNrs";
+	dkim=pass (2048-bit key; unprotected) header.d=ibm.com header.i=@ibm.com header.b="p18vDsCi";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-il1-f174.google.com (mail-il1-f174.google.com
- [209.85.166.174])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6E7510EA9E;
- Sat, 25 Jan 2025 06:47:45 +0000 (UTC)
-Received: by mail-il1-f174.google.com with SMTP id
- e9e14a558f8ab-3cf880d90bdso10176905ab.3; 
- Fri, 24 Jan 2025 22:47:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1737787665; x=1738392465; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=T6GCuzeAmDEU4hGwplnvXwuVetfxA5yWhKc4RU1kN3E=;
- b=b9hIvNrs9/CIlk3KXdfGb03dCY7M41nGFlVyZQlyTKgPOqwxeDC1SQ7JobcqqVnGEQ
- eR6bwlCgRKpjZ51+025CAgkWXOfE5y/C6hvyPUBBXHAb2R6VwW3ZkM37n7D+JhUHMl6H
- 9Y55xwveDqZNbDJ0X6PHmIqANakLxrS31acyanoNyDtuOsgvbUVMpubX/t3ekOXDgV5l
- ZiJf3KvX3XLQnYj/rGpRZeZoKxc5iZ1Nc1fa7TSdKwyro68ePjcE43erN7/bYZIsZIC4
- 1NXG3yvq51mPsv9XqCC32HaAEEP4ISxrUUO4BhWh5ie6s2C7CgcfYv40NW9HyVCnF/u3
- SzwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1737787665; x=1738392465;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=T6GCuzeAmDEU4hGwplnvXwuVetfxA5yWhKc4RU1kN3E=;
- b=B82qiDe0faopH5gwKOI1GyDLbCWtDtUAWRtWeTf1T3Y5esmRP480wIvKxMABfuc4L5
- J+pm6mLNlqu/dScHcMjlSpnHilOFgg5RiikvYBKvOf3LuuE5arkyfONd6jCP1aKDde69
- DuQRCEbuBEXGhG0fNV9ZxNugk4CJT3qYef2uF5tX5Pp0bLn6DvSPDOBXco+Mkt6RLPNR
- 05ML/OjHigSHOHapxTYD8q8xJijLyDibW9E2G5Myp3hOZhfvnTmgNU3/0PJ3m2exySVo
- S9HKQkW6Zszb1smdezCuoEpagEIRb8KCiibfxb8DH6j0iDdj71NnancQcZvyuq6N44wk
- aKxw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCU+za09FWy+MozGe5eXaxKOBWL8tfbIMzGG4jVxRgmVO4DJDi1yTmfLp7IxDSIRm+MoyBrrZnnCeCII@lists.freedesktop.org,
- AJvYcCVPp7QH9FZ4itb4rYp8Dg48fRsgUejFtyROdEyGUF6wiYJGD7ZqXoMaCTIScdXeked4ziuQ9iA8@lists.freedesktop.org,
- AJvYcCVY9cyWTeRG2kSRH/MRB3thTzHdCXg+8pfMrrW8f+A+SpkOOlFYVhd4yNYBQ9idDgvGaMo8iWuL0LoMVZDBXQ==@lists.freedesktop.org,
- AJvYcCWJB5tTzPAxJSXhe8DicKRT3/c/FRexDxcN0o4I+LC5cyToEAxATWcrpzhDkme4LaAQ0MEqdEBVcPPV@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yys4yJjQC7id1W0JJ3Ei0yfqOE+7jv1JUolH9X+rjlnVEsICpPO
- FRtMl4NJpD0ZCrVAu8PB8F/3Stgotj/EINihsebmiZkVn5dPb1L9
-X-Gm-Gg: ASbGncsZXmn0ic0EztjCt1tgtID7Rq/7jQxrlG/0IUHNRCptmD3oVhe9jf9kFgnx7KD
- B5lXQL0AQLOUuUmhujFQhd7QJqef+X97dvuWVTDWbJFAuz0a4gJnbB6j39OepMuoaRtq1iYEvrW
- O6SbpNhlUYrDbH/2mVllBF/QMvi63l3SjFbd0ccej+hDxhF56VH6bQ6S7igwOmYLoMlOJ5HgnGd
- cUbtQLeajdeUekGtL7PF7pjpaPVYFnTeardn/uQf88sWDQCwtP1lL44lnA8xj5ZDsPiBcMBuEdI
- 5/wqbMm6eBa117KAK0rAo9vXVujYTUAk54D46g==
-X-Google-Smtp-Source: AGHT+IEujLOtg9gkMTa7OzcouFF4HjwPZbpakCrytdnwwqxtjFJ2Exad5qI/+pzTRXAa2s9JlPkT4Q==
-X-Received: by 2002:a05:6602:48c:b0:834:d7b6:4fea with SMTP id
- ca18e2360f4ac-851b61f1347mr3241540439f.6.1737787665030; 
- Fri, 24 Jan 2025 22:47:45 -0800 (PST)
-Received: from gandalf.. (c-67-165-245-5.hsd1.co.comcast.net. [67.165.245.5])
- by smtp.googlemail.com with ESMTPSA id
- 8926c6da1cb9f-4ec1da476fesm1174144173.58.2025.01.24.22.47.44
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 24 Jan 2025 22:47:44 -0800 (PST)
-From: Jim Cromie <jim.cromie@gmail.com>
-To: linux-kernel@vger.kernel.org, jbaron@akamai.com,
- gregkh@linuxfoundation.org, ukaszb@chromium.org
-Cc: intel-gfx-trybot@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, daniel.vetter@ffwll.ch,
- tvrtko.ursulin@linux.intel.com, jani.nikula@intel.com,
- ville.syrjala@linux.intel.com, Jim Cromie <jim.cromie@gmail.com>
-Subject: [PATCH 64/64] This series fixes dyndbg (dynamic debug) classmap
- support for DRM.
-Date: Fri, 24 Jan 2025 23:46:18 -0700
-Message-ID: <20250125064619.8305-65-jim.cromie@gmail.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250125064619.8305-1-jim.cromie@gmail.com>
-References: <20250125064619.8305-1-jim.cromie@gmail.com>
+Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com
+ [148.163.158.5])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8356010E05D;
+ Sun, 26 Jan 2025 15:55:17 +0000 (UTC)
+Received: from pps.filterd (m0356516.ppops.net [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50QFe5OT025921;
+ Sun, 26 Jan 2025 15:55:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+ :content-type:date:from:in-reply-to:message-id:mime-version
+ :references:subject:to; s=pp1; bh=0ExQz2LGkzGQ4zgyv7oTbKecX70H/y
+ grKaGz4l2lz18=; b=p18vDsCiopjSKUwVGTopaeu6/RgrvpRBfugPpfEV81fyYw
+ F+BMARTFwhlrnCQ0hxIkOhdpF0JRGxMGsNRo4DkjgG0nrGw0oiPmw0b8IhRCxSvl
+ SKztuwD+0B8ZRlSO3XbznrtfwdUUcUuvcw+KEN1+XDw4f9RKGEzrgByhlGVTUTXL
+ UwrgSmFDXaK+WxIwAL0YS5NnehOv0XXX3n/QaJGXW35few3MzUmCaz3p3JOxJutV
+ TkHUpRikTh9Q/birv7SQGSyq2aMxd8sXkR7chR9j1fn/RWmWAHqdlVChVVkx71dl
+ mpaiJ72RMY+Qd21y23N1Vnt3WeRIolFHljs37MSw==
+Received: from ppma13.dal12v.mail.ibm.com
+ (dd.9e.1632.ip4.static.sl-reverse.com [50.22.158.221])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 44dqvt01k1-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Sun, 26 Jan 2025 15:55:14 +0000 (GMT)
+Received: from pps.filterd (ppma13.dal12v.mail.ibm.com [127.0.0.1])
+ by ppma13.dal12v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 50QCwEF7022538;
+ Sun, 26 Jan 2025 15:55:13 GMT
+Received: from smtprelay06.fra02v.mail.ibm.com ([9.218.2.230])
+ by ppma13.dal12v.mail.ibm.com (PPS) with ESMTPS id 44dcgja93x-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Sun, 26 Jan 2025 15:55:13 +0000
+Received: from smtpav01.fra02v.mail.ibm.com (smtpav01.fra02v.mail.ibm.com
+ [10.20.54.100])
+ by smtprelay06.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
+ 50QFtCr123200010
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Sun, 26 Jan 2025 15:55:12 GMT
+Received: from smtpav01.fra02v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id E756120090;
+ Sun, 26 Jan 2025 15:55:01 +0000 (GMT)
+Received: from smtpav01.fra02v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id C6B442008E;
+ Sun, 26 Jan 2025 15:55:01 +0000 (GMT)
+Received: from tuxmaker.boeblingen.de.ibm.com (unknown [9.152.85.9])
+ by smtpav01.fra02v.mail.ibm.com (Postfix) with ESMTPS;
+ Sun, 26 Jan 2025 15:55:01 +0000 (GMT)
+Date: Sun, 26 Jan 2025 16:54:55 +0100
+From: Alexander Gordeev <agordeev@linux.ibm.com>
+To: Al Viro <viro@zeniv.linux.org.uk>
+Cc: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "Kurmi, Suresh Kumar" <suresh.kumar.kurmi@intel.com>,
+ "Saarinen, Jani" <jani.saarinen@intel.com>,
+ "linux-fsdevel@vger.kernel.org" <linux-fsdevel@vger.kernel.org>
+Subject: Re: Regression on linux-next (next-20250120)
+Message-ID: <Z5Zazwd0nto-v-RS@tuxmaker.boeblingen.de.ibm.com>
+References: <SJ1PR11MB6129D7DA59A733AD38E081E3B9E02@SJ1PR11MB6129.namprd11.prod.outlook.com>
+ <20250123181853.GC1977892@ZenIV>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sun, 26 Jan 2025 16:39:35 +0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250123181853.GC1977892@ZenIV>
+X-TM-AS-GCONF: 00
+X-Proofpoint-ORIG-GUID: J8jsyB_zQXgvmfCIN9qlOQBZY2rDRS7-
+X-Proofpoint-GUID: J8jsyB_zQXgvmfCIN9qlOQBZY2rDRS7-
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-26_06,2025-01-23_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ mlxscore=0 lowpriorityscore=0
+ adultscore=0 bulkscore=0 phishscore=0 impostorscore=0 spamscore=0
+ clxscore=1011 malwarescore=0 mlxlogscore=999 priorityscore=1501
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501260125
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,244 +99,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Despite a few latent flaws (1-3 below), classmaps-v1 went in with:
+On Thu, Jan 23, 2025 at 06:18:53PM +0000, Al Viro wrote:
 
-ee7d633f2dfb drm-print.h: include dyndbg header
-84ec67288c10 drm_print: wrap drm_*_dbg in dyndbg descriptor factory macro
-e820f52577b1 drm_print: interpose drm_*dbg with forwarding macros
-f158936b60a7 drm: POC drm on dyndbg - use in core, 2 helpers, 3 drivers.
-0406faf25fb1 drm_print: condense enum drm_debug_category
+Hi Al,
 
-and
+> On Thu, Jan 23, 2025 at 03:41:08PM +0000, Borah, Chaitanya Kumar wrote:
+> > Hello Al,
+> > 
+> > Hope you are doing well. I am Chaitanya from the linux graphics team in Intel.
+> > 
+> > This mail is regarding a regression we are seeing in our CI runs[1] on linux-next repository.
+> > 
+> > Since the version next-20250120 [2], we are seeing the following regression
+> 
+> Ugh...  To narrow the things down, could you see if replacing
+>                 fsd = kmalloc(sizeof(*fsd), GFP_KERNEL);
+> with
+>                 fsd = kzalloc(sizeof(*fsd), GFP_KERNEL);
+> in fs/debugfs/file.c:__debugfs_file_get() affects the test?
 
-6ea3bf466ac6 dyndbg: test DECLARE_DYNDBG_CLASSMAP, sysfs nodes
-b9400852c080 dyndbg: add drm.debug style (drm/parameters/debug) bitmap support
-ace7c4bbb240 doc-dyndbg: edit dynamic-debug-howto for brevity, audience
-753914ed85ac doc-dyndbg: describe "class CLASS_NAME" query support
-a4a2a427413e dyndbg: validate class FOO by checking with module
-c45f67ace832 dyndbg: add ddebug_attach_module_classes
-66f4006b6ace kernel/module: add __dyndbg_classes section
-aad0214f3026 dyndbg: add DECLARE_DYNDBG_CLASSMAP macro
-3fc95d80a536 dyndbg: add __pr_debug_cls for testing
-ca90fca7f7b5 dyndbg: add class_id to pr_debug callsites
-b7b4eebdba7b dyndbg: gather __dyndbg[] state into struct _ddebug_info
+This change fixes lots of the below failures in our CI. FWIW:
 
-Those flaws:
+Tested-by: Alexander Gordeev <agordeev@linux.ibm.com>
 
-1. Regression during initialization.  classmaps-v1 inits drm-dbg
-callsites' static-keys when drm is "modprobed/initd" with
-drm.debug=<initval>, but not during driver & helper modprobes.
+Unable to handle kernel pointer dereference in virtual kernel address space
+Failing address: 0000000000000000 TEID: 0000000000000000
+Fault in primary space mode while using kernel ASCE.
+AS:0000000243668007 R3:00000003fee58007 S:00000003fee57801 P:000000000000013d
+Oops: 0004 ilc:1 [#1] SMP
+Modules linked in: binfmt_misc mlx5_ib ib_uverbs ib_core dm_service_time nft_fib_inet nft_fib_ipv4 nft_fib_ipv6 nft_fib nft_reject_inet nf_reject_ipv4 nf_reject_ipv6 nft_reject nft_ct nft_chain_nat nf_nat nf_conntrack nf_defrag_ipv6 nf_defrag_ipv4 ip_set nf_tables mlx5_core pkey_pckmo uvdevice s390_trng rng_core eadm_sch vfio_ccw mdev vfio_iommu_type1 vfio sch_fq_codel drm i2c_core loop dm_multipath drm_panel_orientation_quirks configfs nfnetlink lcs ctcm fsm zfcp scsi_transport_fc hmac_s390 ghash_s390 prng chacha_s390 libchacha aes_s390 des_s390 libdes sha3_512_s390 sha3_256_s390 sha512_s390 sha256_s390 sha1_s390 sha_common scsi_dh_rdac scsi_dh_emc scsi_dh_alua pkey autofs4 ecdsa_generic ecc
+CPU: 3 UID: 0 PID: 19223 Comm: dump2tar Not tainted 6.14.0-20250123.rc0.git129.853d1f41ba73.300.fc41.s390x+next #1
+Hardware name: IBM 9175 ME1 701 (LPAR)
+Krnl PSW : 0704e00180000000 0000000000000000 (0x0)
+           R:0 T:1 IO:1 EX:1 Key:0 M:1 W:0 P:0 AS:3 CC:2 PM:0 RI:0 EA:3
+Krnl GPRS: 0000000000000003 0000029253f7f100 00000000a9fa0600 000003ff84472010
+           0000000000080000 00000212db803e68 00000212db803e68 0000000000080000
+           00000000cf33c6c0 00000000be6d6a00 00000000a9fa0600 0000000000000000
+           000003ff909acfa0 000003ff84472010 00000292d425da96 00000212db803c98
+Krnl Code:>0000000000000000: 0000            illegal
+           0000000000000002: 0000            illegal
+           0000000000000004: 0000            illegal
+           0000000000000006: 0000            illegal
+           0000000000000008: 0000            illegal
+           000000000000000a: 0000            illegal
+           000000000000000c: 0000            illegal
+           000000000000000e: 0000            illegal
+Call Trace:
+ [<0000000000000000>] 0x0
+([<000001e12d421b6a>] full_proxy_read+0x4a/0xc0)
+ [<000001e12d18ac16>] vfs_read+0x96/0x340
+ [<000001e12d18b7b8>] ksys_read+0x78/0x100
+ [<000001e12cdbf9d6>] do_syscall.constprop.0+0x116/0x140
+ [<000001e12dba3ff4>] __do_syscall+0xd4/0x1c0
+ [<000001e12dbaf404>] system_call+0x74/0x98
 
-Previously __drm_debug vs DRM_UT_* was checked at runtime, which
-made this a non-issue.  My test scripts passed dyndbg=<options>,
-which obscured this lack of "propagation" to drivers, and I didn't
-pick up on it.
-
-2. DECLARE_DYNDBG_CLASSMAP violated a K&R rule "define once, refer
-after", and is the root cause under 1.
-
-3. classmaps-v1 was something of a flag-day patchset; dyndbg & DRM
-parts were overly coupled, and test-dyndbg didn't validate multi-
-module classes.
-
-Consequently we got:
-commit bb2ff6c27bc9 ("drm: Disable dynamic debug as broken")
-
-Classmaps-v2 fixes these as follows:
-
-2. replace DECLARE_DYNDBG_CLASSMAP with DYNDBG_CLASSMAP_DEFINE
-(invoked once in drm-core) and DYNDBG_CLASSMAP_USE (repeatedly, in
-drivers & helpers).
-
-_DEFINE now exports the classmap, which _USE can repeatedly refer to.
-
-_USE adds a usage/linkage record referring to the _DEFINEd (&
-exported) classmap, in a new __dyndbg_class_users section.
-
-1. Now at modprobe, dyndbg scans the new section, follows the linkage
-to the _DEFINEr module, finds the (optional) kernel-param controlling
-the classmap, examines its drm.debug=<initval>, and applies it to the
-module being initialized.
-
-3. test/validate dyndbg for multi-module classes wo DRM involvement.
-
-A. add test_dynamic_debug_submod.ko, a clone of parent.
-This allows recapitulating various multi-module scenarios.
-
-B. add tools/testing/selftests/dynamic_debug/*
-
-This verifies spec'd behavior, including the multi-module scenarios
-made available in 3a.
-
-C. to decouple dyndbg from DRM, DECLARE_DYNDBG_CLASSMAP is preserved
-until after DRM adapts to the api change.
-
-Since the last rev sent here/LKML:
-  https://lore.kernel.org/lkml/20240716185806.1572048-1-jim.cromie@gmail.com/
-
-Ive rebased onto recent drm-tip, and tested with drm-trybot:
-  https://patchwork.freedesktop.org/series/139147/
-
-and made the following additions:
-
-1- drop class "protection" special case, per JBaron's preference.
-   current use is marked BROKEN so nobody to affect.
-   now framed as policy-choice:
-   #define ddebug_client_module_protects_classes false
-
-2- compile-time arg-tests in DYNDBG_CLASSMAP_DEFINE
-   implement several required constraints, fail obviously.
-
-3- modprobe time check of conflicting class-id reservations
-   only affects 2+classmaps users.
-   compile-time solution not apparent.
-
-4- dyndbg can now cause modprobe to fail.
-   needed toq catch 3.
-   maybe some loose ends here on failure.
-
-5- refactor & rename ddebug_attach_*module_classes
-   reduce repetetive boilerplate on 2 types: maps, users.
-   rework mostly brought forward in patchset to reduce churn
-   TBD: maybe squash more.
-
-The recent trybot submissions (against drm-tip) pass CI.BAT, and fail
-one or few CI.IGT tests randomly; re-tests do not repeat the failures.
-
-its also at github.com:jimc/linux.git
-
-commit c0f15eda9c3676149dedbc5a5fc0faee9550a2f7 (HEAD -> dd-fix-9s-ontip, ghlinux/dd-fix-9s-ontip)
-
-Im running it on my laptop & desktop w/o issues.
-
-The drivers/gpu/drm patches are RFC, I think there might be a place to
-put a single DRM_CLASSMAP_USE(drm_ddbug_classes) to replace the
-sprinkling of USEs in drivers and helpers.  IIRC, I tried adding a
-_DEFINE into drm_drv.c, that didn't do it.
-
-I think the dyndbg core additions are ready for review and merging
-into a (next-next) test/integration tree, I'd like to find out.
-
-Jim Cromie (63):
-pre-cleanup:
-  docs/dyndbg: update examples \012 to \n
-  test-dyndbg: fixup CLASSMAP usage error
-  dyndbg: reword "class unknown," to "class:_UNKNOWN_"
-  dyndbg: make ddebug_class_param union members same size
-  dyndbg: replace classmap list with a vector
-  dyndbg: ddebug_apply_class_bitmap - add module arg, select on it
-  dyndbg: split param_set_dyndbg_classes to _module & wrapper fns
-  dyndbg: drop NUM_TYPE_ARRAY
-  dyndbg: reduce verbose/debug clutter
-  dyndbg: silence debugs with no-change updates
-  dyndbg: tighten ddebug_class_name() 1st arg type
-  dyndbg: tighten fn-sig of ddebug_apply_class_bitmap
-  dyndbg: reduce verbose=3 messages in ddebug_add_module
-  dyndbg-API: remove DD_CLASS_TYPE_(DISJOINT|LEVEL)_NAMES and code
-  checkpatch: add an exception to the do-while wrapper advice
-
-core change:
-  dyndbg-API: replace DECLARE_DYNDBG_CLASSMAP
-  dyndbg: check DYNDBG_CLASSMAP_DEFINE args at compile-time
-  dyndbg: add/use for_subvec() to reduce boilerplate
-  dyndbg: make proper substructs in _ddebug_info
-  dyndbg: drop premature optimization in ddebug_add_module
-  dyndbg: allow ddebug_add_module to fail
-  dyndbg: rework ddebug_attach_*module_classes()
-  dyndbg: fail modprobe on ddebug_class_range_overlap()
-  dyndbg: hoist the range-overlap checks
-  ddebug: cleanup-range-overlap fails
-  dyndbg-test: change do_prints testpoint to accept a loopct
-  selftests-dyndbg: add tools/testing/selftests/dynamic_debug/*
-  dyndbg-API: promote DYNDBG_CLASSMAP_PARAM to API
-  dyndbg-doc: add classmap info to howto
-
-new features:
-  dyndbg: treat comma as a token separator
-  selftests-dyndbg: add comma_terminator_tests
-  dyndbg: split multi-query strings with %
-  selftests-dyndbg: test_percent_splitting
-  docs/dyndbg: explain new delimiters: comma, percent
-
-finishing:
-  selftests-dyndbg: add test_mod_submod
-  docs/dyndbg: explain flags parse 1st
-  dyndbg: change __dynamic_func_call_cls* macros into expressions
-  dyndbg: drop "protection" of class'd pr_debugs from legacy queries
-
-DRM: (phase 2)
-  drm: use correct ccflags-y spelling
-  checkpatch: dont warn about unused macro arg on empty body
-  drm-dyndbg: adapt drm core to use dyndbg classmaps-v2
-  drm-dyndbg: adapt DRM to invoke DYNDBG_CLASSMAP_PARAM
-  drm-print: fix config-dependent unused variable
-  drm-dyndbg: DRM_CLASSMAP_USE in amdgpu driver
-  drm-dyndbg: DRM_CLASSMAP_USE in i915 driver
-  drm-dyndbg: DRM_CLASSMAP_USE in drm_crtc_helper
-  drm-dyndbg: DRM_CLASSMAP_USE in drm_dp_helper
-  drm-dyndbg: DRM_CLASSMAP_USE in nouveau
-  drm-dyndbg: add DRM_CLASSMAP_USE to Xe driver
-  drm-dyndbg: add DRM_CLASSMAP_USE to virtio_gpu
-  drm-dyndbg: add DRM_CLASSMAP_USE to simpledrm
-  drm-dyndbg: add DRM_CLASSMAP_USE to bochs
-  drm-dyndbg: add DRM_CLASSMAP_USE to etnaviv
-  drm-dyndbg: add DRM_CLASSMAP_USE to gma500 driver
-  drm-dyndbg: add DRM_CLASSMAP_USE to radeon
-  drm-dyndbg: add DRM_CLASSMAP_USE to vmwgfx driver
-  drm-dyndbg: add DRM_CLASSMAP_USE to vkms driver
-  drm-dyndbg: add DRM_CLASSMAP_USE to udl driver
-  drm-dyndbg: add DRM_CLASSMAP_USE to mgag200 driver
-  drm-dyndbg: add DRM_CLASSMAP_USE to the gud driver
-  drm-dyndbg: add DRM_CLASSMAP_USE to the qxl driver
-  drm-dyndbg: add DRM_CLASSMAP_USE to the drm_gem_shmem_helper driver
-  drm: restore CONFIG_DRM_USE_DYNAMIC_DEBUG un-BROKEN
-
- .../admin-guide/dynamic-debug-howto.rst       | 116 +++-
- MAINTAINERS                                   |   3 +-
- drivers/gpu/drm/Kconfig                       |   3 +-
- drivers/gpu/drm/Makefile                      |   3 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c       |  12 +-
- drivers/gpu/drm/display/drm_dp_helper.c       |  12 +-
- drivers/gpu/drm/drm_crtc_helper.c             |  12 +-
- drivers/gpu/drm/drm_gem_shmem_helper.c        |   2 +
- drivers/gpu/drm/drm_print.c                   |  38 +-
- drivers/gpu/drm/etnaviv/etnaviv_drv.c         |   2 +
- drivers/gpu/drm/gma500/psb_drv.c              |   2 +
- drivers/gpu/drm/gud/gud_drv.c                 |   2 +
- drivers/gpu/drm/i915/i915_params.c            |  12 +-
- drivers/gpu/drm/mgag200/mgag200_drv.c         |   2 +
- drivers/gpu/drm/nouveau/nouveau_drm.c         |  12 +-
- drivers/gpu/drm/qxl/qxl_drv.c                 |   2 +
- drivers/gpu/drm/radeon/radeon_drv.c           |   2 +
- drivers/gpu/drm/tiny/bochs.c                  |   2 +
- drivers/gpu/drm/tiny/simpledrm.c              |   2 +
- drivers/gpu/drm/udl/udl_main.c                |   2 +
- drivers/gpu/drm/virtio/virtgpu_drv.c          |   2 +
- drivers/gpu/drm/vkms/vkms_drv.c               |   2 +
- drivers/gpu/drm/vmwgfx/vmwgfx_drv.c           |   2 +
- drivers/gpu/drm/xe/xe_drm_client.c            |   2 +
- include/asm-generic/vmlinux.lds.h             |   1 +
- include/drm/drm_print.h                       |  12 +
- include/linux/dynamic_debug.h                 | 193 ++++--
- kernel/module/main.c                          |  15 +-
- lib/Kconfig.debug                             |  24 +-
- lib/Makefile                                  |   3 +
- lib/dynamic_debug.c                           | 555 +++++++++++-------
- lib/test_dynamic_debug.c                      | 181 +++---
- lib/test_dynamic_debug_submod.c               |  17 +
- scripts/checkpatch.pl                         |   3 +-
- tools/testing/selftests/Makefile              |   1 +
- .../testing/selftests/dynamic_debug/Makefile  |   9 +
- tools/testing/selftests/dynamic_debug/config  |   2 +
- .../dynamic_debug/dyndbg_selftest.sh          | 364 ++++++++++++
- 38 files changed, 1206 insertions(+), 425 deletions(-)
- create mode 100644 lib/test_dynamic_debug_submod.c
- create mode 100644 tools/testing/selftests/dynamic_debug/Makefile
- create mode 100644 tools/testing/selftests/dynamic_debug/config
- create mode 100755 tools/testing/selftests/dynamic_debug/dyndbg_selftest.sh
-
---
-2.47.0
--- 
-2.47.1
-
+ Thanks!
