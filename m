@@ -2,29 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C43DEA1CD69
-	for <lists+intel-gfx@lfdr.de>; Sun, 26 Jan 2025 19:22:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 44375A1CD77
+	for <lists+intel-gfx@lfdr.de>; Sun, 26 Jan 2025 19:35:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E73A10E1D1;
-	Sun, 26 Jan 2025 18:22:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8CF710E16E;
+	Sun, 26 Jan 2025 18:35:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1829B10E19C;
- Sun, 26 Jan 2025 18:22:20 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5104704007100497233=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF6DD10E16E;
+ Sun, 26 Jan 2025 18:35:11 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915=3A_Remove_unused?=
- =?utf-8?q?_live=5Fcontext=5Ffor=5Fengine?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?b?4pyXIEZpLkNJLkNIRUNLUEFUQ0g6IHdhcm5pbmcgZm9yIGZpeCBDT05GSUdfRFJN?=
+ =?utf-8?b?X1VTRV9EWU5BTUlDX0RFQlVHPXkgKHJldjMp?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: linux@treblig.org
+To: "Jim Cromie" <jim.cromie@gmail.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Sun, 26 Jan 2025 18:22:20 -0000
-Message-ID: <173791574007.976754.3239391437519542803@b555e5b46a47>
+Date: Sun, 26 Jan 2025 18:35:11 -0000
+Message-ID: <173791651169.976754.8938786484941906956@b555e5b46a47>
 X-Patchwork-Hint: ignore
-References: <20250125003846.228514-1-linux@treblig.org>
-In-Reply-To: <20250125003846.228514-1-linux@treblig.org>
+References: <20250125064619.8305-1-jim.cromie@gmail.com>
+In-Reply-To: <20250125064619.8305-1-jim.cromie@gmail.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,388 +41,245 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============5104704007100497233==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915: Remove unused live_context_for_engine
-URL   : https://patchwork.freedesktop.org/series/143971/
-State : success
+Series: fix CONFIG_DRM_USE_DYNAMIC_DEBUG=y (rev3)
+URL   : https://patchwork.freedesktop.org/series/135705/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_16023 -> Patchwork_143971v1
-====================================================
+Error: dim checkpatch failed
+0303dbb9b927 docs/dyndbg: update examples \012 to \n
+dd0c22d6cf73 test-dyndbg: fixup CLASSMAP usage error
+e192a085128f dyndbg: reword "class unknown," to "class:_UNKNOWN_"
+8a7373dd9070 dyndbg: make ddebug_class_param union members same size
+19c32ffee87c dyndbg: replace classmap list with a vector
+1b8179aea6e6 dyndbg: ddebug_apply_class_bitmap - add module arg, select on it
+99d2e5c03a31 dyndbg: split param_set_dyndbg_classes to _module & wrapper fns
+9b460f0d8577 dyndbg: drop NUM_TYPE_ARRAY
+0617f1fe65c1 dyndbg: reduce verbose/debug clutter
+c536e2d99b72 dyndbg: silence debugs with no-change updates
+09017a660ccf dyndbg: tighten ddebug_class_name() 1st arg type
+88003ef00273 dyndbg: tighten fn-sig of ddebug_apply_class_bitmap
+1ae5c85bf707 dyndbg: reduce verbose=3 messages in ddebug_add_module
+60d3a7dcdfb6 dyndbg-API: remove DD_CLASS_TYPE_(DISJOINT|LEVEL)_NAMES and code
+83105033661d checkpatch: add an exception to the do-while wrapper advice
+0a607d3c89dc dyndbg-API: replace DECLARE_DYNDBG_CLASSMAP
+-:239: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_var' - possible side-effects?
+#239: FILE: include/linux/dynamic_debug.h:113:
++#define DYNDBG_CLASSMAP_DEFINE(_var, _mapty, _base, ...)		\
++	static const char *_var##_classnames[] = { __VA_ARGS__ };	\
++	extern struct ddebug_class_map _var;				\
++	struct ddebug_class_map __aligned(8) __used			\
++		__section("__dyndbg_classes") _var = {			\
++		.mod = THIS_MODULE,					\
++		.mod_name = KBUILD_MODNAME,				\
++		.base = (_base),					\
++		.map_type = (_mapty),					\
++		.length = ARRAY_SIZE(_var##_classnames),		\
++		.class_names = _var##_classnames,			\
++	};								\
++	EXPORT_SYMBOL(_var)
 
-Summary
--------
+-:279: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_var' - possible side-effects?
+#279: FILE: include/linux/dynamic_debug.h:159:
++#define DYNDBG_CLASSMAP_USE_(_var, _uname)				\
++	extern struct ddebug_class_map _var;				\
++	static struct ddebug_class_user __aligned(8) __used		\
++	__section("__dyndbg_class_users") _uname = {			\
++		.mod_name = KBUILD_MODNAME,				\
++		.map = &(_var),						\
++	}
 
-  **SUCCESS**
+-:861: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#861: 
+new file mode 100644
 
-  No regressions found.
+total: 0 errors, 1 warnings, 2 checks, 653 lines checked
+84c316fac294 dyndbg: check DYNDBG_CLASSMAP_DEFINE args at compile-time
+-:26: ERROR:MULTISTATEMENT_MACRO_USE_DO_WHILE: Macros with multiple statements should be enclosed in a do - while loop
+#26: FILE: include/linux/dynamic_debug.h:102:
++#define __DYNDBG_CLASSMAP_CHECK(_clnames, _base)			\
++	static_assert(((_base) >= 0 && (_base) < _DPRINTK_CLASS_DFLT),	\
++		      "_base must be in 0..62");			\
++	static_assert(ARRAY_SIZE(_clnames) > 0,				\
++		      "classnames array size must be > 0");		\
++	static_assert((ARRAY_SIZE(_clnames) + (_base)) < _DPRINTK_CLASS_DFLT, \
++		      "_base + classnames.length exceeds range")
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/index.html
+-:26: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_clnames' - possible side-effects?
+#26: FILE: include/linux/dynamic_debug.h:102:
++#define __DYNDBG_CLASSMAP_CHECK(_clnames, _base)			\
++	static_assert(((_base) >= 0 && (_base) < _DPRINTK_CLASS_DFLT),	\
++		      "_base must be in 0..62");			\
++	static_assert(ARRAY_SIZE(_clnames) > 0,				\
++		      "classnames array size must be > 0");		\
++	static_assert((ARRAY_SIZE(_clnames) + (_base)) < _DPRINTK_CLASS_DFLT, \
++		      "_base + classnames.length exceeds range")
 
-Participating hosts (36 -> 35)
-------------------------------
+-:26: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_base' - possible side-effects?
+#26: FILE: include/linux/dynamic_debug.h:102:
++#define __DYNDBG_CLASSMAP_CHECK(_clnames, _base)			\
++	static_assert(((_base) >= 0 && (_base) < _DPRINTK_CLASS_DFLT),	\
++		      "_base must be in 0..62");			\
++	static_assert(ARRAY_SIZE(_clnames) > 0,				\
++		      "classnames array size must be > 0");		\
++	static_assert((ARRAY_SIZE(_clnames) + (_base)) < _DPRINTK_CLASS_DFLT, \
++		      "_base + classnames.length exceeds range")
 
-  Additional (1): bat-dg2-9 
-  Missing    (2): fi-glk-j4005 fi-snb-2520m 
+total: 1 errors, 0 warnings, 2 checks, 40 lines checked
+d77abbe61691 dyndbg: add/use for_subvec() to reduce boilerplate
+-:28: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_i' - possible side-effects?
+#28: FILE: lib/dynamic_debug.c:170:
++#define for_subvec(_i, _sp, _box, _vec)				       \
++	for ((_i) = 0, (_sp) = (_box)->_vec;			       \
++	     (_i) < (_box)->num_##_vec;				       \
++	     (_i)++, (_sp)++)
 
-Known issues
-------------
+-:28: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_sp' - possible side-effects?
+#28: FILE: lib/dynamic_debug.c:170:
++#define for_subvec(_i, _sp, _box, _vec)				       \
++	for ((_i) = 0, (_sp) = (_box)->_vec;			       \
++	     (_i) < (_box)->num_##_vec;				       \
++	     (_i)++, (_sp)++)
 
-  Here are the changes found in Patchwork_143971v1 that come from known issues:
+-:28: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_box' - possible side-effects?
+#28: FILE: lib/dynamic_debug.c:170:
++#define for_subvec(_i, _sp, _box, _vec)				       \
++	for ((_i) = 0, (_sp) = (_box)->_vec;			       \
++	     (_i) < (_box)->num_##_vec;				       \
++	     (_i)++, (_sp)++)
 
-### IGT changes ###
+-:28: CHECK:MACRO_ARG_PRECEDENCE: Macro argument '_vec' may be better as '(_vec)' to avoid precedence issues
+#28: FILE: lib/dynamic_debug.c:170:
++#define for_subvec(_i, _sp, _box, _vec)				       \
++	for ((_i) = 0, (_sp) = (_box)->_vec;			       \
++	     (_i) < (_box)->num_##_vec;				       \
++	     (_i)++, (_sp)++)
 
-#### Issues hit ####
+total: 0 errors, 0 warnings, 4 checks, 84 lines checked
+e82cbb462917 dyndbg: make proper substructs in _ddebug_info
+3c06ad390a66 dyndbg: drop premature optimization in ddebug_add_module
+19107a1cc14c dyndbg: allow ddebug_add_module to fail
+-:62: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#62: FILE: lib/dynamic_debug.c:1250:
++static int ddebug_attach_user_module_classes(struct ddebug_table *dt,
++					      const struct _ddebug_info *di,
 
-  * igt@dmabuf@all-tests@dma_fence_chain:
-    - fi-bsw-nick:        [PASS][1] -> [INCOMPLETE][2] ([i915#12904]) +1 other test incomplete
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16023/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html
+total: 0 errors, 0 warnings, 1 checks, 99 lines checked
+a4c400b80ad5 dyndbg: rework ddebug_attach_*module_classes()
+-:56: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_dst' - possible side-effects?
+#56: FILE: lib/dynamic_debug.c:1225:
++#define dd_mark_vector_subrange(_i, _dst, _sp, _box, _vec) ({		\
++	int nc = 0;							\
++	for_subvec(_i, _sp, _box, _vec) {				\
++		if (!strcmp((_sp)->mod_name, (_dst)->mod_name)) {	\
++			if (!nc++)					\
++				(_dst)->info._vec.start = (_sp);	\
++		} else {						\
++			if (nc)						\
++				break; /* end of consecutive matches */ \
++		}							\
++	}								\
++	(_dst)->info._vec.len = nc;					\
++})
 
-  * igt@gem_mmap@basic:
-    - bat-dg2-9:          NOTRUN -> [SKIP][3] ([i915#4083])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-dg2-9/igt@gem_mmap@basic.html
+-:56: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_sp' - possible side-effects?
+#56: FILE: lib/dynamic_debug.c:1225:
++#define dd_mark_vector_subrange(_i, _dst, _sp, _box, _vec) ({		\
++	int nc = 0;							\
++	for_subvec(_i, _sp, _box, _vec) {				\
++		if (!strcmp((_sp)->mod_name, (_dst)->mod_name)) {	\
++			if (!nc++)					\
++				(_dst)->info._vec.start = (_sp);	\
++		} else {						\
++			if (nc)						\
++				break; /* end of consecutive matches */ \
++		}							\
++	}								\
++	(_dst)->info._vec.len = nc;					\
++})
 
-  * igt@gem_mmap_gtt@basic:
-    - bat-dg2-9:          NOTRUN -> [SKIP][4] ([i915#4077]) +2 other tests skip
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-dg2-9/igt@gem_mmap_gtt@basic.html
+-:56: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_vec' - possible side-effects?
+#56: FILE: lib/dynamic_debug.c:1225:
++#define dd_mark_vector_subrange(_i, _dst, _sp, _box, _vec) ({		\
++	int nc = 0;							\
++	for_subvec(_i, _sp, _box, _vec) {				\
++		if (!strcmp((_sp)->mod_name, (_dst)->mod_name)) {	\
++			if (!nc++)					\
++				(_dst)->info._vec.start = (_sp);	\
++		} else {						\
++			if (nc)						\
++				break; /* end of consecutive matches */ \
++		}							\
++	}								\
++	(_dst)->info._vec.len = nc;					\
++})
 
-  * igt@gem_render_tiled_blits@basic:
-    - bat-dg2-9:          NOTRUN -> [SKIP][5] ([i915#4079]) +1 other test skip
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-dg2-9/igt@gem_render_tiled_blits@basic.html
+total: 0 errors, 0 warnings, 3 checks, 145 lines checked
+e58f75362a44 dyndbg: fail modprobe on ddebug_class_range_overlap()
+e01160049d93 dyndbg: hoist the range-overlap checks
+484a8ae9f2e0 ddebug: cleanup-range-overlap fails
+d33bcccea2b1 dyndbg-test: change do_prints testpoint to accept a loopct
+0dda84e6e3a1 selftests-dyndbg: add tools/testing/selftests/dynamic_debug/*
+-:78: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#78: 
+new file mode 100644
 
-  * igt@i915_pm_rpm@module-reload:
-    - bat-adls-6:         [PASS][6] -> [FAIL][7] ([i915#13401])
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16023/bat-adls-6/igt@i915_pm_rpm@module-reload.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-adls-6/igt@i915_pm_rpm@module-reload.html
-    - fi-tgl-1115g4:      [PASS][8] -> [FAIL][9] ([i915#13401])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16023/fi-tgl-1115g4/igt@i915_pm_rpm@module-reload.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/fi-tgl-1115g4/igt@i915_pm_rpm@module-reload.html
+total: 0 errors, 1 warnings, 0 checks, 281 lines checked
+ae8e2421ce5e dyndbg-API: promote DYNDBG_CLASSMAP_PARAM to API
+a0e9a779c5a9 dyndbg-doc: add classmap info to howto
+d82f21b2932e dyndbg: treat comma as a token separator
+cdfa907bffed selftests-dyndbg: add comma_terminator_tests
+ec2b9480dbee dyndbg: split multi-query strings with %
+c8dc2220b06c selftests-dyndbg: test_percent_splitting
+752ea068daf9 docs/dyndbg: explain new delimiters: comma, percent
+f6eec0294239 selftests-dyndbg: add test_mod_submod
+e3e07e982ce7 docs/dyndbg: explain flags parse 1st
+baf3223d8634 dyndbg: change __dynamic_func_call_cls* macros into expressions
+-:34: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
+#34: FILE: include/linux/dynamic_debug.h:334:
++#define __dynamic_func_call_cls(id, cls, fmt, func, ...) ({	\
++	DEFINE_DYNAMIC_DEBUG_METADATA_CLS(id, cls, fmt);	\
+ 	if (DYNAMIC_DEBUG_BRANCH(id))				\
++		func(&(id), ##__VA_ARGS__);			\
++})
 
-  * igt@i915_pm_rps@basic-api:
-    - bat-dg2-9:          NOTRUN -> [SKIP][10] ([i915#11681] / [i915#6621])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-dg2-9/igt@i915_pm_rps@basic-api.html
+-:46: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
+#46: FILE: include/linux/dynamic_debug.h:343:
++#define __dynamic_func_call_cls_no_desc(id, cls, fmt, func, ...) ({	\
+ 	DEFINE_DYNAMIC_DEBUG_METADATA_CLS(id, cls, fmt);		\
+ 	if (DYNAMIC_DEBUG_BRANCH(id))					\
+ 		func(__VA_ARGS__);					\
++})
 
-  * igt@i915_selftest@live:
-    - bat-mtlp-8:         [PASS][11] -> [DMESG-FAIL][12] ([i915#12061]) +1 other test dmesg-fail
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16023/bat-mtlp-8/igt@i915_selftest@live.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-mtlp-8/igt@i915_selftest@live.html
-    - bat-arlh-3:         [PASS][13] -> [DMESG-FAIL][14] ([i915#12061] / [i915#12435])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16023/bat-arlh-3/igt@i915_selftest@live.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-arlh-3/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arlh-3:         [PASS][15] -> [DMESG-FAIL][16] ([i915#12061])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16023/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-    - bat-adlp-9:         [PASS][17] -> [ABORT][18] ([i915#13399]) +1 other test abort
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16023/bat-adlp-9/igt@i915_selftest@live@workarounds.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-adlp-9/igt@i915_selftest@live@workarounds.html
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - bat-dg2-9:          NOTRUN -> [SKIP][19] ([i915#5190])
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-dg2-9/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_addfb_basic@basic-y-tiled-legacy:
-    - bat-dg2-9:          NOTRUN -> [SKIP][20] ([i915#4215] / [i915#5190])
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-dg2-9/igt@kms_addfb_basic@basic-y-tiled-legacy.html
-
-  * igt@kms_addfb_basic@framebuffer-vs-set-tiling:
-    - bat-dg2-9:          NOTRUN -> [SKIP][21] ([i915#4212]) +7 other tests skip
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-dg2-9/igt@kms_addfb_basic@framebuffer-vs-set-tiling.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - bat-dg2-9:          NOTRUN -> [SKIP][22] ([i915#4103] / [i915#4213]) +1 other test skip
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-dg2-9/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - bat-dg2-9:          NOTRUN -> [SKIP][23]
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-dg2-9/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
-    - bat-dg2-11:         [PASS][24] -> [SKIP][25] ([i915#9197]) +3 other tests skip
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16023/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
-
-  * igt@kms_pm_backlight@basic-brightness:
-    - bat-dg2-9:          NOTRUN -> [SKIP][26] ([i915#5354])
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-dg2-9/igt@kms_pm_backlight@basic-brightness.html
-
-  * igt@kms_psr@psr-sprite-plane-onoff:
-    - bat-dg2-9:          NOTRUN -> [SKIP][27] ([i915#1072] / [i915#9732]) +3 other tests skip
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-dg2-9/igt@kms_psr@psr-sprite-plane-onoff.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - bat-dg2-9:          NOTRUN -> [SKIP][28] ([i915#3555])
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-dg2-9/igt@kms_setmode@basic-clone-single-crtc.html
-
-  * igt@prime_vgem@basic-fence-flip:
-    - bat-dg2-9:          NOTRUN -> [SKIP][29] ([i915#3708])
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-dg2-9/igt@prime_vgem@basic-fence-flip.html
-
-  * igt@prime_vgem@basic-fence-mmap:
-    - bat-dg2-9:          NOTRUN -> [SKIP][30] ([i915#3708] / [i915#4077]) +1 other test skip
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-dg2-9/igt@prime_vgem@basic-fence-mmap.html
-
-  * igt@prime_vgem@basic-write:
-    - bat-dg2-9:          NOTRUN -> [SKIP][31] ([i915#3291] / [i915#3708]) +2 other tests skip
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-dg2-9/igt@prime_vgem@basic-write.html
-
-  
-#### Possible fixes ####
-
-  * igt@dmabuf@all-tests:
-    - bat-apl-1:          [INCOMPLETE][32] ([i915#12904]) -> [PASS][33] +1 other test pass
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16023/bat-apl-1/igt@dmabuf@all-tests.html
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-apl-1/igt@dmabuf@all-tests.html
-
-  * igt@i915_selftest@live@workarounds:
-    - {bat-mtlp-9}:       [DMESG-FAIL][34] ([i915#12061]) -> [PASS][35]
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16023/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [i915#1072]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1072
-  [i915#11681]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11681
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12435]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12435
-  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
-  [i915#13399]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13399
-  [i915#13401]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13401
-  [i915#3291]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3291
-  [i915#3555]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555
-  [i915#3708]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3708
-  [i915#4077]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4077
-  [i915#4079]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4079
-  [i915#4083]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4083
-  [i915#4103]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4103
-  [i915#4212]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4212
-  [i915#4213]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4213
-  [i915#4215]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4215
-  [i915#5190]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5190
-  [i915#5354]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5354
-  [i915#6621]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6621
-  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
-  [i915#9732]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9732
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_16023 -> Patchwork_143971v1
-
-  CI-20190529: 20190529
-  CI_DRM_16023: 006a892140827b356eb4ad5a5e9b947477791ba8 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8209: 07ec14a8b00849e82a6ee7aff433c8f564787bf0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_143971v1: 006a892140827b356eb4ad5a5e9b947477791ba8 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/index.html
-
---===============5104704007100497233==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Remove unused live_context_for_engine</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/143971/">https://patchwork.freedesktop.org/series/143971/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/index.html</a></td></tr>
-
-</table>
+total: 0 errors, 0 warnings, 2 checks, 26 lines checked
+675ec446ee8b dyndbg: drop "protection" of class'd pr_debugs from legacy queries
+985e089200c5 drm: use correct ccflags-y spelling
+f09f78b3f7ca checkpatch: dont warn about unused macro arg on empty body
+6c183703f5a3 drm-dyndbg: adapt drm core to use dyndbg classmaps-v2
+eddec3407bca drm-dyndbg: adapt DRM to invoke DYNDBG_CLASSMAP_PARAM
+29f155c36338 drm-print: fix config-dependent unused variable
+90a21e7b9e91 drm-dyndbg: DRM_CLASSMAP_USE in amdgpu driver
+dc90f08f3585 drm-dyndbg: DRM_CLASSMAP_USE in i915 driver
+56f77c209737 drm-dyndbg: DRM_CLASSMAP_USE in drm_crtc_helper
+3897fb4e081f drm-dyndbg: DRM_CLASSMAP_USE in drm_dp_helper
+8620edc0c0b2 drm-dyndbg: DRM_CLASSMAP_USE in nouveau
+9edc39593919 drm-dyndbg: add DRM_CLASSMAP_USE to Xe driver
+5854b92ef3ae drm-dyndbg: add DRM_CLASSMAP_USE to virtio_gpu
+80b98a307eeb drm-dyndbg: add DRM_CLASSMAP_USE to simpledrm
+b439db2453ea drm-dyndbg: add DRM_CLASSMAP_USE to bochs
+63d592028f72 drm-dyndbg: add DRM_CLASSMAP_USE to etnaviv
+49d554460e5f drm-dyndbg: add DRM_CLASSMAP_USE to gma500 driver
+e8c11311de7e drm-dyndbg: add DRM_CLASSMAP_USE to radeon
+9985c65c6de3 drm-dyndbg: add DRM_CLASSMAP_USE to vmwgfx driver
+946e697a7459 drm-dyndbg: add DRM_CLASSMAP_USE to vkms driver
+d3cdfa2d6a02 drm-dyndbg: add DRM_CLASSMAP_USE to udl driver
+9c458a152af1 drm-dyndbg: add DRM_CLASSMAP_USE to mgag200 driver
+3d83a3bf67a1 drm-dyndbg: add DRM_CLASSMAP_USE to the gud driver
+94e16ee1cb2e drm-dyndbg: add DRM_CLASSMAP_USE to the qxl driver
+29453f60fe51 drm-dyndbg: add DRM_CLASSMAP_USE to the drm_gem_shmem_helper driver
+cb22402ff4e7 drm: restore CONFIG_DRM_USE_DYNAMIC_DEBUG un-BROKEN
 
 
-    <h1>CI Bug Log - changes from CI_DRM_16023 -&gt; Patchwork_143971v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/index.html</p>
-<h2>Participating hosts (36 -&gt; 35)</h2>
-<p>Additional (1): bat-dg2-9 <br />
-  Missing    (2): fi-glk-j4005 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_143971v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@dmabuf@all-tests@dma_fence_chain:</p>
-<ul>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16023/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/fi-bsw-nick/igt@dmabuf@all-tests@dma_fence_chain.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) +1 other test incomplete</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_mmap@basic:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-dg2-9/igt@gem_mmap@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4083">i915#4083</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_mmap_gtt@basic:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-dg2-9/igt@gem_mmap_gtt@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4077">i915#4077</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_render_tiled_blits@basic:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-dg2-9/igt@gem_render_tiled_blits@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4079">i915#4079</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>bat-adls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16023/bat-adls-6/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-adls-6/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13401">i915#13401</a>)</li>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16023/fi-tgl-1115g4/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/fi-tgl-1115g4/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13401">i915#13401</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rps@basic-api:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-dg2-9/igt@i915_pm_rps@basic-api.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11681">i915#11681</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6621">i915#6621</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16023/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16023/bat-arlh-3/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-arlh-3/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12435">i915#12435</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16023/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>)</li>
-<li>bat-adlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16023/bat-adlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-adlp-9/igt@i915_selftest@live@workarounds.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13399">i915#13399</a>) +1 other test abort</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-dg2-9/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5190">i915#5190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@basic-y-tiled-legacy:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-dg2-9/igt@kms_addfb_basic@basic-y-tiled-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4215">i915#4215</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5190">i915#5190</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@framebuffer-vs-set-tiling:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-dg2-9/igt@kms_addfb_basic@framebuffer-vs-set-tiling.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4212">i915#4212</a>) +7 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-dg2-9/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4103">i915#4103</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4213">i915#4213</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-dg2-9/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16023/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197">i915#9197</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_backlight@basic-brightness:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-dg2-9/igt@kms_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5354">i915#5354</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-sprite-plane-onoff:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-dg2-9/igt@kms_psr@psr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1072">i915#1072</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9732">i915#9732</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-dg2-9/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-flip:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-dg2-9/igt@prime_vgem@basic-fence-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3708">i915#3708</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-mmap:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-dg2-9/igt@prime_vgem@basic-fence-mmap.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3708">i915#3708</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4077">i915#4077</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-write:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-dg2-9/igt@prime_vgem@basic-write.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3291">i915#3291</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3708">i915#3708</a>) +2 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@dmabuf@all-tests:</p>
-<ul>
-<li>bat-apl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16023/bat-apl-1/igt@dmabuf@all-tests.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-apl-1/igt@dmabuf@all-tests.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>{bat-mtlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16023/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_143971v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_16023 -&gt; Patchwork_143971v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_16023: 006a892140827b356eb4ad5a5e9b947477791ba8 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8209: 07ec14a8b00849e82a6ee7aff433c8f564787bf0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_143971v1: 006a892140827b356eb4ad5a5e9b947477791ba8 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============5104704007100497233==--
