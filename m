@@ -2,59 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2F8AA200A6
+	by mail.lfdr.de (Postfix) with ESMTPS id 10975A200A5
 	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2025 23:36:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DDC7610E5D2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94E8C10E5CF;
 	Mon, 27 Jan 2025 22:36:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dEQpOFWY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Kd6ogbIO";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F04110E5CB;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDBB810E5CB;
  Mon, 27 Jan 2025 22:36:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738017393; x=1769553393;
+ t=1738017394; x=1769553394;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=8W5818F5QtXGxhlYLw3p+vXOrJlGGNlt7NYJR9QqrKk=;
- b=dEQpOFWYaz0K7otVT9bamm6pToZPHNmCgxZzgVysxQo9CVeQsI/zJ8Hp
- hob48WyLhsallYpwhmaiFSXloT0QBR4ZwFDLuDiiq1mBHezJvwMGrrONR
- XQPgVv2qdyu513iFdRwc9TLEfbzCVHLpF5yMlLPLcDoKwYxPeL99C8KkQ
- 89oRczxgWzvzY8Thngcl7RtXWLpuYWq2cnKYcwS7UfA1ss/L+qfepG2hc
- tj0OlE9dYRq2vSUFkuMYFk4c6KamRVMdW27Xa6iuxKGfZbx7I1Wo2VAJh
- HZ7FOnn+2E5P48jMJ3CCoKiML7wIWcewuQAgLa2YqZrT51uJJDwQ3lv1e A==;
-X-CSE-ConnectionGUID: PAY23cREReyJZ7xwo4k79Q==
-X-CSE-MsgGUID: F0f2M+bjQp28/qiyWMWGhA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11328"; a="56035021"
-X-IronPort-AV: E=Sophos;i="6.13,239,1732608000"; d="scan'208";a="56035021"
+ bh=UGfEAR5hQsGNp3PMTc38jp8+jT4wT7XmtKZfJMXWAHc=;
+ b=Kd6ogbIOwKuLlD6uHP5ukpfisXvuDjnnj6hZQ6v96SkQcEb2B+oDko/T
+ qA5S20Xp5b2t9Dnaowsg+RaUXVvgVVJE/MuEkDGMkZx7wKslUuCCIa5Wc
+ b0qSrSEprlZtwMTBpcb0OY/DWwFY/u9L34zoQFsQhK2a4j+KHy54D91Tk
+ 02jBrfRVj50kDjh+bzXwtHqBjwYppqo3xj9TgqnSQNqKcHi/6+49Ie+Sv
+ PgeBAGfnojhwydgCfel6c83phy3HwhBh5/Vu6bDgngq8e22JaIjBrXR3V
+ d4gULRCtH/zZYqCiEdjFdOXztHMHhUoDW5PMvEJE29Du45mf7FbZNuYDC g==;
+X-CSE-ConnectionGUID: 4SXoXNk9TxWPqLnXM+eTYg==
+X-CSE-MsgGUID: h88+H06wT1GLyA2NF6Dy8A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11328"; a="56035022"
+X-IronPort-AV: E=Sophos;i="6.13,239,1732608000"; d="scan'208";a="56035022"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2025 14:36:33 -0800
-X-CSE-ConnectionGUID: YBZThVPdTvu29pmIbMwTfQ==
-X-CSE-MsgGUID: Z3OzzD5mQniRYpTo5n4N9A==
+ 27 Jan 2025 14:36:34 -0800
+X-CSE-ConnectionGUID: 0fI+5KI1S8OTpuVh/ZBmCw==
+X-CSE-MsgGUID: mntkRNPSQui/N7mL7GmQtQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,239,1732608000"; d="scan'208";a="113601928"
+X-IronPort-AV: E=Sophos;i="6.13,239,1732608000"; d="scan'208";a="113601933"
 Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.39.141])
- by orviesa004.jf.intel.com with ESMTP; 27 Jan 2025 14:36:32 -0800
+ by orviesa004.jf.intel.com with ESMTP; 27 Jan 2025 14:36:33 -0800
 From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	igt-dev@lists.freedesktop.org
 Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
- Riana Tauro <riana.tauro@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
- Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH i-g-t v6 1/2] lib/igt_perf: Add utils to extract PMU event info
-Date: Mon, 27 Jan 2025 14:33:00 -0800
-Message-Id: <20250127223301.2819108-2-vinay.belgaumkar@intel.com>
+ Riana Tauro <riana.tauro@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH i-g-t v6 2/2] tests/xe/pmu: Add pmu tests
+Date: Mon, 27 Jan 2025 14:33:01 -0800
+Message-Id: <20250127223301.2819108-3-vinay.belgaumkar@intel.com>
 X-Mailer: git-send-email 2.38.1
 In-Reply-To: <20250127223301.2819108-1-vinay.belgaumkar@intel.com>
 References: <20250127223301.2819108-1-vinay.belgaumkar@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,113 +70,217 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Functions to parse event ID and GT bit shift for PMU events.
+Simple tests for validating the PMU implementation for GT C6
+residencies.
 
-v2: Review comments (Riana)
+v2: Rename rc6-residency-* to gt-c6-residency and remove freq tests.
+v3: Keep just gt-c6 tests, add frequency tests later.
+v4: Review comments (Riana)
 
-Cc: Riana Tauro <riana.tauro@intel.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+Cc: Riana Tauro <riana.tauro@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 ---
- lib/igt_perf.c | 70 ++++++++++++++++++++++++++++++++++++++++++++++++++
- lib/igt_perf.h |  2 ++
- 2 files changed, 72 insertions(+)
+ tests/intel/xe_pmu.c | 176 +++++++++++++++++++++++++++++++++++++++++++
+ tests/meson.build    |   1 +
+ 2 files changed, 177 insertions(+)
+ create mode 100644 tests/intel/xe_pmu.c
 
-diff --git a/lib/igt_perf.c b/lib/igt_perf.c
-index 3866c6d77..7e81d5516 100644
---- a/lib/igt_perf.c
-+++ b/lib/igt_perf.c
-@@ -92,6 +92,76 @@ const char *xe_perf_device(int xe, char *buf, int buflen)
- 	return buf;
- }
- 
-+/**
-+ * perf_event_format: Returns the start/end positions of an event format param
-+ * @device: Device string in driver:pci format
-+ * @param: Parameter for which you need the format start/end bits
-+ * Returns: Start/end bit positions for a event parameter format
+diff --git a/tests/intel/xe_pmu.c b/tests/intel/xe_pmu.c
+new file mode 100644
+index 000000000..61a7a7e38
+--- /dev/null
++++ b/tests/intel/xe_pmu.c
+@@ -0,0 +1,176 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2025 Intel Corporation
 + */
-+int perf_event_format(const char *device, const char *param, uint32_t *start, uint32_t *end)
++
++/**
++ * TEST: Test Xe PMU functionality
++ * Category: Perf Monitoring Unit
++ * Mega feature: Perf Monitoring Unit
++ * Sub-category: Power Management
++ * Functionality: Power/Perf
++ * Test category: Functional tests
++ */
++
++#include <fcntl.h>
++#include <limits.h>
++#include <time.h>
++#include <errno.h>
++#include <dirent.h>
++#include <string.h>
++#include <sys/time.h>
++
++#include "igt.h"
++#include "igt_device.h"
++#include "igt_power.h"
++#include "igt_sysfs.h"
++#include "igt_perf.h"
++
++#include "lib/igt_syncobj.h"
++#include "xe/xe_ioctl.h"
++#include "xe/xe_gt.h"
++#include "xe/xe_query.h"
++#include "xe/xe_spin.h"
++#include "xe/xe_util.h"
++
++#define SLEEP_DURATION 2 /* in seconds */
++const double tolerance = 0.1;
++const unsigned long batch_duration_ns = 500e6;
++const char *no_debug_data = "\0";
++
++#define __assert_within_epsilon(x, ref, tol_up, tol_down, debug_data) \
++	igt_assert_f((double)(x) <= (1.0 + (tol_up)) * (double)(ref) && \
++		     (double)(x) >= (1.0 - (tol_down)) * (double)(ref), \
++		     "'%s' != '%s' (%f not within +%.1f%%/-%.1f%% tolerance of %f)\n%s\n",\
++		     #x, #ref, (double)(x), \
++		     (tol_up) * 100.0, (tol_down) * 100.0, \
++		     (double)(ref), debug_data)
++
++#define assert_within_epsilon(x, ref, tolerance) \
++	__assert_within_epsilon(x, ref, tolerance, tolerance, no_debug_data)
++
++static int open_pmu(int xe, uint64_t config)
 +{
-+	char buf[NAME_MAX];
-+	ssize_t bytes;
-+	int ret;
 +	int fd;
 +
-+	snprintf(buf, sizeof(buf),
-+		 "/sys/bus/event_source/devices/%s/format/%s",
-+		 device, param);
++	fd = perf_xe_open(xe, config);
++	igt_skip_on(fd < 0 && errno == ENODEV);
++	igt_assert(fd >= 0);
 +
-+	fd = open(buf, O_RDONLY);
-+	if (fd < 0)
-+		return -EINVAL;
++	return fd;
++}
 +
-+	bytes = read(fd, buf, sizeof(buf) - 1);
-+	close(fd);
-+	if (bytes < 1)
-+		return -EINVAL;
++static uint64_t __pmu_read_single(int fd, uint64_t *ts)
++{
++	uint64_t data[2];
 +
-+	buf[bytes] = '\0';
-+	ret = sscanf(buf, "config:%u-%u", start, end);
-+	if (ret != 2)
-+		return -EINVAL;
++	igt_assert_eq(read(fd, data, sizeof(data)), sizeof(data));
++	if (ts)
++		*ts = data[1];
 +
-+	return ret;
++	return data[0];
 +}
 +
 +/**
-+ * perf_event_config:
-+ * @device: Device string in driver:pci format
-+ * @event: The event name
-+ * @config: Pointer to the config
-+ * Returns: 0 for success, negative value on error
++ * SUBTEST: gt-c6
++ * Description: Basic residency test to validate idle residency
++ *		measured over a time interval is within the tolerance
 + */
-+int perf_event_config(const char *device, const char *event, uint64_t *config)
++static unsigned int measured_usleep(unsigned int usec)
 +{
-+	char buf[NAME_MAX];
-+	ssize_t bytes;
-+	int ret;
-+	int fd;
++	struct timespec ts = { };
++	unsigned int slept;
 +
-+	snprintf(buf, sizeof(buf),
-+		 "/sys/bus/event_source/devices/%s/events/%s",
-+		 device,
-+		 event);
++	slept = igt_nsec_elapsed(&ts);
++	igt_assert(slept == 0);
++	do {
++		usleep(usec - slept);
++		slept = igt_nsec_elapsed(&ts) / 1000;
++	} while (slept < usec);
 +
-+	fd = open(buf, O_RDONLY);
-+	if (fd < 0)
-+		return -EINVAL;
-+
-+	bytes = read(fd, buf, sizeof(buf) - 1);
-+	close(fd);
-+	if (bytes < 1)
-+		return ret;
-+
-+	buf[bytes] = '\0';
-+	ret = sscanf(buf, "event=0x%lx", config);
-+	if (ret != 1)
-+		return -EINVAL;
-+
-+	return 0;
++	return igt_nsec_elapsed(&ts) / 1000;
 +}
 +
- uint64_t xe_perf_type_id(int xe)
- {
- 	char buf[80];
-diff --git a/lib/igt_perf.h b/lib/igt_perf.h
-index 3d9ba2917..69f7a3d74 100644
---- a/lib/igt_perf.h
-+++ b/lib/igt_perf.h
-@@ -71,5 +71,7 @@ int perf_i915_open(int i915, uint64_t config);
- int perf_i915_open_group(int i915, uint64_t config, int group);
- 
- int perf_xe_open(int xe, uint64_t config);
-+int perf_event_config(const char *device, const char *event, uint64_t *config);
-+int perf_event_format(const char *device, const char *param, uint32_t *start, uint32_t *end);
- 
- #endif /* I915_PERF_H */
++static unsigned long read_idle_residency(int fd, int gt)
++{
++	unsigned long residency = 0;
++	int gt_fd;
++
++	gt_fd = xe_sysfs_gt_open(fd, gt);
++	igt_assert(gt_fd >= 0);
++	igt_assert(igt_sysfs_scanf(gt_fd, "gtidle/idle_residency_ms", "%lu", &residency) == 1);
++	close(gt_fd);
++
++	return residency;
++}
++
++static u64 get_event_config(int xe, unsigned int gt, char *event)
++{
++	int ret;
++	char xe_device[100];
++	u64 pmu_config;
++	u32 start, end;
++
++	xe_perf_device(xe, xe_device, sizeof(xe_device));
++	ret = perf_event_config(xe_device, event, &pmu_config);
++	igt_assert(ret >= 0);
++	ret = perf_event_format(xe_device, "gt", &start, &end);
++	igt_assert(ret >= 0);
++	pmu_config |= (u64) gt << start;
++
++	return pmu_config;
++}
++
++static void test_gt_c6(int xe, unsigned int gt)
++{
++	int pmu_fd;
++	u64 pmu_config;
++	char event[100];
++	uint64_t ts[2];
++	unsigned long slept, start, end;
++	uint64_t val;
++
++	/* Get the PMU config for the gt-c6 event */
++	sprintf(event, "gt-c6-residency");
++	pmu_config = get_event_config(xe, gt, event);
++
++	pmu_fd = open_pmu(xe, pmu_config);
++
++	igt_require_f(igt_wait(xe_gt_is_in_c6(xe, gt), 1000, 10), "GT %d should be in C6\n", gt);
++
++	/* While idle check full RC6. */
++	start = read_idle_residency(xe, gt);
++	val = __pmu_read_single(pmu_fd, &ts[0]);
++	slept = measured_usleep(SLEEP_DURATION * USEC_PER_SEC) / 1000;
++	end = read_idle_residency(xe, gt);
++	val = __pmu_read_single(pmu_fd, &ts[1]) - val;
++
++	igt_debug("gt%u: slept=%lu, perf=%"PRIu64"\n",
++		  gt, slept,  val);
++
++	igt_debug("Start res: %lu, end_res: %lu", start, end);
++
++	assert_within_epsilon(val,
++			      (ts[1] - ts[0])/USEC_PER_SEC,
++			      tolerance);
++	close(pmu_fd);
++}
++
++igt_main
++{
++	int fd, gt;
++
++	igt_fixture {
++		fd = drm_open_driver(DRIVER_XE);
++		igt_require(!IS_PONTEVECCHIO(xe_dev_id(fd)));
++	}
++
++	igt_describe("Validate PMU gt-c6 residency counters");
++	igt_subtest("gt-c6")
++		xe_for_each_gt(fd, gt)
++			test_gt_c6(fd, gt);
++
++	igt_fixture {
++		close(fd);
++	}
++}
+diff --git a/tests/meson.build b/tests/meson.build
+index 33dffad31..d20f50766 100644
+--- a/tests/meson.build
++++ b/tests/meson.build
+@@ -309,6 +309,7 @@ intel_xe_progs = [
+ 	'xe_pat',
+ 	'xe_peer2peer',
+ 	'xe_pm',
++	'xe_pmu',
+ 	'xe_pm_residency',
+ 	'xe_prime_self_import',
+ 	'xe_query',
 -- 
 2.38.1
 
