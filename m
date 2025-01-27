@@ -2,170 +2,191 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E02A4A201B8
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2025 00:31:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A9CF3A201BD
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2025 00:33:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6382F10E205;
-	Mon, 27 Jan 2025 23:31:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49B5610E0BF;
+	Mon, 27 Jan 2025 23:33:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JRuqErDT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fNuQqq3V";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C74F10E0BF;
- Mon, 27 Jan 2025 23:31:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AAD1F10E0BF
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Jan 2025 23:33:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738020697; x=1769556697;
+ t=1738020792; x=1769556792;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=zqOQoCGBIjp3jkDdTWBT/4Qk5fFXpeN+2/v0JnD131Q=;
- b=JRuqErDTrJ2FsqeQTiZ7ACIlzXHgqFcqSGKqv+y8ZSi9NUVMJFkAVqhc
- 1WKutk+xWyr5iXoZgP3KFtjqLNMUvJOc9ZjFIVym1gp0QMsQ6QcC57phM
- JQDO76C/uYRPQ2A1e83/xsWeFGNPNHWPpOqtqtKL9YyffPsqkoYVP/kge
- wI+rG3tnce+kAqLhpJDytvJFpK4YR1yojCGs3FJYVapmNfNtioz2k7N0q
- 2PQbCBTIcdQRKiAiOVbDlBj1Ej3/caFhv/uVVAgx2hDAXa24xmqkMKeyp
- 5uPPeX0FuqSvipVhiTy6sUrxr+xO6RTjxv3psTXiKSRdi8//fQqju+U/b Q==;
-X-CSE-ConnectionGUID: VXQqsSKsTs6DLbY4H6OM9g==
-X-CSE-MsgGUID: 3Dofn/AsRV2x2e2B1Dn32A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11328"; a="48993350"
-X-IronPort-AV: E=Sophos;i="6.13,239,1732608000"; d="scan'208";a="48993350"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2025 15:31:37 -0800
-X-CSE-ConnectionGUID: Evdbh4EBTPyhsimONR6UmA==
-X-CSE-MsgGUID: QshP1BiOTf6X4cOWpyIgRQ==
+ bh=vfmUv/9HgiarPVgL4fruOvsJrlbATxGp1qDYrq2Wibk=;
+ b=fNuQqq3VTv2y13Tv5gnRvrBLZ8mEaTv0Vpiwg7ERVCgQ2SQRPyzUh51A
+ beRRwz9lFXxdtxJw0oPQq4GzXr8xjfbsy7DsKVErZgfmo4NYF0zyvvARa
+ /WbKSAohFvCSVRxxsxkchVlhZyu6wdIBLDIHsoQ/ym6x3PtXqhUE/TQti
+ B+QFpXkYxmE/age95QrdDGmUDWgv9MeN440UZSOjAno9qFONRL0OJl8im
+ GtpFfQHYn3c7mLQO3j1y5AOatgMTsmQsoN72p4gMpY5WVhcDGNugMPUCG
+ UZDF2T8u3YY1kmCp9f/o5+i/jMTxvoQ21RPM9gz5amlIZCIW1tuT8Xizr A==;
+X-CSE-ConnectionGUID: 3t95OHEVTmq/7HIqKVq0Hw==
+X-CSE-MsgGUID: irKlXif6QQKZ6Zc3oMt0Fw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11328"; a="49889946"
+X-IronPort-AV: E=Sophos;i="6.13,239,1732608000"; d="scan'208";a="49889946"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2025 15:33:12 -0800
+X-CSE-ConnectionGUID: 6VBh3C6wSN21x1yiDkaJ0A==
+X-CSE-MsgGUID: 1WTu7BHMQGWbNWQSkf1R7g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="113205724"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmviesa005.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 27 Jan 2025 15:31:37 -0800
+X-IronPort-AV: E=Sophos;i="6.13,239,1732608000"; d="scan'208";a="108686823"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by fmviesa008.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 27 Jan 2025 15:33:11 -0800
 Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Mon, 27 Jan 2025 15:31:36 -0800
+ 15.1.2507.44; Mon, 27 Jan 2025 15:33:10 -0800
 Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
  orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Mon, 27 Jan 2025 15:31:36 -0800
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.41) by
+ 15.1.2507.44 via Frontend Transport; Mon, 27 Jan 2025 15:33:10 -0800
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.45) by
  edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Mon, 27 Jan 2025 15:31:35 -0800
+ 15.1.2507.44; Mon, 27 Jan 2025 15:33:10 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=XPKMjg4OYMhmimHgQ3grlcprK/qqVe7Se0DgT5gAyCFqOwsG9ODgEyUSjyPXKDeyuECsa9aXAKCYdQHBeAjidMTOfNbzFACUfY62BKRlM7qsvYjpKQ9/7KmfSGbvSJaamtFspPvktgcWhE/CU7QlVtyIOwhrNyqCqDPtu5z4cKPZLvF3T+XXmOVMGXBfudVgxw/fn+CRDNt2k4IfALoTFX6DxuWczWd1vwzsAWJ4gf/ZfJxRHKr8CBdH+qY8xBmdSurIv7g/S6LPOdcpcv/ALhGTvAzC+6yYyJXTQYbkbqplBRiSnU4iOrvfaNuskPbMnq0VrlDRFME6rFMnztHY0A==
+ b=xl2QlittGNL8tzJqU+gA1XF8TZ+Sp9JgtB8bfjIYnLGE1Rb+Q5MBy9uXGL5oZMNE9HqYgMdw8AyPbJ7qtB3HEbSAz+MsgCOPdm+6PbQizI6m2DmrHPISgzlKu/aGUIP8vYKA1DdrgCYhd+HInzDAmUPtpns9C3wBhAZogFGDGddssBRaTr4oMeraIt6x4bX/I7WUYTEQxb6uDZtib6+MlkwjegWiST8A77/pEQXNB/vi7F6KRvb77BOkGiPeQ+5hZOMYDUJ4i1kiKESeIaH2wHcbSgV4gKxJcDLWg2GVA/GPuEHx8dCSq2lAdaFszY6krpaUmivUim09avDGWOiDMw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uuu1MqesBfmaiNZhv14hn1dG6ABaBToyVfkNh//7/6Y=;
- b=F8xlhv73AL3jUlwK4QyCYv+OlBdV+subz57h72LoYwYgCUp8l6O8mtSFP1ZJxt414vCBfKlgMNRAHtZNFU2YsQUdZI9EDD7+GgPmouG8FKxURa+9xkBQez++EWOnB+L068ioWVD0PFC+C/zLedRbR8eun1Bg9OL0L3AvFfp2HTcYn4owdcuX/LTV2oimK6pgXF2nCHFnLOgl57T2gFLUU7tzlgLOLkuQikQbQBp/D588V6qozHbeTI5wmsXmqvnk7WkE/DCiP4WPcnFxSKVXzEWlxSud+Qqc8VlKMRpe8UNgV7CSD7a3vU0kjV20BdwY44eREcJKqnCnMlHAHmjofg==
+ bh=prQ6U0ENJWF/W9SCkanO3bE9lt3d31vMD53RbyrP0JA=;
+ b=vm4bwhPTXLCv7yT/gfOlJi99IT3qCfEraQDZ8sIpBbsMcNpfHf4kryNiCqQ9EQtBFQnlLRstRrZv6b59dt2gFJ1cS35ErVQLH4aRWNxMUw7lLURZgXBbKbtlyAd3GAbKOT08E0uPmX0gqgociP/2XJe1JXNshm6d2gZ/fLbD9QOskntIGRoxJOTm6sZpwqDjK3+QgvP3ZDQrQIsLU76QlNrkwM9J3/sLSSU6oW9UjtQnVYZRbs9Q5GRxGXKdswPz5ARA5OPXGKPBL16hE8yZpp6hRgEptnoxI2FRojlQrfJ4C64AiSCDeKz4tAbjMjjvbgPMxiAT/kwx4QO6WnKOfA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by DS0PR11MB7830.namprd11.prod.outlook.com (2603:10b6:8:f2::21) with
+Received: from DS0PR11MB7408.namprd11.prod.outlook.com (2603:10b6:8:136::15)
+ by SN7PR11MB7439.namprd11.prod.outlook.com (2603:10b6:806:343::9) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8377.22; Mon, 27 Jan
- 2025 23:30:50 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::7141:316f:77a0:9c44%6]) with mapi id 15.20.8377.021; Mon, 27 Jan 2025
- 23:30:50 +0000
-Date: Mon, 27 Jan 2025 17:30:42 -0600
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-CC: <intel-gfx@lists.freedesktop.org>, <igt-dev@lists.freedesktop.org>, "Riana
- Tauro" <riana.tauro@intel.com>, Kamil Konieczny
- <kamil.konieczny@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH i-g-t v6 1/2] lib/igt_perf: Add utils to extract PMU
- event info
-Message-ID: <ci2sl6gcfnwqd7o7pi4js5sduwx22szch4lx4sghugixipexhb@4ajmfxfbngr5>
-References: <20250127223301.2819108-1-vinay.belgaumkar@intel.com>
- <20250127223301.2819108-2-vinay.belgaumkar@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"; format=flowed
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8377.21; Mon, 27 Jan
+ 2025 23:33:07 +0000
+Received: from DS0PR11MB7408.namprd11.prod.outlook.com
+ ([fe80::6387:4b73:8906:7543]) by DS0PR11MB7408.namprd11.prod.outlook.com
+ ([fe80::6387:4b73:8906:7543%3]) with mapi id 15.20.8377.009; Mon, 27 Jan 2025
+ 23:33:05 +0000
+Date: Mon, 27 Jan 2025 15:32:59 -0800
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+CC: "Liang, Kan" <kan.liang@linux.intel.com>,
+ <intel-gfx@lists.freedesktop.org>, "Peter Zijlstra (Intel)"
+ <peterz@infradead.org>, Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+Subject: Re: [PATCH] drm/i915/pmu: Drop custom hotplug code
+Message-ID: <Z5gXq9XVHa8D1LjQ@orsosgc001>
+References: <20250116222426.77757-1-lucas.demarchi@intel.com>
+ <aded1225-0022-4e86-845c-283641cf32a0@linux.intel.com>
+ <pz7y2i25y5o2ox46s3ua3prsa5ap2mkqqb5chtebw3f2egwk6n@5m4xibw2h5yd>
+ <6d4d7f82-7619-40bd-bbc8-58681de54a6a@linux.intel.com>
+ <rtmoiu2z4vg42efvz6mwo45eaileyghqowibdzikob7mlnklbm@bz5cc5zkalcd>
+ <e15c89bb-88d6-4caf-a199-2febd067634d@linux.intel.com>
+ <szokgaqqg22wu7ufam4ab5fnnf47ei62urn6gpgv2rise4h4qt@a7zb3uqvyc3r>
+ <Z5Q0XSmvs4PkXg7x@orsosgc001>
+ <qmjmd4dilx2cd5afmptg7yadcge7enno3tmnd5jd6d7o7ogafx@ditz4vnjhrj5>
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250127223301.2819108-2-vinay.belgaumkar@intel.com>
-X-ClientProxiedBy: MW3PR05CA0025.namprd05.prod.outlook.com
- (2603:10b6:303:2b::30) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+In-Reply-To: <qmjmd4dilx2cd5afmptg7yadcge7enno3tmnd5jd6d7o7ogafx@ditz4vnjhrj5>
+X-ClientProxiedBy: MW4PR02CA0030.namprd02.prod.outlook.com
+ (2603:10b6:303:16d::18) To DS0PR11MB7408.namprd11.prod.outlook.com
+ (2603:10b6:8:136::15)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|DS0PR11MB7830:EE_
-X-MS-Office365-Filtering-Correlation-Id: 337e0afa-4322-43fd-91b1-08dd3f2aa252
+X-MS-TrafficTypeDiagnostic: DS0PR11MB7408:EE_|SN7PR11MB7439:EE_
+X-MS-Office365-Filtering-Correlation-Id: 74565454-d7a6-4867-beb8-08dd3f2af31b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?lf4/Yvwk1sFyxPp8Ms5y7CoN8k0HEs5cyLpDCNmg3n8t7u1nOqTaSdD1Jb?=
- =?iso-8859-1?Q?vIlkofjoWAqH2fE6Y6es7pwI1/hPMVNi0U1yJElcXxatLQL4A9BL9LlQqu?=
- =?iso-8859-1?Q?3NApQOqXhrb25utGye0R9Y8TON0FqHqpHgx0EY3oHbb7azgjmZoOeZfa8B?=
- =?iso-8859-1?Q?k1pU4HJ23a8z9cWHCoGtaxmnjf8g0SgbPxDTcvZ3AdQXzJW5zpMu2pko/t?=
- =?iso-8859-1?Q?zmpdnnuZR3GqIhWtpL6eoMrpVhBztfphmTsXwGPpEQvppWgqsSuuuwbmA7?=
- =?iso-8859-1?Q?6OhunM0UxdH91+p5aeO1ns3GGmIOl17FWrMbNwUGXGxxMfl55GTmHvDh0K?=
- =?iso-8859-1?Q?mtrg5gZpZE9EeEVaAGvRPoAenphF5V7VXHrqRtl6xr6Cov3gZ4s8B9W9DK?=
- =?iso-8859-1?Q?AyEWb8geQRdWmeds/K0dRS80zIMG6EtSPR6f2nxNR/qpHudV45P1E3dvc7?=
- =?iso-8859-1?Q?EEoPmU84ZpEavKIpYtzKjUujkew/4uTKNdaad3DZBa0u+ynG324TNfo3ns?=
- =?iso-8859-1?Q?woUywulmyS50yaPmHHCizbXkIL8W12gm9/TrcwdszyZ/YVGOOJG7eU4a21?=
- =?iso-8859-1?Q?OgfZ/7GZSQNKt8J+37pokz23RqYG2Ziht8FwBvpyh5tkx9PbHg/h1yLfvc?=
- =?iso-8859-1?Q?u2URPLmhtcRTzhzSm3E1BsJI+lFDs5C4aR8GAduEf2VGt1xuVXCh2M81h3?=
- =?iso-8859-1?Q?Ff/Vi+KJp/J7NX3r/6ajOzKJpDAxbZy/ClT25CZwOZzuyvZiU4G4wRW1Du?=
- =?iso-8859-1?Q?+p9XF8fujVwVCgDp2azzZzsTKlJPHtiKk4+xSvRPZBopP3Ky91UUEU3ae3?=
- =?iso-8859-1?Q?GvwK6A9TpfvNtH6QeTgU6n5+OAUU0Ny7Pi3ZLHMK2hc9PcYmnqt7OSbyba?=
- =?iso-8859-1?Q?/8eGJQtrr0Y5EesXXw9AomyOWrxKy6IFv1hJroNw21RYPwCGImV425TADk?=
- =?iso-8859-1?Q?CeV07mv96PPy5z/0PLJAM96oDI4EneaKeD899KETHvUlVTHho2ahJ8ZBHj?=
- =?iso-8859-1?Q?kSkW2+fPSZST5kZzJYy1P8bDtfvRtxOhEhJQKDHRkT50lWPxRPTCNuiEiC?=
- =?iso-8859-1?Q?ucBIkZg/iRoLh6ap2dCmAAN72XzTE3xCMH/lpvixyqhlAYPIq6tc5awuSs?=
- =?iso-8859-1?Q?6wBOR2vInXMVHT8ZPJUZOwooDaLUK0iixc6GNwRiGfjDbAXmteAJEIRgWt?=
- =?iso-8859-1?Q?Q2CXd9SAL9lxXinuSWXDkKImAZ41hOfxEzV3exUo+OMIg6lTQKECD+JzyZ?=
- =?iso-8859-1?Q?nzmFC/G+Jh0/dVjx+DRRMPYo0r9A87UgaBOx3nwcKovo5LOmMxK7R009Zl?=
- =?iso-8859-1?Q?pNlK9FInhpgKpDi3u/rC8flofrZPcGEAg5U0ctw7c80Sk/c6E0+Kndiff5?=
- =?iso-8859-1?Q?IbRYpWKI/uIl2XOtqO1+hfm6VKpPwK/kSVJxEM3LpR0E12510/Mv6xY1gE?=
- =?iso-8859-1?Q?EYkP38athGGiLSu5?=
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?OTBEWHNaeGlVdnFhUkpQTmNIZUM4Wm1NYWN0VHRSUncrSmNDVlBnVjRXcDdn?=
+ =?utf-8?B?UnNmbi9RZkNrUTRFR2xYNXhyVlhWdExQZU43M2p6bEZyTWZzaWxySTc0SmVD?=
+ =?utf-8?B?eGp3cHdBMm1CQmNLeW5WSjFmRGE3U083OG9oZXJIUnZtUFQ3MFN2UEVnYUp1?=
+ =?utf-8?B?UkNxMTRjMlJEb0tXL04zUzc1V2t6NUI0clZ2OWZoRmM1a2JVVldneU1qalBn?=
+ =?utf-8?B?VURhTW1yVVUzNnpta2pCRGpoN2lBTDVGeVNXcG9tT1BHZXhiMUl2bnBuam1h?=
+ =?utf-8?B?VHAvYVVQZFVQZ2xvYURuQXN0OFY3bUswUzRQZ1VnNHNZQXZqKzlkbVhzenU5?=
+ =?utf-8?B?TjlEVzc5YXdrajA3eDZ4QU9iUlBGNUQ1alNBZHpHRUJaWXYwRmVwakR3UWtQ?=
+ =?utf-8?B?ZEkrUTVLWFZZeGo0amtBQkpacVRZMGg0dmxnQzlWNGhPWkx5ZlBFcFB0UU90?=
+ =?utf-8?B?VUl3cGJnTGxIc1cxMmtGRXRDYmpudDltY3J1WVRsdW9HL2RNdWhWWTIvaWo5?=
+ =?utf-8?B?cXZDaWw0NExsUGpkekN3dHh5bVZQdERLc21meTgxaU1tWDBRWlFqZG04Rjcw?=
+ =?utf-8?B?OStQeURoRnlEOHBkdlRxbkt1dmlvWHFqRmhXbmFZblZXZmFzNVdYUk1zdnZT?=
+ =?utf-8?B?L2s4WnRDL2VwRFBnMzFsSGFUc25IajJLVkV6Wk1Eak5ycFNnT0FieFB3aTJn?=
+ =?utf-8?B?Y3hXUy9EY3BKV0JGWmJQZmp3V3FWMHg3MnJHdEkycGhoa1B3UGpJZ3UxdHg1?=
+ =?utf-8?B?dll5YWNJMTRUdTdIcVAyWEV6S1F2Q0Y0ZzNqNGM3cHJCTjI2Z0FiQzF2dWZp?=
+ =?utf-8?B?R2hORXpKZEVTV0NRL0R5N0UwS0RSanBCVUlkUzRlTWUvT0FjOUFJa1FTY0VS?=
+ =?utf-8?B?blJ1QTZRUnlGZ05FTmNMSVpYY3N0VEVmaFFxbnRpdWdlV3J2YVZBbnAycjYz?=
+ =?utf-8?B?bCtPSTl6cGRuUnNXQ2RCenhkNEF3VFpEaGo3SWdlSHQ4L1hNUG9pMWg3aHM3?=
+ =?utf-8?B?Mjh1U2xPOVdEaVQ4NjZScURoK282bGhPamh0RHpLUWhLeStBUDJJU2xtcHZH?=
+ =?utf-8?B?L203RzNDRVRXL1JUNi9NOXgxaEtHQk9xMWxiUnJhTHZKanRTSXFxVkV4TUUr?=
+ =?utf-8?B?SytNYXBxTmFFM2JGWFB3aXJzalBOQVAyNVhCSjcxVXVOczlyYkpiSWQwM2hp?=
+ =?utf-8?B?MVVSK0dZYlNSZTVac3ZxY09xUDcvcVRDUlk1bGlET0FGTmx3RWw4YnFhYk5C?=
+ =?utf-8?B?VDVGWFJLUDBpT1kzR29ycDZ0YnRBeEgzczdTaGpTdzNUVXcvZDhFY2lvQmgx?=
+ =?utf-8?B?NW52RFArZnZDTi9UWHRqS1BjZ1ZUMDlsTzNTSGNERWovQk1hL3QxL3lnQWJu?=
+ =?utf-8?B?VmJjVUtkVC9vRVB4L002Nlk4eUIydUxoZHVYVVk4UWJ2ZWRURkticUQyRkdO?=
+ =?utf-8?B?MnZadFJGb2NmMDhoMTRlNHFhWUdIK2tTMkltR3ptN2ozcXJENjlMYUtuUWM4?=
+ =?utf-8?B?Yy83VUpoTENQWVVUM0s2VUNTMkxObTdkOWZ5YmRWOHFSblQ4NlR2SWVJWURk?=
+ =?utf-8?B?VFRsRDVoUG0yRHkyblNZZEtUTDRWTjN1NURib293OXZ0Q3o1b0pBSGlPQ09H?=
+ =?utf-8?B?WU1wazNZOGE1Y3lmSFdPeUVhRWM1Rncwc0ZudFNyM1dtQUEyN1RYc1ZKSnFa?=
+ =?utf-8?B?UFVkNy9PUmpwNElia1pVTjVLbDNjcnpHNEdmeS8yNUxrZkxjWlJHVlcwMGM4?=
+ =?utf-8?B?OWQrZnprNlQraHc0SnJDTkJyVVN1c3ZYWHd3UDFiSW15alBOaURBRjUwb3du?=
+ =?utf-8?B?My9aQTY2Ty9VdG5hbVFlMWdiVTJ6c1ZJbUFnUSsyMXlETEZqVDNrY0h3elRz?=
+ =?utf-8?Q?iD2amGXMrBYwv?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB7408.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?WX7Thm5CJZU7ItVkVzfWS+owf3KqU38a8CiokCTWtDlomuHeCtZuhKj/hQ?=
- =?iso-8859-1?Q?eo/RZbych3TgZRe31LtsdMvC+kAfVdzDpeeGssx7F0P2O7zm1QE5iDr3/E?=
- =?iso-8859-1?Q?4HrB5Ki4C7WaRWX52hclYE1ozHFhUPkhk6Y4Tp02kFziMHZeSoLrngdy2j?=
- =?iso-8859-1?Q?lDM0kgHmFYV2SlDTIM8Ud6/S65mIwuTA4LNFtRsgWAqZ5BaHZX0d4gaX5I?=
- =?iso-8859-1?Q?6z183q0ZQyiqFBDPTGuUA/St3JuPG8iBTmx1q5IH1HtuYeriN5Jl0q5kii?=
- =?iso-8859-1?Q?LZFNdQay5a4S0wL6/l658PBQuRs6Haa27meYlqKHs/lBwL7ScjdGbz5kv8?=
- =?iso-8859-1?Q?CjxRFF6Jwj4ARhDLTHFqSu+JReuv3E8IkBLIu2dyuNB1H2nDmiEyYa0CTc?=
- =?iso-8859-1?Q?cXYGqmp9jzuaW3ix/O8G6gZF4xPCTKS+HcB40TfJKlJrGhVRv1ZNCaWEqD?=
- =?iso-8859-1?Q?pIQ2bFN79SbRBxUiJD+7iuH9g6tkww2/UXbS1LAuEvYaEz/TB0ZhK2Ut1j?=
- =?iso-8859-1?Q?O2w8sO+XeYABnuPpnacaIUhoTyq5srhVZCTtBhn2kje3keRkh/uDq/c2Pc?=
- =?iso-8859-1?Q?P/LOQHHpZqaoHnFVgeHkybFwILTKeLraV6rafojKZyLMf2Bjqf0aS38baR?=
- =?iso-8859-1?Q?hb9qF3EzvLGVOvQ3JO/LWyjLtx8ygiW6aHFBuQwPNpQtb4aCwFnL+WIw7l?=
- =?iso-8859-1?Q?gid94UHhzUFBabJaV8zPTalHlnVhSLXnk8rSxg0+M07lq/jiLlbC9cF8am?=
- =?iso-8859-1?Q?AVngLcrCDXtIK1BVrqKwmvabwyKcSra8njChQN21/DnU3ALa0MtpO3Pthx?=
- =?iso-8859-1?Q?lMnwmk/MRIokbHtT+4JW6fUG/GsDw2ZeKC6rjJW5Tv/QEAUMmjsGc5rGLi?=
- =?iso-8859-1?Q?xKxokhP7VJ2dlYf1XcxVjjCpzx34jiC5kH5V+5FPlEwqADnvPJGAhYX2RN?=
- =?iso-8859-1?Q?HypGPCMbeVKpS42kuUMhCLHhYnUb6RdNmF5NgmJsVwCIjvzXKh9iidKN2n?=
- =?iso-8859-1?Q?qasdC/d1lvLweUa0E7dgwse7EPJKbBHjaDXzoBeqKBjM6SvoQXIYjbcFct?=
- =?iso-8859-1?Q?zknKDsDB1POoJnGi0KNRKOd+8OAM2Gmc4eGjqkgKP4Qr2Yft5p8COxyZVk?=
- =?iso-8859-1?Q?VL/hTfd4DI0y1NIV5HJp+qxXqDp5dzH0s9mgtT8Pyx4Q5GcEXj/9KDuwIM?=
- =?iso-8859-1?Q?oW8H/Wnftd68X0O8FXfJoHBGFE3iiFMZYSgkJmQHwsWYE9X89S1hCZLFPw?=
- =?iso-8859-1?Q?2euVWhMe0XNq5CiCz31hbAaF3yC+r+Zy3Q+poYiXNPMAS2wWnZEggNZs0Z?=
- =?iso-8859-1?Q?QgLmOcAcPQe2kjBnfwZuexdtjECI1C+QssM+p7b4NLKzyR5nAAxGaSzrkS?=
- =?iso-8859-1?Q?8HVn4/beLC835et9kEJjdi++o0fX3wbVFSe9a0is6LTn1O6tTOQjAsvJrp?=
- =?iso-8859-1?Q?hcGikIn5i/k7AgRrCg0NdXz38dm2P3Ug+TNi0yyUF10pO+hDTANHvGnaDd?=
- =?iso-8859-1?Q?I4g9knkR3Ejoj7mPIHOUYoM1a4jb8otI7iKNc4laZy7SjNfyoM3BoUHxMd?=
- =?iso-8859-1?Q?7NqZzRiYG2lJJjNgWR2rxBFbQSYLCwopFqZnNzPOXt5AZVFOlwdinRlleX?=
- =?iso-8859-1?Q?hy/tpgq0/so/J7/x+7P0Rqth6XcOK/m4rzxLW/BKfzdeCw37M0D/7l8g?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 337e0afa-4322-43fd-91b1-08dd3f2aa252
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WGkzR0ppc2xjbmZTWWg1RjJzV3lkZmtNMTR4WTdSbTh2bVVDQXRDWG9RVm9V?=
+ =?utf-8?B?QTI5N0xRVVh5YUd2ekdudDU1a21KQlJOc284cnB3SlU4eSt5RXgxUUxUM1BK?=
+ =?utf-8?B?dmFqc3N2d3R4ck5CNmRJNFJGU1NRSzhXbFg2VUx0YXpuTzY2Z3N5QnVWNHNB?=
+ =?utf-8?B?RFNjandyVnp0M3JsRWdBRTBBK3Vrakg1cmVyUWhVRFdBbzhQU0dDcThTb2cv?=
+ =?utf-8?B?M2ZSc3M3cXpObldza2xCVEZHY1lEcVNmL0U2M05WeFcwVkNBTElGNHFPNEVx?=
+ =?utf-8?B?bml3bW4zWUNNdEd0QnB1QS9YMVBqcHN0bXQyVU5jZm9RUXBEM1lJbFNsU0FW?=
+ =?utf-8?B?UXRaQ3hMSjBkaFFsc25PNGhlNW4xNU9UcDd0MTRDeGpKNTl0UFQySnZTb1hM?=
+ =?utf-8?B?cEZ2Q092Y2RXL3hoWnVJRkhYbWVhSWlCckpyL2VVOHVOc3o1VWVmb0R0TGcv?=
+ =?utf-8?B?aGRUeENoRkZhOTNrV3JzUVFFcEdLS0laZkw2M3lGNWh4Z0E1VmFrL0s0Z0Zs?=
+ =?utf-8?B?NzMycWNVb21RSENOR2g0blZVYXd6ekhESmxtQWdtKzIyaWFCZ21xaFBxOXFa?=
+ =?utf-8?B?RHIvYXNTNFM5ZTg0T0FtS01ZbmF1QmJPeVpHeHVCRG9uUzRSY1VUOWhmNE5p?=
+ =?utf-8?B?ZkNRS1Q5aVpGZ0RsWHZxMWVmTDFmdVdaK0hPckEwVGtIYWlqek9ybFpkbFpV?=
+ =?utf-8?B?djVGVS9Fa2Yxc1FEbDJmL2VidmdGMld4SEw2bTNUaHNHbjduTzE0bGxLc1RG?=
+ =?utf-8?B?QlNEV3NCK3lIaE5MUDllTnlyK1QyRi8wNWpLRjh1WVZKcTBQUDZpS1ljNXRh?=
+ =?utf-8?B?ZXRmV2hyblNUU0piazdNWTcyOEhpS2I2bHpnTVdIMGw4UGlTeW1lUndydmdJ?=
+ =?utf-8?B?QXFYVWtFKytZVStwS2V3eVVYQmZwWktLVUppLzl4eWxxeDFnMk5zN0tHNnBE?=
+ =?utf-8?B?ejB1MENSN0s5VllZaS9pd0VtZ0pMN1VOWkFKdkZXVFJ1K1pNOWNtVnY5aXRK?=
+ =?utf-8?B?emtGTWI1YlR5YUJDOGpCOERJZVk5dzVvYmFhZjEyYjdSRjlkNzdiMXoweEU0?=
+ =?utf-8?B?aEJFRk9qQ2tJQURmTncyMUFmTy82VlN3TU9uWGI5WEYvQlFZOWM5N0l6VGxU?=
+ =?utf-8?B?UHZOWWxZRkl6azMzQ09jdmp0OE90N1AwYmF0QkxrSURWODRMdTN5T21oV1dk?=
+ =?utf-8?B?V2ZLSnRHK2JxUUVPb0ltS2tIQ3NkTEtvTCs1bm9QRU04bnI0QnRPUUpDeHZI?=
+ =?utf-8?B?T0dINkNrV0JPV2QrK0gwWSt5Q2JCMHlUMElCcmZYN1BINkZZVlpseE44NkFm?=
+ =?utf-8?B?enNsVzZVeGkyRldvUVhhamMyQnk2OWlldGxwQ1ZHRGdnWmkwNGR5bitvN0dy?=
+ =?utf-8?B?MzF4VTJ0bWQyVmZ5MFdjNitVd1Y3U2RDSTc1cHVZS2VXZU9tcEtTRjRqS1A1?=
+ =?utf-8?B?WTVLZWpKWmFiSWpqYjVhbXpRTU5zWWU2alU0Ry9YSnZUTENsRkVDK2pId2ll?=
+ =?utf-8?B?RE9WMFI1bjcveE9idjJERmhCbzErRXV2Y3pjUGdZaG9tenppR2M4M0MwaEhU?=
+ =?utf-8?B?NDVnQmZTZHFrTWxsZ0VHUGJlcDZ5VHJzNTdnNENGQjUrTWNjZ2VlYzRZWG9q?=
+ =?utf-8?B?aVBlMFU2MGdrKzV5NCtkb2lEa1g3NHlIU3g3RGFiK3lUc0EremVZd0kzQ0pL?=
+ =?utf-8?B?M1kxMzFjUm9PNlJYQ2VJTXQ4czMyNUhkVmY0OUVBOW4ydFZ2SzlicWhkVjdH?=
+ =?utf-8?B?MXh1ek15U3Z3NDJLV3UxZFovT2RneDlxS3h3NmlNLzl6V1hPVlk3aUxrM2ti?=
+ =?utf-8?B?OWNISWlzbUFHWmhSc1g3eitSa3d5eDcxL1cvakU2RzhPd3QyKzE3ZnhLVGJ5?=
+ =?utf-8?B?VXVSZFZabldUQkEzV2hZUVlYSUtzMi8xcWtSVmJBKzUxWUlBNU1YTWJGUmxz?=
+ =?utf-8?B?U21pRzVRbElZVVhtQVovOUFScGpNaldTV1QrUS81ZXFLK1BZK0pTajc5dVN6?=
+ =?utf-8?B?M0U3NFBicHFab3lWelhkVFB6OVJWVWJ2dm1wTWtNVWNBU3BNY0E1TDkyeFRV?=
+ =?utf-8?B?U01CM0ZaMkYxWWJMYUNmRk13WWFuWm9TNEZIR0dKYncxTlNLYk5LQUl5N1hv?=
+ =?utf-8?B?UVRDa3lVMnhveVhxbTRFVm55cTR1MHE0TjJxMzkvdW9vNk5aY2U3YmpTU1Va?=
+ =?utf-8?Q?zQd/Prdy4a8/XDsK1iGpAfI=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 74565454-d7a6-4867-beb8-08dd3f2af31b
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7408.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jan 2025 23:30:50.3955 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jan 2025 23:33:05.8061 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: fbuh4S20sigzJ3Dqp/FjJCn/m1z10J/NhAjShtwi6D0wQps9QWjlhvcb/luMbb1ExoIcLWsg3jSm5YN5nOyKyt8B0LAneaehMr7oAoUCE+w=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7830
+X-MS-Exchange-CrossTenant-UserPrincipalName: vNAjwTafrEJRHzeaZtmV9QVcwMAgE9YT2ujQNMcgmyFPN6hQKcG9wwwFZ+JYSoojhWaaNjUC1PkNbUDMq+025quiFBr4CX06u/bMl7BSFOg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7439
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -182,150 +203,193 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jan 27, 2025 at 02:33:00PM -0800, Vinay Belgaumkar wrote:
->Functions to parse event ID and GT bit shift for PMU events.
+On Sat, Jan 25, 2025 at 10:32:11AM -0600, Lucas De Marchi wrote:
+>On Fri, Jan 24, 2025 at 04:46:21PM -0800, Umesh Nerlige Ramappa wrote:
+>>Hi Lucas,
+>>
+>>Mostly a bunch of questions since I think I am missing something.
+>>
+>>On Tue, Jan 21, 2025 at 10:59:08AM -0600, Lucas De Marchi wrote:
+>>>On Tue, Jan 21, 2025 at 10:53:31AM -0500, Liang, Kan wrote:
+>>>>
+>>>>
+>>>>On 2025-01-21 9:29 a.m., Lucas De Marchi wrote:
+>>>>>On Mon, Jan 20, 2025 at 08:42:41PM -0500, Liang, Kan wrote:
+>>>>>>>>>-static int i915_pmu_cpu_offline(unsigned int cpu, struct hlist_node
+>>>>>>>>>*node)
+>>>>>>>>>-{
+>>>>>>>>>-    struct i915_pmu *pmu = hlist_entry_safe(node, typeof(*pmu),
+>>>>>>>>>cpuhp.node);
+>>>>>>>>>-    unsigned int target = i915_pmu_target_cpu;
+>>>>>>>>>-
+>>>>>>>>>-    /*
+>>>>>>>>>-     * Unregistering an instance generates a CPU offline event which
+>>>>>>>>>we must
+>>>>>>>>>-     * ignore to avoid incorrectly modifying the shared
+>>>>>>>>>i915_pmu_cpumask.
+>>>>>>>>>-     */
+>>>>>>>>>-    if (!pmu->registered)
+>>>>>>>>>-        return 0;
+>>>>>>>>>-
+>>>>>>>>>-    if (cpumask_test_and_clear_cpu(cpu, &i915_pmu_cpumask)) {
+>>>>>>>>>-        target = cpumask_any_but(topology_sibling_cpumask(cpu), cpu);
+>>>>>>>>>-
+>>>>>>>>
+>>>>>>>>I'm not familar with the i915 PMU, but it seems suggest a core scope
+>>>>>>>>PMU, not a system-wide scope.
+>>>>>>>
+>>>>>>>counter is in a complete separate device - it doesn't depend on core or
+>>>>>>>die or pkg - not sure why it cared about topology_sibling_cpumask here.
+>>>>>>
+>>>>>>OK. But it's still a behavior change. Please make it clear in the
+>>>>>>description that the patch also changes/fixes the scope from core scope
+>>>>>>to system-wide.
+>>>>>
+>>>>>sure... do you have a suggestion how to test the hotplug? For testing
+>>>>>purposes, can I force the perf cpu assigned to be something other than
+>>>>>the cpu0?
+>>>>
+>>>>Yes, it's a bit tricky to verify the hotplug if the assigned CPU is
+>>>>CPU0. I don't know a way to force another CPU without changing the code.
+>>>>You may have to instrument the code for the test.
+>>>>
+>>>>Another test you may want to do is the perf system-wide test, e.g., perf
+>>>>stat -a -e i915/actual-frequency/ sleep 1.
+>>>>
+>>>>The existing code assumes the counter is core scope. So the result
+>>>>should be huge, since perf will read the counter on each core and add
+>>>>them up.
+>>>
+>>>that is not allowed and it simply fails to init the counter:
+>>>
+>>>static int i915_pmu_event_init(struct perf_event *event)
+>>>	...
+>>>	if (event->cpu < 0)
+>>>		return -EINVAL;
+>>>	if (!cpumask_test_cpu(event->cpu, &i915_pmu_cpumask))
+>>>		return -EINVAL;
+>>>	...
+>>>}
+>>>
+>>>event only succeeds the initialization in the assigned cpu. I see no
+>>
+>>Confused here - The above code check (cpumask_test_cpu) is removed 
+>>in this patch. Are you explaining how it was behaving before this 
+>>patch?
 >
->v2: Review comments (Riana)
+>yes. This is to explain that the scope is system-wide and not core-wide.
+>The confusion came because our hotplug handling  in i915 is using the
+>wrong mask to migrate the event, which led to the question "is this
+>counter really system-wide if it's doing that on migration?"
 >
->Cc: Riana Tauro <riana.tauro@intel.com>
->Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->Cc: Kamil Konieczny <kamil.konieczny@linux.intel.com>
->Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
->---
-> lib/igt_perf.c | 70 ++++++++++++++++++++++++++++++++++++++++++++++++++
-> lib/igt_perf.h |  2 ++
-> 2 files changed, 72 insertions(+)
+>>
+>>>differences in results (using i915/interrupts/ since freq is harder to
+>>>compare):
+>>>
+>>>$ sudo perf stat -e i915/interrupts/  sleep 1
+>>>
+>>>Performance counter stats for 'system wide':
+>>>
+>>>             253      i915/interrupts/
+>>>
+>>>     1.002215175 seconds time elapsed
+>>>
+>>>$ sudo perf stat -a  -e i915/interrupts/  sleep 1
+>>>
+>>>Performance counter stats for 'system wide':
+>>>
+>>>             251      i915/interrupts/
+>>>
+>>>     1.000900818 seconds time elapsed
+>>>
+>>>Note that our cpumask attr already returns just the assigned cpu and
+>>
+>>I don't see the cpumask attr anymore since this patch remove that, 
+>>so still confused on this part.
 >
->diff --git a/lib/igt_perf.c b/lib/igt_perf.c
->index 3866c6d77..7e81d5516 100644
->--- a/lib/igt_perf.c
->+++ b/lib/igt_perf.c
->@@ -92,6 +92,76 @@ const char *xe_perf_device(int xe, char *buf, int buflen)
-> 	return buf;
-> }
+>cpumask attr is now added by core perf infra. See how pmu_dev_attrs
+>is handled in kernel/events/core.c. If you load the driver with this
+>patch you will still have a cpumask attr in sysfs and the value depends
+>on what scope you give it.
 >
->+/**
->+ * perf_event_format: Returns the start/end positions of an event format param
->+ * @device: Device string in driver:pci format
-
-driver:pci seems wrong and is not true neither for i915 or xe.
-This is actually the pmu_device:
-
-/sys/bus/event_source/devices/{pmu_device}/events/{event_name}
-
-and
-
-/sys/bus/event_source/devices/{pmu_device}/format/{field}
-
-
-
->+ * @param: Parameter for which you need the format start/end bits
->+ * Returns: Start/end bit positions for a event parameter format
-
-	Returns 0 on success, or a negative error code on failure. 
-
-would be more accurate to the int return of this function
-
-
->+ */
->+int perf_event_format(const char *device, const char *param, uint32_t *start, uint32_t *end)
->+{
->+	char buf[NAME_MAX];
-
-it seems this was part of a previous review, but I don't understand how
-NAME_MAX is related to the buffer size here. You use it for the entire
-**path** size and then re-use it for the buffer content.
-
-Well... don�t really care much: as long as we don't overflow and when we
-do we fail accordingly, should be good enough **for IGT**
-
->+	ssize_t bytes;
->+	int ret;
->+	int fd;
->+
->+	snprintf(buf, sizeof(buf),
->+		 "/sys/bus/event_source/devices/%s/format/%s",
->+		 device, param);
->+
->+	fd = open(buf, O_RDONLY);
-
-O_CLOEXEC
-
-we have igt_sysfs_read() that could be used here (note dirfd is ignored
-when path is absolute).
-
-not really blocking this as is though.
-
-Lucas De Marchi
-
->+	if (fd < 0)
->+		return -EINVAL;
->+
->+	bytes = read(fd, buf, sizeof(buf) - 1);
->+	close(fd);
->+	if (bytes < 1)
->+		return -EINVAL;
->+
->+	buf[bytes] = '\0';
->+	ret = sscanf(buf, "config:%u-%u", start, end);
->+	if (ret != 2)
->+		return -EINVAL;
->+
->+	return ret;
->+}
->+
->+/**
->+ * perf_event_config:
->+ * @device: Device string in driver:pci format
->+ * @event: The event name
->+ * @config: Pointer to the config
->+ * Returns: 0 for success, negative value on error
->+ */
->+int perf_event_config(const char *device, const char *event, uint64_t *config)
->+{
->+	char buf[NAME_MAX];
->+	ssize_t bytes;
->+	int ret;
->+	int fd;
->+
->+	snprintf(buf, sizeof(buf),
->+		 "/sys/bus/event_source/devices/%s/events/%s",
->+		 device,
->+		 event);
->+
->+	fd = open(buf, O_RDONLY);
->+	if (fd < 0)
->+		return -EINVAL;
->+
->+	bytes = read(fd, buf, sizeof(buf) - 1);
->+	close(fd);
->+	if (bytes < 1)
->+		return ret;
->+
->+	buf[bytes] = '\0';
->+	ret = sscanf(buf, "event=0x%lx", config);
->+	if (ret != 1)
->+		return -EINVAL;
->+
->+	return 0;
->+}
->+
-> uint64_t xe_perf_type_id(int xe)
-> {
-> 	char buf[80];
->diff --git a/lib/igt_perf.h b/lib/igt_perf.h
->index 3d9ba2917..69f7a3d74 100644
->--- a/lib/igt_perf.h
->+++ b/lib/igt_perf.h
->@@ -71,5 +71,7 @@ int perf_i915_open(int i915, uint64_t config);
-> int perf_i915_open_group(int i915, uint64_t config, int group);
+>The validation when creating and event (with perf_event_open) also moves
+>to core: it calls pmu->event_init() and then validates the cpu:
 >
-> int perf_xe_open(int xe, uint64_t config);
->+int perf_event_config(const char *device, const char *event, uint64_t *config);
->+int perf_event_format(const char *device, const char *param, uint32_t *start, uint32_t *end);
+>kernel/events/core.c:
+>	perf_try_init_event() {
+>		ret = pmu->event_init(event);
+>		...
 >
-> #endif /* I915_PERF_H */
->-- 
->2.38.1
+>		if (pmu->scope != PERF_PMU_SCOPE_NONE && event->cpu >= 0) {
+>			// check if the cpu matches to mask for that
+>			// scope
+>		}
+>	}
 >
+>>
+>>>perf-stat only tries to open on that cpu:
+>>>
+>>>$ strace --follow -s 1024 -e perf_event_open --  perf stat -a  -e i915/interrupts/  sleep 1
+>>>
+>>>[pid 55777] perf_event_open({type=0x24 /* PERF_TYPE_??? */, size=0x88 /* PERF_ATTR_SIZE_??? */, config=0x100002, sample_period=0, sample_type=PERF_SAMPLE_IDENTIFIER, read_format=PERF_FORMAT_TOTAL_TIME_ENABLED|PERF_FORMAT_TOTAL_TIME_RUNNING, disabled=1, inherit=1, precise_ip=0 /* arbitrary skid */, exclude_guest=1, ...}, -1, 0, -1, PERF_FLAG_FD_CLOEXEC) = 3
+>>>
+>>>Lucas De Marchi
+>>>
+>>>>But this patch claims that the counter is system-wide. With the patch,
+>>>>the same perf command should only read the counter on the assigned CPU.
+>>>>
+>>>>Please also post the test results in the changelog. That's the reason
+>>>>why the scope has to be changed.
+>>>
+>>>it seems that migration code is simply wrong, not that we are changing
+>>>the scope here - it was already considered system-wide. I can add a
+>>>paragraph in the commit message explaining it.
+>>
+>>The prior code was enforcing one CPU assignment to all the i915 
+>>events.  If the event was read from some other CPU it would fail 
+>>(based on this check in event initialization).
+>>
+>>	if (!cpumask_test_cpu(event->cpu, &i915_pmu_cpumask))
+>>		return -EINVAL;
+>>
+>>That's not the case anymore. Right? If yes, how do counters read 
+>>from
+>
+>see above, the validation moved to perf core, after the event_init. If
+>it doesn't match, we cget a call to event->destroy() and it returns
+>-ENODEV to userspace
+>
+>>different CPUs get reported to the user? Sum of all counts on 
+>>different CPUs?
+>
+>value is still the same. There's still only one valid CPU and that CPU
+>is always cpu 0 in our x86 case.
+>
+>I hope this clarifies.
+
+Yes, it does now. Thanks
+
+I don't see a difference in behavior as in the events are still linked 
+to just CPU0, so this looks good to me. Some of these clarifications can 
+be added to the commit message though.
+
+Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+
+Regards,
+Umesh
+>
+>Lucas De Marchi
+>
+>>
+>>Thanks,
+>>Umesh
+>>
+>>>
+>>>thanks
+>>>Lucas De Marchi
+>>>
+>>>>
+>>>>Thanks,
+>>>>Kan
+>>>>
+>>>>
