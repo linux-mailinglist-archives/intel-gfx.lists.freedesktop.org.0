@@ -2,57 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1D87A1DB3C
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2025 18:22:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A400A1DB45
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2025 18:27:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 47C1910E597;
-	Mon, 27 Jan 2025 17:22:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2341510E17D;
+	Mon, 27 Jan 2025 17:27:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UdPFYJPr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hL3ocaT4";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A0D110E595
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Jan 2025 17:22:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C1C010E096;
+ Mon, 27 Jan 2025 17:27:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737998550; x=1769534550;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=bxLjU7BslkIAkIEDcxOzZkJQR9srwJIWqTN7FAQ2UQg=;
- b=UdPFYJPrhYP231WT0o/KO4MxSkbulyRHQnWNC0rVlxnLKgppc+jvxeHr
- 73Ic1YGDV1FDW+FBvHYkanwrNMAMVSvLAvjNBy7dYISwSQKiLaT80+4i1
- +0G0S6e0xtTl8GLJq27byvR19oop+wKUUWYNki7sMOGSdY44v7vjkoQtq
- Sg2uAsq5P7z2FrGke5Q+EWiBTn8cCt+2iN0DSlahYKwrzWF8F8zZGJrQb
- RC9kIsG0gf0/JQgeclwK/B0U9HKeSEVeuVVnABgMxiMMMsGr2zG4J6f2S
- UaBis2ik8rhejedMCWF6nqd98kCZs2KkmuxQ71qCSbumkxDbr162ZaaM3 g==;
-X-CSE-ConnectionGUID: 6KK597pxQfq/X5Gyqp6fnA==
-X-CSE-MsgGUID: XSfM91M0Qt2Br77h57B8+A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11328"; a="38501409"
-X-IronPort-AV: E=Sophos;i="6.13,239,1732608000"; d="scan'208";a="38501409"
+ t=1737998867; x=1769534867;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=hzB9wzuXdqktHqh/49C5AqOld2aPFFpLA5TZiTldzD0=;
+ b=hL3ocaT4IiRAb48PClu+72Iuzr6/h1/zPIqdGN+kpdin+Bxx7Q2JQ7i0
+ IfstrcGzRUIwjnix61yTbRGZs7aRWZOznMHloqz76LeY+cKpgRk5lrZzs
+ PFytBkXaou3toV9vpQowV/r9wydIEun4eSDYE2rcUqgpSUw1eadsQUYBZ
+ 8urRDK3GjcpXKdiwB5LHBc14sVYzU3bcLgI6mvi+T8DpztLFi/R/A7WTa
+ w9Fj8s5YSfVbmxkFjqZJUltU0QInI7t1bV6QR6wPU+WGZRRnsYVLWQKww
+ NxNAe+PkNncoAlOl4Nhhxa7OjAcuUQsn44+HuPsilMB0XBLZM5ZkIpOgH w==;
+X-CSE-ConnectionGUID: GWnkJp3zQXCIDNArLd+n3g==
+X-CSE-MsgGUID: yqsaHlMgT/6Fu4h91Ie/8w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11328"; a="38501762"
+X-IronPort-AV: E=Sophos;i="6.13,239,1732608000"; d="scan'208";a="38501762"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2025 09:22:30 -0800
-X-CSE-ConnectionGUID: mjM32oRtTnupCvZfgZmiPQ==
-X-CSE-MsgGUID: cXYQnw42TXG0hKvYGalnIw==
+ 27 Jan 2025 09:27:47 -0800
+X-CSE-ConnectionGUID: yVk7Pt+QQ36twyKaq/TXfw==
+X-CSE-MsgGUID: I/fm+5jARyWvVHMBavle7Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,239,1732608000"; d="scan'208";a="108610279"
+X-IronPort-AV: E=Sophos;i="6.13,239,1732608000"; d="scan'208";a="108610808"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 27 Jan 2025 09:22:28 -0800
+ by fmviesa008.fm.intel.com with SMTP; 27 Jan 2025 09:27:45 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 27 Jan 2025 19:22:27 +0200
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 11/11] drm/i915: Pimp the Y plane selection debugs
-Date: Mon, 27 Jan 2025 19:21:56 +0200
-Message-ID: <20250127172156.21928-12-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.45.3
-In-Reply-To: <20250127172156.21928-1-ville.syrjala@linux.intel.com>
-References: <20250127172156.21928-1-ville.syrjala@linux.intel.com>
+ Mon, 27 Jan 2025 19:27:44 +0200
+Date: Mon, 27 Jan 2025 19:27:44 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 1/5] drm/i915: Move VT-d alignment into
+ plane->min_alignment()
+Message-ID: <Z5fCEEIgHItifhwQ@intel.com>
+References: <20250122151755.6928-1-ville.syrjala@linux.intel.com>
+ <20250122151755.6928-2-ville.syrjala@linux.intel.com>
+ <878qqwbn6d.fsf@intel.com> <Z5e35V4CqZ3m40y-@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <Z5e35V4CqZ3m40y-@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,43 +73,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
+On Mon, Jan 27, 2025 at 06:44:21PM +0200, Ville Syrj‰l‰ wrote:
+> On Mon, Jan 27, 2025 at 11:50:34AM +0200, Jani Nikula wrote:
+> > On Wed, 22 Jan 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> > > From: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
+> > >
+> > > Currently we don't account for the VT-d alignment w/a in
+> > > plane->min_alignment() which means that panning inside a larger
+> > > framebuffer can still cause the plane SURF to be misaligned.
+> > > Fix the issue by moving the VT-d alignment w/a into
+> > > plane->min_alignment() itself (for the affected platforms).
+> > >
+> > > Signed-off-by: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/i9xx_plane.c          | 10 ++++++++++
+> > >  drivers/gpu/drm/i915/display/intel_cursor.c        |  5 +++++
+> > >  drivers/gpu/drm/i915/display/intel_fb_pin.c        |  8 --------
+> > >  drivers/gpu/drm/i915/display/intel_sprite.c        |  5 +++++
+> > >  drivers/gpu/drm/i915/display/skl_universal_plane.c |  4 ++++
+> > >  5 files changed, 24 insertions(+), 8 deletions(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/i915/display/i9xx_plane.c
+> > > index ed171fbf8720..19cc34babef3 100644
+> > > --- a/drivers/gpu/drm/i915/display/i9xx_plane.c
+> > > +++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
+> > > @@ -780,9 +780,14 @@ unsigned int vlv_plane_min_alignment(struct intel_plane *plane,
+> > >  				     const struct drm_framebuffer *fb,
+> > >  				     int color_plane)
+> > >  {
+> > > +	struct drm_i915_private *i915 = to_i915(plane->base.dev);
+> > > +
+> > >  	if (intel_plane_can_async_flip(plane, fb->modifier))
+> > >  		return 256 * 1024;
+> > >  
+> > > +	if (intel_scanout_needs_vtd_wa(i915))
+> > > +		return 256 * 1024;
+> > 
+> > Nitpick, would be great to convert intel_scanout_needs_vtd_wa() to
+> > struct intel_display first, so we wouldn't have to introduce so many new
+> > struct drm_i915_private uses.
+> 
+> I didn't really want to add intel_display stuff to the
+> gem side (where this is being used currently). Once
+> its all moved into the display code (patch 3) then it
+> makes more sense.
 
-Use the standard [PLANE:%d:%s] stuff for the Y plane debugs,
-and more clearly spell out which plane is UV plane and which
-is Y plane when linking them.
+BTW I do have full conversion of all the low level
+plane code (+ a bunch of other stuff including
+intel_display_power_{put,get}() stuff) done locally.
+But I have quite a few series on the list already
+needing review, so not sure I should also post that
+one right now. I can, if you especially want something
+mundane to read?
 
-Signed-off-by: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_atomic_plane.c | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-index 1fb35f4a7cf4..9c2e8aaba8cd 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-@@ -1236,8 +1236,9 @@ static void link_nv12_planes(struct intel_crtc_state *crtc_state,
- 	crtc_state->data_rate[y_plane->id] = crtc_state->data_rate_y[uv_plane->id];
- 	crtc_state->rel_data_rate[y_plane->id] = crtc_state->rel_data_rate_y[uv_plane->id];
- 
--	drm_dbg_kms(&dev_priv->drm, "Using %s as Y plane for %s\n",
--		    y_plane->base.name, uv_plane->base.name);
-+	drm_dbg_kms(&dev_priv->drm, "UV plane [PLANE:%d:%s] using Y plane [PLANE:%d:%s]\n",
-+		    uv_plane->base.base.id, uv_plane->base.name,
-+		    y_plane->base.base.id, y_plane->base.name);
- 
- 	/* Copy parameters to Y plane */
- 	intel_plane_copy_hw_state(y_plane_state, uv_plane_state);
-@@ -1328,7 +1329,8 @@ static int icl_check_nv12_planes(struct intel_atomic_state *state,
- 
- 		if (!y_plane_state) {
- 			drm_dbg_kms(&dev_priv->drm,
--				    "Need %d free Y planes for planar YUV\n",
-+				    "[CRTC:%d:%s] need %d free Y planes for planar YUV\n",
-+				    crtc->base.base.id, crtc->base.name,
- 				    hweight8(crtc_state->nv12_planes));
- 
- 			return -EINVAL;
 -- 
-2.45.3
-
+Ville Syrj‰l‰
+Intel
