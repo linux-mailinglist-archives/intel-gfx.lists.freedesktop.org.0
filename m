@@ -2,55 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28830A1D473
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2025 11:29:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 49F72A1D475
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2025 11:29:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A122210E236;
-	Mon, 27 Jan 2025 10:29:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A473910E2EF;
+	Mon, 27 Jan 2025 10:29:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SFN66ecn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cj37KbhB";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0144210E236;
- Mon, 27 Jan 2025 10:29:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C56DA10E2EB;
+ Mon, 27 Jan 2025 10:29:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737973746; x=1769509746;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=dpn3c+Xrgvy2J5EkiL0y2rL4H9yV5/C6V0MmgldxYnA=;
- b=SFN66ecnb6BA1+1wymJhv6j6AgJPXvWBHr9kkgkilfq1vjyc8vRQ77+J
- DziVNq1RQG/mSCuIPEqwcPH/q83xv7YlsOWiECGkjRFnWXJ42oIDRIPli
- Ls20hG4tM9g/VgxZlh7zoRV9V7DJWcw+01/D2SUM23v4essIdfs9nNBWR
- VrrBoTn6bdov0yQPANZlowrUE1gnS7fHan48AGWaMXbRTTcb5HpfKPS9i
- R8Rllmxc6O94C+a+bIQMqKPFC59tBZ9hqaYHdINmUlL5HCfFgjf5XMFtr
- 4fL2x7n4v+qidvOSOz+39S42VpjSbFuCwDCVbHVQ7HhMeJ4PIVOpkOGnK A==;
-X-CSE-ConnectionGUID: l4gyjdt0TMaBRg64bdRiIA==
-X-CSE-MsgGUID: 1ag9VVgoRNOhIhd8RgbmAw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="38529849"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="38529849"
+ t=1737973747; x=1769509747;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=UlrkBSafkNP+62mUr00oaZA+gnup6R4IojzNixdgb2A=;
+ b=cj37KbhBjcGN8taf9n2MuFywOJngOFQq5OxOqSNY6OLXm/ZeBHF64MXM
+ sUIQPSMNudCpVwM2/LO9i5f3eEl2KtsaFoktXNuKIEhe0oFp5CY3vqLW+
+ zYP5op8+3h35kXkaM9r3zcw0aHN4T/rfYw2W+JA79G9oSB0v7xUhcuEFf
+ DicEhoqbLKd/Rb/h4LxPhty/ZfD2afoTOKY8eyiAT3RyKVYaZg58bEN1G
+ +tpqIY73KfBhF+ytNmauct8nWdxZ4IlGrczQdJkRZ6maoLH0QMdAM/inC
+ vYNS78uBOT9EgWlSVFvzUX+mRNZHFGucVpzZyt4Xn+HFbMo/Qv18t5Qxw A==;
+X-CSE-ConnectionGUID: yWTtW4IGTsukWM81Zl9QTA==
+X-CSE-MsgGUID: u++C8hfjSumhOV19E2gwxw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="38529852"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="38529852"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2025 02:29:05 -0800
-X-CSE-ConnectionGUID: UmUGi6bZR8Gism/RA7dy1A==
-X-CSE-MsgGUID: uhb8o5GoQiOzC6/jLD2d5w==
+ 27 Jan 2025 02:29:06 -0800
+X-CSE-ConnectionGUID: 3lwrTnfyRwiYUJ9/owFIeA==
+X-CSE-MsgGUID: 4zPVgOJ0TdWeeQXwbhLdhQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="108837774"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="108837799"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO jhogande-mobl1..)
  ([10.245.244.95])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2025 02:29:03 -0800
+ 27 Jan 2025 02:29:05 -0800
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: animesh.manna@intel.com, ville.syrjala@intel.com,
  =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v6 00/12] PSR DSB support
-Date: Mon, 27 Jan 2025 12:28:34 +0200
-Message-ID: <20250127102846.1237560-1-jouni.hogander@intel.com>
+Subject: [PATCH v6 01/12] drm/i915/psr: Use PSR2_MAN_TRK_CTL CFF bit only to
+ send full update
+Date: Mon, 27 Jan 2025 12:28:35 +0200
+Message-ID: <20250127102846.1237560-2-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250127102846.1237560-1-jouni.hogander@intel.com>
+References: <20250127102846.1237560-1-jouni.hogander@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
@@ -70,69 +73,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-This patch set is doing necessary modifications to support PSR update
-using DSB on LunarLake onwards
+We are preparing for a change where only frontbuffer flush will use
+single full frame bit of a new register (SFF_CTL) available on LunarLake
+onwards.
 
-It is not necessary to wait for PSR1 to idle or PSR2 to exit DEEP
-sleep at the begin of commit This is left out from DSB commit. There
-might be room for optimization for non-DSB as well because such wait
-is not supposed to be necessary at the begin of update.
+It shouldn't be necessary to have SFF bit set if CFF bit is set in
+PSR2_MAN_TRK_CTL -> removing setting it on all platforms as there is not
+reason to have it different on older platforms.
 
-PSR mutex is not locked when performing DSB commit. It is not
-necessary as we are currently using DSB only when sending updates
-towards panel. I.e. not using it when changing PSR mode. Also
-necessary changes are made to use PSR2_MAN_TRK_CTL only in
-DSB. Frontbuffer updates and legacy cursor updates are using SFF_CTL
-register to perform full frame updates.
+v2: commit message improved
 
-DSB_SKIP_WAITS_EN is removed to ensure all waits are performed when
-PSR is active. PSR "Frame Change" event is manually triggered at the
-begin of each DSB commit by adding CURSURFLIVE register write.
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_psr.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-Possibe problem with DSB commit when PSR is already waking up is
-avoided by evading scanline 0.
-
-v6:
-  - add comment explaining why we are not setting DSB_SKIP_WAITS_EN
-  - add separate function to generate the "Frame change"evant.
-  - use intel_dsb_emit_wait_dsl
-  - add evasion of scanline 0 also for Panel Replay
-v5:
-  - rebase
-v4:
-  - remove DSB_SKIP_WAITS_EN
-  - Add CURSURFLIVE register write at the begin of DSB commit
-  - evade scanline 0
-v3:
-  - do not use DSB when PSR mode is changing
-v2:
-  - use _MMIO_TRANS instead of _MMIO_TRANS2
-  - drop evasion from intel_psr_configure_full_frame_update
-
-Jouni Högander (12):
-  drm/i915/psr: Use PSR2_MAN_TRK_CTL CFF bit only to send full update
-  drm/i915/psr: Rename psr_force_hw_tracking_exit as
-    intel_psr_force_update
-  drm/i915/psr: Split setting sff and cff bits away from
-    intel_psr_force_update
-  drm/i915/psr: Add register definitions for SFF_CTL and CFF_CTL
-    registers
-  drm/i915/psr: Use SFF_CTL on invalidate/flush for LunarLake onwards
-  drm/i915/psr: Allow writing PSR2_MAN_TRK_CTL using DSB
-  drm/i915/psr: Changes for PSR2_MAN_TRK_CTL handling when DSB is in use
-  drm/i915/psr: Remove DSB_SKIP_WAITS_EN chicken bit
-  drm/i915/display: Evade scanline 0 as well if PSR1 or PSR2 is enabled
-  drm/i915/psr: Add function for triggering "Frame Change" event
-  drm/i915/display: Ensure we have "Frame Change" event in DSB commit
-  drm/i915/psr: Allow DSB usage when PSR is enabled
-
- drivers/gpu/drm/i915/display/intel_display.c  |  16 +-
- drivers/gpu/drm/i915/display/intel_dsb.c      |  27 +++-
- drivers/gpu/drm/i915/display/intel_psr.c      | 141 +++++++++---------
- drivers/gpu/drm/i915/display/intel_psr.h      |   7 +-
- drivers/gpu/drm/i915/display/intel_psr_regs.h |  10 ++
- 5 files changed, 128 insertions(+), 73 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 2bdb6c9c22835..b4b795c1c43da 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -2395,7 +2395,6 @@ static void psr2_man_trk_ctl_calc(struct intel_crtc_state *crtc_state,
+ 	val |= man_trk_ctl_partial_frame_bit_get(display);
+ 
+ 	if (full_update) {
+-		val |= man_trk_ctl_single_full_frame_bit_get(display);
+ 		val |= man_trk_ctl_continuos_full_frame(display);
+ 		goto exit;
+ 	}
 -- 
 2.43.0
 
