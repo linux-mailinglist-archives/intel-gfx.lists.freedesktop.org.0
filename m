@@ -2,61 +2,73 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F9ACA1D484
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2025 11:29:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EABF0A1D528
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Jan 2025 12:16:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9FAFE10E500;
-	Mon, 27 Jan 2025 10:29:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F1FE10E0B7;
+	Mon, 27 Jan 2025 11:16:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RlrJEpBR";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=haloniitty.fi header.i=@haloniitty.fi header.b="RrzLYm/h";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F54F10E4FD;
- Mon, 27 Jan 2025 10:29:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1737973769; x=1769509769;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=p9mGQOW7wsa9bN1uAnMemn+vytMH6x3I0OFwLlERCj8=;
- b=RlrJEpBRFfZfQXNfkZrDroYj5MMMh2aJDzIksQcPQQUvH1xVQ45meecB
- psoO53UQ3NfsST4mbEMwFuIqkt2qZL92i3sU9maYzw5C/OhpCaTA2Ax5Z
- QmmHSFfs26rUeCfvcZxCJPFIT1jnmvnTe17kTxrZMkdTge7geQgI+wzcR
- +p5fDf7ohLvWpRZzhKVPmbMORVJNCxm4ly+atM1CplGW4TcXTwY76Eamd
- JuAcIWvYC0uGBQ5UkG94vhcpfpSGW1dOVFc4CTTRJ8D/L65qWKSs1/oSP
- qrcjuSs1ux9lApNEWZeu/b+CQS6ucpBl/+WVgQIdgaSciy9zJx1eN2BvU w==;
-X-CSE-ConnectionGUID: OofqQhMzSAuFdIYMjiF10A==
-X-CSE-MsgGUID: jCBByKQRRJayRwKskj5UOg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="38529888"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="38529888"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2025 02:29:29 -0800
-X-CSE-ConnectionGUID: sX4gzPfdRsOFC3i1HwnVfQ==
-X-CSE-MsgGUID: F26arNqdSymTpvqGBNVhlQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="108837939"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO jhogande-mobl1..)
- ([10.245.244.95])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2025 02:29:28 -0800
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: animesh.manna@intel.com, ville.syrjala@intel.com,
- =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v6 12/12] drm/i915/psr: Allow DSB usage when PSR is enabled
-Date: Mon, 27 Jan 2025 12:28:46 +0200
-Message-ID: <20250127102846.1237560-13-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250127102846.1237560-1-jouni.hogander@intel.com>
-References: <20250127102846.1237560-1-jouni.hogander@intel.com>
+X-Greylist: delayed 3198 seconds by postgrey-1.36 at gabe;
+ Mon, 27 Jan 2025 11:16:51 UTC
+Received: from whm50.louhi.net (whm50.louhi.net [77.240.19.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0A0D10E0B7;
+ Mon, 27 Jan 2025 11:16:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=haloniitty.fi; s=default; h=Content-Type:MIME-Version:References:
+ In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+ Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+ List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=yD/D2+nscyMs4rmMHdMo35IBdi5XMB2qp4Gun29olS8=; b=RrzLYm/hJNnp8Iawo14KFujD1B
+ dgYwgU2sXAB2bMOc9kXkeA1pldRUvEnrwMkqpmid5ZG2T6C+urJ9CSzsBpe9RtIPWCrAWnBpljibR
+ NCL6ZpDEQlc8P0nyaYxJv9b3f+hD7oAFcvRg0KxuASNAfECabdSEHqH5mfkKhKTa+iasGrkDGffGL
+ O0Vdbzy0TulqAF9xPP+B9kv/majU4pzGgGln2J31ccubtKed6WKjOkM/Vm0VeXrPumVpaX4lCq49c
+ LrHuuFQcN2b9LiiRnxYAalDysrPaEgHdgn6/jid11xHnyJox4jSl4p6w+0FiYVDp2hLfQdw/BcZRd
+ 6rPRc1Ag==;
+Received: from [194.136.85.206] (port=38530 helo=eldfell)
+ by whm50.louhi.net with esmtpsa (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.96.2)
+ (envelope-from <pekka.paalanen@haloniitty.fi>) id 1tcMHD-00016b-2a;
+ Mon, 27 Jan 2025 12:23:31 +0200
+Date: Mon, 27 Jan 2025 12:23:28 +0200
+From: Pekka Paalanen <pekka.paalanen@haloniitty.fi>
+To: Raag Jadav <raag.jadav@intel.com>
+Cc: Xaver Hugl <xaver.hugl@kde.org>, airlied@gmail.com, simona@ffwll.ch,
+ lucas.demarchi@intel.com, rodrigo.vivi@intel.com,
+ jani.nikula@linux.intel.com, andriy.shevchenko@linux.intel.com,
+ lina@asahilina.net, michal.wajdeczko@intel.com, christian.koenig@amd.com,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
+ aravind.iddamsetty@linux.intel.com, anshuman.gupta@intel.com,
+ alexander.deucher@amd.com, andrealmeid@igalia.com,
+ amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com
+Subject: Re: [PATCH v10 2/4] drm/doc: Document device wedged event
+Message-ID: <20250127122328.6d85bca1@eldfell>
+In-Reply-To: <Z5CAkXSOpNiiFbv4@black.fi.intel.com>
+References: <20241128153707.1294347-1-raag.jadav@intel.com>
+ <20241128153707.1294347-3-raag.jadav@intel.com>
+ <CAFZQkGy3R0TMY5CARPQZF70fdKGLX8GQjV_YQAHzEXsiuNHj+w@mail.gmail.com>
+ <Z5CAkXSOpNiiFbv4@black.fi.intel.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; boundary="Sig_/WDsb8DKWCL+/WckgwZn74cK";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
+X-AntiAbuse: This header was added to track abuse,
+ please include it with any abuse report
+X-AntiAbuse: Primary Hostname - whm50.louhi.net
+X-AntiAbuse: Original Domain - lists.freedesktop.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - haloniitty.fi
+X-Get-Message-Sender-Via: whm50.louhi.net: authenticated_id:
+ pekka.paalanen@haloniitty.fi
+X-Authenticated-Sender: whm50.louhi.net: pekka.paalanen@haloniitty.fi
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,36 +84,129 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Now as we have correct PSR2_MAN_TRK_CTL handling in place we can allow DSB
-usage also when PSR is enabled for LunarLake onwards.
+--Sig_/WDsb8DKWCL+/WckgwZn74cK
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-Reviewed-by: Animesh Manna <animesh.manna@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+On Wed, 22 Jan 2025 07:22:25 +0200
+Raag Jadav <raag.jadav@intel.com> wrote:
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 67041d76763fe..d44703a34b601 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7681,6 +7681,7 @@ static void intel_atomic_dsb_prepare(struct intel_atomic_state *state,
- static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
- 				    struct intel_crtc *crtc)
- {
-+	struct intel_display *display = to_intel_display(state);
- 	const struct intel_crtc_state *old_crtc_state =
- 		intel_atomic_get_old_crtc_state(state, crtc);
- 	struct intel_crtc_state *new_crtc_state =
-@@ -7696,7 +7697,7 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
- 	new_crtc_state->use_dsb =
- 		new_crtc_state->update_planes &&
- 		!new_crtc_state->do_async_flip &&
--		!new_crtc_state->has_psr &&
-+		(DISPLAY_VER(display) >= 20 || !new_crtc_state->has_psr) &&
- 		!new_crtc_state->scaler_state.scaler_users &&
- 		!old_crtc_state->scaler_state.scaler_users &&
- 		!intel_crtc_needs_modeset(new_crtc_state) &&
--- 
-2.43.0
+> On Tue, Jan 21, 2025 at 02:14:56AM +0100, Xaver Hugl wrote:
+> > > +It is the responsibility of the consumer to make sure that the devic=
+e or
+> > > +its resources are not in use by any process before attempting recove=
+ry. =20
+> > I'm not convinced this is actually doable in practice, outside of
+> > killing all apps that aren't the one trying to recover the GPU.
+> > Is this just about not crashing those processes if they don't handle
+> > GPU hotunplugs well, about leaks, or something else? =20
+>=20
+> Correct, all of it. And since the compositor is in charge of device resou=
+rces,
+> this way it atleast has the opportunity to recover the device and recreate
+> context without all the userspace violence.
 
+Hi Raag,
+
+sorry, I haven't followed this series, so I wonder, why should
+userspace be part of recovering the device? Why doesn't the kernel
+automatically load a new driver instance with a new DRM device node?
+
+Of course userspace needs to deal with stuff suddenly erroring out, and
+destroy existing related resources, then wait for a working device
+to appear and rebuild all state. The kernel driver already needs to
+make the existing open stuff inert and harmless, why does it need an
+acknowledgement from userspace to unbind and re-bind?
+
+> I'm not entirely aware of its feasibility though, perhaps something for t=
+he
+> consumers to experiment.
+
+If consumers mean userspace, then no, not reliably. But the kernel can
+do it.
+
+I see in the commit message written:
+
+	"For example, if the driver supports multiple recovery methods,
+	consumers can opt for the suitable one based on policy
+	definition."
+
+How could consumers know what to do? How can they guess what would be
+enough to recover the device? Isn't that the kernel driver's job to
+know?
+
+(More important for userspace would be know if dmabuf fds remain
+pointing to valid memory retaining its contents or if the contents are
+lost. Userspace cannot tell which device a dmabuf originates from,
+AFAIK, so this would need to be added in the generic dmabuf UAPI.)
+
+	"Consumers can also choose to have the device available for
+	debugging or additional data collection before performing the
+	recovery."
+
+Couldn't the wedged driver instance remain detached from the hardware
+while a new driver instance initializes? Then debug data remains until
+the wedged device is fully closed from userspace, or maybe devcore dump
+retains it.
+
+I presume that WEDGED=3Dnone case should retain the debug data somehow as
+well.
+
+> > > +With IOCTLs blocked and device already 'wedged', all device memory s=
+hould
+
+btw. when I see "blocked" I think of the function call not returning
+yet. But in this patch "blocked" seems to be synonymous for "returns
+an error immediately". Would it be possible to avoid the word "blocked"
+for this?
+
+> > > +be unmapped and file descriptors should be closed to prevent leaks. =
+=20
+> > Afaiu from a userspace POV, a rebind is just like a GPU hotunplug +
+> > hotplug with matching "remove" and "add" udev events. As long as the
+> > application cleans up resources related to the device when it receives
+> > the event, there should be no leaks with a normal hotunplug... Is this
+> > different enough that we can't have the same expectations? =20
+>=20
+> The thing about "remove" event is that it is generated *after* we opt for=
+ an
+> unbind, and at that point it might be already too late if userspace doesn=
+'t
+> get enough time to clean things up while the device is removed with a live
+> client resulting in unknown consequences.
+>=20
+> The idea here is to clean things up *before* we opt for an unbind leaving
+> no room for side effects.
+
+Something here feels fragile. There should not be a deadline for
+userspace to finish cleaning up. What was described for KMS device nodes
+in this same document seems like a more reliable approach: keep the
+dead driver instance around until userspace has closed all references
+to it. The device node could be removed earlier.
+
+
+Thanks,
+pq
+
+--Sig_/WDsb8DKWCL+/WckgwZn74cK
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmeXXqAACgkQI1/ltBGq
+qqcM/Q/+Ipt9pMHVb7G+gEvEnhJkrg1fVIHMg2XIo3dIkwC7T8Jrtv8D8eRsbQ6Y
+SRlCSt2FjhlzcLDVVz3li5BgYxyHvEoFdu7KNvgmPydLvdXvUIsBDpluSHhzOCFf
+b3XgaplCG7QlsQMAkP5w0PATD3J0yp8izHFwtlIymst7loPhmTqDd8fJNCfhpA1a
+1qLe3Y8fE+1gzVA3ScrH+H+wWLXi3hKPM5S8ukghCkTUqrO1pc41HDVt2yQ+0UR4
+d2DPAgUayv2uVJvU3mVUpYAU519xFswrtFJ5oGtHMf1aAb4GS4GvUDmQr0TE2ZVo
+l0gc9v1RQ7KLGy3nTNu56a8d3rSYML4OoG569IlW7OyzncE9rsofMMAJ8Z4snzoY
+0+A8lQsJX76gxgdDk7NEZgPdm/9SzY5pZmR/uVn2/ilrnozOy57xKNIU1uYS//IG
+iXGCj8gk+zPUyvId1eLFsCLELOnujTK3g7llRYXR5axdQn2/GElJ4nPbGi0KyZWQ
+whJ6u48Qek6n+3aX1tjuL6EeIhW9aiTXQ4PmS4owwKvi0SB+vys8WRwFvynDLP5Z
+BNq9mUASWrRZE6M7qycKhcAjccZuDyAfz//++5clDmfL05dIntTYzctamLilwWdy
+wsRSNEB/o2ikguHw6NOSTTRL1Lk4usLjPQwoAIi0+kWvEMCjXr4=
+=axF5
+-----END PGP SIGNATURE-----
+
+--Sig_/WDsb8DKWCL+/WckgwZn74cK--
