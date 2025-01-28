@@ -2,62 +2,77 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16963A207AF
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2025 10:51:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A100BA2098E
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2025 12:22:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0911310E633;
-	Tue, 28 Jan 2025 09:51:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E97910E65B;
+	Tue, 28 Jan 2025 11:22:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bntE1TpP";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="foTouGKI";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 03B3E10E63B;
- Tue, 28 Jan 2025 09:51:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738057860; x=1769593860;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=Iu3AO+UrlqFk5Kv5JuEqsK0QZjFQslGkKAyjgvcVzPo=;
- b=bntE1TpPhPrV0q1EGu62s9KRCTeeXEG7r+hCvWDQVa90qhI+GOfxLO3u
- 0eg8ZI5zO+uE6MzIvEbiae83JTtlJD+DxxGGo9x9rJF8Gv/PtojhqNHcX
- 7ltH/JyKki+YTfcsLB52zLSHr/rkbJS/R/A27rX/kWWHR0dyy4SSppHLm
- dKBnHFVzB9EeXQUNAcr0Ml8mzSYDWeLWjwf/bkN1wUfei+Fpjf0eFEJ9n
- 6qh2H0iAHBA+VOI1UUJju9Z5z5SiEQ4KH8Hz6KF9i9mIDr3G+qkl/Q8jU
- R2nU4kGIgTlumYMD3ngRZMNLFg3CFa6qZOpOw5a9plwjN7wM3hle0TSss w==;
-X-CSE-ConnectionGUID: Sxz0p2SyRsmFRwwIgYOl9A==
-X-CSE-MsgGUID: U99kaWAiRN+hAgTB1zZRqA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11328"; a="38673590"
-X-IronPort-AV: E=Sophos;i="6.13,240,1732608000"; d="scan'208";a="38673590"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2025 01:51:00 -0800
-X-CSE-ConnectionGUID: Q53XSHz+TVmBsizV4z5+/w==
-X-CSE-MsgGUID: 3SCVT27vQyap1prtdLW5pw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,240,1732608000"; d="scan'208";a="108660381"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.130])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2025 01:50:57 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>, Ville Syrjala
- <ville.syrjala@linux.intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
-Subject: RE: [PATCH] drm/i915: Give i915 and xe each their own display
- tracepoints
-In-Reply-To: <CH0PR11MB54445354D7CADC3046E2905EE5EC2@CH0PR11MB5444.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250127213055.640-1-ville.syrjala@linux.intel.com>
- <CH0PR11MB54445354D7CADC3046E2905EE5EC2@CH0PR11MB5444.namprd11.prod.outlook.com>
-Date: Tue, 28 Jan 2025 11:50:54 +0200
-Message-ID: <87ed0n9sht.fsf@intel.com>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B9AD10E0AA;
+ Tue, 28 Jan 2025 11:22:43 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 3179E5C5D79;
+ Tue, 28 Jan 2025 11:22:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98109C4CEDF;
+ Tue, 28 Jan 2025 11:22:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1738063362;
+ bh=AJfDJn9pFkPItjs+l9CjDlC33TdlTCE01Kr4mfJIOJE=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=foTouGKI5Xpt6DiifiySGU1Px4B0JlxynZkL/A+4GJ+F1wUAFkM/N4G83a9sI8N06
+ lsMHA2F0I+BGkV1h4oylhwmSeJznMzbN+UJy9qwbYRK5QlpfqNfv8Msq/ndA/iDm4I
+ JYp3P2GR22dNEIcBnZOOATJGYPU+gMIFK9XfLLma3B24+UKToDLZL/ZLBF6bwp16qy
+ HMKr9svtYad8MrCuOMMF5t2I0WLB8bGS9HGYMu9w94+SD6sanYCztaTmP2cubx4D+F
+ lhSPEntAtoYhJR/j92VqRwE5MifEf7tNzvj9NQnTwv0sbHofELHMou005/QzH1lonP
+ yczCENnq4hKEA==
+Date: Tue, 28 Jan 2025 12:22:37 +0100
+From: Joel Granados <joel.granados@kernel.org>
+To: Matthew Wilcox <willy@infradead.org>
+Cc: Jani Nikula <jani.nikula@intel.com>, Ard Biesheuvel <ardb@kernel.org>, 
+ Alexander Gordeev <agordeev@linux.ibm.com>,
+ Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <linux@weissschuh.net>, 
+ Kees Cook <kees@kernel.org>, Luis Chamberlain <mcgrof@kernel.org>, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, 
+ linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
+ linux-crypto@vger.kernel.org, 
+ openipmi-developer@lists.sourceforge.net, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, linux-hyperv@vger.kernel.org,
+ linux-rdma@vger.kernel.org, 
+ linux-raid@vger.kernel.org, linux-scsi@vger.kernel.org,
+ linux-serial@vger.kernel.org, 
+ xen-devel@lists.xenproject.org, linux-aio@kvack.org,
+ linux-fsdevel@vger.kernel.org, 
+ netfs@lists.linux.dev, codalist@coda.cs.cmu.edu, linux-mm@kvack.org, 
+ linux-nfs@vger.kernel.org, ocfs2-devel@lists.linux.dev,
+ fsverity@lists.linux.dev, 
+ linux-xfs@vger.kernel.org, io-uring@vger.kernel.org, bpf@vger.kernel.org, 
+ kexec@lists.infradead.org, linux-trace-kernel@vger.kernel.org, 
+ linux-hardening@vger.kernel.org, apparmor@lists.ubuntu.com,
+ linux-security-module@vger.kernel.org, 
+ keyrings@vger.kernel.org, Song Liu <song@kernel.org>, 
+ "Steven Rostedt (Google)" <rostedt@goodmis.org>,
+ "Martin K. Petersen" <martin.petersen@oracle.com>, 
+ "Darrick J. Wong" <djwong@kernel.org>, Corey Minyard <cminyard@mvista.com>
+Subject: Re: Re: Re: Re: [PATCH v2] treewide: const qualify ctl_tables where
+ applicable
+Message-ID: <u2fwibsnbfvulxj6adigla6geiafh2vuve4hcyo4vmeytwjl7p@oz6xonrq5225>
+References: <20250110-jag-ctl_table_const-v2-1-0000e1663144@kernel.org>
+ <Z4+jwDBrZNRgu85S@li-008a6a4c-3549-11b2-a85c-c5cc2836eea2.ibm.com>
+ <nslqrapp4v3rknjgtfk4cg64ha7rewrrg24aslo2e5jmxfwce5@t4chrpuk632k>
+ <CAMj1kXEZPe8zk7s67SADK9wVH3cfBup-sAZSC6_pJyng9QT7aw@mail.gmail.com>
+ <f4lfo2fb7ajogucsvisfd5sg2avykavmkizr6ycsllcrco4mo3@qt2zx4zp57zh>
+ <87jzag9ugx.fsf@intel.com> <Z5epb86xkHQ3BLhp@casper.infradead.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Z5epb86xkHQ3BLhp@casper.infradead.org>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,19 +88,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 27 Jan 2025, "Cavitt, Jonathan" <jonathan.cavitt@intel.com> wrote:
-> Though it would probably be good to file an issue report detailing
-> the issue this fixes, then mark this patch as having fixed that
-> reported issue.
+On Mon, Jan 27, 2025 at 03:42:39PM +0000, Matthew Wilcox wrote:
+> On Mon, Jan 27, 2025 at 04:55:58PM +0200, Jani Nikula wrote:
+> > You could have static const within functions too. You get the rodata
+> > protection and function local scope, best of both worlds?
+> 
+> timer_active is on the stack, so it can't be static const.
+> 
+> Does this really need to be cc'd to such a wide distribution list?
+That is a very good question. I removed 160 people from the original
+e-mail and left the ones that where previously involved with this patch
+and left all the lists for good measure. But it seems I can reduce it
+even more.
 
-While I occasionally do request that when we get patches out of left
-field, and I want to ensure we have a full understanding of the problem,
-please let's not add extra hurdles for ourselves for fixing stuff.
+How about this: For these treewide efforts I just leave the people that
+are/were involved in the series and add two lists: linux-kernel and
+linux-hardening.
 
+Unless someone screams, I'll try this out on my next treewide.
 
-BR,
-Jani.
+Thx for the feedback
 
+Best
 
 -- 
-Jani Nikula, Intel
+
+Joel Granados
