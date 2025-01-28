@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2306A20E00
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2025 17:06:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96D58A20DAD
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2025 16:54:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 844F110E6C1;
-	Tue, 28 Jan 2025 16:06:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D282610E68E;
+	Tue, 28 Jan 2025 15:54:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WfRfzXn/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZCMImb8x";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 91E9310E6B4;
- Tue, 28 Jan 2025 16:06:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02E8E10E68E;
+ Tue, 28 Jan 2025 15:54:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738080389; x=1769616389;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:references:in-reply-to:to:cc;
- bh=Kjc+4bZ3Mw8Tvc6O58RCdTmBMyon2TLHDsDhCs9PLGs=;
- b=WfRfzXn/W9Obkb5GoJsyg0lFmuhxoH3rap5988sYDxKK9W/EQhpx/YPz
- tZG49SAAJ2BouVm4lXgc055MGv2CXfu2QMmTfAgLmA02Z+4yXxA4/VhRz
- 3T6mZ08p39gu4hH6mb0of79oyhcUHgW1ksxMiitjEsZpNWpL5vUIoc8G7
- pF1+4PTAdrJfc+wdAHMJqZnzZeH0+yAU5+LcpxHxUA0sfndAk8xCJQ2N3
- YxV5zjBYCB8mD0EEQfh6Kebpby6h7DNjVo4nY8fPvA4YyWaE6tokrueJC
- 4eur8yTBkoIgXcd8jXw62t37Y3+G4cjIAp6yaE25NEMqQhQjmI2qjrQP3 Q==;
-X-CSE-ConnectionGUID: Q7jBzVzTTZSmzZjkdgFL8g==
-X-CSE-MsgGUID: /mSSAGcHQrObfqPzzlshaw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11329"; a="38745075"
-X-IronPort-AV: E=Sophos;i="6.13,241,1732608000"; d="scan'208";a="38745075"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2025 08:06:28 -0800
-X-CSE-ConnectionGUID: jOvxD+h4RnO/2xexgg6ITg==
-X-CSE-MsgGUID: 79PWBcjlQNqsI+R+31p7qA==
+ t=1738079675; x=1769615675;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=n3c6MJwACKBdjr4PfmDWc1wYQ3+53W+zsbNMVyZG/WM=;
+ b=ZCMImb8xljBnajAgCWzq34T5h1GMQa4VWCswzxFQ9mrgDmhokHLsDPHd
+ rAns5cibjee/lUj0UIeC/kyOVw8IVwkK6PVsICygKp1klDyZunQ5g4k1y
+ QexWFuiGGHik5XFYzCTfm2v873Fi+yffDFzG1wjmQuej+PRG9O22t/+o3
+ iH6Y+lw+mMdXaaZ+x1TCp3U/vKJXkFBCEfcDKxVnKZWqGFSItEuExw9zj
+ L25HE0THf85Mmpe3j9dU6D1bRAw6ax6noCTQDd3J/BV43AwAFsd4filVy
+ edYiABXA1BlGyHG5hrXZp/UpMuZvvHOl8IUiZe86CBSQnr9wcCPH62fYd A==;
+X-CSE-ConnectionGUID: bY4/EvwCT1elAoUxnjgygQ==
+X-CSE-MsgGUID: lx+PSN/PRiy4di8GecrnlA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11329"; a="49228079"
+X-IronPort-AV: E=Sophos;i="6.13,241,1732608000"; d="scan'208";a="49228079"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2025 07:54:34 -0800
+X-CSE-ConnectionGUID: 8NVVxTxTTaqjLAVX7+EOzA==
+X-CSE-MsgGUID: Sg1M81ttQrWWivSf+BJOHA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="145977051"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by orviesa001.jf.intel.com with ESMTP; 28 Jan 2025 08:06:26 -0800
-From: Arun R Murthy <arun.r.murthy@intel.com>
-Date: Tue, 28 Jan 2025 21:21:20 +0530
-Subject: [PATCH v8 14/14] drm/i915/histogram: Enable pipe dithering
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="139635231"
+Received: from slindbla-desk.ger.corp.intel.com (HELO
+ vgovind2-mobl3.intel.com) ([10.245.246.171])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2025 07:54:32 -0800
+From: Vinod Govindapillai <vinod.govindapillai@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: vinod.govindapillai@intel.com, ville.syrjala@intel.com,
+ santhosh.reddy.guddati@intel.com, jani.saarinen@intel.com
+Subject: [PATCH v5 0/7] drm/i915/xe3: FBC Dirty rect feature support
+Date: Tue, 28 Jan 2025 17:54:11 +0200
+Message-ID: <20250128155418.305595-1-vinod.govindapillai@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250128-dpst-v8-14-871b94d777f8@intel.com>
-References: <20250128-dpst-v8-0-871b94d777f8@intel.com>
-In-Reply-To: <20250128-dpst-v8-0-871b94d777f8@intel.com>
-To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org
-Cc: suraj.kandpal@intel.com, dmitry.baryshkov@linaro.org, 
- Arun R Murthy <arun.r.murthy@intel.com>
-X-Mailer: b4 0.15-dev
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,44 +69,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Enable pipe dithering while enabling histogram to overcome some
-atrifacts seen on the screen.
+Dirty rect support for FBC in xe3 onwards based on the comments after the
+initial RFC series.
 
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_histogram.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+v2: Dirty rect related compute and storage moved to fbc state (Ville)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_histogram.c b/drivers/gpu/drm/i915/display/intel_histogram.c
-index f6844449e4bb6167116d223af316e5f3a5e8707c..ead9c2391d460f459dfca8e99ea423a34418e67d 100644
---- a/drivers/gpu/drm/i915/display/intel_histogram.c
-+++ b/drivers/gpu/drm/i915/display/intel_histogram.c
-@@ -22,6 +22,13 @@
- #define HISTOGRAM_BIN_READ_RETRY_COUNT 5
- #define IET_SAMPLE_FORMAT_1_INT_9_FRACT 0x1000009
- 
-+static void intel_histogram_enable_dithering(struct intel_display *display,
-+					     enum pipe pipe)
-+{
-+	intel_de_rmw(display, PIPE_MISC(pipe), PIPE_MISC_DITHER_ENABLE,
-+		     PIPE_MISC_DITHER_ENABLE);
-+}
-+
- static void set_bin_index_0(struct intel_display *display, enum pipe pipe)
- {
- 	if (DISPLAY_VER(display) >= 20)
-@@ -200,6 +207,10 @@ static int intel_histogram_enable(struct intel_crtc *intel_crtc, u8 mode)
- 
- 	if (histogram->enable)
- 		return 0;
-+
-+	/* Pipe Dithering should be enabled with histogram */
-+	intel_histogram_enable_dithering(display, pipe);
-+
- 	 /* enable histogram, clear DPST_BIN reg and select TC function */
- 	if (DISPLAY_VER(display) >= 20)
- 		intel_de_rmw(display, DPST_CTL(pipe),
+V3: Dont call fbc activate if FBC is already active
+
+v4: Dirty rect compute and programming moved within DSB scope
+    New changes are added as separate patches to make it easy for review
+    But could be squashed if the reviews as ok.
+
+v5: add HAS_FBC_DIRTY_RECT()
+    FBC Damage area updates in 3 steps. 
+    1. As part of plane_atomic_check() get, adjust coordinates and store
+       the merged damage area in plane_state
+    2. Atomic_commit, update merged damage are to fbc_state and prepare the
+       damage area satifying all conditions
+    3  update the FBC dirty rect registers as part of DSB commit.
+
+Vinod Govindapillai (7):
+  drm/i915/xe3: add register definitions for fbc dirty rect support
+  drm/i915/xe3: introduce HAS_FBC_DIRTY_RECT() for FBC dirty rect
+    support
+  drm/i915/display: get old_plane_state to the check_plane routine
+  drm/i915/display: update and store the plane damage clips
+  drm/i915/xe3: avoid calling fbc activate if fbc is active
+  drm/i915/xe3: dirty rect support for FBC
+  drm/i915/xe3: disable FBC if PSR2 selective fetch is enabled
+
+ drivers/gpu/drm/i915/display/i9xx_plane.c     |   1 +
+ .../gpu/drm/i915/display/intel_atomic_plane.c |   7 +-
+ drivers/gpu/drm/i915/display/intel_cursor.c   |   2 +
+ drivers/gpu/drm/i915/display/intel_display.c  |   7 +
+ .../drm/i915/display/intel_display_device.h   |   1 +
+ .../drm/i915/display/intel_display_types.h    |   3 +
+ drivers/gpu/drm/i915/display/intel_fbc.c      | 133 +++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_fbc.h      |   6 +
+ drivers/gpu/drm/i915/display/intel_fbc_regs.h |   9 ++
+ drivers/gpu/drm/i915/display/intel_sprite.c   |   2 +
+ .../drm/i915/display/skl_universal_plane.c    |  48 +++++++
+ 11 files changed, 216 insertions(+), 3 deletions(-)
 
 -- 
-2.25.1
+2.43.0
 
