@@ -2,176 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A222A20DD8
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2025 17:01:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D2CAA20E29
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Jan 2025 17:14:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B26C810E6A0;
-	Tue, 28 Jan 2025 16:01:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4CE8510E69E;
+	Tue, 28 Jan 2025 16:14:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QQkkF1Mr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LnRwc79R";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D3AFF10E69C;
- Tue, 28 Jan 2025 16:01:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1ACD610E69E;
+ Tue, 28 Jan 2025 16:14:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738080097; x=1769616097;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=xuyzzEZtM3doMCQjgYAxVKS8mWglBxQRJlC52S+4+Wo=;
- b=QQkkF1MrukMtD34gNkQ3uwWg1KJsi663ZejsarNPNEm840efq326e9Mm
- Tyd8nDn7kiTfo5aHRijWuN3kGW8sJWpMZPcAKP6bFZyapHcAjBmoLfvoc
- QDdXrhl9zDQ7cuBBur6HnQM8MUpHqE2x/0TYB6WcO2XJeHYjqjvR2Lcld
- WO1kJtyHPxsM5EbkRLhmw6NiBaA8VP6qgXyiwYj5ZgpsJE9byl05EfxH+
- JdHV+66tP/x8jI0ZOpqqgDf02zeyChLmrclKqha1AZVJHis93C8RbevKu
- ZoKg+dq6IANekD/31msdiQjN8nf3kR2R9Nc2xFxKB52I5+dyHMGw2+g4Z w==;
-X-CSE-ConnectionGUID: iaXtEcOuTOqiBZ6xKYAG7A==
-X-CSE-MsgGUID: ueGM3DslSw+OlrX49Ch/WA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11329"; a="37768697"
-X-IronPort-AV: E=Sophos;i="6.13,241,1732608000"; d="scan'208";a="37768697"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2025 08:01:36 -0800
-X-CSE-ConnectionGUID: wF8d20LKTXOvV/z1OXAgtw==
-X-CSE-MsgGUID: 9oak+Ay6SM+UMFYDq6xMgA==
+ t=1738080854; x=1769616854;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=5hdr4jknme8B55OyocrY1Q527lSyHaa19Sc25wTSq1w=;
+ b=LnRwc79R6fLJLvlBRYYQDGzCRv/XyDuJ2ewZ6OiCa/9+HuUORs+ebkgg
+ 27y5ozus48hnffPOmGew/E+Bq7gKD5pgKEdsz5hdGvfkG1Rk/8cK0BZyt
+ IoYYHzFVHCq9Yq6K0eyoV9yz04qZM9kNI0xyejww59GQnwWLHNeg0JgSN
+ hY/Eg1deyaztk+FoZBSBTFDmOyeZAqd70Kad/uFXXj5geH7CGVIPyG+S+
+ 1YHLXHjPHLkXmqoWypVftxb8grqYEliAgtM19mfFSR+gtOr+2lf2B3GEG
+ feXSd+MDy1aF8AAQ9am10/t9lzzb3HJkbSnhRKHvXzumAiIV2pwezgiFX g==;
+X-CSE-ConnectionGUID: wrre8V7jSDCJtiUpPzpCbw==
+X-CSE-MsgGUID: M44cTOvXQSWDq+6wh3CUYQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11329"; a="38455712"
+X-IronPort-AV: E=Sophos;i="6.13,241,1732608000"; d="scan'208";a="38455712"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2025 08:14:13 -0800
+X-CSE-ConnectionGUID: Ke3iGX/MQVSNZdmCfis5CA==
+X-CSE-MsgGUID: Td5WTlxLR2SDAEdwHA+aSw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,241,1732608000"; d="scan'208";a="113772351"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmviesa004.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 28 Jan 2025 08:01:19 -0800
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Tue, 28 Jan 2025 08:01:18 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Tue, 28 Jan 2025 08:01:18 -0800
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.177)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Tue, 28 Jan 2025 08:01:14 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=rB4oeww21sOqHnBblVxVH9+PVodVoeej6rvBgXqcea4UFD+R65B/+xeUd3VpvWa+aSLknz9H10BeKUxx6Iinx5/KLMGJ25P18/w7uvPZTIkZIARsJy0YokVS0YUxBqDD5hty6yzQLmeGKJ5bFWnFUaloKY3GHFyKK1adZyJW1ohivyNGFcxDEolgK5A97SFGvEIhq0OxSoS6sENqtjcI3vFnwknT5QK8xP8oCIYb5e8sp0SBNFiybMgagwaq5naGHRptz1tTijwO5ghY1Uq9l98jz8qJNpDD23l7G6H7vmVPPkTkDimu/lJ/Iy7Kru/oYpQOLqWrrrs8LcPdYKFB4A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VHD92BZr1tyTNz6bWwVYg4YUhNPsw94C8C288izBTQE=;
- b=cNbxLzC3wTZqzxu1abLKTP0NGv+7jLtTPQribaGC55DdnTo7miwW8M7lPPY5wodNFMUWsls/kpkvJHGuGYU+WWS7sye+h7+WdhDYJWujIW/0cN2S/4/qIZBtOv/zqk+pI+HtuTe/BAkxoV+drcPGAhuHHoyQP+BYdDLIX0kxxORo67tP4zgb0jHexDKtPIj8s8TgiQyPc2WZrcFq/xQRVusL4ISqYjEM6vU/SBryaw5EdySJwys4L7pNu70GI337z5qsYwzYaqamQE4ZCPvlGFEz2GFGEtGOuJ5DNtOrjFpfESiFsYoLswdCLZeWgjUQQf6pLnPJkzScaq/d0N0VOg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from SJ1PR11MB6129.namprd11.prod.outlook.com (2603:10b6:a03:488::12)
- by PH7PR11MB6772.namprd11.prod.outlook.com (2603:10b6:510:1b6::21)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8377.22; Tue, 28 Jan
- 2025 16:00:58 +0000
-Received: from SJ1PR11MB6129.namprd11.prod.outlook.com
- ([fe80::21c3:4b36:8cc5:b525]) by SJ1PR11MB6129.namprd11.prod.outlook.com
- ([fe80::21c3:4b36:8cc5:b525%3]) with mapi id 15.20.8377.021; Tue, 28 Jan 2025
- 16:00:58 +0000
-From: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-To: Al Viro <viro@zeniv.linux.org.uk>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>
-CC: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Kurmi,
- Suresh Kumar" <suresh.kumar.kurmi@intel.com>, "Saarinen, Jani"
- <jani.saarinen@intel.com>, "linux-fsdevel@vger.kernel.org"
- <linux-fsdevel@vger.kernel.org>, Alexander Gordeev <agordeev@linux.ibm.com>
-Subject: RE: Regression on linux-next (next-20250120)
-Thread-Topic: Regression on linux-next (next-20250120)
-Thread-Index: Adttq6oN2zvxaQC4Q86QyAJ6tLuOCQAF5fmAAJHYpoAAG5FWAABJCcig
-Date: Tue, 28 Jan 2025 16:00:58 +0000
-Message-ID: <SJ1PR11MB6129954089EA5288ED6D963EB9EF2@SJ1PR11MB6129.namprd11.prod.outlook.com>
-References: <SJ1PR11MB6129D7DA59A733AD38E081E3B9E02@SJ1PR11MB6129.namprd11.prod.outlook.com>
- <20250123181853.GC1977892@ZenIV>
- <Z5Zazwd0nto-v-RS@tuxmaker.boeblingen.de.ibm.com>
- <20250127050416.GE1977892@ZenIV>
-In-Reply-To: <20250127050416.GE1977892@ZenIV>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ1PR11MB6129:EE_|PH7PR11MB6772:EE_
-x-ms-office365-filtering-correlation-id: 38175606-9e55-4cd8-065a-08dd3fb4f47b
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|366016|1800799024|376014|38070700018;
-x-microsoft-antispam-message-info: =?us-ascii?Q?ilAVDBJl2JnL9i6/8q5MQVSU0wvUD14fQ5i/huy6gNzYv2Dnzbi1xfLLZvAO?=
- =?us-ascii?Q?McUKoU1BqElhKiBXF3wXHSwv5FokKf2HJNwO7kajTxPqB3rT7vPj/X0GqYE8?=
- =?us-ascii?Q?sPnInK0I1sRpfGkwOL3iP51kC+5qZOjsYOrdzW6DedtQWs0uQjguZSSqJQB9?=
- =?us-ascii?Q?MQ4HJp14tQgjJIjGU9xlrf/rV6KP8Pab/oi5/q/Cdir6x/NnFKWCRZQ0nVmH?=
- =?us-ascii?Q?mAuWK5BmJXVdLXT9+CqHDR0uUbS3XC3bsxZJt1Fgn+PfK/FJm9VbBqITImOk?=
- =?us-ascii?Q?zDB3r6BDipL3KPx9Hi2EBsrUvt6LXoVlVzR4XAEEw/+amlgyn186oTENpIa+?=
- =?us-ascii?Q?YEevHCqm6t5nQdTyZUOxdY4QyuwXMgTUWr48v0Wn/lyu0ZU3tp1N7CZUq1RT?=
- =?us-ascii?Q?CawrZu80OkPamQAjh+502ClqaO00PiduVvdKFxcI9O42aH0CkX3C6eUVPt8f?=
- =?us-ascii?Q?iyzbBn60foA0liDcEkOJ2SNni5AeiL0o6pxKlCslYo3DSCZy2H+WzaDHbjXo?=
- =?us-ascii?Q?E3mZLFrhIdePf9hkWZC1tCXDxrCtf1qxks7kZcOEaWWjiIUY1SmIBEFfuhP6?=
- =?us-ascii?Q?1EQ0SUrHuYSEdpEmdmnWk4Loes4SQHOaWIV+aN58EOqjKGNpwdrva+MZdvKZ?=
- =?us-ascii?Q?A96Vw8WL3QeB/VLwOpX9KbPJjatbLYW/1tL818IeEqLVUZbzbAIzr/ofxpLj?=
- =?us-ascii?Q?1c4QCTKZHBhHi3P824xH2FtuizIuHIdgQd0Yj3uqC17zqX51WryOyfr4zWGx?=
- =?us-ascii?Q?AfQBX+RiQ2f2oWh+fEp6NybB3SBLtpZnCXtwATh/AfKgjZxTRkmKxX4u7OqL?=
- =?us-ascii?Q?Pv4pbJTAt13TZ8eOh7jAxlGuU6CRRf1ptD9FerXnyWed2QrQHLVgLnuiy/MP?=
- =?us-ascii?Q?i7BTLugU555CRD1pADdYB286jmekln8zwx3ABj08HfX8DvC9L7kN4JqIvhAL?=
- =?us-ascii?Q?PfjtrWup/0gRxzQ3ESmV3Bux8Emq/kffpbp+vnAcLrjMmQYDMNucbv+gDVBi?=
- =?us-ascii?Q?2Z054ioj8FddcKVLbmVsSbHJqnZ/wWshuex5ro+M1hSR9PKTqFokMVDuuajX?=
- =?us-ascii?Q?UMD834cZt1V2ov4XFXzHcirhvjzhF/p+IZjy3Tk6ry8CsQTAfdURa9IMfUc/?=
- =?us-ascii?Q?p4PnpQYk3m8FqxHCIvlJijso/cQqG8hKWmWRY363S+A/CGDJxho1JrvCc927?=
- =?us-ascii?Q?GnjT4XvAiHoAgyBdPlqbNKPTabRdArcHeIHenJx2lvJpRRnYe5mUgU/ifxfh?=
- =?us-ascii?Q?uXiWWxqHle2rCRnMkPg/sI3jXUzeQOSI+feLJbEW6pyo/xzupcdo5TsAHfLf?=
- =?us-ascii?Q?gWEFHcu7gE5kkzvaStuG6CRVI2p3TgpaVvYE+dyF6p5kSK0p+oitdXdxZhNR?=
- =?us-ascii?Q?31YMszGsSdupc/CYhm43rdcPY2O5Xq53Nk9N/BQ1ihOIDkOPgLaAnvAN1bSG?=
- =?us-ascii?Q?hy3b1up307YkeFVWrQ2BL1DwJBhgMTfZ?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ1PR11MB6129.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(38070700018); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?rPoPTR4uEAqpWlDctNTxZvicaGTP8ow+Et3XxajAUIbnZGAEsY6nlAJJAMuo?=
- =?us-ascii?Q?VIF4GSEcKpHC5o0ql+xh+rDIux7BYrE/dqaSximX4W+GgHHd+5EdERPxbLUH?=
- =?us-ascii?Q?+VL5X3V54gCLdtiOEy26aGaiZb2F3wfCqGKPFbh6W7kuVYBbkYmCdEY8bFXu?=
- =?us-ascii?Q?6A7bL3Ibr/7/GzhUYZ3n6hIR6UedhzDdOucJBr7SUlW+0+ZFkrdAJATHx+SL?=
- =?us-ascii?Q?LPXAoXMUiaEcGKhHFhIbWG6Mta1fStKS6MiuKxFosjdQJabvu0o2qVah7BjC?=
- =?us-ascii?Q?aCM+wwX3otMi/wqCTsQUWZ0SYLElmGfBzsXWV/Fbx77Q7Wu2QFnxD0YLg88D?=
- =?us-ascii?Q?rUHnynQlOr2RL+7dfe1ljNyGisF8YYdQFwfJVnHsnRJuuJvyAsdqfN3anwMm?=
- =?us-ascii?Q?SwYLz9rDIcQaiXJ/3MSX56oe/Z8zdUTsCRYridBTzdK64s1l4uBiQUiy8RJ+?=
- =?us-ascii?Q?Vh8HrMvCmgq002eNHejZXAlcDe5zaB4RT4tcT+rwJTDIw8ZYCf4Tetgq0yoo?=
- =?us-ascii?Q?/rF6eQaRpvg/WbyOY83bDvYe7JSq0GoINGc6R2KBIW9+vU50vH6xbLmIEtbm?=
- =?us-ascii?Q?pBmsqPbsBcQXnbuYcEKUMTM+KuTntVYUz/EAqtVoyj3gS0Q4ts5JSzLPZ8pJ?=
- =?us-ascii?Q?yIuaXOHZykY+qfCiVLyJ588Nsj2WxGgV1pF1ZRJzUW63/e07qyRlmNbUWKoN?=
- =?us-ascii?Q?yddU5KEgXnJA6FTuWn0GPyJX44q+ZgMleBrNHiIF+uQ9WM1sTWiwnJpfYqcN?=
- =?us-ascii?Q?LN3w87XWOd3LSI5ShKPWemert0qUxX+5geRf2lLa6MAKj8VNo9AgijVfhuCU?=
- =?us-ascii?Q?cq4jbCTX27T/vvKtnrqpTPATwWxUpCzjRcTdD2LKz2CZv1JzevaejeJPk1NA?=
- =?us-ascii?Q?leMvinxJ+mDS/dzbqoua0virjEIUZNaMI/IvjpfmOHkmBC3+NrlKwCae2vzZ?=
- =?us-ascii?Q?ChKkIyYOQFfY+mOxXmtb6hRbAliW31qiMoh2GBHUywfPzt/RqbmUbM1x2mb7?=
- =?us-ascii?Q?384FqdmIaGLJU17Hf3rCQ2R/GtwLCk/88i/o4xpi/mEzxAdtlw4X/wt2X96b?=
- =?us-ascii?Q?/ooeiNdiEg7a34f90XQx7bf1ym88dYkj6jYVPMDSuFuzVIqbUYmerbvVLiW8?=
- =?us-ascii?Q?nDICLsXas8ynvJcpS+8DMRHbsmKAk82iCAhMWDwaS1i2/MoKxscXEhHnv6uU?=
- =?us-ascii?Q?MhrZ6wyRfn1IwggN2Yq01grOQQC/4FepM25XapZMt9AbXRK1qyRWGcs2Muyh?=
- =?us-ascii?Q?GRqiBwPqJsulzX3ZlyKtnUZjtPYSEJLkNlDa76Qyn0JCr/btqLxTnSG7R9h4?=
- =?us-ascii?Q?B+O0RNM2FWAtUBF4thV1eqZvSV1NbvH6TqjBIdQiGFcWdwpaQiXQ/Z4Bo8dg?=
- =?us-ascii?Q?SiEtkaF7PhWD90wQpfNA1Ze4neDI2xmobDN/aHBKplar4l2BLRHC1bJAqs1v?=
- =?us-ascii?Q?KmIM+JbZPyzk0f7iebfvIxNmiQKZIZvhWe8wGWGyFoUSeMF5KEaVXFRhmoY5?=
- =?us-ascii?Q?6vXrQVX7h87kXdNzBCd802hjbkZ+6AOeqctQYPECfOJmVSY/gtKL/NpqnKbH?=
- =?us-ascii?Q?03jdLe8zQuw+dWqZJZYN1ozMJVGskVCTIC2K5YblvzWcnx0hn6g5GvcsFtDs?=
- =?us-ascii?Q?3w=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=Sophos;i="6.13,241,1732608000"; d="scan'208";a="108879558"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 28 Jan 2025 08:14:10 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 28 Jan 2025 18:14:09 +0200
+Date: Tue, 28 Jan 2025 18:14:09 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Vinod Govindapillai <vinod.govindapillai@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ ville.syrjala@intel.com, santhosh.reddy.guddati@intel.com,
+ jani.saarinen@intel.com
+Subject: Re: [PATCH v5 4/7] drm/i915/display: update and store the plane
+ damage clips
+Message-ID: <Z5kCUciT96HT6IBI@intel.com>
+References: <20250128155418.305595-1-vinod.govindapillai@intel.com>
+ <20250128155418.305595-5-vinod.govindapillai@intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PR11MB6129.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 38175606-9e55-4cd8-065a-08dd3fb4f47b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Jan 2025 16:00:58.4432 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 6n3aUFlbeL3PHmx5qWbN8I2sOI6CwDdK/oDyp6UwZuV0YInToxgyBdDjF8viXTfW+qy3Br5jVpcn9uUEIESM2BPyZ+zF/lWyijNaxZOB0xE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6772
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250128155418.305595-5-vinod.govindapillai@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -187,106 +74,142 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hello Al,
-
-> -----Original Message-----
-> From: Al Viro <viro@ftp.linux.org.uk> On Behalf Of Al Viro
-> Sent: Monday, January 27, 2025 10:34 AM
-> To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Cc: Borah, Chaitanya Kumar <chaitanya.kumar.borah@intel.com>; intel-
-> gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org; Kurmi, Suresh
-> Kumar <suresh.kumar.kurmi@intel.com>; Saarinen, Jani
-> <jani.saarinen@intel.com>; linux-fsdevel@vger.kernel.org; Alexander Gorde=
-ev
-> <agordeev@linux.ibm.com>
-> Subject: Re: Regression on linux-next (next-20250120)
->=20
-> On Sun, Jan 26, 2025 at 04:54:55PM +0100, Alexander Gordeev wrote:
->=20
-> > > > Since the version next-20250120 [2], we are seeing the following
-> > > > regression
-> > >
-> > > Ugh...  To narrow the things down, could you see if replacing
-> > >                 fsd =3D kmalloc(sizeof(*fsd), GFP_KERNEL); with
-> > >                 fsd =3D kzalloc(sizeof(*fsd), GFP_KERNEL); in
-> > > fs/debugfs/file.c:__debugfs_file_get() affects the test?
-> >
-> > This change fixes lots of the below failures in our CI. FWIW:
-> >
-> > Tested-by: Alexander Gordeev <agordeev@linux.ibm.com>
->=20
-> The real fix follows:
->=20
-> [PATCH] Fix the missing initializations in __debugfs_file_get()
->=20
-> both method table pointers in debugfs_fsdata need to be initialized,
-> obviously...
->=20
-> Fixes: 41a0ecc0997c "debugfs: get rid of dynamically allocation proxy_ops=
-"
-> Fucked-up-by: Al Viro <viro@zeniv.linux.org.uk>
-> Signed-off-by: Al Viro <viro@zeniv.linux.org.uk>
+On Tue, Jan 28, 2025 at 05:54:15PM +0200, Vinod Govindapillai wrote:
+> Userspace can pass damage area clips per plane to track
+> changes in a plane and some display components can utilze
+> these damage clips for efficiently handling use cases like
+> FBC, PSR etc. A merged damage area is generated and its
+> coordinates are updated relative to viewport and HW and
+> stored in the plane_state. This merged damage areas will be
+> used for FBC dirty rect support in xe3 in the follow-up
+> patch.
+> 
+> Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
 > ---
-> diff --git a/fs/debugfs/file.c b/fs/debugfs/file.c index
-> e33cc77699cd..212cd8128e1f 100644
-> --- a/fs/debugfs/file.c
-> +++ b/fs/debugfs/file.c
-> @@ -111,6 +111,7 @@ static int __debugfs_file_get(struct dentry *dentry,
-> enum dbgfs_get_mode mode)
->  				fsd->methods |=3D HAS_READ;
->  			if (ops->write)
->  				fsd->methods |=3D HAS_WRITE;
-> +			fsd->real_fops =3D NULL;
->  		} else {
->  			const struct file_operations *ops;
->  			ops =3D fsd->real_fops =3D DEBUGFS_I(inode)->real_fops;
-> @@ -124,6 +125,7 @@ static int __debugfs_file_get(struct dentry *dentry,
-> enum dbgfs_get_mode mode)
->  				fsd->methods |=3D HAS_IOCTL;
->  			if (ops->poll)
->  				fsd->methods |=3D HAS_POLL;
-> +			fsd->short_fops =3D NULL;
->  		}
->  		refcount_set(&fsd->active_users, 1);
->  		init_completion(&fsd->active_users_drained);
+>  .../gpu/drm/i915/display/intel_atomic_plane.c |  5 ++
+>  .../drm/i915/display/intel_display_types.h    |  2 +
+>  .../drm/i915/display/skl_universal_plane.c    | 47 +++++++++++++++++++
+>  3 files changed, 54 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> index 8da7ee13447c..3d463cfe1f3c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+> @@ -36,6 +36,7 @@
+>  
+>  #include <drm/drm_atomic_helper.h>
+>  #include <drm/drm_blend.h>
+> +#include <drm/drm_damage_helper.h>
+>  #include <drm/drm_fourcc.h>
+>  #include <drm/drm_gem.h>
+>  #include <drm/drm_gem_atomic_helper.h>
+> @@ -713,6 +714,10 @@ int intel_plane_atomic_check(struct intel_atomic_state *state,
+>  					  new_primary_crtc_plane_state,
+>  					  crtc);
+>  
+> +	/* Verify plane damage - damage discarded on full modeset */
+> +	drm_atomic_helper_check_plane_damage(&state->base,
+> +					     &new_plane_state->uapi);
 
+That guy doesn't seem to do anything that we want.
 
-Unfortunately this change does not help us. I think it is the methods membe=
-r that causes the problem. So the following change solves the problem for u=
-s.
+> +
+>  	new_plane_state->uapi.visible = false;
+>  	if (!new_crtc_state)
+>  		return 0;
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index bc65c4bd9dc0..495c497645c0 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -695,6 +695,8 @@ struct intel_plane_state {
+>  	u64 ccval;
+>  
+>  	const char *no_fbc_reason;
+> +
+> +	struct drm_rect damage_merged;
+>  };
+>  
+>  struct intel_initial_plane_config {
+> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> index 8d09a1f8c3e1..fc5b9d56c8bc 100644
+> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> @@ -2249,6 +2249,47 @@ static void check_protection(struct intel_plane_state *plane_state)
+>  		!plane_state->decrypt;
+>  }
+>  
+> +static void
+> +skl_plane_check_plane_damage(const struct intel_plane_state *old_plane_state,
+> +			     struct intel_plane_state *new_plane_state)
+> +{
+> +	struct drm_rect *damage_merged = &new_plane_state->damage_merged;
+> +
+> +	drm_atomic_helper_damage_merged(&old_plane_state->uapi,
+> +					&new_plane_state->uapi,
+> +					damage_merged);
 
+You're calling that too late. With bigjoiner it's now going to
+use the uapi state from the wrong plane. This thing needs to be
+done in intel_plane_copy_uapi_to_hw_state().
 
---- a/fs/debugfs/file.c
-+++ b/fs/debugfs/file.c
-@@ -102,6 +102,8 @@ static int __debugfs_file_get(struct dentry *dentry, en=
-um dbgfs_get_mode mode)
-                if (!fsd)
-                        return -ENOMEM;
+> +}
+> +
+> +static void
+> +skl_plane_check_damage_with_viewport(struct intel_plane_state *plane_state)
+> +{
+> +	struct drm_rect *damage_merged = &plane_state->damage_merged;
+> +	const struct drm_framebuffer *fb = plane_state->hw.fb;
+> +	unsigned int rotation = plane_state->hw.rotation;
+> +	struct drm_rect *src = &plane_state->uapi.src;
+> +
+> +	if (drm_rotation_90_or_270(rotation)) {
+> +		drm_rect_rotate(damage_merged, fb->width, fb->height,
+> +				DRM_MODE_ROTATE_270);
+> +		drm_rect_translate(damage_merged, -(src->y1 >> 16),
+> +				   -(src->x1 >> 16));
+> +	} else {
+> +		drm_rect_translate(damage_merged, -(src->x1 >> 16),
+> +				   -(src->y1 >> 16));
+> +	}
+> +}
+> +
+> +static void
+> +skl_plane_check_damage_with_plane_surf(struct intel_plane_state *plane_state)
+> +{
+> +	struct drm_rect *damage_merged = &plane_state->damage_merged;
+> +	struct drm_rect src;
+> +
+> +	drm_rect_fp_to_int(&src, &plane_state->uapi.src);
+> +	drm_rect_translate(damage_merged, src.x1, src.y1);
+> +	drm_rect_intersect(damage_merged, &src);
+> +}
+> +
+>  static int skl_plane_check(struct intel_crtc_state *crtc_state,
+>  			   const struct intel_plane_state *old_plane_state,
+>  			   struct intel_plane_state *plane_state)
+> @@ -2275,6 +2316,10 @@ static int skl_plane_check(struct intel_crtc_state *crtc_state,
+>  	if (ret)
+>  		return ret;
+>  
+> +	skl_plane_check_plane_damage(old_plane_state, plane_state);
+> +
+> +	skl_plane_check_damage_with_viewport(plane_state);
+> +
+>  	ret = skl_check_plane_surface(plane_state);
+>  	if (ret)
+>  		return ret;
+> @@ -2290,6 +2335,8 @@ static int skl_plane_check(struct intel_crtc_state *crtc_state,
+>  	if (ret)
+>  		return ret;
+>  
+> +	skl_plane_check_damage_with_plane_surf(plane_state);
+> +
+>  	ret = skl_plane_check_nv12_rotation(plane_state);
+>  	if (ret)
+>  		return ret;
+> -- 
+> 2.43.0
 
-+               fsd->methods =3D 0;
-+
-                if (mode =3D=3D DBGFS_GET_SHORT) {
-                        const struct debugfs_short_fops *ops;
-                        ops =3D fsd->short_fops =3D DEBUGFS_I(inode)->short=
-_fops;
-
-My guess is, since methods have some junk value in it, we are trying to cal=
-l a read function for a debugfs entry for which it doesn't exist. That lead=
-s to the failure.
-
-<4>[   34.240163] Call Trace:
-<4>[   34.240164]  <TASK>
-<4>[   34.240165]  ? show_regs+0x6c/0x80
-<4>[   34.240169]  ? __die+0x24/0x80
-<4>[   34.240171]  ? page_fault_oops+0x175/0x5d0
-<4>[   34.240176]  ? do_user_addr_fault+0x4c6/0x9d0
-<4>[   34.240179]  ? exc_page_fault+0x8a/0x300
-<4>[   34.240182]  ? asm_exc_page_fault+0x27/0x30
-<4>[   34.240187]  *full_proxy_read*+0x6b/0xb0
-<4>[   34.240191]  vfs_read+0xf9/0x390
-
-My take would be to stick with the kzalloc like you suggested.
-
-Regards
-
-Chaitanya
+-- 
+Ville Syrjälä
+Intel
