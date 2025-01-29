@@ -2,44 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95BE1A22582
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2025 22:11:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 10BD2A22588
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2025 22:14:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECF0710E89D;
-	Wed, 29 Jan 2025 21:11:28 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=linux.org.uk header.i=@linux.org.uk header.b="ab/Y/nQH";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8D3410E1A1;
+	Wed, 29 Jan 2025 21:14:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from zeniv.linux.org.uk (zeniv.linux.org.uk [62.89.141.173])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6651710E89D
- for <intel-gfx@lists.freedesktop.org>; Wed, 29 Jan 2025 21:11:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=linux.org.uk; s=zeniv-20220401; h=Sender:In-Reply-To:Content-Type:
- MIME-Version:References:Message-ID:Subject:To:From:Date:Reply-To:Cc:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=582xf3yRU4I9YFbpR+DmNjNNz7gN2JvLtnAcc4/GJdw=; b=ab/Y/nQHYXmI8SZjt/boZU5fnL
- De8KpslHvmi7PlCT4xUEmGNAZ7qMiv74l5Zzd2PUS0D6tJkhZQfxiUj0eHJaILAi+83Y8kD7gYL8s
- 4xK8429wQHKi+Zvm01g0d6nADC/ArBTs2mRp1euyXeVBAGPLGMaAxDrVz2PyRvtPs4V8d1OCZ0gix
- F+cPsNc3f8z7QIFJVyrDhTKn2sXi9NLFNoPITsajrChyw5Y20WDQwVYqCm6c8RwLVLRFHVbelS6+S
- um5/AU2spT3tC1ta11MeplEjNZ641ptt+TAByGYlBS9Z27329wp8Igveeha/fB5lAxiSkNPRjrjEf
- VlEc0iFg==;
-Received: from viro by zeniv.linux.org.uk with local (Exim 4.98 #2 (Red Hat
- Linux)) id 1tdFLK-0000000FaWX-05c3
- for intel-gfx@lists.freedesktop.org; Wed, 29 Jan 2025 21:11:26 +0000
-Date: Wed, 29 Jan 2025 21:11:25 +0000
-From: Al Viro <viro@zeniv.linux.org.uk>
-To: intel-gfx@lists.freedesktop.org
-Subject: Re: =?utf-8?B?4pyXIEZpLkNJLkJVSUxE?= =?utf-8?Q?=3A?= failure for
- Regression on linux-next (next-20250120) (rev2)
-Message-ID: <20250129211125.GS1977892@ZenIV>
-References: <SJ1PR11MB6129D7DA59A733AD38E081E3B9E02@SJ1PR11MB6129.namprd11.prod.outlook.com>
- <173818401779.2530294.11352683650301608238@b555e5b46a47>
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4353A10E1A1;
+ Wed, 29 Jan 2025 21:14:30 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <173818401779.2530294.11352683650301608238@b555e5b46a47>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/ddi=3A_Fix/?=
+ =?utf-8?q?simplify_port_enabling/disabling?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 29 Jan 2025 21:14:30 -0000
+Message-ID: <173818527023.2599720.13898525493420526937@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250129200221.2508101-1-imre.deak@intel.com>
+In-Reply-To: <20250129200221.2508101-1-imre.deak@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,33 +37,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 29, 2025 at 08:53:37PM -0000, Patchwork wrote:
-> == Series Details ==
-> 
-> Series: Regression on linux-next (next-20250120) (rev2)
-> URL   : https://patchwork.freedesktop.org/series/143978/
-> State : failure
-> 
-> == Summary ==
-> 
-> Error: patch https://patchwork.freedesktop.org/api/1.0/series/143978/revisions/2/mbox/ not applied
-> Applying: Regression on linux-next (next-20250120)
-> Using index info to reconstruct a base tree...
-> M	fs/debugfs/file.c
-> Falling back to patching base and 3-way merge...
-> Auto-merging fs/debugfs/file.c
-> CONFLICT (content): Merge conflict in fs/debugfs/file.c
-> error: Failed to merge in the changes.
-> hint: Use 'git am --show-current-patch=diff' to see the failed patch
-> Patch failed at 0001 Regression on linux-next (next-20250120)
-> When you have resolved this problem, run "git am --continue".
-> If you prefer to skip this patch, run "git am --skip" instead.
-> To restore the original branch and stop patching, run "git am --abort".
-> Build failed, no error log produced
+== Series Details ==
 
-Not to put too fine a point on that, but... which tree does it fail
-to apply to, seeing that both mainline and -next are identical
-in fs/debugfs/* and the patch in question applies cleanly to either?
+Series: drm/i915/ddi: Fix/simplify port enabling/disabling
+URL   : https://patchwork.freedesktop.org/series/144122/
+State : warning
+
+== Summary ==
+
+Error: dim checkpatch failed
+393239b4a930 drm/i915/dsi: Use TRANS_DDI_FUNC_CTL's own port width macro
+72f7abf7639f drm/i915/ddi: Fix HDMI port width programming in DDI_BUF_CTL
+-:33: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'width' - possible side-effects?
+#33: FILE: drivers/gpu/drm/i915/i915_reg.h:3638:
++#define  DDI_PORT_WIDTH(width)			(((width) == 3 ? 4 : ((width) - 1)) << 1)
+
+total: 0 errors, 0 warnings, 1 checks, 16 lines checked
+27f2c81f2436 drm/i915/ddi: Make all the PORT_WIDTH macros work the same way
+-:23: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'width' - possible side-effects?
+#23: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:113:
++#define   XELPDP_PORT_WIDTH(width)			REG_FIELD_PREP(XELPDP_PORT_WIDTH_MASK, \
++								       (width) == 3 ? 4 : (width) - 1)
+
+-:24: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#24: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:114:
++								       (width) == 3 ? 4 : (width) - 1)
+
+total: 0 errors, 1 warnings, 1 checks, 51 lines checked
+b6d9e741cbe8 drm/i915/ddi: Set missing TC DP PHY lane stagger delay in DDI_BUF_CTL
+a8b8fc2964ef drm/i915/ddi: Simplify the port enabling via DDI_BUF_CTL
+8dd698c540da drm/i915/ddi: Simplify the port disabling via DDI_BUF_CTL
+a9f33a241a47 drm/i915/ddi: Simplify waiting for a port to idle via DDI_BUF_CTL
+4ca0ab7e962c drm/i915/ddi: Move platform checks within mtl_ddi_enable/disable_d2d_link()
+737bb169b41a drm/i915/ddi: Unify the platform specific functions disabling a port
+4f1371dddcf0 drm/i915/ddi: Add a helper to enable a port
+f30d2821af3d drm/i915/ddi: Sanitize DDI_BUF_CTL register definitions
+-:47: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'width' - possible side-effects?
+#47: FILE: drivers/gpu/drm/i915/i915_reg.h:3643:
++#define  DDI_PORT_WIDTH(width)			REG_FIELD_PREP(DDI_PORT_WIDTH_MASK, \
++							       (width) == 3 ? 4 : (width) - 1)
+
+total: 0 errors, 0 warnings, 1 checks, 39 lines checked
+f509c0c72cc7 drm/i915/ddi: Configure/enable a port in DDI_BUF_CTL via read-modify-write
+4ea9be828a73 drm/i915/ddi: Factor out a helper to get DDI_BUF_CTL's config value
+8854946e6719 drm/i915/ddi: Reuse helper to compute the HDMI DDI_BUF_CTL config
+d3a7a50b37a2 drm/i915/ddi: Reuse helper to compute the HDMI PORT_BUF_CTL1 config
+230d99a3657a drm/i915/ddi: Move platform/encoder checks within adlp_tbt_to_dp_alt_switch_wa()
+4ff7b0efe88b drm/i915/ddi: Unify the platform specific functions enabling a port
+
+
