@@ -2,61 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56C9FA21F8C
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2025 15:47:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 25A36A22011
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2025 16:19:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 352D510E807;
-	Wed, 29 Jan 2025 14:47:18 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GqnvufDu";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id A6A2610E816;
+	Wed, 29 Jan 2025 15:19:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6848510E813;
- Wed, 29 Jan 2025 14:47:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738162036; x=1769698036;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=61FT0vW+rNEbzN7Nr3Zxbfdxu+1uJLMJxeCHpwyV5Ro=;
- b=GqnvufDu5545/AfuoekQhp2dkbpZ2Yb0Gc3mI3UHS3pOGcZrBcEzXoeA
- yIt2m23yhuyY9Xb82KQ1G1Dq9QBXSfHHsTW764TPyuRM3jvCosma4Ol/2
- DKwefOuRftTitHfAg0QVNElw5wMnCTz1qv270IXhgbGSpIWZ2i0yrKoC+
- bnVUDgHzzj5az0kF0myirK5L4STUmpq+qyiPm70wtfMYiLc9HjFIi25yS
- xu1iJZeZrYkn4h7iYKjwb+xb2+K92ozTZXhi0EpKX1fJhZnv5GRfKq5oE
- UVy5TpRLc62oIokgWqz4myUq2aHuQFG/f0h3SzY+vdxdul5U2XGgh+nFR w==;
-X-CSE-ConnectionGUID: cRmRibPqSqiSoWZs3yyLdQ==
-X-CSE-MsgGUID: YSjRehGfS1GpvnyiE+XrgA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11330"; a="64040686"
-X-IronPort-AV: E=Sophos;i="6.13,243,1732608000"; d="scan'208";a="64040686"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2025 06:47:16 -0800
-X-CSE-ConnectionGUID: EBaF77CASUagnpYw/yqU1A==
-X-CSE-MsgGUID: 1UwG4gOdSZSCI8ZYcdYzwA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="113057080"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.235])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2025 06:47:14 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
-	imre.deak@intel.com
-Subject: [PATCH 6/6] drm/i915/mst: use min_array() and max_array() instead of
- hand-rolling
-Date: Wed, 29 Jan 2025 16:46:38 +0200
-Message-Id: <62a104535c01c667a99ec209c3218a13355568cf.1738161945.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1738161945.git.jani.nikula@intel.com>
-References: <cover.1738161945.git.jani.nikula@intel.com>
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A0EA210E816;
+ Wed, 29 Jan 2025 15:19:37 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/display=3A_?=
+ =?utf-8?q?Allow_display_PHYs_to_reset_power_state?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mika Kahola" <mika.kahola@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 29 Jan 2025 15:19:37 -0000
+Message-ID: <173816397765.2457158.1649401998623210683@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250129130105.198817-1-mika.kahola@intel.com>
+In-Reply-To: <20250129130105.198817-1-mika.kahola@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,48 +37,56 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Improve code clarity by using existing min_array() and max_array()
-helpers to find the lowest and highest values in an array.
+== Series Details ==
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 13 +++----------
- 1 file changed, 3 insertions(+), 10 deletions(-)
+Series: drm/i915/display: Allow display PHYs to reset power state
+URL   : https://patchwork.freedesktop.org/series/144102/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index a4ed4f379d1e..60b003bcd1ee 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -391,7 +391,7 @@ static int mst_stream_dsc_compute_link_config(struct intel_dp *intel_dp,
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
- 	struct intel_connector *connector = to_intel_connector(conn_state->connector);
--	int i, num_bpc;
-+	int num_bpc;
- 	u8 dsc_bpc[3] = {};
- 	int min_bpp, max_bpp, sink_min_bpp, sink_max_bpp;
- 	int min_compressed_bpp, max_compressed_bpp;
-@@ -405,15 +405,8 @@ static int mst_stream_dsc_compute_link_config(struct intel_dp *intel_dp,
- 	drm_dbg_kms(display->drm, "DSC Source supported min bpp %d max bpp %d\n",
- 		    min_bpp, max_bpp);
- 
--	sink_max_bpp = dsc_bpc[0] * 3;
--	sink_min_bpp = sink_max_bpp;
--
--	for (i = 1; i < num_bpc; i++) {
--		if (sink_min_bpp > dsc_bpc[i] * 3)
--			sink_min_bpp = dsc_bpc[i] * 3;
--		if (sink_max_bpp < dsc_bpc[i] * 3)
--			sink_max_bpp = dsc_bpc[i] * 3;
--	}
-+	sink_min_bpp = min_array(dsc_bpc, num_bpc) * 3;
-+	sink_max_bpp = max_array(dsc_bpc, num_bpc) * 3;
- 
- 	drm_dbg_kms(display->drm, "DSC Sink supported min bpp %d max bpp %d\n",
- 		    sink_min_bpp, sink_max_bpp);
--- 
-2.39.5
+== Summary ==
+
+Error: dim checkpatch failed
+74a393b566c5 drm/i915/display: Drop crtc_state from C10/C20 pll programming
+-:53: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
+#53: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:2053:
++					      const struct intel_c10pll_state * const *tables, int port_clock, bool is_dp,
+
+-:94: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
+#94: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:2083:
++						 crtc_state->port_clock, intel_crtc_has_dp_encoder(crtc_state),
+
+-:248: WARNING:LONG_LINE: line length of 117 exceeds 100 columns
+#248: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:3092:
++			      intel_crtc_has_dp_encoder(crtc_state), crtc_state->port_clock, crtc_state->lane_count);
+
+-:250: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#250: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:3094:
++
++}
+
+total: 0 errors, 3 warnings, 1 checks, 225 lines checked
+04f9a9dc3240 drm/i915/display: Allow display PHYs to reset power state
+-:12: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#12: 
+1. Follow the PLL Enable Sequence, using any valid frequency such as DP 1.62 GHz.
+
+-:52: WARNING:LONG_LINE: line length of 111 exceeds 100 columns
+#52: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:3587:
++			if (REG_FIELD_GET(XELPDP_DDI_CLOCK_SELECT_MASK, val) == XELPDP_DDI_CLOCK_SELECT_NONE) {
+
+-:55: WARNING:LONG_LINE: line length of 126 exceeds 100 columns
+#55: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:3590:
++				intel_c10pll_calc_state_from_table(encoder, mtl_c10_edp_tables, port_clock, true, &pll_state);
+
+-:55: WARNING:LINE_SPACING: Missing a blank line after declarations
+#55: FILE: drivers/gpu/drm/i915/display/intel_cx0_phy.c:3590:
++				int port_clock = 162000;
++				intel_c10pll_calc_state_from_table(encoder, mtl_c10_edp_tables, port_clock, true, &pll_state);
+
+total: 0 errors, 4 warnings, 0 checks, 72 lines checked
+
 
