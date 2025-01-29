@@ -2,52 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D6FCA224F0
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2025 21:02:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9761A224EB
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2025 21:01:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 69AC610E8B5;
-	Wed, 29 Jan 2025 20:01:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FD9710E8AA;
+	Wed, 29 Jan 2025 20:01:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jM18nmL0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aNSc6ANv";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 625B010E88F;
- Wed, 29 Jan 2025 20:01:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D72A10E8A0;
+ Wed, 29 Jan 2025 20:01:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738180913; x=1769716913;
+ t=1738180915; x=1769716915;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ObVtlcP77zvVBys9uz+fP1lD2I0L1wlTwiNmrducPeo=;
- b=jM18nmL0QhIA5oZX25mbJGT9mmHcjX5Ok33cN/pYz5xnMmw9QvszPdi8
- xAHSs73eZorLKb18ix20D6NnVnXuJK3U8plTy8m8fjzFeLnPAsnMx+JZ9
- 3YWyc2qC5CNvlpESGrL1y/ZGAS4GYLfTvZXQ1RXw+5cRrtffO61mmz9hQ
- v+FoIo3ZKn4pC6oCEh60efUgfSBIvdB3XCuC5wVQvZRPiA54yIJVf3OSz
- ODeCaNUJ1uJpssgyabrl67cM37MNHCq8DGAWhhgGed30vU6D2DYxLqOUQ
- agAzdKweRMSqSMzIQCH+cNU4r40b5qcT6klUwBhlKqlAOTTxyyJnNajMi g==;
-X-CSE-ConnectionGUID: KpqoZpccQ3aHz7EKv4eLxQ==
-X-CSE-MsgGUID: ThfncO7PSmqWfPY5S1WbEQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11330"; a="38977717"
-X-IronPort-AV: E=Sophos;i="6.13,244,1732608000"; d="scan'208";a="38977717"
+ bh=Zq/Hvqy9mbbOFlZmCBp5Gw0viyiw0NBU53mQ3siYh88=;
+ b=aNSc6ANvGVinoK4WPtfgEk276B3dBRovZG8BpGjpu9It1Vi+tQY8qZsD
+ aLwI4eghW1W3lLRm3NwdDb31YkobNmn5/sOo1fPF/sD+YfrjEjlvTIlom
+ nAcnBrx3qjv5iXgmWrLJA2WiGb3Zs9z0k/MqIVr6eUYRe1tUMgrw8lFui
+ cPHTwCtv+8EkFBUDwKc3zNauVJgFR7lrV1ydny4jkUMqmFsRX0trsIMGc
+ 2OmMmYxrCntS259tYKxmDiJrrfFop0koS2gK8DNZED6ScPCtIcmkRAYB+
+ DJFAi3iQd5igamm2JGYtbyqOegWWeyDA6SVd5EDbbcIbiRUsRjakPGNTv Q==;
+X-CSE-ConnectionGUID: 6RWJX1BuQ1+KbISliDfHCQ==
+X-CSE-MsgGUID: PMH0lc+BSj6edhfy5vEGjg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11330"; a="38977729"
+X-IronPort-AV: E=Sophos;i="6.13,244,1732608000"; d="scan'208";a="38977729"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2025 12:01:39 -0800
-X-CSE-ConnectionGUID: FQ7UrJdPRkCyq2eSHLB7zA==
-X-CSE-MsgGUID: 2tQLq5LkRKalXzwyL+SbyA==
+ 29 Jan 2025 12:01:40 -0800
+X-CSE-ConnectionGUID: xP4UFoCaTIGX9hbMfUqbIg==
+X-CSE-MsgGUID: eQjnG+A4SWmTeoVVMea2pQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="113750909"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="113750911"
 Received: from ideak-desk.fi.intel.com ([10.237.72.78])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2025 12:01:37 -0800
+ 29 Jan 2025 12:01:39 -0800
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Imre Deak <imre.deak@gmail.com>
-Subject: [PATCH 11/17] drm/i915/ddi: Sanitize DDI_BUF_CTL register definitions
-Date: Wed, 29 Jan 2025 22:02:15 +0200
-Message-ID: <20250129200221.2508101-12-imre.deak@intel.com>
+Subject: [PATCH 12/17] drm/i915/ddi: Configure/enable a port in DDI_BUF_CTL
+ via read-modify-write
+Date: Wed, 29 Jan 2025 22:02:16 +0200
+Message-ID: <20250129200221.2508101-13-imre.deak@intel.com>
 X-Mailer: git-send-email 2.44.2
 In-Reply-To: <20250129200221.2508101-1-imre.deak@intel.com>
 References: <20250129200221.2508101-1-imre.deak@intel.com>
@@ -70,58 +71,73 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Imre Deak <imre.deak@gmail.com>
 
-Align the DDI_BUF_CTL register flag definitions with how this is done
-elsewhere.
+The various flags in DDI_BUF_CTL must be programmed at different places
+during a modeset. The expected value of the register at any moment is
+cached in the intel_dp::DP variable and the whole register is written
+using this variable. A simpler way would be not maintaining the cached
+value of the register at all and update only specific fields in the
+register via read-modify-write. Some places - like D2D link enabling or
+the port disabling - use RMW already.
+
+Based on the above update the register via RMW during the port
+configuration / enabling as well. After all the places updating
+DDI_BUF_CTL are changed - probably the voltage-swing/pre-emphasis level
+setting is the only one remaining - tracking the register value in
+intel_dp:DP could be removed.
 
 Signed-off-by: Imre Deak <imre.deak@gmail.com>
 ---
- drivers/gpu/drm/i915/i915_reg.h | 22 ++++++++++++----------
- 1 file changed, 12 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/i915/display/intel_ddi.c | 23 ++++++++++++++++++++++-
+ 1 file changed, 22 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 7fe4e71fc08ec..5cee6a96270af 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -3621,27 +3621,29 @@ enum skl_power_gate {
- #define _DDI_BUF_CTL_B				0x64100
- /* Known as DDI_CTL_DE in MTL+ */
- #define DDI_BUF_CTL(port) _MMIO_PORT(port, _DDI_BUF_CTL_A, _DDI_BUF_CTL_B)
--#define  DDI_BUF_CTL_ENABLE			(1 << 31)
-+#define  DDI_BUF_CTL_ENABLE			REG_BIT(31)
- #define  XE2LPD_DDI_BUF_D2D_LINK_ENABLE		REG_BIT(29)
- #define  XE2LPD_DDI_BUF_D2D_LINK_STATE		REG_BIT(28)
--#define  DDI_BUF_TRANS_SELECT(n)	((n) << 24)
--#define  DDI_BUF_EMP_MASK			(0xf << 24)
--#define  DDI_BUF_PHY_LINK_RATE(r)		((r) << 20)
-+#define  DDI_BUF_EMP_MASK			REG_GENMASK(27, 24)
-+#define  DDI_BUF_TRANS_SELECT(n)		REG_FIELD_PREP(DDI_BUF_EMP_MASK, n)
-+#define  DDI_BUF_PHY_LINK_RATE_MASK		REG_GENMASK(23, 20)
-+#define  DDI_BUF_PHY_LINK_RATE(r)		REG_FIELD_PREP(DDI_BUF_PHY_LINK_RATE_MASK, r)
- #define  DDI_BUF_PORT_DATA_MASK			REG_GENMASK(19, 18)
- #define  DDI_BUF_PORT_DATA_10BIT		REG_FIELD_PREP(DDI_BUF_PORT_DATA_MASK, 0)
- #define  DDI_BUF_PORT_DATA_20BIT		REG_FIELD_PREP(DDI_BUF_PORT_DATA_MASK, 1)
- #define  DDI_BUF_PORT_DATA_40BIT		REG_FIELD_PREP(DDI_BUF_PORT_DATA_MASK, 2)
--#define  DDI_BUF_PORT_REVERSAL			(1 << 16)
-+#define  DDI_BUF_PORT_REVERSAL			REG_BIT(16)
- #define  DDI_BUF_LANE_STAGGER_DELAY_MASK	REG_GENMASK(15, 8)
- #define  DDI_BUF_LANE_STAGGER_DELAY(symbols)	REG_FIELD_PREP(DDI_BUF_LANE_STAGGER_DELAY_MASK, \
- 							       symbols)
--#define  DDI_BUF_IS_IDLE			(1 << 7)
-+#define  DDI_BUF_IS_IDLE			REG_BIT(7)
- #define  DDI_BUF_CTL_TC_PHY_OWNERSHIP		REG_BIT(6)
--#define  DDI_A_4_LANES				(1 << 4)
--#define  DDI_PORT_WIDTH(width)			(((width) == 3 ? 4 : ((width) - 1)) << 1)
--#define  DDI_PORT_WIDTH_MASK			(7 << 1)
-+#define  DDI_A_4_LANES				REG_BIT(4)
-+#define  DDI_PORT_WIDTH_MASK			REG_GENMASK(3, 1)
-+#define  DDI_PORT_WIDTH(width)			REG_FIELD_PREP(DDI_PORT_WIDTH_MASK, \
-+							       (width) == 3 ? 4 : (width) - 1)
- #define  DDI_PORT_WIDTH_SHIFT			1
--#define  DDI_INIT_DISPLAY_DETECTED		(1 << 0)
-+#define  DDI_INIT_DISPLAY_DETECTED		REG_BIT(0)
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index ddb182550ad0f..64c42505f2ad6 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -359,6 +359,10 @@ static void intel_ddi_init_dp_buf_reg(struct intel_encoder *encoder,
  
- /* DDI Buffer Translations */
- #define _DDI_BUF_TRANS_A		0x64E00
+ 	if (IS_ALDERLAKE_P(i915) && intel_encoder_is_tc(encoder)) {
+ 		intel_dp->DP |= ddi_buf_phy_link_rate(crtc_state->port_clock);
++		/*
++		 * TODO: remove the following once DDI_BUF_CTL is updated via
++		 * an RMW everywhere.
++		 */
+ 		if (!intel_tc_port_in_tbt_alt_mode(dig_port))
+ 			intel_dp->DP |= DDI_BUF_CTL_TC_PHY_OWNERSHIP;
+ 	}
+@@ -370,6 +374,22 @@ static void intel_ddi_init_dp_buf_reg(struct intel_encoder *encoder,
+ 	}
+ }
+ 
++static u32 intel_ddi_buf_ctl_config_mask(struct intel_encoder *encoder)
++{
++	struct intel_display *display = to_intel_display(encoder);
++	u32 mask = DDI_BUF_PORT_REVERSAL | DDI_A_4_LANES |
++		   DDI_PORT_WIDTH_MASK;
++
++	if (DISPLAY_VER(display) >= 14)
++		mask |= DDI_BUF_PORT_DATA_MASK;
++	if (display->platform.alderlake_p)
++		mask |= DDI_BUF_PHY_LINK_RATE_MASK;
++	if (IS_DISPLAY_VER(display, 11, 13))
++		mask |= DDI_BUF_LANE_STAGGER_DELAY_MASK;
++
++	return mask;
++}
++
+ static int icl_calc_tbt_pll_link(struct drm_i915_private *dev_priv,
+ 				 enum port port)
+ {
+@@ -3062,7 +3082,8 @@ static void intel_enable_ddi_buf(struct intel_encoder *encoder, u32 buf_ctl)
+ 	struct intel_display *display = to_intel_display(encoder);
+ 	enum port port = encoder->port;
+ 
+-	intel_de_write(display, DDI_BUF_CTL(port), buf_ctl | DDI_BUF_CTL_ENABLE);
++	intel_de_rmw(display, DDI_BUF_CTL(port),
++		     intel_ddi_buf_ctl_config_mask(encoder), buf_ctl | DDI_BUF_CTL_ENABLE);
+ 	intel_de_posting_read(display, DDI_BUF_CTL(port));
+ 
+ 	intel_wait_ddi_buf_active(encoder);
 -- 
 2.44.2
 
