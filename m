@@ -2,53 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A09BA224F1
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2025 21:02:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EDCCA224F2
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Jan 2025 21:02:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A36F10E8B6;
-	Wed, 29 Jan 2025 20:01:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9537A10E8B8;
+	Wed, 29 Jan 2025 20:02:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AblBYmKE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jIQhS5o0";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD11110E8B0;
- Wed, 29 Jan 2025 20:01:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD09310E8B0;
+ Wed, 29 Jan 2025 20:01:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738180918; x=1769716918;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=/4IkloCPDRaUl8pM1jxtTxWUIphdBunBdXuUrf8vfLE=;
- b=AblBYmKEV7ofrsdeoRzwP06YuFsvheUoX5aXvHXWDxzrjHvYQvWt1yrC
- 1czVqUAp6GPggFHKXkBM05s1NgmHJXau2SuxEzxPxsVQJazpi1Zv3kWCw
- XXL9xVKDlvLvHGipWvWzejDWbW7Xvq+QZ4tlzT8UAc9SMXMNe4GiwH1Zi
- mr7DPP9Vm5aMGj9Rf/vYEI7JKom0PfeaPQlkIqN0/qRmthuici007uNz7
- dPSD29guzFzq4A/UnGqcPoluNysNBN7OlEuVL0gawcCdPTsYWMCMy4itx
- oEdGzNYzrayS3PjweQpppXsN5/tdmA+f4evWG+zIAs+om2Gv16Lk7P5AC w==;
-X-CSE-ConnectionGUID: MxLwZftCQaCk3ViDwGxqZw==
-X-CSE-MsgGUID: CVwxAQkoTia82Y2vj77yQw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11330"; a="38977760"
-X-IronPort-AV: E=Sophos;i="6.13,244,1732608000"; d="scan'208";a="38977760"
+ t=1738180919; x=1769716919;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=M9NJgq1Y1hVQuw72B1H9u6s5rF7eFSlV6YJN6iSDS9U=;
+ b=jIQhS5o0WA0z4G0c83ZnDEYfBPBOm4ASLDUM8fOUh+XHVwOQ9H6zr43C
+ 5GA5WTauAg1aCvvWZRdmqVrox6TRkt96UmBXsFQLFSVZj/Id8TmFYZ2kR
+ ZUL8utryhRpVvrxO6rocPeotN/jx6QAVG2OMr8+AJo/DT2Rk+FDY9rQBm
+ RMVnQi62O3lsKEY7tDcpQZUZdiN6+EgrppZMn4CHlqJWr3a0ZxBPuF87p
+ W+he4LHDSPzz0A9kASoPgX5mBrc4noxOFsdfF58Kw4q3t1PtevxN+p8LW
+ V34SNwzgzLoSaUIFqSoSmIA0OqOepoWwD9n1j/KVmWAM+r9Jq4duMUNOh g==;
+X-CSE-ConnectionGUID: JKYtW5SwSSCLhw6EdmAYcw==
+X-CSE-MsgGUID: kpmqC/Y5SlClBhU5L+B4ZQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11330"; a="38977773"
+X-IronPort-AV: E=Sophos;i="6.13,244,1732608000"; d="scan'208";a="38977773"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2025 12:01:45 -0800
-X-CSE-ConnectionGUID: CeivIZLDTZyffgs58qAxVA==
-X-CSE-MsgGUID: h1sKaDyBQNid28DWXLgbaA==
+ 29 Jan 2025 12:01:46 -0800
+X-CSE-ConnectionGUID: ZOdHJTgAQ862biLClJP7WQ==
+X-CSE-MsgGUID: ykqZK7/kQDq2a9VQK26PuQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="113750920"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="113750921"
 Received: from ideak-desk.fi.intel.com ([10.237.72.78])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2025 12:01:44 -0800
+ 29 Jan 2025 12:01:45 -0800
 From: Imre Deak <imre.deak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: Imre Deak <imre.deak@gmail.com>
-Subject: [PATCH 16/17] drm/i915/ddi: Move platform/encoder checks within
- adlp_tbt_to_dp_alt_switch_wa()
-Date: Wed, 29 Jan 2025 22:02:20 +0200
-Message-ID: <20250129200221.2508101-17-imre.deak@intel.com>
+Subject: [PATCH 17/17] drm/i915/ddi: Unify the platform specific functions
+ enabling a port
+Date: Wed, 29 Jan 2025 22:02:21 +0200
+Message-ID: <20250129200221.2508101-18-imre.deak@intel.com>
 X-Mailer: git-send-email 2.44.2
 In-Reply-To: <20250129200221.2508101-1-imre.deak@intel.com>
 References: <20250129200221.2508101-1-imre.deak@intel.com>
@@ -69,50 +68,134 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-From: Imre Deak <imre.deak@gmail.com>
+The functions enabling a port (as part of link training) for MTL+ and
+earlier platforms only differ by extra steps on MTL+:
+- enable the D2D link
+- set the link parameters
+- configure the PORT_BUF_CTL1 register
 
-The prefix of adlp_tbt_to_dp_alt_switch_wa() function name shows already
-what is the relevant platform and encoder type/mode, so the
-corresponding checks are a detail that can be hidden in the
-function, do so.
+and an extra step on earlier platforms:
+- apply an ADLP TypeC workaround
 
-Signed-off-by: Imre Deak <imre.deak@gmail.com>
+All the extra steps are already/can be skipped on unrelated platforms.
+Combine the two functions accounting for the above differences, removing
+the duplication.
+
+Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c | 10 +++++++---
- 1 file changed, 7 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_ddi.c | 52 ++++--------------------
+ 1 file changed, 8 insertions(+), 44 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 431db1e6b6f07..a2d82a4c4aa77 100644
+index a2d82a4c4aa77..e8bea49a27dbc 100644
 --- a/drivers/gpu/drm/i915/display/intel_ddi.c
 +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -3699,10 +3699,16 @@ intel_ddi_pre_pll_enable(struct intel_atomic_state *state,
- 
- static void adlp_tbt_to_dp_alt_switch_wa(struct intel_encoder *encoder)
- {
-+	struct intel_display *display = to_intel_display(encoder);
- 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-+	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
- 	enum tc_port tc_port = intel_encoder_to_tc(encoder);
- 	int ln;
- 
-+	if (!display->platform.alderlake_p ||
-+	    (!intel_tc_port_in_dp_alt_mode(dig_port) && !intel_tc_port_in_legacy_mode(dig_port)))
-+		return;
-+
- 	for (ln = 0; ln < 2; ln++)
+@@ -2721,7 +2721,7 @@ static void mtl_ddi_pre_enable_dp(struct intel_atomic_state *state,
+ 	 * stream or multi-stream master transcoder" can just be performed
+ 	 * unconditionally here.
+ 	 *
+-	 * mtl_ddi_prepare_link_retrain() that is called by
++	 * intel_ddi_prepare_link_retrain() that is called by
+ 	 * intel_dp_start_link_train() will execute steps: 6.d, 6.f, 6.g, 6.h,
+ 	 * 6.i and 6.j
+ 	 *
+@@ -3713,8 +3713,8 @@ static void adlp_tbt_to_dp_alt_switch_wa(struct intel_encoder *encoder)
  		intel_dkl_phy_rmw(i915, DKL_PCS_DW5(tc_port, ln), DKL_PCS_DW5_CORE_SOFTRESET, 0);
  }
-@@ -3777,9 +3783,7 @@ static void intel_ddi_prepare_link_retrain(struct intel_dp *intel_dp,
- 	intel_de_write(dev_priv, dp_tp_ctl_reg(encoder, crtc_state), dp_tp_ctl);
- 	intel_de_posting_read(dev_priv, dp_tp_ctl_reg(encoder, crtc_state));
  
--	if (IS_ALDERLAKE_P(dev_priv) &&
--	    (intel_tc_port_in_dp_alt_mode(dig_port) || intel_tc_port_in_legacy_mode(dig_port)))
--		adlp_tbt_to_dp_alt_switch_wa(encoder);
+-static void mtl_ddi_prepare_link_retrain(struct intel_dp *intel_dp,
+-					 const struct intel_crtc_state *crtc_state)
++static void intel_ddi_prepare_link_retrain(struct intel_dp *intel_dp,
++					   const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(crtc_state);
+ 	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+@@ -3729,7 +3729,6 @@ static void mtl_ddi_prepare_link_retrain(struct intel_dp *intel_dp,
+ 
+ 	drm_WARN_ON(display->drm, dp_tp_ctl & DP_TP_CTL_ENABLE);
+ 
+-	/* 6.d Configure and enable DP_TP_CTL with link training pattern 1 selected */
+ 	dp_tp_ctl = DP_TP_CTL_ENABLE | DP_TP_CTL_LINK_TRAIN_PAT1;
+ 	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST) ||
+ 	    intel_dp_is_uhbr(crtc_state)) {
+@@ -3742,16 +3741,15 @@ static void mtl_ddi_prepare_link_retrain(struct intel_dp *intel_dp,
+ 	intel_de_write(display, dp_tp_ctl_reg(encoder, crtc_state), dp_tp_ctl);
+ 	intel_de_posting_read(display, dp_tp_ctl_reg(encoder, crtc_state));
+ 
+-	/* 6.f Enable D2D Link */
 +	adlp_tbt_to_dp_alt_switch_wa(encoder);
++
+ 	mtl_ddi_enable_d2d(encoder);
  
- 	intel_enable_ddi_buf(encoder, intel_dp->DP);
+-	/* 6.g Configure voltage swing and related IO settings */
+-	encoder->set_signal_levels(encoder, crtc_state);
++	if (DISPLAY_VER(display) >= 14)
++		encoder->set_signal_levels(encoder, crtc_state);
+ 
+-	/* 6.h Configure PORT_BUF_CTL1 */
+ 	mtl_port_buf_ctl_program(encoder, crtc_state);
+ 
+-	/* 6.i Configure and enable DDI_CTL_DE to start sending valid data to port slice */
+ 	if (DISPLAY_VER(display) >= 20)
+ 		intel_dp->DP |= XE2LPD_DDI_BUF_D2D_LINK_ENABLE;
+ 
+@@ -3759,36 +3757,6 @@ static void mtl_ddi_prepare_link_retrain(struct intel_dp *intel_dp,
  	intel_dp->DP |= DDI_BUF_CTL_ENABLE;
+ }
+ 
+-static void intel_ddi_prepare_link_retrain(struct intel_dp *intel_dp,
+-					   const struct intel_crtc_state *crtc_state)
+-{
+-	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+-	struct intel_encoder *encoder = &dig_port->base;
+-	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+-	u32 dp_tp_ctl;
+-
+-	dp_tp_ctl = intel_de_read(dev_priv, dp_tp_ctl_reg(encoder, crtc_state));
+-
+-	drm_WARN_ON(&dev_priv->drm, dp_tp_ctl & DP_TP_CTL_ENABLE);
+-
+-	dp_tp_ctl = DP_TP_CTL_ENABLE | DP_TP_CTL_LINK_TRAIN_PAT1;
+-	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST) ||
+-	    intel_dp_is_uhbr(crtc_state)) {
+-		dp_tp_ctl |= DP_TP_CTL_MODE_MST;
+-	} else {
+-		dp_tp_ctl |= DP_TP_CTL_MODE_SST;
+-		if (crtc_state->enhanced_framing)
+-			dp_tp_ctl |= DP_TP_CTL_ENHANCED_FRAME_ENABLE;
+-	}
+-	intel_de_write(dev_priv, dp_tp_ctl_reg(encoder, crtc_state), dp_tp_ctl);
+-	intel_de_posting_read(dev_priv, dp_tp_ctl_reg(encoder, crtc_state));
+-
+-	adlp_tbt_to_dp_alt_switch_wa(encoder);
+-
+-	intel_enable_ddi_buf(encoder, intel_dp->DP);
+-	intel_dp->DP |= DDI_BUF_CTL_ENABLE;
+-}
+-
+ static void intel_ddi_set_link_train(struct intel_dp *intel_dp,
+ 				     const struct intel_crtc_state *crtc_state,
+ 				     u8 dp_train_pat)
+@@ -4612,7 +4580,6 @@ static const struct drm_encoder_funcs intel_ddi_funcs = {
+ 
+ static int intel_ddi_init_dp_connector(struct intel_digital_port *dig_port)
+ {
+-	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
+ 	struct intel_connector *connector;
+ 	enum port port = dig_port->base.port;
+ 
+@@ -4621,10 +4588,7 @@ static int intel_ddi_init_dp_connector(struct intel_digital_port *dig_port)
+ 		return -ENOMEM;
+ 
+ 	dig_port->dp.output_reg = DDI_BUF_CTL(port);
+-	if (DISPLAY_VER(i915) >= 14)
+-		dig_port->dp.prepare_link_retrain = mtl_ddi_prepare_link_retrain;
+-	else
+-		dig_port->dp.prepare_link_retrain = intel_ddi_prepare_link_retrain;
++	dig_port->dp.prepare_link_retrain = intel_ddi_prepare_link_retrain;
+ 	dig_port->dp.set_link_train = intel_ddi_set_link_train;
+ 	dig_port->dp.set_idle_link_train = intel_ddi_set_idle_link_train;
+ 
 -- 
 2.44.2
 
