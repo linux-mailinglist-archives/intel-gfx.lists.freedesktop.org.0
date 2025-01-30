@@ -2,63 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCED4A23389
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jan 2025 19:04:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9828CA233FC
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jan 2025 19:45:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A762A10E033;
-	Thu, 30 Jan 2025 18:04:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D44810E038;
+	Thu, 30 Jan 2025 18:45:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B6eGebnw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bFQRQzO7";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7222010E033
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jan 2025 18:04:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89EB710E038;
+ Thu, 30 Jan 2025 18:45:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738260261; x=1769796261;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=EGb0hNrywnzEQHOGNd2lVzWCNXoENFHrVaDwysGiv5Q=;
- b=B6eGebnwXlvi9ZY5/CtbhyPkzUJlr7DpAdjG99jrL06oJB8XgDpMBHsx
- XlAS8v6rgoO77kdc/KtbiShlZzYd9fX50OrYy0SasyJtPTRGXjNZWbfID
- Viy8WZwRXWoxE9PReAFn5T+b0U9sanA176exALoqg8tb+k3QYv86S12KY
- JByTFRQToCTvTFZ8obD9gFASO88bKNhtLlTsW5mkSHNM/nn9labmf+opT
- 6CAKgXuxcHocU1QjGKjurt2/NXRkWNLcpxu5Yho4KNznLNw2rFd92BiRB
- hTLX8X7jv2zGIl8i49EMj8/O7nXROltngTL+YmkyNcsGDEp22HhPzppyn g==;
-X-CSE-ConnectionGUID: CxMLSxocSt21diXPwZV8cQ==
-X-CSE-MsgGUID: Y2L/75NbTDKKBkJFN6IvYA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11331"; a="61291211"
-X-IronPort-AV: E=Sophos;i="6.13,246,1732608000"; d="scan'208";a="61291211"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2025 10:04:20 -0800
-X-CSE-ConnectionGUID: wrcHr1KvTCS37xr/7oPRWg==
-X-CSE-MsgGUID: l3zVZ6LrTzaof+NuKYL60g==
+ t=1738262721; x=1769798721;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=uppP1ES5lfNAddSqpaAGpJBDXw7nTKR2moWuKD8WGa0=;
+ b=bFQRQzO7QqIrVMcnQ6zHt3WuW96de4JzKACe0D/kGwSA+NUTm3cTLOr/
+ Al2F9oO7KrSPVbx9bEaEsb5Du+/08axjmBI0Pd2uJYGJ2Gh4n96SfnGSO
+ tCsc7Oj4YaPSe/XcbomCpVXp9IXXHASfPJthJLY5NwGq53PEEzRsz+fF2
+ n85m3ktktpzmYiTexBV25EfNwqT00308bv4l0aN+/MSZC03bd7pBM8moP
+ X25uuR677GItsIu/RMqkxGonhUlgm1YjmotnCJ7EZTDSnDX+FOCWDKZ4J
+ qojqRd3B5MB/4fGDeKPTntiYlJaYffJ1MiIURHdG4RtkVDPaJBZZiD1rb g==;
+X-CSE-ConnectionGUID: VTb5kjyTSBaJu6aXei67lg==
+X-CSE-MsgGUID: XfctDjwlRA+PA4QWDl62IA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11331"; a="38068225"
+X-IronPort-AV: E=Sophos;i="6.13,246,1732608000"; d="scan'208";a="38068225"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2025 10:45:21 -0800
+X-CSE-ConnectionGUID: RqIlJrdHSHa5iIp2XIoG8w==
+X-CSE-MsgGUID: 6j6h3y12SbCcossTf2N6pw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,246,1732608000"; d="scan'208";a="114405281"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa004.fm.intel.com with ESMTP; 30 Jan 2025 10:04:18 -0800
-Received: from [10.245.96.215] (mwajdecz-MOBL.ger.corp.intel.com
- [10.245.96.215])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 64B492FC65;
- Thu, 30 Jan 2025 18:04:15 +0000 (GMT)
-Message-ID: <538c4c54-de0f-4d5a-ae8e-3fc5d812be7b@intel.com>
-Date: Thu, 30 Jan 2025 19:04:14 +0100
+X-IronPort-AV: E=Sophos;i="6.13,246,1732608000"; d="scan'208";a="109561240"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 30 Jan 2025 10:45:19 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Thu, 30 Jan 2025 20:45:18 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: [PATCH 0/3] drm/i915/vrr: Fix DSB+VRR usage for PTL+
+Date: Thu, 30 Jan 2025 20:45:15 +0200
+Message-ID: <20250130184518.22353-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.45.3
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: TLB Invalidation time out on i915 SR-IOV passthrough
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- MARDI Youness <youness.mardi@cs-soprasteria.com>,
- "Nikkanen, Kimmo" <kimmo.nikkanen@intel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- CHEVRIE Thomas <thomas.chevrie@cs-soprasteria.com>
-References: <DB9PR07MB1000353F67A27FEC494902005DAEF2@DB9PR07MB10003.eurprd07.prod.outlook.com>
- <Z5o2jcJB0FaUaVdZ@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <Z5o2jcJB0FaUaVdZ@intel.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -76,193 +67,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-On 29.01.2025 15:09, Rodrigo Vivi wrote:
-> On Tue, Jan 28, 2025 at 08:54:10AM +0000, MARDI Youness wrote:
->>    Hello,                                                                       
->>                                                                                 
->>                                                                                 
->>                                                                                 
->>    Could you help us on this issue:                                             
->>    [1]https://github.com/intel/linux-intel-lts/issues/54                        
+Apparently PTL (or I suppose it could have already happened
+in either MTL or LNL, didn't have either one to check) changes
+the way the VRR hardwre works by ending the safe window as
+soon as the push send is triggered. Reorder our DSB programming
+sequence to account for that, and try to make sure we catch any
+vblank evasion fails that could cause problems with the new
+order.
 
-Once you enabled all VFs, try to capture and attach to [1] all SRIOV
-provisioning details, you may use something like:
+Ville Syrjälä (3):
+  drm/i915/dsb: Introduce intel_dsb_poll()
+  drm/i915/vrr: Reorder the DSB "wait for safe window" vs. TRANS_PUSH
+  drm/i915/vrr: Poll for the push send bit to clear on the DSB
 
- $ grep . -r /sys/class/drm/card0/iov
+ drivers/gpu/drm/i915/display/intel_color.c   |  3 ++
+ drivers/gpu/drm/i915/display/intel_display.c | 13 ++------
+ drivers/gpu/drm/i915/display/intel_dsb.c     | 19 ++++++++++++
+ drivers/gpu/drm/i915/display/intel_dsb.h     |  3 ++
+ drivers/gpu/drm/i915/display/intel_vrr.c     | 31 ++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_vrr.h     |  2 ++
+ 6 files changed, 61 insertions(+), 10 deletions(-)
 
-Also attach full dmesg and GuC log right after the failure.
-
-For larger GuC log buffer please select CONFIG_DRM_I915_DEBUG_GUC and
-use modparam i915.guc_log_level=4
-
-You can also try with (once VFs are enabled, but before starting VMs):
-- set explicit "execution_quantum_ms" for PF and all VFs to 20
-- set explicit "preemption_timeout_us" for PF and all VFs to 20000
-- enable "engine_reset" policy
-
- $ echo 20 > /sys/class/drm/card0/iov/pf/gt0/execution_quantum_ms
- $ echo 20 > /sys/class/drm/card0/iov/vf1/gt0/execution_quantum_ms
- ...
- $ echo 1 > /sys/class/drm/card0/iov/pf/gt0/policies/engine_reset
-
->>                                                                                 
->>                                                                                 
->>                                                                                 
->>    Host environment                                                             
->>                                                                                 
->>    Operating system: Gentoo Base System release 2.14                            
->>    OS/kernel version:                                                           
->>    [2]https://github.com/intel/linux-intel-lts/tree/lts-v6.6.34-linux-240626T131354Z
-> 
-> https://github.com/intel/linux-intel-lts/blob/lts-v6.6.34-linux-240626T131354Z/drivers/gpu/drm/i915/README.sriov
-> 
-> Michal, could you please help here?
-> 
-> Thanks,
-> Rodrigo.
-> 
->>    Architecture: x86_64                                                         
->>    QEMU flavor: qemu-system-x86_64                                              
->>    QEMU version: latest qemu (master branch)                                    
->>    CPU: 12th Gen Intel(R) Core(TM) i7-1270P                                     
->>    igpu: Alder Lake-P                                                           
->>    firmware:                                                                    
->>    [3]https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/linux-firmware-20241110.tar.gz
->>                                                                                 
->>                                                                                 
->>                                                                                 
->>    Emulated/Virtualized environment                                             
->>                                                                                 
->>    Operating system: Windows 10 21H1                                            
->>                                                                                 
->>                                                                                 
->>                                                                                 
->>                                                                                 
->>                                                                                 
->>    Description of problem                                                       
->>                                                                                 
->>    After setting up SR-IOV (kernel compilation, kernel cmdline, vfio-pci        
->>    driver attribution to the new pci..)                                         
->>    I've got my two new pci.                                                     
->>                                                                                 
->>                                                                                 
->>                                                                                 
->>                                                                                 
->>                                                                                 
->>    00:02.0 VGA compatible controller: Intel Corporation Alder Lake-P            
->>    Integrated Graphics Controller (rev 0c)                                      
->>                                                                                 
->>    DeviceName: Onboard IGD                                                      
->>                                                                                 
->>                                                                                 
->>                                                                                 
->>    Subsystem: Hewlett-Packard Company Alder Lake-P Integrated Graphics          
->>    Controller                                                                   
->>                                                                                 
->>    Kernel driver in use: i915                                                   
->>                                                                                 
->>                                                                                 
->>                                                                                 
->>    00:02.1 VGA compatible controller: Intel Corporation Alder Lake-P            
->>    Integrated Graphics Controller (rev 0c)                                      
->>                                                                                 
->>    Subsystem: Hewlett-Packard Company Alder Lake-P Integrated Graphics          
->>    Controller                                                                   
->>                                                                                 
->>    Kernel driver in use: vfio-pci                                               
->>                                                                                 
->>                                                                                 
->>                                                                                 
->>    00:02.2 VGA compatible controller: Intel Corporation Alder Lake-P            
->>    Integrated Graphics Controller (rev 0c)                                      
->>                                                                                 
->>    Subsystem: Hewlett-Packard Company Alder Lake-P Integrated Graphics          
->>    Controller                                                                   
->>                                                                                 
->>    Kernel driver in use: vfio-pci                                               
->>                                                                                 
->>                                                                                 
->>                                                                                 
->>    I gave one of those pci to my VM with this qemu cmdline:                     
->>                                                                                 
->>                                                                                 
->>                                                                                 
->>    -cpu                                                                         
->>    host,migratable=on,hv-time,hv-relaxed,hv-vapic,hv-spinlocks=0x1fff,hv-passthrough,hv-vendor-id=IrisXE
->>                                                                                 
->>    ...                                                                          
->>                                                                                 
->>    -device                                                                      
->>    vfio-pci-nohotplug,host=0000:00:02.1,id=hostdev0,bus=pci.4,addr=0x0          
->>                                                                                 
->>                                                                                 
->>                                                                                 
->>    Sometimes it working properly when I start the qemu cmdline but most of      
->>    the time I've got those kernel errors and a GPU hang:                        
->>                                                                                 
->>                                                                                 
->>                                                                                 
->>        kernel [ 2252.208134] i915 0000:00:02.0: [drm] ERROR GT0: GUC: TLB       
->>    invalidation response timed out for seqno 9679                               
->>                                                                                 
->>        kernel [ 2252.208134] i915 0000:00:02.0: [drm] ERROR GT0: GUC: TLB       
->>    invalidation response timed out for seqno 9679                               
->>                                                                                 
->>        kernel i915 0000:00:02.0: [drm] ERROR GT0: GUC: TLB invalidation         
->>    response timed out for seqno 9679                                            
->>                                                                                 
->>        kernel i915 0000:00:02.0: [drm] ERROR GT0: GUC: TLB invalidation         
->>    response timed out for seqno 9679                                            
->>                                                                                 
->>        ....                                                                     
->>                                                                                 
->>        kernel Fence expiration time out                                         
->>    i915-0000:00:02.0:renderThread22381:6e0!                                     
->>                                                                                 
->>        kernel i915 0000:00:02.0: [drm] GT0: GuC firmware i915/adlp_guc_70.bin   
->>    version 70.13.1                                                              
->>                                                                                 
->>        kernel i915 0000:00:02.0: [drm] GT0: HuC firmware i915/tgl_huc.bin       
->>    version 7.9.3                                                                
->>                                                                                 
->>        kernel i915 0000:00:02.0: [drm] GT0: HuC: authenticated for all          
->>    workloads                                                                    
->>                                                                                 
->>        kernel i915 0000:00:02.0: [drm] GT0: GUC: submission enabled             
->>                                                                                 
->>        kernel i915 0000:00:02.0: [drm] GT0: GUC: SLPC enabled                   
->>                                                                                 
->>        kernel [ 2730.991019] i915 0000:00:02.0: [drm] GPU HANG: ecode           
->>    12:1:85dfbfff, in renderThread [22381]                                       
->>                                                                                 
->>        kernel [ 2730.991084] i915 0000:00:02.0: [drm] renderThread22381         
->>    context reset due to GPU hang                                                
->>                                                                                 
->>                                                                                 
->>                                                                                 
->>                                                                                 
->>                                                                                 
->>    It mostly appears when Qemu is starting..                                    
->>    Any help would be appreciated, thanks a lot                                  
->>                                                                                 
->>                                                                                 
->>                                                                                 
->>    Best Regards,                                                                
->>                                                                                 
->>                                                                                 
->>                                                                                 
->>    Youness MARDI                                                                
->>                                                                                 
->>                                                                                 
->>                                                                                 
->>    C2 – Usage restreint                                                         
->>
->> References
->>
->>    Visible links
->>    1. https://github.com/intel/linux-intel-lts/issues/54
->>    2. https://github.com/intel/linux-intel-lts/tree/lts-v6.6.34-linux-240626T131354Z
->>    3. https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/linux-firmware-20241110.tar.gz
+-- 
+2.45.3
 
