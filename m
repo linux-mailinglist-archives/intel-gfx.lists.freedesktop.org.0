@@ -2,59 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89A6CA236BC
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jan 2025 22:34:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BAF7DA236B7
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jan 2025 22:33:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 19F1710E9D7;
-	Thu, 30 Jan 2025 21:34:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84B7010E0EF;
+	Thu, 30 Jan 2025 21:33:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i2S8tn39";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="evsKtZzP";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 39A2610E9D9;
- Thu, 30 Jan 2025 21:34:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB5DA10E9DD;
+ Thu, 30 Jan 2025 21:33:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738272863; x=1769808863;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=nYMnbQTII8+qSuOA2xssSMUyQ3kXkf2qzRW8BNQvp+k=;
- b=i2S8tn395YCELUmE4P3VxvpE0wkFQ5qBIsVCHWv2IQY5LrAccT9uJW7f
- oozLay6QMPgjP77dDy9ZRr7XkBEsZ9at84JX2XBbGyQChtC+zpM5L4T1d
- jpmRpz38S+6ujuFd0Cif49JpPpryzLHhgcc8WcUlKgbR1ioOZvLy0h+co
- rmzk4f3ovG4JEHZN5WnrzrTfSA5BRid4exJBZpVHvVhJXh7k4yLuGrHjp
- tcpgeCn/KE9j3dFeq8AqcUcS0gKN0H38OVqUADJdnp5Wmj/iSgk9PwWSt
- 9Qka9zYw0XdnyKghmAgQF8T7FImNueV4H3WmyCyYYk4MUqVMK5ckQ+ovF w==;
-X-CSE-ConnectionGUID: LORxqvrCQm6g2Exmq2KBzA==
-X-CSE-MsgGUID: YBOF/8eeSoSLjCGs1bWwuQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11331"; a="38083308"
-X-IronPort-AV: E=Sophos;i="6.13,246,1732608000"; d="scan'208";a="38083308"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2025 13:34:22 -0800
-X-CSE-ConnectionGUID: p6hEH8wURPeGkTK20i0LCA==
-X-CSE-MsgGUID: Ehfm929HQjCnxNCvmsS4Mg==
+ t=1738272793; x=1769808793;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=plis1QLamZ5pL49QcIykFQyZJ3GSomWKkBj7oe7LcqY=;
+ b=evsKtZzPsCajrB7Ki4AdcPsVA34dhXY4yg1XGyJg5vJyhECwfWj0iyOM
+ 57t8mRg0S6VfsXfiOvbdToXSmSnJhv9NgZ0w2uaZfTK3nUIANXRcCpA/w
+ SJnA7UkfuNx/6jAC7U0t1Of1+67gBGGeoE+08U1XyEv8kHP6aI9/lIm7G
+ MCBxdzyLFp0RcGaqp8eKxi/0pzE+iJIhBNGRIaQdvvOKYi50yLbJSCQhO
+ F7Fy50Iic47A+wvICyJ7+yaqgIIDKKUnj24gGo8OdnNvI350M5QY1nuEF
+ 611i5CbseBGVE9U+ybcOqyKALTIKHOVMHSY9BAUJifoErB0I0d1FzXRsN A==;
+X-CSE-ConnectionGUID: H95siE43QqqjYsCvkMT2YQ==
+X-CSE-MsgGUID: hFn6vFR8S32mTWL7DLtAOw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11331"; a="49829613"
+X-IronPort-AV: E=Sophos;i="6.13,246,1732608000"; d="scan'208";a="49829613"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2025 13:33:13 -0800
+X-CSE-ConnectionGUID: 93mJFEg6R02vHWAezDgGXw==
+X-CSE-MsgGUID: /dX268xxSdKHzAYwf9eXCg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,246,1732608000"; d="scan'208";a="109352194"
-Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.39.141])
- by fmviesa007.fm.intel.com with ESMTP; 30 Jan 2025 13:34:19 -0800
-From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	igt-dev@lists.freedesktop.org
-Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Riana Tauro <riana.tauro@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH i-g-t v7 3/3] tests/xe/pmu: Add pmu tests for gt-c6
-Date: Thu, 30 Jan 2025 13:30:28 -0800
-Message-Id: <20250130213028.3852086-4-vinay.belgaumkar@intel.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20250130213028.3852086-1-vinay.belgaumkar@intel.com>
-References: <20250130213028.3852086-1-vinay.belgaumkar@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="109904680"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2025 13:33:12 -0800
+Date: Thu, 30 Jan 2025 23:34:04 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 4/6] drm/i915/mst: handle mst pbn_div in
+ intel_dp_mtp_tu_compute_config()
+Message-ID: <Z5vwTAiplbeI-Sm1@ideak-desk.fi.intel.com>
+References: <cover.1738161945.git.jani.nikula@intel.com>
+ <0cc1b507601c9964ebae7d50b1f90b1ce00acb11.1738161945.git.jani.nikula@intel.com>
+ <Z5uLY1QC72jrT_JC@ideak-desk.fi.intel.com>
+ <8734h080na.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8734h080na.fsf@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,194 +68,120 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Simple tests for validating the PMU implementation for GT C6
-residencies.
+On Thu, Jan 30, 2025 at 11:14:33PM +0200, Jani Nikula wrote:
+> On Thu, 30 Jan 2025, Imre Deak <imre.deak@intel.com> wrote:
+> > On Wed, Jan 29, 2025 at 04:46:36PM +0200, Jani Nikula wrote:
+> >> Move mst_state->pbn_div calculation to intel_dp_mtp_tu_compute_config()
+> >> to allow further refactoring.
+> >> 
+> >> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> >> ---
+> >>  drivers/gpu/drm/i915/display/intel_dp_mst.c | 31 ++++++++++-----------
+> >>  1 file changed, 14 insertions(+), 17 deletions(-)
+> >> 
+> >> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> >> index ea1b05224c06..8786c8751c82 100644
+> >> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> >> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> >> @@ -216,15 +216,25 @@ int intel_dp_mtp_tu_compute_config(struct intel_dp *intel_dp,
+> >>  {
+> >>  	struct intel_display *display = to_intel_display(intel_dp);
+> >>  	struct drm_atomic_state *state = crtc_state->uapi.state;
+> >> +	struct drm_dp_mst_topology_state *mst_state = NULL;
+> >>  	struct intel_connector *connector =
+> >>  		to_intel_connector(conn_state->connector);
+> >>  	const struct drm_display_mode *adjusted_mode =
+> >>  		&crtc_state->hw.adjusted_mode;
+> >> -	fixed20_12 pbn_div;
+> >> +	bool is_mst = intel_dp->is_mst;
+> >>  	int bpp, slots = -EINVAL;
+> >>  	int dsc_slice_count = 0;
+> >>  	int max_dpt_bpp;
+> >>  
+> >> +	if (is_mst) {^
+> >> +		mst_state = drm_atomic_get_mst_topology_state(state, &intel_dp->mst_mgr);
+> >> +		if (IS_ERR(mst_state))
+> >> +			return PTR_ERR(mst_state);
+> >> +
+> >> +		mst_state->pbn_div = drm_dp_get_vc_payload_bw(crtc_state->port_clock,
+> >> +							      crtc_state->lane_count);
+> >> +	}
+> >> +
+> >
+> > This could've been in the if (intel_dp->is_mst) block, since SST doesn't
+> > use pbn_div. In any case the patch is correct:
+> 
+> Uh, there's the if (is_mst)?
 
-v2: Rename rc6-residency-* to gt-c6-residency and remove freq tests.
-v3: Keep just gt-c6 tests, add frequency tests later.
-v4: Review comments (Riana)
-v5: Review comments (Lucas)
+I meant the MST block below, but missed that it's within the loop
+through bpps:/ So nvm my comment above.
 
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Riana Tauro <riana.tauro@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
----
- tests/intel/xe_pmu.c | 149 +++++++++++++++++++++++++++++++++++++++++++
- tests/meson.build    |   1 +
- 2 files changed, 150 insertions(+)
- create mode 100644 tests/intel/xe_pmu.c
-
-diff --git a/tests/intel/xe_pmu.c b/tests/intel/xe_pmu.c
-new file mode 100644
-index 000000000..44589cb86
---- /dev/null
-+++ b/tests/intel/xe_pmu.c
-@@ -0,0 +1,149 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2025 Intel Corporation
-+ */
-+
-+/**
-+ * TEST: Test Xe PMU functionality
-+ * Category: Perf Monitoring Unit
-+ * Mega feature: Perf Monitoring Unit
-+ * Sub-category: Telemetry
-+ * Functionality: Power/Perf
-+ * Test category: Functional tests
-+ */
-+
-+#include <fcntl.h>
-+#include <limits.h>
-+#include <time.h>
-+#include <errno.h>
-+#include <dirent.h>
-+#include <string.h>
-+#include <sys/time.h>
-+
-+#include "igt.h"
-+#include "igt_device.h"
-+#include "igt_power.h"
-+#include "igt_sysfs.h"
-+#include "igt_perf.h"
-+
-+#include "lib/igt_syncobj.h"
-+#include "xe/xe_ioctl.h"
-+#include "xe/xe_gt.h"
-+#include "xe/xe_query.h"
-+#include "xe/xe_spin.h"
-+#include "xe/xe_util.h"
-+
-+#define SLEEP_DURATION 2 /* in seconds */
-+const double tolerance = 0.1;
-+const char *no_debug_data = "\0";
-+
-+static int open_pmu(int xe, uint64_t config)
-+{
-+	int fd;
-+
-+	fd = perf_xe_open(xe, config);
-+	igt_skip_on(fd < 0 && errno == ENODEV);
-+	igt_assert(fd >= 0);
-+
-+	return fd;
-+}
-+
-+static uint64_t __pmu_read_single(int fd, uint64_t *ts)
-+{
-+	uint64_t data[2];
-+
-+	igt_assert_eq(read(fd, data, sizeof(data)), sizeof(data));
-+	if (ts)
-+		*ts = data[1];
-+
-+	return data[0];
-+}
-+
-+static unsigned long read_idle_residency(int fd, int gt)
-+{
-+	unsigned long residency = 0;
-+	int gt_fd;
-+
-+	gt_fd = xe_sysfs_gt_open(fd, gt);
-+	igt_assert(gt_fd >= 0);
-+	igt_assert(igt_sysfs_scanf(gt_fd, "gtidle/idle_residency_ms", "%lu", &residency) == 1);
-+	close(gt_fd);
-+
-+	return residency;
-+}
-+
-+static u64 get_event_config(int xe, unsigned int gt, char *event)
-+{
-+	int ret;
-+	char xe_device[100];
-+	u64 pmu_config;
-+	u32 start, end;
-+
-+	xe_perf_device(xe, xe_device, sizeof(xe_device));
-+	ret = perf_event_config(xe_device, event, &pmu_config);
-+	igt_assert(ret >= 0);
-+	ret = perf_event_format(xe_device, "gt", &start, &end);
-+	igt_assert(ret >= 0);
-+	pmu_config |= (u64) gt << start;
-+
-+	return pmu_config;
-+}
-+
-+/**
-+ * SUBTEST: gt-c6-idle
-+ * Description: Basic residency test to validate idle residency
-+ *		measured over a time interval is within the tolerance
-+ */
-+static void test_gt_c6_idle(int xe, unsigned int gt)
-+{
-+	int pmu_fd;
-+	u64 pmu_config;
-+	char event[100];
-+	uint64_t ts[2];
-+	unsigned long slept, start, end;
-+	uint64_t val;
-+
-+	/* Get the PMU config for the gt-c6 event */
-+	sprintf(event, "gt-c6-residency");
-+	pmu_config = get_event_config(xe, gt, event);
-+
-+	pmu_fd = open_pmu(xe, pmu_config);
-+
-+	igt_require_f(igt_wait(xe_gt_is_in_c6(xe, gt), 1000, 10), "GT %d should be in C6\n", gt);
-+
-+	/* While idle check full RC6. */
-+	start = read_idle_residency(xe, gt);
-+	val = __pmu_read_single(pmu_fd, &ts[0]);
-+	slept = igt_measured_usleep(SLEEP_DURATION * USEC_PER_SEC) / 1000;
-+	end = read_idle_residency(xe, gt);
-+	val = __pmu_read_single(pmu_fd, &ts[1]) - val;
-+
-+	igt_debug("gt%u: slept=%lu, perf=%"PRIu64"\n",
-+		  gt, slept,  val);
-+
-+	igt_debug("Start res: %lu, end_res: %lu", start, end);
-+
-+	assert_within_epsilon(val,
-+			      (ts[1] - ts[0])/USEC_PER_SEC,
-+			      tolerance);
-+	close(pmu_fd);
-+}
-+
-+igt_main
-+{
-+	int fd, gt;
-+
-+	igt_fixture {
-+		fd = drm_open_driver(DRIVER_XE);
-+		igt_require(!IS_PONTEVECCHIO(xe_dev_id(fd)));
-+	}
-+
-+	igt_describe("Validate PMU gt-c6 residency counters when idle");
-+	igt_subtest("gt-c6-idle")
-+		xe_for_each_gt(fd, gt)
-+			test_gt_c6_idle(fd, gt);
-+
-+	igt_fixture {
-+		close(fd);
-+	}
-+}
-diff --git a/tests/meson.build b/tests/meson.build
-index 33dffad31..d20f50766 100644
---- a/tests/meson.build
-+++ b/tests/meson.build
-@@ -309,6 +309,7 @@ intel_xe_progs = [
- 	'xe_pat',
- 	'xe_peer2peer',
- 	'xe_pm',
-+	'xe_pmu',
- 	'xe_pm_residency',
- 	'xe_prime_self_import',
- 	'xe_query',
--- 
-2.38.1
-
+> > Reviewed-by: Imre Deak <imre.deak@intel.com>
+> >
+> >>  	if (dsc) {
+> >>  		if (!intel_dp_supports_fec(intel_dp, connector, crtc_state))
+> >>  			return -EINVAL;
+> >> @@ -232,9 +242,6 @@ int intel_dp_mtp_tu_compute_config(struct intel_dp *intel_dp,
+> >>  		crtc_state->fec_enable = !intel_dp_is_uhbr(crtc_state);
+> >>  	}
+> >>  
+> >> -	pbn_div = drm_dp_get_vc_payload_bw(crtc_state->port_clock,
+> >> -					   crtc_state->lane_count);
+> >> -
+> >>  	max_dpt_bpp = intel_dp_mst_max_dpt_bpp(crtc_state, dsc);
+> >>  	if (max_bpp > max_dpt_bpp) {
+> >>  		drm_dbg_kms(display->drm, "Limiting bpp to max DPT bpp (%d -> %d)\n",
+> >> @@ -270,7 +277,7 @@ int intel_dp_mtp_tu_compute_config(struct intel_dp *intel_dp,
+> >>  					 link_bpp_x16,
+> >>  					 &crtc_state->dp_m_n);
+> >>  
+> >> -		if (intel_dp->is_mst) {
+> >> +		if (is_mst) {
+> >>  			int remote_bw_overhead;
+> >>  			int remote_tu;
+> >>  			fixed20_12 pbn;
+> >> @@ -295,7 +302,7 @@ int intel_dp_mtp_tu_compute_config(struct intel_dp *intel_dp,
+> >>  			pbn.full = dfixed_const(intel_dp_mst_calc_pbn(adjusted_mode->crtc_clock,
+> >>  								      link_bpp_x16,
+> >>  								      remote_bw_overhead));
+> >> -			remote_tu = DIV_ROUND_UP(pbn.full, pbn_div.full);
+> >> +			remote_tu = DIV_ROUND_UP(pbn.full, mst_state->pbn_div.full);
+> >>  
+> >>  			/*
+> >>  			 * Aligning the TUs ensures that symbols consisting of multiple
+> >> @@ -313,7 +320,7 @@ int intel_dp_mtp_tu_compute_config(struct intel_dp *intel_dp,
+> >>  			 * allocated for the whole path and the TUs allocated for the
+> >>  			 * first branch device's link also applies here.
+> >>  			 */
+> >> -			pbn.full = remote_tu * pbn_div.full;
+> >> +			pbn.full = remote_tu * mst_state->pbn_div.full;
+> >>  
+> >>  			drm_WARN_ON(display->drm, remote_tu < crtc_state->dp_m_n.tu);
+> >>  			crtc_state->dp_m_n.tu = remote_tu;
+> >> @@ -365,16 +372,6 @@ static int mst_stream_find_vcpi_slots_for_bpp(struct intel_dp *intel_dp,
+> >>  					      struct drm_connector_state *conn_state,
+> >>  					      int step, bool dsc)
+> >>  {
+> >> -	struct drm_atomic_state *state = crtc_state->uapi.state;
+> >> -	struct drm_dp_mst_topology_state *mst_state;
+> >> -
+> >> -	mst_state = drm_atomic_get_mst_topology_state(state, &intel_dp->mst_mgr);
+> >> -	if (IS_ERR(mst_state))
+> >> -		return PTR_ERR(mst_state);
+> >> -
+> >> -	mst_state->pbn_div = drm_dp_get_vc_payload_bw(crtc_state->port_clock,
+> >> -						      crtc_state->lane_count);
+> >> -
+> >>  	return intel_dp_mtp_tu_compute_config(intel_dp, crtc_state, conn_state,
+> >>  					      min_bpp, max_bpp, step, dsc);
+> >>  }
+> >> -- 
+> >> 2.39.5
+> >> 
+> 
+> -- 
+> Jani Nikula, Intel
