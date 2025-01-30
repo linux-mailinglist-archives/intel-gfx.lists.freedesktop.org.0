@@ -2,58 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8818A22CB7
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jan 2025 12:52:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 54C81A22CB8
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jan 2025 12:52:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA25410E18D;
-	Thu, 30 Jan 2025 11:52:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EDBF310E945;
+	Thu, 30 Jan 2025 11:52:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jwdPIS1O";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c8cy0uJi";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8316510E18D;
- Thu, 30 Jan 2025 11:51:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C32E910E944;
+ Thu, 30 Jan 2025 11:52:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738237918; x=1769773918;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=CYhX63T/Vuh0u7QPJiVJyozXb+rlbaODDcSmseapnsw=;
- b=jwdPIS1OkF5IXhWwx+NL9j3F2yukzITWWzuCzXIiTvN4FLkL1XFxfoWU
- gXuLU9sLcmpVRdIvXisUT/YKN5KcrIg77m9CGy6HzNmsC962b6g/M7L8e
- xhW9z6xdKljEg2xErIe9XRN8tCJZeNhn7+gSWaUXQUzZ2LkDNAf5M1KYS
- fn54auGDX7+EB8X8jMxpzrB00vyY/JdDQO1DfQlTLjweO/Q5+28NQx8x0
- GB4KNoUJ9D1pWZV6z1KnV8/2vUHlwAEyGtRe8BxpKlQzMroFVc5O0osGW
- Q486AOyV/FWCva33YuMwDxlBv5JpgWjw6TFuK16B361dvqDsfkW4/v7ou Q==;
-X-CSE-ConnectionGUID: 3WbM5bbnTQWnbhRk7tltJQ==
-X-CSE-MsgGUID: 7SA/8br7QoW4xTGJhxQP6w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11331"; a="38681694"
-X-IronPort-AV: E=Sophos;i="6.13,245,1732608000"; d="scan'208";a="38681694"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2025 03:51:58 -0800
-X-CSE-ConnectionGUID: mjFaMAwaSc6juZDdxxaezA==
-X-CSE-MsgGUID: yrgGt09uQ1OdCNMQGrsl4g==
+ t=1738237939; x=1769773939;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=mj0fp2Et23POhIH+8s+Ac0foKrXJCCWRuzeGuSqKI5I=;
+ b=c8cy0uJiBOUZ2ShmmcMCfX8UC5nKOzWy8tEBYNPLfuZxA6CAq7wqgQ+a
+ harF/Yq34hRwWmaq+qjlKZdU1d4booOsbyH1C1yT/wOd0a7kpOkd+B8q+
+ esIA0t3kLtzw9KvQiEVI3GtXrpP2ZoG2A2MhkslUgKAl57+NKP8I8lL9P
+ XkzH98c7MSAczBokOeQXOd87FzXUoQ1VmbBAStKpNxqQYkUDBA8t/vlmh
+ huJ54F9Zu7HdsS/vhywxpjluKMEF4krjLz5F8RuO65MUUZEmibFA2yxXo
+ f1/EZT/3jR7AFt4bHIHsAOUfoPmb9Ri9+6R01xP4M+Oy8wtUkwsIdPCrF Q==;
+X-CSE-ConnectionGUID: wt2CKArXTm6kBL2e0LVqDw==
+X-CSE-MsgGUID: Z2155gtLSnmmycvg8yPwSg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11331"; a="26380924"
+X-IronPort-AV: E=Sophos;i="6.13,245,1732608000"; d="scan'208";a="26380924"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2025 03:52:19 -0800
+X-CSE-ConnectionGUID: hTiBSe+GRmKdrlrHdL25iw==
+X-CSE-MsgGUID: xFtbneiMRt+dct1tXhzrTQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,245,1732608000"; d="scan'208";a="114324088"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="113310842"
 Received: from sschumil-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.68])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2025 03:51:56 -0800
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2025 03:52:17 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org
-Cc: Imre Deak <imre.deak@gmail.com>
-Subject: Re: [PATCH 02/17] drm/i915/ddi: Fix HDMI port width programming in
- DDI_BUF_CTL
-In-Reply-To: <20250129200221.2508101-3-imre.deak@intel.com>
+Subject: Re: [PATCH 03/17] drm/i915/ddi: Make all the PORT_WIDTH macros work
+ the same way
+In-Reply-To: <20250129200221.2508101-4-imre.deak@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20250129200221.2508101-1-imre.deak@intel.com>
- <20250129200221.2508101-3-imre.deak@intel.com>
-Date: Thu, 30 Jan 2025 13:51:53 +0200
-Message-ID: <87bjvo8qp2.fsf@intel.com>
+ <20250129200221.2508101-4-imre.deak@intel.com>
+Date: Thu, 30 Jan 2025 13:52:14 +0200
+Message-ID: <878qqs8qoh.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -72,54 +70,83 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Wed, 29 Jan 2025, Imre Deak <imre.deak@intel.com> wrote:
-> From: Imre Deak <imre.deak@gmail.com>
+> Make the PORT_WIDTH macro of the XELPDP_PORT_CTL1 register work the same
+> way as those used for the DDI_BUF_CTL and the TRANS_DDI_FUNC_CTL
+> registers: accept a width parameter and convert it to the given
+> register's encoding.
 >
-> Fix the port width programming in the DDI_BUF_CTL register on MTLP+,
-> where this had an off-by-one error.
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
 
-Fixes: b66a8abaa48a ("drm/i915/display/mtl: Fill port width in DDI_BUF_/TRANS_DDI_FUNC_/PORT_BUF_CTL for HDMI")
-Cc: <stable@vger.kernel.org> # v6.5+
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-However, if this gets backported, it'll break DSI. Patch 1 needs to
-accompany it.
-
-Either add the same Fixes line to patch 1, or squash patches 1-2
-together.
-
->
-> Signed-off-by: Imre Deak <imre.deak@gmail.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_ddi.c | 2 +-
->  drivers/gpu/drm/i915/i915_reg.h          | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
+>  .../gpu/drm/i915/display/intel_cx0_phy_regs.h |  3 ++-
+>  drivers/gpu/drm/i915/display/intel_ddi.c      | 22 ++-----------------
+>  2 files changed, 4 insertions(+), 21 deletions(-)
 >
+> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+> index 4a3cf08007e31..a24531656aa89 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h
+> @@ -110,7 +110,8 @@
+>  #define   XELPDP_TCSS_POWER_REQUEST			REG_BIT(5)
+>  #define   XELPDP_TCSS_POWER_STATE			REG_BIT(4)
+>  #define   XELPDP_PORT_WIDTH_MASK			REG_GENMASK(3, 1)
+> -#define   XELPDP_PORT_WIDTH(val)			REG_FIELD_PREP(XELPDP_PORT_WIDTH_MASK, val)
+> +#define   XELPDP_PORT_WIDTH(width)			REG_FIELD_PREP(XELPDP_PORT_WIDTH_MASK, \
+> +								       (width) == 3 ? 4 : (width) - 1)
+>  
+>  #define _XELPDP_PORT_BUF_CTL2(idx)			_MMIO(_PICK_EVEN_2RANGES(idx, PORT_TC1, \
+>  										 _XELPDP_PORT_BUF_CTL1_LN0_A, \
 > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index dc319f37b1be9..36e7dde422d37 100644
+> index 36e7dde422d37..76e8296cb134b 100644
 > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
 > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -3501,7 +3501,7 @@ static void intel_ddi_enable_hdmi(struct intel_atomic_state *state,
->  		intel_de_rmw(dev_priv, XELPDP_PORT_BUF_CTL1(dev_priv, port),
->  			     XELPDP_PORT_WIDTH_MASK | XELPDP_PORT_REVERSAL, port_buf);
+> @@ -2525,23 +2525,6 @@ static void intel_ddi_mso_configure(const struct intel_crtc_state *crtc_state)
+>  		     OVERLAP_PIXELS_MASK, dss1);
+>  }
 >  
-> -		buf_ctl |= DDI_PORT_WIDTH(lane_count);
-> +		buf_ctl |= DDI_PORT_WIDTH(crtc_state->lane_count);
+> -static u8 mtl_get_port_width(u8 lane_count)
+> -{
+> -	switch (lane_count) {
+> -	case 1:
+> -		return 0;
+> -	case 2:
+> -		return 1;
+> -	case 3:
+> -		return 4;
+> -	case 4:
+> -		return 3;
+> -	default:
+> -		MISSING_CASE(lane_count);
+> -		return 4;
+> -	}
+> -}
+> -
+>  static void
+>  mtl_ddi_enable_d2d(struct intel_encoder *encoder)
+>  {
+> @@ -2575,7 +2558,7 @@ static void mtl_port_buf_ctl_program(struct intel_encoder *encoder,
+>  	enum port port = encoder->port;
+>  	u32 val = 0;
 >  
->  		if (DISPLAY_VER(dev_priv) >= 20)
->  			buf_ctl |= XE2LPD_DDI_BUF_D2D_LINK_ENABLE;
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index 03da51b03fb90..04e47d0a8ab92 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -3635,7 +3635,7 @@ enum skl_power_gate {
->  #define  DDI_BUF_IS_IDLE			(1 << 7)
->  #define  DDI_BUF_CTL_TC_PHY_OWNERSHIP		REG_BIT(6)
->  #define  DDI_A_4_LANES				(1 << 4)
-> -#define  DDI_PORT_WIDTH(width)			(((width) - 1) << 1)
-> +#define  DDI_PORT_WIDTH(width)			(((width) == 3 ? 4 : ((width) - 1)) << 1)
->  #define  DDI_PORT_WIDTH_MASK			(7 << 1)
->  #define  DDI_PORT_WIDTH_SHIFT			1
->  #define  DDI_INIT_DISPLAY_DETECTED		(1 << 0)
+> -	val |= XELPDP_PORT_WIDTH(mtl_get_port_width(crtc_state->lane_count));
+> +	val |= XELPDP_PORT_WIDTH(crtc_state->lane_count);
+>  
+>  	if (intel_dp_is_uhbr(crtc_state))
+>  		val |= XELPDP_PORT_BUF_PORT_DATA_40BIT;
+> @@ -3490,10 +3473,9 @@ static void intel_ddi_enable_hdmi(struct intel_atomic_state *state,
+>  		buf_ctl |= DDI_A_4_LANES;
+>  
+>  	if (DISPLAY_VER(dev_priv) >= 14) {
+> -		u8  lane_count = mtl_get_port_width(crtc_state->lane_count);
+>  		u32 port_buf = 0;
+>  
+> -		port_buf |= XELPDP_PORT_WIDTH(lane_count);
+> +		port_buf |= XELPDP_PORT_WIDTH(crtc_state->lane_count);
+>  
+>  		if (dig_port->lane_reversal)
+>  			port_buf |= XELPDP_PORT_REVERSAL;
 
 -- 
 Jani Nikula, Intel
