@@ -2,70 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43785A2351E
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jan 2025 21:35:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 12020A23522
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jan 2025 21:37:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C977B10E03B;
-	Thu, 30 Jan 2025 20:35:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8EB7A10E19E;
+	Thu, 30 Jan 2025 20:37:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="fLhFS94g";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="diTvSajR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com
- [209.85.218.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 878AA10E0A8
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jan 2025 20:35:02 +0000 (UTC)
-Received: by mail-ej1-f46.google.com with SMTP id
- a640c23a62f3a-ab6da1bb1a8so89111266b.0
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jan 2025 12:35:02 -0800 (PST)
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com
+ [209.85.208.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2884710E9C8
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jan 2025 20:37:35 +0000 (UTC)
+Received: by mail-ed1-f44.google.com with SMTP id
+ 4fb4d7f45d1cf-5d3d479b1e6so1717973a12.2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jan 2025 12:37:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1738269301; x=1738874101;
+ d=google.com; s=20230601; t=1738269453; x=1738874253;
  darn=lists.freedesktop.org; 
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=i90LZEJP39KZzuaancmUFtDGdMy9w3zyTcWopQWmg60=;
- b=fLhFS94gbl2hPDuYArBvd496Gc9ZxKcOwMD+3HrLV3cNz33SZey+7ETGrqzVp6lxE9
- iGH2Kq5L2dfDEwAXpuHpuJpmXRSSaBHlEQjKpYAwM/Qe/2ewZ0DnSwGwQWxCBk0I5RSU
- BMbG1dFlg52WIvNedViuQTI1a741mcM05y1G3oG9jpfizXMgFrIztUhVDRvJYEtHkZPm
- fOrhhP0lsALSXDD3H2JYxh9kmiVvmnrgYhaC+5J7S/0JzP6NXxePbnccEtntmGxQ4EJP
- wih+QWjFkNtlAHBgwx7T//IW82y/g0OjoyM+W5UALwkraFJNjaJFGLsJ5KrjcUUGvDOv
- OyYA==
+ bh=xT8Ut8gLz6JZTplLJnZjKEdD7Di9InMwjf2e/4aq99k=;
+ b=diTvSajRNMexAoOrzFThwOjio09Pb1WOSqSxaI7WZ5MuXlUUhpLvkoMjc5/3oTpyUW
+ VmsknnqJdTJXkE5Z3fuw/Dg8FnfK42eqnjSpZoQaBkuGHtuOpb1ylM6NkBEGPwm5TXGn
+ KqUMf4mPCQfkBaJ3oq7P7a331NM3OGwyqhw20gukt6yE5dFiAqWFVlkDz9t9bDu8MHkA
+ eQvr9Y+IE3Aq6xeMKQC1AzC4fnmra20wM9KrY6efWNS8vFJFccv0SAkJzjMqQhbDqdqC
+ 9vYkRet21tlsCFFhat6AtLpag5uaLLdmwEtJy98sGZ4YK6Hfv1pBDuuizGYd/w0i5pHZ
+ y1jA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1738269301; x=1738874101;
+ d=1e100.net; s=20230601; t=1738269453; x=1738874253;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=i90LZEJP39KZzuaancmUFtDGdMy9w3zyTcWopQWmg60=;
- b=rMQ6w97eqkncBa3HBKX+uwwshg94o88R3h9zHEF4QkeDRzuuZQ/5QfMFq9lJmDvH0H
- CMszz0vOGswCDm+Cl8Z/JD+o1lPYHS2Rjf7Mfj43PBwaEvnDhZpDbW37WRlvqEhja+W7
- B69E7EFCZWjyG0aE1G4I8fnisR+OGq98tdhyetRFSnenOytBEctjZ1O6+op0Pd29y8qy
- kVhAtYI2Q7u8+Ley2BlRwKeIZKUfKl+dZfsDKscurA2FiEK8PeZsnM8v+RAPFtIxseUg
- Zdd3lr8wczvL+282eSpHMa2JjOUhc7yXNQw8spOS5Yme08jCdBpG71kWDMKmKELX/OQP
- RJ/g==
+ bh=xT8Ut8gLz6JZTplLJnZjKEdD7Di9InMwjf2e/4aq99k=;
+ b=lHyGphWRi/1HWUncNAzArzOn8qBpoWCj+u+s39rIQK8+VaM1tqKZx9VR5IGZ4Hhz/l
+ +oiebH4VDgxFp3nz1w7U1eivbzGRDknMBH340IQGqvF5mq/d3d0ak2cVRMpPCwihLJK9
+ B3rxlRvjpzu1hHq+4w5lavqnU7t0q90GRID2m99Rd9faWKF5RhJTJBbpLygCDgdJWY1/
+ kiLRMBDvYjItco7sunEV/Kct7FwKqZYpgcP1iFsOkGek+Iz70lc1tTC74nGQrOImo/rb
+ QviQMq40MHRnBZeanqfV4mFs02Yfws5swKAizANuP7e3rKxUNFw/6n1DRe6RQV4/s9AX
+ UNtQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUoLrFS8ZKqvdsPpG+LbqeDLSQ7pY7MJCHWb+IEOU1IV5+AVLiMZLB2rJxpxCdetlvj991adVtMO2Y=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzPuTcJo8WbjZbP4la+0heqaLw0yKSdnoboG9CksY1XxuCmkXh6
- WjRKNehDacK7+S6LiLvNTvH2GIuW3NJw+d7SA0Bekndzr1BG1pW4+BNbBGv2HMlZCei34HGzbhj
- PVmb8DwWRkbjkjENlu63Prc5qqLtzUbBCzeJc
-X-Gm-Gg: ASbGncsNiFQ5kPiOuEdHXGArMMBg7i5wAUZOlB68raRt5BWaFHsVm6A0hoOwg1U6daT
- Ibuuz2l+El7XJvU3WdrZOA2JJuqSIKLwIV6FG9VD+a6in/F3OoFKYQor94TVcfD0jEY6IMsRl+O
- vMCpGH0FX6EB0U/bfdRpXbb/KIGxEtXw==
-X-Google-Smtp-Source: AGHT+IGECMPAgyniOqYNB21R66I8EdMyOHzZpuuSW7CxtAKNGfo7YHvttie355d+QCVHN1qEbYdE+9qUUvFsylnBIlM=
-X-Received: by 2002:a17:907:1c0e:b0:aab:8ca7:43df with SMTP id
- a640c23a62f3a-ab6cfe11fa5mr941990066b.39.1738269300801; Thu, 30 Jan 2025
- 12:35:00 -0800 (PST)
+ AJvYcCX49DzvfsGJmyjOa5oFU2+0M8PHl4QLG/TrwCHUqEu4nyPaxuqPCfQWyu6fJry6lcIQ4Puwq7zuW5Y=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yz1TtrdmvNXdYjG6awlOvTzx76MTUAeR1/xqeftxUjMECfLdUdD
+ CkeSuIG+wfJ6PQJuwM1+apsSz3zbTCHnE8mWSmBD+PloAyFWyCFNojbQV2c3waL3uxzmPRAimUk
+ YYRcDNfIVzFSQZOhVCXlAaAhcjEcVHKNeCY0H
+X-Gm-Gg: ASbGnctTxwvIKlfRijrc5Z6oP+aeF8qebtBIDkhUTREuq5O3DVEEtCaSP7gJ21j+0L9
+ zTp4zGOEs+ALrFHXkcLw6tFlyAmc+XoeRTEdQsqYt+NXKuUFbbj64zMvQNjy2xEsQB1yl0jEoXi
+ E/Pa2bMvCS6sFKRl2pDd9qNQN2r9jwsw==
+X-Google-Smtp-Source: AGHT+IHgOIJu66b5+FkCjUTqLe+kFJ5pnzkiI2EWbnmTxxfuYeBlU3TGfepPLf9b4v1IsOlZVSVianh0S1Lnh6AsAs4=
+X-Received: by 2002:a05:6402:4311:b0:5db:f5e9:6760 with SMTP id
+ 4fb4d7f45d1cf-5dc5efa8bcdmr18615952a12.2.1738269453403; Thu, 30 Jan 2025
+ 12:37:33 -0800 (PST)
 MIME-Version: 1.0
 References: <20250130100050.1868208-1-kirill.shutemov@linux.intel.com>
- <20250130100050.1868208-6-kirill.shutemov@linux.intel.com>
-In-Reply-To: <20250130100050.1868208-6-kirill.shutemov@linux.intel.com>
+ <20250130100050.1868208-2-kirill.shutemov@linux.intel.com>
+In-Reply-To: <20250130100050.1868208-2-kirill.shutemov@linux.intel.com>
 From: Yu Zhao <yuzhao@google.com>
-Date: Thu, 30 Jan 2025 13:34:24 -0700
-X-Gm-Features: AWEUYZl3-5-D2vyBu6SH4C2leVIlg1PIhkFjDOkk3Xxy6Plb6I0iqOiSPQjOIdU
-Message-ID: <CAOUHufbZAp9jJb7AA_LF2sS9TbN-T4ssSrp2GbqWSAbf5rUCVg@mail.gmail.com>
-Subject: Re: [PATCHv3 05/11] mm/truncate: Use folio_set_dropbehind() instead
- of deactivate_file_folio()
+Date: Thu, 30 Jan 2025 13:36:57 -0700
+X-Gm-Features: AWEUYZk-T3PmFiMQXizTQSxtfw262HuFGqWt0YvgioLZEIzF4uEgK1GJyl43NpI
+Message-ID: <CAOUHufaap0fbU5LGhvm66Dh7jiBjsJiKPmLjVje=BkoB3C8ToQ@mail.gmail.com>
+Subject: Re: [PATCHv3 01/11] mm/migrate: Transfer PG_dropbehind to the new
+ folio
 To: "Kirill A. Shutemov" <kirill.shutemov@linux.intel.com>
 Cc: Andrew Morton <akpm@linux-foundation.org>, 
  "Matthew Wilcox (Oracle)" <willy@infradead.org>, Jens Axboe <axboe@kernel.dk>, 
@@ -110,12 +110,12 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 On Thu, Jan 30, 2025 at 3:01=E2=80=AFAM Kirill A. Shutemov
 <kirill.shutemov@linux.intel.com> wrote:
 >
-> The recently introduced PG_dropbehind allows for freeing folios
-> immediately after writeback. Unlike PG_reclaim, it does not need vmscan
-> to be involved to get the folio freed.
+> Do not lose the flag on page migration.
 >
-> The new flag allows to replace whole deactivate_file_folio() machinery
-> with simple folio_set_dropbehind().
+> Ideally, these folios should be freed instead of migration. But it
+> requires to find right spot do this and proper testing.
+>
+> Transfer the flag for now.
 >
 > Signed-off-by: Kirill A. Shutemov <kirill.shutemov@linux.intel.com>
 
