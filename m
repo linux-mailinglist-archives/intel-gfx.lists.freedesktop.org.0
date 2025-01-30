@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E679A23637
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jan 2025 22:01:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 39CF3A23636
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jan 2025 22:01:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CB1F10E0CD;
-	Thu, 30 Jan 2025 21:00:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E61910E9D4;
+	Thu, 30 Jan 2025 21:00:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FSIcQgNO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UD5RTOJg";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFC8910E0CD;
- Thu, 30 Jan 2025 21:00:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B4DA10E9D4;
+ Thu, 30 Jan 2025 21:00:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738270854; x=1769806854;
+ t=1738270858; x=1769806858;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=MPOOtVdrbXe6uJv3T7ABYN+QqJrHuX3knz6qhvEybqE=;
- b=FSIcQgNOAq7mm9E0TPztW44cbKcpRYMT/yk5baSseBZnS5/KzHCVFBBp
- FEnbjpDiWKu9xuZO0ZU7Z0WypMkjCs1kYH4KR2fXdjY2RKwfDHsK0or4z
- lE1Vr89xEWmlg0CDib5X8J6fk7BCAysz0g24osp0hwnnv2gpVJYNvpFlG
- sPEgfhX4rkzPua3DEQ9fxagf6m1g78q4EOgWhavCf7I4KBdxnqaIJ4Eiv
- uGaMqZqMDIHf5QnHWxlr2lKr5qQpIzFadL88y2ZRJT382O88/iEHo+YrI
- 097e3NISOkJ33mx/+muB/f89MtzkEnYQuY/wVK9tSdhIbDFdIYo7Dnzz2 Q==;
-X-CSE-ConnectionGUID: Kx9ryzvzRreRSrBctRaqWQ==
-X-CSE-MsgGUID: HXTvx0DdSyOiA9n6Dz67Bw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11331"; a="42491561"
-X-IronPort-AV: E=Sophos;i="6.13,246,1732608000"; d="scan'208";a="42491561"
+ bh=rcHPEJ5oFP9pjqR6U27o2pJd7HOwDbZseVMKveTyjpQ=;
+ b=UD5RTOJgMBe2kAsDtB/tjQcyngUVLGLNGipfRw0n1Tq0+FV3mhnYgDDv
+ fQX6tx++28KZjTrVvfHwrN/mLkip1YKW9b6AtjMJwrsmbIpxTSilWarHH
+ xz/PXEKrDhLY8PvBRa+uH6j9YcBbT51rziAMEPST6fQ/Si34xuYN5jRr/
+ /6IYPjmy38m1Hq9RwbFeIWTfchDoDyGKTR2fzMxK5aKvHu1D3lbawrZ2T
+ 68/kAFn/eWhb7U1Jik/5Cp8CqeqhznG1xod/ih+7iBTLrvueTs8A+GcOW
+ X8d0LAwhrjW83J6dnljMq9nT+0OmDYC9ZewBO0JWGn1tSo7wWSCJB/XbW w==;
+X-CSE-ConnectionGUID: 7UYDQNHqTT6nua0XkFrpqA==
+X-CSE-MsgGUID: BatkscDhSk23AW19q2XnCw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11331"; a="42491577"
+X-IronPort-AV: E=Sophos;i="6.13,246,1732608000"; d="scan'208";a="42491577"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2025 13:00:54 -0800
-X-CSE-ConnectionGUID: GSvaqwYxS+eqoqcKyYlgZg==
-X-CSE-MsgGUID: Slbc6RmXSW2h9SwaOFLXUA==
+ 30 Jan 2025 13:00:58 -0800
+X-CSE-ConnectionGUID: NU0wsdeXSgSFUNEgTN4jsg==
+X-CSE-MsgGUID: yCpUPkY4RLelB6eZKBvn5A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,246,1732608000"; d="scan'208";a="110015905"
+X-IronPort-AV: E=Sophos;i="6.13,246,1732608000"; d="scan'208";a="110015928"
 Received: from mwiniars-desk2.ger.corp.intel.com (HELO
  vgovind2-mobl3.intel.com) ([10.245.246.118])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2025 13:00:52 -0800
+ 30 Jan 2025 13:00:56 -0800
 From: Vinod Govindapillai <vinod.govindapillai@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: vinod.govindapillai@intel.com, ville.syrjala@intel.com,
  santhosh.reddy.guddati@intel.com, jani.saarinen@intel.com
-Subject: [PATCH v6 4/7] drm/i915/xe3: update and store the plane damage clips
-Date: Thu, 30 Jan 2025 23:00:23 +0200
-Message-ID: <20250130210027.591927-5-vinod.govindapillai@intel.com>
+Subject: [PATCH v6 5/7] drm/i915/xe3: dirty rect support for FBC
+Date: Thu, 30 Jan 2025 23:00:24 +0200
+Message-ID: <20250130210027.591927-6-vinod.govindapillai@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250130210027.591927-1-vinod.govindapillai@intel.com>
 References: <20250130210027.591927-1-vinod.govindapillai@intel.com>
@@ -71,200 +71,250 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Userspace can pass damage area clips per plane to track
-changes in a plane and some display components can utilze
-these damage clips for efficiently handling use cases like
-FBC, PSR etc. A merged damage area is generated and its
-coordinates are updated relative to viewport and HW and
-stored in the plane_state. This merged damage areas will be
-used for FBC dirty rect support in xe3 in the follow-up
-patch.
+Dirty rectangle feature allows FBC to recompress a subsection
+of a frame. When this feature is enabled, display will read
+the scan lines between dirty rectangle start line and dirty
+rectangle end line in subsequent frames.
 
-Big thanks to Ville Syrjala for his contribuitions in shaping
-up of this series.
+Use the merged damage clip stored in the plane state to
+configure the FBC dirty rect areas.
 
-v1: - Move damage_merged helper to cover bigjoiner case and use
-    the correct plane state for damage find helper (Ville)
-    - Damage handling code under HAS_FBC_DIRTY_RECT() so the
-    the related part will be executed only for xe3+
-    - Changed dev_priv to i915 in one of the functions
+v2: - Move dirty rect handling to fbc state (Ville)
 
+v3: - Use intel_fbc_dirty_rect_update_noarm (Ville)
+    - Split plane damage collection and dirty rect preparation
+    - Handle case where dirty rect fall outside the visible region
+
+v4: - A state variable to check if we need to update dirty rect
+    registers in case intel_fbc_can_flip_nuke() (Ville)
+
+Bspec: 68881, 71675, 73424
 Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
 ---
- .../gpu/drm/i915/display/intel_atomic_plane.c | 28 ++++++++++++
- .../drm/i915/display/intel_display_types.h    |  2 +
- .../drm/i915/display/skl_universal_plane.c    | 45 +++++++++++++++++--
- 3 files changed, 71 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c |   7 +
+ drivers/gpu/drm/i915/display/intel_fbc.c     | 132 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_fbc.h     |   6 +
+ 3 files changed, 145 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-index c558143f4f82..f55f7044dc67 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-@@ -36,6 +36,7 @@
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 7d68d652c1bc..33277f892279 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -7263,6 +7263,8 @@ static void intel_update_crtc(struct intel_atomic_state *state,
  
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_blend.h>
-+#include <drm/drm_damage_helper.h>
- #include <drm/drm_fourcc.h>
- #include <drm/drm_gem.h>
- #include <drm/drm_gem_atomic_helper.h>
-@@ -322,6 +323,25 @@ static void intel_plane_clear_hw_state(struct intel_plane_state *plane_state)
- 	memset(&plane_state->hw, 0, sizeof(plane_state->hw));
+ 		commit_pipe_pre_planes(state, crtc);
+ 
++		intel_fbc_dirty_rect_update_noarm(NULL, state, crtc);
++
+ 		intel_crtc_planes_update_arm(NULL, state, crtc);
+ 
+ 		commit_pipe_post_planes(state, crtc);
+@@ -7723,6 +7725,8 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
+ 						 new_crtc_state);
+ 		intel_crtc_planes_update_noarm(new_crtc_state->dsb_commit,
+ 					       state, crtc);
++		intel_fbc_dirty_rect_update_noarm(new_crtc_state->dsb_commit,
++						  state, crtc);
+ 
+ 		intel_dsb_vblank_evade(state, new_crtc_state->dsb_commit);
+ 
+@@ -7769,6 +7773,9 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+ 
+ 	intel_atomic_prepare_plane_clear_colors(state);
+ 
++	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i)
++		intel_fbc_prepare_dirty_rect(state, crtc);
++
+ 	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i)
+ 		intel_atomic_dsb_finish(state, crtc);
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+index df05904bac8a..24736c7a79a6 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbc.c
++++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+@@ -88,6 +88,10 @@ struct intel_fbc_state {
+ 	u16 override_cfb_stride;
+ 	u16 interval;
+ 	s8 fence_id;
++	struct {
++		struct drm_rect rect;
++		bool valid;
++	} fbc_dirty_rect;
+ };
+ 
+ struct intel_fbc {
+@@ -527,6 +531,9 @@ static void ilk_fbc_deactivate(struct intel_fbc *fbc)
+ 	struct intel_display *display = fbc->display;
+ 	u32 dpfc_ctl;
+ 
++	if (HAS_FBC_DIRTY_RECT(display))
++		intel_de_write(display, XE3_FBC_DIRTY_CTL(fbc->id), 0);
++
+ 	/* Disable compression */
+ 	dpfc_ctl = intel_de_read(display, ILK_DPFC_CONTROL(fbc->id));
+ 	if (dpfc_ctl & DPFC_CTL_EN) {
+@@ -670,6 +677,10 @@ static void ivb_fbc_activate(struct intel_fbc *fbc)
+ 	if (DISPLAY_VER(display) >= 20)
+ 		intel_de_write(display, ILK_DPFC_CONTROL(fbc->id), dpfc_ctl);
+ 
++	if (HAS_FBC_DIRTY_RECT(display))
++		intel_de_write(display, XE3_FBC_DIRTY_CTL(fbc->id),
++			       FBC_DIRTY_RECT_EN);
++
+ 	intel_de_write(display, ILK_DPFC_CONTROL(fbc->id),
+ 		       DPFC_CTL_EN | dpfc_ctl);
+ }
+@@ -1203,6 +1214,127 @@ static bool tiling_is_valid(const struct intel_plane_state *plane_state)
+ 		return i8xx_fbc_tiling_valid(plane_state);
  }
  
++static bool intel_fbc_can_flip_nuke(struct intel_atomic_state *state,
++				    struct intel_crtc *crtc,
++				    struct intel_plane *plane);
++
 +static void
-+intel_plane_check_plane_damage(struct intel_plane_state *new_plane_state,
-+			       const struct intel_plane_state *old_primary_plane_state,
-+			       const struct intel_plane_state *new_primary_plane_state)
++intel_fbc_dirty_rect_update(struct intel_dsb *dsb, struct intel_plane *plane)
 +{
-+	struct intel_display *display = to_intel_display(new_plane_state);
-+	struct drm_rect *damage_merged = &new_plane_state->damage_merged;
++	struct intel_display *display = to_intel_display(plane);
++	struct intel_fbc *fbc = plane->fbc;
++	struct intel_fbc_state *fbc_state = &fbc->state;
++	struct drm_rect *fbc_dirty_rect = &fbc_state->fbc_dirty_rect.rect;
++
++	if (fbc_state->plane != plane)
++		return;
++
++	if (!fbc_state->fbc_dirty_rect.valid)
++		return;
++
++	intel_de_write_dsb(display, dsb, XE3_FBC_DIRTY_RECT(fbc->id),
++			   FBC_DIRTY_RECT_START_LINE(fbc_dirty_rect->y1) |
++			   FBC_DIRTY_RECT_END_LINE(fbc_dirty_rect->y2));
++
++	fbc_state->fbc_dirty_rect.valid = false;
++}
++
++void
++intel_fbc_dirty_rect_update_noarm(struct intel_dsb *dsb,
++				  struct intel_atomic_state *state,
++				  struct intel_crtc *crtc)
++{
++	struct intel_display *display = to_intel_display(state);
++	struct intel_plane_state *plane_state;
++	struct intel_plane *plane;
++	int i;
 +
 +	if (!HAS_FBC_DIRTY_RECT(display))
 +		return;
 +
-+	if (!drm_atomic_helper_damage_merged(&old_primary_plane_state->uapi,
-+					     &new_primary_plane_state->uapi,
-+					     damage_merged))
-+		/* Incase helper fails, mark whole plane region as damage */
-+		*damage_merged =
-+			drm_plane_state_src(&new_primary_plane_state->uapi);
-+}
++	for_each_new_intel_plane_in_state(state, plane, plane_state, i) {
++		struct intel_fbc *fbc = plane->fbc;
 +
- void intel_plane_copy_uapi_to_hw_state(struct intel_plane_state *plane_state,
- 				       const struct intel_plane_state *from_plane_state,
- 				       struct intel_crtc *crtc)
-@@ -691,6 +711,7 @@ int intel_plane_atomic_check(struct intel_atomic_state *state,
- 	const struct intel_plane_state *old_plane_state =
- 		intel_atomic_get_old_plane_state(state, plane);
- 	const struct intel_plane_state *new_primary_crtc_plane_state;
-+	const struct intel_plane_state *old_primary_crtc_plane_state;
- 	struct intel_crtc *crtc = intel_crtc_for_pipe(display, plane->pipe);
- 	const struct intel_crtc_state *old_crtc_state =
- 		intel_atomic_get_old_crtc_state(state, crtc);
-@@ -705,10 +726,17 @@ int intel_plane_atomic_check(struct intel_atomic_state *state,
- 
- 		new_primary_crtc_plane_state =
- 			intel_atomic_get_new_plane_state(state, primary_crtc_plane);
-+		old_primary_crtc_plane_state =
-+			intel_atomic_get_old_plane_state(state, primary_crtc_plane);
- 	} else {
- 		new_primary_crtc_plane_state = new_plane_state;
-+		old_primary_crtc_plane_state = old_plane_state;
- 	}
- 
-+	intel_plane_check_plane_damage(new_plane_state,
-+				       old_primary_crtc_plane_state,
-+				       new_primary_crtc_plane_state);
++		if (!fbc || plane->pipe != crtc->pipe)
++			continue;
 +
- 	intel_plane_copy_uapi_to_hw_state(new_plane_state,
- 					  new_primary_crtc_plane_state,
- 					  crtc);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index cb51b7936f93..8d53bcca9614 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -695,6 +695,8 @@ struct intel_plane_state {
- 	u64 ccval;
- 
- 	const char *no_fbc_reason;
++		if (!plane_state->uapi.visible)
++			continue;
 +
-+	struct drm_rect damage_merged;
- };
- 
- struct intel_initial_plane_config {
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 301ad3a22c4c..b90a7d52c071 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -2249,11 +2249,42 @@ static void check_protection(struct intel_plane_state *plane_state)
- 		!plane_state->decrypt;
- }
- 
-+static void
-+skl_plane_check_damage_with_viewport(struct intel_plane_state *plane_state)
-+{
-+	struct drm_rect *damage_merged = &plane_state->damage_merged;
-+	const struct drm_framebuffer *fb = plane_state->hw.fb;
-+	unsigned int rotation = plane_state->hw.rotation;
-+	struct drm_rect *src = &plane_state->uapi.src;
-+
-+	if (drm_rotation_90_or_270(rotation)) {
-+		drm_rect_rotate(damage_merged, fb->width, fb->height,
-+				DRM_MODE_ROTATE_270);
-+		drm_rect_translate(damage_merged, -(src->y1 >> 16),
-+				   -(src->x1 >> 16));
-+	} else {
-+		drm_rect_translate(damage_merged, -(src->x1 >> 16),
-+				   -(src->y1 >> 16));
++		intel_fbc_dirty_rect_update(dsb, plane);
 +	}
 +}
 +
 +static void
-+skl_plane_check_damage_with_plane_surf(struct intel_plane_state *plane_state)
++validate_and_clip_dirty_rect(struct intel_plane_state *plane_state,
++			     struct drm_rect *dirty_rect)
 +{
-+	struct drm_rect *damage_merged = &plane_state->damage_merged;
-+	struct drm_rect src;
++	int y_offset = plane_state->view.color_plane[0].y;
++	int plane_height = drm_rect_height(&plane_state->uapi.src) >> 16;
++	int max_endline = y_offset + plane_height - 1;
 +
-+	drm_rect_fp_to_int(&src, &plane_state->uapi.src);
-+	drm_rect_translate(damage_merged, src.x1, src.y1);
-+	drm_rect_intersect(damage_merged, &src);
++	dirty_rect->y1 = clamp(dirty_rect->y1, y_offset, max_endline);
++	dirty_rect->y2 = clamp(dirty_rect->y2, dirty_rect->y1, max_endline);
 +}
 +
- static int skl_plane_check(struct intel_crtc_state *crtc_state,
- 			   struct intel_plane_state *plane_state)
- {
-+	struct intel_display *display = to_intel_display(crtc_state);
- 	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
--	struct drm_i915_private *dev_priv = to_i915(plane->base.dev);
-+	struct drm_i915_private *i915 = to_i915(plane->base.dev);
- 	const struct drm_framebuffer *fb = plane_state->hw.fb;
- 	int min_scale = DRM_PLANE_NO_SCALING;
- 	int max_scale = DRM_PLANE_NO_SCALING;
-@@ -2266,7 +2297,7 @@ static int skl_plane_check(struct intel_crtc_state *crtc_state,
- 	/* use scaler when colorkey is not required */
- 	if (!plane_state->ckey.flags && skl_fb_scalable(fb)) {
- 		min_scale = 1;
--		max_scale = skl_plane_max_scale(dev_priv, fb);
-+		max_scale = skl_plane_max_scale(i915, fb);
- 	}
- 
- 	ret = intel_atomic_plane_check_clipping(plane_state, crtc_state,
-@@ -2274,6 +2305,9 @@ static int skl_plane_check(struct intel_crtc_state *crtc_state,
- 	if (ret)
- 		return ret;
- 
-+	if (HAS_FBC_DIRTY_RECT(display))
-+		skl_plane_check_damage_with_viewport(plane_state);
++static void
++__intel_fbc_prepare_dirty_rect(struct intel_plane *plane,
++			       struct intel_plane_state *plane_state,
++			       bool fbc_dirty_rect_valid)
++{
++	struct intel_fbc_state *fbc_state = &plane->fbc->state;
++	struct drm_rect *fbc_dirty_rect = &fbc_state->fbc_dirty_rect.rect;
++	struct drm_rect *damage_merged = &plane_state->damage_merged;
++	int y_offset = plane_state->view.color_plane[0].y;
 +
- 	ret = skl_check_plane_surface(plane_state);
- 	if (ret)
- 		return ret;
-@@ -2289,6 +2323,9 @@ static int skl_plane_check(struct intel_crtc_state *crtc_state,
- 	if (ret)
- 		return ret;
- 
-+	if (HAS_FBC_DIRTY_RECT(display))
-+		skl_plane_check_damage_with_plane_surf(plane_state);
++	fbc_state->fbc_dirty_rect.valid = fbc_dirty_rect_valid;
 +
- 	ret = skl_plane_check_nv12_rotation(plane_state);
- 	if (ret)
- 		return ret;
-@@ -2301,12 +2338,12 @@ static int skl_plane_check(struct intel_crtc_state *crtc_state,
++	if (drm_rect_visible(damage_merged)) {
++		fbc_dirty_rect->y1 = damage_merged->y1;
++		fbc_dirty_rect->y2 = damage_merged->y2;
++	} else {
++		/* If not visible, we need to set one single line */
++		fbc_dirty_rect->y1 = y_offset;
++		fbc_dirty_rect->y2 = y_offset;
++	}
++	fbc_dirty_rect->x1 = damage_merged->x1;
++	fbc_dirty_rect->x2 = damage_merged->x2;
++
++	validate_and_clip_dirty_rect(plane_state, fbc_dirty_rect);
++}
++
++void
++intel_fbc_prepare_dirty_rect(struct intel_atomic_state *state,
++			     struct intel_crtc *crtc)
++{
++	struct intel_display *display = to_intel_display(state);
++	struct intel_plane_state *plane_state;
++	struct intel_plane *plane;
++	int i;
++
++	if (!HAS_FBC_DIRTY_RECT(display))
++		return;
++
++	for_each_new_intel_plane_in_state(state, plane, plane_state, i) {
++		struct intel_fbc *fbc = plane->fbc;
++
++		if (!fbc || plane->pipe != crtc->pipe)
++			continue;
++
++		if (!fbc->state.plane)
++			continue;
++
++		/* If plane not visible, dirty rect might have invalid coordinates */
++		if (!plane_state->uapi.visible)
++			continue;
++
++		__intel_fbc_prepare_dirty_rect(plane, plane_state,
++					       intel_fbc_can_flip_nuke(state,
++								       crtc,
++								       plane));
++	}
++}
++
+ static void intel_fbc_update_state(struct intel_atomic_state *state,
+ 				   struct intel_crtc *crtc,
+ 				   struct intel_plane *plane)
+diff --git a/drivers/gpu/drm/i915/display/intel_fbc.h b/drivers/gpu/drm/i915/display/intel_fbc.h
+index ceae55458e14..8f1b11c6f4d2 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbc.h
++++ b/drivers/gpu/drm/i915/display/intel_fbc.h
+@@ -14,6 +14,7 @@ struct intel_atomic_state;
+ struct intel_crtc;
+ struct intel_crtc_state;
+ struct intel_display;
++struct intel_dsb;
+ struct intel_fbc;
+ struct intel_plane;
+ struct intel_plane_state;
+@@ -48,5 +49,10 @@ void intel_fbc_handle_fifo_underrun_irq(struct intel_display *display);
+ void intel_fbc_reset_underrun(struct intel_display *display);
+ void intel_fbc_crtc_debugfs_add(struct intel_crtc *crtc);
+ void intel_fbc_debugfs_register(struct intel_display *display);
++void intel_fbc_prepare_dirty_rect(struct intel_atomic_state *state,
++				  struct intel_crtc *crtc);
++void intel_fbc_dirty_rect_update_noarm(struct intel_dsb *dsb,
++				       struct intel_atomic_state *state,
++				       struct intel_crtc *crtc);
  
- 	plane_state->ctl = skl_plane_ctl(crtc_state, plane_state);
- 
--	if (DISPLAY_VER(dev_priv) >= 10)
-+	if (DISPLAY_VER(display) >= 10)
- 		plane_state->color_ctl = glk_plane_color_ctl(crtc_state,
- 							     plane_state);
- 
- 	if (intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier) &&
--	    icl_is_hdr_plane(dev_priv, plane->id))
-+	    icl_is_hdr_plane(i915, plane->id))
- 		/* Enable and use MPEG-2 chroma siting */
- 		plane_state->cus_ctl = PLANE_CUS_ENABLE |
- 			PLANE_CUS_HPHASE_0 |
+ #endif /* __INTEL_FBC_H__ */
 -- 
 2.43.0
 
