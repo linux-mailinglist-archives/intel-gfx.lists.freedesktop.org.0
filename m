@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CDF9A22E10
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jan 2025 14:46:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 13B37A22E9A
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jan 2025 15:03:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 56D7B10E96E;
-	Thu, 30 Jan 2025 13:46:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E868510E98A;
+	Thu, 30 Jan 2025 14:03:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V+OdY2l2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SqIfv86k";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D028210E96E;
- Thu, 30 Jan 2025 13:46:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9253810E98A;
+ Thu, 30 Jan 2025 14:03:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738244797; x=1769780797;
+ t=1738245789; x=1769781789;
  h=date:from:to:cc:subject:message-id:reply-to:references:
  mime-version:in-reply-to;
- bh=d/pwK3J0p1oA/FQ3LAhMRbf99sDWrWUppH4ufKPGnk0=;
- b=V+OdY2l2+2mx+3NSYtzUAe8bRLBYWsqPs97KmGnFkDU7LXSL4WH8ZMxY
- L8GY9x9c3I+0ScPPAmxN4yUp+xgGqKaeIodssHj0ISLBYhAd/BNlB8DiD
- eb8cQjygpUjKhUyzjlWoKSdAH5T8bqcOo0g2Lc0hKMtPv2PJHyO0OJUIl
- q6EOPOizLHhNe9vg4j+Z3ASJ2ricanZcmtRYWlhOa0vNuQUJYsP+YfAlC
- dORnRzAt7nXp3f3YlezpeTcM6hpjTOGbYk9ajLA8s5yKXYqSlnnn5diSI
- ipvQppakL/ZcT1r0qIKMBZvD1xq8q69YItifqusBK7/bdu07gcnsLZcOO g==;
-X-CSE-ConnectionGUID: GYKiRbMHRv2SviELOZmGow==
-X-CSE-MsgGUID: y3FkLpz/TnqNgZ3FzMyPyQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11331"; a="39053875"
-X-IronPort-AV: E=Sophos;i="6.13,245,1732608000"; d="scan'208";a="39053875"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ bh=BjQC7AarXKmnMb3ssif2j93kUy0BN5iazNnxIYE31mU=;
+ b=SqIfv86ksxDIHhxswlC6PAveeEIgivn4iSB7yYIf4aip+6m2h9eOMMyW
+ lZsFQSCHn7XfzuSHhYdCVcqxNTbcUeOFOgARVZcJMPk9K5ZSFqA2ocjHa
+ JnG7fo5L9zOZ1NynWuw9R1eQW4YUZvDv7xO+WFzNb3e/BTFS1xNSDjvMu
+ FuVudyYcQaxEsq8EwDvuzD3bruGPouXyK6QoYgyRC4HiunJ4ziyQkUrNl
+ h7hH2N0RIQ3DqaVkkcZv1sXBlP5dgkERwAYLOR2ZDiUp3dzLwrMZ9T5id
+ 2fT6hxywyOLGAVu8GKrBLtsC7lmiHVKqjt2XboR53oINV8aqaFHE2BWzS Q==;
+X-CSE-ConnectionGUID: jvNuXFXiTqGZ/BLd2qFHiQ==
+X-CSE-MsgGUID: 51D0I9fTR7+iaIKxgbpQOw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11331"; a="39055298"
+X-IronPort-AV: E=Sophos;i="6.13,245,1732608000"; d="scan'208";a="39055298"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2025 05:46:36 -0800
-X-CSE-ConnectionGUID: cZGlCHibRDuFZLwKhr5d7Q==
-X-CSE-MsgGUID: lW22Nb2rRmW3CQTMtmL8Zg==
+ 30 Jan 2025 06:03:05 -0800
+X-CSE-ConnectionGUID: SZNInMC1Si2xXJJoWTrNpg==
+X-CSE-MsgGUID: Il8SN996TsueR61+Piy0Vg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,245,1732608000"; d="scan'208";a="109160378"
+X-IronPort-AV: E=Sophos;i="6.13,245,1732608000"; d="scan'208";a="114344880"
 Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2025 05:46:35 -0800
-Date: Thu, 30 Jan 2025 15:47:31 +0200
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2025 06:03:03 -0800
+Date: Thu, 30 Jan 2025 16:03:59 +0200
 From: Imre Deak <imre.deak@intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 1/6] drm/i915/dp: constify struct link_config_limits
- pointers
-Message-ID: <Z5uC83oEarvvX7Y3@ideak-desk.fi.intel.com>
+Subject: Re: [PATCH 2/6] drm/i915/dp: change the order of
+ intel_dp_mtp_tu_compute_config() params
+Message-ID: <Z5uGzy46BTXX2aUG@ideak-desk.fi.intel.com>
 References: <cover.1738161945.git.jani.nikula@intel.com>
- <6ab2f68eef7849aca18e82ad788e44e9f82b576e.1738161945.git.jani.nikula@intel.com>
+ <ea9669edc5973cdbca92aeb4e168850015e9d1bb.1738161945.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <6ab2f68eef7849aca18e82ad788e44e9f82b576e.1738161945.git.jani.nikula@intel.com>
+In-Reply-To: <ea9669edc5973cdbca92aeb4e168850015e9d1bb.1738161945.git.jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,150 +70,76 @@ Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, Jan 29, 2025 at 04:46:33PM +0200, Jani Nikula wrote:
-> The limits get passed around, but are only modified in a few
-> places. Constify the pointers elsewhere so it's easier to follow where
-> they can be modified.
+On Wed, Jan 29, 2025 at 04:46:34PM +0200, Jani Nikula wrote:
+> Pointers first, bpp params in min, max, step. This is slightly more
+> natural to follow.
 > 
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
 Reviewed-by: Imre Deak <imre.deak@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/display/intel_dp.c     | 18 +++++++++---------
->  drivers/gpu/drm/i915/display/intel_dp.h     |  2 +-
->  drivers/gpu/drm/i915/display/intel_dp_mst.c |  6 +++---
->  3 files changed, 13 insertions(+), 13 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_dp.c     | 2 +-
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c | 8 +++-----
+>  drivers/gpu/drm/i915/display/intel_dp_mst.h | 3 +--
+>  3 files changed, 5 insertions(+), 8 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index a286e5e31c4d..d367f9c2fa23 100644
+> index d367f9c2fa23..c387de69d55e 100644
 > --- a/drivers/gpu/drm/i915/display/intel_dp.c
 > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -1941,7 +1941,7 @@ static bool is_bw_sufficient_for_dsc_config(u16 compressed_bppx16, u32 link_cloc
->  
->  static int dsc_compute_link_config(struct intel_dp *intel_dp,
->  				   struct intel_crtc_state *pipe_config,
-> -				   struct link_config_limits *limits,
-> +				   const struct link_config_limits *limits,
->  				   u16 compressed_bppx16,
->  				   int timeslots)
->  {
-> @@ -2061,7 +2061,7 @@ static int dsc_src_max_compressed_bpp(struct intel_dp *intel_dp)
->  static int
->  icl_dsc_compute_link_config(struct intel_dp *intel_dp,
->  			    struct intel_crtc_state *pipe_config,
-> -			    struct link_config_limits *limits,
-> +			    const struct link_config_limits *limits,
->  			    int dsc_max_bpp,
->  			    int dsc_min_bpp,
->  			    int pipe_bpp,
-> @@ -2104,7 +2104,7 @@ static int
->  xelpd_dsc_compute_link_config(struct intel_dp *intel_dp,
->  			      const struct intel_connector *connector,
->  			      struct intel_crtc_state *pipe_config,
-> -			      struct link_config_limits *limits,
-> +			      const struct link_config_limits *limits,
->  			      int dsc_max_bpp,
->  			      int dsc_min_bpp,
->  			      int pipe_bpp,
-> @@ -2153,7 +2153,7 @@ xelpd_dsc_compute_link_config(struct intel_dp *intel_dp,
->  static int dsc_compute_compressed_bpp(struct intel_dp *intel_dp,
->  				      const struct intel_connector *connector,
->  				      struct intel_crtc_state *pipe_config,
-> -				      struct link_config_limits *limits,
-> +				      const struct link_config_limits *limits,
->  				      int pipe_bpp,
->  				      int timeslots)
->  {
-> @@ -2185,7 +2185,7 @@ int intel_dp_dsc_min_src_input_bpc(void)
->  }
->  
->  static
-> -bool is_dsc_pipe_bpp_sufficient(struct link_config_limits *limits,
-> +bool is_dsc_pipe_bpp_sufficient(const struct link_config_limits *limits,
->  				int pipe_bpp)
->  {
->  	return pipe_bpp >= limits->pipe.min_bpp &&
-> @@ -2194,7 +2194,7 @@ bool is_dsc_pipe_bpp_sufficient(struct link_config_limits *limits,
->  
->  static
->  int intel_dp_force_dsc_pipe_bpp(struct intel_dp *intel_dp,
-> -				struct link_config_limits *limits)
-> +				const struct link_config_limits *limits)
->  {
->  	struct intel_display *display = to_intel_display(intel_dp);
->  	int forced_bpp;
-> @@ -2220,7 +2220,7 @@ int intel_dp_force_dsc_pipe_bpp(struct intel_dp *intel_dp,
->  static int intel_dp_dsc_compute_pipe_bpp(struct intel_dp *intel_dp,
->  					 struct intel_crtc_state *pipe_config,
->  					 struct drm_connector_state *conn_state,
-> -					 struct link_config_limits *limits,
-> +					 const struct link_config_limits *limits,
->  					 int timeslots)
->  {
->  	const struct intel_connector *connector =
-> @@ -2270,7 +2270,7 @@ static int intel_dp_dsc_compute_pipe_bpp(struct intel_dp *intel_dp,
->  static int intel_edp_dsc_compute_pipe_bpp(struct intel_dp *intel_dp,
->  					  struct intel_crtc_state *pipe_config,
->  					  struct drm_connector_state *conn_state,
-> -					  struct link_config_limits *limits)
-> +					  const struct link_config_limits *limits)
->  {
->  	struct intel_display *display = to_intel_display(intel_dp);
->  	struct intel_connector *connector =
-> @@ -2335,7 +2335,7 @@ static void intel_dp_fec_compute_config(struct intel_dp *intel_dp,
->  int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
->  				struct intel_crtc_state *pipe_config,
->  				struct drm_connector_state *conn_state,
-> -				struct link_config_limits *limits,
-> +				const struct link_config_limits *limits,
->  				int timeslots,
->  				bool compute_pipe_bpp)
->  {
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-> index ca49f0a05da5..ffc27f8ad226 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
-> @@ -75,7 +75,7 @@ int intel_dp_compute_config(struct intel_encoder *encoder,
->  int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
->  				struct intel_crtc_state *pipe_config,
->  				struct drm_connector_state *conn_state,
-> -				struct link_config_limits *limits,
-> +				const struct link_config_limits *limits,
->  				int timeslots,
->  				bool recompute_pipe_bpp);
->  void intel_dp_audio_compute_config(struct intel_encoder *encoder,
+> @@ -2643,9 +2643,9 @@ intel_dp_compute_link_config(struct intel_encoder *encoder,
+>  		if (!ret && intel_dp_is_uhbr(pipe_config))
+>  			ret = intel_dp_mtp_tu_compute_config(intel_dp,
+>  							     pipe_config,
+> +							     conn_state,
+>  							     pipe_config->pipe_bpp,
+>  							     pipe_config->pipe_bpp,
+> -							     conn_state,
+>  							     0, false);
+>  		if (ret)
+>  			dsc_needed = true;
 > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> index d58facf78aa9..2acc26aad6a0 100644
+> index 2acc26aad6a0..98d7cdddfead 100644
 > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
 > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> @@ -363,7 +363,7 @@ int intel_dp_mtp_tu_compute_config(struct intel_dp *intel_dp,
->  static int mst_stream_find_vcpi_slots_for_bpp(struct intel_dp *intel_dp,
->  					      struct intel_crtc_state *crtc_state,
->  					      int max_bpp, int min_bpp,
-> -					      struct link_config_limits *limits,
-> +					      const struct link_config_limits *limits,
->  					      struct drm_connector_state *conn_state,
->  					      int step, bool dsc)
->  {
-> @@ -388,7 +388,7 @@ static int mst_stream_find_vcpi_slots_for_bpp(struct intel_dp *intel_dp,
->  static int mst_stream_compute_link_config(struct intel_dp *intel_dp,
->  					  struct intel_crtc_state *crtc_state,
->  					  struct drm_connector_state *conn_state,
-> -					  struct link_config_limits *limits)
-> +					  const struct link_config_limits *limits)
->  {
->  	/*
->  	 * FIXME: allocate the BW according to link_bpp, which in the case of
-> @@ -404,7 +404,7 @@ static int mst_stream_compute_link_config(struct intel_dp *intel_dp,
->  static int mst_stream_dsc_compute_link_config(struct intel_dp *intel_dp,
->  					      struct intel_crtc_state *crtc_state,
->  					      struct drm_connector_state *conn_state,
-> -					      struct link_config_limits *limits)
-> +					      const struct link_config_limits *limits)
+> @@ -211,9 +211,8 @@ static int intel_dp_mst_dsc_get_slice_count(const struct intel_connector *connec
+>  
+>  int intel_dp_mtp_tu_compute_config(struct intel_dp *intel_dp,
+>  				   struct intel_crtc_state *crtc_state,
+> -				   int max_bpp, int min_bpp,
+>  				   struct drm_connector_state *conn_state,
+> -				   int step, bool dsc)
+> +				   int min_bpp, int max_bpp, int step, bool dsc)
 >  {
 >  	struct intel_display *display = to_intel_display(intel_dp);
->  	struct intel_connector *connector = to_intel_connector(conn_state->connector);
+>  	struct drm_atomic_state *state = crtc_state->uapi.state;
+> @@ -380,9 +379,8 @@ static int mst_stream_find_vcpi_slots_for_bpp(struct intel_dp *intel_dp,
+>  	mst_state->pbn_div = drm_dp_get_vc_payload_bw(crtc_state->port_clock,
+>  						      crtc_state->lane_count);
+>  
+> -	return intel_dp_mtp_tu_compute_config(intel_dp, crtc_state,
+> -					      max_bpp, min_bpp,
+> -					      conn_state, step, dsc);
+> +	return intel_dp_mtp_tu_compute_config(intel_dp, crtc_state, conn_state,
+> +					      min_bpp, max_bpp, step, dsc);
+>  }
+>  
+>  static int mst_stream_compute_link_config(struct intel_dp *intel_dp,
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.h b/drivers/gpu/drm/i915/display/intel_dp_mst.h
+> index c6bdc1d190a4..a713a1c10154 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.h
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.h
+> @@ -33,8 +33,7 @@ bool intel_dp_mst_verify_dpcd_state(struct intel_dp *intel_dp);
+>  
+>  int intel_dp_mtp_tu_compute_config(struct intel_dp *intel_dp,
+>  				   struct intel_crtc_state *crtc_state,
+> -				   int max_bpp, int min_bpp,
+>  				   struct drm_connector_state *conn_state,
+> -				   int step, bool dsc);
+> +				   int min_bpp, int max_bpp, int step, bool dsc);
+>  
+>  #endif /* __INTEL_DP_MST_H__ */
 > -- 
 > 2.39.5
 > 
