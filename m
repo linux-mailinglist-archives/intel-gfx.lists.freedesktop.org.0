@@ -2,61 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94E12A23639
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jan 2025 22:01:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C754DA2365F
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jan 2025 22:14:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3286010E9DC;
-	Thu, 30 Jan 2025 21:01:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F63A10E0C4;
+	Thu, 30 Jan 2025 21:14:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ec26PS/T";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LckC3XDw";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7534010E9E2;
- Thu, 30 Jan 2025 21:01:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A7C210E0C4;
+ Thu, 30 Jan 2025 21:14:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738270865; x=1769806865;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Qj+l+pxyse1z4wwgaK9lg+GZBlYCKWj7TeKSI7Qto8Y=;
- b=Ec26PS/TXCHJV4weHj0PleegNIRr7lO5l5PsC5NCoD3fwwOgLf2hR48u
- uxaqG4fnPmBIIPtaYN3Zjpf1iPJ6oHdvWl7NnQUr+TUrJuYrmnSyUC2Vb
- 2H3nj80mF8sk3WLOh40L1mnaThK+Fh6QmF/NHSt0WDt5qRXp1KKhbsTOq
- nvCmyX5oBZI3UZ96XCJtpXf8ynEpS0a827its7uNV+TCuJ01UI7Uk5Ib6
- /ptkM+tfPV9SVGBCDDFe2xhj0nbkeIXly8nrVuuvURPwjkRA3tAUIIzGC
- 7Q2UqB1aa3YDGkAPvUImB/ggVmLw0nD8dCX1XH+zSFhgfmuh8i6Wh1gqc g==;
-X-CSE-ConnectionGUID: pvv3K7puQqSNOv/A00gv8w==
-X-CSE-MsgGUID: PIa9A806TBOSjFhUxRcM/A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11331"; a="42491603"
-X-IronPort-AV: E=Sophos;i="6.13,246,1732608000"; d="scan'208";a="42491603"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2025 13:01:05 -0800
-X-CSE-ConnectionGUID: C6knJu7DT7K3QAeK2Q6vKg==
-X-CSE-MsgGUID: sufbU2VoRPuTx335eSNJCg==
+ t=1738271679; x=1769807679;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=tCSAUuBMBG4RaN+xRE9sK4xZhD8AhTy3/f+C54csWxk=;
+ b=LckC3XDwtgs4OgXcu7S9wbeUslP2de4ZHORVL1Lvm5MPGS6KO26iBk1z
+ DECluOhsJB5k56NnAp7zlCZcHWb9lGO5juPqGDwlgBq+URQb4zksBAKkp
+ k/foUWIQN5i0y0m3+Vg0XOamoCVNUhDlrmePXkF26j+EWd2dBoMUhZ9mY
+ PSmCaiQEfTKHQhSGWxl65PZft+KBxlpxktTWls81iVX+3iZvAm+7n5CfV
+ KDdQMBGyAtyuonXl9hkZTaTGCPRWRBEW9qzmlSep8GQ77WgkeHcaysW1u
+ 6dniJTXrNrL2rkG4GImepnc9joBY/ORdETyc7Y2126otEswaFYHunzazo Q==;
+X-CSE-ConnectionGUID: ipj9FzisSS6a5QUv91JG7A==
+X-CSE-MsgGUID: kFalTtrKT4mtbS1WF0LOow==
+X-IronPort-AV: E=McAfee;i="6700,10204,11331"; a="49497676"
+X-IronPort-AV: E=Sophos;i="6.13,246,1732608000"; d="scan'208";a="49497676"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2025 13:14:38 -0800
+X-CSE-ConnectionGUID: K2PDb+e1R0uooUBRaOZArg==
+X-CSE-MsgGUID: KEUlnxNfQiOEvKQzk1TMbA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,246,1732608000"; d="scan'208";a="110015991"
-Received: from mwiniars-desk2.ger.corp.intel.com (HELO
- vgovind2-mobl3.intel.com) ([10.245.246.118])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2025 13:01:03 -0800
-From: Vinod Govindapillai <vinod.govindapillai@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: vinod.govindapillai@intel.com, ville.syrjala@intel.com,
- santhosh.reddy.guddati@intel.com, jani.saarinen@intel.com
-Subject: [PATCH v6 7/7] drm/i915/xe3: disable FBC if PSR2 selective fetch is
- enabled
-Date: Thu, 30 Jan 2025 23:00:26 +0200
-Message-ID: <20250130210027.591927-8-vinod.govindapillai@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250130210027.591927-1-vinod.govindapillai@intel.com>
-References: <20250130210027.591927-1-vinod.govindapillai@intel.com>
-MIME-Version: 1.0
+X-IronPort-AV: E=Sophos;i="6.13,246,1732608000"; d="scan'208";a="110043097"
+Received: from sschumil-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.68])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2025 13:14:36 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: imre.deak@intel.com
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 4/6] drm/i915/mst: handle mst pbn_div in
+ intel_dp_mtp_tu_compute_config()
+In-Reply-To: <Z5uLY1QC72jrT_JC@ideak-desk.fi.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+References: <cover.1738161945.git.jani.nikula@intel.com>
+ <0cc1b507601c9964ebae7d50b1f90b1ce00acb11.1738161945.git.jani.nikula@intel.com>
+ <Z5uLY1QC72jrT_JC@ideak-desk.fi.intel.com>
+Date: Thu, 30 Jan 2025 23:14:33 +0200
+Message-ID: <8734h080na.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,41 +71,113 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-It is not recommended to have both FBC dirty rect and PSR2
-selective fetch be enabled at the same time. If PSR2 selective
-fetch or panel replay is on, mark FBC as not possible.
+On Thu, 30 Jan 2025, Imre Deak <imre.deak@intel.com> wrote:
+> On Wed, Jan 29, 2025 at 04:46:36PM +0200, Jani Nikula wrote:
+>> Move mst_state->pbn_div calculation to intel_dp_mtp_tu_compute_config()
+>> to allow further refactoring.
+>> 
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_dp_mst.c | 31 ++++++++++-----------
+>>  1 file changed, 14 insertions(+), 17 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+>> index ea1b05224c06..8786c8751c82 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+>> @@ -216,15 +216,25 @@ int intel_dp_mtp_tu_compute_config(struct intel_dp *intel_dp,
+>>  {
+>>  	struct intel_display *display = to_intel_display(intel_dp);
+>>  	struct drm_atomic_state *state = crtc_state->uapi.state;
+>> +	struct drm_dp_mst_topology_state *mst_state = NULL;
+>>  	struct intel_connector *connector =
+>>  		to_intel_connector(conn_state->connector);
+>>  	const struct drm_display_mode *adjusted_mode =
+>>  		&crtc_state->hw.adjusted_mode;
+>> -	fixed20_12 pbn_div;
+>> +	bool is_mst = intel_dp->is_mst;
+>>  	int bpp, slots = -EINVAL;
+>>  	int dsc_slice_count = 0;
+>>  	int max_dpt_bpp;
+>>  
+>> +	if (is_mst) {^
+>> +		mst_state = drm_atomic_get_mst_topology_state(state, &intel_dp->mst_mgr);
+>> +		if (IS_ERR(mst_state))
+>> +			return PTR_ERR(mst_state);
+>> +
+>> +		mst_state->pbn_div = drm_dp_get_vc_payload_bw(crtc_state->port_clock,
+>> +							      crtc_state->lane_count);
+>> +	}
+>> +
+>
+> This could've been in the if (intel_dp->is_mst) block, since SST doesn't
+> use pbn_div. In any case the patch is correct:
 
-v2: fix the condition to disable FBC if PSR2 enabled (Jani)
+Uh, there's the if (is_mst)?
 
-v3: use HAS_FBC_DIRTY_RECT()
+>
+> Reviewed-by: Imre Deak <imre.deak@intel.com>
+>
+>>  	if (dsc) {
+>>  		if (!intel_dp_supports_fec(intel_dp, connector, crtc_state))
+>>  			return -EINVAL;
+>> @@ -232,9 +242,6 @@ int intel_dp_mtp_tu_compute_config(struct intel_dp *intel_dp,
+>>  		crtc_state->fec_enable = !intel_dp_is_uhbr(crtc_state);
+>>  	}
+>>  
+>> -	pbn_div = drm_dp_get_vc_payload_bw(crtc_state->port_clock,
+>> -					   crtc_state->lane_count);
+>> -
+>>  	max_dpt_bpp = intel_dp_mst_max_dpt_bpp(crtc_state, dsc);
+>>  	if (max_bpp > max_dpt_bpp) {
+>>  		drm_dbg_kms(display->drm, "Limiting bpp to max DPT bpp (%d -> %d)\n",
+>> @@ -270,7 +277,7 @@ int intel_dp_mtp_tu_compute_config(struct intel_dp *intel_dp,
+>>  					 link_bpp_x16,
+>>  					 &crtc_state->dp_m_n);
+>>  
+>> -		if (intel_dp->is_mst) {
+>> +		if (is_mst) {
+>>  			int remote_bw_overhead;
+>>  			int remote_tu;
+>>  			fixed20_12 pbn;
+>> @@ -295,7 +302,7 @@ int intel_dp_mtp_tu_compute_config(struct intel_dp *intel_dp,
+>>  			pbn.full = dfixed_const(intel_dp_mst_calc_pbn(adjusted_mode->crtc_clock,
+>>  								      link_bpp_x16,
+>>  								      remote_bw_overhead));
+>> -			remote_tu = DIV_ROUND_UP(pbn.full, pbn_div.full);
+>> +			remote_tu = DIV_ROUND_UP(pbn.full, mst_state->pbn_div.full);
+>>  
+>>  			/*
+>>  			 * Aligning the TUs ensures that symbols consisting of multiple
+>> @@ -313,7 +320,7 @@ int intel_dp_mtp_tu_compute_config(struct intel_dp *intel_dp,
+>>  			 * allocated for the whole path and the TUs allocated for the
+>>  			 * first branch device's link also applies here.
+>>  			 */
+>> -			pbn.full = remote_tu * pbn_div.full;
+>> +			pbn.full = remote_tu * mst_state->pbn_div.full;
+>>  
+>>  			drm_WARN_ON(display->drm, remote_tu < crtc_state->dp_m_n.tu);
+>>  			crtc_state->dp_m_n.tu = remote_tu;
+>> @@ -365,16 +372,6 @@ static int mst_stream_find_vcpi_slots_for_bpp(struct intel_dp *intel_dp,
+>>  					      struct drm_connector_state *conn_state,
+>>  					      int step, bool dsc)
+>>  {
+>> -	struct drm_atomic_state *state = crtc_state->uapi.state;
+>> -	struct drm_dp_mst_topology_state *mst_state;
+>> -
+>> -	mst_state = drm_atomic_get_mst_topology_state(state, &intel_dp->mst_mgr);
+>> -	if (IS_ERR(mst_state))
+>> -		return PTR_ERR(mst_state);
+>> -
+>> -	mst_state->pbn_div = drm_dp_get_vc_payload_bw(crtc_state->port_clock,
+>> -						      crtc_state->lane_count);
+>> -
+>>  	return intel_dp_mtp_tu_compute_config(intel_dp, crtc_state, conn_state,
+>>  					      min_bpp, max_bpp, step, dsc);
+>>  }
+>> -- 
+>> 2.39.5
+>> 
 
-Bspec: 68881
-Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
----
- drivers/gpu/drm/i915/display/intel_fbc.c | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index b17ee1797118..429e213e1dcd 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -1481,9 +1481,14 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
- 	 * Display 12+ is not supporting FBC with PSR2.
- 	 * Recommendation is to keep this combination disabled
- 	 * Bspec: 50422 HSD: 14010260002
-+	 *
-+	 * In Xe3, PSR2 selective fetch and FBC dirty rect feature cannot
-+	 * coexist. So if PSR2 selective fetch is supported then mark that
-+	 * FBC is not supported.
-+	 * TODO: Need a logic to decide between PSR2 and FBC Dirty rect
- 	 */
--	if (IS_DISPLAY_VER(display, 12, 14) && crtc_state->has_sel_update &&
--	    !crtc_state->has_panel_replay) {
-+	if ((IS_DISPLAY_VER(display, 12, 14) || HAS_FBC_DIRTY_RECT(display)) &&
-+	    crtc_state->has_sel_update && !crtc_state->has_panel_replay) {
- 		plane_state->no_fbc_reason = "PSR2 enabled";
- 		return 0;
- 	}
 -- 
-2.43.0
-
+Jani Nikula, Intel
