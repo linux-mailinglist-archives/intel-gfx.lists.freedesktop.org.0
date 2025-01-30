@@ -2,58 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6ED3BA22CAF
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jan 2025 12:48:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F534A22CB0
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jan 2025 12:48:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 15F1910E943;
-	Thu, 30 Jan 2025 11:48:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B1A6210E948;
+	Thu, 30 Jan 2025 11:48:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fNKmNySn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ELQB/SZR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8742610E93E;
- Thu, 30 Jan 2025 11:48:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0337710E944
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Jan 2025 11:48:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738237685; x=1769773685;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=zPRKYSkSIp1B597dOBZGSw48PZBo7z7JREirRyHtzoo=;
- b=fNKmNySneu7DB5FF2psA/OAHYH8fLIfkQ+Y8H6MlONKTUnTd0Yz3Y8Yj
- byQfgsXCWhNoGAFzKNWQxaa/iQNPUPCKUVgaUKdquCA2qaVamgO5b7U+t
- oT70uVE8dgw50FxWjfEC+DmN4CmMx7M0HC2silhVtU+IbEAL/nCijMmHp
- LgThAQy1xdQL7zrG0Hox5bBHIeMHUt2RE093/Wjlle8CRjn9GF7uX44E3
- o8g+rVUnd28XtsKMKMvFA+o/9QjdrGAExtT9vWnQTxqz/XOxXZF8jbB/r
- eHOTk3+uHNBRAyNfbSw31xRBN8bd7r1dTXfrvxjIoV5RsDnBfzDbQVf9J A==;
-X-CSE-ConnectionGUID: GlHFZGHYTDGju/qFspBl1g==
-X-CSE-MsgGUID: /xtNv50CTrWufK9igzFkSQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11331"; a="26380638"
-X-IronPort-AV: E=Sophos;i="6.13,245,1732608000"; d="scan'208";a="26380638"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2025 03:47:54 -0800
-X-CSE-ConnectionGUID: NOiYoa8cRm+bYw5dV1USqg==
-X-CSE-MsgGUID: CGEM7uXOSOef8l6i7irgzQ==
+ t=1738237694; x=1769773694;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=0/yyGnIqtkiNOgBIlCmabEm7eIM8eoW+2xAFwgV9Pck=;
+ b=ELQB/SZRf5Yv2YkQhdibyw1gm2lEw3D5d6so1rmMx7o/ODUnSgvvlBgn
+ vswfOwiwNdKLCWCTH3fFglNAwh6Y5u/E3KYLjY15UAom3PSi70SxZQgI4
+ VfLDy9AJC2Ax3zlrugMlMd7x+QEP8N+DPqdQrRkptQRfEiOAAfqTFdwPM
+ IrJp+a2hGzomM+qtKqZM3BqR+NVHa2Lg9g0dbJD4kLZIaKP/ySZcst54I
+ ApfosRRNv7UUgeAr76IKwVxUeHlfcR19S0aOdpYIQuU7dUh8DNHZppzk2
+ od0pU0v6Sr3kveiAyQWaIfZ0FlKFQ6pylJj8XWrd5RVJJDnQYQ/H61Scw A==;
+X-CSE-ConnectionGUID: 97dwQDi/RyWerelirvByjQ==
+X-CSE-MsgGUID: ZCQjtH8MQmqGsC+sfmgGig==
+X-IronPort-AV: E=McAfee;i="6700,10204,11331"; a="38941805"
+X-IronPort-AV: E=Sophos;i="6.13,245,1732608000"; d="scan'208";a="38941805"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2025 03:48:14 -0800
+X-CSE-ConnectionGUID: eYMh2bxOR5eeJ6JuPQvK9A==
+X-CSE-MsgGUID: hNHQscGIRCKL1VIaZsJg9g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,245,1732608000"; d="scan'208";a="109112439"
-Received: from sschumil-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.68])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2025 03:47:52 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 01/17] drm/i915/dsi: Use TRANS_DDI_FUNC_CTL's own port
- width macro
-In-Reply-To: <20250129200221.2508101-2-imre.deak@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250129200221.2508101-1-imre.deak@intel.com>
- <20250129200221.2508101-2-imre.deak@intel.com>
-Date: Thu, 30 Jan 2025 13:47:49 +0200
-Message-ID: <87ed0k8qvu.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.13,245,1732608000"; d="scan'208";a="109132970"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.245.246.88])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2025 03:48:11 -0800
+Date: Thu, 30 Jan 2025 12:48:07 +0100
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, andi.shyti@linux.intel.com,
+ krzysztof.niemiec@intel.com, krzysztof.karas@intel.com
+Subject: Re: [PATCH v3] Revert "drm/i915/gt: Log reason for setting
+ TAINT_WARN at reset"
+Message-ID: <Z5tm91AXQGtdWzVc@ashyti-mobl2.lan>
+References: <vfj2igeeokgsmcekh2qxys2y7c7dqplb6rhsybmjqn3ykxlcrf@yjnuqmgrze3z>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <vfj2igeeokgsmcekh2qxys2y7c7dqplb6rhsybmjqn3ykxlcrf@yjnuqmgrze3z>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,35 +70,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Wed, 29 Jan 2025, Imre Deak <imre.deak@intel.com> wrote:
-> The format of the port width field in the DDI_BUF_CTL and the
-> TRANS_DDI_FUNC_CTL registers are different starting with MTL, where the
-> x3 lane mode for HDMI FRL has a different encoding in the two registers.
-> To account for this use the TRANS_DDI_FUNC_CTL's own port width macro.
->
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
+Hi Sebastian,
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+On Thu, Jan 30, 2025 at 11:35:08AM +0000, Sebastian Brzezinka wrote:
+> This reverts commit 835443da6f50d9516b58bba5a4fdf9e563d961c7.
+> 
+> Logging with gt_err() causes CI to detect an error even in cases of
+> intentional error injection. Since real errors are already correctly
+> reported by CI, this additional message is unnecessary.
+> 
+> Furthermore, a GT wedge is already being logged elsewhere, so instead
+> of adjusting the log level, revert the above mentioned commit to prevent
+> redundant error reporting
 
-> ---
->  drivers/gpu/drm/i915/display/icl_dsi.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-> index ee1c3fb500a73..11bfb357508b7 100644
-> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
-> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-> @@ -809,8 +809,8 @@ gen11_dsi_configure_transcoder(struct intel_encoder *encoder,
->  		/* select data lane width */
->  		tmp = intel_de_read(display,
->  				    TRANS_DDI_FUNC_CTL(display, dsi_trans));
-> -		tmp &= ~DDI_PORT_WIDTH_MASK;
-> -		tmp |= DDI_PORT_WIDTH(intel_dsi->lane_count);
-> +		tmp &= ~TRANS_DDI_PORT_WIDTH_MASK;
-> +		tmp |= TRANS_DDI_PORT_WIDTH(intel_dsi->lane_count);
->  
->  		/* select input pipe */
->  		tmp &= ~TRANS_DDI_EDP_INPUT_MASK;
+yeah, we missed the fact that this extra logs have upset CI.
 
--- 
-Jani Nikula, Intel
+> Signed-off-by: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+
+merged to drm-intel-gt-next.
+
+Thanks,
+Andi
