@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0201DA23633
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jan 2025 22:00:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 49457A23634
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Jan 2025 22:00:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 98F6810E9D3;
-	Thu, 30 Jan 2025 21:00:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46B1A10E9DB;
+	Thu, 30 Jan 2025 21:00:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OOQzrb6U";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cSkW7VeF";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 147A410E9D3;
- Thu, 30 Jan 2025 21:00:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BFD5910E9D7;
+ Thu, 30 Jan 2025 21:00:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738270844; x=1769806844;
+ t=1738270847; x=1769806847;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=XYsyJT8J2OF9pn7ILpJ7PNkcACDwCS/nczJsWSJyF/4=;
- b=OOQzrb6UhqIzw6ocrcQqbk0JKL0hqRnVEmQiZtqmKML6tbsQA61LrOCx
- /KhA0z/hYKWxSUlnKIJOs7vb03h3E0GxfqCS3uuWA/0gtxghyXrlR43TB
- ZHwZORPxJcieFzHLscKtFvaOjnmQEf7v626S+LwFSLEXvMUE/8zSfrQTQ
- n400DUrDbQEUeuJkdP7TdnUhhIARcdS1mq4c/d8qnLuLUcw08bjtjiKLp
- afa+zKJeEpEtfEETeXn9PREIOyG+JE4JJSJDlebGg2vaj6pkCFsbYts8m
- o+ta+3Xl+EEtXSuheZTsw6PnaM4tjc1bP58FNlwFlyrN8UHSkStvUTVtL A==;
-X-CSE-ConnectionGUID: IjPfcgk5SIWbFa5QDqYk7g==
-X-CSE-MsgGUID: 9te/fX3rQviNg4DFFvxLFw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11331"; a="42491525"
-X-IronPort-AV: E=Sophos;i="6.13,246,1732608000"; d="scan'208";a="42491525"
+ bh=p9D0KgxcdEtEG9bD9gwKxpec+5GU6H2pYDE8mxM6rvc=;
+ b=cSkW7VeFqXqGUCXDvi1abeggcRthfbBW5cFmzNBlx9Y/343vGGZkV2xr
+ Isp+YCmoXwCxrqbcOvrKsJnJgkvgH+9hTO1ly1CVxr5hv2W6wCJqTKHfQ
+ vxZfXouDQTUt9t+QtyutYkws2ARudr64NvzsJXX8uO0ZO65rFPvIj1LQn
+ JnLvgeVpIpYgPhRt6yQQKhIsP8wBUvPV9yPkUbMj222G98GxGiiy83+Bu
+ mQpdT1tmdlgKVnnTwoTWySgbHaiFG8xGI39rBR9waJOGRYfuziONsLppE
+ UlrPifgPYKO39ChP07raIYdEUqdDA1pZe9mSvNSGILhaX/DjRPBSYlic6 A==;
+X-CSE-ConnectionGUID: jynXHtZfTMCCDLk1bl7Q8w==
+X-CSE-MsgGUID: 1KM5Y7WmTxOLuzTou0XURA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11331"; a="42491533"
+X-IronPort-AV: E=Sophos;i="6.13,246,1732608000"; d="scan'208";a="42491533"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2025 13:00:43 -0800
-X-CSE-ConnectionGUID: 96zW8MgjScy1LsxPJeq48A==
-X-CSE-MsgGUID: Liq80kkIS9+rJZ2N4sBtBg==
+ 30 Jan 2025 13:00:47 -0800
+X-CSE-ConnectionGUID: OKGGnZneQhKrDaxcGounOg==
+X-CSE-MsgGUID: fA4k6+JvQnmRzXuLMsL33A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,246,1732608000"; d="scan'208";a="110015768"
+X-IronPort-AV: E=Sophos;i="6.13,246,1732608000"; d="scan'208";a="110015825"
 Received: from mwiniars-desk2.ger.corp.intel.com (HELO
  vgovind2-mobl3.intel.com) ([10.245.246.118])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2025 13:00:41 -0800
+ 30 Jan 2025 13:00:45 -0800
 From: Vinod Govindapillai <vinod.govindapillai@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: vinod.govindapillai@intel.com, ville.syrjala@intel.com,
  santhosh.reddy.guddati@intel.com, jani.saarinen@intel.com
-Subject: [PATCH v6 1/7] drm/i915/xe3: add register definitions for fbc dirty
- rect support
-Date: Thu, 30 Jan 2025 23:00:20 +0200
-Message-ID: <20250130210027.591927-2-vinod.govindapillai@intel.com>
+Subject: [PATCH v6 2/7] drm/i915/xe3: introduce HAS_FBC_DIRTY_RECT() for FBC
+ dirty rect support
+Date: Thu, 30 Jan 2025 23:00:21 +0200
+Message-ID: <20250130210027.591927-3-vinod.govindapillai@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250130210027.591927-1-vinod.govindapillai@intel.com>
 References: <20250130210027.591927-1-vinod.govindapillai@intel.com>
@@ -72,34 +72,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Register definitions for FBC dirty rect support
+Introduce a macro to check if the platform supports FBC dirty
+rect capability.
 
-Bspec: 71675, 73424
 Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fbc_regs.h | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display_device.h | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc_regs.h b/drivers/gpu/drm/i915/display/intel_fbc_regs.h
-index ae0699c3c2fe..b1d0161a3196 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_fbc_regs.h
-@@ -100,6 +100,15 @@
- #define   FBC_STRIDE_MASK	REG_GENMASK(14, 0)
- #define   FBC_STRIDE(x)		REG_FIELD_PREP(FBC_STRIDE_MASK, (x))
- 
-+#define XE3_FBC_DIRTY_RECT(fbc_id)	_MMIO_PIPE((fbc_id), 0x43230, 0x43270)
-+#define   FBC_DIRTY_RECT_END_LINE_MASK		REG_GENMASK(31, 16)
-+#define   FBC_DIRTY_RECT_END_LINE(val)		REG_FIELD_PREP(FBC_DIRTY_RECT_END_LINE_MASK, (val))
-+#define   FBC_DIRTY_RECT_START_LINE_MASK	REG_GENMASK(15, 0)
-+#define   FBC_DIRTY_RECT_START_LINE(val)	REG_FIELD_PREP(FBC_DIRTY_RECT_START_LINE_MASK, (val))
-+
-+#define XE3_FBC_DIRTY_CTL(fbc_id)	_MMIO_PIPE((fbc_id), 0x43234, 0x43274)
-+#define   FBC_DIRTY_RECT_EN		REG_BIT(31)
-+
- #define ILK_FBC_RT_BASE		_MMIO(0x2128)
- #define   ILK_FBC_RT_VALID	REG_BIT(0)
- #define   SNB_FBC_FRONT_BUFFER	REG_BIT(1)
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+index fc33791f02b9..717286981687 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.h
++++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+@@ -163,6 +163,7 @@ struct intel_display_platforms {
+ #define HAS_DSC(__display)		(DISPLAY_RUNTIME_INFO(__display)->has_dsc)
+ #define HAS_DSC_MST(__display)		(DISPLAY_VER(__display) >= 12 && HAS_DSC(__display))
+ #define HAS_FBC(__display)		(DISPLAY_RUNTIME_INFO(__display)->fbc_mask != 0)
++#define HAS_FBC_DIRTY_RECT(__display)	(DISPLAY_VER(__display) >= 30)
+ #define HAS_FPGA_DBG_UNCLAIMED(__display)	(DISPLAY_INFO(__display)->has_fpga_dbg)
+ #define HAS_FW_BLC(__display)		(DISPLAY_VER(__display) >= 3)
+ #define HAS_GMBUS_IRQ(__display)	(DISPLAY_VER(__display) >= 4)
 -- 
 2.43.0
 
