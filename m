@@ -2,81 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3BEBA23E7F
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2025 14:39:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ACB5AA23E93
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2025 14:44:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3906F10EAB7;
-	Fri, 31 Jan 2025 13:39:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD71410EAB5;
+	Fri, 31 Jan 2025 13:44:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y1GSRVG0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O4GOUdoL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5503210EAB5;
- Fri, 31 Jan 2025 13:38:59 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6B7C10EAB5;
+ Fri, 31 Jan 2025 13:44:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738330740; x=1769866740;
- h=date:from:to:cc:subject:message-id:references:
+ t=1738331074; x=1769867074;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
  mime-version:in-reply-to;
- bh=BlkMwqZELP0Gp0TzhdEuSlXKujbDb3xlMAHFMVLsdm8=;
- b=Y1GSRVG0zPo2JYRw28LW1xP51qGwo4Sbm320todu55TO7kzYrQZ0b6a+
- fo43MghPlQn6Fcy9BVFCMdjbNNlKDc0CuMr4tNepzrK7JENEZAp/CSDRj
- 8FRuTrjfdO4ak5T19dvT1sfzJguqzf5JmCzzqu8r4g94v8HoTRxQpWYBb
- 1V4huAvOJw3t7xFpDee8qOrUsoax+GRamr74+LSkFR153LNAfTQYQ+1yi
- O74W9bnSP4HsbT7+H0g0cDO0RXr2B5XoLIW8/lbtmedFGnHdtoGU2PKgA
- Sn5dtzBLUd95x7cUhuB9Hilp5bmfYuEAek5ErjKU3tuu7jRZAxptpDLaQ w==;
-X-CSE-ConnectionGUID: Obq1g/hOTjuQg75uS0pong==
-X-CSE-MsgGUID: 79xxlrqmTPOCO2aFJqk6Kw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11332"; a="50283177"
-X-IronPort-AV: E=Sophos;i="6.13,248,1732608000"; d="scan'208";a="50283177"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2025 05:38:58 -0800
-X-CSE-ConnectionGUID: yJ4rsx1GRSusxX/Vynh0XQ==
-X-CSE-MsgGUID: gJj2D0AhTKuPuWC4WLeG5A==
+ bh=mYy+ow/5gT0bqxe/TBsAJp6YJPofK+w4PlaZTRMwrbU=;
+ b=O4GOUdoL/dbVqu3G+glM79uxQ6K7niHCeliEk+T+iEObJy/jtw/z2arh
+ 6OQ8aHdXsh0fTPRVMnea815SWDZ79/oZESDA0z6KohtYMASe2TW+cdbEN
+ Z8DX9Xj6r23kVnrQ+PdfkPKv8pEieXL3gposE2zKYEPtA1J7Zz0IE5u+3
+ SihQYjtxZTbA+G08VB9i+v2zrLDDKzobSr9fSXL2+YRFK31O2Uhn1PqUo
+ oX3PKCTymCirG907u7z+4KXp4DtrpsaNA0VCzu2KIK4QmNa+ex9p3nVP5
+ 02T420GcczWfCZqgzM1C3V7M9eBmZf2Y5A16Ou5QDomwN3LfdPYycgs0k Q==;
+X-CSE-ConnectionGUID: IgyCqOhGR3S1hYfFmE+g1w==
+X-CSE-MsgGUID: sBg8kXICTmWKLkIXLxsbYQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11332"; a="64261065"
+X-IronPort-AV: E=Sophos;i="6.13,248,1732608000"; d="scan'208";a="64261065"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2025 05:44:33 -0800
+X-CSE-ConnectionGUID: VwDjQ/woQW6o9CoB54bQkA==
+X-CSE-MsgGUID: U9N0maMfSYe3np3u+dYUwg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="146816937"
-Received: from dprybysh-mobl.ger.corp.intel.com (HELO intel.com)
- ([10.245.246.175])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2025 05:38:46 -0800
-Date: Fri, 31 Jan 2025 14:38:42 +0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: "Kirill A. Shutemov" <kirill.shutemov@linux.intel.com>
-Cc: Andrew Morton <akpm@linux-foundation.org>,
- "Matthew Wilcox (Oracle)" <willy@infradead.org>,
- Jens Axboe <axboe@kernel.dk>, "Jason A. Donenfeld" <Jason@zx2c4.com>,
- Andi Shyti <andi.shyti@linux.intel.com>,
- Chengming Zhou <chengming.zhou@linux.dev>,
- Christian Brauner <brauner@kernel.org>,
- Christophe Leroy <christophe.leroy@csgroup.eu>,
- Dan Carpenter <dan.carpenter@linaro.org>, David Airlie <airlied@gmail.com>,
- David Hildenbrand <david@redhat.com>, Hao Ge <gehao@kylinos.cn>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Johannes Weiner <hannes@cmpxchg.org>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Josef Bacik <josef@toxicpanda.com>, Masami Hiramatsu <mhiramat@kernel.org>,
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- Miklos Szeredi <miklos@szeredi.hu>, Nhat Pham <nphamcs@gmail.com>,
- Oscar Salvador <osalvador@suse.de>, Ran Xiaokai <ran.xiaokai@zte.com.cn>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>,
- Steven Rostedt <rostedt@goodmis.org>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Vlastimil Babka <vbabka@suse.cz>,
- Yosry Ahmed <yosryahmed@google.com>, Yu Zhao <yuzhao@google.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
- linux-mm@kvack.org, linux-trace-kernel@vger.kernel.org
-Subject: Re: [PATCHv3 03/11] drm/i915/gem: Use PG_dropbehind instead of
- PG_reclaim
-Message-ID: <Z5zSYtcGGp73Ip2c@ashyti-mobl2.lan>
-References: <20250130100050.1868208-1-kirill.shutemov@linux.intel.com>
- <20250130100050.1868208-4-kirill.shutemov@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="132889148"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2025 05:44:32 -0800
+Date: Fri, 31 Jan 2025 15:45:29 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 02/14] drm/i915/dp: Add intel_dp_dsc_bpp_step_x16()
+ helper to get DSC BPP precision
+Message-ID: <Z5zT-QAD_RRYbzCX@ideak-desk.fi.intel.com>
+References: <cover.1738327620.git.jani.nikula@intel.com>
+ <ed109ed88a6ae3849871ec341cb5ab2088097dd3.1738327620.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250130100050.1868208-4-kirill.shutemov@linux.intel.com>
+In-Reply-To: <ed109ed88a6ae3849871ec341cb5ab2088097dd3.1738327620.git.jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,28 +66,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Kirill,
-
-On Thu, Jan 30, 2025 at 12:00:41PM +0200, Kirill A. Shutemov wrote:
-> The recently introduced PG_dropbehind allows for freeing folios
-> immediately after writeback. Unlike PG_reclaim, it does not need vmscan
-> to be involved to get the folio freed.
+On Fri, Jan 31, 2025 at 02:49:55PM +0200, Jani Nikula wrote:
+> Add a platform independent helper for getting the supported DSC BPP step
+> for the link.
 > 
-> Instead of using folio_set_reclaim(), use folio_set_dropbehind() in
-> __shmem_writeback()
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 21 ++++++++++++++++-----
+>  1 file changed, 16 insertions(+), 5 deletions(-)
 > 
-> It is safe to leave PG_dropbehind on the folio if, for some reason
-> (bug?), the folio is not in a writeback state after ->writepage().
-> In these cases, the kernel had to clear PG_reclaim as it shared a page
-> flag bit with PG_readahead.
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index ecf192262eb9..a7a5bb2075da 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -2054,6 +2054,21 @@ static int dsc_src_max_compressed_bpp(struct intel_dp *intel_dp)
+>  		return 27;
+>  }
+>  
+> +/*
+> + * Note: for pre-13 display you still need to check the validity of each step.
+> + */
+> +static int intel_dp_dsc_bpp_step_x16(const struct intel_connector *connector)
+
+Nit: there was a guideline that these KMS objects should be passed around via
+non-const pointers vs. state pointers which should be const if possible.
+
+> +{
+> +	struct intel_display *display = to_intel_display(connector);
+> +	u8 incr = drm_dp_dsc_sink_bpp_incr(connector->dp.dsc_dpcd);
+> +
+> +	if (DISPLAY_VER(display) < 14 || !incr)
+> +		return fxp_q4_from_int(1);
+> +
+> +	/* fxp q4 */
+> +	return 16 / incr;
+
+Nit: could've been fxp_q4_from_int(1) / incr;
+
+Regardless of the nits, patch looks ok:
+
+Reviewed-by: Imre Deak <imre.deak@intel.com>
+
+> +}
+> +
+>  /*
+>   * From a list of valid compressed bpps try different compressed bpp and find a
+>   * suitable link configuration that can support it.
+> @@ -2110,16 +2125,12 @@ xelpd_dsc_compute_link_config(struct intel_dp *intel_dp,
+>  			      int timeslots)
+>  {
+>  	struct intel_display *display = to_intel_display(intel_dp);
+> -	u8 bppx16_incr = drm_dp_dsc_sink_bpp_incr(connector->dp.dsc_dpcd);
+>  	int output_bpp = intel_dp_output_bpp(pipe_config->output_format, pipe_bpp);
+>  	u16 compressed_bppx16;
+>  	u8 bppx16_step;
+>  	int ret;
+>  
+> -	if (DISPLAY_VER(display) < 14 || bppx16_incr <= 1)
+> -		bppx16_step = 16;
+> -	else
+> -		bppx16_step = 16 / bppx16_incr;
+> +	bppx16_step = intel_dp_dsc_bpp_step_x16(connector);
+>  
+>  	/* Compressed BPP should be less than the Input DSC bpp */
+>  	dsc_max_bpp = min(dsc_max_bpp << 4, (output_bpp << 4) - bppx16_step);
+> -- 
+> 2.39.5
 > 
-> Signed-off-by: Kirill A. Shutemov <kirill.shutemov@linux.intel.com>
-> Acked-by: David Hildenbrand <david@redhat.com>
-
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
-
-Thanks,
-Andi
