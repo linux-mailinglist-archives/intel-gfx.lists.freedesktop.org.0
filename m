@@ -2,32 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16D0BA25075
-	for <lists+intel-gfx@lfdr.de>; Sun,  2 Feb 2025 23:57:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B513A25074
+	for <lists+intel-gfx@lfdr.de>; Sun,  2 Feb 2025 23:57:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A52410E346;
-	Sun,  2 Feb 2025 22:57:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE1BE10E0A9;
+	Sun,  2 Feb 2025 22:57:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="lrsblSRz";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="jyD9gPXS";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 414 seconds by postgrey-1.36 at gabe;
- Fri, 31 Jan 2025 20:34:44 UTC
-Received: from out-170.mta1.migadu.com (out-170.mta1.migadu.com
- [95.215.58.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E6F6610E1FE
- for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2025 20:34:44 +0000 (UTC)
-Date: Fri, 31 Jan 2025 12:27:40 -0800
+Received: from out-180.mta1.migadu.com (out-180.mta1.migadu.com
+ [95.215.58.180])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1CEC110E211
+ for <intel-gfx@lists.freedesktop.org>; Fri, 31 Jan 2025 21:33:16 +0000 (UTC)
+Date: Fri, 31 Jan 2025 13:32:56 -0800
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1738355268;
+ t=1738359184;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=7BhC7vLoh7VtzfmXLESUsTqxQbrPIF6WzzF0QtgvNjc=;
- b=lrsblSRzlb3U+VBSguFAbcREpGVVQMrtG0UN6409a/fosRBCk4L0jLE6FhAQypEB2fAOSm
- N2A2tLZnVmRItxbwLORJuWRgDvy7Gkv2CDnNDSNBFBiBFJxyAqrUf95g9+GCYJkAmPEa8U
- BHDzzwIL0WWDQKyoESpoRnvF5jGA2nk=
+ bh=FKADDN/gzLU5ps4Oe+ymmjbVA+yTOl27darYW9+bIr0=;
+ b=jyD9gPXS1WTaul95TpeSAfE5cKe6GAm6eOkWb/GiX7s5qiCfSRB8BaOinWtNL/E622IZjh
+ 0QScNYaKTFt28s6IqWK1DsqmrG5njsWa/Py97/n3byOUomQBe9xiy4XrKkYlPSzhlhYxVK
+ kdV1A0T7T9VIc3IRqV+q4ufc53+aXuY=
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
  include these headers.
 From: Shakeel Butt <shakeel.butt@linux.dev>
@@ -56,15 +54,14 @@ Cc: Andrew Morton <akpm@linux-foundation.org>,
  linux-kernel@vger.kernel.org, 
  linux-fsdevel@vger.kernel.org, linux-mm@kvack.org,
  linux-trace-kernel@vger.kernel.org
-Subject: Re: [PATCHv3 02/11] drm/i915/gem: Convert __shmem_writeback() to
- folios
-Message-ID: <gtknttjvbestmrulqy2w5afqzcdetnrrgcgcfz4fwqb5zg2p4e@pow2uwawcjt4>
+Subject: Re: [PATCHv3 06/11] mm/vmscan: Use PG_dropbehind instead of PG_reclaim
+Message-ID: <lpptopwuxbfixeigoxs44rrpg6sm5mviai3uy7sxvvng3twyer@xpul6sjcvvjj>
 References: <20250130100050.1868208-1-kirill.shutemov@linux.intel.com>
- <20250130100050.1868208-3-kirill.shutemov@linux.intel.com>
+ <20250130100050.1868208-7-kirill.shutemov@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250130100050.1868208-3-kirill.shutemov@linux.intel.com>
+In-Reply-To: <20250130100050.1868208-7-kirill.shutemov@linux.intel.com>
 X-Migadu-Flow: FLOW_OUT
 X-Mailman-Approved-At: Sun, 02 Feb 2025 22:57:10 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -82,60 +79,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Thu, Jan 30, 2025 at 12:00:40PM +0200, Kirill A. Shutemov wrote:
-> Use folios instead of pages.
+On Thu, Jan 30, 2025 at 12:00:44PM +0200, Kirill A. Shutemov wrote:
+> The recently introduced PG_dropbehind allows for freeing folios
+> immediately after writeback. Unlike PG_reclaim, it does not need vmscan
+> to be involved to get the folio freed.
 > 
-> This is preparation for removing PG_reclaim.
+> Instead of using folio_set_reclaim(), use folio_set_dropbehind() in
+> pageout().
+> 
+> It is safe to leave PG_dropbehind on the folio if, for some reason
+> (bug?), the folio is not in a writeback state after ->writepage().
+> In these cases, the kernel had to clear PG_reclaim as it shared a page
+> flag bit with PG_readahead.
+
+Is it correct to say that leaving PG_dropbehind on folios which doesn't
+have writeback state after ->writepage() (i.e. store to zswap) is fine
+because PG_dropbehind is not in PAGE_FLAGS_CHECK_AT_FREE?
+
 > 
 > Signed-off-by: Kirill A. Shutemov <kirill.shutemov@linux.intel.com>
 > Acked-by: David Hildenbrand <david@redhat.com>
 > ---
->  drivers/gpu/drm/i915/gem/i915_gem_shmem.c | 18 +++++++++---------
->  1 file changed, 9 insertions(+), 9 deletions(-)
+>  mm/vmscan.c | 9 +++------
+>  1 file changed, 3 insertions(+), 6 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-> index fe69f2c8527d..9016832b20fc 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-> @@ -320,25 +320,25 @@ void __shmem_writeback(size_t size, struct address_space *mapping)
+> diff --git a/mm/vmscan.c b/mm/vmscan.c
+> index bc1826020159..c97adb0fdaa4 100644
+> --- a/mm/vmscan.c
+> +++ b/mm/vmscan.c
+> @@ -692,19 +692,16 @@ static pageout_t pageout(struct folio *folio, struct address_space *mapping,
+>  		if (shmem_mapping(mapping) && folio_test_large(folio))
+>  			wbc.list = folio_list;
 >  
->  	/* Begin writeback on each dirty page */
->  	for (i = 0; i < size >> PAGE_SHIFT; i++) {
-
-With folio conversion, should the iteration step be folio_nr_pages()
-instead of 1?
-
-> -		struct page *page;
-> +		struct folio *folio;
->  
-> -		page = find_lock_page(mapping, i);
-> -		if (!page)
-> +		folio = filemap_lock_folio(mapping, i);
-> +		if (!folio)
->  			continue;
->  
-> -		if (!page_mapped(page) && clear_page_dirty_for_io(page)) {
-> +		if (!folio_mapped(folio) && folio_clear_dirty_for_io(folio)) {
->  			int ret;
->  
-> -			SetPageReclaim(page);
-> -			ret = mapping->a_ops->writepage(page, &wbc);
-> +			folio_set_reclaim(folio);
-> +			ret = mapping->a_ops->writepage(&folio->page, &wbc);
->  			if (!PageWriteback(page))
-> -				ClearPageReclaim(page);
-> +				folio_clear_reclaim(folio);
->  			if (!ret)
->  				goto put;
+> -		folio_set_reclaim(folio);
+> +		folio_set_dropbehind(folio);
+> +
+>  		res = mapping->a_ops->writepage(&folio->page, &wbc);
+>  		if (res < 0)
+>  			handle_write_error(mapping, folio, res);
+>  		if (res == AOP_WRITEPAGE_ACTIVATE) {
+> -			folio_clear_reclaim(folio);
+> +			folio_clear_dropbehind(folio);
+>  			return PAGE_ACTIVATE;
 >  		}
-> -		unlock_page(page);
-> +		folio_unlock(folio);
->  put:
-> -		put_page(page);
-> +		folio_put(folio);
->  	}
->  }
 >  
+> -		if (!folio_test_writeback(folio)) {
+> -			/* synchronous write or broken a_ops? */
+> -			folio_clear_reclaim(folio);
+> -		}
+>  		trace_mm_vmscan_write_folio(folio);
+>  		node_stat_add_folio(folio, NR_VMSCAN_WRITE);
+>  		return PAGE_SUCCESS;
 > -- 
 > 2.47.2
 > 
