@@ -2,60 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51C56A23EFC
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2025 15:07:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C723A23F0C
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2025 15:21:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4341610EAC8;
-	Fri, 31 Jan 2025 14:06:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B9BA10E209;
+	Fri, 31 Jan 2025 14:21:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Xoj3Xd8G";
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="GcI+YDUi";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C43C710EAC2;
- Fri, 31 Jan 2025 14:06:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738332418; x=1769868418;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=X5Lfwe4EewjboJIXtaVsOgu1QOS1soJHlqJhxrLyt9Y=;
- b=Xoj3Xd8G9ID6StwOgXFE2nJN6TWAUJJu6qyngVlgdliNxFibVCjnWMQ0
- EaidmHVglSO2woRjRWUOlMUOirAd8iH7V85zFkQ1roSztmX3ytVopPhr3
- QYLOSiNdvemI7VIMCvKcjspu2cZA0U6O6bpd4C+6MQodEMcS8pJsg1JDs
- 9bC/kG/OlOQWKMEf1m5v1tAz766Jj+H4ok9y6QT3/oFWXGmLo0H5rF39L
- 2fUU56KvvgT0VQboYE4FOaheRSBTx0m26+zLv7N1UJgeEX8KvSB0HPcUe
- WoGp9kXpgQfZvzT0c42yuxaiHm3fPo73tecDbnU96jTPfDrpPmzavGbWG w==;
-X-CSE-ConnectionGUID: gwSmP1uwQ8+Hp6beJJQxdA==
-X-CSE-MsgGUID: kBsx+xRBQeKZp/ARpjobxw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11332"; a="56444606"
-X-IronPort-AV: E=Sophos;i="6.13,248,1732608000"; d="scan'208";a="56444606"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2025 06:06:57 -0800
-X-CSE-ConnectionGUID: oJb0RGcnQ3G5U3pKucNk2g==
-X-CSE-MsgGUID: H9PAfYXsQwi35R91QIK7sg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,248,1732608000"; d="scan'208";a="114641838"
-Received: from mwiniars-desk2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.174])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2025 06:06:56 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 02/14] drm/i915/dp: Add intel_dp_dsc_bpp_step_x16()
- helper to get DSC BPP precision
-In-Reply-To: <Z5zT-QAD_RRYbzCX@ideak-desk.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1738327620.git.jani.nikula@intel.com>
- <ed109ed88a6ae3849871ec341cb5ab2088097dd3.1738327620.git.jani.nikula@intel.com>
- <Z5zT-QAD_RRYbzCX@ideak-desk.fi.intel.com>
-Date: Fri, 31 Jan 2025 16:06:53 +0200
-Message-ID: <87v7tv6ps2.fsf@intel.com>
+Received: from casper.infradead.org (casper.infradead.org [90.155.50.34])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 151B310E1EC;
+ Fri, 31 Jan 2025 14:21:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=gn6ROdhimfH2SlxaFG9S9wImJavIsJGvPsiITl9Tyxg=; b=GcI+YDUi42q8wWLAaliLPMiJCL
+ jC3vbx12pAXO2Q4jttDBHLad6PFrI8gKFC3UGsAmD9CGyvTct74eea7pwBUi30YOPI6ohMHsELXRa
+ WTkZKm4FPDerhWo7QwIC3sY8fg06rYWHQ+C/HxXpwV2FZ1kAuXRRCAg1UfEL2sqGk4RbLj6BuD2qa
+ NQw6KWjJxuVhMY3rwD/NiDfpZcCBes6Wo+8nK9PgbM5Tqg7/Fr0zPXey2d2H8QVOORFMWSgoJTKjk
+ /JriUdLVUEli8ufJKmilaBRGPP2FpKCWfAuKk2Ubz4QxzjU62JGSWjoLnj8bempgYL3036hFSGCmw
+ xa5KYQwA==;
+Received: from willy by casper.infradead.org with local (Exim 4.98 #2 (Red Hat
+ Linux)) id 1tdrtX-0000000EmeT-34tM; Fri, 31 Jan 2025 14:21:19 +0000
+Date: Fri, 31 Jan 2025 14:21:19 +0000
+From: Matthew Wilcox <willy@infradead.org>
+To: "Kirill A. Shutemov" <kirill.shutemov@linux.intel.com>
+Cc: Chris Wilson <chris@chris-wilson.co.uk>,
+ Andrew Morton <akpm@linux-foundation.org>, Jens Axboe <axboe@kernel.dk>,
+ "Jason A. Donenfeld" <Jason@zx2c4.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ Chengming Zhou <chengming.zhou@linux.dev>,
+ Christian Brauner <brauner@kernel.org>,
+ Christophe Leroy <christophe.leroy@csgroup.eu>,
+ Dan Carpenter <dan.carpenter@linaro.org>, David Airlie <airlied@gmail.com>,
+ David Hildenbrand <david@redhat.com>, Hao Ge <gehao@kylinos.cn>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Johannes Weiner <hannes@cmpxchg.org>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Josef Bacik <josef@toxicpanda.com>, Masami Hiramatsu <mhiramat@kernel.org>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ Miklos Szeredi <miklos@szeredi.hu>, Nhat Pham <nphamcs@gmail.com>,
+ Oscar Salvador <osalvador@suse.de>, Ran Xiaokai <ran.xiaokai@zte.com.cn>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>,
+ Steven Rostedt <rostedt@goodmis.org>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Vlastimil Babka <vbabka@suse.cz>,
+ Yosry Ahmed <yosryahmed@google.com>, Yu Zhao <yuzhao@google.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+ linux-mm@kvack.org, linux-trace-kernel@vger.kernel.org
+Subject: Re: [PATCHv3 02/11] drm/i915/gem: Convert __shmem_writeback() to
+ folios
+Message-ID: <Z5zcXyYfXSI0PYBY@casper.infradead.org>
+References: <20250130100050.1868208-1-kirill.shutemov@linux.intel.com>
+ <20250130100050.1868208-3-kirill.shutemov@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250130100050.1868208-3-kirill.shutemov@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,84 +77,22 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, 31 Jan 2025, Imre Deak <imre.deak@intel.com> wrote:
-> On Fri, Jan 31, 2025 at 02:49:55PM +0200, Jani Nikula wrote:
->> Add a platform independent helper for getting the supported DSC BPP step
->> for the link.
->> 
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_dp.c | 21 ++++++++++++++++-----
->>  1 file changed, 16 insertions(+), 5 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
->> index ecf192262eb9..a7a5bb2075da 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dp.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->> @@ -2054,6 +2054,21 @@ static int dsc_src_max_compressed_bpp(struct intel_dp *intel_dp)
->>  		return 27;
->>  }
->>  
->> +/*
->> + * Note: for pre-13 display you still need to check the validity of each step.
->> + */
->> +static int intel_dp_dsc_bpp_step_x16(const struct intel_connector *connector)
->
-> Nit: there was a guideline that these KMS objects should be passed around via
-> non-const pointers vs. state pointers which should be const if possible.
+On Thu, Jan 30, 2025 at 12:00:40PM +0200, Kirill A. Shutemov wrote:
+> Use folios instead of pages.
+> 
+> This is preparation for removing PG_reclaim.
 
-At this point, xelpd_dsc_compute_link_config() only has the const
-variable available. This changes later in the series.
+Well, this is a horrid little function.  Rather than iterating just the
+dirty folios, it iterates all folios, then locks them before checking
+whether they're dirty.
 
->
->> +{
->> +	struct intel_display *display = to_intel_display(connector);
->> +	u8 incr = drm_dp_dsc_sink_bpp_incr(connector->dp.dsc_dpcd);
->> +
->> +	if (DISPLAY_VER(display) < 14 || !incr)
->> +		return fxp_q4_from_int(1);
->> +
->> +	/* fxp q4 */
->> +	return 16 / incr;
->
-> Nit: could've been fxp_q4_from_int(1) / incr;
+I don't know whether the comments are correct or the code is correct.
+This comment doesn't match with setting PageReclaim:
 
-Good point, will fix.
+         * Leave mmapings intact (GTT will have been revoked on unbinding,
+         * leaving only CPU mmapings around) and add those pages to the LRU
+         * instead of invoking writeback so they are aged and paged out
+         * as normal.
 
->
-> Regardless of the nits, patch looks ok:
->
-> Reviewed-by: Imre Deak <imre.deak@intel.com>
-
-Thanks!
-
->
->> +}
->> +
->>  /*
->>   * From a list of valid compressed bpps try different compressed bpp and find a
->>   * suitable link configuration that can support it.
->> @@ -2110,16 +2125,12 @@ xelpd_dsc_compute_link_config(struct intel_dp *intel_dp,
->>  			      int timeslots)
->>  {
->>  	struct intel_display *display = to_intel_display(intel_dp);
->> -	u8 bppx16_incr = drm_dp_dsc_sink_bpp_incr(connector->dp.dsc_dpcd);
->>  	int output_bpp = intel_dp_output_bpp(pipe_config->output_format, pipe_bpp);
->>  	u16 compressed_bppx16;
->>  	u8 bppx16_step;
->>  	int ret;
->>  
->> -	if (DISPLAY_VER(display) < 14 || bppx16_incr <= 1)
->> -		bppx16_step = 16;
->> -	else
->> -		bppx16_step = 16 / bppx16_incr;
->> +	bppx16_step = intel_dp_dsc_bpp_step_x16(connector);
->>  
->>  	/* Compressed BPP should be less than the Input DSC bpp */
->>  	dsc_max_bpp = min(dsc_max_bpp << 4, (output_bpp << 4) - bppx16_step);
->> -- 
->> 2.39.5
->> 
-
--- 
-Jani Nikula, Intel
+so I wonder if Chris was confused about what PageReclaim actually does.
+Let's find out if he still remembers what he thought it did!
