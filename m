@@ -2,57 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A92A6A23F44
-	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2025 15:48:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C924A23F49
+	for <lists+intel-gfx@lfdr.de>; Fri, 31 Jan 2025 15:51:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00F4110EACB;
-	Fri, 31 Jan 2025 14:47:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A33AC10EAD1;
+	Fri, 31 Jan 2025 14:51:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hGqS8v2l";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GDM207H4";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2157410EACB;
- Fri, 31 Jan 2025 14:47:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 01D6210EAD1;
+ Fri, 31 Jan 2025 14:51:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738334878; x=1769870878;
+ t=1738335080; x=1769871080;
  h=date:from:to:cc:subject:message-id:reply-to:references:
  mime-version:in-reply-to;
- bh=Akc9VTifuZBqW+CBnZ49cUFKpHLbYs3OJhl4r3qG+YQ=;
- b=hGqS8v2luVKuJgqROgY1qBTrKBN3w6r+JOQO2aIdljmXlBCIxzvGe9Al
- KTMRymLp9D6GnVHB6gWHJJ18F/LF9vY4dwklZPgEVTGnCOdKOP1Kkom0p
- tLW5M2sf9YGZSDIKcf9D/ulMBZpdYQfDD4otnDzujOY0ILXNlhIeQlDTD
- N8dtGt1idMfc8lDy/S/Qfenh+MFj6uPNjCgpJ2dR2QmUXFHiNqncl4oju
- f7y/zoaM6NOZA4nvdtBqFfSSMo7gLbOS7WmoPFDIylOQqGBJIj24jG0wq
- 14FmooDZdLNdsXwLc/SAUbNDMr8uOjqtrv8twOo7QqH+ryJHbBINqPaSq g==;
-X-CSE-ConnectionGUID: NCR60w8hQc+FUCWhiWQoLg==
-X-CSE-MsgGUID: e99fM5b9QWCcddMsGP4AMQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11332"; a="38807317"
-X-IronPort-AV: E=Sophos;i="6.13,248,1732608000"; d="scan'208";a="38807317"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2025 06:47:58 -0800
-X-CSE-ConnectionGUID: DPwF6sDPTDyeZiIGICvbDg==
-X-CSE-MsgGUID: AnPjOKgzTzqyD81JbSvn2Q==
+ bh=QY33ECqvaW8J6tjMILw5/zzRRH7/4t/sy6VF+a1HRds=;
+ b=GDM207H4g9yPSG5ND0AdCXSbafvkn7AKRUOytkl8KQ3qU86db/RhUnho
+ MBjDnE4ZmDQBvBP+w5OVUd7pe2b+tTxVKfuh3Cdn8NeYODas7wTQLspa9
+ awF0cxWkzWpSmVo1kw2StpUDk/0rv+7GhDL7kfcHoFUOUw5nlCusYtVis
+ XcKOQeHwtyWLvh+BdZ02JGDOkLlzIId+jEWJABFPDETzLmPipjbw/LY7L
+ Ts8NfnFjYy/Uop2PofyDL5nH+qt6nKGeqV5rKI4A0PrIbqKJd/I25PZBn
+ q3Eh8pS1k165BgAF7aWvwXoIOaBw2ZwxMuOjTnbqSVeSyzm++LtGkIuPS A==;
+X-CSE-ConnectionGUID: Z0PfRM6vQ9aL4EyiVBPsnA==
+X-CSE-MsgGUID: aFR8KqigQJeKMxE5cwrrkw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11332"; a="41736738"
+X-IronPort-AV: E=Sophos;i="6.13,248,1732608000"; d="scan'208";a="41736738"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2025 06:51:19 -0800
+X-CSE-ConnectionGUID: peGtpaOaT0uYCSWXcSbCow==
+X-CSE-MsgGUID: GvxQAV9URVGqxAZE/LOWFw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,248,1732608000"; d="scan'208";a="110225617"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="110097117"
 Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Jan 2025 06:47:56 -0800
-Date: Fri, 31 Jan 2025 16:48:53 +0200
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Jan 2025 06:51:18 -0800
+Date: Fri, 31 Jan 2025 16:52:14 +0200
 From: Imre Deak <imre.deak@intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 09/14] drm/i915/dp: Inline do_dsc_compute_compressed_bpp()
-Message-ID: <Z5zi1VMgCFFBltNs@ideak-desk.fi.intel.com>
+Subject: Re: [PATCH 10/14] drm/i915/dp: Simplify input BPP checks in
+ intel_dp_dsc_compute_pipe_bpp()
+Message-ID: <Z5zjnvO7PFYKcCZ8@ideak-desk.fi.intel.com>
 References: <cover.1738327620.git.jani.nikula@intel.com>
- <91ae42cbdffe4938a665667955c577f887b92b9d.1738327620.git.jani.nikula@intel.com>
+ <5559b14d6af4e001677f23454d6bd8b3606b3d7a.1738327620.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <91ae42cbdffe4938a665667955c577f887b92b9d.1738327620.git.jani.nikula@intel.com>
+In-Reply-To: <5559b14d6af4e001677f23454d6bd8b3606b3d7a.1738327620.git.jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,111 +70,55 @@ Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Jan 31, 2025 at 02:50:02PM +0200, Jani Nikula wrote:
-> With just the one platform independent loop left in
-> do_dsc_compute_compressed_bpp(), we don't really need the extra function
-> that is simply becoming increasingly hard to even figure out a decent
-> name for. Just merge the whole thing to
-> dsc_compute_compressed_bpp(). Good riddance to the short lived
-> do_dsc_compute_compressed_bpp().
+On Fri, Jan 31, 2025 at 02:50:03PM +0200, Jani Nikula wrote:
+> Drop the extra local variables and simplify the conditions. We don't
+> have to try to special case the loop condition and break in the validity
+> checks.
 > 
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-
-It also makes sense to keep all functions short, but here having to pass
-a lot of parameters to do_dsc_compute_compressed_bpp() could argue
-against that:
 
 Reviewed-by: Imre Deak <imre.deak@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 60 ++++++++++---------------
->  1 file changed, 23 insertions(+), 37 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_dp.c | 10 ++--------
+>  1 file changed, 2 insertions(+), 8 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 11a1ac28e21e..185c9f7e8538 100644
+> index 185c9f7e8538..7a8a4df1bf1e 100644
 > --- a/drivers/gpu/drm/i915/display/intel_dp.c
 > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -2097,41 +2097,6 @@ static bool intel_dp_dsc_valid_bpp(struct intel_dp *intel_dp, int bpp_x16)
->   * Find the max compressed BPP we can find a link configuration for. The BPPs to
->   * try depend on the source (platform) and sink.
->   */
-> -static int
-> -do_dsc_compute_compressed_bpp(struct intel_dp *intel_dp,
-> -			      struct intel_crtc_state *pipe_config,
-> -			      const struct link_config_limits *limits,
-> -			      int min_bpp_x16,
-> -			      int max_bpp_x16,
-> -			      int bpp_step_x16,
-> -			      int timeslots)
-> -{
-> -	struct intel_display *display = to_intel_display(intel_dp);
-> -	int bpp_x16;
-> -	int ret;
-> -
-> -	for (bpp_x16 = max_bpp_x16; bpp_x16 >= min_bpp_x16; bpp_x16 -= bpp_step_x16) {
-> -		if (!intel_dp_dsc_valid_bpp(intel_dp, bpp_x16))
-> -			continue;
-> -
-> -		ret = dsc_compute_link_config(intel_dp,
-> -					      pipe_config,
-> -					      limits,
-> -					      bpp_x16,
-> -					      timeslots);
-> -		if (ret == 0) {
-> -			pipe_config->dsc.compressed_bpp_x16 = bpp_x16;
-> -			if (intel_dp->force_dsc_fractional_bpp_en &&
-> -			    fxp_q4_to_frac(bpp_x16))
-> -				drm_dbg_kms(display->drm,
-> -					    "Forcing DSC fractional bpp\n");
-> -
-> -			return 0;
-> -		}
-> -	}
-> -	return -EINVAL;
-> -}
-> -
->  static int dsc_compute_compressed_bpp(struct intel_dp *intel_dp,
->  				      const struct intel_connector *connector,
->  				      struct intel_crtc_state *pipe_config,
-> @@ -2147,6 +2112,8 @@ static int dsc_compute_compressed_bpp(struct intel_dp *intel_dp,
->  	int min_bpp_x16, max_bpp_x16, bpp_step_x16;
->  	int dsc_joiner_max_bpp;
->  	int num_joined_pipes = intel_crtc_num_joined_pipes(pipe_config);
-> +	int bpp_x16;
-> +	int ret;
+> @@ -2202,8 +2202,6 @@ static int intel_dp_dsc_compute_pipe_bpp(struct intel_dp *intel_dp,
+>  {
+>  	const struct intel_connector *connector =
+>  		to_intel_connector(conn_state->connector);
+> -	int dsc_max_bpp;
+> -	int dsc_min_bpp;
+>  	u8 dsc_bpc[3] = {};
+>  	int forced_bpp, pipe_bpp;
+>  	int num_bpc, i, ret;
+> @@ -2219,9 +2217,6 @@ static int intel_dp_dsc_compute_pipe_bpp(struct intel_dp *intel_dp,
+>  		}
+>  	}
 >  
->  	dsc_min_bpp = fxp_q4_to_int_roundup(limits->link.min_bpp_x16);
->  
-> @@ -2165,8 +2132,27 @@ static int dsc_compute_compressed_bpp(struct intel_dp *intel_dp,
->  	output_bpp = intel_dp_output_bpp(pipe_config->output_format, pipe_bpp);
->  	max_bpp_x16 = min(max_bpp_x16, fxp_q4_from_int(output_bpp) - bpp_step_x16);
->  
-> -	return do_dsc_compute_compressed_bpp(intel_dp, pipe_config, limits,
-> -					     min_bpp_x16, max_bpp_x16, bpp_step_x16, timeslots);
-> +	for (bpp_x16 = max_bpp_x16; bpp_x16 >= min_bpp_x16; bpp_x16 -= bpp_step_x16) {
-> +		if (!intel_dp_dsc_valid_bpp(intel_dp, bpp_x16))
-> +			continue;
+> -	dsc_max_bpp = limits->pipe.max_bpp;
+> -	dsc_min_bpp = limits->pipe.min_bpp;
+> -
+>  	/*
+>  	 * Get the maximum DSC bpc that will be supported by any valid
+>  	 * link configuration and compressed bpp.
+> @@ -2229,10 +2224,9 @@ static int intel_dp_dsc_compute_pipe_bpp(struct intel_dp *intel_dp,
+>  	num_bpc = drm_dp_dsc_sink_supported_input_bpcs(connector->dp.dsc_dpcd, dsc_bpc);
+>  	for (i = 0; i < num_bpc; i++) {
+>  		pipe_bpp = dsc_bpc[i] * 3;
+> -		if (pipe_bpp < dsc_min_bpp)
+> -			break;
+> -		if (pipe_bpp > dsc_max_bpp)
+> +		if (pipe_bpp < limits->pipe.min_bpp || pipe_bpp > limits->pipe.max_bpp)
+>  			continue;
 > +
-> +		ret = dsc_compute_link_config(intel_dp,
-> +					      pipe_config,
-> +					      limits,
-> +					      bpp_x16,
-> +					      timeslots);
-> +		if (ret == 0) {
-> +			pipe_config->dsc.compressed_bpp_x16 = bpp_x16;
-> +			if (intel_dp->force_dsc_fractional_bpp_en &&
-> +			    fxp_q4_to_frac(bpp_x16))
-> +				drm_dbg_kms(display->drm,
-> +					    "Forcing DSC fractional bpp\n");
-> +
-> +			return 0;
-> +		}
-> +	}
-> +
-> +	return -EINVAL;
->  }
->  
->  int intel_dp_dsc_min_src_input_bpc(void)
+>  		ret = dsc_compute_compressed_bpp(intel_dp, connector, pipe_config,
+>  						 limits, pipe_bpp, timeslots);
+>  		if (ret == 0) {
 > -- 
 > 2.39.5
 > 
