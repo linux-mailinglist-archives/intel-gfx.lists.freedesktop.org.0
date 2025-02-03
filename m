@@ -2,67 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E23F8A263AF
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Feb 2025 20:21:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E435BA263D5
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Feb 2025 20:37:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42E7010E151;
-	Mon,  3 Feb 2025 19:21:51 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hcuQkpXO";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA3BD10E54E;
+	Mon,  3 Feb 2025 19:37:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8AE6A10E151
- for <intel-gfx@lists.freedesktop.org>; Mon,  3 Feb 2025 19:21:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738610510; x=1770146510;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=Kn/thhXJ9cuWkEIMayhnxu5ynyDXMVO1uXMDyjEDEAo=;
- b=hcuQkpXOGf+mGtsbebq5n8mxjchp76toMrFmW7ty6uyDggXu11q6mrkB
- y59Nh0f9rNp+E03kqDRBkQ/dAk9+nG8KYl32HX5IkKi+/ryLI/O64FSIk
- idG72NnkDncPrujj22JMTuKj2q0PjPDlXxCnSSJtiusKHp4K5FgwoArdP
- lUX2fb8pcrVm8jpX1GGG2aXXqiWZVkD0wx7tw+WF21D89rq+Pi+rIKkK9
- gCpwVOJPBX3g4Kf8lvFe0ir/XT4SodYzw1hnb7LHaCqkI9ZTkqglLEzUP
- Yli1p2JUocOgQ2d2HPBuCjU8ArHu1Bt0q4GMzV4TVa9MPx3JrLZxuu/5z w==;
-X-CSE-ConnectionGUID: PD94qgY+Q4i0Lfpqv3HsWg==
-X-CSE-MsgGUID: CkIg8UYaQyO52/xoAejB0g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11335"; a="26721300"
-X-IronPort-AV: E=Sophos;i="6.13,256,1732608000"; d="scan'208";a="26721300"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2025 11:21:49 -0800
-X-CSE-ConnectionGUID: iLKopaY9SgOQ/CZ24PWsRA==
-X-CSE-MsgGUID: Nxwja1MKS2SFViDOh21AGg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,256,1732608000"; d="scan'208";a="141255286"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2025 11:21:47 -0800
-Date: Mon, 3 Feb 2025 21:22:44 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>,
- Mohammed Thasleem <mohammed.thasleem@intel.com>,
- intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915/dmc: Add debugfs for dc6 counter
-Message-ID: <Z6EXhDOE3Mx9ueCF@ideak-desk.fi.intel.com>
-References: <Z6DSC6Z1q0nsd7MF@ideak-desk.fi.intel.com>
- <173859479977.77773.12623605896722676495@intel.com>
- <Z6DdQuYe1Q0Pu4Fg@ideak-desk.fi.intel.com>
- <Z6DktvZQ-NzLnab9@intel.com>
- <Z6DoVSEBaVp1QcC3@ideak-desk.fi.intel.com>
- <Z6Dq8iF96I-nBkPh@intel.com>
- <Z6DuZS_9hVqzZuwA@ideak-desk.fi.intel.com>
- <Z6Dx4ypYV3NJVuf1@intel.com>
- <Z6D0BdYxiq8rLYnx@ideak-desk.fi.intel.com>
- <Z6D5rl5bcI1v675e@intel.com>
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 354BC10E54E;
+ Mon,  3 Feb 2025 19:37:20 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1477009217600242027=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z6D5rl5bcI1v675e@intel.com>
+Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_Use_VRR_timing_generator_?=
+ =?utf-8?q?for_fixed_refresh_rate_modes_=28rev8=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 03 Feb 2025 19:37:20 -0000
+Message-ID: <173861144021.484777.2193689898171704766@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250203123840.3855874-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20250203123840.3855874-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,87 +37,225 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 03, 2025 at 12:15:26PM -0500, Rodrigo Vivi wrote:
-> > > > [...]
-> > > >
-> > > > The driver enabling DC6 is not an enough condition for DC6 being allowed
-> > > > from the display side. Some display clock gating etc. configuration by
-> > > > the driver could be blocking it. According to the HW team, DC5 being
-> > > > entered while DC6 is enabled is a guarantee that DC6 is allowed from the
-> > > > display side - i.e. the driver has configured everything correctly for
-> > > > that.
-> > > 
-> > > Fair enough. So IGT test case would check directly if DC5 counter is
-> > > increasing and DC6 is allowed.
-> > > 
-> > > Something as simple as this in the kernel code would tell that
-> > > DC6 is enabled:
-> > > 
-> > > --- a/drivers/gpu/drm/i915/display/intel_dmc.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-> > > @@ -1294,6 +1294,10 @@ static int intel_dmc_debugfs_status_show(struct seq_file *m, void *unused)
-> > >                 seq_printf(m, "DC5 -> DC6 count: %d\n",
-> > >                            intel_de_read(display, dc6_reg));
-> > >  
-> > > +       seq_printf(m, "DC6 allowed: %s\n", str_yes_no((intel_de_read(display,
-> > > +                                                                   DC_STATE_EN)
-> > > +                                                     & 0x3) == 2));
-> > > +
-> > > 
-> > > and
-> > > 
-> > > $ cat i915_dmc_info
-> > > [snip]
-> > > DC3 -> DC5 count: 286
-> > > DC5 -> DC6 count: 0
-> > > DC6 allowed: yes
-> > > [snip]
-> > > 
-> > > $ cat i915_dmc_info
-> > > [snip]
-> > > DC3 -> DC5 count: 292
-> > > DC5 -> DC6 count: 0
-> > > DC6 allowed: yes
-> > > [snip]
-> > > 
-> > > Thoughts?
-> > 
-> > The DC5 increment could've happened while DC6 was disabled by the driver.
-> 
-> Yes, it could... in general the dc6 bit would be zero, but right, there's
-> a possible race.
-> 
-> But should we complicate things when we know that on the test case itself
-> we are in full control of the modeset?! From the test perspective I believe
-> this would be more than enough without complicating things.
+--===============1477009217600242027==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Imo having a counter which works based on the condition that guarantees the
-display to allow DC6, would help later in debugging.
+== Series Details ==
 
-> But well, if you really believe that we need to go further in the driver
-> to cover that it is fine by me.
-> 
-> But just to ensure that we are in the same page, could you please open
-> up a bit more of your idea on when to increase the dc5 sw counters
-> in a way that we would ensure that we don't have race and that we
-> get the dc6 allowed counter correctly?
+Series: Use VRR timing generator for fixed refresh rate modes (rev8)
+URL   : https://patchwork.freedesktop.org/series/134383/
+State : failure
 
-Something like the following:
+== Summary ==
 
-1. Right after the driver sets DC6_EN, it stores the DC5 HW counter's
-   current value:
-   dc5_start = dc5_current
-2. Right before the driver clears DC6_EN, it updates the DC6 allowed
-   counter:
-   dc6_allowed += dc5_current - dc5_start
-   dc5_start = dc5_current
-3. When userspace reads the counters via debugfs the driver first
-   updates dc6_allowed the same way as 2. did if DC6_EN is set.
+CI Bug Log - changes from CI_DRM_16055 -> Patchwork_134383v8
+====================================================
 
-> Btw, while doing this experiment I noticed that the debugfs and test
-> also doesn't call that residency anyway and it is just count. So
-> perhaps with your idea we don't need to change the debugfs interface.
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_134383v8 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_134383v8, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134383v8/index.html
+
+Participating hosts (45 -> 44)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_134383v8:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@gt_heartbeat:
+    - bat-twl-1:          [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16055/bat-twl-1/igt@i915_selftest@live@gt_heartbeat.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134383v8/bat-twl-1/igt@i915_selftest@live@gt_heartbeat.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-b-dp-2:
+    - fi-cfl-8109u:       [PASS][3] -> [DMESG-WARN][4]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16055/fi-cfl-8109u/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-b-dp-2.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134383v8/fi-cfl-8109u/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-b-dp-2.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_134383v8 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-arlh-3:         [PASS][5] -> [DMESG-WARN][6] ([i915#1982])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16055/bat-arlh-3/igt@core_hotunplug@unbind-rebind.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134383v8/bat-arlh-3/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@gem_tiled_blits@basic:
+    - fi-pnv-d510:        [PASS][7] -> [SKIP][8] +2 other tests skip
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16055/fi-pnv-d510/igt@gem_tiled_blits@basic.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134383v8/fi-pnv-d510/igt@gem_tiled_blits@basic.html
+
+  * igt@i915_pm_rpm@module-reload:
+    - bat-rpls-4:         [PASS][9] -> [FAIL][10] ([i915#13401])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16055/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134383v8/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
+
+  * igt@i915_selftest@live:
+    - bat-twl-1:          [PASS][11] -> [ABORT][12] ([i915#12919] / [i915#13503])
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16055/bat-twl-1/igt@i915_selftest@live.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134383v8/bat-twl-1/igt@i915_selftest@live.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
+    - bat-dg2-11:         [PASS][13] -> [SKIP][14] ([i915#9197]) +3 other tests skip
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16055/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134383v8/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+
+  
+  [i915#12919]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12919
+  [i915#13401]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13401
+  [i915#13503]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13503
+  [i915#1982]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982
+  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_16055 -> Patchwork_134383v8
+
+  CI-20190529: 20190529
+  CI_DRM_16055: 02621ca7f4755e96ef35e4ab5c713ba7e79f4227 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8220: 8220
+  Patchwork_134383v8: 02621ca7f4755e96ef35e4ab5c713ba7e79f4227 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134383v8/index.html
+
+--===============1477009217600242027==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Use VRR timing generator for fixed refresh rate modes (rev8)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/134383/">https://patchwork.freedesktop.org/series/134383/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134383v8/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134383v8/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_16055 -&gt; Patchwork_134383v8</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_134383v8 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_134383v8, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134383v8/index.html</p>
+<h2>Participating hosts (45 -&gt; 44)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_134383v8:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@gt_heartbeat:</p>
+<ul>
+<li>bat-twl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16055/bat-twl-1/igt@i915_selftest@live@gt_heartbeat.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134383v8/bat-twl-1/igt@i915_selftest@live@gt_heartbeat.html">ABORT</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-b-dp-2:</p>
+<ul>
+<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16055/fi-cfl-8109u/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-b-dp-2.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134383v8/fi-cfl-8109u/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-b-dp-2.html">DMESG-WARN</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_134383v8 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16055/bat-arlh-3/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134383v8/bat-arlh-3/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1982">i915#1982</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_blits@basic:</p>
+<ul>
+<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16055/fi-pnv-d510/igt@gem_tiled_blits@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134383v8/fi-pnv-d510/igt@gem_tiled_blits@basic.html">SKIP</a> +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_pm_rpm@module-reload:</p>
+<ul>
+<li>bat-rpls-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16055/bat-rpls-4/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134383v8/bat-rpls-4/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13401">i915#13401</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-twl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16055/bat-twl-1/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134383v8/bat-twl-1/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12919">i915#12919</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13503">i915#13503</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
+<ul>
+<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16055/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_134383v8/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197">i915#9197</a>) +3 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_16055 -&gt; Patchwork_134383v8</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_16055: 02621ca7f4755e96ef35e4ab5c713ba7e79f4227 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8220: 8220<br />
+  Patchwork_134383v8: 02621ca7f4755e96ef35e4ab5c713ba7e79f4227 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============1477009217600242027==--
