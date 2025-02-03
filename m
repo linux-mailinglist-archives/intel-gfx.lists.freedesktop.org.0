@@ -2,58 +2,114 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCFAAA255C0
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Feb 2025 10:23:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 95A83A2577D
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Feb 2025 11:58:23 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6617F10E2BE;
-	Mon,  3 Feb 2025 09:23:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3206B10E47E;
+	Mon,  3 Feb 2025 10:58:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gFFh9SWE";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="Kze+GGRy";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EED4510E2BE
- for <intel-gfx@lists.freedesktop.org>; Mon,  3 Feb 2025 09:23:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738574608; x=1770110608;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=JQ1tPFqjUaQ01Ahe1SHWYYC/LsiXJhORlYJARAo31Ew=;
- b=gFFh9SWE4qZ1OD+CaSgh2ccMpUFJO1SGa29uqGA3I+V6nv7Y9YI452Lt
- TwHJCGRlYgnYkYzgPJb/16pksOLKNROTQpRpfg4NI4is1GCD10tqpC4Ou
- BUWDRUGLPKCU4AQbBjCSlC88qMxstuMKAmlnF8AXyQe7ceHTImB8g4KCk
- t4ptOdOqhEGDBsznvCCe4MbsGFtzGGGmTMvLK8cxnKRTyJfAsyRHN3QIY
- IYL44atIOpJ+EmqNSEzi4mWnlMVxmkdCP9a7Ry0uzQJA2+amNy++iYLeE
- k4++VX41e+yn0JT9ZCy0x8xWa+c8dKne4J9G1Fr5VQo+9e24ev6+CcJHT A==;
-X-CSE-ConnectionGUID: rdyyN3CXQxuEQagslNxehg==
-X-CSE-MsgGUID: xhk3PmPhTQehwOaI8kDpfw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11334"; a="42715535"
-X-IronPort-AV: E=Sophos;i="6.13,255,1732608000"; d="scan'208";a="42715535"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2025 01:23:28 -0800
-X-CSE-ConnectionGUID: aLzhuLbbQv6eLM4fBn4iJA==
-X-CSE-MsgGUID: tFK+BpiQSdqUXhr6muOQ1Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,255,1732608000"; d="scan'208";a="110814715"
-Received: from ncintean-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.65])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2025 01:23:26 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Mohammed Thasleem <mohammed.thasleem@intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: Mohammed Thasleem <mohammed.thasleem@intel.com>
-Subject: Re: [PATCH] drm/i915/dmc: Add debugfs for dc6 counter
-In-Reply-To: <20250203085613.236340-1-mohammed.thasleem@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250203085613.236340-1-mohammed.thasleem@intel.com>
-Date: Mon, 03 Feb 2025 11:23:23 +0200
-Message-ID: <87r04f756c.fsf@intel.com>
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com
+ [209.85.128.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F49410E47F
+ for <intel-gfx@lists.freedesktop.org>; Mon,  3 Feb 2025 10:58:21 +0000 (UTC)
+Received: by mail-wm1-f46.google.com with SMTP id
+ 5b1f17b1804b1-43626213fffso32373915e9.1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 03 Feb 2025 02:58:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1738580299; x=1739185099; darn=lists.freedesktop.org;
+ h=cc:to:content-transfer-encoding:mime-version:message-id:date
+ :subject:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=XLcAmb5imXFvDRB/VGg4Mua1A1e4qvmBbsZyq6NVDp0=;
+ b=Kze+GGRyITDqHixRawr+JeZ5csPm8PcxEGXIAryfXgc8GwsztkwiCTg68CWWOu556B
+ d/s/GvG+YAiCZIS2fBCs/zknvsqMvWAxRKlQ5cbVSsolANZufPxGd3VxC4hY//6Kifj/
+ Bk0v4azSzEsLovW4K//IuHNegfJvJjUkX0AFgx/hDcd9Y38zwFSAkMQZSV3HUCHYhyhD
+ gjRwL9IsQt1EIqskF9v7X7Mn2UIhTKkExICAtndXjbyrkHznCs8+lQc+vmbldBtXcdKE
+ 2Nio7PySReDwz2IpXe2hjMx/CEwloe6I5gHhfLcMJi/LV4GVzWNyCME4a4Tcefqk0bDz
+ UUtw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1738580299; x=1739185099;
+ h=cc:to:content-transfer-encoding:mime-version:message-id:date
+ :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=XLcAmb5imXFvDRB/VGg4Mua1A1e4qvmBbsZyq6NVDp0=;
+ b=K2DMWISH3I/d5joiYDkSwkGj3qXSr5PX4sEd2lTC2pr9e9YXc3zX31ObDBPGS///N4
+ j/2HejQh+ztRbeNUbSGH0EDgVwV+4Yt3R1ak3FugmsFAUwbNypZ+f1CHmJDE4FIAdIVB
+ Y4Ous9PYffFG9qL7js1LlTEzPP4yparQxTEXjFPUsJ3Kcr5vWzkHLI2HnyWypVo+UrGv
+ F429LOWqnScTgVLrZ82Tc+AsIi1I7rZKx9bvbEl+6dZpIsxS211s9u7VEcouWZy8X+gU
+ 3pzwqu6ZAJqR+BX/kWemU3/6SD8p+w/Y4MPZMYbbEbKGYprTMekKnWYs6o2EnRVFDTKt
+ ejnA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCU6SXIKdXRcBZZrKtGuPYePG6FLlEBW40xhHlloEq0s1rW9Sw2AjQneTvEmyBd5z4Mzw9cyDqP7YaA=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxFs1JoBq8HlZ7mdKYZIFQM5kNInWcoQINflVT0hEBRM762C4uq
+ kyKUwyo/m6Qp8LxQdfqXRVunrkRpYd0RQeUaegrmhF6TDx/1i7E6PG/smxQqfPM=
+X-Gm-Gg: ASbGncvUkme9uwqh7wa9tzpivVnKsrdabFd0o9okIfRx5EKlgidWhpzaFF42uwdNdQQ
+ sJ1F5Tup4gpzag/YdUimZN6YS8pwv40Cq/NfLiGRQAbUroJrzlYH6hvpGd2wsmS6JLAAn7H9JxI
+ gHCKKVLuuEYED4ADzhdC/eF5n5GqmnRBg+Ch39G27SeGMkTR0X5uuEgsKs+h4mfSj2+6Yj3zMBX
+ n8L8puU6jcqvi9t8GoVmedDkyiuWjlXP7Bt7EUsj1by8oqkoKBqyorEDj3EYv6L/cluFx2zRWxi
+ nO2rIQuDwB3PPao=
+X-Google-Smtp-Source: AGHT+IHhr4klxCQY7Z9qoAXLzjjnoKLjWUAup4X7mSLv7b1sKOjwEc0f9wj6fXBkEb7M9qj8+FK/oA==
+X-Received: by 2002:adf:ea90:0:b0:385:fa30:4f87 with SMTP id
+ ffacd0b85a97d-38c5a86e2acmr11625798f8f.0.1738580299369; 
+ Mon, 03 Feb 2025 02:58:19 -0800 (PST)
+Received: from [127.0.1.1] ([86.123.96.125]) by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-38c5c13a0efsm12555083f8f.60.2025.02.03.02.58.17
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 03 Feb 2025 02:58:18 -0800 (PST)
+From: Abel Vesa <abel.vesa@linaro.org>
+Subject: [PATCH v5 0/4] drm/dp: Rework LTTPR transparent mode handling and
+ add support to msm driver
+Date: Mon, 03 Feb 2025 12:57:55 +0200
+Message-Id: <20250203-drm-dp-msm-add-lttpr-transparent-mode-set-v5-0-c865d0e56d6e@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADOhoGcC/53Oy2rDMBCF4VcJWneKrrbUVd+jZKHLKBHElpGEa
+ Qh+9yqB0pas3OWZxffPjVQsCSt5O9xIwTXVlOc+1MuB+LOdTwgp9E045ZJRwSCUCcICU53AhgC
+ X1pYCrdi5Lrbg3GDKAaFiAyYGH5SLAelIurcUjOnz0fo49n1OteVyfaRXdr/+p7IyoOBtdM5op
+ aKk75c025JfczmRe2blPzRnu2je6aAMHTAI7bh+osU3rWh/ew8tOq28GMYoHR0H8UTL37TeQ8t
+ OG6aNNM5zFPYPvW3bF+HbYEf0AQAA
+X-Change-ID: 20241031-drm-dp-msm-add-lttpr-transparent-mode-set-136cd5bfde07
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>, 
+ Danilo Krummrich <dakr@redhat.com>, 
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, Rob Clark <robdclark@gmail.com>, 
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>, 
+ Marijn Suijten <marijn.suijten@somainline.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Johan Hovold <johan@kernel.org>, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, 
+ freedreno@lists.freedesktop.org, Abel Vesa <abel.vesa@linaro.org>, 
+ Johan Hovold <johan+linaro@kernel.org>, Imre Deak <imre.deak@intel.com>
+X-Mailer: b4 0.15-dev-dedf8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4677; i=abel.vesa@linaro.org; 
+ h=from:subject:message-id;
+ bh=cYlnnHTHnfX5A4NpE+h+NMGvTQWwaK7jU/pGGIU9lZs=; 
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBnoKE/zDksHClkVHYccPshbzGhJ7fQegd+I76Dq
+ r6Yy+puSEWJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZ6ChPwAKCRAbX0TJAJUV
+ VuBlD/9R3tniupZZRrrer07wVKnvqgs/DdiuT5gbx9NQtLkOQN54JRBFuse+PIyT0brughjVUES
+ lg+urfITYCZbkfpJbY7AGnIABKvI/AeQWMDEwQYPNoAZuTlr29AQ6wlv75z2h+jcvHUGwjYQrfN
+ XFWQW+ihQY97nLaWgs5SRuduxxNY3cH/QszKlbdsRZDHDfrYhnQpbRYyQQZbksfMtTM/TmBvZ9u
+ wJi+LAtZ2tZM7GRTF3bivkLgjs+xMT2YiPu0ID9joTDTOyxCbHQ4DNza8FWEgsb5FOCKjjEYFEZ
+ i/uJU9RJsxq48wMUMtr3LWkoIwwb+GVPuecGlrUZfG1MLDPCv9kLx5rlDKBpbzT/EsOdDODP+Rw
+ ize5zfxK7CeIc3VcVDjiAvs+2yopgTRPI3XwV0CSWnkTeFoYEKUwFXMe4ksg5MZCabigdq7yW12
+ hBYI5XYzywPC7qUzqo/M3sZ3bLVRprdYMWT7LbJ8iaBo8EkCWmALJSjNYukPRgoyE3k1Tlzy/NP
+ td35ZlzWBHvrYW9bMWzYjSrMlrmON+LjZ048uYmcV7YZgwn1SZuuMvFLHKNt1wSg8ufHv685KDd
+ vosvx3m1JZCrgOgXBd2CnNYOQ4JOw+qx8O6LKqwWAMoleQQtjMLDGPdkcg6HbH998ZpH2fGP4o4
+ p9kEREBVeZGFyyw==
+X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
+ fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,62 +125,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 03 Feb 2025, Mohammed Thasleem <mohammed.thasleem@intel.com> wrote:
-> Starting from MTl we don't have a platform agnostic way to validate DC6 state
-> due to dc6 counter has been removed to validate DC state.
-> Adding dc6_entry_counter at display dirver to validate dc6 state.
->
-> Signed-off-by: Mohammed Thasleem <mohammed.thasleem@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display_core.h       | 1 +
->  drivers/gpu/drm/i915/display/intel_display_power_well.c | 2 ++
->  drivers/gpu/drm/i915/display/intel_dmc.c                | 1 +
->  3 files changed, 4 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-> index 554870d2494b..cc244617011f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_core.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-> @@ -376,6 +376,7 @@ struct intel_display {
->  	struct {
->  		struct intel_dmc *dmc;
->  		intel_wakeref_t wakeref;
-> +		u32 dc6_entry_counter;
->  	} dmc;
->  
->  	struct {
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-> index f45a4f9ba23c..0eb178aa618d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-> @@ -869,6 +869,8 @@ void skl_enable_dc6(struct intel_display *display)
->  	intel_dmc_wl_enable(display, DC_STATE_EN_UPTO_DC6);
->  
->  	gen9_set_dc_state(display, DC_STATE_EN_UPTO_DC6);
-> +
-> +	display->dmc.dc6_entry_counter++;
+Looking at both i915 and nouveau DP drivers, both are setting the first
+LTTPR (if found) in transparent mode first and then in non-transparent
+mode, just like the DP v2.0 specification mentions in section 3.6.6.1.
 
-This file has no business touching the guts of display->dmc.
+Being part of the standard, setting the LTTPR in a specific operation mode
+can be easily moved in the generic framework. So do that by adding a new
+helper.
 
-BR,
-Jani.
+Then, the msm DP driver is lacking any kind of support for LTTPR handling,
+so add it by reading the LTTPR caps for figuring out the number of LTTPRs
+found on plug detect and then do exactly what the i915 and nouveau drivers
+do with respect to toggling through operating modes, just like the
+up-mentioned section from DP spec describes.
 
+At some point, link training per sub-segment will probably be needed, but
+for now, toggling the operating modes seems to be enough at least for the
+X Elite-based platforms that this patchset has been tested on.
 
->  }
->  
->  void bxt_enable_dc9(struct intel_display *display)
-> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-> index 221d3abda791..f51bd8e6011d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dmc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-> @@ -1293,6 +1293,7 @@ static int intel_dmc_debugfs_status_show(struct seq_file *m, void *unused)
->  	if (i915_mmio_reg_valid(dc6_reg))
->  		seq_printf(m, "DC5 -> DC6 count: %d\n",
->  			   intel_de_read(display, dc6_reg));
-> +	seq_printf(m, "DC6 entry count: %d\n", display->dmc.dc6_entry_counter);
->  
->  	seq_printf(m, "program base: 0x%08x\n",
->  		   intel_de_read(display, DMC_PROGRAM(dmc->dmc_info[DMC_FW_MAIN].start_mmioaddr, 0)));
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+---
+Changes in v5:
+- Added kernel-doc () suffix and semicolon after "Return" for
+  drm_dp_lttpr_set_transparent_mode, and dropped the extra blank
+  line from kernel-doc of drm_dp_lttpr_init, like Bjorn suggested
+- Picked up Abhinav's R-b tag.
+- Moved the lttpr_caps on stack, as suggested by Bjorn and Abhinav in
+  the msm implementation.
+- Moved the msm_dp_display_lttpr_init call after msm_dp_panel_read_sink_caps,
+  as Abhinav suggested.
+- Link to v4: https://lore.kernel.org/r/20250108-drm-dp-msm-add-lttpr-transparent-mode-set-v4-0-918949bc2e3a@linaro.org
 
+Changes in v4:
+- Picked up Dmitry's and Johan's R-b tags for the drm generic and drm
+  msm patches.
+- Moved the comment about the roll-back to transparent mode inside the
+  if statement and fixed the typos, like Johan suggested.
+- Added more details in the commit message for the i915 changes. Details
+  about the update that the lttpr_common_caps need w.r.t. rollback to
+  transparent mode in case of failure.
+- Link to v3: https://lore.kernel.org/r/20250103-drm-dp-msm-add-lttpr-transparent-mode-set-v3-0-5c367f4b0763@linaro.org
+
+Changes in v3:
+- Picked-up T-b tag from Johan for the drm/dp transparent mode set helper
+  patch
+- Re-worked the return value of the drm/dp transparet mode set helper
+- Added some more details about what the values of the lttpr_count arg
+  is expected to be for the drm_dp_lttpr_init(), like Johan suggested.
+- Re-worked the non-transparent mode disable->enable so that the rollback
+  doesn't happen unless enable failed.
+- Picked-up Lyude's R-b tag for the nouveau patch.
+- Dropped extra parantesis at the end of the drm_dp_lttpr_init() call in
+  i915 patch.
+- Picked-up Johan's T-b tag for the drm/msm/dp patch.
+- Added some error handling and an error message in the
+  msm_dp_display_lttpr_init(), while dropping the unnecessary lttpr_count
+  local variable.
+- Link to v2: https://lore.kernel.org/r/20241211-drm-dp-msm-add-lttpr-transparent-mode-set-v2-0-d5906ed38b28@linaro.org
+
+Changes in v2:
+- Added new wrapper over the set_transparent new helper in order to
+  move the non-transparent disable and the its enable->disable sequence
+  mentioned in the DP standard section 3.6.6.1 entirely in the generic
+  implemetation.
+- Switch all 3 drivers to use the new wrapper.
+- Fixed the return value of the helper to return 0 on success and
+  negative value on error.
+- Added explanation about the transparent/non-transparent modes into the
+  msm dp commit message.
+- Dropped the condition for non-eDP in msm DP driver since it is allowed
+  to try to get the number of LTTPRs even on eDP and it will be always
+  0 anyway.
+- Dropped the RFC prefix
+- Link to v1: https://lore.kernel.org/r/20241031-drm-dp-msm-add-lttpr-transparent-mode-set-v1-0-cafbb9855f40@linaro.org
+
+---
+Abel Vesa (4):
+      drm/dp: Add helper to set LTTPRs in transparent mode
+      drm/nouveau/dp: Use the generic helper to control LTTPR transparent mode
+      drm/i915/dp: Use the generic helper to control LTTPR transparent mode
+      drm/msm/dp: Add support for LTTPR handling
+
+ drivers/gpu/drm/display/drm_dp_helper.c            | 61 ++++++++++++++++++++++
+ .../gpu/drm/i915/display/intel_dp_link_training.c  | 24 ++-------
+ drivers/gpu/drm/msm/dp/dp_display.c                | 15 ++++++
+ drivers/gpu/drm/nouveau/nouveau_dp.c               | 17 +-----
+ include/drm/display/drm_dp_helper.h                |  2 +
+ 5 files changed, 85 insertions(+), 34 deletions(-)
+---
+base-commit: 00f3246adeeacbda0bd0b303604e46eb59c32e6e
+change-id: 20241031-drm-dp-msm-add-lttpr-transparent-mode-set-136cd5bfde07
+
+Best regards,
 -- 
-Jani Nikula, Intel
+Abel Vesa <abel.vesa@linaro.org>
+
