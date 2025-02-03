@@ -2,52 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 085DDA259D1
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Feb 2025 13:49:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ED4B9A259D2
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Feb 2025 13:49:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5EBE310E4A3;
-	Mon,  3 Feb 2025 12:49:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B6ED10E4AE;
+	Mon,  3 Feb 2025 12:49:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EauzBlJC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TuuLtcdE";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EDC4010E07C;
- Mon,  3 Feb 2025 12:49:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F3BD610E4AC;
+ Mon,  3 Feb 2025 12:49:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738586989; x=1770122989;
+ t=1738586991; x=1770122991;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=/kYH1lIwNp+YNrHwpP0PsEE90e6JTgR/lT7Fsa4eENU=;
- b=EauzBlJC2JQZdGsUgZkVuTm6ch3jj+cK3SzzTsId4+33SZGpc6vmkDnP
- +utE8XCM6EDX06637IeDjix7p88bp1dyeT/eVGUZr7g+MfiBQes3s5dSB
- GRiw1otDO/QIq9Bsfwazo9x0C/wpMvmOaJgAt5DrOVBVqghelltY46vXh
- HP3Tk5HcUEBhPWg+bVJCeYNYDB7rfCc9J+R3XsU8p4njAmiqwNlJ48YXd
- w9JoVx2kwfgNV5yPN8AEiOofvhe8ZKLsnoqfa3p10QNmH1d4oI1XxgI8q
- AmIn2mKm3/DpNgTS0sd52rOhv0kxpCFTdVueiY5kNB5CubBXPCr3FUNWB w==;
-X-CSE-ConnectionGUID: WubE32f9TyKZXJMTAwvk5Q==
-X-CSE-MsgGUID: oZMHobdIQHC+5v9sBNhRVw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11335"; a="61548014"
-X-IronPort-AV: E=Sophos;i="6.13,255,1732608000"; d="scan'208";a="61548014"
+ bh=+XOl/Isw9ZU8bERcVgFZLBVJSBv+vL+dgBAMvrIk27c=;
+ b=TuuLtcdEMdLlA+CKE28ywxsRE5fBxwdmcYjl+0KQoShMpLyjRlgmFN8p
+ 2yODs7sA57iGmEGDNcQAuzjOJ+o8me58Z8VnHpPZw0mCpanVxf8dAJUKb
+ aeEOM8VYtOebMtb0FQma3sPaOeSSUAGsZ3ORsJBmWKu/Y9VwYhzHZxmak
+ lGWYpoOvRS8oG67wxhG6rpVbb+zsbvx7Lzr4yYR924dasb2fR9cDhJtLd
+ rGOA1BRelkMyGXp/9gnHsdXhgwsGm/tK8hxEtDklGrkGCl3ox1AfHkGmZ
+ cJ9yYpClZDLOveRuxTKxwvLxn/CM3dNcd4LHfe+8NYJFaHbAKcLlFx+c4 A==;
+X-CSE-ConnectionGUID: 9pLwOOGpT3meAtGxB95bLw==
+X-CSE-MsgGUID: 62kuDz0URfKYJ1Vy5fczdA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11335"; a="61548015"
+X-IronPort-AV: E=Sophos;i="6.13,255,1732608000"; d="scan'208";a="61548015"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2025 04:49:49 -0800
-X-CSE-ConnectionGUID: HoixI6T6QfmR450lpJYYOQ==
-X-CSE-MsgGUID: 9N82FPbeQryKXcoRnNO/HA==
+ 03 Feb 2025 04:49:51 -0800
+X-CSE-ConnectionGUID: T42TGBAFSzCOqvXvyzOvGA==
+X-CSE-MsgGUID: leok2Ck1RHKqDH0f7Z2jyw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="133528793"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="133528806"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2025 04:49:46 -0800
+ 03 Feb 2025 04:49:49 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
  ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 01/28] drm/i915/vrr: Remove unwanted comment
-Date: Mon,  3 Feb 2025 18:08:13 +0530
-Message-ID: <20250203123840.3855874-2-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 02/28] drm/i915:vrr: Separate out functions to compute vmin
+ and vmax
+Date: Mon,  3 Feb 2025 18:08:14 +0530
+Message-ID: <20250203123840.3855874-3-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250203123840.3855874-1-ankit.k.nautiyal@intel.com>
 References: <20250203123840.3855874-1-ankit.k.nautiyal@intel.com>
@@ -68,30 +69,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-The comment about fixed average vtotal is incorrect.
-Remove it.
+Make helpers to compute vmin and vmax.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vrr.c | 5 -----
- 1 file changed, 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_vrr.c | 39 +++++++++++++++++++-----
+ 1 file changed, 31 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index adb51609d0a3..532abdb334b2 100644
+index 532abdb334b2..e1bac7d24e18 100644
 --- a/drivers/gpu/drm/i915/display/intel_vrr.c
 +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -276,11 +276,6 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
- 	 */
- 	crtc_state->vrr.vmin -= intel_vrr_flipline_offset(display);
+@@ -222,6 +222,35 @@ cmrr_get_vtotal(struct intel_crtc_state *crtc_state, bool video_mode_required)
+ 	return vtotal;
+ }
  
--	/*
--	 * When panel is VRR capable and userspace has
--	 * not enabled adaptive sync mode then Fixed Average
--	 * Vtotal mode should be enabled.
--	 */
- 	if (crtc_state->uapi.vrr_enabled) {
- 		crtc_state->vrr.enable = true;
- 		crtc_state->mode_flags |= I915_MODE_FLAG_VRR;
++static
++int intel_vrr_compute_vmin(struct intel_connector *connector,
++			   struct drm_display_mode *adjusted_mode)
++{
++	int vmin;
++	const struct drm_display_info *info = &connector->base.display_info;
++
++	vmin = DIV_ROUND_UP(adjusted_mode->crtc_clock * 1000,
++			    adjusted_mode->crtc_htotal * info->monitor_range.max_vfreq);
++	vmin = max_t(int, vmin, adjusted_mode->crtc_vtotal);
++
++	return vmin;
++}
++
++static
++int intel_vrr_compute_vmax(struct intel_connector *connector,
++			   struct drm_display_mode *adjusted_mode)
++{
++	int vmax;
++	const struct drm_display_info *info = &connector->base.display_info;
++
++	vmax = adjusted_mode->crtc_clock * 1000 /
++		(adjusted_mode->crtc_htotal * info->monitor_range.min_vfreq);
++
++	vmax = max_t(int, vmax, adjusted_mode->crtc_vtotal);
++
++	return vmax;
++}
++
+ void
+ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
+ 			 struct drm_connector_state *conn_state)
+@@ -232,7 +261,6 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
+ 	struct intel_dp *intel_dp = intel_attached_dp(connector);
+ 	bool is_edp = intel_dp_is_edp(intel_dp);
+ 	struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
+-	const struct drm_display_info *info = &connector->base.display_info;
+ 	int vmin, vmax;
+ 
+ 	/*
+@@ -253,13 +281,8 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
+ 	if (HAS_LRR(display))
+ 		crtc_state->update_lrr = true;
+ 
+-	vmin = DIV_ROUND_UP(adjusted_mode->crtc_clock * 1000,
+-			    adjusted_mode->crtc_htotal * info->monitor_range.max_vfreq);
+-	vmax = adjusted_mode->crtc_clock * 1000 /
+-		(adjusted_mode->crtc_htotal * info->monitor_range.min_vfreq);
+-
+-	vmin = max_t(int, vmin, adjusted_mode->crtc_vtotal);
+-	vmax = max_t(int, vmax, adjusted_mode->crtc_vtotal);
++	vmin = intel_vrr_compute_vmin(connector, adjusted_mode);
++	vmax = intel_vrr_compute_vmax(connector, adjusted_mode);
+ 
+ 	if (vmin >= vmax)
+ 		return;
 -- 
 2.45.2
 
