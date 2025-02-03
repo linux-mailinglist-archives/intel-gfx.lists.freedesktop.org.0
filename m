@@ -2,82 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4831BA25F57
-	for <lists+intel-gfx@lfdr.de>; Mon,  3 Feb 2025 16:57:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52477A25F64
+	for <lists+intel-gfx@lfdr.de>; Mon,  3 Feb 2025 17:00:33 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E0F0B10E4F9;
-	Mon,  3 Feb 2025 15:57:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF61C892F6;
+	Mon,  3 Feb 2025 16:00:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="1T4uH7Ms";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ls6VpZjW";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com
- [209.85.128.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BA6410E4F9
- for <intel-gfx@lists.freedesktop.org>; Mon,  3 Feb 2025 15:57:34 +0000 (UTC)
-Received: by mail-wm1-f51.google.com with SMTP id
- 5b1f17b1804b1-43621d27adeso31331895e9.2
- for <intel-gfx@lists.freedesktop.org>; Mon, 03 Feb 2025 07:57:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1738598253; x=1739203053;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=HBP/SQkcbDju9IRDn72kQLrY0u6nG4MJhoPJlmfn+44=;
- b=1T4uH7MsEeMNVhKG+LWHCRK38LIZGsecizM+atg0KHKqz0NSAckjkHE4hPDJQYkX33
- CIGSSLDrAbiv4/fLLSwOdlHwGrnN9r6fpTf8IyZniEBmJ4c3LSxV7jGhcj3d/jnJfxPd
- gOtAaBhxiCe6b50ZkmHjjLTrETMWSg3bWIgvagRhE5IUG8Tb9MJDf3S5mBODK5wXI+8k
- EGSVAfGWVSHHXk0TM0bFA4URnry74ixu9LmlqLIU+ndbUWpA9cZhyualL3LHVNNoGo54
- 0dpPEymd4gUHdF907uXiebZN1Skrw/jTPh6xbSJ0U6nCaYmMMsmasMdRx0uZu0IPHLWj
- 6itg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1738598253; x=1739203053;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=HBP/SQkcbDju9IRDn72kQLrY0u6nG4MJhoPJlmfn+44=;
- b=jRnZtdztmDFtaAKF1EPEvz3gN2uV5VT1P6NjyPy2PXWlYqdk2ZviLS9A5/diJVuc16
- EqjEs75doQXXpp2IMROiY52GpTUaUSb3vW1t72j642c7rOBSjzlN/k0e3YP0VnVYqTEH
- aehMSS8ZMs4CBCXC26N5KYRPEzS9DISG/htIVt9yjF1OVDMvxBcWVbIE5gcHMFFA6RSl
- Wuw0gIvUCLqIl3EzmTPhHe/5njK+IAqy05Jf3s+MChW9WT8lor+RowKLPK/Mrm++TAU1
- 3U0EGeJCByCYmMzm/TWJCaKzcd/72IA4NwquPsxL46e7lCzu6ks0NJxTEWztfjGsvEsS
- nwkw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWvWwYkhF+tncpRir0nmdK9pX5OSBKHI8asL46Tns4qv6FjGDneoBfoe73zMiu+gPPDxlgJbl/AEcA=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxaDew0WXp9plndo0aRce6UVRQA9bxF1knGeIfzT/zK69587yXU
- 2RQ90VqKOdnf5KKYEHXIfgNU0bUbDsWWLIpaTFZHinvw1tO1vx+wOlV9tz5Cj/w=
-X-Gm-Gg: ASbGncs27py43WayvV0fnh9mWFi/3/aNmyJh7oLOtdIeD42GS6MAPYS/HwlqaRZxUaa
- K+KML0jpHpuLBQ800acUDPyi75xpK2el3QECnbypn6A6bJJN4zTae6XemNwzlYwK5UHl6Im4Etj
- GJ08LQPbsuBzOWm9sKA0WG5qUOjWeAFR0QzArm51VTmmQ/jhP0oqs8MkZIQkwUKpjrV6vLvaFkI
- k4HlBG03wxTXUgSYzvBF0pjjk++q1uYIt82LU2cZsV8hF32hkfMDS73uf3QAfn2uiYFS35IM2G3
- j69xzugDYML7D5FhZDxZyMQIpWTryVw=
-X-Google-Smtp-Source: AGHT+IEzowFy6D0xuyEpLyBJSgPt2SjO9Ngy3dAWyX/MAbtUbjggxNtelrFX4uN2fyOkwJ5nLvGsMw==
-X-Received: by 2002:a05:600c:5486:b0:434:a525:7257 with SMTP id
- 5b1f17b1804b1-438dc410b0bmr177745095e9.21.1738598251586; 
- Mon, 03 Feb 2025 07:57:31 -0800 (PST)
-Received: from [192.168.0.101] ([90.241.98.187])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-438e23e6860sm159318095e9.20.2025.02.03.07.57.29
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 03 Feb 2025 07:57:31 -0800 (PST)
-Message-ID: <6d02a771-0921-43cd-9799-80327ba70599@ursulin.net>
-Date: Mon, 3 Feb 2025 15:57:29 +0000
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 299FC892F6
+ for <intel-gfx@lists.freedesktop.org>; Mon,  3 Feb 2025 16:00:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1738598429; x=1770134429;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=9pVukedneMw8U4QbqyjRuGXqBy4BfIRgztD4Ry+2iwc=;
+ b=ls6VpZjWbC8IU8E+yie1ubUl3H9izrmL9N87Frf19JsKDK1rx7iSWXGb
+ L10SeIWgjybBdT32a0KBMCyG1v3B+3Zll/cAzIggxanVUju7j2E/qhszi
+ 7rzfM8UVMDHe/Lrz/ebMXnyO4vOvf82XwGliDn9RiS15XZHArMd2OduBN
+ 5R+m0ZSmkJxvYzVq31S8AMJGGOvWrffnxgW6YVlX9v3sy1Hbgc/AYCksP
+ IcYZA1lTO4B7SC2U8qq95Zr7Dwe7077Xt9XJl1TTw7MUBsKZxrrnrF9FN
+ NAM1bmkvxcZcZcywnSCmlzkJ3I1f87NOK/QVogSqDaGUpSWiecHG9jn8f Q==;
+X-CSE-ConnectionGUID: KljtSZ3jQuiQOMQKiwlk4w==
+X-CSE-MsgGUID: 3HAGyIi4SwCT80Ih2cZL8g==
+X-IronPort-AV: E=McAfee;i="6700,10204,11335"; a="50087812"
+X-IronPort-AV: E=Sophos;i="6.13,256,1732608000"; d="scan'208";a="50087812"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2025 08:00:29 -0800
+X-CSE-ConnectionGUID: 72V7pJ4SQqadLAEibK3+Bg==
+X-CSE-MsgGUID: PpqCgJHdQduGvhp9DFg/0A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="115475742"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2025 08:00:28 -0800
+Date: Mon, 3 Feb 2025 18:01:25 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Gustavo Sousa <gustavo.sousa@intel.com>,
+ Mohammed Thasleem <mohammed.thasleem@intel.com>,
+ intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH] drm/i915/dmc: Add debugfs for dc6 counter
+Message-ID: <Z6DoVSEBaVp1QcC3@ideak-desk.fi.intel.com>
+References: <20250203085613.236340-1-mohammed.thasleem@intel.com>
+ <Z6C5-qxVQTYB3LHc@ideak-desk.fi.intel.com>
+ <173858999403.77773.2784787564938835855@intel.com>
+ <Z6DSC6Z1q0nsd7MF@ideak-desk.fi.intel.com>
+ <173859479977.77773.12623605896722676495@intel.com>
+ <Z6DdQuYe1Q0Pu4Fg@ideak-desk.fi.intel.com>
+ <Z6DktvZQ-NzLnab9@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] drm/i915/pmu: Drop custom hotplug code
-To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-gfx@lists.freedesktop.org
-Cc: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
- Kan Liang <kan.liang@linux.intel.com>,
- "Peter Zijlstra (Intel)" <peterz@infradead.org>,
- Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-References: <20250131231304.4151998-2-lucas.demarchi@intel.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tursulin@ursulin.net>
-In-Reply-To: <20250131231304.4151998-2-lucas.demarchi@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Z6DktvZQ-NzLnab9@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,293 +72,167 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+On Mon, Feb 03, 2025 at 10:45:58AM -0500, Rodrigo Vivi wrote:
+> On Mon, Feb 03, 2025 at 05:14:10PM +0200, Imre Deak wrote:
+> > On Mon, Feb 03, 2025 at 11:59:59AM -0300, Gustavo Sousa wrote:
+> > > Quoting Imre Deak (2025-02-03 11:26:19-03:00)
+> > > >On Mon, Feb 03, 2025 at 10:39:54AM -0300, Gustavo Sousa wrote:
+> > > >> Quoting Imre Deak (2025-02-03 09:43:38-03:00)
+> > > >> >On Mon, Feb 03, 2025 at 02:26:13PM +0530, Mohammed Thasleem wrote:
+> > > >> >> Starting from MTl we don't have a platform agnostic way to validate DC6 state
+> > > >> >> due to dc6 counter has been removed to validate DC state.
+> > > >> >> Adding dc6_entry_counter at display dirver to validate dc6 state.
+> > > >> >> 
+> > > >> >> Signed-off-by: Mohammed Thasleem <mohammed.thasleem@intel.com>
+> > > >> >> ---
+> > > >> >>  drivers/gpu/drm/i915/display/intel_display_core.h       | 1 +
+> > > >> >>  drivers/gpu/drm/i915/display/intel_display_power_well.c | 2 ++
+> > > >> >>  drivers/gpu/drm/i915/display/intel_dmc.c                | 1 +
+> > > >> >>  3 files changed, 4 insertions(+)
+> > > >> >> 
+> > > >> >> diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
+> > > >> >> index 554870d2494b..cc244617011f 100644
+> > > >> >> --- a/drivers/gpu/drm/i915/display/intel_display_core.h
+> > > >> >> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+> > > >> >> @@ -376,6 +376,7 @@ struct intel_display {
+> > > >> >>          struct {
+> > > >> >>                  struct intel_dmc *dmc;
+> > > >> >>                  intel_wakeref_t wakeref;
+> > > >> >> +                u32 dc6_entry_counter;
+> > > >> >>          } dmc;
+> > > >> >>  
+> > > >> >>          struct {
+> > > >> >> diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> > > >> >> index f45a4f9ba23c..0eb178aa618d 100644
+> > > >> >> --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> > > >> >> +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> > > >> >> @@ -869,6 +869,8 @@ void skl_enable_dc6(struct intel_display *display)
+> > > >> >>          intel_dmc_wl_enable(display, DC_STATE_EN_UPTO_DC6);
+> > > >> >>  
+> > > >> >>          gen9_set_dc_state(display, DC_STATE_EN_UPTO_DC6);
+> > > >> >> +
+> > > >> >> +        display->dmc.dc6_entry_counter++;
+> > > >> >
+> > > >> >AFAIU the goal is to validate that the display HW can reach the DC6
+> > > >> >power state. There is no HW DC6 residency counter (and there wasn't such
+> > > >> >a counter earlier either), so an alternative way is required. According
+> > > >> >to the HW team the display driver has programmed everything correctly in
+> > > >> >order to allow the DC6 power state if the DC5 power state is reached
+> > > >> >(indicated by the HW DC5 residency counter incrementing) and DC6 is
+> > > >> >enabled by the driver.
+> > > >> 
+> > > >> Yep. That's what I learned as well when looking into this stuff a while
+> > > >> ago.
+> > > >> 
+> > > >> >Based on the above, we'd need a DC6 residency counter maintained by the
+> > > >> >driver which is incremented if the DC5 residency counter increments
+> > > 
+> > > By the way, the counter that we currently have in our driver is the one
+> > > incremented by the DMC. I was meaning to send a patch for the residency
+> > > counter maintained by the hardware, but have not yet... In theory, that
+> > > one should be more accurate, but would require us to enable and disable
+> > > that counter as the IGT test starts and finishes.
+> > > 
+> > > >> >while DC6 is enabled. The dc6_entry_counter in this patch is not enough
+> > > >> >for this, since it doesn't take into account the DC5 residency. While
+> > > >> >user space could check both dc6_entry_counter and the DC5 residency,
+> > > >> >that check would be racy wrt. the driver enabling/disabling the DC6
+> > > >> >state asynchronously.
+> > > >> 
+> > > >> I'm not sure doing a driver-maintained dc6 entry counter would be
+> > > >> something worth implementing. Even if we have successfully entered DC5
+> > > >> and, in theory, DC6 would follow if enabled, this would be a synthetic
+> > > >> counter and it could be masking some hardware bug that could be
+> > > >> preventing DC6.
+> > > >
+> > > >According to the HW team the DC5 residency counter incrementing while
+> > > >DC6 is enabled is a guarantee that the display is configured correctly
+> > > >to allow the HW entering DC6 at all times. IOW this is the HW team's
+> > > >suggestion to validate DC6 at the moment.
+> > > >
+> > > >> On the IGT side, we could just skip if we are on a platform that does
+> > > >> not support DC6 counters, at least while we do not have a reliable
+> > > >> alternative way of checking for DC6.
+> > > >
+> > > >I think IGT would need to validate DC6 in the above way suggested by the
+> > > >HW team.
+> > > 
+> > > I'm still inclined to think that we should defer DC6 checking for when
+> > > we actually have a way to verify it. The way suggested above sounds
+> > > like: *trust* that DC6 is reached when DC5 is reached with DC6 enabled.
+> > > 
+> > > In that case, just checking for DC5 should be enough for the time
+> > > being...
+> > 
+> > That's not the same as DC5 incrementing while DC6 is enabled.
+> > 
+> > > I won't object further if we do the other way though.
+> > > 
+> > > >
+> > > >> It would be good if we could detect that PG0 was in fact disabled, which
+> > > >> I believe is a stronger indication of DC6.
+> > > >
+> > > >It would be good to have a HW DC6 residency counter, but there isn't one
+> > > >at the moment. Other ways may have a dependency on other, non-display HW
+> > > >blocks, for instance in case of shared clock/voltage resources, the
+> > > >display functionality validation shouldn't be affected by these HW
+> > > >blocks.
+> > > 
+> > > As far as I understand by reading the docs, DC6 is DC5 with PG0
+> > > disabled. That's why my suggestion above.
+> > > 
+> > > --
+> > > Gustavo Sousa
+> > > 
+> > > >
+> > > >> --
+> > > >> Gustavo Sousa
+> > > >> 
+> > > >> >
+> > > >> >I suppose the driver could take a snapshot of the DC5 residency counter
+> > > >> >right after it enables DC6 (dc5_residency_start) and increment the SW
+> > > >> >DC6 residency counter right before it disables DC6 or when user space
+> > > >> >reads the DC6 counter. So the driver would update the counter at these
+> > > >> >two points in the following way:
+> > > >> >dc6_residency += dc5_residency_current - dc5_residency_start
+> 
+> Hmm I don't have a good feeling about this.
+> 
+> I prefer that we are clear to the userspace(IGT) that is an extra flag
+> and not to pretend that we have a residency counter.
+> 
+> So, we either are clear that we are counting the entries, or having
+> a flag that tells that we are allowing dc6. Which btw, could be done
+> by IGT checking DC6_EN bit directly, no?!
 
-On 31/01/2025 23:11, Lucas De Marchi wrote:
-> Since commit 4ba4f1afb6a9 ("perf: Generic hotplug support for a PMU with
-> a scope"), there's generic support for system-wide counters and
-> integration with cpu hotplug.
-> 
-> The i915 counters are system-wide, even though the migration code
-> is using the wrong topology mask:
-> 
-> 	target = cpumask_any_but(topology_sibling_cpumask(cpu), cpu);
-> 
-> So one could think the counter has core scope rather than system scope,
-> which is not the case. That was never caught in tests since they would
-> disable just one cpu at a time. After the removal of hotpluggable CPU0
-> in commit 5475abbde77f ("x86/smpboot: Remove the CPU0 hotplug kludge")
-> and commit e59e74dc48a3 ("x86/topology: Remove CPU0 hotplug option")
-> this became essentially non-testable for our systems.
-> 
-> Using the generic hotplug code, the same cpu0 is still reported in
-> cpumask - only if it was possible to unplug it, it would migrate to
-> another cpu, so there isn't much a change in behavior.
-> 
-> The one thing that changes is the return code for perf_event_open() if
-> an invalid cpu is used: previously i915 would return -EINVAL, but
-> generic perf code returns -ENODEV. That should be ok for all the users
-> and not cause breakages.
-> 
-> Cc: Kan Liang <kan.liang@linux.intel.com>
-> Cc: Peter Zijlstra (Intel) <peterz@infradead.org>
-> Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-> Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> ---
-> 
-> v2: Expand commit message explanation to clarify what was discussed with
-> Kan, Tvrtko and Umesh in
-> https://patchwork.freedesktop.org/patch/msgid/20250116222426.77757-1-lucas.demarchi@intel.com
+A DC6 enabled check alone would be not enough and checking it from user
+space along with the DC5 counter would be racy as described above. I see
+this working by the driver tracking the DC6 enabled flag + the DC5
+counter in the above way; it could be exposed to user space with a
+suitable name, eg. dc6_allowed_time.
 
-I *think* the comment in perf_event_setup_cpumask clarifies my question 
-of whether "evil" userspace could setup a counter group with mixed cpus 
-- that it couldn't. Even though I cannot actually untangle where 
-perf_online_sys_mask gets set.
-
-In any case I don't think it is concern for this patch.
-
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-
-Regards,
-
-Tvrtko
-
->   drivers/gpu/drm/i915/i915_module.c |   2 -
->   drivers/gpu/drm/i915/i915_pmu.c    | 114 +----------------------------
->   drivers/gpu/drm/i915/i915_pmu.h    |  11 ---
->   3 files changed, 1 insertion(+), 126 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_module.c b/drivers/gpu/drm/i915/i915_module.c
-> index 2f88970cc0a93..5862754c662c4 100644
-> --- a/drivers/gpu/drm/i915/i915_module.c
-> +++ b/drivers/gpu/drm/i915/i915_module.c
-> @@ -71,8 +71,6 @@ static const struct {
->   	{ .init = i915_vma_resource_module_init,
->   	  .exit = i915_vma_resource_module_exit },
->   	{ .init = i915_mock_selftests },
-> -	{ .init = i915_pmu_init,
-> -	  .exit = i915_pmu_exit },
->   	{ .init = i915_pci_register_driver,
->   	  .exit = i915_pci_unregister_driver },
->   	{ .init = i915_perf_sysctl_register,
-> diff --git a/drivers/gpu/drm/i915/i915_pmu.c b/drivers/gpu/drm/i915/i915_pmu.c
-> index 2eecd42f61ba1..69a109d02116e 100644
-> --- a/drivers/gpu/drm/i915/i915_pmu.c
-> +++ b/drivers/gpu/drm/i915/i915_pmu.c
-> @@ -28,9 +28,6 @@
->   	 BIT(I915_SAMPLE_WAIT) | \
->   	 BIT(I915_SAMPLE_SEMA))
->   
-> -static cpumask_t i915_pmu_cpumask;
-> -static unsigned int i915_pmu_target_cpu = -1;
-> -
->   static struct i915_pmu *event_to_pmu(struct perf_event *event)
->   {
->   	return container_of(event->pmu, struct i915_pmu, base);
-> @@ -642,10 +639,6 @@ static int i915_pmu_event_init(struct perf_event *event)
->   	if (event->cpu < 0)
->   		return -EINVAL;
->   
-> -	/* only allow running on one cpu at a time */
-> -	if (!cpumask_test_cpu(event->cpu, &i915_pmu_cpumask))
-> -		return -EINVAL;
-> -
->   	if (is_engine_event(event))
->   		ret = engine_event_init(event);
->   	else
-> @@ -935,23 +928,6 @@ static ssize_t i915_pmu_event_show(struct device *dev,
->   	return sprintf(buf, "config=0x%lx\n", eattr->val);
->   }
->   
-> -static ssize_t cpumask_show(struct device *dev,
-> -			    struct device_attribute *attr, char *buf)
-> -{
-> -	return cpumap_print_to_pagebuf(true, buf, &i915_pmu_cpumask);
-> -}
-> -
-> -static DEVICE_ATTR_RO(cpumask);
-> -
-> -static struct attribute *i915_cpumask_attrs[] = {
-> -	&dev_attr_cpumask.attr,
-> -	NULL,
-> -};
-> -
-> -static const struct attribute_group i915_pmu_cpumask_attr_group = {
-> -	.attrs = i915_cpumask_attrs,
-> -};
-> -
->   #define __event(__counter, __name, __unit) \
->   { \
->   	.counter = (__counter), \
-> @@ -1168,92 +1144,12 @@ static void free_event_attributes(struct i915_pmu *pmu)
->   	pmu->pmu_attr = NULL;
->   }
->   
-> -static int i915_pmu_cpu_online(unsigned int cpu, struct hlist_node *node)
-> -{
-> -	struct i915_pmu *pmu = hlist_entry_safe(node, typeof(*pmu), cpuhp.node);
-> -
-> -	/* Select the first online CPU as a designated reader. */
-> -	if (cpumask_empty(&i915_pmu_cpumask))
-> -		cpumask_set_cpu(cpu, &i915_pmu_cpumask);
-> -
-> -	return 0;
-> -}
-> -
-> -static int i915_pmu_cpu_offline(unsigned int cpu, struct hlist_node *node)
-> -{
-> -	struct i915_pmu *pmu = hlist_entry_safe(node, typeof(*pmu), cpuhp.node);
-> -	unsigned int target = i915_pmu_target_cpu;
-> -
-> -	/*
-> -	 * Unregistering an instance generates a CPU offline event which we must
-> -	 * ignore to avoid incorrectly modifying the shared i915_pmu_cpumask.
-> -	 */
-> -	if (!pmu->registered)
-> -		return 0;
-> -
-> -	if (cpumask_test_and_clear_cpu(cpu, &i915_pmu_cpumask)) {
-> -		target = cpumask_any_but(topology_sibling_cpumask(cpu), cpu);
-> -
-> -		/* Migrate events if there is a valid target */
-> -		if (target < nr_cpu_ids) {
-> -			cpumask_set_cpu(target, &i915_pmu_cpumask);
-> -			i915_pmu_target_cpu = target;
-> -		}
-> -	}
-> -
-> -	if (target < nr_cpu_ids && target != pmu->cpuhp.cpu) {
-> -		perf_pmu_migrate_context(&pmu->base, cpu, target);
-> -		pmu->cpuhp.cpu = target;
-> -	}
-> -
-> -	return 0;
-> -}
-> -
-> -static enum cpuhp_state cpuhp_state = CPUHP_INVALID;
-> -
-> -int i915_pmu_init(void)
-> -{
-> -	int ret;
-> -
-> -	ret = cpuhp_setup_state_multi(CPUHP_AP_ONLINE_DYN,
-> -				      "perf/x86/intel/i915:online",
-> -				      i915_pmu_cpu_online,
-> -				      i915_pmu_cpu_offline);
-> -	if (ret < 0)
-> -		pr_notice("Failed to setup cpuhp state for i915 PMU! (%d)\n",
-> -			  ret);
-> -	else
-> -		cpuhp_state = ret;
-> -
-> -	return 0;
-> -}
-> -
-> -void i915_pmu_exit(void)
-> -{
-> -	if (cpuhp_state != CPUHP_INVALID)
-> -		cpuhp_remove_multi_state(cpuhp_state);
-> -}
-> -
-> -static int i915_pmu_register_cpuhp_state(struct i915_pmu *pmu)
-> -{
-> -	if (cpuhp_state == CPUHP_INVALID)
-> -		return -EINVAL;
-> -
-> -	return cpuhp_state_add_instance(cpuhp_state, &pmu->cpuhp.node);
-> -}
-> -
-> -static void i915_pmu_unregister_cpuhp_state(struct i915_pmu *pmu)
-> -{
-> -	cpuhp_state_remove_instance(cpuhp_state, &pmu->cpuhp.node);
-> -}
-> -
->   void i915_pmu_register(struct drm_i915_private *i915)
->   {
->   	struct i915_pmu *pmu = &i915->pmu;
->   	const struct attribute_group *attr_groups[] = {
->   		&i915_pmu_format_attr_group,
->   		&pmu->events_attr_group,
-> -		&i915_pmu_cpumask_attr_group,
->   		NULL
->   	};
->   	int ret = -ENOMEM;
-> @@ -1261,7 +1157,6 @@ void i915_pmu_register(struct drm_i915_private *i915)
->   	spin_lock_init(&pmu->lock);
->   	hrtimer_init(&pmu->timer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
->   	pmu->timer.function = i915_sample;
-> -	pmu->cpuhp.cpu = -1;
->   	init_rc6(pmu);
->   
->   	if (IS_DGFX(i915)) {
-> @@ -1290,6 +1185,7 @@ void i915_pmu_register(struct drm_i915_private *i915)
->   
->   	pmu->base.module	= THIS_MODULE;
->   	pmu->base.task_ctx_nr	= perf_invalid_context;
-> +	pmu->base.scope		= PERF_PMU_SCOPE_SYS_WIDE;
->   	pmu->base.event_init	= i915_pmu_event_init;
->   	pmu->base.add		= i915_pmu_event_add;
->   	pmu->base.del		= i915_pmu_event_del;
-> @@ -1301,16 +1197,10 @@ void i915_pmu_register(struct drm_i915_private *i915)
->   	if (ret)
->   		goto err_groups;
->   
-> -	ret = i915_pmu_register_cpuhp_state(pmu);
-> -	if (ret)
-> -		goto err_unreg;
-> -
->   	pmu->registered = true;
->   
->   	return;
->   
-> -err_unreg:
-> -	perf_pmu_unregister(&pmu->base);
->   err_groups:
->   	kfree(pmu->base.attr_groups);
->   err_attr:
-> @@ -1334,8 +1224,6 @@ void i915_pmu_unregister(struct drm_i915_private *i915)
->   
->   	hrtimer_cancel(&pmu->timer);
->   
-> -	i915_pmu_unregister_cpuhp_state(pmu);
-> -
->   	perf_pmu_unregister(&pmu->base);
->   	kfree(pmu->base.attr_groups);
->   	if (IS_DGFX(i915))
-> diff --git a/drivers/gpu/drm/i915/i915_pmu.h b/drivers/gpu/drm/i915/i915_pmu.h
-> index 0ec78c2b4f203..5826cc81858c4 100644
-> --- a/drivers/gpu/drm/i915/i915_pmu.h
-> +++ b/drivers/gpu/drm/i915/i915_pmu.h
-> @@ -56,13 +56,6 @@ struct i915_pmu_sample {
->   };
->   
->   struct i915_pmu {
-> -	/**
-> -	 * @cpuhp: Struct used for CPU hotplug handling.
-> -	 */
-> -	struct {
-> -		struct hlist_node node;
-> -		unsigned int cpu;
-> -	} cpuhp;
->   	/**
->   	 * @base: PMU base.
->   	 */
-> @@ -155,15 +148,11 @@ struct i915_pmu {
->   };
->   
->   #ifdef CONFIG_PERF_EVENTS
-> -int i915_pmu_init(void);
-> -void i915_pmu_exit(void);
->   void i915_pmu_register(struct drm_i915_private *i915);
->   void i915_pmu_unregister(struct drm_i915_private *i915);
->   void i915_pmu_gt_parked(struct intel_gt *gt);
->   void i915_pmu_gt_unparked(struct intel_gt *gt);
->   #else
-> -static inline int i915_pmu_init(void) { return 0; }
-> -static inline void i915_pmu_exit(void) {}
->   static inline void i915_pmu_register(struct drm_i915_private *i915) {}
->   static inline void i915_pmu_unregister(struct drm_i915_private *i915) {}
->   static inline void i915_pmu_gt_parked(struct intel_gt *gt) {}
+> > > >> >The commit log would need a justification, something along the above
+> > > >> >lines.
+> > > >> >
+> > > >> >>  }
+> > > >> >>  
+> > > >> >>  void bxt_enable_dc9(struct intel_display *display)
+> > > >> >> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+> > > >> >> index 221d3abda791..f51bd8e6011d 100644
+> > > >> >> --- a/drivers/gpu/drm/i915/display/intel_dmc.c
+> > > >> >> +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+> > > >> >> @@ -1293,6 +1293,7 @@ static int intel_dmc_debugfs_status_show(struct seq_file *m, void *unused)
+> > > >> >>          if (i915_mmio_reg_valid(dc6_reg))
+> > > >> >>                  seq_printf(m, "DC5 -> DC6 count: %d\n",
+> > > >> >>                             intel_de_read(display, dc6_reg));
+> > > >> >> +        seq_printf(m, "DC6 entry count: %d\n", display->dmc.dc6_entry_counter);
+> > > >> >>  
+> > > >> >>          seq_printf(m, "program base: 0x%08x\n",
+> > > >> >>                     intel_de_read(display, DMC_PROGRAM(dmc->dmc_info[DMC_FW_MAIN].start_mmioaddr, 0)));
+> > > >> >> -- 
+> > > >> >> 2.43.0
+> > > >> >>
