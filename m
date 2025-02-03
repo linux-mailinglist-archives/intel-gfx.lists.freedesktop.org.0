@@ -2,53 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 412AEA259D5
+	by mail.lfdr.de (Postfix) with ESMTPS id 66A94A259D6
 	for <lists+intel-gfx@lfdr.de>; Mon,  3 Feb 2025 13:50:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B13310E4B0;
-	Mon,  3 Feb 2025 12:49:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8CD5110E4B2;
+	Mon,  3 Feb 2025 12:49:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZD+cm04v";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AUsS9MeU";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F302C10E4B0;
- Mon,  3 Feb 2025 12:49:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EEA3C10E4B1;
+ Mon,  3 Feb 2025 12:49:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738586996; x=1770122996;
+ t=1738586998; x=1770122998;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=3KBH3jfigL1dWjiHBks6aEwljTEY0aj2NyghchJZMuQ=;
- b=ZD+cm04vG14zWkPZtmGDXW1jlhJGSNFHP6W2YEvw0ZQuuBruCLrEntiE
- eLCE9qo1h9PxEeWC0vHI1iPBAxIQE7p+AZxI2v3/n+/7jJRTv8PhRPO6b
- 3hTd/gx+8P9DJb7fUGLJtiYBRgTHp/U4egt1WWOBDq3UAn0qyIevXJk6Q
- VbHx4lUhQPIlJok+dI6hdrKWMOpa+tvNiAdAquOzyyRseB0iYzExI6BDj
- +u7FTklBW1yXvShKE49Bka9cC7qCdbTXnudu8/2VF+Oy54xI+4CXdD735
- hiQKeplu6S9NYyjY/oscQ91ONkn/onRP2q+Jo1vYWejLc6xR43ihSRbd4 Q==;
-X-CSE-ConnectionGUID: YoNTlox0QTKQaBrqBNl0bQ==
-X-CSE-MsgGUID: ht0bJbRxTgC5W5lhqqxHIw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11335"; a="61548020"
-X-IronPort-AV: E=Sophos;i="6.13,255,1732608000"; d="scan'208";a="61548020"
+ bh=raosHNLFckxa/X/zZnL2BS3BBnJNC9fC9Dacw9ovcrM=;
+ b=AUsS9MeUJSJd6Lu/MR+TNtQKuZPRKqB3XcHjdbqKOVSPwMOhkbZi1CY8
+ ylAuXLTSKNz60uML+iQ4xoAiAArkgTxTLjTh3Re+aZOsqF9+svMlXpGqQ
+ 7d5HX6S/pl1jG3zukTyj82s1f8Hq6Hr6KQJJLyO6Jwl3u0x4qQqWelda2
+ uc0CZoAAmuJQDL9qv8TDbxvMrWWmue+pP3sZ0lBiBYZfu8SyxR21/I1Qe
+ oLhPKuomiHlMrYvgik9pA3nKsrgotRo0C/z3Dj+Hp0fMD1JnLzwUBHIpW
+ QO3ZKo5j6aT4QNP4MxjSgAOp3ACEAFJsnzAPjmSGT2wvGp6Id1AIIiWbh w==;
+X-CSE-ConnectionGUID: mVasnVWjQdCZImYIfJK7sw==
+X-CSE-MsgGUID: 4tgceaXDQSKYKTrkCKrQAA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11335"; a="61548025"
+X-IronPort-AV: E=Sophos;i="6.13,255,1732608000"; d="scan'208";a="61548025"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2025 04:49:56 -0800
-X-CSE-ConnectionGUID: oK0vKOIWQk+75szw3udc8Q==
-X-CSE-MsgGUID: uI7N43TqQZOxPt5RGnVLLQ==
+ 03 Feb 2025 04:49:58 -0800
+X-CSE-ConnectionGUID: rPg1kzfvTb+ywT9hACtCtw==
+X-CSE-MsgGUID: LAuvssxQS8+/NkX9YvXJAA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="133528838"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="133528854"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2025 04:49:53 -0800
+ 03 Feb 2025 04:49:56 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
  ville.syrjala@linux.intel.com, mitulkumar.ajitkumar.golani@intel.com
-Subject: [PATCH 04/28] drm/i915/vrr: Simplify CMRR Enable Check in
- intel_vrr_get_config
-Date: Mon,  3 Feb 2025 18:08:16 +0530
-Message-ID: <20250203123840.3855874-5-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 05/28] drm/i915/vrr: Introduce new field for VRR mode
+Date: Mon,  3 Feb 2025 18:08:17 +0530
+Message-ID: <20250203123840.3855874-6-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250203123840.3855874-1-ankit.k.nautiyal@intel.com>
 References: <20250203123840.3855874-1-ankit.k.nautiyal@intel.com>
@@ -69,32 +68,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Combine the CMRR capability and enable check into a single condition.
-Set crtc_state->cmrr.enable directly within the combined condition.
-This will make way to absorb cmrr members in vrr struct.
+The VRR timing generator can be used in multiple modes of operation:
+dynamic refresh rate (VRR), content-matched refresh rate (CMRR), and
+fixed refresh rate (Fixed_RR).
+
+Currently, VRR and CMRR modes are supported, with Fixed_RR mode
+forthcoming.
+
+To track the different operational modes of the VRR timing generator,
+introduce a new member 'mode' to the VRR struct.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vrr.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_types.h | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index f8ae3dc6a304..6f314e209e96 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -503,10 +503,9 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
- 				      TRANS_VRR_CTL(display, cpu_transcoder));
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index cb51b7936f93..3195c9f33028 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -935,6 +935,12 @@ void intel_io_mmio_fw_write(void *ctx, i915_reg_t reg, u32 val);
  
- 	crtc_state->vrr.enable = trans_vrr_ctl & VRR_CTL_VRR_ENABLE;
--	if (HAS_CMRR(display))
--		crtc_state->cmrr.enable = (trans_vrr_ctl & VRR_CTL_CMRR_ENABLE);
+ typedef void (*intel_io_reg_write)(void *ctx, i915_reg_t reg, u32 val);
  
--	if (crtc_state->cmrr.enable) {
-+	if (HAS_CMRR(display) && trans_vrr_ctl & VRR_CTL_CMRR_ENABLE) {
-+		crtc_state->cmrr.enable = true;
- 		crtc_state->cmrr.cmrr_n =
- 			intel_de_read64_2x32(display, TRANS_CMRR_N_LO(display, cpu_transcoder),
- 					     TRANS_CMRR_N_HI(display, cpu_transcoder));
++enum intel_vrrtg_mode {
++	INTEL_VRRTG_MODE_NONE,
++	INTEL_VRRTG_MODE_VRR,
++	INTEL_VRRTG_MODE_CMRR,
++};
++
+ struct intel_crtc_state {
+ 	/*
+ 	 * uapi (drm) state. This is the software state shown to userspace.
+@@ -1306,6 +1312,7 @@ struct intel_crtc_state {
+ 		u8 pipeline_full;
+ 		u16 flipline, vmin, vmax, guardband;
+ 		u32 vsync_end, vsync_start;
++		enum intel_vrrtg_mode mode;
+ 	} vrr;
+ 
+ 	/* Content Match Refresh Rate state */
 -- 
 2.45.2
 
