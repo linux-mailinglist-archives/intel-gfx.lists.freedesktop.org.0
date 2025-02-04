@@ -2,57 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2772A27315
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2025 14:43:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D44C2A27397
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2025 14:58:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B361210E61F;
-	Tue,  4 Feb 2025 13:43:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72E5F10E651;
+	Tue,  4 Feb 2025 13:58:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lhmfgoKz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WKt9y0yY";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB0F110E34B;
- Tue,  4 Feb 2025 13:42:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF19410E650;
+ Tue,  4 Feb 2025 13:58:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738676565; x=1770212565;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=vwWd0GQNYcEcEBcVFgGMrf2+HkhhiKmsAAqV40hQBBo=;
- b=lhmfgoKz0eucsNqKtcJj3u7fBjLR4S2+9BsyYazLcL8qcQ/25vXeboeb
- 73vZySd7MhHLWwN1eeDWHwr/L/oZT0kBYb1+zUD0StHtS8uNTxXxyKggf
- ECTl/A2HUtT4nBotRTIdWmM+M0ANo+vsi/xfv3auVAZwIO6Qy9RrqtSIo
- T3HPVl5sIksxiEE8WUfqX0sWdZU7Ha/5D9UIPC06dB3PraVnZkIAj4SfK
- K1fuc4GfjyKyDkz/u+dmbcuxacbjk1QrUcLBik9JX9imQrZH1NIMvrQYo
- Wr8DpU4U4k++TV5TNw+Lb+dH7rTRn0x40/vUWliutqckbIceLffNPyR2O g==;
-X-CSE-ConnectionGUID: EfQqZ8QRQaOQvvhQHw8DQA==
-X-CSE-MsgGUID: LL4kbn/fTCOt7pisKWio5w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="50622667"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="50622667"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2025 05:42:45 -0800
-X-CSE-ConnectionGUID: eKYylcQDQP2l1VIWdeCN0w==
-X-CSE-MsgGUID: Ve+SMn3yRIGhkI16fIqPpg==
+ t=1738677530; x=1770213530;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=zAlBI8EUokIeCmSHo2yuDbz96Ks01zKIj8ClPZ0wLKU=;
+ b=WKt9y0yYVkJSY+sJLTew7vvHuU537WafXUwYp+G+i+l+jwjICYaq+w4t
+ 9UzN0ccwITMWhsa+EfFUuW/P6kPA0IWVvI6zU1Z5Iu02EIwQpx98/nDvq
+ b0jIESo0z/CZU9GpoY8zXQv4q7glWkdNOzPfmFXQaJ+vkBClPBYxS9kYQ
+ ErFXvpaBvAYlzLt+79BypFW2aE0tld2JJNee9hTKo4gLbwIGzQqQiOBgt
+ 7acljpdEy8bvlS6jAb/zcCLMdWdWNfVnet8/5tXKw2Y9dOj9mTGL++JKI
+ hA1FyJ3h/zqSMR/MjvHj57cmRU3wndUe89uIL2WjZpC/4QN/nrZqM2EEz A==;
+X-CSE-ConnectionGUID: jxNw6n92SKeK2FeJ2wdLMw==
+X-CSE-MsgGUID: Z+BuQ7AuRDOUnOKoTwd+Mg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="39358978"
+X-IronPort-AV: E=Sophos;i="6.13,258,1732608000"; d="scan'208";a="39358978"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2025 05:58:49 -0800
+X-CSE-ConnectionGUID: U+pqJyYfTgWC4/qI1EiPLA==
+X-CSE-MsgGUID: Y0/mR+0tTE2j1RZSY333SA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,258,1732608000"; d="scan'208";a="111181013"
+X-IronPort-AV: E=Sophos;i="6.13,258,1732608000"; d="scan'208";a="110484221"
 Received: from dprybysh-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.246.139])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2025 05:42:43 -0800
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2025 05:58:47 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 3/3] drm/i915/cx0: convert to struct intel_display based
- platform checks
-Date: Tue,  4 Feb 2025 15:42:28 +0200
-Message-Id: <20250204134228.2934744-3-jani.nikula@intel.com>
+Subject: [PATCH v2 0/6] drm/i915/lspcon: interface cleanups
+Date: Tue,  4 Feb 2025 15:58:37 +0200
+Message-Id: <cover.1738677489.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250204134228.2934744-1-jani.nikula@intel.com>
-References: <20250204134228.2934744-1-jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
@@ -71,49 +68,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Switch the IS_<PLATFORM>() checks to display->platform.<platform>, and
-drop a number of struct drm_i915_private pointers in the process.
+v2 of https://lore.kernel.org/r/cover.1733243959.git.jani.nikula@intel.com
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 9 ++++-----
- 1 file changed, 4 insertions(+), 5 deletions(-)
+Jani Nikula (6):
+  drm/i915/hdmi: move declarations for hsw_read/write_infoframe() to the
+    right place
+  drm/i915/lspcon: add intel_lspcon_active() and use it
+  drm/i915/lspcon: change signature of lspcon_detect_hdr_capability()
+  drm/i915/lspcon: change signature of lspcon_wait_pcon_mode()
+  drm/i915/lspcon: remove dp_to_lspcon(), hide enc_to_intel_lspcon()
+  drm/i915/lspcon: rename interfaces to intel_lspcon_* to unify
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index 48b0b9755b2b..0ff76ef10d4b 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -34,13 +34,13 @@
- 
- bool intel_encoder_is_c10phy(struct intel_encoder *encoder)
- {
--	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
-+	struct intel_display *display = to_intel_display(encoder);
- 	enum phy phy = intel_encoder_to_phy(encoder);
- 
--	if (IS_PANTHERLAKE(i915) && phy == PHY_A)
-+	if (display->platform.pantherlake && phy == PHY_A)
- 		return true;
- 
--	if ((IS_LUNARLAKE(i915) || IS_METEORLAKE(i915)) && phy < PHY_C)
-+	if ((display->platform.lunarlake || display->platform.meteorlake) && phy < PHY_C)
- 		return true;
- 
- 	return false;
-@@ -3216,12 +3216,11 @@ void intel_mtl_pll_enable(struct intel_encoder *encoder,
- static u8 cx0_power_control_disable_val(struct intel_encoder *encoder)
- {
- 	struct intel_display *display = to_intel_display(encoder);
--	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
- 
- 	if (intel_encoder_is_c10phy(encoder))
- 		return CX0_P2PG_STATE_DISABLE;
- 
--	if ((IS_BATTLEMAGE(i915) && encoder->port == PORT_A) ||
-+	if ((display->platform.battlemage && encoder->port == PORT_A) ||
- 	    (DISPLAY_VER(display) >= 30 && encoder->type == INTEL_OUTPUT_EDP))
- 		return CX0_P2PG_STATE_DISABLE;
- 
+ drivers/gpu/drm/i915/display/intel_ddi.c      |  6 ++---
+ .../drm/i915/display/intel_display_types.h    | 12 ---------
+ drivers/gpu/drm/i915/display/intel_dp.c       | 18 ++++++-------
+ drivers/gpu/drm/i915/display/intel_hdmi.h     |  9 +++++++
+ drivers/gpu/drm/i915/display/intel_lspcon.c   | 27 +++++++++++++++----
+ drivers/gpu/drm/i915/display/intel_lspcon.h   | 25 +++++++----------
+ 6 files changed, 51 insertions(+), 46 deletions(-)
+
 -- 
 2.39.5
 
