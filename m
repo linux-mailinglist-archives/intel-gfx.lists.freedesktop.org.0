@@ -2,65 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D5B8A26C84
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2025 08:17:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 34AA1A26CDA
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2025 08:53:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A79B810E5A2;
-	Tue,  4 Feb 2025 07:17:50 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mS5YJM/n";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E6C310E29C;
+	Tue,  4 Feb 2025 07:53:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 14DE610E5A2;
- Tue,  4 Feb 2025 07:17:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738653470; x=1770189470;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=jyWdVfy2p1IZDGp6hXjuoxbGOVOnCRTFB3YrZ1i6NcI=;
- b=mS5YJM/nkrYRBgsN5REAFYOFq9jv4lmuPK+BY7qSx9Rw+9GHux9Hc2Bn
- pYxDMXJDrHIIssK2o/uiqwMTejniezUuAxVBfOExEjHR+v7OB5UdAWI7m
- YejnBH2hVvk/+olPpQHiJItI0hlqthm0bOkLvn+DvQUFm9fdrZ5QeYN9b
- AfymYHZ6qQ5JfzldHeCNb0P5a5xbuWBvaNYHDVVaFYHCs5fKjE1YXsixy
- DrHmTRdCuKq/2sB2gifhFr1a2iFO8L6IPWEeeDuh5RZdWG7c5jl/w/fh+
- or2aJM+z3w8aJMyY77XS5mMQ039VL5phEzIy7XSqhA5bYogCHEoo0i0KU A==;
-X-CSE-ConnectionGUID: t8JH3O//Q7KDdwce176Jwg==
-X-CSE-MsgGUID: 50beYW4PQqyCcM+WoCCcnQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="50586359"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="50586359"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2025 23:17:49 -0800
-X-CSE-ConnectionGUID: einvw9BrTHK2dYq5zxJ9Tw==
-X-CSE-MsgGUID: IrLniI/cTQOuVbnYhO7AIg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="114554142"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmviesa003.fm.intel.com with ESMTP; 03 Feb 2025 23:17:48 -0800
-Received: from [10.245.113.167] (mwajdecz-MOBL.ger.corp.intel.com
- [10.245.113.167])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 08AD327BAF;
- Tue,  4 Feb 2025 07:17:46 +0000 (GMT)
-Message-ID: <6088fdcf-0100-436c-9a55-86611fafc9fa@intel.com>
-Date: Tue, 4 Feb 2025 08:17:46 +0100
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C1E710E29C;
+ Tue,  4 Feb 2025 07:53:12 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4] drm/i915/slpc: Add sysfs for SLPC power profiles
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Sushma Venkatesh Reddy <sushma.venkatesh.reddy@intel.com>
-References: <20250117215753.749906-1-vinay.belgaumkar@intel.com>
- <4f62fe21-2641-40ba-ace4-1429389068f5@intel.com> <Z4-ySdQ7sCymXRMx@intel.com>
- <Z6FKQOE4nc_kSxYC@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <Z6FKQOE4nc_kSxYC@intel.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Introduce_DRM_device?=
+ =?utf-8?q?_wedged_event_=28rev10=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Raag Jadav" <raag.jadav@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 04 Feb 2025 07:53:12 -0000
+Message-ID: <173865559263.748045.1678215630206407161@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250204070528.1919158-1-raag.jadav@intel.com>
+In-Reply-To: <20250204070528.1919158-1-raag.jadav@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,80 +37,33 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
+Series: Introduce DRM device wedged event (rev10)
+URL   : https://patchwork.freedesktop.org/series/138069/
+State : warning
 
-On 03.02.2025 23:59, Rodrigo Vivi wrote:
-> On Tue, Jan 21, 2025 at 09:42:17AM -0500, Rodrigo Vivi wrote:
->> On Sat, Jan 18, 2025 at 06:47:27PM +0100, Michal Wajdeczko wrote:
->>>
->>>
->>> On 17.01.2025 22:57, Vinay Belgaumkar wrote:
->>>> Default SLPC power profile is Base(0). Power Saving mode(1)
->>>> has conservative up/down thresholds and is suitable for use with
->>>> apps that typically need to be power efficient.
->>>>
->>>> Selected power profile will be displayed in this format-
->>>>
->>>> $ cat slpc_power_profile
->>>>
->>>>   [base]    power_saving
->>>>
->>>> $ echo power_saving > slpc_power_profile
->>>> $ cat slpc_power_profile
->>>>
->>>>   base    [power_saving]
->>>>
->>>
->>> is that output aligned with the sysfs rules? from [1]
->>
->> Please help me to understand why that is against the rule?
->>
->> It is still ascii and it is one value per file.
->>
->> How is this different from:
->>
->> $ cat /sys/power/mem_sleep
->> [s2idle] shallow deep
->>
->> ?!
-> 
-> Hi Michal,
-> 
-> do you still see a problem here?
-> Anything I might be missing?
+== Summary ==
 
-Hi,
+Error: dim checkpatch failed
+9e92dc048adb drm: Introduce device wedged event
+-:198: WARNING:STATIC_CONST_CHAR_ARRAY: char * array declaration might be better as static const
+#198: FILE: drivers/gpu/drm/drm_drv.c:543:
++	char *envp[] = { event_string, NULL };
 
-Initially it was looking for me as violating the "fancy formatting"
-rule, but if this actually follows other _power_ attributes then I have
-no objections.
+total: 0 errors, 1 warnings, 0 checks, 107 lines checked
+13908eadb66e drm/doc: Document device wedged event
+c89d21c38fb5 drm/xe: Use device wedged event
+-:20: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#20: 
+KERNEL[265.802982] change   /devices/pci0000:00/0000:00:01.0/0000:01:00.0/0000:02:01.0/0000:03:00.0/drm/card0 (drm)
 
-> 
-> I'd like to get this patch merged soon
+total: 0 errors, 1 warnings, 0 checks, 19 lines checked
+3548c4964b04 drm/i915: Use device wedged event
+c0a600de029d drm/amdgpu: Use device wedged event
 
-acked and sorry for late response
-
-Michal
-
-> 
-> Thanks,
-> Rodrigo.
-> 
->>
->>>
->>> "Attributes should be ASCII text files, preferably with only one value
->>> per file. It is noted that it may not be efficient to contain only one
->>> value per file, so it is socially acceptable to express an array of
->>> values of the same type.
->>>
->>> Mixing types, expressing multiple lines of data, and doing fancy
->>> formatting of data is heavily frowned upon. Doing these things may get
->>> you publicly humiliated and your code rewritten without not"
->>>
->>>
->>> [1] https://www.kernel.org/doc/html/latest/filesystems/sysfs.html#attributes
->>>
 
