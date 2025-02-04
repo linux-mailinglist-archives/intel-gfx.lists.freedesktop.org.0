@@ -2,67 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB178A2795E
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2025 19:09:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D5D40A279A3
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2025 19:20:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0569B10E044;
-	Tue,  4 Feb 2025 18:09:10 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MQm7bckc";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D52310E079;
+	Tue,  4 Feb 2025 18:20:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9FE9810E044
- for <intel-gfx@lists.freedesktop.org>; Tue,  4 Feb 2025 18:09:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738692549; x=1770228549;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- mime-version:in-reply-to;
- bh=WI2pS1p/socKGY4BrveK2PsNonurZre/sJDmCv3h5xg=;
- b=MQm7bckcPKelRZO73Rlhuu4GPy7Lxy3NIqp+nAeAs3PoHMO3uT1/sqzM
- L4/nhFCpT4iuzYjRXfXHXSiQZiob3AYui92UWDYFXsDgaqMJrhIZT+ALG
- zq5TUJ+NflCPSsACT2wWY7ALFpKyJzSRsClVcQlSuGe5v2IwP9+uX7Bc8
- 9W3WVkl0ShNNuViSik49BSmC/SfIxKnRIv4nwekMHAtThx4UBhqP0hFnS
- S2zlZpN98vCXpyF/AzeSu68NrOhLfkI/+DxCvVwvurKMt2APs2Nx6SmUq
- Onr2vOU+0qOfwk5xaZYlAAdjBf+suZtBSOGLIv29uEMwIYDU11qwpIjb+ A==;
-X-CSE-ConnectionGUID: ApwDG1FaSmOY3VFd6Fu95w==
-X-CSE-MsgGUID: 3ZIzxK4MTCa/iXrF3FParQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="39496327"
-X-IronPort-AV: E=Sophos;i="6.13,259,1732608000"; d="scan'208";a="39496327"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2025 10:09:08 -0800
-X-CSE-ConnectionGUID: 2k7+XopDQmusExiP/HF+kg==
-X-CSE-MsgGUID: A+E2xDJHTka8rn1dWWOqGw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,259,1732608000"; d="scan'208";a="110547814"
-Received: from ideak-desk.fi.intel.com ([10.237.72.78])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2025 10:09:06 -0800
-Date: Tue, 4 Feb 2025 20:10:03 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>
-Cc: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- "Thasleem, Mohammed" <mohammed.thasleem@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/i915/dmc: Add debugfs for dc6 counter
-Message-ID: <Z6JX-0o18jtIubQ_@ideak-desk.fi.intel.com>
-References: <Z6DuZS_9hVqzZuwA@ideak-desk.fi.intel.com>
- <Z6Dx4ypYV3NJVuf1@intel.com>
- <Z6D0BdYxiq8rLYnx@ideak-desk.fi.intel.com>
- <Z6D5rl5bcI1v675e@intel.com>
- <Z6EXhDOE3Mx9ueCF@ideak-desk.fi.intel.com>
- <173861394843.77773.14213626182925674257@intel.com>
- <8102bd56478db361607ddd2848fabf3c4768f3c9.camel@intel.com>
- <173861525455.77773.11090522110857446904@intel.com>
- <816975f84d2005fad3f870f9d7486f18cfef3578.camel@intel.com>
- <173861750965.77773.16119113504082709088@intel.com>
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC3D310E6DE;
+ Tue,  4 Feb 2025 18:20:06 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8225172059220767411=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <173861750965.77773.16119113504082709088@intel.com>
+Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_series_starting_with_=5B1?=
+ =?utf-8?q?/3=5D_drm/i915/display=3A_convert_intel=5Fddi=5Fbuf=5Ftrans=2Ec_t?=
+ =?utf-8?q?o_struct_intel=5Fdisplay?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 04 Feb 2025 18:20:06 -0000
+Message-ID: <173869320674.1009351.18173905047966742192@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250204134228.2934744-1-jani.nikula@intel.com>
+In-Reply-To: <20250204134228.2934744-1-jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,44 +38,197 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Feb 03, 2025 at 06:18:29PM -0300, Gustavo Sousa wrote:
-> Quoting Vivi, Rodrigo (2025-02-03 17:59:19-03:00)
-> [...]
-> Perhaps Imre can explain this better, but I believe the point is that we
-> want to track increments to DC5 counter when we have DC6 enabled. That
-> driver-managed counter would be in dc6_allowed.
-> 
-> Repeating Imre's suggestions with a minor tweak:
-> 
-> 1. Before we tell the hardware that we are allowing DC6 (disable ->
->    DC6), we store the value of the current DC5 counter.
->
-> 2. After we disable DC states from DC6 (DC6 -> disable), we read the DC5
->    counter again and subtract the value from (1). The result would then be
->    added to the current value of dc6_allowed.
+--===============8225172059220767411==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Yes, with the actual delta being: DC5 counter read here - DC5 counter read
-at (1).
+== Series Details ==
 
-> In (1) I think we should read the DC5 counter before we update
-> DC_STATE_EN, just to be sure we avoid some sort of race (although that
-> appears to be unlikely to happen).
+Series: series starting with [1/3] drm/i915/display: convert intel_ddi_buf_trans.c to struct intel_display
+URL   : https://patchwork.freedesktop.org/series/144315/
+State : failure
 
-Yes, the orders you described in both (1) and (2) are correct (since a
-DC5 -> DC6 or DC6 -> DC5 transition is not possible).
+== Summary ==
 
-The dc6_allowed counter should be also updated before returning it to
-userspace via the debugfs entry, as I mentioned earlier (to account
-for the case where DC6 is enabled when the read happens).
+CI Bug Log - changes from CI_DRM_16063 -> Patchwork_144315v1
+====================================================
 
-> During DC6 validation, if the test sees that dc6_allowed was
-> incremented, that means that the display engine reached a state where
-> the SOC would be able to put the display in DC6.
+Summary
+-------
 
-Yes, that's my understanding.
+  **FAILURE**
 
---Imre
+  Serious unknown changes coming with Patchwork_144315v1 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_144315v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144315v1/index.html
+
+Participating hosts (43 -> 42)
+------------------------------
+
+  Missing    (1): fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_144315v1:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - bat-rpls-4:         [PASS][1] -> [FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16063/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144315v1/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_144315v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
+    - bat-dg2-11:         [PASS][3] -> [SKIP][4] ([i915#9197]) +3 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16063/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144315v1/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+
+  
+#### Possible fixes ####
+
+  * igt@dmabuf@all-tests:
+    - bat-apl-1:          [INCOMPLETE][5] ([i915#12904]) -> [PASS][6] +1 other test pass
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16063/bat-apl-1/igt@dmabuf@all-tests.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144315v1/bat-apl-1/igt@dmabuf@all-tests.html
+
+  * igt@i915_selftest@live@workarounds:
+    - {bat-mtlp-9}:       [DMESG-FAIL][7] ([i915#12061]) -> [PASS][8] +1 other test pass
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16063/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144315v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
+  [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_16063 -> Patchwork_144315v1
+
+  CI-20190529: 20190529
+  CI_DRM_16063: 34f113e9fef546134e402e7657fc47e92fba59dc @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8223: ccfe042787b082c06402ff9af257f8338b8edd5e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_144315v1: 34f113e9fef546134e402e7657fc47e92fba59dc @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144315v1/index.html
+
+--===============8225172059220767411==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/3] drm/i915/display: convert intel_ddi_buf_trans.c to struct intel_display</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/144315/">https://patchwork.freedesktop.org/series/144315/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144315v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144315v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_16063 -&gt; Patchwork_144315v1</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_144315v1 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_144315v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144315v1/index.html</p>
+<h2>Participating hosts (43 -&gt; 42)</h2>
+<p>Missing    (1): fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_144315v1:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_pm_rpm@module-reload:<ul>
+<li>bat-rpls-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16063/bat-rpls-4/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144315v1/bat-rpls-4/igt@i915_pm_rpm@module-reload.html">FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_144315v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:<ul>
+<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16063/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144315v1/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197">i915#9197</a>) +3 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@dmabuf@all-tests:</p>
+<ul>
+<li>bat-apl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16063/bat-apl-1/igt@dmabuf@all-tests.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144315v1/bat-apl-1/igt@dmabuf@all-tests.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>{bat-mtlp-9}:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16063/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144315v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_16063 -&gt; Patchwork_144315v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_16063: 34f113e9fef546134e402e7657fc47e92fba59dc @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8223: ccfe042787b082c06402ff9af257f8338b8edd5e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_144315v1: 34f113e9fef546134e402e7657fc47e92fba59dc @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============8225172059220767411==--
