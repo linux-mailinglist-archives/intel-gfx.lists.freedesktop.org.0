@@ -2,53 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6542A2739A
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2025 14:59:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 10C58A2739B
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2025 14:59:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7FCC310E656;
-	Tue,  4 Feb 2025 13:58:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A37FF10E658;
+	Tue,  4 Feb 2025 13:59:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AEbxvF4T";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MHrQjYAY";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52A2710E656;
- Tue,  4 Feb 2025 13:58:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0AAC10E65E;
+ Tue,  4 Feb 2025 13:59:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738677538; x=1770213538;
+ t=1738677543; x=1770213543;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=xOlvvVMdcZVWeneYtU3hi0u30VNjcM4eFbH6pl4/h38=;
- b=AEbxvF4T43E358oyIPNwQquSPRhKUEHG+JregYxDCjtDO52oB0vz1H6M
- aZC4/f1stOolsilGIMz34hqboC/33fsyUKJKkbK4kR1mqR0yvP34Ly+RK
- 6kL4vOBh2Brqsv+kyDVcE5Iz9jEOLFzAB3Rr6jqFNmKJKUkMjGxzZZ5Mg
- PR5ps+aEJrexvu88gs+Ds5vrnpmm5tl7khRHICq1ioSWc+3z0+gFr4WdI
- 1l4eE4NxPAkCvYfQllDVwpM5dkppOGU7HSj5UgIleXBFeoJ0EazXzrkQ/
- 3V6206kA1+/IuP2veH8SX1A48RZJx4JxiByptG61Zp3hiFxiZYpzcV6pH A==;
-X-CSE-ConnectionGUID: /hUeWMgLQymFJv/tg+dcUA==
-X-CSE-MsgGUID: t7Oi1bnrQtqd5ywLgDwAOg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="39359024"
-X-IronPort-AV: E=Sophos;i="6.13,258,1732608000"; d="scan'208";a="39359024"
+ bh=1IbbmRf5UHb+sNGCaX+HHsSqDQyknZghImlZqaj8gdA=;
+ b=MHrQjYAYMsL+Upd3Y5pjwdz0uhrM9Vj2JIlUZ65eCzhRt1UGagmJJDrY
+ uDI6vMEY8711QoVPcVS8dWj2xFcHwyzhcrqQ3lzu/2SXL0nFNBkpcmr7v
+ kT8djGkGmXc8sGw7B+l6KriWSaV8KK1DmIRlhz08caUWHaMzJT8d9lUmj
+ 1waDaRfE8oNLC8BFXHoC0rA4zvV7Mz+9Zo43HfpJx28dAnwbzAfKXn7Q3
+ TNZL2iHpq/Lnrf8jK3AX46jT/M4APAxsuyGqeWbV913jnNWYk9yAB/ZHp
+ y9oMPRByMgF8zPAmXHl76VimwZ48ids9lyq/v5mw602nyEtgchGKgul6u A==;
+X-CSE-ConnectionGUID: p69eVLuOTKGkM00e1LbA9Q==
+X-CSE-MsgGUID: yMkvr5/XQwWJ4Cx3OzNpnQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="39359038"
+X-IronPort-AV: E=Sophos;i="6.13,258,1732608000"; d="scan'208";a="39359038"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2025 05:58:58 -0800
-X-CSE-ConnectionGUID: QD0lZ3fYQyqCt8m7xiobog==
-X-CSE-MsgGUID: ZybQ9H8iSfWuSjQscBJN2Q==
+ 04 Feb 2025 05:59:03 -0800
+X-CSE-ConnectionGUID: /T8f/7E3SL6ry/44PDS+JQ==
+X-CSE-MsgGUID: Xu4Gqw+uSIexdcmjEk1NSQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,258,1732608000"; d="scan'208";a="110484250"
+X-IronPort-AV: E=Sophos;i="6.13,258,1732608000"; d="scan'208";a="110484261"
 Received: from dprybysh-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.246.139])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2025 05:58:56 -0800
+ 04 Feb 2025 05:59:01 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH v2 2/6] drm/i915/lspcon: add intel_lspcon_active() and use it
-Date: Tue,  4 Feb 2025 15:58:39 +0200
-Message-Id: <3eabe0cb07a84c63119ea893e149de410b4356b0.1738677489.git.jani.nikula@intel.com>
+Subject: [PATCH v2 3/6] drm/i915/lspcon: change signature of
+ lspcon_detect_hdr_capability()
+Date: Tue,  4 Feb 2025 15:58:40 +0200
+Message-Id: <6f249f5c537a16a6762faddffd6a95cbf61cf077.1738677489.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1738677489.git.jani.nikula@intel.com>
 References: <cover.1738677489.git.jani.nikula@intel.com>
@@ -70,111 +71,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hide the direct lspcon->active use behind intel_lspcon_active().
+Switch from struct intel_lspcon to struct intel_digital_port to unify,
+and return the value so the caller doesn't have to look at
+lspcon->hdr_detected directly.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c    | 6 +++---
- drivers/gpu/drm/i915/display/intel_dp.c     | 7 ++++---
- drivers/gpu/drm/i915/display/intel_lspcon.c | 7 +++++++
- drivers/gpu/drm/i915/display/intel_lspcon.h | 1 +
- 4 files changed, 15 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c     | 4 +---
+ drivers/gpu/drm/i915/display/intel_lspcon.c | 5 ++++-
+ drivers/gpu/drm/i915/display/intel_lspcon.h | 2 +-
+ 3 files changed, 6 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index efc412165a3c..c59b7fec20f0 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -3029,7 +3029,7 @@ static void intel_ddi_pre_enable(struct intel_atomic_state *state,
- 
- 		/* FIXME precompute everything properly */
- 		/* FIXME how do we turn infoframes off again? */
--		if (dig_port->lspcon.active && intel_dp_has_hdmi_sink(&dig_port->dp))
-+		if (intel_lspcon_active(dig_port) && intel_dp_has_hdmi_sink(&dig_port->dp))
- 			dig_port->set_infoframes(encoder,
- 						 crtc_state->has_infoframe,
- 						 crtc_state, conn_state);
-@@ -3385,7 +3385,7 @@ static void intel_ddi_enable_dp(struct intel_atomic_state *state,
- 	drm_connector_update_privacy_screen(conn_state);
- 	intel_edp_backlight_on(crtc_state, conn_state);
- 
--	if (!dig_port->lspcon.active || intel_dp_has_hdmi_sink(&dig_port->dp))
-+	if (!intel_lspcon_active(dig_port) || intel_dp_has_hdmi_sink(&dig_port->dp))
- 		intel_dp_set_infoframes(encoder, true, crtc_state, conn_state);
- 
- 	trans_port_sync_stop_link_train(state, encoder, crtc_state);
-@@ -4086,7 +4086,7 @@ static void intel_ddi_read_func_ctl_dp_sst(struct intel_encoder *encoder,
- 			intel_de_read(display,
- 				      dp_tp_ctl_reg(encoder, crtc_state)) & DP_TP_CTL_FEC_ENABLE;
- 
--	if (dig_port->lspcon.active && intel_dp_has_hdmi_sink(&dig_port->dp))
-+	if (intel_lspcon_active(dig_port) && intel_dp_has_hdmi_sink(&dig_port->dp))
- 		crtc_state->infoframes.enable |=
- 			intel_lspcon_infoframes_enabled(encoder, crtc_state);
- 	else
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index cc6aba353c11..ef182ef574f7 100644
+index ef182ef574f7..2db7741c25bd 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -3500,9 +3500,10 @@ void intel_dp_set_power(struct intel_dp *intel_dp, u8 mode)
+@@ -5844,7 +5844,6 @@ intel_dp_connector_register(struct drm_connector *connector)
+ 	struct intel_display *display = to_intel_display(connector->dev);
+ 	struct intel_dp *intel_dp = intel_attached_dp(to_intel_connector(connector));
+ 	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+-	struct intel_lspcon *lspcon = &dig_port->lspcon;
+ 	int ret;
  
- 		ret = drm_dp_dpcd_writeb(&intel_dp->aux, DP_SET_POWER, mode);
- 	} else {
-+		struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
- 		struct intel_lspcon *lspcon = dp_to_lspcon(intel_dp);
- 
--		lspcon_resume(dp_to_dig_port(intel_dp));
-+		lspcon_resume(dig_port);
- 
- 		/* Write the source OUI as early as possible */
- 		intel_dp_init_source_oui(intel_dp);
-@@ -3518,7 +3519,7 @@ void intel_dp_set_power(struct intel_dp *intel_dp, u8 mode)
- 			msleep(1);
- 		}
- 
--		if (ret == 1 && lspcon->active)
-+		if (ret == 1 && intel_lspcon_active(dig_port))
- 			lspcon_wait_pcon_mode(lspcon);
+ 	ret = intel_connector_register(connector);
+@@ -5867,8 +5866,7 @@ intel_dp_connector_register(struct drm_connector *connector)
+ 	 * efficiently and streamlined.
+ 	 */
+ 	if (lspcon_init(dig_port)) {
+-		lspcon_detect_hdr_capability(lspcon);
+-		if (lspcon->hdr_supported)
++		if (lspcon_detect_hdr_capability(dig_port))
+ 			drm_connector_attach_hdr_output_metadata_property(connector);
  	}
  
-@@ -5569,7 +5570,7 @@ intel_dp_update_420(struct intel_dp *intel_dp)
- 						  intel_dp->downstream_ports);
- 	/* on-board LSPCON always assumed to support 4:4:4->4:2:0 conversion */
- 	intel_dp->dfp.ycbcr_444_to_420 =
--		dp_to_dig_port(intel_dp)->lspcon.active ||
-+		intel_lspcon_active(dp_to_dig_port(intel_dp)) ||
- 		drm_dp_downstream_444_to_420_conversion(intel_dp->dpcd,
- 							intel_dp->downstream_ports);
- 	intel_dp->dfp.rgb_to_ycbcr =
 diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.c b/drivers/gpu/drm/i915/display/intel_lspcon.c
-index 0c8bf477c2fb..e54aad8a5f7f 100644
+index e54aad8a5f7f..2dd2b700b0f3 100644
 --- a/drivers/gpu/drm/i915/display/intel_lspcon.c
 +++ b/drivers/gpu/drm/i915/display/intel_lspcon.c
-@@ -689,6 +689,13 @@ bool lspcon_init(struct intel_digital_port *dig_port)
- 	return true;
+@@ -121,8 +121,9 @@ static u32 get_hdr_status_reg(struct intel_lspcon *lspcon)
+ 		return DPCD_PARADE_LSPCON_HDR_STATUS;
  }
  
-+bool intel_lspcon_active(struct intel_digital_port *dig_port)
-+{
-+	struct intel_lspcon *lspcon = &dig_port->lspcon;
-+
-+	return lspcon->active;
-+}
-+
- u32 intel_lspcon_infoframes_enabled(struct intel_encoder *encoder,
- 				    const struct intel_crtc_state *pipe_config)
+-void lspcon_detect_hdr_capability(struct intel_lspcon *lspcon)
++bool lspcon_detect_hdr_capability(struct intel_digital_port *dig_port)
  {
++	struct intel_lspcon *lspcon = &dig_port->lspcon;
+ 	struct intel_dp *intel_dp = lspcon_to_intel_dp(lspcon);
+ 	struct intel_display *display = to_intel_display(intel_dp);
+ 	u8 hdr_caps;
+@@ -138,6 +139,8 @@ void lspcon_detect_hdr_capability(struct intel_lspcon *lspcon)
+ 		drm_dbg_kms(display->drm, "LSPCON capable of HDR\n");
+ 		lspcon->hdr_supported = true;
+ 	}
++
++	return lspcon->hdr_supported;
+ }
+ 
+ static enum drm_lspcon_mode lspcon_get_current_mode(struct intel_lspcon *lspcon)
 diff --git a/drivers/gpu/drm/i915/display/intel_lspcon.h b/drivers/gpu/drm/i915/display/intel_lspcon.h
-index 47f9ae77b328..4c8ba3ddbac4 100644
+index 4c8ba3ddbac4..18cc15e5221d 100644
 --- a/drivers/gpu/drm/i915/display/intel_lspcon.h
 +++ b/drivers/gpu/drm/i915/display/intel_lspcon.h
-@@ -16,6 +16,7 @@ struct intel_encoder;
- struct intel_lspcon;
+@@ -17,7 +17,7 @@ struct intel_lspcon;
  
  bool lspcon_init(struct intel_digital_port *dig_port);
-+bool intel_lspcon_active(struct intel_digital_port *dig_port);
- void lspcon_detect_hdr_capability(struct intel_lspcon *lspcon);
+ bool intel_lspcon_active(struct intel_digital_port *dig_port);
+-void lspcon_detect_hdr_capability(struct intel_lspcon *lspcon);
++bool lspcon_detect_hdr_capability(struct intel_digital_port *dig_port);
  void lspcon_resume(struct intel_digital_port *dig_port);
  void lspcon_wait_pcon_mode(struct intel_lspcon *lspcon);
+ void lspcon_write_infoframe(struct intel_encoder *encoder,
 -- 
 2.39.5
 
