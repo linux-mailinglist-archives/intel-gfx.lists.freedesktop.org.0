@@ -2,59 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6112DA26DED
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2025 10:08:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C98C4A26DF1
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2025 10:09:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06A0F10E2BF;
-	Tue,  4 Feb 2025 09:08:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 666C210E5D5;
+	Tue,  4 Feb 2025 09:09:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m/Uuf4H6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Cp0GPdGr";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1EC5410E2BF;
- Tue,  4 Feb 2025 09:08:25 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AAFD210E2C7;
+ Tue,  4 Feb 2025 09:09:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738660106; x=1770196106;
+ t=1738660188; x=1770196188;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=Gi25TnoPymAcShEegDzURm88XyeUkJ6qzGHgyKPhSrM=;
- b=m/Uuf4H6cE6cMm9RPyeKLU6ktEn8A2VH+0gZyUMwuXgxHOrVx3gQsccl
- ymSNvhlYljd8RXo+DonpLS2jXYQ/Y+UZYHHZORy/fVrzZHFiVddMzRvWo
- xm3xc4YtqDregDBHs8qMEJ9Y4O67bC6ktS9U5F7pVHBL+YFg6McLfNyQg
- vJZC5F1SyYIqx3KPV49Odsksy5f7sere3sIinUpqOfADI+bNXImLf3yTd
- Q8Lr5JSdIAg3rnwIaSpItCIyfthsbyC+3NAEEJKAC4m91InLzrVsYaIph
- XB8QnzJXCCeJBwEvlPChjbrODEH6fAohfEKPWNOI9REacHaHCNNcaIDtz w==;
-X-CSE-ConnectionGUID: KfvyUc3PTuSM5htpxTNKVw==
-X-CSE-MsgGUID: 7N3ePmfCTH+tvl9Ou11rbg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="39278887"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; d="scan'208";a="39278887"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2025 01:08:25 -0800
-X-CSE-ConnectionGUID: DXskLADMT2aIfrleQnGEcw==
-X-CSE-MsgGUID: 9LxNDVPLTz2ajQnNd9lMBw==
+ bh=9ePZD5cayTB2a+fhmgINmNrme8C+plvievKAozEc+TI=;
+ b=Cp0GPdGrIotirE/8EzO9PtL6SJRx+4eAwEJLVfYuuc+CElOWvKERgccn
+ JPYqn50yYfTMshQ6quti/odZHKofiiAmZc0RyMKXjD3kBnpp40N8s2JQw
+ rZ45Akd/9B1GvVTlraBuIdEY2feqOJSVJyKcsQBY8whQIYm4/J7o4cAL6
+ ozpjDmDN0b7ivGMOH4nsfh7iX1AT/3T3LASOXpL2c0ETXw6kQjo1xa1rh
+ 1pQUe8nUZCUXDtoVd2vqBqfAnZPtg/hi/6XodyQwMjW8nybCXRw4XrCn7
+ 40Sk66hGKRvY8PMlCg2NqYQJ44GPa4IjAyCr9mQGI56FZIq4DJMlSekZo A==;
+X-CSE-ConnectionGUID: H1ABslUpQNKZf/KPIOUnDA==
+X-CSE-MsgGUID: 8C0JKzX8SJ+FtVnwGs0rfw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11335"; a="39332408"
+X-IronPort-AV: E=Sophos;i="6.13,258,1732608000"; d="scan'208";a="39332408"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2025 01:09:37 -0800
+X-CSE-ConnectionGUID: mtyVD08jQR+Jx4daBJJCxw==
+X-CSE-MsgGUID: pwSwcyX1T5OKZ3Lv6fSGcA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; d="scan'208";a="115540023"
+X-IronPort-AV: E=Sophos;i="6.13,258,1732608000"; d="scan'208";a="110502893"
 Received: from dprybysh-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.246.139])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2025 01:08:23 -0800
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2025 01:09:34 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Vinod Govindapillai <vinod.govindapillai@intel.com>,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 Cc: vinod.govindapillai@intel.com, ville.syrjala@intel.com,
  santhosh.reddy.guddati@intel.com, jani.saarinen@intel.com
-Subject: Re: [PATCH v6 3/7] drm/damage-helper: add const qualifier in
- drm_atomic_helper_damage_merged()
-In-Reply-To: <20250130210027.591927-4-vinod.govindapillai@intel.com>
+Subject: Re: [PATCH v6 0/7] drm/i915/xe3: FBC Dirty rect feature support
+In-Reply-To: <20250130210027.591927-1-vinod.govindapillai@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20250130210027.591927-1-vinod.govindapillai@intel.com>
- <20250130210027.591927-4-vinod.govindapillai@intel.com>
-Date: Tue, 04 Feb 2025 11:08:19 +0200
-Message-ID: <878qqm6prw.fsf@intel.com>
+Date: Tue, 04 Feb 2025 11:09:31 +0200
+Message-ID: <875xlq6ppw.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -73,46 +71,59 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 On Thu, 30 Jan 2025, Vinod Govindapillai <vinod.govindapillai@intel.com> wrote:
-> Add a const qualifier for the "state" parameter as well as we could
-> use this helper to get the combined damage in cases of const
-> drm_plane_state as well. Needed mainly for xe driver big joiner cases
-> where we need to track the damage from immutable plane state.
+> Dirty rect support for FBC in xe3 onwards based on the comments after the
+> initial RFC series.
 
-Needs to be sent to dri-devel.
+I think "drm/i915/fbc" subject prefix is more appropriate than
+"drm/i915/xe3".
+
+(Please don't resend just for that.)
 
 >
-> Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
-> ---
->  drivers/gpu/drm/drm_damage_helper.c | 2 +-
->  include/drm/drm_damage_helper.h     | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
+> v2: Dirty rect related compute and storage moved to fbc state (Ville)
 >
-> diff --git a/drivers/gpu/drm/drm_damage_helper.c b/drivers/gpu/drm/drm_damage_helper.c
-> index afb02aae707b..44a5a36806e3 100644
-> --- a/drivers/gpu/drm/drm_damage_helper.c
-> +++ b/drivers/gpu/drm/drm_damage_helper.c
-> @@ -308,7 +308,7 @@ EXPORT_SYMBOL(drm_atomic_helper_damage_iter_next);
->   * True if there is valid plane damage otherwise false.
->   */
->  bool drm_atomic_helper_damage_merged(const struct drm_plane_state *old_state,
-> -				     struct drm_plane_state *state,
-> +				     const struct drm_plane_state *state,
->  				     struct drm_rect *rect)
->  {
->  	struct drm_atomic_helper_damage_iter iter;
-> diff --git a/include/drm/drm_damage_helper.h b/include/drm/drm_damage_helper.h
-> index effda42cce31..a58cbcd11276 100644
-> --- a/include/drm/drm_damage_helper.h
-> +++ b/include/drm/drm_damage_helper.h
-> @@ -78,7 +78,7 @@ bool
->  drm_atomic_helper_damage_iter_next(struct drm_atomic_helper_damage_iter *iter,
->  				   struct drm_rect *rect);
->  bool drm_atomic_helper_damage_merged(const struct drm_plane_state *old_state,
-> -				     struct drm_plane_state *state,
-> +				     const struct drm_plane_state *state,
->  				     struct drm_rect *rect);
->  
->  #endif
+> V3: Dont call fbc activate if FBC is already active
+>
+> v4: Dirty rect compute and programming moved within DSB scope
+>     New changes are added as separate patches to make it easy for review
+>     But could be squashed if the reviews as ok.
+>
+> v5: add HAS_FBC_DIRTY_RECT()
+>     FBC Damage area updates in 3 steps. 
+>     1. As part of plane_atomic_check() get, adjust coordinates and store
+>        the merged damage area in plane_state
+>     2. Atomic_commit, update merged damage are to fbc_state and prepare the
+>        damage area satifying all conditions
+>     3  update the FBC dirty rect registers as part of DSB commit.
+>
+> v6: Use dmage_merged helper earlier to handle bigjoiner cases (Ville)
+>     Place the damage_merged handling code under HAS_FBC_DIRTY_RECT()
+>     Added a variable to check if the damage_merged received from
+>     the helper is valid. And if it is not valid, the FBC dirty rect
+>     is updated with full plane reqion.
+>
+> Vinod Govindapillai (7):
+>   drm/i915/xe3: add register definitions for fbc dirty rect support
+>   drm/i915/xe3: introduce HAS_FBC_DIRTY_RECT() for FBC dirty rect
+>     support
+>   drm/damage-helper: add const qualifier in
+>     drm_atomic_helper_damage_merged()
+>   drm/i915/xe3: update and store the plane damage clips
+>   drm/i915/xe3: dirty rect support for FBC
+>   drm/i915/xe3: avoid calling fbc activate if fbc is active
+>   drm/i915/xe3: disable FBC if PSR2 selective fetch is enabled
+>
+>  drivers/gpu/drm/drm_damage_helper.c           |   2 +-
+>  .../gpu/drm/i915/display/intel_atomic_plane.c |  28 ++++
+>  drivers/gpu/drm/i915/display/intel_display.c  |   7 +
+>  .../drm/i915/display/intel_display_device.h   |   1 +
+>  .../drm/i915/display/intel_display_types.h    |   2 +
+>  drivers/gpu/drm/i915/display/intel_fbc.c      | 152 +++++++++++++++++-
+>  drivers/gpu/drm/i915/display/intel_fbc.h      |   6 +
+>  drivers/gpu/drm/i915/display/intel_fbc_regs.h |   9 ++
+>  .../drm/i915/display/skl_universal_plane.c    |  45 +++++-
+>  include/drm/drm_damage_helper.h               |   2 +-
+>  10 files changed, 246 insertions(+), 8 deletions(-)
 
 -- 
 Jani Nikula, Intel
