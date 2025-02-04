@@ -2,65 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D98EA268D9
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2025 01:47:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CF93A26A3C
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2025 03:47:35 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0623710E10B;
-	Tue,  4 Feb 2025 00:47:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A8EAF10E036;
+	Tue,  4 Feb 2025 02:47:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="i9J0TpPL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U8qj55M5";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD4A510E10B;
- Tue,  4 Feb 2025 00:47:36 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id C637EA4201C;
- Tue,  4 Feb 2025 00:45:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8FD2BC4CEE4;
- Tue,  4 Feb 2025 00:47:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linux-foundation.org;
- s=korg; t=1738630054;
- bh=jmDmBKgdg+tglC1hAuRd+I3gUe9Geez71dH7vuTJP8o=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=i9J0TpPLqfCwqIhS4yhFauZVhJ4TuUZuMbvB3R02l6ePYKSpNO1W0zS6x3mHYYi7g
- 7Fg5HQqTWVm1ZBZwjcKxlLwfFwz/bbtYtagxrbQdIz3DeRqWX1PETn+wfCt+vq4vMi
- /d3R4Mq9rATcGZhoTRTxbAC8v4fPS31ZNgZU2mvM=
-Date: Mon, 3 Feb 2025 16:47:33 -0800
-From: Andrew Morton <akpm@linux-foundation.org>
-To: "Kirill A. Shutemov" <kirill.shutemov@linux.intel.com>
-Cc: Kairui Song <ryncsn@gmail.com>, "Matthew Wilcox (Oracle)"
- <willy@infradead.org>, Jens Axboe <axboe@kernel.dk>, "Jason A. Donenfeld"
- <Jason@zx2c4.com>, Andi Shyti <andi.shyti@linux.intel.com>, Chengming Zhou
- <chengming.zhou@linux.dev>, Christian Brauner <brauner@kernel.org>,
- Christophe Leroy <christophe.leroy@csgroup.eu>, Dan Carpenter
- <dan.carpenter@linaro.org>, David Airlie <airlied@gmail.com>, David
- Hildenbrand <david@redhat.com>, Hao Ge <gehao@kylinos.cn>, Jani Nikula
- <jani.nikula@linux.intel.com>, Johannes Weiner <hannes@cmpxchg.org>, Joonas
- Lahtinen <joonas.lahtinen@linux.intel.com>, Josef Bacik
- <josef@toxicpanda.com>, Masami Hiramatsu <mhiramat@kernel.org>, Mathieu
- Desnoyers <mathieu.desnoyers@efficios.com>, Miklos Szeredi
- <miklos@szeredi.hu>, Nhat Pham <nphamcs@gmail.com>, Oscar Salvador
- <osalvador@suse.de>, Ran Xiaokai <ran.xiaokai@zte.com.cn>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>, Steven Rostedt
- <rostedt@goodmis.org>, Tvrtko Ursulin <tursulin@ursulin.net>, Vlastimil
- Babka <vbabka@suse.cz>, Yosry Ahmed <yosryahmed@google.com>, Yu Zhao
- <yuzhao@google.com>, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-fsdevel@vger.kernel.org, linux-mm@kvack.org,
- linux-trace-kernel@vger.kernel.org
-Subject: Re: [PATCHv3 06/11] mm/vmscan: Use PG_dropbehind instead of PG_reclaim
-Message-Id: <20250203164733.f806902a6e5c91523c9e00fc@linux-foundation.org>
-In-Reply-To: <42h65xowqe36eymr6pcomo7wzpe26kzwvyzg44hftqqczc5n6y@w2z5wvdrvktm>
-References: <20250130100050.1868208-1-kirill.shutemov@linux.intel.com>
- <20250130100050.1868208-7-kirill.shutemov@linux.intel.com>
- <CAMgjq7AWZg0Y7+v3_Z8-YVUXrANB29mCDSyzF39dtAM_TQ0aKw@mail.gmail.com>
- <42h65xowqe36eymr6pcomo7wzpe26kzwvyzg44hftqqczc5n6y@w2z5wvdrvktm>
-X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C581810E036
+ for <intel-gfx@lists.freedesktop.org>; Tue,  4 Feb 2025 02:47:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1738637252; x=1770173252;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=bOe6SLwrR7n1ifjU/JEGq1eXA90MAFxbmzPeQqNDgkk=;
+ b=U8qj55M5Dba2Z+l6jbZ8d+Ibl2RHH6R0pLVmCBLju6mDCdBbONktecXy
+ 8yc4WAn5gqvqZTul7s9vxge0ILTuCuQ8Ec3HwAL4a42QO/jKPuAJkMxlS
+ BQ851rfZ2o82HwbmKtHcaG9S4Ar24HPhSyMq3kGRIxEqbxOEr/hYf3UgS
+ LKumDEsVE8nQSi1M/l8LlYld4W9bjEHhPcGiSkFj2hgQwn7zvRwIPzWhu
+ 0Z5VAUr4ilGfwKkQC0SFzy1HI+4/qbNY0idVqjg1X34/dB8KAOMhXufbq
+ 1VDkwARZbFzoSd5xvltZgyg7dqe9CX88PRoDq6AMdVYqJPRrZP/nTmohk A==;
+X-CSE-ConnectionGUID: bnKFwn8iRT2vCLpsExD4fA==
+X-CSE-MsgGUID: 9TrGODrDTzyMrBtuUBdcSA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11335"; a="39182216"
+X-IronPort-AV: E=Sophos;i="6.13,257,1732608000"; d="scan'208";a="39182216"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2025 18:47:32 -0800
+X-CSE-ConnectionGUID: Npqu5GE3S5yPwXDk4sz94g==
+X-CSE-MsgGUID: 5G8Ai3mBQ6SL/mX9ZpaW6w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,257,1732608000"; d="scan'208";a="110418182"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2025 18:47:31 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Subject: [PATCH topic/core-for-CI] scsi: use GFP_NOIO to avoid circular
+ locking dependency
+Date: Mon,  3 Feb 2025 18:47:18 -0800
+Message-ID: <20250204024719.1336311-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.48.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,30 +66,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 3 Feb 2025 10:39:58 +0200 "Kirill A. Shutemov" <kirill.shutemov@linux.intel.com> wrote:
+From: Rik van Riel <riel@surriel.com>
 
-> > diff --git a/mm/filemap.c b/mm/filemap.c
-> > index 4fe551037bf7..98493443d120 100644
-> > --- a/mm/filemap.c
-> > +++ b/mm/filemap.c
-> > @@ -1605,8 +1605,9 @@ static void folio_end_reclaim_write(struct folio *folio)
-> >          * invalidation in that case.
-> >          */
-> >         if (in_task() && folio_trylock(folio)) {
-> > -               if (folio->mapping)
-> > -                       folio_unmap_invalidate(folio->mapping, folio, 0);
-> > +               struct address_space *mapping = folio_mapping(folio);
-> > +               if (mapping)
-> > +                       folio_unmap_invalidate(mapping, folio, 0);
-> >                 folio_unlock(folio);
-> >         }
-> >  }
-> 
-> Once you do this, folio_unmap_invalidate() will never succeed for
-> swapcache as folio->mapping != mapping check will always be true and it
-> will fail with -EBUSY.
-> 
-> I guess we need to do something similar to what __remove_mapping() does
-> for swapcache folios.
+Filesystems can write to disk from page reclaim with __GFP_FS
+set. Marc found a case where scsi_realloc_sdev_budget_map
+ends up in page reclaim with GFP_KERNEL, where it could try
+to take filesystem locks again, leading to a deadlock.
 
-Thanks, I'll drop the v3 series from mm.git.
+WARNING: possible circular locking dependency detected
+6.13.0 #1 Not tainted
+------------------------------------------------------
+kswapd0/70 is trying to acquire lock:
+ffff8881025d5d78 (&q->q_usage_counter(io)){++++}-{0:0}, at: blk_mq_submit_bio+0x461/0x6e0
+
+but task is already holding lock:
+ffffffff81ef5f40 (fs_reclaim){+.+.}-{0:0}, at: balance_pgdat+0x9f/0x760
+
+The full lockdep splat can be found in Marc's report:
+
+https://lkml.org/lkml/2025/1/24/1101
+
+Avoid the potential deadlock by doing the allocation with GFP_NOIO,
+which prevents both filesystem and block layer recursion.
+
+Reported-by: Marc Aurèle La France <tsi@tuyoix.net>
+Signed-off-by: Rik van Riel <riel@surriel.com>
+Reviewed-by: Christoph Hellwig <hch@lst.de>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/scsi/scsi_scan.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/scsi/scsi_scan.c b/drivers/scsi/scsi_scan.c
+index 087fcbfc9aaa3..96d7e1a9a7c7a 100644
+--- a/drivers/scsi/scsi_scan.c
++++ b/drivers/scsi/scsi_scan.c
+@@ -246,7 +246,7 @@ static int scsi_realloc_sdev_budget_map(struct scsi_device *sdev,
+ 	}
+ 	ret = sbitmap_init_node(&sdev->budget_map,
+ 				scsi_device_max_queue_depth(sdev),
+-				new_shift, GFP_KERNEL,
++				new_shift, GFP_NOIO,
+ 				sdev->request_queue->node, false, true);
+ 	if (!ret)
+ 		sbitmap_resize(&sdev->budget_map, depth);
+-- 
+2.48.1
+
