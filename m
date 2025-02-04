@@ -2,61 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FCFCA2767E
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C70BA2767D
 	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2025 16:52:20 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1460A10E6C2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D42A10E6C3;
 	Tue,  4 Feb 2025 15:51:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OV7VlHjR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aV35Jp1/";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1DE510E6AC;
- Tue,  4 Feb 2025 15:50:59 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6420610E6A6;
+ Tue,  4 Feb 2025 15:50:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738684259; x=1770220259;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=j9ZDeI08NIbiOXaAmlKMhw+kP9Z2Hchl6VBImHiDQ1M=;
- b=OV7VlHjRWY43r50KZ4P4RhR8jGo8gbzhUbFPqZmciMQeUkLN/AcFzqKp
- 3HkQhdnlLPn5/4X4TC0uyVjX+9j4h7zWUGe0FlaP0aOR2a/1OQisfT4Xs
- FxgleX8g9RR+WCWTZ4CzwhYcJTMRtjgjZjUo74P+pyBPIFUJPOQRZ9/c/
- ILBaYlYHhAKf2ndUOckuxIz1bzil9/e3ixa/0yjjtqJW/Vmym2q2iGMv5
- NClU1AmM/lP6R3qi6XBAZBZ1SGpp3/G2qf88aqiVrdmNsbBsMJBDqw7xL
- ycCIcbJ75LSVJ54t4PrsHCe20jvOYyhTnv/SlN7B45TM4/vwoLdNI8egd g==;
-X-CSE-ConnectionGUID: Y7jijqaHSnqpWLDOC9/Ygg==
-X-CSE-MsgGUID: PD1wArLGT8y4/wDHpvzOVA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="49869809"
-X-IronPort-AV: E=Sophos;i="6.13,258,1732608000"; d="scan'208";a="49869809"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2025 07:50:58 -0800
-X-CSE-ConnectionGUID: VD80o8uYS0yldunGLarMzQ==
-X-CSE-MsgGUID: f1Dx/b++TwKwqBiYfni1sA==
+ t=1738684241; x=1770220241;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=1q+cGRDWZMp9aZYLXmoXDJIq8iYlBJc/JyAy1aeMcQ8=;
+ b=aV35Jp1/kZkFaCrNqpc7nZYLV2SGzzRuCUHJV/7bu+cg2OMYxNZpnesX
+ jURKuQt6XvY9Y/tb4Gc3WNKsu7KEqBcZ8VvJQtlFTkP3QIxwgl4zZ6QqO
+ DvUbSzPIT+dRG+NWZ6OfG0lio4LnldhB+1PuQHCHSKFa+EK5AIgd51VvQ
+ +4BuMTT7Yhi/PDawP+3/xk/oEOZ78QIk7+zg8+pPBD5KQW/tLfjyZ8Loo
+ bW7w60T8GIV7a0N8ajjHKveAK3xHK8BCYVFuwtZPmU7fsRm0nMq4tGZKI
+ Rwlsa9PlIBsQmdA83guJSzAQmweHpRFDjkiuC9WJyK4CjEP66DlDZ2hz1 w==;
+X-CSE-ConnectionGUID: qYtvf7p5SxWnqk8fzE6H9g==
+X-CSE-MsgGUID: Rz1kujX2Ska1i7u7QeoHbg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="42055711"
+X-IronPort-AV: E=Sophos;i="6.13,258,1732608000"; d="scan'208";a="42055711"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2025 07:50:41 -0800
+X-CSE-ConnectionGUID: BgoPVUTfTFigyR3hhd6PQA==
+X-CSE-MsgGUID: herT1IQ5SBSEEiTL0w6s4g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="115816338"
-Received: from dprybysh-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.139])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2025 07:50:56 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: imre.deak@intel.com
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v2 16/16] drm/i915/dp: compute config for 128b/132b SST
- w/o DSC
-In-Reply-To: <Z6I0knh2Kt5T0JrT@ideak-desk.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1734643485.git.jani.nikula@intel.com>
- <b239079a989ce11d60e9467cb1125bc2033ae0bd.1734643485.git.jani.nikula@intel.com>
- <Z6I0knh2Kt5T0JrT@ideak-desk.fi.intel.com>
-Date: Tue, 04 Feb 2025 17:50:53 +0200
-Message-ID: <87ikpp674y.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.13,258,1732608000"; d="scan'208";a="110618451"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2025 07:50:39 -0800
+Date: Tue, 4 Feb 2025 17:51:36 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH] drm/i915/mst: fix INT_MAX to .4 fixed point conversion
+ mistake
+Message-ID: <Z6I3iNAjlZHnxxyf@ideak-desk.fi.intel.com>
+References: <20250204153717.2996923-1-jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250204153717.2996923-1-jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,118 +65,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 04 Feb 2025, Imre Deak <imre.deak@intel.com> wrote:
-> On Thu, Dec 19, 2024 at 11:34:05PM +0200, Jani Nikula wrote:
->> Enable basic 128b/132b SST functionality without compression. Reuse
->> intel_dp_mtp_tu_compute_config() to figure out the TU after we've
->> determined we need to use an UHBR rate.
->> 
->> It's slightly complicated as the M/N computation is done in different
->> places in MST and SST paths, so we need to avoid trashing the values
->> later for UHBR.
->> 
->> If uncompressed UHBR fails, we drop to compressed non-UHBR, which is
->> quite likely to fail as well. We still lack 128b/132b SST+DSC.
->> 
->> We need mst_master_transcoder also for 128b/132b SST. Use cpu_transcoder
->> directly. Enhanced framing is "don't care" for 128b/132b link.
->> 
->> v2: mst_master_transcoder, enhanced framing (Imre)
->> 
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_dp.c | 34 +++++++++++++++++--------
->>  1 file changed, 24 insertions(+), 10 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
->> index fba3af338280..d14a42f02ba8 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dp.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->> @@ -2525,8 +2525,8 @@ intel_dp_compute_config_limits(struct intel_dp *intel_dp,
->>  	limits->min_rate = intel_dp_min_link_rate(intel_dp);
->>  	limits->max_rate = intel_dp_max_link_rate(intel_dp);
->>  
->> -	/* FIXME 128b/132b SST support missing */
->> -	if (!is_mst)
->> +	/* FIXME 128b/132b SST+DSC support missing */
->> +	if (!is_mst && dsc)
->>  		limits->max_rate = min(limits->max_rate, 810000);
->>  	limits->min_rate = min(limits->min_rate, limits->max_rate);
->>  
->> @@ -2640,6 +2640,13 @@ intel_dp_compute_link_config(struct intel_encoder *encoder,
->>  		 */
->>  		ret = intel_dp_compute_link_config_wide(intel_dp, pipe_config,
->>  							conn_state, &limits);
->> +		if (!ret && intel_dp_is_uhbr(pipe_config))
->> +			ret = intel_dp_mtp_tu_compute_config(intel_dp,
->> +							     pipe_config,
->> +							     pipe_config->pipe_bpp,
->> +							     pipe_config->pipe_bpp,
->> +							     conn_state,
->> +							     0, false);
->
-> Missed this in my review: intel_dp_mtp_tu_compute_config() for this to
-> work, it needs to handle step == 0, i.e. if (step == 0) break; at the
-> end of the bpp loop.
+On Tue, Feb 04, 2025 at 05:37:17PM +0200, Jani Nikula wrote:
+> intel_dp_mtp_tu_compute_config() conversion to use .4 fixed point didn't
+> take into account that intel_dp_mst_max_dpt_bpp() may return INT_MAX
+> when the transport limitation is not relevant. Converting INT_MAX to .4
+> fixed point results in -1.0, which then gets used as if it were a real
+> max BPP value:
+> 
+> i915 0000:00:02.0: [drm:intel_dp_mtp_tu_compute_config [i915]] Limiting bpp to max DPT bpp (24.0000 -> -1.0000)
+> i915 0000:00:02.0: [drm:intel_dp_mtp_tu_compute_config [i915]] Looking for slots in range min bpp 18.0000 max bpp -1.0000
+> 
+> Just return 0 for "no max DPT BPP", and handle it explicitly.
+> 
+> Fixes: 67782bf6e8a6 ("drm/i915/mst: Convert intel_dp_mtp_tu_compute_config() to .4 format")
+> Cc: Imre Deak <imre.deak@intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-Right, good catch!
+Reviewed-by: Imre Deak <imre.deak@intel.com>
 
-I wanted to pass 0 step to be explicit about doing it just once, but it
-really only happens once if it succeeds! Otherwise it results in an
-infinite loop.
-
-Fix on the list.
-
-Thanks,
-Jani.
-
->
->>  		if (ret)
->>  			dsc_needed = true;
->>  	}
->> @@ -3148,8 +3155,13 @@ intel_dp_compute_config(struct intel_encoder *encoder,
->>  	pipe_config->limited_color_range =
->>  		intel_dp_limited_color_range(pipe_config, conn_state);
->>  
->> -	pipe_config->enhanced_framing =
->> -		drm_dp_enhanced_frame_cap(intel_dp->dpcd);
->> +	if (intel_dp_is_uhbr(pipe_config)) {
->> +		/* 128b/132b SST also needs this */
->> +		pipe_config->mst_master_transcoder = pipe_config->cpu_transcoder;
->> +	} else {
->> +		pipe_config->enhanced_framing =
->> +			drm_dp_enhanced_frame_cap(intel_dp->dpcd);
->> +	}
->>  
->>  	if (pipe_config->dsc.compression_enable)
->>  		link_bpp_x16 = pipe_config->dsc.compressed_bpp_x16;
->> @@ -3180,12 +3192,14 @@ intel_dp_compute_config(struct intel_encoder *encoder,
->>  
->>  	intel_dp_audio_compute_config(encoder, pipe_config, conn_state);
->>  
->> -	intel_link_compute_m_n(link_bpp_x16,
->> -			       pipe_config->lane_count,
->> -			       adjusted_mode->crtc_clock,
->> -			       pipe_config->port_clock,
->> -			       intel_dp_bw_fec_overhead(pipe_config->fec_enable),
->> -			       &pipe_config->dp_m_n);
->> +	if (!intel_dp_is_uhbr(pipe_config)) {
->> +		intel_link_compute_m_n(link_bpp_x16,
->> +				       pipe_config->lane_count,
->> +				       adjusted_mode->crtc_clock,
->> +				       pipe_config->port_clock,
->> +				       intel_dp_bw_fec_overhead(pipe_config->fec_enable),
->> +				       &pipe_config->dp_m_n);
->> +	}
->>  
->>  	/* FIXME: abstract this better */
->>  	if (pipe_config->splitter.enable)
->> -- 
->> 2.39.5
->> 
-
--- 
-Jani Nikula, Intel
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp_mst.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> index b729e27cdde2..95abc6ea85eb 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> @@ -111,7 +111,7 @@ static int intel_dp_mst_max_dpt_bpp(const struct intel_crtc_state *crtc_state,
+>  		&crtc_state->hw.adjusted_mode;
+>  
+>  	if (!intel_dp_is_uhbr(crtc_state) || DISPLAY_VER(display) >= 20 || !dsc)
+> -		return INT_MAX;
+> +		return 0;
+>  
+>  	/*
+>  	 * DSC->DPT interface width:
+> @@ -248,7 +248,7 @@ int intel_dp_mtp_tu_compute_config(struct intel_dp *intel_dp,
+>  	}
+>  
+>  	max_dpt_bpp_x16 = fxp_q4_from_int(intel_dp_mst_max_dpt_bpp(crtc_state, dsc));
+> -	if (max_bpp_x16 > max_dpt_bpp_x16) {
+> +	if (max_dpt_bpp_x16 && max_bpp_x16 > max_dpt_bpp_x16) {
+>  		drm_dbg_kms(display->drm, "Limiting bpp to max DPT bpp (" FXP_Q4_FMT " -> " FXP_Q4_FMT ")\n",
+>  			    FXP_Q4_ARGS(max_bpp_x16), FXP_Q4_ARGS(max_dpt_bpp_x16));
+>  		max_bpp_x16 = max_dpt_bpp_x16;
+> -- 
+> 2.39.5
+> 
