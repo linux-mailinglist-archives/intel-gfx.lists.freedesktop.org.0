@@ -2,40 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7344A26D8C
-	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2025 09:46:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BCE4BA26DA0
+	for <lists+intel-gfx@lfdr.de>; Tue,  4 Feb 2025 09:49:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7678810E5BE;
-	Tue,  4 Feb 2025 08:46:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5BDC910E5BC;
+	Tue,  4 Feb 2025 08:49:50 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZDrvs5np";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D720110E5BF;
- Tue,  4 Feb 2025 08:46:43 +0000 (UTC)
-Received: from 91-155-255-192.elisa-laajakaista.fi ([91.155.255.192]
- helo=[192.168.100.137])
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.97) (envelope-from <luca@coelho.fi>)
- id 1tfEZr-00000004V0L-3vs3; Tue, 04 Feb 2025 10:46:41 +0200
-Message-ID: <1b46838458692079e07251286f0b6ff388e2070d.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Gustavo Sousa <gustavo.sousa@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Cc: Luca Coelho <luciano.coelho@intel.com>
-Date: Tue, 04 Feb 2025 10:46:38 +0200
-In-Reply-To: <20250203205941.251754-1-gustavo.sousa@intel.com>
-References: <20250203205941.251754-1-gustavo.sousa@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.3-2 
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB6F710E5BC;
+ Tue,  4 Feb 2025 08:49:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1738658990; x=1770194990;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=kZzqGc1LnY/fxdK3ACY+VCzeVwq5RP92/94FaxxX1sQ=;
+ b=ZDrvs5npKLDcR+EywFq+xD6EXt8ajVsKfAwddMcQCIP2oAcCyL+IjxEp
+ yrEqHK4reaYire1UltrEJA5eEObBrPv798b8CP/gOIMa/tQSAmCYRn0jD
+ TEotjrI4xTlcTDaXFztSh3lLkFUcnsnGq8RiJ6g9Y6Z2MK/PULufYv6Or
+ pD11am9euWsT3+sNTJfmqklcUv52HOw7jTwgiNj4kR/td6H/eK6MuAZo8
+ 4GitX4E8A0ywfAAuy3CF49uLGbw1JomD6pcst0z0DkeDOSUUN2gsB/Hiy
+ 0sdKj+NzdaI46+ty5Us0uriaXd2iJxy6kpHWryKRLBMmM+H/F4ArzaHK1 Q==;
+X-CSE-ConnectionGUID: yBfrPAP+QWa7mtDMsPqp0Q==
+X-CSE-MsgGUID: 674Yy+vrQUq3rOc6iCwVxg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11335"; a="49787981"
+X-IronPort-AV: E=Sophos;i="6.13,258,1732608000"; d="scan'208";a="49787981"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2025 00:49:49 -0800
+X-CSE-ConnectionGUID: C1KdddvKQEa+HFjGTL2QwQ==
+X-CSE-MsgGUID: 48IWR3ocSAm0bO12+eOz6w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,258,1732608000"; d="scan'208";a="110708011"
+Received: from dprybysh-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.139])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2025 00:49:47 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: uma.shankar@intel.com, arun.r.murthy@intel.com, ben.kao@intel.com, Suraj
+ Kandpal <suraj.kandpal@intel.com>
+Subject: Re: [PATCH 5/7] drm/i915/backlight: Add function to change
+ brightness in NITS for VESA
+In-Reply-To: <20250124054631.1796456-6-suraj.kandpal@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250124054631.1796456-1-suraj.kandpal@intel.com>
+ <20250124054631.1796456-6-suraj.kandpal@intel.com>
+Date: Tue, 04 Feb 2025 10:49:44 +0200
+Message-ID: <87bjvi6qmv.fsf@intel.com>
 MIME-Version: 1.0
-X-Spam-Checker-Version: SpamAssassin 4.0.1-pre1 (2023-11-21) on
- farmhouse.coelho.fi
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
- TVD_RCVD_IP,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
- version=4.0.1-pre1
-Subject: Re: [PATCH] drm/i915/dmc_wl: Track INITIATE_PM_DMD_REQ for DC5
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,36 +72,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, 2025-02-03 at 17:58 -0300, Gustavo Sousa wrote:
-> The Bspec has been updated to include INITIATE_PM_DMD_REQ in the set of
-> register offsets that require the DMC wakelock for access during DC5.
-> Update our table accordingly.
->=20
-> Bspec: 71583
-> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+On Fri, 24 Jan 2025, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
+> Create a function that fills in the value for
+> PANEL_TARGET_LUMINANCE_VALUE which helps in changing the brightness in
+> NITS using VESA interface.
+>
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_dmc_wl.c | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gpu/dr=
-m/i915/display/intel_dmc_wl.c
-> index 43884740f8ea..86ba159b683c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-> @@ -102,6 +102,7 @@ static const struct intel_dmc_wl_range xe3lpd_dc5_dc6=
-_dmc_ranges[] =3D {
->  	{ .start =3D 0x42088 }, /* CHICKEN_MISC_3 */
->  	{ .start =3D 0x46160 }, /* CMTG_CLK_SEL */
->  	{ .start =3D 0x8f000, .end =3D 0x8ffff }, /* Main DMC registers */
-> +	{ .start =3D 0x45230 }, /* INITIATE_PM_DMD_REQ */
-> =20
->  	{},
->  };
+>  .../drm/i915/display/intel_dp_aux_backlight.c | 29 +++++++++++++++++++
+>  1 file changed, 29 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> index ac9a69fe3f10..d794397656dd 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> @@ -474,6 +474,30 @@ static u32 intel_dp_aux_vesa_get_backlight(struct intel_connector *connector, en
+>  	return connector->panel.backlight.level;
+>  }
+>  
+> +static int
+> +intel_dp_aux_vesa_set_nits_brightness(struct intel_connector *connector, u32 level)
 
-Matches the bspec.
+_set_luminance()?
 
-Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
+Troughout the series, I'd prefer "luminance" over "nits", i.e. measure
+over unit.
 
---
-Cheers,
-Luca.
+> +{
+> +	struct intel_dp *intel_dp = enc_to_intel_dp(connector->encoder);
+> +	u8 buf[3];
+> +	int ret;
+> +
+> +	level = level * 1000;
+> +	level &= 0xffffff;
+> +	buf[0] = (level & 0x0000ff);
+> +	buf[1] = (level & 0x00ff00) >> 8;
+> +	buf[2] = (level & 0xff0000) >> 16;
+> +
+> +	ret = drm_dp_dpcd_write(&intel_dp->aux, DP_EDP_PANEL_TARGET_LUMINANCE_VALUE, buf, sizeof(buf));
+> +	if (ret != sizeof(buf)) {
+> +		drm_err(intel_dp->aux.drm_dev,
+> +			"%s: Failed to VESA AUX Nits backlight level: %d\n",
+> +			intel_dp->aux.name, ret);
+> +		return -EINVAL;
+> +	} else {
+> +		return 0;
+> +	}
+> +}
+> +
+>  static void
+>  intel_dp_aux_vesa_set_backlight(const struct drm_connector_state *conn_state, u32 level)
+>  {
+> @@ -481,6 +505,11 @@ intel_dp_aux_vesa_set_backlight(const struct drm_connector_state *conn_state, u3
+>  	struct intel_panel *panel = &connector->panel;
+>  	struct intel_dp *intel_dp = enc_to_intel_dp(connector->encoder);
+>  
+> +	if (panel->backlight.edp.vesa.nits_support) {
+> +		if (!intel_dp_aux_vesa_set_nits_brightness(connector, level))
+> +			return;
+> +	}
+> +
+>  	if (!panel->backlight.edp.vesa.info.aux_set) {
+>  		const u32 pwm_level = intel_backlight_level_to_pwm(connector, level);
+
+-- 
+Jani Nikula, Intel
