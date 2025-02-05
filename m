@@ -2,72 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB3C7A28590
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2025 09:30:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F043A28595
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2025 09:31:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D75810E18C;
-	Wed,  5 Feb 2025 08:30:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32B9F10E08C;
+	Wed,  5 Feb 2025 08:31:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="stPNLe9H";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g+8nwJK0";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com
- [209.85.128.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4238110E08C
- for <intel-gfx@lists.freedesktop.org>; Wed,  5 Feb 2025 08:30:23 +0000 (UTC)
-Received: by mail-wm1-f41.google.com with SMTP id
- 5b1f17b1804b1-4361b6f9faeso3284415e9.1
- for <intel-gfx@lists.freedesktop.org>; Wed, 05 Feb 2025 00:30:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1738744221; x=1739349021; darn=lists.freedesktop.org;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=6LtisalJeGFYXyS5STnVd2MdEJAM5pbkFQFh55QG3IQ=;
- b=stPNLe9Hg03Q9Qk7WZ0XsQFb+8w1SXUW2bpI5t2p6pAh7JrN7wD2UZjipHwf3ft9fc
- u3qzQ7vfg3WPmoSTr0iaBSIf8uKV17YiE4wZRKfo23BKVHDnF9qtMgjXteD5WV7shB94
- kApDRmnjTw1UB7bvqYiN0uwLM0TC1ncfacZS34Fbr28PbT2Srkau9it/OfIU6qwPYpVL
- zNKqZgv+k+nkPa0FsOMcDNmT9zs4Dou9kQQdtR4BdL98XggxM8RKUicAgMLjI0/ycRAB
- RG7vk0HH2C3D+BS5xDKdwENGj94MybEjp+tOPOYmLRxxplKGAOp9clW/XSK+GFcJAdLq
- d+4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1738744221; x=1739349021;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=6LtisalJeGFYXyS5STnVd2MdEJAM5pbkFQFh55QG3IQ=;
- b=A7mdf0pX7G+g6K7V24FQHfnrqI5MNx+52qGS8aAk6qUQa8lAoM+hfbGxCBdfzmBFtW
- SRGITrr4CjPiRV3ZQE0yLZYowMEFsmuPppkv4DIPgfJ0iaBZujd9FuK79V3ucYntVFqN
- FZQWi044yyN6Ch7Xgj6uc7c0+f3OAISJscrYzrs5cK1VYXdTJnlylBqXSRSFGcHn+Efu
- coRYMsvclX9D+P8thABzSx7lWYt5tsV4VLO8/V8aFwBzdd0quNhjEBdZsbAkr35lhfnT
- iDGCKAKgr9cjHHDWMd2i8K8SrQ7GTGr8JOuHZns66GpbzBdW2TA8nUh6lyPvxRRdMOdt
- Q4oA==
-X-Gm-Message-State: AOJu0YxN5dLgszWgJ9YhnP/fcPqjUQjybtNCTJZ2KxeieQqK7agIJnI0
- Zto0snA+6Ie9OxEmG/e/nnOtxazLt48qjxhuuDfdTnL1Z94odMR1rbTpxjUmyKGk5PBEeOxkkFl
- F
-X-Gm-Gg: ASbGnctzrUCjklTcDQ8pvmHQiDzcrExSLnItj0lg7a2GRXK/uELjoLwrLk52rO0qWCj
- FwRnMyK0haFO5/zdhZTXoAp1sE2a3Ebwe3wMMELgpNfk9TURM/JHpTSBQRmc+QJqkpoLEaNalTf
- rKRT4F6YkILD3qwoHhUA980guCh/H32W+pigWcIeiESs6sbU9t66pWwUH0oJexGAUyTytY/ENMa
- SrAUPsbaJJ7/vtpj/u2oBDFIpqG8LW7y29sSGoqLnAzzRmJrcVEW/gvJyjqrpV53vlKn8tqnv2S
- MNhWJQ3T7UULTIAckvPV
-X-Google-Smtp-Source: AGHT+IG5awWwFNV8Dtn8n1JUX+K7nd4qV+dktqZCA6+UxgfofhjA5n4Szdj9T87dfG09jK3FfzG73Q==
-X-Received: by 2002:a05:600c:c87:b0:434:9e17:190c with SMTP id
- 5b1f17b1804b1-4390ce688f1mr12157525e9.0.1738744221549; 
- Wed, 05 Feb 2025 00:30:21 -0800 (PST)
-Received: from localhost ([196.207.164.177])
- by smtp.gmail.com with UTF8SMTPSA id
- 5b1f17b1804b1-4390d964c71sm13542465e9.18.2025.02.05.00.30.20
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 05 Feb 2025 00:30:21 -0800 (PST)
-Date: Wed, 5 Feb 2025 11:30:17 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D4CE210E08C;
+ Wed,  5 Feb 2025 08:31:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1738744287; x=1770280287;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=YM+9hSWXIhbThP0khTbqujDyo/YoJnfZ6HTXTyblXtU=;
+ b=g+8nwJK0x4mNvf/rnbi067hZLI2BMrPKTmRLhWS6AqkZn3OmjLrinuR0
+ awTj5LE31OaCLZFaHQABUUParHFkt4dYDsyoFyhy5EMciArTePND+6sFV
+ NfqVTPu9AF4BxrwbSby9aCtfBNIwk1yp8uEui95wre69je6DQOOrgDjDB
+ YydJ9a7YEXx2yguilxseZS9Dqk6+hQwE7FIq9Blpw789h0NuQ/7sTPzXX
+ JRjpQZjo00Lb0+DCyXf+jOLUsbJZ1GS9YGa9pH0piTQzalRBTkQCNTnjJ
+ DpPqDGc6gcJdvJ+qP7Wf5PDhlZZ4//auxM7DAno5i+2E3cxfs7PT8FQi9 Q==;
+X-CSE-ConnectionGUID: GeE6cx8ATpSWpjhbuSYG3Q==
+X-CSE-MsgGUID: 2PLcZTnlSlO/gNKWy0xeFQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="38505478"
+X-IronPort-AV: E=Sophos;i="6.13,260,1732608000"; d="scan'208";a="38505478"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2025 00:31:27 -0800
+X-CSE-ConnectionGUID: 2EVLE0AmSq6STooVDUwywg==
+X-CSE-MsgGUID: 3yeT6cdtT9OjjmbC9LjfVQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="141727350"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.217])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2025 00:31:25 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: I915-ci-infra@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org
-Subject: [bug report] drm/i915/dp: Get optimal link config to have best
- compressed bpp
-Message-ID: <6d13f0d4-9644-40eb-a0f4-71691ae93697@stanley.mountain>
+Subject: Re: =?utf-8?Q?=E2=9C=97?= i915.CI.BAT: failure for series starting
+ with [1/3]
+ drm/i915/display: convert intel_ddi_buf_trans.c to struct intel_display
+In-Reply-To: <173869320674.1009351.18173905047966742192@b555e5b46a47>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250204134228.2934744-1-jani.nikula@intel.com>
+ <173869320674.1009351.18173905047966742192@b555e5b46a47>
+Date: Wed, 05 Feb 2025 10:31:21 +0200
+Message-ID: <877c646bdy.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,60 +71,107 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hello Ankit Nautiyal,
+On Tue, 04 Feb 2025, Patchwork <patchwork@emeril.freedesktop.org> wrote:
+> == Series Details ==
+>
+> Series: series starting with [1/3] drm/i915/display: convert intel_ddi_buf_trans.c to struct intel_display
+> URL   : https://patchwork.freedesktop.org/series/144315/
+> State : failure
+>
+> == Summary ==
+>
+> CI Bug Log - changes from CI_DRM_16063 -> Patchwork_144315v1
+> ====================================================
+>
+> Summary
+> -------
+>
+>   **FAILURE**
+>
+>   Serious unknown changes coming with Patchwork_144315v1 absolutely need to be
+>   verified manually.
+>   
+>   If you think the reported changes have nothing to do with the changes
+>   introduced in Patchwork_144315v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+>   to document this new failure mode, which will reduce false positives in CI.
+>
+>   External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144315v1/index.html
+>
+> Participating hosts (43 -> 42)
+> ------------------------------
+>
+>   Missing    (1): fi-snb-2520m 
+>
+> Possible new issues
+> -------------------
+>
+>   Here are the unknown changes that may have been introduced in Patchwork_144315v1:
+>
+> ### IGT changes ###
+>
+> #### Possible regressions ####
+>
+>   * igt@i915_pm_rpm@module-reload:
+>     - bat-rpls-4:         [PASS][1] -> [FAIL][2]
+>    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16063/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
+>    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144315v1/bat-rpls-4/igt@i915_pm_rpm@module-reload.html
 
-Commit 1c56e9a39833 ("drm/i915/dp: Get optimal link config to have
-best compressed bpp") from Aug 17, 2023 (linux-next), leads to the
-following Smatch static checker warning:
+Please re-report. What's with the module reload now?
 
-	drivers/gpu/drm/i915/display/intel_dp.c:2481 intel_dp_dsc_compute_pipe_bpp_limits()
-	warn: always clamps to 24
+BR,
+Jani.
 
-drivers/gpu/drm/i915/display/intel_dp.c
-    2472 static void
-    2473 intel_dp_dsc_compute_pipe_bpp_limits(struct intel_dp *intel_dp,
-    2474                                      struct link_config_limits *limits)
-    2475 {
-    2476         struct intel_display *display = to_intel_display(intel_dp);
-    2477         int dsc_min_bpc = intel_dp_dsc_min_src_input_bpc();
-    2478         int dsc_max_bpc = intel_dp_dsc_max_src_input_bpc(display);
-    2479 
-    2480         limits->pipe.max_bpp = clamp(limits->pipe.max_bpp, dsc_min_bpc * 3, dsc_max_bpc * 3);
---> 2481         limits->pipe.min_bpp = clamp(limits->pipe.min_bpp, dsc_min_bpc * 3, dsc_max_bpc * 3);
-    2482 }
+>
+>   
+> Known issues
+> ------------
+>
+>   Here are the changes found in Patchwork_144315v1 that come from known issues:
+>
+> ### IGT changes ###
+>
+> #### Issues hit ####
+>
+>   * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
+>     - bat-dg2-11:         [PASS][3] -> [SKIP][4] ([i915#9197]) +3 other tests skip
+>    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16063/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+>    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144315v1/bat-dg2-11/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+>
+>   
+> #### Possible fixes ####
+>
+>   * igt@dmabuf@all-tests:
+>     - bat-apl-1:          [INCOMPLETE][5] ([i915#12904]) -> [PASS][6] +1 other test pass
+>    [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16063/bat-apl-1/igt@dmabuf@all-tests.html
+>    [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144315v1/bat-apl-1/igt@dmabuf@all-tests.html
+>
+>   * igt@i915_selftest@live@workarounds:
+>     - {bat-mtlp-9}:       [DMESG-FAIL][7] ([i915#12061]) -> [PASS][8] +1 other test pass
+>    [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16063/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+>    [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144315v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+>
+>   
+>   {name}: This element is suppressed. This means it is ignored when computing
+>           the status of the difference (SUCCESS, WARNING, or FAILURE).
+>
+>   [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+>   [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
+>   [i915#9197]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9197
+>
+>
+> Build changes
+> -------------
+>
+>   * Linux: CI_DRM_16063 -> Patchwork_144315v1
+>
+>   CI-20190529: 20190529
+>   CI_DRM_16063: 34f113e9fef546134e402e7657fc47e92fba59dc @ git://anongit.freedesktop.org/gfx-ci/linux
+>   IGT_8223: ccfe042787b082c06402ff9af257f8338b8edd5e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+>   Patchwork_144315v1: 34f113e9fef546134e402e7657fc47e92fba59dc @ git://anongit.freedesktop.org/gfx-ci/linux
+>
+> == Logs ==
+>
+> For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144315v1/index.html
 
-This is an unpublished static checker warning that complains about weird
-clamps() so it only just started showing up now.  The problem is a
-mismatch between intel_dp_min_bpp() and intel_dp_dsc_min_src_input_bpc().
-
-In intel_dp_min_bpp() it uses "6 * 3" but then that gets overwriten with
-"8 * 3" eventually.  The warning is that "6 * 3" might be pointless?
-I haven't followed the code totally, but it seems like potentially the
-checker is correct.
-
-drivers/gpu/drm/i915/display/intel_dp.c
-  1175  int intel_dp_min_bpp(enum intel_output_format output_format)
-  1176  {
-  1177          if (output_format == INTEL_OUTPUT_FORMAT_RGB)
-  1178                  return 6 * 3;
-                               ^^^^^
-Is this pointless?  Should we just always return "8 * 3" since
-that's what it's clamped to in the end?
-
-  1179          else
-  1180                  return 8 * 3;
-  1181  }
-
-drivers/gpu/drm/i915/display/intel_dp.c
-  2161  int intel_dp_dsc_min_src_input_bpc(void)
-  2162  {
-  2163          /* Min DSC Input BPC for ICL+ is 8 */
-  2164          return 8;
-
-This 8 becomes "8 * 3" in the caller.
-
-  2165  }
-
-regards,
-dan carpenter
-
+-- 
+Jani Nikula, Intel
