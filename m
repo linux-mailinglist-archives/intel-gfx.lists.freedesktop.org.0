@@ -2,26 +2,26 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A6DCA28A72
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2025 13:41:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3945DA28A75
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2025 13:41:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 13BDF10E2BD;
-	Wed,  5 Feb 2025 12:41:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D266E10E0CC;
+	Wed,  5 Feb 2025 12:41:10 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5207010E2BD;
- Wed,  5 Feb 2025 12:41:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C556410E792;
+ Wed,  5 Feb 2025 12:41:08 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_Expose_modifiers/for?=
- =?utf-8?q?mats_supported_by_async_flips_=28rev3=29?=
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_Expose_modifiers/formats?=
+ =?utf-8?q?_supported_by_async_flips_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Arun R Murthy" <arun.r.murthy@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 05 Feb 2025 12:41:06 -0000
-Message-ID: <173875926633.1419393.17872339290179471476@b555e5b46a47>
+Date: Wed, 05 Feb 2025 12:41:08 -0000
+Message-ID: <173875926880.1419393.3090705682929844827@b555e5b46a47>
 X-Patchwork-Hint: ignore
 References: <20250205-asyn-v4-0-9a5b018e359b@intel.com>
 In-Reply-To: <20250205-asyn-v4-0-9a5b018e359b@intel.com>
@@ -49,29 +49,8 @@ State : warning
 
 == Summary ==
 
-Error: dim checkpatch failed
-4b314a7da773 drm/plane: Add new plane property IN_FORMATS_ASYNC
--:99: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
-#99: FILE: include/drm/drm_plane.h:570:
-+					   uint32_t format, uint64_t modifier);
-
-total: 0 errors, 0 warnings, 1 checks, 63 lines checked
-a17169f68d28 drm/plane: modify create_in_formats to accommodate async
--:25: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
-#25: FILE: drivers/gpu/drm/drm_plane.c:197:
-+						 uint32_t format,
-
-total: 0 errors, 0 warnings, 1 checks, 70 lines checked
-0db53f5b101c drm/i915/display: Add i915 hook for format_mod_supported_async
--:21: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
-#21: FILE: drivers/gpu/drm/i915/display/skl_universal_plane.c:514:
- }
-+static bool intel_plane_async_formats(struct intel_plane *plane, uint32_t format)
-
--:40: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
-#40: FILE: drivers/gpu/drm/i915/display/skl_universal_plane.c:533:
-+						   uint32_t format,
-
-total: 0 errors, 0 warnings, 2 checks, 77 lines checked
+Error: dim sparse failed
+Sparse version: v0.6.2
+Fast mode used, each commit won't be checked separately.
 
 
