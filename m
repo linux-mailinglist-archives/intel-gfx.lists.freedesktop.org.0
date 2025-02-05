@@ -2,61 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A956A28C14
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2025 14:42:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43E4CA28C26
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2025 14:45:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C612410E7A8;
-	Wed,  5 Feb 2025 13:42:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD1CB10E7B2;
+	Wed,  5 Feb 2025 13:45:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZutzgINC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LmJIlo3n";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4163A10E7A8;
- Wed,  5 Feb 2025 13:42:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D607810E7B0;
+ Wed,  5 Feb 2025 13:45:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738762960; x=1770298960;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=mDqqFB/msnIQ4JsNFX+bAAq7mZdmimi2meljKcIlUbk=;
- b=ZutzgINCh1Xz2CTHKXDSiqg61+wOo01nAtGyZ361s8bLBAFaq0KgihoV
- xzZL6wDHT/SpMK/eeM0b9V5+MqkkXGPlnqwviE4ndOwzLY7YJan3tGPZo
- Kmm5Y+c4IQ1WpPmfiRmVHWeWeuJVnuTscwrpaG5Ylot5TJaOTPRdSlWGK
- 9Tb21LE7gY1KrVT9iCZADq2vVgXCmMKine7S4TtIwp0oZ3e9MRKOAfc4v
- q2XhDJW3RzijU5B6YqtwBWzFItkaGdIDVU9OHyk0HUjS/BwD0AU3zzwfx
- kQYSDj+bmnpf7qIvcGiZJM9xRTABalT+wdrLIhK/oLHTif7DtmGvzs+Db Q==;
-X-CSE-ConnectionGUID: 92h3KIGxQYykIwt3c8/FPQ==
-X-CSE-MsgGUID: 9Ewa36mWSKqXZgrwkw+r3w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="43079937"
-X-IronPort-AV: E=Sophos;i="6.13,261,1732608000"; d="scan'208";a="43079937"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2025 05:42:39 -0800
-X-CSE-ConnectionGUID: RE2VarWyToS/mzv3Sc73mw==
-X-CSE-MsgGUID: DDtkv27BRv2zzrCEm0d1qA==
+ t=1738763111; x=1770299111;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ mime-version:in-reply-to;
+ bh=EqX0YnxPZwpoVlMU7NXip1F6FwpdpOh3xO/dRhUcqdY=;
+ b=LmJIlo3nwZ4dbKU33d3Lwc1XzfYp+puiNxZ5OjDB4KC+0u4Ps2fTMmA7
+ 5TVGjunMy9Pd7kQLl0Cj/Xe5xKHyvjI1fjuUTaLDfXESyU30gplsI08z7
+ nruxM7MkYBZCR86s6R60+TQn/TJ6bXln0DXC9OYHx8OJ+mTzZ4siao86f
+ 5W9TdWQwpLhDz0uYttTLfqQFsPo9BXeX+CCTMKXUcEmyppbspj/xFq0Dm
+ UaCbTlcDrnzjgJgBlRqDlIWdAhg4KnRdXyEt6Vu/LEuiiozYuvg1ChCag
+ 0BbSm9PiSN5AkIEv12KDjRK8J5lgb+dFkDm96hRm14cyrPkyAX062sx/b A==;
+X-CSE-ConnectionGUID: zDs6AdkbTWew8s2iYstc3Q==
+X-CSE-MsgGUID: pcqpoptLRayPYAX3hyr/6A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="38559286"
+X-IronPort-AV: E=Sophos;i="6.13,261,1732608000"; d="scan'208";a="38559286"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2025 05:45:10 -0800
+X-CSE-ConnectionGUID: h7vxkS80RT+lq0lGj5/sTg==
+X-CSE-MsgGUID: P73DqTAFRc6w34bPIiDXQw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="141800763"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.217])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2025 05:42:37 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Saarinen, Jani" <jani.saarinen@intel.com>, "Deak, Imre"
- <imre.deak@intel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: RE: [PATCH] drm/i915/dp: Add support for DP UHBR SST DSC
-In-Reply-To: <DM8PR11MB5655FA7F16A60D9BB2FE2D01E0F42@DM8PR11MB5655.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250203160834.2708027-1-jani.nikula@intel.com>
- <Z6I93PkEez_WdgOM@ideak-desk.fi.intel.com> <87frkt64uy.fsf@intel.com>
- <DM8PR11MB5655FA7F16A60D9BB2FE2D01E0F42@DM8PR11MB5655.namprd11.prod.outlook.com>
-Date: Wed, 05 Feb 2025 15:42:34 +0200
-Message-ID: <87zfj033ud.fsf@intel.com>
+X-IronPort-AV: E=Sophos;i="6.13,261,1732608000"; d="scan'208";a="110808429"
+Received: from ideak-desk.fi.intel.com ([10.237.72.78])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2025 05:45:09 -0800
+Date: Wed, 5 Feb 2025 15:46:07 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 08/17] drm/i915/ddi: Move platform checks within
+ mtl_ddi_enable/disable_d2d_link()
+Message-ID: <Z6Nrn_GsmWLG_ruP@ideak-desk.fi.intel.com>
+References: <20250129200221.2508101-1-imre.deak@intel.com>
+ <20250129200221.2508101-9-imre.deak@intel.com>
+ <87lduk4l7f.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87lduk4l7f.fsf@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,128 +67,86 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 04 Feb 2025, "Saarinen, Jani" <jani.saarinen@intel.com> wrote:
-> Hi,
->
->> -----Original Message-----
->> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Jani
->> Nikula
->> Sent: Tuesday, 4 February 2025 18.40
->> To: Deak, Imre <imre.deak@intel.com>
->> Cc: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
->> Subject: Re: [PATCH] drm/i915/dp: Add support for DP UHBR SST DSC
->>
->> On Tue, 04 Feb 2025, Imre Deak <imre.deak@intel.com> wrote:
->> > On Mon, Feb 03, 2025 at 06:08:34PM +0200, Jani Nikula wrote:
->> >> Drop the UHBR limitation from DP SST DSC, and handle SST DSC
->> >> bandwidth computation for UHBR using
->> intel_dp_mtp_tu_compute_config().
->> >>
->> >> Cc: Imre Deak <imre.deak@intel.com>
->> >> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> >
->> > Reviewed-by: Imre Deak <imre.deak@intel.com>
->> >
->> > With the DPT bpp and bpp_step fixes on the list, this seems to work on
->> > a
->> > DP2.0 dock on (SST) UHBR link/DSC mode.
->>
->> \o/
->>
->> Thanks for the review and testing!
-> Awesome, thanks Jani N and Imre!
+On Wed, Feb 05, 2025 at 02:42:12PM +0200, Jani Nikula wrote:
+> On Wed, 29 Jan 2025, Imre Deak <imre.deak@intel.com> wrote:
+> > The prefix of the mtl_ddi_enable_d2d() / mtl_ddi_disable_d2d_link()
+> > names show already what are the relevant platforms, so the corresponding
+> > platform check is a detail that can be hidden in the functions, do so.
+> >
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> 
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> 
+> But unrelated bafflement below.
+> 
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_ddi.c | 9 +++++++--
+> >  1 file changed, 7 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > index d040558b5d029..07188606a0177 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > @@ -2545,6 +2545,9 @@ mtl_ddi_enable_d2d(struct intel_encoder *encoder)
+> >  	i915_reg_t reg;
+> >  	u32 set_bits, wait_bits;
+> >  
+> > +	if (DISPLAY_VER(dev_priv) < 14)
+> > +		return;
+> > +
+> >  	if (DISPLAY_VER(dev_priv) >= 20) {
+> >  		reg = DDI_BUF_CTL(port);
+> 
+> Unrelated to this patch, this seems weird. DDI_BUF_CTL for display
+> version 20+? 
 
-And pushed to din, thanks for the review!
+Yes, some DDI buffer control/status flags got shuffled around across
+different platforms. The D2D enabling flag was originally added on MTL
+in the new XELPDP_PORT_BUF_CTL1 register, then on LNL this same D2D
+enabling flag was moved (back) to the old DDI_BUF_CTL register. A
+similar shuffling happened with the DDI buffer (PHY) enabled _status_
+flag (vs. the DDI buffer enabled _control_ flag, which was not
+shuffled).
 
->
->> >
-> Br,
-> Jani
->> >> ---
->> >>  drivers/gpu/drm/i915/display/intel_dp.c | 35
->> >> +++++++++++++++++++------
->> >>  1 file changed, 27 insertions(+), 8 deletions(-)
->> >>
->> >> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
->> >> b/drivers/gpu/drm/i915/display/intel_dp.c
->> >> index cc6aba353c11..eb8f6806166c 100644
->> >> --- a/drivers/gpu/drm/i915/display/intel_dp.c
->> >> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->> >> @@ -1958,15 +1958,37 @@ static int dsc_compute_link_config(struct
->> intel_dp *intel_dp,
->> >>            for (lane_count = limits->min_lane_count;
->> >>                 lane_count <= limits->max_lane_count;
->> >>                 lane_count <<= 1) {
->> >> -                  if (!is_bw_sufficient_for_dsc_config(dsc_bpp_x16,
->> link_rate,
->> >> -                                                       lane_count,
->> adjusted_mode->clock,
->> >> -                                                       pipe_config-
->> >output_format,
->> >> -                                                       timeslots))
->> >> -                          continue;
->> >>
->> >> +                  /*
->> >> +                   * FIXME: intel_dp_mtp_tu_compute_config()
->> requires
->> >> +                   * ->lane_count and ->port_clock set before we know
->> >> +                   * they'll work. If we end up failing altogether,
->> >> +                   * they'll remain in crtc state. This shouldn't matter,
->> >> +                   * as we'd then bail out from compute config, but it's
->> >> +                   * just ugly.
->> >> +                   */
->> >>                    pipe_config->lane_count = lane_count;
->> >>                    pipe_config->port_clock = link_rate;
->> >>
->> >> +                  if (drm_dp_is_uhbr_rate(link_rate)) {
->> >> +                          int ret;
->> >> +
->> >> +                          ret =
->> intel_dp_mtp_tu_compute_config(intel_dp,
->> >> +
->> pipe_config,
->> >> +                                                               conn_state,
->> >> +
->> dsc_bpp_x16,
->> >> +
->> dsc_bpp_x16,
->> >> +                                                               0, true);
->> >> +                          if (ret)
->> >> +                                  continue;
->> >> +                  } else {
->> >> +                          if
->> (!is_bw_sufficient_for_dsc_config(dsc_bpp_x16, link_rate,
->> >> +                                                               lane_count,
->> adjusted_mode->clock,
->> >> +
->> pipe_config->output_format,
->> >> +                                                               timeslots))
->> >> +                                  continue;
->> >> +                  }
->> >> +
->> >>                    return 0;
->> >>            }
->> >>    }
->> >> @@ -2493,9 +2515,6 @@ intel_dp_compute_config_limits(struct intel_dp
->> *intel_dp,
->> >>    limits->min_rate = intel_dp_min_link_rate(intel_dp);
->> >>    limits->max_rate = intel_dp_max_link_rate(intel_dp);
->> >>
->> >> -  /* FIXME 128b/132b SST+DSC support missing */
->> >> -  if (!is_mst && dsc)
->> >> -          limits->max_rate = min(limits->max_rate, 810000);
->> >>    limits->min_rate = min(limits->min_rate, limits->max_rate);
->> >>
->> >>    limits->min_lane_count = intel_dp_min_lane_count(intel_dp);
->> >> --
->> >> 2.39.5
->> >>
->>
->> --
->> Jani Nikula, Intel
+> While XELPDP_PORT_BUF_CTL1() also has a check for >= 20.
 
--- 
-Jani Nikula, Intel
+Yes, flags other than the D2D enable control/status are in
+XELPDP_PORT_BUF_CTL1 reg for LNL+. So both MTL and LNL+ uses this
+register, but the mapping of the register for port A/B changed on LNL+.
+
+> 
+> >  		set_bits = XE2LPD_DDI_BUF_D2D_LINK_ENABLE;
+> > @@ -3035,6 +3038,9 @@ mtl_ddi_disable_d2d_link(struct intel_encoder *encoder)
+> >  	i915_reg_t reg;
+> >  	u32 clr_bits, wait_bits;
+> >  
+> > +	if (DISPLAY_VER(dev_priv) < 14)
+> > +		return;
+> > +
+> >  	if (DISPLAY_VER(dev_priv) >= 20) {
+> >  		reg = DDI_BUF_CTL(port);
+> >  		clr_bits = XE2LPD_DDI_BUF_D2D_LINK_ENABLE;
+> > @@ -3411,8 +3417,7 @@ static void intel_ddi_enable_hdmi(struct intel_atomic_state *state,
+> >  		hsw_prepare_hdmi_ddi_buffers(encoder, crtc_state);
+> >  
+> >  	/* e. Enable D2D Link for C10/C20 Phy */
+> > -	if (DISPLAY_VER(dev_priv) >= 14)
+> > -		mtl_ddi_enable_d2d(encoder);
+> > +	mtl_ddi_enable_d2d(encoder);
+> 
+> Why do we have mtl_ddi_enable_d2d() and mtl_ddi_disable_d2d_link(). It
+> just boggles my mind that the names mismatch.
+
+Yes, it's not consistent. I can include the
+s/mtl_ddi_disable_d2d_link/mtl_ddi_disable_ddi/
+change in this patch.
+
+> >  
+> >  	encoder->set_signal_levels(encoder, crtc_state);
+> 
+> -- 
+> Jani Nikula, Intel
