@@ -2,64 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25A59A286D3
-	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2025 10:40:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 65FDEA286DC
+	for <lists+intel-gfx@lfdr.de>; Wed,  5 Feb 2025 10:44:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BCDB10E775;
-	Wed,  5 Feb 2025 09:40:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F1CE10E0F1;
+	Wed,  5 Feb 2025 09:44:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VHoTzwIx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cfG24TXB";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E2F510E166;
- Wed,  5 Feb 2025 09:40:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4DE3810E0E0;
+ Wed,  5 Feb 2025 09:42:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738748445; x=1770284445;
+ t=1738748539; x=1770284539;
  h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=mEwbGfibmw+ecoKkS1GKTpaaZH6ghwjpip7FxUe/Q7c=;
- b=VHoTzwIxo+1Him0EwE0ws1ZvJ07HRZDO0l+iSD6YH8TDJ5lPDon6ZTCY
- DtqmHf9huCdCRFe99K67BbxB5Ay2eYxcGDo/OYRDElsXNNXH9S189B0L6
- H1NImE3XaMfPkOzcjWiMM1fcUrgmF9I1f46Dss98sO/R2/hfDCWGb1ieu
- 8RlRfDgepAe38siCIaUs3P2rjgV+HQF6Rlgk50eh1YpiDs9TZZt9x3Bsl
- wZj3kvNwUrgiB/Zj416ODX6AA068OSSBVedyF49OKNiLURQ6YCqVc5mWg
- u0pxFtqVyxCzvTM46BFBgL8un+nX+4OHzEG2mf0YsY6It5mZbsMrFc7Tr w==;
-X-CSE-ConnectionGUID: u/SIHsWxShyoSiXKeYbPUg==
-X-CSE-MsgGUID: JOnYGicYTkes3Ra5lSLn9A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="39205912"
-X-IronPort-AV: E=Sophos;i="6.13,261,1732608000"; d="scan'208";a="39205912"
+ bh=iJpv2+FFWqvzVQAgaWNewKsQPbVYLIjzlaWvCtSfM9g=;
+ b=cfG24TXBIiNwpDnDx9w5RJ6aSY+ef/Qf/Lk8/18AwnvvfTdJkFMCuZAK
+ jXz8e0oq4VUFZsrgIAYnkKcUoZc9zpmeRxjd3yKr2u1On3nvnmGI0Y90E
+ 2DEhLwM7AAvRZOWw83v+tZE3cnIqkjvb8/vSAFptYkb5XwEUxWyTovOIM
+ cr6rvc0c95KWy5+LTZsuNr+bobQ08Os+KJ4UxTdOFN+o+MZNao9CUJ9NY
+ uixDDceE6mTJJeWAHIhjwOQDPrGwWg6iZxig2QoCzOmERvJIix9RXHbdL
+ PCqrm3wVyiQ2kFL+1WGDkq4yhtaXn5Z3UU+f0eXurR+BSVsIazTFc+ene Q==;
+X-CSE-ConnectionGUID: r6AP6cWkSN2zuvMsKLwIpw==
+X-CSE-MsgGUID: t58OGm8xTqqMrZiQbHrV2w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="39206353"
+X-IronPort-AV: E=Sophos;i="6.13,261,1732608000"; d="scan'208";a="39206353"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2025 01:40:45 -0800
-X-CSE-ConnectionGUID: bj4uFwPdT3uEPdMBnxosfg==
-X-CSE-MsgGUID: svFhdoKsRcy8LdV7BTum2g==
+ 05 Feb 2025 01:42:18 -0800
+X-CSE-ConnectionGUID: 3jTothZ5QK2HSSJaiiNylg==
+X-CSE-MsgGUID: XGZzjKhwQ9SyptzWe/YVpA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,261,1732608000"; d="scan'208";a="110643706"
+X-IronPort-AV: E=Sophos;i="6.13,261,1732608000"; d="scan'208";a="110644235"
 Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
  by orviesa009.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 05 Feb 2025 01:40:46 -0800
+ 05 Feb 2025 01:42:19 -0800
 Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
  ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44; Wed, 5 Feb 2025 01:40:44 -0800
+ 15.1.2507.44; Wed, 5 Feb 2025 01:42:18 -0800
 Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
  orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.44 via Frontend Transport; Wed, 5 Feb 2025 01:40:44 -0800
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.40) by
+ 15.1.2507.44 via Frontend Transport; Wed, 5 Feb 2025 01:42:18 -0800
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (104.47.73.45) by
  edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Wed, 5 Feb 2025 01:40:43 -0800
+ 15.1.2507.44; Wed, 5 Feb 2025 01:42:17 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GBMBQ6owy2ElLCXDzjl1iAJvJQDpXVdll8fnLKOvo6H4IE7eAPTX8hqSN+QmiuDiNcVXAxco9kCAol8iVvYO/ly/SjxwHV9Q1+sT45k+zIq8jdMeWLArsIRRuHy7MYSXEzb+bwSWpniSBuhRTWeiBmkuuIBUSW4TQaI+/WXOX+qj9FsZ57QCKu0ylAoqIGaY49OPudGy9HmSDtp4yYtCqAEG+Laxi1nJ0a/Z8SYKWAqzGlU+N88f2/NVyvseA06+LfsjE9PnveIdBgfqE9H1bJjkSO4s3VjF5+nxboAfHyzV3LIyOxx71cQxYFr95Vy3ED/1XsXGMXiLgslUy9Tqug==
+ b=eHJuqn2Nq1DXtzmjJ8aBt+M2iIinorSLdPh/y/2yKOVHbOXg8WUqE4SFVo+WxnRaq8KpaRFhep8Iqs8u6NBSRkughSToU/w1rr/egGpysSaf8IY6cny0b2KgLImfHV8xqbrFfghNOp2SHeEAG8d+RkeDF0B7FmBazX4LoaGlJZ9vWQid+BuTnI6824KZ4coV6y4Caw0iCLehF7IBzjMPK70AEDHPDxwWzwArhwVkWMzj6D0BMWT97fYfJL7cXG/uEuRme0RPT9+D2pMYwr/GASnuqcUNXO7w56ZqKn39TP46T9g+bwmNBhobwxu6+nz1d4c3Ykah1Bv88HCo/KHc/g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vBHwuBw95X91Ft13AiWMK0BOVfTF5AZJASemndGVC1M=;
- b=nw0aSNZhBrUy02frdD/BPMRJqwy6AsaxOXHHfFP1rcCRgKPDwoSWsJHaRONIFBHKp0N4ejUyZIqW1JtgtCNq/ebRmBC5FZaxkM6aBs8LziLavYj1XASYzXIFeQkZEWlPemhjZ34mvRKpxfWe2KA6m8+EmMPnjpO1kwBeUCFMN4RUmnpCW7HTrYKztxUCIN6XoEAuidxItzve8DV4rx9z5UTqqpm6QBag7FRN0XtC453izWWfYVojJzJrv67EJcsV+tzrRAwJhIUvQMK0y8I9h9orYqEJlpdyFUdevyOeTwJNvmfC9CgpQKR2XLy3+ebkTImjQyNT0KKOnBqLgdKn8w==
+ bh=9usPaEglDx87ROUSNXby26YVSJRgWAT+Wre6xVipx88=;
+ b=qjXBgper4R4uLqms/fCQc2qhmGH4PTM4NatIWbJT3b2QzoZAoCfM3+4KwFUiIkAA0Qagvu9NZ4biOuEcXfP4Oa4frsKVHDfT0LQ3HX6RSk6LERAYxVBXbS7W7UeFUhTtFGYaLk/mTLqslN+jPaXAs9BCYiQ2MweHUQ/CHr5MQWBl4iXSo64XwO7tDr6cnVf22a7WnAZ7gm1oBuwaOmz6gdm1lw0AAgmwegJEoWvZT0a08ZnE5KAfA+xityBayb7DlEyq4CzQQWYrSdkPcX2o9alagWlzmkR4I+fucTBGnKVW0C/Ce1j95Mq1rl3ILQDMiElq+vEkQYdAjPj8qLC4xQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -67,11 +67,11 @@ Received: from SN7PR11MB6750.namprd11.prod.outlook.com (2603:10b6:806:266::21)
  by SA2PR11MB4953.namprd11.prod.outlook.com (2603:10b6:806:117::15)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8398.25; Wed, 5 Feb
- 2025 09:39:59 +0000
+ 2025 09:42:16 +0000
 Received: from SN7PR11MB6750.namprd11.prod.outlook.com
  ([fe80::9570:169d:a0d5:527]) by SN7PR11MB6750.namprd11.prod.outlook.com
  ([fe80::9570:169d:a0d5:527%3]) with mapi id 15.20.8422.010; Wed, 5 Feb 2025
- 09:39:59 +0000
+ 09:42:16 +0000
 From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
 To: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>,
  "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
@@ -80,16 +80,16 @@ CC: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>, "Syrjala, Ville"
  <ville.syrjala@intel.com>, "Reddy Guddati, Santhosh"
  <santhosh.reddy.guddati@intel.com>, "Saarinen, Jani"
  <jani.saarinen@intel.com>
-Subject: RE: [PATCH v6 4/7] drm/i915/xe3: update and store the plane damage
- clips
-Thread-Topic: [PATCH v6 4/7] drm/i915/xe3: update and store the plane damage
- clips
-Thread-Index: AQHbc1omfzLOu3uavki0bIAcdaas77M4fIvQ
-Date: Wed, 5 Feb 2025 09:39:59 +0000
-Message-ID: <SN7PR11MB67508AADD6C54A1B6CD7DB81E3F72@SN7PR11MB6750.namprd11.prod.outlook.com>
+Subject: RE: [PATCH v6 1/7] drm/i915/xe3: add register definitions for fbc
+ dirty rect support
+Thread-Topic: [PATCH v6 1/7] drm/i915/xe3: add register definitions for fbc
+ dirty rect support
+Thread-Index: AQHbc1oiC+2wv3udR0yfMra9Zp7NoLM4fYdQ
+Date: Wed, 5 Feb 2025 09:42:16 +0000
+Message-ID: <SN7PR11MB6750E1D8A589A5BE2169FEC4E3F72@SN7PR11MB6750.namprd11.prod.outlook.com>
 References: <20250130210027.591927-1-vinod.govindapillai@intel.com>
- <20250130210027.591927-5-vinod.govindapillai@intel.com>
-In-Reply-To: <20250130210027.591927-5-vinod.govindapillai@intel.com>
+ <20250130210027.591927-2-vinod.govindapillai@intel.com>
+In-Reply-To: <20250130210027.591927-2-vinod.govindapillai@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -98,79 +98,79 @@ authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
 x-ms-traffictypediagnostic: SN7PR11MB6750:EE_|SA2PR11MB4953:EE_
-x-ms-office365-filtering-correlation-id: 48c6d0f4-5cef-460d-7548-08dd45c90e89
+x-ms-office365-filtering-correlation-id: 9d4dfdb5-e3d1-4a73-28f6-08dd45c96048
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
  ARA:13230040|376014|1800799024|366016|38070700018|7053199007; 
-x-microsoft-antispam-message-info: =?us-ascii?Q?xCxcOqdM/nUSOEDF8Xfm+t1BMEdJxNSqWVMMAl9vDdCmiY1C8fdSExSeVIYZ?=
- =?us-ascii?Q?6GG3+XgPHoL+KAaJaDC45V4fviJF3g966JziRZQcIwEoMVH5ipNOtDhe+PGw?=
- =?us-ascii?Q?kRODIFN60XSyYutgNKxnQkjqa2aEhDl5/wRNkAgZZbkQpm4GjYVuJbHzVq/B?=
- =?us-ascii?Q?RqDzgy+ADcIWy8bSl6gl3kw/OUBBMzaGbIpf+qSu2l4H/4teknEYpGBrlOBQ?=
- =?us-ascii?Q?pGgMtrp4d7MLg0DYMwIpG8YUIkyfkmjByqqf0Vxa0qkhnJa2DgzQqAZ93GPG?=
- =?us-ascii?Q?XNWdvIWt4LOa6QtMaEaYc4RRg/NFOJRbRPzX+c2XSqS8WOQRW4dDadbEFEzq?=
- =?us-ascii?Q?Tvcdljbq2IWyuBLpv1nSadjnvcbFQKz+g6EFB56ThShHOeh8TwInMf8NUtIl?=
- =?us-ascii?Q?lWH5L6az80WtE0LX8KCgeMQakgLHIh8RcBG+eRBr2kxn3byUCOU8aQm6+1PA?=
- =?us-ascii?Q?8SgLctVjVSClS228mAY9sgSwI+mRu56n8BFHW76w6u4zye9RNlxUVgs/vFc3?=
- =?us-ascii?Q?DJnhYrASCUH2BiczZxe44ivj1Bg8w1WpNoczsg89tzZyD5FMmg8h9yysHLX6?=
- =?us-ascii?Q?R/VKACz8bGoJq1HZcucYf6kD/LrrC7hcWuDR1Z0lG2ju4jw+y5r18TV3jWJU?=
- =?us-ascii?Q?Zwi+6HceBGAyLUx0d1Vo/2/ks2ijbP6OdFUd2yHYdR/KmasQnppIeDKZXCOS?=
- =?us-ascii?Q?Jo9R4mSCJbfWm5CncXClhePiuXaiiIPxzrSgpw7cy6E1Ops1TQzh3cStxPu4?=
- =?us-ascii?Q?PyHMREpTAVOa+AwzNhMSBucbzH9V0rQx9yDQtbxMmd3b/VBzDB3yFV9ECtAM?=
- =?us-ascii?Q?v1lQCgcgStD1yyvjz1D49LYHZTo7tTMRJfZIedbJ8TcWoh74g76jenSm9ZSM?=
- =?us-ascii?Q?2rfmCKEp6vOOtFUVHlyJ+aLga47nWe1/0J3g0CB1uVNpWSRT+fRrN7HzSppb?=
- =?us-ascii?Q?XZqh1kRYbkFu01p1VvWNoTMOR30CL+R2a5Nc4fWDEVjehejz4rhKDUISIVh3?=
- =?us-ascii?Q?lll8bmPlJ2tSKYH3oWSilMM0kZwgvDWjGZr458maTbyNrfjtQ4ZoHn67d47P?=
- =?us-ascii?Q?wK17S/PRPlUsOMpLWVP4pzfanFQ3Ss0bA+ks4tbK/wc4IFQUH0BGLwDAt2Ds?=
- =?us-ascii?Q?2rO/b7J/gAt4trfYHqAFa01l7tA5QrYqdMSAuE+tozT1eOvZQtmTcuwNbrfu?=
- =?us-ascii?Q?Cx2fL++AG+poU7qJKozDIvK5V+ligMNgLfmd+NdstyKwCUfQN5j3fnFi1vrU?=
- =?us-ascii?Q?C4merRTKFeunJqmco/d9g4j8ppZY2vgUIAKHgzdesrzaPo4Xw7a/iRVQI8eQ?=
- =?us-ascii?Q?zvVUjdlXWzqrtVQj3S9fePF5qIwKYj2vLo7Yqm0foY7pNDpBnf0bKApWiZNs?=
- =?us-ascii?Q?De+YdXb34pvWDbTKjPyfAuvJImwe/urzgMHI5RXoyTdtbmXBGqMPEOSOehnx?=
- =?us-ascii?Q?NJ1wyOe5yzGV8XgKDNZEvdEbENKwVcDO?=
+x-microsoft-antispam-message-info: =?us-ascii?Q?WHAc3dUxjcF8LSWWXwTfjMjGbAxcxG9D2JtERKlpLEptgLdtpyCeZfodojaG?=
+ =?us-ascii?Q?9DaFwVK23gKLGiPreiT1REVJ8uyiHDZLKBH1kslYY46DhyXYmYMovUiNaJGU?=
+ =?us-ascii?Q?jeAUolvvIqZXleyDA/3NqWYKhOGlf5WIdbZz+LXqi+eIbrIXWMyX0szPUNoC?=
+ =?us-ascii?Q?Z1bd+7Ytoi+IEaqoOfseQLDgcDsFCZ4xTp0Z/kVHMSnJXCCJLL7S3Q2PdnfL?=
+ =?us-ascii?Q?5TKU/84bbYwbGjTVn/lIdgdv9KL95XHSkefGE9fPLHYNt1ZudlOzg2BQLEK3?=
+ =?us-ascii?Q?G2RFUyp8U6/YoJVr9oH1xsV3FWlwOE/KHIV+hCTS7LqUErZpQtWCrSwm1m0d?=
+ =?us-ascii?Q?vzeym0WAbYIDCzRAui7QpY95o5l/8SZnasWST3e/zZOEbM6E59yRpXqHOGlq?=
+ =?us-ascii?Q?N9sNObF2WLrRTmcZoJON1j6EmP+qiNxnLe/IHnrHeZUbBrKAsqKP+3BQn0x6?=
+ =?us-ascii?Q?pRxXwSHlkohUOiebynaQh+4qrrxbZZLLGRwDONqctfC5n6JjZjSrFXjIsOE1?=
+ =?us-ascii?Q?pI/pXwzOwo4b866Gy73x8ts74+n4nAYJR+10ebAOn05Av6R3azy5Xyyrd46m?=
+ =?us-ascii?Q?lvny/Rf6r2hQihgxDooWDdxX3e6GzL4TyUEOQWPGXKWfd1SZCD7X7MUFv5l/?=
+ =?us-ascii?Q?ahT9EBEsCZ+wHdNa8QVJgOHWadg66kYCZXBHtCEB8SJJ3s3vTWE9aw1uuEjl?=
+ =?us-ascii?Q?DRPZPO79NPVyTx2bU7ITdyql/pamGUbDvFW2h4GBtJ3pPppk/2sDpeviq+bT?=
+ =?us-ascii?Q?W6M3BiIx65GTlq6nAtC9J53yHAJLXSd65zBpWq9Ypsg4dSAA+h2iFvRSJ9QB?=
+ =?us-ascii?Q?5CqeIEhTmG5UWx/hmsV9pB/8IYZlC3xLkSqsFNiBftoLIC0pZSQa2tFN5poW?=
+ =?us-ascii?Q?9Zzsky3cnqd+WvSweburYrKSk/hudgNjCXu8yA2jdzWhEfpj8bHnZyORXmek?=
+ =?us-ascii?Q?rfz+IOD+BLP9olafLWyvtDkgW5qgDOdMI9GctlmWKQwcAuB17YnwDhVihzTz?=
+ =?us-ascii?Q?gOiuJK/ZAwIs9SVMLis6Bo+uxahYixDvrexi3WyqgKGNXcGnhDunvMkCjDzq?=
+ =?us-ascii?Q?IHWJbhlhuXODGpxzTUPm9thS07AeE5tHdlpivy1Aggzoq8pnxYTqoqk2njhl?=
+ =?us-ascii?Q?B2WVkYTgLyqGYokk4wnVaiJkFDUN3tWiZfbc6Zk+8q0LicI5WYpEqrXYPGxm?=
+ =?us-ascii?Q?v4AjmUWaxM2NjKMipvoTAqcAPFHcGl53DJxxIaCYGgOClJPFlaOcOk4Kl/HI?=
+ =?us-ascii?Q?g6gwwnG3zklQSyA3ws6KQKCOHMNo48OIm3KeblRJSWy7LbMzVVaS23rY/gCO?=
+ =?us-ascii?Q?/q2E223C6t+ceMk6/ruLWkO5msaU3l2foafi73/klumbGwobNIg4Ts05i4sA?=
+ =?us-ascii?Q?3/A+p68xoD/6QPP/P7TBX2ngLYGweEEzAgCsQNrnvuLMPVTEhABT+EaJIu6q?=
+ =?us-ascii?Q?LXE4wZO25wbA3iixVWclp00yvyku3Jas?=
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SN7PR11MB6750.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(376014)(1800799024)(366016)(38070700018)(7053199007); DIR:OUT;
  SFP:1101; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?zdfp/6gKP3yJfMW4CN1emVI4scSsp33gJs5CBas19rO0VWocKwtV+T276edW?=
- =?us-ascii?Q?bdaKsmCC3HfaqoN0l2QBJI9sGvIXJf8y309R12sB2m5xHkbzQG3qFpXmBo0J?=
- =?us-ascii?Q?OJF9k/t1vFbxC6icDAYCPfSp3bDlPcGJPkdjcHRRhfcDP5QB4XYPXmf2tpDy?=
- =?us-ascii?Q?iEHCvLzw1A0dRlRZaTvHrpUcreDuNnvcYl+70CNvN0IYGKrvsM+47f02bCZj?=
- =?us-ascii?Q?VIe/DbFfPED4yb5/E9E/BV7VUkLapLLsmpvamfaFY7k6LZjXta1GKOK7NDA4?=
- =?us-ascii?Q?dBXOmuWqp48UCMrIUPL/xF3B6NbZZSU0ZAxb5pkgg4X5o559nWcubpZicM42?=
- =?us-ascii?Q?ma6se8xn/RHy0skqeEIEVlJbGtOEC4zmRxWYWnywXndLLChverQ2BaNHLSwJ?=
- =?us-ascii?Q?uUGSyeIsHPc1vqK+39mzeRmvxXUyZBbn1VKbqf9cYrzxTV8qFzA56oEK47PP?=
- =?us-ascii?Q?W88EXbj7ciBo06mlm9Wtk4r8DTHMqdV7Cwv5K/PnFNl7PfvYZDT6LqGDbxhS?=
- =?us-ascii?Q?NUWgkgunsh0xzMMZDPT5aXdctlaZ57r91+MTKmp1DvqUH2HMMSJILXtG6kpF?=
- =?us-ascii?Q?eODrievH/STgKXo+sd3dS6B6UC34rdROUiVo+tVNvQixeDoOoZJXAzJMAQRf?=
- =?us-ascii?Q?ChxyyCi9C6xwyE1TDEHszho43o2Yi/qmz5PZ5zPbRykfLo2UKqRQ9C27a5SB?=
- =?us-ascii?Q?EbIxPbtxRLi3pZeWQSVEE+oK4C7PIuzVUm1W8jogVE6zPYlimkoM5UwGyc2n?=
- =?us-ascii?Q?pTO8LeT+a6XuAw72UYn9w6WRsDictq4l288CoDsWKXsxrd4ITalcWwAeUdzX?=
- =?us-ascii?Q?mdDXQVyJD2QPAmpdpD94DzVEmVZUVY8eCK3IjIYEOu1frU9JIn+THtfKXmDS?=
- =?us-ascii?Q?paJ+8jIZTj2wo4gitTnPSXrHlKyDvJOUX2OwNSplAPCXRAlzx3rb1v7C1eXV?=
- =?us-ascii?Q?9mmo+6XnxH0UxaihgckRnbBboy7HTV/Zhq/q2I27dDBkuzyytabeJNZAzj8G?=
- =?us-ascii?Q?Asy8H/h63/TZjCWq6uHaJTBG+FPmIMk3E5jagesW90PPAyf4cr8jGwRODB7S?=
- =?us-ascii?Q?WarrIw3iCwIeW5AM/HNg0it8Vy293BwF8ogP++qSS2pjFVEUMLEPNNWgx+XO?=
- =?us-ascii?Q?p+87AOKKef4UKcnE5cNm6d8LfYmBt/k5iQdBdUP247irY6ix7HLW7iPIbxNX?=
- =?us-ascii?Q?PdZZ2XzabQHJDeduL2oZcor3pfeG3JBaE6deK80uunbJlyZc7YAnBEVu60m9?=
- =?us-ascii?Q?okaBN7C8gLzV1cq1kEMip2wBDSZnpoZdbSvc0hBTxdzM0Gfw7pZFrYuysINP?=
- =?us-ascii?Q?7rHd2B8QWhyIc1BQalAkbU0ueKxsvTs9ujzsktP/m6otkURIXvbIAafz9hjI?=
- =?us-ascii?Q?dCOj0di8630Ca41X3oaic9J9jEk7IRYXR7rmUw6aGRYZ7sPzoCU9h0hYhud0?=
- =?us-ascii?Q?4m7ejVVtWPqGGxaGQvJMCgJJTOcNDrsA8TCEy/yG79DOyzoRJBasQlrA3dhn?=
- =?us-ascii?Q?RmS9vhh25vIQ5KWSbhKAngpdR+DJFc7XPe3K5bfXfWTNFHk0EpDSRmRFVTA8?=
- =?us-ascii?Q?uooOCLykO8mFOLYofyIRrgPnnUKx33kcWcC6D5bU?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?C2v+ro0ogDZdqrJ6DhfGrm0Gvp61dmkfrIZr9RS85Vi0uHN3Af6Z84u3mrn+?=
+ =?us-ascii?Q?2zX5P7K1UIKLj5PIIx43AILCxZaqJj04gSJrIO6FCgzFh9G7ce+uwcZcJubT?=
+ =?us-ascii?Q?ZhWQv+8oMzXwHRfWga7q3hpTtSFcpdlbfNnpRckHaLwcCt/lLw5sbElM6oWr?=
+ =?us-ascii?Q?upzZaMjJF/9XLKXGuAm67KRHlCBwrDfdXkPddL0Q/7N2VU1y1Sf5a/6GtMKA?=
+ =?us-ascii?Q?BG1kocoilv0Rmfh8CbjvMXIBp+Baw9YMKgFEf7n3BTzhZ6JKerGWJvtPlhp0?=
+ =?us-ascii?Q?iO79mEb1QtGxrFUr96DJhf4tPZ/a3W6pO6C8/ZC7DrbbKaOXHTmar96a0Ib9?=
+ =?us-ascii?Q?rr8zoREByrZ+tiEKNtBXpibm2VDiuyAaYwlY2NpECAEQCsdAWKg6l6tp786B?=
+ =?us-ascii?Q?ltLzfVg9hVQh8k+mjkaV3p4AkOvhG+JdYHiFnEFlAz2Cj4xWf+VZn9xLRKI3?=
+ =?us-ascii?Q?NXvHFhK/xHc6D+GmDU7mwrT+WuRfciF4o/CDQoG08e87Eecl6inUyJFA197z?=
+ =?us-ascii?Q?x2t9V3qWGyjTI2Bx67j317dnCN3cD8KNqootjV4OUTa6OhWFidlSFHcXrCX4?=
+ =?us-ascii?Q?4pfEOmMlk5C+dVi4+sTqbPo4sHtb7eCCWGm9B5v2Af7VkqGt9PyX/ZlXXZyf?=
+ =?us-ascii?Q?ZGEbKz+KncpZeMo7ufC4R+VhvbSi2FzSG0REKGAaA87Z2I6gMfv/Fw2LG9Tr?=
+ =?us-ascii?Q?VAlO+Z8O3F4+T+3RbUls+PlYaCMKYpHvvFahntKY5KIYuzDkjQ1X+Wc/zPeM?=
+ =?us-ascii?Q?eA9G8qRaVX6CzqKcOvjDGa3xh3nwrh6dCGgZsQr4x6XFY55zq9JeSVE2qCUV?=
+ =?us-ascii?Q?+k4wgvKjkPYmhp2hyMlMp4GuyRkdeqpsLNCaDWHb6/wweCWR6CN/B+AK8ZC8?=
+ =?us-ascii?Q?7gYeX8ExQDs/a2nhRPlc7e4ZtwG9GcF3QXGsIJa/Dp31N38xBSFtDGlDLS9U?=
+ =?us-ascii?Q?9WKdneNE6xJGsRGurmN+cxvBjSR+nf4UJOSg/1Z9g5vqXvgQH0z6fC9lYhEC?=
+ =?us-ascii?Q?Gco+mGra3pmlEqxGUaHzJeyBS4n7U2zAkj/th50a5GfgSFR2pJEUi4MoiLaM?=
+ =?us-ascii?Q?0e3pocYqthPb3ZxQ/0gsiVCPFOmOLNOHFwIF+XJPFx2uWysbHFRmuoYiDDRf?=
+ =?us-ascii?Q?DAcmxc27PWX9F4QcfEekDDFyCGC58/NLVZPJb3gO3qgoA5MlneJ9mx7WKjWV?=
+ =?us-ascii?Q?GmdZKUPz1YkwWkUIa6HdAy6JmwfvPvLJOYoajDaKR+gQE05R0MziNdKLjU9q?=
+ =?us-ascii?Q?/wU8R+zP4M2ZZ41N7K8G+SIckrpSbs9V25pfBmuxHUgxWrVKwkPFUJJOsX/l?=
+ =?us-ascii?Q?4UmR0+xLYG+pGEoC+5NodtGe4Rx4A63lRd+ckOB4J+ezb7k+yaXLIJxh24RR?=
+ =?us-ascii?Q?5p+6Belk9iM6gJRN0FRvO2dGUvZcLK9ahBuovTE9lH6HQXgsDQBtlANW4/8M?=
+ =?us-ascii?Q?gOc9l2bELsvnSr/Ylcmz0DoPDmmN/6CLuoD8B2SOaIN3CjM0s1D7HFJfduOE?=
+ =?us-ascii?Q?NqhOve5Ud+M4sMYaqZDFlhjez8ko8ojDRyRtOmbqN6YFR7+6LDKMIjDbNTh3?=
+ =?us-ascii?Q?/ugi0foYS2d+SdLCkCoXHDAovEJE95rH5igRz5bb?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB6750.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 48c6d0f4-5cef-460d-7548-08dd45c90e89
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Feb 2025 09:39:59.0569 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9d4dfdb5-e3d1-4a73-28f6-08dd45c96048
+X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Feb 2025 09:42:16.2121 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: kjO3bC/WtO3LSTRACWRuYucEwJBjex75DODms1HwpMEAGBEzMsc52L/iUF4yvaionW0GSZbYmkOuI6A94oMZqQ==
+X-MS-Exchange-CrossTenant-userprincipalname: w7CqqBpk20o5F2ccWu5LOyXmH7aqsUr23yfiIls74sJXNNUkgXD1wQ7H06WbQUE7L02rq1IiObAeKttBLXb4hA==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4953
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -191,8 +191,8 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 
 > -----Original Message-----
-> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Vino=
-d
+> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of Vi=
+nod
 > Govindapillai
 > Sent: Friday, January 31, 2025 2:30 AM
 > To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
@@ -200,229 +200,50 @@ d
 > <ville.syrjala@intel.com>; Reddy Guddati, Santhosh
 > <santhosh.reddy.guddati@intel.com>; Saarinen, Jani
 > <jani.saarinen@intel.com>
-> Subject: [PATCH v6 4/7] drm/i915/xe3: update and store the plane damage
-> clips
+> Subject: [PATCH v6 1/7] drm/i915/xe3: add register definitions for fbc di=
+rty
+> rect support
 >=20
-> Userspace can pass damage area clips per plane to track changes in a plan=
-e
-> and some display components can utilze these damage clips for efficiently
-> handling use cases like FBC, PSR etc. A merged damage area is generated a=
-nd
-> its coordinates are updated relative to viewport and HW and stored in the
-> plane_state. This merged damage areas will be used for FBC dirty rect sup=
-port
-> in xe3 in the follow-up patch.
+> Register definitions for FBC dirty rect support
 >=20
-> Big thanks to Ville Syrjala for his contribuitions in shaping up of this =
-series.
->=20
-> v1: - Move damage_merged helper to cover bigjoiner case and use
->     the correct plane state for damage find helper (Ville)
->     - Damage handling code under HAS_FBC_DIRTY_RECT() so the
->     the related part will be executed only for xe3+
->     - Changed dev_priv to i915 in one of the functions
->=20
+> Bspec: 71675, 73424
+
+Add the reference for 69003 for FBC instances
+Otherwise LGTM,
+Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+
 > Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
 > ---
->  .../gpu/drm/i915/display/intel_atomic_plane.c | 28 ++++++++++++
->  .../drm/i915/display/intel_display_types.h    |  2 +
->  .../drm/i915/display/skl_universal_plane.c    | 45 +++++++++++++++++--
->  3 files changed, 71 insertions(+), 4 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_fbc_regs.h | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 >=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> index c558143f4f82..f55f7044dc67 100644
-> --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-> @@ -36,6 +36,7 @@
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbc_regs.h
+> b/drivers/gpu/drm/i915/display/intel_fbc_regs.h
+> index ae0699c3c2fe..b1d0161a3196 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbc_regs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_fbc_regs.h
+> @@ -100,6 +100,15 @@
+>  #define   FBC_STRIDE_MASK	REG_GENMASK(14, 0)
+>  #define   FBC_STRIDE(x)		REG_FIELD_PREP(FBC_STRIDE_MASK,
+> (x))
 >=20
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_blend.h>
-> +#include <drm/drm_damage_helper.h>
->  #include <drm/drm_fourcc.h>
->  #include <drm/drm_gem.h>
->  #include <drm/drm_gem_atomic_helper.h>
-> @@ -322,6 +323,25 @@ static void intel_plane_clear_hw_state(struct
-> intel_plane_state *plane_state)
->  	memset(&plane_state->hw, 0, sizeof(plane_state->hw));  }
->=20
-> +static void
-> +intel_plane_check_plane_damage(struct intel_plane_state
-> *new_plane_state,
-> +			       const struct intel_plane_state
-> *old_primary_plane_state,
-> +			       const struct intel_plane_state
-> *new_primary_plane_state) {
-> +	struct intel_display *display =3D to_intel_display(new_plane_state);
-> +	struct drm_rect *damage_merged =3D &new_plane_state-
-> >damage_merged;
+> +#define XE3_FBC_DIRTY_RECT(fbc_id)	_MMIO_PIPE((fbc_id), 0x43230,
+> 0x43270)
+> +#define   FBC_DIRTY_RECT_END_LINE_MASK		REG_GENMASK(31,
+> 16)
+> +#define   FBC_DIRTY_RECT_END_LINE(val)
+> 	REG_FIELD_PREP(FBC_DIRTY_RECT_END_LINE_MASK, (val))
+> +#define   FBC_DIRTY_RECT_START_LINE_MASK	REG_GENMASK(15, 0)
+> +#define   FBC_DIRTY_RECT_START_LINE(val)
+> 	REG_FIELD_PREP(FBC_DIRTY_RECT_START_LINE_MASK, (val))
 > +
-> +	if (!HAS_FBC_DIRTY_RECT(display))
-> +		return;
+> +#define XE3_FBC_DIRTY_CTL(fbc_id)	_MMIO_PIPE((fbc_id), 0x43234,
+> 0x43274)
+> +#define   FBC_DIRTY_RECT_EN		REG_BIT(31)
 > +
-> +	if (!drm_atomic_helper_damage_merged(&old_primary_plane_state-
-> >uapi,
-> +					     &new_primary_plane_state->uapi,
-> +					     damage_merged))
-> +		/* Incase helper fails, mark whole plane region as damage */
-> +		*damage_merged =3D
-> +			drm_plane_state_src(&new_primary_plane_state-
-> >uapi);
-> +}
-> +
->  void intel_plane_copy_uapi_to_hw_state(struct intel_plane_state
-> *plane_state,
->  				       const struct intel_plane_state
-> *from_plane_state,
->  				       struct intel_crtc *crtc)
-> @@ -691,6 +711,7 @@ int intel_plane_atomic_check(struct
-> intel_atomic_state *state,
->  	const struct intel_plane_state *old_plane_state =3D
->  		intel_atomic_get_old_plane_state(state, plane);
->  	const struct intel_plane_state *new_primary_crtc_plane_state;
-> +	const struct intel_plane_state *old_primary_crtc_plane_state;
->  	struct intel_crtc *crtc =3D intel_crtc_for_pipe(display, plane->pipe);
->  	const struct intel_crtc_state *old_crtc_state =3D
->  		intel_atomic_get_old_crtc_state(state, crtc); @@ -705,10
-> +726,17 @@ int intel_plane_atomic_check(struct intel_atomic_state *state,
->=20
->  		new_primary_crtc_plane_state =3D
->  			intel_atomic_get_new_plane_state(state,
-> primary_crtc_plane);
-> +		old_primary_crtc_plane_state =3D
-> +			intel_atomic_get_old_plane_state(state,
-> primary_crtc_plane);
->  	} else {
->  		new_primary_crtc_plane_state =3D new_plane_state;
-> +		old_primary_crtc_plane_state =3D old_plane_state;
->  	}
->=20
-> +	intel_plane_check_plane_damage(new_plane_state,
-> +				       old_primary_crtc_plane_state,
-> +				       new_primary_crtc_plane_state);
-> +
->  	intel_plane_copy_uapi_to_hw_state(new_plane_state,
->  					  new_primary_crtc_plane_state,
->  					  crtc);
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
-> b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index cb51b7936f93..8d53bcca9614 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -695,6 +695,8 @@ struct intel_plane_state {
->  	u64 ccval;
->=20
->  	const char *no_fbc_reason;
-> +
-> +	struct drm_rect damage_merged;
->  };
->=20
->  struct intel_initial_plane_config {
-> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> index 301ad3a22c4c..b90a7d52c071 100644
-> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> @@ -2249,11 +2249,42 @@ static void check_protection(struct
-> intel_plane_state *plane_state)
->  		!plane_state->decrypt;
->  }
->=20
-> +static void
-> +skl_plane_check_damage_with_viewport(struct intel_plane_state
-> +*plane_state) {
-> +	struct drm_rect *damage_merged =3D &plane_state->damage_merged;
-> +	const struct drm_framebuffer *fb =3D plane_state->hw.fb;
-> +	unsigned int rotation =3D plane_state->hw.rotation;
-> +	struct drm_rect *src =3D &plane_state->uapi.src;
-> +
-> +	if (drm_rotation_90_or_270(rotation)) {
-> +		drm_rect_rotate(damage_merged, fb->width, fb->height,
-> +				DRM_MODE_ROTATE_270);
-> +		drm_rect_translate(damage_merged, -(src->y1 >> 16),
-> +				   -(src->x1 >> 16));
-> +	} else {
-> +		drm_rect_translate(damage_merged, -(src->x1 >> 16),
-> +				   -(src->y1 >> 16));
-> +	}
-> +}
-> +
-> +static void
-> +skl_plane_check_damage_with_plane_surf(struct intel_plane_state
-> +*plane_state) {
-> +	struct drm_rect *damage_merged =3D &plane_state->damage_merged;
-> +	struct drm_rect src;
-> +
-> +	drm_rect_fp_to_int(&src, &plane_state->uapi.src);
-> +	drm_rect_translate(damage_merged, src.x1, src.y1);
-> +	drm_rect_intersect(damage_merged, &src); }
-> +
->  static int skl_plane_check(struct intel_crtc_state *crtc_state,
->  			   struct intel_plane_state *plane_state)  {
-> +	struct intel_display *display =3D to_intel_display(crtc_state);
->  	struct intel_plane *plane =3D to_intel_plane(plane_state->uapi.plane);
-> -	struct drm_i915_private *dev_priv =3D to_i915(plane->base.dev);
-> +	struct drm_i915_private *i915 =3D to_i915(plane->base.dev);
-
-This change of moving from dev_priv naming to i915 and to start using intel=
-_display
-Is a refactor and should be in a patch of its own.
-
-Regards,
-Suraj Kandpal
-
->  	const struct drm_framebuffer *fb =3D plane_state->hw.fb;
->  	int min_scale =3D DRM_PLANE_NO_SCALING;
->  	int max_scale =3D DRM_PLANE_NO_SCALING;
-> @@ -2266,7 +2297,7 @@ static int skl_plane_check(struct intel_crtc_state
-> *crtc_state,
->  	/* use scaler when colorkey is not required */
->  	if (!plane_state->ckey.flags && skl_fb_scalable(fb)) {
->  		min_scale =3D 1;
-> -		max_scale =3D skl_plane_max_scale(dev_priv, fb);
-> +		max_scale =3D skl_plane_max_scale(i915, fb);
->  	}
->=20
->  	ret =3D intel_atomic_plane_check_clipping(plane_state, crtc_state, @@ -
-> 2274,6 +2305,9 @@ static int skl_plane_check(struct intel_crtc_state
-> *crtc_state,
->  	if (ret)
->  		return ret;
->=20
-> +	if (HAS_FBC_DIRTY_RECT(display))
-> +		skl_plane_check_damage_with_viewport(plane_state);
-> +
->  	ret =3D skl_check_plane_surface(plane_state);
->  	if (ret)
->  		return ret;
-> @@ -2289,6 +2323,9 @@ static int skl_plane_check(struct intel_crtc_state
-> *crtc_state,
->  	if (ret)
->  		return ret;
->=20
-> +	if (HAS_FBC_DIRTY_RECT(display))
-> +		skl_plane_check_damage_with_plane_surf(plane_state);
-> +
->  	ret =3D skl_plane_check_nv12_rotation(plane_state);
->  	if (ret)
->  		return ret;
-> @@ -2301,12 +2338,12 @@ static int skl_plane_check(struct intel_crtc_stat=
-e
-> *crtc_state,
->=20
->  	plane_state->ctl =3D skl_plane_ctl(crtc_state, plane_state);
->=20
-> -	if (DISPLAY_VER(dev_priv) >=3D 10)
-> +	if (DISPLAY_VER(display) >=3D 10)
->  		plane_state->color_ctl =3D glk_plane_color_ctl(crtc_state,
->  							     plane_state);
->=20
->  	if (intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier) &&
-> -	    icl_is_hdr_plane(dev_priv, plane->id))
-> +	    icl_is_hdr_plane(i915, plane->id))
->  		/* Enable and use MPEG-2 chroma siting */
->  		plane_state->cus_ctl =3D PLANE_CUS_ENABLE |
->  			PLANE_CUS_HPHASE_0 |
+>  #define ILK_FBC_RT_BASE		_MMIO(0x2128)
+>  #define   ILK_FBC_RT_VALID	REG_BIT(0)
+>  #define   SNB_FBC_FRONT_BUFFER	REG_BIT(1)
 > --
 > 2.43.0
 
