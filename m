@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9782A2B1BB
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2025 19:55:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 324DDA2B1BC
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2025 19:55:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F77610E91E;
-	Thu,  6 Feb 2025 18:55:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C948910E91F;
+	Thu,  6 Feb 2025 18:55:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Bn8JAil1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CZop2OzH";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D3F310E2E7;
- Thu,  6 Feb 2025 18:55:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EBF610E91F;
+ Thu,  6 Feb 2025 18:55:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738868143; x=1770404143;
+ t=1738868146; x=1770404146;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Oapgjb28ZGtmu90OuOKWEgyEmVXhNq7pdhocfDRL2Os=;
- b=Bn8JAil1TsrCUvvUcPLsah7fTLol/gvZsjymnUdihlFcuwdQr0ocQ1TO
- Q22osYmLNiZzzIfG1J5pagQVnGh9ONo4Lxq3o4ZfVDKDzMHiZJZXmR1bg
- RTRZ7d1TSGJd9drfTcgubSNaj2FRVqPaXLOGbK4pvhroJ1HKNnw1Or6NV
- gOlVoqSLsB7ms34B1o6FH2sPOOOg9t51YXk8Ej8AK9doBu/PWiLKDsLB0
- Z3eF61rSPKO0sU5TFqwAJYHL1LsWmVOA14KbZHVXguL7RVoknZj6y0FVx
- D9tJz8rEol27eYp+KIpeskfTwm/I78AHR5fnDObdN8KvNp0HfRX/WhJv7 w==;
-X-CSE-ConnectionGUID: SZMAk07MTc6FhELV7K1rlQ==
-X-CSE-MsgGUID: 3DHZo0hdTvazLOdfpyNUyg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="39395040"
-X-IronPort-AV: E=Sophos;i="6.13,265,1732608000"; d="scan'208";a="39395040"
+ bh=uysPXBNARsNYYd/GTlZsZQb9WHdIe0EXTM4OiudHvZ8=;
+ b=CZop2OzHLkBOoXpBBTF/nxNVJRMJtCeZrox+s/K6Q7dhUs5bz8llq9n5
+ Z4AaYOlkxO7xJA5Ak7V5ph8fokHfLPIL1tuR0zSVoWNs73ygXbONCymHy
+ mbsW1Oci42ILxBqGcOADnx2pQDe99H5MacTGKA6IadKQd/hGVWXhqDBC/
+ h39evE/UglBC/RjSmfFV/GC4swNyNtu9u3JqIsGR1oFu1zYNuKYRLDkuP
+ C66Gzx8COActfdiF/NQY9ulLspFtf9eGnHh0OgXI5RV4IN4/5LRTpbFrj
+ D5WBMBsGNg+GUleVgJCFkFTjZyxKD5jyFeXFmBuPJKSLcTbZJ+HS8v1Pl w==;
+X-CSE-ConnectionGUID: c6kB5sBPSImQfbwsRZoAVw==
+X-CSE-MsgGUID: CQzvfS+4SgiZNqycmIwhEA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="39395042"
+X-IronPort-AV: E=Sophos;i="6.13,265,1732608000"; d="scan'208";a="39395042"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2025 10:55:43 -0800
-X-CSE-ConnectionGUID: WHNBZ2gPQ0O4LvccOK5KdA==
-X-CSE-MsgGUID: ZuLpZEqyTCaMNMeQfuRrRA==
+ 06 Feb 2025 10:55:46 -0800
+X-CSE-ConnectionGUID: s9/vp8oLRIKOebjbWwltBw==
+X-CSE-MsgGUID: EygLZls8SHWXyMnG25gD4g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,265,1732608000"; d="scan'208";a="111499541"
+X-IronPort-AV: E=Sophos;i="6.13,265,1732608000"; d="scan'208";a="111499545"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 06 Feb 2025 10:55:41 -0800
+ by fmviesa008.fm.intel.com with SMTP; 06 Feb 2025 10:55:44 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 06 Feb 2025 20:55:39 +0200
+ Thu, 06 Feb 2025 20:55:43 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v2 02/12] drm/i915: Decouple i915_gem_dumb_create() from the
- display a bit
-Date: Thu,  6 Feb 2025 20:55:23 +0200
-Message-ID: <20250206185533.32306-3-ville.syrjala@linux.intel.com>
+Subject: [PATCH v2 03/12] drm/i915: Decouple intel_fb_bo.h interfaces from
+ driver specific types
+Date: Thu,  6 Feb 2025 20:55:24 +0200
+Message-ID: <20250206185533.32306-4-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.45.3
 In-Reply-To: <20250206185533.32306-1-ville.syrjala@linux.intel.com>
 References: <20250206185533.32306-1-ville.syrjala@linux.intel.com>
@@ -73,92 +73,135 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Pass the device argument as drm_device to intel_plane_fb_max_stride()
-to decouple i915_gem_dumb_create() vs. the display code a bit.
-
-xe currently doesn't even call this, but it probably should...
+Make the intel_fb_bo.h interfaces operated purely in base
+drm_ types so that each driver (i915 and xe) doesn't have to
+know about each other, or the display stuff.
 
 v2: s/dev/drm/ (Jani)
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 6 ++++--
- drivers/gpu/drm/i915/display/intel_display.h | 2 +-
- drivers/gpu/drm/i915/display/intel_fb.c      | 4 ++--
- drivers/gpu/drm/i915/gem/i915_gem_create.c   | 2 +-
- 4 files changed, 8 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/display/intel_fb.c    | 5 ++---
+ drivers/gpu/drm/i915/display/intel_fb_bo.c | 5 +++--
+ drivers/gpu/drm/i915/display/intel_fb_bo.h | 8 ++++----
+ drivers/gpu/drm/xe/display/intel_fb_bo.c   | 7 ++++---
+ 4 files changed, 13 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 0f4d4a86cb98..a04eeaf6f819 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -713,13 +713,15 @@ void intel_add_fb_offsets(int *x, int *y,
- 	*y += state->view.color_plane[color_plane].y;
- }
- 
--u32 intel_plane_fb_max_stride(struct drm_i915_private *dev_priv,
-+u32 intel_plane_fb_max_stride(struct drm_device *drm,
- 			      u32 pixel_format, u64 modifier)
- {
-+	struct intel_display *display = to_intel_display(drm);
-+	struct drm_i915_private *dev_priv = to_i915(drm);
- 	struct intel_crtc *crtc;
- 	struct intel_plane *plane;
- 
--	if (!HAS_DISPLAY(dev_priv))
-+	if (!HAS_DISPLAY(display))
- 		return 0;
- 
- 	/*
-diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-index 793c9d30c582..e594492bade7 100644
---- a/drivers/gpu/drm/i915/display/intel_display.h
-+++ b/drivers/gpu/drm/i915/display/intel_display.h
-@@ -421,7 +421,7 @@ void intel_link_compute_m_n(u16 bpp, int nlanes,
- 			    int pixel_clock, int link_clock,
- 			    int bw_overhead,
- 			    struct intel_link_m_n *m_n);
--u32 intel_plane_fb_max_stride(struct drm_i915_private *dev_priv,
-+u32 intel_plane_fb_max_stride(struct drm_device *drm,
- 			      u32 pixel_format, u64 modifier);
- enum drm_mode_status
- intel_mode_valid_max_plane_size(struct drm_i915_private *dev_priv,
 diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-index d9328877cc6d..42c46376daae 100644
+index 42c46376daae..872c3fd62846 100644
 --- a/drivers/gpu/drm/i915/display/intel_fb.c
 +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-@@ -1895,7 +1895,7 @@ u32 intel_fb_max_stride(struct drm_i915_private *dev_priv,
- 	 */
- 	if (DISPLAY_VER(dev_priv) < 4 || intel_fb_is_ccs_modifier(modifier) ||
- 	    intel_fb_modifier_uses_dpt(dev_priv, modifier))
--		return intel_plane_fb_max_stride(dev_priv, pixel_format, modifier);
-+		return intel_plane_fb_max_stride(&dev_priv->drm, pixel_format, modifier);
- 	else if (DISPLAY_VER(dev_priv) >= 7)
- 		return 256 * 1024;
- 	else
-@@ -1909,7 +1909,7 @@ intel_fb_stride_alignment(const struct drm_framebuffer *fb, int color_plane)
- 	unsigned int tile_width;
+@@ -2126,7 +2126,7 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+ 	int ret = -EINVAL;
+ 	int i;
  
- 	if (is_surface_linear(fb, color_plane)) {
--		unsigned int max_stride = intel_plane_fb_max_stride(dev_priv,
-+		unsigned int max_stride = intel_plane_fb_max_stride(&dev_priv->drm,
- 								    fb->format->format,
- 								    fb->modifier);
+-	ret = intel_fb_bo_framebuffer_init(intel_fb, obj, mode_cmd);
++	ret = intel_fb_bo_framebuffer_init(fb, obj, mode_cmd);
+ 	if (ret)
+ 		return ret;
  
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_create.c b/drivers/gpu/drm/i915/gem/i915_gem_create.c
-index 19156ba4b9ef..c3e6a325872d 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_create.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_create.c
-@@ -193,7 +193,7 @@ i915_gem_dumb_create(struct drm_file *file,
- 	args->pitch = ALIGN(args->width * cpp, 64);
+@@ -2242,9 +2242,8 @@ intel_user_framebuffer_create(struct drm_device *dev,
+ 	struct drm_framebuffer *fb;
+ 	struct drm_gem_object *obj;
+ 	struct drm_mode_fb_cmd2 mode_cmd = *user_mode_cmd;
+-	struct drm_i915_private *i915 = to_i915(dev);
  
- 	/* align stride to page size so that we can remap */
--	if (args->pitch > intel_plane_fb_max_stride(to_i915(dev), format,
-+	if (args->pitch > intel_plane_fb_max_stride(dev, format,
- 						    DRM_FORMAT_MOD_LINEAR))
- 		args->pitch = ALIGN(args->pitch, 4096);
+-	obj = intel_fb_bo_lookup_valid_bo(i915, filp, &mode_cmd);
++	obj = intel_fb_bo_lookup_valid_bo(dev, filp, &mode_cmd);
+ 	if (IS_ERR(obj))
+ 		return ERR_CAST(obj);
  
+diff --git a/drivers/gpu/drm/i915/display/intel_fb_bo.c b/drivers/gpu/drm/i915/display/intel_fb_bo.c
+index 810ca6ff8640..ecc95beaf6df 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb_bo.c
++++ b/drivers/gpu/drm/i915/display/intel_fb_bo.c
+@@ -16,7 +16,7 @@ void intel_fb_bo_framebuffer_fini(struct drm_gem_object *obj)
+ 	/* Nothing to do for i915 */
+ }
+ 
+-int intel_fb_bo_framebuffer_init(struct intel_framebuffer *intel_fb,
++int intel_fb_bo_framebuffer_init(struct drm_framebuffer *fb,
+ 				 struct drm_gem_object *_obj,
+ 				 struct drm_mode_fb_cmd2 *mode_cmd)
+ {
+@@ -76,10 +76,11 @@ int intel_fb_bo_framebuffer_init(struct intel_framebuffer *intel_fb,
+ }
+ 
+ struct drm_gem_object *
+-intel_fb_bo_lookup_valid_bo(struct drm_i915_private *i915,
++intel_fb_bo_lookup_valid_bo(struct drm_device *drm,
+ 			    struct drm_file *filp,
+ 			    const struct drm_mode_fb_cmd2 *mode_cmd)
+ {
++	struct drm_i915_private *i915 = to_i915(drm);
+ 	struct drm_i915_gem_object *obj;
+ 
+ 	obj = i915_gem_object_lookup(filp, mode_cmd->handles[0]);
+diff --git a/drivers/gpu/drm/i915/display/intel_fb_bo.h b/drivers/gpu/drm/i915/display/intel_fb_bo.h
+index e71acd1bcb24..eefcb05a99f0 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb_bo.h
++++ b/drivers/gpu/drm/i915/display/intel_fb_bo.h
+@@ -6,20 +6,20 @@
+ #ifndef __INTEL_FB_BO_H__
+ #define __INTEL_FB_BO_H__
+ 
++struct drm_device;
+ struct drm_file;
++struct drm_framebuffer;
+ struct drm_gem_object;
+-struct drm_i915_private;
+ struct drm_mode_fb_cmd2;
+-struct intel_framebuffer;
+ 
+ void intel_fb_bo_framebuffer_fini(struct drm_gem_object *obj);
+ 
+-int intel_fb_bo_framebuffer_init(struct intel_framebuffer *intel_fb,
++int intel_fb_bo_framebuffer_init(struct drm_framebuffer *fb,
+ 				 struct drm_gem_object *obj,
+ 				 struct drm_mode_fb_cmd2 *mode_cmd);
+ 
+ struct drm_gem_object *
+-intel_fb_bo_lookup_valid_bo(struct drm_i915_private *i915,
++intel_fb_bo_lookup_valid_bo(struct drm_device *drm,
+ 			    struct drm_file *filp,
+ 			    const struct drm_mode_fb_cmd2 *user_mode_cmd);
+ 
+diff --git a/drivers/gpu/drm/xe/display/intel_fb_bo.c b/drivers/gpu/drm/xe/display/intel_fb_bo.c
+index 4d209ebc26c2..3f8e8d31e800 100644
+--- a/drivers/gpu/drm/xe/display/intel_fb_bo.c
++++ b/drivers/gpu/drm/xe/display/intel_fb_bo.c
+@@ -24,7 +24,7 @@ void intel_fb_bo_framebuffer_fini(struct drm_gem_object *obj)
+ 	xe_bo_put(bo);
+ }
+ 
+-int intel_fb_bo_framebuffer_init(struct intel_framebuffer *intel_fb,
++int intel_fb_bo_framebuffer_init(struct drm_framebuffer *fb,
+ 				 struct drm_gem_object *obj,
+ 				 struct drm_mode_fb_cmd2 *mode_cmd)
+ {
+@@ -68,10 +68,11 @@ int intel_fb_bo_framebuffer_init(struct intel_framebuffer *intel_fb,
+ 	return ret;
+ }
+ 
+-struct drm_gem_object *intel_fb_bo_lookup_valid_bo(struct drm_i915_private *i915,
++struct drm_gem_object *intel_fb_bo_lookup_valid_bo(struct drm_device *drm,
+ 						   struct drm_file *filp,
+ 						   const struct drm_mode_fb_cmd2 *mode_cmd)
+ {
++	struct xe_device *xe = to_xe_device(drm);
+ 	struct xe_bo *bo;
+ 	struct drm_gem_object *gem = drm_gem_object_lookup(filp, mode_cmd->handles[0]);
+ 
+@@ -80,7 +81,7 @@ struct drm_gem_object *intel_fb_bo_lookup_valid_bo(struct drm_i915_private *i915
+ 
+ 	bo = gem_to_xe_bo(gem);
+ 	/* Require vram placement or dma-buf import */
+-	if (IS_DGFX(i915) &&
++	if (IS_DGFX(xe) &&
+ 	    !xe_bo_can_migrate(bo, XE_PL_VRAM0) &&
+ 	    bo->ttm.type != ttm_bo_type_sg) {
+ 		drm_gem_object_put(gem);
 -- 
 2.45.3
 
