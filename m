@@ -2,57 +2,30 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31235A2B223
-	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2025 20:22:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A08ECA2B2A5
+	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2025 20:49:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0020E10E928;
-	Thu,  6 Feb 2025 19:22:03 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X2tS0Vs+";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A61210E935;
+	Thu,  6 Feb 2025 19:49:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4EC9010E30C;
- Thu,  6 Feb 2025 19:22:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738869721; x=1770405721;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=N5r609qw0H3V/Ad6D4oxujMEDGaK8JdG8V55li0u6oU=;
- b=X2tS0Vs+XWWWRAk0nw9YYhe88kyQblKOaHeklcTIY5TkKaUjpmlE+dEg
- PDNJVjGjfFMQZ/NGcGCEeZeW+Que+zC8ItIL4ChL8gRh2LIRtC5eKG93/
- 4TeRzjMVOmS3DtWd/H/DZT+9m4eo5Qolue9Vdrt42Uymi0U9mnPza6IDb
- dXKcTGzHnzJV3Y3a2KpJArc+7Be/jPFdv7mn5HMn43btzBa0oUB8AFNL5
- kcgi4nunD9ljHeRuSeNrfseVptRVPHxSMb86W8QakClzN/CHR5CF7K9wb
- k46HgJKxKWs7/VGbq1D2+INaHKUsGCWmjcGOktgFyj78GtSL+ykSKV8Zy g==;
-X-CSE-ConnectionGUID: tYKWoUlFQNS/B/cof8aFrQ==
-X-CSE-MsgGUID: i3hqwHAxTx+D4DR6xZJUug==
-X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="39398825"
-X-IronPort-AV: E=Sophos;i="6.13,265,1732608000"; d="scan'208";a="39398825"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2025 11:22:01 -0800
-X-CSE-ConnectionGUID: R4LCTo6STLag1/WrEsXUZA==
-X-CSE-MsgGUID: L4U4nOSQTlurhuA8UO1JRQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,265,1732608000"; d="scan'208";a="111502526"
-Received: from lstrano-mobl6.amr.corp.intel.com (HELO
- gjsousa-mobl2.corp.amr.intel.com) ([10.125.111.1])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2025 11:22:01 -0800
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Subject: [PATCH 3/3] drm/i915/xe3lpd: Update bandwidth parameters
-Date: Thu,  6 Feb 2025 16:21:30 -0300
-Message-ID: <20250206192148.53610-4-gustavo.sousa@intel.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250206192148.53610-1-gustavo.sousa@intel.com>
-References: <20250206192148.53610-1-gustavo.sousa@intel.com>
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 902AF10E935;
+ Thu,  6 Feb 2025 19:49:54 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6794505404245346744=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EFull=3A_success_for_drm/i915/dp=5Fmst=3A_Fix?=
+ =?utf-8?q?_getting_display_pointer_in_intel=5Fdp=5Fmst=5Fcompute=5Fmin=5Fhb?=
+ =?utf-8?q?lank=28=29_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 06 Feb 2025 19:49:54 -0000
+Message-ID: <173887139458.2209020.5775203833213243207@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250205232855.3017421-1-imre.deak@intel.com>
+In-Reply-To: <20250205232855.3017421-1-imre.deak@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,48 +38,108 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Bandwidth parameters for Xe3_LPD have been updated with respect to
-previous display releases. Encode them into xe3lpd_sa_info and use that
-new struct.
+--===============6794505404245346744==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Bspec: 68859
-Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
----
- drivers/gpu/drm/i915/display/intel_bw.c | 11 ++++++++++-
- 1 file changed, 10 insertions(+), 1 deletion(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index e52c66eca93d..9937fb10ebf3 100644
---- a/drivers/gpu/drm/i915/display/intel_bw.c
-+++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -404,6 +404,13 @@ static const struct intel_sa_info xe2_hpd_sa_info = {
- 	/* Other values not used by simplified algorithm */
- };
- 
-+static const struct intel_sa_info xe3lpd_sa_info = {
-+	.deburst = 32,
-+	.deprogbwlimit = 65, /* GB/s */
-+	.displayrtids = 256,
-+	.derating = 10,
-+};
-+
- static int icl_get_bw_info(struct drm_i915_private *dev_priv, const struct intel_sa_info *sa)
- {
- 	struct intel_display *display = &dev_priv->display;
-@@ -759,7 +766,9 @@ void intel_bw_init_hw(struct drm_i915_private *dev_priv)
- 	if (!HAS_DISPLAY(display))
- 		return;
- 
--	if (DISPLAY_VERx100(display) >= 1401 && display->platform.dgfx)
-+	if (DISPLAY_VER(display) >= 30)
-+		tgl_get_bw_info(dev_priv, &xe3lpd_sa_info);
-+	else if (DISPLAY_VERx100(display) >= 1401 && display->platform.dgfx)
- 		xe2_hpd_get_bw_info(dev_priv, &xe2_hpd_sa_info);
- 	else if (DISPLAY_VER(display) >= 14)
- 		tgl_get_bw_info(dev_priv, &mtl_sa_info);
--- 
-2.48.1
+Series: drm/i915/dp_mst: Fix getting display pointer in intel_dp_mst_compute_min_hblank() (rev2)
+URL   : https://patchwork.freedesktop.org/series/144387/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_16076_full -> Patchwork_144387v2_full
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_16076 -> Patchwork_144387v2
+
+  CI_DRM_16076: 7a632b6798b6a05b63725249e3209afea13ea499 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8224: c659b986ba648584d36b3cfece897bc84a33dcbb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_144387v2: 7a632b6798b6a05b63725249e3209afea13ea499 @ git://anongit.freedesktop.org/gfx-ci/linux
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144387v2/index.html
+
+--===============6794505404245346744==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/dp_mst: Fix getting display pointer in intel_dp_mst_compute_min_hblank() (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/144387/">https://patchwork.freedesktop.org/series/144387/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144387v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144387v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_16076_full -&gt; Patchwork_144387v2_full</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_16076 -&gt; Patchwork_144387v2</li>
+</ul>
+<p>CI_DRM_16076: 7a632b6798b6a05b63725249e3209afea13ea499 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8224: c659b986ba648584d36b3cfece897bc84a33dcbb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_144387v2: 7a632b6798b6a05b63725249e3209afea13ea499 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  piglit_4509: fdc5a4ca11124ab8413c7988896eec4c97336694 @ git://anongit.freedesktop.org/piglit</p>
+
+</body>
+</html>
+
+--===============6794505404245346744==--
