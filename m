@@ -2,29 +2,191 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D98DA2A033
+	by mail.lfdr.de (Postfix) with ESMTPS id C0F56A2A034
 	for <lists+intel-gfx@lfdr.de>; Thu,  6 Feb 2025 06:37:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE30B10E14F;
-	Thu,  6 Feb 2025 05:37:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4781210E426;
+	Thu,  6 Feb 2025 05:37:39 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ymw3+siT";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2676F10E14F;
- Thu,  6 Feb 2025 05:34:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C512A10E14F;
+ Thu,  6 Feb 2025 05:36:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1738820206; x=1770356206;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=nUiak+ZHZIu9+YfDwuFEgV0zeNoXsePTB7aGFDzAoKA=;
+ b=Ymw3+siTBSnYmk7ywREZBUxQb2a88bfiyfbjzZ8LrPQLLUwqsKFXIVsI
+ CijVQaFHXyjcp9yEqz6NWRHitk4eQIob4g3vj5wPd7x0U2g6KqFn9QckD
+ MwJw5Ar7ewWChXdcIpqac4mChI48gRW5o45nga1jA67qeSYsLhLtTCR+i
+ wV+ATKtGBYkGIihMHnTw46qOjx1aKrYMJ0ToyhztHBFpmHj75eg6r/OKr
+ 34efi5xG2/TIXZuamDMS58zN5AeGls2QvNji2cNF5P64e+KbdDTCA5JT+
+ QLZm5bYebxNDWnWBEj1MpDrcFUrDnIBaqnNwu+lJ3lrdrQSzcTeKiFmbq Q==;
+X-CSE-ConnectionGUID: 1zpMXuDlQZi3YpqTjIgbvA==
+X-CSE-MsgGUID: 4W6TQ65ySX+tHw6QqWSmqw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="49654207"
+X-IronPort-AV: E=Sophos;i="6.13,263,1732608000"; d="scan'208";a="49654207"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2025 21:36:45 -0800
+X-CSE-ConnectionGUID: LuJ4rTD/RJG+PqwXGVEHYg==
+X-CSE-MsgGUID: D5GieOtgTZ+GBgKL9oaSUA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,263,1732608000"; d="scan'208";a="111688522"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by fmviesa009.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 05 Feb 2025 21:36:45 -0800
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Wed, 5 Feb 2025 21:36:44 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44 via Frontend Transport; Wed, 5 Feb 2025 21:36:44 -0800
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.170)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.44; Wed, 5 Feb 2025 21:36:44 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=hs+QirdH6fuxw1oOkEuMSainzG5gnZV0FPbbCruGBM76NW/LKgj36WMxxxLdVjTUcucUEBfyNEGZXH3yl8ktnNQ5d/+qA1Kd5EJWhsDpF2w9olwgzyEV5IZM+T0eTQCOnbbVDHXJ13C/5rS/iuj+oaLR9yxrC9VqNjmTvaREtR6viF4MPS8495UKV7SRYrlDVQX9HkflPtA/u031o/h0qLcQqr5Aj3Cz4ElxNP8DFqgL9yVUJkxgBsdloSXOcatX1j3OH0c2JjwrXJS77ztcpckq5unqs0k+dVDLlZz8n/ZJEZmFYZVwAcDBEuE/MymiJ3HPNw58z8RuCFDA27io/w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=nUiak+ZHZIu9+YfDwuFEgV0zeNoXsePTB7aGFDzAoKA=;
+ b=FsJLpe5l1DLDWJMgy3R9Cqpa0pxaYT+7MuJOw2dH+5jUvK3G9JB+hpjIrkVIPU2d1PkSDxXhueZmqWwbIZg8B2/nupLaizb1OpmLm+moM4aJ9bIlso+Un3J4y5rZNO4LGKl8h7wAaOZWQJdXsNsmbN3nvRDIK8lWg2d1HEG2IQMwfNONTEdaYlxKOGXYNUMNsjbd8SkUaOjv18OR2tB6IlBPZuB26u3GBnY5G5W7wdC5plz1Xmp+RbPTyE/cQvE7Cr8tFekkQjeQBGILvSbss92ljVSMCdq7uF2L0+U2/AREdkOagFKgD+tkLtxdWX67CScfTDdCVIXoNS44ShXGCg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from CH0PR11MB5491.namprd11.prod.outlook.com (2603:10b6:610:d6::19)
+ by SN7PR11MB7068.namprd11.prod.outlook.com (2603:10b6:806:29b::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8398.24; Thu, 6 Feb
+ 2025 05:36:13 +0000
+Received: from CH0PR11MB5491.namprd11.prod.outlook.com
+ ([fe80::fc35:d6ce:8908:ef2a]) by CH0PR11MB5491.namprd11.prod.outlook.com
+ ([fe80::fc35:d6ce:8908:ef2a%6]) with mapi id 15.20.8422.010; Thu, 6 Feb 2025
+ 05:36:13 +0000
+From: "Ravali, JupallyX" <jupallyx.ravali@intel.com>
+To: "i915-ci-infra@lists.freedesktop.org" <i915-ci-infra@lists.freedesktop.org>
+CC: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Subject: =?utf-8?B?UkU6IOKclyBpOTE1LkNJLkJBVDogZmFpbHVyZSBmb3IgZHJtL2k5MTUvcHNy?=
+ =?utf-8?B?OiBjbGFyaWZ5IGludGVsX3Bzcl9wcmVfcGxhbmVfdXBkYXRlKCkgY29uZGl0?=
+ =?utf-8?Q?ions_(rev2)?=
+Thread-Topic: =?utf-8?B?4pyXIGk5MTUuQ0kuQkFUOiBmYWlsdXJlIGZvciBkcm0vaTkxNS9wc3I6IGNs?=
+ =?utf-8?B?YXJpZnkgaW50ZWxfcHNyX3ByZV9wbGFuZV91cGRhdGUoKSBjb25kaXRpb25z?=
+ =?utf-8?Q?_(rev2)?=
+Thread-Index: AQHbd/kdq98lSt2B3EmtJI/t1XP69rM5uEVw
+Date: Thu, 6 Feb 2025 05:36:13 +0000
+Message-ID: <CH0PR11MB5491A4F1AF7B53D91C198DE9EFF62@CH0PR11MB5491.namprd11.prod.outlook.com>
+References: <20250204140518.2971530-1-jani.nikula@intel.com>
+ <173869949227.1028151.13085419230738501676@b555e5b46a47>
+ <87o6zg2ria.fsf@intel.com>
+In-Reply-To: <87o6zg2ria.fsf@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CH0PR11MB5491:EE_|SN7PR11MB7068:EE_
+x-ms-office365-filtering-correlation-id: e0b4872f-f086-4638-d2e5-08dd46702b58
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|1800799024|376014|366016|7053199007|13003099007|38070700018; 
+x-microsoft-antispam-message-info: =?utf-8?B?ZTZaemJpeWhFYzNRb21Zc2hMVEtrRHk4cmNsN3diVExDb2IxbXJNa0pvOW45?=
+ =?utf-8?B?THcvMjVjYkVmL2JYdXFmVlpFYWFDOVFqMlJUWHJQYnFaK3Z5bmNDNERRNk5J?=
+ =?utf-8?B?aXBLNnlqYTFxNHpvNHFFRE1oSEwvSnZlK3Z1QXFPamJUSUV6V3Via3k2dmh1?=
+ =?utf-8?B?QStDMGNrejF5eDQ3V0Q0dms1anhTczdYZm1OYlAzOHBMQUtpWmFIclVTRzRY?=
+ =?utf-8?B?dkd6WmlSbytOWjk3eFg4N0hKa3hTOVI4UlgxWkZEbGc5ZXRxdzM3aG9tUnZ4?=
+ =?utf-8?B?TEFvMjRSdmd5Q1pwTVR1Z3hlaWdZdG9Qems4aW9LbG0zV2RDVXlBVE8wYytG?=
+ =?utf-8?B?c0pJdE1GWWJRcWY1V1VwWENFYTNPWEFCcDE4SHloUHRWQWxSZmg2c2VJbzh0?=
+ =?utf-8?B?UGhCR1Zyd0wrNFFwSzhHeVA0S08zaUQ2QkdVZW9kWDhRMm84TnhEZmpjUUFo?=
+ =?utf-8?B?M1BYM0ZnbUZGZ3hzYWpreDFBcnNwcGpza0RSZkk5aENUbVd3T3QremViQWtR?=
+ =?utf-8?B?WG8yR0UyU3o4amVpUTdKdE9VbzZCUXEvMVFkOW01ZVBuTk9MTFAzeTJsc3p4?=
+ =?utf-8?B?WFN1Y2dEbDFCV3ByUXRsY085YVFMMzI4QjZnM3dybVhvV2x3Tm50ZFozK2xK?=
+ =?utf-8?B?SUdjNHlaNklHNGJMUGx3YWRBYW5yNHBhc2lWd05XWk5WeDY2THljbUFoNmxq?=
+ =?utf-8?B?elp2czU5aFdlaGx0S3MrcnJ2SjhrdnI5QjRtdTZaa2NueUlRK01GVUNUUzE3?=
+ =?utf-8?B?dVRyek43ME81SU9LeEVYWi9HOGt5cm5aZlZsdmhvSDAyb3czcGJzbDJDSHAr?=
+ =?utf-8?B?eXlIdjVpNUp1NjVES24vR0UwTE5ocHdlM1ROQlhZUG9kZUJwVHhqMzUzNnZy?=
+ =?utf-8?B?dnRyVkcyK1FSOG9oVHlrQ2JPZXVTL3BlQzdLY1lQd2pmK2I0SFAycjBzTkNp?=
+ =?utf-8?B?Sm0xc3NkK1l6VTVnSUxxTFBXRnVmd2xaeTdmQ1YyRFI5ajNhMnB0ZGNtZGVE?=
+ =?utf-8?B?STNubDNWNDhhRHZOS1RNRHlDeGowclJWYjBCMEhrQjAza2NxYVVYWVh0ZTBX?=
+ =?utf-8?B?WlBmN0VSaVB0VElweFFpWFpMMlQvSXRrSk1oNk1wRlVXUlF6ZndiNmNDVnVz?=
+ =?utf-8?B?OXBRaksvUHFla2krYXdzajlOZkNtbHk4Q1FGZEFLZmRZeDMwZ24wOUE0bUhq?=
+ =?utf-8?B?MVdHaUpVZElqaEVxUVh5blVjbWY4SWhGVXZocjE5T0gxT2dTeE50dit0MDNZ?=
+ =?utf-8?B?VmtLVUZobVk1TDNLbXkvYzB2cDgzU01iNmRpZm40d0cwUkJNVG5xUFY2MVo2?=
+ =?utf-8?B?Q3JMakVQQTROOXYxL25zenFPVU5ncnpuU0RBNENBQXI4bHNTS0MwWElUbzJx?=
+ =?utf-8?B?UU4xOEF1dUdtWWl0WnkzYmVCNDVLT21XMEY1eUhrRGtaR0wrTVk5ZGtOSUNp?=
+ =?utf-8?B?SHF4aGtxMzlZc3FHRlVFYlpOYlVFZTBxcm43Z0FXQm5qdkZHS1ZiRWZ2c01C?=
+ =?utf-8?B?WmxES3NUOS9FWldzM0ZWVktrZjNKZHBVTXBtdVFZV1lHM2t6Yzg2alRtVlNQ?=
+ =?utf-8?B?N2gweXhpZ0lvZFlua3ZtTnZ5bGNkclRZNDZrWW5rdUtGQUdoL3ZpRFN0bUk4?=
+ =?utf-8?B?dHFqaUxlT2lWRUZqRFdTRUR3TXVVSklwZmE3TDFKUEU4b1FBWmtrYzljR05o?=
+ =?utf-8?B?blNRQW9vWDdHeE8ydENCdWZsTjNacjNhbmczR2N3cjAzS0hQd3NGRFFsUDc2?=
+ =?utf-8?B?L2t2bWRqb3VuTWZtZnVYU2hzZG05ZzcveXhvYzZoTE43UGRmZnJOeUMzdzBr?=
+ =?utf-8?B?cDg5UGNlSGM5a2JpTGZpNTRLVm9LTnRGWlRaMEY4c0QvalJ4c1IrZ1hhbU53?=
+ =?utf-8?Q?cW8n03IRPP8aC?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH0PR11MB5491.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(7053199007)(13003099007)(38070700018);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?ekZ6bEtaQWk2Nk9qM2o5eTFLYTZIdjZYaml3dGhrWkUyWTUwUDdCQUFpWm5o?=
+ =?utf-8?B?cUN5MkNyQmt6REdjMTZ5MVZ3d0EwSXhJU09hNEFjUzUxSEFBQmhIdW1NSVZ6?=
+ =?utf-8?B?OGZXMlNUY0NEVE5wb25xMEJZeWtKSWxjZ0tRdXhGcyswb3RKRVF2ZHBnT2Jj?=
+ =?utf-8?B?aVRWSjJUN0xmRTUvc1NkV3pJSWdNQVl3cVo3TUNWNDZhd0FFR2t6aDlyMURp?=
+ =?utf-8?B?cXFSNHNhODlReThxVXBpU2lkNTdKZjNUcnZSUFNNcDBqcTBmRGthdllJM20z?=
+ =?utf-8?B?RkRmdVIvUzk4ZWgwSmJqRmZoaVkrZHZPaXVFemcrdlRMdkdSRDVXbFZGclMx?=
+ =?utf-8?B?ZGZEendFV2xaTTVNdVN6SWFOZlRRWlVIdnV5MCtzWExpMlZWTjRSU2RvaG9z?=
+ =?utf-8?B?UDMvL3JkaUFaTnhIQUFyS2k0c3JObkZtSTRwbThyUjhycCt2QUhUYzRRaGpI?=
+ =?utf-8?B?WlQ3cUNwWVNzYjNxczlZVjhMU2R3SzVPUnVNR2hOcnJlMjZ6WEFzNGcrT0Ja?=
+ =?utf-8?B?cUxNTURUNnkvZWIwY3hGWGJOc3ZlZVNrS29ha1I0Qm5meHNSd3ZJSkFxT0Zk?=
+ =?utf-8?B?NG4reml6b21yZ0dzWmRXQWhONy92dm1Wd3JpbWRwa3NIcmJvMXlxMkduRzFC?=
+ =?utf-8?B?cUVrN0VMRzFLWThPbm5hMlpRd3VOOTZ2UGZ3N3hWZ2pmb0xUNDNaUjh3aVBJ?=
+ =?utf-8?B?ZUNCTEhGY2o2UUkzOWpoaUlrN2czRWd3eGg0S1FyTWlkMDc1UWFIaXp5M2hY?=
+ =?utf-8?B?emNpTXRjNkJwakYybmNVUFI0QmVFSlo1bUFjZm9Ieks4L2xCdWRTRkZVWmpn?=
+ =?utf-8?B?NzhoTXptV1ZDdk9iZ1lRK25IQi9QY25qajFMQlhQd0QwZzhSL3JjdEFnMnRj?=
+ =?utf-8?B?WVlpc3F2ak9vNjVRV1NZZFVybzBPekdlcndieFlVZmpOcVJHdGR3bU5TcEIv?=
+ =?utf-8?B?M3lzQ1RKK0hOSDUwYXZDVElJa09lRXE5NUZRMy9QYXl1cVZXamFiWVFVdVU5?=
+ =?utf-8?B?QlQyZmd4RC9KOW9sN3FmejJIZWRIZFJzdEw1L3dXeTE0a0ZsZkpwRjJVSTJu?=
+ =?utf-8?B?eHJ4L1BySTBKRC8rdWNlRUFRd2hXWE5WLzBldXR3Z3pXN1BYaC9QSk9KVHR3?=
+ =?utf-8?B?TEMyVjVsNmNmeUdyRytBMTV5V0Z6N3JXUExHelVBaFpwcFNYRG1UOGRwazBV?=
+ =?utf-8?B?Ym9icGtBYVN2TGo3dWJsV3gvL05uU0MycFQxL1dBOGxjTTdBRE1nbSsxdHdz?=
+ =?utf-8?B?RmJrakdUYjRQRHg3K2dLUFgzWkNzM3l0V3FlZm5sZ3pUTWxEYWtubmN0VTEw?=
+ =?utf-8?B?YWRKU0RqSHVLSDU1dHhJemRJZWNPSWV4cTFBNHBSd2t2UHdBbnpVcE9mbTIy?=
+ =?utf-8?B?VmxvWjVWQ0JNOUN1WlZKQ2dxN2prcmppekEzUStGSGpUcTVocWpNL1MxTGFS?=
+ =?utf-8?B?aXd2Z0NoRnc0U1BmYXk1MjBaTk9idGRHYVVaV091SVR0aTlkRW8xRWdYeCtQ?=
+ =?utf-8?B?UXhTNFJIdzk2ZVJTaXZmWS9iZ1lXaS8xeldCd2JEWi9VMDJXR2xZSzBlc25h?=
+ =?utf-8?B?OThwajZKYnZWWjFTRDhUVGgrMlZwMTJzMXRNNCtOTm5JWHQ1ZFFSbmljWC84?=
+ =?utf-8?B?TWU2TDllMCtMV01FK1QxTFRwY1JRd2pkbGhLc2w0OFJVOXJ2UjZUMkdYUnNM?=
+ =?utf-8?B?OVZPWUcrTVJKbzlkY3VrRzFoaklzeFlGaUd3SzRWaGpxZGJpWlYvbURZcWJH?=
+ =?utf-8?B?QktVWXlWOHgwdUREUVNJVWlQNUtOcmF3Y09OL0Z1enBneU5XWXRPRHA3Ulho?=
+ =?utf-8?B?MXRBLzZlU0MxNHFsWTkzQWpja1JNa01vV21CR3pGWUlIMGRqQk5YSm5YQkNT?=
+ =?utf-8?B?dVpzYUh0YTh4RGdmSjhNbllzY2FJZDU4am4rSXFyT2FCVis0Mi84SGdTeE11?=
+ =?utf-8?B?OW9EWHZURXhybXhITlcwYXE4SmprcGJhV1I3YWxZNlIxOVczUmxQQ2RBMm9U?=
+ =?utf-8?B?NkVsSFhtOFo2TlNmZC9zb3M0bmFDRnNyMlFvMldZUndqRTE2d3BhMHFGRWFu?=
+ =?utf-8?B?di9OaWxnT3kyOEVobFdPYmh1OWJibFo5RHJkbmhBWDJPaEVIK2k4MWtIU0hI?=
+ =?utf-8?Q?GqzvsNdu9CbusgkYrvKHJquKm?=
 Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_Compute_as=5Fsdp_when_vr?=
- =?utf-8?q?r_is_enabled_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mitul Golani" <mitulkumar.ajitkumar.golani@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 06 Feb 2025 05:34:48 -0000
-Message-ID: <173882008815.1849947.6132886129147615613@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250206045001.2919360-1-mitulkumar.ajitkumar.golani@intel.com>
-In-Reply-To: <20250206045001.2919360-1-mitulkumar.ajitkumar.golani@intel.com>
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CH0PR11MB5491.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e0b4872f-f086-4638-d2e5-08dd46702b58
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Feb 2025 05:36:13.3499 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: v7ea8pn1gEV1loYdkTLz9+LOX01sttn1u1ohqAkCEuI57qrbJc7i04P2r+xP/83h/8bPluHhOwgm3PRwTlNQG0F/crVbqijnd8CivZM8TKk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7068
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,222 +199,165 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: Compute as_sdp when vrr is enabled (rev3)
-URL   : https://patchwork.freedesktop.org/series/144268/
-State : warning
-
-== Summary ==
-
-Error: dim sparse failed
-Sparse version: v0.6.2
-Fast mode used, each commit won't be checked separately.
-+./arch/x86/include/asm/bitops.h:116:1: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:116:1: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:147:1: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:147:1: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:149:9: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:149:9: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:153:26: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:153:26: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:155:16: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:155:16: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:155:9: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:155:9: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:173:1: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:173:1: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:175:9: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:175:9: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:179:35: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:179:35: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:181:16: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:181:16: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:181:9: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:181:9: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:185:1: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:185:1: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:187:9: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:187:9: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:191:35: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:191:35: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:194:16: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:194:16: warning: unreplaced symbol 'oldbit'
-+./arch/x86/include/asm/bitops.h:194:9: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:194:9: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:236:1: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:236:1: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:238:9: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:238:9: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:243:1: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:243:1: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:245:9: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:245:9: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:66:1: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:66:1: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:92:1: warning: unreplaced symbol 'return'
-+./arch/x86/include/asm/bitops.h:92:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:100:17: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:100:17: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:100:23: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:100:23: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:100:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:100:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:105:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:105:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:107:9: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:107:9: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:108:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:108:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:109:9: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:109:9: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:111:10: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:111:10: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:111:14: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:111:14: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:111:20: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:111:20: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:112:17: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:112:17: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:112:23: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:112:23: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:112:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:112:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:121:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:121:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:128:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:128:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:137:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:137:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:139:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:139:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:140:23: warning: unreplaced symbol 'break'
-+./include/asm-generic/bitops/generic-non-atomic.h:140:23: warning: unreplaced symbol 'break'
-+./include/asm-generic/bitops/generic-non-atomic.h:140:23: warning: unreplaced symbol 'continue'
-+./include/asm-generic/bitops/generic-non-atomic.h:140:23: warning: unreplaced symbol 'continue'
-+./include/asm-generic/bitops/generic-non-atomic.h:140:23: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:140:23: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:140:23: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:140:23: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:140:23: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:140:23: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:140:23: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:140:23: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:140:23: warning: unreplaced symbol '___p1'
-+./include/asm-generic/bitops/generic-non-atomic.h:140:23: warning: unreplaced symbol '___p1'
-+./include/asm-generic/bitops/generic-non-atomic.h:140:23: warning: unreplaced symbol '___p1'
-+./include/asm-generic/bitops/generic-non-atomic.h:140:23: warning: unreplaced symbol '___p1'
-+./include/asm-generic/bitops/generic-non-atomic.h:140:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:140:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:166:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:166:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:168:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:168:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:169:9: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:169:9: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:170:9: warning: unreplaced symbol 'val'
-+./include/asm-generic/bitops/generic-non-atomic.h:170:9: warning: unreplaced symbol 'val'
-+./include/asm-generic/bitops/generic-non-atomic.h:172:19: warning: unreplaced symbol 'val'
-+./include/asm-generic/bitops/generic-non-atomic.h:172:19: warning: unreplaced symbol 'val'
-+./include/asm-generic/bitops/generic-non-atomic.h:172:25: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:172:25: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:172:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:172:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:28:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:28:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:30:9: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:30:9: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:31:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:31:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:33:10: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:33:10: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:33:16: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:33:16: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:37:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:37:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:39:9: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:39:9: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:40:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:40:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:42:10: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:42:10: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:42:16: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:42:16: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:55:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:55:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:57:9: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:57:9: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:58:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:58:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:60:10: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:60:10: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:60:15: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:60:15: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:73:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:73:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:75:9: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:75:9: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:76:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:76:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:77:9: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:77:9: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:79:10: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:79:10: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:79:14: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:79:14: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:79:20: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:79:20: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:80:17: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:80:17: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:80:23: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:80:23: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:80:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:80:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:93:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:93:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/generic-non-atomic.h:95:9: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:95:9: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:96:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:96:9: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:97:9: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:97:9: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:99:10: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:99:10: warning: unreplaced symbol 'p'
-+./include/asm-generic/bitops/generic-non-atomic.h:99:14: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:99:14: warning: unreplaced symbol 'old'
-+./include/asm-generic/bitops/generic-non-atomic.h:99:21: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/generic-non-atomic.h:99:21: warning: unreplaced symbol 'mask'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:100:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:100:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:112:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:112:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:115:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:115:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:127:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:127:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:130:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:130:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:139:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:139:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:142:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:142:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:151:1: warning: too many warnings
-+./include/asm-generic/bitops/instrumented-non-atomic.h:151:1: warning: too many warnings
-+./include/asm-generic/bitops/instrumented-non-atomic.h:154:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:154:9: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:26:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:26:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:42:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:42:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:58:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:58:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:97:1: warning: unreplaced symbol 'return'
-+./include/asm-generic/bitops/instrumented-non-atomic.h:97:1: warning: unreplaced symbol 'return'
-
-/home/kbuild/linux/maintainer-tools/dim: line 2106: echo: write error: Broken pipe
-
-
+SGksDQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgDQpodHRwczovL3BhdGNod29yay5m
+cmVlZGVza3RvcC5vcmcvc2VyaWVzLzE0MzIzNS8tIFJlLXJlcG9ydGVkLg0KaTkxNS5DSS5CQVQg
+LSBSZS1yZXBvcnRlZC4NCg0KVGhhbmtzLA0KUmF2YWxpLg0KDQotLS0tLU9yaWdpbmFsIE1lc3Nh
+Z2UtLS0tLQ0KRnJvbTogSTkxNS1jaS1pbmZyYSA8aTkxNS1jaS1pbmZyYS1ib3VuY2VzQGxpc3Rz
+LmZyZWVkZXNrdG9wLm9yZz4gT24gQmVoYWxmIE9mIEphbmkgTmlrdWxhDQpTZW50OiAwNSBGZWJy
+dWFyeSAyMDI1IDIzOjM5DQpUbzogSTkxNS1jaS1pbmZyYUBsaXN0cy5mcmVlZGVza3RvcC5vcmcN
+CkNjOiBpbnRlbC1nZnhAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQpTdWJqZWN0OiBSZTog4pyXIGk5
+MTUuQ0kuQkFUOiBmYWlsdXJlIGZvciBkcm0vaTkxNS9wc3I6IGNsYXJpZnkgaW50ZWxfcHNyX3By
+ZV9wbGFuZV91cGRhdGUoKSBjb25kaXRpb25zIChyZXYyKQ0KDQpPbiBUdWUsIDA0IEZlYiAyMDI1
+LCBQYXRjaHdvcmsgPHBhdGNod29ya0BlbWVyaWwuZnJlZWRlc2t0b3Aub3JnPiB3cm90ZToNCj4g
+PT0gU2VyaWVzIERldGFpbHMgPT0NCj4NCj4gU2VyaWVzOiBkcm0vaTkxNS9wc3I6IGNsYXJpZnkg
+aW50ZWxfcHNyX3ByZV9wbGFuZV91cGRhdGUoKSBjb25kaXRpb25zIChyZXYyKQ0KPiBVUkwgICA6
+IGh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9zZXJpZXMvMTQzMjM1Lw0KPiBTdGF0
+ZSA6IGZhaWx1cmUNCj4NCj4gPT0gU3VtbWFyeSA9PQ0KPg0KPiBDSSBCdWcgTG9nIC0gY2hhbmdl
+cyBmcm9tIENJX0RSTV8xNjA2NCAtPiBQYXRjaHdvcmtfMTQzMjM1djIgDQo+ID09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0NCj4NCj4gU3VtbWFyeQ0K
+PiAtLS0tLS0tDQo+DQo+ICAgKipGQUlMVVJFKioNCj4NCj4gICBTZXJpb3VzIHVua25vd24gY2hh
+bmdlcyBjb21pbmcgd2l0aCBQYXRjaHdvcmtfMTQzMjM1djIgYWJzb2x1dGVseSBuZWVkIHRvIGJl
+DQo+ICAgdmVyaWZpZWQgbWFudWFsbHkuDQo+ICAgDQo+ICAgSWYgeW91IHRoaW5rIHRoZSByZXBv
+cnRlZCBjaGFuZ2VzIGhhdmUgbm90aGluZyB0byBkbyB3aXRoIHRoZSBjaGFuZ2VzDQo+ICAgaW50
+cm9kdWNlZCBpbiBQYXRjaHdvcmtfMTQzMjM1djIsIHBsZWFzZSBub3RpZnkgeW91ciBidWcgdGVh
+bSAoSTkxNS1jaS1pbmZyYUBsaXN0cy5mcmVlZGVza3RvcC5vcmcpIHRvIGFsbG93IHRoZW0NCj4g
+ICB0byBkb2N1bWVudCB0aGlzIG5ldyBmYWlsdXJlIG1vZGUsIHdoaWNoIHdpbGwgcmVkdWNlIGZh
+bHNlIHBvc2l0aXZlcyBpbiBDSS4NCj4NCj4gICBFeHRlcm5hbCBVUkw6IA0KPiBodHRwczovL2lu
+dGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xNDMyMzV2Mi9pbmRleC5o
+dG1sDQo+DQo+IFBhcnRpY2lwYXRpbmcgaG9zdHMgKDQyIC0+IDQxKQ0KPiAtLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0NCj4NCj4gICBBZGRpdGlvbmFsICgxKTogYmF0LXR3bC0yIA0KPiAg
+IE1pc3NpbmcgICAgKDIpOiBmaS1zbmItMjUyMG0gZmktYnN3LW4zMDUwIA0KPg0KPiBQb3NzaWJs
+ZSBuZXcgaXNzdWVzDQo+IC0tLS0tLS0tLS0tLS0tLS0tLS0NCj4NCj4gICBIZXJlIGFyZSB0aGUg
+dW5rbm93biBjaGFuZ2VzIHRoYXQgbWF5IGhhdmUgYmVlbiBpbnRyb2R1Y2VkIGluIFBhdGNod29y
+a18xNDMyMzV2MjoNCj4NCj4gIyMjIElHVCBjaGFuZ2VzICMjIw0KPg0KPiAjIyMjIFBvc3NpYmxl
+IHJlZ3Jlc3Npb25zICMjIyMNCj4NCj4gICAqIGlndEBpOTE1X3BtX3JwbUBtb2R1bGUtcmVsb2Fk
+Og0KPiAgICAgLSBiYXQtZGcyLTExOiAgICAgICAgIFtQQVNTXVsxXSAtPiBbRkFJTF1bMl0NCj4g
+ICAgWzFdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV8x
+NjA2NC9iYXQtZGcyLTExL2lndEBpOTE1X3BtX3JwbUBtb2R1bGUtcmVsb2FkLmh0bWwNCj4gICAg
+WzJdOiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18x
+NDMyMzV2Mi9iYXQtZGcyLTExL2lndEBpOTE1X3BtX3JwbUBtb2R1bGUtcmVsb2FkLmh0bWwNCj4g
+ICAgIC0gYmF0LXJwbHMtNDogICAgICAgICBbUEFTU11bM10gLT4gW0ZBSUxdWzRdDQo+ICAgIFsz
+XTogaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fMTYwNjQv
+YmF0LXJwbHMtNC9pZ3RAaTkxNV9wbV9ycG1AbW9kdWxlLXJlbG9hZC5odG1sDQo+ICAgIFs0XTog
+DQo+IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE0
+MzIzNXYyL2JhdC1ycGxzLTQNCj4gL2lndEBpOTE1X3BtX3JwbUBtb2R1bGUtcmVsb2FkLmh0bWwN
+Cj4NCj4gICAqIGlndEBrbXNfZmxpcEBiYXNpYy1mbGlwLXZzLWRwbXNAYS1kcDE6DQo+ICAgICAt
+IGJhdC1hcGwtMTogICAgICAgICAgTk9UUlVOIC0+IFtETUVTRy1XQVJOXVs1XSArMSBvdGhlciB0
+ZXN0IGRtZXNnLXdhcm4NCj4gICAgWzVdOiANCj4gaHR0cHM6Ly9pbnRlbC1nZngtY2kuMDEub3Jn
+L3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTQzMjM1djIvYmF0LWFwbC0xLw0KPiBpZ3RAa21zX2Zs
+aXBAYmFzaWMtZmxpcC12cy1kcG1zQGEtZHAxLmh0bWwNCg0KUGxlYXNlIHJlLXJlcG9ydA0KDQo+
+DQo+ICAgDQo+IEtub3duIGlzc3Vlcw0KPiAtLS0tLS0tLS0tLS0NCj4NCj4gICBIZXJlIGFyZSB0
+aGUgY2hhbmdlcyBmb3VuZCBpbiBQYXRjaHdvcmtfMTQzMjM1djIgdGhhdCBjb21lIGZyb20ga25v
+d24gaXNzdWVzOg0KPg0KPiAjIyMgSUdUIGNoYW5nZXMgIyMjDQo+DQo+ICMjIyMgSXNzdWVzIGhp
+dCAjIyMjDQo+DQo+ICAgKiBpZ3RAZGVidWdmc190ZXN0QGJhc2ljLWh3bW9uOg0KPiAgICAgLSBi
+YXQtdHdsLTI6ICAgICAgICAgIE5PVFJVTiAtPiBbU0tJUF1bNl0gKFtpOTE1IzkzMThdKQ0KPiAg
+ICBbNl06IA0KPiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNo
+d29ya18xNDMyMzV2Mi9iYXQtdHdsLTIvDQo+IGlndEBkZWJ1Z2ZzX3Rlc3RAYmFzaWMtaHdtb24u
+aHRtbA0KPg0KPiAgICogaWd0QGdlbV9odWNfY29weUBodWMtY29weToNCj4gICAgIC0gYmF0LWFw
+bC0xOiAgICAgICAgICBOT1RSVU4gLT4gW1NLSVBdWzddICsyMiBvdGhlciB0ZXN0cyBza2lwDQo+
+ICAgIFs3XTogDQo+IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0
+Y2h3b3JrXzE0MzIzNXYyL2JhdC1hcGwtMS8NCj4gaWd0QGdlbV9odWNfY29weUBodWMtY29weS5o
+dG1sDQo+DQo+ICAgKiBpZ3RAZ2VtX2xtZW1fc3dhcHBpbmdAYmFzaWM6DQo+ICAgICAtIGJhdC10
+d2wtMjogICAgICAgICAgTk9UUlVOIC0+IFtTS0lQXVs4XSAoW2k5MTUjMTAyMTNdIC8gW2k5MTUj
+MTE2NzFdKSArMyBvdGhlciB0ZXN0cyBza2lwDQo+ICAgIFs4XTogDQo+IGh0dHBzOi8vaW50ZWwt
+Z2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE0MzIzNXYyL2JhdC10d2wtMi8N
+Cj4gaWd0QGdlbV9sbWVtX3N3YXBwaW5nQGJhc2ljLmh0bWwNCj4NCj4gICAqIGlndEBnZW1fdGls
+ZWRfcHJlYWRfYmFzaWM6DQo+ICAgICAtIGJhdC10d2wtMjogICAgICAgICAgTk9UUlVOIC0+IFtT
+S0lQXVs5XSAoW2k5MTUjMTEwMzFdKQ0KPiAgICBbOV06IA0KPiBodHRwczovL2ludGVsLWdmeC1j
+aS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xNDMyMzV2Mi9iYXQtdHdsLTIvDQo+IGln
+dEBnZW1fdGlsZWRfcHJlYWRfYmFzaWMuaHRtbA0KPg0KPiAgICogaWd0QGk5MTVfcG1fcnBzQGJh
+c2ljLWFwaToNCj4gICAgIC0gYmF0LXR3bC0yOiAgICAgICAgICBOT1RSVU4gLT4gW1NLSVBdWzEw
+XSAoW2k5MTUjMTAyMDldIC8gW2k5MTUjMTE2ODFdKQ0KPiAgICBbMTBdOiANCj4gaHR0cHM6Ly9p
+bnRlbC1nZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9QYXRjaHdvcmtfMTQzMjM1djIvYmF0LXR3
+bC0yLw0KPiBpZ3RAaTkxNV9wbV9ycHNAYmFzaWMtYXBpLmh0bWwNCj4NCj4gICAqIGlndEBrbXNf
+Y3Vyc29yX2xlZ2FjeUBiYXNpYy1idXN5LWZsaXAtYmVmb3JlLWN1cnNvci1hdG9taWM6DQo+ICAg
+ICAtIGJhdC10d2wtMjogICAgICAgICAgTk9UUlVOIC0+IFtTS0lQXVsxMV0gKFtpOTE1IzExMDMw
+XSAvIFtpOTE1IzExNzMxXSkgKzEgb3RoZXIgdGVzdCBza2lwDQo+ICAgIFsxMV06IA0KPiBodHRw
+czovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xNDMyMzV2Mi9i
+YXQtdHdsLTIvDQo+IGlndEBrbXNfY3Vyc29yX2xlZ2FjeUBiYXNpYy1idXN5LWZsaXAtYmVmb3Jl
+LWN1cnNvci1hdG9taWMuaHRtbA0KPg0KPiAgICogaWd0QGttc19kc2NAZHNjLWJhc2ljOg0KPiAg
+ICAgLSBiYXQtdHdsLTI6ICAgICAgICAgIE5PVFJVTiAtPiBbU0tJUF1bMTJdIChbaTkxNSM5ODg2
+XSkNCj4gICAgWzEyXTogDQo+IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10
+aXAvUGF0Y2h3b3JrXzE0MzIzNXYyL2JhdC10d2wtMi8NCj4gaWd0QGttc19kc2NAZHNjLWJhc2lj
+Lmh0bWwNCj4NCj4gICAqIGlndEBrbXNfZm9yY2VfY29ubmVjdG9yX2Jhc2ljQGZvcmNlLWxvYWQt
+ZGV0ZWN0Og0KPiAgICAgLSBiYXQtdHdsLTI6ICAgICAgICAgIE5PVFJVTiAtPiBbU0tJUF1bMTNd
+IChbaTkxNSMxMTAzMl0pDQo+ICAgIFsxM106IA0KPiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5v
+cmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xNDMyMzV2Mi9iYXQtdHdsLTIvDQo+IGlndEBrbXNf
+Zm9yY2VfY29ubmVjdG9yX2Jhc2ljQGZvcmNlLWxvYWQtZGV0ZWN0Lmh0bWwNCj4NCj4gICAqIGln
+dEBrbXNfc2V0bW9kZUBiYXNpYy1jbG9uZS1zaW5nbGUtY3J0YzoNCj4gICAgIC0gYmF0LXR3bC0y
+OiAgICAgICAgICBOT1RSVU4gLT4gW1NLSVBdWzE0XSAoW2k5MTUjODgwOV0pDQo+ICAgIFsxNF06
+IA0KPiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18x
+NDMyMzV2Mi9iYXQtdHdsLTIvDQo+IGlndEBrbXNfc2V0bW9kZUBiYXNpYy1jbG9uZS1zaW5nbGUt
+Y3J0Yy5odG1sDQo+DQo+ICAgKiBpZ3RAcHJpbWVfdmdlbUBiYXNpYy1mZW5jZS1yZWFkOg0KPiAg
+ICAgLSBiYXQtdHdsLTI6ICAgICAgICAgIE5PVFJVTiAtPiBbU0tJUF1bMTVdIChbaTkxNSMxMDIx
+Ml0gLyBbaTkxNSMzNzA4XSkNCj4gICAgWzE1XTogDQo+IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAx
+Lm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE0MzIzNXYyL2JhdC10d2wtMi8NCj4gaWd0QHBy
+aW1lX3ZnZW1AYmFzaWMtZmVuY2UtcmVhZC5odG1sDQo+DQo+ICAgKiBpZ3RAcHJpbWVfdmdlbUBi
+YXNpYy1yZWFkOg0KPiAgICAgLSBiYXQtdHdsLTI6ICAgICAgICAgIE5PVFJVTiAtPiBbU0tJUF1b
+MTZdIChbaTkxNSMxMDIxNF0gLyBbaTkxNSMzNzA4XSkNCj4gICAgWzE2XTogDQo+IGh0dHBzOi8v
+aW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE0MzIzNXYyL2JhdC10
+d2wtMi8NCj4gaWd0QHByaW1lX3ZnZW1AYmFzaWMtcmVhZC5odG1sDQo+DQo+ICAgKiBpZ3RAcHJp
+bWVfdmdlbUBiYXNpYy13cml0ZToNCj4gICAgIC0gYmF0LXR3bC0yOiAgICAgICAgICBOT1RSVU4g
+LT4gW1NLSVBdWzE3XSAoW2k5MTUjMTAyMTZdIC8gW2k5MTUjMzcwOF0pDQo+ICAgIFsxN106IA0K
+PiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xNDMy
+MzV2Mi9iYXQtdHdsLTIvDQo+IGlndEBwcmltZV92Z2VtQGJhc2ljLXdyaXRlLmh0bWwNCj4NCj4g
+ICANCj4gIyMjIyBQb3NzaWJsZSBmaXhlcyAjIyMjDQo+DQo+ICAgKiBpZ3RAZ2VtX2V4ZWNfZ3R0
+ZmlsbEBiYXNpYzoNCj4gICAgIC0gYmF0LWFwbC0xOiAgICAgICAgICBbQUJPUlRdWzE4XSAtPiBb
+UEFTU11bMTldDQo+ICAgIFsxOF06IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2Ry
+bS10aXAvQ0lfRFJNXzE2MDY0L2JhdC1hcGwtMS9pZ3RAZ2VtX2V4ZWNfZ3R0ZmlsbEBiYXNpYy5o
+dG1sDQo+ICAgIFsxOV06IA0KPiBodHRwczovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0t
+dGlwL1BhdGNod29ya18xNDMyMzV2Mi9iYXQtYXBsLTEvDQo+IGlndEBnZW1fZXhlY19ndHRmaWxs
+QGJhc2ljLmh0bWwNCj4NCj4gICAqIGlndEBpOTE1X3NlbGZ0ZXN0QGxpdmVAd29ya2Fyb3VuZHM6
+DQo+ICAgICAtIGJhdC1tdGxwLTY6ICAgICAgICAgW0RNRVNHLUZBSUxdWzIwXSAoW2k5MTUjMTIw
+NjFdKSAtPiBbUEFTU11bMjFdICsxIG90aGVyIHRlc3QgcGFzcw0KPiAgICBbMjBdOiBodHRwczov
+L2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL0NJX0RSTV8xNjA2NC9iYXQtbXRscC02
+L2lndEBpOTE1X3NlbGZ0ZXN0QGxpdmVAd29ya2Fyb3VuZHMuaHRtbA0KPiAgICBbMjFdOiBodHRw
+czovL2ludGVsLWdmeC1jaS4wMS5vcmcvdHJlZS9kcm0tdGlwL1BhdGNod29ya18xNDMyMzV2Mi9i
+YXQtbXRscC02L2lndEBpOTE1X3NlbGZ0ZXN0QGxpdmVAd29ya2Fyb3VuZHMuaHRtbA0KPiAgICAg
+LSB7YmF0LW10bHAtOX06ICAgICAgIFtETUVTRy1GQUlMXVsyMl0gKFtpOTE1IzEyMDYxXSkgLT4g
+W1BBU1NdWzIzXSArMSBvdGhlciB0ZXN0IHBhc3MNCj4gICAgWzIyXTogaHR0cHM6Ly9pbnRlbC1n
+ZngtY2kuMDEub3JnL3RyZWUvZHJtLXRpcC9DSV9EUk1fMTYwNjQvYmF0LW10bHAtOS9pZ3RAaTkx
+NV9zZWxmdGVzdEBsaXZlQHdvcmthcm91bmRzLmh0bWwNCj4gICAgWzIzXTogDQo+IGh0dHBzOi8v
+aW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAvUGF0Y2h3b3JrXzE0MzIzNXYyL2JhdC1t
+dGxwLTkNCj4gL2lndEBpOTE1X3NlbGZ0ZXN0QGxpdmVAd29ya2Fyb3VuZHMuaHRtbA0KPg0KPiAg
+IA0KPiAgIHtuYW1lfTogVGhpcyBlbGVtZW50IGlzIHN1cHByZXNzZWQuIFRoaXMgbWVhbnMgaXQg
+aXMgaWdub3JlZCB3aGVuIGNvbXB1dGluZw0KPiAgICAgICAgICAgdGhlIHN0YXR1cyBvZiB0aGUg
+ZGlmZmVyZW5jZSAoU1VDQ0VTUywgV0FSTklORywgb3IgRkFJTFVSRSkuDQo+DQo+ICAgW2k5MTUj
+MTAyMDldOiBodHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvZHJtL2k5MTUva2VybmVsLy0v
+aXNzdWVzLzEwMjA5DQo+ICAgW2k5MTUjMTAyMTJdOiBodHRwczovL2dpdGxhYi5mcmVlZGVza3Rv
+cC5vcmcvZHJtL2k5MTUva2VybmVsLy0vaXNzdWVzLzEwMjEyDQo+ICAgW2k5MTUjMTAyMTNdOiBo
+dHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvZHJtL2k5MTUva2VybmVsLy0vaXNzdWVzLzEw
+MjEzDQo+ICAgW2k5MTUjMTAyMTRdOiBodHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvZHJt
+L2k5MTUva2VybmVsLy0vaXNzdWVzLzEwMjE0DQo+ICAgW2k5MTUjMTAyMTZdOiBodHRwczovL2dp
+dGxhYi5mcmVlZGVza3RvcC5vcmcvZHJtL2k5MTUva2VybmVsLy0vaXNzdWVzLzEwMjE2DQo+ICAg
+W2k5MTUjMTEwMzBdOiBodHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvZHJtL2k5MTUva2Vy
+bmVsLy0vaXNzdWVzLzExMDMwDQo+ICAgW2k5MTUjMTEwMzFdOiBodHRwczovL2dpdGxhYi5mcmVl
+ZGVza3RvcC5vcmcvZHJtL2k5MTUva2VybmVsLy0vaXNzdWVzLzExMDMxDQo+ICAgW2k5MTUjMTEw
+MzJdOiBodHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvZHJtL2k5MTUva2VybmVsLy0vaXNz
+dWVzLzExMDMyDQo+ICAgW2k5MTUjMTE2NzFdOiBodHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5v
+cmcvZHJtL2k5MTUva2VybmVsLy0vaXNzdWVzLzExNjcxDQo+ICAgW2k5MTUjMTE2ODFdOiBodHRw
+czovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvZHJtL2k5MTUva2VybmVsLy0vaXNzdWVzLzExNjgx
+DQo+ICAgW2k5MTUjMTE3MzFdOiBodHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvZHJtL2k5
+MTUva2VybmVsLy0vaXNzdWVzLzExNzMxDQo+ICAgW2k5MTUjMTIwNjFdOiBodHRwczovL2dpdGxh
+Yi5mcmVlZGVza3RvcC5vcmcvZHJtL2k5MTUva2VybmVsLy0vaXNzdWVzLzEyMDYxDQo+ICAgW2k5
+MTUjMzcwOF06IGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0vaTkxNS9rZXJuZWwv
+LS9pc3N1ZXMvMzcwOA0KPiAgIFtpOTE1Izg4MDldOiBodHRwczovL2dpdGxhYi5mcmVlZGVza3Rv
+cC5vcmcvZHJtL2k5MTUva2VybmVsLy0vaXNzdWVzLzg4MDkNCj4gICBbaTkxNSM5MzE4XTogaHR0
+cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS9pOTE1L2tlcm5lbC8tL2lzc3Vlcy85MzE4
+DQo+ICAgW2k5MTUjOTg4Nl06IA0KPiBodHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcvZHJt
+L2k5MTUva2VybmVsLy0vaXNzdWVzLzk4ODYNCj4NCj4NCj4gQnVpbGQgY2hhbmdlcw0KPiAtLS0t
+LS0tLS0tLS0tDQo+DQo+ICAgKiBMaW51eDogQ0lfRFJNXzE2MDY0IC0+IFBhdGNod29ya18xNDMy
+MzV2Mg0KPg0KPiAgIENJLTIwMTkwNTI5OiAyMDE5MDUyOQ0KPiAgIENJX0RSTV8xNjA2NDogYWM4
+Nzg0MzQ1NmFhNTU4YTY2NWRmNDNhYTYyYzAzZWFmNzcwMWJjYiBAIGdpdDovL2Fub25naXQuZnJl
+ZWRlc2t0b3Aub3JnL2dmeC1jaS9saW51eA0KPiAgIElHVF84MjIzOiBjY2ZlMDQyNzg3YjA4MmMw
+NjQwMmZmOWFmMjU3ZjgzMzhiOGVkZDVlIEAgaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3Jn
+L2RybS9pZ3QtZ3B1LXRvb2xzLmdpdA0KPiAgIFBhdGNod29ya18xNDMyMzV2MjogYWM4Nzg0MzQ1
+NmFhNTU4YTY2NWRmNDNhYTYyYzAzZWFmNzcwMWJjYiBAIA0KPiBnaXQ6Ly9hbm9uZ2l0LmZyZWVk
+ZXNrdG9wLm9yZy9nZngtY2kvbGludXgNCj4NCj4gPT0gTG9ncyA9PQ0KPg0KPiBGb3IgbW9yZSBk
+ZXRhaWxzIHNlZTogDQo+IGh0dHBzOi8vaW50ZWwtZ2Z4LWNpLjAxLm9yZy90cmVlL2RybS10aXAv
+UGF0Y2h3b3JrXzE0MzIzNXYyL2luZGV4Lmh0bWwNCg0KLS0NCkphbmkgTmlrdWxhLCBJbnRlbA0K
