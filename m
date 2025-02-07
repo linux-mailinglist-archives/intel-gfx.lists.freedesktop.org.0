@@ -2,53 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03312A2D0CB
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2025 23:41:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F69FA2D089
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2025 23:34:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0922910E2DA;
-	Fri,  7 Feb 2025 22:41:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8652010E07F;
+	Fri,  7 Feb 2025 22:34:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Dxi2d+Ws";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="egFDbnRz";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CDB110EBB5;
- Fri,  7 Feb 2025 22:32:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 351D510EBB5;
+ Fri,  7 Feb 2025 22:32:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738967522; x=1770503522;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=VAOps/6wsQysi7VB9A+HE9nbNaA/QM+MSCiK8TVJuEE=;
- b=Dxi2d+WsD82VtmLnLm/GyVkyTcMVJahT9FHWsNMC26CwIwaoBoZKyh/I
- M+RLw/D02QEEOpvKDSBFlog2RtkikeLDIEG+bBNCm4ajY0NAQ2ABaVu8i
- m8bPZyxL3CnKQsfzowMN3RwieH0dGLC2NSDxPDcYPv5WWNmjp3F/TcP0x
- GaRZ3myi0KKF+YZLCbDmI1XuBAZn85tEV1StfoOVrL0dXq76hlqSqxkC+
- PdpLdmAbFr+TgfzHWmeqrR2mIm79eRfeoQ6kvlWY9Om55dhlOWDuP3uFA
- sSn4DNQpYZrF0Xa19Xw755FbxUEK9fuKwGcWny1zlynk0vh+zatg4+SWG Q==;
-X-CSE-ConnectionGUID: yo4kt/m1SR+EbCcmrnfX2Q==
-X-CSE-MsgGUID: g4aieoXdQGG1he45YjI6Pw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11338"; a="39313387"
-X-IronPort-AV: E=Sophos;i="6.13,268,1732608000"; d="scan'208";a="39313387"
+ t=1738967525; x=1770503525;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=G3N2aomj3u4LY8OYi5XSbWS2TnTroo52D5J5TjF/Gt4=;
+ b=egFDbnRzQNTOzks5/lkuqueJ3sYY7BB+4udZblejek98u4gTvIUUYy2r
+ n9R8MQw2lJtOKnTpjpjLtH3PEiZiuqYooJEbOlfqa8Mp67YziZru/8IIT
+ bFmqtZPmDhPGLfkJLSdvMWdXV0gBASAUMriRefp2iXFxVZ23xINxrH6iU
+ OWFZYFFMyEqO8VIXksV/y4EC3Ld6Xg4cXktDJOQ4E3JZ2skimHl7e8esa
+ VhEo8ZVCRUgCaitGJ7UigrNDWcvXr9STHYHvHPMSp3NGOXF3KYOFxN9r/
+ 02v/Intm6GiPjZCD88D+Q3NBHufloRLxIiLKriain1j3YNAsu3iuGZH1W A==;
+X-CSE-ConnectionGUID: qLmvRRfjQgWWpnrMmVakMw==
+X-CSE-MsgGUID: PpXOeQ6bRJmY407enM4fjw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11338"; a="39313389"
+X-IronPort-AV: E=Sophos;i="6.13,268,1732608000"; d="scan'208";a="39313389"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2025 14:32:02 -0800
-X-CSE-ConnectionGUID: RzLDLpC5Q+y1oVEMgUWRmw==
-X-CSE-MsgGUID: CtGVKooRRjqbnb7G8YCTIw==
+ 07 Feb 2025 14:32:05 -0800
+X-CSE-ConnectionGUID: BOZwU7SjSsKgoImBJAjcIg==
+X-CSE-MsgGUID: lGTaA89sTfO+Azy7HjbrIQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,268,1732608000"; d="scan'208";a="111857399"
+X-IronPort-AV: E=Sophos;i="6.13,268,1732608000"; d="scan'208";a="111857412"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 07 Feb 2025 14:32:00 -0800
+ by fmviesa008.fm.intel.com with SMTP; 07 Feb 2025 14:32:03 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Sat, 08 Feb 2025 00:31:59 +0200
+ Sat, 08 Feb 2025 00:32:02 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 0/8] drm/i915/vrr: Fix DSB+VRR usage for PTL+
-Date: Sat,  8 Feb 2025 00:31:51 +0200
-Message-ID: <20250207223159.14132-1-ville.syrjala@linux.intel.com>
+Subject: [PATCH v2 1/8] drm/i915/dsb: Move the +1 usec adjustment into
+ dsb_wait_usec()
+Date: Sat,  8 Feb 2025 00:31:52 +0200
+Message-ID: <20250207223159.14132-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.45.3
+In-Reply-To: <20250207223159.14132-1-ville.syrjala@linux.intel.com>
+References: <20250207223159.14132-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -69,40 +72,44 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Apparently PTL (or I suppose it could have already happened
-in either MTL or LNL, didn't have either one to check) changes
-the way the VRR hardwre works by ending the safe window as
-soon as the push send is triggered. Reorder our DSB programming
-sequence to account for that, and try to make sure we catch any
-vblank evasion fails that could cause problems with the new
-order.
+The "wait usec" DSB command doesn't quite seem to able to
+guarantee that it always waits at least the specified
+amount of usecs. Some of that could be just because it
+supposedly just does some kind of dumb timestamp comparison
+internally. But I also see cases where two hardware timestamps
+sampled on each side of the "wait usec" command come out one
+less than expected. So it looks like we always need at least a
++1 to guarantee that we never wait less than specified. Always
+apply that adjustment in dsb_wait_usec().
 
-v2: Fix up the issues with wiating for the vblank delay
-    so we can make do with a single check of the push bit.
-    Also do the check for the mmio path.
-    Avoid legacy cursor updates making a mess of things.
-    Decode the DSB errors.
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dsb.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-Ville Syrjälä (8):
-  drm/i915/dsb: Move the +1 usec adjustment into dsb_wait_usec()
-  drm/i915/vrr: Don't send push for legacy cursor updates
-  drm/i915/vrr: Account for TRANS_PUSH delay
-  drm/i915/dsb: Compute use_dsb earlier
-  drm/i915/dsb: Introduce intel_dsb_poll()
-  drm/i915/vrr: Reorder the DSB "wait for safe window" vs. TRANS_PUSH
-  drm/i915/vrr: Check that the push send bit is clear after delayed
-    vblank
-  drm/i915/dsb: Decode DSB error interrupts
-
- drivers/gpu/drm/i915/display/intel_color.c   |  9 +++-
- drivers/gpu/drm/i915/display/intel_crtc.c    |  3 +-
- drivers/gpu/drm/i915/display/intel_display.c | 31 +++++++------
- drivers/gpu/drm/i915/display/intel_dsb.c     | 47 +++++++++++++++++---
- drivers/gpu/drm/i915/display/intel_dsb.h     |  3 ++
- drivers/gpu/drm/i915/display/intel_vrr.c     | 31 +++++++++++++
- drivers/gpu/drm/i915/display/intel_vrr.h     |  2 +
- 7 files changed, 101 insertions(+), 25 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
+index 2f2812c23972..f8bd6fad0c87 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsb.c
++++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+@@ -369,7 +369,8 @@ void intel_dsb_interrupt(struct intel_dsb *dsb)
+ 
+ void intel_dsb_wait_usec(struct intel_dsb *dsb, int count)
+ {
+-	intel_dsb_emit(dsb, count,
++	/* +1 to make sure we never wait less time than asked for */
++	intel_dsb_emit(dsb, count + 1,
+ 		       DSB_OPCODE_WAIT_USEC << DSB_OPCODE_SHIFT);
+ }
+ 
+@@ -622,7 +623,7 @@ void intel_dsb_wait_vblank_delay(struct intel_atomic_state *state,
+ 	const struct intel_crtc_state *crtc_state =
+ 		intel_pre_commit_crtc_state(state, crtc);
+ 	int usecs = intel_scanlines_to_usecs(&crtc_state->hw.adjusted_mode,
+-					     dsb_vblank_delay(state, crtc)) + 1;
++					     dsb_vblank_delay(state, crtc));
+ 
+ 	intel_dsb_wait_usec(dsb, usecs);
+ }
 -- 
 2.45.3
 
