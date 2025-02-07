@@ -2,60 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D26E6A2CEFC
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2025 22:25:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 178C6A2D018
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2025 22:54:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2CA4C10E2EA;
-	Fri,  7 Feb 2025 21:25:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76F6A10EBB2;
+	Fri,  7 Feb 2025 21:54:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q68Z0jTz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nLjDfoeM";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B52DE10E0CF
- for <intel-gfx@lists.freedesktop.org>; Fri,  7 Feb 2025 21:25:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C593310E143;
+ Fri,  7 Feb 2025 21:54:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738963512; x=1770499512;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=7L3ixYfTsaP7rFnG+ESE5SNyTo/GFA6XhfEUot2jRQ0=;
- b=Q68Z0jTzQ9JcvlPjeqOfrTIpsBZodeASvI6quEDbz+HJOXwcw3JQWnEY
- Y3IkEvUCn1pHSUv/grlJMM3Zg4hC63syAdQn4IKVfH+iPK4Ahc80SO3lJ
- 9RsPPBgrs+RVsRlyxLB/8sb3sgYz1kS3FpMZhwQoz9Nlg1pv2BfoXGo3f
- hfsMVuKsGNQ58wosuXQB2MT5ztn/s9nLD6krT+mxQJaJOr7Ws4UHWCz2D
- bJAlpghsXH8t64ej6sFpiXTHhCm+UY0+bKqLhtIRLOkM6R4PAuRDd+o1f
- 8GpualfjehtWMtw+2vkRpgjVYCZP0Rzd/WCHtGJwkCtaZUNtsT/i7xUcH w==;
-X-CSE-ConnectionGUID: ZuFxEGWRSg2lBWbqQLKSzQ==
-X-CSE-MsgGUID: KTIEInyHQ7qPC50cpgKr4Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11338"; a="62093888"
-X-IronPort-AV: E=Sophos;i="6.13,268,1732608000"; d="scan'208";a="62093888"
+ t=1738965250; x=1770501250;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ZRWrJLe+hdp+YWVmBLDTYzCjbyvN/uXgkfqBI29/6qI=;
+ b=nLjDfoeMkopz4vn4stgvksYPJlOzL0oJeoeOI51DYuvOB5DFrZ7/GV55
+ PjaTSe4Lvc0P2bDHsAasGSRIfO99OKXL70UdWfml+fjp9lPRGkGMD+AB4
+ 3Nh7tyPxWJ0ZAMLUjAj+mHEztyNpNq09WZbyFqXOLb4pH/Gu5EJNPClx7
+ MVKrC2oX1o27c4L5dbDdSND4vhJCRjIw84qgfFwI44d6M5Sym/qH1jn1f
+ Uuyxl+zJ/THC0c5Fpabm8GUoiyo0f4ytnfHTR66xiuM66ILZ5M3pt8CDN
+ oZDek+6+cRa0kH0jbiLus1+OMqvhiG7kmveYkiXtBCLzKWBWWgG8KVR0U w==;
+X-CSE-ConnectionGUID: YIkrM7CmTjqSwnCD/YBvkQ==
+X-CSE-MsgGUID: 2e6ytleMSPOmIN8aVmetYA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11338"; a="39745980"
+X-IronPort-AV: E=Sophos;i="6.13,268,1732608000"; d="scan'208";a="39745980"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2025 13:25:12 -0800
-X-CSE-ConnectionGUID: wiwX/1SFREOBN+/NqFV19g==
-X-CSE-MsgGUID: dXIhrQO4RvKSxwp1Piw/6w==
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2025 13:54:10 -0800
+X-CSE-ConnectionGUID: G9GQP4rNRjOv3KjbtJtZUg==
+X-CSE-MsgGUID: OzuZspasRyix30uWxb2LaQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,268,1732608000"; d="scan'208";a="111847039"
+X-IronPort-AV: E=Sophos;i="6.13,268,1732608000"; d="scan'208";a="111851030"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 07 Feb 2025 13:25:08 -0800
+ by fmviesa008.fm.intel.com with SMTP; 07 Feb 2025 13:54:07 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 07 Feb 2025 23:25:07 +0200
-Date: Fri, 7 Feb 2025 23:25:07 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Povilas Kanapickas <povilas@radix.lt>
-Cc: "xorg-devel@lists.x.org" <xorg-devel@lists.x.org>,
- intel-gfx@lists.freedesktop.org, chris@chris-wilson.co.uk
-Subject: Re: xf86-video-intel is broken and with MRs disables we can't fix it
-Message-ID: <Z6Z6My8FcaLaLPu0@intel.com>
-References: <1e5b5275-d194-4af0-8927-f5b93416a407@radix.lt>
+ Fri, 07 Feb 2025 23:54:06 +0200
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: [PATCH 0/3] drm/i915: Fix scanline_offset for LNL+/BMG+
+Date: Fri,  7 Feb 2025 23:54:03 +0200
+Message-ID: <20250207215406.19348-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.45.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <1e5b5275-d194-4af0-8927-f5b93416a407@radix.lt>
-X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,51 +67,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Fri, Feb 07, 2025 at 08:57:34PM +0200, Povilas Kanapickas wrote:
-> Hi,
-> 
-> xf86-video-intel driver is currently cannot be compiled with released
-> versions of X server. Simple reproduction steps: create Debian Bookworm
-> container, download module sources and all required dependencies and try
-> to build.
+From: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
 
-Builds fine on my Gentoo boxes here. What are the actual issues
-you are seeing?
+Something has changed in the hardware on LNL/BMG because
+HDMI outputs no longer have the extra scanline offset.
 
-> 
-> Debian Bookworm is pretty much the least exciting configuration
-> possible. And the fact that xf86-video-intel cannot be compiled there is
-> not good.
-> 
-> For almost any other driver this is not a problem, because it is
-> possible to create a merge request on gitlab.freedesktop.org. Eventually
-> simple maintenance and build-related merge requests are merged. However
-> in the case of Intel driver, merge requests are disabled and the
-> recommended way to submit patches is via intel-gfx@lists.freedesktop.org
-> mailing list. Unfortunately, patches submitted so far are ignored there.
+I confirmed that MTL still has the old behaviour, which
+is a bit weird since both MTL and BMG have display ver 14
+vs. LNL is version 20. But can't argue with actual
+hardware behaviour.
 
-I've not seen any patches on the list. Care to point them out?
+Ville Syrj√§l√§ (3):
+  drm/i915: Fix scanline_offset for LNL+ and BMG+
+  drm/i915: Reverse the scanline_offset if ladder
+  drm/i915: Replace the HAS_DDI() in intel_crtc_scanline_offset() with
+    specific platform checks
 
-> 
-> Given that the last commit to xf86-video-intel was 22 months ago, I
-> suspect there's little interest from Intel to spend time maintaining the
-> project.
-
-You must be looking at some stale repo. My last commit was 
-commit ce811e78882d9f31636351dfe65351f4ded52c74
-Author:     Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
-AuthorDate: Sat Mar 18 15:45:44 2023 +0200
-Commit:     Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
-CommitDate: Tue May 7 00:32:24 2024 +0300
-
-> 
-> What do you think about opening up merge requests on the repository so
-> that at least the driver can be brought back to compilable state? Does
-> anyone have other ideas how the current situation could be resolved?
-
-I wouldn't want to deal with mrs for any high volume stuff, but
-since this only gets the occasional fix I guess it could work.
+ drivers/gpu/drm/i915/display/intel_vblank.c | 13 ++++++++-----
+ 1 file changed, 8 insertions(+), 5 deletions(-)
 
 -- 
-Ville Syrj‰l‰
-Intel
+2.45.3
+
