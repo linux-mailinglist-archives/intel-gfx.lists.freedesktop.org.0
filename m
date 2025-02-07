@@ -2,59 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50328A2C117
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2025 11:58:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE574A2C129
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2025 12:03:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E219F10EABC;
-	Fri,  7 Feb 2025 10:58:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D9FC10EABB;
+	Fri,  7 Feb 2025 11:02:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UN6xAMOE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Su1fOBP3";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5098910EABB;
- Fri,  7 Feb 2025 10:58:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6AC5410E08E;
+ Fri,  7 Feb 2025 11:02:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738925928; x=1770461928;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=NaKMljhdH+x+L/Xf2y9MXjLOeD6IJnFsFWG8szL0yGM=;
- b=UN6xAMOERPiJSOPFih7ufysgRsxICvnKJZ/9raCIkw2mn4Tbev/sXe1V
- tDckcDSMv+BthopSWMEKcHzMMlj+16rBilxN5E4rpaoS32/eGpSYiMjKy
- wt2uUN3Xcjg5YhfL0mIN/tvTaM6BwhO7Fb8JgXZ/E+umGHM5C9978dOna
- bINpNJV8zm0ZGduoSIcaD+cHQPDIQS8AxcW7DJD2YCciWlQv/s+PCk5It
- u/rrBQ89t0FH/5RU/QGUvAXeHsFHzcTEieBgh3yNX8sG7EbdpIQASDrEl
- 3c2L2iUBNhn9LdpNtyZJK6d1rSDHoE95Mes2A02023Z1+G9FVISnl568N A==;
-X-CSE-ConnectionGUID: +zuWiX72Sk2rcrYcj75aZQ==
-X-CSE-MsgGUID: 4cHowcNlTH+GHZsA2r1ZGg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="43224061"
-X-IronPort-AV: E=Sophos;i="6.13,266,1732608000"; d="scan'208";a="43224061"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2025 02:58:48 -0800
-X-CSE-ConnectionGUID: sdlsmdliR56xJR2wPK/0hg==
-X-CSE-MsgGUID: 5/mW4n0FRsSzD2w0Pf0adw==
+ t=1738926174; x=1770462174;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=ENAbJglwPtDhtDx4sNdFeUf2Z9r1yDUmaR1yOF86pgM=;
+ b=Su1fOBP3F6s2BSvhVKDxzUWAkGCMM7FLmZ+I3l0mM8tI/aug5P2ViHNa
+ nFhXIYZ4B90Xg/YGW0imiTqoPl6lXm+I7mHBOj2kzIpZVJraVD/QeRzan
+ CTAQsL1t+Bzc5hjraWYP7qHWoV/MTnmr/Pv26av062NBKFsfkCVw2oMAd
+ 61c7029Ke8x1hZHlhjLcqKGVB6wsOGPXuQS3r5Hrnrlux/ootz27fAvds
+ fEbVOZAH2g5Ag0lm868BLPPaRBCKF3KuhoEYF151LTQC0slkycV9tRVb7
+ 8F1Z049O15mLkhBMZvKf44gP00B0PCC+kDd/2wWvPenZGLIIHjk3ySRq9 g==;
+X-CSE-ConnectionGUID: wVIGj9dmQGet1hehJqKeCA==
+X-CSE-MsgGUID: LzXhTtaYS92esHuuBnZ3fA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="27171043"
+X-IronPort-AV: E=Sophos;i="6.13,266,1732608000"; d="scan'208";a="27171043"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2025 03:02:54 -0800
+X-CSE-ConnectionGUID: Qr/W36oXSyagrZRF/uopAg==
+X-CSE-MsgGUID: o5fEKG/UTgqZr7FYL0UY3Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="148709092"
-Received: from dprybysh-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.246.122])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2025 02:58:46 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: suraj.kandpal@intel.com
-Subject: [PATCH 4/3] drm/i915/hdcp: Make some functions static
-Date: Fri,  7 Feb 2025 12:58:38 +0200
-Message-Id: <20250207105838.179805-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1738924826.git.jani.nikula@intel.com>
-References: <cover.1738924826.git.jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="111928610"
+Received: from ncintean-mobl1.ger.corp.intel.com (HELO intel.com)
+ ([10.245.246.140])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Feb 2025 03:02:47 -0800
+Date: Fri, 7 Feb 2025 12:02:43 +0100
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Dan Carpenter <dan.carpenter@linaro.org>
+Cc: "Kirill A. Shutemov" <kirill.shutemov@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ David Hildenbrand <david@redhat.com>, Josef Bacik <josef@toxicpanda.com>,
+ "Matthew Wilcox (Oracle)" <willy@infradead.org>,
+ Brian Geffon <bgeffon@google.com>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ kernel-janitors@vger.kernel.org
+Subject: Re: [PATCH next] drm/i915: Fix NULL vs IS_ERR() check in
+ __shmem_writeback()
+Message-ID: <Z6XoU6GopCT-CxNK@ashyti-mobl2.lan>
+References: <7f99a56b-d517-40b0-92b7-421c4fd813f2@stanley.mountain>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7f99a56b-d517-40b0-92b7-421c4fd813f2@stanley.mountain>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,75 +81,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-With the debugfs implementation moved next to the implementation, we no
-longer need to expose some of the functions. Make them static.
+Hi Dan,
 
-Cc: Suraj Kandpal <suraj.kandpal@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_hdcp.c | 10 +++++-----
- drivers/gpu/drm/i915/display/intel_hdcp.h |  6 ------
- 2 files changed, 5 insertions(+), 11 deletions(-)
+On Thu, Feb 06, 2025 at 11:17:02AM +0300, Dan Carpenter wrote:
+> The filemap_lock_folio() function doesn't return NULL, it returns error
+> pointers.
+> 
+> Fixes: 25dd342f0cc8 ("drm/i915/gem: convert __shmem_writeback() to folios")
+> Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_shmem.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> index a784fb44e59c..fb263b421958 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
+> @@ -319,7 +319,7 @@ void __shmem_writeback(size_t size, struct address_space *mapping)
+>  		struct folio *folio;
+>  
+>  		folio = filemap_lock_folio(mapping, i);
+> -		if (!folio)
+> +		if (IS_ERR(folio))
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index 3d83db793baf..1aa4c0fd216f 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -209,7 +209,7 @@ int intel_hdcp_read_valid_bksv(struct intel_digital_port *dig_port,
- }
- 
- /* Is HDCP1.4 capable on Platform and Sink */
--bool intel_hdcp_get_capability(struct intel_connector *connector)
-+static bool intel_hdcp_get_capability(struct intel_connector *connector)
- {
- 	struct intel_digital_port *dig_port;
- 	const struct intel_hdcp_shim *shim = connector->hdcp.shim;
-@@ -265,7 +265,7 @@ static bool intel_hdcp2_prerequisite(struct intel_connector *connector)
- }
- 
- /* Is HDCP2.2 capable on Platform and Sink */
--bool intel_hdcp2_get_capability(struct intel_connector *connector)
-+static bool intel_hdcp2_get_capability(struct intel_connector *connector)
- {
- 	struct intel_hdcp *hdcp = &connector->hdcp;
- 	bool capable = false;
-@@ -279,9 +279,9 @@ bool intel_hdcp2_get_capability(struct intel_connector *connector)
- 	return capable;
- }
- 
--void intel_hdcp_get_remote_capability(struct intel_connector *connector,
--				      bool *hdcp_capable,
--				      bool *hdcp2_capable)
-+static void intel_hdcp_get_remote_capability(struct intel_connector *connector,
-+					     bool *hdcp_capable,
-+					     bool *hdcp2_capable)
- {
- 	struct intel_hdcp *hdcp = &connector->hdcp;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.h b/drivers/gpu/drm/i915/display/intel_hdcp.h
-index 76bd3996f636..3a7905551051 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.h
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.h
-@@ -21,7 +21,6 @@ struct intel_encoder;
- struct intel_hdcp_shim;
- struct seq_file;
- enum port;
--enum transcoder;
- 
- void intel_hdcp_atomic_check(struct drm_connector *connector,
- 			     struct drm_connector_state *old_state,
-@@ -39,11 +38,6 @@ void intel_hdcp_update_pipe(struct intel_atomic_state *state,
- 			    const struct intel_crtc_state *crtc_state,
- 			    const struct drm_connector_state *conn_state);
- bool is_hdcp_supported(struct intel_display *display, enum port port);
--bool intel_hdcp_get_capability(struct intel_connector *connector);
--bool intel_hdcp2_get_capability(struct intel_connector *connector);
--void intel_hdcp_get_remote_capability(struct intel_connector *connector,
--				      bool *hdcp_capable,
--				      bool *hdcp2_capable);
- void intel_hdcp_component_init(struct intel_display *display);
- void intel_hdcp_component_fini(struct intel_display *display);
- void intel_hdcp_cleanup(struct intel_connector *connector);
--- 
-2.39.5
+I don't see this patch yet in -next yet (and of course not in
+drm-tip), which branch is it based on?
 
+Thanks,
+Andi
+
+>  			continue;
+>  
+>  		if (!folio_mapped(folio) && folio_clear_dirty_for_io(folio)) {
+> -- 
+> 2.47.2
