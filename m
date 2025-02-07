@@ -2,29 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4ED27A2C833
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2025 17:02:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4548BA2C856
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2025 17:14:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A50CC10E00B;
-	Fri,  7 Feb 2025 16:02:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FC1210EB68;
+	Fri,  7 Feb 2025 16:14:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 36ABF10E00B;
- Fri,  7 Feb 2025 16:00:08 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2587639663913492839=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 126FA10EB68;
+ Fri,  7 Feb 2025 16:12:34 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_drm/i915/xe3lpd=3A_Update?=
- =?utf-8?q?_bandwidth_parameters?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915=3A_i915=5Fr?=
+ =?utf-8?q?eg=2Eh_display_split?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gustavo Sousa" <gustavo.sousa@intel.com>
+To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 07 Feb 2025 16:00:08 -0000
-Message-ID: <173894400821.2707550.5289538521960134583@b555e5b46a47>
+Date: Fri, 07 Feb 2025 16:12:34 -0000
+Message-ID: <173894475406.2707550.6498822234340796959@b555e5b46a47>
 X-Patchwork-Hint: ignore
-References: <20250206192148.53610-1-gustavo.sousa@intel.com>
-In-Reply-To: <20250206192148.53610-1-gustavo.sousa@intel.com>
+References: <cover.1738935286.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1738935286.git.jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,288 +41,315 @@ Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
---===============2587639663913492839==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/xe3lpd: Update bandwidth parameters
-URL   : https://patchwork.freedesktop.org/series/144441/
-State : failure
+Series: drm/i915: i915_reg.h display split
+URL   : https://patchwork.freedesktop.org/series/144505/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_16082 -> Patchwork_144441v1
-====================================================
+Error: dim checkpatch failed
+dc241ad94e8c drm/i915/reg: use REG_BIT and friends to define DP registers
+adfada3efcca drm/i915/reg: Remove some extra blank lines
+01ac518767ad drm/i915: split out display register macros to a separate file
+-:332: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#332: 
+new file mode 100644
 
-Summary
--------
+-:476: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#476: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:140:
++#define   PHY_STATUS_SPLINE_LDO(phy, ch, spline)        (1 << (8 - (6 * (phy) + 3 * (ch) + (spline))))
 
-  **FAILURE**
+-:774: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#774: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:438:
++ * The same register may be used for SDVO or HDMI */
 
-  Serious unknown changes coming with Patchwork_144441v1 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_144441v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+-:855: WARNING:BLOCK_COMMENT_STYLE: Block comments use a trailing */ on a separate line
+#855: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:519:
++ * of the infoframe structure specified by CEA-861. */
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v1/index.html
+-:1044: WARNING:LONG_LINE: line length of 128 exceeds 100 columns
+#1044: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:708:
++#define   TRANSCONF_FRAME_START_DELAY(x)		REG_FIELD_PREP(TRANSCONF_FRAME_START_DELAY_MASK, (x)) /* pre-hsw: 0-3 */
 
-Participating hosts (45 -> 44)
-------------------------------
+-:1051: WARNING:LONG_LINE_COMMENT: line length of 110 exceeds 100 columns
+#1051: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:715:
++#define   TRANSCONF_GAMMA_MODE_12BIT		REG_FIELD_PREP(TRANSCONF_GAMMA_MODE_MASK_ILK, 2) /* ilk-ivb */
 
-  Missing    (1): fi-snb-2520m 
+-:1052: WARNING:LONG_LINE_COMMENT: line length of 106 exceeds 100 columns
+#1052: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:716:
++#define   TRANSCONF_GAMMA_MODE_SPLIT		REG_FIELD_PREP(TRANSCONF_GAMMA_MODE_MASK_ILK, 3) /* ivb */
 
-Possible new issues
--------------------
+-:1053: WARNING:LONG_LINE_COMMENT: line length of 130 exceeds 100 columns
+#1053: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:717:
++#define   TRANSCONF_GAMMA_MODE(x)		REG_FIELD_PREP(TRANSCONF_GAMMA_MODE_MASK_ILK, (x)) /* pass in GAMMA_MODE_MODE_* */
 
-  Here are the unknown changes that may have been introduced in Patchwork_144441v1:
+-:1056: WARNING:LONG_LINE_COMMENT: line length of 115 exceeds 100 columns
+#1056: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:720:
++#define   TRANSCONF_INTERLACE_W_SYNC_SHIFT_PANEL	REG_FIELD_PREP(TRANSCONF_INTERLACE_MASK, 4) /* gen4 only */
 
-### IGT changes ###
+-:1057: WARNING:LONG_LINE_COMMENT: line length of 107 exceeds 100 columns
+#1057: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:721:
++#define   TRANSCONF_INTERLACE_W_SYNC_SHIFT	REG_FIELD_PREP(TRANSCONF_INTERLACE_MASK, 5) /* gen4 only */
 
-#### Possible regressions ####
+-:1059: WARNING:LONG_LINE_COMMENT: line length of 107 exceeds 100 columns
+#1059: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:723:
++#define   TRANSCONF_INTERLACE_FIELD_0_ONLY	REG_FIELD_PREP(TRANSCONF_INTERLACE_MASK, 7) /* gen3 only */
 
-  * igt@debugfs_test@read_all_entries:
-    - bat-dg1-7:          [PASS][1] -> [ABORT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16082/bat-dg1-7/igt@debugfs_test@read_all_entries.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v1/bat-dg1-7/igt@debugfs_test@read_all_entries.html
+-:1069: WARNING:LONG_LINE_COMMENT: line length of 114 exceeds 100 columns
+#1069: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:733:
++#define   TRANSCONF_INTERLACE_IF_ID_DBL_ILK	REG_FIELD_PREP(TRANSCONF_INTERLACE_MASK_ILK, 4) /* ilk/snb only */
 
-  * igt@i915_module_load@load:
-    - bat-mtlp-9:         [PASS][3] -> [ABORT][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16082/bat-mtlp-9/igt@i915_module_load@load.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v1/bat-mtlp-9/igt@i915_module_load@load.html
+-:1070: WARNING:LONG_LINE_COMMENT: line length of 114 exceeds 100 columns
+#1070: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:734:
++#define   TRANSCONF_INTERLACE_PF_ID_DBL_ILK	REG_FIELD_PREP(TRANSCONF_INTERLACE_MASK_ILK, 5) /* ilk/snb only */
 
-  * igt@kms_hdmi_inject@inject-audio:
-    - bat-dg1-6:          [PASS][5] -> [FAIL][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16082/bat-dg1-6/igt@kms_hdmi_inject@inject-audio.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v1/bat-dg1-6/igt@kms_hdmi_inject@inject-audio.html
+-:1079: WARNING:LONG_LINE_COMMENT: line length of 113 exceeds 100 columns
+#1079: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:743:
++#define   TRANSCONF_OUTPUT_COLORSPACE_RGB	REG_FIELD_PREP(TRANSCONF_OUTPUT_COLORSPACE_MASK, 0) /* ilk-ivb */
 
-  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1:
-    - fi-kbl-7567u:       [PASS][7] -> [DMESG-WARN][8] +3 other tests dmesg-warn
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16082/fi-kbl-7567u/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v1/fi-kbl-7567u/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html
+-:1080: WARNING:LONG_LINE_COMMENT: line length of 113 exceeds 100 columns
+#1080: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:744:
++#define   TRANSCONF_OUTPUT_COLORSPACE_YUV601	REG_FIELD_PREP(TRANSCONF_OUTPUT_COLORSPACE_MASK, 1) /* ilk-ivb */
 
-  
-Known issues
-------------
+-:1081: WARNING:LONG_LINE_COMMENT: line length of 113 exceeds 100 columns
+#1081: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:745:
++#define   TRANSCONF_OUTPUT_COLORSPACE_YUV709	REG_FIELD_PREP(TRANSCONF_OUTPUT_COLORSPACE_MASK, 2) /* ilk-ivb */
 
-  Here are the changes found in Patchwork_144441v1 that come from known issues:
+-:1323: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
+#1323: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:987:
++#define SKL_PS_CTRL(pipe, id) _MMIO_PIPE(pipe,        \
++			_ID(id, _PS_1A_CTRL, _PS_2A_CTRL),       \
++			_ID(id, _PS_1B_CTRL, _PS_2B_CTRL))
 
-### IGT changes ###
+-:1350: WARNING:LONG_LINE_COMMENT: line length of 107 exceeds 100 columns
+#1350: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1014:
++#define   PS_PIPE_SCALER_LOC_AFTER_OUTPUT_CSC	REG_FIELD_PREP(PS_SCALER_LOCATION_MASK, 0) /* non-linear */
 
-#### Issues hit ####
+-:1351: WARNING:LONG_LINE_COMMENT: line length of 103 exceeds 100 columns
+#1351: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1015:
++#define   PS_PIPE_SCALER_LOC_AFTER_CSC		REG_FIELD_PREP(PS_SCALER_LOCATION_MASK, 1) /* linear */
 
-  * igt@dmabuf@all-tests:
-    - bat-apl-1:          NOTRUN -> [INCOMPLETE][9] ([i915#12904]) +1 other test incomplete
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v1/bat-apl-1/igt@dmabuf@all-tests.html
+-:1378: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
+#1378: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1042:
++#define SKL_PS_WIN_POS(pipe, id) _MMIO_PIPE(pipe,     \
++			_ID(id, _PS_WIN_POS_1A, _PS_WIN_POS_2A), \
++			_ID(id, _PS_WIN_POS_1B, _PS_WIN_POS_2B))
 
-  * igt@gem_exec_gttfill@basic:
-    - fi-pnv-d510:        [PASS][10] -> [SKIP][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16082/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v1/fi-pnv-d510/igt@gem_exec_gttfill@basic.html
+-:1391: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
+#1391: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1055:
++#define SKL_PS_WIN_SZ(pipe, id)  _MMIO_PIPE(pipe,     \
++			_ID(id, _PS_WIN_SZ_1A, _PS_WIN_SZ_2A),   \
++			_ID(id, _PS_WIN_SZ_1B, _PS_WIN_SZ_2B))
 
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - bat-apl-1:          NOTRUN -> [SKIP][12] +3 other tests skip
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v1/bat-apl-1/igt@gem_lmem_swapping@parallel-random-engines.html
+-:1404: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
+#1404: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1068:
++#define SKL_PS_VPHASE(pipe, id)  _MMIO_PIPE(pipe,     \
++			_ID(id, _PS_VPHASE_1A, _PS_VPHASE_2A),   \
++			_ID(id, _PS_VPHASE_1B, _PS_VPHASE_2B))
 
-  * igt@i915_pm_rpm@module-reload:
-    - bat-dg2-11:         [PASS][13] -> [FAIL][14] ([i915#13633])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16082/bat-dg2-11/igt@i915_pm_rpm@module-reload.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v1/bat-dg2-11/igt@i915_pm_rpm@module-reload.html
+-:1419: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
+#1419: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1083:
++#define SKL_PS_HPHASE(pipe, id)  _MMIO_PIPE(pipe,     \
++			_ID(id, _PS_HPHASE_1A, _PS_HPHASE_2A),   \
++			_ID(id, _PS_HPHASE_1B, _PS_HPHASE_2B))
 
-  * igt@i915_selftest@live:
-    - bat-twl-2:          NOTRUN -> [ABORT][15] ([i915#12919] / [i915#13503])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v1/bat-twl-2/igt@i915_selftest@live.html
+-:1427: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
+#1427: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1091:
++#define GLK_PS_COEF_INDEX_SET(pipe, id, set)  _MMIO_PIPE(pipe,    \
++			_ID(id, _PS_COEF_SET0_INDEX_1A, _PS_COEF_SET0_INDEX_2A) + (set) * 8, \
++			_ID(id, _PS_COEF_SET0_INDEX_1B, _PS_COEF_SET0_INDEX_2B) + (set) * 8)
 
-  * igt@i915_selftest@live@gt_engines:
-    - bat-twl-2:          NOTRUN -> [ABORT][16] ([i915#12919])
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v1/bat-twl-2/igt@i915_selftest@live@gt_engines.html
+-:1427: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'set' - possible side-effects?
+#1427: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1091:
++#define GLK_PS_COEF_INDEX_SET(pipe, id, set)  _MMIO_PIPE(pipe,    \
++			_ID(id, _PS_COEF_SET0_INDEX_1A, _PS_COEF_SET0_INDEX_2A) + (set) * 8, \
++			_ID(id, _PS_COEF_SET0_INDEX_1B, _PS_COEF_SET0_INDEX_2B) + (set) * 8)
 
-  * igt@i915_selftest@live@workarounds:
-    - bat-arls-6:         [PASS][17] -> [DMESG-FAIL][18] ([i915#12061]) +1 other test dmesg-fail
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16082/bat-arls-6/igt@i915_selftest@live@workarounds.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v1/bat-arls-6/igt@i915_selftest@live@workarounds.html
+-:1436: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'id' - possible side-effects?
+#1436: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1100:
++#define GLK_PS_COEF_DATA_SET(pipe, id, set)  _MMIO_PIPE(pipe,     \
++			_ID(id, _PS_COEF_SET0_DATA_1A, _PS_COEF_SET0_DATA_2A) + (set) * 8, \
++			_ID(id, _PS_COEF_SET0_DATA_1B, _PS_COEF_SET0_DATA_2B) + (set) * 8)
 
-  
-#### Possible fixes ####
+-:1436: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'set' - possible side-effects?
+#1436: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1100:
++#define GLK_PS_COEF_DATA_SET(pipe, id, set)  _MMIO_PIPE(pipe,     \
++			_ID(id, _PS_COEF_SET0_DATA_1A, _PS_COEF_SET0_DATA_2A) + (set) * 8, \
++			_ID(id, _PS_COEF_SET0_DATA_1B, _PS_COEF_SET0_DATA_2B) + (set) * 8)
 
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-apl-1:          [ABORT][19] ([i915#13571]) -> [PASS][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16082/bat-apl-1/igt@core_hotunplug@unbind-rebind.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v1/bat-apl-1/igt@core_hotunplug@unbind-rebind.html
+-:1497: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'plane_id' - possible side-effects?
+#1497: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1161:
++#define  GEN9_PIPE_PLANE_FLIP_DONE(plane_id) \
++	REG_BIT(((plane_id) >= PLANE_5 ? 16 - PLANE_5 : 3 - PLANE_1) + (plane_id)) /* skl+ */
 
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12904]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904
-  [i915#12919]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12919
-  [i915#13503]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13503
-  [i915#13571]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13571
-  [i915#13633]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13633
+-:1503: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'pipe' - possible side-effects?
+#1503: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1167:
++#define GEN8_DE_PIPE_IRQ_REGS(pipe)	I915_IRQ_REGS(GEN8_DE_PIPE_IMR(pipe), \
++						      GEN8_DE_PIPE_IER(pipe), \
++						      GEN8_DE_PIPE_IIR(pipe))
+
+-:1680: WARNING:LONG_LINE: line length of 120 exceeds 100 columns
+#1680: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1344:
++#define CHICKEN_TRANS(display, trans)	(DISPLAY_VER(display) >= 14 ? _MTL_CHICKEN_TRANS(trans) : _CHICKEN_TRANS(trans))
+
+-:1680: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'trans' - possible side-effects?
+#1680: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1344:
++#define CHICKEN_TRANS(display, trans)	(DISPLAY_VER(display) >= 14 ? _MTL_CHICKEN_TRANS(trans) : _CHICKEN_TRANS(trans))
+
+-:2006: WARNING:MACRO_ARG_UNUSED: Argument 'pipe' is not used in function-like macro
+#2006: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1670:
++#define	 TRANS_DPLLA_SEL(pipe)		0
+
+-:2048: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#2048: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1712:
++#define PCH_TRANS_VSYNCSHIFT(pipe)	_MMIO_PIPE(pipe, _PCH_TRANS_VSYNCSHIFT_A, _PCH_TRANS_VSYNCSHIFT_B)
+
+-:2126: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#2126: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1790:
++#define HSW_TVIDEO_DIP_CTL(dev_priv, trans)		_MMIO_TRANS2(dev_priv, trans, _HSW_VIDEO_DIP_CTL_A)
+
+-:2130: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
+#2130: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1794:
++#define HSW_TVIDEO_DIP_AVI_DATA(dev_priv, trans, i)	_MMIO_TRANS2(dev_priv, trans, _HSW_VIDEO_DIP_AVI_DATA_A + (i) * 4)
+
+-:2134: WARNING:LONG_LINE: line length of 121 exceeds 100 columns
+#2134: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1798:
++#define HSW_TVIDEO_DIP_VS_DATA(dev_priv, trans, i)	_MMIO_TRANS2(dev_priv, trans, _HSW_VIDEO_DIP_VS_DATA_A + (i) * 4)
+
+-:2138: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
+#2138: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1802:
++#define HSW_TVIDEO_DIP_SPD_DATA(dev_priv, trans, i)	_MMIO_TRANS2(dev_priv, trans, _HSW_VIDEO_DIP_SPD_DATA_A + (i) * 4)
+
+-:2142: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
+#2142: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1806:
++#define HSW_TVIDEO_DIP_GMP_DATA(dev_priv, trans, i)	_MMIO_TRANS2(dev_priv, trans, _HSW_VIDEO_DIP_GMP_DATA_A + (i) * 4)
+
+-:2146: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
+#2146: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1810:
++#define HSW_TVIDEO_DIP_VSC_DATA(dev_priv, trans, i)	_MMIO_TRANS2(dev_priv, trans, _HSW_VIDEO_DIP_VSC_DATA_A + (i) * 4)
+
+-:2156: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
+#2156: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1820:
++#define GLK_TVIDEO_DIP_DRM_DATA(dev_priv, trans, i)	_MMIO_TRANS2(dev_priv, trans, _GLK_VIDEO_DIP_DRM_DATA_A + (i) * 4)
+
+-:2160: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#2160: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1824:
++#define HSW_TVIDEO_DIP_GCP(dev_priv, trans)		_MMIO_TRANS2(dev_priv, trans, _HSW_VIDEO_DIP_GCP_A)
+
+-:2164: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
+#2164: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1828:
++#define ICL_VIDEO_DIP_PPS_DATA(dev_priv, trans, i)	_MMIO_TRANS2(dev_priv, trans, _ICL_VIDEO_DIP_PPS_DATA_A + (i) * 4)
+
+-:2173: WARNING:LONG_LINE_COMMENT: line length of 104 exceeds 100 columns
+#2173: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1837:
++#define  TRANS_FRAME_START_DELAY(x)	REG_FIELD_PREP(TRANS_FRAME_START_DELAY_MASK, (x)) /* ibx: 0-3 */
+
+-:2211: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#2211: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1875:
++#define TRANS_DP2_CTL(trans)			_MMIO_TRANS(trans, _TRANS_DP2_CTL_A, _TRANS_DP2_CTL_B)
+
+-:2220: WARNING:LONG_LINE: line length of 114 exceeds 100 columns
+#2220: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1884:
++#define TRANS_DP2_VFREQHIGH(trans)		_MMIO_TRANS(trans, _TRANS_DP2_VFREQHIGH_A, _TRANS_DP2_VFREQHIGH_B)
+
+-:2222: WARNING:LONG_LINE: line length of 106 exceeds 100 columns
+#2222: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1886:
++#define  TRANS_DP2_VFREQ_PIXEL_CLOCK(clk_hz)	REG_FIELD_PREP(TRANS_DP2_VFREQ_PIXEL_CLOCK_MASK, (clk_hz))
+
+-:2228: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
+#2228: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1892:
++#define TRANS_DP2_VFREQLOW(trans)		_MMIO_TRANS(trans, _TRANS_DP2_VFREQLOW_A, _TRANS_DP2_VFREQLOW_B)
+
+-:2232: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
+#2232: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:1896:
++#define DP_MIN_HBLANK_CTL(trans)		_MMIO_TRANS(trans, _DP_MIN_HBLANK_CTL_A, _DP_MIN_HBLANK_CTL_B)
+
+-:2413: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#2413: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2077:
++#define  TRANS_DDI_PORT_SYNC_MASTER_SELECT(x)	REG_FIELD_PREP(TRANS_DDI_PORT_SYNC_MASTER_SELECT_MASK, (x))
+
+-:2452: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#2452: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2116:
++#define  PORT_SYNC_MODE_MASTER_SELECT(x)	REG_FIELD_PREP(PORT_SYNC_MODE_MASTER_SELECT_MASK, (x))
+
+-:2494: WARNING:LONG_LINE_COMMENT: line length of 101 exceeds 100 columns
+#2494: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2158:
++#define   DP_TP_STATUS_STREAMS_ENABLED_MASK	REG_GENMASK(18, 16) /* 17:16 on hsw but bit 18 mbz */
+
+-:2527: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#2527: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2191:
++#define DDI_BUF_TRANS_LO(port, i)	_MMIO(_PORT(port, _DDI_BUF_TRANS_A, _DDI_BUF_TRANS_B) + (i) * 8)
+
+-:2529: WARNING:LONG_LINE: line length of 108 exceeds 100 columns
+#2529: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2193:
++#define DDI_BUF_TRANS_HI(port, i)	_MMIO(_PORT(port, _DDI_BUF_TRANS_A, _DDI_BUF_TRANS_B) + (i) * 8 + 4)
+
+-:2534: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#2534: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2198:
++#define DDI_DP_COMP_CTL(pipe)			_MMIO_PIPE(pipe, _DDI_DP_COMP_CTL_A, _DDI_DP_COMP_CTL_B)
+
+-:2547: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
+#2547: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2211:
++#define DDI_DP_COMP_PAT(pipe, i)		_MMIO(_PIPE(pipe, _DDI_DP_COMP_PAT_A, _DDI_DP_COMP_PAT_B) + (i) * 4)
+
+-:2660: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
+#2660: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2324:
++#define TRANS_SET_CONTEXT_LATENCY(dev_priv, tran)		_MMIO_TRANS2(dev_priv, tran, _TRANS_A_SET_CONTEXT_LATENCY)
+
+-:2788: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'tc_port' - possible side-effects?
+#2788: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2452:
++#define  ICL_DPCLKA_CFGCR0_TC_CLK_OFF(tc_port)	(1 << ((tc_port) < TC_PORT_4 ? \
++						       (tc_port) + 12 : \
++						       (tc_port) - TC_PORT_4 + 21))
+
+-:2792: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#2792: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2456:
++#define  ICL_DPCLKA_CFGCR0_DDI_CLK_SEL_MASK(phy)	(3 << ICL_DPCLKA_CFGCR0_DDI_CLK_SEL_SHIFT(phy))
+
+-:2793: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#2793: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2457:
++#define  ICL_DPCLKA_CFGCR0_DDI_CLK_SEL(pll, phy)	((pll) << ICL_DPCLKA_CFGCR0_DDI_CLK_SEL_SHIFT(phy))
+
+-:2815: WARNING:LONG_LINE: line length of 126 exceeds 100 columns
+#2815: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2479:
++#define   DG1_DPCLKA_CFGCR0_DDI_CLK_SEL(pll, phy)	(_DG1_DPCLKA_PLL_IDX(pll) << DG1_DPCLKA_CFGCR0_DDI_CLK_SEL_SHIFT(phy))
+
+-:2816: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#2816: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2480:
++#define   DG1_DPCLKA_CFGCR0_DDI_CLK_SEL_MASK(phy)	(0x3 << DG1_DPCLKA_CFGCR0_DDI_CLK_SEL_SHIFT(phy))
+
+-:2936: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#2936: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2600:
++#define TGL_DPLL0_DIV0(pll)				_MMIO_PLL(pll, _TGL_DPLL0_DIV0, _TGL_DPLL1_DIV0)
+
+-:2938: WARNING:LONG_LINE: line length of 110 exceeds 100 columns
+#2938: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2602:
++#define   TGL_DPLL0_DIV0_AFC_STARTUP(val)		REG_FIELD_PREP(TGL_DPLL0_DIV0_AFC_STARTUP_MASK, (val))
+
+-:3046: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'port' - possible side-effects?
+#3046: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2710:
++#define DG2_PHY_MISC(port)	((port) == PHY_E ? _MMIO(_DG2_PHY_MISC_TC1) : \
++				 ICL_PHY_MISC(port))
+
+-:3089: WARNING:LONG_LINE: line length of 119 exceeds 100 columns
+#3089: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2753:
++#define MTL_CLKGATE_DIS_TRANS(dev_priv, trans)			_MMIO_TRANS2(dev_priv, trans, _MTL_CLKGATE_DIS_TRANS_A)
+
+-:3093: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#3093: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2757:
++#define MTL_MEM_SS_INFO_QGV_POINT_LOW(point)	_MMIO(MTL_MEM_SS_INFO_QGV_POINT_OFFSET + (point) * 8)
+
+-:3098: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#3098: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2762:
++#define MTL_MEM_SS_INFO_QGV_POINT_HIGH(point)	_MMIO(MTL_MEM_SS_INFO_QGV_POINT_OFFSET + (point) * 8 + 4)
+
+-:3102: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#3102: FILE: drivers/gpu/drm/i915/display/intel_display_regs.h:2766:
++
++
+
+total: 0 errors, 53 warnings, 15 checks, 6452 lines checked
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_16082 -> Patchwork_144441v1
-
-  CI-20190529: 20190529
-  CI_DRM_16082: f2401c718ce075408a723b147cac70aad2a8246f @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8224: c659b986ba648584d36b3cfece897bc84a33dcbb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_144441v1: f2401c718ce075408a723b147cac70aad2a8246f @ git://anongit.freedesktop.org/gfx-ci/linux
-
-
-### Linux commits
-
-0a53ec4c9bfd drm/i915/xe3lpd: Update bandwidth parameters
-387bbcda5d79 drm/i915/display: Use display-specific platform checks in intel_bw.c
-1cb06356813a drm/i915/display: Use display variable in intel_bw.c
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v1/index.html
-
---===============2587639663913492839==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/xe3lpd: Update bandwidth parameters</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/144441/">https://patchwork.freedesktop.org/series/144441/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_16082 -&gt; Patchwork_144441v1</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_144441v1 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_144441v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v1/index.html</p>
-<h2>Participating hosts (45 -&gt; 44)</h2>
-<p>Missing    (1): fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_144441v1:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@debugfs_test@read_all_entries:</p>
-<ul>
-<li>bat-dg1-7:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16082/bat-dg1-7/igt@debugfs_test@read_all_entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v1/bat-dg1-7/igt@debugfs_test@read_all_entries.html">ABORT</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_module_load@load:</p>
-<ul>
-<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16082/bat-mtlp-9/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v1/bat-mtlp-9/igt@i915_module_load@load.html">ABORT</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16082/bat-dg1-6/igt@kms_hdmi_inject@inject-audio.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v1/bat-dg1-6/igt@kms_hdmi_inject@inject-audio.html">FAIL</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1:</p>
-<ul>
-<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16082/fi-kbl-7567u/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v1/fi-kbl-7567u/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence@pipe-c-dp-1.html">DMESG-WARN</a> +3 other tests dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_144441v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@dmabuf@all-tests:</p>
-<ul>
-<li>bat-apl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v1/bat-apl-1/igt@dmabuf@all-tests.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12904">i915#12904</a>) +1 other test incomplete</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_gttfill@basic:</p>
-<ul>
-<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16082/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v1/fi-pnv-d510/igt@gem_exec_gttfill@basic.html">SKIP</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>bat-apl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v1/bat-apl-1/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rpm@module-reload:</p>
-<ul>
-<li>bat-dg2-11:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16082/bat-dg2-11/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v1/bat-dg2-11/igt@i915_pm_rpm@module-reload.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13633">i915#13633</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-twl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v1/bat-twl-2/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12919">i915#12919</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13503">i915#13503</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_engines:</p>
-<ul>
-<li>bat-twl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v1/bat-twl-2/igt@i915_selftest@live@gt_engines.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12919">i915#12919</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16082/bat-arls-6/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v1/bat-arls-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>bat-apl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_16082/bat-apl-1/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13571">i915#13571</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_144441v1/bat-apl-1/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_16082 -&gt; Patchwork_144441v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_16082: f2401c718ce075408a723b147cac70aad2a8246f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8224: c659b986ba648584d36b3cfece897bc84a33dcbb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_144441v1: f2401c718ce075408a723b147cac70aad2a8246f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-<h3>Linux commits</h3>
-<p>0a53ec4c9bfd drm/i915/xe3lpd: Update bandwidth parameters<br />
-387bbcda5d79 drm/i915/display: Use display-specific platform checks in intel_bw.c<br />
-1cb06356813a drm/i915/display: Use display variable in intel_bw.c</p>
-
-</body>
-</html>
-
---===============2587639663913492839==--
