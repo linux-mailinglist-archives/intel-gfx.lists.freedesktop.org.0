@@ -2,54 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2D15A2C0C1
-	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2025 11:41:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C501BA2C0C2
+	for <lists+intel-gfx@lfdr.de>; Fri,  7 Feb 2025 11:41:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57E8710EAAA;
-	Fri,  7 Feb 2025 10:41:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 691A110EAB2;
+	Fri,  7 Feb 2025 10:41:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z+XN4uQ5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kYhxSPNL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EBF5E10EAAA;
- Fri,  7 Feb 2025 10:41:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C21B210EAB0;
+ Fri,  7 Feb 2025 10:41:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1738924891; x=1770460891;
+ t=1738924897; x=1770460897;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ZcJzxECwPGKlc3m0U1BxpG72AZ3DoQtePbUKYbIAS6w=;
- b=Z+XN4uQ5o5w3dJxK1gO753fR4JAkk9AZ3DydKIZf20BKedvOcfh7zV6R
- iaUYyzEl9f15ZX5tOb3BosJ+J9oJ+krH/icOfG3HzJ/pmyN2GU5ZCCyDJ
- NgLVHfBjCk+Z091I/Uz/38CCauKqHp0yHHzyw/uLrseagsm7pHYeW2VHa
- 2lJN7GxNmCfayIx1Y3Sl4UUn/+QLC2aIbvIkFZ1PxgvzXZ/yZi0MstPdt
- O0LS/33/tTTOZf19GamuL5xjxgY5gzrmlicMtGQfrSah29ou42UxB2kbi
- 2aZdk1GcXdZvPRy2st4WPCl/EQ0kr2FCLIRfN/zvyXGQxqsM7t5YALT7B A==;
-X-CSE-ConnectionGUID: dYerjIatS6aL3hSfNVXlYA==
-X-CSE-MsgGUID: vS8igWI/QTWL/BNaxEG+sA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="50200467"
-X-IronPort-AV: E=Sophos;i="6.13,266,1732608000"; d="scan'208";a="50200467"
+ bh=tjDmmSKeIpybed6DhNXALqx3irxrvxz7I48P+eMzm0Y=;
+ b=kYhxSPNL0MiDds+bdMU0UoMd38NAJRBDuGhYPQHTogdRPIn4kKDwoX2+
+ UsOd7libo/emvZkqumCWkzaLRMkXQ5/KSCUZMh1UXgtuD8Xft9WFugz2Q
+ E+pR5/buqmcluF4CFCp3Wag7glwxCi/tWOiGgme65cONTa/NPz0oXRH7y
+ EAwYhpwdDOiIS6H/S82Wb6VCAramGxlBJHi5xbMcME1cJCoEiW0cYTvro
+ 9C2lhnJjC1J7jpnJnzYtUUaxljKxO+b6oSeWd2/CrH/DditC7MnkPhl0Z
+ aYSfWiqUTkl8ijdd0t7vwW31MkooA/qkxudZvs2boyWtoWn2gNaLyqRMu w==;
+X-CSE-ConnectionGUID: wV5cEXioThy+xv1qmPgZ8Q==
+X-CSE-MsgGUID: xD4kzW3cQJaeMh8lQ1sjog==
+X-IronPort-AV: E=McAfee;i="6700,10204,11336"; a="50200469"
+X-IronPort-AV: E=Sophos;i="6.13,266,1732608000"; d="scan'208";a="50200469"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2025 02:41:31 -0800
-X-CSE-ConnectionGUID: ge0BBDYHTG+bWwxRmtKWZQ==
-X-CSE-MsgGUID: gsAw/ErETuSpqJqtVy33PA==
+ 07 Feb 2025 02:41:36 -0800
+X-CSE-ConnectionGUID: D4Hjua75TIW4fiHcSyEetA==
+X-CSE-MsgGUID: PSRnrc4fRV+OjDdlYCh7HQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="111341635"
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="111341643"
 Received: from dprybysh-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.246.122])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Feb 2025 02:41:29 -0800
+ 07 Feb 2025 02:41:34 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	suraj.kandpal@intel.com
-Subject: [PATCH 2/3] drm/i915/hdcp: rename intel_connector to connector
-Date: Fri,  7 Feb 2025 12:41:11 +0200
-Message-Id: <8f43542a8f0ce0ec5725b769c077d3cea723bde0.1738924826.git.jani.nikula@intel.com>
+Subject: [PATCH 3/3] drm/i915/hdcp: Convert platform checks to use
+ display->platform
+Date: Fri,  7 Feb 2025 12:41:12 +0200
+Message-Id: <58bad1e888a57a014acbaae67ccddd4f895091a7.1738924826.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1738924826.git.jani.nikula@intel.com>
 References: <cover.1738924826.git.jani.nikula@intel.com>
@@ -71,48 +72,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Follow the current convention of naming struct intel_connector pointers
-connector.
+Prefer display->platform.<platform> over IS_<PLATFORM>(i915), and
+reducate struct drm_i915_private usages while at it.
 
 Cc: Suraj Kandpal <suraj.kandpal@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_hdcp.c | 12 +++++-------
- 1 file changed, 5 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/display/intel_hdcp.c | 22 ++++++++++------------
+ 1 file changed, 10 insertions(+), 12 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index 718d8bad77a0..9880192adfe9 100644
+index 9880192adfe9..3d83db793baf 100644
 --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
 +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -2733,23 +2733,21 @@ void intel_hdcp_handle_cp_irq(struct intel_connector *connector)
- 	queue_delayed_work(i915->unordered_wq, &hdcp->check_work, 0);
+@@ -343,7 +343,7 @@ static bool hdcp_key_loadable(struct intel_display *display)
+ 	 * On HSW and BDW, Display HW loads the Key as soon as Display resumes.
+ 	 * On all BXT+, SW can load the keys only when the PW#1 is turned on.
+ 	 */
+-	if (IS_HASWELL(i915) || IS_BROADWELL(i915))
++	if (display->platform.haswell || display->platform.broadwell)
+ 		id = HSW_DISP_PW_GLOBAL;
+ 	else
+ 		id = SKL_DISP_PW_1;
+@@ -382,7 +382,7 @@ static int intel_hdcp_load_keys(struct intel_display *display)
+ 	 * On HSW and BDW HW loads the HDCP1.4 Key when Display comes
+ 	 * out of reset. So if Key is not already loaded, its an error state.
+ 	 */
+-	if (IS_HASWELL(i915) || IS_BROADWELL(i915))
++	if (display->platform.haswell || display->platform.broadwell)
+ 		if (!(intel_de_read(display, HDCP_KEY_STATUS) & HDCP_KEY_LOAD_DONE))
+ 			return -ENXIO;
+ 
+@@ -394,7 +394,7 @@ static int intel_hdcp_load_keys(struct intel_display *display)
+ 	 * process from other platforms. These platforms use the GT Driver
+ 	 * Mailbox interface.
+ 	 */
+-	if (DISPLAY_VER(display) == 9 && !IS_BROXTON(i915)) {
++	if (DISPLAY_VER(display) == 9 && !display->platform.broxton) {
+ 		ret = snb_pcode_write(&i915->uncore, SKL_PCODE_LOAD_HDCP_KEYS, 1);
+ 		if (ret) {
+ 			drm_err(display->drm,
+@@ -2339,18 +2339,16 @@ static int initialize_hdcp_port_data(struct intel_connector *connector,
+ 
+ static bool is_hdcp2_supported(struct intel_display *display)
+ {
+-	struct drm_i915_private *i915 = to_i915(display->drm);
+-
+ 	if (intel_hdcp_gsc_cs_required(display))
+ 		return true;
+ 
+ 	if (!IS_ENABLED(CONFIG_INTEL_MEI_HDCP))
+ 		return false;
+ 
+-	return (DISPLAY_VER(display) >= 10 ||
+-		IS_KABYLAKE(i915) ||
+-		IS_COFFEELAKE(i915) ||
+-		IS_COMETLAKE(i915));
++	return DISPLAY_VER(display) >= 10 ||
++		display->platform.kabylake ||
++		display->platform.coffeelake ||
++		display->platform.cometlake;
  }
  
--static void __intel_hdcp_info(struct seq_file *m, struct intel_connector *intel_connector,
-+static void __intel_hdcp_info(struct seq_file *m, struct intel_connector *connector,
- 			      bool remote_req)
+ void intel_hdcp_component_init(struct intel_display *display)
+@@ -2775,10 +2773,10 @@ void intel_hdcp_info(struct seq_file *m, struct intel_connector *connector)
+ static int intel_hdcp_sink_capability_show(struct seq_file *m, void *data)
  {
- 	bool hdcp_cap = false, hdcp2_cap = false;
+ 	struct intel_connector *connector = m->private;
+-	struct drm_i915_private *i915 = to_i915(connector->base.dev);
++	struct intel_display *display = to_intel_display(connector);
+ 	int ret;
  
--	if (!intel_connector->hdcp.shim) {
-+	if (!connector->hdcp.shim) {
- 		seq_puts(m, "No Connector Support");
- 		goto out;
- 	}
+-	ret = drm_modeset_lock_single_interruptible(&i915->drm.mode_config.connection_mutex);
++	ret = drm_modeset_lock_single_interruptible(&display->drm->mode_config.connection_mutex);
+ 	if (ret)
+ 		return ret;
  
- 	if (remote_req) {
--		intel_hdcp_get_remote_capability(intel_connector,
--						 &hdcp_cap,
--						 &hdcp2_cap);
-+		intel_hdcp_get_remote_capability(connector, &hdcp_cap, &hdcp2_cap);
- 	} else {
--		hdcp_cap = intel_hdcp_get_capability(intel_connector);
--		hdcp2_cap = intel_hdcp2_get_capability(intel_connector);
-+		hdcp_cap = intel_hdcp_get_capability(connector);
-+		hdcp2_cap = intel_hdcp2_get_capability(connector);
- 	}
+@@ -2793,7 +2791,7 @@ static int intel_hdcp_sink_capability_show(struct seq_file *m, void *data)
+ 	__intel_hdcp_info(m, connector, false);
  
- 	if (hdcp_cap)
+ out:
+-	drm_modeset_unlock(&i915->drm.mode_config.connection_mutex);
++	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
+ 
+ 	return ret;
+ }
 -- 
 2.39.5
 
