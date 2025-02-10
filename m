@@ -2,65 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22D0CA2EE7F
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Feb 2025 14:40:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 26760A2EEA0
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Feb 2025 14:46:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B676B10E547;
-	Mon, 10 Feb 2025 13:40:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 837FF10E572;
+	Mon, 10 Feb 2025 13:46:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=zx2c4.com header.i=@zx2c4.com header.b="hzpluzKj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OXI7TJIY";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 62AE410E547
- for <intel-gfx@lists.freedesktop.org>; Mon, 10 Feb 2025 13:40:02 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 31A305C1014
- for <intel-gfx@lists.freedesktop.org>; Mon, 10 Feb 2025 13:39:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DADCC4CED1
- for <intel-gfx@lists.freedesktop.org>; Mon, 10 Feb 2025 13:40:01 +0000 (UTC)
-Authentication-Results: smtp.kernel.org;
- dkim=pass (1024-bit key) header.d=zx2c4.com header.i=@zx2c4.com
- header.b="hzpluzKj"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=zx2c4.com; s=20210105; 
- t=1739194798;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=Mw6X/iqFQUdzZzpOTvgXgiCD2YSzyQe6hZv0qS0ER/M=;
- b=hzpluzKjElge+d0BeJ+1lXjJXX/0w/UYWdZVIUVHKQCJhmjmof1H9YRzZlJapVk+uHhsYu
- kM86E4ugo2FYbKRUgqSLzEcYjHVsWtE5sQgSMkWLJelnRLWN+5fCXgv85ktSGPEsNFIcmE
- XSaXVyuOuBvifQLAXJM0G41jvkN+D8U=
-Received: by mail.zx2c4.com (ZX2C4 Mail Server) with ESMTPSA id ef6bca30
- (TLSv1.3:TLS_AES_256_GCM_SHA384:256:NO)
- for <intel-gfx@lists.freedesktop.org>;
- Mon, 10 Feb 2025 13:39:57 +0000 (UTC)
-Received: by mail-oa1-f44.google.com with SMTP id
- 586e51a60fabf-2b832eab8cdso2049561fac.0
- for <intel-gfx@lists.freedesktop.org>; Mon, 10 Feb 2025 05:39:57 -0800 (PST)
-X-Forwarded-Encrypted: i=1;
- AJvYcCWOu7hA9NkIzy6CJaZTlfvDQqKU6DBN9QgcO4pkPbAzRKNz6BIlVKU2Rm9KCrkSIOpRMczwFDaCvqQ=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx8CpCyX0rsv4P8fcmfHXfBJ9II2ECKz3GmhGqUI4YZYg/keu/4
- kUFqGaPAMBYgeCPgfk6gPfvI7t0ZZGxIioYBe/1CRMUWEAaRtPPS3SZgHK11vJeyuGsh3dnUvG6
- bGdok5GiTYKxJkWP1a6pt+2+qhxM=
-X-Google-Smtp-Source: AGHT+IFBql/BeQkqRTlpU6s4lc0cE+gDINJWDeeicMaut547jipDtdf44tVSLcmS0dCGOJvnva+WRmdF7y7247OPikM=
-X-Received: by 2002:a05:6871:811:b0:296:5928:7a42 with SMTP id
- 586e51a60fabf-2b83ecf479bmr8294407fac.22.1739194796660; Mon, 10 Feb 2025
- 05:39:56 -0800 (PST)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 472F710E567
+ for <intel-gfx@lists.freedesktop.org>; Mon, 10 Feb 2025 13:46:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1739195204; x=1770731204;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=TBCHQ+2rh9XPutjW+vuCF9FWshL/r6PSkQT/ZqlzzO8=;
+ b=OXI7TJIYk0Uaruk8GEOfiPVXGQWd3yCtLaMdkqnrVKoC56iw3H0RLdGB
+ VG3/0o76+lSLW9Y+M1GQKwbR5/u+ZSlk+VmiwFhaKCBtdejXbmm/lvYQl
+ +QYjEhPL5RQJU0F5YTK6jB2cJVV/vFNiMnKGSPT0zUrPJCjbXrFsZ2xya
+ 6sC/ZfUcIiYkScKzDvREEDrtDM1W2fhgiqlY8csrBsGlffaVAdu1ieBaL
+ tCP3LYccRqC+AWNUqf9Nu3U77Z5TPQw15vGcJ6fmlTIjch+RipWS69iTe
+ Ny4owzN3FWHui3XN+U6Qo3yY+d2RmXjgXpSHfYuXH5jQEPVd6pbEihgIS Q==;
+X-CSE-ConnectionGUID: WphTXsGtRROh4+8EIheb3g==
+X-CSE-MsgGUID: aAAQRVN7TmKG//bAPr/KiQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11341"; a="42614711"
+X-IronPort-AV: E=Sophos;i="6.13,274,1732608000"; d="scan'208";a="42614711"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2025 05:46:44 -0800
+X-CSE-ConnectionGUID: kBCkrgiWTTOP/PBlyecWnA==
+X-CSE-MsgGUID: g9VRbbjjRn2VE924jG/Ggw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,274,1732608000"; d="scan'208";a="112133899"
+Received: from unknown (HELO nitin-Super-Server.iind.intel.com)
+ ([10.190.238.72])
+ by fmviesa007.fm.intel.com with ESMTP; 10 Feb 2025 05:46:43 -0800
+From: Nitin Gote <nitin.r.gote@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: andi.shyti@intel.com,
+	nitin.r.gote@intel.com
+Subject: [PATCH] drm/i915/pcode: Fix the coding style
+Date: Mon, 10 Feb 2025 19:39:24 +0530
+Message-Id: <20250210140924.1364158-1-nitin.r.gote@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20250210133556.66431-1-theil.markus@gmail.com>
-In-Reply-To: <20250210133556.66431-1-theil.markus@gmail.com>
-From: "Jason A. Donenfeld" <Jason@zx2c4.com>
-Date: Mon, 10 Feb 2025 14:39:43 +0100
-X-Gmail-Original-Message-ID: <CAHmME9oqvWp_Nd1Gwgyw52qy8wxztMyCpNsjByH=VnRaXqczww@mail.gmail.com>
-X-Gm-Features: AWEUYZlOFUvKkJGgoFJkHUG4F6JQEQsccvV0zV6xISxrgXh3QIvXkOy6817QqNo
-Message-ID: <CAHmME9oqvWp_Nd1Gwgyw52qy8wxztMyCpNsjByH=VnRaXqczww@mail.gmail.com>
-Subject: Re: [PATCH] prandom: remove next_pseudo_random32
-To: Markus Theil <theil.markus@gmail.com>
-Cc: linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org, 
- netdev@vger.kernel.org, tytso@mit.edu
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,12 +66,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hey Markus,
+Prefer binary operator at the end of the previous
+line instead of putting operator at the start of
+the next line as per coding style.
 
-Thanks for this. I hadn't realized that next_pseudo_random32() only
-had two users left. Excellent.
+Signed-off-by: Nitin Gote <nitin.r.gote@intel.com>
+---
+ drivers/gpu/drm/i915/intel_pcode.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-I'll queue this up in the random tree (unless there are objections
-from the maintainers of that test code).
+diff --git a/drivers/gpu/drm/i915/intel_pcode.c b/drivers/gpu/drm/i915/intel_pcode.c
+index 3db2ba439bb5..3e6cf3eb831e 100644
+--- a/drivers/gpu/drm/i915/intel_pcode.c
++++ b/drivers/gpu/drm/i915/intel_pcode.c
+@@ -248,9 +248,9 @@ int snb_pcode_read_p(struct intel_uncore *uncore, u32 mbcmd, u32 p1, u32 p2, u32
+ 	u32 mbox;
+ 	int err;
+ 
+-	mbox = REG_FIELD_PREP(GEN6_PCODE_MB_COMMAND, mbcmd)
+-		| REG_FIELD_PREP(GEN6_PCODE_MB_PARAM1, p1)
+-		| REG_FIELD_PREP(GEN6_PCODE_MB_PARAM2, p2);
++	mbox = REG_FIELD_PREP(GEN6_PCODE_MB_COMMAND, mbcmd) |
++		REG_FIELD_PREP(GEN6_PCODE_MB_PARAM1, p1) |
++		REG_FIELD_PREP(GEN6_PCODE_MB_PARAM2, p2);
+ 
+ 	with_intel_runtime_pm(uncore->rpm, wakeref)
+ 		err = snb_pcode_read(uncore, mbox, val, NULL);
+@@ -264,9 +264,9 @@ int snb_pcode_write_p(struct intel_uncore *uncore, u32 mbcmd, u32 p1, u32 p2, u3
+ 	u32 mbox;
+ 	int err;
+ 
+-	mbox = REG_FIELD_PREP(GEN6_PCODE_MB_COMMAND, mbcmd)
+-		| REG_FIELD_PREP(GEN6_PCODE_MB_PARAM1, p1)
+-		| REG_FIELD_PREP(GEN6_PCODE_MB_PARAM2, p2);
++	mbox = REG_FIELD_PREP(GEN6_PCODE_MB_COMMAND, mbcmd) |
++		REG_FIELD_PREP(GEN6_PCODE_MB_PARAM1, p1) |
++		REG_FIELD_PREP(GEN6_PCODE_MB_PARAM2, p2);
+ 
+ 	with_intel_runtime_pm(uncore->rpm, wakeref)
+ 		err = snb_pcode_write(uncore, mbox, val);
+-- 
+2.25.1
 
-Jason
