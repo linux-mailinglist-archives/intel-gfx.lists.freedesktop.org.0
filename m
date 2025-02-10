@@ -2,29 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4962DA2F802
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Feb 2025 19:58:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F1924A2F80F
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Feb 2025 20:00:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DD5610E384;
-	Mon, 10 Feb 2025 18:57:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0297F10E24A;
+	Mon, 10 Feb 2025 19:00:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C3FF710E384;
- Mon, 10 Feb 2025 18:57:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1053A10E24A;
+ Mon, 10 Feb 2025 19:00:10 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_Silence_warns_and_fix_up_?=
- =?utf-8?q?sprite_stuff?=
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915/vrr=3A_Fix_?=
+ =?utf-8?q?DSB+VRR_usage_for_PTL+_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 10 Feb 2025 18:57:55 -0000
-Message-ID: <173921387579.451422.5100877434833662002@b555e5b46a47>
+Date: Mon, 10 Feb 2025 19:00:10 -0000
+Message-ID: <173921401005.451422.11679310563265154037@b555e5b46a47>
 X-Patchwork-Hint: ignore
-References: <20250210175836.30984-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20250210175836.30984-1-ville.syrjala@linux.intel.com>
+References: <20250207223159.14132-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20250207223159.14132-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,21 +43,26 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: Silence warns and fix up sprite stuff
-URL   : https://patchwork.freedesktop.org/series/144617/
-State : failure
+Series: drm/i915/vrr: Fix DSB+VRR usage for PTL+ (rev4)
+URL   : https://patchwork.freedesktop.org/series/144153/
+State : warning
 
 == Summary ==
 
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/144617/revisions/1/mbox/ not applied
-Applying: Fix transposed calloc() arguments
-error: sha1 information is lacking or useless (src/legacy/i810/i810_dri.c).
-error: could not build fake ancestor
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0001 Fix transposed calloc() arguments
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
-Build failed, no error log produced
+Error: dim checkpatch failed
+f0d6bc88665f drm/i915/dsb: Move the +1 usec adjustment into dsb_wait_usec()
+d282fb2b1174 drm/i915/vrr: Don't send push for legacy cursor updates
+a994441ee90a drm/i915/vrr: Account for TRANS_PUSH delay
+873ff26b4997 drm/i915/dsb: Compute use_dsb earlier
+19b3c894a147 drm/i915/dsb: Introduce intel_dsb_poll()
+7cceae33ea5e drm/i915/vrr: Reorder the DSB "wait for safe window" vs. TRANS_PUSH
+a3b57d03b3ed drm/i915/vrr: Check that the push send bit is clear after delayed vblank
+-:38: WARNING:TYPO_SPELLING: 'reponse' may be misspelled - perhaps 'response'?
+#38: 
+    there triggers a reponse timeout error on the DSB. VRR
+                     ^^^^^^^
+
+total: 0 errors, 1 warnings, 0 checks, 71 lines checked
+47d072af471d drm/i915/dsb: Decode DSB error interrupts
 
 
