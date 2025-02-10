@@ -2,61 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 011DFA2F36C
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Feb 2025 17:26:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 38793A2F37A
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Feb 2025 17:28:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9064A10E5B2;
-	Mon, 10 Feb 2025 16:26:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C09B10E392;
+	Mon, 10 Feb 2025 16:28:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Hylktwo9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M2LSuHQr";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2670510E5AF;
- Mon, 10 Feb 2025 16:26:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C9C9410E391;
+ Mon, 10 Feb 2025 16:28:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739204796; x=1770740796;
+ t=1739204936; x=1770740936;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=Vmg8p5eX5GVmMdCUDP5DgY6RMP7wGECXypMEKqU1YNw=;
- b=Hylktwo9Z85LfXC1gT5wUaJhQbeeeuynJ99sXpP9Rk/yiGro1wPDHC0u
- WM78BBsofMsOrxa79fB4BhFApzPBs/bNteJEj9WfIja3W+Z/uh2cvAStd
- 08eHErZIb9YrK16mRi/lUiO7DDgEH/9J2fch0I8QYdsS2ymipUTQ5zj5o
- 4wRRHqzseqPIrzf4Il/3ImbSEdGKN6KL16ZyKlme0Jr+vKyfZRvOVgguW
- 5wF5wyR5IAqWmYo4pD0TZK1SzIAH3LYuiqdxHtgVkVR97X8MVcHdSy3uj
- MmS2SjzIvsoP+ca7E2JiiEIMt0aMcSxVRbV6jvV+UfYQ13WXdB+llQB2A Q==;
-X-CSE-ConnectionGUID: 2HJnvFuMTPaPvBhLMSY9zA==
-X-CSE-MsgGUID: QcPWjUybSHKg/4uxAjKNsw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11341"; a="50429693"
-X-IronPort-AV: E=Sophos;i="6.13,275,1732608000"; d="scan'208";a="50429693"
+ bh=VQH0RKTzIqz2QJVm3/tz044M4xCqtBKgsaUzlht1cJ8=;
+ b=M2LSuHQriIN/saCjJwlCMu/N1brB+3GbImyPi8Nj2dJkQAG4qPb34tIW
+ U+NS+umSnpUbEnPojWV07wNpJD4EeReSw1IWTcqvNCdPcy3HgB+W3Ok79
+ bX8OUMGL4kr5li6ZiCzTx4LW3Bi5cG7Oxj9q6lhC1m4Xs8FdW3Vq70VRb
+ gH2Haqr9LlPkyr04+FNTv9xKjRw3ZTbkdvPv5acjEs+6yuaYoZL1AOPM0
+ tM9sgpGlElwm2r2UCGuWyr1cNBLcXZ/vJUMGob+Iaz1JSDJHCkQxAoBza
+ qN5VEPNJwmAYe3JU101ObDv13S/TT63gHcOT3Swibj+8qbtmYQmmmHFqB Q==;
+X-CSE-ConnectionGUID: Nlw57rbmSDWGbhdYXAeCfQ==
+X-CSE-MsgGUID: zw4inbmkQYGZkorLTr6rTQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11341"; a="50429922"
+X-IronPort-AV: E=Sophos;i="6.13,275,1732608000"; d="scan'208";a="50429922"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2025 08:26:36 -0800
-X-CSE-ConnectionGUID: y8EvgqrrTKSzJDwWaQ6rqg==
-X-CSE-MsgGUID: PGvveXUsTMSzbSDa7bZLqA==
+ 10 Feb 2025 08:28:56 -0800
+X-CSE-ConnectionGUID: V4V6Px7cSuaPGWClZ9NGWQ==
+X-CSE-MsgGUID: lKpd8yh/Rue9xRwUTkQQ+A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,275,1732608000"; d="scan'208";a="112454049"
+X-IronPort-AV: E=Sophos;i="6.13,275,1732608000"; d="scan'208";a="112454925"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 10 Feb 2025 08:26:33 -0800
+ by fmviesa008.fm.intel.com with SMTP; 10 Feb 2025 08:28:53 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Mon, 10 Feb 2025 18:26:32 +0200
-Date: Mon, 10 Feb 2025 18:26:32 +0200
+ Mon, 10 Feb 2025 18:28:52 +0200
+Date: Mon, 10 Feb 2025 18:28:52 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  animesh.manna@intel.com, ville.syrjala@intel.com
-Subject: Re: [PATCH v6 07/12] drm/i915/psr: Changes for PSR2_MAN_TRK_CTL
- handling when DSB is in use
-Message-ID: <Z6oouL3AYZ-JQ7xd@intel.com>
+Subject: Re: [PATCH v6 08/12] drm/i915/psr: Remove DSB_SKIP_WAITS_EN chicken
+ bit
+Message-ID: <Z6opRMXBksZa3mVI@intel.com>
 References: <20250127102846.1237560-1-jouni.hogander@intel.com>
- <20250127102846.1237560-8-jouni.hogander@intel.com>
+ <20250127102846.1237560-9-jouni.hogander@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250127102846.1237560-8-jouni.hogander@intel.com>
+In-Reply-To: <20250127102846.1237560-9-jouni.hogander@intel.com>
 X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -73,49 +73,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Mon, Jan 27, 2025 at 12:28:41PM +0200, Jouni Högander wrote:
-> Do needed changes to handle PSR2_MAN_TRK_CTL correctly when DSB is in use:
+On Mon, Jan 27, 2025 at 12:28:42PM +0200, Jouni Högander wrote:
+> We have different approach on how flip is considered being complete. We are
+> waiting for vblank on DSB and generate interrupt when it happens and this
+> interrupt is considered as indication of completion -> we definitely do not
+> want to skip vblank wait.
 > 
-> 1. Write PSR2_MAN_TRK_CTL in commit_pipe_pre_planes only when not using
->    DSB.
-> 2. Add PSR2_MAN_TRK_CTL writing into DSB commit in
->    intel_atomic_dsb_finish.
+> Also not skipping scanline wait shouldn't cause any problems if we are in
+> DEEP_SLEEP PIPEDSL register is returning 0 -> evasion does nothing and if
+> we are not in DEEP_SLEEP evasion works same way as without PSR.
 > 
-> Taking PSR lock over DSB commit is not needed because PSR2_MAN_TRK_CTL is
-> now written only by DSB.
+> v2: add comment explaining why we are not setting DSB_SKIP_WAITS_EN
 > 
 > Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-> Reviewed-by: Animesh Manna <animesh.manna@intel.com>
+
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+
 > ---
->  drivers/gpu/drm/i915/display/intel_display.c | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
+>  drivers/gpu/drm/i915/display/intel_dsb.c | 15 ++++++++++++---
+>  1 file changed, 12 insertions(+), 3 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index aed35f203fd8d..5db2af86d0c8a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -7143,7 +7143,8 @@ static void commit_pipe_pre_planes(struct intel_atomic_state *state,
->  			intel_pipe_fastset(old_crtc_state, new_crtc_state);
->  	}
->  
-> -	intel_psr2_program_trans_man_trk_ctl(NULL, new_crtc_state);
-> +	if (!new_crtc_state->use_dsb)
-> +		intel_psr2_program_trans_man_trk_ctl(NULL, new_crtc_state);
-
-commit_pipe_pre_planes() is not called when use_dsb==true.
-
->  
->  	intel_atomic_update_watermarks(state, crtc);
+> diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
+> index 2f2812c239725..30782ab0b9082 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dsb.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+> @@ -164,17 +164,26 @@ static int dsb_scanline_to_hw(struct intel_atomic_state *state,
+>  	return (scanline + vtotal - intel_crtc_scanline_offset(crtc_state)) % vtotal;
 >  }
-> @@ -7731,6 +7732,8 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
->  					       new_crtc_state);
->  		bdw_set_pipe_misc(new_crtc_state->dsb_commit,
->  				  new_crtc_state);
-> +		intel_psr2_program_trans_man_trk_ctl(new_crtc_state->dsb_commit,
-> +						     new_crtc_state);
->  		intel_crtc_planes_update_arm(new_crtc_state->dsb_commit,
->  					     state, crtc);
 >  
+> +/*
+> + * Bspec suggests that we should always set DSB_SKIP_WAITS_EN. We have approach
+> + * different from what is explained in Bspec on how flip is considered being
+> + * complete. We are waiting for vblank in DSB and generate interrupt when it
+> + * happens and this interrupt is considered as indication of completion -> we
+> + * definitely do not want to skip vblank wait. We also have concern what comes
+> + * to skipping vblank evasion. I.e. arming registers are latched before we have
+> + * managed writing them. Due to these reasons we are not setting
+> + * DSB_SKIP_WAITS_EN.
+> + */
+>  static u32 dsb_chicken(struct intel_atomic_state *state,
+>  		       struct intel_crtc *crtc)
+>  {
+>  	if (pre_commit_is_vrr_active(state, crtc))
+> -		return DSB_SKIP_WAITS_EN |
+> -			DSB_CTRL_WAIT_SAFE_WINDOW |
+> +		return DSB_CTRL_WAIT_SAFE_WINDOW |
+>  			DSB_CTRL_NO_WAIT_VBLANK |
+>  			DSB_INST_WAIT_SAFE_WINDOW |
+>  			DSB_INST_NO_WAIT_VBLANK;
+>  	else
+> -		return DSB_SKIP_WAITS_EN;
+> +		return 0;
+>  }
+>  
+>  static bool assert_dsb_has_room(struct intel_dsb *dsb)
 > -- 
 > 2.43.0
 
