@@ -2,64 +2,27 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CAD5A2ED1A
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Feb 2025 14:01:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B2B04A2EE13
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Feb 2025 14:34:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C37C710E2BD;
-	Mon, 10 Feb 2025 13:01:28 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eE1vYfIK";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4529910E544;
+	Mon, 10 Feb 2025 13:34:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A7FB10E0CC;
- Mon, 10 Feb 2025 13:01:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739192487; x=1770728487;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=wnaoV5c704SJLyYs6aGPkBEQYorIEi92OyXM147ADyo=;
- b=eE1vYfIKPd7GhcL99G5UwDBc1d9039Q+WpPFxDvWluyi9DdkDzt1SVCb
- 5uC9B3qROzoY7D9ADQvVuzucD6mkEJdhC4QSTZA9X11HB6A6Vidb/xEV0
- ZKnmf++V7U/a4F20CaHk5B5pE8bauT+DX3fbKTeLpCHHgZ1H3r+BnpxRs
- YZFNXXJMspzDkvxHfFVn8cYXmjGaimlI/Lgc580XUWbJFxtViPWxjn1hv
- hxpqvpmhQfhB/O2130/vxbUIyjaKPcz0yjd177NfE4E007w9MkusuAqSa
- eelnqh2At/9KYZYvGcWT5l2I673aceBQ2yiU7P+GvuJ187Y04zsR9yprS A==;
-X-CSE-ConnectionGUID: LQVKCF8eRk+DhAq4vnrRuw==
-X-CSE-MsgGUID: +bcrpljLQci7N+7rMOTJDA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11341"; a="39636921"
-X-IronPort-AV: E=Sophos;i="6.13,274,1732608000"; d="scan'208";a="39636921"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2025 05:01:27 -0800
-X-CSE-ConnectionGUID: E90ow1noTLKXqF1dzxTe7g==
-X-CSE-MsgGUID: VRc4n6PbT6GB/JnYBmnK/Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,274,1732608000"; d="scan'208";a="112125929"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO intel.com)
- ([10.245.246.212])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2025 05:01:22 -0800
-Date: Mon, 10 Feb 2025 14:01:19 +0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Chris Wilson <chris.p.wilson@linux.intel.com>
-Subject: Re: [PATCH 0/3] drm/i915: Fix harmfull driver register/unregister
- assymetry
-Message-ID: <Z6n4nx7V2D1z0zWA@ashyti-mobl2.lan>
-References: <20250206180927.2237256-5-janusz.krzysztofik@linux.intel.com>
+Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 910A010E547;
+ Mon, 10 Feb 2025 13:34:02 +0000 (UTC)
+From: Maarten Lankhorst <dev@lankhorst.se>
+To: intel-xe@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org,
+	Maarten Lankhorst <dev@lankhorst.se>
+Subject: [PATCH] drm/xe/display: Fix fbdev GGTT mapping handling.
+Date: Mon, 10 Feb 2025 14:33:52 +0100
+Message-ID: <20250210133355.1023238-1-dev@lankhorst.se>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250206180927.2237256-5-janusz.krzysztofik@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,35 +38,109 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Janusz,
+The fbdev vma is a normal unrotated VMA, so add ane explicit check
+before re-using.
 
-On Thu, Feb 06, 2025 at 07:07:38PM +0100, Janusz Krzysztofik wrote:
-> We return immediately from i915_driver_register() if drm_dev_register()
-> fails, skipping remaining registration steps.  However, the _unregister()
-> counterpart called at device remove knows nothing about that skip and
-> executes reverts for all those steps.  For that to work correctly, those
-> revert functions must be resistant to being called even on uninitialized
-> objects, or we must not skip their initialization.
-> 
-> Three cases have been identified and fixes proposed.  Call traces are
-> taken from CI results of igt@i915_driver_load@reload-with-fault-injection
-> execution, reported to several separate Gitlab issues (links provided).
-> 
-> Immediate return was introduced to i915_driver_register() by commit
-> ec3e00b4ee27 ("drm/i915: stop registering if drm_dev_register() fails"),
-> however, quite a few things have changed since then.  That's why I haven't
-> mentioned it in a Fixes: tag to avoid it being picked up by stable, which
-> I haven't tested.
+When re-using, we have to restore the GGTT mapping on resume, so add
+some code to do that too.
 
-I'm not fully convinced about this series as I think that you are
-fixing a subset of what needs to be handled properly. What about
-hwmon? What about gt? what about debugfs?
+Fixes: 67a98f7e27ba ("drm/xe/display: Re-use display vmas when possible")
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+---
+ drivers/gpu/drm/xe/display/xe_display.c |  6 +++++-
+ drivers/gpu/drm/xe/display/xe_fb_pin.c  | 19 ++++++++++++++++++-
+ drivers/gpu/drm/xe/display/xe_fb_pin.h  | 13 +++++++++++++
+ 3 files changed, 36 insertions(+), 2 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/display/xe_fb_pin.h
 
-In my opinion we need to check in _unregister whether the
-drm_dev_register has succeded and one way would be, e.g., to
-check for the drm minor value, or even set the drm device tu NULL
-(first things that come to my mind, maybe there are smarter ways
-of doing it). This way we could skip some of the _unregister()
-steps.
+diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+index 651799c946ace..067adec8d49f5 100644
+--- a/drivers/gpu/drm/xe/display/xe_display.c
++++ b/drivers/gpu/drm/xe/display/xe_display.c
+@@ -29,6 +29,7 @@
+ #include "intel_hdcp.h"
+ #include "intel_hotplug.h"
+ #include "intel_opregion.h"
++#include "xe_fb_pin.h"
+ #include "xe_module.h"
+ 
+ /* Xe device functions */
+@@ -453,8 +454,11 @@ static void __xe_display_pm_resume(struct xe_device *xe, bool runtime)
+ 		intel_display_driver_enable_user_access(display);
+ 	}
+ 
+-	if (has_display(xe))
++	if (has_display(xe)) {
++		xe_fb_pin_resume(xe);
++
+ 		intel_hpd_poll_disable(xe);
++	}
+ 
+ 	intel_opregion_resume(display);
+ 
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index 25ce032bb293f..93a34d19950e3 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -12,6 +12,7 @@
+ #include "intel_fbdev.h"
+ #include "xe_bo.h"
+ #include "xe_device.h"
++#include "xe_fb_pin.h"
+ #include "xe_ggtt.h"
+ #include "xe_pm.h"
+ 
+@@ -397,7 +398,8 @@ static bool reuse_vma(struct intel_plane_state *new_plane_state,
+ 		goto found;
+ 	}
+ 
+-	if (fb == intel_fbdev_framebuffer(xe->display.fbdev.fbdev)) {
++	if (fb == intel_fbdev_framebuffer(xe->display.fbdev.fbdev) &&
++	    new_plane_state->view.gtt.type == I915_GTT_VIEW_NORMAL) {
+ 		vma = intel_fbdev_vma_pointer(xe->display.fbdev.fbdev);
+ 		if (vma)
+ 			goto found;
+@@ -443,6 +445,21 @@ void intel_plane_unpin_fb(struct intel_plane_state *old_plane_state)
+ 	old_plane_state->ggtt_vma = NULL;
+ }
+ 
++void xe_fb_pin_resume(struct xe_device *xe)
++{
++	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
++	struct i915_vma *vma = intel_fbdev_vma_pointer(xe->display.fbdev.fbdev);
++	struct xe_bo *bo = vma->bo;
++
++	mutex_lock(&ggtt->lock);
++	for (u32 x = 0; x < bo->ttm.base.size; x += XE_PAGE_SIZE) {
++		u64 pte = ggtt->pt_ops->pte_encode_bo(bo, x, xe->pat.idx[XE_CACHE_NONE]);
++
++		ggtt->pt_ops->ggtt_set_pte(ggtt, vma->node->base.start + x, pte);
++	}
++	mutex_unlock(&ggtt->lock);
++}
++
+ /*
+  * For Xe introduce dummy intel_dpt_create which just return NULL,
+  * intel_dpt_destroy which does nothing, and fake intel_dpt_ofsset returning 0;
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.h b/drivers/gpu/drm/xe/display/xe_fb_pin.h
+new file mode 100644
+index 0000000000000..39d48ff637002
+--- /dev/null
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.h
+@@ -0,0 +1,13 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2025 Intel Corporation
++ */
++
++#ifndef _XE_FB_PIN_H_
++#define _XE_FB_PIN_H_
++
++struct xe_device;
++
++void xe_fb_pin_resume(struct xe_device *xe);
++
++#endif /* _XE_FB_PIN_H_ */
+-- 
+2.45.2
 
-Andi
