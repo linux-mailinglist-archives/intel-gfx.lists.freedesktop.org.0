@@ -2,51 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE2C7A2F46B
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Feb 2025 17:59:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 50D37A2F4AA
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Feb 2025 18:07:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14A7C10E376;
-	Mon, 10 Feb 2025 16:59:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0048B892AA;
+	Mon, 10 Feb 2025 17:07:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=weissschuh.net header.i=@weissschuh.net header.b="MOjZd7/I";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X2aJQXld";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 521 seconds by postgrey-1.36 at gabe;
- Mon, 10 Feb 2025 16:59:32 UTC
-Received: from todd.t-8ch.de (todd.t-8ch.de [159.69.126.157])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8AA6510E376;
- Mon, 10 Feb 2025 16:59:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=weissschuh.net;
- s=mail; t=1739206249;
- bh=D0YAwfECM7hsAaYa3THgFCmryazkCnO7IAFjqVzzPEQ=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=MOjZd7/IHzjAFnKDqpP9JTGVsz74qR2RQALktwwQcDZPNDvSY3JIYzo3mGOpDS4At
- 5mw7shGLL/rdhieR3Z1fDAJmkq+4tvAptUlP1wqabCmREaUexIKd5+e0/eC4EiNkDz
- mh7T1ob5CfXlLuD4fSK0Ctaq5dV/jCCq8SgE5vhw=
-Date: Mon, 10 Feb 2025 17:50:48 +0100
-From: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <linux@weissschuh.net>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Qiang Yu <yuq825@gmail.com>, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>, 
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, 
- Xinhui Pan <Xinhui.Pan@amd.com>, Harry Wentland <harry.wentland@amd.com>, 
- Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- lima@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
-Subject: Re: [PATCH 0/5] drm: Constify 'struct bin_attribute'
-Message-ID: <58d8838c-1b22-4d24-bdce-89cfa1ede1ed@t-8ch.de>
-References: <20241216-sysfs-const-bin_attr-drm-v1-0-210f2b36b9bf@weissschuh.net>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7EDEF892AA
+ for <intel-gfx@lists.freedesktop.org>; Mon, 10 Feb 2025 17:07:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1739207273; x=1770743273;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=nb2W86cBThG091hp92HkYfPi5/dT2xX6TxMegQBPE70=;
+ b=X2aJQXldk3Mj7QPDXIiCgVH2OmDnpzn8AjJ8gDl3QTyYL0Lu6vPa9Rav
+ avpVBCc0YW+IWD7UUKjy4TYiGHv1OS/Pgm77yopMPapqxXxAgSxgAwBsb
+ rtvbobkPBq36uJNlPbl/gnCRmCChpvgID336+Ooc/At0v/kyNXdnEff2h
+ mgoqDuZyCQpeIyZEhx5qxiWn9uwrYM9c2ILdCe9MJg//43L9UVBAv4g4U
+ tSWGV7vf9fCUfMkzgn42xv0/ZlXgYglSTOI9V5r/B7jrCrNhFT+zw30g8
+ 6BTTf+5+hnnuy20W12RyOpZMverqQ2lp6VQvLb8VBKG2OedieiffZtyS4 A==;
+X-CSE-ConnectionGUID: /By33cBTSPGLsRwBJza5XQ==
+X-CSE-MsgGUID: o2ORzsf+ShCAV2GiJSz8Dg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11341"; a="39487104"
+X-IronPort-AV: E=Sophos;i="6.13,275,1732608000"; d="scan'208";a="39487104"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2025 09:07:50 -0800
+X-CSE-ConnectionGUID: rwY3t3T6SC2QhALwOGCErQ==
+X-CSE-MsgGUID: rmAExrxURByhSEiiknafog==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,275,1732608000"; d="scan'208";a="112471052"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 10 Feb 2025 09:07:47 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Mon, 10 Feb 2025 19:07:46 +0200
+Date: Mon, 10 Feb 2025 19:07:46 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Povilas Kanapickas <povilas@radix.lt>
+Cc: intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH xf86-video-intel] meson: Add dependency on xv
+Message-ID: <Z6oyYgCu06vs_Lhk@intel.com>
+References: <77434761-e627-4a82-8482-34e6cce79349@radix.lt>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241216-sysfs-const-bin_attr-drm-v1-0-210f2b36b9bf@weissschuh.net>
+In-Reply-To: <77434761-e627-4a82-8482-34e6cce79349@radix.lt>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,43 +70,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi,
+On Sat, Feb 08, 2025 at 12:24:26AM +0200, Povilas Kanapickas wrote:
+> Symbols such as XvCreateImage, XvPutImage, XvGetPortAttribute come from
+> libXv.so. Linking to this dependency directly fixes build errors on
+> Debian Bookworm against xserver 21.1.
 
-On 2024-12-16 12:34:46+0100, Thomas Weißschuh wrote:
-> The sysfs core now allows instances of 'struct bin_attribute' to be
-> moved into read-only memory. Make use of that to protect them against
-> accidental or malicious modifications.
+Thanks, pushed to master.
 
-Can anybody pick up these patches?
-Except for lima they all have Acks.
-In my opinion they should go through drm-misc.
-
-Thanks,
-Thomas
-
-> Signed-off-by: Thomas Weißschuh <linux@weissschuh.net>
 > ---
-> Thomas Weißschuh (5):
->       drm/sysfs: Constify 'struct bin_attribute'
->       drm/lima: Constify 'struct bin_attribute'
->       drm/i915: Constify 'struct bin_attribute'
->       drm/amdgpu: Constify 'struct bin_attribute'
->       drm/amd/display: Constify 'struct bin_attribute'
+>  meson.build                      | 1 +
+>  src/legacy/i810/xvmc/meson.build | 1 +
+>  xvmc/meson.build                 | 1 +
+>  3 files changed, 3 insertions(+)
 > 
->  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c             |  6 +++---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_psp.c                | 14 +++++++-------
->  drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c                | 13 ++++++-------
->  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_hdcp.c |  8 ++++----
->  drivers/gpu/drm/drm_sysfs.c                            | 10 +++++-----
->  drivers/gpu/drm/i915/i915_gpu_error.c                  |  8 ++++----
->  drivers/gpu/drm/i915/i915_sysfs.c                      | 12 ++++++------
->  drivers/gpu/drm/lima/lima_drv.c                        |  8 ++++----
->  8 files changed, 39 insertions(+), 40 deletions(-)
-> ---
-> base-commit: 78d4f34e2115b517bcbfe7ec0d018bbbb6f9b0b8
-> change-id: 20241215-sysfs-const-bin_attr-drm-9bf7700da886
-> 
-> Best regards,
+> diff --git a/meson.build b/meson.build
+> index 227ca2eb..553902bb 100644
+> --- a/meson.build
+> +++ b/meson.build
+> @@ -157,6 +157,7 @@ endif
+>  
+>  with_xvmc = get_option('xvmc')
+>  if with_xvmc
+> +  dependency('xv', required : true)
+>    dependency('xvmc', required : true)
+>    dependency('dri2proto', required : true)
+>    dependency('x11', required : true)
+> diff --git a/src/legacy/i810/xvmc/meson.build b/src/legacy/i810/xvmc/meson.build
+> index cd05f3ef..3505f15b 100644
+> --- a/src/legacy/i810/xvmc/meson.build
+> +++ b/src/legacy/i810/xvmc/meson.build
+> @@ -4,6 +4,7 @@ shared_library('I810XvMC',
+>  	       sources : 'I810XvMC.c',
+>  	       dependencies : [
+>  		 dependency('x11', required : true),
+> +		 dependency('xv', required : true),
+>  		 dependency('xvmc', required : true),
+>  		 dependency('xorg-server', required : true),
+>  		 dependency('libdrm', required : true),
+> diff --git a/xvmc/meson.build b/xvmc/meson.build
+> index 0ecc51e5..eeba2b66 100644
+> --- a/xvmc/meson.build
+> +++ b/xvmc/meson.build
+> @@ -14,6 +14,7 @@ shared_library('IntelXvMC',
+>  	       dependencies : [
+>  		 dependency('threads', required : true),
+>  		 dependency('x11', required : true),
+> +		 dependency('xv', required : true),
+>  		 dependency('xvmc', required : true),
+>  		 dependency('xorg-server', required : true),
+>  		 dependency('x11-xcb', required : true),
 > -- 
-> Thomas Weißschuh <linux@weissschuh.net>
-> 
+> 2.39.5
+
+-- 
+Ville Syrj�l�
+Intel
