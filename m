@@ -2,57 +2,29 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28CD5A2EF90
-	for <lists+intel-gfx@lfdr.de>; Mon, 10 Feb 2025 15:22:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C9A9A2EF9F
+	for <lists+intel-gfx@lfdr.de>; Mon, 10 Feb 2025 15:24:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 773DF10E54B;
-	Mon, 10 Feb 2025 14:22:09 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lPQN0HvT";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF42710E558;
+	Mon, 10 Feb 2025 14:24:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3196A10E54B
- for <intel-gfx@lists.freedesktop.org>; Mon, 10 Feb 2025 14:22:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739197328; x=1770733328;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=cAo4EDrI4LPHPLPAswQz4DfGk4vuKOdDuYXNMlu77v8=;
- b=lPQN0HvTRT/MHQwufoWrzAnO76t+XpAEUUsNf0W64FnboVdz5DIXvatD
- S4uzmhRrVWQrfVCnLEl5SUiFSEYDg8QyaBsNfP3UAZk7lzkMRmxmd3EU4
- jqnLuG/+MSroRjGd+vP/K58m83qklon0cpIzmhXkvxPTskK0LCC6u2H3H
- TcnUe5bEBV3v5Giu4n4oVSaKQd9v/1pZmjuiniIOpNB/jTDttoWvOoDYu
- c7Fm5o5GdLZOyvHn6dE7Xnco8qPvmY6iu7AHepgQpUGsB4KiOOowzNVaS
- qWvdm/kZIB1eeV+0qs6ptf0MQCf7hJeR6Ihk5Ye3uPooYV+l2EKG4m339 g==;
-X-CSE-ConnectionGUID: XnBUsRsdSH6bgJKq0wBxkg==
-X-CSE-MsgGUID: rHjfl1/YRHm58+p0yamfkg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11341"; a="42618823"
-X-IronPort-AV: E=Sophos;i="6.13,274,1732608000"; d="scan'208";a="42618823"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2025 06:22:07 -0800
-X-CSE-ConnectionGUID: 9TA8IR24TLSFAGL3/cUrLg==
-X-CSE-MsgGUID: PqHn8oAqRHCD8TqlQFRfww==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,274,1732608000"; d="scan'208";a="117268234"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO intel.com)
- ([10.245.246.18])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2025 06:22:07 -0800
-Date: Mon, 10 Feb 2025 15:22:03 +0100
-From: Andi Shyti <andi.shyti@linux.intel.com>
-To: Nitin Gote <nitin.r.gote@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: [PATCH] drm/i915/pcode: Fix the coding style
-Message-ID: <Z6oLeQjRUatMGgAs@ashyti-mobl2.lan>
-References: <20250210140924.1364158-1-nitin.r.gote@intel.com>
+Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89DC110E557;
+ Mon, 10 Feb 2025 14:24:05 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250210140924.1364158-1-nitin.r.gote@intel.com>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ECHECKPATCH=3A_warning_for_drm/i915=3A_Fix_harm?=
+ =?utf-8?q?full_driver_register/unregister_assymetry_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Janusz Krzysztofik" <janusz.krzysztofik@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 10 Feb 2025 14:24:05 -0000
+Message-ID: <173919744555.328274.2184735127173848956@b555e5b46a47>
+X-Patchwork-Hint: ignore
+References: <20250206180927.2237256-5-janusz.krzysztofik@linux.intel.com>
+In-Reply-To: <20250206180927.2237256-5-janusz.krzysztofik@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,17 +37,42 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Hi Nitin,
+== Series Details ==
 
-On Mon, Feb 10, 2025 at 07:39:24PM +0530, Nitin Gote wrote:
-> Prefer binary operator at the end of the previous
-> line instead of putting operator at the start of
-> the next line as per coding style.
+Series: drm/i915: Fix harmfull driver register/unregister assymetry (rev2)
+URL   : https://patchwork.freedesktop.org/series/144436/
+State : warning
 
-I'm not finding any documentation for this change, where did you
-take it?
+== Summary ==
 
-Andi
+Error: dim checkpatch failed
+9793272388a1 drm/i915: Fix PM reference not released if device register fails
+-:19: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#19: 
+<3> [525.823143] i915 0000:00:02.0: [drm] *ERROR* Failed to register driver for userspace access!
+
+-:111: WARNING:MISSING_FIXES_TAG: The commit message has 'Call Trace:', perhaps it also needs a 'Fixes:' tag?
+
+total: 0 errors, 2 warnings, 0 checks, 30 lines checked
+b165a1eef2f7 drm/i915: Fix GT sysfs unregister tried even if not registered
+-:19: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#19: 
+<3> [525.823143] i915 0000:00:02.0: [drm] *ERROR* Failed to register driver for userspace access!
+
+-:58: WARNING:MISSING_FIXES_TAG: The commit message has 'Call Trace:', perhaps it also needs a 'Fixes:' tag?
+
+total: 0 errors, 2 warnings, 0 checks, 9 lines checked
+3432672c7e2c drm/i915: Fix device sysfs teardown tried even if not set up
+-:17: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#17: 
+<3> [525.823143] i915 0000:00:02.0: [drm] *ERROR* Failed to register driver for userspace access!
+
+-:59: WARNING:MISSING_FIXES_TAG: The commit message has 'Call Trace:', perhaps it also needs a 'Fixes:' tag?
+
+total: 0 errors, 2 warnings, 0 checks, 9 lines checked
+
+
