@@ -2,29 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5ACB8A31048
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2025 16:53:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 371A5A3104F
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2025 16:53:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CD5310E1E3;
-	Tue, 11 Feb 2025 15:53:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E71010E6F9;
+	Tue, 11 Feb 2025 15:53:18 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZOf0cB+T";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from b555e5b46a47 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A080410E0EE;
- Tue, 11 Feb 2025 15:53:06 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C77810E0EE
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2025 15:53:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1739289197; x=1770825197;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=qhi036JNa1eOkauqTGyjxfjsBHpme/azuWdbqSPDuV8=;
+ b=ZOf0cB+T79ssfwqWYb0Jt1zRdAE7IfJERcvl6nQoeDtdoxsKhywPcZw1
+ PRpmJZLnXZddTjcF1WqiblH7Wlj+iEBkAhQOEOwuQ8cGw25Nja1qI7n5I
+ yxOOA0cj0wC0C5enjru4/rg1jMinb7SajmgQ+HR+VDTpE7wLe9RrhA1bZ
+ uaVqCJQqLoCn8jDdMj54MfZjz20SP8/NHrv4PegX3sVf19Fb5786dR2x5
+ sfnr63UjsRVpVDRsJdu/gVhF7IsIriWX0tpryEhqZI+cz3g8lIt80dM8d
+ SY3ft22UyB37yecM373cVGDXS8deO8CqzOaGUzMeZ4QYqQhzkXw1Gz6Ec g==;
+X-CSE-ConnectionGUID: lvk+vtaVSvKAlVfkwA4L4w==
+X-CSE-MsgGUID: tu+2zVb5TGq428y4HtMiyA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11342"; a="39109981"
+X-IronPort-AV: E=Sophos;i="6.13,277,1732608000"; d="scan'208";a="39109981"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2025 07:53:17 -0800
+X-CSE-ConnectionGUID: a6HZchp5QK6D3kjoY4kw7Q==
+X-CSE-MsgGUID: xTFgbKbeQBmc7Mi1Q1c4/w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="116632637"
+Received: from ncintean-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.93])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2025 07:53:14 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Sk Anirban <sk.anirban@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: badal.nilawar@intel.com, riana.tauro@intel.com, karthik.poosa@intel.com,
+ Sk Anirban <sk.anirban@intel.com>
+Subject: Re: [PATCH v1] drm/i915/selftests: Improve RC6 power measurement
+ and error handling
+In-Reply-To: <20250211150212.484228-1-sk.anirban@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250211150212.484228-1-sk.anirban@intel.com>
+Date: Tue, 11 Feb 2025 17:53:11 +0200
+Message-ID: <875xlg1nrs.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2ESPARSE=3A_warning_for_drm/i915/display=3A_impl?=
- =?utf-8?q?ement_wa=5F18038517565_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Vinod Govindapillai" <vinod.govindapillai@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 11 Feb 2025 15:53:06 -0000
-Message-ID: <173928918665.974576.2668320379623023113@b555e5b46a47>
-X-Patchwork-Hint: ignore
-References: <20250211152400.460496-1-vinod.govindapillai@intel.com>
-In-Reply-To: <20250211152400.460496-1-vinod.govindapillai@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,19 +67,132 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, 11 Feb 2025, Sk Anirban <sk.anirban@intel.com> wrote:
+> Improve RC6 power measurement and error handling. Add detailed error
+> messages, and introduce a threshold check for RC6 residency.
 
-Series: drm/i915/display: implement wa_18038517565 (rev2)
-URL   : https://patchwork.freedesktop.org/series/144184/
-State : warning
+Improve how? Why?
 
-== Summary ==
+BR,
+Jani.
 
-Error: dim sparse failed
-Sparse version: v0.6.2
+>
+> Signed-off-by: Sk Anirban <sk.anirban@intel.com>
+> ---
+>  drivers/gpu/drm/i915/gt/selftest_rc6.c | 61 +++++++++++++++++---------
+>  1 file changed, 40 insertions(+), 21 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/gt/selftest_rc6.c b/drivers/gpu/drm/i915/gt/selftest_rc6.c
+> index 908483ab0bc8..30bc2ff040ce 100644
+> --- a/drivers/gpu/drm/i915/gt/selftest_rc6.c
+> +++ b/drivers/gpu/drm/i915/gt/selftest_rc6.c
+> @@ -33,15 +33,20 @@ int live_rc6_manual(void *arg)
+>  {
+>  	struct intel_gt *gt = arg;
+>  	struct intel_rc6 *rc6 = &gt->rc6;
+> -	u64 rc0_power, rc6_power;
+> +	struct intel_rps *rps = &gt->rps;
+>  	intel_wakeref_t wakeref;
+> +	u64 sleep_time = 1000;
+> +	u32 rc0_freq = 0;
+> +	u32 rc6_freq = 0;
+> +	u64 rc0_power[3];
+> +	u64 rc6_power[3];
+>  	bool has_power;
+> +	u64 threshold;
+>  	ktime_t dt;
+>  	u64 res[2];
+>  	int err = 0;
+> -	u32 rc0_freq = 0;
+> -	u32 rc6_freq = 0;
+> -	struct intel_rps *rps = &gt->rps;
+> +	u64 diff;
+> +
+>  
+>  	/*
+>  	 * Our claim is that we can "encourage" the GPU to enter rc6 at will.
+> @@ -65,9 +70,9 @@ int live_rc6_manual(void *arg)
+>  	res[0] = rc6_residency(rc6);
+>  
+>  	dt = ktime_get();
+> -	rc0_power = librapl_energy_uJ();
+> -	msleep(1000);
+> -	rc0_power = librapl_energy_uJ() - rc0_power;
+> +	rc0_power[0] = librapl_energy_uJ();
+> +	msleep(sleep_time);
+> +	rc0_power[1] = librapl_energy_uJ() - rc0_power[0];
+>  	dt = ktime_sub(ktime_get(), dt);
+>  	res[1] = rc6_residency(rc6);
+>  	rc0_freq = intel_rps_read_actual_frequency_fw(rps);
+> @@ -79,11 +84,12 @@ int live_rc6_manual(void *arg)
+>  	}
+>  
+>  	if (has_power) {
+> -		rc0_power = div64_u64(NSEC_PER_SEC * rc0_power,
+> -				      ktime_to_ns(dt));
+> -		if (!rc0_power) {
+> +		rc0_power[2] = div64_u64(NSEC_PER_SEC * rc0_power[1],
+> +					 ktime_to_ns(dt));
+> +
+> +		if (!rc0_power[2]) {
+>  			if (rc0_freq)
+> -				pr_debug("No power measured while in RC0! GPU Freq: %u in RC0\n",
+> +				pr_debug("No power measured while in RC0! GPU Freq: %uMHz in RC0\n",
+>  					 rc0_freq);
+>  			else
+>  				pr_err("No power and freq measured while in RC0\n");
+> @@ -98,10 +104,10 @@ int live_rc6_manual(void *arg)
+>  	res[0] = rc6_residency(rc6);
+>  	intel_uncore_forcewake_flush(rc6_to_uncore(rc6), FORCEWAKE_ALL);
+>  	dt = ktime_get();
+> -	rc6_power = librapl_energy_uJ();
+> -	msleep(1000);
+> +	rc6_power[0] = librapl_energy_uJ();
+> +	msleep(sleep_time);
+>  	rc6_freq = intel_rps_read_actual_frequency_fw(rps);
+> -	rc6_power = librapl_energy_uJ() - rc6_power;
+> +	rc6_power[1] = librapl_energy_uJ() - rc6_power[0];
+>  	dt = ktime_sub(ktime_get(), dt);
+>  	res[1] = rc6_residency(rc6);
+>  	if (res[1] == res[0]) {
+> @@ -112,14 +118,27 @@ int live_rc6_manual(void *arg)
+>  		err = -EINVAL;
+>  	}
+>  
+> +	diff = res[1] - res[0];
+> +	threshold = (9 * NSEC_PER_MSEC * sleep_time) / 10;
+> +	if (diff < threshold) {
+> +		pr_err("Did not enter RC6 properly, RC6 start residency=%lluns, RC6 end residency=%lluns\n",
+> +		       res[0], res[1]);
+> +		err = -EINVAL;
+> +	}
+> +
+>  	if (has_power) {
+> -		rc6_power = div64_u64(NSEC_PER_SEC * rc6_power,
+> -				      ktime_to_ns(dt));
+> -		pr_info("GPU consumed %llduW in RC0 and %llduW in RC6\n",
+> -			rc0_power, rc6_power);
+> -		if (2 * rc6_power > rc0_power) {
+> -			pr_err("GPU leaked energy while in RC6! GPU Freq: %u in RC6 and %u in RC0\n",
+> -			       rc6_freq, rc0_freq);
+> +		rc6_power[2] = div64_u64(NSEC_PER_SEC * rc6_power[1],
+> +					 ktime_to_ns(dt));
+> +		pr_info("GPU consumed %lluuW in RC0 and %lluuW in RC6\n",
+> +			rc0_power[2], rc6_power[2]);
+> +
+> +		if (2 * rc6_power[2] > rc0_power[2]) {
+> +			pr_err("GPU leaked energy while in RC6!\n"
+> +			       "GPU Freq: %uMHz in RC6 and %uMHz in RC0\n"
+> +			       "RC0 energy before & after sleep respectively: %lluuJ %lluuJ\n"
+> +			       "RC6 energy before & after sleep respectively: %lluuJ %lluuJ\n",
+> +			       rc6_freq, rc0_freq, rc0_power[0], rc0_power[1],
+> +			       rc6_power[0], rc6_power[1]);
+>  			err = -EINVAL;
+>  			goto out_unlock;
+>  		}
 
-
+-- 
+Jani Nikula, Intel
