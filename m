@@ -2,60 +2,145 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FD7DA30CA0
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2025 14:14:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56131A30DFB
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2025 15:16:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03CBE10E6CA;
-	Tue, 11 Feb 2025 13:14:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7CEC10E6CC;
+	Tue, 11 Feb 2025 14:16:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JwPoUy7/";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="oDfT3abn";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="8FiRIkrD";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="R4z2FHUi";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="gBG2NSA8";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95A2710E6DB;
- Tue, 11 Feb 2025 13:14:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739279684; x=1770815684;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=zlAWeu5LCAiSV0OD9IAwuNzuO7aSNva+NeinXIeeCz8=;
- b=JwPoUy7/RII8jtZgIBl6w3Wj0hPYUqHkoGFL6rNPA3F+9q7mZhCHXbEL
- ZYkLCwARZciiQ7EHoFfRZ7DP7+4X+0tmZ/C+vCQhKbU3i/KKTdYWaPx92
- aKM3OBfAenvZFcXHYEsj41Cc1sV6LRGEdAKWtSUO+4cvPWnvlb4ixVM6M
- qfIcmMW8QSvpN5NslHZMm9RzMoABU1Zuk64hyIgdULZalFaY2uDtNZBsd
- lAMb1PftZ16X9EVDHGxYpTfpHOv1QdEEpCEkaoB/ScHrx7FpQyGN7qufh
- D/zZ6JNDjMocO8t8KcfANsRwWLDblJHRWIicVe7wvo0UP0Y7hjPYBa1vg Q==;
-X-CSE-ConnectionGUID: F07//K0WQMyoPcHLchfHwQ==
-X-CSE-MsgGUID: FwRY9z0hS+6lZkHDSUGPWA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11341"; a="39758631"
-X-IronPort-AV: E=Sophos;i="6.13,277,1732608000"; d="scan'208";a="39758631"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2025 05:14:44 -0800
-X-CSE-ConnectionGUID: LMS4jVjFQSC6kl2Sf5WEFg==
-X-CSE-MsgGUID: CGzdJIxuSZ+xnnnKB4yYuw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; d="scan'208";a="113402418"
-Received: from ncintean-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.93])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2025 05:14:41 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com, Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: Re: [PATCH 8/9] drm/i915/dpll: Accept intel_display as argument for
- shared_dpll_init
-In-Reply-To: <20250211104857.3501566-9-suraj.kandpal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250211104857.3501566-1-suraj.kandpal@intel.com>
- <20250211104857.3501566-9-suraj.kandpal@intel.com>
-Date: Tue, 11 Feb 2025 15:14:37 +0200
-Message-ID: <87jz9w1v42.fsf@intel.com>
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 19DF810E6C9;
+ Tue, 11 Feb 2025 14:16:26 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id D898E5CBD0;
+ Tue, 11 Feb 2025 07:17:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1739258244; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=DS0oQgHjv0v6gpnp+GNDMRTVFDNoII/jD51CYv6HdYg=;
+ b=oDfT3abnxPCtLUkiq4zXM/vdQriK515Y6931R4WhZKW0laa2H5wIs5UH3aFD6jwGOiNv9q
+ nONobbg1/Vj5+7aQUsVXuBN0/srwE5ciDkQqw55FfbIff8+INVDDtNFnI2v8k1dcOIuNp4
+ Lk9ulgrOUa/Rv9GT7wg9A6dTJb3wODg=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1739258244;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=DS0oQgHjv0v6gpnp+GNDMRTVFDNoII/jD51CYv6HdYg=;
+ b=8FiRIkrDq9n9bH5A5Cjg4B07qoczH50uZ/T0EipmneWl7U+Y5fi3WzbmueXO4ZoMMdSrL5
+ QzARvMbQgOsS93Cw==
+Authentication-Results: smtp-out2.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=R4z2FHUi;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=gBG2NSA8
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1739258243; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=DS0oQgHjv0v6gpnp+GNDMRTVFDNoII/jD51CYv6HdYg=;
+ b=R4z2FHUiAdNuWRCOYvJANN44tVaCfNt2ru/iHE+66e4AbwM+2k0M3NltB8j3gp9rjs0u/s
+ NDTrkrtgpfkipiR4F7IBC95Rhlv5pRh7n+V8iJ5uzudgaSZrndSLAuf/K8h23yUx4hyhz8
+ ddCFFsF2RTmas0WvyKP9AD6dKyrFeLo=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1739258243;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=DS0oQgHjv0v6gpnp+GNDMRTVFDNoII/jD51CYv6HdYg=;
+ b=gBG2NSA8ALa422/gOItySIN7oAq1MO7v7vhudIUWEW75px/0AecMzUwSKJV0roqLsRWpYk
+ 4x3eCWVqAdjbB5CA==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 7CF7513782;
+ Tue, 11 Feb 2025 07:17:23 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id 7JfdHIP5qmfQOwAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Tue, 11 Feb 2025 07:17:23 +0000
+Message-ID: <de8325a9-49b2-48ec-ba56-4349140564b1@suse.de>
+Date: Tue, 11 Feb 2025 08:17:23 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 00/12] drm/{i915,xe}: Convert to DRM client setup
+To: jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
+ joonas.lahtinen@linux.intel.com, tursulin@ursulin.net,
+ lucas.demarchi@intel.com, thomas.hellstrom@linux.intel.com, simona@ffwll.ch,
+ airlied@gmail.com, mripard@kernel.org, maarten.lankhorst@linux.intel.com,
+ jfalempe@redhat.com, javierm@redhat.com
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+References: <20241212170913.185939-1-tzimmermann@suse.de>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <20241212170913.185939-1-tzimmermann@suse.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: D898E5CBD0
+X-Spam-Level: 
+X-Spamd-Result: default: False [-4.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ MX_GOOD(-0.01)[]; FREEMAIL_ENVRCPT(0.00)[gmail.com];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FUZZY_BLOCKED(0.00)[rspamd.com];
+ FREEMAIL_TO(0.00)[linux.intel.com,intel.com,ursulin.net,ffwll.ch,gmail.com,kernel.org,redhat.com];
+ ARC_NA(0.00)[];
+ RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
+ RCPT_COUNT_TWELVE(0.00)[15]; MIME_TRACE(0.00)[0:+];
+ TO_MATCH_ENVRCPT_ALL(0.00)[]; RCVD_TLS_ALL(0.00)[];
+ DKIM_TRACE(0.00)[suse.de:+]; RCVD_COUNT_TWO(0.00)[2];
+ FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
+ TO_DN_NONE(0.00)[];
+ RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
+ MID_RHS_MATCH_FROM(0.00)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,
+ imap1.dmz-prg2.suse.org:rdns, suse.de:dkim, suse.de:mid]
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Rspamd-Action: no action
+X-Spam-Score: -4.51
+X-Spam-Flag: NO
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,160 +156,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-On Tue, 11 Feb 2025, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> Use intel_display as an argument for intel_shared_dpll_init() and
-> replace drm_i915_private in function wherever possible.
-> While at it prefer using display->platform.xx over IS_PLATFORM.
+ping for a review
+
+Am 12.12.24 um 18:08 schrieb Thomas Zimmermann:
+> i915 and xe are the last remaining drivers that still implement their
+> own fbdev client. All other clients have been mass converted to DRM's
+> client setup in in the series at [1]. As Intel drivers require more
+> effort than others, their changes have been moved into this separate
+> series.
 >
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> ---
->  .../drm/i915/display/intel_display_driver.c   |  2 +-
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 49 ++++++++++---------
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.h |  3 +-
->  3 files changed, 27 insertions(+), 27 deletions(-)
+> With DRM's client setup, DRM picks the in-kernel client from the
+> kernel's config and parameters. Besides fbdev there's also drm_log
+> available. For fbdev support, the driver only has to implement struct
+> drm_driver.fbdev_probe, a callback that allocates a compatible
+> framebuffer.
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-> index 978f530c810e..852f1129a058 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-> @@ -448,7 +448,7 @@ int intel_display_driver_probe_nogem(struct intel_display *display)
->  	}
->  
->  	intel_plane_possible_crtcs_init(display);
-> -	intel_shared_dpll_init(i915);
-> +	intel_shared_dpll_init(display);
->  	intel_fdi_pll_freq_update(i915);
->  
->  	intel_update_czclk(i915);
-> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> index f94da1ffc8ce..26b6b9372fa3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> @@ -2042,8 +2042,8 @@ static void bxt_ddi_pll_enable(struct intel_display *display,
->  {
->  	const struct bxt_dpll_hw_state *hw_state = &dpll_hw_state->bxt;
->  	enum port port = (enum port)pll->info->id; /* 1:1 port->PLL mapping */
-> -	enum dpio_phy phy;
-> -	enum dpio_channel ch;
-> +	enum dpio_phy phy = DPIO_PHY0;
-> +	enum dpio_channel ch = DPIO_CH0;
-
-Unrelated change, please drop.
-
-With that fixed,
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
-
->  	u32 temp;
->  
->  	bxt_port_to_phy_channel(display, port, &phy, &ch);
-> @@ -4302,40 +4302,41 @@ static const struct intel_dpll_mgr adlp_pll_mgr = {
->  
->  /**
->   * intel_shared_dpll_init - Initialize shared DPLLs
-> - * @i915: i915 device
-> + * @display: intel_display device
->   *
-> - * Initialize shared DPLLs for @i915.
-> + * Initialize shared DPLLs for @display.
->   */
-> -void intel_shared_dpll_init(struct drm_i915_private *i915)
-> +void intel_shared_dpll_init(struct intel_display *display)
->  {
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
->  	const struct intel_dpll_mgr *dpll_mgr = NULL;
->  	const struct dpll_info *dpll_info;
->  	int i;
->  
-> -	mutex_init(&i915->display.dpll.lock);
-> +	mutex_init(&display->dpll.lock);
->  
-> -	if (DISPLAY_VER(i915) >= 14 || IS_DG2(i915))
-> +	if (DISPLAY_VER(display) >= 14 || display->platform.dg2)
->  		/* No shared DPLLs on DG2; port PLLs are part of the PHY */
->  		dpll_mgr = NULL;
-> -	else if (IS_ALDERLAKE_P(i915))
-> +	else if (display->platform.alderlake_p)
->  		dpll_mgr = &adlp_pll_mgr;
-> -	else if (IS_ALDERLAKE_S(i915))
-> +	else if (display->platform.alderlake_s)
->  		dpll_mgr = &adls_pll_mgr;
-> -	else if (IS_DG1(i915))
-> +	else if (display->platform.dg1)
->  		dpll_mgr = &dg1_pll_mgr;
-> -	else if (IS_ROCKETLAKE(i915))
-> +	else if (display->platform.rocketlake)
->  		dpll_mgr = &rkl_pll_mgr;
-> -	else if (DISPLAY_VER(i915) >= 12)
-> +	else if (DISPLAY_VER(display) >= 12)
->  		dpll_mgr = &tgl_pll_mgr;
-> -	else if (IS_JASPERLAKE(i915) || IS_ELKHARTLAKE(i915))
-> +	else if (display->platform.jasperlake || display->platform.elkhartlake)
->  		dpll_mgr = &ehl_pll_mgr;
-> -	else if (DISPLAY_VER(i915) >= 11)
-> +	else if (DISPLAY_VER(display) >= 11)
->  		dpll_mgr = &icl_pll_mgr;
-> -	else if (IS_GEMINILAKE(i915) || IS_BROXTON(i915))
-> +	else if (display->platform.geminilake || display->platform.broxton)
->  		dpll_mgr = &bxt_pll_mgr;
-> -	else if (DISPLAY_VER(i915) == 9)
-> +	else if (DISPLAY_VER(display) == 9)
->  		dpll_mgr = &skl_pll_mgr;
-> -	else if (HAS_DDI(i915))
-> +	else if (HAS_DDI(display))
->  		dpll_mgr = &hsw_pll_mgr;
->  	else if (HAS_PCH_IBX(i915) || HAS_PCH_CPT(i915))
->  		dpll_mgr = &pch_pll_mgr;
-> @@ -4346,20 +4347,20 @@ void intel_shared_dpll_init(struct drm_i915_private *i915)
->  	dpll_info = dpll_mgr->dpll_info;
->  
->  	for (i = 0; dpll_info[i].name; i++) {
-> -		if (drm_WARN_ON(&i915->drm,
-> -				i >= ARRAY_SIZE(i915->display.dpll.shared_dplls)))
-> +		if (drm_WARN_ON(display->drm,
-> +				i >= ARRAY_SIZE(display->dpll.shared_dplls)))
->  			break;
->  
->  		/* must fit into unsigned long bitmask on 32bit */
-> -		if (drm_WARN_ON(&i915->drm, dpll_info[i].id >= 32))
-> +		if (drm_WARN_ON(display->drm, dpll_info[i].id >= 32))
->  			break;
->  
-> -		i915->display.dpll.shared_dplls[i].info = &dpll_info[i];
-> -		i915->display.dpll.shared_dplls[i].index = i;
-> +		display->dpll.shared_dplls[i].info = &dpll_info[i];
-> +		display->dpll.shared_dplls[i].index = i;
->  	}
->  
-> -	i915->display.dpll.mgr = dpll_mgr;
-> -	i915->display.dpll.num_shared_dpll = i;
-> +	display->dpll.mgr = dpll_mgr;
-> +	display->dpll.num_shared_dpll = i;
->  }
->  
->  /**
-> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-> index 3d988f17f31d..caffb084830c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-> @@ -35,7 +35,6 @@
->  		     ((__pll) = &(__display)->dpll.shared_dplls[(__i)]) ; (__i)++)
->  
->  enum tc_port;
-> -struct drm_i915_private;
->  struct drm_printer;
->  struct intel_atomic_state;
->  struct intel_crtc;
-> @@ -422,7 +421,7 @@ bool intel_dpll_get_hw_state(struct intel_display *display,
->  void intel_enable_shared_dpll(const struct intel_crtc_state *crtc_state);
->  void intel_disable_shared_dpll(const struct intel_crtc_state *crtc_state);
->  void intel_shared_dpll_swap_state(struct intel_atomic_state *state);
-> -void intel_shared_dpll_init(struct drm_i915_private *i915);
-> +void intel_shared_dpll_init(struct intel_display *display);
->  void intel_dpll_update_ref_clks(struct intel_display *display);
->  void intel_dpll_readout_hw_state(struct intel_display *display);
->  void intel_dpll_sanitize_state(struct intel_display *display);
+> At first, some details of the Intel implementation have to be rebuild
+> for the generic client and fbdev handling. Patches 1 to 6 do that.
+> Hotplugging and suspend/resume are then hidden behind callbacks. Some
+> Intel-specifics in the restore and suspend code get their own hooks.
+>
+> Patches 7 to 9 prepare Intel's fbdev implementation ot get things
+> out of the way.
+>
+> Patch 10 converts i915 and xe to DRM's client setup. Patches 11 and
+> 12 clean up the remaining code.
+>
+> Tested with i915 and xe hardware.
+>
+> [1] https://patchwork.freedesktop.org/series/137391/
+>
+> Thomas Zimmermann (12):
+>    drm/{i915,xe}: Suspend/resume fbdev emulation via client interfaces
+>    drm/client: Add client-hotplug helper
+>    drm/client: Send pending hotplug events after resume
+>    drm/i915/display: Remove fbdev suspend and hotplug tracking
+>    drm/i915/display: fbdev: Move custom restore code to new callback
+>    drm/i915/display: fbdev: Move custom suspend code to new callback
+>    drm/i915/display: Remove preferred_bpp from struct intel_fbdev
+>    drm/i915/display: Remove struct drm_fb_helper from struct intel_fbdev
+>    drm/i915/display: Move fbdev code around
+>    drm/{i915,xe}: Run DRM default client setup
+>    drm/i915/display: Remove compile guard around fbdev debugfs output
+>    drm/fb-helper: Remove struct drm_fb_helper.fb_probe
+>
+>   drivers/gpu/drm/drm_client_event.c            |  41 ++-
+>   drivers/gpu/drm/drm_fb_helper.c               |  20 +-
+>   .../gpu/drm/i915/display/intel_display_core.h |   1 -
+>   .../drm/i915/display/intel_display_debugfs.c  |   2 -
+>   drivers/gpu/drm/i915/display/intel_fbdev.c    | 338 ++++--------------
+>   drivers/gpu/drm/i915/display/intel_fbdev.h    |  17 +-
+>   drivers/gpu/drm/i915/i915_driver.c            |  10 +-
+>   drivers/gpu/drm/xe/display/xe_display.c       |  12 +-
+>   include/drm/drm_client.h                      |   8 +
+>   include/drm/drm_fb_helper.h                   |  44 ++-
+>   10 files changed, 176 insertions(+), 317 deletions(-)
+>
+>
+> base-commit: 7bbcd7df9387f0d9004f997df33f7a9472d9c080
 
 -- 
-Jani Nikula, Intel
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstrasse 146, 90461 Nuernberg, Germany
+GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
+HRB 36809 (AG Nuernberg)
+
