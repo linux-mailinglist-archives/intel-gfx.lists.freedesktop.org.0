@@ -2,62 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCD59A32812
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2025 15:10:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA5F8A3166B
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2025 21:10:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35AD110E8BC;
-	Wed, 12 Feb 2025 14:10:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8930310E745;
+	Tue, 11 Feb 2025 20:10:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=yandex-team.com header.i=@yandex-team.com header.b="doARputU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hjd+XrxT";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 427 seconds by postgrey-1.36 at gabe;
- Tue, 11 Feb 2025 11:53:11 UTC
-Received: from forwardcorp1a.mail.yandex.net (forwardcorp1a.mail.yandex.net
- [178.154.239.72])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8185D10E69A;
- Tue, 11 Feb 2025 11:53:11 +0000 (UTC)
-Received: from mail-nwsmtp-smtp-corp-main-83.vla.yp-c.yandex.net
- (mail-nwsmtp-smtp-corp-main-83.vla.yp-c.yandex.net
- [IPv6:2a02:6b8:c0f:1286:0:640:6f2b:0])
- by forwardcorp1a.mail.yandex.net (Yandex) with ESMTPS id BB47F60CBC;
- Tue, 11 Feb 2025 14:46:02 +0300 (MSK)
-Received: from dellarbn.yandex.net (unknown [10.214.35.248])
- by mail-nwsmtp-smtp-corp-main-83.vla.yp-c.yandex.net (smtpcorp/Yandex) with
- ESMTPSA id njMaW61IYa60-f300HgHw; Tue, 11 Feb 2025 14:46:02 +0300
-X-Yandex-Fwd: 1
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yandex-team.com;
- s=default; t=1739274362;
- bh=N/f4M/1YdrDaXLy1gcP2Kg22i5sVeuoh7Qx0Xv+wu0U=;
- h=Message-ID:Date:In-Reply-To:Cc:Subject:References:To:From;
- b=doARputUw27HsyLKkbE04O5ibJYLITuopDPsmuZ9aczHNvBTKndE0yZghx202ewCN
- R0AlGAPmGGvsezMwhUJQ/uepQErBEbYbxzVqcsT+vv5AwhPpqZC4vKmvEML7VbEde/
- eXAmQ0zBtCojSSOabGstArsm3ER7ferxhDM5F2Bk=
-Authentication-Results: mail-nwsmtp-smtp-corp-main-83.vla.yp-c.yandex.net;
- dkim=pass header.i=@yandex-team.com
-From: Andrey Ryabinin <arbn@yandex-team.com>
-To: Alex Williamson <alex.williamson@redhat.com>
-Cc: Zhenyu Wang <zhenyuw@linux.intel.com>, Zhi Wang <zhi.wang.linux@gmail.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Matthew Rosato <mjrosato@linux.ibm.com>,
- Jason Gunthorpe <jgg@nvidia.com>, Kevin Tian <kevin.tian@intel.com>,
- Yi Liu <yi.l.liu@intel.com>, intel-gvt-dev@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, kvm@vger.kernel.org,
- Andrey Ryabinin <arbn@yandex-team.com>, stable@vger.kernel.org
-Subject: [PATCH 2/2] vfio: Release KVM pointer after the first device open.
-Date: Tue, 11 Feb 2025 12:45:44 +0100
-Message-ID: <20250211114544.17845-2-arbn@yandex-team.com>
-X-Mailer: git-send-email 2.45.3
-In-Reply-To: <20250211114544.17845-1-arbn@yandex-team.com>
-References: <20250211114544.17845-1-arbn@yandex-team.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53E6E10E745;
+ Tue, 11 Feb 2025 20:10:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1739304613; x=1770840613;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=3QmQNvz5GlFYsCfk43i0E0xPDFKRw/liAA81RlduhhE=;
+ b=hjd+XrxTTGSyXmA63v+ySKsbJexQPiYAFazAYe5yNs/OgROYZ5cOhBLc
+ msE+OdmWgfp69KODUJaKj/bhFX/fVgzlILC5Jivktgkkv5o0NBj/n3Y94
+ XgYwcKdDo4OfhGQsoXRO2nCcpomDlAZlIfDJ3gYFV7aUfIpaWEbRaO74G
+ qI6IGD9byu6ElH+OvPTq/gafmJRLT0xhBqAwkwgTTJk6ZQ7ZtO9yCVKmB
+ iWhJ0lzNe8fNjd/rBWtQcZixmI3hsDJn4NmedJaT3UtBrEMOEWPF39HgU
+ DWH2QWi/WvZ92h88XSb53yTw1qS37olKXtlF7zA+DGuBS9q9S2FfvI+ot Q==;
+X-CSE-ConnectionGUID: FOZwjZC+Q5CcICDoGSzyTA==
+X-CSE-MsgGUID: KjbHYaZiTVuceRJrVp3bQg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11342"; a="42787657"
+X-IronPort-AV: E=Sophos;i="6.13,278,1732608000"; d="scan'208";a="42787657"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2025 12:10:12 -0800
+X-CSE-ConnectionGUID: xR0MlVInQ2+xAbzaGcsUMQ==
+X-CSE-MsgGUID: a2hBiMxhRIy9BA7SFSQwyA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,278,1732608000"; d="scan'208";a="112831448"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by fmviesa008.fm.intel.com with SMTP; 11 Feb 2025 12:10:09 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 11 Feb 2025 22:10:08 +0200
+Date: Tue, 11 Feb 2025 22:10:08 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Hogander, Jouni" <jouni.hogander@intel.com>
+Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "Manna, Animesh" <animesh.manna@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Syrjala, Ville" <ville.syrjala@intel.com>
+Subject: Re: [PATCH v6 07/12] drm/i915/psr: Changes for PSR2_MAN_TRK_CTL
+ handling when DSB is in use
+Message-ID: <Z6uuoANVyxsbLVYJ@intel.com>
+References: <20250127102846.1237560-1-jouni.hogander@intel.com>
+ <20250127102846.1237560-8-jouni.hogander@intel.com>
+ <Z6oouL3AYZ-JQ7xd@intel.com>
+ <0808c3a03225ff734ea3fade879a1b5a39bf67e6.camel@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Wed, 12 Feb 2025 14:10:13 +0000
+In-Reply-To: <0808c3a03225ff734ea3fade879a1b5a39bf67e6.camel@intel.com>
+X-Patchwork-Hint: comment
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,129 +77,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
-Commit 2b48f52f2bff ("vfio: fix deadlock between group lock and kvm lock")
-made vfio_device to hold KVM struct up until device's close() call.
+On Tue, Feb 11, 2025 at 06:24:24AM +0000, Hogander, Jouni wrote:
+> On Mon, 2025-02-10 at 18:26 +0200, Ville Syrjälä wrote:
+> > On Mon, Jan 27, 2025 at 12:28:41PM +0200, Jouni Högander wrote:
+> > > Do needed changes to handle PSR2_MAN_TRK_CTL correctly when DSB is
+> > > in use:
+> > > 
+> > > 1. Write PSR2_MAN_TRK_CTL in commit_pipe_pre_planes only when not
+> > > using
+> > >    DSB.
+> > > 2. Add PSR2_MAN_TRK_CTL writing into DSB commit in
+> > >    intel_atomic_dsb_finish.
+> > > 
+> > > Taking PSR lock over DSB commit is not needed because
+> > > PSR2_MAN_TRK_CTL is
+> > > now written only by DSB.
+> > > 
+> > > Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+> > > Reviewed-by: Animesh Manna <animesh.manna@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_display.c | 5 ++++-
+> > >  1 file changed, 4 insertions(+), 1 deletion(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+> > > b/drivers/gpu/drm/i915/display/intel_display.c
+> > > index aed35f203fd8d..5db2af86d0c8a 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > @@ -7143,7 +7143,8 @@ static void commit_pipe_pre_planes(struct
+> > > intel_atomic_state *state,
+> > >  			intel_pipe_fastset(old_crtc_state,
+> > > new_crtc_state);
+> > >  	}
+> > >  
+> > > -	intel_psr2_program_trans_man_trk_ctl(NULL,
+> > > new_crtc_state);
+> > > +	if (!new_crtc_state->use_dsb)
+> > > +		intel_psr2_program_trans_man_trk_ctl(NULL,
+> > > new_crtc_state);
+> > 
+> > commit_pipe_pre_planes() is not called when use_dsb==true.
+> 
+> Couple of lines earlier in same function there is this:
+> 
+> 	if (!modeset && !new_crtc_state->use_dsb) {
+> 
+> I followed that in here. Do you still think I should remove checking
+> use_dsb from my patch?
 
-This lead to a unrleased KVM struct which holds KVM kthreads and related
-cgroups after VM with VFIO device migrates to from one KVM instance to
-another on the same host.
+Hmm, I guess it was some leftover from some of my earlier attempts
+at reusing more of the existing commit path. We could remove it from
+there as well for the time being. I suppose we could stick a few
+drm_WARN_ON(use_dsb)s into commit_pipe_{pre,post}_planes() and
+intel_pipe_update_{start,end}() to make it clear they aren't used
+by the full DSB path.
 
-Since all drivers, that require 'kvm' (vfio-ap/intel_vgp/vfio-pci zdev)
-already handle 'kvm' pointer by themselves we can just drop 'kvm' reference
-right after first vfio_df_open() call. This will release 'kvm' struct
-and dependent resources for drivers that don't require it after KVM
-detached from a device (KVM_DEV_VFIO_FILE_DEL).
+At some point we need to attempt to refactor this stuff into some
+kind of more sensible form. But as long as we can't do all the
+relevant programming on the DSB it's a bit hard to see what the
+end result should look like.
 
-Fixes: 2b48f52f2bff ("vfio: fix deadlock between group lock and kvm lock")
-Cc: <stable@vger.kernel.org>
-Signed-off-by: Andrey Ryabinin <arbn@yandex-team.com>
----
- drivers/vfio/device_cdev.c | 11 ++++++-----
- drivers/vfio/group.c       | 31 ++++++++++++++-----------------
- 2 files changed, 20 insertions(+), 22 deletions(-)
-
-diff --git a/drivers/vfio/device_cdev.c b/drivers/vfio/device_cdev.c
-index bb1817bd4ff3..339b69c43300 100644
---- a/drivers/vfio/device_cdev.c
-+++ b/drivers/vfio/device_cdev.c
-@@ -103,14 +103,16 @@ long vfio_df_ioctl_bind_iommufd(struct vfio_device_file *df,
- 	/*
- 	 * Before the device open, get the KVM pointer currently
- 	 * associated with the device file (if there is) and obtain
--	 * a reference.  This reference is held until device closed.
-+	 * a reference and release it right after vfio_df_open() bellow.
-+	 * The device driver wishes to use KVM must obtain a reference and
-+	 * release it on close.
- 	 * Save the pointer in the device for use by drivers.
- 	 */
- 	vfio_df_get_kvm_safe(df);
--
- 	ret = vfio_df_open(df);
-+	vfio_device_put_kvm(device);
- 	if (ret)
--		goto out_put_kvm;
-+		goto out_put_iommufd;
- 
- 	ret = copy_to_user(&arg->out_devid, &df->devid,
- 			   sizeof(df->devid)) ? -EFAULT : 0;
-@@ -128,8 +130,7 @@ long vfio_df_ioctl_bind_iommufd(struct vfio_device_file *df,
- 
- out_close_device:
- 	vfio_df_close(df);
--out_put_kvm:
--	vfio_device_put_kvm(device);
-+out_put_iommufd:
- 	iommufd_ctx_put(df->iommufd);
- 	df->iommufd = NULL;
- out_unlock:
-diff --git a/drivers/vfio/group.c b/drivers/vfio/group.c
-index 49559605177e..872cfd795f99 100644
---- a/drivers/vfio/group.c
-+++ b/drivers/vfio/group.c
-@@ -175,15 +175,6 @@ static int vfio_df_group_open(struct vfio_device_file *df)
- 
- 	mutex_lock(&device->dev_set->lock);
- 
--	/*
--	 * Before the first device open, get the KVM pointer currently
--	 * associated with the group (if there is one) and obtain a reference
--	 * now that will be held until the open_count reaches 0 again.  Save
--	 * the pointer in the device for use by drivers.
--	 */
--	if (device->open_count == 0)
--		vfio_device_group_get_kvm_safe(device);
--
- 	df->iommufd = device->group->iommufd;
- 	if (df->iommufd && vfio_device_is_noiommu(device) && device->open_count == 0) {
- 		/*
-@@ -196,12 +187,23 @@ static int vfio_df_group_open(struct vfio_device_file *df)
- 			ret = -EPERM;
- 		else
- 			ret = 0;
--		goto out_put_kvm;
-+		goto out_iommufd;
- 	}
- 
-+	/*
-+	 * Before the first device open, get the KVM pointer currently
-+	 * associated with the group (if there is one) and obtain a reference
-+	 * now that will be released right after vfio_df_open() bellow.
-+	 * The device driver wishes to use KVM must obtain a reference and
-+	 * release it on close.
-+	 */
-+	if (device->open_count == 0)
-+		vfio_device_group_get_kvm_safe(device);
-+
- 	ret = vfio_df_open(df);
-+	vfio_device_put_kvm(device);
- 	if (ret)
--		goto out_put_kvm;
-+		goto out_iommufd;
- 
- 	if (df->iommufd && device->open_count == 1) {
- 		ret = vfio_iommufd_compat_attach_ioas(device, df->iommufd);
-@@ -221,10 +223,8 @@ static int vfio_df_group_open(struct vfio_device_file *df)
- 
- out_close_device:
- 	vfio_df_close(df);
--out_put_kvm:
-+out_iommufd:
- 	df->iommufd = NULL;
--	if (device->open_count == 0)
--		vfio_device_put_kvm(device);
- 	mutex_unlock(&device->dev_set->lock);
- out_unlock:
- 	mutex_unlock(&device->group->group_lock);
-@@ -241,9 +241,6 @@ void vfio_df_group_close(struct vfio_device_file *df)
- 	vfio_df_close(df);
- 	df->iommufd = NULL;
- 
--	if (device->open_count == 0)
--		vfio_device_put_kvm(device);
--
- 	mutex_unlock(&device->dev_set->lock);
- 	mutex_unlock(&device->group->group_lock);
- }
 -- 
-2.45.3
-
+Ville Syrjälä
+Intel
