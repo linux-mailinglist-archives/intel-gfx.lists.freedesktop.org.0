@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 466E3A2FEB7
-	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2025 01:01:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B5D53A2FEB8
+	for <lists+intel-gfx@lfdr.de>; Tue, 11 Feb 2025 01:01:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC56B10E40F;
-	Tue, 11 Feb 2025 00:01:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59D2510E616;
+	Tue, 11 Feb 2025 00:01:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DUwikTqJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KToDG93T";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 80FC110E40C
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2025 00:01:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4BEEE10E616
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2025 00:01:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739232106; x=1770768106;
+ t=1739232109; x=1770768109;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=DR0xYsSfcs0Ae9xQYiQkgMNo01llkB2jOCrS44/2kGI=;
- b=DUwikTqJYgL5bYtgPJvC0YCP6LXUpR4kGV19qRmWcRvNvtGoUqPD+pAJ
- Whrda7l//84tGflDzYMxBJX5Rem2TJ+AlUmKwbIphuZ0yHeuOPvFq32Sx
- IrIUjTuU7aAuiz1Fm0I5RrvlnMxI0tuta14pgCdPxZpFyaZHXjYqfp6cg
- Yr1gEF8L76SslCxDUYooXogyJW9PGzbAcQHhed9Xr3N5DvHZ1wrVTOviL
- r18+cH9a04xX8GHgxGNDH55rcgBDeYMkiwtTGSaqTJ5h6accLAgS4uYwp
- khtMnDT5K/EQDgMjxlySqC7+o/PgAIa8HFyBKbnc0M2S5P/BnRtcCvsXP g==;
-X-CSE-ConnectionGUID: ZiStGiM/QC6WYs4S7TL17A==
-X-CSE-MsgGUID: 4UCReyrwQ+iTVkcLa3RQng==
-X-IronPort-AV: E=McAfee;i="6700,10204,11341"; a="27434882"
-X-IronPort-AV: E=Sophos;i="6.13,275,1732608000"; d="scan'208";a="27434882"
+ bh=P/hUc60M+BvmgpX2P6Erk0zoGQB7h2dM5pV/RXZLKNU=;
+ b=KToDG93TjphUIuPMIAFk3loWuzb43m6IS1PRIKcs4RLdGKEsGaFGUyYE
+ LVS5gysEzaRCSlm/+RAqEa/mAotpoSPJ9wcIQ1wxHtqytGhEJbHgsZiBU
+ rNscg8jASW3FigvAaV0vYxvsbQ/B8VPtLie8Jfx7Lm9l+5il/F2x6sLnX
+ ebSGg+H/QPXPe141r6rYPNP9SYPc+Y3waSEdv4QDKTS4HaNWOMnZbmAxu
+ KZadknU5f2NM1yAXtVJzismLo5K6YwI1ZVVF0V8YUoeeDA7YSxVHD/Vgt
+ v0Z6iqtBwZMKU9XxxQ8VRLRPBqPaYSlRIyxDoaazHJ1rVLrutKTktR+9/ w==;
+X-CSE-ConnectionGUID: 42QYrRkERFWl0bkEdjCumA==
+X-CSE-MsgGUID: rpJVYbeLRBed8+0KsTKMDQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11341"; a="27434901"
+X-IronPort-AV: E=Sophos;i="6.13,275,1732608000"; d="scan'208";a="27434901"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2025 16:01:46 -0800
-X-CSE-ConnectionGUID: H4p5YdFNTFe82s+QYS43IQ==
-X-CSE-MsgGUID: tTIf0QktSy2b5GRVANLmmw==
+ 10 Feb 2025 16:01:49 -0800
+X-CSE-ConnectionGUID: hAnmu64RSb+0kbT37ikWzA==
+X-CSE-MsgGUID: gnTYrkn0SoqmsvYQLkBv4g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,275,1732608000"; d="scan'208";a="112558921"
+X-IronPort-AV: E=Sophos;i="6.13,275,1732608000"; d="scan'208";a="112558926"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 10 Feb 2025 16:01:44 -0800
+ by fmviesa008.fm.intel.com with SMTP; 10 Feb 2025 16:01:47 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 11 Feb 2025 02:01:43 +0200
+ Tue, 11 Feb 2025 02:01:46 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 3/4] drm/i915/gvt: Stop using intel_runtime_pm_put_unchecked()
-Date: Tue, 11 Feb 2025 02:01:34 +0200
-Message-ID: <20250211000135.6096-4-ville.syrjala@linux.intel.com>
+Subject: [PATCH 4/4] drm/i915: Get rid of the _unchecked() runime pm stuff
+Date: Tue, 11 Feb 2025 02:01:35 +0200
+Message-ID: <20250211000135.6096-5-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.45.3
 In-Reply-To: <20250211000135.6096-1-ville.syrjala@linux.intel.com>
 References: <20250211000135.6096-1-ville.syrjala@linux.intel.com>
@@ -70,218 +70,184 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-intel_runtime_pm_put_unchecked() is not meant to be used
-outside the runtime pm implementation, so don't.
+Seem to me that intel_runtime_pm.c already handles the
+CONFIG_DRM_I915_DEBUG_RUNTIME_PM=n case perfectly fine
+internally, so I don't understand why it's being leaked into
+all the callers as well. Get rid of all this the externally
+visible _unchecked() stuff.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gvt/aperture_gm.c  |  7 ++++---
- drivers/gpu/drm/i915/gvt/debugfs.c      |  5 +++--
- drivers/gpu/drm/i915/gvt/gtt.c          |  6 ++++--
- drivers/gpu/drm/i915/gvt/gvt.h          |  9 +++++----
- drivers/gpu/drm/i915/gvt/handlers.c     | 23 +++++++++++++++--------
- drivers/gpu/drm/i915/gvt/sched_policy.c |  5 +++--
- 6 files changed, 34 insertions(+), 21 deletions(-)
+ .../drm/i915/display/intel_display_power.c    | 24 ---------------
+ .../drm/i915/display/intel_display_power.h    | 30 -------------------
+ drivers/gpu/drm/i915/intel_gvt.c              |  3 --
+ drivers/gpu/drm/i915/intel_runtime_pm.c       | 19 ------------
+ drivers/gpu/drm/i915/intel_runtime_pm.h       |  9 ------
+ 5 files changed, 85 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gvt/aperture_gm.c b/drivers/gpu/drm/i915/gvt/aperture_gm.c
-index eedd1865bb98..62d14f82256f 100644
---- a/drivers/gpu/drm/i915/gvt/aperture_gm.c
-+++ b/drivers/gpu/drm/i915/gvt/aperture_gm.c
-@@ -46,6 +46,7 @@ static int alloc_gm(struct intel_vgpu *vgpu, bool high_gm)
- 	unsigned int flags;
- 	u64 start, end, size;
- 	struct drm_mm_node *node;
-+	intel_wakeref_t wakeref;
- 	int ret;
- 
- 	if (high_gm) {
-@@ -63,12 +64,12 @@ static int alloc_gm(struct intel_vgpu *vgpu, bool high_gm)
- 	}
- 
- 	mutex_lock(&gt->ggtt->vm.mutex);
--	mmio_hw_access_pre(gt);
-+	wakeref = mmio_hw_access_pre(gt);
- 	ret = i915_gem_gtt_insert(&gt->ggtt->vm, NULL, node,
- 				  size, I915_GTT_PAGE_SIZE,
- 				  I915_COLOR_UNEVICTABLE,
- 				  start, end, flags);
--	mmio_hw_access_post(gt);
-+	mmio_hw_access_post(gt, wakeref);
- 	mutex_unlock(&gt->ggtt->vm.mutex);
- 	if (ret)
- 		gvt_err("fail to alloc %s gm space from host\n",
-@@ -226,7 +227,7 @@ static int alloc_vgpu_fence(struct intel_vgpu *vgpu)
- 		vgpu->fence.regs[i] = NULL;
- 	}
- 	mutex_unlock(&gvt->gt->ggtt->vm.mutex);
--	intel_runtime_pm_put_unchecked(uncore->rpm);
-+	intel_runtime_pm_put(uncore->rpm, wakeref);
- 	return -ENOSPC;
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index d93f43d145a9..20296ab450bf 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -809,7 +809,6 @@ intel_display_power_flush_work_sync(struct intel_display *display)
+ 	drm_WARN_ON(display->drm, power_domains->async_put_wakeref);
  }
  
-diff --git a/drivers/gpu/drm/i915/gvt/debugfs.c b/drivers/gpu/drm/i915/gvt/debugfs.c
-index baccbf1761b7..673534f061ef 100644
---- a/drivers/gpu/drm/i915/gvt/debugfs.c
-+++ b/drivers/gpu/drm/i915/gvt/debugfs.c
-@@ -91,16 +91,17 @@ static int vgpu_mmio_diff_show(struct seq_file *s, void *unused)
- 		.diff = 0,
- 	};
- 	struct diff_mmio *node, *next;
-+	intel_wakeref_t wakeref;
+-#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
+ /**
+  * intel_display_power_put - release a power domain reference
+  * @display: display device instance
+@@ -829,29 +828,6 @@ void intel_display_power_put(struct intel_display *display,
+ 	__intel_display_power_put(display, domain);
+ 	intel_runtime_pm_put(&dev_priv->runtime_pm, wakeref);
+ }
+-#else
+-/**
+- * intel_display_power_put_unchecked - release an unchecked power domain reference
+- * @display: display device instance
+- * @domain: power domain to reference
+- *
+- * This function drops the power domain reference obtained by
+- * intel_display_power_get() and might power down the corresponding hardware
+- * block right away if this is the last reference.
+- *
+- * This function is only for the power domain code's internal use to suppress wakeref
+- * tracking when the corresponding debug kconfig option is disabled, should not
+- * be used otherwise.
+- */
+-void intel_display_power_put_unchecked(struct intel_display *display,
+-				       enum intel_display_power_domain domain)
+-{
+-	struct drm_i915_private *dev_priv = to_i915(display->drm);
+-
+-	__intel_display_power_put(display, domain);
+-	intel_runtime_pm_put_unchecked(&dev_priv->runtime_pm);
+-}
+-#endif
  
- 	INIT_LIST_HEAD(&param.diff_mmio_list);
- 
- 	mutex_lock(&gvt->lock);
- 	spin_lock_bh(&gvt->scheduler.mmio_context_lock);
- 
--	mmio_hw_access_pre(gvt->gt);
-+	wakeref = mmio_hw_access_pre(gvt->gt);
- 	/* Recognize all the diff mmios to list. */
- 	intel_gvt_for_each_tracked_mmio(gvt, mmio_diff_handler, &param);
--	mmio_hw_access_post(gvt->gt);
-+	mmio_hw_access_post(gvt->gt, wakeref);
- 
- 	spin_unlock_bh(&gvt->scheduler.mmio_context_lock);
- 	mutex_unlock(&gvt->lock);
-diff --git a/drivers/gpu/drm/i915/gvt/gtt.c b/drivers/gpu/drm/i915/gvt/gtt.c
-index 2fa7ca19ba5d..ae9b0ded3651 100644
---- a/drivers/gpu/drm/i915/gvt/gtt.c
-+++ b/drivers/gpu/drm/i915/gvt/gtt.c
-@@ -220,9 +220,11 @@ static u64 read_pte64(struct i915_ggtt *ggtt, unsigned long index)
- 
- static void ggtt_invalidate(struct intel_gt *gt)
+ void
+ intel_display_power_get_in_set(struct intel_display *display,
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
+index a3a5c1be8bab..52b8a89b96eb 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.h
++++ b/drivers/gpu/drm/i915/display/intel_display_power.h
+@@ -195,7 +195,6 @@ void __intel_display_power_put_async(struct intel_display *display,
+ 				     intel_wakeref_t wakeref,
+ 				     int delay_ms);
+ void intel_display_power_flush_work(struct intel_display *display);
+-#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
+ void intel_display_power_put(struct intel_display *display,
+ 			     enum intel_display_power_domain domain,
+ 			     intel_wakeref_t wakeref);
+@@ -215,35 +214,6 @@ intel_display_power_put_async_delay(struct intel_display *display,
  {
--	mmio_hw_access_pre(gt);
-+	intel_wakeref_t wakeref;
-+
-+	wakeref = mmio_hw_access_pre(gt);
- 	intel_uncore_write(gt->uncore, GFX_FLSH_CNTL_GEN6, GFX_FLSH_CNTL_EN);
--	mmio_hw_access_post(gt);
-+	mmio_hw_access_post(gt, wakeref);
+ 	__intel_display_power_put_async(display, domain, wakeref, delay_ms);
+ }
+-#else
+-void intel_display_power_put_unchecked(struct intel_display *display,
+-				       enum intel_display_power_domain domain);
+-
+-static inline void
+-intel_display_power_put(struct intel_display *display,
+-			enum intel_display_power_domain domain,
+-			intel_wakeref_t wakeref)
+-{
+-	intel_display_power_put_unchecked(display, domain);
+-}
+-
+-static inline void
+-intel_display_power_put_async(struct intel_display *display,
+-			      enum intel_display_power_domain domain,
+-			      intel_wakeref_t wakeref)
+-{
+-	__intel_display_power_put_async(display, domain, INTEL_WAKEREF_DEF, -1);
+-}
+-
+-static inline void
+-intel_display_power_put_async_delay(struct intel_display *display,
+-				    enum intel_display_power_domain domain,
+-				    intel_wakeref_t wakeref,
+-				    int delay_ms)
+-{
+-	__intel_display_power_put_async(display, domain, INTEL_WAKEREF_DEF, delay_ms);
+-}
+-#endif
+ 
+ void
+ intel_display_power_get_in_set(struct intel_display *display,
+diff --git a/drivers/gpu/drm/i915/intel_gvt.c b/drivers/gpu/drm/i915/intel_gvt.c
+index dae9dce7d1b3..164be5b8acb3 100644
+--- a/drivers/gpu/drm/i915/intel_gvt.c
++++ b/drivers/gpu/drm/i915/intel_gvt.c
+@@ -310,10 +310,7 @@ EXPORT_SYMBOL_NS_GPL(__intel_context_do_pin, "I915_GVT");
+ EXPORT_SYMBOL_NS_GPL(__intel_context_do_unpin, "I915_GVT");
+ EXPORT_SYMBOL_NS_GPL(intel_ring_begin, "I915_GVT");
+ EXPORT_SYMBOL_NS_GPL(intel_runtime_pm_get, "I915_GVT");
+-#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
+ EXPORT_SYMBOL_NS_GPL(intel_runtime_pm_put, "I915_GVT");
+-#endif
+-EXPORT_SYMBOL_NS_GPL(intel_runtime_pm_put_unchecked, "I915_GVT");
+ EXPORT_SYMBOL_NS_GPL(intel_uncore_forcewake_for_reg, "I915_GVT");
+ EXPORT_SYMBOL_NS_GPL(intel_uncore_forcewake_get, "I915_GVT");
+ EXPORT_SYMBOL_NS_GPL(intel_uncore_forcewake_put, "I915_GVT");
+diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.c b/drivers/gpu/drm/i915/intel_runtime_pm.c
+index 8d9f4c410546..070bafb0a460 100644
+--- a/drivers/gpu/drm/i915/intel_runtime_pm.c
++++ b/drivers/gpu/drm/i915/intel_runtime_pm.c
+@@ -322,24 +322,6 @@ intel_runtime_pm_put_raw(struct intel_runtime_pm *rpm, intel_wakeref_t wref)
+ 	__intel_runtime_pm_put(rpm, wref, false);
  }
  
- static void write_pte64(struct i915_ggtt *ggtt, unsigned long index, u64 pte)
-diff --git a/drivers/gpu/drm/i915/gvt/gvt.h b/drivers/gpu/drm/i915/gvt/gvt.h
-index 01d890999f25..1d10c16e6465 100644
---- a/drivers/gpu/drm/i915/gvt/gvt.h
-+++ b/drivers/gpu/drm/i915/gvt/gvt.h
-@@ -570,14 +570,15 @@ enum {
- 	GVT_FAILSAFE_GUEST_ERR,
- };
- 
--static inline void mmio_hw_access_pre(struct intel_gt *gt)
-+static inline intel_wakeref_t mmio_hw_access_pre(struct intel_gt *gt)
+-/**
+- * intel_runtime_pm_put_unchecked - release an unchecked runtime pm reference
+- * @rpm: the intel_runtime_pm structure
+- *
+- * This function drops the device-level runtime pm reference obtained by
+- * intel_runtime_pm_get() and might power down the corresponding
+- * hardware block right away if this is the last reference.
+- *
+- * This function exists only for historical reasons and should be avoided in
+- * new code, as the correctness of its use cannot be checked. Always use
+- * intel_runtime_pm_put() instead.
+- */
+-void intel_runtime_pm_put_unchecked(struct intel_runtime_pm *rpm)
+-{
+-	__intel_runtime_pm_put(rpm, INTEL_WAKEREF_DEF, true);
+-}
+-
+-#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
+ /**
+  * intel_runtime_pm_put - release a runtime pm reference
+  * @rpm: the intel_runtime_pm structure
+@@ -353,7 +335,6 @@ void intel_runtime_pm_put(struct intel_runtime_pm *rpm, intel_wakeref_t wref)
  {
--	intel_runtime_pm_get(gt->uncore->rpm);
-+	return intel_runtime_pm_get(gt->uncore->rpm);
+ 	__intel_runtime_pm_put(rpm, wref, true);
  }
- 
--static inline void mmio_hw_access_post(struct intel_gt *gt)
-+static inline void mmio_hw_access_post(struct intel_gt *gt,
-+				       intel_wakeref_t wakeref)
- {
--	intel_runtime_pm_put_unchecked(gt->uncore->rpm);
-+	intel_runtime_pm_put(gt->uncore->rpm, wakeref);
- }
+-#endif
  
  /**
-diff --git a/drivers/gpu/drm/i915/gvt/handlers.c b/drivers/gpu/drm/i915/gvt/handlers.c
-index 4efee6797873..02f45929592e 100644
---- a/drivers/gpu/drm/i915/gvt/handlers.c
-+++ b/drivers/gpu/drm/i915/gvt/handlers.c
-@@ -264,6 +264,7 @@ static int fence_mmio_write(struct intel_vgpu *vgpu, unsigned int off,
- {
- 	struct intel_gvt *gvt = vgpu->gvt;
- 	unsigned int fence_num = offset_to_fence_num(off);
-+	intel_wakeref_t wakeref;
- 	int ret;
+  * intel_runtime_pm_enable - enable runtime pm
+diff --git a/drivers/gpu/drm/i915/intel_runtime_pm.h b/drivers/gpu/drm/i915/intel_runtime_pm.h
+index 7428bd8fa67f..6eee55e3ff0b 100644
+--- a/drivers/gpu/drm/i915/intel_runtime_pm.h
++++ b/drivers/gpu/drm/i915/intel_runtime_pm.h
+@@ -204,16 +204,7 @@ intel_wakeref_t intel_runtime_pm_get_raw(struct intel_runtime_pm *rpm);
+ 	for ((wf) = intel_runtime_pm_get_if_active(rpm); (wf); \
+ 	     intel_runtime_pm_put((rpm), (wf)), (wf) = NULL)
  
- 	ret = sanitize_fence_mmio_access(vgpu, fence_num, p_data, bytes);
-@@ -271,10 +272,10 @@ static int fence_mmio_write(struct intel_vgpu *vgpu, unsigned int off,
- 		return ret;
- 	write_vreg(vgpu, off, p_data, bytes);
+-void intel_runtime_pm_put_unchecked(struct intel_runtime_pm *rpm);
+-#if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
+ void intel_runtime_pm_put(struct intel_runtime_pm *rpm, intel_wakeref_t wref);
+-#else
+-static inline void
+-intel_runtime_pm_put(struct intel_runtime_pm *rpm, intel_wakeref_t wref)
+-{
+-	intel_runtime_pm_put_unchecked(rpm);
+-}
+-#endif
+ void intel_runtime_pm_put_raw(struct intel_runtime_pm *rpm, intel_wakeref_t wref);
  
--	mmio_hw_access_pre(gvt->gt);
-+	wakeref = mmio_hw_access_pre(gvt->gt);
- 	intel_vgpu_write_fence(vgpu, fence_num,
- 			vgpu_vreg64(vgpu, fence_num_to_offset(fence_num)));
--	mmio_hw_access_post(gvt->gt);
-+	mmio_hw_access_post(gvt->gt, wakeref);
- 	return 0;
- }
- 
-@@ -1975,10 +1976,12 @@ static int mmio_read_from_hw(struct intel_vgpu *vgpu,
- 	    vgpu == gvt->scheduler.engine_owner[engine->id] ||
- 	    offset == i915_mmio_reg_offset(RING_TIMESTAMP(engine->mmio_base)) ||
- 	    offset == i915_mmio_reg_offset(RING_TIMESTAMP_UDW(engine->mmio_base))) {
--		mmio_hw_access_pre(gvt->gt);
-+		intel_wakeref_t wakeref;
-+
-+		wakeref = mmio_hw_access_pre(gvt->gt);
- 		vgpu_vreg(vgpu, offset) =
- 			intel_uncore_read(gvt->gt->uncore, _MMIO(offset));
--		mmio_hw_access_post(gvt->gt);
-+		mmio_hw_access_post(gvt->gt, wakeref);
- 	}
- 
- 	return intel_vgpu_default_mmio_read(vgpu, offset, p_data, bytes);
-@@ -3209,10 +3212,12 @@ void intel_gvt_restore_fence(struct intel_gvt *gvt)
- 	int i, id;
- 
- 	idr_for_each_entry(&(gvt)->vgpu_idr, vgpu, id) {
--		mmio_hw_access_pre(gvt->gt);
-+		intel_wakeref_t wakeref;
-+
-+		wakeref = mmio_hw_access_pre(gvt->gt);
- 		for (i = 0; i < vgpu_fence_sz(vgpu); i++)
- 			intel_vgpu_write_fence(vgpu, i, vgpu_vreg64(vgpu, fence_num_to_offset(i)));
--		mmio_hw_access_post(gvt->gt);
-+		mmio_hw_access_post(gvt->gt, wakeref);
- 	}
- }
- 
-@@ -3233,8 +3238,10 @@ void intel_gvt_restore_mmio(struct intel_gvt *gvt)
- 	int id;
- 
- 	idr_for_each_entry(&(gvt)->vgpu_idr, vgpu, id) {
--		mmio_hw_access_pre(gvt->gt);
-+		intel_wakeref_t wakeref;
-+
-+		wakeref = mmio_hw_access_pre(gvt->gt);
- 		intel_gvt_for_each_tracked_mmio(gvt, mmio_pm_restore_handler, vgpu);
--		mmio_hw_access_post(gvt->gt);
-+		mmio_hw_access_post(gvt->gt, wakeref);
- 	}
- }
-diff --git a/drivers/gpu/drm/i915/gvt/sched_policy.c b/drivers/gpu/drm/i915/gvt/sched_policy.c
-index c077fb4674f0..c75b393ab0b7 100644
---- a/drivers/gpu/drm/i915/gvt/sched_policy.c
-+++ b/drivers/gpu/drm/i915/gvt/sched_policy.c
-@@ -448,6 +448,7 @@ void intel_vgpu_stop_schedule(struct intel_vgpu *vgpu)
- 	struct drm_i915_private *dev_priv = vgpu->gvt->gt->i915;
- 	struct intel_engine_cs *engine;
- 	enum intel_engine_id id;
-+	intel_wakeref_t wakeref;
- 
- 	if (!vgpu_data->active)
- 		return;
-@@ -466,7 +467,7 @@ void intel_vgpu_stop_schedule(struct intel_vgpu *vgpu)
- 		scheduler->current_vgpu = NULL;
- 	}
- 
--	intel_runtime_pm_get(&dev_priv->runtime_pm);
-+	wakeref = intel_runtime_pm_get(&dev_priv->runtime_pm);
- 	spin_lock_bh(&scheduler->mmio_context_lock);
- 	for_each_engine(engine, vgpu->gvt->gt, id) {
- 		if (scheduler->engine_owner[engine->id] == vgpu) {
-@@ -475,6 +476,6 @@ void intel_vgpu_stop_schedule(struct intel_vgpu *vgpu)
- 		}
- 	}
- 	spin_unlock_bh(&scheduler->mmio_context_lock);
--	intel_runtime_pm_put_unchecked(&dev_priv->runtime_pm);
-+	intel_runtime_pm_put(&dev_priv->runtime_pm, wakeref);
- 	mutex_unlock(&vgpu->gvt->sched_lock);
- }
+ #if IS_ENABLED(CONFIG_DRM_I915_DEBUG_RUNTIME_PM)
 -- 
 2.45.3
 
