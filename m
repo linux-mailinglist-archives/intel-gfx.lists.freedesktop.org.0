@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 X-Original-To: lists+intel-gfx@lfdr.de
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A08DAA31966
-	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2025 00:20:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE0E5A31967
+	for <lists+intel-gfx@lfdr.de>; Wed, 12 Feb 2025 00:20:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F13410E760;
-	Tue, 11 Feb 2025 23:19:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56D2110E76F;
+	Tue, 11 Feb 2025 23:20:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cVU8HXx0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jI4AC0d0";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D516210E760
- for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2025 23:19:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A482A10E761
+ for <intel-gfx@lists.freedesktop.org>; Tue, 11 Feb 2025 23:20:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1739315999; x=1770851999;
+ t=1739316001; x=1770852001;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=3h0WZHYLmjMK0lthgOUmssipmLBWbFI0CBTQvhQiYh8=;
- b=cVU8HXx043SlGGjTTJyyVWKd2Nx5EaDFmWjo4gVDRBjrSDkWkuc+DVKl
- H4Xh1QqHkDpwQTaiZFm8s9YIzb5jH+ybdrKZfV3WC9OJdwJs83YJWJMIe
- NxFg3TsM06ZpDpQ7Zgchn/HlPrCL18tYyxs67uFXvM0Sqbb4e6zhqJH53
- 1I3786WfJKVzaDaNnmZRI2tZ1LGCNs4NWQ3mWk73Zhbrzd5lUMQFptSsf
- lazeFjywBaVwG/oQ9A2fhFZp3Cm5oN6FOVjJP5KgLFlfjRqqmiDXedES9
- 1shaJdwGObvOTZkfBvwjPWJLupMRLB7uSigP7Ny3QLZ25DVaDfppdd1/K g==;
-X-CSE-ConnectionGUID: wrazH/34S8GWUqfb/DpMWQ==
-X-CSE-MsgGUID: nwfWx8b8Soe8JhSuQ7TiIg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11342"; a="39820131"
-X-IronPort-AV: E=Sophos;i="6.13,278,1732608000"; d="scan'208";a="39820131"
+ bh=kyWKof8EUxk1eCAAFzQufMIk7cZmJqePTifHDpDhK9A=;
+ b=jI4AC0d03ao5CsIKgrhwg2YKmsR8kxmqJjX10DlAeY3mVcGiIwuMv+LY
+ O85crKrzb3t4FPJRqSl1TJ44fcg7GdqatCv9nManiUhGTJ25nE1aq+Ps0
+ FALvVWxPbKYuR1lZau9VUtf7SpyFbDhYYgGUrLxQwz0MODVmozoYTu9T1
+ 6+6oCmE+WeElZvZJwJm0Zb7BVQX6tcVIdO6PhzckS2QeZeUORDIIwVu4g
+ zIDXklDuYKRou8oMobYxsK4YwzxYSC/Kt1WWCQhnWh4xIitauc7hjBR9z
+ lGtTaDCkvENRL0I2UVBvDFNAQwUMiOIdHnHWzLLZA7kv+JB97xMka+bVX Q==;
+X-CSE-ConnectionGUID: thVZKaGmQHS5CXSclAr+Ig==
+X-CSE-MsgGUID: L2Gkit8TSUmEcWG0yDC0pA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11342"; a="39820132"
+X-IronPort-AV: E=Sophos;i="6.13,278,1732608000"; d="scan'208";a="39820132"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2025 15:19:58 -0800
-X-CSE-ConnectionGUID: 6RZ27iZEQOaQ+H9axBw65A==
-X-CSE-MsgGUID: 0pY3GoNGS32L60L/2Yez/A==
+ 11 Feb 2025 15:20:01 -0800
+X-CSE-ConnectionGUID: Jn2DWZpkTca3IIXfdHcT2w==
+X-CSE-MsgGUID: aQFweGsfTbuXV/LnHwKS7Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,278,1732608000"; d="scan'208";a="112870886"
+X-IronPort-AV: E=Sophos;i="6.13,278,1732608000"; d="scan'208";a="112870893"
 Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by fmviesa008.fm.intel.com with SMTP; 11 Feb 2025 15:19:55 -0800
+ by fmviesa008.fm.intel.com with SMTP; 11 Feb 2025 15:19:58 -0800
 Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 12 Feb 2025 01:19:55 +0200
+ Wed, 12 Feb 2025 01:19:57 +0200
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Subject: [PATCH 05/12] drm/i915: Introduce RING_FAULT_VADDR_MASK
-Date: Wed, 12 Feb 2025 01:19:33 +0200
-Message-ID: <20250211231941.22769-6-ville.syrjala@linux.intel.com>
+Subject: [PATCH 06/12] drm/i915: Extract gen8_report_fault()
+Date: Wed, 12 Feb 2025 01:19:34 +0200
+Message-ID: <20250211231941.22769-7-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.45.3
 In-Reply-To: <20250211231941.22769-1-ville.syrjala@linux.intel.com>
 References: <20250211231941.22769-1-ville.syrjala@linux.intel.com>
@@ -70,54 +70,112 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Add a proper bitmask definition for the pre-bdw fault
-virtual address bits insted of abusing PAGE_MASK.
+gen8_check_faults() and xehp_check_faults() are nearly identical.
+Refactor the common bits into gen8_report_fault().
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_gt.c      | 8 +++++---
- drivers/gpu/drm/i915/gt/intel_gt_regs.h | 1 +
- 2 files changed, 6 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_gt.c | 73 ++++++++++++------------------
+ 1 file changed, 29 insertions(+), 44 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-index 04b43852a397..b8189754edb7 100644
+index b8189754edb7..3d3b1ba76e2b 100644
 --- a/drivers/gpu/drm/i915/gt/intel_gt.c
 +++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-@@ -302,17 +302,19 @@ static void gen6_check_faults(struct intel_gt *gt)
- {
- 	struct intel_engine_cs *engine;
- 	enum intel_engine_id id;
--	unsigned long fault;
+@@ -323,6 +323,27 @@ static void gen6_check_faults(struct intel_gt *gt)
+ 	}
+ }
  
- 	for_each_engine(engine, gt, id) {
-+		u32 fault;
++static void gen8_report_fault(struct intel_gt *gt, u32 fault,
++			      u32 fault_data0, u32 fault_data1)
++{
++	u64 fault_addr;
 +
- 		fault = GEN6_RING_FAULT_REG_READ(engine);
++	fault_addr = ((u64)(fault_data1 & FAULT_VA_HIGH_BITS) << 44) |
++		((u64)fault_data0 << 12);
 +
- 		if (fault & RING_FAULT_VALID) {
- 			gt_dbg(gt, "Unexpected fault\n"
--			       "\tAddr: 0x%08lx\n"
-+			       "\tAddr: 0x%08x\n"
- 			       "\tAddress space: %s\n"
- 			       "\tSource ID: %d\n"
- 			       "\tType: %d\n",
--			       fault & PAGE_MASK,
-+			       fault & RING_FAULT_VADDR_MASK,
- 			       fault & RING_FAULT_GTTSEL_MASK ?
- 			       "GGTT" : "PPGTT",
- 			       REG_FIELD_GET(RING_FAULT_SRCID_MASK, fault),
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-index 1d318993a652..c58192e6f078 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
-@@ -326,6 +326,7 @@
- 							    _RING_FAULT_REG_VCS, \
- 							    _RING_FAULT_REG_VECS, \
- 							    _RING_FAULT_REG_BCS))
-+#define   RING_FAULT_VADDR_MASK			REG_GENMASK(31, 12) /* pre-bdw */
- #define   RING_FAULT_ENGINE_ID_MASK		REG_GENMASK(16, 12) /* bdw+ */
- #define   RING_FAULT_GTTSEL_MASK		REG_BIT(11) /* pre-bdw */
- #define   RING_FAULT_SRCID_MASK			REG_GENMASK(10, 3)
++	gt_dbg(gt, "Unexpected fault\n"
++	       "\tAddr: 0x%08x_%08x\n"
++	       "\tAddress space: %s\n"
++	       "\tEngine ID: %d\n"
++	       "\tSource ID: %d\n"
++	       "\tType: %d\n",
++	       upper_32_bits(fault_addr), lower_32_bits(fault_addr),
++	       fault_data1 & FAULT_GTT_SEL ? "GGTT" : "PPGTT",
++	       REG_FIELD_GET(RING_FAULT_ENGINE_ID_MASK, fault),
++	       REG_FIELD_GET(RING_FAULT_SRCID_MASK, fault),
++	       REG_FIELD_GET(RING_FAULT_FAULT_TYPE_MASK, fault));
++}
++
+ static void xehp_check_faults(struct intel_gt *gt)
+ {
+ 	u32 fault;
+@@ -335,28 +356,10 @@ static void xehp_check_faults(struct intel_gt *gt)
+ 	 * toward the primary instance.
+ 	 */
+ 	fault = intel_gt_mcr_read_any(gt, XEHP_RING_FAULT_REG);
+-	if (fault & RING_FAULT_VALID) {
+-		u32 fault_data0, fault_data1;
+-		u64 fault_addr;
+-
+-		fault_data0 = intel_gt_mcr_read_any(gt, XEHP_FAULT_TLB_DATA0);
+-		fault_data1 = intel_gt_mcr_read_any(gt, XEHP_FAULT_TLB_DATA1);
+-
+-		fault_addr = ((u64)(fault_data1 & FAULT_VA_HIGH_BITS) << 44) |
+-			     ((u64)fault_data0 << 12);
+-
+-		gt_dbg(gt, "Unexpected fault\n"
+-		       "\tAddr: 0x%08x_%08x\n"
+-		       "\tAddress space: %s\n"
+-		       "\tEngine ID: %d\n"
+-		       "\tSource ID: %d\n"
+-		       "\tType: %d\n",
+-		       upper_32_bits(fault_addr), lower_32_bits(fault_addr),
+-		       fault_data1 & FAULT_GTT_SEL ? "GGTT" : "PPGTT",
+-		       REG_FIELD_GET(RING_FAULT_ENGINE_ID_MASK, fault),
+-		       REG_FIELD_GET(RING_FAULT_SRCID_MASK, fault),
+-		       REG_FIELD_GET(RING_FAULT_FAULT_TYPE_MASK, fault));
+-	}
++	if (fault & RING_FAULT_VALID)
++		gen8_report_fault(gt, fault,
++				  intel_gt_mcr_read_any(gt, XEHP_FAULT_TLB_DATA0),
++				  intel_gt_mcr_read_any(gt, XEHP_FAULT_TLB_DATA1));
+ }
+ 
+ static void gen8_check_faults(struct intel_gt *gt)
+@@ -376,28 +379,10 @@ static void gen8_check_faults(struct intel_gt *gt)
+ 	}
+ 
+ 	fault = intel_uncore_read(uncore, fault_reg);
+-	if (fault & RING_FAULT_VALID) {
+-		u32 fault_data0, fault_data1;
+-		u64 fault_addr;
+-
+-		fault_data0 = intel_uncore_read(uncore, fault_data0_reg);
+-		fault_data1 = intel_uncore_read(uncore, fault_data1_reg);
+-
+-		fault_addr = ((u64)(fault_data1 & FAULT_VA_HIGH_BITS) << 44) |
+-			     ((u64)fault_data0 << 12);
+-
+-		gt_dbg(gt, "Unexpected fault\n"
+-		       "\tAddr: 0x%08x_%08x\n"
+-		       "\tAddress space: %s\n"
+-		       "\tEngine ID: %d\n"
+-		       "\tSource ID: %d\n"
+-		       "\tType: %d\n",
+-		       upper_32_bits(fault_addr), lower_32_bits(fault_addr),
+-		       fault_data1 & FAULT_GTT_SEL ? "GGTT" : "PPGTT",
+-		       REG_FIELD_GET(RING_FAULT_ENGINE_ID_MASK, fault),
+-		       REG_FIELD_GET(RING_FAULT_SRCID_MASK, fault),
+-		       REG_FIELD_GET(RING_FAULT_FAULT_TYPE_MASK, fault));
+-	}
++	if (fault & RING_FAULT_VALID)
++		gen8_report_fault(gt, fault,
++				  intel_uncore_read(uncore, fault_data0_reg),
++				  intel_uncore_read(uncore, fault_data1_reg));
+ }
+ 
+ void intel_gt_check_and_clear_faults(struct intel_gt *gt)
 -- 
 2.45.3
 
